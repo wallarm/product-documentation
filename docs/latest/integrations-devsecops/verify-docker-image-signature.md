@@ -49,20 +49,63 @@ The [output](https://docs.sigstore.dev/cosign/verify/) should provide the `docke
 "integratedTime":<VALUE>,"logIndex":<VALUE>,"logID":"<VALUE>"}}}}]
 ```
 
-<!-- ## Using Kubernetes policy engine for signature verification
+## Using Kubernetes policy engine for signature verification
 
-Kubernetes Engine Policy, such as Kyverno or Open Policy Agent (OPA), enables Docker image signature verification within your Kubernetes cluster. By defining a policy with rules for verification, Kyverno evaluates the deployed resources and triggers the image signature verification process based on specified criteria like repositories or tags.
+Engines such as Kyverno or the Open Policy Agent (OPA) allow for Docker image signature verification within your Kubernetes cluster. By crafting a policy with rules for verification, Kyverno initiates the image signature verification based on defined criteria, including repositories or tags. The verification takes place during the Kubernetes resource deployment.
 
-Here is an example of how to use Kyverno policy for Wallarm Docker image signature verification using the Cosign utility:
+Here is an example of how to use Kyverno policy for Wallarm Docker image signature verification:
 
-1. [Install Kyverno](https://kyverno.io/docs/installation/methods/).
-1. policy
-1. Deploy ingerss controller resources/sidecar proxy resources
-1. Check the Wallarm Ingress controller installation status.
-By default, verify-wallarm-images policy, has a failurePolicy:
+1. [Install Kyverno](https://kyverno.io/docs/installation/methods/) on your cluster and ensure all pods are operational.
+1. Create the following Kyverno YAML policy:
 
-the same namespace??
-  failurePolicy: Fail
+    ```yaml
+    apiVersion: kyverno.io/v1
+    kind: ClusterPolicy
+    metadata:
+      name: verify-wallarm-images
+    spec:
+      webhookTimeoutSeconds: 30
+      validationFailureAction: Enforce
+      background: false
+      failurePolicy: Fail
+      rules:
+        - name: verify-wallarm-images
+          match:
+            any:
+              - resources:
+                  kinds:
+                    - Pod
+          verifyImages:
+            - imageReferences:
+                - docker.io/wallarm/ingress*
+                - docker.io/wallarm/sidecar*
+              attestors:
+                - entries:
+                    - keys:
+                        kms: https://repo.wallarm.com/cosign.pub
+    ```
+1. Apply the policy:
 
+    ```
+    kubectl apply -f <PATH_TO_POLICY_FILE>
+    ```
+1. Deploy either the Wallarm [NGINX Ingress controller](../admin-en/installation-kubernetes-en.md) or [Sidecar Controller](../installation/kubernetes/sidecar-proxy/deployment.md), depending on your requirements. The Kyverno policy will be applied during deployment to check the image's signature.
+1. Analyze the verification results by executing:
 
-Which means if the verification fails, the entire chart/manifest installation fails too. -->
+    ```
+    kubectl describe ClusterPolicy verify-wallarm-images
+    ```
+
+You will receive a summary detailing the signature verification status:
+
+```
+Events:
+  Type    Reason         Age                From               Message
+  ----    ------         ----               ----               -------
+  Normal  PolicyApplied  50s (x2 over 50s)  kyverno-admission  Deployment wallarm-sidecar/wallarm-sidecar-wallarm-sidecar-controller: pass
+  Normal  PolicyApplied  48s                kyverno-admission  Pod wallarm-sidecar/wallarm-sidecar-wallarm-sidecar-controller-9dcfddfc7-hjbhd: pass
+  Normal  PolicyApplied  40s (x2 over 40s)  kyverno-admission  Deployment wallarm-sidecar/wallarm-sidecar-wallarm-sidecar-postanalytics: pass
+  Normal  PolicyApplied  35s                kyverno-admission  Pod wallarm-sidecar/wallarm-sidecar-wallarm-sidecar-postanalytics-554789546f-9cc8j: pass
+```
+
+By default, the `verify-wallarm-images` policy is set to z. This implies that if the signature authentication does not succeed, the entire chart or manifest deployment will fail.
