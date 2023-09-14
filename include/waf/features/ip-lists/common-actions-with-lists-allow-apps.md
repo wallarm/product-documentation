@@ -20,6 +20,8 @@ When you choose specific dates to examine the IP list content, the system return
 
 ![IP List history](../../images/user-guides/ip-lists/ip-list-history.png)
 
+Switching back to the **Now** tab takes you to the current state of the IP list, allowing you to view the objects presently included in the list.
+
 ## Filtering the list
 
 You can filter the objects in the list by:
