@@ -9,7 +9,6 @@ These instructions provide you with the steps for the correct configuration of [
 To configure tenant accounts:
 
 1. Sign up for Wallarm Console and send a request for activating the multitenancy feature for your account to Wallarm technical support.
-1. Get access to the tenant account creation from the Wallarm technical support.
 1. Create a tenant account.
 1. Associate specific traffic with the tenant and its applications.
 
