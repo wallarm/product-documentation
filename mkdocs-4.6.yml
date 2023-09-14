@@ -75,6 +75,7 @@ nav:
   - API Security Testing:
     - Overview: fast/README.md
     - Onboarding: fast/onboarding/onboarding.md
+    - OpenAPI Security Testing: fast/openapi-security-testing.md
     - Quick Start Guide:
       - Deployment Options: fast/qsg/deployment-options.md
       - FAST Node Deployment: fast/qsg/deployment.md

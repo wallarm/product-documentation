@@ -84,6 +84,7 @@ nav:
   - セキュリティテスト:
     - 概要: fast/README.md
     - FASTオンボーディング: fast/onboarding/onboarding.md
+    - OpenAPI セキュリティ テスティング: fast/openapi-security-testing.md
     - クイックスタートガイド:
       - デプロイメントオプション: fast/qsg/deployment-options.md
       - FASTノードのデプロイメント: fast/qsg/deployment.md
