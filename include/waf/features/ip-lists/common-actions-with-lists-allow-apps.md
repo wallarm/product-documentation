@@ -14,6 +14,12 @@ Wallarm Console displays the following data on each object added to the list:
 * **Adding date** - date and time when an object was added to the list.
 * **Remove** - time period after which an object will be deleted from the list.
 
+## Reviewing the history of IP list changes
+
+When you choose specific dates to examine the IP list content, the system returns a detailed history of its changes, including the exact timing and method of addition, be it manual or automated. The report also provides data on the individuals responsible for the changes and the reasons behind each inclusion. Such insights help in maintaining an audit trail for compliance and reporting.
+
+![IP List history](../../images/user-guides/ip-lists/ip-list-history.png)
+
 ## Filtering the list
 
 You can filter the objects in the list by:
