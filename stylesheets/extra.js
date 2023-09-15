@@ -8,6 +8,19 @@ for(var i = 0; i < links.length; i++) {
   }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  let main = document.querySelector(".md-main");
+  let isHomepage = location.pathname === "/" || location.pathname === "/index.html";
+  if (main) {
+    if (isHomepage) {
+      main.classList.add('homepage');
+    } else {
+      main.classList.remove('homepage');
+    }
+  }
+});
+
+
 function injectScript(src, cb) {
   let script = document.createElement('script');
 

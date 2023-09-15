@@ -36,7 +36,7 @@ nav:
     - Email PDF and CSV Reports: user-guides/search-and-filters/custom-report.md
     - Activity Log: user-guides/settings/audit-log.md
   - Integrations and Alerts:
-    - Integrations Overview: user-guides/settings/integrations/integrations-intro.md 
+    - Integrations Overview: user-guides/settings/integrations/integrations-intro.md
     - Email Report: user-guides/settings/integrations/email.md
     - Slack: user-guides/settings/integrations/slack.md
     - Telegram: user-guides/settings/integrations/telegram.md
@@ -184,7 +184,7 @@ nav:
           - Array Filter: fast/dsl/points/parsers/array.md
           - Hash Filter: fast/dsl/points/parsers/hash.md
         - Points Building Principles: fast/dsl/points/principles.md
-        - How to Build a Point: fast/dsl/points/construction.md          
+        - How to Build a Point: fast/dsl/points/construction.md
     - Text Formatting Conventions: fast/AGREEMENTS.md
     - Glossary: fast/TERMS-GLOSSARY.md
     - Wallarm Clouds List: fast/CLOUD-LIST.md
@@ -234,7 +234,7 @@ nav:
   - User Management:
     - Overview: user-guides/settings/users.md
     - User Profile: user-guides/settings/account.md
-    - Logout Settings: user-guides/settings/general.md  
+    - Logout Settings: user-guides/settings/general.md
     - API Tokens: user-guides/settings/api-tokens.md
     - Using Single Sign‑On (SSO):
       - Overview of integration with the SAML SSO solution: admin-en/configuration-guides/sso/intro.md
@@ -302,7 +302,7 @@ nav:
         - Customization: installation/kubernetes/sidecar-proxy/customization.md
         - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
         - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
-    - In-Line:  
+    - In-Line:
       - Overview: installation/inline/overview.md
       - Compute Instances:
         - Amazon Web Services:
