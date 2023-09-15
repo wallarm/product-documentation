@@ -1,4 +1,4 @@
-site_name: Wallarm Documentation
+site_name: Documentation
 site_url: https://docs.wallarm.com/
 site_description: The Wallarm solution protects APIs, microservices and web applications from OWASP API Top 10 threats, API abuse and other automated threats with no manual rule configuration and ultra‑low false positives.
 
@@ -17,6 +17,8 @@ plugins:
         - non-zoomable
 dev_addr: '127.0.0.1:8000'
 
+watch:
+  - stylesheets
 theme:
   language_name: English
   name: material
@@ -38,9 +40,6 @@ theme:
   try_button_name: "Try for free"
   demo_request_block: 'Protect your applications and APIs across any infrastructure. <a href="https://www.wallarm.com/request-demo?utm_source=wallarm_docs&utm_medium=top_line&utm_campaign=wallarm_docs_experiment_1" style="color:white; font-weight: bold;">See the product now →</a>'
   wallarm_service_name: 'Wallarm service status: '
-
-watch:
-  - stylesheets
 
 extra:
   social:
@@ -91,6 +90,12 @@ markdown_extensions:
   - attr_list
   - prependnewline
   - meta
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      options:
+        custom_icons:
+          - stylesheets/.icons
 
 edit_uri: ../product-documentation/edit/master/docs/latest/
 
