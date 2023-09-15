@@ -76,9 +76,11 @@ nav:
       - Contacting Wallarm Support to Stop the Resource Scanner: admin-en/scanner-complaint-en.md
     - Active Threat Verification:
       - Overview: vulnerability-detection/active-threat-verification/overview.md
-      - Configuration Best Practices: vulnerability-detection/active-threat-verification/best-practices.md
-      - Controlling the mode: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
-      - Rewriting the request before attack replaying: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
+      - Configuration:
+        - Enabling Globally of for Specific Endpoints: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
+        - Rewriting Requests Before Attack Replaying: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
+      - Use Cases:
+        - Running Test on Non‑Production: vulnerability-detection/active-threat-verification/running-test-on-staging.md
       # - Running Attack Replays on Staging: vulnerability-detection/active-threat-verification/running-test-on-staging.md
       # - Authenticating Replayed Attacks: vulnerability-detection/active-threat-verification/request-authentication.md
       # - Configuration Best Practices: admin-en/attack-rechecker-best-practices.md
