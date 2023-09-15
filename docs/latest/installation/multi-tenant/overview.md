@@ -2,7 +2,7 @@
 
 The **multitenancy** feature allows using Wallarm to protect several independent company infrastructures or isolated environments simultaneously.
 
-**Tenant** represents the following entities:
+**Tenant** ([**tenant account**](#tenant-accounts)) represents the following entities:
 
 * An independent company (**client**) if integrating Wallarm as a partner.
 * An isolated environment if integrating Wallarm as a client.
@@ -32,6 +32,36 @@ Wallarm allows customization of Wallarm Console and some other components. If us
 * Brand Wallarm Console
 * Host Wallarm Console on a custom domain
 * Set the email address for your technical support to receive messages from clients or colleagues
+
+## Tenant accounts
+
+Tenant accounts are characterised by the following:
+
+* To correctly group tenant accounts in Wallarm Console, each tenant account is linked to the global account, indicating a partner or a client with isolated environments.
+* Users are provided with access to each tenant account separately.
+* Data of each tenant account is isolated and accessible only to users added to the account.
+* Users with **global** [roles](../../user-guides/settings/users.md#user-roles) can create new tenant accounts and view and edit all tenant accounts' data.
+
+Tenant accounts are created according to the following structure:
+
+![!Tenant account structure](../../images/partner-waf-node/accounts-scheme.png)
+
+* **Global account** is used only to group tenant accounts by a partner or a client.
+* **Technical tenant account** is used to add [global users](../../user-guides/settings/users.md#user-roles) providing them with access to tenant accounts. Global users are usually employees of Wallarm partner companies or Wallarm clients using multitenancy for isolated environments.
+* **Tenant accounts** are used to:
+
+    * Provide tenants with access to the data on detected attacks and to the traffic filtration settings.
+    * Provide users with access to certain tenant account's data.
+
+[Global users](../../user-guides/settings/users.md#user-roles) can: 
+
+* Switch between accounts in Wallarm Console.
+* Monitor tenants' [subscriptions and quotas](../../about-wallarm/subscription-plans.md).
+
+![!Tenant selector in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
+
+* `Technical tenant` is a technical tenant account
+* `Tenant 1` and `Tenant 2` are tenant accounts
 
 ## Multitenancy configuration
 

@@ -1,45 +1,14 @@
 # Creating Tenant Accounts in Wallarm Console
 
-The [multitenancy](overview.md) feature enables you to use several linked accounts, each a separate record in one Wallarm Console. An account allocated for a particular company or isolated environment is called a **tenant account**.
-
-* To correctly group tenant accounts in Wallarm Console, each tenant account is linked to the global account, indicating a partner or a client with isolated environments.
-* Users are provided with access to each tenant account separately.
-* Data of each tenant account is isolated and accessible only to users added to the account.
-* Users with **global** [roles](../../user-guides/settings/users.md#user-roles) can create new tenant accounts and view and edit all tenant accounts' data.
-
-These instructions provide you with the steps for the correct configuration of tenant accounts.
+These instructions provide you with the steps for the correct configuration of [tenant accounts](overview.md).
 
 --8<-- "../include/waf/features/multi-tenancy/partner-client-term.md"
-
-## Tenant account structure
-
-Tenant accounts are created according to the following structure:
-
-![Tenant account structure](../../images/partner-waf-node/accounts-scheme.png)
-
-* **Global account** is used only to group tenant accounts by a partner or a client.
-* **Technical tenant account** is used to add [global users](../../user-guides/settings/users.md#user-roles) providing them with access to tenant accounts. Global users are usually employees of Wallarm partner companies or Wallarm clients using multitenancy for isolated environments.
-* **Tenant accounts** are used to:
-
-    * Provide tenants with access to the data on detected attacks and to the traffic filtration settings.
-    * Provide users with access to certain tenant account's data.
-
-[Global users](../../user-guides/settings/users.md#user-roles) can: 
-
-* Switch between accounts in Wallarm Console.
-* Monitor tenants' [subscriptions and quotas](../../about-wallarm/subscription-plans.md).
-
-![Tenant selector in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
-
-* `Technical tenant` is a technical tenant account
-* `Tenant 1` and `Tenant 2` are tenant accounts
 
 ## Configuring tenant accounts
 
 To configure tenant accounts:
 
 1. Sign up for Wallarm Console and send a request for activating the multitenancy feature for your account to Wallarm technical support.
-1. Get access to the tenant account creation from the Wallarm technical support.
 1. Create a tenant account.
 1. Associate specific traffic with the tenant and its applications.
 
@@ -60,8 +29,6 @@ To configure tenant accounts:
     * Custom domain for Wallarm Console, certificate and encryption key for the domain
     * Your technical support email address
 
-### Step 2: Get access to the tenant account creation
-
 After getting your request, the Wallarm technical support will:
 
 1. Create a global account and technical tenant account in the Wallarm Cloud.
@@ -73,7 +40,7 @@ After getting your request, the Wallarm technical support will:
 
     Received UUID will be required in the further steps.
 
-### Step 3: Create the tenant via the Wallarm API
+### Step 2: Create the tenant via the Wallarm API
 
 To create the tenant, it is required to send authenticated requests to Wallarm API. Authenticated requests to Wallarm API can be sent from your own API client or from the [Wallarm API Console](../../api/overview.md) that defines the authentication method:
 
@@ -125,7 +92,7 @@ Created tenants will be displayed in Wallarm Console for [global users](../../us
 
 ![Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
 
-### Step 4: Associate specific traffic with your tenant
+### Step 3: Associate specific traffic with your tenant
 
 !!! info "When to configure?"
     This configuration is performed during the node deployment and only if the traffic of all tenants is [processed or will be processed](deploy-multi-tenant-node.md) by only one Wallarm node.
