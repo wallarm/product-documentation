@@ -7,12 +7,17 @@ Wallarm Console displays the following data on each object added to the list:
 
 * **Object** - IP address, subnet, country/region or IP source added to the list.
 * **Application** - application to which access configuration of the object is applied.
-* **Source** - source of a single IP address or subnet:
-    * The country/region where a single IP address or subnet is registered (if it was found in the databases like IP2Location or others)
-    * The source type, like **Public proxy**, **Web proxy**, **Tor** or the cloud platform the IP registered in, etc (if it was found in the databases like IP2Location or others)
 * **Reason** - reason for adding an IP address or a group of IP addresses to the list. The reason is manually specified when adding objects to the list or automatically generated when IPs are added to the list by [triggers](../triggers/triggers.md).
 * **Adding date** - date and time when an object was added to the list.
 * **Remove** - time period after which an object will be deleted from the list.
+
+## Reviewing the history of IP list changes
+
+When you choose specific dates to examine the IP list content, the system returns a detailed history of its changes, including the exact timing and method of addition, be it manual or automated. The report also provides data on the individuals responsible for the changes and the reasons behind each inclusion. Such insights help in maintaining an audit trail for compliance and reporting.
+
+![IP List history](../../images/user-guides/ip-lists/ip-list-history.png)
+
+Switching back to the **Now** tab takes you to the current state of the IP list, allowing you to view the objects presently included in the list.
 
 ## Filtering the list
 
