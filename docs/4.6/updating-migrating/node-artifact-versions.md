@@ -22,7 +22,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
-### 4.6.6 (2023-07-24)
+### 4.6.7 (2023-07-24)
 
 * The Helm chart version of the NGINX Ingress controller has been bumped to [4.7.1](https://github.com/kubernetes/ingress-nginx/releases/tag/helm-chart-4.7.1)
 * The NGINX Ingress controller version has been bumped to [1.8.1](https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.8.1)
