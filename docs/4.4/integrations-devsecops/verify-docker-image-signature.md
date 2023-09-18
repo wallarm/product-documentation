@@ -108,4 +108,4 @@ Events:
   Normal  PolicyApplied  35s                kyverno-admission  Pod wallarm-sidecar/wallarm-sidecar-wallarm-sidecar-postanalytics-554789546f-9cc8j: pass
 ```
 
-By default, the `verify-wallarm-images` policy is set to z. This implies that if the signature authentication does not succeed, the entire chart or manifest deployment will fail.
+The provided `verify-wallarm-images` policy has the `failurePolicy: Fail` parameter. This implies that if the signature authentication does not succeed, the entire chart deployment fails.
