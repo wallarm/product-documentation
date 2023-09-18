@@ -7,8 +7,7 @@ Wallarm provides the following subscription plans:
 * **Cloud Native WAAP (Web Application & API Protection)** that is a Next-Gen WAF providing web applications and APIs with protection against common threats.
 * **Advanced API Security** provides comprehensive API discovery and threat prevention across your entire portfolio, regardless of protocol.
 
-    !!! info "Advanced API Security is a subscription bundle"
-        The Advanced API Security subscription plan is sold as an add-on for Cloud Native WAAP.
+    The Advanced API Security subscription plan is sold as an add-on for Cloud Native WAAP.
 
 ## Subscription plans
 
@@ -32,6 +31,7 @@ Wallarm provides the following subscription plans:
 | [Brute-force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) | Yes | Yes |
 | **Observability options** | | |
 | [API Discovery](../about-wallarm/api-discovery.md) | No | Yes |
+| [Finding shadow, orphan and zombie APIs](../about-wallarm/api-discovery.md#shadow-orphan-and-zombie-apis) with API Discovery | No | Yes |
 | [Sensitive data detection](../about-wallarm/api-discovery.md) | No | Yes |
 | **Security testing and vulnerability assessment** | | |
 | [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | No | Yes |

@@ -1,16 +1,16 @@
 # Discovering API inventory <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-The **API Discovery** module of the Wallarm platform builds your application REST API inventory based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API inventory based on the analysis results.
+The **API Discovery** module of the Wallarm platform [builds](#enabling-and-configuring-api-discovery) your application REST API inventory based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API inventory based on the analysis results. This article gives an overview of **API Discovery**: issues addressed by it, its purpose and main possibilities.
 
-By default, the API Discovery module is [disabled](#enabling-and-configuring-api-discovery).
+For information on how to use the **API Discovery** module, refer to its [user guide](../user-guides/api-discovery.md).
 
 ## Issues addressed by API Discovery
 
 **Building an actual and complete API inventory** is the main issue the API Discovery module is addressing.
 
-Keeping API inventory up-to-date is a difficult task. There are multiple teams that use different APIs and it is a common case that different tools and processes are used to produce the API documentation. As a result, companies struggle in both understanding what APIs they have, what data they expose and having an up-to-date API documentation.
+Keeping API inventory up-to-date is a difficult task. There are multiple teams that use different APIs and it is a common case that different tools and processes are used to produce the API documentation. As a result, companies struggle in both understanding what APIs they have, what data they expose and having up-to-date API documentation.
 
-Since the API Discovery module uses the real traffic as a data source, it helps to get up-to-date and complete API documentation by including to the API inventory all endpoints that actually processing the requests.
+Since the API Discovery module uses the real traffic as a data source, it helps to get up-to-date and complete API documentation by including to the API inventory all endpoints that are actually processing the requests.
 
 **As you have your API inventory discovered by Wallarm, you can**:
 
@@ -20,12 +20,11 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * View most attacked APIs for the last 7 days.
 * Filter out only attacked APIs, sort them by number of hits.
 * Filter APIs that consume and carry sensitive data.
-* Have an up-to-date API inventory with the option to [export it](../user-guides/api-discovery.md#download-openapi-specification-oas-for-your-api-inventory) into the OpenAPI v3 to compare it with your own API description. You can discover:
-    * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
-    * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
+* Find [shadow, orphan and zombie APIs](#shadow-orphan-and-zombie-apis).
+* [Download](../user-guides/api-discovery.md#download-openapi-specification-oas-of-your-api-inventory) discovered endpoints as specification in the OpenAPI v3 format and compare with your own API specifications to find endpoints presented in your specifications but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
 * [Track changes](#tracking-changes-in-api) in API that took place within the selected period of time.
 * Quickly [create rules](../user-guides/api-discovery.md#api-inventory-and-rules) per any given API endpoint.
-* Get full list of the malicious requests per any given API endpoint.
+* Get a full list of the malicious requests per any given API endpoint.
 * Provide your developers with access to the built API inventory reviewing and downloading.
 
 ## How API Discovery works?
@@ -36,7 +35,7 @@ API Discovery relies on request statistics and uses sophisticated algorithms to 
 
 API Discovery uses a hybrid approach to conduct analysis locally and in the Cloud. This approach enables a [privacy-first process](#security-of-data-uploaded-to-the-wallarm-cloud) where request data and sensitive data are kept locally while using the power of the Cloud for the statistics analysis:
 
-1. API Discovery analyzes a legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed.
+1. API Discovery analyzes legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed.
 1. According to this data, statistics are made and sent to the Сloud.
 1. Wallarm Cloud aggregates the received statistics and builds an [API description](../user-guides/api-discovery.md) on its basis.
 
@@ -66,7 +65,7 @@ The API inventory includes the following elements:
 * Required and optional GET, POST, and header parameters including:
     * [Type/format](#parameter-types-and-formats) of data sent in each parameter
     * Presence and type of sensitive data (PII) transmitted by the parameter:
-        
+
         * Technical data like IP and MAC addresses
         * Login credentials like secret keys and passwords
         * Financial data like bank card numbers
@@ -157,9 +156,9 @@ The risk score is made up of various factors, including:
 
  If you update the API and the traffic structure is adjusted, API Discovery updates the built API inventory.
 
-The company may have several teams, disparate programming languages, and variety of language frameworks. Thus changes can come to API at any time from different sources which make them difficult to control. For security officers it is important to detect changes as soon as possible and analyze them. If missed, such changes may hold some risks, for example:
+The company may have several teams, disparate programming languages, and a variety of language frameworks. Thus changes can come to API at any time from different sources which make them difficult to control. For security officers it is important to detect changes as soon as possible and analyze them. If missed, such changes may hold some risks, for example:
 
-* The development team can start using a third-party library with a separate API and the do not notify the security specialists about that. This way the company gets endpoints that are not monitored and not checked for vulnerabilities. They can be potential attack directions.
+* The development team can start using a third-party library with a separate API and they do not notify the security specialists about that. This way the company gets endpoints that are not monitored and not checked for vulnerabilities. They can be potential attack directions.
 * The PII data begin to be transferred to the endpoint. An unplanned transfer of PII can lead to a violation of compliance with the requirements of regulators, as well as lead to reputational risks.
 * Important for the business logic endpoint (for example, `/login`, `/order/{order_id}/payment/`) is no longer called.
 * Other parameters that should not be transferred, for example `is_admin` (someone accesses the endpoint and tries to do it with administrator rights) begin to be transferred to the endpoint.
@@ -167,7 +166,7 @@ The company may have several teams, disparate programming languages, and variety
 With the **API Discovery** module of Wallarm you can:
 
 * Track changes and check that they do not disrupt current business processes.
-* Make sure that no unknown endpoints have appeared in the infrastructure that could be a potential threat vectors.
+* Make sure that no unknown endpoints have appeared in the infrastructure that could be a potential threat vector.
 * Make sure PII and other unexpected parameters did not start being transferred to the endpoints.
 * Configure notifications about changes in your API via [triggers](../user-guides/triggers/trigger-examples.md#new-endpoints-in-your-api-inventory) with the **Changes in API** condition.
 
@@ -202,7 +201,7 @@ Click the endpoint to expand its parameters and view which type was automaticall
 
 ![API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
 
-Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount on matching addresses.
+Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
 
 ## Security of data uploaded to the Wallarm Cloud
 
@@ -217,7 +216,7 @@ Other data (endpoint values, request methods, and parameter names) is not hashed
 
 ## Enabling and configuring API Discovery
 
-The `wallarm-appstructure` package is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node except for the CloudLinux 6.x and Debian 11.x packages. During node deployment, it installs the API Discovery module but keeps it disabled by default.
+The `wallarm-appstructure` package is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node except for the Debian 11.x and Ubuntu 22.04 packages. During node deployment, it installs the API Discovery module but keeps it disabled by default.
 
 To enable and run API Discovery correctly:
 

@@ -20,7 +20,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * View most attacked APIs for the last 7 days.
 * Filter out only attacked APIs, sort them by number of hits.
 * Filter APIs that consume and carry sensitive data.
-* Find [shadow and orphan APIs](#shadow-and-orphan-apis).
+* Find [shadow, orphan and zombie APIs](#shadow-orphan-and-zombie-apis).
 * [Download](../user-guides/api-discovery.md#download-openapi-specification-oas-of-your-api-inventory) discovered endpoints as specification in the OpenAPI v3 format and compare with your own API specifications to find endpoints presented in your specifications but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
 * [Track changes](#tracking-changes-in-api) in API that took place within the selected period of time.
 * Quickly [create rules](../user-guides/api-discovery.md#api-inventory-and-rules) per any given API endpoint.
@@ -219,9 +219,13 @@ Each protected API endpoint will be highlighted with the corresponding icon in t
 
 You can filter API endpoints by the BOLA auto protection state. The corresponding parameter is available under the **Others** filter.
 
-## Shadow and orphan APIs
+## Shadow, orphan and zombie APIs
+
+API Discovery allows uncovering rogue (shadow, orphan and zombie) APIs.
 
 A **shadow API** refers to an undocumented API that exists within an organization's infrastructure without proper authorization or oversight. They put businesses at risk, as attackers can exploit them to gain access to critical systems, steal valuable data, or disrupt operations, further compounded by the fact that APIs often act as gatekeepers to critical data and that a range of OWASP API vulnerabilities can be exploited to bypass API security.
+
+In terms of your uploaded API [specifications](../user-guides/api-specifications.md), shadow API is an endpoint presented in actual traffic (detected by API Discovery) and not presented in your specification.
 
 As you find shadow APIs with Wallarm, you can update your specifications to include missing endpoints and further perform monitoring and security activities towards your API inventory in its full view.
 
@@ -231,12 +235,18 @@ An **orphan API** refers to a documented API that does not receive traffic. The 
 * Determining whether certain applications should not receive any traffic at these specific endpoints or it is some kind of misconfiguration.
 * Making decision on obsolete endpoints: used in previous application versions and not used in the current - should they be deleted from the specification to reduce security check effort.
 
-The API Discovery module automatically uncovers shadow and orphan APIs by comparing the discovered API inventory with customers' provided specifications. You upload your API specifications in the [**API Specifications**](../user-guides/api-specifications.md) section and the module automatically highlights shadow and orphan endpoints.
+A **zombie API** refers to deprecated APIs that everyone assumes have been disabled but actually they are still in use. Their risks are similar to the rest of undocumented (shadow) API but may be worse as the reason for disabling is often the insecure designs that are easier to crack.
 
-![API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow-orphan.png)
+In terms of your uploaded API specifications, zombie API is an endpoint presented in the previous version of your specification, not presented in the current version (that is, there was an intention of delection of this endpoint) but still presented in actual traffic (detected by API Discovery).
 
-* [Learn how to upload specifications for comparison to find shadow and orphan APIs →](../user-guides/api-specifications.md#revealing-shadow-and-orphan-api)
-* [Learn how to display found shadow and orphan API in the API Discovery section →](../user-guides/api-discovery.md#displaying-shadow-and-orphan-api)
+Finding zombie API with Wallarm may be the reason to re-check API configuration of you applications to actually disable such endpoints.
+
+The API Discovery module automatically uncovers shadow, orphan, and zombie APIs by comparing the discovered API inventory with customers' provided specifications. You upload your API specifications in the [**API Specifications**](../user-guides/api-specifications.md) section and the module automatically highlights shadow, orphan, and zombie endpoints.
+
+![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+
+* [Learn how to upload specifications for comparison to find rogue APIs →](../user-guides/api-specifications.md#revealing-shadow-orphan-and-zombie-api)
+* [Learn how to display found rogue APIs in the API Discovery section →](../user-guides/api-discovery.md#displaying-shadow-and-orphan-api)
 
 ## Security of data uploaded to the Wallarm Cloud
 
