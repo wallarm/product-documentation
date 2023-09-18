@@ -154,17 +154,17 @@ You can quickly create a new [custom rule](../user-guides/rules/intro.md) from a
 
 ![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
-## Displaying shadow and orphan API
+## Displaying shadow, orphan and zombie API
 
-The **API Discovery** module automatically uncovers shadow and orphan APIs by comparing the actual registered traffic with the [customers' provided specifications](../user-guides/api-specifications.md). To display [shadow and orphan APIs](../about-wallarm/api-discovery.md#shadow-and-orphan-apis) among endpoints discovered by Wallarm:
+The **API Discovery** module automatically uncovers rogue (shadow, orphan and zombie) APIs by comparing the actual registered traffic with the [customers' provided specifications](../user-guides/api-specifications.md). To display [rogue APIs](../about-wallarm/api-discovery.md#shadow-orphan-and-zombie-apis) among endpoints discovered by Wallarm:
 
-* Use the **Compare to...** filter to select specification comparisons - only for them the shadow and orphan APIs will be highlighted by the special marks in the **Issues** column.
+* Use the **Compare to...** filter to select specification comparisons - only for them the rogue APIs will be highlighted by the special marks in the **Issues** column.
 
-    ![API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow-orphan.png)
+    ![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
-* Use the **Other** → **Shadow API** and **Orphan API** filters to see only shadow and orphan APIs related to the selected comparisons and filter out the remaining endpoints.
+* Use the **Rogue APIs** filter to see only shadow, orphan and/or zombie APIs related to the selected comparisons and filter out the remaining endpoints.
 
-The endpoint is defined as shadow or orphan API as the result of the comparison of the actual traffic with some specifications (there may be several). They will be listed in the endpoint details, in the **Specification conflicts** section.
+The endpoint is defined as shadow or orphan API as the result of the comparison of the actual traffic with some specifications (there may be several). They will be listed in the endpoint details, in the **Specification conflicts** section. The endpoint is defined as zombie as the result of comparison of the previos and current specification versions and actual traffic.
 
 Shadow APIs are also displayed among the riskiest endpoints at the [API Discovery Dashboard](../user-guides/dashboards/api-discovery.md).
 
