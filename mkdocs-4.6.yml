@@ -80,7 +80,7 @@ nav:
         - Enabling Globally of for Specific Endpoints: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
         - Rewriting Requests Before Attack Replaying: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
       - Use Cases:
-        - Running Test on Non‑Production: vulnerability-detection/active-threat-verification/running-test-on-staging.md
+        - Running Tests on Non‑Production: vulnerability-detection/active-threat-verification/running-test-on-staging.md
       # - Running Attack Replays on Staging: vulnerability-detection/active-threat-verification/running-test-on-staging.md
       # - Authenticating Replayed Attacks: vulnerability-detection/active-threat-verification/request-authentication.md
       # - Configuration Best Practices: admin-en/attack-rechecker-best-practices.md
