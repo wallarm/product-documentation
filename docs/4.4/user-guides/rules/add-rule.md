@@ -333,8 +333,8 @@ The following rules are supported:
 * [Change server response headers](add-replace-response-header.md)
 * [Set the filtration mode][link-filter-mode-rule]
 * [Mask sensitive data][link-sensitive-data-rule]
-* [Set mode of active threat verification](change-request-for-active-verification.md#disabling-enabling-the-active-threat-verification-module)
-* [Rewrite attack before active verification](change-request-for-active-verification.md#rewriting-the-request-before-attack-replaying)
+* [Set mode of active threat verification](../../vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md)
+* [Rewrite attack before active verification](../../vulnerability-detection/active-threat-verification/modify-requests-before-replay.md)
 * [Apply a virtual patch][link-virtual-patch]
 * [User-defined detection rules][link-regex-rule]
 * [Ignore certain attack types](ignore-attack-types.md)

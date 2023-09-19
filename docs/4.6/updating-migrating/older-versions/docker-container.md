@@ -151,6 +151,6 @@ If the deployed image of the version 4.6 operates correctly, you can delete the 
 
 ## Step 15: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
 
-Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
+Learn the [recommendation on the Active threat verification module setup](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) and re-enable it if required.
 
 After a while, ensure the module operation does not cause false positives. If discovering false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).
