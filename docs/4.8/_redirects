@@ -520,3 +520,7 @@
 
 /admin-en/attack-rechecker-best-practices/ /vulnerability-detection/active-threat-verification/running-test-on-staging/
 /user-guides/rules/change-request-for-active-verification/ /vulnerability-detection/active-threat-verification/modify-requests-before-replay/
+/4.4/admin-en/attack-rechecker-best-practices/ /4.4/vulnerability-detection/active-threat-verification/running-test-on-staging/
+/4.4/user-guides/rules/change-request-for-active-verification/ /4.4/vulnerability-detection/active-threat-verification/modify-requests-before-replay/
+/ja/admin-en/attack-rechecker-best-practices/ /ja/vulnerability-detection/active-threat-verification/running-test-on-staging/
+/ja/user-guides/rules/change-request-for-active-verification/ /ja/vulnerability-detection/active-threat-verification/modify-requests-before-replay/
