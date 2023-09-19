@@ -79,7 +79,7 @@ Among all supported [Wallarm deployment options][deployment-platform-docs], this
 1. Install the Wallarm packages:
 
     ``` bash
-    helm install --version 4.6.6 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 4.6.7 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Ingress controller chart
