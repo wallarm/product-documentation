@@ -41,7 +41,7 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
     <p><ul>
     <li><a href="./about-wallarm/detecting-vulnerabilities/">概要</a></li>
     <li><a href="./user-guides/vulnerabilities/">検出された脆弱性の管理</a></li>
-    <li><a href="./admin-en/attack-rechecker-best-practices/">アクティブな脅威予防</a></li>
+    <li><a href="./vulnerability-detection/active-threat-verification/overview/">アクティブな脅威予防</a></li>
     </ul></p>
 </div>
 

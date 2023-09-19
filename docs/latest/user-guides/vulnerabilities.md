@@ -77,7 +77,7 @@ The vulnerability detection configuration can be fine-tuned using the **Configur
 * Enable / disable vulnerability rechecking with the Scanner by using the **Recheck vulnerabilities** option.
 * Enable / disable the **Active threat verification** module for vulnerability detection and rechecking. Note that this option controls the module itself, not just the rechecking process.
 
-    By default, this module is disabled, learn its configuration [best practices](../admin-en/attack-rechecker-best-practices.md) before enabling.
+    By default, this module is disabled, learn its configuration [best practices](../vulnerability-detection/active-threat-verification/running-test-on-staging.md) before enabling.
 
 ![Vuln scan settings](../images/user-guides/vulnerabilities/vuln-scan-settings.png)
 

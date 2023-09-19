@@ -39,28 +39,15 @@
 
 /2.12/api/* /api/:splat 301!
 /2.12/faq/* /faq/:splat 301!
-/2.12/demo-videos/* /demo-videos/:splat 301!
 /2.12/fast/* /fast/:splat 301!
 /2.14/api/* /api/:splat 301!
-/2.14/faq/* /faq/:splat 301!
-/2.14/demo-videos/* /demo-videos/:splat 301!
 /2.14/fast/* /fast/:splat 301!
 /2.14/api-firewall/* /api-firewall/:splat 301!
 /2.16/api/* /api/:splat 301!
-/2.16/faq/* /faq/:splat 301!
-/2.16/demo-videos/* /demo-videos/:splat 301!
 /2.16/fast/* /fast/:splat 301!
 /2.16/api-firewall/* /api-firewall/:splat 301!
-/2.18/api/* /api/:splat 301!
-/2.18/faq/* /faq/:splat 301!
-/2.18/demo-videos/* /demo-videos/:splat 301!
 /2.18/fast/* /fast/:splat 301!
-/2.18/api-firewall/* /api-firewall/:splat 301!
-/3.0/api/* /api/:splat 301!
-/3.0/faq/* /faq/:splat 301!
-/3.0/demo-videos/* /demo-videos/:splat 301!
 /3.0/fast/* /fast/:splat 301!
-/3.0/api-firewall/* /api-firewall/:splat 301!
 /2.12/admin-en/* /2.12
 /2.12/quickstart-en/* /2.12
 /2.12/updating-migrating/* /2.12
@@ -98,21 +85,6 @@
 /2.16/glossary-en /2.16
 /2.16/glossary-en/ /2.16
 /2.16/* /2.18
-/3.2/api/* /api/:splat 301!
-/3.2/faq/* /faq/:splat 301!
-/3.2/demo-videos/* /demo-videos/:splat 301!
-/3.2/fast/* /fast/:splat 301!
-/3.2/api-firewall/* /api-firewall/:splat 301!
-/3.4/api/* /api/:splat 301!
-/3.4/faq/* /faq/:splat 301!
-/3.4/demo-videos/* /demo-videos/:splat 301!
-/3.4/fast/* /fast/:splat 301!
-/3.4/api-firewall/* /api-firewall/:splat 301!
-/3.6/api/* /api/:splat 301!
-/3.6/faq/* /faq/:splat 301!
-/3.6/demo-videos/* /demo-videos/:splat 301!
-/3.6/fast/* /fast/:splat 301!
-/3.6/api-firewall/* /api-firewall/:splat 301!
 /3.6/news/ /news/
 /3.0/admin-en/* /2.18
 /3.0/quickstart-en/* /2.18
@@ -141,27 +113,7 @@
 /3.2/glossary-en /3.2
 /3.2/glossary-en/ /3.2
 /3.2/quickstart/ /3.2
-/4.0/api/* /api/:splat 301!
-/4.0/faq/* /faq/:splat 301!
-/4.0/demo-videos/* /demo-videos/:splat 301!
-/4.0/fast/* /fast/:splat 301!
-/4.0/api-firewall/* /api-firewall/:splat 301!
-/4.2/api/* /api/:splat 301!
 /4.2/faq/* /faq/:splat 301!
-/4.2/fast/* /fast/:splat 301!
-/4.2/api-firewall/* /api-firewall/:splat 301!
-/4.2/news/ /news/ 301!
-/4.4/demo-videos/* /demo-videos/:splat 301!
-/4.4/fast/* /fast/:splat 301!
-/4.4/api/* /api/:splat 301!
-/4.4/faq/* /faq/:splat 301!
-/4.4/api-firewall/* /api-firewall/:splat 301!
-/4.4/news/ /news/ 301!
-/2.18/news/ /news/ 301!
-/3.2/news/ /news/ 301!
-/3.4/news/ /news/ 301!
-/3.6/news/ /news/ 301!
-/4.0/news/ /news/ 301!
 /3.2/* /3.4
 /3.4/admin-en/* /3.4
 /3.4/quickstart/ /3.4
@@ -192,6 +144,21 @@
 /4.0/attacks-vulns-list/ /4.0
 /4.0/glossary-en /4.0
 /4.0/glossary-en/ /4.0
+
+/4.0/* /4.2
+/4.2/admin-en/* /4.2
+/4.2/installation/* /4.2
+/4.2/quickstart/ /4.2
+/4.2/quickstart /4.2
+/4.2/updating-migrating/* /4.2
+/4.2/user-guides/* /4.2
+/4.2/waf-installation/* /4.2
+/4.2/about-wallarm-waf/* /4.2
+/4.2/partner-waf-node/* /4.2
+/4.2/attacks-vulns-list /4.2
+/4.2/attacks-vulns-list/ /4.2
+/4.2/glossary-en /4.2
+/4.2/glossary-en/ /4.2
 
 /quickstart-en/how-wallarm-works/qs-intro-en /about-wallarm/overview/
 /quickstart-en/how-wallarm-works/shared-responsibility /about-wallarm/shared-responsibility/
@@ -544,3 +511,16 @@
 /faq/nginx-compatibility/ /installation/custom/custom-nginx-version/
 
 /about-wallarm/deployment-best-practices/ /quickstart/attack-prevention-best-practices/
+
+/api-firewall/overview/ https://wallarm.github.io/api-firewall/
+/api-firewall/installation-guides/docker-container/ https://wallarm.github.io/api-firewall/installation-guides/docker-container/
+/api-firewall/demos/docker-compose/ https://wallarm.github.io/api-firewall/demos/docker-compose/
+/api-firewall/demos/kubernetes-cluster/ https://wallarm.github.io/api-firewall/demos/kubernetes-cluster/
+/api-firewall/release-notes/ https://wallarm.github.io/api-firewall/release-notes/
+
+/admin-en/attack-rechecker-best-practices/ /vulnerability-detection/active-threat-verification/running-test-on-staging/
+/user-guides/rules/change-request-for-active-verification/ /vulnerability-detection/active-threat-verification/modify-requests-before-replay/
+/4.4/admin-en/attack-rechecker-best-practices/ /4.4/vulnerability-detection/active-threat-verification/running-test-on-staging/
+/4.4/user-guides/rules/change-request-for-active-verification/ /4.4/vulnerability-detection/active-threat-verification/modify-requests-before-replay/
+/ja/admin-en/attack-rechecker-best-practices/ /ja/vulnerability-detection/active-threat-verification/running-test-on-staging/
+/ja/user-guides/rules/change-request-for-active-verification/ /ja/vulnerability-detection/active-threat-verification/modify-requests-before-replay/

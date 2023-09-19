@@ -517,3 +517,10 @@
 /api-firewall/demos/docker-compose/ https://wallarm.github.io/api-firewall/demos/docker-compose/
 /api-firewall/demos/kubernetes-cluster/ https://wallarm.github.io/api-firewall/demos/kubernetes-cluster/
 /api-firewall/release-notes/ https://wallarm.github.io/api-firewall/release-notes/
+
+/admin-en/attack-rechecker-best-practices/ /vulnerability-detection/active-threat-verification/running-test-on-staging/
+/user-guides/rules/change-request-for-active-verification/ /vulnerability-detection/active-threat-verification/modify-requests-before-replay/
+/4.4/admin-en/attack-rechecker-best-practices/ /4.4/vulnerability-detection/active-threat-verification/running-test-on-staging/
+/4.4/user-guides/rules/change-request-for-active-verification/ /4.4/vulnerability-detection/active-threat-verification/modify-requests-before-replay/
+/ja/admin-en/attack-rechecker-best-practices/ /ja/vulnerability-detection/active-threat-verification/running-test-on-staging/
+/ja/user-guides/rules/change-request-for-active-verification/ /ja/vulnerability-detection/active-threat-verification/modify-requests-before-replay/

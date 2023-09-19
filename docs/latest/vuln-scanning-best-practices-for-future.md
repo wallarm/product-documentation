@@ -9,7 +9,7 @@ One method Wallarm uses to [detect vulnerabilities](../about-wallarm/detecting-v
 
 **Active threat verification** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
 
-[Learn the best practices for the **Active threat verification** module configuration →](../admin-en/attack-rechecker-best-practices.md)
+[Learn the best practices for the **Active threat verification** module configuration →](../vulnerability-detection/active-threat-verification/running-test-on-staging.md)
 
 
 

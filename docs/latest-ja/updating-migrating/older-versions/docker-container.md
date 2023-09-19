@@ -150,6 +150,6 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## Step 15: アクティブな脅威確認モジュールを再度有効にする (ノード2.16以下をアップグレードする場合のみ)
 
-[アクティブな脅威確認モジュールの設定に関する推奨事項](../../admin-en/attack-rechecker-best-practices.md) を確認し、必要に応じて再度有効にしてください。
+[アクティブな脅威確認モジュールの設定に関する推奨事項](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) を確認し、必要に応じて再度有効にしてください。
 
 しばらくしてから、モジュールの動作が偽陽性を引き起こさないことを確認してください。偽陽性が発見された場合は、[Wallarm テクニカルサポート](mailto:support@wallarm.com)にご連絡ください。
