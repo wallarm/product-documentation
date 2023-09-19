@@ -22,7 +22,22 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
-### 4.6.7 (2023-07-24)
+### 4.6.7 (2023-09-15)
+
+Fixed the [vulnerabilities](https://github.com/wallarm/ingress/releases/tag/4.6.7%2Bupstream4.7.1):
+
+* Controller image:
+
+    * [CVE-2023-3817](https://github.com/advisories/GHSA-c945-cqj5-wfv6): described above
+
+* Tarantool image:
+
+    * [CVE-2023-3446](https://github.com/advisories/GHSA-3p3x-vg38-6g9q): potentially slow check of excessively long DH keys or parameters
+    * [CVE-2023-3817](https://github.com/advisories/GHSA-c945-cqj5-wfv6): potentially slow check of excessively long DH keys or parameters (continuation of [CVE-2023-3446](https://github.com/advisories/GHSA-3p3x-vg38-6g9q), q parameter value)
+    * [CVE-2023-2975](https://github.com/advisories/GHSA-hpqg-7fjp-436p): the AES-SIV cipher implementation contained a bug that caused it to ignore empty associated data entries which are unauthenticated as a consequence
+    * [CVE-2022-48174](https://github.com/advisories/GHSA-w9cc-xrp8-ffx4): there was a stack overflow vulnerability in ash.c:6030 in busybox before 1.35. In the environment of Internet of Vehicles, this vulnerability could be exploited from the command to arbitrary code execution.
+
+### 4.6.6 (2023-07-24)
 
 * The Helm chart version of the NGINX Ingress controller has been bumped to [4.7.1](https://github.com/kubernetes/ingress-nginx/releases/tag/helm-chart-4.7.1)
 * The NGINX Ingress controller version has been bumped to [1.8.1](https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.8.1)
