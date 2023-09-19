@@ -30,11 +30,64 @@ The **Integrations** section of Wallarm Console allows you to integrate with dif
 !!! info "Administrator access"
     The integration setup is available only for users with the **Administrator** role.
 
-## Integration types
+## Integrate with ...
 
-The systems available for integration are grouped by types as follows:
+A number of systems are available for integration with Wallarm:
 
-![Integrations Overview][integration-pane-img]
+<div class="do-section">
+    <div class="do-main">
+        <div id="email-and-messengers" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <h3>Email and messengers</h3>
+            <p>Intro paragraph TBD</p>
+        </div>
+        <div id="incident-and-task-management-systems" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <h3>Incident and task management systems</h3>
+            <p>Intro paragraph TBD</p>
+        </div>
+        <div id="siem-and-SOAR-systems" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <h3>SIEM and SOAR systems</h3>
+            <p>Intro paragraph TBD</p>
+        </div>
+        <div id="log-management-systems" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <h3>Log management systems</h3>
+            <p>Intro paragraph TBD</p>
+        </div>
+        <div id="data-collectors" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <h3>Data collectors</h3>
+            <p>Intro paragraph TBD</p>
+        </div>
+        <div id="universal-systems" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <h3>Universal systems</h3>
+            <p>Intro paragraph TBD/p>
+        </div>
+        <div id="monitoring-systems" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <h3>Monitoring systems</h3>
+            <p>Intro paragraph TBD/p>
+        </div>
+    </div>
+    <div class="do-nested" data-for="email-and-messengers">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <h3>Email and messengers</h3>
+            <p>Intro paragraph TBD</p>
+        </div>
+        <a class="do-card" href="email-notifications">
+            <h3>Email</h3>
+            <p>Intro text TBD</p>
+        </a>
+        <a class="do-card" href="slack-notifications">
+            <h3>Slack</h3>
+            <p>Intro text TBD</p>
+        </a>
+    </div>
+</div>
 
 ### Email and messengers
 
