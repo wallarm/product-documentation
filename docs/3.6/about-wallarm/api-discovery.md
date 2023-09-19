@@ -203,6 +203,37 @@ Click the endpoint to expand its parameters and view which type was automaticall
 
 Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
 
+## Shadow, orphan and zombie APIs
+
+API Discovery allows uncovering rogue (shadow, orphan and zombie) APIs.
+
+A **shadow API** refers to an undocumented API that exists within an organization's infrastructure without proper authorization or oversight. They put businesses at risk, as attackers can exploit them to gain access to critical systems, steal valuable data, or disrupt operations, further compounded by the fact that APIs often act as gatekeepers to critical data and that a range of OWASP API vulnerabilities can be exploited to bypass API security.
+
+In terms of your uploaded API [specifications](../user-guides/api-specifications.md), shadow API is an endpoint presented in actual traffic (detected by API Discovery) and not presented in your specification.
+
+As you find shadow APIs with Wallarm, you can update your specifications to include missing endpoints and further perform monitoring and security activities towards your API inventory in its full view.
+
+An **orphan API** refers to a documented API that does not receive traffic. The presence of orphan APIs can be a reason for a verification process. This involves:
+
+* Inspecting the Wallarm traffic checking settings to understand whether the traffic is truly not being received, or if it is simply not visible to the Wallarm nodes because they were deployed in such a way that not all traffic passes through them (this may be incorrect traffic routing, or another Web Gateway is presented that was forgotten to put the node on, and so on).
+* Determining whether certain applications should not receive any traffic at these specific endpoints or it is some kind of misconfiguration.
+* Making decision on obsolete endpoints: used in previous application versions and not used in the current - should they be deleted from the specification to reduce security check effort.
+
+A **zombie API** refers to deprecated APIs that everyone assumes have been disabled but actually they are still in use. Their risks are similar to the rest of undocumented (shadow) API but may be worse as the reason for disabling is often the insecure designs that are easier to crack.
+
+In terms of your uploaded API specifications, zombie API is an endpoint presented in the previous version of your specification, not presented in the current version (that is, there was an intention of delection of this endpoint) but still presented in actual traffic (detected by API Discovery).
+
+Finding zombie API with Wallarm may be the reason to re-check API configuration of you applications to actually disable such endpoints.
+
+The API Discovery module automatically uncovers shadow, orphan, and zombie APIs by comparing the discovered API inventory with customers' provided specifications. You upload your API specifications in the [**API Specifications**](../user-guides/api-specifications.md) section and the module automatically highlights shadow, orphan, and zombie endpoints.
+
+![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
+
+* [Learn how to upload specifications for comparison to find rogue APIs →](../user-guides/api-specifications.md#revealing-shadow-orphan-and-zombie-api)
+* [Learn how to display found rogue APIs in the API Discovery section →](../user-guides/api-discovery.md#displaying-shadow-and-orphan-api)
+
+
+
 ## Security of data uploaded to the Wallarm Cloud
 
 API Discovery analyzes most of the traffic locally. The module sends to the Wallarm Cloud only the discovered endpoints, parameter names and various statistical data (time of arrival, their number, etc.) All data is transmitted via a secure channel: before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm.

@@ -160,7 +160,7 @@ attacks last 7 days endpoint_id:<YOUR_ENDPOINT_ID>
 
 * **Compare to...（...と比較）**フィルターを使用して仕様の比較を選択します - これだけがシャドウAPIを**Issues（問題）** 列に特別なマークでハイライトします。
 
-    ![API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow.png)
+    ![API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
 * 選択された比較に関連するシャドウAPIのみを表示し、残りのエンドポイントをフィルタリングするために、 **Other → Shadow API（その他 → シャドウAPI）** フィルターを使用します。
 
