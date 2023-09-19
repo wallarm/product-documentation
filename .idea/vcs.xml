@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/docs/latest-ja/installation/cloud-platforms/aws/terraform-module/terraform-aws-wallarm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/docs/latest-ja/installation/oob/terraform-module/terraform-aws-wallarm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/docs/latest/installation/cloud-platforms/aws/terraform-module/terraform-aws-wallarm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/docs/latest/installation/oob/terraform-module/terraform-aws-wallarm" vcs="Git" />
+  </component>
+</project>

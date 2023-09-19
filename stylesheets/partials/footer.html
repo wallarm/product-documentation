@@ -19,13 +19,4 @@
   </div>
   <!-- Script to get common Wallarm service status -->
   <script type="text/javascript" src="https://cdn.statuspage.io/se-v2.js"></script>
-  <script>
-    var sp = new StatusPage.page({ page : '1000hc1f0mzf' });
-    sp.status({
-    success : function(data) {
-      var statusDiv = document.getElementById("services-status");
-      statusDiv.innerHTML = data.status.description;
-    }
-  });
-</script>
 </footer>
