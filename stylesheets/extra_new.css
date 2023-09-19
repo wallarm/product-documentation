@@ -155,9 +155,6 @@ a.md-header__button.md-logo:after {
 }
 
 /* Main */
-.md-main__inner {
-  margin-top: 0;
-}
 
 .homepage .md-content__inner h1, .homepage .md-content__inner h1 + p {
   text-align: center;
