@@ -739,6 +739,14 @@ button.md-clipboard.md-icon {
 
 /* Search bar */
 
+.md-search__inner {
+  width: 340px;
+}
+
+.md-search__form {
+  height: 34px;
+}
+
 .md-search__form {
   border-radius: 3px;
 }
@@ -755,6 +763,10 @@ button.md-clipboard.md-icon {
 
 input.md-search__input::placeholder {
   color: #959DAC;
+}
+
+.md-search__icon[for=__search] {
+  top: 0.2rem;
 }
 
 .md-search__icon.md-icon svg {
