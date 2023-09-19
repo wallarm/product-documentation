@@ -565,7 +565,6 @@ img {
 /* Filtering node version selector */
 
 .versions {
-  margin-bottom: 16px;
   margin-left: .6rem;
   position: relative;
   font-size: 14px;
