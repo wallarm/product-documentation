@@ -12,7 +12,6 @@ The Wallarm solution protects websites, APIs, and microservices from OWASP Top 1
     <h3>Upgrading to the latest version</h3>
     <p>Learn new features in node 4.4 and apply changes to installed components</p>
 </a>
-
 <a href="./quickstart/" class="navigation-card">
     <h3>Quick start</h3>
     <p>Deploy your first Wallarm node with the NGINX module in 20 minutes</p>

@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-
 function injectScript(src, cb) {
   let script = document.createElement('script');
 
@@ -98,12 +97,13 @@ var navigationElements = document.querySelectorAll(navClassName);
 
 function getAllNavigationElements(element, selector){
   if(element.parentElement && element.parentElement.parentElement && element.parentElement.parentElement.children){
-    var allChildren = element.parentElement.parentElement.children;
+    let allChildren = element.parentElement.parentElement.children;
     for (let index = 0; index < allChildren.length; index++) {
-      var child = allChildren[index];
-      var navigationInput = child.querySelector(selector);
-      if(navigationInput && navigationInput !== element){
+      let child = allChildren[index];
+      let navigationInput = child.querySelector(selector);
+      if (navigationInput && navigationInput !== element){
         navigationInput.checked = false;
+        navigationInput.parentElement.classList.remove('md-nav__item--expanded');
       }
     }
   }
@@ -112,8 +112,21 @@ function getAllNavigationElements(element, selector){
 navigationElements.forEach(el => {
   el.addEventListener('change', function(){
     getAllNavigationElements(this, navClassName);
+    if (this.checked) {
+      this.parentElement.classList.add('md-nav__item--expanded');
+    } else {
+      this.parentElement.classList.remove('md-nav__item--expanded');
+    }
   }, false);
 })
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  let activeElement = document.querySelector('.md-nav__item--active');
+  if (activeElement) {
+    activeElement.classList.add('md-nav__item--expanded');
+  }
+});
+
 
 // Expand and collapse supported platform cards on click
 
