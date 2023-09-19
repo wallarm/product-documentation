@@ -1,24 +1,23 @@
-# OpenAPI Security Testing on CI/CD
+# OpenAPI Security Testing on CI/CD <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-OpenAPI Security Testing on CI/CD, powered by Wallarm, offers a solution to identify and address security vulnerabilities within your critical API business scenarios, including shadow APIs. This article explains how to run and use this solution.
+OpenAPI Security Testing on CI/CD, powered by Wallarm, offers a solution to identify and address security vulnerabilities within your critical API business scenarios, including shadow and zombie APIs. This article explains how to run and use this solution.
 
-The solution leverages two powerful Wallarm modules:
+The solution operates by generating test requests specifically designed to uncover vulnerabilities, such as Cross-Origin Resource sharing, path traversal, access control flaws, and more. It then seamlessly integrates into your CI/CD pipeline using Docker to automatically scan your APIs for these vulnerabilities.
 
-* [API Discovery](../about-wallarm/api-discovery.md) automatically detects your OpenAPI specification including shadow APIs based on real traffic.
-* FAST conducts automated tests on CI/CD to uncover open vulnerabilities such as Cross-origin resource haring, path traversal, access control flaws and others in the discovered endpoints.
+You have the flexibility to select the endpoints you wish to subject to testing:
 
-The solution leverages the data obtained from API Discovery, ensuring that security testing focuses on endpoints that actively receive traffic and providing a realistic assessment of your API vulnerabilities.
+* **Automatic endpoint discovery**: When leveraging [Wallarm's API Discovery](../about-wallarm/api-discovery.md) module, your API endpoints are automatically detected from real traffic data. You can then select which of these endpoints to test. This ensures security testing focuses on actively used endpoints including the shadow and zombie ones, offering an accurate assessment of your API's vulnerabilities.
+* **Manual specification upload**: Alternatively, you can upload your own OpenAPI specification and use the solution to test endpoints from the specification. This is useful if you have an up‑to‑date specification and want to run tests on specific endpoints outlined within it.
 
 ## Issues addressed by OpenAPI security testing
 
-* This solution allows you to perform security testing during the regression testing of your APIs. If you make changes to the functionality of your APIs that are already included in the [API inventory](../user-guides/api-discovery.md) due to received traffic, Wallarm security testing can reveal if your changes have introduced any security issues.
+* This solution allows you to perform security testing during the regression testing of your APIs. If you make changes to the functionality of your APIs, Wallarm security testing can reveal if your changes have introduced any security issues.
 * By deploying your changes to the staging environment and running security testing on the CI/CD pipeline at this stage, you can prevent potential security vulnerabilities from reaching production and being exploited by attackers.
-* Since the solution leverages the data obtained from API Discovery, it also tests zombie APIs. These APIs are automatically discovered by the module as they may receive traffic, even if your team and documentation are unaware of their existence. By including zombie APIs in the security testing process, the solution addresses vulnerabilities that could otherwise go unnoticed, providing a more comprehensive security assessment.
+* If you leverage security testing based on the data obtained from [API Discovery], it also tests shadow and zombie APIs. These APIs are automatically discovered by the module as they may receive traffic, even if your team and documentation are unaware of their existence. By including zombie APIs in the security testing process, the solution addresses vulnerabilities that could otherwise go unnoticed, providing a more comprehensive security assessment.
 
 ## Requirements
 
-* The [API Discovery](../about-wallarm/api-discovery.md) module building your API inventory.
-* The **FAST (Security testing)** module included in your subscription plan. If it is not included, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
+* An active **Advanced API Security** [subscription plan](../about-wallarm/subscription-plans.md#subscription-plans). If you are on a different plan, please contact our [sales team](mailto:sales@wallarm.com) to transition to the required one.
 
 ## Running security testing
 
@@ -26,12 +25,12 @@ To control and customize the OpenAPI Security Testing feature, you can utilize t
 
 To run OpenAPI security testing, follow these steps:
 
-1. Go to Wallarm Console → **OpenAPI Testing** → **Create testing policy**.
+1. Proceed to Wallarm Console → **OpenAPI Testing** by following the link for the [US Cloud](https://us1.my.wallarm.com/security-testing) or [EU Cloud](https://my.wallarm.com/security-testing) and **Create testing policy**.
 
     ![!Policy create](../images/user-guides/openapi-testing/create-testing-policy.png)
-1. Select the API endpoints from your API inventory that you want to test for open vulnerabilities.
+1. Select the API endpoints that you want to test either from your [automatically discovered](../about-wallarm/api-discovery.md) API inventory or upload an OpenAPI 3.0 specification in JSON format.
 
-    The API Discovery module automatically discovers new endpoints, but they are not automatically added to existing policies for vulnerability testing. Therefore, each newly discovered endpoint requires a separate policy.
+    Although the API Discovery module automatically identifies new endpoints, it does not automatically include them in existing vulnerability testing policies. As a result, each newly discovered endpoint requires a separate policy.
 1. Select the vulnerability types you would like to test for in your API endpoints.
 1. If necessary, add custom headers for vulnerability testing, such as authentication headers or indicators for Wallarm test requests.
 
@@ -67,9 +66,6 @@ export WALLARM_SCANNER_TARGET_URL=<VALUE>
 ```
 
 To save the security testing results on a host machine, specify the desired host machine path in the `${WALLARM_REPORT_PATH}` variable within the `-v` option of the Docker command.
-
-!!! info "Docker container for security testing"
-    OpenAPI security testing utilizes a [dedicated Docker container](https://hub.docker.com/r/wallarm/oas-fast-scanner) specifically designed for this purpose. It is distinct from other Wallarm FAST functionalities, which may use different Docker containers.
 
 ## Interpreting security testing results
 
