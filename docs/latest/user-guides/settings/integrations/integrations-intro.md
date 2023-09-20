@@ -42,8 +42,138 @@ A number of systems are available for integration with Wallarm
             <h3>Email</h3>
             <p>Get notifications to the email indicated upon registration and additional emails</p>
         </a>
+        <a class="do-card" href="../slack/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/slack.png" />
+            <h3>Slack</h3>
+            <p>Send notifications to the selected Slack channel</p>
+        </a>
+        <a class="do-card" href="../telegram/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/telegram.png" />
+            <h3>Telegram</h3>
+            <p>Add Wallarm bot to Telegram and send notifications to it</p>
+        </a>
+        <a class="do-card" href="../microsoft-teams/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/msteams.svg" />
+            <h3>Microsoft Teams</h3>
+            <p>Send notifications to the selected Microsoft Teams channel</p>
+        </a>
     </div>
 </div>
+
+### Incident and task management systems
+
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../opsgenie/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/opsgenie.svg" />
+            <h3>Opsgenie</h3>
+            <p>Integrate via Opsigenie API</p>
+        </a>
+        <a class="do-card" href="../pagerduty/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/pagerduty.png" />
+            <h3>PagerDuty</h3>
+            <p>Send incidents to PagerDuty</p>
+        </a>
+        <a class="do-card" href="../jira/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/jira.png" />
+            <h3>Jira</h3>
+            <p>Set up Wallarm to create issues in Jira</p>
+        </a>
+        <a class="do-card" href="../servicenow/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/servicenow.svg" />
+            <h3>ServiceNow</h3>
+            <p>Set up Wallarm to create trouble tickets in ServiceNow</p>
+        </a>
+    </div>
+</div>
+
+### SIEM and SOAR systems
+
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../sumologic/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/sumologic.svg" />
+            <h3>Sumo Logic</h3>
+            <p>Send messages to Sumo Logic</p>
+        </a>
+        <a class="do-card" href="../splunk/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/splunk.png" />
+            <h3>Splunk</h3>
+            <p>Send alerts to Splunk</p>
+        </a>
+        <a class="do-card" href="../insightconnect/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/insightconnect.svg" />
+            <h3>InsightConnect</h3>
+            <p>Send notifications to InsightConnect</p>
+        </a>
+        <a class="do-card" href="../azure-sentinel/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/mssentinel.png" />
+            <h3>Microsoft Sentinel</h3>
+            <p>Log events in Microsoft Azure Sentinel</p>
+        </a>
+    </div>
+</div>
+
+### Log management systems
+
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../datadog/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
+            <h3>Datadog</h3>
+            <p>Send events to Datadog Logs service</p>
+        </a>
+    </div>
+</div>
+
+### Data collectors
+
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../fluentd/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/fluentd.png" />
+            <h3>Fluentd</h3>
+            <p>Send notifications of detected events to Fluentd</p>
+        </a>
+        <a class="do-card" href="../logstash/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/logstash.png" />
+            <h3>Logstash</h3>
+            <p>Send notifications of detected events to Logstash</p>
+        </a>
+        <a class="do-card" href="../amazon-s3/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/awss3.svg" />
+            <h3>AWS S3</h3>
+            <p>Set up Wallarm to send files with the information about detected hits to your Amazon S3 bucket</p>
+        </a>
+    </div>
+</div>
+
+### Universal integrations
+
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../webhook/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/webhook.svg" />
+            <h3>Webhook</h3>
+            <p>Send instant notifications to any system that accepts incoming webhooks via HTTPS protocol</p>
+        </a>
+    </div>
+</div>
+
+### Monitoring systems
+
+Each Wallarm node is distributed with the `collectd` service that [collects metrics on the processed traffic](../../../admin-en/monitoring/intro.md). Using the `collectd` utilities and plugins, you can send metrics to third-party monitoring systems and databases, e.g.:
+
+* [InfluxDB](../../../admin-en/monitoring/network-plugin-influxdb.md) with further visualization in Grafana or another system
+* [Graphite](../../../admin-en/monitoring/write-plugin-graphite.md) with further visualization in Grafana or another system
+* [Nagios](../../../admin-en/monitoring/collectd-nagios.md)
+* [Zabbix](../../../admin-en/monitoring/collectd-zabbix.md)
+
+Configuration for sending metrics to third-party monitoring systems and databases is performed on the node side. The listed systems are not displayed in the Wallarm Console UI.
+
+### Other systems
+
+If there is no system you are looking for, [let us know](mailto:support@wallarm.com). We will check the technical possibility of integration with the requested system and contact you.
 
 ## Manage integrations
 
