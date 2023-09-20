@@ -21,14 +21,11 @@
 
 # Integrations Overview
 
-You can integrate with different systems to get scheduled reports and instant notifications through them:
+Integrate Wallarm with different systems to get scheduled reports and instant notifications through them:
 
 * Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
 * On an hourly basis, you can get a notification with the number of requests processed during the previous hour.
 * You can receive instant notification for each detected vulnerability, hit, system-related event, and scope change.
-
-!!! info "Administrator access"
-    The integration setup is available only for users with the **Administrator** role.
 
 ## Integrate with ...
 
@@ -95,20 +92,36 @@ A number of systems are available for integration with Wallarm:
 
 Use the **Integrations** section of Wallarm Console.
 
-Good screenshot TBD.
+!!! info "Administrator access"
+    The integration setup is available only for users with the **Administrator** role.
+
+![Integrations](../../../images/user-guides/settings/integrations/integration-panel.png)
 
 * Click integration card to set or change parameters, test before saving, temporarily disable and then re-enable the integration.
 * The number of integrations with one system is not limited. For example: to send security reports to 3 Slack channels, you can create 3 different integrations with Slack.
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-## Additional alerts via triggers
+## Common and additional alerts
 
-Common events to trigger notifications are set in the integration dialog.
+Common events to trigger notifications are set in the integration dialog:
 
-![Integration dialog example](../../../images/user-guides/settings/integrations/add-slack-integration.png)
+* System related:
+    * [User](../../../user-guides/settings/users.md) changes (newly created, deleted, role change)
+    * [Integration](integrations-intro.md) changes (disabled, deleted)
+    * [Application](../../../user-guides/settings/applications.md) changes (newly created, deleted, name change)
+* [Vulnerabilities](../../../glossary-en.md#vulnerability) detected, all by default or only for the selected risk level(s):
+    * High risk
+    * Medium risk
+    * Low risk
+* [Rules](../../../user-guides/rules/intro.md) and [triggers](../../../user-guides/triggers/triggers.md) changed (creating, updating, or deleting the rule or trigger)
 
-You can add and fine tune the additional alerts via triggers.
+    !!! info "Email integrations"
+        Rule and trigger events are not available in email integrations.
+
+* [Scope (exposed assets)](../../scanner.md) changed: updates in hosts, services, and domains
+
+For your integration, you can add and fine tune the additional alerts [via Wallarm triggers](../../../user-guides/triggers/triggers.md).
 
 ## Unavailability of integrated systems and incorrect integration parameters
 
