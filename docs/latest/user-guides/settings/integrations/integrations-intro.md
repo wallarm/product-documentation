@@ -46,6 +46,7 @@ A number of systems are available for integration with Wallarm
             <h3>Slack</h3>
             <p>Intro text TBD</p>
         </a>
+    </div>
 </div>
 
 ### Old landing
