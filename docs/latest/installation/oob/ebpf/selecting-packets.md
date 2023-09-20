@@ -39,7 +39,6 @@ spec:
     metadata:
       labels:
         app: myapp
-        wallarm-sidecar: enabled
       annotations:
         mirror.wallarm.com/enabled: "true"
     spec:

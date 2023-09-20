@@ -2,7 +2,7 @@
 
 This document provides information about Wallarm-specific Helm chart values that can be modified during the [deployment](deployment.md) or upgrade of the eBPF solution. These values control the global configuration of the Wallarm eBPF Helm chart.
 
-The Wallarm-specific part of the [default `values.yaml`](https://github.com/wallarm/oob-ebpf/blob/main/helm/values.yaml) that you may need to change looks like the following:
+The Wallarm-specific part of the default `values.yaml` that you may need to change looks like the following:
 
 ```yaml
 config:
@@ -13,7 +13,6 @@ config:
     useSSL: true
   agent:
     mirror:
-      tls: false
       allNamespaces: false
       filters: []
       # - namespace: "default"
@@ -72,10 +71,6 @@ Wallarm API endpoint port. By default, `443`.
 
 Specifies whether to use SSL to access the Wallarm API. By default, `true`. 
 
-## config.agent.mirror.tls
-
-Indicates whether the Wallarm eBPF should process HTTPS traffic. By default, `false`.
-
 ## config.agent.mirror.allNamespaces
 
 Enables traffic mirroring for all namespaces. The default value is `false`. It is recommended to enable traffic mirroring at lower levels, such as specific namespaces, pods, or containers.
@@ -88,7 +83,6 @@ Controls the level of traffic mirroring. Here is an example of the `filters` par
 ...
   agent:
     mirror:
-      tls: false
       allNamespaces: false
       filters:
         - namespace: "default"

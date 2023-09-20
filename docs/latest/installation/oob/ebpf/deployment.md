@@ -1,16 +1,14 @@
 [deployment-platform-docs]:    ../../supported-deployment-options.md
 
-# Wallarm eBPF-Based Soultion (Pre-Release)
+# Wallarm eBPF-Based Soultion (Beta Version)
 
-Wallarm offers a pre-release version of its eBPF-based security solution that leverages the power of the Linux kernel and seamlessly integrates with Kubernetes environments. This article explains how to use and deploy the solution using the Helm chart.
+Wallarm offers a beta version of its eBPF-based security solution that leverages the power of the Linux kernel and seamlessly integrates with Kubernetes environments. This article explains how to use and deploy the solution using the Helm chart.
 
 ## How it works
 
 The Linux operating system comprises the kernel and the user space, where the kernel manages hardware resources and critical tasks, while applications operate in the user space. Within this environment, eBPF (Extended Berkeley Packet Filter) enables the execution of custom programs within the Linux kernel, including those focused on security. [Read more about eBPF](https://ebpf.io/what-is-ebpf/)
 
 As Kubernetes utilizes the capabilities of the Linux kernel for crucial tasks like process isolation, resource management, and networking, it creates a conducive environment for integrating eBPF-based security solutions. In line with this, Wallarm offers an eBPF-based security solution that seamlessly integrates with Kubernetes, leveraging the kernel's functionalities.
-
-Wallarm's eBPF solution attaches probes to kernel functions, capturing an incoming network (ingress) traffic mirror for collecting data on socket transactions. This out-of-band collection method avoids impacting live traffic flow.
 
 The solution consists of an agent that generates a traffic mirror and forwards it to the Wallarm node. During deployment, you can specify the mirror level at either the namespace or pod level. The Wallarm node examines the mirrored traffic for security threats, without blocking any malicious activity. Instead, it records the detected activity in the Wallarm Cloud, providing visibility into traffic security through the Wallarm Console UI.
 
@@ -25,40 +23,38 @@ capabilities:
 
 These capabilities grant the necessary permissions for Wallarm's agents to perform privileged tasks, ensuring security coverage across all nodes in the cluster.
 
+Furthermore, the solution processes response codes without parsing response bodies, empowering Wallarm's core [API Discovery](../../../about-wallarm/api-discovery.md) module to identify your API endpoints, construct your API inventory, and ensure it remains up-to-date.
+
 ## Use cases
 
-Among all supported [Wallarm deployment options](../../supported-deployment-options.md), this solution is the recommended one for the following **use cases**:
-
-* Comprehensive attack observation and reporting.
-* Out-of-band operation. By capturing a mirrored copy of traffic instead of directly intercepting or modifying original packets, the eBPF-based solution minimizes the impact on live traffic, ensuring uninterrupted traffic flow.
-* Native kernel integration. Leveraging eBPF's native support within Kubernetes, this solution seamlessly integrates with existing infrastructure, providing a streamlined and efficient security solution.
+Among all supported [Wallarm deployment options](../../supported-deployment-options.md), this solution is the recommended one for out-of-band operation. By capturing a mirrored copy of traffic instead of directly intercepting or modifying original packets, the eBPF-based solution minimizes the impact on live traffic, ensuring uninterrupted traffic flow.
 
 ## Limitations
 
-As the solution works only with a traffic copy, the solution has some limitations:
-
-* Wallarm does not instantly block malicious requests since traffic analysis proceeds irrespective of actual traffic flow.
+* The analysis of traffic transmitted in plain text is temporarily not supported.
+* When traffic is transmitted using Proxy Protocol and SSL, where SSL is encapsulated within Proxy Protocol, the solution cannot accurately retrieve source IP from the proxy protocol.
+* The solution does not instantly block malicious requests since traffic analysis proceeds irrespective of actual traffic flow.
 
     Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../..//user-guides/events/analyze-attack.md).
-* Most of the Wallarm capabilities for vulnerability discovery do not work as server responses required for vulnerability identification are not mirrored. This limitation relates to the following features:
-
-    * [Passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection)
-    * [Vulnerability Scanner](../../../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)
-    * [Active Threat Verification](../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)
-* The [Wallarm API Discovery](../../../about-wallarm/api-discovery.md) does not explore API inventory based on your traffic as server responses required for the module operation are not mirrored.
+* Vulnerability detection based on [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) is not supported as server responses required for vulnerability identification are not mirrored.
 
 ## Requirements
 
-* Kubernetes 1.22 and above, it can be running on a cloud platform like Azure, AWS, GCP and others
-* [Helm v3](https://helm.sh/) package manager
-* Access to `https://charts.wallarm.com` to add the Wallarm Helm charts
-* Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`
-* Linux kernel 5.4 and above with BTF (BTP Type Format) enabled on Ubuntu, Debian, RedHat, COS (Container Optimized OS from Google), or Amazon Linux 2.
-* [cert-manager](https://cert-manager.io/docs/installation/helm/) installed on Kubernetes to enable the agent to send encrypted traffic to Kubernetes nodes and obtain a certificate
-* Traffic flowing through the HTTP 1.x, HTTP 2, TLS (OpenSSL), or Proxy v1 protocols
-* An application deployed as a Pod in a Kubernetes cluster
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or the [EU Cloud](https://my.wallarm.com/)
-* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
+* Supported Kubernetes version:
+  
+    * AWS - Kubernetes 1.24 and above
+    * Azure - Kubernetes 1.26 and above
+    * GCP - any Kubernetes version
+    * Bare-metal server - Kubernetes 1.22 and above
+* [Helm v3](https://helm.sh/) package manager.
+* Access to `https://charts.wallarm.com` to add the Wallarm Helm charts.
+* Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`.
+* Linux kernel 5.10 and above with BTF (BTP Type Format) enabled on Ubuntu, Debian, RedHat, Google COS, or Amazon Linux 2.
+* [cert-manager](https://cert-manager.io/docs/installation/helm/) installed on Kubernetes to enable the agent to send encrypted traffic to Kubernetes nodes and obtain a certificate.
+* Traffic is using HTTP 1.x, HTTP 2, or Proxy v1 protocols under TLS/SSL. Not compatible with plain text data transfer.
+* An application deployed as a Pod in a Kubernetes cluster.
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or the [EU Cloud](https://my.wallarm.com/).
+* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud.
 
 ## Deployment
 
@@ -110,7 +106,7 @@ To deploy the Wallarm eBPF solution:
 1. Deploy the Wallarm Helm chart:
 
     ``` bash
-    helm install <RELEASE_NAME> wallarm/wallarm-oob --wait -n wallarm-ebpf --create-namespace -f <PATH_TO_VALUES>
+    helm install --version 0.10.2 <RELEASE_NAME> wallarm/wallarm-oob --wait -n wallarm-ebpf --create-namespace -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Wallarm eBPF chart
@@ -158,7 +154,6 @@ spec:
     metadata:
       labels:
         app: myapp
-        wallarm-sidecar: enabled
       annotations:
         mirror.wallarm.com/enabled: "true"
     spec:
@@ -195,7 +190,7 @@ To test that the Wallarm eBPF operates correctly:
 1. Send the test [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the application cluster address Wallarm is enabled to analyze traffic:
 
     ```bash
-    curl http://<APPLICATION_CLUSTER_IP>/etc/passwd
+    curl https://<APPLICATION_CLUSTER_IP>/etc/passwd
     ```
 
     Since the Wallarm eBPF solution operates in the out-of-band approach, it does not block attacks but only registers them.
