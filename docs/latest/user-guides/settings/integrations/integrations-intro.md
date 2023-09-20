@@ -64,9 +64,9 @@ A number of systems are available for integration with Wallarm
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../opsgenie/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/opsgenie.svg" />
-            <h3>Opsgenie</h3>
+        <a class="do-card" href="../opsigenie/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/opsigenie.svg" />
+            <h3>Opsigenie</h3>
             <p>Integrate via Opsigenie API</p>
         </a>
         <a class="do-card" href="../pagerduty/">
