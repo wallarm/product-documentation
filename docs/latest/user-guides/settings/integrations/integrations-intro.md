@@ -36,7 +36,7 @@ A number of systems are available for integration with Wallarm
 ### Email and messengers
 
 <div class="do-section">
-    <div class="do-nested" data-for="email-and-messengers">
+    <div class="do-main">
         <a class="do-card" href="email">
             <img class="non-zoomable" src="../../../../images/platform-icons/aws.svg" />
             <h3>Email</h3>
