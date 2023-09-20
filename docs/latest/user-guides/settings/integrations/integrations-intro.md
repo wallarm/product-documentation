@@ -29,9 +29,26 @@ Integrate Wallarm with different systems to get scheduled reports and instant no
 
 ## Integrate with ...
 
-A number of systems are available for integration with Wallarm:
+A number of systems are available for integration with Wallarm
 
 <link rel="stylesheet" href="/supported-platforms.css?v=1" />
+
+### Email and messengers
+
+<div class="do-section">
+    <div class="do-nested" data-for="email-and-messengers">
+        <a class="do-card" href="email">
+            <img class="non-zoomable" src="../../../../images/platform-icons/aws.svg" />
+            <h3>Email</h3>
+            <p>Intro text TBD</p>
+        </a>
+        <a class="do-card" href="slack-notifications">
+            <h3>Slack</h3>
+            <p>Intro text TBD</p>
+        </a>
+</div>
+
+### Old landing
 
 <div class="do-section">
     <div class="do-main">
@@ -142,3 +159,5 @@ You can identify incorrectness of integration parameters by **testing** the inte
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/DVfoXYuBy-Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div> -->
+
+<script src="/supported-platforms.js?v=1"></script>
