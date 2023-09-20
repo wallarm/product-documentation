@@ -34,6 +34,8 @@ The **Integrations** section of Wallarm Console allows you to integrate with dif
 
 A number of systems are available for integration with Wallarm:
 
+<link rel="stylesheet" href="/supported-platforms.css?v=1" />
+
 <div class="do-section">
     <div class="do-main">
         <div id="email-and-messengers" class="do-card">
