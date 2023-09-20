@@ -9,7 +9,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/oob/ebpf/deployment/">
-            <img src="../../images/platform-icons/ebpf.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/ebpf.svg" />
             <h3>eBPF</h3>
             <p>Out-of-band deployment on Kubernetes using the eBPF technology</p>
         </a>
