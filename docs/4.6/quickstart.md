@@ -18,31 +18,7 @@ The Wallarm platform protects web applications, APIs, and microservices from OWA
 
 Under a quick start, you will register your Wallarm account and run the first Wallarm filtering node in a few minutes. Having a free quota, you will be able to try on the product power on real traffic.
 
-## Learn Wallarm in Playground
 
-To explore Wallarm even before signing up and deploying any components to your environment, use [Wallarm Playground](https://my.us1.wallarm.com/playground).
-
-In Playground, you can access the Wallarm Console view like it is filled with real data. Wallarm Console is the major Wallarm platform component that displays data on processed traffic and allows the platform fine-tuning. So, with Playground you can learn and try out how the product works, and get some useful examples of its usage in the read-only mode.
-
-![UI to create account](images/playground.png)
-
-To try the Wallarm solution capabilities on your traffic, [create a Free tier account](#create-wallarm-account-and-get-free-tier).
-
-## Create Wallarm account and get Free tier
-
-To create a Wallarm account:
-
-1. Follow the registration link either in the [US](https://us1.my.wallarm.com/signup) or [EU](https://my.wallarm.com/signup) Wallarm Cloud and input your personal data.
-
-    [More details on Wallarm Clouds →](about-wallarm/overview.md#cloud)
-1. Confirm your account by following the link from the confirmation message sent to your email.
-
-Once an account is registered and confirmed, it is automatically assigned with **Free tier** or **Free trial** depending on the Wallarm Cloud being used:
-
-* In the US Cloud, Free tier allows you to explore the power of the Wallarm solution for free on 500 thousand monthly requests.
-* In the EU Cloud, there is a trial period allowing you to explore the Wallarm solution for free for 14 days.
-
-Continue by deploying the [first Wallarm filtering node](#deploy-the-wallarm-filtering-node).
 
 ## Deploy the Wallarm filtering node
 
