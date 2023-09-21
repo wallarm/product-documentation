@@ -1,61 +1,62 @@
 # Wallarm Platform Overview
 
-The Wallarm platform is adept at safeguarding your APIs and cloud applications from vulnerabilities and malicious activities. In the digital landscape, many APIs and web applications unknowingly have vulnerabilities, potentially exposing sensitive business data to hackers. Wallarm stands against these risks, ensuring comprehensive protection for your infrastructure and business.
+Wallarm delivers all-in-one API security, identifying and shielding your APIs from vulnerabilities and malicious activities. In the digital landscape, many APIs and web applications unknowingly have vulnerabilities, potentially exposing sensitive business data to hackers. Wallarm stands against these risks, ensuring comprehensive protection for your infrastructure and business.
 
 Wallarm seamlessly integrates API threat prevention with Web Application Firewall (WAF) capabilities. It ensures that both APIs and web applications, whether in multi‑cloud or cloud‑native environments, are protected given their unique security challenges.
 
-The [NIST Cybersecurity Framework] outlines key pillars essential for a successful security strategy, spanning core functions from **Govern** to **Respond**. At Wallarm, we align our services with these key steps, offering powerful and complete protection for our customers.
+At Wallarm, we deliver powerful and complete protection for our customers encompassing essential pillars of a successful security strategy, from **Govern** to **Respond**.
 
 ![NIST diagram](../images/about-wallarm-waf/overview/nist.png)
 
-Although the Wallarm Platform does not manage the **Recover** function - since actions like restoring assets and systems after a security incident are up to you - we focus primarily on preventing such incidents. All our security measures are aimed at this goal.
-
-## Govern
-
-In harmony with the **Govern** NIST principle, Wallarm focuses on the creation and oversight of an organization's security risk strategy, standards, and procedures. We provide tailored tools to seamlessly integrate security protocols with your specific guidelines. Key features are:
-
-* [API risk scoring]: personalize risk scoring criteria for your API endpoints, considering factors like sensitive data protection and existing vulnerabilities.
-* [Custom security rules]: define specific attack signatures, set which attack types Wallarm should detect in your traffic, apply virtual patches, and manage data masking rules.
-* Custom security triggers: craft Wallarm's reactions to specific security incidents.
-* DevSecOps integrations: route Wallarm's security notifications to your SIEM, SOAR, and other systems, weaving Wallarm's functions into your broader risk management and notification frameworks.
-* [User management](../user-guides/settings/users.md): facilitate team collaboration on traffic security and API oversight. Regulate access levels, from limited read-only permissions to full administrative control, in sync with your internal governance rules.
-
-All these capabilities enable you to align the Wallarm Platform's actions with your organization's security standards.
-
 ## Identify
 
-The **Identify** NIST function is all about grasping the business context, resources, and possible security threats. Wallarm offers tailored tools that not only uncover your attack surface but also help prioritize assets based on their risk scores:
+Wallarm provides the tools designed to understand your company's business landscape, resources, and potential security vulnerabilities. These tools illuminate your attack surface and assist in ranking assets according to their risk scores:
 
-* [API Discovery](api-discovery.md) crafts a precise inventory of your application's REST API based on real-time usage. By consistently analyzing live traffic, the module maintains an updated view of all APIs, sensitive data, and associated risks.
-* [Vulnerability detection]: using real Internet traffic, Wallarm identifies API vulnerabilities by assessing attackers' attempts, all while keeping your servers safe.
-* [API risk scoring]: leveraging data from the API Discovery, this tool assigns risk scores to endpoints based on sensitive data exposure and active vulnerabilities.
+* Exposed asset Scanner delves into the company's public-facing assets, autonomously identifying domains, IP addresses, and services.
+* API Discovery crafts a precise inventory of your application's REST API based on real-time usage, effectively identifying zombie, orphan, and shadow APIs.. By consistently analyzing live traffic, the module maintains an updated view of all APIs, including associated attacks and security vulnerabilities.
+* Sensitive data detection: Every endpoint recognized by the API Discovery is analyzed to determine if they handle sensitive data - like login details, financial information such as credit card numbers, or Personally Identifiable Information (PII) like passport data.
 
 ## Protect
 
-The **Protect** NIST function centers on implementing safeguards to ensure the delivery of critical services. Wallarm provides robust protection against a wide range of known and emerging threats, covering those listed in the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/). Here is a snapshot of the threats Wallarm mitigates:
+Wallarm provides robust protection against a wide range of known and emerging threats, covering those listed in the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/). Here is a snapshot of the threats Wallarm mitigates:
 
+* L7 DDoS mitigation: personalized [rate limiting] ensures you are not overwhelmed by excessive, unwanted traffic.
 * Web-based attacks: this includes code injections (e.g., SQL and XSS), remote code execution, brute force assaults, forced browsing, and BOLA (Broken Object Level Authorization).
-* API abuse perfomed by malicious bots.
-* DDoS mitigation: personalized rate limiting ensures you are not overwhelmed by excessive, unwanted traffic.
 * Custom defenses: beyond its in-built protective measures, Wallarm allows users to define threats using custom attack detection signatures.
+* API abuse perfomed by malicious bots.
+
+<!-- API Policy Enforcement (later) -->
 
 [Guide on leveraging Wallarm for optimum protection](../quickstart/attack-prevention-best-practices.md)
 
 ## Detect
 
-The **Detect** NIST function emphasizes consistent monitoring of assets to identify anomalies, indicators of compromise, and other potential adverse events. Here is how Wallarm champions this cause:
+To identify anomalies, indicators of compromise, and other potential adverse events, Wallarm emphasizes consistent monitoring of assets as follows:
 
-* Under the [Protect] function, Wallarm identifies attack attempts. In the Events section of the Wallarm Console UI, you can explore these threats, employing filters and sorting tools for in-depth analysis.
+* [Vulnerability detection]: using real Internet traffic, Wallarm identifies API vulnerabilities by assessing attackers' attempts, all while keeping your servers safe.
 * [API leaks]: Wallarm's API Leaks module scans public repositories to identify exposed API tokens. Upon detecting leaks, Wallarm alerts you, allowing prompt analysis and action.
+* [Active Threat Verification]: this module turns attackers into your own penetration testers. It analyzes initial attack attempts, then explores other ways the same attack could be exploited. This exposes weak spots in your environment that even the original attackers did not find.
+* [API security testing]: Wallarm's Framework for API Security Testing integrates seamlessly into your CI/CD and early-stage security assessment processes. It identifies vulnerabilities before deployment, enabling proactive measures to prevent production risks.
+
+<!-- Credential stuffing -->
 
 ## Respond
 
-The **Respond** function of NIST dictates the necessary activities to act upon a detected security incident. Wallarm's arsenal equips you to aptly respond to identified security threats:
+Wallarm's arsenal equips you to aptly respond to identified security threats:
 
-* [Block attacks]. By default, Wallarm operates in monitoring mode, showing all detected threats without disrupting traffic. However, you can activate the blocking mode to prevent malicious activities from reaching your APIs.
+* [Block attacks] to prevent malicious activities from reaching your APIs.
 * Utilize [geolocation-based controls] to block suspicious traffic sources like VPNs and Tor networks.
-* [Integrations & Notifications](../user-guides/settings/integrations/integrations-intro.md): With seamless integrations into SIEM/SOAR systems like Sumo Logic and Splunk, Wallarm forwards attack metrics to your SOC.
+* [Receive security threat notifications] seamlessly connecting with messengers, log management, incident and task management systems, and data collectors like Slack, Sumo Logic, Splunk, Microsoft Sentinel, and more.
 * Address Wallarm-flagged vulnerabilities by either direct fixes or employing [virtual patches] for urgent issues.
+
+## Govern
+
+To establish and oversee an company’s security risk strategy, policies, and procedures, Wallarm provides tools that integrate security protocols with your specific guidelines:
+
+* [API risk scoring]: Wallarm automatically assigns risk scores for your API endpoints based on factors like data exposure and vulnerabilities, but also provides customization by letting you adjust the significance of these factors.
+* API risk management: Wallarm enables streamlined management of detected vulnerabilities by enabling you to swiftly [update vulnerability statuses] for better security oversight. Additionally, you can craft and route security alerts to your [SIEM, SOAR, and other systems], weaving Wallarm's functions into your broader risk management frameworks.
+
+All these capabilities enable you to align the Wallarm Platform's actions with your organization's security standards.
 
 ## Wallarm platform components
 
@@ -70,6 +71,7 @@ Positioned between the Internet and your APIs, the Wallarm filtering node:
 * Analyzes the company's entire network traffic and mitigates malicious requests.
 * Collects the network traffic metrics and uploads the metrics to the Wallarm Cloud.
 * Downloads resource-specific security rules you defined in the Wallarm Cloud and applies them during the traffic analysis.
+* Detects sensitive data in your requests, ensuring it remains secure within your infrastructure and is not transmitted to the Cloud as to a third-party service.
 
 You can set up the Wallarm filtering node within your own network or opt for a third-party hosted node via the [available deployment choices](../installation/supported-deployment-options.md).
 
@@ -85,4 +87,4 @@ The Wallarm Cloud does the following:
 
 Wallarm offers cloud instances in both the US and Europe, enabling you to select the best fit considering your data storage preferences and regional service operation requirements.
 
-[Proceed to signup on the Wallarm Cloud]
+[Proceed to signup on the Wallarm Cloud](../quickstart/getting-started.md)
