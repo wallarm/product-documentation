@@ -1,4 +1,4 @@
-# Wallarm subscription plans
+# Wallarm Subscription Plans
 
 When subscribing to Wallarm, you choose a plan that meets your business needs the most. From this document, you can learn available subscription plans and the functionality they enable.
 
@@ -54,7 +54,9 @@ Wallarm provides the following subscription plans:
 
 To activate a subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com). Subscription cost will be determined based on the chosen plan, its period, and [incoming traffic volume](../admin-en/operation/learn-incoming-request-number.md).
 
-Information about an active plan is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
+Information about an active plan is displayed in Wallarm Console → **Settings** → **Subscriptions**.
+
+![Paid subscription plan](../images/user-guides/settings/subscriptions/subscriptions.png)
 
 ## Subscription notifications
 
@@ -100,7 +102,7 @@ When a new user is registered in Wallarm Console of the **[EU Cloud](overview.md
 * Wallarm trial provides the maximum set of modules and features that can be included in the API Security [plan](#subscription-plans).
 * The trial period can be extended for 14 days more only once.
 
-    The trial period can be extended in the Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md) section and via the button from the email notifying about the end of the trial period. The email is sent only to users with the [role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles).
+    The trial period can be extended in the Wallarm Console → **Settings** → **Subscriptions** section and via the button from the email notifying about the end of the trial period. The email is sent only to users with the [role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles).
 * If the trial period expired:
 
     * The account in Wallarm Console will be blocked.
@@ -109,4 +111,4 @@ When a new user is registered in Wallarm Console of the **[EU Cloud](overview.md
     
     When a paid subscription to Wallarm is activated, access to the client account is restored for all users.
 
-Information about the trial period is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
+Information about the trial period is displayed in Wallarm Console → **Settings** → **Subscriptions**:

@@ -18,10 +18,8 @@ nav:
       - Shadow and Orphan API: demo-videos/shadow-api.md
       - API Abuse Prevention Overview: demo-videos/api-abuse-prevention.md
       - API Leaks Overview: demo-videos/api-leaks.md
+    - Subscription Plans: about-wallarm/subscription-plans.md
     - Deployment Guides: /installation/supported-deployment-options/
-    - Subscription Plans:
-      - Overview: about-wallarm/subscription-plans.md
-      - Managing the Subscription: user-guides/settings/subscriptions.md
     - Best Practices: quickstart/attack-prevention-best-practices.md
   - Dashboards and Reports:
     - Threat Prevention: user-guides/dashboards/threat-prevention.md
