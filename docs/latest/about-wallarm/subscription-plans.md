@@ -76,12 +76,9 @@ The Free Tier subscription includes:
 * The Wallarm features available for free up to the quota of **500 thousand requests per month** with no limitation in time. The quota resets on the first day of each month.
 * Access to the Wallarm platform as [Advanced API Security](#subscription-plans), except for the following:
 
-    * [Vulnerability](detecting-vulnerabilities.md#vulnerability-scanner) and [Exposed asset](../user-guides/scanner.md) Scanners
-    * The [Active threat prevention](detecting-vulnerabilities.md#active-threat-verification) feature
+    * [Exposed asset](../user-guides/scanner.md) Scanner
     * The [API Abuse Prevention](api-abuse-prevention.md) module
     * Deployment of the [CDN node](../installation/cdn-node.md) type
-    * Partial coverage of OWASP API Top 10 due to unavailability of Vulnerability Scanner
-    * Access to Wallarm API
 
 **What happens if the quota is exceeded?**
 
@@ -99,7 +96,7 @@ When a new user is registered in Wallarm Console of the **[EU Cloud](overview.md
 
 * The trial period is free.
 * The trial period lasts 14 days.
-* Wallarm trial provides the maximum set of modules and features that can be included in the API Security [plan](#subscription-plans).
+* Wallarm trial provides the maximum set of modules and features that can be included in the WAAP [plan](#subscription-plans).
 * The trial period can be extended for 14 days more only once.
 
     The trial period can be extended in the Wallarm Console → **Settings** → **Subscriptions** section and via the button from the email notifying about the end of the trial period. The email is sent only to users with the [role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles).
