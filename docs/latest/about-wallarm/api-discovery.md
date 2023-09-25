@@ -262,11 +262,16 @@ Other data (endpoint values, request methods, and parameter names) is not hashed
 
 ## Enabling and configuring API Discovery
 
-The `wallarm-appstructure` package is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node except for the Debian 11.x and Ubuntu 22.04 packages. During node deployment, it installs the API Discovery module but keeps it disabled by default.
+API Discovery is included in:
+
+* Wallarm [all-in-one installer](../installation/nginx/all-in-one.md)
+* All other [forms](../installation/supported-deployment-options.md) of the Wallarm node installation as the `wallarm-appstructure` package, except for the Debian 11.x and Ubuntu 22.04 istallations
+
+During node deployment, it installs the API Discovery module but keeps it disabled by default.
 
 To enable and run API Discovery correctly:
 
-1. Make sure your Wallarm node is of the [supported version](../updating-migrating/versioning-policy.md#version-list).
+1. (Skip this step, if you are using all-in-one installer) Make sure your Wallarm node is of the [supported version](../updating-migrating/versioning-policy.md#version-list).
 
     To ensure that you always have access to the full range of the API Discovery features, it is recommended to check for updates to the `wallarm-appstructure` package on a regular basis as follows:
 
