@@ -1,4 +1,4 @@
-[img-select-integration]:     ../../images/user-guides/settings/integrations/select-integration.png
+[img-select-integration]:     ../../../../../images/user-guides/settings/integrations/select-integration.png
 
 # Slack
 
@@ -7,23 +7,23 @@ You can set up Wallarm to send notifications to your Slack channel(s). If you wa
 ## Setting up integration
 
 1. Open the **Integrations** section.
-2. Click the **Slack** block or click the **Add integration** button and choose **Slack**.
-3. Enter an integration name.
-4. Open [Webhook settings in Slack](https://my.slack.com/services/new/incoming-webhook/) and add a new Webhook choosing the channel to post messages to.
-5. Copy the provided Webhook URL and paste the value to the **Webhook URL** field in Wallarm UI.
-6. Choose event types to trigger notifications.
+1. Click the **Slack** block or click the **Add integration** button and choose **Slack**.
+1. Enter an integration name.
+1. Open [Webhook settings in Slack](https://my.slack.com/services/new/incoming-webhook/) and add a new Webhook choosing the channel to post messages to.
+1. Copy the provided Webhook URL and paste the value to the **Webhook URL** field in Wallarm UI.
+1. Choose event types to trigger notifications.
 
-      ![Slack integration](../../../images/user-guides/settings/integrations/add-slack-integration.png)
+    ![Slack integration](../../../images/user-guides/settings/integrations/add-slack-integration.png)
 
-      Details on available events:
+    Details on available events:
       
-      --8<-- "../include/integrations/events-for-integrations.md"
+    --8<-- "../include/integrations/events-for-integrations.md"
 
-      !!! info "No events selected"
-          If no events are selected, no notifications will be sent.
+    !!! info "No events selected"
+        If no events are selected, no notifications will be sent.
 
-7. [Test the integration](#testing-integration) and make sure the settings are correct.
-8. Click **Add integration**.
+1. [Test the integration](#testing-integration) and make sure the settings are correct.
+1. Click **Add integration**.
 
 ## Testing integration
 
