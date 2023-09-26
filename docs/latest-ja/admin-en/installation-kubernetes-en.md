@@ -79,7 +79,7 @@
 5. Wallarmパッケージをインストールします：
 
     ``` bash
-    helm install --version 4.6.7 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 4.6.8 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`はIngressコントローラチャートのHelmリリース名

@@ -1,3 +1,6 @@
+[node-token-types]:                      ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[nginx-ing-create-node-img]:             ../images/user-guides/nodes/create-wallarm-node-name-specified.png
+
 # Chaining of the Wallarm and additional Ingress Controllers in the same Kubernetes cluster
 
 These instructions provide you with the steps to deploy the Wallarm Ingress controller to your K8s cluster and chain it with other Controllers that are already running in your environment.
@@ -38,12 +41,17 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 
 ### Step 1: Deploy the Wallarm Ingress controller
 
-1. Go to Wallarm Console → **Nodes** via the link below:
-    * https://us1.my.wallarm.com/nodes for the US Cloud
-    * https://my.wallarm.com/nodes for the EU Cloud
-1. Create a filtering node with the **Wallarm node** type and copy the generated token.
-    
-    ![Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+1. Generate a filtering node token of the [appropriate type][node-token-types]:
+
+    === "API token (Helm chart 4.6.8 and above)"
+        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+        1. Find or create API token with the `Deploy` source role.
+        1. Copy this token.
+    === "Node token"
+        1. Open Wallarm Console → **Nodes** via the link below in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+        1. Create a filtering node with the **Wallarm node** type and copy the generated token.
+            
+            ![Creation of a Wallarm node][nginx-ing-create-node-img]
 1. Add the [Wallarm Helm charts repository](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
@@ -58,6 +66,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
             enabled: true
             token: "<NODE_TOKEN>"
             apiHost: us1.api.wallarm.com
+            # nodeGroup: defaultIngressGroup
           config:
             use-forwarded-headers: "true"  
           ingressClass: wallarm-ingress
@@ -74,6 +83,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
           wallarm:
             enabled: true
             token: "<NODE_TOKEN>"
+            # nodeGroup: defaultIngressGroup
           config:
             use-forwarded-headers: "true"
           ingressClass: wallarm-ingress
@@ -85,12 +95,13 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
         nameOverride: wallarm-ingress
         ```    
     
-    `<NODE_TOKEN>` is the Wallarm node token.
+    * `<NODE_TOKEN>` is the Wallarm node token.
+    * When using an API token, specify a node group name in the `nodeGroup` parameter. Your node will be assigned to this group, shown in the Wallarm Console's **Nodes** section. The default group name is `defaultIngressGroup`.
 
     To learn more configuration options, please use the [link](configure-kubernetes-en.md).
 1. Install the Wallarm Ingress Helm chart:
     ``` bash
-    helm install --version 4.6.7 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace
+    helm install --version 4.6.8 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace
     ```
 
     * `internal-ingress` is the name of Helm release
