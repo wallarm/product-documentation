@@ -1,6 +1,8 @@
 # Slack
 
-You can set up Wallarm to send notifications to your Slack channel when the following events are triggered:
+You can set up Wallarm to send notifications to your Slack channel(s). If you want to send notifications to several different Slack channels or accounts, create several Slack integrations - one for each account/channel.
+
+Wallarm can send notifications to Slack when the following events are triggered:
 
 --8<-- "../include/integrations/events-for-integrations.md"
 
@@ -35,14 +37,13 @@ Client: TestCompany
 Cloud: EU
 ```
 
-## Updating integration
+## Setting up additional alerts
 
---8<-- "../include/integrations/update-integration.md"
+1. Open the **Triggers** section.
+1. Click **Create trigger**.
+1. [Choose](#step-1-choosing-a-condition) conditions.
+1. [Add](#step-2-adding-filters) filters.
+1. [Add](#step-3-adding-reactions) reactions.
+1. [Save](#step-4-saving-the-trigger) the trigger.
 
-## Disabling integration
-
---8<-- "../include/integrations/disable-integration.md"
-
-## Deleting integration
-
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/integrations-trigger-setup.md"
