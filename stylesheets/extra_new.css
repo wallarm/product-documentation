@@ -102,13 +102,8 @@
 /* Header */
 
 .md-header {
-  border-bottom: 1px solid #ECEFF4;
   background-color: #121B28;
   color: #fff;
-}
-.md-header__inner {
-  height: 48px;
-  padding: 0 0.4rem;
 }
 
 .md-header__topic:first-child {
