@@ -32,7 +32,7 @@ Choose one or more filters in the Wallarm Console interface and set values for t
 
 At this step you select the integration through which the selected alert should be sent. You can select several integrations simultaneously.
 
-![Choosing an integration][img-select-integration]
+![Choosing an integration](../../../../images/user-guides/triggers/select-integration.png)
 
 ### Step 4: Saving the trigger
 

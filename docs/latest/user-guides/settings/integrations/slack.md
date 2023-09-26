@@ -1,5 +1,3 @@
-[img-select-integration]:     ../../../../../images/user-guides/settings/integrations/select-integration.png
-
 # Slack
 
 You can set up Wallarm to send notifications to your Slack channel(s). If you want to send notifications to several different Slack channels or accounts, create several Slack integrations - one for each account/channel.
