@@ -66,7 +66,7 @@ To install the Wallarm Ingress Controller:
         1. Find or create API token with the `Deploy` source role.
         1. Copy this token.
     === "Node token"
-        1. Open Wallarm Console → **Nodes** via the link below in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+        1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
         1. Create a filtering node with the **Wallarm node** type and copy the generated token.
             
             ![Creation of a Wallarm node][nginx-ing-create-node-img]
