@@ -2,10 +2,6 @@
 
 You can set up Wallarm to send notifications to your Slack channel(s). If you want to send notifications to several different Slack channels or accounts, create several Slack integrations - one for each account/channel.
 
-Wallarm can send notifications to Slack when the following events are triggered:
-
---8<-- "../include/integrations/events-for-integrations.md"
-
 ## Setting up integration
 
 1. Open the **Integrations** section.
@@ -14,10 +10,15 @@ Wallarm can send notifications to Slack when the following events are triggered:
 4. Open [Webhook settings in Slack](https://my.slack.com/services/new/incoming-webhook/) and add a new Webhook choosing the channel to post messages to.
 5. Copy the provided Webhook URL and paste the value to the **Webhook URL** field in Wallarm UI.
 6. Choose event types to trigger notifications. If the events are not chosen, then notifications will not be sent.
-7. [Test the integration](#testing-integration) and make sure the settings are correct.
-8. Click **Add integration**.
 
       ![Slack integration](../../../images/user-guides/settings/integrations/add-slack-integration.png)
+
+      Details on available events:
+      
+      --8<-- "../include/integrations/events-for-integrations.md"
+
+7. [Test the integration](#testing-integration) and make sure the settings are correct.
+8. Click **Add integration**.
 
 ## Testing integration
 
