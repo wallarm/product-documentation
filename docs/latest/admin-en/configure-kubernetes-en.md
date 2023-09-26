@@ -1,4 +1,5 @@
 [link-helm-chart-details]:  https://github.com/wallarm/ingress-chart#configuration
+[node-token-types]:         ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 # Fine‑tuning of NGINX-based Wallarm Ingress Controller
 
@@ -19,6 +20,7 @@ controller:
     apiPort: 443
     apiSSL: true
     token: ""
+    nodeGroup: defaultIngressGroup
     existingSecret:
       enabled: false
       secretKey: token
@@ -90,11 +92,34 @@ Wallarm API endpoint. Can be:
 
 ### controller.wallarm.token
 
-The *Wallarm Node* token is created on the Wallarm portal in the [US](https://us1.my.wallarm.com/nodes) or [EU](https://my.wallarm.com/nodes) cloud. It is required to access the Wallarm API.
+A filtering node token value. It is required to access the Wallarm API.
+
+The token can be one of these [types][node-token-types]:
+
+* **API token (recommended)** - Ideal if you need to dynamically add/remove node groups for UI organization or if you want to control token lifecycle for added security. To generate an API token:
+
+    To generate an API token:
+    
+    1. Go to Wallarm Console → **Settings** → **API tokens** in either the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+    1. Create an API token with the **Deploy** source role.
+    1. During node deployment, use the generated token and specify the group name using the `controller.wallarm.nodeGroup` parameter. You can add multiple nodes to one group using different API tokens.
+* **Node token** - Suitable when you already know the node groups that will be used.
+
+    To gerenate a node token:
+    
+    1. Go to Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+    1. Create a node and name the node group.
+    1. During node deployment, use the group's token for each node you want to include in that group.
 
 The parameter is ignored if [`controller.wallarm.existingSecret.enabled: true`](#controllerwallarmexistingsecret).
 
 **Default value**: `not specified`
+
+### controller.wallarm.nodeGroup
+
+Starting from Helm chart version 4.6.8, this specifies the name of the group of filtering nodes you want to add newly deployed nodes to. Node grouping this way is available only when you create and connect nodes to the Cloud using an API token with the **Deploy** role (its value is passed in the `controller.wallarm.token` parameter).
+
+**Default value**: `defaultIngressGroup`
 
 ### controller.wallarm.existingSecret
 
