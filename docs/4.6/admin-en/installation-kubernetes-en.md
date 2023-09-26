@@ -10,6 +10,7 @@
 [best-practices-for-public-ip]:          configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
 [best-practices-for-high-availability]:  configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
 [best-practices-for-ingress-monitoring]: configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
+[node-token-types]:                      ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 # Deploying NGINX Ingress Controller with Integrated Wallarm Services
 
@@ -51,24 +52,32 @@ Among all supported [Wallarm deployment options][deployment-platform-docs], this
 
 ### Step 1: Installing the Wallarm Ingress Controller
 
-1. Go to Wallarm Console → **Nodes** via the link below:
-    * https://us1.my.wallarm.com/nodes for the US Cloud
-    * https://my.wallarm.com/nodes for the EU Cloud
-1. Create a filtering node with the **Wallarm node** type and copy the generated token.
-    
-    ![Creation of a Wallarm node][nginx-ing-create-node-img]
+To install the Wallarm Ingress Controller:
+
+1. Generate a filtering node token of the [appropriate type][node-token-types]:
+
+    === "API token (Helm chart 4.6.8 and above)"
+        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+        1. Find or create API token with the `Deploy` source role.
+        1. Copy this token.
+    === "Node token"
+        1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+        1. Create a filtering node with the **Wallarm node** type and copy the generated token.
+            
+            ![Creation of a Wallarm node][nginx-ing-create-node-img]
 1. Create a Kubernetes namespace to deploy the Helm chart with the Wallarm Ingress controller:
 
     ```bash
     kubectl create namespace <KUBERNETES_NAMESPACE>
     ```
 1. Add the [Wallarm chart repository](https://charts.wallarm.com/):
+    
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
-4. Create the `values.yaml` file with the [Wallarm configuration][configure-nginx-ing-controller-docs].
+1. Create the `values.yaml` file with the [Wallarm configuration][configure-nginx-ing-controller-docs]. Example of the file with the minimum configuration is below.
 
-    Example of the file with the minimum configuration:
+    When using an API token, specify a node group name in the `nodeGroup` parameter. Your node will be assigned to this group, shown in the Wallarm Console's **Nodes** section. The default group name is `defaultIngressGroup`.
 
     === "US Cloud"
         ```yaml
@@ -77,6 +86,7 @@ Among all supported [Wallarm deployment options][deployment-platform-docs], this
             enabled: "true"
             token: "<NODE_TOKEN>"
             apiHost: "us1.api.wallarm.com"
+            # nodeGroup: defaultIngressGroup
         ```
     === "EU Cloud"
         ```yaml
@@ -84,15 +94,14 @@ Among all supported [Wallarm deployment options][deployment-platform-docs], this
           wallarm:
             enabled: "true"
             token: "<NODE_TOKEN>"
-        ```    
+            # nodeGroup: defaultIngressGroup
+        ```
     
-    Starting from Helm chart version 4.4.1, you can also store the Wallarm node token in Kubernetes secrets and pull it to the Helm chart. [Read more][controllerwallarmexistingsecret-docs]
-    
-    --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
+    You can also store the Wallarm node token in Kubernetes secrets and pull it to the Helm chart. [Read more][controllerwallarmexistingsecret-docs]
 1. Install the Wallarm packages:
 
     ``` bash
-    helm install --version 4.6.5 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 4.6.8 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Ingress controller chart

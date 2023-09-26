@@ -35,7 +35,7 @@ helm repo update wallarm
 2. プラグインを実行：
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.6.7 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.6.8 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: Ingress Controller のチャートと Helm リリースの名称
@@ -50,7 +50,7 @@ helm repo update wallarm
 デプロイされている NGINX Ingress コントローラーをアップグレードします：
 
 ```bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.6.7 -f <PATH_TO_VALUES>
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.6.8 -f <PATH_TO_VALUES>
 ```
 
 * `<RELEASE_NAME>`: Ingress Controller のチャートと Helm リリースの名称
@@ -67,7 +67,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.6
 
     ここで、`<NAMESPACE>` は Ingress コントローラーを含む Helm チャートがデプロイされているネームスペースです。
 
-    チャートのバージョンは `wallarm-ingress-4.6.7` に対応すべきです。
+    チャートのバージョンは `wallarm-ingress-4.6.8` に対応すべきです。
 1. ポッドのリストを取得します：
     
     ```bash
