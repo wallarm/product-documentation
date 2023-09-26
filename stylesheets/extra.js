@@ -91,6 +91,62 @@ function goToVersion (event, currentVersion, version) {
   }
 }
 
+document.addEventListener('DOMContentLoaded', (event) => {
+  const addButtons = document.querySelectorAll('.md-header__button[for="__search"]');
+
+  addButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      document.body.classList.toggle('scrolllock');
+    });
+  });
+
+  const removeButton = document.querySelector('.md-search__icon[for="__search"]');
+  if (removeButton) {
+    removeButton.addEventListener('click', () => {
+      document.body.classList.remove('scrolllock');
+    });
+  }
+});
+
+// Stop scrolling if sidebar is open
+document.addEventListener('DOMContentLoaded', (event) => {
+  const sidebarToggle = document.querySelector('.md-header__button[for="__drawer"]');
+  const overlay = document.querySelector('.md-overlay');
+
+  if (sidebarToggle) {
+    sidebarToggle.addEventListener('click', () => {
+      if (document.documentElement.style.overflow === 'hidden') {
+        document.documentElement.style.overflow = 'visible';
+      } else {
+        document.documentElement.style.overflow = 'hidden';
+      }
+    });
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', () => {
+      document.documentElement.style.overflow = 'visible';
+    });
+  }
+});
+
+
+// Always stick sidebar-nav to the bottom of the header
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebar = document.querySelector('.md-sidebar--primary');
+  const header = document.querySelector('.md-header');
+  const toggleButton = document.querySelector('.md-header__button[for="__drawer"]');
+  toggleButton.addEventListener('click', () => {
+    const headerRect = header.getBoundingClientRect();
+    const headerBottom = headerRect.bottom;
+    sidebar.style.top = `${headerBottom}px`;
+  });
+});
+
+
+
+
+
 // Collapse expanded menu items when a new item is expanded
 var navClassName = ".md-nav__toggle";
 var navigationElements = document.querySelectorAll(navClassName);

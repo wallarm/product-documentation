@@ -20,19 +20,6 @@
   data-md-level="0"
 >
 
-  <!-- Site title -->
-  <label class="md-nav__title" for="__drawer">
-    <a
-      href="{{ site_url }}"
-      title="{{ config.site_name | e }}"
-      class="md-nav__button md-logo"
-      aria-label="{{ config.site_name }}"
-    >
-      {% include "partials/logo.html" %}
-    </a>
-    Product guides
-  </label>
-
   <!-- Version selector -->
   <div id="versionsDiv" class="versions" style="display: none;">
     <button type="button" id="versionsMain" class="versions-main" onClick="versionClicked(event)">
