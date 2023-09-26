@@ -39,11 +39,4 @@ Cloud: EU
 
 ## Setting up additional alerts
 
-1. Open the **Triggers** section.
-1. Click **Create trigger**.
-1. [Choose](#step-1-choosing-a-condition) conditions.
-1. [Add](#step-2-adding-filters) filters.
-1. [Add](#step-3-adding-reactions) reactions.
-1. [Save](#step-4-saving-the-trigger) the trigger.
-
 --8<-- "../include/integrations/integrations-trigger-setup.md"

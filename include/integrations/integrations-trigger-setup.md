@@ -1,3 +1,5 @@
+--8<-- "../include/integrations/integrations-trigger-steps.md"
+
 ### Step 1: Choosing a condition
 
 The following conditions are available for notification:
