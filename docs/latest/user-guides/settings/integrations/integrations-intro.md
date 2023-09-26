@@ -1,35 +1,28 @@
-[integration-pane-img]:         ../../../images/user-guides/settings/integrations/integration-panel.png
-
-[email-notifications]:          ./email.md
-[slack-notifications]:          ./slack.md
-[telegram-notifications]:       ./telegram.md
-[ms-teams-notifications]:       ./microsoft-teams.md
-[opsgenie-notifications]:       ./opsgenie.md
-[insightconnect-notifications]: ./insightconnect.md
-[sentinel-notifications]:       ./azure-sentinel.md
-[pagerduty-notifications]:      ./pagerduty.md
-[jira-notifications]:           ./jira.md
-[servicenow-notifications]:     ./servicenow.md
-[splunk-notifications]:         ./splunk.md
-[sumologic-notifications]:      ./sumologic.md
-[datadog-notifications]:        ./datadog.md
-[fluentd-notifications]:        ./fluentd.md
-[logstash-notifications]:       ./logstash.md
-[aws-s3-notifications]:         ./amazon-s3.md
-[webhook-notifications]:        ./webhook.md
-[account]:                      ../account.md
-
 # Integrations Overview
 
-Integrate Wallarm with different systems to get scheduled reports and instant notifications through them:
+Being your shield against the OWASP API Top 10 threats, API abuse, and automated threats, Wallarm takes your security a step further by seamlessly integrating with an extensive range of systems to keep you informed in real-time.
 
-* Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
-* On an hourly basis, you can get a notification with the number of requests processed during the previous hour.
-* You can receive instant notification for each detected vulnerability, hit, system-related event, and scope change.
+With Wallarm's integrations you will always stay informed about critical events, including:
+
+* Instant alerts about [detected hits](../../../user-guides/events/check-attack.md), so you can take immediate action against the threats.
+* Updates on system events (changes in registered [users](../../../user-guides/settings/users.md), integrations, and [applications](../../../user-guides/settings/applications.md)), ensuring you're always in control.
+* Notification on important changes in your security profile, such as your [rules](../../../user-guides/rules/intro.md) and [triggers](../../../user-guides/triggers/triggers.md) changes.
+* Timely warnings about potential [vulnerabilities](../../../about-wallarm/detecting-vulnerabilities.md) in your infrastructure and their risk levels, so you can proactively address the most dangerous weaknesses.
+
+Manage the feature at the **Integrations** section of Wallarm Console.
+
+!!! info "Administrator access"
+    The section is available only for users with the **Administrator** role.
+
+![Integrations](../../../images/user-guides/settings/integrations/integration-panel.png)
+
+The number of integrations with one system is not limited. For example: to send security reports to 3 Slack channels, you can create 3 different integrations with Slack.
+
+--8<-- "../include/cloud-ip-by-request.md"
 
 ## Integrate with ...
 
-A number of systems are available for integration with Wallarm
+Wallarm connects effortlessly with a number of existing tools and platforms.
 
 <link rel="stylesheet" href="/supported-platforms.css?v=1" />
 
@@ -64,10 +57,10 @@ A number of systems are available for integration with Wallarm
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../opsigenie/">
-            <img class="non-zoomable" src="../../../../images/integration-icons/opsigenie.svg" />
-            <h3>Opsigenie</h3>
-            <p>Integrate via Opsigenie API</p>
+        <a class="do-card" href="../opsgenie/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/opsgenie.png" />
+            <h3>Opsgenie</h3>
+            <p>Integrate via Opsgenie API</p>
         </a>
         <a class="do-card" href="../pagerduty/">
             <img class="non-zoomable" src="../../../../images/integration-icons/pagerduty.png" />
@@ -160,55 +153,15 @@ A number of systems are available for integration with Wallarm
     </div>
 </div>
 
-### Monitoring systems
-
-Each Wallarm node is distributed with the `collectd` service that [collects metrics on the processed traffic](../../../admin-en/monitoring/intro.md). Using the `collectd` utilities and plugins, you can send metrics to third-party monitoring systems and databases, e.g.:
-
-* [InfluxDB](../../../admin-en/monitoring/network-plugin-influxdb.md) with further visualization in Grafana or another system
-* [Graphite](../../../admin-en/monitoring/write-plugin-graphite.md) with further visualization in Grafana or another system
-* [Nagios](../../../admin-en/monitoring/collectd-nagios.md)
-* [Zabbix](../../../admin-en/monitoring/collectd-zabbix.md)
-
-Configuration for sending metrics to third-party monitoring systems and databases is performed on the node side. The listed systems are not displayed in the Wallarm Console UI.
-
 ### Other systems
 
 If there is no system you are looking for, [let us know](mailto:support@wallarm.com). We will check the technical possibility of integration with the requested system and contact you.
 
-## Manage integrations
-
-Use the **Integrations** section of Wallarm Console.
-
-!!! info "Administrator access"
-    The integration setup is available only for users with the **Administrator** role.
-
-![Integrations](../../../images/user-guides/settings/integrations/integration-panel.png)
-
-* Click integration card to set or change parameters, test before saving, temporarily disable and then re-enable the integration.
-* The number of integrations with one system is not limited. For example: to send security reports to 3 Slack channels, you can create 3 different integrations with Slack.
-
---8<-- "../include/cloud-ip-by-request.md"
-
 ## Common and additional alerts
 
-Common events to trigger notifications are set in the integration dialog:
+Common events to trigger notifications are set in the integration dialog. For your integration, you also can add and fine tune the additional alerts via Wallarm triggers.
 
-* System related:
-    * [User](../../../user-guides/settings/users.md) changes (newly created, deleted, role change)
-    * [Integration](integrations-intro.md) changes (disabled, deleted)
-    * [Application](../../../user-guides/settings/applications.md) changes (newly created, deleted, name change)
-* [Vulnerabilities](../../../glossary-en.md#vulnerability) detected, all by default or only for the selected risk level(s):
-    * High risk
-    * Medium risk
-    * Low risk
-* [Rules](../../../user-guides/rules/intro.md) and [triggers](../../../user-guides/triggers/triggers.md) changed (creating, updating, or deleting the rule or trigger)
-
-    !!! info "Email integrations"
-        Rule and trigger events are not available in email integrations.
-
-* [Scope (exposed assets)](../../scanner.md) changed: updates in hosts, services, and domains
-
-For your integration, you can add and fine tune the additional alerts [via Wallarm triggers](../../../user-guides/triggers/triggers.md).
+See details in the articles by system you integrate with.
 
 ## Unavailability of integrated systems and incorrect integration parameters
 

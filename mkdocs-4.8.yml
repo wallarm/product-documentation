@@ -37,23 +37,29 @@ nav:
     - Activity Log: user-guides/settings/audit-log.md
   - Integrations and Alerts:
     - Overview: user-guides/settings/integrations/integrations-intro.md 
-    - Email: user-guides/settings/integrations/email.md
-    - Slack: user-guides/settings/integrations/slack.md
-    - Telegram: user-guides/settings/integrations/telegram.md
-    - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
-    - InsightConnect: user-guides/settings/integrations/insightconnect.md
-    - Opsgenie: user-guides/settings/integrations/opsgenie.md
-    - PagerDuty: user-guides/settings/integrations/pagerduty.md
-    - Jira: user-guides/settings/integrations/jira.md
-    - ServiceNow: user-guides/settings/integrations/servicenow.md
-    - Sumo Logic: user-guides/settings/integrations/sumologic.md
-    - Splunk: user-guides/settings/integrations/splunk.md
-    - Datadog: user-guides/settings/integrations/datadog.md
-    - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
-    - Fluentd: user-guides/settings/integrations/fluentd.md
-    - Logstash: user-guides/settings/integrations/logstash.md
-    - Webhook: user-guides/settings/integrations/webhook.md
-    - Amazon S3: user-guides/settings/integrations/amazon-s3.md
+    - Email and messengers:
+      - Email: user-guides/settings/integrations/email.md
+      - Slack: user-guides/settings/integrations/slack.md
+      - Telegram: user-guides/settings/integrations/telegram.md
+      - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
+    - Incident and task management systems:
+      - Opsgenie: user-guides/settings/integrations/opsgenie.md
+      - PagerDuty: user-guides/settings/integrations/pagerduty.md
+      - Jira: user-guides/settings/integrations/jira.md
+      - ServiceNow: user-guides/settings/integrations/servicenow.md
+    - SIEM and SOAR systems:
+      - Sumo Logic: user-guides/settings/integrations/sumologic.md
+      - Splunk: user-guides/settings/integrations/splunk.md
+      - InsightConnect: user-guides/settings/integrations/insightconnect.md
+      - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
+    - Log management systems:
+      - Datadog: user-guides/settings/integrations/datadog.md
+    - Data collectors:
+      - Fluentd: user-guides/settings/integrations/fluentd.md
+      - Logstash: user-guides/settings/integrations/logstash.md
+      - Amazon S3: user-guides/settings/integrations/amazon-s3.md
+    - Universal integrations:
+      - Webhook: user-guides/settings/integrations/webhook.md
     - Additional alerts via triggers:
       - Working with triggers: user-guides/triggers/triggers.md
       - Trigger examples: user-guides/triggers/trigger-examples.md

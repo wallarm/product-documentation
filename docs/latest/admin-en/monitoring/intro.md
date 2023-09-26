@@ -173,3 +173,14 @@ You can collect metrics from a filter node in several ways:
 *   [By sending notifications from `collectd`][doc-collectd-notices] when a metric has achieved a predetermined threshold value.
 
     This method is supported by any Wallarm filter node, no matter how that node is deployed.
+
+### Monitoring systems
+
+Using the `collectd` utilities and plugins, you can send metrics to third-party monitoring systems and databases, e.g.:
+
+* [InfluxDB](network-plugin-influxdb.md) with further visualization in Grafana or another system
+* [Graphite](write-plugin-graphite.md) with further visualization in Grafana or another system
+* [Nagios](collectd-nagios.md)
+* [Zabbix](collectd-zabbix.md)
+
+Configuration for sending metrics to third-party monitoring systems and databases is performed on the node side.
