@@ -31,7 +31,7 @@ theme:
     - content.code.copy
     - content.action.edit
   logo: images/wallarm-logo-new.svg
-  favicon: images/favicon.png
+  favicon: images/favicon.svg
   icon:
     repo: fontawesome/brands/github-alt
   font:
