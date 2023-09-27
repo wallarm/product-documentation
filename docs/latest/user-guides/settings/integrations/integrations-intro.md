@@ -9,24 +9,22 @@ With Wallarm's integrations you will always stay informed about critical events,
 * Notification on important changes in your security profile, such as your [rules](../../../user-guides/rules/intro.md) and [triggers](../../../user-guides/triggers/triggers.md) changes.
 * Timely warnings about potential [vulnerabilities](../../../about-wallarm/detecting-vulnerabilities.md) in your infrastructure and their risk levels, so you can proactively address the most dangerous weaknesses.
 
-Manage the feature at the **Integrations** section of Wallarm Console.
+Manage the feature at:
 
-!!! info "Administrator access"
-    The section is available only for users with the **Administrator** role.
+* The **Integrations** section of Wallarm Console.
 
-![Integrations](../../../images/user-guides/settings/integrations/integration-panel.png)
+    !!! info "Administrator access"
+        The section is available only for users with the **Administrator** role.
 
-The number of integrations with one system is not limited. For example: to send security reports to 3 Slack channels, you can create 3 different integrations with Slack.
+    ![Integrations](../../../images/user-guides/settings/integrations/integration-panel.png)
 
---8<-- "../include/cloud-ip-by-request.md"
+* The **Triggers** section for configuring additional alerts for your integrations via triggers. See details in the articles by system you integrate with.
 
-## Integrate with ...
-
-Wallarm connects effortlessly with a number of existing tools and platforms.
+Wallarm connects effortlessly with a number of existing tools and platforms. The number of integrations with one system is not limited.
 
 <link rel="stylesheet" href="/supported-platforms.css?v=1" />
 
-### Email and messengers
+## Email and messengers
 
 <div class="do-section">
     <div class="do-main">
@@ -53,7 +51,7 @@ Wallarm connects effortlessly with a number of existing tools and platforms.
     </div>
 </div>
 
-### Incident and task management systems
+## Incident and task management systems
 
 <div class="do-section">
     <div class="do-main">
@@ -80,7 +78,7 @@ Wallarm connects effortlessly with a number of existing tools and platforms.
     </div>
 </div>
 
-### SIEM and SOAR systems
+## SIEM and SOAR systems
 
 <div class="do-section">
     <div class="do-main">
@@ -107,7 +105,7 @@ Wallarm connects effortlessly with a number of existing tools and platforms.
     </div>
 </div>
 
-### Log management systems
+## Log management systems
 
 <div class="do-section">
     <div class="do-main">
@@ -119,7 +117,7 @@ Wallarm connects effortlessly with a number of existing tools and platforms.
     </div>
 </div>
 
-### Data collectors
+## Data collectors
 
 <div class="do-section">
     <div class="do-main">
@@ -141,7 +139,7 @@ Wallarm connects effortlessly with a number of existing tools and platforms.
     </div>
 </div>
 
-### Universal integrations
+## Universal integrations
 
 <div class="do-section">
     <div class="do-main">
@@ -155,32 +153,14 @@ Wallarm connects effortlessly with a number of existing tools and platforms.
 
 ### Other systems
 
-If there is no system you are looking for, [let us know](mailto:support@wallarm.com). We will check the technical possibility of integration with the requested system and contact you.
-
-## Common and additional alerts
-
-Common events to trigger notifications are set in the integration dialog. For your integration, you also can add and fine tune the additional alerts via Wallarm triggers.
-
-See details in the articles by system you integrate with.
-
-## Unavailability of integrated systems and incorrect integration parameters
-
-Notifications to the system are sent via requests. If the system is unavailable or integration parameters are configured incorrectly, the error code is returned in the response to the request.
-
-If the system responds to Wallarm request with any code other than `2xx`, Wallarm resends the request with the interval until the `2xx` code is received:
-
-* The first cycle intervals: 1, 3, 5, 10, 10 seconds
-* The second cycle intervals: 0, 1, 3, 5, 30 seconds
-* The third cycle intervals:  1, 1, 3, 5, 10, 30 minutes
-
-If the percentage of unsuccessful requests reaches 60% in 12 hours, the integration is automatically disabled. If you receive system notifications, messages about automatically disabled integration will be sent to the [configured system](#integration-types).
-
-You can identify incorrectness of integration parameters by **testing** the integration. The appropriate button is available in the integration setup window. If the test request failed, Wallarm Console would display the appropriate message.
-
-<!-- ## Demo videos
-
-<div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/DVfoXYuBy-Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div> -->
+<div class="do-section">
+    <div class="do-main">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../../../images/integration-icons/other-system.svg" />
+            <h3>Other systems</h3>
+            <p>If there is no system you are looking for, <a href = "mailto: support@wallarm.com">let us know</a>. We will check the technical possibility of integration with the requested system and contact you.</p>
+        </div>
+    </div>
+</div>
 
 <script src="/supported-platforms.js?v=1"></script>

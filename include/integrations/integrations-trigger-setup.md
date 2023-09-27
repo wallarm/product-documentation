@@ -1,3 +1,5 @@
+Use Wallarm triggers to expand the standard set of events that trigger notifications. Triggers provide more events and, for these events, you can use sofisticated filters that allow fine tuning of your alerts.
+
 --8<-- "../include/integrations/integrations-trigger-steps.md"
 
 ### Step 1: Choosing a condition

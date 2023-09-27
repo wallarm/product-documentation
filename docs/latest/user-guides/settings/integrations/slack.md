@@ -44,3 +44,7 @@ Cloud: EU
 ## Setting up additional alerts
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
+
+## System unavailability and incorrect integration parameters
+
+--8<-- "../include/integrations/integration-not-working.md"
