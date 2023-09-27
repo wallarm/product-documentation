@@ -28,6 +28,7 @@ The following detectors may be involved:
 * **Outdated browser** analyzing the browser and platform used in requests. If a client is using an outdated or unsupported browser or platform, it is likely that it is a bot rather than a human user.
 * **Suspicious behavior score** analyzing usual and unusual business logic API requests taken during a session. 
 * **Business logic score** analyzing usage of the critical or sensitive API endpoints within the context of your application behavior.
+* **Wide scope** analyzing breadth of IP activity to behaviorally identify crawler-like bots.
 
 !!! info "Confidence"
     As a result of detectors' work, every [detected](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks) bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
