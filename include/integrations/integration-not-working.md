@@ -8,8 +8,6 @@ If the system responds to Wallarm request with any code other than `2xx`, Wallar
 
 If the percentage of unsuccessful requests reaches 60% in 12 hours, the integration is automatically disabled. If you receive system notifications, you will get message about automatically disabled integration.
 
-You can identify incorrectness of integration parameters by **testing** the integration. The appropriate button is available in the integration setup window. If the test request failed, Wallarm Console would display the appropriate message.
-
 <!-- ## Demo videos
 
 <div class="video-wrapper">
