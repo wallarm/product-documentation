@@ -526,10 +526,9 @@ img {
   background-color: #959DAC;
 }
 
-/* Request a demo button */
+/* Request a demo button, Playgroun button */
 
-.demo-button  {
-  background-color: #FC7303;
+.button {
   border: none;
   color: white;
   text-align: center;
@@ -544,9 +543,25 @@ img {
   transition: all 0.3s ease;
 }
 
+.button:hover {
+  transition: all 0.3s ease;
+}
+
+.demo-button  {
+  background-color: #FC7303;
+}
+
 .demo-button:hover  {
   background-color: #D85602;
-  transition: all 0.3s ease;
+}
+
+.playground-button {
+  background-color: #4842ff;
+  margin-right: 0px;
+}
+
+.playground-button:hover {
+  background-color: #5d57ff;
 }
 
 @media screen and (max-width: 959px) {
