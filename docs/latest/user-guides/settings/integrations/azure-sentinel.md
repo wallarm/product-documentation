@@ -20,6 +20,9 @@ In the Wallarm Console UI:
 1. Click the **Microsoft Sentinel** block or click the **Add integration** button and choose **Microsoft Sentinel**.
 1. Enter an integration name.
 1. Paste the copied Workspace ID and Primary key.
+1. Optionally, specify the Azure Sentinel table for Wallarm events. If it does not exist, it will be auto-created. 
+
+    Without a name, separate tables are created for each event type.
 1. Choose event types to be logged in Microsoft Sentinel. If the events are not chosen, then logs will not be sent.
 1. [Test the integration](#testing-integration) and make sure the settings are correct.
 
