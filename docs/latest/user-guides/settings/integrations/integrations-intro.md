@@ -144,15 +144,15 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
     </div>
 </div>
 
-### Other systems
+## Other systems
 
 <div class="do-section">
     <div class="do-main">
-        <div class="do-card">
+        <a class="do-card"  href="mailto: support@wallarm.com">
             <img class="non-zoomable" src="../../../../images/integration-icons/other-system.svg" />
             <h3>Other systems</h3>
-            <p>If there is no system you are looking for, <a href = "mailto: support@wallarm.com">let us know</a>. We will check the technical possibility of integration with the requested system and contact you.</p>
-        </div>
+            <p>If there is no system you are looking for, let us know. We will check the technical possibility of integration with the requested system and contact you.</p>
+        </a>
     </div>
 </div>
 
