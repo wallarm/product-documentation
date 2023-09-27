@@ -378,10 +378,10 @@ svg.navigation-arrow {
 /* Links */
 
 .homepage .md-typeset a {
-  color: #959DAC;
+  color: black;
 }
 .homepage .md-typeset a:hover {
-  color: #959DAC;
+  color: #FC7303;
   text-decoration: underline;
 }
 .homepage .md-typeset ul li {
