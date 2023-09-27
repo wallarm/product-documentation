@@ -9,16 +9,9 @@ With Wallarm's integrations you will always stay informed about critical events,
 * Notification on important changes in your security profile, such as your [rules](../../../user-guides/rules/intro.md) and [triggers](../../../user-guides/triggers/triggers.md) changes.
 * Timely warnings about potential [vulnerabilities](../../../about-wallarm/detecting-vulnerabilities.md) in your infrastructure and their risk levels, so you can proactively address the most dangerous weaknesses.
 
-Manage the feature at:
+Manage the feature at the **Integrations** section of Wallarm Console, and **Triggers** section for configuring additional alerts for your integrations.
 
-* The **Integrations** section of Wallarm Console.
-
-    !!! info "Administrator access"
-        The section is available only for users with the **Administrator** role.
-
-    ![Integrations](../../../images/user-guides/settings/integrations/integration-panel.png)
-
-* The **Triggers** section for configuring additional alerts for your integrations via triggers. See details in the articles by system you integrate with.
+![Integrations](../../../images/user-guides/settings/integrations/integration-panel.png)
 
 Wallarm connects effortlessly with a number of existing tools and platforms. The number of integrations with one system is not limited.
 
@@ -139,7 +132,7 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
     </div>
 </div>
 
-## Universal integrations and other systems
+## Universal integrations
 
 <div class="do-section">
     <div class="do-main">
@@ -148,12 +141,18 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <h3>Webhook</h3>
             <p>Send instant notifications to any system that accepts incoming webhooks via HTTPS protocol</p>
         </a>
-        <a class="do-card" href="mailto: support@wallarm.com">
+    </div>
+</div>
+
+### Other systems
+
+<div class="do-section">
+    <div class="do-main">
+        <div class="do-card">
             <img class="non-zoomable" src="../../../../images/integration-icons/other-system.svg" />
             <h3>Other systems</h3>
-            <p>If there is no system you are looking for, <b>let us know</b>. We will check the technical possibility of integration with the requested system and contact you.</p>
-        </a>
-
+            <p>If there is no system you are looking for, <a href = "mailto: support@wallarm.com">let us know</a>. We will check the technical possibility of integration with the requested system and contact you.</p>
+        </div>
     </div>
 </div>
 
