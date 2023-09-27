@@ -537,12 +537,12 @@ img {
   text-align: center;
   font-weight: bold;
   display: inline-block;
-  font-size: 14px;
+  font-size: 16px;
   padding: 0 17px;
   margin: 0.3rem 0.5em;
   border-radius: 3px;
   text-decoration: none;
-  line-height: 1.6rem;
+  line-height: 1.8rem;
   transition: all 0.3s ease;
 }
 
@@ -816,10 +816,6 @@ button.md-clipboard.md-icon {
 /* Search bar */
 .md-search__inner {
   width: 340px;
-}
-
-.md-search__form {
-  height: 34px;
 }
 
 .md-search__form {
@@ -1133,7 +1129,7 @@ html .md-footer .md-social a:hover {
   min-width: 108px;
   transition: all 0.3s ease;
   color: hsla(0, 0%, 0%, 1);
-  line-height: 1.5rem;
+  line-height: 1.8rem;
 }
 
 .languages-list {
