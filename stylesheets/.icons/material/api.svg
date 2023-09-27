@@ -1,14 +1,7 @@
-<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_899_3313)">
-<path d="M4.66675 2.79688H3.66675C2.93037 2.79688 2.33341 3.39383 2.33341 4.13021V7.46354C2.33341 8.19992 1.73646 8.79688 1.00008 8.79688H0.666748" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
-<path d="M4.66675 14.4639H3.66675C2.93037 14.4639 2.33341 13.8669 2.33341 13.1305V10.1305C2.33341 9.39415 1.73646 8.7972 1.00008 8.7972H0.666748" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
-<path d="M11.3333 2.79688H12.3333C13.0696 2.79688 13.6666 3.39383 13.6666 4.13021V7.46354C13.6666 8.19992 14.2635 8.79688 14.9999 8.79688H15.3333" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
-<path d="M11.3333 14.4639H12.3333C13.0696 14.4639 13.6666 13.8669 13.6666 13.1305V10.1305C13.6666 9.39415 14.2635 8.7972 14.9999 8.7972H15.3333" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
-<path d="M10.6667 7.12988L7.66667 10.1299L6 8.61473" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<clipPath id="clip0_899_3313">
-<rect width="16" height="16" fill="white" transform="translate(0 0.796875)"/>
-</clipPath>
-</defs>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 3H5.5C4.39543 3 3.5 3.89543 3.5 5V10C3.5 11.1046 2.60457 12 1.5 12H1" stroke="#FC7303" stroke-width="2" stroke-linecap="round"/>
+<path d="M7 20.5H5.5C4.39543 20.5 3.5 19.6046 3.5 18.5V14C3.5 12.8954 2.60457 12 1.5 12H1" stroke="#FC7303" stroke-width="2" stroke-linecap="round"/>
+<path d="M17 3H18.5C19.6046 3 20.5 3.89543 20.5 5V10C20.5 11.1046 21.3954 12 22.5 12H23" stroke="#FC7303" stroke-width="2" stroke-linecap="round"/>
+<path d="M17 20.5H18.5C19.6046 20.5 20.5 19.6046 20.5 18.5V14C20.5 12.8954 21.3954 12 22.5 12H23" stroke="#FC7303" stroke-width="2" stroke-linecap="round"/>
+<path d="M16 9.5L11.5 14L9 11.7273" stroke="#FC7303" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
