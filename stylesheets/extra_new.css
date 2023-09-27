@@ -42,6 +42,10 @@
   max-width: 1440px;
 }
 
+.homepage .md-grid {
+  max-width: 860px;
+}
+
 .md-typeset ol:not([hidden]), .md-typeset ul:not([hidden]) {
   display: block;
 }
