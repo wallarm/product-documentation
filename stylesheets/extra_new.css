@@ -34,12 +34,8 @@
 }
 
 .md-typeset {
-    line-height: 1.5;
+    line-height: 24px;
     font-size: 16px;
-}
-
-.md-grid {
-  max-width: 1440px;
 }
 
 .homepage .md-grid {
@@ -57,6 +53,10 @@
 .md-top.md-icon {
   background-color: rgba(0,0,0,0.8);
   color: #FFFFFF;
+}
+
+.md-main__inner {
+  margin-top: 12px;
 }
 
 /* Content tabs */
@@ -105,6 +105,10 @@
 .md-header {
   background-color: #121B28;
   color: #fff;
+}
+
+.md-header__inner {
+  height: 48px;
 }
 
 .md-header__topic:first-child {
@@ -195,7 +199,7 @@ a.md-tabs__link:hover {
 }
 
 .md-nav--primary .md-nav__item {
-  padding: 1px 0 0.6rem 0.8rem;
+  padding: 1px 0 5px 10px;
 }
 
 .md-nav--primary .md-nav__item--expanded {
@@ -326,10 +330,6 @@ a.md-tabs__link:hover {
 
 svg.navigation-arrow {
   height: 10px;
-}
-
-.md-nav__item {
-  font-size: 16px;
 }
 
 /* Right navigation */
@@ -535,7 +535,7 @@ img {
   text-align: center;
   font-weight: bold;
   display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
   padding: 0 17px;
   margin: 0.3rem 0.5em;
   border-radius: 3px;
@@ -616,7 +616,6 @@ img {
 /* Filtering node version selector */
 
 .versions {
-  margin-left: .6rem;
   position: relative;
   font-size: 14px;
   line-height: 20px;
