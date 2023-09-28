@@ -8,6 +8,11 @@ for(var i = 0; i < links.length; i++) {
   }
 }
 
+window.addEventListener('load', function() {
+  const container = document.querySelector('.md-container');
+  container.style.visibility = 'visible';
+});
+
 document.addEventListener('DOMContentLoaded', function() {
   let main = document.querySelector(".md-main");
   let isHomepage = location.pathname === "/" || location.pathname === "/index.html";
@@ -131,16 +136,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 
-// Always stick sidebar-nav to the bottom of the header
+// Always stick left navigation to the bottom of the header
 document.addEventListener('DOMContentLoaded', () => {
-  const sidebar = document.querySelector('.md-sidebar--primary');
-  const header = document.querySelector('.md-header');
-  const toggleButton = document.querySelector('.md-header__button[for="__drawer"]');
-  toggleButton.addEventListener('click', () => {
+  const updateSidebarPosition = () => {
+    const sidebar = document.querySelector('.md-sidebar--primary');
+    const header = document.querySelector('.md-header');
     const headerRect = header.getBoundingClientRect();
     const headerBottom = headerRect.bottom;
     sidebar.style.top = `${headerBottom}px`;
-  });
+  };
+
+  // call on load
+  updateSidebarPosition();
+
+  const toggleButton = document.querySelector('.md-header__button[for="__drawer"]');
+  toggleButton.addEventListener('click', updateSidebarPosition);
+
+  // call on window resize
+  window.addEventListener('resize', updateSidebarPosition);
 });
 
 
