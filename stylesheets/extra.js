@@ -8,7 +8,7 @@ for(var i = 0; i < links.length; i++) {
   }
 }
 
-window.addEventListener('load', function() {
+window.addEventListener('DOMContentLoaded', function() {
   const container = document.querySelector('.md-container');
   container.style.visibility = 'visible';
 });
