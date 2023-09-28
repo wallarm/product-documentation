@@ -90,6 +90,10 @@
 
 /* Announce bar */
 
+div[data-md-component="announce"] {
+  z-index: 10;
+}
+
 .md-banner {
   background-color: #1C2752;
   text-align: center;
@@ -604,6 +608,9 @@ img {
       "lang lang lang lang lang";
     grid-template-columns: 44px 138px auto 60px 0;
   }
+  .md-header {
+    z-index: 10;
+  }
   .header-buttons {
     display: flex;
     grid-area: buttons;
@@ -682,6 +689,14 @@ img {
   line-height: 20px;
 }
 
+.md-nav--primary .versions-main {
+  text-align: left;
+}
+
+.md-nav--primary .versions-list {
+  width: 100%;
+}
+
 .versions-main {
   border-style: solid;
   background-color: #FFFF;
@@ -736,6 +751,7 @@ img {
 
 .versions-main-active {
   border-color: #FC7303;
+  text-align: left;
 }
 
 .versions-main-active .versions-drop {
@@ -759,6 +775,12 @@ img {
 
 
 @media screen and (max-width: 1219px) {
+  .md-nav--primary .md-nav {
+    padding-left: 0;
+  }
+  .md-nav--primary .md-nav__list {
+    padding-left: 7px;
+  }
   .md-nav--primary .md-nav__link .md-nav__icon {
     height: 1rem;
   }
