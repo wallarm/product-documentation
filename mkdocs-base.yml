@@ -31,12 +31,13 @@ theme:
     - content.code.copy
     - content.action.edit
   logo: images/wallarm-logo-new.svg
-  favicon: images/favicon.png
+  favicon: images/favicon.svg
   icon:
     repo: fontawesome/brands/github-alt
   font:
-    text: Inter
+    text: Sk Modernist
     code: Roboto Mono
+  playground_button_name: "Explore Playground"
   try_button_name: "Try for free"
   demo_request_block: 'Protect your applications and APIs across any infrastructure. <a href="https://www.wallarm.com/request-demo?utm_source=wallarm_docs&utm_medium=top_line&utm_campaign=wallarm_docs_experiment_1" style="color:white; font-weight: bold;">See the product now →</a>'
   wallarm_service_name: 'Wallarm service status: '

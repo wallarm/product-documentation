@@ -7,6 +7,7 @@ hide:
 # Wallarm API Security
 
 The Wallarm solution protects APIs, microservices and web applications from OWASP API Top 10 threats, API abuse and other automated threats with no manual rule configuration and ultra‑low false positives.
+
 <div class="navigation">
 <div class="navigation-card">
     <h3 class="icon-homepage quick-start-title">Quick start</h3>

@@ -34,13 +34,10 @@
 }
 
 .md-typeset {
-    line-height: 1.5;
+    line-height: 24px;
     font-size: 16px;
 }
 
-.md-grid {
-  max-width: 1280px;
-}
 .homepage .md-grid {
   max-width: 860px;
 }
@@ -56,6 +53,10 @@
 .md-top.md-icon {
   background-color: rgba(0,0,0,0.8);
   color: #FFFFFF;
+}
+
+.md-main__inner {
+  margin-top: 12px;
 }
 
 /* Content tabs */
@@ -102,11 +103,12 @@
 /* Header */
 
 .md-header {
-  border-bottom: 1px solid #ECEFF4;
+  background-color: #121B28;
+  color: #fff;
 }
+
 .md-header__inner {
   height: 48px;
-  padding: 0 0.4rem;
 }
 
 .md-header__topic:first-child {
@@ -169,15 +171,6 @@ a.md-header__button.md-logo:after {
 .homepage .md-sidebar--secondary {
   width: 8.75rem;
 }
-.md-sidebar--secondary {
-  width: 7.5rem;
-}
-.md-sidebar--secondary .md-nav__title {
-  padding: 0;
-}
-.md-sidebar--secondary .md-nav__title {
-  font-size: 16px;
-}
 
 
 /* Navigation tabs */
@@ -206,11 +199,14 @@ a.md-tabs__link:hover {
 }
 
 .md-nav--primary .md-nav__item {
-  padding: 2px 0 0.6rem 0.8rem;
+  padding: 1px 0 5px 10px;
 }
 
 .md-nav--primary .md-nav__item--expanded {
-  background-color: #F3F4F6;
+  background-color: rgba(236, 239, 244, 0.2);
+  border-radius: 8px;
+  border: 1px solid #ECEFF4;
+  /* box-shadow: 0px 0px 10px gray; */
 }
 
 .md-nav--primary .md-nav__icon--left {
@@ -336,20 +332,16 @@ svg.navigation-arrow {
   height: 10px;
 }
 
-.md-nav__item {
-  font-size: 16px;
-}
-
 /* Right navigation */
+
+.md-nav--secondary .md-nav__item .md-nav__link {
+  font-size: 14px;
+}
 
 .md-nav--secondary .md-nav__item .md-nav__link--active {
   font-weight: bold;
   color: #FC7303;
   transition: none;
-}
-
-.md-nav--secondary > .md-nav__list > .md-nav__item {
-  padding: 0;
 }
 
 /* Headers */
@@ -386,10 +378,10 @@ svg.navigation-arrow {
 /* Links */
 
 .homepage .md-typeset a {
-  color: #959DAC;
+  color: black;
 }
 .homepage .md-typeset a:hover {
-  color: #959DAC;
+  color: #FC7303;
   text-decoration: underline;
 }
 .homepage .md-typeset ul li {
@@ -534,10 +526,9 @@ img {
   background-color: #959DAC;
 }
 
-/* Request a demo button */
+/* Request a demo button, Playgroun button */
 
-.demo-button  {
-  background-color: #FC7303;
+.button {
   border: none;
   color: white;
   text-align: center;
@@ -548,13 +539,29 @@ img {
   margin: 0.3rem 0.5em;
   border-radius: 3px;
   text-decoration: none;
-  line-height: 1.6rem;
+  line-height: 1.8rem;
   transition: all 0.3s ease;
+}
+
+.button:hover {
+  transition: all 0.3s ease;
+}
+
+.demo-button  {
+  background-color: #FC7303;
 }
 
 .demo-button:hover  {
   background-color: #D85602;
-  transition: all 0.3s ease;
+}
+
+.playground-button {
+  background-color: #4842ff;
+  margin-right: 0px;
+}
+
+.playground-button:hover {
+  background-color: #5d57ff;
 }
 
 @media screen and (max-width: 959px) {
@@ -624,7 +631,6 @@ img {
 /* Filtering node version selector */
 
 .versions {
-  margin-left: .6rem;
   position: relative;
   font-size: 14px;
   line-height: 20px;
@@ -825,10 +831,6 @@ button.md-clipboard.md-icon {
 }
 
 .md-search__form {
-  height: 34px;
-}
-
-.md-search__form {
   border-radius: 3px;
 }
 
@@ -946,11 +948,11 @@ a.navigation-card:hover {
 /* Footer */
 
 .md-footer {
-  background-color: #F3F4F6;
+  background-color: #121B28;
 }
 
 .md-footer-meta {
-  background-color: #F3F4F6;
+  background-color: #121B28;
 }
 
 .md-copyright {
@@ -965,32 +967,14 @@ a.navigation-card:hover {
   padding-bottom: 0.625rem;
 }
 
-html .md-footer-meta.md-typeset a {
-  color: black;
-}
-
-html .md-footer-meta.md-typeset a:hover {
-  color: black;
-}
-
-html .md-footer .md-social a {
-  color: #959DAC;
+html .md-footer-meta.md-typeset a:focus, html .md-footer-meta.md-typeset a:hover {
+  color: #fe8268;
+  opacity: 1;
 }
 
 html .md-footer .md-social a:hover {
-  color: #000000;
-}
-
-.md-copyright__highlight {
-  color: #000000;
-}
-
-/* Service status in footer */
-
-.services-status-common {
-  padding: .4rem 0;
-  margin: auto .6rem;
-  font-size: .64rem;
+  color: #fe8268;
+  opacity: 1;
 }
 
 /* Deployment options (most styles are reused from navigation) */
@@ -1157,7 +1141,7 @@ html .md-footer .md-social a:hover {
   min-width: 108px;
   transition: all 0.3s ease;
   color: hsla(0, 0%, 0%, 1);
-  line-height: 1.5rem;
+  line-height: 1.8rem;
 }
 
 .languages-list {
