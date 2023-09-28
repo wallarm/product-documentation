@@ -1,6 +1,16 @@
 # What is new in Wallarm node 4.8
 
-The new minor version of the Wallarm node has been released! It features an important API rate limiting function to prevent DoS, brute force, and API overuse attacks. Learn all released changes from this document.
+The new minor version of the Wallarm node has been released! It features logging of blocked requests from denylisted sources in the **Events** section. Learn all released changes from this document.
+
+## Logging of blocked requests from denylisted sources
+
+Starting from the release 4.8, the Wallarm platform now logs requests that have been blocked when their source is found in the denylist. It allows you to gain a better understanding of attack profiles and ensures that no blocked activity goes unnoticed.
+
+We have introduced new [search tags and filters](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) within the **Events** section to effortlessly access such events:
+
+* Utilize the `blocked_source` search to identify requests that were blocked due to manual denylisting of IP addresses, subnets, countries, VPNs, and more.
+* Employ the `multiple_payloads` search to pinpoint requests blocked by the **Number of malicious payloads** trigger. This trigger is designed to denylist sources that originate malicious requests containing multiple payloads, a common characteristic of multi-attack perpetrators.
+* Additionally, the `api_abuse`, `brute`, `dirbust`, and `bola` search tags now encompass requests whose sources were automatically added to the denylist by the relevant Wallarm triggers for their respective attack types.
 
 ## Updated structure for the `wallarm_custom_ruleset_id` Prometheus metric
 
@@ -19,7 +29,7 @@ If upgrading from the version 3.6 or lower, learn all changes from the [separate
 ## Which Wallarm nodes are recommended to be upgraded?
 
 * Client and multi-tenant Wallarm nodes of version 4.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
-* Client and multi-tenant Wallarm nodes of the [unsupported](versioning-policy.md#version-list) versions (3.6 and lower). Changes available in Wallarm node 4.6 simplify the node configuration and improve traffic filtration. Please note that some settings of node 4.6 are **incompatible** with the nodes of older versions.
+* Client and multi-tenant Wallarm nodes of the [unsupported](versioning-policy.md#version-list) versions (3.6 and lower). Changes available in Wallarm node 4.8 simplify the node configuration and improve traffic filtration. Please note that some settings of node 4.8 are **incompatible** with the nodes of older versions.
 
 ## Upgrade process
 
