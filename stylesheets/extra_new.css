@@ -227,6 +227,10 @@ a.md-tabs__link:hover {
   padding: 0;
 }
 
+.md-nav--primary .md-nav__item--expanded > .md-nav__link {
+  color: #FC7303;
+}
+
 .md-nav--primary > ul > .md-nav__item--expanded {
   background-color: rgba(236, 239, 244, 0.2);
   border-radius: 8px;
@@ -237,8 +241,21 @@ a.md-tabs__link:hover {
   font-weight: bold;
 }
 
-.md-nav--primary .md-nav__item--expanded > .md-nav__link .navigation-arrow {
+.md-nav--primary .md-nav__item--expanded > .md-nav__link .navigation-arrow,
+.md-nav--primary .md-nav__item--active > .md-nav__link .navigation-arrow {
   transform: rotate(90deg);
+}
+
+.md-nav--primary .md-nav__item--expanded .md-nav__link[for="nav-1"] .md-nav__icon--left path,
+.md-nav--primary .md-nav__item--expanded .md-nav__link[for="nav-5"] .md-nav__icon--left path,
+.md-nav--primary .md-nav__item--active .md-nav__link[for="nav-1"] .md-nav__icon--left path,
+.md-nav--primary .md-nav__item--active .md-nav__link[for="nav-5"] .md-nav__icon--left path {
+  fill: #FC7303;
+  stroke: none;
+}
+
+.md-nav--primary .md-nav__item--expanded .md-nav__icon--left path {
+  stroke: #FC7303;
 }
 
 .md-nav--primary .md-nav__icon--left {
@@ -266,6 +283,9 @@ a.md-tabs__link:hover {
 }
 
 .md-nav__item .md-nav__link--active {
+  color: #FC7303;
+}
+.md-nav__item.md-nav__item--active > label {
   color: #FC7303;
 }
 
