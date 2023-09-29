@@ -84,7 +84,7 @@ In Wallarm, there are several ways for IP to get into the denylist. Depending on
     * [`Brute force`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger (`brute`, `Brute force`)
     * [`Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger (`dirbust`, `Forced browsing`)
     * [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) trigger (`bola`, `BOLA`)
-    * `Number of malicious payloads` trigger (`payload_trigger`, `Payload Trigger`)
+    * `Number of malicious payloads` trigger (`multiple_payloads`, `Multiple payloads`)
 
 The listed behavioral attacks can be detected only after accumulating certain statistics the required amount of which depends on the corresponding trigger thresholds. Thus, in the first stage, before denylisting, Wallarm collects this information but all requests are passed and displayed within the `Monitoring` events.
 
@@ -95,6 +95,8 @@ As soon as sending of information about requests from denylisted IPs is enabled,
 ![Events related to denylisted IPs - sending data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
 
 Note that search/filters will display both `Monitoring` and - if sending information is enabled - `Blocked` events for each attack type. For manually denylisted IPs a `Monitoring` event never exists.
+
+Within the `Blocked` events, use tags to switch to the reason of denylisting - BOLA settings, API Abuse Prevention, trigger or causing record in denylist.
 
 ## Sampling of hits
 
