@@ -113,7 +113,24 @@ Created tenants will be displayed in Wallarm Console for [global users](../../us
 
 ![Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
 
-### Step 3: Associate specific traffic with your tenant
+#### Define tenant subscriptions
+
+What functions are available to the newly created tenant in Wallarm Console are defined by this tenant [subscription](../../about-wallarm/subscription-plans.md). To manage tenants' subscriptions, contact the [Wallarm support team](mailto:support@wallarm.com).
+
+You  can request the following for this and/or previous and/or all further tenants:
+
+* Assign default subscription(s). Details:
+
+    * A list of such subcription is as a subject for agreement
+    * Expiration is one year from the tenant creation date for paid subscription
+    * Expitation is 2 weeks from the tenant creation date for trial subscription
+
+* Inherit subscription(s) from technical tenant.
+* Switch between "use default" and "use iherited" modes.
+* Manually assign specific subsription to the tenant.
+
+
+### Step 4: Associate specific traffic with your tenant
 
 !!! info "When to configure?"
     This configuration is performed during the node deployment and only if the traffic of all tenants is [processed or will be processed](deploy-multi-tenant-node.md) by only one Wallarm node.
