@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.md-header');
     const headerRect = header.getBoundingClientRect();
     const headerBottom = headerRect.bottom;
-    sidebar.style.top = `${headerBottom}px`;
+    document.documentElement.style.setProperty('--header-bottom', `${headerBottom}px`);
   };
 
   // call on load
