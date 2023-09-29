@@ -246,6 +246,7 @@ a.md-tabs__link:hover {
   transform: rotate(90deg);
 }
 
+/* Hack for svg that don't want to be colored properly */
 .md-nav--primary .md-nav__item--expanded .md-nav__link[for="nav-1"] .md-nav__icon--left path,
 .md-nav--primary .md-nav__item--expanded .md-nav__link[for="nav-5"] .md-nav__icon--left path,
 .md-nav--primary .md-nav__item--active .md-nav__link[for="nav-1"] .md-nav__icon--left path,
