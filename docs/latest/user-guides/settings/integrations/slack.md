@@ -1,6 +1,6 @@
 # Slack
 
-You can set up Wallarm to send notifications to your Slack channel(s). If you want to send notifications to several different Slack channels or accounts, create several Slack integrations - one for each account/channel.
+You can set up Wallarm to send notifications to your Slack channel(s). If you want to send notifications to several different Slack channels or accounts, create several Slack integrations.
 
 ## Setting up integration
 
@@ -17,29 +17,23 @@ You can set up Wallarm to send notifications to your Slack channel(s). If you wa
       
     --8<-- "../include/integrations/events-for-integrations.md"
 
-    !!! info "No events selected"
-        If no events are selected, no notifications will be sent.
+1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
 
-1. [Test the integration](#testing-integration) and make sure the settings are correct.
+    This will send a test notification with the prefix `[Test message]`:
+
+    ```
+    [Test message] [Test partner] Network perimeter has changed
+
+    Notification type: new_scope_object_ips
+
+    New IP addresses were discovered in the network perimeter:
+    8.8.8.8
+
+    Client: TestCompany
+    Cloud: EU
+    ```
+
 1. Click **Add integration**.
-
-## Testing integration
-
---8<-- "../include/integrations/test-integration-basic-data.md"
-
-Test Slack message from the user **wallarm**:
-
-```
-[Test message] [Test partner] Network perimeter has changed
-
-Notification type: new_scope_object_ips
-
-New IP addresses were discovered in the network perimeter:
-8.8.8.8
-
-Client: TestCompany
-Cloud: EU
-```
 
 ## Setting up additional alerts
 
