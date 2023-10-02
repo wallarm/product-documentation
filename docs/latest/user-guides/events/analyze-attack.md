@@ -72,9 +72,9 @@ To view a request in a raw format, expand a required attack and then the request
 Wallarm offers the ability to collect and display information regarding blocked requests from denylisted source IPs. This empowers you to evaluate the potency of attacks originating from denylisted IPs, and conduct precise analysis of the requests from these IPs, exploring various parameters.
 
 !!! info "Feature availability"
-    By default Wallarm does not display information regarding requests from denylisted source IPs, as node blocks requests immediately and sends nothing to the Cloud, which saves resources.
+    Feature is available starting from node version 4.8, for NGINX-based nodes. By default it is enabled. To save resources by disabling it, you can set the [`wallarm_acl_export_enable`](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) directive to `off`.
     
-    You can enable collecting and displaying this information via the set of [directives](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable). This is only available for NGINX-based nodes starting from version 4.8 and is not supported by the Envoy-based nodes.
+    <!--You can enable collecting and displaying this information via the set of [directives](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable). This is only available for NGINX-based nodes starting from version 4.8 and is not supported by the Envoy-based nodes.-->
 
 In Wallarm, there are several ways for IP to get into the denylist. Depending on the way used, you will need to [search](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) for the associated events using different tags/filters:
 

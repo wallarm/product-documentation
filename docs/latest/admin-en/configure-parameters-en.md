@@ -56,8 +56,9 @@ The directive enables `on` / disables `off` sending information about the reques
 !!! info
     This parameter is set inside the http block.
     
-    **Default value**: `off`
+    **Default value**: `on`
 
+<! -- 
 Relative directives to control memory consumption and sampling:
 
 * [`wallarm_acl_export_shm_size`](#wallarm_acl_export_shm_size)
@@ -122,6 +123,7 @@ Sets time in seconds to store data on requests from denylisted IPs within the NG
     This parameter is set inside the http block.
     
     **Default value:** 1800 (30 minutes)
+-->
 
 ### wallarm_api_conf
 
