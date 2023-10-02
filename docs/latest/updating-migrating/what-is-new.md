@@ -2,15 +2,28 @@
 
 The new minor version of the Wallarm node has been released! It features logging of blocked requests from denylisted sources in the **Events** section. Learn all released changes from this document.
 
-## Logging of blocked requests from denylisted sources
+## Collecting statistics on blocked requests from denylisted sources
 
-Starting from the release 4.8, the Wallarm platform now logs requests that have been blocked when their source is found in the denylist. It allows you to gain a better understanding of attack profiles and ensures that no blocked activity goes unnoticed.
+Starting from the release 4.8, the Wallarm NGINX‑based filtering nodes now collect statistics on requests that have been blocked when their source is found in the denylist, enhancing your ability to evaluate attack strength. This includes access to statistics, general data, and parameters for these blocked requests, helping you minimize unnoticed activity. You can find this data in the Wallarm Console UI's **Events** section.
 
-We have introduced new [search tags and filters](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) within the **Events** section to effortlessly access such events:
+When using automatic IP blocking (e.g., with the brute force trigger configured), now you can analyze both the initial triggering requests and the general data on subsequent blocked requests. For requests blocked due to manual denylisting of their sources, the new functionality enhances visibility into blocked source actions.
+
+We have introduced new [search tags and filters](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) within the **Events** section to effortlessly access the newly introduced data:
 
 * Utilize the `blocked_source` search to identify requests that were blocked due to manual denylisting of IP addresses, subnets, countries, VPNs, and more.
 * Employ the `multiple_payloads` search to pinpoint requests blocked by the **Number of malicious payloads** trigger. This trigger is designed to denylist sources that originate malicious requests containing multiple payloads, a common characteristic of multi-attack perpetrators.
 * Additionally, the `api_abuse`, `brute`, `dirbust`, and `bola` search tags now encompass requests whose sources were automatically added to the denylist by the relevant Wallarm triggers for their respective attack types.
+
+This change introduces the new [`wallarm_acl_export_enable`](../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) NGINX directive, which by default is set to `on` to enable the functionality but can be switched to `off` to disable it.
+
+<!-- controller.config.wallarm-acl-export-enable: “off” -->
+<!-- to say that only 10 requests (sample) are uploaded to the cloud?? -->
+
+## NGINX-based Docker image verification with official signature
+
+Beginning with release 4.8, Wallarm is now signing its [official NGINX‑based Docker image](https://hub.docker.com/r/wallarm/node) with its official public key.
+
+This means you can now easily [verify](../integrations-devsecops/verify-docker-image-signature.md) the authenticity of the image, enhancing security by guarding against compromised images and supply chain attacks.
 
 ## Updated structure for the `wallarm_custom_ruleset_id` Prometheus metric
 
