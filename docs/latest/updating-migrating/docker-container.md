@@ -13,6 +13,7 @@
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [envoy-process-time-limit-docs]:    ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
 [envoy-process-time-limit-block-docs]: ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
+[ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 
 # Upgrading the Docker NGINX- or Envoy-based image
 
