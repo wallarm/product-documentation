@@ -276,6 +276,7 @@ a.md-tabs__link:hover {
 }
 
 .support-widget {
+  box-shadow: 0 2px 12px 0 #00000033;
   display: none;
   position: fixed;
   right: 14px;
