@@ -190,30 +190,32 @@ function checkHubspotLoaded() {
       }
     }, 500);
 
-    // Waiting for loading hobspots 10 seconds
+    // Waiting for loading hubspots 10 seconds
     setTimeout(() => {
       clearInterval(interval);
-      reject(new Error("HubSpot не загрузился в течение 5 секунд"));
-    }, 10000);
+      reject(new Error("HubSpot couldn't load in 5 sec"));
+    }, 5000);
   });
 }
 
 async function insertSupportWidget() {
+  const supportWidget = document.querySelector('.support-widget');
+  supportWidget.style.display = 'block';
   try {
     const hubspotIframe = await checkHubspotLoaded();
-
     // Up hubspot widget
     hubspotIframe.style.cssText = 'bottom: 120px !important';
 
     // Insert support widget
-    const myWidget = document.querySelector('.support-widget');
-    myWidget.style.display = 'block';
   } catch (error) {
     console.error(error);
+  } finally {
+    supportWidget.style.display = 'block';
   }
 }
-
-insertSupportWidget();
+document.addEventListener('DOMContentLoaded', (event) => {
+  insertSupportWidget();
+});
 
 
 function removeAllActiveClasses() {
