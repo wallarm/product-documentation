@@ -1,1 +1,1 @@
-Content TBD
+--8<-- "latest/user-guides/dashboards/api-discovery.md"
