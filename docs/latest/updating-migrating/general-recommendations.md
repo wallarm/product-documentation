@@ -1,6 +1,6 @@
 # Recommendations for a safe node upgrade process
 
-This document describes recommendations and associated risks for a safe upgrade of Wallarm filtering node up to 4.6.
+This document describes recommendations and associated risks for a safe upgrade of Wallarm filtering node up to 4.8.
 
 ## Common recommendations
 
@@ -17,7 +17,7 @@ Below are the risks that may occur when updating the filtering node. To reduce t
 
 ### Changed functionality
 
-* [What is new in Wallarm node 4.6](what-is-new.md)
+* [What is new in Wallarm node 4.8](what-is-new.md)
 * [What is new if upgrading the EOL node (3.6 or lower)](older-versions/what-is-new.md)
 
 ### New false positives
@@ -48,4 +48,4 @@ The Wallarm node update process depends on the platform and installation forms. 
 * [Cloud node image](cloud-image.md)
 * [Multi-tenant node](multi-tenant.md)
 * [CDN node](cdn-node.md)
-* [Migrating allowlists and denylists from Wallarm node 2.18 and lower to 4.6](migrate-ip-lists-to-node-3.md)
+* [Migrating allowlists and denylists from Wallarm node 2.18 and lower to 4.8](migrate-ip-lists-to-node-3.md)

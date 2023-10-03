@@ -2,7 +2,7 @@
 
 # Upgrading Wallarm Sidecar proxy
 
-These instructions describe the steps to upgrade Wallarm Sidecar proxy 4.x to the new version with Wallarm node 4.6.
+These instructions describe the steps to upgrade Wallarm Sidecar proxy 4.x to the new version with Wallarm node 4.8.
 
 ## Requirements
 
@@ -33,7 +33,7 @@ To install and run the plugin:
 
     * `<RELEASE_NAME>`: the name of the Helm release with the Sidecar proxy chart
     * `<NAMESPACE>`: the namespace the Sidecar proxy is deployed to
-    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar proxy 4.6 settings - you can use the one created for running the previous Sidecar proxy version
+    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar proxy 4.8 settings - you can use the one created for running the previous Sidecar proxy version
 3. Make sure that no changes can affect the stability of the running services and carefully examine the errors from stdout.
 
     If stdout is empty, make sure that the `values.yaml` file is valid.
@@ -48,7 +48,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.6
 
 * `<RELEASE_NAME>`: the name of the Helm release with the deployed Sidecar proxy chart
 * `<NAMESPACE>`: the namespace the Sidecar proxy is deployed to
-* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar proxy 4.6 settings - you can use the one created for running the previous Sidecar proxy version
+* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar proxy 4.8 settings - you can use the one created for running the previous Sidecar proxy version
 
 ## Step 4: Test the upgraded Sidecar solution
 

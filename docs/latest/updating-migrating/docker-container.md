@@ -13,13 +13,14 @@
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [envoy-process-time-limit-docs]:    ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
 [envoy-process-time-limit-block-docs]: ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
+[ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 
 # Upgrading the Docker NGINX- or Envoy-based image
 
-These instructions describe the steps to upgrade the running Docker NGINX- or Envoy-based image 4.x to the version 4.6.
+These instructions describe the steps to upgrade the running Docker NGINX- or Envoy-based image 4.x to the version 4.8.
 
 !!! warning "Using credentials of already existing Wallarm node"
-    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 4.6 and deploy it as the Docker container.
+    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 4.8 and deploy it as the Docker container.
 
 To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/docker-container.md).
 
@@ -76,4 +77,4 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## Step 6: Delete the filtering node of the previous version
 
-If the deployed image of the version 4.6 operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.
+If the deployed image of the version 4.8 operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.

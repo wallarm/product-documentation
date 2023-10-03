@@ -129,9 +129,9 @@ The new deployment method lets you configure the Wallarm CDN node outside your i
 
 ## Unified registration of nodes in the Wallarm Cloud by tokens
 
-With the release of Wallarm node 4.6, email-password based registration of Wallarm nodes in the Cloud has been removed. It is now mandatory to switch to the new token-based node registration method to continue with Wallarm node 4.6.
+With the new release of Wallarm node, email-password based registration of Wallarm nodes in the Cloud has been removed. It is now mandatory to switch to the new token-based node registration method to continue with Wallarm node 4.8.
 
-The release 4.6 enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../installation/supported-deployment-options.md), which ensures a more secure and faster connection to the Wallarm Cloud as follows:
+The new release enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../installation/supported-deployment-options.md), which ensures a more secure and faster connection to the Wallarm Cloud as follows:
 
 * Dedicated user accounts of the **Deploy** role allowing only to install the node are no longer required.
 * Users' data remains securely stored in the Wallarm Cloud.
@@ -166,6 +166,23 @@ The Wallarm Terraform module is the scalable solution meeting the best industry 
 We have also prepared the usage examples for both deployment options involving basic deployment configurations as well as advanced ones compatible with such solutions as AWS VPC Traffic Mirroring.
 
 [Documentation on the Wallarm Terraform module for AWS](../../installation/cloud-platforms/aws/terraform-module/overview.md)
+
+## Collecting statistics on blocked requests from denylisted sources
+
+Starting from the release 4.8, the Wallarm NGINX‑based filtering nodes now collect statistics on requests that have been blocked when their source is found in the denylist, enhancing your ability to evaluate attack strength. This includes access to the blocked request statistics and their samples, helping you minimize unnoticed activity. You can find this data in the Wallarm Console UI's **Events** section.
+
+When using automatic IP blocking (e.g., with the brute force trigger configured), now you can analyze both the initial triggering requests and the samples of subsequent blocked requests. For requests blocked due to manual denylisting of their sources, the new functionality enhances visibility into blocked source actions.
+
+We have introduced new [search tags and filters](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) within the **Events** section to effortlessly access the newly introduced data:
+
+* Utilize the `blocked_source` search to identify requests that were blocked due to manual denylisting of IP addresses, subnets, countries, VPNs, and more.
+* Employ the `multiple_payloads` search to pinpoint requests blocked by the **Number of malicious payloads** trigger. This trigger is designed to denylist sources that originate malicious requests containing multiple payloads, a common characteristic of multi-attack perpetrators.
+* Additionally, the `api_abuse`, `brute`, `dirbust`, and `bola` search tags now encompass requests whose sources were automatically added to the denylist by the relevant Wallarm triggers for their respective attack types.
+
+This change introduces the new [`wallarm_acl_export_enable`](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) NGINX directive, which by default is set to `on` to enable the functionality but can be switched to `off` to disable it.
+
+<!-- controller.config.wallarm-acl-export-enable: “off” -->
+<!-- to say that only 10 requests (sample) are uploaded to the cloud?? -->
 
 ## Wallarm AWS image distributed with the ready-to-use `cloud-init.py` script
 
@@ -362,7 +379,7 @@ docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKE
       * [Cloud node image](cloud-image.md)
       * [Multi-tenant node](multi-tenant.md)
       * [CDN node](../cdn-node.md)
-3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.6.
+3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.8.
 
 ----------
 

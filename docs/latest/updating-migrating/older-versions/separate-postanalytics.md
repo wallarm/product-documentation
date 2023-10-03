@@ -21,7 +21,7 @@ These instructions describe the steps to upgrade the end‑of‑life postanalyti
 
 ## Upgrade with all-in-one installer
 
-Use the procedure below to upgrade the end‑of‑life postanalytics module (version 3.6 and lower) installed on a separate server to version 4.6 using [all-in-one installer](../../installation/nginx/all-in-one.md).
+Use the procedure below to upgrade the end‑of‑life postanalytics module (version 3.6 and lower) installed on a separate server to version 4.8 using [all-in-one installer](../../installation/nginx/all-in-one.md).
 
 ### Requirements for upgrade using all-in-one installer
 
@@ -68,7 +68,7 @@ Once the postanalytics module is installed on the separate server, [upgrade its 
 
 ## Manual upgrade
 
-Use the procedure below to manually upgrade the end‑of‑life postanalytics module (version 3.6 and lower) installed on a separate server to version 4.6.
+Use the procedure below to manually upgrade the end‑of‑life postanalytics module (version 3.6 and lower) installed on a separate server to version 4.8.
 
 ### Requirements
 
@@ -167,7 +167,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
 The deployed postanalytics node 3.6 or lower has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
 
-It is recommended to install the new node type instead of the deprecated one during migration to the version 4.6. The regular node type will be removed in future releases, please migrate before.
+It is recommended to install the new node type instead of the deprecated one during migration to the version 4.8. The regular node type will be removed in future releases, please migrate before.
 
 To replace the regular postanalytics node with the Wallarm node:
 

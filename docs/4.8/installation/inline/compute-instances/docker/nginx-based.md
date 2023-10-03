@@ -29,5 +29,6 @@ search:
 [gcp-gce-docs]:                     ../../../cloud-platforms/gcp/docker-container.md
 [azure-container-docs]:             ../../../cloud-platforms/azure/docker-container.md
 [alibaba-ecs-docs]:                 ../../../cloud-platforms/alibaba-cloud/docker-container.md
+[ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 
 --8<-- "latest/admin-en/installation-docker-en.md"
