@@ -44,7 +44,7 @@ if (window.location.href.indexOf("channeltivity-content") <= -1) {
 }
 
 // Version selection
-var rootVersion = '4.6';
+var rootVersion = '4.8';
 
 // Temporarily hide the version selection in Japanese docs
 
