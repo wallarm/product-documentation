@@ -44,29 +44,39 @@ if (window.location.href.indexOf("channeltivity-content") <= -1) {
 }
 
 // Version selection
+
 var rootVersion = '4.8';
 
 let pathsLang = window.location.pathname.split('/');
 
-if (pathsLang[1] != 'ja') {
-  document.getElementById('versionsDiv').style.display = 'inline-block';
-}
-if (pathsLang[1] = 'ja') {
+if (pathsLang[1] === 'ja') {
   document.getElementById('versionsDivJa').style.display = 'inline-block';
 }
 else {
-  document.getElementById('versionsDiv').style.display = 'none'
-  document.getElementById('versionsDivJa').style.display = 'none'
+  document.getElementById('versionsDiv').style.display = 'inline-block';
 }
 
 // Show the list of available Wallarm versions
+
 function versionClicked (event) {
-  if (document.getElementById('versionsList').style.display === 'none') {
-    document.getElementById('versionsList').style.display = 'block'
-    document.getElementById('versionsMain').classList.add("versions-main-active")
-  } else {
-    document.getElementById('versionsList').style.display = 'none'
-    document.getElementById('versionsMain').classList.remove("versions-main-active")
+
+  if (pathsLang[1] === 'ja') {
+    if (document.getElementById('versionsListJa').style.display === 'none') {
+      document.getElementById('versionsListJa').style.display = 'block'
+      document.getElementById('versionsMainJa').classList.add("versions-main-active")
+    } else {
+      document.getElementById('versionsListJa').style.display = 'none'
+      document.getElementById('versionsMainJa').classList.remove("versions-main-active")
+    }
+  }
+  else {
+    if (document.getElementById('versionsList').style.display === 'none') {
+      document.getElementById('versionsList').style.display = 'block'
+      document.getElementById('versionsMain').classList.add("versions-main-active")
+    } else {
+      document.getElementById('versionsList').style.display = 'none'
+      document.getElementById('versionsMain').classList.remove("versions-main-active")
+    }
   }
 }
 
