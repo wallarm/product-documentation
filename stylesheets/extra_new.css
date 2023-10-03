@@ -203,7 +203,10 @@ a.md-tabs__link:hover {
 }
 
 .md-nav--primary .versions-main {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
+  padding-right: 6px;
 }
 
 .md-nav--primary > ul > .md-nav__item > label {
@@ -737,10 +740,6 @@ img {
   line-height: 20px;
 }
 
-.md-nav--primary .versions-main {
-  text-align: left;
-}
-
 .md-nav--primary .versions-list {
   width: 100%;
 }
@@ -804,6 +803,7 @@ img {
   transition: transform 0.24s cubic-bezier(0.24,0.1,0.24,1);
   vertical-align: middle;
   margin-left: 8px;
+  margin-top: 3px;
 }
 
 @media (max-width: 768px) {
