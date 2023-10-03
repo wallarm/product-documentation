@@ -17,6 +17,9 @@ plugins:
         - non-zoomable
 dev_addr: '127.0.0.1:8000'
 
+watch:
+  - docs/latest
+
 theme:
   language_name: English
   name: material
