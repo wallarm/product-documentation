@@ -46,15 +46,17 @@ if (window.location.href.indexOf("channeltivity-content") <= -1) {
 // Version selection
 var rootVersion = '4.8';
 
-// Temporarily hide the version selection in Japanese docs
-
 let pathsLang = window.location.pathname.split('/');
 
 if (pathsLang[1] != 'ja') {
   document.getElementById('versionsDiv').style.display = 'inline-block';
 }
+if (pathsLang[1] = 'ja') {
+  document.getElementById('versionsDivJa').style.display = 'inline-block';
+}
 else {
   document.getElementById('versionsDiv').style.display = 'none'
+  document.getElementById('versionsDivJa').style.display = 'none'
 }
 
 // Show the list of available Wallarm versions
