@@ -178,6 +178,44 @@ function getAllNavigationElements(element, selector){
   }
 }
 
+// Add support widget
+// Check if hubspot is loaded
+function checkHubspotLoaded() {
+  return new Promise((resolve, reject) => {
+    const interval = setInterval(() => {
+      const hubspotIframe = document.querySelector('#hubspot-messages-iframe-container');
+      if (hubspotIframe) {
+        clearInterval(interval);
+        resolve(hubspotIframe);
+      }
+    }, 500);
+
+    // Waiting for loading hobspots 10 seconds
+    setTimeout(() => {
+      clearInterval(interval);
+      reject(new Error("HubSpot не загрузился в течение 5 секунд"));
+    }, 10000);
+  });
+}
+
+async function insertSupportWidget() {
+  try {
+    const hubspotIframe = await checkHubspotLoaded();
+
+    // Up hubspot widget
+    hubspotIframe.style.cssText = 'bottom: 120px !important';
+
+    // Insert support widget
+    const myWidget = document.querySelector('.support-widget');
+    myWidget.style.display = 'block';
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+insertSupportWidget();
+
+
 function removeAllActiveClasses() {
   const activeElements = document.querySelectorAll('.md-nav__item--active');
   activeElements.forEach(el => el.classList.remove('md-nav__item--active'));

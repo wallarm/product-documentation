@@ -272,6 +272,30 @@ a.md-tabs__link:hover {
   fill: none;
 }
 
+/*#hubspot-messages-iframe-container {*/
+/*  right: 0;*/
+/*  bottom: 0;*/
+/*  width: 60px;*/
+/*  height: 60px;*/
+/*  border-radius: 20px;*/
+/*  background-color: #FEF6E5;*/
+/*}*/
+
+.support-widget {
+  display: none;
+  position: fixed;
+  right: 20px;
+  bottom: 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background-color: #FEF6E5;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.66675 5.66701L11.0001 11.0003M11.0001 19.0003L5.66675 24.3337M24.3334 5.66701L19.0001 11.0003M19.0001 19.0003L24.3334 24.3337M28.3334 15.0003C28.3334 22.3641 22.3639 28.3337 15.0001 28.3337C7.63628 28.3337 1.66675 22.3641 1.66675 15.0003C1.66675 7.63653 7.63628 1.66699 15.0001 1.66699C22.3639 1.66699 28.3334 7.63653 28.3334 15.0003ZM20.3334 15.0003C20.3334 17.9459 17.9456 20.3337 15.0001 20.3337C12.0546 20.3337 9.66675 17.9459 9.66675 15.0003C9.66675 12.0548 12.0546 9.66701 15.0001 9.66701C17.9456 9.66701 20.3334 12.0548 20.3334 15.0003Z' stroke='%23FC7303' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+}
+
 
 .md-nav--primary .md-nav__item:last-child {
   padding-bottom: 0;
