@@ -203,10 +203,8 @@ async function insertSupportWidget() {
   supportWidget.style.display = 'block';
   try {
     const hubspotIframe = await checkHubspotLoaded();
-    const borderElement = document.querySelector('.IconLauncher__ShapedLauncher-fdpgf4-1');
     // Up hubspot widget
     hubspotIframe.style.cssText = 'bottom: 120px !important';
-    borderElement.style.cssText = 'border-radius: 22px !important';
 
     // Insert support widget
   } catch (error) {
