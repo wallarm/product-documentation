@@ -7,7 +7,7 @@
 
 # Upgrading Wallarm node with All-in-One Installer
 
-These instructions describe the steps to upgrade the Wallarm node 4.6.x installed using [all-in-one installer](../installation/nginx/all-in-one.md) to version 4.6.x+.
+These instructions describe the steps to upgrade the Wallarm node 4.x installed using [all-in-one installer](../installation/nginx/all-in-one.md) to version 4.8.
 
 ## Requirements
 

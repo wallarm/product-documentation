@@ -25,7 +25,7 @@
 
 # Upgrading Wallarm NGINX modules
 
-These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x installed from the individual packages to version 4.6. These are the modules installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x installed from the individual packages to version 4.8. These are the modules installed in accordance with one of the following instructions:
 
 * [Individual packages for NGINX stable](../installation/nginx/dynamic-module.md)
 * [Individual packages for NGINX Plus](../installation/nginx-plus.md)
@@ -39,7 +39,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
 ## Upgrade with all-in-one installer
 
-Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.6 using [all-in-one installer](../installation/nginx/all-in-one.md).
+Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.8 using [all-in-one installer](../installation/nginx/all-in-one.md).
 
 ### Requirements for upgrade using all-in-one installer
 
@@ -186,7 +186,7 @@ Depending on the deployment approach being used, perform the following settings:
 
 ## Manual upgrade
 
-Use the procedure below to manually upgrade the Wallarm NGINX modules 4.x to version 4.6.
+Use the procedure below to manually upgrade the Wallarm NGINX modules 4.x to version 4.8.
 
 ### Requirements for manual upgrade
 
@@ -426,6 +426,6 @@ If the page `&/usr/share/nginx/html/wallarm_blocked.html` was configured to be r
 
 ### Settings customization
 
-The Wallarm modules are updated to version 4.6. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+The Wallarm modules are updated to version 4.8. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"

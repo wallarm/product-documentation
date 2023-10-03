@@ -129,9 +129,9 @@ The new deployment method lets you configure the Wallarm CDN node outside your i
 
 ## Unified registration of nodes in the Wallarm Cloud by tokens
 
-With the release of Wallarm node 4.6, email-password based registration of Wallarm nodes in the Cloud has been removed. It is now mandatory to switch to the new token-based node registration method to continue with Wallarm node 4.6.
+With the new release of Wallarm node, email-password based registration of Wallarm nodes in the Cloud has been removed. It is now mandatory to switch to the new token-based node registration method to continue with Wallarm node 4.8.
 
-The release 4.6 enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../installation/supported-deployment-options.md), which ensures a more secure and faster connection to the Wallarm Cloud as follows:
+The new release enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../installation/supported-deployment-options.md), which ensures a more secure and faster connection to the Wallarm Cloud as follows:
 
 * Dedicated user accounts of the **Deploy** role allowing only to install the node are no longer required.
 * Users' data remains securely stored in the Wallarm Cloud.
@@ -379,7 +379,7 @@ docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKE
       * [Cloud node image](cloud-image.md)
       * [Multi-tenant node](multi-tenant.md)
       * [CDN node](../cdn-node.md)
-3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.6.
+3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.8.
 
 ----------
 
