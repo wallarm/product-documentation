@@ -104,7 +104,9 @@ For Amazon S3, integration test sends the JSON file with data into your bucket. 
     "datacenter":"unknown",
     "tor":"none",
     "remote_country":null,
-    "application_id":null,
+    "application_id":[
+      -1
+    ],
     "domain":"localhost",
     "method":"GET",
     "uri":"/etc/passwd",
@@ -133,7 +135,9 @@ For Amazon S3, integration test sends the JSON file with data into your bucket. 
     "datacenter":"unknown",
     "tor":"none",
     "remote_country":null,
-    "application_id":null,
+    "application_id":[
+      -1
+    ],
     "domain":"localhost",
     "method":"GET",
     "uri":"/etc/passwd",
