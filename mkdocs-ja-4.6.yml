@@ -16,7 +16,7 @@ theme:
   wallarm_service_name: 'Wallarmサービスのステータス: '
 
 docs_dir: docs/4.6-ja
-site_dir: site/4.6/ja
+site_dir: site/ja/4.6
 watch:
   - docs/latest-ja
 

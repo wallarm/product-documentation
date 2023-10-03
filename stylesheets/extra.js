@@ -90,6 +90,18 @@ function goToVersion (event, currentVersion, version) {
   else {
     let tmp = window.location.pathname.split('/');
     window.top.location.href = tmp.join('/');
+
+    if (tmp.includes('ja')) {
+      const index = tmp.indexOf('ja');
+      tmp.splice(index + 1, 0, version);
+
+      if (version === rootVersion) {
+        tmp = tmp.filter(part => part !== currentVersion);
+      }
+    }
+
+    else {
+
     if (version === rootVersion) {
       window.top.location.href = window.location.pathname.replace('/'+currentVersion+'/','/');
     } else {
@@ -105,6 +117,7 @@ function goToVersion (event, currentVersion, version) {
           window.top.location.href = window.location.pathname.replace('/'+currentVersion+'/','/'+version+'/')
       }
     }
+  }
   }
 }
 
