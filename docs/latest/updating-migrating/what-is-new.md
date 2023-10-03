@@ -41,15 +41,16 @@ If upgrading from the version 3.6 or lower, learn all changes from the [separate
 
 ## Which Wallarm nodes are recommended to be upgraded?
 
-* Client and multi-tenant Wallarm nodes of version 4.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
-* Client and multi-tenant Wallarm nodes of the [unsupported](versioning-policy.md#version-list) versions (3.6 and lower). Changes available in Wallarm node 4.8 simplify the node configuration and improve traffic filtration. Please note that some settings of node 4.8 are **incompatible** with the nodes of older versions.
+* Client and multi-tenant Wallarm nodes of version 4.4 and 4.6 to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
+* Client and multi-tenant Wallarm nodes of the [unsupported](versioning-policy.md#version-list) versions (4.2 and lower). Changes available in Wallarm node 4.8 simplify the node configuration and improve traffic filtration. Please note that some settings of node 4.8 are **incompatible** with the nodes of older versions.
 
 ## Upgrade process
 
 1. Review [recommendations for the module upgrade](general-recommendations.md).
 2. Upgrade installed modules following the instructions for your Wallarm node deployment option:
 
-      * [Module for NGINX, NGINX Plus](nginx-modules.md)
+      * [All-in-one installer](all-in-one.md)
+      * [Individual packages for NGINX, NGINX Plus, NGINX Distributive](nginx-modules.md)
       * [Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Kong Ingress controller with integrated Wallarm modules](kong-ingress-controller.md)
