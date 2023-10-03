@@ -1,12 +1,12 @@
 # What is new in Wallarm node 4.8
 
-The new minor version of the Wallarm node has been released! It features logging of blocked requests from denylisted sources in the **Events** section. Learn all released changes from this document.
+The new version of the Wallarm node has been released! It features logging of blocked requests from denylisted sources in the **Events** section. Learn all released changes from this document.
 
 ## Collecting statistics on blocked requests from denylisted sources
 
-Starting from the release 4.8, the Wallarm NGINX‑based filtering nodes now collect statistics on requests that have been blocked when their source is found in the denylist, enhancing your ability to evaluate attack strength. This includes access to statistics, general data, and parameters for these blocked requests, helping you minimize unnoticed activity. You can find this data in the Wallarm Console UI's **Events** section.
+Starting from the release 4.8, the Wallarm NGINX‑based filtering nodes now collect statistics on requests that have been blocked when their source is found in the denylist, enhancing your ability to evaluate attack strength. This includes access to the blocked request statistics and their samples, helping you minimize unnoticed activity. You can find this data in the Wallarm Console UI's **Events** section.
 
-When using automatic IP blocking (e.g., with the brute force trigger configured), now you can analyze both the initial triggering requests and the general data on subsequent blocked requests. For requests blocked due to manual denylisting of their sources, the new functionality enhances visibility into blocked source actions.
+When using automatic IP blocking (e.g., with the brute force trigger configured), now you can analyze both the initial triggering requests and the samples of subsequent blocked requests. For requests blocked due to manual denylisting of their sources, the new functionality enhances visibility into blocked source actions.
 
 We have introduced new [search tags and filters](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) within the **Events** section to effortlessly access the newly introduced data:
 
