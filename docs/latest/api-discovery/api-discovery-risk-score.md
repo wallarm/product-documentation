@@ -1,4 +1,4 @@
-# 
+# Calculating endpoints risk score 
 
 ## Endpoint risk score (From Overview)
 

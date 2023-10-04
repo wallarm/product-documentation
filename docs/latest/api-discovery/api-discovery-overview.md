@@ -14,18 +14,16 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 * Have a full visibility into the whole API estate including the list of [external and internal](api-discovery-use.md#distinguish-external-and-internal-apis) APIs.
 * See what data is [going into the APIs](api-discovery-use.md#viewing-endpoint-parameters).
-* Understand which endpoints are [most likely](api-discovery-risk-score.md) to be an attack target.
-* View most attacked APIs for the last 7 days.
-* Filter out only attacked APIs, sort them by number of hits.
-* Filter APIs that consume and carry sensitive data.
-* Find [shadow, orphan and zombie APIs](api-discovery-rogue.md).
-* [Download](api-discovery-use.md#download-openapi-specification-oas-of-your-api-inventory) discovered endpoints as specification in the OpenAPI v3 format and compare with your own API specifications to find endpoints presented in your specifications but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
-* [Track changes](api-discovery-track-changes.md) in API that took place within the selected period of time.
-* Quickly [create rules](api-discovery-use.md#api-inventory-and-rules) per any given API endpoint.
 * Get a full list of the malicious requests per any given API endpoint.
+* Filter out only attacked APIs, sort them by number of hits.
+* Filter APIs that consume and carry [sensitive data](#sensitive-data-detection).
+* View visualized summary on your API inventory structure and problems on a handy [dashboard](api-discovery-dashboard.md).
+* Understand which endpoints are [most likely](api-discovery-risk-score.md) to be an attack target.
+* Find [shadow, orphan and zombie APIs](api-discovery-rogue.md).
+* [Track changes](api-discovery-track-changes.md) in API that took place within the selected period of time.
 * Provide your developers with access to the built API inventory reviewing and downloading.
 
-## How does API Discovery work??
+## How does API Discovery work?
 
 API Discovery relies on request statistics and uses sophisticated algorithms to generate up-to-date API specs based on the actual API usage.
 
@@ -55,6 +53,16 @@ Also, the API Discovery performs filtering of requests relying on the other crit
 * Requests that do not conform to the design principles of the REST API are not processed. This is done by controlling the `Content-Type` header parameter of responses: if the `Content-Type` parameter does not contain `application` as a type and `json` as a subtype, such request is considered to be non-REST API and is filtered out. Example of REST API response:  `Content-Type: application/json;charset=utf-8`. If the parameter does not exist, API Discovery analyzes the request.
 * Standard fields such as `Accept` and alike are discarded.
 
+### Sensitive data detection
+
+API Discovery detects and highlights sensitive data (PII) consumed and carried by your APIs:
+
+* Technical data like IP and MAC addresses
+* Login credentials like secret keys and passwords
+* Financial data like bank card numbers
+* Medical data like medical license number
+* Personally identifiable information (PII) like full name, passport number or SSN
+
 ### API inventory elements
 
 The API inventory includes the following elements:
@@ -62,18 +70,10 @@ The API inventory includes the following elements:
 * API endpoints
 * Request methods (GET, POST, and others)
 * Required and optional GET, POST, and header parameters including:
-    * [Type/format](#parameter-types-and-formats) of data sent in each parameter
-    * Presence and type of sensitive data (PII) transmitted by the parameter:
-
-        * Technical data like IP and MAC addresses
-        * Login credentials like secret keys and passwords
-        * Financial data like bank card numbers
-        * Medical data like medical license number
-        * Personally identifiable information (PII) like full name, passport number or SSN
-    
+    * [Type/format](#parameter-types-and-formats) of data sent in each parameter    
     * Date and time when parameter information was last updated
 
-### Parameter types and formats
+### Defining the format and data type in parameters
 
 Wallarm analyzes the values that are passed in each of the endpoint parameters and tries to determine their format:
 
@@ -109,31 +109,7 @@ This data allows checking that values of the expected format are passed in each 
 * The `String` values ​​are passed to the field with `IP`
 * The `Double` values are passed to the field where there should be a value no more than `Int32`
 
-### Sample preview
-
-Before purchasing the [subscription plan](subscription-plans.md#subscription-plans) with API Discovery, you can preview sample data. To do so, in the **API Discovery** section, click **Explore in a playground**.
-
-![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
-
-## Using built API inventory
-
-The **API Discovery** section provides many options for the build API inventory usage.
-
-![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
-
-These options are:
-
-* Search and filters.
-* Ability to list internal and external APIs separately.
-* Viewing endpoint parameters.
-* Tracking changes in API.
-* Quick navigation to attacks related to some endpoint.
-* Custom rule creation for the specific endpoint.
-* Downloading OpenAPI specification (OAS) for individual API endpoints and an entire API as `swagger.json` file.
-
-Learn more about available options from the [User guide](api-discovery-use.md).
-
-## Variability in endpoints
+### Variability in endpoints
 
 URLs can include diverse elements, such as ID of user, like:
 
@@ -161,3 +137,9 @@ Other data (endpoint values, request methods, and parameter names) is not hashed
 
 !!! warning "Important"
     Wallarm does not send the values that are specified in the parameters to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
+
+## Check API Discovery in playground
+
+Before purchasing the [subscription plan](../about-wallarm/subscription-plans.md#subscription-plans) with API Discovery, you can preview sample data. To do so, in the **API Discovery** section, click **Explore in a playground**.
+
+![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)

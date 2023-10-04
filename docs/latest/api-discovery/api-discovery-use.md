@@ -1,5 +1,19 @@
 # Use built API inventory
 
+The **API Discovery** section provides many options for the build API inventory usage.
+
+![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+
+These options are:
+
+* Search and filters.
+* Ability to list internal and external APIs separately.
+* Viewing endpoint parameters.
+* Tracking changes in API.
+* Quick navigation to attacks related to some endpoint.
+* Custom rule creation for the specific endpoint.
+* Downloading OpenAPI specification (OAS) for individual API endpoints and an entire API as `swagger.json` file.
+
 ## Distinguish external and internal APIs
 
 The endpoints accessible from the external network are the main attack directions. Thus, it is important to see what is available from the outside and pay attention to these endpoints in the first place.
