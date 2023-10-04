@@ -33,6 +33,14 @@
   --header-bottom: 0px;
 }
 
+.md-main {
+  background-color: rgba(236, 239, 244, 0.5);
+}
+
+.md-content {
+  background-color: var(--md-default-bg-color);
+}
+
 .md-grid {
   max-width: 1280px;
 }
@@ -40,6 +48,10 @@
 .md-typeset {
     line-height: 24px;
     font-size: 16px;
+}
+
+.homepage {
+  background-color: white;
 }
 
 .homepage .md-grid {
@@ -235,9 +247,9 @@ a.md-tabs__link:hover {
 }
 
 .md-nav--primary > ul > .md-nav__item--expanded {
-  background-color: rgba(236, 239, 244, 0.2);
+  background-color: #ECEFF4;
   border-radius: 8px;
-  border: 1px solid #ECEFF4;
+  border: 1px solid rgba(149, 157, 172, 0.24);
 }
 
 .md-nav--primary > ul > .md-nav__item--expanded > label {
@@ -731,7 +743,7 @@ img {
 
 .versions-main {
   border-style: solid;
-  background-color: #FFFF;
+  background-color: #F5F7F9;
   border-color: rgba(149, 157, 172, 0.24);
   border-radius: 4px;
   border-width: 1px;
@@ -744,9 +756,12 @@ img {
 }
 
 .versions-list {
-  background-color: #FFFF;
+  background-color: #F5F7F9;
   box-shadow: 0px 1px 8px rgba(149, 157, 172, 0.4);
   border-radius: 4px;
+  border-style: solid;
+  border-color: rgba(149, 157, 172, 0.24);
+  border-width: 1px;
   position: absolute;
   padding: 8px 0px;
   min-width: 137.422px;
@@ -773,7 +788,7 @@ img {
 }
 
 .versions-list a:hover {
-  background-color: #F7F7F8;
+  background-color: #ECEFF4;
 }
 
 .versions-main-active {
@@ -1282,4 +1297,17 @@ html .md-footer .md-social a:hover {
   transition: transform 0.24s cubic-bezier(0.24,0.1,0.24,1);
   vertical-align: middle;
   margin-left: 8px;
+}
+
+
+/* Table of contents */
+
+@media screen and (min-width: 60em) {
+  .md-nav--secondary .md-nav__title {
+    background-color: unset;
+    box-shadow: unset;
+    text-transform: uppercase;
+    color: #959DAC;
+    border-bottom: solid;
+  }
 }
