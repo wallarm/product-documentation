@@ -4,11 +4,11 @@ This article describes how to enable, configure and debug the **API Discovery** 
 
 ## Enable
 
-The `wallarm-appstructure` package is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node except for the Debian 11.x and Ubuntu 22.04 packages. During node deployment, it installs the API Discovery module but keeps it disabled by default.
+API Discovery is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node installation, except for the Debian 11.x and Ubuntu 22.04 individual packages. During node deployment, it installs the API Discovery module but keeps it disabled by default.
 
 To enable and run API Discovery correctly:
 
-1. Make sure your Wallarm node is of the [supported version](../updating-migrating/versioning-policy.md#version-list).
+1. If you install node from the individual packages, make sure your Wallarm node is of the [supported version](../updating-migrating/versioning-policy.md#version-list).
 
     To ensure that you always have access to the full range of the API Discovery features, it is recommended to check for updates to the `wallarm-appstructure` package on a regular basis as follows:
 
@@ -23,7 +23,7 @@ To enable and run API Discovery correctly:
         sudo yum update
         sudo yum install wallarm-appstructure
         ```
-1. Make sure your [subscription plan](subscription-plans.md#subscription-plans) includes **API Discovery**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
+1. Make sure your [subscription plan](../about-wallarm/subscription-plans.md#subscription-plans) includes **API Discovery**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 1. If you want to enable API Discovery only for the selected applications, ensure that the applications are added as described in the [Setting up applications](../user-guides/settings/applications.md) article.
 
     If the applications are not configured, structures of all APIs are grouped in one tree.
@@ -43,41 +43,17 @@ By clicking the **Configure API Discovery** button in the **API Discovery** sect
 
 ### Choosing applications for API Discovery
 
-If the [API Discovery](../about-wallarm/api-discovery.md) subscription is purchased for your company account, you can enable/disable traffic analysis with API Discovery in Wallarm Console → **API Discovery** → **Configure API Discovery**.
+If the "WAAP + Advanced API Security" [subscription plan](../about-wallarm/subscription-plans.md#subscription-plans) is purchased for your company account, you can enable/disable traffic analysis with API Discovery in Wallarm Console → **API Discovery** → **Configure API Discovery**.
 
 You may enable/disable API Discovery for all applications or only the selected ones.
 
 ![API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
-When you add a new application in **Settings** → **[Applications](settings/applications.md)**, it is automatically added to the list of applications for API discovery in the **disabled** state.
+When you add a new application in **Settings** → **[Applications](../user-guides/settings/applications.md)**, it is automatically added to the list of applications for API discovery in the **disabled** state.
 
 ### Customizing risk score calculation
 
-You can configure the weight of each factor in [risk score](../about-wallarm/api-discovery.md#endpoint-risk-score) calculation and calculation method.
-
-Defaults: 
-
-* Calculation method: `Use the highest weight from all criteria as endpoint risk score`.
-* Default factor weights:
-
-    | Factor | Weight |
-    | --- | --- |
-    | Active vulnerabilities | 9 |
-    | Potentially vulnerable to BOLA | 6 |
-    | Parameters with sensitive data | 8 |
-    | Number of query and body parameters | 6 |
-    | Accepts XML / JSON objects | 6 |
-    | Allows uploading files to the server | 6 |
-
-To change how risk score is calculated: 
-
-1. Click the **Configure API Discovery** button in the **API Discovery** section.
-1. Select calculation method: highest or average weight.
-1. If necessary, disable factors you do not want to affect a risk score.
-1. Set weight for the remaining.
-
-    ![API Discovery - Risk score setup](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
-1. Save changes. Wallarm will re-calculate the risk score for your endpoints in accordance with the new settings in several minutes.
+You can configure the weight of each factor in [risk score](api-discovery-risk-score.md) calculation and calculation method.
 
 ## Debug
 

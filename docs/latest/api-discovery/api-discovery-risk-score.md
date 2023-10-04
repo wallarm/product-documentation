@@ -39,3 +39,31 @@ Risk score may be from `1` (lowest) to `10` (highest):
 To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details:
 
 ![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+
+### Customizing risk score calculation
+
+You can configure the weight of each factor in [risk score](../about-wallarm/api-discovery.md#endpoint-risk-score) calculation and calculation method.
+
+Defaults: 
+
+* Calculation method: `Use the highest weight from all criteria as endpoint risk score`.
+* Default factor weights:
+
+    | Factor | Weight |
+    | --- | --- |
+    | Active vulnerabilities | 9 |
+    | Potentially vulnerable to BOLA | 6 |
+    | Parameters with sensitive data | 8 |
+    | Number of query and body parameters | 6 |
+    | Accepts XML / JSON objects | 6 |
+    | Allows uploading files to the server | 6 |
+
+To change how risk score is calculated: 
+
+1. Click the **Configure API Discovery** button in the **API Discovery** section.
+1. Select calculation method: highest or average weight.
+1. If necessary, disable factors you do not want to affect a risk score.
+1. Set weight for the remaining.
+
+    ![API Discovery - Risk score setup](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
+1. Save changes. Wallarm will re-calculate the risk score for your endpoints in accordance with the new settings in several minutes.
