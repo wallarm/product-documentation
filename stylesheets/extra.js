@@ -95,8 +95,8 @@ function goToVersion (event, currentVersion, version) {
       window.top.location.href = window.location.pathname.replace('/'+currentVersion+'/','/');
     } else {
       if (currentVersion === rootVersion) {
-        if (tmp[1].startsWith('docs')) {
-          window.top.location.href = window.location.pathname.replace('/'+'docs'+'/','/'+'docs'+'/'+version+'/');
+        if (tmp[1].startsWith("ja")) {
+          window.top.location.href = window.location.pathname.replace('/'+'ja'+'/','/'+'ja'+'/'+version+'/');
         }
         else {
           window.top.location.href = window.location.pathname.replace('/','/'+version+'/');
