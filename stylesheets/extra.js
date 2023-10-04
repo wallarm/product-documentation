@@ -204,7 +204,7 @@ async function insertSupportWidget() {
   try {
     const hubspotIframe = await checkHubspotLoaded();
     // Up hubspot widget
-    hubspotIframe.style.cssText = 'bottom: 120px !important';
+    hubspotIframe.style.cssText = 'bottom: 84px !important';
 
     // Insert support widget
   } catch (error) {
