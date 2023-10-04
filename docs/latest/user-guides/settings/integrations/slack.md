@@ -47,9 +47,9 @@ You can set up Wallarm to send notifications to your Slack channel(s). If you wa
 
 ### Slack notification if 2 or more SQLi hits are detected in one minute
 
-If 2 or more SQLi [hits](../../glossary-en.md#hit) are sent to the protected resource, then a notification about this event will be sent to the Slack channel.
+If 2 or more SQLi [hits](../../../glossary-en.md#hit) are sent to the protected resource, then a notification about this event will be sent to the Slack channel.
 
-![Example of a trigger sending the notification to Slack](../../images/user-guides/triggers/trigger-example1.png)
+![Example of a trigger sending the notification to Slack](../../../images/user-guides/triggers/trigger-example1.png)
 
 **To test the trigger:**
 
@@ -87,16 +87,16 @@ Cloud: EU
 
 If a new user with the **Administrator** or **Analyst** role is added to the company account in Wallarm Console, notification about this event will be sent to the email address specified in the integration and to the Slack channel.
 
-![Example of a trigger sending the notification to Slack and by email](../../images/user-guides/triggers/trigger-example2.png)
+![Example of a trigger sending the notification to Slack and by email](../../../images/user-guides/triggers/trigger-example2.png)
 
 **To test the trigger:**
 
 1. Open the Wallarm Console → **Settings** → **Users** and add a new user. For example:
 
-    ![Added user](../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
+    ![Added user](../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
 2. Open your email Inbox and check that the following message received:
 
-    ![Email about new user added](../../images/user-guides/triggers/test-new-user-email-message.png)
+    ![Email about new user added](../../../images/user-guides/triggers/test-new-user-email-message.png)
 3. Open the Slack channel and check that the following notification from the user **wallarm** received:
 
     ```
