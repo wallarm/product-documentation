@@ -1,8 +1,6 @@
 # InsightConnect
 
-You can set up Wallarm to send notifications to InsightConnect when the following events are triggered:
-
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+You can set up Wallarm to send notifications to InsightConnect.
 
 ## Setting up integration
 
@@ -24,28 +22,26 @@ Secondly, generate and copy an API URL as follows:
 Thirdly, finish the setup in Wallarm UI:
 
 1. Enter an integration name.
-2. Choose event types to trigger notifications. If the events are not chosen, then notifications will not be sent.
-3. [Test the integration](#testing-integration) and make sure the settings are correct.
-4. Click **Add integration**.
+1. Choose event types to trigger notifications.
 
-![InsightConnect integration](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
+    ![InsightConnect integration](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
 
-## Testing integration
+    Details on available events:
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-Test InsightConnect message:
+1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
 
-![Test InsightConnect notification](../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
+    This will send a test notification with the prefix `[Test message]`:
 
-## Updating integration
+    ![Test InsightConnect notification](../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
 
---8<-- "../include/integrations/update-integration.md"
+1. Click **Add integration**.
 
-## Disabling integration
+## Setting up additional alerts
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## Deleting integration
+## System unavailability and incorrect integration parameters
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/integration-not-working.md"

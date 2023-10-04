@@ -1,8 +1,6 @@
 # Opsgenie
 
-You can set up Wallarm to send alerts to Opsgenie when the following events are triggered:
-
---8<-- "../include/integrations/events-for-integrations.md"
+You can set up Wallarm to send alerts to Opsgenie.
 
 ## Setting up integration
 
@@ -16,32 +14,30 @@ In [Opsgenie UI](https://app.opsgenie.com/teams/list):
 In Wallarm UI:
 
 1. Open the **Integrations** section.
-2. Click the **Opsgenie** block or click the **Add integration** button and choose **Opsgenie**.
-3. Enter an integration name.
-4. Paste the copied API key to the **API key** field.
-5. If using the [EU instance](https://docs.opsgenie.com/docs/european-service-region) of Opsgenie, select the appropriate Opsgenie API endpoint from the list. By default, the US instance endpoint is set.
-6. Choose event types to trigger notifications. If the events are not chosen, then notifications will not be sent.
-7. [Test the integration](#testing-integration) and make sure the settings are correct.
-8. Click **Add integration**.
+1. Click the **Opsgenie** block or click the **Add integration** button and choose **Opsgenie**.
+1. Enter an integration name.
+1. Paste the copied API key to the **API key** field.
+1. If using the [EU instance](https://docs.opsgenie.com/docs/european-service-region) of Opsgenie, select the appropriate Opsgenie API endpoint from the list. By default, the US instance endpoint is set.
+1. Choose event types to trigger notifications.
 
     ![Opsgenie integration](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
 
-## Testing integration
+    Details on available events:
+      
+    --8<-- "../include/integrations/events-for-integrations.md"
 
---8<-- "../include/integrations/test-integration-basic-data.md"
+1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
 
-Test Opsgenie notification:
+    This will send a test notification with the prefix `[Test message]`:
 
-![Test Opsgenie message](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
+    ![Test Opsgenie message](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
 
-## Updating integration
+1. Click **Add integration**.
 
---8<-- "../include/integrations/update-integration.md"
+## Setting up additional alerts
 
-## Disabling integration
+--8<-- "../include/integrations/integrations-trigger-setup.md"
 
---8<-- "../include/integrations/disable-integration.md"
+## System unavailability and incorrect integration parameters
 
-## Deleting integration
-
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/integration-not-working.md"

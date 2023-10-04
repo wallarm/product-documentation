@@ -2,9 +2,7 @@
 
 #   PagerDuty
 
-You can set up Wallarm to send incidents to PagerDuty when the following events are triggered:
-
---8<-- "../include/integrations/events-for-integrations.md"
+You can set up Wallarm to send incidents to PagerDuty.
 
 ##  Setting up integration
 
@@ -27,31 +25,29 @@ In PagerDuty UI, [set up an integration][link-pagerduty-docs] for any existing s
 In Wallarm UI:
 
 1. Open the **Integrations** section.
-2. Click the **PagerDuty** block or click the **Add integration** button and choose **PagerDuty**. 
-3. Enter an integration name.
-4. Paste the **Integration Key** value into the appropriate field.
-5. Choose event types to trigger notifications. If the events are not chosen, PagerDuty incidents will not be added.
-6. [Test the integration](#testing-integration) and make sure the settings are correct.
-7. Click **Add integration**.
+1. Click the **PagerDuty** block or click the **Add integration** button and choose **PagerDuty**. 
+1. Enter an integration name.
+1. Paste the **Integration Key** value into the appropriate field.
+1. Choose event types to trigger notifications.
 
     ![PagerDuty integration](../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
 
-## Testing integration
+    Details on available events:
+      
+    --8<-- "../include/integrations/events-for-integrations.md"
 
---8<-- "../include/integrations/test-integration-basic-data.md"
+1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
 
-Test PagerDuty notification:
+    This will send a test notification with the prefix `[Test message]`:
 
-![Test PagerDuty notification](../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
+    ![Test PagerDuty notification](../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
 
-## Updating integration
+1. Click **Add integration**.
 
---8<-- "../include/integrations/update-integration.md"
+## Setting up additional alerts
 
-## Disabling integration
+--8<-- "../include/integrations/integrations-trigger-setup.md"
 
---8<-- "../include/integrations/disable-integration.md"
+## System unavailability and incorrect integration parameters
 
-## Deleting integration
-
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/integration-not-working.md"
