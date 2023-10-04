@@ -275,6 +275,10 @@ a.md-tabs__link:hover {
   fill: none;
 }
 
+.custom-hubspot-styles {
+  background-color: red;
+}
+
 .support-widget {
   box-shadow: 0 2px 12px 0 #00000033;
   display: none;

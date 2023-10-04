@@ -187,6 +187,7 @@ function checkHubspotLoaded() {
       if (hubspotIframe) {
         clearInterval(interval);
         resolve(hubspotIframe);
+        document.getElementById('hubspot-messages-iframe-container').className += " custom-hubspot-styles";
       }
     }, 500);
 
