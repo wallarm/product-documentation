@@ -7,7 +7,6 @@ docs_dir: docs/4.4
 site_dir: site/4.4
 
 nav:
-  - Home: index.md
   - Quick Start:
     - Wallarm Overview: about-wallarm/overview.md
     - Quick Start Guide: quickstart.md
@@ -84,7 +83,7 @@ nav:
     - Overview: about-wallarm/api-discovery.md
     - Managing API Portfolio: user-guides/api-discovery.md
     - Managing API Specifications: user-guides/api-specifications.md
-  - API Threat Prevention:
+  - API Protection:
     # - Overview: ...
     # - OWASP Top 10: ...
     # - OWASP API Top 10: ...
