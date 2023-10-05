@@ -62,9 +62,25 @@ nav:
     - API悪用の防止:
       - 概要: about-wallarm/api-abuse-prevention.md
       - API アビューズ防止プロファイル管理: user-guides/api-abuse-prevention.md
-  - APIリークの修正:
-    - 概要: about-wallarm/api-leaks.md
-    - API リークの管理: user-guides/api-leaks.md
+  - 脆弱性検出:
+    - 概要: about-wallarm/detecting-vulnerabilities.md
+    - 検出された脆弱性の管理: user-guides/vulnerabilities.md
+    - スキャナ操作のサポート:
+      - スキャナ: user-guides/scanner.md
+      - スキャナーアドレス:
+        - EUクラウドのスキャナーアドレス: admin-en/scanner-address-eu-cloud.md
+        - USクラウドのスキャナーアドレス: admin-en/scanner-address-us-cloud.md
+      - リソーススキャナーの停止をWallarmサポートに連絡する: admin-en/scanner-complaint-en.md
+    - アクティブ脅威検証:
+      - 概要: vulnerability-detection/active-threat-verification/overview.md
+      - 設定:
+        - グローバルまたは特定のエンドポイントで有効化: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
+        - 攻撃再生前のリクエストの書き換え: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
+      - 使用事例:
+        - 非本番環境でのテスト実行: vulnerability-detection/active-threat-verification/running-test-on-staging.md
+    - APIリークの修正:
+      - 概要: about-wallarm/api-leaks.md
+      - API リークの管理: user-guides/api-leaks.md
   - セキュリティテスト:
     - 概要: fast/README.md
     - FASTオンボーディング: fast/onboarding/onboarding.md
@@ -202,22 +218,6 @@ nav:
     # - Known attacks / CVEs: ...
     # - Triggers: ...
     - 攻撃と脆弱性の種類: attacks-vulns-list.md
-  - 脆弱性検出:
-    - 概要: about-wallarm/detecting-vulnerabilities.md
-    - 検出された脆弱性の管理: user-guides/vulnerabilities.md
-    - スキャナ操作のサポート:
-      - スキャナ: user-guides/scanner.md
-      - スキャナーアドレス:
-        - EUクラウドのスキャナーアドレス: admin-en/scanner-address-eu-cloud.md
-        - USクラウドのスキャナーアドレス: admin-en/scanner-address-us-cloud.md
-      - リソーススキャナーの停止をWallarmサポートに連絡する: admin-en/scanner-complaint-en.md
-    - アクティブ脅威検証:
-      - 概要: vulnerability-detection/active-threat-verification/overview.md
-      - 設定:
-        - グローバルまたは特定のエンドポイントで有効化: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
-        - 攻撃再生前のリクエストの書き換え: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
-      - 使用事例:
-        - 非本番環境でのテスト実行: vulnerability-detection/active-threat-verification/running-test-on-staging.md
   - デプロイメント:
     - デプロイメントオプション: installation/supported-deployment-options.md
     - アウトオブバンド:

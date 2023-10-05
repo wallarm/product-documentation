@@ -51,10 +51,12 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-leaks-prevent">API漏洩予防</h3>
+    <h3 class="icon-homepage vuln-title">脆弱性検出</h3>
     <p><ul>
-    <li><a href="./about-wallarm/api-leaks/">概要</a></li>
-    <li><a href="./user-guides/api-leaks/">API漏洩の管理</a></li>
+    <li><a href="./about-wallarm/detecting-vulnerabilities/">概要</a></li>
+    <li><a href="./user-guides/vulnerabilities/">検出された脆弱性の管理</a></li>
+    <li><a href="./vulnerability-detection/active-threat-verification/overview/">アクティブな脅威予防</a></li>
+    <li><a href="./about-wallarm/api-leaks/">API漏洩予防</a></li>
     </ul></p>
 </div>
 
@@ -77,15 +79,6 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
     <li><a href="./admin-en/configuration-guides/protecting-against-bruteforce/">ブルートフォース保護</a></li>
     <li><a href="./user-guides/ip-lists/overview/">ジオロケーション制限</a></li>
     <li><a href="./user-guides/rules/intro/">ルール</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
-    <h3 class="icon-homepage vuln-title">脆弱性検出</h3>
-    <p><ul>
-    <li><a href="./about-wallarm/detecting-vulnerabilities/">概要</a></li>
-    <li><a href="./user-guides/vulnerabilities/">検出された脆弱性の管理</a></li>
-    <li><a href="./vulnerability-detection/active-threat-verification/overview/">アクティブな脅威予防</a></li>
     </ul></p>
 </div>
 

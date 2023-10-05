@@ -21,7 +21,7 @@ nav:
     - Subscription Plans:
       - Overview: about-wallarm/subscription-plans.md
       - Managing the Subscription: user-guides/settings/subscriptions.md
-    - Attack Prevention Best Practices: quickstart/attack-prevention-best-practices.md
+    - Best Practices: quickstart/attack-prevention-best-practices.md
   - Dashboards and Reports:
     - Threat Prevention: user-guides/dashboards/threat-prevention.md
     - API Discovery: user-guides/dashboards/api-discovery.md
@@ -42,15 +42,31 @@ nav:
     # - Overview: ...
     # - OWASP Top 10: ...
     # - OWASP API Top 10: ...
-    - BOLA (IDOR) Protection:
+    - BOLA Protection:
       - Configuration: admin-en/configuration-guides/protecting-against-bola.md
       - BOLA autodetection template: user-guides/bola-protection.md
     - API Abuse Prevention:
       - Overview: about-wallarm/api-abuse-prevention.md
       - API Abuse Prevention Profile Management: user-guides/api-abuse-prevention.md
-  - API Leaks Prevention:
-    - Overview: about-wallarm/api-leaks.md
-    - Managing API Leaks: user-guides/api-leaks.md
+  - API Posture Management:
+    - Overview: about-wallarm/detecting-vulnerabilities.md
+    - Managing Detected Vulnerabilities: user-guides/vulnerabilities.md
+    - Support of the Scanner Operation:
+      - Scanner Settings: user-guides/scanner.md
+      - Scanner Addresses:
+        - Scanner Addresses for EU Cloud: admin-en/scanner-address-eu-cloud.md
+        - Scanner Addresses for US Cloud: admin-en/scanner-address-us-cloud.md
+      - Contacting Wallarm Support to Stop the Resource Scanner: admin-en/scanner-complaint-en.md
+    - Active Threat Verification:
+      - Overview: vulnerability-detection/active-threat-verification/overview.md
+      - Configuration:
+        - Enabling Globally of for Specific Endpoints: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
+        - Rewriting Requests Before Attack Replaying: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
+      - Use Cases:
+        - Running Tests on Non‑Production: vulnerability-detection/active-threat-verification/running-test-on-staging.md
+    - API Leaks Remediation:
+      - Overview: about-wallarm/api-leaks.md
+      - Managing API Leaks: user-guides/api-leaks.md
   - API Security Testing:
     - Overview: fast/README.md
     - Onboarding: fast/onboarding/onboarding.md
@@ -188,22 +204,6 @@ nav:
     # - Known attacks / CVEs: ...
     # - Triggers: ...
     - Attack and Vulnerability Types: attacks-vulns-list.md
-  - Vulnerability Detection:
-    - Overview: about-wallarm/detecting-vulnerabilities.md
-    - Managing Detected Vulnerabilities: user-guides/vulnerabilities.md
-    - Support of the Scanner Operation:
-      - Scanner Settings: user-guides/scanner.md
-      - Scanner Addresses:
-        - Scanner Addresses for EU Cloud: admin-en/scanner-address-eu-cloud.md
-        - Scanner Addresses for US Cloud: admin-en/scanner-address-us-cloud.md
-      - Contacting Wallarm Support to Stop the Resource Scanner: admin-en/scanner-complaint-en.md
-    - Active Threat Verification:
-      - Overview: vulnerability-detection/active-threat-verification/overview.md
-      - Configuration:
-        - Enabling Globally of for Specific Endpoints: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
-        - Rewriting Requests Before Attack Replaying: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
-      - Use Cases:
-        - Running Tests on Non‑Production: vulnerability-detection/active-threat-verification/running-test-on-staging.md
   - Deployment:
     - Deployment Options: installation/supported-deployment-options.md
     - Out-of-Band:
