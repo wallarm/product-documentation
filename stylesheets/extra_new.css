@@ -1080,7 +1080,6 @@ a.navigation-card:hover {
 }
 
 .md-footer-meta__inner.md-grid {
-  flex-flow: row;
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
 }
@@ -1314,4 +1313,22 @@ html .md-footer .md-social a:hover {
     color: #959DAC;
     border-bottom: solid;
   }
+}
+
+/* Help block in footer */
+
+.help-support {
+  padding: .4rem 0;
+  margin: auto .6rem;
+  font-size: .64rem;
+  display: inline-block;
+}
+
+.help-support p {
+  display: inline-block;
+}
+
+.help-support svg {
+  width: 16px;
+  height: 16px;
 }

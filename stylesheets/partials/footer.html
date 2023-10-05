@@ -4,19 +4,20 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
 
-
-      <!-- Copyright -->
-      {% include "partials/copyright.html" %}
-
-
+    <!-- Help block -->
+    <div class="help-support">
+      <p>Need help or have questions?</p>
+      <a href= "https://support.wallarm.com/" target="_blank">Contact Support</a> <p>|</p>
+      <a href= "mailto:sales@wallarm.com" target="_blank">Contact Sales</a>
+    </div>
 
       <!-- Social links -->
       {% if config.extra.social %}
         {% include "partials/social.html" %}
       {% endif %}
 
+      <!-- Copyright -->
+      {% include "partials/copyright.html" %}
     </div>
   </div>
-  <!-- Script to get common Wallarm service status -->
-  <script type="text/javascript" src="https://cdn.statuspage.io/se-v2.js"></script>
 </footer>

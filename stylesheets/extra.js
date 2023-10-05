@@ -135,6 +135,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 });
 
+// Open the Help block
+
+function helpClicked (event) {
+  if (document.getElementById('helpList').style.display === 'none') {
+    document.getElementById('helpList').style.display = 'block'
+    document.getElementById('helpMain').classList.add("help-main-active")
+  } else {
+    document.getElementById('helpList').style.display = 'none'
+    document.getElementById('helpMain').classList.remove("help-main-active")
+  }
+}
 
 // Always stick left navigation to the bottom of the header
 document.addEventListener('DOMContentLoaded', () => {
