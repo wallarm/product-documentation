@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/dashboards/owasp-api-top-ten.md"
+--8<-- "4.6/user-guides/dashboards/owasp-api-top-ten.md"

@@ -1,1 +1,1 @@
---8<-- "latest/about-wallarm/api-leaks.md"
+--8<-- "4.6/about-wallarm/api-leaks.md"

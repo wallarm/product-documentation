@@ -1,1 +1,1 @@
---8<-- "latest/about-wallarm/subscription-plans.md"
+--8<-- "4.6/about-wallarm/subscription-plans.md"
