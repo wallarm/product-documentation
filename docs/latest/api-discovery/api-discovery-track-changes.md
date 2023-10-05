@@ -1,10 +1,8 @@
 # Track changes in API
 
-This article describes TBD.
+If you update the API and the traffic structure is adjusted, API Discovery updates the built API inventory.
 
 ## Overview
-
- If you update the API and the traffic structure is adjusted, API Discovery updates the built API inventory.
 
 The company may have several teams, disparate programming languages, and a variety of language frameworks. Thus changes can come to API at any time from different sources which make them difficult to control. For security officers it is important to detect changes as soon as possible and analyze them. If missed, such changes may hold some risks, for example:
 
@@ -22,7 +20,7 @@ With the **API Discovery** module of Wallarm you can:
 
 ## View changes in API
 
-You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api) in the API within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
+To check what changes occurred in the API within the specified period of time that, from the **Changes since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
 
 * **New** for the endpoints added to the list within the period.
 * **Changed** for the endpoints that have newly discovered parameters or parameters that obtained the `Unused` status within the period. In the details of the endpoint such parameters will have a corresponding mark.
