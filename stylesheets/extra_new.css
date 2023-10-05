@@ -1308,7 +1308,7 @@ html .md-footer .md-social a:hover {
 
 @media screen and (min-width: 60em) {
   .md-nav--secondary .md-nav__title {
-    background-color: unset;
+    background-color: #F5F7F9;
     box-shadow: unset;
     text-transform: uppercase;
     color: #959DAC;
