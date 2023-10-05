@@ -129,10 +129,10 @@ NGINXのメモリ消費は次のように推定できます：
     controller:
       resources:
         limits:
-          cpu: 1000m
-          memory: 1640Mi
+          cpu: 400m
+          memory: 3280Mi
         requests:
-          cpu: 1000m
+          cpu: 200m
           memory: 1640Mi
     ```
 

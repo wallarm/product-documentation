@@ -61,7 +61,7 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
 <ol start="2"><li>Set the <code>SLAB_ALLOC_ARENA</code> attribute to memory size. The value can be an integer or a float (a dot <code>.</code> is a decimal separator). For example:</li></ol>
 
 ```
-SLAB_ALLOC_ARENA=10.4
+SLAB_ALLOC_ARENA=1.0
 ```
 
 <ol start="3"><li>Restart Tarantool:</li></ol>
@@ -127,10 +127,10 @@ The NGINX memory consumption can be estimated as follows:
     controller:
       resources:
         limits:
-          cpu: 1000m
-          memory: 1640Mi
+          cpu: 400m
+          memory: 3280Mi
         requests:
-          cpu: 1000m
+          cpu: 200m
           memory: 1640Mi
     ```
 
