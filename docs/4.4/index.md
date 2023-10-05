@@ -44,11 +44,12 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage vuln-title">Vulnerability Detection</h3>
+    <h3 class="icon-homepage vuln-title">API Posture Management</h3>
     <p><ul>
     <li><a href="./about-wallarm/detecting-vulnerabilities/">Overview</a></li>
     <li><a href="./user-guides/vulnerabilities/">Managing Detected Vulnerabilities</a></li>
     <li><a href="./vulnerability-detection/active-threat-verification/overview/">Active Threat Verification</a></li>
+    <li><a href="./user-guides/api-leaks/">API Leak Remediation</a></li>
     </ul></p>
 </div>
 
@@ -65,14 +66,6 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <p><ul>
     <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA (IDOR) Protection</a></li>
     <li><a href="./about-wallarm/api-abuse-prevention/">API Abuse Prevention</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
-    <h3 class="icon-homepage api-leaks-prevent">API Leaks</h3>
-    <p><ul>
-    <li><a href="./about-wallarm/api-leaks/">Overview</a></li>
-    <li><a href="./user-guides/api-leaks/">Managing API Leaks</a></li>
     </ul></p>
 </div>
 
