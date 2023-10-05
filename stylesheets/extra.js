@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   let main = document.querySelector(".md-main");
-  let isHomepage = location.pathname === "/" || location.pathname === "/index.html";
+  let isHomepage = location.pathname === "/" || location.pathname === "/ja/" || location.pathname === "/4.4/" || location.pathname === "/index.html";
   if (main) {
     if (isHomepage) {
       main.classList.add('homepage');
