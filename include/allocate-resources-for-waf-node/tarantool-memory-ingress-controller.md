@@ -5,7 +5,7 @@ Tarantool memory is configured for the `ingress-controller-wallarm-tarantool` po
     controller:
       wallarm:
         tarantool:
-          arena: "0.2"
+          arena: "1.0"
     ```
 
 * To set up memory in CPU:
@@ -15,10 +15,10 @@ Tarantool memory is configured for the `ingress-controller-wallarm-tarantool` po
         tarantool:
           resources:
             limits:
-              cpu: 1000m
-              memory: 1640Mi
+              cpu: 400m
+              memory: 3280Mi
             requests:
-              cpu: 1000m
+              cpu: 200m
               memory: 1640Mi
     ```
 

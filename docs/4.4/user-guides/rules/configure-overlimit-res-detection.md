@@ -47,6 +47,8 @@ The **Fine-tune the overlimit_res attack detection** rule enables you to change 
 * Stop or continue the request processing when the time limit is exceeded
 
     If the node continues request processing after the time limit has been exceeded, it uploads data on detected attacks to the Cloud only after the request processing is fully completed.
+
+    If the rule is set to stop processing, the node stops the request processing once the time limit is exceeded. It then forwards the request unless it is set to record an attack and is in blocking mode. In that case, the node blocks the request and logs the `overlimit_res` attack.
 * Register the `overlimit_res` attack when the request processing time limit is exceeded or not
 
     If the node is configured to register the attack, it either [blocks the request or forwards it to the application address](#request-blocking) depending on the filtration mode.

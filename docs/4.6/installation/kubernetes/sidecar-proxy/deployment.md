@@ -20,7 +20,7 @@ The **key features** of the Wallarm Sidecar proxy solution:
 * Works stable under high loads that is usually common for the service mesh approach
 * Requires minimum service configuration to secure your apps; just add some annotations and labels for the application pod to protect it
 * Supports two modes of the Wallarm container deployment: for medium loads with the Wallarm services running in one container and for high loads with the Wallarm services split into several containers
-* Provides a dedicated entity for the postanalytics module that is the local data analytics backend for the Wallarm sidecar proxy solution consuming most of the CPU
+* Provides a dedicated entity for the postanalytics module that is the local data analytics backend for the Wallarm sidecar proxy solution consuming most of the memory
 
 !!! info "If you are using the earlier Wallarm Sidecar solution"
     If you are using the previous version of the Wallarm Sidecar solution, we recommend you migrate to the new one. With this release, we updated our Sidecar solution to leverage new Kubernetes capabilities and a wealth of customer feedback. The new solution does not require significant Kubernetes manifest changes, to protect an application, just deploy the chart and add labels and annotations to the pod.
@@ -33,8 +33,6 @@ Among all supported [Wallarm deployment options][deployment-platform-docs], this
 
 * You are looking for the security solution to be deployed to the infrastructure with the existing Ingress controller (e.g. AWS ALB Ingress Controller) preventing you from deployment of either [Wallarm NGINX-based][nginx-ing-controller-docs] or [Wallarm Kong-based Ingress controller][kong-ing-controller-docs]
 * Zero-trust environment that requires each microservice (including internal APIs) to be protected by the security solution
-* The security solution should allow pods to reach VPCs to access your APIs
-* The security solution should be compatible with third-party services routing your traffic like AWS API Gateway
 
 ## Traffic flow
 
