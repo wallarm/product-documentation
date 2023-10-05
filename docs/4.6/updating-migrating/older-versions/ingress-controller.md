@@ -429,7 +429,7 @@ There are the following parameters passed in the commands:
 
     ```
     NAME                                                              READY     STATUS    RESTARTS   AGE
-    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      4/4       Running   0          5m
+    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      3/3       Running   0          5m
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
 

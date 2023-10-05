@@ -134,7 +134,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
 
     ```
     NAME                                                              READY     STATUS    RESTARTS   AGE
-    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      4/4       Running   0          5m
+    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      3/3       Running   0          5m
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
 2. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to the Ingress Controller Service:
