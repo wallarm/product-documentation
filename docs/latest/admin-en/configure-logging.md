@@ -16,7 +16,7 @@ A filter node stores the following log files in the `/var/log/wallarm` directory
 *   `tarantool.log`: the log of the postanalytics module operations.
 *   `sync-ip-lists.log` (named as `sync-blacklist.log` in the previous node versions): the log of syncing the filtering node with IP addresses added to [IP lists](../user-guides/ip-lists/overview.md) as single objects or subnets.
 *   `sync-ip-lists-source.log` (named as `sync-mmdb.log` in the previous node versions): the log of syncing the filtering node with IP addresses registered in countries, regions and data centers from [IP lists](../user-guides/ip-lists/overview.md).
-*   `appstructure.log` (only in the Docker containers): the log of the [API Discovery](../about-wallarm/api-discovery.md) module activity.
+*   `appstructure.log` (only in the Docker containers): the log of the [API Discovery](../api-discovery/api-discovery-overview.md) module activity.
 *   `registernode_loop.log` (only in the Docker containers): the log of activity of the wrapper script running the `register-node` script while it is succeeded.
 *   `weak-jwt-detect.log`: the log of the [JWT vulnerability](../attacks-vulns-list.md#weak-jwt) detection.
 

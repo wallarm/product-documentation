@@ -32,9 +32,9 @@ Wallarm provides the following subscription plans:
 | [BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola.md) | Manual setup | Automated protection |
 | [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) | No | Yes |
 | **Observability options** | | |
-| [API Discovery](../about-wallarm/api-discovery.md) | No | Yes |
-| [Finding shadow, orphan and zombie APIs](../about-wallarm/api-discovery.md#shadow-orphan-and-zombie-apis) with API Discovery | No | Yes |
-| [Sensitive data detection](../about-wallarm/api-discovery.md) | No | Yes |
+| [API Discovery](../api-discovery/api-discovery-overview.md) | No | Yes |
+| [Finding shadow, orphan and zombie APIs](../api-discovery/api-discovery-overview.md#shadow-orphan-and-zombie-apis) with API Discovery | No | Yes |
+| [Sensitive data detection](../api-discovery/api-discovery-overview.md) | No | Yes |
 | **Security testing and vulnerability assessment** | | |
 | [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | No | Yes |
 | [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | No | Yes |

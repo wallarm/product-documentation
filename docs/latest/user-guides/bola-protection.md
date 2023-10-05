@@ -1,6 +1,6 @@
-[variability-in-endpoints-docs]:       ../about-wallarm/api-discovery.md#variability-in-endpoints
-[changes-in-api-docs]:       api-discovery.md#tracking-changes-in-api
-[bola-protection-for-endpoints-docs]:  ../about-wallarm/api-discovery.md#automatic-bola-protection
+[variability-in-endpoints-docs]:       ../api-discovery/api-discovery-overview.md#variability-in-endpoints
+[changes-in-api-docs]:       ../api-discovery/api-discovery-track-changes.md
+[bola-protection-for-endpoints-docs]:  ../api-discovery/api-discovery-bola.md
 
 # BOLA protection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
@@ -8,7 +8,7 @@ The **BOLA protection** section of the Wallarm Console UI enables you to configu
 
 This section is available under the following conditions:
 
-* The [API Discovery](../about-wallarm/api-discovery.md) module is enabled
+* The [API Discovery](../api-discovery/api-discovery-overview.md) module is enabled
 * The user [role](settings/users.md#user-roles) is either **Administrator** or **Global Administrator**
 
     The section is also availabe in read-only mode for **Analysts** and **Global Analysts**.

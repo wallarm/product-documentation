@@ -36,7 +36,7 @@ What stops working:
 * [Triggers](../user-guides/triggers/triggers.md) will stop working and thus:
     * [IP lists](../user-guides/ip-lists/overview.md) stop being updated.
     * [Trigger-based notifications](../user-guides/triggers/triggers.md) will not popup.
-* [Discovering API inventory](../about-wallarm/api-discovery.md) will not work.
+* [Discovering API inventory](../api-discovery/api-discovery-overview.md) will not work.
 * [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) will stop.
 * [Brute force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md) will not be detected.
 * Integrations will stop, including that:

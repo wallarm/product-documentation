@@ -4,7 +4,7 @@ The Wallarm platform is uniquely suited to protect your cloud applications and A
 
 * [Protection against hacker attacks](protecting-against-attacks.md) with ultra-low false positives
 * [Protection against bots performing API abuse](api-abuse-prevention.md)
-* [API Discovery](api-discovery.md)
+* [API Discovery](../api-discovery/api-discovery-overview.md)
 * [Automatic detection of vulnerabilities](detecting-vulnerabilities.md)
 
 Wallarm consists of the following core components:

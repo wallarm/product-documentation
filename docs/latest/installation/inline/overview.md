@@ -16,7 +16,7 @@ The Wallarm in-line solution is suitable for the following use cases:
 The in-line deployment approach to the Wallarm deployment offers several advantages over other deployment methods, such as [OOB](../oob/overview.md) deployments:
 
 * Wallarm instantly blocks malicious requests since traffic analysis proceeds in real time.
-* All Wallarm features, including [API Discovery](../../about-wallarm/api-discovery.md) and [vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) work with no limitations as Wallarm has access to both incoming requests and server responses.
+* All Wallarm features, including [API Discovery](../../api-discovery/api-discovery-overview.md) and [vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) work with no limitations as Wallarm has access to both incoming requests and server responses.
 
 To implement an inline scheme, you will need to change the traffic route in your infrastructure. Additionally, carefully consider [resource allocation](../../admin-en/configuration-guides/allocate-resources-for-node.md) for Wallarm nodes to ensure uninterrupted service.
 
