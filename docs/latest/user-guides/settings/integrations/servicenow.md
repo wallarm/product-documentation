@@ -31,13 +31,17 @@ In Wallarm UI:
 
 1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
 
-    This will send a test notification with the prefix `[Test message]`.
+    This will send a test notifications with the prefix `[Test message]`.
 
 1. Click **Add integration**.
 
 ## Setting up additional alerts
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
+
+## Disabling and deleting an integration
+
+--8<-- "../include/integrations/integrations-disable-delete.md"
 
 ## System unavailability and incorrect integration parameters
 

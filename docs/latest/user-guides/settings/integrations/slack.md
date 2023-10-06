@@ -19,7 +19,7 @@ You can set up Wallarm to send notifications to your Slack channel(s). If you wa
 
 1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
 
-    This will send a test notification with the prefix `[Test message]`:
+    This will send a test notifications with the prefix `[Test message]`:
 
     ```
     [Test message] [Test partner] Network perimeter has changed
@@ -39,13 +39,7 @@ You can set up Wallarm to send notifications to your Slack channel(s). If you wa
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## System unavailability and incorrect integration parameters
-
---8<-- "../include/integrations/integration-not-working.md"
-
-## Examples
-
-### Slack notification if 2 or more SQLi hits are detected in one minute
+### Example: Slack notification if 2 or more SQLi hits are detected in one minute
 
 If 2 or more SQLi [hits](../../../glossary-en.md#hit) are sent to the protected resource, then a notification about this event will be sent to the Slack channel.
 
@@ -83,7 +77,7 @@ Cloud: EU
 * `TestCompany` is the name of your company account in Wallarm Console
 * `EU` is the Wallarm Cloud where your company account is registered
 
-### Slack and email notification if new user is added to the account
+### Example: Slack and email notification if new user is added to the account
 
 If a new user with the **Administrator** or **Analyst** role is added to the company account in Wallarm Console, notification about this event will be sent to the email address specified in the integration and to the Slack channel.
 
@@ -118,3 +112,10 @@ If a new user with the **Administrator** or **Analyst** role is added to the com
     * `TestCompany` is the name of your company account in Wallarm Console
     * `EU` is the Wallarm Cloud where your company account is registered
 
+## Disabling and deleting an integration
+
+--8<-- "../include/integrations/integrations-disable-delete.md"
+
+## System unavailability and incorrect integration parameters
+
+--8<-- "../include/integrations/integration-not-working.md"

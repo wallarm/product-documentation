@@ -6,7 +6,7 @@ If the system responds to Wallarm request with any code other than `2xx`, Wallar
 * The second cycle intervals: 0, 1, 3, 5, 30 seconds
 * The third cycle intervals:  1, 1, 3, 5, 10, 30 minutes
 
-If the percentage of unsuccessful requests reaches 60% in 12 hours, the integration is automatically disabled. If you receive system notifications, you will get message about automatically disabled integration.
+If the percentage of unsuccessful requests reaches 60% in 12 hours, the integration is automatically disabled. If you receive system notifications, you will get a message about automatically disabled integration.
 
 <!-- ## Demo videos
 

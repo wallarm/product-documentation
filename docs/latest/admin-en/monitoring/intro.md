@@ -176,11 +176,9 @@ You can collect metrics from a filter node in several ways:
 
 ### Monitoring systems
 
-Using the `collectd` utilities and plugins, you can send metrics to third-party monitoring systems and databases, e.g.:
+Here are the monitoring system examples:
 
 * [InfluxDB](network-plugin-influxdb.md) with further visualization in Grafana or another system
 * [Graphite](write-plugin-graphite.md) with further visualization in Grafana or another system
 * [Nagios](collectd-nagios.md)
 * [Zabbix](collectd-zabbix.md)
-
-Configuration for sending metrics to third-party monitoring systems and databases is performed on the node side.

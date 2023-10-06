@@ -28,7 +28,7 @@ Notifications include brief details of triggered events.
 1. Re-open the created integration card.
 1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
 
-    This will send a test notification with the prefix `[Test message]`:
+    This will send a test notifications with the prefix `[Test message]`:
 
     ```
     [Test message] [Test partner] Network perimeter has changed
@@ -47,6 +47,10 @@ You can also start the chat with [@WallarmUSBot](https://t.me/WallarmUSBot) or [
 ## Setting up additional alerts
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
+
+## Disabling and deleting an integration
+
+--8<-- "../include/integrations/integrations-disable-delete.md"
 
 ## System unavailability and incorrect integration parameters
 

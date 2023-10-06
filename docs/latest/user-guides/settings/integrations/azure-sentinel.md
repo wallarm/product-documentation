@@ -74,6 +74,10 @@ Overall, Wallarm can log in Sentinel the records of the following types:
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
+## Disabling and deleting an integration
+
+--8<-- "../include/integrations/integrations-disable-delete.md"
+
 ## System unavailability and incorrect integration parameters
 
 --8<-- "../include/integrations/integration-not-working.md"

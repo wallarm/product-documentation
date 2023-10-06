@@ -160,10 +160,6 @@ You will find more details in the [official Fluentd documentation](https://docs.
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## System unavailability and incorrect integration parameters
-
---8<-- "../include/integrations/integration-not-working.md"
-
 ## Using Fluentd as an intermediate data collector
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
@@ -192,3 +188,11 @@ We described some examples of how to configure the integration with the popular 
 * [Wallarm → Fluentd → Datadog](webhook-examples/fluentd-logstash-datadog.md)
 
     Wallarm also supports the [native integration with Datadog via Datadog API](datadog.md). The native integration does not require the intermediate data collector to be used.
+
+## Disabling and deleting an integration
+
+--8<-- "../include/integrations/integrations-disable-delete.md"
+
+## System unavailability and incorrect integration parameters
+
+--8<-- "../include/integrations/integration-not-working.md"

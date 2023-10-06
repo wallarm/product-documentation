@@ -153,18 +153,6 @@ You will find more details in the [official Logstash documentation](https://www.
 
 1. Click **Add integration**.
 
-## Updating integration
-
---8<-- "../include/integrations/update-integration.md"
-
-## Disabling integration
-
---8<-- "../include/integrations/disable-integration.md"
-
-## Deleting integration
-
---8<-- "../include/integrations/remove-integration.md"
-
 ## Using Logstash as an intermediate data collector
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
@@ -193,3 +181,7 @@ We described some examples of how to configure the integration with the popular 
 * [Wallarm → Logstash → Datadog](webhook-examples/fluentd-logstash-datadog.md)
 
     Wallarm also supports the [native integration with Datadog via Datadog API](datadog.md). The native integration does not require the intermediate data collector to be used.
+
+## Disabling and deleting an integration
+
+--8<-- "../include/integrations/integrations-disable-delete.md"
