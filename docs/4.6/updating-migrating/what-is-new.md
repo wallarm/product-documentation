@@ -91,7 +91,7 @@ If upgrading from the version 3.6 or lower, learn all changes from the [separate
       * [Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Kong Ingress controller with integrated Wallarm modules](kong-ingress-controller.md)
-      * [Sidecar proxy](sidecar-proxy.md)
+      * [Sidecar](sidecar-proxy.md)
       * [Cloud node image](cloud-image.md)
       * [CDN node](cdn-node.md)
       * [Multi-tenant node](multi-tenant.md)

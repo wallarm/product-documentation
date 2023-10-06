@@ -8,9 +8,9 @@
 [subscriptions-docs]:                 ../../../about-wallarm/subscription-plans.md#subscription-plans
 [active-threat-verification-docs]:    ../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification
 
-# Wallarm-Specific Values of the Sidecar Proxy Helm Chart
+# Wallarm-Specific Values of the Sidecar Helm Chart
 
-This document describes Wallarm-specific Helm chart values you can change during [Wallarm Sidecar deployment](deployment.md) or [upgrade][sidecar-upgrade-docs]. The Wallarm-specific and other chart values are for global configuration of the Sidecar proxy Helm chart.
+This document describes Wallarm-specific Helm chart values you can change during [Wallarm Sidecar deployment](deployment.md) or [upgrade][sidecar-upgrade-docs]. The Wallarm-specific and other chart values are for global configuration of the Sidecar Helm chart.
 
 !!! info "Priorities of global and per-pod's settings"
     Per-pod's annotations [take precedence](customization.md#configuration-area) over Helm chart values.
