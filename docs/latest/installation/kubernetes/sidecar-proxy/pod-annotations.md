@@ -1,6 +1,6 @@
-# Pod's Annotations Supported by Wallarm Sidecar Proxy
+# Pod's Annotations Supported by Wallarm Sidecar
 
-The [Wallarm Sidecar proxy solution](deployment.md) can be configured via annotations on the per-pod's basis. The list of annotations supported in this solution are described in this document.
+The [Wallarm Sidecar solution](deployment.md) can be configured via annotations on the per-pod's basis. The list of annotations supported in this solution are described in this document.
 
 !!! info "Priorities of global and per-pod's settings"
     Per-pod's annotations [take precedence](customization.md#configuration-area) over Helm chart values.

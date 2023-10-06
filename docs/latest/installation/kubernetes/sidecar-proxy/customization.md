@@ -1,10 +1,10 @@
-# Customizing Wallarm Sidecar Proxy
+# Customizing Wallarm Sidecar
 
-This article instructs you on safe and effective customization of the [Wallarm Kubernetes Sidecar proxy solution](deployment.md) providing examples for some common customization use cases.
+This article instructs you on safe and effective customization of the [Wallarm Kubernetes Sidecar solution](deployment.md) providing examples for some common customization use cases.
 
 ## Configuration area
 
-The Wallarm Sidecar proxy solution is based on the standard Kubernetes components, thus the solution configuration is largely similar to the Kubernetes stack configuration. You can configure the Wallarm Sidecar proxy solution globally via `values.yaml` and on a per-application pod basis via annotations.
+The Wallarm Sidecar solution is based on the standard Kubernetes components, thus the solution configuration is largely similar to the Kubernetes stack configuration. You can configure the Wallarm Sidecar solution globally via `values.yaml` and on a per-application pod basis via annotations.
 
 ### Global settings
 
@@ -71,7 +71,7 @@ As a result, there are four running containers:
 
 ### Application container port auto-discovery
 
-The protected application port can be configured in many ways. To handle and forward incoming traffic properly, the Wallarm sidecar proxy must be aware of the TCP port the application container accepts incoming requests.
+The protected application port can be configured in many ways. To handle and forward incoming traffic properly, the Wallarm sidecar must be aware of the TCP port the application container accepts incoming requests.
 
 By default, the sidecar controller automatically discovers the port in the following priority order:
 
@@ -87,8 +87,8 @@ If application container port auto-discovery does not work as expected, explicit
 By default, the Wallarm sidecar controller routes traffic as follows:
 
 1. Captures incoming traffic coming to the attached Pod's IP and application container port.
-1. Redirects this traffic to the sidecar proxy container using the built-in iptables features.
-1. Sidecar proxy mitigates malicious requests and forwards legitimate traffic to the application container.
+1. Redirects this traffic to the sidecar container using the built-in iptables features.
+1. Sidecar mitigates malicious requests and forwards legitimate traffic to the application container.
 
 Incoming traffic capture is implemented using the init container running iptables which is the best practice for automatic port forwarding. This container is run as privileged, with the `NET_ADMIN` capability.
 
@@ -111,7 +111,7 @@ You can change the default behavior as follows:
     * On a per-pod basis by setting the Pod's annotation `sidecar.wallarm.io/sidecar-injection-iptables-enable` to `"false"`
 2. Update the `spec.ports.targetPort` setting in your Service manifest to point to the `proxy` port.
 
-    If iptables-based traffic capture is disabled, the Wallarm sidecar proxy container will publish a port with the name `proxy`. For incoming traffic to come from Kubernetes service to the `proxy` port, the `spec.ports.targetPort` setting in your Service manifest should point to this port:
+    If iptables-based traffic capture is disabled, the Wallarm sidecar container will publish a port with the name `proxy`. For incoming traffic to come from Kubernetes service to the `proxy` port, the `spec.ports.targetPort` setting in your Service manifest should point to this port:
 
 ```yaml hl_lines="16-17 34"
 apiVersion: apps/v1
@@ -257,16 +257,16 @@ spec:
 
 ### SSL/TLS termination
 
-By default, the Sidecar proxy solution only accepts HTTP traffic and forwards plain HTTP traffic to the application pods. It is assumed that SSL/TLS termination is performed by an infrastructure component located before the sidecar solution (such as Ingress/Application Gateway), allowing the sidecar solution to process plain HTTP.
+By default, the Sidecar solution only accepts HTTP traffic and forwards plain HTTP traffic to the application pods. It is assumed that SSL/TLS termination is performed by an infrastructure component located before the sidecar solution (such as Ingress/Application Gateway), allowing the sidecar solution to process plain HTTP.
 
-However, there may be cases where the existing infrastructure does not support SSL/TLS termination. In such cases, you can enable SSL/TLS termination at the Wallarm sidecar proxy level. This feature is supported starting from the Helm chart 4.6.1.
+However, there may be cases where the existing infrastructure does not support SSL/TLS termination. In such cases, you can enable SSL/TLS termination at the Wallarm sidecar level. This feature is supported starting from the Helm chart 4.6.1.
 
 !!! warning "The Sidecar solution supports either SSL or plain HTTP traffic processing"
     The Wallarm Sidecar solution supports either SSL/TLS or plain HTTP traffic processing. Enabling SSL/TLS termination means that the sidecar solution will not process plain HTTP traffic, while disabling SSL/TLS termination will result in only HTTPS traffic being processed.
 
 To enable SSL/TLS termination:
 
-1. Obtain the server certificate (public key) and private key associated with the server for which the Sidecar proxy will terminate SSL/TLS.
+1. Obtain the server certificate (public key) and private key associated with the server for which the Sidecar will terminate SSL/TLS.
 1. In the namespace of the application pod, create a [TLS secret](https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets) containing the server certificate and private key.
 1. In the `values.yaml` file, add the `config.profiles section` for secret mounting. The example below shows multiple certificate mounting configurations.
 
@@ -299,7 +299,7 @@ To enable SSL/TLS termination:
           nginx:
             # NGINX SSL module configuration specific to your TLS/SSL termination procedure.
             # Refer to https://nginx.org/en/docs/http/ngx_http_ssl_module.html.
-            # This configuration is required for the Sidecar proxy to perform traffic termination.
+            # This configuration is required for the Sidecar to perform traffic termination.
             servers:
               - listen: "ssl http2"
                 include:
@@ -316,7 +316,7 @@ To enable SSL/TLS termination:
                   - "ssl_certificate /etc/nginx/certs/example.io/tls.crt"
                   - "ssl_certificate_key /etc/nginx/certs/example.io/tls.key"
     ```
-1. Apply the changes from `values.yaml` to the Sidecar proxy solution using the following command:
+1. Apply the changes from `values.yaml` to the Sidecar solution using the following command:
 
     ```bash
     helm upgrade <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n <NAMESPACE> -f values.yaml
@@ -328,7 +328,7 @@ The sidecar solution will accept TLS/SSL traffic, terminate it, and forward plai
 
 ### Enabling additional NGINX modules
 
-Docker image of the Wallarm sidecar proxy is distributed with the following additional NGINX modules disabled by default:
+Docker image of the Wallarm sidecar is distributed with the following additional NGINX modules disabled by default:
 
 * [ngx_http_auth_digest_module.so](https://github.com/atomx/nginx-http-auth-digest)
 * [ngx_http_brotli_filter_module.so](https://github.com/google/ngx_brotli)
@@ -479,6 +479,6 @@ This configuration is performed via [annotations](pod-annotations.md) and the Wa
 
 ## Other configurations via annotations
 
-In addition to the listed configuration use cases, you can fine-tune the Wallarm sidecar proxy solution for application pods using many other annotations.
+In addition to the listed configuration use cases, you can fine-tune the Wallarm sidecar solution for application pods using many other annotations.
 
 [There is the list of supported per-pod's annotations](pod-annotations.md)

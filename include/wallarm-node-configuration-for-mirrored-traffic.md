@@ -21,4 +21,4 @@ Processing of mirrored traffic is supported only by the NGINX-based nodes. You c
 * If installing the node from DEB/RPM packages - in the `/etc/nginx/conf.d/default.conf` NGINX configuration file.
 * If deploying the node from the [AWS](../../installation-ami-en.md) or [GCP](../../installation-gcp-en.md) cloud image - in the `/etc/nginx/nginx.conf` NGINX configuration file.
 * If deploying the node from the [Docker image](../../installation-docker-en.md) - mount the file with the provided configuration to the container.
-* If running the node as [Sidecar proxy](../../../installation/kubernetes/sidecar-proxy/deployment.md) or [Ingress controller](../../installation-kubernetes-en.md) - mount the ConfigMap with the provided configuration to a pod.
+* If running the node as [Sidecar](../../../installation/kubernetes/sidecar-proxy/deployment.md) or [Ingress controller](../../installation-kubernetes-en.md) - mount the ConfigMap with the provided configuration to a pod.

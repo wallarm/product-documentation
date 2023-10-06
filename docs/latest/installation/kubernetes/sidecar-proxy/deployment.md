@@ -1,20 +1,20 @@
-# Deploying Wallarm Sidecar Proxy
+# Deploying Wallarm Sidecar
 
 To secure an application deployed as a Pod in a Kubernetes cluster, you can run the NGINX-based Wallarm node in front of the application as a sidecar controller. Wallarm sidecar controller will filter incoming traffic to the application Pod by allowing only legitimate requests and mitigating malicious ones.
 
-The **key features** of the Wallarm Sidecar proxy solution:
+The **key features** of the Wallarm Sidecar solution:
 
 * Simplifies protection of discrete microservices and their replicas and shards by providing the deployment format that is similar to applications
 * Fully compatible with any Ingress controller
 * Works stable under high loads that is usually common for the service mesh approach
 * Requires minimum service configuration to secure your apps; just add some annotations and labels for the application pod to protect it
 * Supports two modes of the Wallarm container deployment: for medium loads with the Wallarm services running in one container and for high loads with the Wallarm services split into several containers
-* Provides a dedicated entity for the postanalytics module that is the local data analytics backend for the Wallarm sidecar proxy solution consuming most of the memory
+* Provides a dedicated entity for the postanalytics module that is the local data analytics backend for the Wallarm sidecar solution consuming most of the memory
 
 !!! info "If you are using the earlier Wallarm Sidecar solution"
     If you are using the previous version of the Wallarm Sidecar solution, we recommend you migrate to the new one. With this release, we updated our Sidecar solution to leverage new Kubernetes capabilities and a wealth of customer feedback. The new solution does not require significant Kubernetes manifest changes, to protect an application, just deploy the chart and add labels and annotations to the pod.
 
-    For assistance in migrating to the Wallarm Sidecar proxy solution v2.0, please contact [Wallarm technical support](mailto:support@wallarm.com).
+    For assistance in migrating to the Wallarm Sidecar solution v2.0, please contact [Wallarm technical support](mailto:support@wallarm.com).
 
 ## Use cases
 
@@ -25,24 +25,24 @@ Among all supported [Wallarm deployment options][deployment-platform-docs], this
 
 ## Traffic flow
 
-Traffic flow with Wallarm Sidecar proxy:
+Traffic flow with Wallarm Sidecar:
 
-![Traffic flow with Wallarm Sidecar proxy][traffic-flow-with-wallarm-sidecar-img]
+![Traffic flow with Wallarm Sidecar][traffic-flow-with-wallarm-sidecar-img]
 
 ## Solution architecture
 
-The Wallarm Sidecar proxy solution is arranged by the following Deployment objects:
+The Wallarm Sidecar solution is arranged by the following Deployment objects:
 
-* **Sidecar controller** (`wallarm-sidecar-controller`) is the [mutating admission webhook](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks) that injects Wallarm sidecar proxy resources into the Pod configuring it based on the Helm chart values and pod annotations and connecting the node components to the Wallarm Cloud.
+* **Sidecar controller** (`wallarm-sidecar-controller`) is the [mutating admission webhook](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks) that injects Wallarm sidecar resources into the Pod configuring it based on the Helm chart values and pod annotations and connecting the node components to the Wallarm Cloud.
 
     Once a new pod with the `wallarm-sidecar: enabled` label in Kubernetes starts, the controller automatically injects the additional container filtering incoming traffic into the pod.
-* **Postanalytics module** (`wallarm-sidecar-postanalytics`) is the local data analytics backend for the Wallarm sidecar proxy solution. The module uses the in-memory storage Tarantool and the set of some helper containers (like the collectd, attack export services).
+* **Postanalytics module** (`wallarm-sidecar-postanalytics`) is the local data analytics backend for the Wallarm sidecar solution. The module uses the in-memory storage Tarantool and the set of some helper containers (like the collectd, attack export services).
 
 ![Wallarm deployment objects][sidecar-deployment-objects-img]
 
-The Wallarm Sidecar proxy has 2 standard stages in its lifecycle:
+The Wallarm Sidecar has 2 standard stages in its lifecycle:
 
-1. At the **initial** stage, the controller injects Wallarm sidecar proxy resources into the Pod configuring it based on the Helm chart values and pod annotations and connecting the node components to the Wallarm Cloud.
+1. At the **initial** stage, the controller injects Wallarm sidecar resources into the Pod configuring it based on the Helm chart values and pod annotations and connecting the node components to the Wallarm Cloud.
 1. At the **runtime** stage, the solution analyzes and proxies/forwards requests involving the postanalytics module.
 
 ## Requirements
@@ -51,12 +51,12 @@ The Wallarm Sidecar proxy has 2 standard stages in its lifecycle:
 
 ## Deployment
 
-To deploy the Wallarm Sidecar proxy solution:
+To deploy the Wallarm Sidecar solution:
 
 1. Create the Wallarm node.
 1. Deploy the Wallarm Helm chart.
-1. Attach the Wallarm Sidecar proxy to the application Pod.
-1. Test the Wallarm Sidecar proxy operation.
+1. Attach the Wallarm Sidecar to the application Pod.
+1. Test the Wallarm Sidecar operation.
 
 ### Step 1: Create the Wallarm node
 
@@ -74,7 +74,7 @@ To deploy the Wallarm Sidecar proxy solution:
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
-1. Create the `values.yaml` file with the [Wallarm Sidecar proxy configuration](customization.md).
+1. Create the `values.yaml` file with the [Wallarm Sidecar configuration](customization.md).
 
     Example of the file with the minimum configuration:
 
@@ -103,11 +103,11 @@ To deploy the Wallarm Sidecar proxy solution:
     helm install --version 4.6.5 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>` is the name for the Helm release of the Wallarm Sidecar proxy chart
-    * `wallarm-sidecar` is the new namespace to deploy the Helm release with the Wallarm Sidecar proxy chart, it is recommended to deploy it to a separate namespace
+    * `<RELEASE_NAME>` is the name for the Helm release of the Wallarm Sidecar chart
+    * `wallarm-sidecar` is the new namespace to deploy the Helm release with the Wallarm Sidecar chart, it is recommended to deploy it to a separate namespace
     * `<PATH_TO_VALUES>` is the path to the `values.yaml` file
 
-### Step 3: Attach the Wallarm Sidecar proxy to the application Pod
+### Step 3: Attach the Wallarm Sidecar to the application Pod
 
 For Wallarm to filter application traffic, add the `wallarm-sidecar: enabled` label to the corresponding application Pod:
 
@@ -143,9 +143,9 @@ spec:
 * If the `wallarm-sidecar` application Pod label is either set to `disabled` or not explicitly specified, the Wallarm Sidecar container is not injected into a pod and therefore Wallarm does not filter traffic.
 * If the `wallarm-sidecar` application Pod label is set to `enabled`, the Wallarm Sidecar container is injected into a pod and therefore Wallarm filters incoming traffic.
 
-### Step 4: Test the Wallarm Sidecar proxy operation
+### Step 4: Test the Wallarm Sidecar operation
 
-To test that the Wallarm Sidecar proxy operates correctly:
+To test that the Wallarm Sidecar operates correctly:
 
 1. Get the Wallarm pod details to check they have been successfully started:
 

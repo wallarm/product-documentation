@@ -89,7 +89,7 @@ Multi-tenant node:
     === "Docker Envoy‑based image"
         1. Open the `envoy.yaml` configuration file and split traffic between tenants using the [`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md#partner_client_id_param) parameter.
         1. Run the docker container [mounting prepared `envoy.yaml`](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml).
-    === "Kubernetes Sidecar proxy"
+    === "Kubernetes Sidecar"
         1. Open the NGINX configuration file and split traffic between tenants using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive.
         1. Mount an NGINX configuration file to the [Wallarm sidecar container](../../installation/kubernetes/sidecar-proxy/customization.md#using-custom-nginx-configuration).
 

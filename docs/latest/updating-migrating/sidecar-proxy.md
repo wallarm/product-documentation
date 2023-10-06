@@ -1,8 +1,8 @@
 [ip-lists-docs]: ../user-guides/ip-lists/overview.md
 
-# Upgrading Wallarm Sidecar proxy
+# Upgrading Wallarm Sidecar
 
-These instructions describe the steps to upgrade Wallarm Sidecar proxy 4.x to the new version with Wallarm node 4.8.
+These instructions describe the steps to upgrade Wallarm Sidecar 4.x to the new version with Wallarm node 4.8.
 
 ## Requirements
 
@@ -16,7 +16,7 @@ helm repo update wallarm
 
 ## Step 2: Check out all coming K8s manifest changes
 
-To avoid unexpectedly changed Sidecar proxy behavior, check out all coming K8s manifest changes using [Helm Diff Plugin](https://github.com/databus23/helm-diff). This plugin outputs the difference between the K8s manifests of the deployed Sidecar proxy version and of the new one.
+To avoid unexpectedly changed Sidecar behavior, check out all coming K8s manifest changes using [Helm Diff Plugin](https://github.com/databus23/helm-diff). This plugin outputs the difference between the K8s manifests of the deployed Sidecar version and of the new one.
 
 To install and run the plugin:
 
@@ -31,24 +31,24 @@ To install and run the plugin:
     helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.6.5 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: the name of the Helm release with the Sidecar proxy chart
-    * `<NAMESPACE>`: the namespace the Sidecar proxy is deployed to
-    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar proxy 4.8 settings - you can use the one created for running the previous Sidecar proxy version
+    * `<RELEASE_NAME>`: the name of the Helm release with the Sidecar chart
+    * `<NAMESPACE>`: the namespace the Sidecar is deployed to
+    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar 4.8 settings - you can use the one created for running the previous Sidecar version
 3. Make sure that no changes can affect the stability of the running services and carefully examine the errors from stdout.
 
     If stdout is empty, make sure that the `values.yaml` file is valid.
 
-## Step 3: Upgrade the Sidecar proxy solution
+## Step 3: Upgrade the Sidecar solution
 
-Upgrade the deployed components of the Sidecar proxy solution:
+Upgrade the deployed components of the Sidecar solution:
 
 ``` bash
 helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.6.5 -f <PATH_TO_VALUES>
 ```
 
-* `<RELEASE_NAME>`: the name of the Helm release with the deployed Sidecar proxy chart
-* `<NAMESPACE>`: the namespace the Sidecar proxy is deployed to
-* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar proxy 4.8 settings - you can use the one created for running the previous Sidecar proxy version
+* `<RELEASE_NAME>`: the name of the Helm release with the deployed Sidecar chart
+* `<NAMESPACE>`: the namespace the Sidecar is deployed to
+* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar 4.8 settings - you can use the one created for running the previous Sidecar version
 
 ## Step 4: Test the upgraded Sidecar solution
 
@@ -58,7 +58,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.6
     helm list -n <NAMESPACE>
     ```
 
-    Where `<NAMESPACE>` is the namespace the Sidecar proxy is deployed to.
+    Where `<NAMESPACE>` is the namespace the Sidecar is deployed to.
 
     The chart version should correspond to `wallarm-sidecar-1.1.5`.
 1. Get the Wallarm pod details to check they have been successfully started:
