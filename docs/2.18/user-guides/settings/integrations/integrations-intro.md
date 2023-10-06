@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/settings/integrations/integrations-intro.md"
+--8<-- "4.4/user-guides/settings/integrations/integrations-intro.md"
