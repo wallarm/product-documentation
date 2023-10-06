@@ -35,10 +35,6 @@ In Wallarm UI:
 
 1. Click **Add integration**.
 
-## Setting up additional alerts
-
---8<-- "../include/integrations/integrations-trigger-setup.md"
-
 ## Disabling and deleting an integration
 
 --8<-- "../include/integrations/integrations-disable-delete.md"

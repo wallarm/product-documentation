@@ -159,10 +159,6 @@ To set up an Amazon S3 integration:
 
 To control the amount of stored data, it is recommended to set up an automatic deletion of old objects from your Amazon S3 bucket as described [here](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html).
 
-## Setting up additional alerts
-
---8<-- "../include/integrations/integrations-trigger-setup.md"
-
 ## Disabling and deleting an integration
 
 --8<-- "../include/integrations/integrations-disable-delete.md"

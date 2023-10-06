@@ -37,7 +37,7 @@ You can set up Wallarm to send notifications to your Microsoft Teams channel(s).
 
 ## Setting up additional alerts
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include/integrations/integrations-trigger-setup-limited.md"
 
 ## Disabling and deleting an integration
 

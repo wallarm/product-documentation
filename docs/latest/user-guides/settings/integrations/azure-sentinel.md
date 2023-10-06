@@ -69,11 +69,6 @@ Overall, Wallarm can log in Sentinel the records of the following types:
 | Amount of attacks exceeds the threshold (if the corresponding [trigger](../../triggers/triggers.md) is active) | `attacks_exceeded_CL` |
 | New denylisted IP (if the corresponding [trigger](../../triggers/triggers.md) is active) | `ip_blocked_CL` |
 
-
-## Setting up additional alerts
-
---8<-- "../include/integrations/integrations-trigger-setup.md"
-
 ## Disabling and deleting an integration
 
 --8<-- "../include/integrations/integrations-disable-delete.md"

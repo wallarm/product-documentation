@@ -153,6 +153,10 @@ You will find more details in the [official Logstash documentation](https://www.
 
 1. Click **Add integration**.
 
+## Setting up additional alerts
+
+--8<-- "../include/integrations/integrations-trigger-setup.md"
+
 ## Using Logstash as an intermediate data collector
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
