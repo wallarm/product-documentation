@@ -187,7 +187,7 @@ You can control the **libdetection** mode using:
     * The `nginx.ingress.kubernetes.io/server-snippet` annotation to the Ingress resource.
     * The `controller.config.server-snippet` parameter of the Helm chart.
 
-* The `wallarm-enable-libdetection` [pod annotation](../installation/kubernetes/sidecar-proxy/pod-annotations.md#annotation-list) for the Wallarm Sidecar proxy solution.
+* The `wallarm-enable-libdetection` [pod annotation](../installation/kubernetes/sidecar-proxy/pod-annotations.md#annotation-list) for the Wallarm Sidecar solution.
 * The `libdetection` variable for [AWS Terraform](../installation/cloud-platforms/aws/terraform-module/overview.md#how-to-use-the-wallarm-aws-terraform-module) deployment.
 
 ### Custom rules for request analysis

@@ -34,7 +34,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 * Initial release 4.8, [see changelog](what-is-new.md)
 
-## Helm chart for Sidecar proxy
+## Helm chart for Sidecar
 
 [How to upgrade](sidecar-proxy.md)
 
