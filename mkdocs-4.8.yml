@@ -60,9 +60,9 @@ nav:
       - Amazon S3: user-guides/settings/integrations/amazon-s3.md
     - Universal integrations:
       - Webhook: user-guides/settings/integrations/webhook.md
-    - Additional alerts via triggers:
-      - Working with triggers: user-guides/triggers/triggers.md
-      - Trigger examples: user-guides/triggers/trigger-examples.md
+    #- Additional alerts via triggers:
+    #  - Working with triggers: user-guides/triggers/triggers.md
+    #  - Trigger examples: user-guides/triggers/trigger-examples.md
     - Integrations via data collectors:
       - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
       - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
