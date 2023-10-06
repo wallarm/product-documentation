@@ -89,7 +89,7 @@ Fixed the vulnerabilities:
 
 * Initial release 4.6, [see changelog](what-is-new.md)
 
-## Helm chart for Sidecar proxy
+## Helm chart for Sidecar
 
 [How to upgrade](sidecar-proxy.md)
 
@@ -108,7 +108,7 @@ Fixed the vulnerabilities:
 ### 4.6.2 (2023-06-19)
 
 * Added support for the latest [compromised secret key set](https://github.com/wallarm/jwt-secrets) with over 100,000 recently discovered compromised keys, further enhancing our [weak JWT detection](../attacks-vulns-list.md#weak-jwt) capabilities
-* Bump Alpine version in the Sidecar proxy solution to 3.18.0
+* Bump Alpine version in the Sidecar solution to 3.18.0
 
 ### 4.6.1 (2023-06-07)
 
