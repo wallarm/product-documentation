@@ -690,9 +690,6 @@ img {
     display: block;
     grid-area: toggle;
   }
-  .md-header__button:nth-child(2) {
-    grid-area: search;
-  }
   .languages {
     position: relative;
     grid-area: lang;
