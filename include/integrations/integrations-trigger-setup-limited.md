@@ -1,4 +1,4 @@
-Use Wallarm triggers to set up an additional alert to be sent when:
+Besides the notifications you have already set up through the integration card, Wallarm triggers allow you to select additional events for notifications:
 
 * Number of [attacks](../../../glossary-en.md#attack), [hits](../../../glossary-en.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number
 * [Changes in API](../../../about-wallarm/api-discovery.md#tracking-changes-in-api) took place

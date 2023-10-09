@@ -179,15 +179,6 @@ Notifications are sent in JSON format. The set of JSON objects depends on the ev
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-### Examples
-
---8<-- "../include/integrations/webhook-examples/overview.md"
-
-We described some examples of how to configure the integration with the popular log collectors forwarding logs to the SIEM systems:
-
-* With **Fluentd** configured to forward logs to [IBM QRadar](webhook-examples/fluentd-qradar.md), [Splunk Enterprise](webhook-examples/fluentd-splunk.md), [ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md)
-* With **Logstash** configured to forward logs to [IBM QRadar](webhook-examples/logstash-qradar.md), [Splunk Enterprise](webhook-examples/logstash-splunk.md), [ArcSight Logger](webhook-examples/logstash-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md)
-
 ## Disabling and deleting an integration
 
 --8<-- "../include/integrations/integrations-disable-delete.md"

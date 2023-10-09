@@ -38,7 +38,7 @@ In Wallarm UI:
 
 1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
 
-    This will send a test notifications with the prefix `[Test message]`:
+    This will send the test notifications with the prefix `[Test message]`:
 
     ![Test PagerDuty notification](../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
 

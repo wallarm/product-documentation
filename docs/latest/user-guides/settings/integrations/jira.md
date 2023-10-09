@@ -1,10 +1,6 @@
 # Atlassian Jira
 
-You can set up Wallarm to create issues in Jira when [vulnerabilities](../../../glossary-en.md#vulnerability) are detected, all or only for the selected risk level(s):
-
-* High risk
-* Medium risk
-* Low risk
+You can set up Wallarm to create issues in Jira when [vulnerabilities](../../../glossary-en.md#vulnerability) are detected, all or only for the selected risk level(s) - high, medium or low.
 
 ## Setting up integration
 
