@@ -7,7 +7,6 @@ docs_dir: docs/4.4
 site_dir: site/4.4
 
 nav:
-  - Home: index.md
   - Quick Start:
     - Wallarm Overview: about-wallarm/overview.md
     - Quick Start Guide: quickstart.md
@@ -64,7 +63,21 @@ nav:
     - Triggers:
       - Working with triggers: user-guides/triggers/triggers.md
       - Trigger examples: user-guides/triggers/trigger-examples.md
-  - Vulnerability Detection:
+  - API Discovery:
+    - Overview: about-wallarm/api-discovery.md
+    - Managing API Portfolio: user-guides/api-discovery.md
+    - Managing API Specifications: user-guides/api-specifications.md
+  - API Protection:
+    # - Overview: ...
+    # - OWASP Top 10: ...
+    # - OWASP API Top 10: ...
+    - BOLA Protection:
+      - Configuration: admin-en/configuration-guides/protecting-against-bola.md
+      - BOLA autodetection template: user-guides/bola-protection.md
+    - API Abuse Prevention:
+      - Overview: about-wallarm/api-abuse-prevention.md
+      - API Abuse Prevention Profile Management: user-guides/api-abuse-prevention.md
+  - API Posture Management:
     - Overview: about-wallarm/detecting-vulnerabilities.md
     - Managing Detected Vulnerabilities: user-guides/vulnerabilities.md
     - Support of the Scanner Operation:
@@ -80,23 +93,9 @@ nav:
         - Rewriting Requests Before Attack Replaying: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
       - Use Cases:
         - Running Tests on Non‑Production: vulnerability-detection/active-threat-verification/running-test-on-staging.md
-  - API Discovery:
-    - Overview: about-wallarm/api-discovery.md
-    - Managing API Portfolio: user-guides/api-discovery.md
-    - Managing API Specifications: user-guides/api-specifications.md
-  - API Threat Prevention:
-    # - Overview: ...
-    # - OWASP Top 10: ...
-    # - OWASP API Top 10: ...
-    - BOLA (IDOR) Protection:
-      - Configuration: admin-en/configuration-guides/protecting-against-bola.md
-      - BOLA autodetection template: user-guides/bola-protection.md
-    - API Abuse Prevention:
-      - Overview: about-wallarm/api-abuse-prevention.md
-      - API Abuse Prevention Profile Management: user-guides/api-abuse-prevention.md
-  - API Leaks Prevention:
-    - Overview: about-wallarm/api-leaks.md
-    - Managing API Leaks: user-guides/api-leaks.md
+    - API Leaks Prevention:
+      - Overview: about-wallarm/api-leaks.md
+      - Managing API Leaks: user-guides/api-leaks.md
   - API Security Testing:
     - Overview: fast/README.md
     - Onboarding: fast/onboarding/onboarding.md

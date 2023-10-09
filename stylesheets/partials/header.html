@@ -3,23 +3,21 @@
 
     <!-- Top-level navigation -->
     <nav class="md-header__inner md-grid" aria-label="{{ lang.t('header') }}">
-  
+
       <!-- Link to home -->
       <a
-        href="https://wallarm.com"
+        href="https://docs.wallarm.com"
         class="md-header__button md-logo"
         aria-label="{{ config.site_name }}"
       >
         {% include "partials/logo.html" %}
       </a>
 
-      <div class="back-wallarmcom">Open wallarm.com</div>
-  
       <!-- Button to open drawer -->
       <label class="md-header__button md-icon" for="__drawer">
         {% include ".icons/material/menu" ~ ".svg" %}
       </label>
-  
+
       <!-- Header title -->
       <div class="md-header__title" data-md-component="header-title">
         {% if config.site_name == page.title %}
@@ -47,20 +45,22 @@
       <label class="md-header__button md-icon" for="__search">
         {% include ".icons/material/magnify.svg" %}
       </label>
-      
+
       <!-- Search interface -->
       {% include "partials/search.html" %}
       {% endif %}
-    
-      <!-- Demo button -->
-      <a href="https://us1.my.wallarm.com/signup?utm_source=wallarm_docs&utm_medium=button&utm_campaign=wallarm_docs_experiment_2" class="demo-button desktop-button">
-        {{ config.theme.try_button_name }}
-      </a>
 
-      <a href="https://us1.my.wallarm.com/signup?utm_source=wallarm_docs&utm_medium=button&utm_campaign=wallarm_docs_experiment_2" class="demo-button mobile-button">
-        {{ config.theme.try_button_name }}
-      </a>
+      <div class="header-buttons">
+        <a href="https://my.us1.wallarm.com/playground" class="button playground-button desktop-button">
+          {{ config.theme.playground_button_name }}
+        </a>
 
+        <!-- Demo button -->
+        <a href="https://us1.my.wallarm.com/signup?utm_source=wallarm_docs&utm_medium=button&utm_campaign=wallarm_docs_experiment_2" class="button demo-button desktop-button">
+          {{ config.theme.try_button_name }}
+        </a>
+      </div>
+      <!-- Playground button -->
       <div id="languagesDiv" class="languages">
         <button type="button" id="languagesMain" class="languages-main" onClick="languageClicked(event)">
             {{ config.theme.language_name }}
@@ -68,11 +68,10 @@
             <path d="M8 10.5L12 14.5L16 10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
           </button>
-      <span class="divider"></span>
-      <div id="languagesList" style="display: none;" class="languages-list" tabindex="-1">
-        <a href="" onClick="goToLanguage(event, '{{ config.theme.language }}', 'en')">English</a>
-        <a href="" onClick="goToLanguage(event, '{{ config.theme.language }}', 'ja')">Japanese</a>
+          <div id="languagesList" style="display: none;" class="languages-list" tabindex="-1">
+            <a href="" onClick="goToLanguage(event, '{{ config.theme.language }}', 'en')">English</a>
+            <a href="" onClick="goToLanguage(event, '{{ config.theme.language }}', 'ja')">Japanese</a>
+          </div>
       </div>
-      </div>        
     </nav>
   </header>

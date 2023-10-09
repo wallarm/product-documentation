@@ -8,6 +8,23 @@ for(var i = 0; i < links.length; i++) {
   }
 }
 
+window.addEventListener('DOMContentLoaded', function() {
+  const container = document.querySelector('.md-container');
+  container.style.visibility = 'visible';
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  let main = document.querySelector(".md-main");
+  let isHomepage = location.pathname === "/" || location.pathname === "/ja/" || location.pathname === "/4.4/" || location.pathname === "/4.2/" || location.pathname === "/index.html";
+  if (main) {
+    if (isHomepage) {
+      main.classList.add('homepage');
+    } else {
+      main.classList.remove('homepage');
+    }
+  }
+});
+
 function injectScript(src, cb) {
   let script = document.createElement('script');
 
@@ -79,28 +96,123 @@ function goToVersion (event, currentVersion, version) {
   }
 }
 
+document.addEventListener('DOMContentLoaded', (event) => {
+  const addButtons = document.querySelectorAll('.md-header__button[for="__search"]');
+
+  addButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      document.body.classList.toggle('scrolllock');
+    });
+  });
+
+  const removeButton = document.querySelector('.md-search__icon[for="__search"]');
+  if (removeButton) {
+    removeButton.addEventListener('click', () => {
+      document.body.classList.remove('scrolllock');
+    });
+  }
+});
+
+// Stop scrolling if sidebar is open
+document.addEventListener('DOMContentLoaded', (event) => {
+  const sidebarToggle = document.querySelector('.md-header__button[for="__drawer"]');
+  const overlay = document.querySelector('.md-overlay');
+
+  if (sidebarToggle) {
+    sidebarToggle.addEventListener('click', () => {
+      if (document.documentElement.style.overflow === 'hidden') {
+        document.documentElement.style.overflow = 'visible';
+      } else {
+        document.documentElement.style.overflow = 'hidden';
+      }
+    });
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', () => {
+      document.documentElement.style.overflow = 'visible';
+    });
+  }
+});
+
+// Open the Help block
+
+function helpClicked (event) {
+  if (document.getElementById('helpList').style.display === 'none') {
+    document.getElementById('helpList').style.display = 'block'
+    document.getElementById('helpMain').classList.add("help-main-active")
+  } else {
+    document.getElementById('helpList').style.display = 'none'
+    document.getElementById('helpMain').classList.remove("help-main-active")
+  }
+}
+
+// Always stick left navigation to the bottom of the header
+document.addEventListener('DOMContentLoaded', () => {
+  const updateSidebarPosition = () => {
+    const sidebar = document.querySelector('.md-sidebar--primary');
+    const header = document.querySelector('.md-header');
+    const headerRect = header.getBoundingClientRect();
+    const headerBottom = headerRect.bottom;
+    document.documentElement.style.setProperty('--header-bottom', `${headerBottom}px`);
+  };
+
+  // call on load
+  updateSidebarPosition();
+
+  const toggleButton = document.querySelector('.md-header__button[for="__drawer"]');
+  toggleButton.addEventListener('click', updateSidebarPosition);
+
+  // call on window resize
+  window.addEventListener('resize', updateSidebarPosition);
+});
+
+
+
+
+
 // Collapse expanded menu items when a new item is expanded
 var navClassName = ".md-nav__toggle";
 var navigationElements = document.querySelectorAll(navClassName);
 
 function getAllNavigationElements(element, selector){
   if(element.parentElement && element.parentElement.parentElement && element.parentElement.parentElement.children){
-    var allChildren = element.parentElement.parentElement.children;
+    let allChildren = element.parentElement.parentElement.children;
     for (let index = 0; index < allChildren.length; index++) {
-      var child = allChildren[index];
-      var navigationInput = child.querySelector(selector);
-      if(navigationInput && navigationInput !== element){
+      let child = allChildren[index];
+      let navigationInput = child.querySelector(selector);
+      if (navigationInput && navigationInput !== element){
         navigationInput.checked = false;
+        navigationInput.parentElement.classList.remove('md-nav__item--expanded');
       }
     }
   }
 }
 
+function removeAllActiveClasses() {
+  const activeElements = document.querySelectorAll('.md-nav__item--active');
+  activeElements.forEach(el => el.classList.remove('md-nav__item--active'));
+}
+
 navigationElements.forEach(el => {
   el.addEventListener('change', function(){
+    removeAllActiveClasses();
     getAllNavigationElements(this, navClassName);
+    if (this.checked) {
+      this.parentElement.classList.add('md-nav__item--expanded');
+    } else {
+      this.parentElement.classList.remove('md-nav__item--expanded');
+    }
   }, false);
 })
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  let activeElement = document.querySelector('.md-nav__item--active');
+  if (activeElement) {
+    activeElement.classList.add('md-nav__item--expanded');
+  }
+});
+
 
 // Expand and collapse supported platform cards on click
 

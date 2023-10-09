@@ -1,4 +1,32 @@
 <!-- Wrap everything into a macro to reduce file roundtrips (see #2213) -->
+{% set icons = {
+  "quick start": ".icons/material/quick-start.svg",
+  "dashboards and reports": ".icons/material/dashboard.svg",
+  "integrations and alerts": ".icons/material/integrations-alerts.svg",
+  "api posture management": ".icons/material/vulnerability.svg",
+  "api discovery": ".icons/material/api.svg",
+  "api protection": ".icons/material/api-threat.svg",
+  "api security testing": ".icons/material/api-security.svg",
+  "waap/waf": ".icons/material/api-threat.svg",
+  "user management": ".icons/material/users.svg",
+  "deployment": ".icons/material/deployment.svg",
+  "operations": ".icons/material/deployment.svg",
+  "references": ".icons/material/references.svg",
+
+  "クイックスタート": ".icons/material/quick-start.svg",
+  "ダッシュボードとレポート": ".icons/material/dashboard.svg",
+  "統合とアラート": ".icons/material/integrations-alerts.svg",
+  "脆弱性検出": ".icons/material/vulnerability.svg",
+  "apiインベントリの発見": ".icons/material/api.svg",
+  "api 脅威予防": ".icons/material/api-threat.svg",
+  "セキュリティテスト": ".icons/material/api-security.svg",
+  "waap/waf": ".icons/material/api-threat.svg",
+  "ユーザー管理": ".icons/material/users.svg",
+  "デプロイメント": ".icons/material/deployment.svg",
+  "オペレーション": ".icons/material/deployment.svg",
+  "参考文献": ".icons/material/references.svg",
+  }
+%}
 {% macro render_nav_item(nav_item, path, level) %}
 
   <!-- Determine class according to state -->
@@ -19,7 +47,6 @@
 
     <!-- Render item with nested items -->
     <li class="{{ class }} md-nav__item--nested">
-
       <!-- Active checkbox expands items contained within nested section -->
       {% set checked = "checked" if nav_item.active %}
       {% if "navigation.expand" in features and not checked %}
@@ -43,6 +70,13 @@
 
       <!-- Expand active pages -->
       <label class="md-nav__link" for="{{ path }}">
+        <!-- Left icon -->
+        {% if icons[nav_item.title|lower] %}
+        <span class="md-nav__icon--left">
+           {% include icons[nav_item.title|lower] %}
+        </span>
+        {% endif %}
+
         {{ nav_item.title }}
       <span class="md-nav__icon md-icon">
         {% include ".icons/material/chevron-right.svg" %}
@@ -55,7 +89,7 @@
     >
       <label class="md-nav__title" for="{{ path }}">
         <span class="md-nav__icon md-icon"></span>
-        {{ nav_item.title }}
+        <span class="md-nav__title-text">{{ nav_item.title }}</span>
       </label>
 
       <ul class="md-nav__list" data-md-scrollfix>
@@ -92,12 +126,12 @@
     {% endif %}
 
     <!-- Render table of contents, if not empty -->
-    {% if toc | first is defined %}
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        {{ nav_item.title }}
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    {% endif %}
+<!--    {% if toc | first is defined %}-->
+<!--      <label class="md-nav__link md-nav__link&#45;&#45;active" for="__toc">-->
+<!--        {{ nav_item.title }}-->
+<!--        <span class="md-nav__icon md-icon"></span>-->
+<!--      </label>-->
+<!--    {% endif %}-->
     <a
       href="{{ nav_item.url | url }}"
       class="md-nav__link md-nav__link--active"
@@ -105,10 +139,10 @@
       {{ nav_item.title }}
     </a>
 
-    <!-- Show table of contents -->
-    {% if toc | first is defined %}
-      {% include "partials/toc.html" %}
-    {% endif %}
+<!--    &lt;!&ndash; Show table of contents &ndash;&gt;-->
+<!--    {% if toc | first is defined %}-->
+<!--      {% include "partials/toc.html" %}-->
+<!--    {% endif %}-->
   </li>
 
 <!-- Main navigation item -->
@@ -120,6 +154,6 @@
   </li>
   {% endif %}
   {% endmacro %}
-  
+
   <!-- Render current and nested navigation items -->
   {{ render_nav_item(nav_item, path, level) }}

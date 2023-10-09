@@ -7,7 +7,6 @@ docs_dir: docs/4.6
 site_dir: site
 
 nav:
-  - Home: index.md
   - Quick Start:
     - Wallarm Overview: about-wallarm/overview.md
     - Quick Start Guide: quickstart.md
@@ -22,50 +21,34 @@ nav:
     - Subscription Plans:
       - Overview: about-wallarm/subscription-plans.md
       - Managing the Subscription: user-guides/settings/subscriptions.md
-    - Attack Prevention Best Practices: quickstart/attack-prevention-best-practices.md
+    - Best Practices: quickstart/attack-prevention-best-practices.md
   - Dashboards and Reports:
-    - Threat Prevention Dashboard: user-guides/dashboards/threat-prevention.md
-    - API Discovery Dashboard: user-guides/dashboards/api-discovery.md
-    - OWASP API Top 10 Dashboards: user-guides/dashboards/owasp-api-top-ten.md
+    - Threat Prevention: user-guides/dashboards/threat-prevention.md
+    - API Discovery: user-guides/dashboards/api-discovery.md
+    - OWASP API Top 10: user-guides/dashboards/owasp-api-top-ten.md
     - Events:
       - Event Search and Filters: user-guides/search-and-filters/use-search.md
       - Checking Events: user-guides/events/check-attack.md
       - Analyzing Attacks: user-guides/events/analyze-attack.md
-      - Working with False Attacks: user-guides/events/false-attack.md
+      - False Attacks: user-guides/events/false-attack.md
       - Verifying Attacks: user-guides/events/verify-attack.md
-    - Email PDF and CSV Reports: user-guides/search-and-filters/custom-report.md
+    - Reports: user-guides/search-and-filters/custom-report.md
     - Activity Log: user-guides/settings/audit-log.md
-  - Integrations and Alerts:
-    - Integrations Overview: user-guides/settings/integrations/integrations-intro.md 
-    - Email Report: user-guides/settings/integrations/email.md
-    - Slack: user-guides/settings/integrations/slack.md
-    - Telegram: user-guides/settings/integrations/telegram.md
-    - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
-    - InsightConnect: user-guides/settings/integrations/insightconnect.md
-    - Opsgenie: user-guides/settings/integrations/opsgenie.md
-    - PagerDuty: user-guides/settings/integrations/pagerduty.md
-    - Jira: user-guides/settings/integrations/jira.md
-    - ServiceNow: user-guides/settings/integrations/servicenow.md
-    - Sumo Logic: user-guides/settings/integrations/sumologic.md
-    - Splunk: user-guides/settings/integrations/splunk.md
-    - Datadog: user-guides/settings/integrations/datadog.md
-    - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
-    - Fluentd: user-guides/settings/integrations/fluentd.md
-    - Logstash: user-guides/settings/integrations/logstash.md
-    - Webhook: user-guides/settings/integrations/webhook.md
-    - Amazon S3: user-guides/settings/integrations/amazon-s3.md
-    - Examples of integrations via intermediate data collectors:
-      - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
-      - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
-      - Splunk Enterprise via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
-      - Splunk Enterprise via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
-      - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
-      - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
-      - Datadog via Fluentd/Logstash: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
-    - Triggers:
-      - Working with triggers: user-guides/triggers/triggers.md
-      - Trigger examples: user-guides/triggers/trigger-examples.md
-  - Vulnerability Detection:
+  - API Discovery:
+    - Overview: about-wallarm/api-discovery.md
+    - Managing API Portfolio: user-guides/api-discovery.md
+    - Managing API Specifications: user-guides/api-specifications.md
+  - API Protection:
+    # - Overview: ...
+    # - OWASP Top 10: ...
+    # - OWASP API Top 10: ...
+    - BOLA Protection:
+      - Configuration: admin-en/configuration-guides/protecting-against-bola.md
+      - BOLA autodetection template: user-guides/bola-protection.md
+    - API Abuse Prevention:
+      - Overview: about-wallarm/api-abuse-prevention.md
+      - API Abuse Prevention Profile Management: user-guides/api-abuse-prevention.md
+  - API Posture Management:
     - Overview: about-wallarm/detecting-vulnerabilities.md
     - Managing Detected Vulnerabilities: user-guides/vulnerabilities.md
     - Support of the Scanner Operation:
@@ -81,23 +64,9 @@ nav:
         - Rewriting Requests Before Attack Replaying: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
       - Use Cases:
         - Running Tests on Non‑Production: vulnerability-detection/active-threat-verification/running-test-on-staging.md
-  - API Discovery:
-    - Overview: about-wallarm/api-discovery.md
-    - Managing API Portfolio: user-guides/api-discovery.md
-    - Managing API Specifications: user-guides/api-specifications.md
-  - API Threat Prevention:
-    # - Overview: ...
-    # - OWASP Top 10: ...
-    # - OWASP API Top 10: ...
-    - BOLA (IDOR) Protection:
-      - Configuration: admin-en/configuration-guides/protecting-against-bola.md
-      - BOLA autodetection template: user-guides/bola-protection.md
-    - API Abuse Prevention:
-      - Overview: about-wallarm/api-abuse-prevention.md
-      - API Abuse Prevention Profile Management: user-guides/api-abuse-prevention.md
-  - API Leaks Prevention:
-    - Overview: about-wallarm/api-leaks.md
-    - Managing API Leaks: user-guides/api-leaks.md
+    - API Leaks Remediation:
+      - Overview: about-wallarm/api-leaks.md
+      - Managing API Leaks: user-guides/api-leaks.md
   - API Security Testing:
     - Overview: fast/README.md
     - Onboarding: fast/onboarding/onboarding.md
@@ -188,7 +157,7 @@ nav:
           - Array Filter: fast/dsl/points/parsers/array.md
           - Hash Filter: fast/dsl/points/parsers/hash.md
         - Points Building Principles: fast/dsl/points/principles.md
-        - How to Build a Point: fast/dsl/points/construction.md          
+        - How to Build a Point: fast/dsl/points/construction.md
     - Text Formatting Conventions: fast/AGREEMENTS.md
     - Glossary: fast/TERMS-GLOSSARY.md
     - Wallarm Clouds List: fast/CLOUD-LIST.md
@@ -235,28 +204,6 @@ nav:
     # - Known attacks / CVEs: ...
     # - Triggers: ...
     - Attack and Vulnerability Types: attacks-vulns-list.md
-  - User Management:
-    - Overview: user-guides/settings/users.md
-    - User Profile: user-guides/settings/account.md
-    - Logout Settings: user-guides/settings/general.md  
-    - API Tokens: user-guides/settings/api-tokens.md
-    - Using Single Sign‑On (SSO):
-      - Overview of integration with the SAML SSO solution: admin-en/configuration-guides/sso/intro.md
-      - Connecting SSO with G Suite:
-        - Overview of Steps for Connecting SSO with G Suite: admin-en/configuration-guides/sso/gsuite/overview.md
-        - "Step 1: Generating Parameters on the Wallarm Side (G Suite)": admin-en/configuration-guides/sso/gsuite/setup-sp.md
-        - "Step 2: Creating and Configuring an Application in G Suite": admin-en/configuration-guides/sso/gsuite/setup-idp.md
-        - "Step 3: Transferring G Suite Metadata to the Wallarm Setup Wizard": admin-en/configuration-guides/sso/gsuite/metadata-transfer.md
-        - "Step 4: Allowing Access to the Wallarm Application on the G Suite Side": admin-en/configuration-guides/sso/gsuite/allow-access-to-wl.md
-      - Connecting SSO with Okta:
-        - Overview of Steps for Connecting SSO with Okta: admin-en/configuration-guides/sso/okta/overview.md
-        - "Step 1: Generating Parameters on the Wallarm Side (Okta)": admin-en/configuration-guides/sso/okta/setup-sp.md
-        - "Step 2: Creating and Configuring an Application in Okta": admin-en/configuration-guides/sso/okta/setup-idp.md
-        - "Step 3: Transferring Okta Metadata to the Wallarm Setup Wizard": admin-en/configuration-guides/sso/okta/metadata-transfer.md
-        - "Step 4: Allowing Access to the Wallarm Application on the Okta Side": admin-en/configuration-guides/sso/okta/allow-access-to-wl.md
-      - Configuring SSO Authentication for Users: admin-en/configuration-guides/sso/employ-user-auth.md
-      - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md
-      - Using single sign‑on to Wallarm account: user-guides/use-sso.md
   - Deployment:
     - Deployment Options: installation/supported-deployment-options.md
     - Out-of-Band:
@@ -306,7 +253,7 @@ nav:
         - Customization: installation/kubernetes/sidecar-proxy/customization.md
         - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
         - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
-    - In-Line:  
+    - In-Line:
       - Overview: installation/inline/overview.md
       - Compute Instances:
         - Amazon Web Services:
@@ -387,6 +334,58 @@ nav:
         - Creating Tenant Accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
         - Deploying and Configuring Multi-tenant Node: installation/multi-tenant/deploy-multi-tenant-node.md
       - Wallarm Deployment in Private Clouds: installation/cloud-platforms/private-cloud.md
+  - Integrations and Alerts:
+    - Integrations Overview: user-guides/settings/integrations/integrations-intro.md
+    - Email Report: user-guides/settings/integrations/email.md
+    - Slack: user-guides/settings/integrations/slack.md
+    - Telegram: user-guides/settings/integrations/telegram.md
+    - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
+    - InsightConnect: user-guides/settings/integrations/insightconnect.md
+    - Opsgenie: user-guides/settings/integrations/opsgenie.md
+    - PagerDuty: user-guides/settings/integrations/pagerduty.md
+    - Jira: user-guides/settings/integrations/jira.md
+    - ServiceNow: user-guides/settings/integrations/servicenow.md
+    - Sumo Logic: user-guides/settings/integrations/sumologic.md
+    - Splunk: user-guides/settings/integrations/splunk.md
+    - Datadog: user-guides/settings/integrations/datadog.md
+    - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
+    - Fluentd: user-guides/settings/integrations/fluentd.md
+    - Logstash: user-guides/settings/integrations/logstash.md
+    - Webhook: user-guides/settings/integrations/webhook.md
+    - Amazon S3: user-guides/settings/integrations/amazon-s3.md
+    - Examples of integrations via intermediate data collectors:
+      - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
+      - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
+      - Splunk Enterprise via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
+      - Splunk Enterprise via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
+      - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
+      - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
+      - Datadog via Fluentd/Logstash: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
+    - Triggers:
+      - Working with triggers: user-guides/triggers/triggers.md
+      - Trigger examples: user-guides/triggers/trigger-examples.md
+  - User Management:
+    - Overview: user-guides/settings/users.md
+    - User Profile: user-guides/settings/account.md
+    - Logout Settings: user-guides/settings/general.md
+    - API Tokens: user-guides/settings/api-tokens.md
+    - Using Single Sign‑On (SSO):
+      - Overview of integration with the SAML SSO solution: admin-en/configuration-guides/sso/intro.md
+      - Connecting SSO with G Suite:
+        - Overview of Steps for Connecting SSO with G Suite: admin-en/configuration-guides/sso/gsuite/overview.md
+        - "Step 1: Generating Parameters on the Wallarm Side (G Suite)": admin-en/configuration-guides/sso/gsuite/setup-sp.md
+        - "Step 2: Creating and Configuring an Application in G Suite": admin-en/configuration-guides/sso/gsuite/setup-idp.md
+        - "Step 3: Transferring G Suite Metadata to the Wallarm Setup Wizard": admin-en/configuration-guides/sso/gsuite/metadata-transfer.md
+        - "Step 4: Allowing Access to the Wallarm Application on the G Suite Side": admin-en/configuration-guides/sso/gsuite/allow-access-to-wl.md
+      - Connecting SSO with Okta:
+        - Overview of Steps for Connecting SSO with Okta: admin-en/configuration-guides/sso/okta/overview.md
+        - "Step 1: Generating Parameters on the Wallarm Side (Okta)": admin-en/configuration-guides/sso/okta/setup-sp.md
+        - "Step 2: Creating and Configuring an Application in Okta": admin-en/configuration-guides/sso/okta/setup-idp.md
+        - "Step 3: Transferring Okta Metadata to the Wallarm Setup Wizard": admin-en/configuration-guides/sso/okta/metadata-transfer.md
+        - "Step 4: Allowing Access to the Wallarm Application on the Okta Side": admin-en/configuration-guides/sso/okta/allow-access-to-wl.md
+      - Configuring SSO Authentication for Users: admin-en/configuration-guides/sso/employ-user-auth.md
+      - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md
+      - Using single sign‑on to Wallarm account: user-guides/use-sso.md
   - Operations:
     # - Autoscaling: ...
     - Overview:
