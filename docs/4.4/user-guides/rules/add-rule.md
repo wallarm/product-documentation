@@ -120,6 +120,8 @@ The following points are currently supported:
     !!! info "Managing `HOST` header rules for FQDNs and IP addresses"
         If the `HOST` header is set to an FQDN, requests targeting its associated IP address will not be affected by the rule. To apply the rule to such requests, set the `HOST` header value to the specific IP in the rule conditions, or create a separate rule for both the FQDN and its IP.
 
+        When placed after a load balancer that modifies the `HOST` header, the Wallarm node applies rules based on the updated value, not the original. For example, if the balancer switches the `HOST` from an IP to a domain, the node follows rules for that domain.
+
 * **method**: request methods. If the value is not explicitly specified, the rule will be applied to requests with any method.
 
 #### Condition type: EQUAL (`=`)
