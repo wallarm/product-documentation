@@ -101,8 +101,11 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 <div class="navigation-card">
     <h3 class="icon-homepage integration-title">Integrations and Alerts</h3>
     <p><ul>
-    <li><a href="./user-guides/settings/integrations/integrations-intro/">Integrations</a></li>
-    <li><a href="./user-guides/triggers/triggers/">Configuring Alerts Using Triggers</a></li>
+    <li><a href="./user-guides/settings/integrations/integrations-intro/#email-and-messengers">Email and Messengers</a></li>
+    <li><a href="./user-guides/settings/integrations/integrations-intro/#incident-and-task-management-systems">Incident and Task Management Systems</a></li>
+    <li><a href="./user-guides/settings/integrations/integrations-intro/#siem-and-soar-systems">SIEM and SOAR Systems</a></li>
+    <li><a href="./user-guides/settings/integrations/integrations-intro/#log-management-systems">Log Management Systems</a></li>
+    <li><a href="./user-guides/settings/integrations/integrations-intro/#data-collectors">Data Collectors</a></li>
     </ul></p>
 </div>
 
