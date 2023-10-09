@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/settings/integrations/azure-sentinel.md"
+--8<-- "4.4/user-guides/settings/integrations/azure-sentinel.md"

@@ -1,8 +1,6 @@
 # Sumo Logic
 
-You can set up Wallarm to send messages to Sumo Logic when the following events are triggered:
-
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+You can set up Wallarm to send messages to Sumo Logic.
 
 ## Setting up integration
 
@@ -15,72 +13,74 @@ In Sumo Logic UI:
 In Wallarm UI:
 
 1. Open the **Integrations** section.
-2. Click the **Sumo Logic** block or click the **Add integration** button and choose **Sumo Logic**.
-3. Enter an integration name.
-4. Paste the copied value of HTTP Source Address (URL) to the **HTTP Source Address (URL)** field.
-5. Choose event types to trigger sending messages to Sumo Logic. If the events are not chosen, then messages will not be sent.
-6. [Test the integration](#testing-integration) and make sure the settings are correct.
-7. Click **Add integration**.
+1. Click the **Sumo Logic** block or click the **Add integration** button and choose **Sumo Logic**.
+1. Enter an integration name.
+1. Paste the copied value of HTTP Source Address (URL) to the **HTTP Source Address (URL)** field.
+1. Choose event types to trigger notifications.
 
-![Sumo Logic integration](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
+    ![Sumo Logic integration](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 
-## Testing integration
+    Details on available events:
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-Test Sumo Logic notification:
+1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
 
-```json
-{
-    summary:"[Test message] [Test partner(US)] New vulnerability detected",
-    description:"Notification type: vuln
+    Test Sumo Logic notification:
 
-                New vulnerability was detected in your system.
+    ```json
+    {
+        summary:"[Test message] [Test partner(US)] New vulnerability detected",
+        description:"Notification type: vuln
 
-                ID: 
-                Title: Test
-                Domain: example.com
-                Path: 
-                Method: 
-                Discovered by: 
-                Parameter: 
-                Type: Info
-                Threat: Medium
+                    New vulnerability was detected in your system.
 
-                More details: https://us1.my.wallarm.com/object/555
+                    ID: 
+                    Title: Test
+                    Domain: example.com
+                    Path: 
+                    Method: 
+                    Discovered by: 
+                    Parameter: 
+                    Type: Info
+                    Threat: Medium
+
+                    More details: https://us1.my.wallarm.com/object/555
 
 
-                Client: TestCompany
-                Cloud: US
-                ",
-    details:{
-        client_name:"TestCompany",
-        cloud:"US",
-        notification_type:"vuln",
-        vuln_link:"https://us1.my.wallarm.com/object/555",
-        vuln:{
-            domain:"example.com",
-            id:null,
-            method:null,
-            parameter:null,
-            path:null,
-            title:"Test",
-            discovered_by:null,
-            threat:"Medium",
-            type:"Info"
+                    Client: TestCompany
+                    Cloud: US
+                    ",
+        details:{
+            client_name:"TestCompany",
+            cloud:"US",
+            notification_type:"vuln",
+            vuln_link:"https://us1.my.wallarm.com/object/555",
+            vuln:{
+                domain:"example.com",
+                id:null,
+                method:null,
+                parameter:null,
+                path:null,
+                title:"Test",
+                discovered_by:null,
+                threat:"Medium",
+                type:"Info"
+            }
         }
     }
-}
-```
+    ```
 
-## Updating integration
+1. Click **Add integration**.
 
---8<-- "../include/integrations/update-integration.md"
+## Setting up additional alerts
 
-## Disabling integration
+--8<-- "../include/integrations/integrations-trigger-setup.md"
 
---8<-- "../include/integrations/disable-integration.md"
+## Disabling and deleting an integration
 
-## Deleting integration
+--8<-- "../include/integrations/integrations-disable-delete.md"
 
---8<-- "../include/integrations/remove-integration.md"
+## System unavailability and incorrect integration parameters
+
+--8<-- "../include/integrations/integration-not-working.md"

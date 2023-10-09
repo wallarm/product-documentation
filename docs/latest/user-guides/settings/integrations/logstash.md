@@ -1,10 +1,6 @@
 # Logstash
 
-You can set up Wallarm to send notifications of detected events to Logstash by creating an appropriate integration in Wallarm Console.
-
-You can choose the following events to be sent to Logstash:
-
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+You can set up Wallarm to send notifications of detected events to Logstash.
 
 ## Notification format
 
@@ -98,74 +94,68 @@ You will find more details in the [official Logstash documentation](https://www.
 1. If required, configure advanced settings:
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
-1. Choose event types to trigger sending notifications to the specified URL. If the events are not chosen, then notifications will not be sent.
-1. [Test the integration](#testing-integration) and make sure the settings are correct.
-1. Click **Add integration**.
+1. Choose event types to trigger notifications.
 
-![Logstash integration](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+    ![Logstash integration](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-## Testing integration
+    Details on available events:
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-The test Logstash log:
+1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
 
-```json
-[
-    {
-        summary:"[Test message] [Test partner(US)] New vulnerability detected",
-        description:"Notification type: vuln
+    The test Logstash log:
 
-                    New vulnerability was detected in your system.
+    ```json
+    [
+        {
+            summary:"[Test message] [Test partner(US)] New vulnerability detected",
+            description:"Notification type: vuln
 
-                    ID: 
-                    Title: Test
-                    Domain: example.com
-                    Path: 
-                    Method: 
-                    Discovered by: 
-                    Parameter: 
-                    Type: Info
-                    Threat: Medium
+                        New vulnerability was detected in your system.
 
-                    More details: https://us1.my.wallarm.com/object/555
+                        ID: 
+                        Title: Test
+                        Domain: example.com
+                        Path: 
+                        Method: 
+                        Discovered by: 
+                        Parameter: 
+                        Type: Info
+                        Threat: Medium
+
+                        More details: https://us1.my.wallarm.com/object/555
 
 
-                    Client: TestCompany
-                    Cloud: US
-                    ",
-        details:{
-            client_name:"TestCompany",
-            cloud:"US",
-            notification_type:"vuln",
-            vuln_link:"https://us1.my.wallarm.com/object/555",
-            vuln:{
-                domain:"example.com",
-                id:null,
-                method:null,
-                parameter:null,
-                path:null,
-                title:"Test",
-                discovered_by:null,
-                threat:"Medium",
-                type:"Info"
+                        Client: TestCompany
+                        Cloud: US
+                        ",
+            details:{
+                client_name:"TestCompany",
+                cloud:"US",
+                notification_type:"vuln",
+                vuln_link:"https://us1.my.wallarm.com/object/555",
+                vuln:{
+                    domain:"example.com",
+                    id:null,
+                    method:null,
+                    parameter:null,
+                    path:null,
+                    title:"Test",
+                    discovered_by:null,
+                    threat:"Medium",
+                    type:"Info"
+                }
             }
         }
-    }
-]
-```
+    ]
+    ```
 
-## Updating integration
+1. Click **Add integration**.
 
---8<-- "../include/integrations/update-integration.md"
+## Setting up additional alerts
 
-## Disabling integration
-
---8<-- "../include/integrations/disable-integration.md"
-
-## Deleting integration
-
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/integrations-trigger-setup.md"
 
 ## Using Logstash as an intermediate data collector
 
@@ -195,3 +185,7 @@ We described some examples of how to configure the integration with the popular 
 * [Wallarm → Logstash → Datadog](webhook-examples/fluentd-logstash-datadog.md)
 
     Wallarm also supports the [native integration with Datadog via Datadog API](datadog.md). The native integration does not require the intermediate data collector to be used.
+
+## Disabling and deleting an integration
+
+--8<-- "../include/integrations/integrations-disable-delete.md"

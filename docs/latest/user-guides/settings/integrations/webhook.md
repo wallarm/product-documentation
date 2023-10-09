@@ -1,8 +1,6 @@
 # Webhook
 
-You can set up Wallarm to send instant notifications to any system that accepts incoming webhooks via HTTPS protocol. For this, specify Webhook URL to receive the notifications for the following event types:
-
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+You can set up Wallarm to send instant notifications to any system that accepts incoming webhooks via HTTPS protocol.
 
 ## Notification format
 
@@ -110,88 +108,81 @@ Notifications are sent in JSON format. The set of JSON objects depends on the ev
 ## Setting up integration
 
 1. Open Wallarm UI → **Integrations**.
-2. Click the **Webhook** block or click the **Add integration** button and choose **Webhook**.
-3. Enter an integration name.
-4. Enter target Webhook URL.
-5. If required, configure advanced settings:
+1. Click the **Webhook** block or click the **Add integration** button and choose **Webhook**.
+1. Enter an integration name.
+1. Enter target Webhook URL.
+1. If required, configure advanced settings:
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 
     ![Advanced settings example](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
-6. Choose event types to trigger sending notifications to Webhook URL. If the events are not chosen, then notifications will not be sent.
-7. [Test the integration](#testing-integration) and make sure the settings are correct.
-8. Click **Add integration**.
+1. Choose event types to trigger notifications.
 
     ![Webhook integration](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
 
-## Examples of integrations
+    Details on available events:
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-We described some examples of how to configure the integration with the popular log collectors forwarding logs to the SIEM systems:
+1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
 
-* With **Fluentd** configured to forward logs to [IBM QRadar](webhook-examples/fluentd-qradar.md), [Splunk Enterprise](webhook-examples/fluentd-splunk.md), [ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md)
-* With **Logstash** configured to forward logs to [IBM QRadar](webhook-examples/logstash-qradar.md), [Splunk Enterprise](webhook-examples/logstash-splunk.md), [ArcSight Logger](webhook-examples/logstash-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md)
+    Test webhook example:
 
-## Testing integration
+    ```json
+    [
+        {
+            summary:"[Test message] [Test partner(US)] New vulnerability detected",
+            description:"Notification type: vuln
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+                        New vulnerability was detected in your system.
 
-Test webhook example:
+                        ID: 
+                        Title: Test
+                        Domain: example.com
+                        Path: 
+                        Method: 
+                        Discovered by: 
+                        Parameter: 
+                        Type: Info
+                        Threat: Medium
 
-```json
-[
-    {
-        summary:"[Test message] [Test partner(US)] New vulnerability detected",
-        description:"Notification type: vuln
-
-                    New vulnerability was detected in your system.
-
-                    ID: 
-                    Title: Test
-                    Domain: example.com
-                    Path: 
-                    Method: 
-                    Discovered by: 
-                    Parameter: 
-                    Type: Info
-                    Threat: Medium
-
-                    More details: https://us1.my.wallarm.com/object/555
+                        More details: https://us1.my.wallarm.com/object/555
 
 
-                    Client: TestCompany
-                    Cloud: US
-                    ",
-        details:{
-            client_name:"TestCompany",
-            cloud:"US",
-            notification_type:"vuln",
-            vuln_link:"https://us1.my.wallarm.com/object/555",
-            vuln:{
-                domain:"example.com",
-                id:null,
-                method:null,
-                parameter:null,
-                path:null,
-                title:"Test",
-                discovered_by:null,
-                threat:"Medium",
-                type:"Info"
+                        Client: TestCompany
+                        Cloud: US
+                        ",
+            details:{
+                client_name:"TestCompany",
+                cloud:"US",
+                notification_type:"vuln",
+                vuln_link:"https://us1.my.wallarm.com/object/555",
+                vuln:{
+                    domain:"example.com",
+                    id:null,
+                    method:null,
+                    parameter:null,
+                    path:null,
+                    title:"Test",
+                    discovered_by:null,
+                    threat:"Medium",
+                    type:"Info"
+                }
             }
         }
-    }
-]
-```
+    ]
+    ```
 
-## Updating integration
+1. Click **Add integration**.
 
---8<-- "../include/integrations/update-integration.md"
+## Setting up additional alerts
 
-## Disabling integration
+--8<-- "../include/integrations/integrations-trigger-setup.md"
 
---8<-- "../include/integrations/disable-integration.md"
+## Disabling and deleting an integration
 
-## Deleting Integration
+--8<-- "../include/integrations/integrations-disable-delete.md"
 
---8<-- "../include/integrations/remove-integration.md"
+## System unavailability and incorrect integration parameters
+
+--8<-- "../include/integrations/integration-not-working.md"

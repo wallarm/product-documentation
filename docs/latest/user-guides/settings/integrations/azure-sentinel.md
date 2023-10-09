@@ -1,8 +1,6 @@
 # Microsoft Sentinel
 
-You can set up Wallarm to log the following events in [Microsoft Azure Sentinel](https://azure.microsoft.com/en-au/products/microsoft-sentinel/):
-
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+You can set up Wallarm to log events in [Microsoft Azure Sentinel](https://azure.microsoft.com/en-au/products/microsoft-sentinel/).
 
 ## Setting up integration
 
@@ -23,22 +21,24 @@ In the Wallarm Console UI:
 1. Optionally, specify the Azure Sentinel table for Wallarm events. If it does not exist, it will be auto-created. 
 
     Without a name, separate tables are created for each event type.
-1. Choose event types to be logged in Microsoft Sentinel. If the events are not chosen, then logs will not be sent.
-1. [Test the integration](#testing-integration) and make sure the settings are correct.
-
-    !!! info "Delay in sending data to new workspaces"
-        Creating a Workspace on Sentinel for Wallarm integration can take up to 1 hour for all services to function. This delay can result in errors during integration testing and usage. If all integration settings are correct but errors continue to appear, please try again after 1 hour.
-1. Click **Add integration**.
+1. Choose event types to trigger notifications.
 
     ![Sentinel integration](../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
 
-## Testing integration
+    Details on available events:
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-You can find Wallarm logs in your Microsoft Workspace → **Logs** → **Custom Logs**, e.g. the test `create_user_CL` log in Microsoft Sentinel looks as follows:
+1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
 
-![Test Sentinel message](../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
+    You can find Wallarm logs in your Microsoft Workspace → **Logs** → **Custom Logs**, e.g. the test `create_user_CL` log in Microsoft Sentinel looks as follows:
+
+    ![Test Sentinel message](../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
+
+    !!! info "Delay in sending data to new workspaces"
+        Creating a Workspace on Sentinel for Wallarm integration can take up to 1 hour for all services to function. This delay can result in errors during integration testing and usage. If all integration settings are correct but errors continue to appear, please try again after 1 hour.
+
+1. Click **Add integration**.
 
 ## Types of Wallarm logs
 
@@ -69,14 +69,10 @@ Overall, Wallarm can log in Sentinel the records of the following types:
 | Amount of attacks exceeds the threshold (if the corresponding [trigger](../../triggers/triggers.md) is active) | `attacks_exceeded_CL` |
 | New denylisted IP (if the corresponding [trigger](../../triggers/triggers.md) is active) | `ip_blocked_CL` |
 
-## Updating integration
+## Disabling and deleting an integration
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include/integrations/integrations-disable-delete.md"
 
-## Disabling integration
+## System unavailability and incorrect integration parameters
 
---8<-- "../include/integrations/disable-integration.md"
-
-## Deleting integration
-
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/integration-not-working.md"

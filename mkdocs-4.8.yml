@@ -36,25 +36,34 @@ nav:
     - Email PDF and CSV Reports: user-guides/search-and-filters/custom-report.md
     - Activity Log: user-guides/settings/audit-log.md
   - Integrations and Alerts:
-    - Integrations Overview: user-guides/settings/integrations/integrations-intro.md 
-    - Email Report: user-guides/settings/integrations/email.md
-    - Slack: user-guides/settings/integrations/slack.md
-    - Telegram: user-guides/settings/integrations/telegram.md
-    - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
-    - InsightConnect: user-guides/settings/integrations/insightconnect.md
-    - Opsgenie: user-guides/settings/integrations/opsgenie.md
-    - PagerDuty: user-guides/settings/integrations/pagerduty.md
-    - Jira: user-guides/settings/integrations/jira.md
-    - ServiceNow: user-guides/settings/integrations/servicenow.md
-    - Sumo Logic: user-guides/settings/integrations/sumologic.md
-    - Splunk: user-guides/settings/integrations/splunk.md
-    - Datadog: user-guides/settings/integrations/datadog.md
-    - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
-    - Fluentd: user-guides/settings/integrations/fluentd.md
-    - Logstash: user-guides/settings/integrations/logstash.md
-    - Webhook: user-guides/settings/integrations/webhook.md
-    - Amazon S3: user-guides/settings/integrations/amazon-s3.md
-    - Examples of integrations via intermediate data collectors:
+    - Overview: user-guides/settings/integrations/integrations-intro.md 
+    - Email and messengers:
+      - Email: user-guides/settings/integrations/email.md
+      - Slack: user-guides/settings/integrations/slack.md
+      - Telegram: user-guides/settings/integrations/telegram.md
+      - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
+    - Incident and task management systems:
+      - Opsgenie: user-guides/settings/integrations/opsgenie.md
+      - PagerDuty: user-guides/settings/integrations/pagerduty.md
+      - Jira: user-guides/settings/integrations/jira.md
+      - ServiceNow: user-guides/settings/integrations/servicenow.md
+    - SIEM and SOAR systems:
+      - Sumo Logic: user-guides/settings/integrations/sumologic.md
+      - Splunk: user-guides/settings/integrations/splunk.md
+      - InsightConnect: user-guides/settings/integrations/insightconnect.md
+      - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
+    - Log management systems:
+      - Datadog: user-guides/settings/integrations/datadog.md
+    - Data collectors:
+      - Fluentd: user-guides/settings/integrations/fluentd.md
+      - Logstash: user-guides/settings/integrations/logstash.md
+      - Amazon S3: user-guides/settings/integrations/amazon-s3.md
+    - Universal integrations:
+      - Webhook: user-guides/settings/integrations/webhook.md
+    - Additional alerts via triggers:
+      - Working with triggers: user-guides/triggers/triggers.md
+      - Trigger examples: user-guides/triggers/trigger-examples.md
+    - Integrations via data collectors:
       - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
       - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
       - Splunk Enterprise via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
@@ -62,9 +71,6 @@ nav:
       - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
       - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
       - Datadog via Fluentd/Logstash: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
-    - Triggers:
-      - Working with triggers: user-guides/triggers/triggers.md
-      - Trigger examples: user-guides/triggers/trigger-examples.md
   - Vulnerability Detection:
     - Overview: about-wallarm/detecting-vulnerabilities.md
     - Managing Detected Vulnerabilities: user-guides/vulnerabilities.md

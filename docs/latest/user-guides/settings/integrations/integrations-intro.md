@@ -1,132 +1,152 @@
-[integration-pane-img]:         ../../../images/user-guides/settings/integrations/integration-panel.png
-
-[email-notifications]:          ./email.md
-[slack-notifications]:          ./slack.md
-[telegram-notifications]:       ./telegram.md
-[ms-teams-notifications]:       ./microsoft-teams.md
-[opsgenie-notifications]:       ./opsgenie.md
-[insightconnect-notifications]: ./insightconnect.md
-[sentinel-notifications]:       ./azure-sentinel.md
-[pagerduty-notifications]:      ./pagerduty.md
-[jira-notifications]:           ./jira.md
-[servicenow-notifications]:     ./servicenow.md
-[splunk-notifications]:         ./splunk.md
-[sumologic-notifications]:      ./sumologic.md
-[datadog-notifications]:        ./datadog.md
-[fluentd-notifications]:        ./fluentd.md
-[logstash-notifications]:       ./logstash.md
-[aws-s3-notifications]:         ./amazon-s3.md
-[webhook-notifications]:        ./webhook.md
-[account]:                      ../account.md
-
 # Integrations Overview
 
-The **Integrations** section of Wallarm Console allows you to integrate with different systems to get scheduled reports and instant notifications through them:
+Being your shield against the OWASP API Top 10 threats, API abuse, and automated threats, Wallarm takes your security a step further by seamlessly integrating with an extensive range of systems to keep you informed in real-time.
 
-* Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
-* On an hourly basis, you can get a notification with the number of requests processed during the previous hour.
-* You can receive instant notification for each detected vulnerability, hit, system-related event, and scope change.
+With Wallarm's integrations you will always stay informed about critical events, including:
 
-!!! info "Administrator access"
-    The integration setup is available only for users with the **Administrator** role.
+* Instant alerts about [detected hits](../../../user-guides/events/check-attack.md), so you can take immediate action against the threats.
+* Updates on system events (changes in registered [users](../../../user-guides/settings/users.md), integrations, and [applications](../../../user-guides/settings/applications.md)), ensuring you're always in control.
+* Notification on important changes in your security profile, such as your [rules](../../../user-guides/rules/intro.md) and [triggers](../../../user-guides/triggers/triggers.md) changes.
+* Timely warnings about potential [vulnerabilities](../../../about-wallarm/detecting-vulnerabilities.md) in your infrastructure and their risk levels, so you can proactively address the most dangerous weaknesses.
 
-## Integration types
+Manage the feature at the **Integrations** section of Wallarm Console, and **Triggers** section for configuring additional alerts for your integrations.
 
-The systems available for integration are grouped by types as follows:
+![Integrations](../../../images/user-guides/settings/integrations/integration-panel.png)
 
-![Integrations Overview][integration-pane-img]
+Wallarm connects effortlessly with a number of existing tools and platforms. The number of integrations with one system is not limited.
 
-### Email and messengers
+<link rel="stylesheet" href="/supported-platforms.css?v=1" />
 
-* **Personal email** — the reports and notifications that are sent to the email indicated upon registration. You can also configure these notifications in [**Settings** → **Profile**][account].
-* [Email report][email-notifications]
-* [Slack][slack-notifications]
-* [Telegram][telegram-notifications]
-* [Microsoft Teams][ms-teams-notifications]
+## Email and messengers
 
-### Incident and task management systems
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../email/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/email.svg" />
+            <h3>Email</h3>
+            <p>Get notifications to the email indicated upon registration and additional emails</p>
+        </a>
+        <a class="do-card" href="../slack/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/slack.png" />
+            <h3>Slack</h3>
+            <p>Send notifications to the selected Slack channel</p>
+        </a>
+        <a class="do-card" href="../telegram/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/telegram.png" />
+            <h3>Telegram</h3>
+            <p>Add Wallarm bot to Telegram and send notifications to it</p>
+        </a>
+        <a class="do-card" href="../microsoft-teams/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/msteams.svg" />
+            <h3>Microsoft Teams</h3>
+            <p>Send notifications to the selected Microsoft Teams channel</p>
+        </a>
+    </div>
+</div>
 
-* [Opsgenie][opsgenie-notifications]
-* [PagerDuty][pagerduty-notifications]
-* [Jira][jira-notifications]
-* [ServiceNow][servicenow-notifications]
+## Incident and task management systems
 
-### SIEM and SOAR systems
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../opsgenie/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/opsgenie.png" />
+            <h3>Opsgenie</h3>
+            <p>Integrate via Opsgenie API</p>
+        </a>
+        <a class="do-card" href="../pagerduty/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/pagerduty.png" />
+            <h3>PagerDuty</h3>
+            <p>Send incidents to PagerDuty</p>
+        </a>
+        <a class="do-card" href="../jira/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/jira.png" />
+            <h3>Jira</h3>
+            <p>Set up Wallarm to create issues in Jira</p>
+        </a>
+        <a class="do-card" href="../servicenow/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/servicenow.svg" />
+            <h3>ServiceNow</h3>
+            <p>Set up Wallarm to create trouble tickets in ServiceNow</p>
+        </a>
+    </div>
+</div>
 
-* [Sumo Logic][sumologic-notifications]
-* [Splunk][splunk-notifications]
-* [InsightConnect][insightconnect-notifications]
-* [Microsoft Sentinel][sentinel-notifications]
+## SIEM and SOAR systems
 
-### Log management systems
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../sumologic/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/sumologic.svg" />
+            <h3>Sumo Logic</h3>
+            <p>Send messages to Sumo Logic</p>
+        </a>
+        <a class="do-card" href="../splunk/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/splunk.png" />
+            <h3>Splunk</h3>
+            <p>Send alerts to Splunk</p>
+        </a>
+        <a class="do-card" href="../insightconnect/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/insightconnect.svg" />
+            <h3>InsightConnect</h3>
+            <p>Send notifications to InsightConnect</p>
+        </a>
+        <a class="do-card" href="../azure-sentinel/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/mssentinel.png" />
+            <h3>Microsoft Sentinel</h3>
+            <p>Log events in Microsoft Azure Sentinel</p>
+        </a>
+    </div>
+</div>
 
-* [Datadog][datadog-notifications]
+## Log management systems
 
-### Data collectors
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../datadog/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
+            <h3>Datadog</h3>
+            <p>Send events to Datadog Logs service</p>
+        </a>
+    </div>
+</div>
 
-* [Fluentd][fluentd-notifications]
-* [Logstash][logstash-notifications]
-* [AWS S3][aws-s3-notifications]
+## Data collectors
 
-### Universal systems
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../fluentd/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/fluentd.png" />
+            <h3>Fluentd</h3>
+            <p>Send notifications of detected events to Fluentd</p>
+        </a>
+        <a class="do-card" href="../logstash/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/logstash.png" />
+            <h3>Logstash</h3>
+            <p>Send notifications of detected events to Logstash</p>
+        </a>
+        <a class="do-card" href="../amazon-s3/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/awss3.svg" />
+            <h3>AWS S3</h3>
+            <p>Set up Wallarm to send files with the information about detected hits to your Amazon S3 bucket</p>
+        </a>
+    </div>
+</div>
 
-* [Webhook][webhook-notifications] to integrate with any system that accepts incoming webhooks via HTTPS protocol, e.g.:
-    * With Fluentd configured to forward logs to [IBM QRadar](webhook-examples/fluentd-qradar.md), [Splunk Enterprise](webhook-examples/fluentd-splunk.md), [ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md)
-    * With Logstash configured to forward logs to [IBM QRadar](webhook-examples/logstash-qradar.md), [Splunk Enterprise](webhook-examples/logstash-splunk.md), [ArcSight Logger](webhook-examples/logstash-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md)
+## Other systems
 
-### Monitoring systems
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../webhook/">
+            <img class="non-zoomable" src="../../../../images/integration-icons/webhook.svg" />
+            <h3>Webhook</h3>
+            <p>Universal connector: send instant notifications to any system that accepts incoming webhooks via HTTPS protocol</p>
+        </a>
+        <a class="do-card" href="mailto:sales@wallarm.com?subject=Request%20for%20integration%20between%20Wallarm%20and%20<SYSTEM>&body=Hello%20Wallarm%20Sales%20Team%2C%0AIn%20Wallarm%2C%20the%20integration%20with%20<SYSTEM>%20is%20not%20presented%2C%20although%20the%20ability%20to%20integrate%20with%20this%20system%20would%20be%20benefitial%20for%20us.%0A%0AWe%20would%20be%20grateful%20if%20you%20could%20consider%20the%20technical%20feasibility%20of%20this%20integration%20and%20are%20ready%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20our%20requirements%20in%20detail.%0A%0AWe%20are%20looking%20forward%20to%20your%20response.">
+            <img class="non-zoomable" src="../../../../images/integration-icons/other-system.svg" />
+            <h3>Request integration</h3>
+            <p>If there is no system you are looking for, let us know. We will check the possibility of the integration and contact you.</p>
+        </a>
+    </div>
+</div>
 
-Each Wallarm node is distributed with the `collectd` service that [collects metrics on the processed traffic](../../../admin-en/monitoring/intro.md). Using the `collectd` utilities and plugins, you can send metrics to third-party monitoring systems and databases, e.g.:
-
-* [InfluxDB](../../../admin-en/monitoring/network-plugin-influxdb.md) with further visualization in Grafana or another system
-* [Graphite](../../../admin-en/monitoring/write-plugin-graphite.md) with further visualization in Grafana or another system
-* [Nagios](../../../admin-en/monitoring/collectd-nagios.md)
-* [Zabbix](../../../admin-en/monitoring/collectd-zabbix.md)
-
-Configuration for sending metrics to third-party monitoring systems and databases is performed on the node side. The listed systems are not displayed in the Wallarm Console UI.
-
-### Other systems
-
-If there is no system you are looking for, [let us know](mailto:support@wallarm.com). We will check the technical possibility of integration with the requested system and contact you.
-
-## Adding an integration
-
-To add a new integration:
-
-* Click the icon of the unconfigured system on the **All** tab, or
-* Click the **Add integration** button in the required system group and select the system. Further steps are described in the selected system instructions.
-
-The number of integrations with one system is not limited. For example: to send security reports to 3 Slack channels, you can create 3 different integrations with Slack.
-
---8<-- "../include/cloud-ip-by-request.md"
-
-!!! info "Advanced notifications setup"
-    For advanced notification setup, you can use [triggers](../../triggers/triggers.md).
-
-## Filtering integrations
-
-To filter displayed integrations, you can use the tabs:
-
-* **All** with enabled, disabled, and not yet configured integrations
-* **Enabled** with active configured integrations
-* **Disabled** with disabled configured integrations
-
-## Unavailability of integrated systems and incorrect integration parameters
-
-Notifications to the system are sent via requests. If the system is unavailable or integration parameters are configured incorrectly, the error code is returned in the response to the request.
-
-If the system responds to Wallarm request with any code other than `2xx`, Wallarm resends the request with the interval until the `2xx` code is received:
-
-* The first cycle intervals: 1, 3, 5, 10, 10 seconds
-* The second cycle intervals: 0, 1, 3, 5, 30 seconds
-* The third cycle intervals:  1, 1, 3, 5, 10, 30 minutes
-
-If the percentage of unsuccessful requests reaches 60% in 12 hours, the integration is automatically disabled. If you receive system notifications, messages about automatically disabled integration will be sent to the [configured system](#integration-types).
-
-You can identify incorrectness of integration parameters by **testing** the integration. The appropriate button is available in the integration setup window. If the test request failed, Wallarm Console would display the appropriate message.
-
-<!-- ## Demo videos
-
-<div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/DVfoXYuBy-Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div> -->
+<script src="/supported-platforms.js?v=1"></script>

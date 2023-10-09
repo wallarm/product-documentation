@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/settings/integrations/opsgenie.md"
+--8<-- "4.4/user-guides/settings/integrations/opsgenie.md"
