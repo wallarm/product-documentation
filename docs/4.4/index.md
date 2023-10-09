@@ -6,7 +6,7 @@ hide:
 
 # Wallarm API Security
 
-The Wallarm solution protects APIs, microservices and web applications from OWASP API Top 10 threats, API abuse and other automated threats with no manual rule configuration and ultra‑low false positives.
+The Wallarm solution protects APIs, microservices and web applications from OWASP API Top 10 threats,<br>API abuse and other automated threats with no manual rule configuration and ultra‑low false positives.
 
 !!! info "Newer version is available"
     The newer version of the Wallarm node has been released. [What is new in the latest version](/updating-migrating/what-is-new/)
@@ -54,7 +54,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 </div>
 
 <div class="navigation-card">
-    <h3>API Discovery</h3>
+    <h3 class="icon-homepage api-discovery-title">API Discovery</h3>
     <p><ul>
     <li><a href="./about-wallarm/api-discovery/">Overview</a></li>
     <li><a href="./user-guides/api-discovery/">Managing API Portfolio</a></li>

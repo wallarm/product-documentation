@@ -456,6 +456,12 @@ svg.navigation-arrow {
   color: black;
   transition: color 0.3s ease;
 }
+
+.homepage .md-typeset .admonition a {
+  color: #3942EA;
+  transition: color 0.3s ease;
+}
+
 .homepage .md-typeset a:hover {
   color: #FC7303;
   text-decoration: underline;
