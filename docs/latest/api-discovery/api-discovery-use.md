@@ -1,4 +1,73 @@
-# Use built API inventory
+# Exploring API Inventory
+
+As soon as the **API Discovery** module has built the catalog of your endpoints (your API inventory), you can exlore the presented information to understand and manage the security of your API. Learn from this article some things to be considered before exploring as well as how to go through your API inventory with Wallarm Console.
+
+## Things to consider
+
+### Security of data uploaded to the Wallarm Cloud
+
+API Discovery analyzes most of the traffic locally. The module sends to the Wallarm Cloud only the discovered endpoints, parameter names and various statistical data (time of arrival, their number, etc.) All data is transmitted via a secure channel: before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm.
+
+On the Cloud side, hashed data is used for statistical analysis (for example, when quantifying requests with identical parameters).
+
+Other data (endpoint values, request methods, and parameter names) is not hashed before being uploaded to the Wallarm Cloud, because hashes cannot be restored to their original state which would make building API inventory impossible.
+
+!!! warning "Important"
+    Wallarm does not send the values that are specified in the parameters to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
+
+### Parameter format and data type
+
+Wallarm analyzes the values that are passed in each of the endpoint parameters and tries to determine their format:
+
+* Int32
+* Int64
+* Float
+* Double
+* Date
+* Datetime
+* Email
+* IPv4
+* IPv6
+* UUID
+* URI
+* Hostname
+* Byte
+* MAC
+
+If the value in the parameter does not fit a specific data format, then one of the common data types will be specified:
+
+* Integer
+* Number
+* String
+* Boolean
+
+For each parameter, the **Type** column displays:
+
+* Data format
+* If format is not defined - data type
+
+This data allows checking that values of the expected format are passed in each parameter. Inconsistencies can be the result of an attack or a scan of your API, for example:
+
+* The `String` values ​​are passed to the field with `IP`
+* The `Double` values are passed to the field where there should be a value no more than `Int32`
+
+### Variability in endpoints
+
+URLs can include diverse elements, such as ID of user, like:
+
+* `/api/articles/author/author-a-0001`
+* `/api/articles/author/author-a-1401`
+* `/api/articles/author/author-b-1401`
+
+The **API Discovery** module unifies such elements into the `{parameter_X}` format in the endpoint paths, so for the example above you will not have 3 endpoints, but instead there will be one:
+
+* `/api/articles/author/{parameter_X}`
+
+Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
+
+![API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
+
+Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
 
 The **API Discovery** section of Wallarm Console enables you to manage your [API inventory](api-discovery-overview.md), as well as to fine-tune its discovery. This guide instructs you on using this section.
 
@@ -31,7 +100,9 @@ The section is only available to the users of the following [roles](../user-guid
 
     By default, endpoints are sorted by host/endpoint names (and grouped by hosts). If you sort by **Hits** or **Risk**, grouping goes away - to get back to the default, click hosts/endpoint column again.
 
-## Distinguish external and internal APIs
+## Exploring API inventory
+
+### Distinguish external and internal APIs
 
 The endpoints accessible from the external network are the main attack directions. Thus, it is important to see what is available from the outside and pay attention to these endpoints in the first place.
 
@@ -44,7 +115,7 @@ In the remaining cases the hosts are considered to be external.
 
 By default, a list with all API hosts (external and internal) is displayed. In the built API inventory, you can view your internal and external APIs separately. To do this, click **External** or **Internal**.
 
-## Filtering endpoints
+### Filtering endpoints
 
 Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
@@ -57,7 +128,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 
 All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
-## Viewing endpoint parameters
+### Viewing endpoint parameters
 
 <a name="params"></a>By clicking the endpoint, you can also find the endpoint details, including request statistics, required and optional parameters with the relevant data types:
 
@@ -78,7 +149,7 @@ Each parameter information includes:
 * [Type/format](api-discovery-overview.md#defining-the-format-and-data-type-in-parameters) of data sent in this parameter
 * Date and time when parameter information was last updated
 
-## Monitoring attacks on API endpoints
+### Monitoring attacks on API endpoints
 
 Number of attacks on API endpoints for the last 7 days are displayed in the **Hits** column.
 
@@ -99,7 +170,16 @@ attacks last 7 days endpoint_id:<YOUR_ENDPOINT_ID>
 
 You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
 
-## Download OpenAPI specification (OAS) of your API inventory
+### Create rules for API endpoints
+
+You can quickly create a new [custom rule](../user-guides/rules/intro.md) from any endpoint of API inventory: 
+
+1. In this endpoint menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
+1. In the create rule window, specify rule information and then click **Create**.
+
+![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
+
+### Download OpenAPI specification (OAS) of your API inventory
 
 The API Discovery UI provides you with an option to download the [OpenAPI v3](https://spec.openapis.org/oas/v3.0.0) specification of either an individual API endpoint or an entire API discovered by Wallarm.
 
@@ -113,13 +193,4 @@ The API Discovery UI provides you with an option to download the [OpenAPI v3](ht
 * The **Download OAS** button in an individual endpoint menu returns `swagger.json` for the selected endpoint.
 
     By utilizing the downloaded specification with other applications like Postman, you can conduct endpoint vulnerability and other tests. In addition, it allows for a closer examination of the endpoint's capabilities to uncover the processing of sensitive data and the presence of undocumented parameters.
-
-## Create rules for API endpoints
-
-You can quickly create a new [custom rule](../user-guides/rules/intro.md) from any endpoint of API inventory: 
-
-1. In this endpoint menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
-1. In the create rule window, specify rule information and then click **Create**.
-
-![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 

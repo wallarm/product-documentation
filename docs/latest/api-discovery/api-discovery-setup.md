@@ -1,4 +1,4 @@
-# Set up API Discovery
+# API Discovery Setup
 
 This article describes how to enable, configure and debug the **API Discovery** module.
 

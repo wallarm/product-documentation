@@ -1,4 +1,4 @@
-# Shadow, orphan, and zombie API
+# Shadow, Orphan, and Zombie API
 
 API Discovery allows uncovering rogue (shadow, orphan and zombie) APIs.
 

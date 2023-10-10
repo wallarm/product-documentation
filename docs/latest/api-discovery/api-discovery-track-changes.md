@@ -1,4 +1,4 @@
-# Track changes in API
+# Tracking changes in API
 
 If you update the API and the traffic structure is adjusted, API Discovery updates the built API inventory.
 

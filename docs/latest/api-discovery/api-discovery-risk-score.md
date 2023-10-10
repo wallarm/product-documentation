@@ -1,4 +1,4 @@
-# Calculating endpoints risk score
+# Endpoint Risk Score
 
 API Discovery automatically calculates a **risk score** for each endpoint in your API inventory. The risk score allows you to understand which endpoints are most likely to be an attack target and therefore should be the focus of your security efforts.
 

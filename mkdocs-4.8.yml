@@ -36,13 +36,13 @@ nav:
     - Activity Log: user-guides/settings/audit-log.md
   - API Discovery:
     - Overview: api-discovery/api-discovery-overview.md
-    - Set up API Discovery: api-discovery/api-discovery-setup.md
-    - Use built API inventory: api-discovery/api-discovery-use.md
+    - Setup: api-discovery/api-discovery-setup.md
+    - Exploring API Inventory: api-discovery/api-discovery-use.md
     - Dashboard: api-discovery/api-discovery-dashboard.md
-    - Calculating endpoints risk score: api-discovery/api-discovery-risk-score.md
-    - Shadow, orphan, and zombie API: api-discovery/api-discovery-rogue.md
-    - Track changes in API: api-discovery/api-discovery-track-changes.md
-    - Automatic protection against BOLA attacks: api-discovery/api-discovery-bola.md
+    - Endpoint Risk Score: api-discovery/api-discovery-risk-score.md
+    - Shadow, Orphan, and Zombie API: api-discovery/api-discovery-rogue.md
+    - Tracking Changes in API: api-discovery/api-discovery-track-changes.md
+    - Automatic Protection against BOLA Attacks: api-discovery/api-discovery-bola.md
   - API Protection:
     # - Overview: ...
     # - OWASP Top 10: ...
