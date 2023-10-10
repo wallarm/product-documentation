@@ -1,0 +1,161 @@
+<!-- Determine feedback configuration -->
+{% if config.extra.analytics %}
+  {% set feedback = config.extra.analytics.feedback %}
+{% endif %}
+
+<!-- Determine whether to show feedback -->
+{% if page.meta and page.meta.hide %}
+  {% if "feedback" in page.meta.hide %}
+    {% set feedback = None %}
+  {% endif %}
+{% endif %}
+
+<!-- Was this page helpful? -->
+{% if feedback %}
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        {{ feedback.title }}
+      </legend>
+      <div class="md-feedback__inner">
+
+        <!-- Feedback ratings -->
+        <div class="md-feedback__list">
+          {% for rating in feedback.ratings %}
+            <button
+              class="md-feedback__icon md-icon"
+              type="submit"
+              title="{{ rating.name }}"
+              data-md-value="{{ rating.data }}"
+            >
+              <img src="{{ rating.icon }}">
+            </button>
+          {% endfor %}
+        </div>
+
+        <!-- Feedback rating notes (shown after submission) -->
+        <div class="md-feedback__note">
+          {% for rating in feedback.ratings %}
+            <div data-md-value="{{ rating.data }}" hidden>
+              {% set url = "/" ~ page.url %}
+
+              <!-- Determine title -->
+              {% if page.meta and page.meta.title %}
+                {% set title = page.meta.title | urlencode %}
+              {% else %}
+                {% set title = page.title | urlencode %}
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </fieldset>
+
+    <div id="feedbackInput" class="feedback-input" style="display: none;">
+        
+        <p>Thanks for your feedback! How can we improve this article?</p>
+
+        <div>
+            <input type="radio" id="unclear" name="reason" value="unclear" required>
+            <label for="unclear">Information is unclear or confusing</label>
+        </div>
+    
+        <div>
+            <input type="radio" id="missing" name="reason" value="missing" required>
+            <label for="missing">Essential information is missing</label>
+        </div>
+
+        <div>
+            <input type="radio" id="outdated" name="reason" value="outdated" required>
+            <label for="outdated">Information is outdated or incorrect</label>
+        </div>
+
+        <textarea autocapitalize="off" autocomplete="off" autocorrect="off" name="feedback" placeholder="What could be improved? Share your thoughts!" rows="3" spellcheck="false"></textarea>
+
+        <input type="submit" value="Submit" class="feedback-submit-button">
+    </div>
+  </form>
+
+  <style>
+
+      .md-feedback {
+          background-color: #F1F3F5;
+          padding: 15px;
+      }
+      
+      .feedback-input {
+          display: block;
+          cursor: default;
+          text-align: left;
+      }
+
+      .feedback-input p {
+          margin-top: 6px;
+          margin-bottom: 6px;
+      }
+
+      .feedback-input textarea {
+          resize: none;
+          width: 100%;
+          border-radius: 4px;
+          border: 1px solid #DBE0E7;
+          transition: border-color 0.3s ease;
+          margin-top: 6px;
+      }
+
+      .feedback-input textarea:focus-visible {
+          border-color: #FC7303;
+          outline: none;
+      }
+
+      .md-feedback__icon img {
+          border: none;
+          width: 29px;
+          height: 29px;
+      }
+
+      .feedback-input input[type="radio"] {
+          display: none;
+      }
+      
+      .feedback-input input[type="radio"] + label::before {
+          content: "";
+          display: inline-block;
+          width: 15px;
+          height: 15px;
+          margin-right: 10px;
+          border-radius: 50%;
+          border: 2px solid #DBE0E7;
+          vertical-align: middle;
+          transition: all 0.3s ease;
+      }
+
+      input[type="radio"]:checked + label::before {
+          background-color: #FEF6E5;
+          border-color: #FC7303;
+      }
+
+      .feedback-submit-button {
+          border-radius: 4px;
+          border: none;
+          background-color: #FEF6E5;
+          color: #FC7303;
+          cursor: pointer;
+          padding: 6px 12px;
+          display: block;
+          transition: all 0.3s ease;
+      }
+
+      .feedback-submit-button:hover {
+          background-color: #F6C09C;
+      }
+
+  </style>
+
+  <script>
+    document.querySelector('.md-feedback__icon.md-icon[data-md-value="0"]').addEventListener('click', function(event) {
+        const feedbackDiv = document.getElementById('feedbackInput');
+        feedbackDiv.style.display = 'block';
+    });
+  </script>
+{% endif %}
