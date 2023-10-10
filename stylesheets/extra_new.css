@@ -1353,3 +1353,35 @@ html .md-footer .md-social a:hover {
   width: 16px;
   height: 16px;
 }
+
+/* Consent policy */
+
+.md-consent__overlay {
+  display: none;
+}
+
+.md-consent__controls .md-button {
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-weight: unset;
+  border: 1px solid #DBE0E7;
+  color: black;
+}
+
+.md-consent__controls .md-button--primary {
+  background-color: #FEF6E5;
+  color: #FC7303;
+  border: none;
+}
+
+.md-consent__controls .md-button:hover {
+  border: 1px solid #DBE0E7;
+  color: black;
+  background-color: #F7F8F9;
+}
+
+.md-consent__controls .md-button--primary:hover {
+  background-color: #F6C09C;
+  color: #FC7303;
+  border: none;
+}

@@ -55,7 +55,7 @@
     </fieldset>
 
     <div id="feedbackInput" class="feedback-input" style="display: none;">
-        
+
         <p>How can we improve this article?</p>
 
         <div>
@@ -138,6 +138,16 @@
           border-color: #FC7303;
       }
 
+      .feedback-submit-button:disabled {
+          background-color: #ccc;
+          color: #888;
+          cursor: not-allowed;
+      }
+
+      .feedback-submit-button:disabled:hover {
+        background-color: #ccc;
+      }
+
       .feedback-submit-button {
           border-radius: 4px;
           border: none;
@@ -155,10 +165,4 @@
 
   </style>
 
-  <script>
-    document.querySelector('.md-feedback__icon.md-icon[data-md-value="0"]').addEventListener('click', function(event) {
-        const feedbackDiv = document.getElementById('feedbackInput');
-        feedbackDiv.style.display = 'block';
-    });
-  </script>
 {% endif %}

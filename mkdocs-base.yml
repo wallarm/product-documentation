@@ -5,7 +5,7 @@ site_description: The Wallarm solution protects APIs, microservices and web appl
 repo_url: https://github.com/wallarm/product-documentation
 repo_name: GitHub
 
-copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Terms of services</a> | <a href="https://wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | 2023 © Wallarm Inc.'
+copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Terms of services</a> | <a href="https://wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | <a href="#__consent">Cookie settings</a> | 2023 © Wallarm Inc.'
 
 # add for copyright the option to change cookies
 # in the .html file I probably should specify the parameter to store the input feedback and send to GA
@@ -61,6 +61,10 @@ extra:
       link: https://www.youtube.com/channel/UCgD4zSzAJwf3tBlOgJo7Qkw
   generator: false
   consent:
+    cookies:
+      analytics:
+        name: Google Analytics
+        checked: true
     title: Cookie consent
     description: >- 
       We use cookies to recognize your repeated visits and preferences, as well
@@ -89,6 +93,7 @@ extra_css:
 
 extra_javascript:
   - 'extra.js'
+  - 'feedback.js'
 
 markdown_extensions:
   - admonition

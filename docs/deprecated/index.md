@@ -11,8 +11,8 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 !!! warning "Unsupported version"
     Wallarm node 4.2 and lower is not supported. Please learn [what is new in the later versions](/updating-migrating/what-is-new/) and plan the upgrade procedure.
 
-<style>
+<!-- <style>
     .md-feedback {
         display: none;
     }
-</style>
+</style> -->
