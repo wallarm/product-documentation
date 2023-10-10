@@ -139,3 +139,9 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 </div>
 
 </div>
+
+<style>
+    .md-feedback {
+        display: none;
+    }
+</style>
