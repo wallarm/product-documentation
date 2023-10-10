@@ -1,0 +1,1 @@
+--8<-- "latest/api-policy-enforcement/viewing-events.md"
