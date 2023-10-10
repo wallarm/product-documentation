@@ -7,6 +7,8 @@ repo_name: GitHub
 
 copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Terms of services</a> | <a href="https://wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | 2023 © Wallarm Inc.'
 
+# add for copyright the option to change cookies
+
 plugins:
   - search
   - minify:
@@ -57,9 +59,30 @@ extra:
     - icon: fontawesome/brands/youtube
       link: https://www.youtube.com/channel/UCgD4zSzAJwf3tBlOgJo7Qkw
   generator: false
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
   analytics:
     provider: google
     property: G-3Z9P1Z18D8
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/disappointed
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback! Help us improve this page by
+            using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
+        - icon: material/happy
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
 
 extra_css:
   - 'extra_new.css'
