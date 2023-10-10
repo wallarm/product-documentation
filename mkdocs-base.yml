@@ -73,15 +73,15 @@ extra:
     feedback:
       title: Was this page helpful?
       ratings:
-        - icon: /images/disappointed-feedback.png
-          name: This page could be improved
-          data: 0
-          note: >- 
-            Thanks for your feedback!
         - icon: /images/happy-feedback.png
           name: This page was helpful
           data: 1
           note: >-
+            Thanks for your feedback!
+        - icon: /images/disappointed-feedback.png
+          name: This page could be improved
+          data: 0
+          note: >- 
             Thanks for your feedback!
 
 extra_css:

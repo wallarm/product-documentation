@@ -45,6 +45,9 @@
               {% else %}
                 {% set title = page.title | urlencode %}
               {% endif %}
+            
+              <!-- Replace {url} and {title} placeholders in note -->
+            {{ rating.note.format(url = url, title = title) }}
             </div>
           {% endfor %}
         </div>
@@ -53,7 +56,7 @@
 
     <div id="feedbackInput" class="feedback-input" style="display: none;">
         
-        <p>Thanks for your feedback! How can we improve this article?</p>
+        <p>How can we improve this article?</p>
 
         <div>
             <input type="radio" id="unclear" name="reason" value="unclear" required>
