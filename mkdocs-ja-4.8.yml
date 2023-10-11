@@ -8,8 +8,8 @@ copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">サ�
 
 theme:
   language: ja
-  version: "4.8"
   language_name: Japanese
+  version: "4.8"
   try_button_name: "無料で試す"
   playground_button_name: "プレイグラウンドを探機"
   demo_request_block: 'あらゆるインフラストラクチャー上でアプリケーションとAPIを保護します。 <a href="https://www.wallarm.com/request-demo?utm_source=wallarm_docs&utm_medium=top_line&utm_campaign=wallarm_docs_experiment_1" style="color:white; font-weight: bold;">今すぐ製品を見る →</a>'
@@ -21,7 +21,6 @@ watch:
   - docs/latest-ja
 
 nav:
-  - ホーム: index.md
   - クイックスタート:
     - Wallarmプラットフォーム概要: about-wallarm/overview.md
     - クイックスタート: quickstart.md
@@ -49,36 +48,20 @@ nav:
       - 攻撃の確認: user-guides/events/verify-attack.md
     - メール PDF および CSV レポート: user-guides/search-and-filters/custom-report.md
     - アクティビティログ: user-guides/settings/audit-log.md
-  - 統合とアラート:
-    - 統合の概要: user-guides/settings/integrations/integrations-intro.md
-    - メールレポート: user-guides/settings/integrations/email.md
-    - Slack: user-guides/settings/integrations/slack.md
-    - Telegram: user-guides/settings/integrations/telegram.md
-    - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
-    - InsightConnect: user-guides/settings/integrations/insightconnect.md
-    - Opsgenie: user-guides/settings/integrations/opsgenie.md
-    - PagerDuty: user-guides/settings/integrations/pagerduty.md
-    - Jira: user-guides/settings/integrations/jira.md
-    - ServiceNow: user-guides/settings/integrations/servicenow.md
-    - Sumo Logic: user-guides/settings/integrations/sumologic.md
-    - Splunk: user-guides/settings/integrations/splunk.md
-    - Datadog: user-guides/settings/integrations/datadog.md
-    - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
-    - Fluentd: user-guides/settings/integrations/fluentd.md
-    - Logstash: user-guides/settings/integrations/logstash.md
-    - Webhook: user-guides/settings/integrations/webhook.md
-    - Amazon S3: user-guides/settings/integrations/amazon-s3.md
-    - 中間データコレクタ経由の統合の例:
-      - Fluentd 経由の IBM QRadar: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
-      - Logstash 経由の IBM QRadar: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
-      - Fluentd 経由の Splunk Enterprise: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
-      - Logstash 経由の Splunk Enterprise: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
-      - Fluentd 経由の Micro Focus ArcSight Logger: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
-      - Logstash 経由の Micro Focus ArcSight Logger: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
-      - Fluentd/Logstash 経由の Datadog: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
-    - トリガ:
-      - トリガとの作業: user-guides/triggers/triggers.md
-      - トリガの例: user-guides/triggers/trigger-examples.md
+  - APIインベントリの発見:
+    - 概要: about-wallarm/api-discovery.md
+    - APIポートフォリオの管理: user-guides/api-discovery.md
+    - API仕様の管理: user-guides/api-specifications.md
+  - API 脅威予防:
+    # - Overview: ...
+    # - OWASP Top 10: ...
+    # - OWASP API Top 10: ...
+    - BOLA（IDOR）保護の設定:
+      - 設定: admin-en/configuration-guides/protecting-against-bola.md
+      - BOLA オートデテクション テンプレート: user-guides/bola-protection.md
+    - API悪用の防止:
+      - 概要: about-wallarm/api-abuse-prevention.md
+      - API アビューズ防止プロファイル管理: user-guides/api-abuse-prevention.md
   - 脆弱性検出:
     - 概要: about-wallarm/detecting-vulnerabilities.md
     - 検出された脆弱性の管理: user-guides/vulnerabilities.md
@@ -95,23 +78,9 @@ nav:
         - 攻撃再生前のリクエストの書き換え: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
       - 使用事例:
         - 非本番環境でのテスト実行: vulnerability-detection/active-threat-verification/running-test-on-staging.md
-  - APIインベントリの発見:
-    - 概要: about-wallarm/api-discovery.md
-    - APIポートフォリオの管理: user-guides/api-discovery.md
-    - API仕様の管理: user-guides/api-specifications.md
-  - API 脅威予防:
-    # - Overview: ...
-    # - OWASP Top 10: ...
-    # - OWASP API Top 10: ...
-    - BOLA（IDOR）保護の設定:
-      - 設定: admin-en/configuration-guides/protecting-against-bola.md
-      - BOLA オートデテクション テンプレート: user-guides/bola-protection.md
-    - API悪用の防止:
-      - 概要: about-wallarm/api-abuse-prevention.md
-      - API アビューズ防止プロファイル管理: user-guides/api-abuse-prevention.md
-  - APIリークの修正:
-    - 概要: about-wallarm/api-leaks.md
-    - API リークの管理: user-guides/api-leaks.md
+    - APIリークの修正:
+      - 概要: about-wallarm/api-leaks.md
+      - API リークの管理: user-guides/api-leaks.md
   - セキュリティテスト:
     - 概要: fast/README.md
     - FASTオンボーディング: fast/onboarding/onboarding.md
@@ -249,28 +218,6 @@ nav:
     # - Known attacks / CVEs: ...
     # - Triggers: ...
     - 攻撃と脆弱性の種類: attacks-vulns-list.md
-  - ユーザー管理:
-    - 概要: user-guides/settings/users.md
-    - ユーザープロファイル: user-guides/settings/account.md
-    - ログアウト設定: user-guides/settings/general.md  
-    - API トークン: user-guides/settings/api-tokens.md
-    - シングルサインオン（SSO）の使用:
-      - SAML SSOソリューションとの統合の概要: admin-en/configuration-guides/sso/intro.md
-      - G SuiteとのSSOの接続:
-        - G SuiteとのSSOの接続手順の概要: admin-en/configuration-guides/sso/gsuite/overview.md
-        - "ステップ1: Wallarm側でのパラメータ生成（G Suite）": admin-en/configuration-guides/sso/gsuite/setup-sp.md
-        - "ステップ2: G Suiteでアプリケーションを作成および設定する": admin-en/configuration-guides/sso/gsuite/setup-idp.md
-        - "ステップ3: G SuiteメタデータをWallarmセットアップウィザードに転送する": admin-en/configuration-guides/sso/gsuite/metadata-transfer.md
-        - "ステップ4: G Suite側でWallarmアプリケーションへのアクセスを許可する": admin-en/configuration-guides/sso/gsuite/allow-access-to-wl.md
-      - OktaとSSOを接続する:
-        - OktaとSSOを接続する手順の概要: admin-en/configuration-guides/sso/okta/overview.md
-        - "ステップ1: Wallarm側でパラメータを生成する（Okta）": admin-en/configuration-guides/sso/okta/setup-sp.md
-        - "ステップ2: Oktaでアプリケーションを作成および設定する": admin-en/configuration-guides/sso/okta/setup-idp.md
-        - "ステップ3: OktaメタデータをWallarmセットアップウィザードに転送する": admin-en/configuration-guides/sso/okta/metadata-transfer.md
-        - "ステップ4: Okta側でWallarmアプリケーションへのアクセスを許可する": admin-en/configuration-guides/sso/okta/allow-access-to-wl.md
-      - ユーザーのSSO認証を設定する: admin-en/configuration-guides/sso/employ-user-auth.md
-      - 設定されたSSO認証を変更する: admin-en/configuration-guides/sso/change-sso-provider.md
-      - Wallarm ポータルへのシングルサインオンの使用: user-guides/use-sso.md
   - デプロイメント:
     - デプロイメントオプション: installation/supported-deployment-options.md
     - アウトオブバンド:
@@ -401,6 +348,58 @@ nav:
         - Wallarmコンソールでのテナントアカウントの作成: installation/multi-tenant/configure-accounts.md
         - マルチテナントノードのデプロイと設定: installation/multi-tenant/deploy-multi-tenant-node.md
       - Wallarmのプライベートクラウドへのデプロイ: installation/cloud-platforms/private-cloud.md
+  - 統合とアラート:
+    - 統合の概要: user-guides/settings/integrations/integrations-intro.md
+    - メールレポート: user-guides/settings/integrations/email.md
+    - Slack: user-guides/settings/integrations/slack.md
+    - Telegram: user-guides/settings/integrations/telegram.md
+    - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
+    - InsightConnect: user-guides/settings/integrations/insightconnect.md
+    - Opsgenie: user-guides/settings/integrations/opsgenie.md
+    - PagerDuty: user-guides/settings/integrations/pagerduty.md
+    - Jira: user-guides/settings/integrations/jira.md
+    - ServiceNow: user-guides/settings/integrations/servicenow.md
+    - Sumo Logic: user-guides/settings/integrations/sumologic.md
+    - Splunk: user-guides/settings/integrations/splunk.md
+    - Datadog: user-guides/settings/integrations/datadog.md
+    - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
+    - Fluentd: user-guides/settings/integrations/fluentd.md
+    - Logstash: user-guides/settings/integrations/logstash.md
+    - Webhook: user-guides/settings/integrations/webhook.md
+    - Amazon S3: user-guides/settings/integrations/amazon-s3.md
+    - 中間データコレクタ経由の統合の例:
+      - Fluentd 経由の IBM QRadar: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
+      - Logstash 経由の IBM QRadar: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
+      - Fluentd 経由の Splunk Enterprise: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
+      - Logstash 経由の Splunk Enterprise: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
+      - Fluentd 経由の Micro Focus ArcSight Logger: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
+      - Logstash 経由の Micro Focus ArcSight Logger: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
+      - Fluentd/Logstash 経由の Datadog: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
+    - トリガ:
+      - トリガとの作業: user-guides/triggers/triggers.md
+      - トリガの例: user-guides/triggers/trigger-examples.md
+  - ユーザー管理:
+    - 概要: user-guides/settings/users.md
+    - ユーザープロファイル: user-guides/settings/account.md
+    - ログアウト設定: user-guides/settings/general.md  
+    - API トークン: user-guides/settings/api-tokens.md
+    - シングルサインオン（SSO）の使用:
+      - SAML SSOソリューションとの統合の概要: admin-en/configuration-guides/sso/intro.md
+      - G SuiteとのSSOの接続:
+        - G SuiteとのSSOの接続手順の概要: admin-en/configuration-guides/sso/gsuite/overview.md
+        - "ステップ1: Wallarm側でのパラメータ生成（G Suite）": admin-en/configuration-guides/sso/gsuite/setup-sp.md
+        - "ステップ2: G Suiteでアプリケーションを作成および設定する": admin-en/configuration-guides/sso/gsuite/setup-idp.md
+        - "ステップ3: G SuiteメタデータをWallarmセットアップウィザードに転送する": admin-en/configuration-guides/sso/gsuite/metadata-transfer.md
+        - "ステップ4: G Suite側でWallarmアプリケーションへのアクセスを許可する": admin-en/configuration-guides/sso/gsuite/allow-access-to-wl.md
+      - OktaとSSOを接続する:
+        - OktaとSSOを接続する手順の概要: admin-en/configuration-guides/sso/okta/overview.md
+        - "ステップ1: Wallarm側でパラメータを生成する（Okta）": admin-en/configuration-guides/sso/okta/setup-sp.md
+        - "ステップ2: Oktaでアプリケーションを作成および設定する": admin-en/configuration-guides/sso/okta/setup-idp.md
+        - "ステップ3: OktaメタデータをWallarmセットアップウィザードに転送する": admin-en/configuration-guides/sso/okta/metadata-transfer.md
+        - "ステップ4: Okta側でWallarmアプリケーションへのアクセスを許可する": admin-en/configuration-guides/sso/okta/allow-access-to-wl.md
+      - ユーザーのSSO認証を設定する: admin-en/configuration-guides/sso/employ-user-auth.md
+      - 設定されたSSO認証を変更する: admin-en/configuration-guides/sso/change-sso-provider.md
+      - Wallarm ポータルへのシングルサインオンの使用: user-guides/use-sso.md
   - オペレーション:
     # - Autoscaling: ...
     - 概要:
@@ -454,7 +453,7 @@ nav:
     - SELinuxの設定: admin-en/configure-selinux.md
     - Wallarmユーザー受け入れテストチェックリスト: admin-en/uat-checklist-en.md
     - ノードのアップグレード:
-      - Wallarm ノード 4.6 の新機能: updating-migrating/what-is-new.md
+      - Wallarm ノード 4.8 の新機能: updating-migrating/what-is-new.md
       - 安全なノードアップグレードプロセスの推奨事項: updating-migrating/general-recommendations.md
       - フィルタリングノードのアップグレード手順:
         - 個別パッケージからインストールされたWallarm NGINXモジュールのアップグレード: updating-migrating/nginx-modules.md
