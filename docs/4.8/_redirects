@@ -525,6 +525,6 @@
 /ja/admin-en/attack-rechecker-best-practices/ /ja/vulnerability-detection/active-threat-verification/running-test-on-staging/
 /ja/user-guides/rules/change-request-for-active-verification/ /ja/vulnerability-detection/active-threat-verification/modify-requests-before-replay/
 
-/about-wallarm/api-discovery.md /api-discovery/api-discovery-overview.md
-/user-guides/api-discovery.md /api-discovery/api-discovery-use.md
-/user-guides/api-specifications.md /api-discovery/api-discovery-rogue.md
+/about-wallarm/api-discovery.md /api-discovery/overview.md
+/user-guides/api-discovery.md /api-discovery/exploring.md
+/user-guides/api-specifications.md /api-discovery/rogue-api.md

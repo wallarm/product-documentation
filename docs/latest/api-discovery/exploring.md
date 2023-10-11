@@ -69,7 +69,9 @@ Click the endpoint to expand its parameters and view which type was automaticall
 
 Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
 
-The **API Discovery** section of Wallarm Console enables you to manage your [API inventory](api-discovery-overview.md), as well as to fine-tune its discovery. This guide instructs you on using this section.
+## Exploring API inventory
+
+The **API Discovery** section of Wallarm Console enables you to manage your [API inventory](overview.md), as well as to fine-tune its discovery. This guide instructs you on using this section.
 
 The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
 
@@ -90,17 +92,15 @@ The section is only available to the users of the following [roles](../user-guid
     * The **Changes since** filter goes to the `Lask week` state, which means:
 
         * From the presented endpoints, the `New` and `Changed` within this period will obtain corresponding [marks](#tracking-changes-in-api)
-        * Additionally, endpoints `Deleted` within this period will be displayed
+        * Additionally, endpoints `Unused` within this period will be displayed
 
-    See [this example](api-discovery-track-changes.md#example) to understand what API Discovery displays by default.
+    See [this example](track-changes.md#example) to understand what API Discovery displays by default.
 
     You can manually select other time periods to be covered.
 
     **Sorting and grouping**
 
     By default, endpoints are sorted by host/endpoint names (and grouped by hosts). If you sort by **Hits** or **Risk**, grouping goes away - to get back to the default, click hosts/endpoint column again.
-
-## Exploring API inventory
 
 ### Distinguish external and internal APIs
 
@@ -120,11 +120,12 @@ By default, a list with all API hosts (external and internal) is displayed. In t
 Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
 * Only attacked endpoints that you can sort by the number of hits.
+* Find the most vulnerable endpoints characterized by processing sensitive data and active vulnerabilities of the high risk level. Exploiting vulnerabilities of a high risk level allows attackers to perform many malicious actions with the system including stealing sensitive data that the endpoint processes/stores.
+* Find rogue endpoints: shadow, orphan and zombie
 * Find the endpoints that have been changed or newly discovered in the last week and that process PII data. This kind of request can help you to stay up to date with critical changes in your APIs.
 * Find the endpoints being used to upload data to your server by the PUT or POST calls. Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
 * Find the endpoints processing customers' bank card data. With this request, you can check that sensitive data is processed only by secured endpoints.
 * Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
-* Find the most vulnerable endpoints characterized by processing sensitive data and active vulnerabilities of the high risk level. Exploiting vulnerabilities of a high risk level allows attackers to perform many malicious actions with the system including stealing sensitive data that the endpoint processes/stores.
 
 All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
@@ -138,7 +139,7 @@ Each parameter information includes:
 
 * Parameter name and the part of request this parameter belongs to
 * Information about parameter changes (new, unused)
-* Presence and type of sensitive data (PII) transmitted by this parameter, including:
+* Presence and type of sensitive data transmitted by this parameter, including:
 
     * Technical data like IP and MAC addresses
     * Login credentials like secret keys and passwords
@@ -146,7 +147,7 @@ Each parameter information includes:
     * Medical data like medical license number
     * Personally identifiable information (PII) like full name, passport number or SSN
 
-* [Type/format](api-discovery-overview.md#defining-the-format-and-data-type-in-parameters) of data sent in this parameter
+* [Type/format](overview.md#defining-the-format-and-data-type-in-parameters) of data sent in this parameter
 * Date and time when parameter information was last updated
 
 ### Monitoring attacks on API endpoints
@@ -185,7 +186,7 @@ The API Discovery UI provides you with an option to download the [OpenAPI v3](ht
 
 * The **Download OAS** button on the API inventory page returns `swagger.json` for the entire inventory or only the filtered data if any filters were applied before downloading.
 
-    With the downloaded data, you can identify missing endpoints (Shadow API) and unused endpoints (Zombie API) in your specification compared to Wallarm's discoveries.
+    With the downloaded data, you can test endpoints on your side, for example, upload them to the Postman.
 
     !!! warning "API host information in downloaded Swagger file"
         If a discovered API inventory contains several API hosts, endpoints from all API hosts will be included in the downloaded Swagger file. Currently, the API host information is not included in the file.

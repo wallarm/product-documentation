@@ -30,7 +30,7 @@ Users of Wallarm clients can have the following roles:
 * **Administrator** with access to all Wallarm settings
 * **Analyst** with access to view main Wallarm settings, and manage information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
 * **Read Only** with access to view main Wallarm settings
-* **API Developer** with access to view and download the API inventory discovered by the [API Discovery](../../api-discovery/api-discovery-overview.md) module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
+* **API Developer** with access to view and download the API inventory discovered by the [API Discovery](../../api-discovery/overview.md) module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
 
 The [multitenancy](../../installation/multi-tenant/overview.md) feature also enables you to use the global roles **Global Administrator**, **Global Analyst**, **Global Read Only**. Global roles provide users with access to the technical tenant account and linked tenant accounts, regular roles provide users with access only to the technical tenant account.
 

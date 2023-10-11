@@ -63,6 +63,6 @@ To display [rogue APIs](#terminology) among endpoints discovered by Wallarm:
 
 * Use the **Rogue APIs** filter to see only shadow, orphan and/or zombie APIs related to the selected comparisons and filter out the remaining endpoints.
 
-The endpoint is defined as shadow or orphan API as the result of the comparison of the actual traffic with some specifications (there may be several). They will be listed in the endpoint details, in the **Specification conflicts** section. The endpoint is defined as zombie as the result of comparison of the previos and current specification versions and actual traffic.
+In the details of such endpoints, in the **Specification conflicts** section, the specification(s) with the help of which shadow/zombie/orphan was detected will be indicated.
 
-Shadow APIs are also displayed among the riskiest endpoints at the [API Discovery Dashboard](api-discovery-dashboard.md).
+Shadow APIs are also displayed among the riskiest endpoints at the [API Discovery Dashboard](dashboard.md).

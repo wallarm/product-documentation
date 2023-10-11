@@ -8,8 +8,8 @@ The risk score is made up of various factors, including:
 
 * Presence of [**active vulnerabilities**](../about-wallarm/detecting-vulnerabilities.md) that may result in unauthorized data access or corruption.
 * Ability to **upload files to the server** - endpoints are frequently targeted by [Remote Code Execution (RCE)](../attacks-vulns-list.md#remote-code-execution-rce) attacks, where files with malicious code are uploaded to a server. To secure these endpoints, uploaded file extensions and contents should be properly validated as recommended by the [OWASP Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
-* Presence of the [**variable path parts**](api-discovery-overview.md#variability-in-endpoints), such as user IDs, e.g. `/api/articles/author/{parameter_X}`. Attackers can manipulate object IDs and, in case of insufficient request authentication, either read or modify the object sensitive data ([**BOLA attacks**](../admin-en/configuration-guides/protecting-against-bola.md)).
-* Presence of the parameters with [**sensitive data**](api-discovery-overview.md#sensitive-data-detection) - rather than directly attacking APIs, attackers can steal sensitive data and use it to seamlessly reach your resources.
+* Presence of the [**variable path parts**](overview.md#variability-in-endpoints), such as user IDs, e.g. `/api/articles/author/{parameter_X}`. Attackers can manipulate object IDs and, in case of insufficient request authentication, either read or modify the object sensitive data ([**BOLA attacks**](../admin-en/configuration-guides/protecting-against-bola.md)).
+* Presence of the parameters with [**sensitive data**](overview.md#sensitive-data-detection) - rather than directly attacking APIs, attackers can steal sensitive data and use it to seamlessly reach your resources.
 * A **large number of parameters** increasing the number of attack directions.
 * **XML or JSON objects** passed in the endpoint request may be used by the attackers to transfer malicious XML external entities and injections to the server.
 

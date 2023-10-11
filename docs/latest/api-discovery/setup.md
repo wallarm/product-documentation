@@ -24,16 +24,7 @@ To enable and run API Discovery correctly:
         sudo yum install wallarm-appstructure
         ```
 1. Make sure your [subscription plan](../about-wallarm/subscription-plans.md#subscription-plans) includes **API Discovery**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
-1. If you want to enable API Discovery only for the selected applications, ensure that the applications are added as described in the [Setting up applications](../user-guides/settings/applications.md) article.
-
-    If the applications are not configured, structures of all APIs are grouped in one tree.
-
-1. Enable API Discovery for the required applications in Wallarm Console → **API Discovery** → **Configure API Discovery**.
-
-    ![API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
-
-    !!! info "Access to API Discovery settings"
-        Only administrators of your company Wallarm account can access the API Discovery settings. Contact your administrator if you do not have this access.
+1. In Wallarm Console → **API Discovery** → **Configure API Discovery**, enable traffic analysis with API Discovery.
 
 Once the API Discovery module is enabled, it will start the traffic analysis and API inventory building. The API inventory will be displayed in the **API Discovery** section of Wallarm Console.
 
@@ -43,9 +34,18 @@ By clicking the **Configure API Discovery** button in the **API Discovery** sect
 
 ### Choosing applications for API Discovery
 
-If the "WAAP + Advanced API Security" [subscription plan](../about-wallarm/subscription-plans.md#subscription-plans) is purchased for your company account, you can enable/disable traffic analysis with API Discovery in Wallarm Console → **API Discovery** → **Configure API Discovery**.
+You may enable/disable API Discovery for all applications or only the selected ones:
 
-You may enable/disable API Discovery for all applications or only the selected ones.
+1. Ensure that the applications are added as described in the [Setting up applications](../user-guides/settings/applications.md) article.
+
+    If the applications are not configured, structures of all APIs are grouped in one tree.
+
+1. Enable API Discovery for the required applications in Wallarm Console → **API Discovery** → **Configure API Discovery**.
+
+    ![API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
+
+    !!! info "Access to API Discovery settings"
+        Only users with the * **Administrator** or **Analyst** [role](../user-guides/settings/users.md#user-roles) can access the API Discovery settings. Contact your administrator if you do not have this access.
 
 ![API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
@@ -53,7 +53,7 @@ When you add a new application in **Settings** → **[Applications](../user-guid
 
 ### Customizing risk score calculation
 
-You can configure the weight of each factor in [risk score](api-discovery-risk-score.md) calculation and calculation method.
+You can configure the weight of each factor in [risk score](risk-score.md) calculation and calculation method.
 
 ## Debug
 
