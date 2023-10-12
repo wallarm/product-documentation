@@ -20,7 +20,7 @@ Data fields for each hit:
 * `point`
 * `tags`
 
-Files will be saved to your S3 bucket as `wallarm_hits_{timestamp}.json`, with formatting options of JSON Array or New Line Delimited JSON (NDJSON).
+Files will be saved to your S3 bucket using the naming convention `wallarm_hits_{timestamp}.json` or `wallarm_hits_{timestamp}.jsonl`. The format, either JSON Array or New Line Delimited JSON (NDJSON), will depend on your choice during integration setup.
 
 ## Setting up integration
 
