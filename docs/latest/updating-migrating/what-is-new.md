@@ -35,6 +35,12 @@ wallarm_custom_ruleset_id{format="51"} 386
 
 [More details on configuring Wallarm node metrics](../admin-en/configure-statistics-service.md)
 
+## API tokens support by Sidecar Controller
+
+Now, during [Sidecar controller deployment](../installation/kubernetes/sidecar-proxy/deployment.md), you can use [API tokens](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation) to create filtering nodes and connect them to the Cloud during solution deployment. With API tokens, you can control the lifetime of your tokens and enhance node organization in the UI by setting a node group name.
+
+Node group names are set using the `config.wallarm.api.nodeGroup` parameter in **values.yaml**, with `defaultSidecarGroup` as the default name. Optionally, you can control the names of node groups based on the applications' pods using the `sidecar.wallarm.io/wallarm-node-group` annotation.
+
 ## When upgrading node 3.6 and lower
 
 If upgrading from the version 3.6 or lower, learn all changes from the [separate list](older-versions/what-is-new.md).

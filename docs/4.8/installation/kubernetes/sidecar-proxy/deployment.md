@@ -8,5 +8,6 @@
 [ptrav-attack-docs]:                          ../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:                        ../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:                       ../../../admin-en/configure-wallarm-mode.md
+[node-token-types]:                           ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 --8<-- "latest/installation/kubernetes/sidecar-proxy/deployment.md"

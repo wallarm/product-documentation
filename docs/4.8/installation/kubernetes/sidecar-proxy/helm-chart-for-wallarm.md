@@ -7,5 +7,6 @@
 [passive-detection-docs]:             ../../../about-wallarm/detecting-vulnerabilities.md#passive-detection
 [subscriptions-docs]:                 ../../../about-wallarm/subscription-plans.md#subscription-plans
 [active-threat-verification-docs]:    ../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification
+[node-token-types]:                   ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 --8<-- "latest/installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md"

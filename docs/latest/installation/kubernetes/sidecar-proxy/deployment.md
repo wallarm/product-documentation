@@ -53,20 +53,24 @@ The Wallarm Sidecar has 2 standard stages in its lifecycle:
 
 To deploy the Wallarm Sidecar solution:
 
-1. Create the Wallarm node.
+1. Generate a filtering node token.
 1. Deploy the Wallarm Helm chart.
 1. Attach the Wallarm Sidecar to the application Pod.
 1. Test the Wallarm Sidecar operation.
 
-### Step 1: Create the Wallarm node
+### Step 1: Generate a filtering node token
 
-1. Open Wallarm Console → **Nodes** via the link below:
+Generate a filtering node token of the [appropriate type][node-token-types] to connect the sidecar pods to the Wallarm Cloud:
 
-    * https://us1.my.wallarm.com/nodes for the US Cloud
-    * https://my.wallarm.com/nodes for the EU Cloud
-1. Create a filtering node with the **Wallarm node** type and copy the generated token.
-    
-    ![Creation of a Wallarm node][create-wallarm-node-img]
+=== "API token"
+    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+    1. Find or create API token with the `Deploy` source role.
+    1. Copy this token.
+=== "Node token"
+    1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+    1. Create a filtering node with the **Wallarm node** type and copy the generated token.
+        
+      ![Creation of a Wallarm node][create-wallarm-node-img]
 
 ### Step 2: Deploy the Wallarm Helm chart
 
@@ -74,9 +78,9 @@ To deploy the Wallarm Sidecar solution:
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
-1. Create the `values.yaml` file with the [Wallarm Sidecar configuration](customization.md).
+1. Create the `values.yaml` file with the [Wallarm Sidecar configuration](customization.md). Example of the file with the minimum configuration is below.
 
-    Example of the file with the minimum configuration:
+    When using an API token, specify a node group name in the `nodeGroup` parameter. Your nodes created for the sidecar pods will be assigned to this group, shown in the Wallarm Console's **Nodes** section. The default group name is `defaultSidecarGroup`. If required, you can later set filtering node group names individually for the pods of the applications they protect, using the [`sidecar.wallarm.io/wallarm-node-group`](pod-annotations.md#wallarm-node-group) annotation.
 
     === "US Cloud"
         ```yaml
@@ -85,6 +89,7 @@ To deploy the Wallarm Sidecar solution:
             api:
               token: "<NODE_TOKEN>"
               host: "us1.api.wallarm.com"
+              # nodeGroup: "defaultSidecarGroup"
         ```
     === "EU Cloud"
         ```yaml
@@ -92,6 +97,7 @@ To deploy the Wallarm Sidecar solution:
           wallarm:
             api:
               token: "<NODE_TOKEN>"
+              # nodeGroup: "defaultSidecarGroup"
         ```    
     
     `<NODE_TOKEN>` is the token of the Wallarm node to be run in Kubernetes.

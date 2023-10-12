@@ -105,7 +105,7 @@ The token can be one of these [types][node-token-types]:
     1. During node deployment, use the generated token and specify the group name using the `controller.wallarm.nodeGroup` parameter. You can add multiple nodes to one group using different API tokens.
 * **Node token** - Suitable when you already know the node groups that will be used.
 
-    To gerenate a node token:
+    To generate a node token:
     
     1. Go to Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
     1. Create a node and name the node group.

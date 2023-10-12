@@ -41,6 +41,9 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ### 4.8.0 (2023-03-28)
 
 * Initial release 4.8, [see changelog](what-is-new.md)
+* Added support for [API tokens](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation) to create filtering nodes and connect them to the Cloud during solution deployment. With API tokens, you can control the lifetime of your tokens and enhance node organization in the UI by setting a node group name.
+
+    Node group names are set using the `config.wallarm.api.nodeGroup` parameter in **values.yaml**, with `defaultSidecarGroup` as the default name. Optionally, you can control the names of node groups based on the applications' pods using the `sidecar.wallarm.io/wallarm-node-group` annotation.
 
 ## NGINX-based Docker image
 
