@@ -102,10 +102,29 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../datadog/">
+        <div id="datadog" class="do-card">
             <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
             <h3>Datadog</h3>
-            <p>Send events to Datadog Logs service</p>
+            <p>Send events to Datadog Logs service direcly or through intermediate data collectors</p>
+        </div>
+    </div>
+    <div class="do-nested" data-for="datadog">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
+            <h3>Datadog</h3>
+            <p>Send events to Datadog Logs service direcly or through intermediate data collectors</p>
+        </div>
+        <a class="do-card" href="../datadog/">
+            <h3>Datadog Native Integration</h3>
+            <p>Send logs to Datadog directly</p>
+        </a>
+        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+            <h3>Wallarm → Fluentd → Datadog</h3>
+            <p>Send logs to Datadog via Fluentd</p>
+        </a>
+        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+            <h3>Wallarm → Logstash → Datadog</h3>
+            <p>Send logs to Datadog via Logstash</p>
         </a>
     </div>
 </div>
@@ -152,11 +171,11 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
         </div>
         <a class="do-card" href="../webhook-examples/fluentd-qradar/">
             <h3>Wallarm → Fluentd → IBM QRadar</h3>
-            <p>Send notifications to IBM QRadar via Fluentd</p>
+            <p>Send logs to IBM QRadar via Fluentd</p>
         </a>
         <a class="do-card" href="../webhook-examples/fluentd-splunk/">
             <h3>Wallarm → Fluentd → Splunk Enterprise</h3>
-            <p>Send notifications to Splunk Enterprise via Fluentd</p>
+            <p>Send logs to Splunk Enterprise via Fluentd</p>
         </a>
         <a class="do-card" href="../webhook-examples/fluentd-arcsight-logger/">
             <h3>Wallarm → Fluentd → Micro Focus ArcSight Logger</h3>
@@ -189,11 +208,11 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
         </div>
         <a class="do-card" href="../webhook-examples/logstash-qradar/">
             <h3>Wallarm → Logstash → IBM QRadar</h3>
-            <p>Send notifications to IBM QRadar via Logstash</p>
+            <p>Send logs to IBM QRadar via Logstash</p>
         </a>
         <a class="do-card" href="../webhook-examples/logstash-splunk/">
             <h3>Wallarm → Logstash → Splunk Enterprise</h3>
-            <p>Send notifications to Splunk Enterprise via Logstash</p>
+            <p>Send logs to Splunk Enterprise via Logstash</p>
         </a>
         <a class="do-card" href="../webhook-examples/logstash-arcsight-logger/">
             <h3>Wallarm → Logstash → Micro Focus ArcSight Logger</h3>
@@ -204,6 +223,97 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
             <p>Send notifications to Datadog via Logstash</p>
         </a>
     </div>    
+</div>
+
+## Integrations via Data Collectors
+
+<div class="do-section">
+    <div class="do-main">
+        <div id="ibm-qradar" class="do-card">
+            <img class="non-zoomable" src="../../../../images/integration-icons/ibm-qradar.png" />
+            <h3>IBM QRadar</h3>
+            <p>Send logs to IBM QRadar</p>
+        </div>
+        <div id="splunk-enterprise" class="do-card">
+            <img class="non-zoomable" src="../../../../images/integration-icons/splunk.png" />
+            <h3>Splunk Enterprise</h3>
+            <p>Send logs to Splunk Enterprise</p>
+        </div>
+        <div id="arcsight-logger" class="do-card">
+            <img class="non-zoomable" src="../../../../images/integration-icons/arcsight-logger.png" />
+            <h3>Micro Focus ArcSight Logger</h3>
+            <p>Send notifications to Micro Focus ArcSight Logger</p>
+        </div>
+        <div id="datadogp" class="do-card">
+            <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
+            <h3>Datadog</h3>
+            <p>Send events to Datadog Logs service direcly or through intermediate data collectors</p>
+        </div>
+    </div>
+    <div class="do-nested" data-for="ibm-qradar">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../../../images/integration-icons/ibm-qradar.png" />
+            <h3>IBM QRadar</h3>
+            <p>Send logs to IBM QRadar</p>
+        </div>
+        <a class="do-card" href="../webhook-examples/fluentd-qradar/">
+            <h3>Wallarm → Fluentd → IBM QRadar</h3>
+            <p>Send logs to IBM QRadar via Fluentd</p>
+        </a>
+        <a class="do-card" href="../webhook-examples/logstash-qradar/">
+            <h3>Wallarm → Logstash → IBM QRadar</h3>
+            <p>Send logs to IBM QRadar via Logstash</p>
+        </a>
+    </div>
+    <div class="do-nested" data-for="splunk-enterprise">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../../../images/integration-icons/splunk.png" />
+            <h3>Splunk Enterprise</h3>
+            <p>Send logs to Splunk Enterprise</p>
+        </div>
+        <a class="do-card" href="../webhook-examples/fluentd-splunk/">
+            <h3>Wallarm → Fluentd → Splunk Enterprise</h3>
+            <p>Send logs to Splunk Enterprise via Fluentd</p>
+        </a>
+        <a class="do-card" href="../webhook-examples/logstash-splunk/">
+            <h3>Wallarm → Logstash → Splunk Enterprise</h3>
+            <p>Send logs to Splunk Enterprise via Logstash</p>
+        </a>
+    </div>
+    <div class="do-nested" data-for="arcsight-logger">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../../../images/integration-icons/arcsight-logger.png" />
+            <h3>Micro Focus ArcSight Logger</h3>
+            <p>Send notifications to Micro Focus ArcSight Logger</p>
+        </div>
+        <a class="do-card" href="../webhook-examples/fluentd-arcsight-logger/">
+            <h3>Wallarm → Fluentd → Micro Focus ArcSight Logger</h3>
+            <p>Send notifications to Micro Focus ArcSight Logger via Fluentd</p>
+        </a>
+        <a class="do-card" href="../webhook-examples/logstash-arcsight-logger/">
+            <h3>Wallarm → Logstash → Micro Focus ArcSight Logger</h3>
+            <p>Send notifications to Micro Focus ArcSight Logger via Logstash</p>
+        </a>
+    </div>
+    <div class="do-nested" data-for="datadogp">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../../../images/integration-icons/datadog.png" />
+            <h3>Datadog</h3>
+            <p>Send events to Datadog Logs service direcly or through intermediate data collectors</p>
+        </div>
+        <a class="do-card" href="../datadog/">
+            <h3>Datadog Native Integration</h3>
+            <p>Send logs to Datadog directly</p>
+        </a>
+        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+            <h3>Wallarm → Fluentd → Datadog</h3>
+            <p>Send logs to Datadog via Fluentd</p>
+        </a>
+        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+            <h3>Wallarm → Logstash → Datadog</h3>
+            <p>Send logs to Datadog via Logstash</p>
+        </a>
+    </div>
 </div>
 
 ## Other systems
