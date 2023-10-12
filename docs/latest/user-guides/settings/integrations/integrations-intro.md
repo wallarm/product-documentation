@@ -114,22 +114,96 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../fluentd/">
+        <div id="fluentd" class="do-card">
             <img class="non-zoomable" src="../../../../images/integration-icons/fluentd.png" />
             <h3>Fluentd</h3>
-            <p>Send notifications of detected events to Fluentd</p>
-        </a>
-        <a class="do-card" href="../logstash/">
+            <p>Send notifications of detected events to Fluentd or use Fluentd as intermediate system to integrate with other systems</p>
+        </div>
+        <div id="logstash" class="do-card">
             <img class="non-zoomable" src="../../../../images/integration-icons/logstash.png" />
             <h3>Logstash</h3>
-            <p>Send notifications of detected events to Logstash</p>
-        </a>
+            <p>Send notifications of detected events to Logstash or use Logstash as intermediate system to integrate with other systems</p>
+        </div>
         <a class="do-card" href="../amazon-s3/">
             <img class="non-zoomable" src="../../../../images/integration-icons/awss3.svg" />
             <h3>AWS S3</h3>
             <p>Set up Wallarm to send files with the information about detected hits to your Amazon S3 bucket</p>
         </a>
     </div>
+    <div class="do-nested" data-for="fluentd">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../../../images/integration-icons/fluentd.png" />
+            <h3>Fluentd</h3>
+            <p>Send notifications of detected events to Fluentd or use Fluentd as intermediate system to integrate with other systems</p>
+        </div>
+        <a class="do-card" href="../fluentd/">
+            <h3>Fluentd Native Integration</h3>
+            <p>Send notifications of detected events to Fluentd itself</p>
+        </a>
+        <div id="fluentd-intermediate" class="do-card">
+            <h3>Fluentd as Intermediate Data Connector</h3>
+            <p>Use Fluentd as intermediate system to integrate with other systems</p>
+        </div>
+    </div>
+    <div class="do-nested" data-for="fluentd-intermediate">
+        <div class="do-card">
+            <h3>Fluentd as Intermediate Data Connector</h3>
+            <p>Use Fluentd as intermediate system to integrate with other systems</p>
+        </div>
+        <a class="do-card" href="../webhook-examples/fluentd-qradar/">
+            <h3>Wallarm → Fluentd → IBM QRadar</h3>
+            <p>Send notifications to IBM QRadar via Fluentd</p>
+        </a>
+        <a class="do-card" href="../webhook-examples/fluentd-splunk/">
+            <h3>Wallarm → Fluentd → Splunk Enterprise</h3>
+            <p>Send notifications to Splunk Enterprise via Fluentd</p>
+        </a>
+        <a class="do-card" href="../webhook-examples/fluentd-arcsight-logger/">
+            <h3>Wallarm → Fluentd → Micro Focus ArcSight Logger</h3>
+            <p>Send notifications to Micro Focus ArcSight Logger via Fluentd</p>
+        </a>
+        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+            <h3>Wallarm → Fluentd → Datadog</h3>
+            <p>Send notifications to Datadog via Fluentd</p>
+        </a>
+    </div>
+    <div class="do-nested" data-for="logstash">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../../../images/integration-icons/logstash.png" />
+            <h3>Logstash</h3>
+            <p>Send notifications of detected events to Logstash or use Logstash as intermediate system to integrate with other systems</p>
+        </div>
+        <a class="do-card" href="../logstash/">
+            <h3>Logstash Native Integration</h3>
+            <p>Send notifications of detected events to Logstash itself</p>
+        </a>
+        <div id="logstash-intermediate" class="do-card">
+            <h3>Logstash as Intermediate Data Connector</h3>
+            <p>Use Logstash as intermediate system to integrate with other systems</p>
+        </div>
+    </div>
+    <div class="do-nested" data-for="logstash-intermediate">
+        <div class="do-card">
+            <h3>Logstash as Intermediate Data Connector</h3>
+            <p>Use Logstash as intermediate system to integrate with other systems</p>
+        </div>
+        <a class="do-card" href="../webhook-examples/logstash-qradar/">
+            <h3>Wallarm → Logstash → IBM QRadar</h3>
+            <p>Send notifications to IBM QRadar via Logstash</p>
+        </a>
+        <a class="do-card" href="../webhook-examples/logstash-splunk/">
+            <h3>Wallarm → Logstash → Splunk Enterprise</h3>
+            <p>Send notifications to Splunk Enterprise via Logstash</p>
+        </a>
+        <a class="do-card" href="../webhook-examples/logstash-arcsight-logger/">
+            <h3>Wallarm → Logstash → Micro Focus ArcSight Logger</h3>
+            <p>Send notifications to Micro Focus ArcSight Logger via Logstash</p>
+        </a>
+        <a class="do-card" href="../webhook-examples/fluentd-logstash-datadog/">
+            <h3>Wallarm → Logstash → Datadog</h3>
+            <p>Send notifications to Datadog via Logstash</p>
+        </a>
+    </div>    
 </div>
 
 ## Other systems

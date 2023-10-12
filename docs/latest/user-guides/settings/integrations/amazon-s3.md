@@ -1,6 +1,6 @@
 # Amazon S3
 
-You can set up Wallarm to send files with the information about detected hits to your Amazon S3 bucket. Information will be sent in the files of JSON format each 10 minutes.
+[Amazon S3](https://aws.amazon.com/s3/?nc1=h_ls), or Amazon Simple Storage Service, is a scalable cloud storage service provided by Amazon Web Services (AWS). It is used for a variety of purposes, including data backup, data archiving, content distribution, website hosting, and application data storage. You can set up Wallarm to send files with the information about detected hits to your Amazon S3 bucket. Information will be sent in the files of JSON format each 10 minutes.
 
 Data fields for each hit:
 

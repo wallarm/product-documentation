@@ -1,6 +1,6 @@
 # Microsoft Sentinel
 
-You can set up Wallarm to log events in [Microsoft Azure Sentinel](https://azure.microsoft.com/en-au/products/microsoft-sentinel/).
+[Microsoft Azure Sentinel](https://azure.microsoft.com/en-au/products/microsoft-sentinel/) is a solution provided by Microsoft as part of its Azure cloud platform to help organizations monitor, detect, investigate, and respond to security threats and incidents across their entire cloud and on-premises environments. You can set up Wallarm to log events in Microsoft Sentinel.
 
 ## Setting up integration
 
@@ -40,6 +40,14 @@ In the Wallarm Console UI:
 
 1. Click **Add integration**.
 
+## Disabling and deleting an integration
+
+--8<-- "../include/integrations/integrations-disable-delete.md"
+
+## System unavailability and incorrect integration parameters
+
+--8<-- "../include/integrations/integration-not-working.md"
+
 ## Types of Wallarm logs
 
 Overall, Wallarm can log in Sentinel the records of the following types:
@@ -68,11 +76,3 @@ Overall, Wallarm can log in Sentinel the records of the following types:
 | Changes in API inventory (if the corresponding [trigger](../../triggers/triggers.md) is active) | `api_structure_changed_CL` |
 | Amount of attacks exceeds the threshold (if the corresponding [trigger](../../triggers/triggers.md) is active) | `attacks_exceeded_CL` |
 | New denylisted IP (if the corresponding [trigger](../../triggers/triggers.md) is active) | `ip_blocked_CL` |
-
-## Disabling and deleting an integration
-
---8<-- "../include/integrations/integrations-disable-delete.md"
-
-## System unavailability and incorrect integration parameters
-
---8<-- "../include/integrations/integration-not-working.md"

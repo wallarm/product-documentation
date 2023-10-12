@@ -1,6 +1,6 @@
 # Atlassian Jira
 
-You can set up Wallarm to create issues in Jira when [vulnerabilities](../../../glossary-en.md#vulnerability) are detected, all or only for the selected risk level(s) - high, medium or low.
+[Jira](https://www.atlassian.com/software/jira) is a widely used project management and issue tracking software developed by Atlassian. It is specifically designed for software development teams but is adaptable to a variety of use cases in other industries and departments. You can set up Wallarm to create issues in Jira when [vulnerabilities](../../../glossary-en.md#vulnerability) are detected, all or only for the selected risk level(s) - high, medium or low.
 
 ## Setting up integration
 
