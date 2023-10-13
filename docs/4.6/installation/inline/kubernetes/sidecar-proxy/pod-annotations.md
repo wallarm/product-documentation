@@ -77,7 +77,7 @@ To apply annotation to a pod, specify it in the `Deployment` object settings of 
 
 
 ```bash
-kubectl edit deployment -n <KUBERNETES_NAMESPACE> <APP_LABEL_VALUE>
+kubectl edit deployment -n <APPLICATION_NAMESPACE> <APP_LABEL_VALUE>
 ```
 
 ```yaml hl_lines="17"

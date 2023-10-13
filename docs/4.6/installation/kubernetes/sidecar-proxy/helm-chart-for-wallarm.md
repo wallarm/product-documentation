@@ -68,12 +68,12 @@ To store the node token in K8s secrets and pull it to the Helm chart:
 1. Create a Kubernetes secret with the Wallarm node token:
 
     ```bash
-    kubectl -n <KUBERNETES_NAMESPACE> create secret generic wallarm-api-token --from-literal=token=<WALLARM_NODE_TOKEN>
+    kubectl -n wallarm-sidecar create secret generic wallarm-api-token --from-literal=token=<WALLARM_NODE_TOKEN>
     ```
 
-    * `<KUBERNETES_NAMESPACE>` is the Kubernetes namespace you have created for the Helm release with Wallarm Sidecar controller
-    * `wallarm-api-token` is the Kubernetes secret name
-    * `<WALLARM_NODE_TOKEN>` is the Wallarm node token value copied from the Wallarm Console UI
+    * If you followed the deployment instructions without modifications, `wallarm-sidecar` is the Kubernetes namespace created for the Helm release with the Wallarm Sidecar controller. Replace the name if using a different namespace.
+    * `wallarm-api-token` is the Kubernetes secret name.
+    * `<WALLARM_NODE_TOKEN>` is the Wallarm node token value copied from the Wallarm Console UI.
 
     If using some external secret operator, follow [appropriate documentation to create a secret](https://external-secrets.io).
 1. Set the following configuration in `values.yaml`:

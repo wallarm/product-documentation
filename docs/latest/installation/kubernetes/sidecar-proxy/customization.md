@@ -319,7 +319,7 @@ To enable SSL/TLS termination:
 1. Apply the changes from `values.yaml` to the Sidecar solution using the following command:
 
     ```bash
-    helm upgrade <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n <NAMESPACE> -f values.yaml
+    helm upgrade <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar -f values.yaml
     ```
 1. [Apply](pod-annotations.md#how-to-use-annotations) the `sidecar.wallarm.io/profile: tls-profile` annotation to the application pod.
 1. Once the configuration is applied, you can test the solution by following the steps described [here](deployment.md#step-4-test-the-wallarm-sidecar-proxy-operation), replacing HTTP with HTTPS protocol.
