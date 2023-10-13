@@ -4,3 +4,9 @@
 * **Requesting endpoint with invalid parameter value** - a request parameter's value in not in correspondence with its type/format defined by your specification
 * **Requesting endpoint without authentication method** - a request does not contain the information about the authentication method
 * **Requesting endpoint with invalid JSON** - a request contains an invalid JSON
+
+The system can perform the following actions in case of found inconsistency:
+
+* **Block** - block request and put in the **Events** as blocked
+* **Monitor** - mark request as malicious, but do not block, put it in the **Events** section as monitored
+* **Not tracked** - do nothing
