@@ -118,7 +118,7 @@ Generate a filtering node token of the [appropriate type][node-token-types] to c
 For Wallarm to filter application traffic, add the `wallarm-sidecar: enabled` label to the corresponding application Pod:
 
 ```bash
-kubectl edit deployment -n <KUBERNETES_NAMESPACE> <APP_LABEL_VALUE>
+kubectl edit deployment -n <APPLICATION_NAMESPACE> <APP_LABEL_VALUE>
 ```
 
 ```yaml hl_lines="15"
@@ -156,21 +156,20 @@ To test that the Wallarm Sidecar operates correctly:
 1. Get the Wallarm pod details to check they have been successfully started:
 
     ```bash
-    kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-sidecar
+    kubectl get pods -n wallarm-sidecar -l app.kubernetes.io/name=wallarm-sidecar
     ```
 
     Each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:
 
     ```
     NAME                                              READY   STATUS    RESTARTS   AGE
-    wallarm-sidecar-controller-54cf88b989-f7jtb      1/1     Running   0          91m
     wallarm-sidecar-controller-54cf88b989-gp2vg      1/1     Running   0          91m
     wallarm-sidecar-postanalytics-86d9d4b6cd-hpd5k   4/4     Running   0          91m
     ```
 1. Get the application pod details to check the Wallarm sidecar controller has been successfully injected:
 
     ```bash
-    kubectl get pods --selector app=<APP_LABEL_VALUE>
+    kubectl get pods -n <APPLICATION_NAMESPACE> --selector app=<APP_LABEL_VALUE>
     ```
 
     The output should display **READY: 2/2** pointing to successful sidecar container injection and **STATUS: Running** pointing to successful connection to the Wallarm Cloud:

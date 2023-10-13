@@ -55,16 +55,16 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.6
 1. Make sure the version of the Helm chart was upgraded:
 
     ```bash
-    helm list -n <NAMESPACE>
+    helm list -n wallarm-sidecar
     ```
 
-    Where `<NAMESPACE>` is the namespace the Sidecar is deployed to.
+    Where `wallarm-sidecar` is the namespace the Sidecar is deployed to. You can change this value if the namespace is different.
 
     The chart version should correspond to `wallarm-sidecar-1.1.5`.
 1. Get the Wallarm pod details to check they have been successfully started:
 
     ```bash
-    kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-sidecar
+    kubectl get pods -n wallarm-sidecar -l app.kubernetes.io/name=wallarm-sidecar
     ```
 
     Each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:

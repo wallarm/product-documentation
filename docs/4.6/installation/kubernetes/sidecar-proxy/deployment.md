@@ -123,7 +123,7 @@ To deploy the Wallarm Sidecar solution:
 For Wallarm to filter application traffic, add the `wallarm-sidecar: enabled` label to the corresponding application Pod:
 
 ```bash
-kubectl edit deployment -n <KUBERNETES_NAMESPACE> <APP_LABEL_VALUE>
+kubectl edit deployment -n <APPLICATION_NAMESPACE> <APP_LABEL_VALUE>
 ```
 
 ```yaml hl_lines="15"
@@ -161,7 +161,7 @@ To test that the Wallarm Sidecar operates correctly:
 1. Get the Wallarm pod details to check they have been successfully started:
 
     ```bash
-    kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-sidecar
+    kubectl get pods -n wallarm-sidecar -l app.kubernetes.io/name=wallarm-sidecar
     ```
 
     Each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:
@@ -175,7 +175,7 @@ To test that the Wallarm Sidecar operates correctly:
 1. Get the application pod details to check the Wallarm sidecar controller has been successfully injected:
 
     ```bash
-    kubectl get pods --selector app=<APP_LABEL_VALUE>
+    kubectl get pods -n <APPLICATION_NAMESPACE> --selector app=<APP_LABEL_VALUE>
     ```
 
     The output should display **READY: 2/2** pointing to successful sidecar container injection and **STATUS: Running** pointing to successful connection to the Wallarm Cloud:
