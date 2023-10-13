@@ -38,11 +38,11 @@ nav:
     - Overview: api-discovery/overview.md
     - Setup: api-discovery/setup.md
     - Exploring API Inventory: api-discovery/exploring.md
-    - Dashboard: api-discovery/dashboard.md
+    - Tracking Changes in API: api-discovery/track-changes.md
     - Endpoint Risk Score: api-discovery/risk-score.md
     - Shadow, Orphan, and Zombie API: api-discovery/rogue-api.md
-    - Tracking Changes in API: api-discovery/track-changes.md
     - Automatic Protection against BOLA Attacks: api-discovery/bola-protection.md
+    - Dashboard: api-discovery/dashboard.md
   - API Protection:
     # - Overview: ...
     # - OWASP Top 10: ...
