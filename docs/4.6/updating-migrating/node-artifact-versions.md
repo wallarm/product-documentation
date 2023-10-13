@@ -24,7 +24,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 4.6.8 (2023-09-26)
 
-* Added support for [API tokens](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation) to create filtering nodes and connect them to the Cloud during solution deployment. With API tokens, you can enhance node organization in the UI by setting a node group name using the `controller.wallarm.nodeGroup` parameter in **values.yaml**, with `defaultIngressGroup` as the default name.
+* Added support for [API tokens](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation) to create filtering nodes and connect them to the Cloud during solution deployment. With API tokens, you can control the token lifetime and enhance node organization in the UI by setting a node group name using the `controller.wallarm.nodeGroup` parameter in **values.yaml**, with `defaultIngressGroup` as the default name.
 
 ### 4.6.7 (2023-09-15)
 
