@@ -60,7 +60,7 @@ nav:
     - Active Threat Verification:
       - Overview: vulnerability-detection/active-threat-verification/overview.md
       - Configuration:
-        - Enabling Globally of for Specific Endpoints: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
+        - Enabling Globally or for Specific Endpoints: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
         - Rewriting Requests Before Attack Replaying: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
       - Use Cases:
         - Running Tests on Non‑Production: vulnerability-detection/active-threat-verification/running-test-on-staging.md
