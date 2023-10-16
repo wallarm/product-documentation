@@ -1,7 +1,7 @@
 Besides the notifications you have already set up through the integration card, Wallarm triggers allow you to select additional events for notifications:
 
 * Number of [attacks](../../../glossary-en.md#attack), [hits](../../../glossary-en.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number
-* [Changes in API](../../../about-wallarm/api-discovery.md#tracking-changes-in-api) took place
+* [Changes in API](../../../api-discovery/track-changes.md) took place
 * IP address was [denylisted](../../../user-guides/ip-lists/denylist.md)
 * New user was added to the company account
 
