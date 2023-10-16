@@ -8,5 +8,5 @@
 The system can perform the following actions in case of found inconsistency:
 
 * **Block** - block request and put in the **Events** as blocked
-* **Monitor** - mark request as malicious, but do not block, put it in the **Events** section as monitored
+* **Monitor** - mark request as incorrect, but do not block, put it in the **Events** section as monitored
 * **Not tracked** - do nothing
