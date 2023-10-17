@@ -26,6 +26,7 @@ This article describes how to enable and cofigure your API protection based on y
 
     * Note that if you incorrectly specify to which endpoints the uploaded specification should be applied, there will be **many false positive events**.
     * If you have several specifications that apply to the same host, but to different endpoints (for example `domain.com/v1/api/users/` and `domain.com/v1/api/orders/`), you **must** indicate to which endpoints the specification should be applied.
+    * If you add a specification to a host, and then add another specification to individual endpoints of this host, both specifications will be applied to these endpoints.
     * URI can be configured via the [URI constructor](../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../user-guides/rules/add-rule.md#advanced-edit-form).
 
 1. Set how the system should react if requests violate your specification.
