@@ -1,6 +1,6 @@
 document.querySelector('.md-feedback__icon.md-icon[data-md-value="0"]').addEventListener('click', function(event) {
     const feedbackDiv = document.getElementById('feedbackInput');
-    feedbackDiv.style.display = 'block';
+    feedbackDiv.style.display = 'flex';
     initializeForm();
 });
 
@@ -49,3 +49,20 @@ function checkFormState() {
 
     feedbackSubmitButton.disabled = !(radioButtonChecked || textareaFilled);
 }
+
+const feedbackTextarea = document.querySelector('.feedback-input textarea');
+const charCount = document.querySelector(".character-count");
+const maxCharCount = 240;
+
+feedbackTextarea.addEventListener("input", function () {
+    const currentCharCount = feedbackTextarea.value.length;
+    
+    // Update the info about number of symbols
+    charCount.textContent = `${currentCharCount}/${maxCharCount}`;
+    
+    // Cut the text if the max symbol number is reached
+    if (currentCharCount > maxCharCount) {
+        feedbackTextarea.value = feedbackTextarea.value.substring(0, maxCharCount);
+        charCount.textContent = `${maxCharCount}/${maxCharCount}`;
+    }
+});

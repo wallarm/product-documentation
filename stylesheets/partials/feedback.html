@@ -73,9 +73,14 @@
             <label for="outdated">Information is outdated or incorrect</label>
         </div>
 
-        <textarea autocapitalize="off" autocomplete="off" autocorrect="off" name="feedback" placeholder="What could be improved? Share your thoughts!" rows="3" spellcheck="false"></textarea>
+        <div class="feedback-textarea-div">
+          <textarea autocapitalize="off" autocomplete="off" autocorrect="off" name="feedback" placeholder="What could be improved? Share your thoughts!" rows="3" spellcheck="false"></textarea>
+          <p class="character-count">0/240</p>
+        </div>
 
-        <input type="submit" value="Submit" class="feedback-submit-button">
+        <div class="feedback-submit-div">
+          <input type="submit" value="Send" class="feedback-submit-button">
+        </div>
     </div>
   </form>
 
@@ -87,14 +92,20 @@
       }
       
       .feedback-input {
-          display: block;
           cursor: default;
           text-align: left;
+          display: flex;
+          flex-direction: column;
       }
 
       .feedback-input p {
           margin-top: 6px;
           margin-bottom: 6px;
+      }
+
+      .feedback-textarea-div {
+        display: flex;
+        flex-direction: column;
       }
 
       .feedback-input textarea {
@@ -103,7 +114,8 @@
           border-radius: 4px;
           border: 1px solid #DBE0E7;
           transition: border-color 0.3s ease;
-          margin-top: 6px;
+          margin-top: 16px;
+          font-family: Inter;
       }
 
       .feedback-input textarea:focus-visible {
@@ -111,10 +123,27 @@
           outline: none;
       }
 
+      .feedback-input .character-count {
+        text-align: right;
+        color: #959dac;
+        font-size: 10px;
+        margin-top: unset;
+      }
+
+      .feedback-submit-div {
+        display: flex;
+        justify-content: flex-end;
+      }
+
       .md-feedback__icon img {
           border: none;
           width: 29px;
           height: 29px;
+          transition: transform 0.3s;
+      }
+
+      .md-feedback__icon img:hover {
+          transform: scale(1.2);
       }
 
       .feedback-input input[type="radio"] {
@@ -128,14 +157,15 @@
           height: 15px;
           margin-right: 10px;
           border-radius: 50%;
-          border: 2px solid #DBE0E7;
+          border: 1px solid #DBE0E7;
           vertical-align: middle;
           transition: all 0.3s ease;
+          background-color: #FFFFFF;
       }
 
       input[type="radio"]:checked + label::before {
-          background-color: #FEF6E5;
-          border-color: #FC7303;
+          background-color: #FC7303;
+          border: 4px solid #F2E9E2;
       }
 
       .feedback-submit-button:disabled {
@@ -157,6 +187,8 @@
           padding: 6px 12px;
           display: block;
           transition: all 0.3s ease;
+          width: 58px;
+          height: 32px;
       }
 
       .feedback-submit-button:hover {
