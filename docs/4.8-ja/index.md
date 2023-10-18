@@ -2,6 +2,7 @@
 hide:
 - navigation
 - toc
+- feedback
 ---
 
 # Wallarm APIセキュリティ
@@ -139,9 +140,3 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
 </div>
 
 </div>
-
-<style>
-    .md-feedback {
-        display: none;
-    }
-</style>

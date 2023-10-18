@@ -56,7 +56,7 @@
 
     <div id="feedbackInput" class="feedback-input" style="display: none;">
 
-        <p>How can we improve this article?</p>
+        <p style="font-weight: bold;">How can we improve this article? (Optional)</p>
 
         <div>
             <input type="radio" id="unclear" name="reason" value="unclear" required>
@@ -65,21 +65,21 @@
     
         <div>
             <input type="radio" id="missing" name="reason" value="missing" required>
-            <label for="missing">Essential information is missing</label>
+            <label for="missing">Insufficient information</label>
         </div>
 
         <div>
             <input type="radio" id="outdated" name="reason" value="outdated" required>
-            <label for="outdated">Information is outdated or incorrect</label>
+            <label for="outdated">Outdated or incorrect information</label>
         </div>
 
         <div class="feedback-textarea-div">
-          <textarea autocapitalize="off" autocomplete="off" autocorrect="off" name="feedback" placeholder="What could be improved? Share your thoughts!" rows="3" spellcheck="false"></textarea>
+          <textarea autocapitalize="off" autocomplete="off" autocorrect="off" name="feedback" placeholder="Share your experience in more detail" rows="3" spellcheck="false"></textarea>
           <p class="character-count">0/240</p>
         </div>
 
         <div class="feedback-submit-div">
-          <input type="submit" value="Send" class="feedback-submit-button">
+          <button type="button" class="feedback-submit-button">Send</button>
         </div>
     </div>
   </form>
@@ -94,7 +94,6 @@
       .feedback-input {
           cursor: default;
           text-align: left;
-          display: flex;
           flex-direction: column;
       }
 
@@ -189,6 +188,7 @@
           transition: all 0.3s ease;
           width: 58px;
           height: 32px;
+          font-size: 14px;
       }
 
       .feedback-submit-button:hover {

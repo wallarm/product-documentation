@@ -1374,13 +1374,13 @@ html .md-footer .md-social a:hover {
   border: none;
 }
 
-.md-consent__controls .md-button:hover {
+.md-consent__controls .md-button:hover, .md-consent__controls .md-button:focus {
   border: 1px solid #DBE0E7;
   color: black;
   background-color: #F7F8F9;
 }
 
-.md-consent__controls .md-button--primary:hover {
+.md-consent__controls .md-button--primary:hover, .md-consent__controls .md-button--primary:focus {
   background-color: #F6C09C;
   color: #FC7303;
   border: none;

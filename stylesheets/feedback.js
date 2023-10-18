@@ -1,11 +1,21 @@
+// Inject the google tag
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-3Z9P1Z18D8');
+
+// If the disappointed icon is clicked, show the detailed feedback form
+
 document.querySelector('.md-feedback__icon.md-icon[data-md-value="0"]').addEventListener('click', function(event) {
-    const feedbackDiv = document.getElementById('feedbackInput');
+    var feedbackDiv = document.getElementById('feedbackInput');
     feedbackDiv.style.display = 'flex';
     initializeForm();
 });
 
 function initializeForm() {
-    window.feedbackSubmitButton = document.querySelector('.feedback-input input[type="submit"]');
+    window.feedbackSubmitButton = document.querySelector('.feedback-submit-button');
     window.feedbackRadioButtons = document.querySelectorAll('.feedback-input input[type="radio"]');
     window.feedbackTextarea = document.querySelector('.feedback-input textarea');
 
@@ -16,32 +26,39 @@ function initializeForm() {
     feedbackTextarea.addEventListener('input', checkFormState);
     
     feedbackSubmitButton.addEventListener('click', function() {
-    // Hide the detailed negative feedback form when the Submit button is clicked
 
-    document.getElementById('feedbackInput').style.display = 'none';
+        // Prevent the button from the default behavior like adding query params to URL and page reload
+        
+        event.preventDefault();
+    
+        // Hide the detailed negative feedback form when the Submit button is clicked
 
-    // Get the selected radio button
-    let selectedRadioButton = Array.from(feedbackRadioButtons).find(radioButton => radioButton.checked);
+        document.getElementById('feedbackInput').style.display = 'none';
 
-    // Get the text from the textarea
-    let feedbackText = feedbackTextarea.value.trim();
+        // Get the selected radio button and the text from the textarea
+        
+        let selectedRadioButton = Array.from(feedbackRadioButtons).find(radioButton => radioButton.checked);
+        let feedbackText = feedbackTextarea.value.trim();
 
-    // Get the current page's path
-    let currentPagePath = document.location.pathname;
+        // Send the detailed feedback params to GA
 
-    if (selectedRadioButton) {
-        // Send the event to GA4
-        gtag('event', 'negative.feedback_submitted', {
-            'negative_feedback_value': selectedRadioButton.value,
-            'feedback_text': feedbackText,
-            'page_path': currentPagePath
-        });
-    }
-    console.log("kfjfjkf")
+        if (selectedRadioButton || feedbackText) {
+            // Send the event to GA4
+            gtag('event', 'negative_feedback_submitted', {
+                'negative_feedback_reason': selectedRadioButton ? selectedRadioButton.value : null,
+                'negative_feedback_text': feedbackText ? feedbackText : null
+            });
+            console.log("success")
+        }
+        else {
+            console.log("smth went wrong while sending data to GA")
+        }
 });
 
     checkFormState();
 }
+
+// Check the detailed feedback form state to either activate/disable the form submission button
 
 function checkFormState() {
     let radioButtonChecked = Array.from(feedbackRadioButtons).some(radioButton => radioButton.checked);
@@ -50,12 +67,14 @@ function checkFormState() {
     feedbackSubmitButton.disabled = !(radioButtonChecked || textareaFilled);
 }
 
-const feedbackTextarea = document.querySelector('.feedback-input textarea');
-const charCount = document.querySelector(".character-count");
-const maxCharCount = 240;
+// Limit the character number to 240
+
+var feedbackTextarea = document.querySelector('.feedback-input textarea');
+var charCount = document.querySelector(".character-count");
+var maxCharCount = 240;
 
 feedbackTextarea.addEventListener("input", function () {
-    const currentCharCount = feedbackTextarea.value.length;
+    var currentCharCount = feedbackTextarea.value.length;
     
     // Update the info about number of symbols
     charCount.textContent = `${currentCharCount}/${maxCharCount}`;
