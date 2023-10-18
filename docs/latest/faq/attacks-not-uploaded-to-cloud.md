@@ -38,7 +38,7 @@ Check the filtering node operation mode as follows:
     The `off` mode is a common reason for the `wallarm-status` metrics not to increase.
 1. Restart NGINX to be sure that Wallarm node settings have been applied (if the node has been installed from DEB/RPM packages):
 
-    --8<-- "../include/waf/restart-nginx-3.6.md"
+    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 1. [Generate](#1-generate-some-malicious-traffic) malicious traffic once again to be sure that attacks are still not uploaded to the Cloud.
 
 ## 3. Check that Tarantool has enough resources to process requests

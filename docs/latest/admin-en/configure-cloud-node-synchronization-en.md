@@ -36,7 +36,7 @@ To change synchronization parameters, proceed with the following steps:
 1. Make changes to the `node.yaml` file by adding the required parameters and assigning the desired values to them.
 1. Restart NGINX to apply updated settings to the synchronization process:
 
-    --8<-- "../include/waf/restart-nginx-3.6.md"
+    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
 ## Synchronization interval
 

@@ -56,7 +56,7 @@ Wallarmは次のオペレーティングシステムをサポートしていま�
 
 --8<-- "../include-ja/waf/root_perm_info.md"
 
---8<-- "../include-ja/waf/restart-nginx-3.6.md"
+--8<-- "../include-ja/waf/restart-nginx-4.4-and-above.md"
 
 ## 8. トラフィックの送信先をWallarmのインスタンスに設定する
 

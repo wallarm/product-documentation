@@ -36,7 +36,7 @@
 1. 必要なパラメータを追加し、それらに所望の値を割り当てることで、`node.yaml` ファイルを変更します。
 1. NGINX を再起動して、同期プロセスに更新設定を適用します。
 
-    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
+    --8<-- "../include-ja/waf/restart-nginx-4.4-and-above.md"
 
 ## 同期間隔
 

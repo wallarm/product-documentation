@@ -50,6 +50,11 @@ Wallarm node is installed and updated from the Wallarm repositories. To add repo
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
+    ```
 
 ## 3. Install Wallarm packages
 
@@ -71,6 +76,10 @@ The following packages are required:
     sudo yum install -y wallarm-node nginx-plus-module-wallarm
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo yum install -y wallarm-node nginx-plus-module-wallarm
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo yum install -y wallarm-node nginx-plus-module-wallarm
     ```

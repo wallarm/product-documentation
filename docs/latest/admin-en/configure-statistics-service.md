@@ -64,7 +64,7 @@ allow 127.0.0.0/8;
 
 Once the settings changed, restart NGINX to apply the changes:
 
---8<-- "../include/waf/restart-nginx-3.6.md"
+--8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
 ### Changing an IP address of the statistics service
 
@@ -85,7 +85,7 @@ To change an IP address of the statistics service:
 1. Add or change the `allow` directive to allow access from addresses other than loopback addresses (the default configuration file allows access only to loopback addresses).
 1. Restart NGINX to apply changes:
 
-    --8<-- "../include/waf/restart-nginx-3.6.md"
+    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
 ### Getting statistics in the Prometheus format
 
@@ -112,7 +112,7 @@ By default, the statistics are returned only in the JSON format. To get the stat
         Please do not delete or change the default configuration of the `/wallarm-status` location. Default operation of this endpoint is crucial to upload correct data to the Wallarm Cloud.
 1. Restart NGINX to apply changes:
 
-    --8<-- "../include/waf/restart-nginx-3.6.md"
+    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 1. Call the new endpoint to get the Prometheus metrics:
 
     ```bash

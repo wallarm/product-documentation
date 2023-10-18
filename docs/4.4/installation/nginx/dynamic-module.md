@@ -109,6 +109,11 @@ These are the following options to install NGINX `stable` from the NGINX reposit
             echo -e '\n[nginx-stable] \nname=nginx stable repo \nbaseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \ngpgcheck=1 \nenabled=1 \ngpgkey=https://nginx.org/keys/nginx_signing.key \nmodule_hotfixes=true' | sudo tee /etc/yum.repos.d/nginx.repo
             sudo yum install -y nginx
             ```
+    === "RHEL 8.x"
+        ```bash
+        echo -e '\n[nginx-stable] \nname=nginx stable repo \nbaseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \ngpgcheck=1 \nenabled=1 \ngpgkey=https://nginx.org/keys/nginx_signing.key \nmodule_hotfixes=true' | sudo tee /etc/yum.repos.d/nginx.repo
+        sudo yum install -y nginx
+        ```
 
 * Compilation of the source code from the `stable` branch of the [NGINX repository](https://hg.nginx.org/pkg-oss/branches) and installation with the same options.
 
@@ -151,6 +156,10 @@ To run postanalytics and process the requests on the same server, the following 
     ```bash
     sudo yum install -y wallarm-node nginx-module-wallarm
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo yum install -y wallarm-node nginx-module-wallarm
+    ```
 
 #### Request processing and postanalytics on different servers
 
@@ -171,6 +180,10 @@ To run postanalytics and process the requests on different servers, the followin
         sudo yum install -y wallarm-node-nginx nginx-module-wallarm
         ```
     === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo yum install -y wallarm-node-nginx nginx-module-wallarm
+        ```
+    === "RHEL 8.x"
         ```bash
         sudo yum install -y wallarm-node-nginx nginx-module-wallarm
         ```
@@ -214,13 +227,13 @@ To run postanalytics and process the requests on different servers, the followin
 
 ### 6. Update Wallarm node configuration
 
---8<-- "../include/waf/installation/nginx-waf-min-configuration-3.6.md"
+--8<-- "../include/waf/installation/nginx-waf-min-configuration-4.4.md"
 
 ### 7. Restart NGINX
 
 --8<-- "../include/waf/root_perm_info.md"
 
---8<-- "../include/waf/restart-nginx-3.6.md"
+--8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
 ### 8. Test Wallarm node operation
 

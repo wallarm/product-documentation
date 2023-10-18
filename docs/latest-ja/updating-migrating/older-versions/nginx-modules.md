@@ -337,7 +337,7 @@ server {
 
 ## ステップ 15: NGINXを再起動する
 
---8<-- "../include-ja/waf/restart-nginx-3.6.md"
+--8<-- "../include-ja/waf/restart-nginx-4.4-and-above.md"
 
 ## ステップ 16: Wallarmノード動作をテストする
 

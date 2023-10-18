@@ -25,6 +25,11 @@
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
+    ```
 
 ## 2. Install NGINX with Wallarm packages
 
@@ -50,6 +55,10 @@ The command installs the following packages:
     ```bash
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
+    ```
 
 ## 3. Connect the Wallarm module
 
@@ -64,6 +73,10 @@ Copy the configuration files for the system setup:
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```

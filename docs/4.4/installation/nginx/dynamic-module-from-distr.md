@@ -65,6 +65,11 @@ Installation commands for both options are described in the further instructions
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
+    ```
 
 ### 2. Install NGINX with Wallarm packages
 
@@ -89,6 +94,10 @@ The command installs the following packages:
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
@@ -119,6 +128,10 @@ The commands install packages for NGINX and for the NGINX-Wallarm module:
     ```bash
     sudo yum install -y nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo yum install -y nginx wallarm-node-nginx nginx-mod-http-wallarm
+    ```
 
 ### 3. Connect the Wallarm module
 
@@ -133,6 +146,10 @@ Copy the configuration files for the system setup:
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
@@ -209,6 +226,10 @@ The Wallarm node uses the in-memory storage Tarantool. To allocate memory for Ta
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
+    === "RHEL 8.x"
+        ``` bash
+        sudo vim /etc/sysconfig/wallarm-tarantool
+        ```
 2. Specify memory size in GB in the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator).
 
     Learn more about amount of required resources [here](../../admin-en/configuration-guides/allocate-resources-for-node.md). Note that for testing environments you can allocate lower resources than for the production ones.
@@ -243,6 +264,10 @@ To update other NGINX and Wallarm node configurations, use the NGINX documentati
     sudo systemctl restart nginx
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo systemctl restart nginx
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo systemctl restart nginx
     ```

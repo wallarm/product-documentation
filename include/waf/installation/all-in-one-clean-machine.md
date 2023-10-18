@@ -4,6 +4,7 @@ When upgrading modules 4.x or lower to 4.6 with all-in-one installer, you cannot
 * Ubuntu LTS 18.04, 20.04, 22.04
 * CentOS 7, 8 Stream, 9 Stream
 * Alma/Rocky Linux 9
+* RHEL 8.x
 * Oracle Linux 8.x
 * Redos
 * SuSe Linux
