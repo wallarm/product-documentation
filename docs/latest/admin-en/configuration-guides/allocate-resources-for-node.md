@@ -57,6 +57,10 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
     ```bash
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo vim /etc/sysconfig/wallarm-tarantool
+    ```
 
 <ol start="2"><li>Set the <code>SLAB_ALLOC_ARENA</code> attribute to memory size. The value can be an integer or a float (a dot <code>.</code> is a decimal separator). For example:</li></ol>
 
@@ -95,6 +99,10 @@ SLAB_ALLOC_ARENA=1.0
     sudo systemctl restart wallarm-tarantool
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```

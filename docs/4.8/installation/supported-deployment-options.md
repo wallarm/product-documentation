@@ -109,6 +109,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Linux packages for Wallarm OOB deployment on a supported OS</p>
         </div>
 
+        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/all-in-one/">
+            <h3>All-in-one installation</h3>
+            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+        </a>
+
         <div id="mirroring-by-web-servers-linux-packages-debian-10" class="do-card">
             <h3>Debian 10.x Buster</h3>
             <p>Wallarm packages for Debian 10.x Buster</p>
@@ -159,10 +164,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Wallarm packages for Oracle Linux 8.x</p>
         </div>
 
-        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/all-in-one/">
-            <h3>All-in-one installation</h3>
-            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
-        </a>
+        <div id="mirroring-by-web-servers-linux-packages-rhel-8" class="do-card">
+            <h3>RHEL 8.x</h3>
+            <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
+        </div>
+
     </div>
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-debian-10">
@@ -364,6 +370,30 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
+
+    <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-rhel-8">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/redhat.svg" />
+            <h3>RHEL 8.x</h3>
+            <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
+        </div>
+
+        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/nginx-stable/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+
+        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/nginx-distro/">
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
+        </a>
+    </div>
+
 </div>
 
 ## Public clouds
@@ -725,6 +755,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Install Wallarm on a supported OS as the NGINX module</p>
         </div>
 
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/all-in-one/">
+            <h3>All-in-one installation</h3>
+            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+        </a>
+
         <div id="inline-packages-linux-debian-10" class="do-card">
             <h3>Debian 10.x Buster</h3>
             <p>Wallarm packages for Debian 10.x Buster</p>
@@ -775,10 +810,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Wallarm packages for Oracle Linux 8.x</p>
         </div>
 
-        <a class="do-card" href="../../installation/inline/compute-instances/linux/all-in-one/">
-            <h3>All-in-one installation</h3>
-            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
-        </a>
+        <div id="inline-packages-linux-rhel-8" class="do-card">
+            <h3>RHEL 8.x</h3>
+            <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
+        </div>
+
     </div>
 
     <div class="do-nested" data-for="inline-packages-linux-debian-10">
@@ -981,6 +1017,29 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
     </div>
 
+    <div class="do-nested" data-for="inline-packages-linux-rhel-8">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/redhat.svg" />
+            <h3>RHEL 8.x</h3>
+            <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-stable/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-distro/">
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
+        </a>
+    </div>
+
     <div class="do-nested" data-for="inline-kubernetes">
         <div class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/kubernetes.svg" />
@@ -1131,6 +1190,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Install Wallarm on a supported OS as the NGINX module</p>
         </div>
 
+        <a class="do-card" href="../../installation/nginx/all-in-one/">
+            <h3>All-in-one installation</h3>
+            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+        </a>
+
         <div id="packages-linux-debian-10" class="do-card">
             <h3>Debian 10.x Buster</h3>
             <p>Wallarm packages for Debian 10.x Buster</p>
@@ -1181,10 +1245,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Wallarm packages for Oracle Linux 8.x</p>
         </div>
 
-        <a class="do-card" href="../../installation/nginx/all-in-one/">
-            <h3>All-in-one installation</h3>
-            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
-        </a>
+        <div id="packages-linux-rhel-8" class="do-card">
+            <h3>RHEL 8.x</h3>
+            <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
+        </div>
+
     </div>
 
     <div class="do-nested" data-for="packages-linux-debian-10">
@@ -1386,6 +1451,30 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
+
+    <div class="do-nested" data-for="packages-linux-rhel-8">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/redhat.svg" />
+            <h3>RHEL 8.x</h3>
+            <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
+        </div>
+
+        <a class="do-card" href="../../installation/nginx/dynamic-module/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+
+        <a class="do-card" href="../../installation/nginx/dynamic-module-from-distr/">
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
+        </a>
+    </div>
+
 </div>
 
 ## Custom deployment

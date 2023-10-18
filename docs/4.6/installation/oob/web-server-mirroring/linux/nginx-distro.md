@@ -45,6 +45,7 @@ The Wallarm module is compatible with distribution-provided NGINX on the followi
 * Debian 11.x (bullseye)
 * CentOS 7.x
 * AlmaLinux, Rocky Linux or Oracle Linux 8.x
+* RHEL 8.x
 
 ## Use cases
 
@@ -73,6 +74,10 @@ The Wallarm module is compatible with distribution-provided NGINX on the followi
     sudo systemctl restart nginx
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo systemctl restart nginx
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo systemctl restart nginx
     ```

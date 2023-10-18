@@ -21,3 +21,7 @@
         ```bash
         sudo yum remove wallarm-node-tarantool
         ```
+    === "RHEL 8.x"
+        ```bash
+        sudo yum remove wallarm-node-tarantool
+        ```

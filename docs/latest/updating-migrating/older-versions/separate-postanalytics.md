@@ -92,12 +92,18 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```
 === "CentOS 8"
     !!! warning "Support for CentOS 8.x has been deprecated"
-        Support for CentOS 8.x [has been deprecated](https://www.centos.org/centos-linux-eol/). You can install the Wallarm node on the AlmaLinux, Rocky Linux or Oracle Linux 8.x operating system insted.
+        Support for CentOS 8.x [has been deprecated](https://www.centos.org/centos-linux-eol/). You can install the Wallarm node on the AlmaLinux, Rocky Linux, Oracle Linux 8.x, or RHEL 8.x operating system instead.
 
         * [Installation instructions for NGINX `stable`](../../installation/nginx/dynamic-module.md)
         * [Installation instructions for NGINX from CentOS/Debian repositories](../../installation/nginx/dynamic-module-from-distr.md)
         * [Installation instructions for NGINX Plus](../../installation/nginx-plus.md)
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo yum remove wallarm-node-repo
+    sudo yum clean all
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
@@ -162,6 +168,10 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum update
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo yum update
+    ```
 
 ### Step 4: Update the node type
 
@@ -210,6 +220,10 @@ To replace the regular postanalytics node with the Wallarm node:
     sudo systemctl restart wallarm-tarantool
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```

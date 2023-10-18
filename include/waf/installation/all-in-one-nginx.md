@@ -24,3 +24,8 @@ Install the latest NGINX version of:
         sudo yum -y update 
         sudo yum install -y nginx
         ```
+    === "RHEL 8.x"
+        ```bash
+        sudo yum -y update 
+        sudo yum install -y nginx
+        ```

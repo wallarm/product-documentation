@@ -56,7 +56,7 @@ These instructions describe the steps to install Wallarm filtering node as a dyn
 
 --8<-- "../include/waf/root_perm_info.md"
 
---8<-- "../include/waf/restart-nginx-3.6.md"
+--8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
 ## 8. Configure sending traffic to the Wallarm instance
 

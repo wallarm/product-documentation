@@ -46,6 +46,7 @@ Wallarm supports the following operating systems:
 * CentOS 7.x
 * Amazon Linux 2.0.2021x and lower
 * AlmaLinux, Rocky Linux or Oracle Linux 8.x
+* RHEL 8.x
 
 ## Use cases
 
@@ -65,7 +66,7 @@ Wallarm supports the following operating systems:
 
 --8<-- "../include/waf/root_perm_info.md"
 
---8<-- "../include/waf/restart-nginx-3.6.md"
+--8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
 ## 8. Configure sending traffic to the Wallarm instance
 

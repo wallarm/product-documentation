@@ -275,6 +275,10 @@ Depending on the deployment approach being used, perform the following settings:
         ```bash
         sudo yum remove wallarm-node nginx-module-wallarm
         ```
+    === "RHEL 8.x"
+        ```bash
+        sudo yum remove wallarm-node nginx-module-wallarm
+        ```
 
 ## Manual upgrade
 
@@ -337,12 +341,18 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```
 === "CentOS 8"
     !!! warning "Support for CentOS 8.x has been deprecated"
-        Support for CentOS 8.x [has been deprecated](https://www.centos.org/centos-linux-eol/). You can install the Wallarm node on the AlmaLinux, Rocky Linux or Oracle Linux 8.x operating system insted.
+        Support for CentOS 8.x [has been deprecated](https://www.centos.org/centos-linux-eol/). You can install the Wallarm node on the AlmaLinux, Rocky Linux, Oracle Linux 8.x, or RHEL 8.x operating system instead.
 
         * [Installation instructions for NGINX `stable`](../../installation/nginx/dynamic-module.md)
         * [Installation instructions for NGINX from CentOS/Debian repositories](../../installation/nginx/dynamic-module-from-distr.md)
         * [Installation instructions for NGINX Plus](../../installation/nginx-plus.md)
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo yum remove wallarm-node-repo
+    sudo yum clean all
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
@@ -415,6 +425,10 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     ```bash
     sudo yum update
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo yum update
+    ```
 
 #### Filtering node and postanalytics on different servers
 
@@ -447,6 +461,10 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         sudo yum update
         ```
     === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo yum update
+        ```
+    === "RHEL 8.x"
         ```bash
         sudo yum update
         ```
@@ -496,6 +514,10 @@ To replace the regular node with the Wallarm node:
         sudo systemctl stop nginx
         ```
     === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo systemctl stop nginx
+        ```
+    === "RHEL 8.x"
         ```bash
         sudo systemctl stop nginx
         ```
@@ -588,7 +610,7 @@ server {
 
 ### Step 14: Restart NGINX
 
---8<-- "../include/waf/restart-nginx-3.6.md"
+--8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
 ### Step 15: Test Wallarm node operation
 

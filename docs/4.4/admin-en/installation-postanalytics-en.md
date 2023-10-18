@@ -76,6 +76,11 @@ The postanalytics module, like the other Wallarm modules, is installed and updat
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
+    ```
 
 ### 2. Install packages for the postanalytics module
 
@@ -94,6 +99,10 @@ Install the `wallarm-node-tarantool` package from the Wallarm repository for the
     sudo yum install -y wallarm-node-tarantool
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo yum install -y wallarm-node-tarantool
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo yum install -y wallarm-node-tarantool
     ```
@@ -149,6 +158,10 @@ To open the file in the editing mode, please use the command:
     ``` bash
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
+=== "RHEL 8.x"
+    ``` bash
+    sudo vim /etc/sysconfig/wallarm-tarantool
+    ```
 
 #### Memory
 
@@ -177,6 +190,10 @@ To set the address of the separate postanalytics server:
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
     === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ``` bash
+        sudo vim /etc/sysconfig/wallarm-tarantool
+        ```
+    === "RHEL 8.x"
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
@@ -225,6 +242,10 @@ To apply the settings to the postanalytics and the NGINX‑Wallarm modules:
         ```bash
         sudo systemctl restart wallarm-tarantool
         ```
+    === "RHEL 8.x"
+        ```bash
+        sudo systemctl restart wallarm-tarantool
+        ```
 2. Restart the NGINX service on the server with the NGINX‑Wallarm module:
 
     === "Debian"
@@ -240,6 +261,10 @@ To apply the settings to the postanalytics and the NGINX‑Wallarm modules:
         sudo systemctl restart nginx
         ```
     === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "RHEL 8.x"
         ```bash
         sudo systemctl restart nginx
         ```

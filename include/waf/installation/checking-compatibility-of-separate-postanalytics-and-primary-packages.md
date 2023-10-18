@@ -31,3 +31,10 @@
         # run from the server with the postanalytics module
         yum list wallarm-node-tarantool
         ```
+    === "RHEL 8.x"
+        ```bash
+        # run from the server with primary NGINX-Wallarm module
+        yum list wallarm-node-nginx
+        # run from the server with the postanalytics module
+        yum list wallarm-node-tarantool
+        ```

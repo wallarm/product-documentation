@@ -26,7 +26,7 @@ The processing of requests in the Wallarm node consists of two stages:
 
 The schemes below depict module interaction in two scenarios: when installed on the same server and on different servers.
 
-=== "NGINX-Wallarm and postanalytics on the same server"
+=== "NGINX-Wallarm and postanalytics on one server"
     ![Traffic flow between postanalytics and nginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
 === "NGINX-Wallarm and postanalytics on different servers"
     ![Traffic flow between postanalytics and nginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
@@ -53,12 +53,10 @@ Starting from Wallarm node 4.6, to install postanalytics separately, it is recom
 To download all-in-one Wallarm installation script, execute the command:
 
 === "x86_64 version"
-
     ```bash
     curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.12.x86_64-glibc.sh
     ```
-=== "ARM64 version:
-
+=== "ARM64 version"
     ```bash
     curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.12.aarch64-glibc.sh
     ```
@@ -171,6 +169,10 @@ Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Walla
     ```bash
     sudo systemctl restart nginx
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo systemctl restart nginx
+    ```
 
 ### Step 6: Check the NGINX‑Wallarm and separate postanalytics modules interaction
 
@@ -273,6 +275,11 @@ The postanalytics module, like the other Wallarm modules, is installed and updat
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
+    ```
 
 ### Step 2: Install packages for the postanalytics module
 
@@ -291,6 +298,10 @@ Install the `wallarm-node-tarantool` package from the Wallarm repository for the
     sudo yum install -y wallarm-node-tarantool
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo yum install -y wallarm-node-tarantool
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo yum install -y wallarm-node-tarantool
     ```
@@ -354,6 +365,10 @@ To open the file in the editing mode, please use the command:
     ``` bash
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
+=== "RHEL 8.x"
+    ``` bash
+    sudo vim /etc/sysconfig/wallarm-tarantool
+    ```
 
 #### Memory
 
@@ -382,6 +397,10 @@ To set the address of the separate postanalytics server:
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
     === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ``` bash
+        sudo vim /etc/sysconfig/wallarm-tarantool
+        ```
+    === "RHEL 8.x"
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
@@ -420,6 +439,10 @@ To apply the settings to the postanalytics module:
     sudo systemctl restart wallarm-tarantool
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
@@ -476,6 +499,10 @@ Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Walla
     sudo systemctl restart nginx
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo systemctl restart nginx
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo systemctl restart nginx
     ```

@@ -89,6 +89,11 @@ Wallarm node is installed and updated from the Wallarm repositories. To add repo
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
+    ```
 
 ### 3. Install Wallarm packages
 
@@ -115,6 +120,10 @@ To run postanalytics and process the requests on the same server, the following 
     ```bash
     sudo yum install -y wallarm-node nginx-plus-module-wallarm
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo yum install -y wallarm-node nginx-plus-module-wallarm
+    ```
 
 #### Request processing and postanalytics on different servers
 
@@ -135,6 +144,10 @@ To run postanalytics and process the requests on different servers, the followin
         sudo yum install -y wallarm-node-nginx nginx-plus-module-wallarm
         ```
     === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo yum install -y wallarm-node-nginx nginx-plus-module-wallarm
+        ```
+    === "RHEL 8.x"
         ```bash
         sudo yum install -y wallarm-node-nginx nginx-plus-module-wallarm
         ```
@@ -177,13 +190,13 @@ To run postanalytics and process the requests on different servers, the followin
 
 ### 6. Update Wallarm node configuration
 
---8<-- "../include/waf/installation/nginx-waf-min-configuration-3.6.md"
+--8<-- "../include/waf/installation/nginx-waf-min-configuration-4.4.md"
 
 ### 7. Restart NGINX Plus
 
 --8<-- "../include/waf/root_perm_info.md"
 
---8<-- "../include/waf/restart-nginx-3.6.md"
+--8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
 ### 8. Test Wallarm node operation
 

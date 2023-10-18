@@ -87,6 +87,12 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo yum clean all
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo yum remove wallarm-node-repo
+    sudo yum clean all
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
+    ```
 
 **Debian and Ubuntu**
 
@@ -146,6 +152,10 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum update
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo yum update
+    ```
 
 ### Step 3: Update the node type
 
@@ -194,6 +204,10 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo systemctl restart wallarm-tarantool
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```

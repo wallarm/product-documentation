@@ -192,7 +192,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
 ## Step 4: Restart NGINX
 
---8<-- "../include/waf/restart-nginx-3.6.md"
+--8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
 ## Step 5: Test Wallarm node operation
 

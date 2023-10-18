@@ -64,6 +64,10 @@ NGINX Open Source can be obtained from nginx.org or the default repositories of 
     ```bash
     sudo systemctl restart nginx
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo systemctl restart nginx
+    ```
 
 ## 7. Configure sending traffic to the Wallarm instance
 

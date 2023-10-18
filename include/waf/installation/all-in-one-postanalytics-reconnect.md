@@ -35,3 +35,7 @@ Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Walla
     ```bash
     sudo systemctl restart nginx
     ```
+=== "RHEL 8.x"
+    ```bash
+    sudo systemctl restart nginx
+    ```
