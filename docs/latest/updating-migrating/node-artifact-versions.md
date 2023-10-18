@@ -52,6 +52,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 * Added support for [API tokens](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation) to create filtering nodes and connect them to the Cloud during solution deployment. With API tokens, you can control the lifetime of your tokens and enhance node organization in the UI by setting a node group name.
 
     Node group names are set using the `config.wallarm.api.nodeGroup` parameter in **values.yaml**, with `defaultSidecarGroup` as the default name. Optionally, you can control the names of node groups based on the applications' pods using the `sidecar.wallarm.io/wallarm-node-group` annotation.
+* Fix [CVE-2023-38039](https://github.com/advisories/GHSA-99j9-jf36-9747)
 
 ## NGINX-based Docker image
 
