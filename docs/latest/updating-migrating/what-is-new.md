@@ -20,6 +20,12 @@ This change introduces the new configuration parameters which by default are set
 * The [`controller.config.wallarm-acl-export-enable`](../admin-en/configure-kubernetes-en.md#global-controller-settings) value for the NGINX Ingress controller chart.
 * The [`config.wallarm.aclExportEnable`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmaclexportenable) chart value and [`sidecar.wallarm.io/wallarm-acl-export-enable`](../installation/kubernetes/sidecar-proxy/pod-annotations.md) pod's annotation for the Sidecar Controller solution.
 
+## Wallarm NGINX Ingress Controller for ARM64
+
+We now support ARM64 processors with the Wallarm NGINX Ingress Controller. As ARM64 gains traction in server solutions, we are staying up-to-date to meet our customers' needs. This enables enhanced security for API environments, covering both x86 and ARM64 architectures, providing flexibility and protection.
+
+To deploy on ARM64 machines, adjust the `nodeSelector` values in the Helm chart, as explained in our [deployment article](../admin-en/installation-kubernetes-en.md).
+
 ## NGINX-based Docker image verification with official signature
 
 Beginning with release 4.8, Wallarm is now signing its [official NGINX‑based Docker image](https://hub.docker.com/r/wallarm/node) with its official public key.

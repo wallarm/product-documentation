@@ -28,7 +28,9 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 4.8.1 (2023-10-19)
 
-* TBD
+* Added support for ARM64 processors
+* Fix the bug when Wallarm API token could not be applied by `helm upgrade`
+* Fix the following CVE in golang.org/x/net: [CVE-2023-39325](https://github.com/advisories/GHSA-4374-p667-p6c8), [CVE-2023-3978](https://github.com/advisories/GHSA-2wrh-6pvc-2jm9), [CVE-2023-44487](https://github.com/advisories/GHSA-qppj-fm5r-hxr3)
 
 ### 4.8.0 (2023-10-19)
 
