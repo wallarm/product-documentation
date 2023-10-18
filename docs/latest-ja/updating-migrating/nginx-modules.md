@@ -414,7 +414,7 @@
 
 ### ステップ6：NGINXを再開する
 
---8<-- "../include-ja/waf/restart-nginx-4.4-and-above.md"
+--8<-- "../include-ja/waf/restart-nginx-3.6.md"
 
 ### ステップ7：Wallarmノード操作のテスト
 
