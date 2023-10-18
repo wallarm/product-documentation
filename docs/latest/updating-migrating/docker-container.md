@@ -36,7 +36,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
     ```
 === "Envoy-based image"
     ``` bash
-    docker pull wallarm/envoy:4.6.2-1
+    docker pull wallarm/envoy:4.8.0-1
     ```
 
 ## Step 2: Update the Wallarm blocking page (if upgrading NGINX-based image)
