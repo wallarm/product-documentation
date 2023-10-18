@@ -34,13 +34,13 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 * Initial release 4.8, [see changelog](what-is-new.md)
 
-## Helm chart for Kong Ingress controller
+<!-- ## Helm chart for Kong Ingress controller
 
 [How to upgrade](kong-ingress-controller.md)
 
 ### 4.8.0 (2023-03-28)
 
-* Initial release 4.8, [see changelog](what-is-new.md)
+* Initial release 4.8, [see changelog](what-is-new.md) -->
 
 ## Helm chart for Sidecar
 
@@ -69,7 +69,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 * Initial release 4.8, [see changelog](what-is-new.md)
 
-## Amazon Machine Image (AMI)
+<!-- ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
 
@@ -86,4 +86,4 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### wallarm-node-4-6-20230324-114215 (2023-03-28)
 
-* Initial release 4.8, [see changelog](what-is-new.md)
+* Initial release 4.8, [see changelog](what-is-new.md) -->
