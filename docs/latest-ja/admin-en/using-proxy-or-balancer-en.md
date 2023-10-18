@@ -75,7 +75,7 @@ Wallarmノードが[IPCソケット](https://en.wikipedia.org/wiki/Unix_domain_s
     ```
 5. NGINXを再起動します：
 
-    --8<-- "../include-ja/waf/restart-nginx-4.4-and-above.md"
+    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
 
     NGINXは`real_ip_header`ディレクティブで指定されたヘッダの値を変数`$remote_addr`に割り当て、その結果、Wallarmノードがこの変数からオリジナルのクライアントIPアドレスを読み取ることが可能になります。
 6. [設定をテスト](#設定のテスト)します。
@@ -112,7 +112,7 @@ Wallarmノードが[IPCソケット](https://en.wikipedia.org/wiki/Unix_domain_s
     * アドレス`<IP_ADDRESS_OF_YOUR_PROXY>`から発生するリクエストについては、NGINXはヘッダ`PROXY`に含まれるソースアドレスを変数`$remote_addr`に割り当てるため、Wallarmノードはこの変数からオリジナルのクライアントIPアドレスを読み取ります。
 5. NGINXを再起動します：
 
-    --8<-- "../include-ja/waf/restart-nginx-4.4-and-above.md"
+    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
 6. [設定をテスト](#設定のテスト)します。
 
 オリジナルのクライアントIPアドレスをログに含めるためには、`proxy_set_header`ディレクティブを追加し、`log_format`ディレクティブの変数リストをNGINXの設定で編集する必要があります。詳細については、[NGINXのログ指示](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#logging-the-original-ip-address)をご覧ください。
