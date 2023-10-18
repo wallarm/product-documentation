@@ -86,10 +86,10 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.8 
     === "API token"
         ```bash
         # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.0.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.0.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -97,10 +97,10 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.8 
     === "Node token"
         ```bash
         # If using the x86_64 version:
-        sudo sh wallarm-4.6.12.x86_64-glibc.sh filtering
+        sudo sh wallarm-4.8.0.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo sh wallarm-4.6.12.aarch64-glibc.sh filtering
+        sudo sh wallarm-4.8.0.aarch64-glibc.sh filtering
         ```
 
 ### Step 6: Transfer NGINX and postanalytics configuration from old node machine to new
@@ -237,19 +237,19 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.6/x86_64/wallarm-node-repo-4.6-0.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
     ```
 === "RHEL 8.x"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -267,19 +267,19 @@ Delete the previous Wallarm repository address and add a repository with a new W
             Official NGINX versions (stable and Plus) and, as a result, Wallarm node 4.4 and above cannot be installed on Debian 10.x (buster). Please use this OS only if [NGINX is installed from Debian/CentOS repositories](../installation/nginx/dynamic-module-from-distr.md).
 
         ```bash
-        deb https://repo.wallarm.com/debian/wallarm-node buster/4.6/
+        deb https://repo.wallarm.com/debian/wallarm-node buster/4.8/
         ```
     === "Debian 11.x (bullseye)"
         ```bash
-        deb https://repo.wallarm.com/debian/wallarm-node bullseye/4.6/
+        deb https://repo.wallarm.com/debian/wallarm-node bullseye/4.8/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/4.6/
+        deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/4.8/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.6/
+        deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.8/
         ```
 
 ### Step 3: Upgrade Wallarm packages
@@ -294,7 +294,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
         --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
     === "Ubuntu"
@@ -303,7 +303,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
         --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
     === "CentOS or Amazon Linux 2.0.2021x and lower"
@@ -338,7 +338,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
         --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
     === "Ubuntu"
@@ -347,7 +347,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
         --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
     === "CentOS or Amazon Linux 2.0.2021x and lower"

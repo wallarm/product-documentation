@@ -37,11 +37,11 @@ Use the procedure below to upgrade the end‑of‑life postanalytics module (ver
 
 ### Step 3: Download all-in-one Wallarm installer
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download-4.6.md"
 
 ### Step 4: Run all-in-one Wallarm installer to install postanalytics
 
---8<-- "../include/waf/installation/all-in-one-postanalytics.md"
+--8<-- "../include/waf/installation/all-in-one-postanalytics-4.6.md"
 
 ### Step 5: Update API port
 

@@ -6,7 +6,11 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 History of updates simultaneously applies to the x86_64 and ARM64 (beta) versions of [all-in-one installer](../installation/nginx/all-in-one.md).
 
-### 4.8.12 (2023-06-30)
+[How to migrate from DEB/RPM packages](nginx-modules.md)
+
+[How to migrate from previous all-in-one installer version](all-in-one.md)
+
+### 4.8.0 (2023-10-19)
 
 * Initial release 4.8, [see changelog](what-is-new.md)
 
@@ -14,7 +18,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](nginx-modules.md)
 
-### 4.8.0 (2023-03-28)
+### 4.8.0 (2023-10-19)
 
 * Initial release 4.8, [see changelog](what-is-new.md)
 

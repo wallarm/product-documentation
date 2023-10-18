@@ -55,7 +55,7 @@ The Wallarm module is compatible with distribution-provided NGINX on the followi
 
 --8<-- "../include/waf/installation/linux-packages/requirements-nginx-distro.md"
 
---8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-distro.md"
+--8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-distro-4.6.md"
 
 ## 5. Enable Wallarm to analyze the traffic
 

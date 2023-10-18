@@ -47,7 +47,7 @@ NGINX Open Source can be obtained from nginx.org or the default repositories of 
 
 --8<-- "../include/waf/installation/linux-packages/requirements-nginx-distro.md"
 
---8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-distro.md"
+--8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-distro-4.6.md"
 
 ## 5. Enable Wallarm to analyze the traffic
 
