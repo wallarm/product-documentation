@@ -1,6 +1,6 @@
-# Endpoint Risk Score
+# Endpoint Risk Score <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-API Discovery automatically calculates a **risk score** for each endpoint in your API inventory. The risk score allows you to understand which endpoints are most likely to be an attack target and therefore should be the focus of your security efforts.
+[API Discovery](overview.md) automatically calculates a **risk score** for each endpoint in your API inventory. The risk score allows you to understand which endpoints are most likely to be an attack target and therefore should be the focus of your security efforts.
 
 ## Risc score factors
 
@@ -8,7 +8,7 @@ The risk score is made up of various factors, including:
 
 * Presence of [**active vulnerabilities**](../about-wallarm/detecting-vulnerabilities.md) that may result in unauthorized data access or corruption.
 * Ability to **upload files to the server** - endpoints are frequently targeted by [Remote Code Execution (RCE)](../attacks-vulns-list.md#remote-code-execution-rce) attacks, where files with malicious code are uploaded to a server. To secure these endpoints, uploaded file extensions and contents should be properly validated as recommended by the [OWASP Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
-* Presence of the [**variable path parts**](overview.md#variability-in-endpoints), such as user IDs, e.g. `/api/articles/author/{parameter_X}`. Attackers can manipulate object IDs and, in case of insufficient request authentication, either read or modify the object sensitive data ([**BOLA attacks**](../admin-en/configuration-guides/protecting-against-bola.md)).
+* Presence of the [**variable path parts**](exploring.md#variability-in-endpoints), such as user IDs, e.g. `/api/articles/author/{parameter_X}`. Attackers can manipulate object IDs and, in case of insufficient request authentication, either read or modify the object sensitive data ([**BOLA attacks**](../admin-en/configuration-guides/protecting-against-bola.md)).
 * Presence of the parameters with [**sensitive data**](overview.md#sensitive-data-detection) - rather than directly attacking APIs, attackers can steal sensitive data and use it to seamlessly reach your resources.
 * A **large number of parameters** increasing the number of attack directions.
 * **XML or JSON objects** passed in the endpoint request may be used by the attackers to transfer malicious XML external entities and injections to the server.

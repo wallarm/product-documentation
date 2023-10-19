@@ -9,4 +9,3 @@ Watch our demo video to become familiar with how you can detect [shadow and orph
 **Related documentation articles**
 
 * [Rogue API detection](../api-discovery/overview.md#shadow-orphan-and-zombie-apis) with the **API Discovery** module
-* [Uploading your specifications for comparison to find rogue APIs](../api-discovery/rogue-api.md)

@@ -1,6 +1,4 @@
-# API Discovery Dashboard <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
-
-The **API Discovery** Wallarm dashboard summarizies data about your API collected by the **API Discovery** module. It provides a comprehensive overview of your API inventory based on the metrics:
+The **API Discovery** Wallarm dashboard summarizes data about your API collected by the **API Discovery** module. It provides a comprehensive overview of your API inventory based on the metrics:
 
 * Number of endpoints by risk level
 * The [top risky][apid-risk-score] endpoints among the whole API inventory and among the newly discovered endpoints in the last 7 days

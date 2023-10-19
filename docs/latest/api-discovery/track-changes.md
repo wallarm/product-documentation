@@ -1,6 +1,6 @@
-# Tracking changes in API
+# Tracking changes in API <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-If you update the API and the traffic structure is adjusted, API Discovery updates the built API inventory.
+If you update the API and the tra sffic structure is adjusted, API Discovery updates the [built API inventory](overview.md).
 
 ## Overview
 

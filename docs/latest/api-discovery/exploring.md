@@ -1,19 +1,8 @@
-# Exploring API Inventory
+# Exploring API Inventory <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-As soon as the **API Discovery** module has built the catalog of your endpoints (your API inventory), you can exlore the presented information to understand and manage the security of your API. Learn from this article some things to be considered before exploring as well as how to go through your API inventory with Wallarm Console.
+As soon as the [API Discovery](overview.md) module has built the catalog of your endpoints (your API inventory), you can explore the presented information to understand and manage the security of your API. Learn from this article some things to be considered before exploring as well as how to go through your API inventory with Wallarm Console.
 
 ## Things to consider
-
-### Security of data uploaded to the Wallarm Cloud
-
-API Discovery analyzes most of the traffic locally. The module sends to the Wallarm Cloud only the discovered endpoints, parameter names and various statistical data (time of arrival, their number, etc.) All data is transmitted via a secure channel: before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm.
-
-On the Cloud side, hashed data is used for statistical analysis (for example, when quantifying requests with identical parameters).
-
-Other data (endpoint values, request methods, and parameter names) is not hashed before being uploaded to the Wallarm Cloud, because hashes cannot be restored to their original state which would make building API inventory impossible.
-
-!!! warning "Important"
-    Wallarm does not send the values that are specified in the parameters to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
 
 ### Parameter format and data type
 
@@ -69,7 +58,7 @@ Click the endpoint to expand its parameters and view which type was automaticall
 
 Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
 
-## Exploring API inventory
+## Viewing API inventory
 
 The **API Discovery** section of Wallarm Console enables you to manage your [API inventory](overview.md), as well as to fine-tune its discovery. This guide instructs you on using this section.
 
@@ -121,7 +110,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 
 * Only attacked endpoints that you can sort by the number of hits.
 * Find the most vulnerable endpoints characterized by processing sensitive data and active vulnerabilities of the high risk level. Exploiting vulnerabilities of a high risk level allows attackers to perform many malicious actions with the system including stealing sensitive data that the endpoint processes/stores.
-* Find rogue endpoints: shadow, orphan and zombie
+* Find [rogue endpoints](rogue-api.md): shadow, orphan and zombie.
 * Find the endpoints that have been changed or newly discovered in the last week and that process PII data. This kind of request can help you to stay up to date with critical changes in your APIs.
 * Find the endpoints being used to upload data to your server by the PUT or POST calls. Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
 * Find the endpoints processing customers' bank card data. With this request, you can check that sensitive data is processed only by secured endpoints.
@@ -147,7 +136,7 @@ Each parameter information includes:
     * Medical data like medical license number
     * Personally identifiable information (PII) like full name, passport number or SSN
 
-* [Type/format](overview.md#defining-the-format-and-data-type-in-parameters) of data sent in this parameter
+* [Type/format](#parameter-format-and-data-type) of data sent in this parameter
 * Date and time when parameter information was last updated
 
 ### Monitoring attacks on API endpoints

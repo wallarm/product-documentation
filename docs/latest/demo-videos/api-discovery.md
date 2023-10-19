@@ -9,4 +9,4 @@ Watch our demo video to discover the full potential of the Wallarm platform's [*
 **Related documentation articles**
 
 * [API Discovery overview](../api-discovery/overview.md)
-* [API Discovery - using built API inventory](../api-discovery/exploring.md)
+* [API Discovery - exploring built API inventory](../api-discovery/exploring.md)

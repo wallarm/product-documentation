@@ -1,6 +1,6 @@
-# API Discovery <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Overview <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-The **API Discovery** module of the Wallarm platform [builds](setup.md#enable) your application REST API inventory based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API inventory based on the analysis results.
+The **API Discovery** module of the Wallarm platform builds your application REST API inventory based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API inventory based on the analysis results.
 
 The API built inventory includes the following elements:
 
@@ -41,7 +41,7 @@ API Discovery relies on request statistics and uses sophisticated algorithms to 
 
 ### Traffic processing
 
-API Discovery uses a hybrid approach to conduct analysis locally and in the Cloud. This approach enables a [privacy-first process](exploring.md#security-of-data-uploaded-to-the-wallarm-cloud) where request data and sensitive data are kept locally while using the power of the Cloud for the statistics analysis:
+API Discovery uses a hybrid approach to conduct analysis locally and in the Cloud. This approach enables a [privacy-first process](#security-of-data-uploaded-to-the-wallarm-cloud) where request data and sensitive data are kept locally while using the power of the Cloud for the statistics analysis:
 
 1. API Discovery analyzes legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed.
 1. According to this data, statistics are made and sent to the Сloud.
@@ -75,10 +75,35 @@ API Discovery detects and highlights sensitive data consumed and carried by your
 * Medical data like medical license number
 * Personally identifiable information (PII) like full name, passport number or SSN
 
-## Check API Discovery in playground
+### Security of data uploaded to the Wallarm Cloud
 
-To explore API Discovery even before signing up and deploying the node to your environment, use [Wallarm Playground](../quickstart/#learn-wallarm-in-playground).
+API Discovery analyzes most of the traffic locally. The module sends to the Wallarm Cloud only the discovered endpoints, parameter names and various statistical data (time of arrival, their number, etc.) All data is transmitted via a secure channel: before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm.
+
+On the Cloud side, hashed data is used for statistical analysis (for example, when quantifying requests with identical parameters).
+
+Other data (endpoint values, request methods, and parameter names) is not hashed before being uploaded to the Wallarm Cloud, because hashes cannot be restored to their original state which would make building API inventory impossible.
+
+!!! warning "Important"
+    Wallarm does not send the values that are specified in the parameters to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
+
+## API Discovery demo video
+
+Watch API Discovery demo video:
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/0bRHVtpWkJ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+## Checking API Discovery in playground
+
+To try the module even before signing up and deploying the node to your environment, explore [API Discovery in Wallarm Playground](https://my.us1.wallarm.com/api-discovery).
 
 In Playground, you can access the API Discovery view like it is filled with real data and thus learn and try out how the module works, and get some useful examples of its usage in the read-only mode.
 
 ![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
+
+## Enabling and configuring API Discovery
+
+API Discovery is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node installation, except for the Debian 11.x and Ubuntu 22.04 individual packages. During node deployment, it installs the API Discovery module but keeps it disabled by default.
+
+To start using API Discovery, enable and configure it as described in [API Discovery Setup](setup.md).

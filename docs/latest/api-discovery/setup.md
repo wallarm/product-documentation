@@ -1,6 +1,6 @@
-# API Discovery Setup
+# API Discovery Setup <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-This article describes how to enable, configure and debug the **API Discovery** module.
+This article describes how to enable, configure and debug the [API Discovery](overview.md) module.
 
 ## Enable
 
@@ -43,11 +43,6 @@ You may enable/disable API Discovery for all applications or only the selected o
 1. Enable API Discovery for the required applications in Wallarm Console → **API Discovery** → **Configure API Discovery**.
 
     ![API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
-
-    !!! info "Access to API Discovery settings"
-        Only users with the * **Administrator** or **Analyst** [role](../user-guides/settings/users.md#user-roles) can access the API Discovery settings. Contact your administrator if you do not have this access.
-
-![API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
 When you add a new application in **Settings** → **[Applications](../user-guides/settings/applications.md)**, it is automatically added to the list of applications for API discovery in the **disabled** state.
 

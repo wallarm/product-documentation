@@ -1,6 +1,6 @@
-# Shadow, Orphan, and Zombie API
+# Shadow, Orphan, and Zombie API <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-API Discovery allows uncovering rogue (shadow, orphan and zombie) APIs.
+[API Discovery](overview.md) allows uncovering rogue (shadow, orphan and zombie) APIs.
 
 ## Terminology
 
