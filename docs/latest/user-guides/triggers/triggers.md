@@ -18,22 +18,6 @@ Triggers are configured in the **Triggers** section of Wallarm Console. The sect
 
 ![Section to configure triggers](../../images/user-guides/triggers/triggers-section.png)
 
-## List of triggers
-
-| Trigger | What can you do with it? | Details |
-| ------- | ----------------- |----------------- |
-| `Brute force` | Set time interval and block IP if number of requests originated from this IP whithin this interval is more than `x`. If you do not want to block, just set trigger to mark requests as `Brute force` but let them pass. | → [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md) |
-| `Forced browsing` | Subtype of `Brute force` - only IP's requests with 404 response codes are counted. Attacks are marked as `Forced browsing`. | → [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md) |
-| `BOLA` | Set time interval and block IP if number of requests with BOLA attack signs from this IP is more than `x`. Set trigger only to mark as `BOLA`, if you do not want to block. Create BOLA triggers manually or set the API Discovery's BOLA autodetection trigger. | → [Manual creation of BOLA trigger](../../admin-en/configuration-guides/protecting-against-bola.md#manual-creation-of-bola-trigger) <br> → [Automatic BOLA protection for endpoints discovered by API Discovery](../../admin-en/configuration-guides/protecting-against-bola.md#automatic-bola-protection-for-endpoints-discovered-by-api-discovery) |
-| Number of malicious payloads | TBD | TBD |
-| Number of attacks | TBD | TBD |
-| Number of hits | TBD | TBD |
-| Number of incidents | TBD | TBD |
-| Denylisted IP | TBD | TBD |
-| Changes in API | TBD | TBD |
-| Hits from the same IP | TBD | TBD |
-| User added | TBD | TBD |
-
 ## Creating triggers
 
 1. Click the **Create trigger** button.
