@@ -40,14 +40,6 @@ In the Wallarm Console UI:
 
 1. Click **Add integration**.
 
-## Disabling and deleting an integration
-
---8<-- "../include/integrations/integrations-disable-delete.md"
-
-## System unavailability and incorrect integration parameters
-
---8<-- "../include/integrations/integration-not-working.md"
-
 ## Types of Wallarm logs
 
 Overall, Wallarm can log in Sentinel the records of the following types:
@@ -76,3 +68,11 @@ Overall, Wallarm can log in Sentinel the records of the following types:
 | Changes in API inventory (if the corresponding [trigger](../../triggers/triggers.md) is active) | `api_structure_changed_CL` |
 | Amount of attacks exceeds the threshold (if the corresponding [trigger](../../triggers/triggers.md) is active) | `attacks_exceeded_CL` |
 | New denylisted IP (if the corresponding [trigger](../../triggers/triggers.md) is active) | `ip_blocked_CL` |
+
+## Disabling and deleting an integration
+
+--8<-- "../include/integrations/integrations-disable-delete.md"
+
+## System unavailability and incorrect integration parameters
+
+--8<-- "../include/integrations/integration-not-working.md"

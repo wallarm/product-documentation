@@ -125,54 +125,6 @@ Notifications are sent in JSON format. The set of JSON objects depends on the ev
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
 1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
-
-    Test webhook example:
-
-    ```json
-    [
-        {
-            summary:"[Test message] [Test partner(US)] New vulnerability detected",
-            description:"Notification type: vuln
-
-                        New vulnerability was detected in your system.
-
-                        ID: 
-                        Title: Test
-                        Domain: example.com
-                        Path: 
-                        Method: 
-                        Discovered by: 
-                        Parameter: 
-                        Type: Info
-                        Threat: Medium
-
-                        More details: https://us1.my.wallarm.com/object/555
-
-
-                        Client: TestCompany
-                        Cloud: US
-                        ",
-            details:{
-                client_name:"TestCompany",
-                cloud:"US",
-                notification_type:"vuln",
-                vuln_link:"https://us1.my.wallarm.com/object/555",
-                vuln:{
-                    domain:"example.com",
-                    id:null,
-                    method:null,
-                    parameter:null,
-                    path:null,
-                    title:"Test",
-                    discovered_by:null,
-                    threat:"Medium",
-                    type:"Info"
-                }
-            }
-        }
-    ]
-    ```
-
 1. Click **Add integration**.
 
 ## Setting up additional alerts

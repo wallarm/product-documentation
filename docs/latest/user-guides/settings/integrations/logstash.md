@@ -1,6 +1,6 @@
 # Logstash
 
-[Logstash](https://www.elastic.co/logstash) is an open-source data processing and log management tool developed by Elastic, the same company behind Elasticsearch and Kibana. Logstash is part of the Elastic Stack, also known as the ELK Stack, which is a collection of tools used for searching, analyzing, and visualizing data in real-time. You can set up Wallarm to send notifications of detected events to Logstash.
+[Logstash](https://www.elastic.co/logstash) is an open-source data processing and log management tool developed by Elastic. You can set up Wallarm to send notifications of detected events to Logstash.
 
 ## Notification format
 

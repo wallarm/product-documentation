@@ -2,7 +2,7 @@
 
 #   Splunk
 
-[Splunk](https://www.splunk.com/) is a platform designed for searching, monitoring, and analyzing machine-generated data, including logs, events, and other forms of operational and business data. It helps organizations gain insights into their data, troubleshoot issues, monitor performance, and make data-driven decisions across various domains, including IT operations, security, and business intelligence. You can set up Wallarm to send alerts to Splunk.
+[Splunk](https://www.splunk.com/) is a platform designed for searching, monitoring, and analyzing machine-generated data, including logs, events, and other forms of operational and business data.  You can set up Wallarm to send alerts to Splunk.
 
 ##  Setting up integration
 
@@ -84,6 +84,10 @@ In Wallarm UI:
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
+## Getting events organized into a dashboard
+
+--8<-- "../include/integrations/application-for-splunk.md"
+
 ## Disabling and deleting an integration
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
@@ -91,7 +95,3 @@ In Wallarm UI:
 ## System unavailability and incorrect integration parameters
 
 --8<-- "../include/integrations/integration-not-working.md"
-
-## Getting events organized into a dashboard
-
---8<-- "../include/integrations/application-for-splunk.md"

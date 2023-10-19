@@ -1,6 +1,6 @@
 # Sumo Logic
 
-[Sumo Logic](https://www.sumologic.com/) is a cloud-native, machine data analytics platform that provides organizations with real-time insights into their IT operations, security, and application performance. It enables organizations to collect, monitor, analyze, and visualize machine data, including logs and metrics, from various sources in a centralized and scalable manner. You can set up Wallarm to send messages to Sumo Logic.
+[Sumo Logic](https://www.sumologic.com/) is a cloud-native, machine data analytics platform that provides organizations with real-time insights into their IT operations, security, and application performance.  You can set up Wallarm to send messages to Sumo Logic.
 
 ## Setting up integration
 

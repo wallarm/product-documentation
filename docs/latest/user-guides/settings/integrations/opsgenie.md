@@ -1,6 +1,6 @@
 # Opsgenie
 
-You can set up Wallarm to send alerts to Opsgenie.
+[Opsgenie](https://www.atlassian.com/software/opsgenie) is an incident management and alerting tool by Atlassian. You can set up Wallarm to send alerts to Opsgenie.
 
 ## Setting up integration
 

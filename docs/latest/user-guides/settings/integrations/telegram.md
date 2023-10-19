@@ -1,6 +1,6 @@
 # Telegram
 
-[Telegram](https://telegram.org/) is a cloud-based instant messaging platform and social media application. It allows users to send text messages, multimedia files, make voice and video calls, and engage in group chats or channels. Telegram is available on various platforms, including mobile devices and desktop computers. You can set up Wallarm to send scheduled reports and instant notifications to Telegram.
+[Telegram](https://telegram.org/) is a cloud-based instant messaging platform and social media application. You can set up Wallarm to send scheduled reports and instant notifications to Telegram.
 
 Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period. Notifications include brief details of triggered events.
 

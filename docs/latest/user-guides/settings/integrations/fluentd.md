@@ -1,6 +1,6 @@
 # Fluentd
 
-[Fluentd](https://www.fluentd.org/) is an open-source data collection software tool that serves as a versatile and lightweight data aggregator and transport mechanism. It is designed for the purpose of collecting, processing, and forwarding log data and other event data from various sources to multiple destinations. You can set up Wallarm to send notifications of detected events to Fluentd by creating an appropriate integration in Wallarm Console.
+[Fluentd](https://www.fluentd.org/) is an open-source data collection software tool that serves as a versatile and lightweight data aggregator and transport mechanism. You can set up Wallarm to send notifications of detected events to Fluentd by creating an appropriate integration in Wallarm Console.
 
 ## Notification format
 
