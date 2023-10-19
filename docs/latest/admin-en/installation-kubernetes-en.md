@@ -65,32 +65,20 @@ To install the Wallarm Ingress Controller:
 
     When using an API token, specify a node group name in the `nodeGroup` parameter. Your node will be assigned to this group, shown in the Wallarm Console's **Nodes** section. The default group name is `defaultIngressGroup`.
 
-    === "x86_64 version"
+    === "US Cloud"
         ```yaml
         controller:
           wallarm:
             enabled: "true"
             token: "<NODE_TOKEN>"
-            apiHost: "us1.api.wallarm.com" # Delete this line if using the Wallarm EU Cloud
+            apiHost: "us1.api.wallarm.com"
             # nodeGroup: defaultIngressGroup
         ```
-    === "ARM64 version"
+    === "EU Cloud"
         ```yaml
         controller:
-          nodeSelector:
-            kubernetes.io/arch: arm64
-          admissionWebhooks:
-            nodeSelector:
-              kubernetes.io/arch: arm64
-            patch:
-              nodeSelector:
-                kubernetes.io/arch: arm64
           wallarm:
-            tarantool:
-              nodeSelector:
-                kubernetes.io/arch: arm64
             enabled: "true"
-            apiHost: "us1.api.wallarm.com" # Delete this line if using the Wallarm EU Cloud
             token: "<NODE_TOKEN>"
             # nodeGroup: defaultIngressGroup
         ```
