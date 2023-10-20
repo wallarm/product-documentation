@@ -72,18 +72,13 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 * Initial release 4.8, [see changelog](what-is-new.md)
 
-<!-- ## Amazon Machine Image (AMI)
+## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
 
-### 4.8.0-1 (2023-03-28)
-
-!!! warning "Version deleted"
-    This AMI version has been deleted due to the presence of the [CVE-2021-3177](https://nvd.nist.gov/vuln/detail/CVE-2021-3177) vulnerability. Instead, a newer version, 4.8.4-1, with the necessary fix has been released.
+### 4.8.0-1 (2023-10-19)
 
 * Initial release 4.8, [see changelog](what-is-new.md)
-
--->
 
 ## Google Cloud Platform Image
 
