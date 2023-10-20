@@ -78,13 +78,13 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
 
 ### Step 5: Download all-in-one Wallarm installer
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download-4.6.md"
 
 ### Step 6: Run all-in-one Wallarm installer
 
 #### Filtering node and postanalytics on the same server
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include/waf/installation/all-in-one-installer-run-4.6.md"
 
 #### Filtering node and postanalytics on different servers
 
@@ -97,10 +97,10 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
     === "API token"
         ```bash
         # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.14.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.14.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -108,10 +108,10 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
     === "Node token"
         ```bash
         # If using the x86_64 version:
-        sudo sh wallarm-4.6.12.x86_64-glibc.sh filtering
+        sudo sh wallarm-4.6.14.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo sh wallarm-4.6.12.aarch64-glibc.sh filtering
+        sudo sh wallarm-4.6.14.aarch64-glibc.sh filtering
         ```
 
 ### Step 7: Migrate allowlists and denylists from the previous Wallarm node version to 4.6 (only if upgrading node 2.18 or lower)

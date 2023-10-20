@@ -64,11 +64,11 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](in
 
 ## Step 3: Download all-in-one Wallarm installer
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download-4.6.md"
 
 ## Step 4: Run all-in-one Wallarm installer
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include/waf/installation/all-in-one-installer-run-4.6.md"
 
 Commands in the further steps are the same for x86_64 and ARM64 installations.
 
@@ -114,7 +114,7 @@ Below there are a few of the typical settings that you can apply if needed:
 As soon as you have the all-in one script downloaded, you can get help on it with:
 
 ```
-sudo sh ./wallarm-4.6.12.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-4.6.14.x86_64-glibc.sh -- -h
 ```
 
 Which returns:

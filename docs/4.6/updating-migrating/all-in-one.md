@@ -43,11 +43,11 @@ To upgrade node, you will need a Wallarm token of [one of the types](../user-gui
 
 ### Step 2: Download newest version of all-in-one Wallarm installer
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download-4.6.md"
 
 ### Step 3: Run all-in-one Wallarm installer
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include/waf/installation/all-in-one-installer-run-4.6.md"
 
 ### Step 4: Restart NGINX
 
@@ -92,19 +92,19 @@ To upgrade node, you will need a Wallarm token of [one of the types](../user-gui
 
 This step is performed on the postanalytics machine.
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download-4.6.md"
 
 ### Step 3: Run all-in-one Wallarm installer to upgrade postanalytics
 
 This step is performed on the postanalytics machine.
 
---8<-- "../include/waf/installation/all-in-one-postanalytics.md"
+--8<-- "../include/waf/installation/all-in-one-postanalytics-4.6.md"
 
 ### Step 4: Download newest version of all-in-one Wallarm installer to filtering node machine
 
 This step is performed on the filtering node machine.
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download-4.6.md"
 
 ### Step 5: Run all-in-one Wallarm installer to upgrade filtering node
 
@@ -115,10 +115,10 @@ To upgrade filtering node separately with all-in-one installer, use:
 === "API token"
     ```bash
     # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh filtering
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.14.x86_64-glibc.sh filtering
 
     # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh filtering
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.14.aarch64-glibc.sh filtering
     ```        
 
     The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -126,10 +126,10 @@ To upgrade filtering node separately with all-in-one installer, use:
 === "Node token"
     ```bash
     # If using the x86_64 version:
-    sudo sh wallarm-4.6.12.x86_64-glibc.sh filtering
+    sudo sh wallarm-4.6.14.x86_64-glibc.sh filtering
 
     # If using the ARM64 version:
-    sudo sh wallarm-4.6.12.aarch64-glibc.sh filtering
+    sudo sh wallarm-4.6.14.aarch64-glibc.sh filtering
     ```
 
 ### Step 6: Check the filtering node and separate postanalytics modules interaction

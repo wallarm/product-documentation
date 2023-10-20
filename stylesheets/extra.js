@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   let main = document.querySelector(".md-main");
-  let isHomepage = location.pathname === "/" || location.pathname === "/ja/" || location.pathname === "/4.4/" || location.pathname === "/4.2/" || location.pathname === "/index.html";
+  let isHomepage = location.pathname === "/" || location.pathname === "/ja/" || location.pathname === "/4.4/" || location.pathname === "/4.2/" || location.pathname === "/4.6/" || location.pathname === "/ja/4.6/" || location.pathname === "/index.html";
   if (main) {
     if (isHomepage) {
       main.classList.add('homepage');
@@ -44,27 +44,39 @@ if (window.location.href.indexOf("channeltivity-content") <= -1) {
 }
 
 // Version selection
-var rootVersion = '4.6';
 
-// Temporarily hide the version selection in Japanese docs
+var rootVersion = '4.8';
 
 let pathsLang = window.location.pathname.split('/');
 
-if (pathsLang[1] != 'ja') {
-  document.getElementById('versionsDiv').style.display = 'inline-block';
+if (pathsLang[1] === 'ja') {
+  document.getElementById('versionsDivJa').style.display = 'inline-block';
 }
 else {
-  document.getElementById('versionsDiv').style.display = 'none'
+  document.getElementById('versionsDiv').style.display = 'inline-block';
 }
 
 // Show the list of available Wallarm versions
+
 function versionClicked (event) {
-  if (document.getElementById('versionsList').style.display === 'none') {
-    document.getElementById('versionsList').style.display = 'block'
-    document.getElementById('versionsMain').classList.add("versions-main-active")
-  } else {
-    document.getElementById('versionsList').style.display = 'none'
-    document.getElementById('versionsMain').classList.remove("versions-main-active")
+
+  if (pathsLang[1] === 'ja') {
+    if (document.getElementById('versionsListJa').style.display === 'none') {
+      document.getElementById('versionsListJa').style.display = 'block'
+      document.getElementById('versionsMainJa').classList.add("versions-main-active")
+    } else {
+      document.getElementById('versionsListJa').style.display = 'none'
+      document.getElementById('versionsMainJa').classList.remove("versions-main-active")
+    }
+  }
+  else {
+    if (document.getElementById('versionsList').style.display === 'none') {
+      document.getElementById('versionsList').style.display = 'block'
+      document.getElementById('versionsMain').classList.add("versions-main-active")
+    } else {
+      document.getElementById('versionsList').style.display = 'none'
+      document.getElementById('versionsMain').classList.remove("versions-main-active")
+    }
   }
 }
 
@@ -78,12 +90,13 @@ function goToVersion (event, currentVersion, version) {
   else {
     let tmp = window.location.pathname.split('/');
     window.top.location.href = tmp.join('/');
+
     if (version === rootVersion) {
       window.top.location.href = window.location.pathname.replace('/'+currentVersion+'/','/');
     } else {
       if (currentVersion === rootVersion) {
-        if (tmp[1].startsWith('docs')) {
-          window.top.location.href = window.location.pathname.replace('/'+'docs'+'/','/'+'docs'+'/'+version+'/');
+        if (tmp[1].startsWith("ja")) {
+          window.top.location.href = window.location.pathname.replace('/'+'ja'+'/','/'+'ja'+'/'+version+'/');
         }
         else {
           window.top.location.href = window.location.pathname.replace('/','/'+version+'/');

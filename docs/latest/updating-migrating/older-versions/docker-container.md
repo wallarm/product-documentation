@@ -43,11 +43,11 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
 
 === "NGINX-based image"
     ``` bash
-    docker pull wallarm/node:4.6.2-1
+    docker pull wallarm/node:4.8.0-1
     ```
 === "Envoy-based image"
     ``` bash
-    docker pull wallarm/envoy:4.6.2-1
+    docker pull wallarm/envoy:4.8.0-1
     ```
 
 ## Step 5: Switch to the token-based connection to the Wallarm Cloud

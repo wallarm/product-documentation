@@ -69,7 +69,7 @@ To view a request in a raw format, expand a required attack and then the request
 
 [Denylisting](../../user-guides/ip-lists/denylist.md) proves to be an effective defensive measure against high-volume attacks of different types. This is achieved by blocking requests at the earliest stage of processing. At the same time, it is equally important to gather comprehensive information on all blocked requests for further analysis.
 
-Wallarm offers the ability to collect and display information regarding blocked requests from denylisted source IPs. This empowers you to evaluate the potency of attacks originating from denylisted IPs, and conduct precise analysis of the requests from these IPs, exploring various parameters.
+Wallarm offers the ability to collect and display statistics regarding blocked requests from denylisted source IPs. This empowers you to evaluate the potency of attacks originating from denylisted IPs, and conduct precise analysis of the requests from these IPs, exploring various parameters.
 
 !!! info "Feature availability"
     Feature is available starting from node version 4.8, for NGINX-based nodes. By default it is [enabled](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable).
@@ -113,7 +113,7 @@ Hit sampling does not affect the quality of attack detection and only helps to a
 
 * For [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), hit sampling is disabled by default. If the percentage of attacks in your traffic is high, hit sampling is performed in two sequential stages: **extreme** and **regular**.
 * For [behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), attacks of the [Data bomb](../../attacks-vulns-list.md#data-bomb) and [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources): the **regular** sampling algorithm is enabled by default. **Extreme** sampling starts only if the percentage of attacks in your traffic is high.
-* For events from denylisted IPs, sampling is configured [on the node side](../../admin-en/configure-parameters-en.md#wallarm_acl_export_sample_limit).
+* For events from denylisted IPs, sampling is configured on the node side. It uploads only the first 10 identical requests to the Cloud while applying a sampling algorithm to the rest of the hits.
 
 When the sampling algorithm is enabled, in the **Events** section, the **Hits sampling is enabled** notification is displayed.
 

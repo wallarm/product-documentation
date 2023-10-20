@@ -24,7 +24,7 @@
 
 # Upgrading EOL Wallarm NGINX modules
 
-These instructions describe the steps to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.6. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.8. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
 * [Individual packages for NGINX stable](../../installation/nginx/dynamic-module.md)
 * [Individual packages for NGINX Plus](../../installation/nginx-plus.md)
@@ -97,10 +97,10 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
     === "API token"
         ```bash
         # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.0.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.0.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -108,10 +108,10 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
     === "Node token"
         ```bash
         # If using the x86_64 version:
-        sudo sh wallarm-4.6.12.x86_64-glibc.sh filtering
+        sudo sh wallarm-4.8.0.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo sh wallarm-4.6.12.aarch64-glibc.sh filtering
+        sudo sh wallarm-4.8.0.aarch64-glibc.sh filtering
         ```
 
 ### Step 7: Migrate allowlists and denylists from the previous Wallarm node version to 4.8 (only if upgrading node 2.18 or lower)
@@ -337,7 +337,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.6/x86_64/wallarm-node-repo-4.6-0.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
     ```
 === "CentOS 8"
     !!! warning "Support for CentOS 8.x has been deprecated"
@@ -350,13 +350,13 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
     ```
 === "RHEL 8.x"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -374,19 +374,19 @@ Delete the previous Wallarm repository address and add a repository with a new W
             Official NGINX versions (stable and Plus) and, as a result, Wallarm node 4.4 and above cannot be installed on Debian 10.x (buster). Please use this OS only if [NGINX is installed from Debian/CentOS repositories](../../installation/nginx/dynamic-module-from-distr.md).
 
         ```bash
-        deb https://repo.wallarm.com/debian/wallarm-node buster/4.6/
+        deb https://repo.wallarm.com/debian/wallarm-node buster/4.8/
         ```
     === "Debian 11.x (bullseye)"
         ```bash
-        deb https://repo.wallarm.com/debian/wallarm-node bullseye/4.6/
+        deb https://repo.wallarm.com/debian/wallarm-node bullseye/4.8/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/4.6/
+        deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/4.8/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.6/
+        deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.8/
         ```
 
 ### Step 5: Migrate allowlists and denylists from the previous Wallarm node version to 4.8 (only if upgrading node 2.18 or lower)
@@ -405,7 +405,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
     --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
 === "Ubuntu"
@@ -414,7 +414,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
     --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
 === "CentOS or Amazon Linux 2.0.2021x and lower"
@@ -444,7 +444,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
         --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
     === "Ubuntu"
@@ -453,7 +453,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
         --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
     === "CentOS or Amazon Linux 2.0.2021x and lower"

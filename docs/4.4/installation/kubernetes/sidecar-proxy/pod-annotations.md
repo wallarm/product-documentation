@@ -10,4 +10,4 @@
 [active-threat-verification-docs]:  ../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification
 [subscriptions-docs]:               ../../../about-wallarm/subscription-plans.md#subscription-plans
 
---8<-- "latest/installation/kubernetes/sidecar-proxy/pod-annotations.md"
+--8<-- "4.6/installation/kubernetes/sidecar-proxy/pod-annotations.md"

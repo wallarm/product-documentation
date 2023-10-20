@@ -47,7 +47,7 @@ These instructions describe the steps to install Wallarm filtering node as a dyn
 
 --8<-- "../include/waf/installation/linux-packages/requirements-nginx-stable.md"
 
---8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-stable.md"
+--8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-stable-4.6.md"
 
 ## 6. Enable Wallarm to analyze the traffic
 

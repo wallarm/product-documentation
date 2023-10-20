@@ -177,6 +177,7 @@ Implemented via [ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guid
 Besides the standard ones, the following additional parameters are supported:
 
 * `enable-wallarm` - enables the Wallarm module in NGINX
+* [wallarm-acl-export-enable](configure-parameters-en.md#wallarm_acl_export_enable)
 * [wallarm-upstream-connect-attempts](configure-parameters-en.md#wallarm_tarantool_upstream)
 * [wallarm-upstream-reconnect-interval](configure-parameters-en.md#wallarm_tarantool_upstream)
 * [wallarm-process-time-limit](configure-parameters-en.md#wallarm_process_time_limit)
