@@ -1,4 +1,4 @@
-# Working with triggers
+# Working with Triggers
 
 Triggers are tools that are used to set up custom notifications and reactions to events. Using triggers, you can:
 
