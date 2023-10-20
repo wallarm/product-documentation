@@ -83,10 +83,12 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 * Initial release 4.8, [see changelog](what-is-new.md)
 
+-->
+
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
 
-### wallarm-node-4-6-20230324-114215 (2023-03-28)
+### wallarm-node-4-8-20231019-221905 (2023-10-19)
 
-* Initial release 4.8, [see changelog](what-is-new.md) -->
+* Initial release 4.8, [see changelog](what-is-new.md)
