@@ -103,8 +103,8 @@ By default, the IP is added to the exception list forever. You can change this a
 
 The **Exception list** tab provides the historical data - you can view items that were presented in the list within the selected period of time in past.
 
-<!-- ## Working with exceptions for target URLs and specific requests
+## Working with exceptions for target URLs and specific requests
 
 In addition to marking good bots' IPs via [exception list](#working-with-exception-list), you can disable bot protection both for URLs that the requests target and for the particular request types, for example, for the requests containing specific headers.
 
-Note that comparing to other API Abuse Prevention configuration, this ability is configured **not** within the API Abuse profile, but separately - with the help of the [**Set API Abuse Prevention mode**](../user-guides/rules/api-abuse-url.md) rule. -->
+Note that comparing to other API Abuse Prevention configuration, this ability is configured **not** within the API Abuse profile, but separately - with the help of the [**Set API Abuse Prevention mode**](../user-guides/rules/api-abuse-url.md) rule.
