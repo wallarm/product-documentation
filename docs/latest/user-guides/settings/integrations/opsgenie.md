@@ -71,7 +71,7 @@ Cloud: EU
 * `EU` is the Wallarm Cloud where your company account is registered
 
 !!! info "Protecting the resource from active vulnerability exploitation"
-    To protect the resource from active vulnerability exploitation, we recommend patching the vulnerability in a timely manner. If the vulnerability cannot be patched on the application side, please configure a [virtual patch](../rules/vpatch-rule.md) to block attacks exploiting this vulnerability.
+    To protect the resource from active vulnerability exploitation, we recommend patching the vulnerability in a timely manner. If the vulnerability cannot be patched on the application side, please configure a [virtual patch](../../rules/vpatch-rule.md) to block attacks exploiting this vulnerability.
 
 ## Disabling and deleting an integration
 
