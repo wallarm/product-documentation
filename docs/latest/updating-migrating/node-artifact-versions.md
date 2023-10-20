@@ -48,7 +48,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](sidecar-proxy.md)
 
-### 4.8.0 (2023-03-28)
+### 4.8.0 (2023-10-19)
 
 * Initial release 4.8, [see changelog](what-is-new.md)
 * Added support for [API tokens](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation) to create filtering nodes and connect them to the Cloud during solution deployment. With API tokens, you can control the lifetime of your tokens and enhance node organization in the UI by setting a node group name.
