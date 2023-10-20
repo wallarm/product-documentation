@@ -26,6 +26,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.8.2 (2023-10-20)
+
+* Resolved statistics errors for denylisted requests connected with non-standard HTTP port (80) upstreams
+
 ### 4.8.1 (2023-10-19)
 
 * Added support for ARM64 processors
