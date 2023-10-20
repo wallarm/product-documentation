@@ -34,7 +34,7 @@ This article provides instructions for deploying Wallarm on GCP in-line using th
 
 --8<-- "../include/waf/installation/cloud-platforms/gcp-machine-image-use-cases.md"
 
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image-4.6.md"
 
 ## 5. Enable Wallarm to analyze the traffic
 
