@@ -346,4 +346,4 @@ The following rules are supported:
 * [Ignore certain attack types](ignore-attack-types.md)
 * [Ignoring certain attack signs in the binary data](ignore-attacks-in-binary-data.md)
 * [Fine-tune the overlimit_res attack detection](configure-overlimit-res-detection.md)
-<!-- * [Set API Abuse Prevention mode for specific target URLs](api-abuse-url.md) -->
+* [Set API Abuse Prevention mode for specific target URLs](api-abuse-url.md)

@@ -26,6 +26,10 @@ We now support ARM64 processors with the Wallarm NGINX Ingress Controller. As AR
 
 <!-- To deploy on ARM64 machines, follow our [instructions](../admin-en/installation-kubernetes-en.md#). -->
 
+## Excluding specific URLs and requests from bot checks
+
+The API Abuse Prevention module is now more flexible. You can pick specific URLs and requests that should not be checked for malicious bot actions using the [**Set API Abuse Prevention mode** rule](../user-guides/rules/api-abuse-url.md). This is helpful for avoiding false positives and for times when you are testing your applications and need to turn off bot checks on some parts. For example, if you are using Klaviyo for marketing, you can set up the rule so it does not check the `Klaviyo/1.0` GET requests, allowing it to work smoothly without unnecessary blocks.
+
 ## NGINX-based Docker image verification with official signature
 
 Beginning with release 4.8, Wallarm is now signing its [official NGINX‑based Docker image](https://hub.docker.com/r/wallarm/node) with its official public key.
