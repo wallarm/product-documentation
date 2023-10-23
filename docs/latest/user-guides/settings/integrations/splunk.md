@@ -2,7 +2,7 @@
 
 #   Splunk
 
-You can set up Wallarm to send alerts to Splunk.
+[Splunk](https://www.splunk.com/) is a platform designed for searching, monitoring, and analyzing machine-generated data, including logs, events, and other forms of operational and business data.  You can set up Wallarm to send alerts to Splunk.
 
 ##  Setting up integration
 
@@ -80,14 +80,13 @@ In Wallarm UI:
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-## Getting events organized into a dashboard
-
---8<-- "../include/integrations/application-for-splunk.md"
-
-
 ## Setting up additional alerts
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
+
+## Getting events organized into a dashboard
+
+--8<-- "../include/integrations/application-for-splunk.md"
 
 ## Disabling and deleting an integration
 

@@ -1,6 +1,6 @@
 # ServiceNow
 
-You can set up Wallarm to create trouble tickets in [ServiceNow](https://www.servicenow.com/).
+[ServiceNow](https://www.servicenow.com/) is a cloud-based platform that provides a range of IT service management (ITSM) and business process automation solutions for enterprises. You can set up Wallarm to create trouble tickets in ServiceNow.
 
 ## Requirements
 

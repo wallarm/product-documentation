@@ -1,6 +1,6 @@
 # Microsoft Teams
 
-You can set up Wallarm to send notifications to your Microsoft Teams channel(s). If you want to send notifications to several different channels, create several Microsoft Teams integrations.
+[Microsoft Teams](https://www.microsoft.com/en-us/microsoft-teams/group-chat-software) is a collaboration and communication platform designed to facilitate teamwork and enable organizations to communicate, collaborate, and manage projects effectively, whether they are working in the office, remotely, or a combination of both. You can set up Wallarm to send notifications to your Microsoft Teams channel(s). If you want to send notifications to several different channels, create several Microsoft Teams integrations.
 
 ## Setting up integration
 

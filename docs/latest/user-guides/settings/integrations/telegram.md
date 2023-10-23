@@ -1,10 +1,8 @@
 # Telegram
 
-You can set up Wallarm to send scheduled reports and instant notifications to Telegram.
+[Telegram](https://telegram.org/) is a cloud-based instant messaging platform and social media application. You can set up Wallarm to send scheduled reports and instant notifications to Telegram.
 
-Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
-
-Notifications include brief details of triggered events.
+Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period. Notifications include brief details of triggered events.
 
 ## Setting up integration
 

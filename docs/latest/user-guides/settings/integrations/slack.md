@@ -1,6 +1,6 @@
 # Slack
 
-You can set up Wallarm to send notifications to your Slack channel(s). If you want to send notifications to several different Slack channels or accounts, create several Slack integrations.
+[Slack](https://slack.com/) is a widely used cloud-based team collaboration and messaging platform. It is designed to facilitate communication and collaboration within organizations by providing a centralized space for teams to exchange messages, share files, and integrate with other tools and services. You can set up Wallarm to send notifications to your Slack channel(s). If you want to send notifications to several different Slack channels or accounts, create several Slack integrations.
 
 ## Setting up integration
 

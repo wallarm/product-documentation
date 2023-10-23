@@ -1,6 +1,6 @@
 # InsightConnect
 
-You can set up Wallarm to send notifications to InsightConnect.
+[InsightConnect](https://www.rapid7.com/products/insightconnect/) is a security orchestration, automation, and response (SOAR) platform designed to help organizations streamline and automate their cybersecurity operations, making it easier to detect, investigate, and respond to security incidents and threats. You can set up Wallarm to send notifications to InsightConnect.
 
 ## Setting up integration
 

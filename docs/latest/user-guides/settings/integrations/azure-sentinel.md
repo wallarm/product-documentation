@@ -1,6 +1,6 @@
 # Microsoft Sentinel
 
-You can set up Wallarm to log events in [Microsoft Azure Sentinel](https://azure.microsoft.com/en-au/products/microsoft-sentinel/).
+[Microsoft Azure Sentinel](https://azure.microsoft.com/en-au/products/microsoft-sentinel/) is a solution provided by Microsoft as part of its Azure cloud platform to help organizations monitor, detect, investigate, and respond to security threats and incidents across their entire cloud and on-premises environments. You can set up Wallarm to log events in Microsoft Sentinel.
 
 ## Setting up integration
 

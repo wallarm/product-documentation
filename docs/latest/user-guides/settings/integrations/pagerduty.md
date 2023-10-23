@@ -2,7 +2,7 @@
 
 #   PagerDuty
 
-You can set up Wallarm to send incidents to PagerDuty.
+[PagerDuty](https://www.pagerduty.com/) is an incident management and response platform that helps organizations manage and resolve incidents more effectively, ensuring the reliability of digital operations. You can set up Wallarm to send incidents to PagerDuty.
 
 ##  Setting up integration
 

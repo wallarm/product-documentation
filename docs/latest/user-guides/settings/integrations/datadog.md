@@ -1,6 +1,6 @@
 # Datadog
 
-You can set up Wallarm to send notifications of detected events directly to the Datadog Logs service by creating an appropriate integration via [Datadog API key](https://docs.datadoghq.com/account_management/api-app-keys/) in Wallarm Console.
+[Datadog](https://www.datadoghq.com/) is a popular cloud-based monitoring and analytics platform that provides comprehensive visibility into the performance, availability, and security of modern applications. You can set up Wallarm to send notifications of detected events directly to the Datadog Logs service by creating an appropriate integration via [Datadog API key](https://docs.datadoghq.com/account_management/api-app-keys/) in Wallarm Console.
 
 ## Setting up integration
 

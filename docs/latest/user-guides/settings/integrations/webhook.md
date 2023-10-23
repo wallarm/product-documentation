@@ -125,59 +125,47 @@ Notifications are sent in JSON format. The set of JSON objects depends on the ev
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
 1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
-
-    Test webhook example:
-
-    ```json
-    [
-        {
-            summary:"[Test message] [Test partner(US)] New vulnerability detected",
-            description:"Notification type: vuln
-
-                        New vulnerability was detected in your system.
-
-                        ID: 
-                        Title: Test
-                        Domain: example.com
-                        Path: 
-                        Method: 
-                        Discovered by: 
-                        Parameter: 
-                        Type: Info
-                        Threat: Medium
-
-                        More details: https://us1.my.wallarm.com/object/555
-
-
-                        Client: TestCompany
-                        Cloud: US
-                        ",
-            details:{
-                client_name:"TestCompany",
-                cloud:"US",
-                notification_type:"vuln",
-                vuln_link:"https://us1.my.wallarm.com/object/555",
-                vuln:{
-                    domain:"example.com",
-                    id:null,
-                    method:null,
-                    parameter:null,
-                    path:null,
-                    title:"Test",
-                    discovered_by:null,
-                    threat:"Medium",
-                    type:"Info"
-                }
-            }
-        }
-    ]
-    ```
-
 1. Click **Add integration**.
 
 ## Setting up additional alerts
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
+
+### Example: notification to Webhook URL if IP address is added to the denylist
+
+If an IP address was added to the denylist, the webhook about this event will be sent to Webhook URL.
+
+![Example of trigger for denylisted IP](../../../images/user-guides/triggers/trigger-example4.png)
+
+**To test the trigger:**
+
+1. Open the Wallarm Console → **IP lists** → **Denylist** and add the IP address to the denylist. For example:
+
+    ![Adding IP to the denylist](../../../images/user-guides/triggers/test-ip-blocking.png)
+2. Check that the following webhook was sent to the Webhook URL:
+
+    ```
+    [
+        {
+            "summary": "[Wallarm] Trigger: New IP address was denylisted",
+            "description": "Notification type: ip_blocked\n\nIP address 1.1.1.1 was denylisted until 2021-06-10 02:27:15 +0300 for the reason Produces many attacks. You can review blocked IP addresses in the \"Denylist\" section of Wallarm Console.\nThis notification was triggered by the \"Notification about denylisted IP\" trigger. The IP is blocked for the application Application #8.\n\nClient: TestCompany\nCloud: EU\n",
+            "details": {
+            "client_name": "TestCompany",
+            "cloud": "EU",
+            "notification_type": "ip_blocked",
+            "trigger_name": "Notification about denylisted IP",
+            "application": "Application #8",
+            "reason": "Produces many attacks",
+            "expire_at": "2021-06-10 02:27:15 +0300",
+            "ip": "1.1.1.1"
+            }
+        }
+    ]
+    ```
+
+    * `Notification about denylisted IP` is the trigger name
+    * `TestCompany` is the name of your company account in Wallarm Console
+    * `EU` is the Wallarm Cloud where your company account is registered
 
 ## Disabling and deleting an integration
 
