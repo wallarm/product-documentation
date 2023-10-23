@@ -1,8 +1,3 @@
----
-search:
-  exclude: true
----
-
 [apid-risk-score]:              risk-score.md
 [apid-track-changes]:           track-changes.md
 [apid-rogue]:                   rogue-api.md

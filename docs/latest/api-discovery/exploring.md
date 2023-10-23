@@ -1,4 +1,4 @@
-# Exploring API Inventory <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 As soon as the [API Discovery](overview.md) module has built the catalog of your endpoints (your API inventory), you can explore the presented information to understand and manage the security of your API. Learn from this article some things to be considered before exploring as well as how to go through your API inventory with Wallarm Console.
 
@@ -58,9 +58,9 @@ Click the endpoint to expand its parameters and view which type was automaticall
 
 Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
 
-## Viewing API inventory
+## Discovered API inventory
 
-The **API Discovery** section of Wallarm Console enables you to manage your [API inventory](overview.md), as well as to fine-tune its discovery. This guide instructs you on using this section.
+The **API Discovery** section of Wallarm Console enables you to manage your [API inventory](overview.md), as well as to fine-tune its discovery.
 
 The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
 
@@ -78,7 +78,7 @@ The section is only available to the users of the following [roles](../user-guid
     Each time you open the **API Discovery** section:
     
     * You see actual inventory of your APIs (all discovered endpoints)
-    * The **Changes since** filter goes to the `Lask week` state, which means:
+    * The **Changes since** filter goes to the `Last week` state, which means:
 
         * From the presented endpoints, the `New` and `Changed` within this period will obtain corresponding [marks](#tracking-changes-in-api)
         * Additionally, endpoints `Unused` within this period will be displayed

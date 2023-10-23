@@ -1,4 +1,4 @@
-# Shadow, Orphan, and Zombie API <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Shadow, Orphan, and Zombie API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 [API Discovery](overview.md) allows uncovering rogue (shadow, orphan and zombie) APIs.
 
@@ -18,7 +18,7 @@ An **orphan API** refers to a documented API that does not receive traffic. The 
 
 A **zombie API** refers to deprecated APIs that everyone assumes have been disabled but actually they are still in use. Their risks are similar to the rest of undocumented (shadow) API but may be worse as the reason for disabling is often the insecure designs that are easier to crack.
 
-In terms of your uploaded API specifications, zombie API is an endpoint presented in the previous version of your specification, not presented in the current version (that is, there was an intention of delection of this endpoint) but still presented in actual traffic (detected by API Discovery).
+In terms of your uploaded API specifications, zombie API is an endpoint presented in the previous version of your specification, not presented in the current version (that is, there was an intention of deletion of this endpoint) but still presented in actual traffic (detected by API Discovery).
 
 Finding zombie API with Wallarm may be the reason to re-check API configuration of you applications to actually disable such endpoints.
 

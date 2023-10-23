@@ -528,3 +528,6 @@
 /about-wallarm/api-discovery/ /api-discovery/overview/
 /user-guides/api-discovery/ /api-discovery/exploring/
 /user-guides/api-specifications/ /api-discovery/rogue-api/
+/4.6/about-wallarm/api-discovery/ /4.6/api-discovery/overview/
+/4.6/user-guides/api-discovery/ /4.6/api-discovery/exploring/
+/4.6/user-guides/api-specifications/ /4.6/api-discovery/rogue-api/

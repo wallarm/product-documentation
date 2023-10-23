@@ -41,7 +41,7 @@ nav:
     - Tracking Changes in API: api-discovery/track-changes.md
     - Endpoint Risk Score: api-discovery/risk-score.md
     - Shadow, Orphan, and Zombie API: api-discovery/rogue-api.md
-    - Automatic Protection against BOLA Attacks: api-discovery/bola-protection.md
+    - Automatic Protection Against BOLA Attacks: api-discovery/bola-protection.md
     - Dashboard: api-discovery/dashboard.md
   - API Protection:
     # - Overview: ...

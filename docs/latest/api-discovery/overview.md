@@ -1,4 +1,4 @@
-# API Discovery Overview <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Overview <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 The **API Discovery** module of the Wallarm platform builds your application REST API inventory based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API inventory based on the analysis results.
 
@@ -44,7 +44,7 @@ API Discovery relies on request statistics and uses sophisticated algorithms to 
 API Discovery uses a hybrid approach to conduct analysis locally and in the Cloud. This approach enables a [privacy-first process](#security-of-data-uploaded-to-the-wallarm-cloud) where request data and sensitive data are kept locally while using the power of the Cloud for the statistics analysis:
 
 1. API Discovery analyzes legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed.
-1. According to this data, statistics are made and sent to the Сloud.
+1. According to this data, statistics are made and sent to the Cloud.
 1. Wallarm Cloud aggregates the received statistics and builds an [API description](exploring.md) on its basis.
 
     !!! info "Noise detection"
@@ -103,7 +103,5 @@ In Playground, you can access the API Discovery view like it is filled with real
 ![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 
 ## Enabling and configuring API Discovery
-
-API Discovery is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node installation, except for the Debian 11.x and Ubuntu 22.04 individual packages. During node deployment, it installs the API Discovery module but keeps it disabled by default.
 
 To start using API Discovery, enable and configure it as described in [API Discovery Setup](setup.md).
