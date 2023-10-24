@@ -1385,3 +1385,17 @@ html .md-footer .md-social a:hover {
   color: #FC7303;
   border: none;
 }
+
+
+.md-consent__controls .md-button--primary[type="reset"] {
+  background-color: unset;
+  border-radius: 4px;
+  border: 1px solid #DBE0E7;
+  color: black;
+}
+
+.md-consent__controls .md-button--primary[type="reset"]:hover, .md-consent__controls .md-button--primary[type="reset"]:focus {
+  border: 1px solid #DBE0E7;
+  color: black;
+  background-color: #F7F8F9;
+}
