@@ -1,6 +1,6 @@
-[variability-in-endpoints-docs]:       ../../about-wallarm/api-discovery.md#variability-in-endpoints
-[changes-in-api-docs]:       ../../user-guides/api-discovery.md#tracking-changes-in-api
-[bola-protection-for-endpoints-docs]:  ../../about-wallarm/api-discovery.md#automatic-bola-protection
+[variability-in-endpoints-docs]:       ../../api-discovery/exploring.md#variability-in-endpoints
+[changes-in-api-docs]:       ../../api-discovery/track-changes.md
+[bola-protection-for-endpoints-docs]:  ../../api-discovery/bola-protection.md
 
 # Configuration of BOLA (IDOR) protection
 
@@ -77,7 +77,7 @@ You can configure several triggers with different filters for BOLA protection.
 
 ## Automatic BOLA protection for endpoints discovered by API Discovery <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-Automatic BOLA protection is available if you use the **[API Discovery](../../about-wallarm/api-discovery.md)** module.
+Automatic BOLA protection is available if you use the **[API Discovery](../../api-discovery/overview.md)** module.
 
 To enable auto protection, proceed to Wallarm Console → **BOLA protection** and turn the switch to the enabled state:
 

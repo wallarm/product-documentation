@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/dashboards/api-discovery.md"
+--8<-- "4.4/user-guides/dashboards/api-discovery.md"

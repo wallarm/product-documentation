@@ -35,9 +35,14 @@ nav:
     - Reports: user-guides/search-and-filters/custom-report.md
     - Activity Log: user-guides/settings/audit-log.md
   - API Discovery:
-    - Overview: about-wallarm/api-discovery.md
-    - Managing API Portfolio: user-guides/api-discovery.md
-    - Managing API Specifications: user-guides/api-specifications.md
+    - Overview: api-discovery/overview.md
+    - Setup: api-discovery/setup.md
+    - Exploring API Inventory: api-discovery/exploring.md
+    - Tracking Changes in API: api-discovery/track-changes.md
+    - Endpoint Risk Score: api-discovery/risk-score.md
+    - Shadow, Orphan, and Zombie API: api-discovery/rogue-api.md
+    - Automatic Protection Against BOLA Attacks: api-discovery/bola-protection.md
+    - Dashboard: api-discovery/dashboard.md
   - API Protection:
     # - Overview: ...
     # - OWASP Top 10: ...

@@ -83,7 +83,7 @@ All detected vulnerabilities are displayed in the Wallarm Console → **Vulnerab
 
 ![Vulnerabilities section](../images/user-guides/vulnerabilities/check-vuln.png)
 
-If you use the [**API Discovery** module](api-discovery.md) of the Wallarm platform, vulnerabilities are linked with discovered API endpoints, e.g.:
+If you use the [**API Discovery** module](../api-discovery/overview.md) of the Wallarm platform, vulnerabilities are linked with discovered API endpoints, e.g.:
 
 ![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 

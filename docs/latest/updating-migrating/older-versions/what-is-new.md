@@ -243,7 +243,7 @@ There are the following new features for request source control:
 
 New Wallarm nodes are distributed with the module **API Discovery** automatically identifying the application API. The module is disabled by default.
 
-[Details on the API Discovery module →](../../about-wallarm/api-discovery.md)
+[Details on the API Discovery module →](../../api-discovery/overview.md)
 
 ## Enhanced attack analysis with the libdetection library
 

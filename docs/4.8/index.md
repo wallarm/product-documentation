@@ -36,10 +36,10 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 <div class="navigation-card">
     <h3 class="icon-homepage api-discovery-title">API Discovery</h3>
     <p><ul>
-    <li><a href="./about-wallarm/api-discovery/">Discovering API inventory</a></li>
-    <li><a href="./about-wallarm/api-discovery/#endpoint-risk-score">API Risk Score</a></li>
-    <li><a href="./user-guides/api-specifications/">Managing API Specifications</a></li>
-    <li><a href="./about-wallarm/api-discovery/#shadow-and-orphan-apis">Shadow and Orphan APIs</a></li>
+    <li><a href="./api-discovery/overview/">Exploring API Inventory</a></li>
+    <li><a href="./api-discovery/track-changes/">Tracking Changes in API</a></li>
+    <li><a href="./api-discovery/risk-score/">Endpoint Risk Score</a></li>
+    <li><a href="./api-discovery/rogue-api/">Shadow, Orphan, and Zombie API</a></li>
     </ul></p>
 </div>
 
@@ -132,7 +132,6 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <li><a href="./updating-migrating/what-is-new/">Node Upgrade</a></li>
     </ul></p>
 </div>
-
 
 <div class="navigation-card">
     <h3 class="icon-homepage references-title">References</h3>
