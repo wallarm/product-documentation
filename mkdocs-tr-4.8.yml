@@ -314,7 +314,7 @@ nav:
     - Paketler:
       - Docker Images:
         - NGINX tabanlı: admin-en/installation-docker-en.md
-        - Envoy-tabanlı: admin-en/configuration-guides/envoy/envoy-docker.md
+        - Envoy-tabanlı: admin-en/installation-guides/envoy/envoy-docker.md
       - Linux Packages:
         - Her Şey Dahil Installer: installation/nginx/all-in-one.md
         - NGINX Stable için Bireysel paketler: installation/nginx/dynamic-module.md
@@ -477,6 +477,7 @@ nav:
         - EOL Wallarm NGINX modüllerinin yükseltilmesi: updating-migrating/older-versions/nginx-modules.md
         - EOL postanalytics modülünün yükseltilmesi: updating-migrating/older-versions/separate-postanalytics.md
         - EOL Docker NGINX- veya Envoy-tabanlı görüntüsünün yükseltilmesi: updating-migrating/older-versions/docker-container.md
+        - EOL NGINX Ingress kontrolörünü entegre Wallarm modülleriyle yükseltme: updating-migrating/older-versions/ingress-controller.md
         - EOL bulut node görüntüsünün yükseltilmesi: updating-migrating/older-versions/cloud-image.md
         - EOL çok kiracılı düğümün yükseltilmesi: updating-migrating/older-versions/multi-tenant.md
         - EOL Wallarm node'dan izinleme/denylistsine geçiş: updating-migrating/migrate-ip-lists-to-node-3.md

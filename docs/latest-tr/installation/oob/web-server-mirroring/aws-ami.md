@@ -20,11 +20,11 @@
 [autoscaling-docs]:                 ../../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
 [real-ip-docs]:                     ../../../admin-en/using-proxy-or-balancer-en.md
 [allocate-memory-docs]:             ../../../admin-en/configuration-guides/allocate-resources-for-node.md
-[limiting-request-processing]:      ../../../user-guides/rules/overlimit-res-detection-ayarla.md
+[limiting-request-processing]:      ../../../user-guides/rules/configure-overlimit-res-detection.md
 [logs-docs]:                        ../../../admin-en/configure-logging.md
 [oob-advantages-limitations]:       ../overview.md#avantajlar-ve-sınırlamalar
 [wallarm-mode]:                     ../../../admin-en/configure-wallarm-mode.md
-[wallarm-api-via-proxy]:            ../../../admin-en/configuration-guides/wallarm-apiye-proxy-uzerinden-erisim.md
+[wallarm-api-via-proxy]:            ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-grouped-nodes]:                ../../../images/user-guides/nodes/grouped-nodes.png
 
 # Amazon Image'tenWallarm OOB'yi Dağıtma

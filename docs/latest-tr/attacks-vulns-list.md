@@ -143,7 +143,7 @@ Aşağıdaki önerileri takip edebilirsiniz:
 *   Belirli bir sayıda başarısız denemeden sonra yeni kimlik doğrulama/yetkilendirme denemelerini engelleyin.
 *   Web uygulamanızın üzerinde çalıştığı sunucudaki herhangi bir dosya veya dizine erişimi sınırlayın, yalnızca uygulamanın kapsamı dahilinde olanlara izin verin.
 
-[Brute force saldırılarına karşı uygulamaları korumak için Wallarm çözümünü nasıl yapılandıracağınıza dair →](admin-tr/configuration-guides/protecting-against-bruteforce.md)
+[Brute force saldırılarına karşı uygulamaları korumak için Wallarm çözümünü nasıl yapılandıracağınıza dair →](admin-en/configuration-guides/protecting-against-bruteforce.md)
 
 ### Kaynak tarama
 
@@ -280,7 +280,7 @@ Bu zafiyet ayrıca IDOR (Güvenliksiz Doğrudan Nesne Referansı) olarak da bili
 **Wallarm davranışı:**
 
 * Wallarm bu tür zafiyetleri otomatik olarak keşfeder.
-* Wallarm, bu zafiyeti sömüren saldırıları varsayılan olarak algılamaz. BOLA saldırılarını tespit etmek ve engellemek için [**BOLA** tetiğini](admin-tr/configuration-guides/protecting-against-bola.md) yapılandırın.
+* Wallarm, bu zafiyeti sömüren saldırıları varsayılan olarak algılamaz. BOLA saldırılarını tespit etmek ve engellemek için [**BOLA** tetiğini](admin-en/configuration-guides/protecting-against-bola.md) yapılandırın.
 
 ### Açık yönlendirme
 
@@ -379,7 +379,7 @@ Aşağıdaki önerileri takip edebilirsiniz:
 *   Belirli bir sayıda başarısız denemeden sonra yeni kimlik doğrulama/yetkilendirme denemelerini engelleyin.
 *   Web uygulamasının dosyaları ve dizinleri için gerekli ve yeterli erişim yetkilerini ayarlayın.
 
-[Brute force saldırılarına karşı uygulamaları korumak için Wallarm çözümünü nasıl yapılandıracağınıza dair →](admin-tr/configuration-guides/protecting-against-bruteforce.md)
+[Brute force saldırılarına karşı uygulamaları korumak için Wallarm çözümünü nasıl yapılandıracağınıza dair →](admin-en/configuration-guides/protecting-against-bruteforce.md)
 
 ### Bilgi maruz kalma
 
@@ -700,4 +700,4 @@ Bir DDoS (Dağıtılmış Hizmet Dışı Bırakma) saldırısı, bir saldırgan�
 
 Saldırganların bir DDoS saldırısı başlatmak için kullanabileceği birçok teknik vardır ve kullanacakları yöntemler ve araçlar önemli ölçüde değişebilir. Bazı saldırılar nispeten basittir ve geniş miktarda bağlantı isteği göndermek gibi düşük seviye teknikler kullanırken, diğerleri daha karmaşıktır ve IP adreslerini sahte kullanma veya ağ altyapısındaki zafiyetleri sömürme gibi karmaşık taktikler kullanır.
 
-[DDoS saldırılarına karşı kaynakları koruma hakkında rehberimize göz atın →](admin-tr/configuration-guides/protecting-against-ddos.md)
+[DDoS saldırılarına karşı kaynakları koruma hakkında rehberimize göz atın →](admin-en/configuration-guides/protecting-against-ddos.md)

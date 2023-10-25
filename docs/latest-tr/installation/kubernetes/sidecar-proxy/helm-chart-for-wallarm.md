@@ -5,7 +5,7 @@ Bu belge, Wallarm'a özgü Helm tablo değerlerini [Wallarm Sidecar'ın dağıt�
 !!! info "Küresel ve her pod'un ayarlarının öncelikleri."
     Her pod'un notları [ünvana](customization.md#configuration-area) Helm tablosu değerlerine göre öncelikli olmakla beraber.
 
-Wallarm'a özel olan [öntanımlı `values.yaml`]((https://github.com/wallarm/sidecar/blob/main/helm/values.yaml))'ı takip etmek gibi görünüyor:
+Wallarm'a özel olan [öntanımlı `values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml)'ı takip etmek gibi görünüyor:
 
 ```yaml
 config:
