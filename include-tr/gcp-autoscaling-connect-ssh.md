@@ -1,0 +1,2 @@
+!!! bilgi "Özel bir özel anahtar aracılığıyla örneğe bağlanma"
+    Temel örnek oluşturma işlemi sırasında, özel bir SSH anahtar çifti aracılığıyla örneğe bağlantıyı etkinleştirdiyseniz, bu anahtar çiftinden özel anahtara erişiminiz olduğundan emin olun.

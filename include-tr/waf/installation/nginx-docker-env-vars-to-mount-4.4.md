@@ -1,0 +1,4 @@
+Ortam değişkeni | Açıklama | Gerekli
+--- | ---- | ----
+`WALLARM_API_TOKEN` | Wallarm node tokeni.<br><div class="admonition info"> <p class="admonition-title">Birkaç kurulum için tek token kullanma</p> <p>Seçilen platformdan bağımsız olarak bir tokeni birkaç kurulumda kullanabilirsiniz. Bu, Wallarm Konsol UI'daki düğüm örneklerinin mantıksal gruplandırılmasına olanak sağlar. Örneğin; belirli bir geliştiriciye ait olan kendi makinesi üzerinde birkaç Wallarm düğümü dağıtırsınız.</p></div> | Evet
+`WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>`us1.api.wallarm.com` ABD Bulutu için</li><li>`api.wallarm.com` AB Bulutu için</li></ul>Varsayılan: `api.wallarm.com`. | Hayır

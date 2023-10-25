@@ -1,0 +1,4 @@
+Filtreleme düğümü yapılandırma parametrelerinin, aşağıdaki yollardan birinde dağıtılmış Docker konteynerine aktarılması gerekir:
+
+* **Ortam değişkenlerinde**. Bu seçenek, yalnızca temel filtreleme düğümü parametrelerinin yapılandırılmasına olanak sağlar. Çoğu [yönerge][nginx-waf-directives] ortam değişkenleri aracılığıyla yapılandırılamaz.
+* **Bağlı yapılandırma dosyasında**. Bu seçenek, herhangi bir [yönerge][nginx-waf-directives] aracılığıyla tam filtreleme düğümü yapılandırılmasına izin verir. Bu yapılandırma yöntemiyle, filtreleme düğümü ve Wallarm Bulut bağlantı ayarları olan ortam değişkenleri de konteynera iletilir.
