@@ -1,0 +1,4 @@
+Çevre değişkeni | Açıklama| Gerekli
+--- | ---- | ----
+`WALLARM_API_TOKEN` | Wallarm düğümü belirteci.<br><div class="admonition info"> <p class="admonition-title">Wallarm Bulutuna erişimi yapılandıran önceki değişkenler</p> <p>4.0 sürümünün yayınlanmasından önce, `WALLARM_API_TOKEN` öncesi değişkenler `DEPLOY_USERNAME` ve `DEPLOY_PASSWORD` idi. Yeni sürümden itibaren, Wallarm Bulutuna erişim için yeni belirteç tabanlı yaklaşımın kullanılması önerilir. [Yeni düğüm sürümüne geçişle ilgili daha fazla detay](/updating-migrating/docker-container/)</p></div> | Evet
+`WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>`us1.api.wallarm.com` ABD Bulutu için</li><li>`api.wallarm.com` AB Bulutu için</li></ul>Varsayılan: `api.wallarm.com`. | Hayır

@@ -1,0 +1,8 @@
+* [ABD Bulutu](https://us1.my.wallarm.com/) veya [AVRUPA Bulutu](https://my.wallarm.com/) için Wallarm Konsolu'nda iki faktörlü kimlik doğrulama devre dışı bırakılmış **Yönetici** veya **Dağıtıcı** rolü ile hesaba erişim
+* Özgür yazılım SELinux yüklemesi devre dışı bırakılmış veya [talimatlara][configure-selinux-instr] göre yapılandırılmış
+* Tüm komutların bir süper kullanıcı (örn. `root`) tarafından yapılması
+* İstek işleme ve postanalitiğin farklı sunucularda: [talimatlar][install-postanalytics-instr] doğrultusunda ayrı bir sunucuya postanalytics yüklemesi
+* Paketleri indirmek için `https://repo.wallarm.com` adresine erişim. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun.
+* ABD Wallarm Bulutu ile çalışmak için `https://us1.api.wallarm.com:444` adresine veya Avrupa Wallarm Bulutu ile çalışmak için `https://api.wallarm.com:444` adresine erişim. Erişim yalnızca proxy sunucu üzerinden yapılandırılabilirse, [talimatları][configure-proxy-balancer-instr] kullanın.
+* Google Cloud Depolamaya ait IP adreslerine olan erişim [bağlantı](https://www.gstatic.com/ipranges/goog.json) içinde listelenmiştir. Bireysel IP adreslerinin yerine tüm ülkeleri, bölgeleri veya veri merkezlerini [izinli, yasaklı veya gri liste][ip-lists-docs] yaparken, Wallarm düğümü IP listelerindeki girişlere ilişkin kesin IP adreslerini Google Depolama'da barındırılan toplu veritabanından alır
+* Kurulu metin düzenleyici **vim**, **nano** veya başka bir tür. Talimatta **vim** kullanılmaktadır.

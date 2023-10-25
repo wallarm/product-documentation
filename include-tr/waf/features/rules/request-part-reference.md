@@ -1,0 +1,1 @@
+**Bu istek kısmında** ardışık (varsa çoklu) seçilmiş seçenekler, gereken istek öğesini okumak için [Wallarm'ın uygulayacağı](request-processing.md) ayrıştırıcıların bir sırasını yansıtmalıdır.

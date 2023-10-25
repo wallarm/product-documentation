@@ -1,0 +1,1 @@
+--8<-- "latest-tr/faq/cpu.md"

@@ -1,0 +1,1 @@
+--8<-- "latest-tr/installation/kubernetes/kong-ingress-controller/deployment.md"

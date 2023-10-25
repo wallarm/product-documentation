@@ -1,0 +1,3 @@
+!!! uyarı "Farklı düğüm tipi yükseltmesi için kritik değişiklikler ve öneriler"
+    * Wallarm düğümü 2.18 veya daha düşük bir sürümünü yükseltiyorsanız, lütfen 3.x sürümünün **kritik değişiklikler** içerdiğini unutmayın. 2.18 ve daha düşük modülleri 3.6'ya yükseltmeden önce, lütfen [Wallarm düğüm değişikliklerinin](older-versions/what-is-new.md) listesini dikkatlice gözden geçirin ve olası bir yapılandırma değişikliğini değerlendirin.
+    * Hem düzenli (istemci) hem de [çok kiracılı](../installation/multi-tenant/overview.md) düğümleri 3.6 sürümüne yükseltmenizi öneririz. Bu, Wallarm sürümleriyle güncel kalmayı ve [kurulu modülün kullanım dışı kalmamasını](versioning-policy.md#version-support) önler.

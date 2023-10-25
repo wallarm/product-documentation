@@ -22,6 +22,7 @@ RUN mkdocs build -f mkdocs-3.6.yml
 RUN mkdocs build -f mkdocs-2.18.yml
 RUN mkdocs build -f mkdocs-ja-4.8.yml
 RUN mkdocs build -f mkdocs-ja-4.6.yml
+RUN mkdocs build -f mkdocs-tr-4.8.yml
 
 # production stage
 FROM nginx:1.18-alpine as prod

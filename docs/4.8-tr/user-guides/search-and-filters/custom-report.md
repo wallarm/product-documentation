@@ -1,0 +1,1 @@
+--8<-- "latest-tr/user-guides/search-and-filters/custom-report.md"

@@ -1,0 +1,1 @@
+--8<-- "latest-tr/installation/api-gateways/mulesoft.md"
