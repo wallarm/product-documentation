@@ -1,0 +1,6 @@
+Tüm desteklenen [Wallarm dağıtım seçenekleri][platform] arasında, NGINX tabanlı Docker imajı aşağıdaki **kullanım durumları** için Wallarm dağıtımı için önerilir:
+
+* Organizasyonunuz Docker tabanlı altyapıyı kullanıyorsa, Wallarm Docker imajı ideal bir seçimdir. AWS ECS, Alibaba ECS veya benzeri hizmetlerde çalışan bir mikroservis mimarisi kullanıyor olun, mevcut kurulumunuza sorunsuz bir şekilde entegre olur. Bu çözüm, Docker konteynerleri aracılığıyla daha akıcı bir yönetim arayan sanal makine kullanıcıları için de geçerlidir.
+* Her konteyner üzerinde ayrıntılı kontrol ihtiyacınız varsa, Docker imajı başarılıdır. Geleneksel VM tabanlı dağıtımlarla genellikle mümkün olanın üzerinde bir kaynak izolasyonu seviyesi sağlar.
+
+Wallarm'ın NGINX tabanlı Docker imajını popüler public cloud kapsayıcı orkestrasyon hizmetlerinde çalıştırma hakkında daha fazla bilgi için, kılavuzlarımıza başvurun: [AWS ECS][aws-ecs-docs], [GCP GCE][gcp-gce-docs], [Azure Container Instances][azure-container-docs], [Alibaba ECS][alibaba-ecs-docs].

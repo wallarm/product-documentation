@@ -1,0 +1,5 @@
+* Ev sahibi sistemlerinizde [Docker](https://docs.docker.com/engine/install/) kurulu olmalı
+* Docker görüntüsünü indirmek için `https://hub.docker.com/r/wallarm/node` adresine erişim sağlamalısınız. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
+* [ABD Bulutu](https://us1.my.wallarm.com/) veya [AB Bulutu](https://my.wallarm.com/) Wallarm Konsolunda **Yönetici** rolüne sahip hesaba erişim 
+* ABD Wallarm Bulutu ile çalışırken `https://us1.api.wallarm.com` veya AB Wallarm Bulutu ile çalışırken `https://api.wallarm.com` adreslerine erişim. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
+* Google Cloud Storage'deki IP adreslerine [link](https://www.gstatic.com/ipranges/goog.json) üzerinden erişim. Bireysel IP adreslerinin yerine tüm ülkeleri, bölgeleri veya veri merkezlerini [izin verilen listeye, yasaklı listeye veya gri listeye][ip-lists-docs] aldığınızda, Wallarm düğümü, agregat veritabanında barındırılan IP listelerindeki girişlerle ilgili kesin IP adreslerini alır.

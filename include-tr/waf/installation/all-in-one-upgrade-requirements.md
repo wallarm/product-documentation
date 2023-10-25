@@ -1,0 +1,4 @@
+* Wallarm Konsolu'nda **Yönetici** rolüyle hesaba erişim [ABD Bulutu](https://us1.my.wallarm.com/) veya [AB Bulutu](https://my.wallarm.com/) için.
+* Tüm bir arada Wallarm yükleyicisini indirmek için `https://meganode.wallarm.com` adresine erişim. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun.
+* ABD Wallarm Bulutu ile çalışmak için `https://us1.api.wallarm.com` adresine veya AB Wallarm Bulutu ile çalışmak için `https://api.wallarm.com` adresine erişim. Erişim yalnızca proxy sunucusu üzerinden yapılandırılabilirse, o zaman [talimatları][configure-proxy-balancer-instr] kullanın.
+* Tüm komutların bir süper kullanıcı tarafından (ör. `root`) çalıştırılması.

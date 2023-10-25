@@ -1,0 +1,2 @@
+* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) 'da Wallarm Konsolu'nda **Yönetici** rolünün hesabına erişim 
+* US Wallarm Cloud ile çalışıyorsanız `https://us1.api.wallarm.com` ya da EU Wallarm Cloud ile çalışıyorsanız `https://api.wallarm.com` adresine erişim. Lütfen erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun.

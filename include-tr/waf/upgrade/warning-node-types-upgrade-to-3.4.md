@@ -1,0 +1,3 @@
+!!! uyarı "Farklı düğüm türü güncellemesi için kırılma değişiklikleri ve öneriler"
+    * Wallarm düğümü 2.18 veya daha düşük bir sürümü yükseltiyorsanız, lütfen 3.x sürümünün **kırılma değişikliklerini** içerdiğini unutmayın. 2.18 ve daha düşük sürümdeki modülleri 3.4'e yükseltmeden önce, lütfen [Wallarm düğüm değişikliklerinin](what-is-new.md) listesini dikkatlice inceler ve mümkün bir konfigürasyon değişikliğini göz önünde bulundurun.
+    * Hem normal (istemci) hem de [çoklu kiracı](../installation/multi-tenant/overview.md) düğümleri 3.2 veya daha düşük sürümlerden 3.4 sürümüne yükseltmenizi öneririz. Wallarm sürümleriyle güncel kalmayı ve [kurulu modül eskimesini](versioning-policy.md#version-support) önlemeyi sağlar.
