@@ -40,31 +40,31 @@ Bu talimatlar, NGINX deposundan kurulmuş açık kaynak sürümü olan NGINX `st
 
 ## Kullanım durumları
 
---8<-- "../include/waf/installation/linux-packages/nginx-stable-use-cases.md"
+--8<-- "../include-tr/waf/installation/linux-packages/nginx-stable-use-cases.md"
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/linux-packages/requirements-nginx-stable.md"
+--8<-- "../include-tr/waf/installation/linux-packages/requirements-nginx-stable.md"
 
---8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-stable.md"
+--8<-- "../include-tr/waf/installation/linux-packages/common-steps-to-install-node-nginx-stable.md"
 
 ## 6. Wallarm'ın trafiği analiz etmesini etkinleştirin
 
---8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.md"
+--8<-- "../include-tr/waf/installation/common-steps-to-enable-traffic-analysis.md"
 
 ## 7. NGINX'i yeniden başlatın
 
---8<-- "../include/waf/root_perm_info.md"
+--8<-- "../include-tr/waf/root_perm_info.md"
 
---8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+--8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
 
 ## 8. Trafik gönderimini Wallarm örneğine ayarlayın
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
+--8<-- "../include-tr/waf/installation/sending-traffic-to-node-inline-oob.md"
 
 ## 9. Wallarm düğüm operasyonunu test edin
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ## 10. Yüklenen çözümü ince ayar yapın
 
@@ -83,6 +83,6 @@ Aşağıda, gerektiğinde uygulayabileceğiniz tipik ayarların birkaçı verilm
 
 * [Filtrasyon modunun konfigürasyonu][waf-mode-instr]
 
---8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+--8<-- "../include-tr/waf/installation/linux-packages/common-customization-options.md"
 
 * [NGINX'de dinamik DNS çözünürlüğünü yapılandırma][dynamic-dns-resolution-nginx]

@@ -8,7 +8,7 @@ Wallarm düğümü, isteğin standart yükünü kötü niyetli olarak işaretler
 
 ## Kuralın oluşturulması ve uygulanması
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include-tr/waf/features/rules/rule-creation-options.md"
 
 **Kurallar** bölümünde kuralı oluşturmak ve uygulamak için:
 
@@ -23,7 +23,7 @@ Wallarm düğümü, isteğin standart yükünü kötü niyetli olarak işaretler
       
       * **İstek Parçası** seçilen saldırı türü belirtileri için analiz edilmemesi gereken orijinal istek öğesini belirtir.
         
-         --8<-- "../include/waf/features/rules/request-part-reference.md"
+         --8<-- "../include-tr/waf/features/rules/request-part-reference.md"
 
 2. [Kural derlemenin tamamlanmasını](compiling.md) bekleyin.
 

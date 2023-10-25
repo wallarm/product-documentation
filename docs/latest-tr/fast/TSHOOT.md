@@ -10,11 +10,11 @@
 
 * **... FAST düğümü, konsol çıktısında aşağıdaki mesajlardan birini görüntülüyorsa ne yapmalıyım?**
 
---8<-- "../include/fast/console-include/tshoot/request-timeout.md"
+--8<-- "../include-tr/fast/console-include/tshoot/request-timeout.md"
     
     veya
 
---8<-- "../include/fast/console-include/tshoot/access-denied.md"
+--8<-- "../include-tr/fast/console-include/tshoot/access-denied.md"
     
     **Çözüm:** Şunu kontrol ettiğinizden emin olun:
 

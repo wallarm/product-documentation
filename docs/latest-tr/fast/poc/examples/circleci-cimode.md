@@ -19,11 +19,11 @@ FAST'ın CI MOD'unun CircleCI iş akışına entegrasyonu, `~/.circleci/config.y
 
 ![CircleCI çevre değişkeni geçme][circleci-example-env-var]
 
---8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include-tr/fast/fast-cimode-integration-examples/configured-workflow.md"
 
 ## İstek Kaydetme Adımını Ekleme
 
---8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include-tr/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
 ??? info "FAST'ın kayıt modunda çalışan düğümünün otomatik test adımı örneği"
     ```
@@ -47,7 +47,7 @@ FAST'ın CI MOD'unun CircleCI iş akışına entegrasyonu, `~/.circleci/config.y
 
 ## Güvenlik Testinin Adımını Ekleme
 
---8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
+--8<-- "../include-tr/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
 ??? info "Güvenlik test adımının örneği"
     ```

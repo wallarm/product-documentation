@@ -46,7 +46,7 @@ Wallarm düğüm 4.6'dan itibaren, postanalyticsi ayrı olarak kurmak için, bir
 
 ### Gereksinimler
 
---8<-- "../include/waf/installation/all-in-one/separate-postanalytics-reqs.md"
+--8<-- "../include-tr/waf/installation/all-in-one/separate-postanalytics-reqs.md"
 
 ### Adım 1: All-in-one Wallarm yükleyicisini indirin
 
@@ -221,7 +221,7 @@ Eğer saldırı Buluta yüklenmediyse, lütfen hizmetlerin işleyişinde hata ol
 
 ### Gereksinimler
 
---8<-- "../include/waf/installation/linux-packages/separate-postanalytics-reqs.md"
+--8<-- "../include-tr/waf/installation/linux-packages/separate-postanalytics-reqs.md"
 
 ### Adım 1: Wallarm repolarını ekleyin
 
@@ -316,7 +316,7 @@ Düğüme erişim sağlamak için, Cloud tarafında bir token oluşturmanız ve 
 
 Postanalytics filtreleme düğümünü Cloud'a bağlamak için:
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
 
 1. Filtreleme düğümünü yüklediğiniz bir makinede `register-node` betiğini çalıştırın:
 
@@ -461,7 +461,7 @@ Postanalytics modülü ayrı bir sunucuda kurulduktan sonra, diğer Wallarm mod�
 
     Paket kurulum aşamasında, `wallarm-node-nginx` ve `libnginx-mod-http-wallarm/nginx-mod-http-wallarm`'ı belirtin.
 
---8<-- "../include/waf/installation/checking-compatibility-of-separate-postanalytics-and-primary-packages.md"
+--8<-- "../include-tr/waf/installation/checking-compatibility-of-separate-postanalytics-and-primary-packages.md"
 
 ### Adım 7: NGINX-Wallarm modülünü postanalytics modülüne bağlayın
 

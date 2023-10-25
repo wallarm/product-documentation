@@ -86,7 +86,7 @@ Kaydedilen tüm temel talepleri görmek için "Baseline req." sütununa tıklaya
 
 Konsol çıktısından, FAST düğümünün adı `DEMO NODE` olan ve `DEMO TEST RUN` adlı test çalışması için temel talepleri kaydetmeye hazır olduğu görülür:
 
---8<-- "../include/fast/console-include/qsg/fast-node-ready-for-recording.md"
+--8<-- "../include-tr/fast/console-include/qsg/fast-node-ready-for-recording.md"
     
     
 ##  2.  Daha Önce Oluşturduğunuz HTTPS Temel İsteğini Yürütün
@@ -102,7 +102,7 @@ Bunu yapmak için, önceden yapılandırılmış Mozilla Firefox tarayıcısın�
 
 Konsol çıktısından, FAST düğümünün bir temel talebi kaydettiği görülür:
 
---8<-- "../include/fast/console-include/qsg/fast-node-testing.md"
+--8<-- "../include-tr/fast/console-include/qsg/fast-node-testing.md"
 
 Bazı temel taleplerin Wallarm buluta kaydedildiğini görebilirsiniz:
 

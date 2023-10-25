@@ -35,7 +35,7 @@ Bu belge, [Nagios][link-nagios] izleme sistemine (önerilen [Nagios Core][link-n
 
 ##  Örnek İş Akışı
 
---8<-- "../include/monitoring/metric-example.md"
+--8<-- "../include-tr/monitoring/metric-example.md"
 
 ![Örnek iş akışı][img-collectd-nagios]
 
@@ -67,7 +67,7 @@ Bunu yapmak için, bir filtre düğümü ana makinesinde:
    
 3.  Uygun komutu yürüterek NRPE hizmetini yeniden başlatın:
 
-    --8<-- "../include/monitoring/nrpe-restart-2.16.md"
+    --8<-- "../include-tr/monitoring/nrpe-restart-2.16.md"
 
 ### 2.  Nagios NRPE Eklentisini Nagios Ana Makinesine Yükleyin
 
@@ -108,7 +108,7 @@ define command{
 
 Aşağıdaki komutlardan birini çalıştırın:
 
---8<-- "../include/monitoring/install-collectd-utils.md"
+--8<-- "../include-tr/monitoring/install-collectd-utils.md"
 
 ### 6.  `collectd-nagios` Yardımcı Programını `nagios` Kullanıcısının Adına Yükseltilmiş Ayrıcalıklarla Çalışacak Şekilde Yapılandırın
 
@@ -159,7 +159,7 @@ command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/walla
 
 NRPE hizmeti yapılandırma dosyasına tüm gerekli komutları ekledikten sonra, uygun komutu çalıştırarak hizmeti yeniden başlatın:
 
---8<-- "../include/monitoring/nrpe-restart-2.16.md"
+--8<-- "../include-tr/monitoring/nrpe-restart-2.16.md"
 
 ### 8.  Nagios Ana Makinesinde, Yapılandırma Dosyalarını Kullanarak Filtre Düğümü Ana Makinesini Belirtin ve İzlemek İçin Hizmetleri Tanımlayın
 
@@ -198,7 +198,7 @@ NRPE hizmeti yapılandırma dosyasına tüm gerekli komutları ekledikten sonra,
 
 3.  Uygun bir komut çalıştırarak Nagios hizmetini yeniden başlatın:
 
---8<-- "../include/monitoring/nagios-restart-2.16.md"
+--8<-- "../include-tr/monitoring/nagios-restart-2.16.md"
 
 ## Kurulum Tamamlandı
 

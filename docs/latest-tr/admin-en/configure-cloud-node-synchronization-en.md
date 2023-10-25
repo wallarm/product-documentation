@@ -36,7 +36,7 @@ Senkronizasyon parametrelerini değiştirmek için aşağıdaki adımları izley
 1. Gerekli parametreleri ekleyerek ve onlara istediğiniz değerleri atayarak `node.yaml` dosyasında değişiklikler yapın.
 1. Güncellenmiş ayarların senkronizasyon sürecine uygulanabilmesi için NGINX'i yeniden başlatın:
 
-    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+    --8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
 
 ## Senkronizasyon aralığı
 
@@ -56,4 +56,4 @@ Filtreleme düğümü ve Wallarm Cloud arasındaki senkronizasyon aralığını 
 
 `node.yaml` dosyasının, filtreleme düğümüne Cloud'a erişim sağlayan parametrelerin (genel ve `api` bölümleri, bu makalede anlatıldığı gibi) yanı sıra, düğümün işlemi için gerekli olan dosyalara erişimi sağlayan parametreler (`syncnode` bölümü) olabileceğini unutmayın. 
 
---8<-- "../include/node-cloud-sync-configuration-example.md"
+--8<-- "../include-tr/node-cloud-sync-configuration-example.md"

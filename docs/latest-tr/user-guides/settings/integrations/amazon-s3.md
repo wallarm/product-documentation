@@ -167,8 +167,8 @@ Depolanan veri miktarını kontrol etmek için, Amazon S3 kovanınızdaki eski n
 
 ## Entegrasyonun devre dışı bırakılması ve silinmesi
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"
 
 ## Sistem kullanılamazlık durumu ve yanlış entegrasyon parametreleri
 
---8<-- "../include/integrations/integration-not-working.md"
+--8<-- "../include-tr/integrations/integration-not-working.md"

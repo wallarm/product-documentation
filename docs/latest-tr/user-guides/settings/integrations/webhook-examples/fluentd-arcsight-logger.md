@@ -2,7 +2,7 @@
 
 Bu talimatlar, Wallarm'ın Fluentd veri toplayıcısıyla entegrasyon örneklerini ve daha sonra olayları ArcSight Logger sistemine yönlendirmeyi sağlar.
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include-tr/integrations/webhook-examples/overview.md"
 
 ![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
 
@@ -15,7 +15,7 @@ Bu talimatlar, Wallarm'ın Fluentd veri toplayıcısıyla entegrasyon örnekleri
 * [Fluentd](#fluentd-configuration) Debian 11.x (bullseye) üzerinde yüklü ve `https://fluentd-example-domain.com` adresinde kullanılabilir
 * Wallarm Konsoluna yönetici erişimi [EU bulutta](https://my.wallarm.com) [Fluentd entegrasyonunu yapılandırmak](#configuration-of-fluentd-integration) için
 
---8<-- "../include/cloud-ip-by-request.md"
+--8<-- "../include-tr/cloud-ip-by-request.md"
 
 ArcSight Logger ve Fluentd servislerine olan bağlantılar örnek olarak alıntılandığından, yanıt vermezler.
 
@@ -99,7 +99,7 @@ Yapılandırma dosyalarının daha ayrıntılı bir açıklaması, [resmi Fluent
 
 ### Fluentd entegrasyonu ayarları
 
---8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
+--8<-- "../include-tr/integrations/webhook-examples/create-fluentd-webhook.md"
 
 ![Fluentd ile Webhook entegrasyonu](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
@@ -107,7 +107,7 @@ Yapılandırma dosyalarının daha ayrıntılı bir açıklaması, [resmi Fluent
 
 ## Örnek testi
 
---8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include-tr/integrations/webhook-examples/send-test-webhook.md"
 
 Fluentd olayı şu şekilde loglar:
 

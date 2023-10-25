@@ -19,11 +19,11 @@
 
 Bu talimatlar, çalışan son ömrünü tamamlamış Docker NGINX- veya Envoy-tabanlı görüntünün (sürüm 3.6 ve altı) sürüm 4.8'e yükseltilmesi adımlarını açıklar.
 
---8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include-tr/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
 ## Gereklilikler
 
---8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include-tr/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## Adım 1: Filtreleme düğümü modüllerini yükselttiğinizi Wallarm teknik destek ekibine bilgi verin (yalnızca 2.18 veya daha düşük düğüm yükseltiliyorsa)
 
@@ -37,7 +37,7 @@ Modülün çalışması yükseltme işlemi sırasında [yanlış pozitifler](../
 
 ## Adım 3: API portunu güncelleyin
 
---8<-- "../include/waf/upgrade/api-port-443.md"
+--8<-- "../include-tr/waf/upgrade/api-port-443.md"
 
 ## Adım 4: Güncellenmiş filtreleme düğümü görüntüsünü indirin
 
@@ -111,7 +111,7 @@ Eğer Docker konteynırı engellenen isteklere `&/usr/share/nginx/html/wallarm_b
 
 ## Adım 9: `overlimit_res` saldırı tespit yapılandırmasını yönergelere dayalı kurala aktarın
 
---8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-docker.md"
+--8<-- "../include-tr/waf/upgrade/migrate-to-overlimit-rule-docker.md"
 
 ## Adım 10: Çalışan konteynırı durdurun
 
@@ -143,7 +143,7 @@ Güncellenmiş görüntüyü kullanarak konteynırı çalıştırmanın iki seç
 
 ## Adım 13: Filtreleme düğümü işlemini test edin
 
---8<-- "../include/waf/installation/test-after-node-type-upgrade.md"
+--8<-- "../include-tr/waf/installation/test-after-node-type-upgrade.md"
 
 ## Adım 14: Önceki sürümün filtreleme düğümünü silin
 

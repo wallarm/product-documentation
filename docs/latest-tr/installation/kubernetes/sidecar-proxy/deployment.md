@@ -47,7 +47,7 @@ Wallarm Yan Araba'nın yaşam döngüsünde 2 standart aşama vardır:
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/sidecar-proxy-reqs.md"
+--8<-- "../include-tr/waf/installation/sidecar-proxy-reqs.md"
 
 ## İmplantasyon
 
@@ -102,7 +102,7 @@ Yan Araba podlarını Wallarm Cloud'a bağlamak için [uygun tip] [node-token-ty
     
     `<NODE_TOKEN>`, Kubernetes'te çalışacak olan Wallarm düğümünün belirtecini ifade eder.
 
-    --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
+    --8<-- "../include-tr/waf/installation/info-about-using-one-token-for-several-nodes.md"
 1. Wallarm Helm chartini yerleştirin:
 
     ``` bash

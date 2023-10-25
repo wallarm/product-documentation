@@ -1,6 +1,6 @@
 # NGINX Tabanlı Ingress Controller İzlemesi
 
---8<-- "../include/ingress-controller-best-practices-intro.md"
+--8<-- "../include-tr/ingress-controller-best-practices-intro.md"
 
 NGINX Ingress controller izlemenin genel yönleri internet üzerinde zaten iyi bir şekilde ele alınmıştır. Wallarm, iş kritik bir ortamda izlenmesi gereken ek bir metrik seti sunar. `/wallarm-metrics` metrik hizmeti varsayılan olarak devre dışı bırakılmıştır.
 

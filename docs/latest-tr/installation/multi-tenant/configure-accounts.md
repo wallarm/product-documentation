@@ -2,7 +2,7 @@
 
 Bu talimatlar, [kiracı hesaplarının](overview.md) doğru yapılandırması için adımları size sunar.
 
---8<-- "../include/waf/features/multi-tenancy/partner-client-term.md"
+--8<-- "../include-tr/waf/features/multi-tenancy/partner-client-term.md"
 
 ## Kiracı hesaplarının yapılandırılması
 

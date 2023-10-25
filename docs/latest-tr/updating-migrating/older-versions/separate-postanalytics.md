@@ -12,11 +12,11 @@
 
 Bu talimatlar, ayrı bir sunucuda yüklü olan yaşam sonu postanalytics modülünün (versiyon 3.6 ve daha düşük) nasıl yükseltileceğini adımlar halinde açıklamaktadır. Postanalytics modülü, [Wallarm NGINX modüllerini yükseltmeden önce][docs-module-update] yükseltilmelidir.
 
---8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include-tr/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
 ## Yükseltme yöntemleri
 
---8<-- "../include/waf/installation/upgrade-methods.md"
+--8<-- "../include-tr/waf/installation/upgrade-methods.md"
 
 ## All-in-one kurucu ile yükseltme
 
@@ -24,27 +24,27 @@ Aşağıdaki prosedürü kullanarak, ayrı bir sunucuda yüklü olan yaşam sonu
 
 ### All-in-one kurucu kullanarak yükseltme için gereksinimler
 
---8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
+--8<-- "../include-tr/waf/installation/all-in-one-upgrade-requirements.md"
 
 ### Adım 1: Temiz makine hazırlama
 
---8<-- "../include/waf/installation/all-in-one-clean-machine.md"
+--8<-- "../include-tr/waf/installation/all-in-one-clean-machine.md"
 
 ### Adım 2: Wallarm belirteci hazırlama
 
---8<-- "../include/waf/installation/all-in-one-token.md"
+--8<-- "../include-tr/waf/installation/all-in-one-token.md"
 
 ### Adım 3: All-in-one Wallarm kurucusunu indir
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-download.md"
 
 ### Adım 4: Postanalytics'i yüklemek için all-in-one Wallarm kurucusunu çalıştırın
 
---8<-- "../include/waf/installation/all-in-one-postanalytics.md"
+--8<-- "../include-tr/waf/installation/all-in-one-postanalytics.md"
 
 ### Adım 5: API bağlantı noktasını güncelle
 
---8<-- "../include/waf/upgrade/api-port-443.md"
+--8<-- "../include-tr/waf/upgrade/api-port-443.md"
 
 ### Adım 6: Ayrı bir sunucuda NGINX-Wallarm modülünü yükselt
 
@@ -55,15 +55,15 @@ Postanalytics modülü ayrı bir sunucuya yüklendikten sonra, başka bir sunucu
 
 ### Adım 7: NGINX-Wallarm modülünü postanalytics modülüne yeniden bağla
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect.md"
+--8<-- "../include-tr/waf/installation/all-in-one-postanalytics-reconnect.md"
 
 ### Adım 8: NGINX‑Wallarm ve ayrı postanalytics modüllerinin etkileşimini kontrol et
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
+--8<-- "../include-tr/waf/installation/all-in-one-postanalytics-check.md"
 
 ### Adım 9: Eski postanalytics modülünü kaldır
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-remove-old.md"
+--8<-- "../include-tr/waf/installation/all-in-one-postanalytics-remove-old.md"
 
 ## Manuel yükseltme
 
@@ -71,11 +71,11 @@ Aşağıdaki prosedürü kullanarak, ayrı bir sunucuda yüklü olan yaşam sonu
 
 ### Gereksinimler
 
---8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
+--8<-- "../include-tr/waf/installation/basic-reqs-for-upgrades.md"
 
 ### Adım 1: API bağlantı noktasını güncelle
 
---8<-- "../include/waf/upgrade/api-port-443.md"
+--8<-- "../include-tr/waf/upgrade/api-port-443.md"
 
 ### Adım 2: Yeni Wallarm deposunu ekleyin
 
@@ -148,18 +148,18 @@ Aşağıdaki prosedürü kullanarak, ayrı bir sunucuda yüklü olan yaşam sonu
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
+    --8<-- "../include-tr/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
-    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include-tr/waf/upgrade/details-about-dist-upgrade.md"
 === "Ubuntu"
     ```bash
     sudo apt update
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
+    --8<-- "../include-tr/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
-    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include-tr/waf/upgrade/details-about-dist-upgrade.md"
 === "CentOS veya Amazon Linux 2.0.2021x ve daha düşük"
     ```bash
     sudo yum update

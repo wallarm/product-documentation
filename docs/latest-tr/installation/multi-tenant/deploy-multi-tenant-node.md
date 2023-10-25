@@ -18,7 +18,7 @@ Altyapınıza ve ele alınan soruna göre çok kiracılı node yayınlanma seçe
 
     * Bir Wallarm node'u, birkaç kiracının (Kiracı 1, Kiracı 2) trafiğini işler.
 
-        --8<-- "../include/waf/features/multi-tenancy/partner-client-term.md"
+        --8<-- "../include-tr/waf/features/multi-tenancy/partner-client-term.md"
         
     * Wallarm node'u, trafiği alan kiracıyı, kiracının benzersiz tanımlayıcısı olan ([`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) veya [`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md#configuration-options-for-the-envoy‑based-wallarm-node) Envoy kurulumunda) ile tanımlar.
     * `https://tenant1.com` ve `https://tenant2.com` alan adları için, ortak veya müşteri IP adresi `225.130.128.241` ile DNS A kayıtları yapılandırılmıştır. Bu ayar bir örnek olarak gösterilmiştir, ortak ve kiracı tarafında farklı bir ayar kullanılabilir.
@@ -158,4 +158,4 @@ Altyapınıza ve ele alınan soruna göre çok kiracılı node yayınlanma seçe
 
 Filtreleme node'u ayarlarını özelleştirmek için, [kullanılabilir yönergeleri](../../admin-en/configure-parameters-en.md) kullanın.
 
---8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"
+--8<-- "../include-tr/waf/installation/common-customization-options-nginx-4.4.md"

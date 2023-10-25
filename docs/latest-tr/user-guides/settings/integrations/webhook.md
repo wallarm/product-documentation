@@ -113,7 +113,7 @@ Bildirimler JSON formatında gönderilir. JSON nesneleri kümesi, bildirimin gö
 1. Hedef Webhook URL'sini girin.
 1. Gerekirse, gelişmiş ayarları yapılandırın:
 
-    --8<-- "../include/integrations/webhook-advanced-settings.md"
+    --8<-- "../include-tr/integrations/webhook-advanced-settings.md"
 
     ![Gelişmiş ayarlar örneği](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
 1. Bildirimleri tetiklemek için olay türlerini seçin.
@@ -122,7 +122,7 @@ Bildirimler JSON formatında gönderilir. JSON nesneleri kümesi, bildirimin gö
 
     Kullanılabilir olaylar hakkında ayrıntılar:
 
-    --8<-- "../include/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include-tr/integrations/advanced-events-for-integrations.md"
 
 1. **Entegrasyonu test et** tıklayın ve yapılandırma doğruluğunu, Wallarm Bulut'unun kullanılabilirliğini ve bildirim formatını kontrol edin.
 
@@ -177,12 +177,12 @@ Bildirimler JSON formatında gönderilir. JSON nesneleri kümesi, bildirimin gö
 
 ## Ek uyarıları ayarlama
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include-tr/integrations/integrations-trigger-setup.md"
 
 ## Entegrasyonu devre dışı bırakma ve silme
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"
 
 ## Sistemin kullanılamaması ve yanlış entegrasyon parametreleri
 
---8<-- "../include/integrations/integration-not-working.md"
+--8<-- "../include-tr/integrations/integration-not-working.md"

@@ -2,7 +2,7 @@
 
 Bu makale, Wallarm Ingress denetleyicisinin yüksek kullanılabilir olmasını ve arızaların önlenmesini sağlamak için yapılandırma önerileri sunmaktadır.
 
---8<-- "../include/ingress-controller-best-practices-intro.md"
+--8<-- "../include-tr/ingress-controller-best-practices-intro.md"
 
 ## Yapılandırma önerileri
 

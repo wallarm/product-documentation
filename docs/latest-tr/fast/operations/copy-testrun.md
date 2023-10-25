@@ -57,7 +57,7 @@ Bir test çalışması kopyalanırken dikkate alınması gereken şeyler:
 
 Bir test çalışmasını kopyalamak ve çalıştırmak için `https://us1.api.wallarm.com/v1/test_run` URL'sine POST isteği gönderin:
 
---8<-- "../include/fast/operations/api-copy-testrun.md"
+--8<-- "../include-tr/fast/operations/api-copy-testrun.md"
 
 API sunucusuna istek başarılı bir şekilde ulaşırsa, sunucunun yanıtıyla karşılaşacaksınız. Yanıt, yararlı bilgiler sağlar, bunlar arasında:
 
@@ -90,7 +90,7 @@ Wallarm portalının web arayüzü üzerinden bir test çalışmasını kopyalam
     
     Gerekirse “Advanced settings” seçerek ek ayarlar yapabilirsiniz:
     
---8<-- "../include/fast/test-run-adv-settings.md"
+--8<-- "../include-tr/fast/test-run-adv-settings.md"
     
 5.  “Use baselines from `<reuse edilecek test kaydının adı>`” seçeneğinin işaretli olduğundan emin olun.
 

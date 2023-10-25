@@ -7,7 +7,7 @@ Bu hızlı kılavuz, [NGINX tabanlı Wallarm düğümünün Docker imajını](ht
 
 ## Kullanım durumları
 
---8<-- "../include/waf/installation/cloud-platforms/azure-container-instances-use-cases.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/azure-container-instances-use-cases.md"
 
 ## Gereklilikler
 
@@ -17,7 +17,7 @@ Bu hızlı kılavuz, [NGINX tabanlı Wallarm düğümünün Docker imajını](ht
 
 ## Wallarm düğüm Docker konteyner yapılandırma seçenekleri
 
---8<-- "../include/waf/installation/docker-running-options.md"
+--8<-- "../include-tr/waf/installation/docker-running-options.md"
 
 ## Çevre değişkenleri aracılığıyla yapılandırılan Wallarm düğüm Docker konteynerinin dağıtılması
 
@@ -31,7 +31,7 @@ Sadece çevre değişkenleri aracılığıyla yapılandırılan konteynırlaşt�
 
 Bu talimatlarda, konteyner Azure CLI kullanılarak dağıtılmaktadır.
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
 
 1. [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login) komutuyla Azure CLI'ya giriş yapın:
 
@@ -78,7 +78,7 @@ Bu talimatlarda, konteyner Azure CLI kullanılarak dağıtılmaktadır.
     * `--image`: Wallarm düğüm Docker imajının adı.
     * `--environment-variables`: filtreleme düğümü yapılandırması ile çevre değişkenleri (mevcut değişkenler aşağıdaki tabloda listelenmiştir). Lütfen `WALLARM_API_TOKEN` değerinin açık bir şekilde geçirilmesinin önerilmediğini not alın.
 
-        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+        --8<-- "../include-tr/waf/installation/nginx-docker-all-env-vars-latest.md"
 1. [Azure portalını](https://portal.azure.com/) açın ve oluşturulan kaynağın kaynaklar listesinde göründüğünü kontrol edin.
 1. [Filtreleme düğüm işleminin test edilmesi](#testing-the-filtering-node-operation).
 
@@ -88,7 +88,7 @@ Bu talimatlarda, konteyner Azure CLI kullanılarak dağıtılmaktadır.
 
 Çevre değişkenleri ve monteli yapılandırma dosyasıyla konteyneri dağıtmak için:
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
 
 1. [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login) komutuyla Azure CLI'ya giriş yapın:
 
@@ -179,7 +179,7 @@ Bu talimatlarda, konteyner Azure CLI kullanılarak dağıtılmaktadır.
     
     * `--environment-variables`: filtreleme düğümü ve Wallarm bulut bağlantısı için ayarları içeren çevre değişkenleri (mevcut değişkenler aşağıdaki tabloda listelenmiştir). Lütfen `WALLARM_API_TOKEN` değerinin açık bir şekilde geçirilmesinin önerilmediğini not alın.
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include-tr/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
 1. [Azure portalını](https://portal.azure.com/) açın ve oluşturulan kaynağın kaynaklar listesinde göründüğünü kontrol edin.
 1. [Filtreleme düğüm işleminin test edilmesi](#testing-the-filtering-node-operation).
 

@@ -68,14 +68,14 @@ Kural dalıyla çalışmanın bazı ayrıntıları aşağıda verilmiştir:
 
 **Tüm yapılandırılmış kuralları alın**
 
---8<-- "../include/api-request-examples/get-all-configured-rules.md"
+--8<-- "../include-tr/api-request-examples/get-all-configured-rules.md"
 
 **Tüm kuralların yalnızca koşullarını alın**
 
---8<-- "../include/api-request-examples/get-conditions.md"
+--8<-- "../include-tr/api-request-examples/get-conditions.md"
 
 **Belirli bir koşula ekli kuralları alın**
 
 Belli bir koşulu belirtmek için, ID'sini kullanın - tüm kuralların koşullarını talep ederken alabilirsiniz.
 
---8<-- "../include/api-request-examples/get-rules-by-condition-id.md"
+--8<-- "../include-tr/api-request-examples/get-rules-by-condition-id.md"

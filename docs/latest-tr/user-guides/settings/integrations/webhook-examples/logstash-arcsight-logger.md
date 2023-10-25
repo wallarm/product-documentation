@@ -2,7 +2,7 @@
 
 Bu talimatlar, Wallarm'ın olayları ArcSight Logger sistemine daha da ileri göndermek için Logstash veri koleksiyoncusu ile örnek entegrasyonunu sağlar.
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include-tr/integrations/webhook-examples/overview.md"
 
 ![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
 
@@ -15,7 +15,7 @@ Bu talimatlar, Wallarm'ın olayları ArcSight Logger sistemine daha da ileri gö
 * Debian 11.x (bullseye) üzerine kurulu [Logstash 7.7.0](#logstash-configuration) ve `https://logstash.example.domain.com` üzerinde erişilebilir
 * [Logstash entegrasyonunu yapılandırmak](#configuration-of-logstash-integration) için [EU bulutu](https://my.wallarm.com)ndaki Wallarm Console'ye yönetici erişimi
 
---8<-- "../include/cloud-ip-by-request.md"
+--8<-- "../include-tr/cloud-ip-by-request.md"
 
 ArcSight Logger ve Logstash hizmetlerine yapılan bağlantılar örnek olarak verildiğinden, yanıt vermiyorlar.
 
@@ -92,7 +92,7 @@ Yapılandırma dosyalarının daha ayrıntılı bir açıklaması [resmi Logstas
 
 ### Logstash Entegrasyonunun Yapılandırılması
 
---8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
+--8<-- "../include-tr/integrations/webhook-examples/create-logstash-webhook.md"
 
 ![Logstash ile Webhook entegrasyonu](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
@@ -100,7 +100,7 @@ Yapılandırma dosyalarının daha ayrıntılı bir açıklaması [resmi Logstas
 
 ## Örnek Testi
 
---8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include-tr/integrations/webhook-examples/send-test-webhook.md"
 
 Logstash olayı şu şekilde loglar:
 

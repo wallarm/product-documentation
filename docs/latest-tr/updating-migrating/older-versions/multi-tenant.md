@@ -261,4 +261,4 @@ Yukarıdaki yapılandırmada:
 
 ## Adım 4: Wallarm çok kiracılı düğüm işlemini test edin
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"

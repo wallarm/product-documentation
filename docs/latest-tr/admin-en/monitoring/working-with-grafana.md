@@ -138,17 +138,17 @@ Görselleştirme ayarlandıktan sonra aşağıdaki adımları uygulayın:
 1.  Otomatik metrik güncellemelerini beş saniye aralıklı olacak şekilde etkinleştirin (Grafana konsolunun sağ üst köşesindeki açılır listeden bir değer seçin).
 2.  Grafana gösterge tablosundaki güncel istek sayısının, filtre düğümündeki `wallarm-status` çıktısı ile eşleştiğinden emin olun:
 
-    --8<-- "../include/monitoring/wallarm-status-check-latest.md"
+    --8<-- "../include-tr/monitoring/wallarm-status-check-latest.md"
     
     ![Saldırı sayaçını kontrol et][img-grafana-0-attacks]
     
 3.  Filtre düğümü tarafından korunan bir uygulamaya bir test saldırısı gerçekleştirin. Bunu yapmak için, `curl` yardımcı programı veya bir tarayıcı ile uygulamaya kötü niyetli bir istek gönderebilirsiniz.
 
-    --8<-- "../include/monitoring/sample-malicious-request.md"
+    --8<-- "../include-tr/monitoring/sample-malicious-request.md"
     
 4.  `wallarm-status` çıktısında ve Grafana gösterge tablosunda istek sayacının arttığını doğrulayın:
 
-    --8<-- "../include/monitoring/wallarm-status-output-padded-latest.md"
+    --8<-- "../include-tr/monitoring/wallarm-status-output-padded-latest.md"
 
     ![Saldırı sayaçını kontrol et][img-grafana-16-attacks]
 

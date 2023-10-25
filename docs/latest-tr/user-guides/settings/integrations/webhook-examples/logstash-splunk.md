@@ -4,7 +4,7 @@
 
 Bu talimatlar, Wallarm'ın Logstash veri koleksiyoncusu ile entegrasyonuna Splunk SIEM sistemine daha fazla olay yönlendirmesi için örnek sağlar.
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include-tr/integrations/webhook-examples/overview.md"
 
 ![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-scheme.png)
 
@@ -14,7 +14,7 @@ Bu talimatlar, Wallarm'ın Logstash veri koleksiyoncusu ile entegrasyonuna Splun
 * Debian 11.x (bullseye) üzerinde kurulu [Logstash 7.7.0](#logstash-configuration) ve `https://logstash.example.domain.com` adresinde mevcut
 * Wallarm Console'a yönetici erişimi [EU cloud](https://my.wallarm.com) içinde [Logstash entegrasyonunu yapılandırmak için](#configuration-of-logstash-integration)
 
---8<-- "../include/cloud-ip-by-request.md"
+--8<-- "../include-tr/cloud-ip-by-request.md"
 
 Splunk Enterprise ve Logstash hizmetlerine verilen bağlantılar örnek olarak belirtildiği için yanıt vermiyorlar.
 
@@ -87,7 +87,7 @@ Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Logstash be
 
 ### Logstash entegrasyonunun yapılandırılması
 
---8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
+--8<-- "../include-tr/integrations/webhook-examples/create-logstash-webhook.md"
 
 ![Webhook entegrasyonu ile Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
@@ -95,7 +95,7 @@ Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Logstash be
 
 ## Örnek testi
 
---8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include-tr/integrations/webhook-examples/send-test-webhook.md"
 
 Logstash olayı aşağıdaki gibi kaydedecek:
 
@@ -107,4 +107,4 @@ Aşağıdaki giriş Splunk olaylarında görüntülenecektir:
 
 ## Olayların bir pano içinde düzenlenmesi
 
---8<-- "../include/integrations/application-for-splunk.md"
+--8<-- "../include-tr/integrations/application-for-splunk.md"

@@ -15,7 +15,7 @@ Wallarm'ı Microsoft Teams kanal(lar)ınıza bildirim göndermek üzere ayarlaya
     
       Kullanılabilir olaylarla ilgili detaylar:
       
-      --8<-- "../include/integrations/events-for-integrations.md"
+      --8<-- "../include-tr/integrations/events-for-integrations.md"
 
 1. **Entegrasyonu test et**'i tıklarak yapılandırma doğruluğunu, Wallarm Bulut'unun kullanılabilirliğini ve bildirim formatını kontrol edin.
 
@@ -37,12 +37,12 @@ Wallarm'ı Microsoft Teams kanal(lar)ınıza bildirim göndermek üzere ayarlaya
 
 ## Ek uyarıları ayarlama
 
---8<-- "../include/integrations/integrations-trigger-setup-limited.md"
+--8<-- "../include-tr/integrations/integrations-trigger-setup-limited.md"
 
 ## Bir entegrasyonu devre dışı bırakma ve silme
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"
 
 ## Sistem erişilemezliği ve yanlış entegrasyon parametreleri
 
---8<-- "../include/integrations/integration-not-working.md"
+--8<-- "../include-tr/integrations/integration-not-working.md"

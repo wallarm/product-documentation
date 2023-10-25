@@ -40,21 +40,21 @@ NGINX Açık Kaynak, nginx.org veya Debian/CentOS'ın varsayılan depolarından 
 
 ## Kullanım durumları
 
---8<-- "../include/waf/installation/linux-packages/nginx-distro-use-cases.md"
+--8<-- "../include-tr/waf/installation/linux-packages/nginx-distro-use-cases.md"
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/linux-packages/requirements-nginx-distro.md"
+--8<-- "../include-tr/waf/installation/linux-packages/requirements-nginx-distro.md"
 
---8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-distro.md"
+--8<-- "../include-tr/waf/installation/linux-packages/common-steps-to-install-node-nginx-distro.md"
 
 ## 5. Wallarm'ın trafiği analiz etmesini etkinleştirin
 
---8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.md"
+--8<-- "../include-tr/waf/installation/common-steps-to-enable-traffic-analysis.md"
 
 ## 6. NGINX'i Yeniden Başlatın
 
---8<-- "../include/waf/root_perm_info.md"
+--8<-- "../include-tr/waf/root_perm_info.md"
 
 === "Debian"
     ```bash
@@ -75,11 +75,11 @@ NGINX Açık Kaynak, nginx.org veya Debian/CentOS'ın varsayılan depolarından 
 
 ## 7. Trafiğin Wallarm örneğine gönderilmesini yapılandırın
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
+--8<-- "../include-tr/waf/installation/sending-traffic-to-node-inline-oob.md"
 
 ## 8. Wallarm düğüm işlemi test edin
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ## 9. Dağıtılan çözümü ince ayarlayın
 
@@ -98,6 +98,6 @@ Wallarm ayarları, [NGINX yönergeleri](../../admin-en/configure-parameters-en.m
 
 * [Filtrasyon modu yapılandırması][waf-mode-instr]
 
---8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+--8<-- "../include-tr/waf/installation/linux-packages/common-customization-options.md"
 
 * [NGINX'de dinamik DNS çözümlemesini yapılandırma][dynamic-dns-resolution-nginx]

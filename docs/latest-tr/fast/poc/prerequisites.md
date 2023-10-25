@@ -17,7 +17,7 @@ FAST'ı bir CI/CD iş akışına entegre etmek için ihtiyacınız olanlar:
     Eğer bir hesabınız yoksa bir [hesap][link-fast-trial] oluşturun (bu hesap Amerikan buluta bağlanacak)
     
 * FAST düğümünün Docker konteyneri, `us1.api.wallarm.com` Wallarm API sunucusuna HTTPS protokolü (`TCP/443`) üzerinden erişim sağlamalıdır
---8<-- "../include/fast/cloud-note.md"
+--8<-- "../include-tr/fast/cloud-note.md"
 
  * Docker konteynerlerini oluşturma ve CI/CD iş akışınız için çalıştırma yetkisi
     

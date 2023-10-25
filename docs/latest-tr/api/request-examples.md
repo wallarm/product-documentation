@@ -28,7 +28,7 @@ https://www.unixtimestamp.com/
 
 Lütfen `TIMESTAMP` yerine 24 saat önceki tarihini [Unix Timestamp](https://www.unixtimestamp.com/) biçimine dönüştürülmüş halini girin. 
 
---8<-- "../include/api-request-examples/get-attacks-en.md"
+--8<-- "../include-tr/api-request-examples/get-attacks-en.md"
 
 ## Büyük sayıda saldırıyı alın (100 ve üzeri)
 
@@ -164,37 +164,37 @@ Bu istek, saldırılar listesi için önceki örneğe çok benzer; bu isteğe `"
 
 Lütfen `TIMESTAMP` yerine 24 saat önceki tarihi [Unix Timestamp](https://www.unixtimestamp.com/) formatına dönüştürülmüş halini girin.
 
---8<-- "../include/api-request-examples/get-incidents-en.md"
+--8<-- "../include-tr/api-request-examples/get-incidents-en.md"
 
 ## Son 24 saat içinde "aktif" durumundaki ilk 50 açığı alın
 
 Lütfen `TIMESTAMP` yerine 24 saat önceki tarihi [Unix Timestamp](https://www.unixtimestamp.com/) formatına dönüştürülmüş halini girin.
 
---8<-- "../include/api-request-examples/get-vulnerabilities.md"
+--8<-- "../include-tr/api-request-examples/get-vulnerabilities.md"
 
 ## Tüm yapılandırılmış kuralları alın
 
---8<-- "../include/api-request-examples/get-all-configured-rules.md"
+--8<-- "../include-tr/api-request-examples/get-all-configured-rules.md"
 
 ## Tüm kuralların koşullarını alın
 
---8<-- "../include/api-request-examples/get-conditions.md"
+--8<-- "../include-tr/api-request-examples/get-conditions.md"
 
 ## Belirli bir koşula eklenmiş kuralları alın
 
 Belirli bir koşulu göstermek için, tüm kuralların koşullarını istediğinizde alabileceğiniz kimliğini kullanın.
 
---8<-- "../include/api-request-examples/get-rules-by-condition-id.md"
+--8<-- "../include-tr/api-request-examples/get-rules-by-condition-id.md"
 
 ## Tüm istekleri `/my/api/*`'a göndermek üzere engelleyen sanal yamayı oluşturun
 
---8<-- "../include/api-request-examples/create-rule-en.md"
+--8<-- "../include-tr/api-request-examples/create-rule-en.md"
 
 ## Belirli bir uygulama örneği kimliği için tüm istekleri `/my/api/*`'a göndermek üzere engelleyen sanal yamayı oluşturun 
 
 Bu isteği göndermeden önce bir uygulamanın [yapılandırılması](../user-guides/settings/applications.md) gerekir. `action.point[instance].value` içinde mevcut bir uygulamanın kimliğini belirtin.
 
---8<-- "../include/api-request-examples/create-rule-for-app-id.md"
+--8<-- "../include-tr/api-request-examples/create-rule-for-app-id.md"
 
 ## `X-FORWARDED-FOR` başlığının belirli bir değeri olan isteklerin saldırılar olarak kabul edilmesi için bir kural oluşturun
 
@@ -202,19 +202,19 @@ Aşağıdaki istek, `^(~(44[.]33[.]22[.]11))$` dayalı [regex'ni özel saldırı
 
 Eğer `MY.DOMAIN.COM` alan adına giden isteklerde `X-FORWARDED-FOR: 44.33.22.11` HTTP başlığı varsa, Wallarm düğümü bunları tarayıcı saldırıları olarak kabul eder ve ilgili [filtrasyon modu](../admin-en/configure-wallarm-mode.md) ayarlanmışsa saldırıları engeller.
 
---8<-- "../include/api-request-examples/create-rule-scanner.md"
+--8<-- "../include-tr/api-request-examples/create-rule-scanner.md"
 
 ## Belirli bir uygulama için filtrasyon modunu izlemeye ayarlama kuralını oluşturun
 
 Aşağıdaki istek, trafiği filtrelemek için [düğümü ayarlayan kuralı](../user-guides/rules/wallarm-mode-rule.md) oluşturacak ve ID `3` olan [uygulama](../user-guides/settings/applications.md) için izleme modunda koruma sağlar.
 
---8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.md"
+--8<-- "../include-tr/api-request-examples/create-filtration-mode-rule-for-app.md"
 
 ## Kuralı bu kimliğiyle silin
 
 Silinecek olan kuralın kimliğini, [tüm yapılandırılmış kuralları alırken](#tüm-yapılandırılmış-kuralları-al) kopyalayabilirsiniz. Ayrıca, kural oluşturma isteğine yanıt olarak bir kural kimliği de `id` yanıt parametresinde döndürülmüştür.
 
---8<-- "../include/api-request-examples/delete-rule-by-id.md"
+--8<-- "../include-tr/api-request-examples/delete-rule-by-id.md"
 
 ## IP listesi nesnelerini almak, doldurmak ve silmek için API çağrıları
 
@@ -224,25 +224,25 @@ Aşağıda, IP listesi nesnelerini almak, doldurmak ve silmek için API çağrı
 
 IP listelerini okumak ve değiştirmek için API isteklerine geçirilen parametreler:
 
---8<-- "../include/api-request-examples/ip-list-request-params.md"
+--8<-- "../include-tr/api-request-examples/ip-list-request-params.md"
 
 ### Listeye `.csv` dosyasından girdileri ekleyin
 
 Listeye IP'leri veya alt ağları `.csv` dosyasından eklemek için, aşağıdaki bash betiğini kullanın:
 
---8<-- "../include/api-request-examples/add-ips-to-lists-from-file.md"
+--8<-- "../include-tr/api-request-examples/add-ips-to-lists-from-file.md"
 
 ### Listeye tek bir IP veya alt ağ ekleyin
 
---8<-- "../include/api-request-examples/add-some-ips-to-lists.md"
+--8<-- "../include-tr/api-request-examples/add-some-ips-to-lists.md"
 
 ### Listeye birden fazla ülke ekleyin
 
---8<-- "../include/api-request-examples/add-some-countries-to-lists.md"
+--8<-- "../include-tr/api-request-examples/add-some-countries-to-lists.md"
 
 ### Listeye birden fazla proxy hizmeti ekleyin
 
---8<-- "../include/api-request-examples/add-some-proxies-to-lists.md"
+--8<-- "../include-tr/api-request-examples/add-some-proxies-to-lists.md"
 
 ### IP listesinden bir nesneyi silin
 
@@ -250,10 +250,10 @@ Nesneleri, kimliklerine göre IP listelerinden sileriz.
 
 Nesne kimliğini almak için, IP listesi içeriğini isteyin ve gereken nesnenin `objects.id`sini yanıtından kopyalayın:
 
---8<-- "../include/api-request-examples/get-ip-list-contents.md"
+--8<-- "../include-tr/api-request-examples/get-ip-list-contents.md"
 
 Nesne kimliğine sahip olduğunuzda, onu listeden silmek için aşağıdaki isteği gönderin:
 
---8<-- "../include/api-request-examples/delete-object-from-ip-list.md"
+--8<-- "../include-tr/api-request-examples/delete-object-from-ip-list.md"
 
 Kimliklerini silme isteğinde bir dizi olarak geçirerek birden fazla nesneyi aynı anda silebilirsiniz.

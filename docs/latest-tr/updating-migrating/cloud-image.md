@@ -17,7 +17,7 @@ Yaşam sonu düğümünü (3.6 veya altı) yükseltmek için lütfen [farklı ta
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
+--8<-- "../include-tr/waf/installation/basic-reqs-for-upgrades.md"
 
 ## Adım 1: Filtreleme düğümü 4.8 ile yeni bir örnek başlatın
 
@@ -70,7 +70,7 @@ sudo systemctl restart nginx
 
 ## Adım 5: Wallarm düğüm işlemini test edin
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ## Adım 6: AWS veya GCP'de filtreleme düğümü 4.8'e dayalı sanal makine görüntüsü oluşturun
 

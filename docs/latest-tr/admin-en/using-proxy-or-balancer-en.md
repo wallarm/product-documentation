@@ -76,7 +76,7 @@ Eğer bir yük dengeleyici veya proxy sunucusu, orijinal istemci IP adresini iç
     ```
 4. NGINX'i yeniden başlatın:
 
-    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+    --8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
 
     NGINX, `real_ip_header` yönergesinde belirtilen başlığın değerini `$remote_addr` değişkenine atar, böylece Wallarm düğümü bu değişkenden orijinal istemci IP adreslerini okur.
 5. [Yapılandırmayı test edin](#testing-the-configuration).
@@ -113,7 +113,7 @@ Eğer bir yük dengeleyici veya proxy sunucusu [PROXY protokolünü](https://www
     * `<IP_ADDRESS_OF_YOUR_PROXY>` adresindeki istekler için, NGINX `PROXY` başlığına geçirilen kaynak adresini `$remote_addr` adlı değişkene atar, böylece Wallarm düğümü bu değişkenden orijinal istemci IP adreslerini okur.
 5. NGINX'i yeniden başlatın:
 
-    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+    --8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
 6. [Yapılandırmayı test edin](#testing-the-configuration).
 
 Orijinal istemci IP adresini günlüklere eklemek için, NGINX yapılandırmasında `proxy_set_header` yönergesini eklemeli ve `log_format` yönergesindeki değişken listesini [NGINX günlük talimatlarında](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#logging-the-original-ip-address) olduğu gibi düzenlemelisiniz.

@@ -1,0 +1,1 @@
+--8<-- "latest-tr/about-wallarm/shared-responsibility.md"

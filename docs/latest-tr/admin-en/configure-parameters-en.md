@@ -291,7 +291,7 @@ Trafik işleme modu:
 * `safe_blocking`
 * `block`
 
---8<-- "../include/wallarm-modes-description-latest.md"
+--8<-- "../include-tr/wallarm-modes-description-latest.md"
 
 `wallarm_mode` kullanımı, `wallarm_mode_allow_override` yönergesi tarafından kısıtlanabilir.
 

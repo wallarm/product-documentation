@@ -30,7 +30,7 @@ Görüntü oluşturmadan önce, tek bir Wallarm filtreleme düğümünün ilk ya
        * ABD Bulutunu kullanıyorsanız, düğümünüze `https://us1.api.wallarm.com` adresine erişim izni verilmesi gerekmektedir.
        * EU Bulutunu kullanıyorsanız, düğümünüze `https://api.wallarm.com` adresine erişim izni verilmesi gerekmektedir.
    
-   --8<-- "../include/gcp-autoscaling-connect-ssh.md"
+   --8<-- "../include-tr/gcp-autoscaling-connect-ssh.md"
 
 2.  Filtreleme düğümünü Wallarm Cloud'a [bağlayın][link-cloud-connect-guide].
 

@@ -7,7 +7,7 @@ Bu hızlı kılavuz, [NGINX tabanlı Wallarm düğümünün Docker imajını](ht
 
 ## Kullanım durumları
 
---8<-- "../include/waf/installation/cloud-platforms/aws-ecs-use-cases.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/aws-ecs-use-cases.md"
 
 ## Gereklilikler
 
@@ -17,13 +17,13 @@ Bu hızlı kılavuz, [NGINX tabanlı Wallarm düğümünün Docker imajını](ht
 
 ## Wallarm düğüm Docker konteynerinin yapılandırma seçenekleri
 
---8<-- "../include/waf/installation/docker-running-options.md"
+--8<-- "../include-tr/waf/installation/docker-running-options.md"
 
 ## Ortam değişkenleri aracılığıyla yapılandırılmış Wallarm düğüm Docker konteynerinin dağıtımı
 
 Ortam değişkenleri aracılığıyla sadece yapılandırılmış konteynırlı Wallarm filtreleme düğümünü dağıtmak için AWS Yönetim Konsolu ve AWS CLI kullanılır.
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
 
 1. [AWS Yönetim Konsoluna](https://console.aws.amazon.com/console/home) oturum açın → **Hizmetler** listesi → **Elastic Container Service**.
 1. **Cluster Oluştur** düğmesiyle küme oluşturmaya geçin:
@@ -121,7 +121,7 @@ Ortam değişkenleri aracılığıyla sadece yapılandırılmış konteynırlı 
 
         `WALLARM_API_TOKEN` değişkenini `secrets` nesnesine iletmek önerilir.
 
-        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+        --8<-- "../include-tr/waf/installation/nginx-docker-all-env-vars-latest.md"
     
     * Tüm konfigürasyon dosya parametreleri, [AWS belgelerinde](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html) açıklanmıştır.
 1. Görev tanımını, JSON konfigürasyon dosyasına dayalı olarak, [`aws ecs register‑task‑definition`](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html) komutunu kullanarak kaydedin:
@@ -151,7 +151,7 @@ Bu talimatlarda, konfigürasyon dosyası [AWS EFS](https://docs.aws.amazon.com/e
 
 Ortam değişkenleriyle ve AWS EFS'den monte edilmiş konfigürasyon dosyasıyla konteyneri dağıtmak için:
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
 
 1. [AWS Yönetim Konsoluna](https://console.aws.amazon.com/console/home) oturum açın → **Hizmetler** listesi → **Elastic Container Service**.
 1. **Cluster Oluştur** düğmesi ile küme oluşturmaya geçin:
@@ -314,7 +314,7 @@ Ortam değişkenleriyle ve AWS EFS'den monte edilmiş konfigürasyon dosyasıyla
 
         `WALLARM_API_TOKEN` değişkenini `secrets` nesnesinden geçirmek önerilir.
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include-tr/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
     
     * Tüm konfigürasyon dosya parametreleri, [AWS belgelerinde](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html) açıklanmıştır.
 1. Görev tanımını, JSON konfigürasyon dosyasına dayalı olarak [`aws ecs register‑task‑definition`](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html) komutunu kullanarak kaydedin:

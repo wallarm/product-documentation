@@ -77,7 +77,7 @@ Bunu yapmak için, aşağıdaki işlemleri yapın:
         
 3.  İşletim sistemine bağlı olarak aşağıdaki komutlardan birini çalıştırarak NGINX'i yeniden başlatın:
 
-    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+    --8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
 
 !!! info "Ayrıntılı bilgi"
     NGINX'te günlükleme ayarlaması hakkında detaylı bilgi için bu [link'e][link-nginx-logging-docs] gidin.

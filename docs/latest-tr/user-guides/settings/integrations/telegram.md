@@ -20,7 +20,7 @@ Bildirimler, tetiklenen olayların kısa detaylarını içerir.
 
     Mevcut olaylarla ilgili detaylar:
 
-    --8<-- "../include/integrations/events-for-integrations.md"
+    --8<-- "../include-tr/integrations/events-for-integrations.md"
 
     Telegram ile entegrasyon yalnızca bu entegrasyon zaten oluşturulmuşsa test edilebilir.
 
@@ -46,12 +46,12 @@ Ayrıca, [@WallarmUSBot](https://t.me/WallarmUSBot) ile veya [@WallarmBot](https
 
 ## Ek Uyarıları Ayarlama
 
---8<-- "../include/integrations/integrations-trigger-setup-limited.md"
+--8<-- "../include-tr/integrations/integrations-trigger-setup-limited.md"
 
 ## Entegrasyonun Devre Dışı Bırakılması ve Silinmesi
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"
 
 ## Sistem Erişilemezliği ve Yanlış Entegrasyon Parametreleri
 
---8<-- "../include/integrations/integration-not-working.md"
+--8<-- "../include-tr/integrations/integration-not-working.md"

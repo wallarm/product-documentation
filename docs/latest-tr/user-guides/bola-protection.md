@@ -40,7 +40,7 @@ Sonra BOLA otomatik algılama şablonunu düzenleyerek varsayılan Wallarm davra
 
 ## Otomatik BOLA Koruması Mantığı
 
---8<-- "../include/waf/features/bola-mitigation/bola-auto-mitigation-logic.md"
+--8<-- "../include-tr/waf/features/bola-mitigation/bola-auto-mitigation-logic.md"
 
 ## Otomatik BOLA Korumasını Devre Dışı Bırakma
 

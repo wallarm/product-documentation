@@ -26,15 +26,15 @@ Nagios'un daha önce oluşturulan hizmetin durumunu başarıyla izlediğini doğ
 
     Nagios'da görüntülenen ölçüm değerinin ( “Performans Verisi” satırı), filtre düğümünde `wallarm-status` çıktısıyla eşleştiğinden emin olun:
 
-    --8<-- "../include/monitoring/wallarm-status-check-latest.md"
+    --8<-- "../include-tr/monitoring/wallarm-status-check-latest.md"
  
 5.  Filtre düğümü tarafından korunan bir uygulamada bir test saldırısı gerçekleştirin. Bunu yapmak için, curl yardımcı programı veya bir tarayıcı ile uygulamaya zararlı bir istek gönderebilirsiniz.
 
-    --8<-- "../include/monitoring/sample-malicious-request.md"
+    --8<-- "../include-tr/monitoring/sample-malicious-request.md"
     
 6.  Nagios'daki “Performans Verisi” değerinin arttığından ve filtre düğümünde `wallarm-status` tarafından görüntülenen değerle eşleştiğinden emin olun:
 
-    --8<-- "../include/monitoring/wallarm-status-output-latest.md"
+    --8<-- "../include-tr/monitoring/wallarm-status-output-latest.md"
 
     ![Güncellenen Performans Verisi değeri][img-nagios-service-perfdata-updated]
 

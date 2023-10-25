@@ -1,0 +1,1 @@
+--8<-- "latest-tr/user-guides/rules/request-processing.md"

@@ -6,7 +6,7 @@ Bu talimatlar Wallarm Sidecar 4.x'in Wallarm node 4.8 ile yeni sürüme yükselt
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/sidecar-proxy-reqs.md"
+--8<-- "../include-tr/waf/installation/sidecar-proxy-reqs.md"
 
 ## Adım 1: Wallarm Helm chart deposunu güncelleyin
 

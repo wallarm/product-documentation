@@ -13,11 +13,11 @@
 
 Bu talimatlar, AWS veya GCP üzerinde yerleştirilmiş hizmet ömrünün sonu bulut düğüm imajını (3.6 sürümü ve altı) 4.8'e güncelleme adımlarını açıklamaktadır.
 
---8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include-tr/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
 ## Gereklilikler
 
---8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
+--8<-- "../include-tr/waf/installation/basic-reqs-for-upgrades.md"
 
 ## Adım 1: Wallarm teknik desteğine filtreleme düğümü modüllerini güncellediğinizi bildirin (sadece 2.18 veya daha düşük düğümü güncellerken)
 
@@ -31,7 +31,7 @@ Modülün işlemi, güncelleme süreci sırasında [false positives](../../about
 
 ## Adım 3: API portunu güncelleyin
 
---8<-- "../include/waf/upgrade/api-port-443.md"
+--8<-- "../include-tr/waf/upgrade/api-port-443.md"
 
 ## Adım 4: Filtreleme düğümü 4.8 ile yeni bir örneği başlatın
 
@@ -99,7 +99,7 @@ Filtreleme düğümü direktiflerinin listesi [here](../../admin-en/configure-pa
 
 ## Adım 8: `overlimit_res` saldırı tespit yapılandırmasını direktiflerden kurala aktarın
 
---8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
+--8<-- "../include-tr/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
 
 ## Adım 9: NGINX'i yeniden başlatın
 
@@ -111,7 +111,7 @@ sudo systemctl restart nginx
 
 ## Adım 10: Wallarm düğümünün çalışmasını test edin
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ## Adım 11: Filtreleme düğümü 4.8'e dayalı AWS veya GCP'de sanal makine imajı oluşturun
 

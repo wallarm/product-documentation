@@ -12,7 +12,7 @@ Google Cloud Platform (GCP) üzerinde Wallarm filtering node otomatik ölçeklen
     
     GCP'de sanal makinenin Wallarm filtering node ile bir resmini oluşturma hakkında ayrıntılı bilgi için, bu [bağlantıya][link-doc-image-creation] gidiniz.
 
---8<-- "../include/gcp-autoscaling-connect-ssh.md"
+--8<-- "../include-tr/gcp-autoscaling-connect-ssh.md"
 
 Google Cloud Platform'da filtreleme düğümlerini otomatik olarak ölçeklendirmek için aşağıdaki adımları uygulayın:
 

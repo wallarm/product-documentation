@@ -16,7 +16,7 @@ FAST'ın CI MODE'deki entegrasyonu, `azure-pipelines.yml` dosyası aracılığı
 
 ## İsteği Kaydetme Adımını Eklemek
 
---8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include-tr/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
 ??? info "Kayıt modunda çalışan FAST node ile otomatik test adımının örneği"
     ```

@@ -14,7 +14,7 @@ Aşağıdaki örnek, entegrasyonu yapılandırmak için YAML spesifikasyonunu ku
 
 ![Bamboo genel değişkeninin geçirilmesi](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
 
---8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include-tr/fast/fast-cimode-integration-examples/configured-workflow.md"
 
 ## Talep Kaydı Adımının Eklenmesi
 

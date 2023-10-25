@@ -30,19 +30,19 @@
 
 Bu makale, [NGINX tabanlı Docker görüntüsünü](https://hub.docker.com/r/wallarm/node) kullanarak [Wallarm OOB](overview.md)'nun yayınlanması için talimatları sunar. Burada açıklanan çözüm, bir web veya proxy sunucusu tarafından aynalanan trafiği analiz etmek için tasarlanmıştır.
 
---8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.md"
+--8<-- "../include-tr/waf/installation/info-about-nginx-version-in-docker-container.md"
 
 ## Kullanım Durumları
 
---8<-- "../include/waf/installation/docker-images/nginx-based-use-cases.md"
+--8<-- "../include-tr/waf/installation/docker-images/nginx-based-use-cases.md"
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include-tr/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## 1. Trafik Aynalığını Yapılandırma
 
---8<-- "../include/waf/installation/sending-traffic-to-node-oob.md"
+--8<-- "../include-tr/waf/installation/sending-traffic-to-node-oob.md"
 
 ## 2. Aynalanan Trafik Analizi ve Daha Fazlası İçin Bir Yapılandırma Dosyası Hazırlayın
 
@@ -131,11 +131,11 @@ Az önce oluşturduğunuz yapılandırma dosyasını [bağlar](https://docs.dock
 
 Aşağıdaki ortam değişkenleri konteynıra geçirilmelidir:
 
---8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+--8<-- "../include-tr/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
 
 ## 5. Wallarm Düğüm İşlemlerini Test Etme
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ## Günlük Yapılandırması
 
@@ -168,4 +168,4 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 Docker konteynırına monte edilen yapılandırma dosyası, filtering node yapılandırmasını [mümkün olan yönergelerle](../../../admin-en/configure-parameters-en.md) açıklamalıdır. Aşağıda, sık kullanılan filtering node yapılandırma seçenekleri bulunmaktadır:
 
---8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+--8<-- "../include-tr/waf/installation/linux-packages/common-customization-options.md"

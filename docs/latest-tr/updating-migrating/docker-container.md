@@ -26,7 +26,7 @@ Son kullanma tarihli düğümü (3.6 veya daha düşük) yükseltmek için lütf
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include-tr/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## Adım 1: Güncellenmiş filtreleme düğümü görüntüsünü indirin
 
@@ -73,7 +73,7 @@ docker stop <ÇALIŞAN_KONTEYNER_ADı>
 
 ## Adım 5: Filtreleme düğümü işlemini test edin
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ## Adım 6: Önceki sürümün filtreleme düğümünü silin
 

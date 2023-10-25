@@ -102,4 +102,4 @@ Dağıtım aşamasından daha fazlasını almak için:
 
 Dağıtılmış düğümü daha fazla ince ayarlamak için özellikleri öğrenin:
 
---8<-- "../include/waf/installation/quick-start-configuration-options-4.4.md"
+--8<-- "../include-tr/waf/installation/quick-start-configuration-options-4.4.md"

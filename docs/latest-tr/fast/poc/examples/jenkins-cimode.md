@@ -19,11 +19,11 @@ FAST'ın CI MODE'a Jenkins iş akışına entegrasyonu, `Jenkinsfile` dosyası �
 
 ![Jenkins ortam değişkenini geçme][jenkins-example-env-var]
 
---8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include-tr/fast/fast-cimode-integration-examples/configured-workflow.md"
 
 ## İstek Kaydının Adımını Eklemek
 
---8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include-tr/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
 ??? info "Kayıt modunda çalışan FAST düğümü ile otomatik test adımının örneği"
     ```
@@ -51,7 +51,7 @@ FAST'ın CI MODE'a Jenkins iş akışına entegrasyonu, `Jenkinsfile` dosyası �
 
 ## Güvenlik Testinin Adımını Eklemek
 
---8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
+--8<-- "../include-tr/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
 ??? info "Güvenlik testinin adımı örneği"
 

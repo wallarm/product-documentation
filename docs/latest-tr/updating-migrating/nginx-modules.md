@@ -34,7 +34,7 @@ Son kullanım tarihi geçmiş düğümü (3.6 veya daha altı) yükseltmek için
 
 ## Yükseltme yöntemleri
 
---8<-- "../include/waf/installation/upgrade-methods.md"
+--8<-- "../include-tr/waf/installation/upgrade-methods.md"
 
 ## Tüm bir arada kurulumla yükseltme
 
@@ -42,7 +42,7 @@ Aşağıdaki işlemi kullanarak Wallarm NGINX modülleri 4.x'i sürüm 4.8'e [t�
 
 ### Tüm bir arada kurulumla yükseltme için gereksinimler
 
---8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
+--8<-- "../include-tr/waf/installation/all-in-one-upgrade-requirements.md"
 
 ### Yükseltme süreci
 
@@ -54,25 +54,25 @@ Aşağıdaki işlemi kullanarak Wallarm NGINX modülleri 4.x'i sürüm 4.8'e [t�
 
 ### 1. Adım: Temiz makineyi hazırlayın
 
---8<-- "../include/waf/installation/all-in-one-clean-machine.md"
+--8<-- "../include-tr/waf/installation/all-in-one-clean-machine.md"
 
 ### 2. Adım: NGINX ve bağımlılıklarını yükleme
 
---8<-- "../include/waf/installation/all-in-one-nginx.md"
+--8<-- "../include-tr/waf/installation/all-in-one-nginx.md"
 
 ### 3. Adım: Wallarm tokenini hazırlayın
 
---8<-- "../include/waf/installation/all-in-one-token.md"
+--8<-- "../include-tr/waf/installation/all-in-one-token.md"
 
 ### 4. Adım: Tüm bir arada Wallarm yükleyicisini indirin
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-download.md"
 
 ### 5. Adım: Tüm bir arada Wallarm yükleyicisini çalıştırın
 
 #### Filtreleme düğümü ve postanalytics aynı sunucuda
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-run.md"
 
 #### Filtreleme düğümü ve postanalytics farklı sunucularda
 
@@ -128,7 +128,7 @@ Tüm bir arada kurulum, farklı işletim sistemlerinin ve NGINX sürümlerinin k
 
 ### 7. Adım: NGINX'i yeniden başlatın
 
---8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+--8<-- "../include-tr/waf/installation/restart-nginx-systemctl.md"
 
 ### 8. Adım: Wallarm düğüm işlemlerini test edin
 
@@ -193,7 +193,7 @@ Aşağıdaki işlemi kullanarak Wallarm NGINX modülleri 4.x'i manuel olarak sü
 
 ### Manuel yükseltme için gereksinimler
 
---8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
+--8<-- "../include-tr/waf/installation/basic-reqs-for-upgrades.md"
 
 ### Yükseltme süreci
 
@@ -293,18 +293,18 @@ Altyapınızın belirli bir NGINX sürümünü kullanması gerekiyorsa, lütfen 
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
+        --8<-- "../include-tr/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
-        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include-tr/waf/upgrade/details-about-dist-upgrade.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
+        --8<-- "../include-tr/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
-        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include-tr/waf/upgrade/details-about-dist-upgrade.md"
     === "CentOS veya Amazon Linux 2.0.2021x ve daha düşük"
         ```bash
         sudo yum update
@@ -337,18 +337,18 @@ Altyapınızın belirli bir NGINX sürümünü kullanması gerekiyorsa, lütfen 
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include-waf/upgrade/warning-expired-gpg-keys-4.8.md"
+        --8<-- "../include-tr/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
-        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include-tr/waf/upgrade/details-about-dist-upgrade.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
+        --8<-- "../include-tr/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
-        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include-tr/waf/upgrade/details-about-dist-upgrade.md"
     === "CentOS veya Amazon Linux 2.0.2021x ve daha düşük"
         ```bash
         sudo yum update
@@ -433,14 +433,14 @@ Yeni düğüm sürümünde, Wallarm örnek engelleme sayfası [değiştirildi](w
 
 ### 6. Adım: NGINX'i yeniden başlatın
 
---8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+--8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
 
 ### 7. Adım: Wallarm düğüm işlemlerini test edin
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ### Ayarların özelleştirilmesi
 
 Wallarm modülleri sürüm 4.8'e yükseltildi. Önceki düğümün filtreleme ayarları otomatik olarak yeni versiyona uygulanır. Ek ayarlar yapmak için [mevcut yönergeleri](../admin-en/configure-parameters-en.md) kullanın.
 
---8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"
+--8<-- "../include-tr/waf/installation/common-customization-options-nginx-4.4.md"

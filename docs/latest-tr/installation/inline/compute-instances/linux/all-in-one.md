@@ -43,45 +43,45 @@ Wallarm'ın [NGINX](individual-packages-nginx-stable.md), [NGINX Plus](individua
 
 ## Kullanım Durumları
 
---8<-- "../include/waf/installation/all-in-one/use-cases.md"
+--8<-- "../include-tr/waf/installation/all-in-one/use-cases.md"
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/all-in-one-requirements.md"
+--8<-- "../include-tr/waf/installation/all-in-one-requirements.md"
 
 ## Adım 1: NGINX ve bağımlılıkları yükleyin
 
---8<-- "../include/waf/installation/all-in-one-nginx.md"
+--8<-- "../include-tr/waf/installation/all-in-one-nginx.md"
 
 ## Adım 2: Wallarm belirteci hazırlayın
 
---8<-- "../include/waf/installation/all-in-one-token.md"
+--8<-- "../include-tr/waf/installation/all-in-one-token.md"
 
 ## Adım 3: Her şey bir arada Wallarm yükleyiciyi indirin
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-download.md"
 
 ## Adım 4: Her şey bir arada Wallarm yükleyiciyi çalıştırın
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-run.md"
 
 İlerleyen adımlardaki komutlar, x86_64 ve ARM64 kurulumları için aynıdır.
 
 ## Adım 5: Wallarm düğümünü trafiği analiz etmek için etkinleştirin
 
---8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis-inline.md"
+--8<-- "../include-tr/waf/installation/common-steps-to-enable-traffic-analysis-inline.md"
 
 ## Adım 6: NGINX'i yeniden başlatın
 
---8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+--8<-- "../include-tr/waf/installation/restart-nginx-systemctl.md"
 
 ## Adım 7: Trafiği Wallarm düğümüne göndermeyi yapılandırın
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline.md"
+--8<-- "../include-tr/waf/installation/sending-traffic-to-node-inline.md"
 
 ## Adım 8: Wallarm düğüm işlemini test edin
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ## Adım 9: Dağıtılmış çözümü ince ayar yapın
 

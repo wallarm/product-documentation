@@ -60,4 +60,4 @@ http:
 
 ## Adım 2: Wallarm düğümünü aynalanmış trafiği filtrelemek için yapılandırın
 
---8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"
+--8<-- "../include-tr/wallarm-node-configuration-for-mirrored-traffic.md"

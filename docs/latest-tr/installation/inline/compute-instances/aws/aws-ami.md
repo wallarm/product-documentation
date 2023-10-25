@@ -32,26 +32,26 @@ Bu makale, [resmi Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace
 
 ## Kullanım Durumları
 
---8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/ami-use-cases.md"
 
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
 
 ## 6. Wallarm'ın trafiği analiz etmesini sağlayın
 
---8<-- "../include/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis-inline.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis-inline.md"
 
 ## 7. NGINX'i Yeniden Başlatın
 
---8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/restart-nginx.md"
 
 ## 8. Trafik göndermeyi Wallarm örneğine yapılandırın
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline.md"
+--8<-- "../include-tr/waf/installation/sending-traffic-to-node-inline.md"
 
 ## 9. Wallarm operasyonunu test edin
 
---8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/test-operation-inline.md"
 
 ## 10. Dağıtılan çözümü ince ayarlayın
 
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/fine-tuning-options.md"

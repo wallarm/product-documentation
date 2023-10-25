@@ -9,7 +9,7 @@
 
 ABD Bulutu için IP adresleri listesi, Wallarm'ın şirket kaynaklarını [zaafiyetler](../glossary-en.md#vulnerability) için taradığı ve saldırıları ve zaafiyetleri tekrar kontrol ettiği:
 
---8<-- "../include/scanner-ip-request-us.md"
+--8<-- "../include-tr/scanner-ip-request-us.md"
 
 !!! bilgi "IP adreslerinin listesini al"
     [Tarayıcıların IP adreslerinin listesini içeren düz metin dosyasını indirin.][file-ips-list]

@@ -1,0 +1,1 @@
+--8<-- "latest-tr/admin-en/configuration-guides/protecting-against-ddos.md"

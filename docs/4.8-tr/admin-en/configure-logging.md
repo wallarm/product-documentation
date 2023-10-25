@@ -1,0 +1,1 @@
+--8<-- "latest-tr/admin-en/configure-logging.md"

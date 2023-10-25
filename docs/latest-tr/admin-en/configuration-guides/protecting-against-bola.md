@@ -83,7 +83,7 @@ Otomatik korumayı etkinleştirmek için, Wallarm Console → **BOLA koruması**
 
 ![BOLA tetikleyici](../../images/user-guides/bola-protection/trigger-enabled-state.png)
 
---8<-- "../include/waf/features/bola-mitigation/bola-auto-mitigation-logic.md"
+--8<-- "../include-tr/waf/features/bola-mitigation/bola-auto-mitigation-logic.md"
 
 **BOLA koruma** bölümü UI, [BOLA otodetection şablonunu düzenleyerek](../../user-guides/bola-protection.md) varsayılan Wallarm davranışını (BOLA saldırı engelleme dahil) ince ayarlamanıza olanak tanır.
 

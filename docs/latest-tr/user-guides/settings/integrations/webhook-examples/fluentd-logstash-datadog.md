@@ -2,7 +2,7 @@
 
 Wallarm, Fluentd veya Logstash ara veri toplayıcısı aracılığıyla Datadog'a algılanan olayların bildirimlerini göndermek için kurulabilir.
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include-tr/integrations/webhook-examples/overview.md"
 
 ![Wallarm'dan Datadog'a veri toplayıcı aracılığıyla bildirim gönderme](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
 
@@ -15,7 +15,7 @@ Wallarm, Fluentd veya Logstash ara veri toplayıcısı aracılığıyla Datadog'
 * Halka açık URL üzerinde mevcut olan Datadog hizmeti
 * [Fluentd/Logstash entegrasyonunu ayarlamak](#setting-up-integration-with-fluentd-or-logstash) için [AV bulutundaki](https://my.wallarm.com) Wallarm Konsoluna yönetici erişimi
 
---8<-- "../include/cloud-ip-by-request.md"
+--8<-- "../include-tr/cloud-ip-by-request.md"
 
 ## Gereklilikler
 
@@ -108,7 +108,7 @@ Wallarm, Fluentd veya Logstash'ın konfigürasyonu aşağıdaki gereklilikleri k
 1. Hedef Fluentd veya Logstash URL'sini (Webhook URL) belirtin.
 1. Gerekirse, gelişmiş ayarları yapılandırın:
 
-    --8<-- "../include/integrations/webhook-advanced-settings.md"
+    --8<-- "../include-tr/integrations/webhook-advanced-settings.md"
 1. Belirtilen URL'ye bildirim göndermeyi tetikleyecek olay türlerini seçin. Olaylar seçilmezse, bildirimler gönderilmez.
 1. [Entegrasyonu test edin](#testing-integration) ve ayarların doğru olduğundan emin olun.
 1. **Entegrasyon ekle**'ye tıklayın. 
@@ -119,7 +119,7 @@ Fluentd entegrasyon örneği:
 
 ## Entegrasyonu Test Etme
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+--8<-- "../include-tr/integrations/test-integration-advanced-data.md"
 
 Fluentd veya Logstash ara veri toplayıcısındaki test günlüğü:
 

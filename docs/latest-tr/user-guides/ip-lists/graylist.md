@@ -17,7 +17,7 @@ Filtreleme düğümünün davranışı, gri listeye alınan IP adresleri aynı z
 
 Wallarm Konsolu → **IP listeleri** → **Graylist** kısmından, gri listeye alınan IP adreslerini aşağıdaki şekillerde yönetebilirsiniz:
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
+--8<-- "../include-tr/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
 ![IP graylist](../../images/user-guides/ip-lists/graylist.png)
 
@@ -89,6 +89,6 @@ Manuel olarak bir IP adresini, alt ağı veya IP adreslerinin grubunu listeye ek
 
 ### Otomatik botların IP'lerinin gri listeye alınması
 
---8<-- "../include/waf/features/ip-lists/autopopulation-by-antibot.md"
+--8<-- "../include-tr/waf/features/ip-lists/autopopulation-by-antibot.md"
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
+--8<-- "../include-tr/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

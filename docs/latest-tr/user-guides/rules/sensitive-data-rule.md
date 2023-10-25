@@ -18,7 +18,7 @@ Bu, saldırıların görüntülenmesini, etkin saldırı (tehdit) doğrulamasın
 
 ## Kuralı oluşturma ve uygulama
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include-tr/waf/features/rules/rule-creation-options.md"
 
 ## Örnek: Çerez Değerinin Gizlenmesi
 
@@ -35,7 +35,7 @@ Bu, saldırıların görüntülenmesini, etkin saldırı (tehdit) doğrulamasın
 1. *Hassas veriyi gizle'*yi seçin
 1. *Başlık* parametresini seçin ve değerini `COOKIE` olarak girin; *çerez* parametresini seçin ve *bu istek bölümünde* kelimesinden sonra değerini `PHPSESSID` olarak girin
 
-    --8<-- "../include/waf/features/rules/request-part-reference.md"
+    --8<-- "../include-tr/waf/features/rules/request-part-reference.md"
 
 1. *Oluştur*'a tıklayın
 

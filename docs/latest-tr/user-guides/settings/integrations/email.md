@@ -19,7 +19,7 @@ Bildirimler tetiklenen olayların kısa ayrıntılarını içerir.
 
     Kullanılabilir olaylar hakkında ayrıntılar:
 
-    --8<-- "../include/integrations/events-for-integrations-mail.md"
+    --8<-- "../include-tr/integrations/events-for-integrations-mail.md"
 
 1. Ayar doğruluğunu kontrol etmek, Wallarm Cloud'un kullanılabilirliğini ve bildirim formatını kontrol etmek için **Entegrasyonu Test Et**'i tıklayın.
 
@@ -31,12 +31,12 @@ Bildirimler tetiklenen olayların kısa ayrıntılarını içerir.
 
 ## Ek uyarılar ayarlama
 
---8<-- "../include/integrations/integrations-trigger-setup-limited.md"
+--8<-- "../include-tr/integrations/integrations-trigger-setup-limited.md"
 
 ## Entegrasyonu devre dışı bırakma ve silme
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"
 
 ## Sistem kullanılamazlığı ve yanlış entegrasyon parametreleri
 
---8<-- "../include/integrations/integration-not-working.md"
+--8<-- "../include-tr/integrations/integration-not-working.md"

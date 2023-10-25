@@ -21,7 +21,7 @@
 
 #   FAST Giriş
 
---8<-- "../include/fast/cloud-note.md"
+--8<-- "../include-tr/fast/cloud-note.md"
 
  İlk [Wallarm portalı][link-wl-portal] girişinizde FAST ile tanışma fırsatı bulabileceksiniz.
 

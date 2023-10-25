@@ -36,4 +36,4 @@ location /mirror-test {
 
 ## Adım 2: Aynalanan trafiği filtrelemek için Wallarm düğümünü yapılandırın
 
---8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"
+--8<-- "../include-tr/wallarm-node-configuration-for-mirrored-traffic.md"

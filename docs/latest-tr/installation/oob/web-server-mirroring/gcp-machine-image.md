@@ -28,17 +28,17 @@ Bu makale, [Wallarm OOB](overview.md)'nun Google Cloud Platform'da [resmi Makine
 
 ## Kullanım senaryoları
 
---8<-- "../include/waf/installation/cloud-platforms/gcp-machine-image-use-cases.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/gcp-machine-image-use-cases.md"
 
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
 
 ## 5. Wallarm'ın yansıtılan trafiği analiz etmesini sağlayın
 
---8<-- "../include/waf/installation/oob/steps-for-mirroring-cloud.md"
+--8<-- "../include-tr/waf/installation/oob/steps-for-mirroring-cloud.md"
 
 ## 6. NGINX'i Yeniden Başlatın
 
---8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/restart-nginx.md"
 
 ## 7. Web veya proxy sunucunuzu Wallarm düğümüne trafiği yansıtmak üzere yapılandırın
 
@@ -48,8 +48,8 @@ Web veya sunucunuzu (ör. NGINX, Envoy), Wallarm düğümüne gelen trafiği yan
 
 ## 8. Wallarm işlemini test edin
 
---8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/test-operation-oob.md"
 
 ## 9. Dağıtılmış çözümü ince ayar yapın
 
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/fine-tuning-options.md"

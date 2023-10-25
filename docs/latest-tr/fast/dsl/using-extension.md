@@ -73,15 +73,15 @@ Bunu aşağıdaki yollardan herhangi birisiyle yapabilirsiniz:
         sudo docker run --name fast-node --env-file=/home/user/fast.cfg -p 9090:8080 wallarm/fast
         ```
 
---8<-- "../include/fast/wallarm-api-host-note.md"
+--8<-- "../include-tr/fast/wallarm-api-host-note.md"
 
  FAST düğümü başarılı bir şekilde başlatılırsa, başarılı bir şekilde Wallarm Cloud'a bağlandığını ve yüklenen uzantıların sayısını belirten aşağıdaki çıktıyı konsola yazar:
 
---8<-- "../include/fast/console-include/dsl/fast-node-run-ok.md"
+--8<-- "../include-tr/fast/console-include/dsl/fast-node-run-ok.md"
 
 Düğümün başlatılması sırasında bir hata oluşursa, hata bilgisi konsola yazılır. Uzantı sözdizimi hatası hakkındaki mesaj aşağıdaki örnekte gösterilmiştir:
 
---8<-- "../include/fast/console-include/dsl/fast-node-run-fail.md"
+--8<-- "../include-tr/fast/console-include/dsl/fast-node-run-fail.md"
 
 !!! info "Uzantıların konum gereksinimleri"
     İç içe olan dizinlerden uzantılar bağlanmayacaktır (örneğin, `extensions/level-2/` dizinine yerleştirilmiş bir uzantı). Bağlantı için seçilen yönteme bağlı olarak, uzantılar ya FAST düğümü Docker'in içine yerleştirilen dizinin köküne ya da Git deposunun köküne yerleştirilmelidir.
@@ -118,7 +118,7 @@ Daha önce oluşturulan [`mod-extension.yaml`][doc-mod-extension] ve [`non-mod-e
     ![Test run][img-test-run]
 
 4.  FAST düğümünün konsola `TestRun# için temel çizgiler kaydediliyor` gibi bir bilgi mesajı yazdığını görene kadar bekleyin. Bu, FAST düğümünün temel talepleri kaydetmeye hazır olduğu anlamına gelir.<br>
---8<-- "../include/fast/console-include/dsl/fast-node-recording.md"
+--8<-- "../include-tr/fast/console-include/dsl/fast-node-recording.md"
 
 5.  Aşağıdaki örnekte gösterildiği gibi, FAST düğümü üzerinden OWASP Juice Shop giriş sayfasına rastgele parametrelerle bir POST talebi oluşturun ve gönderin:
     
@@ -138,7 +138,7 @@ Daha önce oluşturulan [`mod-extension.yaml`][doc-mod-extension] ve [`non-mod-e
         Temel isteği gönderdikten sonra, kayıt işlemini durdurmanız önerilir. Bu prosedür [burada][link-stop-recording] açıklanmıştır.
 
 6.  FAST düğümü konsol çıktısında, hedef uygulamanın yerleşik FAST algılamaları kullanılarak nasıl test edildiğini, temel talepteki POST parametreleri için değiştirme FAST uzantısının ve temel talepteki URI parametresi için değiştirme olmayan FAST uzantısının nasıl çalıştığını göreceksiniz.
-    --8<-- "../include/fast/console-include/dsl/fast-node-working.md"
+    --8<-- "../include-tr/fast/console-include/dsl/fast-node-working.md"
 
     Talep işleme tam logunu, Wallarm web arayüzündeki test çalıştırması bilgilerini açıp “Detaylar” linkine tıklayarak görebilirsiniz.
     

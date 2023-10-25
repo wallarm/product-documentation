@@ -64,7 +64,7 @@ izin 127.0.0.0/8;
 
 Ayarlar değiştirildiğinde, değişikliklerin uygulanması için NGINX'i yeniden başlatın:
 
---8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+--8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
 
 ### İstatistik Servisinin IP Adresini Değiştirme 
 
@@ -81,11 +81,11 @@ Ayarlar değiştirildiğinde, değişikliklerin uygulanması için NGINX'i yenid
     ```
 1. [`collectd`](monitoring/intro.md) yapılandırma dosyasındaki `URL` parametresini uygun şekilde düzeltin. Bu dosyanın konumu, kullandığınız işletim sistemine bağlıdır:
 
-    --8<-- "../include/warning/wallarm-status-conf.md"
+    --8<-- "../include-tr/monitoring/collectd-config-location.md"
 1. Grup dışı adreslerden erişime izin vermek için `izin` yönergesini ekleyin veya değiştirin (varsayılan yapılandırma dosyası yalnızca döngüsel adreslere erişime izin verir).
 1. Değişiklikleri uygulamak için NGINX'i yeniden başlatın:
 
-    --8<-- "../include/warning/wallarm-status-conf.md"
+    --8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
 
 ### İstatistikleri Prometheus Formatında Alma
 
@@ -112,7 +112,7 @@ Varsayılan olarak, istatistikler yalnızca JSON formatında geri döner. İstat
         Lütfen `/wallarm-status` konumunun varsayılan yapılandırmasını silmeyin veya değiştirmeyin. Bu uç noktanın varsayılan işlemi, doğru verilerin Wallarm Bulut'a yüklenmesi için hayati öneme sahiptir.
 1. Değişiklikleri uygulamak için NGINX'i yeniden başlatın:
 
-    --8<-- "../include/warning/wallarm-status-conf.md"
+    --8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
 1. Prometheus metriklerini almak için yeni uç noktayı çağırın:
 
     ```bash

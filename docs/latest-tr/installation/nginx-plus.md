@@ -39,31 +39,31 @@ Bu talimatlar Wallarm filtreleme düğümünün resmi ticari sürüm NGINX Plus 
 
 ## Kullanım durumları
 
---8<-- "../include/waf/installation/linux-packages/nginx-plus-use-cases.md"
+--8<-- "../include-tr/waf/installation/linux-packages/nginx-plus-use-cases.md"
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/linux-packages/requirements-nginx-plus.md"
+--8<-- "../include-tr/waf/installation/linux-packages/requirements-nginx-plus.md"
 
---8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-plus.md"
+--8<-- "../include-tr/waf/installation/linux-packages/common-steps-to-install-node-nginx-plus.md"
 
 ## 6. Trafik analizini etkinleştirin
 
---8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.md"
+--8<-- "../include-tr/waf/installation/common-steps-to-enable-traffic-analysis.md"
 
 ## 7. NGINX Plus'ı yeniden başlatın
 
---8<-- "../include/waf/root_perm_info.md"
+--8<-- "../include-tr/waf/root_perm_info.md"
 
---8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+--8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
 
 ## 8. Trafik göndermeyi Wallarm örneğine yapılandırın
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
+--8<-- "../include-tr/waf/installation/sending-traffic-to-node-inline-oob.md"
 
 ## 9. Wallarm düğüm işlemini test edin
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ## 10. Dağıtılan çözümü ince ayar yapın
 
@@ -82,4 +82,4 @@ Aşağıda, gerektiğinde uygulayabileceğiniz tipik ayarların birkaçı bulunm
 
 * [Filtrasyon modu yapılandırması][waf-mode-instr]
 
---8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+--8<-- "../include-tr/waf/installation/linux-packages/common-customization-options.md"

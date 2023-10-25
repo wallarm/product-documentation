@@ -30,7 +30,7 @@ Bu talimatlar, son kullanma tarihi geçmiş Wallarm NGINX modüllerini (sürüm 
 * [NGINX Plus için bireysel paketler](../../installation/nginx-plus.md)
 * [Dağıtım sağlanmış NGINX için bireysel paketler](../../installation/nginx/dynamic-module-from-distr.md)
 
---8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include-tr/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
 ## EOL düğümü yükseltirken Wallarm teknik desteğine bilgi verin
 
@@ -40,7 +40,7 @@ Başka bir yardım dışında, Wallarm hesabınız için yeni IP listeleri mant�
 
 ## Yükseltme yöntemleri
 
---8<-- "../include/waf/installation/upgrade-methods.md"
+--8<-- "../include-tr/waf/installation/upgrade-methods.md"
 
 ## Her şey dahil kurulum uygulaması ile yükseltme
 
@@ -48,7 +48,7 @@ Son kullanma tarihi geçmiş Wallarm NGINX modüllerini (sürüm 3.6 ve altı) [
 
 ### Her şey dahil kurulum uygulaması ile yükseltme için gereksinimler
 
---8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
+--8<-- "../include-tr/waf/installation/all-in-one-upgrade-requirements.md"
 
 ### Yükseltme prosedürü
 
@@ -66,25 +66,25 @@ Modül işlemi, yükseltme işlemi sırasında [yanlış pozitiflere](../../abou
 
 ### Adım 2: Temiz bir makine hazırlayın
 
---8<-- "../include/waf/installation/all-in-one-clean-machine.md"
+--8<-- "../include-tr/waf/installation/all-in-one-clean-machine.md"
 
 ### Adım 3: NGINX ve bağımlılıkları yükleyin
 
---8<-- "../include/waf/installation/all-in-one-nginx.md"
+--8<-- "../include-tr/waf/installation/all-in-one-nginx.md"
 
 ### Adım 4: Wallarm belirtecini hazırlayın
 
---8<-- "../include/waf/installation/all-in-one-token.md"
+--8<-- "../include-tr/waf/installation/all-in-one-token.md"
 
 ### Adım 5: Her şey dahil Wallarm yükleyicisini indirin
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-download.md"
 
 ### Adım 6: Her şey dahil Wallarm yükleyicisini çalıştırın
 
 #### Süzgeç düğümü ve sonrasında analitik aynı sunucuda
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-run.md"
 
 #### Süzgeç düğümü ve sonrasında analitik farklı sunucularda
 
@@ -174,7 +174,7 @@ Yeni düğüm sürümünde, aşağıdaki [düğüm günlüğü değişkenlerine]
 
 #### `overlimit_res` saldırı tespitinin yönergesinden kurala olan yapılandırmasını aktarın
 
---8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
+--8<-- "../include-tr/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
 
 #### `wallarm-status.conf` dosya içeriğini güncelleyin
 
@@ -214,7 +214,7 @@ Bir süre sonra, modülün işlemi yanlış pozitiflere neden olmadığından em
 
 ### Adım 11: NGINX'i yeniden başlatın
 
---8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+--8<-- "../include-tr/waf/installation/restart-nginx-systemctl.md"
 
 ### Adım 12: Wallarm düğüm işlemini test edin
 
@@ -277,7 +277,7 @@ Kullanılan dağıtım yaklaşımına bağlı olarak, aşağıdaki ayarları ger
 
 ### Manuel yükseltme için gereksinimler
 
---8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
+--8<-- "../include-tr/waf/installation/basic-reqs-for-upgrades.md"
 
 ### Yükseltme prosedürü
 
@@ -292,7 +292,7 @@ Modül işlemi, yükseltme işlemi sırasında [yanlış pozitiflere](../../abou
 
 ### Adım 2: API portunu güncelleyin
 
---8<-- "../include/waf/upgrade/api-port-443.md"
+--8<-- "../include-tr/waf/upgrade/api-port-443.md"
 
 ### Adım 3: NGINX'i en son sürüme yükseltin
 
@@ -399,18 +399,18 @@ Aşağıdaki komutu, süzgeç düğümü ve sonrasında analitik modülleri yük
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
+    --8<-- "../include-tr/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
-    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include-tr/waf/upgrade/details-about-dist-upgrade.md"
 === "Ubuntu"
     ```bash
     sudo apt update
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
+    --8<-- "../include-tr/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
-    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include-tr/waf/upgrade/details-about-dist-upgrade.md"
 === "CentOS veya Amazon Linux 2.0.2021x ve altı"
     ```bash
     sudo yum update
@@ -438,18 +438,18 @@ Aşağıdaki komutu, süzgeç düğümü ve sonrasında analitik modülleri yük
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
+        --8<-- "../include-tr/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
-        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include-tr/waf/upgrade/details-about-dist-upgrade.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
+        --8<-- "../include-tr/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
-        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include-tr/waf/upgrade/details-about-dist-upgrade.md"
     === "CentOS veya Amazon Linux 2.0.2021x ve altı"
         ```bash
         sudo yum update
@@ -567,7 +567,7 @@ Yeni düğüm sürümünde, aşağıdaki [düğüm günlüğü değişkenlerine]
 
 ### Adım 12: `overlimit_res` saldırı tespitinin yönergesinden kurala olan yapılandırmasını aktarın
 
---8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
+--8<-- "../include-tr/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
 
 ### Adım 13: `wallarm-status.conf` dosya içeriğini güncelleyin
 
@@ -595,11 +595,11 @@ server {
 
 ### Adım 14: NGINX'i yeniden başlatın
 
---8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+--8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
 
 ### Adım 15: Wallarm düğüm işlemini test edin
 
---8<-- "../include/waf/installation/test-after-node-type-upgrade.md"
+--8<-- "../include-tr/waf/installation/test-after-node-type-upgrade.md"
 
 ### Adım 16: Active threat verification modülünü yeniden etkinleştirin (2.16 veya daha eski bir düğüm yükseltirken)
 
@@ -617,4 +617,4 @@ Postanalytic modül ayrı bir sunucuda kuruluysa, lütfen bu modülle ilgili dü
 
 Wallarm modülleri sürüm 4.8'a güncellendi. Önceki filtreleme düğümü ayarları yeni sürüme otomatik olarak uygulanacaktır. Ek ayarlar yapmak için, [mevcut yönergeleri](../../admin-en/configure-parameters-en.md) kullanın.
 
---8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"
+--8<-- "../include-tr/waf/installation/common-customization-options-nginx-4.4.md"

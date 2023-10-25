@@ -58,17 +58,17 @@ Zabbix web arayüzüne erişmek için `http://10.0.30.30` adresine gidin. Standa
 4.  İzleme işleminizi kontrol edin: 
     1.  Zabbix widgetındaki güncel işlenen isteklerin sayısının filtre düğümünde `wallarm-status` çıktısıyla eşleştiğinden emin olun.
 
-        --8<-- "../include/monitoring/wallarm-status-check-padded-latest.md"
+        --8<-- "../include-tr/monitoring/wallarm-status-check-padded-latest.md"
 
         ![Metrik değerini görüntüleme][img-global-view-0]
 
     2.  Filtre düğümü tarafından korunan bir uygulamaya bir test saldırısı gerçekleştirin. Bunu yapmak için, `curl` yardımcı programı veya bir tarayıcı ile uygulamaya kötü amaçlı bir istek gönderebilirsiniz.
 
-        --8<-- "../include/monitoring/sample-malicious-request.md"
+        --8<-- "../include-tr/monitoring/sample-malicious-request.md"
         
     3.  İstek sayacının hem `wallarm-status` çıktısında hem de Zabbix widget'ında arttığından emin olun.
 
-        --8<-- "../include/monitoring/wallarm-status-output-padded-latest.md"
+        --8<-- "../include-tr/monitoring/wallarm-status-output-padded-latest.md"
 
         ![Değişen metrik değerini görüntüleme][img-global-view-16]
 
