@@ -26,26 +26,26 @@ Bu makale, [resmi Makine Görüntüsü](https://console.cloud.google.com/launche
 
 ## Kullanım durumları
 
---8<-- "../include/waf/installation/cloud-platforms/gcp-machine-image-use-cases.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/gcp-machine-image-use-cases.md"
 
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
 
 ## 5. Wallarm'ın trafiği analiz etmesini sağlayın
 
---8<-- "../include/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis-inline.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis-inline.md"
 
 ## 6. NGINX'i yeniden başlatın
 
---8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/restart-nginx.md"
 
 ## 7. Trafiği Wallarm örneğine göndermeyi yapılandırın
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline.md"
+--8<-- "../include-tr/waf/installation/sending-traffic-to-node-inline.md"
 
 ## 8. Wallarm operasyonunu test edin
 
---8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/test-operation-inline.md"
 
 ## 9. Kullanıma alınan çözümü ince ayarlayın
 
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/fine-tuning-options.md"

@@ -7,7 +7,7 @@ Bir **Kiracı** ([**kiracı hesabı**](#tenant-accounts)), aşağıdaki unsurlar
 * Bağımsız bir şirket (**müşteri**) eğer Wallarm bir ortak olarak entegre edilirse.
 * Izole bir ortam eğer Wallarm bir müşteri olarak entegre edilirse.
 
---8<-- "../include/waf/features/multi-tenancy/partner-client-term.md"
+--8<-- "../include-tr/waf/features/multi-tenancy/partner-client-term.md"
 
 ## Çoklu Kiracılık ile Ele Alınan Sorunlar
 

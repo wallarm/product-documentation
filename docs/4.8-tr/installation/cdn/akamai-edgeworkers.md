@@ -1,0 +1,1 @@
+--8<-- "latest-tr/installation/cdn/akamai-edgeworkers.md"

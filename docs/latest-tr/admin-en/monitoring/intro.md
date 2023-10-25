@@ -78,11 +78,11 @@ Varsayılan olarak, bu servis `http://127.0.0.8/wallarm-status` adresinden eriş
     ```
 1. `collectd` yapılandırma dosyasında `URL` parametresini buna göre düzeltin. Bu dosyanın yeri, kullanmış olduğunuz işletim sisteminin dağıtım türüne bağlıdır:
 
-    --8<-- "../include/monitoring/collectd-config-location.md"
+    --8<-- "../include-tr/monitoring/collectd-config-location.md"
 
 Tarantool için standart olmayan bir IP adresi veya port kullanılıyorsa, Tarantool yapılandırma dosyasını buna göre düzeltmeniz gerekecektir. Bu dosyanın konumu, kullanmış olduğunuz işletim sisteminin dağıtım türüne bağlıdır:
 
---8<-- "../include/monitoring/tarantool-config-location.md"
+--8<-- "../include-tr/monitoring/tarantool-config-location.md"
 
 Filtre düğümü konakta SELinux kuruluysa, SELinux'un ya [yapılandırılmış ya da devre dışı bırakılmış][doc-selinux] olduğundan emin olun. Basitlik için, bu belge SELinux'un devre dışı bırakıldığını varsayar.
 

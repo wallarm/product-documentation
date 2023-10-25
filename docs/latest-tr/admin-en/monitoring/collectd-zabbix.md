@@ -20,7 +20,7 @@ Bu belge, [Zabbix][link-zabbix] izleme sisteminin [`collectd-nagios`][link-colle
 
 ## Örnek İş Akışı
 
---8<-- "../include/monitoring/metric-example.md"
+--8<-- "../include-tr/monitoring/metric-example.md"
 
 ![Örnek iş akışı][img-zabbix-scheme]
 
@@ -66,7 +66,7 @@ Filtre düğümünün bulunduğu bir sunucuda Zabbix Ajanı 4.0 LTS'yi yükleyin
 2.  Zabbix havuzlarına bağlanın (işletim sisteminiz için [talimatlardaki][link-zabbix-repo] "Zabbix havuzunu yükle" seçeneğini kullanın).
 3.  Zabbix ajanını uygun bir komut çalıştırarak yükleyin:
 
-    --8<-- "../include/monitoring/install-zabbix-agent.md"
+    --8<-- "../include-tr/monitoring/install-zabbix-agent.md"
 
 4.  Zabbix Ajanı'nın Zabbix cihazı ile çalışacak şekilde ayarlanmasını yapın. Bunu yapmak için, `/etc/zabbix/zabbix_agentd.conf` yapılandırma dosyasına aşağıdaki değişiklikleri uygulayın:
    
@@ -83,7 +83,7 @@ Filtre düğümüne (örneğin, SSH protokolünü kullanarak) bağlanın ve metr
     
 İlgili komutu çalıştırın:
 
---8<-- "../include/monitoring/install-collectd-utils.md"
+--8<-- "../include-tr/monitoring/install-collectd-utils.md"
 
 
 ####    2.  `collectd-nagios` yardımını `zabbix` kullanıcısı lehine yükseltilmiş ayrıcalıklarla çalışacak şekilde yapılandırın
@@ -131,7 +131,7 @@ UserParameter=wallarm_nginx-gauge-abnormal, sudo /usr/bin/collectd-nagios -s /va
 
 ####    5.  Gerekli tüm komutlar Zabbix ajanı yapılandırma dosyasına eklendikten sonra, ajanı yeniden başlatın.
 
---8<-- "../include/monitoring/zabbix-agent-restart-2.16.md"
+--8<-- "../include-tr/monitoring/zabbix-agent-restart-2.16.md"
 
 ## Ayarlanma Tamamlandı
 

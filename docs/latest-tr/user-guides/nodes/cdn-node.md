@@ -25,7 +25,7 @@ Wallarm Konsolu UI'nin **Düğümler** bölümü, [**Wallarm düğümü**](nodes
 !!! info "Ücretsiz tier altındaki CDN düğümleri"
     CDN düğümü türünün dağıtımı [Ücretsiz tier planı](../../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud) altında desteklenmez.
 
---8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.md"
+--8<-- "../include-tr/waf/installation/cdn-node/how-cdn-node-works.md"
 
 ## Bir düğüm oluşturma
 
@@ -87,4 +87,4 @@ Filtreleme düğümü silindiğinde, alanınıza yapılan isteklerin filtrelemes
 
 ## CDN düğümü sorun giderme
 
---8<-- "../include/waf/installation/cdn-node/cdn-node-troubleshooting.md"
+--8<-- "../include-tr/waf/installation/cdn-node/cdn-node-troubleshooting.md"

@@ -13,7 +13,7 @@ Saldırı türleri seçilirse, istek yalnızca filtre düğümü ilgili parametr
 
 ## Kuralın oluşturulması ve uygulanması
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include-tr/waf/features/rules/rule-creation-options.md"
 
 ## Örnek: Sorgu Dizesi Parametresi `id` İçindeki SQLi Saldırılarını Engelleme
 
@@ -32,7 +32,7 @@ Saldırı türleri seçilirse, istek yalnızca filtre düğümü ilgili parametr
 1. Saldırı türü olarak *SQLi* seçin
 1. *QUERY* parametresini seçin ve *bu istek bölümünde* seçeneğinden sonra `id` değerini girin
 
-    --8<-- "../include/waf/features/rules/request-part-reference.md"
+    --8<-- "../include-tr/waf/features/rules/request-part-reference.md"
 
 1. *Oluştur*'a tıklayın
 
@@ -55,7 +55,7 @@ Saldırı türleri seçilirse, istek yalnızca filtre düğümü ilgili parametr
 1. *Herhangi bir istek* seçin
 1. *QUERY* parametresini seçin ve *bu istek bölümünde* seçeneğinden sonra `refresh` değerini girin
 
-    --8<-- "../include/api-request-examples/create-rule-en.md"
+    --8<-- "../include-tr/api-request-examples/create-rule-en.md"
 
 1. *Oluştur*'a tıklayın
 
@@ -67,10 +67,10 @@ Sanal yama kuralını oluşturmak için, Wallarm Console UI'yi kullanmanın yan�
 
 **Tüm istekleri engellemek için sanal yama oluştur `/my/api/*` adresine gönderilen**
 
---8<-- "../include/api-request-examples/create-rule-en.md"
+--8<-- "../include-tr/api-request-examples/create-rule-en.md"
 
 **Belirli bir uygulama örneği ID için sanal yama oluştur `/my/api/*` adresine tüm istekleri engelleyin**
 
 Bir uygulama, bu isteği göndermeden önce [yapılandırılmalıdır](../settings/applications.md). `action.point[instance].value`'da mevcut bir uygulamanın ID'sini belirtin.
 
---8<-- "../include/api-request-examples/create-rule-for-app-id.md"
+--8<-- "../include-tr/api-request-examples/create-rule-for-app-id.md"

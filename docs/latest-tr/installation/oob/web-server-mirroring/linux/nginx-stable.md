@@ -45,31 +45,31 @@ Wallarm aşağıdaki işletim sistemlerini destekler:
 
 ## Kullanım Durumları
 
---8<-- "../include/waf/installation/linux-packages/nginx-stable-use-cases.md"
+--8<-- "../include-tr/waf/installation/linux-packages/nginx-stable-use-cases.md"
 
 ## Gereklilikler
 
---8<-- "../include/waf/installation/linux-packages/requirements-nginx-stable.md"
+--8<-- "../include-tr/waf/installation/linux-packages/requirements-nginx-stable.md"
 
---8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-stable.md"
+--8<-- "../include-tr/waf/installation/linux-packages/common-steps-to-install-node-nginx-stable.md"
 
 ## 6. Wallarm'ın Trafiği Analiz Etmesini Etkinleştirme
 
---8<-- "../include/waf/installation/oob/steps-for-mirroring-linux.md"
+--8<-- "../include-tr/waf/installation/oob/steps-for-mirroring-linux.md"
 
 ## 7. NGINX'i Yeniden Başlatma
 
---8<-- "../include/waf/root_perm_info.md"
+--8<-- "../include-tr/waf/root_perm_info.md"
 
---8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+--8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
 
 ## 8. Trafiğin Wallarm Örneğine Gönderilmesini Yapılandırma
 
---8<-- "../include/waf/installation/sending-traffic-to-node-oob.md"
+--8<-- "../include-tr/waf/installation/sending-traffic-to-node-oob.md"
 
 ## 9. Wallarm Düğüm İşleminin Test Edilmesi
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ## 10. Yerleştirilen Çözümün İnce Ayarını Yapmak
 
@@ -86,6 +86,6 @@ Wallarm ayarları, [NGINX direktifleri](../../../../admin-en/configure-parameter
 
 Gerektiğinde uygulayabileceğiniz tipik ayarların birkaçı aşağıda belirtilmiştir:
 
---8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+--8<-- "../include-tr/waf/installation/linux-packages/common-customization-options.md"
 
 * [NGINX'de dinamik DNS çözümlemesinin yapılandırılması][dynamic-dns-resolution-nginx]

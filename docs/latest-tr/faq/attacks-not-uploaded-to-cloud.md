@@ -38,7 +38,7 @@ Filtreleme düğümü işletim modunu aşağıdaki gibi kontrol edin:
     `Off` modu, `wallarm-status` metriklerinin artmamasının yaygın bir nedenidir.
 1. Wallarm düğüm ayarlarının uygulandığından emin olmak için NGINX'i yeniden başlatın (eğer düğüm DEB/RPM paketlerinden kurulduysa):
 
-    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+    --8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
 1. Saldırıların hala Buluta yüklenmediğinden emin olmak için bir kez daha kötü niyetli trafiği [oluşturun](#1-generate-some-malicious-traffic).
 
 ## 3. Tarantool'un talepleri işlemek için yeterli kaynağa sahip olduğunu kontrol edin

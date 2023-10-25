@@ -13,7 +13,7 @@ Bu belge, metriclerin Graphite'a dışa aktarılması için `write_graphite` yaz
 
 ##  Örnek İş Akışı
 
---8<-- "../include/monitoring/metric-example.md"
+--8<-- "../include-tr/monitoring/metric-example.md"
 
 ![Örnek iş akışı][img-write-plugin-graphite]
 
@@ -42,7 +42,7 @@ Bu belgedeki dağıtım şeması aşağıdaki gibidir:
 
 ##  Metriclerin Graphite'a Aktarılmasının Yapılandırılması
 
---8<-- "../include/monitoring/docker-prerequisites.md"
+--8<-- "../include-tr/monitoring/docker-prerequisites.md"
 
 ### Graphite ve Grafana'nın Yerleştirilmesi
 
@@ -110,6 +110,6 @@ Bu noktada, Graphite çalışıyor ve `collectd` tarafından gönderilen metricl
     
 3.  İlgili komutu çalıştırarak `collectd` servisini yeniden başlatın:
 
-    --8<-- "../include/monitoring/collectd-restart-2.16.md"
+    --8<-- "../include-tr/monitoring/collectd-restart-2.16.md"
 
 Şimdi Graphite filtre düğümünün tüm metriklerini alacak. İlgilendiğiniz metrikleri görselleştirebilir ve onları [Grafana ile][doc-grafana] izleyebilirsiniz.

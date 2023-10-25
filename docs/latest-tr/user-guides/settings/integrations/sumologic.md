@@ -22,7 +22,7 @@ Wallarm UI'da:
 
     Mevcut olaylar hakkında ayrıntılar:
 
-    --8<-- "../include/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include-tr/integrations/advanced-events-for-integrations.md"
 
 1. Yapılandırma doğruluğunu, Wallarm Bulutu'nun mevcudiyetini ve bildirim formatını kontrol etmek için **Entegrasyonu test et**'e tıklayın.
 
@@ -75,12 +75,12 @@ Wallarm UI'da:
 
 ## Ek uyarıları ayarlama
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include-tr/integrations/integrations-trigger-setup.md"
 
 ## Entegrasyonu devre dışı bırakma ve silme
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"
 
 ## Sistem mevcudiyeti ve yanlış entegrasyon parametreleri
 
---8<-- "../include/integrations/integration-not-working.md"
+--8<-- "../include-tr/integrations/integration-not-working.md"

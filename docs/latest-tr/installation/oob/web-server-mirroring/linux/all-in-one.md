@@ -50,45 +50,45 @@ Wallarm tarafından [NGINX](nginx-stable.md), [NGINX Plus](nginx-plus.md) ve [da
 
 ## Kullanım Durumları
 
---8<-- "../include/waf/installation/all-in-one/use-cases.md"
+--8<-- "../include-tr/waf/installation/all-in-one/use-cases.md"
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/all-in-one-requirements.md"
+--8<-- "../include-tr/waf/installation/all-in-one-requirements.md"
 
 ## Adım 1: NGINX ve Bağımlılıkları Yükleme
 
---8<-- "../include/waf/installation/all-in-one-nginx.md"
+--8<-- "../include-tr/waf/installation/all-in-one-nginx.md"
 
 ## Adım 2: Wallarm Belirteci Hazırlama
 
---8<-- "../include/waf/installation/all-in-one-token.md"
+--8<-- "../include-tr/waf/installation/all-in-one-token.md"
 
 ## Adım 3: Tüm bir arada Wallarm Kurucusunu İndirme
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-download.md"
 
 ## Adım 4: Tüm bir arada Wallarm Kurucusunu Çalıştırma
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-run.md"
 
 Daha ileri adımlardaki komutlar, x86_64 ve ARM64 kurulumları için aynıdır.
 
 ## Adım 5: Trafik Analizi İçin Wallarm Düğümünü Etkinleştirme
 
---8<-- "../include/waf/installation/oob/steps-for-mirroring-linux-all-in-one.md"
+--8<-- "../include-tr/waf/installation/oob/steps-for-mirroring-linux-all-in-one.md"
 
 ## Adım 6: NGINX'i Yeniden Başlatma
 
---8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+--8<-- "../include-tr/waf/installation/restart-nginx-systemctl.md"
 
 ## Adım 7: Trafik Gönderimini Wallarm Düğümüne Yapılandırma
 
---8<-- "../include/waf/installation/sending-traffic-to-node-oob.md"
+--8<-- "../include-tr/waf/installation/sending-traffic-to-node-oob.md"
 
 ## Adım 8: Wallarm Düğüm İşleminin Test Edilmesi
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ## Adım 9: Dağıtılmış Çözümün İnce Ayarını Yapma
 

@@ -11,7 +11,7 @@ Bu talimatlar, [tüm-bir-arada yükleyici](../installation/nginx/all-in-one.md) 
 
 ## Gereklilikler
 
---8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
+--8<-- "../include-tr/waf/installation/all-in-one-upgrade-requirements.md"
 
 ## Yükseltme prosedürü
 
@@ -43,15 +43,15 @@ Düğümü yükseltmek için, [belirteç türlerinden birine](../user-guides/nod
 
 ### Adım 2: Tüm-bir-arada Wallarm yükleyicinin en yeni sürümünü indirin
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-download.md"
 
 ### Adım 3: Tüm-bir-arada Wallarm yükleyicisini çalıştırın
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-run.md"
 
 ### Adım 4: NGINX'i yeniden başlatın
 
---8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+--8<-- "../include-tr/waf/installation/restart-nginx-systemctl.md"
 
 ### Adım 5: Wallarm düğüm işlemini test et
 
@@ -92,19 +92,19 @@ Düğümü yükseltmek için, [belirteç türlerinden birine](../user-guides/nod
 
 Bu adım postanalytics makinesinde gerçekleştirilir.
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-download.md"
 
 ### Adım 3: Postanalytics'i yükseltmek için tüm-bir-arada Wallarm yükleyicisini çalıştırın
 
 Bu adım postanalytics makinesinde gerçekleştirilir.
 
---8<-- "../include/waf/installation/all-in-one-postanalytics.md"
+--8<-- "../include-tr/waf/installation/all-in-one-postanalytics.md"
 
 ### Adım 4: Tüm-bir-arada Wallarm yükleyicinin en yeni sürümünü filtreleme düğümü makinesine indirin
 
 Bu adım filtreleme düğümü makinesinde gerçekleştirilir.
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-download.md"
 
 ### Adım 5: Filtreleme düğümünü yükseltmek için tüm-bir-arada Wallarm yükleyicisini çalıştırın
 
@@ -134,4 +134,4 @@ Filtreleme düğümünü tüm-bir-arada yükleyici ile ayrı ayrı yükseltmek i
 
 ### Adım 6: Filtreleme düğümü ve ayrı postanalytics modüllerinin etkileşimini kontrol edin
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
+--8<-- "../include-tr/waf/installation/all-in-one-postanalytics-check.md"

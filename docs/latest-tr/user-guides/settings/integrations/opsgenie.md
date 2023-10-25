@@ -24,7 +24,7 @@ Wallarm UI'ında:
 
     Mevcut olaylar hakkında ayrıntılar:
       
-    --8<-- "../include/integrations/events-for-integrations.md"
+    --8<-- "../include-tr/integrations/events-for-integrations.md"
 
 1. Ayarları doğrulamak, Wallarm Bulut'unun mevcudiyetini kontrol etmek ve bildirim formatını denetlemek için **Entegrasyonu test et**'i tıklayın.
 
@@ -36,12 +36,12 @@ Wallarm UI'ında:
 
 ## Ek uyarıları ayarlama
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include-tr/integrations/integrations-trigger-setup.md"
 
 ## Entegrasyonu devre dışı bırakma ve silme
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"
 
 ## Sistem erişilemezliği ve yanlış entegrasyon parametreleri
 
---8<-- "../include/integrations/integration-not-working.md"
+--8<-- "../include-tr/integrations/integration-not-working.md"

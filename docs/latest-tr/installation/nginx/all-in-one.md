@@ -47,45 +47,45 @@ Wallarm'ın sunduğu bireysel Linux paketlerine kıyasla [NGINX](dynamic-module.
 
 ## Kullanım durumları
 
---8<-- "../include/waf/installation/all-in-one/use-cases.md"
+--8<-- "../include-tr/waf/installation/all-in-one/use-cases.md"
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/all-in-one-requirements.md"
+--8<-- "../include-tr/waf/installation/all-in-one-requirements.md"
 
 ## Adım 1: NGINX ve bağımlılıkları yükleyin
 
---8<-- "../include/waf/installation/all-in-one-nginx.md"
+--8<-- "../include-tr/waf/installation/all-in-one-nginx.md"
 
 ## Adım 2: Wallarm token'ı hazırlayın
 
---8<-- "../include/waf/installation/all-in-one-token.md"
+--8<-- "../include-tr/waf/installation/all-in-one-token.md"
 
 ## Adım 3: Tüm bir arada Wallarm yükleyicisini indirin
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-download.md"
 
 ## Adım 4: Tüm bir arada Wallarm yükleyicisini çalıştırın
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include-tr/waf/installation/all-in-one-installer-run.md"
 
 Sonraki adımlardaki komutlar aynı zamanda x86_64 ve ARM64 yüklemeleri için de geçerlidir.
 
 ## Adım 5: Wallarm düğümünün trafiği analiz etmesini sağlayın
 
---8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis-all-in-one.md"
+--8<-- "../include-tr/waf/installation/common-steps-to-enable-traffic-analysis-all-in-one.md"
 
 ## Adım 6: NGINX'i yeniden başlatın
 
---8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+--8<-- "../include-tr/waf/installation/restart-nginx-systemctl.md"
 
 ## Adım 7: Trafiği Wallarm düğümüne göndermeyi yapılandırın
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
+--8<-- "../include-tr/waf/installation/sending-traffic-to-node-inline-oob.md"
 
 ## Adım 8: Wallarm düğümünün operasyonunu test edin
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ## Adım 9: Dağıtılmış çözümü ince ayarlayın
 

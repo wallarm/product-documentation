@@ -25,7 +25,7 @@ Bunu yapmak için, *Regexp ile saldırı belirteci oluştur* kuralını oluştur
 
 * *bu isteğin bu bölümünde*: Sistemin ilgili saldırıları algılaması gereken isteğin neresini belirler.
 
-    --8<-- "../include/waf/features/rules/request-part-reference.md"
+    --8<-- "../include-tr/waf/features/rules/request-part-reference.md"
 
 ### Örnek: Yanlış X-Authentication Başlığına Sahip Tüm İstekleri Engelleme
 
@@ -122,4 +122,4 @@ Aşağıdaki istek, `^(~(44[.]33[.]22[.]11))$` regexp'ine dayalı özel saldır�
 
 Eğer `MY.DOMAIN.COM` alanından gelen isteklere `X-FORWARDED-FOR: 44.33.22.11` HTTP başlığı varsa, Wallarm düğümü bunları tarayıcı saldırıları olarak kabul edecek ve eğer ilgili [filtreleme modu](../../admin-en/configure-wallarm-mode.md) ayarlanmışsa, saldırıları engelleyecektir.
 
---8<-- "../include/api-request-examples/create-rule-scanner.md"
+--8<-- "../include-tr/api-request-examples/create-rule-scanner.md"

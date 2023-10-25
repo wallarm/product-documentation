@@ -44,21 +44,21 @@ Wallarm modülü, aşağıdaki işletim sistemlerinde dağıtılan NGINX ile uyu
 
 ## Kullanım durumları
 
---8<-- "../include/waf/installation/linux-packages/nginx-distro-use-cases.md"
+--8<-- "../include-tr/waf/installation/linux-packages/nginx-distro-use-cases.md"
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/linux-packages/requirements-nginx-distro.md"
+--8<-- "../include-tr/waf/installation/linux-packages/requirements-nginx-distro.md"
 
---8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-distro.md"
+--8<-- "../include-tr/waf/installation/linux-packages/common-steps-to-install-node-nginx-distro.md"
 
 ## 5. Wallarm'ın trafiği analiz etmesini etkinleştirin
 
---8<-- "../include/waf/installation/oob/steps-for-mirroring-linux.md"
+--8<-- "../include-tr/waf/installation/oob/steps-for-mirroring-linux.md"
 
 ## 6. NGINX'i yeniden başlatın
 
---8<-- "../include/waf/root_perm_info.md"
+--8<-- "../include-tr/waf/root_perm_info.md"
 
 === "Debian"
     ```bash
@@ -79,11 +79,11 @@ Wallarm modülü, aşağıdaki işletim sistemlerinde dağıtılan NGINX ile uyu
 
 ## 7. Trafiği Wallarm örneğine göndermeyi yapılandırın
 
---8<-- "../include/waf/installation/sending-traffic-to-node-oob.md"
+--8<-- "../include-tr/waf/installation/sending-traffic-to-node-oob.md"
 
 ## 8. Wallarm düğüm işlemini test edin
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ## 9. Dağıtılmış çözümü hızlıca ayarlayın
 
@@ -100,6 +100,6 @@ Wallarm ayarları [NGINX yönergeleri](../../../../admin-en/configure-parameters
 
 Aşağıda, gerektiğinde uygulayabileceğiniz tipik ayarların bir kaçı bulunmaktadır:
 
---8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+--8<-- "../include-tr/waf/installation/linux-packages/common-customization-options.md"
 
 * [NGINX'de dinamik DNS çözümlemesini yapılandırma][dynamic-dns-resolution-nginx]

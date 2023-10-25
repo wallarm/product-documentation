@@ -13,7 +13,7 @@ Bu belge, Ağ eklentisini kullanarak metrikleri InfluxDB zamansal veritabanına 
 
 ##  Örnek İş Akışı
 
---8<-- "../include/monitoring/metric-example.md"
+--8<-- "../include-tr/monitoring/metric-example.md"
 
 ![Örnek İş Akışı][img-network-plugin-influxdb]
 
@@ -43,7 +43,7 @@ Bu belgede aşağıdaki dağıtım şeması kullanılmıştır:
 
 ##  Metriklerin InfluxDB'ye Aktarımının Yapılandırılması
 
---8<-- "../include/monitoring/docker-prerequisites.md"
+--8<-- "../include-tr/monitoring/docker-prerequisites.md"
 
 ### InfluxDB ve Grafana'nın Dağıtımı
 
@@ -174,6 +174,6 @@ Bu noktada, InfluxDB çalışıyor olmalı, `collectd` den metrikleri almak içi
     
 3. `collectd` hizmetini, uygun komutu çalıştırarak yeniden başlatın:
 
-    --8<-- "../include/monitoring/collectd-restart-2.16.md"
+    --8<-- "../include-tr/monitoring/collectd-restart-2.16.md"
 
 Şimdi InfluxDB, filtre düğümünün tüm metriklerini alır. İlgilendiğiniz metrikleri görselleştirebilir ve onları [Grafana ile][doc-grafana] izleyebilirsiniz.

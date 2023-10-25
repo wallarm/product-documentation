@@ -46,11 +46,11 @@ Tüm desteklenen [Wallarm dağıtım seçenekleri](supported-deployment-options.
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/cdn-node/cdn-node-deployment-requirements.md"
+--8<-- "../include-tr/waf/installation/cdn-node/cdn-node-deployment-requirements.md"
 
 ## CDN düğümü nasıl çalışır
 
---8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.md"
+--8<-- "../include-tr/waf/installation/cdn-node/how-cdn-node-works.md"
 
 ## CDN düğümünün dağıtımı
 
@@ -96,8 +96,8 @@ Wallarm CDN düğümü başarıyla dağıtıldı!
 
 Wallarm yapılandırma seçeneklerini öğrenin:
 
---8<-- "../include/waf/installation/cdn-node/cdn-node-configuration-options.md"
+--8<-- "../include-tr/waf/installation/cdn-node/cdn-node-configuration-options.md"
 
 ## CDN düğümü sorun giderme
 
---8<-- "../include/waf/installation/cdn-node/cdn-node-troubleshooting.md"
+--8<-- "../include-tr/waf/installation/cdn-node/cdn-node-troubleshooting.md"

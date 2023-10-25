@@ -27,7 +27,7 @@ Wallarm Kullanıcı Arayüzünde:
     
     Mevcut olaylar hakkında ayrıntılar:
 
-    --8<-- "../include/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include-tr/integrations/advanced-events-for-integrations.md"
 
 1. **Entegrasyonu test et**'i tıklayın ve yapılandırma doğruluğunu, Wallarm Bulutunun kullanılabilirliğini ve bildirim biçimini kontrol edin.
 
@@ -78,20 +78,20 @@ Wallarm Kullanıcı Arayüzünde:
 
 1. **Entegrasyon ekle**'yi tıklayın.
 
---8<-- "../include/cloud-ip-by-request.md"
+--8<-- "../include-tr/cloud-ip-by-request.md"
 
 ## Olayların bir gösterge tablosunda organize edilmesi
 
---8<-- "../include/integrations/application-for-splunk.md"
+--8<-- "../include-tr/integrations/application-for-splunk.md"
 
 ## Ek uyarıların kurulması
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include-tr/integrations/integrations-trigger-setup.md"
 
 ## Entegrasyonun devre dışı bırakılması ve silinmesi
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"
 
 ## Sistem kullanılamazlığı ve yanlış entegrasyon parametreleri 
 
---8<-- "../include/integrations/integration-not-working.md"
+--8<-- "../include-tr/integrations/integration-not-working.md"

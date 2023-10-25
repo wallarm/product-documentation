@@ -7,7 +7,7 @@ Bu hızlı rehber, [NGINX tabanlı Wallarm düğümünün Docker görüntüsün�
 
 ## Kullanım durumları
 
---8<-- "../include/waf/installation/cloud-platforms/alibaba-ecs-use-cases.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/alibaba-ecs-use-cases.md"
 
 ## Gereksinimler
 
@@ -16,13 +16,13 @@ Bu hızlı rehber, [NGINX tabanlı Wallarm düğümünün Docker görüntüsün�
 
 ## Wallarm düğüm Docker konteynır yapılandırması seçenekleri
 
---8<-- "../include/waf/installation/docker-running-options.md"
+--8<-- "../include-tr/waf/installation/docker-running-options.md"
 
 ## Çevre değişkenleri üzerinden yapılandırılan Wallarm düğüm Docker konteynırının dağıtılması
 
 Alibaba Cloud örneğini oluşturmalı ve bu örnekte Docker konteynırını çalıştırmalısınız. Bu adımları Alibaba Cloud Console veya [Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm) üzerinden gerçekleştirebilirsiniz. Bu talimatlarda, Alibaba Cloud Console kullanılıyor.
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
 
 1. Alibaba Cloud Console'u açın → hizmetlerin listesi → **Elastic Compute Service** → **Instances**.
 1. [Alibaba Cloud talimatlarını](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX) ve aşağıdaki yönergeleri izleyerek örneği oluşturun:
@@ -51,5 +51,5 @@ Alibaba Cloud örneğini oluşturmalı ve bu örnekte Docker konteynırını ça
     * `-p`: filtreleme düğümünün dinlediği port. Değer, örneğin portu ile aynı olmalıdır.
     * `-e`: filtreleme düğümü yapılandırması ile çevre değişkenleri (kullanılabilir değişkenler aşağıdaki tabloda sıralanmıştır). Lütfen `WALLARM_API_TOKEN` değerinin açıkça iletilememesi gerektiğini unutmayın.
 
-        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+        --8<-- "../include-tr/waf/installation/nginx-docker-all-env-vars-latest.md"
 1. Filtreleme düğüm işlemi(https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l) ve [Kanteynır"],

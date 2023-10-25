@@ -89,7 +89,7 @@ Her referans istek için durum gösterilir:
 
 Bir test çalışma durumunu tek seferde kontrol etmek için, `https://us1.api.wallarm.com/v1/test_run/test_run_id`  URL'sine GET talebi gönderin:
 
---8<-- "../include/fast/operations/api-check-testrun-status.md"
+--8<-- "../include-tr/fast/operations/api-check-testrun-status.md"
 
 API sunucusuna gelen talep başarılı ise, sunucunun yanıtıyla karşılaşırsınız. Yanıt, çok sayıda kullanışlı bilgi içerir:
 

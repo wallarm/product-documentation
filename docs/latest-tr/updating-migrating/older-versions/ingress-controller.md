@@ -9,7 +9,7 @@
 
 Bu talimatlar, dağıtılmış son ömür Wallarm Ingress Denetleyicisi'nin (versiyon 3.6 ve altı) yeni versiyonuna Wallarm düğümü 4.8 ile yükseltme adımlarını açıklar.
 
---8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include-tr/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
 !!! warning "Community Ingress NGINX Controller'ın yükseltilmiş versiyonu"
     Eğer düğümü 3.4 veya altı bir versiyondan yükseltiyorsanız, lütfen not alın ki Wallarm Ingress denetleyicisinin üzerine kurulduğu Community Ingress NGINX Controller'ın versiyonu 0.26.2'den 1.8.1'e yükseltilmiştir.
@@ -20,7 +20,7 @@ Bu talimatlar, dağıtılmış son ömür Wallarm Ingress Denetleyicisi'nin (ver
 
 ## Gereklilikler
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include-tr/waf/installation/requirements-nginx-ingress-controller-latest.md"
 
 ## Adım 1: Wallarm teknik destek ekibine filtreleme düğümü modüllerini yükselttiğinizi bildirin (yalnızca düğüm 2.18 veya altı yükseltiliyorsa)
 
@@ -36,7 +36,7 @@ Bu modülün çalışması, yükseltme süreci sırasında [yanlış pozitiflere
 
 ## Adım 3: API portunu güncelleyin
 
---8<-- "../include/waf/upgrade/api-port-443.md"
+--8<-- "../include-tr/waf/upgrade/api-port-443.md"
 
 ## Adım 4: Wallarm Helm tablosu deposunu güncelleyin
 
@@ -181,7 +181,7 @@ Aşağıdakiler muhtemelen değiştirilmesi gereken ayarlardır:
 
 ## Adım 6: `overlimit_res` saldırı tespiti yapılandırmasını direktiflerden kurallara taşıma
 
---8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-ingress-controller.md"
+--8<-- "../include-tr/waf/upgrade/migrate-to-overlimit-rule-ingress-controller.md"
 
 ## Adım 7: Tüm gelen K8s manifost değişikliklerini kontrol edin
 

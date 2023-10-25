@@ -29,7 +29,7 @@ Bir filtreleme düğümü örneği şablonu, yönetilen bir örnek grubu oluştu
     !!! info "Güvenlik duvarını yapılandırma"
         Güvenlik duvarının oluşturulan şablona HTTP trafiğini engellemediğinden emin olun. HTTP trafiğini etkinleştirmek için **HTTP Trafiğine İzin Ver** kutusunu işaretleyin.
     
-    --8<-- "../include/gcp-autoscaling-connect-ssh.md"
+    --8<-- "../include-tr/gcp-autoscaling-connect-ssh.md"
 
 6.  **Oluştur** düğmesine tıklayın ve şablon oluşturma işleminin tamamlanmasını bekleyin. 
 

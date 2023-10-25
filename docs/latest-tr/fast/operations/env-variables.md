@@ -61,7 +61,7 @@ FAST node tarafından kaydedilecek istek sayısını, hedeflenen uygulamanın d�
 
 `ALLOWED_HOSTS` ortam değişkenini yapılandırarak tüm temel olmayan istekleri filtreleyebilirsiniz.
 
---8<--  "../include/fast/operations/env-vars-allowed-hosts.md"
+--8<--  "../include-tr/fast/operations/env-vars-allowed-hosts.md"
 
 FAST node bu ortam değişkenini şu şekilde kullanır:
 * Gelen isteğin `Host` başlık değeri, `ALLOWED_HOSTS` değişkeninde belirtilen değere eşleşiyorsa, FAST node isteği temel olarak kabul eder. İstek daha sonra kaydedilir ve proxilenir.

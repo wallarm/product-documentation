@@ -54,7 +54,7 @@ Açık Kaynak Kong Ingress controller ile Wallarm hizmetleri söz konusu olduğu
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/kong-ingress-controller-reqs.md"
+--8<-- "../include-tr/waf/installation/kong-ingress-controller-reqs.md"
 
 ## Dağıtım
 
@@ -169,7 +169,7 @@ Entegre Wallarm hizmetleri ile Kong Ingress Controller'ı dağıtmak için:
     
     * `<NODE_TOKEN>` Wallarm Console UI'dan kopyaladığınız Wallarm düğüm belirteci
 
-        --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
+        --8<-- "../include-tr/waf/installation/info-about-using-one-token-for-several-nodes.md"
     
     * `<KONG-ENTERPRISE-LICENSE>` [Kong Enterprise Lisansı](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong-enterprise-license)
 1. Wallarm Helm grafiğini dağıtın:

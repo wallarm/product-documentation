@@ -32,7 +32,7 @@
 
 #   FAST Nasıl Çalışır
 
---8<-- "../include/fast/cloud-note.md"
+--8<-- "../include-tr/fast/cloud-note.md"
 
 !!! info "Doküman hakkında kısa bilgi"
     Burada tanımlanan ilişkiler ve test senaryoları, Wallarm API kullanılarak test ederken geçerlidir. Bu tür testler, tüm varlıkları kullanır; bu sayede okuyucuya bu varlıkların birbirleriyle nasıl etkileşime girdiği konusunda bütünleşik bilgiler sunabilme şansımız olur.

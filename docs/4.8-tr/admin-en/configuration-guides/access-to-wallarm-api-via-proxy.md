@@ -1,0 +1,1 @@
+--8<-- "latest-tr/admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md"

@@ -45,4 +45,4 @@ Algoritmanın otomatik olarak elde ettiği sonuç, ihtiyaçlarınızı karşıla
 
 Dosya erişim parametrelerinin yanı sıra (`syncnode` bölümü, bu makalede açıklanmıştır), `node.yaml` dosyası, filtreleme düğümüne [Buluta erişim hakları](configure-cloud-node-synchronization-en.md) sağlayacak parametreleri de içerecektir(general ve `api` bölümleri).
 
---8<-- "../include/node-cloud-sync-configuration-example.md"
+--8<-- "../include-tr/node-cloud-sync-configuration-example.md"

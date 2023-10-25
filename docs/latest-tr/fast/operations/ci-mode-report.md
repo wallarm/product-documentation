@@ -42,7 +42,7 @@ docker run  --rm -e WALLARM_API_HOST=us1.api.wallarm.com -e WALLARM_API_TOKEN=qw
 
 Komut başarıyla çalıştırılırsa, terminalde test çalışması hakkında kısa veriler alırsınız:
 
---8<-- "../include/fast/console-include/operations/node-in-ci-mode-report.md"
+--8<-- "../include-tr/fast/console-include/operations/node-in-ci-mode-report.md"
 
 Rapor oluşturma tamamlandığında, `DIRECTORY_FOR_REPORTS` klasöründe aşağıdaki rapor dosyalarını bulabilirsiniz:
 

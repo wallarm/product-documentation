@@ -19,11 +19,11 @@ FAST'ın CI MODU, GitLab CI/CD iş akışına `~/.gitlab-ci.yml` dosyası aracı
 
 ![GitLab CI/CD environment variable'nın geçişi][gitlabci-example-env-var]
 
---8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include-tr/fast/fast-cimode-integration-examples/configured-workflow.md"
 
 ## İsteği Kaydetme Adımının Eklenmesi
 
---8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include-tr/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
 ??? info "Kayıt modunda FAST düğümünü çalıştırma adımının otomatize edilmiş test örneği"
     ```
@@ -48,7 +48,7 @@ FAST'ın CI MODU, GitLab CI/CD iş akışına `~/.gitlab-ci.yml` dosyası aracı
 
 ## Güvenlik Testinin Adımını Ekleme
 
---8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
+--8<-- "../include-tr/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
 ??? info "Güvenlik testi adımının örneği"
     1. `stages` listesine `security_test` ekleyin.

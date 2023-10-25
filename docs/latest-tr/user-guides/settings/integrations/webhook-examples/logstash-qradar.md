@@ -17,7 +17,7 @@ https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_
 
 Bu talimatlar, Wallarm'ın Logstash veri toplayıcısıyla örnek entegrasyonunu ve daha sonra olayları QRadar SIEM sistemine yönlendirmeyi sağlar.
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include-tr/integrations/webhook-examples/overview.md"
 
 ![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
@@ -27,7 +27,7 @@ Bu talimatlar, Wallarm'ın Logstash veri toplayıcısıyla örnek entegrasyonunu
 * Linux Red Hat üzerinde yüklü [QRadar V7.3.3](#qradar-configuration-optional) ve IP adresi `https://109.111.35.11:514` ile mevcuttur
 * [Logstash entegrasyonunu yapılandırmak](#configuration-of-logstash-integration) için Wallarm Konsoluna [EU bulutta](https://my.wallarm.com) yönetici erişimi
 
---8<-- "../include/cloud-ip-by-request.md"
+--8<-- "../include-tr/cloud-ip-by-request.md"
 
 Logstash ve QRadar hizmetlerine yönlendiren bağlantılar örnek olarak verildiği için yanıt vermezler.
 
@@ -109,7 +109,7 @@ QRadar günlük kaynağı kurulumunun daha ayrıntılı bir açıklaması [resmi
 
 ### Logstash entegrasyonunun yapılandırılması
 
---8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
+--8<-- "../include-tr/integrations/webhook-examples/create-logstash-webhook.md"
 
 ![Webhook'la Logstash entegrasyonu](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
@@ -117,7 +117,7 @@ QRadar günlük kaynağı kurulumunun daha ayrıntılı bir açıklaması [resmi
 
 ## Örnek testi
 
---8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include-tr/integrations/webhook-examples/send-test-webhook.md"
 
 Logstash, olayı aşağıdaki şekilde kaydeder:
 

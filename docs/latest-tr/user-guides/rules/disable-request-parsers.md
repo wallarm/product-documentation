@@ -10,7 +10,7 @@ Bu tür durumlarda yanlış pozitifleri engellemek için, kuralları **Request P
 
 ## Kuralın oluşturulması ve uygulanması
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include-tr/waf/features/rules/rule-creation-options.md"
 
 **Kurallar** bölümünde kuralı oluşturmak ve uygulamak için:
 
@@ -20,7 +20,7 @@ Bu tür durumlarda yanlış pozitifleri engellemek için, kuralları **Request P
       * Belirtilen istek öğesi için devre dışı bırakılacak/etkinleştirilecek parserlar.
       * **İstek Parçası**, seçilen parserlarla çözümlenecek/çözümlenmeyecek orijinal istek öğesini belirtir.
 
-         --8<-- "../include/waf/features/rules/request-part-reference.md"
+         --8<-- "../include-tr/waf/features/rules/request-part-reference.md"
 2. [Kural derlemesinin tamamlanmasını](compiling.md) bekleyin.
 
 ## Kural örneği

@@ -124,7 +124,7 @@ Herhangi bir istek göndermeden önce FAST düğümünün istekleri kaydetmeye h
 
 Bunu yapmak için, test çalıştırma durumunu kontrol etmek amacıyla düzenli aralıklarla `https://us1.api.wallarm.com/v1/test_run/test_run_id` URL'sine GET isteği gönderin:
 
---8<-- "../include/fast/poc/api-check-testrun-status-recording.md"
+--8<-- "../include-tr/fast/poc/api-check-testrun-status-recording.md"
 
 API sunucusuna başarılı bir istek gönderdiyseniz, sunucunun yanıtı ile karşılaşılacaktır. Bu yanıt, kayıt sürecinin durumunu da içeren (yani, `ready_for_recording` parametresinin değeri) faydalı bilgiler sunar.
 

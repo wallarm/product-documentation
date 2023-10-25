@@ -12,7 +12,7 @@ Eklentiler YAML kullanılarak tanımlanır. YAML sözdizimi ve YAML dosya yapıs
 
 Eklentilerin mantığı, düzenli ifadelerle tanımlanan unsurları da içerebilir. FAST ifadeleri yalnızca Ruby dilinde düzenli ifade sözdizimi destekler. Ruby düzenli ifade sözdizimi ile aşina olduğunuzu varsayıyoruz. Detaylı bilgi için bu [bağlantıya][link-ruby-regexp] tıklayın.
 
---8<-- "../include/fast/cloud-note.md"
+--8<-- "../include-tr/fast/cloud-note.md"
 
 !!! bilgi "İstek elemanı açıklama sözdizimi"
     Bir FAST eklentisi oluştururken, uygulamaya gönderilen HTTP isteğinin ve uygulamadan alınan HTTP yanıtının yapısını anlamanız ve çalışmak istediğiniz istek öğelerini doğru bir şekilde tanımlamak için noktaları kullanmanız gerekmektedir. 

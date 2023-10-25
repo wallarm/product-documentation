@@ -71,7 +71,7 @@ Saldırı veya olay detaylarını almak için, Wallarm Konsolu UI'ının dışı
 
 Lütfen `TIMESTAMP` ifadesini, tarihin 24 saat öncesine dönüştürülmüş olan [Unix zaman damgası](https://www.unixtimestamp.com/) formatıyla değiştirin.
 
---8<-- "../include/api-request-examples/get-attacks-en.md"
+--8<-- "../include-tr/api-request-examples/get-attacks-en.md"
 
 !!! uyarı "100 veya daha fazla saldırı alırken"
     100 veya daha fazla kayıt içeren saldırı ve isabet setleri için, performansı optimize etmek adına bu verileri büyük veri setlerinden daha küçük parçalar halinde almak daha iyidir. [İlgili istek örneğini keşfetin](../../api/request-examples.md#get-a-large-number-of-attacks-100-and-more)
@@ -82,4 +82,4 @@ Bu istek, bir saldırı listesi için önceki örneğe çok benzer; Bu isteğe `
 
 Lütfen `TIMESTAMP` ifadesini, tarihin 24 saat öncesine dönüştürülmüş olan [Unix zaman damgası](https://www.unixtimestamp.com/) formatıyla değiştirin.
 
---8<-- "../include/api-request-examples/get-incidents-en.md"
+--8<-- "../include-tr/api-request-examples/get-incidents-en.md"

@@ -1,0 +1,1 @@
+--8<-- "latest-tr/user-guides/settings/integrations/logstash.md"

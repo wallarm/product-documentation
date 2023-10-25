@@ -95,4 +95,4 @@ Zafiyet ayrıntılarını almak için, Wallarm Konsolu Kullanıcı Arayüzünü 
 
 Son 24 saat içinde durumu **Aktif** olan ilk 50 zafiyeti almak için, aşağıdaki isteği kullanın ve `TIMESTAMP`'ı, tarihi 24 saat önceye dönüştürülen [Unix Zaman Damgası](https://www.unixtimestamp.com/) biçimine dönüştürerek yerine koyun:
 
---8<-- "../include/api-request-examples/get-vulnerabilities.md"
+--8<-- "../include-tr/api-request-examples/get-vulnerabilities.md"

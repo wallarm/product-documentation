@@ -80,7 +80,7 @@ Ortam değişkenlerini ayarladınız. Amaçlarını şöyle açıklayabiliriz:
 !!! info "`ALLOWED_HOSTS` ortam değişkenini kullanma"
     Tam etki alanı adının ayarlanması gerekli değildir. Bir alt dizeyi (ör. `google-gruyere` veya `appspot.com`) kullanabilirsiniz.
 
---8<-- "../include/fast/wallarm-api-host-note.md"
+--8<-- "../include-tr/fast/wallarm-api-host-note.md"
    
 ##  4.  FAST node Docker konteynerini dağıtın
 
@@ -121,7 +121,7 @@ Komuta birkaç argüman sağlamanız gerekiyor:
 
 Konteyner dağıtımı başarılıysa, aşağıdaki gibi bir konsol çıktısı almanız gerekir:
 
---8<-- "../include/fast/console-include/qsg/fast-node-deployment-ok.md"
+--8<-- "../include-tr/fast/console-include/qsg/fast-node-deployment-ok.md"
 
 Şimdi Wallarm buluta bağlı ve `google-gruyere.appspot.com` alanına gelen HTTP ve HTTPS isteklerini temel olarak kabul ederek `localhost:8080` üzerinde gelen istekleri dinleyen çalışabilir durumda bir FAST node'unuz olmalı.
     

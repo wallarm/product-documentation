@@ -11,7 +11,7 @@ Varsayılan olarak, Wallarm düğümü gelen tüm istekleri bilinen saldırı i�
 
 ## Kuralı Oluşturma ve Uygulama
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include-tr/waf/features/rules/rule-creation-options.md"
 
 **Kurallar** bölümünde kuralı oluşturmak ve uygulamak için:
 
@@ -20,14 +20,14 @@ Varsayılan olarak, Wallarm düğümü gelen tüm istekleri bilinen saldırı i�
       * **Koşul** [açıklar](add-rule.md#branch-description) kuralın uygulanacağı uç noktaları.
       * **İstek kısmı** orijinal istek öğesine işaret eder ve ikili verileri içerir.
 
-         --8<-- "../include/waf/features/rules/request-part-reference.md"
+         --8<-- "../include-tr/waf/features/rules/request-part-reference.md"
 2. Belirli dosya türlerinin belirli bir istek öğesinde geçirilmesi için saldırı algılama kurallarını ayarlamak için, Wallarm Konsolu'nun **Kurallar** bölümünde **Belirli dosya türlerine izin ver** kuralını oluşturun. Kural, aşağıdaki bileşenlerden oluşur:
 
       * **Koşul** [açıklar](add-rule.md#branch-description) kuralın uygulanacağı uç noktaları.
       * Saldırı işaretlerini yoksayacak dosya türleri.
       * **İstek kısmı** belirtilen dosya türlerini içeren orijinal istek öğesine işaret eder.
 
-         --8<-- "../include/waf/features/rules/request-part-reference.md"
+         --8<-- "../include-tr/waf/features/rules/request-part-reference.md"
 3. [Kural derlemesinin tamamlanmasını](compiling.md) bekleyin.
 
 ## Kural Örneği

@@ -30,7 +30,7 @@ Bu test çalışması oluşturma yöntemi, bir hedef uygulamanın taban çizgi i
 
 Bir test çalışması oluşturmak için, POST isteğini `https://us1.api.wallarm.com/v1/test_run` URL'sine gönderin:
 
---8<-- "../include/fast/operations/api-create-testrun.md"
+--8<-- "../include-tr/fast/operations/api-create-testrun.md"
 
 API sunucusuna isteğiniz başarılı bir şekilde ulaşırsa, sunucunun yanıtına sunulursunuz. Yanıt, yararlı bilgiler sağlar, aralarında:
 
@@ -67,7 +67,7 @@ Wallarm hesap arayüzünüzden bir test çalışması oluşturmak için aşağı
 
 6. Eğer gerekliyse, **Gelişmiş ayarları** ekleyin. Bu ayarlar bloğu aşağıdaki noktaları içerir:
 
---8<-- "../include/fast/test-run-adv-settings.md"
+--8<-- "../include-tr/fast/test-run-adv-settings.md"
 
     ![Gelişmiş test çalışması ayarları][img-testrun-adv-settings]
 

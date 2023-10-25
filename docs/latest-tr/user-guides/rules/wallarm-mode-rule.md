@@ -20,7 +20,7 @@ Bu kuralı uygulamak için NGINX yapılandırma dosyaları, işletim modunun [me
 
 ## Kuralı oluşturma ve uygulama
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include-tr/waf/features/rules/rule-creation-options.md"
 
 ## Kuralın varsayılan örneği
 
@@ -53,4 +53,4 @@ Filtreleme modu kuralını oluşturmak için Wallarm Console UI'ı kullanmanın 
 
 Aşağıdaki istek, ID'si `3` olan [uygulama](../settings/applications.md)ya giden trafiği filtrelemek için düğümü ayarlayan kuralı oluşturacak. 
 
---8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.md"
+--8<-- "../include-tr/api-request-examples/create-filtration-mode-rule-for-app.md"

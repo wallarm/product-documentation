@@ -15,7 +15,7 @@ Wallarm, bildirimleri Slack kanal(larınız)a göndermek üzere ayarlanabilir. �
 
     Mevcut olaylar hakkında ayrıntılar:
 
-    --8<-- "../include/integrations/events-for-integrations.md"
+    --8<-- "../include-tr/integrations/events-for-integrations.md"
 
 1. **Entegrasyonu test et** tıklayın ve yapılandırma doğruluğunu, Wallarm Cloud'un kullanılabilirliğini ve bildirim biçimini kontrol edin.
 
@@ -37,7 +37,7 @@ Wallarm, bildirimleri Slack kanal(larınız)a göndermek üzere ayarlanabilir. �
 
 ## Ek uyarıların kurulması
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include-tr/integrations/integrations-trigger-setup.md"
 
 ### Örnek: Bir dakikada 2 veya daha fazla SQLi tespit edildiğinde Slack bildirimi
 
@@ -114,8 +114,8 @@ Bulut: EU
 
 ## Entegrasyonun devre dışı bırakılması ve silinmesi
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"
 
 ## Sistem kullanılamazlığı ve hatalı entegrasyon parametreleri
 
---8<-- "../include/integrations/integration-not-working.md"
+--8<-- "../include-tr/integrations/integration-not-working.md"

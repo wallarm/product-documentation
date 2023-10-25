@@ -13,7 +13,7 @@ Son kullanma tarihi geçmiş düğümü (3.6 veya düşük) yükseltmek için, l
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include-tr/waf/installation/requirements-nginx-ingress-controller-latest.md"
 
 ## Adım 1: Wallarm Helm chart deposunu güncelleyin
 

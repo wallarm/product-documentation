@@ -28,7 +28,7 @@ Wallarm'i InsightConnect'a bildirim göndermek üzere ayarlayabilirsiniz.
 
     Kullanılabilir olaylar hakkında detaylar:
 
-    --8<-- "../include/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include-tr/integrations/advanced-events-for-integrations.md"
 
 1. Yapılandırma doğruluğunu, Wallarm Bulut'unun kullanılabilirliğini ve bildirim biçimini kontrol etmek için **Entegrasyonu test et**'e tıklayın.
 
@@ -40,12 +40,12 @@ Wallarm'i InsightConnect'a bildirim göndermek üzere ayarlayabilirsiniz.
 
 ## Ek uyarıların ayarlanması
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include-tr/integrations/integrations-trigger-setup.md"
 
 ## Bir entegrasyonun devre dışı bırakılması ve silinmesi
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"
 
 ## Sistem kullanılamazlığı ve yanlış entegrasyon parametreleri
 
---8<-- "../include/integrations/integration-not-working.md"
+--8<-- "../include-tr/integrations/integration-not-working.md"

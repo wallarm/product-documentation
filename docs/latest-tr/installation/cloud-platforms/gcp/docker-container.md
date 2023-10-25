@@ -7,7 +7,7 @@ Bu hızlı kılavuz, [Google Compute Engine (GCE) bileşenini](https://cloud.goo
 
 ## Kullanım Durumları
 
---8<-- "../include/waf/installation/cloud-platforms/google-gce-use-cases.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/google-gce-use-cases.md"
 
 ## Gereksinimler
 
@@ -19,13 +19,13 @@ Bu hızlı kılavuz, [Google Compute Engine (GCE) bileşenini](https://cloud.goo
 
 ## Wallarm düğüm Docker konteynerinin yapılandırma seçenekleri
 
---8<-- "../include/waf/installation/docker-running-options.md"
+--8<-- "../include-tr/waf/installation/docker-running-options.md"
 
 ## Çevre değişkenleri üzerinden yapılandırılmış Wallarm düğüm Docker konteynerinin dağıtımı
 
 Sadece çevre değişkenleri üzerinden yapılandırılmış konteynerleştirilmiş Wallarm filtreleme düğümünü dağıtmak için, [GCP Konsolu veya gcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers) kullanabilirsiniz. Bu talimatlarda, gcloud CLI kullanılır.
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
 
 1. Örneği Wallarm Bulutu'na bağlamak için kullanılacak Wallarm düğümü tokeni ile yerel çevre değişkenini ayarlayın:
 
@@ -60,7 +60,7 @@ Sadece çevre değişkenleri üzerinden yapılandırılmış konteynerleştirilm
     * `--container-image`: filtreleme düğümünün Docker imajına bağlantı.
     * `--container-env`: filtreleme düğümü yapılandırması ile çevre değişkenleri (mevcut değişkenler aşağıdaki tabloda listelenmiştir). Lütfen dikkat edin, `WALLARM_API_TOKEN` değerini açıkça geçirmenin önerilmediğini unutmayın.
 
-        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+        --8<-- "../include-tr/waf/installation/nginx-docker-all-env-vars-latest.md"
     
     * `gcloud compute instances create-with-container` komutundaki tüm parametreler [GCP belgelerinde](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container) tanımlanmıştır.
 1. [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances)'ı açın ve örneğin listede görüntülendiğinden emin olun.
@@ -70,7 +70,7 @@ Sadece çevre değişkenleri üzerinden yapılandırılmış konteynerleştirilm
 
 Çevre değişkenleri ve monteli dosya üzerinden yapılandırılmış konteynerleştirilmiş Wallarm filtreleme düğümünü dağıtmak için, örneği oluşturmalı, bu örneğin dosya sistemi içine filtreleme düğümü yapılandırma dosyasını yerleştirmeli ve bu örnekte Docker konteynerini çalıştırmalısınız. Bu adımları [GCP Konsol veya gcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers) üzerinde gerçekleştirebilirsiniz. Bu talimatlarda, gcloud CLI kullanılır.
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
 
 1. Compute Engine kaydındaki herhangi bir işletim sistemi imajına dayanan örneği oluşturun [`gcloud compute instances create`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create) komutunu kullanarak:
 
@@ -145,7 +145,7 @@ Sadece çevre değişkenleri üzerinden yapılandırılmış konteynerleştirilm
     * `-p`: filtreleme düğümünün dinlediği port. Değer, örneğin portuyla aynı olmalıdır.
     * `-e`: filtreleme düğümü yapılandırması ile çevre değişkenleri (mevcut değişkenler aşağıdaki tabloda listelenmiştir). Lütfen dikkat edin, `WALLARM_API_TOKEN` değerini açıkça geçirmenin önerilmediğini unutmayın.
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include-tr/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
 1. [Filtreleme düğümü işlemini test edin](#testing-the-filtering-node-operation).
 
 ## Filtreleme Düğümü İşleminin Test Edilmesi

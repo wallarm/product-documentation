@@ -9,7 +9,7 @@
 
 Wallarm'ın şirket kaynaklarını [açıklıklar](../glossary-en.md#açıklık) için taradığı ve saldırıları ve açıklıkları yeniden kontrol ettiği AB Bulutu için IP adreslerinin listesi:
 
---8<-- "../include/scanner-ip-request.md"
+--8<-- "../include-tr/scanner-ip-request.md"
 
 !!! bilgi "IP adresleri listesini alın"
     Tarayıcıların IP adreslerinin listesini içeren düz metin dosyasını indirin.][file-ips-list]

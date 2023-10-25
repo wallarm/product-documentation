@@ -16,7 +16,7 @@ Güvenlik test paketi hazırlandıktan sonra, FAST düğümü bu testleri hedef 
 
 Otomasyon yetenekleri ve dahili güvenlik açığı bilgi tabanı ile birleştiğinde, FAST, DevOps, güvenlik uzmanları, yazılım geliştiricileri ve QA mühendisleri için uygun bir araç haline gelir. FAST ile, güvenlik uzmanlarının derin bilgilerini kullanarak güvenlik test politikaları oluşturmak mümkünken, güvenlik alanında uzmanlık sahibi olmayan geliştiricilere güvenlik testi oluşturma ve yürütme sürecini otomatikleştirme imkanı sağlanır. Bu şekilde, her iki ekip üyesi grubu da birbirleriyle eşzamanlı olarak etkin bir şekilde iletişim kurabilir. FAST mimarisi, güvenlik testi oluşturma ve yürütme süreçlerini mevcut CI/CD sürecine entegre etmeyi mümkün kılar, böylece geliştirilen yazılımın genel kalitesi arttırılabilir.
 
---8<-- "../include/fast/cloud-note-readme.md"
+--8<-- "../include-tr/fast/cloud-note-readme.md"
 
 !!! info "Metin biçimlendirme kuralları"
     Bu rehberler, istenen sonucu elde etmek için girilmesi veya çalıştırılması gereken çeşitli metin dizeleri ve komutları içerir. Sizin rahatınız için, hepsi metin biçimlendirme kurallarına uygun olarak biçimlendirilmiştir. Kuralları görmek için bu [bağlantıya][link-sozlesmeler] ilerleyin.

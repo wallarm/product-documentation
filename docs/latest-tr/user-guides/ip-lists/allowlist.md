@@ -4,7 +4,7 @@
 
 Wallarm Konsolu → **IP listeleri** → **Allowlist** bölümünden, izin verilen IP adreslerini aşağıdaki şekillerde yönetebilirsiniz:
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
+--8<-- "../include-tr/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
 ![IP izin listesi](../../images/user-guides/ip-lists/allowlist-apps.png)
 
@@ -54,4 +54,4 @@ Listeye bir IP adresi, alt ağ ya da IP adresi grubu eklemek için:
 
 ![Listeye IP ekle (uygulama ile)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
+--8<-- "../include-tr/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

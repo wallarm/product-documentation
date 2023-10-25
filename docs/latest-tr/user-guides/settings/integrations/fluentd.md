@@ -96,14 +96,14 @@ Daha fazla detayı [resmi Fluentd belgelerinde](https://docs.datadoghq.com/integ
 1. Hedef Fluentd URL'sini (Webhook URL) belirtin.
 1. Gerektiğinde, gelişmiş ayarları yapılandırın:
 
-   --8<-- "../include/integrations/webhook-advanced-settings.md"
+   --8<-- "../include-tr/integrations/webhook-advanced-settings.md"
 1. Bildirimlere tetikleyici olacak olay türlerini seçin.
 
    ![Fluentd entegrasyonu](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
    Mevcut olaylar hakkında detaylar:
 
-   --8<-- "../include/integrations/advanced-events-for-integrations.md"
+   --8<-- "../include-tr/integrations/advanced-events-for-integrations.md"
 
 1. Yapılandırmanın doğruluğunu, Wallarm Bulut'unun kullanılabilirliğini ve bildirim formatını kontrol etmek için **Entegrasyonu Test Et**'e tıklayın.
 
@@ -158,11 +158,11 @@ Daha fazla detayı [resmi Fluentd belgelerinde](https://docs.datadoghq.com/integ
 
 ## Ek uyarıların ayarlanması
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include-tr/integrations/integrations-trigger-setup.md"
 
 ## Fluentd'yi ara veri toplayıcı olarak kullanma
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include-tr/integrations/webhook-examples/overview.md"
 
 Örneğin:
 
@@ -191,8 +191,8 @@ Popüler veri toplayıcıları ile entegrasyonun nasıl yapılandırılacağına
 
 ## Bir entegrasyonu devre dışı bırakma ve silme
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"
 
 ## Sistem verilemezliği ve yanlış entegrasyon parametreleri
 
---8<-- "../include/integrations/integration-not-working.md"
+--8<-- "../include-tr/integrations/integration-not-working.md"

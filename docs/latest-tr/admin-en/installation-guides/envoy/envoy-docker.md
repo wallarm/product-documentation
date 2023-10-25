@@ -15,11 +15,11 @@ Wallarm modülü, taleplerin proxy'ini gerçekleştirmek için bir Envoy HTTP fi
 
 ## Kullanım senaryoları
 
---8<-- "../include/waf/installation/docker-images/envoy-based-use-cases.md"
+--8<-- "../include-tr/waf/installation/docker-images/envoy-based-use-cases.md"
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/docker-images/envoy-requirements.md"
+--8<-- "../include-tr/waf/installation/docker-images/envoy-requirements.md"
 
 ## Konteynırı çalıştırma seçenekleri
 
@@ -32,7 +32,7 @@ Filtreleme düğümü yapılandırma parametreleri, aşağıdaki yollarla `docke
 
 Konteynırı çalıştırmak için:
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
 
 1. Düğümle birlikte konteynırı çalıştırmak için:
 
@@ -73,7 +73,7 @@ Hazırlanan `envoy.yaml` dosyasını `-v` seçeneği aracılığıyla Docker kon
 
 Konteynırı çalıştırmak için:
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
 
 1. Düğümle birlikte konteynırı çalıştırmak için:
 
@@ -109,4 +109,4 @@ Log dosyasının döndürülmesi önceden yapılandırılmış ve varsayılan ol
 
 ## Wallarm düğüm operasyonunun test edilmesi
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"

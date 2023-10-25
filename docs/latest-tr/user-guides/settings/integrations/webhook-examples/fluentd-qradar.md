@@ -2,7 +2,7 @@
 
 Bu talimatlar, Wallarm'ı Fluentd veri koleksiyoncusu ile entegre ederek olayları QRadar SIEM sistemine ileri yönlendirmek için bir örnek sunar.
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include-tr/integrations/webhook-examples/overview.md"
 
 ![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
@@ -12,7 +12,7 @@ Bu talimatlar, Wallarm'ı Fluentd veri koleksiyoncusu ile entegre ederek olaylar
 * [QRadar V7.3.3](#qradar-configuration-optional) Linux Red Hat üzerinde kurulu ve IP adresi `https://109.111.35.11:514` ile mevcut
 * Wallarm Konsoluna yönetici erişimi [EU cloud](https://my.wallarm.com) [Fluentd entegrasyonunu](#configuration-of-fluentd-integration) yapılandırmak için
 
---8<-- "../include/cloud-ip-by-request.md"
+--8<-- "../include-tr/cloud-ip-by-request.md"
 
 Fluentd ve QRadar hizmetlerine yapılan bağlantılar örnek olarak belirtildiği için yanıt vermezler.
 
@@ -101,7 +101,7 @@ QRadar günlük kaynağı kurulumuna dair daha ayrıntılı bir açıklama, [res
 
 ### Fluentd Entegrasyonunun Yapılandırılması
 
---8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
+--8<-- "../include-tr/integrations/webhook-examples/create-fluentd-webhook.md"
 
 ![Fluentd ile Webhook entegrasyonu](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
@@ -109,7 +109,7 @@ QRadar günlük kaynağı kurulumuna dair daha ayrıntılı bir açıklama, [res
 
 ## Örnek Test Etme
 
---8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include-tr/integrations/webhook-examples/send-test-webhook.md"
 
 Fluentd, olayı şu şekilde kaydeder:
 

@@ -32,4 +32,4 @@ controller:
 * [`enable-real-ip` parametresi hakkında belgelendirme](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-real-ip)
 * Lütfen [`forwarded-for-header`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#forwarded-for-header) parametresinde, orijinal bir istemci IP adresini içeren yük dengeleyici başlık adını belirtin.
 
---8<-- "../include/ingress-controller-best-practices-intro.md"
+--8<-- "../include-tr/ingress-controller-best-practices-intro.md"

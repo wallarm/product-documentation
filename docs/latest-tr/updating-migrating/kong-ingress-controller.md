@@ -6,7 +6,7 @@ Bu talimatlar, dağıtılmış Wallarm Kong-bazlı Ingress Controller 4.x'in Wal
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/kong-ingress-controller-reqs.md"
+--8<-- "../include-tr/waf/installation/kong-ingress-controller-reqs.md"
 
 ## Adım 1: Wallarm Helm haritası deposunu güncelleyin
 

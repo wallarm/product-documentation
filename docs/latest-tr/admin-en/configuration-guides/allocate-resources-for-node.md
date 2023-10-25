@@ -13,11 +13,11 @@ Ortalama olarak, bir CPU çekirdeği yaklaşık 500 RPS'yi işleyebilir. Üretim
 
 ## Tarantool
 
---8<-- "../include/allocate-resources-for-waf-node/tarantool-memory.md"
+--8<-- "../include-tr/allocate-resources-for-waf-node/tarantool-memory.md"
 
 ### Kubernetes Ingress Controller'da Kaynak Ayırma
 
---8<-- "../include/allocate-resources-for-waf-node/tarantool-memory-ingress-controller.md"
+--8<-- "../include-tr/allocate-resources-for-waf-node/tarantool-memory-ingress-controller.md"
 
 ### Diğer Dağıtım Seçeneklerinde Kaynak Ayırma
 

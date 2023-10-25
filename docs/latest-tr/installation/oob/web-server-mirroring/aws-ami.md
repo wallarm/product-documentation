@@ -33,17 +33,17 @@ Bu makale, [Wallarm OOB](overview.md)'un AWS üzerinde [resmi Amazon Machine Ima
 
 ## Vaka Çalışmaları
 
---8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/ami-use-cases.md"
 
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
 
 ## 6. Wallarm'ın yansıtılan trafiği analiz etmesini sağlayın
 
---8<-- "../include/waf/installation/oob/steps-for-mirroring-cloud.md"
+--8<-- "../include-tr/waf/installation/oob/steps-for-mirroring-cloud.md"
 
 ## 7. NGINX'i Yeniden Başlatın
 
---8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/restart-nginx.md"
 
 ## 8. Web veya proxy sunucunuzu Wallarm düğümüne trafiği yansıtmak için yapılandırın
 
@@ -53,8 +53,8 @@ Web veya proxy sunucunuzu (ör. NGINX, Envoy) gelen trafiği Wallarm düğümün
 
 ## 9. Wallarm operasyonunu test edin
 
---8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/test-operation-oob.md"
 
 ## 10. Dağıtılmış çözümü ince ayarlayın
 
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include-tr/waf/installation/cloud-platforms/fine-tuning-options.md"

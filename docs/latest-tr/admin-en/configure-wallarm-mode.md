@@ -13,7 +13,7 @@ Wallarm filtreleme düğümü, gelen istekleri aşağıdaki modlarda işleyebili
 * **Güvenli engelleme** (`safe_blocking`)
 * **Engelleme** (`block`)
 
---8<-- "../include/wallarm-modes-description-latest.md"
+--8<-- "../include-tr/wallarm-modes-description-latest.md"
 
 ## Filtrasyon modu konfigürasyon yöntemleri
 

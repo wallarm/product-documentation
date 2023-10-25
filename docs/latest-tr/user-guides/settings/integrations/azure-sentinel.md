@@ -27,7 +27,7 @@ Wallarm Konsol kullanıcı arayüzünde:
 
     Mevcut olaylar üzerinde bilgiler:
 
-    --8<-- "../include/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include-tr/integrations/advanced-events-for-integrations.md"
 
 1. Konfigürasyon doğruluğunu kontrol etmek, Wallarm Bulut'un kullanılabilirliğini ve bildirim formatını kontrol etmek için **Entegrasyonu test et** seçeneğine tıklayın.
 
@@ -71,8 +71,8 @@ Genel olarak, Wallarm, Sentinel'de aşağıdaki türlerde kayıtlar oluşturabil
 
 ## Bir entegrasyonu devre dışı bırakma ve silme 
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"
 
 ## Sistem erişilemezliği ve yanlış entegrasyon parametreleri
 
---8<-- "../include/integrations/integration-not-working.md"
+--8<-- "../include-tr/integrations/integration-not-working.md"

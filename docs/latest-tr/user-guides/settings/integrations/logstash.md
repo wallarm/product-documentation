@@ -93,14 +93,14 @@ Daha fazla ayrıntıyı [resmi Logstash belgelerinde](https://www.elastic.co/gui
 1. Hedef Logstash URL'sini (Webhook URL) belirtin.
 1. Gerekirse gelişmiş ayarları yapılandırın:
 
-    --8<-- "../include/integrations/webhook-advanced-settings.md"
+    --8<-- "../include-tr/integrations/webhook-advanced-settings.md"
 1. Bildirimleri tetiklemek için olay türlerini seçin.
 
     ![Logstash entegrasyonu](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
     Mevcut olaylar hakkında detaylar:
 
-    --8<-- "../include/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include-tr/integrations/advanced-events-for-integrations.md"
 
 1. Yapılandırmanın doğruluğunu, Wallarm Bulut'unun erişilebilirliğini ve bildirim biçimini kontrol etmek için **Entegrasyonu Test Et**'e tıklayın.
 
@@ -155,11 +155,11 @@ Daha fazla ayrıntıyı [resmi Logstash belgelerinde](https://www.elastic.co/gui
 
 ## Ek uyarıların ayarlanması
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include-tr/integrations/integrations-trigger-setup.md"
 
 ## Logstash'ın ara veri toplayıcı olarak kullanılması
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include-tr/integrations/webhook-examples/overview.md"
 
 Örneğin:
 
@@ -188,4 +188,4 @@ SIEM sistemlerine günlükleri ileten popüler veri toplayıcılarla entegrasyon
 
 ## Bir entegrasyonun devre dışı bırakılması ve silinmesi
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"

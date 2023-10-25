@@ -4,7 +4,7 @@
 
 Wallarm Konsolunda → **IP listeleri** → **Engelleme listesi**, engellenmiş IP adreslerini aşağıdaki şekilde yönetebilirsiniz:
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
+--8<-- "../include-tr/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
 ![IP Engelleme listesi](../../images/user-guides/ip-lists/denylist-apps.png)
 
@@ -76,7 +76,7 @@ Bir IP adresini, alt ağı veya IP adreslerinin bir grubunu listeye eklemek içi
 
 ### Otomatik botların IP'lerinin engelleme listesine alması
 
---8<-- "../include/waf/features/ip-lists/autopopulation-by-antibot.md"
+--8<-- "../include-tr/waf/features/ip-lists/autopopulation-by-antibot.md"
 
 ## Engelleme listesine alınan IP'ler hakkında bildirim alın
 
@@ -84,4 +84,4 @@ Engelleme listesine alınan yeni IP'ler hakkında her gün kullandığınız mes
 
 ![Engelleme listesine alınan IP için tetikleyici örneği](../../images/user-guides/triggers/trigger-example4.png)
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
+--8<-- "../include-tr/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

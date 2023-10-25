@@ -50,7 +50,7 @@ Bu talimatlar, bir filtreleme düğümünden göstergeleri toplama yollarını a
          
 3.	`collectd` hizmetini, uygun komutu çalıştırarak yeniden başlatın:
 
-    --8<-- "../include/monitoring/collectd-restart-2.16.md"
+    --8<-- "../include-tr/monitoring/collectd-restart-2.16.md"
 
 !!! info "Örnek"
     Göstergeleri Network plugin aracılığıyla InfluxDB'ye aktarma ve ardından Grafana'da göstergelerin görselleştirilmesine yönelik bir örneği [okuyun][doc-network-plugin-example].
@@ -69,7 +69,7 @@ Bu yöntemi kullanarak göstergeleri aktarmak için:
 
 1.  Bir filtre düğümüne sahip bir hostta `collectd-nagios` yardımcı programını kurun. Linux'ta kurulu bir filtre düğümü için uygun komutu çalıştırarak bunu yapın:
 
-    --8<-- "../include/monitoring/install-collectd-utils.md"
+    --8<-- "../include-tr/monitoring/install-collectd-utils.md"
 
     !!! info "Docker image"
         Filtre düğümü Docker imajı, önceden kurulu `collectd-nagios` yardımcı programıyla birlikte gelir.
@@ -94,11 +94,11 @@ Bu yöntemi kullanarak göstergeleri aktarmak için:
 
 4.  `collectd` hizmetini, uygun komutu çalıştırarak yeniden başlatın:
 
-    --8<-- "../include/monitoring/collectd-restart-2.16.md"
+    --8<-- "../include-tr/monitoring/collectd-restart-2.16.md"
 
 5.  Uygun komutu çalıştırarak gerekli ölçeği alın:
 
-    --8<-- "../include/monitoring/collectd-nagios-fetch-metric.md"
+    --8<-- "../include-tr/monitoring/collectd-nagios-fetch-metric.md"
 
     !!! info "Docker container kimliğini alma"
         Container tanımlayıcısının değerini `docker ps` komutunu çalıştırarak bulabilirsiniz ( "CONTAINER ID" sütununa bakın).
@@ -130,7 +130,7 @@ Bu yöntemi kullanarak göstergeleri aktarmak için:
 
 Bildirimler aşağıdaki dosyada yapılandırılır:
 
---8<-- "../include/monitoring/notification-config-location.md"
+--8<-- "../include-tr/monitoring/notification-config-location.md"
 
 Bildirimlerin nasıl çalıştığına dair genel bir açıklama [burada][link-notif-common] mevcuttur.
 

@@ -1,0 +1,1 @@
+--8<-- "latest-tr/admin-en/monitoring/network-plugin-influxdb.md"

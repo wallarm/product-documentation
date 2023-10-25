@@ -30,7 +30,7 @@ Temel isteklerin kaydını durdurma ihtiyacı [link][link-stop-explained] taraf�
 
 Kayıt sürecini durdurmak için, `https://us1.api.wallarm.com/v1/test_run/test_run_id/action/stop` URL'sine POST isteği gönderin:
 
---8<-- "../include/fast/operations/api-stop-recording.md"
+--8<-- "../include-tr/fast/operations/api-stop-recording.md"
 
 API sunucusuna istek başarılı olduğunda, size sunucunun yanıtı sunulur. Yanıt, yararlı bilgiler sağlar, dahil:
 * kayıt sürecinin durumu (`recording` parametresinin değeri).

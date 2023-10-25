@@ -4,25 +4,25 @@ Wallarm NGINX tabanlı filtreleme düğümü bir Docker konteyneri olarak dağı
 
 Docker konteyneri içinde kurulu filtreleme düğümünün işlevselliği, diğer dağıtım seçeneklerinin işlevselliğiyle tamamen aynıdır.
 
---8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.md"
+--8<-- "../include-tr/waf/installation/info-about-nginx-version-in-docker-container.md"
 
 ## Kullanım Senaryoları
 
---8<-- "../include/waf/installation/docker-images/nginx-based-use-cases.md"
+--8<-- "../include-tr/waf/installation/docker-images/nginx-based-use-cases.md"
 
 ## Gereksinimler
 
---8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include-tr/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## Konteyneri çalıştırma seçenekleri
 
---8<-- "../include/waf/installation/docker-running-options.md"
+--8<-- "../include-tr/waf/installation/docker-running-options.md"
 
 ## Konteyneri, ortam değişkenlerini geçirerek çalıştırın 
 
 Konteyneryi çalıştırmak için:
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
 
 1. Node ile konteyneri çalıştırın:
 
@@ -37,7 +37,7 @@ Konteyneryi çalıştırmak için:
 
 Aşağıdaki temel filtreleme düğüm ayarlarını `-e` seçeneği ile konteynere iletebilirsiniz:
 
---8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+--8<-- "../include-tr/waf/installation/nginx-docker-all-env-vars-latest.md"
 
 Komut, aşağıdakileri yapar:
 
@@ -56,7 +56,7 @@ Hazırlanmış yapılandırma dosyayısını Docker konteynere `-v` seçeneği a
 
 Konteyneryi çalıştırmak için:
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
 
 1. Node ile konteyneri çalıştırın:
 
@@ -71,7 +71,7 @@ Konteyneryi çalıştırmak için:
 
     * `-e` seçeneği, gerekli ortam değişkenlerini konteynere geçirir:
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include-tr/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
     
     * `-v` seçeneği, `default` yapılandırma dosyası olan dizini `/etc/nginx/sites-enabled` konteyner dizinine monte eder.
 
@@ -147,10 +147,10 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 ## Wallarm düğüm işlemlerini test etme
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
 
 ## Kullanım senaryolarının yapılandırılması
 
 Docker konteynerine monte edilmiş yapılandırma dosyası, filtreleme düğümü yapılandırmasını [available directive][nginx-directives-docs] bölümünde tanımlamalıdır. İşte bazı yaygın kullanılan filtreleme düğümü yapılandırma seçenekleri:
 
---8<-- "../include/waf/installation/common-customization-options-docker-4.4.md"
+--8<-- "../include-tr/waf/installation/common-customization-options-docker-4.4.md"

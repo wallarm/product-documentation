@@ -15,7 +15,7 @@ description: FAST, FAST düğümü ve Wallarm bulutundan oluşan iki bileşenli 
 
 FAST, FAST düğümü ve Wallarm bulutundan oluşan iki bileşenli bir çözümdür. Bu kılavuz, FAST düğümünün nasıl dağıtılacağına dair size talimat verir.
 
---8<-- "../include/fast/cloud-note.md"
+--8<-- "../include-tr/fast/cloud-note.md"
 
 Uygulama testini yürütmek için, HTTP veya HTTPS istekleri öncelikle FAST düğümüne proxy üzerinden aktarılır. FAST, orijinal sorgulara göre buluttan alınan politikaya göre yeni bir istek seti oluşturur. Yeniden oluşturulan istekler, uygulamanın zayıf noktalarını test etmek üzere bir güvenlik test seti oluşturur.
 

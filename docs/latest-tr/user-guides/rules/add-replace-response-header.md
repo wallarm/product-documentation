@@ -17,7 +17,7 @@ Bu kural tipi genellikle uygulama güvenliğinin ek katmanını yapılandırmak 
 
 ## Kural oluşturma ve uygulama
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include-tr/waf/features/rules/rule-creation-options.md"
 
 **Kurallar** bölümünde kuralı oluşturmak ve uygulamak için:
 

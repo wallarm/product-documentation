@@ -4,7 +4,7 @@
 
 Bu talimatlar, olayları Splunk SIEM sistemine aktarmak üzere Fluentd veri toplayıcısı ile Wallarm'ın örnek entegrasyonunu sağlar.
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include-tr/integrations/webhook-examples/overview.md"
 
 ![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
 
@@ -14,7 +14,7 @@ Bu talimatlar, olayları Splunk SIEM sistemine aktarmak üzere Fluentd veri topl
 * Debian 11.x (bullseye) üzerinde kurulu [Fluentd](#fluentd-konfigürasyonu) ve `https://fluentd-example-domain.com` adresinde mevcut
 * Wallarm Konsolunda yönetici erişimi [Avrupa bulutu içinde](https://my.wallarm.com) [Fluentd entegrasyonunu yapılandırmak](#fluentd-entegrasyonunun-yapılandırılması) için
 
---8<-- "../include/cloud-ip-by-request.md"
+--8<-- "../include-tr/cloud-ip-by-request.md"
 
 Splunk Enterprise ve Fluentd hizmetlerine yönlendiren bağlantılar örnek olarak aktarıldığından, herhangi bir yanıt vermezler.
 
@@ -93,7 +93,7 @@ Yapılandırma dosyalarının daha ayrıntılı bir açıklaması [resmi Fluentd
 
 ### Fluentd Entegrasyonunun Yapılandırılması
 
---8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
+--8<-- "../include-tr/integrations/webhook-examples/create-fluentd-webhook.md"
 
 ![Fluentd ile Webhook Entegrasyonu](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
@@ -101,7 +101,7 @@ Yapılandırma dosyalarının daha ayrıntılı bir açıklaması [resmi Fluentd
 
 ## Örnek Testleri
 
---8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include-tr/integrations/webhook-examples/send-test-webhook.md"
 
 Fluentd, olayı aşağıdaki gibi kaydeder:
 
@@ -113,4 +113,4 @@ Splunk olaylarında aşağıdaki giriş görüntülenir:
 
 ## Splunk Enterprise'daki Olayları Bir Gösterge Tablosu Olarak Düzenleme
 
---8<-- "../include/integrations/application-for-splunk.md"
+--8<-- "../include-tr/integrations/application-for-splunk.md"

@@ -15,7 +15,7 @@ Wallarm'ı, uygun bir entegrasyon oluşturarak Datadog Günlükleri servisine di
 
     Kullanılabilir olaylar hakkında ayrıntılar:
 
-    --8<-- "../include/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include-tr/integrations/advanced-events-for-integrations.md"
 
 1. **Entegrasyonu Test Et** düğmesine tıklayarak yapılandırma doğruluğunu, Wallarm Bulut'unun kullanılabilirliğini ve bildirim formatını kontrol edin.
 
@@ -29,12 +29,12 @@ Wallarm'ı, uygun bir entegrasyon oluşturarak Datadog Günlükleri servisine di
 
 ## Ek uyarılar kurulumu
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include-tr/integrations/integrations-trigger-setup.md"
 
 ## Entegrasyonu devre dışı bırakma ve silme
 
---8<-- "../include/integrations/integrations-disable-delete.md"
+--8<-- "../include-tr/integrations/integrations-disable-delete.md"
 
 ## Sistem erişilemezliği ve hatalı entegrasyon parametreleri
 
---8<-- "../include/integrations/integration-not-working.md"
+--8<-- "../include-tr/integrations/integration-not-working.md"
