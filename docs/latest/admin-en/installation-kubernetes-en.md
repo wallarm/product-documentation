@@ -126,6 +126,64 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
 
     If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and the attack will be displayed in Wallarm Console → **Events**.
 
+## ARM64 deployment
+
+With the NGINX Ingress controller's Helm chart version 4.8.2, ARM64 processor compatibility is introduced. Initially set for x86 architectures, deploying on ARM64 nodes involves modifying the Helm chart parameters.
+
+In ARM64 settings, Kubernetes nodes often carry an `arm64` label. To assist the Kubernetes scheduler in allocating the Wallarm workload to the appropriate node type, reference this label using `nodeSelector`, `tolerations`, or affinity rules in the Wallarm Helm chart configuration.
+
+Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), which uses the `kubernetes.io/arch: arm64` label for relevant nodes. This template is modifiable for compatibility with other cloud setups, respecting their ARM64 labeling conventions.
+
+=== "nodeSelector"
+    ```yaml
+    controller:
+      nodeSelector:
+        kubernetes.io/arch: arm64
+      admissionWebhooks:
+        nodeSelector:
+          kubernetes.io/arch: arm64
+        patch:
+          nodeSelector:
+            kubernetes.io/arch: arm64
+      wallarm:
+        tarantool:
+          nodeSelector:
+            kubernetes.io/arch: arm64
+        enabled: true
+        token: "<NODE_TOKEN>"
+        apiHost: "us1.api.wallarm.com" # if using EU Cloud, comment out this line
+        # If using an API token, uncomment the following line and specify your node group name
+        # nodeGroup: defaultIngressGroup
+    ```
+=== "tolerations"
+    ```yaml
+    controller:
+      tolerations:
+        - key: kubernetes.io/arch
+          operator: Equal
+          value: arm64
+          effect: NoSchedule
+      admissionWebhooks:
+        patch:
+          tolerations:
+            - key: kubernetes.io/arch
+              operator: Equal
+              value: arm64
+              effect: NoSchedule
+      wallarm:
+        tarantool:
+          tolerations:
+            - key: kubernetes.io/arch
+              operator: Equal
+              value: arm64
+              effect: NoSchedule
+        enabled: true
+        token: "<NODE_TOKEN>"
+        apiHost: "us1.api.wallarm.com" # if using EU Cloud, comment out this line
+        # If using an API token, uncomment the following line and specify your node group name
+        # nodeGroup: defaultIngressGroup
+    ```
+
 ## Configuration
 
 After the Wallarm Ingress controller is successfully installed and checked, you can make advanced configurations to the solution such as:
