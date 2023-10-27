@@ -1353,3 +1353,49 @@ html .md-footer .md-social a:hover {
   width: 16px;
   height: 16px;
 }
+
+/* Consent policy */
+
+.md-consent__overlay {
+  display: none;
+}
+
+.md-consent__controls .md-button {
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-weight: unset;
+  border: 1px solid #DBE0E7;
+  color: black;
+}
+
+.md-consent__controls .md-button--primary {
+  background-color: #FEF6E5;
+  color: #FC7303;
+  border: none;
+}
+
+.md-consent__controls .md-button:hover, .md-consent__controls .md-button:focus {
+  border: 1px solid #DBE0E7;
+  color: black;
+  background-color: #F7F8F9;
+}
+
+.md-consent__controls .md-button--primary:hover, .md-consent__controls .md-button--primary:focus {
+  background-color: #F6C09C;
+  color: #FC7303;
+  border: none;
+}
+
+
+.md-consent__controls .md-button--primary[type="reset"] {
+  background-color: unset;
+  border-radius: 4px;
+  border: 1px solid #DBE0E7;
+  color: black;
+}
+
+.md-consent__controls .md-button--primary[type="reset"]:hover, .md-consent__controls .md-button--primary[type="reset"]:focus {
+  border: 1px solid #DBE0E7;
+  color: black;
+  background-color: #F7F8F9;
+}
