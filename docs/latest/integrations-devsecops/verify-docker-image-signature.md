@@ -4,18 +4,13 @@ Wallarm signs and shares the [public key](https://repo.wallarm.com/cosign.pub) f
 
 ## The list of signed images
 
-Starting from the release 4.4, Wallarm signs the following Docker images:
+Wallarm signs the following Docker images:
 
-<!-- * [wallarm/node](https://hub.docker.com/r/wallarm/node): [NGINX-based Docker image] that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment -->
+* [wallarm/node](https://hub.docker.com/r/wallarm/node) 4.8.0-1 and above: [NGINX-based Docker image](../admin-en/installation-docker-en.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment
 * All Docker images used by the Helm chart for [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.md):
 
-    * [wallarm/ingress-nginx](https://hub.docker.com/r/wallarm/ingress-nginx)
     * [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
-    * [wallarm/ingress-controller-chroot](https://hub.docker.com/r/wallarm/ingress-controller-chroot)
-    * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
-    * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
-    * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
-    * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
+    * [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)
 * All Docker images used by the Helm chart for [Sidecar deployment](../installation/kubernetes/sidecar-proxy/deployment.md):
 
     * [wallarm/sidecar](https://hub.docker.com/r/wallarm/sidecar)
