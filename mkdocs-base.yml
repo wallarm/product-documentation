@@ -33,6 +33,7 @@ theme:
     - content.code.copy
     - content.action.edit
     - search.suggest
+    - content.tabs.link
   logo: images/wallarm-logo-new.svg
   favicon: images/favicon.svg
   icon:
