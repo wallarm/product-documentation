@@ -7,9 +7,6 @@ repo_name: GitHub
 
 copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Terms of services</a> | <a href="https://wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | <a href="#__consent">Cookie settings</a> | 2023 © Wallarm Inc.'
 
-# add for copyright the option to change cookies
-# in the .html file I probably should specify the parameter to store the input feedback and send to GA
-
 plugins:
   - search
   - minify:
