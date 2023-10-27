@@ -24,7 +24,7 @@ This change introduces the new configuration parameters which by default are set
 
 We now support ARM64 processors with the Wallarm NGINX Ingress Controller. As ARM64 gains traction in server solutions, we are staying up-to-date to meet our customers' needs. This enables enhanced security for API environments, covering both x86 and ARM64 architectures, providing flexibility and protection.
 
-<!-- To deploy on ARM64 machines, follow our [instructions](../admin-en/installation-kubernetes-en.md#). -->
+In the deployment guide, we have provided the corresponding [Helm chart configuration examples](../admin-en/installation-kubernetes-en.md#arm64-deployment).
 
 ## Excluding specific URLs and requests from bot checks
 
