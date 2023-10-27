@@ -118,9 +118,9 @@ To acquire and [upload](https://docs.mulesoft.com/mule-gateway/policies-custom-u
     ```
     cd <POLICY_DIRECTORY/wallarm
     ```
-1. Within the `pom.xml` file → `groupId` parameter at the top of the file, specify your Mulesoft organization ID.
+1. Within the `pom.xml` file → `groupId` parameter at the top of the file, specify your Mulesoft Business Group ID.
 
-    You can find your organization ID by navigating to Mulesoft Anypoint Platform → **Access Management** → **Organization** → choose your organization → copy its ID.
+    You can find your organization ID by navigating to Mulesoft Anypoint Platform → **Access Management** → **Business Groups** → choose your organization → copy its ID.
 1. In your Maven `.m2` directory, update the `settings.xml` file with your Exchange credentials:
 
     ```xml
