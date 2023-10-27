@@ -974,13 +974,12 @@ button.md-clipboard.md-icon {
 }
 
 .md-search__input {
-  background-color: #F7F7F8;
   color: #000000;
   border-radius: .1rem;
 }
 
-.md-search__input:hover {
-  background-color: #f7f7f8eb;
+.md-search__input:not(:focus-visible) {
+  background-color: #F7F7F8;
 }
 
 input.md-search__input::placeholder {
