@@ -32,6 +32,7 @@ theme:
     - navigation.tracking
     - content.code.copy
     - content.action.edit
+    - search.suggest
   logo: images/wallarm-logo-new.svg
   favicon: images/favicon.svg
   icon:
