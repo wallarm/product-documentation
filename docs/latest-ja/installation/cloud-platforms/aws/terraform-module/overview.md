@@ -47,7 +47,7 @@ AWS Terraformモジュールを使用してWallarmをプロダクション用に
 | `token` | Wallarm Console UIからコピーした[Wallarmノードトークン](../../../../user-guides/nodes/nodes.md#creating-a-node)。<br><div class="admonition info"> <p class="admonition-title">複数のインストールで1つのトークンを使用する</p> <p>You can use one token in several installations regardless of the selected [platform](../../../../installation/supported-deployment-options.md). It allows logical grouping of node instances in the Wallarm Console UI. Example: you deploy several Wallarm nodes to a development environment, each node is on its own machine owned by a certain developer.</p></div> | string | はい
 | **Wallarm特有の変数** | | | |
 | `host` | [Wallarm APIサーバー](../../../../about-wallarm/overview.md#cloud)。可能な値:<ul><li>`us1.api.wallarm.com`（USクラウド用）</li><li>`api.wallarm.com`（EUクラウド用）</li></ul>デフォルトでは、`api.wallarm.com`. | string | いいえ
-`upstream` | デプロイする[Wallarmノードバージョン](../../../../updating-migrating/versioning-policy.md#version-list)。最低サポートバージョンは`4.0`。<br><br>デフォルトでは、`4.6`. | string | いいえ
+`upstream` | デプロイする[Wallarmノードバージョン](../../../../updating-migrating/versioning-policy.md#version-list)。最低サポートバージョンは`4.0`。<br><br>デフォルトでは、`4.8`. | string | いいえ
 | `preset` | Wallarmデプロイメントスキーム。可能な値:<ul><li>`proxy`</li><li>`mirror`</li></ul>デフォルトでは、`proxy`. | string | いいえ
 | `proxy_pass` | プロキシ対象のサーバープロトコルとアドレス。Wallarmノードは、指定されたアドレスに送信されたリクエストを処理し、合法的なものをプロキシします。プロトコルとしては、「http」または「https」を指定できます。アドレスは、ドメイン名またはIPアドレス、オプションのポートで指定できます。 | string | Yes, if `preset` is `proxy`
 | `mode` | [トラフィックフィルタモード](../../../../admin-en/configure-wallarm-mode.md)。可能な値：`off`、`monitoring`、`safe_blocking`、`block`。<br><br>デフォルトでは、`monitoring`. | string | いいえ
