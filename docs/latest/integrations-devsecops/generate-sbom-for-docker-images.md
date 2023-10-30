@@ -8,18 +8,12 @@ You may need to obtain the SBOM for Wallarm Docker Images to assess and mitigate
 
 Below is the list of [signed](verify-docker-image-signature.md) Wallarm Docker images. You can generate SBOM for any tag of these images.
 
-<!-- * [wallarm/node](https://hub.docker.com/r/wallarm/node): [NGINX-based Docker image](../admin-en/installation-docker-en.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment
-* [wallarm/envoy](https://hub.docker.com/r/wallarm/envoy): [Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment -->
-* Docker images used by the Helm chart for [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.md):
+* [wallarm/node](https://hub.docker.com/r/wallarm/node) 4.8.0-1 and above: [NGINX-based Docker image](../admin-en/installation-docker-en.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment
+* All Docker images used by the Helm chart for [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.md):
 
-    * [wallarm/ingress-nginx](https://hub.docker.com/r/wallarm/ingress-nginx)
     * [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
-    * [wallarm/ingress-controller-chroot](https://hub.docker.com/r/wallarm/ingress-controller-chroot)
-    * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
-    * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
-    * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
-    * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
-* Docker images used by the Helm chart for [Sidecar deployment](../installation/kubernetes/sidecar-proxy/deployment.md):
+    * [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)
+* All Docker images used by the Helm chart for [Sidecar deployment](../installation/kubernetes/sidecar-proxy/deployment.md):
 
     * [wallarm/sidecar](https://hub.docker.com/r/wallarm/sidecar)
     * [wallarm/sidecar-controller](https://hub.docker.com/r/wallarm/sidecar-controller)
