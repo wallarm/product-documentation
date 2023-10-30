@@ -10,6 +10,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.8.1 (2023-10-30)
+
+* Bug fixes
+
 ### 4.8.0 (2023-10-19)
 
 * Initial release 4.8, [see changelog](what-is-new.md)
