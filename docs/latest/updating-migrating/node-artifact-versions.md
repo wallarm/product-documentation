@@ -26,6 +26,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.8.3 (2023-10-30)
+
+* This release fixes [CVE-2023-5363](https://github.com/advisories/GHSA-xw78-pcr6-wrg8) and [CVE-2023-44487](https://github.com/advisories/GHSA-qppj-fm5r-hxr3) in the controller image
+
 ### 4.8.2 (2023-10-20)
 
 * Resolved statistics errors for denylisted requests connected with non-standard HTTP port (80) upstreams
