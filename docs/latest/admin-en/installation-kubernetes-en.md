@@ -61,6 +61,10 @@ To install the Wallarm Ingress Controller:
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
+
+    !!! info "Deployment from your own registries"    
+        Alternatively, you can install the Wallarm Ingress controller from the images stored [in your own registries](#deployment-from-your-own-registries).
+
 1. Create the `values.yaml` file with the [Wallarm configuration][configure-nginx-ing-controller-docs]. Example of the file with the minimum configuration is below.
 
     When using an API token, specify a node group name in the `nodeGroup` parameter. Your node will be assigned to this group, shown in the Wallarm Console's **Nodes** section. The default group name is `defaultIngressGroup`.
@@ -183,6 +187,26 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
         # If using an API token, uncomment the following line and specify your node group name
         # nodeGroup: defaultIngressGroup
     ```
+
+## Deployment from your own registries
+
+If you cannot pull the Docker images from the Wallarm public repository due to some reasons, for example because you company security policy restricts usage of any external resources, instead you can clone these images to your local storage and install Wallarm NGINX-based Ingress controller using them.
+
+To do that, specify paths to your local images by overwriting the `values.yaml` file of Wallarm Ingress controller Helm chart:
+
+```yaml
+controller:
+  image:
+    ## The image and tag for wallarm nginx ingress controller
+    ##
+    image: <CUSTOM_IMAGE_LOCATION>
+    tag: <IMAGE_TAG>
+    helpers:
+      ## The image and tag for the helper image
+      ##
+      image: <CUSTOM_IMAGE_LOCATION>
+      tag: <IMAGE_TAG>
+```
 
 ## Configuration
 
