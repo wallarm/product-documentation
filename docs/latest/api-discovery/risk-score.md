@@ -2,6 +2,15 @@
 
 [API Discovery](overview.md) automatically calculates a **risk score** for each endpoint in your API inventory. The risk score allows you to understand which endpoints are most likely to be an attack target and therefore should be the focus of your security efforts.
 
+## Overviewing dashboard
+
+Select **Dashboards** → **API Discovery**, and: 
+
+* In **API risk score summary**, find counts for `High`, `Medium` and `Low` [risk levels](#risk-score-levels). Click elements to go to **API Discovery** and have the list of endpoints of the corresponding risk level.
+* In **API endpoints by risk**, switch between the **All endpoints**, **New endpoints**, and **Shadow** tabs to see the riskiest endpoints among all or only [new](track-changes.md) or [shadow](rogue-api.md) APIs. By default sorting is by the number of hits. You can open endpoint details right from the dashboard.
+
+![API Discovery widget](../images/user-guides/dashboard/api-discovery-widget.png)
+
 ## Risc score factors
 
 The risk score is made up of various factors, including:
@@ -15,7 +24,7 @@ The risk score is made up of various factors, including:
 
 To adapt risk score estimation under your understanding of importance of factors, you can [configure](#customizing-risk-score-calculation) the weight of each factor in risk score calculation and calculation method.
 
-## Working with risk score
+## Risk score levels
 
 Risk score may be from `1` (lowest) to `10` (highest):
 
@@ -28,7 +37,7 @@ Risk score may be from `1` (lowest) to `10` (highest):
 * `1` means no risk factors for this endpoint.
 * Risk score is not displayed (`N/A`) for the unused endpoints.
 * Sort by risk score in the **Risk** column.
-* Filter out `High`, `Medium` or `Low` using the **Risk score** filter.
+* Filter `High`, `Medium` or `Low` using the **Risk score** filter.
 
 To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details:
 
