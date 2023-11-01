@@ -62,9 +62,6 @@ To install the Wallarm Ingress Controller:
     helm repo add wallarm https://charts.wallarm.com
     ```
 
-    !!! info "Deployment from your own registries"    
-        Alternatively, you can install the Wallarm Ingress controller from the images stored [in your own registries](#deployment-from-your-own-registries).
-
 1. Create the `values.yaml` file with the [Wallarm configuration][configure-nginx-ing-controller-docs]. Example of the file with the minimum configuration is below.
 
     When using an API token, specify a node group name in the `nodeGroup` parameter. Your node will be assigned to this group, shown in the Wallarm Console's **Nodes** section. The default group name is `defaultIngressGroup`.
@@ -88,6 +85,10 @@ To install the Wallarm Ingress Controller:
         ```
     
     You can also store the Wallarm node token in Kubernetes secrets and pull it to the Helm chart. [Read more][controllerwallarmexistingsecret-docs]
+
+    !!! info "Deployment from your own registries"    
+        You can overwrite elements of the `values.yaml` file to install the Wallarm Ingress controller from the images stored [in your own registries](#deployment-from-your-own-registries).
+
 1. Install the Wallarm packages:
 
     ``` bash
