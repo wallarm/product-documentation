@@ -6,6 +6,16 @@ As soon as the [API Discovery](overview.md) module has built the catalog of your
 
 Explore your discovered API inventory using the **API Discovery** section of Wallarm Console and a comprehensive dashboard with the same name.
 
+=== "US Cloud"
+
+    * API Discovery [dashboard](https://us1.my.wallarm.com/dashboard-api-discovery) on US Cloud
+    * The [API Discovery](https://us1.my.wallarm.com/api-discovery) section on US Cloud
+
+=== "EU Cloud"
+
+    * API Discovery [dashboard](https://my.wallarm.com/dashboard-api-discovery) on EU Cloud
+    * The [API Discovery](https://my.wallarm.com/api-discovery) section on EU Cloud
+
 ### Overviewing endpoints
 
 Explore the list of discovered endpoints by application and host at the **API Discovery** section of Wallarm Console. 
