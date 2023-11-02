@@ -75,10 +75,10 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
 
 ``` bash
 kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-mode=monitoring
-kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-application=<APPLICATION>
+kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-application="<APPLICATION_ID>"
 ```
 * `<YOUR_INGRESS_NAME>` is the name of your Ingress
-* `<APPLICATION>` is a positive number that is unique to each of [your applications or application groups](../user-guides/settings/applications.md). This will allow you to obtain separate statistics and to distinguish between attacks aimed at the corresponding applications
+* `<APPLICATION_ID>` is a positive number that is unique to each of [your applications or application groups](../user-guides/settings/applications.md). This will allow you to obtain separate statistics and to distinguish between attacks aimed at the corresponding applications
 
 ### Step 3: Checking the Wallarm Ingress Controller operation
 

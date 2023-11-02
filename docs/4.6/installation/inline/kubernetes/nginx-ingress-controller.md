@@ -16,6 +16,7 @@ search:
 [best-practices-for-high-availability]:  ../../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
 [best-practices-for-ingress-monitoring]: ../../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
 [node-token-types]:                      ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[chaining-doc]:                          ../../../admin-en/chaining-wallarm-and-other-ingress-controllers.md
 
 # Deploying NGINX Ingress Controller with Integrated Wallarm Services
 
@@ -32,9 +33,9 @@ The solution is deployed from the Wallarm Helm chart.
 Among all supported [Wallarm deployment options][deployment-platform-docs], this solution is the recommended one for the following **use cases**:
 
 * There is no Ingress controller and security layer routing traffic to Ingress resources compatible with [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx).
-* You are using [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) and looking for a security solution compatible with your technology stack.
+* You are currently using the Community Ingress NGINX Controller and are in search of a security solution that offers both the standard controller functionality and enhanced security features. In this case, you can effortlessly switch to the Wallarm-NGINX Ingress Controller detailed in these instructions. Simply migrate your existing configuration to a new deployment to complete the replacement.
 
-    You can seamlessly replace the deployed NGINX Ingress Controller with the one these instructions describe by only moving your configuration to a new deployment.
+    For simultaneous use of both the existing Ingress controller and the Wallarm controller, refer to the [Ingress Controller chaining guide][chaining-doc] for configuration details.
 
 ## Requirements
 
@@ -117,11 +118,11 @@ To install the Wallarm Ingress Controller:
 
 ``` bash
 kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-mode=monitoring
-kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-application=<APPLICATION>
+kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-application="<APPLICATION_ID>"
 ```
 * `<YOUR_INGRESS_NAME>` is the name of your Ingress
 * `<YOUR_INGRESS_NAMESPACE>` is the namespace of your Ingress
-* `<APPLICATION>` is a positive number that is unique to each of [your applications or application groups][application-docs]. This will allow you to obtain separate statistics and to distinguish between attacks aimed at the corresponding applications
+* `<APPLICATION_ID>` is a positive number that is unique to each of [your applications or application groups][application-docs]. This will allow you to obtain separate statistics and to distinguish between attacks aimed at the corresponding applications
 
 ### Step 3: Checking the Wallarm Ingress Controller operation
 
