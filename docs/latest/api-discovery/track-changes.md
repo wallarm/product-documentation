@@ -2,33 +2,14 @@
 
 If changes occur in your API, [API Discovery](overview.md) updates the built API inventory, highlights the changes and gives you information on when and what has changed. Additionally, you can set up notifications on all or some of the changes.
 
-This allows you to make sure as early as the changes occur that:
-
-* Changes do not disrupt current business processes
-* No unknown endpoints have appeared in the infrastructure that could be a potential threat vector
-* PII and other unexpected parameters did not start being transferred to the endpoints
-
 ![API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
-??? info "Examples of risks caused by missed changes in API"
-    * The development team can start using a third-party library with a separate API and they do not notify the security specialists about that. This way the company gets endpoints that are not monitored and not checked for vulnerabilities. They can be potential attack directions.
-    * The PII data begin to be transferred to the endpoint. An unplanned transfer of PII can lead to a violation of compliance with the requirements of regulators, as well as lead to reputational risks.
-    * Important for the business logic endpoint (for example, `/login`, `/order/{order_id}/payment/`) is no longer called.
-    * Other parameters that should not be transferred, for example `is_admin` (someone accesses the endpoint and tries to do it with administrator rights) begin to be transferred to the endpoint.
+The company may have several teams, disparate programming languages, and a variety of language frameworks. Thus changes can come to API at any time from different sources which make them difficult to control. For security officers it is important to detect changes as soon as possible and analyze them. If missed, such changes may hold some risks, for example:
 
-Quick tips for Wallarm console:
-
-* By default, you will always see highlights for API changes in the last 7 days
-* Mouse over the **New**, **Changed** or **Unused** labels to see when the change happened
-* Go to **Changed** endpoint details to see reason of this status: **New** parameters and parameters that got **Unused** status - mouse over labels to see when
-
-## Getting notified
-
-To get notifications about changes in API to your email or messenger, in **Triggers**, configure the trigger with the **Changes in API** condition (see example [here](../user-guides/triggers/trigger-examples.md#new-endpoints-in-your-api-inventory)).
-
-You can get messages about only new, changed or unused endpoints or about all of this changes and also narrow notifications by application or host you want to monitor or by the type of sensitive data presented in a changing endpoint.
-
-You can configure as many **Changes in API** triggers as you need. As soon as all is done, watch your messages to stay up-to-date.
+* The development team can start using a third-party library with a separate API and they do not notify the security specialists about that. This way the company gets endpoints that are not monitored and not checked for vulnerabilities. They can be potential attack directions.
+* The PII data begin to be transferred to the endpoint. An unplanned transfer of PII can lead to a violation of compliance with the requirements of regulators, as well as lead to reputational risks.
+* Important for the business logic endpoint (for example, `/login`, `/order/{order_id}/payment/`) is no longer called.
+* Other parameters that should not be transferred, for example `is_admin` (someone accesses the endpoint and tries to do it with administrator rights) begin to be transferred to the endpoint.
 
 ## Overviewing dashboard
 
@@ -40,7 +21,9 @@ Click elements to go to **API Discovery** and have the list of the new, changed 
 
 ## Highlighting changes in API
 
-To check what changes occurred in the API within the specified period of time that, in the **API Discovery** section, from the **Changes since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
+Each time you open the **API Discovery** section, the **Changes since** filter goes to the `Last week` state, which means the changes occurred within the last week are highlighted. To change the time period, redefine dates in the **Changes since** filter.
+
+In the endpoint list, the following marks highlight the changes in API:
 
 * **New** for the endpoints added to the list within the period.
 * **Changed** for the endpoints that have newly discovered parameters or parameters that obtained the `Unused` status within the period. In the details of the endpoint such parameters will have a corresponding mark.
@@ -58,8 +41,10 @@ Note that whatever period is selected, if nothing is highlighted with the **New*
 
 ![API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
-!!! info "Default period"
-    Each time you open the **API Discovery** section, the **Changes since** filter goes to the `Last week` state, which means only the changes occurred within the last week are highlighted.
+Quick tips for endpoints marked as rogue:
+
+* Mouse over the **New**, **Changed** or **Unused** labels to see when the change happened
+* Go to **Changed** endpoint details to see reason of this status: **New** parameters and parameters that got **Unused** status - mouse over labels to see when the parameter change occurred
 
 ## Filtering changes in API
 
@@ -74,3 +59,44 @@ The **Changes in API** filter works differently and shows **only** endpoints cha
 * Set **Changes in API** to `Unused endpoints` - 3 endpoints will be displayed, all with the **Unused** mark.
 * Change **Changes in API** to `New endpoints + Unused endpoints` - 4 endpoints will be displayed, 3 with the **Unused** mark, and 1 with the **New** mark.
 * Switch **Changes since** back to `Last week` - 1 endpoint will be displayed, it will have the **New** mark.
+
+## Getting notified
+
+To get notifications about changes in API to your email or messenger, in **Triggers**, configure the [trigger](../user-guides/triggers/triggers.md) with the **Changes in API** condition (see example [here](../user-guides/triggers/trigger-examples.md#new-endpoints-in-your-api-inventory)).
+
+You can get messages about only new, changed or unused endpoints or about all of this changes and also narrow notifications by application or host you want to monitor or by the type of sensitive data presented in a changing endpoint.
+
+You can configure as many **Changes in API** triggers as you need. As soon as all is done, watch your messages to stay up-to-date.
+
+**Trigger example: notification about new endpoints in Slack**
+
+In this example, if new endpoints for the `example.com` API host are discovered by the API Discovery module, the notification about this will be sent to your configured Slack channel.
+
+![Changes in API trigger](../../images/user-guides/triggers/trigger-example-changes-in-api.png)
+
+**To test the trigger:**
+
+1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../../user-guides/settings/integrations/slack.md).
+1. In **Triggers**, create trigger as shown above.
+1. Send several requests to the `example.com/users` endpoint to get the `200` (`OK`) response.
+1. In the **API Discovery** section, check that your endpoint was added with the **New** mark.
+1. Check messages in your Slack channel like:
+    ```
+    [wallarm] A new endpoint has been discovered in your API
+
+    Notification type: api_structure_changed
+
+    The new GET example.com/users endpoint has been discovered in your API.
+
+        Client: Client 001
+        Cloud: US
+
+        Details:
+
+          application: Application 1802
+          domain: example.com
+          endpoint_path: /users
+          http_method: GET
+          change_type: added
+          link: https://my.wallarm.com/api-discovery?instance=1802&method=GET&q=example.com%2Fusers
+    ```
