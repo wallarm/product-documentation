@@ -23,11 +23,6 @@ At present, there is no official Docker image for Heroku from Wallarm. So, this 
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
 * Access to the IP addresses of Google Cloud Storage listed within the [link](https://www.gstatic.com/ipranges/goog.json). When you [allowlist, denylist, or graylist][ip-lists-docs] entire countries, regions, or data centers instead of individual IP addresses, the Wallarm node retrieves precise IP addresses related to the entries in the IP lists from the aggregated database hosted on Google Storage.
 
-## Limitations
-
-* RPM (Requests Per Minute) data for nodes is not shown in Wallarm Console
-* The [`/wallarm-status` statistics service][doc-stat-service] is non-functional
-
 ## Step 1: Prepare Wallarm Docker configuration
 
 To deploy Wallarm's Docker image on Heroku, start by creating the necessary configuration files for the image build process. Follow these steps:
