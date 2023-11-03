@@ -11,14 +11,6 @@ The company may have several teams, disparate programming languages, and a varie
 * Important for the business logic endpoint (for example, `/login`, `/order/{order_id}/payment/`) is no longer called.
 * Other parameters that should not be transferred, for example `is_admin` (someone accesses the endpoint and tries to do it with administrator rights) begin to be transferred to the endpoint.
 
-## Overviewing dashboard
-
-Select **Dashboards** → **API Discovery**, and overview **API changes** for the last 7 days.
-
-![API Discovery widget](../images/user-guides/dashboard/api-discovery-widget.png)
-
-Click elements to go to **API Discovery** and have the list of the new, changed APIs or APIs that got the `Unused` status in the last 7 days.
-
 ## Highlighting changes in API
 
 Each time you open the **API Discovery** section, the **Changes since** filter goes to the `Last week` state, which means the changes occurred within the last week are highlighted. To change the time period, redefine dates in the **Changes since** filter.
@@ -45,6 +37,8 @@ Quick tips for endpoints marked as rogue:
 
 * Mouse over the **New**, **Changed** or **Unused** labels to see when the change happened
 * Go to **Changed** endpoint details to see reason of this status: **New** parameters and parameters that got **Unused** status - mouse over labels to see when the parameter change occurred
+* Counters for all types of changes for the last 7 days are displayed at the [API Discovery Dashboard](dashboard.md).
+
 
 ## Filtering changes in API
 
