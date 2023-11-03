@@ -4,6 +4,12 @@
 
 Wallarm offers a beta version of its eBPF-based security solution that leverages the power of the Linux kernel and seamlessly integrates with Kubernetes environments. This article explains how to use and deploy the solution using the Helm chart.
 
+## Traffic flow
+
+Traffic flow with Wallarm eBPF-based soultion:
+
+![eBPF traffic flow](../../../images/waf-installation/epbf/ebpf-traffic-flow.png)
+
 ## How it works
 
 The Linux operating system comprises the kernel and the user space, where the kernel manages hardware resources and critical tasks, while applications operate in the user space. Within this environment, eBPF (Extended Berkeley Packet Filter) enables the execution of custom programs within the Linux kernel, including those focused on security. [Read more about eBPF](https://ebpf.io/what-is-ebpf/)
@@ -11,6 +17,10 @@ The Linux operating system comprises the kernel and the user space, where the ke
 As Kubernetes utilizes the capabilities of the Linux kernel for crucial tasks like process isolation, resource management, and networking, it creates a conducive environment for integrating eBPF-based security solutions. In line with this, Wallarm offers an eBPF-based security solution that seamlessly integrates with Kubernetes, leveraging the kernel's functionalities.
 
 The solution consists of an agent that generates a traffic mirror and forwards it to the Wallarm node. During deployment, you can specify the mirror level at either the namespace or pod level. The Wallarm node examines the mirrored traffic for security threats, without blocking any malicious activity. Instead, it records the detected activity in the Wallarm Cloud, providing visibility into traffic security through the Wallarm Console UI.
+
+The following diagram demonstrates the solution components:
+
+![eBPF components](../../../images/waf-installation/epbf/ebpf-components.png)
 
 The DaemonSet is a Kubernetes resource used by Wallarm for deploying security agents. To enable privileged access required by the DaemonSet, Wallarm includes the `SYS_PTRACE` and `SYS_ADMIN` capabilities in the Helm chart:
 
@@ -23,7 +33,7 @@ capabilities:
 
 These capabilities grant the necessary permissions for Wallarm's agents to perform privileged tasks, ensuring security coverage across all nodes in the cluster.
 
-Furthermore, the solution processes response codes without parsing response bodies, empowering Wallarm's core [API Discovery](../../../about-wallarm/api-discovery.md) module to identify your API endpoints, construct your API inventory, and ensure it remains up-to-date.
+Furthermore, the solution processes response codes without parsing response bodies, empowering Wallarm's core [API Discovery](../../../api-discovery/overview.md) module to identify your API endpoints, construct your API inventory, and ensure it remains up-to-date.
 
 ## Use cases
 
