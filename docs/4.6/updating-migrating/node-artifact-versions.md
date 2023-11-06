@@ -6,7 +6,11 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 History of updates simultaneously applies to the x86_64 and ARM64 (beta) versions of [all-in-one installer](../installation/nginx/all-in-one.md).
 
-### 4.6.14 (2023-10-11)
+### 4.6.15 (2023-11-03)
+
+* Improved detection of brute-force attacks
+
+### 4.6.15 (2023-10-11)
 
 * Bug fixes and internal improvements
 
