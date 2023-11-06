@@ -68,6 +68,7 @@ Wallarm çözümü, manuel kural yapılandırması olmadan ve ultra düşük yan
 <div class="navigation-card">
     <h3 class="icon-homepage api-security-testing">API Güvenlik Testi</h3>
     <p><ul>
+    <li><a href="./fast/openapi-security-testing/">OpenAPI Güvenlik Testi</a></li>
     <li><a href="./fast/">API Güvenlik Testi Çerçevesi</a></li>
     <li><a href="./fast/operations/test-policy/fuzzer-intro/">API Fuzzing</a></li>
     <li><a href="./fast/dsl/intro/">Özel Tespitler için DSL</a></li>
