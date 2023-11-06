@@ -21,7 +21,7 @@ So to set up a constant monitoring of rogue API, you have an option of compariso
 
 To set up monitoring rogue APIs on hourly basis:
 
-1. Navigate to the **API Specifications** section in the [US](ttps://us1.my.wallarm.com/api-specifications) or [EU](https://my.wallarm.com/api-specifications) Cloud.
+1. Navigate to the **API Specifications** section in the [US](https://us1.my.wallarm.com/api-specifications) or [EU](https://my.wallarm.com/api-specifications) Cloud.
 1. Click **Upload specification**.
 1. Select a specification to upload. It must be in the OpenAPI 3.0 JSON or YAML format.
 1. Set comparison parameters:
