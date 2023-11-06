@@ -1,10 +1,11 @@
-[ip-lists-docs]:                    ../../../user-guides/ip-lists/overview.md
-[node-token-types]:                 ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[ptrav-attack-docs]:                ../../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
-[doc-stat-service]:                 ../../../admin-en/configure-statistics-service.md
-[aio-docs]:                         ../../nginx/all-in-one.md
-[waf-directives-instr]:             ../../../admin-en/configure-parameters-en.md
+[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
+[node-token-types]:                 ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[doc-stat-service]:                 ../../admin-en/configure-statistics-service.md
+[aio-docs]:                         ../nginx/all-in-one.md
+[waf-directives-instr]:             ../../admin-en/configure-parameters-en.md
+[filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
 
 # Running Wallarm on Heroku
 
@@ -419,7 +420,7 @@ To confirm that the deployment is functional, initiate a test attack using the [
 curl http://<HEROKU_APP_DOMAIN>/etc/passwd
 ```
 
-Since the node operates in the **monitoring** [filtration mode](../../../admin-en/configure-wallarm-mode.md#available-filtration-modes) by default, the Wallarm node will not block the attack but will register it. To check that the attack has been registered, proceed to Wallarm Console → **Events**:
+Since the node operates in the **monitoring** [filtration mode][filtration-mode-docs] by default, the Wallarm node will not block the attack but will register it. To check that the attack has been registered, proceed to Wallarm Console → **Events**:
 
 ![Attacks in the interface][attacks-in-ui-image]
 
@@ -432,8 +433,3 @@ heroku logs --tail
 ```
 
 If you need assistance during the deployment, contact the [Wallarm support team](mailto:support@wallarm.com).
-
-
-
-<!-- лооги по другому пути - /opt/wallarm. он такой для aio. надо и доку на логи поправить -->
-

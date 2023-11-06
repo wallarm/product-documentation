@@ -248,7 +248,8 @@ nav:
         - Azure Container Instances: installation/cloud-platforms/azure/docker-container.md
       - Alibaba Cloud:
         - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
-      - Heroku: installation/cloud-platforms/heroku/docker-container.md
+    - Platform as a Service (PaaS):
+      - Heroku: installation/heroku/docker-image.md
     - Edge:
       - Section.io: installation/cdn-node.md
       - Akamai EdgeWorkers: installation/cdn/akamai-edgeworkers.md

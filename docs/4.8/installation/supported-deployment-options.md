@@ -516,6 +516,18 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     </div>
 </div>
 
+## Platform as a Service (PaaS)
+
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href=../../installation/heroku/docker-image/>
+            <img class="non-zoomable" src="../../images/platform-icons/heroku.svg" />
+            <h3>Heroku</h3>
+            <p>Artifacts for Wallarm deployment on Heroku</p>
+        </a>
+    </div>
+</div>
+
 ## Edge
 
 <div class="do-section">
