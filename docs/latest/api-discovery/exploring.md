@@ -1,8 +1,8 @@
 # Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-As soon as the [API Discovery](overview.md) module has built the catalog of your endpoints (your ***API inventory***), you can explore the presented information to understand and manage the security of your API. Learn from this article some things to be considered before exploring as well as how to go through your API inventory with Wallarm Console.
+As soon as the [API Discovery](overview.md) module has built the catalog of your endpoints (your API inventory), you can explore it in the **API Discovery** section of Wallarm Console. Learn from this article how to go through the discovered data.
 
-## Discovered API inventory
+## Endpoints
 
 Explore your discovered API inventory using the **API Discovery** section of Wallarm Console and a comprehensive dashboard with the same name.
 
@@ -15,18 +15,6 @@ Explore your discovered API inventory using the **API Discovery** section of Wal
 
     * API Discovery [dashboard](https://my.wallarm.com/dashboard-api-discovery) on EU Cloud
     * The [API Discovery](https://my.wallarm.com/api-discovery) section on EU Cloud
-
-### Overviewing endpoints
-
-Explore the list of discovered endpoints by application and host at the **API Discovery** section of Wallarm Console. 
-
-??? info "Section availability by user role"
-    The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
-
-    * **Administrator** and **Analyst** can view and manage the data discovered by the API Discovery module, and access the API Discovery configuration part.
-
-        **Global Administrator** and **Global Analyst** in the accounts with the multitenancy feature have the same rights.
-    * **API Developer** can view and download the data discovered by the API Discovery module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
 
 ![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
@@ -50,15 +38,11 @@ Explore the list of discovered endpoints by application and host at the **API Di
 
     By default, endpoints are sorted by host/endpoint names (and grouped by hosts). If you sort by **Hits** or **Risk**, grouping goes away - to get back to the default, click hosts/endpoint column again.
 
-### Overviewing dashboard
-
 Select **Dashboards** → **API Discovery** to overview a comprehensive summary of your API inventory.
 
 ![API Discovery widget](../images/user-guides/dashboard/api-discovery-widget.png)
 
 Click elements to go to **API Discovery** and have the list of endpoints filtered by different criteria. See detailed dashboard description [here](dashboard.md).
-
-## Filtering endpoints
 
 ### External vs. internal
 
@@ -73,7 +57,7 @@ In the remaining cases the hosts are considered to be external.
 
 By default, a list with all API hosts (external and internal) is displayed. In the built API inventory, you can view your internal and external APIs separately. To do this, click **External** or **Internal**.
 
-### Other filters
+### Filtering
 
 Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
@@ -87,7 +71,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 
 All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
-## Viewing endpoint parameters
+## Endpoint details
 
 <a name="params"></a>By clicking the endpoint, you can also find the endpoint details, including request statistics, required and optional parameters with the relevant data types:
 
@@ -115,24 +99,9 @@ Wallarm analyzes the values that are passed in each of the endpoint parameters a
 * Int32
 * Int64
 * Float
-* Double
-* Date
-* Datetime
-* Email
-* IPv4
-* IPv6
-* UUID
-* URI
-* Hostname
-* Byte
-* MAC
+* And others ...
 
-If the value in the parameter does not fit a specific data format, then one of the common data types will be specified:
-
-* Integer
-* Number
-* String
-* Boolean
+If the value in the parameter does not fit a specific data format, then one of the common data types will be specified: `Integer`, `Number`, `String`, `Boolean`.
 
 For each parameter, the **Type** column displays:
 
@@ -144,7 +113,7 @@ This data allows checking that values of the expected format are passed in each 
 * The `String` values ​​are passed to the field with `IP`
 * The `Double` values are passed to the field where there should be a value no more than `Int32`
 
-### Variability in endpoints
+### Variability
 
 URLs can include diverse elements, such as ID of user, like:
 
@@ -154,7 +123,7 @@ URLs can include diverse elements, such as ID of user, like:
 
 The **API Discovery** module unifies such elements into the `{parameter_X}` format in the endpoint paths, so for the example above you will not have 3 endpoints, but instead there will be one:
 
-* `/api/articles/author/{parameter_X}`
+* `/api/articles/author/{parameter_1}`
 
 Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
 
@@ -164,12 +133,7 @@ Note that the algorithm analyzes the new traffic. If at some moment you see addr
 
 ## Monitoring attacks on API endpoints
 
-Number of attacks on API endpoints for the last 7 days are displayed in the **Hits** column.
-
-You can:
-
-* Request displaying only attacked endpoints by selecting in filters: **Others** → **Attacked endpoints**.
-* Sort by the **Hits** column.
+Number of attacks on API endpoints for the last 7 days are displayed in the **Hits** column. You can request displaying only attacked endpoints by selecting in filters: **Others** → **Attacked endpoints**.
 
 To see attacks to some endpoint, click number in the **Hits** column:
 
@@ -206,4 +170,3 @@ The API Discovery UI provides you with an option to download the [OpenAPI v3](ht
 * The **Download OAS** button in an individual endpoint menu returns `swagger.json` for the selected endpoint.
 
     By utilizing the downloaded specification with other applications like Postman, you can conduct endpoint vulnerability and other tests. In addition, it allows for a closer examination of the endpoint's capabilities to uncover the processing of sensitive data and the presence of undocumented parameters.
-
