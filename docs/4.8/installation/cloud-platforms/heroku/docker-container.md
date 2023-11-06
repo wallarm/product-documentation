@@ -258,10 +258,10 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
 
 1. Create a `Dockerfile` to describe the build process for Wallarm's Docker image:
 
-    ```
-    FROM ubuntu:22.04@sha256:b4b521bfcec90b11d2869e00fe1f2380c21cbfcd799ee35df8bd7ac09e6f63ea
+    ```dockerfile
+    FROM ubuntu:22.04
 
-    ARG VERSION="4.8.1"
+    ARG VERSION="4.8.2"
 
     ENV PORT=3000
     ENV WALLARM_LABELS="group=heroku"
@@ -312,10 +312,10 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
 Execute the following commands within the previously created directory:
 
 ```
-docker build -t wallarm-heroku:4.8.1 .
+docker build -t wallarm-heroku:4.8.2 .
 docker login
-docker tag wallarm-heroku:4.8.1 <DOCKERHUB_USERNAME>/wallarm-heroku:4.8.1
-docker push <DOCKERHUB_USERNAME>/wallarm-heroku:4.8.1
+docker tag wallarm-heroku:4.8.2 <DOCKERHUB_USERNAME>/wallarm-heroku:4.8.2
+docker push <DOCKERHUB_USERNAME>/wallarm-heroku:4.8.2
 ```
 
 ## Step 3: Run the built Docker image on Heroku
@@ -325,8 +325,8 @@ To deploy the image on Heroku:
 1. Navigate to the root of your application directory to perform the subsequent operations.
 1. Construct a `Dockerfile` which will include the installation of necessary dependencies specific to your app's runtime. For a Node.js application, use the following template:
 
-    ```
-    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:4.8.1
+    ```dockerfile
+    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:4.8.2
 
     ENV NODE_MAJOR=20
 
@@ -353,7 +353,7 @@ To deploy the image on Heroku:
     ```
 1. Create a `heroku.yml` configuration file with the following content:
 
-    ```
+    ```yaml
     build:
       docker:
         web: Dockerfile
@@ -361,7 +361,7 @@ To deploy the image on Heroku:
 
 1. Adapt your application to listen on `/tmp/nginx.socket` rather than `$PORT` because `$PORT` is utilized by NGINX. For instance, the configuration may look as follows:
 
-    ```
+    ```js
     // app.js
     const app = require('express')()
 
@@ -419,7 +419,7 @@ To confirm that the deployment is functional, initiate a test attack using the [
 curl http://<HEROKU_APP_DOMAIN>/etc/passwd
 ```
 
-Since the node operates in the **monitoring** [filtration mode](admin-en/configure-wallarm-mode.md#available-filtration-modes) by default, the Wallarm node will not block the attack but will register it. To check that the attack has been registered, proceed to Wallarm Console → **Events**:
+Since the node operates in the **monitoring** [filtration mode](../../../admin-en/configure-wallarm-mode.md#available-filtration-modes) by default, the Wallarm node will not block the attack but will register it. To check that the attack has been registered, proceed to Wallarm Console → **Events**:
 
 ![Attacks in the interface][attacks-in-ui-image]
 
