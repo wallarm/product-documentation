@@ -64,11 +64,11 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
 <div class="navigation-card">
     <h3 class="icon-homepage api-security-testing">APIセキュリティテスト</h3>
     <p><ul>
-    <li><a href="./fast/">概要</a></li>
-    <li><a href="./fast/qsg/deployment-options/">クイックスタート</a></li>
-    <li><a href="./fast/poc/integration-overview/">CI/CDへの統合</a></li>
+    <li><a href="./fast/openapi-security-testing/">OpenAPI セキュリティ テスティング</a></li>
+    <li><a href="./fast/">APIセキュリティテストのためのフレームワーク</a></li>
     <li><a href="./fast/operations/test-policy/fuzzer-intro/">ファジング</a></li>
     <li><a href="./fast/dsl/intro/">カスタム検出のためのDSL</a></li>
+    <li><a href="./fast/poc/integration-overview/">CI/CDへの統合</a></li>
     </ul></p>
 </div>
 

@@ -22,7 +22,7 @@ You can renew the token value at any moment.
 * API Developer
 * Read only
 * Deploy - API tokens with this role are used to [deploy Wallarm nodes](../../user-guides/nodes/nodes.md#creating-a-node)
-* Сustom - switches back to the  manual permission selection
+* Сustom - switches back to the manual permission selection. To create a token for [OpenAPI security testing], the custom role with the corresponding permissions is required.
 
 !!! info "Token privacy"
     No other users (even administrators) can use your private tokens (which means, view or copy token value). Besides, non-administrators will not even see your tokens.

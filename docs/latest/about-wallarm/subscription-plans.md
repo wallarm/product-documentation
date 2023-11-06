@@ -38,6 +38,7 @@ Wallarm provides the following subscription plans:
 | **Security testing and vulnerability assessment** | | |
 | [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | No | Yes |
 | [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | No | Yes |
+| [OpenAPI security testing on CI/CD](../fast/openapi-security-testing.md) |  No | Yes |
 | **Security event monitoring** | | |
 | [Integrations](../user-guides/settings/integrations/integrations-intro.md) with SIEMs, messengers, etc | All | All |
 | [Audit log](../user-guides/settings/audit-log.md) | Yes | Yes |

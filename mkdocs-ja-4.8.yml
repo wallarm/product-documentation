@@ -82,111 +82,113 @@ nav:
       - 概要: about-wallarm/api-leaks.md
       - API リークの管理: user-guides/api-leaks.md
   - セキュリティテスト:
-    - 概要: fast/README.md
-    - FASTオンボーディング: fast/onboarding/onboarding.md
-    - クイックスタートガイド:
-      - デプロイメントオプション: fast/qsg/deployment-options.md
-      - FASTノードのデプロイメント: fast/qsg/deployment.md
-      - テストのための環境設定: fast/qsg/test-preparation.md
-      - テストの実行: fast/qsg/test-run.md
-      - テスト結果の解釈: fast/qsg/test-interpretation.md
-    - FAST基本操作:
-      - "FASTの動作：概要": fast/operations/internals.md
-      - テストポリシー:
-        - 概要: fast/operations/test-policy/overview.md
-        - 基本的なポリシー設定: fast/operations/test-policy/general.md
-        - ポイント処理ルールの設定: fast/operations/test-policy/insertion-points.md
-        - 脆弱性検出プロセスの設定: fast/operations/test-policy/attacks-to-test.md
-        - 異常検出プロセスの設定:
-          - 概要: fast/operations/test-policy/fuzzer-intro.md
-          - Fuzzerの動作原理: fast/operations/test-policy/fuzzer-internals.md
-          - Fuzzerの設定: fast/operations/test-policy/fuzzer-configuration.md
-        - テストポリシーの使用: fast/operations/test-policy/using-policy.md
-        - テストポリシーの例: fast/operations/test-policy/examples.md
-      - FASTノードの作成とトークンの取得: fast/operations/create-node.md
-      - FASTノードが使用する環境変数のリスト: fast/operations/env-variables.md
-      - テスト実行の認証の設定: fast/operations/test-authentication.md
-      - テスト実行の作成: fast/operations/create-testrun.md
-      - テスト実行のコピー: fast/operations/copy-testrun.md
-      - 録音プロセスの停止: fast/operations/stop-recording.md
-      - テスト実行状態の確認: fast/operations/check-testrun-status.md
-      - テスト結果のレポートを取得する: fast/operations/ci-mode-report.md
-    - CI/CDへの統合:
-      - 序論: fast/poc/integration-overview.md
-      - 統合の前提条件: fast/poc/prerequisites.md
-      - Wallarm APIを介した統合:
-        - 原則と段階: fast/poc/integration-overview-api.md
-        - FASTノードの実行: fast/poc/node-deployment.md
-        - 録音プロセスの停止: fast/poc/stopping-recording.md
-        - テストが終了するのを待つ: fast/poc/waiting-for-tests.md
-        - インテグレーションの例:
-          - CircleCIでのFASTの統合: fast/poc/examples/circleci.md
-      - FASTノードを介したインテグレーション:
-        - 原則とステージ: fast/poc/integration-overview-ci-mode.md
-        - 録画モードでFASTノードを実行する: fast/poc/ci-mode-recording.md
-        - テストモードでFASTノードを実行する: fast/poc/ci-mode-testing.md
-        - 並行CI/CDワークフローでFASTを使用する: fast/poc/ci-mode-concurrent-pipelines.md
-        - インテグレーションの例:
-          - CircleCI: fast/poc/examples/circleci-cimode.md
-          - GitLab CI/CD: fast/poc/examples/gitlabcicd-cimode.md
-          - Jenkins: fast/poc/examples/jenkins-cimode.md
-          - Bamboo: fast/poc/examples/bamboo-cimode.md
-          - Azure DevOps: fast/poc/examples/azure-devops-cimode.md
-      - プラグインを介したインテグレーション:
-        - Jenkins: fast/poc/jenkins-plugin.md
-        - CircleCI: fast/poc/circleci-orbs.md
-    - FAST DSL:
-      - FAST DSLの概要: fast/dsl/intro.md
-      - 拡張の論理: fast/dsl/logic.md
-      - フェーズの説明:
-        - Collectフェーズ: fast/dsl/phase-collect.md
-        - Matchフェーズ: fast/dsl/phase-match.md
-        - Modifyフェーズ: fast/dsl/phase-modify.md
-        - Generateフェーズ: fast/dsl/phase-generate.md
-        - Sendフェーズ: fast/dsl/phase-send.md
-        - Detectフェーズ:
-          - Detectフェーズの説明: fast/dsl/detect/phase-detect.md
-          - Detectフェーズのパラメータの説明: fast/dsl/detect/parameters.md
-          - マーカーとのDetectフェーズの動作: fast/dsl/detect/markers.md
-      - FAST拡張の作成: fast/dsl/create-extension.md
-      - FAST拡張の例:
-        - 概要: fast/dsl/extensions-examples/overview.md
-        - サンプルアプリケーションの調査: fast/dsl/extensions-examples/app-examination.md
-        - 修正拡張の作成: fast/dsl/extensions-examples/mod-extension.md
-        - 非修正拡張の作成: fast/dsl/extensions-examples/non-mod-extension.md
-      - FAST拡張の使用: fast/dsl/using-extension.md
-      - FAST拡張のためのポイントの作成:
-        - イントロダクション: fast/dsl/points/intro.md
-        - 基本的な概念: fast/dsl/points/basics.md
-        - パーサーとフィルター:
-          - パーサーとフィルター: fast/dsl/points/parsers.md
-          - HTTPパーサーとそのフィルター: fast/dsl/points/parsers/http.md
-          - フォームデータパーサー: fast/dsl/points/parsers/form-urlencoded.md
-          - マルチパートパーサー: fast/dsl/points/parsers/multipart.md
-          - Cookieパーサー: fast/dsl/points/parsers/cookie.md
-          - XMLパーサーとそのフィルター: fast/dsl/points/parsers/xml.md
-          - Json_docパーサーとそのフィルター: fast/dsl/points/parsers/json.md
-          - Base64パーサー: fast/dsl/points/parsers/base64.md
-          - GZIPパーサー: fast/dsl/points/parsers/gzip.md
-          - 配列フィルター: fast/dsl/points/parsers/array.md
-          - ハッシュフィルター: fast/dsl/points/parsers/hash.md
-        - ポイントの構築原則: fast/dsl/points/principles.md
-        - ポイントの構築方法: fast/dsl/points/construction.md
-    - テキストの書式設定規則: fast/AGREEMENTS.md
-    - 用語集: fast/TERMS-GLOSSARY.md
-    - Wallarm Cloudsリスト: fast/CLOUD-LIST.md
-    - 脆弱性リスト: fast/VULN-LIST.md
-    - プロキシルールの構成: fast/poc/proxy-configuration.md
-    - SSL証明書のインストール:
-      - イントロダクション: fast/ssl/intro.md
-      - FASTノード用の独自の証明書のインストール: fast/ssl/install-certificate-on-fast-node.md
-      - ブラウザ用のFASTノード証明書のインストール:
-        - Apple Safari: fast/ssl/browsers-ssl/safari-ssl.md
-        - Google Chrome: fast/ssl/browsers-ssl/chrome-ssl.md
-        - Microsoft Edge: fast/ssl/browsers-ssl/edge-ssl.md
-        - Microsoft Internet Explorer 11: fast/ssl/browsers-ssl/ie11-ssl.md
-        - Mozilla Firefox: fast/ssl/browsers-ssl/firefox-ssl.md
-    - トラブルシューティング: fast/TSHOOT.md
+    - OpenAPI セキュリティ テスティング: fast/openapi-security-testing.md
+    - APIセキュリティテストのためのフレームワーク:
+      - 概要: fast/README.md
+      - FASTオンボーディング: fast/onboarding/onboarding.md
+      - クイックスタートガイド:
+        - デプロイメントオプション: fast/qsg/deployment-options.md
+        - FASTノードのデプロイメント: fast/qsg/deployment.md
+        - テストのための環境設定: fast/qsg/test-preparation.md
+        - テストの実行: fast/qsg/test-run.md
+        - テスト結果の解釈: fast/qsg/test-interpretation.md
+      - FAST基本操作:
+        - "FASTの動作：概要": fast/operations/internals.md
+        - テストポリシー:
+          - 概要: fast/operations/test-policy/overview.md
+          - 基本的なポリシー設定: fast/operations/test-policy/general.md
+          - ポイント処理ルールの設定: fast/operations/test-policy/insertion-points.md
+          - 脆弱性検出プロセスの設定: fast/operations/test-policy/attacks-to-test.md
+          - 異常検出プロセスの設定:
+            - 概要: fast/operations/test-policy/fuzzer-intro.md
+            - Fuzzerの動作原理: fast/operations/test-policy/fuzzer-internals.md
+            - Fuzzerの設定: fast/operations/test-policy/fuzzer-configuration.md
+          - テストポリシーの使用: fast/operations/test-policy/using-policy.md
+          - テストポリシーの例: fast/operations/test-policy/examples.md
+        - FASTノードの作成とトークンの取得: fast/operations/create-node.md
+        - FASTノードが使用する環境変数のリスト: fast/operations/env-variables.md
+        - テスト実行の認証の設定: fast/operations/test-authentication.md
+        - テスト実行の作成: fast/operations/create-testrun.md
+        - テスト実行のコピー: fast/operations/copy-testrun.md
+        - 録音プロセスの停止: fast/operations/stop-recording.md
+        - テスト実行状態の確認: fast/operations/check-testrun-status.md
+        - テスト結果のレポートを取得する: fast/operations/ci-mode-report.md
+      - CI/CDへの統合:
+        - 序論: fast/poc/integration-overview.md
+        - 統合の前提条件: fast/poc/prerequisites.md
+        - Wallarm APIを介した統合:
+          - 原則と段階: fast/poc/integration-overview-api.md
+          - FASTノードの実行: fast/poc/node-deployment.md
+          - 録音プロセスの停止: fast/poc/stopping-recording.md
+          - テストが終了するのを待つ: fast/poc/waiting-for-tests.md
+          - インテグレーションの例:
+            - CircleCIでのFASTの統合: fast/poc/examples/circleci.md
+        - FASTノードを介したインテグレーション:
+          - 原則とステージ: fast/poc/integration-overview-ci-mode.md
+          - 録画モードでFASTノードを実行する: fast/poc/ci-mode-recording.md
+          - テストモードでFASTノードを実行する: fast/poc/ci-mode-testing.md
+          - 並行CI/CDワークフローでFASTを使用する: fast/poc/ci-mode-concurrent-pipelines.md
+          - インテグレーションの例:
+            - CircleCI: fast/poc/examples/circleci-cimode.md
+            - GitLab CI/CD: fast/poc/examples/gitlabcicd-cimode.md
+            - Jenkins: fast/poc/examples/jenkins-cimode.md
+            - Bamboo: fast/poc/examples/bamboo-cimode.md
+            - Azure DevOps: fast/poc/examples/azure-devops-cimode.md
+        - プラグインを介したインテグレーション:
+          - Jenkins: fast/poc/jenkins-plugin.md
+          - CircleCI: fast/poc/circleci-orbs.md
+      - FAST DSL:
+        - FAST DSLの概要: fast/dsl/intro.md
+        - 拡張の論理: fast/dsl/logic.md
+        - フェーズの説明:
+          - Collectフェーズ: fast/dsl/phase-collect.md
+          - Matchフェーズ: fast/dsl/phase-match.md
+          - Modifyフェーズ: fast/dsl/phase-modify.md
+          - Generateフェーズ: fast/dsl/phase-generate.md
+          - Sendフェーズ: fast/dsl/phase-send.md
+          - Detectフェーズ:
+            - Detectフェーズの説明: fast/dsl/detect/phase-detect.md
+            - Detectフェーズのパラメータの説明: fast/dsl/detect/parameters.md
+            - マーカーとのDetectフェーズの動作: fast/dsl/detect/markers.md
+        - FAST拡張の作成: fast/dsl/create-extension.md
+        - FAST拡張の例:
+          - 概要: fast/dsl/extensions-examples/overview.md
+          - サンプルアプリケーションの調査: fast/dsl/extensions-examples/app-examination.md
+          - 修正拡張の作成: fast/dsl/extensions-examples/mod-extension.md
+          - 非修正拡張の作成: fast/dsl/extensions-examples/non-mod-extension.md
+        - FAST拡張の使用: fast/dsl/using-extension.md
+        - FAST拡張のためのポイントの作成:
+          - イントロダクション: fast/dsl/points/intro.md
+          - 基本的な概念: fast/dsl/points/basics.md
+          - パーサーとフィルター:
+            - パーサーとフィルター: fast/dsl/points/parsers.md
+            - HTTPパーサーとそのフィルター: fast/dsl/points/parsers/http.md
+            - フォームデータパーサー: fast/dsl/points/parsers/form-urlencoded.md
+            - マルチパートパーサー: fast/dsl/points/parsers/multipart.md
+            - Cookieパーサー: fast/dsl/points/parsers/cookie.md
+            - XMLパーサーとそのフィルター: fast/dsl/points/parsers/xml.md
+            - Json_docパーサーとそのフィルター: fast/dsl/points/parsers/json.md
+            - Base64パーサー: fast/dsl/points/parsers/base64.md
+            - GZIPパーサー: fast/dsl/points/parsers/gzip.md
+            - 配列フィルター: fast/dsl/points/parsers/array.md
+            - ハッシュフィルター: fast/dsl/points/parsers/hash.md
+          - ポイントの構築原則: fast/dsl/points/principles.md
+          - ポイントの構築方法: fast/dsl/points/construction.md
+      - テキストの書式設定規則: fast/AGREEMENTS.md
+      - 用語集: fast/TERMS-GLOSSARY.md
+      - Wallarm Cloudsリスト: fast/CLOUD-LIST.md
+      - 脆弱性リスト: fast/VULN-LIST.md
+      - プロキシルールの構成: fast/poc/proxy-configuration.md
+      - SSL証明書のインストール:
+        - イントロダクション: fast/ssl/intro.md
+        - FASTノード用の独自の証明書のインストール: fast/ssl/install-certificate-on-fast-node.md
+        - ブラウザ用のFASTノード証明書のインストール:
+          - Apple Safari: fast/ssl/browsers-ssl/safari-ssl.md
+          - Google Chrome: fast/ssl/browsers-ssl/chrome-ssl.md
+          - Microsoft Edge: fast/ssl/browsers-ssl/edge-ssl.md
+          - Microsoft Internet Explorer 11: fast/ssl/browsers-ssl/ie11-ssl.md
+          - Mozilla Firefox: fast/ssl/browsers-ssl/firefox-ssl.md
+      - トラブルシューティング: fast/TSHOOT.md
   - WAAP/WAF:
     - 攻撃検出手順: about-wallarm/protecting-against-attacks.md
     - DDoS対策: admin-en/configuration-guides/protecting-against-ddos.md
