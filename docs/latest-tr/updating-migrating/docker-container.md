@@ -32,7 +32,7 @@ Son kullanma tarihli düğümü (3.6 veya daha düşük) yükseltmek için lütf
 
 === "NGINX-tabanlı görüntü"
     ``` bash
-    docker pull wallarm/node:4.8.0-1
+    docker pull wallarm/node:4.8.1-1
     ```
 === "Envoy-tabanlı görüntü"
     ``` bash

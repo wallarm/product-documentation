@@ -42,7 +42,7 @@ Sadece çevre değişkenleri üzerinden yapılandırılmış konteynerleştirilm
             --container-env WALLARM_API_TOKEN=${WALLARM_API_TOKEN} \
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
             --container-env WALLARM_API_HOST=us1.api.wallarm.com \
-            --container-image registry-1.docker.io/wallarm/node:4.8.0-1
+            --container-image registry-1.docker.io/wallarm/node:4.8.1-1
         ```
     === "Wallarm EU Cloud için Komut"
         ```bash
@@ -51,7 +51,7 @@ Sadece çevre değişkenleri üzerinden yapılandırılmış konteynerleştirilm
             --tags http-server \
             --container-env WALLARM_API_TOKEN=${WALLARM_API_TOKEN} \
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
-            --container-image registry-1.docker.io/wallarm/node:4.8.0-1
+            --container-image registry-1.docker.io/wallarm/node:4.8.1-1
         ```
 
     * `<INSTANCE_NAME>`: örneğin adı, örneğin: `wallarm-node`.
@@ -126,11 +126,11 @@ Sadece çevre değişkenleri üzerinden yapılandırılmış konteynerleştirilm
 
     === "Wallarm US Cloud için Komut"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:4.8.0-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:4.8.1-1
         ```
     === "Wallarm EU Cloud için Komut"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:4.8.0-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:4.8.1-1
         ```
 
     * `<INSTANCE_PATH_TO_CONFIG>`: Önceki adımda oluşturulan yapılandırma dosyasının yolu. Örneğin, `configs`.

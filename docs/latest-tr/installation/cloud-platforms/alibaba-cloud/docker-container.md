@@ -41,11 +41,11 @@ Alibaba Cloud örneğini oluşturmalı ve bu örnekte Docker konteynırını ça
 
     === "Wallarm ABD Bulutu için Komut"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e NGINX_BACKEND=<WALLARM_ILE_KORUNACAK_HOST> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.8.0-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e NGINX_BACKEND=<WALLARM_ILE_KORUNACAK_HOST> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.8.1-1
         ```
     === "Wallarm AB Bulutu için Komut"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e NGINX_BACKEND=<WALLARM_ILE_KORUNACAK_HOST> -p 80:80 wallarm/node:4.8.0-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e NGINX_BACKEND=<WALLARM_ILE_KORUNACAK_HOST> -p 80:80 wallarm/node:4.8.1-1
         ```
         
     * `-p`: filtreleme düğümünün dinlediği port. Değer, örneğin portu ile aynı olmalıdır.

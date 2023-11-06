@@ -371,7 +371,7 @@ Artık düğüm örneklerini, düğümün kurulumu için kullanılan bir [**API 
 Örneğin:
 
 ```bash
-docker run -d -e WALLARM_API_TOKEN='<DEPLOY ROLE İLE API TOKENI>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:4.8.0-1
+docker run -d -e WALLARM_API_TOKEN='<DEPLOY ROLE İLE API TOKENI>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:4.8.1-1
 ```
 ...düğüm örneğini <GROUP> örnek grubuna yerleştirecektir (mevcutsa veya mevcut değilse, oluşturulacaktır).
 

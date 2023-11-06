@@ -43,7 +43,7 @@ Modülün çalışması yükseltme işlemi sırasında [yanlış pozitifler](../
 
 === "NGINX-tabanlı görüntü"
     ``` bash
-    docker pull wallarm/node:4.8.0-1
+    docker pull wallarm/node:4.8.1-1
     ```
 === "Envoy-tabanlı görüntü"
     ``` bash
