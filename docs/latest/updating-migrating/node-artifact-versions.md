@@ -10,6 +10,11 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.8.2 (2023-11-03)
+
+* Improved detection of brute-force attacks
+* Added support for for NGINX Mainline 1.25.3
+
 ### 4.8.1 (2023-10-30)
 
 * Bug fixes
@@ -71,6 +76,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 4.8.1-1 (2023-11-03)
+
+* Improved detection of brute-force attacks
 
 ### 4.8.0-1 (2023-10-19)
 

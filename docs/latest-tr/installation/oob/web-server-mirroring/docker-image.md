@@ -122,11 +122,11 @@ Az önce oluşturduğunuz yapılandırma dosyasını [bağlar](https://docs.dock
 
 === "ABD Bulutu"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.8.0-1
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.8.1-1
     ```
 === "AB Bulutu"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.8.0-1
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.8.1-1
     ```
 
 Aşağıdaki ortam değişkenleri konteynıra geçirilmelidir:

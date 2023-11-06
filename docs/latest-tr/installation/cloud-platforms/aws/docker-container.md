@@ -74,7 +74,7 @@ Ortam değişkenleri aracılığıyla sadece yapılandırılmış konteynırlı 
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.8.0-1"
+                "image": "registry-1.docker.io/wallarm/node:4.8.1-1"
                 }
             ],
             "family": "wallarm-api-security-node"
@@ -108,7 +108,7 @@ Ortam değişkenleri aracılığıyla sadece yapılandırılmış konteynırlı 
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.8.0-1"
+                "image": "registry-1.docker.io/wallarm/node:4.8.1-1"
                 }
             ],
             "family": "wallarm-api-security-node"
@@ -238,7 +238,7 @@ Ortam değişkenleriyle ve AWS EFS'den monte edilmiş konfigürasyon dosyasıyla
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.8.0-1"
+                "image": "registry-1.docker.io/wallarm/node:4.8.1-1"
                 }
             ],
             "volumes": [
@@ -281,7 +281,7 @@ Ortam değişkenleriyle ve AWS EFS'den monte edilmiş konfigürasyon dosyasıyla
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.8.0-1"
+                "image": "registry-1.docker.io/wallarm/node:4.8.1-1"
                 }
             ],
             "volumes": [
