@@ -56,7 +56,7 @@ The **Changes in API** filter works differently and shows **only** endpoints cha
 
 ## Getting notified
 
-To get notifications about changes in API to your email or messenger, in **Triggers**, configure the [trigger](../user-guides/triggers/triggers.md) with the **Changes in API** condition (see example [here](../user-guides/triggers/trigger-examples.md#new-endpoints-in-your-api-inventory)).
+To get notifications about changes in API to your email or messenger, in **Triggers**, configure the [trigger](../user-guides/triggers/triggers.md) with the **Changes in API** condition.
 
 You can get messages about only new, changed or unused endpoints or about all of this changes and also narrow notifications by application or host you want to monitor or by the type of sensitive data presented in a changing endpoint.
 
@@ -66,11 +66,11 @@ You can configure as many **Changes in API** triggers as you need. As soon as al
 
 In this example, if new endpoints for the `example.com` API host are discovered by the API Discovery module, the notification about this will be sent to your configured Slack channel.
 
-![Changes in API trigger](../../images/user-guides/triggers/trigger-example-changes-in-api.png)
+![Changes in API trigger](../images/user-guides/triggers/trigger-example-changes-in-api.png)
 
 **To test the trigger:**
 
-1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../../user-guides/settings/integrations/slack.md).
+1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
 1. In **Triggers**, create trigger as shown above.
 1. Send several requests to the `example.com/users` endpoint to get the `200` (`OK`) response.
 1. In the **API Discovery** section, check that your endpoint was added with the **New** mark.
