@@ -6,7 +6,7 @@ The solution operates by generating test requests specifically designed to uncov
 
 You have the flexibility to select the endpoints you wish to subject to testing:
 
-* **Automatic endpoint discovery**: When leveraging [Wallarm's API Discovery](../about-wallarm/api-discovery.md) module, your API endpoints are automatically detected from real traffic data. You can then select which of these endpoints to test. This ensures security testing focuses on actively used endpoints including the shadow and zombie ones, offering an accurate assessment of your API's vulnerabilities.
+* **Automatic endpoint discovery**: When leveraging [Wallarm's API Discovery](../api-discovery/overview.md) module, your API endpoints are automatically detected from real traffic data. You can then select which of these endpoints to test. This ensures security testing focuses on actively used endpoints including the shadow and zombie ones, offering an accurate assessment of your API's vulnerabilities.
 * **Manual specification upload**: Alternatively, you can upload your own OpenAPI specification and use the solution to test endpoints from the specification. This is useful if you have an up‑to‑date specification and want to run tests on specific endpoints outlined within it.
 
 ## Issues addressed by OpenAPI security testing
@@ -28,7 +28,7 @@ To run OpenAPI security testing, follow these steps:
 1. Proceed to Wallarm Console → **OpenAPI Testing** by following the link for the [US Cloud](https://us1.my.wallarm.com/security-testing) or [EU Cloud](https://my.wallarm.com/security-testing) and **Create testing policy**.
 
     ![!Policy create](../images/user-guides/openapi-testing/create-testing-policy.png)
-1. Select the API endpoints that you want to test either from your [automatically discovered](../about-wallarm/api-discovery.md) API inventory or upload an OpenAPI 3.0 specification in JSON format.
+1. Select the API endpoints that you want to test either from your [automatically discovered](../api-discovery/overview.md) API inventory or upload an OpenAPI 3.0 specification in JSON format.
 
     Although the API Discovery module automatically identifies new endpoints, it does not automatically include them in existing vulnerability testing policies. As a result, each newly discovered endpoint requires a separate policy.
 1. Select the vulnerability types you would like to test for in your API endpoints.
