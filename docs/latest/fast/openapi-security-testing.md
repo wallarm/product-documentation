@@ -13,7 +13,7 @@ You have the flexibility to select the endpoints you wish to subject to testing:
 
 * This solution allows you to perform security testing during the regression testing of your APIs. If you make changes to the functionality of your APIs, Wallarm security testing can reveal if your changes have introduced any security issues.
 * By deploying your changes to the staging environment and running security testing on the CI/CD pipeline at this stage, you can prevent potential security vulnerabilities from reaching production and being exploited by attackers.
-* If you leverage security testing based on the data obtained from [API Discovery], it also tests shadow and zombie APIs. These APIs are automatically discovered by the module as they may receive traffic, even if your team and documentation are unaware of their existence. By including zombie APIs in the security testing process, the solution addresses vulnerabilities that could otherwise go unnoticed, providing a more comprehensive security assessment.
+* If you leverage security testing based on the data obtained from [API Discovery](../api-discovery/overview.md), it also tests shadow and zombie APIs. These APIs are automatically discovered by the module as they may receive traffic, even if your team and documentation are unaware of their existence. By including zombie APIs in the security testing process, the solution addresses vulnerabilities that could otherwise go unnoticed, providing a more comprehensive security assessment.
 
 ## Requirements
 
