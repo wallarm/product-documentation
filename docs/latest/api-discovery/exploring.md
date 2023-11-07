@@ -4,7 +4,7 @@ As soon as the [API Discovery](overview.md) module has built the catalog of your
 
 ## Endpoints
 
-Explore your discovered API inventory using the **API Discovery** section of Wallarm Console and a comprehensive dashboard with the same name.
+Explore your discovered API inventory using the **API Discovery** section of Wallarm Console.
 
 === "US Cloud"
 
@@ -18,31 +18,16 @@ Explore your discovered API inventory using the **API Discovery** section of Wal
 
 ![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
-!!! info "Default time period, sorting and grouping"
+Each time you open the **API Discovery** section:
 
-    **Time period**
+* The **Changes since** filter goes to the `Last week` state
+* You see all endpoints - changed and unchanged
+* You see the `New`, `Changed` and `Unused` marks if these marks were set within `Last week`
+* You do not see endpoints that got the `Unused` mark before `Last week`
+    
+You can change `Last week` to any other period. See [this example](track-changes.md#example) to understand what API Discovery displays by default and how this changes when you change filters.
 
-    Each time you open the **API Discovery** section:
-
-    * You see actual inventory of your APIs (all discovered endpoints)
-    * The **Changes since** filter goes to the `Last week` state, which means:
-
-        * From the presented endpoints, the `New` and `Changed` within this period will obtain corresponding [marks](#tracking-changes-in-api)
-        * Additionally, endpoints `Unused` within this period will be displayed
-
-    See [this example](track-changes.md#example) to understand what API Discovery displays by default.
-
-    You can manually select other time periods to be covered.
-
-    **Sorting and grouping**
-
-    By default, endpoints are sorted by host/endpoint names (and grouped by hosts). If you sort by **Hits** or **Risk**, grouping goes away - to get back to the default, click hosts/endpoint column again.
-
-Select **Dashboards** → **API Discovery** to overview a comprehensive summary of your API inventory.
-
-![API Discovery widget](../images/user-guides/dashboard/api-discovery-widget.png)
-
-Click elements to go to **API Discovery** and have the list of endpoints filtered by different criteria. See detailed dashboard description [here](dashboard.md).
+By default, endpoints are sorted by host/endpoint names (and grouped by hosts). If you sort by **Hits** or **Risk**, grouping goes away - to get back to the default, click hosts/endpoint column again.
 
 ### External vs. internal
 
@@ -62,9 +47,9 @@ By default, a list with all API hosts (external and internal) is displayed. In t
 Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
 * Only attacked endpoints that you can sort by the number of hits.
-* Find the most vulnerable endpoints characterized by processing sensitive data and active vulnerabilities of the high risk level. Exploiting vulnerabilities of a high risk level allows attackers to perform many malicious actions with the system including stealing sensitive data that the endpoint processes/stores.
+* Find the most vulnerable endpoints characterized by processing sensitive data and active vulnerabilities of the high [risk level](risk-score.md). Exploiting vulnerabilities of a high risk level allows attackers to perform many malicious actions with the system including stealing sensitive data that the endpoint processes/stores.
 * Find [rogue endpoints](rogue-api.md): shadow, orphan and zombie.
-* Find the endpoints that have been changed or newly discovered in the last week and that process PII data. This kind of request can help you to stay up to date with critical changes in your APIs.
+* Find the endpoints that have been changed or newly discovered in the last week and that process PII data. This kind of request can help you to stay up to date with critical [changes in your APIs](track-changes.md).
 * Find the endpoints being used to upload data to your server by the PUT or POST calls. Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
 * Find the endpoints processing customers' bank card data. With this request, you can check that sensitive data is processed only by secured endpoints.
 * Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
