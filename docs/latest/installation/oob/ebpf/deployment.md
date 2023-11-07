@@ -87,6 +87,18 @@ To deploy the Wallarm eBPF solution:
 ### Step 2: Deploy the Wallarm Helm chart
 
 1. Install [cert-manager](https://cert-manager.io/docs/installation/helm/) on Kubernetes to enable the agent to send encrypted traffic to Kubernetes nodes and obtain a certificate.
+
+    ```
+    helm repo add jetstack https://charts.jetstack.io
+    helm repo update
+    kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.crds.yaml
+    helm install \
+      cert-manager jetstack/cert-manager \
+      --namespace cert-manager \
+      --create-namespace \
+      --version v1.13.2 \
+      # --set installCRDs=true
+    ```
 1. Add the [Wallarm chart repository](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
