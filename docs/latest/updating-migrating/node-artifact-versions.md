@@ -10,6 +10,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.8.3 (2023-11-07)
+
+* Fixed issues with SELinux on certain Linux distributions, including Oracle Linux 9, Red Hat 9, and others that employ strict SELinux policies
+
 ### 4.8.2 (2023-11-03)
 
 * Improved detection of brute-force attacks
