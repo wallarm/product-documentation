@@ -1,6 +1,6 @@
 # Shadow, Orphan, Zombie API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-The [API Discovery](overview.md) module automatically identifies shadow, orphan and zombie APIs by comparing the specification to the live traffic.
+The [API Discovery](overview.md) module automatically identifies shadow, orphan and zombie APIs by comparing your uploaded specification to the live traffic.
 
 |Rogue API type | What is it? |
 |--|--|
@@ -63,8 +63,8 @@ Consider the following:
 
 Unlike shadow and orphan APIs, zombie APIs require comparison of different specification versions:
 
-* In case of [hourly automatic comparison](#monitor-rogue-apis-on-hourly-basis), just put new version to your URL - it will be processed by an hourly schedule or immediately if you select **Restart comparison** form the specification menu.
-* In case when regular comparison is not used, put new version to URL and then use **Restart comparison**, or re‑upload manually from local machine with the same name.
+* In case of [hourly automatic comparison](#monitor-rogue-apis-on-hourly-basis), just put new version to the URL where you host your specification - it will be processed by an hourly schedule or immediately if you select **Restart comparison** form the specification menu.
+* In case when regular comparison is not used, put new version to this URL and then use **Restart comparison**, or re‑upload manually from local machine with the same name.
 
 ## Working with multiple specifications
 
