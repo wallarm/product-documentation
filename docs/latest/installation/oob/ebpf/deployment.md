@@ -206,8 +206,8 @@ To test that the Wallarm eBPF operates correctly:
     ```
     NAME                                                   READY   STATUS    RESTARTS   AGE
     wallarm-ebpf-wallarm-oob-agent-599xg                   1/1     Running   0          7m16s
-    wallarm-ebpf-wallarm-oob-aggregation-f68959465-vchxb   3/3     Running   0          30m
-    wallarm-ebpf-wallarm-oob-processing-694fcf9b47-rknx9   3/3     Running   0          30m
+    wallarm-ebpf-wallarm-oob-aggregation-f68959465-vchxb   4/4     Running   0          30m
+    wallarm-ebpf-wallarm-oob-processing-694fcf9b47-rknx9   4/4     Running   0          30m
     ```
 1. Send the test [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the application cluster address Wallarm is enabled to analyze traffic:
 
