@@ -4,28 +4,11 @@ As soon as the [API Discovery](overview.md) module has built the catalog of your
 
 ## Endpoints
 
-Explore your discovered API inventory using the **API Discovery** section of Wallarm Console.
-
-=== "US Cloud"
-
-    * API Discovery [dashboard](https://us1.my.wallarm.com/dashboard-api-discovery) on US Cloud
-    * The [API Discovery](https://us1.my.wallarm.com/api-discovery) section on US Cloud
-
-=== "EU Cloud"
-
-    * API Discovery [dashboard](https://my.wallarm.com/dashboard-api-discovery) on EU Cloud
-    * The [API Discovery](https://my.wallarm.com/api-discovery) section on EU Cloud
+Explore your discovered API inventory using the **API Discovery** section in the [US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery) Cloud.
 
 ![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
-Each time you open the **API Discovery** section:
-
-* The **Changes since** filter goes to the `Last week` state
-* You see all endpoints - changed and unchanged
-* You see the `New`, `Changed` and `Unused` marks if these marks were set within `Last week`
-* You do not see endpoints that got the `Unused` mark before `Last week`
-    
-You can change `Last week` to any other period. See [this example](track-changes.md#example) to understand what API Discovery displays by default and how this changes when you change filters.
+Each time you open the **API Discovery** section, you see all discovered endpoints and their [changes](track-changes.md) for the last week. With **Changes since** filter, you can change `Last week` to any other period.
 
 By default, endpoints are sorted by host/endpoint names (and grouped by hosts). If you sort by **Hits** or **Risk**, grouping goes away - to get back to the default, click hosts/endpoint column again.
 
@@ -79,19 +62,9 @@ Each parameter information includes:
 
 ### Format and data type
 
-Wallarm analyzes the values that are passed in each of the endpoint parameters and tries to determine their format:
+In the **Type** column, Wallarm indicates the data format identified through traffic analysis or, if not specific, a general data type.
 
-* Int32
-* Int64
-* Float
-* And others ...
-
-If the value in the parameter does not fit a specific data format, then one of the common data types will be specified: `Integer`, `Number`, `String`, `Boolean`.
-
-For each parameter, the **Type** column displays:
-
-* Data format
-* If format is not defined - data type
+Wallarm attempts to detect various data formats such as `Int32`, `Int64`, `Float`, `Double`, `Datetime`, `IPv4`/`IPv6`, among others. If a value does not conform to any recognized data format, Wallarm classifies it under a general data type, such as `Integer`, `Number`, `String`, or `Boolean`.
 
 This data allows checking that values of the expected format are passed in each parameter. Inconsistencies can be the result of an attack or a scan of your API, for example:
 
