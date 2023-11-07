@@ -56,11 +56,9 @@ The **Changes in API** filter works differently and shows **only** endpoints cha
 
 ## Getting notified
 
-To get notifications about changes in API to your email or messenger, in **Triggers**, configure the [trigger](../user-guides/triggers/triggers.md) with the **Changes in API** condition.
+To get immediate notifications about changes in API to your email or messenger, in **Triggers**, configure [triggers](../user-guides/triggers/triggers.md) with the **Changes in API** condition.
 
-You can get messages about only new, changed or unused endpoints or about all of this changes and also narrow notifications by application or host you want to monitor or by the type of sensitive data presented in a changing endpoint.
-
-You can configure as many **Changes in API** triggers as you need. As soon as all is done, watch your messages to stay up-to-date.
+You can get messages about new, changed or unused endpoints or about all of these changes. You can also narrow notifications by application or host that you want to monitor and by the type of presented sensitive data.
 
 **Trigger example: notification about new endpoints in Slack**
 
