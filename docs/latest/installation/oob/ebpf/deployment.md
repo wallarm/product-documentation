@@ -219,4 +219,4 @@ To test that the Wallarm eBPF operates correctly:
 
     To check that the attack has been registered, proceed to Wallarm Console → **Events**:
 
-    ![!Attacks in the interface](../../../images/admin-guides/test-attacks-quickstart.png)
+    ![!Attacks in the interface](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
