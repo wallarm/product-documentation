@@ -1,0 +1,2 @@
+!!! info "Versão do NGINX no container Docker"
+    O container Docker usa NGINX da versão `1.14.x`. Você pode descobrir algumas vulnerabilidades nesta versão do NGINX, mas na verdade a maioria delas são [corrigidas pela equipe Debian](https://security-tracker.debian.org/tracker/source-package/nginx). O container Docker executa serviços no Debian 10.x, portanto, as vulnerabilidades descobertas não devem resultar em comprometimento de dados.

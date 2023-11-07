@@ -1,0 +1,4 @@
+Entre todas as [opções de implantação do Wallarm][supported-deployments] suportadas, a imagem Docker baseada em Envoy é recomendada para a implantação do Wallarm nestes **casos de uso**:
+
+* Se a sua organização utiliza infraestrutura baseada em Docker, a imagem Docker do Wallarm é a escolha ideal. Ela se integra sem esforços à sua configuração existente, seja você empregando uma arquitetura de microserviços rodando no AWS ECS, Alibaba ECS, ou outros serviços similares. Esta solução também se aplica àqueles que usam máquinas virtuais buscando um gerenciamento mais simplificado por meio de containers Docker.
+* Se você necessita de um controle refinado sobre cada container, a imagem Docker se destaca. Ela oferece um maior nível de isolamento de recursos do que o habitualmente possível com implantações baseadas em VM tradicionais.

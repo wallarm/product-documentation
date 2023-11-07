@@ -1,0 +1,3 @@
+Você pode excluir ou desativar temporariamente a integração. Embora a exclusão interrompa o envio de notificações e exclua completamente todas as configurações, a desativação apenas interrompe o envio de notificações que você pode reativar a qualquer momento com as mesmas configurações.
+
+Se para a integração os eventos **Relacionados ao sistema** forem selecionados para disparar notificações, a Wallarm notificará sobre ambas as ações.

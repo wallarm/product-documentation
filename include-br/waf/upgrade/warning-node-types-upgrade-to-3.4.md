@@ -1,0 +1,3 @@
+!!! warning "Mudanças significativas e recomendações para atualização de diferentes tipos de nó"
+    * Ao atualizar o nó Wallarm 2.18 ou inferior, observe que a versão 3.x contém **mudanças significativas**. Antes de atualizar os módulos de 2.18 e inferiores até 3.4, revise cuidadosamente a lista de [mudanças do nó Wallarm](what-is-new.md) e considere uma possível mudança de configuração.
+    * Recomendamos a atualização de ambos os nós regulares (cliente) e [multi-inquilino](../installation/multi-tenant/overview.md) da versão 3.2 ou inferior até a versão 3.4. Isso permite manter-se atualizado com as versões do Wallarm e evitar a [descontinuidade do módulo instalado](versioning-policy.md#version-support).

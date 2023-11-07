@@ -1,0 +1,8 @@
+* Versão da plataforma Kubernetes 1.23-1.25
+* Gerenciador de pacotes [Helm](https://helm.sh/)
+* Compatibilidade de seus serviços com a versão 1.6.4 (ou inferior) do [Controlador NGINX Ingress da Comunidade](https://github.com/kubernetes/ingress-nginx)
+* Acesso à conta com função de **Administrador** e autenticação de dois fatores desabilitada no Painel de controle Wallarm para a [Nuvem EUA](https://us1.my.wallarm.com/) ou [Nuvem UE](https://my.wallarm.com/)
+* Acesso a `https://us1.api.wallarm.com` para trabalhar com a Nuvem Wallarm EUA ou a `https://api.wallarm.com` para trabalhar com a Nuvem Wallarm UE
+* Acesso a `https://charts.wallarm.com` para adicionar os gráficos do Helm Wallarm. Certifique-se de que o acesso não está bloqueado por um firewall
+* Acesso aos repositórios Wallarm no Docker Hub `https://hub.docker.com/r/wallarm`. Certifique-se de que o acesso não está bloqueado por um firewall
+* Acesso aos endereços IP do Google Cloud Storage listados no [link](https://www.gstatic.com/ipranges/goog.json). Ao [permitir, negar ou listar na lista cinza][ip-list-docs] países, regiões ou data centers inteiros em vez de endereços IP individuais, o nó Wallarm recupera endereços IP precisos relacionados às entradas nas listas de IP do banco de dados agregado hospedado no Google Storage

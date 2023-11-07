@@ -1,0 +1,2 @@
+* Acesso à conta com a função de **Administrador** no Console Wallarm no [US Cloud](https://us1.my.wallarm.com/) ou [EU Cloud](https://my.wallarm.com/)
+* Acesso a `https://us1.api.wallarm.com` se estiver trabalhando com o Wallarm Cloud dos EUA ou para `https://api.wallarm.com` se estiver trabalhando com o Wallarm Cloud da UE. Por favor, certifique-se de que o acesso não está bloqueado por um firewall

@@ -1,0 +1,4 @@
+Variável de ambiente | Descrição | Requerido
+--- | ---- | ----
+`WALLARM_API_TOKEN` | Token do nó Wallarm.<br><div class="admonition info"> <p class="admonition-title">Usando um token para várias instalações</p> <p>Você pode usar um token em várias instalações, independentemente da plataforma selecionada. Isso permite o agrupamento lógico de instâncias de nó na interface do usuário do console Wallarm. Exemplo: você implanta vários nós Wallarm em um ambiente de desenvolvimento, cada nó está em sua própria máquina pertencente a um determinado desenvolvedor.</p></div> | Sim
+`WALLARM_API_HOST` | Servidor API Wallarm:<ul><li>`us1.api.wallarm.com` para a nuvem dos EUA</li><li>`api.wallarm.com` para a nuvem da UE</li></ul>Por padrão: `api.wallarm.com`. | Não

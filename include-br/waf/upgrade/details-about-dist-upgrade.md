@@ -1,0 +1,2 @@
+!!! info "Atualizando as dependências do Wallarm"
+    O comando `sudo apt dist-upgrade` atualiza tanto os pacotes Wallarm quanto as dependências do nó de filtragem. É a opção recomendada para a atualização, uma vez que assegura o correto funcionamento da nova versão do nó de filtragem.

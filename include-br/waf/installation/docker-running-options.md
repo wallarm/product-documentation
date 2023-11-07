@@ -1,0 +1,4 @@
+Os parâmetros de configuração do nó de filtragem devem ser passados para o contêiner Docker implantado de uma das seguintes maneiras:
+
+* **Nas variáveis do ambiente**. Esta opção permite a configuração de apenas os parâmetros básicos do nó de filtragem. A maioria das [diretivas][nginx-waf-directives] não pode ser configurada através de variáveis de ambiente.
+* **No arquivo de configuração montado**. Esta opção permite a configuração completa do nó de filtragem através de qualquer [diretiva][nginx-waf-directives]. Com este método de configuração, as variáveis de ambiente com as configurações de conexão do nó de filtragem e do Wallarm Cloud também são passadas para o contêiner.

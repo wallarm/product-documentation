@@ -1,0 +1,3 @@
+Configure o seu ambiente para espelhar o tráfego de entrada para uma instância com o nó Wallarm que você está implantando. Para detalhes de configuração, recomendamos referir-se à documentação da solução que você planeja usar para produzir o espelhamento de tráfego (servidor web, servidor proxy, etc.).
+
+Dentro do [link][web-server-mirroring-examples], você encontrará o exemplo de configuração para NGINX, Traefik, Envoy.
