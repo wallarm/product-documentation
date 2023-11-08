@@ -16,3 +16,9 @@
 [submodule "docs/latest-tr/installation/oob/terraform-module/terraform-aws-wallarm"]
 	path = docs/latest-tr/installation/oob/terraform-module/terraform-aws-wallarm
 	url = https://github.com/wallarm/terraform-aws-wallarm
+[submodule "docs/latest-pt-BR/installation/cloud-platforms/aws/terraform-module/terraform-aws-wallarm"]
+	path = docs/latest-pt-BR/installation/cloud-platforms/aws/terraform-module/terraform-aws-wallarm
+	url = https://github.com/wallarm/terraform-aws-wallarm
+[submodule "docs/latest-pt-BR/installation/oob/terraform-module/terraform-aws-wallarm"]
+	path = docs/latest-pt-BR/installation/oob/terraform-module/terraform-aws-wallarm
+	url = https://github.com/wallarm/terraform-aws-wallarm
