@@ -191,23 +191,48 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
 
 ## Deployment from your own registries
 
-If you cannot pull the Docker images from the Wallarm public repository due to some reasons, for example because you company security policy restricts usage of any external resources, instead you can clone these images to your local storage and install Wallarm NGINX-based Ingress controller using them.
+If you cannot pull the Docker images from the Wallarm public repository due to some reasons, for example because you company security policy restricts usage of any external resources, instead you can:
 
-To do that, specify paths to your local images by overwriting the `values.yaml` file of Wallarm Ingress controller Helm chart:
+1. Clone these images to your local storage
+1. Install Wallarm NGINX-based Ingress controller using them.
+
+**Cloning images to your local storage**
+
+The following Docker images are used by the Helm chart for NGINX-based Ingress Controller deployment:
+
+* [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
+* [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)
+
+Visit links above to find required versions and obtain their `docker pull` commands, for example:
+
+```
+docker pull wallarm/ingress-controller:4.8.0-5
+docker pull wallarm/node-helpers:4.8.1-rc1
+```
+
+Access your registry and execute pull commands.
+
+**Install Wallarm NGINX-based Ingress controller using images in your registry**
+
+Overwrite the `values.yaml` file of Wallarm Ingress controller Helm chart:
 
 ```yaml
 controller:
   image:
     ## The image and tag for wallarm nginx ingress controller
     ##
-    image: <CUSTOM_IMAGE_LOCATION>
+    registry: <YOUR_REGISTRY>
+    image: wallarm/ingress-controller
     tag: <IMAGE_TAG>
     helpers:
       ## The image and tag for the helper image
       ##
-      image: <CUSTOM_IMAGE_LOCATION>
+      registry: <YOUR_REGISTRY>
+      image: wallarm/node-helpers
       tag: <IMAGE_TAG>
 ```
+
+Then run installation using your modified `values.yaml`.
 
 ## Configuration
 
