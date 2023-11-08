@@ -959,6 +959,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Request Wallarm Linux packages for a custom NGINX</p>
         </a>
 
+        <a class="do-card" href=../../installation/heroku/docker-image/>
+            <img class="non-zoomable" src="../../images/platform-icons/heroku.svg" />
+            <h3>Heroku</h3>
+            <p>WallarmのDockerイメージをビルドして、Herokuで実行します</p>
+        </a>
+
         <a class="do-card" href="../../installation/custom/request-custom-deployment/">
             <img class="non-zoomable" src="../../images/platform-icons/custom-deployment.svg" />
             <h3>Custom Deployment</h3>

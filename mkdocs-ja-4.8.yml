@@ -328,6 +328,7 @@ nav:
       - AWS向けTerraformモジュール: installation/cloud-platforms/aws/terraform-module/overview.md
     - カスタムデプロイメント:
       - カスタムNGINXパッケージ: installation/custom/custom-nginx-version.md
+      - Heroku: installation/heroku/docker-image.md
       - カスタムデプロイメントオプション: installation/custom/request-custom-deployment.md
     - 追加のオプション:
       - WallarmとIngressコントローラのチェイン: admin-en/chaining-wallarm-and-other-ingress-controllers.md
