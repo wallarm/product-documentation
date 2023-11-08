@@ -1,8 +1,8 @@
 # Tracking changes in API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-If you update the API and the traffic structure is adjusted, API Discovery updates the [built API inventory](overview.md).
+If changes occur in your API, [API Discovery](overview.md) updates the built API inventory, highlights the changes and gives you information on when and what has changed. Additionally, you can set up notifications on all or some of the changes.
 
-## Overview
+![API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
 The company may have several teams, disparate programming languages, and a variety of language frameworks. Thus changes can come to API at any time from different sources which make them difficult to control. For security officers it is important to detect changes as soon as possible and analyze them. If missed, such changes may hold some risks, for example:
 
@@ -11,16 +11,11 @@ The company may have several teams, disparate programming languages, and a varie
 * Important for the business logic endpoint (for example, `/login`, `/order/{order_id}/payment/`) is no longer called.
 * Other parameters that should not be transferred, for example `is_admin` (someone accesses the endpoint and tries to do it with administrator rights) begin to be transferred to the endpoint.
 
-With the **API Discovery** module of Wallarm you can:
+## Highlighting changes in API
 
-* Track changes and check that they do not disrupt current business processes.
-* Make sure that no unknown endpoints have appeared in the infrastructure that could be a potential threat vector.
-* Make sure PII and other unexpected parameters did not start being transferred to the endpoints.
-* Configure notifications about changes in your API via [triggers](../user-guides/triggers/trigger-examples.md#new-endpoints-in-your-api-inventory) with the **Changes in API** condition.
+Each time you open the **API Discovery** section, the **Changes since** filter goes to the `Last week` state, which means the changes occurred within the last week are highlighted. To change the time period, redefine dates in the **Changes since** filter.
 
-## View changes in API
-
-To check what changes occurred in the API within the specified period of time that, from the **Changes since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
+In the endpoint list, the following marks highlight the changes in API:
 
 * **New** for the endpoints added to the list within the period.
 * **Changed** for the endpoints that have newly discovered parameters or parameters that obtained the `Unused` status within the period. In the details of the endpoint such parameters will have a corresponding mark.
@@ -38,10 +33,16 @@ Note that whatever period is selected, if nothing is highlighted with the **New*
 
 ![API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
-!!! info "Default period"
-    Each time you open the **API Discovery** section, the **Changes since** filter goes to the `Last week` state, which means only the changes occurred within the last week are highlighted.
+Quick tips for endpoints marked as rogue:
 
-Using the **Changes since** filter only highlights the endpoints changed within the selected period, but does not filter out endpoints without changes.
+* Mouse over the **New**, **Changed** or **Unused** labels to see when the change happened
+* Go to **Changed** endpoint details to see reason of this status: **New** parameters and parameters that got **Unused** status - mouse over labels to see when the parameter change occurred
+* Counters for all types of changes for the last 7 days are displayed at the [API Discovery Dashboard](dashboard.md).
+
+
+## Filtering changes in API
+
+In the **API Discovery** section, using the **Changes since** filter only highlights the endpoints changed within the selected period, but does not filter out endpoints without changes.
 
 The **Changes in API** filter works differently and shows **only** endpoints changed within the selected period and filters out all the rest.
 
@@ -52,3 +53,42 @@ The **Changes in API** filter works differently and shows **only** endpoints cha
 * Set **Changes in API** to `Unused endpoints` - 3 endpoints will be displayed, all with the **Unused** mark.
 * Change **Changes in API** to `New endpoints + Unused endpoints` - 4 endpoints will be displayed, 3 with the **Unused** mark, and 1 with the **New** mark.
 * Switch **Changes since** back to `Last week` - 1 endpoint will be displayed, it will have the **New** mark.
+
+## Getting notified
+
+To get immediate notifications about changes in API to your email or messenger, configure [triggers](../user-guides/triggers/triggers.md) with the **Changes in API** condition.
+
+You can get messages about new, changed or unused endpoints or about all of these changes. You can also narrow notifications by application or host that you want to monitor and by the type of presented sensitive data.
+
+**Trigger example: notification about new endpoints in Slack**
+
+In this example, if new endpoints for the `example.com` API host are discovered by the API Discovery module, the notification about this will be sent to your configured Slack channel.
+
+![Changes in API trigger](../images/user-guides/triggers/trigger-example-changes-in-api.png)
+
+**To test the trigger:**
+
+1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
+1. In **Triggers**, create trigger as shown above.
+1. Send several requests to the `example.com/users` endpoint to get the `200` (`OK`) response.
+1. In the **API Discovery** section, check that your endpoint was added with the **New** mark.
+1. Check messages in your Slack channel like:
+    ```
+    [wallarm] A new endpoint has been discovered in your API
+
+    Notification type: api_structure_changed
+
+    The new GET example.com/users endpoint has been discovered in your API.
+
+        Client: Client 001
+        Cloud: US
+
+        Details:
+
+          application: Application 1802
+          domain: example.com
+          endpoint_path: /users
+          http_method: GET
+          change_type: added
+          link: https://my.wallarm.com/api-discovery?instance=1802&method=GET&q=example.com%2Fusers
+    ```
