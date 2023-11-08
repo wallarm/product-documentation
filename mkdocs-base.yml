@@ -23,6 +23,8 @@ watch:
 
 theme:
   language_name: English
+  language: en
+  language_lowercase: en
   name: material
   custom_dir: stylesheets
   palette:

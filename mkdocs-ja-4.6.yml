@@ -8,6 +8,7 @@ copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">サ�
 
 theme:
   language: ja
+  language_lowercase: ja
   language_name: Japanese
   version: "4.6"
   try_button_name: "無料で試す"
