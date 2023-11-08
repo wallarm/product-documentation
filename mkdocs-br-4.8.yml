@@ -1,10 +1,23 @@
 INHERIT: mkdocs-base.yml
 
-theme:
-  version: "4.8"
+site_name: Documentação do Wallarm
+site_url: https://docs.wallarm.com/pt-BR/
+site_description: A solução Wallarm protege APIs, microsserviços e aplicações web contra as ameaças do Top 10 da OWASP para APIs, abuso de API e outras ameaças automatizadas sem a necessidade de configuração manual de regras e com um índice ultra-baixo de falsos positivos.
 
-docs_dir: docs/4.8
-site_dir: site
+copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Termos de serviço</a> | <a href="https://wallarm.com/privacy-policy" target="_blank">Política de privacidade</a> | <a href="https://wallarm.com/cookie-policy" target="_blank">Política de cookies</a> | <a href="#__consent">Configurações de cookies</a> | 2023 © Wallarm Inc.'
+
+theme:
+  language: pt-BR
+  language_name: Portuguese (Brazil)
+  version: "4.8"
+  try_button_name: "Experimente grátis"
+  playground_button_name: "Explore o Playground"
+  demo_request_block: 'Proteja suas aplicações e APIs em qualquer infraestrutura. <a href="https://www.wallarm.com/request-demo?utm_source=wallarm_docs&utm_medium=top_line&utm_campaign=wallarm_docs_experiment_1" style="color:white; font-weight: bold;">Agende uma demonstração agora →</a>'
+
+docs_dir: docs/4.8-br
+site_dir: site/pt-BR
+watch:
+  - docs/latest-br
 
 nav:
   - Início Rápido:
