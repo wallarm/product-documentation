@@ -8,6 +8,7 @@ copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Term
 
 theme:
   language: pt-BR
+  language_lowercase: pt-br
   language_name: Portuguese (BR)
   version: "4.8"
   try_button_name: "Experimente grátis"
