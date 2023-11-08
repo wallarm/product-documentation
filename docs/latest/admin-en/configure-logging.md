@@ -6,7 +6,14 @@
 
 #   Working with Filter Node Logs
 
-A filter node stores the following log files in the `/var/log/wallarm` directory:
+This article guides you on how to find the log files of a Wallarm filtering node.
+
+The location of log files varies based on the installation method of the node:
+
+* For installations via the [all-in-one installer](../installation/nginx/all-in-one.md), log files are situated within `/opt/wallarm/var/log/wallarm`.
+* For installations using other methods, such as [DEB/RPM packages](../installation/nginx/dynamic-module.md) or a [Docker image](installation-docker-en.md), log files are found in `/var/log/wallarm`.
+
+Here is a breakdown of the log files you will encounter and the type of information each contains:
 
 *   `brute-detect.log`: the log of fetching the brute force attack-related counters in the filter node cluster.
 *   `export-attacks.log`: the log of exporting the attacks' data from the postanalytics module to the Wallarm cloud.
