@@ -56,15 +56,14 @@ You can upload your specification to perform immediate one-time comparison of it
 Consider the following:
 
 * You can re‑start comparison at any moment via specification menu → **Restart comparison**.
-* Specifications uploaded from a local machine and having the same name are considered to be different versions of the same specification.
 * You can download the previously uploaded specification via **API Specifications** → specification details window → **Download specification**.
 
 ## Specification versions and zombie APIs
 
 Unlike shadow and orphan APIs, zombie APIs require comparison of different specification versions:
 
-* In case of [hourly automatic comparison](#monitor-rogue-apis-on-hourly-basis), just put new version to the URL where you host your specification - it will be processed by an hourly schedule or immediately if you select **Restart comparison** form the specification menu.
-* In case when regular comparison is not used, put new version to this URL or the same folder/file name on a local machine and then use **Restart comparison**.
+* In case of [hourly automatic comparison](#monitor-rogue-apis-on-hourly-basis), just put new version to the URL where you host your specification - it will be processed by an hourly schedule or immediately if you select **Restart comparison** from the specification menu.
+* In case when regular comparison is not used, put new version to this URL or open specification → re-open local file and save specification. Then use **Restart comparison**.
 
 ## Working with multiple specifications
 
