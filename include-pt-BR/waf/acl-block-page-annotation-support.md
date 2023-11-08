@@ -1,0 +1,2 @@
+!!! aviso "Suporte à anotação nginx.ingress.kubernetes.io/wallarm-acl-block-page"
+    A anotação do controlador Wallarm Ingress `nginx.ingress.kubernetes.io/wallarm-acl-block-page` é suportada apenas na [versão 2.18 do nó Wallarm](/admin-en/configuration-guides/configure-block-page-and-code/).

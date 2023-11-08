@@ -1,0 +1,1 @@
+As opções sequencialmente (se várias) selecionadas em **nesta parte da solicitação** devem refletir uma sequência de analisadores [que o Wallarm aplicaria](request-processing.md) para ler o elemento de solicitação necessário.

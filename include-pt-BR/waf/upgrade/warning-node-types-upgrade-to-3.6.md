@@ -1,0 +1,3 @@
+!!! aviso "Mudanças drásticas e recomendações para atualização de diferentes tipos de nós"
+    * Se estiver atualizando o nó Wallarm 2.18 ou inferior, observe que a versão 3.x contém **mudanças drásticas**. Antes de atualizar os módulos de 2.18 e inferiores para 3.6, revise cuidadosamente a lista de [alterações do nó Wallarm](older-versions/what-is-new.md) e considere uma possível mudança de configuração.
+    * Recomendamos atualizar tanto os nós regulares (cliente) quanto os [multi-inquilinos](../installation/multi-tenant/overview.md) para a versão 3.6. Isso permite estar atualizado com as novas versões da Wallarm e prevenir [depreciação do módulo instalado](versioning-policy.md#version-support).

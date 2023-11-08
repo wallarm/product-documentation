@@ -1,0 +1,5 @@
+* Acesso à conta com a função de **Administrador** e autenticação de dois fatores desativada no Console Wallarm para a [Nuvem dos EUA](https://us1.my.wallarm.com/) ou [Nuvem da UE](https://my.wallarm.com/)
+* Execução de todos os comandos como superusuário (por exemplo, `root`)
+* Acesso a `https://meganode.wallarm.com` para baixar o instalador all-in-one da Wallarm. Certifique-se de que o acesso não está bloqueado por um firewall
+* Acesso a `https://us1.api.wallarm.com` se estiver trabalhando com a Nuvem Wallarm dos EUA ou a `https://api.wallarm.com` se estiver trabalhando com a Nuvem Wallarm da UE. Se o acesso pode ser configurado apenas via servidor proxy, então use as [instruções][configure-proxy-balancer-instr]
+* Editor de texto instalado **vim**, **nano**, ou qualquer outro. Nos comandos neste artigo, **vim** é usado

@@ -1,0 +1,2 @@
+!!! info "Usando um token para várias instalações"
+    Você pode usar um token em várias instalações, independentemente da [plataforma][deployment-platform-docs] selecionada. Isso permite o agrupamento lógico de instâncias de nó na interface de usuário do Wallarm Console. Exemplo: você implanta vários nós Wallarm em um ambiente de desenvolvimento, cada nó está em sua própria máquina de propriedade de um determinado desenvolvedor.

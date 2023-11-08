@@ -8,6 +8,7 @@ copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Hizm
 
 theme:
   language: tr
+  language_lowercase: tr
   language_name: Turkish
   version: "4.8"
   try_button_name: "Ücretsiz Deneyin"

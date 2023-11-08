@@ -71,6 +71,10 @@
   color: #FFFFFF;
 }
 
+nav.md-header__inner.md-grid {
+  max-width: unset;
+}
+
 /* Content tabs */
 
 .tabbed-labels {

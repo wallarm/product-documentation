@@ -23,6 +23,8 @@ watch:
 
 theme:
   language_name: English
+  language: en
+  language_lowercase: en
   name: material
   custom_dir: stylesheets
   palette:
@@ -44,7 +46,6 @@ theme:
   playground_button_name: "Explore Playground"
   try_button_name: "Try for free"
   demo_request_block: 'Protect your applications and APIs across any infrastructure. <a href="https://www.wallarm.com/request-demo?utm_source=wallarm_docs&utm_medium=top_line&utm_campaign=wallarm_docs_experiment_1" style="color:white; font-weight: bold;">Book a demo now →</a>'
-  wallarm_service_name: 'Wallarm service status: '
 
 extra:
   social:
@@ -55,7 +56,7 @@ extra:
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/wallarm
     - icon: fontawesome/brands/linkedin
-      link: https://www.linkedin.com/company/4871419
+      link: https://www.linkedin.com/company/wallarm
     - icon: fontawesome/brands/youtube
       link: https://www.youtube.com/channel/UCgD4zSzAJwf3tBlOgJo7Qkw
   generator: false

@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/fast/operations/test-policy/using-policy.md"

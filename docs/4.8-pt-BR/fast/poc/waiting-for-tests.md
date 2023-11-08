@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/fast/poc/waiting-for-tests.md"

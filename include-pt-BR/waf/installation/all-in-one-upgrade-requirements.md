@@ -1,0 +1,4 @@
+* Acesso à conta com a função de **Administrador** no Console Wallarm para [US Cloud](https://us1.my.wallarm.com/) ou [EU Cloud](https://my.wallarm.com/).
+* Acesso a `https://meganode.wallarm.com` para baixar o instalador Wallarm all-in-one. Certifique-se de que o acesso não está bloqueado por um firewall.
+* Acesso a `https://us1.api.wallarm.com` para trabalhar com o US Wallarm Cloud ou para `https://api.wallarm.com` para trabalhar com o EU Wallarm Cloud. Se o acesso pode ser configurado somente via servidor proxy, então use as [instruções][configure-proxy-balancer-instr].
+* Execução de todos os comandos como superusuário (por exemplo, `root`).

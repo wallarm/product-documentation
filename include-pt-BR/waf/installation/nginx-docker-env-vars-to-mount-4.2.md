@@ -1,0 +1,4 @@
+Variável de ambiente | Descrição| Obrigatório
+--- | ---- | ----
+`WALLARM_API_TOKEN` | Token de nó Wallarm.<br><div class="admonition info"> <p class="admonition-title">Variáveis anteriores que configuram o acesso à nuvem Wallarm</p> <p>Antes do lançamento da versão 4.0, as variáveis anteriores a `WALLARM_API_TOKEN` eram `DEPLOY_USERNAME` e `DEPLOY_PASSWORD`. A partir do novo lançamento, é recomendado usar a nova abordagem baseada em token para acessar a nuvem Wallarm. [Mais detalhes sobre a migração para a nova versão do nó](/updating-migrating/docker-container/)</p></div> | Sim
+`WALLARM_API_HOST` | Servidor API Wallarm:<ul><li>`us1.api.wallarm.com` para a nuvem dos EUA</li><li>`api.wallarm.com` para a nuvem da UE</li></ul>Por padrão: `api.wallarm.com`. | Não

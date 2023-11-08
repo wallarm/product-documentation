@@ -8,12 +8,12 @@ copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">サ�
 
 theme:
   language: ja
+  language_lowercase: ja
   language_name: Japanese
   version: "4.6"
   try_button_name: "無料で試す"
   playground_button_name: "プレイグラウンドを探機"
   demo_request_block: 'あらゆるインフラストラクチャー上でアプリケーションとAPIを保護します。 <a href="https://www.wallarm.com/request-demo?utm_source=wallarm_docs&utm_medium=top_line&utm_campaign=wallarm_docs_experiment_1" style="color:white; font-weight: bold;">今すぐ製品を見る →</a>'
-  wallarm_service_name: 'Wallarmサービスのステータス: '
 
 docs_dir: docs/4.6-ja
 site_dir: site/ja/4.6

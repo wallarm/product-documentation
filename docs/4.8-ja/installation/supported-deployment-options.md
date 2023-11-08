@@ -69,19 +69,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Use the official Machine Image to deploy Wallarm OOB on AWS</p>
         </a>
 
-        <div id="mirroring-by-web-servers-public-clouds-aws-kubernetes" class="do-card">
-            <h3>Kubernetes</h3>
-            <p>Artifacts for Wallarm OOB deployment on Kubernetes running on AWS</p>
-        </div>
-    </div>
-
-    <div class="do-nested" data-for="mirroring-by-web-servers-public-clouds-aws-kubernetes">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/kubernetes.svg" />
-            <h3>Kubernetes</h3>
-            <p>Artifacts for Wallarm OOB deployment on Kubernetes running on AWS</p>
-        </div>
-
         <a class="do-card" href="../../installation/oob/terraform-module/mirroring-by-web-server/">
             <h3>Terraform module</h3>
             <p>Use the Terraform module to deploy Wallarm OOB on Kubernetes running on AWS</p>
@@ -121,6 +108,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Linux</h3>
             <p>Linux packages for Wallarm OOB deployment on a supported OS</p>
         </div>
+
+        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/all-in-one/">
+            <h3>All-in-one installation</h3>
+            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+        </a>
 
         <div id="mirroring-by-web-servers-linux-packages-debian-10" class="do-card">
             <h3>Debian 10.x Buster</h3>
@@ -171,6 +163,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Oracle Linux 8.x</h3>
             <p>Wallarm packages for Oracle Linux 8.x</p>
         </div>
+
+        <div id="mirroring-by-web-servers-linux-packages-rhel-8" class="do-card">
+            <h3>RHEL 8.x</h3>
+            <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
+        </div>
+
     </div>
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-debian-10">
@@ -372,6 +370,30 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
+
+    <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-rhel-8">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/redhat.svg" />
+            <h3>RHEL 8.x</h3>
+            <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
+        </div>
+
+        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/nginx-stable/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+
+        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/nginx-distro/">
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
+        </a>
+    </div>
+
 </div>
 
 ## Public clouds
@@ -539,12 +561,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Sidecar</h3>
             <p>Deploy Wallarm Sidecar controller for pod security</p>
         </a>
-
-        <a class="do-card" href="../../installation/kubernetes/terraform-module-for-aws/">
-            <img class="non-zoomable" src="../../images/platform-icons/terraform.svg" />
-            <h3>Terraform module</h3>
-            <p>Use the Terraform module for Wallarm deployment on AWS</p>
-        </a>
     </div>
 
     <div class="do-nested" data-for="kubernetes-ingress">
@@ -562,6 +578,488 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <a class="do-card" href="../../installation/kubernetes/kong-ingress-controller/deployment/">
             <h3>Kong Ingress Controller</h3>
             <p>Deploy the Kong Ingress Controller with integrated Wallarm services</p>
+        </a>
+    </div>
+</div>
+
+## In-line
+
+<div class="do-section">
+    <div class="do-main">
+        <div id="inline-compute-instances" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/compute-instance.svg" />
+            <h3>Compute instances</h3>
+            <p>Select an artifact or a solution for running Wallarm in-line on a compute instance</p>
+        </div>
+
+        <div id="inline-kubernetes" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/kubernetes.svg" />
+            <h3>Kubernetes</h3>
+            <p>Select a solution for running Wallarm in-line on Kubernetes</p>
+        </div>
+    </div>
+
+    <div class="do-nested" data-for="inline-compute-instances">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/compute-instance.svg" />
+            <h3>Compute instances</h3>
+            <p>Select an artifact or a solution for running Wallarm in-line on a compute instance</p>
+        </div>
+
+        <div id="inline-public-clouds-aws" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <h3>Amazon Web Services</h3>
+            <p>Artifacts for Wallarm deployment on AWS</p>
+        </div>
+
+        <div id="inline-public-clouds-gcp" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
+            <h3>Google Cloud</h3>
+            <p>Artifacts for Wallarm deployment on GCP</p>
+        </div>
+
+        <div id="inline-public-clouds-azure" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/azure-cloud.svg" />
+            <h3>Microsoft Azure</h3>
+            <p>Artifacts for Wallarm deployment on Microsoft Azure</p>
+        </div>
+
+        <div id="inline-public-clouds-alibaba" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/alibaba-cloud.svg" />
+            <h3>Alibaba Cloud</h3>
+            <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
+        </div>
+
+        <div id="inline-packages-docker-images" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
+            <h3>Docker images</h3>
+            <p>Deploy the Wallarm node as a Docker container</p>
+        </div>
+
+        <div id="inline-packages-linux" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
+            <h3>Linux packages</h3>
+            <p>Install Wallarm on a supported OS as the NGINX module</p>
+        </div>
+
+    </div>
+
+    <div class="do-nested" data-for="inline-public-clouds-aws">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <h3>Amazon Web Services</h3>
+            <p>Artifacts for Wallarm deployment on AWS</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/aws/aws-ami/">
+            <h3>AMI</h3>
+            <p>Use the official Amazon Machine Image to deploy Wallarm</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/aws/aws-ecs/">
+            <h3>ECS</h3>
+            <p>Use the Docker image to deploy Wallarm with Elastic Container Service</p>
+        </a>
+
+        <div id="inline-public-clouds-aws-terraform" class="do-card">
+            <h3>Terraform module</h3>
+            <p>Use the Terraform module for in-line Wallarm deployment</p>
+        </div>
+    </div>
+
+    <div class="do-nested" data-for="inline-public-clouds-aws-terraform">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/terraform.svg" />
+            <h3>Terraform module</h3>
+            <p>Use the Terraform module for in-line Wallarm deployment on AWS</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/aws/terraform-module-for-aws-vpc/">
+            <h3>Proxy in AWS VPC</h3>
+            <p>Wallarm as proxy in AWS Virtual Private Cloud</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway/">
+            <h3>Proxy for Amazon API Gateway</h3>
+            <p>Wallarm as proxy for Amazon API Gateway protection</p>
+        </a>
+
+    </div>
+
+    <div class="do-nested" data-for="inline-public-clouds-gcp">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
+            <h3>Google Cloud</h3>
+            <p>Artifacts for Wallarm deployment on GCP</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/gcp/machine-image/">
+            <h3>Machine Image</h3>
+            <p>Use the official Google Cloud Machine Image to deploy Wallarm</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/gcp/gce/">
+            <h3>GCE</h3>
+            <p>Use the Docker image to deploy Wallarm with Google Compute Engine</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-public-clouds-azure">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/azure-cloud.svg" />
+            <h3>Microsoft Azure</h3>
+            <p>Artifacts for Wallarm deployment on Microsoft Azure</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/azure/docker-image/">
+            <h3>Azure Container Instances</h3>
+            <p>Use the Docker image to deploy Wallarm with Azure Container Instances</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-public-clouds-alibaba">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/alibaba-cloud.svg" />
+            <h3>Alibaba Cloud</h3>
+            <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/alibaba/docker-image/">
+            <h3>ECS</h3>
+            <p>Use the Docker image to deploy Wallarm with Elastic Compute Service</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-packages-docker-images">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
+            <h3>Docker images</h3>
+            <p>Deploy the Wallarm node as a Docker container</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/docker/nginx-based/">
+            <h3>Docker image (NGINX)</h3>
+            <p>Use the NGINX-based Docker image for Wallarm deployment</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/docker/envoy-based/">
+            <h3>Docker image (Envoy)</h3>
+            <p>Use the Envoy-based Docker image for Wallarm deployment</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-packages-linux">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
+            <h3>Linux packages</h3>
+            <p>Install Wallarm on a supported OS as the NGINX module</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/all-in-one/">
+            <h3>All-in-one installation</h3>
+            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+        </a>
+
+        <div id="inline-packages-linux-debian-10" class="do-card">
+            <h3>Debian 10.x Buster</h3>
+            <p>Wallarm packages for Debian 10.x Buster</p>
+        </div>
+
+        <div id="inline-packages-linux-debian-11" class="do-card">
+            <h3>Debian 11.x Bullseye</h3>
+            <p>Wallarm packages for Debian 11.x Bullseye</p>
+        </div>
+
+        <div id="inline-packages-linux-ubuntu-18" class="do-card">
+            <h3>Ubuntu 18.04 Bionic</h3>
+            <p>Wallarm packages for Ubuntu 18.04 Bionic</p>
+        </div>
+
+        <div id="inline-packages-linux-ubuntu-20" class="do-card">
+            <h3>Ubuntu 20.04 Focal</h3>
+            <p>Wallarm packages for Ubuntu 20.04 Focal</p>
+        </div>
+
+        <div id="inline-packages-linux-ubuntu-22" class="do-card">
+            <h3>Ubuntu 22.04 Jammy</h3>
+            <p>Wallarm packages for Ubuntu 22.04 Jammy</p>
+        </div>
+
+        <div id="inline-packages-linux-centos-7" class="do-card">
+            <h3>CentOS 7.x</h3>
+            <p>Wallarm packages for CentOS 7.x</p>
+        </div>
+
+        <div id="inline-packages-linux-amazon-linux" class="do-card">
+            <h3>Amazon Linux 2.0.2021x and lower</h3>
+            <p>Wallarm packages for Amazon Linux 2.0.2021x and lower</p>
+        </div>
+
+        <div id="inline-packages-linux-almalinux" class="do-card">
+            <h3>AlmaLinux</h3>
+            <p>Wallarm packages for AlmaLinux</p>
+        </div>
+
+        <div id="inline-packages-linux-rocky-linux" class="do-card">
+            <h3>Rocky Linux</h3>
+            <p>Wallarm packages for Rocky Linux</p>
+        </div>
+
+        <div id="inline-packages-linux-oracle-linux-8" class="do-card">
+            <h3>Oracle Linux 8.x</h3>
+            <p>Wallarm packages for Oracle Linux 8.x</p>
+        </div>
+
+        <div id="inline-packages-linux-rhel-8" class="do-card">
+            <h3>RHEL 8.x</h3>
+            <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
+        </div>
+
+    </div>
+
+    <div class="do-nested" data-for="inline-packages-linux-debian-10">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/debian.svg" />
+            <h3>Debian 10.x Buster</h3>
+            <p>Wallarm packages for Debian 10.x Buster</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-distro/">
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-packages-linux-debian-11">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/debian.svg" />
+            <h3>Debian 11.x Bullseye</h3>
+            <p>Wallarm packages for Debian 11.x Bullseye</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-stable/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-distro/">
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-packages-linux-ubuntu-18">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/ubuntu.svg" />
+            <h3>Ubuntu 18.04 Bionic</h3>
+            <p>Wallarm packages for Ubuntu 18.04 Bionic</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-stable/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-packages-linux-ubuntu-20">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/ubuntu.svg" />
+            <h3>Ubuntu 20.04 Focal</h3>
+            <p>Wallarm packages for Ubuntu 20.04 Focal</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-stable/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-packages-linux-ubuntu-22">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/ubuntu.svg" />
+            <h3>Ubuntu 22.04 Jammy</h3>
+            <p>Wallarm packages for Ubuntu 22.04 Jammy</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-stable/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-packages-linux-centos-7">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/centos.svg" />
+            <h3>CentOS 7.x</h3>
+            <p>Wallarm packages for CentOS 7.x</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-stable/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-distro/">
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-packages-linux-amazon-linux">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/amazon-linux.svg" />
+            <h3>Amazon Linux 2.0.2021x and lower</h3>
+            <p>Wallarm packages for Amazon Linux 2.0.2021x and lower</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-stable/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-packages-linux-almalinux">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/almalinux.svg" />
+            <h3>AlmaLinux</h3>
+            <p>Wallarm packages for AlmaLinux</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-stable/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-distro/">
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-packages-linux-rocky-linux">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/rockylinux.svg" />
+            <h3>Rocky Linux</h3>
+            <p>Wallarm packages for Rocky Linux</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-stable/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-distro/">
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-packages-linux-oracle-linux-8">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/oracle-linux.svg" />
+            <h3>Oracle Linux 8.x</h3>
+            <p>Wallarm packages for Oracle Linux 8.x</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-stable/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-distro/">
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-packages-linux-rhel-8">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/redhat.svg" />
+            <h3>RHEL 8.x</h3>
+            <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-stable/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/individual-packages-nginx-distro/">
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
+        </a>
+    </div>
+
+    <div class="do-nested" data-for="inline-kubernetes">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/kubernetes.svg" />
+            <h3>Kubernetes</h3>
+            <p>Select a solution for running Wallarm in-line on Kubernetes</p>
+        </div>
+
+        <a class="do-card" href="../../installation/inline/kubernetes/nginx-ingress-controller/">
+            <h3>NGINX Ingress Controller</h3>
+            <p>Deploy the NGINX Ingress Controller with integrated Wallarm services</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/kubernetes/kong-ingress-controller/deployment/">
+            <h3>Kong Ingress Controller</h3>
+            <p>Deploy the Kong Ingress Controller with integrated Wallarm services</p>
+        </a>
+
+        <a class="do-card" href="../../installation/inline/kubernetes/sidecar-proxy/deployment/">
+            <h3>Sidecar Controller</h3>
+            <p>Deploy Wallarm Sidecar controller for pod security</p>
         </a>
     </div>
 </div>
@@ -692,6 +1190,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Install Wallarm on a supported OS as the NGINX module</p>
         </div>
 
+        <a class="do-card" href="../../installation/nginx/all-in-one/">
+            <h3>All-in-one installation</h3>
+            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+        </a>
+
         <div id="packages-linux-debian-10" class="do-card">
             <h3>Debian 10.x Buster</h3>
             <p>Wallarm packages for Debian 10.x Buster</p>
@@ -742,10 +1245,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Wallarm packages for Oracle Linux 8.x</p>
         </div>
 
-        <a class="do-card" href="../../installation/nginx/all-in-one/">
-            <h3>All-in-one installation</h3>
-            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
-        </a>
+        <div id="packages-linux-rhel-8" class="do-card">
+            <h3>RHEL 8.x</h3>
+            <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
+        </div>
+
     </div>
 
     <div class="do-nested" data-for="packages-linux-debian-10">
@@ -947,6 +1451,30 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
+
+    <div class="do-nested" data-for="packages-linux-rhel-8">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/redhat.svg" />
+            <h3>RHEL 8.x</h3>
+            <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
+        </div>
+
+        <a class="do-card" href="../../installation/nginx/dynamic-module/">
+            <h3>NGINX Stable</h3>
+            <p>Packages for OS with NGINX Stable</p>
+        </a>
+
+        <a class="do-card" href="../../installation/nginx-plus/">
+            <h3>NGINX Plus</h3>
+            <p>Packages for OS with NGINX Plus</p>
+        </a>
+
+        <a class="do-card" href="../../installation/nginx/dynamic-module-from-distr/">
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
+        </a>
+    </div>
+
 </div>
 
 ## Custom deployment

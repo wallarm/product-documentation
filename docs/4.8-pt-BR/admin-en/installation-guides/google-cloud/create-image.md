@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/admin-en/installation-guides/google-cloud/create-image.md"

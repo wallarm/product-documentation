@@ -1,0 +1,4 @@
+Você pode realizar a atualização de duas maneiras distintas:
+
+* Migrar para o uso do [instalador tudo-em-um](#upgrade-with-all-in-one-installer) durante o procedimento de atualização. Esse é o método recomendado, pois automatiza diversas atividades de instalação e atualização do nó, como identificação da versão do NGINX e do sistema operacional, adição de repositórios Wallarm adequados, instalação de pacotes e outros.
+* Continue usando o método atual de instalação [manual](#manual-upgrade) através de pacotes DEB/RPM individuais. No entanto, é importante salientar que em futuras atualizações esse método exigirá um esforço adicional e configuração manual em comparação ao novo método.

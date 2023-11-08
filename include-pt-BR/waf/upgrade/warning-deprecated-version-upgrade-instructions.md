@@ -1,0 +1,4 @@
+!!! warning "Os nós Wallarm 3.6 e inferiores não são suportados"
+    Recomenda-se que você atualize os nós Wallarm 3.6 e inferiores, pois essas versões não são [suportadas, elas estão no fim da vida](../versioning-policy.md#version-list).
+
+    A configuração do nó e a filtragem de tráfego foram significativamente simplificadas no nó Wallarm das últimas versões. Antes de atualizar os módulos, por favor, revise cuidadosamente a [lista de mudanças](what-is-new.md) e as [recomendações gerais](../general-recommendations.md). Observe que algumas configurações do nó mais recente são **incompatíveis** com os nós 3.6 e inferiores.

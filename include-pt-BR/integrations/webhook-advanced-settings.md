@@ -1,0 +1,6 @@
+* **Método de solicitação**: `POST` ou `PUT`. Por padrão, solicitações POST são enviadas.
+* **Cabeçalho da solicitação** e seu valor se o servidor requer um cabeçalho não padrão para executar a solicitação. O número de cabeçalhos não é limitado.
+* **Certificado CA**: certificado da CA que assinou um certificado do servidor. Se a CA é de confiança pública, este campo é opcional. Se um certificado do servidor é autoassinado, este campo é obrigatório e deve conter um certificado de sua própria CA que assinou um certificado do servidor.
+* **Verificar certificado TLS**: esta configuração permite desativar a verificação do certificado do servidor especificado. Por padrão, a Wallarm verifica se um certificado do servidor é assinado por uma CA de confiança pública. Não recomendamos a desativação da verificação de certificados de servidor de produção. Se o seu servidor usa um certificado TLS autoassinado, você pode adicionar um certificado CA autoassinado para permitir o envio de solicitações a este servidor.
+* **Tempo limite da solicitação, em segundos**: se o servidor não responder à solicitação dentro do tempo especificado, a solicitação falha. Por padrão: 15 segundos.
+* **Tempo limite da conexão, em segundos**: se a conexão com o servidor não puder ser estabelecida durante o tempo especificado, a solicitação falha. Por padrão: 20 segundos.

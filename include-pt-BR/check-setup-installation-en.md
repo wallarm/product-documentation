@@ -1,0 +1,1 @@
+Verifique se o nó de filtragem está sendo executado e filtrando o tráfego. Consulte [Verifique a operação do nó de filtragem](installation-check-operation-en.md).

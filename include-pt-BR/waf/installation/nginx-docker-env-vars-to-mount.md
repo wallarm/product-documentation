@@ -1,0 +1,6 @@
+Variável de ambiente | Descrição | Obrigatório
+--- | ---- | ----
+`DEPLOY_USER` | Email para a conta de usuário **Deploy** ou **Administrador** no Wallarm Console. | Sim
+`DEPLOY_PASSWORD` | Senha para a conta de usuário **Deploy** ou **Administrador** no Wallarm Console. | Sim
+`WALLARM_API_HOST` | Servidor API Wallarm: <ul><li>`us1.api.wallarm.com` para a Nuvem US</li><li>`api.wallarm.com` para a Nuvem EU</li></ul>Por padrão: `api.wallarm.com`. | Não
+`DEPLOY_FORCE` | Substitui um nó Wallarm existente por um novo se o nome do nó Wallarm existente coincide com o identificador do contêiner que você está executando. Os seguintes valores podem ser atribuídos a uma variável: <ul><li>`true` para substituir o nó de filtragem</li><li>`false` para desativar a substituição do nó de filtragem</li></ul>O valor padrão (se a variável não for passada para o contêiner) é `false`. <br>O nome do nó Wallarm sempre coincide com o identificador do contêiner que você está executando. A substituição do nó de filtragem é útil se os identificadores de contêiner Docker em seu ambiente são estáticos e você está tentando executar outro contêiner Docker com o nó de filtragem (por exemplo, um contêiner com uma nova versão da imagem). Se neste caso o valor da variável for `false`, o processo de criação do nó de filtragem falhará. | Não

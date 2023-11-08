@@ -1,0 +1,5 @@
+* [Docker](https://docs.docker.com/engine/install/) instalado em seu sistema host
+* Acesso a `https://hub.docker.com/r/wallarm/node` para baixar a imagem do Docker. Certifique-se de que o acesso não está bloqueado por um firewall
+* Acesso à conta com a função de **Administrador** no Console Wallarm na [Nuvem dos EUA](https://us1.my.wallarm.com/) ou na [Nuvem da UE](https://my.wallarm.com/)
+* Acesso a `https://us1.api.wallarm.com` se estiver trabalhando com a Nuvem Wallarm dos EUA ou a `https://api.wallarm.com` se estiver trabalhando com a Nuvem Wallarm da UE. Certifique-se de que o acesso não está bloqueado por um firewall
+* Acesso aos endereços IP do Google Cloud Storage listados dentro do [link](https://www.gstatic.com/ipranges/goog.json). Quando você [permite, nega ou cinza][ip-lists-docs] países inteiros, regiões ou data centers, em vez de endereços IP individuais, o nó Wallarm recupera endereços IP precisos relacionados às entradas nas listas de IP do banco de dados agregado hospedado no Google Storage.
