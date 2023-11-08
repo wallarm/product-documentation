@@ -64,7 +64,7 @@ Consider the following:
 Unlike shadow and orphan APIs, zombie APIs require comparison of different specification versions:
 
 * In case of [hourly automatic comparison](#monitor-rogue-apis-on-hourly-basis), just put new version to the URL where you host your specification - it will be processed by an hourly schedule or immediately if you select **Restart comparison** form the specification menu.
-* In case when regular comparison is not used, put new version to this URL and then use **Restart comparison**, or re‑upload manually from local machine with the same name.
+* In case when regular comparison is not used, put new version to this URL or the same folder/file name on a local machine and then use **Restart comparison**.
 
 ## Working with multiple specifications
 
