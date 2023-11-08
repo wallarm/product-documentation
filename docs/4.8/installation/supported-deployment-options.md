@@ -516,18 +516,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     </div>
 </div>
 
-## Platform as a Service (PaaS)
-
-<div class="do-section">
-    <div class="do-main">
-        <a class="do-card" href=../../installation/heroku/docker-image/>
-            <img class="non-zoomable" src="../../images/platform-icons/heroku.svg" />
-            <h3>Heroku</h3>
-            <p>Artifacts for Wallarm deployment on Heroku</p>
-        </a>
-    </div>
-</div>
-
 ## Edge
 
 <div class="do-section">
@@ -1497,6 +1485,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <img class="non-zoomable" src="../../images/platform-icons/nginx.svg" />
             <h3>Custom NGINX</h3>
             <p>Request Wallarm Linux packages for a custom NGINX</p>
+        </a>
+
+        <a class="do-card" href=../../installation/heroku/docker-image/>
+            <img class="non-zoomable" src="../../images/platform-icons/heroku.svg" />
+            <h3>Heroku</h3>
+            <p>Build a Wallarm Docker image and run it on Heroku</p>
         </a>
 
         <a class="do-card" href="../../installation/custom/request-custom-deployment/">

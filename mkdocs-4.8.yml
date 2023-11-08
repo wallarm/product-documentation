@@ -248,8 +248,6 @@ nav:
         - Azure Container Instances: installation/cloud-platforms/azure/docker-container.md
       - Alibaba Cloud:
         - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
-    - Platform as a Service (PaaS):
-      - Heroku: installation/heroku/docker-image.md
     - Edge:
       - Section.io: installation/cdn-node.md
       - Akamai EdgeWorkers: installation/cdn/akamai-edgeworkers.md
@@ -325,6 +323,7 @@ nav:
       - Terraform Module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
     - Custom Deployment:
       - Custom NGINX Packages: installation/custom/custom-nginx-version.md
+      - Heroku: installation/heroku/docker-image.md
       - Custom Deployment Options: installation/custom/request-custom-deployment.md
     - Additional Options:
       - Chaining Wallarm and Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
