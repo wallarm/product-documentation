@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/faq/attacks-not-uploaded-to-cloud.md"

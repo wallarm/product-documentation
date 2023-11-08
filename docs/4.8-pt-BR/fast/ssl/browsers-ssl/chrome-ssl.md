@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/fast/ssl/browsers-ssl/chrome-ssl.md"

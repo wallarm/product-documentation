@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/fast/ssl/browsers-ssl/firefox-ssl.md"

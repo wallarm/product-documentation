@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/updating-migrating/all-in-one.md"

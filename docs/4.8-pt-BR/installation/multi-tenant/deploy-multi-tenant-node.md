@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/installation/multi-tenant/deploy-multi-tenant-node.md"

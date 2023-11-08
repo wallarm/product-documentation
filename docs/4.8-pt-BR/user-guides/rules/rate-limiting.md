@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/user-guides/rules/rate-limiting.md"

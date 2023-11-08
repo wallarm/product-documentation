@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/installation/cloud-platforms/cloud-init.md"

@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/about-wallarm/data-retention-policy.md"
