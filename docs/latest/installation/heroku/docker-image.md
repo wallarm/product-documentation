@@ -262,7 +262,7 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
     ```dockerfile
     FROM ubuntu:22.04
 
-    ARG VERSION="4.8.2"
+    ARG VERSION="4.8.3"
 
     ENV PORT=3000
     ENV WALLARM_LABELS="group=heroku"
@@ -313,10 +313,10 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
 Execute the following commands within the previously created directory:
 
 ```
-docker build -t wallarm-heroku:4.8.2 .
+docker build -t wallarm-heroku:4.8.3 .
 docker login
-docker tag wallarm-heroku:4.8.2 <DOCKERHUB_USERNAME>/wallarm-heroku:4.8.2
-docker push <DOCKERHUB_USERNAME>/wallarm-heroku:4.8.2
+docker tag wallarm-heroku:4.8.3 <DOCKERHUB_USERNAME>/wallarm-heroku:4.8.3
+docker push <DOCKERHUB_USERNAME>/wallarm-heroku:4.8.3
 ```
 
 ## Step 3: Run the built Docker image on Heroku
@@ -327,7 +327,7 @@ To deploy the image on Heroku:
 1. Construct a `Dockerfile` which will include the installation of necessary dependencies specific to your app's runtime. For a Node.js application, use the following template:
 
     ```dockerfile
-    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:4.8.2
+    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:4.8.3
 
     ENV NODE_MAJOR=20
 
@@ -362,7 +362,7 @@ To deploy the image on Heroku:
 
 1. Adapt your application to listen on `/tmp/nginx.socket` rather than `$PORT` because `$PORT` is utilized by NGINX. For instance, the configuration may look as follows:
 
-    ```js
+    ```js hl_lines="4-5"
     // app.js
     const app = require('express')()
 
