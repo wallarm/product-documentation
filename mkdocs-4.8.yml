@@ -323,6 +323,7 @@ nav:
       - Terraform Module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
     - Custom Deployment:
       - Custom NGINX Packages: installation/custom/custom-nginx-version.md
+      - Heroku: installation/heroku/docker-image.md
       - Custom Deployment Options: installation/custom/request-custom-deployment.md
     - Additional Options:
       - Chaining Wallarm and Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
