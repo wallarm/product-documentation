@@ -37,10 +37,10 @@ Wallarm çözümü, manuel kural yapılandırması olmadan ve ultra düşük yan
 <div class="navigation-card">
     <h3 class="icon-homepage api-discovery-title">API Keşfi</h3>
     <p><ul>
-    <li><a href="./api-discovery/overview/">API Envanterini Keşfetme</a></li>
-    <li><a href="./api-discovery/track-changes/">API'deki Değişiklikleri Takip Etme</a></li>
-    <li><a href="./api-discovery/risk-score/">Uç Nokta Risk Skoru</a></li>
-    <li><a href="./api-discovery/rogue-api/">Gölge, Yetim, Zombi API</a></li>
+    <li><a href="./about-wallarm/api-discovery/">API Envanterini Keşfetme</a></li>
+    <li><a href="./about-wallarm/api-discovery/#apideki-degisiklikleri-izleme">API'deki Değişiklikleri Takip Etme</a></li>
+    <li><a href="./about-wallarm/api-discovery/#uc-nokta-risk-skoru">Uç Nokta Risk Skoru</a></li>
+    <li><a href="./about-wallarm/api-discovery/#golge-yetim-ve-zombi-apiler">Gölge, Yetim, Zombi API</a></li>
     </ul></p>
 </div>
 

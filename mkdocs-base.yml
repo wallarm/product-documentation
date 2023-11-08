@@ -54,7 +54,7 @@ extra:
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/wallarm
     - icon: fontawesome/brands/linkedin
-      link: https://www.linkedin.com/company/4871419
+      link: https://www.linkedin.com/company/wallarm
     - icon: fontawesome/brands/youtube
       link: https://www.youtube.com/channel/UCgD4zSzAJwf3tBlOgJo7Qkw
   generator: false
