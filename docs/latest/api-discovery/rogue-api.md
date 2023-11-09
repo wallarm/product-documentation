@@ -66,7 +66,7 @@ Unlike shadow and orphan APIs, zombie APIs require comparison of different speci
 * In case when regular comparison is not used:
 
     * If uploading from URL, change this URL to the new one or put new content to the same URL.
-    * If uploading from the local machine, open the specification dialog, then select a new file or re-open the same with new content.
+    * If uploading from the local machine, open the specification dialog in the Wallarm Console, then upload a new file or the same one with new content.
 
     Then save specification, and from its menu, select **Restart comparison**.
 
