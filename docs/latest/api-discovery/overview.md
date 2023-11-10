@@ -32,8 +32,8 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * Understand which endpoints are [most likely](risk-score.md) to be an attack target.
 * Find [shadow, orphan and zombie APIs](rogue-api.md).
 * [Track changes](track-changes.md) in API that took place within the selected period of time.
-* Filter API endpoints by the [BOLA auto protection state](bola-protection.md)
-* Provide your developers with access to the built API inventory reviewing and downloading.
+* Filter API endpoints by the [BOLA auto protection state](bola-protection.md).
+* Provide your developers with [access](../user-guides/settings/users.md#user-roles) to the built API inventory reviewing and downloading.
 
 ## How does API Discovery work?
 
