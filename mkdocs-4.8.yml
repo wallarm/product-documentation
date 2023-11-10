@@ -9,7 +9,7 @@ site_dir: site
 nav:
   - Quick Start:
     - Wallarm Overview: about-wallarm/overview.md
-    - Quick Start Guide: quickstart.md
+    - Getting Started: quickstart/getting-started.md
     - Video Guides:
       - Wallarm Platform Settings: demo-videos/overview.md
       - Analyzing CVEs and Related Attacks: demo-videos/events-inspection.md

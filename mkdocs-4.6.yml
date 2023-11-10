@@ -10,7 +10,6 @@ nav:
   - Quick Start:
     - Wallarm Overview: about-wallarm/overview.md
     - Getting Started: quickstart/getting-started.md
-    # - Quick Start Guide: quickstart.md
     - Subscription Plans: about-wallarm/subscription-plans.md
     - Deployment Guides: /installation/supported-deployment-options/
     - Best Practices: quickstart/attack-prevention-best-practices.md

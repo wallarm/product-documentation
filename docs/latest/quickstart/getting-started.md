@@ -24,15 +24,16 @@ Wallarm manages separate American and European cloud instances, each distinct in
     | -- | -------- | -------- |
     | **Signup link** | https://us1.my.wallarm.com/signup | https://my.wallarm.com/signup |
     | **Physical location** | USA | Netherlands |
-    | **Wallarm Console URL** | https://us1.my.wallarm.com/ | `https://us1.api.wallarm.com/` |
-    | **Wallarm API Endpoint** | https://my.wallarm.com/ | `https://api.wallarm.com/` |
+    | **Wallarm Console URL** | https://us1.my.wallarm.com/ | https://my.wallarm.com/ |
+    | **Wallarm API Endpoint** | `https://us1.api.wallarm.com/` | `https://api.wallarm.com/` |
 1. Follow the registration link either in the [US](https://us1.my.wallarm.com/signup) or [EU](https://my.wallarm.com/signup) Wallarm Cloud and input your personal data.
 1. Confirm your account by following the link from the confirmation message sent to your email.
 
-Once an account is registered and confirmed, it is automatically assigned with **Free tier** or **Free trial** depending on the Wallarm Cloud being used:
+Once an account is registered and confirmed, it is automatically assigned with **Free tier** or **Free trial** depending on the Wallarm Cloud being used.
 
-* In the US Cloud, Free tier allows you to explore the power of the Wallarm solution for free on 500 thousand monthly requests.
-* In the EU Cloud, there is a trial period allowing you to explore the Wallarm solution for free for 14 days.
+In the US Cloud, Free tier allows you to explore the power of the Wallarm solution for free on 500 thousand monthly requests.
+
+In the EU Cloud, there is a trial period allowing you to explore the Wallarm solution for free for 14 days.
 
 Continue by deploying the [first Wallarm filtering node](#start-securing-your-traffic).
 
