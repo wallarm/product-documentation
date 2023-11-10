@@ -5,9 +5,11 @@
 [img-forced-icon]:              ../../images/user-guides/events/forced.png#mini
 [img-sheduled-icon]:            ../../images/user-guides/events/sheduled.png#mini
 [img-cloud-icon]:           ../../images/user-guides/events/cloud.png#mini
+[img-skip-icon]:                ../../images/user-guides/events/skipped.png#mini
 
 [al-brute-force-attack]:      ../../attacks-vulns-list.md#bruteforce-attack
 [al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
+[al-bola]:                    ../../attacks-vulns-list.md#broken-object-level-authorization-bola
 
 # Verifying Attacks
 
@@ -25,7 +27,8 @@ You can check the attack verification status and force an attack recheck on the 
 ## Attack Verification Status Legend
 
 * ![Verified][img-verified-icon] *Verified*: The attack has been verified.
-* ![Error][img-error-icon] *Error*: An attempt to verify an attack type that does not support verification.
+* ![Error][img-error-icon] *Error*: An attempt to verify an attack type that does not support verification. [Possible reasons](#attack-types-that-do-not-support-verification)
+* ![Skipped][img-skip-icon] *Skipped*: An attempt to verify an attack type has been skipped. [Possible reasons](#attack-types-that-do-not-support-verification)
 * ![Forced][img-forced-icon] *Forced*: The attack has a raised priority in the verification queue.
 * ![Sheduled][img-sheduled-icon] *Scheduled*: The attack is queued for verification.
 * ![Could not connect][img-cloud-icon] *Could not connect to the server*: It is not possible to access the server at this time.
@@ -46,6 +49,7 @@ Attacks of the following types do not support verification:
 
 * [Brute-force][al-brute-force-attack]
 * [Forced browsing][al-forced-browsing]
+* [BOLA][al-bola]
 * Attacks with a request processing limit
 * Attacks for which the vulnerabilities have already been closed
 * Attacks that do not contain enough data for verification
