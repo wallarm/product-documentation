@@ -10,6 +10,9 @@ nav:
   - Quick Start:
     - Wallarm Overview: about-wallarm/overview.md
     - Getting Started: quickstart/getting-started.md
+    - Subscription Plans: about-wallarm/subscription-plans.md
+    - Deployment Guides: /installation/supported-deployment-options/
+    - Best Practices: quickstart/attack-prevention-best-practices.md
     - Video Guides:
       - Wallarm Platform Settings: demo-videos/overview.md
       - Analyzing CVEs and Related Attacks: demo-videos/events-inspection.md
@@ -17,11 +20,6 @@ nav:
       - Shadow and Orphan API: demo-videos/shadow-api.md
       - API Abuse Prevention Overview: demo-videos/api-abuse-prevention.md
       - API Leaks Overview: demo-videos/api-leaks.md
-    - Deployment Guides: /installation/supported-deployment-options/
-    - Subscription Plans:
-      - Overview: about-wallarm/subscription-plans.md
-      - Managing the Subscription: user-guides/settings/subscriptions.md
-    - Best Practices: quickstart/attack-prevention-best-practices.md
   - Dashboards and Reports:
     - Threat Prevention: user-guides/dashboards/threat-prevention.md
     - API Discovery: user-guides/dashboards/api-discovery.md
