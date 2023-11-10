@@ -531,3 +531,9 @@
 /4.6/about-wallarm/api-discovery/ /4.6/api-discovery/overview/
 /4.6/user-guides/api-discovery/ /4.6/api-discovery/exploring/
 /4.6/user-guides/api-specifications/ /4.6/api-discovery/rogue-api/
+
+/quickstart/ /quickstart/getting-started/
+/4.6/quickstart/ /4.6/quickstart/getting-started/
+
+/user-guides/settings/subscriptions/ /about-wallarm/subscription-plans/
+/4.6/user-guides/settings/subscriptions/ /4.6/about-wallarm/subscription-plans/

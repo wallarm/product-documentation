@@ -1,4 +1,4 @@
-# Wallarm subscription plans
+# Wallarm Subscription Plans
 
 When subscribing to Wallarm, you choose a plan that meets your business needs the most. From this document, you can learn available subscription plans and the functionality they enable.
 
@@ -54,7 +54,9 @@ Wallarm provides the following subscription plans:
 
 To activate a subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com). Subscription cost will be determined based on the chosen plan, its period, and [incoming traffic volume](../admin-en/operation/learn-incoming-request-number.md).
 
-Information about an active plan is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
+Information about an active plan is displayed in Wallarm Console → **Settings** → **Subscriptions**.
+
+![Paid subscription plan](../images/user-guides/settings/subscriptions/subscriptions.png)
 
 ## Subscription notifications
 
@@ -74,12 +76,9 @@ The Free Tier subscription includes:
 * The Wallarm features available for free up to the quota of **500 thousand requests per month** with no limitation in time. The quota resets on the first day of each month.
 * Access to the Wallarm platform as [Advanced API Security](#subscription-plans), except for the following:
 
-    * [Vulnerability](detecting-vulnerabilities.md#vulnerability-scanner) and [Exposed asset](../user-guides/scanner.md) Scanners
-    * The [Active threat prevention](detecting-vulnerabilities.md#active-threat-verification) feature
+    * [Exposed asset](../user-guides/scanner.md) Scanner
     * The [API Abuse Prevention](api-abuse-prevention.md) module
     * Deployment of the [CDN node](../installation/cdn-node.md) type
-    * Partial coverage of OWASP API Top 10 due to unavailability of Vulnerability Scanner
-    * Access to Wallarm API
 
 **What happens if the quota is exceeded?**
 
@@ -87,7 +86,7 @@ If the company account exceeds 100% of the Free Tier monthly quota, your access 
 
 These restrictions will be in effect until the first day of the next month. Contact the Wallarm [sales team](mailto:sales@wallarm.com) to restore service immediately by switching to one of the paid subscription plans.
 
-Information about the Free Tier subscription usage is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
+Information about the Free Tier subscription usage is displayed in Wallarm Console → **Settings** → **Subscriptions**.
 
 Wallarm notifies **Administrators** and **Global Administrators** of your account via email when 85%, 100%, 185% and 200% of the free request quota have been exceeded.
 
@@ -97,10 +96,10 @@ When a new user is registered in Wallarm Console of the **[EU Cloud](overview.md
 
 * The trial period is free.
 * The trial period lasts 14 days.
-* Wallarm trial provides the maximum set of modules and features that can be included in the API Security [plan](#subscription-plans).
+* Wallarm trial provides the maximum set of modules and features that can be included in the WAAP [plan](#subscription-plans).
 * The trial period can be extended for 14 days more only once.
 
-    The trial period can be extended in the Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md) section and via the button from the email notifying about the end of the trial period. The email is sent only to users with the [role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles).
+    The trial period can be extended in the Wallarm Console → **Settings** → **Subscriptions** section and via the button from the email notifying about the end of the trial period. The email is sent only to users with the [role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles).
 * If the trial period expired:
 
     * The account in Wallarm Console will be blocked.
@@ -109,4 +108,4 @@ When a new user is registered in Wallarm Console of the **[EU Cloud](overview.md
     
     When a paid subscription to Wallarm is activated, access to the client account is restored for all users.
 
-Information about the trial period is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
+Information about the trial period is displayed in Wallarm Console → **Settings** → **Subscriptions**.
