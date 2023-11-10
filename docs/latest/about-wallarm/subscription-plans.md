@@ -108,4 +108,4 @@ When a new user is registered in Wallarm Console of the **[EU Cloud](overview.md
     
     When a paid subscription to Wallarm is activated, access to the client account is restored for all users.
 
-Information about the trial period is displayed in Wallarm Console → **Settings** → **Subscriptions**:
+Information about the trial period is displayed in Wallarm Console → **Settings** → **Subscriptions**.
