@@ -17,11 +17,11 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <h3 class="icon-homepage quick-start-title">Quick start</h3>
     <p><ul>
     <li><a href="./about-wallarm/overview/">Wallarm Overview</a></li>
-    <li><a href="./quickstart/">Quick Start Guide</a></li>
-    <li><a href="./demo-videos/overview/">Video Guides</a></li>
-    <li><a href="./installation/supported-deployment-options/">Deployment Guides</a></li>
+    <li><a href="./quickstart/getting-started/">Getting Started</a></li>
     <li><a href="./about-wallarm/subscription-plans/">Subscription Plans</a></li>
+    <li><a href="./installation/supported-deployment-options/">Deployment Guides</a></li>
     <li><a href="./quickstart/attack-prevention-best-practices/">Best Practices</a></li>
+    <li><a href="./demo-videos/overview/">Video Guides</a></li>
     </ul></p>
 </div>
 
