@@ -1,0 +1,1 @@
+--8<-- "latest/faq/attack-response-playbook.md"
