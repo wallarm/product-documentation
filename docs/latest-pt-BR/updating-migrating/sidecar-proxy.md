@@ -28,7 +28,7 @@ Para instalar e rodar o plugin:
 2. Execute o plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.8.0 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.8.1 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: o nome do release Helm com o gráfico do Sidecar
@@ -43,7 +43,7 @@ Para instalar e rodar o plugin:
 Atualize os componentes implantados da solução Sidecar:
 
 ``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.8.0 -f <PATH_TO_VALUES>
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.8.1 -f <PATH_TO_VALUES>
 ```
 
 * `<RELEASE_NAME>`: o nome do release Helm com o gráfico do Sidecar implantado

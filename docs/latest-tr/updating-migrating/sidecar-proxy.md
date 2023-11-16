@@ -28,7 +28,7 @@ Eklentiyi yüklemek ve çalıştırmak için:
 2. Eklentiyi çalıştırın:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.8.0 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.8.1 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: Sidecar chart ile Helm sürümünün adı
@@ -43,7 +43,7 @@ Eklentiyi yüklemek ve çalıştırmak için:
 Sidecar çözümünün dağıtılmış bileşenlerini yükseltin:
 
 ``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.8.0 -f <PATH_TO_VALUES>
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.8.1 -f <PATH_TO_VALUES>
 ```
 
 * `<RELEASE_NAME>`: dağıtılan Sidecar chart ile Helm sürümünün adı
