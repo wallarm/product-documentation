@@ -39,6 +39,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.8.4 (2023-11-13)
+
+* This release fixes [CVE-2022-4886](https://github.com/advisories/GHSA-gvrm-w2f9-f77q), [CVE-2023-5043](https://github.com/advisories/GHSA-5wj4-wffq-3378) and [CVE-2023-5044](https://github.com/advisories/GHSA-fp9f-44c2-cw27) in the controller image
+
 ### 4.8.3 (2023-10-30)
 
 * This release fixes [CVE-2023-5363](https://github.com/advisories/GHSA-xw78-pcr6-wrg8) and [CVE-2023-44487](https://github.com/advisories/GHSA-qppj-fm5r-hxr3) in the controller image
@@ -68,6 +72,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## Helm chart for Sidecar
 
 [How to upgrade](sidecar-proxy.md)
+
+### 4.8.1 (2023-11-15)
+
+* Fix method (brute, dirbust, BOLA counters) of statistics export to the Wallarm Cloud which solves issue of possible delays in reactions to the attacks in case of large number of requests and many brute, dirbust, and BOLA triggers.
 
 ### 4.8.0 (2023-10-19)
 
