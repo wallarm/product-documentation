@@ -1,6 +1,6 @@
 # Analyzing CVEs and related attacks
 
-Watch our demo video to get familiar with the Wallarm platform's [**CVEs**](../user-guides/dashboards/threat-prevention.md#cves) dashboard and know how to use this dashboard together with the [**Events**](../user-guides/events/check-attack.md) section to analyze specific CVE-related events.
+Watch our demo video to get familiar with the Wallarm platform's [**CVEs**](../user-guides/dashboards/threat-prevention.md#cves) dashboard and know how to use this dashboard together with the [**Attacks**](../user-guides/events/check-attack.md) section to analyze specific CVE-related events.
 
 <!-- ## Viewing statistics on detected events on the dashboards
 

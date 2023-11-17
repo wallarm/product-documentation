@@ -79,7 +79,7 @@ See also [Working with false attacks](../user-guides/events/false-attack.md).
 2. Send a malicious request to exploit the vulnerability.
 3. Check if there is an incident detected in the Wallarm interface.
 
-See also [Checking attacks and incidents](../user-guides/events/check-attack.md).
+See [Checking Incidents](../user-guides/events/check-incident.md).
 
 ## Wallarm Detects Perimeter
 
