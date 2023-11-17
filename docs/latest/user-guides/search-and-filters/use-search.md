@@ -21,9 +21,9 @@
 [ssti-injection]:         ../../attacks-vulns-list.md#serverside-template-injection-ssti
 [overlimit-res]:          ../../attacks-vulns-list.md#overlimiting-of-computational-resources
 
-# Using search and filters
+# Event Search and Filters
 
-Wallarm provides convenient methods for searching detected attacks and incidents. In the **Events** section of Wallarm Console, there are the following search methods available:
+Wallarm provides convenient methods for searching detected events (attacks and incidents). In the **Attacks** and **Incidents** sections of Wallarm Console, the following search methods available:
 
 * **Filters** to select filtering criteria
 * **Search field** to input search queries with attributes and modifiers similar to human language
@@ -350,9 +350,9 @@ Possible attribute values:
 
 You may use masks within a value. The symbol `*` replaces any number of characters, the symbol `?` replaces any single character.
 
-### Search for anomalies in attacks
+### Search for anomalies in events
 
-To search for anomalies in attacks, use the `a:` or `anomaly:` prefix.
+To search for anomalies in events, use the `a:` or `anomaly:` prefix.
 
 To refine an anomaly search, use the following parameters:
 
@@ -394,7 +394,7 @@ Examples:
 !!! info "Search only for new attacks"
     Only attacks detected after May 31, 2023 will be displayed when searching by node UUID.
 
-You can find the node UUID in the **Nodes** section, [node details](../../user-guides/nodes/nodes.md#viewing-details-of-a-node). Click UUID to copy it or click **View events from this node for the day** (switches to the **Events** section).
+You can find the node UUID in the **Nodes** section, [node details](../../user-guides/nodes/nodes.md#viewing-details-of-a-node). Click UUID to copy it or click **View events from this node for the day** (switches to the **Attacks** section).
 
 ### Search by regexp-based customer rule
 

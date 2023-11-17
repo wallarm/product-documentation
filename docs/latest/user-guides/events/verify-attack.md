@@ -15,16 +15,16 @@
 
 Wallarm automatically [rechecks](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) attacks for active vulnerability detection.
 
-You can check the attack verification status and force an attack recheck on the *Events* tab. Selected attack will be the basis for the test attack set generation.
+You can check the attack verification status and force an attack recheck on the **Attacks** tab. Selected attack will be the basis for the test attack set generation.
 
 ![Attacks with various verification statuses][img-verification-statuses]
 
-## Check the Attack Verification Status
+## Check the attack verification status
 
-1. Click the *Events* tab.
-2. Check the status in the "Verification" column.
+1. Click the **Attacks** tab.
+2. Check the status in the **Active verification** column.
 
-## Attack Verification Status Legend
+## Attack verification status legend
 
 * ![Verified][img-verified-icon] *Verified*: The attack has been verified.
 * ![Error][img-error-icon] *Error*: An attempt to verify an attack type that does not support verification. [Possible reasons](#attack-types-that-do-not-support-verification)
@@ -33,17 +33,17 @@ You can check the attack verification status and force an attack recheck on the 
 * ![Sheduled][img-sheduled-icon] *Scheduled*: The attack is queued for verification.
 * ![Could not connect][img-cloud-icon] *Could not connect to the server*: It is not possible to access the server at this time.
 
-## Forcing an Attack Verification
+## Forcing attack verification
 
 1. Select an attack.
-2. Click the status sign in the "Verification" column.
+2. Click the status sign in the **Active verification** column.
 3. Click *Force verification*.
 
 Wallarm will raise the priority of the attack verification in the queue.
 
 ![Attacks verification][img-verify-attack]
 
-## Attack Types that Do Not Support Verification
+## Attack types that do not support verification
 
 Attacks of the following types do not support verification:
 

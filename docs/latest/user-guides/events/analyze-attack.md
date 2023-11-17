@@ -7,22 +7,22 @@
 
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
 
-# Analyzing Attacks
+# Analyzing Events
 
-You can check attacks in the **Events** section of Wallarm Console. Wallarm automatically groups associated malicious requests into one entity — an attack.
+You can check events in the **Attacks** and **Incidents** sections of Wallarm Console.
 
-## Analyze an Attack
+## Analyze an event
 
-You can get information about an attack by investigating all the table columns described in [“Checking Attacks and Incidents.”][link-check-attack]
+You can get information about an event of particular type (attack or incident) by investigating all the table columns described in [Checking Attacks](check-attack.md) and [Checking Incidents](check-incident.md).
 
-## Analyze Requests in an Attack
+## Analyze requests in an event
 
-1. Select an attack.
+1. Define an attack or incident of your interest.
 2. Click the number in the *Requests* column.
 
-Clicking the number will unfold all requests in the selected attack.
+Clicking the number will unfold all requests in the selected event.
 
-![Requests in the attack][img-analyze-attack]
+![Requests in the event][img-analyze-attack]
 
 Each request displays the associated information in the following columns:
 
@@ -57,7 +57,7 @@ Request view provides the following options for Wallarm behavior fine-tuning:
 
     [Learn how to search for such attacks →](../../user-guides/search-and-filters/use-search.md#search-by-regexp-based-customer-rule)
 
-## Analyze a Request in Raw Format
+## Analyze request in raw format
 
 The raw format of a request is the maximum possible level of detail. Raw format view in Wallarm Console also enables copying of a request in a cURL format.
 
@@ -148,7 +148,7 @@ The regular sampling algorithm has the following core logic:
     * Originating IP address
 2. Hit samples are grouped into [attacks](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) in the event list.
 
-Grouped hits are displayed in the **Events** section of Wallarm Console as follows:
+Grouped hits are displayed in the **Attacks** or **Incidents** section of Wallarm Console as follows:
 
 ![Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
 
