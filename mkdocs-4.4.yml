@@ -26,10 +26,11 @@ nav:
     - API Discovery Dashboard: user-guides/dashboards/api-discovery.md
     - OWASP API Top 10 Dashboards: user-guides/dashboards/owasp-api-top-ten.md
     - Events:
-      - Event Search and Filters: user-guides/search-and-filters/use-search.md
-      - Checking Events: user-guides/events/check-attack.md
-      - Analyzing Attacks: user-guides/events/analyze-attack.md
-      - Working with False Attacks: user-guides/events/false-attack.md
+      - Search and Filters: user-guides/search-and-filters/use-search.md
+      - Checking Attacks: user-guides/events/check-attack.md
+      - Checking Incidents: user-guides/events/check-incident.md
+      - Analyzing Events: user-guides/events/analyze-attack.md
+      - False Positives: user-guides/events/false-attack.md
       - Verifying Attacks: user-guides/events/verify-attack.md
     - Email PDF and CSV Reports: user-guides/search-and-filters/custom-report.md
     - Activity Log: user-guides/settings/audit-log.md
