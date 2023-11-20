@@ -84,4 +84,10 @@ You can get notifications about newly denylisted IPs via the messengers or SIEM 
 
 ![Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
 
+## Viewing events from denylisted IPs
+
+You can access a list of events originating from any IP address currently on the denylist or previously listed, by clicking on the IP address of interest. This will redirect you to the Events section, where the [relevant event list](../events/analyze-attack.md#analyze-requests-from-denylisted-ips) is displayed.
+
+![Img](../../images/user-guides/events/denylisted-ip-events.png)
+
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
