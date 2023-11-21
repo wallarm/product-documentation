@@ -40,13 +40,15 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 * Initial release 4.8, [see changelog](what-is-new.md)
 
-## Helm chart for NGINX Ingress controller
+## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
 
 ### 4.8.4 (2023-11-13)
 
-* This release fixes [CVE-2022-4886](https://github.com/advisories/GHSA-gvrm-w2f9-f77q), [CVE-2023-5043](https://github.com/advisories/GHSA-5wj4-wffq-3378) and [CVE-2023-5044](https://github.com/advisories/GHSA-fp9f-44c2-cw27) in the controller image
+* Helm chart version of the NGINX Ingress controller bumped to 4.8.3
+* NGINX Ingress controller version bumped to 1.9.4
+* Fixed [CVE-2022-4886](https://github.com/advisories/GHSA-gvrm-w2f9-f77q), [CVE-2023-5043](https://github.com/advisories/GHSA-5wj4-wffq-3378) and [CVE-2023-5044](https://github.com/advisories/GHSA-fp9f-44c2-cw27) in the controller image
 
 ### 4.8.3 (2023-10-30)
 
