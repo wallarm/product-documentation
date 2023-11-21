@@ -6,7 +6,7 @@
 
 # Working with false attacks
 
-**False positive** occurs when attack signs are detected in the legitimate request. After analyzing an attack, you may conclude that all or some requests in this attack are false positives. To prevent the filtering node from recognizing such requests as attacks in future traffic analysis, you can mark several requests or the entire attack as a false positive.
+**False positive** occurs when attack signs are detected in the legitimate request. After analyzing an attack, you may conclude that all or some requests in this attack are false positives. To prevent the filtering node from recognizing such requests as attacks in future traffic analysis, you can mark several requests or the entire attack or incident as a false positive.
 
 ## How a false positive mark works?
 
@@ -19,7 +19,7 @@ Created rule is applied when analyzing requests to the protected application. Th
 
 To mark one request (hit) as a false positive:
 
-1. In Wallarm Console → **Events**, expand the list of requests in the attack seemed to be a false positive.
+1. In Wallarm Console → **Attacks** or **Incidents**, expand the list of requests in the attack seemed to be a false positive.
 
     To reduce the time of request analysis, you can hide the requests that are precisely malicious by using the [tag `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits).
 2. Define a valid request and click **False** in the **Actions** column.
@@ -28,9 +28,9 @@ To mark one request (hit) as a false positive:
 
 ## Mark an attack as a false positive
 
-To mark all requests (hits) in the attack as false positives:
+To mark all Hits in the attack as false positives:
 
-1. In Wallarm Console → **Events**, select an attack with valid requests.
+1. In Wallarm Console → **Attacks** or **Incidents**, select an attack with valid requests.
 
     To reduce the time of request analysis, you can hide the requests that are precisely malicious by using the [tag `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits).
 2. Click **Mark as false positive**.

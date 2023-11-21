@@ -14,4 +14,4 @@ The **API Discovery** Wallarm dashboard summarizes data about your API collected
 
 The dashboard can uncover anomalies, such as risky frequently-used endpoints or high volume of sensitive data your API transfers. Additionally, it draws attention to the changes in API that you always need to check to exclude security risks. This helps you implement security controls to prevent endpoints from being targets of attacks.
 
-Click elements of the widget to go to the **API Discovery** section and view filtered data. If clicking hit number, you will be addresses to the [event list][check-attack] with the attack data for the last 7 days.
+Click elements of the widget to go to the **API Discovery** section and view filtered data. If clicking hit number, you will be addresses to the [attack list][check-attack] with the attack data for the last 7 days.
