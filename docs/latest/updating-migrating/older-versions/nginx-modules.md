@@ -537,11 +537,6 @@ To replace the regular node with the Wallarm node:
     * `<TOKEN>` is the copied value of the node token or API token with the `Deploy` role.
     * The `--force` option forces rewriting of the Wallarm Cloud access credentials specified in the `/etc/wallarm/node.yaml` file.
 
-    ```
-    sudo /usr/share/wallarm-common/register-node -t <API TOKEN WITH DEPLOY ROLE> --labels 'group=<GROUP>'
-    ```
-    </p></li></div>
-
 ### Step 8: Update the Wallarm blocking page
 
 In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
