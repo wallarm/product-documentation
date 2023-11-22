@@ -7,7 +7,7 @@
 
 Aşağıdaki diyagram, Wallarm politikası MuleSoft AnyPoint platformunda API'lere ekli olduğunda ve Wallarm kötü niyetli aktiviteyi engellemek için yapılandırıldığında yüksek seviye trafik akışını gösterir.
 
-![MuleSoft ile Wallarm politikası](../../images/waf-installation/gateways/mulesoft/traffic-flow.png)
+![MuleSoft ile Wallarm politikası](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
 
 Çözüm, Wallarm düğümünü harici olarak dağıtmayı ve belirli bir platforma özelleşmiş kodlar veya politikalar eklemeyi içerir. Bu, trafiğin potansiyel tehditlere karşı analiz ve koruma için harici Wallarm düğümüne yönlendirilmesini sağlar. Wallarm'ın bağlayıcıları olarak adlandırılan bu özellikler Azion Edge, Akamai Edge, MuleSoft, Apigee ve AWS Lambda gibi platformlar ile harici Wallarm düğümü arasındaki esas bağlantıyı oluştururlar. Bu yaklaşım, sorunsuz entegrasyon, güvenli trafik analizi, risk azaltma ve genel platform güvenliğini sağlar.
 

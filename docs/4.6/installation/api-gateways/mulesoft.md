@@ -5,9 +5,15 @@
 
 [MuleSoft](https://www.mulesoft.com/) is an integration platform that enables seamless connectivity and data integration between services with an API gateway serving as the entry point for client applications to access APIs. With Wallarm, you can secure APIs on the Mulesoft Anypoint platform using the Wallarm policy. This article explains how to attach and utilize the policy.
 
-The diagram below illustrates the high-level traffic flow when Wallarm policy is attached to APIs on the MuleSoft Anypoint platform, and Wallarm is configured to block malicious activity.
+The Wallarm policy for MuleSoft supports both [in-line](../inline/overview.md) and [out-of-band](../oob/overview.md) modes. Below diagrams show the traffic flow for APIs on the MuleSoft Anypoint platform with Wallarm policy applied.
 
-![Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow.png)
+=== "In-line traffic flow"
+
+    If Wallarm is configured to block malicious activity:
+
+    ![Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
+=== "Out-of-band traffic flow"
+    ![Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-oob.png)
 
 The solution involves deploying the Wallarm node externally and injecting custom code or policies into the specific platform. This enables traffic to be directed to the external Wallarm node for analysis and protection against potential threats. Referred to as Wallarm's connectors, they serve as the essential link between platforms like Azion Edge, Akamai Edge, Mulesoft, Apigee, and AWS Lambda, and the external Wallarm node. This approach ensures seamless integration, secure traffic analysis, risk mitigation, and overall platform security.
 
@@ -16,14 +22,17 @@ The solution involves deploying the Wallarm node externally and injecting custom
 Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for the following use cases:
 
 * Securing APIs deployed on the MuleSoft Anypoint platform with only one policy.
-* Requiring a security solution that offers comprehensive attack observation, reporting, and instant blocking of malicious requests.
+* Requiring a security solution that offers comprehensive attack observation, reporting, and instant blocking of malicious requests (in the in-line mode).
 
 ## Limitations
 
 The solution has certain limitations as it only works with incoming requests:
 
+* The [Wallarm API Discovery](../../api-discovery/overview.md) cannot explore API inventory based on your traffic, as the solution relies on response analysis.
 * Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
 * The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis.
+
+When applying the policy for out-of-band traffic analysis, be aware that this method has certain limitations, which also apply to the policy. More details can be found at the provided [link](../oob/overview.md#advantages-and-limitations).
 
 ## Requirements
 
@@ -45,9 +54,7 @@ To secure APIs on the Mulesoft Anypoint platform using Wallarm policy, follow th
 
 ### 1. Deploy a Wallarm node
 
-When utilizing the Wallarm policy, the traffic flow is [in-line](../inline/overview.md).
-
-1. Choose one of the [supported Wallarm node deployment solutions or artifacts](../supported-deployment-options.md#in-line) for in-line deployment and follow the provided deployment instructions.
+1. Choose one of the supported Wallarm node deployment solutions or artifacts for the [in-line deployment](../supported-deployment-options.md#in-line) and follow the provided deployment instructions.
 1. Configure the deployed node using the following template:
 
     ```
@@ -103,6 +110,8 @@ When utilizing the Wallarm policy, the traffic flow is [in-line](../inline/overv
 
     * TLS/SSL certificates for HTTPS traffic: To enable the Wallarm node to handle secure HTTPS traffic, configure the TLS/SSL certificates accordingly. The specific configuration will depend on the chosen deployment method. For example, if you are using NGINX, you can refer to [its article](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) for guidance.
     * [Wallarm operation mode](../../admin-en/configure-wallarm-mode.md) configuration.
+    
+        When using out-of-band traffic analysis, Wallarm can only operate in monitoring mode because it cannot block malicious requests. Regardless of the `wallarm_mode` directive's setting, except for `off`, the node will continue to monitor and record only malicious traffic.
 
 1. Once the deployment is complete, make a note of the node instance IP as you will need it later to set the address for incoming request forwarding.
 
@@ -187,7 +196,7 @@ To test the functionality of the deployed policy, follow these steps:
     
     ![Attacks in the interface][attacks-in-ui-image]
 
-    If the Wallarm node mode is set to blocking, the request will also be blocked.
+    If the Wallarm node mode is set to blocking and the traffic flows in-line, the request will also be blocked.
 
 If the solution does not perform as expected, refer to the logs of your API by accessing Mulesoft Anypoint Platform → **Runtime Manager** → your application → **Logs**.
 
