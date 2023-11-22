@@ -23,8 +23,8 @@ config:
       #   pod_annotations:
       #      annotation_name1: 'annotation_value_1'
       #      annotation_name2: 'annotation_value_2,annotation_value_4'
-    load_balancer_real_ip_header: 'X-Real-IP'
-    load_balancer_trusted_cidrs: []
+    loadBalancerRealIPHeader: 'X-Real-IP'
+    loadBalancerTrustedCIDRs: []
       # - 10.0.0.0/8
       # - 192.168.0.0/16
       # - 172.16.0.0/12
@@ -104,20 +104,20 @@ Controls the level of traffic mirroring. Here is an example of the `filters` par
 
 [More details](selecting-packets.md)
 
-## config.agent.load_balancer_real_ip_header
+## config.agent.loadBalancerRealIPHeader
 
 Specifies the header name used by a load balancer to convey the original client IP address. Refer to your load balancer's documentation to identify the correct header name. By default, `X-Real-IP`.
 
-The `load_balancer_real_ip_header` and `load_balancer_trusted_cidrs` parameters enable Wallarm eBPF to accurately determine the source IP when traffic is routed through an L7 load balancer (e.g., AWS ALB) external to the Kubernetes cluster.
+The `loadBalancerRealIPHeader` and `loadBalancerTrustedCIDRs` parameters enable Wallarm eBPF to accurately determine the source IP when traffic is routed through an L7 load balancer (e.g., AWS ALB) external to the Kubernetes cluster.
 
-## config.agent.load_balancer_trusted_cidrs
+## config.agent.loadBalancerTrustedCIDRs
 
 Defines a whitelist of CIDR ranges for trusted L7 load balancers. Example:
 
 ```yaml
 config:
   agent:
-    load_balancer_trusted_cidrs:
+    loadBalancerTrustedCIDRs:
       - 10.10.0.0/24
       - 192.168.0.0/16
 ```
@@ -126,10 +126,10 @@ To update these values using Helm:
 
 ```
 # To add a single item to the list:
-helm upgrade <RELEASE_NAME> <CHART> --set 'config.agent.load_balancer_trusted_cidrs[0]=10.10.0.0/24'
+helm upgrade <RELEASE_NAME> <CHART> --set 'config.agent.loadBalancerTrustedCIDRs[0]=10.10.0.0/24'
 
 # To add multiple items to the list:
-helm upgrade <RELEASE_NAME> <CHART> --set 'config.agent.load_balancer_trusted_cidrs[0]=10.10.0.0/24,config.agent.load_balancer_trusted_cidrs[1]=192.168.0.0/16'
+helm upgrade <RELEASE_NAME> <CHART> --set 'config.agent.loadBalancerTrustedCIDRs[0]=10.10.0.0/24,config.agent.loadBalancerTrustedCIDRs[1]=192.168.0.0/16'
 ```
 
 ## processing.metrics
