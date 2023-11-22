@@ -208,7 +208,7 @@ namespace: default OR (namespace: my-namespace AND environment: production AND (
 OR team: ops) AND app.kubernetes.io/name: myapp)
 ```
 
-### Mixing nemspace labels, pod annotations and `values.yaml` filters
+### Mixing namespace labels, pod annotations and `values.yaml` filters
 
 | Configuration | Result |
 | ------------- | ------ |
