@@ -80,7 +80,10 @@ Specifies whether to use SSL to access the Wallarm API. By default, `true`.
 
 ## config.agent.mirror.allNamespaces
 
-Enables traffic mirroring for all namespaces. The default value is `false`. It is recommended to enable traffic mirroring at lower levels, such as specific namespaces, pods, or containers.
+Enables traffic mirroring for all namespaces. The default value is `false`.
+
+!!! warning "Not recommended to set to `true`"
+    Enabling this by setting it to `true` can cause data duplication and increased resource usage. Prefer [selective mirroring](selecting-packets.md) using namespace labels, pod annotations, or `config.agent.mirror.filters` in `values.yaml`.
 
 ## config.agent.mirror.filters
 
