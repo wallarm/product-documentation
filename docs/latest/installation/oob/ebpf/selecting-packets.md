@@ -212,6 +212,7 @@ OR team: ops) AND app.kubernetes.io/name: myapp)
 
 | Configuration | Result |
 | ------------- | ------ |
+| <ul><li>The value in `values.yaml` → `config.agent.mirror.allNamespaces` is set to `true` and</li><li>The namespace label is `wallarm-mirror=disabled`</li></ul> | The namespace is not mirrored |
 | <ul><li>The namespace label is `wallarm-mirror=enabled` and</li><li>The pod annotation is `mirror.wallarm.com/enabled=false`</li></ul> | The pod is not mirrored |
 | <ul><li>The namespace label is `wallarm-mirror=disabled` and</li><li>The pod annotation is `mirror.wallarm.com/enabled=true`, or any other lower-level setting is chosen for traffic mirroring</li></ul> | The pod is not mirrored |
 | <ul><li>The namespace label is `wallarm-mirror=disabled` and</li><li>The same namespace is selected in `values.yaml` → `config.agent.mirror.filters`</li></ul> | The namespace is not mirrored
