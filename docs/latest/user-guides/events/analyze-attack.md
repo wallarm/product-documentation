@@ -76,7 +76,7 @@ Wallarm offers the ability to collect and display statistics regarding blocked r
     
 In Wallarm, there are several ways for IP to get into the denylist. Depending on the way used, you will need to [search](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) for the associated events using different tags/filters:
 
-* You add it manually (in the **Events** section, use `blocked_source` search or `Blocked Source` filter)
+* You add it manually (in the **Attacks** section, use `blocked_source` search or `Blocked Source` filter)
 * It performs a behavioral attack and is automatically denylisted by:
     * [API Abuse Prevention](../../user-guides/ip-lists/denylist.md#automatic-bots-ips-denylisting) module (`api_abuse` search, `API Abuse` filter)
     * [`Brute force`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger (`brute`, `Brute force`)
@@ -115,7 +115,7 @@ Hit sampling does not affect the quality of attack detection and only helps to a
 * For [behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), attacks of the [Data bomb](../../attacks-vulns-list.md#data-bomb) and [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources): the **regular** sampling algorithm is enabled by default. **Extreme** sampling starts only if the percentage of attacks in your traffic is high.
 * For events from denylisted IPs, sampling is configured on the node side. It uploads only the first 10 identical requests to the Cloud while applying a sampling algorithm to the rest of the hits.
 
-When the sampling algorithm is enabled, in the **Events** section, the **Hits sampling is enabled** notification is displayed.
+When the sampling algorithm is enabled, in the **Attacks** section, the **Hits sampling is enabled** notification is displayed.
 
 Sampling will be automatically disabled once the percentage of attacks in the traffic decreases.
 

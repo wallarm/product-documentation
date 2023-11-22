@@ -22,7 +22,7 @@ If you have recently created the Wallarm account, this [trigger is already creat
 
     There are 4 malicious payloads of the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) types.
 1. Open Wallarm Console → **IP lists** → **Graylist** and check that the IP address from which the requests originated is graylisted for 1 hour.
-1. Open the section **Events** and check that the attacks are displayed in the list:
+1. Open the section **Attacks** and check that the attacks are displayed in the list:
 
     ![Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
@@ -48,7 +48,7 @@ If 4 or more different [malicious payloads](../../glossary-en.md#malicious-paylo
 
     There are 4 malicious payloads of the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) types.
 2. Open Wallarm Console → **IP lists** → **Denylist** and check that the IP address from which the requests originated is blocked for 1 hour.
-1. Open the section **Events** and check that the attacks are displayed in the list:
+1. Open the section **Attacks** and check that the attacks are displayed in the list:
 
     ![Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 

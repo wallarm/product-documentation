@@ -420,7 +420,7 @@ To confirm that the deployment is functional, initiate a test attack using the [
 curl http://<HEROKU_APP_DOMAIN>/etc/passwd
 ```
 
-Since the node operates in the **monitoring** [filtration mode][filtration-mode-docs] by default, the Wallarm node will not block the attack but will register it. To check that the attack has been registered, proceed to Wallarm Console → **Events**:
+Since the node operates in the **monitoring** [filtration mode][filtration-mode-docs] by default, the Wallarm node will not block the attack but will register it. To check that the attack has been registered, proceed to Wallarm Console → **Attacks**:
 
 ![Attacks in the interface][attacks-in-ui-image]
 

@@ -86,7 +86,7 @@ The solution has certain limitations:
     ```
 
     * If originating IP address is [graylisted][graylist-docs], the node will both block the attack (the HTTP response code is 403) and record it.
-    * If originating IP address is not [graylisted][graylist-docs], the node will only record detected attacks. You can check that attacks have been registered in Wallarm Console → **Events**:
+    * If originating IP address is not [graylisted][graylist-docs], the node will only record detected attacks. You can check that attacks have been registered in Wallarm Console → **Attacks**:
     
         ![Attacks in the interface][attacks-in-ui]
 

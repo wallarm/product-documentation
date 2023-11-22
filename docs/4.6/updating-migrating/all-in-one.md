@@ -63,7 +63,7 @@ To test the new node operation:
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-1. Open the Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
+1. Open the Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
 1. As soon as your Cloud stored data (rules, IP lists) is synchronized to the new node, perform some test attacks to make sure your rules work as expected.
 
 ## Filtering node and postanalytics on different servers

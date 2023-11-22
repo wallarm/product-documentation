@@ -4,7 +4,6 @@
 [img-attacks-tab]:      ../../images/user-guides/events/check-attack.png
 [img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
 [img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
-[img-vulns-tab]:        ../../images/user-guides/events/check-vulns.png
 [img-show-falsepositive]: ../../images/user-guides/events/filter-for-falsepositive.png
 [use-search]:             ../search-and-filters/use-search.md
 [search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
@@ -41,7 +40,7 @@ To sort attacks by the time of the last request, you can use the **Sort by lates
 
 You can check attacks in real time. If your company resources are receiving malicious requests, the following data is displayed in Wallarm Console:
 
-* The number of events that have happened in the last 5 minutes, which will be displayed next to the **Events** section name and inside the section.
+* The number of events that have happened in the last 5 minutes, which will be displayed next to the **Attacks** section name and inside the section.
 * Special label, which is shown under the event date in the attacks or the incidents table.
 
 You may also add the `now` keyword to the search field to only display those events happening at the moment: `attacks now`.

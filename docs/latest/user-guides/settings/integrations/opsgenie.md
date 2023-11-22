@@ -60,7 +60,7 @@ Additional trigger’s clauses:
 Target: server, database.
 
 View events:
-https://my.wallarm.com/search?q=incidents&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
+https://my.wallarm.com/attacks?q=incidents&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
 
 Client: TestCompany
 Cloud: EU

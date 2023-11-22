@@ -222,7 +222,7 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
 
     Since the Wallarm layer operates in the **monitoring** [filtration mode](../../../admin-en/configure-wallarm-mode.md#available-filtration-modes), the Wallarm node will not block the attack but will register it.
 
-    To check that the attack has been registered, proceed to Wallarm Console → **Events**:
+    To check that the attack has been registered, proceed to Wallarm Console → **Attacks**:
 
     ![Attacks in the interface](../../../images/admin-guides/test-attacks-quickstart.png)
 

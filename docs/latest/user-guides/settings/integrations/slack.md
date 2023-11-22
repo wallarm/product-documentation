@@ -67,7 +67,7 @@ Additional trigger’s clauses:
 Attack type: SQLi.
 
 View events:
-https://my.wallarm.com/search?q=attacks&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
+https://my.wallarm.com/attacks?q=attacks&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
 
 Client: TestCompany
 Cloud: EU

@@ -68,8 +68,8 @@ The steps to configure the trigger are:
     * One or more **IP** the requests are sent from.
 6. Select trigger reactions:
 
-    * If the trigger condition is **Brute force** - the reaction is **Mark as brute force**. Requests received after the threshold exceedance will be marked as the brute‑force attack and displayed in the **Events** section of Wallarm Console.
-    * If the trigger condition is **Forced browsing** - the reaction is **Mark as forced browsing**. Requests received after the threshold exceedance will be marked as the forced browsing attack and displayed in the **Events** section of Wallarm Console.
+    * If the trigger condition is **Brute force** - the reaction is **Mark as brute force**. Requests received after the threshold exceedance will be marked as the brute‑force attack and displayed in the **Attacks** section of Wallarm Console.
+    * If the trigger condition is **Forced browsing** - the reaction is **Mark as forced browsing**. Requests received after the threshold exceedance will be marked as the forced browsing attack and displayed in the **Attacks** section of Wallarm Console.
     * **Denylist IP address** and the period for IP address blocking to add IP addresses of malicious request sources to the [denylist](../../user-guides/ip-lists/denylist.md). The Wallarm node will block all requests originated from the denylisted IP after the threshold was exceeded.
     * **Graylist IP address** and the period to [graylist](../../user-guides/ip-lists/graylist.md) IP addresses of malicious request sources. The Wallarm node will block requests originated from the graylisted IPs only if requests contain [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs. Brute‑force attacks originated from graylisted IPs are not blocked.
 6. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
@@ -92,7 +92,7 @@ You can configure several triggers for brute force protection.
 2. If the trigger reaction is **Denylist IP address**, open Wallarm Console → **IP lists** → **Denylist** and check that source IP address is blocked.
 
     If the trigger reaction is **Graylist IP address**, check the section **IP lists** → **Graylist** of Wallarm Console.
-3. Open the section **Events** and check that requests are displayed in the list as the brute‑force or forced browsing attack.
+3. Open the section **Attacks** and check that requests are displayed in the list as the brute‑force or forced browsing attack.
 
     ![Forced browsing attack in the interface](../../images/user-guides/events/dirbust-attack.png)
 

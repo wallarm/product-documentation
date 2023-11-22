@@ -159,7 +159,7 @@ Response analysis is required for vulnerability detection during [passive detect
 
 Enables `on` / disables `off` sending statistics about the requests from the [denylisted][denylist-docs] IPs from node to the Cloud.
 
-* With `config.wallarm.aclExportEnable: "on"` (default) the statistics on the requests from the denylisted IPs will be [displayed][denylist-view-events-docs] in the **Events** section.
+* With `config.wallarm.aclExportEnable: "on"` (default) the statistics on the requests from the denylisted IPs will be [displayed][denylist-view-events-docs] in the **Attacks** section.
 * With `config.wallarm.aclExportEnable: "off"` the statistics on the requests from the denylisted IPs will not be displayed.
 
 [**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-acl-export-enable`.

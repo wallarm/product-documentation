@@ -137,7 +137,7 @@ To see attacks to some endpoint, click number in the **Hits** column:
 
 ![API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
 
-The **Events** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
+The **Attacks** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
 
 ```
 attacks last 7 days endpoint_id:<YOUR_ENDPOINT_ID>

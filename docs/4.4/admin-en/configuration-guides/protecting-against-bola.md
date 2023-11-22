@@ -56,7 +56,7 @@ For the Wallarm node to identify BOLA attacks:
     * (Optional) One or more **IPs** originating the requests.
 1. Select trigger reactions:
 
-    * **Mark as BOLA**. Requests exceeding the threshold are marked as a BOLA attack and displayed in the **Events** section of Wallarm Console. Wallarm node does NOT block these malicious requests.
+    * **Mark as BOLA**. Requests exceeding the threshold are marked as a BOLA attack and displayed in the **Attacks** section of Wallarm Console. Wallarm node does NOT block these malicious requests.
     * [**Denylist IP addresses**](../../user-guides/ip-lists/denylist.md) originating malicious requests and the blocking period.
     
         The Wallarm node will block both legitimate and malicious requests (including BOLA attacks) originating from the denylisted IP.
@@ -97,7 +97,7 @@ The **BOLA protection** section UI enables you to fine-tune the default Wallarm 
 1. If the trigger reaction is **Denylist IP address**, open Wallarm Console → **IP lists** → **Denylist** and check that the source IP address is blocked.
 
     If the trigger reaction is **Graylist IP address**, check the section **IP lists** → **Graylist** of Wallarm Console.
-1. Open the section **Events** and check that requests are displayed in the list as BOLA attack.
+1. Open the section **Attacks** and check that requests are displayed in the list as BOLA attack.
 
     ![BOLA attack in the UI](../../images/user-guides/events/bola-attack.png)
 

@@ -87,7 +87,7 @@ curl http://localhost/etc/passwd
 
 If `NGINX_BACKEND` is `example.com`, additionally pass the `-H 'Host: example.com'` option in the curl command.
 
-Since the node operates in the **monitoring** [filtration mode](admin-en/configure-wallarm-mode.md#available-filtration-modes) by default, the Wallarm node will not block the attack but will register it. To check that the attack has been registered, proceed to Wallarm Console → **Events**:
+Since the node operates in the **monitoring** [filtration mode](admin-en/configure-wallarm-mode.md#available-filtration-modes) by default, the Wallarm node will not block the attack but will register it. To check that the attack has been registered, proceed to Wallarm Console → **Attacks**:
 
 ![Attacks in the interface](images/admin-guides/test-attacks-quickstart.png)
 
