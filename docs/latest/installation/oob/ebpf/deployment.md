@@ -41,7 +41,6 @@ Among all supported [Wallarm deployment options](../../supported-deployment-opti
 
 ## Limitations
 
-* The analysis of traffic transmitted in plain text is temporarily not supported.
 * When traffic is transmitted using Proxy Protocol and SSL, where SSL is encapsulated within Proxy Protocol, the solution cannot accurately retrieve source IP from the proxy protocol.
 * The solution does not instantly block malicious requests since traffic analysis proceeds irrespective of actual traffic flow.
 
@@ -60,7 +59,7 @@ Among all supported [Wallarm deployment options](../../supported-deployment-opti
 * Access to `https://charts.wallarm.com` to add the Wallarm Helm charts.
 * Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`.
 * Linux kernel 5.10 and above with BTF (BTP Type Format) enabled on Ubuntu, Debian, RedHat, Google COS, or Amazon Linux 2.
-* Traffic is using HTTP 1.x, HTTP 2, or Proxy v1 protocols under TLS/SSL. Not compatible with plain text data transfer.
+* Traffic is using HTTP 1.x, HTTP 2, or Proxy v1 protocols under TLS/SSL, or plain text data transfer.
 * An application deployed as a Pod in a Kubernetes cluster.
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or the [EU Cloud](https://my.wallarm.com/).
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud.
