@@ -41,6 +41,7 @@ More detailed information about access of different user roles to the Wallarm en
 | **Filtering nodes**       | View and manage                      | View                     | View                         | - |
 | **Dashboard**       | View                                 | View                     | View                         | - |
 | **Attacks**          | View and manage                      | View and manage          | View                         | - |
+| **Incidents**          | View and manage                      | View and manage          | View                         | - |
 | **Vulnerabilities** | View and manage                      | View and manage          | View              | - |
 | **API inventory by API Discovery**   | View and manage                      | View and manage          | -                            | View and download |
 | **API Specifications**   | View and manage                      | View          | View                            | View |
