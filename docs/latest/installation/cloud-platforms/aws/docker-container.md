@@ -65,7 +65,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
                     {
                         "name": "NGINX_BACKEND",
                         "value": "<HOST_TO_PROTECT_WITH_WALLARM>"
-                    }
+                    },
                     {
                         "name": "WALLARM_LABELS",
                         "value": "group=<GROUP>"
@@ -103,7 +103,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
                     {
                         "name": "NGINX_BACKEND",
                         "value": "<HOST_TO_PROTECT_WITH_WALLARM>"
-                    }
+                    },
                     {
                         "name": "WALLARM_LABELS",
                         "value": "group=<GROUP>"
@@ -237,7 +237,7 @@ To deploy the container with environment variables and configuration file mounte
                     {
                         "name": "WALLARM_API_HOST",
                         "value": "us1.api.wallarm.com"
-                    }
+                    },
                     {
                         "name": "WALLARM_LABELS",
                         "value": "group=<GROUP>"
