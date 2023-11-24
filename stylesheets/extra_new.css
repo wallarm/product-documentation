@@ -33,6 +33,10 @@
   --header-bottom: 0px;
 }
 
+.md-banner__inner {
+  display: none;
+}
+
 .md-main {
   background-color: rgba(236, 239, 244, 0.5);
 }
