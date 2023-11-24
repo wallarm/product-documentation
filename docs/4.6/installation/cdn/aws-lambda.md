@@ -177,7 +177,7 @@ To test the functionality of the deployed policy, follow these steps:
     ```
     curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
     ```
-1. Open Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
+1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
     
     ![Attacks in the interface][attacks-in-ui-image]
 

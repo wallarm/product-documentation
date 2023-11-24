@@ -235,7 +235,7 @@ Identifying and handling false positives is a part of Wallarm fine‑tuning to p
 
 ## Managing detected attacks
 
-All detected attacks are displayed in the Wallarm Console → **Events** section by the filter `attacks`. You can manage attacks through the interface as follows:
+All detected attacks are displayed in the Wallarm Console → **Attacks** section by the filter `attacks`. You can manage attacks through the interface as follows:
 
 * View and analyze attacks
 * Increase the priority of an attack in the recheck queue

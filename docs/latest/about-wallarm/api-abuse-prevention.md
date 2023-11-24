@@ -84,7 +84,7 @@ You can configure API Abuse Prevention to react to malicious bots in one of the 
 You can explore the bots' activity in the Wallarm Console UI as follows:
 
 * Explore malicious bots in the **IP lists** section
-* View API abuse performed by bots in the **Events** section
+* View API abuse performed by bots in the **Attacks** section
 
 [Learn how to explore the bots' activity →](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks)
 

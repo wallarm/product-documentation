@@ -4,7 +4,7 @@ To check the NGINX‑Wallarm and separate postanalytics modules interaction, you
 curl http://localhost/etc/passwd
 ```
 
-If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Events** section of Wallarm Console:
+If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Attacks** section of Wallarm Console:
 
 ![Attacks in the interface][img-attacks-in-interface]
 

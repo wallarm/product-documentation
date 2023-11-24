@@ -41,7 +41,7 @@ Regardless of how the API leak was added - automatically or manually - the decis
 
 ## Attempts to use leaked tokens
 
-In Wallarm Console → **Events**, set the **Type** filter to `Virtual patch` (`vpatch`) to see all attempts of leaked tokens usage.
+In Wallarm Console → **Attacks**, set the **Type** filter to `Virtual patch` (`vpatch`) to see all attempts of leaked tokens usage.
 
 ![Events - API leaks via vpatch](../images/about-wallarm-waf/api-leaks/api-leaks-in-events.png)
 

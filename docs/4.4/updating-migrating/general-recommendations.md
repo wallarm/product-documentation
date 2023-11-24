@@ -27,7 +27,7 @@ We improve the traffic analysis with each new version of the filtering node. Thi
 To analyze the number of new false positives after the update:
 
 1. Deploy the new version of the filtering node in the `monitoring` [mode](../admin-en/configure-wallarm-mode.md) and send the traffic to the filtering node.
-2. After some time, open the Wallarm Console → **Events** section and analyze the number of requests that are mistakenly recognized as attacks.
+2. After some time, open the Wallarm Console → **Attacks** section and analyze the number of requests that are mistakenly recognized as attacks.
 3. If you find abnormal growth in the number of false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).
 
 ### Increased amount of used resources

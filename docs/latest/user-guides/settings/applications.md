@@ -76,7 +76,7 @@ curl -H "Cookie: SESSID='UNION SELECT SLEEP(5)-- -" -H "CUSTOM-ID: 222" http://e
 
 This request will:
 
-* Be considered an attack and added to the **Events** section.
+* Be considered an attack and added to the **Attacks** section.
 * Be associated with application with ID `222`.
 * If the corresponding application does not exist, it will be added to the **Settings** → **Applications** and automatically named `Application #222`.
 

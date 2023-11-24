@@ -83,7 +83,7 @@ Hit sampling does not affect the quality of attack detection and only helps to a
 * For [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), hit sampling is disabled by default. If the percentage of attacks in your traffic is high, hit sampling is performed in two sequential stages: **extreme** and **regular**.
 * For [behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), attacks of the [Data bomb](../../attacks-vulns-list.md#data-bomb) and [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources): the **regular** sampling algorithm is enabled by default. **Extreme** sampling starts only if the percentage of attacks in your traffic is high.
 
-When the sampling algorithm is enabled, in the **Events** section, the **Hits sampling is enabled** notification is displayed.
+When the sampling algorithm is enabled, in the **Attacks** section, the **Hits sampling is enabled** notification is displayed.
 
 Sampling will be automatically disabled once the percentage of attacks in the traffic decreases.
 

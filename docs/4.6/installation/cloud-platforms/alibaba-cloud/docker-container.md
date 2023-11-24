@@ -156,7 +156,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
     ```
     curl http://<COPIED_IP>/etc/passwd
     ```
-3. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
+3. Open Wallarm Console → **Attacks** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
     ![Attacks in UI][attacks-in-ui-image]
 
 To view details on errors that occurred during the container deployment, please [connect to the instance by one of the methods](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l) and review the [container logs][logging-docs]. If the instance is unavailable, please ensure required filtering node parameters with correct values are passed to the container.
