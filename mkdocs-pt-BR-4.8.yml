@@ -13,7 +13,6 @@ theme:
   version: "4.8"
   try_button_name: "Experimente grátis"
   playground_button_name: "Explore o Playground"
-  demo_request_block: 'Proteja suas aplicações e APIs em qualquer infraestrutura. <a href="https://www.wallarm.com/request-demo?utm_source=wallarm_docs&utm_medium=top_line&utm_campaign=wallarm_docs_experiment_1" style="color:white; font-weight: bold;">Agende uma demonstração agora →</a>'
 
 docs_dir: docs/4.8-pt-BR
 site_dir: site/pt-br

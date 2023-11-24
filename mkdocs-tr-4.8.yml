@@ -13,7 +13,6 @@ theme:
   version: "4.8"
   try_button_name: "Ücretsiz Deneyin"
   playground_button_name: "Oyun Alanını Keşfedin"
-  demo_request_block: 'Uygulamalarınızı ve API''lerinizi herhangi bir altyapıda koruyun. <a href="https://www.wallarm.com/request-demo?utm_source=wallarm_docs&utm_medium=top_line&utm_campaign=wallarm_docs_experiment_1" style="color:white; font-weight: bold;">Hemen bir demo ayırtın →</a>'
 
 docs_dir: docs/4.8-tr
 site_dir: site/tr
