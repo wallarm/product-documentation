@@ -44,6 +44,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.8.5 (2023-11-24)
+
+* Fix method (brute, dirbust, BOLA counters) of statistics export to the Wallarm Cloud which solves issue of possible delays in reactions to the attacks in case of large number of requests and many brute, dirbust, and BOLA triggers
+
 ### 4.8.4 (2023-11-13)
 
 * Helm chart version of the NGINX Ingress controller bumped to 4.8.3
@@ -82,7 +86,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 4.8.1 (2023-11-15)
 
-* Fix method (brute, dirbust, BOLA counters) of statistics export to the Wallarm Cloud which solves issue of possible delays in reactions to the attacks in case of large number of requests and many brute, dirbust, and BOLA triggers.
+* Fix method (brute, dirbust, BOLA counters) of statistics export to the Wallarm Cloud which solves issue of possible delays in reactions to the attacks in case of large number of requests and many brute, dirbust, and BOLA triggers
 
 ### 4.8.0 (2023-10-19)
 
