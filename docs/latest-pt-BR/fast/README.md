@@ -22,5 +22,5 @@ Dadas as capacidades de automatização combinadas com a base de conhecimento de
     Este guias contêm uma variedade de strings de texto e comandos que precisam ser inseridos ou executados para obter o resultado desejado. Para sua conveniência, todos eles são formatados de acordo com as convenções de formatação de texto. Para ver as convenções, prossiga para este [link][link-agreements].
 
 <div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/Me4o4v7dPyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/Me4o4v7dPyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
 </div>

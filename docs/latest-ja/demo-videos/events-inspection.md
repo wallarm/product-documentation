@@ -5,7 +5,7 @@
 <!-- ## ダッシュボードにおける検出イベントの統計情報の表示
 
 <div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/6KBn59aGFxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/6KBn59aGFxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
 </div>
 
 **関連するドキュメンテーション記事**
@@ -15,7 +15,7 @@
 ## イベントタイプの概要
 
 <div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/rhigX3DEoZ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/rhigX3DEoZ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
 </div>
 
 **関連するドキュメンテーション記事**
@@ -27,13 +27,13 @@
 ## フィルタリングノードにより検出された攻撃の分析
 
 <div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/spD3BnI6fq4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/spD3BnI6fq4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
 </div>
 
 ----------
 
 <div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/PWyDrQTfN0Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/PWyDrQTfN0Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
 </div>
 
 **関連するドキュメンテーション記事**
@@ -43,7 +43,7 @@
 * [フィルタリングノードにより検出された脆弱性の分析](../user-guides/vulnerabilities.md) -->
 
 <div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/74s1_X_rhp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/74s1_X_rhp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
 </div>
 
 **関連するドキュメンテーション記事**

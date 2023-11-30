@@ -26,5 +26,5 @@ The **Dashboards** section on your Wallarm account shows the event history's gra
 <!-- ----------
 
 <div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/6KBn59aGFxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/6KBn59aGFxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
 </div> -->
