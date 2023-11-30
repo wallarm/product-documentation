@@ -22,5 +22,5 @@ WallarmのAPIセキュリティテストのフレームワーク（FAST）は自
     このガイドには、必要な結果を得るために入力または実行する必要がある様々なテキスト文字列とコマンドが含まれています。便宜のために、それらすべてがテキストフォーマット規約に従ってフォーマットされています。規約を見るためには、この[link][リンク-合意事項]へ進んでください。
 
 <div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/Me4o4v7dPyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/Me4o4v7dPyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
 </div>
