@@ -16,6 +16,7 @@ This policy describes the method of versioning of different Wallarm filtering no
 | 4.4              | November 2022  |               |
 | 4.6              | April 2023     |               |
 | 4.8              | October 2023   |               |
+| 4.10             | January 2024   |               |
 
 ## Version format
 
