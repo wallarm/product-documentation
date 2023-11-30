@@ -22,5 +22,5 @@ Otomasyon yetenekleri ve dahili güvenlik açığı bilgi tabanı ile birleşti�
     Bu rehberler, istenen sonucu elde etmek için girilmesi veya çalıştırılması gereken çeşitli metin dizeleri ve komutları içerir. Sizin rahatınız için, hepsi metin biçimlendirme kurallarına uygun olarak biçimlendirilmiştir. Kuralları görmek için bu [bağlantıya][link-sozlesmeler] ilerleyin.
 
 <div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/Me4o4v7dPyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/Me4o4v7dPyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>

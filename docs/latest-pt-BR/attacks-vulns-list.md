@@ -85,7 +85,7 @@ Além disso, o nó de filtragem Wallarm usa vários tipos de ataque e vulnerabil
 
 ??? info "Assista ao vídeo sobre como a Wallarm protege contra o OWASP Top 10"
    <div class="video-wrapper">
-   <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+   <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
    </div>
 
 ## A lista principal de ataques e vulnerabilidades
