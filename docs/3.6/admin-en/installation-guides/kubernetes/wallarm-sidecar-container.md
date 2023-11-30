@@ -35,5 +35,5 @@ The method of sidecar container installation depends on the Kubernetes applicati
 <!-- ## Demo videos
 
 <div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/N5mEXPoU2Lw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/N5mEXPoU2Lw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div> -->

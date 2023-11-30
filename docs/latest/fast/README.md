@@ -22,5 +22,5 @@ Given the automatization capabilities combined with the built-in vulnerabilities
     This guides contain a variety of text strings and commands that need to be entered or run to get the desired result. For your convenience, all of them are formatted according to the text formatting conventions. To see the conventions, proceed to this [link][link-agreements].
 
 <div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/Me4o4v7dPyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/Me4o4v7dPyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
