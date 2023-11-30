@@ -176,14 +176,10 @@ nav:
           - Mozilla Firefox: fast/ssl/browsers-ssl/firefox-ssl.md
       - Troubleshooting: fast/TSHOOT.md
   - WAAP/WAF:
-    - Overview: about-wallarm/waap-overview.md
-    - Restrictions by IP:
-      - Overview: user-guides/ip-lists/overview.md
-      - Allowlist: user-guides/ip-lists/allowlist.md
-      - Graylist: user-guides/ip-lists/graylist.md
-      - Denylist: user-guides/ip-lists/denylist.md
+    - Attack Detection Procedure: about-wallarm/protecting-against-attacks.md
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
     - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
+    - Restrictions by IP: user-guides/ip-lists/overview.md
     - Rules:
       - Application Profile Rules: user-guides/rules/intro.md
       - Inspecting Application Profile Rules: user-guides/rules/view.md
