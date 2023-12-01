@@ -46,7 +46,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 4.8.5 (2023-11-24)
 
-* Fix method (brute, dirbust, BOLA counters) of statistics export to the Wallarm Cloud which solves issue of possible delays in reactions to the attacks in case of large number of requests and many brute, dirbust, and BOLA triggers
+* Optimize Wallarm Cloud's export of brute, dirbust, and BOLA statistics to avoid delays in reaction to attacks under high request loads and numerous triggers
 
 ### 4.8.4 (2023-11-13)
 
@@ -86,7 +86,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 4.8.1 (2023-11-15)
 
-* Fix method (brute, dirbust, BOLA counters) of statistics export to the Wallarm Cloud which solves issue of possible delays in reactions to the attacks in case of large number of requests and many brute, dirbust, and BOLA triggers
+* Optimize Wallarm Cloud's export of brute, dirbust, and BOLA statistics to avoid delays in reaction to attacks under high request loads and numerous triggers
 
 ### 4.8.0 (2023-10-19)
 
@@ -119,6 +119,12 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 4.8.1-1 (2023-12-01)
+
+* Optimize Wallarm Cloud's export of brute, dirbust, and BOLA statistics to avoid delays in reaction to attacks under high request loads and numerous triggers
+* The `wallarm-appstructure` package bumped to 1.7.6
+* Removed apt cache for Vim package, which previously provoked false positive vulnerability detection by AWS Inspector
 
 ### 4.8.0-1 (2023-10-19)
 
