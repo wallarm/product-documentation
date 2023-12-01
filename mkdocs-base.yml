@@ -32,6 +32,7 @@ theme:
   features:
     - navigation.top
     - navigation.tracking
+    - navigation.prune
     - content.code.copy
     - content.action.edit
     - search.suggest
