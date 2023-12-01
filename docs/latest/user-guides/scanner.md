@@ -1,4 +1,4 @@
-# Managing Company's Exposed Assets <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Exposed Assets <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 The **Scanner** section of Wallarm Console allows you to see all of your public assets, such as domains, IP addresses, and ports, that have been automatically discovered by Wallarm Scanner.
 
@@ -118,3 +118,13 @@ To return to the default settings, use an empty value or enter `0`.
 ![Setting domain RPS](../images/user-guides/scanner/set-rps-for-domain.png)
 
 If multiple domains are associated with the same IP address, the speed of requests to this IP address will not exceed the limits for the IP address. If multiple IP addresses are associated with one domain, then the total speed of requests to these IP addresses within this domain will not exceed the limits for the domain.
+
+## Preventing scanner from blocking
+
+If besides Wallarm, you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you configure an allowlist with the [IP addresses](../admin-en/scanner-addresses.md) for the Wallarm Scanner.
+
+This will allow Wallarm components to seamlessly scan your resources for vulnerabilities.
+
+## Contacting Wallarm support to stop the resource scanner
+
+If the Wallarm scanner scans your company's resources that you never set for discovery, [contact Wallarm Support](mailto:support@wallarm.com) to exclude the resource from scanning.
