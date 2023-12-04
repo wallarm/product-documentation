@@ -1,4 +1,4 @@
-# Attack Detection
+# Attack Detection Procedure
 
 The Wallarm platform continuously analyzes application traffic and mitigates malicious requests in real-time. From this article, you will learn resource types Wallarm protects from attacks, methods of detecting attacks in traffic and how you can track and manage detected threats.
 
@@ -57,9 +57,30 @@ To detect attacks, Wallarm uses the following process:
 3. Apply [custom rules for request analysis](#custom-rules-for-request-analysis) configured in Wallarm Console.
 4. Make a decision whether the request is malicious or not based on [default and custom detection rules](#tools-for-attack-detection).
 
-## Library libdetection
+## Tools for attack detection
 
-Using **libdetection** [ensures](waap-overview.md#protection-by-default) the double‑detection of attacks and reduces the number of false positives.
+To detect malicious requests, Wallarm nodes [analyze](waap-overview.md#protection-by-default) all requests sent to the protected resource using the following tools:
+
+* Library **libproton**
+* Library **libdetection**
+* Custom rules for request analysis
+
+### Library libproton
+
+The **libproton** library is a primary tool for detecting malicious requests. The library uses the component **proton.db** which determines different attack type signs as token sequences, for example: `union select` for the [SQL injection attack type](../attacks-vulns-list.md#sql-injection). If the request contains a token sequence matching the sequence from **proton.db**, this request is considered to be an attack of the corresponding type.
+
+Wallarm regularly updates **proton.db** with token sequences for new attack types and for already described attack types.
+
+### Library libdetection
+
+#### libdetection overview
+
+The [**libdetection**](https://github.com/wallarm/libdetection) library additionally validates attacks detected by the library **libproton** as follows:
+
+* If **libdetection** confirms the attack signs detected by **libproton**, the attack is blocked (if the filtering node is working in the `block` mode) and uploaded to the Wallarm Cloud.
+* If **libdetection** does not confirm the attack signs detected by **libproton**, the request is considered legitimate, the attack is not uploaded to the Wallarm Cloud and is not blocked (if the filtering node is working in the `block` mode).
+
+Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
 
 !!! info "Attack types validated by the libdetection library"
     Currently, the library **libdetection** only validates SQL Injection attacks.

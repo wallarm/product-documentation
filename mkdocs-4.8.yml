@@ -207,8 +207,8 @@ nav:
     - Filtration Mode:
       - Overview: admin-en/configure-wallarm-mode.md
       - Configuration via the Rule: user-guides/rules/wallarm-mode-rule.md
-    - Details:
-      - Attack Detection: about-wallarm/protecting-against-attacks.md
+    - Attack Detection:
+      - Procedure: about-wallarm/protecting-against-attacks.md
       - Attack Types: attacks-vulns-list.md
     # - Overview: ...
     # - OWASP Top 10: ...
