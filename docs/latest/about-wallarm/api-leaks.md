@@ -1,6 +1,11 @@
 # API Leaks Remediation
 
-The **API Leaks** module of the Wallarm platform actively scans thousands of public repositories and sources to check for the leaks of API tokens and allow you to block leaked credentials usage by means of the deployed Wallarm [node(s)](../installation/supported-deployment-options.md). This article gives an overview of API Leaks: issues addressed by it, its purpose and main possibilities.
+The **API Leaks** module of the Wallarm platform actively scans thousands of public repositories and sources to check for the leaks of API tokens. This article gives an overview of API Leaks: issues addressed by it, its purpose and main possibilities.
+
+The module can operate in two different modes: 
+
+* **Only detect** API leaks and report that to users via the **API Leaks** section in Wallarm Cloud. Additionally, you may configure Wallarm to send notifications about found API leaks via email or messengers.
+* Detect and [**perform measures to block**](#making-decisions) usage of leaked credentials until they are regenerated or removed. This requires deployed Wallarm [node(s)](../user-guides/nodes/nodes.md).
 
 ![API Leaks](../images/about-wallarm-waf/api-leaks/api-leaks.png)
 
@@ -27,12 +32,7 @@ The **API Leaks** section provides rich visual representation for your current s
 
 ## Access API Leaks
 
-By default, the API Leaks module is disabled. To get access to the module, please send a request to [Wallarm technical support](mailto:support@wallarm.com). Note that for mitigation of the leaked API tokens threat, Wallarm [node(s)](../user-guides/nodes/nodes.md) should be deployed.
-
-When module is enabled, in Wallarm console, use **API Leaks** section to work with it:
-
-* Only users with the **Administrator** or **Global administrator** [role](../user-guides/settings/users.md#user-roles) can access this section and manage leaks.
-* Users with the **Analyst** or **Global analyst** role can access this section, but cannot manage leaks.
+By default, the API Leaks module is disabled. To get access to the module, please send a request to [Wallarm technical support](mailto:support@wallarm.com).
 
 ## New API leaks
 
