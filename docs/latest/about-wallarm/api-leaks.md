@@ -1,6 +1,6 @@
 # API Leaks Remediation
 
-The **API Leaks** module of the Wallarm platform actively scans thousands of public repositories and sources to check for the leaks of API tokens. This article gives an overview of API Leaks: issues addressed by it, its purpose and main possibilities.
+The **API Leaks** module of the Wallarm platform actively scans selected public repositories and sources to check for the leaks of API tokens. This article gives an overview of API Leaks: issues addressed by it, its purpose and main possibilities.
 
 The module can operate in two different modes: 
 
@@ -8,6 +8,8 @@ The module can operate in two different modes:
 * Detect and [**perform measures to block**](#making-decisions) usage of leaked credentials until they are regenerated or removed. This requires deployed Wallarm [node(s)](../user-guides/nodes/nodes.md).
 
 ![API Leaks](../images/about-wallarm-waf/api-leaks/api-leaks.png)
+
+By default, the API Leaks module is disabled. To get access to the module, please send a request to [Wallarm technical support](mailto:support@wallarm.com).
 
 ## Issues addressed by API Leaks
 
@@ -19,7 +21,7 @@ If leaked API secrets are found, a multifaceted response is needed to prevent ha
 
 The **API Leaks** Wallarm module helps to solve these issues by providing the following:
 
-* Automatic detection of leaked API tokens from public resources and logging of detected leaks in the Wallarm Console UI.
+* Automatic detection of leaked API tokens from the selected public resources and logging of detected leaks in the Wallarm Console UI.
 * Risk level detection.
 * Ability to add leaks manually.
 * Ability to make your own decisions on how the leaked data problems should be remediated in each case.
@@ -30,18 +32,28 @@ The **API Leaks** section provides rich visual representation for your current s
 
 ![API Leaks - Visualization](../images/about-wallarm-waf/api-leaks/api-leaks-visual.png)
 
-## Access API Leaks
-
-By default, the API Leaks module is disabled. To get access to the module, please send a request to [Wallarm technical support](mailto:support@wallarm.com).
-
 ## New API leaks
 
 There are two ways to register new leaks:
 
-* Automatic - Wallarm actively scans thousands of public repositories and sources and adds new leaks to the list. Sort by **Status** and view `Opened` leaks - they require your attention.
+* Automatic - Wallarm actively scans the selected public repositories and sources and adds new leaks to the list. Sort by **Status** and view `Opened` leaks - they require your attention.
 * Manual - add API leaks manually. Each one is a set of leaked tokens.
 
 ![API Leaks - Manual adding](../images/about-wallarm-waf/api-leaks/api-leaks-add-manually.png)
+
+## Define sources to search for API leaks
+
+You can define where to search for API leaks, adding known public repositories and other sources. You add domains, and Wallarm automatically searches them for subdomains and presented leaks.
+
+To define sources to search for API leaks:
+
+1. In the **API Leaks** section, click **Configure**.
+1. At the **Scope** tab, click **Add domain**, add domain name and confirm adding.
+
+    Wallarm will start searching for subdomains and leaked credentials published under the domain. The search progress and results will be displayed at the **Status** tab.
+
+![API Leaks - Configuring scope](../images/about-wallarm-waf/api-leaks/api-leaks-configure-scope.png)
+
 
 ## Interactive visualization
 
