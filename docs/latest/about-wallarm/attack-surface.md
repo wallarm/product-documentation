@@ -1,17 +1,12 @@
-# API Attack Surface
+# API Attack Surface Management
 
-Not knowing your company API endpoint portfolio introduces significant security risks, ranging from unauthorized access and data breaches to the potentially insufficient oversight of vulnerabilities.
+Wallarm's **API Attack Surface Management** (**AASM**) is a set of capabilities that allows organizations to enumerate, assess, and manage the public attack surface presented by their APIs. With AASM, organizations can get a handle on the previously unknown risks that come with the growth in APIs for application delivery and integration, including API leaks.
 
-Wallarm's **API Attack Surface** mitigates these risks being capable of:
+![API Attack Surface Management](../images/about-wallarm-waf/api-attack-surface/api-attack-surface.png)
 
-* Analyzing your entire API surface and automatically finding all your publicly [exposed assets](../user-guides/scanner.md)
+Wallarm’s API Attack Surface Management solution includes:
 
-    ![Scanner section](../images/user-guides/scanner/check-scope.png)
-
-* Checking found APIs for [vulnerabilities](../about-wallarm/detecting-vulnerabilities.md)
-
-    ![Vulnerabilities tab](../images/user-guides/vulnerabilities/check-vuln.png)
-
-* Searching public sources for [leaked tokens](../about-wallarm/api-leaks.md) that may be relevant to these APIs and blocking the leaked tokens usage
-
-    ![API Leaks](../images/about-wallarm-waf/api-leaks/api-leaks.png)
+* [Exposed Assets Discovery](../user-guides/scanner.md) - identify all public available assets and APIs.
+* [API Leak Detection](../about-wallarm/api-leaks.md) - scan public sources for leaked tokens and credentials.
+* [API Vulnerability Assessment](../about-wallarm/detecting-vulnerabilities.md) - detect vulnerabilities and security issues.
+* [API Risk Management](../user-guides/vulnerabilities.md) - control and mitigate all identified API risks.

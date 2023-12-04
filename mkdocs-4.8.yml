@@ -56,6 +56,7 @@ nav:
   - API Attack Surface:
     - Overview: about-wallarm/attack-surface.md
     - Exposed Assets: user-guides/scanner.md
+    - API Leaks: about-wallarm/api-leaks.md
     - Vulnerability Assessment:
       - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md
       - Managing Vulnerabilities: user-guides/vulnerabilities.md
@@ -66,7 +67,6 @@ nav:
         - Rewriting Requests Before Attack Replaying: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
       - Use Cases:
         - Running Tests on Non‑Production: vulnerability-detection/active-threat-verification/running-test-on-staging.md
-    - API Leaks Remediation: about-wallarm/api-leaks.md
   - API Security Testing:
     - OpenAPI Security Testing: fast/openapi-security-testing.md
     - Framework for API Security Testing:
