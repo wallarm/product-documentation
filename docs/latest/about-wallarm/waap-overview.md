@@ -10,30 +10,21 @@ Wallarm's WAAP is a next-gen WAF (Web Application Firewall) supporting multiple 
 
 Although oriented on the traffic processing in a cloud (cloud native WAAP), the solution supports a wide range of [deployment options](../installation/supported-deployment-options.md) enabling you to seamlessly integrate the platform with your environment without its modification.
 
-Wallarm's WAAP functions are provided within the Cloud Native WAAP [subscription plan](../about-wallarm/subscription-plans.md).
+Once you register an account and deploy the Wallarm node, you immediately obtain WAAP [protection by default](#protection-by-default) without creating rules or performing complex investigations. However, WAAP also provides comprehensive tools for [further tuning](#protection-fine-tuning) the security measures for your applications and API - you can use these tools later.
 
-Go deeper into Wallarm's WAAP peculiarities reading its [overview](https://www.wallarm.com/product/wallarm-waap) at the Wallarm official site.
+Wallarm's WAAP functions are provided within the Cloud Native WAAP [subscription plan](../about-wallarm/subscription-plans.md).
 
 ## Protection by default
 
-To get monitoring or protection:
+Once you register your company account in the [US](https://us1.my.wallarm.com/signup) or [EU](https://my.wallarm.com/signup) Wallarm Cloud and [deploy](../installation/supported-deployment-options.md) the Wallarm protecting node connected to this account, the node will immediately start acting.
 
-1. Register account in the [US](https://us1.my.wallarm.com/signup) or [EU](https://my.wallarm.com/signup) Wallarm Cloud.
-1. [Deploy](../installation/supported-deployment-options.md) your node connected to the account.
-1. Set node's [filtration mode](../admin-en/configure-wallarm-mode.md).
+![!Arch scheme1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
 
-As soon as you did so, the node will immediately start acting. It will use the following tools by default:
+For protection the node will use two built-in attack [protection libraries](protecting-against-attacks.md#tools-for-attack-detection) - libproton and libdetection. The node applies them sequentially: the first - **libproton** - to detect signs of the attacks of different types, the second - **libdetection** - for additional validation. Regular updates of both libraries from Wallarm and using double-check approach ensures no attack types will be missed and the level of false positives stays low.
 
-* Library **libproton** - a primary tool for detecting malicious requests. The library uses the component **proton.db** which determines different attack type signs as token sequences, for example: `union select` for the [SQL injection attack type](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1). If the request contains a token sequence matching the sequence from **proton.db**, this request is considered to be an attack of the corresponding type.
+The measures that the node will take when finding attacks depend on the selected **filtration mode**: on enabling the node, you can set it either for just `monitoring` and reporting in case of occurring attacks or to `block` the attacks once they occur.
 
-    Wallarm regularly updates **proton.db** with token sequences for new attack types and for already described attack types.
-
-* Library **libdetection** - additionally validates attacks detected by the library **libproton** as follows:
-
-    * If **libdetection** confirms the attack signs detected by **libproton**, the attack is blocked (if the filtering node is working in the `block` mode) and uploaded to the Wallarm Cloud.
-    * If **libdetection** does not confirm the attack signs detected by **libproton**, the request is considered legitimate, the attack is not uploaded to the Wallarm Cloud and is not blocked (if the filtering node is working in the `block` mode).
-    
-    See details on **libdetection** [here](protecting-against-attacks.md#library-libdetection).
+Being as simple as that in its root, the filtration mode defines how the node will react. However, it is more than that: you have a lot of [configuration possibilities](../admin-en/configure-wallarm-mode.md) to fine-tune the mode to correspond to your API structure and protection needs.
 
 ## Protection fine-tuning
 

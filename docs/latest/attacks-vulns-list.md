@@ -92,7 +92,7 @@ Additionally, the Wallarm filtering node employs several special attack and vuln
 
 The Wallarm solution protects APIs, microservices and web applications from OWASP API Top 10 threats, API abuse and other automated threats.
 
-Technically, [all attacks](../attacks-vulns-list.md) that can be detected by Wallarm are divided into groups:
+Technically, all attacks that can be detected by Wallarm are divided into groups:
 
 * Input validation attacks
 * Behavioral attacks
@@ -144,14 +144,14 @@ When behavioral attack is detected, request sources are blocked, namely the IP a
 
 To protect the resource against behavioral attacks, it is required to set the threshold for correlation analysis and URLs that are vulnerable to behavioral attacks:
 
-* [Instructions on configuration of brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [Instructions on configuration of BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola.md)
+* [Instructions on configuration of brute force protection](admin-en/configuration-guides/protecting-against-bruteforce.md) [s]
+* [Instructions on configuration of BOLA (IDOR) protection](admin-en/configuration-guides/protecting-against-bola.md)
 
 !!! warning "Behavioral attack protection restrictions"
     When searching for behavioral attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of behavioral attack in the following cases:
 
     * These requests contain signs of [input validation attacks](#input-validation-attacks).
-    * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
+    * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
 
 ##  The main list of attacks and vulnerabilities
 
