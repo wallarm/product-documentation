@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/scanner-complaint-en.md"
+--8<-- "3.6/admin-en/scanner-complaint-en.md"
