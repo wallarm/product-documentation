@@ -9,7 +9,8 @@ The module can operate in two different modes:
 
 ![API Leaks](../images/about-wallarm-waf/api-leaks/api-leaks.png)
 
-By default, the API Leaks module is disabled. To get access to the module, please send a request to [Wallarm technical support](mailto:support@wallarm.com).
+!!! info "Enabling API Leaks"
+    By default, the API Leaks module is disabled. To get access to the module, please send a request to [Wallarm technical support](mailto:support@wallarm.com).
 
 ## Issues addressed by API Leaks
 
@@ -25,12 +26,6 @@ The **API Leaks** Wallarm module helps to solve these issues by providing the fo
 * Risk level detection.
 * Ability to add leaks manually.
 * Ability to make your own decisions on how the leaked data problems should be remediated in each case.
-
-## Visualization of found leaks
-
-The **API Leaks** section provides rich visual representation for your current situation regarding found API leaks. This representation is interactive: you can click diagram elements to filter leaks by risk levels and sources.
-
-![API Leaks - Visualization](../images/about-wallarm-waf/api-leaks/api-leaks-visual.png)
 
 ## New API leaks
 
