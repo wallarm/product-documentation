@@ -8,4 +8,4 @@ Watch our demo video to gain familiarity with the various types of API leaks tha
 
 **Related documentation articles**
 
-* [API Leaks Remediation](../about-wallarm/api-leaks.md)
+* [API Leaks](../about-wallarm/api-leaks.md)

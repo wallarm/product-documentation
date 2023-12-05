@@ -1,6 +1,6 @@
 [allowlist-scanner-addresses]: ../user-guides/ip-lists/allowlist.md
 
-# Detecting vulnerabilities
+# Detecting Vulnerabilities
 
 Due to negligence or inadequate information when building or implementing an application, it can be vulnerable to attacks. From this article, you will learn how the Wallarm platform detects application vulnerabilities enabling you to enhance system security.
 
@@ -56,12 +56,9 @@ Vulnerability Scanner checks all company's exposed assets for typical vulnerabil
 * Scanner can be [enabled or disabled](../user-guides/vulnerabilities.md#configuring-vulnerability-detection) in Wallarm Console → **Vulnerabilities** → **Configure**. By default, Scanner is enabled.
 * The list of [vulnerabilities that can be detected](../user-guides/vulnerabilities.md#configuring-vulnerability-detection) by Scanner can be configured in Wallarm Console → **Vulnerabilities** → **Configure**. By default, Vulnerability Scanner detects all available vulnerabilities.
 * The [limit of requests sent from Scanner](../user-guides/scanner.md#limiting-vulnerability-scanning) can be configured for each asset in Wallarm Console → **Scanner** → **Configure**.
-* If you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you configure an allowlist with the IP addresses for the Wallarm Scanner. This will allow Wallarm components to seamlessly scan your resources for vulnerabilities.
+* If you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you configure an allowlist with the [IP addresses](../admin-en/scanner-addresses.md) for the Wallarm Scanner. This will allow Wallarm components to seamlessly scan your resources for vulnerabilities.
 
-    * [Scanner IP address registered in Wallarm US Cloud](../admin-en/scanner-address-us-cloud.md)
-    * [Scanner IP address registered in Wallarm EU Cloud](../admin-en/scanner-address-eu-cloud.md)
-
-    If you do not use additional facilities but use Wallarm Scanner, you do not need to manually allowlist Scanner IP addresses. Starting with Wallarm node 3.0, Scanner IP addresses are allowlisted automatically.
+    You do not need to manually allowlist Scanner IP addresses in Wallarm - starting with Wallarm node 3.0, Scanner IP addresses are allowlisted automatically.
 
 ## False positives
 

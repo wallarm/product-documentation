@@ -78,15 +78,13 @@ nav:
     - API Abuse Prevention:
       - Overview: about-wallarm/api-abuse-prevention.md
       - API Abuse Prevention Profile Management: user-guides/api-abuse-prevention.md
-  - API Posture Management:
-    - Overview: about-wallarm/detecting-vulnerabilities.md
-    - Managing Detected Vulnerabilities: user-guides/vulnerabilities.md
-    - Support of the Scanner Operation:
-      - Scanner Settings: user-guides/scanner.md
-      - Scanner Addresses:
-        - Scanner Addresses for EU Cloud: admin-en/scanner-address-eu-cloud.md
-        - Scanner Addresses for US Cloud: admin-en/scanner-address-us-cloud.md
-      - Contacting Wallarm Support to Stop the Resource Scanner: admin-en/scanner-complaint-en.md
+  - API Attack Surface:
+    - Overview: about-wallarm/attack-surface.md
+    - Exposed Assets: user-guides/scanner.md
+    - API Leaks: about-wallarm/api-leaks.md
+    - Vulnerability Assessment:
+      - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md
+      - Managing Vulnerabilities: user-guides/vulnerabilities.md
     - Active Threat Verification:
       - Overview: vulnerability-detection/active-threat-verification/overview.md
       - Configuration:
@@ -94,9 +92,6 @@ nav:
         - Rewriting Requests Before Attack Replaying: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
       - Use Cases:
         - Running Tests on Non‑Production: vulnerability-detection/active-threat-verification/running-test-on-staging.md
-    - API Leaks Prevention:
-      - Overview: about-wallarm/api-leaks.md
-      - Managing API Leaks: user-guides/api-leaks.md
   - API Security Testing:
     - OpenAPI Security Testing: fast/openapi-security-testing.md
     - Framework for API Security Testing:
@@ -400,6 +395,7 @@ nav:
         - Migrating allowlists and denylists from EOL Wallarm node: updating-migrating/migrate-ip-lists-to-node-3.md
     - Node Versioning Policy: updating-migrating/versioning-policy.md
     - Inventory of Node Artifact Versions: updating-migrating/node-artifact-versions.md
+    - Wallarm Scanner Addresses: admin-en/scanner-addresses.md
   - References:
     - FAQ:
       - Installing Wallarm Ingress controller: faq/ingress-installation.md
