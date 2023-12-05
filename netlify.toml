@@ -2,7 +2,16 @@
 publish = "site"
 command = """
 pip3 install --no-cache-dir -r requirements.txt &&
-mkdocs build -f mkdocs-4.8.yml
+mkdocs build -f mkdocs-4.8.yml &&
+mkdocs build -f mkdocs-4.6.yml &&
+mkdocs build -f mkdocs-4.4.yml &&
+mkdocs build -f mkdocs-deprecated.yml &&
+mkdocs build -f mkdocs-3.6.yml &&
+mkdocs build -f mkdocs-2.18.yml &&
+mkdocs build -f mkdocs-ja-4.8.yml &&
+mkdocs build -f mkdocs-ja-4.6.yml &&
+mkdocs build -f mkdocs-tr-4.8.yml &&
+mkdocs build -f mkdocs-pt-BR-4.8.yml
 """
 [[headers]]
   for = "/*"
