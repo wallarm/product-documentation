@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
       - name: Check if 'update-submodule' branch exists
         run: |
           if git rev-parse --quiet --verify update-submodule; then
