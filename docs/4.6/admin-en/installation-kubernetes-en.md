@@ -75,7 +75,6 @@ To install the Wallarm Ingress Controller:
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
-
 1. Create the `values.yaml` file with the [Wallarm configuration][configure-nginx-ing-controller-docs]. Example of the file with the minimum configuration is below.
 
     When using an API token, specify a node group name in the `nodeGroup` parameter. Your node will be assigned to this group, shown in the Wallarm Console's **Nodes** section. The default group name is `defaultIngressGroup`.
@@ -99,10 +98,6 @@ To install the Wallarm Ingress Controller:
         ```
     
     You can also store the Wallarm node token in Kubernetes secrets and pull it to the Helm chart. [Read more][controllerwallarmexistingsecret-docs]
-
-    !!! info "Deployment from your own registries"    
-        You can overwrite elements of the `values.yaml` file to install the Wallarm Ingress controller from the images stored [in your own registries](#deployment-from-your-own-registries).
-
 1. Install the Wallarm packages:
 
     ``` bash
@@ -144,51 +139,6 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
     ```
 
     If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and the attack will be displayed in Wallarm Console → **Events**.
-
-## Deployment from your own registries
-
-If you cannot pull the Docker images from the Wallarm public repository due to some reasons, for example because you company security policy restricts usage of any external resources, instead you can:
-
-1. Clone these images to your local storage
-1. Install Wallarm NGINX-based Ingress controller using them.
-
-**Cloning images to your local storage**
-
-The following Docker images are used by the Helm chart for NGINX-based Ingress Controller deployment:
-
-* [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
-* [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)
-
-Visit links above to find required versions and obtain their `docker pull` commands, for example:
-
-```
-docker pull wallarm/ingress-controller:4.6.5-1
-docker pull wallarm/node-helpers:4.6.14
-```
-
-Access your registry and execute pull commands.
-
-**Install Wallarm NGINX-based Ingress controller using images in your registry**
-
-Overwrite the `values.yaml` file of Wallarm Ingress controller Helm chart:
-
-```yaml
-controller:
-  image:
-    ## The image and tag for wallarm nginx ingress controller
-    ##
-    registry: <YOUR_REGISTRY>
-    image: wallarm/ingress-controller
-    tag: <IMAGE_TAG>
-    helpers:
-      ## The image and tag for the helper image
-      ##
-      registry: <YOUR_REGISTRY>
-      image: wallarm/node-helpers
-      tag: <IMAGE_TAG>
-```
-
-Then run installation using your modified `values.yaml`.
 
 ## Configuration
 
