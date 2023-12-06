@@ -38,7 +38,6 @@ theme:
     - content.action.edit
     - search.suggest
     - content.tabs.link
-    - navigation.path
   logo: images/wallarm-logo-new.svg
   favicon: images/favicon.svg
   icon:
