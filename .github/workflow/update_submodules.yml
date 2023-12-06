@@ -1,11 +1,15 @@
 name: Update submodules and create PR
 
 on:
-  workflow_dispatch:
-    inputs:
-      target_branch:
-        description: master
-        required: true
+  push:
+    branches:
+      - action-for-submodule-autoupdate
+
+  # workflow_dispatch:
+  #   inputs:
+  #     target_branch:
+  #       description: master
+  #       required: true
 
 jobs:
   update_submodules_and_create_pr:
