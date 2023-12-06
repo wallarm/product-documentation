@@ -15,7 +15,7 @@ plugins:
   - glightbox:
       skip_classes:
         - non-zoomable
-  - optimize
+  - optimize:
       optimize_png: false
 dev_addr: '127.0.0.1:8000'
 
