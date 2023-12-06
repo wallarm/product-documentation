@@ -201,7 +201,7 @@ The following Docker images are used by the Helm chart for NGINX-based Ingress C
 * [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
 * [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)
 
-to install Wallarm NGINX-based Ingress controller using images stored in your registry, overwrite the `values.yaml` file of Wallarm Ingress controller Helm chart:
+To install Wallarm NGINX-based Ingress controller using images stored in your registry, overwrite the `values.yaml` file of Wallarm Ingress controller Helm chart:
 
 ```yaml
 controller:
@@ -211,11 +211,11 @@ controller:
     registry: <YOUR_REGISTRY>
     image: wallarm/ingress-controller
     tag: <IMAGE_TAG>
+  wallarm:
     helpers:
       ## The image and tag for the helper image
       ##
-      registry: <YOUR_REGISTRY>
-      image: wallarm/node-helpers
+      image: <YOUR_REGISTRY>/wallarm/node-helpers
       tag: <IMAGE_TAG>
 ```
 
