@@ -11,7 +11,7 @@ plugins:
   - search
   - minify:
       minify_html: true
-  - meta-descriptions
+  # - meta-descriptions
   - glightbox:
       skip_classes:
         - non-zoomable
