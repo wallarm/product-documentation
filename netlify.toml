@@ -1,9 +1,14 @@
 [build]
 publish = "site"
 command = """
-npm install pngquant &&
+wget http://archive.ubuntu.com/ubuntu/pool/universe/p/pngquant/pngquant_2.12.2-1_amd64.deb &&
+ar x pngquant_2.12.2-1_amd64.deb &&
+tar -xf data.tar.xz &&
+mv ./usr/bin/pngquant . &&
+chmod +x ./pngquant &&
+export PATH=$PATH:$(pwd) &&
 pip3 install --no-cache-dir -r requirements.txt &&
-mkdocs build --dirty -f mkdocs-4.6.yml
+mkdocs build -f mkdocs-4.6.yml
 """
 [[headers]]
   for = "/*"
