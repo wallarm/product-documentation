@@ -35,7 +35,6 @@ theme:
     - navigation.tracking
     - navigation.prune
     - content.code.copy
-    - content.code.select
     - content.action.edit
     - search.suggest
     - content.tabs.link
