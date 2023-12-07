@@ -16,7 +16,6 @@ plugins:
       skip_classes:
         - non-zoomable
   - optimize:
-      print_gain: false
       print_gain_summary: false
 dev_addr: '127.0.0.1:8000'
 
@@ -103,6 +102,9 @@ markdown_extensions:
   - admonition
   - pymdownx.highlight:
       linenums_style: table
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - toc:
       permalink: true
   - pymdownx.critic
