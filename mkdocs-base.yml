@@ -9,8 +9,8 @@ copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Term
 
 plugins:
   - search
-  - minify:
-      minify_html: true
+  # - minify:
+  #     minify_html: true
   # - meta-descriptions
   - glightbox:
       skip_classes:
