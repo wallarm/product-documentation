@@ -15,8 +15,7 @@ plugins:
   - glightbox:
       skip_classes:
         - non-zoomable
-  - optimize:
-      optimize_png: false
+  - optimize
 dev_addr: '127.0.0.1:8000'
 
 watch:
@@ -121,7 +120,6 @@ markdown_extensions:
   - tables
   - sane_lists
   - attr_list
-  - prependnewline
   - meta
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
