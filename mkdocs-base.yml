@@ -38,6 +38,7 @@ theme:
     - navigation.prune
     - content.code.copy
     - content.action.edit
+    - content.code.select
     - search.suggest
     - content.tabs.link
   logo: images/wallarm-logo-new.svg
@@ -113,6 +114,9 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
   - pymdownx.tasklist
   - pymdownx.snippets:
       check_paths: true
