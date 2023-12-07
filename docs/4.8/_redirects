@@ -537,3 +537,18 @@
 
 /user-guides/settings/subscriptions/ /about-wallarm/subscription-plans/
 /4.6/user-guides/settings/subscriptions/ /4.6/about-wallarm/subscription-plans/
+
+/admin-en/scanner-address-us-cloud/ /admin-en/scanner-addresses/
+/admin-en/scanner-address-eu-cloud/ /admin-en/scanner-addresses/
+/4.6/admin-en/scanner-address-us-cloud/ /4.6/admin-en/scanner-addresses/
+/4.6/admin-en/scanner-address-eu-cloud/ /4.6/admin-en/scanner-addresses/
+/4.4/admin-en/scanner-address-us-cloud/ /4.4/admin-en/scanner-addresses/
+/4.4/admin-en/scanner-address-eu-cloud/ /4.4/admin-en/scanner-addresses/
+
+/admin-en/scanner-complaint-en/ /user-guides/scanner/#contacting-wallarm-support-to-stop-the-resource-scanner
+/4.6/admin-en/scanner-complaint-en/ /4.6/user-guides/scanner/#contacting-wallarm-support-to-stop-the-resource-scanner
+/4.4/admin-en/scanner-complaint-en/ /4.4/user-guides/scanner/#contacting-wallarm-support-to-stop-the-resource-scanner
+
+/user-guides/api-leaks/ /about-wallarm/api-leaks/
+/4.6/user-guides/api-leaks/ /4.6/about-wallarm/api-leaks/
+/4.4/user-guides/api-leaks/ /4.4/about-wallarm/api-leaks/
