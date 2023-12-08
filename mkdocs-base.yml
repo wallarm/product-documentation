@@ -32,7 +32,6 @@ theme:
     scheme: wallarm-palette
   features:
     - navigation.top
-    - navigation.tracking
     - navigation.prune
     - content.code.copy
     - content.action.edit
