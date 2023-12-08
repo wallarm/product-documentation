@@ -119,7 +119,7 @@ To return to the default settings, use an empty value or enter `0`.
 
 If multiple domains are associated with the same IP address, the speed of requests to this IP address will not exceed the limits for the IP address. If multiple IP addresses are associated with one domain, then the total speed of requests to these IP addresses within this domain will not exceed the limits for the domain.
 
-## Preventing Scanner from being blocking
+## Preventing Scanner from being blocked
 
 If besides Wallarm, you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you configure an allowlist with the [IP addresses](../admin-en/scanner-addresses.md) for the Wallarm Scanner.
 
