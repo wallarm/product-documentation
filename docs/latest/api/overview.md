@@ -8,6 +8,9 @@ Wallarm API provides interaction between components of the Wallarm system. You c
 * vulnerabilities
 * attacks
 * incidents
+
+hjgdjkslmdn
+
 * users
 * clients
 * filter nodes
