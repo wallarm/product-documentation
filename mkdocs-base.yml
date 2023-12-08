@@ -99,6 +99,9 @@ markdown_extensions:
   - admonition
   - pymdownx.highlight:
       linenums_style: table
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - toc:
       permalink: true
   - pymdownx.critic
