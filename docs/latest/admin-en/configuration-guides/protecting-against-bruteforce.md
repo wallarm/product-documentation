@@ -1,4 +1,4 @@
-# Configuration of brute force protection
+# Brute Force Protection
 
 Behavioral attack (brute‑force attack) is one of the attack types that can be detected by Wallarm if it is appropriately configured. These instructions provide steps to configure the Wallarm node to protect your applications against brute‑force attacks. By default, Wallarm node does not detect brute‑force attacks.
 

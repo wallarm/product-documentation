@@ -4,7 +4,7 @@ Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../attacks
 
 Potential targets of the BOLA attacks are endpoints with variability. Wallarm can automatically discover and protect such endpoints among the ones explored by the [API Discovery](overview.md) module.
 
-To enable automatic BOLA protection, proceed to [Wallarm Console → **BOLA protection**](../user-guides/bola-protection.md) and turn the switch to the enabled state:
+To enable automatic BOLA protection, proceed to Wallarm Console → [**BOLA protection**](../admin-en/configuration-guides/protecting-against-bola.md) and turn the switch to the enabled state:
 
 ![BOLA trigger](../images/user-guides/bola-protection/trigger-enabled-state.png)
 

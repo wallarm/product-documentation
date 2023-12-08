@@ -78,14 +78,6 @@ Endpoint examples matching the URI value are `https://example.com/config.json`, 
 
 [Details on configuration of brute force protection and trigger testing →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
-## Mark requests as the BOLA attack
-
-If 31 or more requests are sent to `https://example.com/shops/{shop_id}/financial_info` in 30 seconds, these requests will be marked as the [BOLA attack](../../attacks-vulns-list.md#broken-object-level-authorization-bola) and the IP address from which the requests originated will be added to the denylist.
-
-![BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
-
-[Details on configuration of BOLA protection and trigger testing →](../../admin-en/configuration-guides/protecting-against-bola.md)
-
 ## Detect weak JWTs
 
 If a significant amount of incoming requests processed by the node 4.4 or above contains weak JWTs, record the corresponding [vulnerability](../vulnerabilities.md).
