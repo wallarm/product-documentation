@@ -8,16 +8,16 @@ mv ./usr/bin/pngquant . &&
 chmod +x ./pngquant &&
 export PATH=$PATH:$(pwd) &&
 pip3 install -r requirements.txt &&
-mkdocs build -f mkdocs-4.8.yml &&
-mkdocs build -f mkdocs-4.6.yml &&
-mkdocs build -f mkdocs-4.4.yml &&
-mkdocs build -f mkdocs-deprecated.yml &&
-mkdocs build -f mkdocs-3.6.yml &&
-mkdocs build -f mkdocs-2.18.yml &&
-mkdocs build -f mkdocs-ja-4.8.yml &&
-mkdocs build -f mkdocs-ja-4.6.yml &&
-mkdocs build -f mkdocs-tr-4.8.yml &&
-mkdocs build -f mkdocs-pt-BR-4.8.yml
+mkdocs build --dirty -f mkdocs-4.8.yml &&
+mkdocs build --dirty -f mkdocs-4.6.yml &&
+mkdocs build --dirty -f mkdocs-4.4.yml &&
+mkdocs build --dirty -f mkdocs-deprecated.yml &&
+mkdocs build --dirty -f mkdocs-3.6.yml &&
+mkdocs build --dirty -f mkdocs-2.18.yml &&
+mkdocs build --dirty -f mkdocs-ja-4.8.yml &&
+mkdocs build --dirty -f mkdocs-ja-4.6.yml &&
+mkdocs build --dirty -f mkdocs-tr-4.8.yml &&
+mkdocs build --dirty -f mkdocs-pt-BR-4.8.yml
 """
 [[headers]]
   for = "/*"
