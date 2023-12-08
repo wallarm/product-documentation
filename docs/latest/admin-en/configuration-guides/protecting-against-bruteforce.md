@@ -23,7 +23,7 @@ There are the following classes of brute‑force attacks:
 1. [Configure](#configuring-the-trigger-to-identify-brute-force) the trigger **Brute force** or **Forced browsing**.
 1. [Test](#testing-the-configuration-of-brute-force-protection) the configuration of brute force protection.
 
-## Configuring the trigger to identify brute force
+## Configuring
 
 !!! info "Triggers for the number of requests"
     Below is the description of the simplified configuration of brute force protection. Trigger condition **Number of requests** is now replaced with two conditions for different brute‑force attack class detection. Also, setting up the rules **Tag requests as a forced browsing / brute‑force attack** is no longer required.
@@ -82,7 +82,7 @@ Description of the provided example and other trigger examples used for brute fo
 
 You can configure several triggers for brute force protection.
 
-## Testing the configuration of brute force protection
+## Testing
 
 1. Send the number of requests that exceeds the configured threshold to the protected URI. For example, 50 requests to `example.com/api/v1/login`:
 
@@ -99,3 +99,27 @@ You can configure several triggers for brute force protection.
     The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 
     To search for attacks, you can use the filters, for example: `dirbust` for the forced browsing attacks, `brute` for the brute‑force attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
+
+## Examples
+
+### Mark requests as a brute‑force attack if 31 or more requests are sent to the protected resource
+
+To mark requests as a regular brute-force attack, the trigger with the condition **Brute force** should be configured.
+
+If 31 or more requests are sent to `https://example.com/api/v1/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which the requests originated will be added to the denylist.
+
+![Brute force trigger with counter](../../images/user-guides/triggers/trigger-example6.png)
+
+[Details on configuration of brute force protection and trigger testing →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+
+### Mark requests as a forced browsing attack if the 404 code is returned to 31 or more requests
+
+To mark requests as a forced browsing attack, the trigger with the condition **Forced browsing** should be configured.
+
+If the endpoint `https://example.com/**.**` returns 404 response code 31 or more times in 30 seconds, appropriate requests will be marked as a [forced browsing attack](../../attacks-vulns-list.md#forced-browsing) and a source IP address of these requests will be blocked.
+
+Endpoint examples matching the URI value are `https://example.com/config.json`, `https://example.com/password.txt`.
+
+![Forced browsing trigger](../../images/user-guides/triggers/trigger-example5.png)
+
+[Details on configuration of brute force protection and trigger testing →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
