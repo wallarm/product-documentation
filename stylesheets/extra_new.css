@@ -555,6 +555,7 @@ svg.navigation-arrow {
 
 .md-typeset a:hover>code {
   background-color: unset;
+  color: #3942EA;
 }
 
 a.headerlink:hover {
