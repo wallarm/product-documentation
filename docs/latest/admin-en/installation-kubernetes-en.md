@@ -61,6 +61,7 @@ To install the Wallarm Ingress Controller:
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
+
 1. Create the `values.yaml` file with the [Wallarm configuration][configure-nginx-ing-controller-docs]. Example of the file with the minimum configuration is below.
 
     When using an API token, specify a node group name in the `nodeGroup` parameter. Your node will be assigned to this group, shown in the Wallarm Console's **Nodes** section. The default group name is `defaultIngressGroup`.
@@ -84,6 +85,10 @@ To install the Wallarm Ingress Controller:
         ```
     
     You can also store the Wallarm node token in Kubernetes secrets and pull it to the Helm chart. [Read more][controllerwallarmexistingsecret-docs]
+
+    !!! info "Deployment from your own registries"    
+        You can overwrite elements of the `values.yaml` file to install the Wallarm Ingress controller from the images stored [in your own registries](#deployment-from-your-own-registries).
+
 1. Install the Wallarm packages:
 
     ``` bash
@@ -183,6 +188,38 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
         # If using an API token, uncomment the following line and specify your node group name
         # nodeGroup: defaultIngressGroup
     ```
+
+## Deployment from your own registries
+
+If you cannot pull the Docker images from the Wallarm public repository due to some reasons, for example because you company security policy restricts usage of any external resources, instead you can:
+
+1. Clone these images to your private registry.
+1. Install Wallarm NGINX-based Ingress controller using them.
+
+The following Docker images are used by the Helm chart for NGINX-based Ingress Controller deployment:
+
+* [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
+* [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)
+
+To install Wallarm NGINX-based Ingress controller using images stored in your registry, overwrite the `values.yaml` file of Wallarm Ingress controller Helm chart:
+
+```yaml
+controller:
+  image:
+    ## The image and tag for wallarm nginx ingress controller
+    ##
+    registry: <YOUR_REGISTRY>
+    image: wallarm/ingress-controller
+    tag: <IMAGE_TAG>
+  wallarm:
+    helpers:
+      ## The image and tag for the helper image
+      ##
+      image: <YOUR_REGISTRY>/wallarm/node-helpers
+      tag: <IMAGE_TAG>
+```
+
+Then run installation using your modified `values.yaml`.
 
 ## Configuration
 
