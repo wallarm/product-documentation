@@ -3,9 +3,9 @@ publish = "site"
 command = """
 rm -r /opt/buildhome/.cache &&
 rm -r /opt/build/cache &&
-pip3 install --no-cache-dir -r requirements.txt &&
 npm cache clean --force &&
 npm install pngquant &&
+pip3 install --no-cache-dir -r requirements.txt &&
 mkdocs build -f mkdocs-4.8.yml &&
 mkdocs build -f mkdocs-4.6.yml &&
 mkdocs build -f mkdocs-4.4.yml &&
