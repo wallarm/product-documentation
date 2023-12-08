@@ -1,6 +1,6 @@
 ---
-bottles:
-  wine: 500
+# YAML header
+render_macros: false
 ---
 
 # Running Docker NGINX‑based Image
@@ -8,6 +8,31 @@ bottles:
 The Wallarm NGINX-based filtering node can be deployed as a Docker container. The Docker container is fat and contains all subsystems of the filtering node.
 
 {{ bottles.wine }}
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    # Wallarm element: annotation to update running pods after changing Wallarm ConfigMap
+    checksum/config: \{{ include (print '$'.Template.BasePath "/wallarm-sidecar-configmap.yaml") . | sha256sum '}}'
+  name: myapp
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        # Wallarm element: definition of Wallarm sidecar container
+        - name: wallarm
+          image: '{{' .Values.wallarm.image.repository '}}':'{{' .Values.wallarm.image.tag '}}'
+```
+
+--8<-- "../include/node-cloud-sync-configuration-example.md"
 
 The functionality of the filtering node installed inside the Docker container is completely identical to the functionality of the other deployment options.
 

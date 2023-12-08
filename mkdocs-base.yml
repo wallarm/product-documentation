@@ -9,6 +9,8 @@ copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Term
 
 plugins:
   - search
+  - macros:
+      on_undefined: lax
   # - minify:
   #     minify_html: true
   # - meta-descriptions
@@ -90,6 +92,7 @@ extra:
           data: 0
           note: >- 
             Thanks for your feedback!
+  var: 333
 
 extra_css:
   - 'extra_new.css'
@@ -122,7 +125,9 @@ markdown_extensions:
   - pymdownx.tasklist
   - pymdownx.snippets:
       check_paths: true
-      base_path: docs
+      base_path:
+        - docs
+        - include
       restrict_base_path: false
   - nl2br
   - tables
