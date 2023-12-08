@@ -1,7 +1,8 @@
 [build]
 command = """
 pip3 install --no-cache-dir -r requirements.txt &&
-npm install --no-cache pngquant &&
+npm cache clean --force &&
+npm install pngquant &&
 mkdocs build -f mkdocs-4.8.yml &&
 mkdocs build -f mkdocs-4.6.yml &&
 mkdocs build -f mkdocs-4.4.yml &&
