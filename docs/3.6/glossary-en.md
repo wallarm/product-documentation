@@ -3,7 +3,7 @@
 The glossary covers the core Wallarm entities to provide you with a better understanding of the platform.
 
 ## Hit
-
+jtrtyrtg
 A hit is a serialized malicious request (original malicious request and metadata added by the filtering node), e.g.:
 
 ![Hit example](images/user-guides/events/analyze-attack-raw.png)
