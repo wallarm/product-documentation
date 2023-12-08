@@ -9,6 +9,8 @@ The majority of Wallarm service contracts do not limit the number of Wallarm nod
 
 By deploying and using the filtering nodes in all stages of your software development and/or service operation activities you have a better chance of properly testing the whole data flow and minimizing the risk of any unexpected situations in your critical production environment.
 
+lkfghhdjsksks
+
 ## Configure proper reporting of end-user IP addresses - технические бест практисы,плюс ссылка на это должна быть в каждой инструкции по деплою
 
 For Wallarm filtering nodes located behind a load balancer or CDN please make sure to configure your filtering nodes to properly report end-user IP addresses (otherwise the [IP list functionality](../user-guides/ip-lists/overview.md), [Active threat verification](detecting-vulnerabilities.md#active-threat-verification), and some other features will not work):
