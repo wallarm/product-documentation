@@ -2,60 +2,6 @@
 
 Learn real examples of [Wallarm triggers](triggers.md) to better understand this feature and configure triggers appropriately.
 
-## Graylist IP if 4 or more malicious payloads are detected in 1 hour
-
-If 4 or more different malicious payloads are sent to the protected resource from one IP address, this IP address will be graylisted for 1 hour for all applications in a Wallarm account.
-
-If you have recently created the Wallarm account, this [trigger is already created and enabled](triggers.md#pre-configured-triggers-default-triggers). You can edit, disable, delete, or copy this trigger as well as the manually created triggers.
-
-![Graylisting trigger](../../images/user-guides/triggers/trigger-example-graylist.png)
-
-**To test the trigger:**
-
-1. Send the following requests to the protected resource:
-
-    ```bash
-    curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
-    curl 'http://localhost/?id=1%27%20select%20version();'
-    curl http://localhost/instructions.php/etc/passwd
-    ```
-
-    There are 4 malicious payloads of the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) types.
-1. Open Wallarm Console → **IP lists** → **Graylist** and check that the IP address from which the requests originated is graylisted for 1 hour.
-1. Open the section **Attacks** and check that the attacks are displayed in the list:
-
-    ![Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
-
-    To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
-
-The trigger is released in any node filtration mode, so that it will graylist IPs regardless of the node mode. However, the node analyzes the graylist only in the **safe blocking** mode. To block malicious requests originating from graylisted IPs, switch the node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) to safe blocking learning its features first.
-
-## Denylist IP if 4 or more malicious payloads are detected in 1 hour
-
-If 4 or more different [malicious payloads](../../glossary-en.md#malicious-payload) are sent to the protected resource from one IP address, this IP address will be denylisted for 1 hour for all applications in a Wallarm account.
-
-![Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
-
-**To test the trigger:**
-
-1. Send the following requests to the protected resource:
-
-    ```bash
-    curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
-    curl 'http://localhost/?id=1%27%20select%20version();'
-    curl http://localhost/instructions.php/etc/passwd
-    ```
-
-    There are 4 malicious payloads of the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) types.
-2. Open Wallarm Console → **IP lists** → **Denylist** and check that the IP address from which the requests originated is blocked for 1 hour.
-1. Open the section **Attacks** and check that the attacks are displayed in the list:
-
-    ![Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
-
-    To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
-
-If an IP address was denylisted by this trigger, the filtering node would block all malicious and legitimate requests that originated from this IP. To allow legitimate requests, you can configure the [graylisting trigger](#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour).
-
 ## Mark requests as a brute‑force attack if 31 or more requests are sent to the protected resource
 
 To mark requests as a regular brute-force attack, the trigger with the condition **Brute force** should be configured.
