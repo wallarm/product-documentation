@@ -3,6 +3,9 @@
 The **API Leaks** module of the Wallarm platform actively scans selected public repositories and sources to check for the leaks of API tokens. This article gives an overview of API Leaks: issues addressed by it, its purpose and main possibilities.
 
 The module can operate in two different modes: 
+\
+xvcvbvnk
+
 
 * **Only detect** API leaks and report that to users via the **API Leaks** section in Wallarm Cloud.
 * Detect and [**perform measures to block**](#making-decisions) usage of leaked credentials until they are regenerated or removed. This requires deployed Wallarm [node(s)](../user-guides/nodes/nodes.md).
