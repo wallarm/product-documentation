@@ -1,0 +1,1 @@
+--8<-- "latest/admin-en/configuration-guides/optimizing-attack-analysis.md"

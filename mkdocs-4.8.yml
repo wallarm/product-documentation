@@ -179,6 +179,7 @@ nav:
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
     - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
     - BOLA Protection: admin-en/configuration-guides/protecting-against-bola-trigger.md
+    - Optimizing Attack Analysis: admin-en/configuration-guides/optimizing-attack-analysis.md
     - Geolocation Restrictions:
       - Overview: user-guides/ip-lists/overview.md
       - Allowlist: user-guides/ip-lists/allowlist.md
