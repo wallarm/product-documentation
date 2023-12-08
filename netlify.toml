@@ -7,6 +7,7 @@ tar -xf data.tar.xz &&
 mv ./usr/bin/pngquant . &&
 chmod +x ./pngquant &&
 export PATH=$PATH:$(pwd) &&
+npm install -D netlify-plugin-cecil-cache &&
 pip3 install -r requirements.txt &&
 mkdocs build --dirty -f mkdocs-4.8.yml &&
 mkdocs build --dirty -f mkdocs-4.6.yml &&
@@ -19,6 +20,11 @@ mkdocs build --dirty -f mkdocs-ja-4.6.yml &&
 mkdocs build --dirty -f mkdocs-tr-4.8.yml &&
 mkdocs build --dirty -f mkdocs-pt-BR-4.8.yml
 """
+[[plugins]]
+  package = "netlify-plugin-cecil-cache"
+  [plugins.inputs]
+  cacheDir = ".cache"
+  debug = true
 [[headers]]
   for = "/*"
   [headers.values]
