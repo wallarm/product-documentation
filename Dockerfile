@@ -3,8 +3,13 @@ EXPOSE 8000
 
 WORKDIR /tmp
 
-COPY requirements.txt /tmp
-RUN pip install --no-cache-dir -r /tmp/requirements.txt
+# If you need to build the docs without mkdocs-material-insiders
+COPY requirements-no-insiders.txt /tmp
+RUN pip install --no-cache-dir -r /tmp/requirements-no-insiders.txt
+
+# If you have access to the mkdocs-material-insiders repo and need to build the docs with it
+# COPY requirements.txt /tmp
+# RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 # Set working directory
 WORKDIR /docs
