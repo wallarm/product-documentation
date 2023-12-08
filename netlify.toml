@@ -2,6 +2,7 @@
 publish = "site"
 command = """
 rm -r /opt/buildhome/.cache &&
+rm -r /opt/build/cache &&
 pip3 install --no-cache-dir -r requirements.txt &&
 npm cache clean --force &&
 npm install pngquant &&
