@@ -1,6 +1,7 @@
 [build]
 publish = "site"
 command = """
+npm install pngquant &&
 pip3 install --no-cache-dir -r requirements.txt &&
 mkdocs build -f mkdocs-4.8.yml &&
 mkdocs build -f mkdocs-4.6.yml &&
