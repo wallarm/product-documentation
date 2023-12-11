@@ -1,0 +1,1 @@
+--8<-- "latest/installation/inline/overview.md"

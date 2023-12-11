@@ -29,9 +29,10 @@ search:
 [logs-docs]:                        ../../admin-en/configure-logging.md
 [oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
 [wallarm-mode]:                     ../../admin-en/configure-wallarm-mode.md
+[inline-docs]:                      ../inline/overview.md
 [oob-docs]:                         ../oob/overview.md
 [wallarm-api-via-proxy]:            ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 
---8<-- "latest/installation/packages/aws-ami.md"
+--8<-- "../include/waf/installation/cloud-platforms/article-for-inline-oob-ami.md"

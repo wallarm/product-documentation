@@ -32,4 +32,34 @@ search:
 [wallarm-api-via-proxy]:            ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-grouped-nodes]:                ../../../images/user-guides/nodes/grouped-nodes.png
 
---8<-- "latest/installation/oob/web-server-mirroring/aws-ami.md"
+# Deploying Wallarm OOB from Amazon Image
+
+This article provides instructions for deploying [Wallarm OOB](overview.md) on AWS using the [official Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD). The solution described here is designed to analyze traffic mirrored by a web or proxy server.
+
+## Use cases
+
+--8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
+
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
+
+## 6. Enable Wallarm to analyze the mirrored traffic
+
+--8<-- "../include/waf/installation/oob/steps-for-mirroring-cloud.md"
+
+## 7. Restart NGINX
+
+--8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+
+## 8. Configure your web or proxy server to mirror traffic to the Wallarm node
+
+Configure your web or proxy server (e.g. NGINX, Envoy) to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web or proxy server documentation.
+
+Inside the [link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring), you will find the example configuration for the most popular of web and proxy servers (NGINX, Traefik, Envoy).
+
+## 9. Test the Wallarm operation
+
+--8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
+
+## 10. Fine-tune the deployed solution
+
+--8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
