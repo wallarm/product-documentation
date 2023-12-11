@@ -74,5 +74,3 @@ You can configure several triggers with different filters for BOLA protection.
 In this example, if 31 or more requests are sent to `https://example.com/shops/{shop_id}/financial_info` in 30 seconds, these requests will be marked as the [BOLA attack](../../attacks-vulns-list.md#broken-object-level-authorization-bola) and the IP address from which the requests originated will be added to the denylist.
 
 ![BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
-
-[Details on configuration of BOLA protection and trigger testing →](../../admin-en/configuration-guides/protecting-against-bola.md)
