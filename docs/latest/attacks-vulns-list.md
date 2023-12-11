@@ -69,7 +69,7 @@
 [ssi-wiki]:     https://en.wikipedia.org/wiki/Server_Side_Includes
 [link-owasp-csrf-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
 
-The Wallarm filtering node can detect many attacks and vulnerabilities including those included into the OWASP API Top 10 threat list. These attacks and vulnerabilities are listed [below][anchor-main-list].
+The Wallarm filtering node can detect many attacks and vulnerabilities including those presented in the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) security risk lists. These attacks and vulnerabilities are listed [below][anchor-main-list].
 
 Each entity in the list
 
@@ -90,7 +90,7 @@ Additionally, the Wallarm filtering node employs several special attack and vuln
 
 ## Attack types
 
-The Wallarm solution protects APIs, microservices and web applications from OWASP API Top 10 threats, API abuse and other automated threats.
+The Wallarm solution protects APIs, microservices and web applications from the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) threats, API abuse and other automated threats.
 
 Technically, all attacks that can be detected by Wallarm are divided into groups:
 
