@@ -8,6 +8,13 @@ In the **IP lists** section of Wallarm Console, you can control access to your a
 
 ![All IP lists](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
 
+## IP lists vs load balancers and CDNs
+
+If Wallarm node is located behind a load balancer or CDN, please make sure to configure your Wallarm node to properly report end-user IP addresses:
+
+* [Instructions for NGINX-based Wallarm nodes](../../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images and Docker node container)
+* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
+
 ## How allowlist, denylist, and graylist work together
 
 The filtering node employs different approaches based on the selected operation [mode](../../admin-en/configure-wallarm-mode.md) to analyze IP lists. In certain modes, it assesses all three types of IP lists, namely allowlists, denylists, and graylists. However, in other modes, it focuses on only specific IP lists.
@@ -27,22 +34,22 @@ This means that:
 
 ## Listing IPs, subnets, locations, and source types
 
-You can list:
+Use **Add object** to add the following into any of IP list:
 
 * **IP or subnet** - the supported maximum subnet mask is `/32` for IPv6 addresses and `/12` for IPv4 addresses.
 
 * **Location** (country or region) to add all IP addresses registered in this country or region
 * **Source type** to add all IP addresses that belong to this type, e.g. Tor, AWS, VPN and others.
 
-Note that **Malicious IPs** source type covers IP addresses that are well-known for malicious activity, as mentioned in public sources, and verified by expert analysis. We pull this data from a combination of the following resources:
+    Note that **Malicious IPs** source type covers IP addresses that are well-known for malicious activity, as mentioned in public sources, and verified by expert analysis. We pull this data from a combination of the following resources:
 
-* [Collective Intelligence Network Security](http://cinsscore.com/list/ci-badguys.txt)
-* [Proofpoint Emerging Threats Rules](https://rules.emergingthreats.net/blockrules/compromised-ips.txt)
-* [DigitalSide Threat-Intel Repository](http://osint.digitalside.it/Threat-Intel/lists/latestips.txt)
-* [GreenSnow](https://blocklist.greensnow.co/greensnow.txt)
-* [www.blocklist.de](https://www.blocklist.de/en/export.html)
-* [NGINX ultimate bad bot blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/blob/master/_generator_lists/bad-ip-addresses.list)
-* [IPsum](https://github.com/stamparm/ipsum)
+    * [Collective Intelligence Network Security](http://cinsscore.com/list/ci-badguys.txt)
+    * [Proofpoint Emerging Threats Rules](https://rules.emergingthreats.net/blockrules/compromised-ips.txt)
+    * [DigitalSide Threat-Intel Repository](http://osint.digitalside.it/Threat-Intel/lists/latestips.txt)
+    * [GreenSnow](https://blocklist.greensnow.co/greensnow.txt)
+    * [www.blocklist.de](https://www.blocklist.de/en/export.html)
+    * [NGINX ultimate bad bot blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/blob/master/_generator_lists/bad-ip-addresses.list)
+    * [IPsum](https://github.com/stamparm/ipsum)
 
 ## Limiting by target application
 
@@ -52,7 +59,7 @@ When adding object to a list, by default it will process all requests from the l
 
 When adding object to a list, you specify time for which it is added. The minimum time is 5 minutes, default is 1 hour, the maximum is forever. On expiration, the object is automatically deleted from the list.
 
-Thus, IP lists have not only the current state, but also the states back in time and they differ. Choose specific dates to examine the IP list content, and the system will return a detailed history of its changes, including the exact timing and method of addition, be it manual or automated. The report also provides data on the individuals responsible for the changes and the reasons behind each inclusion. Such insights help in maintaining an audit trail for compliance and reporting.
+Thus, IP lists have not only the current state, but also the states back in time and they differ. Choose specific dates to examine the IP list content, and the system will return a detailed **History** of its changes, including the exact timing and method of addition, be it manual or automated. The report also provides data on the individuals responsible for the changes and the reasons behind each inclusion. Such insights help in maintaining an audit trail for compliance and reporting.
 
 ![IP List history](../../images/user-guides/ip-lists/ip-list-history.png)
 
@@ -69,7 +76,6 @@ You can enable Wallarm to denylist or graylist IP addresses automatically if the
 * Exceeded threshold for malicious payloads
 * [API Abuse Prevention](../../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works)
 
-
 Note that if you manually delete an automatically listed IP, if new malicious activity is detected it will be automatically added again but:
 
 * **Not before** half of the previous time period
@@ -83,19 +89,5 @@ Note that if you manually delete an automatically listed IP, if new malicious ac
 You can access a list of events originating from any IP address currently on the denylist or previously listed, by clicking on the IP address of interest. This will redirect you to the Events section, where the [relevant event list](../events/analyze-attack.md#analyze-requests-from-denylisted-ips) is displayed.
 
 ![Img](../../images/user-guides/events/denylisted-ip-events.png)
-
-## IP lists vs load balancers and CDNs
-
-If Wallarm node is located behind a load balancer or CDN, please make sure to configure your Wallarm node to properly report end-user IP addresses:
-
-* [Instructions for NGINX-based Wallarm nodes](../../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images and Docker node container)
-* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
-
-## Wallarm scanner in whitelist
-
-If you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you configure an allowlist with the IP addresses for the [Wallarm Scanner](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner). This will allow Wallarm components to seamlessly scan your resources for vulnerabilities.
-
-* [Scanner IP address registered in Wallarm US Cloud](../../admin-en/scanner-address-us-cloud.md)
-* [Scanner IP address registered in Wallarm EU Cloud](../../admin-en/scanner-address-eu-cloud.md)
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
