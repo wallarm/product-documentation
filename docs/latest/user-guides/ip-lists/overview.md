@@ -4,16 +4,9 @@ In the **IP lists** section of Wallarm Console, you can control access to your a
 
 * **Allowlist** is a list of trusted IP addresses that are allowed to access your applications even if requests originated from them contain attack signs.
 * **Denylist** is a list of IP addresses that are not allowed to access your applications. Filtering node blocks all requests originated from denylisted IP addresses.
-* **Graylist** is a list of IP addresses that are allowed to access your applications only if requests originated from them do not contain attack signs.
+* **Graylist** is a list of IP addresses that are allowed to access your applications only if requests originated from them do not contain attack signs. Works only in the `Safe blocking` [mode](../../admin-en/configure-wallarm-mode.md).
 
 ![All IP lists](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
-
-## IP lists vs load balancers and CDNs
-
-If Wallarm node is located behind a load balancer or CDN, please make sure to configure your Wallarm node to properly report end-user IP addresses:
-
-* [Instructions for NGINX-based Wallarm nodes](../../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images and Docker node container)
-* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 
 ## How allowlist, denylist, and graylist work together
 
@@ -34,7 +27,7 @@ This means that:
 
 ## Listing IPs, subnets, locations, and source types
 
-Use **Add object** to add the following into any of IP list:
+Use **Add object** to add the following into any of IP lists:
 
 * **IP or subnet** - the supported maximum subnet mask is `/32` for IPv6 addresses and `/12` for IPv4 addresses.
 
@@ -51,9 +44,14 @@ Use **Add object** to add the following into any of IP list:
     * [NGINX ultimate bad bot blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/blob/master/_generator_lists/bad-ip-addresses.list)
     * [IPsum](https://github.com/stamparm/ipsum)
 
+![Add object to IP list](../../images/user-guides/ip-lists/add-ip-to-list.png)
+
+!!! info "Automatic population of IP lists"
+    Note that besides adding objects manually, you can use [automatic list population](#automatic-listing), which is **preferable**.
+
 ## Limiting by target application
 
-When adding object to a list, by default it will process all requests from the listed IP. But you can limit that by target applications: select one or several applications and only requests from the listed IP to that applications will be processed.
+When adding object to a list, by default all requests from the listed IP will be processed. But you can limit that by target applications: select one or several applications and only requests from the listed IP to that applications will be processed.
 
 ## IP lists over time
 
@@ -89,5 +87,12 @@ Note that if you manually delete an automatically listed IP, if new malicious ac
 You can access a list of events originating from any IP address currently on the denylist or previously listed, by clicking on the IP address of interest. This will redirect you to the Events section, where the [relevant event list](../events/analyze-attack.md#analyze-requests-from-denylisted-ips) is displayed.
 
 ![Img](../../images/user-guides/events/denylisted-ip-events.png)
+
+## Configuring nodes behind load balancers and CDNs to work with IP lists
+
+If Wallarm node is located behind a load balancer or CDN, please make sure to configure your Wallarm node to properly report end-user IP addresses:
+
+* [Instructions for NGINX-based Wallarm nodes](../../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images and Docker node container)
+* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
