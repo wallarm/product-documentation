@@ -175,7 +175,7 @@ nav:
       - Troubleshooting: fast/TSHOOT.md
   - WAAP/WAF:
     - Attack Detection Procedure: about-wallarm/protecting-against-attacks.md
-    - Generic Protection from Malicious Payloads: admin-en/configuration-guides/protecting-with-thresholds.md
+    - Multi-Attack Perpetrators: admin-en/configuration-guides/protecting-with-thresholds.md
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
     - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
     - BOLA Protection: admin-en/configuration-guides/protecting-against-bola-trigger.md

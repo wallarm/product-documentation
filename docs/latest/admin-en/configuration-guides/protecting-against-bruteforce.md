@@ -17,9 +17,14 @@ There are the following classes of brute‑force attacks:
     * These requests contain signs of [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks).
     * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](../../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
 
+## Requirements
+
+To protect resources from brute force attacks, real clients' IP addresses are required.
+
+If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) displaying real clients' IP addresses.
+
 ## Configuration steps
 
-1. If the filtering node is deployed behind a proxy server or load balancer, then [configure](../using-proxy-or-balancer-en.md) displaying of a real IP address of the client.
 1. [Configure](#configuring-the-trigger-to-identify-brute-force) the trigger **Brute force** or **Forced browsing**.
 1. [Test](#testing-the-configuration-of-brute-force-protection) the configuration of brute force protection.
 
