@@ -1,6 +1,6 @@
-# Generic Protection from Malicious Payloads
+# Protection from Multi-Attack Perpetrators
 
-You can configure additional protection for your applications and API by setting the Wallarm reaction in case if number of [malicious payloads](../../glossary-en.md#malicious-payload) exceeds specified threshold.
+When Wallarm is in blocking mode, it automatically blocks all requests with [malicious payloads](../../glossary-en.md#malicious-payload), letting only legitimate requests through. You can configure additional protection for your applications and API by setting the Wallarm reaction in case if number of malicious payloads from the same IP (often referred to as **multi-attack perpetrator**) exceeds specified threshold.
 
 ## Configuring
 
@@ -16,6 +16,7 @@ To configure protection from sources originating malicious requests:
     * **IP** is an IP address from which the request is sent.
 
         The filter expects only single IPs, it does not allow subnets, locations and source types.
+
     * **Domain** is the domain that receives the request or in which an incident is detected.
     * **Response status** is the response code returned to the request.
     * **Target** is an application architecture part that the attack is directed at or in which the incident is detected. It can take the following values: `Server`, `Client`, `Database`.
@@ -34,7 +35,7 @@ To configure protection from sources originating malicious requests:
 
 ## Pre-configured trigger
 
-New company accounts are featured by the pre-configured (default) **Number of malicious payloads** trigger which graylists IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour
+New company accounts are featured by the pre-configured (default) **Number of malicious payloads** trigger which graylists IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour.
 
 [Graylist](../ip-lists/graylist.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../ip-lists/denylist.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
 
