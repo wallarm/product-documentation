@@ -109,3 +109,47 @@ Zombie API risks are similar to the rest of undocumented (shadow) API but may be
 In terms of your uploaded API specifications, zombie API is an endpoint presented in the previous version of your specification, not presented in the current version (that is, there was an intention of deletion of this endpoint) but still presented in actual traffic (detected by API Discovery).
 
 Finding zombie API with Wallarm may be the reason to re‑check API configuration of you applications to actually disable such endpoints.
+
+## Getting notified
+
+To get immediate notifications about newly discovered rogue APIs to your [SIEM, SOAR, log management system or messenger](../user-guides/settings/integrations/integrations-intro.md), in the **Triggers** section of Wallarm Console, configure one or more triggers with the **Rogue API detected** condition.
+
+You can get messages about newly discovered shadow, orphan or zombie APIs or about all of them. You can also narrow notifications by application or host that you want to monitor and by the specification used for their detection.
+
+**Trigger example: notification about newly discovered shadow endpoints in Slack**
+
+In this example, if API Discovery finds new endpoints for the `example.com` API host that are not listed in the `Specification-01` (shadow APIs), the notification about this will be sent to your configured Slack channel.
+
+![Rogue API detected trigger](../images/user-guides/triggers/trigger-example-rogue-api.png)
+
+**To test the trigger:**
+
+1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
+1. In **Triggers**, create trigger as shown above.
+1. In **API Discovery**, filter by API Host `example.com`, then download results as specification and name it `Specification-01`.
+1. Send several requests to the `example.com/users` endpoint to get the `200` (`OK`) response.
+1. In the **API Discovery** section, check that your endpoint was added with the **New** mark.
+1. In **API Specifications**, upload your `Specification-01` for comparison.
+1. Check that your endpoint obtained the shadow API mark in the **Issues** column.
+1. Check messages in your Slack channel like:
+
+    ```
+    [wallarm] A new shadow endpoint has been discovered in your API
+
+    Notification type: api_comparison_result
+
+    The new GET example.com/users shadow endpoint has been discovered in your API.
+
+        Client: Client-01
+        Cloud: US
+
+        Details:
+
+          application: Application-01
+          api_host: example.com
+          endpoint_path: /users
+          http_method: GET
+          type_of_endpoint: shadow
+          link: https://my.wallarm.com/api-discovery?instance=1802&method=GET&q=example.com%2Fusers
+          specification_name: Specification-01
+    ```
