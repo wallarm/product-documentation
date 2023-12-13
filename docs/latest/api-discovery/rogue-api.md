@@ -116,6 +116,14 @@ To get immediate notifications about newly discovered rogue APIs to your [SIEM, 
 
 You can get messages about newly discovered shadow, orphan or zombie APIs or about all of them. You can also narrow notifications by application or host that you want to monitor and by the specification used for their detection.
 
+**How notifications come**
+
+Note the following about how notifications will come:
+    
+* Each new found rogue API will cause 1 notification message
+* Rogue APIs found during previous comparisons (thus "not new") will not cause notification
+* If you update settings of the uploaded specification, notifications about all orphan APIs will be re-sent
+
 **Trigger example: notification about newly discovered shadow endpoints in Slack**
 
 In this example, if API Discovery finds new endpoints for the `example.com` API host that are not listed in the `Specification-01` (shadow APIs), the notification about this will be sent to your configured Slack channel.
