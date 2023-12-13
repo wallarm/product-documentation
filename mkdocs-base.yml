@@ -15,6 +15,10 @@ plugins:
   - glightbox:
       skip_classes:
         - non-zoomable
+  - group:
+      enabled: !ENV INSIDERS
+      plugins:
+        - optimize
 dev_addr: '127.0.0.1:8000'
 
 watch:
