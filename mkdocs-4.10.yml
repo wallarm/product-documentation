@@ -57,6 +57,7 @@ nav:
     - BOLA Protection:
       - Configuration: admin-en/configuration-guides/protecting-against-bola.md
       - BOLA autodetection template: user-guides/bola-protection.md
+    - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
   - API Attack Surface:
     - Overview: about-wallarm/attack-surface.md
     - Exposed Assets: user-guides/scanner.md
