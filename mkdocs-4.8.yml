@@ -179,7 +179,9 @@ nav:
     - Attack Detection Procedure: about-wallarm/protecting-against-attacks.md
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
     - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
-    - Restrictions by IP: user-guides/ip-lists/overview.md
+    - Filtering by IP: 
+      - IP Lists: user-guides/ip-lists/overview.md
+      - API Calls for IP Lists: user-guides/ip-lists/ip-lists-api-calls.md
     - Rules:
       - Application Profile Rules: user-guides/rules/intro.md
       - Inspecting Application Profile Rules: user-guides/rules/view.md
