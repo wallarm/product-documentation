@@ -1,10 +1,10 @@
-# Restrictions by IP
+# Filtering by IP
 
-In the **IP lists** section of Wallarm Console, you can control access to your applications by allowlisting, denylisting, and graylisting IP addresses.
+In the **IP lists** section of Wallarm Console, you can control access to your applications by allowlisting, denylisting, and graylisting of IP addresses, geographical locations, data centers or source types.
 
-* **Allowlist** is a list of trusted IP addresses that are allowed to access your applications even if requests originated from them contain attack signs.
-* **Denylist** is a list of IP addresses that are not allowed to access your applications. Filtering node blocks all requests originated from denylisted IP addresses.
-* **Graylist** is a list of IP addresses that are allowed to access your applications only if requests originated from them do not contain attack signs. Works only in the `Safe blocking` [mode](../../admin-en/configure-wallarm-mode.md).
+* **Allowlist** is a list of trusted sources that bypass Wallarm protection and access your applications without any checks.
+* **Denylist** is a list of sources that cannot access your applications - all requests from them will be blocked.
+* **Graylist** is a list of suspicious sources which attacks will be blocked in `Safe blocking` [mode](../../admin-en/configure-wallarm-mode.md). In any other mode, all sources in Graylist are ignored.
 
 ![All IP lists](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
 
@@ -32,22 +32,29 @@ Use **Add object** to add the following into any of IP lists:
 * **IP or subnet** - the supported maximum subnet mask is `/32` for IPv6 addresses and `/12` for IPv4 addresses.
 
 * **Location** (country or region) to add all IP addresses registered in this country or region
-* **Source type** to add all IP addresses that belong to this type, e.g. Tor, AWS, VPN and others.
+* **Source type** to add all IP addresses that belong to this type. Available types are:
 
-    Note that **Malicious IPs** source type covers IP addresses that are well-known for malicious activity, as mentioned in public sources, and verified by expert analysis. We pull this data from a combination of the following resources:
-
-    * [Collective Intelligence Network Security](http://cinsscore.com/list/ci-badguys.txt)
-    * [Proofpoint Emerging Threats Rules](https://rules.emergingthreats.net/blockrules/compromised-ips.txt)
-    * [DigitalSide Threat-Intel Repository](http://osint.digitalside.it/Threat-Intel/lists/latestips.txt)
-    * [GreenSnow](https://blocklist.greensnow.co/greensnow.txt)
-    * [www.blocklist.de](https://www.blocklist.de/en/export.html)
-    * [NGINX ultimate bad bot blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/blob/master/_generator_lists/bad-ip-addresses.list)
-    * [IPsum](https://github.com/stamparm/ipsum)
+    * Search Engines
+    * Datacenters (AWS, GCP, Oracle, etc.)
+    * Anonymous sources (Tor, Proxy, VPN)
+    * [Malicious IPs](#malicious-ips)
 
 ![Add object to IP list](../../images/user-guides/ip-lists/add-ip-to-list.png)
 
 !!! info "Automatic population of IP lists"
     Note that besides adding objects manually, you can use [automatic list population](#automatic-listing), which is **preferable**.
+
+## Malicious IPs
+
+When adding the **Malicious IPs** [source type](#listing-ips-subnets-locations-and-source-types) to one of the IP lists, note that this will include all IP addresses that are well-known for malicious activity, as mentioned in public sources, and verified by expert analysis. We pull this data from a combination of the following resources:
+
+* [Collective Intelligence Network Security](http://cinsscore.com/list/ci-badguys.txt)
+* [Proofpoint Emerging Threats Rules](https://rules.emergingthreats.net/blockrules/compromised-ips.txt)
+* [DigitalSide Threat-Intel Repository](http://osint.digitalside.it/Threat-Intel/lists/latestips.txt)
+* [GreenSnow](https://blocklist.greensnow.co/greensnow.txt)
+* [www.blocklist.de](https://www.blocklist.de/en/export.html)
+* [NGINX ultimate bad bot blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/blob/master/_generator_lists/bad-ip-addresses.list)
+* [IPsum](https://github.com/stamparm/ipsum)
 
 ## Limiting by target application
 
@@ -82,17 +89,9 @@ Note that if you manually delete an automatically listed IP, if new malicious ac
 
 * For **API Abuse Prevention** - immediately
 
-## Events from denylisted IPs
-
-You can access a list of events originating from any IP address currently on the denylist or previously listed, by clicking on the IP address of interest. This will redirect you to the Events section, where the [relevant event list](../events/analyze-attack.md#analyze-requests-from-denylisted-ips) is displayed.
-
-![Img](../../images/user-guides/events/denylisted-ip-events.png)
-
 ## Configuring nodes behind load balancers and CDNs to work with IP lists
 
 If Wallarm node is located behind a load balancer or CDN, please make sure to configure your Wallarm node to properly report end-user IP addresses:
 
 * [Instructions for NGINX-based Wallarm nodes](../../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images and Docker node container)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
-
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
