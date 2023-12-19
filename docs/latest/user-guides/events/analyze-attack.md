@@ -96,7 +96,23 @@ Note that search/filters will display both `Monitoring` and - if sending informa
 
 Within the `Blocked` events, use tags to switch to the reason of denylisting - BOLA settings, API Abuse Prevention, trigger or causing record in denylist.
 
-## Sampling of hits
+## Fine-tuning of events
+
+### Grouping of hits
+
+You can optimize the lists of attacks and incidents by grouping [hits](../../glossary-en.md#hit) sent from the same IP address into one attack.
+
+Grouping is enabled by default in Wallarm Console → **Triggers** with the **Hits from the same IP** trigger which activates when a single IP address originates more than 50 hits within 15 minutes.
+
+![Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
+
+If grouped hits have different attack types, malicious payloads and URLs, attack parameters will be marked with the `[multiple]` tag in the attack list.
+
+The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
+
+You can temporary disable, modify or delete the default **Hits from the same IP** trigger and add your own triggers of this type.
+
+### Sampling of hits
 
 Malicious traffic often consists of comparable and identical [hits](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). Storing all hits results in duplicate entries in the event list that increases both the time for event analysis and the load on the Wallarm Cloud.
 
