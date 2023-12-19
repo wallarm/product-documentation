@@ -9,7 +9,7 @@ With Wallarm's integrations you will always stay informed about critical events,
 * Notification on important changes in your security profile, such as your [rules](../../../user-guides/rules/intro.md) and [triggers](../../../user-guides/triggers/triggers.md) changes.
 * Timely warnings about potential [vulnerabilities](../../../about-wallarm/detecting-vulnerabilities.md) in your infrastructure and their risk levels, so you can proactively address the most dangerous weaknesses.
 
-Manage the feature at the **Integrations** section of Wallarm Console, and **Triggers** section for configuring additional alerts for your integrations.
+Manage the feature at the **Integrations** section of Wallarm Console, and the **Triggers** section for configuring additional alerts for your integrations.
 
 ![Integrations](../../../images/user-guides/settings/integrations/integration-panel.png)
 
