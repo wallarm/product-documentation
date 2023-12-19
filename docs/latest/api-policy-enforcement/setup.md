@@ -26,7 +26,7 @@ Note that you will not be able to start configuring API policy enforcement based
 1. Click the **API specification-based policy enforcement** tab.
 
     !!! info "Rogue API detection"
-        * Besides policy enforcement, specifications may be used by [API Discovery](../about-wallarm/api-discovery.md) module for the [rogue API detection](../about-wallarm/api-discovery.md#shadow-orphan-and-zombie-apis). The tab is displayed if API Discovery is enabled.
+        * Besides policy enforcement, specifications may be used by [API Discovery](../api-discovery/overview.md) module for the [rogue API detection](../api-discovery/rogue-api.md). The tab is displayed if API Discovery is enabled.
         * Before using the specification for policy enforcement, it is recommended to use it for searching the rogue (shadow, zombie and orphan) APIs using API Discovery. This way you will be able to understand how much your specification differs from the actual requests of your clients.
 
 1. Select **Use for API specification-based policy enforcement**. Options are displayed.
