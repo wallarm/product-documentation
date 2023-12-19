@@ -1,23 +1,27 @@
 # Credential Stuffing Detection <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-[Credential stuffing](https://owasp.org/www-community/attacks/Credential_stuffing) is the automated injection of stolen or weak username/email and password pairs (credentials) into website login forms, in order to fraudulently gain access to user accounts. This article describes how to detect this type of threats using Wallarm.
+[Credential stuffing](https://owasp.org/www-community/attacks/Credential_stuffing) is the automated injection of stolen or weak username/email and password pairs (credentials) into website login forms, in order to fraudulently gain access to user accounts. This article describes how to detect this type of threats using Wallarm's **Credential Stuffing Detection**.
+
+![Wallarm Console - Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
+
+## Issues addressed by Credential Stuffing Detection
 
 Wallarm's **Credential Stuffing Detection** collects and displays real-time information about compromised and weak credentials in your application, as well as attempts to use them. It also enables instant notifications about such attempts.
 
-Knowledge of accounts with stolen or weak passwords allows you to initiate measures to secure these accounts' data, like communicating with account owners, temporarily suspending access to the accounts, etc.
+To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than 300k records.
 
-![Wallarm Console - Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
+Knowledge of accounts with stolen or weak passwords allows you to initiate measures to secure these accounts' data, like communicating with account owners, temporarily suspending access to the accounts, etc.
 
 Wallarm does not block requests with compromised credentials to avoid blocking legitimate users even if their passwords are weak or were compromised. However, note that credential stuffing attempts can and will be blocked if: 
 
 * They are part of detected malicious bot activity and you have enabled the [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) module.
-* They are part of requests with other [attack signs](../attacks-vulns-list.md) (such as [SQLi](../attacks-vulns-list.md#sql-injection) and others of similar type).
+* They are part of requests with other [attack signs](../attacks-vulns-list.md).
 
 ## Enabling
 
 To enable Wallarm's **Credential Stuffing Detection**:
 
-1. Make sure your [subscription plan](../about-wallarm/subscription-plans.md#subscription-plans) includes **Credential Stuffing Detection**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com?subject=Change%20Wallarm%20subscribtion%20plan%20to%20include%20Credential%20Stuffing%20Detection&body=Hello%20Wallarm%20Sales%20Team%2C%0AI%27m%20writing%20to%20request%20the%20change%20of%20Wallarm%20subscribtion%20plan%20to%20the%20one%20that%20includes%20the%20Credential%20Stuffing%20Detection.%0AI%20would%20be%20happy%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20my%20requirements%20in%20detail.%0AThank%20you%20for%20your%20time%20and%20assistance.).
+1. Make sure your [subscription plan](../about-wallarm/subscription-plans.md#subscription-plans) includes **Credential Stuffing Detection**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com?subject=Change%20Wallarm%20subscription%20plan%20to%20include%20Credential%20Stuffing%20Detection&body=Hello%20Wallarm%20Sales%20Team%2C%0AI%27m%20writing%20to%20request%20the%20change%20of%20Wallarm%20subscription%20plan%20to%20the%20one%20that%20includes%20the%20Credential%20Stuffing%20Detection.%0AThank%20you%20for%20your%20time%20and%20assistance.).
 1. Make sure you have Wallarm node [version 4.10](../updating-migrating/what-is-new.md) or higher. If necessary, consider upgrading.
 1. Check that your user's [role](../user-guides/settings/users.md#user-roles) allows configuring **Credential Stuffing Detection**.
 1. In Wallarm Console → **Credential Stuffing**, enable the functionality (disabled by default).
@@ -26,14 +30,11 @@ Once **Credential Stuffing Detection** is enabled, a [configuration](#configurin
 
 ## Configuring
 
-You need to form the list of authentication endpoints to be checked for attempts of compromised credentials usage. To form the list, in Wallarm Console, click **Credential Stuffing** to access the **Credential Stuffing Detection** section.
+You need to form the list of authentication endpoints to be checked for attempts of compromised credentials usage. To form the list, navigate to Wallarm Console → **Credential Stuffing**.
 
 There are two ways of adding endpoints to the list:
 
 * From the **Recommended endpoints** list - if you use the [API Discovery](../api-discovery/overview.md) module, Wallarm automatically identifies endpoints that could be used for authentication.
-
-    !!! info "Adding recommended endpoints"
-        It is recommended to always include endpoints detected by API Discovery to authentication endpoint list that will be checked by **Credential Stuffing Detection**.
 
 * Manually - you can also include your own unique authentication endpoints, ensuring full protection. When adding manually, set [URI](../user-guides/rules/add-rule.md#uri-constructor) and the way of searching for authentication parameters:
 
@@ -45,7 +46,7 @@ There are two ways of adding endpoints to the list:
 
 ## Viewing compromised credentials usage attempts
 
-The number of attempts to use compromised credentials in the last 7 days is displayed in the **Credential Stuffing Detection** section. Click the counter and you will be redirected to the **Attacks** section that will display all [`credential_stuffing`](../user-guides/search-and-filters/use-search.md#search-by-attack-type) attacks for the last 7 days.
+The number of attempts to use compromised credentials in the last 7 days is displayed in the **Credential Stuffing** section. Click the counter and you will be redirected to the **Attacks** section that will display all [`credential_stuffing`](../user-guides/search-and-filters/use-search.md#search-by-attack-type) attacks for the last 7 days.
 
 Expand any of the attacks to see the list of logins which passwords were compromised.
 
@@ -53,7 +54,7 @@ Expand any of the attacks to see the list of logins which passwords were comprom
 
 ## Getting CSV list of compromised credentials
 
-The overall number of compromised credentials is displayed in the **Credential Stuffing Detection** section. Click the counter and your browser will download the CSV file with the list of compromised credentials.
+The overall number of compromised credentials is displayed in the **Credential Stuffing** section. Click the counter and your browser will download the CSV file with the list of compromised credentials.
 
 ## Getting notified
 
