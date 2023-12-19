@@ -178,8 +178,8 @@ nav:
     - Multi-Attack Perpetrators: admin-en/configuration-guides/protecting-with-thresholds.md
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
     - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
-    - BOLA Protection: admin-en/configuration-guides/protecting-against-bola-trigger.md
-    - Weak JWTs Detection: admin-en/configuration-guides/weak-jwt-detection.md
+    - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
+    - Manual BOLA Protection: admin-en/configuration-guides/protecting-against-bola-trigger.md
     - Optimizing Attack Analysis: admin-en/configuration-guides/optimizing-attack-analysis.md
     - Geolocation Restrictions:
       - Overview: user-guides/ip-lists/overview.md
