@@ -1,1 +1,0 @@
---8<-- "latest/admin-en/configuration-guides/weak-jwt-detection.md"

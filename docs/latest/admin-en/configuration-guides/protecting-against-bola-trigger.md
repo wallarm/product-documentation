@@ -1,13 +1,20 @@
-# BOLA Protection
+# Manual BOLA Protection
 
-This article describes BOLA protection measures provided by [WAAP](link TBD)'s triggers.
+Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either read or modify its data bypassing an authorization mechanism. This article describes BOLA protection measures provided by [WAAP](link TBD)'s triggers.
 
 !!! info "Other BOLA protection measures"
     Alternatively or additionally, you can configure [Automatic BOLA protection for endpoints discovered by API Discovery](protecting-against-bola.md).
 
---8<-- "../include/bola-intro.md"
+## Requirements
+
+To protect resources from BOLA attacks, make sure your environment meets the following requirements:
+
+* You have Wallarm node 4.2 or above.
+* If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) displaying real clients' IP addresses.
 
 ## Configuring
+
+By default, Wallarm automatically discovers only vulnerabilities of the BOLA type (also known as IDOR) but does not detect its exploitation attempts.
 
 For the Wallarm node to identify BOLA attacks:
 
@@ -43,6 +50,9 @@ For the Wallarm node to identify BOLA attacks:
         
         !!! info "BOLA attacks originating from graylisted IPs"
             BOLA attacks originating from graylisted IPs are not blocked.
+
+    ![BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
+
 1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
 
 Example of the trigger to detect and block BOLA attacks aimed at shop financial data (the API endpoint is `https://example.com/shops/{shop_id}/financial_info`):
@@ -69,8 +79,6 @@ You can configure several triggers with different filters for BOLA protection.
 
     To search for BOLA attacks, you can use the `bola` search tag. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-## Example
+## Restrictions
 
-In this example, if 31 or more requests are sent to `https://example.com/shops/{shop_id}/financial_info` in 30 seconds, these requests will be marked as the [BOLA attack](../../attacks-vulns-list.md#broken-object-level-authorization-bola) and the IP address from which the requests originated will be added to the denylist.
-
-![BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
+When searching for BOLA attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types.
