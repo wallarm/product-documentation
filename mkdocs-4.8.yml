@@ -180,7 +180,6 @@ nav:
     - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
     - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
     - Manual BOLA Protection: admin-en/configuration-guides/protecting-against-bola-trigger.md
-    - Optimizing Attack Analysis: admin-en/configuration-guides/optimizing-attack-analysis.md
     - Geolocation Restrictions:
       - Overview: user-guides/ip-lists/overview.md
       - Allowlist: user-guides/ip-lists/allowlist.md
