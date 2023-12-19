@@ -51,15 +51,9 @@ For the Wallarm node to identify BOLA attacks:
         !!! info "BOLA attacks originating from graylisted IPs"
             BOLA attacks originating from graylisted IPs are not blocked.
 
-    ![BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
+        ![BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
 
 1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
-
-Example of the trigger to detect and block BOLA attacks aimed at shop financial data (the API endpoint is `https://example.com/shops/{shop_id}/financial_info`):
-
-![BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
-
-You can configure several triggers with different filters for BOLA protection.
 
 ## Testing
 
