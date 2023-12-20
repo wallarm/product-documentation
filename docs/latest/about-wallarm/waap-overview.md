@@ -18,7 +18,7 @@ Once you register your company account in the [US](https://us1.my.wallarm.com/si
 
 ![!Arch scheme1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
 
-The measures that the node will take when finding attacks depend on the selected **filtration mode**: on enabling the node, you can set it either for just `monitoring` and reporting in case of occurring attacks or to `block` the attacks once they occur.
+The measures that the node will take when finding attacks depend on the selected [**filtration mode**](../admin-en/configure-wallarm-mode.md): on enabling the node, you can set it either for just `monitoring` and reporting in case of occurring attacks or to `block` the attacks once they occur.
 
 Being as simple as that in its root, the filtration mode defines how the node will react. However, it is more than that: you have a lot of [configuration possibilities](../admin-en/configure-wallarm-mode.md) to fine-tune the mode to correspond to your API structure and protection needs.
 
@@ -26,12 +26,13 @@ Being as simple as that in its root, the filtration mode defines how the node wi
 
 As soon as you have your WAAP monitoring/protection working, you can fine-tune it by configuring:
 
-* Restrictions by IP
-* Brute force protection
+* [Protection from multi-attack perpetrators](../admin-en/configuration-guides/protecting-with-thresholds.md)
+* [DDoS protection](../admin-en/configuration-guides/protecting-against-ddos.md)
+* [Brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md)
+* [Forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
+* [Manual BOLA protection](../admin-en/configuration-guides/protecting-against-bola-trigger.md)
+* [Filtering by IP](../user-guides/ip-lists/overview.md)
 * Rate limiting
-* BOLA protection
-* Week JWT detection
-* Malicious payloads/attacks/hits thresholds
 * Your own attack detectors
 * Virtual patches
 * Request parsers

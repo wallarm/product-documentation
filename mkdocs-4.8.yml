@@ -174,7 +174,7 @@ nav:
           - Mozilla Firefox: fast/ssl/browsers-ssl/firefox-ssl.md
       - Troubleshooting: fast/TSHOOT.md
   - WAAP/WAF:
-    - Attack Detection Procedure: about-wallarm/protecting-against-attacks.md
+    - Overview: about-wallarm/waap-overview.md
     - Multi-Attack Perpetrators: admin-en/configuration-guides/protecting-with-thresholds.md
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
     - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
@@ -197,9 +197,6 @@ nav:
         - Ignoring Attack Signs in the Binary Data: user-guides/rules/ignore-attacks-in-binary-data.md
         - The overlimit_res Attack Detection Fine‑Tuning: user-guides/rules/configure-overlimit-res-detection.md
         - Setting Rate Limit: user-guides/rules/rate-limiting.md
-    - Triggers:
-      - Working with Triggers: user-guides/triggers/triggers.md
-      - Trigger Examples: user-guides/triggers/trigger-examples.md
     - Filtration Mode:
       - Overview: admin-en/configure-wallarm-mode.md
       - Configuration via the Rule: user-guides/rules/wallarm-mode-rule.md

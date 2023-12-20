@@ -1,6 +1,6 @@
 # Manual BOLA Protection
 
-Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either read or modify its data bypassing an authorization mechanism. This article describes BOLA protection measures provided by [WAAP](link TBD)'s triggers.
+Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either read or modify its data bypassing an authorization mechanism. This article describes BOLA protection measures provided by [WAAP](../../about-wallarm/waap-overview.md)'s triggers.
 
 !!! info "Other BOLA protection measures"
     Alternatively or additionally, you can configure [Automatic BOLA protection for endpoints discovered by API Discovery](protecting-against-bola.md).

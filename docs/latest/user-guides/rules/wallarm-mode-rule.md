@@ -2,7 +2,7 @@
 
 [img-mode-rule]:        ../../images/user-guides/rules/wallarm-mode-rule-with-safe-blocking.png
 
-# Filtration mode rule
+# Filtration Mode Rule
 
 The filtration mode allows you to enable and disable the blocking of requests to various parts of a web application.
 
