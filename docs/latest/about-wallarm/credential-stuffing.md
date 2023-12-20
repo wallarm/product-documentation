@@ -8,7 +8,7 @@
 
 Wallarm's **Credential Stuffing Detection** collects and displays real-time information about compromised and weak credentials in your application, as well as attempts to use them. It also enables instant notifications about such attempts.
 
-To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than 300k records.
+To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than 850 million records.
 
 Knowledge of accounts with stolen or weak passwords allows you to initiate measures to secure these accounts' data, like communicating with account owners, temporarily suspending access to the accounts, etc.
 
@@ -34,7 +34,13 @@ You need to form the list of authentication endpoints to be checked for attempts
 
 There are two ways of adding endpoints to the list:
 
-* From the **Recommended endpoints** list - if you use the [API Discovery](../api-discovery/overview.md) module, Wallarm automatically identifies endpoints that could be used for authentication.
+* From the **Recommended endpoints** list that includes two types of elements:
+
+    * Predefined rules defined by Wallarm: using regular expressions, these rules define by their names both endpoints most commonly used for authentication and their parameters most commonly used for storing passwords and logins.
+
+        ![Credential Stuffing - Recommended Endpoints - Predefined rules](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-predefined-rules.png)
+
+    * If you use the [API Discovery](../api-discovery/overview.md) module, Wallarm automatically identifies endpoints that could be used for authentication.
 
 * Manually - you can also include your own unique authentication endpoints, ensuring full protection. When adding manually, set [URI](../user-guides/rules/add-rule.md#uri-constructor) and the way of searching for authentication parameters:
 
@@ -43,6 +49,8 @@ There are two ways of adding endpoints to the list:
         ![Credential Stuffing - Add authentication endpoint - Exact location](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-exact-location.png)
 
     * By **Regular expression** - endpoint parameters with password and login will be searched using [regular expression](../user-guides/rules/add-rule.md#condition-type-regex).
+
+        ![Credential Stuffing - Add authentication endpoint - Regular expression](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-regexp.png)
 
 ## Viewing compromised credentials usage attempts
 
