@@ -36,7 +36,7 @@ There are two ways of adding endpoints to the list:
 
 * From the **Recommended endpoints** list that includes two types of elements:
 
-    * Predefined rules defined by Wallarm: using regular expressions, these rules define by their names both endpoints most commonly used for authentication and their parameters most commonly used for storing passwords and logins.
+    * Predefined rules set by Wallarm: using regular expressions, these rules define by their names both endpoints most commonly used for authentication and their parameters most commonly used for storing passwords and logins.
 
         ![Credential Stuffing - Recommended Endpoints - Predefined rules](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-predefined-rules.png)
 
