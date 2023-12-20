@@ -245,6 +245,7 @@ nav:
       - Sidecar:
         - Deploy: installation/kubernetes/sidecar-proxy/deployment.md
         - Customization: installation/kubernetes/sidecar-proxy/customization.md
+        - Scaling and High Availability: installation/kubernetes/sidecar-proxy/scaling.md
         - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
         - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
     - In-Line:
