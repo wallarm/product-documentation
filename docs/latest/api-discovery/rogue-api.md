@@ -12,7 +12,7 @@ The [API Discovery](overview.md) module automatically identifies shadow, orphan 
 
 ## Monitor rogue APIs on hourly basis
 
-You can upload your specification to perform immediate comparison of its content with endpoints revealed by API Discovery up to the moment. But two things can change in time:
+You can upload your specification to perform one-time comparison of its content with endpoints revealed by API Discovery up to the moment. But two things can change in time:
 
 * Your actual API inventory (changes will be revealed by API Discovery)
 * Your own specification (new versions can arrive)
@@ -23,19 +23,30 @@ To set up monitoring rogue APIs on hourly basis:
 
 1. Navigate to the **API Specifications** section in the [US](https://us1.my.wallarm.com/api-specifications) or [EU](https://my.wallarm.com/api-specifications) Cloud.
 1. Click **Upload specification**.
-1. Select a specification to upload. It must be in the OpenAPI 3.0 JSON or YAML format.
-1. Set comparison parameters:
+1. At the **Specification upload** tab, select a specification to upload. It must be in the OpenAPI 3.0 JSON or YAML format.
+1. Select uploading from URL. If necessary, you can specify a token for authentication.
+1. Decide on whether you need to **Regularly update the specification** (selected by default). This will update the specification every hour.
+1. Click **Upload**. Specification is validated (should be OpenAPI 3.0 JSON or YAML with correct formatting) - if some errors found, fix them and try to re-upload.
 
-    * Application(s) and host(s) - only endpoints related to the selected applications/hosts will be compared. If you select **Compare with all current and future discovered applications hosts**, all hosts (of the selected applications) known now and all hosts that will be discovered in future will be included into comparison.
+    Note that you will not be able to start configuring rogue API detection based on the specification, until its file is successfully uploaded.
 
-        You can change comparison settings at any moment later - after this the comparison will be re‑done providing new results.
+1. Click the **Rogue APIs detection** tab.
 
-    * Select uploading from URL. If necessary, you can specify a token for authentication.
-    * Leave the **Perform regular comparison** option selected (it is by default).
+    !!! info "API policy enforcement"
+        * Besides rogue API detection, specifications may be used for [API policy enforcement](../api-policy-enforcement/overview.md).
+        * Before using the specification for policy enforcement, it is recommended to use it for searching the rogue APIs. This way you will be able to understand how much your specification differs from the actual requests of your clients.
+
+1. Select **Use for rogue APIs detection**. Options are displayed.
+1. Select **Applications** - only hosts related to the selected applications will be available.
+1. Select **Hosts** - only endpoints related to the selected hosts will be searched for rogue APIs. 
+
+    If necessary, select **Compare with all current and future discovered applications hosts** - all hosts (of the selected applications) known now and all hosts that will be discovered in future will be included into comparison.
+
+    You can change comparison settings at any moment later - after this the comparison will be re‑done providing new results.
+
+1. Leave the **Perform regular comparison** option selected (it is by default).
 
     ![API Discovery - API Specifications - uploading API specification to find rogue APIs](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
-
-1. Start uploading.
 
 As uploading is finished, the number of rogue (shadow, orphan and zombie) APIs will be displayed for each specification in the list of **API Specifications**.
 
@@ -51,7 +62,7 @@ Shadow APIs are also displayed among the riskiest endpoints at the [API Discover
 
 ## Find rogue APIs by one-time comparison
 
-You can upload your specification to perform immediate one-time comparison of its content with endpoints revealed by API Discovery up to the moment. To do so, in the comparison settings, select to upload from local machine or deselect the **Perform regular comparison** option for specification uploaded from URL.
+You can upload your specification to perform one-time comparison of its content with endpoints revealed by API Discovery up to the moment. To do so, in the comparison settings, select to upload from local machine or deselect the **Perform regular comparison** option for specification uploaded from URL.
 
 Consider the following:
 
