@@ -13,7 +13,15 @@ This article describes how to enable and configure your API protection based on 
 
     ![Upload specification](../images/api-policies-enforcement/specificaton-upload.png)
 
-## Step 2: Set actions for violations of policies
+## Step 2: Upload specification
+
+1. Click **Upload**. This starts upload.
+1. If specification is valid (OpenAPI 3.0 JSON or YAML with correct formatting), as uploading is finished, proceed to the next step.
+1. If some errors found, fix them and try to re-upload.
+
+Note that you will not be able to start configuring API policy enforcement based on the specification, until its file is successfully uploaded.
+
+## Step 3: Set actions for violations of policies
 
 1. Click the **API specification-based policy enforcement** tab.
 
@@ -22,12 +30,13 @@ This article describes how to enable and configure your API protection based on 
         * Before using the specification for policy enforcement, it is recommended to use it for searching the rogue (shadow, zombie and orphan) APIs using API Discovery. This way you will be able to understand how much your specification differs from the actual requests of your clients.
 
 1. Select **Use for API specification-based policy enforcement**. Options are displayed.
-1. Specify **URI** to activate policy violation actions only for requests sent to certain endpoints.
+1. Specify host or endpoint for which you want to activate policy violation actions.
 
+    * This field is required.
     * Note that if you incorrectly specify to which endpoints the uploaded specification should be applied, there will be many [false positive](../about-wallarm/protecting-against-attacks.md#false-positives) events.
     * If you have several specifications that apply to the same host, but to different endpoints (for example `domain.com/v1/api/users/` and `domain.com/v1/api/orders/`), you **must** indicate to which endpoints the specification should be applied.
     * If you add a specification to a host, and then add another specification to individual endpoints of this host, both specifications will be applied to these endpoints.
-    * URI can be configured via the [URI constructor](../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../user-guides/rules/add-rule.md#advanced-edit-form).
+    * The value can be configured via the [URI constructor](../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../user-guides/rules/add-rule.md#advanced-edit-form).
 
 1. Set how the system should react if requests violate your specification.
 
@@ -37,10 +46,4 @@ This article describes how to enable and configure your API protection based on 
 
     --8<-- "../include/api-policies-enforcement/api-policies-violations.md"
 
-    When loading the specification for the first time, it is recommended to set `Monitor` as a reaction to make sure that the specification is applied to the necessary endpoints and detects real errors.
-
-## Step 3: Upload specification
-
-Click **Upload**. This starts upload.
-
-As uploading is finished, the policies are starting to be applied to the requests. Results are [displayed](viewing-events.md) in the **Events** tab.
+    When using the specification for API policy enforcement for the first time, it is recommended to set `Monitor` as a reaction to make sure that the specification is applied to the necessary endpoints and detects real errors.
