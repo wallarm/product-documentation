@@ -26,6 +26,7 @@ To set up monitoring rogue APIs on hourly basis:
 1. Select a specification to upload. It must be in the OpenAPI 3.0 JSON or YAML format.
 1. Select uploading from URL. If necessary, you can specify a token for authentication.
 1. Decide on whether you need to **Regularly update the specification** (selected by default). This will update the specification every hour.
+1. Initiate uploading.
 1. Click the **Rogue APIs detection** tab.
 
     !!! info "API policy enforcement"
