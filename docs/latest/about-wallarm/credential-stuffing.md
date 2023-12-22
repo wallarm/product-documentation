@@ -60,7 +60,7 @@ The number of attempts to use compromised credentials in the last 7 days is disp
 
 Expand any of the attacks to see the list of logins which passwords were compromised.
 
-<!--[Screenshot TBD (functionality is not ready at the moment)]-->
+![Attacks - credential stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
 
 ## Getting CSV list of compromised credentials
 
