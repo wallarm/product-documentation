@@ -23,13 +23,9 @@ To set up monitoring rogue APIs on hourly basis:
 
 1. Navigate to the **API Specifications** section in the [US](https://us1.my.wallarm.com/api-specifications) or [EU](https://my.wallarm.com/api-specifications) Cloud.
 1. Click **Upload specification**.
-1. At the **Specification upload** tab, select a specification to upload. It must be in the OpenAPI 3.0 JSON or YAML format.
+1. Select a specification to upload. It must be in the OpenAPI 3.0 JSON or YAML format.
 1. Select uploading from URL. If necessary, you can specify a token for authentication.
 1. Decide on whether you need to **Regularly update the specification** (selected by default). This will update the specification every hour.
-1. Click **Upload**. Specification is validated (should be OpenAPI 3.0 JSON or YAML with correct formatting) - if some errors found, fix them and try to re-upload.
-
-    Note that you will not be able to start configuring rogue API detection based on the specification, until its file is successfully uploaded.
-
 1. Click the **Rogue APIs detection** tab.
 
     !!! info "API policy enforcement"
