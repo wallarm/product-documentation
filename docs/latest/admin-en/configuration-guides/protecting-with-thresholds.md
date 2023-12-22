@@ -1,14 +1,16 @@
 # Protection from Multi-Attack Perpetrators
 
-When Wallarm is in blocking mode, it automatically blocks all requests with [malicious payloads](../../glossary-en.md#malicious-payload), letting only legitimate requests through. You can configure additional protection for your applications and API by setting the Wallarm reaction in case if number of malicious payloads from the same IP (often referred to as **multi-attack perpetrator**) exceeds specified threshold.
+When Wallarm is in [blocking mode](../../admin-en/configure-wallarm-mode.md), it automatically blocks all requests with malicious payloads, letting only legitimate requests through. You can configure additional protection for your applications and API by setting the Wallarm reaction in case if number of malicious payloads from the same IP (often referred to as **multi-attack perpetrator**) exceeds specified threshold.
+
+Such perpetrators can be automatically placed into the denylist, which starts blocking **all requests from them**, not spending time on analysis of whether they are malicious or not, just basing of the fact that this source produced a lot of malicious requests in the past.
 
 ## Configuring
 
 To configure protection from sources originating malicious requests:
 
-1. Open Wallarm Console → section **Triggers** and open the window for trigger creation.
+1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **Number of malicious payloads** condition.
-1. Set the threshold per time interval.
+1. Set number of different malicious payloads from one IP per time interval. On exceeding this number within the specified time, the trigger will be activated.
 1. If required, set one or several filters:
 
     * **Type** is a [type](../../attacks-vulns-list.md) of attack detected in the request or a type of vulnerability the request is directed to.
@@ -37,7 +39,15 @@ To configure protection from sources originating malicious requests:
 
 ## Pre-configured trigger
 
-New company accounts are featured by the pre-configured (default) **Number of malicious payloads** trigger which [graylists](../ip-lists/graylist.md) IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour.
+New company accounts are featured by the pre-configured (default) **Number of malicious payloads** trigger which graylists IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour.
+
+[Graylist](../ip-lists/graylist.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../ip-lists/denylist.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
+
+The trigger is released in any node filtration mode, so that it will graylist IPs regardless of the node mode.
+
+However, the node analyzes the graylist only in the **safe blocking** mode. To block malicious requests originating from graylisted IPs, switch the node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) to safe blocking learning its features first.
+
+The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
 
 You can temporary disable, modify or delete the default trigger.
 
@@ -59,6 +69,4 @@ Use [pre-configured trigger](#pre-configured-trigger) for testing. To test:
 
     ![Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
-    To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
-
-The trigger is released in any node filtration mode, so that it will graylist IPs regardless of the node mode. However, the node analyzes the graylist only in the **safe blocking** mode. To block malicious requests originating from graylisted IPs, switch the node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) to safe blocking learning its features first.
+    To search for the attacks, you can use the `multiple_payloads` [search tag](../../user-guides/search-and-filters/use-search.md#search-by-attack-type).

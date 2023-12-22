@@ -175,10 +175,11 @@ nav:
       - Troubleshooting: fast/TSHOOT.md
   - WAAP/WAF:
     - Overview: about-wallarm/waap-overview.md
-    - Multi-Attack Perpetrators: admin-en/configuration-guides/protecting-with-thresholds.md
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
     - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
-    - BOLA Protection: admin-en/configuration-guides/protecting-against-bola-trigger.md
+    - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
+    - Multi-Attack Protection: admin-en/configuration-guides/protecting-with-thresholds.md
+    - Manual BOLA Protection: admin-en/configuration-guides/protecting-against-bola-trigger.md
     - Filtering by IP: user-guides/ip-lists/overview.md
     - Rules:
       - Application Profile Rules: user-guides/rules/intro.md
@@ -203,6 +204,7 @@ nav:
     - Attack Detection:
       - Procedure: about-wallarm/protecting-against-attacks.md
       - Attack Types: attacks-vulns-list.md
+      - Triggers: user-guides/triggers/triggers.md
     # - Overview: ...
     # - OWASP Top 10: ...
     # - Known attacks / CVEs: ...
@@ -484,6 +486,7 @@ nav:
     - Wallarm API Reference:
       - Overview: api/overview.md
       - API Request Examples: api/request-examples.md
+      - API Calls for IP Lists: user-guides/ip-lists/ip-lists-api-calls.md
     - Wallarm Terraform Provider: admin-en/managing/terraform-provider.md
     - Learning Monthly Request Volume of an Application: admin-en/operation/learn-incoming-request-number.md
     - Docker Image Security:

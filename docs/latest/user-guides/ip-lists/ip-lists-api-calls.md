@@ -3,7 +3,7 @@
 
 # API Calls to Get, Populate and Delete IP List Objects
 
-To get, populate and delete IP list objects, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below are some examples of the corresponding API calls.
+To get, populate and delete [IP list objects](../../user-guides/ip-lists/overview.md), you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below are some examples of the corresponding API calls.
 
 ## API request parameters
 

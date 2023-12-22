@@ -19,5 +19,4 @@ By default, Wallarm automatically discovers only vulnerabilities of the BOLA typ
 
 To protect resources from BOLA attacks, make sure your environment meets the following requirements:
 
-* You have Wallarm node 4.2 or above.
 * If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) displaying real clients' IP addresses.

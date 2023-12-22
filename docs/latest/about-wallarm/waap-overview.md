@@ -20,6 +20,7 @@ Wallarm WAAP provides a wide range of security measures to protect your applicat
 * Virtual patching
 * Custom detectors creating
 * [L7 DDoS Protection](../admin-en/configuration-guides/protecting-against-ddos.md)
+* [Protection from multi-attack perpetrators](../admin-en/configuration-guides/protecting-with-thresholds.md)
 * Rate-limiting
 * [Brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * [Forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)

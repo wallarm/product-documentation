@@ -3,14 +3,7 @@
 Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either read or modify its data bypassing an authorization mechanism. This article describes BOLA protection measures provided by [WAAP](../../about-wallarm/waap-overview.md)'s triggers.
 
 !!! info "Other BOLA protection measures"
-    Alternatively or additionally, you can configure [Automatic BOLA protection for endpoints discovered by API Discovery](protecting-against-bola.md).
-
-## Requirements
-
-To protect resources from BOLA attacks, make sure your environment meets the following requirements:
-
-* You have Wallarm node 4.2 or above.
-* If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) displaying real clients' IP addresses.
+    Alternatively or additionally, you can configure [Automatic BOLA protection for endpoints found by API Discovery](protecting-against-bola.md).
 
 ## Configuring
 
@@ -73,6 +66,14 @@ For the Wallarm node to identify BOLA attacks:
 
     To search for BOLA attacks, you can use the `bola` search tag. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-## Restrictions
+## Requirements and restrictions
+
+**Requirements**
+
+To protect resources from BOLA attacks, make sure your environment meets the following requirements:
+
+* If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) displaying real clients' IP addresses.
+
+**Restrictions**
 
 When searching for BOLA attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types.

@@ -1,6 +1,6 @@
 # Protection Against Forced Browsing
 
-Forced browsing attack is one of the attack types that can be detected by Wallarm if it is appropriately configured. These instructions provide steps to configure the Wallarm node to protect your applications against forced browsing attacks. By default, Wallarm node does not detect forced browsing attacks.
+Forced browsing attack is one of the attack types that is not detected by Wallarm out-of-the-box, its detection should be properly configured as this guide describes.
 
 [Forced browsing](../../attacks-vulns-list.md#forced-browsing) attacks are characterized by a large number of response codes 404 returned to requests to different URIs for a limited timeframe. 
     
@@ -8,17 +8,11 @@ The aim of this attack is to enumerate and access hidden resources (e.g. directo
 
 Note that besides protection from forced browsing, in a similar way, you can configure protection against [brute-force attacks](protecting-against-bruteforce.md).
 
-## Requirements
-
-To protect resources from forced browsing attacks, real clients' IP addresses are required.
-
-If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) displaying real clients' IP addresses.
-
 ## Configuring
 
 To configure protection against forced browsing:
 
-1. Open Wallarm Console → section **Triggers** and open the window for trigger creation.
+1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **Forced browsing** condition.
 1. Set the threshold for the number of the 404 response codes returned to the requests having the same origin IP requests.
 1. If required, specify **URI** to activate the trigger only for requests sent to certain endpoints, for example:
@@ -75,6 +69,12 @@ You can configure several triggers for brute force protection.
 
     To search for the forced browsing attacks, you can use the `dirbust` filter. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-## Restrictions
+## Requirements and restrictions
+
+**Requirements**
+
+To protect resources from forced browsing attacks, real clients' IP addresses are required. If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) displaying real clients' IP addresses.
+
+**Restrictions**
 
 When searching for forced browsing attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types.

@@ -25,7 +25,16 @@ This means that:
 !!! warning "Exceptions"
     If [`wallarm_acl_access_phase off`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase), the Wallarm node does not analyze the denylist in the `off` mode and does not block requests from denylisted IPs in the `Monitoring` mode.
 
-## Listing IPs, subnets, locations, and source types
+## Configuring IP lists
+
+Steps:
+
+1. Decide which list to use depending on your purpose: deny, make allow exception or block only malicious.
+1. Select [which object to add](#select-object): IP, subnet, location, source type.
+1. [Select time](#select-time-to-stay-in-list) for which the object will stay in a list (it is usually not forever).
+1. [Limit by target application](#limit-by-target-application) (not all requests, but only targeting specific application).
+
+### Select object
 
 Use **Add object** to add the following into any of IP lists:
 
@@ -44,7 +53,17 @@ Use **Add object** to add the following into any of IP lists:
 !!! info "Automatic population of IP lists"
     Note that besides adding objects manually, you can use [automatic list population](#automatic-listing), which is **preferable**.
 
-## Malicious IPs
+### Select time to stay in list
+
+When adding object to a list, you specify time for which it is added. The minimum time is 5 minutes, default is 1 hour, the maximum is forever. On expiration, the object is automatically deleted from the list.
+
+Setting this time along with manual objects adding and deleting leads to changes of IP lists in time. You can [view the historical states](#ip-list-history) of all lists.
+
+### Limit by target application
+
+When adding object to a list, by default all requests from the listed IP will be processed. But you can limit that by target applications: select one or several applications and only requests from the listed IP to that applications will be processed.
+
+## Malicious IP feeds
 
 When adding the **Malicious IPs** [source type](#listing-ips-subnets-locations-and-source-types) to one of the IP lists, note that this will include all IP addresses that are well-known for malicious activity, as mentioned in public sources, and verified by expert analysis. We pull this data from a combination of the following resources:
 
@@ -56,13 +75,7 @@ When adding the **Malicious IPs** [source type](#listing-ips-subnets-locations-a
 * [NGINX ultimate bad bot blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/blob/master/_generator_lists/bad-ip-addresses.list)
 * [IPsum](https://github.com/stamparm/ipsum)
 
-## Limiting by target application
-
-When adding object to a list, by default all requests from the listed IP will be processed. But you can limit that by target applications: select one or several applications and only requests from the listed IP to that applications will be processed.
-
-## IP lists over time
-
-When adding object to a list, you specify time for which it is added. The minimum time is 5 minutes, default is 1 hour, the maximum is forever. On expiration, the object is automatically deleted from the list.
+## IP list history
 
 Thus, IP lists have not only the current state, but also the states back in time and they differ. Choose specific dates to examine the IP list content, and the system will return a detailed **History** of its changes, including the exact timing and method of addition, be it manual or automated. The report also provides data on the individuals responsible for the changes and the reasons behind each inclusion. Such insights help in maintaining an audit trail for compliance and reporting.
 
@@ -89,9 +102,19 @@ Note that if you manually delete an automatically listed IP, if new malicious ac
 
 * For **API Abuse Prevention** - immediately
 
+## Getting notifications on the denylisted IPs
+
+You can get notifications about newly denylisted IPs via the messengers or SIEM systems you use every day. To enable notifications, in **Triggers** section, configure one or several triggers with the **Denylisted IP** condition, e.g.:
+
+![Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
+
 ## Configuring nodes behind load balancers and CDNs to work with IP lists
 
 If Wallarm node is located behind a load balancer or CDN, please make sure to configure your Wallarm node to properly report end-user IP addresses:
 
 * [Instructions for NGINX-based Wallarm nodes](../../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images and Docker node container)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
+
+## Managing lists via API
+
+You can get any IP list content, populate it with objects and delete objects from it by [calling the Wallarm API](../../user-guides/ip-lists/ip-lists-api-calls.md) directly.

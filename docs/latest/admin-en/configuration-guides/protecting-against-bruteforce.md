@@ -1,45 +1,30 @@
 # Brute Force Protection
 
-Brute‑force attack is one of the attack types that can be detected by Wallarm if it is appropriately configured. These instructions provide steps to configure the Wallarm node to protect your applications against brute‑force attacks. By default, Wallarm node does not detect brute‑force attacks.
+Brute‑force attack is one of the attack types that is not detected by Wallarm out-of-the-box, its detection should be properly configured as this guide describes.
 
 [Regular brute‑force attacks](../../attacks-vulns-list.md#brute-force-attack) include password brute‑forcing, session identifier brute‑forcing, credential stuffing. These attacks are characterized by a large number of requests with different forced parameter values sent to a typical URI for a limited timeframe.
 
 Note that:
 
-* Brute-force protection described in this article is one of the ways for load control provided by Wallarm - alternatively, you can apply [rate limiting](link-TBD-when-article-is-ready).
+* Brute-force protection described in this article is one of the ways for the load control provided by Wallarm - alternatively, you can apply [rate limiting](../../user-guides/rules/rate-limiting.md).
 * Besides brute force protection, in a similar way, you can configure protection against [forced browsing](protecting-against-forcedbrowsing.md).
-
-## Requirements
-
-To protect resources from brute force attacks, real clients' IP addresses are required.
-
-If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) displaying real clients' IP addresses.
 
 ## Configuring
 
 To configure brute-force protection:
 
-1. Open Wallarm Console → section **Triggers** and open the window for trigger creation.
+1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **Brute force** condition.
 1. Set the threshold for the number of requests originated from the same IP address for a period of time.
-1. If required, specify **URI** to activate the trigger only for requests sent to certain endpoints, for example:
+1. To activate the trigger only for requests sent to certain endpoints, specify the **URI** filter:
     
+    * Besides entering specific URIs, you can [configure patterns](../../user-guides/rules/add-rule.md) using wildcards and regular expressions.
+
+        ![Brute force trigger example](../../images/user-guides/triggers/trigger-example6.png)
+
     * If you configure password brute‑forcing protection, then specify the URI used for authentication.
+    * If using nested URIs, consider [trigger processing priorities](#trigger-processing-priorities).
     * If the URI is not specified, the trigger will be activated at any endpoint with the request number exceeding the threshold.
-
-    URI can be configured via the [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../../user-guides/rules/add-rule.md#advanced-edit-form) in the trigger creation window.
-
-    !!! warning "Triggers with nested URIs"
-        If nested URIs are specified in the triggers with identical conditions, requests to lower nesting level URI will be counted only in the trigger with the filter by the lower nesting level URI. Same for 404 response codes.
-
-        Triggers without URI in the conditions are considered to be the higher nesting level one.
-
-        **Example:**
-
-        * The first trigger with the **Brute force** condition has no filter by the URI (requests to any application or its part are counted by this trigger).
-        * The second trigger with the **Brute force** condition has the filter by the URI `example.com/api`.
-
-        Requests to `example.com/api` are counted only by the second trigger with the filter by `example.com/api`.
 
 1. If required, set other trigger filters:
 
@@ -51,8 +36,6 @@ To configure brute-force protection:
     * **Mark as brute force**. Requests received after the threshold exceedance will be marked as the brute‑force attack and displayed in the **Attacks** section of Wallarm Console.
     * **Denylist IP address** and the period for IP address blocking to add IP addresses of malicious request sources to the [denylist](../../user-guides/ip-lists/denylist.md). The Wallarm node will block all requests originated from the denylisted IP after the threshold was exceeded.
     * **Graylist IP address** and the period to [graylist](../../user-guides/ip-lists/graylist.md) IP addresses of malicious request sources. The Wallarm node will block requests originated from the graylisted IPs only if requests contain [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs. Brute‑force attacks originated from graylisted IPs are not blocked.
-
-    ![Brute force trigger example](../../images/user-guides/triggers/trigger-example6.png)
 
 1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
 
@@ -76,6 +59,27 @@ You can configure several triggers for brute-force protection.
 
     To search for brute-force attacks, you can use the `brute` filter. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-## Restrictions
+## Trigger processing priorities
+            
+If nested URIs are specified in the triggers with identical conditions, requests to lower nesting level URI will be counted only in the trigger with the filter by the lower nesting level URI. Same for 404 response codes.
+
+Triggers without URI in the conditions are considered to be the higher nesting level one.
+
+**Example:**
+
+* The first trigger with the **Brute force** condition has no filter by the URI (requests to any application or its part are counted by this trigger).
+* The second trigger with the **Brute force** condition has the filter by the URI `example.com/api`.
+
+Requests to `example.com/api` are counted only by the second trigger with the filter by `example.com/api`.
+
+## Requirements and restrictions
+
+**Requirements**
+
+To protect resources from brute force attacks, real clients' IP addresses are required. If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) displaying real clients' IP addresses.
+
+**Restrictions**
+
+If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) displaying real clients' IP addresses.
 
 When searching for brute‑force attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types.

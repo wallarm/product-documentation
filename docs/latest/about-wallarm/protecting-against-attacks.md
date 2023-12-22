@@ -85,7 +85,7 @@ Using **libdetection** ensures the double‑detection of attacks and reduces the
 !!! info "Attack types validated by the libdetection library"
     Currently, the library **libdetection** only validates SQL Injection attacks.
 
-### How libdetection works
+#### How libdetection works
 
 The particular characteristic of **libdetection** is that it analyzes requests not only for token sequences specific for attack types, but also for context in which the token sequence was sent.
 
@@ -97,7 +97,7 @@ SELECT example FROM table WHERE id=
 
 The library conducts the attack syntax analysis for matching the contexts. If the attack does not match the contexts, then the request will not be defined as a malicious one and will not be blocked (if the filtering node is working in the `block` mode).
 
-### Testing libdetection
+#### Testing libdetection
 
 To check the operation of **libdetection**, you can send the following legitimate request to the protected resource:
 
@@ -108,7 +108,7 @@ curl "http://localhost/?id=1' UNION SELECT"
 * The library **libproton** will detect `UNION SELECT` as the SQL Injection attack sign. Since `UNION SELECT` without other commands is not a sign of the SQL Injection attack, **libproton** detects a false positive.
 * If analyzing of requests with the **libdetection** library is enabled, the SQL Injection attack sign will not be confirmed in the request. The request will be considered legitimate, the attack will not be uploaded to the Wallarm Cloud and will not be blocked (if the filtering node is working in the `block` mode).
 
-### Managing libdetection mode
+#### Managing libdetection mode
 
 !!! info "**libdetection** default mode"
     The default mode of the **libdetection** library is `on/true` (enabled) for all [deployment options](../installation/supported-deployment-options.md).

@@ -114,6 +114,8 @@ You can temporary disable, modify or delete the default **Hits from the same IP*
 
 ### Sampling of hits
 
+#### Overview
+
 Malicious traffic often consists of comparable and identical [hits](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). Storing all hits results in duplicate entries in the event list that increases both the time for event analysis and the load on the Wallarm Cloud.
 
 Hit sampling optimizes the data storage and analysis by dropping non-unique hits from being uploaded to the Wallarm Cloud.
@@ -125,7 +127,7 @@ Hit sampling optimizes the data storage and analysis by dropping non-unique hits
 
 Hit sampling does not affect the quality of attack detection and only helps to avoid its slowdown. Wallarm node continues attack detection and [blocking](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) even with hit sampling enabled.
 
-### Enabling the sampling algorithm
+#### Enabling
 
 * For [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), hit sampling is disabled by default. If the percentage of attacks in your traffic is high, hit sampling is performed in two sequential stages: **extreme** and **regular**.
 * For [behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), attacks of the [Data bomb](../../attacks-vulns-list.md#data-bomb) and [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources): the **regular** sampling algorithm is enabled by default. **Extreme** sampling starts only if the percentage of attacks in your traffic is high.
@@ -135,7 +137,7 @@ When the sampling algorithm is enabled, in the **Attacks** section, the **Hits s
 
 Sampling will be automatically disabled once the percentage of attacks in the traffic decreases.
 
-### Core logic of hit sampling
+#### Core logic
 
 Hit sampling is performed in two sequential stages: **extreme** and **regular**.
 
