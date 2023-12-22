@@ -4,18 +4,20 @@
 
 ![Wallarm Console - Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
 
-## Issues addressed by Credential Stuffing Detection
+## How Wallarm addresses credential stuffing
 
 Wallarm's **Credential Stuffing Detection** collects and displays real-time information about compromised and weak credentials in your application, as well as attempts to use them. It also enables instant notifications about such attempts.
 
-To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than 850 million records.
+To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than 850 million records collected from the public [HIBP](https://haveibeenpwned.com/) compromised credentials database.
 
 Knowledge of accounts with stolen or weak passwords allows you to initiate measures to secure these accounts' data, like communicating with account owners, temporarily suspending access to the accounts, etc.
 
-Wallarm does not block requests with compromised credentials to avoid blocking legitimate users even if their passwords are weak or were compromised. However, note that credential stuffing attempts can and will be blocked if: 
+Wallarm does not block requests with compromised credentials to avoid blocking legitimate users even if their passwords are weak or were compromised. However, note that credential stuffing attempts can be blocked if:
 
 * They are part of detected malicious bot activity and you have enabled the [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) module.
 * They are part of requests with other [attack signs](../attacks-vulns-list.md).
+
+Blocking in these cases will occur only if the corresponding measures are applied in Wallarm.
 
 ## Enabling
 
@@ -36,11 +38,11 @@ There are two ways of adding endpoints to the list:
 
 * From the **Recommended endpoints** list that includes two types of elements:
 
-    * Predefined rules set by Wallarm: using regular expressions, these rules define by their names both endpoints most commonly used for authentication and their parameters most commonly used for storing passwords and logins.
+    * Wallarm's predefined rules utilizing regular expressions to specify commonly used authentication endpoints and their parameters storing passwords and logins.
 
         ![Credential Stuffing - Recommended Endpoints - Predefined rules](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-predefined-rules.png)
 
-    * If you use the [API Discovery](../api-discovery/overview.md) module, Wallarm automatically identifies endpoints that could be used for authentication.
+    * Endpoints used for authentication that were found by the [API Discovery](../api-discovery/overview.md) module and recorded as they actually received traffic. This is available only if API Discovery is presented in your subscription and enabled.
 
 * Manually - you can also include your own unique authentication endpoints, ensuring full protection. When adding manually, set [URI](../user-guides/rules/add-rule.md#uri-constructor) and the way of searching for authentication parameters:
 
