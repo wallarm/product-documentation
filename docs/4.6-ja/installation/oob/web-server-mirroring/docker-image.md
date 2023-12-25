@@ -1,1 +1,0 @@
---8<-- "latest-ja/installation/oob/web-server-mirroring/docker-image.md"

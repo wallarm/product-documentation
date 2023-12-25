@@ -1,1 +1,0 @@
---8<-- "latest-ja/installation/cloud-platforms/gcp/machine-image.md"
