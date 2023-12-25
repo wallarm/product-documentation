@@ -6,6 +6,11 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 History of updates simultaneously applies to the x86_64 and ARM64 (beta) versions of [all-in-one installer](../installation/nginx/all-in-one.md).
 
+### 4.6.16 (2023-12-26)
+
+* Fixed incompatibility issues with NGINX 1.22.1 on Debian 12
+* Fixed issues with the filtering node and Wallarm Cloud synchronisation while getting custom ruleset
+
 ### 4.6.15 (2023-11-03)
 
 * Improved detection of brute-force attacks
