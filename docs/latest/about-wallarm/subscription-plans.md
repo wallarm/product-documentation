@@ -31,6 +31,7 @@ Wallarm provides the following subscription plans:
 | [Brute-force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) | Yes | Yes |
 | [BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola.md) | Manual setup | Automated protection |
 | [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) | No | Yes |
+| [Credential Stuffing Detection](../about-wallarm/credential-stuffing.md) | No | Yes |
 | **Observability options** | | |
 | [API Discovery](../api-discovery/overview.md) | No | Yes |
 | [Finding shadow, orphan and zombie APIs](../api-discovery/overview.md#shadow-orphan-and-zombie-apis) with API Discovery | No | Yes |
