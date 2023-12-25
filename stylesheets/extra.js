@@ -45,7 +45,7 @@ if (window.location.href.indexOf("channeltivity-content") <= -1) {
 
 // Version selection
 
-var rootVersion = '4.8';
+var rootVersion = '4.10';
 
 let pathsLang = window.location.pathname.split('/');
 
