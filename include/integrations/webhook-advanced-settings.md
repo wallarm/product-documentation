@@ -4,3 +4,4 @@
 * **Verify TLS certificate**: this setting allows to disable verification of the specified server certificate. By default, Wallarm verifies whether a server certificate is signed by a publicly trusted CA. We do not recommend disabling the verification of production server certificates. If your server uses a self-signed TLS certificate, you can add a self-signed CA certificate to allow sending requests to this server.
 * **Request timeout, in seconds**: if the server does not respond to the request within the specified time, the request fails. By default: 15 seconds.
 * **Connection timeout, in seconds**: if the connection to the server cannot be established during the specified time, the request fails. By default: 20 seconds.
+* Wallarm data format: either a JSON Array (default) or a New Line Delimited JSON (NDJSON).
