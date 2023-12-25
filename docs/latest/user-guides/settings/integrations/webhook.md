@@ -4,106 +4,188 @@ You can set up Wallarm to send instant notifications to any system that accepts 
 
 ## Notification format
 
-Notifications are sent in JSON format. The set of JSON objects depends on the event for which the notification is sent. For example:
+Notifications are sent in either JSON Array or New Line Delimited JSON (NDJSON) format depending on your choice during integration setup. The set of JSON objects depends on the event for which the notification is sent. For example:
 
 * Hit detected
 
-    ```json
-    [
+    === "JSON Array"
+        ```json
+        [
         {
             "summary": "[Wallarm] New hit detected",
             "details": {
-            "client_name": "TestCompany",
-            "cloud": "EU",
-            "notification_type": "new_hits",
-            "hit": {
-                "domain": "www.example.com",
-                "heur_distance": 0.01111,
-                "method": "POST",
-                "parameter": "SOME_value",
-                "path": "/news/some_path",
+              "client_name": "Test Company",
+              "cloud": "EU",
+              "notification_type": "new_hits",
+              "hit": {
+                "domain": "example.com",
+                "heur_distance": 20.714285714285715,
+                "method": "GET",
+                "path": "/",
                 "payloads": [
-                    "say ni"
+                  "1' select version();"
                 ],
                 "point": [
-                    "post"
+                  "get",
+                  "id"
                 ],
-                "probability": 0.01,
-                "remote_country": "PL",
-                "remote_port": 0,
+                "probability": 20.714285714285715,
+                "remote_country": null,
+                "remote_port": 41253,
                 "remote_addr4": "8.8.8.8",
-                "remote_addr6": "",
+                "remote_addr6": null,
+                "datacenter": "unknown",
                 "tor": "none",
-                "request_time": 1603834606,
-                "create_time": 1603834608,
-                "response_len": 14,
-                "response_status": 200,
-                "response_time": 5,
+                "request_time": 1703519823,
+                "create_time": 1703519826,
+                "response_len": 345,
+                "response_status": 404,
+                "response_time": 359,
                 "stamps": [
-                    1111
+                  7965
                 ],
                 "regex": [],
-                "stamps_hash": -22222,
-                "regex_hash": -33333,
+                "stamps_hash": 271168947,
+                "regex_hash": -2147483648,
                 "type": "sqli",
                 "block_status": "monitored",
+                "brute_counter": "b:1111:xxxxxxxxxxxxxxxx",
+                "final_wallarm_mode": "monitoring",
+                "libproton_version": "4.8.0",
+                "lom_id": 932,
+                "protocol": "rest",
+                "proxy_type": null,
+                "request_id": "xxxxxxxxxxxxxxxx",
+                "wallarm_mode": null,
                 "id": [
-                    "hits_production_999_202010_v_1",
-                    "c2dd33831a13be0d_AC9"
+                  "hits_production_1111_202312_v_1",
+                  "xxxxxxxxxxxxxxxx"
                 ],
                 "object_type": "hit",
-                "anomaly": 0
-                }
-            }
+                "anomaly": 1.0357142857142858,
+                "parameter": "GET_id_value",
+                "applications": [
+                  "default"
+                ]
+              }
+           }
+        },
+        {
+            "summary": "[Wallarm] New hit detected",
+            "details": {
+              "client_name": "Test Company",
+              "cloud": "EU",
+              "notification_type": "new_hits",
+              "hit": {
+                "domain": "example.com",
+                "heur_distance": 2.5,
+                "method": "GET",
+                "path": "/etc/passwd",
+                "payloads": [
+                  "/etc/passwd"
+                ],
+                "point": [
+                  "uri"
+                ],
+                "probability": 2.5,
+                "remote_country": null,
+                "remote_port": 41254,
+                "remote_addr4": "8.8.8.8",
+                "remote_addr6": null,
+                "datacenter": "unknown",
+                "tor": "none",
+                "request_time": 1703519826,
+                "create_time": 1703519829,
+                "response_len": 345,
+                "response_status": 404,
+                "response_time": 339,
+                "stamps": [
+                  2907
+                ],
+                "regex": [],
+                "stamps_hash": -1063984326,
+                "regex_hash": -2147483648,
+                "type": "ptrav",
+                "block_status": "monitored",
+                "brute_counter": "b:1111:xxxxxxxxxxxxxxxx",
+                "final_wallarm_mode": "monitoring",
+                "libproton_version": "4.8.0",
+                "lom_id": 932,
+                "protocol": "none",
+                "proxy_type": null,
+                "request_id": "xxxxxxxxxxxxxxxx",
+                "wallarm_mode": null,
+                "id": [
+                  "hits_production_1111_202312_v_1",
+                  "xxxxxxxxxxxxxxxx"
+                ],
+                "object_type": "hit",
+                "anomaly": 0.22727272727272727,
+                "parameter": "URI_value",
+                "applications": [
+                  "default"
+                ]
+              }
+           }
         }
-    ]
-    ```
+        ]
+        ```
+    === "New Line Delimited JSON (NDJSON)"
+        ```json
+        {"summary":"[Wallarm] New hit detected","details":{"client_name":"Test Company","cloud":"EU","notification_type":"new_hits","hit":{"domain":"example.com","heur_distance":20.714285714285715,"method":"GET","path":"/","payloads":["1' select version();"],"point":["get","id"],"probability":20.714285714285715,"remote_country":null,"remote_port":41253,"remote_addr4":"8.8.8.8","remote_addr6":null,"datacenter":"unknown","tor":"none","request_time":1703519823,"create_time":1703519826,"response_len":345,"response_status":404,"response_time":359,"stamps":[7965],"regex":[],"stamps_hash":271168947,"regex_hash":-2147483648,"type":"sqli","block_status":"monitored","brute_counter":"b:1111:xxxxxxxxxxxxxxxx","final_wallarm_mode":"monitoring","libproton_version":"4.8.0","lom_id":932,"protocol":"rest","proxy_type":null,"request_id":"xxxxxxxxxxxxxxxx","wallarm_mode":null,"id":["hits_production_1111_202312_v_1","xxxxxxxxxxxxxxxx"],"object_type":"hit","anomaly":1.0357142857142858,"parameter":"GET_id_value","applications":["default"]}}
+        {"summary":"[Wallarm] New hit detected","details":{"client_name":"Test Company","cloud":"EU","notification_type":"new_hits","hit":{"domain":"example.com","heur_distance":2.5,"method":"GET","path":"/etc/passwd","payloads":["/etc/passwd"],"point":["uri"],"probability":2.5,"remote_country":null,"remote_port":41254,"remote_addr4":"8.8.8.8","remote_addr6":null,"datacenter":"unknown","tor":"none","request_time":1703519826,"create_time":1703519829,"response_len":345,"response_status":404,"response_time":339,"stamps":[2907],"regex":[],"stamps_hash":-1063984326,"regex_hash":-2147483648,"type":"ptrav","block_status":"monitored","brute_counter":"b:1111:xxxxxxxxxxxxxxxx","final_wallarm_mode":"monitoring","libproton_version":"4.8.0","lom_id":932,"protocol":"none","proxy_type":null,"request_id":"xxxxxxxxxxxxxxxx","wallarm_mode":null,"id":["hits_production_1111_202312_v_1","xxxxxxxxxxxxxxxx"],"object_type":"hit","anomaly":0.22727272727272727,"parameter":"URI_value","applications":["default"]}}
+        ```
 * Vulnerability detected
 
-    ```json
-    [
-        {
-            summary:"[Wallarm] New vulnerability detected",
-            description:"Notification type: vuln
+    === "JSON Array"
+        ```json
+        [
+            {
+                summary:"[Wallarm] New vulnerability detected",
+                description:"Notification type: vuln
 
-                        New vulnerability was detected in your system.
+                            New vulnerability was detected in your system.
 
-                        ID: 
-                        Title: Test
-                        Domain: example.com
-                        Path: 
-                        Method: 
-                        Discovered by: 
-                        Parameter: 
-                        Type: Info
-                        Threat: Medium
+                            ID: 
+                            Title: Test
+                            Domain: example.com
+                            Path: 
+                            Method: 
+                            Discovered by: 
+                            Parameter: 
+                            Type: Info
+                            Threat: Medium
 
-                        More details: https://us1.my.wallarm.com/object/555
+                            More details: https://us1.my.wallarm.com/object/555
 
 
-                        Client: TestCompany
-                        Cloud: US
-                        ",
-            details:{
-                client_name:"TestCompany",
-                cloud:"US",
-                notification_type:"vuln",
-                vuln_link:"https://us1.my.wallarm.com/object/555",
-                vuln:{
-                    domain:"example.com",
-                    id:null,
-                    method:null,
-                    parameter:null,
-                    path:null,
-                    title:"Test",
-                    discovered_by:null,
-                    threat:"Medium",
-                    type:"Info"
+                            Client: TestCompany
+                            Cloud: US
+                            ",
+                details:{
+                    client_name:"TestCompany",
+                    cloud:"US",
+                    notification_type:"vuln",
+                    vuln_link:"https://us1.my.wallarm.com/object/555",
+                    vuln:{
+                        domain:"example.com",
+                        id:null,
+                        method:null,
+                        parameter:null,
+                        path:null,
+                        title:"Test",
+                        discovered_by:null,
+                        threat:"Medium",
+                        type:"Info"
+                    }
                 }
             }
-        }
-    ]
-    ```
+        ]
+        ```
+    === "New Line Delimited JSON (NDJSON)"
+        ```json
+        {"summary":"[Wallarm] New vulnerability detected","description":"Notification type: vuln\nNew vulnerability was detected in your system.\nID: \nTitle: Test\nDomain: example.com\nPath: \nMethod: \nDiscovered by: \nParameter: \nType: Info\nThreat: Medium\nMore details: https://us1.my.wallarm.com/object/555\nClient: TestCompany\nCloud: US","details":{"client_name":"TestCompany","cloud":"US","notification_type":"vuln","vuln_link":"https://us1.my.wallarm.com/object/555","vuln":{"domain":"example.com","id":null,"method":null,"parameter":null,"path":null,"title":"Test","discovered_by":null,"threat":"Medium","type":"Info"}}}
+        ```
 
 ## Setting up integration
 
@@ -124,7 +206,7 @@ Notifications are sent in JSON format. The set of JSON objects depends on the ev
 
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
+1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format. Test notifications are always sent in the JSON Array format, even if New Line Delimited JSON (NDJSON) is chosen.
 1. Click **Add integration**.
 
 ## Setting up additional alerts
