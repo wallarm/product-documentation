@@ -554,3 +554,10 @@
 /4.4/user-guides/api-leaks/ /4.4/about-wallarm/api-leaks/
 
 /user-guides/user-intro/ /user-guides/search-and-filters/use-search/
+
+/user-guides/ip-lists/allowlist/ /user-guides/ip-lists/overview/
+/user-guides/ip-lists/graylist/ /user-guides/ip-lists/overview/
+/user-guides/ip-lists/denylist/ /user-guides/ip-lists/overview/
+/user-guides/triggers/trigger-examples/ /user-guides/triggers/triggers/
+/user-guides/triggers/trigger-examples/#detect-weak-jwts /about-wallarm/detecting-vulnerabilities/#weak-jwts-detection
+/user-guides/triggers/trigger-examples/#group-hits-originating-from-the-same-ip-into-one-attack /user-guides/events/analyze-attack/#grouping-of-hits
