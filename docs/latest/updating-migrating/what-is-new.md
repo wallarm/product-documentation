@@ -1,56 +1,29 @@
-# What is new in Wallarm node 4.8
+# What is new in Wallarm node 4.10
 
-The new version of the Wallarm node has been released! It features logging of blocked requests from denylisted sources in the **Attacks** section. Learn all released changes from this document.
+The new version of the Wallarm node has been released! This version brings advanced features like credential stuffing detection and API policy enforcement, enhancing the security of your APIs.
 
-## Collecting statistics on blocked requests from denylisted sources
+## Credential Stuffing Detection <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Starting from the release 4.8, the Wallarm NGINX‑based filtering nodes now collect statistics on requests that have been blocked when their source is found in the denylist, enhancing your ability to evaluate attack strength. This includes access to the blocked request statistics and their samples, helping you minimize unnoticed activity. You can find this data in the Wallarm Console UI's **Attacks** section.
+Beginning with release 4.10, Wallarm introduces real-time detection and notifications for credential stuffing attempts. Credential stuffing, the automated submission of stolen or weak username/email and password pairs into website login forms to illegitimately access user accounts, is now closely monitored. This feature allows you to identify accounts with compromised credentials and take action to secure them, such as notifying account owners and temporarily suspending account access.
 
-When using automatic IP blocking (e.g., with the brute force trigger configured), now you can analyze both the initial triggering requests and the samples of subsequent blocked requests. For requests blocked due to manual denylisting of their sources, the new functionality enhances visibility into blocked source actions.
+[Learn how to configure Credential Stuffing Detection](../about-wallarm/credential-stuffing.md)
 
-We have introduced new [search tags and filters](../user-guides/search-and-filters/use-search.md#search-by-attack-type) within the **Attacks** section to effortlessly access the newly introduced data:
+## API Policy Enforcement
 
-* Utilize the `blocked_source` search to identify requests that were blocked due to manual denylisting of IP addresses, subnets, countries, VPNs, and more.
-* Employ the `multiple_payloads` search to pinpoint requests blocked by the **Number of malicious payloads** trigger. This trigger is designed to denylist sources that originate malicious requests containing multiple payloads, a common characteristic of multi-attack perpetrators.
-* Additionally, the `api_abuse`, `brute`, `dirbust`, and `bola` search tags now encompass requests whose sources were automatically added to the denylist by the relevant Wallarm triggers for their respective attack types.
+In this latest update, we introduce API Policy Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.
 
-This change introduces the new configuration parameters which by default are set to `on` to enable the functionality but can be switched to `off` to disable it:
+This strengthens security by preventing potential attack attempts and also optimizes API performance by avoiding overloading and misuse.
 
-* The [`wallarm_acl_export_enable`](../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) NGINX directive.
-* The [`controller.config.wallarm-acl-export-enable`](../admin-en/configure-kubernetes-en.md#global-controller-settings) value for the NGINX Ingress controller chart.
-* The [`config.wallarm.aclExportEnable`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmaclexportenable) chart value and [`sidecar.wallarm.io/wallarm-acl-export-enable`](../installation/kubernetes/sidecar-proxy/pod-annotations.md) pod's annotation for the Sidecar Controller solution.
+[Learn how to configure API Policy Enforcement](../api-policy-enforcement/setup.md)
 
-## Wallarm NGINX Ingress Controller for ARM64
+## Optimized and more secure NGINX-based Docker image
 
-We now support ARM64 processors with the Wallarm NGINX Ingress Controller. As ARM64 gains traction in server solutions, we are staying up-to-date to meet our customers' needs. This enables enhanced security for API environments, covering both x86 and ARM64 architectures, providing flexibility and protection.
+The Docker image of Wallarm's NGINX-based filtering node has been revamped for enhanced security and optimization. Key updates include:
 
-In the deployment guide, we have provided the corresponding [Helm chart configuration examples](../admin-en/installation-kubernetes-en.md#arm64-deployment).
+* The Docker image is now built on Alpine Linux, replacing Debian, to provide a more secure and lightweight artifact.
+* Updated to the latest stable version of NGINX, 1.24.0, replacing the previous 1.14.x version. Although most vulnerabilities in 1.14.x were patched by the Debian team (the prior image was based on Debian 10.x), upgrading to 1.24.0 addresses remaining vulnerabilities for improved security.
 
-## Excluding specific URLs and requests from bot checks
-
-The API Abuse Prevention module is now more flexible. You can pick specific URLs and requests that should not be checked for malicious bot actions using the [**Set API Abuse Prevention mode** rule](../user-guides/rules/api-abuse-url.md). This is helpful for avoiding false positives and for times when you are testing your applications and need to turn off bot checks on some parts. For example, if you are using Klaviyo for marketing, you can set up the rule so it does not check the `Klaviyo/1.0` GET requests, allowing it to work smoothly without unnecessary blocks.
-
-## NGINX-based Docker image verification with official signature
-
-Beginning with release 4.8, Wallarm is now signing its [official NGINX‑based Docker image](https://hub.docker.com/r/wallarm/node) with its official public key.
-
-This means you can now easily [verify](../integrations-devsecops/verify-docker-image-signature.md) the authenticity of the image, enhancing security by guarding against compromised images and supply chain attacks.
-
-## Updated structure for the `wallarm_custom_ruleset_id` Prometheus metric
-
-The Prometheus metric `wallarm_custom_ruleset_id` has been enhanced with the addition of a `format` attribute. This new attribute represents the custom ruleset format. Meanwhile, the principal value continues to be the custom ruleset build version. Here is an example of the updated `wallarm_custom_ruleset_id` value:
-
-```
-wallarm_custom_ruleset_id{format="51"} 386
-```
-
-[More details on configuring Wallarm node metrics](../admin-en/configure-statistics-service.md)
-
-## API tokens support by Sidecar Controller
-
-Now, during [Sidecar controller deployment](../installation/kubernetes/sidecar-proxy/deployment.md), you can use [API tokens](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation) to create filtering nodes and connect them to the Cloud during solution deployment. With API tokens, you can control the lifetime of your tokens and enhance node organization in the UI by setting a node group name.
-
-Node group names are set using the `config.wallarm.api.nodeGroup` parameter in **values.yaml**, with `defaultSidecarGroup` as the default name. Optionally, you can control the names of node groups based on the applications' pods using the `sidecar.wallarm.io/wallarm-node-group` annotation.
+The newly released product features are also supported by the new NGINX-based Docker image of the new format.
 
 ## When upgrading node 3.6 and lower
 
@@ -58,8 +31,8 @@ If upgrading from the version 3.6 or lower, learn all changes from the [separate
 
 ## Which Wallarm nodes are recommended to be upgraded?
 
-* Client and multi-tenant Wallarm nodes of version 4.4 and 4.6 to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
-* Client and multi-tenant Wallarm nodes of the [unsupported](versioning-policy.md#version-list) versions (4.2 and lower). Changes available in Wallarm node 4.8 simplify the node configuration and improve traffic filtration. Please note that some settings of node 4.8 are **incompatible** with the nodes of older versions.
+* Client and multi-tenant Wallarm nodes of version 4.6 and 4.8 to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
+* Client and multi-tenant Wallarm nodes of the [unsupported](versioning-policy.md#version-list) versions (4.4 and lower). Changes available in Wallarm node 4.10 simplify the node configuration and improve traffic filtration. Please note that some settings of node 4.10 are **incompatible** with the nodes of older versions.
 
 ## Upgrade process
 
