@@ -61,6 +61,20 @@ Although the rate limiting rule is the recommended method for setting up the fea
 * [`wallarm_rate_limit_status_code`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_status_code)
 * [`wallarm_rate_limit_shm_size`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_shm_size)
 
+## Credential Stuffing Detection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+
+Beginning with release 4.10, Wallarm introduces real-time detection and notifications for credential stuffing attempts. Credential stuffing, the automated submission of stolen or weak username/email and password pairs into website login forms to illegitimately access user accounts, is now closely monitored. This feature allows you to identify accounts with compromised credentials and take action to secure them, such as notifying account owners and temporarily suspending account access.
+
+[Learn how to configure Credential Stuffing Detection](../../about-wallarm/credential-stuffing.md)
+
+## API Policy Enforcement
+
+In this latest update, we introduce API Policy Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.
+
+This strengthens security by preventing potential attack attempts and also optimizes API performance by avoiding overloading and misuse.
+
+[Learn how to configure API Policy Enforcement](../../api-policy-enforcement/setup.md)
+
 ## Detection of the new attack types
 
 Wallarm detects new attack types:
@@ -266,6 +280,15 @@ The `overlimit_res` attack detection fine-tuning via the NGINX and Envoy configu
 The listed directives and parameters have been deprecated and will be deleted in future releases. It is recommended to transfer the `overlimit_res` attack detection configuration from directives to the rule before. Relevant instructions are provided for each [node deployment option](../general-recommendations.md#update-process).
 
 If the listed parameters are explicitly specified in the configuration files and the rule is not created yet, the node processes requests as set in the configuration files.
+
+## Optimized and more secure NGINX-based Docker image
+
+The Docker image of Wallarm's NGINX-based filtering node has been revamped for enhanced security and optimization. Key updates include:
+
+* The Docker image is now built on Alpine Linux, replacing Debian, to provide a more secure and lightweight artifact.
+* Updated to the latest stable version of NGINX, 1.24.0, replacing the previous 1.14.x version. Although most vulnerabilities in 1.14.x were patched by the Debian team (the prior image was based on Debian 10.x), upgrading to 1.24.0 addresses remaining vulnerabilities for improved security.
+
+The newly released product features are also supported by the new NGINX-based Docker image of the new format.
 
 ## New blocking page
 
