@@ -14,7 +14,7 @@ To configure protection from sources originating malicious requests:
 1. If required, set one or several filters:
 
     * **Type** is a [type](../../attacks-vulns-list.md) of attack detected in the request or a type of vulnerability the request is directed to.
-    * **Application** is the [application](../settings/applications.md) that receives the request or in which an incident is detected.
+    * **Application** is the [application](../../user-guides/settings/applications.md) that receives the request or in which an incident is detected.
     * **IP** is an IP address from which the request is sent.
 
         The filter expects only single IPs, it does not allow subnets, locations and source types.
@@ -25,11 +25,11 @@ To configure protection from sources originating malicious requests:
 
 1. Select trigger reactions:
 
-    * [**Denylist IP address**](../../user-guides/ip-lists/denylist.md) originating malicious requests and the blocking period.
+    * [**Denylist IP address**](../../user-guides/ip-lists/overview.md) originating malicious requests and the blocking period.
     
         The Wallarm node will block both legitimate and malicious requests originating from the denylisted IP.
     
-    * [**Graylist IP address**](../../user-guides/ip-lists/graylist.md) originating  malicious requests and the blocking period.
+    * [**Graylist IP address**](../../user-guides/ip-lists/overview.md) originating  malicious requests and the blocking period.
     
         The Wallarm node will block requests originating from the graylisted IPs only if requests contain [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs.
 
@@ -41,7 +41,7 @@ To configure protection from sources originating malicious requests:
 
 New company accounts are featured by the pre-configured (default) **Number of malicious payloads** trigger which graylists IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour.
 
-[Graylist](../ip-lists/graylist.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../ip-lists/denylist.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
+[Graylist](../../user-guides/ip-lists/overview.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../../user-guides/ip-lists/overview.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
 
 The trigger is released in any node filtration mode, so that it will graylist IPs regardless of the node mode.
 

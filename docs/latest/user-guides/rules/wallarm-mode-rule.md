@@ -11,9 +11,9 @@ To set a filtration mode, create a *Set filtration mode* rule and select the app
 The filtration mode can take one of the following [values](../../admin-en/configure-wallarm-mode.md#available-filtration-modes):
 
 * **Default**: the system will work in accordance with the parameters specified in the NGINX configuration files.
-* **Disable**: analysis and filtration of requests are turned off, except for requests originating from IPs on the [denylist](../ip-lists/denylist.md). Requests from denylisted IPs are blocked (but not shown in the interface).
+* **Disable**: analysis and filtration of requests are turned off, except for requests originating from IPs on the [denylist](../ip-lists/overview.md). Requests from denylisted IPs are blocked (but not shown in the interface).
 * **Monitoring**: requests are analyzed and displayed in the interface, but they are not blocked unless they originate from denylisted IPs. Requests from denylisted IPs are blocked (but not shown in the interface).
-* **Safe blocking**: malicious requests are blocked only if they are originated from [graylisted IPs](../ip-lists/graylist.md).
+* **Safe blocking**: malicious requests are blocked only if they are originated from [graylisted IPs](../ip-lists/overview.md).
 * **Blocking**: malicious requests are blocked and displayed in the interface.
 
 To implement this rule, the NGINX configuration files must permit [centralized management of the operation mode][link-wallarm-mode-override].

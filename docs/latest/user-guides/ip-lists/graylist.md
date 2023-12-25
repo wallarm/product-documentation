@@ -11,7 +11,7 @@ Malicious requests originating from graylisted IPs are those containing the sign
 * [Attacks of the vpatch type](../rules/vpatch-rule.md)
 * [Attacks detected based on regular expressions](../rules/regex-rule.md)
 
-In contrast to graylist, [denylist](../ip-lists/denylist.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
+In contrast to graylist, [denylist](../ip-lists/overview.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
 
 Behavior of the filtering node may differ if graylisted IP addresses are also allowlisted, [more about list priorities](overview.md#algorithm-of-ip-lists-processing).
 
@@ -28,7 +28,7 @@ In Wallarm Console → **IP lists** → **Graylist**, you can manage graylisted 
 
 * Graylist IP addresses from which several consecutive attacks originated.
 
-    An attack may include several requests originating from one IP address and containing malicious payloads of different types. One of the methods to block most of the malicious requests and allow legitimate requests originated from this IP address is to graylist this IP. You can configure automatic source IP graylisting by configuring the threshold for source IP graylisting and appropriate reaction in the [trigger](../triggers/trigger-examples.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour).
+    An attack may include several requests originating from one IP address and containing malicious payloads of different types. One of the methods to block most of the malicious requests and allow legitimate requests originated from this IP address is to graylist this IP. You can [configure automatic source IP graylisting](../../admin-en/configuration-guides/protecting-with-thresholds.md) by configuring the threshold for source IP blocking and appropriate reaction.
 
     Source IP graylisting can significantly reduce the number of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
 * Graylist IP addresses, countries, regions, data centers, networks (for example, Tor) that usually produce harmful traffic. The Wallarm node will allow legitimate requests produced by graylisted objects and block malicious requests.

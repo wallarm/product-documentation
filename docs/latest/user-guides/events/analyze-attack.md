@@ -67,7 +67,7 @@ To view a request in a raw format, expand a required attack and then the request
 
 ## Analyze requests from denylisted IPs
 
-[Denylisting](../../user-guides/ip-lists/denylist.md) proves to be an effective defensive measure against high-volume attacks of different types. This is achieved by blocking requests at the earliest stage of processing. At the same time, it is equally important to gather comprehensive information on all blocked requests for further analysis.
+[Denylisting](../../user-guides/ip-lists/overview.md) proves to be an effective defensive measure against high-volume attacks of different types. This is achieved by blocking requests at the earliest stage of processing. At the same time, it is equally important to gather comprehensive information on all blocked requests for further analysis.
 
 Wallarm offers the ability to collect and display statistics regarding blocked requests from denylisted source IPs. This empowers you to evaluate the potency of attacks originating from denylisted IPs, and conduct precise analysis of the requests from these IPs, exploring various parameters.
 
@@ -78,7 +78,7 @@ In Wallarm, there are several ways for IP to get into the denylist. Depending on
 
 * You add it manually (in the **Attacks** section, use `blocked_source` search or `Blocked Source` filter)
 * It performs a behavioral attack and is automatically denylisted by:
-    * [API Abuse Prevention](../../user-guides/ip-lists/denylist.md#automatic-bots-ips-denylisting) module (`api_abuse` search, `API Abuse` filter)
+    * [API Abuse Prevention](../../user-guides/ip-lists/overview.md#automatic-bots-ips-denylisting) module (`api_abuse` search, `API Abuse` filter)
     * [`Brute force`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger (`brute`, `Brute force`)
     * [`Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger (`dirbust`, `Forced browsing`)
     * [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) trigger (`bola`, `BOLA`)

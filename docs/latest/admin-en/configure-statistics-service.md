@@ -245,8 +245,8 @@ The following response parameters are available (Prometheus metrics have the `wa
 
 *   `requests`: the number of requests that have been processed by the filter node.
 *   `attacks`: the number of recorded attacks.
-*   `blocked`: the number of blocked requests including those originated from [denylisted](../user-guides/ip-lists/denylist.md) IPs.
-*   `blocked_by_acl`: the number of requests blocked due to [denylisted](../user-guides/ip-lists/denylist.md) request sources.
+*   `blocked`: the number of blocked requests including those originated from [denylisted](../user-guides/ip-lists/overview.md) IPs.
+*   `blocked_by_acl`: the number of requests blocked due to [denylisted](../user-guides/ip-lists/overview.md) request sources.
 * `acl_allow_list`: the number of requests originating by [allowlisted](../user-guides/ip-lists/allowlist.md) request sources.
 *   `abnormal`: the number of requests the application deems abnormal.
 *   `tnt_errors`: the number of requests not analyzed by a post-analytics module. For these requests, the reasons for blocking are recorded, but the requests themselves are not counted in statistics and behavior checks.

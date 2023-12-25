@@ -34,7 +34,7 @@ A condition is a system event to be notified about. The following conditions are
 * [Brute force](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * [Forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * [BOLA](../../admin-en/configuration-guides/protecting-against-bola.md)
-* [Weak JWT](trigger-examples.md#detect-weak-jwts)
+* [Weak JWT](../../about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection)
 * Number of [attack vectors (malicious payloads)](../../glossary-en.md#malicious-payload) (experimental payloads based on [custom regular expressions](../rules/regex-rule.md) are not counted)
 * Number of [attacks](../../glossary-en.md#attack) (experimental attacks based on [custom regular expressions](../rules/regex-rule.md) are not counted)
 * Number of [hits](../../glossary-en.md#hit) except for:
@@ -76,17 +76,17 @@ Choose one or more filters in the Wallarm Console interface and set values for t
 
 A reaction is an action that should be performed if the specified condition and filters are met. The set of available reactions depends on the selected condition. Reactions can be of the following types:
 
-* [Mark the requests as brute‑force or forced browsing attack](../../admin-en/configuration-guides/protecting-against-bruteforce.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [denylist](../ip-lists/denylist.md) IP address.
-* [Mark the requests as BOLA attack](../../admin-en/configuration-guides/protecting-against-bola.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [denylist](../ip-lists/denylist.md) IP address.
-* [Record the JWT vulnerability](trigger-examples.md#detect-weak-jwts).
-* Add IP to the [denylist](../ip-lists/denylist.md).
-* Add IP to the [graylist](../ip-lists/graylist.md).
+* [Mark the requests as brute‑force or forced browsing attack](../../admin-en/configuration-guides/protecting-against-bruteforce.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [denylist](../ip-lists/overview.md) IP address.
+* [Mark the requests as BOLA attack](../../admin-en/configuration-guides/protecting-against-bola.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [denylist](../ip-lists/overview.md) IP address.
+* [Record the JWT vulnerability](../../about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection).
+* Add IP to the [denylist](../ip-lists/overview.md).
+* Add IP to the [graylist](../ip-lists/overview.md).
 * Send a notification to the SIEM system or Webhook URL configured in the [integrations](../settings/integrations/integrations-intro.md).
 * Send a notification to the messenger configured in the [integrations](../settings/integrations/integrations-intro.md).
 
     !!! warning "Notifying about denylisted IPs via the messengers"
         Triggers allow sending notifications on denylisted IPs only to the SIEM systems or Webhook URL. Messengers are not available for the **Denylisted IP** trigger condition.
-* [Group next hits into one attack](trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack) if the trigger condition is **Hits from the same IP**.
+* [Group next hits into one attack](../../admin-en/configuration-guides/protecting-with-thresholds.md) if the trigger condition is **Hits from the same IP**.
 
     The [**Mark as false positive**](../events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) option will be unavailable for these attacks.
 
@@ -118,7 +118,7 @@ New company accounts are featured by the following pre-configured triggers (defa
     The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
 * Graylist IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour
 
-    [Graylist](../ip-lists/graylist.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../ip-lists/denylist.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
+    [Graylist](../ip-lists/overview.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../ip-lists/overview.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
 
     The trigger is released in any node filtration mode, so that it will graylist IPs regardless of the node mode.
 

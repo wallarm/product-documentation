@@ -33,11 +33,11 @@ For the Wallarm node to identify BOLA attacks:
 1. Select trigger reactions:
 
     * **Mark as BOLA**. Requests exceeding the threshold are marked as a BOLA attack and displayed in the **Attacks** section of Wallarm Console. Wallarm node does NOT block these malicious requests.
-    * [**Denylist IP addresses**](../../user-guides/ip-lists/denylist.md) originating malicious requests and the blocking period.
+    * [**Denylist IP addresses**](../../user-guides/ip-lists/overview.md) originating malicious requests and the blocking period.
     
         The Wallarm node will block both legitimate and malicious requests (including BOLA attacks) originating from the denylisted IP.
     
-    * [**Graylist IP addresses**](../../user-guides/ip-lists/graylist.md) originating  malicious requests and the blocking period.
+    * [**Graylist IP addresses**](../../user-guides/ip-lists/overview.md) originating  malicious requests and the blocking period.
     
         The Wallarm node will block requests originating from the graylisted IPs only if requests contain [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs.
         

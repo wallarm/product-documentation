@@ -98,12 +98,10 @@ Wallarm detects new attack types:
 
 [JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely. JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
 
-Starting from version 4.4, you can enable Wallarm to detect the following JWT weaknesses:
+Starting from version 4.4, you can enable Wallarm to [detect the following JWT weaknesses](../../about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection):
 
 * Unencrypted JWTs
 * JWTs signed using compromised secret keys
-
-To enable, use the [**Weak JWT** trigger](../../user-guides/triggers/trigger-examples.md#detect-weak-jwts).
 
 ## Checking JSON Web Tokens for attacks
 
@@ -223,10 +221,10 @@ For the [multi-tenant nodes](../../installation/multi-tenant/overview.md), tenan
 
 * New **safe blocking** filtration mode.
 
-    This mode enables a significant reduction of [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from [graylisted IP addresses](../../user-guides/ip-lists/graylist.md).
+    This mode enables a significant reduction of [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from [graylisted IP addresses](../../user-guides/ip-lists/overview.md).
 * Analysis of request sources is now performed only in the `safe_blocking` and `block` modes.
     
-    * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originating from the [denylisted](../../user-guides/ip-lists/denylist.md) IP, it does not block this request.
+    * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originating from the [denylisted](../../user-guides/ip-lists/overview.md) IP, it does not block this request.
     * Wallarm node operating in the `monitoring` mode uploads all the attacks originating from the [allowlisted IP addresses](../../user-guides/ip-lists/allowlist.md) to the Wallarm Cloud.
 
 [More details on Wallarm node modes →](../../admin-en/configure-wallarm-mode.md)
@@ -242,11 +240,11 @@ The following parameters for request source control have been deprecated:
 There are the following new features for request source control:
 
 * Wallarm Console section for full IP address allowlist, denylist and graylist control.
-* Support for new [filtration mode](../../admin-en/configure-wallarm-mode.md) `safe_blocking` and [IP address graylists](../../user-guides/ip-lists/graylist.md).
+* Support for new [filtration mode](../../admin-en/configure-wallarm-mode.md) `safe_blocking` and [IP address graylists](../../user-guides/ip-lists/overview.md).
 
     The **safe blocking** mode enables a significant reduction of [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from graylisted IP addresses.
 
-    For automatic IP address graylisting there is a new [trigger **Add to graylist**](../../user-guides/triggers/trigger-examples.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour) released.
+    For automatic IP address graylisting, a newly released [**Number of malicious payloads** trigger](../../admin-en/configuration-guides/protecting-with-thresholds.md) can be used.
 * Automated allowlisting of [Wallarm Vulnerability Scanner](../../about-wallarm/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
 * Ability to allowlist, denylist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region, or data center.
 * Ability to allowlist, denylist, or graylist request sources for specific applications.
@@ -386,7 +384,7 @@ The following [node logging variables](../../admin-en/configure-logging.md#filte
 
 ## Increasing the performance by omitting attack search in requests from denylisted IPs
 
-The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive enables you to increase the Wallarm node performance by omitting the attack search stage during the analysis of requests from [denylisted](../../user-guides/ip-lists/denylist.md) IPs. This configuration option is useful if there are many denylisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.
+The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive enables you to increase the Wallarm node performance by omitting the attack search stage during the analysis of requests from [denylisted](../../user-guides/ip-lists/overview.md) IPs. This configuration option is useful if there are many denylisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.
 
 ## Easy grouping for node instances
 

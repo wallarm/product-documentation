@@ -9,7 +9,7 @@ The Wallarm platform continuously analyzes application traffic and mitigates mal
 * The same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type.
 
     This hit grouping method is basic and applied to all hits.
-* The same source IP address if the appropriate [trigger](../user-guides/triggers/trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack) is enabled. Other hit parameter values can differ.
+* The same source IP address if [grouping of hits by source IP](../user-guides/events/analyze-attack.md#grouping-of-hits) is enabled. Other hit parameter values can differ.
 
     This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
 
@@ -130,7 +130,7 @@ You can control the **libdetection** mode using:
 Wallarm can process attacks in the following modes:
 
 * Monitoring mode: detects but does not block attacks.
-* Safe blocking mode: detects attacks but blocks only those originated from [graylisted IPs](../user-guides/ip-lists/graylist.md). Legitimate requests originated from graylisted IPs are not blocked.
+* Safe blocking mode: detects attacks but blocks only those originated from [graylisted IPs](../user-guides/ip-lists/overview.md). Legitimate requests originated from graylisted IPs are not blocked.
 * Blocking mode: detects and blocks attacks.
 
 Wallarm ensures quality request analysis and low level of false positives. However each protected application has its own specificities, so we recommend analyzing the work of the Wallarm in the monitoring mode before enabling the blocking mode.
@@ -235,8 +235,6 @@ To configure notifications:
             ```
     
     * To set the threshold of attack, hit or malicious payload number and get notifications when the threshold is exceeded, configure appropriate [triggers](../user-guides/triggers/triggers.md).
-
-        [See the example of configured trigger and notification →](../user-guides/triggers/trigger-examples.md#slack-notification-if-2-or-more-sqli-hits-are-detected-in-one-minute)
 
 ## Demo videos
 

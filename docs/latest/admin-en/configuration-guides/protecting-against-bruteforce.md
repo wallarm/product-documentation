@@ -34,8 +34,8 @@ To configure brute-force protection:
 1. Select trigger reactions:
 
     * **Mark as brute force**. Requests received after the threshold exceedance will be marked as the brute‑force attack and displayed in the **Attacks** section of Wallarm Console.
-    * **Denylist IP address** and the period for IP address blocking to add IP addresses of malicious request sources to the [denylist](../../user-guides/ip-lists/denylist.md). The Wallarm node will block all requests originated from the denylisted IP after the threshold was exceeded.
-    * **Graylist IP address** and the period to [graylist](../../user-guides/ip-lists/graylist.md) IP addresses of malicious request sources. The Wallarm node will block requests originated from the graylisted IPs only if requests contain [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs. Brute‑force attacks originated from graylisted IPs are not blocked.
+    * **Denylist IP address** and the period for IP address blocking to add IP addresses of malicious request sources to the [denylist](../../user-guides/ip-lists/overview.md). The Wallarm node will block all requests originated from the denylisted IP after the threshold was exceeded.
+    * **Graylist IP address** and the period to [graylist](../../user-guides/ip-lists/overview.md) IP addresses of malicious request sources. The Wallarm node will block requests originated from the graylisted IPs only if requests contain [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs. Brute‑force attacks originated from graylisted IPs are not blocked.
 
 1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
 

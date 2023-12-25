@@ -53,7 +53,7 @@ Attacks of the following types do not support verification:
 * Attacks with a request processing limit
 * Attacks for which the vulnerabilities have already been closed
 * Attacks that do not contain enough data for verification
-* [Attacks that consist of hits grouped by originating IPs](../triggers/trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack)
+* [Attacks that consist of hits grouped by originating IPs](../../admin-en/configuration-guides/protecting-with-thresholds.md)
 
 Attack re-check will fail in the following cases:
 

@@ -732,7 +732,7 @@ JWT compromisation is a common aim of attackers as breaking authentication mecha
 
 **Wallarm behavior:**
 
-Wallarm detects weak JWTs only if the filtering node has version 4.4 or above and there is the [**Weak JWT** trigger](admin-en/configuration-guides/weak-jwt-detection.md) enabled.
+Wallarm detects weak JWTs only if the filtering node has version 4.4 or above and there is the [**Weak JWT** trigger](about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection) enabled.
 
 Wallarm considers JWTs to be weak if they are:
 

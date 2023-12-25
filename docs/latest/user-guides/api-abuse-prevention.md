@@ -37,7 +37,7 @@ You can delete the profile by using the corresponding **Delete** option.
 
 ## Exploring blocked malicious bots and their attacks
 
-The **API Abuse Prevention** module blocks bots by adding them to the [denylist](../user-guides/ip-lists/denylist.md) or [graylist](../user-guides/ip-lists/graylist.md) for 1 hour.
+The **API Abuse Prevention** module blocks bots by adding them to the [denylist](../user-guides/ip-lists/overview.md) or [graylist](../user-guides/ip-lists/overview.md) for 1 hour.
 
 You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Denylist** or **Graylist**. Explore IPs added with the `Bot` **Reason**.
 
@@ -82,7 +82,7 @@ The **API Abuse Prevention** module compiles client traffic into URL patterns. T
 
 To mark some IPs as associated with legitimate bots or crawlers to avoid blocking them by API Abuse Prevention, use the [**Exception list**](../about-wallarm/api-abuse-prevention.md#exception-list).
 
-You add IP address or range to the exception list and specify target application: this causes that any requests from these addresses to the target application will not lead to marking these addresses as malicious bots and they will not be added to [deny-](../user-guides/ip-lists/denylist.md) or [graylist](../user-guides/ip-lists/graylist.md) by API Abuse Prevention.
+You add IP address or range to the exception list and specify target application: this causes that any requests from these addresses to the target application will not lead to marking these addresses as malicious bots and they will not be added to [deny-](../user-guides/ip-lists/overview.md) or [graylist](../user-guides/ip-lists/overview.md) by API Abuse Prevention.
 
 There are two ways of adding IP addresses to the exception list:
 
@@ -94,7 +94,7 @@ There are two ways of adding IP addresses to the exception list:
 
     ![API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
 
-When the IP address is added to the exception list, the address is automatically removed from [deny-](../user-guides/ip-lists/denylist.md) or [graylist](../user-guides/ip-lists/graylist.md), but only if it was added there by API Abuse Prevention itself (has a `Bot` reason).
+When the IP address is added to the exception list, the address is automatically removed from [deny-](../user-guides/ip-lists/overview.md) or [graylist](../user-guides/ip-lists/overview.md), but only if it was added there by API Abuse Prevention itself (has a `Bot` reason).
 
 !!! info "Blocking other attack types from IP"
     If an IP from the exception list produces other [attack types](../attacks-vulns-list.md), like brute force or input validation attacks and others, Wallarm blocks such requests.
