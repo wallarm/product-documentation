@@ -10,6 +10,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.8.5 (2023-12-26)
+
+* Fixed incompatibility issues with NGINX 1.22.1 on Debian 12
+
 ### 4.8.4 (2023-11-17)
 
 * Added support for NGINX Mainline 1.25.3 for musl-based Linux distributions
