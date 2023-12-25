@@ -399,7 +399,7 @@ You can find the node UUID in the **Nodes** section, [node details](../../user-g
 
 ### Search by specification
 
-To get the list of events related to specific [specification policy violations](../../api-policy-enforcement/overview.md), in the search field specify `spec:'<SPECIFICATION-NAME>'`.
+To get the list of events related to specific [specification policy violations](../../api-policy-enforcement/overview.md), in the search field specify `spec:'<SPECIFICATION-ID>'`.
 
 ![Specification - use for API policy enforcement](../../images/api-policies-enforcement/api-policies-enforcement-events.png)
 
