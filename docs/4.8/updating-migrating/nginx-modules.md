@@ -67,13 +67,13 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.8 
 
 ### Step 4: Download all-in-one Wallarm installer
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download-4.8.md"
 
 ### Step 5: Run all-in-one Wallarm installer
 
 #### Filtering node and postanalytics on the same server
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include/waf/installation/all-in-one-installer-run-4.8.md"
 
 #### Filtering node and postanalytics on different servers
 
@@ -86,10 +86,10 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.8 
     === "API token"
         ```bash
         # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.4.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.5.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.4.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.5.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -97,10 +97,10 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.8 
     === "Node token"
         ```bash
         # If using the x86_64 version:
-        sudo sh wallarm-4.8.4.x86_64-glibc.sh filtering
+        sudo sh wallarm-4.8.5.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo sh wallarm-4.8.4.aarch64-glibc.sh filtering
+        sudo sh wallarm-4.8.5.aarch64-glibc.sh filtering
         ```
 
 ### Step 6: Transfer NGINX and postanalytics configuration from old node machine to new
