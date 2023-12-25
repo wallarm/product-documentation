@@ -69,7 +69,7 @@ With the Wallarm provider, via Terraform you can manage:
 * [Applications](../../user-guides/settings/applications.md)
 * [Rules](../../user-guides/rules/intro.md)
 * [Triggers](../../user-guides/triggers/triggers.md)
-* IPs in the [denylist](../../user-guides/ip-lists/overview.md), [allowlist](../../user-guides/ip-lists/allowlist.md) and [graylist](../../user-guides/ip-lists/overview.md)
+* IPs in the [denylist](../../user-guides/ip-lists/overview.md), [allowlist](../../user-guides/ip-lists/overview.md) and [graylist](../../user-guides/ip-lists/overview.md)
 * [Users](../../user-guides/settings/users.md)
 * [Integrations](../../user-guides/settings/integrations/integrations-intro.md)
 * Global [filtration mode](../../admin-en/configure-wallarm-mode.md)

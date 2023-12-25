@@ -1,4 +1,4 @@
-[allowlist-scanner-addresses]: ../user-guides/ip-lists/allowlist.md
+[allowlist-scanner-addresses]: ../user-guides/ip-lists/overview.md
 
 # Detecting Vulnerabilities
 

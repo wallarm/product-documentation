@@ -46,7 +46,7 @@ You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Deny
 !!! info "Confidence"
     As a result of [detectors' work](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works), every detected bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
 
-You can interfere in the bot protection process. If denylisted or graylisted IP actually is not used by a malicious bot, you can either delete the IP from the list or [allowlist](../user-guides/ip-lists/allowlist.md) it. Wallarm does not block any requests originating from allowlisted IPs including malicious ones.
+You can interfere in the bot protection process. If denylisted or graylisted IP actually is not used by a malicious bot, you can either delete the IP from the list or [allowlist](../user-guides/ip-lists/overview.md) it. Wallarm does not block any requests originating from allowlisted IPs including malicious ones.
 
 You can also explore bot API abuse attacks performed by bots in Wallarm Console → **Attacks** section. Use `api_abuse` search key or select `API Abuse` from the **Type** filter.
 

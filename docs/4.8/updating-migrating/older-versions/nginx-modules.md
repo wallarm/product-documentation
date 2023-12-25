@@ -16,7 +16,7 @@
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:          ../../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                    ../../user-guides/ip-lists/graylist.md
+[graylist-docs]:                    ../../user-guides/ip-lists/overview.md
 [wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [sqli-attack-docs]:                 ../../attacks-vulns-list.md#sql-injection
 [xss-attack-docs]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss

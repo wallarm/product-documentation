@@ -225,7 +225,7 @@ For the [multi-tenant nodes](../../installation/multi-tenant/overview.md), tenan
 * Analysis of request sources is now performed only in the `safe_blocking` and `block` modes.
     
     * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originating from the [denylisted](../../user-guides/ip-lists/overview.md) IP, it does not block this request.
-    * Wallarm node operating in the `monitoring` mode uploads all the attacks originating from the [allowlisted IP addresses](../../user-guides/ip-lists/allowlist.md) to the Wallarm Cloud.
+    * Wallarm node operating in the `monitoring` mode uploads all the attacks originating from the [allowlisted IP addresses](../../user-guides/ip-lists/overview.md) to the Wallarm Cloud.
 
 [More details on Wallarm node modes →](../../admin-en/configure-wallarm-mode.md)
 

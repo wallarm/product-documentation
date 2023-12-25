@@ -13,7 +13,7 @@ search:
 [subscriptions-docs]:                 ../../../../about-wallarm/subscription-plans.md#subscription-plans
 [active-threat-verification-docs]:    ../../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification
 [node-token-types]:                   ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[denylist-docs]:                      ../../../../user-guides/ip-lists/denylist.md
+[denylist-docs]:                      ../../../../user-guides/ip-lists/overview.md
 [denylist-view-events-docs]:          ../../../../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips
 
 --8<-- "latest/installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md"

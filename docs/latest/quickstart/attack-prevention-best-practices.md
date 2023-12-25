@@ -10,7 +10,7 @@ If your organization uses multiple applications or separate tenants, you will li
 
 ## Establish a trust zone
 
-When introducing new security measures, the uninterrupted operation of crucial business applications must remain a top priority. To ensure trusted resources are not unnecessarily processed by the Wallarm platform, you have the option to allocate them to the [IP allowlist](../user-guides/ip-lists/allowlist.md).
+When introducing new security measures, the uninterrupted operation of crucial business applications must remain a top priority. To ensure trusted resources are not unnecessarily processed by the Wallarm platform, you have the option to allocate them to the [IP allowlist](../user-guides/ip-lists/overview.md).
 
 Traffic originating by the allowlisted resources is not analyzed or logged by default. This means that data from bypassed requests will not be available for review. Therefore its use should be applied cautiously.
 

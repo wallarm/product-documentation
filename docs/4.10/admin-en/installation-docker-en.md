@@ -8,7 +8,7 @@
 [allocating-memory-guide]:          configuration-guides/allocate-resources-for-node.md
 [nginx-waf-directives]:             configure-parameters-en.md
 [mount-config-instr]:               #run-the-container-mounting-the-configuration-file
-[graylist-docs]:                    ../user-guides/ip-lists/graylist.md
+[graylist-docs]:                    ../user-guides/ip-lists/overview.md
 [filtration-modes-docs]:            configure-wallarm-mode.md
 [application-configuration]:        ../user-guides/settings/applications.md
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal

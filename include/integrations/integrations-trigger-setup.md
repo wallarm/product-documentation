@@ -2,7 +2,7 @@ Besides the notifications you have already set up through the integration card, 
 
 * Number of [attacks](../../../glossary-en.md#attack), [hits](../../../glossary-en.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number
 * [Changes in API](../../../api-discovery/track-changes.md) took place
-* IP address was [denylisted](../../../user-guides/ip-lists/denylist.md)
+* IP address was [denylisted](../../../user-guides/ip-lists/overview.md)
 * New [rogue API](../../../api-discovery/rogue-api.md) (shadow, orphan, zombie) was detected
 * New user was added to the company account
 

@@ -247,7 +247,7 @@ The following response parameters are available (Prometheus metrics have the `wa
 *   `attacks`: the number of recorded attacks.
 *   `blocked`: the number of blocked requests including those originated from [denylisted](../user-guides/ip-lists/overview.md) IPs.
 *   `blocked_by_acl`: the number of requests blocked due to [denylisted](../user-guides/ip-lists/overview.md) request sources.
-* `acl_allow_list`: the number of requests originating by [allowlisted](../user-guides/ip-lists/allowlist.md) request sources.
+* `acl_allow_list`: the number of requests originating by [allowlisted](../user-guides/ip-lists/overview.md) request sources.
 *   `abnormal`: the number of requests the application deems abnormal.
 *   `tnt_errors`: the number of requests not analyzed by a post-analytics module. For these requests, the reasons for blocking are recorded, but the requests themselves are not counted in statistics and behavior checks.
 *   `api_errors`: the number of requests that were not submitted to the API for further analysis. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.

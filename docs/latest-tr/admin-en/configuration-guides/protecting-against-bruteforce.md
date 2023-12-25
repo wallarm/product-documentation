@@ -94,7 +94,7 @@ Brüt kuvvet koruması için birkaç tetikleyici yapılandırabilirsiniz.
    Tetikleyici tepkisi **IP adresini gri liste yap** ise, Wallarm Konsolu'nun **IP listeleri** → **Gri Liste** bölümünü kontrol edin.
 3. **Etkinlikler** bölümünü açın ve isteklerin listeye brüt-kuvvet veya zorla gezinme saldırısı olarak eklenmiş olduğunu kontrol edin.
 
-   ![Arayüzdeki zorla gezinme saldırısı](../../images/user-guides/events/dirbust-attack.png)
+   ![Arayüzdeki zorla gezinme saldırısı](../../images/user-guides/events/forced-browsing-attack.png)
 
    Gösterilen isteklerin sayısı, tetikleyici eşiğinin aşıldıktan sonra gönderilen istek sayısına denk gelir ([davranışsal saldırıları algılama hakkında daha fazla detay](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). Eğer bu sayı 5'ten fazlaysa, örnek alma uygulanır ve istek ayrıntıları yalnızca ilk 5 isabet için gösterilir ([isteklerin örnekleme hakkında daha fazla detay](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 

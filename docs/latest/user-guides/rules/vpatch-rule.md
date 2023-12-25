@@ -3,7 +3,7 @@
 
 # Virtual Patching
 
-A virtual patch allows blocking malicious requests even in the monitoring and safe blocking modes or when a request does not seem to contain any known attack vectors. The only requests virtual patches do not block are the ones originating from the [allowlisted](../ip-lists/allowlist.md) IPs.
+A virtual patch allows blocking malicious requests even in the monitoring and safe blocking modes or when a request does not seem to contain any known attack vectors. The only requests virtual patches do not block are the ones originating from the [allowlisted](../ip-lists/overview.md) IPs.
 
 Virtual patches are especially useful in cases when it is impossible to fix a critical vulnerability in the code or install the necessary security updates quickly.
 
