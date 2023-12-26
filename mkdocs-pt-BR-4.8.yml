@@ -14,7 +14,7 @@ theme:
   try_button_name: "Experimente grátis"
   playground_button_name: "Explore o Playground"
 
-docs_dir: docs/4.8-pt-BR
+docs_dir: docs/pt-BR
 site_dir: site/pt-br
 watch:
   - docs/latest-pt-BR

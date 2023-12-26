@@ -1,1 +1,0 @@
---8<-- "latest-ja/fast/AGREEMENTS.md"

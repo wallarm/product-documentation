@@ -1,1 +1,0 @@
---8<-- "latest-ja/demo-videos/events-inspection.md"

@@ -1,1 +1,0 @@
---8<-- "latest-ja/user-guides/events/check-attack.md"

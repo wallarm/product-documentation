@@ -1,1 +1,0 @@
---8<-- "latest-ja/integrations-devsecops/verify-docker-image-signature.md"

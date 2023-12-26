@@ -1,1 +1,0 @@
---8<-- "latest-ja/admin-en/configuration-guides/envoy/fine-tuning.md"

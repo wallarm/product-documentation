@@ -1,1 +1,0 @@
---8<-- "latest-ja/installation/multi-tenant/configure-accounts.md"

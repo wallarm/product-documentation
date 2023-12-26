@@ -14,7 +14,7 @@ theme:
   try_button_name: "無料で試す"
   playground_button_name: "プレイグラウンドを探機"
 
-docs_dir: docs/4.8-ja
+docs_dir: docs/ja
 site_dir: site/ja
 watch:
   - docs/latest-ja
