@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/monitoring/working-with-zabbix.md"
+--8<-- "4.6/admin-en/monitoring/working-with-zabbix.md"

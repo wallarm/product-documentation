@@ -26,7 +26,7 @@ Verify that Nagios is successfully monitoring the status of the previously creat
 
     Make sure that the metric value displayed in Nagios (the “Performance Data” row) matches the `wallarm-status` output on the filter node:
 
-    --8<-- "../include/monitoring/wallarm-status-check-latest.md"
+    --8<-- "../include/monitoring/wallarm-status-check-no-aio.md"
  
 5.  Perform a test attack on an application protected by the filter node. To do this, you can send a malicious request to the application either with the curl utility or a browser.
 
