@@ -4,7 +4,7 @@ Sections below provide the information about frequent errors in Tarantool operat
 
 ## How can I solve the "readahead limit reached" problem?
 
-In the `/var/log/wallarm/tarantool.log` file, you may get errors like:
+In the `/var/log/wallarm/tarantool.log` file (`/opt/wallarm/var/log/wallarm/tarantool.log` for Docker NGINX-based image or all-in-one installer), you may get errors like:
 
 ```
 readahead limit reached, stopping input on connection fd 16, 
@@ -24,7 +24,7 @@ The `readahead` parameter defines the size of the read-ahead buffer associated w
 
 ## How can I solve the "net_msg_max limit is reached" problem?
 
-In the `/var/log/wallarm/tarantool.log` file, you may get errors like:
+In the `/var/log/wallarm/tarantool.log` file (`/opt/wallarm/var/log/wallarm/tarantool.log` for Docker NGINX-based image or all-in-one installer), you may get errors like:
 
 ```
 2020-02-18 12:22:17.420 [26620] iproto iproto.cc:562 W> stopping input on connection fd 21, 
