@@ -14,10 +14,10 @@ theme:
   try_button_name: "Ücretsiz Deneyin"
   playground_button_name: "Oyun Alanını Keşfedin"
 
-docs_dir: docs/4.8-tr
+docs_dir: docs/tr
 site_dir: site/tr
 watch:
-  - docs/4.8-tr
+  - docs/tr
 
 nav:
   - Hızlı Başlangıç:
