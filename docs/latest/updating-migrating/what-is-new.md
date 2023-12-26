@@ -23,12 +23,17 @@ Additionally, this update introduces new parameters for some deployment options,
 
 ## Optimized and more secure NGINX-based Docker image
 
-The Docker image of Wallarm's NGINX-based filtering node has been revamped for enhanced security and optimization. Key updates include:
+The [Docker image of Wallarm's NGINX-based filtering node](../admin-en/installation-docker-en.md) has been revamped for enhanced security and optimization. Key updates include:
 
 * The Docker image is now built on Alpine Linux, replacing Debian, to provide a more secure and lightweight artifact.
 * Updated to the latest stable version of NGINX, 1.24.0, replacing the previous 1.14.x version. Although most vulnerabilities in 1.14.x were patched by the Debian team (the prior image was based on Debian 10.x), upgrading to 1.24.0 addresses remaining vulnerabilities for improved security.
+* Support for ARM64 processor operating systems, which is automatically identified during the installation process.
 * Inside the Docker container, operations now utilize the non-root user `wallarm`, a change from the previous `root` user setup.
 * The [`/wallarm-status`](../admin-en/configure-statistics-service.md) endpoint has been updated to export metrics in the Prometheus format, instead of JSON. This applies specifically when accessing the endpoint from outside the Docker container. Note that the [`WALLARM_STATUS_ALLOW`](../admin-en/installation-docker-en.md#wallarm-status-allow-env-var) environment variable must be set appropriately for this functionality.
+* The Docker image is now built using the [all-in-one installer](../installation/nginx/all-in-one.md), which changes its internal directory structure:
+
+      * Log file directory: `/var/log/wallarm` → `/opt/wallarm/var/log/wallarm`.
+      * Directory with files containing credentials for the Wallarm node to connect to the Cloud: `/etc/wallarm` → `/opt/wallarm/etc/wallarm`.
 
 The newly released product features are also supported by the new NGINX-based Docker image of the new format.
 
