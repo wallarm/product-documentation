@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configure-cloud-node-synchronization-en.md"
+--8<-- "4.8/admin-en/configure-cloud-node-synchronization-en.md"

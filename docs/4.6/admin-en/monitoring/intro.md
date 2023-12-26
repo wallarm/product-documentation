@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/monitoring/intro.md"
+--8<-- "4.8/admin-en/monitoring/intro.md"
