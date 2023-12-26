@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configure-logging.md"
+--8<-- "4.8/admin-en/configure-logging.md"
