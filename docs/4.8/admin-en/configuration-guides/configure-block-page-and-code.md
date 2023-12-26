@@ -39,7 +39,7 @@ The `wallarm_block_page` directive accepts the listed parameters in the followin
     wallarm_block_page &/<PATH_TO_FILE/HTML_HTM_FILE_NAME> response_code=<CUSTOM_CODE> type=<BLOCKED_REQUEST_TYPE>;
     ```
     
-    Wallarm provides the sample blocking page `&/usr/share/nginx/html/wallarm_blocked.html` (`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html` for all-in-one installer). You can use this page as a start point for your [customization](#customizing-sample-blocking-page).
+    Wallarm provides the sample blocking page `&/usr/share/nginx/html/wallarm_blocked.html` (`&/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html` for all-in-one installer). You can use this page as a start point for your [customization](#customizing-sample-blocking-page).
 
     You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the blocking page. For this, add the variable name in the format `${variable_name}` to the blocking page code, e.g. `${remote_addr}` to display the IP address from which the blocked request originated.
 
