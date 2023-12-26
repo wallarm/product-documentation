@@ -64,6 +64,9 @@ A path to the `node.yaml` file, which contains access requirements for the Walla
 **Example**: 
 ```
 wallarm_api_conf /etc/wallarm/node.yaml
+
+# Docker NGINX-based image or all-in-one installer installations
+# wallarm_api_conf /opt/wallarm/etc/wallarm/node.yaml
 ```
 
 Used to upload serialized requests from the filtering node directly to the Wallarm API (Cloud) instead of uploading into the postanalytics module (Tarantool).
@@ -192,7 +195,10 @@ A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains
 !!! info
     This parameter can be set inside the http, server, and location blocks.
     
-    **Default value**: `/etc/wallarm/custom_ruleset`
+    **Default value**:
+    
+    * `/opt/wallarm/etc/wallarm/custom_ruleset` for Docker NGINX-based image or all-in-one installer installations
+    * `/etc/wallarm/custom_ruleset` for other installation artifacts
 
 ### wallarm_enable_libdetection
 
@@ -275,7 +281,10 @@ Defines an interval between checking new data in proton.db and custom ruleset fi
 A path to the Wallarm private key used for encryption/decryption of proton.db and custom ruleset files.
 
 !!! info
-    **Default value**: `/etc/wallarm/private.key` (in Wallarm node 3.6 and lower, `/etc/wallarm/license.key`)
+    **Default value**:
+    
+    * `/opt/wallarm/etc/wallarm/private.key` for Docker NGINX-based image or all-in-one installer installations
+    * `/etc/wallarm/private.key` for other installation artifacts
 
 
 ### wallarm_local_trainingset_path
@@ -538,7 +547,10 @@ A path to the [proton.db](../about-wallarm/protecting-against-attacks.md#library
 !!! info
     This parameter can be set inside the http, server, and location blocks.
     
-    **Default value**: `/etc/wallarm/proton.db`
+    **Default value**:
+    
+    * `/opt/wallarm/etc/wallarm/proton.db` for Docker NGINX-based image or all-in-one installer installations
+    * `/etc/wallarm/proton.db` for other installation artifacts
 
 ### wallarm_rate_limit
 
@@ -661,7 +673,10 @@ The directive value has the following format:
 wallarm_status [on|off] [format=json|prometheus];
 ```
 
-It is highly recommended to configure the statistics service in the separate configuration file `/etc/nginx/conf.d/wallarm-status.conf` and not to use the `wallarm_status` directive in other files that you use when setting up NGINX, because the latter may be insecure.
+It is highly recommended to configure the statistics service in its own file, avoiding the `wallarm_status` directive in other NGINX setup files, because the latter may be insecure. The configuration file for `wallarm-status` is located at:
+
+* `/etc/nginx/wallarm-status.conf` for all-in-one installer
+* `/etc/nginx/conf.d/wallarm-status.conf` for other installations
 
 Also, it is strongly advised not to alter any of the existing lines of the default `wallarm-status` configuration as it may corrupt the process of metric data upload to the Wallarm cloud.
 

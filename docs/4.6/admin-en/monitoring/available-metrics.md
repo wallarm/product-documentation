@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/monitoring/available-metrics.md"
+--8<-- "4.8/admin-en/monitoring/available-metrics.md"

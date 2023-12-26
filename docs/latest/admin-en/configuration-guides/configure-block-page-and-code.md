@@ -39,7 +39,7 @@ The `wallarm_block_page` directive accepts the listed parameters in the followin
     wallarm_block_page &/<PATH_TO_FILE/HTML_HTM_FILE_NAME> response_code=<CUSTOM_CODE> type=<BLOCKED_REQUEST_TYPE>;
     ```
     
-    Wallarm provides the sample blocking page `&/usr/share/nginx/html/wallarm_blocked.html`. You can use this page as a start point for your [customization](#customizing-sample-blocking-page).
+    Wallarm provides the sample blocking page `&/usr/share/nginx/html/wallarm_blocked.html` (`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html` for Docker NGINX-based image or all-in-one installer). You can use this page as a start point for your [customization](#customizing-sample-blocking-page).
 
     You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the blocking page. For this, add the variable name in the format `${variable_name}` to the blocking page code, e.g. `${remote_addr}` to display the IP address from which the blocked request originated.
 
@@ -87,7 +87,7 @@ The directive  can be set inside the `http` block of the NGINX configuration fil
 
 ## Customizing sample blocking page
 
-The sample blocking page provided by Wallarm `/usr/share/nginx/html/wallarm_blocked.html` looks as follows:
+The sample blocking page provided by Wallarm looks as follows:
 
 ![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
@@ -106,7 +106,7 @@ If you modify the sample page itself, your modifications may be lost on Wallarm 
 
 **<a name="copy"></a>Sample page for copying**
 
-You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` located in the environment where your filtering node is installed. Alternatively, copy the code below and save it as your new file:
+You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html` for Docker NGINX-based image or all-in-one installer) located in the environment where your filtering node is installed. Alternatively, copy the code below and save it as your new file:
 
 ??? info "Show sample page code"
 
@@ -324,7 +324,7 @@ You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` located 
 
 **Common file system**
 
-You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` under a new name wherever you want (NGINX should have read permission there) including the same folder.
+You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html` for Docker NGINX-based image or all-in-one installer) under a new name wherever you want (NGINX should have read permission there) including the same folder.
 
 **Docker container**
 
@@ -391,13 +391,13 @@ The `type` parameter of the `wallarm_block_page` directive is explicitly specifi
 
 This example shows the following response settings:
 
-* [Modified](#customizing-sample-blocking-page) sample Wallarm blocking page `/usr/share/nginx/html/wallarm_blocked_renamed.html` and the error code 445 returned if the request is blocked by the filtering node in the blocking or safe blocking mode.
+* [Modified](#customizing-sample-blocking-page) sample Wallarm blocking page `/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html` and the error code 445 returned if the request is blocked by the filtering node in the blocking or safe blocking mode.
 * Custom blocking page `/usr/share/nginx/html/block.html` and the error code 445 returned if the request originated from any denylisted IP address.
 
 #### NGINX configuration file
 
 ```bash
-wallarm_block_page &/usr/share/nginx/html/wallarm_blocked_renamed.html response_code=445 type=attack;
+wallarm_block_page &/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html response_code=445 type=attack;
 wallarm_block_page &/usr/share/nginx/html/block.html response_code=445 type=acl_ip,acl_source;
 ```
 
@@ -416,7 +416,7 @@ Before adding the Ingress annotation:
 Ingress annotations:
 
 ```bash
-kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="&/usr/share/nginx/html/wallarm_blocked_renamed.html response_code=445 type=attack;&/usr/share/nginx/html/block.html response_code=445 type=acl_ip,acl_source"
+kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="&/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html response_code=445 type=attack;&/usr/share/nginx/html/block.html response_code=445 type=acl_ip,acl_source"
 ```
 
 #### Pod annotations (if using Sidecar controller)
@@ -495,7 +495,7 @@ kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kub
 
 This configuration is returned to the client if the request originated from the source denylisted as a single IP or subnet. The Wallarm node returns the code 445 and the blocking page with the content that depends on the `User-Agent` header value:
 
-* By default, the [modified](#customizing-sample-blocking-page) sample Wallarm blocking page `/usr/share/nginx/html/wallarm_blocked_renamed.html` is returned. Since NGINX variables are used in the blocking page code, this page should be initialized via the directive `wallarm_block_page_add_dynamic_path`.
+* By default, the [modified](#customizing-sample-blocking-page) sample Wallarm blocking page `/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html` is returned. Since NGINX variables are used in the blocking page code, this page should be initialized via the directive `wallarm_block_page_add_dynamic_path`.
 * For users of Firefox — `/usr/share/nginx/html/block_page_firefox.html` (if deploying Wallarm Ingress controller, it is recommended to create a separate directory for custom block page files, i.e. `/usr/custom-block-pages/block_page_firefox.html`):
 
     ```bash
@@ -518,12 +518,12 @@ This configuration is returned to the client if the request originated from the 
 #### NGINX configuration file
 
 ```bash
-wallarm_block_page_add_dynamic_path /usr/share/nginx/html/block_page_firefox.html /usr/share/nginx/html/wallarm_blocked_renamed.html;
+wallarm_block_page_add_dynamic_path /usr/share/nginx/html/block_page_firefox.html /opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html;
 
 map $http_user_agent $block_page {
   "~Firefox"  &/usr/share/nginx/html/block_page_firefox.html;
   "~Chrome"   &/usr/share/nginx/html/block_page_chrome.html;
-  default     &/usr/share/nginx/html/wallarm_blocked_renamed.html;
+  default     &/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html;
 }
 
 wallarm_block_page $block_page response_code=445 type=acl_ip;
@@ -536,7 +536,7 @@ To apply the settings to the Docker container, the NGINX configuration file with
 1. Pass the parameter `controller.config.http-snippet` to the deployed Helm chart by using the command [`helm upgrade`](https://helm.sh/docs/helm/helm_upgrade/):
 
     ```bash
-    helm upgrade --reuse-values --set controller.config.http-snippet='wallarm_block_page_add_dynamic_path /usr/custom-block-pages/block_page_firefox.html /usr/share/nginx/html/wallarm_blocked_renamed.html; map $http_user_agent $block_page { "~Firefox" &/usr/custom-block-pages/block_page_firefox.html; "~Chrome" &/usr/custom-block-pages/block_page_chrome.html; default &/usr/share/nginx/html/wallarm_blocked_renamed.html;}' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    helm upgrade --reuse-values --set controller.config.http-snippet='wallarm_block_page_add_dynamic_path /usr/custom-block-pages/block_page_firefox.html /opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html; map $http_user_agent $block_page { "~Firefox" &/usr/custom-block-pages/block_page_firefox.html; "~Chrome" &/usr/custom-block-pages/block_page_chrome.html; default &/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html;}' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 2. [Create ConfigMap from the files](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files) `wallarm_blocked_renamed.html`, `block_page_firefox.html`, and `block_page_chrome.html`.
 3. Mount created ConfigMap to the pod with Wallarm Ingress controller. For this, please update the Deployment object relevant for Wallarm Ingress controller following the [instructions](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap).

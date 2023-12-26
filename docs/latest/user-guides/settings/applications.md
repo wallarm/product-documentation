@@ -53,7 +53,7 @@ This approach includes two steps:
 1. Configure your network so that the header with application ID is added to each request.
 1. Use value of this header as value for the `wallarm_application` directive. See example below.
 
-Example of the NGINX configuration file (`/etc/nginx/default.conf`):
+Example of the NGINX configuration file:
 
 ```
 server {

@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configure-access-to-files-needed-for-node.md"
+--8<-- "4.4/admin-en/configure-access-to-files-needed-for-node.md"

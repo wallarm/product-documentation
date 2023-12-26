@@ -10,7 +10,10 @@ To obtain statistics about the filter node, use the `wallarm_status` directive, 
 
 !!! warning "Important"
 
-    It is highly recommended to configure the statistics service in the separate configuration file `/etc/nginx/conf.d/wallarm-status.conf` and not to use the `wallarm_status` directive in other files that you use when setting up NGINX, because the latter may be insecure.
+    It is highly recommended to configure the statistics service in its own file, avoiding the `wallarm_status` directive in other NGINX setup files, because the latter may be insecure. The configuration file for `wallarm-status` is located at:
+
+    * `/etc/nginx/wallarm-status.conf` for all-in-one installer
+    * `/etc/nginx/conf.d/wallarm-status.conf` for other installations
     
     Also, it is strongly advised not to alter any of the existing lines of the default `wallarm-status` configuration as it may corrupt the process of metric data upload to the Wallarm cloud.
 
@@ -27,7 +30,7 @@ wallarm_status [on|off] [format=json|prometheus];
 
 ### Default configuration
 
-By default, the filter node statistics service has the most secure configuration. The `/etc/nginx/conf.d/wallarm-status.conf` configuration file looks like the following:
+By default, the filter node statistics service has the most secure configuration. The `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` for all-in-one installer) configuration file looks like the following:
 
 ```
 server {
@@ -70,8 +73,8 @@ Once the settings changed, restart NGINX to apply the changes:
 
 To change an IP address of the statistics service:
 
-1. Specify a new address in the `listen` directive of the `/etc/nginx/conf.d/wallarm-status.conf` file.
-1. Add the `status_endpoint` parameter with the new address value to the `/etc/wallarm/node.yaml` file, e.g.:
+1. Specify a new address in the `listen` directive of the `/etc/nginx/conf.d/wallarm-status.conf` file (`/etc/nginx/wallarm-status.conf` for all-in-one installer).
+1. Add the `status_endpoint` parameter with the new address value to the `/etc/wallarm/node.yaml` file (`/opt/wallarm/etc/wallarm/node.yaml` for Docker NGINX-based image or all-in-one installer), e.g.:
 
     ```bash
     hostname: example-node-name
@@ -91,7 +94,7 @@ To change an IP address of the statistics service:
 
 By default, the statistics are returned only in the JSON format. To get the statistics in the Prometheus format:
 
-1. Add the following configuration to the `/etc/nginx/conf.d/wallarm-status.conf` file:
+1. Add the following configuration to the `/etc/nginx/conf.d/wallarm-status.conf` file (`/etc/nginx/wallarm-status.conf` for all-in-one installer):
 
 
     ```diff
@@ -150,7 +153,7 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     curl http://127.0.0.8/wallarm-status-prometheus
     ```
 
-    The address can be different, please check the `/etc/nginx/conf.d/wallarm-status.conf` file for the actual address.
+    The address can be different, please check the `/etc/nginx/conf.d/wallarm-status.conf` file (`/etc/nginx/wallarm-status.conf` for all-in-one installer) for the actual address.
 
     As a result, you will get a response of the type:
 
