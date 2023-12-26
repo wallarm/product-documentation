@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/rules/compiling.md"
+--8<-- "4.4/user-guides/rules/compiling.md"

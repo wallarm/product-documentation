@@ -1,1 +1,1 @@
---8<-- "latest/api-discovery/setup.md"
+--8<-- "4.8/api-discovery/setup.md"

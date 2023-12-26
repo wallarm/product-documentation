@@ -44,7 +44,7 @@ If a load balancer or proxy server appends a header `X-Forwarded-For` (`X-Real-I
 
 1. Open the following configuration file of NGINX installed with the Wallarm node:
 
-    * `/etc/nginx/conf.d/default.conf` if the Wallarm node is installed from the DEB / RPM packages.
+    * `/etc/nginx/conf.d/default.conf` if the Wallarm node is installed from the DEB / RPM packages or all-in-one installer.
     * `/etc/nginx/nginx.conf` if the Wallarm node is deployed from the AWS / GCP image.
     * If the Wallarm node is deployed from the NGINX-based Docker image, you should create and edit the NGINX configuration file locally and mount it to the Docker container at the path `/etc/nginx/sites-enabled/default`. You can copy an initial NGINX configuration file and get the instructions on mounting the file to the container from the [instructions on the Wallarm NGINX-based Docker instructions](installation-docker-en.md#run-the-container-mounting-the-configuration-file).
 2. In the NGINX context `location` or higher, add the directive `set_real_ip_from` with a proxy server or load balancer IP address. If a proxy server or load balancer has several IP addresses, please add an appropriate number of separate directives. For example:
@@ -86,7 +86,7 @@ If a load balancer or proxy server supports the [PROXY protocol](https://www.hap
 
 1. Open the following configuration file of NGINX installed with the Wallarm node:
 
-    * `/etc/nginx/conf.d/default.conf` if the Wallarm node is installed from the DEB / RPM packages.
+    * `/etc/nginx/conf.d/default.conf` if the Wallarm node is installed from the DEB / RPM packages or all-in-one installer.
     * `/etc/nginx/nginx.conf` if the Wallarm node is deployed from the AWS / GCP image.
     * If the Wallarm node is deployed from the NGINX-based Docker image, you should create and edit the NGINX configuration file locally and mount it to the Docker container at the path `/etc/nginx/sites-enabled/default`. You can copy an initial NGINX configuration file and get the instructions on mounting the file to the container from the [instructions on the Wallarm NGINX-based Docker instructions](installation-docker-en.md#run-the-container-mounting-the-configuration-file).
 2. In the NGINX context `server`, add the parameter `proxy_protocol` to the directive `listen`.
