@@ -31,8 +31,6 @@
 
 This article provides instructions for deploying [Wallarm OOB](overview.md) using the [NGINX-based Docker image](https://hub.docker.com/r/wallarm/node). The solution described here is designed to analyze traffic mirrored by a web or proxy server.
 
---8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.md"
-
 ## Use cases
 
 --8<-- "../include/waf/installation/docker-images/nginx-based-use-cases.md"
@@ -79,10 +77,22 @@ In this file, you need to specify the Wallarm node configuration to process mirr
             wallarm_force response_size 0;
 
             wallarm_mode monitoring;
-            # wallarm_application 1;
+
+            location ~ ^/wallarm-apifw(.*)$ {
+                    wallarm_mode off;
+                    proxy_pass http://127.0.0.1:8088$1;
+                    error_page 404 431         = @wallarm-apifw-fallback;
+                    error_page 500 502 503 504 = @wallarm-apifw-fallback;
+            }
+
+            location @wallarm-apifw-fallback {
+                    wallarm_mode off;
+                    return 500 "API FW fallback";
+            }
 
             location / {
-                    proxy_pass http://127.0.0.1:8080;
+                    
+                    proxy_pass http://example.com;
                     include proxy_params;
             }
     }
@@ -98,7 +108,7 @@ You can also mount other files to the following container directories if necessa
 
 * `/etc/nginx/conf.d` — common settings
 * `/etc/nginx/sites-enabled` — virtual host settings
-* `/var/www/html` — static files
+* `/opt/wallarm/usr/share/nginx/html` — static files
 
 ## 3. Get a token to connect the node to the Cloud
 
@@ -143,11 +153,7 @@ The following environment variables should be passed to the container:
 The logging is enabled by default. The log directories are:
 
 * `/var/log/nginx` — NGINX logs
-* `/var/log/wallarm` — Wallarm node logs
-
-To configure extended logging of the filtering node variables, please use these [instructions](../../../admin-en/configure-logging.md).
-
-By default, the logs rotate once every 24 hours. To set up the log rotation, change the configuration files in `/etc/logrotate.d/`. Changing the rotation parameters through environment variables is not possible. 
+* `/opt/wallarm/var/log/wallarm` — [Wallarm node logs][logging-instr]
 
 ## Monitoring configuration
 

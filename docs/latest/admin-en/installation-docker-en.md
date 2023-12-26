@@ -1,10 +1,6 @@
 # Running Docker NGINX‑based Image
 
-The Wallarm NGINX-based filtering node can be deployed as a Docker container. The Docker container is fat and contains all subsystems of the filtering node.
-
-The functionality of the filtering node installed inside the Docker container is completely identical to the functionality of the other deployment options.
-
---8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.md"
+The Wallarm NGINX-based filtering node can be deployed using a [Docker image](https://hub.docker.com/r/wallarm/node). This node supports both x86_64 and ARM64 processor operating systems, which are automatically identified during installation. This article provides guidance on how to run the node from the Docker image.
 
 ## Use cases
 
@@ -42,7 +38,7 @@ You can pass the following basic filtering node settings to the container via th
 The command does the following:
 
 * Creates the file `default` with minimal NGINX configuration and passes filtering node configuration in the `/etc/nginx/sites-enabled` container directory.
-* Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
+* Creates files with filtering node credentials to access the Wallarm Cloud in the `/opt/wallarm/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
     * `private.key` with Wallarm private key
 * Protects the resource `http://NGINX_BACKEND:80`.
@@ -78,26 +74,40 @@ To run the container:
         ??? info "See an example of the mounted file with minimal settings"
             ```bash
             server {
-                listen 80 default_server;
-                listen [::]:80 default_server ipv6only=on;
-                #listen 443 ssl;
+                    listen 80 default_server;
+                    listen [::]:80 default_server ipv6only=on;
+                    #listen 443 ssl;
 
-                server_name localhost;
+                    server_name localhost;
 
-                #ssl_certificate cert.pem;
-                #ssl_certificate_key cert.key;
+                    #ssl_certificate cert.pem;
+                    #ssl_certificate_key cert.key;
 
-                root /usr/share/nginx/html;
+                    root /usr/share/nginx/html;
 
-                index index.html index.htm;
+                    index index.html index.htm;
 
-                wallarm_mode monitoring;
-                # wallarm_application 1;
+                    wallarm_mode monitoring;
+                    
+                    
 
-                location / {
-                        proxy_pass http://example.com;
-                        include proxy_params;
-                }
+                    location ~ ^/wallarm-apifw(.*)$ {
+                          wallarm_mode off;
+                          proxy_pass http://127.0.0.1:8088$1;
+                          error_page 404 431         = @wallarm-apifw-fallback;
+                          error_page 500 502 503 504 = @wallarm-apifw-fallback;
+                    }
+
+                    location @wallarm-apifw-fallback {
+                          wallarm_mode off;
+                          return 500 "API FW fallback";
+                    }
+
+                    location / {
+                            
+                            proxy_pass http://example.com;
+                            include proxy_params;
+                    }
             }
             ```
 
@@ -106,14 +116,14 @@ To run the container:
 
             * `/etc/nginx/conf.d` — common settings
             * `/etc/nginx/sites-enabled` — virtual host settings
-            * `/var/www/html` — static files
+            * `/opt/wallarm/usr/share/nginx/html` — static files
 
             If required, you can mount any files to the listed container directories. The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
 
 The command does the following:
 
 * Mounts the file `default` into the `/etc/nginx/sites-enabled` container directory.
-* Creates files with filtering node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
+* Creates files with filtering node credentials to access Wallarm Cloud in the `/opt/wallarm/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
     * `private.key` with Wallarm private key
 * Protects the resource `http://example.com`.
@@ -123,11 +133,7 @@ The command does the following:
 The logging is enabled by default. The log directories are:
 
 * `/var/log/nginx` — NGINX logs
-* `/var/log/wallarm` — Wallarm node logs
-
-To configure extended logging of the filtering node variables, please use these [instructions][logging-instr].
-
-By default, the logs rotate once every 24 hours. To set up the log rotation, change the configuration files in `/etc/logrotate.d/`. Changing the rotation parameters through environment variables is not possible. 
+* `/opt/wallarm/var/log/wallarm` — [Wallarm node logs][logging-instr]
 
 ## Monitoring configuration
 
