@@ -91,7 +91,7 @@ To configure the Tarantool module for HA and manage traffic effectively, the fol
               topologyKey: kubernetes.io/hostname
     ```
 
-## Scaling Wallarm Sidecar containers injected into your application's pod
+## Scaling application workload with injected sidecar containers
 
 Wallarm Sidecar containers, when injected into your application pod, might require scaling adjustments. It is essential for HPA to have defined CPU or memory usage parameters for these containers. HPA will continuously monitor the load on the pods and dynamically adjust their count to ensure optimal performance and efficiency, following the specified settings.
 
