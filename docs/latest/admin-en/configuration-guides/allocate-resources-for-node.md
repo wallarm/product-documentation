@@ -19,6 +19,26 @@ On average, one CPU core can handle about 500 RPS. When running in production mo
 
 --8<-- "../include/allocate-resources-for-waf-node/tarantool-memory-ingress-controller.md"
 
+### Allocating Resources if Using All-in-One Installer
+
+The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attribute in the `/opt/wallarm/env.list` configuration file. To allocate memory:
+
+1. Open for editing the `/opt/wallarm/env.list` file:
+
+    ```bash
+    sudo vim /opt/wallarm/env.list
+    ```
+1. Set the `SLAB_ALLOC_ARENA` attribute to memory size. The value can be an integer or a float (a dot `.` is a decimal separator). For example:
+
+    ```
+    SLAB_ALLOC_ARENA=1.0
+    ```
+1. Restart the Wallarm services:
+
+    ```
+    sudo systemctl restart wallarm.service
+    ```
+
 ### Allocating Resources in Other Deployment Options
 
 The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attribute in the `/etc/default/wallarm-tarantool` configuration file. To allocate memory:
