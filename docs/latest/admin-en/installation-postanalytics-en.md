@@ -102,7 +102,29 @@ To install postanalytics separately with all-in-one installer, use:
     sudo sh wallarm-4.8.4.aarch64-glibc.sh postanalytics
     ```
 
-### Step 4: Install the NGINX-Wallarm module on a separate server
+### Step 4: Allocate resources for the postanalytics module
+
+To change how much memory Tarantool uses, look for the `SLAB_ALLOC_ARENA` setting in the `/opt/wallarm/env.list` file. It is set to use 1 GB by default. If you need to change this, you can adjust the number to match the amount of memory Tarantool actually needs. For help on how much to set, see our [recommendations](configuration-guides/allocate-resources-for-node.md).
+
+To change allocated memory:
+
+1. Open for editing the `/opt/wallarm/env.list` file:
+
+    ```bash
+    sudo vim /opt/wallarm/env.list
+    ```
+1. Set the `SLAB_ALLOC_ARENA` attribute to memory size. The value can be an integer or a float (a dot `.` is a decimal separator). For example:
+
+    ```
+    SLAB_ALLOC_ARENA=2.0
+    ```
+1. Restart the Wallarm services:
+
+    ```
+    sudo systemctl restart wallarm.service
+    ```
+
+### Step 5: Install the NGINX-Wallarm module on a separate server
 
 Once the postanalytics module is installed on the separate server:
 
@@ -130,7 +152,7 @@ Once the postanalytics module is installed on the separate server:
 
 1. Perform the after-installation steps, such as enabling analyzing the traffic, restarting NGINX, configuring sending traffic to the Wallarm instance, test and fine tune, as described [here](../installation/nginx/all-in-one.md).
 
-### Step 5: Connect the NGINX-Wallarm module to the postanalytics module
+### Step 6: Connect the NGINX-Wallarm module to the postanalytics module
 
 On the machine with the NGINX-Wallarm module, in the NGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/), specify the postanalytics module server address:
 
@@ -174,7 +196,7 @@ Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Walla
     sudo systemctl restart nginx
     ```
 
-### Step 6: Check the NGINX‑Wallarm and separate postanalytics modules interaction
+### Step 7: Check the NGINX‑Wallarm and separate postanalytics modules interaction
 
 To check the NGINX‑Wallarm and separate postanalytics modules interaction, you can send the request with test attack to the address of the protected application:
 
