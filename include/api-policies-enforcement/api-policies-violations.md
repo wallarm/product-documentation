@@ -7,6 +7,6 @@
 
 The system can perform the following actions in case of found inconsistency:
 
-* **Block** - block a request and put in the [**Events**](../user-guides/events/check-attack.md) section as blocked
-* **Monitor** - mark a request as incorrect, but do not block, put it in the **Events** section as monitored
+* **Block** - block a request and put in the [**Attacks**](../user-guides/events/check-attack.md) section as blocked
+* **Monitor** - mark a request as incorrect, but do not block, put it in the **Attacks** section as monitored
 * **Not tracked** - do nothing

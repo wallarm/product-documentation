@@ -2,7 +2,7 @@
 
 This article describes how to enable and configure your API protection based on your [uploaded API specification](overview.md).
 
-## Step 1: Set specification upload parameters
+## Step 1: Upload specification
 
 1. Navigate to the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/).
 1. Click **Upload specification**.
@@ -13,15 +13,11 @@ This article describes how to enable and configure your API protection based on 
 
     ![Upload specification](../images/api-policies-enforcement/specificaton-upload.png)
 
-## Step 2: Upload specification
-
 1. Click **Upload**. This starts upload.
-1. If specification is valid (OpenAPI 3.0 JSON or YAML with correct formatting), as uploading is finished, proceed to the next step.
-1. If some errors found, fix them and try to re-upload.
 
 Note that you will not be able to start configuring API policy enforcement based on the specification, until its file is successfully uploaded.
 
-## Step 3: Set actions for violations of policies
+## Step 2: Set actions for violations of policies
 
 1. Click the **API specification-based policy enforcement** tab.
 
@@ -32,7 +28,6 @@ Note that you will not be able to start configuring API policy enforcement based
 1. Select **Use for API specification-based policy enforcement**. Options are displayed.
 1. Specify host or endpoint for which you want to activate policy violation actions.
 
-    * This field is required.
     * Note that if you incorrectly specify to which endpoints the uploaded specification should be applied, there will be many [false positive](../about-wallarm/protecting-against-attacks.md#false-positives) events.
     * If you have several specifications that apply to the same host, but to different endpoints (for example `domain.com/v1/api/users/` and `domain.com/v1/api/orders/`), you **must** indicate to which endpoints the specification should be applied.
     * If you add a specification to a host, and then add another specification to individual endpoints of this host, both specifications will be applied to these endpoints.
