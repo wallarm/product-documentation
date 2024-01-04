@@ -6,7 +6,7 @@
 
 ## How Wallarm addresses credential stuffing
 
-Wallarm's **Credential Stuffing Detection** collects and displays real-time information about compromised and weak credentials in your application, as well as attempts to use them. It also enables instant notifications about such attempts.
+Wallarm's **Credential Stuffing Detection** collects and displays real-time information about attempts to use compromised or weak credentials to access your applications. It also enables instant notifications about such attempts and forms full downloadable list of all compromised or weak credentials providing access to your applications.
 
 To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than 850 million records collected from the public [HIBP](https://haveibeenpwned.com/) compromised credentials database.
 
@@ -16,8 +16,6 @@ Wallarm does not block requests with compromised credentials to avoid blocking l
 
 * They are part of detected malicious bot activity and you have enabled the [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) module.
 * They are part of requests with other [attack signs](../attacks-vulns-list.md).
-
-Blocking in these cases will occur only if the corresponding measures are applied in Wallarm.
 
 ## Enabling
 
@@ -42,7 +40,7 @@ There are two ways of adding endpoints to the list:
 
         ![Credential Stuffing - Recommended Endpoints - Predefined rules](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-predefined-rules.png)
 
-    * Endpoints used for authentication that were found by the [API Discovery](../api-discovery/overview.md) module and recorded as they actually received traffic. This is available only if API Discovery is presented in your subscription and enabled.
+    * Endpoints used for authentication that were found by the [API Discovery](../api-discovery/overview.md) module and recorded as they actually received traffic.
 
 * Manually - you can also include your own unique authentication endpoints, ensuring full protection. When adding manually, set [URI](../user-guides/rules/add-rule.md#uri-constructor) and the way of searching for authentication parameters:
 
