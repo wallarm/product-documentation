@@ -94,7 +94,7 @@ Wallarm düğümü 4.2 ve üzeri, [aracılığıyla](../../admin-en/configure-wa
 
 ## Desteklenen kurulum seçenekleri
 
-* Wallarm Ingress denetleyicisi, en son sürümü olan Community Ingress NGINX Controller, 1.9.4 temel alınarak oluşturulmuştur.
+* Wallarm Ingress denetleyicisi, en son sürümü olan Community Ingress NGINX Controller, 1.9.5 temel alınarak oluşturulmuştur.
 
     [Wallarm Ingress denetleyicisine geçiş talimatları →](ingress-controller.md)
 * [Kullanım dışı](https://www.centos.org/centos-linux-eol/) olan CentOS 8.x yerine AlmaLinux, Rocky Linux ve Oracle Linux 8.x desteği eklendi.

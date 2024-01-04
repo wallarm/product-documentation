@@ -94,7 +94,7 @@ O node Wallarm 4.2 e acima encontra o JWT em qualquer lugar da solicitação, [d
 
 ## Suporte para opções de instalação
 
-* Controlador de Ingresso Wallarm baseado na última versão do Controlador de Ingresso NGINX da comunidade, 1.9.4.
+* Controlador de Ingresso Wallarm baseado na última versão do Controlador de Ingresso NGINX da comunidade, 1.9.5.
 
     [Instruções sobre migração para o controlador de ingresso Wallarm →](ingress-controller.md)
 * Adicionado suporte para AlmaLinux, Rocky Linux e Oracle Linux 8.x no lugar do CentOS 8.x [descontinuado](https://www.centos.org/centos-linux-eol/).

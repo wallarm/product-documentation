@@ -12,9 +12,9 @@ Essas instruções descrevem as etapas para atualizar o Controlador de Entrada W
 --8<-- "../include-pt-BR/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
 !!! warning "A versão atualizada do Community Ingress NGINX Controller"
-    Se você atualizar o nó da versão 3.4 ou inferior, por favor, note que a versão do Community Ingress NGINX Controller, na qual é baseado o controlador de entrada Wallarm, foi atualizada da 0.26.2 para a 1.9.4.
+    Se você atualizar o nó da versão 3.4 ou inferior, por favor, note que a versão do Community Ingress NGINX Controller, na qual é baseado o controlador de entrada Wallarm, foi atualizada da 0.26.2 para a 1.9.5.
     
-    Como a operação do Community Ingress NGINX Controller 1.9.4 foi significativamente alterada, sua configuração precisa ser adaptada a essas mudanças durante a atualização do controlador de entrada Wallarm.
+    Como a operação do Community Ingress NGINX Controller 1.9.5 foi significativamente alterada, sua configuração precisa ser adaptada a essas mudanças durante a atualização do controlador de entrada Wallarm.
 
     Estas instruções contêm a lista de configurações do Community Ingress NGINX Controller que provavelmente você terá que alterar. No entanto, por favor, elabore um plano individual para a migração da configuração com base nas [notas de release do Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md). 
 
