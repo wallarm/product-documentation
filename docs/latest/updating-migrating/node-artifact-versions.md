@@ -44,6 +44,13 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.8.6 (2023-12-28)
+
+* Helm chart version of the NGINX Ingress controller bumped to 4.9.0
+* NGINX Ingress controller version bumped to 1.9.5
+* Fixed [CVE-2023-44487](https://github.com/advisories/GHSA-qppj-fm5r-hxr3) in the controller image
+* Fixed [CVE-2023-5363](https://github.com/advisories/GHSA-xw78-pcr6-wrg8) and [CVE-2023-5678](https://github.com/advisories/GHSA-2cj7-mg3x-9mhq) in the Wallarm helper image
+
 ### 4.8.5 (2023-11-24)
 
 * Optimize Wallarm Cloud's export of brute, dirbust, and BOLA statistics to avoid delays in reaction to attacks under high request loads and numerous triggers

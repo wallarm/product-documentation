@@ -94,7 +94,7 @@ Wallarm node 4.2 and above find the JWT anywhere in the request, [decodes](../..
 
 ## Supported installation options
 
-* Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.9.4.
+* Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.9.5.
 
     [Instructions on migrating to the Wallarm Ingress controller →](ingress-controller.md)
 * Added support for AlmaLinux, Rocky Linux and Oracle Linux 8.x instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.

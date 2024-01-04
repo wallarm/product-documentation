@@ -12,9 +12,9 @@ Bu talimatlar, dağıtılmış son ömür Wallarm Ingress Denetleyicisi'nin (ver
 --8<-- "../include-tr/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
 !!! warning "Community Ingress NGINX Controller'ın yükseltilmiş versiyonu"
-    Eğer düğümü 3.4 veya altı bir versiyondan yükseltiyorsanız, lütfen not alın ki Wallarm Ingress denetleyicisinin üzerine kurulduğu Community Ingress NGINX Controller'ın versiyonu 0.26.2'den 1.9.4'e yükseltilmiştir.
+    Eğer düğümü 3.4 veya altı bir versiyondan yükseltiyorsanız, lütfen not alın ki Wallarm Ingress denetleyicisinin üzerine kurulduğu Community Ingress NGINX Controller'ın versiyonu 0.26.2'den 1.9.5'e yükseltilmiştir.
     
-    Community Ingress NGINX Controller 1.9.4 işleminin çokça değiştiğinden dolayı, yapılandırması bu değişikliklere uygulanmalıdır Wallarm Ingress denetleyicisi yükseltme süresince.
+    Community Ingress NGINX Controller 1.9.5 işleminin çokça değiştiğinden dolayı, yapılandırması bu değişikliklere uygulanmalıdır Wallarm Ingress denetleyicisi yükseltme süresince.
 
     Bu talimatlarda Community Ingress NGINX Controller'ın ayarlarının listesi bulunur ki muhtemelen değişmesi gerekebilir. Yine de, lütfen [Community Ingress NGINX Controller yayın notlarına](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md) dayanan bir yapılandırma göç planını çıkarın.
 
