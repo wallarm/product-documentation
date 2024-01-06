@@ -4,24 +4,15 @@ This article describes how to enable and configure your API protection based on 
 
 ## Step 1: Set specification upload parameters
 
-1. Navigate to the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/).
-1. Click **Upload specification**.
-1. Set specification name and add an optional description.
-1. At the **Specification upload**, select from where to upload: your local machine or URL. For URLs, via the header fields you can specify a token for authentication.
-1. Select a specification to upload. It must be in the OpenAPI 3.0 JSON or YAML format.
+1. At the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
+1. Select from where to upload: your local machine or URL. For URLs, via the header fields you can specify a token for authentication. The specification must be in the OpenAPI 3.0 JSON or YAML format.
 1. If uploading from URL, decide on whether you need to **Regularly update the specification** (selected by default). This will update the specification every hour.
 
     ![Upload specification](../images/api-policies-enforcement/specificaton-upload.png)
 
-## Step 2: Upload specification
+1. Initiate uploading.
 
-1. Click **Upload**. This starts upload.
-1. If specification is valid (OpenAPI 3.0 JSON or YAML with correct formatting), as uploading is finished, proceed to the next step.
-1. If some errors found, fix them and try to re-upload.
-
-Note that you will not be able to start configuring API policy enforcement based on the specification, until its file is successfully uploaded.
-
-## Step 3: Set actions for violations of policies
+## Step 2: Set actions for violations of policies
 
 1. Click the **API specification-based policy enforcement** tab.
 
