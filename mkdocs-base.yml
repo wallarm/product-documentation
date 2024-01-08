@@ -5,7 +5,7 @@ site_description: The Wallarm solution protects APIs, microservices and web appl
 repo_url: https://github.com/wallarm/product-documentation
 repo_name: GitHub
 
-copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Terms of services</a> | <a href="https://wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | <a href="#__consent">Cookie settings</a> | 2023 © Wallarm Inc.'
+copyright: '<a href="https://www.wallarm.com/terms-of-services" target="_blank">Terms of services</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | <a href="#__consent">Cookie settings</a> | 2023 © Wallarm Inc.'
 
 plugins:
   - search
@@ -70,7 +70,7 @@ extra:
         name: Google Analytics
         checked: true
     title: Cookie consent
-    description: We use cookies to optimize our documentation and collect valuable feedback. Your consent helps us improve! Learn more in our <a href="https://wallarm.com/cookie-policy" target="_blank">Cookie policy</a>.
+    description: We use cookies to optimize our documentation and collect valuable feedback. Your consent helps us improve! Learn more in our <a href="https://www.wallarm.com/cookie-policy" target="_blank">Cookie policy</a>.
     actions:
       - accept
       - reject
