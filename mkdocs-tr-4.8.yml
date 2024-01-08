@@ -4,7 +4,7 @@ site_name: Wallarm Dokümantasyonu
 site_url: https://docs.wallarm.com/tr/
 site_description: Wallarm çözümü, OWASP API Top 10 tehditlerinden, API istismarından ve manuel kural yapılandırması olmadan ve ultra düşük yanlış pozitiflerle diğer otomatik tehditlerden API'leri, mikroservisleri ve web uygulamalarını korur.
 
-copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Hizmet Şartları</a> | <a href="https://wallarm.com/privacy-policy" target="_blank">Gizlilik Politikası</a> | <a href="https://wallarm.com/cookie-policy" target="_blank">Çerez Politikası</a>| <a href="#__consent">Çerez ayarları</a> | 2023 © Wallarm Inc.'
+copyright: '<a href="https://www.wallarm.com/terms-of-services" target="_blank">Hizmet Şartları</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">Gizlilik Politikası</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">Çerez Politikası</a>| <a href="#__consent">Çerez ayarları</a> | 2023 © Wallarm Inc.'
 
 theme:
   language: tr
