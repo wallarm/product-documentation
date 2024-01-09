@@ -8,14 +8,27 @@
 
 Wallarm's **Credential Stuffing Detection** collects and displays real-time information about attempts to use compromised or weak credentials to access your applications. It also enables instant notifications about such attempts and forms full downloadable list of all compromised or weak credentials providing access to your applications.
 
-To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than 850 million records collected from the public [HIBP](https://haveibeenpwned.com/) compromised credentials database.
-
 Knowledge of accounts with stolen or weak passwords allows you to initiate measures to secure these accounts' data, like communicating with account owners, temporarily suspending access to the accounts, etc.
 
 Wallarm does not block requests with compromised credentials to avoid blocking legitimate users even if their passwords are weak or were compromised. However, note that credential stuffing attempts can be blocked if:
 
 * They are part of detected malicious bot activity and you have enabled the [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) module.
 * They are part of requests with other [attack signs](../attacks-vulns-list.md).
+
+## Security of sensitive data
+
+To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than 850 million records collected from the public [HIBP](https://haveibeenpwned.com/) compromised credentials database.
+
+![Credential Stuffing - Schema](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-schema.png)
+
+Wallarm's Credential Stuffing Detection keeps credentials data safe applying the following sequence of actions:
+
+1. As request arrives to the node, it counts [SHA-1](https://en.wikipedia.org/wiki/SHA-1) from the password and sends several chars to the Cloud.
+1. Cloud sends full SHA-1 encrypted compromised passwords that begin with the received chars back to the node.
+1. If there is a match, the node reports a credential stuffing attack to the Cloud, the login taken from the request is included into this attack information.
+1. The node passes request to the application.
+
+Thus, credentials are never sent together, passwords are never sent unencrypted, and your clients' authorization data always stays secure.
 
 ## Enabling
 
