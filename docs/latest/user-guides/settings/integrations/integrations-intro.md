@@ -329,4 +329,4 @@ Wallarm connects effortlessly with a number of existing tools and platforms. The
     </div>
 </div>
 
-<script src="/supported-platforms.js?v=1"></script>
+<script src="/supported-platforms.min.js?v=1"></script>

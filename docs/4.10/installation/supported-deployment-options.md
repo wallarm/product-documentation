@@ -1501,4 +1501,4 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     </div>
 </div>
 
-<script src="/supported-platforms.js?v=1"></script>
+<script src="/supported-platforms.min.js?v=1"></script>
