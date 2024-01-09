@@ -11,6 +11,11 @@ plugins:
   - search
   - minify:
       minify_html: true
+      minify_js: true
+      js_files:
+          - extra.js
+          - feedback.js
+          - supported-platforms.js
   - meta-descriptions
   - glightbox:
       skip_classes:
