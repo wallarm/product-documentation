@@ -50,6 +50,10 @@ The Broken Object Level Authorization (BOLA) vulnerability allows an attacker to
 
 [Set up API abuse profiles](../user-guides/api-abuse-prevention.md) to stop and block bots performing API abuse like account takeover, scraping, security crawlers and other automated malicious actions targeted at your APIs.
 
+## Enable credential stuffing detection
+
+Enable [credential stuffing detection](../about-wallarm/credential-stuffing.md) to have a real-time information about attempts to use compromised or weak credentials to access your applications and a full downloadable list of all compromised or weak credentials providing access to your applications.
+
 ## Create custom attack detection rules
 
 In certain scenarios, it may be beneficial to manually add an [attack detection signature or create a virtual patch](../user-guides/rules/regex-rule.md). Wallarm, while not relying on regular expressions for attack detection, does allow users to include additional signatures based on regular expressions.

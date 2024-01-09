@@ -1,6 +1,6 @@
 # Credential Stuffing Detection <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-[Credential stuffing](https://owasp.org/www-community/attacks/Credential_stuffing) is the automated injection of stolen or weak username/email and password pairs (credentials) into website login forms, in order to fraudulently gain access to user accounts. This article describes how to detect this type of threats using Wallarm's **Credential Stuffing Detection**.
+[Credential stuffing](https://owasp.org/www-community/attacks/Credential_stuffing) is the automated or manual injection of stolen or weak username/email and password pairs (credentials) into website login forms, in order to fraudulently gain access to user accounts. This article describes how to detect this type of threats using Wallarm's **Credential Stuffing Detection**.
 
 ![Wallarm Console - Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
 

@@ -1,4 +1,4 @@
-#   Attack and vulnerability types 
+#   Attack and Vulnerability Types 
 
 [cwe-20]:   https://cwe.mitre.org/data/definitions/20.html
 [cwe-22]:   https://cwe.mitre.org/data/definitions/22.html
@@ -811,6 +811,32 @@ You may follow these recommendations:
 * Implement rate limiting.
 * Obfuscate or encrypt data.
 * Take legal action.
+
+### Credential stuffing
+
+**Attack**
+
+**Wallarm code:** `credential_stuffing`
+
+**Description:**
+
+A type of cyber event where a malicious or legitimate actor is trying the automated or manual injection of stolen or weak username/email and password pairs (credentials) to access web applications.
+
+**Wallarm behavior:**
+
+Wallarm detects the credential stuffing attempts only if the filtering node has version 4.10 or above.
+
+The [Credential Stuffing Detection](about-wallarm/credential-stuffing.md) functionality collects and displays real-time information about attempts to use compromised or weak credentials to access your applications. It also enables instant notifications about such attempts and forms full downloadable list of all compromised or weak credentials providing access to your applications.
+
+**Remediation:**
+
+You may follow these recommendations:
+
+* Get familiar with the [OWASP credential stuffing description](https://owasp.org/www-community/attacks/Credential_stuffing), including the "Credential Stuffing Prevention Cheat Sheet".
+* Force users to use strong passwords.
+* Recommend users not to use the same passwords for different resources.
+* Enable two-factor authentication.
+* Use additional CAPTCHA solutions.
 
 ##  The list of special attacks and vulnerabilities
 

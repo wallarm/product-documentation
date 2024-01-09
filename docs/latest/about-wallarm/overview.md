@@ -27,6 +27,7 @@ Wallarm extends discovery to deliver real protection by detecting and blocking a
 * Counters Layer 7 Denial of Service attacks with customizable [rate limiting](../user-guides/rules/rate-limiting.md).
 * Allows users to create [custom defenses](../user-guides/rules/regex-rule.md) by setting their own threat definitions, complementing the built-in measures.
 * Maps attacks with your system's vulnerabilities to highlight critical incidents.
+* Detects [credential stuffing attempts](../about-wallarm/credential-stuffing.md).
 
 ## Respond
 
