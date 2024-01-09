@@ -552,3 +552,5 @@
 /user-guides/api-leaks/ /about-wallarm/api-leaks/
 /4.6/user-guides/api-leaks/ /4.6/about-wallarm/api-leaks/
 /4.4/user-guides/api-leaks/ /4.4/about-wallarm/api-leaks/
+
+/user-guides/user-intro/ /user-guides/search-and-filters/use-search/
