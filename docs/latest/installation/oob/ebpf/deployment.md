@@ -22,16 +22,7 @@ The following diagram demonstrates the solution components:
 
 ![eBPF components](../../../images/waf-installation/epbf/ebpf-components.png)
 
-The DaemonSet is a Kubernetes resource used by Wallarm for deploying security agents. To enable privileged access required by the DaemonSet, Wallarm includes the `SYS_PTRACE` and `SYS_ADMIN` capabilities in the Helm chart:
-
-```
-capabilities:
-  add:
-    - SYS_ADMIN
-    - SYS_PTRACE
-```
-
-These capabilities grant the necessary permissions for Wallarm's agents to perform privileged tasks, ensuring security coverage across all nodes in the cluster.
+The eBPF agent is deployed as a DaemonSet on every Kubernetes worker node. To ensure proper functionality, the agent container must run in a privileged mode with the following essential capabilities: `SYS_PTRACE` and `SYS_ADMIN`.
 
 Furthermore, the solution processes response codes without parsing response bodies, empowering Wallarm's core [API Discovery](../../../api-discovery/overview.md) module to identify your API endpoints, construct your API inventory, and ensure it remains up-to-date.
 
@@ -41,13 +32,15 @@ Among all supported [Wallarm deployment options](../../supported-deployment-opti
 
 ## Limitations
 
-* When traffic is transmitted using Proxy Protocol and SSL, where SSL is encapsulated within Proxy Protocol, the solution cannot accurately retrieve source IP from the proxy protocol.
+* SSL traffic analysis is restricted to servers using the shared OpenSSL library (e.g., Nginx, HAProxy) and is not available for servers employing other SSL implementations like Envoy.
 * The solution does not instantly block malicious requests since traffic analysis proceeds irrespective of actual traffic flow.
 
     Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../..//user-guides/events/analyze-attack.md).
-* Vulnerability detection based on [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) is not supported as server responses required for vulnerability identification are not mirrored.
+* Vulnerability detection based on [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) is not supported as server response bodies required for vulnerability identification are not mirrored.
 
-## Requirements
+## Technical requirements
+
+Ensure the following technical prerequisites are met for a successful deployment of the eBPF solution:
 
 * Supported Kubernetes version:
   
@@ -56,13 +49,17 @@ Among all supported [Wallarm deployment options](../../supported-deployment-opti
     * GCP - any Kubernetes version
     * Bare-metal server - Kubernetes 1.22 and above
 * [Helm v3](https://helm.sh/) package manager.
-* Access to `https://charts.wallarm.com` to add the Wallarm Helm charts.
-* Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`.
-* Linux kernel 5.10 and above with BTF (BTP Type Format) enabled on Ubuntu, Debian, RedHat, Google COS, or Amazon Linux 2.
-* Traffic is using HTTP 1.x, HTTP 2, or Proxy v1 protocols under TLS/SSL, or plain text data transfer.
-* An application deployed as a Pod in a Kubernetes cluster.
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or the [EU Cloud](https://my.wallarm.com/).
-* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud.
+* Linux kernel version 5.10 or higher with BTF (BPF Type Format) enabled. Supported on Ubuntu, Debian, RedHat, Google COS, or Amazon Linux 2.
+* Traffic to the application you wish to monitor with the eBPF solution should utilize HTTP 1.x, HTTP 2, Proxy v1 or v2 protocols under TLS/SSL, or plain text data transfer. Please note that SSL traffic analysis is limited to servers using the shared OpenSSL library (e.g., Nginx, HAProxy) and is not available for servers employing other SSL implementations like Envoy.
+* Your user account should have [**Administrator** access](../../../user-guides/settings/users.md#user-roles) to the Wallarm Console.
+
+## Network access
+
+To ensure proper operation of the solution, configure network access to the following external resources:
+
+* `https://charts.wallarm.com` to add the Wallarm Helm charts.
+* `https://hub.docker.com/r/wallarm` to retrieve Wallarm Docker images from Docker Hub.
+* For users working with the US Wallarm Cloud, access `https://us1.api.wallarm.com`. For those using the EU Wallarm Cloud, access `https://api.wallarm.com`.
 
 ## Deployment
 
