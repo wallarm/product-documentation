@@ -1,99 +1,145 @@
+[sidecar-docs]: deployment.md
+[sidecar-arch-docs]: deployment.md#solution-architecture
+[sidecar-conf-area]: customization.md#configuration-area
+
 # Scaling and High Availability of Wallarm Sidecar
 
-This guide focuses on the nuances of scaling, High Availability (HA), and the correct allocation of resources for the [Wallarm Sidecar solution]. By configuring these effectively, you can enhance the reliability and performance of Wallarm Sidecar, ensuring minimal downtime and efficient request processing.
+This guide focuses on the nuances of scaling, High Availability (HA), and the correct allocation of resources for the [Wallarm Sidecar solution][sidecar-docs]. By configuring these effectively, you can enhance the reliability and performance of Wallarm Sidecar, ensuring minimal downtime and efficient request processing.
 
 Configuration is broadly categorized into two segments:
 
-* Settings dedicated for Sidecar pods
-* Settings for the Sidecar container injected into your application's pod
+* Settings dedicated for Wallarm Sidecar control plane
+* Settings for application workload with injected sidecar
 
-Scaling and high availability of Wallarm Sidecar rely on on standard Kubernetes practices. To grasp the basics before applying our recommendations, consider exploring these recommended links:
+Scaling and high availability of Wallarm Sidecar rely on standard Kubernetes practices. To grasp the basics before applying our recommendations, consider exploring these recommended links:
 
 * [Kubernetes Horizontal Pod Autoscaling (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/)
 * [Highly available clusters in Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/)
 * [Assigning CPU resources to containers and pods](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/)
 
-## Scaling Wallarm Sidecar Pod
+## Scaling Wallarm Sidecar control plane
 
-The Wallarm Sidecar solution [consists of two components: `wallarm-sidecar-controller` and `wallarm-sidecar-postanalytics` pods][sidecar-arch-docs]. Each requires individual scaling configurations, involving Kubernetes parameters like `replicas`, `requests`, and `podAntiAffinity`.
+The Wallarm Sidecar solution [consists of two components: controller and postanalytics (Tarantool)][sidecar-arch-docs]. Each requires individual scaling configurations, involving Kubernetes parameters like `replicas`, `requests`, and `podAntiAffinity`.
 
-### Controller's Pod scaling
+### Controller
 
-The `wallarm-sidecar-controller` functions as a mutating admission webhook, injecting Wallarm sidecar resources into the application's Pod. This component is not scaled via HPA, but for HA, consider the following settings of the Wallarm Sidecar `values.yaml` file:
+The Sidecar Controller functions as a mutating admission webhook, injecting sidecar containers into the application's Pod. In most cases, HPA scaling is not needed. For the HA deployment, consider the following settings of the `values.yaml` file:
 
-* Use more than one instance of the Sidecar pod. Control this with the [`config.controller.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L877) attribute.
+* Use more than one instance of the Sidecar pod. Control this with the [`controller.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L877) attribute.
+* Optionally, set [`controller.resources.requests.cpu` and `controller.resources.requests.memory`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L1001) to ensure reserved resources for the controller's Pod.
+* Optionally, use pod anti-affinity to distribute controller pods across different nodes to provide resilience in case of a node failure.
 
-    ```yaml
+Here is an example of the adjusted `controller` section in the `values.yaml` file, incorporating these recommendations:
+
+```yaml
+controller:
+  replicaCount: 2
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+              - wallarm-sidecar
+            - key: app.kubernetes.io/instance
+              operator: In
+              values:
+              - release-name
+            - key: app.kubernetes.io/component
+              operator: In
+              values:
+              - controller
+          topologyKey: kubernetes.io/hostname
+```
+
+### Postanalytics (Tarantool)
+
+The postanalytics component handles traffic from all sidecar containers injected in your application workload. This component can not be scaled by HPA.
+
+For the HA deployment, you can manually adjust the amount of replicas using the following settings of the `values.yaml` file:
+
+* Use more than one instance of the Tarantool Pod. Control this with the [`postanalytics.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L382) attribute.
+* Configure [`postanalytics.tarantool.config.arena`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L610C7-L610C7) in gigabytes (GB) based on the anticipated traffic volume to the application workload. This setting determines the maximum memory Tarantool will utilize. For calculation guidelines, you may find useful [the same of our recommendations for other deployment options](admin-en/configuration-guides/allocate-resources-for-node/#tarantool).
+* Align [`postanalytics.tarantool.resources.limits` and `postanalytics.tarantool.resources.requests`](https://github.com/wallarm/sidecar/blob/4eb1a4c4f8d20989757c50c40e192eb7eb1f2169/helm/values.yaml#L639) with the `arena` configuration. Set `limits` at or above the `arena` value to handle peak demand and avoid memory-related crashes. Ensure `requests` meet or exceed the `arena` value for Tarantool's optimal performance. For further information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
+* Optionally, set `resources.requests` and `resources.limits` for all other containers within the `postanalytics` section to ensure dedicated resource allocation for the Tarantool Pod. These containers include `postanalytics.init`, `postanalytics.cron`, `postanalytics.appstructure`, and `postanalytics.antibot`.
+* Optionally, implement pod anti-affinity to distribute postanalytics pods across different nodes to provide resilience in case of a node failure.
+
+Here is an example of the adjusted `postanalytics` section in the `values.yaml` file, incorporating these recommendations:
+
+```yaml
+postanalytics:
+  replicaCount: 2
+  tarantool:
     config:
-      controller:
-        replicaCount: 2
-    ```
-* (Optionally) Set [`controller.resources.requests.cpu` and `controller.resources.requests.memory`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L1001) to ensure reserved resources for the controller's Pod. For calculation guidelines, you may find useful [the same of our recommendations for other deployment options](admin-en/configuration-guides/allocate-resources-for-node/#nginx).
-* (Optionally) Use pod anti-affinity to distribute Sidecar pods across different nodes to increase the Sidecar service's resilience in case of a node failure, e.g.:
-
-    ```yaml
-    controller:
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app.kubernetes.io/name
-                  operator: In
-                  values:
-                  - wallarm-sidecar
-                - key: app.kubernetes.io/instance
-                  operator: In
-                  values:
-                  - release-name
-                - key: app.kubernetes.io/component
-                  operator: In
-                  values:
-                  - controller
-              topologyKey: kubernetes.io/hostname
-    ```
-
-### Tarantool's pod scaling
-
-The wallarm-sidecar-postanalytics Tarantool pod, which handles traffic from all sidecar containers in your application pods, cannot currently be scaled using HPA based on memory or CPU usage.
-
-To configure the Tarantool module for HA and manage traffic effectively, the following settings of the Wallarm Sidecar `values.yaml` file can be adjusted:
-
-* [`postanalytics.tarantool.config.arena`] should be configured based on the expected traffic to the sidecars. For calculation guidelines, you may find useful [the same of our recommendations for other deployment options](admin-en/configuration-guides/allocate-resources-for-node/#tarantool)
-* [`postanalytics.tarantool.resources.requets.memory`] must align with the `arena` configuration mentioned above.
-* Ensure [`postanalytics.tarantool.replicaCount`] is two or more to achieve HA.
-* (Optionally) Set [`resources.requests`] for all containers within the `postanalytics.tarantool` section to ensure dedicated resource allocation for the Tarantool Pod.
-* (Optionally) Use pod anti-affinity to distribute Sidecar pods across different nodes to increase the Sidecar service's resilience in case of a node failure, e.g.:
-
-    ```yaml
-    postanalytics:
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app.kubernetes.io/name
-                  operator: In
-                  values:
-                  - wallarm-sidecar
-                - key: app.kubernetes.io/instance
-                  operator: In
-                  values:
-                  - release-name
-                - key: app.kubernetes.io/component
-                  operator: In
-                  values:
-                  - postanalytics
-              topologyKey: kubernetes.io/hostname
-    ```
+      arena: "1.0"
+    resources:
+      limits:
+        cpu: 500m
+        memory: 1Gi
+      requests:
+        cpu: 100m
+        memory: 1Gi
+  init:
+    resources:
+      limits:
+        cpu: 250m
+        memory: 300Mi
+      requests:
+        cpu: 50m
+        memory: 150Mi
+  cron:
+    resources:
+      limits:
+        cpu: 250m
+        memory: 300Mi
+      requests:
+        cpu: 50m
+        memory: 150Mi
+  appstructure:
+    resources:
+      limits:
+        cpu: 250m
+        memory: 300Mi
+      requests:
+        cpu: 50m
+        memory: 150Mi
+  antibot:
+    resources:
+      limits:
+        cpu: 250m
+        memory: 300Mi
+      requests:
+        cpu: 50m
+        memory: 150Mi
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+              - wallarm-sidecar
+            - key: app.kubernetes.io/instance
+              operator: In
+              values:
+              - release-name
+            - key: app.kubernetes.io/component
+              operator: In
+              values:
+              - postanalytics
+          topologyKey: kubernetes.io/hostname
+```
 
 ## Scaling application workload with injected sidecar containers
 
-Wallarm Sidecar containers, when injected into your application pod, might require scaling adjustments. It is essential for HPA to have defined CPU or memory usage parameters for these containers. HPA will continuously monitor the load on the pods and dynamically adjust their count to ensure optimal performance and efficiency, following the specified settings.
+When using Horizontal Pod Autoscaling (HPA) for managing application workloads, it is essential to configure `resources.requests` for every container in the Pod including the ones injected by Wallarm Sidecar.
 
 ### Prerequisites
 
@@ -102,7 +148,7 @@ To successfully [implement HPA](https://kubernetes.io/docs/tasks/run-application
 * [Metrics Server](https://github.com/kubernetes-sigs/metrics-server#readme) deployed and configured in your Kubernetes cluster.
 * [`resources.request`](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/) configured for all containers in the application pod, including init containers.
 
-    Resource allocation for the application container should be specified in its manifest. For containers injected by Wallarm, resource settings are outlined below, with allocation possible both [globally and on a per-pod basis].
+    Resource allocation for the application container should be specified in its manifest. For containers injected by Wallarm, resource settings are outlined below, with allocation possible both [globally and on a per-pod basis][sidecar-conf-area].
 
 ### Global allocation via Helm chart values
 
@@ -199,3 +245,131 @@ spec:
               containerPort: 80
 ```
 
+## Example
+
+Below is the example of the Wallarm chart's `values.yaml` file with the settings describe above applied. This example assumes that resources for containers injected by Wallarm are allocated globally.
+
+```yaml
+controller:
+  replicaCount: 2
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+              - wallarm-sidecar
+            - key: app.kubernetes.io/instance
+              operator: In
+              values:
+              - release-name
+            - key: app.kubernetes.io/component
+              operator: In
+              values:
+              - controller
+          topologyKey: kubernetes.io/hostname
+postanalytics:
+  replicaCount: 2
+  tarantool:
+    config:
+      arena: "1.0"
+    resources:
+      limits:
+        cpu: 500m
+        memory: 1Gi
+      requests:
+        cpu: 100m
+        memory: 1Gi
+  init:
+    resources:
+      limits:
+        cpu: 250m
+        memory: 300Mi
+      requests:
+        cpu: 50m
+        memory: 150Mi
+  cron:
+    resources:
+      limits:
+        cpu: 250m
+        memory: 300Mi
+      requests:
+        cpu: 50m
+        memory: 150Mi
+  appstructure:
+    resources:
+      limits:
+        cpu: 250m
+        memory: 300Mi
+      requests:
+        cpu: 50m
+        memory: 150Mi
+  antibot:
+    resources:
+      limits:
+        cpu: 250m
+        memory: 300Mi
+      requests:
+        cpu: 50m
+        memory: 150Mi
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+              - wallarm-sidecar
+            - key: app.kubernetes.io/instance
+              operator: In
+              values:
+              - release-name
+            - key: app.kubernetes.io/component
+              operator: In
+              values:
+              - postanalytics
+          topologyKey: kubernetes.io/hostname
+config:
+  sidecar:
+    containers:
+      proxy:
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+      helper:
+        resources:
+          requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 300m
+              memory: 256Mi
+    initContainers:
+      helper:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 64Mi
+          limits:
+            cpu: 300m
+            memory: 128Mi
+      iptables:
+        resources:
+          requests:
+            cpu: 50m
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 64Mi
+```
