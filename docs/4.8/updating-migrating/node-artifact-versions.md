@@ -10,6 +10,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.8.6 (2024-01-10)
+
+* Added support for openresty-1.21.4.3 on Debian "bookworm"
+
 ### 4.8.5 (2023-12-26)
 
 * Fixed incompatibility issues with NGINX 1.22.1 on Debian 12
