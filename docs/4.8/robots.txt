@@ -1,3 +1,1 @@
 User-agent: *
-Disallow: /2.18/
-Disallow: /3.6/
