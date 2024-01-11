@@ -17,6 +17,7 @@ plugins:
           - feedback.js
           - supported-platforms.js
   - meta-descriptions
+  - meta
   - glightbox:
       skip_classes:
         - non-zoomable
