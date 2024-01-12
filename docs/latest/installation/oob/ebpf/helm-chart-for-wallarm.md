@@ -35,9 +35,7 @@ processing:
   ...
   metrics:
     enabled: false
-    port: 9090
-    path: /metrics
-    scrapeInterval: 30s
+    ...
 
   affinity: {}
   # podAntiAffinity:
@@ -138,6 +136,18 @@ helm upgrade <RELEASE_NAME> <CHART> --set 'config.agent.loadBalancerTrustedCIDRs
 ## processing.metrics
 
 Controls the configuration of the Wallarm node [metrics service](../../../admin-en/configure-statistics-service.md). By default, the service is disabled.
+
+If you enable the service, it is recommended to retain the default values for `port`, `path`, and `scrapeInterval`:
+
+```yaml
+processing:
+  ...
+  metrics:
+    enabled: true
+    port: 9090
+    path: /metrics
+    scrapeInterval: 30s
+```
 
 ## processing.affinity and processing.nodeSelector
 

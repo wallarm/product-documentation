@@ -10,6 +10,13 @@ Traffic flow with Wallarm eBPF-based soultion:
 
 ![eBPF traffic flow](../../../images/waf-installation/epbf/ebpf-traffic-flow.png)
 
+The eBPF solution is designed to monitor traffic using the following protocols:
+
+* HTTP 1.x or HTTP 2
+* Proxy v1 or Proxy v2
+
+Traffic may utilize TLS/SSL encryption or plain text data transfer. SSL traffic analysis is limited to servers using the shared OpenSSL library (e.g., NGINX, HAProxy) and is not available for servers employing other SSL implementations like Envoy.
+
 ## How it works
 
 The Linux operating system comprises the kernel and the user space, where the kernel manages hardware resources and critical tasks, while applications operate in the user space. Within this environment, eBPF (Extended Berkeley Packet Filter) enables the execution of custom programs within the Linux kernel, including those focused on security. [Read more about eBPF](https://ebpf.io/what-is-ebpf/)
@@ -24,19 +31,11 @@ The following diagram demonstrates the solution components:
 
 The eBPF agent is deployed as a DaemonSet on every Kubernetes worker node. To ensure proper functionality, the agent container must run in a privileged mode with the following essential capabilities: `SYS_PTRACE` and `SYS_ADMIN`.
 
-Furthermore, the solution processes response codes without parsing response bodies, empowering Wallarm's core [API Discovery](../../../api-discovery/overview.md) module to identify your API endpoints, construct your API inventory, and ensure it remains up-to-date.
+Furthermore, the solution processes response codes, empowering Wallarm's core [API Discovery](../../../api-discovery/overview.md) module to identify your API endpoints, construct your API inventory, and ensure it remains up-to-date.
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../../supported-deployment-options.md), this solution is the recommended one for out-of-band operation. By capturing a mirrored copy of traffic instead of directly intercepting or modifying original packets, the eBPF-based solution minimizes the impact on live traffic, ensuring uninterrupted traffic flow.
-
-## Limitations
-
-* SSL traffic analysis is restricted to servers using the shared OpenSSL library (e.g., Nginx, HAProxy) and is not available for servers employing other SSL implementations like Envoy.
-* The solution does not instantly block malicious requests since traffic analysis proceeds irrespective of actual traffic flow.
-
-    Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../..//user-guides/events/analyze-attack.md).
-* Vulnerability detection based on [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) is not supported as server response bodies required for vulnerability identification are not mirrored.
+Among all supported [Wallarm deployment options](../../supported-deployment-options.md), this solution is the recommended one for out-of-band operation. By capturing a mirrored copy of traffic instead of operating in-line, the eBPF-based solution ensures uninterrupted traffic flow. This approach minimizes the impact on live traffic, and avoids introducing extra delays that could affect latency.
 
 ## Technical requirements
 
@@ -50,12 +49,11 @@ Ensure the following technical prerequisites are met for a successful deployment
     * Bare-metal server - Kubernetes 1.22 and above
 * [Helm v3](https://helm.sh/) package manager.
 * Linux kernel version 5.10 or higher with BTF (BPF Type Format) enabled. Supported on Ubuntu, Debian, RedHat, Google COS, or Amazon Linux 2.
-* Traffic to the application you wish to monitor with the eBPF solution should utilize HTTP 1.x, HTTP 2, Proxy v1 or v2 protocols under TLS/SSL, or plain text data transfer. Please note that SSL traffic analysis is limited to servers using the shared OpenSSL library (e.g., Nginx, HAProxy) and is not available for servers employing other SSL implementations like Envoy.
 * Your user account should have [**Administrator** access](../../../user-guides/settings/users.md#user-roles) to the Wallarm Console.
 
 ## Network access
 
-To ensure proper operation of the solution, configure network access to the following external resources:
+To ensure the solution functions correctly in environments with restricted outbound traffic, configure network access to allow the following external resources:
 
 * `https://charts.wallarm.com` to add the Wallarm Helm charts.
 * `https://hub.docker.com/r/wallarm` to retrieve Wallarm Docker images from Docker Hub.
@@ -216,3 +214,10 @@ To test that the Wallarm eBPF operates correctly:
     To check that the attack has been registered, proceed to Wallarm Console → **Events**:
 
     ![!Attacks in the interface](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
+
+## Limitations
+
+* The solution does not instantly block malicious requests since traffic analysis proceeds irrespective of actual traffic flow.
+
+    Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../..//user-guides/events/analyze-attack.md).
+* Vulnerability detection based on [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) is not supported as server response bodies required for vulnerability identification are not mirrored.
