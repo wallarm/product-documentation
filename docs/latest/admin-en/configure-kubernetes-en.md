@@ -54,7 +54,7 @@ controller:
 
         loadBalancerIP: ""
         loadBalancerSourceRanges: []
-        servicePort: 9913
+        servicePort: 18080
         type: ClusterIP
     synccloud:
       resources: {}
