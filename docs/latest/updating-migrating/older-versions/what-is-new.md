@@ -73,6 +73,11 @@ In this latest update, we introduce API Policy Enforcement feature. This filters
 
 This strengthens security by preventing potential attack attempts and also optimizes API performance by avoiding overloading and misuse.
 
+Additionally, this update introduces new parameters for some deployment options, enabling technical control over the feature's operation:
+
+* For NGINX Ingress Controller: the [`controller.wallarm.apifirewall`](../../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) values group.
+* For NGINX-based Docker image: the environment variable `WALLARM_APIFW_ENABLE`.
+
 [Learn how to configure API Policy Enforcement](../../api-policy-enforcement/setup.md)
 
 ## Detection of the new attack types
@@ -287,6 +292,8 @@ The Docker image of Wallarm's NGINX-based filtering node has been revamped for e
 
 * The Docker image is now built on Alpine Linux, replacing Debian, to provide a more secure and lightweight artifact.
 * Updated to the latest stable version of NGINX, 1.24.0, replacing the previous 1.14.x version. Although most vulnerabilities in 1.14.x were patched by the Debian team (the prior image was based on Debian 10.x), upgrading to 1.24.0 addresses remaining vulnerabilities for improved security.
+* Inside the Docker container, operations now utilize the non-root user `wallarm`, a change from the previous `root` user setup.
+* The [`/wallarm-status`](../../admin-en/configure-statistics-service.md) endpoint has been updated to export metrics in the Prometheus format, instead of JSON. This applies specifically when accessing the endpoint from outside the Docker container. Note that the [`WALLARM_STATUS_ALLOW`](../../admin-en/installation-docker-en.md#wallarm-status-allow-env-var) environment variable must be set appropriately for this functionality.
 
 The newly released product features are also supported by the new NGINX-based Docker image of the new format.
 
