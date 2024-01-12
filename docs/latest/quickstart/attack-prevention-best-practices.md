@@ -52,7 +52,9 @@ The Broken Object Level Authorization (BOLA) vulnerability allows an attacker to
 
 ## Enable credential stuffing detection
 
-Enable [credential stuffing detection](../about-wallarm/credential-stuffing.md) to have a real-time information about attempts to use compromised or weak credentials to access your applications and a full downloadable list of all compromised or weak credentials providing access to your applications.
+Enable [credential stuffing detection](../about-wallarm/credential-stuffing.md) to have a real-time information about attempts to use compromised or weak credentials to access your applications and a downloadable list of all compromised or weak credentials providing access to your applications.
+
+Knowledge of accounts with stolen or weak passwords allows you to initiate measures to secure these accounts' data, like communicating with account owners, temporarily suspending access to the accounts, etc.
 
 ## Create custom attack detection rules
 

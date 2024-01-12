@@ -1,10 +1,14 @@
 # Credential Stuffing Detection <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-[Credential stuffing](../attacks-vulns-list.md#credential-stuffing) is a cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple websites. This attack is hazardous because many people reuse the same username and password across different services or use popular weak passwords. A successful credential stuffing attack requires fewer attempts, so attackers can send requests much less frequently, which makes standard measures like brute force protection ineffective. This article describes how to detect this type of threats using Wallarm's **Credential Stuffing Detection**.
+[Credential stuffing](../attacks-vulns-list.md#credential-stuffing) is a cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple websites. This article describes how to detect this type of threats using Wallarm's **Credential Stuffing Detection**.
+
+User credentials can become compromised in different ways, including as a result of email fishing, social engineering, disclosure by insiders or technical data breach.
+
+A credential stuffing attack is hazardous because of the common practice of reusing identical usernames and passwords across different services, along with the tendency to choose easily guessable (weak) passwords. A successful credential stuffing attack requires fewer attempts, so attackers can send requests much less frequently, which makes standard measures like brute force protection ineffective.
 
 ## How Wallarm addresses credential stuffing
 
-Wallarm's **Credential Stuffing Detection** collects and displays real-time information about attempts to use compromised or weak credentials to access your applications. It also enables instant notifications about such attempts and forms full downloadable list of all compromised or weak credentials providing access to your applications.
+Wallarm's **Credential Stuffing Detection** collects and displays real-time information about attempts to use compromised or weak credentials to access your applications. It also enables instant notifications about such attempts and forms downloadable list of all compromised or weak credentials providing access to your applications.
 
 To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than **850 million records** collected from the public [HIBP](https://haveibeenpwned.com/) compromised credentials database.
 
@@ -12,10 +16,10 @@ To identify compromised and weak passwords, Wallarm uses a comprehensive databas
 
 Wallarm's Credential Stuffing Detection keeps credentials data safe applying the following sequence of actions:
 
-1. As request arrives to the node, it counts [SHA-1](https://en.wikipedia.org/wiki/SHA-1) from the password and sends several chars to the Cloud.
+1. As the request arrives at the node, it generates [SHA-1](https://en.wikipedia.org/wiki/SHA-1) from the password and sends several chars to the Cloud.
 1. Cloud sends full SHA-1 encrypted compromised passwords that begin with the received chars back to the node.
-1. If there is a match, the node reports a credential stuffing attack to the Cloud, the login taken from the request is included into this attack information.
-1. The node passes request to the application.
+1. If there is a match, the node reports a credential stuffing attack to the Cloud, including the login taken from the request to this attack information.
+1. The node passes the request to the application.
 
 Thus, credentials are never sent together, passwords are never sent unencrypted, and your clients' authorization data always stays secure.
 
