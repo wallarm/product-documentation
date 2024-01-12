@@ -4,16 +4,10 @@ This article describes how to enable and configure your API protection based on 
 
 ## Step 1: Upload specification
 
-1. Navigate to the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/).
-1. Click **Upload specification**.
-1. Set specification name and add an optional description.
-1. At the **Specification upload**, select from where to upload: your local machine or URL. For URLs, via the header fields you can specify a token for authentication.
-1. Select a specification to upload. It must be in the OpenAPI 3.0 JSON or YAML format.
-1. If uploading from URL, decide on whether you need to **Regularly update the specification** (selected by default). This will update the specification every hour.
+1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
+1. Set specification upload parameters and start uploading.
 
     ![Upload specification](../images/api-policies-enforcement/specificaton-upload.png)
-
-1. Click **Upload**. This starts upload.
 
 Note that you will not be able to start configuring API policy enforcement based on the specification, until its file is successfully uploaded.
 
@@ -23,7 +17,7 @@ Note that you will not be able to start configuring API policy enforcement based
 
     !!! info "Rogue API detection"
         * Besides policy enforcement, specifications may be used by [API Discovery](../api-discovery/overview.md) module for the [rogue API detection](../api-discovery/rogue-api.md). The tab is displayed if API Discovery is enabled.
-        * Before using the specification for policy enforcement, it is recommended to use it for searching the rogue (shadow, zombie and orphan) APIs using API Discovery. This way you will be able to understand how much your specification differs from the actual requests of your clients.
+        * Before using the specification for policy enforcement, it is recommended to use it for searching the rogue (shadow, zombie and orphan) APIs using API Discovery. This way you will be able to understand how much your specification differs from the actual requests of your clients - these differences will most probably cause blocking related requests after policy enforcement.
 
 1. Select **Use for API specification-based policy enforcement**. Options are displayed.
 1. Specify host or endpoint for which you want to activate policy violation actions.
@@ -45,7 +39,10 @@ Note that you will not be able to start configuring API policy enforcement based
 
 ## Step 3: Configure NGINX nodes
 
-You need additional configuration when using API Policy Enforcement with the NGINX-based Wallarm nodes installed with the [all-in-one installer](../installation/nginx/all-in-one.md) or [Docker image](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file).
+You need additional configuration when using API Policy Enforcement with the NGINX-based Wallarm nodes installed with:
+
+* [All-in-one installer](../installation/nginx/all-in-one.md)
+* [Docker image](../admin-en/installation-docker-en.md) - only when you [mount](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file) your own custom configuration file
 
 Add the following snippet to the NGINX configuration file, the `server` section:
 
