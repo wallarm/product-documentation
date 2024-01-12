@@ -453,7 +453,7 @@ nav:
     - Configuring SELinux: admin-en/configure-selinux.md
     - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
     - Node Upgrade:
-      - What is new in Wallarm node 4.8: updating-migrating/what-is-new.md
+      - What is new in Wallarm node 4.10: updating-migrating/what-is-new.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
       - Filtering node upgrade instructions:
         - Upgrading Wallarm NGINX Modules Installed from Individual Packages: updating-migrating/nginx-modules.md
