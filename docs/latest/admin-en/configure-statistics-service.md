@@ -26,7 +26,7 @@ wallarm_status [on|off] [format=json|prometheus];
 !!! info
     The directive can be configured in the context of `server` and/or `location`.
 
-    The `format` parameter has the `json` value by default.
+    The `format` parameter has the `json` value by default in most deployment options except for the NGINX-based Docker image; when the `/wallarm-status` endpoint is called from outside the container, it returns metrics in the Prometheus format.
 
 ### Default configuration
 
@@ -92,7 +92,9 @@ To change an IP address of the statistics service:
 
 ### Getting statistics in the Prometheus format
 
-By default, the statistics are returned only in the JSON format. To get the statistics in the Prometheus format:
+Most deployment options return statistics in JSON format by default. The NGINX-based Docker image is an exception; when the `/wallarm-status` endpoint is called from outside the container, it returns metrics in the Prometheus format.
+
+To obtain statistics in the Prometheus format from node deployment options that default to JSON:
 
 1. Add the following configuration to the `/etc/nginx/conf.d/wallarm-status.conf` file (`/etc/nginx/wallarm-status.conf` for all-in-one installer):
 

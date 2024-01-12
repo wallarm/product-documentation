@@ -30,5 +30,6 @@ search:
 [azure-container-docs]:             ../../../cloud-platforms/azure/docker-container.md
 [alibaba-ecs-docs]:                 ../../../cloud-platforms/alibaba-cloud/docker-container.md
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
+[api-policy-enf-docs]:              ../../../../api-policy-enforcement/overview.md
 
 --8<-- "latest/admin-en/installation-docker-en.md"

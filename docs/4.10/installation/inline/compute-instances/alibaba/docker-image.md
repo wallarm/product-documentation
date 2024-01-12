@@ -18,5 +18,6 @@ search:
 [ptrav-attack-docs]:                ../../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../../../images/admin-guides/test-attacks-quickstart.png
 [logging-docs]:                     ../../../../admin-en/configure-logging.md
+[api-policy-enf-docs]:              ../../../../api-policy-enforcement/overview.md
 
 --8<-- "latest/installation/cloud-platforms/alibaba-cloud/docker-container.md"

@@ -75,7 +75,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
     * `--container-image`: link to the Docker image of the filtering node.
     * `--container-env`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `WALLARM_API_TOKEN` explicitly.
 
-        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-4.8.md"
     
     * All parameters of the `gcloud compute instances create-with-container` command are described in the [GCP documentation](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container).
 1. Open the [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) and ensure the instance is displayed in the list.
