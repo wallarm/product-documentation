@@ -17,5 +17,6 @@ search:
 [aws-copy-container-ip-img]:        ../../../../images/waf-installation/aws/container-copy-ip.png
 [ptrav-attack-docs]:                ../../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../../../images/admin-guides/test-attacks-quickstart.png
+[api-policy-enf-docs]:              ../../../../api-policy-enforcement/overview.md
 
 --8<-- "latest/installation/cloud-platforms/aws/docker-container.md"

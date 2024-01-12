@@ -65,7 +65,7 @@ To run the container:
 
 You can pass the following basic filtering node settings to the container via the option `-e`:
 
---8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+--8<-- "../include/waf/installation/nginx-docker-all-env-vars-4.8.md"
 
 The command does the following:
 
