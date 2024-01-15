@@ -2,8 +2,6 @@
 
 [Credential stuffing](../attacks-vulns-list.md#credential-stuffing) is a cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple websites. This article describes how to detect this type of threats using Wallarm's **Credential Stuffing Detection**.
 
-User credentials can become compromised in different ways, including as a result of email fishing, social engineering, disclosure by insiders or technical data breach.
-
 A credential stuffing attack is hazardous because of the common practice of reusing identical usernames and passwords across different services, along with the tendency to choose easily guessable (weak) passwords. A successful credential stuffing attack requires fewer attempts, so attackers can send requests much less frequently, which makes standard measures like brute force protection ineffective.
 
 ## How Wallarm addresses credential stuffing
@@ -17,11 +15,11 @@ To identify compromised and weak passwords, Wallarm uses a comprehensive databas
 Wallarm's Credential Stuffing Detection keeps credentials data safe applying the following sequence of actions:
 
 1. As the request arrives at the node, it generates [SHA-1](https://en.wikipedia.org/wiki/SHA-1) from the password and sends several chars to the Cloud.
-1. Cloud sends full SHA-1 encrypted compromised passwords that begin with the received chars back to the node.
-1. If there is a match, the node reports a credential stuffing attack to the Cloud, including the login taken from the request to this attack information.
+1. Cloud checks its database of known compromised passwords looking for those starting with the received chars and, if finds them, sends these passwords in the SHA-1 encrypted format to the node for it to compare the password from the request with the ones received from the Cloud.
+1. If it is a match, the node reports a credential stuffing attack to the Cloud, including the login taken from the request to this attack information.
 1. The node passes the request to the application.
 
-Thus, credentials are never sent together, passwords are never sent unencrypted, and your clients' authorization data always stays secure.
+Thus, passwords from machines with Wallarm nodes are never sent to the Wallarm Cloud unencrypted. Credentials are not sent simultaneously, ensuring clients' authorization data remains secure within your network.
 
 **Mass and single attempts**
 
