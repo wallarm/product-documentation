@@ -41,7 +41,7 @@ As uploading is finished, the number of rogue (shadow, orphan and zombie) APIs w
 
 ![API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 
-Also rogue APIs will be displayed in the **API Discovery** section use the **Rogue APIs** filter to see only shadow, orphan and/or zombie APIs related to the selected comparisons and filter out the remaining endpoints.
+Also rogue APIs will be displayed in the **API Discovery** section. Use the **Rogue APIs** filter to see only shadow, orphan and/or zombie APIs related to the selected comparisons and filter out the remaining endpoints.
 
 ![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
