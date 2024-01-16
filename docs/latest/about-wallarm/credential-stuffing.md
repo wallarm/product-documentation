@@ -15,7 +15,7 @@ To identify compromised and weak passwords, Wallarm uses a comprehensive databas
 Wallarm's Credential Stuffing Detection keeps credentials data safe applying the following sequence of actions:
 
 1. As the request arrives at the node, it generates [SHA-1](https://en.wikipedia.org/wiki/SHA-1) from the password and sends several chars to the Cloud.
-1. Cloud checks its database of known compromised passwords looking for those starting with the received chars and, if finds them, sends these passwords in the SHA-1 encrypted format to the node for it to compare the password from the request with the ones received from the Cloud.
+1. Cloud checks its database of known compromised passwords looking for those starting with the received chars. If found, they are sent to the node in the SHA-1 encrypted format, and the node compares them to the password from the request.
 1. If it is a match, the node reports a credential stuffing attack to the Cloud, including the login taken from the request to this attack information.
 1. The node passes the request to the application.
 
