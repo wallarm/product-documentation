@@ -1,1 +1,1 @@
---8<-- "latest/quickstart/attack-prevention-best-practices.md"
+--8<-- "4.8/quickstart/attack-prevention-best-practices.md"
