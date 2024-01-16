@@ -15,3 +15,7 @@ In the **Attacks** section, use the **Compare to...** filter or the `spec:'<SPEC
 ![Specification - use for API policy enforcement](../images/api-policies-enforcement/api-policies-enforcement-events.png)
 
 Blocked and monitored events may be presented depending on the configured policy violation actions. In the event details, the violation type and link to the causing specification are displayed. Use **Type** filters to search for specific violations.
+
+## Overlimit events
+
+When viewing events related to your specification policies, you can meet the **Specification processing overlimit** type of event related to the limits applied for API Policy Enforcement while it processes the requests. See details and the description of your possible actions [here](overview.md#how-it-works).
