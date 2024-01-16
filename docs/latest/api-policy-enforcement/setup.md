@@ -44,7 +44,7 @@ You need additional configuration when using API Policy Enforcement with the NGI
 * [All-in-one installer](../installation/nginx/all-in-one.md)
 * [Docker image](../admin-en/installation-docker-en.md) - only when you [mount](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file) your own custom configuration file
 
-Add the following snippet to the NGINX configuration file, the `server` section:
+The following snippet must be added in each `server` section where Wallarm module is used. 
 
 ```
 location ~ ^/wallarm-apifw(.*)$ {
