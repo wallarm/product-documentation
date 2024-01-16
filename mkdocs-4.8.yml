@@ -4,7 +4,7 @@ theme:
   version: "4.8"
 
 docs_dir: docs/4.8
-site_dir: site/4.8
+site_dir: site
 
 nav:
   - Quick Start:
