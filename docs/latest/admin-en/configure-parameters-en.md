@@ -204,6 +204,8 @@ A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains
 
 The directive enables `on` / disables `off` [API Policy Enforcement](../api-policy-enforcement/overview.md), available from release 4.10 onwards. Please note that activating this feature does not substitute for the required subscription and configuration through the Wallarm Console UI.
 
+Currently this directive is available only for NGINX nodes deployed with [all-in-one installer](../installation/nginx/all-in-one.md).
+
 !!! info
     This parameter can be set inside the `server` blocks.
 
