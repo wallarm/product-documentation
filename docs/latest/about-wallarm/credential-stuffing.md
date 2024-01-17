@@ -1,14 +1,31 @@
 # Credential Stuffing Detection <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-[Credential stuffing](https://owasp.org/www-community/attacks/Credential_stuffing) is the automated injection of stolen or weak username/email and password pairs (credentials) into website login forms, in order to fraudulently gain access to user accounts. This article describes how to detect this type of threats using Wallarm's **Credential Stuffing Detection**.
+[Credential stuffing](../attacks-vulns-list.md#credential-stuffing) is a cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple websites. This article describes how to detect this type of threats using Wallarm's **Credential Stuffing Detection**.
 
-![Wallarm Console - Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
+A credential stuffing attack is hazardous because of the common practice of reusing identical usernames and passwords across different services, along with the tendency to choose easily guessable (weak) passwords. A successful credential stuffing attack requires fewer attempts, so attackers can send requests much less frequently, which makes standard measures like brute force protection ineffective.
 
 ## How Wallarm addresses credential stuffing
 
-Wallarm's **Credential Stuffing Detection** collects and displays real-time information about compromised and weak credentials in your application, as well as attempts to use them. It also enables instant notifications about such attempts.
+Wallarm's **Credential Stuffing Detection** collects and displays real-time information about attempts to use compromised or weak credentials to access your applications. It also enables instant notifications about such attempts and forms downloadable list of all compromised or weak credentials providing access to your applications.
 
-To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than 850 million records collected from the public [HIBP](https://haveibeenpwned.com/) compromised credentials database.
+To identify compromised and weak passwords, Wallarm uses a comprehensive database of more than **850 million records** collected from the public [HIBP](https://haveibeenpwned.com/) compromised credentials database.
+
+![Credential Stuffing - Schema](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-schema.png)
+
+Wallarm's Credential Stuffing Detection keeps credentials data safe applying the following sequence of actions:
+
+1. As the request arrives at the node, it generates [SHA-1](https://en.wikipedia.org/wiki/SHA-1) from the password and sends several chars to the Cloud.
+1. Cloud checks its database of known compromised passwords looking for those starting with the received chars. If found, they are sent to the node in the SHA-1 encrypted format, and the node compares them to the password from the request.
+1. If it is a match, the node reports a credential stuffing attack to the Cloud, including the login taken from the request to this attack information.
+1. The node passes the request to the application.
+
+Thus, passwords from machines with Wallarm nodes are never sent to the Wallarm Cloud unencrypted. Credentials are not sent simultaneously, ensuring clients' authorization data remains secure within your network.
+
+**Mass and single attempts**
+
+Credential Stuffing Detection is capable of registering both massive attempts of usage of the compromised credentials performed by bots and single attempts, undetectable by other means.
+
+**Mitigation measures**
 
 Knowledge of accounts with stolen or weak passwords allows you to initiate measures to secure these accounts' data, like communicating with account owners, temporarily suspending access to the accounts, etc.
 
@@ -16,8 +33,6 @@ Wallarm does not block requests with compromised credentials to avoid blocking l
 
 * They are part of detected malicious bot activity and you have enabled the [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) module.
 * They are part of requests with other [attack signs](../attacks-vulns-list.md).
-
-Blocking in these cases will occur only if the corresponding measures are applied in Wallarm.
 
 ## Enabling
 
@@ -34,24 +49,26 @@ Once **Credential Stuffing Detection** is enabled, a [configuration](#configurin
 
 You need to form the list of authentication endpoints to be checked for attempts of compromised credentials usage. To form the list, navigate to Wallarm Console → **Credential Stuffing**.
 
+![Wallarm Console - Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
+
 There are two ways of adding endpoints to the list:
 
 * From the **Recommended endpoints** list that includes two types of elements:
 
     * Wallarm's predefined rules utilizing regular expressions to specify commonly used authentication endpoints and their parameters storing passwords and logins.
-
+    <!--
         ![Credential Stuffing - Recommended Endpoints - Predefined rules](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-predefined-rules.png)
-
-    * Endpoints used for authentication that were found by the [API Discovery](../api-discovery/overview.md) module and recorded as they actually received traffic. This is available only if API Discovery is presented in your subscription and enabled.
+    -->
+    * Endpoints used for authentication that were found by the [API Discovery](../api-discovery/overview.md) module and recorded as they actually received traffic.
 
 * Manually - you can also include your own unique authentication endpoints, ensuring full protection. When adding manually, set [URI](../user-guides/rules/add-rule.md#uri-constructor) and the way of searching for authentication parameters:
 
     * By **Exact location of parameters** - you will need to indicate the exact endpoint [request points](../user-guides/rules/add-rule.md#points) where password and login are located.
-
+    <!--
         ![Credential Stuffing - Add authentication endpoint - Exact location](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-exact-location.png)
-
+    -->
     * By **Regular expression** - endpoint parameters with password and login will be searched using [regular expression](../user-guides/rules/add-rule.md#condition-type-regex).
-
+    
         ![Credential Stuffing - Add authentication endpoint - Regular expression](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-regexp.png)
 
 ## Viewing compromised credentials usage attempts

@@ -1,4 +1,4 @@
-#   Attack and vulnerability types 
+#   Attack and Vulnerability Types 
 
 [cwe-20]:   https://cwe.mitre.org/data/definitions/20.html
 [cwe-22]:   https://cwe.mitre.org/data/definitions/22.html
@@ -725,16 +725,13 @@ You may follow these recommendations:
 
 **Description:**
 
-A type of cyber attack where a malicious actor gains access to someone else's account without their permission or knowledge. This can happen when an attacker obtains a user's login credentials through various means such as phishing, malware, or social engineering. Once they have access to the account, they can use it for various purposes, such as stealing sensitive information, conducting fraudulent transactions, or spreading spam or malware. Account takeover attacks can have serious consequences for individuals and businesses, including financial losses, reputational damage, and loss of trust.
+A type of cyber attack where a malicious actor gains access to someone else’s account without their permission or knowledge. Once they have access to the account, they can use it for various purposes, such as stealing sensitive information, conducting fraudulent transactions, or spreading spam or malware.
 
 **Wallarm behavior:**
 
 Wallarm detects API abuse only if the filtering node has version 4.2 or above.
 
-The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following account takeover bot types:
-
-* [Credential cracking](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) includes brute force, dictionary (word list) and guessing attacks used against authentication processes of the application to identify valid account credentials.
-* [Credential stuffing](https://owasp.org/www-community/attacks/Credential_stuffing) is the automated injection of stolen user credentials into website login forms, in order to fraudulently gain access to user accounts.
+[API Abuse Prevention](about-wallarm/api-abuse-prevention.md) detects bots performing a [credential cracking](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) usually performed as a brute force attack on the critical endpoints or/and endpoints that are related to authentication and/or registration endpoints. The automatic threshold of acceptable behavior metrics is calculated based on legitimate traffic for 1 hour.
 
 **Remediation:**
 
@@ -811,6 +808,32 @@ You may follow these recommendations:
 * Implement rate limiting.
 * Obfuscate or encrypt data.
 * Take legal action.
+
+### Credential stuffing
+
+**Attack**
+
+**Wallarm code:** `credential_stuffing`
+
+**Description:**
+
+A cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple websites. This attack is hazardous because many people reuse the same username and password across different services or use popular weak passwords. A successful credential stuffing attack requires fewer attempts, so attackers can send requests much less frequently, which makes standard measures like brute force protection ineffective. 
+
+**Wallarm behavior:**
+
+Wallarm detects the credential stuffing attempts only if the filtering node has version 4.10 or above.
+
+The [Credential Stuffing Detection](about-wallarm/credential-stuffing.md) functionality collects and displays real-time information about attempts to use compromised or weak credentials to access your applications. It also enables instant notifications about such attempts and forms full downloadable list of all compromised or weak credentials providing access to your applications.
+
+**Remediation:**
+
+You may follow these recommendations:
+
+* Get familiar with the [OWASP credential stuffing description](https://owasp.org/www-community/attacks/Credential_stuffing), including the "Credential Stuffing Prevention Cheat Sheet".
+* Force users to use strong passwords.
+* Recommend users not to use the same passwords for different resources.
+* Enable two-factor authentication.
+* Use additional CAPTCHA solutions.
 
 ##  The list of special attacks and vulnerabilities
 
