@@ -15,7 +15,7 @@ Wallarm'ın entegrasyonları sayesinde, kritik olaylar hakkında her zaman bilgi
 
 Wallarm, birçok mevcut araç ve platformla sorunsuzca bağlanır. Bir sisteme entegrasyonlarla ilgili herhangi bir sınırlama yoktur.
 
-<link rel="stylesheet" href="/supported-platforms.css?v=1" />
+<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
 
 ## Email ve mesajlaşma uygulamaları
 

@@ -12,10 +12,14 @@ plugins:
   - minify:
       minify_html: true
       minify_js: true
+      minify_css: true
       js_files:
           - extra.js
           - feedback.js
           - supported-platforms.js
+      css_files:
+          - extra_new.css
+          - supported-platforms.css
   - meta-descriptions
   - meta
   - glightbox:

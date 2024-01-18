@@ -15,7 +15,7 @@ Gerencie o recurso na seção **Integrações** do Console Wallarm e na seção 
 
 A Wallarm se conecta facilmente a uma série de ferramentas e plataformas existentes. O número de integrações com um sistema não é limitado.
 
-<link rel="stylesheet" href="/supported-platforms.css?v=1" />
+<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
 
 ## Email e mensageiros
 
