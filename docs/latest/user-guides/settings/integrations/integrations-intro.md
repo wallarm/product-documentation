@@ -15,7 +15,7 @@ Manage the feature at the **Integrations** section of Wallarm Console, and **Tri
 
 Wallarm connects effortlessly with a number of existing tools and platforms. The number of integrations with one system is not limited.
 
-<link rel="stylesheet" href="/supported-platforms.css?v=1" />
+<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
 
 ## Email and messengers
 

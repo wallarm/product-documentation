@@ -2,7 +2,7 @@
 
 Wallarm supports many deployment options enabling you to seamlessly integrate the platform with your environment without its modification. Learn the Wallarm deployment options and choose the most appropriate one from this document.
 
-<link rel="stylesheet" href="/supported-platforms.css?v=1" />
+<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
 
 ## Out-of-band
 
