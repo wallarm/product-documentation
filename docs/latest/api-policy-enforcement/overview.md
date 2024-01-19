@@ -27,7 +27,7 @@ Requests may violate your specification by different positions:
 
 --8<-- "../include/api-policies-enforcement/api-policies-violations.md"
 
-API Policy Enforcement has limits by time (50 ms) and request size (1024 KB) - when exceeding these limits, it stops processing the request and creates the **Specification processing overlimit** [event](viewing-events.md#overlimit-events) in the **Attacks** section, saying that one of this limits was exceeded.
+API Policy Enforcement has limits by time (50 ms) and request size (1024 KB) - when exceeding these limits, it stops processing the request and creates the **Specification processing overlimit** [event](viewing-events.md#overlimit-events) in the **Attacks** section, saying that one of these limits was exceeded.
 
 !!! info "API Policy Enforcement and other protection measures"
     Note that if API Policy Enforcement stops processing the request, this does not mean it is not processed by other Wallarm protection procedures. Thus, if it is an attack, it will be registered or blocked in accordance with the Wallarm configuration.
