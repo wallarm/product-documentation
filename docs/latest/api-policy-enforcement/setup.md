@@ -66,3 +66,6 @@ In some cases that may be necessary to disable the API Policy Enforcement functi
 * For NGINX [package deployments](../installation/supported-deployment-options.md#packages) including ones via [All-in-One Installer](../installation/nginx/all-in-one.md), for any `server` section where Wallarm module is used by means of the [`wallarm_enable_apifw`](../admin-en/configure-parameters-en.md#wallarm_enable_apifw) NGINX directive set to `off`.
 * For NGINX-based Docker image, by means of the `WALLARM_APIFW_ENABLE` [environment variable](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) set to `false`.
 * For NGINX Ingress Controller, by means of the [`controller.wallarm.apifirewall`](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) values group with `enable` set to `false`.
+
+!!! info "GRPC is not supported"
+    API Policy Enforcement does not support [GRPC](https://en.wikipedia.org/wiki/GRPC). Thus, if you enabled the functionality in the Wallarm Console and some of your nodes or locations/servers use GRPC, you **must** disable API Policy Enforcement for them as described above.
