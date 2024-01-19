@@ -4,7 +4,7 @@ In the **IP lists** section of Wallarm Console, you can control access to your a
 
 * **Allowlist** is a list of trusted sources that bypass Wallarm protection and access your applications without any checks.
 * **Denylist** is a list of sources that cannot access your applications - all requests from them will be blocked.
-* **Graylist** is a list of suspicious sources which attacks will be blocked in `Safe blocking` [mode](../../admin-en/configure-wallarm-mode.md). In any other mode, all sources in Graylist are ignored.
+* **Graylist** is a list of suspicious sources which attacks ([input validation](../../attacks-vulns-list.md#input-validation-attacks), [vpatch](../rules/vpatch-rule.md), and [detected based on regular expressions](../rules/regex-rule.md)) will be blocked in `Safe blocking` [mode](../../admin-en/configure-wallarm-mode.md). In any other mode, all sources in Graylist are ignored.
 
 ![All IP lists](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
 
@@ -29,7 +29,7 @@ This means that:
 
 Steps:
 
-1. Decide which list to use depending on your purpose: deny, make allow exception or block only malicious.
+1. Decide which list to use depending on your purpose.
 1. Select [which object to add](#select-object): IP, subnet, location, source type.
 1. [Select time](#select-time-to-stay-in-list) for which the object will stay in a list (it is usually not forever).
 1. [Limit by target application](#limit-by-target-application) (not all requests, but only targeting specific application).
@@ -46,7 +46,7 @@ Use **Add object** to add the following into any of IP lists:
     * Search Engines
     * Datacenters (AWS, GCP, Oracle, etc.)
     * Anonymous sources (Tor, Proxy, VPN)
-    * [Malicious IPs](#malicious-ips)
+    * [Malicious IPs](#malicious-ip-feeds)
 
 ![Add object to IP list](../../images/user-guides/ip-lists/add-ip-to-list.png)
 
@@ -57,15 +57,17 @@ Use **Add object** to add the following into any of IP lists:
 
 When adding object to a list, you specify time for which it is added. The minimum time is 5 minutes, default is 1 hour, the maximum is forever. On expiration, the object is automatically deleted from the list.
 
+You can change the specified time at any moment later - to do this, in the object's menu, click **Change time period** and make adjustments.
+
 Setting this time along with manual objects adding and deleting leads to changes of IP lists in time. You can [view the historical states](#ip-list-history) of all lists.
 
 ### Limit by target application
 
-When adding object to a list, by default all requests from the listed IP will be processed. But you can limit that by target applications: select one or several applications and only requests from the listed IP to that applications will be processed.
+When adding object to a list, by default all requests from the listed IP will be processed. But you can limit that by target [applications](../../user-guides/settings/applications.md): select one or several applications and only requests from the listed IP to that applications will be processed.
 
 ## Malicious IP feeds
 
-When adding the **Malicious IPs** [source type](#listing-ips-subnets-locations-and-source-types) to one of the IP lists, note that this will include all IP addresses that are well-known for malicious activity, as mentioned in public sources, and verified by expert analysis. We pull this data from a combination of the following resources:
+When adding the **Malicious IPs** [source type](#select-object) to one of the IP lists, note that this will include all IP addresses that are well-known for malicious activity, as mentioned in public sources, and verified by expert analysis. We pull this data from a combination of the following resources:
 
 * [Collective Intelligence Network Security](http://cinsscore.com/list/ci-badguys.txt)
 * [Proofpoint Emerging Threats Rules](https://rules.emergingthreats.net/blockrules/compromised-ips.txt)
@@ -77,13 +79,11 @@ When adding the **Malicious IPs** [source type](#listing-ips-subnets-locations-a
 
 ## IP list history
 
-Thus, IP lists have not only the current state, but also the states back in time and they differ. Choose specific dates to examine the IP list content, and the system will return a detailed **History** of its changes, including the exact timing and method of addition, be it manual or automated. The report also provides data on the individuals responsible for the changes and the reasons behind each inclusion. Such insights help in maintaining an audit trail for compliance and reporting.
+IP lists have not only the current state, but also the states [back in time](#select-time-to-stay-in-list) and they differ. Choose specific dates to examine the IP list content, and the system will return a detailed **History** of its changes, including the exact timing and method of addition, be it manual or automated. The report also provides data on the individuals responsible for the changes and the reasons behind each inclusion. Such insights help in maintaining an audit trail for compliance and reporting.
 
 ![IP List history](../../images/user-guides/ip-lists/ip-list-history.png)
 
 Switch back to the **Now** tab to get the current state of the IP list, allowing you to view the objects presently included in the list.
-
-You can change the time the object should stay in the list - to do this, in its menu, click **Change time period** and make adjustments.
 
 ## Automatic listing
 
@@ -91,7 +91,7 @@ You can enable Wallarm to denylist or graylist IP addresses automatically if the
 
 * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * [BOLA Protection](../../admin-en/configuration-guides/protecting-against-bola.md)
-* Exceeded threshold for malicious payloads
+* [Exceeded threshold for malicious payloads](../../admin-en/configuration-guides/protecting-with-thresholds.md)
 * [API Abuse Prevention](../../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works)
 
 Note that if you manually delete an automatically listed IP, if new malicious activity is detected it will be automatically added again but:
@@ -108,6 +108,28 @@ You can get notifications about newly denylisted IPs via the messengers or SIEM 
 
 ![Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
 
+**To test the trigger:**
+
+1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
+1. In **Triggers**, create trigger as shown above.
+1. Go to **IP Lists** → **Denylist** and add the `1.1.1.1` IP with the "It is a malicious bot" reason.
+1. Check messages in your Slack channel like:
+    ```
+    [wallarm] New IP address has been denylisted
+    
+    Notification type: ip_blocked
+
+    IP address 1.1.1.1 has been denylisted until 2024-01-19 15:02:16 +0300 
+    for the reason "It is a malicious bot". You can review denylisted IP addresses
+    in the "IP lists → Denylist" section of Wallarm Console.
+
+    This notification was triggered by the "Notify about new denylisted IPs" trigger.
+    The IP is blocked for the application default.
+
+    Client: Your Company
+    Cloud: EU
+    ```
+
 ## Configuring nodes behind load balancers and CDNs to work with IP lists
 
 If Wallarm node is located behind a load balancer or CDN, please make sure to configure your Wallarm node to properly report end-user IP addresses:
@@ -117,4 +139,4 @@ If Wallarm node is located behind a load balancer or CDN, please make sure to co
 
 ## Managing lists via API
 
-You can get any IP list content, populate it with objects and delete objects from it by [calling the Wallarm API](../../user-guides/ip-lists/ip-lists-api-calls.md) directly.
+You can get any IP list content, populate it with objects and delete objects from it by [calling the Wallarm API](../../api/request-examples.md#api-calls-to-get-populate-and-delete-ip-list-objects) directly.

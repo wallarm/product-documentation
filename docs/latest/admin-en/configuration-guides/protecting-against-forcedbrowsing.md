@@ -18,21 +18,10 @@ To configure protection against forced browsing:
 1. If required, specify **URI** to activate the trigger only for requests sent to certain endpoints, for example:
     
     * Specify the URI of the resource file directory.
+    * If using nested URIs, consider [trigger processing priorities](#trigger-processing-priorities).
     * If the URI is not specified, the trigger will be activated at any endpoint with the request number exceeding the threshold.
 
     URI can be configured via the [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../../user-guides/rules/add-rule.md#advanced-edit-form) in the trigger creation window.
-
-    !!! warning "Triggers with nested URIs"
-        If nested URIs are specified in the triggers with identical conditions, requests to lower nesting level URI will be counted only in the trigger with the filter by the lower nesting level URI. Same for 404 response codes.
-
-        Triggers without URI in the conditions are considered to be the higher nesting level one.
-
-        **Example:**
-
-        * The first trigger with the **Forced browsing** condition has no filter by the URI (requests to any application or its part are counted by this trigger).
-        * The second trigger with the **Forced browsing** condition has the filter by the URI `example.com/api`.
-
-        Requests to `example.com/api` are counted only by the second trigger with the filter by `example.com/api`.
 
 1. If required, set other trigger filters:
 
@@ -65,9 +54,13 @@ You can configure several triggers for brute force protection.
 
     ![Forced browsing attack in the interface](../../images/user-guides/events/forced-browsing-attack.png)
 
-    The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
+    The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 
     To search for the forced browsing attacks, you can use the `dirbust` filter. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
+
+## Trigger processing priorities
+            
+--8<-- "../include/trigger-processing-priorities.md"
 
 ## Requirements and restrictions
 

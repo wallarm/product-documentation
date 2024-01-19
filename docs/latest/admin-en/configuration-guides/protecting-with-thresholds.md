@@ -10,16 +10,16 @@ To configure protection from sources originating malicious requests:
 
 1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **Number of malicious payloads** condition.
-1. Set number of different malicious payloads from one IP per time interval. On exceeding this number within the specified time, the trigger will be activated.
+1. Set number of malicious payloads from one IP per time interval. On exceeding this number within the specified time, the trigger will be activated.
 1. If required, set one or several filters:
 
     * **Type** is a [type](../../attacks-vulns-list.md) of attack detected in the request or a type of vulnerability the request is directed to.
-    * **Application** is the [application](../../user-guides/settings/applications.md) that receives the request or in which an incident is detected.
+    * **Application** is the [application](../../user-guides/settings/applications.md) that receives the request.
     * **IP** is an IP address from which the request is sent.
 
         The filter expects only single IPs, it does not allow subnets, locations and source types.
 
-    * **Domain** is the domain that receives the request or in which an incident is detected.
+    * **Domain** is the domain that receives the request.
     * **Response status** is the response code returned to the request.
     * **Target** is an application architecture part that the attack is directed at or in which the incident is detected. It can take the following values: `Server`, `Client`, `Database`.
 
@@ -53,7 +53,9 @@ You can temporary disable, modify or delete the default trigger.
 
 ## Testing
 
-Use [pre-configured trigger](#pre-configured-trigger) for testing. To test:
+The following is the testing example for the [pre-configured trigger](#pre-configured-trigger). You can adjust it to your trigger view.
+
+To test:
 
 1. Send the following requests to the protected resource:
 

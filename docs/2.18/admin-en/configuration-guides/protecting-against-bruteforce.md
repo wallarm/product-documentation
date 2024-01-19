@@ -53,9 +53,9 @@ The steps to configure the trigger are:
     URI can be configured via the [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../../user-guides/rules/add-rule.md#advanced-edit-form) in the trigger creation window.
 
     !!! warning "Triggers with nested URIs"
-        If nested URIs are specified in the triggers with identical conditions, requests to lower nesting level URI will be counted only in the trigger with the filter by the lower nesting level URI. Same for 404 response codes.
+        When there are several triggers with identical conditions and some of them have nesting level URI, requests to lower nesting level URI will be counted only in the trigger with the filter by the lower nesting level URI. Same for 404 response codes.
 
-        Triggers without URI in the conditions are considered to be the higher nesting level one.
+        Triggers without URI in the conditions are considered to be the higher nesting level.
 
         **Example:**
 

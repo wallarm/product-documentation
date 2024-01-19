@@ -80,7 +80,9 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <p><ul>
     <li><a href="./admin-en/configuration-guides/protecting-against-ddos/">DDoS Protection</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-bruteforce/">Brute Force Protection</a></li>
+    <li><a href="./admin-en/configuration-guides/protecting-against-forcedbrowsing/">Forced Browsing Protection</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-with-thresholds/">Multi-Attack Protection</a></li>
+    <li><a href="./admin-en/configuration-guides/protecting-against-bola-trigger/">Manual BOLA Protection</a></li>
     <li><a href="./user-guides/ip-lists/overview/">Filtering by IP</a></li>
     <li><a href="./user-guides/rules/rate-limiting/">Rate Limits</a></li>
     </ul></p>
