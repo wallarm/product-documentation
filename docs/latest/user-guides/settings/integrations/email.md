@@ -29,7 +29,9 @@ Scheduled PDF reports can be sent on a daily, weekly, or monthly basis. PDF repo
 
 ## Setting up additional alerts
 
---8<-- "../include/integrations/integrations-trigger-setup-limited.md"
+* Number of [attacks](../../../glossary-en.md#attack), [hits](../../../glossary-en.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number
+* [Changes in API](../../../api-discovery/track-changes.md) took place
+* New user was added to the company account
 
 ## Disabling and deleting an integration
 

@@ -78,6 +78,57 @@ In the **API Discovery** section, use the **Compare to...** filter to select spe
 
 ![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
+## Getting notified
+
+To get immediate notifications about newly discovered rogue APIs to your [SIEM, SOAR, log management system or messenger](../user-guides/settings/integrations/integrations-intro.md), in the **Triggers** section of Wallarm Console, configure one or more triggers with the **Rogue API detected** condition.
+
+You can get messages about newly discovered shadow, orphan or zombie APIs or about all of them. You can also narrow notifications by application or host that you want to monitor and by the specification used for their detection.
+
+**How notifications come**
+    
+* Each new found rogue API causes 1 notification message
+* If you already got notification about some rogue API, it is not be sent again, no matter how many times the comparison is run
+* If you update settings of the uploaded specification, notifications about all **orphan** APIs are re-sent (this does not apply to shadow or zombie APIs)
+
+**Trigger example: notification about newly discovered shadow endpoints in Slack**
+
+In this example, if API Discovery finds new endpoints for the `example.com` API host that are not listed in the `Specification-01` (shadow APIs), the notification about this is sent to your configured Slack channel.
+
+![Rogue API detected trigger](../images/user-guides/triggers/trigger-example-rogue-api.png)
+
+**To test the trigger:**
+
+1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
+1. In **API Discovery**, filter endpoints by API host of your choice, then download results as a specification and name it `Specification-01`.
+1. In **API Specifications**, upload `Specification-01` for comparison.
+1. In the **Triggers** section, create a trigger as shown above.
+1. Select the endpoint found by API Discovery for the API host chosen in the trigger.
+1. Delete this endpoint from your local `Specification-01` file.
+1. In **API Specifications**, re-upload your `Specification-01` for comparison.
+1. Check that your endpoint obtained the shadow API mark in the **Issues** column.
+1. Check messages in your Slack channel like:
+
+    ```
+    [wallarm] A new shadow endpoint has been discovered in your API
+
+    Notification type: api_comparison_result
+
+    The new GET example.com/users shadow endpoint has been discovered in your API.
+
+        Client: Client-01
+        Cloud: US
+
+        Details:
+
+          application: Application-01
+          api_host: example.com
+          endpoint_path: /users
+          http_method: GET
+          type_of_endpoint: shadow
+          link: https://my.wallarm.com/api-discovery?instance=1802&method=GET&q=example.com%2Fusers
+          specification_name: Specification-01
+    ```
+
 ## Rogue API types and risks
 
 ### Shadow API

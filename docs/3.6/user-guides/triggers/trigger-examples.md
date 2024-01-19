@@ -267,7 +267,7 @@ In this example, if new endpoints for the `example.com` API host are discovered 
 **To test the trigger:**
 
 1. In **Integrations**, configure [integration with Slack](../../user-guides/settings/integrations/slack.md).
-1. In **Triggers**, create trigger as shown above.
+1. In the **Triggers** section, create a trigger as shown above.
 1. Send several requests to the `example.com/users` endpoint to get the `200` (`OK`) response.
 1. In the **API Discovery** section, check that your endpoint was added with the **New** mark.
 1. Check messages in your Slack channel like:
