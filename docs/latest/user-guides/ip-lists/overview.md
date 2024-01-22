@@ -110,7 +110,7 @@ You can get notifications about newly denylisted IPs via the messengers or SIEM 
 
 **To test the trigger:**
 
-1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
+1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../../user-guides/settings/integrations/slack.md).
 1. In **Triggers**, create trigger as shown above.
 1. Go to **IP Lists** → **Denylist** and add the `1.1.1.1` IP with the "It is a malicious bot" reason.
 1. Check messages in your Slack channel like:
