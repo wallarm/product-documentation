@@ -139,7 +139,7 @@ OPTION                      DESCRIPTION
 
 Note that: 
 
-* The `--batch` option enables a **batch (non-interactive) mode**. In this mode, if you do not use additional parameters, the node is installed immediately after script laungh, requiring no additional interaction or data input from the user. Batch mode:
+* The `--batch` option enables a **batch (non-interactive) mode**. In this mode, if you do not use additional parameters, the node is installed immediately after script launch, requiring no additional interaction or data input from the user. Batch mode:
  
     * Requires `--token`
     * Installs node into EU Cloud by default
