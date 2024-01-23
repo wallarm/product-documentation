@@ -10,6 +10,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.8.7 (2024-01-19)
+
+* Support for separate script flags allowing you to [run the node installation preparations and registration in the cloud distinctly](../installation/nginx/all-in-one.md#separate-execution-of-node-installation-stages) in the batch mode
+
 ### 4.8.6 (2024-01-10)
 
 * Added support for openresty-1.21.4.3 on Debian "bookworm"

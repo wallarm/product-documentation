@@ -115,7 +115,7 @@ Below there are a few of the typical settings that you can apply if needed:
 As soon as you have the all-in one script downloaded, you can get help on it with:
 
 ```
-sudo sh ./wallarm-4.8.6.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-4.8.7.x86_64-glibc.sh -- -h
 ```
 
 Which returns:
