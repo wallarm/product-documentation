@@ -78,6 +78,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 <div class="navigation-card">
     <h3 class="icon-homepage waap-waf-title">WAAP/WAF</h3>
     <p><ul>
+    <li><a href="./about-wallarm/waap-overview/">Overview</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-ddos/">DDoS Protection</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-bruteforce/">Brute Force Protection</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-forcedbrowsing/">Forced Browsing Protection</a></li>

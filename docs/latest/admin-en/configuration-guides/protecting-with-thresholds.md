@@ -1,6 +1,6 @@
 # Protection from Multi-Attack Perpetrators
 
-When Wallarm is in [blocking mode](../../admin-en/configure-wallarm-mode.md), it automatically blocks all requests with malicious payloads, letting only legitimate requests through. You can configure additional protection for your applications and API by setting the Wallarm reaction in case if number of malicious payloads from the same IP (often referred to as **multi-attack perpetrator**) exceeds specified threshold.
+When Wallarm is in [blocking mode](../../admin-en/configure-wallarm-mode.md), it automatically blocks all requests with malicious payloads, letting only legitimate requests through. You can configure additional protection for your applications and API by setting the Wallarm reaction in case if number of different malicious payloads from the same IP (often referred to as **multi-attack perpetrator**) exceeds specified threshold.
 
 Such perpetrators can be automatically placed into the denylist, which starts blocking **all requests from them**, not spending time on analysis of whether they are malicious or not, just basing of the fact that this source produced a lot of malicious requests in the past.
 
@@ -10,7 +10,7 @@ To configure protection from sources originating malicious requests:
 
 1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **Number of malicious payloads** condition.
-1. Set number of malicious payloads from one IP per time interval. On exceeding this number within the specified time, the trigger will be activated.
+1. Set number of different malicious payloads from one IP per time interval. On exceeding this number within the specified time, the trigger will be activated.
 1. If required, set one or several filters:
 
     * **Type** is a [type](../../attacks-vulns-list.md) of attack detected in the request or a type of vulnerability the request is directed to.
@@ -54,8 +54,6 @@ You can temporary disable, modify or delete the default trigger.
 ## Testing
 
 The following is the testing example for the [pre-configured trigger](#pre-configured-trigger). You can adjust it to your trigger view.
-
-To test:
 
 1. Send the following requests to the protected resource:
 
