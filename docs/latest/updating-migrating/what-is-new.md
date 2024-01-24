@@ -2,13 +2,20 @@
 
 The new version of the Wallarm node has been released! This update introduces an advanced feature for credential stuffing detection, further enhancing the security of your APIs.
 
+!!! info "Selected artifacts enhanced in release 4.10"
+    Only a select few artifacts, including the all-in-one installer, NGINX Ingress Controller, and the NGINX-based Docker image, have been released as part of version 4.10, featuring support for the newly introduced capabilities.
+
 ## Credential Stuffing Detection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 Beginning with release 4.10, Wallarm introduces real-time detection and notifications for credential stuffing attempts. Credential stuffing, the automated submission of stolen or weak username/email and password pairs into website login forms to illegitimately access user accounts, is now closely monitored. This feature allows you to identify accounts with compromised credentials and take action to secure them, such as notifying account owners and temporarily suspending account access.
 
 [Learn how to configure Credential Stuffing Detection](../about-wallarm/credential-stuffing.md)
 
-<!-- ## API Policy Enforcement
+![Attacks - credential stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
+
+<!--
+
+## API Policy Enforcement
 
 In this latest update, we introduce API Policy Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.
 
@@ -16,10 +23,15 @@ This strengthens security by preventing potential attack attempts and also optim
 
 Additionally, this update introduces new parameters for some deployment options, enabling technical control over the feature's operation:
 
+* For all-in-one installer: the [`wallarm_enable_apifw`](../admin-en/configure-parameters-en.md#wallarm_enable_apifw) NGINX directive.
 * For NGINX Ingress Controller: the [`controller.wallarm.apifirewall`](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) values group.
 * For NGINX-based Docker image: the environment variable `WALLARM_APIFW_ENABLE`.
 
-[Learn how to configure API Policy Enforcement](../api-policy-enforcement/setup.md) -->
+[Learn how to configure API Policy Enforcement](../api-policy-enforcement/setup.md)
+
+![Specification - use for API policy enforcement](../images/api-policies-enforcement/api-policies-enforcement-events.png)
+
+-->
 
 ## Optimized and more secure NGINX-based Docker image
 
