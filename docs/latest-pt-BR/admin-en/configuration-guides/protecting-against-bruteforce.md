@@ -94,7 +94,7 @@ Você pode configurar vários gatilhos para proteção contra força bruta.
     Se a reação do gatilho for **Adicionar endereço IP à lista cinza**, verifique a seção **Listas de IP** → **Lista cinza** do Console Wallarm.
 3. Abra a seção **Eventos** e verifique se as solicitações são exibidas na lista como um ataque de força bruta ou de navegação forçada.
 
-    ![Ataque de navegação forçada na interface](../../images/user-guides/events/dirbust-attack.png)
+    ![Ataque de navegação forçada na interface](../../images/user-guides/events/forced-browsing-attack.png)
 
     O número de solicitações exibidas corresponde ao número de solicitações enviadas após o limite do gatilho ter sido excedido ([mais detalhes sobre a detecção de ataques comportamentais](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). Se este número for superior a 5, a amostragem de solicitação é aplicada e os detalhes da solicitação são exibidos apenas para os primeiros 5 acertos ([mais detalhes sobre a amostragem de solicitações](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 

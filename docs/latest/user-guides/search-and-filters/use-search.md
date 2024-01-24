@@ -99,7 +99,7 @@ Specify in the search string:
 * `api_abuse`: to search for [attacks on API performed by bots](../../attacks-vulns-list.md#api-abuse).
 * `ssrf`: to search for [Server‑side Request Forgery (SSRF) and attacks](../../attacks-vulns-list.md#serverside-request-forgery-ssrf).
 * `blocked_source`: to search for attacks from **manually** [denylisted](../../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) IPs.
-* `multiple_payloads`: to search for attacks detected by the [Number of malicious payloads](../../user-guides/triggers/triggers.md#step-1-choosing-a-condition) trigger and blocked requests from IPs [denylisted](../../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) because of the attacks of this type.
+* `multiple_payloads`: to search for attacks detected by the [Number of malicious payloads](../../admin-en/configuration-guides/protecting-with-thresholds.md) trigger and blocked requests from IPs [denylisted](../../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) because of the attacks of this type.
 * `credential_stuffing`: to search for attempts to use stolen authentication credentials ([credential stuffing](../../about-wallarm/credential-stuffing.md)).
 
 An attack name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.

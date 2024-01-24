@@ -23,7 +23,7 @@ Allows disabling analysis of requests origins. If disabled (`on`), the filtering
 
 ### wallarm_acl_access_phase
 
-The directive forces the NGINX-based Wallarm node to block requests originating from [denylisted](../user-guides/ip-lists/denylist.md) IPs at the NGINX access phase which means:
+The directive forces the NGINX-based Wallarm node to block requests originating from [denylisted](../user-guides/ip-lists/overview.md) IPs at the NGINX access phase which means:
 
 * With `wallarm_acl_access_phase on`, the Wallarm node immediately blocks any requests from denylisted IPs in any [filtration mode](configure-wallarm-mode.md) and does not search attack signs in requests from denylisted IPs.
 
@@ -47,7 +47,7 @@ The directive forces the NGINX-based Wallarm node to block requests originating 
 
 ### wallarm_acl_export_enable
 
-The directive enables `on` / disables `off` sending statistics about the requests from the [denylisted](../user-guides/ip-lists/denylist.md) IPs from node to the Cloud.
+The directive enables `on` / disables `off` sending statistics about the requests from the [denylisted](../user-guides/ip-lists/overview.md) IPs from node to the Cloud.
 
 * With `wallarm_acl_export_enable on` the statistics on the requests from the denylisted IPs will be [displayed](../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) in the **Attacks** section.
 * With `wallarm_acl_export_enable off` the statistics on the requests from the denylisted IPs will not be displayed.
@@ -520,7 +520,7 @@ The ability to manage the blocking of requests, which exceed the time limit set 
 - `attack`: depends on the attack blocking mode set in the `wallarm_mode` directive:
     - `off`: the requests are not processed.
     - `monitoring`: the requests are ignored but details on the `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
-    - `safe_blocking`: only requests originated from [graylisted](../user-guides/ip-lists/graylist.md) IP addresses are blocked and details on all `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
+    - `safe_blocking`: only requests originated from [graylisted](../user-guides/ip-lists/overview.md) IP addresses are blocked and details on all `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
     - `block`: the requests are blocked.
 
 Regardless of the directive value, requests of the `overlimit_res` attack type are uploaded to the Wallarm Cloud except when [`wallarm_mode off;`](#wallarm_mode).

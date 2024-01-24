@@ -10,7 +10,7 @@ If your organization uses multiple applications or separate tenants, you will li
 
 ## Establish a trust zone
 
-When introducing new security measures, the uninterrupted operation of crucial business applications must remain a top priority. To ensure trusted resources are not unnecessarily processed by the Wallarm platform, you have the option to allocate them to the [IP allowlist](../user-guides/ip-lists/allowlist.md).
+When introducing new security measures, the uninterrupted operation of crucial business applications must remain a top priority. To ensure trusted resources are not unnecessarily processed by the Wallarm platform, you have the option to allocate them to the [IP allowlist](../user-guides/ip-lists/overview.md).
 
 Traffic originating by the allowlisted resources is not analyzed or logged by default. This means that data from bypassed requests will not be available for review. Therefore its use should be applied cautiously.
 
@@ -24,11 +24,11 @@ If required, except [detectors tailored for specific request elements](../user-g
 
 ## Set up the denylist
 
-You can safeguard your applications from untrusted sources by incorporating them into a [denylist](../user-guides/ip-lists/denylist.md), blocking traffic from suspicious regions or sources such as VPNs, Proxy servers, or Tor networks.
+You can safeguard your applications from untrusted sources by incorporating them into a [denylist](../user-guides/ip-lists/overview.md), blocking traffic from suspicious regions or sources such as VPNs, Proxy servers, or Tor networks.
 
 ## Block multi-attack perpetrators
 
-When Wallarm is in blocking mode, it automatically blocks all requests with malicious payloads, letting only legitimate requests through. If multiple malicious activities from one IP address are detected in a short time (often referred to as multi-attack perpetrators), consider [blocking the attacker entirely using a specific trigger](../user-guides/triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour) that automatically places them on the denylist.
+When Wallarm is in blocking mode, it automatically blocks all requests with malicious payloads, letting only legitimate requests through. If multiple malicious activities from one IP address are detected in a short time (often referred to as multi-attack perpetrators), consider [blocking the attacker entirely](../admin-en/configuration-guides/protecting-with-thresholds.md).
 
 ## Enable brute-force mitigation
 

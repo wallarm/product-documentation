@@ -69,7 +69,7 @@
 [ssi-wiki]:     https://en.wikipedia.org/wiki/Server_Side_Includes
 [link-owasp-csrf-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
 
-The Wallarm filtering node can detect many attacks and vulnerabilities including those included into the OWASP API Top 10 threat list. These attacks and vulnerabilities are listed [below][anchor-main-list].
+The Wallarm filtering node can detect many attacks and vulnerabilities including those presented in the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) security risk lists. These attacks and vulnerabilities are listed [below][anchor-main-list].
 
 Each entity in the list
 
@@ -87,6 +87,71 @@ Additionally, the Wallarm filtering node employs several special attack and vuln
     <div class="video-wrapper">
     <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
+
+## Attack types
+
+The Wallarm solution protects APIs, microservices and web applications from the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) threats, API abuse and other automated threats.
+
+Technically, all attacks that can be detected by Wallarm are divided into groups:
+
+* Input validation attacks
+* Behavioral attacks
+
+Attack detection method depends on the attack group. To detect behavioral attacks, additional Wallarm node configuration is required.
+
+### Input validation attacks
+
+Input validation attacks include SQL injection, cross‑site scripting, remote code execution, Path Traversal and other attack types. Each attack type is characterized by specific symbol combinations sent in the requests. To detect input validation attacks, it is required to conduct syntax analysis of the requests - parse them in order to detect specific symbol combinations.
+
+Wallarm detects input validation attacks in any request part including binary files like SVG, JPEG, PNG, GIF, PDF, etc using the listed [tools](#tools-for-attack-detection).
+
+Detection of input validation attacks is enabled for all clients by default.
+
+### Behavioral attacks
+
+Behavioral attacks include the following attack classes:
+
+* Brute‑force attacks: passwords and session identifiers brute‑forcing, files and directories forced browsing, credential stuffing. Behavioral attacks can be characterized by a large number of requests with different forced parameter values sent to a typical URL for a limited timeframe.
+
+    For example, if an attacker forces password, many similar requests with different `password` values can be sent to the user authentication URL:
+
+    ```bash
+    https://example.com/login/?username=admin&password=123456
+    ```
+
+* The BOLA (IDOR) attacks exploiting the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either get or modify its data bypassing an authorization mechanism.
+
+    For example, if an attacker forces shop identifiers to find a real identifier and get the corresponding shop financial data:
+
+    ```bash
+    https://example.com/shops/{shop_id}/financial_info
+    ```
+
+    If authorization is not required for such API requests, an attacker can get the real financial data and use it for their own purposes.
+
+#### Behavioral attack detection
+
+To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests.
+
+Correlation analysis is conducted when the threshold of request number sent to user authentication or resource file directory or a specific object URL is exceeded. Request number threshold should be set to reduce the risk of legitimate request blocking (for example, when the user inputs incorrect password to his account several times).
+
+* Correlation analysis is conducted by the Wallarm postanalytics module.
+* Comparison of the received request number and the threshold for the request number, and blocking of requests is conducted in the Wallarm Cloud.
+
+When behavioral attack is detected, request sources are blocked, namely the IP addresses the requests were sent from are added to the denylist.
+
+#### Configuration of behavioral attack protection
+
+To protect the resource against behavioral attacks, it is required to set the threshold for correlation analysis and URLs that are vulnerable to behavioral attacks:
+
+* [Instructions on configuration of brute force protection](admin-en/configuration-guides/protecting-against-bruteforce.md) [s]
+* [Instructions on configuration of BOLA (IDOR) protection](admin-en/configuration-guides/protecting-against-bola.md)
+
+!!! warning "Behavioral attack protection restrictions"
+    When searching for behavioral attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of behavioral attack in the following cases:
+
+    * These requests contain signs of [input validation attacks](#input-validation-attacks).
+    * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
 
 ##  The main list of attacks and vulnerabilities
 
@@ -667,7 +732,7 @@ JWT compromisation is a common aim of attackers as breaking authentication mecha
 
 **Wallarm behavior:**
 
-Wallarm detects weak JWTs only if the filtering node has version 4.4 or above and there is the [**Weak JWT** trigger](user-guides/triggers/trigger-examples.md#detect-weak-jwts) enabled.
+Wallarm detects weak JWTs only if the filtering node has version 4.4 or above and there is the [**Weak JWT** trigger](about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection) enabled.
 
 Wallarm considers JWTs to be weak if they are:
 

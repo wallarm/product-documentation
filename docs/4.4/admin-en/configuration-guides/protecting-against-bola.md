@@ -28,7 +28,6 @@ You have the following options to detect and block BOLA attacks with Wallarm:
 
 To protect resources from BOLA attacks, make sure your environment meets the following requirements:
 
-* You have Wallarm node 4.2 or above.
 * If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) displaying real clients' IP addresses.
 
 ## Manual creation of BOLA trigger

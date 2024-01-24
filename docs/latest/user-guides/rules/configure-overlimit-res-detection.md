@@ -18,7 +18,7 @@ If the time limit is exceeded, the Wallarm node:
     Attacks of the corresponding types will be displayed in the [event list](../events/check-attack.md) in Wallarm Console.
 1. <a name="request-blocking"></a>In the **monitoring** [mode](../../admin-en/configure-wallarm-mode.md), the node forwards the original request to the application address. The application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
 
-    In the **safe blocking** mode, the node blocks the request if it originates from the [graylisted](../ip-lists/graylist.md) IP address. Otherwise, the node forwards the original request to the application address. The application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
+    In the **safe blocking** mode, the node blocks the request if it originates from the [graylisted](../ip-lists/overview.md) IP address. Otherwise, the node forwards the original request to the application address. The application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
 
     In the **block** mode, the node blocks the request.
 

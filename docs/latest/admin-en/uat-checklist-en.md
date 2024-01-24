@@ -91,7 +91,7 @@ See also [Working with the scanner](../user-guides/scanner.md).
 ## IP allowlisting, denylisting, and graylisting work
 
 1. Learn[ core logic of IP lists](../user-guides/ip-lists/overview.md).
-2. Add IP addresses to the [allowlist](../user-guides/ip-lists/allowlist.md), [denylist](../user-guides/ip-lists/denylist.md), and [graylist](../user-guides/ip-lists/graylist.md).
+2. Add IP addresses to the [allowlist](../user-guides/ip-lists/overview.md), [denylist](../user-guides/ip-lists/overview.md), and [graylist](../user-guides/ip-lists/overview.md).
 3. Check that the filtering node correctly processes requests originated from IPs added to the lists.
 
 ## Users Can Be Configured and Have Proper Access Rights

@@ -53,9 +53,9 @@ The steps to configure the trigger are:
     URI can be configured via the [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../../user-guides/rules/add-rule.md#advanced-edit-form) in the trigger creation window.
 
     !!! warning "Triggers with nested URIs"
-        If nested URIs are specified in the triggers with identical conditions, requests to lower nesting level URI will be counted only in the trigger with the filter by the lower nesting level URI. Same for 404 response codes.
+        When there are several triggers with identical conditions and some of them have nesting level URI, requests to lower nesting level URI will be counted only in the trigger with the filter by the lower nesting level URI. Same for 404 response codes.
 
-        Triggers without URI in the conditions are considered to be the higher nesting level one.
+        Triggers without URI in the conditions are considered to be the higher nesting level.
 
         **Example:**
 
@@ -91,7 +91,7 @@ You can configure several triggers for brute force protection.
 2. If the trigger reaction is **Denylist IP address**, open Wallarm Console → **Denylist** and check that source IP address is blocked.
 3. Open the section **Events** and check that requests are displayed in the list as the brute‑force or forced browsing attack.
 
-    ![Forced browsing attack in the interface](../../images/user-guides/events/dirbust-attack.png)
+    ![Forced browsing attack in the interface](../../images/user-guides/events/forced-browsing-attack.png)
 
     The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 

@@ -68,8 +68,8 @@ There are three available levels:
 
 You can configure API Abuse Prevention to react to malicious bots in one of the following ways:
 
-* **Add to denylist**: Wallarm will [denylist](../user-guides/ip-lists/denylist.md) bots' IPs for the selected time (default value is `Add for a day` - 24 hours) and block all traffic these IPs produce.
-* **Add to graylist**: Wallarm will [graylist](../user-guides/ip-lists/graylist.md) bots' IPs for the selected time (default value is `Add for a day` - 24 hours) and block only requests originating from these IPs and containing the signs of the following attacks:
+* **Add to denylist**: Wallarm will [denylist](../user-guides/ip-lists/overview.md) bots' IPs for the selected time (default value is `Add for a day` - 24 hours) and block all traffic these IPs produce.
+* **Add to graylist**: Wallarm will [graylist](../user-guides/ip-lists/overview.md) bots' IPs for the selected time (default value is `Add for a day` - 24 hours) and block only requests originating from these IPs and containing the signs of the following attacks:
 
     * [Input validation attacks](../about-wallarm/protecting-against-attacks.md#input-validation-attacks)
     * [Attacks of the vpatch type](../user-guides/rules/vpatch-rule.md)

@@ -9,7 +9,7 @@
 [passive-detection-docs]:           ../../../about-wallarm/detecting-vulnerabilities.md#passive-detection
 [active-threat-verification-docs]:  ../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification
 [subscriptions-docs]:               ../../../about-wallarm/subscription-plans.md#subscription-plans
-[denylist-docs]:                    ../../../user-guides/ip-lists/denylist.md
+[denylist-docs]:                    ../../../user-guides/ip-lists/overview.md
 [denylist-view-events-docs]:        ../../../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips
 
 # Pod's Annotations Supported by Wallarm Sidecar

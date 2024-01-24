@@ -54,9 +54,7 @@ nav:
       - Overview: about-wallarm/api-abuse-prevention.md
       - API Abuse Prevention Profile Management: user-guides/api-abuse-prevention.md
       - Disabling bot protection for specific URLs and requests: user-guides/rules/api-abuse-url.md
-    - BOLA Protection:
-      - Configuration: admin-en/configuration-guides/protecting-against-bola.md
-      - BOLA autodetection template: user-guides/bola-protection.md
+    - BOLA Protection (APID): admin-en/configuration-guides/protecting-against-bola.md
     - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
   - API Attack Surface:
     - Overview: about-wallarm/attack-surface.md
@@ -181,14 +179,13 @@ nav:
           - Mozilla Firefox: fast/ssl/browsers-ssl/firefox-ssl.md
       - Troubleshooting: fast/TSHOOT.md
   - WAAP/WAF:
-    - Attack Detection Procedure: about-wallarm/protecting-against-attacks.md
+    - Overview: about-wallarm/waap-overview.md
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
     - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
-    - Geolocation Restrictions:
-      - Overview: user-guides/ip-lists/overview.md
-      - Allowlist: user-guides/ip-lists/allowlist.md
-      - Graylist: user-guides/ip-lists/graylist.md
-      - Denylist: user-guides/ip-lists/denylist.md
+    - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
+    - Multi-Attack Protection: admin-en/configuration-guides/protecting-with-thresholds.md
+    - Manual BOLA Protection: admin-en/configuration-guides/protecting-against-bola-trigger.md
+    - Filtering by IP: user-guides/ip-lists/overview.md
     - Rules:
       - Application Profile Rules: user-guides/rules/intro.md
       - Inspecting Application Profile Rules: user-guides/rules/view.md
@@ -206,14 +203,17 @@ nav:
         - Ignoring Attack Signs in the Binary Data: user-guides/rules/ignore-attacks-in-binary-data.md
         - The overlimit_res Attack Detection Fine‑Tuning: user-guides/rules/configure-overlimit-res-detection.md
         - Setting Rate Limit: user-guides/rules/rate-limiting.md
-    - Triggers:
-      - Working with Triggers: user-guides/triggers/triggers.md
-      - Trigger Examples: user-guides/triggers/trigger-examples.md
+    - Filtration Mode:
+      - Overview: admin-en/configure-wallarm-mode.md
+      - Configuration via the Rule: user-guides/rules/wallarm-mode-rule.md
+    - Attack Detection:
+      - Procedure: about-wallarm/protecting-against-attacks.md
+      - Attack Types: attacks-vulns-list.md
+      - Triggers: user-guides/triggers/triggers.md
     # - Overview: ...
     # - OWASP Top 10: ...
     # - Known attacks / CVEs: ...
     # - Triggers: ...
-    - Attack and Vulnerability Types: attacks-vulns-list.md
   - Deployment:
     - Deployment Options: installation/supported-deployment-options.md
     - Out-of-Band:
@@ -413,9 +413,6 @@ nav:
         - Proper Reporting of End‑User IP: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
         - High Availability Considerations: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
         - Ingress Controller Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
-    - Filtration Mode:
-      - Overview: admin-en/configure-wallarm-mode.md
-      - Configuration via the Rule: user-guides/rules/wallarm-mode-rule.md
     - Proper Reporting of End‑User IP: admin-en/using-proxy-or-balancer-en.md
     - Resource Allocation: admin-en/configuration-guides/allocate-resources-for-node.md
     - Splitting Traffic and Settings by Applications: user-guides/settings/applications.md

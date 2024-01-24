@@ -1,4 +1,4 @@
-# Detecting attacks
+# Attack Detection Procedure
 
 The Wallarm platform continuously analyzes application traffic and mitigates malicious requests in real-time. From this article, you will learn resource types Wallarm protects from attacks, methods of detecting attacks in traffic and how you can track and manage detected threats.
 
@@ -9,7 +9,7 @@ The Wallarm platform continuously analyzes application traffic and mitigates mal
 * The same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type.
 
     This hit grouping method is basic and applied to all hits.
-* The same source IP address if the appropriate [trigger](../user-guides/triggers/trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack) is enabled. Other hit parameter values can differ.
+* The same source IP address if [grouping of hits by source IP](../user-guides/events/analyze-attack.md#grouping-of-hits) is enabled. Other hit parameter values can differ.
 
     This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
 
@@ -25,71 +25,6 @@ The listed hit grouping methods do not exclude each other. If hits have characte
 * Context of the attack sign. Context is a set of symbols preceding and closing detected attack signs. Since a payload length is limited, the context can be omitted if an attack sign is of full payload length.
 
     Since attack signs are not used to detect [behavioral attacks](#behavioral-attacks), requests sent as a part of behavioral attacks have empty payloads.
-
-## Attack types
-
-The Wallarm solution protects APIs, microservices and web applications from OWASP API Top 10 threats, API abuse and other automated threats.
-
-Technically, [all attacks](../attacks-vulns-list.md) that can be detected by Wallarm are divided into groups:
-
-* Input validation attacks
-* Behavioral attacks
-
-Attack detection method depends on the attack group. To detect behavioral attacks, additional Wallarm node configuration is required.
-
-### Input validation attacks
-
-Input validation attacks include SQL injection, cross‑site scripting, remote code execution, Path Traversal and other attack types. Each attack type is characterized by specific symbol combinations sent in the requests. To detect input validation attacks, it is required to conduct syntax analysis of the requests - parse them in order to detect specific symbol combinations.
-
-Wallarm detects input validation attacks in any request part including binary files like SVG, JPEG, PNG, GIF, PDF, etc using the listed [tools](#tools-for-attack-detection).
-
-Detection of input validation attacks is enabled for all clients by default.
-
-### Behavioral attacks
-
-Behavioral attacks include the following attack classes:
-
-* Brute‑force attacks: passwords and session identifiers brute‑forcing, files and directories forced browsing, credential stuffing. Behavioral attacks can be characterized by a large number of requests with different forced parameter values sent to a typical URL for a limited timeframe.
-
-    For example, if an attacker forces password, many similar requests with different `password` values can be sent to the user authentication URL:
-
-    ```bash
-    https://example.com/login/?username=admin&password=123456
-    ```
-
-* The BOLA (IDOR) attacks exploiting the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either get or modify its data bypassing an authorization mechanism.
-
-    For example, if an attacker forces shop identifiers to find a real identifier and get the corresponding shop financial data:
-
-    ```bash
-    https://example.com/shops/{shop_id}/financial_info
-    ```
-
-    If authorization is not required for such API requests, an attacker can get the real financial data and use it for their own purposes.
-
-#### Behavioral attack detection
-
-To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests.
-
-Correlation analysis is conducted when the threshold of request number sent to user authentication or resource file directory or a specific object URL is exceeded. Request number threshold should be set to reduce the risk of legitimate request blocking (for example, when the user inputs incorrect password to his account several times).
-
-* Correlation analysis is conducted by the Wallarm postanalytics module.
-* Comparison of the received request number and the threshold for the request number, and blocking of requests is conducted in the Wallarm Cloud.
-
-When behavioral attack is detected, request sources are blocked, namely the IP addresses the requests were sent from are added to the denylist.
-
-#### Configuration of behavioral attack protection
-
-To protect the resource against behavioral attacks, it is required to set the threshold for correlation analysis and URLs that are vulnerable to behavioral attacks:
-
-* [Instructions on configuration of brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [Instructions on configuration of BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola.md)
-
-!!! warning "Behavioral attack protection restrictions"
-    When searching for behavioral attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of behavioral attack in the following cases:
-
-    * These requests contain signs of [input validation attacks](#input-validation-attacks).
-    * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
 
 ## Types of protected resources
 
@@ -124,7 +59,7 @@ To detect attacks, Wallarm uses the following process:
 
 ## Tools for attack detection
 
-To detect malicious requests, Wallarm nodes analyze all requests sent to the protected resource using the following tools:
+To detect malicious requests, Wallarm nodes [analyze](waap-overview.md#protection-by-default) all requests sent to the protected resource using the following tools:
 
 * Library **libproton**
 * Library **libdetection**
@@ -132,7 +67,7 @@ To detect malicious requests, Wallarm nodes analyze all requests sent to the pro
 
 ### Library libproton
 
-The **libproton** library is a primary tool for detecting malicious requests. The library uses the component **proton.db** which determines different attack type signs as token sequences, for example: `union select` for the [SQL injection attack type](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1). If the request contains a token sequence matching the sequence from **proton.db**, this request is considered to be an attack of the corresponding type.
+The **libproton** library is a primary tool for detecting malicious requests. The library uses the component **proton.db** which determines different attack type signs as token sequences, for example: `union select` for the [SQL injection attack type](../attacks-vulns-list.md#sql-injection). If the request contains a token sequence matching the sequence from **proton.db**, this request is considered to be an attack of the corresponding type.
 
 Wallarm regularly updates **proton.db** with token sequences for new attack types and for already described attack types.
 
@@ -190,26 +125,12 @@ You can control the **libdetection** mode using:
 * The `wallarm-enable-libdetection` [pod annotation](../installation/kubernetes/sidecar-proxy/pod-annotations.md#annotation-list) for the Wallarm Sidecar solution.
 * The `libdetection` variable for [AWS Terraform](../installation/cloud-platforms/aws/terraform-module/overview.md#how-to-use-the-wallarm-aws-terraform-module) deployment.
 
-### Custom rules for request analysis
-
-To adjust default Wallarm request analysis to protected application specificities, Wallarm clients can use custom rules of the following types:
-
-* [Create a virtual patch](../user-guides/rules/vpatch-rule.md)
-* [Create regexp-based attack indicator](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule)
-* [Disable regexp-based attack detection](../user-guides/rules/regex-rule.md#partial-disabling-of-a-new-detection-rule)
-* [Ignore certain attack types](../user-guides/rules/ignore-attack-types.md)
-* [Allow binary data and file types](../user-guides/rules/ignore-attacks-in-binary-data.md)
-* [Disable/Enable parsers](../user-guides/rules/disable-request-parsers.md)
-* [Fine-tune the overlimit_res attack detection](../user-guides/rules/configure-overlimit-res-detection.md)
-
-[Compiled](../user-guides/rules/compiling.md) custom ruleset is applied along with the standard rules from **proton.db** when analyzing requests.
-
 ## Monitoring and blocking attacks
 
 Wallarm can process attacks in the following modes:
 
 * Monitoring mode: detects but does not block attacks.
-* Safe blocking mode: detects attacks but blocks only those originated from [graylisted IPs](../user-guides/ip-lists/graylist.md). Legitimate requests originated from graylisted IPs are not blocked.
+* Safe blocking mode: detects attacks but blocks only those originated from [graylisted IPs](../user-guides/ip-lists/overview.md). Legitimate requests originated from graylisted IPs are not blocked.
 * Blocking mode: detects and blocks attacks.
 
 Wallarm ensures quality request analysis and low level of false positives. However each protected application has its own specificities, so we recommend analyzing the work of the Wallarm in the monitoring mode before enabling the blocking mode.
@@ -314,8 +235,6 @@ To configure notifications:
             ```
     
     * To set the threshold of attack, hit or malicious payload number and get notifications when the threshold is exceeded, configure appropriate [triggers](../user-guides/triggers/triggers.md).
-
-        [See the example of configured trigger and notification →](../user-guides/triggers/trigger-examples.md#slack-notification-if-2-or-more-sqli-hits-are-detected-in-one-minute)
 
 ## Demo videos
 

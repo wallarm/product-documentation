@@ -15,8 +15,8 @@
 [application-docs]:                 ../user-guides/settings/applications.md
 [nodes-ui-docs]:                    ../user-guides/nodes/cdn-node.md
 [events-docs]:                      ../user-guides/events/check-attack.md
-[graylist-populating-docs]:         ../user-guides/ip-lists/graylist.md#managing-graylist
-[graylist-docs]:                    ../user-guides/ip-lists/graylist.md
+[graylist-populating-docs]:         ../user-guides/ip-lists/overview.md#managing-graylist
+[graylist-docs]:                    ../user-guides/ip-lists/overview.md
 [link-app-conf]:                    ../user-guides/settings/applications.md
 [varnish-cache]:                    #why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node
 [using-varnish-cache]:              ../user-guides/nodes/cdn-node.md#using-varnish-cache

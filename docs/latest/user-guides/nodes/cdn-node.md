@@ -14,7 +14,7 @@
 [trigger-docs]:                     ../triggers/triggers.md
 [application-docs]:                 ../settings/applications.md
 [events-docs]:                      ../events/check-attack.md
-[graylist-populating-docs]:         ../ip-lists/graylist.md#managing-graylist
+[graylist-populating-docs]:         ../ip-lists/overview.md#managing-graylist
 [link-app-conf]:                    ../settings/applications.md
 [using-varnish-cache]:              #using-varnish-cache
 

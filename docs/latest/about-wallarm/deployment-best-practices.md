@@ -110,7 +110,7 @@ Depending on your specific environment we recommend you configure the following 
 * Notify that new IP addresses were blocked
 
     [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#notification-to-webhook-url-if-ip-address-is-added-to-the-denylist)
-* Automatically add IP addresses to the [graylist](../user-guides/ip-lists/graylist.md) used in the [safe blocking](../admin-en/configure-wallarm-mode.md) mode.
+* Automatically add IP addresses to the [graylist](../user-guides/ip-lists/overview.md) used in the [safe blocking](../admin-en/configure-wallarm-mode.md) mode.
 
 To optimize traffic processing and attack uploading, Wallarm [pre-configures](../user-guides/triggers/triggers.md#pre-configured-triggers-default-triggers) some triggers.
 

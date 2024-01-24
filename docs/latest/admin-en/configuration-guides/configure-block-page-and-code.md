@@ -3,8 +3,8 @@
 These instructions describe the method to customize the blocking page and error code returned in the response to the request blocked for the following reasons:
 
 * Request contains malicious payloads of the following types: [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../../user-guides/rules/regex-rule.md).
-* Request containing malicious payloads from the list above originated from [graylisted IP address](../../user-guides/ip-lists/graylist.md) and the node filters requests in the safe blocking [mode](../configure-wallarm-mode.md).
-* Request originated from the [denylisted IP address](../../user-guides/ip-lists/denylist.md).
+* Request containing malicious payloads from the list above originated from [graylisted IP address](../../user-guides/ip-lists/overview.md) and the node filters requests in the safe blocking [mode](../configure-wallarm-mode.md).
+* Request originated from the [denylisted IP address](../../user-guides/ip-lists/overview.md).
 
 ## Configuration limitations
 
@@ -28,8 +28,8 @@ You can configure the blocking page and error code passing the following paramet
 * `type`: the type of the blocked request in response to which the specified configuration must be returned. The parameter accepts one or several values (separated by commas) from the list:
 
     * `attack` (by default): for requests blocked by the filtering node when filtering requests in the blocking or safe blocking [mode](../configure-wallarm-mode.md).
-    * `acl_ip`: for requests originated from IP addresses that are added to the [denylist](../../user-guides/ip-lists/denylist.md) as a single object or a subnet.
-    * `acl_source`: for requests originated from IP addresses that are registered in [denylisted](../../user-guides/ip-lists/denylist.md) countries, regions or data centers.
+    * `acl_ip`: for requests originated from IP addresses that are added to the [denylist](../../user-guides/ip-lists/overview.md) as a single object or a subnet.
+    * `acl_source`: for requests originated from IP addresses that are registered in [denylisted](../../user-guides/ip-lists/overview.md) countries, regions or data centers.
 
 The `wallarm_block_page` directive accepts the listed parameters in the following formats:
 

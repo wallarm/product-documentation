@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/ip-lists/graylist.md"
+--8<-- "4.6/user-guides/ip-lists/graylist.md"

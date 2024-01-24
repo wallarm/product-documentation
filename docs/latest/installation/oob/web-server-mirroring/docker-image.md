@@ -7,7 +7,7 @@
 [process-time-limit-instr]:         ../../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
-[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.md
+[graylist-docs]:                    ../../../user-guides/ip-lists/overview.md
 [filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
 [application-configuration]:        ../../../user-guides/settings/applications.md
 [ptrav-attack-docs]:                ../../../attacks-vulns-list.md#path-traversal

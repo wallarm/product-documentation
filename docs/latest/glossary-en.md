@@ -17,7 +17,8 @@ An attack is a single hit or multiple hits grouped by the following characterist
 * The same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type.
 
     This hit grouping method is basic and applied to all hits.
-* The same source IP address if the appropriate [trigger](user-guides/triggers/trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack) is enabled. Other hit parameter values can differ.
+
+* The same source IP address if [grouping of hits by source IP](user-guides/events/analyze-attack.md#grouping-of-hits) is enabled. Other hit parameter values can differ.
 
     This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
 
