@@ -85,34 +85,60 @@ The overall number of compromised credentials is displayed in the **Credential S
 
 ## Getting notified
 
-To get immediate notifications about attempts to use the compromised credentials to your email, messenger or one of your [integrated systems](../user-guides/settings/integrations/integrations-intro.md), in the **Triggers** section of Wallarm Console, configure one or more triggers with the **Compromised user account** condition.
+You can get immediate notifications about attempts to use the compromised credentials to your email, messenger or one of your [integrated systems](../user-guides/settings/integrations/integrations-intro.md). To enable such notifications, in the **Triggers** section of Wallarm Console, configure one or more triggers with the **Compromised user account** condition.
 
-You can narrow notifications by application or host that you want to monitor and by the response type.
+You can narrow notifications by the application or host that you want to monitor and by the response type.
 
 **Trigger example: notification about an attempt to use compromised credentials in Slack**
 
-In this example, if new attempt to use compromised credentials is detected for the `example.com` API host, the notification about this will be sent to your configured Slack channel.
+In this example, if a new attempt to use compromised credentials is detected, a notification about this will be sent to your configured Slack channel.
 
 ![Credential stuffing trigger](../images/user-guides/triggers/trigger-example-credentials-stuffing.png)
-
-<!-- Add this after node 4.10 and trigger are available
 
 **To test the trigger:**
 
 1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
-1. In **Triggers**, create trigger as shown above.
-1. Send request containing compromised credentials to the `example.com/users/TBD` endpoint to get the `200` (`OK`) response:
+1. In the **Credential Stuffing** section, make sure Credential Stuffing is enabled, and the following Wallarm's predefined rule is added from the **Recommended endpoints** to the active **Authentication endpoints**:
+
+    Request is:
 
     ```
-    request TBD
+    /**/{{login|auth}}.*
     ```
 
-1. In the **Attacks** section, check that your request has been registered as event of the `credential_stuffing` type: attempt to use the compromised credentials. 
+    Password is located here:
+
+    ```
+    ([^/](|((api|current|new|old|plain)(|\.|-|_)))(pass(|word|wd))|^pass(|wd|word))$
+    ```
+
+    Login is located here:
+
+    ```
+    ^((w+.)|_|.|)(login|user|auth)(|_|-.)(user|client|auth|id|name|)(|[\d])$
+    ```
+
+1. In the **Triggers** section, create a trigger as shown above, map it to your own Slack integration.
+1. Send a request containing compromised credentials to you node's `localhost/login` endpoint:
+
+    ```
+    curl -X POST http://localhost/login -d '{"password": "123456", "user": "user-01@company.com"}'
+    ```
+
+1. In the **Attacks** section, check that your request has been registered as the event of the `credential_stuffing` type: attempt to use the compromised credentials. 
 1. Expand the attack to make sure it contains the compromised login information.
-1. Check messages in your Slack channel like:
+1. Check messages in your Slack channel. The new message should look like this:
     ```
-    [wallarm] Message header TBD
+    [wallarm] Stolen credentials detected
+    
+    Notification type: compromised_logins
 
-    Message content TBD.
+    Stolen credentials have been detected in your incoming traffic:
 
-    ```  -->
+    Compromised accounts: user-01@company.com
+    Associated URL: localhost/login
+    Link: https://my.wallarm.com/attacks/?q=attacks+d%3Alocalhost+u%3A%2Flogin+statuscode%3A404+application%3Adefault+credential_stuffing+2024%2F01%2F22
+
+    Client: YourCompany
+    Cloud: EU
+    ```
