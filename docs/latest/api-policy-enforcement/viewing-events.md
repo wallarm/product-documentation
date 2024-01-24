@@ -8,10 +8,14 @@ To monitor trends in policy violations, check the number of specification violat
 
 You can click this number to see details in the **Attacks** section.
 
-## Analysis on requests that violate policies 
+## Analysis of requests that violate policies 
 
-In the **Attacks** section, use the **Compare to...** filter or the `spec:'<SPECIFICATION-ID>'` [search tag](../user-guides/search-and-filters/use-search.md#search-by-specification) to find all events related to the selected specification(s) policy violations.
+In the **Attacks** section, use the **Compare to...** filter or the `spec:'<SPECIFICATION-ID>'` [search tag](../user-guides/search-and-filters/use-search.md#search-by-specification) to find all events related to the selected specification(s) policy violations. To get `<SPECIFICATION-ID>`, in **API Specifications**, open your specification for editing - `specid` will be displayed in your browser address field.
 
 ![Specification - use for API policy enforcement](../images/api-policies-enforcement/api-policies-enforcement-events.png)
 
 Blocked and monitored events may be presented depending on the configured policy violation actions. In the event details, the violation type and link to the causing specification are displayed. Use **Type** filters to search for specific violations.
+
+## Overlimit events
+
+When viewing events related to your specification policies, you can meet the **Specification processing overlimit** type of event related to the limits applied for API Policy Enforcement while it processes the requests. See details and the description of your possible actions [here](overview.md#how-it-works).
