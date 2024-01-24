@@ -31,6 +31,10 @@ search:
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
+[download-aio-step]:                #step-3-download-all-in-one-wallarm-installer
+[enable-traffic-analysis-step]:     #step-5-enable-wallarm-node-to-analyze-traffic
+[restart-nginx-step]:               #step-6-restart-nginx
+[separate-postanalytics-installation-aio]:  ../../../../admin-en/installation-postanalytics-en.md#all-in-one-automatic-installation
 
 # Deploying with All-in-One Installer
 
@@ -111,37 +115,4 @@ Below there are a few of the typical settings that you can apply if needed:
 
 ## Launch options
 
-As soon as you have the all-in one script downloaded, you can get help on it with:
-
-```
-sudo sh ./wallarm-4.8.6.x86_64-glibc.sh -- -h
-```
-
-Which returns:
-
-```
-...
-Usage: setup.sh [options]... [arguments]... [filtering/postanalytics]
-
-OPTION                      DESCRIPTION
--b, --batch                 Batch mode, non-interactive installation.
--t, --token TOKEN           Node token, only used in a batch mode.
--c, --cloud CLOUD           Wallarm Cloud, one of US/EU, default is EU, only used in a batch mode.
--H, --host HOST             Wallarm API address, for example, api.wallarm.com or us1.api.wallarm.com, only used in a batch mode.
--P, --port PORT             Wallarm API pot, for example, 443.
-    --no-ssl                Disable SSL for Wallarm API access.
-    --no-verify             Disable SSL certificates verification.
--f, --force                 If there is a node with the same name, create a new instance.
--h, --help
-    --version
-```
-
-Note that: 
-
-* The `--batch` option enables a **batch (non-interactive) mode**. In this mode, if you do not use additional parameters, the node is installed immediately after script laungh, requiring no additional interaction or data input from the user. Batch mode:
- 
-    * Requires `--token`
-    * Installs node into EU Cloud by default
-    * Allows script behavior modifications with additional options
-
-* The `filtering/postanalytics` switcher allows installing [separately](../../../../admin-en/installation-postanalytics-en.md#postanalytics-module-installation-via-all-in-one-installation-script) the postanalytics module. If switcher is not used, filtering and postanalytics part are installed altogether.
+--8<-- "../include/waf/installation/all-in-one/launch-options-4.8.md"
