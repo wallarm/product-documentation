@@ -95,24 +95,50 @@ In this example, if new attempt to use compromised credentials is detected for t
 
 ![Credential stuffing trigger](../images/user-guides/triggers/trigger-example-credentials-stuffing.png)
 
-<!-- Add this after node 4.10 and trigger are available
-
 **To test the trigger:**
 
 1. Go to Wallarm Console → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud, and configure [integration with Slack](../user-guides/settings/integrations/slack.md).
-1. In **Triggers**, create trigger as shown above.
-1. Send request containing compromised credentials to the `example.com/users/TBD` endpoint to get the `200` (`OK`) response:
+1. In the **Credential Stuffing** section, make sure Credential Stuffing is enabled, and the following Wallarm's predefined rule is added from the **Recommended endpoints** to the active **Authentication endpoints**:
+
+    Request is:
 
     ```
-    request TBD
+    /**/{{login|auth}}.*
+    ```
+
+    Password is located here:
+
+    ```
+    ([^/](|((api|current|new|old|plain)(|\.|-|_)))(pass(|word|wd))|^pass(|wd|word))$
+    ```
+
+    Login is located here:
+
+    ```
+    ^((w+.)|_|.|)(login|user|auth)(|_|-.)(user|client|auth|id|name|)(|[\d])$
+    ```
+
+1. In the **Triggers** section, create trigger as shown above, map it to your own Slack integration.
+1. Send request containing compromised credentials to you node's `localhost:80/login` endpoint:
+
+    ```
+    curl -X POST http://localhost:80/login -d '{"password": "123456", "user": "user-01@company.com"}'
     ```
 
 1. In the **Attacks** section, check that your request has been registered as event of the `credential_stuffing` type: attempt to use the compromised credentials. 
 1. Expand the attack to make sure it contains the compromised login information.
 1. Check messages in your Slack channel like:
     ```
-    [wallarm] Message header TBD
+    [wallarm] Stolen credentials detected
+    
+    Notification type: compromised_logins
 
-    Message content TBD.
+    Stolen credentials have been detected in your incoming traffic:
 
-    ```  -->
+    Compromised accounts: user-01@company.com
+    Associated URL: localhost/login
+    Link: https://my.wallarm.com/attacks/?q=attacks+d%3Alocalhost+u%3A%2Flogin+statuscode%3A404+application%3Adefault+credential_stuffing+2024%2F01%2F22
+
+    Client: YourCompany
+    Cloud: EU
+    ```
