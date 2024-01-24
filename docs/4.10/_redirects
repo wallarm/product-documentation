@@ -559,9 +559,11 @@
 /user-guides/triggers/trigger-examples/ /user-guides/triggers/triggers/
 /user-guides/triggers/trigger-examples/#detect-weak-jwts /about-wallarm/detecting-vulnerabilities/#weak-jwts-detection
 /user-guides/triggers/trigger-examples/#group-hits-originating-from-the-same-ip-into-one-attack /user-guides/events/analyze-attack/#grouping-of-hits
+/user-guides/bola-protection/ /admin-en/configuration-guides/protecting-against-bola/
 /4.8/user-guides/ip-lists/allowlist/ /4.8/user-guides/ip-lists/overview/
 /4.8/user-guides/ip-lists/graylist/ /4.8/user-guides/ip-lists/overview/
 /4.8/user-guides/ip-lists/denylist/ /4.8/user-guides/ip-lists/overview/
 /4.8/user-guides/triggers/trigger-examples/ /4.8/user-guides/triggers/triggers/
 /4.8/user-guides/triggers/trigger-examples/#detect-weak-jwts /4.8/about-wallarm/detecting-vulnerabilities/#weak-jwts-detection
 /4.8/user-guides/triggers/trigger-examples/#group-hits-originating-from-the-same-ip-into-one-attack /4.8/user-guides/events/analyze-attack/#grouping-of-hits
+/4.8/user-guides/bola-protection/ /4.8/admin-en/configuration-guides/protecting-against-bola/
