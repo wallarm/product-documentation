@@ -268,11 +268,11 @@ The following response parameters are available (Prometheus metrics have the `wa
 *   `db_apply_time`: Unix time of the last update of the proton.db file.
 *   `lom_apply_time`: will be deprecated soon, please use `custom_ruleset_apply_time`.
 *   `custom_ruleset_apply_time`: Unix time of the last update of the [custom ruleset](../glossary-en.md#custom-ruleset-the-former-term-is-lom) file.
-*   `proton_instances`: information about proton.db + LOM pairs:
-    *   `total`: the number of proton.db + LOM pairs.
-    *   `success`: the number of the successfully uploaded proton.db + LOM pairs.
-    *   `fallback`: the number of proton.db + LOM pairs loaded from the last saved files.
-    *   `failed`: the number of proton.db + LOM pairs that were not initialized and run in the “do not analyze” mode.
+*   `proton_instances`: information about downloaded proton.db + LOM pairs:
+    *   `total`: the total number of pairs.
+    *   `success`: the number of pairs successfully downloaded from the Wallarm Cloud.
+    *   `fallback`: the number of pairs downloaded from the backup directory. This indicates that there were issues downloading the latest proton.db + LOM from the Cloud, but NGINX was still able to load older versions of proton.db + LOM from the backup directory as the [`wallarm_fallback`](configure-parameters-en.md#wallarm_fallback) directive is set to `on`.
+    *   `failed`: the number of pairs that failed to initialize, meaning NGINX was unable to download the proton.db + LOM either from the Cloud or the backup directory. If [`wallarm_fallback`](configure-parameters-en.md#wallarm_fallback) is enabled and this occurs, the Wallarm module will be disabled, leaving only the NGINX module operational. To diagnose the issue, it is recommended to check the NGINX logs or [contact Wallarm support](https://support.wallarm.com/).
 *   `stalled_workers_count`: the quantity of workers that exceeded the time limit for request processing (the limit is set in the [`wallarm_stalled_worker_timeout`](configure-parameters-en.md#wallarm_stalled_worker_timeout) directive).
 *   `stalled_workers`: the list of the workers that exceeded the time limit for request processing (the limit is set in the [`wallarm_stalled_worker_timeout`](configure-parameters-en.md#wallarm_stalled_worker_timeout) directive) and the amount of time spent on request processing.
 *   `ts_files`: information about the [LOM](../glossary-en.md#custom-ruleset-the-former-term-is-lom) file:
