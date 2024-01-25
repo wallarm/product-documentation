@@ -1,0 +1,1 @@
+--8<-- "latest/user-guides/rules/rules-tune-attack-detection.md"

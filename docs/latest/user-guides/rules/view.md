@@ -2,9 +2,9 @@
 [img-rules-overview]:       ../../images/user-guides/rules/rules-overview.png
 [img-view-rules]:           ../../images/user-guides/rules/view-rules.png
 
-# Inspecting Application Profile Rules
+# Inspecting Rules
 
-To view the rules in the application structure, go to the **Rules** section of Wallarm Console. This section represents branches and endpoints that are already known.
+To view the rules, go to the **Rules** section of Wallarm Console. This section represents branches and endpoints that are already known.
 
 ![Rules tab overview][img-rules-overview]
 

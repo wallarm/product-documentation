@@ -1,15 +1,8 @@
-[link-request-processing]:      request-processing.md
-[link-regex]:                   https://github.com/yandex/pire
-[link-filter-mode-rule]:        wallarm-mode-rule.md
-[link-sensitive-data-rule]:     sensitive-data-rule.md
-[link-virtual-patch]:           vpatch-rule.md
-[link-regex-rule]:              regex-rule.md
-
 [img-add-rule]:     ../../images/user-guides/rules/add-rule.png
 
-# Adding Rules in the Application Profile
+# Configuring Rules
 
-To add a new rule, go to the *Rules* tab.
+To add a new rule, go to the **Rules** tab.
 
 Rules can be added to both existing and new branches. They can be created from scratch or based on one of the existing branches.
 
@@ -328,22 +321,3 @@ To test the regular expression, you can use the **cpire** utility on supported D
 #### Condition type: ABSENT (`∅`)
 
 The request should not contain the designated point. In this case, the comparison argument is not used.
-
-## Rule
-
-The added request processing rule is described in the *Then* section.
-
-The following rules are supported:
-
-* [Disable/Enable parsers](disable-request-parsers.md)
-* [Change server response headers](add-replace-response-header.md)
-* [Set the filtration mode][link-filter-mode-rule]
-* [Mask sensitive data][link-sensitive-data-rule]
-* [Set mode of active threat verification](../../vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md)
-* [Rewrite attack before active verification](../../vulnerability-detection/active-threat-verification/modify-requests-before-replay.md)
-* [Apply a virtual patch][link-virtual-patch]
-* [User-defined detection rules][link-regex-rule]
-* [Ignore certain attack types](ignore-attack-types.md)
-* [Ignoring certain attack signs in the binary data](ignore-attacks-in-binary-data.md)
-* [Fine-tune the overlimit_res attack detection](configure-overlimit-res-detection.md)
-* [Set API Abuse Prevention mode for specific target URLs](api-abuse-url.md)

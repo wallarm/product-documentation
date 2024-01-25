@@ -2,15 +2,24 @@
 [link-rules-compiling]:         compiling.md
 
 
-# Application Profile Rules
+# Rules Overview
 
-On the *Rules* tab you may review and change the rules for handling requests enabled for the current application profile.
-
-The application profile is a collection of known information about protected applications. It is used to fine-tune the behavior of the system during the analysis of requests and their further processing in the post-analysis module as well as in the cloud.
+On the **Rules** tab you may review and change the rules for handling requests. Rules are used to fine-tune the behavior of the system during the analysis of requests and their further processing in the post-analysis module as well as in the Wallarm Cloud.
 
 For a better understanding of how the traffic processing rules are applied, it is advisable to learn how the filter node [analyzes the requests][link-request-processing].
 
 One important thing about making changes to the rules is that these changes don't take effect immediately. It may take some time to [compile the rules][link-rules-compiling] and download them into filter nodes.
+
+## What you can do with rules
+
+Using rules, you can provide the multiple protections measures for your applications and APIs, and also fine tune how attacks are detected, how the Wallarm nodes and some Wallarm components work:
+
+* [Set rate limit](../../user-guides/rules/rate-limiting.md)
+* [Apply a virtual patch](../../user-guides/rules/vpatch-rule.md)
+* [Create your own detection rule](../../user-guides/rules/regex-rule.md)
+* [Fine tune of how attacks are detected](../../user-guides/rules/rules-tune-attack-detection.md)
+* [Fine tune of how Wallarm nodes work](../../user-guides/rules/rules-tune-nodes.md)
+* [Fine tune of how the specific Wallarm components work](../../user-guides/rules/rules-tune-components.md)
 
 ## Terminology
 
