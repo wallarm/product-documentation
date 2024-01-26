@@ -92,7 +92,7 @@ You can get messages about newly discovered shadow, orphan or zombie APIs or abo
 
 **Trigger example: notification about newly discovered shadow endpoints in Slack**
 
-In this example, if API Discovery finds new endpoints for the `example.com` API host that are not listed in the `Specification-01` (shadow APIs), the notification about this is sent to your configured Slack channel.
+In this example, if API Discovery finds new endpoints that are not listed in the `Specification-01` (shadow APIs), the notification about this is sent to your configured Slack channel.
 
 ![Rogue API detected trigger](../images/user-guides/triggers/trigger-example-rogue-api.png)
 
