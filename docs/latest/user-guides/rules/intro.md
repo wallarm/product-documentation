@@ -17,9 +17,10 @@ Using rules, you can provide the multiple protections measures for your applicat
 * [Set rate limit](../../user-guides/rules/rate-limiting.md)
 * [Apply a virtual patch](../../user-guides/rules/vpatch-rule.md)
 * [Create your own detection rule](../../user-guides/rules/regex-rule.md)
-* [Fine tune of how attacks are detected](../../user-guides/rules/rules-tune-attack-detection.md)
-* [Fine tune of how Wallarm nodes work](../../user-guides/rules/rules-tune-nodes.md)
-* [Fine tune of how the specific Wallarm components work](../../user-guides/rules/rules-tune-components.md)
+* [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
+* Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
+* Fine tune request processing by [manage request parsers](../../user-guides/rules/request-processing.md#managing-parsers) and [changing server response headers](../../user-guides/rules/request-processing.md#changing-server-response-headers)
+* Fine tune attack detection by setting to [ignore certain attack types](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) and to [ignore certain attack signs in the binary data](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
 
 ## Terminology
 
