@@ -51,12 +51,12 @@ Below are examples of commands to run the script in batch mode for node installa
 
 ### Separate execution of node installation stages
 
-The all-in-one installer facilitates node installation and setup through two distinct stages:
+When preparing your own machine image using the all-in-one installer for cloud infrastructure, the standard installation process outlined in this article may not suffice. Instead, you will need to execute specific stages of the all-in-one installer separately to accommodate the requirements of creating and deploying a machine image:
 
-1. File copying and NGINX configuration: Copies necessary files and modifies NGINX configurations for node operation. You can bypass the NGINX file modification by using the `--skip-ngx-config` flag if you prefer manual adjustments.
-1. Node registration and service start: Registers the node in the Wallarm Cloud and starts the service.
+1. Build machine image: At this stage, it is necessary to download binaries, libraries, and configuration files of the filtering node and create a machine image based on them. Utilizing the `--install-only` flag, the script copies the required files and modifies NGINX configurations for node operation. If you wish to make manual adjustments, you can opt to bypass the NGINX file modification by using the `--skip-ngx-config` flag.
+1. Initialize a cloud instance with cloud-init: During instance initialization, the bootstrap phase (cloud registration and service start) can be executed using cloud-init scripts. This stage can be run independently from the build phase by applying the `--register-only` flag to the `/opt/wallarm/setup.sh` script copied during the build stage.
 
-Starting from the all‑in‑one installer version 4.8.7, these phases can be performed separately by utilizing the installer in batch mode with specific flags. The following commands facilitate sequential execution of the described steps.
+This functionality is supported starting from version 4.8.7 of the all-in-one installer in batch mode. The commands below enable the sequential execution of the outlined steps:
 
 === "US Cloud"
     ```bash
