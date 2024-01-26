@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/fast/vuln-list.md"

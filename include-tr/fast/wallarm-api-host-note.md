@@ -1,5 +1,5 @@
 !!! uyarı "FAST düğümünü Wallarm bulutlarından birine bağlama"
-    FAST düğümü, mevcut olan [Wallarm bulutlarından biri](../CLOUD-LIST.md) ile etkileşim kurar. Varsayılan olarak, bir FAST düğümü Amerikan bulutunda bulunan Wallarm API sunucusu ile çalışır. 
+    FAST düğümü, mevcut olan [Wallarm bulutlarından biri](../cloud-list.md) ile etkileşim kurar. Varsayılan olarak, bir FAST düğümü Amerikan bulutunda bulunan Wallarm API sunucusu ile çalışır. 
     
     FAST düğümünün başka bir buluttaki API sunucusunu kullanması için, düğüm konteynırına gerekli Wallarm API sunucusunun adresini gösteren `WALLARM_API_HOST` ortam değişkenini iletilir.
 

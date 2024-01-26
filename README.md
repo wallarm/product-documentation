@@ -28,5 +28,5 @@ Wallarm does the following:
 
 **Resources**
 
-* [Wallarm website](https://wallarm.com)
+* [Wallarm website](https://www.wallarm.com)
 * [Official documentation](https://docs.wallarm.com/)

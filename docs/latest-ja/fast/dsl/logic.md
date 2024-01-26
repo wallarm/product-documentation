@@ -9,7 +9,7 @@
 [img-incomplete-policy-remediation-2]:  ../../images/fast/dsl/common/incomplete-policy-remediation-2.png
 [img-wrong-baseline]:                   ../../images/fast/dsl/common/wrong-baseline.png   
 
-[link-policy]:              ../TERMS-GLOSSARY.md#test-policy
+[link-policy]:              ../terms-glossary.md#test-policy
 [doc-policy-in-detail]:     ../operations/test-policy/overview.md
 
 [link-phase-collect]:       phase-collect.md

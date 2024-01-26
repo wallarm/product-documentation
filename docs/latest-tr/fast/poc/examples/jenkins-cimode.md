@@ -7,7 +7,6 @@
 [fast-ci-mode-test]:            ../ci-mode-testing.md#environment-variables-in-testing-mode
 [mail-to-us]:                   mailto:support@wallarm.com
 [fast-examples-github]:         https://github.com/wallarm/fast-examples 
-[fast-example-jenkins]:         https://jenkinsfast.demo.wallarm.com/
 
 # FAST'ın Jenkins ile Entegrasyonu
 
@@ -83,7 +82,7 @@ Güvenlik testinin sonucu, Jenkins arayüzünde görüntülenecektir.
 
 ## Daha Fazla Örnek
 
-FAST'ın Jenkins iş akışına entegrasyonuna dair örnekleri [GitHub][fast-examples-github] ve [Jenkins][fast-example-jenkins] üzerinde bulabilirsiniz.
+FAST'ın Jenkins iş akışına entegrasyonuna dair örnekleri [GitHub][fast-examples-github] üzerinde bulabilirsiniz.
 
 !!! info "Daha fazla sorularınız mı var?"
     FAST entegrasyonu ile ilgili sorularınız varsa lütfen [bize ulaşın][mail-to-us].

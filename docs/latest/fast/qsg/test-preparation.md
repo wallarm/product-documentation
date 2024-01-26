@@ -11,8 +11,8 @@
 
 [doc-policy-in-detail]:             ../operations/test-policy/overview.md
 
-[gl-element]:                       ../TERMS-GLOSSARY.md#baseline-request-element
-[gl-testpolicy]:                    ../TERMS-GLOSSARY.md#test-policy
+[gl-element]:                       ../terms-glossary.md#baseline-request-element
+[gl-testpolicy]:                    ../terms-glossary.md#test-policy
 
 [anchor1]:  #1-prepare-the-baseline-request                       
 [anchor2]:  #2-create-a-test-policy-targeted-at-xss-vulnerabilities

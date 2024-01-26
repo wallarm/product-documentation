@@ -7,7 +7,6 @@
 [fast-ci-mode-test]:            ../ci-mode-testing.md#environment-variables-in-testing-mode
 [mail-to-us]:                   mailto:support@wallarm.com
 [fast-examples-github]:         https://github.com/wallarm/fast-examples 
-[fast-example-jenkins]:         https://jenkinsfast.demo.wallarm.com/
 
 # FASTとJenkinsの統合
 
@@ -83,7 +82,7 @@ FASTのCIモードをJenkinsワークフローに統合する設定は `Jenkinsf
 
 ## 他の例
 
-FASTをJenkinsワークフローに統合する例は、私たちの [GitHub][fast-examples-github] と [Jenkins][fast-example-jenkins]で見つけることができます。
+FASTをJenkinsワークフローに統合する例は、私たちの [GitHub][fast-examples-github]で見つけることができます。
 
 !!! info "その他の質問"
     FASTの統合に関する質問がある場合は、[こちらからお問い合わせください][mail-to-us]。

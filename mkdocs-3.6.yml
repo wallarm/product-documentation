@@ -344,10 +344,10 @@ nav:
           - Hash filter: fast/dsl/points/parsers/hash.md
         - Points Building Principles: fast/dsl/points/principles.md
         - How to Build a Point: fast/dsl/points/construction.md          
-    - Text Formatting Conventions: fast/AGREEMENTS.md
-    - Glossary: fast/TERMS-GLOSSARY.md
-    - Wallarm Clouds List: fast/CLOUD-LIST.md
-    - Vulnerabilities List: fast/VULN-LIST.md
+    - Text Formatting Conventions: fast/agreements.md
+    - Glossary: fast/terms-glossary.md
+    - Wallarm Clouds List: fast/cloud-list.md
+    - Vulnerabilities List: fast/vuln-list.md
     - Configuration of Proxying Rules: fast/poc/proxy-configuration.md
     - Installing SSL Certificates:
       - Introduction: fast/ssl/intro.md
@@ -358,7 +358,7 @@ nav:
         - Microsoft Edge: fast/ssl/browsers-ssl/edge-ssl.md
         - Microsoft Internet Explorer 11: fast/ssl/browsers-ssl/ie11-ssl.md
         - Mozilla Firefox: fast/ssl/browsers-ssl/firefox-ssl.md
-    - Troubleshooting: fast/TSHOOT.md
+    - Troubleshooting: fast/tshoot.md
   - Appendix:
     - Glossary: glossary-en.md
     - API docs:

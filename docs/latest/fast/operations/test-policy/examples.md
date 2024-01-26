@@ -10,7 +10,7 @@ A few examples of FAST test policies are presented in this document, including t
     In the sample test policies below, every baseline request’s element is followed by the corresponding point, like this: any GET parameter (`GET_.*`).
 
 !!! info "Detection of vulnerabilities"
-    [The list of vulnerabilities that FAST can detect](../../VULN-LIST.md)
+    [The list of vulnerabilities that FAST can detect](../../vuln-list.md)
 
     Please note that the choice of vulnerability types during configuration of a test policy influences which ones of the embedded FAST extensions (aka detects) will be executed.
 

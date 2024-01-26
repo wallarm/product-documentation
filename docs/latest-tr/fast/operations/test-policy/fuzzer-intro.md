@@ -1,8 +1,8 @@
 [doc-fuzzer-internals]:         fuzzer-internals.md
 [doc-fuzzer-configuration]:     fuzzer-configuration.md              
 
-[gl-vuln]:                      ../../TERMS-GLOSSARY.md#vulnerability
-[gl-anomaly]:                   ../../TERMS-GLOSSARY.md#anomaly
+[gl-vuln]:                      ../../terms-glossary.md#vulnerability
+[gl-anomaly]:                   ../../terms-glossary.md#anomaly
 
 # Anomali Tespit Süreci Konfigürasyonu: Genel Bakış
 
@@ -20,4 +20,4 @@ Bu belgeleme bölümü aşağıdaki noktaları açıklar:
 
     Ancak, giriş değerinin herhangi bir parçası içinde `'` sembolü geçerse, uygulama `500 Dahili Sunucu Hatası` kodu ve `...SequelizeDatabaseError: SQLITE_ERROR:...` mesajı ile yanıt verir; bu davranış anormaldir.
 
-    Bu anomali, herhangi bir güvenlik açığının doğrudan kötüye kullanılmasına yol açmaz, ancak bir saldırganı uygulamanın mimarisi hakkında bilgi edinmeye ve [SQL Enjeksiyonu](../../VULN-LIST.md#sql-injection) saldırısını gerçekleştirmeye teşvik eder.
+    Bu anomali, herhangi bir güvenlik açığının doğrudan kötüye kullanılmasına yol açmaz, ancak bir saldırganı uygulamanın mimarisi hakkında bilgi edinmeye ve [SQL Enjeksiyonu](../../vuln-list.md#sql-injection) saldırısını gerçekleştirmeye teşvik eder.

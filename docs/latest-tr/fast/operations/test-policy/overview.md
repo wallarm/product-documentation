@@ -1,8 +1,8 @@
 [doc-insertion-points]:     insertion-points.md
 
-[gl-vuln]:                  ../../TERMS-GLOSSARY.md#vulnerability
-[gl-point]:                 ../../TERMS-GLOSSARY.md#point
-[gl-anomaly]:               ../../TERMS-GLOSSARY.md#anomaly
+[gl-vuln]:                  ../../terms-glossary.md#vulnerability
+[gl-point]:                 ../../terms-glossary.md#point
+[gl-anomaly]:               ../../terms-glossary.md#anomaly
 
 # FAST Test Politikaları: Genel Bakış
 

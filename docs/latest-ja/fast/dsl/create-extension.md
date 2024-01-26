@@ -7,7 +7,7 @@
 [link-generate]:        phase-generate.md
 [link-extensions]:      using-extension.md
 [link-ext-logic]:       logic.md
-[link-vuln-list]:       ../VULN-LIST.md
+[link-vuln-list]:       ../vuln-list.md
 
 [img-vulns]:            ../../images/fast/dsl/en/create-extension/vulnerabilities.png
 [img-vuln-details]:     ../../images/fast/dsl/en/create-extension/vuln_details.png

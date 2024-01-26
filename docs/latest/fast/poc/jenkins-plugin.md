@@ -3,7 +3,6 @@
 
 [mail-to-us]:                   mailto:support@wallarm.com
 [fast-examples-github]:         https://github.com/wallarm/fast-examples 
-[fast-example-jenkins]:         https://jenkinsfast.demo.wallarm.com/
 
 [jenkins-plugin-wallarm-fast]:   https://plugins.jenkins.io/wallarm-fast/
 
@@ -129,7 +128,7 @@ The result of security testing will be displayed in the Jenkins interface.
 
 ## More Examples
 
-You can find examples of integrating FAST to CircleCI workflow on our [GitHub][fast-examples-github] and [Jenkins][fast-example-jenkins].
+You can find examples of integrating FAST to CircleCI workflow on our [GitHub][fast-examples-github].
 
 !!! info "Further questions"
     If you have questions related to FAST integration, please [contact us][mail-to-us].

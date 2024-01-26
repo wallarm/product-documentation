@@ -4,7 +4,7 @@ site_name: Documentação do Wallarm
 site_url: https://docs.wallarm.com/pt-br/
 site_description: A solução Wallarm protege APIs, microsserviços e aplicações web contra as ameaças do Top 10 da OWASP para APIs, abuso de API e outras ameaças automatizadas sem a necessidade de configuração manual de regras e com um índice ultra-baixo de falsos positivos.
 
-copyright: '<a href="https://www.wallarm.com/terms-of-services" target="_blank">Termos de serviço</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">Política de privacidade</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">Política de cookies</a> | <a href="#__consent">Configurações de cookies</a> | 2023 © Wallarm Inc.'
+copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">Termos de serviço</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">Política de privacidade</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">Política de cookies</a> | <a href="#__consent">Configurações de cookies</a> | 2023 © Wallarm Inc.'
 
 theme:
   language: pt-BR
@@ -172,10 +172,10 @@ nav:
           - Filtro Hash: fast/dsl/points/parsers/hash.md
         - Princípios de Construção de Pontos: fast/dsl/points/principles.md
         - Como Construir um Ponto: fast/dsl/points/construction.md
-    - Convenções de Formatação de Texto: fast/AGREEMENTS.md
-    - Glossário: fast/TERMS-GLOSSARY.md
-    - Lista de Nuvens Wallarm: fast/CLOUD-LIST.md
-    - Lista de Vulnerabilidades: fast/VULN-LIST.md
+    - Convenções de Formatação de Texto: fast/agreements.md
+    - Glossário: fast/terms-glossary.md
+    - Lista de Nuvens Wallarm: fast/cloud-list.md
+    - Lista de Vulnerabilidades: fast/vuln-list.md
     - Configuração das Regras de Proxy: fast/poc/proxy-configuration.md
     - Instalando Certificados SSL:
       - Introdução: fast/ssl/intro.md
@@ -186,7 +186,7 @@ nav:
         - Microsoft Edge: fast/ssl/browsers-ssl/edge-ssl.md
         - Microsoft Internet Explorer 11: fast/ssl/browsers-ssl/ie11-ssl.md
         - Mozilla Firefox: fast/ssl/browsers-ssl/firefox-ssl.md
-    - Solução de Problemas: fast/TSHOOT.md
+    - Solução de Problemas: fast/tshoot.md
   - WAAP/WAF:
     - Procedimento de Detecção de Ataque: about-wallarm/protecting-against-attacks.md
     - Proteção DDoS: admin-en/configuration-guides/protecting-against-ddos.md

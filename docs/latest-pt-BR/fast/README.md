@@ -2,7 +2,7 @@
 description: Wallarm's (FAST) é uma ferramenta projetada para identificar vulnerabilidades em aplicações web gerando e executando testes de segurança automatizados.
 ---
 
-[link-agreements]:      AGREEMENTS.md
+[link-agreements]:      agreements.md
 
 # Visão Geral do Wallarm FAST
 
