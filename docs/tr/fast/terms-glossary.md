@@ -1,1 +1,1 @@
---8<-- "latest-tr/fast/TERMS-GLOSSARY.md"
+--8<-- "latest-tr/fast/terms-glossary.md"

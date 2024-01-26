@@ -1,1 +1,1 @@
---8<-- "latest-ja/fast/VULN-LIST.md"
+--8<-- "latest-ja/fast/vuln-list.md"

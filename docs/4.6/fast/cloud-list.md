@@ -1,1 +1,1 @@
---8<-- "latest/fast/CLOUD-LIST.md"
+--8<-- "latest/fast/cloud-list.md"

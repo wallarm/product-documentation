@@ -1,9 +1,9 @@
 [doc-points]:       dsl/points/intro.md
 [doc-internals]:    operations/internals.md
 [doc-policies]:     operations/test-policy/overview.md
-[doc-vuln-list]:    VULN-LIST.md
+[doc-vuln-list]:    vuln-list.md
 
-[vuln-anomaly]:     VULN-LIST.md#anomaly
+[vuln-anomaly]:     vuln-list.md#anomaly
 
 #   用語集
 
