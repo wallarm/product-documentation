@@ -10,7 +10,7 @@
 [link-wl-console]:              https://us1.my.wallarm.com
 [link-ssl-installation]:        ../ssl/intro.md
 
-[wl-cloud-list]:    ../CLOUD-LIST.md
+[wl-cloud-list]:    ../cloud-list.md
       
 [anchor1]:  #1-installar-o-software-docker              
 [anchor2]:  #2-obter-um-token-que-sera-usado-para-conectar-seu-fast-node-ao-cloud-wallarm

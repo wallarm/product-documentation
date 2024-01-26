@@ -10,7 +10,7 @@ Alguns exemplos de políticas de teste FAST são apresentados neste documento, i
     Nas políticas de teste de amostra abaixo, cada elemento da solicitação de linha de base é seguido pelo ponto correspondente, assim: qualquer parâmetro GET (`GET_.*`).
 
 !!! info "Detecção de vulnerabilidades"
-    [A lista de vulnerabilidades que o FAST pode detectar](../../VULN-LIST.md)
+    [A lista de vulnerabilidades que o FAST pode detectar](../../vuln-list.md)
 
     Note-se que a escolha dos tipos de vulnerabilidade durante a configuração de uma política de teste influencia quais das extensões FAST incorporadas (também conhecidas como detectadas) serão executadas.
 

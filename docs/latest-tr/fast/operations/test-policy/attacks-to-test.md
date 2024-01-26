@@ -5,13 +5,13 @@
 
 [doc-fuzzer]:               fuzzer-intro.md
 
-[gl-vuln]:                  ../../TERMS-GLOSSARY.md#vulnerability
+[gl-vuln]:                  ../../terms-glossary.md#vulnerability
 
-[vuln-ptrav]:               ../../VULN-LIST.md#path-traversal
-[vuln-rce]:                 ../../VULN-LIST.md#remote-code-execution-rce
-[vuln-sqli]:                ../../VULN-LIST.md#sql-injection
-[vuln-xss]:                 ../../VULN-LIST.md#cross-site-scripting-xss
-[vuln-xxe]:                 ../../VULN-LIST.md#attack-on-xml-external-entity-xxe
+[vuln-ptrav]:               ../../vuln-list.md#path-traversal
+[vuln-rce]:                 ../../vuln-list.md#remote-code-execution-rce
+[vuln-sqli]:                ../../vuln-list.md#sql-injection
+[vuln-xss]:                 ../../vuln-list.md#cross-site-scripting-xss
+[vuln-xxe]:                 ../../vuln-list.md#attack-on-xml-external-entity-xxe
 
 #   Güvenlik Açığı Tespit Sürecinin Yapılandırılması
 

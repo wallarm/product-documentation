@@ -2,7 +2,7 @@
 description: Wallarm's (FAST) is a purpose-built tool that identifies vulnerabilities in web applications by generating and executing automated security tests.
 ---
 
-[link-agreements]:      AGREEMENTS.md
+[link-agreements]:      agreements.md
 
 #   Wallarm FAST Overview
 

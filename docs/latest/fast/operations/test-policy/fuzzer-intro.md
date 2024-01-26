@@ -1,8 +1,8 @@
 [doc-fuzzer-internals]:         fuzzer-internals.md
 [doc-fuzzer-configuration]:     fuzzer-configuration.md              
 
-[gl-vuln]:                      ../../TERMS-GLOSSARY.md#vulnerability
-[gl-anomaly]:                   ../../TERMS-GLOSSARY.md#anomaly
+[gl-vuln]:                      ../../terms-glossary.md#vulnerability
+[gl-anomaly]:                   ../../terms-glossary.md#anomaly
 
 # Configuration of Anomaly Detection Process: Overview
 
@@ -20,4 +20,4 @@ This documentation section describes the following points:
 
     However, if the `'` symbol is passed within any part of the login value, the application responds with the `500 Internal Server Error` code and the `...SequelizeDatabaseError: SQLITE_ERROR:...` message; such behavior is anomalous.
 
-    This anomaly does not lead to the direct exploitation of any vulnerability, but it provides an attacker with information about the application architecture and prompts to execute the [SQL Injection](../../VULN-LIST.md#sql-injection) attack.
+    This anomaly does not lead to the direct exploitation of any vulnerability, but it provides an attacker with information about the application architecture and prompts to execute the [SQL Injection](../../vuln-list.md#sql-injection) attack.

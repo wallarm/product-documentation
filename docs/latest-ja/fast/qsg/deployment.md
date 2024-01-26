@@ -10,7 +10,7 @@
 [link-wl-console]:              https://us1.my.wallarm.com
 [link-ssl-installation]:        ../ssl/intro.md
 
-[wl-cloud-list]:    ../CLOUD-LIST.md
+[wl-cloud-list]:    ../cloud-list.md
       
 [anchor1]:  #1-docker-ソフトウェアのインストール
 [anchor2]:  #2-wallarm-クラウドに-fast-ノードを接続するためのトークンの取得

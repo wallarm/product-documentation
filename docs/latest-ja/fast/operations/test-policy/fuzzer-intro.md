@@ -1,8 +1,8 @@
 [doc-fuzzer-internals]:         fuzzer-internals.md
 [doc-fuzzer-configuration]:     fuzzer-configuration.md              
 
-[gl-vuln]:                      ../../TERMS-GLOSSARY.md#vulnerability
-[gl-anomaly]:                   ../../TERMS-GLOSSARY.md#anomaly
+[gl-vuln]:                      ../../terms-glossary.md#vulnerability
+[gl-anomaly]:                   ../../terms-glossary.md#anomaly
 
 # 異常検知プロセスの設定：概要
 
@@ -20,4 +20,4 @@
 
     しかし、ログイン値の任意の部分に `'` シンボルが渡されると、アプリケーションは `500 Internal Server Error` コードと `...SequelizeDatabaseError: SQLITE_ERROR:...` メッセージで応答します。このような振る舞いは異常です。
 
-    この異常は直接的な脆弱性の悪用にはつながりませんが、攻撃者にアプリケーションのアーキテクチャについての情報を提供し、[SQLインジェクション](../../VULN-LIST.md#sql-injection)攻撃の実行を促します。
+    この異常は直接的な脆弱性の悪用にはつながりませんが、攻撃者にアプリケーションのアーキテクチャについての情報を提供し、[SQLインジェクション](../../vuln-list.md#sql-injection)攻撃の実行を促します。

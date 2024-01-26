@@ -10,7 +10,7 @@ Bu belgede FAST test politikalarının birkaç örneği sunulmaktadır, aşağı
     Aşağıdaki örnek test politikalarında, her temel isteğin öğesi, any GET parametresi (`GET_.*`) gibi, ilgili puanla birlikte izlenir.
 
 !!! info "Zafiyetlerin Tespiti"
-    [FAST'ın tespit edebileceği zafiyetler listesi](../../VULN-LIST.md)
+    [FAST'ın tespit edebileceği zafiyetler listesi](../../vuln-list.md)
 
     Bir test politikasının yapılandırılması sırasında seçilen zafiyet türlerinin, yerleşik FAST eklentisi (aka tespitler) hangilerinin çalıştırılacağını etkileyeceğini lütfen unutmayın.
 

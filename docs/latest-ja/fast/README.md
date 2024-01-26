@@ -2,7 +2,7 @@
 description: Wallarmの（FAST）は自動セキュリティテストを生成して実行することでWebアプリケーションの脆弱性を特定するために構築された専用ツールです。
 ---
 
-[link-agreements]:      AGREEMENTS.md
+[link-agreements]:      agreements.md
 
 #   Wallarm FAST 概要
 

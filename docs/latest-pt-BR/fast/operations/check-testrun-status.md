@@ -13,7 +13,7 @@
 [link-wl-portal-testruns-in-progress]:  https://us1.my.wallarm.com/testing/?status=running
 
 [link-integration-chapter]:         integration-overview.md
-[link-vuln-list]:                   ../VULN-LIST.md
+[link-vuln-list]:                   ../vuln-list.md
 
 [anchor-testrun-estimates]:         #estimates-of-test-runs-execution-speed-and-time-to-completion
 

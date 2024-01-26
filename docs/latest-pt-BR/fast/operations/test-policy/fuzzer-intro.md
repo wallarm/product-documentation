@@ -1,8 +1,8 @@
 [doc-fuzzer-internals]:         fuzzer-internals.md
 [doc-fuzzer-configuration]:     fuzzer-configuration.md              
 
-[gl-vuln]:                      ../../TERMS-GLOSSARY.md#vulnerability
-[gl-anomaly]:                   ../../TERMS-GLOSSARY.md#anomaly
+[gl-vuln]:                      ../../terms-glossary.md#vulnerability
+[gl-anomaly]:                   ../../terms-glossary.md#anomaly
 
 # Configuração do Processo de Detecção de Anomalias: Visão geral
 
@@ -20,4 +20,4 @@ Esta seção da documentação descreve os seguintes pontos:
 
     No entanto, se o símbolo `'` for passado em qualquer parte do valor de login, o aplicativo responde com o código `500 Erro Interno do Servidor` e a mensagem `...SequelizeDatabaseError: SQLITE_ERROR:...`; tal comportamento é anômalo.
 
-    Essa anomalia não leva à exploração direta de qualquer vulnerabilidade, mas fornece ao atacante informações sobre a arquitetura do aplicativo e sugere a execução do ataque por [Injeção SQL](../../VULN-LIST.md#sql-injection).
+    Essa anomalia não leva à exploração direta de qualquer vulnerabilidade, mas fornece ao atacante informações sobre a arquitetura do aplicativo e sugere a execução do ataque por [Injeção SQL](../../vuln-list.md#sql-injection).

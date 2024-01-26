@@ -2,7 +2,7 @@
 description: Wallarm'ın FAST'ı, otomatik güvenlik testleri oluşturup çalıştırarak web uygulamalarındaki güvenlik açıklarını belirleyen özel olarak üretilmiş bir araçtır.
 ---
 
-[link-sozlesmeler]:      AGREEMENTS.md
+[link-sozlesmeler]:      agreements.md
 
 #   Wallarm FAST Hakkında
 
