@@ -1289,7 +1289,7 @@ html .md-footer .md-social a:hover {
   border-width: 1px;
   font-size: 14px;
   cursor: pointer;
-  min-width: 108px;
+  min-width: 131px;
   transition: all 0.3s ease;
   color: hsla(0, 0%, 0%, 1);
 }
@@ -1301,7 +1301,7 @@ html .md-footer .md-social a:hover {
   border-radius: 4px;
   position: absolute;
   padding: 8px 0px;
-  min-width: 108px;
+  min-width: 131px;
   z-index: 1;
 }
 
