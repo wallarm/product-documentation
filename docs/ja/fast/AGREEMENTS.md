@@ -1,1 +1,1 @@
---8<-- "latest-ja/fast/AGREEMENTS.md"
+--8<-- "latest-ja/fast/agreements.md"

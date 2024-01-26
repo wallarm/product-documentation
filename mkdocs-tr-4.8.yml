@@ -174,10 +174,10 @@ nav:
             - Hash Filtresi: fast/dsl/points/parsers/hash.md
           - Noktaların Oluşturma Prensipleri: fast/dsl/points/principles.md
           - Bir Nokta Nasıl Oluşturulur: fast/dsl/points/construction.md
-      - Metin Biçimlendirme Sözleşmeleri: fast/AGREEMENTS.md
-      - Sözlük: fast/TERMS-GLOSSARY.md
-      - Wallarm Bulutları Listesi: fast/CLOUD-LIST.md
-      - Kırılganlıklar Listesi: fast/VULN-LIST.md
+      - Metin Biçimlendirme Sözleşmeleri: fast/agreements.md
+      - Sözlük: fast/terms-glossary.md
+      - Wallarm Bulutları Listesi: fast/cloud-list.md
+      - Kırılganlıklar Listesi: fast/vuln-list.md
       - Proxy'e Göre Kuralların Yapılandırılması: fast/poc/proxy-configuration.md
       - SSL Sertifikalarının Kurulumu:
         - Giriş: fast/ssl/intro.md
@@ -188,7 +188,7 @@ nav:
           - Microsoft Edge: fast/ssl/browsers-ssl/edge-ssl.md
           - Microsoft Internet Explorer 11: fast/ssl/browsers-ssl/ie11-ssl.md
           - Mozilla Firefox: fast/ssl/browsers-ssl/firefox-ssl.md
-      - Sorun Giderme: fast/TSHOOT.md
+      - Sorun Giderme: fast/tshoot.md
   - WAAP/WAF:
     - Saldırı Tespit Prosedürü: about-wallarm/protecting-against-attacks.md
     - DDoS Koruma: admin-en/configuration-guides/protecting-against-ddos.md

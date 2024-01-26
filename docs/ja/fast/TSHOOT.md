@@ -1,1 +1,1 @@
---8<-- "latest-ja/fast/TSHOOT.md"
+--8<-- "latest-ja/fast/tshoot.md"

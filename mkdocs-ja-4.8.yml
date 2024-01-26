@@ -173,10 +173,10 @@ nav:
             - ハッシュフィルター: fast/dsl/points/parsers/hash.md
           - ポイントの構築原則: fast/dsl/points/principles.md
           - ポイントの構築方法: fast/dsl/points/construction.md
-      - テキストの書式設定規則: fast/AGREEMENTS.md
-      - 用語集: fast/TERMS-GLOSSARY.md
-      - Wallarm Cloudsリスト: fast/CLOUD-LIST.md
-      - 脆弱性リスト: fast/VULN-LIST.md
+      - テキストの書式設定規則: fast/agreements.md
+      - 用語集: fast/terms-glossary.md
+      - Wallarm Cloudsリスト: fast/cloud-list.md
+      - 脆弱性リスト: fast/vuln-list.md
       - プロキシルールの構成: fast/poc/proxy-configuration.md
       - SSL証明書のインストール:
         - イントロダクション: fast/ssl/intro.md
@@ -187,7 +187,7 @@ nav:
           - Microsoft Edge: fast/ssl/browsers-ssl/edge-ssl.md
           - Microsoft Internet Explorer 11: fast/ssl/browsers-ssl/ie11-ssl.md
           - Mozilla Firefox: fast/ssl/browsers-ssl/firefox-ssl.md
-      - トラブルシューティング: fast/TSHOOT.md
+      - トラブルシューティング: fast/tshoot.md
   - WAAP/WAF:
     - 攻撃検出手順: about-wallarm/protecting-against-attacks.md
     - DDoS対策: admin-en/configuration-guides/protecting-against-ddos.md
