@@ -175,6 +175,15 @@ nav:
       - Troubleshooting: fast/tshoot.md
   - WAAP/WAF:
     - Overview: about-wallarm/waap-overview.md
+    - Attack Detection:
+      - Procedure: about-wallarm/protecting-against-attacks.md
+      - Analyzing Requests: user-guides/rules/request-processing.md
+      - Attack Types: attacks-vulns-list.md
+      - Rules:
+        - Overview: user-guides/rules/intro.md
+        - Configuring: user-guides/rules/add-rule.md
+        - Ruleset Lifecycle: user-guides/rules/compiling.md
+    - Filtration Mode: admin-en/configure-wallarm-mode.md
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
     - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
     - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
@@ -184,23 +193,7 @@ nav:
     - Filtering by IP: user-guides/ip-lists/overview.md
     - Virtual Patching: user-guides/rules/vpatch-rule.md
     - User‑Defined Detection Rules: user-guides/rules/regex-rule.md
-    - Fine Tuning of Attack Detection: user-guides/rules/rules-tune-attack-detection.md
-    - Fine Tuning of Node Work: user-guides/rules/rules-tune-nodes.md
-    - Fine Tuning Wallarm Components: user-guides/rules/rules-tune-components.md
-    - Attack Detection:
-      - Procedure: about-wallarm/protecting-against-attacks.md
-      - Attack Types: attacks-vulns-list.md
-      - Filtration Mode:
-        - Overview: admin-en/configure-wallarm-mode.md
-        - Configuration via the Rule: user-guides/rules/wallarm-mode-rule.md
-      - Rules:
-        - Overview: user-guides/rules/intro.md
-        - Inspecting: user-guides/rules/view.md
-        - Configuring: user-guides/rules/add-rule.md
-        - Ruleset Lifecycle: user-guides/rules/compiling.md
-        - Custom Ruleset Backup and Restore: user-guides/rules/backup.md
-        - Analyzing and Parsing Requests: user-guides/rules/request-processing.md
-      - Triggers: user-guides/triggers/triggers.md
+    - Masking Sensitive Data: user-guides/rules/sensitive-data-rule.md
     # - Overview: ...
     # - OWASP Top 10: ...
     # - Known attacks / CVEs: ...
@@ -406,6 +399,7 @@ nav:
         - Ingress Controller Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
     - Proper Reporting of End‑User IP: admin-en/using-proxy-or-balancer-en.md
     - Resource Allocation: admin-en/configuration-guides/allocate-resources-for-node.md
+    - Limiting Request Processing Time: user-guides/rules/configure-overlimit-res-detection.md
     - Splitting Traffic and Settings by Applications: user-guides/settings/applications.md
     - Blocking Page and Error Code: admin-en/configuration-guides/configure-block-page-and-code.md
     - Monitoring & Failover:
@@ -483,6 +477,7 @@ nav:
       - Overview: api/overview.md
       - API Request Examples: api/request-examples.md
     - Wallarm Terraform Provider: admin-en/managing/terraform-provider.md
+    - Wallarm Triggers: user-guides/triggers/triggers.md
     - Learning Monthly Request Volume of an Application: admin-en/operation/learn-incoming-request-number.md
     - Docker Image Security:
       - Verifying Docker Image Signatures: integrations-devsecops/verify-docker-image-signature.md

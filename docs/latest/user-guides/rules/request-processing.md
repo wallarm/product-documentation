@@ -1,4 +1,4 @@
-# Analyzing and parsing requests
+# Analyzing Requests
 
 For an effective request analysis, Wallarm follows the principles:
 
@@ -110,21 +110,21 @@ The following tags correspond to the parser for HTTP request metadata:
 
 Complex request parts may require additional parsing (for example, if the data is Base64 encoded or presented in the array format). In such cases, the parsers listed below are applied to request parts additionally.
 
-#### base64
+**base64**
 
 Decodes Base64 encoded data, and can be applied to any part of the request.
 
-#### gzip
+**gzip**
 
 Decodes GZIP encoded data, and can be applied to any part of the request.
 
-#### htmljs
+**htmljs**
 
 Converts HTML and JS symbols to the text format, and can be applied to any part of the request.
 
 Example: `&#x22;&#97;&#97;&#97;&#x22;` will be converted to `"aaa"`.
 
-#### json_doc
+**json_doc**
 
 Parses the data in JSON format, and can be applied to any part of the request.
 
@@ -144,7 +144,7 @@ Example:
 * `[..., json_doc, hash, 'p2', array, 1]` — `v2`
 * `[..., json_doc, hash, 'p3', hash, 'somekey']` — `somevalue`
 
-#### xml
+**xml**
 
 Parses the data in XML format, and can be applied to any part of the request.
 
@@ -182,7 +182,7 @@ Example:
 * `[..., xml, xml_tag, 'methodCall', xml_tag, 'methodArgs', xml_attr, 'check']` — `true`
 * `[..., xml, xml_tag, 'methodCall', xml_tag, 'methodArgs', array, 1]` — `234`
 
-#### array
+**array**
 
 Parses data array. Can be applied to any part of the request.
 
@@ -195,7 +195,7 @@ Example:
 * `[query, 'p2', array, 0]` — `aaa`
 * `[query, 'p2', array, 1]` — `bbb`
 
-#### hash
+**hash**
 
 Parses the associative data array (`key:value`), and can be applied to any part of the request.
 
@@ -208,7 +208,7 @@ Example:
 * `[query, 'p1', hash, 'x']` — `1`
 * `[query, 'p1', hash, 'y']` — `2`
 
-#### pollution
+**pollution**
 
 Combines the values of the parameters with the same name, and can be applied to any part of the request in the initial or decoded format.
 
@@ -220,11 +220,11 @@ Example:
 
 * `[query, 'p3', pollution]` — `1,2`
 
-#### percent
+**percent**
 
 Decodes the URL symbols, and can be applied only to the **uri** component of URL.
 
-#### cookie
+**cookie**
 
 Parses the Cookie request parameters, and can be applied only to the request headers.
 
@@ -238,7 +238,7 @@ Cookie: a=1; b=2
 * `[header, 'COOKIE', cookie, 'a']` = `1`;
 * `[header, 'COOKIE', cookie, 'b']` = `2`.
 
-#### form_urlencoded
+**form_urlencoded**
 
 Parses the request body passed in the `application/x-www-form-urlencoded` format, and can be applied only to the request body.
 
@@ -257,13 +257,13 @@ p1=1&p2[a]=2&p2[b]=3&p3[]=4&p3[]=5&p4=6&p4=7
 * `[post, form_urlencoded, 'p4', array, 1]` — `7`
 * `[post, form_urlencoded, 'p4', pollution]` — `6,7`
 
-#### grpc <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
+**grpc** <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
 
 Parses gRPC API requests, and can be applied only to the request body.
 
 Supports the **protobuf** filter for the Protocol Buffers data.
 
-#### multipart
+**multipart**
 
 Parses the request body passed in the `multipart` format, and can be applied only to the request body.
 
@@ -288,7 +288,7 @@ If a file name is specified in the `Content-Disposition` header, then the file i
 
 * `[post, multipart, 'someparam', file]` — file contents
 
-#### viewstate
+**viewstate**
 
 Designed to analyze the session state. The technology is used by Microsoft ASP.NET, and can be applied only to the request body.
 
@@ -302,7 +302,7 @@ Filters:
 * **viewstate_dict_value** for a string
 * **viewstate_sparse_array** for an associative array
 
-#### jwt
+**jwt**
 
 Parses JWT tokens and can be applied to any part of the request.
 
@@ -340,7 +340,7 @@ The norms are applied to parsers for array and key data types. Norms are used to
 
 If the norm is not specified, then the identifier of the entity that requires processing is passed to the parser. For example: the name of the JSON object or other identifier is passed after **hash**.
 
-#### all
+**all**
 
 Used to get values of all elements, parameters, or objects. For example:
 
@@ -351,7 +351,7 @@ Used to get values of all elements, parameters, or objects. For example:
 * **hash_all** for all JSON object or XML attribute values
 * **jwt_all** for all JWT values
 
-#### name
+**name**
 
 Used to get names of all elements, parameters, or objects. For example:
 
@@ -359,3 +359,75 @@ Used to get names of all elements, parameters, or objects. For example:
 * **header_name** for all header names
 * **hash_name** for all JSON object or XML attribute names
 * **jwt_name** for names of all parameters with JWT
+
+## Managing parsers
+
+The rule **Disable/Enable request parser** allows managing the set of parsers applied to the request during its analysis.
+
+By default, when analyzing the request the Wallarm node attempts to sequentially apply each of the suitable [parsers](request-processing.md) to each element of the request. However, certain parsers can be applied mistakenly and as a result, the Wallarm node may detect attack signs in the decoded value.
+
+For example: the Wallarm node may mistakenly identify unencoded data as encoded into [Base64](https://en.wikipedia.org/wiki/Base64), since the Base64 alphabet symbols are often used in the regular text, token values, UUID values and other data formats. If decoding the unencoded data and detecting attack signs in the resulting value, the [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) occurs.
+
+To prevent false positives in such cases, you can disable the parsers mistakenly applied to certain request elements by using the rule **Disable/Enable request parser**.
+
+**Creating and applying the rule**
+
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
+To create and apply the rule in the **Rules** section:
+
+1. Create the rule **Disable/Enable request parser** in the **Rules** section of Wallarm Console. The rule consists of the following components:
+
+      * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
+      * Parsers to be disabled / enabled for the specified request element.      
+      * **Part of request** points to the original request element to be parsed / not parsed with the selected parsers.
+
+         --8<-- "../include/waf/features/rules/request-part-reference.md"
+2. Wait for the [rule compilation to complete](compiling.md).
+
+**Rule example**
+
+Let's say the requests to `https://example.com/users/` require the authentication header `X-AUTHTOKEN`. The header value may contain specific symbol combinations (e.g. `=` in the end) to be potentially decoded by Wallarm with the parser `base64`.
+
+The rule **Disable/Enable request parser** preventing false positives in the `X-AUTHTOKEN` values can be configured as follows:
+
+![Example of the rule "Disable/Enable request parser"](../../images/user-guides/rules/disable-parsers-example.png)
+
+## Changing server response headers
+
+The rule **Change server response headers** allows adding, deleting server response headers and changing its values.
+
+This rule type is most often used to configure the additional layer of the application security, for example:
+
+* To add the response header [`Content-Security-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) controlling the resources the client is allowed to load for a given page. This helps guard against the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks.
+
+    If your server does not return this header by default, it is recommended to add it by using the rule **Change server response headers**. In the MDN Web Docs, you can find descriptions of [possible header values](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives) and [header usage examples](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#examples_common_use_cases).
+
+    Similarly, this rule can be used to add the response headers [`X-XSS-Protection`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection), [`X-Frame-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options), [`X-Content-Type-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options).
+* To change the NGINX header `Server` or any other header containing the data on installed module versions. This data can be potentially used by the attacker to discover vulnerabilities of installed module versions and as a result, to exploit discovered vulnerabilities.
+
+    The NGINX header `Server` can be changed starting with Wallarm node 2.16.
+
+The rule **Change server response headers** can also be used to address any of your business and technical issues.
+
+**Creating and applying the rule**
+
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
+To create and apply the rule in the **Rules** section:
+
+1. Create the rule **Change server response headers** in the **Rules** section of Wallarm Console. The rule consists of the following components:
+
+      * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
+      * Name of the header to be added or to replace its value.
+      * New value of the specified header.
+
+        To delete an existing response header, please leave the value of this header on the **Replace** tab empty.
+
+2. Wait for the [rule compilation to complete](compiling.md).
+
+**Rule example**
+
+To allow all content of `https://example.com/*` to come only from the site's origin, you can add the response header [`Content-Security-Policy: default-src 'self'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#example_1) by using the rule **Change server response headers** as follows:
+
+![Example of the rule "Change server response headers"](../../images/user-guides/rules/add-replace-response-header.png)

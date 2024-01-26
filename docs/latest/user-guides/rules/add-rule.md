@@ -2,6 +2,89 @@
 
 # Configuring Rules
 
+You can inspect existing rules and configure the new ones at the **Rules** section of Wallarm Console.
+
+## Inspecting Rules
+
+To view the rules, go to the **Rules** section of Wallarm Console. This section represents branches and endpoints that are already known.
+
+![Rules tab overview][img-rules-overview]
+
+The system automatically groups the rules by branches, highlighting common conditions and building a tree-like structure. As a result, a branch may have child branches. To show or hide nested branches, click on the blue circle to the left of the branch description.
+
+Two asterisks `**` in a branch description refer to any number of nested paths. For instance, the branch `/**/*.php` will contain both `/index.php` and `/app/admin/install.php`.
+
+The size of the blue circle indicates the relative quantity of the nested branches. Its color indicates the relative quantity of the rules within the branch and its sub-branches. On each nesting level, the size and color of the circles are independent from each other.
+
+To the right of the branch description, the system may display an orange number, which indicates the number of rules in that branch (only the direct descendants, not the nested rules). If no number is displayed, then that branch is "virtual"&nbsp;— it is used only for grouping similar sub-branches.
+
+Branches with no rules available for the user (according to the privilege model) are automatically hidden .
+
+
+### Rule Display
+
+In each branch, the user can look through the list of rules attached to it. To switch over to the page with the rule list, click on the description of the corresponding branch.
+
+![Viewing branch rules][img-view-rules]
+
+The rules within a branch are grouped by the *point* field. The rules that affect the entire request, rather than individual parameters, are grouped together into one line. To see the entire list, click on the line.
+
+For each rule, the system displays the following parameters: last modified time, quantity, types, and point.
+
+### Default rules
+
+You can create rules with specified action but not linked to any endpoint - they are called **default rules**. Such rules are applied to all endpoints.
+
+* To create default rule, follow the [standard procedure](add-rule.md) but leave URI blank. The new rule not linked to any endpoint will be created.
+* To view the list of created default rules, click the **Default rules** button.
+
+!!! info "Traffic filtration mode default rule"
+    Wallarm automatically [creates](wallarm-mode-rule.md#default-instance-of-rule) the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
+
+Default rules are [inherited](#distinct-and-inherited-rules) by all branches.
+
+### Distinct and inherited rules
+
+The rules are inherited down the rules branch. Principles:
+
+* All branches inherit [default](#default-rules) rules.
+* In a branch, child endpoints inherit rules from the parent.
+* Distinct has priority over inherited.
+* Directly specified has priority over [regex](add-rule.md#condition-type-regex).
+* Case [sensitive](add-rule.md#condition-type-equal) has priority over [insensitive](add-rule.md#condition-type-iequal-aa).
+
+Here are some details of how to work with the rules branch:
+
+* To expand the endpoint, click the blue circle.
+* Endpoints that do not have distinct rules are greyed out and not clickable.
+    
+    ![Branch of endpoints](../../images/user-guides/rules/rules-branch.png)
+
+* To view rules for the endpoint, click it. First, distinct rules for this endpoint will be displayed.
+* When viewing the rule list for the specific endpoint, click **Distinct and inherited rules** to display the inherited ones. Inherited rules will be displayed together with the distinct; they will be greyed out compared to distinct.
+
+    ![Distinct and inherited rules for endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
+
+### API calls to get rules
+
+To get custom rules, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below are some examples of the corresponding API calls.
+
+**Get all configured rules**
+
+--8<-- "../include/api-request-examples/get-all-configured-rules.md"
+
+**Get only conditions of all rules**
+
+--8<-- "../include/api-request-examples/get-conditions.md"
+
+**Get rules attached to a specific condition**
+
+To point to a specific condition, use its ID - you can get it when requesting conditions of all rules (see above).
+
+--8<-- "../include/api-request-examples/get-rules-by-condition-id.md"
+
+## Configuring Rules
+
 To add a new rule, go to the **Rules** tab.
 
 Rules can be added to both existing and new branches. They can be created from scratch or based on one of the existing branches.
@@ -13,15 +96,15 @@ If necessary, it is possible to modify the branch to which a rule will be added.
 ![Adding a new rule][img-add-rule]
 
 
-## Branch Description
+### Branch Description
 
 A branch description consists of a set of conditions for various parameters that an HTTP request must fulfill; otherwise, the rules associated with this branch will not be applied. Each line in the *If request is* section of the rule-adding form refers to a separate condition comprised of three fields: point, type, and comparison argument. The rules described in the branch are only applied to the request if all the conditions are fulfilled.
 
 To configure the set of conditions, both the **URI constructor** and the **advanced edit form** can be used.
 
-### URI constructor
+#### URI constructor
 
-#### Working with URI constructor
+##### Working with URI constructor
 
 URI constructor allows configuring the rule conditions by specifying the request method and endpoint in only one string:
 
@@ -48,7 +131,7 @@ The string specified in the URI constructor is automatically parsed into the set
 
 The value specified in the URI constructor can be completed by other request points available only in the [advanced edit form](#advanced-edit-form).
 
-#### Using wildcards
+##### Using wildcards
 
 Can you use wildcards when working with URI constructor in Wallarm? No and yes. "No" means you cannot use them [classically](https://en.wikipedia.org/wiki/Wildcard_character), "yes" means you can achieve the same result acting like this:
 
@@ -90,9 +173,9 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
 
     ![Using regular expression in header component](../../images/user-guides/rules/wildcard-regex.png)
 
-### Advanced edit form
+#### Advanced edit form
 
-#### Points
+##### Points
 
 The *point* field indicates which parameter value should be extracted from the request for comparison. At present, not all of the points that can be analyzed by the filter node, are supported.
 
@@ -117,7 +200,7 @@ The following points are currently supported:
 
 * **method**: request methods. If the value is not explicitly specified, the rule will be applied to requests with any method.
 
-#### Condition type: EQUAL (`=`)
+##### Condition type: EQUAL (`=`)
 
 The point value must match precisely with the comparison argument. For example, only `example` matches with the point value `example`.
 
@@ -126,11 +209,11 @@ The point value must match precisely with the comparison argument. For example, 
     
     If you have previously used the EQUAL type, it will be automatically replaced with the IEQUAL type.
 
-#### Condition type: IEQUAL (`Aa`)
+##### Condition type: IEQUAL (`Aa`)
 
 The point value must match with the comparison argument in any case. For example: `example`, `ExAmple`, `exampLe` match with the point value `example`.
 
-#### Condition type: REGEX (`.*`)
+##### Condition type: REGEX (`.*`)
 
 The point value must match the regular expression. 
 
@@ -318,6 +401,6 @@ To test the regular expression, you can use the **cpire** utility on supported D
     ^(python-requests/|PostmanRuntime/|okhttp/3.14.0|node-fetch/1.0)
     ```
 
-#### Condition type: ABSENT (`∅`)
+##### Condition type: ABSENT (`∅`)
 
 The request should not contain the designated point. In this case, the comparison argument is not used.

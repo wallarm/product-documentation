@@ -1,6 +1,6 @@
 [img-masking]:      ../../images/user-guides/rules/sensitive-data-rule.png
 
-# Rules for Data Masking
+# Masking Sensitive Data
 
 The Wallarm node sends the following data to the Wallarm Cloud:
 
