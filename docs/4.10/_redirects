@@ -569,3 +569,28 @@
 /4.8/user-guides/bola-protection/ /4.8/admin-en/configuration-guides/protecting-against-bola/
 
 /tr/quickstart/getting-started/ /tr/quickstart/
+
+/tr/user-guides/events/check-incident/ /tr/user-guides/events/check-attack/
+/tr/api-discovery/overview/ /tr/about-wallarm/api-discovery/
+/tr/api-discovery/setup/ /tr/about-wallarm/api-discovery/
+/tr/api-discovery/exploring/ /tr/user-guides/api-discovery/
+/tr/api-discovery/track-changes/ /tr/about-wallarm/api-discovery/#apideki-degisiklikleri-izleme
+/tr/api-discovery/risk-score/ /tr/about-wallarm/api-discovery/#uc-nokta-risk-skoru
+/tr/api-discovery/rogue-api/ /tr/about-wallarm/api-discovery/#golge-yetim-ve-zombi-apiler
+/tr/api-discovery/bola-protection/ /tr/about-wallarm/api-discovery/#otomatik-bola-korumas
+/tr/api-discovery/dashboard/ /tr/user-guides/dashboards/api-discovery/
+/tr/about-wallarm/attack-surface/ /tr/about-wallarm/detecting-vulnerabilities/
+/tr/about-wallarm/waap-overview/ /tr/about-wallarm/overview/
+/tr/admin-en/configuration-guides/protecting-against-forcedbrowsing/ /tr/admin-en/configuration-guides/protecting-against-bruteforce/
+/tr/admin-en/configuration-guides/protecting-with-thresholds/ /tr/user-guides/triggers/trigger-examples/#1-saat-icinde-4-veya-daha-fazla-kotu-niyetli-yuk-alglandgnda-ipyi-reddetme-listesine-ekle
+/tr/admin-en/configuration-guides/protecting-against-bola-trigger/ /tr/admin-en/configuration-guides/protecting-against-bola/
+/tr/admin-en/scanner-addresses/ /tr/admin-en/scanner-address-us-cloud/
+/tr/2.18/user-guides/nodes/cloud-node/ /tr/user-guides/nodes/nodes/
+/tr/2.18/user-guides/nodes/regular-node/ /tr/user-guides/nodes/nodes/
+/tr/2.18/admin-en/configure-ip-blocking-nginx-en/ /tr/user-guides/ip-lists/overview/
+/tr/3.6/installation/multi-tenant/configure-accounts/ /installation/multi-tenant/configure-accounts/
+/tr/2.18/admin-en/configure-parameters-en/ /tr/admin-en/configure-parameters-en/
+/tr/2.18/admin-en/configuration-guides/envoy/fine-tuning/ /tr/admin-en/configuration-guides/envoy/fine-tuning/
+/tr/2.18/admin-en/scanner-ips-allowlisting/ /tr/user-guides/ip-lists/overview/
+/tr/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/ /tr/installation/kubernetes/sidecar-proxy/deployment/
+/tr/2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses/ /tr/user-guides/ip-lists/overview/
