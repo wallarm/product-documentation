@@ -7,7 +7,6 @@
 [fast-ci-mode-test]:            ../ci-mode-testing.md#environment-variables-in-testing-mode
 [mail-to-us]:                   mailto:support@wallarm.com
 [fast-examples-github]:         https://github.com/wallarm/fast-examples 
-[fast-example-jenkins]:         https://jenkinsfast.demo.wallarm.com/
 
 # Integração do FAST com Jenkins
 
@@ -83,7 +82,7 @@ O resultado do teste de segurança será exibido na interface do Jenkins.
 
 ## Mais Exemplos
 
-Você pode encontrar exemplos de integração do FAST ao fluxo de trabalho do Jenkins em nosso [GitHub][fast-examples-github] e [Jenkins][fast-example-jenkins].
+Você pode encontrar exemplos de integração do FAST ao fluxo de trabalho do Jenkins em nosso [GitHub][fast-examples-github].
 
 !!! info "Dúvidas futuras"
     Se você tem dúvidas relacionadas à integração do FAST, por favor, [contacte-nos][mail-to-us].
