@@ -5,7 +5,7 @@ site_description: The Wallarm solution protects APIs, microservices and web appl
 repo_url: https://github.com/wallarm/product-documentation
 repo_name: GitHub
 
-copyright: '<a href="https://www.wallarm.com/terms-of-services" target="_blank">Terms of services</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | <a href="#__consent">Cookie settings</a> | 2023 © Wallarm Inc.'
+copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">Terms of services</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | <a href="#__consent">Cookie settings</a> | 2023 © Wallarm Inc.'
 
 plugins:
   - search
@@ -64,7 +64,7 @@ theme:
 extra:
   social:
     - icon: fontawesome/solid/globe
-      link: https://wallarm.com
+      link: https://www.wallarm.com
     - icon: fontawesome/brands/github-alt
       link: https://github.com/wallarm
     - icon: fontawesome/brands/twitter

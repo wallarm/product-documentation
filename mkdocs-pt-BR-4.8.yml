@@ -4,7 +4,7 @@ site_name: Documentação do Wallarm
 site_url: https://docs.wallarm.com/pt-br/
 site_description: A solução Wallarm protege APIs, microsserviços e aplicações web contra as ameaças do Top 10 da OWASP para APIs, abuso de API e outras ameaças automatizadas sem a necessidade de configuração manual de regras e com um índice ultra-baixo de falsos positivos.
 
-copyright: '<a href="https://www.wallarm.com/terms-of-services" target="_blank">Termos de serviço</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">Política de privacidade</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">Política de cookies</a> | <a href="#__consent">Configurações de cookies</a> | 2023 © Wallarm Inc.'
+copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">Termos de serviço</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">Política de privacidade</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">Política de cookies</a> | <a href="#__consent">Configurações de cookies</a> | 2023 © Wallarm Inc.'
 
 theme:
   language: pt-BR
