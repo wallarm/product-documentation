@@ -36,8 +36,7 @@ To deploy a filtering node on-premise, follow these steps:
 
 
 
-HOW TO RUN THE RECEIEVD SCRIPT??
+<!-- HOW TO RUN THE RECEIEVD SCRIPT??
 
 1. How to run the script
-1. how to configure a node to connect to a local cloud?
-1. что схема из конфлюенса показывает
+1. how to configure a node to connect to a local cloud? -->
