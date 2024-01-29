@@ -48,7 +48,7 @@ Ensure the following technical prerequisites are met for a successful deployment
     * GCP - any Kubernetes version
     * Bare-metal server - Kubernetes 1.22 and above
 * [Helm v3](https://helm.sh/) package manager.
-* Linux kernel version 5.10 or higher with BTF (BPF Type Format) enabled. Supported on Ubuntu, Debian, RedHat, Google COS, or Amazon Linux 2.
+* Linux kernel version 5.10 or 5.15 with BTF (BPF Type Format) enabled. Supported on Ubuntu, Debian, RedHat, Google COS, or Amazon Linux 2.
 * Your user account should have [**Administrator** access](../../../user-guides/settings/users.md#user-roles) to the Wallarm Console.
 
 ## Network access
