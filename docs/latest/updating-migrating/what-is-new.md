@@ -39,6 +39,9 @@ The [Docker image of Wallarm's NGINX-based filtering node](../admin-en/installat
 
 * The Docker image is now built on Alpine Linux, replacing Debian, to provide a more secure and lightweight artifact.
 * Updated to the latest stable version of NGINX, 1.24.0, replacing the previous 1.14.x version. Although most vulnerabilities in 1.14.x were patched by the Debian team (the prior image was based on Debian 10.x), upgrading to 1.24.0 addresses remaining vulnerabilities for improved security.
+
+      The NGINX upgrade, along with the switch to Alpine Linux, resolves the HTTP/2 Rapid Reset Vulnerability (CVE-2023-44487), due to the Alpine-specific patch implemented in NGINX 1.24.0.
+
 * Support for processors with ARM64 architecture, which is automatically identified during the installation process.
 * Inside the Docker container, operations now utilize the non-root user `wallarm`, a change from the previous `root` user setup.
 * The [`/wallarm-status`](../admin-en/configure-statistics-service.md) endpoint has been updated to export metrics in the Prometheus format, instead of JSON. This applies specifically when accessing the endpoint from outside the Docker container. Note that the [`WALLARM_STATUS_ALLOW`](../admin-en/installation-docker-en.md#wallarm-status-allow-env-var) environment variable must be set appropriately for this functionality.
