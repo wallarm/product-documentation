@@ -200,7 +200,7 @@ A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains
     * `/opt/wallarm/etc/wallarm/custom_ruleset` for Docker NGINX-based image or all-in-one installer installations
     * `/etc/wallarm/custom_ruleset` for other installation artifacts
 
-### wallarm_enable_apifw
+<!-- ### wallarm_enable_apifw
 
 The directive enables `on` / disables `off` [API Policy Enforcement](../api-policy-enforcement/overview.md), available from release 4.10 onwards. Please note that activating this feature does not substitute for the required subscription and configuration through the Wallarm Console UI.
 
@@ -209,7 +209,7 @@ Currently this directive is available only for NGINX nodes deployed with [all-in
 !!! info
     This parameter can be set inside the `server` blocks.
 
-    **Default value**: `on`.
+    **Default value**: `on`. -->
 
 ### wallarm_enable_libdetection
 
