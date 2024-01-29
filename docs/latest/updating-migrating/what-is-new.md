@@ -1,6 +1,6 @@
 # What is new in Wallarm node 4.10
 
-The new version of the Wallarm node has been released! This version brings advanced features like credential stuffing detection and API policy enforcement, enhancing the security of your APIs.
+The new version of the Wallarm node has been released! This update introduces an advanced feature for credential stuffing detection, further enhancing the security of your APIs.
 
 ## Credential Stuffing Detection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
@@ -8,7 +8,7 @@ Beginning with release 4.10, Wallarm introduces real-time detection and notifica
 
 [Learn how to configure Credential Stuffing Detection](../about-wallarm/credential-stuffing.md)
 
-## API Policy Enforcement
+<!-- ## API Policy Enforcement
 
 In this latest update, we introduce API Policy Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.
 
@@ -19,7 +19,7 @@ Additionally, this update introduces new parameters for some deployment options,
 * For NGINX Ingress Controller: the [`controller.wallarm.apifirewall`](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) values group.
 * For NGINX-based Docker image: the environment variable `WALLARM_APIFW_ENABLE`.
 
-[Learn how to configure API Policy Enforcement](../api-policy-enforcement/setup.md)
+[Learn how to configure API Policy Enforcement](../api-policy-enforcement/setup.md) -->
 
 ## Optimized and more secure NGINX-based Docker image
 
