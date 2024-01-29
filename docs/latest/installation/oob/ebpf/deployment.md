@@ -1,8 +1,8 @@
 [deployment-platform-docs]:    ../../supported-deployment-options.md
 
-# Wallarm eBPF-Based Solution (Beta Version)
+# Wallarm eBPF-Based Solution
 
-Wallarm offers a beta version of its eBPF-based security solution that leverages the power of the Linux kernel and seamlessly integrates with Kubernetes environments. This article explains how to use and deploy the solution using the Helm chart.
+Wallarm offers its eBPF-based security solution that leverages the power of the Linux kernel and seamlessly integrates with Kubernetes environments. This article explains how to use and deploy the solution using the Helm chart.
 
 ## Traffic flow
 
