@@ -175,15 +175,6 @@ nav:
       - Troubleshooting: fast/tshoot.md
   - WAAP/WAF:
     - Overview: about-wallarm/waap-overview.md
-    - Attack Detection:
-      - Procedure: about-wallarm/protecting-against-attacks.md
-      - Analyzing Requests: user-guides/rules/request-processing.md
-      - Attack Types: attacks-vulns-list.md
-      - Rules:
-        - Overview: user-guides/rules/intro.md
-        - Configuring: user-guides/rules/add-rule.md
-        - Ruleset Lifecycle: user-guides/rules/compiling.md
-    - Filtration Mode: admin-en/configure-wallarm-mode.md
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
     - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
     - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
@@ -194,7 +185,14 @@ nav:
     - Virtual Patching: user-guides/rules/vpatch-rule.md
     - User‑Defined Detection Rules: user-guides/rules/regex-rule.md
     - Masking Sensitive Data: user-guides/rules/sensitive-data-rule.md
-    # - Overview: ...
+    - Triggers: user-guides/triggers/triggers.md
+    - Filtration Mode: admin-en/configure-wallarm-mode.md
+    - Attack Detection:
+      - Procedure: about-wallarm/protecting-against-attacks.md
+      - Analyzing Requests: user-guides/rules/request-processing.md
+      - Attack Types: attacks-vulns-list.md
+      - Rules: user-guides/rules/rules.md
+# - Overview: ...
     # - OWASP Top 10: ...
     # - Known attacks / CVEs: ...
     # - Triggers: ...
@@ -477,7 +475,6 @@ nav:
       - Overview: api/overview.md
       - API Request Examples: api/request-examples.md
     - Wallarm Terraform Provider: admin-en/managing/terraform-provider.md
-    - Wallarm Triggers: user-guides/triggers/triggers.md
     - Learning Monthly Request Volume of an Application: admin-en/operation/learn-incoming-request-number.md
     - Docker Image Security:
       - Verifying Docker Image Signatures: integrations-devsecops/verify-docker-image-signature.md

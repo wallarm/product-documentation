@@ -1,1 +1,1 @@
---8<-- "latest/faq/wrong-blocking.md"
+--8<-- "4.6/faq/wrong-blocking.md"

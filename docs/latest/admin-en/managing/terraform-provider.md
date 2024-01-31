@@ -67,7 +67,7 @@ With the Wallarm provider, via Terraform you can manage:
 
 * [Nodes](../../user-guides/nodes/nodes.md) in your account
 * [Applications](../../user-guides/settings/applications.md)
-* [Rules](../../user-guides/rules/intro.md)
+* [Rules](../../user-guides/rules/rules.md)
 * [Triggers](../../user-guides/triggers/triggers.md)
 * IPs in the [denylist](../../user-guides/ip-lists/overview.md), [allowlist](../../user-guides/ip-lists/overview.md) and [graylist](../../user-guides/ip-lists/overview.md)
 * [Users](../../user-guides/settings/users.md)

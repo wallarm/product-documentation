@@ -1,1 +1,1 @@
---8<-- "latest/glossary-en.md"
+--8<-- "4.6/glossary-en.md"

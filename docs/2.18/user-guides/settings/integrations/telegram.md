@@ -20,7 +20,7 @@ Notifications include brief details of triggered events.
 
     Details on available events:
 
-    --8<-- "../include/integrations/events-for-integrations.md"
+    --8<-- "../include/integrations/events-for-integrations-4.6.md"
 
     The integration with Telegram can be tested only if this integration is already created.
 

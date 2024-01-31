@@ -2,7 +2,7 @@
 
 You can set up Wallarm to log the following events in [Microsoft Azure Sentinel](https://azure.microsoft.com/en-au/products/microsoft-sentinel/):
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations-4.6.md"
 
 ## Setting up integration
 

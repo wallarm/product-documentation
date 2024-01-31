@@ -12,7 +12,7 @@ These instructions describe the steps to upgrade the end‑of‑life multi-tenan
 
 ## Step 1: Contact the Wallarm support team
 
-Request the [Wallarm support team](mailto:support@wallarm.com) assistance to get the latest version of the [custom ruleset building](../../user-guides/rules/compiling.md) feature during multi-tenant node upgrade.
+Request the [Wallarm support team](mailto:support@wallarm.com) assistance to get the latest version of the [custom ruleset building](../../user-guides/rules/rules.md#ruleset-lifecycle) feature during multi-tenant node upgrade.
 
 !!! info "Blocked upgrade"
     Using an incorrect version of the custom ruleset building feature may block the upgrade process.

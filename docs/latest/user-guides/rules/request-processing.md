@@ -1,3 +1,6 @@
+[rule-creation-options]:    ../../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
+[request-processing]:       ../../user-guides/rules/request-processing.md
+
 # Analyzing Requests
 
 For an effective request analysis, Wallarm follows the principles:
@@ -49,7 +52,7 @@ The following tags correspond to the URL parser:
             * `action_name` — `cb-common`
             * `action_ext` — `ffc63abe`
         
-        To fix this, manually edit the **action_name** and **action_ext** points in the [advanced edit form](add-rule.md#advanced-edit-form) of the URI constructor.
+        To fix this, manually edit the **action_name** and **action_ext** points in the [advanced edit form](rules.md#advanced-edit-form) of the URI constructor.
 
 * **query** for [query string parameters](#query-string-parameters) after the `?` symbol. 
 
@@ -327,7 +330,7 @@ Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'name']` — `John Doe`
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'iat']` — `1516239022`
 
-When defining a request element the [rule](add-rule.md) is applied to:
+When defining a request element the [rule](rules.md) is applied to:
 
 * Choose the parser of the request part containing JWT first
 * Specify one of the listed `jwt_*` parameters as the `jwt` parser value, e.g. for the `name` JWT payload parameter value:
@@ -378,12 +381,12 @@ To create and apply the rule in the **Rules** section:
 
 1. Create the rule **Disable/Enable request parser** in the **Rules** section of Wallarm Console. The rule consists of the following components:
 
-      * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
+      * **Condition** [describes](rules.md#branch-description) the endpoints to apply the rule to.
       * Parsers to be disabled / enabled for the specified request element.      
       * **Part of request** points to the original request element to be parsed / not parsed with the selected parsers.
 
          --8<-- "../include/waf/features/rules/request-part-reference.md"
-2. Wait for the [rule compilation to complete](compiling.md).
+2. Wait for the [rule compilation to complete](rules.md#ruleset-lifecycle).
 
 **Rule example**
 
@@ -418,13 +421,13 @@ To create and apply the rule in the **Rules** section:
 
 1. Create the rule **Change server response headers** in the **Rules** section of Wallarm Console. The rule consists of the following components:
 
-      * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
+      * **Condition** [describes](rules.md#branch-description) the endpoints to apply the rule to.
       * Name of the header to be added or to replace its value.
       * New value of the specified header.
 
         To delete an existing response header, please leave the value of this header on the **Replace** tab empty.
 
-2. Wait for the [rule compilation to complete](compiling.md).
+2. Wait for the [rule compilation to complete](rules.md#ruleset-lifecycle).
 
 **Rule example**
 

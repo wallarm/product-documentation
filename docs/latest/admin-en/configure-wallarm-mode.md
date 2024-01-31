@@ -1,4 +1,5 @@
-[acl-access-phase]:     ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
+[rule-creation-options]:    ../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
+[acl-access-phase]:         ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
 
 # Filtration Mode
 
@@ -118,11 +119,11 @@ To set a filtration mode, create a **Set filtration mode** rule and select the a
 
 **Default instance of rule**
 
-Wallarm automatically creates the instance of the `Set filtration mode` rule on the [default](../../user-guides/rules/view.md#default-rules) level. The system sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
+Wallarm automatically creates the instance of the `Set filtration mode` rule on the [default](../user-guides/rules/rules.md#default-rules) level. The system sets its value on the basis of [general filtration mode](#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
 
-This instance of the rule cannot be deleted. To change its value, modify [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting of the system.
+This instance of the rule cannot be deleted. To change its value, modify [general filtration mode](#setting-up-the-general-filtration-rule-in-wallarm-console) setting of the system.
 
-As all the other default rules, the `Set filtration mode` default rule is [inherited](../../user-guides/rules/view.md) by all branches.
+As all the other default rules, the `Set filtration mode` default rule is [inherited](../user-guides/rules/rules.md#distinct-and-inherited-rules) by all branches.
 
 **Example: Disabling Request Blocking During User Registration**
 
@@ -143,9 +144,9 @@ As all the other default rules, the `Set filtration mode` default rule is [inher
 
 **API calls to create the rule**
 
-To create the filtration mode rule, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is the example of the corresponding API call.
+To create the filtration mode rule, you can [call the Wallarm API directly](../api/overview.md) besides using the Wallarm Console UI. Below is the example of the corresponding API call.
 
-The following request will create the rule setting the node to filter traffic going to the [application](../settings/applications.md) with ID `3` in the monitoring mode.
+The following request will create the rule setting the node to filter traffic going to the [application](../user-guides/settings/applications.md) with ID `3` in the monitoring mode.
 
 --8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.md"
 

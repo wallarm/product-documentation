@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/rules/regex-rule.md"
+--8<-- "4.6/user-guides/rules/regex-rule.md"

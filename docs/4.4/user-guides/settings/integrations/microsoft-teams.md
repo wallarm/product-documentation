@@ -2,7 +2,7 @@
 
 You can set up Wallarm to send notifications to your Microsoft Teams channel when the following events are triggered:
 
---8<-- "../include/integrations/events-for-integrations.md"
+--8<-- "../include/integrations/events-for-integrations-4.6.md"
 
 ## Setting up integration
 

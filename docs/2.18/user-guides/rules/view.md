@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/rules/view.md"
+--8<-- "4.6/user-guides/rules/view.md"

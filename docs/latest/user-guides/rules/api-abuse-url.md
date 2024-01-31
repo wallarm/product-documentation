@@ -2,7 +2,7 @@
 
 The [**API Abuse Prevention**](../../about-wallarm/api-abuse-prevention.md) module of the Wallarm platform identifies and counters bots based on the [profiles](../../user-guides/api-abuse-prevention.md) that set the specific applications to be protected, the types of bots targeted, the tolerance level, etc. Additionally, the **Set API Abuse Prevention mode** rule mentioned in this article allows you to turn off bot protection for particular URLs and requests.
 
-As rule's [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor) includes both URL and request elements like headers, you can use the rule to disable bot protection both for URLs that the requests target and for the particular request types, for example, for the requests containing specific headers.
+As rule's [URI constructor](../../user-guides/rules/rules.md#uri-constructor) includes both URL and request elements like headers, you can use the rule to disable bot protection both for URLs that the requests target and for the particular request types, for example, for the requests containing specific headers.
 
 !!! info "Rule support in different node versions"
     This feature is only supported by nodes version 4.8 and above.
@@ -12,7 +12,7 @@ As rule's [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor)
 To disable bot protection for specific URL or request type:
 
 1. Proceed to Wallarm Console → **Rules** → **Add rule**.
-1. In **If request is**, [describe](../../user-guides/rules/add-rule.md#uri-constructor) the requests and/or URLs to apply the rule to.
+1. In **If request is**, [describe](../../user-guides/rules/rules.md#uri-constructor) the requests and/or URLs to apply the rule to.
 
     To specify the URL, if you use the [**API Discovery**](../../api-discovery/overview.md) module and have your endpoints discovered, you can also quickly create the rule for the endpoint using its menu.
 

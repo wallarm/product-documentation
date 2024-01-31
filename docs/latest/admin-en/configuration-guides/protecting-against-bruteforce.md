@@ -18,7 +18,7 @@ To configure brute-force protection:
 1. Set the threshold for the number of requests originated from the same IP address for a period of time.
 1. To activate the trigger only for requests sent to certain endpoints, specify the **URI** filter:
     
-    * Besides entering specific URIs, you can [configure patterns](../../user-guides/rules/add-rule.md) using wildcards and regular expressions.
+    * Besides entering specific URIs, you can [configure patterns](../../user-guides/rules/rules.md) using wildcards and regular expressions.
 
         ![Brute force trigger example](../../images/user-guides/triggers/trigger-example6.png)
 

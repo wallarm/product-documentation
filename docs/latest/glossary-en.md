@@ -92,7 +92,7 @@ Custom rules enable you to set up individual rules for the traffic processing, e
 
 A custom ruleset is not empty by default, it contains the rules created for all clients registered in the Cloud, e.g. the filtration mode rule with the value from the [**Settings → General** tab](user-guides/settings/general.md).
 
-[More details on custom rulesets](user-guides/rules/intro.md)
+[More details on custom rulesets](user-guides/rules/rules.md)
 
 ## Invalid Request
 A request that was checked by filter node and does not match LOM rules.

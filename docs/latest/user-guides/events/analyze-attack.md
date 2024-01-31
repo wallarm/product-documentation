@@ -1,10 +1,8 @@
 [link-check-attack]:        check-attack.md
 [link-false-attack]:        false-attack.md
-
 [img-analyze-attack]:       ../../images/user-guides/events/analyze-attack.png
 [img-analyze-attack-raw]:   ../../images/user-guides/events/analyze-attack-raw.png
 [img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
-
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
 
 # Analyzing Events
@@ -46,8 +44,8 @@ Request view provides the following options for Wallarm behavior fine-tuning:
 * [**Mark as false positive** and **False**](false-attack.md) to report legitimate requests flagged as attacks.
 * **Disable base64** to indicate the base64 parser incorrectly applied to the request element.
 
-    The button opens a pre-filled form for setting up the [rule disabling the parser](../rules/disable-request-parsers.md).
-* **Rule** to create [any individual rule](../rules/add-rule.md#rule) to handle certain requests.
+    The button opens a pre-filled form for setting up the [rule disabling the parser](../../user-guides/rules/request-processing.md#managing-parsers).
+* **Rule** to create [any individual rule](../rules/rules.md#rule) to handle certain requests.
 
     The button opens a rule setup form pre-filled with the request data.
 

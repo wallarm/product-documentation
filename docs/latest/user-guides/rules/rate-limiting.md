@@ -2,7 +2,7 @@
 
 Lack of rate limiting is included in the [OWASP API Top 10 2019](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa4-lack-of-resources-and-rate-limiting.md) list of most serious API security risks. Without proper rate limiting measures, APIs are vulnerable to attacks such as denial-of-service (DoS), brute force and API overuse. This article explains how to safeguard your API and users with the Wallarm's rate limit regulation rule.
 
-Wallarm provides the **Set rate limit** [rule](../../user-guides/rules/intro.md) to help prevent excessive traffic to your API. This rule enables you to specify the maximum number of connections that can be made to a particular scope, while also ensuring that incoming requests are evenly distributed. If a request exceeds the defined limit, Wallarm rejects it and returns the code you selected in the rule.
+Wallarm provides the **Set rate limit** [rule](../../user-guides/rules/rules.md) to help prevent excessive traffic to your API. This rule enables you to specify the maximum number of connections that can be made to a particular scope, while also ensuring that incoming requests are evenly distributed. If a request exceeds the defined limit, Wallarm rejects it and returns the code you selected in the rule.
 
 Wallarm examines various request parameters such as cookies or JSON fields, which allows you to limit connections based not only on the source IP address, but also on session identifiers, usernames, or email addresses. This additional level of granularity enables you to enhance the overall security of a platform based on any origin data.
 
@@ -11,7 +11,7 @@ Wallarm examines various request parameters such as cookies or JSON fields, whic
 To set and apply rate limit:
 
 1. Proceed to Wallarm Console → **Rules** → **Add rule**.
-1. In **If request is**, [describe](add-rule.md#branch-description) the scope to apply the rule to.
+1. In **If request is**, [describe](rules.md#branch-description) the scope to apply the rule to.
 1. In **Then**, choose **Set rate limit** and set a desired limit for connections to your scope:
 
     * Maximum number for the requests per second or minute.
@@ -31,7 +31,7 @@ To set and apply rate limit:
 
     !!! info "Restrictions on the value length"
         The maximum allowed length of parameter values by which you measure limits is 8000 symbols.
-1. Wait for the [rule compilation to complete](compiling.md).
+1. Wait for the [rule compilation to complete](rules.md#ruleset-lifecycle).
 
 ## Rule examples
 
@@ -63,7 +63,7 @@ Suppose your application assigns each user session with a unique ID and reflects
 
 ![Example](../../images/user-guides/rules/rate-limit-for-jwt.png)
 
-The [regexp](add-rule.md#condition-type-regex) used for the `Authorization` value is ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`.
+The [regexp](rules.md#condition-type-regex) used for the `Authorization` value is ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`.
 
 If you use JWT (JSON Web Tokens) to manage user sessions, you can adjust the rule to [decrypt](request-processing.md#jwt) the JWT and extract the session ID from its payload as follows:
 

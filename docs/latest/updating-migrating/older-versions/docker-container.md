@@ -142,7 +142,7 @@ There are two options for running the container using the updated image:
       * Environment variable [`WALLARM_MODE`](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) or the directive [`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode) of the NGINX‑based Docker container
       * Environment variable [`WALLARM_MODE`](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables) or the directive [`mode`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) of the Envoy‑based Docker container
       * [General filtration rule configured in Wallarm Console](../../user-guides/settings/general.md)
-      * [Low-level filtration rules configured in Wallarm Console](../../user-guides/rules/wallarm-mode-rule.md)
+      * [Low-level filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-the-filtration-rules-on-the-rules-tab)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 
 ## Step 14: Test the filtering node operation

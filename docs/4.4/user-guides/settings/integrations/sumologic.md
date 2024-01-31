@@ -2,7 +2,7 @@
 
 You can set up Wallarm to send messages to Sumo Logic when the following events are triggered:
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations-4.6.md"
 
 ## Setting up integration
 
