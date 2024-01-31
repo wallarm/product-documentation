@@ -11,7 +11,6 @@ theme:
   language_lowercase: pt-br
   language_name: Portuguese (BR)
   version: "4.8"
-  try_button_name: "Experimente grátis"
   playground_button_name: "Explore o Playground"
 
 docs_dir: docs/pt-BR

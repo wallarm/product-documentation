@@ -655,27 +655,18 @@ img {
   transition: all 0.3s ease;
 }
 
-.demo-button  {
+.playground-button {
   background-color: #FC7303;
 }
 
-.demo-button:hover  {
-  background-color: #D85602;
-}
-
-.playground-button {
-  background-color: #4842ff;
-  margin-right: 0px;
-}
-
 .playground-button:hover {
-  background-color: #5d57ff;
+  background-color: #D85602;
 }
 
 @media screen and (max-width: 959px) {
   .md-header__inner.md-grid {
     display: grid;
-    height: 157px;
+    height: 117px;
     grid-template-rows: 65px 40px 50px;
     grid-template-areas:
       "toggle logo title back search"
@@ -696,17 +687,13 @@ img {
   .header-buttons a {
     text-overflow: ellipsis;
     overflow: hidden;
-    height: 37px;
+    height: 36px;
     white-space: nowrap;
   }
   .playground-button {
     width: 50%;
     margin: 0;
     margin-right: 0.4rem;
-  }
-  .demo-button.desktop-button {
-    width: 50%;
-    margin: 0;
   }
   .back-wallarmcom {
     grid-area: back;
@@ -719,8 +706,7 @@ img {
     grid-area: toggle;
   }
   .languages {
-    position: relative;
-    grid-area: lang;
+    width: 50%;
   }
   .languages .languages-list, .languages .languages-main {
     width: 100%;
@@ -1281,7 +1267,7 @@ html .md-footer .md-social a:hover {
 }
 
 .languages-main {
-  height: 39px;
+  height: 36px;
   border-style: solid;
   background-color: #FFFF;
   border-color: rgba(149, 157, 172, 0.24);
