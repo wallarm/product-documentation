@@ -12,9 +12,9 @@ Usage: setup.sh [options]... [arguments]... [filtering/postanalytics]
 
 OPTION                      DESCRIPTION
 -b, --batch                 Batch mode, non-interactive installation.
-    --install-only          In batch mode, this flag starts a stage that copies needed configuration files and automatically sets NGINX for node installation, skipping Cloud registration and activation. Requires --batch flag.
-    --skip-ngx-config       A batch mode option that avoids auto NGINX config changes, ideal for later manual adjustments. Works with --install-only and needs --batch flag.
-    --register-only         This modifier finalizes setup by registering the node and starting its service, part of batch mode operations. Requires --batch flag.
+    --install-only          Initiates the first stage of the all-in-one installer in batch mode. Copies essential configurations, including files and binaries, and sets up NGINX for node installation, bypassing Cloud registration and activation. Requires --batch.
+    --skip-ngx-config       Avoids automatic NGINX configuration changes that occur during the --install-only stage in batch mode, suitable for users who prefer manual adjustments later. When used with --install-only, it ensures only essential configurations are copied without altering NGINX settings. Requires --batch.
+    --register-only         Initiates the second stage of the all-in-one installer in batch mode, completing the setup by registering the node in the Cloud and starting its service. Requires --batch.
 -t, --token TOKEN           Node token, required in a batch mode.
 -c, --cloud CLOUD           Wallarm Cloud, one of US/EU, default is EU, only used in a batch mode.
 -H, --host HOST             Wallarm API address, for example, api.wallarm.com or us1.api.wallarm.com, only used in a batch mode.
