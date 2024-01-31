@@ -2,7 +2,7 @@
 
 [API Discovery](overview.md) automatically calculates a **risk score** for each endpoint in your API inventory. The risk score allows you to understand which endpoints are most likely to be an attack target and therefore should be the focus of your security efforts.
 
-## Risc score factors
+## Risk score factors
 
 The risk score is made up of various factors, each having its own weight when calculating the final risk score. By default, the highest weight from all factors is used as endpoint risk score.
 
