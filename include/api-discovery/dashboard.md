@@ -4,7 +4,8 @@ The **API Discovery** Wallarm dashboard summarizes data about your API collected
 * The [top risky][apid-risk-score] endpoints among the whole API inventory and among the newly discovered endpoints in the last 7 days
 
     The top risky endpoints are most likely to be an attack target due to active vulnerabilities, endpoints being [new][apid-track-changes] or [shadow][apid-rogue], and other risk factors. Each risky endpoint is provided with the number of targeting hits.
-            
+
+* Number of identified [rogue][apid-rogue] (shadow, zombie and orphan) APIs      
 * Changes of your API in the last 7 days by type (new, changed, unused APIs)
 * Total number of discovered endpoints and how many of them are external and internal
 * Sensitive data in API by groups (personal, finance, etc.) and by types
