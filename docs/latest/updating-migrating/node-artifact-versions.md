@@ -10,27 +10,9 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
-### 4.8.4 (2023-11-17)
+### 4.10.0 (2024-01-31)
 
-* Added support for NGINX Mainline 1.25.3 for musl-based Linux distributions
-* Fixed issues with bundled Python for musl-based Linux distributions
-
-### 4.8.3 (2023-11-07)
-
-* Fixed issues with SELinux on certain Linux distributions, including Oracle Linux 9, Red Hat 9, and others that employ strict SELinux policies
-
-### 4.8.2 (2023-11-03)
-
-* Improved detection of brute-force attacks
-* Added support for NGINX Mainline 1.25.3
-
-### 4.8.1 (2023-10-30)
-
-* Bug fixes
-
-### 4.8.0 (2023-10-19)
-
-* Initial release 4.8, [see changelog](what-is-new.md)
+* Initial release 4.10, [see changelog](what-is-new.md)
 
 ## DEB/RPM packages for NGINX
 
