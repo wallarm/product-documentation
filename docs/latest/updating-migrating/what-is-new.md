@@ -52,6 +52,20 @@ The [Docker image of Wallarm's NGINX-based filtering node](../admin-en/installat
 
 The newly released product features are also supported by the new NGINX-based Docker image of the new format.
 
+## Optimized cloud images
+
+The [Amazon Machine Image (AMI)](../installation/cloud-platforms/aws/ami.md) and [Google Cloud Machine Image](../installation/cloud-platforms/gcp/machine-image.md) have been optimized. Key updates include:
+
+* The cloud images now use Debian 12.x (bookworm), the latest stable release, replacing the deprecated Debian 10.x (buster) for enhanced security.
+* Updated to the newer version of NGINX, 1.22.0, replacing the previous 1.14.x version.
+* Support for processors with ARM64 architecture, which is automatically identified during the installation process.
+* The cloud images are now built using the [all-in-one installer](../installation/nginx/all-in-one.md), which changes its internal directory structure:
+
+      * Log file directory: `/var/log/wallarm` → `/opt/wallarm/var/log/wallarm`.
+      * Directory with files containing credentials for the Wallarm node to connect to the Cloud: `/etc/wallarm` → `/opt/wallarm/etc/wallarm`.
+
+The newly released product features are also supported by the cloud images of the new format.
+
 ## When upgrading node 3.6 and lower
 
 If upgrading from the version 3.6 or lower, learn all changes from the [separate list](older-versions/what-is-new.md).
