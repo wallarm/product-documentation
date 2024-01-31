@@ -59,7 +59,6 @@ theme:
     text: Sk Modernist
     code: Roboto Mono
   playground_button_name: "Explore Playground"
-  try_button_name: "Try for free"
 
 extra:
   social:

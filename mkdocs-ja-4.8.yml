@@ -11,7 +11,6 @@ theme:
   language_lowercase: ja
   language_name: Japanese
   version: "4.8"
-  try_button_name: "無料で試す"
   playground_button_name: "プレイグラウンドを探機"
 
 docs_dir: docs/ja

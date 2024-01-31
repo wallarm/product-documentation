@@ -655,17 +655,8 @@ img {
   transition: all 0.3s ease;
 }
 
-.demo-button  {
-  background-color: #FC7303;
-}
-
-.demo-button:hover  {
-  background-color: #D85602;
-}
-
 .playground-button {
   background-color: #4842ff;
-  margin-right: 0px;
 }
 
 .playground-button:hover {
@@ -703,10 +694,6 @@ img {
     width: 50%;
     margin: 0;
     margin-right: 0.4rem;
-  }
-  .demo-button.desktop-button {
-    width: 50%;
-    margin: 0;
   }
   .back-wallarmcom {
     grid-area: back;
