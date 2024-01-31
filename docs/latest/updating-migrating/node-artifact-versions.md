@@ -107,13 +107,9 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](docker-container.md)
 
-### 4.8.1-1 (2023-11-03)
+### 4.10.0-1 (2024-01-31)
 
-* Improved detection of brute-force attacks
-
-### 4.8.0-1 (2023-10-19)
-
-* Initial release 4.8, [see changelog](what-is-new.md)
+* Initial release 4.10, including optimizations, and security enhancements for the Docker image. [See changelog](what-is-new.md)
 
 ## Envoy-based Docker image
 
