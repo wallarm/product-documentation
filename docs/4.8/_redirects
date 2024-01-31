@@ -589,3 +589,7 @@
 /tr/2.18/admin-en/scanner-ips-allowlisting/ /tr/user-guides/ip-lists/overview/
 /tr/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/ /tr/installation/kubernetes/sidecar-proxy/deployment/
 /tr/2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses/ /tr/user-guides/ip-lists/overview/
+
+/ja/user-guides/rules/rules/ /ja/user-guides/rules/intro/
+/tr/user-guides/rules/rules/ /tr/user-guides/rules/intro/
+/pt-br/user-guides/rules/rules/ /pt-br/user-guides/rules/intro/
