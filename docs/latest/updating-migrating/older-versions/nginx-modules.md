@@ -97,10 +97,10 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
     === "API token"
         ```bash
         # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.4.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.0.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.4.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.0.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -108,10 +108,10 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
     === "Node token"
         ```bash
         # If using the x86_64 version:
-        sudo sh wallarm-4.8.4.x86_64-glibc.sh filtering
+        sudo sh wallarm-4.10.0.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo sh wallarm-4.8.4.aarch64-glibc.sh filtering
+        sudo sh wallarm-4.10.0.aarch64-glibc.sh filtering
         ```
 
 ### Step 7: Migrate allowlists and denylists from the previous Wallarm node version to 4.8 (only if upgrading node 2.18 or lower)
