@@ -13,6 +13,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ### 4.8.8 (2024-01-31)
 
 * Fixed the `syncnode` script issues
+* Introduced the [`wallarm_memlimit_debug`](../admin-en/configure-parameters-en.md#wallarm_memlimit_debug) NGINX directive to control whether to generate the `/tmp/proton_last_memlimit.req` file containing request details when a memory limit is exceeded or not
 
 ### 4.8.7 (2024-01-19)
 
