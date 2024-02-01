@@ -21,7 +21,7 @@ These instructions describe the steps to upgrade the end‑of‑life postanalyti
 
 ## Upgrade with all-in-one installer
 
-Use the procedure below to upgrade the end‑of‑life postanalytics module (version 3.6 and lower) installed on a separate server to version 4.8 using [all-in-one installer](../../installation/nginx/all-in-one.md).
+Use the procedure below to upgrade the end‑of‑life postanalytics module (version 3.6 and lower) installed on a separate server to version 4.10 using [all-in-one installer](../../installation/nginx/all-in-one.md).
 
 ### Requirements for upgrade using all-in-one installer
 

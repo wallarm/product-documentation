@@ -1,6 +1,6 @@
 # Recommendations for a safe node upgrade process
 
-This document describes recommendations and associated risks for a safe upgrade of Wallarm filtering node up to 4.8.
+This document describes recommendations and associated risks for a safe upgrade of Wallarm filtering node up to 4.10.
 
 ## Common recommendations
 
@@ -17,7 +17,7 @@ Below are the risks that may occur when updating the filtering node. To reduce t
 
 ### Changed functionality
 
-* [What is new in Wallarm node 4.8](what-is-new.md)
+* [What is new in Wallarm node 4.10](what-is-new.md)
 * [What is new if upgrading the EOL node (3.6 or lower)](older-versions/what-is-new.md)
 
 ### New false positives

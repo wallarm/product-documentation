@@ -7,7 +7,7 @@
 
 # Upgrading NGINX Ingress controller with integrated Wallarm modules
 
-These instructions describe the steps to upgrade deployed Wallarm NGINX-based Ingress Controller 4.x to the new version with Wallarm node 4.8.
+These instructions describe the steps to upgrade deployed Wallarm NGINX-based Ingress Controller 4.x to the new version with Wallarm node 4.10.
 
 To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/ingress-controller.md).
 
@@ -35,12 +35,12 @@ To install and run the plugin:
 2. Run the plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.8.6 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.0 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
     * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
-    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Ingress controller 4.8 settings - you can use the one created for running the previous Ingress controller version
+    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Ingress controller 4.10 settings - you can use the one created for running the previous Ingress controller version
 3. Make sure that no changes can affect the stability of the running services and carefully examine the errors from stdout.
 
     If stdout is empty, make sure that the `values.yaml` file is valid.
@@ -50,12 +50,12 @@ To install and run the plugin:
 Upgrade the deployed NGINX Ingress controller:
 
 ``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.8.6 -f <PATH_TO_VALUES>
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.0 -f <PATH_TO_VALUES>
 ```
 
 * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
 * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
-* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Ingress controller 4.8 settings - you can use the one created for running the previous Ingress controller version
+* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Ingress controller 4.10 settings - you can use the one created for running the previous Ingress controller version
 
 ## Step 4: Test the upgraded Ingress controller
 
@@ -67,7 +67,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.8
 
     Where `<NAMESPACE>` is the namespace the Helm chart with the Ingress controller is deployed to.
 
-    The chart version should correspond to `wallarm-ingress-4.8.6`.
+    The chart version should correspond to `wallarm-ingress-4.10.0`.
 1. Get the list of pods:
     
     ``` bash
@@ -89,9 +89,3 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.8
     ```
 
     Check that the solution of the newer version processes the malicious request as it did in the previous version.
-
-## Step 5: Update the Wallarm blocking page
-
-If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via Ingress annotations is returned to blocked requests, [adjust its configuration](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) to the released changes.
-
-In new node versions, the Wallarm blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.

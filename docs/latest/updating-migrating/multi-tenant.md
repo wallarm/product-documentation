@@ -3,7 +3,7 @@
 
 # Upgrading the multi-tenant node
 
-These instructions describe the steps to upgrade the multi-tenant node 4.x up to 4.8.
+These instructions describe the steps to upgrade the multi-tenant node 4.x up to 4.10.
 
 To upgrade the end‑of‑life multi-tenant node (3.6 or lower), please use the [different instructions](older-versions/multi-tenant.md).
 

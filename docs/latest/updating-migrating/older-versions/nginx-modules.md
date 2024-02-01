@@ -24,7 +24,7 @@
 
 # Upgrading EOL Wallarm NGINX modules
 
-These instructions describe the steps to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.8. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.10. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
 * [Individual packages for NGINX stable](../../installation/nginx/dynamic-module.md)
 * [Individual packages for NGINX Plus](../../installation/nginx-plus.md)
@@ -32,9 +32,9 @@ These instructions describe the steps to upgrade the end‑of‑life Wallarm NGI
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
-## Inform Wallarm technical support that you are upgrading EOL  node
+## Inform Wallarm technical support that you are upgrading EOL node
 
-If upgrading the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.8, inform [Wallarm technical support](mailto:support@wallarm.com) about that and ask for assistance.
+If upgrading the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.10, inform [Wallarm technical support](mailto:support@wallarm.com) about that and ask for assistance.
 
 Besides any other help, ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
 
@@ -44,7 +44,7 @@ Besides any other help, ask to enable new IP lists logic for your Wallarm accoun
 
 ## Upgrade with all-in-one installer
 
-Use the procedure below to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.8 using [all-in-one installer](../../installation/nginx/all-in-one.md).
+Use the procedure below to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.10 using [all-in-one installer](../../installation/nginx/all-in-one.md).
 
 ### Requirements for upgrade using all-in-one installer
 
@@ -114,7 +114,7 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
         sudo sh wallarm-4.10.0.aarch64-glibc.sh filtering
         ```
 
-### Step 7: Migrate allowlists and denylists from the previous Wallarm node version to 4.8 (only if upgrading node 2.18 or lower)
+### Step 7: Migrate allowlists and denylists from the previous Wallarm node version to 4.10 (only if upgrading node 2.18 or lower)
 
 If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to the latest version.
 
@@ -127,10 +127,6 @@ Transfer node-related NGINX configuration and postanalytics configuration from t
 On an old machine, depending on OS and NGINX version, the NGINX configuration files may be located in different directories and have different names. Most common are the following:
 
 * `/etc/nginx/conf.d/default.conf` with NGINX settings
-* `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
-
-    The file is used for settings applied to all domains. To apply different settings to different domain groups, the `default.conf` is usually used or new configuration file is created for each domain group (for example, `example.com.conf` and `test.com.conf`). Detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
-    
 * `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
 
 Also, the configuration of the postanalytics module (Tarantool database settings) is usually located here:

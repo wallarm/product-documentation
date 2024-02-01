@@ -4,6 +4,9 @@
 
 These instructions describe the steps to upgrade Wallarm Sidecar 4.x to the new version with Wallarm node 4.8.
 
+!!! info "Support for 4.10"
+    The Helm chart for Sidecar controller deployment has not been updated to the 4.10 release yet.
+
 ## Requirements
 
 --8<-- "../include/waf/installation/sidecar-proxy-reqs.md"

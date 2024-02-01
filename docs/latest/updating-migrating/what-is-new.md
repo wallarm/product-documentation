@@ -49,6 +49,9 @@ The [Docker image of Wallarm's NGINX-based filtering node](../admin-en/installat
 
       * Log file directory: `/var/log/wallarm` → `/opt/wallarm/var/log/wallarm`.
       * Directory with files containing credentials for the Wallarm node to connect to the Cloud: `/etc/wallarm` → `/opt/wallarm/etc/wallarm`.
+      * The path to the `/usr/share` directory → `/opt/wallarm/usr/share`.
+      
+          This introduces the new path to the [sample blocking page](../admin-en/configuration-guides/configure-block-page-and-code.md), located at `/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`, and to the diagnostic script, found at `/opt/wallarm/usr/share/wallarm-common/collect-info.sh`.
 
 The newly released product features are also supported by the new NGINX-based Docker image of the new format.
 
@@ -63,6 +66,11 @@ The [Amazon Machine Image (AMI)](../installation/cloud-platforms/aws/ami.md) and
 
       * Log file directory: `/var/log/wallarm` → `/opt/wallarm/var/log/wallarm`.
       * Directory with files containing credentials for the Wallarm node to connect to the Cloud: `/etc/wallarm` → `/opt/wallarm/etc/wallarm`.
+      * The path to the `/usr/share` directory → `/opt/wallarm/usr/share`.
+      
+          This introduces the new path to the [sample blocking page](../admin-en/configuration-guides/configure-block-page-and-code.md), located at `/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`, and to the diagnostic script, found at `/opt/wallarm/usr/share/wallarm-common/collect-info.sh`.
+      
+      * The `/etc/nginx/conf.d/wallarm.conf` file with the global Wallarm filtering node settings has been removed.
 
 The newly released product features are also supported by the cloud images of the new format.
 

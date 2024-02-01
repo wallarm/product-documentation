@@ -17,10 +17,10 @@
 
 # Upgrading the Docker NGINX- or Envoy-based image
 
-These instructions describe the steps to upgrade the running Docker NGINX- or Envoy-based image 4.x to the version 4.8.
+These instructions describe the steps to upgrade the running Docker NGINX- or Envoy-based image 4.x to the version 4.10.
 
 !!! warning "Using credentials of already existing Wallarm node"
-    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 4.8 and deploy it as the Docker container.
+    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 4.10 and deploy it as the Docker container.
 
 To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/docker-container.md).
 
@@ -39,14 +39,9 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
     docker pull wallarm/envoy:4.8.0-1
     ```
 
-## Step 2: Update the Wallarm blocking page (if upgrading NGINX-based image)
+## Step 2: Review recent architectural updates (for NGINX-based Docker image)
 
-In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
-
-If the Docker container was configured to return the `&/usr/share/nginx/html/wallarm_blocked.html` page to blocked requests, change this configuration as follows:
-
-1. [Copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
-1. [Mount](../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) the customized page and the NGINX configuration file to a new Docker container in the next step.
+The latest update has introduced [architectural changes](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image) that may impact users, especially those mounting custom configuration files during container initiation due to alterations in the paths of certain files. Please familiarize yourself with these changes to ensure proper configuration and usage of the new image.
 
 ## Step 3: Stop the running container
 
@@ -60,7 +55,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
     ![Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 1. Copy the generated token.
-1. Run the updated image using the copied token. You can pass the same configuration parameters that were passed when running a previous image version (except for the node token).
+1. Run the updated image using the copied token and making necessary adjustments to the paths for the mounted files if required by the [recent changes to the image](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image).
     
     There are two options for running the container using the updated image:
 
@@ -77,4 +72,4 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## Step 6: Delete the filtering node of the previous version
 
-If the deployed image of the version 4.8 operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.
+If the deployed image of the version 4.10 operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.

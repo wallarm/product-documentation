@@ -1,6 +1,6 @@
 # What is new in Wallarm node (if upgrading an EOL node)
 
-This page lists the changes available when upgrading the node of the deprecated version (3.6 and lower) up to version 4.8. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
+This page lists the changes available when upgrading the node of the deprecated version (3.6 and lower) up to version 4.10. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
 
 !!! warning "Wallarm nodes 3.6 and lower are deprecated"
     Wallarm nodes 3.6 and lower are recommended to be upgraded since they are [deprecated](../versioning-policy.md#version-list).
@@ -158,7 +158,7 @@ The new deployment method lets you configure the Wallarm CDN node outside your i
 
 ## Unified registration of nodes in the Wallarm Cloud by tokens
 
-With the new release of Wallarm node, email-password based registration of Wallarm nodes in the Cloud has been removed. It is now mandatory to switch to the new token-based node registration method to continue with Wallarm node 4.8.
+With the new release of Wallarm node, email-password based registration of Wallarm nodes in the Cloud has been removed. It is now mandatory to switch to the new token-based node registration method to continue with Wallarm node 4.10.
 
 The new release enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../installation/supported-deployment-options.md), which ensures a more secure and faster connection to the Wallarm Cloud as follows:
 
@@ -312,6 +312,9 @@ The [Docker image of Wallarm's NGINX-based filtering node](../../admin-en/instal
 
       * Log file directory: `/var/log/wallarm` → `/opt/wallarm/var/log/wallarm`.
       * Directory with files containing credentials for the Wallarm node to connect to the Cloud: `/etc/wallarm` → `/opt/wallarm/etc/wallarm`.
+* The path to the `/usr/share` directory → `/opt/wallarm/usr/share`.
+      
+      This introduces the new path to the [sample blocking page](../../admin-en/configuration-guides/configure-block-page-and-code.md), located at `/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`, and to the diagnostic script, found at `/opt/wallarm/usr/share/wallarm-common/collect-info.sh`.
 
 The newly released product features are also supported by the new NGINX-based Docker image of the new format.
 
@@ -326,6 +329,11 @@ The [Amazon Machine Image (AMI)](../../installation/cloud-platforms/aws/ami.md) 
 
       * Log file directory: `/var/log/wallarm` → `/opt/wallarm/var/log/wallarm`.
       * Directory with files containing credentials for the Wallarm node to connect to the Cloud: `/etc/wallarm` → `/opt/wallarm/etc/wallarm`.
+      * The path to the `/usr/share` directory → `/opt/wallarm/usr/share`.
+      
+          This introduces the new path to the [sample blocking page](../../admin-en/configuration-guides/configure-block-page-and-code.md), located at `/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`, and to the diagnostic script, found at `/opt/wallarm/usr/share/wallarm-common/collect-info.sh`.
+      
+      * The `/etc/nginx/conf.d/wallarm.conf` file with the global Wallarm filtering node settings has been removed.
 
 The newly released product features are also supported by the cloud images of the new format.
 
@@ -442,7 +450,7 @@ docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKE
       * [Cloud node image](cloud-image.md)
       * [Multi-tenant node](multi-tenant.md)
       * [CDN node](../cdn-node.md)
-3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.8.
+3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.10.
 
 ----------
 

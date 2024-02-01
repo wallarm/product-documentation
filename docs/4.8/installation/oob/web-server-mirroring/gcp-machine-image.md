@@ -35,7 +35,7 @@ This article provides instructions for deploying [Wallarm OOB](overview.md) on G
 
 --8<-- "../include/waf/installation/cloud-platforms/gcp-machine-image-use-cases.md"
 
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image-4.8.md"
 
 ## 5. Enable Wallarm to analyze the mirrored traffic
 
@@ -57,4 +57,4 @@ Inside the [link](overview.md#examples-of-web-server-configuration-for-traffic-m
 
 ## 9. Fine-tune the deployed solution
 
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options-4.8.md"
