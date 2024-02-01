@@ -25,6 +25,7 @@
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../../installation/supported-deployment-options.md
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
+[cred-stuffing-docs]:               ../../../../about-wallarm/credential-stuffing.md
 
 # Installing as a Dynamic Module for NGINX Plus
 
@@ -79,3 +80,7 @@ Below there are a few of the typical settings that you can apply if needed:
 * [Configuration of the filtration mode][waf-mode-instr]
 
 --8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+
+## Limitations
+
+* [Credential stuffing detection][cred-stuffing-docs] is currently unsupported, as the packages has not been updated to the 4.10 release yet

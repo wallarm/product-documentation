@@ -14,5 +14,6 @@ search:
 [attacks-in-ui-image]:                        ../../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:                       ../../../../admin-en/configure-wallarm-mode.md
 [node-token-types]:                           ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[cred-stuffing-docs]:                         ../../../../about-wallarm/credential-stuffing.md
 
 --8<-- "latest/installation/kubernetes/sidecar-proxy/deployment.md"

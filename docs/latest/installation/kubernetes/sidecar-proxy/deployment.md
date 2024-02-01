@@ -197,3 +197,7 @@ Wallarm pods have been injected based on the [default `values.yaml`](https://git
 You can customize the Wallarm proxy behavior even more on both the global and per-pod levels and get the most out of the Wallarm solution for your company.
 
 Just proceed to the [Wallarm proxy solution customization guide](customization.md).
+
+## Limitations
+
+* [Credential stuffing detection][cred-stuffing-docs] is currently unsupported, as the Helm chart has not been updated to the 4.10 release yet

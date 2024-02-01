@@ -39,7 +39,13 @@ Wallarm does not block requests with compromised credentials to avoid blocking l
 To enable Wallarm's **Credential Stuffing Detection**:
 
 1. Make sure your [subscription plan](../about-wallarm/subscription-plans.md#subscription-plans) includes **Credential Stuffing Detection**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com?subject=Change%20Wallarm%20subscription%20plan%20to%20include%20Credential%20Stuffing%20Detection&body=Hello%20Wallarm%20Sales%20Team%2C%0AI%27m%20writing%20to%20request%20the%20change%20of%20Wallarm%20subscription%20plan%20to%20the%20one%20that%20includes%20the%20Credential%20Stuffing%20Detection.%0AThank%20you%20for%20your%20time%20and%20assistance.).
-1. Make sure you have Wallarm node [version 4.10](../updating-migrating/what-is-new.md) or higher. If necessary, consider upgrading.
+1. Ensure your Wallarm node is [version 4.10](../updating-migrating/what-is-new.md) or higher, deployed using one of the specified artifacts:
+
+    * [All-in-one installer](../installation/nginx/all-in-one.md)
+    * [Helm chart for NGINX-based Ingress controller](../admin-en/installation-kubernetes-en.md)
+    * [NGINX-based Docker image](../admin-en/installation-docker-en.md)
+    * [Amazon Machine Image (AMI)](../installation/cloud-platforms/aws/ami.md)
+    * [Google Cloud Machine Image](../installation/cloud-platforms/gcp/machine-image.md)
 1. Check that your user's [role](../user-guides/settings/users.md#user-roles) allows configuring **Credential Stuffing Detection**.
 1. In Wallarm Console → **Credential Stuffing**, enable the functionality (disabled by default).
 
@@ -142,3 +148,13 @@ In this example, if a new attempt to use compromised credentials is detected, a 
     Client: YourCompany
     Cloud: EU
     ```
+
+## Limitations
+
+Currently, the Credential Stuffing Detection module is not supported on Wallarm nodes deployed via:
+
+* DEB/RPM packages for NGINX ([stable](../installation/nginx/dynamic-module.md), [distributive](../installation/nginx/dynamic-module-from-distr.md)) or [NGINX Plus](../installation/nginx-plus.md)
+* [Sidecar controller](../installation/kubernetes/sidecar-proxy/deployment.md)
+* [Kong Ingress controller](../installation/kubernetes/kong-ingress-controller/deployment.md)
+* [Terraform module for AWS](../installation/cloud-platforms/aws/terraform-module/overview.md)
+* [Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md)

@@ -11,5 +11,6 @@
 [ptrav-attack-docs]:               ../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:             ../../../images/admin-guides/test-attacks-quickstart.png
 [available-filtration-modes-docs]: ../../../admin-en/configure-wallarm-mode.md#available-filtration-modes
+[cred-stuffing-detection]:         ../../../about-wallarm/credential-stuffing.md
 
 --8<-- "latest/installation/kubernetes/kong-ingress-controller/deployment.md"

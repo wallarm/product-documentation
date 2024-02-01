@@ -29,6 +29,7 @@
 [oob-advantages-limitations]:       oob/overview.md#advantages-and-limitations
 [web-server-mirroring-examples]:    oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../images/user-guides/nodes/grouped-nodes.png
+[cred-stuffing-docs]:               ../about-wallarm/credential-stuffing.md
 
 # Installing as a Dynamic Module for NGINX Plus
 
@@ -83,3 +84,7 @@ Below there are a few of the typical settings that you can apply if needed:
 * [Configuration of the filtration mode][waf-mode-instr]
 
 --8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+
+## Limitations
+
+* [Credential stuffing detection][cred-stuffing-docs] is currently unsupported, as the packages has not been updated to the 4.10 release yet

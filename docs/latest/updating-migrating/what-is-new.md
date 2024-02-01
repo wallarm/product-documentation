@@ -3,9 +3,9 @@
 The new version of the Wallarm node has been released! This update introduces an advanced feature for credential stuffing detection, further enhancing the security of your APIs.
 
 !!! info "Selected artifacts enhanced in release 4.10"
-    Only a select few artifacts, including the all-in-one installer, NGINX Ingress Controller, and the NGINX-based Docker image, have been released as part of version 4.10, featuring support for the newly introduced capabilities.
+    Only few artifacts, including the all-in-one installer, NGINX Ingress Controller, the NGINX-based Docker image and cloud images (AMI, GCP Image) have been released as part of version 4.10, featuring support for the newly introduced capabilities.
 
-## Credential Stuffing Detection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+## Credential stuffing detection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 Beginning with release 4.10, Wallarm introduces real-time detection and notifications for credential stuffing attempts. Credential stuffing, the automated submission of stolen or weak username/email and password pairs into website login forms to illegitimately access user accounts, is now closely monitored. This feature allows you to identify accounts with compromised credentials and take action to secure them, such as notifying account owners and temporarily suspending account access.
 
@@ -81,13 +81,9 @@ If upgrading from the version 3.6 or lower, learn all changes from the [separate
 2. Upgrade installed modules following the instructions for your Wallarm node deployment option:
 
       * [All-in-one installer](all-in-one.md)
-      * [Individual packages for NGINX, NGINX Plus, NGINX Distributive](nginx-modules.md)
-      * [Docker container with the modules for NGINX or Envoy](docker-container.md)
+      * [Docker container with the modules for NGINX](docker-container.md)
       * [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
-      * [Kong Ingress controller with integrated Wallarm modules](kong-ingress-controller.md)
-      * [Sidecar](sidecar-proxy.md)
       * [Cloud node image](cloud-image.md)
-      * [CDN node](cdn-node.md)
       * [Multi-tenant node](multi-tenant.md)
 
 ----------
