@@ -26,11 +26,11 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
 
 ## Limitations
 
-The solution has certain limitations as it only works with incoming requests:
+The MuleSoft integration does not allow the Wallarm node to fully analyze responses, which creates some limitations:
 
-* The [Wallarm API Discovery](../../api-discovery/overview.md) cannot explore API inventory based on your traffic, as the solution relies on response analysis.
-* Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
-* The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis.
+* In some environments, [Wallarm API Discovery](../../api-discovery/overview.md) may generate additional endpoints. Consult [Wallarm support](mailto:support@wallarm.com) for configuration options.
+* Server responses are required for [passive vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection).
+* [Protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md).
 
 When applying the policy for out-of-band traffic analysis, be aware that this method has certain limitations, which also apply to the policy. More details can be found at the provided [link](../oob/overview.md#advantages-and-limitations).
 
