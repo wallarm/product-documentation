@@ -90,7 +90,7 @@ Wallarmモジュールのさらなるデバッグを行うには：
 1. `wallarm-status` の出力を次のように取得します：
 
     ```bash
-    curl http://127.0.0.8/wallarm-status; sleep 10; curl http://127.0.0.8/wallarm-status
+    curl http://127.0.0.8/wallarm-status
     ```
 
     出力をコピーします。

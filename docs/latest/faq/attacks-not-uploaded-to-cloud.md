@@ -90,15 +90,20 @@ If the steps above do not help to resolve the issue, please capture the node log
 1. Get the `wallarm-status` output as follows:
 
     ```bash
-    curl http://127.0.0.8/wallarm-status; sleep 10; curl http://127.0.0.8/wallarm-status
+    curl http://127.0.0.8/wallarm-status
     ```
 
     Copy an output.
 1. Run the Wallarm diagnostic script:
 
-    ```bash
-    sudo /usr/share/wallarm-common/collect-info.sh
-    ```
+    === "All-in-one installer, AMI or GCP image, NGINX-based Docker image"
+        ```bash
+        sudo /opt/wallarm/usr/share/wallarm-common/collect-info.sh
+        ```
+    === "Other deployment options"
+        ```bash
+        sudo /usr/share/wallarm-common/collect-info.sh
+        ```
 
     Get the generated file with logs.
 1. Send all collected data to the [Wallarm support team](mailto:support@wallarm.com) for further investigation.

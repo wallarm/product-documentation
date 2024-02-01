@@ -109,7 +109,11 @@ A number of issues have led to abnormal completion of the NGINX worker process. 
 * **Metric:** `curl_json-wallarm_nginx/gauge-segfaults`
 * **Metric value:** `0`
 * **Troubleshooting recommendations:**
-    1. Collect data about the current state using the `/usr/share/wallarm-common/collect-info.sh` script.
+    1. Collect data about the current state using one of the following scripts:
+
+        * `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` if a filtering node is installed with all-in-one installer, NGINX-based Docker image, AMI or GCP cloud image
+        * `/usr/share/wallarm-common/collect-info.sh` for other deployment options
+    
     2. Provide the generated file to the [Wallarm support team](mailto:support@wallarm.com) for investigation.
 
 ### Number of Situations Exceeding the Virtual Memory Limit
@@ -121,7 +125,11 @@ The number of situations when the virtual memory limit was exceeded.
     * `curl_json-wallarm_nginx/gauge-softmemfaults` if the limit for proton.db +lom was exceeded ([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit)) 
 * **Metric value:** `0`
 * **Troubleshooting recommendations:**
-    1. Collect data about the current state using the `/usr/share/wallarm-common/collect-info.sh` script.
+    1. Collect data about the current state using one of the following scripts:
+        
+        * `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` if a filtering node is installed with all-in-one installer, NGINX-based Docker image, AMI or GCP cloud image
+        * `/usr/share/wallarm-common/collect-info.sh` for other deployment options
+
     2. Provide the generated file to the [Wallarm support team](mailto:support@wallarm.com) for investigation.
 
 ### Number of the proton.db Errors
@@ -132,7 +140,11 @@ The number of the proton.db errors except for those occurred due to the situatio
 * **Metric value:** `0`
 * **Troubleshooting recommendations:**
     1. Copy the error code from the NGINX logs (`wallarm: proton error: <ERROR_NUMBER>`).
-    1. Collect data about the current state using the `/usr/share/wallarm-common/collect-info.sh` script.
+    1. Collect data about the current state using one of the following scripts:
+        
+        * `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` if a filtering node is installed with all-in-one installer, NGINX-based Docker image, AMI or GCP cloud image
+        * `/usr/share/wallarm-common/collect-info.sh` for other deployment options
+
     1. Provide the collected data to the [Wallarm support team](mailto:support@wallarm.com) for investigation.
 
 ### Version of proton.db

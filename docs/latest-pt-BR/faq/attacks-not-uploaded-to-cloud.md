@@ -90,7 +90,7 @@ Se as etapas acima não ajudarem a resolver o problema, por favor, capture os lo
 1. Obtenha a saída do `wallarm-status` da seguinte forma:
 
     ```bash
-    curl http://127.0.0.8/wallarm-status; sleep 10; curl http://127.0.0.8/wallarm-status
+    curl http://127.0.0.8/wallarm-status
     ```
 
     Copie uma saída.
