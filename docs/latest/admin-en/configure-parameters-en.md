@@ -303,6 +303,17 @@ A path to the Wallarm private key used for encryption/decryption of proton.db an
 !!! warning "The directive is deprecated"
     Starting with Wallarm node 3.6, please use the [`wallarm_custom_ruleset_path`](#wallarm_custom_ruleset_path) directive instead. Just change the directive name, its logic did not change.
 
+### wallarm_memlimit_debug
+
+This directive determines whether the Wallarm NGINX module generates the `/tmp/proton_last_memlimit.req` file containing request details when a memory limit is exceeded. This can be invaluable for debugging issues related to request memory limit processing.
+
+!!! info
+    Currently this directive is available only for NGINX nodes deployed with [all-in-one installer](../installation/nginx/all-in-one.md) version 4.8.8 or higher.
+
+    This parameter can be set within the http, server, and location blocks.
+    
+    **Default value**: `on`.
+
 ### wallarm_mode
 
 Traffic processing mode:
