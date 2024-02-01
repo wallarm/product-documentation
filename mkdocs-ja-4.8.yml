@@ -4,7 +4,7 @@ site_name: Wallarmのドキュメント
 site_url: https://docs.wallarm.com/ja/
 site_description: Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの不正使用、および他の自動化された脅威からAPI、マイクロサービス、およびWebアプリケーションを保護します。これは手動のルール設定が必要なく、偽陽性も非常に低いです。
 
-copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">サービス利用規約</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">プライバシーポリシー</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">クッキーポリシー</a> | <a href="#__consent">クッキー設定</a> | 2023 © Wallarm Inc.'
+copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">サービス利用規約</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">プライバシーポリシー</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">クッキーポリシー</a> | <a href="#__consent">クッキー設定</a> | 2024 © Wallarm Inc.'
 
 theme:
   language: ja
