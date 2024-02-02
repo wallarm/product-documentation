@@ -34,7 +34,7 @@ This article provides instructions for deploying Wallarm on AWS in-line using th
 
 --8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
 
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami-latest.md"
 
 ## 6. Enable Wallarm to analyze the traffic
 
