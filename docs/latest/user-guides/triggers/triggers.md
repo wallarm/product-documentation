@@ -1,19 +1,21 @@
 # Working with Triggers
 
-Triggers are tools that are used to set up custom notifications and reactions to events. Using triggers, you can provide the following protections measures for your applications and APIs:
+Triggers are tools that are used to set up Wallarm reactions to different events. Using triggers, you can: 
 
-* [Protection from multi-attack perpetrators](../../admin-en/configuration-guides/protecting-with-thresholds.md)
-* [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
-* [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
+* Provide the following protections measures for your applications and APIs:
 
-Using triggers you can also set up extended alerts for different [integrations](../../user-guides/settings/integrations/integrations-intro.md).
+    * [Protection from multi-attack perpetrators](../../admin-en/configuration-guides/protecting-with-thresholds.md)
+    * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+    * [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
+    * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
 
-You can configure all the trigger components:
+* Set up extended alerts for different [integrations](../../user-guides/settings/integrations/integrations-intro.md).
 
-* **Condition**: system event to be notified about. For example: getting a certain amount of attacks, denylisted IP address, and new user added to the account.
-* **Filters**: condition details. For example: attack types.
-* **Reaction**: action that should be performed if the specified condition and filters are met. For example: sending the notification to Slack or another system configured as the [integration](../settings/integrations/integrations-intro.md), blocking IP address, or marking requests as the brute‑force attack.
+Each trigger consists of the following components that you can configure:
+
+* **Condition**: an event that Wallarm should react to. For example: getting a certain amount of attacks, denylisted IP address, and new user added to the account.
+* **Filters**: the condition details. For example: if condition is "More than 10000 attacks per day", then set the **Type** filter to "SQLi" and the **Response status** to "200" and for the trigger that will mean "Act if there were more than 10000 SQLi attacks per day that got the 200 response".
+* **Reaction**: an action that should be performed if the specified condition and filters are met. For example: sending the notification to Slack or another system configured as the [integration](../settings/integrations/integrations-intro.md), blocking IP address, or marking requests as the brute‑force attack.
 
 Triggers are configured in the **Triggers** section of Wallarm Console. The section is available only for users with the **Administrator** [role](../settings/users.md).
 
@@ -21,11 +23,12 @@ Triggers are configured in the **Triggers** section of Wallarm Console. The sect
 
 ## Creating triggers
 
-1. Click the **Create trigger** button.
-2. [Choose](#step-1-choosing-a-condition) conditions.
-3. [Add](#step-2-adding-filters) filters.
-4. [Add](#step-3-adding-reactions) reactions.
-5. [Save](#step-4-saving-the-trigger) the trigger.
+Navigate to the **Triggers** section in the [US](https://us1.my.wallarm.com/triggers) or [EU](https://my.wallarm.com/triggers) Cloud, click the **Create trigger** button:
+
+1. [Choose](#step-1-choosing-a-condition) conditions.
+1. [Add](#step-2-adding-filters) filters.
+1. [Add](#step-3-adding-reactions) reactions.
+1. [Save](#step-4-saving-the-trigger) the trigger.
 
 ### Step 1: Choosing a condition
 
@@ -43,8 +46,9 @@ A condition is a system event to be notified about. The following conditions are
     * Hits not saved in the [sample](../events/analyze-attack.md#sampling-of-hits).
 * Number of incidents
 * Denylisted IP
-* [Changes in API inventory](../../api-discovery/overview.md#tracking-changes-in-api)
+* [Changes in API](../../api-discovery/overview.md#tracking-changes-in-api)
 * Hits from the same IP, except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types
+* [Rogue API detected](../../api-discovery/rogue-api.md)
 * User added
 
 ![Available conditions](../../images/user-guides/triggers/trigger-conditions.png)
@@ -101,9 +105,9 @@ Choose one or more reactions in the Wallarm Console interface. Reactions availab
 
 If the trigger name and description are not specified, then the trigger is created with the name `New trigger by <username>, <creation_date>` and an empty description.
 
-## Pre-configured triggers (default triggers)
+## Default triggers
 
-New company accounts are featured by the following pre-configured triggers (default triggers):
+New company accounts are featured by the following default (pre-configured) triggers:
 
 * Group hits originating from the same IP into one attack
 
