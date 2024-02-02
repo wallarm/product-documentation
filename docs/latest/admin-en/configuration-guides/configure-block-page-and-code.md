@@ -39,7 +39,16 @@ The `wallarm_block_page` directive accepts the listed parameters in the followin
     wallarm_block_page &/<PATH_TO_FILE/HTML_HTM_FILE_NAME> response_code=<CUSTOM_CODE> type=<BLOCKED_REQUEST_TYPE>;
     ```
     
-    Wallarm provides the sample blocking page `&/usr/share/nginx/html/wallarm_blocked.html` (`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html` for Docker NGINX-based image or all-in-one installer). You can use this page as a start point for your [customization](#customizing-sample-blocking-page).
+    Wallarm provides the sample blocking page which you can use this page as a start point for your [customization](#customizing-sample-blocking-page). The page is located under the following path:
+    
+    === "All-in-one installer, AMI or GCP image, NGINX-based Docker image"
+        ```
+        &/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html
+        ```
+    === "Other deployment options"
+        ```
+        &/usr/share/nginx/html/wallarm_blocked.html
+        ```
 
     You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the blocking page. For this, add the variable name in the format `${variable_name}` to the blocking page code, e.g. `${remote_addr}` to display the IP address from which the blocked request originated.
 
@@ -106,7 +115,7 @@ If you modify the sample page itself, your modifications may be lost on Wallarm 
 
 **<a name="copy"></a>Sample page for copying**
 
-You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html` for Docker NGINX-based image or all-in-one installer) located in the environment where your filtering node is installed. Alternatively, copy the code below and save it as your new file:
+You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`) located in the environment where your filtering node is installed. Alternatively, copy the code below and save it as your new file:
 
 ??? info "Show sample page code"
 
@@ -324,7 +333,7 @@ You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/w
 
 **Common file system**
 
-You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html` for Docker NGINX-based image or all-in-one installer) under a new name wherever you want (NGINX should have read permission there) including the same folder.
+You can make a copy of the `/usr/share/nginx/html/wallarm_blocked.html` (`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`) under a new name wherever you want (NGINX should have read permission there) including the same folder.
 
 **Docker container**
 

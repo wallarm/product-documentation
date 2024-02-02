@@ -64,7 +64,7 @@ To get and analyze the API Discovery logs, you can use the following methods:
         ```bash
         systemctl status wallarm-appstructure
         ```
-* If the Wallarm node is deployed from the Docker container: read the log file `/opt/wallarm/var/log/wallarm/appstructure.log` inside the container.
+* If the Wallarm node is deployed from the Docker container, Amazon Machine Image (AMI) or Google Cloud Machine Image: read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` inside the container.
 * If the Wallarm node is deployed as the Kubernetes Ingress controller: check the status of the pod running the Tarantool and `wallarm-appstructure` containers. The pod status must be **Running**.
 
     ```bash

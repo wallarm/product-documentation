@@ -17,7 +17,7 @@
 
 # Upgrading an EOL Docker NGINX- or Envoy-based image
 
-These instructions describe the steps to upgrade the running end‑of‑life Docker NGINX- or Envoy-based image (version 3.6 and lower) to the version 4.8.
+These instructions describe the steps to upgrade the running end‑of‑life Docker NGINX- or Envoy-based image (version 3.6 and lower) to the version 4.10.
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
@@ -27,7 +27,7 @@ These instructions describe the steps to upgrade the running end‑of‑life Doc
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules (only if upgrading node 2.18 or lower)
 
-If upgrading node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 4.8 and ask to enable new IP list logic for your Wallarm account. When new IP list logic is enabled, please ensure the section [**IP lists**](../../user-guides/ip-lists/overview.md) of Wallarm Console is available.
+If upgrading node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 4.10 and ask to enable new IP list logic for your Wallarm account. When new IP list logic is enabled, please ensure the section [**IP lists**](../../user-guides/ip-lists/overview.md) of Wallarm Console is available.
 
 ## Step 2: Disable the Active threat verification module (only if upgrading node 2.16 or lower)
 
@@ -57,7 +57,7 @@ With the release of version 4.x, approach to connect the container to the Wallar
 * [The "email and password"-based approach has been deprecated](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). In this approach, the node was registered in the Wallarm Cloud automatically once the container started with correct credentials passed in the `DEPLOY_USER` and `DEPLOY_PASSWORD` variables.
 * The token-based approach has been included. To connect the container to the Cloud, run the container with the `WALLARM_API_TOKEN` variable containing the Wallarm node token copied from the Wallarm Console UI.
 
-It is recommended to use the new approach to run the image 4.8. The "email and password"-based approach will be deleted in future releases, please migrate before.
+It is recommended to use the new approach to run the image 4.10. The "email and password"-based approach will be deleted in future releases, please migrate before.
 
 To create a new Wallarm node and get its token:
 
@@ -66,9 +66,9 @@ To create a new Wallarm node and get its token:
     ![Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 
-## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.8 (only if upgrading node 2.18 or lower)
+## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.10 (only if upgrading node 2.18 or lower)
 
-If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 4.8.
+If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 4.10.
 
 ## Step 7: Switch from deprecated configuration options
 
@@ -109,19 +109,23 @@ If the Docker container was configured to return the `&/usr/share/nginx/html/wal
 1. [Copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 1. [Mount](../../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) the customized page and the NGINX configuration file to a new Docker container in the next step.
 
-## Step 9: Transfer the `overlimit_res` attack detection configuration from directives to the rule
+## Step 9: Review recent architectural updates (for NGINX-based Docker image)
+
+The latest update has introduced [architectural changes](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image) that may impact users, especially those mounting custom configuration files during container initiation due to alterations in the paths of certain files. Please familiarize yourself with these changes to ensure proper configuration and usage of the new image.
+
+## Step 10: Transfer the `overlimit_res` attack detection configuration from directives to the rule
 
 --8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-docker.md"
 
-## Step 10: Stop the running container
+## Step 11: Stop the running container
 
 ```bash
 docker stop <RUNNING_CONTAINER_NAME>
 ```
 
-## Step 11: Run the container using the updated image
+## Step 12: Run the container using the updated image
 
-Run the container using the updated image. You can pass the same configuration parameters that were passed when running a previous image version except for the ones listed in the previous steps.
+Run the container using the updated image and making necessary adjustments to the paths for the mounted files if required by the [recent changes to the image](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image).
 
 There are two options for running the container using the updated image:
 
@@ -132,7 +136,7 @@ There are two options for running the container using the updated image:
     * [Instructions for the NGINX-based Docker container →](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
     * [Instructions for the Envoy-based Docker container →](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
 
-## Step 12: Adjust Wallarm node filtration mode settings to changes released in the latest versions (only if upgrading node 2.18 or lower)
+## Step 13: Adjust Wallarm node filtration mode settings to changes released in the latest versions (only if upgrading node 2.18 or lower)
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       * Environment variable [`WALLARM_MODE`](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) or the directive [`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode) of the NGINX‑based Docker container
@@ -141,15 +145,15 @@ There are two options for running the container using the updated image:
       * [Low-level filtration rules configured in Wallarm Console](../../user-guides/rules/wallarm-mode-rule.md)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 
-## Step 13: Test the filtering node operation
+## Step 14: Test the filtering node operation
 
 --8<-- "../include/waf/installation/test-after-node-type-upgrade.md"
 
-## Step 14: Delete the filtering node of the previous version
+## Step 15: Delete the filtering node of the previous version
 
-If the deployed image of the version 4.8 operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.
+If the deployed image of the version 4.10 operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.
 
-## Step 15: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
+## Step 16: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) and re-enable it if required.
 

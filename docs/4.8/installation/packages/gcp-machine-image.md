@@ -30,4 +30,4 @@ search:
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 
---8<-- "../include/waf/installation/cloud-platforms/article-for-inline-oob-gcp-image.md"
+--8<-- "../include/waf/installation/cloud-platforms/article-for-inline-oob-gcp-image-4.8.md"

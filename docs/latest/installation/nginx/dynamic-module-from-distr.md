@@ -101,3 +101,7 @@ Below there are a few of the typical settings that you can apply if needed:
 --8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
 
 * [Configuring dynamic DNS resolution in NGINX][dynamic-dns-resolution-nginx]
+
+## Limitations
+
+* [Credential stuffing detection][cred-stuffing-docs] is currently unsupported, as the packages has not been updated to the 4.10 release yet

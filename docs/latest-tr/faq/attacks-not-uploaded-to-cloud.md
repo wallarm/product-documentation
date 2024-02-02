@@ -90,7 +90,7 @@ Yukarıdaki adımlar sorunu çözmeye yardımcı olmazsa, lütfen düğüm günl
 1. `wallarm-status` çıktısını aşağıdaki gibi alın:
 
     ```bash
-    curl http://127.0.0.8/wallarm-status; sleep 10; curl http://127.0.0.8/wallarm-status
+    curl http://127.0.0.8/wallarm-status
     ```
 
     Bir çıktıyı kopyalayın.

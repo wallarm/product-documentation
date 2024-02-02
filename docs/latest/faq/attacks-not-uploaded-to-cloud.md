@@ -69,7 +69,7 @@ If the `wallarm.stat.dropped_before_export` value is different from `0`:
     !!! info "Recommended memory"
         It is recommended to adjust the memory allocated for Tarantool so that the `wallarm.stat.timeframe_size` metric does not drop below `300` seconds during the peak loads.
 
-* Increase the number of `export_attacks` handlers in `/etc/wallarm/node.yaml` → `export_attacks`, e.g.:
+* Increase the number of `export_attacks` handlers in `/etc/wallarm/node.yaml` → `export_attacks` (`/opt/wallarm/etc/wallarm/node.yaml` → `export_attacks` for Docker NGINX-based image or all-in-one installer), e.g.:
 
     ```yaml
     export_attacks:
@@ -90,15 +90,20 @@ If the steps above do not help to resolve the issue, please capture the node log
 1. Get the `wallarm-status` output as follows:
 
     ```bash
-    curl http://127.0.0.8/wallarm-status; sleep 10; curl http://127.0.0.8/wallarm-status
+    curl http://127.0.0.8/wallarm-status
     ```
 
     Copy an output.
 1. Run the Wallarm diagnostic script:
 
-    ```bash
-    sudo /usr/share/wallarm-common/collect-info.sh
-    ```
+    === "All-in-one installer, AMI or GCP image, NGINX-based Docker image"
+        ```bash
+        sudo /opt/wallarm/usr/share/wallarm-common/collect-info.sh
+        ```
+    === "Other deployment options"
+        ```bash
+        sudo /usr/share/wallarm-common/collect-info.sh
+        ```
 
     Get the generated file with logs.
 1. Send all collected data to the [Wallarm support team](mailto:support@wallarm.com) for further investigation.

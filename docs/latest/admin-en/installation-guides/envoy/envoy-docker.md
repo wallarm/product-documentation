@@ -9,7 +9,7 @@ These instructions describe the steps to run the Wallarm Docker image based on [
 The Wallarm module is designed as an Envoy HTTP filter for requests proxying.
 
 !!! warning "Supported configuration parameters"
-    Please note that the most [directives][nginx-directives-docs] for the NGINX‑based filtering node configuration are not supported for the Envoy‑based filtering node configuration. Consequently, the [rate limit][rate-limit-docs] configuration is not available in this deployment method.
+    Please note that the most [directives][nginx-directives-docs] for the NGINX‑based filtering node configuration are not supported for the Envoy‑based filtering node configuration. Consequently, [rate limiting][rate-limit-docs] and [credential stuffing detection][cred-stuffing-docs] is not available in this deployment method.
     
     See the list of parameters available for the [Envoy‑based filtering node configuration →][docker-envoy-configuration-docs]
 

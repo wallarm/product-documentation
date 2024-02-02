@@ -59,4 +59,4 @@ This article provides instructions for deploying Wallarm on AWS in-line using th
 
 ## 10. Fine-tune the deployed solution
 
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options-4.8.md"

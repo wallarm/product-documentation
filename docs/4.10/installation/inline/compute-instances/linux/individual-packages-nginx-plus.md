@@ -30,5 +30,6 @@ search:
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../../installation/supported-deployment-options.md
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
+[cred-stuffing-docs]:               ../../../../about-wallarm/credential-stuffing.md
 
 --8<-- "latest/installation/inline/compute-instances/linux/individual-packages-nginx-plus.md"

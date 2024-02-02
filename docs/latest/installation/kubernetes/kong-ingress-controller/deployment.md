@@ -40,7 +40,7 @@ Kong Ingress Controller with integrated Wallarm services is arranged by the foll
 * **Ingress controller** (`wallarm-ingress-kong`) that injects the Kong API Gateway and Wallarm resources into the K8s cluster configuring it based on the Helm chart values and connecting the node components to the Wallarm Cloud.
 * **Postanalytics module** (`wallarm-ingress-kong-wallarm-tarantool`) is the local data analytics backend for the solution. The module uses the in-memory storage Tarantool and the set of some helper containers (like the collectd, attack export services).
 
-## Limitations of the Enterprise Kong Ingress controller
+## Limitations
 
 The described solution for the Enterprise Kong Ingress controller allows the Wallarm layer fine‑tuning only via the Wallarm Console UI.
 
@@ -49,6 +49,7 @@ However, some features of the Wallarm platform require configuration files to be
 * [Multitenancy feature][multitenancy-overview]
 * [Application configuration][applications-docs]
 * [Custom blocking page and code setup][custom-blocking-page-docs] - not supported by both the Enterprise and Open-Source Kong Ingress controllers with Wallarm services
+* [Credential stuffing detection][cred-stuffing-detection] - not supported by both the Enterprise and Open-Source Kong Ingress controllers with Wallarm services
 
 As for the Open-Source Kong Ingress controller with Wallarm services, it supports the multitenancy and application configuration on a per-Ingress basis via [annotations](customization.md#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition).
 

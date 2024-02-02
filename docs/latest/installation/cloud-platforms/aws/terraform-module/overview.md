@@ -110,3 +110,6 @@ To this registry, Wallarm published:
 * The [Wallarm provider](../../../../admin-en/managing/terraform-provider.md) for managing Wallarm via Terraform.
 
 These two are an independent elements used for different purposes, do not require each other.
+
+## Limitations
+* [Credential stuffing detection](../../../../about-wallarm/credential-stuffing.md) is currently unsupported

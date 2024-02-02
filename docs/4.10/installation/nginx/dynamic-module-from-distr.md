@@ -27,5 +27,6 @@
 [oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
+[cred-stuffing-docs]:               ../../about-wallarm/credential-stuffing.md
 
 --8<-- "latest/installation/nginx/dynamic-module-from-distr.md"

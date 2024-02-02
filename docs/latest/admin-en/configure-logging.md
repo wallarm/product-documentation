@@ -10,8 +10,8 @@ This article guides you on how to find the log files of a Wallarm filtering node
 
 The location of log files varies based on the installation method of the node:
 
-* For installations via the [all-in-one installer](../installation/nginx/all-in-one.md) and [NGINX-based Docker image](installation-docker-en.md), log files are situated within `/opt/wallarm/var/log/wallarm`.
-* For installations using other methods, such as [DEB/RPM packages](../installation/nginx/dynamic-module.md), log files are found in `/var/log/wallarm`.
+* `/opt/wallarm/var/log/wallarm`: for installations via the [all-in-one installer](../installation/nginx/all-in-one.md), [NGINX-based Docker image](installation-docker-en.md), [Amazon Machine Image (AMI)](../installation/cloud-platforms/aws/ami.md) and [Google Cloud Machine Image](../installation/cloud-platforms/gcp/machine-image.md).
+* `/var/log/wallarm`: for installations using other methods, such as [DEB/RPM packages](../installation/nginx/dynamic-module.md).
 
 Here is a breakdown of the log files you will encounter and the type of information each contains:
 

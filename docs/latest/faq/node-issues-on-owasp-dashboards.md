@@ -13,5 +13,5 @@ To maintain a secure environment, it is crucial to regularly update Wallarm node
 
 If you need assistance in resolving synchronization or other issues or any other requests, you can seek help from the [Wallarm support team](mailto:support@wallarm.com). Provide them with the following [logs](../admin-en/configure-logging.md) for analysis:
 
-* Logs from `/var/log/wallarm/syncnode.log` to check for any problems with the `syncnode` script
+* Logs from `/var/log/wallarm/syncnode.log` or `/opt/wallarm/var/log/wallarm/syncnode-out.log` [depending on a node installation method](../admin-en/configure-logging.md) to check for any problems with the `syncnode` script
 * Logs from the `/var/log/syslog` or `/var/log/messages` directory (depending on the deployment option) to provide additional details about the synchronization issue

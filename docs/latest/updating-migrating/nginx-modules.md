@@ -25,7 +25,7 @@
 
 # Upgrading Wallarm NGINX modules
 
-These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x installed from the individual packages to version 4.8. These are the modules installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x installed from the individual packages to version 4.10. These are the modules installed in accordance with one of the following instructions:
 
 * [Individual packages for NGINX stable](../installation/nginx/dynamic-module.md)
 * [Individual packages for NGINX Plus](../installation/nginx-plus.md)
@@ -39,7 +39,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
 ## Upgrade with all-in-one installer
 
-Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.8 using [all-in-one installer](../installation/nginx/all-in-one.md).
+Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.10 using [all-in-one installer](../installation/nginx/all-in-one.md).
 
 ### Requirements for upgrade using all-in-one installer
 
@@ -112,10 +112,6 @@ Transfer node-related NGINX configuration and postanalytics configuration from t
 On an old machine, depending on OS and NGINX version, the NGINX configuration files may be located in different directories and have different names. Most common are the following:
 
 * `/etc/nginx/conf.d/default.conf` with NGINX settings
-* `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
-
-    The file is used for settings applied to all domains. To apply different settings to different domain groups, the `default.conf` is usually used or new configuration file is created for each domain group (for example, `example.com.conf` and `test.com.conf`). Detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
-    
 * `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
 
 Also, the configuration of the postanalytics module (Tarantool database settings) is usually located here:
@@ -191,6 +187,9 @@ Depending on the deployment approach being used, perform the following settings:
 ## Manual upgrade
 
 Use the procedure below to manually upgrade the Wallarm NGINX modules 4.x to version 4.8.
+
+!!! info "Support for 4.10"
+    The DEB/RPM packages for manual node installation have not been updated to the 4.10 release yet.
 
 ### Requirements for manual upgrade
 

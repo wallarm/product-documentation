@@ -16,5 +16,6 @@ search:
 [supported-deployments]:            ../../../../installation/supported-deployment-options.md
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 [rate-limit-docs]:                  ../../../../user-guides/rules/rate-limiting.md
+[cred-stuffing-docs]:               ../../../../about-wallarm/credential-stuffing.md
 
 --8<-- "latest/admin-en/installation-guides/envoy/envoy-docker.md"

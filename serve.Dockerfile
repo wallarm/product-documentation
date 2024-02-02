@@ -13,7 +13,7 @@ RUN rm -rf docs
 
 EXPOSE 8000
 ENTRYPOINT ["mkdocs"]
-CMD ["serve", "--dev-addr=0.0.0.0:8000", "--config-file=mkdocs-4.8.yml"]
+CMD ["serve", "--dev-addr=0.0.0.0:8000", "--config-file=mkdocs-4.10.yml"]
 
 
 # If you have a token to access the mkdocs-material-insiders repo and need to run the docs with it. Comment out the above section then and uncomment the below
@@ -30,4 +30,4 @@ CMD ["serve", "--dev-addr=0.0.0.0:8000", "--config-file=mkdocs-4.8.yml"]
 
 # EXPOSE 8000
 
-# ENTRYPOINT ["sh", "-c", "INSIDERS=true mkdocs serve --dev-addr=0.0.0.0:8000 --config-file=mkdocs-4.8.yml"]
+# ENTRYPOINT ["sh", "-c", "INSIDERS=true mkdocs serve --dev-addr=0.0.0.0:8000 --config-file=mkdocs-4.10.yml"]
