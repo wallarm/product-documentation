@@ -3,7 +3,7 @@
 The new version of the Wallarm node has been released! This update introduces an advanced feature for credential stuffing detection, further enhancing the security of your APIs.
 
 !!! info "Selected artifacts enhanced in release 4.10"
-    Only few artifacts, including the all-in-one installer, NGINX Ingress Controller, the NGINX-based Docker image and cloud images (AMI, GCP Image) have been released as part of version 4.10, featuring support for the newly introduced capabilities.
+    Only few artifacts, including the all-in-one installer, the NGINX-based Docker image and cloud images (AMI, GCP Image) have been released as part of version 4.10, featuring support for the newly introduced capabilities.
 
 ## Credential stuffing detection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
