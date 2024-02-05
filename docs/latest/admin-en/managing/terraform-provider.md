@@ -21,7 +21,7 @@ If you use [Terraform](https://www.terraform.io/) to manage your infrastructures
       required_providers {
         wallarm = {
           source = "wallarm/wallarm"
-          version = "1.1.2"
+          version = "1.2.0"
         }
       }
     }
