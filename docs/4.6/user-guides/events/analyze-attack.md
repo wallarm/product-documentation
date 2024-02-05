@@ -66,6 +66,25 @@ To view a request in a raw format, expand a required attack and then the request
 ![Raw format of the request][img-analyze-attack-raw]
 
 ## Sampling of hits
+## Fine-tuning of events
+
+### Grouping of hits
+
+You can optimize the lists of attacks and incidents by grouping [hits](../../glossary-en.md#hit) sent from the same IP address into one attack.
+
+Grouping is enabled by default in Wallarm Console → **Triggers** with the **Hits from the same IP** default trigger which activates when a single IP address originates more than 50 hits within 15 minutes.
+
+![Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
+
+If grouped hits have different attack types, malicious payloads and URLs, attack parameters will be marked with the `[multiple]` tag in the attack list.
+
+The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
+
+You can temporary disable the default trigger. You can also modify behavior provided by the default trigger - to do so, create your custom triggers of the **Hits from the same IP** type. Creating any custom trigger deletes the default one, if you delete all your custom triggers, the default is restored.
+
+### Sampling of hits
+
+#### Overview
 
 Malicious traffic often consists of comparable and identical [hits](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). Storing all hits results in duplicate entries in the event list that increases both the time for event analysis and the load on the Wallarm Cloud.
 
