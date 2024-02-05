@@ -25,13 +25,13 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 * Initial release 4.8, [see changelog](what-is-new.md) -->
 
-<!-- ## Helm chart for Wallarm NGINX Ingress controller
+## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
 
 ### 4.10.0 (2024-02-01)
 
-* Initial release 4.10, [see changelog](what-is-new.md) -->
+* Initial release 4.10, [see changelog](what-is-new.md)
 
 <!-- ## Helm chart for Kong Ingress controller
 
