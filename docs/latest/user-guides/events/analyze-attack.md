@@ -108,7 +108,7 @@ If grouped hits have different attack types, malicious payloads and URLs, attack
 
 The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
 
-You can temporary disable the default trigger. You can also modify behavior provided by the default trigger - to do so, create your custom triggers of the **Hits from the same IP** type. Creating any custom trigger deletes the default one, if you delete all you custom triggers, the default is restored.
+You can temporary disable the default trigger. You can also modify behavior provided by the default trigger - to do so, create your custom triggers of the **Hits from the same IP** type. Creating any custom trigger deletes the default one, if you delete all your custom triggers, the default is restored.
 
 ### Sampling of hits
 

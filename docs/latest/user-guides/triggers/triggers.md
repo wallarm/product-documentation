@@ -24,7 +24,6 @@ Using triggers, you can:
     * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
     * [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
     * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
-    * Manage [weak JWTs detection](../../about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection)
 
 * Set up extended alerts for different [integrations](../../user-guides/settings/integrations/integrations-intro.md).
 * Optimize attacks and incidents representation by [grouping hits](../../user-guides/events/analyze-attack.md#grouping-of-hits).
@@ -73,7 +72,7 @@ New company accounts are featured by the following default (pre-configured) trig
 
     The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
 
-You can temporary disable any default trigger. You can also modify behavior provided by the default trigger - to do so, create your custom triggers of the same type. Creating any custom trigger deletes the default one, if you delete all you custom triggers, the default is restored.
+You can temporary disable any default trigger. You can also modify behavior provided by the default trigger - to do so, create your custom triggers of the same type. Creating any custom trigger deletes the default one, if you delete all your custom triggers, the default is restored.
 
 ## Disabling and deleting triggers
 

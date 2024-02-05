@@ -60,12 +60,6 @@ Vulnerability Scanner checks all company's exposed assets for typical vulnerabil
 
     You do not need to manually allowlist Scanner IP addresses in Wallarm - starting with Wallarm node 3.0, Scanner IP addresses are allowlisted automatically.
 
-## Weak JWTs detection
-
-JSON Web Tokens (JWT) are a widely used method for representing claims securely between two parties. However, if JWTs are not implemented and used properly, they introduce security vulnerability. Starting from Wallarm node version 4.4, Wallarm supports [Weak JWTs](../attacks-vulns-list.md#weak-jwt) vulnerability detection.
-
-Weak JWTs detection is enabled by default - if a significant amount of incoming requests processed by the Wallarm node contains weak JWTs, the corresponding vulnerability is recorded.
-
 ## False positives
 
 **False positive** occurs when attack signs are detected in the legitimate request or when legitimate entity is qualified as a vulnerability. [More details on false positives in attack detection →](protecting-against-attacks.md#false-positives)
