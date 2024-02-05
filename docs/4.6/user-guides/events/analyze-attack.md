@@ -65,7 +65,6 @@ To view a request in a raw format, expand a required attack and then the request
 
 ![Raw format of the request][img-analyze-attack-raw]
 
-## Sampling of hits
 ## Fine-tuning of events
 
 ### Grouping of hits
