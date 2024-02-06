@@ -29,5 +29,7 @@
 [wallarm-api-via-proxy]:            ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
+[cloud-init-spec]:                  ../cloud-platforms/cloud-init.md
+[wallarm_force_directive]:          ../../admin-en/configure-parameters-en.md#wallarm_force
 
 --8<-- "../include/waf/installation/cloud-platforms/article-for-inline-oob-ami.md"

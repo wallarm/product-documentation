@@ -77,6 +77,22 @@ You need to use the `admin` username to connect to the instance.
 !!! info "Using the key to connect via SSH"
     Use the private key in PEM format that you [created earlier][anchor2] to connect to the instance via SSH. This must be the private key from the SSH key pair that you specified when creating an instance.
 
-## 5. Connect the filtering node to the Wallarm Cloud
+## 5. Generate a token to connect an instance to the Wallarm Cloud
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-for-cloud-images.md"
+The local Wallarm filtering node needs to connect with the Wallarm Cloud using a Wallarm token of the [appropriate type][wallarm-token-types]. An API token allows you to create a node group in the Wallarm Console UI, which helps in organizing your node instances effectively.
+
+![Grouped nodes][img-grouped-nodes]
+
+Generate a token as follows:
+
+=== "API token"
+
+    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+    1. Find or create API token with the `Deploy` source role.
+    1. Copy this token.
+=== "Node token"
+
+    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+    1. Do one of the following: 
+        * Create the node of the **Wallarm node** type and copy the generated token.
+        * Use existing node group - copy token using node's menu → **Copy token**.

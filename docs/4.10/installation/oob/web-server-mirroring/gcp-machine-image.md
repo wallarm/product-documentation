@@ -26,5 +26,7 @@ search:
 [wallarm-mode]:                     ../../../admin-en/configure-wallarm-mode.md
 [wallarm-api-via-proxy]:            ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-grouped-nodes]:                ../../../images/user-guides/nodes/grouped-nodes.png
+[cloud-init-spec]:                  ../../cloud-platforms/cloud-init.md
+[wallarm_force_directive]:          ../../../admin-en/configure-parameters-en.md#wallarm_force
 
 --8<-- "latest/installation/oob/web-server-mirroring/gcp-machine-image.md"
