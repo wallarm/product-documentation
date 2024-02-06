@@ -4,7 +4,7 @@ If following the Infrastructure as Code (IaC) approach, you may need to use the 
 
 ## Overview of the Wallarm cloud-init script
 
-The Wallarm `cloud-init` script is available under the `/usr/share/wallarm-common/cloud-init.py` path in the [Wallarm AWS cloud image](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe). This script performs both an initial and advanced instance configuration with the following main stages involved:
+The Wallarm `cloud-init` script is available under the `/opt/wallarm/usr/share/wallarm-common/cloud-init.py` path in the [Wallarm AWS cloud image](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe). This script performs both an initial and advanced instance configuration with the following main stages involved:
 
 * Runs the Wallarm node previously created in the Wallarm Cloud by executing the Wallarm `register-node` script 
 * Configures the instance in accordance with either the proxy or mirror approach specified in the `preset` variable (if deploying Wallarm using the [Terraform module](aws/terraform-module/overview.md))
@@ -33,7 +33,7 @@ set -e
 ###
 systemctl stop nginx.service
 
-/usr/share/wallarm-common/cloud-init.py \
+/opt/wallarm/usr/share/wallarm-common/cloud-init.py \
     -t xxxxx-base64-registration-token-from-wallarm-cloud-xxxxx \
     -p proxy \
     -m monitoring \
@@ -49,7 +49,7 @@ To meet the Infrastructure as Code (IaC) approach, we have implemented the [Terr
 ## The Wallarm cloud-init script help data
 
 ```plain
-usage: /usr/share/wallarm-common/cloud-init.py [-h] -t TOKEN [-H HOST] [--skip-register] [-p {proxy,mirror,custom}]
+usage: /opt/wallarm/usr/share/wallarm-common/cloud-init.py [-h] -t TOKEN [-H HOST] [--skip-register] [-p {proxy,mirror,custom}]
                                                       [-m {off,monitoring,safe_blocking,block}] [--proxy-pass PROXY_PASS]
                                                       [--libdetection] [--global-snippet GLOBAL_SNIPPET_FILE]
                                                       [--http-snippet HTTP_SNIPPET_FILE] [--server-snippet SERVER_SNIPPET_FILE]
