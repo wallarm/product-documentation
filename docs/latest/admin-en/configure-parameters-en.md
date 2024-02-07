@@ -65,7 +65,7 @@ A path to the `node.yaml` file, which contains access requirements for the Walla
 ```
 wallarm_api_conf /etc/wallarm/node.yaml
 
-# Docker NGINX-based image or all-in-one installer installations
+# Docker NGINX-based image, cloud image and all-in-one installer installations
 # wallarm_api_conf /opt/wallarm/etc/wallarm/node.yaml
 ```
 
@@ -197,7 +197,7 @@ A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains
     
     **Default value**:
     
-    * `/opt/wallarm/etc/wallarm/custom_ruleset` for Docker NGINX-based image or all-in-one installer installations
+    * `/opt/wallarm/etc/wallarm/custom_ruleset` for Docker NGINX-based image, cloud image and all-in-one installer installations
     * `/etc/wallarm/custom_ruleset` for other installation artifacts
 
 <!-- ### wallarm_enable_apifw
@@ -294,7 +294,7 @@ A path to the Wallarm private key used for encryption/decryption of proton.db an
 !!! info
     **Default value**:
     
-    * `/opt/wallarm/etc/wallarm/private.key` for Docker NGINX-based image or all-in-one installer installations
+    * `/opt/wallarm/etc/wallarm/private.key` for Docker NGINX-based image, cloud image and all-in-one installer installations
     * `/etc/wallarm/private.key` for other installation artifacts
 
 
@@ -571,7 +571,7 @@ A path to the [proton.db](../about-wallarm/protecting-against-attacks.md#library
     
     **Default value**:
     
-    * `/opt/wallarm/etc/wallarm/proton.db` for Docker NGINX-based image or all-in-one installer installations
+    * `/opt/wallarm/etc/wallarm/proton.db` for Docker NGINX-based image, cloud image and all-in-one installer installations
     * `/etc/wallarm/proton.db` for other installation artifacts
 
 ### wallarm_rate_limit

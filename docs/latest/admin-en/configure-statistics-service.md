@@ -74,7 +74,7 @@ Once the settings changed, restart NGINX to apply the changes:
 To change an IP address of the statistics service:
 
 1. Specify a new address in the `listen` directive of the `/etc/nginx/conf.d/wallarm-status.conf` file (`/etc/nginx/wallarm-status.conf` for all-in-one installer).
-1. Add the `status_endpoint` parameter with the new address value to the `/etc/wallarm/node.yaml` file (`/opt/wallarm/etc/wallarm/node.yaml` for Docker NGINX-based image or all-in-one installer), e.g.:
+1. Add the `status_endpoint` parameter with the new address value to the `/etc/wallarm/node.yaml` file (`/opt/wallarm/etc/wallarm/node.yaml` for Docker NGINX-based image, cloud images and all-in-one installer), e.g.:
 
     ```bash
     hostname: example-node-name

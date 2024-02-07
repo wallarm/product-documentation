@@ -67,7 +67,7 @@ By default, this service is accessible at `http://127.0.0.8/wallarm-status`.
 
 If you [configure](../configure-statistics-service.md#changing-an-ip-address-of-the-statistics-service) the statistics service to be available at a non-standard address:
 
-1. Add the `status_endpoint` parameter with the new address value to the `/etc/wallarm/node.yaml` file (`/opt/wallarm/etc/wallarm/node.yaml` for Docker NGINX-based image or all-in-one installer), e.g.:
+1. Add the `status_endpoint` parameter with the new address value to the `/etc/wallarm/node.yaml` file (`/opt/wallarm/etc/wallarm/node.yaml` for Docker NGINX-based image, cloud images and all-in-one installer), e.g.:
 
     ```bash
     hostname: example-node-name
