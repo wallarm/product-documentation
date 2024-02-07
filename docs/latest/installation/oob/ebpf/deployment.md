@@ -47,8 +47,10 @@ Ensure the following technical prerequisites are met for a successful deployment
     * Azure - Kubernetes 1.26 and above
     * GCP - any Kubernetes version
     * Bare-metal server - Kubernetes 1.22 and above
+* Installed [cert-manager](https://cert-manager.io/docs/installation/helm/).
 * [Helm v3](https://helm.sh/) package manager.
 * Linux kernel version 5.10 or 5.15 with BTF (BPF Type Format) enabled. Supported on Ubuntu, Debian, RedHat, Google COS, or Amazon Linux 2.
+* Processor with the x86_64 architecture.
 * Your user account should have [**Administrator** access](../../../user-guides/settings/users.md#user-roles) to the Wallarm Console.
 
 ## Network access
@@ -80,19 +82,7 @@ To deploy the Wallarm eBPF solution:
 
 ### Step 2: Deploy the Wallarm Helm chart
 
-1. Install [cert-manager](https://cert-manager.io/docs/installation/helm/) on Kubernetes to enable the agent to send encrypted traffic to Kubernetes nodes and obtain a certificate.
-
-    ```
-    helm repo add jetstack https://charts.jetstack.io
-    helm repo update
-    kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.crds.yaml
-    helm install \
-      cert-manager jetstack/cert-manager \
-      --namespace cert-manager \
-      --create-namespace \
-      --version v1.13.2 \
-      # --set installCRDs=true
-    ```
+1. Make sure that your environment meets the requirements above.
 1. Add the [Wallarm chart repository](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
