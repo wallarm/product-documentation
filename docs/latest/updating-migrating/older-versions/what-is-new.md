@@ -327,6 +327,7 @@ The [Amazon Machine Image (AMI)](../../installation/cloud-platforms/aws/ami.md) 
 * Support for processors with ARM64 architecture, which is automatically identified during the installation process.
 * The cloud images are now built using the [all-in-one installer](../../installation/nginx/all-in-one.md), which changes its internal directory structure:
 
+      * Node registration script: `/usr/share/wallarm-common/register-node` → `/opt/wallarm/usr/share/wallarm-common/cloud-init.py`.
       * Log file directory: `/var/log/wallarm` → `/opt/wallarm/var/log/wallarm`.
       * Directory with files containing credentials for the Wallarm node to connect to the Cloud: `/etc/wallarm` → `/opt/wallarm/etc/wallarm`.
       * The path to the `/usr/share` directory → `/opt/wallarm/usr/share`.

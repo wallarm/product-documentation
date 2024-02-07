@@ -8,22 +8,20 @@ This article provides instructions for deploying Wallarm on GCP using the [offic
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
 
-## 5. Enable Wallarm to analyze the traffic
+## 5. Connect the instance to the Wallarm Cloud
 
---8<-- "../include/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-for-cloud-images.md"
 
-## 6. Restart NGINX
+## 6. Configure sending traffic to the Wallarm instance
 
---8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob-latest.md"
 
-## 7. Configure sending traffic to the Wallarm instance
-
---8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
-
-## 8. Test the Wallarm operation
+## 7. Test the Wallarm operation
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
 
-## 9. Fine-tune the deployed solution
+## 8. Fine-tune the deployed solution
 
 --8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+
+--8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"

@@ -1,1 +1,1 @@
---8<-- "latest/installation/cloud-platforms/cloud-init.md"
+--8<-- "4.6/installation/cloud-platforms/cloud-init.md"
