@@ -208,6 +208,10 @@ nav:
     - Deployment Options: installation/supported-deployment-options.md
     - Out-of-Band:
       - Overview: installation/oob/overview.md
+      - eBPF:
+        - Deploy: installation/oob/ebpf/deployment.md
+        - Helm Chart Values: installation/oob/ebpf/helm-chart-for-wallarm.md
+        - Selecting Packets for Mirroring: installation/oob/ebpf/selecting-packets.md
       - Mirroring by NGINX, Envoy and Similar:
         - Overview: installation/oob/web-server-mirroring/overview.md
         - Public Clouds:
