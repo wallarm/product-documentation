@@ -1,3 +1,5 @@
+[request-processing]:       request-processing.md
+
 # Ignoring attack signs in the binary data
 
 The rules **Allow binary data** and **Allow certain file types** are used to adjust the standard attack detection rules for binary data.

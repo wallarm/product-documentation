@@ -1,5 +1,7 @@
-[rule-creation-options]:    ../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
-[acl-access-phase]:         ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
+[link-wallarm-mode-override]:       ../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
+[rule-creation-options]:            ../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
+[acl-access-phase]:                 ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
+[img-mode-rule]:                    ../images/user-guides/rules/wallarm-mode-rule.png
 
 # Filtration Mode
 
@@ -110,8 +112,6 @@ On the **General** tab, you can specify one of the following filtration modes:
 ### Setting up the filtration rules on the "Rules" tab
 
 You can fine-tune the filtration mode for processing requests that meet your custom conditions on the **Rules** tab of Wallarm Console. These rules have higher priority than the [general filtration rule set in Wallarm Console](#setting-up-the-general-filtration-rule-in-wallarm-console).
-
-To set a filtration mode, create a **Set filtration mode** rule and select the appropriate mode. To implement this rule, the NGINX configuration files must permit [centralized management of the operation mode][link-wallarm-mode-override].
 
 **Creating and applying the rule**
 

@@ -3,6 +3,7 @@
 [img-regex-example1]:       ../../images/user-guides/rules/regex-rule-1.png
 [img-regex-example2]:       ../../images/user-guides/rules/regex-rule-2.png
 [img-regex-id]:             ../../images/user-guides/rules/regex-id.png
+[request-processing]:       request-processing.md
 
 # User-Defined Detection Rules
 

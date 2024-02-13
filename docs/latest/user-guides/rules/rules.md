@@ -4,7 +4,7 @@
 
 # Rules
 
-In Wallarm, rules are used to fine-tune the behavior of the system during the analysis of requests and their further processing in the post-analysis module as well as in the Wallarm Cloud.
+In Wallarm, rules are used to fine-tune the behavior of the system during the analysis of requests and their further processing in the post-analysis module as well as in the Wallarm Cloud. You can inspect existing rules and configure the new ones in the **Rules** section of Wallarm Console.
 
 For a better understanding of how the traffic processing rules are applied, it is advisable to learn how the filter node [analyzes the requests][link-request-processing].
 
@@ -19,7 +19,7 @@ Using rules, you can provide the multiple protections measures for your applicat
 * [Create your own detection rule](../../user-guides/rules/regex-rule.md)
 * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
 * Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
-* Fine tune request processing by [manage request parsers](../../user-guides/rules/request-processing.md#managing-parsers) and [changing server response headers](../../user-guides/rules/request-processing.md#changing-server-response-headers)
+* Fine tune request processing by [managing request parsers](../../user-guides/rules/request-processing.md#managing-parsers) and [changing server response headers](../../user-guides/rules/request-processing.md#changing-server-response-headers)
 * Fine tune attack detection by setting to [ignore certain attack types](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) and to [ignore certain attack signs in the binary data](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
 
 ## Terminology
@@ -45,8 +45,6 @@ A branch without nested rule branches is called an *endpoint branch*. Ideally, a
 A request processing setting for the filter node, the post-analysis module, or the cloud is called a *rule*.
 
 Processing rules are linked to the branches or endpoints. A rule is applied to a request only if the request matches all the conditions described in the branch.
-
-You can inspect existing rules and configure the new ones at the **Rules** section of Wallarm Console.
 
 ## Inspecting
 

@@ -1,3 +1,5 @@
+[request-processing]:       request-processing.md
+
 # Managing request parsers
 
 The rule **Disable/Enable request parser** allows managing the set of parsers applied to the request during its analysis.

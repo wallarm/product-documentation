@@ -1,3 +1,5 @@
+[request-processing]:       request-processing.md
+
 # Ignoring certain attack types
 
 The rule **Ignore certain attack types** allows disabling detection of certain attack types in certain request elements.

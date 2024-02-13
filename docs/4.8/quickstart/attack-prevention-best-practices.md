@@ -18,9 +18,9 @@ For URLs that require unrestricted traffic or for which you wish to conduct manu
 
 ## Control traffic filtering modes and processing exceptions
 
-Implement security measures gradually using our flexible options for managing filtering modes and customizing processing to suit your applications. For example, enable the monitoring mode for [specific nodes, applications](../admin-en/configure-wallarm-mode.md#specifying-the-filtration-mode-in-the-wallarm_mode-directive), or [parts of an application](../admin-en/configure-wallarm-mode.md#setting-up-the-filtration-rules-on-the-rules-tab#example-disabling-request-blocking-during-user-registration).
+Implement security measures gradually using our flexible options for managing [filtration modes](../admin-en/configure-wallarm-mode.md) and customizing processing to suit your applications. For example, enable the monitoring mode for specific nodes, applications, or parts of an application.
 
-If required, except [detectors tailored for specific request elements](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types).
+If required, [except detectors](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) tailored for specific request elements.
 
 ## Set up the denylist
 
