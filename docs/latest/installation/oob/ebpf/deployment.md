@@ -47,7 +47,7 @@ Ensure the following technical prerequisites are met for a successful deployment
     * Azure - Kubernetes 1.26 and above
     * GCP - any Kubernetes version
     * Bare-metal server - Kubernetes 1.22 and above
-* Installed [cert-manager](https://cert-manager.io/docs/installation/helm/).
+* Installed [cert-manager](https://cert-manager.io/docs/installation/helm/) to enable the agent to mirror captured traffic to the Wallarm processing node in a secure way.
 * [Helm v3](https://helm.sh/) package manager.
 * Linux kernel version 5.10 or 5.15 with BTF (BPF Type Format) enabled. Supported on Ubuntu, Debian, RedHat, Google COS, or Amazon Linux 2.
 * Processor with the x86_64 architecture.
@@ -82,7 +82,7 @@ To deploy the Wallarm eBPF solution:
 
 ### Step 2: Deploy the Wallarm Helm chart
 
-1. Make sure that your environment meets the requirements above.
+1. Make sure that your environment meets the requirements above and [cert-manager](https://cert-manager.io/docs/installation/helm/) is installed.
 1. Add the [Wallarm chart repository](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
@@ -142,33 +142,7 @@ kubectl label ns <NAMESPACE> wallarm-mirror=enabled
 To enable mirroring for a pod, set the `mirror.wallarm.com/enabled` annotation to `true`:
 
 ```bash
-kubectl edit deployment -n <NAMESPACE> <APP_LABEL_VALUE>
-```
-
-```yaml hl_lines="17"
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: myapp
-  namespace: default
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: myapp
-  template:
-    metadata:
-      labels:
-        app: myapp
-      annotations:
-        mirror.wallarm.com/enabled: "true"
-    spec:
-      containers:
-        - name: application
-          image: kennethreitz/httpbin
-          ports:
-            - name: http
-              containerPort: 80
+kubectl patch deployment <DEPLOYMENT_NAME> -n <NAMESPACE> -p '{"spec": {"template":{"metadata":{"annotations":{"mirror.wallarm.com/enabled":"true"}}}} }'
 ```
 
 #### For a namespace, pod, container, or node using `values.yaml`
@@ -193,10 +167,10 @@ To test that the Wallarm eBPF operates correctly:
     wallarm-ebpf-wallarm-oob-aggregation-f68959465-vchxb   4/4     Running   0          30m
     wallarm-ebpf-wallarm-oob-processing-694fcf9b47-rknx9   4/4     Running   0          30m
     ```
-1. Send the test [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the application cluster address Wallarm is enabled to analyze traffic:
+1. Send the test [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the application by replacing `<LOAD_BALANCER_IP_OR_HOSTNAME>` with the actual IP address or DNS name of the load balancer directing traffic to it:
 
     ```bash
-    curl https://<APPLICATION_CLUSTER_IP>/etc/passwd
+    curl https://<LOAD_BALANCER_IP_OR_HOSTNAME>/etc/passwd
     ```
 
     Since the Wallarm eBPF solution operates in the out-of-band approach, it does not block attacks but only registers them.

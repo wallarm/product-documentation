@@ -1,4 +1,4 @@
-# Selecting Packets for Mirroring
+# Selecting Sources for Mirroring
 
 The [Wallarm eBPF solution](deployment.md) operates on a traffic mirror and provides control over the traffic mirror scope. It allows you to produce packet mirror by Kubernetes namespaces, pods, and containers. This guide explains how to manage the selection process.
 
@@ -21,33 +21,7 @@ kubectl label ns <NAMESPACE> wallarm-mirror=enabled
 To control mirroring at the pod level, use the `mirror.wallarm.com/enabled` annotation and set its value to either `true` or `false`, e.g.:
 
 ```bash
-kubectl edit deployment -n <NAMESPACE> <APP_LABEL_VALUE>
-```
-
-```yaml hl_lines="17"
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: myapp
-  namespace: default
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: myapp
-  template:
-    metadata:
-      labels:
-        app: myapp
-      annotations:
-        mirror.wallarm.com/enabled: "true"
-    spec:
-      containers:
-        - name: application
-          image: kennethreitz/httpbin
-          ports:
-            - name: http
-              containerPort: 80
+kubectl patch deployment <DEPLOYMENT_NAME> -n <NAMESPACE> -p '{"spec": {"template":{"metadata":{"annotations":{"mirror.wallarm.com/enabled":"true"}}}} }'
 ```
 
 ## Mirroring for a namespace, pod, container, or node using `values.yaml`
@@ -64,10 +38,9 @@ The `config.agent.mirror.filters` block in the `values.yaml` file allows fine-gr
 To enable traffic mirroring for a specific namespace, specify its name in the `filters.namespace` parameter. For example, to enable traffic mirroring for the `my-namespace` Kubernetes namespace:
 
 ```yaml
-...
+config:
   agent:
     mirror:
-      ...
       filters:
         - namespace: 'my-namespace'
 ```
@@ -82,26 +55,24 @@ You can choose a pod for traffic mirroring by the pod's labels and annotations. 
     For example, to enable traffic mirroring for a pod with the `environment: production` label:
 
     ```yaml
-    ...
-    agent:
-      mirror:
-      ...
-      filters:
-        - pod_labels:
-            environment: 'production'
+    config:
+      agent:
+        mirror:
+          filters:
+            - pod_labels:
+                environment: 'production'
     ```
 
     If multiple labels are required to identify the pod, you can specify several labels. For example, the following configuration enables Wallarm eBPF to mirror and analyze the traffic of pods that have the `environment: production AND (team: backend OR team: ops)` labels:
 
     ```yaml
-    ...
-    agent:
-      mirror:
-      ...
-      filters:
-        - pod_labels:
-            environment: 'production'
-            team: 'backend,ops'
+    config:
+      agent:
+        mirror:
+          filters:
+            - pod_labels:
+                environment: 'production'
+                team: 'backend,ops'
     ```
 === "Choosing a pod by annotation"
     To enable traffic mirroring for a pod with a specific annotation, use the `pod_annotations` parameter.
@@ -109,13 +80,12 @@ You can choose a pod for traffic mirroring by the pod's labels and annotations. 
     For example, to enable traffic mirroring for a pod with the `app.kubernetes.io/name: myapp` annotation:
 
     ```yaml
-    ...
-    agent:
-      mirror:
-      ...
-      filters:
-        - pod_annotations:
-            app.kubernetes.io/name: 'myapp'
+    config:
+      agent:
+        mirror:
+          filters:
+            - pod_annotations:
+                app.kubernetes.io/name: 'myapp'
     ```
 
     If multiple annotations are required to identify the pod, you can specify several annotations. For example, the following configuration enables Wallarm eBPF to mirror and analyze the traffic of pods that have the following annotations:
@@ -126,14 +96,13 @@ You can choose a pod for traffic mirroring by the pod's labels and annotations. 
     ```
 
     ```yaml
-    ...
-    agent:
-      mirror:
-      ...
-      filters:
-        - pod_annotations:
-            app.kubernetes.io/name: 'myapp'
-            app.kubernetes.io/instance: 'myapp-instance-main,myapp-instance-reserve'
+    config:
+      agent:
+        mirror:
+          filters:
+            - pod_annotations:
+                app.kubernetes.io/name: 'myapp'
+                app.kubernetes.io/instance: 'myapp-instance-main,myapp-instance-reserve'
     ```
 
 ### Choosing a node
@@ -141,10 +110,9 @@ You can choose a pod for traffic mirroring by the pod's labels and annotations. 
 To enable traffic mirroring for a specific Kubernetes node, specify the node name in the `filters.node_name` parameter. For example, to enable traffic mirroring for the `my-node` Kubernetes node:
 
 ```yaml
-...
+config:
   agent:
     mirror:
-      ...
       filters:
         - node_name: 'my-node'
 ```
@@ -154,10 +122,9 @@ To enable traffic mirroring for a specific Kubernetes node, specify the node nam
 To enable traffic mirroring for a specific Kubernetes container, specify the container name in the `filters.container_name` parameter. For example, to enable traffic mirroring for the `my-container` Kubernetes container:
 
 ```yaml
-...
+config:
   agent:
     mirror:
-      ...
       filters:
         - container_name: 'my-container'
 ```
@@ -187,10 +154,9 @@ Labels, annotations, and filters provide a high degree of flexibility in setting
 Consider the following `values.yaml` configuration:
 
 ```yaml
-...
+config:
   agent:
     mirror:
-      ...
       filters:
         - namespace: "default"
         - namespace: 'my-namespace'
