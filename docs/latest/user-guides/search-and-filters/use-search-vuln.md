@@ -14,6 +14,7 @@
 [al-vuln-component]:      ../../attacks-vulns-list.md#vulnerable-component
 [ssti-injection]:         ../../attacks-vulns-list.md#serverside-template-injection-ssti
 [al-weak-jwt]:            ../../attacks-vulns-list.md#weak-jwt
+[al-bola]:                ../../attacks-vulns-list.md#broken-object-level-authorization-bola
 
 # Vulnerability Search and Filters
 
@@ -65,7 +66,7 @@ Specify in the search string:
 * `infoleak`: to search for vulnerabilities of [information disclosure][al-infoleak] type.
 * `vuln_component`: to search for vulnerabilities related to the [components][al-vuln-comp] of your applications that are outdated or contain security affecting errors.
 * `redir`: to search for [open redirect][al-open-redirect] vulnerabilities.
-<!-- * BOLA (TBD) - presented in filter but does not add search tag, does not work -->
+* `idor`: to search for [broken object level authorization (BOLA)][al-bola] vulnerabilities.
 * `ssrf`: to search for [server‑side request forgery (SSRF)][al-ssrf] vulnerabilities.
 * `csrf`: to search for [cross-site request forgery (CSRF)][al-csrf] vulnerabilities.
 * `weak_auth`: to search for [weak JWT][al-weak-jwt] vulnerabilities.
