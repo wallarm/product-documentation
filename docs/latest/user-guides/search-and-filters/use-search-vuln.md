@@ -17,7 +17,9 @@
 
 # Vulnerability Search and Filters
 
-Wallarm provides convenient methods for searching detected vulnerabilities. In the **Vulnerabilities** section of Wallarm Console, the following search methods available:
+In the **Vulnerabilities** section, Wallarm provides convenient methods for searching among detected vulnerabilities.
+
+You can use:
 
 * **Filters** to select filtering criteria
 * **Search field** to input search queries with attributes and modifiers similar to human language
