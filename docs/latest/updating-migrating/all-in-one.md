@@ -2,8 +2,7 @@
 [img-attacks-in-interface]:                 ../images/admin-guides/test-attacks-quickstart.png
 [tarantool-status]:                         ../images/tarantool-status.png
 [configure-proxy-balancer-instr]:           ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[sqli-attack-docs]:                         ../attacks-vulns-list.md#sql-injection
-[xss-attack-docs]:                          ../attacks-vulns-list.md#crosssite-scripting-xss
+[ptrav-attack-docs]:                        ../attacks-vulns-list.md#path-traversal
 
 # Upgrading Wallarm node with All-in-One Installer
 
@@ -47,7 +46,28 @@ To upgrade node, you will need a Wallarm token of [one of the types](../user-gui
 
 ### Step 3: Run all-in-one Wallarm installer
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+Run the downloaded script:
+
+=== "API token"
+    ```bash
+    # If using the x86_64 version:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
+
+    # If using the ARM64 version:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
+    ```
+=== "Node token"
+    ```bash
+    # If using the x86_64 version:
+    sudo sh wallarm-4.10.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
+
+    # If using the ARM64 version:
+    sudo sh wallarm-4.10.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
+    ```
+
+* `<GROUP>` sets a group name into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI). Only applied if using an API token.
+* `<TOKEN>` is the copied token value.
+* `<CLOUD>` is the Wallarm Cloud to register the new node in. Can be either `US` or `EU`.
 
 ### Step 4: Restart NGINX
 
@@ -57,10 +77,10 @@ To upgrade node, you will need a Wallarm token of [one of the types](../user-gui
 
 To test the new node operation:
 
-1. Send the request with test [SQLI][sqli-attack-docs] and [XSS][xss-attack-docs] attacks to the protected resource address:
+1. Send the request with test [Path Traversal][ptrav-attack-docs] attack to a protected resource address:
 
     ```
-    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://localhost/etc/passwd
     ```
 
 1. Open the Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and ensure attacks are displayed in the list.
@@ -98,7 +118,26 @@ This step is performed on the postanalytics machine.
 
 This step is performed on the postanalytics machine.
 
---8<-- "../include/waf/installation/all-in-one-postanalytics.md"
+=== "API token"
+    ```bash
+    # If using the x86_64 version:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
+
+    # If using the ARM64 version:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
+    ```
+=== "Node token"
+    ```bash
+    # If using the x86_64 version:
+    sudo sh wallarm-4.10.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
+
+    # If using the ARM64 version:
+    sudo sh wallarm-4.10.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
+    ```
+
+* `<GROUP>` sets a group name into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI). Only applied if using an API token.
+* `<TOKEN>` is the copied token value.
+* `<CLOUD>` is the Wallarm Cloud to register the new node in. Can be either `US` or `EU`.
 
 ### Step 4: Download newest version of all-in-one Wallarm installer to filtering node machine
 
@@ -110,27 +149,26 @@ This step is performed on the filtering node machine.
 
 This step is performed on the filtering node machine.
 
-To upgrade filtering node separately with all-in-one installer, use:
-
 === "API token"
     ```bash
     # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.0.x86_64-glibc.sh filtering
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
 
     # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.0.aarch64-glibc.sh filtering
-    ```        
-
-    The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
-
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
+    ```
 === "Node token"
     ```bash
     # If using the x86_64 version:
-    sudo sh wallarm-4.10.0.x86_64-glibc.sh filtering
+    sudo sh wallarm-4.10.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
 
     # If using the ARM64 version:
-    sudo sh wallarm-4.10.0.aarch64-glibc.sh filtering
+    sudo sh wallarm-4.10.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
     ```
+
+* `<GROUP>` sets a group name into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI). Only applied if using an API token.
+* `<TOKEN>` is the copied token value.
+* `<CLOUD>` is the Wallarm Cloud to register the new node in. Can be either `US` or `EU`.
 
 ### Step 6: Check the filtering node and separate postanalytics modules interaction
 
