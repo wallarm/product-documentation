@@ -117,3 +117,20 @@ Below there are a few of the typical settings that you can apply if needed:
 ## Launch options
 
 --8<-- "../include/waf/installation/all-in-one/launch-options.md"
+
+## Reinstalling the filtering node
+
+If you need to restart or delete the Wallarm node installation, follow the steps below.
+
+!!! warning "Impact of reinstallation"
+    Reinstalling stops Wallarm services and deletes configurations, pausing traffic filtering until reinstallation. Exercise caution in production or critical traffic environments, as this leaves traffic unfiltered and at risk.
+
+    To upgrade an existing node (e.g., from 4.8 to 4.10), see the [upgrade instructions](../../../../updating-migrating/all-in-one.md).
+
+1. Terminate Wallarm processes and remove configuration files:
+
+    ```
+    sudo systemctl stop wallarm
+    sudo rm -rf /opt/wallarm
+    ```
+1. Continue with the reinstallation process by following the setup instructions from the [2nd step](#step-2-prepare-wallarm-token).
