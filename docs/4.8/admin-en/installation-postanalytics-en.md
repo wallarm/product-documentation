@@ -54,11 +54,11 @@ To download all-in-one Wallarm installation script, execute the command:
 
 === "x86_64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.8.x86_64-glibc.sh
+    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.9.x86_64-glibc.sh
     ```
 === "ARM64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.8.aarch64-glibc.sh
+    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.9.aarch64-glibc.sh
     ```
 
 ### Step 2: Prepare Wallarm token
@@ -85,10 +85,10 @@ To install postanalytics separately with all-in-one installer, use:
 === "API token"
     ```bash
     # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.8.x86_64-glibc.sh postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.x86_64-glibc.sh postanalytics
 
     # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.8.aarch64-glibc.sh postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.aarch64-glibc.sh postanalytics
     ```        
 
     The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -96,10 +96,10 @@ To install postanalytics separately with all-in-one installer, use:
 === "Node token"
     ```bash
     # If using the x86_64 version:
-    sudo sh wallarm-4.8.8.x86_64-glibc.sh postanalytics
+    sudo sh wallarm-4.8.9.x86_64-glibc.sh postanalytics
 
     # If using the ARM64 version:
-    sudo sh wallarm-4.8.8.aarch64-glibc.sh postanalytics
+    sudo sh wallarm-4.8.9.aarch64-glibc.sh postanalytics
     ```
 
 ### Step 4: Allocate resources for the postanalytics module
@@ -133,10 +133,10 @@ Once the postanalytics module is installed on the separate server:
     === "API token"
         ```bash
         # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.8.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.8.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -144,10 +144,10 @@ Once the postanalytics module is installed on the separate server:
     === "Node token"
         ```bash
         # If using the x86_64 version:
-        sudo sh wallarm-4.8.8.x86_64-glibc.sh filtering
+        sudo sh wallarm-4.8.9.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo sh wallarm-4.8.8.aarch64-glibc.sh filtering
+        sudo sh wallarm-4.8.9.aarch64-glibc.sh filtering
         ```
 
 1. Perform the after-installation steps, such as enabling analyzing the traffic, restarting NGINX, configuring sending traffic to the Wallarm instance, test and fine tune, as described [here](../installation/nginx/all-in-one.md).

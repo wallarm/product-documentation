@@ -10,6 +10,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.8.9 (2024-02-14)
+
+* Fixed an issue where partially downloaded custom ruleset files were mistakenly validated as complete. Chunked downloading has been implemented to address this issue
+
 ### 4.8.8 (2024-01-31)
 
 * Fixed the `syncnode` script issues
@@ -52,6 +56,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## DEB/RPM packages for NGINX
 
 [How to upgrade](nginx-modules.md)
+
+### 4.8.3 (2023-02-14)
+
+* Fixed an issue where partially downloaded custom ruleset files were mistakenly validated as complete. Chunked downloading has been implemented to address this issue
 
 ### 4.8.0 (2023-10-19)
 
