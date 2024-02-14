@@ -57,6 +57,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](nginx-modules.md)
 
+### 4.8.3 (2023-02-14)
+
+* Fixed an issue where partially downloaded custom ruleset files were mistakenly validated as complete. Chunked downloading has been implemented to address this issue
+
 ### 4.8.0 (2023-10-19)
 
 * Initial release 4.8, [see changelog](what-is-new.md)
