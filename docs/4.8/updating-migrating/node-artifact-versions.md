@@ -61,6 +61,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.8.7 (2023-02-09)
+
+* Restored OpenTracing for 4.8 versions
+
 ### 4.8.6 (2023-12-28)
 
 * Helm chart version of the NGINX Ingress controller bumped to 4.9.0
