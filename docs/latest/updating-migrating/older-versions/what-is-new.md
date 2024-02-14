@@ -306,7 +306,7 @@ The [Docker image of Wallarm's NGINX-based filtering node](../../admin-en/instal
       The NGINX upgrade, along with the switch to Alpine Linux, resolves the HTTP/2 Rapid Reset Vulnerability (CVE-2023-44487), due to the Alpine-specific patch implemented in NGINX 1.24.0.
 
 * Support for processors with ARM64 architecture, which is automatically identified during the installation process.
-* Inside the Docker container, operations now utilize the non-root user `wallarm`, a change from the previous `root` user setup.
+* Inside the Docker container, all operations now utilize the non-root user `wallarm`, a change from the previous `root` user setup. It affects the NGINX process as well.
 * The [`/wallarm-status`](../../admin-en/configure-statistics-service.md) endpoint has been updated to export metrics in the Prometheus format, instead of JSON. This applies specifically when accessing the endpoint from outside the Docker container. Note that the [`WALLARM_STATUS_ALLOW`](../../admin-en/installation-docker-en.md#wallarm-status-allow-env-var) environment variable must be set appropriately for this functionality.
 * The Docker image is now built using the [all-in-one installer](../../installation/nginx/all-in-one.md), which changes its internal directory structure:
 
