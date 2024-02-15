@@ -19,7 +19,7 @@ Using rules, you can provide the multiple protections measures for your applicat
 * [Create your own detection rule](../../user-guides/rules/regex-rule.md)
 * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
 * Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
-* Fine tune request processing by [managing request parsers](../../user-guides/rules/request-processing.md#managing-parsers) and [changing server response headers](../../user-guides/rules/request-processing.md#changing-server-response-headers)
+* Fine tune request processing by [managing request parsers](../../user-guides/rules/request-processing.md#managing-parsers) and [changing server response headers](../../user-guides/rules/add-replace-response-header.md)
 * Fine tune attack detection by setting to [ignore certain attack types](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) and to [ignore certain attack signs in the binary data](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
 
 ## Terminology

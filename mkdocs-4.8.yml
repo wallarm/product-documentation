@@ -185,6 +185,7 @@ nav:
     - Virtual Patching: user-guides/rules/vpatch-rule.md
     - User‑Defined Detection Rules: user-guides/rules/regex-rule.md
     - Masking Sensitive Data: user-guides/rules/sensitive-data-rule.md
+    - Changing Response Headers: user-guides/rules/add-replace-response-header.md
     - Triggers: user-guides/triggers/triggers.md
     - Filtration Mode: admin-en/configure-wallarm-mode.md
     - Attack Detection:
