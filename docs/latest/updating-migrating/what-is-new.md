@@ -13,6 +13,12 @@ Beginning with release 4.10, Wallarm introduces real-time detection and notifica
 
 ![Attacks - credential stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
 
+## API response discovery (node 4.10.1 and higher)
+
+With the 4.10.1 release, we are enhancing Wallarm API Discovery now giving you in-depth information about your API responses. This functionality will discover your API endpoint response structures, highlighting changes, detecting new and unused parameters, and identifying sensitive data.
+
+![APID responses](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
+
 <!--
 
 ## API Policy Enforcement
