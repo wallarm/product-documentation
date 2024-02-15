@@ -15,6 +15,7 @@
 [ssti-injection]:         ../../attacks-vulns-list.md#serverside-template-injection-ssti
 [al-weak-jwt]:            ../../attacks-vulns-list.md#weak-jwt
 [al-bola]:                ../../attacks-vulns-list.md#broken-object-level-authorization-bola
+[al-anomaly]:             ../../fast/vuln-list.md#anomaly
 
 # Vulnerability Search and Filters
 
@@ -53,7 +54,7 @@ Below you will find the list of attributes and modifiers available for use in se
 
 Specify in the search string:
 
-<!-- * `anomaly`: TBD, makes sense only in the context of requests. -->
+* `anomaly`: to search for [anomaly][al-anomaly] vulnerabilities detected by [FAST](../../fast/README.md).
 * `sqli`: to search for [SQL injection][al-sqli] vulnerabilities.
 * `xss`: to search for [cross site scripting][al-xss] vulnerabilities.
 * `rce`: to search for [OS commanding][al-rce] vulnerabilities.
@@ -80,33 +81,3 @@ Specify the risk level in the search string:
 * `low`: low risk level.
 * `medium`: medium risk level.
 * `high`: high risk level.
-
-<!-- ### Search by event time
-
-Specify time period in the search string. If the period is not specified, the search is conducted within the events that occurred during the last 24 hours.
-
-There are the following methods to specify the period:
-
-* By date: `11/10/2020-11/14/2020`
-* By date and time (seconds are disregarded): `11/10/2020 11:11`, `11:30-12:22`, `11/10/2020 11:12-01/14/2020 12:14`
-* With relation to a certain moment of time: `>11/10/20`
-* Using string aliases:
-    * `yesterday` equal to yesterday's date
-    * `today` equal to today's date
-    * `last <unit>` equal to the period from the entire past unit start to current date and time
-
-        `week`, `month`, `year` or the number of these units can be used as `<unit>`. For example: `last week`, `last 3 month` or `last 3 months`.
-    
-    * `this <unit>` equal to current unit
-
-        `week`, `month`, `year` can be used as `<unit>`. For example: `this week` will return events detected on Monday, Tuesday and Wednesday this week if today is Wednesday.
-
-Date and time format depends on the settings specified in your [profile](../settings/account.md#changing-your-date-time-format):
-
-* MM/DD/YYYY if **MDY** is selected
-* DD/MM/YYYY if **DMY** is selected
-* `13:00` if **24‑hour** is ticked
-* `1pm` if **24‑hour** is unticked
-
-The month can be specified as both number and name: `01`, `1`, `January`, `Jan` for January. The year can be specified in both full form (`2020`) and shortened form (`20`). If the year is not specified in the date, then the current year is used.
--->
