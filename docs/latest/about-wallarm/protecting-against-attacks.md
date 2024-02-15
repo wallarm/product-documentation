@@ -55,14 +55,14 @@ Protected resource API can be designed on the basis of the following technologie
 
 To detect attacks, Wallarm uses the following process:
 
-1. Determine the request format and parse every request part as described in the [document about request parsing](../user-guides/rules/request-processing.md).
+1. Determine the request format and [parse](../user-guides/rules/request-processing.md) every request part.
 2. Determine the endpoint the request is addressed to.
-3. Apply [custom rules for request analysis](#custom-rules-for-request-analysis) configured in Wallarm Console.
-4. Make a decision whether the request is malicious or not based on [default and custom detection rules](#tools-for-attack-detection).
+3. Apply [custom](../user-guides/rules/rules.md) rules for request analysis configured in Wallarm Console.
+4. Make a decision whether the request is malicious or not based on [default](#tools-for-attack-detection) and custom rules.
 
 ## Tools for attack detection
 
-To detect malicious requests, Wallarm nodes [analyze](waap-overview.md#protection-by-default) all requests sent to the protected resource using the following tools:
+To detect malicious requests, Wallarm nodes [analyze](#attack-detection-process) all requests sent to the protected resource using the following tools:
 
 * Library **libproton**
 * Library **libdetection**
@@ -252,11 +252,17 @@ All detected attacks are displayed in the Wallarm Console → **Attacks** sectio
 * Mark attacks or separate hits as false positives
 * Create the rules for custom processing of separate hits
 
-For more information on managing attacks, see the instructions on [working with attacks](../about-wallarm/protecting-against-attacks.md).
-
 ![Attacks view](../images/user-guides/events/check-attack.png)
 
-Additionally, Wallarm provides comprehensive dashboards to help you stay on top of your system's security posture. Wallarm's [Threat Prevention](../user-guides/dashboards/threat-prevention.md) dashboard provides general metrics on your system's security posture, while the [OWASP API Security Top 10](../user-guides/dashboards/owasp-api-top-ten.md) dashboard provides detailed visibility into your system's security posture against the OWASP API Top 10 threats.
+## Attack dashboards
+
+Wallarm provides comprehensive dashboards to help you stay on top of your system's security posture.
+
+Wallarm's [Threat Prevention](../user-guides/dashboards/threat-prevention.md) dashboard provides general metrics on your system's security posture, including multi-aspect information about attacks: their sources, targets, types and protocols.
+
+![Threat Prevention dashboard](../../images/user-guides/dashboard/threat-prevention.png)
+
+The [OWASP API Security Top 10](../user-guides/dashboards/owasp-api-top-ten.md) dashboard provides detailed visibility into your system's security posture against the OWASP API Top 10 threats, including attack information.
 
 ![OWASP API Top 10](../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
 
