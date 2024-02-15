@@ -6,9 +6,12 @@ The API built inventory includes the following elements:
 
 * API endpoints
 * Request methods (GET, POST, and others)
-* Required and optional GET, POST, and header parameters including:
+* Required and optional GET, POST, and header parameters of requests and responses including:
     * [Type/format](./exploring.md#parameter-format-and-data-type) of data sent in each parameter    
     * Date and time when parameter information was last updated
+
+!!! info "Availability of response parameters"
+    Response parameters are only available when using node 4.10.1 or higher.
 
 ![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
@@ -23,7 +26,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 **As you have your API inventory discovered by Wallarm, you can**:
 
 * Have a full visibility into the whole API estate including the list of [external and internal](exploring.md#distinguish-external-and-internal-apis) APIs.
-* See what data is [going into the APIs](exploring.md#viewing-endpoint-parameters).
+* See [what data](exploring.md#endpoint-details) is going into and out of the APIs.
 * Get a list of endpoints with the open vulnerabilities.
 * Get a list of the threats that occurred over the past 7 days per any given API endpoint.
 * Filter out only attacked APIs, sort them by number of hits.
@@ -43,7 +46,7 @@ API Discovery relies on request statistics and uses sophisticated algorithms to 
 
 API Discovery uses a hybrid approach to conduct analysis locally and in the Cloud. This approach enables a [privacy-first process](#security-of-data-uploaded-to-the-wallarm-cloud) where request data and sensitive data are kept locally while using the power of the Cloud for the statistics analysis:
 
-1. API Discovery analyzes legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed.
+1. API Discovery analyzes legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed and returned.
 1. According to this data, statistics are made and sent to the Cloud.
 1. Wallarm Cloud aggregates the received statistics and builds an [API description](exploring.md) on its basis.
 
