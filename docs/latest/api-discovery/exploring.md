@@ -41,13 +41,13 @@ All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
 ## Endpoint details
 
-<a name="params"></a>By clicking the endpoint, you can also find the endpoint details, including request statistics, headers, required and optional parameters with the relevant data types:
+<a name="params"></a>By clicking the endpoint, you can also find the endpoint details, including request statistics, headers and parameters of requests and responses with the relevant data types:
 
 ![Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
-Each parameter information includes:
+Each request/response parameter information includes:
 
-* Parameter name and the part of request this parameter belongs to
+* Parameter name and the part of request/response this parameter belongs to
 * Information about parameter changes (new, unused)
 * Presence and type of sensitive data transmitted by this parameter, including:
 
@@ -59,6 +59,9 @@ Each parameter information includes:
 
 * [Type/format](#parameter-format-and-data-type) of data sent in this parameter
 * Date and time when parameter information was last updated
+
+!!! info "Availability of response parameters"
+    Response parameters are only available when using node 4.10.1 or higher.
 
 ### Format and data type
 
