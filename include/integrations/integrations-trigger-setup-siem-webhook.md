@@ -2,12 +2,15 @@
 
 The following conditions are available for notification:
 
-* Number of [attacks](../../glossary-en.md#attack) (experimental attacks based on [custom regular expressions](../rules/regex-rule.md) are not counted)
-* Number of [hits](../../glossary-en.md#hit) except for:
+* Number of [attacks](../../../glossary-en.md#attack), [hits](../../../glossary-en.md#hit) or incidents per time interval (day, hour, etc.) exceeds the set number
 
-    * Experimental hits detected based on the [custom regular expression](../rules/regex-rule.md). Non-experimental hits are counted.
-    * Hits not saved in the [sample](../events/analyze-attack.md#sampling-of-hits).
-* Number of incidents
+    !!! info "What is not counted"
+        * For attacks: 
+            * The experimental attacks based on the [custom regular expressions](../../../user-guides/rules/regex-rule.md).
+        * For hits:
+            * The experimental hits based on the [custom regular expressions](../../../user-guides/rules/regex-rule.md).
+            * Hits not saved in the [sample](../../events/analyze-attack.md#sampling-of-hits).
+
 * Denylisted IP
 * [Changes in API](../../about-wallarm/api-discovery.md#tracking-changes-in-api)
 * User added

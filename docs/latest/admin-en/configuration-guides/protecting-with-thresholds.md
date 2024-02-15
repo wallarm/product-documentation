@@ -11,6 +11,10 @@ To configure protection from sources originating malicious requests:
 1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **Number of malicious payloads** condition.
 1. Set number of different malicious payloads from one IP per time interval. On exceeding this number within the specified time, the trigger will be activated.
+
+    !!! info "What is not counted"
+        The experimental payloads based on the [custom regular expressions](../../user-guides/rules/regex-rule.md).
+
 1. If required, set one or several filters:
 
     * **Type** is a [type](../../attacks-vulns-list.md) of attack detected in the request or a type of vulnerability the request is directed to.
