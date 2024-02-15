@@ -113,21 +113,21 @@ The following tags correspond to the parser for HTTP request metadata:
 
 Complex request parts may require additional parsing (for example, if the data is Base64 encoded or presented in the array format). In such cases, the parsers listed below are applied to request parts additionally.
 
-**base64**
+#### base64
 
 Decodes Base64 encoded data, and can be applied to any part of the request.
 
-**gzip**
+#### gzip
 
 Decodes GZIP encoded data, and can be applied to any part of the request.
 
-**htmljs**
+#### htmljs
 
 Converts HTML and JS symbols to the text format, and can be applied to any part of the request.
 
 Example: `&#x22;&#97;&#97;&#97;&#x22;` will be converted to `"aaa"`.
 
-**json_doc**
+#### json_doc
 
 Parses the data in JSON format, and can be applied to any part of the request.
 
@@ -147,7 +147,7 @@ Example:
 * `[..., json_doc, hash, 'p2', array, 1]` — `v2`
 * `[..., json_doc, hash, 'p3', hash, 'somekey']` — `somevalue`
 
-**xml**
+#### xml
 
 Parses the data in XML format, and can be applied to any part of the request.
 
@@ -185,7 +185,7 @@ Example:
 * `[..., xml, xml_tag, 'methodCall', xml_tag, 'methodArgs', xml_attr, 'check']` — `true`
 * `[..., xml, xml_tag, 'methodCall', xml_tag, 'methodArgs', array, 1]` — `234`
 
-**array**
+#### array
 
 Parses data array. Can be applied to any part of the request.
 
@@ -198,7 +198,7 @@ Example:
 * `[query, 'p2', array, 0]` — `aaa`
 * `[query, 'p2', array, 1]` — `bbb`
 
-**hash**
+#### hash
 
 Parses the associative data array (`key:value`), and can be applied to any part of the request.
 
@@ -211,7 +211,7 @@ Example:
 * `[query, 'p1', hash, 'x']` — `1`
 * `[query, 'p1', hash, 'y']` — `2`
 
-**pollution**
+#### pollution
 
 Combines the values of the parameters with the same name, and can be applied to any part of the request in the initial or decoded format.
 
@@ -223,11 +223,11 @@ Example:
 
 * `[query, 'p3', pollution]` — `1,2`
 
-**percent**
+#### percent
 
 Decodes the URL symbols, and can be applied only to the **uri** component of URL.
 
-**cookie**
+#### cookie
 
 Parses the Cookie request parameters, and can be applied only to the request headers.
 
@@ -241,7 +241,7 @@ Cookie: a=1; b=2
 * `[header, 'COOKIE', cookie, 'a']` = `1`;
 * `[header, 'COOKIE', cookie, 'b']` = `2`.
 
-**form_urlencoded**
+#### form_urlencoded
 
 Parses the request body passed in the `application/x-www-form-urlencoded` format, and can be applied only to the request body.
 
@@ -266,7 +266,7 @@ Parses gRPC API requests, and can be applied only to the request body.
 
 Supports the **protobuf** filter for the Protocol Buffers data.
 
-**multipart**
+#### multipart
 
 Parses the request body passed in the `multipart` format, and can be applied only to the request body.
 
@@ -291,7 +291,7 @@ If a file name is specified in the `Content-Disposition` header, then the file i
 
 * `[post, multipart, 'someparam', file]` — file contents
 
-**viewstate**
+#### viewstate
 
 Designed to analyze the session state. The technology is used by Microsoft ASP.NET, and can be applied only to the request body.
 
@@ -305,7 +305,7 @@ Filters:
 * **viewstate_dict_value** for a string
 * **viewstate_sparse_array** for an associative array
 
-**jwt**
+#### jwt
 
 Parses JWT tokens and can be applied to any part of the request.
 
