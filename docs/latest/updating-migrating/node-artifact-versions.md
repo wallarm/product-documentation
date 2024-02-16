@@ -10,6 +10,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.10.1-1 (2024-02-19)
+
+* TBD
+
 ### 4.10.0 (2024-02-02)
 
 * Initial release 4.10, [see changelog](what-is-new.md)
@@ -28,6 +32,15 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 4.10.1 (2024-02-19)
+
+* Updated the `appstructure` package
+* Internal enhancements and optimizations:
+    
+    * Implemented labels and annotations for the Tarantool pod
+    * Restored OpenTracing
+    * Transitioned to supervisord
 
 ### 4.10.0 (2024-02-01)
 
@@ -64,6 +77,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](docker-container.md)
 
+### 4.10.1-1 (2024-02-19)
+
+* Updated the `appstructure` package
+
 ### 4.10.0-1 (2024-02-02)
 
 * Initial release 4.10, including optimizations, and security enhancements for the Docker image. [See changelog](what-is-new.md)
@@ -83,6 +100,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](cloud-image.md)
 
+### 4.10.1-1 (2024-02-19)
+
+* Updated the `appstructure` package
+
 ### 4.10.0-1 (2024-02-02)
 
 * Initial release 4.10, including optimizations for the image. [See changelog](what-is-new.md)
@@ -90,6 +111,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-4-10-20240216-111638
+
+* Updated the `appstructure` package
 
 ### wallarm-node-4-10-20240126-175315 (2024-02-02)
 
