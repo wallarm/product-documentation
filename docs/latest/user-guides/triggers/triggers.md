@@ -46,7 +46,7 @@ The following filters are available:
 * **Domain** is the domain that receives the request.
 * **Response status** is the response code returned to the request.
 * **Target** is an application architecture part that the attack is directed at or in which the incident is detected. It can take the following values: `Server`, `Client`, `Database`.
-* **User's role** is the [role](../../user-guides/settings/users.md#user-roles) of the added user. It can take the following values: `Deploy`, `Analyst`, `Administrator`, `Read only`, `API developer`.
+* **User's role** is the [role](../../user-guides/settings/users.md#user-roles) of the added user. It can take the following values: `Deploy`, `Analyst`, `Administrator`, `Read only`, `API developer`, and if [multitenancy](../../installation/multi-tenant/overview.md) feature is enabled - `Global Administrator`, `Global Analyst`, `Global Read Only`.
 
 ## Default triggers
 
