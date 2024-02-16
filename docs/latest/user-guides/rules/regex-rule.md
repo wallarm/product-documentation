@@ -1,8 +1,8 @@
 [link-regex]:       https://github.com/yandex/pire
-
 [img-regex-example1]:       ../../images/user-guides/rules/regex-rule-1.png
 [img-regex-example2]:       ../../images/user-guides/rules/regex-rule-2.png
 [img-regex-id]:             ../../images/user-guides/rules/regex-id.png
+[request-processing]:       ../../user-guides/rules/request-processing.md
 
 # User-Defined Detection Rules
 
@@ -12,7 +12,7 @@ In some cases, it may prove useful to add a signature for attack detection manua
 
 To do this, you need to create the rule *Create regexp-based attack indicator* and fill in the fields:
 
-* *Regular expression*: regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Syntax and specifics of regular expressions are described in the [instructions on adding rules](add-rule.md#condition-type-regex).
+* *Regular expression*: regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Syntax and specifics of regular expressions are described in the [instructions on adding rules](rules.md#condition-type-regex).
 
     !!! warning "Changing the regular expression specified in the rule"
         Changing the regular expression specified in the existing rule of the type **Create regexp-based attack indicator** results in automatic deletion of the rules [**Disable regexp-based attack detection**](#partial-disabling-of-a-new-detection-rule) that use the previous expression.

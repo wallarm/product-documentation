@@ -21,7 +21,7 @@ To configure protection against forced browsing:
     * If using nested URIs, consider [trigger processing priorities](#trigger-processing-priorities).
     * If the URI is not specified, the trigger will be activated at any endpoint with the request number exceeding the threshold.
 
-    URI can be configured via the [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../../user-guides/rules/add-rule.md#advanced-edit-form) in the trigger creation window.
+    URI can be configured via the [URI constructor](../../user-guides/rules/rules.md#uri-constructor) or [advanced edit form](../../user-guides/rules/rules.md#advanced-edit-form) in the trigger creation window.
 
 1. If required, set other trigger filters:
 

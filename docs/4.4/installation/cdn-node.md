@@ -1,1 +1,1 @@
---8<-- "latest/installation/cdn-node.md"
+--8<-- "4.6/installation/cdn-node.md"

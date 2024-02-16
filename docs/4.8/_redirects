@@ -589,3 +589,17 @@
 /tr/2.18/admin-en/scanner-ips-allowlisting/ /tr/user-guides/ip-lists/overview/
 /tr/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/ /tr/installation/kubernetes/sidecar-proxy/deployment/
 /tr/2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses/ /tr/user-guides/ip-lists/overview/
+
+/ja/user-guides/rules/rules/ /ja/user-guides/rules/intro/
+/tr/user-guides/rules/rules/ /tr/user-guides/rules/intro/
+/pt-br/user-guides/rules/rules/ /pt-br/user-guides/rules/intro/
+
+/user-guides/rules/intro/ /user-guides/rules/rules/
+/user-guides/rules/add-rule/ /user-guides/rules/rules/#configuring
+/user-guides/rules/view/ /user-guides/rules/rules/#inspecting
+/user-guides/rules/compiling/ /user-guides/rules/rules/#ruleset-lifecycle
+/user-guides/rules/backup/ /user-guides/rules/rules/#backup-and-restore
+/user-guides/rules/disable-request-parsers/ /user-guides/rules/request-processing/#managing-parsers
+/user-guides/rules/ignore-attack-types/ /about-wallarm/protecting-against-attacks/#ignoring-certain-attack-types
+/user-guides/rules/ignore-attacks-in-binary-data/ /about-wallarm/protecting-against-attacks/#ignoring-certain-attack-signs-in-the-binary-data
+/user-guides/rules/wallarm-mode-rule/ /admin-en/configure-wallarm-mode/#setting-up-the-filtration-rules-on-the-rules-tab

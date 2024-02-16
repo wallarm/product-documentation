@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/settings/applications.md"
+--8<-- "4.6/user-guides/settings/applications.md"

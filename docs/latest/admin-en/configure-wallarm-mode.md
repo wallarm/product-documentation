@@ -1,4 +1,7 @@
-[acl-access-phase]:     ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
+[link-wallarm-mode-override]:       ../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
+[rule-creation-options]:            ../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
+[acl-access-phase]:                 ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
+[img-mode-rule]:                    ../images/user-guides/rules/wallarm-mode-rule.png
 
 # Filtration Mode
 
@@ -110,8 +113,42 @@ On the **General** tab, you can specify one of the following filtration modes:
 
 You can fine-tune the filtration mode for processing requests that meet your custom conditions on the **Rules** tab of Wallarm Console. These rules have higher priority than the [general filtration rule set in Wallarm Console](#setting-up-the-general-filtration-rule-in-wallarm-console).
 
-* [Details on working with rules on the **Rules** tab →](../user-guides/rules/intro.md)
-* [Step-by-step guide for creating a rule that manages the filtration mode →](../user-guides/rules/wallarm-mode-rule.md)
+**Creating and applying the rule**
+
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
+**Default instance of rule**
+
+Wallarm automatically creates the instance of the `Set filtration mode` rule on the [default](../user-guides/rules/rules.md#default-rules) level. The system sets its value on the basis of [general filtration mode](#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
+
+This instance of the rule cannot be deleted. To change its value, modify [general filtration mode](#setting-up-the-general-filtration-rule-in-wallarm-console) setting of the system.
+
+As all the other default rules, the `Set filtration mode` default rule is [inherited](../user-guides/rules/rules.md#distinct-and-inherited-rules) by all branches.
+
+**Example: Disabling Request Blocking During User Registration**
+
+**If** the following conditions take place:
+
+* new user registration is available at *example.com/signup*
+* it is better to overlook an attack than to lose a customer
+
+**Then**, to create a rule disabling blocking during user registration
+
+1. Go to the *Rules* tab
+1. Find the branch for `example.com/signup`, and click *Add rule*
+1. Choose *Set filtration mode*
+1. Choose operation mode *monitoring*
+1. Click *Create*
+
+![Setting traffic filtration mode][img-mode-rule]
+
+**API calls to create the rule**
+
+To create the filtration mode rule, you can [call the Wallarm API directly](../api/overview.md) besides using the Wallarm Console UI. Below is the example of the corresponding API call.
+
+The following request will create the rule setting the node to filter traffic going to the [application](../user-guides/settings/applications.md) with ID `3` in the monitoring mode.
+
+--8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.md"
 
 !!! info "The Wallarm Cloud and filtering node synchronization"
     The rules defined in Wallarm Console are applied during the Wallarm Cloud and filtering node synchronization process, which is conducted once every 2‑4 minutes.

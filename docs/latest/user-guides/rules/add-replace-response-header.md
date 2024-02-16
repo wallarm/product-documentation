@@ -1,6 +1,6 @@
-# Setting response headers
+# Changing Server Response Headers
 
-The rule **Change server response headers** allows adding, deleting server response headers and changing its values.
+The **Change server response headers** [rule](../../user-guides/rules/rules.md) allows adding, deleting server response headers and changing its values.
 
 This rule type is most often used to configure the additional layer of the application security, for example:
 
@@ -23,15 +23,15 @@ To create and apply the rule in the **Rules** section:
 
 1. Create the rule **Change server response headers** in the **Rules** section of Wallarm Console. The rule consists of the following components:
 
-      * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
+      * **Condition** [describes](rules.md#branch-description) the endpoints to apply the rule to.
       * Name of the header to be added or to replace its value.
       * New value of the specified header.
 
         To delete an existing response header, please leave the value of this header on the **Replace** tab empty.
 
-2. Wait for the [rule compilation to complete](compiling.md).
+2. Wait for the [rule compilation to complete](rules.md#ruleset-lifecycle).
 
-## Rule example
+## Example: adding security policy header and its value
 
 To allow all content of `https://example.com/*` to come only from the site's origin, you can add the response header [`Content-Security-Policy: default-src 'self'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#example_1) by using the rule **Change server response headers** as follows:
 

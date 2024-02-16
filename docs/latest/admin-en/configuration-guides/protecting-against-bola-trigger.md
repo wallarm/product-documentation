@@ -23,7 +23,7 @@ For the Wallarm node to identify BOLA attacks:
         example.com/shops/*/financial_info
         ```
 
-        URI can be configured via the [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../../user-guides/rules/add-rule.md#advanced-edit-form) in the trigger creation window.
+        URI can be configured via the [URI constructor](../../user-guides/rules/rules.md#uri-constructor) or [advanced edit form](../../user-guides/rules/rules.md#advanced-edit-form) in the trigger creation window.
 
     * (Optional) [**Application**](../../user-guides/settings/applications.md) to be protected against BOLA attacks and receiving the specified number of requests.
 

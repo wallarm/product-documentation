@@ -1,14 +1,14 @@
 [cdn-node-operation-scheme]:        ../../images/waf-installation/quickstart/cdn-node-scheme.png
 [data-to-wallarm-cloud-docs]:       ../rules/sensitive-data-rule.md
 [operation-modes-docs]:             ../../admin-en/configure-wallarm-mode.md
-[operation-mode-rule-docs]:         ../rules/wallarm-mode-rule.md
+[operation-mode-rule-docs]:         ../../admin-en/configure-wallarm-mode.md#setting-up-the-filtration-rules-on-the-rules-tab
 [wallarm-cloud-docs]:               ../../about-wallarm/overview.md#cloud
 [cdn-node-creation-modal]:          ../../images/waf-installation/quickstart/cdn-node-creation-modal.png
 [cname-required-modal]:             ../../images/waf-installation/quickstart/cname-required-modal.png
 [attacks-in-ui]:                    ../../images/admin-guides/test-attacks-quickstart.png
 [user-roles-docs]:                  ../settings/users.md
 [update-origin-ip-docs]:            #updating-the-origin-address-of-the-protected-resource
-[rules-docs]:                       ../rules/intro.md
+[rules-docs]:                       ../rules/rules.md
 [ip-lists-docs]:                    ../ip-lists/overview.md
 [integration-docs]:                 ../settings/integrations/integrations-intro.md
 [trigger-docs]:                     ../triggers/triggers.md

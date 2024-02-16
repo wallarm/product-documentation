@@ -1,1 +1,0 @@
---8<-- "latest/user-guides/rules/ignore-attack-types.md"

@@ -4,7 +4,7 @@ You can set up Wallarm to send notifications of detected events directly to the 
 
 You can choose the following events to be sent to Datadog:
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations-4.6.md"
 
 ## Setting up integration
 

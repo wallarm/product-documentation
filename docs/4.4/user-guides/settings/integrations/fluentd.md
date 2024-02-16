@@ -4,7 +4,7 @@ You can set up Wallarm to send notifications of detected events to Fluentd by cr
 
 You can choose the following events to be sent to Fluentd:
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations-4.6.md"
 
 ## Notification format
 

@@ -1,3 +1,6 @@
+[rule-creation-options]:    ../user-guides/events/analyze-attack.md#analyze-requests-in-an-attack
+[request-processing]:       ../user-guides/rules/request-processing.md
+
 # Attack Detection Procedure
 
 The Wallarm platform continuously analyzes application traffic and mitigates malicious requests in real-time. From this article, you will learn resource types Wallarm protects from attacks, methods of detecting attacks in traffic and how you can track and manage detected threats.
@@ -148,11 +151,97 @@ When analyzing requests for attacks, Wallarm uses the standard ruleset that prov
 In such cases, standard rules need to be adjusted to accommodate protected application specificities by using the following methods:
 
 * Analyze potential false positives (by filtering all attacks by the [tag `!known`](../user-guides/search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits)) and if confirming false positives, [mark](../user-guides/events/false-attack.md) particular attacks or hits appropriately. Wallarm will automatically create the rules disabling analysis of the same requests for detected attack signs.
-* [Disable detection of certain attack types](../user-guides/rules/ignore-attack-types.md) in particular requests.
-* [Disable detection of certain attack signs in binary data](../user-guides/rules/ignore-attacks-in-binary-data.md).
-* [Disable parsers mistakenly applied to the requests](../user-guides/rules/disable-request-parsers.md).
+* [Disable detection of certain attack types](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) in particular requests.
+* [Disable detection of certain attack signs in binary data](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data).
+* [Disable parsers mistakenly applied to the requests](../user-guides/rules/request-processing.md#managing-parsers).
 
 Identifying and handling false positives is a part of Wallarm fine‑tuning to protect your applications. We recommend to deploy the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
+
+## Ignoring certain attack types
+
+The rule **Ignore certain attack types** allows disabling detection of certain attack types in certain request elements.
+
+By default, the Wallarm node marks the request as an attack if detecting the signs of any attack type in any request element. However, some requests containing attack signs can actually be legitimate (e.g. the body of the request publishing the post on the Database Administrator Forum may contain the [malicious SQL command](../attacks-vulns-list.md#sql-injection) description).
+
+If the Wallarm node marks the standard payload of the request as the malicious one, a [false positive](#false-positives) occurs. To prevent false positives, standard attack detection rules need to be adjusted using the custom rules of certain types to accommodate protected application specificities. One of such custom rule types is **Ignore certain attack types**.
+
+**Creating and applying the rule**
+
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
+To create and apply the rule in the **Rules** section:
+
+1. Create the rule **Ignore certain attack types** in the **Rules** section of Wallarm Console. The rule consists of the following components:
+
+      * **Condition** [describes](../user-guides/rules/rules.md#branch-description) the endpoints to apply the rule to.
+      * Attack types to be ignored in the specified request element.
+
+        The **Certain attack types** tab allows selecting one or more attack types the Wallarm node can detect at the time of the rule creation.
+
+        The **All attack types (auto-updated)** tab disables detection of both attack types the Wallarm node can detect at the time of the rule creation and those that will be detected in the future. For example: if Wallarm supports a new attack type detection, the node will automatically ignore signs of this attack type in the selected request element.
+      
+      * **Part of request** points to the original request element that should not be analyzed for selected attack type signs.
+
+         --8<-- "../include/waf/features/rules/request-part-reference.md"
+
+2. Wait for the [rule compilation to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
+
+**Rule example**
+
+Let's say when the user confirms the publication of the post on the Database Administrator Forum, the client sends the POST request to the endpoint `https://example.com/posts/`. This request has the following properties:
+
+* The post content is passed in the request body parameter `postBody`. The post content may include SQL commands that can be marked by Wallarm as malicious ones.
+* The request body is of the type `application/json`.
+
+The example of the cURL request containing [SQL injection](../attacks-vulns-list.md#sql-injection):
+
+```bash
+curl -H "Content-Type: application/json" -X POST https://example.com/posts -d '{"emailAddress":"johnsmith@example.com", "postHeader":"SQL injections", "postBody":"My post describes the following SQL injection: ?id=1%20select%20version();"}'
+```
+
+To ignore SQL injections in the parameter `postBody` of the requests to `https://example.com/posts/`, the rule **Ignore certain attack types** can be configured as follows:
+
+![Example of the rule "Ignore certain attack types"](../images/user-guides/rules/ignore-attack-types-rule-example.png)
+
+## Ignoring certain attack signs in the binary data
+
+The rules **Allow binary data** and **Allow certain file types** are used to adjust the standard attack detection rules for binary data.
+
+By default, the Wallarm node analyzes incoming requests for all known attack signs. During the analysis, the Wallarm node may not consider the attack signs to be regular binary symbols and mistakenly detect malicious payloads in the binary data.
+
+Using the rules **Allow binary data** and **Allow certain file types**, you can explicitly specify request elements containing binary data. During specified request element analysis, the Wallarm node will ignore the attack signs that can never be passed in the binary data.
+
+* The rule **Allow binary data** allows fine-tuning attack detection for request elements containing binary data (e.g. archived or encrypted files).
+* The rule **Allow certain file types** allows fine-tuning attack detection for request elements containing specific file types (e.g. PDF, JPG).
+
+**Creating and applying the rule**
+
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
+To create and apply the rule in the **Rules** section:
+
+1. To adjust the attack detection rules for the binary data passed in the specified request element in any way, create the rule **Allow binary data** in the **Rules** section of Wallarm Console. The rule consists of the following components:
+
+      * **Condition** [describes](../user-guides/rules/rules.md#branch-description) the endpoints to apply the rule to.
+      * **Part of request** points to the original request element containing the binary data.
+
+         --8<-- "../include/waf/features/rules/request-part-reference.md"
+2. To adjust the attack detection rules for certain file types passed in the specified request element, create the rule **Allow certain file types** in the **Rules** section of Wallarm Console. The rule consists of the following components:
+      
+      * **Condition** [describes](../user-guides/rules/rules.md#branch-description) the endpoints to apply the rule to.
+      * File types to ignore the attack signs in.
+      * **Part of request** points to the original request element containing the specified file types.
+
+         --8<-- "../include/waf/features/rules/request-part-reference.md"
+3. Wait for the [rule compilation to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
+
+**Rule example**
+
+Let's say when the user uploads the binary file with the image using the form on the site, the client sends the POST request of the type `multipart/form-data` to `https://example.com/uploads/`. The binary file is passed in the body parameter `fileContents`.
+
+The rule **Allow binary data** fine‑tuning attack detection in the parameter `fileContents` looks as follows:
+
+![Example of the rule "Allow binary data"](../images/user-guides/rules/ignore-binary-attacks-example.png)
 
 ## Managing detected attacks
 
@@ -163,7 +252,7 @@ All detected attacks are displayed in the Wallarm Console → **Attacks** sectio
 * Mark attacks or separate hits as false positives
 * Create the rules for custom processing of separate hits
 
-For more information on managing attacks, see the instructions on [working with attacks](../user-guides/events/analyze-attack.md).
+For more information on managing attacks, see the instructions on [working with attacks](../about-wallarm/protecting-against-attacks.md).
 
 ![Attacks view](../images/user-guides/events/check-attack.png)
 

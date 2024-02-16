@@ -58,7 +58,7 @@ Overall, Wallarm can log in Sentinel the records of the following types:
 | New [vulnerability](../../../glossary-en.md#vulnerability) of a high risk | `vuln_high_CL` |
 | New vulnerability of a medium risk | `vuln_medium_CL` |
 | New vulnerability of a low risk | `vuln_low_CL` |
-| New [rule](../../../user-guides/rules/intro.md) | `rule_create_CL` |
+| New [rule](../../../user-guides/rules/rules.md) | `rule_create_CL` |
 | Deletion of a rule | `rule_delete_CL` |
 | Changes of an existing rule | `rule_update_CL` |
 | New [trigger](../../../user-guides/triggers/triggers.md) | `trigger_create_CL` |

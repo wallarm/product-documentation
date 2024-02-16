@@ -67,13 +67,13 @@ There are two ways of adding endpoints to the list:
     -->
     * Endpoints used for authentication that were found by the [API Discovery](../api-discovery/overview.md) module and recorded as they actually received traffic.
 
-* Manually - you can also include your own unique authentication endpoints, ensuring full protection. When adding manually, set [URI](../user-guides/rules/add-rule.md#uri-constructor) and the way of searching for authentication parameters:
+* Manually - you can also include your own unique authentication endpoints, ensuring full protection. When adding manually, set [URI](../user-guides/rules/rules.md#uri-constructor) and the way of searching for authentication parameters:
 
-    * By **Exact location of parameters** - you will need to indicate the exact endpoint [request points](../user-guides/rules/add-rule.md#points) where password and login are located.
+    * By **Exact location of parameters** - you will need to indicate the exact endpoint [request points](../user-guides/rules/rules.md#points) where password and login are located.
     <!--
         ![Credential Stuffing - Add authentication endpoint - Exact location](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-exact-location.png)
     -->
-    * By **Regular expression** - endpoint parameters with password and login will be searched using [regular expression](../user-guides/rules/add-rule.md#condition-type-regex).
+    * By **Regular expression** - endpoint parameters with password and login will be searched using [regular expression](../user-guides/rules/rules.md#condition-type-regex).
     
         ![Credential Stuffing - Add authentication endpoint - Regular expression](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-regexp.png)
 

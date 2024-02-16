@@ -190,7 +190,7 @@ A directory in which the backup catalog for the proton.db and custom ruleset fil
 
 ### wallarm_custom_ruleset_path
 
-A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains information on the protected application and the filtering node settings.
+A path to the [custom ruleset](../user-guides/rules/rules.md) file that contains information on the protected application and the filtering node settings.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.

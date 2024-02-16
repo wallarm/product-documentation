@@ -178,34 +178,22 @@ nav:
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
     - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
     - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
+    - Rate Limiting: user-guides/rules/rate-limiting.md
     - Multi-Attack Protection: admin-en/configuration-guides/protecting-with-thresholds.md
     - Manual BOLA Protection: admin-en/configuration-guides/protecting-against-bola-trigger.md
     - Filtering by IP: user-guides/ip-lists/overview.md
-    - Rules:
-      - Application Profile Rules: user-guides/rules/intro.md
-      - Inspecting Application Profile Rules: user-guides/rules/view.md
-      - Adding Rules in the Application Profile: user-guides/rules/add-rule.md
-      - Building and Unloading of a Custom Ruleset: user-guides/rules/compiling.md
-      - Custom Ruleset Backup and Restore: user-guides/rules/backup.md
-      - Analyzing and Parsing Requests: user-guides/rules/request-processing.md
-      - Available Rule Types:
-        - Managing Request Parsers: user-guides/rules/disable-request-parsers.md
-        - Setting Response Headers: user-guides/rules/add-replace-response-header.md
-        - Rules for Data Masking: user-guides/rules/sensitive-data-rule.md
-        - Virtual Patching: user-guides/rules/vpatch-rule.md
-        - User‑Defined Detection Rules: user-guides/rules/regex-rule.md
-        - Ignoring Certain Attack Types: user-guides/rules/ignore-attack-types.md
-        - Ignoring Attack Signs in the Binary Data: user-guides/rules/ignore-attacks-in-binary-data.md
-        - The overlimit_res Attack Detection Fine‑Tuning: user-guides/rules/configure-overlimit-res-detection.md
-        - Setting Rate Limit: user-guides/rules/rate-limiting.md
-    - Filtration Mode:
-      - Overview: admin-en/configure-wallarm-mode.md
-      - Configuration via the Rule: user-guides/rules/wallarm-mode-rule.md
+    - Virtual Patching: user-guides/rules/vpatch-rule.md
+    - User‑Defined Detection Rules: user-guides/rules/regex-rule.md
+    - Masking Sensitive Data: user-guides/rules/sensitive-data-rule.md
+    - Changing Response Headers: user-guides/rules/add-replace-response-header.md
+    - Triggers: user-guides/triggers/triggers.md
+    - Filtration Mode: admin-en/configure-wallarm-mode.md
     - Attack Detection:
       - Procedure: about-wallarm/protecting-against-attacks.md
+      - Analyzing Requests: user-guides/rules/request-processing.md
       - Attack Types: attacks-vulns-list.md
-      - Triggers: user-guides/triggers/triggers.md
-    # - Overview: ...
+      - Rules: user-guides/rules/rules.md
+# - Overview: ...
     # - OWASP Top 10: ...
     # - Known attacks / CVEs: ...
     # - Triggers: ...
@@ -410,6 +398,7 @@ nav:
         - Ingress Controller Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
     - Proper Reporting of End‑User IP: admin-en/using-proxy-or-balancer-en.md
     - Resource Allocation: admin-en/configuration-guides/allocate-resources-for-node.md
+    - Limiting Request Processing Time: user-guides/rules/configure-overlimit-res-detection.md
     - Splitting Traffic and Settings by Applications: user-guides/settings/applications.md
     - Blocking Page and Error Code: admin-en/configuration-guides/configure-block-page-and-code.md
     - Monitoring & Failover:

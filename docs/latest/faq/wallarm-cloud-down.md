@@ -15,7 +15,7 @@ What continues to work:
 
 * Traffic processing in the configured [mode](../admin-en/configure-wallarm-mode.md#available-filtration-modes) using the rules uploaded to the node during last successful [synchronization](../admin-en/configure-cloud-node-synchronization-en.md) between the Cloud and the node. The node can continue to work as the latest versions of the following elements are uploaded from the Cloud according to the schedule and stored on the node locally:
 
-    * [Custom ruleset](../user-guides/rules/compiling.md)
+    * [Custom ruleset](../user-guides/rules/rules.md#ruleset-lifecycle)
     * [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton)
 
 * The [IP lists](../user-guides/ip-lists/overview.md) are also uploaded to the node and stored within it. The uploaded addresses will continue to be handled but only until expiration date/time.

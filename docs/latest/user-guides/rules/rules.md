@@ -1,15 +1,132 @@
-[link-request-processing]:      request-processing.md
 [link-regex]:                   https://github.com/yandex/pire
-[link-filter-mode-rule]:        wallarm-mode-rule.md
-[link-sensitive-data-rule]:     sensitive-data-rule.md
-[link-virtual-patch]:           vpatch-rule.md
-[link-regex-rule]:              regex-rule.md
+[link-request-processing]:      request-processing.md
+[img-add-rule]:                 ../../images/user-guides/rules/add-rule.png
 
-[img-add-rule]:     ../../images/user-guides/rules/add-rule.png
+# Rules
 
-# Adding Rules in the Application Profile
+In Wallarm, rules are used to fine-tune the behavior of the system during the analysis of requests and their further processing in the post-analysis module as well as in the Wallarm Cloud. You can inspect existing rules and configure the new ones in the **Rules** section of Wallarm Console.
 
-To add a new rule, go to the *Rules* tab.
+For a better understanding of how the traffic processing rules are applied, it is advisable to learn how the filter node [analyzes the requests][link-request-processing].
+
+One important thing about making changes to the rules is that these changes don't take effect immediately. It may take some time to [compile the rules](#ruleset-lifecycle) and download them into filter nodes.
+
+## What you can do with rules
+
+Using rules, you can provide the multiple protections measures for your applications and APIs, and also fine tune how attacks are detected, how the Wallarm nodes and some Wallarm components work:
+
+* [Set rate limit](../../user-guides/rules/rate-limiting.md)
+* [Apply a virtual patch](../../user-guides/rules/vpatch-rule.md)
+* [Create your own detection rule](../../user-guides/rules/regex-rule.md)
+* [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
+* Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
+* Fine tune request processing by [managing request parsers](../../user-guides/rules/request-processing.md#managing-parsers) and [changing server response headers](../../user-guides/rules/add-replace-response-header.md)
+* Fine tune attack detection by setting to [ignore certain attack types](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) and to [ignore certain attack signs in the binary data](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
+
+## Terminology
+
+**Point**
+
+A point is an HTTP request parameter. A parameter can be described with a sequence of filters applied for request processing, e.g., headers, body, URL, Base64, etc. This sequence is also called the *point*.
+
+Request processing filters are also called parsers.
+
+**Rule branch**
+
+The set of HTTP request parameters and their conditions is called the *branch*. If the conditions are fulfilled, the rules related to this branch will be applied.
+
+For example, the rule branch `example.com/**/*.*` describes the conditions matching all requests to any URL of the domain `example.com`.
+
+**Endpoint (endpoint branch)**
+
+A branch without nested rule branches is called an *endpoint branch*. Ideally, an application endpoint corresponds to one business function of the protected application. For instance, such business function as authorization can be an endpoint rule branch of `example.com/login.php`.
+
+**Rule**
+
+A request processing setting for the filter node, the post-analysis module, or the cloud is called a *rule*.
+
+Processing rules are linked to the branches or endpoints. A rule is applied to a request only if the request matches all the conditions described in the branch.
+
+## Inspecting
+
+To view the rules, go to the **Rules** section of Wallarm Console. This section represents branches and endpoints that are already known.
+
+![Rules tab overview](../../images/user-guides/rules/rules-overview.png)
+
+The system automatically groups the rules by branches, highlighting common conditions and building a tree-like structure. As a result, a branch may have child branches. To show or hide nested branches, click on the blue circle to the left of the branch description.
+
+Two asterisks `**` in a branch description refer to any number of nested paths. For instance, the branch `/**/*.php` will contain both `/index.php` and `/app/admin/install.php`.
+
+The size of the blue circle indicates the relative quantity of the nested branches. Its color indicates the relative quantity of the rules within the branch and its sub-branches. On each nesting level, the size and color of the circles are independent from each other.
+
+To the right of the branch description, the system may display an orange number, which indicates the number of rules in that branch (only the direct descendants, not the nested rules). If no number is displayed, then that branch is "virtual"&nbsp;— it is used only for grouping similar sub-branches.
+
+Branches with no rules available for the user (according to the privilege model) are automatically hidden .
+
+### Rule display
+
+In each branch, the user can look through the list of rules attached to it. To switch over to the page with the rule list, click on the description of the corresponding branch.
+
+![Viewing branch rules](../../images/user-guides/rules/view-rules.png)
+
+The rules within a branch are grouped by the *point* field. The rules that affect the entire request, rather than individual parameters, are grouped together into one line. To see the entire list, click on the line.
+
+For each rule, the system displays the following parameters: last modified time, quantity, types, and point.
+
+### Default rules
+
+You can create rules with specified action but not linked to any endpoint - they are called **default rules**. Such rules are applied to all endpoints.
+
+* To create default rule, follow the [standard procedure](rules.md) but leave URI blank. The new rule not linked to any endpoint will be created.
+* To view the list of created default rules, click the **Default rules** button.
+
+!!! info "Traffic filtration mode default rule"
+    Wallarm automatically [creates](../../admin-en/configure-wallarm-mode.md#setting-up-the-filtration-rules-on-the-rules-tab) the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
+
+Default rules are [inherited](#distinct-and-inherited-rules) by all branches.
+
+### Distinct and inherited rules
+
+The rules are inherited down the rules branch. Principles:
+
+* All branches inherit [default](#default-rules) rules.
+* In a branch, child endpoints inherit rules from the parent.
+* Distinct has priority over inherited.
+* Directly specified has priority over [regex](rules.md#condition-type-regex).
+* Case [sensitive](rules.md#condition-type-equal) has priority over [insensitive](rules.md#condition-type-iequal-aa).
+
+Here are some details of how to work with the rules branch:
+
+* To expand the endpoint, click the blue circle.
+* Endpoints that do not have distinct rules are greyed out and not clickable.
+    
+    ![Branch of endpoints](../../images/user-guides/rules/rules-branch.png)
+
+* To view rules for the endpoint, click it. First, distinct rules for this endpoint will be displayed.
+* When viewing the rule list for the specific endpoint, click **Distinct and inherited rules** to display the inherited ones. Inherited rules will be displayed together with the distinct; they will be greyed out compared to distinct.
+
+    ![Distinct and inherited rules for endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
+
+### API calls to get rules
+
+To get custom rules, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below are some examples of the corresponding API calls.
+
+**Get all configured rules**
+
+--8<-- "../include/api-request-examples/get-all-configured-rules.md"
+
+**Get only conditions of all rules**
+
+--8<-- "../include/api-request-examples/get-conditions.md"
+
+**Get rules attached to a specific condition**
+
+To point to a specific condition, use its ID - you can get it when requesting conditions of all rules (see above).
+
+--8<-- "../include/api-request-examples/get-rules-by-condition-id.md"
+
+## Configuring
+
+To add a new rule, go to the **Rules** tab.
 
 Rules can be added to both existing and new branches. They can be created from scratch or based on one of the existing branches.
 
@@ -19,8 +136,7 @@ If necessary, it is possible to modify the branch to which a rule will be added.
 
 ![Adding a new rule][img-add-rule]
 
-
-## Branch Description
+### Branch description
 
 A branch description consists of a set of conditions for various parameters that an HTTP request must fulfill; otherwise, the rules associated with this branch will not be applied. Each line in the *If request is* section of the rule-adding form refers to a separate condition comprised of three fields: point, type, and comparison argument. The rules described in the branch are only applied to the request if all the conditions are fulfilled.
 
@@ -329,21 +445,50 @@ To test the regular expression, you can use the **cpire** utility on supported D
 
 The request should not contain the designated point. In this case, the comparison argument is not used.
 
-## Rule
+## Ruleset lifecycle
 
-The added request processing rule is described in the *Then* section.
+A custom ruleset defines specifics of processing particular client traffic (for example, allows setting up custom attack detection rules or masking sensitive data). The Wallarm node relies on the custom ruleset during incoming requests analysis.
 
-The following rules are supported:
+Changes of custom rules do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **unloading to the filtering node** are finished.
 
-* [Disable/Enable parsers](disable-request-parsers.md)
-* [Change server response headers](add-replace-response-header.md)
-* [Set the filtration mode][link-filter-mode-rule]
-* [Mask sensitive data][link-sensitive-data-rule]
-* [Set mode of active threat verification](../../vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md)
-* [Rewrite attack before active verification](../../vulnerability-detection/active-threat-verification/modify-requests-before-replay.md)
-* [Apply a virtual patch][link-virtual-patch]
-* [User-defined detection rules][link-regex-rule]
-* [Ignore certain attack types](ignore-attack-types.md)
-* [Ignoring certain attack signs in the binary data](ignore-attacks-in-binary-data.md)
-* [Fine-tune the overlimit_res attack detection](configure-overlimit-res-detection.md)
-* [Set API Abuse Prevention mode for specific target URLs](api-abuse-url.md)
+### Custom ruleset building
+
+Adding a new rule, deleting or changing existing rules in the Wallarm Console → **Rules** launch a custom ruleset build. During the building process, rules are optimized and compiled into a format adopted for the filtering node. The process of building a custom ruleset typically takes from a few seconds for a small number of rules to up to an hour for complex rule trees.
+
+Custom ruleset build status and expected completion time are displayed in Wallarm Console. If there is no build in progress, the interface displays the date of the last completed build.
+
+![Build status](../../images/user-guides/rules/build-rules-status.png)
+
+### Unloading a custom ruleset to the filtering node
+
+Custom ruleset build is unloaded to the filtering node during the filtering node and Wallarm Cloud synchronization. By default, synchronization of the filtering node and Wallarm Cloud is launched every 2‑4 minutes. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
+
+The status of unloading a custom ruleset to the filtering node is logged to the `/var/log/wallarm/syncnode.log` or `/opt/wallarm/var/log/wallarm/syncnode-out.log` file [depending on a node installation method](../../admin-en/configure-logging.md).
+
+All Wallarm nodes connected to the same Wallarm account receive the same set of default and custom rules for traffic filtering. You still can apply different rules for different applications by using proper application IDs or unique HTTP request parameters like headers, query string parameters, etc.
+
+### Backup and restore
+
+To protect yourself from accidentally misconfigured or deleted rules, you can backup your current custom ruleset.
+
+There are the following rule backup options: 
+
+* Automatic backup creation after each [custom ruleset build](#custom-ruleset-building). The number of automatic backups is limited to 7: for each day when you change the rules several times, only the last backup is kept.
+* Manual backup creation at any time. The number of manual backups is limited to 5 by default. If you need more, contact the [Wallarm technical support](mailto:support@wallarm.com) team.
+
+You can:
+
+* Access current backups: in the **Rules** section, click **Backups**.
+* Create a new backup manually: in the **Backups** window, click **Create backup**.
+* Set name and description for the manual backup and edit them at any moment.
+
+    !!! info "Naming for automatic backups"
+        The automatic backups are named by the system and cannot be renamed.
+
+* Load from existing backup: click **Load** for the required backup. When loading from the backup, your current rule configuration is deleted and replaced with the configuration from the backup.
+* Delete backup.
+
+    ![Rules - Creating backup](../../images/user-guides/rules/rules-create-backup.png)
+
+!!! warning "Rule modification restrictions"
+    You cannot create or modify rules until creating backup or load from backup is complete.

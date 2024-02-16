@@ -4,7 +4,7 @@ You can set up Wallarm to send notifications of detected events to Logstash by c
 
 You can choose the following events to be sent to Logstash:
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations-4.6.md"
 
 ## Notification format
 

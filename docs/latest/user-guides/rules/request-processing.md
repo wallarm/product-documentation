@@ -1,4 +1,7 @@
-# Analyzing and parsing requests
+[rule-creation-options]:    ../../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
+[request-processing]:       ../../user-guides/rules/request-processing.md
+
+# Analyzing Requests
 
 For an effective request analysis, Wallarm follows the principles:
 
@@ -49,7 +52,7 @@ The following tags correspond to the URL parser:
             * `action_name` — `cb-common`
             * `action_ext` — `ffc63abe`
         
-        To fix this, manually edit the **action_name** and **action_ext** points in the [advanced edit form](add-rule.md#advanced-edit-form) of the URI constructor.
+        To fix this, manually edit the **action_name** and **action_ext** points in the [advanced edit form](rules.md#advanced-edit-form) of the URI constructor.
 
 * **query** for [query string parameters](#query-string-parameters) after the `?` symbol. 
 
@@ -257,7 +260,7 @@ p1=1&p2[a]=2&p2[b]=3&p3[]=4&p3[]=5&p4=6&p4=7
 * `[post, form_urlencoded, 'p4', array, 1]` — `7`
 * `[post, form_urlencoded, 'p4', pollution]` — `6,7`
 
-#### grpc <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
+**grpc** <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
 
 Parses gRPC API requests, and can be applied only to the request body.
 
@@ -327,7 +330,7 @@ Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'name']` — `John Doe`
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'iat']` — `1516239022`
 
-When defining a request element the [rule](add-rule.md) is applied to:
+When defining a request element the [rule](rules.md) is applied to:
 
 * Choose the parser of the request part containing JWT first
 * Specify one of the listed `jwt_*` parameters as the `jwt` parser value, e.g. for the `name` JWT payload parameter value:
@@ -340,7 +343,7 @@ The norms are applied to parsers for array and key data types. Norms are used to
 
 If the norm is not specified, then the identifier of the entity that requires processing is passed to the parser. For example: the name of the JSON object or other identifier is passed after **hash**.
 
-#### all
+**all**
 
 Used to get values of all elements, parameters, or objects. For example:
 
@@ -351,7 +354,7 @@ Used to get values of all elements, parameters, or objects. For example:
 * **hash_all** for all JSON object or XML attribute values
 * **jwt_all** for all JWT values
 
-#### name
+**name**
 
 Used to get names of all elements, parameters, or objects. For example:
 
@@ -359,3 +362,36 @@ Used to get names of all elements, parameters, or objects. For example:
 * **header_name** for all header names
 * **hash_name** for all JSON object or XML attribute names
 * **jwt_name** for names of all parameters with JWT
+
+## Managing parsers
+
+The rule **Disable/Enable request parser** allows managing the set of parsers applied to the request during its analysis.
+
+By default, when analyzing the request the Wallarm node attempts to sequentially apply each of the suitable [parsers](request-processing.md) to each element of the request. However, certain parsers can be applied mistakenly and as a result, the Wallarm node may detect attack signs in the decoded value.
+
+For example: the Wallarm node may mistakenly identify unencoded data as encoded into [Base64](https://en.wikipedia.org/wiki/Base64), since the Base64 alphabet symbols are often used in the regular text, token values, UUID values and other data formats. If decoding the unencoded data and detecting attack signs in the resulting value, the [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) occurs.
+
+To prevent false positives in such cases, you can disable the parsers mistakenly applied to certain request elements by using the rule **Disable/Enable request parser**.
+
+**Creating and applying the rule**
+
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
+To create and apply the rule in the **Rules** section:
+
+1. Create the rule **Disable/Enable request parser** in the **Rules** section of Wallarm Console. The rule consists of the following components:
+
+      * **Condition** [describes](rules.md#branch-description) the endpoints to apply the rule to.
+      * Parsers to be disabled / enabled for the specified request element.      
+      * **Part of request** points to the original request element to be parsed / not parsed with the selected parsers.
+
+         --8<-- "../include/waf/features/rules/request-part-reference.md"
+2. Wait for the [rule compilation to complete](rules.md#ruleset-lifecycle).
+
+**Rule example**
+
+Let's say the requests to `https://example.com/users/` require the authentication header `X-AUTHTOKEN`. The header value may contain specific symbol combinations (e.g. `=` in the end) to be potentially decoded by Wallarm with the parser `base64`.
+
+The rule **Disable/Enable request parser** preventing false positives in the `X-AUTHTOKEN` values can be configured as follows:
+
+![Example of the rule "Disable/Enable request parser"](../../images/user-guides/rules/disable-parsers-example.png)
