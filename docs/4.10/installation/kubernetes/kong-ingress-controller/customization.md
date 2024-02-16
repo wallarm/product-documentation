@@ -8,7 +8,7 @@
 [multitenancy-overview]:                    ../../multi-tenant/overview.md
 [get-tenant-uuids-docs]:                    ../../../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants
 [available-filtration-modes]:               ../../../admin-en/configure-wallarm-mode.md#available-filtration-modes
-[general-settings-ui-docs]:                 ../../../user-guides/settings/general.md
+[general-settings-ui-docs]:                 ../../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console
 [wallarm-mode-rule-docs]:                   ../../../admin-en/configure-wallarm-mode.md#setting-up-the-filtration-rules-on-the-rules-tab
 [integrations-docs]:                        ../../../user-guides/settings/integrations/integrations-intro.md
 [ip-lists-docs]:                            ../../../user-guides/ip-lists/overview.md

@@ -157,7 +157,7 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
 * Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       
       * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [General filtration rule configured in Wallarm Console](../../user-guides/settings/general.md)
+      * [General filtration rule configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)
       * [Low-level filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-the-filtration-rules-on-the-rules-tab)
 
       If the expected behavior does not correspond to the changed filtration mode logic, please adjust the [Ingress annotations](../../admin-en/configure-kubernetes-en.md#ingress-annotations) and [other settings](../../admin-en/configure-wallarm-mode.md) to released changes.
@@ -449,7 +449,7 @@ Adjust the following Ingress annotations to the changes released in Ingress cont
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       
       * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [General filtration rule configured in Wallarm Console](../../user-guides/settings/general.md)
+      * [General filtration rule configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)
       * [Low-level filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-the-filtration-rules-on-the-rules-tab)
 
       If the expected behavior does not correspond to the changed filtration mode logic, please adjust the [Ingress annotations](../../admin-en/configure-kubernetes-en.md#ingress-annotations) to released changes.
