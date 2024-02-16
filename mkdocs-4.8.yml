@@ -58,6 +58,7 @@ nav:
     - Vulnerability Assessment:
       - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md
       - Managing Vulnerabilities: user-guides/vulnerabilities.md
+      - Search and Filters: user-guides/search-and-filters/use-search-vuln.md
     - Active Threat Verification:
       - Overview: vulnerability-detection/active-threat-verification/overview.md
       - Configuration:
