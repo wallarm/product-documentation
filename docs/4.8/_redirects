@@ -594,7 +594,7 @@
 /tr/user-guides/rules/rules/ /tr/user-guides/rules/intro/
 /pt-br/user-guides/rules/rules/ /pt-br/user-guides/rules/intro/
 
-/user-guides/rules/intro.md/ /user-guides/rules/rules/
+/user-guides/rules/intro/ /user-guides/rules/rules/
 /user-guides/rules/add-rule/ /user-guides/rules/rules/#configuring
 /user-guides/rules/view/ /user-guides/rules/rules/#inspecting
 /user-guides/rules/compiling/ /user-guides/rules/rules/#ruleset-lifecycle

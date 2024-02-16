@@ -602,7 +602,7 @@
 /tr/4.8/user-guides/rules/rules/ /tr/4.8/user-guides/rules/intro/
 /pt-br/4.8/user-guides/rules/rules/ /pt-br/4.8/user-guides/rules/intro/
 
-/user-guides/rules/intro.md/ /user-guides/rules/rules/
+/user-guides/rules/intro/ /user-guides/rules/rules/
 /user-guides/rules/add-rule/ /user-guides/rules/rules/#configuring
 /user-guides/rules/view/ /user-guides/rules/rules/#inspecting
 /user-guides/rules/compiling/ /user-guides/rules/rules/#ruleset-lifecycle
@@ -611,7 +611,7 @@
 /user-guides/rules/ignore-attack-types/ /about-wallarm/protecting-against-attacks/#ignoring-certain-attack-types
 /user-guides/rules/ignore-attacks-in-binary-data/ /about-wallarm/protecting-against-attacks/#ignoring-certain-attack-signs-in-the-binary-data
 /user-guides/rules/wallarm-mode-rule/ /admin-en/configure-wallarm-mode/#setting-up-the-filtration-rules-on-the-rules-tab
-/4.8/user-guides/rules/intro.md/ /4.8/user-guides/rules/rules/
+/4.8/user-guides/rules/intro/ /4.8/user-guides/rules/rules/
 /4.8/user-guides/rules/add-rule/ /4.8/user-guides/rules/rules/#configuring
 /4.8/user-guides/rules/view/ /4.8/user-guides/rules/rules/#inspecting
 /4.8/user-guides/rules/compiling/ /4.8/user-guides/rules/rules/#ruleset-lifecycle
