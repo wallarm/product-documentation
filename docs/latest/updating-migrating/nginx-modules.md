@@ -86,10 +86,10 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.10
     === "API token"
         ```bash
         # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.0.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.0.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -97,10 +97,10 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.10
     === "Node token"
         ```bash
         # If using the x86_64 version:
-        sudo sh wallarm-4.10.0.x86_64-glibc.sh filtering
+        sudo sh wallarm-4.10.1.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo sh wallarm-4.10.0.aarch64-glibc.sh filtering
+        sudo sh wallarm-4.10.1.aarch64-glibc.sh filtering
         ```
 
 ### Step 6: Transfer NGINX and postanalytics configuration from old node machine to new
