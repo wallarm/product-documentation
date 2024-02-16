@@ -7,6 +7,7 @@
 [img-disabled-users]:       ../../images/user-guides/settings/disabled-users.png
 [img-search-user]:          ../../images/user-guides/settings/search-users.png
 [img-add-user]:             ../../images/user-guides/settings/integrations/webhook-examples/adding-user.png
+[img-add-user-invitation-link]: ../../images/user-guides/settings/invite-user-by-link.png
 [img-user-menu]:            ../../images/user-guides/settings/user-menu.png
 [img-disabled-user-menu]:   ../../images/user-guides/settings/disabled-user-menu.png
 [img-edit-user]:            ../../images/user-guides/settings/edit-user.png
@@ -15,15 +16,13 @@
 [img-disable-delete-multi]:     ../../images/user-guides/settings/users-multi-disable-access.png
 [img-enable-delete-multi]:      ../../images/user-guides/settings/users-multi-enable-access.png    
 
+# Managing Users
 
-# Configuring Users
+Invite your team members to your Wallarm account and assign each one a specific role to safeguard sensitive information and limit account actions. Manage users under **Settings** → **Users**.
 
-You can manage user accounts in the *Users* tab located in *Settings*.
+Only **Administrator** and **Global Administrator** roles have user management privileges.
 
-!!! warning "Administrator access"
-    Only users with the **Administrator** role can access this setting.
-
-## User Roles
+## User roles
 
 Users of Wallarm clients can have the following roles:
 
@@ -31,6 +30,10 @@ Users of Wallarm clients can have the following roles:
 * **Analyst** with access to view main Wallarm settings, and manage information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
 * **Read Only** with access to view main Wallarm settings
 * **API Developer** with access to view and download the API inventory discovered by the [API Discovery](../../api-discovery/overview.md) module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery**, its dashboard, and **Settings → Profile**.
+* **Deploy** with access to create Wallarm filtering nodes using the `addnode` script and with no access to Wallarm Console
+
+    !!! warning "Using the Deploy role to install the Wallarm node 4.0"
+        The **Deploy** user role is recommended to be used to install only nodes 3.6 and lower since the [`addnode` script is deprecated in the release of version 4.0](../../updating-migrating/older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
 
 The [multitenancy](../../installation/multi-tenant/overview.md) feature also enables you to use the global roles **Global Administrator**, **Global Analyst**, **Global Read Only**. Global roles provide users with access to the technical tenant account and linked tenant accounts, regular roles provide users with access only to the technical tenant account.
 
@@ -57,117 +60,88 @@ More detailed information about access of different user roles to the Wallarm en
 | **Users**           | View and manage                      | -                        | View                         | - |
 | **Activity log**    | View                                 | -                        | View                         | - |
 
-## Viewing Users
+## Inviting a user
 
-You can view user lists in the following tabs:
-*   The main *Users* tab contains all users of your company registered in the Wallarm cloud. In this tab, any disabled users are highlighted in gray.
+You can add a user to your account in two ways, both involving the creation and sharing of an invitation link. You can either have Wallarm automatically send the invitation link to the user's specified email or share the link directly with the user.
 
-    ![User list][img-configure-user]
+### Automatic email invitation
 
-*   The *Disabled* tab contains only disabled users.
+For this method, set up the user's role, email, and names in advance, and Wallarm will automatically send an invitation email with a link to log in and set a password to the specified user's email. The user should then follow the link to complete the signup process.
 
-    ![Disabled users list][img-disabled-users]
+To send an invitation link automatically, click the **Add new user** button and complete the form:
 
-You can click the cells in the table header to sort users by name, role, email, and last login date.
+![New user form][img-add-user]
 
-You also can choose one or several users by checking the checkboxes on the left of the usernames; therefore, you will be able to do operations on a group of users. 
+After submitting the form, the user will be added to your list of users and receive an email with the invitation link.
 
-## Searching Users
+### Manual invitation link sharing
 
-You can use the search field above the table to search users by name, email, or system role.
+Generate an invitation link by selecting your team member's email, their role, and the link's duration using the **Invite by link** option. Then, share this link with the intended user.
 
-![Searching a user][img-search-user]
+![New user inv link][img-add-user-invitation-link]
 
-## Create a User
+This link leads them to the Wallarm signup page to create their account by choosing a password and entering their name.
 
-1.  In the *Users* tab of the *Settings* section, click the *Add user* button.
-2.  Select the user role from the dropdown list.
-3.  Enter a first and last name, and an email for the user.
+After signup, they will be added to your user list and will receive a confirmation email.
 
-    ![New user form][img-add-user]
+## Changing user settings
 
-4.  Click the *Add user* button.
+Once a user appears in the user list, you can edit their settings using the **Edit user settings** option from the corresponding user menu. This allows you to change their assigned user role, first name, and last name.
 
-    The new user will receive an automatic email with a link to login and set a password.
+## Disabling 2FA
 
-To be notified about newly added users, you can configure the appropriate [trigger](../triggers/triggers.md). Notifications will be sent to the messengers and SOAR systems (e.g. Slack, Microsoft Teams, OpsGenie).
+If a user has [two-factor authentication (2FA) enabled](account.md#enabling-two-factor-authentication) and you need to reset it, select the **Disable 2FA** option from the user menu. Confirm the action by entering your Wallarm administrator account password.
 
-## Change the User Info
+![User actions menu][img-user-menu-disable-2fa]
 
-To change the data on the user, perform the following actions:
-1.  In the *Users* tab of the *Settings* section, select the user to edit.
-2.  Open the user actions menu by clicking the button to the right of the corresponding user.
+This will disable 2FA for the selected user. The user can re-enable 2FA through their profile settings.
 
-    ![User actions menu][img-user-menu]
+## Disabling and deleting users
 
-3.  Click *Edit user settings*.
-4.  In the form that appears, enter the new user info and click the *Save* button.
+* To temporarily suspend a user's Wallarm account login capability without deleting their account information, use the **Disable access** option next to their name. This action marks them in gray in the main user list and lists them under the **Disabled** tab. Reactivate their account by choosing **Enable access**, allowing them to log in and access Wallarm again.
+* For permanent removal and to revoke login access forever, select **Delete** user from the user menu. This action permanently removes them from the user list and cannot be undone.
 
-    ![User info editing form][img-edit-user]
+## New user alerts
 
-The old user info will be replaced with the new.
+Receive instant alerts when new users are added to your Wallarm account by setting up a [trigger](../triggers/triggers.md) with the **User added** condition. Choose to be notified about specific roles or any new user addition.
 
-## Two-Factor Authentication Settings Reset
+Team members interested in these notifications must set up their own triggers.
 
-To reset the two-factor authentication settings, perform the following actions:
-1.  In the *Users* tab of the *Settings* section, select the desired user.
-2.  Open the user actions menu by clicking the button to the right of the corresponding user.
+**Trigger example: new user alerts to Slack**
 
-    ![User actions menu][img-user-menu-disable-2fa]
+If a new user with the **Administrator** or **Analyst** role is added to the company account in Wallarm Console, notification about this event will be sent to the email address specified in the integration and to the Slack channel.
 
-3.  Click *Disable 2FA*.
-4.  In the form that appears, enter your Wallarm administrator account password and click the *Disable 2FA* button.
+![Example of a trigger sending the notification to Slack and by email](../../images/user-guides/triggers/trigger-example2.png)
 
-    ![Disabling 2-factor authentication][img-user-disable-2fa]
+**To test the trigger:**
 
-The 2-factor authentication function will be disabled for the selected user. The user may re‑enable the 2‑factor authentication in the [profile settings](account.md#enabling-two-factor-authentication).
+1. Open the Wallarm Console → **Settings** → **Users** and add a new user.
+2. Open your email Inbox and check that the following message received:
 
-## Disable Access for a User
+    ![Email about new user added](../../images/user-guides/triggers/test-new-user-email-message.png)
+3. Open the Slack channel and check that the following notification from the user **wallarm** received:
 
-Disabling access for a user disables their Wallarm account.
+    ```
+    [Wallarm] Trigger: New user was added to the company account
+    
+    Notification type: create_user
+    
+    A new user John Smith <johnsmith@example.com> with the role Analyst was added to the company account by John Doe <johndoe@example.com>.
+    This notification was triggered by the "Added user" trigger.
 
-To disable a particular user’s Wallarm account, perform the following actions:
-1.  In the *Users* tab of the *Settings* section, select the desired user.
-2.  Open the user actions menu by clicking the button to the right of the corresponding user.
+    Client: TestCompany
+    Cloud: EU
+    ```
 
-    ![User actions menu][img-user-menu]
+    * `John Smith` and `johnsmith@example.com` is information about the added user
+    * `Analyst` is the role of the added user
+    * `John Doe` and `johndoe@example.com` is information about the user who added a new user
+    * `Added user` is the trigger name
+    * `TestCompany` is the name of your company account in Wallarm Console
+    * `EU` is the Wallarm Cloud where your company account is registered
 
-3.  Click *Disable Access*.
+## Logout management
 
-Now the selected user from your company will not be able to use their Wallarm account.
+**Administrator** and **Global Administrator** [roles](users.md#user-roles) can set up logout timeouts for company account in **Settings** → **General**. Settings will affect all account users. Idle and absolute timeouts can be set.
 
-If it is necessary to disable access for several user accounts, select the users whose access you need to revoke. The action panel will appear. Click the *Disable Access* button on this panel.
-
-![Disabling several users' accounts][img-disable-delete-multi]
-
-## Enable Access for a User
-
-Enabling access for a user enables their Wallarm account.
-
-To enable a particular user’s Wallarm account, perform the following actions:
-1.  In the *Users* tab of the *Settings* section, select the desired user with disabled access.
-2.  Open the user actions menu by clicking the button to the right of the corresponding user.
-
-    ![Disabled user actions menu][img-disabled-user-menu]
-
-3.  Click *Enable Access*.
-
-Now the selected user from your company will be able to use their Wallarm account.
-
-If it is necessary to enable access for several user accounts, select the users you need to grant access to. The action panel will appear. Click the *Enable Access* button on this panel.
-
-![Enabling several users' accounts][img-enable-delete-multi]
-
-## Delete a User
-
-To delete a  particular user account, perform the following actions:
-1.  In the *Users* tab of the *Settings* section, select the user to delete.
-2.  Open the user actions menu by clicking the button to the right of the corresponding user.
-
-    ![User actions menu][img-user-menu]
-
-3.  Click *Delete*.
-
-If it is necessary to delete several user accounts, select the users whose accounts you need to delete. The action panel will appear. Click the *Delete* button on this panel.
-
-![Deleting several users' accounts][img-disable-delete-multi]
+![General tab](../../images/user-guides/settings/general-tab.png)
