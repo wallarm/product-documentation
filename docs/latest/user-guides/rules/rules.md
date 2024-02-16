@@ -4,11 +4,17 @@
 
 # Rules
 
-In Wallarm, rules are used to fine-tune the behavior of the system during the analysis of requests and their further processing in the post-analysis module as well as in the Wallarm Cloud. You can inspect existing rules and configure the new ones in the **Rules** section of Wallarm Console.
+Rules are used to fine-tune the [default](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) Wallarm behavior during the analysis of requests and their further processing. Thus, using rules you can change how the system detects malicious requests and acts when such malicious requests are detected.
+
+Rules are configured in the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud.
+
+
+![Rules section](../../images/user-guides/rules/section-rules.png)
+
+!!! warning "Rule application delay"
+    When you make changes to the rules, they don't take effect immediately as it takes some time to [compile the rules](#ruleset-lifecycle) and upload them to the filtering nodes.
 
 For a better understanding of how the traffic processing rules are applied, it is advisable to learn how the filter node [analyzes the requests][link-request-processing].
-
-One important thing about making changes to the rules is that these changes don't take effect immediately. It may take some time to [compile the rules](#ruleset-lifecycle) and download them into filter nodes.
 
 ## What you can do with rules
 
@@ -22,55 +28,15 @@ Using rules, you can provide the multiple protections measures for your applicat
 * Fine tune request processing by [managing request parsers](../../user-guides/rules/request-processing.md#managing-parsers) and [changing server response headers](../../user-guides/rules/add-replace-response-header.md)
 * Fine tune attack detection by setting to [ignore certain attack types](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) and to [ignore certain attack signs in the binary data](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
 
-## Terminology
+## Rule branches
 
-**Point**
-
-A point is an HTTP request parameter. A parameter can be described with a sequence of filters applied for request processing, e.g., headers, body, URL, Base64, etc. This sequence is also called the *point*.
-
-Request processing filters are also called parsers.
-
-**Rule branch**
-
-The set of HTTP request parameters and their conditions is called the *branch*. If the conditions are fulfilled, the rules related to this branch will be applied.
-
-For example, the rule branch `example.com/**/*.*` describes the conditions matching all requests to any URL of the domain `example.com`.
-
-**Endpoint (endpoint branch)**
-
-A branch without nested rule branches is called an *endpoint branch*. Ideally, an application endpoint corresponds to one business function of the protected application. For instance, such business function as authorization can be an endpoint rule branch of `example.com/login.php`.
-
-**Rule**
-
-A request processing setting for the filter node, the post-analysis module, or the cloud is called a *rule*.
-
-Processing rules are linked to the branches or endpoints. A rule is applied to a request only if the request matches all the conditions described in the branch.
-
-## Inspecting
-
-To view the rules, go to the **Rules** section of Wallarm Console. This section represents branches and endpoints that are already known.
+Rules are automatically grouped into nested branches by endpoint URIs and other conditions. This builds a  tree-like structure in which rules are [inherited](#distinct-and-inherited-rules) down.
 
 ![Rules tab overview](../../images/user-guides/rules/rules-overview.png)
 
-The system automatically groups the rules by branches, highlighting common conditions and building a tree-like structure. As a result, a branch may have child branches. To show or hide nested branches, click on the blue circle to the left of the branch description.
-
-Two asterisks `**` in a branch description refer to any number of nested paths. For instance, the branch `/**/*.php` will contain both `/index.php` and `/app/admin/install.php`.
-
-The size of the blue circle indicates the relative quantity of the nested branches. Its color indicates the relative quantity of the rules within the branch and its sub-branches. On each nesting level, the size and color of the circles are independent from each other.
-
-To the right of the branch description, the system may display an orange number, which indicates the number of rules in that branch (only the direct descendants, not the nested rules). If no number is displayed, then that branch is "virtual"&nbsp;— it is used only for grouping similar sub-branches.
-
-Branches with no rules available for the user (according to the privilege model) are automatically hidden .
-
-### Rule display
-
-In each branch, the user can look through the list of rules attached to it. To switch over to the page with the rule list, click on the description of the corresponding branch.
+Within a branch, you can look through the list of rules attached to it:
 
 ![Viewing branch rules](../../images/user-guides/rules/view-rules.png)
-
-The rules within a branch are grouped by the *point* field. The rules that affect the entire request, rather than individual parameters, are grouped together into one line. To see the entire list, click on the line.
-
-For each rule, the system displays the following parameters: last modified time, quantity, types, and point.
 
 ### Default rules
 
@@ -106,24 +72,6 @@ Here are some details of how to work with the rules branch:
 
     ![Distinct and inherited rules for endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
 
-### API calls to get rules
-
-To get custom rules, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below are some examples of the corresponding API calls.
-
-**Get all configured rules**
-
---8<-- "../include/api-request-examples/get-all-configured-rules.md"
-
-**Get only conditions of all rules**
-
---8<-- "../include/api-request-examples/get-conditions.md"
-
-**Get rules attached to a specific condition**
-
-To point to a specific condition, use its ID - you can get it when requesting conditions of all rules (see above).
-
---8<-- "../include/api-request-examples/get-rules-by-condition-id.md"
-
 ## Configuring
 
 To add a new rule, go to the **Rules** tab.
@@ -136,12 +84,6 @@ If necessary, it is possible to modify the branch to which a rule will be added.
 
 ![Adding a new rule][img-add-rule]
 
-### Branch description
-
-A branch description consists of a set of conditions for various parameters that an HTTP request must fulfill; otherwise, the rules associated with this branch will not be applied. Each line in the *If request is* section of the rule-adding form refers to a separate condition comprised of three fields: point, type, and comparison argument. The rules described in the branch are only applied to the request if all the conditions are fulfilled.
-
-To configure the set of conditions, both the **URI constructor** and the **advanced edit form** can be used.
-
 ### URI constructor
 
 #### Working with URI constructor
@@ -151,7 +93,7 @@ URI constructor allows configuring the rule conditions by specifying the request
 * For the request method, the URI constructor provides the particular selector. If the method is not selected, the rule will be applied to requests with any method.
 * For the request endpoint, the URI constructor provides the particular field accepting the following value formats:
 
-    | Format | Examples and request point values |
+    | Format | Example |
     | ------ | ------ |
     | Full URI including the following components:<ul><li>Scheme (the value is ignored, you can explicitly specify the scheme by using the advanced form)</li><li>Domain or an IP address</li><li>Port</li><li>Path</li><li>Query string parameters</ul> | `https://example.com:3000/api/user.php?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com:3000`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `php`</li><li>`[query, 'q']` - `action`</li><li>`[query, 'w']` - `delete`</li></ul>|
     | URI with some components omitted | `example.com/api/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul><br>`http://example.com/api/clients/user/?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `clients`</li><li>`[path, 2]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[query, 'q']` - `action`</li><li>`[query, 'w']` - `delete`</li></ul><br>`/api/user`<br><ul><li>``[header, 'HOST']` - any value</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul>|
@@ -159,17 +101,17 @@ URI constructor allows configuring the rule conditions by specifying the request
     | URI with `**` meaning any number of components including its absence | `example.com/**/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li>The value matches `example.com/api/create/user` and `example.com/api/user`.<br>The value does not match `example.com/user`, `example.com/api/user/index.php` and `example.com/api/user/?w=delete`.</ul><br>`example.com/api/**/*.*`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[action_name]` - any non‑empty value (hidden in the advanced edit form)</li><li>`[action_ext]` - any non‑empty value (hidden in the advanced edit form)</li>The value matches `example.com/api/create/user.php` and `example.com/api/user/create/index.php`<br>and does not match `example.com/api`, `example.com/api/user` and `example.com/api/create/user.php?w=delete`.</ul> |
     | URI with the [regular expression](#condition-type-regex) to match certain component values (regexp must be wrapped in `{{}}`) | `example.com/user/{{[0-9]}}`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `user`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `[0-9]`</li><li>`[action_ext]` - `∅`</li>The value matches `example.com/user/3445`<br>and does not match `example.com/user/3445/888` and `example.com/user/3445/index.php`.</ul> |
 
-The string specified in the URI constructor is automatically parsed into the set of conditions for the following [request points](#points):
+The string specified in the URI constructor is automatically parsed into the set of [conditions](#conditions):
 
 * `method`
 * `header`. The URI constructor allows specifying only the header `HOST`.
-* `path`, `action_name`, `action_ext`. Before confirming the rule creation, please ensure the values of these request points are parsed in one of the following ways:
+* `path`, `action_name`, `action_ext`. Before confirming the rule creation, please ensure the values of these request parts are parsed in one of the following ways:
     * Explicit value of certain `path` number + `action_name` + `action_ext` (optional)
     * Explicit value of `action_name` + `action_ext` (optional)
     * Explicit value of certain `path` number without `action_name` and without `action_ext`
 * `query`
 
-The value specified in the URI constructor can be completed by other request points available only in the [advanced edit form](#advanced-edit-form).
+The value specified in the URI constructor can be completed by other conditions available only in the [advanced edit form](#advanced-edit-form).
 
 #### Using wildcards
 
@@ -193,7 +135,7 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
 
 ![Example of parsing URI into components](../../images/user-guides/rules/something-parsed.png)
 
-...where `something-1.example.com` is a `header`-`HOST` point. We mentioned that wildcard cannot be used within the point, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Wallarm [specific syntax](#condition-type-regex):
+...where `something-1.example.com` is a `header`-`HOST` condition. We mentioned that wildcard cannot be used within the condition, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Wallarm [specific syntax](#condition-type-regex):
 
 1. Do not use `*` in a meaning "any number of symbols".
 1. Put all the `.` that we want to be interpreted as "actual dots" in square brackets:
@@ -215,11 +157,11 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
 
 ### Advanced edit form
 
-#### Points
+#### Conditions
 
-The *point* field indicates which parameter value should be extracted from the request for comparison. At present, not all of the points that can be analyzed by the filter node, are supported.
+Conditions indicate which values should be presented in which request parts. The rule is applied when all its conditions are met. Conditions are listed in the **If request is** section of the rule.
 
-The following points are currently supported:
+The following conditions are currently supported:
 
 * **application**: application ID.
 * **proto**: HTTP protocol version (1.0, 1.1, 2.0, ...).
@@ -242,7 +184,7 @@ The following points are currently supported:
 
 #### Condition type: EQUAL (`=`)
 
-The point value must match precisely with the comparison argument. For example, only `example` matches with the point value `example`.
+The value must match precisely with the comparison argument. For example, only `example` matches with The value `example`.
 
 !!! info "EQUAL condition type for the HOST header value"
     To cover more requests with the rules, we have restricted the EQUAL condition type for the HOST header. Instead of the EQUAL type, we recommend using the type IEQUAL that allows parameter values in any register.
@@ -251,11 +193,11 @@ The point value must match precisely with the comparison argument. For example, 
 
 #### Condition type: IEQUAL (`Aa`)
 
-The point value must match with the comparison argument in any case. For example: `example`, `ExAmple`, `exampLe` match with the point value `example`.
+The value must match with the comparison argument in any case. For example: `example`, `ExAmple`, `exampLe` match with the value `example`.
 
 #### Condition type: REGEX (`.*`)
 
-The point value must match the regular expression. 
+The value must match the regular expression. 
 
 **Regular expression syntax**
 
@@ -443,7 +385,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
 
 #### Condition type: ABSENT (`∅`)
 
-The request should not contain the designated point. In this case, the comparison argument is not used.
+The request should not contain the designated part. In this case, the comparison argument is not used.
 
 ## Ruleset lifecycle
 
@@ -492,3 +434,7 @@ You can:
 
 !!! warning "Rule modification restrictions"
     You cannot create or modify rules until creating backup or load from backup is complete.
+
+## API calls to get rules
+
+To get custom rules, you can [call the Wallarm API directly](../../api/request-examples.md#get-all-configured-rules).
