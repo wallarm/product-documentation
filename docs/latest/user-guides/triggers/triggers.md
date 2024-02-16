@@ -2,7 +2,7 @@
 
 Triggers are tools used to set up Wallarm response to different events. Triggers combine a significant number of events the system can react to with a variety of possible reactions. This constructor-like process allows configuring complex behaviors that match your company unique security needs.
 
-Triggers are configured in the **Triggers** section in the [US](https://us1.my.wallarm.com/triggers) or [EU](https://my.wallarm.com/triggers) Cloud. The section is available only for users with the **Administrator** [role](../settings/users.md).
+Triggers are configured in the **Triggers** section in the [US](https://us1.my.wallarm.com/triggers) or [EU](https://my.wallarm.com/triggers) Cloud.
 
 ![Section to configure triggers](../../images/user-guides/triggers/triggers-section.png)
 
@@ -24,6 +24,7 @@ Using triggers, you can:
     * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
     * [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
     * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
+    * Manage [weak JWTs detection](../../about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection)
 
 * Set up extended alerts for different [integrations](../../user-guides/settings/integrations/integrations-intro.md).
 * Optimize attacks and incidents representation by [grouping hits](../../user-guides/events/analyze-attack.md#grouping-of-hits).
@@ -45,14 +46,7 @@ The following filters are available:
 * **Domain** is the domain that receives the request.
 * **Response status** is the response code returned to the request.
 * **Target** is an application architecture part that the attack is directed at or in which the incident is detected. It can take the following values: `Server`, `Client`, `Database`.
-* **User's role** is the role of the added user. It can take the following values: `Deploy`, `Analyst`, `Admin`.
-
-## Tips
-
-* If the trigger name and description are not specified, then the trigger is created with the name `New trigger by <username>, <creation_date>` and an empty description.
-* You can choose more than one filter and more than one reaction for your trigger.
-* To temporarily stop trigger, you can disable it. A disabled trigger will be displayed in the lists with **All** and **Disabled** triggers. To re‑enable, use the **Enable** option.
-* To permanently stop trigger, you can delete it. Deleting a trigger cannot be undone. The trigger will be permanently removed from the trigger list.
+* **User's role** is the [role](../../user-guides/settings/users.md#user-roles) of the added user. It can take the following values: `Deploy`, `Analyst`, `Administrator`, `Read only`, `API developer`.
 
 ## Default triggers
 
@@ -85,3 +79,10 @@ New company accounts are featured by the following default (pre-configured) trig
     This trigger enables Wallarm to automatically detect weak JWTs in incoming requests and record corresponding [vulnerabilities](../vulnerabilities.md).
 
 Triggers work on all traffic within a company account by default but you can change any trigger settings.
+
+## Disabling and deleting triggers
+
+* To temporarily stop sending notifications and reactions to events, you can disable the trigger. A disabled trigger will be displayed in the lists with **All** and **Disabled** triggers. To re‑enable sending notifications and reactions to events, the **Enable** option is used.
+* To permanently stop sending notifications and reactions to events, you can delete the trigger. Deleting a trigger cannot be undone. The trigger will be permanently removed from the trigger list.
+
+To disable or delete the trigger, please select an appropriate option from the trigger menu and confirm the action if required.
