@@ -1,59 +1,39 @@
 # Working with Triggers
 
-Triggers are tools that are used to set up custom notifications and reactions to events. Using triggers, you can provide the following protections measures for your applications and APIs:
+Triggers are tools used to set up Wallarm response to different events. Triggers combine a significant number of events the system can react to with a variety of possible reactions. This constructor-like process allows configuring complex behaviors that match your company unique security needs.
 
-* [Protection from multi-attack perpetrators](../../admin-en/configuration-guides/protecting-with-thresholds.md)
-* [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
-* [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
-
-Using triggers you can also set up extended alerts for different [integrations](../../user-guides/settings/integrations/integrations-intro.md).
-
-You can configure all the trigger components:
-
-* **Condition**: system event to be notified about. For example: getting a certain amount of attacks, denylisted IP address, and new user added to the account.
-* **Filters**: condition details. For example: attack types.
-* **Reaction**: action that should be performed if the specified condition and filters are met. For example: sending the notification to Slack or another system configured as the [integration](../settings/integrations/integrations-intro.md), blocking IP address, or marking requests as the brute‑force attack.
-
-Triggers are configured in the **Triggers** section of Wallarm Console. The section is available only for users with the **Administrator** [role](../settings/users.md).
+Triggers are configured in the **Triggers** section in the [US](https://us1.my.wallarm.com/triggers) or [EU](https://my.wallarm.com/triggers) Cloud.
 
 ![Section to configure triggers](../../images/user-guides/triggers/triggers-section.png)
 
-## Creating triggers
+## How it works
 
-1. Click the **Create trigger** button.
-2. [Choose](#step-1-choosing-a-condition) conditions.
-3. [Add](#step-2-adding-filters) filters.
-4. [Add](#step-3-adding-reactions) reactions.
-5. [Save](#step-4-saving-the-trigger) the trigger.
+Each trigger consists of the following components that you can configure:
 
-### Step 1: Choosing a condition
+* **Condition**: an event that Wallarm should react to. For example: getting a certain amount of attacks, denylisted IP address, and new user added to the account.
+* [**Filters**](#understanding-filters): the condition details. For example: if condition is "More than 10,000 attacks per day", then set the **Type** filter to "SQLi" and the **Response status** to "200" and for the trigger that will mean "Act if there were more than 10,000 SQLi attacks per day that got the 200 response".
+* **Reaction**: an action that should be performed if the specified condition and filters are met. For example: sending the notification to Slack or another system configured as the [integration](../settings/integrations/integrations-intro.md), blocking IP address, or marking requests as the brute‑force attack.
 
-A condition is a system event to be notified about. The following conditions are available for notification:
+## What you can do with triggers
 
-* [Brute force](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [Forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [BOLA](../../admin-en/configuration-guides/protecting-against-bola.md)
-* [Weak JWT](../../about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection)
-* Number of [attack vectors (malicious payloads)](../../glossary-en.md#malicious-payload) (experimental payloads based on [custom regular expressions](../rules/regex-rule.md) are not counted)
-* Number of [attacks](../../glossary-en.md#attack) (experimental attacks based on [custom regular expressions](../rules/regex-rule.md) are not counted)
-* Number of [hits](../../glossary-en.md#hit) except for:
+Using triggers, you can:
 
-    * Experimental hits detected based on the [custom regular expression](../rules/regex-rule.md). Non-experimental hits are counted.
-    * Hits not saved in the [sample](../events/analyze-attack.md#sampling-of-hits).
-* Number of incidents
-* Denylisted IP
-* [Changes in API inventory](../../api-discovery/overview.md#tracking-changes-in-api)
-* Hits from the same IP, except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types
-* User added
+* Provide the following protections measures for your applications and APIs:
 
-![Available conditions](../../images/user-guides/triggers/trigger-conditions.png)
+    * [Protection from multi-attack perpetrators](../../admin-en/configuration-guides/protecting-with-thresholds.md)
+    * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+    * [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
+    * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
+    * Manage [weak JWTs detection](../../about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection)
 
-Choose a condition in the Wallarm Console interface and set the lower threshold for the reaction, if the setting is available.
+* Set up extended alerts for different [integrations](../../user-guides/settings/integrations/integrations-intro.md).
+* Optimize attacks and incidents representation by [grouping hits](../../user-guides/events/analyze-attack.md#grouping-of-hits).
 
-### Step 2: Adding filters
+## Understanding filters
 
-Filters are used for condition detailing. For example, you can set up reactions to attacks of certain types, such as brute-force attacks, SQL injections and others.
+Filters are used for [condition](#how-it-works) detailing. For example, you can set up reactions to attacks of certain types, such as brute-force attacks, SQL injections and others. You can add one or more filters in the Wallarm Console interface and set values for them.
+
+![Available filters](../../images/user-guides/triggers/trigger-filters.png)
 
 The following filters are available:
 
@@ -66,44 +46,11 @@ The following filters are available:
 * **Domain** is the domain that receives the request.
 * **Response status** is the response code returned to the request.
 * **Target** is an application architecture part that the attack is directed at or in which the incident is detected. It can take the following values: `Server`, `Client`, `Database`.
-* **User's role** is the role of the added user. It can take the following values: `Deploy`, `Analyst`, `Admin`.
+* **User's role** is the [role](../../user-guides/settings/users.md#user-roles) of the added user. It can take the following values: `Deploy`, `Analyst`, `Administrator`, `Read only`, `API developer`, and if [multitenancy](../../installation/multi-tenant/overview.md) feature is enabled - `Global Administrator`, `Global Analyst`, `Global Read Only`.
 
-Choose one or more filters in the Wallarm Console interface and set values for them.
+## Default triggers
 
-![Available filters](../../images/user-guides/triggers/trigger-filters.png)
-
-### Step 3: Adding reactions
-
-A reaction is an action that should be performed if the specified condition and filters are met. The set of available reactions depends on the selected condition. Reactions can be of the following types:
-
-* [Mark the requests as brute‑force or forced browsing attack](../../admin-en/configuration-guides/protecting-against-bruteforce.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [denylist](../ip-lists/overview.md) IP address.
-* [Mark the requests as BOLA attack](../../admin-en/configuration-guides/protecting-against-bola.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [denylist](../ip-lists/overview.md) IP address.
-* [Record the JWT vulnerability](../../about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection).
-* Add IP to the [denylist](../ip-lists/overview.md).
-* Add IP to the [graylist](../ip-lists/overview.md).
-* Send a notification to the SIEM system or Webhook URL configured in the [integrations](../settings/integrations/integrations-intro.md).
-* Send a notification to the messenger configured in the [integrations](../settings/integrations/integrations-intro.md).
-
-    !!! warning "Notifying about denylisted IPs via the messengers"
-        Triggers allow sending notifications on denylisted IPs only to the SIEM systems or Webhook URL. Messengers are not available for the **Denylisted IP** trigger condition.
-* [Group next hits into one attack](../../admin-en/configuration-guides/protecting-with-thresholds.md) if the trigger condition is **Hits from the same IP**.
-
-    The [**Mark as false positive**](../events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) option will be unavailable for these attacks.
-
-Choose one or more reactions in the Wallarm Console interface. Reactions available for the condition are located at **Number of attacks**:
-
-![Choosing an integration](../../images/user-guides/triggers/select-integration.png)
-
-### Step 4: Saving the trigger
-
-1. Click the **Create** button in the trigger creation modal dialog.
-2. Specify the trigger's name and description (if required) and click the **Done** button.
-
-If the trigger name and description are not specified, then the trigger is created with the name `New trigger by <username>, <creation_date>` and an empty description.
-
-## Pre-configured triggers (default triggers)
-
-New company accounts are featured by the following pre-configured triggers (default triggers):
+New company accounts are featured by the following default (pre-configured) triggers:
 
 * Group hits originating from the same IP into one attack
 
@@ -139,9 +86,3 @@ Triggers work on all traffic within a company account by default but you can cha
 * To permanently stop sending notifications and reactions to events, you can delete the trigger. Deleting a trigger cannot be undone. The trigger will be permanently removed from the trigger list.
 
 To disable or delete the trigger, please select an appropriate option from the trigger menu and confirm the action if required.
-
-<!-- ## Demo videos
-
-<div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/ODHh-die9tY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div> -->
