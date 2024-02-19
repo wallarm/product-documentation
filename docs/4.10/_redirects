@@ -620,3 +620,7 @@
 /4.8/user-guides/rules/ignore-attack-types/ /4.8/about-wallarm/protecting-against-attacks/#ignoring-certain-attack-types
 /4.8/user-guides/rules/ignore-attacks-in-binary-data/ /4.8/about-wallarm/protecting-against-attacks/#ignoring-certain-attack-signs-in-the-binary-data
 /4.8/user-guides/rules/wallarm-mode-rule/ /4.8/admin-en/configure-wallarm-mode/#setting-up-the-filtration-rules-on-the-rules-tab
+
+/user-guides/settings/general/ /admin-en/configure-wallarm-mode/#setting-up-the-general-filtration-rule-in-wallarm-console
+/4.8/user-guides/settings/general/ /4.8/admin-en/configure-wallarm-mode/#setting-up-the-general-filtration-rule-in-wallarm-console
+/4.6/user-guides/settings/general/ /4.6/admin-en/configure-wallarm-mode/#setting-up-the-general-filtration-rule-in-wallarm-console

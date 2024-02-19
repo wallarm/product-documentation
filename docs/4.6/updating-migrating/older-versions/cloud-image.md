@@ -50,7 +50,7 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [General filtration rule configured in Wallarm Console](../../user-guides/settings/general.md)
+      * [General filtration rule configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)
       * [Low-level filtration rules configured in Wallarm Console](../../user-guides/rules/wallarm-mode-rule.md)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 

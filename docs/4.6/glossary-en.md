@@ -90,7 +90,7 @@ Custom rules enable you to set up individual rules for the traffic processing, e
 * Apply a virtual patch blocking requests that exploit an active vulnerability
 * Disable attack detection in certain requests, etc.
 
-A custom ruleset is not empty by default, it contains the rules created for all clients registered in the Cloud, e.g. the filtration mode rule with the value from the [**Settings → General** tab](user-guides/settings/general.md).
+A custom ruleset is not empty by default, it contains the rules created for all clients registered in the Cloud, e.g. the filtration mode rule with the value from the [**Settings → General** tab](admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console).
 
 [More details on custom rulesets](user-guides/rules/intro.md)
 
