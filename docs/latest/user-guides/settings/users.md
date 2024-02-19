@@ -26,11 +26,11 @@ Only **Administrator** and **Global Administrator** roles have user management p
 
 Users of Wallarm clients can have the following roles:
 
-* **Administrator** with access to all Wallarm settings
-* **Analyst** with access to view main Wallarm settings, and manage information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
-* **Read Only** with access to view main Wallarm settings
+* **Administrator** with access to all Wallarm settings.
+* **Analyst** with access to view main Wallarm settings, and manage information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability].
+* **Read Only** with access to view main Wallarm settings.
 * **API Developer** with access to view and download the API inventory discovered by the [API Discovery](../../api-discovery/overview.md) module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery**, its dashboard, and **Settings → Profile**.
-* **Deploy** with access to create Wallarm filtering nodes using the `addnode` script and with no access to Wallarm Console
+* **Deploy** with access to create Wallarm filtering nodes using the `addnode` script and with no access to Wallarm Console.
 
     !!! warning "Using the Deploy role to install the Wallarm node 4.0"
         The **Deploy** user role is recommended to be used to install only nodes 3.6 and lower since the [`addnode` script is deprecated in the release of version 4.0](../../updating-migrating/older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
@@ -62,27 +62,13 @@ More detailed information about access of different user roles to the Wallarm en
 
 ## Inviting a user
 
-You can add a user to your account in two ways, both involving the creation and sharing of an invitation link. You can either have Wallarm automatically send the invitation link to the user's specified email or share the link directly with the user.
+To invite a user, set up the user's role, email, and names in advance, and Wallarm will automatically send an invitation email with a link to log in and set a password to the specified user's email. The user should then follow the link to complete the signup process.
 
-### Automatic email invitation
-
-For this method, set up the user's role, email, and names in advance, and Wallarm will automatically send an invitation email with a link to log in and set a password to the specified user's email. The user should then follow the link to complete the signup process.
-
-To send an invitation link automatically, click the **Add new user** button and complete the form:
+Click the **Add new user** button and complete the form:
 
 ![New user form][img-add-user]
 
 After submitting the form, the user will be added to your list of users and receive an email with the invitation link.
-
-### Manual invitation link sharing
-
-Generate an invitation link by selecting your team member's email, their role, and the link's duration using the **Invite by link** option. Then, share this link with the intended user.
-
-![New user inv link][img-add-user-invitation-link]
-
-This link leads them to the Wallarm signup page to create their account by choosing a password and entering their name.
-
-After signup, they will be added to your user list and will receive a confirmation email.
 
 ## Changing user settings
 
