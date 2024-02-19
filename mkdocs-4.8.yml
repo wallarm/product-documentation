@@ -365,7 +365,6 @@ nav:
   - User Management:
     - Overview: user-guides/settings/users.md
     - User Profile: user-guides/settings/account.md
-    - Logout Settings: user-guides/settings/general.md
     - API Tokens: user-guides/settings/api-tokens.md
     - Using Single Sign‑On (SSO):
       - Overview of integration with the SAML SSO solution: admin-en/configuration-guides/sso/intro.md
