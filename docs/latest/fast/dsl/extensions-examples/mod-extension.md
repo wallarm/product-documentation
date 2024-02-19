@@ -30,6 +30,7 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
 1.  [**The `meta-info` section**][link-meta-info].
 
     Prepare the description of the vulnerability that the extension will try to detect.
+    
     * vulnerability header: `OWASP Juice Shop SQLi (mod extension)`
     * vulnerability description: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
     * vulnerability type: SQL injection
