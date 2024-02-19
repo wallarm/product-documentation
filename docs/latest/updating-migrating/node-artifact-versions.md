@@ -10,7 +10,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
-### 4.10.1-1 (2024-02-19)
+### 4.10.1 (2024-02-19)
 
 * TBD
 
@@ -41,6 +41,17 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
     * Implemented labels and annotations for the Tarantool pod
     * Restored OpenTracing
     * Transitioned to supervisord
+* Fixed the vulnerabilities:
+
+    * [CVE-2023-52425](https://nvd.nist.gov/vuln/detail/CVE-2023-52425)
+    * [CVE-2024-25062](https://nvd.nist.gov/vuln/detail/CVE-2024-25062)
+    * [CVE-2020-14343](https://nvd.nist.gov/vuln/detail/CVE-2020-14343)
+    * [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920)
+    * [CVE-2021-33503](https://nvd.nist.gov/vuln/detail/CVE-2021-33503)
+    * [CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327)
+    * [CVE-2021-31799](https://nvd.nist.gov/vuln/detail/CVE-2021-31799)
+    * [CVE-2021-28965](https://nvd.nist.gov/vuln/detail/CVE-2021-28965)
+    * [CVE-2020-25613](https://nvd.nist.gov/vuln/detail/CVE-2020-25613)
 
 ### 4.10.0 (2024-02-01)
 
@@ -80,6 +91,17 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ### 4.10.1-1 (2024-02-19)
 
 * Updated the `appstructure` package
+* Fixed the vulnerabilities:
+
+    * [CVE-2023-52425](https://nvd.nist.gov/vuln/detail/CVE-2023-52425)
+    * [CVE-2024-25062](https://nvd.nist.gov/vuln/detail/CVE-2024-25062)
+    * [CVE-2020-14343](https://nvd.nist.gov/vuln/detail/CVE-2020-14343)
+    * [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920)
+    * [CVE-2021-33503](https://nvd.nist.gov/vuln/detail/CVE-2021-33503)
+    * [CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327)
+    * [CVE-2021-31799](https://nvd.nist.gov/vuln/detail/CVE-2021-31799)
+    * [CVE-2021-28965](https://nvd.nist.gov/vuln/detail/CVE-2021-28965)
+    * [CVE-2020-25613](https://nvd.nist.gov/vuln/detail/CVE-2020-25613)
 
 ### 4.10.0-1 (2024-02-02)
 
