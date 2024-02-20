@@ -165,7 +165,7 @@ spec:
 
 To test that the Wallarm Sidecar operates correctly:
 
-1. Get the Wallarm pod details to check they have been successfully started:
+1. Get the Wallarm control plane details to check it has been successfully started:
 
     ```bash
     kubectl get pods -n wallarm-sidecar -l app.kubernetes.io/name=wallarm-sidecar
@@ -178,7 +178,7 @@ To test that the Wallarm Sidecar operates correctly:
     wallarm-sidecar-controller-54cf88b989-gp2vg      1/1     Running   0          91m
     wallarm-sidecar-postanalytics-86d9d4b6cd-hpd5k   4/4     Running   0          91m
     ```
-1. Get the application pod details to check the Wallarm sidecar controller has been successfully injected:
+1. Get the application pod details to check the Wallarm sidecar container has been successfully injected:
 
     ```bash
     kubectl get pods -n <APPLICATION_NAMESPACE> --selector app=<APP_LABEL_VALUE>
