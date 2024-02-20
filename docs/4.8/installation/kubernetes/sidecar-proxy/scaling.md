@@ -45,15 +45,18 @@ controller:
               operator: In
               values:
               - wallarm-sidecar
-            - key: app.kubernetes.io/instance
-              operator: In
-              values:
-              - release-name
             - key: app.kubernetes.io/component
               operator: In
               values:
               - controller
           topologyKey: kubernetes.io/hostname
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 32Mi
 ```
 
 ### Postanalytics (Tarantool)
@@ -126,10 +129,6 @@ postanalytics:
               operator: In
               values:
               - wallarm-sidecar
-            - key: app.kubernetes.io/instance
-              operator: In
-              values:
-              - release-name
             - key: app.kubernetes.io/component
               operator: In
               values:
@@ -263,15 +262,18 @@ controller:
               operator: In
               values:
               - wallarm-sidecar
-            - key: app.kubernetes.io/instance
-              operator: In
-              values:
-              - release-name
             - key: app.kubernetes.io/component
               operator: In
               values:
               - controller
           topologyKey: kubernetes.io/hostname
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 32Mi
 postanalytics:
   replicaCount: 2
   tarantool:
@@ -327,10 +329,6 @@ postanalytics:
               operator: In
               values:
               - wallarm-sidecar
-            - key: app.kubernetes.io/instance
-              operator: In
-              values:
-              - release-name
             - key: app.kubernetes.io/component
               operator: In
               values:
