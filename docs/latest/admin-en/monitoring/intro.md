@@ -60,30 +60,11 @@ You can monitor both the Wallarm module and the postanalytics module even if the
 ##  Prerequisites for Monitoring
 
 For monitoring to work, it is required that:
+
 * NGINX returns the statistics to the filter node (`wallarm_status on`),
 * The filtration mode is in the `monitoring`/`safe_blocking`/`block` [mode](../configure-wallarm-mode.md#available-filtration-modes).
   
-By default, this service is accessible at `http://127.0.0.8/wallarm-status`.
-
-If you [configure](../configure-statistics-service.md#changing-an-ip-address-of-the-statistics-service) the statistics service to be available at a non-standard address:
-
-1. Add the `status_endpoint` parameter with the new address value to the `/etc/wallarm/node.yaml` file (`/opt/wallarm/etc/wallarm/node.yaml` for Docker NGINX-based image, cloud images and all-in-one installer), e.g.:
-
-    ```bash
-    hostname: example-node-name
-    uuid: ea1xa0xe-xxxx-42a0-xxxx-b1b446xxxxxx
-    ...
-    status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
-    ```
-1. Correct the `URL` parameter accordingly in the `collectd` configuration file. The location of this file depends on the type of operating system distribution you have:
-
-    --8<-- "../include/monitoring/collectd-config-location.md"
-
-If a non-standard IP address or port for Tarantool is used, you will need to correct the Tarantool configuration file accordingly. The location of this file depends on the type of operating system distribution you have:
-
---8<-- "../include/monitoring/tarantool-config-location.md"
-
-If SELinux is installed on the filter node host, make sure that SELinux is either [configured or disabled][doc-selinux]. For simplicity, this document assumes that SELinux is disabled.
+By default, this service is accessible at `http://127.0.0.8/wallarm-status`. The address may differ if you have [changed](../configure-statistics-service.md#changing-an-ip-address-andor-port-of-the-statistics-service) it.
 
 ##  How Metrics Look
 
