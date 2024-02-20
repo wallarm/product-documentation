@@ -132,6 +132,10 @@ To run the container:
         !!! info "Mounting other configuration files"
             The container directories used by NGINX:
 
+            * `/etc/nginx/nginx.conf` - This is the main NGINX configuration file. If you decide to mount this file, additional steps are necessary for proper Wallarm functionality:
+                
+                1. Mount the `/etc/nginx/conf.d/wallarm-status.conf` file, ensuring its contents align with the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/4.10/conf/nginx_templates/wallarm-status.conf.tmpl).
+                1. Within the NGINX configuration files, set up the configuration for the [`/wallarm-status` service][node-status-docs] according to the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/4.10/conf/nginx_templates/default.conf.tmpl#L32).
             * `/etc/nginx/conf.d` — common settings
             * `/etc/nginx/sites-enabled` — virtual host settings
             * `/var/www/html` — static files
