@@ -1,6 +1,7 @@
 [doc-configure-kubernetes]:     configure-kubernetes-en.md
 [link-prometheus]:              https://prometheus.io/
 [gl-lom]:                       ../glossary-en.md#custom-ruleset-the-former-term-is-lom
+[doc-selinux]:                  configure-selinux.md
 
 # Configuration of the Statistics Service
 
@@ -69,11 +70,17 @@ Once the settings changed, restart NGINX to apply the changes:
 
 --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
-### Changing an IP address of the statistics service
+### Changing an IP address and/or port of the statistics service
 
-To change an IP address of the statistics service:
+To change an IP address and/or port of the statistics service, follow the instructions below.
 
-1. Specify a new address in the `listen` directive of the `/etc/nginx/conf.d/wallarm-status.conf` file (`/etc/nginx/wallarm-status.conf` for all-in-one installer).
+!!! info "Changing the statistics service's port on NGINX Docker image"
+    To change the default port of the statistics service on an [NGINX-based Docker image](installation-docker-en.md), start the container with the `NGINX_PORT` variable set to the new port. No other changes are required.
+
+1. Open the `/etc/nginx/conf.d/wallarm-status.conf` file (`/etc/nginx/wallarm-status.conf` for all-in-one installer) and specify the following:
+
+    * A new service address in the `listen` directive.
+    * If required, change the `allow` directive to allow access from addresses other than loopback addresses (the default configuration file allows access only to loopback addresses).
 1. Add the `status_endpoint` parameter with the new address value to the `/etc/wallarm/node.yaml` file (`/opt/wallarm/etc/wallarm/node.yaml` for all-in-one installer), e.g.:
 
     ```bash
@@ -82,13 +89,50 @@ To change an IP address of the statistics service:
     ...
     status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
     ```
-1. Correct the `URL` parameter accordingly in the [`collectd`](monitoring/intro.md) configuration file. The location of this file depends on the type of operating system distribution you have:
+1. Correct the `URL` parameter accordingly in the [`collectd`](monitoring/intro.md) configuration file. The location of this file depends on the operating system and installation method you use:
 
-    --8<-- "../include/monitoring/collectd-config-location.md"
-1. Add or change the `allow` directive to allow access from addresses other than loopback addresses (the default configuration file allows access only to loopback addresses).
+    === "DEB-based distributions"
+        ```bash
+        /etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
+
+        # For all-in-one installer:
+        /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
+        ```
+    === "RPM-based distributions"
+        ```bash
+        /etc/wallarm-collectd.d/nginx-wallarm.conf
+
+        # For all-in-one installer:
+        /opt/wallarm/etc/wallarm-collectd.d/nginx-wallarm.conf
+        ```
 1. Restart NGINX to apply changes:
 
     --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+1. For filtering nodes deployed via the all-in-one installer, open the `/opt/wallarm/env.list` file and append the `NGINX_PORT` variable with the new service's port value (if it has been changed), e.g.:
+
+    ```
+    NGINX_PORT=8082
+    ```
+1. If a non-standard IP address or port for Tarantool is used, correct the Tarantool configuration file accordingly. The location of this file depends on the type of operating system distribution you have:
+
+    === "DEB-based distributions"
+        ```bash
+        /etc/collectd/collectd.conf.d/wallarm-tarantool.conf
+
+        # If using all-in-one installer:
+        /opt/wallarm/etc/collectd/collectd.conf.d/wallarm-tarantool.conf
+        ```
+    === "RPM-based distributions"
+        ```bash
+        /etc/collectd.d/wallarm-tarantool.conf
+
+        # For all-in-one installer:
+        /opt/wallarm/etc/collectd.d/wallarm-tarantool.conf
+        ```
+
+If SELinux is installed on the filter node host, make sure that SELinux is either [configured or disabled][doc-selinux]. For simplicity, this document assumes that SELinux is disabled.
+
+Be aware that the local `wallarm-status` output will reset following the application of the above settings.
 
 ### Getting statistics in the Prometheus format
 
