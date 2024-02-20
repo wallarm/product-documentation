@@ -198,7 +198,6 @@ nav:
     - Attack Detection:
       - Procedure: about-wallarm/protecting-against-attacks.md
       - Analyzing Requests: user-guides/rules/request-processing.md
-      - Attack Types: attacks-vulns-list.md
       - Rules: user-guides/rules/rules.md
 # - Overview: ...
     # - OWASP Top 10: ...
@@ -501,3 +500,4 @@ nav:
       - Shared Responsibility Model for Clients' Data: about-wallarm/shared-responsibility.md
       - Data Retention Policy: about-wallarm/data-retention-policy.md
     - Glossary: glossary-en.md
+    - Attack / Vulnerability Types: attacks-vulns-list.md

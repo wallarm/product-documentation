@@ -1,4 +1,4 @@
-#   Attack and Vulnerability Types 
+#   Attack and Vulnerability Types
 
 [cwe-20]:   https://cwe.mitre.org/data/definitions/20.html
 [cwe-22]:   https://cwe.mitre.org/data/definitions/22.html
@@ -71,15 +71,7 @@
 
 The Wallarm filtering node can detect many attacks and vulnerabilities including those presented in the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) security risk lists. These attacks and vulnerabilities are listed [below][anchor-main-list].
 
-Each entity in the list
-
-* Is tagged with either **Attack**, **Vulnerability**, or both.
-
-    The name of a particular attack can be the same as the name of the vulnerability this attack exploits. In this case, such an entity will be tagged with the combined **Vulnerability/Attack** tag.
-
-* Has the Wallarm code that corresponds to this entity.
-
-Most of the vulnerabilities and attacks on this list are also accompanied by one or more codes from the list of software weakness types, also known as the [Common Weakness Enumeration][link-cwe] or CWE.
+Most of the vulnerabilities and attacks on the list are accompanied by one or more codes from the list of software weakness types, also known as the [Common Weakness Enumeration][link-cwe] or CWE.
 
 Additionally, the Wallarm filtering node employs several special attack and vulnerability types for the internal purpose of marking processed traffic. Such entities are not accompanied by CWE codes but are [listed separately][anchor-special-list]. 
 
@@ -87,71 +79,6 @@ Additionally, the Wallarm filtering node employs several special attack and vuln
     <div class="video-wrapper">
     <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-
-## Attack types
-
-The Wallarm solution protects APIs, microservices and web applications from the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) threats, API abuse and other automated threats.
-
-Technically, all attacks that can be detected by Wallarm are divided into groups:
-
-* Input validation attacks
-* Behavioral attacks
-
-Attack detection method depends on the attack group. To detect behavioral attacks, additional Wallarm node configuration is required.
-
-### Input validation attacks
-
-Input validation attacks include SQL injection, cross‑site scripting, remote code execution, Path Traversal and other attack types. Each attack type is characterized by specific symbol combinations sent in the requests. To detect input validation attacks, it is required to conduct syntax analysis of the requests - parse them in order to detect specific symbol combinations.
-
-Wallarm detects input validation attacks in any request part including binary files like SVG, JPEG, PNG, GIF, PDF, etc using the listed [tools](#tools-for-attack-detection).
-
-Detection of input validation attacks is enabled for all clients by default.
-
-### Behavioral attacks
-
-Behavioral attacks include the following attack classes:
-
-* Brute‑force attacks: passwords and session identifiers brute‑forcing, files and directories forced browsing, credential stuffing. Behavioral attacks can be characterized by a large number of requests with different forced parameter values sent to a typical URL for a limited timeframe.
-
-    For example, if an attacker forces password, many similar requests with different `password` values can be sent to the user authentication URL:
-
-    ```bash
-    https://example.com/login/?username=admin&password=123456
-    ```
-
-* The BOLA (IDOR) attacks exploiting the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either get or modify its data bypassing an authorization mechanism.
-
-    For example, if an attacker forces shop identifiers to find a real identifier and get the corresponding shop financial data:
-
-    ```bash
-    https://example.com/shops/{shop_id}/financial_info
-    ```
-
-    If authorization is not required for such API requests, an attacker can get the real financial data and use it for their own purposes.
-
-#### Behavioral attack detection
-
-To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests.
-
-Correlation analysis is conducted when the threshold of request number sent to user authentication or resource file directory or a specific object URL is exceeded. Request number threshold should be set to reduce the risk of legitimate request blocking (for example, when the user inputs incorrect password to his account several times).
-
-* Correlation analysis is conducted by the Wallarm postanalytics module.
-* Comparison of the received request number and the threshold for the request number, and blocking of requests is conducted in the Wallarm Cloud.
-
-When behavioral attack is detected, request sources are blocked, namely the IP addresses the requests were sent from are added to the denylist.
-
-#### Configuration of behavioral attack protection
-
-To protect the resource against behavioral attacks, it is required to set the threshold for correlation analysis and URLs that are vulnerable to behavioral attacks:
-
-* [Instructions on configuration of brute force protection](admin-en/configuration-guides/protecting-against-bruteforce.md) [s]
-* [Instructions on configuration of BOLA (IDOR) protection](admin-en/configuration-guides/protecting-against-bola.md)
-
-!!! warning "Behavioral attack protection restrictions"
-    When searching for behavioral attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of behavioral attack in the following cases:
-
-    * These requests contain signs of [input validation attacks](#input-validation-attacks).
-    * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
 
 ##  The main list of attacks and vulnerabilities
 
@@ -177,9 +104,13 @@ As the result of a successful attack, an attacker will be able to:
 
 This vulnerability occurs due to a lack of restriction on the parsing of XML external entities in a web application.
 
-**Remediation:**
+**Wallarm behavior:**
 
-You may follow these recommendations:
+Wallarm detects XML external entity vulnerabilities and attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+
+**Additional recommendations:**
+
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 *   Disable the parsing of XML external entities when working with the XML documents supplied by a user.
 *   Apply the recommendations from the [OWASP XXE Prevention Cheat Sheet][link-owasp-xxe-cheatsheet].
@@ -199,16 +130,18 @@ A brute-force attack occurs when a massive number of requests with a predefined 
 
 A successful brute‑force attack can potentially bypass authentication and authorization mechanisms and/or reveal a web application's hidden resources (such as directories, files, website parts, etc.), thus granting the ability to conduct other malicious actions.
 
-**Remediation:**
+**Wallarm behavior:**
 
-You may follow these recommendations:
+Wallarm detects and mitigates brute-force attacks only if it has one or more configured [brute-force triggers](admin-en/configuration-guides/protecting-against-bruteforce.md) and/or [rate limit rules](user-guides/rules/rate-limiting.md).
+
+**Additional recommendations:**
+
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 *   Limit the number of requests per a certain time period for a web application.
 *   Limit the number of authentication/authorization attempts per a certain time period for a web application.
 *   Block new authentication/authorization attempts after a certain number of the failed attempts.
 *   Restrict a web application from accessing any files or directories on the server it runs on, except those within the scope of the application. 
-
-[How to configure the Wallarm solution to protect applications from brute force →](admin-en/configuration-guides/protecting-against-bruteforce.md)
 
 ### Resource scanning
 
@@ -222,9 +155,13 @@ You may follow these recommendations:
 
 The `scanner` code is assigned to an HTTP request if this request is believed to be part of third‑party scanner software activity that is targeted to attack or scan a protected resource. The Wallarm Scanner's requests are not considered to be a resource scanning attack. This information may be used later to attack these services.
 
-**Remediation:**
+**Wallarm behavior:**
 
-You may follow these recommendations:
+Wallarm detects scanner attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+
+**Additional recommendations:**
+
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 *   Limit the possibility of a network perimeter scan by employing IP address allowlisting and denylisting along with authentication/authorization mechanisms.
 *   Minimize the scan surface by placing the network perimeter behind a firewall.
@@ -253,10 +190,13 @@ A successful attack may render a vulnerable web server completely compromised, p
 
 This vulnerability arises from the incorrect validation and parsing of user input.
 
-**Remediation:**
+**Wallarm behavior:**
+
+Wallarm detects server‑side template injection vulnerabilities and attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+
+**Additional recommendations:**
 
 You may follow the recommendation to sanitize and filter all user input to prevent an entity in the input from being executed.
-
 
 ### Data bomb
 
@@ -275,7 +215,7 @@ Wallarm marks a request as the Data bomb attack if it contains the Zip or XML bo
 
     For example, `entityOne` can be defined as 20 `entityTwo`, which themselves can be defined as 20 `entityThree`. If the same pattern is continued until `entityEight`, the XML parser will unfold a single occurrence of `entityOne` to 1 280 000 000 `entityEight` — taking up 5 GB of memory.
 
-**Remediation:**
+**Additional recommendations:**
 
 Limit the size of incoming requests so it could not harm the system.
 
@@ -305,10 +245,13 @@ Exploiting any of the vulnerabilities listed above leads to the execution of an 
 
 This class of vulnerabilities occurs due to the incorrect validation and parsing of user input.
 
+**Wallarm behavior:**
 
-**Remediation:**
+Wallarm detects cross‑site scripting vulnerabilities and attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
 
-You may follow these recommendations:
+**Additional recommendations:**
+
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 *   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
 *   While forming the web application's pages, sanitize and escape any entities that are formed dynamically.
@@ -334,16 +277,18 @@ This vulnerability is also known as IDOR (Insecure Direct Object Reference).
 
 [More details on the vulnerability](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa1-broken-object-level-authorization.md)
 
-**Remediation:**
+**Wallarm behavior:**
+
+Wallarm automatically discovers vulnerabilities of this type. To detect and block BOLA attacks, do one or all of the following: 
+
+* Enable [API Discovery](api-discovery/overview.md) and configure [automatic BOLA protection](admin-en/configuration-guides/protecting-against-bola.md) for endpoints discovered by this module
+* Configure one or more [**BOLA** triggers](admin-en/configuration-guides/protecting-against-bola.md)
+
+**Additional recommendations:**
 
 * Implement a proper authorization mechanism that relies on the user policies and hierarchy.
 * Prefer to use random and unpredictable values as [GUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier) for objects' IDs.
 * Write tests to evaluate the authorization mechanism. Do not deploy vulnerable changes that break the tests.
-
-**Wallarm behavior:**
-
-* Wallarm automatically discovers vulnerabilities of this type.
-* Wallarm does not detect attacks exploiting this vulnerability by default. To detect and block the BOLA attacks, configure the [**BOLA** trigger](admin-en/configuration-guides/protecting-against-bola.md).
 
 ### Open redirect
 
@@ -359,9 +304,9 @@ An attacker can use an open redirect attack to redirect a user to a malicious we
 
 Vulnerability to this attack occurs due to incorrect filtering of URL inputs.
 
-**Remediation:**
+**Additional recommendations:**
 
-You may follow these recommendations:
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 *   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
 *   Notify users about all pending redirects, and ask for explicit permission.
@@ -379,11 +324,13 @@ You may follow these recommendations:
 
 A successful SSRF attack may allow an attacker to make requests on behalf of the attacked web server; this potentially leads to revealing the web application's network ports in use, scanning the internal networks, and bypassing authorization.
 
-Starting from release 4.4.3, Wallarm mitigates SSRF attack attempts. SSRF vulnerabilities are detected by all [supported Wallarm versions](updating-migrating/versioning-policy.md).
+**Wallarm behavior:**
 
-**Remediation:**
+Wallarm detects server‑side request forgery vulnerabilities and attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
 
-You may follow these recommendations:
+**Additional recommendations:**
+
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 *   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
 *   Apply the recommendations from the [OWASP SSRF Prevention Cheat Sheet][link-owasp-ssrf-cheatsheet].
@@ -410,11 +357,11 @@ As a result, the attacker can send a request to the vulnerable web application f
 
 Wallarm only discovers CSRF vulnerabilities, but does not detect and thus does not block CSRF attacks. CSRF problem is solved in all modern browsers via content security policies (CSP).
 
-**Remediation:**
+**Additional recommendations:**
 
 CSRF is solved by browsers, other protection methods are less useful but still can be used.
 
-You may follow these recommendations:
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 *   Employ anti-CSRF protection mechanisms, such as CSRF tokens and others.
 *   Set the `SameSite` cookie attribute.
@@ -434,17 +381,19 @@ This attack belongs to the class of brute‑force attacks. The purpose of this a
 
 A successful forced browsing attack potentially grants access to hidden resources that are not explicitly available from the web application interface but are exposed when accessed directly.
 
-**Remediation:**
+**Wallarm behavior:**
 
-You may follow these recommendations:
+Wallarm detects and mitigates forced browsing only if it has one or more configured [forced browsing triggers](admin-en/configuration-guides/protecting-against-forcedbrowsing.md).
+
+**Additional recommendations:**
+
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 *   Restrict or limit users' access to those resources that they are not supposed to have direct access to (e.g., by employing some authentication or authorization mechanisms).
 *   Limit the number of requests per a certain time period for the web application.
 *   Limit the number of authentication/authorization attempts per a certain time period for the web application.
 *   Block new authentication/authorization attempts after a certain number of failed attempts.
 *   Set necessary and sufficient access rights for the web application's files and directories.
-
-[How to configure the Wallarm solution to protect applications from brute force →](admin-en/configuration-guides/protecting-against-bruteforce.md)
 
 ### Information exposure
 
@@ -458,14 +407,16 @@ You may follow these recommendations:
 
 The application either intentionally or unintentionally discloses sensitive information to a subject that is not authorized to access it.
 
-The vulnerability of this type can be detected only by the method of [passive detection](about-wallarm/detecting-vulnerabilities.md#passive-detection). If the response to the request discloses sensitive information, Wallarm records an incident and an active vulnerability of the **Information exposure** type. Some kinds of sensitive information that can be detected by Wallarm include:
+**Wallarm behavior:**
+
+Wallarm detects information exposure by the method of [passive detection](about-wallarm/detecting-vulnerabilities.md#passive-detection). If the response to the request discloses sensitive information, the system records an attack and an active vulnerability of the **Information exposure** type. Some kinds of sensitive information that can be detected by Wallarm include:
 
 * System and environment status (for example: stack trace, warnings, fatal errors)
 * Network status and configuration
 * The application code or internal state
 * Metadata (for example, logging of connections or message headers)
 
-**Remediation:**
+**Additional recommendations:**
 
 You may follow the recommendation to prohibit a web application from having the ability to display any sensitive information.
 
@@ -483,7 +434,7 @@ This vulnerability occurs if your web application or API uses a vulnerable or ou
 
 This vulnerability is mapped with [A06:2021 – Vulnerable and Outdated Components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components).
 
-**Remediation:**
+**Additional recommendations:**
 
 You may follow the recommendation to monitor and timely apply updates or configuration changes for the lifetime of the application or API, as follows:
 
@@ -513,7 +464,11 @@ Provided that an RCE attack is successful, an attacker can perform a wide range 
 
 This vulnerability occurs due to incorrect validation and parsing of user input.
 
-**Remediation:**
+**Wallarm behavior:**
+
+Wallarm detects remote code execution vulnerabilities and attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+
+**Additional recommendations:**
 
 You may follow the recommendation to sanitize and filter all user input to prevent an entity in the input from being executed.
 
@@ -532,9 +487,9 @@ Despite having authentication mechanisms in place, a web application can have al
 
 A successful authentication bypass attack potentially leads to disclosing users' confidential data or taking control of the vulnerable application with administrator permissions.
 
-**Remediation:**
+**Additional recommendations:**
 
-You may follow these recommendations:
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 *   Improve and strengthen existing authentication mechanisms.
 *   Eliminate any alternative authentication methods that may allow attackers to access an application while bypassing the required authentication procedure via pre‑defined mechanisms.
@@ -559,10 +514,13 @@ A successful CRLF injection attack may give an attacker the ability to bypass fi
 
 This vulnerability occurs due to the incorrect validation and parsing of user input.
 
-**Remediation:**
+**Wallarm behavior:**
+
+Wallarm detects CRLF injection vulnerabilities and attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+
+**Additional recommendations:**
 
 You may follow the recommendation to sanitize and filter all user input to prevent an entity in the input from being executed.
-
 
 ### LDAP Injection
 
@@ -580,13 +538,16 @@ A successful LDAP injection attack potentially grants access to the read and wri
 
 This vulnerability occurs due to the incorrect validation and parsing of user input.
 
-**Remediation:**
+**Wallarm behavior:**
 
-You may follow these recommendations:
+Wallarm detects LDAP injection vulnerabilities and attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+
+**Additional recommendations:**
+
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 *   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
 *   Apply the recommendations from the [OWASP LDAP Injection Prevention Cheat Sheet][link-owasp-ldapi-cheatsheet].
-
 
 ### NoSQL Injection
 
@@ -600,7 +561,11 @@ You may follow these recommendations:
 
 Vulnerability to this attack occurs due to insufficient filtering of user input. A NoSQL injection attack is performed by injecting a specially crafted query to a NoSQL database.
 
-**Remediation:**
+**Wallarm behavior:**
+
+Wallarm detects NoSQL injection vulnerabilities and attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+
+**Additional recommendations:**
 
 You may follow the recommendation to sanitize and filter all user input to prevent an entity in the input from being executed.
 
@@ -619,9 +584,13 @@ A path traversal attack allows an attacker to access files and directories with 
 
 Vulnerability to this attack occurs due to insufficient filtering of user input when a user requests a file or directory via the web application.
 
-**Remediation:**
+**Wallarm behavior:**
 
-You may follow these recommendations:
+Wallarm detects path traversal vulnerabilities and attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+
+**Additional recommendations:**
+
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 *   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
 *   Additional recommendations for mitigating such attacks are available [here][link-ptrav-mitigation].
@@ -641,9 +610,13 @@ Vulnerability to this attack occurs due to insufficient filtration of user input
 
 An SQL injection attack allows an attacker to inject arbitrary SQL code into an [SQL query](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1). This potentially leads to the attacker being granted access to read and modify confidential data as well as to DBMS administrator rights. 
 
-**Remediation:**
+**Wallarm behavior:**
 
-You may follow these recommendations:
+Wallarm detects SQL injection vulnerabilities and attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+
+**Additional recommendations:**
+
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 *   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
 *   Apply the recommendations from the [OWASP SQL Injection Prevention Cheat Sheet][link-owasp-sqli-cheatsheet].
@@ -662,7 +635,11 @@ Email Injection is a malicious [IMAP][link-imap-wiki]/[SMTP][link-smtp-wiki] exp
 
 Vulnerability to this attack occurs due to poor validation of the data inputted in the contact form. Email Injection allows bypassing email client restrictions, stealing user data and sending spam.
 
-**Remediation:**
+**Wallarm behavior:**
+
+Wallarm detects email injection attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+
+**Additional recommendations:**
 
 * Sanitize and filter all user input to prevent malicious payloads in the input from being executed.
 * Apply the recommendations from the [OWASP Input Validation Cheatsheet][link-owasp-inputval-cheatsheet].
@@ -689,7 +666,11 @@ An attacker can change the message output and change the user behavior. SSI Inje
 <!--#config errmsg="Access denied, please enter your username and password"-->
 ```
 
-**Remediation:**
+**Wallarm behavior:**
+
+Wallarm detects SSI Injection attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+
+**Additional recommendations:**
 
 * Sanitize and filter all user input to prevent malicious payloads in the input from being executed.
 * Apply the recommendations from the [OWASP Input Validation Cheatsheet][link-owasp-inputval-cheatsheet].
@@ -706,11 +687,13 @@ During a Mass Assignment attack, attackers try to bind HTTP request parameters i
 
 APIs vulnerable to Mass Assignment attacks allow converting client input to internal variables or object properties without proper filtering. This vulnerability is included in the [OWASP API Top 10 (API6:2019 Mass Assignment)](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa6-mass-assignment.md) list of most serious API security risks.
 
-Starting from release 4.4.3, Wallarm mitigates Mass Assignment attempts.
+**Wallarm behavior:**
 
-**Remediation:**
+Wallarm detects mass assignment attacks by default and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
 
-To protect the API, you may follow these recommendations:
+**Additional recommendations:**
+
+To protect the API, In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 * Avoid using functions that automatically bind a client’s input into code variables or object properties.
 * Use built-in function features to whitelist only the properties that should be updated by the client and blacklist private properties.
@@ -732,7 +715,7 @@ JWT compromisation is a common aim of attackers as breaking authentication mecha
 
 **Wallarm behavior:**
 
-Wallarm detects weak JWTs only if the filtering node has version 4.4 or above.
+Wallarm detects weak JWT vulnerability by default as it has the [**Weak JWT** trigger](about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection) enabled.
 
 Wallarm considers JWTs to be weak if they are:
 
@@ -741,7 +724,7 @@ Wallarm considers JWTs to be weak if they are:
 
 Once a weak JWT is detected, Wallarm records the corresponding [vulnerability](user-guides/vulnerabilities.md).
 
-**Remediation:**
+**Additional recommendations:**
 
 * Apply the recommendations from the [OWASP JSON Web Token Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html)
 * [Check if your JWT implementation is vulnerable for well-known secrets](https://lab.wallarm.com/340-weak-jwt-secrets-you-should-check-in-your-code/)
@@ -758,9 +741,9 @@ A set of basic bot types that includes server response time increase, fake accou
 
 **Wallarm behavior:**
 
-Wallarm detects API abuse only if the filtering node has version 4.2 or above.
+Wallarm detects and mitigates API abuse attacks only if it has the [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module enabled and properly configured.
 
-The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following bot types:
+The **API Abuse Prevention** module uses the complex bot detection model to detect the following bot types:
 
 * API abuse targeted at server response time increase or server unavailability. Usually, it is achieved by malicious traffic spikes.
 * [Fake account creation](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-019_Account_Creation) and [Spamming](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-017_Spamming) are creation of fake accounts or confirmation of fake content (e.g. feedback). Usually, it does not result in service unavailability but slows down or degrades regular business processes, e.g.:
@@ -772,9 +755,9 @@ The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses th
 
 If the metrics point to bot attack signs, the module [denylists or graylists](about-wallarm/api-abuse-prevention.md#reaction-to-malicious-bots) the source of the anomaly traffic for 1 hour.
 
-**Remediation:**
+**Additional recommendations:**
 
-You may follow these recommendations:
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 * Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
 * Denylist IP addresses of regions and sources (like Tor), definitely not related to your application.
@@ -794,13 +777,13 @@ A type of cyber attack where a malicious actor gains access to someone else’s 
 
 **Wallarm behavior:**
 
-Wallarm detects API abuse only if the filtering node has version 4.2 or above.
+Wallarm detects and mitigates the account takeover attacks only if it has the [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module enabled and properly configured.
 
 [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) detects bots performing a [credential cracking](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) usually performed as a brute force attack on the critical endpoints or/and endpoints that are related to authentication and/or registration endpoints. The automatic threshold of acceptable behavior metrics is calculated based on legitimate traffic for 1 hour.
 
-**Remediation:**
+**Additional recommendations:**
 
-You may follow these recommendations:
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 * Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
 * Use strong passwords.
@@ -823,17 +806,17 @@ Furthermore, some security crawlers may be poorly designed and inadvertently cau
 
 **Wallarm behavior:**
 
-Wallarm detects API abuse only if the filtering node has version 4.2 or above.
+Wallarm detects and mitigates the security crawlers attacks only if it has the [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module enabled and properly configured.
 
-The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following security crawlers bot types:
+The **API Abuse Prevention** module uses the complex bot detection model to detect the following security crawlers bot types:
 
 * [Fingerprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-004_Fingerprinting.html) exploits specific requests which are sent to the application eliciting information in order to profile the application.
 * [Footprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-018_Footprinting.html) is an information gathering with the objective of learning as much as possible about the composition, configuration and security mechanisms of the application.
 * [Vulnerability scanning](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-014_Vulnerability_Scanning) is characterized by service vulnerability search.
 
-**Remediation:**
+**Additional recommendations:**
 
-You may follow these recommendations:
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 * Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
 * Use SSL certificates.
@@ -858,13 +841,13 @@ Web scraping can be used for malicious purposes. For example, scrapers can be us
 
 **Wallarm behavior:**
 
-Wallarm detects API abuse only if the filtering node has version 4.2 or above.
+Wallarm detects and mitigates the scraping attacks only if it has the [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module enabled and properly configured.
 
-The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the [scraping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-011_Scraping) bot type which is collecting accessible data and/or processed output from the application that may result in private or non-free content becoming available for any user.
+The **API Abuse Prevention** module uses the complex bot detection model to detect the [scraping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-011_Scraping) bot type which is collecting accessible data and/or processed output from the application that may result in private or non-free content becoming available for any user.
 
-**Remediation:**
+**Additional recommendations:**
 
-You may follow these recommendations:
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 * Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
 * Use additional CAPTCHA solutions.
@@ -886,13 +869,11 @@ A cyber attack where hackers use lists of compromised user credentials to gain u
 
 **Wallarm behavior:**
 
-Wallarm detects the credential stuffing attempts only if the filtering node has version 4.10 or above.
+Wallarm detects the credential stuffing attempts only if the filtering node has version 4.10 or above and the [Credential Stuffing Detection](about-wallarm/credential-stuffing.md) functionality is enabled and properly configured.
 
-The [Credential Stuffing Detection](about-wallarm/credential-stuffing.md) functionality collects and displays real-time information about attempts to use compromised or weak credentials to access your applications. It also enables instant notifications about such attempts and forms full downloadable list of all compromised or weak credentials providing access to your applications.
+**Additional recommendations:**
 
-**Remediation:**
-
-You may follow these recommendations:
+In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
 * Get familiar with the [OWASP credential stuffing description](https://owasp.org/www-community/attacks/Credential_stuffing), including the "Credential Stuffing Prevention Cheat Sheet".
 * Force users to use strong passwords.
@@ -912,6 +893,13 @@ You may follow these recommendations:
 
 A request is marked as a `vpatch` if it is part of an attack that was mitigated by the [virtual patch mechanism][doc-vpatch].
 
+**Wallarm behavior:**
+
+Virtual patching is blocking specific or all requests to some endpoint that is performed regardless the current [filtration mode](admin-en/configure-wallarm-mode.md). Virtual patches are custom rules that you create [manually][doc-vpatch].
+
+**Additional recommendations:**
+
+Virtual patch can be considered a temporary measure - analyze the vulnerability mitigated by the patch and remove it so that the patch is not needed any more.
 
 ### Unsafe XML header
 
