@@ -12,6 +12,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 4.10.1 (2024-02-19)
 
+* Fixed an issue where partially downloaded custom ruleset files were mistakenly validated as complete. Chunked downloading has been implemented to address this issue
 * TBD
 
 ### 4.10.0 (2024-02-02)
