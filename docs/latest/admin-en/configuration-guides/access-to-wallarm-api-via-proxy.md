@@ -40,3 +40,13 @@ https_proxy=http://admin:01234@1.2.3.4:1234
 http_proxy=http://admin:01234@1.2.3.4:1234
 no_proxy="127.0.0.1, 127.0.0.8, 127.0.0.9, localhost"
 ```
+
+## Running the all-in-one script
+
+When installing a filtering node with the [all-in-one](../../installation/nginx/all-in-one.md) installer, ensure to append the `--preserve-env=https_proxy,no_proxy` flag to the command executing the script, e.g.:
+
+```
+sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-<VERSION>.<ARCH>-glibc.sh --preserve-env=https_proxy,no_proxy
+```
+
+This guarantees the correct application of proxy settings (`https_proxy`, `no_proxy`) during the installation process.
