@@ -61,7 +61,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.8
     Where `wallarm-sidecar` is the namespace the Sidecar is deployed to. You can change this value if the namespace is different.
 
     The chart version should correspond to `wallarm-sidecar-1.1.5`.
-1. Get the Wallarm pod details to check they have been successfully started:
+1. Get the Wallarm control plane details to check it has been successfully started:
 
     ```bash
     kubectl get pods -n wallarm-sidecar -l app.kubernetes.io/name=wallarm-sidecar
