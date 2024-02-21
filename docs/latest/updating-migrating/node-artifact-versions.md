@@ -10,10 +10,22 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
-### 4.10.1 (2024-02-19)
+### 4.10.1 (2024-02-21)
 
 * Fixed an issue where partially downloaded custom ruleset files were mistakenly validated as complete. Chunked downloading has been implemented to address this issue
-* TBD
+* Fixed the vulnerabilities:
+
+    * [CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327)
+    * [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920)
+    * [CVE-2021-41816](https://nvd.nist.gov/vuln/detail/CVE-2021-41816)
+    * [CVE-2021-33621](https://nvd.nist.gov/vuln/detail/CVE-2021-33621)
+    * [CVE-2021-41819](https://nvd.nist.gov/vuln/detail/CVE-2021-41819)
+    * [CVE-2021-41817](https://nvd.nist.gov/vuln/detail/CVE-2021-41817)
+    * [CVE-2020-14343](https://nvd.nist.gov/vuln/detail/CVE-2020-14343)
+    * [CVE-2021-31799](https://nvd.nist.gov/vuln/detail/CVE-2021-31799)
+    * [CVE-2021-28965](https://nvd.nist.gov/vuln/detail/CVE-2021-28965)
+    * [CVE-2023-28755](https://nvd.nist.gov/vuln/detail/CVE-2023-28755)
+    * [CVE-2020-25613](https://nvd.nist.gov/vuln/detail/CVE-2020-25613)
 
 ### 4.10.0 (2024-02-02)
 
@@ -34,7 +46,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
-### 4.10.1 (2024-02-19)
+### 4.10.1 (2024-02-21)
 
 * Updated the `appstructure` package
 * Internal enhancements and optimizations:
@@ -44,15 +56,18 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
     * Transitioned to supervisord
 * Fixed the vulnerabilities:
 
-    * [CVE-2023-52425](https://nvd.nist.gov/vuln/detail/CVE-2023-52425)
-    * [CVE-2024-25062](https://nvd.nist.gov/vuln/detail/CVE-2024-25062)
+    * [CVE-2021-41816](https://nvd.nist.gov/vuln/detail/CVE-2021-41816)
+    * [CVE-2021-41819](https://nvd.nist.gov/vuln/detail/CVE-2021-41819)
+    * [CVE-2021-33621](https://nvd.nist.gov/vuln/detail/CVE-2021-33621)
     * [CVE-2020-14343](https://nvd.nist.gov/vuln/detail/CVE-2020-14343)
-    * [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920)
     * [CVE-2021-33503](https://nvd.nist.gov/vuln/detail/CVE-2021-33503)
+    * [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920)
+    * [CVE-2023-28755](https://nvd.nist.gov/vuln/detail/CVE-2023-28755)
     * [CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327)
-    * [CVE-2021-31799](https://nvd.nist.gov/vuln/detail/CVE-2021-31799)
-    * [CVE-2021-28965](https://nvd.nist.gov/vuln/detail/CVE-2021-28965)
     * [CVE-2020-25613](https://nvd.nist.gov/vuln/detail/CVE-2020-25613)
+    * [CVE-2021-28965](https://nvd.nist.gov/vuln/detail/CVE-2021-28965)
+    * [CVE-2021-31799](https://nvd.nist.gov/vuln/detail/CVE-2021-31799)
+    * [CVE-2021-41817](https://nvd.nist.gov/vuln/detail/CVE-2021-41817)
 
 ### 4.10.0 (2024-02-01)
 
@@ -89,20 +104,28 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](docker-container.md)
 
-### 4.10.1-1 (2024-02-19)
+### 4.10.1-1 (2024-02-21)
 
 * Updated the `appstructure` package
 * Fixed the vulnerabilities:
 
-    * [CVE-2023-52425](https://nvd.nist.gov/vuln/detail/CVE-2023-52425)
-    * [CVE-2024-25062](https://nvd.nist.gov/vuln/detail/CVE-2024-25062)
+    * [CVE-2021-43998](https://nvd.nist.gov/vuln/detail/CVE-2021-43998)
+    * [CVE-2021-38553](https://nvd.nist.gov/vuln/detail/CVE-2021-38553)
+    * [CVE-2023-5954](https://nvd.nist.gov/vuln/detail/CVE-2023-5954)
+    * [CVE-2023-5077](https://nvd.nist.gov/vuln/detail/CVE-2023-5077)
+    * [CVE-2023-24999](https://nvd.nist.gov/vuln/detail/CVE-2023-24999)
+    * [CVE-2021-32923](https://nvd.nist.gov/vuln/detail/CVE-2021-32923)
+    * [CVE-2021-3282](https://nvd.nist.gov/vuln/detail/CVE-2021-3282)
+    * [CVE-2021-41816](https://nvd.nist.gov/vuln/detail/CVE-2021-41816)
+    * [CVE-2021-41819](https://nvd.nist.gov/vuln/detail/CVE-2021-41819)
+    * [CVE-2021-33621](https://nvd.nist.gov/vuln/detail/CVE-2021-33621)
     * [CVE-2020-14343](https://nvd.nist.gov/vuln/detail/CVE-2020-14343)
-    * [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920)
     * [CVE-2021-33503](https://nvd.nist.gov/vuln/detail/CVE-2021-33503)
-    * [CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327)
-    * [CVE-2021-31799](https://nvd.nist.gov/vuln/detail/CVE-2021-31799)
-    * [CVE-2021-28965](https://nvd.nist.gov/vuln/detail/CVE-2021-28965)
-    * [CVE-2020-25613](https://nvd.nist.gov/vuln/detail/CVE-2020-25613)
+    * [CVE-2022-3920](https://nvd.nist.gov/vuln/detail/CVE-2022-3920)
+    * [CVE-2023-39325](https://nvd.nist.gov/vuln/detail/CVE-2023-39325)
+    * [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920)
+    * [CVE-2023-45283](https://nvd.nist.gov/vuln/detail/CVE-2023-45283)
+    * [GHSA-m425-mq94-257g](https://github.com/advisories/GHSA-m425-mq94-257g)
 
 ### 4.10.0-1 (2024-02-02)
 
@@ -123,9 +146,25 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](cloud-image.md)
 
-### 4.10.1-1 (2024-02-19)
+### 4.10.1-1 (2024-02-21)
 
 * Updated the `appstructure` package
+* Fixed the vulnerabilities:
+
+    * [CVE-2020-14343](https://nvd.nist.gov/vuln/detail/CVE-2020-14343)
+    * [CVE-2023-4408](https://nvd.nist.gov/vuln/detail/CVE-2023-4408)
+    * [CVE-2023-50387](https://nvd.nist.gov/vuln/detail/CVE-2023-50387)
+    * [CVE-2023-50868](https://nvd.nist.gov/vuln/detail/CVE-2023-50868)
+    * [CVE-2023-5517](https://nvd.nist.gov/vuln/detail/CVE-2023-5517)
+    * [CVE-2023-5679](https://nvd.nist.gov/vuln/detail/CVE-2023-5679)
+    * [CVE-2024-0553](https://nvd.nist.gov/vuln/detail/CVE-2024-0553)
+    * [CVE-2024-0567](https://nvd.nist.gov/vuln/detail/CVE-2024-0567)
+    * [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920)
+    * [CVE-2021-33503](https://nvd.nist.gov/vuln/detail/CVE-2021-33503)
+    * [CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327)
+    * [CVE-2021-31799](https://nvd.nist.gov/vuln/detail/CVE-2021-31799)
+    * [CVE-2021-28965](https://nvd.nist.gov/vuln/detail/CVE-2021-28965)
+    * [CVE-2020-25613](https://nvd.nist.gov/vuln/detail/CVE-2020-25613)
 
 ### 4.10.0-1 (2024-02-02)
 
@@ -138,6 +177,22 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ### wallarm-node-4-10-20240216-111638
 
 * Updated the `appstructure` package
+* Fixed the vulnerabilities:
+
+    * [CVE-2020-14343](https://nvd.nist.gov/vuln/detail/CVE-2020-14343)
+    * [CVE-2023-4408](https://nvd.nist.gov/vuln/detail/CVE-2023-4408)
+    * [CVE-2023-50387](https://nvd.nist.gov/vuln/detail/CVE-2023-50387)
+    * [CVE-2023-50868](https://nvd.nist.gov/vuln/detail/CVE-2023-50868)
+    * [CVE-2023-5517](https://nvd.nist.gov/vuln/detail/CVE-2023-5517)
+    * [CVE-2023-5679](https://nvd.nist.gov/vuln/detail/CVE-2023-5679)
+    * [CVE-2024-0553](https://nvd.nist.gov/vuln/detail/CVE-2024-0553)
+    * [CVE-2024-0567](https://nvd.nist.gov/vuln/detail/CVE-2024-0567)
+    * [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920)
+    * [CVE-2021-33503](https://nvd.nist.gov/vuln/detail/CVE-2021-33503)
+    * [CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327)
+    * [CVE-2021-31799](https://nvd.nist.gov/vuln/detail/CVE-2021-31799)
+    * [CVE-2021-28965](https://nvd.nist.gov/vuln/detail/CVE-2021-28965)
+    * [CVE-2020-25613](https://nvd.nist.gov/vuln/detail/CVE-2020-25613)
 
 ### wallarm-node-4-10-20240126-175315 (2024-02-02)
 
