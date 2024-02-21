@@ -52,7 +52,6 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 * Internal enhancements and optimizations:
     
     * Implemented labels and annotations for the Tarantool pod
-    * Restored OpenTracing
     * Transitioned to supervisord
 * Fixed the vulnerabilities:
 
