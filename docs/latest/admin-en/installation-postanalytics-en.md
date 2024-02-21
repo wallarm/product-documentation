@@ -210,17 +210,10 @@ If the NGINX‑Wallarm and separate postanalytics modules are configured properl
 
 If the attack was not uploaded to the Cloud, please check that there are no errors in the services operation:
 
-* Make sure that the postanalytics service `wallarm-tarantool` is in the status `active`
-
-    ```bash
-    sudo systemctl status wallarm-tarantool
-    ```
-
-    ![wallarm-tarantool status][tarantool-status]
 * Analyze the postanalytics module logs
 
     ```bash
-    sudo cat /opt/wallarm/var/log/wallarm/tarantool.log
+    sudo cat /opt/wallarm/var/log/wallarm/tarantool-out.log
     ```
 
     If there is the record like `SystemError binary: failed to bind: Cannot assign requested address`, make sure that the server accepts connection on specified address and port.
