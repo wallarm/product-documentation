@@ -32,7 +32,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
 === "NGINX-based image"
     ``` bash
-    docker pull wallarm/node:4.10.0-1
+    docker pull wallarm/node:4.10.1-1
     ```
 === "Envoy-based image"
     ``` bash
