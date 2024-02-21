@@ -146,7 +146,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](cloud-image.md)
 
-### 4.10.1-1 (2024-02-21)
+### 4.10.1-2 (2024-02-21)
 
 * Updated the `appstructure` package
 * Fixed the vulnerabilities:
@@ -174,7 +174,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](cloud-image.md)
 
-### wallarm-node-4-10-20240216-111638
+### wallarm-node-4-10-20240220-234618
 
 * Updated the `appstructure` package
 * Fixed the vulnerabilities:
