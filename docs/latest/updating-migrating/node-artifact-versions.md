@@ -46,6 +46,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.10.2 (2024-02-21)
+
+* Restored OpenTracing
+
 ### 4.10.1 (2024-02-21)
 
 * Updated the `appstructure` package
