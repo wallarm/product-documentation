@@ -75,6 +75,12 @@ The [Amazon Machine Image (AMI)](../installation/cloud-platforms/aws/ami.md) and
 
 The newly released product features are also supported by the cloud images of the new format.
 
+## Addressed vulnerabilities
+
+The 4.10.1 release addresses multiple high and critical severity vulnerabilities in Wallarm deployment artifacts, enhancing the software's security posture by replacing previously vulnerable components.
+
+Among the vulnerabilities addressed are those identified by [CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327), [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920), and several others. A full list of resolved vulnerabilities, along with their corresponding CVEs specific to each node deployment artifact, can be found within the [inventory of node artifact versions](node-artifact-versions.md).
+
 ## When upgrading node 3.6 and lower
 
 If upgrading from the version 3.6 or lower, learn all changes from the [separate list](older-versions/what-is-new.md).
