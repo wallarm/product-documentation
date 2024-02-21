@@ -54,7 +54,7 @@ You can configure the weight of each factor in [risk score](risk-score.md) calcu
 
 To get and analyze the API Discovery logs, you can use the following methods:
 
-* If the Wallarm node is installed from source packages: run the standard utility **journalctl** or **systemctl** inside the instance.
+* If the Wallarm node is installed from individual DEM/RPM packages: run the standard utility **journalctl** or **systemctl** inside the instance.
 
     === "journalctl"
         ```bash
