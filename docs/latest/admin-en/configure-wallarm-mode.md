@@ -18,6 +18,15 @@ The Wallarm filtering node can process incoming requests in the following modes 
 
 --8<-- "../include/wallarm-modes-description-latest.md"
 
+## Quick start
+
+Although with Wallarm you can fine tune a very sophisticated filtration mode configurations that will provide different settings for your different applications, hosts, endpoints or specific requests, there is also a quick way to start:
+
+1. Navigate to the **General** tab of Wallarm Console settings in the [US Wallarm Cloud](https://us1.my.wallarm.com/settings/general) or [EU Wallarm Cloud](https://my.wallarm.com/settings/general).
+1. Set [general](#setting-up-the-general-filtration-rule-in-wallarm-console) filtration mode to **Monitoring** and - when [you are ready](#best-practices-on-gradual-filtration-mode-application) - to **Blocking**. This will define filtration mode for all incoming requests going through all your Wallarm nodes.
+    
+    Note that later you can modify this simple setting with different [methods](#methods-of-the-filtration-mode-configuration).
+
 ## Methods of the filtration mode configuration
 
 The filtration mode can be configured in the following ways:
