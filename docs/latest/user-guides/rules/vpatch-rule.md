@@ -17,7 +17,9 @@ If the setting *Any request* is selected, the system will block the requests wit
 
 --8<-- "../include/waf/features/rules/rule-creation-options.md"
 
-## Example: Blocking SQLi Attack in the Query String Parameter `id`
+## Rule examples
+
+### Blocking SQLi attack in `id` query string parameter
 
 **If** the following conditions take place:
 
@@ -41,7 +43,7 @@ If the setting *Any request* is selected, the system will block the requests wit
 ![Virtual patch for a certain request type][img-vpatch-example1]
 
 
-## Example: Block All Requests With the Query String Parameter `refresh`
+### Blocking all requests with `refresh` query string parameter
 
 **If** the following conditions take place:
 
@@ -63,16 +65,9 @@ If the setting *Any request* is selected, the system will block the requests wit
 
 ![Virtual patch for any request type][img-vpatch-example2]
 
-## API calls to create the rule
+## API calls for virtual patches
 
-To create the virtual patch rule, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below are some examples of the corresponding API calls.
+To create virtual patches, you can call the Wallarm API directly. Consider the examples:
 
-**Create the virtual patch to block all requests sent to `/my/api/*`**
-
---8<-- "../include/api-request-examples/create-rule-en.md"
-
-**Create the virtual patch for a specific application instance ID to block all requests sent to `/my/api/*`**
-
-An application should be [configured](../settings/applications.md) before sending this request. Specify an ID of an existing application in `action.point[instance].value`.
-
---8<-- "../include/api-request-examples/create-rule-for-app-id.md"
+* [Create the virtual patch to block all requests sent to `/my/api/*`](../../api/request-examples.md#create-the-virtual-patch-to-block-all-requests-sent-to-myapi)
+* [Create the virtual patch for a specific application instance ID to block all requests sent to `/my/api/*`](../../api/request-examples.md#create-the-virtual-patch-for-a-specific-application-instance-id-to-block-all-requests-sent-to-myapi)
