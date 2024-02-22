@@ -33,10 +33,6 @@
   --header-bottom: 0px;
 }
 
-.md-banner__inner {
-  display: none;
-}
-
 .md-main {
   background-color: rgba(236, 239, 244, 0.5);
 }
@@ -130,6 +126,7 @@ div[data-md-component="announce"] {
 .md-banner {
   background-color: #1C2752;
   text-align: center;
+  display: none;
 }
 
 /* Header */
