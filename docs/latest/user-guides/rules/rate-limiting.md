@@ -1,10 +1,12 @@
-# Setting Rate Limit
+# Rate Limiting
 
-Lack of rate limiting is included in the [OWASP API Top 10 2019](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa4-lack-of-resources-and-rate-limiting.md) list of most serious API security risks. Without proper rate limiting measures, APIs are vulnerable to attacks such as denial-of-service (DoS), brute force and API overuse. This article explains how to safeguard your API and users with the Wallarm's rate limit regulation rule.
+The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#owasp-api-top-10-2023-dashboard) list of most serious API security risks. Lack of rate limiting is one of the main causes of this risk. Without proper rate limiting measures, APIs are vulnerable to attacks such as denial-of-service (DoS), brute force and API overuse. This article explains how to safeguard your API and users with the Wallarm's rate limit regulation rule.
 
 Wallarm provides the **Set rate limit** [rule](../../user-guides/rules/rules.md) to help prevent excessive traffic to your API. This rule enables you to specify the maximum number of connections that can be made to a particular scope, while also ensuring that incoming requests are evenly distributed. If a request exceeds the defined limit, Wallarm rejects it and returns the code you selected in the rule.
 
 Wallarm examines various request parameters such as cookies or JSON fields, which allows you to limit connections based not only on the source IP address, but also on session identifiers, usernames, or email addresses. This additional level of granularity enables you to enhance the overall security of a platform based on any origin data.
+
+Note that rate limiting described in this article is one of the ways for the load control provided by Wallarm - alternatively, you can apply [brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md). Use rate limiting for slowing down the incoming traffic and brute-force protection to completely block the attacker.
 
 ## Creating and applying the rule
 
@@ -22,6 +24,13 @@ To set and apply rate limit:
         **No delay** points to simultaneous processing of all buffered excessive requests, without the rate limit delay. **Delay** implies simultaneous processing of the specified number of excessive requests, others are processed with delay set in RPS/RPM.
     
     * **Response code** - code to return in response to rejected requests. `503` by default.
+
+        Below is the example of rate limiting behavior with limit of 5 r/s, burst 12 and delay 8.
+
+        ![How rate limiting works](../../images/user-guides/rules/rate-limit-schema.png)
+
+        The first 8 requests (the value of delay) are transferred by Wallarm node without delay. The next 4 requests (burst - delay) are delayed so that the defined rate of 5 r/s is not exceeded. The next 3 requests are rejected because the total burst size has been exceeded. Subsequent requests are delayed.
+
 1. In **In this part of request**, specify request points for which you wish to set limits. Wallarm will restrict requests that have the same values for the selected request parameters.
 
     All available points are described [here](request-processing.md), you can choose those matching your particular use case, e.g.:
@@ -43,11 +52,11 @@ However, an attacker could exploit this by changing the `size` parameter to an e
 
 Limiting connections to the endpoint helps to prevent such attacks. You can limit the number of connections to the endpoint to 1000 per minute. This assumes that, on average, 200 users are requested 5 times per minute. The rule specifies that this limit applies to each IP trying to access the endpoint within minute. The `remote_address` [point](request-processing.md) is used to identify the IP address of the requester.
 
-![Example](../../images/user-guides/rules/rate-limit-for-200-users.png) -->
-
+![Example](../../images/user-guides/rules/rate-limit-for-200-users.png)
+-->
 ### Limiting connections by IP to ensure high API availability
 
-Suppose a healthcare company's REST API letting doctors to submit patient information through a POST request to the `/patients` endpoint of the `https://example-host.com` host. This endpoint contains sensitive personal health information, and it is important to ensure that it is not abused or overwhelmed by a large number of requests.
+Suppose a healthcare company's REST API letting doctors to submit patient information through a POST request to the `/patients` endpoint of the `https://example-host.com` host. Accessibility of this endpoint is critically important, and thus it should not be overwhelmed by a large number of requests.
 
 Limiting connections by IP within a certain period of time specifically for the `/patients` endpoint could prevent this. This ensures the stability and availability of the endpoint to all doctors, while also protecting the security of patient information by preventing DoS attacks.
 
@@ -69,7 +78,7 @@ If you use JWT (JSON Web Tokens) to manage user sessions, you can adjust the rul
 
 ![Example](../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
 
-### User-Agent based rate limiting to prevent attacks on API endpoints
+<!-- ### User-Agent based rate limiting to prevent attacks on API endpoints
 
 Let's say you have an old version of your application has some known security vulnerabilities allowing attackers to brute force API endpoint `https://example-domain.com/login` using the vulnerable application version. Usually, the `User-Agent` header is used to pass browser/application versions. To prevent the brute force attack via the old application version, you can implement `User-Agent` based rate limiting.
 
@@ -77,7 +86,7 @@ For example, you can set a limit of 10 requests per minute for each `User-Agent`
 
 ![Example](../../images/user-guides/rules/rate-limit-by-user-agent.png)
 
-<!-- ### Endpoint-based rate limiting to prevent DoS attacks
+### Endpoint-based rate limiting to prevent DoS attacks
 
 Rate limiting can also involve setting a threshold for the number of requests that can be made to a particular endpoint within a specified time frame, such as 60 requests per minute. If a client exceeds this limit, further requests are rejected.
 
@@ -96,7 +105,7 @@ In this specific case, the rate limiting rule is applied to connections by URI, 
 
 ![Example](../../images/user-guides/rules/rate-limit-by-uri.png) -->
 
-### Limiting connections by customer IDs to prevent server overhelm
+### Limiting connections by customer IDs to prevent server overwhelm
 
 Let us consider a web service that provides access to customer orders data for an online shopping platform. Rate limiting by customer ID can help prevent customers from placing too many orders in a short period of time, which can put a strain on inventory management and order fulfillment.
 
