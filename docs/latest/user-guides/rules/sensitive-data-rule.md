@@ -4,7 +4,9 @@
 
 # Masking Sensitive Data
 
-The Wallarm node sends the following data to the Wallarm Cloud:
+Some data should not be transferred outside of the server on which it is processed. Typically, this category includes authorization (cookies, tokens, passwords), personal data and payment credentials. To avoid such data exposure Wallarm provides an ability to mask sensitive data. How to configure this masking is described in this article.
+
+Wallarm provides the **Mask sensitive data** rule to configure data masking. The Wallarm node sends the following data to the Wallarm Cloud:
 
 * Serialized requests with attacks
 * Wallarm system counters
@@ -12,17 +14,21 @@ The Wallarm node sends the following data to the Wallarm Cloud:
 * Wallarm system statistics: number of processed NGINX requests, Tarantool statistics, etc.
 * Information on the nature of the traffic that Wallarm needs to correctly detect application structure
 
-Some data should not be transferred outside of the server on which it is processed. Typically, this category includes authorization (cookies, tokens, passwords), personal data and payment credentials.
-
-Wallarm Node supports data masking in requests. This rule cuts the original value of the specified request point before sending the request to the postanalytics module and Wallarm Cloud. This method ensures that sensitive data cannot leak outside the trusted environment.
+The **Mask sensitive data** rule cuts the original value of the specified request point before sending the request to the postanalytics module and Wallarm Cloud. This method ensures that sensitive data cannot leak outside the trusted environment.
 
 It can affect the display of attacks, active attack (threat) verification, and the detection of brute force attacks.
 
-## Creating and applying the rule
+## Creating and applying rule
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+To set and apply data mask:
 
-## Example: Masking of a Cookie Value
+1. Proceed to Wallarm Console → **Rules** → **Add rule**.
+1. In **If request is**, [describe](rules.md#branch-description) the scope to apply the rule to.
+1. In **Then**, choose **Mask sensitive data**.
+1. In **In this part of request**, specify [request points](request-processing.md) for which its original value should be cut.
+1. Wait for the [rule compilation to complete](rules.md#ruleset-lifecycle).
+
+## Example: masking of a cookie value
 
 **If** the following conditions take place:
 
