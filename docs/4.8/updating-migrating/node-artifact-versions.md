@@ -57,7 +57,11 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](nginx-modules.md)
 
-### 4.8.3 (2023-02-14)
+### 4.8.4 (2024-02-23)
+
+* Fixed wrong number of arguments (0 for 1+) on CentOS 7.x
+
+### 4.8.3 (2024-02-14)
 
 * Fixed an issue where partially downloaded custom ruleset files were mistakenly validated as complete. Chunked downloading has been implemented to address this issue
 
@@ -69,7 +73,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
-### 4.8.7 (2023-02-09)
+### 4.8.7 (2024-02-09)
 
 * Restored OpenTracing for 4.8 versions
 
