@@ -190,7 +190,7 @@ nav:
     - Manual BOLA Protection: admin-en/configuration-guides/protecting-against-bola-trigger.md
     - Filtering by IP: user-guides/ip-lists/overview.md
     - Virtual Patching: user-guides/rules/vpatch-rule.md
-    - User‑Defined Detection Rules: user-guides/rules/regex-rule.md
+    - User‑Defined Detectors: user-guides/rules/regex-rule.md
     - Masking Sensitive Data: user-guides/rules/sensitive-data-rule.md
     - Changing Response Headers: user-guides/rules/add-replace-response-header.md
     - Triggers: user-guides/triggers/triggers.md
