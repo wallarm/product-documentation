@@ -24,7 +24,6 @@ Using triggers, you can:
     * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
     * [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
     * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
-    * Manage [weak JWTs detection](../../about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection)
 
 * Set up extended alerts for different [integrations](../../user-guides/settings/integrations/integrations-intro.md).
 * Optimize attacks and incidents representation by [grouping hits](../../user-guides/events/analyze-attack.md#grouping-of-hits).
@@ -72,13 +71,8 @@ New company accounts are featured by the following default (pre-configured) trig
     However, the node analyzes the graylist only in the **safe blocking** mode. To block malicious requests originating from graylisted IPs, switch the node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) to safe blocking learning its features first.
 
     The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
-* Detect weak JWTs
 
-    [JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely. JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
-
-    This trigger enables Wallarm to automatically detect weak JWTs in incoming requests and record corresponding [vulnerabilities](../vulnerabilities.md).
-
-Triggers work on all traffic within a company account by default but you can change any trigger settings.
+You can temporary disable any default trigger. You can also modify behavior provided by the default trigger - to do so, create your custom triggers of the same type. Creating any custom trigger deletes the default one, if you delete all your custom triggers, the default is restored.
 
 ## Disabling and deleting triggers
 

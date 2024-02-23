@@ -33,7 +33,6 @@ A condition is a system event to be notified about. The following conditions are
 * [Brute force](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * [Forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * [BOLA](../../admin-en/configuration-guides/protecting-against-bola.md)
-* [Weak JWT](trigger-examples.md#detect-weak-jwts)
 * Number of [attack vectors (malicious payloads)](../../glossary-en.md#malicious-payload) (experimental payloads based on [custom regular expressions](../rules/regex-rule.md) are not counted)
 * Number of [attacks](../../glossary-en.md#attack) (experimental attacks based on [custom regular expressions](../rules/regex-rule.md) are not counted)
 * Number of [hits](../../glossary-en.md#hit) except for:
@@ -124,13 +123,8 @@ New company accounts are featured by the following pre-configured triggers (defa
     However, the node analyzes the graylist only in the **safe blocking** mode. To block malicious requests originating from graylisted IPs, switch the node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) to safe blocking learning its features first.
 
     The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
-* Detect weak JWTs
 
-    [JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely. JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
-
-    This trigger enables Wallarm to automatically detect weak JWTs in incoming requests and record corresponding [vulnerabilities](../vulnerabilities.md).
-
-Triggers work on all traffic within a company account by default but you can change any trigger settings.
+You can temporary disable any default trigger. You can also modify behavior provided by the default trigger - to do so, create your custom triggers of the same type. Creating any custom trigger deletes the default one, if you delete all your custom triggers, the default is restored.
 
 ## Disabling and deleting triggers
 

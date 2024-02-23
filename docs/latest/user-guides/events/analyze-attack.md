@@ -100,7 +100,7 @@ Within the `Blocked` events, use tags to switch to the reason of denylisting - B
 
 You can optimize the lists of attacks and incidents by grouping [hits](../../glossary-en.md#hit) sent from the same IP address into one attack.
 
-Grouping is enabled by default in Wallarm Console → **Triggers** with the **Hits from the same IP** trigger which activates when a single IP address originates more than 50 hits within 15 minutes.
+Grouping is enabled by default in Wallarm Console → **Triggers** with the **Hits from the same IP** default trigger which activates when a single IP address originates more than 50 hits within 15 minutes.
 
 ![Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
 
@@ -108,7 +108,7 @@ If grouped hits have different attack types, malicious payloads and URLs, attack
 
 The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
 
-You can temporary disable, modify or delete the default **Hits from the same IP** trigger and add your own triggers of this type.
+You can temporary disable the default trigger. You can also modify behavior provided by the default trigger - to do so, create your custom triggers of the **Hits from the same IP** type. Creating any custom trigger deletes the default one, if you delete all your custom triggers, the default is restored.
 
 ### Sampling of hits
 
