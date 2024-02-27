@@ -6,8 +6,6 @@
 
 # User-Defined Detectors
 
-In some cases, it may prove useful to add a signature for attack detection manually. By default, Wallarm does not use regular expressions to detect attacks, but it does allow users to add additional signatures based on regular expressions.
-
 Wallarm provides the **Create regexp-based attack indicator** [rule](../../user-guides/rules/rules.md) to define your own attack signs that are described with the regular expressions.
 
 ## Creating and applying rule
@@ -16,7 +14,7 @@ To set and apply your own attack detector:
 
 1. Proceed to Wallarm Console → **Rules** → **Add rule**.
 1. In **If request is**, [describe](rules.md#branch-description) the scope to apply the rule to.
-1. In **Then**, choose **Create regexp-based attack indicator** and set you attack indicator parameters:
+1. In **Then**, choose **Create regexp-based attack indicator** and set your attack indicator parameters:
 
     * **Regular expression** - regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Syntax and specifics of regular expressions are described in the [instructions on adding rules](rules.md#condition-type-regex).
 
@@ -34,23 +32,14 @@ To set and apply your own attack detector:
 
 ## Rule examples
 
-### Blocking all requests with incorrect X-Authentication header
+### Blocking all requests with incorrect `X-AUTHENTICATION` header
 
-**If** the following conditions take place:
+Let us say your application accessible at the `example.com` domain uses the `X-AUTHENTICATION` header in 32 hex symbols format for user authentication and you want to reject incorrect format tokens.
 
-* the application is accessible at the domain *example.com*
-* the application uses the *X-Authentication* header for user authentication
-* the header format is 32 hex symbols
+To do so, set the **Create regexp-based attack indicator** rule as displayed on the screenshot, including:
 
-**Then**, to create a rule for rejecting incorrect format tokens:
-
-1. Go to the *Rules* tab
-2. Find the branch for `example.com/**/*.*` and click *Add rule*
-3. Select *Define as an attack on the basis of a regular expression*
-4. Set *Regex* value as `[^0-9a-f]|^.{33,}$|^.{0,31}$`
-5. Choose `Virtual patch` as the type of *Attack*
-6. Set the point `Header X-AUTHENTICATION`
-7. Click *Create*
+* Regular expression: `[^0-9a-f]|^.{33,}$|^.{0,31}$`
+* Request part: `header` - `X-AUTHENTICATION`
 
 ![Regex rule first example][img-regex-example1]
 
