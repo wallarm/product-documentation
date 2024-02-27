@@ -102,7 +102,9 @@ To install postanalytics separately with all-in-one installer, use:
     sudo sh wallarm-4.8.9.aarch64-glibc.sh postanalytics
     ```
 
-### Step 4: Allocate resources for the postanalytics module
+### Step 4: Configure the postanalytics module
+
+#### Resources and memory
 
 To change how much memory Tarantool uses, look for the `SLAB_ALLOC_ARENA` setting in the `/opt/wallarm/env.list` file. It is set to use 1 GB by default. If you need to change this, you can adjust the number to match the amount of memory Tarantool actually needs. For help on how much to set, see our [recommendations](configuration-guides/allocate-resources-for-node.md).
 
@@ -118,17 +120,61 @@ To change allocated memory:
     ```
     SLAB_ALLOC_ARENA=2.0
     ```
-1. Restart the Wallarm services:
 
+#### Host and port
+
+By default, the postanalytics module is set to accept connections on all IPv4 addresses of the host (0.0.0.0) using port 3313. It is recommended to retain the default configuration unless a change is necessary.
+
+However, if you need to change the default configuration:
+
+1. Open for editing the `/opt/wallarm/env.list` file:
+
+    ```bash
+    sudo vim /opt/wallarm/env.list
     ```
-    sudo systemctl restart wallarm.service
+1. Update the `HOST` and `PORT` values as required. Define the `PORT` variable if it is not already specified, for example:
+
+    ```bash
+    # tarantool
+    HOST=0.0.0.0
+    PORT=3300
+    ```
+1. Open for editing the `/opt/wallarm/etc/wallarm/node.yaml` file:
+
+    ```bash
+    sudo vim /opt/wallarm/etc/wallarm/node.yaml
+    ```
+1. Enter the new `host` and `port` values for the `tarantool` parameters, as shown below:
+
+    ```yaml
+    hostname: <name of postanalytics node>
+    uuid: <UUID of postanalytics node>
+    secret: <secret key of postanalytics node>
+    tarantool:
+        host: '0.0.0.0'
+        port: 3300
     ```
 
-### Step 5: Install the NGINX-Wallarm module on a separate server
+### Step 5: Enable inbound connections for the postanalytics module
+
+The postanalytics module uses port 3313 by default, but some cloud platforms may block inbound connections on this port.
+
+To guarantee integration, allow inbound connections on port 3313 or your custom port. This step is essential for the NGINX-Wallarm module, installed separately, to connect with the Tarantool instance.
+
+### Step 6: Restart the Wallarm services
+
+After making the necessary changes, restart the Wallarm services on the machine hosting the postanalytics module to apply the updates:
+
+```
+sudo systemctl restart wallarm.service
+```
+
+### Step 7: Install the NGINX-Wallarm module on a separate server
 
 Once the postanalytics module is installed on the separate server:
 
-1. Install the NGINX-Wallarm module on a different server:
+1. Install the NGINX-Wallarm module on a different server following the corresponding [guide](../installation/nginx/all-in-one.md).
+1. When launching the installation script for the NGINX-Wallarm module on a separate server, include the `filtering` option, for example:
 
     === "API token"
         ```bash
@@ -150,9 +196,7 @@ Once the postanalytics module is installed on the separate server:
         sudo sh wallarm-4.8.9.aarch64-glibc.sh filtering
         ```
 
-1. Perform the after-installation steps, such as enabling analyzing the traffic, restarting NGINX, configuring sending traffic to the Wallarm instance, test and fine tune, as described [here](../installation/nginx/all-in-one.md).
-
-### Step 6: Connect the NGINX-Wallarm module to the postanalytics module
+### Step 8: Connect the NGINX-Wallarm module to the postanalytics module
 
 On the machine with the NGINX-Wallarm module, in the NGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/), specify the postanalytics module server address:
 
@@ -171,7 +215,6 @@ wallarm_tarantool_upstream wallarm_tarantool;
 
 * `max_conns` value must be specified for each of the upstream Tarantool servers to prevent the creation of excessive connections.
 * `keepalive` value must not be lower than the number of the Tarantool servers.
-* The `# wallarm_tarantool_upstream wallarm_tarantool;` string is commented by default - please delete `#`.
 
 Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Wallarm module server:
 
@@ -196,7 +239,7 @@ Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Walla
     sudo systemctl restart nginx
     ```
 
-### Step 7: Check the NGINX‑Wallarm and separate postanalytics modules interaction
+### Step 9: Check the NGINX‑Wallarm and separate postanalytics modules interaction
 
 To check the NGINX‑Wallarm and separate postanalytics modules interaction, you can send the request with test attack to the address of the protected application:
 

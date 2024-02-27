@@ -9,7 +9,7 @@
 This article guides you on how to find the log files of a Wallarm filtering node.
 
 === "All-in-one installer, NGINX-based Docker image, cloud images"
-    For installations via the [all-in-one installer](../installation/nginx/all-in-one.md), [NGINX-based Docker image](installation-docker-en.md), [Amazon Machine Image (AMI)](../installation/cloud-platforms/aws/ami.md) and [Google Cloud Machine Image](../installation/cloud-platforms/gcp/machine-image.md), log files are located withing the `/opt/wallarm/var/log/wallarm` directory.
+    For installations via the [all-in-one installer](../installation/nginx/all-in-one.md), [NGINX-based Docker image](installation-docker-en.md), [Amazon Machine Image (AMI)](../installation/cloud-platforms/aws/ami.md) and [Google Cloud Machine Image](../installation/cloud-platforms/gcp/machine-image.md), log files are located within the `/opt/wallarm/var/log/wallarm` directory.
 
     Here is a breakdown of the log files you will encounter and the type of information each contains:
 
@@ -24,8 +24,9 @@ This article guides you on how to find the log files of a Wallarm filtering node
     *   `appstructure-out.log` (only in the Docker containers): the log of the [API Discovery](../api-discovery/overview.md) module activity.
     *   `registernode_loop-out.log` (only in the Docker containers): the log of activity of the wrapper script running the `register-node` script while it is succeeded.
     *   `weak-jwt-detect-out.log`: the log of the [JWT vulnerability](../attacks-vulns-list.md#weak-jwt) detection.
+    *   `detect-cred-stuffing-out.log`: the log of the [credential stuffing detection](../about-wallarm/credential-stuffing.md).
 === "Other installation methods"
-    For installations using other methods, such as [DEB/RPM packages](../installation/nginx/dynamic-module.md), log files are located withing the `/var/log/wallarm` directory.
+    For installations using other methods, such as [DEB/RPM packages](../installation/nginx/dynamic-module.md), log files are located within the `/var/log/wallarm` directory.
 
     Here is a breakdown of the log files you will encounter and the type of information each contains:
 
