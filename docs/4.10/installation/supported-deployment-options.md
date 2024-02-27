@@ -1481,6 +1481,13 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div class="do-section">
     <div class="do-main">
+
+        <a class="do-card" href="../../installation/on-premise/">
+            <img class="non-zoomable" src="../../images/platform-icons/on-premise.svg" />
+            <h3>On-premise</h3>
+            <p>Integrate the Wallarm's infrastructure directly into your own environment</p>
+        </a>
+
         <a class="do-card" href="../../installation/custom/custom-nginx-version/">
             <img class="non-zoomable" src="../../images/platform-icons/nginx.svg" />
             <h3>Custom NGINX</h3>
