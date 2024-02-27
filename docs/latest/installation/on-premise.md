@@ -1,4 +1,4 @@
-# Wallarm On-premise Deployment (Pre-Release)
+# Wallarm On-Premise Deployment (Pre-Release)
 
 Wallarm offers a pre-release version of its on-premise solution designed for partners, large enterprises, and any organization looking for a comprehensive on-premise security system. This offering allows for the integration of Wallarm's security infrastructure directly into their own environments. The article provides information on how to access and make use of this offering.
 
@@ -64,7 +64,7 @@ To deploy a filtering node, prepare a compute instance meeting these criteria:
 To deploy a filtering node on-premise:
 
 1. Select a [deployment option](supported-deployment-options.md) from the available choices and adhere to the provided instructions. All options, including in-line and out-of-band (OOB) configurations, support on-premise deployment.
-    
+
     During the node setup, in the parameters that define the Wallarm Cloud host, specify the address of the Wallarm Cloud instance you created earlier.
 1. Ensure the domain of the running instance resolves to its IP address. For instance, if the domain is configured as `my.wallarm.node.com`, this domain should point to the instance's IP.
 
