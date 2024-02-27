@@ -1,1 +1,1 @@
-Options sequentally (if several) selected in **in this part of request** should reflect a sequence of parsers [Wallarm would apply][request-processing] to read the required request element.
+Note that options you add to **In this part of request**, should go in a particular order to reflect in which order Wallarm will [apply parsers][request-processing] to read the required request element.

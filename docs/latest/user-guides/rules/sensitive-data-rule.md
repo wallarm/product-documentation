@@ -30,22 +30,11 @@ To set and apply data mask:
 
 ## Example: masking of a cookie value
 
-**If** the following conditions take place:
+Let us say your application accessible at the `example.com` domain uses the `PHPSESSID` cookie for user authentication and you want to deny access to this information for employees using Wallarm.
 
-* the application is accessible at the domain *example.com*
-* the application uses a *PHPSESSID* cookie for user authentication
-* security policies deny access to this information for employees using Wallarm
+To do so, set the **Mask sensitive data** rule as displayed on the screenshot.
 
-**Then**, to create a data masking rule for this cookie, the following actions should be performed:
-
-1. Go to the *Rules* tab
-1. Find the branch for `example.com/**/*.*` and click *Add rule*
-1. Choose *Mask sensitive data*
-1. Select the *Header* parameter and enter its value `COOKIE`; select the *cookie* parameter and enter its value `PHPSESSID` after *in this part of request*
-
-    --8<-- "../include/waf/features/rules/request-part-reference.md"
-
-1. Click *Create*
+--8<-- "../include/waf/features/rules/request-part-reference.md"
 
 ![Marking sensitive data][img-masking]
 
