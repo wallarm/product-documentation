@@ -18,15 +18,6 @@ The Wallarm filtering node can process incoming requests in the following modes 
 
 --8<-- "../include/wallarm-modes-description-latest.md"
 
-## Quick start
-
-Although with Wallarm you can fine tune a very sophisticated filtration mode configurations that will provide different settings for your different applications, hosts, endpoints or specific requests, there is also a quick way to start:
-
-1. Navigate to the **General** tab of Wallarm Console settings in the [US Wallarm Cloud](https://us1.my.wallarm.com/settings/general) or [EU Wallarm Cloud](https://my.wallarm.com/settings/general).
-1. Set [general](#setting-up-the-general-filtration-rule-in-wallarm-console) filtration mode to **Monitoring** and - when [you are ready](#best-practices-on-gradual-filtration-mode-application) - to **Blocking**. This will define filtration mode for all incoming requests going through all your Wallarm nodes.
-    
-    Note that later you can modify this simple setting with different [methods](#methods-of-the-filtration-mode-configuration).
-
 ## Methods of the filtration mode configuration
 
 The filtration mode can be configured in the following ways:
@@ -100,23 +91,11 @@ In this example, the filtration modes are defined for the resources as follows:
 
 ### Setting up the general filtration rule in Wallarm Console
 
-The radio buttons on the **General** tab of Wallarm Console settings in the [US Wallarm Cloud](https://us1.my.wallarm.com/settings/general) or [EU Wallarm Cloud](https://my.wallarm.com/settings/general) define the general filtration mode for all incoming requests. The `wallarm_mode` directive value defined in the `http` block in the configuration file has the same action scope as these buttons.
-
-The local filtration mode settings on the **Rules** tab of Wallarm Console have higher priority than the global settings on the **Global** tab.
-
-On the **General** tab, you can specify one of the following filtration modes:
-
-* **Local settings (default)**: filtration mode defined using the [`wallarm_mode` directive](#specifying-the-filtering-mode-in-the-wallarm_mode-directive) is applied
-* [**Monitoring**](#available-filtration-modes)
-* [**Safe blocking**](#available-filtration-modes)
-* [**Blocking**](#available-filtration-modes)
+You can define the general filtration mode for all incoming requests in **Settings** → **General** in the [US](https://us1.my.wallarm.com/settings/general) or [EU](https://my.wallarm.com/settings/general) Cloud. This setting has the same scope as the `wallarm_mode` directive value defined in the `http` block in the configuration file.
     
 ![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
-!!! info "The Wallarm Cloud and filtering node synchronization"
-    The rules defined in Wallarm Console are applied during the Wallarm Cloud and filtering node synchronization process, which is conducted once every 2‑4 minutes.
-
-    [More details on the filtering node and Wallarm Cloud synchronization configuration →](configure-cloud-node-synchronization-en.md)
+The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule on the **Rules** tab. Note that local rules created on this tab have higher priority.
 
 ### Setting up the filtration rules on the "Rules" tab
 
@@ -126,43 +105,22 @@ You can fine-tune the filtration mode for processing requests that meet your cus
 
 --8<-- "../include/waf/features/rules/rule-creation-options.md"
 
-**Default instance of rule**
-
-Wallarm automatically creates the instance of the `Set filtration mode` rule on the [default](../user-guides/rules/rules.md#default-rules) level. The system sets its value on the basis of [general filtration mode](#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
-
-This instance of the rule cannot be deleted. To change its value, modify [general filtration mode](#setting-up-the-general-filtration-rule-in-wallarm-console) setting of the system.
-
-As all the other default rules, the `Set filtration mode` default rule is [inherited](../user-guides/rules/rules.md#distinct-and-inherited-rules) by all branches.
-
-**Example: Disabling Request Blocking During User Registration**
-
-**If** the following conditions take place:
-
-* new user registration is available at *example.com/signup*
-* it is better to overlook an attack than to lose a customer
-
-**Then**, to create a rule disabling blocking during user registration
-
-1. Go to the *Rules* tab
-1. Find the branch for `example.com/signup`, and click *Add rule*
-1. Choose *Set filtration mode*
-1. Choose operation mode *monitoring*
-1. Click *Create*
-
-![Setting traffic filtration mode][img-mode-rule]
-
-**API calls to create the rule**
-
-To create the filtration mode rule, you can [call the Wallarm API directly](../api/overview.md) besides using the Wallarm Console UI. Below is the example of the corresponding API call.
-
-The following request will create the rule setting the node to filter traffic going to the [application](../user-guides/settings/applications.md) with ID `3` in the monitoring mode.
-
---8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.md"
-
 !!! info "The Wallarm Cloud and filtering node synchronization"
     The rules defined in Wallarm Console are applied during the Wallarm Cloud and filtering node synchronization process, which is conducted once every 2‑4 minutes.
 
     [More details on the filtering node and Wallarm Cloud synchronization configuration →](configure-cloud-node-synchronization-en.md)
+
+**Example: disabling request blocking during user registration**
+
+Let us say a new user registration for your application is available at `example.com/signup`. As it is better to overlook an attack than to lose a customer, whatever blocking measures are applied for your application, it is better to disable blocking during user registration.
+
+To do so, set the **Set filtration mode** rule as displayed on the screenshot:
+
+![Setting traffic filtration mode][img-mode-rule]
+
+**API call to create the rule**
+
+To create the filtration mode rule, you can [call the Wallarm API directly](../api/request-examples.md#create-the-rule-setting-filtration-mode-to-monitoring-for-the-specific-application).
 
 ### Setting up priorities of the filtration mode configuration methods using `wallarm_mode_allow_override`
 
