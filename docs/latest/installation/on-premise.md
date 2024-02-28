@@ -10,7 +10,7 @@ The Wallarm architecture is built around [two main components](../about-wallarm/
 * Filtering node: Deployed within your infrastructure, allowing for flexible deployment options to suit your needs.
 * Wallarm Cloud: Traditionally hosted externally by Wallarm. In the on-premise deployment model, we offer a method for deploying Wallarm Cloud within your own infrastructure. This approach necessitates organizing the entire infrastructure due to the comprehensive nature of the service deployment. We simplify this process by providing a script that automatically initiates all required services.
 
-<!-- ![On-premise deployment](../images/waf-installation/on-premise.png) -->
+![On-premise deployment](../images/waf-installation/on-premise.png)
 
 ## Deploying Wallarm Cloud on-premise
 
