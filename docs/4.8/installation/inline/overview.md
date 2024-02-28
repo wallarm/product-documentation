@@ -1,6 +1,7 @@
 # In-line Deployment of Wallarm Node
 
 Wallarm can be deployed in-line to mitigate threats in real-time. In this case, traffic to protected APIs passes through Wallarm node instances before it reaches the API. There is no chance of an attacker bypassing Wallarm nodes as long as they are inline and are the only path available to end users. This article explains the approach in details.
+
 Wallarm node instances sit between the client and the servers, analyzing incoming traffic, mitigating malicious requests, and forwarding legitimate requests to the protected server. 
 
 ## Use cases
