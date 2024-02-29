@@ -73,6 +73,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.8.8 (2024-02-29)
+
+* Fixed an issue where partially downloaded custom ruleset files were mistakenly validated as complete. Chunked downloading has been implemented to address this issue
+
 ### 4.8.7 (2024-02-09)
 
 * Restored OpenTracing for 4.8 versions
@@ -140,6 +144,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](docker-container.md)
 
+### 4.8.9-1 (2024-02-29)
+
+* Fixed an issue where partially downloaded custom ruleset files were mistakenly validated as complete. Chunked downloading has been implemented to address this issue
+
 ### 4.8.1-1 (2023-11-03)
 
 * Improved detection of brute-force attacks
@@ -159,6 +167,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 4.8.2-1 (2024-02-29)
+
+* Fixed an issue where partially downloaded custom ruleset files were mistakenly validated as complete. Chunked downloading has been implemented to address this issue
 
 ### 4.8.1-1 (2023-12-01)
 
