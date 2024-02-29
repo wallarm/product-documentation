@@ -34,14 +34,7 @@ To set and apply your own attack detector:
 
 ### Blocking all requests with incorrect `X-AUTHENTICATION` header
 
-Let us say your application accessible at the `example.com` domain uses the `X-AUTHENTICATION` header in 32 hex symbols format for user authentication and you want to reject incorrect format tokens.
-
-To do so, set the **Create regexp-based attack indicator** rule as displayed on the screenshot, including:
-
-* Regular expression: `[^0-9a-f]|^.{33,}$|^.{0,31}$`
-* Request part: `header` - `X-AUTHENTICATION`
-
-![Regex rule first example][img-regex-example1]
+--8<-- "../include/waf/features/rules/rule-vpatch-regex.md"
 
 ### Block all requests with `class.module.classLoader.*` body parameters
 
