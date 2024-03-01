@@ -1,6 +1,6 @@
 [link-regex]:                   https://github.com/yandex/pire
 [link-request-processing]:      request-processing.md
-[img-add-rule]:                 ../../images/user-guides/rules/add-rule.png
+[img-add-rule]:                 ../../images/user-guides/rules/section-rules-add-rule.png
 
 # Rules
 
@@ -14,8 +14,6 @@ Rules are configured in the **Rules** section in the [US](https://us1.my.wallarm
 !!! warning "Rule application delay"
     When you make changes to the rules, they don't take effect immediately as it takes some time to [compile the rules](#ruleset-lifecycle) and upload them to the filtering nodes.
 
-For a better understanding of how the traffic processing rules are applied, it is advisable to learn how the filter node [analyzes the requests][link-request-processing].
-
 ## What you can do with rules
 
 Using rules, you can provide the multiple protections measures for your applications and APIs, and also fine tune how attacks are detected, how the Wallarm nodes and some Wallarm components work:
@@ -25,34 +23,13 @@ Using rules, you can provide the multiple protections measures for your applicat
 * [Create your own detection rule](../../user-guides/rules/regex-rule.md)
 * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
 * Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
-* Fine tune request processing by [managing request parsers](../../user-guides/rules/request-processing.md#managing-parsers) and [changing server response headers](../../user-guides/rules/add-replace-response-header.md)
+* Fine tune request processing by [managing request parsers](../../user-guides/rules/request-processing.md#managing-parsers)
+* Configure the additional layer of the application security by [changing server response headers](../../user-guides/rules/add-replace-response-header.md)
 * Fine tune attack detection by setting to [ignore certain attack types](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) and to [ignore certain attack signs in the binary data](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
 
 ## Rule branches
 
-Rules are automatically grouped into nested branches by endpoint URIs and other conditions. This builds a  tree-like structure in which rules are [inherited](#distinct-and-inherited-rules) down.
-
-![Rules tab overview](../../images/user-guides/rules/rules-overview.png)
-
-Within a branch, you can look through the list of rules attached to it:
-
-![Viewing branch rules](../../images/user-guides/rules/view-rules.png)
-
-### Default rules
-
-You can create rules with specified action but not linked to any endpoint - they are called **default rules**. Such rules are applied to all endpoints.
-
-* To create default rule, follow the [standard procedure](rules.md) but leave URI blank. The new rule not linked to any endpoint will be created.
-* To view the list of created default rules, click the **Default rules** button.
-
-!!! info "Traffic filtration mode default rule"
-    Wallarm automatically [creates](../../admin-en/configure-wallarm-mode.md#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console) the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
-
-Default rules are [inherited](#distinct-and-inherited-rules) by all branches.
-
-### Distinct and inherited rules
-
-The rules are inherited down the rules branch. Principles:
+Rules are automatically grouped into nested branches by endpoint URIs and other conditions. This builds a  tree-like structure in which rules are inherited down. Principles:
 
 * All branches inherit [default](#default-rules) rules.
 * In a branch, child endpoints inherit rules from the parent.
@@ -60,7 +37,22 @@ The rules are inherited down the rules branch. Principles:
 * Directly specified has priority over [regex](rules.md#condition-type-regex).
 * Case [sensitive](rules.md#condition-type-equal) has priority over [insensitive](rules.md#condition-type-iequal-aa).
 
-Here are some details of how to work with the rules branch:
+![Rules tab overview](../../images/user-guides/rules/rules-overview.png)
+
+### Default rules
+
+You can create rules with specified action but not linked to any endpoint - they are called **default rules**. Such rules are applied to all endpoints.
+
+* To create default rule, follow the [standard procedure](rules.md) but leave URI blank. The new rule not linked to any endpoint will be created.
+* To view the list of created default rules, click the **Default rules** button.
+* Default rules are [inherited](#distinct-and-inherited-rules) by all branches.
+
+!!! info "Traffic filtration mode default rule"
+    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
+
+### Viewing branch rules
+
+Here are some details of how to work with the rule branches:
 
 * To expand the endpoint, click the blue circle.
 * Endpoints that do not have distinct rules are greyed out and not clickable.
@@ -74,24 +66,27 @@ Here are some details of how to work with the rules branch:
 
 ## Configuring
 
-To add a new rule, go to the **Rules** tab.
-
-Rules can be added to both existing and new branches. They can be created from scratch or based on one of the existing branches.
-
-To add a rule to an existing branch, click *Add rule* (after hovering the mouse cursor over the branch description line, the button will appear in the pop-up menu on the right). You can also perform this operation on the rule page of this branch.
-
-If necessary, it is possible to modify the branch to which a rule will be added. For this, click on the *If request is* clause in the rule-adding form and make changes to the branch description conditions. If a new branch is created, it will appear on the screen, and the application structure view will be updated.
+To add a new rule, go to the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud. Rules can be added to both existing [branches](#rule-branches) and from scratch which will create a new branch if one does not exist.
 
 ![Adding a new rule][img-add-rule]
 
+Note that a rule is applied to the request only if some conditions are met (like target endpoint, method, presence of some parameters or values, etc.). Also, it is often applied only to some request parts. For a better understanding of request structure interaction with the rules, it is advisable to learn how the filtering node [analyzes the requests][link-request-processing].
+
+Rule conditions may be defined using:
+
+* [URI constructor](#uri-constructor) - allows configuring the rule conditions by specifying the request method and endpoint in only one string.
+* [Advanced edit form](#advanced-edit-form) - expands URI constructor to allow configuring both method/endpoint and additional rule conditions, such as application, headers, query string parameters and others.
+
 ### URI constructor
 
-#### Working with URI constructor
+URI constructor allows configuring the rule conditions by specifying the request method and endpoint in only one string.
 
-URI constructor allows configuring the rule conditions by specifying the request method and endpoint in only one string:
+#### General usage
 
-* For the request method, the URI constructor provides the particular selector. If the method is not selected, the rule will be applied to requests with any method.
-* For the request endpoint, the URI constructor provides the particular field accepting the following value formats:
+URI constructor provides:
+
+* Selector for the request method. If the method is not selected, the rule will be applied to requests with any method.
+* Field for the request endpoint which accepts the following value formats:
 
     | Format | Example |
     | ------ | ------ |
@@ -156,6 +151,8 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
     ![Using regular expression in header component](../../images/user-guides/rules/wildcard-regex.png)
 
 ### Advanced edit form
+
+Advanced edit form expands possibilities of [URI constructor](#uri-constructor) (method and URI) to allow configuring both these and additional rule conditions, such as application, headers, query string parameters and others.
 
 #### Conditions
 
@@ -391,7 +388,7 @@ The request should not contain the designated part. In this case, the comparison
 
 A custom ruleset defines specifics of processing particular client traffic (for example, allows setting up custom attack detection rules or masking sensitive data). The Wallarm node relies on the custom ruleset during incoming requests analysis.
 
-Changes of custom rules do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **unloading to the filtering node** are finished.
+Changes of custom rules do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **uploading to the filtering node** are finished.
 
 ### Custom ruleset building
 
@@ -401,11 +398,11 @@ Custom ruleset build status and expected completion time are displayed in Wallar
 
 ![Build status](../../images/user-guides/rules/build-rules-status.png)
 
-### Unloading a custom ruleset to the filtering node
+### Uploading to filtering node
 
-Custom ruleset build is unloaded to the filtering node during the filtering node and Wallarm Cloud synchronization. By default, synchronization of the filtering node and Wallarm Cloud is launched every 2‑4 minutes. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
+Custom ruleset build is uploaded to the filtering node during the filtering node and Wallarm Cloud synchronization. By default, synchronization of the filtering node and Wallarm Cloud is launched every 2‑4 minutes. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
 
-The status of unloading a custom ruleset to the filtering node is logged to the `/var/log/wallarm/syncnode.log` or `/opt/wallarm/var/log/wallarm/syncnode-out.log` file [depending on a node installation method](../../admin-en/configure-logging.md).
+The status of uploading a custom ruleset to the filtering node is logged to the `/var/log/wallarm/syncnode.log` or `/opt/wallarm/var/log/wallarm/syncnode-out.log` file [depending on a node installation method](../../admin-en/configure-logging.md).
 
 All Wallarm nodes connected to the same Wallarm account receive the same set of default and custom rules for traffic filtering. You still can apply different rules for different applications by using proper application IDs or unique HTTP request parameters like headers, query string parameters, etc.
 

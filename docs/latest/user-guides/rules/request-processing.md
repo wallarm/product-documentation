@@ -1,7 +1,7 @@
 [rule-creation-options]:    ../../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
 [request-processing]:       ../../user-guides/rules/request-processing.md
 
-# Analyzing Requests
+# Parsing Requests
 
 For an effective request analysis, Wallarm follows the principles:
 
