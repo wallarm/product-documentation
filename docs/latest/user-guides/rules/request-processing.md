@@ -3,9 +3,12 @@
 
 # Parsing Requests
 
-For an effective request analysis, Wallarm follows the principles:
+When analyzing requests, Wallarm filtering node uses a comprehensive set of parsers. After identifying the request parts, parsers are sequentially applied to each of them to provide request meta parameters further used for attack detection. Available parsers, logic of their usage and possible configurations for this logic are described in this article.
+
+For an effective parsing, Wallarm follows the principles:
 
 * Work with the same data as the protected application. For example:
+
     If an application provides a JSON API, then the processed parameters will be also encoded in JSON format. To get parameter values, Wallarm uses JSON parser. There are also more complex cases where the data is encoded several times — for example, JSON to Base64 to JSON. Such cases require decoding with several parsers.
 
 * Consider the context of data processing. For example:
@@ -365,33 +368,20 @@ Used to get names of all elements, parameters, or objects. For example:
 
 ## Managing parsers
 
-The rule **Disable/Enable request parser** allows managing the set of parsers applied to the request during its analysis.
-
 By default, when analyzing the request the Wallarm node attempts to sequentially apply each of the suitable [parsers](request-processing.md) to each element of the request. However, certain parsers can be applied mistakenly and as a result, the Wallarm node may detect attack signs in the decoded value.
 
 For example: the Wallarm node may mistakenly identify unencoded data as encoded into [Base64](https://en.wikipedia.org/wiki/Base64), since the Base64 alphabet symbols are often used in the regular text, token values, UUID values and other data formats. If decoding the unencoded data and detecting attack signs in the resulting value, the [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) occurs.
 
-To prevent false positives in such cases, you can disable the parsers mistakenly applied to certain request elements by using the rule **Disable/Enable request parser**.
+To prevent false positives in such cases, Wallarm provides the **Disable/Enable request parser** rule to disable the parsers mistakenly applied to certain request elements.
 
 **Creating and applying the rule**
 
 --8<-- "../include/waf/features/rules/rule-creation-options.md"
 
-To create and apply the rule in the **Rules** section:
-
-1. Create the rule **Disable/Enable request parser** in the **Rules** section of Wallarm Console. The rule consists of the following components:
-
-      * **Condition** [describes](rules.md#branch-description) the endpoints to apply the rule to.
-      * Parsers to be disabled / enabled for the specified request element.      
-      * **Part of request** points to the original request element to be parsed / not parsed with the selected parsers.
-
-         --8<-- "../include/waf/features/rules/request-part-reference.md"
-2. Wait for the [rule compilation to complete](rules.md#ruleset-lifecycle).
-
 **Rule example**
 
-Let's say the requests to `https://example.com/users/` require the authentication header `X-AUTHTOKEN`. The header value may contain specific symbol combinations (e.g. `=` in the end) to be potentially decoded by Wallarm with the parser `base64`.
+Let us say the requests to `https://example.com/users/` require the authentication header `X-AUTHTOKEN`. The header value may contain specific symbol combinations (e.g. `=` in the end) that may be potentially decoded by Wallarm with the parser `base64` resulting in false detection of attack sign. You need to prevent this decoding to avoid false positives. 
 
-The rule **Disable/Enable request parser** preventing false positives in the `X-AUTHTOKEN` values can be configured as follows:
+To do so, set the **Disable/Enable request parser** rule as displayed on the screenshot:
 
 ![Example of the rule "Disable/Enable request parser"](../../images/user-guides/rules/disable-parsers-example.png)
