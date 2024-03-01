@@ -8,6 +8,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div class="do-section">
     <div class="do-main">
+
         <div id="mirroring-by-web-servers" class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/web-server-mirroring.svg" />
             <h3>Mirroring by NGINX, Envoy and similar</h3>
@@ -168,7 +169,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>RHEL 8.x</h3>
             <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
         </div>
-
     </div>
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-debian-10">
@@ -759,7 +759,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>All-in-one installation</h3>
             <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
         </a>
-
+        
         <div id="inline-packages-linux-debian-10" class="do-card">
             <h3>Debian 10.x Buster</h3>
             <p>Wallarm packages for Debian 10.x Buster</p>
@@ -1249,7 +1249,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>RHEL 8.x</h3>
             <p>Wallarm packages for Red Hat Enterprise Linux 8.x</p>
         </div>
-
     </div>
 
     <div class="do-nested" data-for="packages-linux-debian-10">
