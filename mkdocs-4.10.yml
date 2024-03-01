@@ -258,6 +258,10 @@ nav:
         - Scaling and High Availability: installation/kubernetes/sidecar-proxy/scaling.md
         - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
         - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
+      - eBPF:
+        - Deploy: installation/kubernetes/ebpf/deployment.md
+        - Helm Chart Values: installation/kubernetes/ebpf/helm-chart-for-wallarm.md
+        - Selecting Packets for Mirroring: installation/kubernetes/ebpf/selecting-packets.md
     - In-Line:
       - Overview: installation/inline/overview.md
       - Compute Instances:

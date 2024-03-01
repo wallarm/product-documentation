@@ -566,6 +566,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Sidecar</h3>
             <p>Deploy Wallarm Sidecar controller for pod security</p>
         </a>
+
+        <a class="do-card" href="../../installation/kubernetes/ebpf/deployment/">
+            <img class="non-zoomable" src="../../images/platform-icons/ebpf.svg" />
+            <h3>eBPF</h3>
+            <p>Out-of-band deployment on Kubernetes using the eBPF technology</p>
+        </a>
     </div>
 
     <div class="do-nested" data-for="kubernetes-ingress">
