@@ -26,7 +26,7 @@ To set and apply rate limit:
     * **Response code** - code to return in response to rejected requests. `503` by default.
 
         Below is the example of rate limiting behavior with limit of 5 r/s, burst 12 and delay 8.
-
+        
         ![How rate limiting works](../../images/user-guides/rules/rate-limit-schema.png)
 
         The first 8 requests (the value of delay) are transferred by Wallarm node without delay. The next 4 requests (burst - delay) are delayed so that the defined rate of 5 r/s is not exceeded. The next 3 requests are rejected because the total burst size has been exceeded. Subsequent requests are delayed.
