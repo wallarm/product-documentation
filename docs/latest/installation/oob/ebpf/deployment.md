@@ -121,7 +121,7 @@ To deploy the Wallarm eBPF solution:
 
 ### Step 3: Enable traffic mirroring
 
-We recommend enabling traffic mirroring to utilize the Wallarm eBPF-based solution effectively for the following Kubernetes objects: NGINX Ingress controller, Kong Ingress controller, or regular NGINX servers.
+We recommend enabling traffic mirroring to utilize the Wallarm eBPF-based solution effectively for NGINX Ingress controller, Kong Ingress controller, or regular NGINX servers.
 
 By default, the deployed solution does not analyze any traffic. To enable traffic analysis, you need to enable traffic mirroring at the desired level, which can be:
 
@@ -187,4 +187,4 @@ To test that the Wallarm eBPF operates correctly:
 
     Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../..//user-guides/events/analyze-attack.md).
 * Vulnerability detection based on [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) is not supported as server response bodies required for vulnerability identification are not mirrored.
-* While the solution is in beta, not all Kubernetes object types can be mirrored effectively. Therefore, we recommend enabling traffic mirroring specifically for NGINX Ingress controllers, Kong Ingress controllers, or regular NGINX servers in Kubernetes.
+* While the solution is in beta, not all Kubernetes resources can be mirrored effectively. Therefore, we recommend enabling traffic mirroring specifically for NGINX Ingress controllers, Kong Ingress controllers, or regular NGINX servers in Kubernetes.
