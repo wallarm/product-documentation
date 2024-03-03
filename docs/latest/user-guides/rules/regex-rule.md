@@ -23,7 +23,7 @@ To set and apply your own attack detector:
 
             To disable attack detection by a new regular expression, please create a new **Disable regexp-based attack detection** rule with the new regular expression specified.
 
-    * **Experimental** - this flag allows you to safely check the triggering of a regular expression without blocking requests. The requests won't be blocked even when the filter node is set to the blocking mode. These requests will be considered as attacks detected by the experimental method and will be hidden from the event list by default. They can be accessed using search query `experimental attacks`.
+    * **Experimental** - this flag allows you to safely check the triggering of a regular expression without blocking requests. The requests will not be blocked even when the filter node is set to the blocking mode. These requests will be considered as attacks detected by the experimental method and will be hidden from the event list by default. They can be accessed using search query `experimental attacks`.
 
     * **Attack** - the type of attack that will be detected when the parameter value in the request matches the regular expression.
 
