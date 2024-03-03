@@ -6,9 +6,7 @@
 
 # Virtual Patching
 
-A virtual patch allows blocking malicious requests even in the monitoring and safe blocking [modes](../../admin-en/configure-wallarm-mode.md) or when a request does not seem to contain any known attack vectors. The only requests virtual patches do not block are the ones originating from the [allowlisted](../ip-lists/overview.md) IPs.
-
-Virtual patches are especially useful in cases when it is impossible to fix a critical [vulnerability](../../user-guides/vulnerabilities.md) in the code or install the necessary updates quickly.
+In cases when it is impossible to fix a critical [vulnerability](../../user-guides/vulnerabilities.md) in the code of your application or install the necessary updates quickly, you can create a virtual patch to block all or specific requests to the endpoints that may allow exploiting these vulnerabilities. Virtual patch will block requests even in the monitoring and safe blocking [modes](../../admin-en/configure-wallarm-mode.md), except the ones originating from the [allowlisted](../ip-lists/overview.md) IPs.
 
 Wallarm provides the following [rules](../../user-guides/rules/rules.md) to create virtual patch:
 
