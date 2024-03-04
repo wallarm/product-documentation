@@ -1,4 +1,4 @@
-* Kubernetes platform version 1.19-1.25
+* Kubernetes platform version 1.19-1.29
 * [Helm v3](https://helm.sh/) package manager
 * An application deployed as a Pod in a Kubernetes cluster
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
