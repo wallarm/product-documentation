@@ -51,7 +51,10 @@ Ensure the following technical prerequisites are met for a successful deployment
 * [Helm v3](https://helm.sh/) package manager.
 * Linux kernel version 5.10 or 5.15 with BTF (BPF Type Format) enabled. Supported on Ubuntu, Debian, RedHat, Google COS, or Amazon Linux 2.
 * Processor with the x86_64 architecture.
+* While the solution is in beta, not all Kubernetes resources can be mirrored effectively. Therefore, we recommend enabling traffic mirroring specifically for NGINX Ingress controllers, Kong Ingress controllers, or regular NGINX servers in Kubernetes.
 * Your user account should have [**Administrator** access](../../../user-guides/settings/users.md#user-roles) to the Wallarm Console.
+
+If your use case differs from the listed requirements, contact our [sales engineers](mailto:sales@wallarm.com) providing detailed technical information about your environment to explore potential adjustments to meet your specific needs.
 
 ## Network access
 
