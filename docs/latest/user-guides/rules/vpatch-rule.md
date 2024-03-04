@@ -1,78 +1,47 @@
 [img-vpatch-example1]:      ../../images/user-guides/rules/vpatch-rule-1.png
 [img-vpatch-example2]:      ../../images/user-guides/rules/vpatch-rule-2.png
+[img-regex-example1]:       ../../images/user-guides/rules/regex-rule-1.png
 [rule-creation-options]:    ../../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
 [request-processing]:       ../../user-guides/rules/request-processing.md
 
 # Virtual Patching
 
-A virtual patch allows blocking malicious requests even in the monitoring and safe blocking modes or when a request does not seem to contain any known attack vectors. The only requests virtual patches do not block are the ones originating from the [allowlisted](../ip-lists/overview.md) IPs.
+In cases when it is impossible to fix a critical [vulnerability](../../user-guides/vulnerabilities.md) in the code of your application or install the necessary updates quickly, you can create a virtual patch to block all or specific requests to the endpoints that may allow exploiting these vulnerabilities. Virtual patch will block requests even in the monitoring and safe blocking [modes](../../admin-en/configure-wallarm-mode.md), except the ones originating from the [allowlisted](../ip-lists/overview.md) IPs.
 
-Virtual patches are especially useful in cases when it is impossible to fix a critical vulnerability in the code or install the necessary security updates quickly.
+Wallarm provides the following [rules](../../user-guides/rules/rules.md) to create virtual patch:
 
-If attack types are selected, the request will be blocked only if the filter node detects an attack of one of the listed types in the corresponding parameter.
-
-If the setting *Any request* is selected, the system will block the requests with the defined parameter, even if it does not contain an attack vector.
+* **Create a virtual patch** rule - allows creating virtual patch that blocks requests containing in its selected part one of the [known](../../attacks-vulns-list.md) attack signs, such as SQLi, SSTi, RCE etc. Also, you can select **Any request** to block specific requests without any attack signs.
+* **Create regexp-based attack indicator** rule with **Virtual patch** option selected - allows creating virtual patch that blocks requests containing your own attack signs or your own reason for blocking (see [example](#blocking-all-requests-with-incorrect-x-authentication-header)) that are described with the regular expressions. Details on working with rule based on regular expression are described [here](../../user-guides/rules/regex-rule.md).
 
 ## Creating and applying the rule
 
 --8<-- "../include/waf/features/rules/rule-creation-options.md"
 
-## Example: Blocking SQLi Attack in the Query String Parameter `id`
+## Rule examples
 
-**If** the following conditions take place:
+### Blocking specific requests for selected endpoint
 
-* the application is accessible at the domain *example.com*
-* the application's parameter *id* is vulnerable to SQL injection attacks
-* the filter node is set to monitoring mode
-* attempts at vulnerability exploitation must be blocked
+Let us say your application online purchase section accessible at the `example.com/purchase` endpoint crashes upon processing the `refresh` query string parameter. Before the bug is fixed, you need to block requests leading to the crush.
 
-**Then**, to create a virtual patch
-
-1. Go to the *Rules* tab
-1. Find the branch `example.com/**/*.*` and click *Add rule*
-1. Choose *Create a virtual patch*
-1. Choose *SQLi* as the type of attack
-1. Select the *QUERY* parameter and enter its value `id` after *in this part of request*
-
-    --8<-- "../include/waf/features/rules/request-part-reference.md"
-
-1. Click *Create*
-
-![Virtual patch for a certain request type][img-vpatch-example1]
-
-
-## Example: Block All Requests With the Query String Parameter `refresh`
-
-**If** the following conditions take place:
-
-* the application is accessible at the domain *example.com*
-* the application crashes upon processing the query string parameter `refresh`
-* attempts at vulnerability exploitation must be blocked
-
-**Then**, to create a virtual patch
-
-1. Go to the *Rules* tab
-1. Find the branch `example.com/**/*.*` and click *Add rule*
-1. Choose *Create a virtual patch*
-1. Choose *Any request*
-1. Select the *QUERY* parameter and enter its value `refresh` after *in this part of request*
-
-    --8<-- "../include/waf/features/rules/request-part-reference.md"
-
-1. Click *Create*
+To do so, set the **Create a virtual patch** rule as displayed on the screenshot:
 
 ![Virtual patch for any request type][img-vpatch-example2]
 
-## API calls to create the rule
+### Blocking exploitation attempts for discovered but not yet fixed vulnerability
 
-To create the virtual patch rule, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below are some examples of the corresponding API calls.
+Let us say your application accessible at the `example.com` domain has discovered but not yet fixed vulnerability: the application's `id` parameter is vulnerable to SQL injection attacks. Meanwhile, Wallarm filtering node is set to monitoring mode and yet you need to immediately block the vulnerability exploitation attempts.
 
-**Create the virtual patch to block all requests sent to `/my/api/*`**
+To do so, set the **Create a virtual patch** rule as displayed on the screenshot:
 
---8<-- "../include/api-request-examples/create-rule-en.md"
+![Virtual patch for a certain request type][img-vpatch-example1]
 
-**Create the virtual patch for a specific application instance ID to block all requests sent to `/my/api/*`**
+### Blocking all requests with incorrect `X-AUTHENTICATION` header
 
-An application should be [configured](../settings/applications.md) before sending this request. Specify an ID of an existing application in `action.point[instance].value`.
+--8<-- "../include/waf/features/rules/rule-vpatch-regex.md"
 
---8<-- "../include/api-request-examples/create-rule-for-app-id.md"
+## API calls for virtual patches
+
+To create virtual patches, you can call the Wallarm API directly. Consider the examples:
+
+* [Create the virtual patch to block all requests sent to `/my/api/*`](../../api/request-examples.md#create-the-virtual-patch-to-block-all-requests-sent-to-myapi)
+* [Create the virtual patch for a specific application instance ID to block all requests sent to `/my/api/*`](../../api/request-examples.md#create-the-virtual-patch-for-a-specific-application-instance-id-to-block-all-requests-sent-to-myapi)
