@@ -1,1 +1,0 @@
---8<-- "4.6/user-guides/rules/add-replace-response-header.md"
