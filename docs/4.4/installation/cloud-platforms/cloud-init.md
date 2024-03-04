@@ -1,1 +1,0 @@
---8<-- "4.6/installation/cloud-platforms/cloud-init.md"

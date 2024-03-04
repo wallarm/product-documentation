@@ -1,1 +1,0 @@
---8<-- "4.6/user-guides/rules/disable-request-parsers.md"
