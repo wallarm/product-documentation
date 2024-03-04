@@ -1,53 +1,49 @@
-[link-regex]:       https://github.com/yandex/pire
+[link-regex]:               https://github.com/yandex/pire
 [img-regex-example1]:       ../../images/user-guides/rules/regex-rule-1.png
 [img-regex-example2]:       ../../images/user-guides/rules/regex-rule-2.png
 [img-regex-id]:             ../../images/user-guides/rules/regex-id.png
 [request-processing]:       ../../user-guides/rules/request-processing.md
 
-# User-Defined Detection Rules
+# User-Defined Detectors
 
-In some cases, it may prove useful to add a signature for attack detection manually or to create a so-called *virtual patch*. As such, Wallarm does not use regular expressions to detect attacks, but it does allow users to add additional signatures based on regular expressions.
+Wallarm provides the **Create regexp-based attack indicator** [rule](../../user-guides/rules/rules.md) to define your own attack signs that are described with the regular expressions.
 
-## Adding a New Detection Rule
+## Creating and applying rule
 
-To do this, you need to create the rule *Create regexp-based attack indicator* and fill in the fields:
+To set and apply your own attack detector:
 
-* *Regular expression*: regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Syntax and specifics of regular expressions are described in the [instructions on adding rules](rules.md#condition-type-regex).
+1. Proceed to Wallarm Console → **Rules** → **Add rule**.
+1. In **If request is**, [describe](rules.md#branch-description) the scope to apply the rule to.
+1. In **Then**, choose **Create regexp-based attack indicator** and set your attack indicator parameters:
 
-    !!! warning "Changing the regular expression specified in the rule"
-        Changing the regular expression specified in the existing rule of the type **Create regexp-based attack indicator** results in automatic deletion of the rules [**Disable regexp-based attack detection**](#partial-disabling-of-a-new-detection-rule) that use the previous expression.
+    * **Regular expression** - regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Syntax and specifics of regular expressions are described in the [instructions on adding rules](rules.md#condition-type-regex).
 
-        To disable attack detection by a new regular expression, please create a new rule **Disable regexp-based attack detection** with the new regular expression specified.
+        !!! warning "Changing the regular expression specified in the rule"
+            Changing the regular expression specified in the existing rule of the type **Create regexp-based attack indicator** results in automatic deletion of the rules [**Disable regexp-based attack detection**](#partial-disabling) that use the previous expression.
 
-* *Experimental*: this flag allows you to safely check the triggering of a regular expression without blocking requests. The requests won't be blocked even when the filter node is set to the blocking mode. These requests will be considered as attacks detected by the experimental method and will be hidden from the event list by default. They can be accessed using search query `experimental attacks`.
+            To disable attack detection by a new regular expression, please create a new **Disable regexp-based attack detection** rule with the new regular expression specified.
 
-* *Attack*: the type of attack that will be detected when the parameter value in the request matches the regular expression.
+    * **Experimental** - this flag allows you to safely check the triggering of a regular expression without blocking requests. The requests will not be blocked even when the filter node is set to the blocking mode. These requests will be considered as attacks detected by the experimental method and will be hidden from the event list by default. They can be accessed using search query `experimental attacks`.
 
-* *in this part of request*: determines a point in the request, where the system should detect the corresponding attacks.
+    * **Attack** - the type of attack that will be detected when the parameter value in the request matches the regular expression.
 
-    --8<-- "../include/waf/features/rules/request-part-reference.md"
+1. In **In this part of request**, specify [request parts](request-processing.md) in which you want to search for attack signs.
+1. Wait for the [rule compilation to complete](rules.md#ruleset-lifecycle).
 
-### Example: Blocking All Requests with an Incorrect X-Authentication Header
+## Rule examples
 
-**If** the following conditions take place:
+### Blocking all requests with incorrect `X-AUTHENTICATION` header
 
-* the application is accessible at the domain *example.com*
-* the application uses the *X-Authentication* header for user authentication
-* the header format is 32 hex symbols
+Let us say your application accessible at the `example.com` domain uses the `X-AUTHENTICATION` header in 32 hex symbols format for user authentication and you want to reject incorrect format tokens.
 
-**Then**, to create a rule for rejecting incorrect format tokens:
+To do so, set the **Create regexp-based attack indicator** rule as displayed on the screenshot, including:
 
-1. Go to the *Rules* tab
-2. Find the branch for `example.com/**/*.*` and click *Add rule*
-3. Select *Define as an attack on the basis of a regular expression*
-4. Set *Regex* value as `[^0-9a-f]|^.{33,}$|^.{0,31}$`
-5. Choose `Virtual patch` as the type of *Attack*
-6. Set the point `Header X-AUTHENTICATION`
-7. Click *Create*
+* Regular expression: `[^0-9a-f]|^.{33,}$|^.{0,31}$`
+* Request part: `header` - `X-AUTHENTICATION`
 
 ![Regex rule first example][img-regex-example1]
 
-### Example: Block all requests with the `class.module.classLoader.*` body parameters
+### Block all requests with `class.module.classLoader.*` body parameters
 
 One of the ways to exploit the 0-day vulnerability in [Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html) (Spring4Shell) is to send the POST request with certain malicious payloads injected into the following body parameters:
 
@@ -71,7 +67,7 @@ The Wallarm node operating in the blocking [mode](../../admin-en/configure-walla
 
 The Spring Cloud Function component also has the active vulnerability (CVE-2022-22963). If using this component and the Wallarm node mode is different from blocking, create the virtual patch as described [below](#example-block-all-requests-with-the-class-cloud-function-routing-expression-header).
 
-### Example: Block all requests with the `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` header
+### Block all requests with `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` header
 
 The Spring Cloud Function component has the active vulnerability (CVE-2022-22963) that can be exploited by injecting malicious payloads into the `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` or `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` header.
 
@@ -86,14 +82,14 @@ The Wallarm node operating in the blocking [mode](../../admin-en/configure-walla
 
 There is also the 0-day vulnerability in [Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html) (Spring4Shell). Learn how to block its exploitation attempts with the [reqexp-based virtual patch](#example-block-all-requests-with-the-classmoduleclassloader-body-parameters).
 
-## Partial Disabling of a New Detection Rule
+## Partial disabling
 
-If the created rule should be partially disabled for a particular branch, this can easily be done by creating the rule *Disable regexp-based attack detection* with the following fields:
+If the created rule should be partially disabled for a particular branch, this can easily be done by creating the **Disable regexp-based attack detection** rule with the following fields:
 
 - *Regular expression*: previously created regular expressions that must be ignored.
 
     !!! warning "Behavior of the rule if the regular expression was changed"
-        Changing the regular expression specified in the existing rule of the type [**Create regexp-based attack indicator**](#adding-a-new-detection-rule) results in automatic deletion of the rules **Disable regexp-based attack detection** that use the previous expression.
+        Changing the regular expression specified in the existing rule of the type [**Create regexp-based attack indicator**](#creating-and-applying-rule) results in automatic deletion of the rules **Disable regexp-based attack detection** that use the previous expression.
 
         To disable attack detection by a new regular expression, please create a new rule **Disable regexp-based attack detection** with the new regular expression specified.
 
@@ -116,10 +112,4 @@ To create the relevant rule:
 
 ## API call to create the rule
 
-To create the regexp-based attack indicator, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is the examples of the corresponding API call.
-
-The following request will create the custom attack indicator based on the regexp `^(~(44[.]33[.]22[.]11))$`.
-
-If requests to domain `MY.DOMAIN.COM` have the `X-FORWARDED-FOR: 44.33.22.11` HTTP header, the Wallarm node will consider them to be scanner attacks and block attacks if the corresponding [filtration mode](../../admin-en/configure-wallarm-mode.md) has been set.
-
---8<-- "../include/api-request-examples/create-rule-scanner.md"
+To create the regexp-based attack indicator, you can [call the Wallarm API directly](../../api/request-examples.md#create-a-rule-to-consider-the-requests-with-specific-value-of-the-x-forwarded-for-header-as-attacks).
