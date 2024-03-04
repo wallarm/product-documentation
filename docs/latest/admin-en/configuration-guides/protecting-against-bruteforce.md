@@ -6,7 +6,7 @@ Brute‑force attack is one of the attack types that is not detected by Wallarm 
 
 Note that:
 
-* Brute-force protection described in this article is one of the ways for the load control provided by Wallarm - alternatively, you can apply [rate limiting](../../user-guides/rules/rate-limiting.md).
+* Brute-force protection described in this article is one of the ways for the load control provided by Wallarm - alternatively, you can apply [rate limiting](../../user-guides/rules/rate-limiting.md). Use rate limiting for slowing down the incoming traffic and brute-force protection to completely block the attacker.
 * Besides brute force protection, in a similar way, you can configure protection against [forced browsing](protecting-against-forcedbrowsing.md).
 
 ## Configuring
