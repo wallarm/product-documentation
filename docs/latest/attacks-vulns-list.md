@@ -616,8 +616,6 @@ APIs vulnerable to Mass Assignment attacks allow converting client input to inte
 
 JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
 
-Wallarm detects weak JWT vulnerability by default as it has the [**Weak JWT** trigger](about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection) enabled.
-
 Wallarm considers JWTs to be weak if they are:
 
 * Unencrypted - there is no signing algorithm (the `alg` field is `none` or absent).

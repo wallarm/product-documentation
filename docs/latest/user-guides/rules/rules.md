@@ -43,9 +43,9 @@ Rules are automatically grouped into nested branches by endpoint URIs and other 
 
 You can create rules with specified action but not linked to any endpoint - they are called **default rules**. Such rules are applied to all endpoints.
 
-* To create default rule, follow the [standard procedure](rules.md) but leave URI blank. The new rule not linked to any endpoint will be created.
+* To create default rule, follow the [standard procedure](#configuring) but leave URI blank. The new rule not linked to any endpoint will be created.
 * To view the list of created default rules, click the **Default rules** button.
-* Default rules are [inherited](#distinct-and-inherited-rules) by all branches.
+* Default rules are inherited by all branches.
 
 !!! info "Traffic filtration mode default rule"
     Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
@@ -386,7 +386,7 @@ The request should not contain the designated part. In this case, the comparison
 
 ## Ruleset lifecycle
 
-A custom ruleset defines specifics of processing particular client traffic (for example, allows setting up custom attack detection rules or masking sensitive data). The Wallarm node relies on the custom ruleset during incoming requests analysis.
+All created rules form a custom ruleset. The Wallarm node relies on the custom ruleset during incoming requests analysis.
 
 Changes of custom rules do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **uploading to the filtering node** are finished.
 
