@@ -27,7 +27,7 @@ The filtration mode can be configured in the following ways:
     !!! warning "Support of the `wallarm_mode` directive on the CDN node"
         Please note that the `wallarm_mode` directive cannot be configured on the [Wallarm CDN nodes](../installation/cdn-node.md). To configure the filtration mode of the CDN nodes, please use other available methods.
 * Define the general filtration rule in Wallarm Console
-* Create a filtration mode rule in the **Rules** or **Attacks** sections of Wallarm Console
+* Define the specific filtration rules in Wallarm Console
 
 Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#setting-up-priorities-of-filtration-mode-configuration-methods-using-wallarm_mode_allow_override). By default, the settings specified in Wallarm Console have a higher priority than the `wallarm_mode` directive regardless of its value severity.
 
@@ -91,29 +91,30 @@ In this example, the filtration modes are defined for the resources as follows:
 
 ### Setting up general filtration rule in Wallarm Console
 
-You can define the general filtration mode for all incoming requests in **Settings** → **General** in the [US](https://us1.my.wallarm.com/settings/general) or [EU](https://my.wallarm.com/settings/general) Cloud. This setting has the same scope as the `wallarm_mode` directive value defined in the `http` block in the configuration file.
+You can define the general filtration mode for all incoming requests in **Settings** → **General** in the [US](https://us1.my.wallarm.com/settings/general) or [EU](https://my.wallarm.com/settings/general) Cloud.
     
 ![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
 The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules** section. Note that local rules created in this section have higher priority.
 
-### Setting up filtration rules in Rules section
+### Setting up specific filtration rules in Wallarm Console
 
-You can fine-tune the filtration mode for processing requests that meet your custom conditions in the **Rules** section of Wallarm Console. These rules have higher priority than the [general filtration rule set in Wallarm Console](#setting-up-general-filtration-rule-in-wallarm-console).
+You can set filtration mode for specific branches, endpoints and relying on other conditions. Such rules can be created from different sections of Wallarm Console and will be stored in the **Rules** section. They have higher priority than the [general filtration rule set in Wallarm Console](#setting-up-general-filtration-rule-in-wallarm-console).
 
 To create a new filtration mode rule:
 
-1. [Call the Wallarm API directly](../api/request-examples.md#create-the-rule-setting-filtration-mode-to-monitoring-for-the-specific-application) or:
 1. Proceed to Wallarm Console:
 
-    * **Rules** → **Add rule**.
-    * **Rules** → your branch → **Add rule**.
+    * **Rules** → **Add rule** or your branch → **Add rule**.
+    * **Attacks** / **Incidents** → attack/incident → hit → **Rule**.
     * **API Discovery** (if [enabled](../api-discovery/setup.md#enable)) → your endpoint → **Create rule**.
 
-1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to. If you initiated the rule for specific branch or endpoint, they will be the scope - if necessary, you can add more conditions.
+1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to. If you initiated the rule for specific branch, hit or endpoint, they will define the scope - if necessary, you can add more conditions.
 
 1. In **Then**, choose **Set filtration mode** and select a desired mode.
 1. Save changes and wait for the [rule compilation to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
+
+Note that to create a filtration mode rule, you can also [call the Wallarm API directly](../api/request-examples.md#create-the-rule-setting-filtration-mode-to-monitoring-for-the-specific-application).
 
 **Example: disabling request blocking during user registration**
 
