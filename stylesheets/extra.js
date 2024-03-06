@@ -37,12 +37,6 @@ function injectScript(src, cb) {
 window.ldfdr = window.ldfdr || {};
 injectScript('https://lftracker.leadfeeder.com/lftracker_v1_kn9Eq4Rwz5KaRlvP.js');
 
-// Add HubSpot
-
-if (window.location.href.indexOf("channeltivity-content") <= -1) {
-  injectScript('https://js.hs-scripts.com/3989912.js');
-}
-
 // Version selection
 
 var rootVersion = '4.10';
