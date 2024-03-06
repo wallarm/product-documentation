@@ -71,7 +71,7 @@ This article lists and briefly describes attacks and vulnerabilities the Wallarm
 Wallarm **automatically detects** listed vulnerabilities and attacks and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
 
 !!! info "Required configuration for some attack types"
-    Some attacks and vulnerabilities, such as [API abuse](#api-abuse), behavioral ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola)), [credential stuffing](about-wallarm/credential-stuffing.md) and [Wallarm internal](#special), are not detected by default. For such attacks/vulnerabilities, required configuration is specifically defined.
+    Some attacks and vulnerabilities, such as behavioral ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola)), [API abuse](#api-abuse) and [credential stuffing](#credential-stuffing) are not detected by default. For such attacks/vulnerabilities, required configuration is specifically defined.
 
 ??? info "Watch video about how Wallarm protects against OWASP Top 10"
     <div class="video-wrapper">
