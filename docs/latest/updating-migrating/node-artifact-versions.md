@@ -105,6 +105,11 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ## Helm chart for Wallarm eBPF‑based solution
 
+### 0.10.23 (2024-03-07)
+
+* Fixed http2 streams mirroring issues in some cases
+* Internal fixes and stability improvements
+
 ### 0.10.22 (2024-03-01)
 
 * [Initial release](../installation/oob/ebpf/deployment.md)
