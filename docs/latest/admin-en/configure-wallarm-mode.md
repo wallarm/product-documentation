@@ -27,7 +27,7 @@ The filtration mode can be configured in the following ways:
     !!! warning "Support of the `wallarm_mode` directive on the CDN node"
         Please note that the `wallarm_mode` directive cannot be configured on the [Wallarm CDN nodes](../installation/cdn-node.md). To configure the filtration mode of the CDN nodes, please use other available methods.
 * Define the general filtration rule in Wallarm Console
-* Define the specific filtration rules in Wallarm Console
+* Define the endpoint-targeted filtration rules in Wallarm Console
 
 Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#setting-up-priorities-of-filtration-mode-configuration-methods-using-wallarm_mode_allow_override). By default, the settings specified in Wallarm Console have a higher priority than the `wallarm_mode` directive regardless of its value severity.
 
@@ -97,7 +97,7 @@ You can define the general filtration mode for all incoming requests in **Settin
 
 The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules** section. Note that local rules created in this section have higher priority.
 
-### Setting up specific filtration rules in Wallarm Console
+### Setting up endpoint-targeted filtration rules in Wallarm Console
 
 You can set filtration mode for specific branches, endpoints and relying on other conditions. Such rules can be created from different sections of Wallarm Console and will be stored in the **Rules** section. They have higher priority than the [general filtration rule set in Wallarm Console](#setting-up-general-filtration-rule-in-wallarm-console).
 
