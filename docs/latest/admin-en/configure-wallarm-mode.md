@@ -95,7 +95,7 @@ You can define the general filtration mode for all incoming requests in **Settin
     
 ![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
-The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules** section. Note that local rules created in this section have higher priority.
+The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules** section. Note that endpoint-targeted filtration rules in this section have higher priority.
 
 ### Setting up endpoint-targeted filtration rules in Wallarm Console
 
