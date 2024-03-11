@@ -188,13 +188,12 @@ nav:
     - User‑Defined Detectors: user-guides/rules/regex-rule.md
     - Masking Sensitive Data: user-guides/rules/sensitive-data-rule.md
     - Changing Response Headers: user-guides/rules/add-replace-response-header.md
-    - Triggers: user-guides/triggers/triggers.md
     - Filtration Mode: admin-en/configure-wallarm-mode.md
-    - Attack Detection:
-      - Procedure: about-wallarm/protecting-against-attacks.md
-      - Analyzing Requests: user-guides/rules/request-processing.md
-      - Attack Types: attacks-vulns-list.md
+    - Detection Procedure:
+      - Overview: about-wallarm/protecting-against-attacks.md
+      - Parsing Requests: user-guides/rules/request-processing.md
       - Rules: user-guides/rules/rules.md
+      - Triggers: user-guides/triggers/triggers.md
 # - Overview: ...
     # - OWASP Top 10: ...
     # - Known attacks / CVEs: ...
@@ -488,3 +487,4 @@ nav:
       - Shared Responsibility Model for Clients' Data: about-wallarm/shared-responsibility.md
       - Data Retention Policy: about-wallarm/data-retention-policy.md
     - Glossary: glossary-en.md
+    - Attack / Vulnerability Types: attacks-vulns-list.md

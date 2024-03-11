@@ -1,14 +1,18 @@
 [link-regex]:                   https://github.com/yandex/pire
 [link-request-processing]:      request-processing.md
-[img-add-rule]:                 ../../images/user-guides/rules/add-rule.png
+[img-add-rule]:                 ../../images/user-guides/rules/section-rules-add-rule.png
 
 # Rules
 
-In Wallarm, rules are used to fine-tune the behavior of the system during the analysis of requests and their further processing in the post-analysis module as well as in the Wallarm Cloud. You can inspect existing rules and configure the new ones in the **Rules** section of Wallarm Console.
+Rules are used to fine-tune the [default](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) Wallarm behavior during the analysis of requests and their further processing. Thus, using rules you can change how the system detects malicious requests and acts when such malicious requests are detected.
 
-For a better understanding of how the traffic processing rules are applied, it is advisable to learn how the filter node [analyzes the requests][link-request-processing].
+Rules are configured in the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud.
 
-One important thing about making changes to the rules is that these changes don't take effect immediately. It may take some time to [compile the rules](#ruleset-lifecycle) and download them into filter nodes.
+
+![Rules section](../../images/user-guides/rules/section-rules.png)
+
+!!! warning "Rule application delay"
+    When you make changes to the rules, they don't take effect immediately as it takes some time to [compile the rules](#ruleset-lifecycle) and upload them to the filtering nodes.
 
 ## What you can do with rules
 
@@ -19,74 +23,13 @@ Using rules, you can provide the multiple protections measures for your applicat
 * [Create your own detection rule](../../user-guides/rules/regex-rule.md)
 * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
 * Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
-* Fine tune request processing by [managing request parsers](../../user-guides/rules/request-processing.md#managing-parsers) and [changing server response headers](../../user-guides/rules/add-replace-response-header.md)
+* Fine tune request processing by [managing request parsers](../../user-guides/rules/request-processing.md#managing-parsers)
+* Configure the additional layer of the application security by [changing server response headers](../../user-guides/rules/add-replace-response-header.md)
 * Fine tune attack detection by setting to [ignore certain attack types](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) and to [ignore certain attack signs in the binary data](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
 
-## Terminology
+## Rule branches
 
-**Point**
-
-A point is an HTTP request parameter. A parameter can be described with a sequence of filters applied for request processing, e.g., headers, body, URL, Base64, etc. This sequence is also called the *point*.
-
-Request processing filters are also called parsers.
-
-**Rule branch**
-
-The set of HTTP request parameters and their conditions is called the *branch*. If the conditions are fulfilled, the rules related to this branch will be applied.
-
-For example, the rule branch `example.com/**/*.*` describes the conditions matching all requests to any URL of the domain `example.com`.
-
-**Endpoint (endpoint branch)**
-
-A branch without nested rule branches is called an *endpoint branch*. Ideally, an application endpoint corresponds to one business function of the protected application. For instance, such business function as authorization can be an endpoint rule branch of `example.com/login.php`.
-
-**Rule**
-
-A request processing setting for the filter node, the post-analysis module, or the cloud is called a *rule*.
-
-Processing rules are linked to the branches or endpoints. A rule is applied to a request only if the request matches all the conditions described in the branch.
-
-## Inspecting
-
-To view the rules, go to the **Rules** section of Wallarm Console. This section represents branches and endpoints that are already known.
-
-![Rules tab overview](../../images/user-guides/rules/rules-overview.png)
-
-The system automatically groups the rules by branches, highlighting common conditions and building a tree-like structure. As a result, a branch may have child branches. To show or hide nested branches, click on the blue circle to the left of the branch description.
-
-Two asterisks `**` in a branch description refer to any number of nested paths. For instance, the branch `/**/*.php` will contain both `/index.php` and `/app/admin/install.php`.
-
-The size of the blue circle indicates the relative quantity of the nested branches. Its color indicates the relative quantity of the rules within the branch and its sub-branches. On each nesting level, the size and color of the circles are independent from each other.
-
-To the right of the branch description, the system may display an orange number, which indicates the number of rules in that branch (only the direct descendants, not the nested rules). If no number is displayed, then that branch is "virtual"&nbsp;— it is used only for grouping similar sub-branches.
-
-Branches with no rules available for the user (according to the privilege model) are automatically hidden .
-
-### Rule display
-
-In each branch, the user can look through the list of rules attached to it. To switch over to the page with the rule list, click on the description of the corresponding branch.
-
-![Viewing branch rules](../../images/user-guides/rules/view-rules.png)
-
-The rules within a branch are grouped by the *point* field. The rules that affect the entire request, rather than individual parameters, are grouped together into one line. To see the entire list, click on the line.
-
-For each rule, the system displays the following parameters: last modified time, quantity, types, and point.
-
-### Default rules
-
-You can create rules with specified action but not linked to any endpoint - they are called **default rules**. Such rules are applied to all endpoints.
-
-* To create default rule, follow the [standard procedure](rules.md) but leave URI blank. The new rule not linked to any endpoint will be created.
-* To view the list of created default rules, click the **Default rules** button.
-
-!!! info "Traffic filtration mode default rule"
-    Wallarm automatically [creates](../../admin-en/configure-wallarm-mode.md#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console) the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
-
-Default rules are [inherited](#distinct-and-inherited-rules) by all branches.
-
-### Distinct and inherited rules
-
-The rules are inherited down the rules branch. Principles:
+Rules are automatically grouped into nested branches by endpoint URIs and other conditions. This builds a  tree-like structure in which rules are inherited down. Principles:
 
 * All branches inherit [default](#default-rules) rules.
 * In a branch, child endpoints inherit rules from the parent.
@@ -94,7 +37,22 @@ The rules are inherited down the rules branch. Principles:
 * Directly specified has priority over [regex](rules.md#condition-type-regex).
 * Case [sensitive](rules.md#condition-type-equal) has priority over [insensitive](rules.md#condition-type-iequal-aa).
 
-Here are some details of how to work with the rules branch:
+![Rules tab overview](../../images/user-guides/rules/rules-overview.png)
+
+### Default rules
+
+You can create rules with specified action but not linked to any endpoint - they are called **default rules**. Such rules are applied to all endpoints.
+
+* To create default rule, follow the [standard procedure](#configuring) but leave URI blank. The new rule not linked to any endpoint will be created.
+* To view the list of created default rules, click the **Default rules** button.
+* Default rules are inherited by all branches.
+
+!!! info "Traffic filtration mode default rule"
+    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
+
+### Viewing branch rules
+
+Here are some details of how to work with the rule branches:
 
 * To expand the endpoint, click the blue circle.
 * Endpoints that do not have distinct rules are greyed out and not clickable.
@@ -106,52 +64,31 @@ Here are some details of how to work with the rules branch:
 
     ![Distinct and inherited rules for endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
 
-### API calls to get rules
-
-To get custom rules, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below are some examples of the corresponding API calls.
-
-**Get all configured rules**
-
---8<-- "../include/api-request-examples/get-all-configured-rules.md"
-
-**Get only conditions of all rules**
-
---8<-- "../include/api-request-examples/get-conditions.md"
-
-**Get rules attached to a specific condition**
-
-To point to a specific condition, use its ID - you can get it when requesting conditions of all rules (see above).
-
---8<-- "../include/api-request-examples/get-rules-by-condition-id.md"
-
 ## Configuring
 
-To add a new rule, go to the **Rules** tab.
-
-Rules can be added to both existing and new branches. They can be created from scratch or based on one of the existing branches.
-
-To add a rule to an existing branch, click *Add rule* (after hovering the mouse cursor over the branch description line, the button will appear in the pop-up menu on the right). You can also perform this operation on the rule page of this branch.
-
-If necessary, it is possible to modify the branch to which a rule will be added. For this, click on the *If request is* clause in the rule-adding form and make changes to the branch description conditions. If a new branch is created, it will appear on the screen, and the application structure view will be updated.
+To add a new rule, go to the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud. Rules can be added to both existing [branches](#rule-branches) and from scratch which will create a new branch if one does not exist.
 
 ![Adding a new rule][img-add-rule]
 
-### Branch description
+Note that a rule is applied to the request only if some conditions are met (like target endpoint, method, presence of some parameters or values, etc.). Also, it is often applied only to some request parts. For a better understanding of request structure interaction with the rules, it is advisable to learn how the filtering node [analyzes the requests][link-request-processing].
 
-A branch description consists of a set of conditions for various parameters that an HTTP request must fulfill; otherwise, the rules associated with this branch will not be applied. Each line in the *If request is* section of the rule-adding form refers to a separate condition comprised of three fields: point, type, and comparison argument. The rules described in the branch are only applied to the request if all the conditions are fulfilled.
+Rule conditions may be defined using:
 
-To configure the set of conditions, both the **URI constructor** and the **advanced edit form** can be used.
+* [URI constructor](#uri-constructor) - allows configuring the rule conditions by specifying the request method and endpoint in only one string.
+* [Advanced edit form](#advanced-edit-form) - expands URI constructor to allow configuring both method/endpoint and additional rule conditions, such as application, headers, query string parameters and others.
 
 ### URI constructor
 
-#### Working with URI constructor
+URI constructor allows configuring the rule conditions by specifying the request method and endpoint in only one string.
 
-URI constructor allows configuring the rule conditions by specifying the request method and endpoint in only one string:
+#### General usage
 
-* For the request method, the URI constructor provides the particular selector. If the method is not selected, the rule will be applied to requests with any method.
-* For the request endpoint, the URI constructor provides the particular field accepting the following value formats:
+URI constructor provides:
 
-    | Format | Examples and request point values |
+* Selector for the request method. If the method is not selected, the rule will be applied to requests with any method.
+* Field for the request endpoint which accepts the following value formats:
+
+    | Format | Example |
     | ------ | ------ |
     | Full URI including the following components:<ul><li>Scheme (the value is ignored, you can explicitly specify the scheme by using the advanced form)</li><li>Domain or an IP address</li><li>Port</li><li>Path</li><li>Query string parameters</ul> | `https://example.com:3000/api/user.php?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com:3000`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `php`</li><li>`[query, 'q']` - `action`</li><li>`[query, 'w']` - `delete`</li></ul>|
     | URI with some components omitted | `example.com/api/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul><br>`http://example.com/api/clients/user/?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `clients`</li><li>`[path, 2]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[query, 'q']` - `action`</li><li>`[query, 'w']` - `delete`</li></ul><br>`/api/user`<br><ul><li>``[header, 'HOST']` - any value</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul>|
@@ -159,17 +96,17 @@ URI constructor allows configuring the rule conditions by specifying the request
     | URI with `**` meaning any number of components including its absence | `example.com/**/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li>The value matches `example.com/api/create/user` and `example.com/api/user`.<br>The value does not match `example.com/user`, `example.com/api/user/index.php` and `example.com/api/user/?w=delete`.</ul><br>`example.com/api/**/*.*`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[action_name]` - any non‑empty value (hidden in the advanced edit form)</li><li>`[action_ext]` - any non‑empty value (hidden in the advanced edit form)</li>The value matches `example.com/api/create/user.php` and `example.com/api/user/create/index.php`<br>and does not match `example.com/api`, `example.com/api/user` and `example.com/api/create/user.php?w=delete`.</ul> |
     | URI with the [regular expression](#condition-type-regex) to match certain component values (regexp must be wrapped in `{{}}`) | `example.com/user/{{[0-9]}}`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `user`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `[0-9]`</li><li>`[action_ext]` - `∅`</li>The value matches `example.com/user/3445`<br>and does not match `example.com/user/3445/888` and `example.com/user/3445/index.php`.</ul> |
 
-The string specified in the URI constructor is automatically parsed into the set of conditions for the following [request points](#points):
+The string specified in the URI constructor is automatically parsed into the set of [conditions](#conditions):
 
 * `method`
 * `header`. The URI constructor allows specifying only the header `HOST`.
-* `path`, `action_name`, `action_ext`. Before confirming the rule creation, please ensure the values of these request points are parsed in one of the following ways:
+* `path`, `action_name`, `action_ext`. Before confirming the rule creation, please ensure the values of these request parts are parsed in one of the following ways:
     * Explicit value of certain `path` number + `action_name` + `action_ext` (optional)
     * Explicit value of `action_name` + `action_ext` (optional)
     * Explicit value of certain `path` number without `action_name` and without `action_ext`
 * `query`
 
-The value specified in the URI constructor can be completed by other request points available only in the [advanced edit form](#advanced-edit-form).
+The value specified in the URI constructor can be completed by other conditions available only in the [advanced edit form](#advanced-edit-form).
 
 #### Using wildcards
 
@@ -193,7 +130,7 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
 
 ![Example of parsing URI into components](../../images/user-guides/rules/something-parsed.png)
 
-...where `something-1.example.com` is a `header`-`HOST` point. We mentioned that wildcard cannot be used within the point, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Wallarm [specific syntax](#condition-type-regex):
+...where `something-1.example.com` is a `header`-`HOST` condition. We mentioned that wildcard cannot be used within the condition, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Wallarm [specific syntax](#condition-type-regex):
 
 1. Do not use `*` in a meaning "any number of symbols".
 1. Put all the `.` that we want to be interpreted as "actual dots" in square brackets:
@@ -215,11 +152,13 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
 
 ### Advanced edit form
 
-#### Points
+Advanced edit form expands possibilities of [URI constructor](#uri-constructor) (method and URI) to allow configuring both these and additional rule conditions, such as application, headers, query string parameters and others.
 
-The *point* field indicates which parameter value should be extracted from the request for comparison. At present, not all of the points that can be analyzed by the filter node, are supported.
+#### Conditions
 
-The following points are currently supported:
+Conditions indicate which values should be presented in which request parts. The rule is applied when all its conditions are met. Conditions are listed in the **If request is** section of the rule.
+
+The following conditions are currently supported:
 
 * **application**: application ID.
 * **proto**: HTTP protocol version (1.0, 1.1, 2.0, ...).
@@ -242,7 +181,7 @@ The following points are currently supported:
 
 #### Condition type: EQUAL (`=`)
 
-The point value must match precisely with the comparison argument. For example, only `example` matches with the point value `example`.
+The value must match precisely with the comparison argument. For example, only `example` matches with The value `example`.
 
 !!! info "EQUAL condition type for the HOST header value"
     To cover more requests with the rules, we have restricted the EQUAL condition type for the HOST header. Instead of the EQUAL type, we recommend using the type IEQUAL that allows parameter values in any register.
@@ -251,11 +190,11 @@ The point value must match precisely with the comparison argument. For example, 
 
 #### Condition type: IEQUAL (`Aa`)
 
-The point value must match with the comparison argument in any case. For example: `example`, `ExAmple`, `exampLe` match with the point value `example`.
+The value must match with the comparison argument in any case. For example: `example`, `ExAmple`, `exampLe` match with the value `example`.
 
 #### Condition type: REGEX (`.*`)
 
-The point value must match the regular expression. 
+The value must match the regular expression. 
 
 **Regular expression syntax**
 
@@ -443,13 +382,13 @@ To test the regular expression, you can use the **cpire** utility on supported D
 
 #### Condition type: ABSENT (`∅`)
 
-The request should not contain the designated point. In this case, the comparison argument is not used.
+The request should not contain the designated part. In this case, the comparison argument is not used.
 
 ## Ruleset lifecycle
 
-A custom ruleset defines specifics of processing particular client traffic (for example, allows setting up custom attack detection rules or masking sensitive data). The Wallarm node relies on the custom ruleset during incoming requests analysis.
+All created rules form a custom ruleset. The Wallarm node relies on the custom ruleset during incoming requests analysis.
 
-Changes of custom rules do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **unloading to the filtering node** are finished.
+Changes of custom rules do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **uploading to the filtering node** are finished.
 
 ### Custom ruleset building
 
@@ -459,11 +398,11 @@ Custom ruleset build status and expected completion time are displayed in Wallar
 
 ![Build status](../../images/user-guides/rules/build-rules-status.png)
 
-### Unloading a custom ruleset to the filtering node
+### Uploading to filtering node
 
-Custom ruleset build is unloaded to the filtering node during the filtering node and Wallarm Cloud synchronization. By default, synchronization of the filtering node and Wallarm Cloud is launched every 2‑4 minutes. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
+Custom ruleset build is uploaded to the filtering node during the filtering node and Wallarm Cloud synchronization. By default, synchronization of the filtering node and Wallarm Cloud is launched every 2‑4 minutes. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
 
-The status of unloading a custom ruleset to the filtering node is logged to the `/var/log/wallarm/syncnode.log` or `/opt/wallarm/var/log/wallarm/syncnode-out.log` file [depending on a node installation method](../../admin-en/configure-logging.md).
+The status of uploading a custom ruleset to the filtering node is logged to the `/var/log/wallarm/syncnode.log` or `/opt/wallarm/var/log/wallarm/syncnode-out.log` file [depending on a node installation method](../../admin-en/configure-logging.md).
 
 All Wallarm nodes connected to the same Wallarm account receive the same set of default and custom rules for traffic filtering. You still can apply different rules for different applications by using proper application IDs or unique HTTP request parameters like headers, query string parameters, etc.
 
@@ -492,3 +431,7 @@ You can:
 
 !!! warning "Rule modification restrictions"
     You cannot create or modify rules until creating backup or load from backup is complete.
+
+## API calls to get rules
+
+To get custom rules, you can [call the Wallarm API directly](../../api/request-examples.md#get-all-configured-rules).

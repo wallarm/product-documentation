@@ -55,14 +55,77 @@ Protected resource API can be designed on the basis of the following technologie
 
 To detect attacks, Wallarm uses the following process:
 
-1. Determine the request format and parse every request part as described in the [document about request parsing](../user-guides/rules/request-processing.md).
+1. Determine the request format and [parse](../user-guides/rules/request-processing.md) every request part.
 2. Determine the endpoint the request is addressed to.
-3. Apply [custom rules for request analysis](#custom-rules-for-request-analysis) configured in Wallarm Console.
-4. Make a decision whether the request is malicious or not based on [default and custom detection rules](#tools-for-attack-detection).
+3. Apply [custom](../user-guides/rules/rules.md) rules for request analysis configured in Wallarm Console.
+4. Make a decision whether the request is malicious or not based on [default](#tools-for-attack-detection) and custom rules.
+
+## Attack types
+
+The Wallarm solution protects APIs, microservices and web applications from the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) threats, API abuse and other automated threats.
+
+Technically, all attacks that can be detected by Wallarm are divided into groups:
+
+* Input validation attacks
+* Behavioral attacks
+
+Attack detection method depends on the attack group. To detect behavioral attacks, additional Wallarm node configuration is required.
+
+### Input validation attacks
+
+Input validation attacks include SQL injection, cross‑site scripting, remote code execution, Path Traversal and other attack types. Each attack type is characterized by specific symbol combinations sent in the requests. To detect input validation attacks, it is required to conduct syntax analysis of the requests - parse them in order to detect specific symbol combinations.
+
+Wallarm detects input validation attacks in any request part including binary files like SVG, JPEG, PNG, GIF, PDF, etc using the listed [tools](#tools-for-attack-detection).
+
+Detection of input validation attacks is enabled for all clients by default.
+
+### Behavioral attacks
+
+Behavioral attacks include the following attack classes:
+
+* [Brute‑force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md) include password brute‑forcing, session identifier brute‑forcing, credential stuffing. These attacks are characterized by a large number of requests with different forced parameter values sent to a typical URI for a limited timeframe.
+
+    For example, if an attacker forces password, many similar requests with different `password` values can be sent to the user authentication URL:
+
+    ```bash
+    https://example.com/login/?username=admin&password=123456
+    ```
+* [Forced browsing attacks](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md) are characterized by a large number of response codes 404 returned to requests to different URIs for a limited timeframe.
+
+    For example, the aim of this attack could to enumerate and access hidden resources (e.g. directories and files containing information on application components) to use this information for performing other attack types.
+
+* [The BOLA (IDOR) attacks](../admin-en/configuration-guides/protecting-against-bola-trigger.md) exploiting the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either get or modify its data bypassing an authorization mechanism.
+
+    For example, if an attacker forces shop identifiers to find a real identifier and get the corresponding shop financial data:
+
+    ```bash
+    https://example.com/shops/{shop_id}/financial_info
+    ```
+
+    If authorization is not required for such API requests, an attacker can get the real financial data and use it for their own purposes.
+
+#### Detection
+
+To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests.
+
+Correlation analysis is conducted when the threshold of request number sent to user authentication or resource file directory or a specific object URL is exceeded. Request number threshold should be set to reduce the risk of legitimate request blocking (for example, when the user inputs incorrect password to his account several times).
+
+* Correlation analysis is conducted by the Wallarm postanalytics module.
+* Comparison of the received request number and the threshold for the request number, and blocking of requests is conducted in the Wallarm Cloud.
+
+When behavioral attack is detected, request sources are blocked, namely the IP addresses the requests were sent from are added to the denylist.
+
+#### Protection
+
+To protect the resource against behavioral attacks, it is required to set the threshold for correlation analysis and URLs that are vulnerable to behavioral attacks:
+
+* [Instructions on configuration of brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md)
+* [Instructions on configuration of forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
+* [Instructions on configuration of BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola-trigger.md)
 
 ## Tools for attack detection
 
-To detect malicious requests, Wallarm nodes [analyze](waap-overview.md#protection-by-default) all requests sent to the protected resource using the following tools:
+To detect malicious requests, Wallarm nodes [analyze](#attack-detection-process) all requests sent to the protected resource using the following tools:
 
 * Library **libproton**
 * Library **libdetection**
@@ -128,19 +191,79 @@ You can control the **libdetection** mode using:
 * The `wallarm-enable-libdetection` [pod annotation](../installation/kubernetes/sidecar-proxy/pod-annotations.md#annotation-list) for the Wallarm Sidecar solution.
 * The `libdetection` variable for [AWS Terraform](../installation/cloud-platforms/aws/terraform-module/overview.md#how-to-use-the-wallarm-aws-terraform-module) deployment.
 
+## Ignoring certain attack types
+
+The rule **Ignore certain attack types** allows disabling detection of certain attack types in certain request elements.
+
+By default, the Wallarm node marks the request as an attack if detecting the signs of any attack type in any request element. However, some requests containing attack signs can actually be legitimate (e.g. the body of the request publishing the post on the Database Administrator Forum may contain the [malicious SQL command](../attacks-vulns-list.md#sql-injection) description).
+
+If the Wallarm node marks the standard payload of the request as the malicious one, a [false positive](#false-positives) occurs. To prevent false positives, standard attack detection rules need to be adjusted using the custom rules of certain types to accommodate protected application specificities. One of such custom rule types is **Ignore certain attack types**.
+
+**Creating and applying the rule**
+
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
+**Rule example**
+
+Let us say when the user confirms the publication of the post on the database administrator forum, the client sends the POST request to the endpoint `https://example.com/posts/`. This request has the following properties:
+
+* The post content is passed in the request body parameter `postBody`. The post content may include SQL commands that can be marked by Wallarm as malicious ones.
+* The request body is of the type `application/json`.
+
+The example of the cURL request containing [SQL injection](../attacks-vulns-list.md#sql-injection):
+
+```bash
+curl -H "Content-Type: application/json" -X POST https://example.com/posts -d '{"emailAddress":"johnsmith@example.com", "postHeader":"SQL injections", "postBody":"My post describes the following SQL injection: ?id=1%20select%20version();"}'
+```
+
+So you need to ignore SQL injections in the parameter `postBody` of the requests to `https://example.com/posts/`
+
+To do so, set the **Ignore certain attack types** rule as displayed on the screenshot:
+
+![Example of the rule "Ignore certain attack types"](../images/user-guides/rules/ignore-attack-types-rule-example.png)
+
+--8<-- "../include/waf/features/rules/request-part-reference.md"
+
+## Ignoring certain attack signs in the binary data
+
+The rules **Allow binary data** and **Allow certain file types** are used to adjust the standard attack detection rules for binary data.
+
+By default, the Wallarm node analyzes incoming requests for all known attack signs. During the analysis, the Wallarm node may not consider the attack signs to be regular binary symbols and mistakenly detect malicious payloads in the binary data.
+
+Using the rules **Allow binary data** and **Allow certain file types**, you can explicitly specify request elements containing binary data. During specified request element analysis, the Wallarm node will ignore the attack signs that can never be passed in the binary data.
+
+* The **Allow binary data** rule allows fine-tuning attack detection for request elements containing binary data (e.g. archived or encrypted files).
+* The **Allow certain file types** rule allows fine-tuning attack detection for request elements containing specific file types (e.g. PDF, JPG).
+
+**Creating and applying the rule**
+
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
+**Rule example**
+
+Let us say when the user uploads the binary file with the image using the form on the site, the client sends the POST request of the type `multipart/form-data` to `https://example.com/uploads/`. The binary file is passed in the body parameter `fileContents` and you need to allow this.
+
+To do so, set the **Allow binary data** rule as displayed on the screenshot::
+
+![Example of the rule "Allow binary data"](../images/user-guides/rules/ignore-binary-attacks-example.png)
+
+--8<-- "../include/waf/features/rules/request-part-reference.md"
+
 ## Monitoring and blocking attacks
 
-Wallarm can process attacks in the following modes:
+**Input validation attacks**
+
+Wallarm can process the [input validation attacks](#input-validation-attacks) in the following modes:
 
 * Monitoring mode: detects but does not block attacks.
 * Safe blocking mode: detects attacks but blocks only those originated from [graylisted IPs](../user-guides/ip-lists/overview.md). Legitimate requests originated from graylisted IPs are not blocked.
 * Blocking mode: detects and blocks attacks.
 
-Wallarm ensures quality request analysis and low level of false positives. However each protected application has its own specificities, so we recommend analyzing the work of the Wallarm in the monitoring mode before enabling the blocking mode.
+Detailed information about how different filtration modes work and how to configure filtration mode in general and for specific applications, domains or endpoints is available [here](../admin-en/configure-wallarm-mode.md).
 
-To control the filtration mode, the directive `wallarm_mode` is used. More detailed information about filtration mode configuration is available within the [link](../admin-en/configure-wallarm-mode.md).
+**Behavioral attacks**
 
-The filtration mode for behavioral attacks is configured separately via the particular [trigger](../admin-en/configuration-guides/protecting-against-bruteforce.md).
+How Wallarm detects the [behavioral attacks](#behavioral-attacks) and acts in case of their detection is defined not by the filtration mode, but by [specific configuration](#protection) of these attack type protection.
 
 ## False positives
 
@@ -157,92 +280,6 @@ In such cases, standard rules need to be adjusted to accommodate protected appli
 
 Identifying and handling false positives is a part of Wallarm fine‑tuning to protect your applications. We recommend to deploy the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
 
-## Ignoring certain attack types
-
-The rule **Ignore certain attack types** allows disabling detection of certain attack types in certain request elements.
-
-By default, the Wallarm node marks the request as an attack if detecting the signs of any attack type in any request element. However, some requests containing attack signs can actually be legitimate (e.g. the body of the request publishing the post on the Database Administrator Forum may contain the [malicious SQL command](../attacks-vulns-list.md#sql-injection) description).
-
-If the Wallarm node marks the standard payload of the request as the malicious one, a [false positive](#false-positives) occurs. To prevent false positives, standard attack detection rules need to be adjusted using the custom rules of certain types to accommodate protected application specificities. One of such custom rule types is **Ignore certain attack types**.
-
-**Creating and applying the rule**
-
---8<-- "../include/waf/features/rules/rule-creation-options.md"
-
-To create and apply the rule in the **Rules** section:
-
-1. Create the rule **Ignore certain attack types** in the **Rules** section of Wallarm Console. The rule consists of the following components:
-
-      * **Condition** [describes](../user-guides/rules/rules.md#branch-description) the endpoints to apply the rule to.
-      * Attack types to be ignored in the specified request element.
-
-        The **Certain attack types** tab allows selecting one or more attack types the Wallarm node can detect at the time of the rule creation.
-
-        The **All attack types (auto-updated)** tab disables detection of both attack types the Wallarm node can detect at the time of the rule creation and those that will be detected in the future. For example: if Wallarm supports a new attack type detection, the node will automatically ignore signs of this attack type in the selected request element.
-      
-      * **Part of request** points to the original request element that should not be analyzed for selected attack type signs.
-
-         --8<-- "../include/waf/features/rules/request-part-reference.md"
-
-2. Wait for the [rule compilation to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
-
-**Rule example**
-
-Let's say when the user confirms the publication of the post on the Database Administrator Forum, the client sends the POST request to the endpoint `https://example.com/posts/`. This request has the following properties:
-
-* The post content is passed in the request body parameter `postBody`. The post content may include SQL commands that can be marked by Wallarm as malicious ones.
-* The request body is of the type `application/json`.
-
-The example of the cURL request containing [SQL injection](../attacks-vulns-list.md#sql-injection):
-
-```bash
-curl -H "Content-Type: application/json" -X POST https://example.com/posts -d '{"emailAddress":"johnsmith@example.com", "postHeader":"SQL injections", "postBody":"My post describes the following SQL injection: ?id=1%20select%20version();"}'
-```
-
-To ignore SQL injections in the parameter `postBody` of the requests to `https://example.com/posts/`, the rule **Ignore certain attack types** can be configured as follows:
-
-![Example of the rule "Ignore certain attack types"](../images/user-guides/rules/ignore-attack-types-rule-example.png)
-
-## Ignoring certain attack signs in the binary data
-
-The rules **Allow binary data** and **Allow certain file types** are used to adjust the standard attack detection rules for binary data.
-
-By default, the Wallarm node analyzes incoming requests for all known attack signs. During the analysis, the Wallarm node may not consider the attack signs to be regular binary symbols and mistakenly detect malicious payloads in the binary data.
-
-Using the rules **Allow binary data** and **Allow certain file types**, you can explicitly specify request elements containing binary data. During specified request element analysis, the Wallarm node will ignore the attack signs that can never be passed in the binary data.
-
-* The rule **Allow binary data** allows fine-tuning attack detection for request elements containing binary data (e.g. archived or encrypted files).
-* The rule **Allow certain file types** allows fine-tuning attack detection for request elements containing specific file types (e.g. PDF, JPG).
-
-**Creating and applying the rule**
-
---8<-- "../include/waf/features/rules/rule-creation-options.md"
-
-To create and apply the rule in the **Rules** section:
-
-1. To adjust the attack detection rules for the binary data passed in the specified request element in any way, create the rule **Allow binary data** in the **Rules** section of Wallarm Console. The rule consists of the following components:
-
-      * **Condition** [describes](../user-guides/rules/rules.md#branch-description) the endpoints to apply the rule to.
-      * **Part of request** points to the original request element containing the binary data.
-
-         --8<-- "../include/waf/features/rules/request-part-reference.md"
-2. To adjust the attack detection rules for certain file types passed in the specified request element, create the rule **Allow certain file types** in the **Rules** section of Wallarm Console. The rule consists of the following components:
-      
-      * **Condition** [describes](../user-guides/rules/rules.md#branch-description) the endpoints to apply the rule to.
-      * File types to ignore the attack signs in.
-      * **Part of request** points to the original request element containing the specified file types.
-
-         --8<-- "../include/waf/features/rules/request-part-reference.md"
-3. Wait for the [rule compilation to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
-
-**Rule example**
-
-Let's say when the user uploads the binary file with the image using the form on the site, the client sends the POST request of the type `multipart/form-data` to `https://example.com/uploads/`. The binary file is passed in the body parameter `fileContents`.
-
-The rule **Allow binary data** fine‑tuning attack detection in the parameter `fileContents` looks as follows:
-
-![Example of the rule "Allow binary data"](../images/user-guides/rules/ignore-binary-attacks-example.png)
-
 ## Managing detected attacks
 
 All detected attacks are displayed in the Wallarm Console → **Attacks** section by the filter `attacks`. You can manage attacks through the interface as follows:
@@ -252,11 +289,17 @@ All detected attacks are displayed in the Wallarm Console → **Attacks** sectio
 * Mark attacks or separate hits as false positives
 * Create the rules for custom processing of separate hits
 
-For more information on managing attacks, see the instructions on [working with attacks](../about-wallarm/protecting-against-attacks.md).
-
 ![Attacks view](../images/user-guides/events/check-attack.png)
 
-Additionally, Wallarm provides comprehensive dashboards to help you stay on top of your system's security posture. Wallarm's [Threat Prevention](../user-guides/dashboards/threat-prevention.md) dashboard provides general metrics on your system's security posture, while the [OWASP API Security Top 10](../user-guides/dashboards/owasp-api-top-ten.md) dashboard provides detailed visibility into your system's security posture against the OWASP API Top 10 threats.
+## Attack dashboards
+
+Wallarm provides comprehensive dashboards to help you stay on top of your system's security posture.
+
+Wallarm's [Threat Prevention](../user-guides/dashboards/threat-prevention.md) dashboard provides general metrics on your system's security posture, including multi-aspect information about attacks: their sources, targets, types and protocols.
+
+![Threat Prevention dashboard](../images/user-guides/dashboard/threat-prevention.png)
+
+The [OWASP API Security Top 10](../user-guides/dashboards/owasp-api-top-ten.md) dashboard provides detailed visibility into your system's security posture against the OWASP API Top 10 threats, including attack information.
 
 ![OWASP API Top 10](../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
 
