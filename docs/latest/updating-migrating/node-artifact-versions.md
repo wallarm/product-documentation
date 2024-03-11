@@ -10,6 +10,18 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.10.2 (2024-03-08)
+
+* Improved filtering node and Wallarm Cloud synchronization, enhancing reliability
+* Updated the `appstructure` package
+* Updated the `api-firewall` package
+* Fixed the vulnerabilities: 
+
+    * [CVE-2021-43809](https://nvd.nist.gov/vuln/detail/CVE-2021-43809)
+    * [CVE-2023-48795](https://nvd.nist.gov/vuln/detail/CVE-2023-48795)
+* Enhanced security by setting the `wallarm` user to a non-interactive shell (`/sbin/nologin`), preventing direct login
+* Increased Tarantool's read-ahead buffer to 16 MB from 16 KB, reducing buffer size warnings and improving reliability
+
 ### 4.10.1 (2024-02-21)
 
 * Fixed an issue where partially downloaded custom ruleset files were mistakenly validated as complete. Chunked downloading has been implemented to address this issue
