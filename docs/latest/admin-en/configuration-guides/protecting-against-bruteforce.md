@@ -11,32 +11,33 @@ Note that:
 
 ## Configuring
 
-To configure brute-force protection:
+Consider the example below to learn how to configure brute-force protection.
+
+Let us say you want to protect the authentication endpoints of your `rent-car` application from overload, and, considering server resources, the appropriate rate limit for that is 30 requests from the same IP per 30 seconds. The IPs exceeding this limit when targeting authentication endpoints, should be blocked for 1 hour - and again if they continue to push on the endpoints. Moreover, it will be useful to have information that brute‑force attack took place.
+
+To provide this protection:
 
 1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **Brute force** condition.
-1. Set the threshold for the number of requests originated from the same IP address for a period of time.
-1. To activate the trigger only for requests sent to certain endpoints, specify the **URI** filter:
-    
-    * Besides entering specific URIs, you can [configure patterns](../../user-guides/rules/rules.md) using wildcards and regular expressions.
+1. Set the threshold 30 requests from the same IP per 30 seconds.
+1. Set the **Application** filter to `rent-car` (application should be registered in Wallarm).
+1. Set the **URI** filter as displayed on the screenshot, including:
+
+    * `**` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any number of components"
+    * `.*login*` [regular expression](../../user-guides/rules/rules.md#condition-type-regex) in the request part meaning "contains `login`"
+
+        Combined, they cover, for example:
+        `https://rent-car/users/login`
+        `https://rentappc/usrs/us/p-login/sq`
 
         ![Brute force trigger example](../../images/user-guides/triggers/trigger-example6.png)
-
-    * If you configure password brute‑forcing protection, then specify the URI used for authentication.
+    
+    * Besides configuring pattern that we need in this example, you can enter specific URIs or set trigger to work at any endpoint by not specifying any URI.
     * If using nested URIs, consider [trigger processing priorities](#trigger-processing-priorities).
-    * If the URI is not specified, the trigger will be activated at any endpoint with the request number exceeding the threshold.
 
-1. If required, set other trigger filters:
-
-    * **Application** the requests are addressed to.
-    * One or more **IP** the requests are sent from.
-
-1. Select trigger reactions:
-
-    * **Mark as brute force**. Requests received after the threshold exceedance will be marked as the brute‑force attack and displayed in the **Attacks** section of Wallarm Console.
-    * **Denylist IP address** and the period for IP address blocking to add IP addresses of malicious request sources to the [denylist](../../user-guides/ip-lists/overview.md). The Wallarm node will block all requests originated from the denylisted IP after the threshold was exceeded.
-    * **Graylist IP address** and the period to [graylist](../../user-guides/ip-lists/overview.md) IP addresses of malicious request sources. The Wallarm node will block requests originated from the graylisted IPs only if requests contain [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs. Brute‑force attacks originated from graylisted IPs are not blocked.
-
+1. Do not use the **IP** filter in this case, but be aware that your can use it to set trigger only to react to specific IPs originating requests.
+1. Select the **Denylist IP address** - `Block for 1 hour` trigger reaction. The Wallarm node will block all requests originated from the [denylisted](../../user-guides/ip-lists/overview.md) IP after the threshold was exceeded.
+1. Select the **Mark as brute force** trigger reaction. Requests received after exceeding the threshold will be marked as the brute‑force attack and displayed in the **Attacks** section of Wallarm Console. In some cases, you can use this reaction alone to have information about the attack, but not to block anything.
 1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
 
 You can configure several triggers for brute-force protection.
