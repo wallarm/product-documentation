@@ -56,6 +56,16 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.10.3 (2024-03-08)
+
+* Internal improvements for higher reliability and security, including better synchronization between the filtering node and Wallarm Cloud, securing the `wallarm` user with a non-interactive shell, and other changes that do not affect the usage flow
+* Updated the `appstructure` package
+* Updated the `api-firewall` package
+* Fixed the vulnerabilities: 
+
+    * [CVE-2021-43809](https://nvd.nist.gov/vuln/detail/CVE-2021-43809)
+    * [CVE-2023-48795](https://nvd.nist.gov/vuln/detail/CVE-2023-48795)
+
 ### 4.10.2 (2024-02-21)
 
 * Restored OpenTracing
