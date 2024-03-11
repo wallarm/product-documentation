@@ -464,6 +464,7 @@ nav:
     - Wallarm Scanner Addresses: admin-en/scanner-addresses.md
   - References:
     - FAQ:
+      - Attack Response Playbook: faq/attack-response-playbook.md
       - Installing Wallarm Ingress controller: faq/ingress-installation.md
       - Errors after Wallarm node installation: faq/common-errors-after-installation.md
       - Wallarm service status page: faq/wallarm-status-page.md
