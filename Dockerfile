@@ -21,6 +21,7 @@ RUN mkdocs build -f mkdocs-2.18.yml
 RUN mkdocs build -f mkdocs-ja-4.8.yml
 RUN mkdocs build -f mkdocs-tr-4.8.yml
 RUN mkdocs build -f mkdocs-pt-BR-4.8.yml
+RUN mkdocs build -f mkdocs-ar-4.10.yml
 
 FROM nginx:1.18-alpine as prod
 COPY --from=all /docs/site /usr/share/nginx/html
