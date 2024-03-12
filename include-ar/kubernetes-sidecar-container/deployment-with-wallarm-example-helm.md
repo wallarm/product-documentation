@@ -1,0 +1,63 @@
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    # عنصر وولارم: تعليق لتحديث البودس الجارية بعد تغيير ConfigMap لوولارم
+    checksum/config: '{{ include (print $.Template.BasePath "/wallarm-sidecar-configmap.yaml") . | sha256sum }}'
+  name: myapp
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        # عنصر وولارم: تعريف لحاوية جانبية لوولارم
+        - name: wallarm
+          image: {{ .Values.wallarm.image.repository }}:{{ .Values.wallarm.image.tag }}
+          imagePullPolicy: {{ .Values.wallarm.image.pullPolicy | quote }}
+          env:
+          - name: WALLARM_API_HOST
+            value: {{ .Values.wallarm.wallarm_host_api | quote }}
+          - name: DEPLOY_USER
+            value: {{ .Values.wallarm.deploy_username | quote }}
+          - name: DEPLOY_PASSWORD
+            value: {{ .Values.wallarm.deploy_password | quote }}
+          - name: DEPLOY_FORCE
+            value: "true"
+          - name: WALLARM_ACL_ENABLE
+            value: "true"
+          - name: TARANTOOL_MEMORY_GB
+            value: {{ .Values.wallarm.tarantool_memory_gb | quote }}
+          ports:
+          - name: http
+            # المنفذ الذي يقبل من خلاله الحاوية الجانبية لوولارم الطلبات 
+            # من كائن الخدمة
+            containerPort: 80
+          volumeMounts:
+          - mountPath: /etc/nginx/sites-enabled
+            readOnly: true
+            name: wallarm-nginx-conf
+        # تعريف حاوية التطبيق الرئيسية الخاصة بك
+        - name: myapp
+          image: <Image>
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+          # المنفذ الذي تقبل من خلاله حاوية التطبيق الطلبات الواردة
+          - containerPort: 8080 
+      volumes:
+      # عنصر وولارم: تعريف حجم wallarm-nginx-conf
+      - name: wallarm-nginx-conf
+        configMap:
+          name: wallarm-sidecar-nginx-conf
+          items:
+            - key: default
+              path: default
+```
