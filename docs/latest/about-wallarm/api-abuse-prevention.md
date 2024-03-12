@@ -39,21 +39,6 @@ If one or several detectors point to [bot attack signs](#automated-threats-block
 
 The solution deeply observes traffic anomalies before attributing them as malicious bot actions and blocking their origins. Since metric collection and analysis take some time, the module does not block malicious bots in real-time once the first malicious request originated but significantly reduces abnormal activity on average.
 
-## Activating API Abuse Prevention
-
-The **API Abuse Prevention** module in the disabled state is delivered with [all forms of the Wallarm node 4.2 and above](../installation/supported-deployment-options.md) including the CDN node.
-
-To activate API Abuse Prevention:
-
-1. Make sure that your traffic is filtered by the Wallarm node 4.2 or later.
-1. Make sure your [subscription plan](subscription-plans.md#subscription-plans) includes **API Abuse Prevention**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
-1. In Wallarm Console → **API Abuse Prevention**, create or enable at least one [API Abuse profile](../user-guides/api-abuse-prevention.md).
-
-    !!! info "Access to API Abuse Prevention settings"
-        Only [administrators](../user-guides/settings/users.md#user-roles) of your company Wallarm account can access the **API Abuse Prevention** section. Contact your administrator if you do not have this access.
-
-    ![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
-
 ## Tolerance
 
 You can configure how strictly the signs of a malicious bot are monitored and thus control the number of false positive detections. This is set with the **Tolerance** parameter within [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile).
@@ -78,28 +63,3 @@ You can configure API Abuse Prevention to react to malicious bots in one of the 
 * **Only monitor**: Wallarm will display the detected bot activity in the [**Attacks**](../user-guides/events/check-attack.md) section but will add the bot's IP neither to deny- nor to graylist. 
 
     From such events details, you can quickly block the bot with the **Add source IP to denylist** button. The IP is added to the denylist forever, but in the **IP Lists** section you can delete it or change the time of staying in the list.
-
-## Exploring malicious bots and their attacks
-
-You can explore the bots' activity in the Wallarm Console UI as follows:
-
-* Explore malicious bots in the **IP lists** section
-* View API abuse performed by bots in the **Attacks** section
-
-[Learn how to explore the bots' activity →](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks)
-
-## Exception list
-
-An exception list is a list of IP addresses, subnets, locations and source types that are known to be associated with legitimate bots or crawlers, and are therefore exempt from being blocked or restricted by the API Abuse Prevention module.
-
-You can add IP addresses to the exception list in advance or if they have already been mistakenly flagged as being associated with malicious bot activity. [Learn how to work with exception list →](../user-guides/api-abuse-prevention.md#working-with-exception-list)
-
-![API Abuse prevention - Exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list.png)
-
-## Disabling bot protection for specific URLs and requests
-
-In addition to marking good bots' IPs via [exception list](#exception-list), you can disable bot protection both for URLs that the requests target and for the particular request types, for example, for the requests containing specific headers.
-
-This may help to avoid false positive detections and may be also helpful in case of testing your applications when you may need to temporarily disable bot protection for some of their endpoints.
-
-Note that comparing to other API Abuse Prevention configuration, this ability is configured **not** within the API Abuse [profile](../user-guides/api-abuse-prevention.md), but separately - with the help of the [**Set API Abuse Prevention mode**](../user-guides/rules/api-abuse-url.md) rule.

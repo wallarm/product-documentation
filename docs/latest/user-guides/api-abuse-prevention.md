@@ -1,13 +1,25 @@
-# API Abuse Prevention profile management <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention Setup <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-In the **API Abuse Prevention** section of Wallarm Console you can manage API abuse profiles that are required for configuration of the [**API Abuse Prevention**](../about-wallarm/api-abuse-prevention.md) module.
+This article describes how to enable and configure the [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) module to detect and mitigate malicious bots and to avoid blocking legitimate activities.
 
-The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
+## Enabling
 
-* **Administrator** or **Analyst** for the regular accounts.
-* **Global Administrator** or **Global Analyst** for the accounts with the multitenancy feature.
+The API Abuse Prevention module in the disabled state is delivered with [all forms of the Wallarm node 4.2 and above](../installation/supported-deployment-options.md) including the CDN node.
 
-## Creating API abuse profile
+To enable API Abuse Prevention:
+
+1. Make sure that your traffic is filtered by the Wallarm node 4.2 or later.
+1. Make sure your [subscription plan](subscription-plans.md#subscription-plans) includes **API Abuse Prevention**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
+1. In Wallarm Console → **API Abuse Prevention**, create or enable at least one [API Abuse profile](../user-guides/api-abuse-prevention.md).
+
+    !!! info "Access to API Abuse Prevention settings"
+        Only [administrators](../user-guides/settings/users.md#user-roles) of your company Wallarm account can access the **API Abuse Prevention** section. Contact your administrator if you do not have this access.
+
+    ![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+
+## Creating profiles
+
+API abuse profiles are used to configure how Wallarm's **API Abuse Prevention** detects and mitigates malicious bots. Each profile defines which applications should be protected from what type of bots, what should be the level of tolerance to that bots and what should be the reaction to their activities.
 
 To create an API abuse profile:
 
@@ -23,18 +35,14 @@ To create an API abuse profile:
 
     Once the API abuse profile is configured, the module will start the [traffic analysis and blocking supported automated threats](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works).
 
-## Disabling API abuse profile
+## Disabling and deleting profiles
 
 Disabled profiles are the ones that the **API Abuse Prevention** module does not use during traffic analysis but that are still displayed in the profile list. You can re-enable disabled profiles at any moment. If there are no enabled profiles, the module does not block malicious bots.
 
-You can disable the profile by using the corresponding **Disable** option.
-
-## Deleting API abuse profile
-
 Deleted profiles are the ones that cannot be restored and that the **API Abuse Prevention** module does not use during traffic analysis.
 
-You can delete the profile by using the corresponding **Delete** option.
-
+You can find **Disable** and **Delete** options in the profile menu.
+ 
 ## Exploring blocked malicious bots and their attacks
 
 The **API Abuse Prevention** module blocks bots by adding them to the [denylist](../user-guides/ip-lists/overview.md) or [graylist](../user-guides/ip-lists/overview.md) for 1 hour.
@@ -78,9 +86,9 @@ The **API Abuse Prevention** module compiles client traffic into URL patterns. T
 | HEALTHCHECK | Content related to the health check endpoints. | - |
 | VARY | The segment is marked as VARY if it is impossible to attribute it to other categories. A variable part of the URL path. | - |
 
-## Working with exception list
+## Exceptions for source IPs
 
-To mark some IPs as associated with legitimate bots or crawlers to avoid blocking them by API Abuse Prevention, use the [**Exception list**](../about-wallarm/api-abuse-prevention.md#exception-list).
+To mark some IPs as associated with legitimate bots or crawlers to avoid blocking them by API Abuse Prevention, use the **Exception list**.
 
 You add IP address or range to the exception list and specify target application: this causes that any requests from these addresses to the target application will not lead to marking these addresses as malicious bots and they will not be added to [deny-](../user-guides/ip-lists/overview.md) or [graylist](../user-guides/ip-lists/overview.md) by API Abuse Prevention.
 
@@ -103,8 +111,42 @@ By default, the IP is added to the exception list forever. You can change this a
 
 The **Exception list** tab provides the historical data - you can view items that were presented in the list within the selected period of time in past.
 
-## Working with exceptions for target URLs and specific requests
+## Exceptions for target URLs and specific requests
 
 In addition to marking good bots' IPs via [exception list](#working-with-exception-list), you can disable bot protection both for URLs that the requests target and for the particular request types, for example, for the requests containing specific headers.
 
-Note that comparing to other API Abuse Prevention configuration, this ability is configured **not** within the API Abuse profile, but separately - with the help of the [**Set API Abuse Prevention mode**](../user-guides/rules/api-abuse-url.md) rule.
+To do that, Wallarm provides the **Set API Abuse Prevention mode** rule (supported by nodes version 4.8 and above).
+
+**Creating and applying the rule**
+
+To disable bot protection for specific URL or request type:
+
+1. Proceed to Wallarm Console → **Rules** → **Add rule**.
+1. In **If request is**, [describe](../../user-guides/rules/rules.md#uri-constructor) the requests and/or URLs to apply the rule to.
+
+    To specify the URL, if you use the [**API Discovery**](../../api-discovery/overview.md) module and have your endpoints discovered, you can also quickly create the rule for the endpoint using its menu.
+
+1. In **Then**, choose **Set API Abuse Prevention mode** and set:
+
+    * **Default** - for the described scope (specific URL or request), the protection from bots will work in a usual way defined by common API Abuse Prevention [profiles](../../user-guides/api-abuse-prevention.md).
+    * **Do not check for bot activity** - for the described URL and/or request type, the check for bot activity will not be performed.
+
+1. Optionally, in the comment, specify the reason of creating the rule for this URL/request type.
+
+Note that you can temporarily disable the exception for the URL and/or request type without deleting the rule: to do that, select the **Default** mode. You can go back to **Do not check for bot activity** at any moment later.
+
+**Rule examples**
+
+**Marking legitimate bot by its request headers**
+
+Suppose your application is integrated with the Klaviyo marketing automation tool having multiple IPs that send requests. So we set not to check for automated (bot) activities in GET requests from the `Klaviyo/1.0` user agent for specific URIs:
+
+![Do not check for bot activity for requests with specific headers](../../images/user-guides/rules/api-abuse-url-request.png)
+
+**Disabling protection from bots for testing endpoint**
+
+Let's say you have the endpoint that belongs to your application. The application should be protected from bot activities but the testing endpoint should be an exception. Also, you have your API inventory discovered the [**API Discovery**](../../api-discovery/overview.md) module. 
+
+In this case it is easier to create rule from the **API Discovery** list of endpoints. Go there, find your endpoint and initiate rule creation from its page:
+
+![Creating Set API Abuse Prevention mode for API Discovery endpoint](../../images/user-guides/rules/api-abuse-url.png)
