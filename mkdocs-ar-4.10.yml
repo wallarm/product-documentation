@@ -2,9 +2,10 @@ INHERIT: mkdocs-base.yml
 
 theme:
   version: "4.10"
+  language: ar
 
-docs_dir: docs/4.10
-site_dir: site
+docs_dir: docs/latest-ar
+site_dir: site/ar
 
 nav:
   - البداية السريعة:
