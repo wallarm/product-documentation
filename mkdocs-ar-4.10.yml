@@ -13,7 +13,7 @@ theme:
   version: "4.10"
   playground_button_name: "استكشف الملعب"
 
-docs_dir: docs/ar
+docs_dir: docs/latest-ar
 site_dir: site/ar
 
 watch:
