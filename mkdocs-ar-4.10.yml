@@ -1,11 +1,23 @@
 INHERIT: mkdocs-base.yml
 
-theme:
-  version: "4.10"
-  language: ar
+site_name: توثيق وولارم
+site_url: https://docs.wallarm.com/ar/
+site_description: حل وولارم بيحمي واجهات برمجة التطبيقات (APIs)، والمايكروسيرفيسيز، وتطبيقات الويب من تهديدات أوبتوب 10 الخاصة بـ OWASP لواجهات برمجة التطبيقات، وسوء استخدام الـAPI، وغيرها من التهديدات الآلية من غير ما يحتاج لضبط قواعد يدوي وكمان بنسبة أخطاء زائفة قليلة جدًا.
 
-docs_dir: docs/latest-ar
+copyright: '<a href="https://www.wallarm.com/terms-of-service" target="_blank">Terms of services</a> | <a href="https://www.wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://www.wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | <a href="#__consent">Cookie settings</a> | 2024 © Wallarm Inc.'
+
+theme:
+  language: ar
+  language_lowercase: ar
+  language_name: Arabic
+  version: "4.10"
+  playground_button_name: "استكشف الملعب"
+
+docs_dir: docs/ar
 site_dir: site/ar
+
+watch:
+  - docs/latest-ar
 
 nav:
   - البداية السريعة:
