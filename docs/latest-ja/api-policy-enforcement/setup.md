@@ -33,7 +33,7 @@
 
     可能な違反の詳細：
 
-    --8<-- "../include-ja/api-policies-enforcement/api-policies-violations.md"
+    --8<-- "../include/api-policies-enforcement/api-policies-violations.md"
 
     仕様をAPIポリシー適用に初めて使用する場合は、仕様が必要なエンドポイントに適用され、実際のエラーを検出することを確認するために、反応として`モニター`を設定することを推奨します。
 

@@ -25,7 +25,7 @@ API ポリシー適用は、ポジティブセキュリティモデルを利用�
 
 リクエストは以下の異なる観点から仕様に違反する可能性があります：
 
---8<-- "../include-ja/api-policies-enforcement/api-policies-violations.md"
+--8<-- "../include/api-policies-enforcement/api-policies-violations.md"
 
 API ポリシー適用には時間（50 ms）とリクエストサイズ（1024 KB）による制限があり - これらの制限を超えると、リクエストの処理を停止し、これらの制限のいずれかが超えられたことを示す **仕様処理超過限度** [イベント](viewing-events.md#overlimit-events) を **攻撃** セクションに作成します。
 

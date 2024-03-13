@@ -42,4 +42,4 @@ WallarmコンソールUIを使用する他に、[Wallarm APIを直接呼び出�
 
 24時間前の日付を[Unix Timestamp](https://www.unixtimestamp.com/)形式に変換して`TIMESTAMP`と置き換えてください。
 
---8<-- "../include-ja/api-request-examples/get-incidents-en.md"
+--8<-- "../include/api-request-examples/get-incidents-en.md"
