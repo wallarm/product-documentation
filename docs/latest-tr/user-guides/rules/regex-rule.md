@@ -40,7 +40,7 @@ Bunu yapmak için, *Regexp ile saldırı belirteci oluştur* kuralını oluştur
 1. *Kurallar* sekmesine gidin
 2. `example.com/**/*.*` için dalını bulun ve *Kural ekle* tıklayın
 3. *Düzenli bir ifade temelinde bir saldırı olarak tanımla* seçin
-4. *Regex* değerini `[^0-9a-f]|^.{33,}$|^.{0,31}$` olarak ayarlayın
+4. *Regex* değerini `^(.{0,31}|.{33,}|[^0-9a-fA-F]+)$` olarak ayarlayın
 5. *Saldırı* türü olarak `Sanal yama` seçin
 6. Noktayı `Header X-AUTHENTICATION` olarak ayarlayın
 7. *Oluştur* tıklayın

@@ -40,7 +40,7 @@ Para fazer isso, você precisa criar a regra *Criar indicador de ataque baseado 
 1. Vá para a aba *Regras*
 2. Encontre o ramo para `example.com/**/*.*` e clique em *Adicionar regra*
 3. Selecione *Definir como um ataque com base em uma expressão regular*
-4. Defina o valor *Regex* como `[^0-9a-f]|^.{33,}$|^.{0,31}$`
+4. Defina o valor *Regex* como `^(.{0,31}|.{33,}|[^0-9a-fA-F]+)$`
 5. Escolha `Patch virtual` como o tipo de *Ataque*
 6. Defina o ponto `Cabeçalho X-AUTENTICAÇÃO`
 7. Clique em *Criar*

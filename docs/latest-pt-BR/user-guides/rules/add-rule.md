@@ -262,7 +262,7 @@ Para testar a expressão regular, você pode usar a utilidade **cpire** no Debia
     ```
 3. Execute a utilizade **cpire**:
     ```bash
-    cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
+    cpire-runner -R '<YOUR_REGULAR_EXPRESSION>'
     ```
 4. Insira o valor a ser verificado se corresponde à expressão regular. A utilidade retornará o resultado:
     * `0` se o valor corresponder à expressão regular
