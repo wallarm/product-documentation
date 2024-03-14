@@ -41,7 +41,7 @@ To do this, you need to create the rule *Create regexp-based attack indicator* a
 1. Go to the *Rules* tab
 2. Find the branch for `example.com/**/*.*` and click *Add rule*
 3. Select *Define as an attack on the basis of a regular expression*
-4. Set *Regex* value as `[^0-9a-f]|^.{33,}$|^.{0,31}$`
+4. Set *Regex* value as `^(.{0,31}|.{33,}|[^0-9a-fA-F]+)$`
 5. Choose `Virtual patch` as the type of *Attack*
 6. Set the point `Header X-AUTHENTICATION`
 7. Click *Create*
