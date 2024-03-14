@@ -44,6 +44,10 @@ You can configure several triggers for brute force protection.
 
 ## Testing
 
+For testing, use trigger described in the [Configuring](#configuring) section. To test, you will need to set the `example.com` domain to be automatically identified with the example `rent-car` application as described in [automatic application identification](../../user-guides/settings/applications.md#automatic-application-identification).
+
+To test the trigger:
+
 1. Send the number of requests that exceeds the configured threshold to the protected URI. For example, 50 requests to `example.com/api/v1/login`:
 
     ```bash
