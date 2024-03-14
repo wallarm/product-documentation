@@ -266,7 +266,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
     ```
 3. Run the **cpire** utility:
     ```bash
-    cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
+    cpire-runner -R '<YOUR_REGULAR_EXPRESSION>'
     ```
 4. Enter the value to check whether it matches with the regular expression. The utility will return the result:
     * `0` if the value matches with the regular expression

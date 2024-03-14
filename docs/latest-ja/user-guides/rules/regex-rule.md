@@ -40,7 +40,7 @@
 1. *Rules*タブに移動します
 2. `example.com/**/*.*`のブランチを見つけて、*Add rule*をクリックします
 3. *Define as an attack on the basis of a regular expression*を選択します
-4. *Regex*の値として`[^0-9a-f]|^.{33,}$|^.{0,31}$`を設定します
+4. *Regex*の値として`^(.{0,31}|.{33,}|[^0-9a-fA-F]+)$`を設定します
 5. *Attack*のタイプとして`Virtual patch`を選択します
 6. ポイントとして`Header X-AUTHENTICATION`を設定します
 7. *Create*をクリックします

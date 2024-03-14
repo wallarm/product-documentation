@@ -256,7 +256,7 @@ WallarmのURIコンストラクタでワイルドカードを使用できます�
     ```
 3. **cpire** ユーティリティを実行します：
     ```bash
-    cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
+    cpire-runner -R '<YOUR_REGULAR_EXPRESSION>'
     ```
 4. 正規表現と一致するかどうかを確認する値を入力します。ユーティリティは結果を返します：
     * バリューが正規表現と一致する場合は `0`

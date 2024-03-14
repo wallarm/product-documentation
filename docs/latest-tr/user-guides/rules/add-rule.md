@@ -262,7 +262,7 @@ Düzenli ifadenizi test etmek için, desteklenen Debian ya da Ubuntu üzerinde *
     ```
 3. **cpire** yardımcı programını çalıştırın:
     ```bash
-    cpire-runner -r '<DÜZENLİ İFADE>'
+    cpire-runner -R '<DÜZENLİ İFADE>'
     ```
 4. Düzenli ifade ile uyuşup uyuşmadığını kontrol etmek için bir değer girin. Yardımcı program sonucu döndürecektir:
     * Düzeli ifade ile uyuşan değer için `0`
