@@ -1,4 +1,3 @@
-[link-helm-chart-details]:  https://github.com/wallarm/ingress-chart#configuration
 [node-token-types]:         ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 # Ajuste fino do Wallarm Ingress Controller baseado em NGINX
@@ -10,7 +9,7 @@ Aprenda as opções de ajuste fino disponíveis para o Wallarm Ingress controlle
 
 ## Configurações adicionais para Helm Chart
 
-As configurações são definidas no arquivo [`values.yaml`](https://github.com/wallarm/ingress-chart/blob/master/wallarm-ingress/values.yaml). Por padrão, o arquivo é assim:
+As configurações são definidas no arquivo [`values.yaml`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml). Por padrão, o arquivo é assim:
 
 ``` yaml
 controller:
@@ -73,7 +72,7 @@ Para alterar essa configuração, recomendamos o uso da opção `--set` de `helm
     helm upgrade --reuse-values --set controller.wallarm.enabled=true <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
-Uma descrição dos principais parâmetros que você pode configurar é fornecida abaixo. Outros parâmetros vêm com valores padrão e raramente precisam ser alterados; suas descrições estão disponíveis neste [link][link-helm-chart-details].
+Uma descrição dos principais parâmetros que você pode configurar é fornecida abaixo. Outros parâmetros vêm com valores padrão e raramente precisam ser alterados.
 
 ### controller.wallarm.enabled
 

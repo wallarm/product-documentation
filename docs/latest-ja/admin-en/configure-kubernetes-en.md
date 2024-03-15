@@ -1,5 +1,3 @@
-[link-helm-chart-details]:  https://github.com/wallarm/ingress-chart#configuration
-
 # NGINXベースのWallarm Ingressコントローラの微調整
 
 Wallarm Ingressコントローラで利用可能な微調整オプションを学び、Wallarmソリューションを最大限に活用しましょう。
@@ -9,7 +7,7 @@ Wallarm Ingressコントローラで利用可能な微調整オプションを�
 
 ## Helm Chartの追加設定
 
-設定は[`values.yaml`](https://github.com/wallarm/ingress-chart/blob/master/wallarm-ingress/values.yaml)ファイルで定義されます。デフォルトでは、このファイルは以下のように表示されます：
+設定は[`values.yaml`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml)ファイルで定義されます。デフォルトでは、このファイルは以下のように表示されます：
 
 ```
 controller:
@@ -65,7 +63,7 @@ controller:
     helm upgrade --reuse-values --set controller.wallarm.enabled=true <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
-主なパラメータの説明を以下に提供します。他のパラメータはデフォルト値で提供され、それらの変更はほとんど必要ではありません。それらの説明は[こちらのリンク][link-helm-chart-details]で提供されています。
+主なパラメータの説明を以下に提供します。他のパラメータはデフォルト値で提供され、それらの変更はほとんど必要ではありません。
 
 ### controller.wallarm.enabled
 

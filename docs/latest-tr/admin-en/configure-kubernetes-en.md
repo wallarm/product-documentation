@@ -1,4 +1,3 @@
-[link-helm-chart-details]:  https://github.com/wallarm/ingress-chart#configuration
 [node-token-types]:         ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 # NGINX-tabanlı Wallarm Ingress Denetleyicisinin İnce Ayarı
@@ -10,7 +9,7 @@ Wallarm Ingress denetleyicisi için mevcut ince ayarlama seçeneklerini öğreni
 
 ## Helm Grafik için Ek Ayarlar
 
-Ayarlar [`values.yaml`](https://github.com/wallarm/ingress-chart/blob/master/wallarm-ingress/values.yaml) dosyasında tanımlanır. Varsayılan olarak, dosya aşağıdaki gibi görünür:
+Ayarlar [`values.yaml`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml) dosyasında tanımlanır. Varsayılan olarak, dosya aşağıdaki gibi görünür:
 
 ```
 controller:
@@ -73,7 +72,7 @@ Bu ayarı değiştirmek için, 'helm install'ın `--set` seçeneğini kullanman�
     helm upgrade --reuse-values --set controller.wallarm.enabled=true <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
-Aşağıda ayarlayabileceğiniz ana parametrelerin bir açıklaması verilmiştir. Diğer parametreler varsayılan değerlerle gelir ve nadiren değiştirilmesi gereklidir; onların açıklamaları bu [linkte][link-helm-chart-details] verilmiştir.
+Aşağıda ayarlayabileceğiniz ana parametrelerin bir açıklaması verilmiştir. Diğer parametreler varsayılan değerlerle gelir ve nadiren değiştirilmesi gereklidir.
 
 ### controller.wallarm.enabled
 
