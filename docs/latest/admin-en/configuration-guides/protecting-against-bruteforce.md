@@ -27,8 +27,8 @@ To provide this protection:
     * `.*login*` [regular expression](../../user-guides/rules/rules.md#condition-type-regex) in the request part meaning "endpoint contains `login`"
 
         Combined, they cover, for example:
-        `https://rent-car/users/login`
-        `https://rentappc/usrs/us/p-login/sq`
+        `https://rent-car-example.com/users/login`
+        `https://rentappc-example.com/usrs/us/p-login/sq`
 
         ![Brute force trigger example](../../images/user-guides/triggers/trigger-example6.png)
     
@@ -44,19 +44,19 @@ You can configure several triggers for brute force protection.
 
 ## Testing
 
-For testing, use trigger described in the [Configuring](#configuring) section. To test, you will need to set the `example.com` domain to be automatically identified with the example `rent-car` application as described in [automatic application identification](../../user-guides/settings/applications.md#automatic-application-identification).
+!!! info "Testing in your environment"
+    To test the **Brute force** trigger in your environment, in the trigger and the requests below, replace domain and application to your own. The application should be registered in Wallarm and set to have the domain as its part as described in [Setting up applications](../../user-guides/settings/applications.md).
 
-To test the trigger:
+To test the trigger described in the [Configuring](#configuring) section:
 
-1. Send the number of requests that exceeds the configured threshold to the protected URI. For example, 50 requests to `example.com/api/v1/login`:
+1. Make sure, the `rent-car-example.com` domain is [identified](../../user-guides/settings/applications.md#automatic-application-identification) as the part of the `rent-car` application registered in Wallarm.
+1. Send the number of requests that exceeds the configured threshold to the protected endpoint of this domain. For example, 50 requests to `rent-car-example.com/users/login`:
 
     ```bash
-    for (( i=0 ; $i<51 ; i++ )) ; do curl https://example.com/api/v1/login ; done
+    for (( i=0 ; $i<51 ; i++ )) ; do curl https://rent-car-example.com/users/login ; done
     ```
-1. If the trigger reaction is **Denylist IP address**, open Wallarm Console → **IP lists** → **Denylist** and check that source IP address is blocked.
-
-    If the trigger reaction is **Graylist IP address**, check the section **IP lists** → **Graylist** of Wallarm Console.
-1. Open the section **Attacks** and check that requests are displayed in the list as a brute‑force attack.
+1. Open Wallarm Console → **IP lists** → **Denylist** and check that source IP address is blocked.
+1. Open the **Attacks** section and check that requests are displayed in the list as a brute‑force attack.
 
     ![Brute force attack in the interface](../../images/user-guides/events/brute-force-attack.png)
 
