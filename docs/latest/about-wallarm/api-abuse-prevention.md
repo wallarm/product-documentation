@@ -11,7 +11,7 @@ The **API Abuse Prevention** module detects the following bot types by default:
 * [Security crawlers](../attacks-vulns-list.md#api-abuse-security-crawlers)
 * [Scraping](../attacks-vulns-list.md#api-abuse-scraping)
 
-During the [API abuse profile setup](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile), you can configure the **API Abuse Prevention** module to protect from all types of bots or limit protection only for specific threats.
+During the [API abuse profile setup](../user-guides/api-abuse-prevention.md#creating-profiles), you can configure the **API Abuse Prevention** module to protect from all types of bots or limit protection only for specific threats.
 
 ## How API Abuse Prevention works?
 
@@ -41,7 +41,7 @@ The solution deeply observes traffic anomalies before attributing them as malici
 
 ## Tolerance
 
-You can configure how strictly the signs of a malicious bot are monitored and thus control the number of false positive detections. This is set with the **Tolerance** parameter within [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile).
+You can configure how strictly the signs of a malicious bot are monitored and thus control the number of false positive detections. This is set with the **Tolerance** parameter within [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-profiles).
 
 There are three available levels:
 
