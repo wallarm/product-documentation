@@ -31,7 +31,7 @@ The following detectors may be involved:
 * **Wide scope** analyzing breadth of IP activity to behaviorally identify crawler-like bots.
 
 !!! info "Confidence"
-    As a result of detectors' work, every [detected](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks) bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
+    As a result of detectors' work, every [detected](../user-guides/api-abuse-prevention-explore.md) bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
 
 ![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
