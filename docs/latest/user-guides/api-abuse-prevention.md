@@ -62,7 +62,7 @@ The **Exception list** tab provides the historical data - you can view items tha
 
 ## Exceptions for target URLs and specific requests
 
-In addition to marking good bots' IPs via [exception list](#working-with-exception-list), you can disable bot protection both for URLs that the requests target and for the particular request types, for example, for the requests containing specific headers.
+In addition to marking good bots' IPs via [exception list](#exceptions-for-source-ips), you can disable bot protection both for URLs that the requests target and for the particular request types, for example, for the requests containing specific headers.
 
 To do that, Wallarm provides the **Set API Abuse Prevention mode** rule (supported by nodes version 4.8 and above).
 
