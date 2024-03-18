@@ -102,6 +102,7 @@ Specify in the search string:
 * `multiple_payloads`: to search for attacks detected by the [Number of malicious payloads](../../admin-en/configuration-guides/protecting-with-thresholds.md) trigger and blocked requests from IPs [denylisted](../../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) because of the attacks of this type.
 * `credential_stuffing`: to search for attempts to use stolen authentication credentials ([credential stuffing](../../about-wallarm/credential-stuffing.md)).
 * `ebpf`: to search for attacks detected by the [Wallarm eBPF-based solution](../../installation/oob/ebpf/deployment.md).
+* `graphql_attacks`: to search for violations of the [organization's GraphQL policy](../../user-guides/rules/graphql-rule.md).
 
 An attack name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 

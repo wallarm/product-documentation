@@ -113,9 +113,9 @@ For example, the rule limiting each customer by 10 POST requests per minute to `
 
 ![Example](../../images/user-guides/rules/rate-limit-by-customer-id.png)
 
-## Limitations and pecularities
+## Limitations and peculiarities
 
-The rate limit functionality has the following limitations and pecularities:
+The rate limit functionality has the following limitations and peculiarities:
 
 * Rate limiting rule is supported by all [Wallarm deployment forms](../../installation/supported-deployment-options.md) except for the Envoy-based Docker image.
 * The maximum allowed length of parameter values by which you measure limits is 8000 symbols.
