@@ -20,7 +20,7 @@
 [img-node-with-several-instances]:  ../../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
 [nginx-custom]:                 ../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
-[node-token]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
+[node-token]:                       ../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [platform]:                         ../supported-deployment-options.md
 [inline-docs]:                      ../inline/overview.md

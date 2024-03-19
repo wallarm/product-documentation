@@ -12,7 +12,7 @@
             * [サンプル](../../events/analyze-attack.md#sampling-of-hits)に保存されていないヒット。
 
 * ブラックリストに登録されたIP
-* [APIの変更](../../about-wallarm/api-discovery.md#tracking-changes-in-api)
+* [APIの変更](../../api-discovery/track-changes.md)
 * ユーザー追加
 
 ### ステップ 2: フィルタの追加

@@ -7,7 +7,7 @@ search:
 [deployment-platform-docs]:        ../../../../installation/supported-deployment-options.md
 [attack-detection-docs]:           ../../../../about-wallarm/protecting-against-attacks.md
 [vulnerability-detection-docs]:    ../../../../about-wallarm/detecting-vulnerabilities.md
-[api-discovery-docs]:              ../../../../about-wallarm/api-discovery.md
+[api-discovery-docs]:              ../../../../api-discovery/overview.md
 [kong-ing-controller-scheme]:      ../../../../images/waf-installation/kubernetes/kong-ingress-controller/solution-architecture.png
 [multitenancy-overview]:           ../../../multi-tenant/overview.md
 [applications-docs]:               ../../../../user-guides/settings/applications.md
@@ -16,5 +16,6 @@ search:
 [ptrav-attack-docs]:               ../../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:             ../../../../images/admin-guides/test-attacks-quickstart.png
 [available-filtration-modes-docs]: ../../../../admin-en/configure-wallarm-mode.md#available-filtration-modes
+[cred-stuffing-detection]:         ../../../../about-wallarm/credential-stuffing.md
 
 --8<-- "latest-ja/installation/kubernetes/kong-ingress-controller/deployment.md"

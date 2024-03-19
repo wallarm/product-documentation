@@ -10,6 +10,6 @@
     * 高リスク
     * 中リスク
     * 低リスク
-* [ルール](../../../user-guides/rules/intro.md)と[トリガー](../../../user-guides/triggers/triggers.md)の変更（ルールやトリガーの作成、更新、または削除）
+* [ルール](../../../user-guides/rules/rules.md)と[トリガー](../../../user-guides/triggers/triggers.md)の変更（ルールやトリガーの作成、更新、または削除）
 * [対象範囲（公開資産）](../../scanner.md)の変更：ホスト、サービス、ドメインの更新
 * 時間ごとに、前の時間に処理されたリクエストの数に関する通知を受けることができます

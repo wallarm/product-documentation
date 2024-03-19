@@ -16,7 +16,7 @@ Wallarmノードインスタンスはクライアントとサーバーの間に�
 Wallarmのデプロイメントに対するインラインデプロイメントアプローチは、他のデプロイメント方法、例えば[OOB](../oob/overview.md)デプロイメントに比べていくつかの利点があります：
 
 * トラフィック解析はリアルタイムで行われるため、Wallarmは即座に悪意のあるリクエストをブロックします。
-* Wallarmは着信リクエストとサーバーの応答の両方にアクセス可能なため、[API Discovery](../../about-wallarm/api-discovery.md) や [vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) などのすべてのWallarm機能が制限なく動作します。
+* Wallarmは着信リクエストとサーバーの応答の両方にアクセス可能なため、[API Discovery](../../api-discovery/overview.md) や [vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) などのすべてのWallarm機能が制限なく動作します。
 
 インラインスキームを実装するためには、インフラストラクチャ内のトラフィックルートを変更する必要があります。さらに、サービスの中断を防ぐために、Wallarmノードの[resource allocation](../../admin-en/configuration-guides/allocate-resources-for-node.md)について慎重に考慮してください。
 

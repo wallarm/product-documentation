@@ -25,7 +25,7 @@ WallarmノードがプロキシサーバまたはロードバランサのIPア�
   例えば、ロードバランサ経由で送信されたリクエストにブルートフォース攻撃の兆候がある場合、WallarmはこのロードバランサのIPアドレスをブラックリストに登録することで、このロードバランサを通じて送信されるすべての後続のリクエストをブロックします。
 * [アクティブな脅威検証](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) モジュールと[脆弱性スキャナ](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) 
 
-  例えば、WallarmはロードバランサのIPアドレスを、アクティブな脅威検証モジュールと脆弱性スキャナによって生成される攻撃テストの[起源となるIPアドレス](scanner-address-eu-cloud.md)とみなします。結果として、テスト攻撃はWallarmコンソール上でロードバランサのIPアドレスから発生した攻撃として表示され、Wallarmによってさらなるチェックが行われることでアプリケーションへの負荷が増加します。
+  例えば、WallarmはロードバランサのIPアドレスを、アクティブな脅威検証モジュールと脆弱性スキャナによって生成される攻撃テストの[起源となるIPアドレス](scanner-addresses.md)とみなします。結果として、テスト攻撃はWallarmコンソール上でロードバランサのIPアドレスから発生した攻撃として表示され、Wallarmによってさらなるチェックが行われることでアプリケーションへの負荷が増加します。
 
 Wallarmノードが[IPCソケット](https://en.wikipedia.org/wiki/Unix_domain_socket)経由で接続されている場合、`0.0.0.0`がリクエストのソースと見なされます。
 

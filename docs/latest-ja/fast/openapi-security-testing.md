@@ -4,20 +4,20 @@ OpenAPI Security Testing on CI/CD, powered by Wallarm, offers a solution to iden
 
 The solution leverages two powerful Wallarm modules:
 
-* [API Discovery](../about-wallarm/api-discovery.md) automatically detects your OpenAPI specification including shadow APIs based on real traffic.
+* [API Discovery](../api-discovery/overview.md) automatically detects your OpenAPI specification including shadow APIs based on real traffic.
 * FAST conducts automated tests on CI/CD to uncover open vulnerabilities such as Cross-origin resource haring, path traversal, access control flaws and others in the discovered endpoints.
 
 The solution leverages the data obtained from API Discovery, ensuring that security testing focuses on endpoints that actively receive traffic and providing a realistic assessment of your API vulnerabilities.
 
 ## Issues addressed by OpenAPI security testing
 
-* This solution allows you to perform security testing during the regression testing of your APIs. If you make changes to the functionality of your APIs that are already included in the [API inventory](../user-guides/api-discovery.md) due to received traffic, Wallarm security testing can reveal if your changes have introduced any security issues.
+* This solution allows you to perform security testing during the regression testing of your APIs. If you make changes to the functionality of your APIs that are already included in the [API inventory](../api-discovery/exploring.md) due to received traffic, Wallarm security testing can reveal if your changes have introduced any security issues.
 * By deploying your changes to the staging environment and running security testing on the CI/CD pipeline at this stage, you can prevent potential security vulnerabilities from reaching production and being exploited by attackers.
 * Since the solution leverages the data obtained from API Discovery, it also tests zombie APIs. These APIs are automatically discovered by the module as they may receive traffic, even if your team and documentation are unaware of their existence. By including zombie APIs in the security testing process, the solution addresses vulnerabilities that could otherwise go unnoticed, providing a more comprehensive security assessment.
 
 ## Requirements
 
-* The [API Discovery](../about-wallarm/api-discovery.md) module building your API inventory.
+* The [API Discovery](../api-discovery/overview.md) module building your API inventory.
 * The **FAST (Security testing)** module included in your subscription plan. If it is not included, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 
 ## Running security testing

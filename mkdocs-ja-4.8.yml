@@ -32,6 +32,7 @@ nav:
       - シャドウAPIと孤立API: demo-videos/shadow-api.md
       - API乱用防止概要: demo-videos/api-abuse-prevention.md
       - APIリーク概要: demo-videos/api-leaks.md
+      - API リークの管理: user-guides/api-leaks.md
   - ダッシュボードとレポート:
     - 脅威防止: user-guides/dashboards/threat-prevention.md
     - APIディスカバリー: user-guides/dashboards/api-discovery.md
@@ -193,17 +194,25 @@ nav:
     - レートリミッティング: user-guides/rules/rate-limiting.md
     - マルチアタック保護: admin-en/configuration-guides/protecting-with-thresholds.md
     - 手動BOLA保護: admin-en/configuration-guides/protecting-against-bola-trigger.md
-    - IPによるフィルタリング: user-guides/ip-lists/overview.md
+    - IPによるフィルタリング:
+      - 概要: user-guides/ip-lists/overview.md
+      - 許可リスト: user-guides/ip-lists/allowlist.md
+      - グレーリスト: user-guides/ip-lists/graylist.md
+      - 拒否リスト: user-guides/ip-lists/denylist.md
     - バーチャルパッチング: user-guides/rules/vpatch-rule.md
     - ユーザー定義の検出器: user-guides/rules/regex-rule.md
+    - 特定の攻撃タイプを無視する: user-guides/rules/ignore-attack-types.md
+    - バイナリデータ内の攻撃サインを無視する: user-guides/rules/ignore-attacks-in-binary-data.md
     - 機密データのマスキング: user-guides/rules/sensitive-data-rule.md
     - 応答ヘッダーの変更: user-guides/rules/add-replace-response-header.md
     - フィルタモード: admin-en/configure-wallarm-mode.md
     - 検出手順:
       - 概要: about-wallarm/protecting-against-attacks.md
       - リクエストの解析: user-guides/rules/request-processing.md
+      - リクエストパーサーの管理: user-guides/rules/disable-request-parsers.md
       - ルール: user-guides/rules/rules.md
       - トリガー: user-guides/triggers/triggers.md
+      - トリガの例: user-guides/triggers/trigger-examples.md
   - 展開:
     - 展開オプション: installation/supported-deployment-options.md
     - バンドアウト:

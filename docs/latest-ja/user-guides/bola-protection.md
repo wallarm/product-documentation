@@ -1,6 +1,6 @@
-[variability-in-endpoints-docs]:       ../about-wallarm/api-discovery.md#variability-in-endpoints
-[changes-in-api-docs]:       api-discovery.md#tracking-changes-in-api
-[bola-protection-for-endpoints-docs]:  ../about-wallarm/api-discovery.md#automatic-bola-protection
+[variability-in-endpoints-docs]:       ../api-discovery/exploring.md
+[changes-in-api-docs]:       ../api-discovery/track-changes.md
+[bola-protection-for-endpoints-docs]:  ../api-discovery/bola-protection.md
 
 # BOLA保護 <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
@@ -8,7 +8,7 @@ WallarmコンソールUIの **BOLA保護** セクションでは、**API Discove
 
 次の条件の下でこのセクションは利用できます：
 
-* [API Discovery](../about-wallarm/api-discovery.md) モジュールが有効化されている
+* [API Discovery](../api-discovery/overview.md) モジュールが有効化されている
 * ユーザーの[役割](settings/users.md#user-roles)が**管理者**または**グローバル管理者**である
 
     また、このセクションは、**アナリスト**と**グローバルアナリスト**に対して、読み取り専用モードでも利用可能です。

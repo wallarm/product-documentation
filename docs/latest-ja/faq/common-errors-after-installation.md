@@ -101,7 +101,7 @@ N: See apt-secure(8) manpage for repository creation and user configuration deta
 
 `wallarm_mode block`を経由してブロッキングモードを設定したにもかかわらず、Wallarmのフィルタリングノードが攻撃をブロックしない場合は、フィルタリングモードが他の設定方法を使用して上書きされていないことを確認してください：
 
-* [ルール**フィルタリングモードの設定**](../user-guides/rules/wallarm-mode-rule.md)を使用して
-* [Wallarm Consoleの**一般**セクション](../user-guides/settings/general.md)で
+* [ルール**フィルタリングモードの設定**](../admin-en/configure-wallarm-mode.md)を使用して
+* [Wallarm Consoleの**一般**セクション](../admin-en/configure-wallarm-mode.md)で
 
 [フィルタリングモードの設定方法の詳細→](../admin-en/configure-parameters-en.md)

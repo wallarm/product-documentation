@@ -50,8 +50,8 @@ Wallarmノード2.16以下をアップグレードする場合は、Wallarmコ�
 
 1. 以下の設定が、[`off`と`monitoring`フィルトレーションモードの変更されたロジック](what-is-new.md#filtration-modes)に対応する期待される動作であることを確認します：
       * [`wallarm_mode`ディレクティブ](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [Wallarmコンソールで設定された一般的なフィルタリングルール](../../user-guides/settings/general.md)
-      * [Wallarmコンソールで設定された低レベルのフィルタリングルール](../../user-guides/rules/wallarm-mode-rule.md)
+      * [Wallarmコンソールで設定された一般的なフィルタリングルール](../../admin-en/configure-wallarm-mode.md)
+      * [Wallarmコンソールで設定された低レベルのフィルタリングルール](../../admin-en/configure-wallarm-mode.md)
 2. 期待される動作が変更されたフィルトレーションモードのロジックに対応していない場合は、[指示](../../admin-en/configure-wallarm-mode.md)を使用して、フィルトレーションモードの設定をリリースされた変更に調整してください。
 
 ## ステップ6：フィルタリングノードをWallarm Cloudに接続します

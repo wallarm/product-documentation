@@ -1,7 +1,7 @@
 [link-nginx-logging-docs]: https://docs.nginx.com/nginx/admin-guide/monitoring/logging/
 [doc-vuln-list]: ../attacks-vulns-list.md
 [doc-monitor-node]: monitoring/intro.md
-[doc-lom]: ../user-guides/rules/compiling.md
+[doc-lom]: ../user-guides/rules/rules.md
 
 # フィルタノードログの操作
 
@@ -15,7 +15,7 @@
 * `tarantool.log`： ポストアナリティクスモジュール操作のログ。
 * `sync-ip-lists.log`（前のノードバージョンでは `sync-blacklist.log`と名付けられていました）： フィルタリングノードが単一のオブジェクトやサブネットとして[IPリスト](../user-guides/ip-lists/overview.md)に追加されたIPアドレスと同期するログ。
 * `sync-ip-lists-source.log`（前のノードバージョンでは `sync-mmdb.log`と名付けられていました）： フィルタリングノードが国、地域、データセンターに登録されたIPアドレスと[IPリスト](../user-guides/ip-lists/overview.md)と同期するログ。
-* `appstructure.log`（Dockerコンテナのみ）： [API Discovery](../about-wallarm/api-discovery.md)モジュールの活動ログ。
+* `appstructure.log`（Dockerコンテナのみ）： [API Discovery](../about-wallarm/overview.md)モジュールの活動ログ。
 * `registernode_loop.log`（Dockerコンテナのみ）： `register-node`スクリプトの実行を行うラッパースクリプトの活動ログ。 `register-node`スクリプトが成功するまで実行されます。
 * `weak-jwt-detect.log`： [JWTの脆弱性](../attacks-vulns-list.md#weak-jwt)の検出ログ。
 

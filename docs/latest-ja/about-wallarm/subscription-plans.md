@@ -32,9 +32,9 @@ Wallarmでは次のサブスクリプションプランを提供しています�
 | [BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola.md) | 手動設定 | 自動保護 |
 | [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) | いいえ | はい |
 | **観察可能性のオプション** | | |
-| [API Discovery](../about-wallarm/api-discovery.md) | いいえ | はい |
-| API Discoveryを使用して[影のAPIを見つける](../about-wallarm/api-discovery.md#shadow-api) | いいえ | はい |
-| [Sensitive data detection](../about-wallarm/api-discovery.md) | いいえ | はい |
+| [API Discovery](../api-discovery/overview.md) | いいえ | はい |
+| API Discoveryを使用して[影のAPIを見つける](../api-discovery/rogue-api.md#shadow-api) | いいえ | はい |
+| [Sensitive data detection](../api-discovery/overview.md) | いいえ | はい |
 | **セキュリティテストと脆弱性の評価** | | |
 | [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | いいえ | はい |
 | [脆弱性スキャナ](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | いいえ | はい |
@@ -53,7 +53,7 @@ Wallarmでは次のサブスクリプションプランを提供しています�
 
 サブスクリプションプランを有効にするには、[sales@wallarm.com](mailto:sales@wallarm.com) 宛にリクエストを送信してください。サブスクリプションの費用は、選択したプラン、その期間、および[インバウンドトラフィック量](../admin-en/operation/learn-incoming-request-number.md)に基づいて決定されます。
 
-アクティブなプランに関する情報は、Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md) に表示されます。
+アクティブなプランに関する情報は、Wallarm Console → **Settings** → [**Subscriptions**](../about-wallarm/subscription-plans.md) に表示されます。
 
 ## サブスクリプションの通知
 
@@ -86,7 +86,7 @@ Free Tierのサブスクリプションには以下が含まれます：
 
 これらの制限は、次の月の最初の日まで有効です。すぐにサービスを復元するには、Wallarmの[sales team](mailto:sales@wallarm.com)に連絡して、有料のサブスクリプションプランのいずれかに切り替えてください。
 
-Free Tierのサブスクリプションの利用情報は、Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md) に表示されます。
+Free Tierのサブスクリプションの利用情報は、Wallarm Console → **Settings** → [**Subscriptions**](../about-wallarm/subscription-plans.md) に表示されます。
 
 Wallarmは、無料リクエストクォータの85％、100％、185％、200％を超えたときに、アカウントの**Administrators**と**Global Administrators**にメールで通知します。
 
@@ -99,7 +99,7 @@ Wallarmは、無料リクエストクォータの85％、100％、185％、200�
 * Wallarmの試用期間は、APIセキュリティの[plan](#subscription-plans)に含めることができるモジュールと機能の最大セットを提供します。
 * 試用期間は、14日間だけ一度だけ延長することができます。
 
-    試用期間の延長は、Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md) セクションと、試用期間の終了を通知するメールからのボタンを通じて可能です。このメールは、[role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles)のユーザーにのみ送信されます。
+    試用期間の延長は、Wallarm Console → **Settings** → [**Subscriptions**](../about-wallarm/subscription-plans.md) セクションと、試用期間の終了を通知するメールからのボタンを通じて可能です。このメールは、[role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles)のユーザーにのみ送信されます。
 * トライアル期間が終了した場合：
 
     * Wallarm Consoleでのアカウントはブロックされます。
@@ -108,4 +108,4 @@ Wallarmは、無料リクエストクォータの85％、100％、185％、200�
     
     有料のWallarmサブスクリプションを開始すると、すべてのユーザーのクライアントアカウントへのアクセスが復元されます。
 
-試用期間に関する情報はWallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md) に表示されます。
+試用期間に関する情報はWallarm Console → **Settings** → [**Subscriptions**](../about-wallarm/subscription-plans.md) に表示されます。

@@ -172,7 +172,7 @@
     * `<TOKEN>`は、ノードトークンまたは`Deploy`ロールを持つAPIトークンのコピーされた値です。
     * `--force`オプションは、`/etc/wallarm/node.yaml` ファイルに指定されたWallarm Cloudアクセス認証情報を強制的に書き換えます。
 
-    <div class="admonition info"> <p class="admonition-title">いくつかのインストールに1つのトークンを使用する</p> <p>いくつかのインストールに1つのトークンを使用する2つのオプションがあります：</p> <ul><li>**すべてのノードバージョンについて**、一つの [**ノードトークン**](../quickstart.md#deploy-the-wallarm-filtering-node)を選択された[プラットフォーム](../installation/supported-deployment-options.md)に関係なく複数のインストールで使用できます。これにより、Wallarm Console UIでノードインスタンスを論理的にグルーピングできます。例：いくつかのWallarmノードを開発環境にデプロイし、各ノードが特定の開発者が所有する専用のマシン上にあります。</li><li><p>**ノード4.6から始まる** ノードのグルーピングのために、`Deploy`ロールを持つ一つの [**APIトークン**](../user-guides/settings/api-tokens.md) を`--labels 'group=<GROUP>'`フラグと一緒に使用することができます。例えば：</p>
+    <div class="admonition info"> <p class="admonition-title">いくつかのインストールに1つのトークンを使用する</p> <p>いくつかのインストールに1つのトークンを使用する2つのオプションがあります：</p> <ul><li>**すべてのノードバージョンについて**、一つの [**ノードトークン**](../quickstart/getting-started.md#deploy-the-wallarm-filtering-node)を選択された[プラットフォーム](../installation/supported-deployment-options.md)に関係なく複数のインストールで使用できます。これにより、Wallarm Console UIでノードインスタンスを論理的にグルーピングできます。例：いくつかのWallarmノードを開発環境にデプロイし、各ノードが特定の開発者が所有する専用のマシン上にあります。</li><li><p>**ノード4.6から始まる** ノードのグルーピングのために、`Deploy`ロールを持つ一つの [**APIトークン**](../user-guides/settings/api-tokens.md) を`--labels 'group=<GROUP>'`フラグと一緒に使用することができます。例えば：</p>
     ```
     sudo /usr/share/wallarm-common/register-node -t <API TOKEN WITH DEPLOY ROLE> --labels 'group=<GROUP>'
     ```

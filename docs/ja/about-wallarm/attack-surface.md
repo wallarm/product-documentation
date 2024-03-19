@@ -1,0 +1,1 @@
+--8<-- "latest-ja/about-wallarm/attack-surface.md"

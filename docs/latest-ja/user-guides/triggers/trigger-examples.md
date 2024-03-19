@@ -283,7 +283,7 @@ IPアドレスがブロックリストに追加された場合、そのイベン
 
 ## APIのインベントリーに新しいエンドポイント
 
-あなたのAPIでは変更が発生するかもしれません。それらは[**API Discovery**](../../about-wallarm/api-discovery.md)モジュールによって発見されます。可能な[変更](../../user-guides/api-discovery.md#tracking-changes-in-api)は以下の通りです：
+あなたのAPIでは変更が発生するかもしれません。それらは[**API Discovery**](../../api-discovery/overview.md)モジュールによって発見されます。可能な[変更](../../api-discovery/exploring.md#tracking-changes-in-api)は以下の通りです：
 
 * 新しいエンドポイントが発見される
 * エンドポイントに変更がある（新しいもしくは削除されたパラメータ）

@@ -187,7 +187,7 @@
 
 ## 特定のアプリケーションのフィルタリングモードを監視に設定するルールを作成する
 
-次のリクエストは、 [アプリケーション](../user-guides/settings/applications.md) ID `3`へのトラフィックをフィルタリングする[ノードの設定ルール](../user-guides/rules/wallarm-mode-rule.md)を作成します。
+次のリクエストは、 [アプリケーション](../user-guides/settings/applications.md) ID `3`へのトラフィックをフィルタリングする[ノードの設定ルール](../admin-en/configure-wallarm-mode.md)を作成します。
 
 --8<-- "../include-ja/api-request-examples/create-filtration-mode-rule-for-app.md"
 

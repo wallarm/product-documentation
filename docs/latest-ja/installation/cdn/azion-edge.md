@@ -19,7 +19,7 @@
 この解決策には、受信リクエストのみを扱うという制限があります：
 
 * [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)法を使用した脆弱性の発見は正常に機能しません。このソリューションは、測定対象の脆弱性に対して典型的な悪意のあるリクエストへのサーバーレスポンスに基づいてAPIが脆弱かどうかを判断します。
-* [Wallarm API Discovery](../../about-wallarm/api-discovery.md)はトラフィックに基づいたAPIインベントリを探索することができません。なぜなら、このソリューションはレスポンス分析に依存しているからです。
+* [Wallarm API Discovery](../../api-discovery/overview.md)はトラフィックに基づいたAPIインベントリを探索することができません。なぜなら、このソリューションはレスポンス分析に依存しているからです。
 * [強制ブラウジング防止](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は利用できません。これはレスポンスコード分析が必要だからです。
 
 ## 要件

@@ -15,5 +15,7 @@ search:
 [best-practices-for-public-ip]:          ../../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
 [best-practices-for-high-availability]:  ../../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
 [best-practices-for-ingress-monitoring]: ../../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
+[node-token-types]:                      ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation#api-and-node-tokens-for-node-creation
+[chaining-doc]:                          ../../../admin-en/chaining-wallarm-and-other-ingress-controllers.md
 
 --8<-- "latest-ja/admin-en/installation-kubernetes-en.md"

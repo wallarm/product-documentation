@@ -19,7 +19,7 @@
 このソリューションは入力リクエストのみで機能するため、一部の制限があります:
 
 * [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)法を使用した脆弱性の発見は正常に機能しません。このソリューションは、それが試験する脆弱性に典型的な攻撃リクエストに対するサーバーの応答に基づいてAPIが脆弱性を持っているかどうかを判断します。
-* [Wallarm API Discovery](../../about-wallarm/api-discovery.md)は、ソリューションが応答分析に依存しているため、トラフィックに基づいてAPIインベントリーを探索することができません。
+* [Wallarm API Discovery](../../api-discovery/overview.md)は、ソリューションが応答分析に依存しているため、トラフィックに基づいてAPIインベントリーを探索することができません。
 * 応答コード分析を必要とするため、[強制ブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は利用できません。
 
 ## 必要条件

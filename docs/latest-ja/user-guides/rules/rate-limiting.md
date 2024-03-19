@@ -11,7 +11,7 @@ WallarmはクッキーやJSONフィールドなどのさまざまなリクエス
 レート制限を設定し適用するには：
 
 1. Wallarmコンソール → **ルール** → **ルールの追加**へ進んでください。
-1. **リクエストが** で、ルールを適用する範囲を[記述](add-rule.md#branch-description)します。
+1. **リクエストが** で、ルールを適用する範囲を[記述](rules.md#branch-description)します。
 1. **そのとき**で、**レート制限を設定**を選び、範囲への接続に対する希望の制限を設定します：
 
     * 秒または分あたりのリクエストの最大数。
@@ -31,7 +31,7 @@ WallarmはクッキーやJSONフィールドなどのさまざまなリクエス
 
     !!! info "値の長さの制限"
         制限を測定するためのパラメータ値の最大許容長は8000文字です。
-1. [ルールのコンパイルが完了する](compiling.md)のを待ちます。
+1. [ルールのコンパイルが完了する](rules.md)のを待ちます。
 
 ## ルールの例
 
@@ -53,7 +53,7 @@ WallarmはクッキーやJSONフィールドなどのさまざまなリクエス
 
 ![Example](../../images/user-guides/rules/rate-limit-for-jwt.png)
 
-`Authorization` の値に使用される[正規表現](add-rule.md#condition-type-regex)は ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`` です。
+`Authorization` の値に使用される[正規表現](rules.md#condition-type-regex)は ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`` です。
 
 ユーザーセッションを管理するためにJWT（JSON Web Tokens）を使用している場合、ルールを調整してJWTを[復号](request-processing.md#jwt)し、そのペイロードからセッションIDを抽出することができます：
 

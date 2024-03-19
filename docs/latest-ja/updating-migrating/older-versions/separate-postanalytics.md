@@ -188,7 +188,7 @@ postanalyticsモジュールが別のサーバーにインストールされた�
     * `<TOKEN>`は、ノードトークンまたは`Deploy`ロールを持つAPIトークンのコピーした値です。
     * `--force`オプションは、`/etc/wallarm/node.yaml`ファイルに指定されたWallarm Cloudアクセス認証情報を強制的に書き換えます。
 
-    <div class="admonition info"> <p class="admonition-title">複数のインストールで一つのトークンを使用するための2つのオプションがあります：</p> <ul><li>**全てのノードバージョン**で、一つの[**ノードトークン**](../../quickstart.md#deploy-the-wallarm-filtering-node)を選択した[プラットフォーム](../../installation/supported-deployment-options.md)に関係なく、複数のインストールで使用できます。これにより、ノードインスタンスをWallarm Console UI内で論理的にグループ化できます。例：開発環境に複数のWallarmノードをデプロイします。各ノードは各開発者が所有する独自のマシン上にあります。</li><li><p>**ノード4.6から**、ノードのグルーピングのために、`Deploy`ロールを持つ一つの[**APIトークン**](../../user-guides/settings/api-tokens.md)を`--labels 'group=<GROUP>'`フラグと一緒に使用できます。例：</p>
+    <div class="admonition info"> <p class="admonition-title">複数のインストールで一つのトークンを使用するための2つのオプションがあります：</p> <ul><li>**全てのノードバージョン**で、一つの[**ノードトークン**](../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node)を選択した[プラットフォーム](../../installation/supported-deployment-options.md)に関係なく、複数のインストールで使用できます。これにより、ノードインスタンスをWallarm Console UI内で論理的にグループ化できます。例：開発環境に複数のWallarmノードをデプロイします。各ノードは各開発者が所有する独自のマシン上にあります。</li><li><p>**ノード4.6から**、ノードのグルーピングのために、`Deploy`ロールを持つ一つの[**APIトークン**](../../user-guides/settings/api-tokens.md)を`--labels 'group=<GROUP>'`フラグと一緒に使用できます。例：</p>
     ```
     sudo /usr/share/wallarm-common/register-node -t <APIトークンWITH DEPLOY ROLE> --labels 'group=<GROUP>'
     ```

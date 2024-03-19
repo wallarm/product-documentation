@@ -49,7 +49,7 @@ URLパーサに対応するタグは次のとおりです。
             * `action_name` — `cb-common`
             * `action_ext` — `ffc63abe`
         
-        これを修正するには、URIコンストラクタの[高度な編集フォーム](add-rule.md#advanced-edit-form)で**action_name**と**action_ext**のポイントを手動で編集します。
+        これを修正するには、URIコンストラクタの[高度な編集フォーム](rules.md#advanced-edit-form)で**action_name**と**action_ext**のポイントを手動で編集します。
 
 * **query**は`?`記号の後の[クエリストリングパラメータ](#query-string-parameters)を指します。
 
@@ -327,7 +327,7 @@ Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'name']` — `John Doe`
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'iat']` — `1516239022`
 
-[rule](add-rule.md)が適用されるリクエスト要素を定義するときには：
+[rule](rules.md)が適用されるリクエスト要素を定義するときには：
 
 * 最初にJWTを含むリクエスト部分のパーサを選択します
 * `jwt`パーサの値として上記の`jwt_*`パラメータの一つを指定します。例えば、`name` JWTペイロードパラメータの値に対しては：
