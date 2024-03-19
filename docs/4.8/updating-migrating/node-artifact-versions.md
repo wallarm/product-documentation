@@ -140,17 +140,6 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
     Node group names are set using the `config.wallarm.api.nodeGroup` parameter in **values.yaml**, with `defaultSidecarGroup` as the default name. Optionally, you can control the names of node groups based on the applications' pods using the `sidecar.wallarm.io/wallarm-node-group` annotation.
 * Fix [CVE-2023-38039](https://github.com/advisories/GHSA-99j9-jf36-9747)
 
-## Helm chart for Wallarm eBPF‑based solution
-
-### 0.10.23 (2024-03-07)
-
-* Fixed http2 streams mirroring issues in some cases
-* Internal fixes and stability improvements
-
-### 0.10.22 (2024-03-01)
-
-* [Initial release](../installation/oob/ebpf/deployment.md)
-
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
