@@ -111,7 +111,7 @@ Wallarm の eBPF ソリューションを展開するには：
     
     `<NODE_TOKEN>` は、Kubernetes で実行される Wallarm ノードのトークンです。
 
-    --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
+    --8<-- "../include-ja/waf/installation/info-about-using-one-token-for-several-nodes.md"
 1. Wallarm Helm チャートを展開します：
 
     ``` bash

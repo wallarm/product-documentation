@@ -10,11 +10,11 @@
 
 * **...FASTノードが次のメッセージのいずれかをコンソール出力に表示する場合は?**
 
---8<-- "../include-ja/fast/console-include/tshoot/request-timeout.md"
+--8<-- "../include-ja/fast/console-include-ja/tshoot/request-timeout.md"
     
     または
 
---8<-- "../include-ja/fast/console-include/tshoot/access-denied.md"
+--8<-- "../include-ja/fast/console-include-ja/tshoot/access-denied.md"
     
     **解決策:** 確認してください:
 

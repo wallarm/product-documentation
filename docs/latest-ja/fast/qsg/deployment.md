@@ -123,7 +123,7 @@ docker run --name <name> --env-file=<前のステップで作成された環境�
 
 コンテナのデプロイが成功した場合、次のようなコンソール出力が表示されます：
 
---8<-- "../include-ja/fast/console-include/qsg/fast-node-deployment-ok.md"
+--8<-- "../include-ja/fast/console-include-ja/qsg/fast-node-deployment-ok.md"
 
 これで、Wallarmクラウドに接続した作業用のFASTノードが提供されるべきです。ノードは、`google-gruyere.appspot.com` ドメインへのリクエストを基準として認識する `localhost:8080` 上の受信HTTPおよびHTTPSリクエストを待機しています。
     

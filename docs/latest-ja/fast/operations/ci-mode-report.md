@@ -42,7 +42,7 @@ docker run  --rm -e WALLARM_API_HOST=us1.api.wallarm.com -e WALLARM_API_TOKEN=qw
 
 コマンドが正常に実行された場合、ターミナルにテスト実行の簡単なデータが表示されます。
 
---8<-- "../include-ja/fast/console-include/operations/node-in-ci-mode-report.md"
+--8<-- "../include-ja/fast/console-include-ja/operations/node-in-ci-mode-report.md"
 
 レポート生成が完了したら、`DIRECTORY_FOR_REPORTS`フォルダに以下のレポートファイルが作成されます：
 
