@@ -132,7 +132,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 0.10.25 (2024-03-19)
 
-* Added support for credential stuffing detection
+* Added support for [credential stuffing detection](../about-wallarm/credential-stuffing.md)
 * Bump the default `SLAB_ALLOC_ARENA` value up to 2GB
 * Internal improvements
 
