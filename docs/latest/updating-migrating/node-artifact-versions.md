@@ -130,6 +130,12 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ## Helm chart for Wallarm eBPF‑based solution
 
+### 0.10.25 (2024-03-19)
+
+* Added support for credential stuffing detection
+* Bump the default `SLAB_ALLOC_ARENA` value up to 2GB
+* Internal improvements
+
 ### 0.10.23 (2024-03-07)
 
 * Fixed http2 streams mirroring issues in some cases
