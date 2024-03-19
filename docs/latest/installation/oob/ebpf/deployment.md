@@ -115,7 +115,7 @@ To deploy the Wallarm eBPF solution:
 1. Deploy the Wallarm Helm chart:
 
     ``` bash
-    helm install --version 0.10.23 <RELEASE_NAME> wallarm/wallarm-oob --wait -n wallarm-ebpf --create-namespace -f <PATH_TO_VALUES>
+    helm install --version 0.10.25 <RELEASE_NAME> wallarm/wallarm-oob --wait -n wallarm-ebpf --create-namespace -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Wallarm eBPF chart
@@ -191,4 +191,3 @@ To test that the Wallarm eBPF operates correctly:
     Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../..//user-guides/events/analyze-attack.md).
 * Vulnerability detection based on [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) is not supported as server response bodies required for vulnerability identification are not mirrored.
 * While the solution is in beta, not all Kubernetes resources can be mirrored effectively. Therefore, we recommend enabling traffic mirroring specifically for NGINX Ingress controllers, Kong Ingress controllers, or regular NGINX servers in Kubernetes.
-* [Credential stuffing detection](../../../about-wallarm/credential-stuffing.md) is not currently supported.
