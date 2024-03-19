@@ -68,7 +68,7 @@ WallarmノードがBOLA攻撃を識別するためには：
 
 ## トリガー処理の優先順位
             
---8<-- "../include/trigger-processing-priorities.md"
+--8<-- "../include-ja/trigger-processing-priorities.md"
 
 ## 要件と制限
 
