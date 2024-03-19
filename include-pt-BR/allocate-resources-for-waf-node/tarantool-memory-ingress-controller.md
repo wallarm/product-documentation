@@ -26,7 +26,7 @@ Os parâmetros listados são definidos usando a opção `--set` dos comandos `he
 
 === "Instalação do controlador de entrada"
     ```bash
-    helm install --set controller.wallarm.tarantool.arena='0.4' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    helm install --set controller.wallarm.tarantool.arena='1.0' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
     Também existem [outros parâmetros](../configure-kubernetes-en.md#additional-settings-for-helm-chart) necessários para a instalação correta do Controlador de Entrada. Por favor, passe-os na opção `--set` também.
