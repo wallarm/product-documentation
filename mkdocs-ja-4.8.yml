@@ -24,6 +24,7 @@ nav:
     - はじめに: quickstart/getting-started.md
     - サブスクリプションプラン: about-wallarm/subscription-plans.md
     - 展開ガイド: /installation/supported-deployment-options/
+    - Wallarmのソリューションの導入と保守のベストプラクティス: about-wallarm/deployment-best-practices.md
     - ベストプラクティス: quickstart/attack-prevention-best-practices.md
     - ビデオガイド:
       - Wallarmプラットフォーム設定: demo-videos/overview.md
@@ -354,6 +355,7 @@ nav:
         - マルチテナンシーの概要: installation/multi-tenant/overview.md
         - Wallarmコンソールでテナントアカウントを作成する: installation/multi-tenant/configure-accounts.md
         - マルチテナントノードの展開および設定: installation/multi-tenant/deploy-multi-tenant-node.md
+      - プライベートクラウドでのWallarmの展開方法: installation/cloud-platforms/private-cloud.md
       - Wallarm APIへのプロキシを介したアクセス: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
       - ノード操作に必要なファイルへのアクセス: admin-en/configure-access-to-files-needed-for-node.md
       - NGINXでのダイナミックDNS解決: admin-en/configure-dynamic-dns-resolution-nginx.md
