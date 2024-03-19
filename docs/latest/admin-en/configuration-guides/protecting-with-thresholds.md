@@ -6,36 +6,28 @@ Such perpetrators can be automatically placed into the denylist, which starts bl
 
 ## Configuring
 
-To configure protection from sources originating malicious requests:
+Consider the example below to learn how to configure protection from multi-attack perpetrators.
+
+Let us say you consider that more than 3 malicious payloads per hour from some IP as enough reason to completely block it. To do that, you set the corresponding threshold and instruct the system to block the origin IP for 1 hour.
+
+To provide this protection:
 
 1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **Number of malicious payloads** condition.
-1. Set number of different malicious payloads from one IP per time interval. On exceeding this number within the specified time, the trigger will be activated.
+1. Set the threshold to `more than 3 malicious requests from the same IP per hour`.
 
     !!! info "What is not counted"
         The experimental payloads based on the [custom regular expressions](../../user-guides/rules/regex-rule.md).
-
-1. If required, set one or several filters:
+        
+1. Do not set any filters, but be aware that in other cases you can use separately or combined:
 
     * **Type** is a [type](../../attacks-vulns-list.md) of attack detected in the request or a type of vulnerability the request is directed to.
-    * **Application** is the [application](../../user-guides/settings/applications.md) that receives the request.
-    * **IP** is an IP address from which the request is sent.
-
-        The filter expects only single IPs, it does not allow subnets, locations and source types.
-
-    * **Domain** is the domain that receives the request.
+    * **Application** is the [application](../../user-guides/settings/applications.md) that receives the request or in which an incident is detected.
+    * **IP** is an IP address from which the request is sent. The filter expects only single IPs, it does not allow subnets, locations and source types.
+    * **Domain** is the domain that receives the request or in which an incident is detected.
     * **Response status** is the response code returned to the request.
-    * **Target** is an application architecture part that the attack is directed at or in which the incident is detected. It can take the following values: `Server`, `Client`, `Database`.
 
-1. Select trigger reactions:
-
-    * [**Denylist IP address**](../../user-guides/ip-lists/overview.md) originating malicious requests and the blocking period.
-    
-        The Wallarm node will block both legitimate and malicious requests originating from the denylisted IP.
-    
-    * [**Graylist IP address**](../../user-guides/ip-lists/overview.md) originating  malicious requests and the blocking period.
-    
-        The Wallarm node will block requests originating from the graylisted IPs only if requests contain [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs.
+1. Select the **Denylist IP address** - `Block for 1 hour` trigger reaction. Wallarm will put origin IP to the [denylist](../../user-guides/ip-lists/overview.md) after the threshold is exceeded and block all further requests from it.
 
     ![Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
         
