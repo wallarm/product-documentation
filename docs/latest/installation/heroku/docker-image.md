@@ -29,7 +29,9 @@ At present, there is no official Docker image for Heroku from Wallarm. So, this 
 To deploy Wallarm's Docker image on Heroku, start by creating the necessary configuration files for the image build process. Follow these steps:
 
 1. On your local system, create a directory specifically for Wallarm Docker configurations and proceed to it.
-1. Create an `nginx.conf` file with NGINX configuration details. Since the Docker image will be based on the [all-in-one installer compatible with NGINX][aio-docs], it is important to configure NGINX accordingly.
+1. Craft an `nginx.conf` file that includes NGINX and [Wallarm configurations][waf-directives-instr]. Since the Docker image will be based on the [NGINX-compatible all-in-one installer][aio-docs], ensure NGINX is configured appropriately.
+
+    Here is the template with a basic configuration that runs the Wallarm node in the monitoring mode:
 
     ```
     daemon off;
@@ -40,10 +42,16 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
 
     events {
       worker_connections 768;
-      # multi_accept on;
+      use epoll;
+      accept_mutex on;
     }
 
     http {
+      gzip on;
+      gzip_comp_level 2;
+      gzip_min_length 512;
+      gzip_proxied any; # Heroku router sends Via header
+
       proxy_temp_path /tmp/proxy_temp;
       client_body_temp_path /tmp/client_temp;
       fastcgi_temp_path /tmp/fastcgi_temp;
@@ -66,51 +74,46 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
       access_log /var/log/nginx/access.log;
       error_log /var/log/nginx/error.log;
 
-      include /etc/nginx/conf.d/*.conf;
-      include /etc/nginx/sites-enabled/*;
-    }
-    ```
+      # Main Heroku app
+      server {
+        listen $PORT default_server;
+        server_name _;
+        wallarm_mode block;
+        
+        location / {
+          proxy_pass http://unix:/tmp/nginx.socket;
 
-1. Craft a `default.conf` file with the Wallarm configuration. Use [Wallarm NGINX directives][waf-directives-instr] to tailor the Wallarm node to your specific requirements.
+          # Heroku apps are always behind a load balancer, which is why we trust all IPs
+          set_real_ip_from 0.0.0.0/0;
+          real_ip_header X-Forwarded-For;
+          real_ip_recursive off;
+          proxy_redirect off;
+          proxy_set_header Host $http_host;
+          proxy_set_header "Connection" "";
+        }
 
-    Here is the template with a basic configuration that runs the Wallarm node in the monitoring mode:
-
-    ```
-    server {
-      listen $PORT default_server;
-      server_name _;
-      wallarm_mode monitoring;
-    
-      location / {
-        proxy_pass http://unix:/tmp/nginx.socket;
-        include proxy_params;
-        # Heroku apps are always behind a load balancer, which is why we trust all IPs
-        set_real_ip_from 0.0.0.0/0;
-        real_ip_header X-Forwarded-For;
-        real_ip_recursive off;
+        error_page 403 /403.html;
+        location = /403.html {
+            root /usr/share/nginx/html;
+            internal;
+        }
       }
 
-      error_page 403 /403.html;
-      location = /403.html {
-        root /usr/share/nginx/html;
-        internal;
-      }
-    }
-
-    server {
-      listen 127.0.0.8:$PORT;
-      server_name localhost;
-      allow 127.0.0.0/8;
-      deny all;
-      wallarm_mode off;
-      disable_acl "on";
-      access_log off;
-      location ~/wallarm-status$ {
-        wallarm_status on;
+      # Wallarm status helper (localhost-only)
+      server {
+        listen 127.0.0.8:$PORT;
+        server_name localhost;
+        allow 127.0.0.0/8;
+        deny all;
+        wallarm_mode off;
+        disable_acl "on";
+        access_log off;
+        location ~/wallarm-status$ {
+          wallarm_status on;
+        }
       }
     }
     ```
-
 1. Create the following `entrypoint.sh` file with directives for the Wallarm Docker image:
 
     ```
@@ -123,17 +126,18 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
         if [[ $DYNO == web.* ]]; then
             echo "Heroku dyno type [$DYNO] is 'web', running Wallarm configuration scripts"
             # Configure PORT in nginx config
-            sed -i "s/\$PORT/$PORT/g" /etc/nginx/sites-available/default
+            sed -i "s/\$PORT/$PORT/g" /etc/nginx/nginx.conf
             # Register Wallarm node in the Cloud
             /opt/wallarm/register-node --token "$WALLARM_API_TOKEN" -H "$WALLARM_API_HOST" --labels "$WALLARM_LABELS"
             # Read default Wallarm environment variables
             export $(sed -e 's/=\(.*\)/="\1"/g' /opt/wallarm/env.list | grep -v "#" | xargs)
             # Export $PORT as $NGINX_PORT (required for the `export-metrics` script)
             export NGINX_PORT="$PORT"
+            export -n TT_MEMTX_MEMORY
             # Read user-set Wallarm variables
-            [ -s /etc/wallarm-override/env.list ] && export $(sed -e 's/=\(.*\)/="\1"/g' /etc/wallarm-override/env.list | grep -v "#" | xargs)
+            # [ -s /etc/wallarm-override/env.list ] && export $(sed -e 's/=\(.*\)/="\1"/g' /etc/wallarm-override/env.list | grep -v "#" | xargs)
             # Launch all Wallarm services and NGINX under supervisord in the background
-            /opt/wallarm/usr/bin/python3.8 /opt/wallarm/usr/bin/supervisord -c /opt/wallarm/etc/supervisord.conf
+            /opt/wallarm/usr/bin/python3.10 /opt/wallarm/usr/bin/supervisord -c /opt/wallarm/etc/supervisord.conf
     else
         echo "Heroku dyno type [$DYNO] is not 'web', skipping Wallarm configuration"
         fi
@@ -262,14 +266,15 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
     ```dockerfile
     FROM ubuntu:22.04
 
-    ARG VERSION="4.10.1"
+    ARG VERSION="4.10.3"
 
     ENV PORT=3000
     ENV WALLARM_LABELS="group=heroku"
     ENV WALLARM_API_TOKEN=
     ENV WALLARM_API_HOST="us1.api.wallarm.com"
+    ENV TT_MEMTX_MEMORY=268435456
 
-    RUN apt-get -y update && apt-get -y install nginx curl && apt-get clean
+    RUN apt-get -qqy update && apt-get -qqy install nginx curl && apt-get clean
 
     # Download and unpack the Wallarm all-in-one installer
     RUN curl -o /install.sh "https://meganode.wallarm.com/$(echo "$VERSION" | cut -d '.' -f 1-2)/wallarm-$VERSION.x86_64-glibc.sh" \
@@ -291,7 +296,6 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
 
     # Copy NGINX configuration
     COPY nginx.conf /etc/nginx/nginx.conf
-    COPY default.conf /etc/nginx/sites-available/default
     
     # Herokuesque 403 error page
     COPY 403.html /usr/share/nginx/html/403.html
@@ -313,10 +317,10 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
 Execute the following commands within the previously created directory:
 
 ```
-docker build -t wallarm-heroku:4.10.1 .
+docker build -t wallarm-heroku:4.10.3 .
 docker login
-docker tag wallarm-heroku:4.10.1 <DOCKERHUB_USERNAME>/wallarm-heroku:4.10.1
-docker push <DOCKERHUB_USERNAME>/wallarm-heroku:4.10.1
+docker tag wallarm-heroku:4.10.3 <DOCKERHUB_USERNAME>/wallarm-heroku:4.10.3
+docker push <DOCKERHUB_USERNAME>/wallarm-heroku:4.10.3
 ```
 
 ## Step 3: Run the built Docker image on Heroku
@@ -327,7 +331,7 @@ To deploy the image on Heroku:
 1. Construct a `Dockerfile` which will include the installation of necessary dependencies specific to your app's runtime. For a Node.js application, use the following template:
 
     ```dockerfile
-    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:4.10.1
+    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:4.10.3
 
     ENV NODE_MAJOR=20
 
@@ -366,7 +370,7 @@ To deploy the image on Heroku:
     // app.js
     const app = require('express')()
 
-    let port = process.env.PORT || 3000 // Wallarm is not configured, listen on $PORT
+    let port = process.env.PORT || 3000 // If Wallarm is not configured, listen on $PORT
     if(process.env.WALLARM_API_TOKEN) port = '/tmp/nginx.socket' // Wallarm is configured
 
     app.listen(port, (err) => {
