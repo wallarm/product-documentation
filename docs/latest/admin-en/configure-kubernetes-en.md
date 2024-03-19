@@ -161,7 +161,7 @@ The number of running pods for postanalytics. Postanalytics is used for the beha
 
 Specifies the amount of memory allocated for postanalytics service. It is recommended to set up a value sufficient to store request data for the last 5-15 minutes.
 
-**Default value**: `0.2`
+**Default value**: `1.0`
 
 ### controller.wallarm.metrics.enabled
 
