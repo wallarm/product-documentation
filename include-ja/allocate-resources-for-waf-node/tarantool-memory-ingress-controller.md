@@ -26,7 +26,7 @@
 
 === "Ingressコントローラーのインストール"
     ```bash
-    helm install --set controller.wallarm.tarantool.arena='0.4' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    helm install --set controller.wallarm.tarantool.arena='1.0' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
     Ingressコントローラーの正しいインストールには、他にも[必要なパラメーター](../configure-kubernetes-en.md#additional-settings-for-helm-chart)があります。それらも`--set`オプションで渡してください。
