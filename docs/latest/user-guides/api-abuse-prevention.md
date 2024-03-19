@@ -9,7 +9,7 @@ The API Abuse Prevention module in the disabled state is delivered with [all for
 To enable API Abuse Prevention:
 
 1. Make sure that your traffic is filtered by the Wallarm node 4.2 or later.
-1. Make sure your [subscription plan](subscription-plans.md#subscription-plans) includes **API Abuse Prevention**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
+1. Make sure your [subscription plan](../about-wallarm/subscription-plans.md#subscription-plans) includes **API Abuse Prevention**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 1. In Wallarm Console → **API Abuse Prevention**, create or enable at least one [API Abuse profile](#creating-profiles).
 
     !!! info "Access to API Abuse Prevention settings"
@@ -73,7 +73,7 @@ To disable bot protection for specific URL or request type:
 1. Proceed to Wallarm Console → **Rules** → **Add rule**.
 1. In **If request is**, [describe](../user-guides/rules/rules.md#uri-constructor) the requests and/or URLs to apply the rule to.
 
-    To specify the URL, if you use the [**API Discovery**](../../api-discovery/overview.md) module and have your endpoints discovered, you can also quickly create the rule for the endpoint using its menu.
+    To specify the URL, if you use the [**API Discovery**](../api-discovery/overview.md) module and have your endpoints discovered, you can also quickly create the rule for the endpoint using its menu.
 
 1. In **Then**, choose **Set API Abuse Prevention mode** and set:
 
@@ -90,15 +90,15 @@ Note that you can temporarily disable the exception for the URL and/or request t
 
 Suppose your application is integrated with the Klaviyo marketing automation tool having multiple IPs that send requests. So we set not to check for automated (bot) activities in GET requests from the `Klaviyo/1.0` user agent for specific URIs:
 
-![Do not check for bot activity for requests with specific headers](../../images/user-guides/rules/api-abuse-url-request.png)
+![Do not check for bot activity for requests with specific headers](../images/user-guides/rules/api-abuse-url-request.png)
 
 **Disabling protection from bots for testing endpoint**
 
-Let's say you have the endpoint that belongs to your application. The application should be protected from bot activities but the testing endpoint should be an exception. Also, you have your API inventory discovered the [**API Discovery**](../../api-discovery/overview.md) module. 
+Let's say you have the endpoint that belongs to your application. The application should be protected from bot activities but the testing endpoint should be an exception. Also, you have your API inventory discovered the [**API Discovery**](../api-discovery/overview.md) module. 
 
 In this case it is easier to create rule from the **API Discovery** list of endpoints. Go there, find your endpoint and initiate rule creation from its page:
 
-![Creating Set API Abuse Prevention mode for API Discovery endpoint](../../images/user-guides/rules/api-abuse-url.png)
+![Creating Set API Abuse Prevention mode for API Discovery endpoint](../images/user-guides/rules/api-abuse-url.png)
 
 ## Disabling and deleting profiles
 
