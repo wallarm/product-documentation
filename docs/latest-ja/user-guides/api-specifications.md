@@ -6,7 +6,7 @@ Wallarm Console UIの**API仕様**セクションでは、Wallarmがシャドウ
 
 ## シャドウAPIの検出
 
-[**API Discovery**](../about-wallarm/api-discovery.md)を使用している場合、**API仕様**セクションでアップロードしたAPI仕様は、API Discoveryによって自動的に検出されたものと比較されるかもしれません。比較の結果、Wallarmはあなたの仕様書には存在しない、Wallarmによって発見されたエンドポイント（欠落しているエンドポイント）である [シャドウAPIを見つけて表示します](../about-wallarm/api-discovery.md#shadow-api)。
+[**API Discovery**](../api-discovery/overview.md)を使用している場合、**API仕様**セクションでアップロードしたAPI仕様は、API Discoveryによって自動的に検出されたものと比較されるかもしれません。比較の結果、Wallarmはあなたの仕様書には存在しない、Wallarmによって発見されたエンドポイント（欠落しているエンドポイント）である [シャドウAPIを見つけて表示します](../api-discovery/rogue-api.md#shadow-api)。
 
 比較を行う手順は以下の通りです:
 
@@ -27,7 +27,7 @@ Wallarm Console UIの**API仕様**セクションでは、Wallarmがシャドウ
 
 1. アップロードを開始します。
 
-    アップロードが完了すると、各仕様のシャドウAPIの数が**API仕様**のリストに表示されます。また、発見されたユニークなシャドウAPIの総数も表示されます。シャドウAPIは**API Discovery**セクションでも[表示されます](api-discovery.md#displaying-shadow-api)。
+    アップロードが完了すると、各仕様のシャドウAPIの数が**API仕様**のリストに表示されます。また、発見されたユニークなシャドウAPIの総数も表示されます。シャドウAPIは**API Discovery**セクションでも[表示されます](../api-discovery/rogue-api.md)。
 
     ![API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 

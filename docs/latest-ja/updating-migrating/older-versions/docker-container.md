@@ -136,8 +136,8 @@ docker stop <RUNNING_CONTAINER_NAME>
 1. 以下にリストされている設定の期待される動作が['off'と'monitoring'フィルタリングモードの変更したロジック](what-is-new.md#filtration-modes)に対応していることを確認します：
       * 環境変数[`WALLARM_MODE`](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)またはNGINXベースのDockerコンテナのディレクティブ[`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
       * 環境変数[`WALLARM_MODE`](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)またはEnvoyベースのDockerコンテナのディレクティブ[`mode`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
-      * [Wallarm Consoleで設定された一般的なフィルタリングルール](../../user-guides/settings/general.md)
-      * [Wallarm Consoleで設定された低レベルのフィルタリングルール](../../user-guides/rules/wallarm-mode-rule.md)
+      * [Wallarm Consoleで設定された一般的なフィルタリングルール](../../admin-en/configure-wallarm-mode.md)
+      * [Wallarm Consoleで設定された低レベルのフィルタリングルール](../../admin-en/configure-wallarm-mode.md)
 2. 期待される動作が変更されたフィルタリングモードのロジックに対応していない場合は、以下の [指示事項](../../admin-en/configure-wallarm-mode.md) を使用して、フィルタリングモードの設定をリリースされた変更に合わせて調整してください。
 
 ## Step 13: フィルタリングノードの動作をテストする

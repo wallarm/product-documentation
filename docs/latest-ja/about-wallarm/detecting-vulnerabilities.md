@@ -63,8 +63,8 @@
 * Wallarmコンソール→**スキャナー**→**構成**で、スキャナーから送信される[リクエストの限度](../user-guides/scanner.md#limiting-vulnerability-scanning)を各アセットごとに設定することができます。
 * 自動的にトラフィックをフィルタリングし、ブロックする追加機能（ソフトウェアまたはハードウェア）を使用している場合、Wallarmスキャナー用の許可リストにIPアドレスを設定することをお勧めします。これにより、Wallarmのコンポーネントがあなたのリソースをシームレスにスキャンして脆弱性を検出することができます。
 
-    * [Wallarm US Cloudに登録されたスキャナーのIPアドレス](../admin-en/scanner-address-us-cloud.md)
-    * [Wallarm EU Cloudに登録されたスキャナーのIPアドレス](../admin-en/scanner-address-eu-cloud.md)
+    * [Wallarm US Cloudに登録されたスキャナーのIPアドレス](../admin-en/scanner-addresses.md)
+    * [Wallarm EU Cloudに登録されたスキャナーのIPアドレス](../admin-en/scanner-addresses.md)
 
     追加の設備を使用せずにWallarmスキャナーを使用している場合、手動でスキャナーのIPアドレスを許可リストに追加する必要はありません。Wallarmノード3.0から、スキャナーのIPアドレスは自動的に許可リストに追加されます。
 
@@ -88,7 +88,7 @@
 
 ![脆弱性セクション](../images/user-guides/vulnerabilities/check-vuln.png)
 
-Wallarmプラットフォームの[**API Discovery**モジュール](api-discovery.md)を使用している場合、脆弱性は検出されたAPIエンドポイントと関連付けられます。たとえば：
+Wallarmプラットフォームの[**API Discovery**モジュール](../api-discovery/overview.md)を使用している場合、脆弱性は検出されたAPIエンドポイントと関連付けられます。たとえば：
 
 ![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 

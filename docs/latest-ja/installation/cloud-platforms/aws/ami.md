@@ -10,7 +10,7 @@
 [img-wl-console-users]:         ../../../images/check-user-no-2fa.png
 [img-create-wallarm-node]:      ../../../images/user-guides/nodes/create-cloud-node.png
 [deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
-[node-token]:                       ../../../quickstart.md#Wallarmフィルタリングノードのデプロイ
+[node-token]:                       ../../../quickstart/getting-started.md#Wallarmフィルタリングノードのデプロイ
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#ノード作成のためのAPIとノードトークン
 [platform]:                         ../../../installation/supported-deployment-options.md

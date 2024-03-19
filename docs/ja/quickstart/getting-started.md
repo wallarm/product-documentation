@@ -1,0 +1,1 @@
+--8<-- "latest-ja/quickstart/getting-started.md"

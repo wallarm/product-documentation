@@ -33,5 +33,5 @@ IPリストを設定するには：
 !!! warning "追加のトラフィックフィルタリング設備の使用"
     自動的にトラフィックをフィルタリングしブロックする追加の設備（ソフトウェアまたはハードウェア）を使用する場合は、[Wallarm スキャナー](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)のIPアドレスを許可リストに設定することをお勧めします。これにより、Wallarmのコンポーネントがリソースの脆弱性をシームレスにスキャンすることができます。
 
-    * [Wallarm US Cloudに登録されたスキャナーのIPアドレス](../../admin-en/scanner-address-us-cloud.md)
-    * [Wallarm EU Cloudに登録されたスキャナーのIPアドレス](../../admin-en/scanner-address-eu-cloud.md)
+    * [Wallarm US Cloudに登録されたスキャナーのIPアドレス](../../admin-en/scanner-addresses.md)
+    * [Wallarm EU Cloudに登録されたスキャナーのIPアドレス](../../admin-en/scanner-addresses.md)

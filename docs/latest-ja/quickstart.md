@@ -1,9 +1,9 @@
-[operation-mode-rule-docs]:         user-guides/rules/wallarm-mode-rule.md
+[operation-mode-rule-docs]:         admin-en/configure-wallarm-mode.md
 [filtration-modes-docs]:            admin-en/configure-wallarm-mode.md
 [graylist-docs]:                    user-guides/ip-lists/graylist.md
 [wallarm-cloud-docs]:               about-wallarm/overview.md#cloud
 [user-roles-docs]:                  user-guides/settings/users.md
-[rules-docs]:                       user-guides/rules/intro.md
+[rules-docs]:                       user-guides/rules/rules.md
 [ip-lists-docs]:                    user-guides/ip-lists/overview.md
 [integration-docs]:                 user-guides/settings/integrations/integrations-intro.md
 [trigger-docs]:                     user-guides/triggers/triggers.md

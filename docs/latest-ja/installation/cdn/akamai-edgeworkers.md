@@ -19,7 +19,7 @@
 このソリューションは、着信リクエストのみで動作するため、特定の制限があります：
 
 * [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)方法を使用した脆弱性発見は正しく機能しません。このソリューションは、それがテストする脆弱性に典型的な悪意のあるリクエストへのサーバー応答に基づいて、APIが脆弱かどうかを判断します。
-* [Wallarm API Discovery](../../about-wallarm/api-discovery.md)は、応答分析に依存する解決策として、トラフィックに基づいてAPIインベントリを探索することができません。
+* [Wallarm API Discovery](../../api-discovery/overview.md)は、応答分析に依存する解決策として、トラフィックに基づいてAPIインベントリを探索することができません。
 * 応答コード分析が必要なため、[強制的なブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は利用できません。
 
 [EdgeWorkers製品の制限](https://techdocs.akamai.com/edgeworkers/docs/limitations)および[http-request](https://techdocs.akamai.com/edgeworkers/docs/http-request)による制限もあります：

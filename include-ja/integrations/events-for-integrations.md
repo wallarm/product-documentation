@@ -6,5 +6,5 @@
     * 高リスク
     * 中リスク
     * 低リスク
-* [Rules](../../../user-guides/rules/intro.md) と [triggers](../../../user-guides/triggers/triggers.md) の変更 (規則またはトリガーの作成、更新、または削除)
+* [Rules](../../../user-guides/rules/rules.md) と [triggers](../../../user-guides/triggers/triggers.md) の変更 (規則またはトリガーの作成、更新、または削除)
 * [Scope (exposed assets)](../../scanner.md) の変更: ホスト、サービス、ドメインの更新

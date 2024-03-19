@@ -1,11 +1,11 @@
 # API ディスカバリーダッシュボード <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-**API ディスカバリー** Wallarm ダッシュボードは、[API ディスカバリー](../../about-wallarm/api-discovery.md) モジュールによって収集された API に関するデータを要約します。以下の指標に基づいた API インベントリーの包括的な概観を提供します：
+**API ディスカバリー** Wallarm ダッシュボードは、[API ディスカバリー](../../api-discovery/overview.md) モジュールによって収集された API に関するデータを要約します。以下の指標に基づいた API インベントリーの包括的な概観を提供します：
 
 * リスクレベル別のエンドポイント数
-* API インベントリ全体、および過去 7 日間に新たに発見されたエンドポイントの中で [最もリスキー](../../about-wallarm/api-discovery.md#endpoint-risk-score) なエンドポイント
+* API インベントリ全体、および過去 7 日間に新たに発見されたエンドポイントの中で [最もリスキー](../../api-discovery/risk-score.md) なエンドポイント
 
-    最もリスキーなエンドポイントは、攻撃の対象になりやすい可能性が最も高いです。これは、アクティブな脆弱性、エンドポイントが [新規](../../about-wallarm/api-discovery.md#tracking-changes-in-api) または [シャドウ](../../about-wallarm/api-discovery.md#shadow-api) であること、その他のリスク要因によるものです。リスキーなエンドポイントごとに、目標とされたヒットの数が提供されます。
+    最もリスキーなエンドポイントは、攻撃の対象になりやすい可能性が最も高いです。これは、アクティブな脆弱性、エンドポイントが [新規](../../api-discovery/track-changes.md) または [シャドウ](../../api-discovery/rogue-api.md#shadow-api) であること、その他のリスク要因によるものです。リスキーなエンドポイントごとに、目標とされたヒットの数が提供されます。
 
 * 過去 7 日間における API の変更（新規、変更、未使用の API）
 * 発見されたエンドポイントの総数と、それらが外部、内部のいずれであるか

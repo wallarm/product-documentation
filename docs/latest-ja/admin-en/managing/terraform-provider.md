@@ -67,7 +67,7 @@ Wallarmプロバイダを通じて、Terraformを使用して以下を管理で�
 
 * アカウントの[ノード](../../user-guides/nodes/nodes.md)
 * [アプリケーション](../../user-guides/settings/applications.md)
-* [ルール](../../user-guides/rules/intro.md)
+* [ルール](../../user-guides/rules/rules.md)
 * [トリガー](../../user-guides/triggers/triggers.md)
 * [拒否リスト](../../user-guides/ip-lists/denylist.md)、[許可リスト](../../user-guides/ip-lists/allowlist.md)および[グレーリスト](../../user-guides/ip-lists/graylist.md)のIP
 * [ユーザー](../../user-guides/settings/users.md)

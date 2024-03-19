@@ -1,0 +1,1 @@
+--8<-- "latest-ja/installation/oob/ebpf/selecting-packets.md"

@@ -16,8 +16,8 @@
 
 Wallarmスキャナーは、あなたの会社のリソースを脆弱性に対してチェックします。スキャンは次のリストのいずれかからのIPアドレスを使用して行われます（使用するWallarm Cloudの種類によります）：
 
-* [US CloudユーザーのためのUSスキャナーアドレス](scanner-address-us-cloud.md)
-* [EU CloudユーザーのためのEUスキャナーアドレス](scanner-address-eu-cloud.md)
+* [US CloudユーザーのためのUSスキャナーアドレス](scanner-addresses.md)
+* [EU CloudユーザーのためのEUスキャナーアドレス](scanner-addresses.md)
 
 Wallarmスキャナーを使用している場合、ネットワークスコープセキュリティソフトウェア（ファイアウォール、侵入検知システムなど）の許可リストを設定して、WallarmスキャナーのIPアドレスを含める必要があります。
 

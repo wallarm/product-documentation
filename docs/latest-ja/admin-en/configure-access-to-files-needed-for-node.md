@@ -21,7 +21,7 @@
     `(TYPE)`は、パラメータが設定されている特定のファイルを指定することができます。可能な値は`proton.db`または`lom`です。
 
     !!! warning "`lom` value meaning"
-         `lom`値が[カスタムルールセット](../user-guides/rules/compiling.md)ファイル`/etc/wallarm/custom_ruleset` を指していることに注意してください。
+         `lom`値が[カスタムルールセット](../user-guides/rules/rules.md)ファイル`/etc/wallarm/custom_ruleset` を指していることに注意してください。
 
 1. `node.yaml`ファイル内の明示的に設定された`syncnode.(user,group,mode)`パラメータ。
 1. NGINXベースのインストールの場合、`/usr/share/wallarm-common/engine/*`ファイルの`nginx_group`の値。

@@ -31,7 +31,7 @@ OOBアプローチを使用したWallarmのデプロイメントは、インラ�
 
     Wallarmは攻撃を観察し、[Wallarmコンソールでの詳細](../..//user-guides/events/analyze-attack.md)を提供します。
 * [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)方法を使用した脆弱性の発見は正常に機能しません。このソリューションは、サーバーの応答に基づいてAPIが脆弱性を持っているかどうかを判断します。これはその脆弱性をテストするのに典型的な悪意のあるリクエストです。
-* [Wallarm API Discovery](../../about-wallarm/api-discovery.md)は、モジュールの操作に必要なサーバーの応答がミラーリングされないため、トラフィックに基づいてAPIのインベントリを探索しません。
+* [Wallarm API Discovery](../../api-discovery/overview.md)は、モジュールの操作に必要なサーバーの応答がミラーリングされないため、トラフィックに基づいてAPIのインベントリを探索しません。
 * 応答コードの分析が現在可能ではないため、[強制的なブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は利用できません。
 
 ## サポートされているデプロイメントオプション
