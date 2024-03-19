@@ -7,48 +7,33 @@ Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../../atta
 
 ## Configuring
 
-By default, Wallarm automatically discovers only vulnerabilities of the BOLA type (also known as IDOR) but does not detect its exploitation attempts.
+By default, Wallarm automatically discovers only vulnerabilities of the BOLA type (also known as IDOR) but does not detect its exploitation attempts. Consider the example below to learn how to configure protection from BOLA attacks.
 
-For the Wallarm node to identify BOLA attacks:
+Let us say your e-commerce `example.com` platform for online stores (shops) stores financial information under for each hosted shop under `/shops/<PARTICULAR_SHOP>/financial_info` you want to prevent malicious actors from getting the list of all hosted shop names via a simple script manipulating the names in the list, replacing `<PARTICULAR_SHOP>` in the URL. To do that, you may set a `30 requests from the same IP per 30 seconds` threshold to block IPs targeting addresses matching the pattern and exceeding this limit.
 
-1. Open Wallarm Console → **Triggers** and proceed to the **BOLA** trigger setup.
-1. Set conditions for defining requests as a BOLA attack:
+To provide this protection:
 
-    * The number of **Requests from the same IP** for a certain period of time.
-    * **URI** to be protected against BOLA attacks and receiving the specified number of requests. The value should be an API endpoint pointing to an object by its identifier since this endpoint type is potentially vulnerable to BOLA attacks.
+1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
+1. Select the **BOLA** condition.
+1. Set the threshold 30 requests from the same IP per 30 seconds.
+1. Set the **URI** filter as displayed on the screenshot, including:
 
-        To specify the PATH parameter identifying an object, use the symbol `*`, e.g.:
-
-        ```bash
-        example.com/shops/*/financial_info
-        ```
-
-        URI can be configured via the [URI constructor](../../user-guides/rules/rules.md#uri-constructor) or [advanced edit form](../../user-guides/rules/rules.md#advanced-edit-form) in the trigger creation window.
-
-    * (Optional) [**Application**](../../user-guides/settings/applications.md) to be protected against BOLA attacks and receiving the specified number of requests.
-
-        If you use the same name for several domains, this filter is recommended to point to the application the domain in the **URI** filter is assigned for.
-
-    * (Optional) One or more **IPs** originating the requests.
-1. Select trigger reactions:
-
-    * **Mark as BOLA**. Requests exceeding the threshold are marked as a BOLA attack and displayed in the **Attacks** section of Wallarm Console. Wallarm node does NOT block these malicious requests.
-    * [**Denylist IP addresses**](../../user-guides/ip-lists/overview.md) originating malicious requests and the blocking period.
-    
-        The Wallarm node will block both legitimate and malicious requests (including BOLA attacks) originating from the denylisted IP.
-    
-    * [**Graylist IP addresses**](../../user-guides/ip-lists/overview.md) originating  malicious requests and the blocking period.
-    
-        The Wallarm node will block requests originating from the graylisted IPs only if requests contain [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs.
-        
-        !!! info "BOLA attacks originating from graylisted IPs"
-            BOLA attacks originating from graylisted IPs are not blocked.
+    * `*` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any one component". They will cover all the `example.com/shops/<PARTICULAR_SHOP>/financial_info` addresses.
 
         ![BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
 
+1. Do not use in this case: 
+
+    * The **Application** filter, but be aware that you can use it to set trigger only to react to the requests targeting domains of selected application.
+    * The **IP** filter, but be aware that you can use it to set trigger only to react to specific IPs originating requests.
+
+1. Select the **Denylist IP address** - `Block for 4 hour` trigger reaction. Wallarm will put origin IP to the [denylist](../../user-guides/ip-lists/overview.md) after the threshold is exceeded and block all further requests from it.
+1. Select the **Mark as BOLA** trigger reaction. Requests received after exceeding the threshold will be marked as the BOLA attack and displayed in the **Attacks** section of Wallarm Console. In some cases, you can use this reaction alone to have information about the attack, but not to block anything.
 1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
 
 ## Testing
+
+To test the trigger described in the [Configuring](#configuring) section:
 
 1. Send the number of requests that exceeds the configured threshold to the protected URI. For example, 50 requests with different values of `{shop_id}` to the endpoint `https://example.com/shops/{shop_id}/financial_info`:
 
@@ -65,10 +50,6 @@ For the Wallarm node to identify BOLA attacks:
     The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 
     To search for BOLA attacks, you can use the `bola` search tag. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
-
-## Trigger processing priorities
-            
---8<-- "../include/trigger-processing-priorities.md"
 
 ## Requirements and restrictions
 
