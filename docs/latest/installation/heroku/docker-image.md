@@ -78,7 +78,7 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
       server {
         listen $PORT default_server;
         server_name _;
-        wallarm_mode block;
+        wallarm_mode monitoring;
         
         location / {
           proxy_pass http://unix:/tmp/nginx.socket;
