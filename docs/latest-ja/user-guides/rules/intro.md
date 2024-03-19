@@ -1,5 +1,5 @@
 [link-request-processing]:      request-processing.md
-[link-rules-compiling]:         compiling.md
+[link-rules-compiling]:         rules.md
 
 # アプリケーションプロファイルルール
 

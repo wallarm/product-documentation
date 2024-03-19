@@ -15,7 +15,7 @@ Wallarmクラウドは非常に安定したスケーラブルなサービスで�
 
 * 設定された[モード](../admin-en/configure-wallarm-mode.md#available-filtration-modes)でのトラフィック処理は、クラウドとノード間の最後に成功した[同期](../admin-en/configure-cloud-node-synchronization-en.md)中にノードにアップロードされたルールを使用して行います。ノードは、以下の要素の最新バージョンがスケジュールに従ってクラウドからアップロードされ、ノード内にローカルに保存されるため、動作を続けることができます。
 
-    * [カスタムルールセット](../user-guides/rules/compiling.md)
+    * [カスタムルールセット](../user-guides/rules/rules.md)
     * [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton)
 
 * [IPリスト](../user-guides/ip-lists/overview.md)もノードにアップロードされ、ノード内に保存されます。アップロードされたアドレスは引き続き処理されますが、有効期限が来るまでです。
@@ -36,7 +36,7 @@ Wallarmクラウドは非常に安定したスケーラブルなサービスで�
 * [トリガー](../user-guides/triggers/triggers.md)が停止し、以下のことが停止します：
     * [IPリスト](../user-guides/ip-lists/overview.md)の更新が停止します。
     * [トリガーベースの通知](../user-guides/triggers/triggers.md)は表示されません。
-* [APIインベントリの検出](../about-wallarm/api-discovery.md)は動作しません。
+* [APIインベントリの検出](../api-discovery/overview.md)は動作しません。
 * [アクティブな脅威の検証](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)が停止します。
 * [ブルートフォース攻撃](../admin-en/configuration-guides/protecting-against-bruteforce.md)の検出は停止します。
 * インテグレーションが停止し、以下のことが停止します：

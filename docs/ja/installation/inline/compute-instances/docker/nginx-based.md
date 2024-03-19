@@ -20,10 +20,16 @@ search:
 [attacks-in-ui-image]:              ../../../../images/admin-guides/test-attacks-quickstart.png
 [versioning-policy]:                ../../../../updating-migrating/versioning-policy.md#version-list
 [node-status-docs]:                 ../../../../admin-en/configure-statistics-service.md
-[node-token]:                       ../../../../quickstart.md#deploy-the-wallarm-filtering-node
+[node-token]:                       ../../../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../supported-deployment-options.md
 [nginx-directives-docs]:            ../../../../admin-en/configure-parameters-en.md
+[aws-ecs-docs]:                     ../../../cloud-platforms/aws/docker-container.md
+[gcp-gce-docs]:                     ../../../cloud-platforms/gcp/docker-container.md
+[azure-container-docs]:             ../../../cloud-platforms/azure/docker-container.md
+[alibaba-ecs-docs]:                 ../../../cloud-platforms/alibaba-cloud/docker-container.md
+[ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
+[api-policy-enf-docs]:              ../../../../api-policy-enforcement/overview.md
 
 --8<-- "latest-ja/admin-en/installation-docker-en.md"

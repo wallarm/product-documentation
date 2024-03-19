@@ -78,7 +78,7 @@ Wallarmのフィルタリングノードの適切なモニタリングを有効�
 * Wallarmのフィルタリングノードの低レベルの設定変更については、標準的なDevOpsの変更管理と段階的なロールアウトの方針を使用します。
 * フィルタリングルールについては、異なるアプリケーション用に異なる[IDs](../admin-en/configure-parameters-en.md#wallarm_application)または`Host`リクエストヘッダーを使用します。
 * [正規表現を使用した攻撃識別の作成](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule)のルールでは、特定のアプリケーションIDに関連付けることができる上に、Wallarmノードがブロックモードで動作しているときでも、モニタリングモード（**Experimental** チェックボックス）で有効にすることができます。
-* [フィルタモードの設定](../user-guides/rules/wallarm-mode-rule.md)のルールは、Wallarm ConsoleからWallarmノードの運用モード（`monitoring`、`safe_blocking`、または`block`）を制御することを可能にし、NGINXの設定での[`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) の設定に似ています（[`wallarm_mode_allow_override`](../admin-en/configure-parameters-en.md#wallarm_mode_allow_override) の設定によります）。
+* [フィルタモードの設定](../admin-en/configure-wallarm-mode.md)のルールは、Wallarm ConsoleからWallarmノードの運用モード（`monitoring`、`safe_blocking`、または`block`）を制御することを可能にし、NGINXの設定での[`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) の設定に似ています（[`wallarm_mode_allow_override`](../admin-en/configure-parameters-en.md#wallarm_mode_allow_override) の設定によります）。
 
 ## 利用可能なインテグレーションを設定して、システムからの通知を受け取る
 

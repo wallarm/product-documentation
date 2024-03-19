@@ -41,7 +41,7 @@
     * [サンプル](../events/analyze-attack.md#sampling-of-hits)に保存されていないヒット。
 * インシデント数
 * ブロックリストIP
-* [APIインベントリの変更](../../about-wallarm/api-discovery.md#tracking-changes-in-api)
+* [APIインベントリの変更](../../api-discovery/track-changes.md)
 * 同じIPからのヒット、ただし、Brute force, Forced browsing, BOLA(IDOR), Resource overlimit, Data bomb、Virtual patchの攻撃タイプは除く
 * ユーザー追加された数
 
@@ -55,7 +55,7 @@ Wallarm Consoleインターフェースで条件を選択し、それに応じ�
 
 次のフィルタが利用可能です：
 
-* **URI**（条件が **Brute force**、**Forced browsing**、**BOLA**の場合のみ）:リクエストが送信された完全なURI。URIは、[URI constructor](../../user-guides/rules/add-rule.md#uri-constructor)や[advanced edit form](../../user-guides/rules/add-rule.md#advanced-edit-form)を通じて設定可能です。
+* **URI**（条件が **Brute force**、**Forced browsing**、**BOLA**の場合のみ）:リクエストが送信された完全なURI。URIは、[URI constructor](../../user-guides/rules/rules.md#uri-constructor)や[advanced edit form](../../user-guides/rules/rules.md#advanced-edit-form)を通じて設定可能です。
 * **Type**：リクエストで検出された攻撃の[type](../../attacks-vulns-list.md)、またはリクエストが向けられた脆弱性のタイプ。
 * **Application**：リクエストを受け取る[application](../settings/applications.md)またはインシデントが検出される場所。
 * **IP**：リクエストが送信されたIPアドレス。

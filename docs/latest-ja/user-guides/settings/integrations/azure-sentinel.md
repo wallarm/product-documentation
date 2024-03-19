@@ -55,7 +55,7 @@ Microsoft Workspace → **ログ** → **カスタムログ** でWallarmのロ�
 | 高リスクの新しい [脆弱性](../../../glossary-en.md#vulnerability) | `vuln_high_CL` |
 | 中リスクの新しい脆弱性 | `vuln_medium_CL` |
 | 低リスクの新しい脆弱性 | `vuln_low_CL` |
-| 新しい [ルール](../../../user-guides/rules/intro.md) | `rule_create_CL` |
+| 新しい [ルール](../../../user-guides/rules/rules.md) | `rule_create_CL` |
 | ルールの削除 | `rule_delete_CL` |
 | 既存のルールの変更 | `rule_update_CL` |
 | 新しい [トリガー](../../../user-guides/triggers/triggers.md) | `trigger_create_CL` |

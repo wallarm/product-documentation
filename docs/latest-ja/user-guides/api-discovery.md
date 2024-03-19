@@ -1,6 +1,6 @@
 # API Discovery <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarmコンソールの**API Discovery**セクションを使用すると、[APIインベントリ](../about-wallarm/api-discovery.md)の管理やその発見を微調整することができます。 このガイドでは、このセクションの使用方法について説明します。
+Wallarmコンソールの**API Discovery**セクションを使用すると、[APIインベントリ](../api-discovery/overview.md)の管理やその発見を微調整することができます。 このガイドでは、このセクションの使用方法について説明します。
 
 このセクションは、次の [ロール](../user-guides/settings/users.md#user-roles)のユーザーにのみ利用可能です：
 
@@ -62,12 +62,12 @@ APIエンドポイントフィルタの中から、分析目的に対応する�
     * 医療免許番号のような医療データ
     * フルネーム、パスポート番号、またはSSNのような個人を特定できる情報 (PII)
 
-* このパラメータで送信されるデータの[タイプ/フォーマット](../about-wallarm/api-discovery.md#parameter-types-and-formats)
+* このパラメータで送信されるデータの[タイプ/フォーマット](../api-discovery/overview.md)
 * パラメータ情報が最後に更新された日付と時刻
 
 ## APIの変更の追跡
 
-指定した期間内にAPIで何が[変更された](../about-wallarm/api-discovery.md#tracking-changes-in-api)かを確認することができます。 これを行うには、**Changes since（以降の変更）**フィルターから適切な期間または日付を選択します。 エンドポイントリストには次のマークが表示されます：
+指定した期間内にAPIで何が[変更された](../api-discovery/track-changes.md)かを確認することができます。 これを行うには、**Changes since（以降の変更）**フィルターから適切な期間または日付を選択します。 エンドポイントリストには次のマークが表示されます：
 
 * 期間中にリストに追加されたエンドポイントには **New（新規）**。
 * この期間内に新しく発見されたパラメーターまたは`Unused（未使用）` ステータスを取得したパラメーターがあるエンドポイントには **Changed（変更）**。 エンドポイントの詳細では、そのようなパラメーターは対応するマークが付きます。
@@ -102,7 +102,7 @@ APIエンドポイントフィルタの中から、分析目的に対応する�
 
 ## リスクスコアの利用
 
-[リスクスコア](../about-wallarm/api-discovery.md#endpoint-risk-score) を使用すると、攻撃のターゲットとなりやすいエンドポイントを把握し、それらをあなたのセキュリティ取り組みの焦点とすることができます。
+[リスクスコア](../api-discovery/risk-score.md) を使用すると、攻撃のターゲットとなりやすいエンドポイントを把握し、それらをあなたのセキュリティ取り組みの焦点とすることができます。
 
 リスクスコアは `1`（最低）から `10`（最高）までです：
 
@@ -147,7 +147,7 @@ attacks last 7 days endpoint_id:<YOUR_ENDPOINT_ID>
 
 ## APIインベントリとルール
 
-あなたはAPIインベントリの任意のエンドポイントから新しい[カスタムルール](../user-guides/rules/intro.md)を素早く作成することができます： 
+あなたはAPIインベントリの任意のエンドポイントから新しい[カスタムルール](../user-guides/rules/rules.md)を素早く作成することができます： 
 
 1. このエンドポイントのメニューで**Create rule（ルールを作成）**を選択します。 ルール作成ウィンドウが表示されます。 エンドポイントのアドレスは自動的にウィンドウにパースされます。
 1. ルール作成ウィンドウで、ルール情報を指定し、**Create（作成）**をクリックします。
@@ -156,7 +156,7 @@ attacks last 7 days endpoint_id:<YOUR_ENDPOINT_ID>
 
 ## シャドウAPIの表示
 
-**API Discovery**モジュールは、発見されたAPIインベントリと[お客様から提供された仕様](../user-guides/api-specifications.md)を比較することでシャドウAPIを自動的に検出します。 Wallarmによって発見されたエンドポイントの中で[シャドウAPI](../about-wallarm/api-discovery.md#shadow-api)を表示するには：
+**API Discovery**モジュールは、発見されたAPIインベントリと[お客様から提供された仕様](../api-discovery/rogue-api.md)を比較することでシャドウAPIを自動的に検出します。 Wallarmによって発見されたエンドポイントの中で[シャドウAPI](../api-discovery/rogue-api.md#shadow-api)を表示するには：
 
 * **Compare to...（...と比較）**フィルターを使用して仕様の比較を選択します - これだけがシャドウAPIを**Issues（問題）** 列に特別なマークでハイライトします。
 
@@ -197,7 +197,7 @@ BOLA自動保護の状態によってAPIエンドポイントをフィルタリ�
 
 ### API Discoveryのためのアプリケーションの選択
 
-あなたの会社アカウントで[API Discovery](../about-wallarm/api-discovery.md)サブスクリプションが購入されている場合、API Discovery を有効/無効にするため、Wallarm Console → **API Discovery** → **Configure API Discovery**に進むことができます。
+あなたの会社アカウントで[API Discovery](../api-discovery/overview.md)サブスクリプションが購入されている場合、API Discovery を有効/無効にするため、Wallarm Console → **API Discovery** → **Configure API Discovery**に進むことができます。
 
 あなたはすべてのアプリケーションに対してAPI Discoveryを有効/無効にするか、選択したものだけに対してAPI Discoveryを有効/無効にします。
 
@@ -207,7 +207,7 @@ BOLA自動保護の状態によってAPIエンドポイントをフィルタリ�
 
 ### リスクスコア計算のカスタマイズ
 
-あなたは各要素の重みと[リスクスコア](../about-wallarm/api-discovery.md#endpoint-risk-score)計算方法を設定することができます。
+あなたは各要素の重みと[リスクスコア](../api-discovery/risk-score.md)計算方法を設定することができます。
 
 デフォルト：
 

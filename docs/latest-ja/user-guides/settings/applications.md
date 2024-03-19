@@ -8,7 +8,7 @@
 アプリケーションを使用することで、以下のことが可能になります:
 
 * 各アプリケーションのイベントと統計情報を個別に閲覧
-* 特定のアプリケーションのための[トリガー](../triggers/triggers.md)、[ルール](../rules/add-rule.md)、その他のWallarm機能の設定
+* 特定のアプリケーションのための[トリガー](../triggers/triggers.md)、[ルール](../rules/rules.md)、その他のWallarm機能の設定
 * [分離された環境でのWallarmの設定](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)
 
 Wallarmがあなたのアプリケーションを識別するためには、それらにノード設定の適切なディレクティブを通じて一意の識別子を割り当てることが必要です。識別子は、アプリケーションのドメインとドメインパスの両方に設定することができます。

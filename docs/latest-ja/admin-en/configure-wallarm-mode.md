@@ -110,8 +110,8 @@ Wallarmコンソールの**Rules**タブのローカルフィルタリングモ�
 
 Wallarmコンソールの**Rules**タブで、カスタム条件に一致するリクエストの処理に対するフィルタリングモードを微調整できます。これらのルールは、[Wallarmコンソールで設定された一般的なフィルタリングルール](#setting-up-the-general-filtration-rule-in-wallarm-console)よりも優先度が高いです。
 
-* [**Rules**タブでのルール作業の詳細 →](../user-guides/rules/intro.md)
-* [フィルタリングモードを管理するルールの作成ガイド →](../user-guides/rules/wallarm-mode-rule.md)
+* [**Rules**タブでのルール作業の詳細 →](../user-guides/rules/rules.md)
+* [フィルタリングモードを管理するルールの作成ガイド →](../admin-en/configure-wallarm-mode.md)
 
 !!! info "Wallarm Cloudとフィルタリングノードの同期"
     Wallarmコンソールで定義されたルールは、Wallarm Cloudとフィルタリングノードの同期プロセス中に適用されます。このプロセスは、2～4分ごとに行われます。

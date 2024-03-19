@@ -303,8 +303,8 @@ Wallarmノード2.16以前をアップグレードする場合は、Wallarmコ�
 
 1. 以下に記載された設定の予想される動作が、[`off` および `monitoring` フィルタリングモードの変更されたロジック](what-is-new.md#filtration-modes)に対応していることを確認してください:
       * [ディレクティブ `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [Wallarmコンソールで構成された一般的なフィルタリングルール](../../user-guides/settings/general.md)
-      * [Wallarmコンソールで構成された低レベルのフィルタリングルール](../../user-guides/rules/wallarm-mode-rule.md)
+      * [Wallarmコンソールで構成された一般的なフィルタリングルール](../../admin-en/configure-wallarm-mode.md)
+      * [Wallarmコンソールで構成された低レベルのフィルタリングルール](../../admin-en/configure-wallarm-mode.md)
 2. 予想される動作が変更されたフィルタリングモードのロジックに対応していない場合は、[手順](../../admin-en/configure-wallarm-mode.md)に従って、リリースされた変更にフィルタリングモード設定を調整してください。
 
 ## ステップ 13: `overlimit_res` アタック検出設定をディレクティブからルールに転送する
