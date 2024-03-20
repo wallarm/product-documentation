@@ -44,7 +44,20 @@ You can explore GraphQL policy violations (GraphQL attacks) in Wallarm Console â
 
 ![GraphQL attacks](../../images/user-guides/rules/graphql-attacks.png)
 
-<!--## Rule examples
+## Rule examples
 
-TBD
--->
+### Preventing DoS attacks via excessive query and value size
+
+An attacker might attempt to perform a Denial of Service (DoS) or cause other issues by exploiting how the server handles excessively large  GraphQL inputs. Let us say you want to block a possibility of denial of service (DoS) attacks to your application GraphQL `example.com/graphql` endpoint. To provide this protection, limit the total GraphQL query size and accessible value size for the POST requests to the endpoint.
+
+To do so, set the **Detect GraphQL attacks** rule as displayed on the screenshot:
+
+![GraphQL - limiting query and value size](../../images/user-guides/rules/graphql-rule-1.png)
+
+### Preventing data exposure via introspection queries
+
+In GraphQL, an introspection attack can occur when an attacker leverages the introspection system to uncover details about the schema of the GraphQL API. By querying this system, they could potentially gain knowledge about all types, queries, mutations, and fields that are available in the API, which they could then use to construct more precise and damaging queries. Let us say you want to block requests with introspection queries to your application GraphQL `example.com/graphql` endpoint.
+
+To do so, set the **Detect GraphQL attacks** rule as displayed on the screenshot:
+
+![GraphQL - forbid introspection queries](../../images/user-guides/rules/graphql-rule-2.png)
