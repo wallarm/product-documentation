@@ -201,6 +201,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](cloud-image.md)
 
+### 4.10.2-2 (2024-03-20)
+
+* The `readahead` parameter value for Tarantool has been decreased to 32KB
+
 ### 4.10.2-1 (2024-03-08)
 
 * Internal improvements for higher reliability and security, including better synchronization between the filtering node and Wallarm Cloud, securing the `wallarm` user with a non-interactive shell, and other changes that do not affect the usage flow
