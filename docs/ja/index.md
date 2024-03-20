@@ -15,7 +15,7 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
     <h3 class="icon-homepage quick-start-title">クイックスタート</h3>
     <p><ul>
     <li><a href="./about-wallarm/overview/">Wallarmの概要</a></li>
-    <li><a href="./quickstart/">クイックスタートガイド</a></li>
+    <li><a href="./quickstart/getting-started/">クイックスタートガイド</a></li>
     <li><a href="./demo-videos/overview/">ビデオガイド</a></li>
     <li><a href="./installation/supported-deployment-options/">デプロイガイド</a></li>
     <li><a href="./about-wallarm/subscription-plans/">サブスクリプションプラン</a></li>
