@@ -44,7 +44,7 @@ nav:
     - BOLA Autoprotection: api-discovery/bola-protection.md
     - Dashboard: api-discovery/dashboard.md
   - API Protection:
-    # - Overview: ...
+    - Overview: about-wallarm/api-protection-overview.md
     # - OWASP Top 10: ...
     # - OWASP API Top 10: ...
     # - API Policy Enforcement:
@@ -55,7 +55,7 @@ nav:
       - Overview: about-wallarm/api-abuse-prevention.md
       - Setup: user-guides/api-abuse-prevention.md
       - Exploring Detected Bots: user-guides/api-abuse-prevention-explore.md
-    - BOLA Protection (APID): admin-en/configuration-guides/protecting-against-bola.md
+    - Automatic BOLA Protection: admin-en/configuration-guides/protecting-against-bola.md
     - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
   - API Attack Surface:
     - Overview: about-wallarm/attack-surface.md
