@@ -346,6 +346,8 @@ a.md-tabs__link:hover {
   }
   .md-sidebar--primary {
     top: 97px;
+  }
+  [dir=lts] .md-sidebar--primary {
     width: 15rem !important;
   }
   .versions {

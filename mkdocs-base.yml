@@ -59,6 +59,13 @@ theme:
     text: Sk Modernist
     code: Roboto Mono
   playground_button_name: "Explore Playground"
+  footer:
+    need_help: Need help or have questions?
+    contact_support: Contact Support
+    contact_sales: Contact Sales
+  not_found:
+    title: Document not found
+    description: Please check the URL or try to find the page using the search bar.<br>If there is missed documentation on the deployment option being used, contact the <a href="mailto:support@wallarm.com">support team</a>.
 
 extra:
   social:
@@ -100,6 +107,13 @@ extra:
           data: 0
           note: >- 
             Thanks for your feedback!
+      negative:
+        ask_reason: How can we improve this article? (Optional)
+        unclear: Information is unclear or confusing
+        missing: Insufficient information
+        outdated: Outdated or incorrect information
+        input_placeholder: Share your experience in more detail
+        send_button: Send
 
 extra_css:
   - 'extra_new.css'
