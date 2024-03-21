@@ -39,9 +39,6 @@ theme:
     need_help: هل تحتاج إلى مساعدة أو لديك أسئلة؟
     contact_support: اتصل بالدعم
     contact_sales: مبيعات الاتصال
-  not_found:
-    title: الوثيقة غير موجودة
-    description: يرجى التحقق من الرابط أو محاولة العثور على الصفحة باستخدام شريط البحث.<br>إذا كان هناك وثائق مفقودة حول خيار النشر المستخدم، يرجى الاتصال بـ<a href="mailto:support@wallarm.com">فريق الدعم</a>.
 
 docs_dir: docs/latest-ar
 site_dir: site/ar
