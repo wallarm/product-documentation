@@ -63,9 +63,6 @@ theme:
     need_help: Need help or have questions?
     contact_support: Contact Support
     contact_sales: Contact Sales
-  not_found:
-    title: Document not found
-    description: Please check the URL or try to find the page using the search bar.<br>If there is missed documentation on the deployment option being used, contact the <a href="mailto:support@wallarm.com">support team</a>.
 
 extra:
   social:
