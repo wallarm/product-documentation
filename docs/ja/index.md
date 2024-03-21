@@ -36,7 +36,7 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-discovery-title">API発見</h3>
+    <h3 class="icon-homepage api-discovery-title">APIディスカバリー</h3>
     <p><ul>
     <li><a href="./api-discovery/overview/">API インベントリの探索</a></li>
     <li><a href="./api-discovery/track-changes/">API の変更の追跡</a></li>
@@ -46,7 +46,7 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-threat-prevent">API脅威予防</h3>
+    <h3 class="icon-homepage api-threat-prevent">API保護</h3>
     <p><ul>
     <li><a href="./about-wallarm/api-abuse-prevention/">API 濫用防止</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA 保護</a></li>
@@ -55,7 +55,7 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage vuln-title">脆弱性検出</h3>
+    <h3 class="icon-homepage vuln-title">API攻撃面</h3>
     <p><ul>
     <li><a href="./about-wallarm/attack-surface/">概要</a></li>
     <li><a href="./user-guides/scanner/">公開されたアセット</a></li>
@@ -90,7 +90,7 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage deployment-title">デプロイメント</h3>
+    <h3 class="icon-homepage deployment-title">展開</h3>
     <p><ul>
     <li><a href="./installation/supported-deployment-options/">すべてのデプロイメントオプション</a></li>
     <li><a href="./installation/oob/overview/">アウトオブバンド</a></li>
@@ -124,7 +124,7 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage operations-title">オペレーション</h3>
+    <h3 class="icon-homepage operations-title">操作</h3>
     <p><ul>
     <li><a href="./admin-en/configure-parameters-en/">NGINXベースのノードの構成オプション</a></li>
     <li><a href="./admin-en/configure-wallarm-mode/">フィルタリングモード</a></li>
@@ -137,7 +137,7 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage references-title">参考文献</h3>
+    <h3 class="icon-homepage references-title">リファレンス</h3>
     <p><ul>
     <li><a href="./faq/ingress-installation/">FAQ</a></li>
     <li><a href="./news/">変更ログ & ニュース</a></li>
