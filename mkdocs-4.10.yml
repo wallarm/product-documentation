@@ -57,6 +57,7 @@ nav:
       - Disabling bot protection for specific URLs and requests: user-guides/rules/api-abuse-url.md
     - BOLA Protection (APID): admin-en/configuration-guides/protecting-against-bola.md
     - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
+    - GraphQL Policy: api-protection/graphql-rule.md
   - API Attack Surface:
     - Overview: about-wallarm/attack-surface.md
     - Exposed Assets: user-guides/scanner.md
@@ -191,7 +192,6 @@ nav:
     - Filtering by IP: user-guides/ip-lists/overview.md
     - Virtual Patching: user-guides/rules/vpatch-rule.md
     - User‑Defined Detectors: user-guides/rules/regex-rule.md
-    - GraphQL Policies: user-guides/rules/graphql-rule.md
     - Masking Sensitive Data: user-guides/rules/sensitive-data-rule.md
     - Changing Response Headers: user-guides/rules/add-replace-response-header.md
     - Filtration Mode: admin-en/configure-wallarm-mode.md
