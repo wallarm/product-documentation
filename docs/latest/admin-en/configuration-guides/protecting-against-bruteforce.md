@@ -13,14 +13,14 @@ Note that:
 
 Consider the example below to learn how to configure brute force protection.
 
-Let us say you want to prevent malicious actors from cycling through every possible password towards authentication endpoints of your `rent-car` application (brute force attack). To do that, you may set a `30 requests from the same IP per 30 seconds` threshold to block IPs exceeding this limit when addressing authentication endpoints. Moreover, it will be useful to have information that brute force attack took place.
+Let us say you want to prevent malicious actors from trying various passwords to gain authorized access to your `rent-car` application via its authentication endpoints (brute force attack). To do that, you may set a `30 requests from the same IP per 30 seconds` threshold to block IPs exceeding this limit when addressing authentication endpoints.
 
 To provide this protection:
 
 1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **Brute force** condition.
 1. Set the threshold 30 requests from the same IP per 30 seconds.
-1. Set the **Application** filter to `rent-car` (application should be [registered]() in Wallarm).
+1. Set the **Application** filter to `rent-car` (application should be [registered](../../user-guides/settings/applications.md) in Wallarm).
 1. Set the **URI** filter as displayed on the screenshot, including:
 
     * `**` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any number of components"
@@ -33,7 +33,7 @@ To provide this protection:
         ![Brute force trigger example](../../images/user-guides/triggers/trigger-example6.png)
     
     * Besides configuring pattern that we need in this example, you can enter specific URIs or set trigger to work at any endpoint by not specifying any URI.
-    * If using nested URIs, consider [trigger processing priorities](#trigger-processing-priorities).
+    * If using nested URIs, consider [trigger processing priorities](../../user-guides/triggers/triggers.md#trigger-processing-priorities).
 
 1. Do not use the **IP** filter in this case, but be aware that you can use it to set trigger only to react to specific IPs originating requests.
 1. Select the **Denylist IP address** - `Block for 1 hour` trigger reaction. Wallarm will put origin IP to the [denylist](../../user-guides/ip-lists/overview.md) after the threshold is exceeded and block all further requests from it.
@@ -49,7 +49,7 @@ You can configure several triggers for brute force protection.
 
 To test the trigger described in the [Configuring](#configuring) section:
 
-1. Make sure, the `rent-car-example.com` domain is [identified](../../user-guides/settings/applications.md#automatic-application-identification) as the part of the `rent-car` application registered in Wallarm.
+1. Make sure that the `rent-car-example.com` domain is [identified](../../user-guides/settings/applications.md#automatic-application-identification) as the part of the `rent-car` application registered in Wallarm.
 1. Send the number of requests that exceeds the configured threshold to the protected endpoint of this domain. For example, 50 requests to `rent-car-example.com/users/login`:
 
     ```bash
@@ -63,10 +63,6 @@ To test the trigger described in the [Configuring](#configuring) section:
     The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 
     To search for brute force attacks, you can use the `brute` filter. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
-
-## Trigger processing priorities
-            
---8<-- "../include/trigger-processing-priorities.md"
 
 ## Requirements and restrictions
 

@@ -12,7 +12,7 @@ Note that besides protection from forced browsing, in a similar way, you can con
 
 Consider the example below to learn how to configure forced browsing protection.
 
-Let us say you want to prevent malicious actors from trying names of directories and files under your `example.com` domain that are not explicitly available from your site UI and were never planned to be exposed. To do that, you may set a `404 responses to the same IP` threshold for your domain to `30 per 30 seconds` to block IPs exceeding this limit. Moreover, it will be useful to have information that forced browsing attack took place.
+Let us say you own the online `book-sale` application and want to prevent malicious actors from trying names of directories and files under its `book-sale-example.com` domain that are not explicitly available from your application UI and were never planned to be exposed (forced browsing attack). To do that, you may set a `404 responses to the same IP` threshold for your domain to `30 per 30 seconds` to block IPs exceeding this limit.
 
 To provide this protection:
 
@@ -21,12 +21,12 @@ To provide this protection:
 1. Set the threshold for the number of the 404 response codes returned to the requests having the same origin IP requests to 30 per 30 seconds.
 1. Set the **URI** filter as displayed on the screenshot, including:
 
-    * `**` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any number of components". They will cover all the addresses under the `example.com`.
+    * `**` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any number of components". They will cover all the addresses under the `book-sale-example.com`.
 
         ![Forced browsing trigger example](../../images/user-guides/triggers/trigger-example5.png)
 
     * Besides configuring pattern that we need in this example, you can enter specific URIs (for example, URI of your resource file directory) or set trigger to work at any endpoint by not specifying any URI.
-    * If using nested URIs, consider [trigger processing priorities](#trigger-processing-priorities).
+    * If using nested URIs, consider [trigger processing priorities](../../user-guides/triggers/triggers.md#trigger-processing-priorities).
 
 1. Do not use in this case: 
 
@@ -41,12 +41,15 @@ You can configure several triggers for forced browsing protection.
 
 ## Testing
 
+!!! info "Testing in your environment"
+    To test the **Forced browsing** trigger in your environment, in the trigger and the requests below, replace domain to your own.
+
 To test the trigger described in the [Configuring](#configuring) section:
 
-1. Send the number of requests that exceeds the configured threshold to the protected URI. For example, 50 requests to `https://example.com/config.json` (matches `https://example.com/**.**`):
+1. Send the number of requests that exceeds the configured threshold to the protected URI. For example, 50 requests to `https://book-sale-example.com/config.json` (matches `https://book-sale-example.com/**.**`):
 
     ```bash
-    for (( i=0 ; $i<51 ; i++ )) ; do curl https://example.com/config.json ; done
+    for (( i=0 ; $i<51 ; i++ )) ; do curl https://book-sale-example.com/config.json ; done
     ```
 2. If the trigger reaction is **Denylist IP address**, open Wallarm Console → **IP lists** → **Denylist** and check that source IP address is blocked.
 
@@ -58,10 +61,6 @@ To test the trigger described in the [Configuring](#configuring) section:
     The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 
     To search for the forced browsing attacks, you can use the `dirbust` filter. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
-
-## Trigger processing priorities
-            
---8<-- "../include/trigger-processing-priorities.md"
 
 ## Requirements and restrictions
 

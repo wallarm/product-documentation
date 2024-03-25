@@ -9,7 +9,7 @@ Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../../atta
 
 By default, Wallarm automatically discovers only vulnerabilities of the BOLA type (also known as IDOR) but does not detect its exploitation attempts. Consider the example below to learn how to configure protection from BOLA attacks.
 
-Let us say your e-commerce `example.com` platform for online stores (shops) stores financial information under for each hosted shop under `/shops/<PARTICULAR_SHOP>/financial_info` you want to prevent malicious actors from getting the list of all hosted shop names via a simple script manipulating the names in the list, replacing `<PARTICULAR_SHOP>` in the URL. To do that, you may set a `30 requests from the same IP per 30 seconds` threshold to block IPs targeting addresses matching the pattern and exceeding this limit.
+Let us say your e-commerce `wmall-example.com` platform for online stores (shops) stores financial information under for each hosted shop under `/shops/<PARTICULAR_SHOP>/financial_info` you want to prevent malicious actors from getting the list of all hosted shop names via a simple script manipulating the names in the list, replacing `<PARTICULAR_SHOP>` in the URL. To do that, you may set a `30 requests from the same IP per 30 seconds` threshold to block IPs targeting addresses matching the pattern and exceeding this limit.
 
 To provide this protection:
 
@@ -18,7 +18,7 @@ To provide this protection:
 1. Set the threshold 30 requests from the same IP per 30 seconds.
 1. Set the **URI** filter as displayed on the screenshot, including:
 
-    * `*` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any one component". They will cover all the `example.com/shops/<PARTICULAR_SHOP>/financial_info` addresses.
+    * `*` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any one component". They will cover all the `wmall-example.com/shops/<PARTICULAR_SHOP>/financial_info` addresses.
 
         ![BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
 
@@ -33,12 +33,15 @@ To provide this protection:
 
 ## Testing
 
+!!! info "Testing in your environment"
+    To test the **BOLA** trigger in your environment, in the trigger and the requests below, replace domain to your own.
+
 To test the trigger described in the [Configuring](#configuring) section:
 
-1. Send the number of requests that exceeds the configured threshold to the protected URI. For example, 50 requests with different values of `{shop_id}` to the endpoint `https://example.com/shops/{shop_id}/financial_info`:
+1. Send the number of requests that exceeds the configured threshold to the protected URI. For example, 50 requests with different values of `{shop_id}` to the endpoint `https://wmall-example.com/shops/{shop_id}/financial_info`:
 
     ```bash
-    for (( i=0 ; $i<51 ; i++ )) ; do curl https://example.com/shops/$i/financial_info ; done
+    for (( i=0 ; $i<51 ; i++ )) ; do curl https://wmall-example.com/shops/$i/financial_info ; done
     ```
 1. If the trigger reaction is **Denylist IP address**, open Wallarm Console → **IP lists** → **Denylist** and check that the source IP address is blocked.
 
