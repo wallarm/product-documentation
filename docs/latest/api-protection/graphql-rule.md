@@ -19,7 +19,7 @@ To set and apply GraphQL policy:
 
 1. Proceed to Wallarm Console → **Rules** → **Add rule**.
 1. In **If request is**, [describe](../user-guides/rules/rules.md#rule-branches) endpoint URI to apply the rule to and other conditions.
-1. In **Then**, choose **Detect GraphQL attacks** and set thresholds for GraphQL requests:
+1. In **Then**, choose **Detect GraphQL attacks** and set thresholds for GraphQL requests in accordance with your traffic peculiarities:
 
     * **Maximum total query size in kilobytes** - an attacker may attempt to perform a Denial of Service (DoS) or cause other issues by exploiting how the server handles excessively large inputs.
     * **Maximum value size in kilobytes** - an attacker may send request with an excessively long string value for a variable or argument to overwhelm the server's resources (Excessive Value Length attack).
@@ -28,6 +28,8 @@ To set and apply GraphQL policy:
     * **Maximum batched queries** - multiple queries (operations) can be batched together in a single HTTP-request; by combining multiple operations into a single request, an attacker organize batching attack and try to bypass security measures such as rate limiting.
     * **Block/register introspection queries** - an attacker may leverage the introspection system to uncover details about the schema of the GraphQL API; by querying the system, an attacker may potentially gain knowledge about all types, queries, mutations, and fields that are available in the API, and use this data to construct more precise and damaging queries. Select the option to deny the introspection queries.
     * **Block/register debug requests** - when debug mode is left turned on by developers, an attacker may gather precious information from excessive error reporting messages such as entire stack traces or tracebacks. Select the option to deny requests with the `debug=1` parameter in URI.
+
+        For example, a policy may set maximum POST request query size to 3 KB, value size to 2 KB, query depth, aliases and batched query limits to 5 plus deny introspection and debug queries as displayed on the screenshot (note that these are the example values - you should define your own values considering statistics of your common legitimate GraphQL queries):
         
         ![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
 
@@ -75,7 +77,7 @@ Let us say you want to set limits for the requests to your application GraphQL e
 
 To do so:
 
-1. Set the **Detect GraphQL attacks** rule as displayed on the screenshot:
+1. Set the **Detect GraphQL attacks** rule as displayed on the screenshot (note that these are the example values - for the real-life rules you should define your own values considering statistics of your common legitimate GraphQL queries):
 
     ![GraphQL Policy for your endpoints](../images/user-guides/rules/graphql-rule-1.png)
 
@@ -89,7 +91,7 @@ Continuing the [previous](#setting-policy-for-your-graphql-endpoints-to-block-at
 
 To do so:
 
-1. Set the **Detect GraphQL attacks** rule as displayed on the screenshot:
+1. Set the **Detect GraphQL attacks** rule as displayed on the screenshot (note that these are the example values - for the real-life rules you should define your own values considering statistics of your common legitimate GraphQL queries):
 
     ![GraphQL stricter policy for child endpoint](/../images/user-guides/rules/graphql-rule-2.png)
 
