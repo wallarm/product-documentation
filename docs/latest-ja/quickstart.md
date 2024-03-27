@@ -20,7 +20,7 @@ Wallarmプラットフォームは、OWASPとOWASP Top 10の攻撃、ボット�
 
 ## PlaygroundでWallarmを学ぶ
 
-Wallarmをより詳しく知るため、まず[Wallarm Playground](https://my.us1.wallarm.com/playground)をご利用ください。
+Wallarmをより詳しく知るため、まず[Wallarm Playground](https://my.us1.wallarm.com/playground?utm_source=wallarm_docs_quickstartja)をご利用ください。
 
 Playgroundでは、実際のデータが最初から埋め込まれたWallarmコンソールを使用できます。これは、処理されたトラフィックに関するデータを表示し、プラットフォームの微調整を許可する主要なWallarmプラットフォームコンポーネントです。したがって、Playgroundを使用すると、製品の動きを理解し、その使用方法の有用な例を読み取り専用モードで試すことができます。
 
