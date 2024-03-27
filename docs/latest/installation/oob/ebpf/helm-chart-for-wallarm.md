@@ -11,6 +11,7 @@ config:
     host: api.wallarm.com
     port: 443
     useSSL: true
+  mutualTLS: false
   agent:
     mirror:
       allNamespaces: false
@@ -75,6 +76,12 @@ Wallarm API endpoint port. By default, `443`.
 ## config.api.useSSL
 
 Specifies whether to use SSL to access the Wallarm API. By default, `true`. 
+
+## config.mutualTLS
+
+Enables mTLS support, allowing the [Wallarm processing node](deployment.md#how-it-works) to authenticate the security of traffic from the eBPF agent. By default, `false` (disabled).
+
+The parameter is supported starting from the Helm chart version 0.10.26.
 
 ## config.agent.mirror.allNamespaces
 
