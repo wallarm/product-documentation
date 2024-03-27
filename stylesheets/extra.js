@@ -361,6 +361,10 @@ if (window.location.hostname === "docs.wallarm.com") {
   heap.load("1543582484");
 }
 
+else {
+  console.log("not docs.wallarm.com")
+}
+
 
 // Show the list of languages
 
