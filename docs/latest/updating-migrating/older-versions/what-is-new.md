@@ -72,11 +72,9 @@ Beginning with release 4.10, Wallarm introduces real-time detection and notifica
 !!! info "Selected artifacts supporting credential stuffing detection"
     A limited selection of artifacts, such as the all-in-one installer, NGINX Ingress Controller, NGINX-based Docker image, and cloud images (AMI, GCP Image), now support the newly introduced credential stuffing detection feature.
 
-<!--
+## API Specification Enforcement
 
-## API Policy Enforcement
-
-In this latest update, we introduce API Policy Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.
+In this latest update, we introduce API Specification Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.
 
 This strengthens security by preventing potential attack attempts and also optimizes API performance by avoiding overloading and misuse.
 
@@ -86,11 +84,9 @@ Additionally, this update introduces new parameters for some deployment options,
 * For NGINX Ingress Controller: the [`controller.wallarm.apifirewall`](../../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) values group.
 * For NGINX-based Docker image: the environment variable `WALLARM_APIFW_ENABLE`.
 
-[Learn how to configure API Policy Enforcement](../../api-policy-enforcement/setup.md)
+[Learn how to configure API Specification Enforcement](../../api-policy-enforcement/setup.md)
 
-![Specification - use for API policy enforcement](../images/api-policies-enforcement/api-policies-enforcement-events.png)
-
--->
+![Specification - use for applying security policies](../../images/api-policies-enforcement/api-policies-enforcement-events.png)
 
 ## Detection of the new attack types
 
