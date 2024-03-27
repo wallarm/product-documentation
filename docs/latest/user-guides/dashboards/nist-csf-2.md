@@ -18,7 +18,7 @@ Wallarm provides robust protection against a wide range of known and emerging th
 
 * [Application and API Protection (WAAP)](../../about-wallarm/waap-overview.md) offers advanced security for applications and APIs across environments. It supports various API protocols including REST, SOAP, GraphQL, and more, utilizing deep packet inspection to address the OWASP Top 10 and beyond.
 * API Threat Prevention focuses on stopping unauthorized access and misuse of APIs by [blocking malicious bots](../../about-wallarm/api-abuse-prevention.md), protecting against [credential stuffing](../../about-wallarm/credential-stuffing.md) and fake account creation, and allowing access only to legitimate users.
-* API Policy Enforcement ensures your APIs adhere to OpenAPI specifications by detecting discrepancies between endpoint descriptions and actual REST API requests. Upon identifying inconsistencies, it automatically enforces predefined security measures.
+* API Specification Enforcement ensures your APIs adhere to OpenAPI specifications by detecting discrepancies between endpoint descriptions and actual REST API requests. Upon identifying inconsistencies, it automatically enforces predefined security measures.
 
 ## Detect
 

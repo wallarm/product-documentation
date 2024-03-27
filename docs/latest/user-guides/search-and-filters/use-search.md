@@ -406,13 +406,13 @@ Examples:
 
 You can find the node UUID in the **Nodes** section, [node details](../../user-guides/nodes/nodes.md#viewing-details-of-a-node). Click UUID to copy it or click **View events from this node for the day** (switches to the **Attacks** section).
 
-<!-- ### Search by specification
+### Search by specification
 
 To get the list of events related to specific [specification policy violations](../../api-policy-enforcement/overview.md), in the search field specify `spec:'<SPECIFICATION-ID>'`. To get `<SPECIFICATION-ID>`, in **API Specifications**, open your specification for editing - `specid` will be displayed in your browser address field.
 
-![Specification - use for API policy enforcement](../../images/api-policies-enforcement/api-policies-enforcement-events.png)
+![Specification - use for applying security policies](../../images/api-policies-enforcement/api-policies-enforcement-events.png)
 
-Blocked and monitored events may be presented depending on the configured policy violation actions. In the event details, the violation type and link to the causing specification are displayed. -->
+Blocked and monitored events may be presented depending on the configured policy violation actions. In the event details, the violation type and link to the causing specification are displayed.
 
 ### Search by regexp-based customer rule
 
