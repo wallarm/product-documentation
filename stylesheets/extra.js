@@ -346,15 +346,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 // End Google Tag Manager
 
-// Smartlook Tracking Code for https://docs.wallarm.com
-
-window.smartlook||(function(d) {
-  var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
-  var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
-  c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c);
-  })(document);
-  smartlook('init', '639473b00998b72cb849754253a85d6981296f7d', { region: 'eu' });
-
 /*
 * Listen to the main navigation clicks.
 * */
