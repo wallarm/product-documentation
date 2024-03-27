@@ -1,0 +1,2 @@
+!!! warning "دعم التعليق nginx.ingress.kubernetes.io/wallarm-acl-block-page"
+    التعليق Wallarm Ingress controller `nginx.ingress.kubernetes.io/wallarm-acl-block-page` مدعوم فقط في [إصدار عقدة Wallarm 2.18](/admin-en/configuration-guides/configure-block-page-and-code/).

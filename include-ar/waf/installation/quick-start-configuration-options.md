@@ -1,0 +1,5 @@
+* [ضبط وضع فلترة الحركة][operation-mode-rule-docs]
+* [تخصيص قواعد فلترة الحركة][rules-docs]
+* [السماح بقوائم عناوين IP، وقوائم الرفض، وقوائم الرمادي][ip-lists-docs]
+* إعدادات إشعارات الأحداث النظام من خلال [التكامل الأصيل مع أدوات DevOps][integration-docs] و[المحفزات][trigger-docs]
+* [الكشف المضاعف عن الهجمات ب**libdetection**][enable-libdetection-docs]
