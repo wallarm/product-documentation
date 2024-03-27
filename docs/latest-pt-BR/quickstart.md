@@ -20,7 +20,7 @@ Em um início rápido, você irá registrar sua conta Wallarm e executar o prime
 
 ## Conheça Wallarm no Playground
 
-Para explorar o Wallarm antes mesmo de se inscrever e implementar quaisquer componentes em seu ambiente, use o [Wallarm Playground](https://my.us1.wallarm.com/playground).
+Para explorar o Wallarm antes mesmo de se inscrever e implementar quaisquer componentes em seu ambiente, use o [Wallarm Playground](https://my.us1.wallarm.com/playground?utm_source=wallarm_docs_quickstartpt).
 
 No Playground, você pode acessar a visualização do Console Wallarm como se estivesse preenchida com dados reais. O Console Wallarm é o principal componente da plataforma Wallarm que exibe dados sobre tráfego processado e permite o ajuste fino da plataforma. Portanto, com o Playground você pode aprender e experimentar como o produto funciona e obter alguns exemplos úteis de seu uso no modo somente leitura.
 

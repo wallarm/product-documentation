@@ -4,7 +4,7 @@ Wallarmは、APIの脆弱性や悪意のある活動からAPIを特定して保�
 
 ## PlaygroundでWallarmを学ぶ
 
-サインアップして環境にコンポーネントをデプロイする前に、Wallarmを探索するために[Wallarm Playground](https://my.us1.wallarm.com/playground)を利用してください。
+サインアップして環境にコンポーネントをデプロイする前に、Wallarmを探索するために[Wallarm Playground](https://my.us1.wallarm.com/playground?utm_source=wallarm_docs_quickstartja)を利用してください。
 
 Playgroundでは、Wallarmコンソールビューにアクセスできます。これは、実際のデータで埋め尽くされたようなものです。Wallarmコンソールは、処理されたトラフィックに関するデータを表示し、プラットフォームの微調整を可能にする、主要なWallarmプラットフォームコンポーネントです。したがって、Playgroundを使用すると、製品の動作方法を学び、試すことができ、読み取り専用モードでその使用方法の役立つ例をいくつか得ることができます。
 
