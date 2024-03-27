@@ -346,15 +346,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 // End Google Tag Manager
 
-// Smartlook Tracking Code for https://docs.wallarm.com
-
-window.smartlook||(function(d) {
-  var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
-  var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
-  c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c);
-  })(document);
-  smartlook('init', '639473b00998b72cb849754253a85d6981296f7d', { region: 'eu' });
-
 /*
 * Listen to the main navigation clicks.
 * */
@@ -363,6 +354,12 @@ document.querySelector('.md-nav--primary').addEventListener('click', () => {
   localStorage.removeItem('do');
 });
 
+// Heap
+
+if (window.location.hostname === "docs.wallarm.com") {
+  window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(r,a);for(var n=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],o=0;o<p.length;o++)heap[p[o]]=n(p[o])};
+  heap.load("1543582484");
+}
 
 // Show the list of languages
 
