@@ -102,6 +102,15 @@ Specify in the search string:
 * `multiple_payloads`: to search for attacks detected by the [Number of malicious payloads](../../admin-en/configuration-guides/protecting-with-thresholds.md) trigger and blocked requests from IPs [denylisted](../../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) because of the attacks of this type.
 * `credential_stuffing`: to search for attempts to use stolen authentication credentials ([credential stuffing](../../about-wallarm/credential-stuffing.md)).
 * `ebpf`: to search for attacks detected by the [Wallarm eBPF-based solution](../../installation/oob/ebpf/deployment.md).
+* <a name="spec-violation-tags"></a>`api_specification`: to search for all [specification-based](../../api-policy-enforcement/overview.md) violations. Also, specific violations can be searched by:
+    * `undefined_endpoint`: attempt to request the endpoint not presented in your specification
+    * `undefined_parameter`: requests marked as attacks because they include parameters not presented for this endpoint in your specification
+    * `missing_parameter`: requests marked as attacks because they does not include the parameter or its value that are marked as required in your specification
+    * `invalid_parameter_value`: requests marked as attacks because some of their parameter's value in not in correspondence with its type/format defined by your specification
+    * `missing_auth`: requests marked as attacks because they do not contain the required information about the authentication method
+    * `invalid_request`: requests marked as attacks because they contain an invalid JSON
+    * auxiliary search tag - `processing_overlimit`: API Specification Enforcement has limits applied to comparing requests against specifications - when exceeding these limits, it stops processing the request and creates the event informing about that
+    * see also: `spec:'<SPECIFICATION-ID>'` [here](#search-by-specification)
 
 An attack name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 
