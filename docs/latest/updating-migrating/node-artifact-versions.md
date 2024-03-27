@@ -130,6 +130,14 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ## Helm chart for Wallarm eBPF‑based solution
 
+### 0.10.26 (2024-03-27)
+
+* Implemented Certificate Authority (CA) verification for traffic from the eBPF agent to the Wallarm processing node
+* Added mutual TLS (mTLS) support, enabling the processing node to authenticate the security of traffic from the eBPF agent
+
+    This is controlled by the [`config.mutualTLS`](../installation/oob/ebpf/helm-chart-for-wallarm.md#configmutualtls) value in the Helm chart, disabled by default.
+* Upgraded agent dependencies
+
 ### 0.10.25 (2024-03-19)
 
 * Added support for [credential stuffing detection](../about-wallarm/credential-stuffing.md)
