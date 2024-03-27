@@ -59,6 +59,10 @@ controller:
       resources: {}
     collectd:
       resources: {}
+    apiFirewall:
+      enabled: true
+      config:
+        ...
 ```
 
 To change this setting, we recommend using the option `--set` of `helm install` (if installing the Ingress controller) or `helm upgrade` (if updating the installed Ingress controller parameters). For example:

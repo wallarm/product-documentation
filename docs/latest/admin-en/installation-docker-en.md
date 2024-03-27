@@ -88,6 +88,18 @@ To run the container:
                     index index.html index.htm;
 
                     wallarm_mode monitoring;
+                    
+                    location ~ ^/wallarm-apifw(.*)$ {
+                          wallarm_mode off;
+                          proxy_pass http://127.0.0.1:8088$1;
+                          error_page 404 431         = @wallarm-apifw-fallback;
+                          error_page 500 502 503 504 = @wallarm-apifw-fallback;
+                    }
+
+                    location @wallarm-apifw-fallback {
+                          wallarm_mode off;
+                          return 500 "API FW fallback";
+                    }
 
                     location / {
                             
