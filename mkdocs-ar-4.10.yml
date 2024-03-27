@@ -28,6 +28,9 @@ extra:
         outdated: معلومات قديمة أو غير صحيحة
         input_placeholder: شارك تجربتك بمزيد من التفاصيل
         send_button: يرسل
+  consent:
+    title: موافقة ملفات تعريف الارتباط
+    description: نحن نستخدم ملفات تعريف الارتباط لتحسين وثائقنا وجمع التعليقات القيمة. موافقتك تساعدنا على التحسن! تعرف على المزيد في <a href="https://www.wallarm.com/cookie-policy" target="_blank">سياسة ملفات تعريف الارتباط</a>.
 
 theme:
   language: ar
