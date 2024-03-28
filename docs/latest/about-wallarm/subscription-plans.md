@@ -36,7 +36,7 @@ Wallarm provides the following subscription plans:
 | [API Discovery](../api-discovery/overview.md) | No | Yes |
 | [Finding shadow, orphan and zombie APIs](../api-discovery/overview.md#shadow-orphan-and-zombie-apis) with API Discovery | No | Yes |
 | [Sensitive data detection](../api-discovery/overview.md#sensitive-data-detection) | No | Yes |
-| [API Specification Enforcement](../api-policy-enforcement/overview.md) | Yes | Yes |
+| [API Specification Enforcement](../api-policy-enforcement/overview.md) | No | Yes |
 | **Security testing and vulnerability assessment** | | |
 | [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | No | Yes |
 | [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | No | Yes |
