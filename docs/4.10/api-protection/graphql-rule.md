@@ -1,0 +1,1 @@
+--8<-- "latest/api-protection/graphql-rule.md"

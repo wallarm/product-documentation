@@ -26,7 +26,7 @@ To set and apply data mask:
 1. In **If request is**, [describe](rules.md#branch-description) the scope to apply the rule to.
 1. In **Then**, choose **Mask sensitive data**.
 1. In **In this part of request**, specify [request points](request-processing.md) for which its original value should be cut.
-1. Wait for the [rule compilation to complete](rules.md#ruleset-lifecycle).
+1. Wait for the [rule compilation and uploading to the filtering node to complete](rules.md#ruleset-lifecycle).
 
 ## Example: masking of a cookie value
 
