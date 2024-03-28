@@ -1,8 +1,8 @@
-# قيم محددة لـ Wallarm في مخطط Helm لـ Wallarm eBPF
+# القيم المحددة لـ Wallarm في جدول Wallarm eBPF Helm
 
-يوفر هذا الوثيقة معلومات حول قيم مخطط Helm الخاص بـ Wallarm التي يمكن تعديلها أثناء [النشر](deployment.md) أو الترقية للحل eBPF. تتحكم هذه القيم بالتكوين العام لمخطط Helm الخاص بـ Wallarm eBPF.
+يوفر هذا المستند معلومات عن قيم جدول Helm المحددة لـ Wallarm والتي يمكن تعديلها أثناء [التوزيع](deployment.md) أو تحديث حل eBPF. تتحكم هذه القيم بالتكوين العام لجدول Helm الخاص بـ Wallarm eBPF.
 
-جزء محدد لـ Wallarm من ملف `values.yaml` الافتراضي الذي قد تحتاج إلى تغييره يبدو كالتالي:
+يظهر الجزء المحدد لـ Wallarm من ملف `values.yaml` الافتراضي الذي قد تحتاج إلى تغييره كما يلي:
 
 ```yaml
 config:
@@ -11,6 +11,7 @@ config:
     host: api.wallarm.com
     port: 443
     useSSL: true
+  mutualTLS: false
   agent:
     mirror:
       allNamespaces: false
@@ -59,33 +60,39 @@ processing:
 
 ## config.api.token
 
-رمز العقدة الخاصة بـ Wallarm المُنشأ في وحدة التحكم Wallarm في [الولايات المتحدة](https://us1.my.wallarm.com/nodes) أو [الاتحاد الأوروبي](https://my.wallarm.com/nodes) Cloud. مطلوب للوصول إلى API الخاصة بـ Wallarm.
+رمز عُقدة Wallarm المُنشأ في لوحة تحكم Wallarm في السحابة [الأمريكية](https://us1.my.wallarm.com/nodes) أو [الأوروبية](https://my.wallarm.com/nodes). مطلوب للوصول إلى واجهة برمجة تطبيقات Wallarm.
 
 ## config.api.host
 
-نقطة نهاية API الخاصة بـ Wallarm. يمكن أن تكون:
+نقطة نهاية واجهة برمجة تطبيقات Wallarm. يمكن أن يكون:
 
-* `us1.api.wallarm.com` لـ[الغيمة الأمريكية](../../../about-wallarm/overview.md#us-cloud)
-* `api.wallarm.com` لـ[الغيمة الأوروبية](../../../about-wallarm/overview.md#eu-cloud) (الافتراضي)
+* `us1.api.wallarm.com` للسحابة [الأمريكية](../../../about-wallarm/overview.md#us-cloud)
+* `api.wallarm.com` للسحابة [الأوروبية](../../../about-wallarm/overview.md#eu-cloud) (الافتراضي)
 
 ## config.api.port
 
-منفذ نقطة نهاية API الخاصة بـ Wallarm. بشكل افتراضي، `443`.
+منفذ نقطة نهاية واجهة برمجة تطبيقات Wallarm. بشكل افتراضي، `443`.
 
 ## config.api.useSSL
 
-تحديد ما إذا كان سيتم استخدام SSL للوصول إلى API الخاصة بـ Wallarm. بشكل افتراضي،`true`.
+يُحدد ما إذا كان سيتم استخدام SSL للوصول إلى واجهة برمجة تطبيقات Wallarm. بشكل افتراضي، `true`.
+
+## config.mutualTLS
+
+يُمكّن دعم mTLS، مما يسمح لـ [عقدة معالجة Wallarm](deployment.md#how-it-works) بالتحقق من أمان حركة المرور من وكيل eBPF. بشكل افتراضي، `false` (معطل).
+
+يتم دعم البارامتر بدءًا من إصدار جدول Helm 0.10.26.
 
 ## config.agent.mirror.allNamespaces
 
-تفعيل تقليد حركة المرور لجميع المساحات الاسمية. القيمة الافتراضية هي `false`.
+يُمكّن تطابق حركة المرور لكل الفضاءات الاسمية. القيمة الافتراضية هي `false`.
 
-!!! تحذير "غير موصى به أن يضبط على `true`"
-    تفعيل هذا بضبطه على `true` قد يتسبب في تكرار البيانات وزيادة استخدام الموارد. يفضل [تقليد انتقائي](selecting-packets.md) باستخدام تصنيفات المساحات الاسمية، تعليقات الـ pod، أو `config.agent.mirror.filters` في `values.yaml`.
+!!! تحذير "غير موصى به الضبط على `true`"
+    تمكين هذا بضبطه على `true` قد يتسبب في تكرار البيانات وزيادة استخدام الموارد. يُفضل [التطابق الانتقائي](selecting-packets.md) باستخدام تسميات الفضاءات الاسمية، تعليقات pod، أو `config.agent.mirror.filters` في `values.yaml`.
 
 ## config.agent.mirror.filters
 
-يتحكم بمستوى تقليد حركة المرور. إليك مثال على البارامتر `filters`:
+يتحكم في مستوى تطابق حركة المرور. إليك مثال على بارامتر `filters`:
 
 ```yaml
 ...
@@ -107,13 +114,13 @@ processing:
 
 ## config.agent.loadBalancerRealIPHeader
 
-يحدد اسم الرأسية التي يستخدمها موزع الحمل لنقل عنوان IP الأصلي للعميل. راجع وثائق موزع الحمل الخاص بك لتحديد الاسم الصحيح للرأسية. بشكل افتراضي، `X-Real-IP`.
+يحدد اسم الرأس المستخدم من قِبل موازن الحمل لنقل عنوان IP الأصلي للعميل. راجع وثائق موازن الحمل الخاص بك لتحديد اسم الرأس الصحيح. بشكل افتراضي، `X-Real-IP`.
 
-تمكن البارامتران `loadBalancerRealIPHeader` و `loadBalancerTrustedCIDRs` Wallarm eBPF من تحديد عنوان IP المصدر بدقة عند توجيه حركة المرور من خلال موزع حمل L7 (مثل AWS ALB) خارجي لمجموعة Kubernetes.
+تمكّن بارامترات `loadBalancerRealIPHeader` و`loadBalancerTrustedCIDRs` Wallarm eBPF من تحديد عنوان IP المصدر بدقة عند توجيه حركة المرور من خلال موازن حمل L7 (مثل AWS ALB) خارجي إلى مجموعة Kubernetes.
 
 ## config.agent.loadBalancerTrustedCIDRs
 
-يحدد قائمة بيضاء لنطاقات CIDR لموزعات الحمل L7 الموثوق بها. مثال:
+يُحدد قائمة بيضاء من نطاقات CIDR لموازنات الحمل L7 الموثوق بها. المثال:
 
 ```yaml
 config:
@@ -129,15 +136,15 @@ config:
 # لإضافة عنصر واحد إلى القائمة:
 helm upgrade <RELEASE_NAME> <CHART> --set 'config.agent.loadBalancerTrustedCIDRs[0]=10.10.0.0/24'
 
-# لإضافة عدة عناصر إلى القائمة:
+# لإضافة عناصر متعددة إلى القائمة:
 helm upgrade <RELEASE_NAME> <CHART> --set 'config.agent.loadBalancerTrustedCIDRs[0]=10.10.0.0/24,config.agent.loadBalancerTrustedCIDRs[1]=192.168.0.0/16'
 ```
 
 ## processing.metrics
 
-يتحكم بتكوين خدمة [القياسات](../../../admin-en/configure-statistics-service.md) لعقدة Wallarm. بشكل افتراضي، الخدمة معطلة.
+يتحكم في تكوين [خدمة مقاييس](../../../admin-en/configure-statistics-service.md) عقدة Wallarm. بشكل افتراضي، الخدمة معطلة.
 
-إذا قمت بتمكين الخدمة، يُنصح بالاحتفاظ بالقيم الافتراضية لـ `port`، `path`، و `scrapeInterval`:
+إذا قمت بتمكين الخدمة، يوصى بالاحتفاظ بالقيم الافتراضية لـ `port`، `path`، و`scrapeInterval`:
 
 ```yaml
 processing:
@@ -149,13 +156,13 @@ processing:
     scrapeInterval: 30s
 ```
 
-## processing.affinity و processing.nodeSelector
+## processing.affinity وprocessing.nodeSelector
 
-يتحكم بالعقد Kubernetes التي يُنشر عليها مجموعة الدايمون Wallarm eBPF. بشكل افتراضي، يتم النشر على كل عقدة.
+يتحكم في العُقد Kubernetes التي يتم نشر مجموعة الشياطين Wallarm eBPF عليها. بشكل افتراضي، يتم نشرها على كل عقدة.
 
 ## تطبيق التغييرات
 
-إذا قمت بتعديل ملف `values.yaml` وترغب في ترقية مخططك المنشور، استخدم الأمر التالي:
+إذا قمت بتعديل ملف `values.yaml` وتريد ترقية الجدول الموزع لديك، استخدم الأمر التالي:
 
 ```
 helm upgrade <RELEASE_NAME> wallarm/wallarm-oob -n wallarm-ebpf -f <PATH_TO_VALUES>
