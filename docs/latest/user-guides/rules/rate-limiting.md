@@ -40,7 +40,7 @@ To set and apply rate limit:
 
     !!! info "Restrictions on the value length"
         The maximum allowed length of parameter values by which you measure limits is 8000 symbols.
-1. Wait for the [rule compilation to complete](rules.md#ruleset-lifecycle).
+1. Wait for the [rule compilation and uploading to the filtering node to complete](rules.md#ruleset-lifecycle).
 
 ## Rule examples
 
