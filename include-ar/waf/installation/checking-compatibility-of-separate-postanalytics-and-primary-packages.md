@@ -1,40 +1,40 @@
 !!! info "نسخة حزمة `wallarm-node-tarantool`"
-    يجب أن تكون حزمة `wallarm-node-tarantool` من نفس النسخة أو أعلى من نسخ حزم وحدات NGINX-Wallarm الأساسية المُثبتة على خادم منفصل.
+    يجب أن تكون نسخة حزمة `wallarm-node-tarantool` متطابقة أو أحدث من حزم وحدات NGINX-Wallarm الأساسية المثبتة على خادم منفصل.
 
     للتحقق من النسخ:
 
     === "Debian"
         ```bash
-        # تشغيل من الخادم بوحدة NGINX-Wallarm الأساسية
+        # نفذ من الخادم الذي يحتوي على وحدة NGINX-Wallarm الأساسية
         apt list wallarm-node-nginx
-        # تشغيل من الخادم بوحدة postanalytics
+        # نفذ من الخادم الذي يحتوي على وحدة التحليلات اللاحقة
         apt list wallarm-node-tarantool
         ```
     === "Ubuntu"
         ```bash
-        # تشغيل من الخادم بوحدة NGINX-Wallarm الأساسية
+        # نفذ من الخادم الذي يحتوي على وحدة NGINX-Wallarm الأساسية
         apt list wallarm-node-nginx
-        # تشغيل من الخادم بوحدة postanalytics
+        # نفذ من الخادم الذي يحتوي على وحدة التحليلات اللاحقة
         apt list wallarm-node-tarantool
         ```
-    === "CentOS أو Amazon Linux 2.0.2021x وأقل"
+    === "CentOS أو Amazon Linux 2.0.2021x وما دون"
         ```bash
-        # تشغيل من الخادم بوحدة NGINX-Wallarm الأساسية
+        # نفذ من الخادم الذي يحتوي على وحدة NGINX-Wallarm الأساسية
         yum list wallarm-node-nginx
-        # تشغيل من الخادم بوحدة postanalytics
+        # نفذ من الخادم الذي يحتوي على وحدة التحليلات اللاحقة
         yum list wallarm-node-tarantool
         ```
     === "AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
         ```bash
-        # تشغيل من الخادم بوحدة NGINX-Wallarm الأساسية
+        # نفذ من الخادم الذي يحتوي على وحدة NGINX-Wallarm الأساسية
         yum list wallarm-node-nginx
-        # تشغيل من الخادم بوحدة postanalytics
+        # نفذ من الخادم الذي يحتوي على وحدة التحليلات اللاحقة
         yum list wallarm-node-tarantool
         ```
     === "RHEL 8.x"
         ```bash
-        # تشغيل من الخادم بوحدة NGINX-Wallarm الأساسية
+        # نفذ من الخادم الذي يحتوي على وحدة NGINX-Wallarm الأساسية
         yum list wallarm-node-nginx
-        # تشغيل من الخادم بوحدة postanalytics
+        # نفذ من الخادم الذي يحتوي على وحدة التحليلات اللاحقة
         yum list wallarm-node-tarantool
         ```

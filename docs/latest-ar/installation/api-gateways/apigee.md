@@ -1,49 +1,49 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
-# Apigee Edge مع حزمة بروكسي Wallarm
+# Apigee Edge مع حزمة Wallarm Proxy
 
-[Apigee Edge](https://docs.apigee.com/api-platform/get-started/what-apigee-edge) هي منصة إدارة API مع بوابة API تعمل كنقطة دخول لتطبيقات العميل للوصول إلى APIs. لتعزيز أمان API في Apigee، يمكنك دمج حزمة بروكسي API Wallarm كما هو مفصل في هذا المقال.
+[Apigee Edge](https://docs.apigee.com/api-platform/get-started/what-apigee-edge) هو منصة إدارة API مع بوابة API تعمل كنقطة دخول لتطبيقات العميل للوصول إلى APIs. لزيادة أمان API في Apigee، يمكنك دمج حزمة Wallarm proxy كما هو موضح في هذا المقال.
 
-الحل يتضمن نشر عقدة Wallarm خارجيًا وإدخال كود مخصص أو سياسات في المنصة المحددة. هذا يمكّن من توجيه الحركة إلى العقدة الخارجية Wallarm من أجل التحليل والحماية ضد التهديدات المحتملة. تُعرف بموصلات Wallarm، وتعمل كالوصلة الأساسية بين المنصات مثل Azion Edge، Akamai Edge، Mulesoft، Apigee، و AWS Lambda، والعقدة الخارجية Wallarm. يضمن هذا النهج الدمج السلس، تحليل الحركة الآمن، التقليل من المخاطر، والأمان الشامل للمنصة.
+تشمل الحل نشر عقدة Wallarm من الخارج وإدخال شيفرة مخصصة أو سياسات في المنصة المحددة. هذا يتيح توجيه الحركة إلى عقدة Wallarm الخارجية للتحليل والحماية ضد التهديدات المحتملة. تُعرف بموصلات Wallarm، وهي تعمل كحلقة وصل أساسية بين منصات مثل Azion Edge، Akamai Edge، Mulesoft، Apigee، و AWS Lambda، وعقدة Wallarm الخارجية. هذه الطريقة تضمن الاندماج السلس، تحليل حركة الزيارات المأمونة، تخفيف المخاطر، وأمان النظام الشامل.
 
 ## حالات الاستخدام
 
-من بين كل [خيارات نشر Wallarm المدعومة](../supported-deployment-options.md)، هذا الحل هو الأنسب لحالات الاستخدام التالية:
+من بين جميع [خيارات نشر Wallarm المدعومة](../supported-deployment-options.md)، تعتبر هذه الحل الأنسب للحالات التالية:
 
-* تأمين APIs المنشورة على منصة Apigee ببروكسي API واحد فقط.
-* الحاجة إلى حل أمان يوفر مراقبة شاملة للهجمات، التقارير، والحجب الفوري للطلبات الضارة.
+* تأمين APIs المنشرة على منصة Apigee بواسطة وكيلAPI واحد فقط.
+* الحاجة إلى حل أمني يقدم مراقبة شاملة للهجمات، التقارير، والحظر الفوري للطلبات الضارة.
 
 ## القيود
 
-للحل بعض القيود حيث يعمل فقط مع الطلبات الواردة:
+لهذا الحل بعض القيود حيث يعمل فقط مع الطلبات الواردة:
 
-* اكتشاف الثغرات الأمنية باستخدام طريقة [الكشف السلبي](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) لا يعمل بشكل صحيح. الحل يحدد إذا كانت API عرضة للخطر أم لا بناءً على استجابات الخادم للطلبات الضارة التي تكون نموذجية للثغرات الأمنية التي يتم اختبارها.
-* [اكتشاف API Wallarm](../../api-discovery/overview.md) لا يمكنه استكشاف مخزون API بناءً على حركتك، حيث يعتمد الحل على تحليل الاستجابة.
-* [الحماية ضد التصفح القسري](../../admin-en/configuration-guides/protecting-against-bruteforce.md) غير متاح إذ يتطلب تحليل رمز الاستجابة.
+* لا يعمل اكتشاف الثغرات الأمنية باستخدام طريقة [الكشف السلبي](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) بشكل صحيح. يحدد الحل ما إذا كان API عرضة للخطر أم لا استنادًا إلى ردود الخادم على الطلبات الضارة التي تكون نموذجية للثغرات التي يختبرها.
+* لا يمكن لـ[اكتشاف Wallarm API](../../api-discovery/overview.md) استكشاف جرد الـAPI بناءً على حركة الزيارات لديك، حيث يعتمد الحل على تحليل الردود.
+* [الحماية ضد التصفح القسري](../../admin-en/configuration-guides/protecting-against-bruteforce.md) غير متوفرة نظرًا لأنها تتطلب تحليل أكواد الرد.
 
 ## المتطلبات
 
-للمضي قدمًا في النشر، تأكد من تلبية المتطلبات التالية:
+للمتابعة مع النشر، تأكد من تحقيق المتطلبات التالية:
 
 * فهم منصة Apigee.
-* APIs الخاصة بك تعمل على Apigee.
+* تشغيل APIs الخاصة بك على Apigee.
 
 ## النشر
 
-لتأمين APIs على منصة Apigee، اتبع هذه الخطوات:
+لتأمين APIs على منصة Apigee، اتبع الخطوات التالية:
 
-1. نشر عقدة Wallarm على نسخة GCP.
-1. الحصول على حزمة بروكسي Wallarm وتحميلها إلى Apigee.
+1. نشر عقدة Wallarm على نموذج GCP.
+1. الحصول على حزمة Wallarm proxy وتحميلها إلى Apigee.
 
 ### 1. نشر عقدة Wallarm
 
-عند استخدام بروكسي Wallarm على Apigee، تعمل حركة السير [في الخط](../inline/overview.md). لذا، اختر واحدًا من مواد نشر العقدة Wallarm المدعومة للنشر في خط على منصة Google Cloud Platform:
+عند استخدام Wallarm proxy على Apigee، تعمل حركة الزيارات [عبر الإنترنت](../inline/overview.md). لذلك، اختر أحد مكونات نشر عقدة Wallarm المدعومة للنشر في الخط على منصة Google Cloud Platform:
 
-* [صورة GCP للآلة](../packages/gcp-machine-image.md)
+* [صورة الآلة GCP](../packages/gcp-machine-image.md)
 * [Google Compute Engine (GCE)](../cloud-platforms/gcp/docker-container.md)
 
-قم بتكوين العقدة المنشورة باستخدام القالب التالي:
+اضبط العقدة المنشورة باستخدام القالب التالي:
 
 ```
 server {
@@ -76,33 +76,33 @@ server {
 }
 ```
 
-بعد الانتهاء من النشر، احرص على تدوين عنوان IP لنسخة العقدة حيث سيكون ضروريًا لتكوين توجيه الطلبات الواردة. يرجى ملاحظة أن الIP يمكن أن يكون داخليًا؛ لا يوجد متطلب لأن يكون خارجيًا.
+بعد الانتهاء من النشر، خذ ملاحظة عنوان IP لمثيل العقدة حيث سيكون ضروريًا لتكوين توجيه الطلبات الواردة. يرجى ملاحظة أنه يمكن أن يكون العنوان الداخلي؛ ليس هناك حاجة لأن يكون خارجيًا.
 
-### 2. الحصول على حزمة بروكسي Wallarm وتحميلها إلى Apigee
+### 2. الحصول على حزمة Wallarm proxy وتحميلها إلى Apigee
 
-تتضمن العملية إنشاء بروكسي API على Apigee سيوجه الحركة الشرعية إلى APIs الخاصة بك. اتبع هذه الخطوات للحصول على و[استخدام](https://docs.apigee.com/api-platform/fundamentals/build-simple-api-proxy) حزمة Wallarm لبروكسي API على Apigee:
+تشمل الاندماج إنشاء وكيل API على Apigee سيوجه الحركة المشروعة إلى APIs الخاصة بك. اتبع هذه الخطوات للحصول على حزمة Wallarm و[استخدام](https://docs.apigee.com/api-platform/fundamentals/build-simple-api-proxy)ها لوكيلAPI على Apigee:
 
-1. تواصل مع [support@wallarm.com](mailto:support@wallarm.com) للحصول على حزمة بروكسي Wallarm لـ Apigee.
+1. الاتصال بـ[support@wallarm.com](mailto:support@wallarm.com) للحصول على حزمة Wallarm proxy لـ Apigee.
 1. في واجهة Apigee Edge، انتقل إلى **Develop** → **API Proxies** → **+Proxy** → **Upload proxy bundle**.
-1. قم بتحميل الحزمة المقدمة من فريق دعم Wallarm.
-1. افتح ملف الإعدادات المستورد وحدد [عنوان IP لعقدة Wallarm](#1-deploy-a-wallarm-node) في `prewall.js` و `postwall.js`.
-1. احفظ ونشر الإعداد.
+1. حمّل الحزمة التي قدمها فريق دعم Wallarm.
+1. افتح ملف التكوين المستورد وحدد [عنوان IP لمثيل عقدة Wallarm](#1-deploy-a-wallarm-node) في `prewall.js` و `postwall.js`.
+1. احفظ التكوين ونشره.
 
 ## الاختبار
 
-لتجربة وظائف السياسة المنشورة، اتبع هذه الخطوات:
+للاختبار وظيفة السياسة المنشورة، اتبع الخطوات التالية:
 
-1. أرسل الطلب مع هجوم [Path Traversal][ptrav-attack-docs] الاختباري إلى API الخاص بك:
+1. إرسال الطلب مع هجوم [Path Traversal][ptrav-attack-docs] لاختبار إلى API الخاص بك:
 
     ```
-    curl http://<عنوان_IP_أو_نطاق_تطبيقك>/etc/passwd
+    curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
     ```
-1. افتح واجهة Wallarm Console → قسم **Attacks** في [السحابة الأمريكية](https://us1.my.wallarm.com/attacks) أو [السحابة الأوروبية](https://my.wallarm.com/attacks) وتأكد من ظهور الهجوم في القائمة.
+1. افتح وحدة التحكم Wallarm→ قسم **Attacks** في [السحابة الأمريكية](https://us1.my.wallarm.com/attacks) أو [السحابة الأوروبية](https://my.wallarm.com/attacks) وتأكد من ظهور الهجوم في القائمة.
     
     ![الهجمات في الواجهة][attacks-in-ui-image]
 
-    إذا كان وضع العقدة Wallarm مُعد للحجب، سيتم أيضًا حجب الطلب.
+    إذا كان وضع عقدة Wallarm مضبوط على الحظر، سيتم حظر الطلب أيضًا.
 
-## هل تحتاج لمساعدة؟
+## هل تحتاج إلى مساعدة؟
 
-إذا واجهت أي مشكلات أو كنت بحاجة إلى المساعدة في النشر الموصوف لـ Wallarm بالتزامن مع Apigee، يمكنك الوصول إلى فريق دعم [Wallarm](mailto:support@wallarm.com). هم متوفرون لتقديم الإرشاد والمساعدة في حل أي مشاكل قد تواجهها أثناء عملية التنفيذ.
+إذا واجهت أي مشاكل أو تحتاج إلى مساعدة مع النشر الموصوف لـ Wallarm بالتزامن مع Apigee، يمكنك التواصل مع فريق [دعم Wallarm](mailto:support@wallarm.com). هم متوفرون لتقديم التوجيه والمساعدة في حل أي مشاكل قد تواجهها خلال عملية التنفيذ.

@@ -1,40 +1,40 @@
 # دمج FAST مع Bamboo
 
-يمكن تهيئة دمج FAST في وضع CI MODE مع سير عمل Bamboo باستخدام إحدى الطرق التالية:
+يمكن تهيئة دمج FAST في وضع CI MODE مع تدفق عمل Bamboo باستخدام إحدى الطرق التالية:
 
-* من خلال [مواصفات YAML](https://confluence.atlassian.com/bamboo/bamboo-yaml-specs-938844479.html)
-* من خلال [مواصفات JAVA](https://confluence.atlassian.com/bamboo/bamboo-java-specs-941616821.html)
-* من خلال [واجهة مستخدم Bamboo](https://confluence.atlassian.com/bamboo/jobs-and-tasks-289277035.html)
+* عبر [مواصفات YAML](https://confluence.atlassian.com/bamboo/bamboo-yaml-specs-938844479.html)
+* عبر [مواصفات JAVA](https://confluence.atlassian.com/bamboo/bamboo-java-specs-941616821.html)
+* عبر [واجهة مستخدم Bamboo](https://confluence.atlassian.com/bamboo/jobs-and-tasks-289277035.html)
 
-المثال أدناه يستخدم مواصفات YAML لتهيئة الدمج.
+تستخدم الأمثلة أدناه مواصفات YAML لتهيئة الدمج.
 
-## تمرير رمز عقدة FAST
+## إرسال رمز عقدة FAST
 
-للاستخدام الآمن لـ [رمز عقدة FAST](../../operations/create-node.md)، قم بتمرير قيمته في [متغير عام Bamboo](https://confluence.atlassian.com/bamboo/defining-global-variables-289277112.html).
+للاستخدام الآمن لـ[رمز عقدة FAST](../../operations/create-node.md)، يجب إرسال قيمته في [متغير عالمي في Bamboo](https://confluence.atlassian.com/bamboo/defining-global-variables-289277112.html).
 
-![تمرير متغير عام Bamboo](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
+![إرسال متغير عالمي في Bamboo](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
 
 --8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
 ## إضافة خطوة تسجيل الطلبات
 
-لتنفيذ تسجيل الطلبات، طبق الإعدادات التالية على وظيفة الاختبار التلقائي للتطبيق:
+لتطبيق تسجيل الطلبات، طبق الإعدادات التالية على وظيفة اختبار التطبيقات الأوتوماتيكية:
 
-1. أضف الأمر الذي يشغل حاوية Docker لـ FAST في وضع `CI_MODE=recording` مع [المتغيرات](../ci-mode-recording.md#environment-variables-in-recording-mode) المطلوبة الأخرى __قبل__ الأمر الذي يشغل الاختبارات التلقائية. على سبيل المثال:
+1. أضف الأمر الذي يشغل حاوية Docker لـ FAST في وضع `CI_MODE=recording` مع متغيرات أخرى مطلوبة [variables](../ci-mode-recording.md#environment-variables-in-recording-mode) __قبل__ أمر تشغيل الاختبارات الآلية. على سبيل المثال:
 
     ```
     docker run --name fast -d -e WALLARM_API_TOKEN=${bamboo_WALLARM_API_TOKEN} -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -e ALLOWED_HOSTS=dvwa -p 8080:8080 --network my-network --rm wallarm/fast
     ```
-2. تهيئة الاختبارات التلقائية للتوجيه عبر عقدة FAST. على سبيل المثال:
+2. قم بتهيئة توجيه اختبارات الآلية عبر عقدة FAST. على سبيل المثال:
 
     ```
     docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
     ```
 
 !!! تحذير "شبكة Docker"
-    قبل تسجيل الطلبات، تأكد من أن عقدة FAST وأداة الاختبار التلقائي تعملان على نفس الشبكة.
+    قبل تسجيل الطلبات، تأكد من أن عقدة FAST وأداة اختبار الآلية تعملان على نفس الشبكة.
 
-??? معلومات "مثال خطوة الاختبار التلقائي مع تشغيل عقدة FAST في وضع التسجيل"
+??? معلومات "مثال على خطوة الاختبار الآلي مع تشغيل عقدة FAST في وضع التسجيل"
     ```
     test:
     key: TST
@@ -50,24 +50,24 @@
             - docker stop selenium fast
     ```
 
-    يشمل المثال الخطوات التالية:
+    يتضمن المثال الخطوات التالية:
 
     1. إنشاء شبكة Docker `my-network`.
-    2. تشغيل تطبيق الاختبار `dvwa` على شبكة `my-network`.
-    3. تشغيل عقدة FAST في وضع التسجيل على شبكة `my-network`.
-    4. تشغيل أداة الاختبار التلقائي Selenium مع عقدة FAST كوكيل على شبكة `my-network`.
-    5. تشغيل الاختبارات التلقائية على شبكة `my-network`.
-    6. إيقاف أداة الاختبار التلقائي Selenium وعقدة FAST في وضع التسجيل.
+    2. تشغيل التطبيق التجريبي `dvwa` على شبكة `my-network`.
+    3. تشغيل عقدة FAST في وضع التسجيل على الشبكة `my-network`.
+    4. تشغيل أداة الاختبار الآلية Selenium مع عقدة FAST كبروكسي على الشبكة `my-network`.
+    5. تشغيل الاختبارات الآلية على الشبكة `my-network`.
+    6. إيقاف أداة الاختبار الآلية Selenium وعقدة FAST في وضع التسجيل.
 
 ## إضافة خطوة اختبار الأمان
 
-لتنفيذ اختبار الأمان، أضف الخطوة المنفصلة المطابقة إلى سير العمل الخاص بك وفقًا للتعليمات:
+لتنفيذ اختبار الأمان، أضف خطوة منفصلة مقابلة إلى سير عملك باتباع التعليمات:
 
-1. إذا لم يكن تطبيق الاختبار يعمل، فأضف الأمر لتشغيل التطبيق.
-2. أضف الأمر الذي يشغل حاوية Docker لـ FAST في وضع `CI_MODE=testing` مع [المتغيرات](../ci-mode-testing.md#environment-variables-in-testing-mode) المطلوبة الأخرى __بعد__ الأمر الذي يشغل التطبيق.
+1. إذا لم يكن التطبيق التجريبي قيد التشغيل، فأضف الأمر لتشغيل التطبيق.
+2. أضف الأمر الذي يشغل حاوية Docker لـ FAST في وضع `CI_MODE=testing` مع متغيرات أخرى مطلوبة [variables](../ci-mode-testing.md#environment-variables-in-testing-mode) __بعد__ أمر تشغيل التطبيق.
 
-    !!! معلومات "استخدام مجموعة أساسية من الطلبات المسجلة"
-        إذا تم تسجيل مجموعة الطلبات الأساسية في خط أنابيب آخر، حدد معرف السجل في متغير [TEST_RECORD_ID](../ci-mode-testing.md#environment-variables-in-testing-mode). وإلا، سيتم استخدام آخر مجموعة مسجلة.
+    !!! معلومات "استخدام مجموعة المراجع الأساسية المسجلة"
+        إذا تم تسجيل مجموعة المراجع الأساسية في قناة أخرى، حدد معرّف التسجيل في متغير [TEST_RECORD_ID](../ci-mode-testing.md#environment-variables-in-testing-mode). خلاف ذلك، سيتم استخدام آخر مجموعة مسجلة.
 
     مثال الأمر:
 
@@ -76,12 +76,12 @@
     ```
 
 !!! تحذير "شبكة Docker"
-    قبل اختبار الأمان، تأكد من أن عقدة FAST وتطبيق الاختبار يعملان على نفس الشبكة.
+    قبل إجراء اختبار الأمان، تأكد من أن عقدة FAST والتطبيق التجريبي يعملان على نفس الشبكة.
 
-??? معلومات "مثال خطوة اختبار الأمان"
-    الأوامر تعمل على شبكة `my-network` التي تم إنشاؤها في خطوة تسجيل الطلب. تطبيق الاختبار، `app-test`، يعمل أيضًا في خطوة تسجيل الطلب.
+??? معلومات "مثال على خطوة اختبار الأمان"
+    تتم تشغيل الأوامر على الشبكة `my-network` التي تم إنشاؤها في خطوة تسجيل الطلب. التطبيق التجريبي، `app-test`، أيضًا يعمل في خطوة تسجيل الطلب.
 
-    1. أضف `security_testing` إلى قائمة `stages`. في المثال، هذه الخطوة تنهي سير العمل.
+    1. أضف `security_testing` إلى قائمة `stages`. في المثال، تعتبر هذه الخطوة نهائية لسير العمل.
 
         ```
         stages:
@@ -108,21 +108,21 @@
                 - docker network rm my-network
         ```
 
-    يشمل المثال الخطوات التالية:
+    يتضمن المثال الخطوات التالية:
 
-    1. تشغيل عقدة FAST في وضع الاختبار على شبكة `my-network`. متغير `TEST_RECORD_ID` مُهمل لأن مجموعة الطلبات الأساسية تم إنشاؤها في خط أنابيب الحالي وهي آخر ما تم تسجيله. سيتم إيقاف تشغيل عقدة FAST تلقائيًا عند انتهاء الاختبار.
-    2. إيقاف تطبيق الاختبار `dvwa`.
+    1. تشغيل عقدة FAST في وضع الاختبار على شبكة `my-network`. يتم حذف المتغير `TEST_RECORD_ID` لأن مجموعة المراجع الأساسية تم إنشاؤها في القناة الحالية وهي الأخيرة المسجلة. سيتم إيقاف عقدة FAST تلقائيًا عند انتهاء الاختبار.
+    2. إيقاف التطبيق التجريبي `dvwa`.
     3. حذف شبكة `my-network`.
 
-## الحصول على نتيجة الاختبار
+## الحصول على نتائج الاختبار
 
-سيتم عرض نتيجة اختبار الأمان في سجلات البناء في واجهة مستخدم Bamboo. كما يسمح Bamboo بتنزيل ملف `.log` بالكامل.
+سيتم عرض نتائج اختبارات الأمان في سجلات البناء في واجهة مستخدم Bamboo. كما يتيح Bamboo تنزيل الملف `.log` كاملًا.
 
 ![نتيجة تشغيل عقدة FAST في وضع الاختبار](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-ci-example.png)
 
 ## المزيد من الأمثلة
 
-يمكنك العثور على المزيد من الأمثلة لدمج FAST مع سير عمل Bamboo على [GitHub](https://github.com/wallarm/fast-examples).
+يمكنك العثور على المزيد من أمثلة دمج FAST مع سير عمل Bamboo على [GitHub](https://github.com/wallarm/fast-examples) الخاص بنا.
 
 !!! معلومات "للأسئلة الإضافية"
-    إذا كانت لديك أسئلة تتعلق بدمج FAST، يرجى [التواصل معنا](mailto:support@wallarm.com).
+    إذا كانت لديك أسئلة تتعلق بدمج FAST، الرجاء [التواصل معنا](mailto:support@wallarm.com).

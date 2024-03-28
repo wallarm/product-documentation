@@ -6,7 +6,7 @@
     SECRET="<YOUR_SECRET_KEY>"
     CLIENT="<YOUR_CLIENT_ID>"
     LIST="<TYPE_OF_IP_LIST>"
-    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # المسار إلى الملف بصيغة CSV يحتوي على الـ IPs أو الشبكات الفرعية
+    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # مسار الملف بصيغة CSV الذي يحتوي على IPs أو شبكات فرعية
     APPLICATIONS="<APP_IDS_THROUGH_COMMA>"
     REMOVE_DATE="TIMESTAMP_REMOVE_DATE"
     REASON='<REASON>'
@@ -54,7 +54,7 @@
     SECRET="<YOUR_SECRET_KEY>"
     CLIENT="<YOUR_CLIENT_ID>"
     LIST="<TYPE_OF_IP_LIST>"
-    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # المسار إلى الملف بصيغة CSV يحتوي على الـ IPs أو الشبكات الفرعية
+    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # مسار الملف بصيغة CSV الذي يحتوي على IPs أو شبكات فرعية
     APPLICATIONS="<APP_IDS_THROUGH_COMMA>"
     REMOVE_DATE="TIMESTAMP_REMOVE_DATE"
     REASON='<REASON>'

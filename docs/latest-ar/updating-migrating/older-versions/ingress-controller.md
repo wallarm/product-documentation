@@ -1,70 +1,72 @@
-[nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
-[overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                     ../../user-guides/ip-lists/overview.md
-[ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
-[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
+[nginx-process-time-limit-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]: ../../user-guides/rules/configure-overlimit-res-detection.md
+[graylist-docs]: ../../user-guides/ip-lists/overview.md
+[ip-list-docs]: ../../user-guides/ip-lists/overview.md
+[waf-mode-instr]: ../../admin-en/configure-wallarm-mode.md
 
-# ترقية وحدة تحكم NGINX Ingress المدمجة بوحدات Wallarm المنتهية الصلاحية
+# ترقية نهاية عمر واجهة تحكم NGINX Ingress المتكاملة مع وحدات Wallarm
 
-تتعرض هذه التعليمات البرمجية لخطوات الترقية من الإصدار 3.6 أو الأقل من وحدة تحكم Wallarm Ingress المنتهية الصلاحية، إلى الإصدار الجديد للوحدة.
+تصف هذه التعليمات الخطوات لترقية Wallarm Ingress Controller المنتهي العمر (الإصدار 3.6 وأدناه) إلى الإصدار الجديد مع Wallarm node 4.10.
+
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
-!!! warning "الإصدار المحدث لوحدة تحكم Ingress NGINX المجتمعية"
-    إذا قمت بالترقية من الإصدار 3.4 أو الأقل، يرجى ملاحظة أن الإصدار الذي تم الترقية إليه من وحدة تحكم Ingress NGINX المجتمعية المعتمدة على وحدة تحكم Wallarm Ingress ، كان قد تمت ترقيته من 0.26.2 إلى 1.9.5.
+!!! warning "الإصدار المحدث لواجهة تحكم Community Ingress NGINX"
+    إذا كنت تقوم بترقية العقدة من الإصدار 3.4 أو أقل، يرجى ملاحظة أن الإصدار من واجهة تحكم Community Ingress NGINX الذي يعتمد عليه واجهة تحكم Wallarm Ingress قد تم ترقيته من 0.26.2 إلى 1.9.5.
     
-بما أن عملية وحدة تحكم Ingress NGINX المجتمعية 1.9.5 تعرض لتغييرات كبيرة ، يجب ضبط التكوين الخاص بها لتتلاءم مع هذه التغييرات أثناء ترقية وحدة تحكم Wallarm Ingress.
+    نظرًا لأن عملية واجهة تحكم Community Ingress NGINX 1.9.5 تغيرت بشكل ملحوظ، يجب ضبط التهيئة لتتكيف مع هذه التغييرات أثناء ترقية واجهة تحكم Wallarm Ingress.
 
-هذه التعليمات البرمجية تحتوي على قائمة بإعدادات وحدة تحكم Ingress NGINX المجتمعية ، التي قد تحتاج على الأرجح إلى عمل تغييرات فيها. على أي حال، يرجى وضع خطة فردية لنقل التكوين استنادًا إلى [ملاحظات الإصدار الخاصة بوحدة تحكم Ingress NGINX المجتمعية](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md).
+    تحتوي هذه التعليمات على قائمة إعدادات واجهة تحكم Community Ingress NGINX التي قد تحتاج إلى تغييرها. ومع ذلك، يرجى وضع خطة فردية لنقل التكوين بناءً على [ملاحظات الإصدار لواجهة تحكم Community Ingress NGINX](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md).
 
-## المتطلبات
+## متطلبات
+
 --8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
 
-## الخطوة 1: أخبر الدعم الفني في Wallarm بأنك تقوم بترقية وحدات العقدة التصفية (فقط إذا كنت تقوم بترقية العقدة 2.18 أو أقل)
+## الخطوة 1: أبلغ Wallarm technical support بالترقية
 
-إذا كنت تقوم بترقية العقدة النسخة 2.18 أو ما هو أقل، أخبر [الدعم الفني في Wallarm](mailto:support@wallarm.com) أنك تقوم بتحديث وحدات العقدة التصفية إلى 4.10 واطلب تمكين منطق قوائم العناوين IP الجديدة لحساب Wallarm الخاص بك.
+إذا كانت الترقية للعقدة 2.18 أو أقل، فـابلغ [دعم فني Wallarm](mailto:support@wallarm.com) أنك تقوم بتحديث وحدات فرز العقدة إلى 4.10 واطلب تمكين منطق قوائم الأي بي الجديدة لحساب Wallarm الخاص بك.
 
-عند تمكين منطق قوائم العناوين IP الجديدة ، الرجاء فتح وحدة تحكم Wallarm وتأكد من أن القسم [**قوائم العناوين IP**](../../user-guides/ip-lists/overview.md) متاح.
+عند تمكين منطق قوائم الأي بي الجديدة، يرجى فتح Wallarm Console والتأكد من أن القسم [**قوائم الأي بي**](../../user-guides/ip-lists/overview.md) متاح.
 
-## الخطوة 2: تعطيل وحدة التحقق من التهديد الفعال (فقط إذا كنت تقوم بترقية العقدة 2.16 أو أقل)
+## الخطوة 2: تعطيل وحدة التحقق من التهديد النشط (فقط إذا كانت الترقية للعقدة 2.16 أو أقل)
 
-إذا كنت تقوم بترقية Wallarm العقدة 2.16 أو ما هو أقل ، يرجى تعطيل وحدة [التحقق من التهديد الفعال](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) في وحدة تحكم Wallarm → **الثغرات الأمنية** → **تكوين**.
+إذا كانت الترقية لـ Wallarm node 2.16 أو أقل، يرجى تعطيل وحدة [التحقق من التهديد النشط](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) في Wallarm Console → **الثغرات الأمنية** → **تكوين**.
 
-يمكن أن تسبب عملية الوحدة [الوهميات الإيجابية](../../about-wallarm/protecting-against-attacks.md#false-positives) أثناء عملية الترقية. إيقاف تشغيل الوحدة يقلل من هذا المخاطر.
+يمكن أن يتسبب تشغيل الوحدة في [إيجادات كاذبة](../../about-wallarm/protecting-against-attacks.md#false-positives) أثناء عملية الترقية. يقلل تعطيل الوحدة من هذا المخاطر.
 
-## الخطوة 3: تحديث منفذ API
+## الخطوة 3: حدّث منفذ الواجهة البرمجية للتطبيق API
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## الخطوة 4: تحديث مستودع خرائط Helm الخاص بـ Wallarm
+## الخطوة 4: حدّث مستودع Wallarm Helm
 
-=== "إذا كنت تستخدم مستودع Helm"
+=== "إذا كان يتم استخدام مستودع Helm"
     ```bash
     helm repo update wallarm
     ```
-=== "إذا كنت تستخدم مستودع GitHub المستنسخ"
-    قم بإضافة [مستودع Wallarm Helm](https://charts.wallarm.com/) الذي يحتوي على جميع إصدارات الخريطة باستخدام الأمر الموجود أدناه. يرجى استخدام مستودع Helm لاستمرار العمل مع وحدة تحكم Wallarm Ingress.
-    
+=== "إذا كان يتم استخدام مستودع GitHub المستنسخ"
+    أضف [مستودع Wallarm Helm](https://charts.wallarm.com/) الذي يحتوي على جميع إصدارات الرسم البياني باستخدام الأمر أدناه. يرجى استخدام مستودع Helm للعمل التالي مع واجهة تحكم Wallarm Ingress.
+
     ```bash
     helm repo add wallarm https://charts.wallarm.com
     helm repo update wallarm
     ```
 
-## الخطوة 5: تحديث التكوين `values.yaml`
+## الخطوة 5: حدّث التكوين `values.yaml`
 
-للترحيل إلى وحدة تحكم Wallarm Ingress 4.10 ، قم بتحديث التكوين التالي المحدد في ملف `values.yaml`:
+للانتقال إلى واجهة تحكم Wallarm Ingress 4.10، حدّث التكوين التالي المحدد في الملف `values.yaml`:
 
-* التكوين القياسي لوحدة تحكم Ingress NGINX المجتمعية
+* التكوين القياسي لواجهة تحكم Community Ingress NGINX
 * تكوين وحدة Wallarm
 
-### التكوين القياسي لوحدة تحكم Ingress NGINX المجتمعية
+### التكوين القياسي لواجهة تحكم Community Ingress NGINX
 
-1. تحقق من [ملاحظات الإصدار على وحدة تحكم Ingress NGINX المجتمعية](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md) الإصدار 0.27.0 أو الإصدار الأعلى وتحديد الإعدادات التي يجب تغييرها في ملف `values.yaml`.
-2. قم بتحديث الإعدادات المعرفة في ملف `values.yaml`.
+1. تحقق من [ملاحظات الإصدار على واجهة تحكم Community Ingress NGINX](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md) 0.27.0 وأعلى وحدد الإعدادات التي يجب تغييرها في الملف `values.yaml`.
+2. حدّث الإعدادات المحددة في الملف `values.yaml`.
 
-توجد الإعدادات التالية التي يجب على الأرجح تغييرها:
+هناك الإعدادات التالية التي يجب على الأرجح تغييرها:
 
-* [الإبلاغ الصحيح عن عنوان IP العام للمستخدم النهائي](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md) إذا تم تمرير الطلبات عبر موزع التحميل قبل إرسالها إلى وحدة تحكم Wallarm Ingress.
+* [تقرير صحيح لعنوان الأي بي العام لمستخدم النهاية](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md) إذا تم إرسال الطلبات عبر موزع الحمل قبل إرسالها إلى واجهة تحكم Wallarm Ingress.
 
     ```diff
     controller:
@@ -73,8 +75,7 @@
     +    enable-real-ip: "true"
     +    forwarded-for-header: "X-Forwarded-For"
     ```
-
-* [تكوين IngressClasses](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/). تمت ترقية الإصدار من واجهة برمجة التطبيقات Kubernetes المستخدمة في الوحدة التحكم Ingress الجديدة ، التي تتطلب تكوين IngressClasses عبر معلمات `.controller.ingressClass`, و `.controller.ingressClassResource` و `.controller.watchIngressWithoutClass`.
+* [تكوين IngressClasses](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/). تم ترقية الإصدار من API الكوبرنتيس المستخدم في واجهة التحكم Ingress الجديدة التي تتطلب تكوين IngressClasses عبر المعلمات `.controller.ingressClass`, `.controller.ingressClassResource` و `.controller.watchIngressWithoutClass`.
 
     ```diff
     controller:
@@ -84,8 +85,7 @@
     +    default: true
     +  watchIngressWithoutClass: true
     ```
-
-* [مجموعة معلمات ConfigMap (`.controller.config`) ](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) ، على سبيل المثال:
+* [مجموعة معلمات ConfigMap (`.controller.config`)](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/), مثلاً: 
 
     ```diff
     controller:
@@ -98,17 +98,17 @@
         proxy_request_buffering on;
         wallarm_enable_libdetection on;
     ```
-  
-* [التحقق من صياغة Ingress عبر "webhook القبول"] (https://kubernetes.github.io/ingress-nginx/how-it-works/#avoiding-outage-from-wrong-configuration) تم تفعيله الآن بشكل افتراضي
+* [التحقق من بناء جملة Ingress عبر "admission webhook"](https://kubernetes.github.io/ingress-nginx/how-it-works/#avoiding-outage-from-wrong-configuration) الآن مُمكَّن بشكل افتراضي.
+
     ```diff
     controller:
     +  admissionWebhooks:
     +    enabled: true
     ```
 
-    !!! warning "تعطيل التحقق من صياغة Ingress"
-        يوصى بتعطيل التحقق من صياغة Ingress فقط إذا كان يعرض عملية الكائنات Ingress للاعتراض.
-+ [تنسيق التصنيف](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/). إذا قام ملف `values.yaml` بتعيين قواعد التنافر في الحد، قم بتغيير تنسيق التصنيف في هذه القاعدة، على سبيل المثال:
+    !!! warning "تعطيل التحقق من بناء الجملة لـ Ingress"
+        يُوصى بتعطيل التحقق من بناء الجملة لـ Ingress فقط إذا كان يفسد استقرار تشغيل أجسام Ingress. 
+* [تنسيق التسمية](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/). إذا وضع ملف `values.yaml` قواعد تجانس الحمولات، قم بتغيير تنسيق التسمية في هذه القواعد، مثلاً:
 
     ```diff
     controller:
@@ -138,11 +138,11 @@
             weight: 100
     ```
 
-### تكوين الوحدة النمطية لـ Wallarm
+### تكوين وحدة Wallarm
 
-قم بتغيير مجموعة تكوين الوحدة النمطية Wallarm محددة في ملف `values.yaml` على النحو التالي:
+قم بتغيير مجموعة تكوين وحدة Wallarm المضبوطة في ملف `values.yaml` كما يلي:
 
-* إذا كنت تقوم بالترقية من الإصدار 2.18 أو أقل ، [قم بالترحيل](../migrate-ip-lists-to-node-3.md) من تكوين قائمة ال IP. الإعدادات التالية ربما ستحتاج إلى يتم حذفها من `values.yaml` :
+* إذا كانت الترقية من الإصدار 2.18 أو أقل، قم بـ[ترحيل](../migrate-ip-lists-to-node-3.md) تكوين قائمة الأي بي. هناك المعلمات التالية المحتمل حذفها من `values.yaml`:
 
     ```diff
     controller:
@@ -153,16 +153,15 @@
         resources: {}
     ```
 
-    بحكم أن منطق النواة الأساسي لقائمة العناوين IP تغير بشكل كبير في Wallarm node الإصدار 3.x، يتطلب ضبط تكوين قائمة العناوين IP بشكل مناسب.
-* تأكد أن السلوك المتوقع للإعدادات المدرجة أدناه يتطابق مع [منطق الأطوار `off` و `monitoring` الجديد للترشيح](what-is-new.md#filtration-modes):
+    نظرًا لأن منطق الجوهر لقوائم الأي بي تغير بشكل كبير في Wallarm node 3.x، يلزم ضبط التكوين المناسب لقائمة الأي بي.
+* تأكد أن السلوك المتوقع للإعدادات المدرجة أدناه يتوافق مع [المنطق المتغير لوضعي الترشيح `off` و `monitoring`](what-is-new.md#filtration-modes):
       
-      * [المديرية `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [القاعدة العامة للترشيح المكونة في وحدة تحكم Wallarm](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)
-      * [قواعد ترشيح مستهدفة لنقاط النهاية مكونة في وحدة تحكم Wallarm](../../admin-en/configure-wallarm-mode.md#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console)
+      * [تعليمات `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
+      * [قاعدة الترشيح العامة المكونة في Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)
+      * [قواعد الترشيح الهدفية نقطة النهاية المكونة في Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console)
 
-      إذا لم يتطابق السلوك المتوقع مع منطق الأطوار المتغير للترشيح ، يرجى ضبط التعليمات البرمجية التوضيحية [Ingress](../../admin-en/configure-kubernetes-en.md#ingress-annotations) و [الإعدادات الأخرى](../../admin-en/configure-wallarm-mode.md) على التغييرات المطلقة.
-
-* التخلص من [تكوين خدمة الرصد الصريح](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md). في جديد Wallarm وحدة التحكم Ingress ، خدمة الرصد مفعلة بشكل افتراضي ولا تتطلب أي تكوين إضافي.
+      إذا لم يتوافق السلوك المتوقع مع منطق وضع الترشيح المتغير، فالرجاء ضبط [تعليمات Ingress](../../admin-en/configure-kubernetes-en.md#ingress-annotations) و [الإعدادات الأخرى](../../admin-en/configure-wallarm-mode.md) للتغييرات المطلقة.
+* التخلص من [تكوين الخدمة المراقبة بشكل صريح](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md). في إصدار واجهة تحكم Wallarm Ingress الجديدة، يتم تمكين الخدمة المراقبة بشكل افتراضي ولا تتطلب أي تكوين إضافي.
 
     ```diff
     controller:
@@ -175,43 +174,43 @@
     -    service:
     -      annotations: {}
     ```
-* إذا كانت صفحة `&/usr/share/nginx/html/wallarm_blocked.html` من خلال تكوين ConfigMap تتم العودة إلى طلبات المنع ، [قم بتعديل تكوينها](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) إلى التغييرات المفعلة.
+* إذا كانت الصفحة `&/usr/share/nginx/html/wallarm_blocked.html` المكونة عبر ConfigMap تعود إلى طلبات محظورة، [اضبط تكوينها](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) على التغييرات المطلقة.
 
-    في الإصدار الجديد للعقدة ، [لديها](what-is-new.md#new-blocking-page) صفحة حجب العينة المحدثة من Wallarm لديها واجهة مستخدم محدثة بدون شعار ودعم البريد الإلكتروني على الفور.
-* إذا كنت قد قمت بتخصيص كشف هجوم `overlimit_res` عبر [`wallarm_process_time_limit`][nginx-process-time-limit-docs] و [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINX يرجى [التحويل](#step-6-transfer-the-overlimit_res-attack-detection-configuration-from-directives-to-the-rule) من هذه الإعدادات إلى القاعدة وقم بحذفها من ملف `values.yaml`.
+    في إصدار العقدة الجديد، لدى الصفحة العادية للحظر بواسطة Wallarm [واجهة مستخدم محدثة](what-is-new.md#new-blocking-page) بدون شعار و عنوان بريد الكتروني للدعم محدد بشكل افتراضي.
+* إذا كنت قد قمت بتخصيص كشف الهجوم `overlimit_res` من خلال توجيهات NGINX [`wallarm_process_time_limit`][nginx-process-time-limit-docs] و[`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs]، يرجى [نقل](#step-6-transfer-the-overlimit_res-attack-detection-configuration-from-directives-to-the-rule) هذه الإعدادات إلى القاعدة وحذفها من الملف `values.yaml`.
 
 ## الخطوة 6: نقل تكوين كشف الهجوم `overlimit_res` من التوجيهات إلى القاعدة
 
 --8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-ingress-controller.md"
 
-## الخطوة 7: تحقق من جميع التغييرات القادمة لوثائق K8s
+## الخطوة 7: تحقق من جميع التغييرات المرتقبة لوثائق K8s
 
- لتجنب تغييرات غير متوقعة في سلوك وحدة التحكم Ingress ، تحقق من جميع التغييرات القادمة في وثائق K8s باستخدام [Helm Diff Plugin](https://github.com/databus23/helm-diff). هذا المكون يخرج الفرق بين وثائق K8s للإصدار المنشأ لوحدة التحكم Ingress و الجديد.
+لتجنب تغيير سلوك واجهة تحكم Ingress بشكل غير متوقع، تحقق من جميع التغييرات المرتقبة لوثائق K8s باستخدام [Helm Diff Plugin](https://github.com/databus23/helm-diff). يوفر هذا البرنامج المساعد الفرق بين وثائق K8s لإصدار واجهة تحكم Ingress المنشر والجديد.
 
-لتثبيت وتشغيل المكون الإضافي:
+لتثبيت وتشغيل البرنامج المساعد:
 
-1. قم بتثبيت المكون الإضافي:
+1. قم بتثبيت البرنامج المساعد:
 
     ```bash
     helm plugin install https://github.com/databus23/helm-diff
     ```
-2. قم بتشغيل المكون الإضافي:
+2. قم بتشغيل البرنامج المساعد:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.2 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.3 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: اسم إصدار Helm للرسم البياني لوحدة التحكم Ingress
-    * `<NAMESPACE>`: نطاق الوحدة التحكم Ingress المنشأ
-    * `<PATH_TO_VALUES>`: المسار إلى ملف `values.yaml` الذي يحدد [إعدادات وحدة التحكم Ingress 4.10](#step-5-update-the-valuesyaml-configuration)
-3. تأكد من عدم وجود تغييرات يمكن أن تؤثر على استقرار الخدمات العاملة وفحص الأخطاء بعناية من stdout.
+    * `<RELEASE_NAME>`: اسم الإصدار Helm للرسم البياني لـ Ingress controller
+    * `<NAMESPACE>`: الفضاء الاسمي الذي يتم نشر Ingress controller فيه
+    * `<PATH_TO_VALUES>`: المسار إلى ملف `values.yaml` الذي يحدد [إعدادات واجهة تحكم Ingress 4.10](#step-5-update-the-valuesyaml-configuration)
+3. تأكد أن أي تغييرات لا يمكن أن تؤثر على استقرار الخدمات الجارية ودرس الأخطاء بعناية من stdout.
 
-    إذا كان stdout فارغًا ، تأكد من صلاحية ملف `values.yaml`.
+    إذا كان stdout فارغًا، تأكد من أن ملف `values.yaml` صالح.
 
-يرجى ملاحظة التغييرات في التكوين التالي:
+يرجى ملاحظة التغييرات التالية للتكوين:
 
-* الحقل ثابت ، على سبيل المثال محددات النشر و / أو StatefulSet.
-* تصنيفات النقاط. يمكن أن تؤدي التغييرات إلى إنهاء التشغيل الشبكي NetworkPolicy ، على سبيل المثال:
+* الحقل الثابت، مثل محددات التوزيع و/أو StatefulSet.
+* تسميات الحمولة. التغييرات يمكن أن تؤدي إلى إنهاء عملية NetworkPolicy، على سبيل المثال:
 
     ```diff
     apiVersion: networking.k8s.io/v1
@@ -233,7 +232,7 @@
     +         app.kubernetes.io/name: "waf-ingress"
     -         component: waf-ingress
     ```
-* تكوين Prometheus مع تصنيفات جديدة ، على سبيل المثال:
+* تكوين Prometheus ذو التسميات الجديدة، على سبيل المثال:
 
     ```diff
      - job_name: 'kubernetes-ingress'
@@ -278,52 +277,52 @@
            target_label: instance
            replacement: "$1"
     ```
-* تحليل كل التغييرات الأخرى.
+* تحليل جميع التغييرات الأخرى.
 
-## الخطوة 8: ترقية وحدة التحكم Ingress
+## الخطوة 8: ترقية واجهة التحكم Ingress
 
-هناك ثلاث طرق لترقية وحدة تحكم Wallarm Ingress. باعتماد على ما إذا كان هناك موزع تحميل مستنصب على بيئتك ، حدد طريقة الترقية:
+هناك ثلاث طرق لترقية واجهة تحكم Wallarm Ingress. اعتمادًا على ما إذا كان هناك موزع حمل مثبت في بيئتك، قم باختيار الطريقة للترقية:
 
-* نشر وحدة تحكم Ingress مؤقتة
-* إعادة إنشاء الإصدار بشكل عادي لوحدة التحكم Ingress
-* إعادة إنشاء الإصدار لوحدة التحكم Ingress دون التأثير على موزع التحميل
+* تثبيت واجهة تحكم Ingress موقتة
+* إعادة إنشاء الإصدار بشكل عادي
+* إعادة إنشاء الإصدار دون التأثير على موزع الحمل
 
-!!! warning "استخدام البيئة المرحلية أو minikube"
-   إذا كانت وحدة تحكم Wallarm Ingress مثبتة على بيئتك المرحلية ، يوصى بترقيتها أولاً. بمجرد نجاح كل الخدمات في البيئة المرحلية ، يمكنك البدء في عملية الترقية في البيئة الإنتاجية.
+!!! warning "استخدام بيئة التطوير أو minikube"
+    إذا كانت Wallarm Ingress تم تركيبها في بيئة التطوير الخاصة بك، يوصى بترقيتها أولاً. مع تشغيل جميع الخدمات بشكل صحيح في بيئة التطوير، يمكنك الانتقال إلى إجراء الترقية في بيئة الإنتاج.
 
-   ما لم يتم توصيةك بـ [تثبيت Wallarm Ingress المراقب 4.10](../../admin-en/installation-kubernetes-en.md) مع التكوين المحدث باستخدام minikube أو خدمة أخرى أولاً. التأكد من أن جميع الخدمات تعمل كما هو متوقع ثم قم بترقية وحدة التحكم Ingress في البيئة الإنتاجية.
+    إلا إذا كان يُوصى بـ[تركيب واجهة تحكم Wallarm Ingress 4.10](../../admin-en/installation-kubernetes-en.md) مع التكوين المحدث باستخدام minikube أو خدمة أخرى أولاً. تأكد من أن جميع الخدمات تعمل كما هو متوقع ثم قم بترقية واجهة التحكم Ingress في بيئة الإنتاج.
 
-ويساعد هذا النهج على تجنب توقف الخدمات عن العمل في البيئة الإنتاجية.
+    يساعد هذا النهج على تجنب توقف الخدمات في بيئة الإنتاج.
 
-### الطريقة 1: نشر وحدة تحكم Ingress مؤقتة
+### الطريقة 1: تثبيت واجهة تحكم Ingress موقتة
 
-باستخدام هذه الطريقة ، يمكنك نشر وحدة Ingress 4.10 ككيان إضافي في بيئتك والتحويل التدريجي للحركة إليه. هذا يساعد على تفادي توقف الخدمات حتى وقت قصير ويضمن الترحيل الآمن.
+من خلال استخدام هذه الطريقة، يمكنك تثبيت واجهة تحكم Ingress 4.10 ككيان إضافي في بيئتك والتحويل إلى الحركة تدريجياً. تساعد على تجنب حتى توقف الخدمات مؤقتاً وتضمن الهجرة الآمنة.
 
-1. انسخ تكوين IngressClass من ملف `values.yaml` للإصدار السابق إلى ملف `values.yaml` لـ Ingress 4.10.
+1. قم بنسخ تكوين IngressClass من ملف `values.yaml` للإصدار السابق إلى ملف `values.yaml` لواجهة التحكم Ingress 4.10.
 
-    بهذا التكوين ، ستتعرف وحدة التحكم Ingress على كائنات Ingress ولكنها لن تعالج حركة مرورها.
-2. نشر وحدة التحكم Ingress 4.10:
+    مع هذا التكوين، ستتعرف واجهة التحكم Ingress على أجسام الوصول ولكن لن تقوم بمعالجة حركة مرورها.
+2. قم بتثبيت واجهة تحكم Ingress 4.10:
 
     ```bash
-    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.2 -f <PATH_TO_VALUES>
+    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.3 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: اسم الإصدار للرسم البياني لوحدة التحكم Ingress
-    * `<NAMESPACE>`: النطاق لنشر وحدة التحكم Ingress
-    * `<PATH_TO_VALUES>`: المسار إلى ملف `values.yaml` الذي يحدد [إعدادات وحدة التحكم Ingress 4.10](#step-5-update-the-valuesyaml-configuration)
+    * `<RELEASE_NAME>`: اسم لإصدار Helm لرسم البياني لواجهة التحكم Ingress
+    * `<NAMESPACE>`: الفضاء الاسمي حيث يتم تثبيت واجهة التحكم Ingress
+    * `<PATH_TO_VALUES>`: المسار إلى الملف `values.yaml` الذي يحدد [إعدادات واجهة تحكم Ingress 4.10](#step-5-update-the-valuesyaml-configuration)
 3. تأكد من أن جميع الخدمات تعمل بشكل صحيح.
-4. قم بالتبديل التدريجي للحمولة إلى وحدة التحكم Ingress الجديدة.
+4. قم بتحويل الحمولة إلى واجهة تحكم Ingress الجديدة تدريجيًا.
 
-### الطريقة 2: إعادة إنشاء الإصدار بشكل عادي لوحدة التحكم Ingress
+### الطريقة 2: إعادة إنشاء الإصدار بشكل عادي
 
-**إذا كان موزع التحميل ووحدة التحكم Ingress ليست موضحة بالرسم البياني Helm نفسه** ، يمكنك ببساطة إعادة إنشاء الإصدار Helm. ستستغرق العملية بضع دقائق وسوف تكون وحدة التحكم Ingress غير متوفرة لهذا الوقت.
+**إذا كان موزع الحمل وواجهة التحكم Ingress غير موصوفة في نفس رسم الأخطية المصاحب في Helm chart**، يمكنك ببساطة إعادة إنشاء الإصدار. سيستغرق الأمر عدة دقائق وواجهة التحكم Ingress ستكون غير متاحة لهذا الوقت.
 
-!!! warning "إذا كان الرسم البياني Helm يضعت كونفيجريشن لموزع التحميل"
-   إذا كنت تستخدم وضع config خاص بموزع التحميل بالإضافة إلى وحدة التحكم Ingress ، يمكن أن تؤدي إعادة إنشاء الإصدار إلى توقف الخدمة على الخادم لفترة طويلة (يعتمد على موفر الخدمة السحابية). قد يتغير عنوان IP لموزع التحميل بعد الترقية إذا لم يتم تعيين عنوان ثابت.
+!!! warning "إذا كان يوجد تكوين لموزع الحمل في Helm chart"
+    إذا كان يوجد تكوين لموزع الحمل إلى جانب واجهة التحكم Ingress في Helm chart، يمكن أن يؤدي إعادة إبداع الإصدار إلى توقف طويل لموزع الحمل (يعتمد على مزود الحوسبة السحابية). قد يتم تغيير عنوان الأي بي لموزع الحمل بعد الترقية إذا لم يتم تعيين عنوان ثابت.
 
-   يرجى تحليل جميع المخاطر المحتملة عند استخدام هذه الطريقة.
+    يرجى تحليل جميع المخاطر الممكنة إذا كنت تستخدم هذه الطريقة.
 
-نقاش إجراءات إعادة إنشاء الاصدار لوحدة التحكم Ingress:
+لإعادة إنشاء إصدار واجهة التحكم Ingress:
 
 === "Helm CLI"
     1. حذف الإصدار السابق:
@@ -332,21 +331,25 @@
         helm delete <RELEASE_NAME> -n <NAMESPACE>
         ```
 
-        * `<RELEASE_NAME>`: اسم الإصدار Helm للرسم البياني لوحدة التحكم Ingress
-        * `<NAMESPACE>`: النطاق الذي تم تنشيص وحدة التحكم Ingress
+        * `<RELEASE_NAME>`: اسم الإصدار Helm للرسم البياني لـ Ingress controller
 
-        يرجى عدم استخدام الخيار `--wait` عند تنفيذ الأمر حيث أنه يمكن أن يزيد من وقت الترقية.
-    2. قم بإنشاء إصدار جديد مع undelayer Wallarm Ingress 4.10:
+        * `<NAMESPACE>`: الفضاء الاسمي الذي يتم نشر Ingress controller فيه
+
+        يرجى عدم استخدام الخيار `--wait` عند تنفيذ الأمر لأنه يمكن أن يزيد من وقت الترقية.
+
+    2. قم بإنشاء إصدار جديد مع واجهة التحكم Ingress 4.10:
 
         ```bash
-        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.2 -f <PATH_TO_VALUES>
+        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.3 -f `<PATH_TO_VALUES>`
         ```
 
-        * `<RELEASE_NAME>`: اسم الإصدار للرسم البياني لوحدة التحكم Ingress
-        * `<NAMESPACE>`: النطاق لنشر وحدة التحكم Ingress
-        * `<PATH_TO_VALUES>`: المسار إلى ملف `values.yaml` الذي يحدد [إعدادات وحدة التحكم Ingress 4.10](#step-5-update-the-valuesyaml-configuration)
+        * `<RELEASE_NAME>`: اسم لإصدار Helm لرسم البياني لواجهة التحكم Ingress
+
+        * `<NAMESPACE>`: الفضاء الاسمي حيث يتم تثبيت واجهة التحكم Ingress
+
+        * `<PATH_TO_VALUES>`: المسار إلى الملف `values.yaml` الذي يحدد [إعدادات واجهة تحكم Ingress 4.10](#step-5-update-the-valuesyaml-configuration)
 === "Terraform CLI"
-    1. قم بتعيين الخيار `wait = false` في التكوين Terraform لتقليل وقت الترقية:
+    1. حدد الخيار `wait = false` في تكوين Terraform لتقليل وقت الترقية:
         
         ```diff
         resource "helm_release" "release" {
@@ -364,64 +367,65 @@
         terraform taint helm_release.release
         ```
     
-    3. إنشاء الإصدار الجديد مع undelayer Wallarm Ingress 4.10:
+    3. قم بإنشاء الإصدار الجديد مع واجهة التحكم Ingress 4.10:
 
         ```bash
         terraform apply -target=helm_release.release
         ```
 
-### الطريقة 3: إعادة إنشاء وحدة التحكم Ingress ولكن دون التأثير على موزع التحميل.
+### الطريقة 3: إعادة إنشاء الإصدار من دون التأثير على موزع الحمل
 
-عند استخدام موزع التحميل الذي يتكون من موفر الخدمة السحابية ، يوصى بترقية وحدة التحكم Ingress بهذه الطريقة لأنها لا تؤثر على موزع التحميل.
+عند استخدام موزع الحمل المكون من الموفر السحابي، يوصى بترقية واجهة التحكم Ingress بهذه الطريقة لأنها لا تؤثر على موزع الحمل.
 
-ستستغرق إعادة إنشاء الإصدار بضع دقائق وسوف تكون وحدة التحكم Ingress غير متوفرة لهذا الوقت.
+سوف يستغرق إعادة إبداع الإصدار عدة دقائق وواجهة التحكم Ingress ستكون غير متاحة لهذا الوقت.
 
-1. الحصول على كائنات ليتم حذفها (باستثناء موزع التحميل):
+1. الحصول على الأجسام التي يجب حذفها (ما عدا موزع الحمل):
 
     ```bash
     helm get manifest <RELEASE_NAME> -n <NAMESPACE> | yq -r '. | select(.spec.type != "LoadBalancer") | .kind + "/" + .metadata.name' | tr 'A-Z' 'a-z' > objects-to-remove.txt
     ```
 
-لتثبيت الأداة `yq`، من فضلك استخدم [الإرشادات](https://pypi.org/project/yq/).
+    لتثبيت الأداة `yq`، يرجى استخدام [التعليمات](https://pypi.org/project/yq/).
 
-سيتم إخراج الكائنات ليتم حذفها في ملف `objects-to-remove.txt`.
-
-2. حذف كائنات مدرجة وإعادة إنشاء الإصدار:
+    سيتم إخراج الأجسام التي يجب حذفها إلى ملف `objects-to-remove.txt`.
+2. حذف الأجسام المدرجة وإعادة إنشاء الإصدار:
 
     ```bash
     cat objects-to-remove.txt | xargs kubectl delete --wait=false -n <NAMESPACE>    && \
-    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.2 -f `<PATH_TO_VALUES>`
+    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.3 -f `<PATH_TO_VALUES>`
     ```
 
-لتقليل توقف الخدمة عن العمل ، ننصحك بعدم تنفيذ الأوامر بشكل منفصل.
-3. التأكد من أن جميع الكائنات ثم انشاؤها:
+    لتقليل وقت توقف الخدمة، فإنه لا يُوصى بتنفيذ الأوامر بشكل منفصل.
+3. تأكد من أن جميع الأجسام مكونة بشكل صحيح:
 
     ```bash
     helm get manifest <RELEASE_NAME> -n <NAMESPACE> | kubectl create -f -
     ```
 
-جميع الكائنات يجب أن تكون موجودة بالفعل. تتم اجراء هذا تحدث للبارمترات التي تمر بالأوامر:
+    يجب أن يقول الناتج أن جميع الأجسام موجودة بالفعل.
 
-* `<RELEASE_NAME>`: اسم الإصدار Helm للرسم البياني لوحدة التحكم Ingress
-* `<NAMESPACE>`: النطاق الذي تم تنشيص وحدة التحكم Ingress
-* `<PATH_TO_VALUES>`: المسار إلى ملف `values.yaml` الذي يحدد [إعدادات وحدة التحكم Ingress 4.10](#step-5-update-the-valuesyaml-configuration)
+هناك المعلمات التالية التي يتم تمريرها في الأوامر:
 
-## الخطوة 9: اختبر وحدة التحكم Ingress المحدثة
+* `<RELEASE_NAME>`: اسم الإصدار Helm للرسم البياني لـ Ingress controller
+* `<NAMESPACE>`: الفضاء الاسمي الذي يتم نشر Ingress controller فيه
+* `<PATH_TO_VALUES>`: المسار إلى الملف `values.yaml` الذي يحدد [إعدادات واجهة تحكم Ingress 4.10](#step-5-update-the-valuesyaml-configuration)
 
-1. تأكد أن الاصدر الخاص نسخة الخريطةتم تحديثها:
+## الخطوة 9: اختبار واجهة التحكم Ingress المُرقاة
+
+1. التحقق من أن الإصدار الخاص برسم الأخطية في Helm تم تحديثه:
 
     ```bash
     helm ls
     ```
 
-    يجب أن يطابق الرسم البياني لاصدره `wallarm-ingress-4.10.2`.
-2. احصل على قائمة بالنقاط معتبرا أسماء وحدة التحكم في Wallarm Ingress `<INGRESS_CONTROLLER_NAME>` :
+    يجب أن يتوافق إصدار الرسم البياني مع `wallarm-ingress-4.10.3`.
+2. احصل على قائمة الحمولات التي تحدد اسم واجهة التحكم Ingress في `<INGRESS_CONTROLLER_NAME>`:
     
     ``` bash
     kubectl get pods -l release=<INGRESS_CONTROLLER_NAME>
     ```
 
-    يجب أن يكون لكل نقطة الوضع **STATUS: Running** أو **READY: N/N**. على سبيل المثال:
+    يجب أن يكون حالة كل حمولة **الحالة: التشغيل** أو **جاهز: N/N**. على سبيل المثال:
 
     ```
     NAME                                                              READY     STATUS    RESTARTS   AGE
@@ -429,35 +433,35 @@
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
 
-3. أرسل الطلب مع حتى ار معتمدة [Path Traversal](../../attacks-vulns-list.md#path-traversal) من آدرس وحدة التحكم Wallarm Ingress:
+3. أرسل الطلب مع الاختبار [Path Traversal](../../attacks-vulns-list.md#path-traversal) الهجوم إلى عنوان واجهة التحكم Ingress:
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    إذا كانت العقدة التصفية تعمل في الوضع `block` ، سيتم إرجاع الرمز `403 Forbidden` كرد على الطلب وسيتم عرض الهجوم في واجهة Wallarm Console → **الهجمات**.
+    إذا كانت العقدة تعمل في وضع `block`، سيرد الرمز `403 Forbidden` كرد على الطلب وسيتم عرض الهجوم في Wallarm Console → **الهجمات**.
 
-## الخطوة 10: ضبط التجاه االمبرمجية الخاصة Ingress الى التغيرات القادة.
+## الخطوة 10: ضبط التعليمات البرمجية لـ Ingress حسب التغييرات المطلقة
 
-قم بضبط التالي التعليمات البرمجية Ingress الى التغيرات التي اطلقت في Ingress 4.10:
+قم بضبط التعليمات البرمجية التالية لـ Ingress وفقًا للتغييرات المطلقة في واجهة التحكم Ingress 4.10:
 
-1. إذا كنت تقوم بالترقية من الإصدار 2.18 أو أقل ، [قم بالترحيل](../migrate-ip-lists-to-node-3.md) من تكوين قائمة ال IP. منذ ان تغير منطق النواة الأساسي لقائمة العناوين IP بشكل كبير في Wallarm node الإصدار 3.x، يتطلب ضبط تكوين قائمة العناوين IP الشكل المناسب بتغيير Ingress التوجيه البرمجي (اذا كان مطبق).
-2. تأكد أن السلوك المتوقع للإعدادات المدرجة أدناه يتطابق مع [منطق الأطوار `off` و`monitoring` الجديد للترشيح](what-is-new.md#filtration-modes):
+1. إذا كانت الترقية من الإصدار 2.18 أو أقل، قم بـ[ترحيل](../migrate-ip-lists-to-node-3.md) تكوين قائمة الأي بي. نظرًا لأن منطق الجوهر لقوائم الأي بي تغير بشكل كافٍ في Wallarm node 3.x، يجب ضبط التكوين الموائم لقائمة الأي بي من خلال تغيير التعليمات البرمجية لـ Ingress (إذا تم تطبيقه).
+1. تأكد أن السلوك المتوقع للإعدادات المدرجة أدناه يتوافق مع [المنطق المتغير لوضعي الترشيح `off` و `monitoring`](what-is-new.md#filtration-modes):
       
-      * [المديرية `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [القاعدة العامة للترشيح المكونة في وحدة تحكم Wallarm](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)
-      * [قواعد ترشيح مستهدفة لنقاط النهاية مكونة في وحدة تحكم Wallarm](../../admin-en/configure-wallarm-mode.md#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console)
+      * [تعليمات `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
+      * [قاعدة الترشيح العامة المكونة في Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)
+      * [قواعد الترشيح الهدفية نقطة النهاية المكونة في Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console)
 
-      إذا لم يتطابق السلوك المتوقع مع منطق الأطوار المتغير للترشيح ، يرجى ضبط التعليمات البرمجية التوضيحية [Ingress](../../admin-en/configure-kubernetes-en.md#ingress-annotations) على التغييرات المطلقة.
-1. إذا كانت Ingress  مشهرة ب `nginx.ingress.kubernetes.io/wallarm-instance` ، قم بإعادة تسمية  التعليمة البرمجية لتصبح `nginx.ingress.kubernetes.io/wallarm-application`.
+      إذا لم يتوافق السلوك المتوقع مع منطق وضع الترشيح المتغير، فالرجاء ضبط [تعليمات Ingress](../../admin-en/configure-kubernetes-en.md#ingress-annotations) للتغييرات المطلقة.
+1. إذا كان الإصدار مشفر بـ `nginx.ingress.kubernetes.io/wallarm-instance`، قم بتغيير هذا التعليم مع البرمجة إلى `nginx.ingress.kubernetes.io/wallarm-application`.
 
-   تغير اسم التعليمة البرمجية فقط ونفس منطقها لا يزال قائمًا. سيتم تقديم العلامة التوضيحية بالاسم السابق قريبًا ، لذا يوصى بإعادة تسميتها قبل ذلك.
-1. إذا كانت صفحة `&/usr/share/nginx/html/wallarm_blocked.html` من خلال التعليمات البرمجية Ingress تعود إلى طلبات المنع ، [قم بتعديل تكوينها](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) إلى التغييرات المفعلة.
+    فقط اسم التعليمات تغير، بينما بقي منطقها كما هو. سيتم إهمال التعليمات بالاسم السابق قريبًا لذا يُوصى بتغيير اسمها قبل ذلك.
+1. إذا كانت الصفحة `&/usr/share/nginx/html/wallarm_blocked.html` المكونة عبر تعليمات Ingress تمرة إلى طلبات محظورة، [اضبط تكوينها](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) على التغييرات المطلقة.
 
-    في الإصدار الجديد للعقدة ، [لديها](what-is-new.md#new-blocking-page) صفحة حجب العينة المحدثة من Wallarm لديها واجهة مستخدم محدثة بدون شعار ودعم البريد الإلكتروني على الفور.
+    في إصدار تحديث العقدة، لدى الصفحة المعاد حظرها من Wallarm [واجهة مستخدم محدثة](what-is-new.md#new-blocking-page) من دون شعار وعنوان البريد الإلكتروني المدعوم مخصص بشكل افتراضي.
 
-## الخطوة 11: إعادة تمكين وحدة التحقق من التهديد الفعال (فقط إذا كنت تقوم بترقية العقدة 2.16 أو أقل)
+## الخطوة 11: إعادة تمكين وحدة التحقق من التهديد النشط (فقط إذا كانت الترقية للعقدة 2.16 أو أقل)
 
-تعرف على  [التوصية بشأن إعداد وحدة التحقق من التهديد الفعال](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) وأعد تشغيلها إذا لزم الأمر.
+تعلم [التوصيات على إعداد وحدة التحقق من التهديد النشط](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) وقم بإعادة تمكينها إذا كان مطلوبًا.
 
-بعد فترة، تأكد من أن عملية الوحدة لا تسبب الايجابيات الوهمية. إذا اكتشفت الايجابيات الوهمية ، يرجى الاتصال بـ [الدعم الفني في Wallarm](mailto:support@wallarm.com).
+بعد فترة، تأكد من أن تشغيل الوحدة لا يسبب إيجادات كاذبة. إذا تم اكتشاف الإيجادات الكاذبة، يرجى الاتصال بـ [دعم فني Wallarm](mailto:support@wallarm.com).

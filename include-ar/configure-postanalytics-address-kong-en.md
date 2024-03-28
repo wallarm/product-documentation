@@ -1,4 +1,4 @@
-إضافة عنوان الخادم لـ postanalytics إلى `/etc/kong/nginx-wallarm.template`:
+أضف عنوان الخادم لـpostanalytics إلى `/etc/kong/nginx-wallarm.template`:
 
 ```bash
 upstream wallarm_tarantool {
@@ -8,15 +8,15 @@ upstream wallarm_tarantool {
     keepalive 2;
 }
 
-# تم حذف جزء من الكود
+# محذوف
 
 wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
-!!! تحذير "الشروط المطلوبة"
-    يُطلب أن تتحقق الشروط التالية لمعاملي `max_conns` و `keepalive`:
+!!! warning "الشروط المطلوبة"
+    يجب أن تتحقق الشروط التالية لمعاملات `max_conns` و`keepalive`:
     
     * يجب ألا تكون قيمة معامل `keepalive` أقل من عدد خوادم Tarantool.
-    * يجب تحديد قيمة معامل `max_conns` لكل من خوادم Tarantool المتصلة upstream لمنع إنشاء اتصالات مفرطة.
+    * يجب تحديد قيمة معامل `max_conns` لكل من خوادم Tarantool العلوية لمنع إنشاء اتصالات مفرطة.
 
-    تم التعليق على السطر `# wallarm_tarantool_upstream wallarm_tarantool;` افتراضيًا - الرجاء حذف `#`.
+    يتم التعليق على السلسلة `# wallarm_tarantool_upstream wallarm_tarantool;` بشكل افتراضي - يرجى حذف `#`.

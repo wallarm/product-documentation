@@ -1,79 +1,75 @@
-# نموذج نشر عينة وحدة Wallarm AWS Terraform: حل Proxy من الصفر
+# أمثلة على تطبيقات Wallarm AWS Terraform: حل البروكسي من البداية 
 
-في هذا المثال، نوضح كيفية نشر Wallarm كبروكسي داخلي في AWS Virtual Private Cloud (VPC) باستخدام وحدة Terraform. على عكس الأمثلة [العادية](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/proxy) أو [المتقدمة](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced) لنشر البروكسي، يستخدم هذا المثال وحدة [AWS VPC Terraform](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/) لإنشاء الموارد الخاصة بـ VPC مباشرة أثناء النشر. لذا، يُطلق على هذا المثال "حل Proxy من الصفر".
+في هذا النموذج، نعرض كيفية استخدام Terraform لتوزيع Wallarm كبروكسي داخلي في القارئ الخصوصي الافتراضي (Virtual Private Cloud - VPC) لأمازون. على عكس أمثلة توزيع البروكسي [العادية](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/proxy) أو [المتقدمة](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced)، تتضمن إعدادات هذا النموذج إنشاء موارد VPC مباشرة أثناء التوزيع باستخدام [وحدة AWS VPC ](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/) Terraform, لذا نطلق على هذا النموذج "حل البروكسي من البداية".
 
-إليك الخيارات **الموصى بها** للنشر:
+الخيارات التالية للتوزيع هي **الموصى بها**:
 
-* في حالة عدم تكوين الشبكات الفرعية، NAT، جداول التوجيه، وموارد VPC الأخرى بالفعل. في هذا النشر، نبدأ وحدة AWS VPC Terraform مع وحدة Terraform الخاصة بـ Wallarm لإنشاء موارد VPC ودمجها مع Wallarm.
-* إذا كنت ترغب في معرفة كيف تتكامل وحدة Wallarm مع AWS VPC وكيفية تكوين الموارد والمتغيرات المطلوبة لـ VPC.
+* إذا لم تكن الشبكات الفرعية، وNAT، وجدول التوجيه، وغيرها من موارد VPC، تم تعيينها. في هذا النموذج من التوزيع، سنبدأ [وحدة AWS VPC وTerraform](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/) مع Wallarm لإنشاء موارد VPC والدمج مع Wallarm.
+* إذا كنت ترغب في معرفة كيف يتم دمج وحدة Wallarm مع AWS VPC وكيف يمكن إعداد الموارد VPC المطلوبة لهذا الدمج ومتغيرات الوحدة.
 
-## الميزات الرئيسية
+## الخصائص الرئيسية
 
-* Wallarm يعالج حركة المرور في الوقت الفعلي (باستخدام `preset=proxy`) دون تقييد ميزات Wallarm، مما يمكن من التخفيف الفوري للتهديدات.
-* يتم نشر حل Wallarm كطبقة شبكية مستقلة، قابلة للتحكم بشكل مستقل عن طبقات الشبكة الأخرى، مما يتيح وضع الطبقة في تقريبًا أي موقع هيكلي للشبكة. الموقع الموصى به هو خلف موازن الحمل الموجه للإنترنت.
-* هذا الحل لا يتطلب تكوين DNS وSSL.
-* يتم إنشاء موارد VPC ودمج البروكسي الداخلي لـ Wallarm في VPC المنشأ تلقائيًا، بينما في أمثلة البروكسي العادية، تكون موارد VPC موجودة مسبقًا وتتطلب تحديد المعرفات.
-* العنصر الوحيد المطلوب لتشغيل هذا المثال هو `token` والذي يحتوي على رمز النود لـ Wallarm.
+* يعالج Wallarm المرور في وضع التزامن دون تقييد الميزات `Wallarm`(`preset=proxy`).
+* يتم توزيع حل Wallarm بشكل طبقة شبكة مستقلة يمكن التحكم فيها بشكل مستقل عن الطبقات الأخرى وتركيبها في معظم مواقع هيكل الشبكة، بحيث يتم تقديم الطبقة. المكان الموصى به هو خلف تحميل البالانسر المتوافق مع الإنترنت.
+* لا يحتاج هذا الحل إلى تعيين وظائف DNS وSSL.
+* ينشئ موارد VPC ويدمج Wallarm مع البروكسي المضمن المنشأ في VPC بشكل أوتوماتيكي. ومع ذلك، في أمثلة البروكسي العادية، تكون موارد VPC موجودة وتحتاج إلى طلب معرفاتها.
+* الكمية اللازمة لتنفيذ هذا النموذج هي 'token' التي تحتوي على رمز العقدة `Wallarm`.
 
-## هندسة الحل
+## بنية الحل
 
-![مخطط البروكسي Wallarm](https://github.com/wallarm/terraform-aws-wallarm/blob/main/images/wallarm-as-proxy.png?raw=true)
+![نظام Wallarm بروكسي](https://github.com/wallarm/terraform-aws-wallarm/blob/main/images/wallarm-as-proxy.png?raw=true)
 
-يتمتع هذا المثال بنفس هندسة [حل البروكسي العادي](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/proxy):
+يحتوي الحل في هذا النموذج على نفس الهيكلية التي في [البروكسي المقترح للحل](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/proxy):
 
-* موارد AWS VPC مثل الشبكات الفرعية، NAT، جداول التوجيه، EIP وغيرها يتم نشرها تلقائيًا بواسطة وحدة [`vpc`](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/) في بداية هذا المثال. لا يظهرون في الخطة المقدمة.
-* موازن تحميل التطبيق الموجه للإنترنت الذي يوجه حركة المرور إلى نود Wallarm. يتم نشر هذا المكون بواسطة وحدة `wallarm` الخاصة بالمثال.
-* نود Wallarm الذي يحلل حركة المرور ويعمل كبروكسي لجميع الطلبات. العناصر المقابلة في الخطة هي مثيلات EC2 A، B، C. يتم نشر هذا المكون بواسطة وحدة `wallarm` الخاصة بالمثال.
+* يتم توزيع العديد من مورد AWS VPC، بما في ذلك الشبكات الفرعية، NAT، جداول التوجيه، EIP، وغيرها بشكل أوتوماتيكي عن طريق الوحدة [`vpc`](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/) خلال بداية هذا النموذج. لا يتم عرض العناصر في مخططات مستوى المحاكاة المقترحة.
+* حمل التطبيق الشامل الذي يجمع الحركة إلى وحدات نموذجية `Wallarm`. يتم توزيع هذا المكون من خلال وحدة النموذج `wallarm` المقترحة.
+* وحدات نموذجية `Wallarm` تحلل الحركة وتقوم بتمرير جميع الطلبات بشكل أوتوماتيكي. على المخطط، تسمى العناصر المقابلة لها بالتحكم في الوحدة النموذجية بهذه الطريقة. يتم توزيع هذا المكون بواسطة الوحدة `wallarm` المقترحة.
 
-في المثال، يعمل نود Wallarm في وضع الرصد، مما يقود السلوك الموضح. يمكن تشغيل نود Wallarm في أوضاع أخرى، بما في ذلك تلك المصممة لحظر الطلبات الخبيثة وتمرير تلك المشروعة فقط. لمزيد من المعلومات حول أوضاع نود Wallarm، يرجى زيارة [وثائقنا](https://docs.wallarm.com/admin-en/configure-wallarm-mode/).
-* الخدمة التي يقوم نود Wallarm ببروكسي الطلبات إليها. يمكن أن تكون الخدمة من أي نوع. على سبيل المثال:
+	في هذا النموذج، تعمل وحدة `Wallarm` في وضع المراقبة لتوجيه السلوك الموصوف. يمكن تشغيل وحدة `Wallarm` في وضعيات أخرى، بما في ذلك تلك الموجهة لقطع الطلبات الخبيثة وتمرير الطلبات الذاتية فقط. يمكن العثور على تفاصيل وضع الوحدة النموذجية `Wallarm` في [مستندات `Wallarm`](https://docs.wallarm.com/admin-en/configure-wallarm-mode/).
+* الخدمة التي تقوم بتمرير الطلبات من الوحدات النموذجية `Wallarm`. يمكن أن يكون أي نوع من الخدمة، مثل:
   
-    * تطبيق AWS API Gateway المتصل بـ VPC عبر نقطة نهاية VPC (تغطي الوحدة النمطية لـ Terraform الخاصة بـ Wallarm المقابلة لنشر API Gateway في [مثال API Gateway](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/apigateway))
+    * تطبيق AWS API Gateway المتصل بـ VPC عبر نقطة النهاية لـ VPC (يتم تغطية تركيبTerraform الذي يتوافق مع المثال العادي لـ API Gateway في [نموذج ال API Gateway](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/apigateway))
     * AWS S3
-    * عقد EKS العاملة في مجموعة EKS (في هذه الحالة، يوصى بتكوين Internal Load Balancer أو NodePort Service)
+    * عقدة EKS في عامل EKS (في هذه الحالة، يُفضل تعيين الرافعة الداخلية أو خدمة NodePort)
     * أي خدمة خلفية أخرى
 
-بشكل افتراضي، يقوم نود Wallarm بتوجيه حركة المرور إلى `https://httpbin.org`. في بداية هذا المثال، يمكنك تحديد أي نطاق أو مسار خدمة آخر متاح من AWS Virtual Private Cloud (VPC) كوجهة لحركة المرور البروكسي.
+	بشكل افتراضي، تقوم وحدة النموذج `Wallarm` بتمرير الحركة إلى `https://httpbin.org`. يمكن تحديد أي نطاق أو مسار خدمة آخر يمكن الوصول إليه من AWS VPC بشكل أوتوماتيكي خلال بداية هذا النموذج كجهة توجيه لتمرير الحركة.
 
-## مكونات الكود
+## مكونات الرمز
 
-يحتوي هذا المثال على ملف تكوين `main.tf` الوحيد مع الإعدادات التالية:
+تحتوي هذا النموذج على ملف تركيب `main.tf` الفريد الذي يحتوي على إعدادات الوحدة التالية:
 
-* تكوين وحدة [`vpc`](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/) لإنشاء موارد AWS VPS.
-* إعدادات Wallarm لنشر حل البروكسي على أنه حل بروكسي يولد AWS ALB ومثيلات Wallarm.
+* إعدادات وحدة [`vpc`](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/) لإنشاء موارد AWS VPS.
+* وحدة `Wallarm` مع إعدادات Wallarm لتوزيع كحل بروكسي ينشأ AWS ALB ووحدات النموذجية Wallarm.
 
-## المتطلبات
+## متطلبات
 
-* تثبيت Terraform 1.0.5 أو نسخة أعلى محليًا [على الجهاز](https://learn.hashicorp.com/tutorials/terraform/install-cli)
-* الوصول إلى حساب بدور **المدير** في وحدة تحكم Wallarm، سواء في [السحابة الأوروبية](https://my.wallarm.com/) أو [السحابة الأمريكية](https://us1.my.wallarm.com/)
-* وجود الوصول إلى `https://api.wallarm.com` إذا كنت تستخدم سحابة Wallarm في الاتحاد الأوروبي، أو `https://us1.api.wallarm.com` إذا كنت تستخدم سحابة Wallarm في الولايات المتحدة، مع التأكد من عدم حظر الوصول بواسطة جدار حماية.
+* تحتاج [ تركيب تيرافورم محليًا](https://learn.hashicorp.com/tutorials/terraform/install-cli) على 1.0.5 أو أعلى.
+* وجود حساب به وصول إلى الدور **الإداري** على وحدة تحكم `Wallarm`. [EU Cloud](https://my.wallarm.com/) أو [US Cloud](https://us1.my.wallarm.com/)
+* لا توجد حواجز تقيد الوصول إلى `https://api.wallarm.com` إذا كنت تستخدم Wallarm Cloud في الاتحاد الأوروبي و `https://us1.api.wallarm.com` إذا كنت تستخدم Wallarm Cloud في الولايات المتحدة.
 
-## تنفيذ نموذج نشر حل البروكسي لـ Wallarm AWS
+## تنفيذ نموذج Wallarm AWS بروكسي
 
-1. قم بالتسجيل في وحدة تحكم Wallarm في [السحابة الأوروبية](https://my.wallarm.com/nodes) أو [السحابة الأمريكية](https://us1.my.wallarm.com/nodes).
-1. افتح وحدة تحكم Wallarm → **النودات** وأنشئ نودًا من نوع **نود Wallarm**.
-1. انسخ رمز النود المُنشأ.
-1. قم بنسخ مستودع الكود للمثال إلى جهازك:
-
-    ```
-    git clone https://github.com/wallarm/terraform-aws-wallarm.git
-    ```
-1. في ملف `variables.tf` داخل مجلد المثال المنسوخ `examples/from-scratch`، قم بضبط قيم المتغيرات في خيار `default` واحفظ التغييرات.
-1. من داخل دليل `examples/from-scratch`، قم بتنفيذ الأوامر التالية لنشر الاستك:
+1. أنت تحتاج إلى الاشتراك في وحدة تحكم `Wallarm` على [EU Cloud](https://my.wallarm.com/nodes) أو [US Cloud](https://us1.my.wallarm.com/nodes).
+1. افتح Wallarm Console → **Nodes** واصنع وحدة نموذجية من النوع **Wallarm node**.
+1. انسخ الرمز المنتج للوحدة النموذجية التي تم إنشاؤها.
+1. انسخ المستودع الذي يحتوي على رمز 'git clone https://github.com/wallarm/terraform-aws-wallarm.git` 
+1. عين قيمة المتغيرات `default` في ملف `examples/from-scratch/variables.tf` في المستودع المُنسخ، واحفظ التغييرات.
+1. قم بتنفيذ الأوامر التالية من الدليل `examples/from-scratch` لتوزيع الأسلوب:
 
     ```
     terraform init
     terraform apply
     ```
 
-لحذف البيئة المنشورة، استخدم الأمر التالي:
+أما لإزالة بيئة التوزيع، يمكن استخدام الأمر التالي：
 
 ```
 terraform destroy
 ```
 
-## المراجع
+## مراجع
 
-* [وثائق Wallarm](https://docs.wallarm.com)
+* [توثيق Wallarm](https://docs.wallarm.com)
 * [وحدة Terraform التي تنشئ موارد VPC على AWS](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/)
-* [AWS VPC بشبكات عامة وخاصة (NAT)](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)
+* [القارئ الخصوصي الافتراضي (VPC) لـ  AWS مع شبكات فرعية عامة وخاصة (NAT)](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)

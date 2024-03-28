@@ -1,16 +1,16 @@
-=== "Debian"
+=== "ديبيان"
     ```bash
     sudo systemctl restart nginx
     ```
-=== "Ubuntu"
+=== "أوبونتو"
     ```bash
     sudo service nginx restart
     ```
-=== "CentOS أو Amazon Linux 2.0.2021x و أقل"
+=== "سنت أو إس أو أمازون لينكس 2.0.2021 وما دون"
     ```bash
     sudo systemctl restart nginx
     ```
-=== "AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
+=== "ألما لينكس، روكي لينكس أو أوراكل لينكس 8.x"
     ```bash
     sudo systemctl restart nginx
     ```

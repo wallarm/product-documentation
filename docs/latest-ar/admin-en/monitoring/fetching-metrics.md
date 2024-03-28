@@ -1,85 +1,66 @@
-[link-network-plugin]:              https://collectd.org/wiki/index.php/Plugin:Network
-[link-network-plugin-docs]:         https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_network
-[link-collectd-networking]:         https://collectd.org/wiki/index.php/Networking_introduction
-[link-influx-collectd-support]:     https://docs.influxdata.com/influxdb/v1.7/supported_protocols/collectd/
-[link-plugin-table]:                https://collectd.org/wiki/index.php/Table_of_Plugins
-[link-nagios-plugin-docs]:          https://collectd.org/documentation/manpages/collectd-nagios.1.shtml
-[link-notif-common]:                https://collectd.org/wiki/index.php/Notifications_and_thresholds
-[link-notif-details]:               https://collectd.org/documentation/manpages/collectd-threshold.5.shtml
-[link-influxdb-collectd]:           https://docs.influxdata.com/influxdb/v1.7/supported_protocols/collectd/
-[link-unixsock]:                    https://collectd.org/wiki/index.php/Plugin:UnixSock
+#   كيفية جلب القياسات
 
-[doc-network-plugin-example]:       network-plugin-influxdb.md
-[doc-write-plugin-example]:         write-plugin-graphite.md
-[doc-zabbix-example]:               collectd-zabbix.md
-[doc-nagios-example]:               collectd-nagios.md
+هذه التعليمات تصف الطرق لجمع القياسات من عقدة التصفية.
 
-#   إزاي تجيب بيانات القياس
+##  تصدير القياسات مباشرة من `collectd`
 
-التعليمات دي بتوصف الطرق عشان تجمع بيانات القياس من نقطة تصفية.
+يمكنك تصدير القياسات التي جمعها `collectd` مباشرة إلى الأدوات التي تدعم العمل مع تيارات بيانات `collectd`.
 
-##  تصدير بيانات القياس مباشرةً من `collectd`
+!!! warning "المتطلبات الأولية"
+    يجب أداء جميع الخطوات التالية كمستخدم ذو امتيازات عالية (على سبيل المثال، `root`).
 
-ممكن تصدر البيانات اللي جمعها `collectd` مباشرةً للأدوات اللي بتدعم العمل مع سيول بيانات `collectd`.
+### تصدير القياسات عبر ضافة `collectd network`
 
-
-!!! warning "المتطلبات الأساسية"
-    كل الخطوات اللي جاية لازم تتعمل من مستخدم بصلاحيات المشرف (مثلاً، `root`).
-
-
-### تصدير بيانات القياس عن طريق إضافة الشبكة `collectd`
-
-ضبط وربط [إضافة الشبكة][link-network-plugin] بـ `collectd`:
-1.  في مجلد `/etc/collectd/collectd.conf.d/`، اعمل ملف بامتداد `.conf` (مثلاً، `export-via-network.conf`) والمحتويات دي:
+قم بتكوين وتوصيل [ضافة الشبكة][link-network-plugin] بـ `collectd`:
+1.  في دليل `/etc/collectd/collectd.conf.d/`، أنشئ ملفًا بامتداد `.conf` (على سبيل المثال، `export-via-network.conf`) والمحتوى التالي:
 
     ```
     LoadPlugin network
     
     <Plugin "network">
-      Server "عنوان IPv4/v6 للسيرفر أو FQDN" "منفذ السيرفر"
+      Server "عنوان IPv4/v6 للخادم أو FQDN" "منفذ الخادم"
     </Plugin>
     ```
 
-    زي ما هو مكتوب في الملف ده، الإضافة هتتحمل عند بدء `collectd`، تشتغل في وضع العميل، وتبعت بيانات قياس نقطة التصفية للسيرفر المحدد.
+    كما هو مذكور في هذا الملف، سيتم تحميل الضافة عند بدء `collectd`، وتشغيلها في وضع العميل، وإرسال بيانات القياسات من عقدة التصفية إلى الخادم المحدد.
     
-2.  ضبط سيرفر اللي هيستقبل البيانات من عميل `collectd`. الخطوات اللازمة للضبط بتعتمد على السيرفر اللي اخترته (شوف الأمثلة لـ [`collectd`][link-collectd-networking] و [InfluxDB][link-influxdb-collectd]).
+2.  تكوين خادم سيستقبل البيانات من عميل `collectd`. الخطوات الضرورية للتكوين تعتمد على الخادم المختار (انظر الأمثلة لـ [`collectd`][link-collectd-networking] و [InfluxDB][link-influxdb-collectd]).
     
     
-    !!! info "التعامل مع إضافة الشبكة"
-        إضافة الشبكة بتشتغل على UDP (شوف [وثائق الإضافة][link-network-plugin-docs]). تأكد إن السيرفر بيسمح بالتواصل عن طريق UDP عشان تكون عملية جمع البيانات فعالة.
+    !!! info "العمل مع ضافة الشبكة"
+        تعمل ضافة الشبكة عبر بروتوكول UDP (انظر إلى [وثائق الضافة][link-network-plugin-docs]). تأكد من أن الخادم يسمح بالاتصالات عبر UDP حتى تكون جمع القياسات فعالة.
          
-3.  إعادة تشغيل خدمة `collectd` بتنفيذ الأمر المناسب:
+3.  أعد تشغيل خدمة `collectd` بتنفيذ الأمر المناسب:
 
     --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
 !!! info "مثال"
-    اقرأ [مثال لتصدير بيانات][doc-network-plugin-example] لـ InfluxDB عن طريق الإضافة الشبكية مع تصوير البيانات بعد كده في Grafana.
+    اقرأ [مثالًا عن تصدير القياسات][doc-network-plugin-example] إلى InfluxDB عبر ضافة الشبكة مع تصور القياسات بعد ذلك في Grafana.
 
-### تصدير بيانات القياس عن طريق إضافات الكتابة `collectd`
-
-عشان تتمكن من تصدير بيانات القياس عن طريق إضافات الكتابة `collectd`، شوف وثائق الإضافة المتوافقة.
+### تصدير القياسات عبر ضافات كتابة `collectd`
+لتكوين تصدير القياسات عبر [ضافات الكتابة `collectd`][link-plugin-table]، اطلع على وثائق الضافة المناسبة.
 
 
 !!! info "مثال"
-    عشان تحصل على معلومات أساسية عن استخدام إضافات الكتابة، اقرأ [مثال لتصدير بيانات][doc-write-plugin-example] لـ Graphite مع تصوير البيانات بعد كده في Grafana.
+    للحصول على معلومات أساسية حول استخدام ضافات الكتابة، اقرأ [مثالًا عن تصدير القياسات][doc-write-plugin-example] إلى Graphite مع تصور القياسات بعد ذلك في Grafana.
 
-##  تصدير بيانات القياس باستخدام أداة `collectd-nagios`
+##  تصدير القياسات باستخدام أداة `collectd-nagios`
 
-عشان تصدر بيانات القياس باستخدام الطريقة دي:
+لتصدير القياسات باستخدام هذه الطريقة:
 
-1.  تثبيت أداة `collectd-nagios` على جهاز مضيف بنقطة تصفية بتنفيذ الأمر المناسب (لنقطة تصفية مثبتة على لينكس):
+1.  قم بتثبيت أداة `collectd-nagios` على مضيف يحتوي على عقدة تصفية بتشغيل الأمر المناسب (لعقدة تصفية مثبتة على Linux):
 
     --8<-- "../include/monitoring/install-collectd-utils.md"
 
     !!! info "صورة Docker"
-        صورة Docker لنقطة التصفية جايبة معاها أداة `collectd-nagios` مثبتة مسبقًا.
+        تأتي صورة Docker لعقدة التصفية مع أداة `collectd-nagios` مثبتة مسبقًا.
 
-2.  تأكد إنك تقدر تشغل الأداة دي بصلاحيات مرتفعة يإما نيابة عن مستخدم مشرف (على سبيل المثال، `root`) أو كمستخدم عادي. في الحالة الأخيرة، أضف المستخدم لملف `sudoers` مع توجيه `NOPASSWD`، واستخدم أداة `sudo`.
+2.  تأكد من أنه يمكنك تشغيل هذه الأداة بصلاحيات مرتفعة إما نيابة عن مستخدم ذو امتيازات عالية (على سبيل المثال، `root`) أو كمستخدم عادي. في الحالة الأخيرة، أضف المستخدم إلى ملف `sudoers` بمديرية `NOPASSWD`، واستخدم أداة `sudo`.
 
-    !!! info "التعامل مع حاوية Docker"
-        عند تنفيذ أداة `collectd-nagios` في حاوية Docker مع نقطة التصفية، مش مطلوب رفع الصلاحيات.
+    !!! info "العمل مع حاوية Docker"
+        عند تشغيل أداة `collectd-nagios` في حاوية Docker التي تحتوي على عقدة التصفية، لا يلزم رفع الصلاحيات.
 
-3.  ربط وضبط [إضافة `UnixSock`][link-unixsock] لنقل بيانات `collectd` عبر سوكت نطاق Unix. عشان تعمل كده، اعمل ملف `/etc/collectd/collectd.conf.d/unixsock.conf` بالمحتويات دي:
+3.  وصّل وقم بتكوين ضافة [`UnixSock`][link-unixsock] لنقل قياسات `collectd` عبر مقبس نطاق Unix. لهذا، أنشئ ملف `/etc/collectd/collectd.conf.d/unixsock.conf` بالمحتوى التالي:
 
     ```
     LoadPlugin unixsock
@@ -92,53 +73,53 @@
     </Plugin>
     ```
 
-4.  إعادة تشغيل خدمة `collectd` بتنفيذ الأمر المناسب:
+4.  أعد تشغيل خدمة `collectd` بتنفيذ الأمر المناسب:
 
     --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
-5.  جمع قيمة القياس اللازمة بتشغيل الأمر المناسب:
+5.  احصل على قيمة القياس اللازم بتشغيل الأمر المناسب:
 
     --8<-- "../include/monitoring/collectd-nagios-fetch-metric.md"
 
-    !!! info "جمع مُعرّف حاوية Docker"
-        ممكن تجد قيمة مُعرّف الحاوية بتشغيل أمر `docker ps` (شوف عامود “CONTAINER ID”).
+    !!! info "الحصول على معرف حاوية Docker"
+        يمكنك العثور على قيمة معرف الحاوية بتشغيل أمر `docker ps` (انظر إلى عمود "CONTAINER ID").
 
 !!! info "تحديد عتبات لأداة `collectd-nagios`"
-    لو لازم، ممكن تحدد نطاق قيم اللي الأداة `collectd-nagios` هترجع حالة `WARNING` أو `CRITICAL` ليها باستخدام الخيارات المقابلة `-w` و `-c` (المعلومات التفصيلية متوفرة في [وثائق الأداة][link-nagios-plugin-docs]).
+    إذا لزم الأمر، يمكنك تحديد نطاق قيم لتعود الأداة `collectd-nagios` بحالة `WARNING` أو `CRITICAL` باستخدام الخيارات `-w` و`-c` المناسبة (المعلومات التفصيلية متوفرة في [وثائق الأداة][link-nagios-plugin-docs]).
    
 **أمثلة على استخدام الأداة:**
-*   عشان تجيب قيمة القياس `curl_json-wallarm_nginx/gauge-abnormal` (في الوقت اللي كانت فيه أداة `collectd-nagios` متنادية) على الجهاز المضيف لينكس `node.example.local` مع نقطة التصفية، شغل الأمر ده:
+*   للحصول على قيمة قياس `curl_json-wallarm_nginx/gauge-abnormal` (في وقت تشغيل `collectd-nagios`) على مضيف Linux `node.example.local` به عقدة التصفية، قم بتشغيل الأمر التالي:
   
     ```
     /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
     ```
        
-*   عشان تجيب قيمة القياس `curl_json-wallarm_nginx/gauge-abnormal` (في الوقت اللي كانت فيه أداة `collectd-nagios` متنادية) لنقطة التصفية اللي شغالة في حاوية Docker بإسم `wallarm-node` ومُعرّف `95d278317794`، شغل الأمر ده:
+*   للحصول على قيمة قياس `curl_json-wallarm_nginx/gauge-abnormal` (في وقت تشغيل `collectd-nagios`) لعقدة التصفية العاملة في حاوية Docker بالاسم `wallarm-node` والمعرف `95d278317794`، قم بتشغيل الأمر التالي:
   
     ```
     docker exec wallarm-node /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H 95d278317794
     ```
 
 
-!!! info "أمثلة أكتر"
-    عشان تحصل على معلومات أساسية عن استخدام أداة `collectd-nagios`، اقرأ الأمثلة لتصدير البيانات
+!!! info "المزيد من الأمثلة"
+    للحصول على معلومات أساسية حول استخدام أداة `collectd-nagios`، اقرأ الأمثلة عن تصدير القياسات
     
-    *   [لنظام المراقبة Nagios][doc-nagios-example] و
-    *   [لنظام المراقبة Zabbix][doc-zabbix-example].
+    *   [إلى نظام المراقبة Nagios][doc-nagios-example] و
+    *   [إلى نظام المراقبة Zabbix][doc-zabbix-example].
 
 
-##  إرسال إشعارات من `collectd`
+##  إرسال الإشعارات من `collectd`
 
-الإشعارات بيتم ضبطها في الملف ده:
+يتم تكوين الإشعارات في الملف التالي:
 
 --8<-- "../include/monitoring/notification-config-location.md"
 
-شرح عام عن ازاي الإشعارات شغالة متوفر [هنا][link-notif-common].
+وصف عام لكيفية عمل الإشعارات متوفر [هنا][link-notif-common].
 
-معلومات أكتر تفصيلية عن ازاي تضبط الإشعارات متوفرة [هنا][link-notif-details].
+معلومات أكثر تفصيلًا حول كيفية إعداد الإشعارات متوفرة [هنا][link-notif-details].
 
 الطرق الممكنة لإرسال الإشعارات:
 *   NSCA و NSCA-ng
 *   SNMP TRAP
-*   رسائل البريد الإلكتروني
-*   سكربتات مخصصة
+*   رسائل بريد إلكتروني
+*   سكريبتات مخصصة

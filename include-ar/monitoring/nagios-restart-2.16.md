@@ -2,7 +2,7 @@
     ```bash
     sudo service nagios restart
     ```
-=== "التوزيعات المدعومة الأخرى"
+=== "التوزيعات الأخرى المدعومة"
     ```bash
     sudo systemctl restart nagios
     ```

@@ -13,37 +13,37 @@ spec:
         app: myapp
     spec:
       containers:
-        # عنصر من Wallarm: تعريف حاوية Wallarm الجانبية
+        # عنصر Wallarm: تعريف حاوية الوسيطة لـ Wallarm
         - name: wallarm
           image: wallarm/node:3.2.1-1
           imagePullPolicy: Always
           env:
-          # نقطة نهاية API الخاصة بـ Wallarm: 
-          # "api.wallarm.com" لسحابة الاتحاد الأوروبي
-          # "us1.api.wallarm.com" لسحابة الولايات المتحدة
+          # نقطة نهاية واجهة برمجة تطبيقات Wallarm: 
+          # "api.wallarm.com" للسحابة الأوروبية
+          # "us1.api.wallarm.com" للسحابة الأمريكية
           - name: WALLARM_API_HOST
             value: "api.wallarm.com"
-          # اسم المستخدم للمستخدم بدور النشر
+          # اسم المستخدم للمستخدم له دور الانتشار
           - name: DEPLOY_USER
             value: "username"
-          # كلمة السر للمستخدم بدور النشر
+          # كلمة مرور المستخدم له دور الانتشار
           - name: DEPLOY_PASSWORD
             value: "password"
           - name: DEPLOY_FORCE
             value: "true"
-          # الكمية من الذاكرة بجيجابايت لبيانات تحليل الطلبات
+          # الكمية من الذاكرة بجيجابايت لبيانات تحليلات الطلبات
           - name: TARANTOOL_MEMORY_GB
             value: "2"
           ports:
           - name: http
-            # المنفذ الذي يستقبل عليه حاوية Wallarm الجانبية الطلبات
-            # من كائن الخدمة
+            # الباب الذي تقبل حاوية الوسيطة لـ Wallarm الطلبات من خلاله
+            # من عنصر الخدمة
             containerPort: 80
           volumeMounts:	
           - mountPath: /etc/nginx/sites-enabled	
             readOnly: true	
             name: wallarm-nginx-conf
-        # تعريف حاوية التطبيق الأساسية الخاصة بك
+        # تعريف حاوية تطبيقك الرئيسية
         - name: myapp
           image: <Image>
           resources:
@@ -51,10 +51,10 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-          # المنفذ الذي تستقبل عليه حاوية التطبيق الطلبات الواردة
+          # الباب الذي تقبل حاوية التطبيق الواردات الطلبات من خلاله
           - containerPort: 8080
       volumes:
-      # عنصر من Wallarm: تعريف حجم wallarm-nginx-conf
+      # عنصر Wallarm: تعريف حجم wallarm-nginx-conf
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

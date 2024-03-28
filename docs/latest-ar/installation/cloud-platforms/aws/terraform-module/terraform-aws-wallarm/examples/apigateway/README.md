@@ -1,100 +1,100 @@
-# نشر Wallarm كبروكسي لـ Amazon API Gateway
+# نشر Wallarm كوكيل لبوابة API الخاصة بأمازون
 
-هذا المثال يوضح كيفية حماية [Amazon API Gateway](https://aws.amazon.com/api-gateway/) بإستخدام Wallarm، الذي يُنشر كبروكسي داخلي إلى AWS الشبكة الخاصة الافتراضية (VPC) باستخدام [وحدة Terraform](https://registry.terraform.io/modules/wallarm/wallarm/aws/).
+هذا المثال يوضح كيفية حماية [بوابة API الخاصة بأمازون](https://aws.amazon.com/api-gateway/) باستخدام Wallarm مُنشر كوكيل داخلي في الشبكة الخاصة الافتراضية لـ AWS باستخدام [وحدة Terraform](https://registry.terraform.io/modules/wallarm/wallarm/aws/).
 
-يوفر حل بروكسي Wallarm طبقة شبكة وظيفية إضافية تعمل كموجه لحركة الـ HTTP المتقدمة مع وظائف الأمان لـ WAF وAPI. يمكنه توجيه الطلبات إلى تقريباً أي نوع خدمة بما في ذلك Amazon API Gateway دون تقييد قدراته.
+حل Wallarm كوكيل يوفر طبقة شبكية وظيفية إضافية تعمل كموجه متقدم لحركة مرور HTTP مع وظائف أمان WAF وAPI. يمكنه توجيه الطلبات إلى معظم أنواع الخدمات بما في ذلك بوابة API الخاصة بأمازون دون تقييد قدراتها.
 
-## حالات الإستخدام
+## حالات الاستخدام
 
-من بين كل [خيارات نشر Wallarm المدعومة](https://docs.wallarm.com/installation/supported-deployment-options)، يُوصى بوحدة Terraform لنشر Wallarm على AWS VPC في هذه **حالات الإستخدام**:
+من بين جميع [خيارات نشر Wallarm المدعومة](https://docs.wallarm.com/installation/supported-deployment-options)، يُوصى باستخدام وحدة Terraform لنشر Wallarm على الشبكة الخاصة الافتراضية لـ AWS في هذه **حالات الاستخدام**:
 
-* بنيتك التحتية الحالية متواجدة على AWS.
-* أنت تستفيد من ممارسة البنية التحتية ككود (IaC). تسمح وحدة Terraform الخاصة بـ Wallarm بإدارة وتوفير عقدة Wallarm على AWS بشكل آلي، مما يعزز الكفاءة والاتساق.
+* بنيتك التحتية القائمة على AWS.
+* تستخدم ممارسة البنية التحتية ككود (IaC). تتيح وحدة Terraform الخاصة بـ Wallarm إدارة وتوفير عقدة Wallarm على AWS تلقائيًا، مما يعزز الكفاءة والاتساق.
 
-## الشروط
+## المتطلبات
 
 * Terraform 1.0.5 أو أعلى [مُثبت محليًا](https://learn.hashicorp.com/tutorials/terraform/install-cli)
-* الوصول إلى الحساب بدور **المدير** [role](https://docs.wallarm.com/user-guides/settings/users/#user-roles) في واجهة Wallarm في السحابة الأوروبية أو الأمريكية [Cloud](https://docs.wallarm.com/about-wallarm/overview/#cloud)
-* الوصول إلى `https://us1.api.wallarm.com` إذا كنت تعمل مع سحابة Wallarm الأمريكية أو إلى `https://api.wallarm.com` إذا كنت تعمل مع سحابة Wallarm الأوروبية. يرجى التأكد من أن الوصول ليس محظورًا بواسطة جدار حماية
+* الوصول إلى الحساب مع دور **المسؤول** [role](https://docs.wallarm.com/user-guides/settings/users/#user-roles) في وحدة تحكم Wallarm في السحابة الأمريكية أو الأوروبية [Cloud](https://docs.wallarm.com/about-wallarm/overview/#cloud)
+* الوصول إلى `https://us1.api.wallarm.com` عند العمل مع سحابة Wallarm الأمريكية أو إلى `https://api.wallarm.com` عند العمل مع سحابة Wallarm الأوروبية. الرجاء التأكد من عدم حظر الوصول بواسطة جدار الحماية
 
-## هيكل الحل
+## هندسة الحل
 
-![مخطط بروكسي Wallarm](https://github.com/wallarm/terraform-aws-wallarm/blob/main/images/wallarm-as-proxy-for-aws-api-gateway.png?raw=true)
+![مخطط وكيل Wallarm](https://github.com/wallarm/terraform-aws-wallarm/blob/main/images/wallarm-as-proxy-for-aws-api-gateway.png?raw=true)
 
-حل بروكسي Wallarm المثال له المكونات التالية:
+حل وكيل Wallarm في هذا المثال يتضمن المكونات التالية:
 
-* موزع الحمل المواجه للإنترنت يوجه حركة المرور إلى عقد Wallarm.
-* عقد Wallarm التي تحلل الحركة وتحيل أي طلبات إلى API Gateway.
+* موازن التحميل الذي يواجه الإنترنت يوجه الحركة إلى عقد Wallarm.
+* عقد Wallarm تحلل الحركة وتوكل أي طلبات إلى بوابة API.
 
-    يتم تشغيل عقد Wallarm في هذا المثال في وضع المراقبة مما يقود السلوك الموصوف. يمكن لعقد Wallarm أيضاً أن تعمل في أوضاع أخرى بما في ذلك تلك التي تهدف إلى حظر الطلبات الضارة وإعادة توجيه تلك المشروعة فقط. لمعرفة المزيد عن أوضاع عقد Wallarm، استخدم [وثائقنا](https://docs.wallarm.com/admin-en/configure-wallarm-mode/).
-* API Gateway التي تقوم عقد Wallarm بتحويل الطلبات إليها. يتمتع API Gateway بالإعدادات التالية:
+    يعمل هذا المثال بعقد Wallarm في وضع المراقبة الذي يحرك السلوك الموصوف. يمكن لعقد Wallarm أيضًا العمل في أوضاع أخرى تهدف إلى حظر الطلبات الخبيثة وإعادة توجيه الطلبات المشروعة فقط. لمعرفة المزيد عن أوضاع عقد Wallarm، استخدم [وثائقنا](https://docs.wallarm.com/admin-en/configure-wallarm-mode/).
+* بوابة API التي توكل لها عقد Wallarm الطلبات لديها الإعدادات التالية:
 
-    * تم تعيين مسار `/demo/demo`.
-    * تم تكوين وهمية واحدة.
-    * أثناء نشر وحدة Terraform هذه، يمكنك اختيار نوع نهاية "إقليمية" أو "خاصة" [endpoint type for the API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html). يتم تقديم مزيد من التفاصيل حول هذه الأنواع والترحيل بينهما أدناه.
+    * تم تعيين المسار `/demo/demo`.
+    * تكوين واحد وهمي.
+    * خلال نشر وحدة Terraform هذه، يمكنك اختيار نوع النقطة النهائية لبوابة API "الإقليمية" أو "الخاصة". يتم توفير المزيد من التفاصيل حول هذه الأنواع والتحول بينها أدناه.
 
-    يرجى ملاحظة أن المثال المقدم ينشر Amazon API Gateway منتظم، لذا فإن عمليته لن تتأثر بعقد Wallarm.
+    يرجى ملاحظة أن المثال المقدم ينشر بوابة API الخاصة بأمازون العادية، لذا لن يتأثر تشغيلها بعقد Wallarm.
 
-جميع المكونات المدرجة بما في ذلك API Gateway سيتم نشرها بواسطة وحدة `wallarm` المقدمة.
+سيتم نشر جميع المكونات المذكورة بما في ذلك بوابة API بواسطة وحدة `wallarm` المثال المقدمة.
 
 ## مكونات الكود
 
-يحتوي هذا المثال على المكونات الكودية التالية:
+يحتوي هذا المثال على المكونات البرمجية التالية:
 
-* `main.tf`: التكوين الرئيسي لوحدة `wallarm` التي سيتم نشرها كحل بروكسي. ينتج التكوين AWS ALB وعقد Wallarm.
-* `apigw.tf`: التكوين الذي ينتج Amazon API Gateway القابل للوصول تحت مسار `/demo/demo` مع تكامل وهمية واحدة مُكون. أثناء نشر الوحدة النمطية، يمكنك أيضاً اختيار نوع نهاية "إقليمية" أو "خاصة" (راجع التفاصيل أدناه).
-* `endpoint.tf`: تكوين نهاية VPC AWS لنوع "خاص" من نهاية API Gateway.
+* `main.tf`: التكوين الرئيسي لوحدة `wallarm` المطلوب تنفيذها كحل وكيل. التكوين ينتج AWS ALB وعقد Wallarm.
+* `apigw.tf`: التكوين الذي ينتج بوابة API الخاصة بأمازون التي يمكن الوصول إليها تحت المسار `/demo/demo` مع تكوين تكامل وهمي واحد. أثناء نشر الوحدة، يمكنك أيضًا اختيار نوع النقطة النهائية "الإقليمية" أو "الخاصة" (انظر التفاصيل أدناه).
+* `endpoint.tf`: تكوين نقطة النهاية الخاصة بـ AWS VPC لنوع النقطة النهائية "الخاصة" لبوابة API.
 
-## الفرق بين نهايات API Gateway "الإقليمية" و"الخاصة"
+## الفرق بين نقاط النهاية الإقليمية والخاصة لبوابة API
 
-المتغير `apigw_private` يحدد نوع نهاية API Gateway:
+تحدد المتغير `apigw_private` نوع نقطة النهاية لبوابة API:
 
-* مع الخيار "الإقليمي"، ستقدم عقد Wallarm الطلبات إلى خدمة [`execute-api`](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-call-api.html) المتاح للجمهور.
-* مع الخيار "الخاص" - إلى نقاط نهاية AWS VPC المرفقة بخدمة `execute-api`. **لنشر الإنتاج، الخيار "الخاص" هو الأوصى به.**
+* مع خيار "الإقليمية"، سترسل عقد Wallarm طلبات إلى خدمة بوابة API المتاحة للجمهور `execute-api`.
+* مع الخيار "الخاص" - إلى نقاط النهاية في AWS VPC المرفقة بخدمة `execute-api`. **لنشر الإنتاج، يُوصى بالخيار "الخاص".**
 
-### المزيد من الخيارات لتقييد الوصول إلى API Gateway
+### المزيد من الخيارات لتقييد الوصول إلى بوابة API
 
-تمكن Amazon أيضًا من تقييد الوصول إلى API Gateway الخاص بك بغض النظر عن نوع نهاية "الخاصة" أو "الإقليمية" كما يلي:
+تمكنك أمازون أيضًا من تقييد الوصول إلى بوابتك API بغض النظر عن نوع نقطة النهاية "الخاصة" أو "الإقليمية" على النحو التالي:
 
-* باستخدام [سياسات الموارد](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies.html) مع أي من نوعي النهايتين المحددين.
-* إدارة الوصول بواسطة [عناوين IP المصدر](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies-examples.html)، إذا كان نوع النهاية "خاص".
-* إدارة الوصول بواسطة [VPC و/أو النهاية](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies-examples.html)، إذا كان نوع النهاية "خاص" والذي يفترض بالفعل أن API Gateway غير متاح من الشبكات العامة.
+* باستخدام [سياسات الموارد](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies.html) مع أي من نوعي النقاط النهائية المحددين.
+* إدارة الوصول بواسطة [عناوين IPs المصدر](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies-examples.html)، إذا كان نوع النقطة النهائية "خاص".
+* إدارة الوصول بواسطة [VPC و/أو نقطة النهاية](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies-examples.html)، إذا كان نوع النقطة النهائية "خاص" والذي يفترض بالفعل أن بوابة API غير متاحة من الشبكات العامة بتصميمها.
 
-### الترحيل بين أنواع نهايات API Gateway
+### التحول بين أنواع نقاط النهاية لبوابة API
 
-يمكنك تغيير نوع نهاية API Gateway دون إعادة إنشاء المكون ولكن يرجى مراعاة ما يلي:
+يمكنك تغيير نوع نقطة النهاية لبوابة API دون إعادة إنشاء المكون ولكن يرجى مراعاة الآتي:
 
-* بمجرد تغيير النوع من "إقليمي" إلى "خاص"، ستصبح النهايات العامة خاصة وبالتالي غير متاحة من الموارد العامة. ينطبق ذلك على نهايات `execute-api` وأسماء النطاقات.
-* بمجرد تغيير النوع من "خاص" إلى "إقليمي"، سيتم فصل نقاط نهاية AWS VPC المستهدفة إلى API Gateway على الفور وسيصبح API Gateway غير متاح.
-* نظرًا لأن NGINX من الإصدار المجتمعي لا يمكنه اكتشاف تغييرات اسم DNS تلقائيًا، يجب أن يتبع تغيير نوع النهاية إعادة تشغيل NGINX يدويًا على عقد Wallarm.
+* عند تغيير النوع من "إقليمية" إلى "خاصة"، ستصبح النقاط النهائية العامة خاصة وبالتالي غير متاحة من الموارد العامة. ينطبق هذا على كل من نقاط النهاية `execute-api` وأسماء النطاقات.
+* عند تغيير النوع من "خاص" إلى "إقليمية"، سيتم فصل نقاط نهاية AWS VPC المستهدفة لبوابة API الخاصة بك فورًا وستصبح بوابة API غير متاحة.
+* بما أن NGINX للإصدار المجتمعي لا يمكنه الكشف تلقائيًا عن تغييرات اسم DNS، يجب أن يتبع تغيير نوع النقطة النهائية إعادة تشغيل يدوية لـ NGINX على عقد Wallarm.
 
-    يمكنك إعادة تشغيل العقد، إعادة إنشائها أو تشغيل `nginx -s reload` في كل عقدة.
+    يمكنك إعادة التشغيل، إعادة إنشاء العقد أو تنفيذ `nginx -s reload` في كل عقدة.
 
-إذا كنت تغير نوع النهاية من "إقليمي" إلى "خاص":
+إذا كنت تغير نوع النقطة النهائية من "إقليمية" إلى "خاصة":
 
-1. أنشئ نهاية VPC AWS وربطها بـ `execute-api`. ستجد المثال في ملف التكوين `endpoint.tf`.
-1. قم بتبديل نوع نهاية API Gateway وحدد نهاية VPC AWS في تكوين API Gateway. بمجرد الانتهاء، سيتوقف تدفق الحركة.
-1. تشغيل `nginx -s reload` في كل عقدة Wallarm أو إعادة إنشاء كل عقدة Wallarm. بمجرد الانتهاء، سيتم استعادة تدفق الحركة.
+1. إنشاء نقطة نهاية AWS VPC وإرفاقها بـ `execute-api`. ستجد المثال في ملف التكوين `endpoint.tf`.
+1. تحويل نوع نقطة النهاية لبوابة API وتحديد نقطة نهاية AWS VPC في تكوين بوابة API. بمجرد الانتهاء، سيتوقف تدفق الحركة.
+1. تشغيل `nginx -s reload` في كل عقدة Wallarm أو مجرد إعادة إنشاء كل عقدة Wallarm. بمجرد اكتماله، سيتم استعادة تدفق الحركة.
 
-لا يُوصى بتغيير نوع النهاية من "خاص" إلى "إقليمي" ولكن إذا فعلت:
+لا يُوصى بتغيير نوع النقطة النهائية من "خاصة" إلى "إقليمية" ولكن إذا فعلت:
 
-1. قم بإزالة النهاية المطلوبة للعمل في الوضع "الخاص" وبعد ذلك فقط، قم بتبديل نهاية API Gateway إلى "إقليمي".
-1. تشغيل `nginx -s reload` في كل عقدة Wallarm أو إعادة إنشاء كل عقدة Wallarm. بمجرد الانتهاء، سيتم استعادة تدفق الحركة.
+1. إزالة نقطة النهاية المطلوبة للتشغيل في وضع "الخاص" ثم فقط تحويل نقطة النهائية لبوابة API إلى "إقليمية".
+1. تشغيل `nginx -s reload` في كل عقدة Wallarm أو مجرد إعادة إنشاء كل عقدة Wallarm. بمجرد الانتهاء من ذلك، سيتم استعادة تدفق الحركة.
 
-**للإنتاج، يُوصى بتغيير API Gateway الخاص بك إلى "خاص"**، وإلا فإن حركة المرور من عقد Wallarm إلى API Gateway ستمر عبر الشبكة العامة ويمكن أن تنتج رسومًا إضافية.
+**للإنتاج، يُوصى بتغيير بوابة API الخاصة بك إلى "خاصة"**، وإلا سيتم تمرير حركة مرور من عقد Wallarm إلى بوابة API عبر الشبكة العامة وقد ينتج عن ذلك رسوم إضافية.
 
-## تشغيل مثال حل Wallarm AWS البروكسي لـ API Gateway
+## تشغيل مثال حل وكيل Wallarm AWS لبوابة API
 
-1. قم بالتسجيل للوصول إلى واجهة Wallarm في [السحابة الأوروبية](https://my.wallarm.com/nodes) أو [السحابة الأمريكية](https://us1.my.wallarm.com/nodes).
-1. افتح واجهة Wallarm → **العقد** وأنشئ العقدة من نوع **عقدة Wallarm**.
-1. انسخ رمز العقدة المُولد.
-1. انسخ مستودع الكود المحتوي على المثال إلى جهازك:
+1. سجل للحصول على وحدة تحكم Wallarm في [السحابة الأوروبية](https://my.wallarm.com/nodes) أو [السحابة الأمريكية](https://us1.my.wallarm.com/nodes).
+1. افتح وحدة تحكم Wallarm → **العقد** وأنشئ العقدة من نوع **عقدة Wallarm**.
+1. انسخ رمز العقدة المُنشأ.
+1. انسخ مستودع الكود الذي يحتوي على مثال الكود إلى جهازك:
 
     ```
     git clone https://github.com/wallarm/terraform-aws-wallarm.git
     ```
-1. حدد قيم المتغيرات في الخيارات `default` في ملف `examples/apigateway/variables.tf` بالمستودع المنسوخ واحفظ التغييرات.
-1. نشر الحزمة بتنفيذ الأوامر التالية من داخل الدليل `examples/apigateway`:
+1. اضبط قيم المتغيرات في الخيارات `الافتراضية` في ملف `examples/apigateway/variables.tf` للمستودع المنسوخ واحفظ التغييرات.
+1. نفذ تشغيل الرزمة بتنفيذ الأوامر التالية من دليل `examples/apigateway`:
 
     ```
     terraform init
@@ -109,8 +109,8 @@ terraform destroy
 
 ## المراجع
 
-* [AWS VPC مع شبكات فرعية عامة وخاصة (NAT)](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)
-* [API Gateway الواجهات الخاصة](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-private-apis.html)
+* [AWS VPC مع الشبكات الفرعية العامة والخاصة (NAT)](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)
+* [API Gateway الخاص](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-private-apis.html)
 * [سياسات API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies.html)
 * [أمثلة على سياسات API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies-examples.html)
 * [أنواع API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html)

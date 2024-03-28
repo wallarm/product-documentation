@@ -1,204 +1,204 @@
-[tarantool-status]:           ../images/tarantool-status.png
-[configure-selinux-instr]:    configure-selinux.md
-[configure-proxy-balancer-instr]:   configuration-guides/access-to-wallarm-api-via-proxy.md
-[img-wl-console-users]:             ../images/check-user-no-2fa.png
-[wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[tarantool-status]: ../images/tarantool-status.png
+[configure-selinux-instr]: configure-selinux.md
+[configure-proxy-balancer-instr]: configuration-guides/access-to-wallarm-api-via-proxy.md
+[img-wl-console-users]: ../images/check-user-no-2fa.png
+[wallarm-token-types]: ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
-# تثبيت وحدة بوستاناليتكس المنفصلة
+# تنصيب وحدة Postanalytics بشكل منفصل
 
-في معالجة الطلبات الخاصة بـ Wallarm، هناك مرحلتان متورطتان، بما في ذلك مرحلة بوستاناليتكس لتحليل الطلبات الإحصائية. تعتبر بوستاناليتكس ذات كثافة ذاكرة، مما قد يتطلب أدائها على خادم مخصص من أجل الأداء المحسّن. يُشرح هذا المقال كيفية تثبيت وحدة بوستاناليتكس على خادم مستقل.
+تشتمل الطلبات المعالجة في Wallarm على مرحلتين، بما في ذلك مرحلة Postanalytics لتحليل الطلبات الإحصائي. تكون Postanalytics مكثفة بالذاكرة، مما قد يتطلب تنفيذها على خادم مخصص لأداء محسن. يوضح هذا المقال كيفية تثبيت وحدة Postanalytics على خادم منفصل.
 
-الخيار لتثبيت وحدة بوستاناليتكس على خادم منفصل متاح للآتي من الآثار الفعلية لـ Wallarm:
+الخيار لتثبيت وحدة Postanalytics على خادم منفصل متاح للأدوات التالية:
 
-* [الحزم الفردية للإصدار المستقر NGINX](../installation/nginx/dynamic-module.md)
+* [الحزم الفردية لـ NGINX المستقر](../installation/nginx/dynamic-module.md)
 * [الحزم الفردية لـ NGINX Plus](../installation/nginx-plus.md)
-* [الحزم الفردية لـ NGINX المقدم من التوزيعة](../installation/nginx/dynamic-module-from-distr.md)
-* [مثبّت كل في واحد](../installation/nginx/all-in-one.md)
+* [الحزم الفردية لـ NGINX المقدم من التفعيل](../installation/nginx/dynamic-module-from-distr.md)
+* [المعالج الشامل](../installation/nginx/all-in-one.md)
 
-بشكل افتراضي، يوجهك تعليمات التثبيت الخاصة بـ Wallarm لتثبيت كلا الوحدتين على نفس الخادم.
+بشكل افتراضي، تدلك تعليمات Wallarm لتثبيت كلا الوحدتين على نفس الخادم.
 
 ## نظرة عامة
 
-تتألف معالجة الطلبات في عقدة Wallarm من مرحلتين:
+يتألف معالجة الطلبات في وحدة Wallarm من مرحلتين:
 
-* المعالجة الأولية في وحدة NGINX-Wallarm، والتي ليست بحاجة إلى الذاكرة ويمكن تنفيذها على خوادم الواجهة الأمامية دون تغيير متطلبات الخادم.
-* التحليل الإحصائي للطلبات المعالجة في وحدة البوستانالتكس التي تتطلب الذاكرة.
+* المعالجة الأولية في وحدة NGINX-Wallarm، والتي لا تتطلب الذاكرة ويمكن تنفيذها على خوادم الواجهة الأمامية دون تغيير متطلبات الخادم.
+* تحليل إحصاءات الطلبات المعالجة في وحدة Postanalytics التي تتطلب الذاكرة.
 
-تصور الخطط أدناه تفاعل الوحدة في سيناريوين: عند التثبيت على نفس الخادم وعلى خوادم مختلفة.
+المخططات أدناه تصور تواصل الوحدة في سيناريوين: عند التثبيت على نفس الخادم وعلى خوادم مختلفة.
 
-=== "NGINX-Wallarm والبوستانالتكس على خادم واحد"
-    ![تدفق المرور بين البوستانالتكس وnginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
-=== "NGINX-Wallarm والبوستانالتكس على خوادم مختلفة"
-    ![تدفق المرور بين البوستانالتكس وnginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
+=== "NGINX-Wallarm وPostanalytics على خادم واحد"
+    ![تدفق المرور بين Postanalytics وNGINX-Wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
+=== "NGINX-Wallarm وPostanalytics على خوادم مختلفة"
+    ![تدفق المرور بين Postanalytics وNGINX-Wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
 
 ## طرق التثبيت
 
-يمكنك تثبيت وحدة البوستانالتكس على خادم منفصل بطريقتين مختلفتين:
+يمكنك تثبيت وحدة Postanalytics على خادم منفصل بطريقتين مختلفتين:
 
-* [باستخدام المثبت كل في واحد](#all-zu-in-one-automatic-installation) (متاح بدءًا من عقدة Wallarm 4.6) - يلغي الكثير من الأنشطة ويجعل نشر وحدة البوستانالتكس أسهل بكثير. لذا، هذه هي طريقة التثبيت الموصى بها.
-* [بشكل يدوي](#manual-installation) - استخدم هذه الأخيرة للإصدارات القديمة من العقدة.
+* [باستخدام المثبت الشامل](#التثبيت-التلقائي-الشامل) (متاح ابتداءً من وحدة Wallarm 4.6) - يتم تلقائية العديد من الأنشطة ويجعل تنشيط وحدة Postanalytics أسهل بكثير. وبالتالي فإنها طريقة التثبيت الموصى بها.
+* [يدويا](#التثبيت-اليدوي) - استخدم لأنواع العقد القديمة.
 
-عند تثبيت وحدتي التصفية والبوستانالتكس بشكل منفصل، يمكنك دمج الأساليب اليدوية والأوتوماتيكية: قم بتثبيت الجزء البوستانالتكس يدويًا ثم الجزء التصفية بإستخدام المثبت كل في واحد، وعلى العكس بالعكس: الجزء البوستانالتكس باستخدام المثبت كل في واحد ثم الجزء التصفية يدويًا.
+عند تثبيت وحدة التصفية وPostanalytics بشكل منفصل، يمكنك دمج النهج اليدوي والتلقائي: قم بتثبيت الجزء Postanalytics يدويًا ثم الجزء المرشح باستخدام المثبت الشامل، والعكس: الجزء Postanalytics باستخدام المثبت الشامل ثم الجزء المرشح يدويًا.
 
-## التثبيت الأوتوماتيكي كل في واحد
+## التثبيت الآلي الشامل
 
-بدءًا من عقدة Wallarm 4.6، لتثبيت البوستانالتكس بشكل منفصل، يوصى باستخدام [تثبيت كل في واحد](../installation/nginx/all-in-one.md#launch-options) الذي يلغي الكثير من الأنشطة ويجعل نشر وحدة بوستانالتكس أسهل بكثير.
+اعتبارًا من Wallarm العقدة 4.6، لتثبيت Postanalytics بشكل منفصل، يوصى باستخدام [التثبيت الشامل](../installation/nginx/all-in-one.md#launch-options) الذي يتم تلقائية الكثير من النشاطات ويجعل تنشيط وحدة Postanalytics أسهل بكثير.
 
 ### المتطلبات
 
 --8<-- "../include/waf/installation/all-in-one/separate-postanalytics-reqs.md"
 
-### الخطوة 1: قم بتنزيل مثبت Wallarm كل في واحد
+### الخطوة 1: تنزيل المثبت Wallarm الشامل
 
-لتنزيل نص البيانات التثبيتي لـ Wallarm كل في واحد، قم بتنفيذ الأمر:
+لتنزيل السكريبت المثبت Wallarm الشامل، قم بتنفيذ الأمر:
 
-=== "الإصدار x86_64"
+=== "إصدار x86_64"
     ```bash
-    curl -O https://meganode.wallarm.com/4.10/wallarm-4.10.1.x86_64-glibc.sh
+    curl -O https://meganode.wallarm.com/4.10/wallarm-4.10.2.x86_64-glibc.sh
     ```
-=== "الإصدار ARM64"
+=== "إصدار ARM64"
     ```bash
-    curl -O https://meganode.wallarm.com/4.10/wallarm-4.10.1.aarch64-glibc.sh
+    curl -O https://meganode.wallarm.com/4.10/wallarm-4.10.2.aarch64-glibc.sh
     ```
 
-### الخطوة 2: إعداد رمز Wallarm
+### الخطوة 2: تحضير الرمز المميز لـ Wallarm
 
-لتثبيت العقدة، ستحتاج إلى رمز Wallarm من ال[نوع المناسب][wallarm-token-types]. لإعداد الرمز:
+لتثبيت العقدة، سوف تحتاج إلى رمز Wallarm من [النوع المناسب][wallarm-token-types]. لتحضير رمز:
 
 === "رمز API"
 
-    1. افتح Wallarm Console → **Settings** → **API tokens** في ال[US Cloud](https://us1.my.wallarm.com/settings/api-tokens) أو [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. ابحث أو أنشئ رمز API مع دور المنبع `Deploy`.
-    1. قم بنسخ هذا الرمز.
+    1. افتح Wallarm Console → **الإعدادات** → **رموز API** في [السحابة الأمريكية](https://us1.my.wallarm.com/settings/api-tokens) أو [السحابة الأوروبية](https://my.wallarm.com/settings/api-tokens).
+    1. ابحث أو أنشئ رمز API بدور المصدر `Deploy`.
+    1. انسخ هذا الرمز.
 
 === "رمز العقدة"
 
-    1. افتح Wallarm Console → **Nodes** في ال[US Cloud](https://us1.my.wallarm.com/nodes) أو [EU Cloud](https://my.wallarm.com/nodes).
-    1. افعل واحدة من التالي:
-        * أنشئ العقدة من نوع **Wallarm node** وانسخ الرمز المُنشأ.
-        * استخدم مجموعة العقد الموجودة - انسخ الرمز باستخدام قائمة العقد → **Copy token**.
+    1. افتح Wallarm Console → **العقد** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes).
+    1. افعل واحدًا من الأتى:
+        * أنشئ العقدة من نوع **Wallarm node** وانسخ الرمز المميز المولد.
+        * استخدم مجموعة العقد الموجودة - انسخ الرمز باستخدام قائمة العقد → **نسخ الرمز**.
 
-### الخطوة 3: تشغيل مثبت Wallarm كل في واحد لتثبيت البوستانالتكس
+### الخطوة 3: تشغيل المثبت Wallarm الشامل لتثبيت Postanalytics
 
-لتثبيت البوستانالتكس بشكل منفصل مع المثبت كل في واحد، استخدم:
+لتثبيت Postanalytics بشكل منفصل باستخدام المثبت Wallarm الشامل، استخدم:
 
 === "رمز API"
     ```bash
-    # إذا كنت تستخدم النسخة x86_64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.x86_64-glibc.sh postanalytics
+    # إذا كنت تستخدم الإصدار x86_64:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.x86_64-glibc.sh postanalytics
 
-    # إذا كنت تستخدم النسخة ARM64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.aarch64-glibc.sh postanalytics
+    # إذا كنت تستخدم الإصدار ARM64
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.aarch64-glibc.sh postanalytics
     ```        
 
-    تحدد المتغير `WALLARM_LABELS` المجموعة التي ستتم إضافة العقدة إليها (يتم استخدامها لتجميع العقد بطريقة منطقية في واجهة Wallarm Console).
+    يُحدد المتغير `WALLARM_LABELS` المجموعة التي سيتم إضافة العقدة إليها (تُستخدم لتجميع العقد منطقياً في واجهة Wallarm Console UI).
 
 === "رمز العقدة"
     ```bash
-    # إذا كنت تستخدم النسخة x86_64:
-    sudo sh wallarm-4.10.1.x86_64-glibc.sh postanalytics
+    # إذا كنت تستخدم الإصدار x86_64:
+    sudo sh wallarm-4.10.2.x86_64-glibc.sh postanalytics
 
-    # إذا كنت تستخدم النسخة ARM64:
-    sudo sh wallarm-4.10.1.aarch64-glibc.sh postanalytics
+    # إذا كنت تستخدم الإصدار ARM64:
+    sudo sh wallarm-4.10.2.aarch64-glibc.sh postanalytics
     ```
 
-### الخطوة 4: قم بتكوين وحدة البوستانالتكس
+### الخطوة 4: تكوين وحدة Postanalytics
 
 #### الموارد والذاكرة
 
-لتغيير كمية الذاكرة التي يستخدمها Tarantool، ابحث عن إعداد `SLAB_ALLOC_ARENA` في ملف `/opt/wallarm/env.list`. يتم تعيينه لاستخدام 1 جيجابايت افتراضيًا. إذا كنت بحاجة إلى تغيير هذا، يمكنك ضبط الرقم ليتوافق مع كمية الذاكرة التي يحتاجها Tarantool فعليًا. للمساعدة في تحديد كمية الذاكرة، راجع [التوصيات](configuration-guides/allocate-resources-for-node.md) الخاصة بنا.
+لتغيير كمية الذاكرة التي يستخدمها Tarantool، ابحث عن الإعداد `SLAB_ALLOC_ARENA` في ملف `/opt/wallarm/env.list`. يتم تعيينه لاستخدام 1 جيجا بايت افتراضيًا. إذا كنت بحاجة إلى تغيير هذا، يمكنك ضبط الرقم ليتوافق مع كمية الذاكرة التي يحتاجها في الواقع Tarantool. للحصول على مساعدة حول كم مقدار لتعيين، راجع [توصياتنا](configuration-guides/allocate-resources-for-node.md).
 
 لتغيير الذاكرة المخصصة:
 
-1. افتح للتحرير ملف `/opt/wallarm/env.list`:
+1. افتح الملف `/opt/wallarm/env.list` للتحرير:
 
     ```bash
     sudo vim /opt/wallarm/env.list
     ```
-1. ضبط سمة `SLAB_ALLOC_ARENA` على حجم الذاكرة. يمكن أن يكون القيمة عدد صحيح أو عدد عائم (النقطة `.` هي فاصلة عشرية). على سبيل المثال:
+1. ضع السمة `SLAB_ALLOC_ARENA` على حجم الذاكرة. يمكن أن يكون هذا القيمة عدد صحيح أو عائم (النقطة `.` هي فاصلة عشرية). مثلا:
 
     ```
     SLAB_ALLOC_ARENA=2.0
     ```
 
-#### الكمبيوتر المضيف والمنفذ
+#### الاستضافة والمنفذ
 
-بشكل افتراضي، يتم تعيين وحدة البوستانالتكس لقبول الاتصالات على جميع عناوين IPv4 للمضيف (0.0.0.0) باستخدام المنفذ 3313. يُوصى بالاحتفاظ بالتكوين الافتراضي ما لم يكن التغيير ضروريًا.
+بشكل افتراضي، تم تعيين وحدة Postanalytics لقبول الاتصالات على كل عناوين IPv4 من المضيف (0.0.0.0) باستخدام المنفذ 3313. يُوصى بالاحتفاظ بالتهيئة الافتراضية ما لم يكن التغيير ضروريًا.
 
-ومع ذلك، إذا كنت بحاجة إلى تغيير التكوين الافتراضي:
+ومع ذلك، إذا كنت بحاجة إلى تغيير التهيئة الافتراضية:
 
-1. افتح للتعديل ملف `/opt/wallarm/env.list`:
+1. افتح الملف `/opt/wallarm/env.list` للتحرير:
 
     ```bash
     sudo vim /opt/wallarm/env.list
     ```
-1. تحديث القيم `HOST` و`PORT` كما هو مطلوب. حدد متغير `PORT` إذا لم يتم تحديده بالفعل، على سبيل المثال:
+1. حدث قيم `HOST` و`PORT` حسب الضرورة. قم بتعريف المتغير `PORT` إذا لم يتم تحديده بالفعل، على سبيل المثال:
 
     ```bash
     # tarantool
     HOST=0.0.0.0
     PORT=3300
     ```
-1. افتح للتعديل ملف `/opt/wallarm/etc/wallarm/node.yaml`:
+1. افتح الملف `/opt/wallarm/etc/wallarm/node.yaml` للتحرير:
 
     ```bash
     sudo vim /opt/wallarm/etc/wallarm/node.yaml
     ```
-1. أدخل القيم `host` و`port` الجديدة لمعلمات `tarantool`، كما هو موضح أدناه:
+1. أدخل القيم `host` و`port` الجديدة للمعلمات `tarantool`، كما هو موضح أدناه:
 
     ```yaml
-    hostname: <name of postanalytics node>
-    uuid: <UUID of postanalytics node>
-    secret: <secret key of postanalytics node>
+    hostname: <اسم عقدة postanalytics>
+    uuid: <UUID لعقدة postanalytics>
+    secret: <مفتاح السر لعقدة postanalytics>
     tarantool:
         host: '0.0.0.0'
         port: 3300
     ```
 
-### الخطوة 5: تمكين الاتصالات الواردة لوحدة البوستانالتكس
+### الخطوة 5: تمكين الاتصالات الواردة لوحدة Postanalytics
 
-تستخدم وحدة البوستانالتكس المنفذ 3313 بشكل افتراضي، ولكن بعض برامج الحماية قد تعترض الاتصالات الواردة على هذا المنفذ.
+تستخدم وحدة Postanalytics المنفذ 3313 بشكل افتراضي، ولكن بعض منصات السحابة قد تمنع الاتصالات الواردة على هذا المنفذ.
 
-من أجل ضمان التكامل، قم بالسماح بالاتصالات الواردة على المنفذ 3313 أو منفذك المخصص. هذه الخطوة ضرورية لتكوين وحدة NGINX-Wallarm، التي تم تثبيتها بشكل منفصل، للاتصال بمثيل Tarantool.
+لضمان الاندماج، سمح بالاتصالات الواردة على المنفذ 3313 أو المنفذ المخصص الخاص بك. هذه الخطوة أساسية للوحدة NGINX-Wallarm، التي تم تثبيتها بشكل منفصل، للتواصل مع مثيل Tarantool.
 
 ### الخطوة 6: إعادة تشغيل خدمات Wallarm
 
-بعد إجراء التغييرات اللازمة، أعد تشغيل خدمات Wallarm على الجهاز الذي يستضيف وحدة بوستانالتكس لتطبيق التحديثات:
+بعد إجراء التغييرات الضرورية، أعد تشغيل خدمات Wallarm على الجهاز الذي يستضيف وحدة Postanalytics لتطبيق التحديثات:
 
 ```
 sudo systemctl restart wallarm.service
 ```
 
-### الخطوة 7: قم بتثبيت وحدة NGINX-Wallarm على خادم منفصل
+### الخطوة 7: تثبيت وحدة NGINX-Wallarm على خادم منفصل
 
-بمجرد تثبيت وحدة بوستانالتكس على الخادم المنفصل:
+بمجرد تثبيت وحدة Postanalytics على الخادم المنفصل:
 
-1. قم بتثبيت وحدة NGINX-Wallarm على خادم مختلف وفقًا لل[دليل](../installation/nginx/all-in-one.md).
-1. عند تشغيل النص البيانات التثبيتي لوحدة NGINX-Wallarm على خادم منفصل، قم بتضمين الخيار `filtering`، على سبيل المثال:
+1. قم بتثبيت وحدة NGINX-Wallarm على خادم مختلف وفقًا لـ [الدليل](../installation/nginx/all-in-one.md) المناسب.
+1. عند إطلاق سكريبت التثبيت لوحدة NGINX-Wallarm على خادم منفصل، قم بتضمين الخيار `filtering`، على سبيل المثال:
 
     === "رمز API"
         ```bash
-        # إذا كانت النسخة هي x86_64:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.x86_64-glibc.sh filtering
+        # إذا كنت تستخدم الإصدار x86_64:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.x86_64-glibc.sh filtering
 
-        # إذا كانت النسخة هي ARM64:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.aarch64-glibc.sh filtering
+        # إذا كنت تستخدم الإصدار ARM64:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.aarch64-glibc.sh filtering
         ```        
 
-        يُحدد المتغير `WALLARM_LABELS` المجموعة التي سيتم إضافة العقدة إليها (يتم استخدامها لتجميع العقد بطريقة منطقية في واجهة Wallarm Console).
+        يُحدد المتغير `WALLARM_LABELS` المجموعة التي سيتم إضافة العقدة إليها (تُستخدم لتجميع العقد منطقياً في واجهة Wallarm Console UI).
 
     === "رمز العقدة"
         ```bash
-        # إذا كانت النسخة x86_64:
-        sudo sh wallarm-4.10.1.x86_64-glibc.sh filtering
+        # إذا كنت تستخدم الإصدار x86_64:
+        sudo sh wallarm-4.10.2.x86_64-glibc.sh filtering
 
-        # إذا كانت النسخة ARM64:
-        sudo sh wallarm-4.10.1.aarch64-glibc.sh filtering
+        # إذا كنت تستخدم الإصدار ARM64:
+        sudo sh wallarm-4.10.2.aarch64-glibc.sh filtering
         ```
 
-### الخطوة 8: قم بتوصيل وحدة NGINX-Wallarm بوحدة بوستانالتكس
+### الخطوة 8: اتصال وحدة NGINX-Wallarm بوحدة Postanalytics
 
-على الجهاز الذي يحتوي على وحدة NGINX-Wallarm، في ملف التكوينات الخاص بـ NGINX، حدد عنوان الخادم الخاص بوحدة البوستانالتكس:
+على الجهاز الذي يحتوي على وحدة NGINX-Wallarm، في [ملف التهيئة](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) لـ NGINX، حدد عنوان الخادم لوحدة Postanalytics:
 
 ```
 upstream wallarm_tarantool {
@@ -213,16 +213,16 @@ upstream wallarm_tarantool {
 wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
-* يجب تحديد قيمة `max_conns` لكل من خوادم Tarantool العليا لمنع إنشاء اتصالات زائدة.
-* لا يجب أن تكون قيمة `keepalive` أقل من عدد خوادم Tarantool.
+* يجب تحديد قيمة `max_conns` لكل من خوادم Tarantool العلوية لمنع إنشاء اتصالات زائدة.
+* قيمة `keepalive` لا يجب أن تكون أقل من عدد خوادم Tarantool.
 
-بمجرد تغيير ملف التكوين، قم بإعادة تشغيل NGINX/NGINX Plus على خادم وحدة NGINX-Wallarm:
+بمجرد تغيير ملف التهيئة، أعد تشغيل NGINX / NGINX Plus على خادم وحدة NGINX-Wallarm:
 
-=== "Debian"
+=== "ديبيان"
     ```bash
     sudo systemctl restart nginx
     ```
-=== "Ubuntu"
+=== "أوبونتو"
     ```bash
     sudo service nginx restart
     ```
@@ -239,41 +239,41 @@ wallarm_tarantool_upstream wallarm_tarantool;
     sudo systemctl restart nginx
     ```
 
-### الخطوة 9: تحقق من تفاعل وحدات NGINX‑Wallarm والبوستانالتكس المنفصلة
+### الخطوة 9: تحقق من تفاعل وحدتي NGINX‑Wallarm وPostanalytics المنفصلتين
 
-للتحقق من تفاعل وحدات NGINX‑Wallarm والبوستانالتكس المنفصلة، يمكنك إرسال الطلب مع الاختبار الهجومي إلى عنوان التطبيق المحمي:
+للتحقق من تفاعل وحدتي NGINX‑Wallarm وPostanalytics المنفصلتين، يمكنك إرسال الطلب مع اختبار الهجوم إلى عنوان التطبيق المحمي:
 
 ```bash
 curl http://localhost/etc/passwd
 ```
 
-إذا تم تكوين وحدات NGINX‑Wallarm والبوستانالتكس المنفصلة بشكل صحيح، سيتم تحميل الهجوم إلى الـ Cloud الخاص بـ Wallarm وسيتم عرضه في قسم **Attacks** في Wallarm Console:
+إذا تم تكوين وحدتي NGINX‑Wallarm وPostanalytics المنفصلتين بشكل صحيح، سيتم تحميل الهجوم إلى سحابة Wallarm ويتم عرضه في قسم **الهجمات** في Wallarm Console:
 
-![هجمات في الواجهة](../images/admin-guides/test-attacks-quickstart.png)
+![الهجمات في الواجهة](../images/admin-guides/test-attacks-quickstart.png)
 
-إذا لم يتم تحميل الهجوم الإلى الـ Cloud، فيرجى التحقق من أنه لا توجد أخطاء في تشغيل الخدمات:
+إذا لم يتم تحميل الهجوم إلى السحابة، يرجى التحقق من عدم وجود أخطاء في تشغيل الخدمات:
 
-* قم بتحليل سجلات وحدة البوستانالتكس
+* تحليل سجلات وحدة Postanalytics
 
     ```bash
     sudo cat /opt/wallarm/var/log/wallarm/tarantool-out.log
     ```
 
-    إذا كانت هناك سجل مثل `SystemError binary: failed to bind: Cannot assign requested address`، تأكد من أن الخادم يقبل الاتصال على العنوان والمنفذ المحددين.
-* على خادم وحدة NGINX‑Wallarm، قم بتحليل سجلات NGINX:
+    إذا كان هناك مثل هذا السجل `SystemError binary: failed to bind: Cannot assign requested address، make sure that the server accepts connection on specified address and port.
+* على الخادم الذي يحتوي على وحدة NGINX‑Wallarm، قم بتحليل سجلات NGINX:
 
     ```bash
     sudo cat /var/log/nginx/error.log
     ```
 
-    إذا هناك سجل مثل `[error] wallarm: <address> connect() failed`, تأكد من أن عنوان وحدة البوستانالتكس المنفصلة محدد بشكل صحيح في ملفات تكوين وحدة NGINX‑Wallarm وأن خادم البوستانالتكس المنفصل يقبل الاتصال على العنوان والمنفذ المحددين.
-* على الخادم الذي يحتوي على وحدة NGINX‑Wallarm، احصل على الإحصائيات على الطلبات المعالجة باستخدام الأمر الموجود أدناه وتأكد من أن قيمة `tnt_errors` هي 0
+    إذا كان هناك السجل `[error] wallarm: <address> connect() failed`, تأكد من أن عنوان وحدة postanalytics المنفصلة محدد بشكل صحيح في ملفات التهيئة لوحدة NGINX‑Wallarm وأن الخادم المنفصل لوحدة postanalytics يقبل الاتصال على العنوان والمنفذ المحددين.
+* على الخادم الذي يحتوي على وحدة NGINX‑Wallarm، احصل على إحصاءات الطلبات المعالجة باستخدام الأمر أدناه وتأكد أن قيمة `tnt_errors` هي 0
 
     ```bash
     curl http://127.0.0.8/wallarm-status
     ```
 
-    [الوصف الكامل لكل المعلمات التي تم إعادتها بواسطة خدمة الإحصائيات →](configure-statistics-service.md)
+    [وصف جميع المعلمات المرجعة بواسطة خدمة الإحصائيات →](configure-statistics-service.md)
 
 ## التثبيت اليدوي
 
@@ -281,18 +281,18 @@ curl http://localhost/etc/passwd
 
 --8<-- "../include/waf/installation/linux-packages/separate-postanalytics-reqs.md"
 
-### الخطوة 1: إضفة مستودعات Wallarm
+### الخطوة 1: أضف مستودعات Wallarm
 
-وحدة البوستانالتكس، مثل وحدات Wallarm الأخرى، يتم تثبيتها وتحديثها من المستودعات الخاصة بـ Wallarm. لإضافة المستودعات، استخدم الأوامر بالنسبة لوحدة التحكم الخاصة بك:
+تتم تثبيت وحدة Postanalytics، وكذلك وحدات Wallarm الأخرى، وتحدث من مستودعات Wallarm. لإضافة المستودعات، استخدم الأوامر المناسبة لمنصتك:
 
-=== "Debian 10.x (buster)"
+=== "debian 10.x (buster)"
     ```bash
     sudo apt -y install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
     sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node buster/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
-=== "Debian 11.x (bullseye)"
+=== "debian 11.x (bullseye)"
     ```bash
     sudo apt -y install dirmngr
     curl -fSsL https://repo.wallarm.com/wallarm.gpg | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/wallarm.gpg --import
@@ -300,19 +300,19 @@ curl http://localhost/etc/passwd
     sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node bullseye/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
-=== "Ubuntu 18.04 LTS (bionic)"
+=== "ubuntu 18.04 LTS (bionic)"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
     sh -c "echo 'deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
-=== "Ubuntu 20.04 LTS (focal)"
+=== "ubuntu 20.04 LTS (focal)"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
     sh -c "echo 'deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
-=== "Ubuntu 22.04 LTS (jammy)"
+=== "ubuntu 22.04 LTS (jammy)"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
     sh -c "echo 'deb https://repo.wallarm.com/ubuntu/wallarm-node jammy/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
@@ -339,23 +339,23 @@ curl http://localhost/etc/passwd
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
     ```
 
-### الخطوة 2: تثبيت حزم لوحدة البوستانالتكس
+### الخطوة 2: تثبيت حزم وحدة Postanalytics
 
-قم بتثبيت حزمة `wallarm-node-tarantool` من مستودع Wallarm لوحدة البوستانالتكس وقاعدة بيانات Tarantool:
+قم بتثبيت حزمة `wallarm-node-tarantool` من مستودع Wallarm لوحدة Postanalytics وقاعدة بيانات Tarantool:
 
-=== "Debian"
+=== "ديبيان"
     ```bash
     sudo apt -y install --no-install-recommends wallarm-node-tarantool
     ```
-=== "Ubuntu"
+=== "أوبونتو"
     ```bash
     sudo apt -y install --no-install-recommends wallarm-node-tarantool
     ```
-=== "CentOS or Amazon Linux 2.0.2021x and lower"
+=== "CentOS أو Amazon Linux 2.0.2021x وأقل"
     ```bash
     sudo yum install -y wallarm-node-tarantool
     ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux أو Oracle Linux 8.x"
     ```bash
     sudo yum install -y wallarm-node-tarantool
     ```
@@ -364,19 +364,19 @@ curl http://localhost/etc/passwd
     sudo yum install -y wallarm-node-tarantool
     ```
 
-### الخطوة 3: اتصل بوحدة البوستانالتكس بـ Wallarm Cloud
+### الخطوة 3: ربط وحدة Postanalytics بسحابة Wallarm
 
-تتفاعل وحدة البوستانالتكس مع Wallarm Cloud. يُطلب إنشاء عقدة Wallarm لوحدة البوستانالتكس وربط هذه العقدة بـ Cloud. عند الاتصال، يمكنك تعيين اسم عقدة البوستانالتكس، حيث سيتم عرضها في واجهة استخدام عقدة Wallarm ووضع العقدة في **مجموعة العقود** المناسبة (تُستخدم لتنظيم العقد بطريقة منطقية في الواجهة الرسومية). يُوصى باستخدام نفس مجموعة العقد لعقدة المعالجة الأولية وعقدة الأداء البوست.
+تتفاعل وحدة Postanalytics مع سحابة Wallarm. يتعين عليك إنشاء عقدة Wallarm لوحدة Postanalytics وربط هذه العقدة بالسحابة. عند الربط، يمكنك تعيين اسم العقدة Postanalytics، تحت الذي سيتم عرضه في واجهة Wallarm Console UI ووضع العقدة في **مجموعة العقدة** المناسبة (التي تُستخدم لتنظيم عقد منطقيًا في الواجهة الأمامية). يُوصى باستخدام نفس مجموعة العقدة للعقدة التي تعالج حركة البيانات الأولية وللعقدة التي تقوم بخطوة بعد التحليل.
 
-![عقد مجمعة](../images/user-guides/nodes/grouped-nodes.png)
+![العقد المجمعة](../images/user-guides/nodes/grouped-nodes.png)
 
-لتوفير الوصول للعقدة، تحتاج إلى إنشاء رمز في جانب الـ Cloud وتحديده على الجهاز المحتوي على حزم العقدة.
+لتزويد العقدة بالوصول، يلزمك توليد رمز على جانب السحابة وتحديده على الجهاز الذي يحتوي على حزم العقدة.
 
-لتوصيل عقدة التصفية بوستانالتكس إلى الـ Cloud:
+لربط العقدة بعد التحليل مع السحابة:
 
 --8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-1. قم بتشغيل النص البيانات register-node على جهاز تقوم فيه بتثبيت العقدة التصفية:
+1. قم بتشغيل السكريبت `register-node` على جهاز حيث تقوم بتثبيت العقدة التصفية:
 
     === "رمز API"
 
@@ -384,8 +384,8 @@ curl http://localhost/etc/passwd
         sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com --no-sync --no-sync-acl
         ```
         
-        * `<TOKEN>` هو القيمة المنسوخة للرمز API مع دور المنبع `Deploy`.
-        * `'تحدد المعلمة --labels 'group=<GROUP>' يجعل العقدة الخاصة بك تنضم إلى المجموعة <GROUP> (الموجودة، أو، إذا كانت غير موجودة، سيتم إنشاؤها).
+        * `<TOKEN>` هو القيمة المنسوخة من الرمز API مع الدور `Deploy`.
+        * يتم استخدام المعلمة `--labels 'group=<GROUP>'` لوضع العقدة الخاصة بك في مجموعة العقدة `<GROUP>` (موجودة، أو، إذا لم تكن موجودة، ستُنشأ).
 
     === "رمز العقدة"
 
@@ -393,29 +393,29 @@ curl http://localhost/etc/passwd
         sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com --no-sync --no-sync-acl
         ```
 
-        * `<TOKEN>` هو القيمة المنسوخة لرمز العقدة.
+        * `<TOKEN>` هو القيمة المنسوخة من رمز العقدة.
 
-    * استخدم `-H us1.api.wallarm.com` للتثبيت في US Cloud، قم بإزالة هذا الخيار للتثبيت في EU Cloud.
-    * قد تضيف `-n <HOST_NAME>` كمعلمة لتعيين اسم مخصص لنسخة العقدة الخاصة بك. اسم النسخة النهائي سيكون: `HOST_NAME_NodeUUID`.
+    * استخدم `-H us1.api.wallarm.com` للتثبيت في السحابة الأمريكية، وإزالة هذا الخيار للتثبيت في السحابة الأوروبية.
+    * قد تضيف `-n <HOST_NAME>` المعلمة لتعيين اسم مخصص لعينة العقدة الخاصة بك. سيكون الاسم النهائي للعينة: `HOST_NAME_NodeUUID`.
 
-### الخطوة 4: قم بتحديث تكوين وحدة البوستانالتكس
+### الخطوة 4: تحديث تكوين وحدة Postanalytics
 
-ملفات تكوين وحدة البوستانالتكس تقع في المسارات:
+تقع ملفات تحكم وحدة Postanalytics في المسارات:
 
-* `/etc/default/wallarm-tarantool` لأنظمة التشغيل Debian وUbuntu
-* `/etc/sysconfig/wallarm-tarantool` لأنظمة التشغيل CentOS وأمازون لينكس 2.0.2021x والأصدارات الأقل
+* `/etc/default/wallarm-tarantool` لأنظمة التشغيل Debian و Ubuntu
+* `/etc/sysconfig/wallarm-tarantool` لأنظمة التشغيل CentOS و Amazon Linux 2.0.2021x وأقل
 
-لفتح الملف في وضع التحرير، رجاءاً استخدم الأمر:
+لفتح الملف في وضع التحرير، يرجى استخدام الأمر:
 
-=== "Debian"
+=== "ديبيان"
     ``` bash
     sudo vim /etc/default/wallarm-tarantool
     ```
-=== "Ubuntu"
+=== "أوبونتو"
     ``` bash
     sudo vim /etc/default/wallarm-tarantool
     ```
-=== "CentOS or Amazon Linux 2.0.2021x and lower"
+=== "CentOS or Amazon Linux 2.0.2021x وأقل"
     ``` bash
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
@@ -430,31 +430,31 @@ curl http://localhost/etc/passwd
 
 #### الذاكرة
 
-تستخدم وحدة بوستانالتكس التخزين في الذاكرة مع Tarantool. بالنسبة لبيئات الإنتاج، يوصى بتوفير كمية أكبر من الذاكرة. إذا كنت تختبر العقدة Wallarm أو لديك حجم خادم صغير، قد يكون الحجم الأقل كافًا.
+تستخدم وحدة Postanalytics التخزين في الذاكرة Tarantool. بالنسبة لبيئات الإنتاج، يوصى بامتلاك ذاكرة أكبر. إذا كنت تختبر العقدة Wallarm أو تمتلك حجم خادم صغير، فيمكن أن يكون الحجم الأقل كافيًا.
 
-تتم إعداد حجم الذاكرة المخصصة في الجيجابايت لكل عبر العداد `SLAB_ALLOC_ARENA` في ملف التكوين [`/etc/default/wallarm-tarantool` أو `/etc/sysconfig/wallarm-tarantool`](#4-update-postanalytics-module-configuration). يمكن أن يكون القيم رقمًا صحيحًا أو رقمًا عائمًا (النقطة `.` هي فاصلة عشرية).
+يتم تعيين حجم الذاكرة المخصصة بالجيجا بايت عبر الأمر `SLAB_ALLOC_ARENA` في [ملف التهيئة `/etc/default/wallarm-tarantool` أو `/etc/sysconfig/wallarm-tarantool`](#4-update-postanalytics-module-configuration). يمكن أن تكون القيمة عددًا صحيحًا أو عائمًا (النقطة `.` هي فاصلة عشرية).
 
-التوصيات التفصيلية حول تخصيص الذاكرة لـ Tarantool موصوحة في هذه [التعليمات](configuration-guides/allocate-resources-for-node.md).
+تتم الإشارة إلى التوصيات المفصلة حول تخصيص الذاكرة لـ Tarantool في هذه [التعليمات](configuration-guides/allocate-resources-for-node.md).
 
-#### عنوان الخادم البوستانالتكس المنفصل
+#### عنوان الخادم المنفصل لوحدة Postanalytics
 
-لتعيين عنوان الخادم البوستانالتكس المنفصل:
+لتعيين عنوان الخادم المنفصل لوحدة  Postanalytics:
 
-1. افتح ملف Tarantool في وضع التحرير:
+1. افتح الملف Tarantool في وضع التحرير:
 
-    === "Debian"
+    === "ديبيان"
         ``` bash
         sudo vim /etc/default/wallarm-tarantool
         ```
-    === "Ubuntu"
+    === "أوبونتو"
         ``` bash
         sudo vim /etc/default/wallarm-tarantool
         ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "CentOS أو Amazon Linux 2.0.2021x وأقل"
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux أو Oracle Linux 8.x"
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
@@ -462,42 +462,41 @@ curl http://localhost/etc/passwd
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
-
-2. احذف التعليقات من المتغيرات `HOST` و`PORT` وقم بتعيينهم على القيم التالية:
+2. قم بإلغاء التعليق على متغيرات `HOST` و`PORT` واضبط لهم القيم التالية:
 
     ```bash
-    # address and port for bind
+    # العنوان والمنفذ للربط
     HOST='0.0.0.0'
     PORT=3313
     ```
-3. إذا تم تعيين ملف التهيئة الخاص بـ Tarantool لقبول الاتصالات على العناوين IP المختلفة عن `0.0.0.0` أو `127.0.0.1`، دونها فى `/etc/wallarm/node.yaml`:
+3. إذا تم إعداد ملف التهيئة لـ Tarantool لقبول الاتصالات على عناوين IP مختلفة عن `0.0.0.0` أو `127.0.0.1`، فيرجى توفير العناوين في `/etc/wallarm/node.yaml`:
 
     ```bash
-    hostname: <name of postanalytics node>
-    uuid: <UUID of postanalytics node>
-    secret: <secret key of postanalytics node>
+    hostname: <اسم عقدة postanalytics>
+    uuid: <UUID لعقدة postanalytics>
+    secret: <مفتاح السر لعقدة postanalytics>
     tarantool:
-        host: '<IP address of Tarantool>'
+        host: '<العنوان IP لـ Tarantool>'
         port: 3313
     ```
 
 ### الخطوة 5: إعادة تشغيل خدمات Wallarm
 
-لتطبيق الإعدادات على وحدة البوستانالتكس:
+لتطبيق الإعدادات على وحدة Postanalytics:
 
-=== "Debian"
+=== "ديبيان"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
-=== "Ubuntu"
+=== "أوبونتو"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
-=== "CentOS or Amazon Linux 2.0.2021x and lower"
+=== "CentOS أو Amazon Linux 2.0.2021x وأقل"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux أو Oracle Linux 8.x"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
@@ -506,25 +505,25 @@ curl http://localhost/etc/passwd
     sudo systemctl restart wallarm-tarantool
     ```
 
-### الخطوة 6: قم بتثبيت وحدة NGINX-Wallarm على خادم منفصل
+### الخطوة 6: تثبيت وحدة NGINX-Wallarm على خادم منفصل
 
-متى تم تثبيت وحدة البوستانالتكس على الخادم المنفصل، قم بتثبيت وحدات Wallarm الأخرى على خادم مختلف. بالأسفل هام الروابط لوحدة التعليمات المقابلة وأسمائها الجديدة الخاصة بـ NGINX-Wallarm التي تم تحديدها لتثبيت وحدة NGINX-Wallarm:
+بمجرد تثبيت وحدة Postanalytics على الخادم المنفصل، قم بتثبيت وحدات Wallarm الأخرى على خادم مختلف. فيما يلي الروابط إلى التعليمات المناسبة وأسماء الحزم التي يجب تحديدها لتثبيت وحدة NGINX-Wallarm:
 
-* [NGINX stable](../installation/nginx/dynamic-module.md)
+* [NGINX مستقر](../installation/nginx/dynamic-module.md)
 
-    في خطوة تثبيت الحزم، حدد `wallarm-node-nginx` و`nginx-module-wallarm`.
+    في خطوة تثبيت الحزم، قم بتحديد `wallarm-node-nginx` و`nginx-module-wallarm`.
 * [NGINX Plus](../installation/nginx-plus.md)
 
-    في خطوة تثبيت الحزم، حدد `wallarm-node-nginx` و`nginx-plus-module-wallarm`.
-* [توزيعة نسخة الـ NGINX](../installation/nginx/dynamic-module-from-distr.md)
+    في خطوة التثبيت، حدد `wallarm-node-nginx` و`nginx-plus-module-wallarm`.
+* [NGINX المقدم من التفعيل](../installation/nginx/dynamic-module-from-distr.md)
 
-    في خطوة تثبيت الحزم، حدد `wallarm-node-nginx`و `libnginx-mod-http-wallarm/nginx-mod-http-wallarm`.
+    في خطوة التثبيت، حدد `wallarm-node-nginx` و`libnginx-mod-http-wallarm/nginx-mod-http-wallarm`.
 
 --8<-- "../include/waf/installation/checking-compatibility-of-separate-postanalytics-and-primary-packages.md"
 
-### الخطوة 7: قم بتوصيل وحدة NGINX-Wallarm بوحدة البوستانالتكس
+### الخطوة 7: ربط وحدة NGINX-Wallarm بوحدة Postanalytics
 
-على الجهاز الذي يحتوي على وحدة NGINX-Wallarm، في ملف تكوينات NGINX، حدد عنوان الخادم الخاص بوحدة البوستانالتكس:
+على الجهاز الذي يحتوي على وحدة NGINX-Wallarm، في [ملف التهيئة](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) لـ NGINX، حدد عنوان الخادم لوحدة Postanalytics:
 
 ```
 upstream wallarm_tarantool {
@@ -539,17 +538,17 @@ upstream wallarm_tarantool {
 wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
-* يجب تحديد قيمة `max_conns` لكل من خوادم Tarantool العليا لمنع إنشاء اتصالات زائدة.
-* قيمة `keepalive` يجب أن لا تكون أقل من عدد خوادم Tarantool.
-* الجملة `# wallarm_tarantool_upstream wallarm_tarantool;` يتم الغائها بواقع افتراضي - يرجى حذف `#`.
+* يجب تحديد قيمة `max_conns` لكل من خوادم Tarantool العلوية لمنع إنشاء اتصالات زائدة.
+* قيمة `keepalive` لا يجب أن تكون أقل من عدد خوادم Tarantool.
+* السطر `# wallarm_tarantool_upstream wallarm_tarantool;` معلق بشكل افتراضي - يرجى حذف `#`.
 
-بمجرد تغيير ملف التكوين، قم بإعادة تشغيل NGINX/NGINX Plus على خادم وحدة NGINX-Wallarm:
+بمجرد تغيير ملف التهيئة، أعد تشغيل NGINX / NGINX Plus على خادم وحدة NGINX-Wallarm:
 
-=== "Debian"
+=== "ديبيان"
     ```bash
     sudo systemctl restart nginx
     ```
-=== "Ubuntu"
+=== "أوبونتو"
     ```bash
     sudo service nginx restart
     ```
@@ -557,7 +556,7 @@ wallarm_tarantool_upstream wallarm_tarantool;
     ```bash
     sudo systemctl restart nginx
     ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux أو Oracle Linux 8.x"
     ```bash
     sudo systemctl restart nginx
     ```
@@ -566,66 +565,66 @@ wallarm_tarantool_upstream wallarm_tarantool;
     sudo systemctl restart nginx
     ```
 
-### الخطوة 8: تحقق من تفاعل وحدات NGINX‑Wallarm والبوستانالتكس المنفصلة
+### الخطوة 8: تحقق من تفاعل وحدتي NGINX‑Wallarm وPostanalytics المنفصلتين
 
-للتحقق من تفاعل وحدات NGINX‑Wallarm والبوستانالتكس المنفصلة، يمكنك إرسال طلب مع الهجوم الاختبار إلى عنوان التطبيق المحمي:
+للتحقق من تفاعل وحدتي NGINX‑Wallarm وPostanalytics المنفصلتين، يمكنك إرسال الطلب مع اختبار الهجوم إلى عنوان التطبيق المحمي:
 
 ```bash
 curl http://localhost/etc/passwd
 ```
 
-إذا تم تكوين وحدات NGINX‑Wallarm والبوستانالتكس المنفصلة بشكل صحيح، سيتم تحميل الهجوم إلى الـ Cloud الخاص بـ Wallarm وسيتم عرضه في قسم **Attacks** في Wallarm Console:
+إذا تم تكوين وحدتي NGINX‑Wallarm وPostanalytics المنفصلتين بشكل صحيح، سيتم تحميل الهجوم إلى سحابة Wallarm ويتم عرضه في قسم **الهجمات** في Wallarm Console:
 
-![هجمات في الواجهة](../images/admin-guides/test-attacks-quickstart.png)
+![الهجمات في الواجهة](../images/admin-guides/test-attacks-quickstart.png)
 
-إذا لم يتم تحميل الهجوم إلى الـ Cloud، يرجى التحقق من أنه لا توجد أخطاء في تشغيل الخدمات:
+إذا لم يتم تحميل الهجوم إلى السحابة، يرجى التحقق من عدم وجود أخطاء في تشغيل الخدمات:
 
-* تأكد من أن خدمة البوستانالتكس `wallarm-tarantool` في الحالة `active`
+* تأكد من أن خدمة postanalytics `wallarm-tarantool` في الحالة `active`
 
     ```bash
     sudo systemctl status wallarm-tarantool
     ```
 
-    ![الحالة wallarm-tarantool][tarantool-status]
-* قم بتحليل سجلات وحدة البوستانالتكس
+   ![wallarm-tarantool status][tarantool-status]
+* تحليل سجلات وحدة Postanalytics
 
     ```bash
     sudo cat /var/log/wallarm/tarantool.log
     ```
 
-    إذا كانت هناك سجل مثل `SystemError binary: failed to bind: Cannot assign requested address`, تأكد من أن الخادم يقبل الاتصال على العنوان والمنفذ المحددين.
-* على خادم وحدة NGINX‑Wallarm، قم بتحليل سجلات NGINX:
+    إذا كان هناك مثل هذا السجل `SystemError binary: failed to bind: Cannot assign requested address`, تأكد من أن الخادم يقبل الاتصال على العنوان والمنفذ المحددين.
+* على الخادم الذي يحتوي على وحدة NGINX‑Wallarm، قم بتحليل سجلات NGINX:
 
     ```bash
     sudo cat /var/log/nginx/error.log
     ```
 
-    إذا كانت هناك سجل مثل `[error] wallarm: <address> connect() failed`, تأكد من أن عنوان وحدة البوستانالتكس المنفصلة هو مشخص بشكل صحيح في ملفات التهيئة الخاصة بوحدة NGINX‑Wallarm وأن خادم البوستانلاتك المنفصل يقبل الاتصال على العنوان والمنفذ المحددين.
-* على الخادم الذي يحتوي على وحدة NGINX‑Wallarm، احصل على الإحصائيات على الطلبات المعالجة باستخدام الأمر الموجود أدناه وتأكد من أن القيمة `tnt_errors` هي 0
+    إذا كان هناك السجل `[error] wallarm: <address> connect() failed`, تأكد من أن عنوان وحدة postanalytics المنفصلة محدد بشكل صحيح في ملفات التهيئة لوحدة NGINX‑Wallarm وأن الخادم المنفصل لوحدة postanalytics يقبل الاتصال على العنوان والمنفذ المحددين.
+* على الخادم الذي يحتوي على وحدة NGINX‑Wallarm، احصل على إحصاءات الطلبات المعالجة باستخدام الأمر أدناه وتأكد أن قيمة `tnt_errors` هي 0
 
     ```bash
     curl http://127.0.0.8/wallarm-status
     ```
 
-    [الوصف الكامل لكل المعلمات التي تم إعادتها بواسطة خدمة الإحصائيات →](configure-statistics-service.md)
+    [وصف جميع المعلمات المرجعة بواسطة خدمة الإحصائيات →](configure-statistics-service.md)
+    
+## حماية وحدة Postanalytics
 
-## حماية وحدة البوستانالتكس
-
-!!! التحذير "حماية وحدة البوستانالتكس المثبتة حديثًا"
-    نوصي بشدة بحماية وحدة البوستانالتكس التي تم تحثيتها حديثًا بواسطة جدار حماية. وإلا، هناك خطر من الحصول على الوصول غير المصرح به إلى الخدمة التي قد تؤدي إلى:
+!!! تحذير "حماية وحدة Postanalytics التي تم تثبيتها حديثًا"
+    نوصي بشدة بحماية وحدة Postanalytics التي تم تثبيتها حديثًا باستخدام جدار الحماية. خلاف ذلك، هناك خطر في الحصول على وصول غير مصرح به إلى الخدمة والذي قد يؤدي إلى:
     
     *   الكشف عن معلومات حول الطلبات المعالجة
-    *   إمكانية تنفيذ كود Lua وأوامر نظام التشغيل بشكل تعسفي
+    *   إمكانية تنفيذ كود Lua وأوامر نظام التشغيل التعسفية
    
-    يُرجى ملاحظة أن هذا الخطر غير موجود إذا كنت تقوم بتجهيز وحدة البوستانالتكس بجانب وحدة NGINX-Wallarm على نفس الخادم. هذا صحيح لأن وحدة بوستانالتكس ستستمع إلى المنفذ `3313`.
+    يرجى ملاحظة أن مثل هذا الخطر لا يوجد إذا كانت وحدة Postanalytics تتوافق مع وحدة NGINX-Wallarm على نفس الخادم. هذا يعني أن وحدة Postanalytics ستستمع إلى المنفذ `3313`.
     
-    **إليك إعدادات الجدار الناري التي يجب تطبيقها على وحدة البوستانالتكس المثبتة بشكل منفصل:**
+    **فيما يلي إعدادات جدار الحماية التي يجب تطبيقها على وحدة Postanalytics التي تم تثبيتها بشكل منفصل:**
     
-    *   السماح بحركة مرور HTTPS من وإلى خوادم API الخاصة بـ Wallarm، بحيث يمكن لوحدة البوستانالتكس التفاعل مع هذه الخوادم:
-        *   `us1.api.wallarm.com` هو خادم API في US Wallarm Cloud
-        *   `api.wallarm.com` هو خادم API في EU Wallarm Cloud
-    *   قيد الوصول إلى منفذ `3313` Tarantool عبر بروتوكولات TCP و UDP بواسطة السماح بالاتصالات فقط من عناوين IP لعقد تصفية Wallarm.
+    *   السماح بحركة مرور HTTPS من وإلى خوادم API Wallarm، بحيث يمكن لوحدة Postanalytics التفاعل مع هذه الخوادم:
+        *   `us1.api.wallarm.com` هو خادم API في السحابة الأمريكية Wallarm
+        *   `api.wallarm.com` هو خادم API في السحابة الأوروبية Wallarm
+    *   احصر الوصول إلى منفذ `3313` Tarantool عبر بروتوكولي TCP و UDP من خلال السماح بالاتصالات فقط من عناوين IP للعقد Wallarm التصفية.
 
-## معالجة المشكلات في Tarantool
+## استكشاف أخطاء Tarantool وإصلاحها
 
-[معالجة المشكلات في Tarantool](../faq/tarantool.md)
+[استكشاف الأخطاء في Tarantool وإصلاحها](../faq/tarantool.md)

@@ -1,90 +1,70 @@
-[cdn-node-operation-scheme]:        ../../images/waf-installation/quickstart/cdn-node-scheme.png
-[data-to-wallarm-cloud-docs]:       ../rules/sensitive-data-rule.md
-[operation-modes-docs]:             ../../admin-en/configure-wallarm-mode.md
-[operation-mode-rule-docs]:         ../../admin-en/configure-wallarm-mode.md#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console
-[wallarm-cloud-docs]:               ../../about-wallarm/overview.md#cloud
-[cdn-node-creation-modal]:          ../../images/waf-installation/quickstart/cdn-node-creation-modal.png
-[cname-required-modal]:             ../../images/waf-installation/quickstart/cname-required-modal.png
-[attacks-in-ui]:                    ../../images/admin-guides/test-attacks-quickstart.png
-[user-roles-docs]:                  ../settings/users.md
-[update-origin-ip-docs]:            #updating-the-origin-address-of-the-protected-resource
-[rules-docs]:                       ../rules/rules.md
-[ip-lists-docs]:                    ../ip-lists/overview.md
-[integration-docs]:                 ../settings/integrations/integrations-intro.md
-[trigger-docs]:                     ../triggers/triggers.md
-[application-docs]:                 ../settings/applications.md
-[events-docs]:                      ../events/check-attack.md
-[graylist-populating-docs]:         ../ip-lists/overview.md#managing-graylist
-[link-app-conf]:                    ../settings/applications.md
-[using-varnish-cache]:              #using-varnish-cache
-
 # عقد تصفية CDN
 
-قسم **العُقد** في واجهة مستخدم لوحة تحكم Wallarm يُتيح لك إدارة عقد [**Wallarm node**](nodes.md) وأنواع عقد **CDN**. هذا المقال يخص عقد CDN.
+تتيح لك قسم **العقد** في واجهة مستخدم كونسول Wallarm إدارة عقد [**عقدة Wallarm**](nodes.md) وعقد **CDN**. هذه المقالة تتناول عقد CDN.
 
 !!! info "عقد CDN تحت الخطة المجانية"
-    نشر نوع عقد CDN غير مدعوم تحت [الخطة المجانية](../../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud).
+    لا يدعم نشر نوع عقدة CDN تحت خطة[الخطة المجانية](../../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud).
 
 --8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.md"
 
 ## إنشاء عقدة
 
-لإنشاء عقدة CDN، الرجاء اتباع [التعليمات](../../installation/cdn-node.md).
+لإنشاء عقدة CDN، يرجى اتباع [التعليمات](../../installation/cdn-node.md).
 
 ## عرض تفاصيل العقدة
 
-تُعرض تفاصيل العقدة المُثبتة في جدول وبطاقة كل عقدة. لفتح البطاقة، انقر على سجل الجدول المناسب.
+يتم عرض تفاصيل العقدة المُثبتة في جدول وبطاقة لكل عقدة. لفتح البطاقة، انقر على سجل الجدول المناسب.
 
-الخصائص والمقاييس التالية للعقدة متاحة:
+تتوفر المعلومات والمقاييس التالية للعقدة:
 
-* اسم العقدة الذي تم إنشاؤه بناءً على اسم النطاق المحمي
+* اسم العقدة الذي يتم إنشاؤه بناءً على اسم النطاق المحمي
 * عنوان IP للعقدة
-* العنوان الأصلي المرتبط بالنطاق المحمي
-* المعرّف الفريد للعقدة (UUID)
+* عنوان المنشأ المرتبط بالنطاق المحمي
+* الرمز الفريد لتعريف العقدة (UUID)
 * حالة العقدة
-* شهادة SSL/TLS: Let's Encrypt التي أنشأها Wallarm أو التخصيصية
-* وقت آخر تزامن لعقدة التصفية وسحابة Wallarm
+* شهادة SSL/TLS: شهادة Let's Encrypt التي يولدها Wallarm أو الشهادة الخاصة
+* وقت آخر تزامن لعقدة التصفية و Wallarm Cloud
 * تاريخ إنشاء عقدة التصفية
 * عدد الطلبات التي تمت معالجتها بواسطة العقدة في الشهر الحالي
-* إصدارات من custom_ruleset و proton.db المستخدمة
-* إصدارات حزم Wallarm المثبتة
-* مؤشر تحديثات المكونات المتاحة
+* الإصدارات المستخدمة من custom_ruleset و proton.db
+* إصدارات حزم Wallarm المُثبتة
+* مؤشر لتحديثات المكونات المتاحة
 
 ![بطاقة عقدة CDN](../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
 
-## تحديث عنوان الأصل للمورد المحمي
+## تحديث عنوان المنشأ للمورد المحمي
 
-إذا كان مزود الاستضافة الخاص بك يقوم بتحديث عنوان IP الأصلي أو النطاق المرتبط بالمورد المحمي ديناميكيًا، الرجاء الحفاظ على تحديث العنوان الأصلي المُحدد في تكوين عقدة CDN. خلاف ذلك، لن تصل الطلبات إلى المورد المحمي لأن عقدة CDN ستحاول توجيهها إلى عنوان أصلي غير صحيح.
+إذا كان موفر الاستضافة الخاص بك يقوم بتحديث عنوان IP للمنشأ أو النطاق المرتبط بالمورد المحمي ديناميكيًا، فيرجى الحفاظ على تحديث عنوان المنشأ المحدد في تكوين عقدة CDN. وإلا، لن تصل الطلبات إلى المورد المحمي نظرًا لأن عقدة CDN ستحاول توجيهها إلى عنوان منشأ غير صحيح.
 
-لتحديث عنوان الأصل، استخدم خيار **تعديل عنوان الأصل**.
+لتحديث عنوان المنشأ، استخدم خيار **تعديل عنوان المنشأ**.
 
-## تحميل شهادة SSL/TLS المحددة
+## تحميل شهادة SSL/TLS الخاصة
 
-Wallarm تصدر تلقائيًا [شهادة Let's Encrypt](https://letsencrypt.org/) التي تتيح HTTPS على نطاق عقدة CDN. يتم إنشاء الشهادات وتجديدها تلقائيًا حسب الحاجة.
+تصدر Wallarm تلقائيًا شهادة [Let's Encrypt](https://letsencrypt.org/) مما يمكن HTTPS على نطاق عقدة CDN. يتم توليد الشهادات وتجديدها تلقائيًا حسب الحاجة.
 
-إذا كان لديك بالفعل شهادة للنطاق المحمي وتفضل استخدامها عن شهادة Let's Encrypt، يمكنك تحميل شهادتك الخاصة باستخدام خيار **تحديث شهادة SSL/TLS**.
+إذا كنت تمتلك بالفعل شهادة للنطاق المحمي وتفضل ذلك على شهادة Let's Encrypt، يمكنك تحميل شهادتك الخاصة باستخدام خيار **تحديث شهادة SSL/TLS**.
 
 ## استخدام Varnish Cache
 
-استخدام عقدة CDN مع مسرّع HTTP [Varnish Cache](https://varnish-cache.org/intro/index.html#intro) يسرّع من توصيل المحتوى للمستخدمين (مثل إستجابات الخادم الخاص بك). ومع ذلك، إذا قمت بتغيير المحتوى الخاص بك، قد يتم تحديث النسخة المخزنة في CDN بتأخير، والتي قد تسبب [مشاكل](#why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node) وتكون سببًا لتعطيل Varnish Cache.
+يسرع استخدام عقدة CDN بالتزامن مع مسرع HTTP [Varnish Cache](https://varnish-cache.org/intro/index.html#intro) توصيل المحتوى للمستخدمين (مثل استجابات الخادم). ومع ذلك، إذا قمت بتغيير المحتوى الخاص بك، قد يتم تحديث النسخة المخزنة مؤقتًا على CDN بتأخير، مما قد يسبب [مشاكل](#why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node) ويكون سببًا لتعطيل Varnish Cache.
 
-لتجنب مشاكل سرعة تحديث المحتوى، يتم تعطيل Varnish Cache افتراضيًا. يمكنك تمكين/تعطيل Varnish Cache يدويًا. للقيام بذلك، انتقل إلى **العُقد** → قائمة عقدة CDN → **تمكين Varnish Cache** أو **تعطيل Varnish Cache**.
+لتجنب المشاكل مع سرعة تحديث المحتوى، يتم تعطيل Varnish Cache افتراضيًا. يمكنك تمكين/تعطيل Varnish Cache يدويًا. للقيام بذلك، انتقل إلى **العقد** → قائمة عقدة CDN → **تمكين Varnish Cache** أو **تعطيل Varnish Cache**.
 
 ## حذف عقدة
 
-عند حذف عقدة التصفية، سيتم إيقاف التصفية للطلبات المرسلة إلى نطاقك. لا يمكن التراجع عن عملية حذف عقدة التصفية. سيتم حذف عقدة Wallarm نهائيًا من قائمة العُقد.
+عند حذف عقدة التصفية، سيتم إيقاف تصفية الطلبات إلى نطاقك. لا يمكن التراجع عن حذف عقدة التصفية. سيتم حذف العقدة من قائمة العقد نهائيًا.
 
-1. احذف سجل CNAME الخاص بـ Wallarm من سجلات DNS للنطاق المحمي.
+1. حذف سجل CNAME الخاص بـ Wallarm من سجلات DNS للنطاق المحمي.
 
-    !!! warning "سيتم إيقاف تخفيف الطلبات الخبيثة"
-        بمجرد إزالة سجل CNAME وبدء سريان التأثير على الإنترنت، عقدة CDN الخاصة بـ Wallarm ستتوقف عن توجيه الطلبات، وسيذهب الحركة المشروعة والخبيثة مباشرةً إلى المورد المحمي.
+    !!! warning "سيتم إيقاف تخفيف الطلبات الضارة"
+        بمجرد إزالة سجل CNAME ودخول التغييرات حيز التنفيذ على الإنترنت، ستتوقف عقدة CDN الخاصة بـ Wallarm عن توجيه الطلبات وسيذهب الحركة المشروعة والضارة مباشرة إلى المورد المحمي.
 
-        ينتج عن ذلك خطر استغلال ضعف الخادم المحمي عندما يدخل السجل المحذوف حيز التنفيذ ولم يدخل سجل CNAME الذي تم إنشاؤه لإصدار العقدة الجديد حيز التنفيذ بعد.
-1. انتظر حتى تنتشر التغييرات. يُعرض الحالة الفعلية لسجل CNAME في لوحة التحكم Wallarm → **العُقد** → **CDN** → **حذف عقدة**.
-1. احذف عقدة CDN من قائمة العُقد.
+        ينتج عن ذلك خطر استغلال ثغرات الخادم المحمي عند التأثير في السجل المحذوف لـ DNS ولكن لم يدخل سجل CNAME الذي تم إنشاؤه للإصدار الجديد من العقدة حيز التنفيذ بعد.
+1. انتظر حتى يتم نشر التغييرات. تُعرض حالة سجل CNAME الفعلية في Wallarm Console → **العقد** → **CDN** → **حذف العقدة**.
+1. حذف العقدة CDN من قائمة العقد.
 
 ![حذف العقدة](../../images/user-guides/nodes/delete-cdn-node.png)
 
-## استكشاف أخطاء عقدة CDN وإصلاحها
+## مشكلات عقدة CDN
 
 --8<-- "../include/waf/installation/cdn-node/cdn-node-troubleshooting.md"

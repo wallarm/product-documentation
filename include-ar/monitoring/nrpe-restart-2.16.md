@@ -2,7 +2,7 @@
     ```bash
     sudo service nrpe restart
     ```
-=== "باقي التوزيعات المدعومة"
+=== "التوزيعات المدعومة الأخرى"
     ```bash
     sudo systemctl restart nrpe
     ```

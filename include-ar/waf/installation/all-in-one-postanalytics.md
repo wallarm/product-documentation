@@ -1,21 +1,21 @@
-لتثبيت postanalytics بشكل منفصل باستخدام المثبت الموحد، استخدم:
+لتنصيب postanalytics بشكل منفصل مع المثبت الشامل، استخدم:
 
-=== "الرمز الخاص ب API"
+=== "رمز API"
     ```bash
     # إذا كنت تستخدم نسخة x86_64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.x86_64-glibc.sh postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.x86_64-glibc.sh postanalytics
 
     # إذا كنت تستخدم نسخة ARM64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.aarch64-glibc.sh postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.aarch64-glibc.sh postanalytics
     ```        
 
-    متغير `WALLARM_LABELS` يُحدد المجموعة التي سيتم إضافة العقدة إليها (يُستخدم لتجميع العقد بطريقة منطقية في واجهة المستخدم الخاصة بـ Wallarm Console).
+    تضبط متغيرة `WALLARM_LABELS` المجموعة التي سيتم إضافة العقدة إليها (تستخدم للتجميع المنطقي للعقد في واجهة مستخدم Wallarm Console).
 
-=== "الرمز الخاص ب Node"
+=== "رمز العقدة"
     ```bash
     # إذا كنت تستخدم نسخة x86_64:
-    sudo sh wallarm-4.10.1.x86_64-glibc.sh postanalytics
+    sudo sh wallarm-4.10.2.x86_64-glibc.sh postanalytics
 
     # إذا كنت تستخدم نسخة ARM64:
-    sudo sh wallarm-4.10.1.aarch64-glibc.sh postanalytics
+    sudo sh wallarm-4.10.2.aarch64-glibc.sh postanalytics
     ```

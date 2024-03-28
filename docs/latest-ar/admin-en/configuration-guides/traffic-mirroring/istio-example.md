@@ -1,17 +1,17 @@
-# مثال على تهيئة Istio لعكس الحركة
+# مثال على تكوين Istio لتقليد حركة المرور
 
-تقدم هذه المقالة المثال المطلوب للتهيئة لـ Istio لـ [عكس الحركة وتوجيهها إلى عقدة Wallarm](overview.md).
+تقدم هذه المقالة المثال المطلوب لتكوين Istio لـ[تقليد حركة المرور وتوجيهها إلى عقدة Wallarm](overview.md).
 
-## الخطوة 1: تهيئة Istio لعكس الحركة
+## الخطوة 1: تكوين Istio لتقليد حركة المرور
 
-لتمكين Istio من عكس الحركة، يمكنك تهيئة `VirtualService` لعكس المسارات إما إلى نقطة النهاية الداخلية (الداخلية لـ Istio، مثل المستضافة في Kubernetes) أو إلى نقطة النهاية الخارجية مع `ServiceEntry`:
+لتمكين Istio من تقليد حركة المرور، يمكنك تكوين `VirtualService` لتقليد مسارات إما إلى النقطة النهائية الداخلية (داخلية بالنسبة لـIstio، مثل المستضافة في Kubernetes) أو إلى النقطة النهائية الخارجية بواسطة `ServiceEntry`:
 
-* لتمكين عكس طلبات داخل العقد (مثل بين الحاويات)، أضف `mesh` إلى `.spec.gateways`.
-* لتمكين عكس طلبات الخارجية (مثل عبر خدمة LoadBalancer أو NodePort)، قم بتهيئة مكون `Gateway` الخاص بـ Istio وأضف اسم المكون إلى `.spec.gateways` الخاص بـ `VirtualService`. تُعرض هذه الخيار في المثال أدناه.
+* لتمكين تقليد طلبات داخل العنقود (مثلاً بين البودات)، أضف `mesh` إلى `.spec.gateways`.
+* لتمكين تقليد طلبات خارجية (مثلاً عبر خدمة LoadBalancer أو NodePort)، قم بتكوين مكون `Gateway` الخاص بـIstio وأضف اسم المكون إلى `.spec.gateways` لـ`VirtualService`. يتم عرض هذا الخيار في المثال أدناه.
 
 ```yaml
 ---
-### تهيئة وجهة الحركة المعكوسة
+### تكوين وجهة حركة المرور المتقلدة
 ###
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
@@ -19,10 +19,10 @@ metadata:
   name: wallarm-external-svc
 spec:
   hosts:
-    - some.external.service.tld # عنوان وجهة العكس
+    - some.external.service.tld # عنوان وجهة التقليد
   location: MESH_EXTERNAL
   ports:
-    - number: 8445 # منفذ وجهة العكس
+    - number: 8445 # منفذ وجهة التقليد
       name: http
       protocol: HTTP
   resolution: DNS
@@ -35,12 +35,12 @@ spec:
   hosts:
     - ...
   gateways:
-    ### اسم مكون `Gateway` الخاص بـ istio. مطلوب للتعامل مع الحركة من
+    ### اسم مكون `Gateway` Istio. مطلوب للتعامل مع حركة المرور من
     ### مصادر خارجية
     ###
     - httpbin-gateway
-    ### تسمية خاصة، تمكن مسارات هذه الخدمة الافتراضية من العمل مع طلبات
-    ### من حاويات Kubernetes (التواصل داخل العقدة غير عبر البوابات)
+    ### تسمية خاصة، تمكن مسارات هذه الخدمة الافتراضية من العمل مع الطلبات
+    ### من بودات Kubernetes (التواصل داخل العنقود بدون بوابات)
     ###
     - mesh
   http:
@@ -51,11 +51,11 @@ spec:
               number: 80
           weight: 100
       mirror:
-        host: some.external.service.tld # عنوان وجهة العكس
+        host: some.external.service.tld # عنوان وجهة التقليد
         port:
-          number: 8445 # منفذ وجهة العكس
+          number: 8445 # منفذ وجهة التقليد
 ---
-### للتعامل مع طلبات الخارجية
+### للتعامل مع الطلبات الخارجية
 ###
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
@@ -76,6 +76,6 @@ spec:
 
 [راجع توثيق Istio](https://istio.io/latest/docs/tasks/traffic-management/mirroring/)
 
-## الخطوة 2: تهيئة عقدة Wallarm لتصفية الحركة المعكوسة
+## الخطوة 2: تكوين عقدة Wallarm لتصفية حركة المرور المتقلدة
 
 --8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"

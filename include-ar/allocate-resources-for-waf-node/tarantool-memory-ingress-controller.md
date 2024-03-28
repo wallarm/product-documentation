@@ -1,4 +1,4 @@
-يتم ضبط ذاكرة Tarantool لوحدة `ingress-controller-wallarm-tarantool` باستخدام الأقسام التالية في ملف `values.yaml`:
+يتم تكوين ذاكرة Tarantool لوحدة `ingress-controller-wallarm-tarantool` باستخدام الأقسام التالية في ملف `values.yaml`:
 
 * لضبط الذاكرة بالجيجابايت:
     ```
@@ -8,7 +8,7 @@
           arena: "1.0"
     ```
 
-* لضبط الذاكرة بالمعالج:
+* لضبط الذاكرة بوحدات CPU:
     ```
     controller:
       wallarm:
@@ -22,15 +22,15 @@
               memory: 1640Mi
     ```
 
-يتم تحديد الباراميترات المدرجة باستخدام خيار `--set` في أوامر `helm install` و `helm upgrade`، على سبيل المثال:
+يتم تعيين البارامترات المذكورة باستخدام خيار `--set` لأوامر `helm install` و`helm upgrade`، على سبيل المثال:
 
-=== "تثبيت وحدة التحكم بالدخول"
+=== "تنصيب وحدة التحكم Ingress"
     ```bash
     helm install --set controller.wallarm.tarantool.arena='0.4' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
-    يوجد أيضًا [باراميترات أخرى](../configure-kubernetes-en.md#additional-settings-for-helm-chart) مطلوبة لتثبيت وحدة التحكم بالدخول بشكل صحيح. يُرجى تمريرها في خيار `--set` كذلك.
-=== "تحديث باراميترات وحدة التحكم بالدخول"
+    هناك أيضًا [بارامترات أخرى](../configure-kubernetes-en.md#additional-settings-for-helm-chart) مطلوبة لتنصيب وحدة التحكم Ingress بشكل صحيح. يرجى إضافتها أيضًا في خيار `--set`.
+=== "تحديث بارامترات وحدة التحكم Ingress"
     ```bash
     helm upgrade --reuse-values --set controller.wallarm.tarantool.arena='0.4' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```

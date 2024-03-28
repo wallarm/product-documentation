@@ -1,4 +1,4 @@
-مثال على محتويات `node.yaml` الصحيحة:
+مثال على محتوى صالح لملف `node.yaml`:
 
 ```bash
 hostname: example-node-name

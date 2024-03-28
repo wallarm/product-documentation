@@ -1,10 +1,10 @@
-# مثال على إعداد Envoy لعكس الحركة
+# مثال على تكوين Envoy لعكس الحركة
 
-هذا المقال يقدم مثال الإعداد المطلوب ل Envoy لـ[عكس الحركة وتوجيهها إلى عقدة Wallarm](overview.md).
+توفر هذه المقالة التكوين المطلوب لـEnvoy ل[عكس الحركة وتوجيهها إلى عقدة Wallarm](overview.md).
 
-## الخطوة 1: إعداد Envoy لعكس الحركة
+## الخطوة 1: تكوين Envoy لعكس الحركة
 
-هذا المثال يُعدِل عكس الحركة مع Envoy من خلال `listener` واحد يستمع إلى البورت 80 (بدون TLS) ولديه `filter` واحد. يتم تحديد عناوين خلفيّة أصلية وخلفية إضافية تستقبل الحركة المعكوسة في كتلة `clusters`.
+هذا المثال يُكوّن عكس الحركة باستخدام Envoy من خلال `المستمع` الوحيد الذي يستمع إلى المنفذ 80 (دون TLS) ويحتوي على `مرشح` واحد.  تُحدد عناوين الخلفية الأصلية والخلفية الإضافية التي تتلقى حركة المرور المعكوسة في كتلة `المجموعات`.
 
 ```yaml
 static_resources:
@@ -30,9 +30,9 @@ static_resources:
                 - match:
                     prefix: "/"
                   route:
-                    cluster: httpbin     # <-- الرابط إلى الكتلة الأصلية
+                    cluster: httpbin     # <-- رابط إلى المجموعة الأصلية
                     request_mirror_policies:
-                    - cluster: wallarm   # <-- الرابط إلى الكتلة التي تستقبل الطلبات المعكوسة
+                    - cluster: wallarm   # <-- رابط إلى المجموعة التي تتلقى الطلبات المعكوسة
                       runtime_fraction:
                         default_value:
                           numerator: 100
@@ -42,7 +42,7 @@ static_resources:
                 "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
 
   clusters:
-  ### تعريف الكتلة الأصلية
+  ### تعريف المجموعة الأصلية
   ###
   - name: httpbin
     type: STRICT_DNS
@@ -53,14 +53,14 @@ static_resources:
       - lb_endpoints:
         - endpoint:
             address:
-              ### عنوان الخلفية الأصلية. يكون العنوان اسم DNS
-              ### أو عنوان IP، port_value هو رقم بورت TCP
+              ### عنوان النقطة النهائية الأصلية. العنوان هو اسم DNS
+              ### أو عنوان IP، port_value هو رقم المنفذ TCP
               ###
               socket_address:
-                address: httpbin # <-- تعريف الكتلة الأصلية
+                address: httpbin # <-- تعريف المجموعة الأصلية
                 port_value: 80
 
-  ### تعريف الكتلة التي تستقبل الطلبات المعكوسة
+  ### تعريف المجموعة التي تتلقى الطلبات المعكوسة
   ###
   - name: wallarm
     type: STRICT_DNS
@@ -71,9 +71,9 @@ static_resources:
       - lb_endpoints:
         - endpoint:
             address:
-              ### عنوان الخلفية الأصلية. يكون العنوان اسم DNS
-              ### أو عنوان IP، port_value هو رقم بورت TCP. يُمكن نشر
-              ### مخطط عكس Wallarm بأي بورت ولكن
+              ### عنوان النقطة النهائية الأصلية. العنوان هو اسم DNS
+              ### أو عنوان IP، port_value هو رقم المنفذ TCP. يمكن
+              ### نشر مخطط مرآة Wallarm مع أي منفذ ولكن
               ### القيمة الافتراضية هي TCP/8445.
               ###
               socket_address:
@@ -83,6 +83,6 @@ static_resources:
 
 [راجع وثائق Envoy](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto)
 
-## الخطوة 2: إعداد عقدة Wallarm لفلترة الحركة المعكوسة
+## الخطوة 2: تكوين عقدة Wallarm لتصفية حركة المرور المعكوسة
 
 --8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"

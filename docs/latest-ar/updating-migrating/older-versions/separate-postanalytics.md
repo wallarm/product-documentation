@@ -1,76 +1,75 @@
-[docs-module-update]:   nginx-modules.md
-[img-wl-console-users]:             ../../images/check-users.png 
-[img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
-[img-attacks-in-interface]:     ../../images/admin-guides/test-attacks-quickstart.png
-[nginx-custom]:                 ../../custom/custom-nginx-version.md
-[wallarm-token-types]:          ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[tarantool-status]:             ../../images/tarantool-status.png
+[docs-module-update]: nginx-modules.md
+[img-wl-console-users]: ../../images/check-users.png 
+[img-create-wallarm-node]: ../../images/user-guides/nodes/create-cloud-node.png
+[img-attacks-in-interface]: ../../images/admin-guides/test-attacks-quickstart.png
+[nginx-custom]: ../../custom/custom-nginx-version.md
+[wallarm-token-types]: ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[tarantool-status]: ../../images/tarantool-status.png
 [statistics-service-all-parameters]: ../../admin-en/configure-statistics-service.md
-[configure-proxy-balancer-instr]:    ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+[configure-proxy-balancer-instr]: ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 
+# ترقية وحدة postanalytics المنتهية الصلاحية
 
-# تحديث موديول postanalytics المنتهي الخدمة
-
-توصف هذه التعليمات الخطوات لتحديث موديول postanalytics المنتهي الخدمة (الإصدار 3.6 وأقل) المثبت على سيرفر منفصل. يجب تحديث موديول postanalytics قبل [تحديث موديولات Wallarm NGINX][docs-module-update].
+توصف هذه التعليمات الخطوات اللازمة لترقية وحدة postanalytics المنتهية الصلاحية (الإصدار 3.6 وأقل) المثبتة على خادم منفصل. يجب ترقية وحدة postanalytics قبل [ترقية وحدات NGINX لـWallarm][docs-module-update].
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
-## طرق التحديث
+## طرق الترقية
 
 --8<-- "../include/waf/installation/upgrade-methods.md"
 
-## التحديث باستخدام مثبت all-in-one
+## الترقية باستخدام المثبت الشامل
 
-استخدم الإجراء أدناه لتحديث موديول postanalytics المنتهي الخدمة (الإصدار 3.6 وأقل) المثبت على سيرفر منفصل إلى الإصدار 4.10 باستخدام [مثبت all-in-one](../../installation/nginx/all-in-one.md).
+استخدم الإجراء أدناه لترقية وحدة postanalytics المنتهية الصلاحية (الإصدار 3.6 وأقل) المثبتة على خادم منفصل إلى الإصدار 4.10 باستخدام [المثبت الشامل](../../installation/nginx/all-in-one.md).
 
-### متطلبات التحديث باستخدام مثبت all-in-one
+### متطلبات الترقية باستخدام المثبت الشامل
 
 --8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
 
-### الخطوة 1: إعداد جهاز نظيف
+### الخطوة 1: إعداد الجهاز المستقيم
 
 --8<-- "../include/waf/installation/all-in-one-clean-machine.md"
 
-### الخطوة 2: إعداد توكن Wallarm
+### الخطوة 2: إعداد الرمز المميز لـWallarm
 
 --8<-- "../include/waf/installation/all-in-one-token.md"
 
-### الخطوة 3: تحميل مثبت Wallarm all-in-one
+### الخطوة 3: تحميل مثبت Wallarm الشامل
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-### الخطوة 4: تشغيل مثبت Wallarm all-in-one لتثبيت postanalytics
+### الخطوة 4: تشغيل مثبت Wallarm الشامل لتثبيت postanalytics
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics.md"
 
-### الخطوة 5: تحديث منفذ API 
+### الخطوة 5: تحديث منفذ API
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-### الخطوة 6: تحديث موديول NGINX-Wallarm على سيرفر منفصل
+### الخطوة 6: ترقية وحدة NGINX-Wallarm على خادم منفصل
 
-بمجرد تثبيت موديول postanalytics على السيرفر المنفصل، [قم بتحديث موديول NGINX-Wallarm المرتبط](nginx-modules.md) الجاري تشغيله على سيرفر مختلف.
+بمجرد تثبيت وحدة postanalytics على الخادم المستقل، [قم بترقية وحدتها المتصلة NGINX-Wallarm](nginx-modules.md) التي تعمل على خادم مختلف.
 
-!!! info "دمج طرق التحديث"
-    يمكن استخدام كل من النهج اليدوي والتلقائي لتحديث موديول NGINX-Wallarm المرتبط.
+!!! info "جمع طرق الترقية"
+    يمكن استخدام الطرق اليدوية والآلية لترقية وحدة NGINX-Wallarm المتصلة.
 
-### الخطوة 7: إعادة الاتصال بين موديول NGINX-Wallarm وموديول postanalytics
+### الخطوة 7: إعادة توصيل وحدة NGINX-Wallarm بوحدة postanalytics
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect.md"
 
-### الخطوة 8: التحقق من تفاعل موديولات NGINX‑Wallarm و postanalytics المنفصلة
+### الخطوة 8: تحقق من تفاعل وحدات NGINX‑Wallarm وpostanalytics المستقلة
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
 
-### الخطوة 9: إزالة موديول postanalytics القديم
+### الخطوة 9: إزالة وحدة postanalytics القديمة
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics-remove-old.md"
 
-## التحديث اليدوي
+## الترقية اليدوية
 
-استخدم الإجراء أدناه لتحديث موديول postanalytics المنتهي الخدمة (الإصدار 3.6 وأقل) المثبت على سيرفر منفصل يدويًا إلى الإصدار 4.8.
+استخدم الإجراء أدناه لترقية وحدة postanalytics المنتهية الصلاحية (الإصدار 3.6 وأقل) المثبتة على خادم منفصل إلى الإصدار 4.8 يدويًا.
 
-### المتطلبات
+### متطلبات
 
 --8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
@@ -78,9 +77,9 @@
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-### الخطوة 2: إضافة مستودع Wallarm جديد
+### الخطوة 2: إضافة مستودع Wallarm الجديد
 
-حذف عنوان مستودع Wallarm السابق وإضافة مستودع بحزم إصدارات نود Wallarm الجديدة. الرجاء استخدام الأوامر للمنصة المناسبة.
+قم بحذف عنوان مستودع Wallarm السابق وأضف مستودعًا بحزمة نسخة العقدة Wallarm الجديدة. يرجى استخدام الأوامر المناسبة للمنصة المتوافقة.
 
 **CentOS و Amazon Linux 2.0.2021x وأقل**
 
@@ -91,13 +90,13 @@
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
     ```
 === "CentOS 8"
-    !!! warning "تم إيقاف دعم CentOS 8.x"
-        تم إيقاف دعم CentOS 8.x [تم إيقاف دعمها](https://www.centos.org/centos-linux-eol/). يمكنك تثبيت نود Wallarm على نظام التشغيل AlmaLinux، Rocky Linux، Oracle Linux 8.x، أو RHEL 8.x بدلاً من ذلك.
+    !!! warning "تم إيقاف الدعم لـ CentOS 8.x"
+        تم إيقاف الدعم لـ CentOS 8.x [تم إيقاف الدعم](https://www.centos.org/centos-linux-eol/). يمكنك تثبيت عقدة Wallarm على نظام التشغيل AlmaLinux, Rocky Linux, Oracle Linux 8.x, أو RHEL 8.x بدلاً من ذلك.
 
-        * [تعليمات التثبيت لـ NGINX `stable`](../../installation/nginx/dynamic-module.md)
-        * [تعليمات التثبيت لـ NGINX من مستودعات CentOS/Debian](../../installation/nginx/dynamic-module-from-distr.md)
-        * [تعليمات التثبيت لـ NGINX Plus](../../installation/nginx-plus.md)
-=== "AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
+        * [تعليمات التثبيت للنسخة `الثابتة` من NGINX](../../installation/nginx/dynamic-module.md)
+        * [تعليمات التثبيت للنسخة NGINX من مستودعات CentOS/Debian](../../installation/nginx/dynamic-module-from-distr.md)
+        * [تعليمات التثبيت لإصدار NGINX Plus](../../installation/nginx-plus.md)
+=== "AlmaLinux, Rocky Linux أو Oracle Linux 8.x"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
@@ -112,17 +111,17 @@
 
 **Debian و Ubuntu**
 
-1. فتح الملف بعنوان مستودع Wallarm في محرر النصوص المثبت. في هذه التعليمات، يتم استخدام **vim**.
+1. افتح الملف الذي يحتوي على عنوان المستودع Wallarm في المحرر النصي المثبت. في هذه التعليمات، سيتم استخدام **vim**.
 
     ```bash
     sudo vim /etc/apt/sources.list.d/wallarm.list
     ```
-2. تعليق أو حذف عنوان المستودع السابق.
-3. إضافة عنوان مستودع جديد:
+2. قم بتعليق العنوان السابق للمستودع أو حذفه.
+3. أضف عنوان مستودع جديد:
 
     === "Debian 10.x (buster)"
-        !!! warning "غير مدعوم بواسطة NGINX stable و NGINX Plus"
-            نسخ NGINX الرسمية (stable و Plus) وبالتالي لا يمكن تثبيت نود Wallarm 4.4 وما فوق على Debian 10.x (buster). الرجاء استخدام هذا نظام التشغيل فقط إذا [تم تثبيت NGINX من مستودعات Debian/CentOS](../../installation/nginx/dynamic-module-from-distr.md).
+        !!! warning "غير مدعوم من قبل النسخة الثابتة من NGINX و NGINX Plus"
+            النسخ الرسمية من NGINX (ثابتة و Plus) و، كنتيجة لذلك، لا يمكن تثبيت وحدة Wallarm 4.4 وما فوق على Debian 10.x (buster). يرجى استخدام هذا النظام التشغيل فقط في حالة [تثبيت NGINX من مستودعات Debian/CentOS](../../installation/nginx/dynamic-module-from-distr.md).
 
         ```bash
         deb https://repo.wallarm.com/debian/wallarm-node buster/4.8/
@@ -140,7 +139,7 @@
         deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.8/
         ```
 
-### الخطوة 3: تحديث حزم Tarantool
+### الخطوة 3: ترقية حزم Tarantool
 
 === "Debian"
     ```bash
@@ -164,7 +163,7 @@
     ```bash
     sudo yum update
     ```
-=== "AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux أو Oracle Linux 8.x"
     ```bash
     sudo yum update
     ```
@@ -173,19 +172,19 @@
     sudo yum update
     ```
 
-### الخطوة 4: تحديث نوع النود
+### الخطوة 4: تحديث نوع العقدة
 
-النود postanalytics المثبت 3.6 أو أقل يحتوي على نوع **regular** المحذوف الآن الذي [تم استبداله بنوع **Wallarm node** الجديد](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
+تحتوي العقدة postanalytics المنشورة 3.6 أو أقل على النوع المهجور **العادي** الذي [تم الآن استبداله بنوع **عقدة Wallarm** الجديد](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
 
-يُنصح بتثبيت نوع النود الجديد بدلاً من النوع المحذوف خلال التهجير إلى الإصدار 4.8. سيتم إزالة نوع نود regular في الإصدارات المستقبلية، يرجى التهجير قبل ذلك.
+يوصى بتثبيت النوع الجديد بدلاً من النوع المهجور أثناء الترحيل إلى الإصدار 4.8. سيتم إزالة نوع العقدة العادي في الإصدارات المستقبلية، يرجى الترحيل قبل ذلك.
 
-لتبديل نود postanalytics العادي بنود Wallarm:
+لاستبدال العقدة postanalytics العادية بعقدة Wallarm:
 
-1. فتح وحدة تحكم Wallarm → **نود** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes) وإنشاء نود من نوع **Wallarm node**.
+1. افتح Wallarm Console → **عقد** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes) وأنشئ عقدة من نوع **عقدة Wallarm**.
 
-    ![إنشاء نود Wallarm][img-create-wallarm-node]
-1. نسخ التوكن المولد.
-1. تنفيذ سكربت `register-node` لتشغيل **نود Wallarm**:
+    ![إنشاء عقدة Wallarm][img-create-wallarm-node]
+1. انسخ الرمز المميز المُنشأ.
+1. نفذ البرنامج النصي `register-node` لتشغيل **عقدة Wallarm**:
 
     === "السحابة الأمريكية"
         ``` bash
@@ -196,10 +195,10 @@
         sudo /usr/share/wallarm-common/register-node -t <TOKEN> --force --no-sync --no-sync-acl
         ```
     
-    * `<TOKEN>` هو قيمة توكن النود المنسوخة أو توكن API بدور `Deploy`.
-    * الخيار `--force` يفرض إعادة كتابة بيانات الوصول لسحابة Wallarm المحددة في الملف `/etc/wallarm/node.yaml`.
+    * `<TOKEN>` هو القيمة المنسوخة لرمز العقدة أو رمز API بدور `التنفيذ`.
+    * الخيار `--force` يجبر على إعادة كتابة بيانات الاعتماد للوصول إلى Wallarm Cloud المحددة في ملف `/etc/wallarm/node.yaml`.
 
-### الخطوة 5: إعادة تشغيل موديول postanalytics
+### الخطوة 5: إعادة تشغيل وحدة postanalytics
 
 === "Debian"
     ```bash
@@ -213,7 +212,7 @@
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
-=== "AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux أو Oracle Linux 8.x"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
@@ -222,4 +221,4 @@
     sudo systemctl restart wallarm-tarantool
     ```
 
-[تحديث موديولات Wallarm NGINX][docs-module-update]
+[ترقية وحدات NGINX لـWallarm][docs-module-update]

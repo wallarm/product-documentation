@@ -1,6 +1,6 @@
 !!! info "توصيات أخرى"
-    نسخة Wallarm من متحكم Kubernetes Ingress مبنية على [متحكم الدخول NGINX المدعوم من المجتمع لـ Kubernetes](https://github.com/kubernetes/ingress-nginx)، لذلك فإن أغلب التوصيات الموجودة في وثائق متحكم الدخول الرسمي وعلى الإنترنت العام مطبقة أيضًا على متحكم الدخول الخاص بـ Wallarm.
+    نسخة Wallarm من وحدة تحكم الدخول لـ Kubernetes تعتمد على [وحدة تحكم الدخول NGINX التي يدعمها المجتمع لـ Kubernetes](https://github.com/kubernetes/ingress-nginx)، لذا فإن معظم التوصيات الموجودة في وثائق وحدة تحكم الدخول الرسمية وعلى الإنترنت العام مطبقة أيضًا على وحدة تحكم الدخول من Wallarm.
     
-    قراءة موصى بها:
+    القراءة الموصى بها:
     
-    * [دليل متحكم دخول NGINX الرسمي](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
+    * [دليل وحدة تحكم الدخول NGINX الرسمي](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)

@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    # عنصر وولارم: تعليق لتحديث البودس الجارية بعد تغيير ConfigMap لوولارم
+    # عنصر Wallarm: تعليق توضيحي لتحديث الحاويات الجارية بعد تغيير خريطة تكوين Wallarm
     checksum/config: '{{ include (print $.Template.BasePath "/wallarm-sidecar-configmap.yaml") . | sha256sum }}'
   name: myapp
 spec:
@@ -16,7 +16,7 @@ spec:
         app: myapp
     spec:
       containers:
-        # عنصر وولارم: تعريف لحاوية جانبية لوولارم
+        # عنصر Wallarm: تعريف حاوية Wallarm الجانبية
         - name: wallarm
           image: {{ .Values.wallarm.image.repository }}:{{ .Values.wallarm.image.tag }}
           imagePullPolicy: {{ .Values.wallarm.image.pullPolicy | quote }}
@@ -35,14 +35,14 @@ spec:
             value: {{ .Values.wallarm.tarantool_memory_gb | quote }}
           ports:
           - name: http
-            # المنفذ الذي يقبل من خلاله الحاوية الجانبية لوولارم الطلبات 
+            # البوابة التي تقبل عليها حاوية Wallarm الجانبية الطلبات
             # من كائن الخدمة
             containerPort: 80
           volumeMounts:
           - mountPath: /etc/nginx/sites-enabled
             readOnly: true
             name: wallarm-nginx-conf
-        # تعريف حاوية التطبيق الرئيسية الخاصة بك
+        # تعريف حاوية التطبيق الرئيسي الخاص بك
         - name: myapp
           image: <Image>
           resources:
@@ -50,10 +50,10 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-          # المنفذ الذي تقبل من خلاله حاوية التطبيق الطلبات الواردة
+          # البوابة التي تقبل عليها حاوية التطبيق الواردة الطلبات
           - containerPort: 8080 
       volumes:
-      # عنصر وولارم: تعريف حجم wallarm-nginx-conf
+      # عنصر Wallarm: تعريف مجلد تكوين wallarm-nginx-conf
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

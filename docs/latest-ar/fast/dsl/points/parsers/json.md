@@ -1,51 +1,40 @@
-[link-ruby]:                    http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
-[link-hash]:                    hash.md
-[link-array]:                   array.md
-[link-jsonobj-array]:           array.md#the-example-of-using-the-jsondoc-filter-and-the-array-filter
-[link-jsonobj-hash]:            hash.md#the-example-of-using-the-jsonobj-filter-and-the-hash-filter
-[link-jsonarray-hash]:          hash.md#the-example-of-using-the-jsonarray-filter-and-the-hash-filter
+# محلل Json_doc
 
-[anchor1]:          #jsonobj-filter
-[anchor2]:          #jsonarray-filter
+يُستخدم محلل **Json_doc** للتعامل مع البيانات بصيغة JSON التي يمكن أن تكون موجودة في أي جزء من الطلب. يشير محلل Json_doc إلى محتويات حاوية بيانات JSON المستوى الأعلى في صيغتها الخام.
 
+يبني محلل Json_doc هيكلاً بيانات معقداً بناءً على البيانات المدخلة. يمكنك استخدام الفلاتر التالية للوصول إلى عناصر هذا الهيكل البياني:
+* [فلتر Json_obj][anchor1]؛
+* [فلتر Json_array][anchor2]؛
 
-# مُحلل Json_doc
-
-يُستخدم محلل **Json_doc** للعمل مع البيانات بصيغة JSON التي يمكن تواجدها في أي جزء من الطلب. يشير مُحلل Json_doc إلى محتويات حاوية بيانات JSON الأساسية في صورتها الخام.
-
-يبني مُحلل Json_doc هيكل بيانات معقد على أساس البيانات المدخلة. يمكنك استخدام الفلاتر التالية للتوجه إلى عناصر هذا الهيكل البياني:
-* [فلتر Json_obj][anchor1];
-* [فلتر Json_array][anchor2].
-
-أضف أسماء مُحلل Json_doc والفلتر المُقدم منه بحروف كبيرة إلى النقطة لاستخدام الفلتر في النقطة.
+أضف أسماء محلل Json_doc والفلتر الذي يوفره بأحرف كبيرة إلى النقطة لاستخدام الفلتر في النقطة.
 
 **مثال:**
 
-لطلب
+للطلب
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/json
 ```
 
-بجسم الطلب
+مع جسم الطلب
 
 ```
 {
     "username": "admin",
-    "info": {
+    "info":{
         "firstName": "John",
         "lastName": "Smith"
     }
 }
 ```
 
-يشير مُحلل Json_doc المُطبق على جسم الطلب إلى البيانات التالية:
+يشير محلل Json_doc المطبق على جسم الطلب إلى البيانات التالية:
 
 ```
 {
     "username": "admin",
-    "info": {
+    "info":{
         "firstName": "John",
         "lastName": "Smith"
     }
@@ -55,27 +44,27 @@ Content-type: application/json
 
 ## فلتر Json_obj
 
-يشير فلتر **Json_obj** إلى جدول الهاش لأجسام JSON. يجب الإشارة إلى عناصر هذا الجدول الهاش باستخدام أسماء أجسام JSON.
+يشير فلتر **Json_obj** إلى جدول الهاش الخاص بكائنات JSON. يجب الإشارة إلى عناصر هذا الجدول باستخدام أسماء كائنات JSON.
 
-!!! info "التعبيرات النمطية في النقاط"
-    يُمكن أن يكون اسم جسم JSON في النقطة [تعبير نمطي للغة برمجة Ruby][link-ruby].  
+!!! info "التعبيرات النظامية في النقاط"
+    يمكن أن يكون اسم كائن JSON في النقطة تعبيراً نظامياً للغة برمجة روبي [تعبير نظامي في لغة روبي][link-ruby].
 
-يعمل الفلتر [Hash][link-hash] المُطبق على بيانات JSON بطريقة مُماثلة لفلتر Json_obj.
+يعمل فلتر [هاش][link-hash] عند تطبيقه على بيانات JSON بطريقة مشابهة لفلتر Json_obj.
 
-قد تحتوي القيم من جداول الهاش بصيغة JSON أيضًا على الهياكل البيانية المعقدة التالية: المصفوفات وجداول الهاش. استخدم الفلتر التالي للتوجه إلى العناصر في هذه الهياكل:
-* فلتر [Array][link-jsonobj-array] أو فلتر [Json_array][anchor2] للمصفوفات
-* فلتر [Hash][link-jsonobj-hash] أو فلتر [Json_obj][anchor1] لجداول الهاش
+قد تحتوي قيم جداول الهاش بصيغة JSON على هياكل بيانات معقدة أخرى: مصفوفات وجداول هاش. استخدم الفلاتر التالية للوصول إلى عناصر هذه الهياكل:
+* فلتر [مصفوفة][link-jsonobj-array] أو فلتر [Json_array][anchor2] للمصفوفات.
+* فلتر [هاش][link-jsonobj-hash] أو فلتر [Json_obj][anchor1] لجداول الهاش.
 
 **مثال:**
 
-لطلب
+للطلب
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/json
 ```
 
-بجسم الطلب
+مع جسم الطلب
 
 ```
 {
@@ -86,7 +75,7 @@ Content-type: application/json
 
 يشير فلتر Json_obj المطبق على جسم الطلب مع محلل Json_doc إلى الجدول التالي:
 
-| Key      | Value    |
+| المفتاح      | القيمة    |
 |----------|----------|
 | username | user     |
 | rights   | read     |
@@ -96,25 +85,25 @@ Content-type: application/json
 
 ## فلتر Json_array
 
-يشير فلتر **Json_array** إلى مصفوفة قيم أجسام JSON. يجب الإشارة إلى عناصر هذه المصفوفة باستخدام الفهارِس. يبدأ فهرس المصفوفة من `0`.
+يشير فلتر **Json_array** إلى مصفوفة قيم كائن JSON. يجب الإشارة إلى عناصر هذه المصفوفة باستخدام الفهارس. يبدأ ترقيم الفهارس في المصفوفة من `0`.
 
-!!! info "التعبيرات النمطية في النقاط"
-    يمكن أن يكون الفهرس في النقطة [تعبير نمطي للغة برمجة Ruby][link-ruby]. 
+!!! info "التعبيرات النظامية في النقاط"
+    يمكن أن يكون الفهرس في النقطة تعبيراً نظامياً للغة برمجة روبي [تعبير نظامي في لغة روبي][link-ruby].
 
-يعمل فلتر [Array][link-array] المطبق على بيانات JSON بطريقة مماثلة لفلتر Json_array.
+يعمل فلتر [مصفوفة][link-array] عند تطبيقه على بيانات JSON بطريقة مشابهة لفلتر Json_array.
 
-قد تحتوي القيم من المصفوفات بصيغة JSON أيضًا على جداول هاش. استخدم فلتر [Hash][link-jsonarray-hash] أو [Json_obj][anchor1].
+قد تحتوي قيم المصفوفات بصيغة JSON أيضاً على جداول هاش. استخدم [هاش][link-jsonarray-hash] أو [Json_obj][anchor1].
 
 **مثال:**
 
-لطلب
+للطلب
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/json
 ```
 
-بجسم الطلب
+مع جسم الطلب
 
 ```
 {
@@ -123,12 +112,12 @@ Content-type: application/json
 }
 ```
 
-يشير فلتر Json_array المطبق على جسم JSON `rights` مع محلل Json_doc وفلتر Json_obj إلى المصفوفة التالية:
+يشير فلتر Json_array المطبق على كائن JSON `rights` مع محلل Json_doc وفلتر Json_obj إلى المصفوفة التالية:
 
-| Index  | Value    |
+| الفهرس  | القيمة    |
 |--------|----------|
 | 0      | read     |
 | 1      | write    |
 
-* تشير النقطة `POST_JSON_DOC_JSON_OBJ_rights_JSON_ARRAY_0_value` إلى قيمة `read` التي تتوافق مع فهرس `0` من مصفوفة قيم جسم JSON `rights` المشار إليه بواسطة فلتر Json_array.
-* تشير النقطة `POST_JSON_DOC_JSON_OBJ_rights_JSON_ARRAY_1_value` إلى قيمة `write` التي تتوافق مع فهرس `1` من مصفوفة قيم جسم JSON `rights` المشار إليه بواسطة فلتر Json_array.
+* تشير النقطة `POST_JSON_DOC_JSON_OBJ_rights_JSON_ARRAY_0_value` إلى قيمة `read` التي تتوافق مع الفهرس `0` من مصفوفة قيم كائن JSON `rights` التي تم الوصول إليها بواسطة فلتر Json_array.
+* تشير النقطة `POST_JSON_DOC_JSON_OBJ_rights_JSON_ARRAY_1_value` إلى قيمة `write` التي تتوافق مع الفهرس `1` من مصفوفة قيم كائن JSON `rights` التي تم الوصول إليها بواسطة فلتر Json_array.

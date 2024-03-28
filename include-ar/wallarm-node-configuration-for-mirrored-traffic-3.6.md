@@ -1,9 +1,9 @@
-لكي تقوم وحدة Wallarm بمعالجة الحركة المرآة، قم بضبط التكوين التالي:
+لكي يتمكن عقدة Wallarm من معالجة حركة المرور المعكوسة، قم بتعيين التكوين التالي:
 
 ```
 wallarm_force server_addr $http_x_server_addr;
 wallarm_force server_port $http_x_server_port;
-#غير 222.222.222.22 إلى عنوان خادم المرآة
+#غير 222.222.222.22 إلى عنوان خادم التوجيه
 set_real_ip_from  222.222.222.22;
 real_ip_header    X-Forwarded-For;
 #real_ip_recursive on;
@@ -12,13 +12,13 @@ wallarm_force response_time 0;
 wallarm_force response_size 0;
 ```
 
-* يتطلب توجيه [`real_ip_header`](../../using-proxy-or-balancer-en.md) كي تظهر واجهة Wallarm Console عناوين IP للمهاجمين.
-* يتطلب التوجيهات `wallarm_force_response_*` لتعطيل تحليل جميع الطلبات ما عدا النسخ المستلمة من الحركة المرآة.
-* بما أنه [لا يمكن](overview.md#limitations-of-mirrored-traffic-filtration) حجب الطلبات الضارة، فإن وحدة Wallarm تحلل الطلبات دائمًا في وضع [المراقبة](../../configure-wallarm-mode.md) حتى إذا قام توجيه `wallarm_mode` أو Wallarm Cloud بتعيين الوضع الآمن أو وضع الحجب العادي (باستثناء الوضع المعين للإيقاف).
+* يُطلب توجيه [`real_ip_header`](../../using-proxy-or-balancer-en.md) لكي تعرض وحدة التحكم Wallarm عناوين IP للمهاجمين.
+* تُطلب التوجيهات `wallarm_force_response_*` لتعطيل تحليل جميع الطلبات باستثناء نسخ المستلمة من حركة المرور المعكوسة.
+* بما أن الطلبات الخبيثة لا يمكن [أن تُحظر](overview.md#limitations-of-mirrored-traffic-filtration)، فإن عقدة Wallarm تقوم دائماً بتحليل الطلبات في [وضع](../../configure-wallarm-mode.md) المراقبة حتى لو تم تعيين توجيه `wallarm_mode` أو Wallarm Cloud على وضع الحظر الآمن أو العادي (باستثناء الوضع المُعطل).
 
-يدعم معالجة الحركة المرآة فقط بواسطة العقد المبنية على NGINX. يمكنك ضبط التكوين المقدم كما يلي:
+يدعم معالجة حركة المرور المعكوسة عقد NGINX فقط. يمكنك تعيين التكوين المقدم كما يلي:
 
-* إذا كنت تقوم بتثبيت العقدة من حزم DEB/RPM - في ملف التكوين NGINX `/etc/nginx/conf.d/default.conf`.
-* إذا كنت فتقوم بنشر العقدة من صورة السحابة [AWS](../../installation-ami-en.md) أو [GCP](../../installation-gcp-en.md) - في ملف التكوين NGINX `/etc/nginx/nginx.conf`.
-* إذا كنت تقوم بنشر العقدة من [صورة Docker](../../installation-docker-en.md) - قم بتركيب الملف بالتكوين المقدم إلى الحاوية.
-* إذا كنت تشغل العقدة كـ [متحكم Ingress](../../installation-kubernetes-en.md) - قم بتركيب ConfigMap بالتكوين المقدم إلى الجراب.
+* عند تثبيت العقدة من حزم DEB/RPM - في ملف تكوين NGINX `/etc/nginx/conf.d/default.conf`.
+* عند نشر العقدة من صورة سحابية في [AWS](../../installation-ami-en.md) أو [GCP](../../installation-gcp-en.md) - في ملف تكوين NGINX `/etc/nginx/nginx.conf`.
+* عند نشر العقدة من [صورة Docker](../../installation-docker-en.md) - قم بتوصيل الملف بالتكوين المقدم إلى الحاوية.
+* عند تشغيل العقدة كـ[متحكم Ingress](../../installation-kubernetes-en.md) - قم بتوصيل خريطة التكوين بالتكوين المقدم إلى pod.

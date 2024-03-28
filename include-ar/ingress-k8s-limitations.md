@@ -1,2 +1,2 @@
-!!! تحذير "المنصة المدعومة لـ Kubernetes"
-    يُرجى العلم، أن وحدات التحكم Ingress الخاصة بـ Wallarm NGINX أو NGINX Plus تعمل فقط على منصة Kubernetes الإصدار 1.15 والأقل.
+!!! warning "المنصات المدعومة لـ Kubernetes"
+    يرجى ملاحظة أن متحكمات الدخول الخاصة بـ Wallarm NGINX أو NGINX Plus تعمل فقط على إصدار 1.15 أو أقل من منصة Kubernetes.

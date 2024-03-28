@@ -1,61 +1,61 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
-# Mulesoft مع واجهة النهج Wallarm
+# Mulesoft مع سياسة Wallarm
 
-[MuleSoft](https://www.mulesoft.com/) هي منصة التكامل التي تتيح التوصيل السلس والتكامل البيانات بين الخدمات وبوابة API تعمل كنقطة الدخول لتطبيقات العملاء للوصول إلى واجهات برمجة التطبيقات. مع Wallarm ، يمكنك تأمين واجهات برمجة التطبيقات على منصة Mulesoft Anypoint باستخدام السياسة Wallarm. يشرح هذا المقال كيفية إرفاق واستخدام السياسة.
+[MuleSoft] (https://www.mulesoft.com/) هي منصة تكامل تتيح التواصل المتكامل وتكامل البيانات بين الخدمات مع بوابة API تعمل كنقطة دخول للتطبيقات العميلة للوصول إلى الواجهات البرمجية. باستخدام Wallarm، يمكنك تأمين الواجهات البرمجية (APIs) على منصة Mulesoft Anypoint باستخدام سياسة Wallarm. هذه المقالة تشرح كيفية إرفاق السياسة واستخدامها.
 
-تدعم سياسة Wallarm لـ MuleSoft كلا من [in-line](../inline/overview.md) و [out-of-band](../oob/overview.md) الأوضاع. توضح الرسوم البيانية أدناه تدفق المرور لواجهات برمجة التطبيقات على منصة MuleSoft Anypoint مع تطبيق سياسة Wallarm.
+تدعم سياسة Wallarm لـ MuleSoft كلاً من الحالتين [in-line](../inline/overview.md) و [out-of-band](../oob/overview.md). الرسوم البيانية أدناه توضح تدفق المرور للواجهات البرمجية (APIs) على منصة MuleSoft Anypoint مع تطبيق سياسة Wallarm.
 
-=== "تدفق المرور في السطر"
+=== "تدفق المرور بشكل متصل"
 
-    إذا تم تكوين Wallarm لحجب النشاط الخبيث:
+    إذا تم تكوين Wallarm لمنع النشاط الخبيث:
 
-    ![Mulesoft مع النهج Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
-=== "تدفق المرور خارج الفرقة"
-    ![Mulesoft مع النهج Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-oob.png)
+    ![Mulesoft مع سياسة Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
+=== "تدفق المرور خارج الأشرطة"
+    ![Mulesoft مع سياسة Wallarm](../../images/waf-installation/gateways/mulesoft/traffic-flow-oob.png)
 
-الحل ينطوي على نشر عقدة Wallarm في الخارج وحقن رموز أو سياسات مخصصة في المنصة المحددة. يمكن توجيه هذا الحركة إلى العقدة الخارجية لـ Wallarm للتحليل والحماية من التهديدات المحتملة. يشار إليها بموصلات Wallarm ، فهي تعمل كالرابط الأساسي بين منصات مثل Azion Edge و Akamai Edge و Mulesoft ، Apigee ، و AWS Lambda ، والعقدة الخارجية لـ Wallarm. تضمن هذه المنهجية التكامل السلس ، وتحليل الحركة الآمنة ، وتقليل المخاطر ، وأمان المنصة الشامل.
+الحل يتضمن إطلاق العقدة Wallarm خارجيًا وحقن الشفرة البرمجية الخاصة أو السياسات في النظام الأساسي المحدد. هذا يتيح توجيه حركة المرور إلى العقدة الخارجية Wallarm للتحليل والحماية ضد التهديدات المحتملة. يشار إلى هذا الأسلوب باسم موصلات Wallarm، حيث يعملون كرابط أساسي بين الأنظمة الأساسية مثل Azion Edge و Akamai Edge و Mulesoft و Apigee و AWS Lambda، والعقدة الخارجية Wallarm. تضمن هذه الطريقة التكامل السلس، وتحليل حركة المرور الآمن، وتقليل المخاطر، والأمان الشامل للمنصة.
 
-## الاستخدام المقصود
+## الاستخدامات المقترحة
 
-بين جميع خيارات نشر Wallarm الداعمة [Wallarm deployment options](../supported-deployment-options.md) ، هذا الحل هو الأنسب للاستخدامات التالية:
+من بين جميع خيارات نشر Wallarm المعتمدة (../supported-deployment-options.md)، يُنصح بهذا الحل للحالات الاستخدام التالية:
 
-* تأمين واجهات برمجة التطبيقات المنشورة على منصة MuleSoft Anypoint بواسطة سياسة واحدة فقط.
-* يتطلب حل أمني يوفر مراقبة شاملة للهجوم ، والإبلاغ ، وحجب فوري للطلبات الخبيثة (في الوضع الخطي).
+* تأمين الواجهات البرمجية (APIs) المنشورة على منصة MuleSoft Anypoint بسياسة واحدة فقط.
+* في حالة الحاجة إلى حل الأمان الذي يقدم مراقبة الهجمات الشاملة، والتقارير، والحظر الفوري للطلبات الخبيثة (في الوضع المتصل).
 
 ## القيود
 
-التكامل MuleSoft لا يسمح لعقدة Wallarm بتحليل الردود بالكامل ، مما ينشئ بعض القيود:
+لا تسمح الدمج مع MuleSoft للعقدة Wallarm بتحليل الردود بالكامل، الأمر الذي يخلق بعض القيود:
 
-* في بعض البيئات ، قد تولد [Wallarm API Discovery](../../api-discovery/overview.md) نقاط نهاية إضافية. استشر [Wallarm support](mailto:support@wallarm.com) لخيارات التكوين.
-* الردود على الخادم مطلوبة لـ [passive vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection).
-* [Protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md).
+* في بعض البيئات، قد يُنشئ [اكتشاف Wallarm API](../../api-discovery/overview.md) نقاط نهاية إضافية. استشر [دعم Wallarm](mailto:support@wallarm.com) لخيارات التكوين.
+* يتطلب الردود من الخادم لـ [اكتشاف الضعف السلبي](../../about-wallarm/detecting-vulnerabilities.md#passive-detection).
+* [الحماية من التصفح المفروض](../../admin-en/configuration-guides/protecting-against-bruteforce.md).
 
-عند تطبيق السياسة لتحليل حركة مرور خارج النطاق ، كن على علم أن هذه الطريقة لديها بعض القيود ، التي تنطبق أيضًا على النهج. يمكن العثور على المزيد من التفاصيل في الرابط المقدم [link](../oob/overview.md#advantages-and-limitations).
+عند تطبيق سياسة لتحليل حركة المرور خارج النطاق، على العلم بأن هذه الطريقة لها قيود معينة، يتم تطبيقها أيضا على سياسة. يمكن العثور على المزيد من التفاصيل في الرابط المقدم (../oob/overview.md#advantages-and-limitations).
 
 ## المتطلبات
 
-للمتابعة مع النشر ، تأكد من تلبية المتطلبات التالية:
+للمتابعة مع التنفيذ، تأكد من تلبية المتطلبات التالية:
 
 * فهم منصة Mulesoft.
 * [Maven (`mvn`)](https://maven.apache.org/install.html) 3.8 أو إصدار أقدم مثبت. قد تواجه الإصدارات الأعلى من Maven مشكلات التوافق مع البرنامج المساعد Mule.
-* لقد تم تعيينك دور Mulesoft Exchange المساهم ، مما يتيح لك تحميل المصنوعات إلى حساب منظمتك على منصة Mulesoft Anypoint.
-* تم تحديد [Mulesoft Exchange التفويضات (اسم المستخدم وكلمة المرور)](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange#deploying-a-policy-created-using-the-maven-archetype) في الملف `<MAVEN_DIRECTORY>/conf/settings.xml`.
-* تطبيقك وAPI الخاص بك مرتبط ويعمل على Mulesoft.
+* لقد تم تعيينك بدور مساهم Mulesoft Exchange، مما يتيح لك تحميل القطع الفنية إلى حساب منظمتك في منصة Mulesoft Anypoint.
+* تم تحديد [بيانات اعتماد Mulesoft Exchange (اسم المستخدم وكلمة المرور)](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange#deploying-a-policy-created-using-the-maven-archetype) في الملف `<MAVEN_DIRECTORY>/conf/settings.xml`.
+* التطبيق والواجهة البرمجية (API) مرتبطين ويعملان على Mulesoft.
 
-## النشر
+## التنفيذ
 
-لتأمين واجهات برمجة التطبيقات على منصة Mulesoft Anypoint باستخدام السياسة Wallarm ، اتبع هذه الخطوات:
+لتأمين الواجهات البرمجية (APIs) على منصة Mulesoft Anypoint باستخدام سياسة Wallarm، اتبع هذه الخطوات:
 
-1. نشر عقدة Wallarm باستخدام واحدة من خيارات النشر المتاحة.
-1. الحصول على النهج Wallarm وتحميله إلى Mulesoft Exchange.
-1. أرفق النهج Wallarm بـ API الخاص بك.
+1. قم بتطبيق عقدة Wallarm باستخدام واحدة من خيارات التنفيذ المتوفرة.
+1. الحصول على سياسة Wallarm وتحميلها إلى Mulesoft Exchange.
+1. اعتمد سياسة Wallarm على الواجهة البرمجية (API) الخاصة بك.
 
-### 1. نشر عقدة Wallarm
+### 1. تطبيق عقدة Wallarm
 
-1. اختر واحدة من حلول نشر عقدة Wallarm المدعومة أو العناصر الفنية لـ [in-line deployment](../supported-deployment-options.md#in-line) واتبع التعليمات المقدمة للنشر.
-1. تكوين العقدة المنشورة باستخدام القالب التالي:
+1. اختر أحد حلول تطبيق العقدة Wallarm المدعومة أو القطع الفنية لـ [تطبيق العقدة](../supported-deployment-options.md#in-line) واتبع التعليمات التي تم توفيرها.
+1. قم بتكوين العقدة المنفذة باستخدام النموذج التالي:
 
     ```
     server {
@@ -106,30 +106,30 @@
     }
     ```
 
-    الرجاء التأكد من الانتباه إلى التكوينات التالية:
+    يرجى التأكد من الانتباه للتكوينات التالية:
 
-    * شهادات TLS / SSL لحركة مرور HTTPS: لتمكين العقدة Wallarm من التعامل مع حركة مرور HTTPS الآمنة ، قم بتكوين شهادات TLS / SSL وفقًا لذلك. سيعتمد التكوين الخاص على طريقة النشر المختارة. على سبيل المثال ، إذا كنت تستخدم NGINX ، يمكنك الرجوع إلى [its article](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) للحصول على الإرشادات.
-    * [Wallarm operation mode](../../admin-en/configure-wallarm-mode.md) التكوين.
+    * شهادات TLS/SSL لحركة المرور HTTPS: لتمكين العقدة Wallarm من التعامل مع حركة المرور HTTPS الآمنة، قم بتهيئة شهادات TLS/SSL وفقا لذلك. ستعتمد التكوينات المحددة على طريقة التنفيذ المختارة. على سبيل المثال، إذا كنت تستخدم NGINX، يمكنك الرجوع إلى [مقالته](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) للحصول على التوجيه.
+    * [تهيئة وضع التشغيل Wallarm](../../admin-en/configure-wallarm-mode.md).
     
-        عند استخدام تحليل حركة مرور خارج الحزمة ، يمكن لـ Wallarm أن يعمل فقط في وضع المراقبة لأنه لا يمكنه حجب الطلبات الخبيثة. بغض النظر عن وضع ‘wallarm_mode’، ما عدا ‘off’، ستظل العقدة تراقب وتسجل فقط المرور الخبيث.
+        عند استخدام تحليل حركة المرور خارج النطاق، يمكن لـ Wallarm أن تعمل فقط في وضع المراقبة لأنها لا تستطيع حظر الطلبات الخبيثة. بغض النظر عن إعداد التوجيه `wallarm_mode`، باستثناء `off`، ستستمر العقدة في مراقبة وتسجيل الحركة المرور الخبيثة فقط.
 
-1. بمجرد اكتمال النشر ، قم بتدوين IP على العقدة كما ستحتاجه لاحقًا لتعيين العنوان لتوجيه الطلبات الواردة.
+1. بمجرد اكتمال التنفيذ، اقم بملاحظة IP العقدة لأنك ستحتاجه لاحقًا لتعيين عنوان للطلبات الواردة.
 
-### 2. الحصول وتحميل النهج Wallarm إلى Mulesoft Exchange
+### 2. الحصول على سياسة Wallarm ورفعها إلى Mulesoft Exchange
 
-للحصول على و [upload](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange) النهج Wallarm إلى Mulesoft Exchange ، اتبع هذه الخطوات:
+للحصول على سياسة Wallarm و[رفعها](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange) إلى Mulesoft Exchange، قم باتباع الخطوات التالية:
 
-1. التواصل مع [support@wallarm.com](mailto:support@wallarm.com) للحصول على نهج Mulesoft Wallarm.
+1. تواصل مع [support@wallarm.com](mailto:support@wallarm.com) للحصول على سياسة Wallarm الخاصة بـ Mulesoft.
 1. استخرج أرشيف السياسة بمجرد تلقيه.
 1. انتقل إلى دليل السياسة:
 
     ```
     cd <POLICY_DIRECTORY/wallarm
     ```
-1. ضمن الملف `pom.xml` → الحقل `groupId` في أعلى الملف ، حدد Mulesoft Business Group ID الخاص بك.
+1. في ملف `pom.xml` → من-> `معلمة groupId` في أعلى الملف، حدد معرف الجماعة التجارية Mulesoft الخاصة بك.
 
-    يمكنك العثور على معرّف المنظمة الخاصة بك عن طريق التنقل إلى Mulesoft Anypoint Platform → **Access Management** → **Business Groups** → اختر منظمتك → انسخ معرّفها.
-1. في دليل Maven `.m2` الخاص بك ، حدث الملف `settings.xml` ببيانات التفويض الخاصة بك في Exchange:
+    يمكنك العثور على معرف المنظمة عن طريق التنقل إلى Mulesoft Anypoint Platform → **Access Management** → **Business Groups** → اختر منظمتك → نسخ معرفها.
+1. في دليل Maven `.m2` الخاص بك، قم بتحديث ملف `settings.xml` ببيانات اعتمادك لـ Exchange:
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -145,73 +145,73 @@
       </servers>
     </settings>
     ```
-1. نشر النهج إلى Mulesoft باستخدام الأمر التالي:
+1. قم بتطبيق السياسة على Mulesoft باستخدام الأمر التالي:
 
     ```
     mvn clean deploy
     ```
 
-السياسة المخصصة الخاصة بك متاحة الآن في Exchange لمنظمتك على منصة Mulesoft Anypoint.
+سياستك الخاصة متاحة الآن في بورصة منصة Mulesoft Anypoint الخاصة بك.
 
-![Mulesoft مع النهج Wallarm](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+![عقدة Mulesoft مع Wallarm](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
 
-### 3. أرفق النهج Wallarm بـ API الخاص بك
+### 3. اعتماد سياسة Wallarm على الواجهة البرمجية (API)
 
-يمكنك أن ترفق النهج Wallarm إلى جميع واجهات برمجة التطبيقات أو واجهة برمجة تطبيق واحدة.
+يمكنك اعتماد سياسة Wallarm على جميع الواجهات البرمجية (APIs) أو الواجهة البرمجية الفردية.
 
-#### ربط النهج بجميع واجهات برمجة التطبيقات
+#### اعتماد السياسة على جميع الواجهات البرمجية (APIs)
 
-لتطبيق النهج Wallarm على جميع واجهات برمجة التطبيقات باستخدام [Mulesoft's Automated policy option](https://docs.mulesoft.com/gateway/1.4/policies-automated-applying) اتبع الخطوات التالية:
+لتطبيق سياسة Wallarm على جميع الواجهات البرمجية (APIs) باستخدام [خيار سياسة Mulesoft المؤتمتة](https://docs.mulesoft.com/gateway/1.4/policies-automated-applying)، اتبع الخطوات التالية:
 
-1. في Anypoint Platform الخاص بك ، انتقل إلى **API Manager** → **Automated Policies**.
-1. النقر على **Add automated policy** واختر النهج Wallarm من Exchange.
-1. حدد `WLRM REPORTING ENDPOINT` وهو عنوان IP على ال [Wallarm node instance](#1-deploy-a-wallarm-node) بما في ذلك `http://` أو `https://`.
-1. إذا لزم الأمر ، قم بتعديل الفترة الزمنية القصوى لـ Wallarm لمعالجة طلب واحد عن طريق تغيير قيمة `WALLARM NODE REQUEST TIMEOUT`.
-1. طبق النهج.
+1. في منصة Anypoint الخاصة بك، انتقل إلى **API Manager** → **Automated Policies**.
+1. انقر على **Add automated policy** ثم حدد سياسة Wallarm من Exchange.
+1. حدد `WLRM REPORTING ENDPOINT` والذي هو عنوان IP على [نموذج العقدة Wallarm](#1-deploy-a-wallarm-node) بما في ذلك `http://` أو `https://`.
+1. عند الحاجة، قم بتعديل الوقت الأقصى المسموح به لـ Wallarm للتعامل مع طلب واحد عن طريق تغيير قيمة `WALLARM NODE REQUEST TIMEOUT`.
+1. طبق السياسة.
 
-![Wallarm policy](../../images/waf-installation/gateways/mulesoft/automated-policy.png)
+![سياسة Wallarm](../../images/waf-installation/gateways/mulesoft/automated-policy.png)
 
-#### ربط النهج بواجهة برمجة تطبيق واحدة
+#### اعتماد السياسة على واجهة برمجية فردية
 
-لتأمين واجهة برمجة التطبيقات الفردية مع النهج Wallarm اتبع هذه الخطوات:
+لتأمين واجهة برمجية فردية باستخدام سياسة Wallarm، اتبع الخطوات التالية:
 
-1. في Anypoint Platform الخاص بك، انتقل إلى **API Manager** واختر واجهة برمجة التطبيقات المرغوبة.
-1. انتقل إلى **Policies** → **Add policy** واختر النهج Wallarm.
-1. حدد `WLRM REPORTING ENDPOINT` وهو عنوان IP على ال [Wallarm node instance](#1-deploy-a-wallarm-node) بما في ذلك `http://` أو `https://`.
-1. إذا لزم الأمر ، قم بتعديل الفترة الزمنية القصوى لـ Wallarm لمعالجة طلب واحد بتغيير قيمة `WALLARM NODE REQUEST TIMEOUT`.
-1. طبق النهج.
+1. في منصة Anypoint الخاصة بك، انتقل إلى **API Manager** واختر الواجهة البرمجية المطلوبة.
+1. نقل إلى **Policies** → **Add policy** واختر سياسة Wallarm.
+1. حدد `WLRM REPORTING ENDPOINT` والذي هو عنوان IP على [نموذج العقدة Wallarm](#1-deploy-a-wallarm-node) بما في ذلك `http://` أو `https://`.
+1. عند الحاجة، قم بتعديل الوقت الأقصى المسموح به لـ Wallarm للتعامل مع طلب واحد عن طريق تغيير قيمة `WALLARM NODE REQUEST TIMEOUT`.
+1. طبق السياسة.
 
-![Wallarm policy](../../images/waf-installation/gateways/mulesoft/policy-for-an-api.png)
+![سياسة Wallarm](../../images/waf-installation/gateways/mulesoft/policy-for-an-api.png)
 
 ## الاختبار
 
-لاختبار وظيفة النهج المنشور ، اتبع هذه الخطوات:
+لاختبار وظائف السياسة المنفذة، اتبع الخطوات التالية:
 
-1. أرسل الطلب مع الاختبار [Path Traversal][ptrav-attack-docs] هجوم إلى API الخاص بك:
+1. أرسل الطلب مع الاختبار [هجوم التنقل لاختبار المسار](ptrav-attack-docs) إلى الواجهة البرمجية (API) الخاصة بك:
 
     ```
     curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
     ```
-1. افتح Wallarm Console → قسم **Attacks** في ال [US Cloud](https://us1.my.wallarm.com/attacks) أو [EU Cloud](https://my.wallarm.com/attacks) وتأكد من عرض الهجوم في القائمة.
+1. افتح واجهة Wallarm → القسم **Attacks** في [US Cloud](https://us1.my.wallarm.com/attacks) أو [EU Cloud](https://my.wallarm.com/attacks) وتأكد من أن الهجوم يظهر في القائمة.
     
-    ![الهجمات في واجهة الاستخدام][attacks-in-ui-image]
+    ![الهجمات في الواجهة][attacks-in-ui-image]
 
-    إذا تم ضبط وضع العقدة Wallarm على الحجب وتدفق الحركة في السطر ، سيتم حجب الطلب أيضًا.
+    إذا كان وضع العقدة Wallarm مضبوطًا على الحظر وتدفق حركة المرور في الطريق المتصل، سيتم حظر الطلب أيضًا.
 
-إذا لم تعمل الحلول وفقًا للتوقعات ، فرجع إلى سجلات API الخاصة بك عن طريق الوصول إلى Mulesoft Anypoint Platform → **Runtime Manager** → التطبيق الخاص بك → **Logs**.
+إذا لم يقم الحل بالأداء المتوقع، راجع سجلات الواجهة البرمجية الخاصة بك عبر الذهاب إلى Mulesoft Anypoint Platform → **Runtime Manager** → التطبيق الخاص بك → **Logs**.
 
-يمكنك أيضًا التحقق مما إذا كانت السياسة مطبقة على API عن طريق التنقل إلى API الخاصة بك في **API Manager** ومراجعة السياسات المطبقة على العلامة التبويب **Policies**. بالنسبة للسياسات المؤتمتة ، يمكنك استخدام الخيار **See covered APIs** لعرض واجهات برمجة التطبيقات المغطاة وأسباب أي استثناءات.
+يمكنك أيضًا التحقق من تطبيق السياسة على الواجهة البرمجية (API) من خلال التنقل إلى الواجهة البرمجية (API) الخاصة بك في **API Manager** ومراجعة السياسات المطبقة على علامة التبويب **Policies**. للسياسات المؤتمتة، يمكنك استخدام خيار **See covered APIs** لمشاهدة الواجهات البرمجية (APIs) المغطاة وأسباب أي استبعادات.
 
-## التحديث والإلغاء
+## التحديث وإلغاء التثبيت
 
-لتحديث النهج المنشور من Wallarm ، اتبع هذه الخطوات:
+لتحديث سياسة Wallarm المنفذة، اتبع الخطوات التالية:
 
-1. أزل النهج Wallarm المنشور حاليًا باستخدام الخيار **Remove policy** في إما قائمة النهج المؤتمتة أو قائمة النهج المطبقة على واجهة برمجة تطبيق فردية.
-1. أضف النهج الجديدة باتباع الخطوات 2-3 أعلاه.
-1. أعِد بدء التطبيقات المرتبطة في	**Runtime Manager** لتطبيق النهج الجديد.
+1. قم بإزالة سياسة Wallarm المنفذة حاليًا باستخدام خيار **Remove policy** في إما القائمة السياسة المؤتمتة أو في قائمة السياسات المطبقة على واجهة برمجية فردية.
+1. أضف السياسة الجديدة متبعًا الخطوات 2-3 أعلاه.
+1. أعد تشغيل التطبيقات المرتبطة في **Runtime Manager** لتطبيق السياسة الجديدة.
 
-لإلغاء تثبيت النهج ، ببساطة قم بتنفيذ الخطوة الأولى من عملية التحديث.
+لإلغاء تثبيت السياسة، قم فقط بتنفيذ الخطوة الأولى من عملية التحديث.
 
-## بحاجة لمساعدة؟
+## الحاجة لمساعدة؟
 
-إذا واجهتك أي مشاكل أو في حاجة إلى مساعدة مع النشر الموصوف لـ Wallarm's policy بالتزامن مع MuleSoft الخاص بك ، يمكنك التواصل مع فريق الدعم في [Wallarm support](mailto:support@wallarm.com) team. حيث يسعدون بتوفير التوجيه ومساعدتك في حل أي مشاكل قد تواجهك أثناء عملية التنفيذ.
+إذا واجهت أي مشكلات أو بحاجة إلى مساعدة في عملية التنفيذ الموصوفة لسياسة Wallarm بالتعاون مع MuleSoft، يمكنك الاتصال بفريق [دعم Wallarm](mailto:support@wallarm.com). فهم متاحون لتقديم الإرشادات ومساعدتك في حل أي مشاكل قد تواجهك خلال عملية التطبيق.

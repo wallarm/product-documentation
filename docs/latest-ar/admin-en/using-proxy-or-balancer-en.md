@@ -1,54 +1,54 @@
 # تحديد عنوان IP الأصلي للعميل عند استخدام وكيل HTTP أو موزع الحمولة (NGINX)
 
-تصف هذه التعليمات البرمجة المطلوبة لـ NGINX لتحديد عنوان IP الأصلي للعميل الذي يتصل بخوادمك عبر وكيل HTTP أو موزع الحمولة.
+تصف هذه التعليمات التجهيزات الضرورية لتهيئة NGINX لتحديد عنوان IP الأصلي لعميل يتصل بخوادمك من خلال وكيل HTTP أو موزع حمولة.
 
-* إذا تم تثبيت عقدة Wallarm من الحزم DEB / RPM ، أو AWS / GCP images ، أو صورة Docker المستندة إلى NGINX ، يرجى استخدام **التعليمات الحالية**.
-* إذا تم نشر عقدة Wallarm بصفتها وحدة تحكم Ingress لـ K8s ، فيرجى استخدام [هذه التعليمات](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md).
+* إذا تم تثبيت وحدة Wallarm من الحزم DEB / RPM ، AWS / GCP images أو صورة Docker المستندة على NGINX ، يرجى استخدام **التعليمات الحالية** .
+* إذا تم نشر الوحدة  Wallarm كمراقب الدخول K8s  ، يرجى استخدام [هذه التعليمات](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md).
 
-## كيفية تحديد عقدة Wallarm لعنوان IP للطلب
+## كيف تحدد الوحدة Wallarm عنوان IP للطلب
 
-تقرأ عقدة Wallarm عنوان IP المصدر للطلب من المتغير NGINX `$remote_addr`. إذا تم تمرير الطلب عبر خادم وكيل أو موزع الحمولة قبل إرساله إلى العقدة، فستحتفظ المتغير `$remote_addr` بعنوان IP لخادم الوكيل أو موزع الحمولة.
+تقرأ الوحدة Wallarm عنوان IP المصدر للطلب من المتغير NGINX `$remote_addr`. إذا مر الطلب عبر خادم الوكيل أو موزع الحمولة قبل إرساله إلى الوحدة ، فيحتفظ المتغير `$remote_addr` بعنوان IP لخادم الوكيل أو  موزع الحمولة.
 
 ![استخدام الموزع](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
 
-يتم عرض عنوان IP المصدر للطلب الذي تم تحديده بواسطة عقدة Wallarm في [تفاصيل الهجوم](../user-guides/events/check-attack.md#attacks) في Wallarm Console.
+يتم عرض عنوان IP الأصلي للطلب الذي تم تحديده بواسطة وحدة Wallarm في [تفاصيل الهجوم](../user-guides/events/check-attack.md#attacks) في لوحة التحكم Wallarm.
 
-## مشاكل محتملة في استخدام عنوان IP لخادم الوكيل أو موزع الحمولة كعنوان مصدر للطلب
+## المشاكل الممكنة عند استخدام عنوان IP لخادم وكيل أو موزع حمولة كعنوان مصدر للطلب
 
-إذا كانت عقدة Wallarm تعتبر عنوان IP خادم الوكيل أو موزع الحمولة عنوان IP لمصدر الطلب ، فقد لا تعمل الميزات التالية من Wallarm بشكل صحيح:
+إذا اعتبرت الوحدة Wallarm أن عنوان IP الخادم الوكيل أو موزع الحمولة هو عنوان IP المصدر للطلب ، فقد تعمل الميزات التالية لـ Wallarm بشكل غير صحيح:
 
-* [التحكم في الوصول إلى التطبيقات حسب عناوين IP](../user-guides/ip-lists/overview.md) ، على سبيل المثال:
+* [التحكم في الوصول إلى التطبيقات بناءً على عناوين IP](../user-guides/ip-lists/overview.md) ، على سبيل المثال:
 
-	إذا تم إدراج عناوين IP العميل الأصلية في القائمة السوداء ، فلن تحظر عقدة Wallarm الطلبات الناشئة عنها لأنها تعتبر عنوان IP موزع الحمولة عنوان IP لمصدر الطلب.
-* [الحماية من الهجمات المتكررة](configuration-guides/protecting-against-bruteforce.md) ، على سبيل المثال:
+   إذا تم رفض الوصول لعناوين IP العملاء الأصلية ، فإن الوحدة Wallarm لن تكتفي بمنع الطلبات المنشأة من هذه العناوين حيث تعتبر أن عنوان IP موزع الحمولة هو عنوان المصدر.
+* [حماية من الهجمات القوية](configuration-guides/protecting-against-bruteforce.md) ، على سبيل المثال:
 
- 	إذا كانت الطلبات المارة عبر موزع الحمولة لديها علامات هجوم غاشمة ، فستحجب Wallarm عنوان IP هذا الموزع وبالتالي ستحجب جميع الطلبات اللاحقة التي تم تمريرها عبر موزع الحمولة هذا.
-* وحدة [التحقق من التهديد النشط](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) و [ماسح الثغرات الأمنية](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) ، على سبيل المثال:
+    إذا كانت الطلبات التي تمر عبر موزع الحمولة تحتوي على علامات هجوم قوية ، فسوف تضيف Wallarm هذا العنوان IP إلى قائمة الرفض وبالتالي ستمنع جميع الطلبات اللاحقة التي تعبر عبر هذا الموزع.
+* النموذج [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) و [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) ، على سبيل المثال:
 
-	ستعتبر Wallarm أن عنوان IP لموزع الحمولة هو [عنوان IP الذي تم إنشاء هجمات الاختبار منه](../admin-en/scanner-addresses.md) الذي تم إنشاؤه بواسطة وحدة التحقق من التهديد النشط وماسح الثغرات الأمنية. وبهذه الطريقة ، ستتم عرض هجمات الاختبار في وحدة التحكم في Wallarm كهجمات نشأت من عنوان IP لموزع الحمولة وسيتم التحقق منها بشكل إضافي من قبل Wallarm مما سيؤدي إلى إنشاء حمولة إضافية على التطبيق.
+    ستعتبر Wallarm أن عنوان IP الموزع هو [عنوان IP المنشئ للهجمات الاختبار](../admin-en/scanner-addresses.md) التي تم إنشاؤها بواسطة  Active threat verification module و Vulnerability Scanner. وبالتالي، سيتم عرض الهجمات الاختبار في لوحة التحكم Wallarm كهجمات نشأت من عنوان IP للموزع وسيتم التحقق منها إضافياً من Wallarm مما سيؤدي إلى إنشاء حمولة إضافية على التطبيق.
 
-إذا كانت عقدة Wallarm متصلة عبر [مقبس IPC](https://en.wikipedia.org/wiki/Unix_domain_socket) ، ثم سيتم اعتبار `0.0.0.0` كمصدر للطلب.
+إذا كانت الوحدة Wallarm متصلة عبر [IPC socket](https://en.wikipedia.org/wiki/Unix_domain_socket)، فيعتبر `0.0.0.0` كمصدر للطلب.
 
-## التكوين لتحديد عنوان IP العميل الأصلي
+## التهيئة لتحديد عنوان IP العميل الأصلي
 
-لتكوين تحديد عنوان IP العميل الأصلي ، يمكنك استخدام [وحدة NGINX **ngx_http_realip_module**](https://nginx.org/en/docs/http/ngx_http_realip_module.html). تتيح لك هذه الوحدة إعادة تعريف قيمة `$remote_addr` [المستخدمة](#how-wallarm-node-identifies-an-ip-address-of-a-request) من قبل عقدة Wallarm للحصول على عنوان IP العميل.
+لتكوين تحديد عنوان IP العميل الأصلي، يمكنك استخدام [NGINX module **ngx_http_realip_module**](https://nginx.org/en/docs/http/ngx_http_realip_module.html). يسمح هذا الوحدة بإعادة تعريف قيمة `$remote_addr` [المستخدمة](#how-wallarm-node-identifies-an-ip-address-of-a-request) بواسطة وحدة Wallarm للحصول على عنوان IP العميل.
 
-يمكنك استخدام وحدة NGINX **ngx_http_realip_module** بأحد الطرق التالية:
+يمكنك استخدام وحدة NGINX **ngx_http_realip_module** في أحد الطرق التالية:
 
-* لقراءة عنوان IP العميل الأصلي من رأس معين (عادةً ، [`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For)) تمت إضافته إلى الطلب بواسطة موزع الحمولة أو خادم الوكيل.
-* إذا كان خادم الوكيل أو موزع الحمولة يدعم [بروتوكول PROXY](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt) ، لقراءة عنوان IP العميل الأصلي من الرأس `PROXY`.
+* لقراءة عنوان IP العميل الأصلي من رأس محدد (عادة، [`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For)) تمت إضافته إلى الطلب بواسطة موزع الحمولة أو خادم الوكيل.
+* إذا كان موزع الحمولة أو خادم الوكيل يدعم بروتوكول [PROXY](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt)، يمكنك قراءة عنوان IP العميل الأصلي من الرأس `PROXY`.
 
-### تكوين NGINX لقراءة الرأس `X-Forwarded-For` (`X-Real-IP` أو ما شابه)
+### تكوين NGINX لقراءة رأس `X-Forwarded-For` (`X-Real-IP` أو مماثل)
 
-إذا كان خادم الوكيل أو موزع الحمولة يضيف الرأس `X-Forwarded-For` (`X-Real-IP` أو ما شابه) الذي يحتوي على عنوان IP العميل الأصلي, يرجى تكوين وحدة NGINX **ngx_http_realip_module** لقراءة هذا الرأس على النحو التالي:
+إذا قمت بإضافة موزع الحمولة أو خادم الوكيل الرأس `X-Forwarded-For` (`X-Real-IP` أو ما شابه) الذي يحتوي على عنوان IP العميل الأصلي ، يرجى تهيئة الوحدة NGINX **ngx_http_realip_module** لقراءة هذا الرأس على النحو التالي:
 
-1. افتح ملف التهيئة التالي لـ NGINX المثبت مع عقدة Wallarm:
+1. افتح الملف التالي لإعدادات NGINX المثبتة مع الوحدة Wallarm:
 
-    * `/etc/nginx/conf.d/default.conf` إذا تم تثبيت عقدة Wallarm من حزم الـ DEB / RPM أو المُثبت الشامل.
-    * `/etc/nginx/nginx.conf` إذا تم نشر عقدة Wallarm من صورة AWS / GCP.
-    * إذا تم نشر عقدة Wallarm من صورة Docker المُستندة إلى NGINX ، يجب عليك إنشاء وتحرير ملف التكوين NGINX محليًا وتركيبه على الحاوية Docker على المسار `/etc/nginx/sites-enabled/default`. يمكنك نسخ ملف تكوين NGINX الأولي والحصول على التعليمات حول تركيب الملف على الحاوية من [تعليمات Docker الخاصة بـ Wallarm NGINX](installation-docker-en.md#run-the-container-mounting-the-configuration-file).
-2. في سياق `location` NGINX أو أعلى، أضف التوجيه `set_real_ip_from` بعنوان IP لخادم الوكيل أو موزع الحمولة. إذا كان لدى خادم الوكيل أو موزع الحمولة عدة عناوين IP ، يرجى إضافة عدد منفصل من التوجيهات. مثلا:
-
+    * `/etc/nginx/conf.d/default.conf`  إذا تم تثبيت الوحدة Wallarm من الحزم DEB / RPM أو كمثبت كل في واحد.
+    * `/etc/nginx/nginx.conf` إذا تم نشر الوحدة Wallarm من صورة AWS / GCP.
+    * إذا تم نشر الوحدة Wallarm من صورة Docker المستندة على NGINX، فيجب أن تقوم بإنشاء وتعديل ملف التهيئة NGINX محليا وتركيبه على الحاوية Docker على المسار `/etc/nginx/sites-enabled/default`. يمكنك نسخ ملف التهيئة الأولي NGINX والحصول على التعليمات على تركيب الملف على الحاوية من [تعليمات Docker المستندة على Wallarm NGINX](installation-docker-en.md#run-the-container-mounting-the-configuration-file).
+2. في سياق `location` في NGINX أو أعلى ، أضف التوجيه `set_real_ip_from` مع عنوان IP لخادم الوكيل أو موزع الحمولة. إذا كان للوكيل أو موزع الحمولة عدة عناوين IP ، يرجى إضافة عدد منفصل من التوجيهات المناسبة. على سبيل المثال:
+        
     ```bash
     ...
     location / {
@@ -59,10 +59,10 @@
     }
     ...
     ```
-2. في الوثائق المتعلقة بموزع الحمولة المستخدم ، ابحث عن اسم الرأس الذي يتم إلحاقه بهذا الموزع لتمرير عنوان IP العميل الأصلي. في الغالب ، يُطلق على الرأس اسم `X-Forwarded-For`.
-3. في سياق `location` NGINX أو أعلى، أضف التوجيه `real_ip_header` مع اسم الرأس الذي تم العثور عليه في الخطوة السابقة. مثال :
+2. في وثائق التعليمات المرفقة مع موزع الحمولة المستخدم ، ابحث عن اسم الرأس المضاف بواسطة موزع الحمولة هذا لتمرير عنوان IP العميل الأصلي. في الغالب ، يسمى الرأس `X-Forwarded-For`.
+3. في سياق `location` في NGINX أو أعلى ، أضف التوجيه `real_ip_header` مع اسم الرأس الذي تم العثور عليه في الخطوة السابقة. على سبيل المثال:
 
-	```bash
+    ```bash
     ...
     location / {
         wallarm_mode block;
@@ -73,27 +73,26 @@
     }
     ...
     ```
-4. إعادة تشغيل NGINX:
+4. أعد تشغيل NGINX:
 
     --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
-    ستقوم NGINX بتعيين قيمة الرأس المحددة في توجيه `real_ip_header` إلى المتغير `$remote_addr` ، لذا ستقرأ عقدة Wallarm عناوين IP العملاء الأصلية من هذا المتغير.
-5. [اختبر التكوين](#testing-the-configuration).
+    سيقوم NGINX بتعيين قيمة الرأس المحددة في التوجيه `real_ip_header` إلى المتغير `$remote_addr` ، لذا ستقرأ الوحدة Wallarm عناوين IP العملاء الأصلية من هذا المتغير.
+5. [اختبر التهيئة](#testing-the-configuration).
 
 ### تكوين NGINX لقراءة الرأس `PROXY`
 
-إذا كان خادم الوكيل أو موزع الحمولة يدعم [البروتوكول PROXY](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt) ، يمكنك تكوين وحدة NGINX **ngx_http_realip_module** لقراءة الرأس `PROXY` كما يلي:
+إذا كان موزع الحمولة أو خادم الوكيل يدعم بروتوكول [PROXY](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt)، يمكنك تكوين الوحدة NGINX **ngx_http_realip_module** لقراءة الرأس `PROXY` على النحو التالي:
 
-1. افتح ملف التهيئة التالي لـ NGINX المثبت مع عقدة Wallarm:
+1. افتح الملف التالي لإعدادات NGINX المثبتة مع الوحدة Wallarm:
 
-    * `/etc/nginx/conf.d/default.conf` إذا تم تثبيت عقدة Wallarm من حزم DEB / RPM أو المُثبت الشامل.
-    * `/etc/nginx/nginx.conf` إذا تم نشر عقدة Wallarm من صورة AWS / GCP.
-    * إذا تم نشر عقدة Wallarm من صورة Docker المُستندة إلى NGINX ، يجب عليك إنشاء وتحرير ملف التكوين NGINX محليًا وتركيبه على الحاوية Docker على المسار `/etc/nginx/sites-enabled/default`. يمكنك نسخ ملف تكوين NGINX الأولي والحصول على التعليمات حول تركيب الملف على الحاوية من [تعليمات Docker الخاصة بـ Wallarm NGINX](installation-docker-en.md#run-the-container-mounting-the-configuration-file).
-2. في سياق `server` NGINX ، أضف العامل `proxy_protocol` إلى التوجيه `listen`.
-3. في سياق `location` NGINX أو أعلى، أضف التوجيه `set_real_ip_from` بعنوان IP لخادم الوكيل أو موزع الحمولة. إذا كان لدى خادم الوكيل أو موزع الحمولة عدة عناوين IP ، يرجى إضافة عدد منفصل من التوجيهات، على سبيل المثال:
-4. في سياق `location` NGINX أو أعلى، أضف التوجيه `real_ip_header` بقيمة `proxy_protocol`.
-
-    مثال لملف تكوين NGINX مع جميع التوجيهات المضافة:
+   * `/etc/nginx/conf.d/default.conf`  إذا تم تثبيت الوحدة Wallarm من الحزم DEB / RPM أو كمثبت كل في واحد.
+    * `/etc/nginx/nginx.conf` إذا تم نشر الوحدة Wallarm من صورة AWS / GCP.
+    * إذا تم نشر الوحدة Wallarm من صورة Docker المستندة على NGINX، فيجب أن تقوم بإنشاء وتعديل ملف التهيئة NGINX محليا وتركيبه على الحاوية Docker على المسار `/etc/nginx/sites-enabled/default`. يمكنك نسخ ملف التهيئة الأولي NGINX والحصول على التعليمات على تركيب الملف على الحاوية من [تعليمات Docker المستندة على Wallarm NGINX](installation-docker-en.md#run-the-container-mounting-the-configuration-file).
+2. في سياق `server` بـ NGINX ، أضف البارامتر `proxy_protocol` إلى التوجيه `listen`.
+3. في سياق `location` في NGINX أو أعلى ، أضف التوجيه `set_real_ip_from` مع عنوان IP لخادم الوكيل أو موزع الحمولة. إذا كان للوكيل أو موزع الحمولة عدة عناوين IP ، الرجاء إضافة عدد منفصل من التوجيهات المناسبة.
+4. في سياق `location` في NGINX أو أعلى ، أضف التوجيه `real_ip_header` بقيمة `proxy_protocol`.
+     مثال على ملف تكوين NGINX مع جميع التوجيهات التي تمت إضافتها:
 
     ```bash
     server {
@@ -107,45 +106,45 @@
     }
     ```
 
-    * تستمع NGINX للاتصالات الواردة على المنفذ 80.
-    * إذا لم يتم تمرير الرأس `PROXY` في الطلب الوارد ، فإن NGINX لن تقبل هذا الطلب لأنه يعتبر غير صالح.
-    * بالنسبة للطلبات الناتجة عن العنوان `<IP_ADDRESS_OF_YOUR_PROXY>` ، ستقوم NGINX بإسناد عنوان المصدر الذي تم تمريره في الرأس `PROXY` إلى المتغير `$remote_addr` ، لذا ستقرأ عقدة Wallarm عناوين IP العملاء الأصلية من هذا المتغير.
-5. إعادة تشغيل NGINX:
+    * يستمع NGINX للاتصالات الواردة على المنفذ 80.
+    * إذا لم يتم تمرير الرأس `PROXY` في الطلب الوارد ، لا يقبل NGINX هذا الطلب لأنه يعتبر غير صالح.
+    * بالنسبة للطلبات التي تم إنشاؤها من العنوان `<IP_ADDRESS_OF_YOUR_PROXY>`، سيقوم NGINX بتعيين العنوان المصدر الذي تم تمريره في الرأس `PROXY` إلى المتغير `$remote_addr` ، لذا ستقرأ الوحدة Wallarm عناوين IP العملاء الأصلية من هذا المتغير.
+5. أعد تشغيل NGINX:
 
     --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
-6. [اختبر التكوين](#testing-the-configuration).
+6. [اختبر التهيئة](#testing-the-configuration).
 
-لتضمين عنوان IP العميل الأصلي في السجلات ، يجب أن تضيف التوجيه `proxy_set_header` وتعديل قائمة المتغيرات في التوجيه `log_format` في تكوين NGINX كما هو موضح في [تعليمات تسجيل NGINX](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#logging-the-original-ip-address).
+لإضافة عنوان IP العميل الأصلي في السجلات، يجب عليك إضافة التوجيه `proxy_set_header` وتعديل قائمة المتغيرات في التوجيه `log_format` في تهيئة NGINX كما هو موضح في [تعليمات تسجيل  NGINX](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#logging-the-original-ip-address).
 
-مزيد من التفاصيل حول تحديد عنوان IP العميل الأصلي استنادًا إلى الرأس `PROXY` متاحة في [وثائق NGINX](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#changing-the-load-balancers-ip-address-to-the-client-ip-address).
+المزيد من التفاصيل حول تحديد عنوان IP العميل الأصلي بناءً على الرأس `PROXY` متاحة في [وثائق  NGINX](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#changing-the-load-balancers-ip-address-to-the-client-ip-address).
 
 ### اختبار التهيئة
 
-1. أرسل هجوم الاختبار إلى عنوان التطبيق المحمي:
+1. أرسل الهجوم التجريبي إلى عنوان التطبيق المحمي:
 
-    === "استخدام cURL"
+    === "Using cURL"
         ```bash
         curl http://localhost/etc/passwd
         ```
-    === "استخدام printf و Netcat (للرأس `PROXY`)"
-		```bash
-		printf "PROXY TCP4 <IP_ADDRESS_OF_YOUR_PROXY> <REAL_CLIENT_IP> 0 80\r\nGET /etc/passwd\r\n\r\n" | nc localhost 80
-		```
-2. افتح Wallarm Console وتأكد من ظهور عنوان IP العميل الأصلي في تفاصيل الهجوم:
+    === "Using printf and Netcat (for the header `PROXY`)"
+        ```bash
+        printf "PROXY TCP4 <IP_ADDRESS_OF_YOUR_PROXY> <REAL_CLIENT_IP> 0 80\r\nGET /etc/passwd\r\n\r\n" | nc localhost 80
+        ```
+2. افتح لوحة التحكم Wallarm وتأكد من أن عنوان IP العميل الأصلي يظهر في تفاصيل الهجوم:
 
-    ![عنوان IP الذي نشأ عن الطلب](../images/request-ip-address.png)
+    ![عنوان IP منشئ الطلب](../images/request-ip-address.png)
 
-    إذا قرأت NGINX العنوان الأصلي من الرأس `X-Forwarded-For` (`X-Real-IP` أو ما يشبه) ، فإن قيمة الرأس ستتم أيضًا عرضها في الهجوم الخام.
+  إذا قرأ NGINX العنوان الأصلي من الرأس `X-Forwarded-For` (`X-Real-IP` أو ما شابه) ، سيتم أيضاً عرض قيمة الرأس في الهجوم الأصلي.
 
     ![رأس X-Forwarded-For](../images/x-forwarded-for-header.png)
 
-## أمثلة التكوين
+## أمثلة على التهيئة
 
-أدناه ستجد أمثلة على تهيئة NGINX المطلوبة لتحديد عنوان IP الأصلي للعميل الذي يتصل بخوادمك من خلال موزعات الحمولة الشائعة.
+أدناه ستجد أمثلة التكوين الضروري لـ NGINX لتحديد عنوان IP العميل الأصلي الذي يتصل بخوادمك عبر شبكات موزعو الحمولة الشائعة.
 
-### CDن Cloudflare
+### Cloudflare CDN
 
-إذا كنت تستخدم شبكة توزيع المحتوى Cloudflare ، يمكنك [تكوين وحدة NGINX **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) لتحديد عناوين IP الأصلية للعملاء.
+عند استخدام Cloudflare CDN، يمكنك [تكوين وحدة NGINX **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) لتحديد عناوين IP العملاء الأصلية.
 
 ```bash
 ...
@@ -177,12 +176,12 @@ real_ip_recursive on;
 ...
 ```
 
-* قبل حفظ التكوين ، يرجى التأكد من أن عناوين IP لـ Cloudflare المحددة في التكوين أعلاه تتطابق مع تلك الموجودة في [وثائق Cloudflare](https://www.cloudflare.com/ips/). 
-* يمكنك تحديد `CF-Connecting-IP` أو `X-Forwarded-For` كقيمة للتوجيه `real_ip_header`. تُلحق شبكة توزيع المحتوى Cloudflare كلا الرأسين ويمكنك تكوين NGINX لقراءة أي منهما. [مزيد من التفاصيل في شبكة توزيع المحتوى Cloudflare](https://support.cloudflare.com/hc/en-us/articles/200170786-Restoring-original-visitor-IPs).
+* قبل حفظ التهيئة ، يرجى التأكد من أن عناوين IP لـ Cloudflare المحددة في التهيئة أعلاه تطابق تلك الموجودة في [وثائق Cloudflare](https://www.cloudflare.com/ips/). 
+* يمكنك تحديد `CF-Connecting-IP` أو `X-Forwarded-For` كقيمة لتوجيه `real_ip_header`. يقوم Cloudflare CDN بإرفاق كلا الرأسين ويمكنك تكوين NGINX لقراءة أي منهما. [المزيد من التفاصيل في Cloudflare CDN](https://support.cloudflare.com/hc/en-us/articles/200170786-Restoring-original-visitor-IPs)
 
-### CDN Fastly
+### Fastly CDN
 
-إذا كنت تستخدم شبكة توزيع المحتوى Fastly ، يمكنك [تكوين وحدة NGINX **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) لتحديد عناوين IP الأصلية للعملاء.
+اذا تم استخدام Fastly CDN، يمكنك [تكوين وحدة NGINX **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) لتحديد عناوين IP العملاء الأصلية.
 
 ```bash
 ...
@@ -211,27 +210,27 @@ real_ip_recursive on;
 ...
 ```
 
-قبل حفظ التكوين ، يرجى التأكد أن عناوين IP Fastly المحددة في التكوين أعلاه تتطابق مع تلك الموجودة في [وثائق Fastly](https://api.fastly.com/public-ip-list). 
+قبل حفظ التهيئة ، يرجى التأكد من أن عناوين IP لـ Fastly المحددة في التهيئة أعلاه تطابق تلك الموجودة في [وثائق Fastly](https://api.fastly.com/public-ip-list).
 
 ### HAProxy
 
-إذا كنت تستخدم HAProxy ، فيجب تكوين كلا الجانبين من HAProxy و Wallarm node بشكل صحيح لتحديد عناوين IP الأصلية للعملاء:
+عند استخدام HAProxy، يجب تكوين كلا من جوانب HAProxy والوحدة Wallarm بشكل صحيح لتحديد عناوين IP العملاء الأصلية :
 
-* في ملف التهيئة `/etc/haproxy/haproxy.cfg` ، أدخل السطر `option forwardfor header X-Client-IP` إلى كتلة التوجيه `backend` المسؤولة عن ربط HAProxy بـ Wallarm node.
+* في ملف التهيئة `/etc/haproxy/haproxy.cfg`، أدخل السطر `option forwardfor header X-Client-IP` بناءً على حديدة `backend` المسئولة عن ربط HAProxy بالوحدة Wallarm.
 
-	تخبر التوجيه `option forwardfor` موزع الحمولة HAProxy أن يجب إضافة رأس بمعرف IP العميل إلى طلب. [المزيد من التفاصيل في وثائق HAProxy](https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20forwardfor)
+ يخبر توجيه `option forwardfor` الخادم  HAProxy بأن الرأس يجب أن يتم إضافته مع عنوان IP العميل الى الطلب. [المزيد من التفاصيل في  وثائق HAProxy](https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20forwardfor)
 
-	مثال على التكوين:
+     مثال تكوين:
 
     ```
     ...
-    # عنوان IP العام لتلقي الطلبات
+    # عنوان IP العام لاستقبال الطلبات
     frontend my_frontend
         bind <HAPROXY_IP>
         mode http
         default_backend my_backend
 
-    # الخلفية مع عقدة Wallarm
+    # الخلفية مع وحدة Wallarm
     backend my_backend
         mode http
     option forwardfor header X-Client-IP
@@ -239,12 +238,12 @@ real_ip_recursive on;
     ...
     ```
 
-    *   `<HAPROXY_IP>` هو عنوان IP لخادم HAProxy لتلقي طلبات العملاء.
-    *   `<WALLARM_NODE_IP>` هو عنوان IP لعقدة Wallarm لتلقي الطلبات من خادم HAProxy.
+    * `<HAPROXY_IP>` هو عنوان IP لخادم HAProxy لاستقبال طلبات العملاء.
+    * `<WALLARM_NODE_IP>` هو عنوان IP للوحدة Wallarm لاستقبال الطلبات من خادم HAProxy.
 
-* في ملف التكوين لـ NGINX المثبت مع عقدة Wallarm ، فيجب أن تكون [وحدة **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) مكونة كما يلي:
-
-	```bash
+* في ملف التهيئة لـ NGINX المثبتة مع الوحدة Wallarm ، قم بتكوين [وحدة **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) على النحو التالي:
+    
+    ```bash
     ...
     location / {
         wallarm_mode block;
@@ -257,5 +256,5 @@ real_ip_recursive on;
     ...
     ```
 
-    *   `<APPLICATION_IP>` هو عنوان IP للتطبيق المحمي للطلبات من عقدة Wallarm.
-    *   `<HAPROXY_IP1>` و `<HAPROXY_IP2>` هما عناوين IP ل HAProxy التي تمرر الطلبات إلى عقدة Wallarm.
+    * `<APPLICATION_IP>` هو عنوان IP للتطبيق المحمي للطلبات من الوحدة Wallarm.
+    * `<HAPROXY_IP1>` و `<HAPROXY_IP2>` هي عناوين IP لموزعو الحمولة HAProxy الذين يمرون الطلبات إلى الوحدة Wallarm.

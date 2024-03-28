@@ -1,15 +1,15 @@
 # الحماية التلقائية ضد هجمات BOLA <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-الهجمات السلوكية مثل [التفويض على مستوى الكائن المكسور (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola) تستغل ثغرة بنفس الاسم. تسمح هذه الثغرة للمهاجم بالوصول إلى كائن عن طريق المعرف الخاص به عبر طلب API وإما قراءة بياناته أو تعديلها متجاوزًا آلية التفويض.
+الهجمات السلوكية مثل [التفويض المعطل على مستوى الكائن (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola) تستغل نقطة الضعف التي تحمل نفس الاسم. تتيح هذه الثغرة للمهاجم الوصول إلى كائن من خلال معرفه عبر طلب API وإما قراءة بياناته أو تعديلها متجاوزًا آلية التفويض.
 
-الأهداف المحتملة لهجمات BOLA هي نهايات الوصول ذات المتغيرات. يمكن لـ Wallarm اكتشاف مثل هذه النهايات تلقائيًا وحمايتها من بين النقاط التي استكشفها وحدة [اكتشاف API](overview.md).
+الأهداف المحتملة لهجمات BOLA هي النقاط النهائية ذات التغيرات. يمكن لـ Wallarm اكتشاف وحماية هذه النقاط النهائية تلقائيًا من بين تلك التي يستكشفها وحدة [اكتشاف API](overview.md).
 
-لتفعيل حماية BOLA التلقائية، انتقل إلى وحدة التحكم Wallarm → [**حماية BOLA**](../admin-en/configuration-guides/protecting-against-bola.md) وقم بتحويل المفتاح إلى الحالة المفعلة:
+لتفعيل الحماية التلقائية ضد BOLA، انتقل إلى لوحة التحكم Wallarm → [**حماية BOLA**](../admin-en/configuration-guides/protecting-against-bola.md) وقم بتحويل المفتاح إلى وضع التفعيل:
 
-![مشغل BOLA](../images/user-guides/bola-protection/trigger-enabled-state.png)
+![مفتاح BOLA](../images/user-guides/bola-protection/trigger-enabled-state.png)
 
-سيتم تمييز كل نقطة نهاية API محمية بالرمز المناسب في جرد API، مثلاً:
+سيتم تمييز كل نقطة نهاية API محمية بالأيقونة المناسبة في جرد API، على سبيل المثال:
 
-![مشغل BOLA](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
+![مفتاح BOLA](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
 
-يمكنك تصفية نقاط نهاية API حسب حالة الحماية التلقائية BOLA. المعامل المقابل متاح تحت فلتر **الآخرين**.
+يمكنك فلترة نقاط نهاية API حسب حالة الحماية التلقائية ضد BOLA. العامل المطابق متاح تحت فلتر **الآخرين**.

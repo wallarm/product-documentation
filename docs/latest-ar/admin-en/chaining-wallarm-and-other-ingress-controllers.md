@@ -1,65 +1,65 @@
 [node-token-types]:                      ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [nginx-ing-create-node-img]:             ../images/user-guides/nodes/create-wallarm-node-name-specified.png
 
-# سلسلة والآرم وكونترولرات Ingress إضافية في نفس كلاستر Kubernetes
+# سلسلة كونترولرات Wallarm Ingress المضافة في نفس الكومة Kubernetes
 
-تقدم لك هذه التعليمات الخطوات لنشر والآرم Ingress كونترولر في كلاستر K8s الخاص بك وربطه بكونترولرات أخرى تعمل بالفعل في بيئتك.
+تقدم هذه التعليمات الخطوات لنشر كونترولر Wallarm Ingress في كومتك Kubernetes وربطها بالكونترولرات الأخرى التي تعمل بالفعل في بيئتك.
 
-## المشكلة التي تعالجها الحلول
+## المشكلة التي يعالجها الحل
 
-تقدم والآرم برنامج العقد الخاص بها في تنسيقات مختلفة، بما في ذلك [Ingress كونترولر المبني على أساس Ingress NGINX كونترولر المجتمع](installation-kubernetes-en.md).
+تقدم Wallarm برنامجها الأصلي في أشكال مختلفة ، بما في ذلك [كونترولر Ingress المبني على أساس كونترولر Ingress NGINX المجتمع](installation-kubernetes-en.md).
 
-إذا كنت تستخدم بالفعل كونترولر Ingress، قد يكون من الصعب استبدال كونترولر Ingress الحالي بكونترولر والآرم (مثلاً، إذا كنت تستخدم AWS ALB Ingress كونترولر). في هذه الحالة، يمكنك استكشاف [حلول والآرم Sidecar](../installation/kubernetes/sidecar-proxy/deployment.md) ولكن إذا لم يكن مناسبًا أيضًا لبنيتك التحتية، فمن الممكن سلسلة عدة كونترولرات Ingress.
+إذا كنت تستخدم بالفعل كونترولر Ingress ، قد يكون من التحدي أن تستبدل الكونترولر Ingress الحالي بكونترولر Wallarm (على سبيل المثال ، إذا كانت تستخدم AWS ALB Ingress Controller). في هذه الحالة ، يمكنك استكشاف [حل WallarmSidecar](../installation/kubernetes/sidecar-proxy/deployment.md) ولكن إذا لم يناسب بنيتك أيضا ، فمن الممكن ربط عدة كونترولرات Ingress فيما بينها.
 
-تمكنك سلسلة كونترولرات Ingress من استخدام كونترولر موجود للحصول على طلبات المستخدم النهائي إلى الكلاستر، ونشر والآرم Ingress كونترولر إضافي لتوفير الحماية الضرورية للتطبيق.
+تمكنك سلسلة كونترولرات Ingress من استخدام كونترولر موجود للحصول على طلبات المستخدمين النهائيين إلى الكومة ، ونشر كونترولر Ingress إضافي من Wallarm لتوفير الحماية الضرورية للتطبيق.
 
 ## المتطلبات
 
-* إصدار منصة Kubernetes 1.24-1.27
+* نسخة Kubernetes من 1.24 إلى 1.27
 * [Helm](https://helm.sh/) مدير الحزم
-* الوصول إلى الحساب بدور **المسؤول** والتوثيق الثنائي معطل في وحدة التحكم والآرم لـ [السحابة الأمريكية](https://us1.my.wallarm.com/) أو [السحابة الأوروبية](https://my.wallarm.com/)
-* الوصول إلى `https://us1.api.wallarm.com` للعمل مع سحابة والآرم الأمريكية أو إلى `https://api.wallarm.com` للعمل مع سحابة والآرم الأوروبية
-* الوصول إلى `https://charts.wallarm.com` لإضافة مخططات Helm والآرم. تأكد من عدم حجب الوصول بواسطة جدار الحماية
-* الوصول إلى مستودعات والآرم على Docker Hub `https://hub.docker.com/r/wallarm`. تأكد من عدم حجب الوصول بواسطة جدار الحماية
-* الوصول إلى عناوين IP لتخزين Google Cloud المدرجة ضمن [الرابط](https://www.gstatic.com/ipranges/goog.json). عند [قائمة السماح، قائمة الحظر، أو قائمة الرمادي](../user-guides/ip-lists/overview.md) للبلدان، المناطق، أو مراكز البيانات بدلاً من عناوين IP الفردية، يسترد عقد والآرم عناوين IP الدقيقة المتعلقة بالمدخلات في القوائم IP من قاعدة البيانات المجمعة المستضافة على Google Storage
-* تم نشر كلاستر Kubernetes يعمل على كونترولر Ingress
+* الوصول إلى الحساب بدور **المدير** وتعطيل المصادقة الثنائية في Wallarm Console للـ [US Cloud](https://us1.my.wallarm.com/) أو [EU Cloud](https://my.wallarm.com/)
+* الوصول إلى `https://us1.api.wallarm.com` للعمل مع US Wallarm Cloud أو إلى `https://api.wallarm.com` للعمل مع EU Wallarm Cloud
+* الوصول إلى `https://charts.wallarm.com` لإضافة Wallarm Helm charts. تأكد من أن الوصول غير محظور بواسطة جدار الحماية
+* الوصول إلى Wallarm repositories على Docker Hub `https://hub.docker.com/r/wallarm`. تأكد من أن الوصول غير محظور بواسطة جدار الحماية
+* الوصول إلى عناوين IP لـ Google Cloud Storage المدرجة في الـ [link](https://www.gstatic.com/ipranges/goog.json). عندما تضمن ، تستثني ، أو تسلم الكتاب ](../user-guides/ip-lists/overview.md) البلدان بالكامل أو المناطق أو مراكز البيانات بدلاً من عناوين IP فردية ، يستعيد العقدة Wallarm العناوين IP الدقيقة المتعلقة بالإدخالات في قوائم IP من قاعدة البيانات المجمعة المستضافة على Google Storage
+* نشر كومة Kubernetes تعمل على كونترولر Ingress
 
-## نشر والآرم Ingress كونترولر وسلسلته مع كونترولر Ingress إضافي
+## نشر Wallarm Ingress كونترولر وربطه مع كونترولر Ingress إضافي
 
-لنشر والآرم Ingress كونترولر وسلسلته مع كونترولرات إضافية:
+لنشر Wallarm Ingress كونترولر وربطها بالكونترولرات الإضافية :
 
-1. نشر مخطط Helm الرسمي لكونترولر والآرم باستخدام قيمة فئة Ingress مختلفة عن كونترولر Ingress الحالي.
-1. إنشاء كائن Ingress محدد لوالآرم مع:
+1. قم بنشر الرسم البياني Helm الرسمي لكونترولر Wallarm باستخدام قيمة Ingress class مختلفة عن الكونترولر Ingress الحالي.
+1. قم بإنشاء كائن Ingress الخاص بـ Wallarm مع:
 
-    * نفس `ingressClass` كما هو محدد في `values.yaml` لمخطط Helm Ingress والآرم.
-    * قواعد توجيه طلبات كونترولر Ingress مكونة بنفس الطريقة كما هو الحال مع كونترولر Ingress الحالي.
+    * نفس `ingressClass` كما هو محدد في `values.yaml` من رسم بياني Helm لـ Wallarm Ingress.
+    * قواعد توجيه طلبات كونترولر Ingress مكونة بنفس الطريقة التي تم بها تكوين كونترولر Ingress الحالي.
 
-    !!! معلومات "لن يتم عرض كونترولر Ingress والآرم خارج الكلاستر"
-        الرجاء ملاحظة أن كونترولر Ingress والآرم يستخدم `ClusterIP` لخدمته، مما يعني أنه لن يتم عرضه خارج الكلاستر.
-1. إعادة تكوين كونترولر Ingress الحالي لتوجيه الطلبات الواردة إلى كونترولر Ingress والآرم الجديد بدلاً من خدمات التطبيق.
-1. اختبار تشغيل كونترولر Ingress والآرم.
+    !!! info "لن يتعرض Wallarm Ingress كونترولر خارج الكومة"
+        يرجى ملاحظة أن Wallarm Ingress كونترولر يستخدم `ClusterIP` كخدمة ، مما يعني أنه لن يتعرض خارج الكومة.
+1. إعادة تكوين كونترولر Ingress الحالي لتوجيه الطلبات الواردة إلى الكونترولر Wallarm Ingress الجديد بدلاً من خدمات التطبيق.
+1. اختبر تشغيل Wallarm Ingress كونترولر.
 
-### الخطوة 1: نشر والآرم Ingress كونترولر
+### الخطوة 1: نشر Wallarm Ingress كونترولر
 
-1. توليد رمز عقدة تصفية من [النوع المناسب][node-token-types]:
+1. قم بإنشاء رمز عقدة الترشيح من [النوع المناسب][node-token-types]:
 
-    === "API token (مخطط Helm 4.6.8 وما فوق)"
-        1. افتح وحدة تحكم والآرم → **الإعدادات** → **رموز API** في [السحابة الأمريكية](https://us1.my.wallarm.com/settings/api-tokens) أو [السحابة الأوروبية](https://my.wallarm.com/settings/api-tokens).
-        1. ابحث أو أنشئ رمز API بدور المصدر `Deploy`.
+    === "API token (Helm chart 4.6.8 وما فوق)"
+        1. افتح Wallarm Console → **Settings** → **API tokens** في الـ [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) أو [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+        1. ابحث عن أو قم بإنشاء رمز API مع دور المصدر `Deploy`.
         1. انسخ هذا الرمز.
     === "Node token"
-        1. افتح وحدة التحكم والآرم → **العقد** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes).
-        1. أنشئ عقدة تصفية بنوع **عقدة والآرم** وانسخ الرمز المتولد.
+        1. افتح Wallarm Console → **Nodes** في إما [US Cloud](https://us1.my.wallarm.com/nodes) أو [EU Cloud](https://my.wallarm.com/nodes).
+        1. قم بإنشاء عقدة تصفية بنوع **Wallarm node** وانسخ الرمز المولد.
             
-            ![إنشاء عقدة والآرم][nginx-ing-create-node-img]
-1. أضف [مخططات Helm والآرم](https://charts.wallarm.com/):
+            ![إنشاء عقدة Wallarm][nginx-ing-create-node-img]
+1. أضف مستودع [Wallarm Helm charts](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
     helm repo update
     ```
-1. أنشئ ملف `values.yaml` بالتكوين والآرم التالي:
+1. قم بإنشاء الملف `values.yaml` مع التهيئة التالية لـ Wallarm:
 
-    === "السحابة الأمريكية"
+    === "US Cloud"
         ```bash
         controller:
           wallarm:
@@ -77,7 +77,7 @@
             type: ClusterIP
         nameOverride: wallarm-ingress
         ```
-    === "السحابة الأوروبية"
+    === "EU Cloud"
         ```bash
         controller:
           wallarm:
@@ -95,25 +95,25 @@
         nameOverride: wallarm-ingress
         ```    
     
-    * `<NODE_TOKEN>` هو رمز عقدة والآرم.
-    * عند استخدام رمز API، حدد اسم مجموعة العقد في معلمة `nodeGroup`. سيتم تعيين عقدتك لهذه المجموعة، المعروضة في قسم **العقد** بوحدة تحكم والآرم. اسم المجموعة الافتراضي هو `defaultIngressGroup`.
+    * `<NODE_TOKEN>` هو رمز العقدة Wallarm.
+    * عند استخدام رمز API ، حدد اسم مجموعة العُقد في المعلمة `nodeGroup`. سيتم تعيين العقدة الخاصة بك لهذه المجموعة ، والتي تظهر في قسم **Nodes** من Wallarm Console. اسم المجموعة الافتراضي هو `defaultIngressGroup`.
 
-    لمعرفة المزيد من خيارات التكوين، يرجى استخدام [الرابط](configure-kubernetes-en.md).
-1. قم بتثبيت مخطط Helm Ingress والآرم:
+    لمعرفة المزيد من خيارات التكوين ، يرجى استخدام [الرابط](configure-kubernetes-en.md).
+1. قم بتثبيت رسم Wallarm Ingress Helm:
     ``` bash
-    helm install --version 4.10.2 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace
+    helm install --version 4.10.3 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace
     ```
 
     * `internal-ingress` هو اسم إصدار Helm
-    * `values.yaml` هو ملف YAML بقيم Helm التي تم إنشاؤها في الخطوة السابقة
-    * `wallarm-ingress` هو الفضاء الاسمي حيث سيتم تثبيت مخطط Helm (سيتم إنشاؤه)
-1. التحقق من أن كونترولر Ingress والآرم يعمل:
+    * `values.yaml` هو ملف YAML مع Helm values الذي تم إنشاؤه في الخطوة السابقة
+    * `wallarm-ingress` هو الفضاء الاسمي حيث يتم تثبيت رسم Helm (سيتم إنشاؤه)
+1. تأكد من أن Wallarm Ingress كونترولر يعمل حاليًا: 
 
     ```bash
     kubectl get pods -n wallarm-ingress
     ```
 
-    يجب أن يكون حالة كل حاوية **STATUS: Running** أو **READY: N/N**. على سبيل المثال:
+    يجب أن يكون حالة كل من العقد **STATUS: Running** أو **READY: N/N**. على سبيل المثال:
 
     ```
     NAME                                                             READY   STATUS    RESTARTS   AGE
@@ -121,11 +121,11 @@
     internal-ingress-wallarm-ingress-controller-wallarm-tarant64m44   4/4     Running   0          8m7s
     ```
 
-### الخطوة 2: إنشاء كائن Ingress بـ `ingressClassName` محدد لوالآرم
+### الخطوة 2: إنشاء كائن Ingress مع `ingressClassName` خاص بـ Wallarm
 
-أنشئ كائن Ingress بنفس اسم `ingressClass` كما هو مكون في `values.yaml` في الخطوة السابقة.
+أنشئ كائن Ingress بنفس اسم `ingressClass` كما تم تكوينه في `values.yaml` في الخطوة السابقة.
 
-يجب أن يكون كائن Ingress في نفس الفضاء الاسمي حيث يتم نشر تطبيقك، على سبيل المثال:
+يجب أن يكون الكائن Ingress في نفس الفضاء الاسمي حيث تم نشر التطبيق الخاص بك ، على سبيل المثال :
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -151,23 +151,23 @@ spec:
               number: 80
 ```
 
-### الخطوة 3: إعادة تكوين كونترولر Ingress الحالي لتوجيه الطلبات إلى والآرم
+### الخطوة 3: إعادة تكوين كونترولر Ingress الحالي لتوجيه الطلبات إلى Wallarm
 
-أعد تكوين كونترولر Ingress الحالي لتوجيه الطلبات الواردة إلى كونترولر Ingress والآرم الجديد بدلاً من خدمات التطبيق كما يلي:
+قم بإعادة تكوين الكونترولر Ingress الحالي لتوجيه الطلبات الواردة إلى كونترولر Wallarm Ingress الجديد بدلاً من خدمات التطبيق على النحو التالي:
 
-* أنشئ كائن Ingress بـ `ingressClass` بالاسم `nginx`. يرجى ملاحظة أنه القيمة الافتراضية، يمكنك استبدالها بقيمتك الخاصة إذا كانت مختلفة. 
-* يجب أن يكون كائن Ingress في نفس الفضاء الاسمي كمخطط Helm Ingress والآرم، والذي هو `wallarm-ingress` في مثالنا.
-* يجب أن تكون قيمة `spec.rules[0].http.paths[0].backend.service.name` هي اسم خدمة كونترولر Ingress والآرم الذي يتكون من اسم إصدار Helm و`.Values.nameOverride`.
+* قم بإنشاء الكائن Ingress باسم `ingressClass` ليكون `nginx`. يرجى ملاحظة أنها القيمة الافتراضية ، يمكنك استبدالها بقيمتك الخاصة إذا كانت مختلفة. 
+* يجب أن يكون الكائن Ingress في نفس الفضاء الاسمي كما هو موجود في Wallarm Ingress Chart ، الذي هو `wallarm-ingress` في مثالنا.
+* يجب أن تكون القيمة `spec.rules[0].http.paths[0].backend.service.name` هي اسم خدمة كونترولر Wallarm Ingress التي تتكون من اسم الإصدار Helm و `.Values.nameOverride`.
 
-    للحصول على الاسم، يمكنك استخدام الأمر التالي:
+    يمكنك الحصول على الاسم باستخدام الأمر التالي :
    
     ```bash
     kubectl get svc -l "app.kubernetes.io/component=controller" -n wallarm-ingress -o=jsonpath='{.items[0].metadata.name}'
     ```
 
-    في مثالنا الاسم هو `internal-ingress-wallarm-ingress-controller`.
+    في مثالنا التكوينية الناتجة هي `internal-ingress-wallarm-ingress-controller`.
 
-التكوين النهائي المثال:
+التكوين النهائي للمثال:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -190,15 +190,15 @@ spec:
                   number: 80
 ```
 
-### الخطوة 4: اختبار تشغيل كونترولر Ingress والآرم
+### الخطوة 4: اختبار تشغيل Wallarm Ingress كونترولر
 
-احصل على IP العام لموازنة الحمل لكونترولر Ingress الخارجي الحالي، على سبيل المثال، لنفترض أنه مُنشر في فضاء الاسم `ingress-nginx`:
+احصل على IP العام Load Balancer لكونترولر Ingress الخارجي الحالي ، على سبيل المثال دعنا نفترض أنه تم نشره في الفضاء الاسمي `ingress-nginx`:
 
 ```bash
 LB_IP=$(kubectl get svc -l "app.kubernetes.io/component=controller" -n ingress-nginx -o=jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}')
 ```
 
-أرسل طلب اختبار إلى عنوان كونترولر Ingress الحالي وتحقق من أن النظام يعمل كما هو متوقع:
+أرسل طلب اختبار إلى عنوان الكونترولر Ingress الحالي وتحقق من أن النظام يعمل كما هو متوقع:
 
 ```bash
 curl -H "Host: www.example.com" ${LB_IP}/etc/passwd

@@ -1,9 +1,9 @@
-قم بتثبيت آخر إصدار من NGINX ل:
+تثبيت أحدث نسخة من NGINX:
 
-* **NGINX `المستقر`** - شاهد كيفية التثبيت في [وثائق](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/) NGINX.
-* **NGINX الرئيسي** - شاهد كيفية التثبيت في [وثائق](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/) NGINX.
-* **NGINX بلس** - شاهد كيفية التثبيت في [وثائق](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/) NGINX.
-* **NGINX المُقدم من توزيعة** - للتثبيت، استخدم الأوامر التالية:
+* **NGINX `مستقر`** - راجع كيفية تثبيته في [التوثيق](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/) الخاص بـNGINX.
+* **الإصدار الرئيسي لـNGINX** - راجع كيفية تثبيته في [التوثيق](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/) الخاص بـNGINX.
+* **NGINX Plus** - راجع كيفية تثبيته في [التوثيق](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/) الخاص بـNGINX.
+* **NGINX المقدم من التوزيعة** - للتثبيت، استخدم الأوامر التالية:
 
     === "Debian 10.x (buster)"
         ```bash
@@ -20,7 +20,7 @@
         sudo yum -y update 
         sudo yum install -y nginx
         ```
-    === "AlmaLinux, Rocky Linux أو Oracle Linux 8.x"
+    === "AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
         ```bash
         sudo yum -y update 
         sudo yum install -y nginx

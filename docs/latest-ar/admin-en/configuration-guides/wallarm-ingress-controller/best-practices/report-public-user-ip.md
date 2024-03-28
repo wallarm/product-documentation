@@ -1,14 +1,14 @@
-# تقرير صحيح لعنوان IP العام للمستخدم النهائي (وحدة تحكم Ingress المستندة إلى NGINX)
+# التقرير الصحيح لعنوان IP العام للمستخدم النهائي (متحكم الدخول المبني على NGINX)
 
-تصف هذه التعليمات تكوين وحدة تحكم Wallarm Ingress المطلوب لتحديد عنوان IP الأصلي لعميل (المستخدم النهائي) عند وضع وحدة التحكم خلف موازن التحميل.
+توضح هذه التعليمات التكوين المطلوب لمتحكم الدخول الخاص بـWallarm لتحديد عنوان IP الأصلي للعميل (المستخدم النهائي) عندما يتم وضع المتحكم خلف جهاز توازن الحمل.
 
-بشكل افتراضي، تفترض وحدة التحكم Ingress أنها معرضة مباشرة للإنترنت وأن عناوين IP للعملاء المتصلين هي عناوينهم الفعلية. ومع ذلك، يمكن أن تمر الطلبات عبر موازن التحميل (مثل AWS ELB أو Google Network Load Balancer) قبل إرسالها إلى وحدة التحكم Ingress.
+افتراضيًا، يعتبر متحكم الدخول أنه معرض مباشرةً للإنترنتوأن عناوين IP للعملاء المتصلين هي عناوينهم الفعلية. ومع ذلك، يمكن تمرير الطلبات عبر جهاز توازن الحمل (مثل AWS ELB أو Google Network Load Balancer) قبل إرسالها إلى متحكم الدخول.
 
-في المواقف التي يتم فيها وضع وحدة التحكم خلف موازن التحميل، تعتبر وحدة التحكم Ingress أن IP موازن التحميل هو IP العميل النهائي الحقيقي، والذي يمكن أن يؤدي إلى [تشغيل غير صحيح لبعض ميزات Wallarm](../../../using-proxy-or-balancer-en.md#possible-problems-of-using-a-proxy-server-or-load-balancer-ip-address-as-a-request-source-address). للإبلاغ عن عناوين IP الصحيحة للمستخدمين النهائيين إلى وحدة التحكم Ingress، يرجى تكوين وحدة التحكم كما هو موضح أدناه.
+في الحالات التي يتم فيها وضع المتحكم خلف جهاز توازن الحمل، يعتبر متحكم الدخول أن IP جهاز توازن الحمل هو عنوان IP الحقيقي للمستخدم النهائي، ما يمكن أن يؤدي إلى [عملية غير صحيحة لبعض ميزات Wallarm](../../../using-proxy-or-balancer-en.md#possible-problems-of-using-a-proxy-server-or-load-balancer-ip-address-as-a-request-source-address). للإبلاغ عن عناوين IP الصحيحة للمستخدمين النهائيين إلى متحكم الدخول، يُرجى تكوين المتحكم كما هو موضح أدناه.
 
-## الخطوة 1: تمكين تمرير عنوان IP الحقيقي للعميل على طبقة الشبكة
+## الخطوة الأولى: تمكين مرور عنوان IP الحقيقي للعميل على طبقة الشبكة
 
-تعتمد هذه الميزة بشكل كبير على منصة السحابة المستخدمة؛ في غالبية الحالات، يمكن تفعيلها بتعيين خاصية الملف `values.yaml` `controller.service.externalTrafficPolicy` إلى القيمة `Local`:
+تعتمد هذه الميزة بشكل كبير على منصة السحابة المستخدمة؛ في معظم الحالات، يمكن تفعيلها بتعيين خاصية `values.yaml` `controller.service.externalTrafficPolicy` إلى القيمة `Local`:
 
 ```
 controller:
@@ -16,11 +16,11 @@ controller:
     externalTrafficPolicy: "Local"
 ```
 
-## الخطوة 2: تمكين وحدة التحكم Ingress لأخذ القيمة من رأس طلب HTTP X-FORWARDED-FOR
+## الخطوة الثانية: تمكين متحكم الدخول من أخذ القيمة من رأس طلب HTTP `X-FORWARDED-FOR`
 
-عادة، تقوم موازنات التحميل بإضافة الرأس HTTP [`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For) الذي يحتوي على عنوان IP الأصلي للعميل. يمكنك العثور على اسم الرأس الدقيق في وثائق موازن التحميل.
+عادةً، يضيف أجهزة توازن الحمل رأس HTTP [`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For) الذي يحتوي على عنوان IP الأصلي للعميل. يمكنك العثور على اسم الرأس الدقيق في وثائق جهاز توازن الحمل.
 
-يمكن لوحدة تحكم Wallarm Ingress أخذ عنوان IP الحقيقي للمستخدم النهائي من هذا الرأس إذا تم تكوين `values.yaml` الخاص بوحدة التحكم على النحو التالي:
+يمكن لمتحكم الدخول الخاص بـWallarm أخذ عنوان IP الحقيقي للمستخدم النهائي من هذا الرأس إذا تم تكوين `values.yaml` للمتحكم كما يلي:
 
 ```
 controller:
@@ -29,5 +29,7 @@ controller:
     forwarded-for-header: "X-Forwarded-For"
 ```
 
-* [الوثائق حول معلمة `enable-real-ip`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-real-ip)
-* في معلمة [`forwarded-for-header`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#forwarded-for-header)، يرجى تحديد اسم رأس موازن التحميل الذي يحتوي على عنوان IP الأصلي للعميل
+* [الوثائق الخاصة بمعلمة `enable-real-ip`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-real-ip)
+* في معلمة [`forwarded-for-header`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#forwarded-for-header)، يُرجى تحديد اسم رأس جهاز توازن الحمل الذي يحتوي على عنوان IP الأصلي للعميل
+
+--8<-- "../include/ingress-controller-best-practices-intro.md"

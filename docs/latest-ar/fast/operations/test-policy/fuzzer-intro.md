@@ -4,20 +4,20 @@
 [gl-vuln]:                      ../../terms-glossary.md#vulnerability
 [gl-anomaly]:                   ../../terms-glossary.md#anomaly
 
-# تكوين عملية كشف الشُذوذ: نظرة عامة
+# نظرة عامة على تكوين عملية الكشف عن الشذوذ
 
-بالإضافة إلى كشف [الثغرات الأمنية][gl-vuln]، FAST يمكنها كشف [الشُذوذات][gl-anomaly] باستخدام *الفازر*.
+بالإضافة إلى كشف [الثغرات الأمنية][gl-vuln]، يمكن لـFAST أن يكتشف [الشذوذات][gl-anomaly] باستخدام *المُختبر*.
 
-هذا القسم من الوثائق يصف النقاط التالية:
+تشرح هذه الوثيقة النقاط التالية:
 
-* [مبادئ عمل الفازر][doc-fuzzer-internals]
-* [تكوين الفازر باستخدام محرر السياسات][doc-fuzzer-configuration]
+* [مبادئ تشغيل المختبر][doc-fuzzer-internals]
+* [تكوين المختبر باستخدام محرر السياسات][doc-fuzzer-configuration]
 
-??? info "مثال على الشُذوذ"
-    يتم عرض السلوك الشاذ لتطبيق الهدف [OWASP Juice Shop](https://www.owasp.org/www-project-juice-shop/) في [مثال لامتداد FAST](../../dsl/extensions-examples/mod-extension.md).
+??? info "مثال على شذوذ"
+    يُظهر السلوك الشاذ للتطبيق المستهدف [OWASP Juice Shop](https://www.owasp.org/www-project-juice-shop/) في [مثال امتداد FAST](../../dsl/extensions-examples/mod-extension.md).
 
-    عادةً يستجيب هذا التطبيق برمز `403 Unauthorized` ورسالة `Invalid email or password.` لطلب التفويض بمجموعة خاطئة من اسم المستخدم وكلمة المرور.
+    يستجيب هذا التطبيق عادةً برمز `403 Unauthorized` ورسالة `Invalid email or password.` لطلب التوثيق بمزيج غير صحيح من اسم المستخدم وكلمة المرور.
 
-    ولكن، إذا تم تمرير رمز `'` ضمن أي جزء من قيمة الدخول، يستجيب التطبيق برمز `500 Internal Server Error` ورسالة `...SequelizeDatabaseError: SQLITE_ERROR:...`؛ مثل هذا السلوك يعتبر شاذ.
+    ومع ذلك، إذا تم تمرير رمز `'` ضمن أي جزء من قيمة اسم المستخدم، يستجيب التطبيق برمز `500 Internal Server Error` ورسالة `...SequelizeDatabaseError: SQLITE_ERROR:...`؛ وهذا السلوك يعتبر شاذًا.
 
-    هذا الشُذوذ لا يؤدي مباشرةً إلى استغلال أي ثغرة أمنية محددة، ولكنه يوفر للمهاجم معلومات عن بنية التطبيق ويحفز على تنفيذ هجوم [SQL Injection](../../vuln-list.md#sql-injection).
+    لا يؤدي هذا الشذوذ إلى استغلال مباشر لأي ثغرة أمنية، ولكنه يزود المهاجم بمعلومات حول بنية التطبيق ويدفع لتنفيذ هجوم [حقن SQL](../../vuln-list.md#sql-injection).

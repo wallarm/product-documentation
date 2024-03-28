@@ -1,34 +1,34 @@
-# أفضل الممارسات لنشر وصيانة حلول Wallarm
+# أفضل الممارسات لنشر وصيانة حل Wallarm
 
-يصيغ هذا المقال أفضل الممارسات لنشر وصيانة حلول Wallarm.
+تصيغ هذه المقالة أفضل الممارسات لنشر وصيانة حل Wallarm.
 
 
-## نشر عقد التصفية ليس فقط في بيئة الإنتاج ولكن أيضًا في الاختبار والمرحلة المؤقتة - الأفضليات التقنية
+## نشر عقد التصفية ليس فقط في بيئة الإنتاج بل أيضًا في الاختبار والمرحلة التمهيدية - أفضل الممارسات التقنية
 
-لا تقيد غالبية عقود خدمة Wallarm عدد عقد Wallarm المنشورة من قبل العميل، لذلك لا يوجد سبب لعدم نشر عقد التصفية في جميع بيئاتك، بما في ذلك التطوير، الاختبار، المرحلة المؤقتة، إلخ.
+معظم عقود خدمة Wallarm لا تحد من عدد عقد Wallarm التي يمكن للعميل نشرها، لذلك لا يوجد سبب لعدم نشر عقد التصفية في جميع البيئات الخاصة بك، بما في ذلك التطوير، الاختبار، المرحلة التمهيدية، إلخ.
 
-من خلال نشر واستخدام عقد التصفية في جميع مراحل أنشطتك التطويرية للبرمجيات و/أو تشغيل الخدمة يمكنك الحصول على فرصة أفضل لاختبار كامل سير البيانات بشكل صحيح وتقليل خطر حدوث أي مواقف غير متوقعة في بيئة الإنتاج الحرجة لديك.
+من خلال نشر واستخدام عقد التصفية في جميع مراحل أنشطة تطوير البرمجيات و/أو تشغيل الخدمة لديك فرصة أفضل لاختبار تدفق البيانات بالكامل بشكل صحيح وتقليل خطر أية حالات غير متوقعة في بيئة الإنتاج الحرجة الخاصة بك.
 
-## تكوين التقارير الصحيحة لعناوين IP للمستخدمين النهائيين - الأفضليات التقنية، يجب أن تحتوي كل تعليمات النشر على رابط إلى هذا
+## تكوين التقارير الصحيحة لعناوين IP الخاصة بالمستخدم النهائي - أفضل الممارسات التقنية،ويجب أن تكون الإشارة إلى هذا موجودة في كل تعليمات النشر
 
-لعقد التصفية Wallarm الموجودة خلف موازن الحمل أو CDN يرجى التأكد من تكوين عقد التصفية لديك لتقديم تقارير صحيحة عن عناوين IP للمستخدمين النهائيين (وإلا فإن [وظيفة قائمة IP](user-guides/ip-lists/overview.md)، [التحقق من التهديدات النشطة](detecting-vulnerabilities.md#active-threat-verification)، وبعض الميزات الأخرى لن تعمل):
+لعقد التصفية Wallarm الموجودة خلف موازن الحمل أو CDN الرجاء التأكد من تكوين عقد التصفية لديك لتقرير عناوين IP للمستخدم النهائي بشكل صحيح (وإلا [وظيفة قائمة IP](user-guides/ip-lists/overview.md)، [التحقق من التهديدات النشطة](detecting-vulnerabilities.md#active-threat-verification)، وبعض الميزات الأخرى لن تعمل):
 
-* [تعليمات لعقد Wallarm المبنية على NGINX](../admin-en/using-proxy-or-balancer-en.md) (بما في ذلك صور AWS / GCP وحاوية عقدة Docker)
-* [تعليمات لعقد التصفية المنشورة كموجه دخول Kubernetes لـ Wallarm](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
+* [تعليمات لعقد Wallarm المستندة إلى NGINX](../admin-en/using-proxy-or-balancer-en.md) (بما في ذلك صور AWS / GCP وحاوية عقدة Docker)
+* [التعليمات لعقد التصفية المنشورة كمتحكم دخول Kubernetes الخاص بـWallarm](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 
-## تمكين الرصد الصحيح لعقد التصفية - يجب نقله كتعليمات للرصد وكذلك في الأفضليات التقنية
+## تمكين الرصد الصحيح لعقد التصفية - نقل كما في تعليمات الرصد،وكذلك في أفضل الممارسات التقنية
 
-من الموصى به بشدة تمكين الرصد الصحيح لعقد التصفية Wallarm. الخدمة `collectd` المثبتة مع كل عقدة تصفية Wallarm تجمع المقاييس المدرجة ضمن [الرابط](../admin-en/monitoring/available-metrics.md).
+يُنصح بشدة بتمكين الرصد الصحيح لعقد التصفية Wallarm. يقوم الخدمة `collectd` المثبتة مع كل عقدة تصفية Wallarm بجمع المقاييس المدرجة ضمن [الرابط](../admin-en/monitoring/available-metrics.md).
 
-طريقة إعداد رصد عقدة التصفية تعتمد على خيار النشر الخاص بها:
+طريقة إعداد رصد عقد التصفية تعتمد على خيار النشر:
 
-* [تعليمات لعقد Wallarm المبنية على NGINX](../admin-en/monitoring/intro.md) (بما في ذلك صور AWS / GCP والعبوات الجانبية لـ Kubernetes)
-* [تعليمات لعقد التصفية المنشورة كموجه دخول Kubernetes لـ Wallarm](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
-* [تعليمات لصور Docker المبنية على NGINX](../admin-en/installation-docker-en.md#monitoring-configuration)
+* [تعليمات لعقد Wallarm المستندة إلى NGINX](../admin-en/monitoring/intro.md) (بما في ذلك صور AWS / GCP وsidecars Kubernetes)
+* [التعليمات لعقد التصفية المنشورة كمتحكم دخول Kubernetes الخاص بـWallarm](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
+* [التعليمات لصورة Docker المستندة إلى NGINX](../admin-en/installation-docker-en.md#monitoring-configuration)
 
-## تنفيذ الوفرة الصحيحة ووظيفية الفشل التلقائي
+## تنفيذ الاحتياط اللائق ووظيفة التبديل التلقائي عند الفشل
 
-مثل كل مكون حاسم آخر في بيئة الإنتاج الخاصة بك، يجب أن تكون عقد Wallarm مصممة ومنشورة ومشغلة بمستوى الوفرة والفشل التلقائي الصحيحين. يجب أن يكون لديك **على الأقل عقدتين تصفية Wallarm نشطتين** تتعاملان مع طلبات المستخدمين النهائيين الحرجة. توفر المقالات التالية معلومات ذات صلة حول الموضوع:
+مثل كل مكون حرج آخر في بيئة الإنتاج الخاصة بك، يجب أن تكون عقد Wallarm معماريًا ومنشورًا ومُشغلًا بمستوى الاحتياط اللائق ووظيفة التبديل التلقائي عند الفشل. يجب أن يكون لديك **على الأقل عقدتي تصفية Wallarm نشطتين** تتعاملان مع طلبات المستخدمين النهائيين الحرجة. توفر المقالات التالية معلومات ذات صلة حول الموضوع:
 
-* [تعليمات لعقد Wallarm المبنية على NGINX](../admin-en/configure-backup-en.md) (بما في ذلك صور AWS / GCP، حاوية عقدة Docker، والعبوات الجانبية لـ Kubernetes)
-* [تعليمات لعقد التصفية المنشورة كموجه دخول Kubernetes لـ Wallarm](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
+* [تعليمات لعقد Wallarm المستندة إلى NGINX](../admin-en/configure-backup-en.md) (بما في ذلك صور AWS / GCP وحاوية عقدة Docker وsidecars Kubernetes)
+* [التعليمات لعقد التصفية المنشورة كمتحكم دخول Kubernetes الخاص بـWallarm](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)

@@ -1,4 +1,4 @@
-على الجهاز اللي محمل عليه موديول NGINX-Wallarm، في [ملف تكوين](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) NGINX، حدد عنوان سيرفر موديول postanalytics:
+على الجهاز الذي يحتوي على وحدة NGINX-Wallarm، في [ملف التكوين](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) الخاص بـ NGINX، حدد عنوان خادم وحدة postanalytics:
 
 ```
 upstream wallarm_tarantool {
@@ -8,34 +8,34 @@ upstream wallarm_tarantool {
     keepalive 2;
     }
 
-    # محذوف
+    # omitted
 
 wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
-* قيمة `max_conns` يجب تحديدها لكل سيرفرات Tarantool لمنع تكوين اتصالات زائدة.
-* قيمة `keepalive` يجب أن لا تكون أقل من عدد سيرفرات Tarantool.
-* السطر `# wallarm_tarantool_upstream wallarm_tarantool;` معلق بشكل افتراضي - الرجاء حذف `#`.
+* يجب تحديد قيمة `max_conns` لكل من خوادم Tarantool العليا لمنع إنشاء اتصالات زائدة.
+* لا يجب أن تكون قيمة `keepalive` أقل من عدد خوادم Tarantool.
+* يتم التعليق على سطر الأوامر `# wallarm_tarantool_upstream wallarm_tarantool;` بشكل افتراضي - يرجى حذف `#`.
 
-بمجرد تغيير ملف التكوين، أعد تشغيل NGINX/NGINX Plus على سيرفر موديول NGINX-Wallarm:
+بمجرد تغيير ملف التكوين، أعد تشغيل NGINX/NGINX Plus على جهاز وحدة NGINX-Wallarm:
 
-=== "ديبيان"
+=== "Debian"
     ```bash
     sudo systemctl restart nginx
     ```
-=== "أوبونتو"
+=== "Ubuntu"
     ```bash
     sudo service nginx restart
     ```
-=== "سينتوس"
+=== "CentOS"
     ```bash
     sudo systemctl restart nginx
     ```
-=== "ألما لينكس، روكي لينكس أو أوراكل لينكس 8.x"
+=== "AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
     ```bash
     sudo systemctl restart nginx
     ```
-=== "آر إتش إي إل 8.x"
+=== "RHEL 8.x"
     ```bash
     sudo systemctl restart nginx
     ```

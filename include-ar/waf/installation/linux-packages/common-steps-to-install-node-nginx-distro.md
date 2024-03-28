@@ -20,7 +20,7 @@
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
     ```
-=== "AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
+=== "AlmaLinux وRocky Linux وOracle Linux 8.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
@@ -33,11 +33,11 @@
 
 ## 2. تثبيت NGINX مع حزم Wallarm
 
-الأمر يثبت الحزم التالية:
+الأمر يثبّت الحزم التالية:
 
 * `nginx` لـ NGINX
 * `libnginx-mod-http-wallarm` أو `nginx-mod-http-wallarm` لوحدة NGINX-Wallarm
-* `wallarm-node` لوحدة [postanalytics][install-postanalytics-docs]، قاعدة بيانات Tarantool، وحزم NGINX-Wallarm إضافية
+* `wallarm-node` لوحدة [postanalytics][install-postanalytics-docs] وقاعدة بيانات Tarantool وحزم NGINX-Wallarm الإضافية
 
 === "Debian 10.x (buster)"
     ```bash
@@ -51,7 +51,7 @@
     ```bash
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
-=== "AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
+=== "AlmaLinux وRocky Linux وOracle Linux 8.x"
     ```bash
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
@@ -60,9 +60,9 @@
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
 
-## 3. توصيل وحدة Wallarm
+## 3. ربط وحدة Wallarm
 
-نسخ ملفات التكوين لإعداد النظام:
+انسخ ملفات الإعداد لإعداد النظام:
 
 === "Debian"
     ```bash
@@ -72,7 +72,7 @@
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
-=== "AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
+=== "AlmaLinux وRocky Linux وOracle Linux 8.x"
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
@@ -81,6 +81,6 @@
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
 
-## 4. توصيل العقدة الفلترة بـ Wallarm Cloud
+## 4. ربط العقدة التصفوية بـ Wallarm Cloud
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"

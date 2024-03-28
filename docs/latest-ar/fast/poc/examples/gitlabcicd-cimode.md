@@ -11,21 +11,21 @@
 
 # دمج FAST مع GitLab CI/CD
 
-يتم تكوين دمج FAST في وضع CI داخل سير العمل في GitLab CI/CD عن طريق ملف `~/.gitlab-ci.yml`. التفاصيل المفصلة عن تكوين سير عمل GitLab CI/CD متوفرة في [الوثائق الرسمية ل GitLab][gitlabcicd-config-yaml].
+يتم تكوين دمج FAST في وضع CI في سير عمل GitLab CI/CD عبر ملف `~/.gitlab-ci.yml`. المزيد من التفاصيل حول تكوين سير عمل GitLab CI/CD متوفرة في [التوثيق الرسمي لـ GitLab][gitlabcicd-config-yaml].
 
-## تمرير رمز عقدة FAST
+## إمرار رمز نقطة التفتيش لـ FAST
 
-للاستخدام الآمن ل[رمز عقدة FAST][fast-node-token]، قم بتمرير قيمته في [متغير البيئة في إعدادات مشروعك][gitlabci-set-env-var].
+للاستخدام الآمن لـ [رمز نقطة التفتيش لـ FAST][fast-node-token]، يجب إمرار قيمته في [المتغير البيئي في إعدادات مشروعك][gitlabci-set-env-var].
 
-![تمرير متغير بيئة GitLab CI/CD][gitlabci-example-env-var]
+![إمرار متغير بيئة GitLab CI/CD][gitlabci-example-env-var]
 
 --8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
-## إضافة خطوة تسجيل الطلب
+## إضافة خطوة تسجيل الطلبات
 
 --8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
-??? info "مثال على خطوة الاختبار الآلي مع تشغيل عقدة FAST في وضع التسجيل"
+??? info "مثال على خطوة الاختبار الآلي مع تشغيل نقطة التفتيش لـ FAST في وضع التسجيل"
     ```
     test:
       stage: test
@@ -38,20 +38,20 @@
         - docker network rm my-network
     ```
 
-    يتضمن المثال الخطوات التالية:
+    المثال يتضمن الخطوات التالية:
 
-    1. إنشاء الشبكة Docker `my-network`.
-    2. تشغيل عقدة FAST في وضع التسجيل على الشبكة `my-network`.
-    3. تشغيل أداة الاختبار الآلي Selenium مع عقدة FAST كبروكسي على الشبكة `my-network`.
-    4. تشغيل التطبيق التجريبي والاختبارات الآلية على الشبكة `my-network`.
-    5. إيقاف Selenium وعقدة FAST.
+    1. إنشاء شبكة Docker `my-network`.
+    2. تشغيل نقطة التفتيش لـ FAST في وضع التسجيل على الشبكة `my-network`.
+    3. تشغيل أداة الاختبار الآلي Selenium بنقطة التفتيش لـ FAST كوكيل على الشبكة `my-network`.
+    4. تشغيل التطبيق الاختباري والاختبارات الآلية على الشبكة `my-network`.
+    5. إيقاف Selenium ونقطة التفتيش لـ FAST.
 
 ## إضافة خطوة اختبار الأمان
 
 --8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
 ??? info "مثال على خطوة اختبار الأمان"
-    1. أضف `security_test` إلى قائمة `stages`.
+    1. إضافة `security_test` إلى قائمة `stages`.
 
         ```
           stages:
@@ -60,7 +60,7 @@
             - security_test
             - cleanup
         ```
-    2. تحديد جسم المرحلة الجديدة `security_test`.
+    2. تعريف جسم المرحلة الجديدة `security_test`.
 
         ```
           security_test:
@@ -73,27 +73,27 @@
               - docker stop app-test
         ```
 
-    يتضمن المثال الخطوات التالية:
+    المثال يتضمن الخطوات التالية:
 
-    1. إنشاء الشبكة Docker `my-network`.
-    2. تشغيل التطبيق التجريبي على الشبكة `my-network`.
-    3. تشغيل عقدة FAST في وضع الاختبار على الشبكة `my-network`. تم حذف متغير `TEST_RECORD_ID` نظرًا لأن مجموعة الطلبات الأساسية تم إنشاؤها في العملية الحالية وهي الأخيرة المسجلة. سيتم إيقاف تشغيل عقدة FAST تلقائيًا عند الانتهاء من الاختبار.
-    4. إيقاف التطبيق التجريبي.
+    1. إنشاء شبكة Docker `my-network`.
+    2. تشغيل التطبيق الاختباري على الشبكة `my-network`.
+    3. تشغيل نقطة التفتيش لـ FAST في وضع الاختبار على الشبكة `my-network`. تم تجاهل متغير `TEST_RECORD_ID` لأن مجموعة الطلبات الأساسية تم إنشاؤها في سير العمل الحالي وهي الأحدث المسجلة. سيتم إيقاف تشغيل نقطة التفتيش لـ FAST تلقائيًا عند انتهاء الاختبار.
+    4. إيقاف التطبيق الاختباري.
 
-## الحصول على نتيجة الاختبار
+## الحصول على نتائج الاختبار
 
-سيتم عرض نتيجة اختبار الأمان في واجهة GitLab CI/CD.
+سيتم عرض نتيجة اختبار الأمان على واجهة GitLab CI/CD.
 
-![نتيجة تشغيل عقدة FAST في وضع الاختبار][fast-example-gitlab-result]
+![نتيجة تشغيل نقطة التفتيش لـ FAST في وضع الاختبار][fast-example-gitlab-result]
 
-## مزيد من الأمثلة
+## المزيد من الأمثلة
 
-يمكنك العثور على أمثلة لدمج FAST في سير عمل GitLab CI/CD على [GitHub][fast-examples-github] و[GitLab][fast-example-gitlab-cicd].
+يمكنك العثور على أمثلة على دمج FAST مع سير عمل GitLab CI/CD على [GitHub][fast-examples-github] و[GitLab][fast-example-gitlab-cicd].
 
-!!! info "الأسئلة الإضافية"
-    إذا كانت لديك أسئلة متعلقة بدمج FAST، يرجى [الاتصال بنا][mail-to-us].
+!!! info "للأسئلة الإضافية"
+    إذا كانت لديك أسئلة تتعلق بدمج FAST، يرجى [الاتصال بنا][mail-to-us].
 
-## فيديوهات توضيحية
+## مقاطع الفيديو التوضيحية
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/NRQT_7ZMeko" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

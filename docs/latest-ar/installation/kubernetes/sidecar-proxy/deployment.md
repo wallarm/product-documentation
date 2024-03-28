@@ -1,88 +1,88 @@
-# نشر وحدة Wallarm الجانبية
+# نشر Wallarm Sidecar
 
-لتأمين تطبيق مستضاف كوحدة Pod في مجموعة Kubernetes، يمكنك تشغيل وحدة النود NGINX-المبنية من Wallarm أمام التطبيق كمتحكم جانبي. سيقوم المتحكم الجانبي من Wallarm بتصفية حركة المرور الواردة إلى وحدة Pod الخاصة بالتطبيق بالسماح فقط بالطلبات المشروعة والتخفيف من تأثير الطلبات الخبيثة.
+لتأمين التطبيق المنشور كـ Pod في Kubernetes cluster، يمكنك تشغيل العقدة القائمة على NGINX لـ Wallarm أمام التطبيق كـ sidecar controller. سيقوم Wallarm sidecar controller بترشيح حركة الشبكة الواردة إلى Pod التطبيق عن طريق السماح فقط للطلبات المشروعة والتخفيف من الخبيثة.
 
-الميزات الأساسية لحل Wallarm الجانبي:
+**المزايا الرئيسية** لحل Wallarm Sidecar:
 
-* يسهل حماية الخدمات المصغرة المتميزة ونسخها وشظاياها من خلال توفير شكل النشر الذي يشبه التطبيقات
-* متوافق بالكامل مع أي متحكم Ingress
-* يعمل بثبات تحت أحمال عالية وهو أمر شائع عادةً مع نهج شبكة الخدمة
-* يتطلب الحد الأدنى من تكوين الخدمة لتأمين تطبيقاتك؛ فقط أضف بعض التعليقات التوضيحية والتصنيفات لوحدة Pod الخاصة بالتطبيق لحمايتها
-* يدعم وضعين لنشر وحدة الخدمة من Wallarm: للأحمال المتوسطة مع تشغيل خدمات Wallarm في وعاء واحد وللأحمال العالية مع تقسيم خدمات Wallarm إلى عدة أوعية
-* يوفر كيانًا مخصصًا لوحدة ما بعد التحليلات وهو الخلفية المحلية لتحليلات البيانات لحل Wallarm الجانبي الذي يستهلك معظم الذاكرة
+* يبسط حماية الميكرو سيرفيس المتفرقة ونسخها والشرائح عن طريق تقديم تنسيق النشر المشابه للتطبيقات
+* متوافق بشكل كامل مع أي Ingress controller
+* يعمل بثبات تحت الأحمال العالية التي تكون شائعة عادة لنهج service mesh
+* يتطلب التكوين الأدنى للخدمة لتأمين تطبيقاتك؛ فقط أضف بعض التعليمات التوضيحية والتسميات لـ Pod التطبيق لحمايته
+* يدعم وضعين لنشر الحاوية Wallarm: للأحمال المتوسطة مع خدمات Wallarm تعمل في حاوية واحدة وللأحمال العالية مع تقسيم خدمات Wallarm إلى عدة حاويات
+* يقدم كيان مخصص لـ postanalytics module الذي هو خلفية تحليلات البيانات المحلية لحل Wallarm sidecar الذي يستهلك معظم الذاكرة
 
-!!! info "إذا كنت تستخدم حل Wallarm الجانبي السابق"
-    إذا كنت تستخدم الإصدار السابق من حل Wallarm الجانبي، نوصيك بالانتقال إلى الإصدار الجديد. مع هذا الإصدار، قمنا بتحديث حل الجانبي لدينا للاستفادة من قدرات Kubernetes الجديدة وثروة من تعليقات العملاء. الحل الجديد لا يتطلب تغييرات جوهرية في وثائق Kubernetes، لحماية تطبيق، فقط قم بنشر المخطط وأضف التصنيفات والتعليقات التوضيحية إلى وحدة Pod.
+!!! info "إذا كنت تستخدم حل Wallarm Sidecar السابق"
+    إذا كنت تستخدم الإصدار السابق من حل Wallarm Sidecar، نوصي بالانتقال إلى الإصدار الجديد. بالإصدار الجديد، قمنا بتحديث مجموعة حلولنا الفرعية للاستفادة من قدرات Kubernetes الجديدة وثروة من ردود العملاء. الحل الجديد لا يتطلب تغييرات كبيرة في Kubernetes manifest، لحماية التطبيق، فقط قم بنشر الرسم البياني وأضف التسميات والتعليمات التوضيحية إلى الجزء الرئيسي.
 
-    للحصول على مساعدة في الانتقال إلى حل Wallarm الجانبي الإصدار 2.0، يرجى الاتصال ب[دعم فني Wallarm](mailto:support@wallarm.com).
+    للحصول على المساعدة في الانتقال إلى حل Wallarm Sidecar v2.0، يرجى الاتصال بـ [دعم فني Wallarm](mailto:support@wallarm.com).
 
 ## حالات الاستخدام
 
-من بين جميع [خيارات نشر Wallarm][deployment-platform-docs] المدعومة، هذا الحل هو الأوصى به للحالات التالية **حالات الاستخدام**:
+من بين جميع [خيارات نشر Wallarm المدعومة][deployment-platform-docs]، يعتبر هذا الحل الأكثر توصية للحالات الاستخدام التالية:
 
-* أنت تبحث عن حل الأمان ليتم نشره إلى البنية التحتية مع وجود متحكم Ingress موجود (مثل متحكم Ingress AWS ALB) يمنعك من نشر إما [متحكم Ingress المبني على Wallarm NGINX][nginx-ing-controller-docs] أو [متحكم Ingress المبني على Wallarm Kong][kong-ing-controller-docs]
-* بيئة عدم الثقة التي تتطلب كل خدمة مصغرة (بما في ذلك واجهات برمجة التطبيقات الداخلية) أن تكون محمية بواسطة حل الأمان
+* أنت تبحث عن حل الأمان ليتم نشره على البنية التحتية مع Ingress controller الموجودة بالفعل (مثلاً AWS ALB Ingress Controller) الذي يحول دون نشر [Wallarm NGINX-based][nginx-ing-controller-docs] أو [Wallarm Kong-based Ingress controller][kong-ing-controller-docs]
+* بيئة الثقة الصفرية التي تتطلب أن تكون كل ميكرو سيرفيس (بما في ذلك واجهات البرمجة الداخلية) محمية بحل الأمان
 
-## تدفق الحركة
+## تدفق حركة الشبكة
 
-تدفق الحركة مع وحدة Wallarm الجانبية:
+تدفق حركة الشبكة مع Wallarm Sidecar:
 
-![تدفق الحركة مع وحدة Wallarm الجانبية][traffic-flow-with-wallarm-sidecar-img]
+![تدفق حركة الشبكة مع Wallarm Sidecar][traffic-flow-with-wallarm-sidecar-img]
 
-## تركيبة الحل
+## هندسة الحل
 
-يتم ترتيب حل وحدة Wallarm الجانبية من خلال الكائنات Deployment التالية:
+تم ترتيب حل Wallarm Sidecar بواسطة أوبجكتات Deployment التالية:
 
-* **متحكم الجانب** (`wallarm-sidecar-controller`) هو [خطاف القبول المتغير](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks) الذي يضيف موارد وحدة Wallarm الجانبية في وحدة Pod معتمدًا على قيم المخطط والتعليقات التوضيحية لوحدة الPod وربط مكونات النود بسحابة Wallarm.
+* **Sidecar controller** (`wallarm-sidecar-controller`) هو [mutating admission webhook](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks) الذي يحقن موارد Wallarm sidecar في Pod مع تكوينه على أساس قيم Helm chart وتعليمات التوضيح للغرفة والاتصال بـ Wallarm Cloud.
 
-    بمجرد بدء وحدة Pod الجديدة مع تصنيف `wallarm-sidecar: enabled` في Kubernetes، يقوم المتحكم تلقائيًا بإضافة الوعاء الإضافي الذي يقوم بتصفية حركة المرور الواردة إلى وحدة Pod.
-* **وحدة ما بعد التحليلات** (`wallarm-sidecar-postanalytics`) هي الخلفية المحلية لتحليلات البيانات لحل Wallarm الجانبي. تستخدم الوحدة التخزين في الذاكرة Tarantool ومجموعة من الحاويات المساعدة (مثل خدمات جمع البيانات، خدمات تصدير الهجمات).
+    في المرة التي يبدأ فيها Node جديد بـ `wallarm-sidecar: enabled` في Kubernetes، يقوم الكنترولر تلقائيًا بحقن حاوية إضافية ترشح حركة المرور الواردة إلى الغرفة.
+* **Postanalytics module** (`wallarm-sidecar-postanalytics`) هو بيانات التحليلات المحلية لحل Wallarm sidecar. يستخدم الوحدة تخزين Tarantool في الذاكرة ومجموعة من الحاويات المساعدة (مثل collectd، خدمات تصدير الهجوم).
 
-![كائنات نشر Wallarm][sidecar-deployment-objects-img]
+![اوبجكتات نشر Wallarm][sidecar-deployment-objects-img]
 
-لحل وحدة Wallarm الجانبية مرحلتان قياسيتان في دورة حياتها:
+Wallarm Sidecar لديه 2 مراحل معيارية في دورة حياته:
 
-1. في المرحلة **الأولية**، يضيف المتحكم وحدة Wallarm الجانبية إلى وحدة الPod معتمدًا على قيم المخطط والتعليقات التوضيحية لوحدة الPod وربط مكونات النود بسحابة Wallarm.
-1. في مرحلة **التشغيل**، تقوم الحل بتحليل الطلبات والتوجيه/إعادة توجيهها بمشاركة وحدة ما بعد التحليلات.
+1. في المرحلة **الأولية**، يقوم الكنترولر بحقن موارد Wallarm sidecar في Pod مع تكوينه بناءً على قيم Helm chart وتعليمات توضيح الغرفة والاتصال بـ Wallarm Cloud.
+1. في مرحلة **التشغيل**، يحلل الحل ويقوم بتحويل طلبات تقديم الخدمات عن طريق تنفيذ postanalytics module.
 
-## متطلبات
+## المتطلبات
 
 --8<-- "../include/waf/installation/sidecar-proxy-reqs.md"
 
 ## النشر
 
-لنشر حل Wallarm الجانبي:
+لنشر حل Wallarm Sidecar:
 
-1. توليد رمز النود للتصفية.
-1. نشر مخطط Wallarm Helm.
-1. إلحاق وحدة Wallarm الجانبية بوحدة Pod الخاصة بالتطبيق.
-1. اختبر عملية تشغيل وحدة Wallarm الجانبية.
+1. قم بتوليد رمز العقدة المرشح.
+1. اعمل على نشر رسم البياني Helm لـ Wallarm.
+1. قم بارتباط Wallarm Sidecar بـ Pod التطبيق.
+1. اختبر تشغيل Wallarm Sidecar.
 
-### الخطوة 1: توليد رمز النود للتصفية
+### الخطوة 1: توليد رمز العقدة المرشح
 
-قم بتوليد رمز النود للتصفية من النوع [المناسب][node-token-types] لربط وحدات الجانب الجانبية بسحابة Wallarm:
+قم بتوليد رمز العقدة المرشح من [النوع المناسب][node-token-types] لتوصيل الغرف المكملة إلى Wallarm Cloud:
 
-=== "رمز الواجهة برمجية"
-    1. افتح وحدة تحكم Wallarm → **الإعدادات** → **رموز الواجهة برمجية** في [السحابة الأمريكية](https://us1.my.wallarm.com/settings/api-tokens) أو [السحابة الأوروبية](https://my.wallarm.com/settings/api-tokens).
-    1. ابحث أو أنشئ رمز واجهة برمجية بدور المصدر `Deploy`.
+=== "API token"
+    1. افتح Wallarm Console → **الإعدادات** → **API tokens** في [السحابة الأمريكية](https://us1.my.wallarm.com/settings/api-tokens) أو [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+    1. ابحث أو أنشئ رمز API بدور المصدر `Deploy`.
     1. انسخ هذا الرمز.
-=== "رمز النود"
-    1. افتح وحدة تحكم Wallarm → **Nodes** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes).
-    1. قم بإنشاء نود تصفية بنوع **نود Wallarm** وانسخ الرمز المولد.
+=== "رمز العقدة"
+    1. افتح Wallarm Console → **عقدة Nodes** في كل من [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [EU Cloud](https://my.wallarm.com/nodes).
+    1. أنشئ عقدة مرشحة بنوع **Wallarm node** وانسخ الرمز المولد.
         
-      ![إنشاء نود Wallarm][create-wallarm-node-img]
+      ![إنشاء Wallarm node][create-wallarm-node-img]
 
-### الخطوة 2: نشر مخطط Wallarm Helm
+### الخطوة 2: نشر الرسم البياني Helm لـ Wallarm
 
-1. أضف [مستودع مخطط Wallarm](https://charts.wallarm.com/):
+1. أضف [مستودع الرسم البياني Wallarm](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
-1. قم بإنشاء ملف `values.yaml` بتكوين وحدة Wallarm الجانبية (customization.md). مثال على الملف بأقل تكوين أدناه.
+1. أنشئ ملف `values.yaml` بـ [تهيئة Wallarm Sidecar](customization.md). المثال على الملف مع التهيئة الدنيا هو في الأسفل.
 
-    عند استخدام رمز واجهة برمجية، حدد اسم مجموعة النود في متغير `nodeGroup`. سيتم تعيين النود التي تم إنشاؤها لوحدات الجانبية إلى هذه المجموعة، المعروضة في قسم **Nodes** في وحدة تحكم Wallarm. اسم المجموعة الافتراضي هو `defaultSidecarGroup`. إذا لزم الأمر، يمكنك في وقت لاحق تعيين أسماء مجموعات النود للتصفية بشكل فردي لوحدات الPods للتطبيقات التي يحميها، باستخدام التوضيح [`sidecar.wallarm.io/wallarm-node-group`](pod-annotations.md#wallarm-node-group).
+    عند استخدام رمز API، حدد اسم المجموعة في المعامل `nodeGroup`. ستتم تعيين عقدتك المنشأة للغرف المكملة إلى هذه المجموعة، والتي ستظهر في قسم **عقدة Nodes** في Wallarm Console. اسم المجموعة الافتراضي هو `defaultSidecarGroup`. إذا لزم الأمر، يمكنك تحديد أسماء مجموعات العقدة المرشحة بشكل فردي لـ pods التطبيقات التي يحمونها، باستخدام تعليمة التوضيح [`sidecar.wallarm.io/wallarm-node-group`](pod-annotations.md#wallarm-node-group).
 
-    === "السحابة الأمريكية"
+    === "US Cloud"
         ```yaml
         config:
           wallarm:
@@ -91,7 +91,7 @@
               host: "us1.api.wallarm.com"
               # nodeGroup: "defaultSidecarGroup"
         ```
-    === "السحابة الأوروبية"
+    === "EU Cloud"
         ```yaml
         config:
           wallarm:
@@ -100,22 +100,22 @@
               # nodeGroup: "defaultSidecarGroup"
         ```    
     
-    `<NODE_TOKEN>` هو رمز النود Wallarm الذي سيتم تشغيله في Kubernetes.
+    `<NODE_TOKEN>` هو رمز العقدة Wallarm المطلوب تشغيلها في Kubernetes.
 
     --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
-1. قم بنشر مخطط Wallarm Helm:
+1. نشر الرسم البياني Helm لـ Wallarm:
 
     ``` bash
     helm install --version 4.8.1 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>` هو اسم الإصدار Helm لمخطط Wallarm الجانبي
-    * `wallarm-sidecar` هو الفضاء الاسمي الجديد لنشر الإصدار Helm بمخطط Wallarm الجانبي، يُنصح بنشره في فضاء اسمي منفصل
-    * `<PATH_TO_VALUES>` هو المسار إلى ملف `values.yaml`
+    * `<RELEASE_NAME>` هو الاسم لـ Helm release للرسم البياني Wallarm Sidecar
+    * `wallarm-sidecar` هو المجال الاسمي الجديد لنشر Helm release مع الرسم البياني Wallarm Sidecar، يوصى بنشره في مجال اسمي منفصل
+    * `<PATH_TO_VALUES>` هو وصلة الطريق إلى ملف `values.yaml`
 
-### الخطوة 3: إلحاق وحدة Wallarm الجانبية بوحدة Pod الخاصة بالتطبيق
+### الخطوة 3: اربط Wallarm Sidecar بـ Pod التطبيق
 
-لتصفية حركة المرور تجاه التطبيق من Wallarm، أضف تصنيف `wallarm-sidecar: enabled` إلى وحدة Pod الخاصة بالتطبيق المناسب:
+لكي يرشح Wallarm حركة الشبكة للتطبيق، أضف التسمية `wallarm-sidecar: enabled` إلى Pod التطبيق المقابل:
 
 ```bash
 kubectl edit deployment -n <APPLICATION_NAMESPACE> <APP_LABEL_VALUE>
@@ -146,34 +146,59 @@ spec:
               containerPort: 80
 ```
 
-* إذا تم تعيين تصنيف `wallarm-sidecar` لوحدة الPod إما إلى `disabled` أو لم يتم تحديده بشكل صريح، فلن يتم إدخال وعاء Wallarm الجانبي في وحدة Pod وبالتالي لن يتم تصفية حركة المرور من Wallarm.
-* إذا تم تعيين تصنيف `wallarm-sidecar` لوحدة الPod إلى `enabled`، يتم إدخال وعاء Wallarm الجانبي في وحدة Pod وبالتالي يتم تصفية حركة المرور الواردة من Wallarm.
+* إذا تم تعيين تسمية `wallarm-sidecar` على Pod التطبيق إلى `disabled` أو لم يتم تحديدها بصورة صريحة، لن يتم حقن حاوية Wallarm Sidecar في الغرفة وبالتالي Wallarm لن يقوم بترشيح حركة الشبكة.
+* إذا تم تعيين تسمية `wallarm-sidecar` على Pod التطبيق إلى `enabled`، سيتم حقن حاوية Wallarm Sidecar في الغرفة وبالتالي Wallarm سيقوم بترشيح الشبكة الواردة.
 
-### الخطوة 4: اختبار تشغيل وحدة Wallarm الجانبية
+### الخطوة 4: اختبر تشغيل Wallarm Sidecar
 
-للتحقق من أن وحدة Wallarm الجانبية تعمل بشكل صحيح:
+لاختبار تشغيل Wallarm Sidecar بشكل صحيح:
 
-1. احصل على تفاصيل طائرة التحكم Wallarm للتحقق من أنها قد تم بدء تشغيلها بنجاح:
+1. احصل على تفاصيل Wallarm control plane للتأكد من نجاح بدايته:
 
     ```bash
     kubectl get pods -n wallarm-sidecar -l app.kubernetes.io/name=wallarm-sidecar
     ```
 
-    يجب أن يعرض كل وحدة Pod ما يلي: **READY: N/N** و **STATUS: Running**، على سبيل المثال:
+    كل غرفة يجب أن تعرض التالي: **جاهز: N/N** و**حالة: تعمل**، على سبيل المثال:
 
     ```
     NAME                                              READY   STATUS    RESTARTS   AGE
     wallarm-sidecar-controller-54cf88b989-gp2vg      1/1     Running   0          91m
     wallarm-sidecar-postanalytics-86d9d4b6cd-hpd5k   4/4     Running   0          91m
     ```
-1. احصل على تفاصيل وحدة Pod الخاصة بالتطبيق للتحقق من إدخال وعاء Wallarm الجانبي بنجاح:
+
+1. احصل على تفاصيل الغرفة التطبيقية للتأكد من تم حقن Wallarm sidecar بنجاح:
 
     ```bash
     kubectl get pods -n <APPLICATION_NAMESPACE> --selector app=<APP_LABEL_VALUE>
     ```
 
-    يجب أن تعرض النتائج **READY: 2/2** تشير إلى الإدخال الناجح لوعاء الجانبي و **STATUS: Running** تشير إلى الاتصال الناجح بسحابة Wallarm:
+    يجب أن يعرض الإخراج **جاهز: 2/2** يشير إلى حقن الحاوية الفرعية بنجاح و**حالة: تعمل** يشير إلى التوصيل الناجح إلى Wallarm Cloud:
 
     ```
     NAME                     READY   STATUS    RESTARTS   AGE
-    my
+    myapp-5c48c97b66-lzkwf   2/2     Running   0          3h4m
+    ```
+1. أرسل هجوم اختبار  [Path Traversal][ptrav-attack-docs] إلى عنوان التجمع تطبيق Wallarm مفعل لترشيح حركة الشبكة:
+
+    ```bash
+    curl http://<APPLICATION_CLUSTER_IP>/etc/passwd
+    ```
+
+    بما أن Wallarm proxy يعمل في وضع الترشيح **مراقبة**  [filtration mode][filtration-mode-docs] افتراضياً، فإن Wallarm node لن يقوم بحجب الهجوم ولكن سيقوم بتسجيله.
+
+    للتأكد من تسجيل الهجوم، توجه إلى Wallarm Console → **الهجمات**:
+
+    ![الهجمات في الواجهة][attacks-in-ui-image]
+
+## التخصيص
+
+تم حقن الغرف المكملة Wallarm استنادًا إلى [القيم الافتراضية `values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml) والتكوين الخاص الذي حددته في الخطوة الثانية من النشر.
+
+يمكنك تخصيص سلوك الخدمة الوكيلة Wallarm أكثر من ذلك على كلا من المستوى العالمي ومستوى الغرفة واحصل على الحد الأقصى من حل Wallarm لشركتك.
+
+فقط توجه إلى [دليل تخصيص حل Wallarm proxy](customization.md).
+
+## القيود
+
+* [الكشف عن ضخ الشهادات][cred-stuffing-docs] غير مدعوم حالياً، باعتبار أن الرسم البياني Helm لم يتم تحديثه إلى الإصدار 4.10 بعد.

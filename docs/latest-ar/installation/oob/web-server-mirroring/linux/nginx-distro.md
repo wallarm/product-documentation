@@ -1,10 +1,10 @@
-# تنصيب موديول Wallarm OOB الديناميكي ل NGINX الموفّر من التوزيع
+# تثبيت الوحدة الديناميكية الخارجية لـ Wallarm لإصدارات NGINX المقدمة من التوزيع
 
-هذه التعليمات تصف الخطوات لتنصيب Wallarm كموديول [OOB](../overview.md) ديناميكي باستخدام حزم لينكس لـ NGINX الموفر من التوزيع.
+تصف هذه التعليمات الخطوات لتثبيت Wallarm كوحدة ديناميكية [خارجية](../overview.md) باستخدام حزم Linux لـ NGINX المقدمة من التوزيع.
 
-يمكن الحصول على NGINX الأساسي من nginx.org أو المستودعات الافتراضية لـ Debian/CentOS حسب متطلباتك، تفضيلات إصدار NGINX، وسياسات إدارة المستودع. Wallarm يوفر حزم لكلٍ من [nginx.org](nginx-stable.md) والإصدارات المقدمة من التوزيع. يركز هذا الدليل على NGINX من مستودعات Debian/CentOS.
+يمكن الحصول على NGINX Open Source من nginx.org أو المستودعات الافتراضية لـ Debian/CentOS اعتمادًا على متطلباتك وتفضيلات إصدار NGINX وسياسات إدارة المستودع. توفر Wallarm حزمًا لكل من [nginx.org](nginx-stable.md) والإصدارات المقدمة من التوزيع. يركز هذا الدليل على NGINX من مستودعات Debian/CentOS.
 
-موديول Wallarm متوافق مع NGINX المقدم من التوزيع على أنظمة التشغيل التالية:
+تتوافق وحدة Wallarm مع NGINX المقدمة من التوزيع على أنظمة التشغيل التالية:
 
 * Debian 10.x (buster)
 * Debian 11.x (bullseye)
@@ -22,7 +22,7 @@
 
 --8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-distro.md"
 
-## 5. تمكين Wallarm لتحليل الحركة
+## 5. تمكين Wallarm لتحليل حركة المرور
 
 --8<-- "../include/waf/installation/oob/steps-for-mirroring-linux.md"
 
@@ -47,29 +47,29 @@
     sudo systemctl restart nginx
     ```
 
-## 7. تهيئة إرسال الحركة إلى مثيل Wallarm
+## 7. تكوين إرسال الحركة إلى كيان Wallarm
 
 --8<-- "../include/waf/installation/sending-traffic-to-node-oob.md"
 
-## 8. اختبار تشغيل عقدة Wallarm
+## 8. اختبار تشغيل كيان Wallarm
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## 9. تعديل الحل المنصوب
+## 9. ضبط الحل المنشور بدقة 
 
-يُنصب موديول Wallarm الديناميكي بإعدادات افتراضية لـNGINX `stable`. قد تتطلب عقدة التصفية بعض الإعدادات الإضافية بعد التنصيب.
+تم تثبيت الوحدة الديناميكية Wallarm بالإعدادات الافتراضية لـ NGINX `الثابت`. قد يتطلب كيان التصفية بعض التكوينات الإضافية بعد النشر.
 
-يتم تحديد إعدادات Wallarm باستخدام [توجيهات NGINX](../../../../admin-en/configure-parameters-en.md) أو واجهة مستخدم Wallarm Console. يجب ضبط التوجيهات في الملفات التالية على الجهاز الذي يحوي عقدة Wallarm:
+تُعرّف إعدادات Wallarm باستخدام [توجيهات NGINX](../../../../admin-en/configure-parameters-en.md) أو واجهة المستخدم لوحة تحكم Wallarm. يجب ضبط التوجيهات في الملفات التالية على الجهاز الذي يحتوي على كيان Wallarm:
 
 * `/etc/nginx/conf.d/default.conf` مع إعدادات NGINX
-* `/etc/nginx/conf.d/wallarm.conf` مع إعدادات عقدة التصفية العامة
+* `/etc/nginx/conf.d/wallarm.conf` مع إعدادات كيان التصفية العالمية
 
-    يُستخدم الملف للإعدادات المطبقة على جميع النطاقات. لتطبيق إعدادات مختلفة على مجموعات نطاقات مختلفة، استخدم الملف `default.conf` أو أنشئ ملفات تهيئة جديدة لكل مجموعة نطاقات (على سبيل المثال، `example.com.conf` و `test.com.conf`). المزيد من المعلومات المفصلة عن ملفات تهيئة NGINX متاحة في [وثائق NGINX الرسمية](https://nginx.org/en/docs/beginners_guide.html).
-* `/etc/nginx/conf.d/wallarm-status.conf` مع إعدادات مراقبة عقدة Wallarm. الوصف التفصيلي متاح ضمن [الرابط][wallarm-status-instr]
+    يُستخدم الملف للإعدادات المطبقة على جميع النطاقات. لتطبيق إعدادات مختلفة على مجموعات النطاقات المختلفة، استخدم الملف `default.conf` أو أنشئ ملفات تكوين جديدة لكل مجموعة نطاقات (على سبيل المثال، `example.com.conf` و `test.com.conf`). المزيد من المعلومات التفصيلية حول ملفات تكوين NGINX متوفرة في [التوثيق الرسمي لـ NGINX](https://nginx.org/en/docs/beginners_guide.html).
+* `/etc/nginx/conf.d/wallarm-status.conf` مع إعدادات مراقبة كيان Wallarm. الوصف التفصيلي متوفر ضمن [الرابط][wallarm-status-instr]
 * `/etc/default/wallarm-tarantool` أو `/etc/sysconfig/wallarm-tarantool` مع إعدادات قاعدة بيانات Tarantool
 
 أدناه بعض الإعدادات النموذجية التي يمكنك تطبيقها إذا لزم الأمر:
 
 --8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
 
-* [تهيئة الحل DNS الديناميكي في NGINX][dynamic-dns-resolution-nginx]
+* [تكوين الحل DNS الديناميكي في NGINX][dynamic-dns-resolution-nginx]

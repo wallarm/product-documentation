@@ -1,12 +1,12 @@
 # ServiceNow
 
-[ServiceNow](https://www.servicenow.com/) هو منصة قائمة على السحابة تقدم مجموعة من حلول إدارة خدمات تكنولوجيا المعلومات (ITSM) وأتمتة العمليات التجارية للمؤسسات. يمكنك ضبط Wallarm لإنشاء تذاكر المشاكل في ServiceNow.
+[ServiceNow](https://www.servicenow.com/) هي منصة مستندة إلى السحابة توفر مجموعة من حلول إدارة خدمات تكنولوجيا المعلومات (ITSM) وأتمتة العمليات التجارية للمؤسسات. يمكنك ضبط Wallarm لإنشاء تذاكر مشاكل في ServiceNow.
 
-## متطلبات
+## المتطلبات
 
-ServiceNow هو منصة لمساعدة الشركات على إدارة سير العمل الرقمي للعمليات المؤسسية. تحتاج شركتك إلى [نسخة وتطبيقات workflow مبنية داخلها](https://www.servicenow.com/lpdem/demonow-cloud-platform-app-dev.html) من ServiceNow لدمج هذه التطبيقات مع Wallarm.
+ServiceNow هي منصة لمساعدة الشركات على إدارة تدفقات العمل الرقمية لعمليات المؤسسات. تحتاج شركتك إلى امتلاك [نسخة ServiceNow وتطبيقات تدفق العمل المنشأة داخلها](https://www.servicenow.com/lpdem/demonow-cloud-platform-app-dev.html) لدمج هذه التطبيقات مع Wallarm.
 
-## إعداد التكامل
+## إعداد الدمج
 
 في واجهة مستخدم ServiceNow:
 
@@ -16,29 +16,29 @@ ServiceNow هو منصة لمساعدة الشركات على إدارة سير 
 
 في واجهة مستخدم Wallarm:
 
-1. افتح واجهة Wallarm → **التكاملات** → **ServiceNow**.
-1. أدخل اسم التكامل.
+1. افتح وحدة تحكم Wallarm → **Integrations** → **ServiceNow**.
+1. أدخل اسم الدمج.
 1. أدخل اسم نسخة ServiceNow.
 1. أدخل اسم المستخدم وكلمة المرور للوصول إلى النسخة المحددة.
 1. أدخل بيانات المصادقة OAuth: معرف العميل والسر.
 1. اختر أنواع الأحداث لتشغيل الإخطارات.
 
-    ![تكامل ServiceNow](../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
+    ![دمج ServiceNow](../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
 
     تفاصيل حول الأحداث المتاحة:
       
     --8<-- "../include/integrations/events-for-integrations.md"
 
-1. اضغط على **اختبار التكامل** للتحقق من صحة التكوين، وتوفر Cloud Wallarm، وشكل الإخطار.
+1. اضغط **Test integration** للتحقق من صحة التكوين وتوفر سحابة Wallarm وتنسيق الإخطار.
 
-    سيتم إرسال الإخطارات التجريبية بالبادئة `[رسالة تجريبية]`.
+    سيتم إرسال الإخطارات التجريبية مع البادئة `[Test message]`.
 
-1. اضغط على **إضافة التكامل**.
+1. اضغط **Add integration**.
 
-## تعطيل وحذف تكامل
+## تعطيل وحذف دمج
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 
-## عدم توفر النظام ومعلمات التكامل غير الصحيحة
+## عدم توفر النظام ومعاملات الدمج غير الصحيحة
 
 --8<-- "../include/integrations/integration-not-working.md"

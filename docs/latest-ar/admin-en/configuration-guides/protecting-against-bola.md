@@ -1,13 +1,13 @@
-[تغاير-فى-النقاط-النهائية-للمستندات]:       ../../api-discovery/exploring.md#variability-in-endpoints
-[تغييرات-فى-واجهة-برمجة-التطبيقات-للمستندات]:       ../../api-discovery/track-changes.md
-[حماية-بولا-للنقاط-النهائية-للمستندات]:  ../../api-discovery/bola-protection.md
+[variability-in-endpoints-docs]:       ../../api-discovery/exploring.md#variability-in-endpoints
+[changes-in-api-docs]:       ../../api-discovery/track-changes.md
+[bola-protection-for-endpoints-docs]:  ../../api-discovery/bola-protection.md
 
-# الحماية الأوتوماتيكية من بولا للنقاط النهائية المكتشفة بواسطة اكتشاف واجهة برمجة التطبيقات <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# حماية BOLA التلقائية لنقاط النهاية المكتشفة بواسطة استكشاف API <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-هذا المقال يصف الحماية الأوتوماتيكية من بولا للنقاط النهائية التي تم اكتشافها بواسطة [اكتشاف واجهة برمجة التطبيقات](../../api-discovery/overview.md) (APID).
+يصف هذا المقال الحماية التلقائية لـBOLA لنقاط النهاية التي تم اكتشافها بواسطة [استكشاف API](../../api-discovery/overview.md) (APID).
 
-!!! info "تدابير حماية بولا الأخرى"
-    بديلاً أو إضافيًا، يمكنك تكوين [حماية بولا بالمحفزات](protecting-against-bola-trigger.md).
+!!! info "تدابير حماية BOLA الأخرى"
+    بالإضافة إلى ذلك، يمكنك تكوين [الحماية من BOLA بواسطة الزناد](protecting-against-bola-trigger.md).
 
 --8<-- "../include/bola-intro.md"
 
@@ -17,25 +17,25 @@
 
 ## التكوين
 
-!!! info "مطلوب اكتشاف واجهة برمجة التطبيقات"
-    الحماية الأوتوماتيكية من بولا متاحة إذا كنت تستخدم موديول **[اكتشاف واجهة برمجة التطبيقات](../../api-discovery/overview.md)**.
+!!! info "استكشاف API مطلوب"
+    الحماية التلقائية من BOLA متاحة إذا كنت تستخدم وحدة **[استكشاف API](../../api-discovery/overview.md)**.
 
-لتفعيل الحماية التلقائية، توجه إلى وحدة تحكم Wallarm → **حماية بولا** وقم بتحويل المفتاح إلى وضع التشغيل:
+لتفعيل الحماية التلقائية، انتقل إلى وحدة التحكم Wallarm → **حماية BOLA** وحول الزر إلى الحالة المفعلة:
 
-![محفز بولا](../../images/user-guides/bola-protection/trigger-enabled-state.png)
+![زناد BOLA](../../images/user-guides/bola-protection/trigger-enabled-state.png)
 
-ثم يمكنك ضبط سلوك Wallarm الافتراضي بتحرير قالب كشف بولا التلقائي كما يلي:
+ثم يمكنك تعديل السلوك الافتراضي لـWallarm بتعديل قالب كشف BOLA التلقائي كما يلي:
 
-* تغيير الحد للطلبات من نفس عنوان IP ليتم تمييزها كهجمات بولا.
-* تغيير رد الفعل عند تجاوز الحد:
+* تغيير العتبة للطلبات القادمة من نفس الـIP لتُعد كهجمات BOLA.
+* تغيير الرد عند تجاوز العتبة:
 
-    * **قائمة الحظر لعنوان IP** - Wallarm سوف [يحظر](../../user-guides/ip-lists/overview.md) عناوين IP لمصدر هجمات بولا وبالتالي يحجب كل الحركة المرورية التي تنتجها هذه العناوين.
-    * **قائمة رمادية لعنوان IP** - Wallarm سوف [يضع في قائمة رمادية](../../user-guides/ip-lists/overview.md) عناوين IP لمصدر هجمات بولا وبالتالي يحجب فقط الطلبات الضارة من هذه العناوين وفقط إذا كان العقدة المُصفية في [وضع](../../admin-en/configure-wallarm-mode.md) الحجب الآمن.
+    * **إدراج الـIP في القائمة السوداء** - سيقوم Wallarm بـ[إدراج IPs](../../user-guides/ip-lists/overview.md) مصدر هجوم BOLA في القائمة السوداء وبالتالي سيحظر كل الحركة المتولدة من هذه IPs.
+    * **إدراج الـIP في القائمة الرمادية** - سيقوم Wallarm بـ[إدراج IPs](../../user-guides/ip-lists/overview.md) مصدر هجوم BOLA في القائمة الرمادية وبالتالي سيحظر فقط الطلبات الضارة القادمة من هذه IPs وفقط إذا كان عقد التصفية في وضع الحظر الآمن [الوضع](../../admin-en/configure-wallarm-mode.md).
 
-![محفز بولا](../../images/user-guides/bola-protection/trigger-template.png)
+![زناد BOLA](../../images/user-guides/bola-protection/trigger-template.png)
 
 ## التعطيل
 
-لتعطيل الحماية الأوتوماتيكية من بولا، قم بتحويل المفتاح إلى وضع التعطيل في قسم **حماية بولا**.
+لتعطيل الحماية التلقائية من BOLA، حول الزر إلى الحالة المعطلة في قسم **حماية BOLA**.
 
-عند انتهاء اشتراك اكتشاف واجهة برمجة التطبيقات الخاص بك، سيتم تعطيل الحماية الأوتوماتيكية من بولا تلقائيًا.
+بمجرد انتهاء اشتراكك في استكشاف API، يتم تعطيل الحماية التلقائية من BOLA تلقائيًا.

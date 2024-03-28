@@ -1,8 +1,8 @@
-=== "توزيعات تعتمد على DEB"
+=== "التوزيعات المبنية على DEB"
     ```bash
     /etc/collectd/conf.d/traps.conf
     ```
-=== "توزيعات تعتمد على RPM"
+=== "التوزيعات المبنية على RPM"
     ```bash
     /etc/collectd.d/traps.conf
     ```

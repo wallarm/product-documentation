@@ -1,15 +1,15 @@
-Wallarm بيقترح تنصيبات شاملة للمعالجات الآتية:
+تقترح Wallarm تثبيتات شاملة للمعالجات التالية:
 
 * x86_64
 * ARM64 (تجريبي)
 
-علشان تحمل سكربت تنصيب Wallarm الشامل، نفذ الأمر:
+لتنزيل سكريبت تثبيت Wallarm الشامل، نفذ الأمر:
 
 === "نسخة x86_64"
     ```bash
-    curl -O https://meganode.wallarm.com/4.10/wallarm-4.10.1.x86_64-glibc.sh
+    curl -O https://meganode.wallarm.com/4.10/wallarm-4.10.2.x86_64-glibc.sh
     ```
 === "نسخة ARM64 (تجريبي)"
     ```bash
-    curl -O https://meganode.wallarm.com/4.10/wallarm-4.10.1.aarch64-glibc.sh
+    curl -O https://meganode.wallarm.com/4.10/wallarm-4.10.2.aarch64-glibc.sh
     ```

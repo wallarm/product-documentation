@@ -1,14 +1,14 @@
-# تحري مشكلة استهلاك عالي لمعالج الحاسوب (CPU)
+# تحرّي ومعالجة استهلاك الوحدة المركزية المرتفع
 
-يوصى باستهلاك معالج الحاسوب بنسبة حوالي ١٠-١٥٪ من قبل Wallarm، مما يعني أن عقد التصفية ستكون قادرة على التعامل مع زيادة حجم الزيارات بمقدار ١٠ أضعاف. إذا كانت عقدة Wallarm تستهلك المزيد من معالج الحاسوب عما كان متوقعًا وأنت بحاجة إلى تقليل استهلاك المعالج، استخدم هذا الدليل.
+يُنصح بأن يكون استهلاك وحدة المعالجة المركزية بواسطة Wallarm حوالي 10-15%، مما يعني أن عقد التصفية ستكون قادرة على التعامل مع زيادة في حجم المرور بمقدار 10 أضعاف. إذا كانت عقدة Wallarm تستهلك وحدة معالجة مركزية أكثر مما كان متوقعًا وكنت بحاجة إلى خفض استهلاك وحدة المعالجة المركزية، استخدم هذا الدليل.
 
-لكشف أطول فترات معالجة الطلبات وبالتالي الاستهلاكيين الأساسيين لمعالج الحاسوب، يمكنك [تمكين التسجيل الموسع](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginx‑based-filter-node) ومراقبة وقت المعالجة.
+لكشف الحلقات الأطول في معالجة الطلبات وبالتالي العناصر الرئيسية المستهلكة لوحدة المعالجة المركزية، يمكنك [تمكين التسجيل الموسع](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginx‑based-filter-node) ومراقبة وقت المعالجة.
 
-يمكنك القيام بالتالي لتقليل حمل المعالج الناتج عن Wallarm:
+يمكنك القيام بما يلي لخفض حمل وحدة المعالجة المركزية بواسطة Wallarm:
 
-* إضافة [`limit_req`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html) إلى تكوين NGINX أو ابتداءً من العقدة 4.6 استخدم وظيفة [تحديد المعدل](../user-guides/rules/rate-limiting.md) الخاصة بـ Wallarm. قد يكون هذا أفضل طريقة لتقليل حمل المعالج في حالة هجمات القوة العنيفة وغيرها من الهجمات.
+* إضافة [`limit_req`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html) إلى تكوين NGINX أو ابتداءً من العقدة 4.6 استخدم وظائف [تحديد المعدل](../user-guides/rules/rate-limiting.md) الخاصة بـ Wallarm. قد تكون هذه أفضل طريقة لتقليل حمل وحدة المعالجة المركزية في حالة الهجمات القوية والهجمات الأخرى.
 
-    ??? info "مثال التكوين - استخدام `limit_req`"
+    ??? info "مثال التكوين - باستخدام `limit_req`"
 
         ```bash
         http {
@@ -28,15 +28,15 @@
               limit_req zone=allurl burst=30;
             }
           }
-        }
+        }        
         ```
 
-* التأكد من تخصيص الكمية المناسبة من الذاكرة [qد قد تمّ تخصيصها](../admin-en/configuration-guides/allocate-resources-for-node.md) لـ NGINX وTarantool.
-* التأكد من أن توجيه [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) مضبوط على `on` والذي يحجب على الفور أي طلبات من عناوين الـIP المدرجة في القائمة السوداء في أي وضع ترشيح دون البحث عن علامات الهجمات في هذه الطلبات. إلى جانب تمكين التوجيه، تحقق من قوائم [IP الخاصة بـ Wallarm](../user-guides/ip-lists/overview.md) للعثور على عناوين IP التي أضيفت بالخطأ إلى **القائمة البيضاء** أو المواقع التي لم تُضف بالخطأ إلى **القائمة السوداء**.
+* التأكد من تخصيص كمية الذاكرة المناسبة [للتخصيص](../admin-en/configuration-guides/allocate-resources-for-node.md) لـ NGINX وTarantool.
+* التأكد من تعيين توجيه [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) إلى `on` والذي يقوم بحظر أي طلبات من عناوين IP المدرجة في القائمة السوداء في أي وضع تصفية دون البحث عن علامات الهجوم في هذه الطلبات. بالإضافة إلى تمكين التوجيه، تحقق من [قوائم IP](../user-guides/ip-lists/overview.md) في Wallarm للعثور على عناوين IP التي أُضيفت عن طريق الخطأ إلى **القائمة البيضاء** أو المواقع التي لم تُضف عن طريق الخطأ إلى **القائمة السوداء**.
 
-    لاحظ أن هذه الطريقة لخفض استهلاك المعالج قد تؤدي إلى تخطي طلبات من محركات البحث. ومع ذلك، يمكن حل هذه المشكلة أيضًا من خلال استخدام وحدة `map` في تكوين NGINX.
+    لاحظ أن هذه الطريقة لخفض استهلاك وحدة المعالجة المركزية قد تؤدي إلى تخطي طلبات من محركات البحث. ومع ذلك، يمكن أيضًا حل هذه المشكلة من خلال استخدام وحدة `map` في تكوين NGINX.
 
-    ??? info "مثال التكوين - حل مشكلة محركات البحث باستخدام وحدة `map`"
+    ??? info "مثال التكوين - `map` module لحل مشكلة محركات البحث"
 
         ```bash
         http {
@@ -52,7 +52,7 @@
         }
         ```
 
-* تعطيل [libdetection](../about-wallarm/protecting-against-attacks.md#libdetection-overview) (مفعل افتراضيًا ابتداءً من إصدار العقدة 4.4) عبر `wallarm_enable_libdetection off`. استخدام libdetection يزيد من استهلاك المعالج بنسبة 5-10٪. ومع ذلك، يجب الأخذ في الاعتبار أن تعطيل libdetection قد يؤدي إلى زيادة عدد النتائج الإيجابية المزيفة للكشف عن هجمات SQLi.
-* إذا كشفت أثناء تحليل الهجمات المكتشفة أن Wallarm يستخدم بشكل خاطئ بعض المفسرات [في القواعد](../user-guides/rules/request-processing.md#managing-parsers) أو [عبر تكوين NGINX](../admin-en/configure-parameters-en.md#wallarm_parser_disable) لعناصر معينة من الطلبات، قم بتعطيل هذه المفسرات لما لا يتناسب معها. مع ذلك، لاحظ أنه لا يُنصح أبدًا بتعطيل المفسرات بشكل عام.
-* [خفض وقت معالجة الطلب](../user-guides/rules/configure-overlimit-res-detection.md). لاحظ أنه بفعل ذلك قد تمنع الطلبات الشرعية من الوصول إلى الخادم.
-* تحليل الأهداف المحتملة لـ [DDoS](../admin-en/configuration-guides/protecting-against-ddos.md) وتطبيق إحدى تدابير [الحماية المتاحة](../admin-en/configuration-guides/protecting-against-ddos.md#l7-ddos-protection-with-wallarm).
+* تعطيل [libdetection](../about-wallarm/protecting-against-attacks.md#libdetection-overview) (مُمكن بشكل افتراضي بدءًا من إصدار العقدة 4.4) عبر `wallarm_enable_libdetection off`. يؤدي استخدام libdetection إلى زيادة استهلاك وحدة المعالجة المركزية بنسبة 5-10%. ومع ذلك، يجب الأخذ في الاعتبار أن تعطيل libdetection قد يؤدي إلى زيادة في عدد النتائج الإيجابية الكاذبة لاكتشاف هجمات SQLi.
+* إذا كشفت خلال تحليل الهجمات المكتشفة أن Wallarm يستخدم بطريقة خاطئة بعض المحللات [في القواعد](../user-guides/rules/request-processing.md#managing-parsers) أو [عبر تكوين NGINX](../admin-en/configure-parameters-en.md#wallarm_parser_disable) لعناصر معينة في الطلبات، عطل هذه المحللات لما لا تنطبق عليه. لاحظ، ومع ذلك، أن تعطيل المحللات بشكل عام لا يُنصح به أبدًا.
+* [تخفيض وقت معالجة الطلب](../user-guides/rules/configure-overlimit-res-detection.md). لاحظ أنه بفعل ذلك قد تمنع الطلبات المشروعة من الوصول إلى الخادم.
+* تحليل الأهداف المحتملة لـ [DDoS](../admin-en/configuration-guides/protecting-against-ddos.md) وتطبيق إحدى [إجراءات الحماية](../admin-en/configuration-guides/protecting-against-ddos.md#l7-ddos-protection-with-wallarm) المتاحة.

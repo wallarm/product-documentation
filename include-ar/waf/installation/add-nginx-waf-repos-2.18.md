@@ -23,17 +23,17 @@
     sh -c "echo 'deb https://repo.wallarm.com/ubuntu/wallarm-node focal/2.18/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
-=== "سنتوس 7.x"
+=== "سينتوس 7.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.18/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
-=== "أمازون لينوكس 2.0.2021x وأقل"
+=== "أمازون لينكس 2.0.2021 وأقل"
     ```bash
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.18/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
-=== "سنتوس 8.x"
+=== "سينتوس 8.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/2.18/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm

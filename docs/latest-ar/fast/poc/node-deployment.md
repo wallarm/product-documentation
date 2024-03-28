@@ -1,30 +1,59 @@
+[anchor-node]:                      #deployment-of-the-docker-container-with-the-fast-node
+[anchor-testrun]:                   #obtaining-a-test-run
+[anchor-testrun-creation]:          #creating-a-test-run
+[anchor-testrun-copying]:           #copying-a-test-run
+
+[doc-limit-requests]:               ../operations/env-variables.md#limiting-the-number-of-requests-to-be-recorded
+[doc-get-token]:                    prerequisites.md#anchor-token
+[doc-testpolicy]:                   ../operations/internals.md#fast-test-policy
+[doc-inactivity-timeout]:           ../operations/internals.md#test-run
+[doc-allowed-hosts-example]:        ../qsg/deployment.md#3-prepare-a-file-containing-the-necessary-environment-variables
+[doc-testpolicy-creation-example]:  ../qsg/test-preparation.md#2-create-a-test-policy-targeted-at-xss-vulnerabilities
+[doc-docker-run-fast]:              ../qsg/deployment.md#4-deploy-the-fast-node-docker-container
+[doc-state-description]:            ../operations/check-testrun-status.md
+[doc-testing-scenarios]:            ../operations/internals.md#test-run
+[doc-testrecord]:                   ../operations/internals.md#test-record
+[doc-create-testrun]:               ../operations/create-testrun.md
+[doc-copy-testrun]:                 ../operations/copy-testrun.md
+[doc-waiting-for-tests]:            waiting-for-tests.md
+
+[link-wl-portal-new-policy]:        https://us1.my.wallarm.com/testing/policies/new#general
+
+[link-docker-envfile]:              https://docs.docker.com/engine/reference/commandline/run/#set-environment-variables--e---env---env-file
+[link-docker-run]:                  https://docs.docker.com/engine/reference/commandline/run/
+[link-docker-rm]:                   https://docs.docker.com/engine/reference/run/#clean-up---rm
+
+[doc-integration-overview]:         integration-overview.md
+[doc-integration-overview-api]:     integration-overview-api.md
+
+
 #   تشغيل عقدة FAST عبر واجهة برمجة تطبيقات Wallarm
 
 !!! info "متطلبات الفصل"
-    لتتبع الخطوات الموضحة في هذا الفصل، يجب عليك الحصول على [رمز][doc-get-token].
+    لاتباع الخطوات الموصوفة في هذا الفصل، يجب الحصول على [رمز][doc-get-token].
     
-    تُستخدم القيم التالية كأمثلة طوال هذا الفصل:
+    القيم التالية تُستخدم كأمثلة طوال هذا الفصل:
     
     * `token_Qwe12345` كرمز.
     * `tr_1234` كمعرف لتشغيل اختبار.
     * `rec_0001` كمعرف لتسجيل اختبار.
 
-يتضمن تشغيل وتكوين عقدة FAST الخطوات التالية:
+تشمل عملية تشغيل وتكوين عقدة FAST الخطوات التالية:
 1.  [نشر حاوية Docker مع عقدة FAST.][anchor-node]
 2.  [الحصول على تشغيل اختبار.][anchor-testrun]
 
 ##  نشر حاوية Docker مع عقدة FAST
 
-!!! warning "السماح بالوصول إلى خوادم واجهة برمجة تطبيقات Wallarm"
-    من الضروري للعمل الصحيح لعقدة FAST أن يكون لها الوصول إلى خوادم واجهة برمجة تطبيقات Wallarm `us1.api.wallarm.com` أو `api.wallarm.com` عبر بروتوكول HTTPS (`TCP/443`).
+!!! warning "منح الوصول إلى خوادم واجهة برمجة تطبيقات Wallarm"
+    من الضروري للعمل السليم لعقدة FAST أن يكون لديها وصول إلى خوادم واجهة برمجة تطبيقات Wallarm `us1.api.wallarm.com` أو `api.wallarm.com` عبر بروتوكول HTTPS (`TCP/443`).
     
-    تأكد من أن جدار الحماية الخاص بك لا يقيد الوصول من الحاوية Docker إلى خوادم واجهة برمجة تطبيقات Wallarm.
+    تأكد من عدم تقييد جدار الحماية الخاص بك لمضيف Docker من الوصول إلى خوادم واجهة برمجة تطبيقات Wallarm.
 
-يتطلب بعض التكوين قبل تشغيل حاوية Docker مع عقدة FAST. لتكوين العقدة، ضع الرمز داخل الحاوية باستخدام متغير البيئة `WALLARM_API_TOKEN`. بالإضافة إلى ذلك، يمكنك استخدام متغير `ALLOWED_HOSTS` إذا كنت بحاجة [لتحديد عدد الطلبات التي سيتم تسجيلها][doc-limit-requests].
+قبل تشغيل حاوية Docker مع عقدة FAST، تتطلب بعض التهئية. لتكوين العقدة، ضع الرمز في الحاوية باستخدام متغير البيئة `WALLARM_API_TOKEN`. بالإضافة إلى ذلك، يمكنك استخدام متغير `ALLOWED_HOSTS` إذا كنت بحاجة [لتحديد عدد الطلبات المسجلة][doc-limit-requests].
 
-لتمرير متغيرات البيئة إلى الحاوية، ضع المتغيرات في ملف نصي وحدد مسار الملف باستخدام الخيار [`--env-file`][link-docker-envfile] لأمر [`docker run`][link-docker-run] (انظر [التعليمات][doc-docker-run-fast] في دليل "البدء السريع").
+لتمرير متغيرات البيئة إلى الحاوية، ضع المتغيرات في ملف نصي وحدد مسار الملف باستخدام المُعامل [`--env-file`][link-docker-envfile] لأمر [`docker run`][link-docker-run] (راجع [التعليمات][doc-docker-run-fast] في دليل "البدء السريع").
 
-شغل حاوية مع عقدة FAST بتنفيذ الأمر التالي:
+نفذ الأمر التالي لتشغيل حاوية مع عقدة FAST:
 
 ```
 docker run \ 
@@ -35,12 +64,12 @@ docker run \
 wallarm/fast 
 ```
 
-يُفترض في هذا الدليل أن الحاوية تعمل مرة واحدة فقط للوظيفة CI/CD المحددة ويتم إزالتها عند انتهاء الوظيفة. لذلك، تمت إضافة الخيار [`--rm`][link-docker-rm] إلى الأمر المذكور أعلاه.
+يفترض هذا الدليل أن الحاوية تعمل مرة واحدة فقط للوظيفة CI/CD المعطاة ويتم إزالتها عند انتهاء الوظيفة. لذلك، تم إضافة المُعامل [`--rm`][link-docker-rm] إلى الأمر المذكور أعلاه.
 
-يرجى الرجوع إلى دليل "البدء السريع" للحصول على [وصف تفصيلي][doc-docker-run-fast] لمعاملات الأمر.
+يرجى الرجوع إلى دليل "البدء السريع" للحصول على [وصف مفصل][doc-docker-run-fast] لمعاملات الأمر.
 
 ??? info "مثال"
-    يفترض هذا المثال أن عقدة FAST تستخدم رمز `token_Qwe12345` وهي معدة لتسجيل جميع طلبات الأساس التي تحتوي `example.local` كجزء من قيمة رأس `Host`.  
+    يُفترض في هذا المثال أن عقدة FAST تستخدم الرمز `token_Qwe12345` ومُعدة لتسجيل جميع الطلبات الأساسية الواردة التي تحتوي `example.local` كجزء من قيمة رأسية الـ `Host`.  
 
     يُظهر المثال التالي محتوى ملف مع متغيرات البيئة:
 
@@ -48,34 +77,34 @@ wallarm/fast
     | -------- |
     | `WALLARM_API_TOKEN=token_Qwe12345`<br>`ALLOWED_HOSTS=example.local` |
 
-    الأمر أدناه يشغل حاوية Docker باسم `fast-poc-demo` مع السلوك التالي:
+    يُشغل الأمر أدناه حاوية Docker باسم `fast-poc-demo` بالسلوك التالي:
     
-    * الحاوية يتم إزالتها بعد انتهاء عملها.
-    * متغيرات البيئة يتم تمريرها إلى الحاوية باستخدام ملف `fast.cfg`. 
-    * منفذ `8080` للحاوية يتم نشره إلى منفذ `9090` لمضيف Docker.
+    * يتم إزالة الحاوية بعد انتهاء عملها.
+    * يتم تمرير متغيرات البيئة إلى الحاوية باستخدام ملف `fast.cfg`. 
+    * يتم نشر منفذ `8080` للحاوية إلى منفذ `9090` لمضيف Docker.
 
     ```
     docker run --rm --name fast-poc-demo --env-file=fast.cfg -p 9090:8080  wallarm/fast
     ```
 
-إذا كان نشر عقدة FAST ناجحًا، فإن وحدة التحكم بالحاوية وملف السجل سيحتويان على الرسائل التالية:
+إذا كان نشر عقدة FAST ناجحًا، ستحتوي وحدة التحكم في الحاوية وملف السجل على الرسائل الإعلامية التالية:
 
 ```
 [info] Node connected to Wallarm Cloud
 [info] Waiting for TestRun to check…
 ```
 
-الآن عقدة FAST تستمع على عنوان IP لمضيف Docker، والمنفذ الذي حددته مسبقاً بخيار `-p` لأمر `docker run`.
+الآن عقدة FAST تستمع إلى عنوان IP لمضيف Docker، والمنفذ الذي حددته سابقًا باستخدام المُعامل `-p` لأمر `docker run`.
 
 ##  الحصول على تشغيل اختبار
 
-تحتاج إما لـ[إنشاء][anchor-testrun-creation] تشغيل اختبار أو [نسخ][anchor-testrun-copying] واحدة. يعتمد الاختيار على [سيناريو إنشاء تشغيل الاختبار][doc-testing-scenarios] المناسب لك.
+تحتاج إما إلى [إنشاء][anchor-testrun-creation] تشغيل اختبار أو [نسخ][anchor-testrun-copying] واحد. تعتمد الاختيار على [سيناريو إنشاء تشغيل الاختبار][doc-testing-scenarios] المناسب لك.
 
 ### الحصول على معرف سياسة الاختبار
 
-إذا كنت تخطط لاستخدام [سياسة اختبار][doc-testpolicy] خاصة بك، فـ[أنشئ واحدة][link-wl-portal-new-policy] واحصل على معرف السياسة. لاحقًا، قم بتمرير المعرف إلى معامل `policy_id` عند إجراء استدعاء واجهة برمجة التطبيقات لإنشاء أو نسخ تشغيل الاختبار.
+إذا كنت تخطط لاستخدام [سياسة اختبار][doc-testpolicy] خاصة بك، فقم [بإنشاء واحدة][link-wl-portal-new-policy] واحصل على معرف السياسة. بعد ذلك، قم بتمرير المعرف إلى معامل `policy_id` عند إجراء استدعاء لواجهة برمجة تطبيقات لإنشاء أو نسخ تشغيل الاختبار. 
 
-خلاف ذلك، إذا اخترت استخدام سياسة الاختبار الافتراضية، فيجب حذف معامل `policy_id` من استدعاء واجهة برمجة التطبيقات.
+وإلا، إذا اخترت استخدام سياسة الاختبار الافتراضية، فيجب حذف معامل `policy_id` من استدعاء واجهة برمجة التطبيقات.
 
 !!! info "مثال على سياسة الاختبار"
     يحتوي دليل "البدء السريع" على [تعليمات خطوة بخطوة][doc-testpolicy-creation-example] حول كيفية إنشاء سياسة اختبار نموذجية.
@@ -84,39 +113,39 @@ wallarm/fast
 
 عند إنشاء تشغيل اختبار، يتم أيضًا إنشاء [تسجيل اختبار][doc-testrecord] جديد.
 
-يجب استخدام طريقة إنشاء تشغيل الاختبار هذه إذا كان مطلوبًا اختبار تطبيق الهدف مع تسجيل طلبات الأساس.
+يجب استخدام هذه الطريقة لإنشاء تشغيل الاختبار إذا كان مطلوبًا اختبار تطبيق الهدف مع تسجيل الطلبات الأساسية.
 
 !!! info "كيفية إنشاء تشغيل اختبار"
-    يُوصف هذا العملية بالتفصيل [هنا][doc-create-testrun].
+    يتم وصف هذه العملية بالتفصيل [هنا][doc-create-testrun].
 
-تحتاج عقدة FAST إلى بعض الوقت لتمريره بعد إنشاء تشغيل الاختبار لتسجيل الطلبات.
+تحتاج عقدة FAST إلى كمية معينة من الوقت بعد إنشاء تشغيل الاختبار لتسجيل الطلبات.
 
-تأكد من أن عقدة FAST جاهزة لتسجيل الطلبات قبل أن ترسل أي طلبات إلى تطبيق الهدف باستخدام أداة الاختبار.
+تأكد من جاهزية عقدة FAST لتسجيل الطلبات قبل إرسال أي طلبات إلى تطبيق الهدف باستخدام أداة الاختبار.
 
-للقيام بذلك، تحقق بانتظام من حالة تشغيل الاختبار بإرسال طلب GET إلى العنوان `https://us1.api.wallarm.com/v1/test_run/test_run_id`:
+للقيام بذلك، تحقق بشكل دوري من حالة تشغيل الاختبار عن طريق إرسال طلب GET إلى العنوان `https://us1.api.wallarm.com/v1/test_run/test_run_id`:
 
 --8<-- "../include/fast/poc/api-check-testrun-status-recording.md"
 
-إذا كان الطلب إلى خادم واجهة برمجة التطبيقات ناجحًا، ستُعرض لك استجابة الخادم. توفر هذه الاستجابة معلومات مفيدة، بما في ذلك حالة عملية التسجيل (قيمة معامل `ready_for_recording`).
+إذا كان الطلب إلى خادم واجهة برمجة التطبيقات ناجحًا، ستُقدم لك استجابة الخادم. توفر هذه الاستجابة معلومات مفيدة، بما في ذلك حالة عملية التسجيل (قيمة معامل `ready_for_recording`).
 
-إذا كانت قيمة المعامل `true`، فإن عقدة FAST جاهزة للتسجيل ويمكنك تشغيل أداة الاختبار الخاصة بك لبدء إرسال الطلبات إلى تطبيق الهدف.
+إذا كانت قيمة المعامل `true`، فإن عقدة FAST جاهزة للتسجيل ويمكنك تشغيل أداة الاختبار لبدء إرسال الطلبات إلى تطبيق الهدف.
 
-خلاف ذلك، أصدر نفس استدعاء واجهة برمجة التطبيقات مرارًا وتكرارًا حتى تكون العقدة جاهزة.
+وإلا، أصدر نفس استدعاء واجهة برمجة التطبيقات بشكل متكرر حتى تكون العقدة جاهزة.
 
 
 ### نسخ تشغيل اختبار
 
 عند نسخ تشغيل اختبار، يتم إعادة استخدام [تسجيل اختبار][doc-testrecord] موجود.
 
-يتم استخدام هذه الطريقة لإنشاء تشغيل الاختبار إذا كان مطلوبًا اختبار تطبيق الهدف باستخدام طلبات الأساس المسجلة بالفعل.
+يجب استخدام هذه الطريقة لإنشاء تشغيل الاختبار إذا كان مطلوبًا اختبار تطبيق الهدف باستخدام طلبات أساسية مُسجلة مُسبقًا.
 
 !!! info "كيفية نسخ تشغيل اختبار"
-    يُوصف هذا العملية بالتفصيل [هنا][doc-copy-testrun].
+    يتم وصف هذه العملية بالتفصيل [هنا][doc-copy-testrun].
 
-بمجرد إنشاء تشغيل الاختبار بنجاح، تبدأ عقدة FAST الاختبار على الفور. لا حاجة لاتخاذ أي إجراءات إضافية.
+بمجرد إنشاء تشغيل اختبار بنجاح، تبدأ عقدة FAST الاختبار على الفور. لا حاجة لاتخاذ أي إجراءات إضافية.
 
 ## الخطوات التالية
 
-يمكن أن يستغرق عملية الاختبار وقتًا طويلاً لإكماله. استخدم المعلومات من [هذا المستند][doc-waiting-for-tests] لتحديد ما إذا كان الاختبار الأمني مع FAST قد انتهى.
+قد يستغرق عملية الاختبار الكثير من الوقت لاكتمال. استخدم المعلومات من [هذا الوثيقة][doc-waiting-for-tests] لتحديد ما إذا كان قد انتهى الاختبار الأمني مع FAST.
 
-يمكنك الرجوع إلى مستندات [“النشر عبر واجهة برمجة التطبيقات”][doc-integration-overview-api] أو [“تدفق عمل CI/CD مع FAST”][doc-integration-overview] إذا لزم الأمر.
+ يمكنك الرجوع إلى وثائق [“النشر عبر واجهة برمجة التطبيقات”][doc-integration-overview-api] أو [“سير عمل CI/CD مع FAST”][doc-integration-overview] إذا لزم الأمر.  

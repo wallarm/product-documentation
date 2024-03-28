@@ -1,26 +1,26 @@
 [file-ips-list-us]: ../downloads/scanner-ip-addresses-us.txt
 [file-ips-list-eu]: ../downloads/scanner-ip-addresses-eu.txt
 
-# عناوين ماسح Wallarm <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# عناوين فاحص Wallarm <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-هذا الوثيقة توفر قوائم [Wallarm Scanner](../user-guides/scanner.md) عناوين IP للسحابات الأمريكية والأوروبية.
+يوفر هذا المستند قوائم عناوين IP الخاصة ب[فاحص Wallarm](../user-guides/scanner.md) للسحب السحابية في الولايات المتحدة وأوروبا.
 
-يُنصح بإضافة العناوين من القائمة المناظرة إلى **القائمة البيضاء** الخاصة بالبرمجيات أو الأجهزة (بخلاف Wallarm) التي تستخدمها لتصفية وحجب الحركة تلقائيًا. هذا سيسمح بـ[منع](../user-guides/scanner.md#preventing-scanner-from-being-blocking) حجب ماسح Wallarm من خلال هذه الأجهزة.
+يُنصح بإضافة العناوين من القائمة المناسبة إلى **قوائم السماح** في الأنظمة أو الأجهزة التي تستخدمها (بخلاف Wallarm) لتصفية وحجب الحركة تلقائيًا. وذلك سيمنع إمكانية حجب فاحص Wallarm من قبل هذه الأنظمة.
 
-## سحابة الولايات المتحدة
+## السحابة الأمريكية
 
-قائمة عناوين IP لسحابة الولايات المتحدة (https://us1.my.wallarm.com) التي يتم من خلالها فحص موارد الشركة بحثًا عن [الثغرات الأمنية](../glossary-en.md#vulnerability) وإعادة فحص الهجمات والثغرات:
+قائمة عناوين IP للسحابة الأمريكية (https://us1.my.wallarm.com) التي يستخدمها Wallarm لفحص موارد الشركة بحثًا عن [الثغرات الأمنية](../glossary-en.md#vulnerability) وإعادة تحقق الهجمات والثغرات الأمنية:
 
 --8<-- "../include/scanner-ip-request-us.md"
 
-!!! info "الحصول على قائمة عناوين IP"
-    [تحميل الملف النصي الذي يحتوي على قائمة عناوين IP للماسحات.][file-ips-list-us]
+!!! info "احصل على قائمة عناوين IP"
+    [حمل الملف النصي الذي يحتوي قائمة عناوين IP للماسحات.][file-ips-list-us]
 
-## سحابة الاتحاد الأوروبي
+## السحابة الأوروبية
 
-قائمة عناوين IP لسحابة الاتحاد الأوروبي (https://my.wallarm.com) التي يتم من خلالها فحص موارد الشركة بحثًا عن [الثغرات الأمنية](../glossary-en.md#vulnerability) وإعادة فحص الهجمات والثغرات:
+قائمة عناوين IP للسحابة الأوروبية (https://my.wallarm.com) التي يستخدمها Wallarm لفحص موارد الشركة بحثًا عن [الثغرات الأمنية](../glossary-en.md#vulnerability) وإعادة تحقق الهجمات والثغرات الأمنية:
 
 --8<-- "../include/scanner-ip-request.md"
 
-!!! info "الحصول على قائمة عناوين IP"
-    [تحميل الملف النصي الذي يحتوي على قائمة عناوين IP للماسحات.][file-ips-list-eu]
+!!! info "احصل على قائمة عناوين IP"
+    [حمل الملف النصي الذي يحتوي قائمة عناوين IP للماسحات.][file-ips-list-eu]

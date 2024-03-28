@@ -1,18 +1,18 @@
 # إدارة Wallarm باستخدام Terraform
 
-إذا كنت تستخدم [Terraform](https://www.terraform.io/) لإدارة البنيات التحتية الخاصة بك، فقد يكون خيارًا مريحًا لك إستخدامه لإدارة Wallarm. يسمح [مزود Wallarm](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) لـ Terraform بذلك.
+إذا كنت تستخدم [Terraform](https://www.terraform.io/) لإدارة البنيات التحتية الخاصة بك، فقد تكون هذه خيارًا مريحًا لاستخدامه في إدارة Wallarm. يتيح [مزود Wallarm](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) لـ Terraform القيام بذلك.
 
 ## المتطلبات
 
-* معرفة أساسيات [Terraform](https://www.terraform.io/)
-* الإصدار الثنائي لـ Terraform 0.15.5 أو أعلى
+* معرفة الأساسيات [Terraform](https://www.terraform.io/)
+* الإصدار الثنائي من Terraform 0.15.5 أو أعلى
 * حساب Wallarm في [السحابة الأمريكية](https://us1.my.wallarm.com/) أو [السحابة الأوروبية](https://my.wallarm.com/)
-* الوصول إلى الحساب بـ **الدور** [المدير](../../user-guides/settings/users.md#user-roles) في لوحة تحكم Wallarm في السحابة الأمريكية أو الأوروبية [السحابة](../../about-wallarm/overview.md#cloud)
-* الوصول إلى `https://us1.api.wallarm.com` في حالة العمل مع سحابة Wallarm الأمريكية أو إلى `https://api.wallarm.com` في حالة العمل مع سحابة Wallarm الأوروبية. يُرجى التأكد من أن الوصول لم يتم حظره بواسطة جدار حماية
+* الوصول إلى الحساب بدور **المدير** [الدور](../../user-guides/settings/users.md#user-roles) في وحدة تحكم Wallarm في السحابة الأمريكية أو الأوروبية
+* الوصول إلى `https://us1.api.wallarm.com` إذا كنت تعمل مع سحابة Wallarm الأمريكية أو إلى `https://api.wallarm.com` إذا كنت تعمل مع سحابة Wallarm الأوروبية. الرجاء التأكد من عدم حظر الوصول بواسطة جدار الحماية
 
 ## تثبيت المزود
 
-1. انسخ والصق في تكوين Terraform الخاص بك:
+1. انسخ وألصق في تكوين Terraform الخاص بك:
 
     ```
     terraform {
@@ -35,9 +35,9 @@
 
 ## ربط المزود بحساب Wallarm الخاص بك
 
-لربط مزود Terraform الخاص بـ Wallarm بحساب Wallarm الخاص بك في [السحابة الأمريكية](https://us1.my.wallarm.com/signup) أو [السحابة الأوروبية](https://my.wallarm.com/signup)، قم بتعيين بيانات اعتماد الوصول إلى API في تكوين Terraform الخاص بك:
+لربط مزود Terraform الخاص بـ Wallarm بحساب Wallarm الخاص بك في [السحابة الأمريKية](https://us1.my.wallarm.com/signup) أو [السحابة الأوروبية](https://my.wallarm.com/signup)، قم بتعيين بيانات اعتماد الوصول إلى API في تكوين Terraform الخاص بك:
 
-=== "السحابة الأمريكية"
+=== "السحابة الأمريKية"
     ```
     provider "wallarm" {
       api_token = "<WALLARM_API_TOKEN>"
@@ -56,30 +56,30 @@
     }
     ```
 
-* `<WALLARM_API_TOKEN>` يسمح بالوصول إلى API لحساب Wallarm الخاص بك. [كيفية الحصول عليه →](../../user-guides/settings/api-tokens.md)
-* `<CLIENT_ID>` هو ID المستأجر (العميل)؛ مطلوب فقط عند استخدام ميزة [العديد من المستأجرين](../../installation/multi-tenant/overview.md). خذ `id` (ليس `uuid`) كما هو موضح [هنا](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
+* `<WALLARM_API_TOKEN>` يتيح الوصول إلى API لحساب Wallarm الخاص بك. [كيفية الحصول عليه →](../../user-guides/settings/api-tokens.md)
+* `<CLIENT_ID>` هو معرّف المستأجر (العميل)؛ مطلوب فقط عند استخدام ميزة [العديد من المستأجرين](../../installation/multi-tenant/overview.md). خذ `id` (وليس `uuid`) كما هو موضح [هنا](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
 
-انظر [التفاصيل](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) في وثائق مزود Wallarm.
+راجع [التفاصيل](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) في وثائق مزود Wallarm.
 
-## إدارة Wallarm باستخدام المزود
+## إدارة Wallarm بالمزود
 
-باستخدام مزود Wallarm، من خلال Terraform يمكنك إدارة:
+مع مزود Wallarm، عبر Terraform يمكنك إدارة:
 
-* [العقد](../../user-guides/nodes/nodes.md) في حسابك
+* [العُقد](../../user-guides/nodes/nodes.md) في حسابك
 * [التطبيقات](../../user-guides/settings/applications.md)
 * [القواعد](../../user-guides/rules/rules.md)
-* [المحفزات](../../user-guides/triggers/triggers.md)
-* IPs في [قائمة الحظر](../../user-guides/ip-lists/overview.md)، [قائمة السماح](../../user-guides/ip-lists/overview.md) و [قائمة الرمادي](../../user-guides/ip-lists/overview.md)
+* [المُشغلات](../../user-guides/triggers/triggers.md)
+* عناوين IP في [القائمة السوداء](../../user-guides/ip-lists/overview.md)، [القائمة البيضاء](../../user-guides/ip-lists/overview.md) و[القائمة الرمادية](../../user-guides/ip-lists/overview.md)
 * [المستخدمين](../../user-guides/settings/users.md)
 * [التكاملات](../../user-guides/settings/integrations/integrations-intro.md)
-* وضع [التصفية العالمي](../../admin-en/configure-wallarm-mode.md)
-* نطاق [الماسح الضوئي](../../user-guides/scanner.md)
-* [الثغرات](../../user-guides/vulnerabilities.md)
+* وضع [الترشيح العالمي](../../admin-en/configure-wallarm-mode.md)
+* نطاق [الماسح](../../user-guides/scanner.md)
+* [الثغرات الأمنية](../../user-guides/vulnerabilities.md)
 
-!!! info "مزود Wallarm Terraform وعقد CDN"
-    حاليًا لا يمكن إدارة [عقد CDN](../../user-guides/nodes/cdn-node.md) عبر مزود Wallarm Terraform.
+!!! معلومات "مزود Wallarm Terraform وعُقد CDN"
+    حاليًا لا يمكن إدارة [عُقد CDN](../../user-guides/nodes/cdn-node.md) عبر مزود Wallarm لـ Terraform.
 
-انظر كيفية تنفيذ العمليات المذكورة في [الوثائق](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) لمزود Wallarm.
+راجع كيفية تنفيذ العمليات المدرجة في [وثائق](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) مزود Wallarm.
 
 ## مثال على الاستخدام
 
@@ -120,20 +120,20 @@ resource "wallarm_rule_mode" "tiredful_api_mode" {
 
 احفظ ملف التكوين، ثم قم بتنفيذ `terraform apply`.
 
-التكوين يؤدي الآتي:
+التكوين يقوم بالتالي:
 
-* يربط بالسحابة الأمريكية → حساب الشركة بالرمز الخاص بـ Wallarm API المقدم.
-* `resource "wallarm_global_mode" "global_block"` → يضبط وضع الترشيح العالمي إلى `الإعدادات المحلية (default)` وهو ما يعني أن وضع التصفية يتم التحكم فيه محليًا على كل عقدة.
-* `resource "wallarm_application" "tf_app"` → ينشئ تطبيقًا باسم `Terraform Application 001` بمعرف `42`.
-* `resource "wallarm_rule_mode" "tiredful_api_mode"` → ينشئ قاعدة تحدد وضع ترشيح الحركة إلى `المراقبة` لجميع الطلبات المرسلة عبر بروتوكول HTTPS إلى التطبيق بمعرف `42`.
+* الاتصال بالسحابة الأمريكية → حساب الشركة بالرمز المميز لـ API الخاص بـ Wallarm.
+* `resource "wallarm_global_mode" "global_block"` → يضبط وضع الترشيح العالمي على `الإعدادات المحلية (الافتراضي)` مما يعني أن وضع الترشيح يتم التحكم فيه محليًا على كل عقدة.
+* `resource "wallarm_application" "tf_app"` → ينشئ تطبيقًا باسم `Terraform Application 001` بالمعرف `42`.
+* `resource "wallarm_rule_mode" "tiredful_api_mode"` → ينشئ قاعدة تضبط وضع ترشيح حركة المرور إلى `المراقبة` لجميع الطلبات المرسلة عبر بروتوكول HTTPS إلى التطبيق بالمعرف `42`.
 
-## مزيد من المعلومات حول Wallarm و Terraform
+## مزيد من المعلومات حول Wallarm وTerraform
 
-Terraform يدعم عددًا من التكاملات (**[المزودين](https://www.terraform.io/language/providers)**) والتكوينات الجاهزة للاستخدام (**[الوحدات](https://www.terraform.io/language/modules)**) المتاحة للمستخدمين عبر السجل العام [السجل](https://www.terraform.io/registry#navigating-the-registry)، الذي تملأه عدد من البائعين.
+Terraform يدعم عددًا من التكاملات (**[المزودين](https://www.terraform.io/language/providers)**) والتكوينات الجاهزة للاستخدام (**[وحدات](https://www.terraform.io/language/modules)**) المتاحة للمستخدمين عبر ال[سجل](https://www.terraform.io/registry#navigating-the-registry) العام، معبأ بواسطة عدد من البائعين.
 
-إلى هذا السجل، نشرت Wallarm:
+لهذا السجل، نشرت Wallarm:
 
-* [مزود Wallarm](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) لإدارة Wallarm عبر Terraform. وصف في المقال الحالي.
-* [الوحدة النمطية Wallarm](../../installation/cloud-platforms/aws/terraform-module/overview.md) لنشر العقدة إلى AWS من بيئة متوافقة مع Terraform.
+* [مزود Wallarm](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) لإدارة Wallarm عبر Terraform. يُوصف في المقال الحالي.
+* [وحدة Wallarm](../../installation/cloud-platforms/aws/terraform-module/overview.md) لنشر العقدة إلى AWS من بيئة متوافقة مع Terraform.
 
-هذين هما أداتان مستقلتان تُستخدمان لأغراض مختلفة. ليس من الضروري استخدام واحدة للاستفادة من الأخرى.
+هذان أداتان مستقلتان تُستخدمان لأغراض مختلفة. ليس من الضروري استخدام أحدهما للآخر.

@@ -1,124 +1,124 @@
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[ptrav-attack-docs]: ../../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]: ../../images/admin-guides/test-attacks-quickstart.png
 
-# ترقية عقدة متعددة المستأجرين التي انتهت صلاحيتها
+# ترقية عقدة العميل متعددة التواجد EOL
 
-هذه التعليمات تصف خطوات ترقية عقدة متعددة المستأجرين التي انتهت صلاحيتها (الإصدار 3.6 وما دون) إلى الإصدار 4.10.
+وتتضمن هذه التعليمات الخطوات لترقية عقدة النهاية المتعددة (الإصدار 3.6 وأقل) إلى 4.10.
 
-## الشروط
+## المتطلبات
 
-* تنفيذ الأوامر التالية من قبل المستخدم بدور **المدير العام** الذي تم إضافته تحت [حساب المستأجر التقني](../../installation/multi-tenant/configure-accounts.md#tenant-account-structure)
-* الوصول إلى `https://us1.api.wallarm.com` عند العمل مع Wallarm Cloud الأمريكي أو إلى `https://api.wallarm.com` عند العمل مع Wallarm Cloud الأوروبي. يرجى التأكد من عدم حجب الوصول بواسطة جدار حماية
+* تنفيذ الأوامر التالية من قبل المستخدم بدور حالة المسؤول العام المضافة تحت [حساب المستأجر التقني](../../installation/multi-tenant/configure-accounts.md#tenant-account-structure)
+* الوصول إلى `https://us1.api.wallarm.com` إذا كنت تعمل مع Wallarm Cloud الأمريكية أو إلى `https://api.wallarm.com` إذا كنت تعمل مع Wallarm Cloud الأوروبية. يرجى التأكد من أن الوصول لا يتم حظره من قبل جدار الحماية
 
-## الخطوة الأولى: التواصل مع فريق دعم Wallarm
+## الخطوة 1: تواصل مع فريق دعم Wallarm
 
-اطلب من [فريق دعم Wallarm](mailto:support@wallarm.com) المساعدة للحصول على أحدث نسخة من ميزة [بناء مجموعة القواعد المخصصة](../../user-guides/rules/rules.md#ruleset-lifecycle) أثناء ترقية عقدة متعددة المستأجرين.
+اطلب من [فريق دعم Wallarm](mailto:support@wallarm.com) المساعدة للحصول على أحدث إصدار من ميزة [بناء القواعد المخصصة](../../user-guides/rules/rules.md#ruleset-lifecycle) أثناء ترقية عقدة العميل متعددة التواجد.
 
-!!! info "ترقية محجوبة"
-    استخدام نسخة غير صحيحة من ميزة بناء مجموعة القواعد المخصصة قد يحجب عملية الترقية.
+!!! info "تحديث محظور"
+    قد يؤدي استخدام نسخة غير صحيحة من ميزة بناء المجموعة القاعدية المخصصة إلى حصر عملية الترقية. 
 
-الفريق الداعم سيساعدك أيضًا في الإجابة عن جميع الأسئلة المتعلقة بترقية عقدة متعددة المستأجرين وإعادة التكوين اللازمة.
+سيساعدك الفريق الدعم أيضًا في الإجابة على جميع الأسئلة المتعلقة بترقية عقدة العميل متعددة التواجد والإعادة التكوين اللازمة.
 
-## الخطوة الثانية: اتباع إجراء الترقية القياسي
+## الخطوة 2: اتبع إجراء الترقية القياسي
 
-الإجراءات القياسية هي تلك المخصصة لـ:
+تشمل الإجراءات القياسية ما يلي:
 
-* [ترقية وحدات NGINX في Wallarm](nginx-modules.md)
+* [ترقية وحدات Wallarm NGINX](nginx-modules.md)
 * [ترقية وحدة postanalytics](separate-postanalytics.md)
-* [ترقية صورة Docker القائمة على NGINX أو Envoy من Wallarm](docker-container.md)
-* [ترقية تحكم إدخال NGINX بوحدات Wallarm المدمجة](ingress-controller.md)
+* [ترقية صورة Wallarm Docker NGINX- أو Envoy-based](docker-container.md)
+* [ترقية NGINX Ingress controller مع وحدات Wallarm المتكاملة](ingress-controller.md)
 * [ترقية صورة العقدة السحابية](cloud-image.md)
 
-!!! warning "إنشاء عقدة متعددة المستأجرين"
-    أثناء إنشاء عقدة Wallarm، يرجى اختيار خيار **عقدة متعددة المستأجرين**:
+!!! warning "إنشاء العقد العميل متعدد التواجد"
+    أثناء إنشاء العقدة Wallarm ، يرجى اختيار خيار العقدة متعددة التواجد:
 
-    ![إنشاء عقدة متعددة المستأجرين](../../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![إنشاء العقد العميل متعدد التواجد](../../images/user-guides/nodes/create-multi-tenant-node.png)
 
-## الخطوة الثالثة: إعادة تكوين المستأجرين المتعددين
+## الخطوة 3: إعادة تكوين العدد المتعدد
 
-أعد كتابة تكوين كيفية ارتباط حركة المرور بمستأجرينك وتطبيقاتهم. انظر المثال أدناه. في المثال:
+أعاد كتابة تكوين كيفية ربط الترافيك بعملائك وتطبيقاتهم. قم بالنظر في المثال أدناه. في المثال:
 
-* المستأجر يمثل عميل الشريك. للشريك عميلان.
-* يجب ربط حركة المرور المستهدفة `tenant1.com` و `tenant1-1.com` بالعميل 1.
-* يجب ربط حركة المرور المستهدفة `tenant2.com` بالعميل 2.
-* للعميل 1 أيضًا ثلاثة تطبيقات:
+* المستأجر هو عبارة عن عميل الشريك. ولدى الشريك عميلان.
+* يجب أن يتم ربط حركة المرور المستهدفة `tenant1.com` و `tenant1-1.com` مع العميل 1.
+* يجب أن يتم ربط حركة المرور المستهدفة `tenant2.com` مع العميل 2.
+* لدى العميل 1 أيضًا ثلاثة تطبيقات:
     * `tenant1.com/login`
     * `tenant1.com/users`
     * `tenant1-1.com`
 
-    يجب ربط حركة المرور المستهدفة لهذه الـ 3 مسارات بالتطبيق المقابل؛ يجب اعتبار الباقي كحركة مرور عامة للعميل 1.
+    يجب على حركة المرور المستهدفة هذه الـ3 مسارات أن تتم ربطها بالتطبيق المتناظر؛ ويجب اعتبار ما تبقى أنه ترافيك عام من العميل 1.
 
-### دراسة تكوين الإصدار السابق
+### درس تكوين الإصدار السابق الخاص بك
 
-في الإصدار 3.6، يمكن تكوين ذلك كما يلي:
+ في 3.6، يمكن تكوين ذلك على النحو التالي:
 
-```
-server {
-  server_name  tenant1.com;
-  wallarm_application 20;
-  ...
-  location /login {
-     wallarm_application 21;
-     ...
-  }
-  location /users {
-     wallarm_application 22;
-     ...
-  }
+``` 
+ server {
+   server_name  tenant1.com;
+   wallarm_application 20;
+   ...
+   location /login {
+      wallarm_application 21;
+      ...
+   }
+   location /users {
+      wallarm_application 22;
+      ...
+   }
 
-server {
-  server_name  tenant1-1.com;
-  wallarm_application 23;
-  ...
-}
+ server {
+   server_name  tenant1-1.com;
+   wallarm_application 23;
+   ...
+ }
 
-server {
-  server_name  tenant2.com;
-  wallarm_application 24;
-  ...
-}
-...
-}
-```
+ server {
+   server_name  tenant2.com;
+   wallarm_application 24;
+   ...
+ }
+ ...
+ } 
+``` 
 
-ملاحظات حول التكوين أعلاه:
+ملاحظات بشأن التكوين أعلاه:
 
-* يرتبط حركة المرور المستهدفة `tenant1.com` و `tenant1-1.com` بالعميل 1 عبر القيم `20` و `23`، المرتبطة بهذا العميل عبر [طلب API](https://docs.wallarm.com/3.6/installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account).
-* كان ينبغي إرسال طلبات API مشابهة لربط التطبيقات الأخرى بالمستأجرين.
-* المستأجرون والتطبيقات هم كيانات منفصلة، لذا من المنطقي تكوينهم بتوجيهات مختلفة. أيضًا، سيكون من الملائم تجنب طلبات API الإضافية. سيكون من المنطقي تعريف العلاقات بين المستأجرين والتطبيقات من خلال التكوين نفسه. كل هذا مفقود في التكوين الحالي لكن سيصبح متاحًا في النهج الجديد 4.x الموضح أدناه.
+* حركة المرور المستهدفة `tenant1.com` و `tenant1-1.com` مربوطة مع العميل 1 عبر القيم `20` و `23`,  ربطت مع هذا العميل عبر ال[طلب API](https://docs.wallarm.com/3.6/installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account).
+* يجب أن يتم إرسال نفس طلبات API لربط التطبيقات الأخرى مع المستأجرين.
+* المستأجرين والتطبيقات هي كيانات منفصلة، لذا فمن المنطقي تكوينهم بالأوامر المختلفة. أيضًا، سيكون من الجدير بالتنويه تجنب طلبات API إضافية. سيكون من الجدير بالتنويه تحديد العلاقات بين المستأجرين والتطبيقات عبر التكوين نفسه. كل هذا مفقود في التكوين الحالي ولكن سيصبح متاحًا في النهج 4.x الجديد الموصوف أدناه.
 
-### دراسة نهج 4.x
+### درس النهج 4.x
 
-في الإصدار 4.x، UUID هي الطريقة لتحديد المستأجر في تكوين العقدة.
+في الإصدار 4.x، UUID هو الطريقة لتحديد المستأجر في تكوين العقدة.
 
 لإعادة كتابة التكوين، قم بما يلي:
 
-1. احصل على UUIDs لمستأجريك.
-1. ادمج المستأجرين وحدد تطبيقاتهم في ملف تكوين NGINX.
+1. الحصول على UUIDs كل مستأجر.
+1. قم بتضمين المستأجرين وتعيين تطبيقاتهم في ملف تكوين NGINX.
 
-### الحصول على UUIDs لمستأجريك
+### الحصول على UUIDs المستأجر الخاص بك
 
-للحصول على قائمة المستأجرين، أرسل طلبات مصادقة إلى API Wallarm. نهج المصادقة هو نفسه الذي [استخدم لإنشاء المستأجر](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
+للحصول على قائمة المستأجرين، أرسل طلبات متوثقة إلى Wallarm API. النهج المصادقة هو نفسه أحد الذي [يتم استخدامه لإنشاء المستأجر](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
 
-1. احصل على `clientid`(s) للعثور على UUIDs المتعلقة بهم لاحقًا:
+1. الحصول على `clientid(s)` بعد ذلك العثور على UUIDs مرتبطة بها:
 
-    === "عبر واجهة Wallarm Console"
+    === "عبر Wallarm Console"
 
-        انسخ `clientid`(s) من عمود **المعرف** في واجهة مستخدم Wallarm Console:
+        نسخ `clientid(s)` من العمود**ID** في واجهة مستخدم وحدة التحكم Wallarm:
         
-        ![اختيار المستأجرين في واجهة Wallarm Console](../../images/partner-waf-node/clients-selector-in-console-ann.png)
-    === "بإرسال طلب إلى الAPI"
-        1. أرسل طلب GET إلى المسار `/v2/partner_client`:
+        ![معايرة المستأجرين في وحدة التحكم Wallarm](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+    === "من خلال إرسال طلب لAPI"
+        1. إرسال طلب GET للطريق `/v2/partner_client`:
 
-            !!! info "مثال على الطلب المرسل من عميلك الخاص"
-                === "Cloud الأمريكي"
+            !!! info "مثال على الطلب المرسل من العميل الخاص بك"
+                === "US Cloud"
                     ``` bash
                     curl -X GET \
                     'https://us1.api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
                     -H 'accept: application/json' \
                     -H "X-WallarmApi-Token: <YOUR_TOKEN>"
                     ```
-                === "Cloud الأوروبي"
+                === "EU Cloud"
                     ``` bash
                     curl -X GET \
                     'https://api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
@@ -126,7 +126,7 @@ server {
                     -H "X-WallarmApi-Token: <YOUR_TOKEN>"
                     ```
             
-            حيث `PARTNER_ID` هو الذي تم الحصول عليه في [**الخطوة 2**](../../installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) من إجراء إنشاء المستأجر.
+            حيث `PARTNER_ID` هو الواحد المحصل في [**الخطوة 2**](../../installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) من اجراء انشاء المستأجر.
 
             مثال الرد:
 
@@ -149,11 +149,11 @@ server {
             }
             ```
 
-        1. انسخ `clientid`(s) من الرد.
-1. للحصول على UUID لكل مستأجر، أرسل طلب POST إلى المسار `v1/objects/client`:
+       1. نسخ `clientid(s)` من الرد.
+1. للحصول على UUID لكل مستأجر، ارسل طلب POST للطريق `v1/objects/client`:
 
-    !!! info "مثال على الطلب المرسل من عميلك الخاص"
-        === "Cloud الأمريكي"
+    !!! info "مثال على الطلب المرسل من العميل الخاص بك"
+        === "US Cloud"
             ``` bash
             curl -X POST \
             https://us1.api.wallarm.com/v1/objects/client \
@@ -161,7 +161,7 @@ server {
             -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
             -d '{ "filter": { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}}'
             ```        
-        === "Cloud الأوروبي"
+        === "EU Cloud"
             ``` bash
             curl -X POST \
             https://api.wallarm.com/v1/objects/client \
@@ -194,16 +194,16 @@ server {
     }
     ```
 
-1. من الرد، انسخ `uuid`(s).
+1. من الرد، نسخ `uuid(s)`.
 
-### دمج المستأجرين وتحديد تطبيقاتهم في ملف تكوين NGINX
+### تضمين المستأجرين وتعيين تطبيقاتهم في ملف تكوين NGINX
 
 في ملف تكوين NGINX:
 
-1. حدد UUIDs المستأجرين التي تلقيتها أعلاه في توجيهات [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid).
-1. حدد المعرفات للتطبيقات المحمية في توجيهات [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application).
+1. حدد UUIDs المستأجرين المستلمة أعلاه في توجيهات [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid).
+1. اضبط معرفات التطبيق المحمي في [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) التوجيهات.
 
-    إذا تضمن التكوين لـ NGINX المستخدم للعقدة 3.6 أو أقل تكوين تطبيق، فقط حدد UUIDs المستأجرين واحتفظ بتكوين التطبيق دون تغيير.
+    إذا كان التكوين NGINX الذي استُخدم للعقدة 3.6 أو أقل ينطوي على تكوين التطبيق، فقط حدد UUIDs المستأجر واحتفظ بتكوين التطبيق دون تغيير.
 
 مثال:
 
@@ -239,9 +239,9 @@ server {
 
 في التكوين أعلاه:
 
-* يتم تكوين المستأجرين والتطبيقات بتوجيهات مختلفة.
-* يتم تعريف العلاقات بين المستأجرين والتطبيقات عبر توجيهات `wallarm_application` في الأقسام المقابلة من ملف تكوين NGINX.
+* المستأجرين والتطبيقات يتم تكوينهم بواسطة توجيهات مختلفة.
+* علاقات بين المستأجرين والتطبيقات تتم تعريفها عبر توجيهات `wallarm_application` في الكتل المطابقة من ملف تكوين NGINX.
 
-## الخطوة الرابعة: اختبار تشغيل عقدة Wallarm متعددة المستأجرين
+## الخطوة 4: اختبار عمل العقدة Wallarm  متعددة التواجد
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"

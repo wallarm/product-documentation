@@ -1,13 +1,13 @@
-بشكل افتراضي، النود المنشورة لـ Wallarm لا تُحلل حركة المرور الواردة.
+بشكل افتراضي، لا يقوم عقد Wallarm المستخدم بتحليل حركة المرور الواردة.
 
-قم بإجراء التكوين التالي في ملف [تكوين NGINX](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) على الجهاز الذي تم تثبيت النود عليه لضبط Wallarm لمعالجة مرآة حركة المرور:
+قم بإجراء التكوين التالي في ملف [تكوين NGINX](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) على الجهاز الذي تم تثبيت العقد عليه لتهيئة Wallarm لمعالجة حركة المرور المعكوسة:
 
-1. لكي يقبل نود Wallarm حركة المرور المعكوسة، قم بتعيين التكوين التالي في قطعة `server` لNGINX:
+1. لكي يقبل عقد Wallarm حركة المرور المعكوسة، قم بإعداد التكوين التالي في قطعة `server` الخاصة بNGINX:
 
     ```
     wallarm_force server_addr $http_x_server_addr;
     wallarm_force server_port $http_x_server_port;
-    # غير 222.222.222.22 إلى عنوان الخادم المعكوس
+    # قم بتغيير 222.222.222.22 إلى عنوان الخادم المعكوس
     set_real_ip_from  222.222.222.22;
     real_ip_header    X-Forwarded-For;
     real_ip_recursive on;
@@ -16,9 +16,9 @@
     wallarm_force response_size 0;
     ```
 
-    * يُطلب من التوجيهات `set_real_ip_from` و `real_ip_header` لعرض عناوين IP للمهاجمين في [Wallarm Console][proxy-balancer-instr].
-    * يُطلب من التوجيهات `wallarm_force_response_*` لتعطيل تحليل كل الطلبات ما عدا النسخ التي تم استقبالها من حركة المرور المعكوسة.
-1. لكي يحلل نود Wallarm حركة المرور المعكوسة، قم بتعيين توجيه `wallarm_mode` إلى `monitoring`:
+    * تُعد التوجيهات `set_real_ip_from` و`real_ip_header` مطلوبتين لتتمكن لوحة تحكم Wallarm من [عرض عناوين IP للمهاجمين](proxy-balancer-instr).
+    * تُعد التوجيهات `wallarm_force_response_*` مطلوبة لتعطيل تحليل جميع الطلبات باستثناء النسخ التي تُستلم من حركة المرور المعكوسة.
+2. لكي يحلل عقد Wallarm حركة المرور المعكوسة، قم بإعداد توجيه `wallarm_mode` إلى `monitoring`:
 
     ```
     server {
@@ -30,4 +30,4 @@
     }
     ```
 
-    بما أنه لا يمكن [منع][oob-advantages-limitations] الطلبات الضارة، الوضع الوحيد الذي [يقبله][waf-mode-instr] Wallarm هو المراقبة. للتنصيب الفوري، هناك أيضًا أوضاع الحجب الآمن والحجب ولكن حتى لو قمت بضبط توجيه `wallarm_mode` إلى قيمة مختلفة عن المراقبة، يستمر النود في مراقبة حركة المرور وتسجيل فقط حركة المرور الضارة (باستثناء الوضع المضبوط على إيقاف).
+    بما أنه لا يمكن [حظر](oob-advantages-limitations) الطلبات الضارة، فإن الوضع الوحيد [المقبول](waf-mode-instr) من Wallarm هو الرصد. بالنسبة للنشر في الخط، توجد أيضًا أوضاع الحظر الآمن والحظر ولكن حتى إذا قمت بتعيين توجيه `wallarm_mode` إلى قيمة مختلفة عن الرصد، يستمر العقد في مراقبة حركة المرور وتسجيل حركة المرور الضارة فقط (بخلاف الوضع الذي تم ضبطه على إيقاف).

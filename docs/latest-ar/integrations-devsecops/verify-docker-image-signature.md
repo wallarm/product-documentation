@@ -1,17 +1,17 @@
-# التحقق من توقيعات صور Docker الخاصة بـ Wallarm
+# التحقق من تواقيع صور Docker الخاصة بـWallarm
 
-تقوم Wallarm بالتوقيع على ومشاركة [المفتاح العام](https://repo.wallarm.com/cosign.pub) لصور Docker الخاصة بها، مما يتيح لك التحقق من صحتها والتخفيف من المخاطر مثل الصور المخترقة وهجمات سلسلة التوريد. يوفر هذا المقال تعليمات للتحقق من توقيعات صور Docker الخاصة بـ Wallarm.
+تقوم Wallarm بتوقيع ومشاركة [المفتاح العام](https://repo.wallarm.com/cosign.pub) لصور Docker الخاصة بها، مما يتيح لك التحقق من صحتها والتخفيف من المخاطر مثل الصور المخترقة وهجمات سلسلة التوريد. تقدم هذه المقالة تعليمات للتحقق من تواقيع صور Docker الخاصة بـWallarm.
 
 ## قائمة الصور الموقعة
 
-تقوم Wallarm بتوقيع صور Docker التالية:
+توقع Wallarm الصور التالية لـDocker:
 
-* [wallarm/node](https://hub.docker.com/r/wallarm/node) 4.8.0-1 وما فوق: [صورة Docker القائمة على NGINX](../admin-en/installation-docker-en.md) تشمل جميع وحدات Wallarm، وتعمل كعنصر فردي لنشر Wallarm
-* جميع صور Docker المستخدمة بواسطة مخطط Helm لـ [نشر Ingress Controller القائم على NGINX](../admin-en/installation-kubernetes-en.md):
+* [wallarm/node](https://hub.docker.com/r/wallarm/node) 4.8.0-1 فما فوق: [صورة Docker المبنية على NGINX](../admin-en/installation-docker-en.md) والتي تشتمل على جميع وحدات Wallarm، لتكون بمثابة مكون مستقل لنشر Wallarm
+* جميع صور Docker المستخدمة بواسطة مخطط Helm لـ[نشر Ingress Controller المبني على NGINX](../admin-en/installation-kubernetes-en.md):
 
     * [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
     * [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)
-* جميع صور Docker المستخدمة بواسطة مخطط Helm لـ [نشر Sidecar](../installation/kubernetes/sidecar-proxy/deployment.md):
+* جميع صور Docker المستخدمة بواسطة مخطط Helm لـ[نشر Sidecar](../installation/kubernetes/sidecar-proxy/deployment.md):
 
     * [wallarm/sidecar](https://hub.docker.com/r/wallarm/sidecar)
     * [wallarm/sidecar-controller](https://hub.docker.com/r/wallarm/sidecar-controller)
@@ -22,35 +22,35 @@
 
 ## المتطلبات
 
-للتأكد من أصالة صور Docker الخاصة بـ Wallarm، يتم استخدام [Cosign](https://docs.sigstore.dev/cosign/overview/) لكل من التوقيع والتحقق.
+لضمان صحة صور Wallarm Docker، يُستخدم [Cosign](https://docs.sigstore.dev/cosign/overview/) لكل من التوقيع والتحقق.
 
-قبل البدء في التحقق من توقيع صورة Docker، تأكد من [تثبيت](https://docs.sigstore.dev/cosign/installation/) أداة Cosign للأوامر على جهازك المحلي أو ضمن مسار CI/CD الخاص بك.
+قبل المضي قدما في التحقق من توقيع صورة Docker، تأكد من [تثبيت](https://docs.sigstore.dev/cosign/installation/) أداة سطر الأوامر Cosign على جهازك المحلي أو ضمن سلسلة التوصيل الخاصة بك.
 
-## تشغيل التحقق من توقيع صورة Docker
+## تنفيذ التحقق من توقيع صورة Docker
 
-للتحقق من توقيع صورة Docker، نفذ الأوامر التالية مع استبدال قيمة `WALLARM_DOCKER_IMAGE` بالعلامة الخاصة بالصورة:
+للتحقق من توقيع صورة Docker، نفذ الأوامر التالية مع استبدال قيمة `WALLARM_DOCKER_IMAGE` بالعلامة المحددة للصورة:
 
 ```bash
 export WALLARM_DOCKER_IMAGE="wallarm/ingress-controller:4.6.2-1"
 cosign verify --key https://repo.wallarm.com/cosign.pub $WALLARM_DOCKER_IMAGE
 ```
 
-يجب أن يوفر [الناتج](https://docs.sigstore.dev/cosign/verify/) كائن `docker-manifest-digest` بملخص الصورة، مثلاً:
+يجب أن [تُظهِر](https://docs.sigstore.dev/cosign/verify/) النتيجة كائن `docker-manifest-digest` مع بصمة الصورة، على سبيل المثال:
 
 ```bash
-[{"critical":{"identity":{"docker-reference":"index.docker.io/<WALLARM_DOCKER_IMAGE>"},
+[{"critical":{"identity":{"docker-reference":"index.docker.com/<WALLARM_DOCKER_IMAGE>"},
 "image":{"docker-manifest-digest":"<HASH_ALGORITHM>"},"type":"cosign container image signature"},
 "optional":{"Bundle":{"SignedEntryTimestamp":"<VALUE>","Payload":{"body":"<VALUE>",
 "integratedTime":<VALUE>,"logIndex":<VALUE>,"logID":"<VALUE>"}}}}]
 ```
 
-## استخدام محرك سياسة Kubernetes للتحقق من التوقيع
+## استخدام محرك السياسة Kubernetes للتحقق من التواقيع
 
-تتيح محركات مثل Kyverno أو وكيل السياسات المفتوح (OPA) التحقق من توقيعات صور Docker ضمن عقد Kubernetes الخاص بك. من خلال صياغة سياسة بقواعد للتحقق، تبدأ Kyverno عملية التحقق من توقيع الصورة بناءً على معايير محددة، بما في ذلك المستودعات أو العلامات. يحدث التحقق أثناء نشر مورد Kubernetes.
+تتيح محركات مثل Kyverno أو Open Policy Agent (OPA) إمكانية التحقق من تواقيع صور Docker ضمن عنقود Kubernetes الخاص بك. من خلال إنشاء سياسة بقواعد للتحقق، تبدأ Kyverno عملية التحقق من التوقيع بناء على معايير محددة، بما في ذلك المستودعات أو العلامات. يحدث التحقق خلال نشر موارد Kubernetes.
 
-إليك مثال على كيفية استخدام سياسة Kyverno للتحقق من توقيعات صور Docker الخاصة بـ Wallarm:
+إليك مثال على كيفية استخدام سياسة Kyverno للتحقق من تواقيع صور Wallarm Docker:
 
-1. [قم بتثبيت Kyverno](https://kyverno.io/docs/installation/methods/) على عقدك وتأكد من تشغيل جميع الحاويات بشكل صحيح.
+1. [قم بتثبيت Kyverno](https://kyverno.io/docs/installation/methods/) على عنقودك وتأكد من أن جميع الحاويات تعمل.
 1. أنشئ سياسة Kyverno YAML التالية:
 
     ```yaml
@@ -84,14 +84,14 @@ cosign verify --key https://repo.wallarm.com/cosign.pub $WALLARM_DOCKER_IMAGE
     ```
     kubectl apply -f <PATH_TO_POLICY_FILE>
     ```
-1. نشر إما [متحكم Ingress NGINX](../admin-en/installation-kubernetes-en.md) الخاص بـ Wallarm أو [متحكم Sidecar](../installation/kubernetes/sidecar-proxy/deployment.md)، حسب متطلباتك. ستطبق السياسة Kyverno أثناء النشر لفحص توقيع الصورة.
-1. حلل نتائج التحقق بتنفيذ:
+1. قم بنشر إما [وحدة تحكم Ingress NGINX](../admin-en/installation-kubernetes-en.md) أو [وحدة التحكم Sidecar](../installation/kubernetes/sidecar-proxy/deployment.md) الخاصة بـWallarm، حسب متطلباتك. سيتم تطبيق السياسة من Kyverno خلال النشر لفحص توقيع الصورة.
+1. قم بتحليل نتائج التحقق بتنفيذ:
 
     ```
     kubectl describe ClusterPolicy verify-wallarm-images
     ```
 
-ستتلقى ملخصًا يعرض حالة التحقق من التوقيع:
+ستتلقى ملخصاً يوضح حالة التحقق من التوقيع:
 
 ```
 Events:
@@ -103,4 +103,4 @@ Events:
   Normal  PolicyApplied  35s                kyverno-admission  Pod wallarm-sidecar/wallarm-sidecar-wallarm-sidecar-postanalytics-554789546f-9cc8j: pass
 ```
 
-تشير سياسة `verify-wallarm-images` المقدمة إلى وجود معلمة `failurePolicy: Fail`. هذا يعني أنه إذا لم ينجح التوثيق بالتوقيع، فإن عملية نشر المخطط بأكملها تفشل.
+سياسة `verify-wallarm-images` المقدمة لديها المعلمة `failurePolicy: Fail`. هذا يعني أنه إذا لم ينجح التوثيق بالتوقيع، فإن عملية نشر المخطط بأكملها تفشل.

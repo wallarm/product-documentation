@@ -1,2 +1,2 @@
 !!! info "مثال على المقياس"
-    هذا المثال يوضح كيفية التعامل مع مقياس فردي [`curl_json-wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests)، الذي يُظهر عدد الطلبات التي قام بمعالجتها عقدة الفلتر.
+    يُظهر هذا المثال كيفية العمل مع المقياس الفردي [`curl_json-wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests)، والذي يُظهر عدد الطلبات التي تمت معالجتها بواسطة عقدة الفلتر.

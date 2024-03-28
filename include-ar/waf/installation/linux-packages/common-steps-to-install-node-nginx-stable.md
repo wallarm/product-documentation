@@ -1,6 +1,6 @@
-## 1. تثبيت NGINX الثابت والمتطلبات
+## 1. تثبيت NGINX الثابت والاعتمادات
 
-هذه هي الخيارات المتاحة لتثبيت NGINX `الثابت` من مستودع NGINX:
+هذه هي الخيارات المتاحة لتثبيت NGINX `stable` من مستودع NGINX:
 
 * التثبيت من الحزمة المبنية
 
@@ -14,12 +14,12 @@
         sudo apt -y install nginx
         ```
     === "Ubuntu"
-        1. تثبيت المتطلبات اللازمة لـ NGINX الثابت:
+        1. قم بتثبيت الاعتمادات المطلوبة لـ NGINX الثابت:
 
             ```bash
             sudo apt -y install curl gnupg2 ca-certificates lsb-release
             ```
-        1. تثبيت NGINX الثابت:
+        1. قم بتثبيت NGINX الثابت:
 
             ```bash
             echo "deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
@@ -29,7 +29,7 @@
             ```
     === "CentOS أو Amazon Linux 2.0.2021x وأقل"
 
-        1. إذا تم إضافة مستودع EPEL في CentOS 7.x، يرجى تعطيل تثبيت NGINX الثابت من هذا المستودع بإضافة `exclude=nginx*` إلى ملف `/etc/yum.repos.d/epel.repo`.
+        1. إذا تمت إضافة مستودع EPEL في CentOS 7.x، يرجى تعطيل تثبيت NGINX الثابت من هذا المستودع عن طريق إضافة `exclude=nginx*` إلى الملف `/etc/yum.repos.d/epel.repo`.
 
             مثال على الملف المعدل `/etc/yum.repos.d/epel.repo`:
 
@@ -63,7 +63,7 @@
             gpgcheck=1
             ```
         
-        2. تثبيت NGINX الثابت من المستودع الرسمي:
+        2. قم بتثبيت NGINX الثابت من المستودع الرسمي:
 
             ```bash
             echo -e '\n[nginx-stable] \nname=nginx stable repo \nbaseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \ngpgcheck=1 \nenabled=1 \ngpgkey=https://nginx.org/keys/nginx_signing.key \nmodule_hotfixes=true' | sudo tee /etc/yum.repos.d/nginx.repo
@@ -75,16 +75,16 @@
         sudo yum install -y nginx
         ```
 
-* تجميع الشيفرة المصدرية من فرع `الثابت` لـ [مستودع NGINX](https://hg.nginx.org/pkg-oss/branches) والتثبيت بنفس الخيارات.
+* تجميع الكود المصدري من الفرع `stable` من [مستودع NGINX](https://hg.nginx.org/pkg-oss/branches) والتثبيت باستخدام نفس الخيارات.
 
     !!! info "NGINX لـ AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
         هذا هو الخيار الوحيد لتثبيت NGINX على AlmaLinux، Rocky Linux أو Oracle Linux 8.x.
 
-المزيد من المعلومات المفصلة حول تثبيت NGINX متاحة في [الوثائق الرسمية لـ NGINX](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/).
+معلومات أكثر تفصيلاً حول تثبيت NGINX متاحة في [التوثيق الرسمي لـ NGINX](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/).
 
-## 2. إضافة مستودعات Wallarm
+## 2. أضف مستودعات Wallarm
 
-يتم تثبيت وتحديث عقد Wallarm من مستودعات Wallarm. لإضافة المستودعات، استخدم الأوامر الخاصة بنظامك:
+يتم تثبيت وتحديث Wallarm من مستودعات Wallarm. لإضافة مستودعات، استخدم الأوامر لنظام التشغيل الخاص بك:
 
 === "Debian 11.x (bullseye)"
     ```bash
@@ -135,10 +135,10 @@
 
 ## 3. تثبيت حزم Wallarm
 
-الحزم التالية مطلوبة:
+يتطلب الأمر الحزم التالية:
 
 * `nginx-module-wallarm` لوحدة NGINX-Wallarm
-* `wallarm-node` لوحدة [ما بعد التحليل][install-postanalytics-docs]، قاعدة بيانات Tarantool، وحزم NGINX-Wallarm الإضافية
+* `wallarm-node` لوحدة [postanalytics][install-postanalytics-docs] وقاعدة بيانات Tarantool وحزم NGINX-Wallarm الإضافية
 
 === "Debian"
     ```bash
@@ -161,21 +161,21 @@
     sudo yum install -y wallarm-node nginx-module-wallarm
     ```
 
-## 4. توصيل وحدة Wallarm
+## 4. ربط وحدة Wallarm
 
 1. افتح الملف `/etc/nginx/nginx.conf`:
 
     ```bash
     sudo vim /etc/nginx/nginx.conf
     ```
-2. تأكد من إضافة السطر `include /etc/nginx/conf.d/*;` إلى الملف. إذا لم يكن هذا السطر موجودًا، أضفه.
-3. أضف الأمر التالي مباشرة بعد أمر `worker_processes`:
+2. تأكد من أن السطر `include /etc/nginx/conf.d/*;` تمت إضافته إلى الملف. إذا لم يكن هناك هذا السطر، أضفه.
+3. أضف التعليمة التوجيهية التالية بعد الأمر القائد `worker_processes`:
 
     ```bash
     load_module modules/ngx_http_wallarm_module.so;
     ```
 
-    مثال على التكوين مع الأمر المضاف:
+    مثال على التكوين مع التعليمة التوجيهية المضافة:
 
     ```
     user  nginx;
@@ -186,12 +186,12 @@
     pid        /var/run/nginx.pid;
     ```
 
-4. انسخ ملفات التكوين لإعداد النظام:
+4. نسخ ملفات التكوين لإعداد النظام:
 
     ``` bash
     sudo cp /usr/share/doc/nginx-module-wallarm/examples/*.conf /etc/nginx/conf.d/
     ```
 
-## 5. توصيل العقدة الفلترة بـ Wallarm Cloud
+## 5. ربط العقدة الفلاترية بـ Wallarm Cloud
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"

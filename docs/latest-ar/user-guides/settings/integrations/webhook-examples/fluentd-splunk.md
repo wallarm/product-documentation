@@ -1,57 +1,57 @@
 [splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
-# إعداد Splunk Enterprise عن طريق Fluentd
+# Splunk Enterprise عبر Fluentd
 
-تقدم هذه التعليمات لكم مثال على دمج Wallarm مع جمّاع البيانات Fluentd لإعادة توجيه الأحداث إلى نظام Splunk SIEM.
+توفر لك هذه التعليمات مثالًا لدمج Wallarm مع جمع البيانات Fluentd لإعادة توجيه الأحداث إلى نظام Splunk SIEM.
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![مخطط Webhook](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
+![تدفق Webhook](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
 
-## الموارد المستخدمة
+## الموارد المُستخدمة
 
-* [Splunk Enterprise](#splunk-enterprise-configuration) مع عنوان WEB `https://109.111.35.11:8000` وعنوان API `https://109.111.35.11:8088`
-* [Fluentd](#fluentd-configuration) مثبت على Debian 11.x (bullseye) ومتاح على `https://fluentd-example-domain.com`
-* وصول مدير إلى واجهة Wallarm Console في [سحابة الاتحاد الأوروبي](https://my.wallarm.com) لـ [تكوين دمج Fluentd](#configuration-of-fluentd-integration)
+* [Splunk Enterprise](#splunk-enterprise-configuration) مع العنوان الشبكي `https://109.111.35.11:8000` وعنوان API `https://109.111.35.11:8088`
+* [Fluentd](#fluentd-configuration) مُثبت على Debian 11.x (bullseye) ومُتاح على العنوان `https://fluentd-example-domain.com`
+* وصول المسؤول إلى وحدة التحكم Wallarm في [سحابة الاتحاد الأوروبي](https://my.wallarm.com) لـ[تكوين تكامل Fluentd](#configuration-of-fluentd-integration)
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-بما أن الروابط لخدمات Splunk Enterprise وFluentd مذكورة كأمثلة، فإنها لا تستجيب.
+بما أن الروابط المشار إليها لخدمات Splunk Enterprise وFluentd هي أمثلة، فهي لا تستجيب.
 
-### إعداد Splunk Enterprise
+### تكوين Splunk Enterprise
 
-تُرسل سجلات Fluentd إلى متحكم أحداث HTTP في Splunk باسم `سجلات Wallarm Fluentd` وإعدادات افتراضية أخرى:
+يتم إرسال سجلات Fluentd إلى Splunk HTTP Event Controller بالاسم `Wallarm Fluentd logs` والإعدادات الافتراضية الأخرى:
 
-![تكوين متحكم الحدث HTTP](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
+![تكوين HTTP Event Collector](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
 
-للوصول إلى متحكم الحدث HTTP، سيتم استخدام الرمز المُنشأ `f44b3179-91aa-44f5-a6f7-202265e10475`.
+للوصول إلى HTTP Event Controller، سيتم استخدام الرمز المُنشأ `f44b3179-91aa-44f5-a6f7-202265e10475`.
 
-وصف أكثر تفصيلًا لإعداد متحكم الحدث HTTP في Splunk متوفر في [الوثائق الرسمية لـ Splunk](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector).
+وصف أكثر تفصيلًا لإعداد Splunk HTTP Event Controller متوفر في [وثائق Splunk الرسمية](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector).
 
-### إعداد Fluentd
+### تكوين Fluentd
 
-بما أن Wallarm ترسل السجلات إلى جمّاع البيانات Fluentd الوسيط عبر webhooks، فينبغي أن يلبي إعداد Fluentd المتطلبات التالية:
+بما أن Wallarm يرسل السجلات إلى جامع البيانات الوسيط Fluentd عبر webhooks، فيجب أن يلبي تكوين Fluentd المتطلبات التالية:
 
 * قبول طلبات POST أو PUT
 * قبول طلبات HTTPS
-* وجود URL عام
-* إعادة توجيه السجلات إلى Splunk Enterprise، يستخدم هذا المثال الإضافة `splunk_hec` لإعادة التوجيه
+* الحصول على عنوان URL عام
+* إعادة توجيه السجلات إلى Splunk Enterprise، يستخدم هذا المثال الإضافة `splunk_hec` لإعادة توجيه السجلات
 
 يتم تكوين Fluentd في ملف `td-agent.conf`:
 
-* يتم تكوين معالجة webhook الوارد في توجيه `source`:
+* يتم تكوين معالجة الويب الوارد في التوجيه `source`:
     * يتم إرسال الحركة إلى المنفذ 9880
-    * Fluentd مُعد لقبول اتصالات HTTPS فقط
-    * شهادة TLS لـ Fluentd الموقعة من CA موثوق به علنًا تقع ضمن الملف `/etc/ssl/certs/fluentd.crt`
-    * المفتاح الخاص لشهادة TLS يقع ضمن الملف `/etc/ssl/private/fluentd.key`
-* يتم تكوين إعادة توجيه السجلات إلى Splunk وإخراج السجل في توجيه `match`:
-    * يتم نسخ جميع سجلات الأحداث من Fluentd وإعادة توجيهها إلى متحكم أحداث HTTP في Splunk عبر الإضافة الخارجة [fluent-plugin-splunk-hec](https://github.com/splunk/fluent-plugin-splunk-hec)
-    * تُطبع سجلات Fluentd أيضًا على سطر الأوامر بتنسيق JSON (أسطر الكود 19-22). يتم استخدام الإعداد للتحقق من أن الأحداث يتم تسجيلها عبر Fluentd
+    * يُكون Fluentd لقبول الاتصالات HTTPS فقط
+    * شهادة TLS Fluentd الموقعة من قبل CA موثوق بها علنًا موجودة ضمن الملف `/etc/ssl/certs/fluentd.crt`
+    * المفتاح الخاص لشهادة TLS موجود ضمن الملف `/etc/ssl/private/fluentd.key`
+* يتم تكوين إعادة توجيه السجلات إلى Splunk وطباعة السجلات في التوجيه `match`:
+    * جميع سجلات الأحداث يتم نسخها من Fluentd وإعادة توجيهها إلى Splunk HTTP Event Collector عبر إضافة الإخراج [fluent-plugin-splunk-hec](https://github.com/splunk/fluent-plugin-splunk-hec)
+    * يتم طباعة سجلات Fluentd أيضًا على خط الأوامر بتنسيق JSON (أسطر الكود 19-22). يُستخدم الإعداد للتحقق من تسجيل الأحداث عبر Fluentd
 
 ```bash linenums="1"
 <source>
   @type http # إضافة الإدخال لحركة HTTP وHTTPS
-  port 9880 # منفذ للطلبات الواردة
+  port 9880 # منفذ الطلبات الواردة
   <transport tls> # تكوين لمعالجة الاتصالات
     cert_path /etc/ssl/certs/fluentd.crt
     private_key_path /etc/ssl/private/fluentd.key
@@ -60,35 +60,35 @@
 <match **>
   @type copy
   <store>
-      @type splunk_hec # إضافة الإخراج fluent-plugin-splunk-hec لتوجيه السجلات إلى واجهة Splunk API عبر متحكم أحداث HTTP
+      @type splunk_hec # إضافة الإخراج fluent-plugin-splunk-hec لإعادة توجيه السجلات إلى Splunk API عبر HTTP Event Controller
       hec_host 109.111.35.11 # مضيف Splunk
-      hec_port 8088 # منفذ API Splunk
-      hec_token f44b3179-91aa-44f5-a6f7-202265e10475 # رمز متحكم الحدث HTTP
+      hec_port 8088 # منفذ Splunk API
+      hec_token f44b3179-91aa-44f5-a6f7-202265e10475 # رمز HTTP Event Controller
     <format>
-      @type json # تنسيق السجلات الموجهة
+      @type json # تنسيق السجلات المُعاد توجيهها
     </format>
   </store>
   <store>
-     @type stdout # إضافة الإخراج لطباعة سجلات Fluentd على سطر الأوامر
-     output_type json # تنسيق السجلات المطبوعة على سطر الأوامر
+     @type stdout # إضافة الإخراج لطباعة سجلات Fluentd على خط الأوامر
+     output_type json # تنسيق السجلات المطبوعة على خط الأوامر
   </store>
 </match>
 ```
 
-وصف أكثر تفصيلًا لملفات التكوين متوفر في [الوثائق الرسمية لـ Fluentd](https://docs.fluentd.org/configuration/config-file).
+وصف أكثر تفصيلًا لملفات التكوين متوفر في [وثائق Fluentd الرسمية](https://docs.fluentd.org/configuration/config-file).
 
 !!! info "اختبار تكوين Fluentd"
-    للتحقق من أن السجلات في Fluentd يتم إنشاؤها وتوجيهها إلى Splunk، يمكن إرسال طلب PUT أو POST إلى Fluentd.
+    للتحقق من إنشاء سجلات Fluentd وإعادة توجيهها إلى Splunk، يمكن إرسال طلب PUT أو POST إلى Fluentd.
 
     **مثال الطلب:**
     ```curl
     curl -X POST 'https://fluentd-example-domain.com' -H "Content-Type: application/json" -H "Authorization: Splunk f44b3179-91aa-44f5-a6f7-202265e10475" -d '{"key1":"value1", "key2":"value2"}'
     ```
 
-    **سجلات Fluentd:**
+    **سجلات في Fluentd:**
     ![سجلات في Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-curl-log.png)
 
-    **سجلات Splunk:**
+    **سجلات في Splunk:**
     ![سجلات في Splunk](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
 
 ### تكوين دمج Fluentd
@@ -103,14 +103,14 @@
 
 --8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
 
-سيسجل Fluentd الحدث كما يلي:
+سيقوم Fluentd بتسجيل الحدث على النحو التالي:
 
-![سجل عن مستخدم جديد في Splunk من Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
+![سجل عن مُستخدم جديد في Splunk من Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
 
 سيتم عرض الإدخال التالي في أحداث Splunk:
 
-![بطاقة المستخدم الجديد في Splunk من Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
+![بطاقة مُستخدم جديد في Splunk من Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
 
-## تنظيم الأحداث في Splunk Enterprise في لوحة معلومات
+## تنظيم الأحداث في Splunk Enterprise ضمن لوحة تحكم
 
 --8<-- "../include/integrations/application-for-splunk.md"

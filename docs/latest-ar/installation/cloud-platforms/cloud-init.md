@@ -1,25 +1,25 @@
-# مواصفات سكربت البدء السحابي Wallarm
+# مواصفات سكربت `cloud-init` الخاص بـ Wallarm
 
-إذا كنت تُتبع النهج البنية كود Infrastructure as Code (IaC)، قد تحتاج إلى استخدام سكربت [`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html) لتوزيع عقدة Wallarm على السحابة العامة. ابتداءً من الإصدار 4.0، توزع Wallarm صورها السحابية مع سكربت `cloud-init.py` جاهز للاستخدام والذي يُوصَف في هذا الموضوع.
+إذا كنت تتبع منهج البنية التحتية كرمز (IaC)، فقد تحتاج إلى استخدام سكربت [`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html) لنشر عقدة Wallarm على السحابة العامة. ابتداءً من الإصدار 4.0، توزع Wallarm صور سحابية بها سكربت `cloud-init.py` جاهز للاستخدام ويُشرح في هذا الموضوع.
 
-## نظرة عامة على سكربت البدء السحابي Wallarm
+## نظرة عامة على سكربت `cloud-init` الخاص بـ Wallarm
 
-سكربت `cloud-init` من Wallarm متاح تحت المسار `/opt/wallarm/usr/share/wallarm-common/cloud-init.py` في [صورة Wallarm على سحاب AWS](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe). يقوم هذا السكربت بكلٍ من التكوين الأولي والمتقدم للنموذج مع المراحل الرئيسية التالية المُشاركة:
+سكربت `cloud-init` الخاص بـ Wallarm متوفر تحت المسار `/opt/wallarm/usr/share/wallarm-common/cloud-init.py` في [صورة AWS السحابية الخاصة بـ Wallarm](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe). يقوم هذا السكربت بتنفيذ كل من التكوين الأولي والمتقدم للعقدة بمراحل رئيسية تشمل:
 
-* يُشغل عقدة Wallarm التي تم إنشاؤها مسبقًا في سحابة Wallarm من خلال تنفيذ سكربت تسجيل العقدة `register-node` من Wallarm
-* يُكون النموذج وفقًا لطريقة الوكيل أو المرآة المُحددة في المتغير `preset` (إذا كان يتم نشر Wallarm باستخدام [وحدة Terraform](aws/terraform-module/overview.md))
-* يُعدل النموذج بدقة وفقًا لمقتطفات NGINX
-* يُعدل عقدة Wallarm
-* يُجري فحوصات الصحة لموازن الحمل
+* تشغيل عقدة Wallarm التي تم إنشاؤها مسبقًا في سحابة Wallarm من خلال تنفيذ سكربت تسجيل العقدة `register-node` الخاص بـ Wallarm
+* تكوين العقدة وفقًا إما للنهج الوكيل أو المرآة المحدد في متغير `preset` (إذا تم نشر Wallarm باستخدام [وحدة Terraform](aws/terraform-module/overview.md))
+* تهيئة العقدة بدقة وفقًا لأجزاء NGINX
+* تهيئة عقدة Wallarm
+* أداء فحوصات الصحة لموزع الأحمال
 
-يتم تشغيل سكربت `cloud-init` مرة واحدة فقط عند بدء تشغيل النموذج، إعادة تشغيل النموذج لا يُجبر على إطلاقه. ستجد المزيد من التفاصيل في [وثائق AWS حول مفهوم السكربت](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html).
+يتم تشغيل سكربت `cloud-init` مرة واحدة فقط عند بدء تشغيل العقدة، وإعادة تشغيل العقدة لا يقوي بتشغيله. ستجد المزيد من التفاصيل في [وثائق AWS حول مفهوم السكربت](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html).
 
-## تشغيل سكربت البدء السحابي Wallarm
+## تشغيل سكربت `cloud-init` الخاص بـ Wallarm
 
-يمكنك تشغيل سكربت البدء السحابي Wallarm كما يلي:
+يمكنك تشغيل سكربت `cloud-init` الخاص بـ Wallarm كما يلي:
 
-* إطلاق نموذج سحابي واستخدام بياناته الوصفية لوصف تشغيل سكربت `cloud-init.py`
-* إنشاء قالب إطلاق نموذج مع سكربت `cloud-init.py` ثم إنشاء مجموعة توسيع تلقائي بناءً عليه
+* إطلاق عقدة سحابية واستخدام البيانات الوصفية الخاصة بها لوصف تشغيل سكربت `cloud-init.py`
+* إنشاء قالب إطلاق العقدة مع سكربت `cloud-init.py` ثم إنشاء مجموعة توسيع تلقائي بناءً عليه
 
 مثال على تنفيذ السكربت لتشغيل عقدة Wallarm كخادم وكيل لـ [httpbin.org](https://httpbin.org):
 
@@ -27,9 +27,9 @@
 #!/bin/bash
 set -e
 
-### منع تشغيل NGINX بدون
-### تمكين Wallarm، لا يُنصح بتنفيذ
-### فحص الصحة قبل إتمام كل الأمور
+### منع NGINX من التشغيل بدون
+### Wallarm مفعل، لا يُوصى بتشغيل
+### فحص الصحة قبل اكتمال كل الأمور
 ###
 systemctl stop nginx.service
 
@@ -44,9 +44,9 @@ systemctl restart nginx.service
 echo تم تكوين عقدة Wallarm بنجاح!
 ```
 
-للوفاء بنهج البنية كود Infrastructure as Code (IaC)، قمنا بتنفيذ [وحدة Terraform لـ AWS](aws/terraform-module/overview.md) التي يمكن أن تكون مثالًا توضيحيًا على استخدام سكربت البدء السحابي Wallarm.
+لتلبية منهج البنية التحتية كرمز (IaC)، قمنا بتنفيذ [وحدة Terraform لـ AWS](aws/terraform-module/overview.md) التي يمكن أن تكون مثالًا توضيحيًا على استخدام سكربت `cloud-init` الخاص بـ Wallarm.
 
-## بيانات مساعدة سكربت البدء السحابي Wallarm
+## بيانات مساعدة سكربت `cloud-init` الخاص بـ Wallarm
 
 ```plain
 usage: /opt/wallarm/usr/share/wallarm-common/cloud-init.py [-h] -t TOKEN [-H HOST] [--skip-register] [-p {proxy,mirror,custom}]
@@ -55,34 +55,34 @@ usage: /opt/wallarm/usr/share/wallarm-common/cloud-init.py [-h] -t TOKEN [-H HOS
                                                       [--http-snippet HTTP_SNIPPET_FILE] [--server-snippet SERVER_SNIPPET_FILE]
                                                       [-l LOG_LEVEL]
 
-يُشغل عقدة Wallarm بالتكوين المحدد في عنقود PaaS. https://docs.wallarm.com/waf-installation/cloud-
+يشغّل عقدة Wallarm بالتكوين المحدد في عنقود PaaS. https://docs.wallarm.com/waf-installation/cloud-
 platforms/cloud-init/
 
-الخيارات الاختيارية:
-  -h, --help            يعرض هذه الرسالة المساعدة ويخرج
+الوسيطات الاختيارية:
+  -h, --help            يُظهر رسالة المساعدة ويخرج
   -t TOKEN, --token TOKEN
                         رمز عقدة Wallarm المنسوخ من واجهة Wallarm Console.
-  -H HOST, --host HOST  خادم API Wallarm المحدد لسحابة Wallarm المُستخدمة: https://docs.wallarm.com/about-wallarm-
-                        waf/overview/#cloud. بشكل افتراضي، api.wallarm.com.
-  --skip-register       يتخطى مرحلة تشغيل المحلي للعقدة التي تم إنشاؤها في سحابة Wallarm (يتجاوز تنفيذ سكربت register-node).
-                        هذه المرحلة ضرورية لنشر العقدة بنجاح.
+  -H HOST, --host HOST  خادم API الخاص بـ Wallarm المحدد لسحابة Wallarm المُستخدمة: https://docs.wallarm.com/about-wallarm-
+                        waf/overview/#cloud. افتراضيًا، api.wallarm.com.
+  --skip-register       يتجاوز مرحلة تشغيل العقدة المحلية المُنشأة في سحابة Wallarm (يتجاوز تنفيذ سكربت register-node).
+                        هذه المرحلة ضرورية لنجاح نشر العقدة.
   -p {proxy,mirror,custom}, --preset {proxy,mirror,custom}
-                        الإعداد المسبق لعقدة Wallarm: "proxy" للعقدة لتعمل كخادم وكيل، "mirror" للعقدة لمعالجة الحركة المعكوسة، "custom" للتكوين المُعرف عبر مقتطفات NGINX فقط.
+                        مُعدّة مسبقة لعقدة Wallarm: "proxy" للعمل كخادم وكيل، "mirror" لمعالجة الحركة المعكوسة، "custom" للتكوين المُحدد عبر أجزاء NGINX فقط.
   -m {off,monitoring,safe_blocking,block}, --mode {off,monitoring,safe_blocking,block}
-                        وضع ترشيح الحركة: https://docs.wallarm.com/admin-en/configure-parameters-en/#wallarm_mode.
+                        وضع تصفية الحركة: https://docs.wallarm.com/admin-en/configure-parameters-en/#wallarm_mode.
   --proxy-pass PROXY_PASS
-                        بروتوكول الخادم المُوكَل وعنوانه. مطلوب إذا تم تحديد "proxy" كإعداد مسبق.
-  --libdetection        ما إذا كان سيتم استخدام مكتبة libdetection أثناء تحليل الحركة: https://docs.wallarm.com/about-wallarm-
+                        بروتوكول الخادم الوكيل وعنوانه. مطلوب إذا تم تحديد "proxy" كمُعدة مسبقة.
+  --libdetection        سواء كان يتم استخدام مكتبة libdetection خلال تحليل الحركة: https://docs.wallarm.com/about-wallarm-
                         waf/protecting-against-attacks.md#library-libdetection.
   --global-snippet GLOBAL_SNIPPET_FILE
-                        التكوين المخصص المراد إضافته إلى التكوين العالمي لـ NGINX.
+                        التكوين المخصص لإضافته إلى التكوين العالمي لـ NGINX.
   --http-snippet HTTP_SNIPPET_FILE
-                        التكوين المخصص المراد إضافته إلى كتلة التكوين "http" لـ NGINX.
+                        التكوين المخصص لإضافته إلى كتلة التكوين "http" لـ NGINX.
   --server-snippet SERVER_SNIPPET_FILE
-                        التكوين المخصص المراد إضافته إلى كتلة التكوين "server" لـ NGINX.
+                        التكوين المخصص لإضافته إلى كتلة التكوين "server" لـ NGINX.
   -l LOG_LEVEL, --log LOG_LEVEL
                         مستوى التفصيلية.
 
-هذا السكربت يغطي بعض التكوينات الأكثر شعبية لـ AWS، GCP، Azure وغيرها من منصات PaaS. إذا كنت بحاجة إلى تكوين أكثر قوة،
+هذا السكربت يغطي بعض التكوينات الأكثر شعبية لـ AWS، GCP، Azure وغيرها من PaaS. إذا كنت بحاجة إلى تكوين أقوى،
 نرحب بك لمراجعة وثائق عقدة Wallarm العامة: https://docs.wallarm.com.
 ```

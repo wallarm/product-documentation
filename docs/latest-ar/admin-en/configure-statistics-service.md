@@ -3,46 +3,46 @@
 [gl-lom]:                       ../glossary-en.md#custom-ruleset-the-former-term-is-lom
 [doc-selinux]:                  configure-selinux.md
 
-# تكوين صوت الإحصاءات 
+# إعدادات خدمة الإحصائيات
 
-للحصول على إحصائيات حول العقدة الفلاترة، استخدم الأمر `wallarm_status`، الذي يتم كتابته في ملف تهيئة NGINX.
+للحصول على إحصائيات حول العقدة المرشحة، استخدم الأمر `wallarm_status`، والذي يتم كتابته في ملف التكوين NGINX.
 
-## تكوين صوت الإحصاءات 
+## تهيئة خدمة الإحصائيات
 
-!!! تحذير "مهم"
+!!! warning "مهم"
+    
+    يوصى بشدة بتكوين خدمة الإحصائيات في ملفها الخاص، مواجهة الأمر `wallarm_status` في ملفات تجهيز NGINX الأخرى، لأن الأخير قد يكون أمرًا غير آمن. يقع ملف التكوين لـ `wallarm-status` في:
 
-    من الأفضل بكثير تهيئة خدمة الإحصاءات في ملف خاص بها، تجنب الأمر `wallarm_status` في ملفات إعداد NGINX الأخرى، لأن الأخيرة قد تكون غير آمنة. يقع ملف التهيئة لـ `wallarm-status` في:
-
-    * `/etc/nginx/wallarm-status.conf` للمثبت الموحد
+    * `/etc/nginx/wallarm-status.conf` للمثبت للكل في واحد
     * `/etc/nginx/conf.d/wallarm-status.conf` للتثبيتات الأخرى
     
-    بالإضافة الى ذلك، ننصح بشدة بعدم تغيير أي من الأسطر الحالية لتهيئة `wallarm-status` الأفتراضية حيث قد يفسد عملية تحميل البيانات المترية إلى سحابة Wallarm.
+    أيضًا، يشدد على عدم تغيير أي من الخطوط الحالية للتكوين `wallarm-status` الافتراضي حيث يمكن أن يفسد عملية تحميل بيانات القياس إلى السحابة Wallarm.
 
-عند استخدام الأمر، يمكن إعطاء الإحصائيات بتنسيق JSON أو بتنسيق متوافق مع [Prometheus][link-prometheus]. الاستخدام:
+عند استخدام الأمر، يمكن إعطاء الإحصائيات في تنسيق JSON أو في تنسيق متوافق مع [Prometheus][link-prometheus]. الاستخدام:
 
 ```
-wallarm_status [مُفتَح|مُغلَق] [تنسيق=جسون|prometheus];
+wallarm_status [on|off] [format=json|prometheus];
 ``` 
 
-!!! معلومات
-    يمكن تهيئة الأمر في سياق `الخادم` و/ أو `الموقع`.
+!!! info
+    يمكن تكوين الأمر في سياق `server` و/أو `location`.
 
-    البديهية `format` لديها قيمة `json` بشكل افتراضي في معظم خيارات الإنشاء باستثناء صورة Docker المستندة على NGINX؛ عند استدعاء نقطة النهاية `/wallarm-status` من خارج الحاوية، يعود بمتغيرات في تنسيق Prometheus.
-    
+    القيمة الافتراضية للمعلمة `format` هي `json` في معظم خيارات التوظيف باستثناء صورة Docker على أساس NGINX؛ عندما يتم استدعاء `/wallarm-status` من خارج الحاوية، يعيد بيانات المقاييس بتنسيق Prometheus.
+
 ### التكوين الافتراضي
 
-بشكل افتراضي، خدمة إحصاءات العقدة الفلترة لديها التكوين الأكثر أمانًا. ملف التكوين `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` للمثبت الموحد) يبدو كما يلي:
+بشكل افتراضي، خدمة الإحصائيات للعقدة المرشحة لديها التكوين الأكثر أمانًا. يبدو ملف التكوين `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` للمثبت للكل في واحد) كما يلي:
 
 ```
 server {
   listen 127.0.0.8:80;
   server_name localhost;
 
-  allow 127.0.0.0/8;   # الوصول متاح فقط لعناوين الكمبيوتر العقدة الفلترة   
+  allow 127.0.0.0/8;   # يتاح الوصول فقط للعناوين المعادة للعقدة المرشحة
   deny all;
 
   wallarm_mode off;
-  disable_acl "on";   # يتم تعطيل فحص مصادر الطلب ، ويتم السماح للأي بي المدرج في القائمة السوداء بطلب خدمة wallarm-status. https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
+  disable_acl "on";   # تم تعطيل التحقق من مصادر الطلب، يُسمح للأي بي المرفوض طلب خدمة wallarm-status. https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
   access_log off;
 
   location /wallarm-status {
@@ -51,11 +51,11 @@ server {
 }
 ```
 
-### تحديد عناوين IP المسموح لها بطلب الإحصاءات
+### الحد من عناوين الأي بي المسموح بطلب الإحصائيات منها
 
-عند تهيئة الأمر `wallarm_status`، يمكنك تحديد عناوين IP التي يمكنك منها طلب الإحصاءات. بشكل افتراضي، يتم رفض الوصول من أي مكان باستثناء عناوين IP `127.0.0.1` و`::1`، التي تسمح بتنفيذ الطلب فقط من الخادم الذي تم تثبيت Wallarm عليه.
+عند تكوين الأمر `wallarm_status`، يمكنك تحديد عناوين IP التي يمكنك طلب الإحصاءات منها. بشكل افتراضي، يتم رفض الوصول من أي مكان باستثناء عناوين الأي بي `127.0.0.1` و`::1`، التي تسمح بتنفيذ الطلب فقط من الخادم الذي تم فيه تثبيت Wallarm.
 
-للسماح بالطلبات من خادم آخر، أضف الأمر `allow` مع عنوان IP للخادم المطلوب في التكوين. على سبيل المثال:
+للسماح بالطلبات من خادم آخر، أضف أمر `allow` مع عنوان الأي بي للخادم المطلوب في التكوين. على سبيل المثال:
 
 ```diff
 ...
@@ -66,22 +66,22 @@ allow 127.0.0.0/8;
 ...
 ```
 
-بمجرد تغيير الإعدادات، أعد تشغيل NGINX لتطبيق التغييرات:
+حالما تغير الإعدادات، أعد تشغيل NGINX لتطبيق التغييرات:
 
 --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
-### تغيير عنوان IP و/ أو منفذ عنوان الإحصاءات
+### تغيير عنوان الأي بي و/أو منفذ خدمة الإحصائيات
 
-لتغيير عنوان IP و/ أو المنفذ لخدمة الإحصاءات، اتبع التعليمات أدناه.
+لتغيير عنوان IP و/أو منفذ خدمة الإحصائيات، اتبع التعليمات أدناه.
 
-!!! معلومات "تغيير منفذ خدمة الإحصاءات على صورة Docker المستندة على NGINX"
-    لتغيير المنفذ الافتراضي لخدمة الإحصاءات على [صورة Docker المستندة على NGINX](installation-docker-en.md)، ابدأ الحاوية مع متغير `NGINX_PORT` تم تعيينه على المنفذ الجديد. لا يتطلب ذلك أي تغييرات أخرى.
+!!! info "تغيير منفذ خدمة الإحصائيات على صورة Docker القائمة على NGINX"
+    لتغيير النقطة الافتراضية لخدمة الإحصائيات على [صورة Docker القائمة على NGINX](installation-docker-en.md)، ابدأ الحاوية مع متغير `NGINX_PORT` مُعيّنًا إلى النقطة الجديدة. لا يتطلب أي تغييرات أخرى.
 
-1. افتح ملف `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` للمثبت الموحد) وحدد ما يلي:
+1. افتح ملف `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` للمثبت للكل في واحد) وحدد ما يلي:
 
-    * عنوان الخدمة الجديد في أمر الاستماع.
-    * إذا كان مطلوبًا، قم بتغيير الأمر `allow` للسماح بالوصول من عناوين غير عناوين الحلقة الخلفية (يسمح ملف التهيئة الافتراضي فقط بالوصول إلى عناوين الحلقة الخلفية).
-1. أضف معلمة `status_endpoint` بقيمة العنوان الجديد إلى ملف `/etc/wallarm/node.yaml` (`/opt/wallarm/etc/wallarm/node.yaml` لصورة Docker المستندة على NGINX، صور السحابة والمثبت الموحد)، على سبيل المثال:
+    * عنوان الخدمة الجديد في الأمر `listen`.
+    * إذا كان مطلوبًا، قم بتغيير الأمر `allow` للسماح بالوصول من العناوين غير العائدة للتكرار (ملف التكوين الافتراضي يسمح بالوصول فقط إلى العناوين المتكررة).
+1. أضف معلمة `status_endpoint` مع قيمة العنوان الجديد إلى ملف `/etc/wallarm/node.yaml` (`/opt/wallarm/etc/wallarm/node.yaml` بالنسبة لصورة Docker القائمة على NGINX وصور السحابة والمثبت للكل في واحد)، على سبيل المثال:
 
     ```bash
     hostname: example-node-name
@@ -89,66 +89,66 @@ allow 127.0.0.0/8;
     ...
     status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
     ```
-1. قم بتصحيح معلمة `URL` وفقًا لذلك في ملف تهميئة [`collectd`](monitoring/intro.md).  يعتمد مكان هذا الملف على نظام التشغيل وطريقة التثبيت التي تستخدمها:
+1. قم بتصحيح معلمة `URL` بناءً على ذلك في ملف تكوين [`collectd`](monitoring/intro.md). موقع هذا الملف يعتمد على نظام التشغيل وطريقة التثبيت التي تستخدم:
 
-    === "توزيعات التثبيت DEB"
+    === "توزيعات قائمة على DEB"
         ```bash
         /etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
 
-        # للمثبت الموحد:
+        # بالنسبة للمثبت للكل في واحد:
         /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
         ```
-    === "توزيعات التثبيت RPM"
+    === "توزيعات قائمة على RPM"
         ```bash
         /etc/wallarm-collectd.d/nginx-wallarm.conf
 
-        # للمثبت الموحد:
+        # بالنسبة للمثبت للكل في واحد:
         /opt/wallarm/etc/wallarm-collectd.d/nginx-wallarm.conf
         ```
-    === "صورة AMI ، صورة GCP ، أو صورة Docker المستندة على NGINX"
+    === "صورة AMI، أو صور GCP، أو صورة Docker القائمة على NGINX"
         ```bash
         /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
         ```
 1. أعد تشغيل NGINX لتطبيق التغييرات:
 
     --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
-1. بالنسبة للعقد الفلترة المثبتة عبر المثبت الموحد أو صور السحابة، افتح ملف `/opt/wallarm/env.list` وأضف متغير `NGINX_PORT` بقيمة منفذ الخدمة الجديدة (إذا تم تغييره) ، على سبيل المثال:
+1. بالنسبة للعقد المرشحة المُنتشرة عبر المثبت الشامل أو صور السحابة، افتح ملف `/opt/wallarm/env.list` وقم بإلحاق متغير `NGINX_PORT` بقيمة نقطة خدمة الجديدة (إذا تم تغييرها)، على سبيل المثال:
 
     ```
     NGINX_PORT=8082
     ```
-1. إذا تم استخدام عنوان IP غير قياسي أو منفذ لـ Tarantool، قم بتصحيح الملف التشكيلي Tarantool وفقًا لذلك. الموضع الشخصي لهذا الملف يعتمد على نوع النشر نظام التشغيل الذى تمتلكه:
+1. إذا تم استخدام عنوان أي بي غير قياسي أو نقطة لـ Tarantool، قم بتصحيح ملف تكوين Tarantool بالتحديد. موقع هذا الملف يعتمد على نوع توزيع نظام التشغيل لديك:
 
-    === "توزيعات الانتشار DEB-based"
+    === "توزيعات قائمة على DEB"
         ```bash
         /etc/collectd/collectd.conf.d/wallarm-tarantool.conf
 
-        # في حالة استخدام المثبت ألموحد:
+        # إذا كانت تستخدم المثبت الشامل:
         /opt/wallarm/etc/collectd/collectd.conf.d/wallarm-tarantool.conf
         ```
-    === "توزيعات الانتشار RPM-based"
+    === "توزيعات قائمة على RPM"
         ```bash
         /etc/collectd.d/wallarm-tarantool.conf
 
-        # بالنسبة للمثبت الموحد:
+        # بالنسبة للمثبت الشامل:
         /opt/wallarm/etc/collectd.d/wallarm-tarantool.conf
         ```
-    === "لصورة AMI ، صورة GCP ، أو صورة Docker المستندة على NGINX"
+    === "صورة AMI، أو صورة GCP، أو صورة Docker القائمة على NGINX"
         ```bash
         /opt/wallarm/etc/collectd/collectd.conf.d/wallarm-tarantool.conf
         ```
 
-إذا كان SELinux مثبتًا على مضيف العقدة الفلترة، تأكد من أن SELinux إما [تم تكوينها أو تعطيلها][doc-selinux]. من أجل البساطة، يفترض هذا المستند أن SELinux مُعطّل.
+إذا تم تثبيت SELinux على مضيف العقدة المرشحة، تأكد من أن SELinux إما [مُعدّة أو معطلة][doc-selinux]. للبساطة، يفترض هذا المستند أن SELinux معطلة.
 
-انتبه إلى أن الإخراج المحلي `wallarm-status` سوف يتم إعادة تعيينه بعد تطبيق الإعدادات المشار إليها أعلاه.
+اعلم أن إخراج `wallarm-status` المحلي سوف يتم إعادة تعيينه بعد تطبيق الإعدادات أعلاه.
 
-### الحصول على الإحصاءات بتنسيق Prometheus
+### الحصول على الإحصائيات بتنسيق Prometheus
 
-معظم خيارات الإنشاء تعيد الإحصائيات بتنسيق JSON بشكل افتراضي. الصورة المستندة على Docker هي استثناء؛ عند استدعاء نقطة النهاية `/wallarm-status` من خارج الحاوية، يعيد المتغيرات بتنسيق Prometheus.
+معظم خيارات التوزيع تقدم الإحصائيات بالتنسيق JSON افتراضيًا. صورة Docker القائمة على NGINX هي الاستثناء؛ عندما يتم استدعاء نقطة النهاية `/wallarm-status` من خارج الحاوية، يعيد المقاييس بتنسيق Prometheus.
 
-للحصول على الإحصائيات بتنسيق Prometheus من خيارات تثبيت العقدة التي تعتبر JSON هي القيمة الافتراضية:
+للحصول على الإحصائيات بتنسيق Prometheus من خيارات التوزيع العقدة التي تعتبر JSONهي القيمة الافتراضية:
 
-1. أضف التكوين التالي إلى الملف `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` للمثبت الموحد):
+1. أضف التكوين التالي إلى ملف `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` للمثبت للكل في واحد):
 
 
     ```diff
@@ -165,27 +165,27 @@ allow 127.0.0.0/8;
     ...
     ```
 
-    !!! تحذير "لا تقم بحذف أو تغيير التهيئة الافتراضية لـ `/wallarm-status`"
-        من فضلك لا تقم بحذف أو تغيير التهيئة الافتراضية للـ `/wallarm-status`. العمل الأفتراضي لـ هذه النقطة النهاية هو اقصى أولوية لتحميل البيانات الصحيحة إلى Wallarm Cloud.
-1. أعد تشغيل NGINX لتطبيق التغييرات:
+    !!! warning "لا تحذف أو تغير التكوين الافتراضي لـ `/wallarm-status`"
+        الرجاء عدم حذف أو تغيير التكوين الافتراضي للموقع `/wallarm-status`. التشغيل الافتراضي لهذه النقطة حاسم لتحميل البيانات الصحيحة إلى السحابة Wallarm.
+1. قم بإعادة تشغيل NGINX لتطبيق التحديثات:
 
     --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
-1. اتصل بنقطة النهاية الجديدة للحصول على مقاييس Prometheus:
+1. استدعي النقطة المنتهية الجديدة للحصول على مقاييس Prometheus:
 
     ```bash
     curl http://127.0.0.8/wallarm-status-prometheus
     ```
 
-##  العمل مع صوت الإحصاءات
+##  العمل مع خدمة الإحصائيات
 
-للحصول على إحصائيات العقدة الفلترة، قم بتقديم طلب من واحدة من العناوين IP المسموح بها (انظر أعلاه):
+للحصول على الإحصائيات للعقدة المرشحة، قم بعمل طلب من أحد عناوين الأي بي المسموح بها (انظر أعلاه):
 
-=== "إحصاءات بتنسيق JSON"
+=== "الإحصائيات بتنسيق JSON"
     ```
     curl http://127.0.0.8/wallarm-status
     ```
 
-    نتيجة لذلك، ستحصل على رد من النوع:
+    وكنتيجة، سوف تحصل على رد من النوع:
 
     ```
     { "requests":0,"attacks":0,"blocked":0,"blocked_by_acl":0,"acl_allow_list":0,"abnormal":0,
@@ -207,9 +207,9 @@ allow 127.0.0.0/8;
     curl http://127.0.0.8/wallarm-status-prometheus
     ```
 
-    يمكن أن يكون العنوان مختلفًا، يرجى التحقق من ملف `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` للمثبت الموحد) للعنوان الفعلي.
+    المعالج يمكن أن يكون مختلفا، يرجى التأكد من ملف `/etc/nginx/conf.d/wallarm-status.conf` (`/etc/nginx/wallarm-status.conf` للمثبت للكل في واحد) للعنوان الفعلي.
 
-    نتيجة لذلك، ستحصل على رد من النوع:
+    وكنتيجة، سوف تحصل على رد من النوع:
 
 
     ```
@@ -293,64 +293,64 @@ allow 127.0.0.0/8;
     wallarm_startid 3226376659815907920
     ```
 
-المعلمات الرد التالية متوفرة (مقاييس Prometheus لديها بادئة `wallarm_`):
+المعلمات الاستجابة التالية متاحة (تتضمن مقاييس Prometheus البادئة `wallarm_`):
 
-*   `requests`: عدد الطلبات التي تمت معالجتها بواسطة العقدة الفلترة.
+*   `requests`: عدد الطلبات التي مُعالجتها بواسطة العقدة المرشحة.
 *   `attacks`: عدد الهجمات المسجلة.
-*   `blocked`: عدد الطلبات المحظورة بما في ذلك تلك التي تنشأ من [مدرجة في القائمة السوداء](../user-guides/ip-lists/overview.md) IPs.
-*   `blocked_by_acl`: عدد الطلبات التي تم حظرها بسبب [مدرجة في القائمة السوداء](../user-guides/ip-lists/overview.md) مصادر لطلبات.
-* `acl_allow_list`: عدد طلبات المنشأ [إختارت من القائمة](../user-guides/ip-lists/overview.md) مصادر الطلب.
-*   `abnormal`: عدد الطلبات التي تعتبر غير طبيعية من قبل التطبيق.
-*   `tnt_errors`: عدد الطلبات التي لم تتم معالجتها من قبل وحدة بعد التحليل. بالنسبة لهذه الطلبات، يتم تسجيل سبب الحظر، ولكن الطلبات نفسها لا تتم جمعها في الإحصائيات وفحوصات السلوك.
-*   `api_errors`: عدد الطلبات التي لم يتم تقديمها لواجهة برمجة التطبيقات لتحليلها بعد ذلك. بالنسبة لهذه الطلبات، تم تطبيق معلمات الحظر (أي طلبات خبيثة تم حظرها إذا كانت النظام تعمل في وضع الحظر)؛ ومع ذلك، لا يتم رؤية البيانات عن هذه الأحداث على واجهة المستخدم. يسم هذا المعلم فقط عندما تعمل عقدة Wallarm مع وحدة بعد التحليل المحلية.
-*   `requests_lost`: عدد الطلبات التي لم تتم تحليلها في وحدة بعد التحليل ونقلها إلى واجهة برمجة التطبيقات. بالنسبة لهذه الطلبات، تم تطبيق معلمات الحظر (أي طلبات خبيثة تم حظرها إذا كانت النظام تعمل في وضع الحظر)؛ ومع ذلك، لا يتم رؤية البيانات عن هذه الأحداث على واجهة المستخدم. يسم هذا المعلم فقط عندما تعمل عقدة Wallarm مع وحدة بعد التحليل المحلية.
-*   `overlimits_time`: عدد الهجمات من النوع [تجاوز حدود الموارد الحاسوبية](../attacks-vulns-list.md#overlimiting-of-computational-resources) التي تم تحريها بواسطة العقدة الفلترة.
-*   `segfaults`: عدد المشاكل التي أدت إلى انتهاء عملية العامل بشكل طارئ.
-*   `memfaults`: عدد المشاكل التي تم الوصول فيها إلى حدود الذاكرة الافتراضية.
-* `softmemfaults`: عدد المشاكل حيث تم تجاوز حد الذاكرة الافتراضية لـ proton.db + lom ([`wallarm_general_ruleset_memory_limit`](configure-parameters-en.md#wallarm_general_ruleset_memory_limit)).
-* `proton_errors`: عدد الأخطاء proton.db باستثناء تلك التي تحدث بسبب الحالات عندما تم تجاوز حد الذاكرة الافتراضية.
-*   `time_detect`: الوقت الكلي لتحليل الطلبات.
-*   `db_id`: نسخة proton.db.
-*   `lom_id`: سيتم عدم دعمه قريبًا، يرجى استخدام `custom_ruleset_id`.
-*   `custom_ruleset_id`: نسخة بناء [custom ruleset][gl-lom].
+*   `blocked`: عدد الطلبات المعطلة بما في ذلك تلك التي تأتي من [IPs على القائمة السوداء](../user-guides/ip-lists/overview.md).
+*   `blocked_by_acl`: عدد الطلبات التي تم منعها بسبب حجب مصادر الطلبات في [القائمة السوداء](../user-guides/ip-lists/overview.md).
+* `acl_allow_list`: عدد الطلبات التي تأتي من مصادر الطلبات في [القائمة البيضاء](../user-guides/ip-lists/overview.md).
+*   `abnormal`: عدد الطلبات التي تراها التطبيق غير طبيعية.
+*   `tnt_errors`: عدد الطلبات التي لم يتم تحليلها بواسطة وحدة التحليل بعد الطلبات. فيما يخص هذه الطلبات، سجلت أسباب الحجب، ولكن لم يتم احتساب الطلبات ذاتها في الإحصائيات والتحققات السلوكية.
+*   `api_errors`: عدد الطلبات التي لم تقدم إلى الواجهة البرمجية للتطبيقات للتحليل الأمامي. فيما يخص هذه الطلبات، تم تطبيق معلمات الحجب (أي ، تم حجب الطلبات الضارة إذا كانت النظام تعمل في الوضع العرقلة)؛ ومع ذلك، ليس مرئيا بيانات حول هذه الأحداث في الواجهة الرسومية. يتم استخدام هذا المعلم فقط عندما يعمل الوحدة الخاصة بواجهة البرمجة للتطبيقات Wallarm مع وحدة التحليل بعد الطلبات المحلية.
+*   `requests_lost`: عدد الطلبات التي لم يتم تحليلها بوحدة التحليل بعد الطلبات وتحويلها إلى الواجهة البرمجية للتطبيقات. فيما يخص هذه الطلبات، تم تطبيق معلمات الحجب (أي، تم حجب الطلبات الضارة إذا كانت النظام تعمل في الوضع العرقلة)؛ ومع ذلك، ليس مرئيا بيانات حول هذه الأحداث في الواجهة الرسومية. يتم استخدام هذا المعلم فقط عندما يعمل الوحدة الخاصة بواجهة البرمجة للتطبيقات Wallarm مع وحدة التحليل بعد الطلبات المحلية.
+*   `overlimits_time`: عدد الهجمات ذات النوع [التجاوز الحصص المحددة للموارد الحسابية](../attacks-vulns-list.md#overlimiting-of-computational-resources) الذي تم اكتشافها بواسطة العقدة المرشحة.
+*   `segfaults`: عدد المشكلات التي أدّت إلى التوقف الطارئ عن عملية العمل.
+*   `memfaults`: عدد المشكلات التي تم فيها الوصول إلى حدود الذاكرة الافتراضية.
+* `softmemfaults`: عدد المشكلات التي تم فيها تجاوز الحد الأقصى للذاكرة الافتراضية للـ proton.db +lom ([`wallarm_general_ruleset_memory_limit`](configure-parameters-en.md#wallarm_general_ruleset_memory_limit)).
+* `proton_errors`: عدد أخطاء proton.db باستثناء تلك التي حدثت بسبب الحالات التي تم فيها الوصول إلى حد الذاكرة الافتراضية.
+*   `time_detect`: الوقت الإجمالي لتحليل الطلبات.
+*   `db_id`: إصدار proton.db.
+*   `lom_id`: سيكون من العتاد قريبا، من فضلك استخدم `custom_ruleset_id`.
+*   `custom_ruleset_id`: بناءً على إصدار المجموعة القاعدية المخصصة [القاعدة المخصصة][gl-lom].
 
-    من دورة الافراج4.8، ويظهر ك `wallarm_custom_ruleset_id{format="51"} 386` بتنسيق Prometheus, with مع `custom_ruleset_ver` بداخل السمة`format` والقيمة الرئيسية هي نسخة بناء القواعد المخصصة.
-*   `custom_ruleset_ver` (متوفرة بدءًا من الإصدار Wallarm 4.4.3): تنسيق [custom ruleset][gl-lom]: 
+    بدءًا من الإصدار 4.8، يظهر بتنسيق Prometheus كـ `wallarm_custom_ruleset_id{format="51"} 386`، مع `custom_ruleset_ver` داخل خاصية `format` والقيمة الرئيسية كونها نسخة بناء القاعدة.
+*   `custom_ruleset_ver` (متاح بدءًا من الإصدار 4.4.3 من Wallarm): تنسيق [القاعدة المخصصة][gl-lom]:
 
-    * `4x` - لعقد Wallarm 2.x التي هي [تحليل](../updating-migrating/versioning-policy.md#version-list).
-    * `5x` - لعقد Wallarm 4.x و 3.x (الأخيرة هي [تحليل](../updating-migrating/versioning-policy.md#version-list)).
-*   `db_apply_time`: وقت Unix لاخر تحديث لملف proton.db.
-*   `lom_apply_time`: سيتم عدم دعمه قريبًا، يرجى استخدام `custom_ruleset_apply_time`.
-*   `custom_ruleset_apply_time`: وقت Unix لاخر تحديث لملف [custom ruleset](../glossary-en.md#custom-ruleset-the-former-term-is-lom).
-*   `proton_instances`: معلومات حول أزواج proton.db + LOM التي تم تحميلها:
-    *   `total`: مجموع الأزواج.
-    *   `success`: عدد الأزواج التي تم تحميلها بنجاح من سحابة Wallarm.
-    *   `fallback`: عدد الأزواج التي تم تنزيلها من الدليل الاحتياطي. يشير هذا إلى أنه كانت هناك مشكلات في تنزيل أحدث proton.db + LOM من السحابة، لكن NGINX استطاع لا زالت قادرة على تحميل إصدارات أقدم من proton.db + LOM من الدليل الاحتياطي عند الأمر [`wallarm_fallback`](configure-parameters-en.md#wallarm_fallback) مضبوط على `فعال`.
-    *   `failed`: عدد الأزواج التي فشلت في التهيئة، مما يعني أن NGINX غير قادر على تنزيل proton.db + LOM إما من السحابة أو الدليل الاحتياطي. إذا كانت [`wallarm_fallback`](configure-parameters-en.md#wallarm_fallback) مُمكّنة وحدث ذلك، سيتم تعطيل وحدة Wallarm ، مما يترك وحدة NGINX فقط تعمل. لتشخيص المشكلة، يوصى بفحص سجلات NGINX أو [الاتصال بدعم Wallarm](https://support.wallarm.com/).
-*   `stalled_workers_count`: كمية العمال الذين تجاوزوا الحد الزمني لمعالجة الطلب (الحد محدد في الأمر [`wallarm_stalled_worker_timeout`](configure-parameters-en.md#wallarm_stalled_worker_timeout)).
-*   `stalled_workers`: قائمة العمال الذين تجاوزوا الحد الزمني لمعالجة الطلب (الحد محدد في الأمر [`wallarm_stalled_worker_timeout`](configure-parameters-en.md#wallarm_stalled_worker_timeout)) وتم حساب الوقت المستغرق لمعالجة الطلب.
+    * `4x` - لعقد Wallarm 2.x والتي هي [غير محدثة](../updating-migrating/versioning-policy.md#version-list).
+    * `5x` - لعقد Wallarm 4.x و3.x (الأخيرة [غير محدثة](../updating-migrating/versioning-policy.md#version-list)).
+*   `db_apply_time`: وقت Unix الخاص بتحديث ملف proton.db.
+*   `lom_apply_time`: سيكون من العتاد قريبا، من فضلك استخدم `custom_ruleset_apply_time`.
+*   `custom_ruleset_apply_time`: وقت Unix لآخر تحديث لملف [القاعدة المخصصة](../glossary-en.md#custom-ruleset-the-former-term-is-lom).
+*   `proton_instances`: معلومات حول proton.db + LOM الأزواج المُحمّلة:
+    *   `total`: العدد الكلي للأزواج.
+    *   `success`: عدد الأزواج تم تحميلها بنجاح من السحابة Wallarm.
+    *   `fallback`: عدد الأزواج تم تنزيلها من الدليل النسخ الاحتياطي. تشير القيمة المكتوبة هنا إلى حدوث مشكلات في تنزيل أحدث proton.db + LOM من السحابة، لكن كان NGINX قادرًا على تحميل أقدم الإصدارات من proton.db + LOM من الدليل النسخ الاحتياطي اعتماداً على الأمر [`wallarm_fallback`](configure-parameters-en.md#wallarm_fallback) المُعيّن على `on`.
+    *   `failed`: عدد الأزواج التي فشلت في المبادرة، أي أن NGINX كان غير قادر على تحميل proton.db + LOM من السحابة أو الدليل النسخ الاحتياطي. إذا تم تمكين أمر [`wallarm_fallback`](configure-parameters-en.md#wallarm_fallback) وحدث ذلك، سيتم تعطيل الوحدة النمطية Wallarm، مما سيترك وحدة NGINX فقط قابلة للعمل. لتشخيص القضية، ويوصى بفحص سجلات NGINX أو [الاتصال بدعم Wallarm](https://support.wallarm.com/).
+*   `stalled_workers_count`: الكمية (العدد) من العمل الذي يتجاوز حد الزمن (القيمة التي حددت بأمر [`wallarm_stalled_worker_timeout`](configure-parameters-en.md#wallarm_stalled_worker_timeout)) لمعالجة الطلب.
+*   `stalled_workers`: قائمة العمال الذين تجاوزوا حد الزمن (القيمة التي حددت بأمر [`wallarm_stalled_worker_timeout`](configure-parameters-en.md#wallarm_stalled_worker_timeout)) لمعالجة الطلب والمبلغ المستغرق في معالجة الطلب.
 *   `ts_files`: معلومات حول ملف [LOM](../glossary-en.md#custom-ruleset-the-former-term-is-lom):
-    *   `id`: نسخة LOM المستخدمة.
+    *   `id`: إصدار LOM المستخدم.
     *   `size`: حجم ملف LOM بالبايت.
-    *   `mod_time`: وقت Unix للتحديث الاخير لملف LOM.
+    *   `mod_time`: وقت Unix لتحديث ملف LOM الأخير.
     *   `fname`: مسار ملف LOM.
-*   `db_files`: معلومات حول ملف proton.db:
-    *   `id`: نسخة proton.db المستخدمة.
+*   `db_files`: معلومات عن ملف proton.db:
+    *   `id`: إصدار proton.db المستخدم.
     *   `size`: حجم ملف proton.db بالبايت.
-    *   `mod_time`: وقت Unix للتحديث الاخير لملف proton.db.
+    *   `mod_time`: وقت Unix لتحديث ملف proton.db الأخير.
     *   `fname`: مسار ملف proton.db.
-* `startid`: مُعرّف فريد عشوائي للعقدة الفلترة.
-* `timestamp`: الوقت الذي تم فيه معالجة الطلب الوارد الأخير من العقدة (بتنسيق [Unix Timestamp](https://www.unixtimestamp.com/)).
-* `rate_limit`: معلومات حول وحدة [wallarm limit rate](../user-guides/rules/rate-limiting.md):
-    * `shm_zone_size`: الكمية الإجمالية من الذاكرة المشتركة التي يمكن أن يستهلكها وحدة الحد النسبي wallarm بالبايت (القيمة تعتمد على الأمر [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size)، القيمة الافتراضية هي`67108864`).
-    * `buckets_count`: عدد الدلاء (عادةً ما يكون مساويًا لعدد عمال NGINX، 8 هو الحد الأقصى).
-    * `entries`: عدد قيم نقاط الطلب الفريدة (مفاتيح) التي تقيس الحدود لها.
-    * `delayed`: عدد الطلبات التي تم غرفها بواسطة وحدة الحد النسبي بسبب إعداد `burst`.
-    * `exceeded`: عدد الطلبات التي تم رفضها بواسطة وحدة التحكم في الحد النسبي لأنها تجاوزت الحد.
-    * `expired`: العدد الإجمالي للمفاتيح التي تمت إزالتها من السلة على أساس منتظم كل 60 ثانية إذا لم يتم تجاوز حد المفاتيح.
-    * `removed`: عدد المفاتيح المزعجة التي تمت إزالتها من السلة. اذا كانت القيمة أعلى من `expired`،  يوصى بزيادة قيمة [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size).
-    * `no_free_nodes`: القيمة المختلفة عن `0` تشير إلى أن هناك ذاكرة غير كافية مخصصة لوحدة الحد النسبي، ينصح بزيادة قيمة [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size).
-* `split.clients`: الإحصاءات الرئيسية على كل [tenant](../installation/multi-tenant/overview.md). إذا لم تكن ميزة الشقق المارٍة مُفعلة، يتم إرجاع الإحصائيات للعميل الوحيد (حسابك) مع القيمة القطمة `"client_id":null`.
-* `split.clients.applications`: الإحصاءات الرئيسية على كل [application](../user-guides/settings/applications.md). تعود المعلمات التي لم تكن متضمن في هذا القسم الإحصائيات على جميع التطبيقات.
+* `startid`: معرف مُبدأ فريد تم توليده بشكل عشوائي للعقدة المرشحة.
+* `timestamp`: وقت مُعالَجَة الطلب الوارد الأخير بواسطة العقدة (بتنسيق [Unix Timestamp](https://www.unixtimestamp.com/)).
+* `rate_limit`: معلومات حول وحدة تحديد الحد النسبة من Wallarm:
+    * `shm_zone_size`: الإجمالي للذاكرة المشتركة التي يمكن أن تستهلكها وحدة التحكم في الحد النسبة من Wallarm بالبايت (القيمة تعتمد على الأمر [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size)، القيمة الافتراضية هي `67108864`).
+    * `buckets_count`: عدد الدلائل (عادة ما يكون مساوياً للعدد العاملات NGINX، القيمة القصوى 8).
+    * `entries`: عدد النقاط المطلوبة الفريدة (المفاتيح) تقيس الحدود لها.
+    * `delayed`: عدد الطلبات التي تأتي من الدليل النسخ الاحتياطي بسبب تفضيلات `burst`.
+    * `exceeded`: عدد الطلبات التي تأتي من الدليل النسخ الاحتياطي لأنها تجاوزت الحد.
+    * `expired`: العدد الإجمالي للمفاتيح التي يتم إزالتها من الدليل خلال 60 ثانية العادية إذا لم يتم تجاوز حد هذه المفاتيح.
+    * `removed`: عدد المفاتيح التي تمت إزالتها بشكل مُطرد من الدليل. إذا كانت القيمة أعلى من `expired`، يلزم زيادة قيمة [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size).
+    * `no_free_nodes`: القيمة المختلفة عن `0` تشير إلى أن هناك ذاكرة غير كافية مُخصصة لوحدة التحديد بوسطة نسبة، يُوصي بزيادة قيمة [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size).
+* `split.clients`: الإحصائيات الأساسية على كل [العقار](../installation/multi-tenant/overview.md). إذا لم تكن ميزة العديد من المستأجرين مُفعلة، يتم إرجاع الإحصائيات للمستأجر الوحيد (حسابك) مع القيمة الثابتة `"client_id":null`.
+* `split.clients.applications`: الإحصائيات الأساسية عن كل [تطبيق](../user-guides/settings/applications.md). المعلمات التي ليست مضمنة في هذا القسم تقدم الإحصائيات على جميع التطبيقات.
 
-البيانات لكل ال عدادات تُحتسب من لحظة بد عمل NGINX. إذا تم تثبيت Wallarm في بنية جاهزة مع NGINX، يجب إعادة تشغيل خادم NGINX لبدء جمع الإحصائيات.
+يتم تجميع بيانات جميع العدادات من لحظة بداية NGINX. إذا تم تثبيت Wallarm في بنية جاهزة مع NGINX، يجب إعادة تشغيل الخادم NGINX لبداية جمع الإحصائيات.

@@ -1,24 +1,24 @@
-1. شغّل السكربت اللى انت حملته:
+1. قم بتشغيل السكربت المُحمّل:
 
-    === "توكن API"
+    === "رمز الواجهة البرمجية"
         ```bash
-        # لو بتستخدم نسخة x86_64:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.x86_64-glibc.sh
+        # إذا كنت تستخدم النسخة x86_64:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.x86_64-glibc.sh
 
-        # لو بتستخدم نسخة ARM64:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.aarch64-glibc.sh
+        # إذا كنت تستخدم نسخة ARM64:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.aarch64-glibc.sh
         ```        
 
-        متغير `WALLARM_LABELS` بيحدد المجموعة اللى هيتم إضافة العقدة ليها (يُستخدم للتجميع المنطقي للعقد في واجهة المستخدم لوحة تحكم Wallarm).
+        المتغير `WALLARM_LABELS` يُحدد المجموعة التي سيُضاف إليها العقدة (يُستخدم لتجميع العقد بشكل منطقي في واجهة مستخدم وحدة تحكم Wallarm).
 
-    === "توكن العقدة"
+    === "رمز العقدة"
         ```bash
-        # لو بتستخدم نسخة x86_64:
-        sudo sh wallarm-4.10.1.x86_64-glibc.sh
+        # إذا كنت تستخدم النسخة x86_64:
+        sudo sh wallarm-4.10.2.x86_64-glibc.sh
 
-        # لو بتستخدم نسخة ARM64:
-        sudo sh wallarm-4.10.1.aarch64-glibc.sh
+        # إذا كنت تستخدم نسخة ARM64:
+        sudo sh wallarm-4.10.2.aarch64-glibc.sh
         ```
 
-1. اختار [سحابة الولايات المتحدة](https://us1.my.wallarm.com/) أو [سحابة الاتحاد الأوروبي](https://my.wallarm.com/).
-1. أدخل توكن Wallarm.
+1. اختر [السحابة الأمريكية](https://us1.my.wallarm.com/) أو [السحابة الأوروبية](https://my.wallarm.com/).
+1. أدخل رمز Wallarm.
