@@ -59,6 +59,10 @@ controller:
       resources: {}
     collectd:
       resources: {}
+    apiFirewall:
+      enabled: true
+      config:
+        ...
 ```
 
 To change this setting, we recommend using the option `--set` of `helm install` (if installing the Ingress controller) or `helm upgrade` (if updating the installed Ingress controller parameters). For example:
@@ -169,10 +173,9 @@ This switch [toggles](configuration-guides/wallarm-ingress-controller/best-pract
 
 **Default value**: `false`
 
-<!--
 ### controller.wallarm.apifirewall
 
-Controls the configuration of [API Policy Enforcement](../api-policy-enforcement/overview.md), available starting from release 4.10. By default, it is enabled and configured as shown below. If you are using this feature, it is recommended to keep these values unchanged.
+Controls the configuration of [API Specification Enforcement](../api-policy-enforcement/overview.md), available starting from release 4.10. By default, it is enabled and configured as shown below. If you are using this feature, it is recommended to keep these values unchanged.
 
 ```yaml
 controller:
@@ -192,7 +195,6 @@ controller:
         logFormat: TEXT
       ...
 ```
--->
 
 ## Global Controller Settings 
 
