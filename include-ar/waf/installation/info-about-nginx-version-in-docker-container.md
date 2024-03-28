@@ -1,0 +1,2 @@
+!!! info "إصدار NGINX في حاوية Docker"
+    تستخدم حاوية Docker إصدار `1.14.x` من NGINX. قد تكتشف بعض الثغرات الأمنية في هذا الإصدار من NGINX لكن في الواقع، تم إصلاح معظمها [بواسطة فريق Debian](https://security-tracker.debian.org/tracker/source-package/nginx). تعمل حاوية Docker بخدمات على Debian 10.x، لذا ينبغي ألا تؤدي الثغرات الأمنية المكتشفة إلى خرق البيانات.
