@@ -499,7 +499,7 @@ GraphQL has peculiarities that allow implementing the protocol specific attacks 
 * An attacker may leverage the introspection system to uncover details about the schema of the GraphQL API; by querying the system, an attacker may potentially gain knowledge about all types, queries, mutations, and fields that are available in the API, and use this data to construct more precise and damaging queries.
 * When debug mode is left turned on by developers, an attacker may gather precious information from excessive error reporting messages such as entire stack traces or tracebacks. An attacker may get access to the debug mode via “debug=1“ parameter in URI.
 
-An adequate measure for preventing these type of threats is setting limits for GraphQL requests, such as request and value sizes, query depth, allowed number of batched queries, etc. In Wallarm, you set these limits in [GraphQL Policy](api-protection/graphql-rule.md) - any GraphQL requests exceeding limits are considered to be a GraphQL attack.
+An adequate measure for preventing these type of threats is setting limits for GraphQL requests, such as request and value sizes, query depth, allowed number of batched queries, etc. In Wallarm, you set these limits in [GraphQL policy](api-protection/graphql-rule.md) - any GraphQL requests exceeding limits are considered to be a GraphQL attack.
 
 **Required configuration:**
 

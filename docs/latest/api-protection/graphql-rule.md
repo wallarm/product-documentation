@@ -1,43 +1,49 @@
-# GraphQL Policy <a href="../subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# GraphQL API Protection <a href="../subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL by default even under the basic [WAAP](../about-wallarm/subscription-plans.md) subscription plan. However, the protocol has peculiarities that allow implementing [GraphQL specific](../attacks-vulns-list.md#graphql-attack) attacks related to excessive information exposure and DoS. This document describes how to use Wallarm to protect your APIs from these attacks by setting **GraphQL Policy** - a set of limits for the GraphQL requests.
+Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL by default even under the basic [WAAP](../about-wallarm/subscription-plans.md) subscription plan. However, some aspects of the protocol allow implementing [GraphQL specific](../attacks-vulns-list.md#graphql-attack) attacks related to excessive information exposure and DoS. This document describes how to use Wallarm to protect your APIs from these attacks by setting **GraphQL policy** - a set of limits for the GraphQL requests.
 
-Being the extended protection, GraphQL Policy is the part of the advanced [API Security](../about-wallarm/subscription-plans.md) subscription plan. When plan is purchased, start protection by setting your organization's GraphQL Policy in the **Detect GraphQL attacks** [rule](../user-guides/rules/rules.md) (requires node 4.10.3 of higher).
-
-Wallarm supports all available GraphQL formats:
-
-* Both `GET` and `POST` methods
-* For the `POST` method, `Content-Type`:
-    * `application/json` and `application/graphql` that are common
-    * `text/plain` and `multipart/form-data` that can occur
+Being the extended protection, GraphQL API Protection is the part of the advanced [API Security](../about-wallarm/subscription-plans.md) subscription plan. When plan is purchased, start protection by setting your organization's GraphQL policy in the **Detect GraphQL attacks** [rule](../user-guides/rules/rules.md) (requires node 4.10.3 of higher).
 
 When policy is configured, the filtering node will [handle](#reaction-to-policy-violation) GraphQL requests exceeding  limits in accordance with the filtration mode.
+
+## Supported GraphQL formats
+
+GraphQL queries are typically sent as HTTP POST requests to a GraphQL server endpoint. The request includes a `CONTENT-TYPE` header to specify the media type of the body sent to the server. For `CONTENT-TYPE`, the `application/json` and `application/graphql` are two commonly used options, but `text/plain` and `multipart/form-data` can also occur.
+
+GraphQL queries can be also sent as HTTP GET requests. In such case, the query is included as a query parameter in the URL. While GET requests can be used for GraphQL queries, it's less common than the POST requests, especially for the more complex queries. The cause of that is that GET requests are typically used for idempotent operations (i.e., operations that can be repeated without different outcomes), and they have length restrictions that can be problematic for longer queries. Also, encoding a complex query as a URL might be challenging due to the URL's character limitations.
+
+Wallarm supports both POST and GET HTTP methods for GraphQL requests.
 
 ## Creating and applying the rule
 
 To set and apply GraphQL policy:
 
 1. Proceed to Wallarm Console → **Rules** → **Add rule**.
-1. In **If request is**, [describe](../user-guides/rules/rules.md#rule-branches) endpoint URI to apply the rule to and other conditions.
-1. In **Then**, choose **Detect GraphQL attacks** and set thresholds for GraphQL requests in accordance with your traffic peculiarities:
+1. In **If request is**, [describe](../user-guides/rules/rules.md#rule-branches) endpoint URI to apply the rule to and other conditions:
 
-    * **Maximum total query size in kilobytes** - an attacker may attempt to perform a Denial of Service (DoS) or cause other issues by exploiting how the server handles excessively large inputs.
-    * **Maximum value size in kilobytes** - an attacker may send request with an excessively long string value for a variable or argument to overwhelm the server's resources (Excessive Value Length attack).
-    * **Maximum query depth** - queries can be nested, which allows requesting complex data structures in one go; however, this flexibility can be exploited to create a deeply nested query that could potentially overwhelm the server.
-    * **Maximum number of aliases** - aliases offer the capability to rename the result fields to prevent conflicts and enable better data organization; however, an attacker may exploit this feature to launch a Resource Exhaustion or Denial of Service (DoS) attack.
-    * **Maximum batched queries** - multiple queries (operations) can be batched together in a single HTTP-request; by combining multiple operations into a single request, an attacker organize batching attack and try to bypass security measures such as rate limiting.
-    * **Block/register introspection queries** - an attacker may leverage the introspection system to uncover details about the schema of the GraphQL API; by querying the system, an attacker may potentially gain knowledge about all types, queries, mutations, and fields that are available in the API, and use this data to construct more precise and damaging queries. Select the option to deny the introspection queries.
-    * **Block/register debug requests** - when debug mode is left turned on by developers, an attacker may gather precious information from excessive error reporting messages such as entire stack traces or tracebacks. Select the option to deny requests with the `debug=1` parameter in URI.
+    * URI of your GraphQL endpoint
+    * POST or GET method - see [Supported GraphQL formats](#supported-graphql-formats); leave method unspecified if your want the rule to set the same limitations both for POST and GET requests
+    * Set the `CONTENT-TYPE` header value - see [Supported GraphQL formats](#supported-graphql-formats)
 
-        For example, a policy may set maximum POST request query size to 3 KB, value size to 2 KB, query depth, aliases and batched query limits to 5 plus deny introspection and debug queries as displayed on the screenshot (note that these are the example values - you should define your own values considering statistics of your common legitimate GraphQL queries):
+        Note that you can set when the rule must be applied using different condition combinations, for example, you can use URI and leave other conditions unspecified or set `CONTENT-TYPE` header to `application/graphql` without specifying any endpoint. You can also create several rules with different conditions and set different limits and reactions in them.
+
+1. In **Then**, choose **Detect GraphQL attacks** and set thresholds for GraphQL requests in accordance with your traffic metrics:
+
+    * **Maximum total query size in kilobytes** - sets the upper limit for the size of an entire GraphQL query. It's crucial for preventing Denial of Service (DoS) attacks that exploit server resources by submitting excessively large queries.
+    * **Maximum value size in kilobytes** - sets the maximum size for any individual value (whether a variable or query parameter) within a GraphQL query. This limit helps mitigate attacks that attempt to overwhelm the server through Excessive Value Length, where attackers send requests with overly long string values for variables or arguments.
+    * **Maximum query depth** - determines the maximum allowed depth for a GraphQL query. By limiting query depth, the server can avoid performance issues or resource exhaustion from maliciously crafted, deeply nested queries.
+    * **Maximum number of aliases** - sets the limit on the number of aliases that can be used in a single GraphQL query. Restricting the number of aliases prevents Resource Exhaustion and DoS attacks that exploit alias functionality to create overly complex queries.
+    * **Maximum batched queries** - caps the number of batched queries that can be sent in a single request. This parameter is essential for thwarting batching attacks, where attackers combine multiple operations into a single request to bypass security measures like rate limiting.
+    * **Block/register introspection queries** - when enabled, the server will treat introspection requests—which can reveal the structure of your GraphQL schema—as potential attacks. Disabling or monitoring introspection queries is a crucial measure for protecting the schema from being exposed to attackers.
+    * **Block/register debug requests** - enabling this option means that requests containing the debug mode parameter will be considered potential attacks. This setting is useful for catching instances where debug mode is inadvertently left enabled in production, preventing attackers from accessing excessive error reporting messages that could reveal sensitive information about the backend.
+
+        For example, a policy may set maximum POST request query size to 100 KB, value size to 10 KB, query depth and batched query limits to 10, aliases to 5, plus deny introspection and debug queries as displayed on the screenshot (note that these are the example values - you should define your own values considering statistics of your common legitimate GraphQL queries):
         
         ![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
 
         If left empty/unselected, no limitation is applied by this criteria.
 
-1. Wait for the [rule compilation to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
-
-You can configure several **Detect GraphQL attacks** rules for different [branches](../user-guides/rules/rules.md#rule-branches) or endpoints.
+1. Wait for the [rule compilation and uploading to the filtering node to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
 
 ## Reaction to policy violation
 
