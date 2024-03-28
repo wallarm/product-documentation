@@ -1,17 +1,19 @@
 # Wallarm API Protection <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm offers a basic set of protections for your APIs as part of the Cloud-Native WAAP subscription. These include support for all API protocols and their inspection for attacks, protection against L7 DDoS, etc. At the same time, modern applications and APIs are subject to additional risks and require advanced protection measures.
+Wallarm's API Protection is an advanced set of capabilities that extend basic [WAAP/WAF](../about-wallarm/waap-overview.md) protection for your APIs. While basic protection already includes support for all API protocols and their inspection for attacks, protection against L7 DDoS, etc., modern applications and APIs are subject to additional risks and require advanced protection measures. API Protection bundle provides tools for that.
 
-As part of Advanced API Security, you get a set of additional capabilities that allow you to protect your APIs from sophisticated attacks:
+API Protection includes:
 
 <!--
 * API Specification Enforcement -->
-* [BOLA Protection](#automatic-bola-protection) provides automatic protection against BOLA attacks that were marked as #1 threat in OWASP API Top-10. Wallarm automatically discovers vulnerable endpoints and protects them against enumeration.
+* [Automatic BOLA Protection](#automatic-bola-protection) provides automatic protection against BOLA attacks that were marked as #1 threat in OWASP API Top-10. Wallarm automatically discovers vulnerable endpoints and protects them against enumeration.
 * [API Abuse Prevention](#api-abuse-prevention) protects your application and APIs against different types of automated threats. Based on behavioral analysis Wallarm can easily identify and block malicious bots such as  Scrappers, Security Crawlers, etc.  
 * [Credential Stuffing Detection](#credential-stuffing-detection) provides one more layer of protection against Account Takeover attacks. Wallarm allows you to recognize even a single use of compromised credentials, which is important to identify low and slow Credential Stuffing attacks.
 <!--* GraphQL API Protection protects your GraphQL APIs against specialized attacks that exploit protocol specific such as batching, nesting queries, introspection, etc. It can prevent Resource Exhaustion, Denial of Service (DoS), Excessive Information Exposure and other attacks.-->
-<!--
-Diagram for API Protection bundle of Wallarm products, being prepared by Iskandar-->
+
+<!--Diagram for API Protection bundle of Wallarm products, being prepared by Iskandar-->
+
+While WAAP/WAF is available under the basic Cloud Native WAAP subscription, tools of the API Protection bundle are the part of the [Advanced API Security](../about-wallarm/subscription-plans.md#subscription-plans) subscription.
 
 ## Automatic BOLA Protection
 
