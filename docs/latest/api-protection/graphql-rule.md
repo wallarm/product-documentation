@@ -2,7 +2,7 @@
 
 Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL by default even under the basic [WAAP](../about-wallarm/subscription-plans.md) subscription plan. However, some aspects of the protocol allow implementing [GraphQL specific](../attacks-vulns-list.md#graphql-attack) attacks related to excessive information exposure and DoS. This document describes how to use Wallarm to protect your APIs from these attacks by setting **GraphQL policy** - a set of limits for the GraphQL requests.
 
-Being the extended protection, GraphQL API Protection is the part of the advanced [API Security](../about-wallarm/subscription-plans.md) subscription plan. When plan is purchased, start protection by setting your organization's GraphQL policy in the **Detect GraphQL attacks** [rule](../user-guides/rules/rules.md) (requires node 4.10.3 of higher).
+Being the extended protection, GraphQL API Protection is the part of the advanced [API Security](../about-wallarm/subscription-plans.md) subscription plan. When plan is purchased, start protection by setting your organization's GraphQL policy in the **Detect GraphQL attacks** [rule](../user-guides/rules/rules.md) (requires node 4.10.4 of higher).
 
 When policy is configured, the filtering node will [handle](#reaction-to-policy-violation) GraphQL requests exceeding  limits in accordance with the filtration mode.
 
