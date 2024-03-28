@@ -1,24 +1,17 @@
 # Wallarm API Protection <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm's API Protection is an advanced set of tools extending the out-of-the-box [WAAP/WAF](waap-overview.md) Wallarm protection for your application APIs in any environment.
+Wallarm offers a basic set of protections for your APIs as part of the Cloud-Native WAAP subscription. These include support for all API protocols and their inspection for attacks, protection against L7 DDoS, etc. At the same time, modern applications and APIs are subject to additional risks and require advanced protection measures.
 
-Protecting application APIs from all currently existing types of threats is critical for ensuring security, data privacy, availability, compliance, intellectual property protection, trust building, risk management, and overall business resilience in today's interconnected digital ecosystems.
+As part of Advanced API Security, you get a set of additional capabilities that allow you to protect your APIs from sophisticated attacks:
 
-Wallarm's API Protection provides you with:
-
-* [API Abuse Prevention](#api-abuse-prevention)
-* [Automatic BOLA Protection](#automatic-bola-protection)
-* [Credential Stuffing Detection](#credential-stuffing-detection)
-
-## API Abuse Prevention
-
-The **API Abuse Prevention** delivers detection and mitigation of bots performing API abuse like credential stuffing, fake account creation, content scraping and other malicious actions targeted at your APIs.
-
-![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
-
-**API Abuse Prevention** uses the complex bot detection model that involves ML-based methods as well as statistical and mathematical anomaly search methods and cases of direct abuse. The module self-learns the normal traffic profile and identifies dramatically different behavior as anomalies.
-
-[Proceed to detailed description and configuration →](api-abuse-prevention.md)
+<!--
+* API Specification Enforcement -->
+* [BOLA Protection](#automatic-bola-protection) provides automatic protection against BOLA attacks that were marked as #1 threat in OWASP API Top-10. Wallarm automatically discovers vulnerable endpoints and protects them against enumeration.
+* [API Abuse Prevention](#api-abuse-prevention) protects your application and APIs against different types of automated threats. Based on behavioral analysis Wallarm can easily identify and block malicious bots such as  Scrappers, Security Crawlers, etc.  
+* [Credential Stuffing Detection](#credential-stuffing-detection) provides one more layer of protection against Account Takeover attacks. Wallarm allows you to recognize even a single use of compromised credentials, which is important to identify low and slow Credential Stuffing attacks.
+<!--* GraphQL API Protection protects your GraphQL APIs against specialized attacks that exploit protocol specific such as batching, nesting queries, introspection, etc. It can prevent Resource Exhaustion, Denial of Service (DoS), Excessive Information Exposure and other attacks.-->
+<!--
+Diagram for API Protection bundle of Wallarm products, being prepared by Iskandar-->
 
 ## Automatic BOLA Protection
 
@@ -29,6 +22,16 @@ Use Wallarm's API Discovery module to discover endpoints vulnerable to broken ob
 Automatic BOLA protection serves as a great extension or replacement to the [manually created](../admin-en/configuration-guides/protecting-against-bola-trigger.md) BOLA protection rules. You can configure automatic BOLA protection to make Wallarm's behavior match your organization security profile.
 
 [Proceed to detailed description and configuration →](../admin-en/configuration-guides/protecting-against-bola.md)
+
+## API Abuse Prevention
+
+The **API Abuse Prevention** delivers detection and mitigation of bots performing API abuse like credential stuffing, fake account creation, content scraping and other malicious actions targeted at your APIs.
+
+![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+
+**API Abuse Prevention** uses the complex bot detection model that involves ML-based methods as well as statistical and mathematical anomaly search methods and cases of direct abuse. The module self-learns the normal traffic profile and identifies dramatically different behavior as anomalies.
+
+[Proceed to detailed description and configuration →](api-abuse-prevention.md)
 
 ## Credential Stuffing Detection
 
