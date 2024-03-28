@@ -13,6 +13,16 @@ Beginning with release 4.10, Wallarm introduces real-time detection and notifica
 
 ![Attacks - credential stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
 
+## GraphQL API protection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+
+Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL by default. However, some aspects of the protocol allow implementing [GraphQL specific](../attacks-vulns-list.md#graphql-attack) attacks related to excessive information exposure and DoS.
+
+Beginning with release 4.10 (4.10.4), Wallarm introduces protection from these attacks. Protection is set by configuring your organization's GraphQL policy - a set of limits for the GraphQL requests. Requests exceeding any of set limits the filtering node will handle in accordance with the active filtration mode - will only register policy violations or will register and block such attempts.
+
+[Learn how to configure GraphQL API Protection](../api-protection/graphql-rule.md)
+
+![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
+
 <!--
 
 ## API Policy Enforcement
