@@ -14,100 +14,101 @@
 [anchor-import-repo]:                   #3-importing-the-local-copy-of-the-wallarm-repository-into-jfrog-artifactory
 
 
-#   كيفية عكس مخزن Wallarm لـ CentOS
+#   كيفية إنشاء نسخة محلية من مستودع Wallarm لCentOS
 
-يمكنك إنشاء واستخدام نسخة محلية (تُعرف أيضًا بـ *المرآة*) من مخزن Wallarm للتأكد من أن جميع عقد الفلتر في بنيتك التحتية يتم نشرها من مصدر واحد ولها نفس رقم الإصدار.
+يمكنك إنشاء واستخدام نسخة محلية (والمعروفة أيضًا ب*المرآة*) من مستودع Wallarm للتأكد من أن كافة عقد الفلترة في بنيتك التحتية يتم نشرها من مصدر واحد ولديها نفس رقم الإصدار.
 
-سيوجهك هذا المستند خلال عملية عكس مخزن Wallarm لخادم CentOS 7 عبر مدير مخزن JFrog Artifactory.
+سيقودك هذا المستند خلال عملية إنشاء مرآة لمستودع Wallarm لخادم CentOS 7 عبر مدير مستودعات JFrog Artifactory.
 
 
-!!! info "المتطلبات الأساسية"
-    تأكد من تحقق الشروط التالية قبل اتخاذ أي خطوات إضافية:
+
+!!! info "متطلبات مسبقة"
+    تأكد من استيفاء الشروط التالية قبل اتخاذ أي خطوات أخرى:
     
     *   لديك هذه المكونات مثبتة على خادمك:
     
         *   نظام التشغيل CentOS 7
-        *   حزم `yum-utils` و `epel-release`
-        *   برنامج JFrog Artifactory القادر على إنشاء مخازن RPM ([تعليمات التثبيت][link-jfrog-installation])
+        *   حزم `yum-utils` و`epel-release`
+        *   برنامج JFrog Artifactory القادر على إنشاء مستودعات RPM ([تعليمات التثبيت][link-jfrog-installation])
             
-            تعرف على المزيد حول إصدارات وميزات JFrog Artifactory [هنا][link-jfrog-comparison-matrix].
+            اقرأ المزيد حول إصدارات وميزات JFrog Artifactory [هنا][link-jfrog-comparison-matrix].
         
-    *   JFrog Artifactory يعمل وجاهز.
-    *   الخادم يملك وصول للإنترنت.
+    *   JFrog Artifactory يعمل ويتصل.
+    *   الخادم لديه وصول إلى الإنترنت.
 
 
-يشمل عكس مخزن Wallarm
-1.  [إنشاء نسخة محلية من مخزن Wallarm][anchor-fetch-repo]
-2.  [إنشاء مخزن RPM محلي في JFrog Artifactory][anchor-setup-repo-artifactory]
-3.  [استيراد النسخة المحلية من مخزن Wallarm إلى JFrog Artifactory][anchor-import-repo]
+يتألف إنشاء مرآة لمستودع Wallarm من
+1.  [إنشاء نسخة محلية من مستودع Wallarm][anchor-fetch-repo]
+2.  [إنشاء مستودع RPM محلي في JFrog Artifactory][anchor-setup-repo-artifactory]
+3.  [استيراد النسخة المحلية من مستودع Wallarm إلى JFrog Artifactory][anchor-import-repo]
 
-##  1.  إنشاء نسخة محلية من مخزن Wallarm
+##  1.  إنشاء نسخة محلية من مستودع Wallarm
 
-لإنشاء نسخة محلية من مخزن Wallarm، اتبع الخطوات التالية:
-1.  أضف مخزن Wallarm بتنفيذ الأمر التالي:
+لإنشاء نسخة محلية من مستودع Wallarm، قم بما يلي:
+1.  أضف مستودع Wallarm بتنفيذ الأمر التالي:
 
     ```bash
     sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
     ```
 
-2.  انتقل إلى دليل مؤقت (مثل، `/tmp`) وقم بمزامنة مخزن Wallarm إلى هذا الدليل بتنفيذ الأمر التالي:
+2.  انتقل إلى دليل مؤقت (مثلاً، `/tmp`) وقم بمزامنة مستودع Wallarm مع هذا الدليل بتنفيذ الأمر التالي:
 
     ```bash
     reposync -r wallarm-node -p .
     ```
 
-إذا انتهى أمر `reposync` بنجاح، فإن حزم Wallarm ستُوضع في الدليل الفرعي `wallarm-node/Packages` من دليلك المؤقت (مثال، `/tmp/wallarm-node/Packages`). 
+إذا انتهت الأمر `reposync` بنجاح، فسيتم وضع حزم Wallarm في الدليل الفرعي `wallarm-node/Packages` لدليلك المؤقت (مثلاً، `/tmp/wallarm-node/Packages`). 
 
 
-##  2.  إنشاء مخزن RPM محلي في JFrog Artifactory
+##  2.  إنشاء مستودع RPM محلي في JFrog Artifactory
 
-لإنشاء مخزن RPM محلي في JFrog Artifactory، اتبع الخطوات التالية:
-1.  انتقل إلى واجهة ويب JFrog Artifactory عبر اسم النطاق أو عنوان IP (مثال، `http://jfrog.example.local:8081/artifactory`).
+لإنشاء مستودع RPM محلي في JFrog Artifactory، قم بما يلي:
+1.  انتقل إلى واجهة ويب JFrog Artifactory عبر اسم النطاق أو عنوان IP الخاص (مثلاً، `http://jfrog.example.local:8081/artifactory`).
 
-    قم بتسجيل الدخول إلى واجهة الويب بحساب المدير.
+    سجل الدخول إلى واجهة الويب بحساب المدير.
 
-2.  انقر على قائمة *Admin*، ثم الرابط *Local* في قسم *Repositories*.
+2.  انقر على إدخال القائمة *الإدارة*، ثم الرابط *المحلي* في قسم *المستودعات*.
 
-3.  انقر على زر *New* لإنشاء مخزن محلي جديد.
+3.  انقر على زر *جديد* لإنشاء مستودع محلي جديد.
 
-    ![إنشاء مخزن محلي جديد][img-new-local-repo]
+    ![إنشاء مستودع محلي جديد][img-new-local-repo]
 
-4.  اختر نوع حزمة “RPM”.
+4.  حدد نوع الحزمة "RPM".
 
-5.  املأ اسم المخزن في حقل *Repository Key*. يجب أن يكون هذا الاسم فريدًا في JFrog Artifactory. نوصي باختيار اسم يتوافق مع [أفضل الممارسات لتسمية مخازن Artifactory][link-artifactory-naming-agreement] (مثال، `wallarm-centos-upload-local`).
+5.  املأ اسم المستودع في حقل *مفتاح المستودع*. يجب أن يكون هذا الاسم فريدًا في JFrog Artifactory. نوصي باختيار اسم يتوافق مع [أفضل الممارسات لتسمية مستودعات Artifactory][link-artifactory-naming-agreement] (مثلاً، `wallarm-centos-upload-local`).
 
-    اختر تخطيط “maven-2-default” من قائمة *Repository Layout* المنسدلة.
+    حدد تخطيط "maven-2-default" من قائمة *تخطيط المستودع* المنسدلة.
     
     يمكنك ترك الإعدادات الأخرى دون تغيير.
 
-    انقر على زر *Save & Finish* لإنشاء مخزن Artifactory المحلي.
+    انقر على الزر *حفظ وإنهاء* لإنشاء المستودع المحلي Artifactory.
     
-    ![إعدادات المخزن][img-artifactory-repo-settings]
+    ![إعدادات المستودع][img-artifactory-repo-settings]
 
-    الآن، يجب أن يتم عرض المخزن الجديد في قائمة المخازن المحلية.
+    الآن، يجب أن يتم عرض المستودع الجديد في قائمة المستودعات المحلية.
 
-لإنهاء عكس مخزن Wallarm، [قم باستيراد الحزم المزامنة][anchor-fetch-repo] إلى مخزن Artifactory المحلي.
+لإنهاء إنشاء مرآة مستودع Wallarm، [استورد الحزم المتزامنة][anchor-fetch-repo] إلى المستودع المحلي Artifactory.
 
 
-##  3.  استيراد النسخة المحلية من مخزن Wallarm إلى JFrog Artifactory
+##  3.  استيراد النسخة المحلية من مستودع Wallarm إلى JFrog Artifactory
 
-لاستيراد حزم Wallarm إلى مخزن Artifactory المحلي RPM، اتبع الخطوات التالية:
-1.  قم بتسجيل الدخول إلى واجهة ويب JFrog Artifactory بحساب المدير.
+لاستيراد حزم Wallarm إلى المستودع المحلي RPM في Artifactory، قم بما يلي:
+1.  سجل الدخول إلى واجهة ويب JFrog Artifactory بحساب المدير.
 
-2.  انقر على قائمة *Admin*، ثم رابط *Repositories* في قسم *Import & Export*.
+2.  انقر على إدخال القائمة *الإدارة*، ثم الرابط *المستودعات* في قسم *الاستيراد والتصدير*.
 
-3.  في قسم *Import Repository from Path*، اختر المخزن المحلي الذي [أنشأته سابقًا][anchor-setup-repo-artifactory] من قائمة *Repository from Path* المنسدلة.
+3.  في قسم *استيراد المستودع من المسار*، حدد المستودع المحلي الذي [أنشأته سابقًا][anchor-setup-repo-artifactory] من قائمة *مستودع من مسار* المنسدلة.
 
-4.  انقر على زر *Browse* واختر الدليل الذي يحتوي على حزم Wallarm التي [أنشأتها سابقًا][anchor-fetch-repo].
+4.  انقر على زر *استعراض* وحدد الدليل الذي يحتوي على حزم Wallarm والتي [أنشأتها سابقًا][anchor-fetch-repo].
 
-5.  انقر على زر *Import* لاستيراد حزم Wallarm من الدليل.
+5.  انقر على زر *استيراد* لاستيراد حزم Wallarm من الدليل.
 
     ![استيراد الحزم][img-import-into-artifactory]
     
-6.  انقر على قائمة *Artifacts*، وتأكد من وجود حزم Wallarm المستوردة في المخزن المحلي المطلوب.
+6.  انقر على إدخال القائمة *القطع*، وتأكد من تواجد الحزم Wallarm المستوردة في المستودع المحلي المطلوب.
 
-    ![الحزم في المخزن][img-local-repo-ok]
+    ![الحزم في المستودع][img-local-repo-ok]
     
 
 
-الآن يمكنك [نشر عقد فلتر Wallarm][doc-installation-from-artifactory] باستخدام المرآة المحلية لمخزن Wallarm.
+الآن يمكنك [نشر عقد فلترة Wallarm][doc-installation-from-artifactory] باستخدام النسخة المحلية من مستودع Wallarm.

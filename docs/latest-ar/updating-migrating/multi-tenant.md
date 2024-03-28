@@ -1,28 +1,28 @@
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
 
-# تحديث العقدة المتعددة الإيجارات
+# ترقية عقدة متعددة التأجير
 
-هذه التعليمات توضح الخطوات لتحديث العقدة المتعددة الإيجارات من الإصدار 4.x إلى 4.10.
+تصف هذه التعليمات الخطوات لترقية العقدة متعددة التأجير 4.x إلى الإصدار 4.10.
 
-لتحديث العقدة المتعددة الإيجارات التي انتهى دورها (3.6 أو أقل)، برجاء استخدام [تعليمات مختلفة](older-versions/multi-tenant.md).
+لترقية العقدة متعددة التأجير التي انتهت صلاحيتها (3.6 أو أقل)، يرجى استخدام [تعليمات مختلفة](older-versions/multi-tenant.md).
 
 ## المتطلبات
 
-* تنفيذ الأوامر التالية من قبل المستخدم الذي تم إضافته بدور **المدير العام** تحت [حساب الإيجار التقني](../installation/multi-tenant/configure-accounts.md#tenant-account-structure)
-* الوصول إلى `https://us1.api.wallarm.com` إذا كنت تعمل مع سحابة Wallarm الأمريكية أو إلى `https://api.wallarm.com` إذا كنت تعمل مع سحابة Wallarm الأوروبية. يرجى التأكد من أن الوصول غير محظور بواسطة جدار الحماية
+* تنفيذ الأوامر التالية من قبل المستخدم ذي دور **المدير العام** المضاف تحت [حساب المستأجر التقني](../installation/multi-tenant/configure-accounts.md#tenant-account-structure)
+* الوصول إلى `https://us1.api.wallarm.com` عند العمل مع Wallarm Cloud الأمريكية أو إلى `https://api.wallarm.com` عند العمل مع Wallarm Cloud الأوروبية. يرجى التأكد من أن الوصول ليس محجوبًا بواسطة جدار حماية
 
 ## اتبع إجراء الترقية القياسي
 
 الإجراءات القياسية هي لـ:
 
-* [تحديث وحدات NGINX الخاصة بـ Wallarm](nginx-modules.md)
-* [تحديث وحدة التحليلات بعد الاستخدام](separate-postanalytics.md)
-* [تحديث صورة واجهة الحاويات من Wallarm التي تستند إلى NGINX- أو Envoy](docker-container.md)
-* [تحديث وحدة التحكم في الوصول NGINX مع وحدات Wallarm المدمجة](ingress-controller.md)
-* [تحديث صورة العقدة السحابية](cloud-image.md)
+* [ترقية وحدات Wallarm NGINX](nginx-modules.md)
+* [ترقية وحدة ما بعد التحليل](separate-postanalytics.md)
+* [ترقية صورة Wallarm Docker المبنية على NGINX أو Envoy](docker-container.md)
+* [ترقية وحدة التحكم NGINX Ingress مع الوحدات المدمجة من Wallarm](ingress-controller.md)
+* [ترقية صورة العقدة السحابية](cloud-image.md)
 
-!!! warning "إنشاء العقدة المتعددة الإيجارات"
-    أثناء إنشاء العقدة Wallarm، يُرجى اختيار خيار **العقدة المتعددة الإيجارات**:
+!!! تحذير "إنشاء العقدة متعددة التأجير"
+    أثناء إنشاء العقدة Wallarm، يرجى اختيار خيار **العقدة متعددة التأجير**:
 
-    ![إنشاء العقدة المتعددة الإيجارات](../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![إنشاء العقدة متعددة التأجير](../images/user-guides/nodes/create-multi-tenant-node.png)

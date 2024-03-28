@@ -1,31 +1,6 @@
-[link-launch-instance]:     https://cloud.google.com/deep-learning-vm/docs/quickstart-marketplace
+# تنصيب Wallarm من صورة GCP الآلية
 
-[img-ssh-key-generation]:       ../../../../images/installation-gcp/common/ssh-key-generation.png
-[versioning-policy]:            ../../../../updating-migrating/versioning-policy.md#version-list
-[img-wl-console-users]:         ../../../../images/check-user-no-2fa.png
-[img-create-wallarm-node]:      ../../../../images/user-guides/nodes/create-cloud-node.png
-[deployment-platform-docs]:     ../../../../installation/supported-deployment-options.md
-[node-token]:                       ../../../../quickstart.md#deploy-the-wallarm-filtering-node
-[api-token]:                        ../../../../user-guides/settings/api-tokens.md
-[wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[platform]:                         ../../../../installation/supported-deployment-options.md
-[ptrav-attack-docs]:                ../../../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../../../images/admin-guides/test-attacks-quickstart.png
-[wallarm-nginx-directives]:         ../../../../admin-en/configure-parameters-en.md
-[autoscaling-docs]:                 ../../../../admin-en/installation-guides/google-cloud/autoscaling-overview.md
-[real-ip-docs]:                     ../../../../admin-en/using-proxy-or-balancer-en.md
-[allocate-memory-docs]:             ../../../../admin-en/configuration-guides/allocate-resources-for-node.md
-[limiting-request-processing]:      ../../../../user-guides/rules/configure-overlimit-res-detection.md
-[logs-docs]:                        ../../../../admin-en/configure-logging.md
-[wallarm-mode]:                     ../../../../admin-en/configure-wallarm-mode.md
-[wallarm-api-via-proxy]:            ../../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
-[cloud-init-spec]:                  ../../../cloud-platforms/cloud-init.md
-[wallarm_force_directive]:          ../../../../admin-en/configure-parameters-en.md#wallarm_force
-
-# تشغيل Wallarm من صورة آلة GCP
-
-المقال ده بيقدم خطوات لتشغيل Wallarm على GCP باستخدام [الصورة الرسمية للآلة](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node).
+هذه المقالة توفر الإرشادات لتنصيب Wallarm على GCP باستخدام [الصورة الآلية الرسمية](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node).
 
 ## حالات الاستخدام
 
@@ -33,26 +8,26 @@
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
 
-## 5. ربط عقدة التصفية ب Wallarm Cloud
+## 5. ربط عقدة التصفية بسحابة Wallarm
 
-عقدة النسخة السحابية بتربط بالسحابة عن طريق سكريبت [cloud-init.py][cloud-init-spec]. السكريبت ده بيسجل العقدة مع Wallarm Cloud باستخدام توكن معين، بيضبطه عالميًا على وضع المراقبة [mode][wallarm-mode]، وبيضبط العقدة لتوجيه حركة المرور الشرعية بناءً على علم `--proxy-pass`. إعادة تشغيل NGINX بتكمل الضبط.
+ترتبط عقدة النموذج السحابي بالسحابة عبر السيناريو [cloud-init.py][cloud-init-spec]. يقوم هذا السيناريو بتسجيل العقدة مع سحابة Wallarm باستخدام الرمز المقدم، يعينها عالميًا على وضع [المراقبة][wallarm-mode]، ويضبط العقدة لتوجيه حركة المرور الشرعية بناءً على علم `--proxy-pass`. يكتمل الإعداد بإعادة تشغيل NGINX.
 
-شغل سكريبت `cloud-init.py` على النسخة المنشأة من الصورة السحابية كالتالي:
+قم بتشغيل سيناريو `cloud-init.py` على النموذج المُنشأ من صورة السحابة كالآتي:
 
-=== "سحابة الولايات المتحدة"
+=== "السحابة الأمريكية"
     ``` bash
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS> -H us1.api.wallarm.com
     ```
-=== "سحابة الاتحاد الأوروبي"
+=== "السحابة الأوروبية"
     ``` bash
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS>
     ```
 
-* `WALLARM_LABELS='group=<GROUP>'` بيضبط اسم مجموعة العقدة (موجودة بالفعل، أو، لو مش موجودة، هتتكون). بيتطبق بس لو استخدمتو توكن API.
-* `<TOKEN>` هو قيمة التوكن المنسوخة.
-* `<PROXY_ADDRESS>` هو عنوان لعقدة Wallarm لتوجيه حركة المرور الشرعية إليه. ممكن يكون عنوان IP لنسخة تطبيق، موازنة الحمل، أو اسم DNS، إلخ، حسب هيكليتك.
+* `WALLARM_LABELS='group=<GROUP>'` يحدد اسم مجموعة العقد (قائمة أو، إذا لم تكن موجودة، سيتم إنشائها). يطبق هذا فقط إذا كنت تستخدم رمز API.
+* `<TOKEN>` هو قيمة الرمز المنسوخ.
+* `<PROXY_ADDRESS>` هو عنوان لعقدة Wallarm لوكيل حركة المرور الشرعية إليها. يمكن أن يكون عنوان IP لنموذج تطبيق، موازنة حمل، أو اسم DNS، إلخ، بناءً على هندسة الشبكة الخاصة بك.
 
-## 6. ضبط إرسال الحركة لنسخة Wallarm
+## 6. تكوين إرسال حركة المرور إلى نموذج Wallarm
 
 --8<-- "../include/waf/installation/sending-traffic-to-node-inline.md"
 
@@ -60,7 +35,7 @@
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
 
-## 8. ضبط الحل المنشور بدقة
+## 8. تعديل التكوين النهائي للحل المنصب
 
 --8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
 

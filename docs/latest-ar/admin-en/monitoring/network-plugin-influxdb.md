@@ -1,56 +1,78 @@
-![صورة خطة العمل المثالية][img-network-plugin-influxdb]
+[img-network-plugin-influxdb]:     ../../images/monitoring/network-plugin-influxdb.png
 
-المخطط التالي يُستخدم في هذا المستند:
-* يُنشر عُقدة تصفية Wallarm على مضيف يمكن الوصول إليه عبر عنوان الـ IP `10.0.30.5` واسم المجال المؤهل بالكامل `node.example.local`.
+[doc-grafana]:                     working-with-grafana.md
 
-    يُهيئ الـ `network` plugin لـ `collectd` على عقدة التصفية بطريقة تجعل جميع المقاييس تُرسل إلى خادم InfluxDB على الـ port `25826/UDP`.
+[link-collectd-networking]:        https://collectd.org/wiki/index.php/Networking_introduction
+[link-network-plugin]:             https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_network
+[link-typesdb]:                    https://collectd.org/documentation/manpages/types.db.5.shtml
+[link-typesdb-file]:               https://github.com/collectd/collectd/blob/master/src/types.db
 
-    !!! معلومة "ميزات الـ network plugin"
-        يُرجى ملاحظة أن الـ plugin يعمل عبر UDP (انظر [استخدام الأمثلة][link-collectd-networking] و[التوثيق][link-network-plugin] الخاص بـ الـ`network` plugin).
+#   تصدير المقاييس إلى InfluxDB عبر الإضافة `network` لـ `collectd`
+
+توفر هذه الوثيقة مثالًا عن استخدام إضافة الشبكة لتصدير المقاييس إلى قاعدة بيانات InfluxDB الزمنية. كذلك، ستُظهر كيفية تصور المقاييس المُجمعة في InfluxDB باستخدام Grafana.
+
+##  سير العمل المثالي
+
+--8<-- "../include/monitoring/metric-example.md"
+
+![سير العمل المثالي][img-network-plugin-influxdb]
+
+يُستخدم مخطط النشر التالي في هذه الوثيقة:
+*   يُنشر عقد التصفية Wallarm على مضيف يُمكن الوصول إليه عبر عنوان الـ IP `10.0.30.5` واسم المجال المؤهل بالكامل `node.example.local`.
+    
+    يتم تكوين إضافة `network` لـ `collectd` على عقدة التصفية بحيث يتم إرسال كل المقاييس إلى خادم InfluxDB على العنوان `10.0.30.30` عبر المنفذ `25826/UDP`.
+    
+      
+    !!! info "ميزات إضافة الشبكة"
+        يُرجى ملاحظة أن الإضافة تعمل عبر UDP (راجع [أمثلة الاستخدام][link-collectd-networking] و[التوثيق][link-network-plugin] لإضافة الشبكة).
     
     
-* يتم نشر خدمات `influxdb` وgrafana كحاويات Docker على مضيف منفصل بعنوان IP `10.0.30.30`.
+*   يتم نشر كل من خدمات `influxdb` وgrafana كحاويات Docker على مضيف منفصل بعنوان الـ IP `10.0.30.30`.
 
-    خدمة `influxdb` مع قاعدة بيانات InfluxDB مُهيئة كالتالي:
+    يتم تكوين خدمة `influxdb` مع قاعدة بيانات InfluxDB على النحو التالي:
 
-      * تم إنشاء مصدر بيانات `collectd` (الإدخال `collectd` وفقًا لمصطلحات InfluxDB)، يستمع على الـ port `25826/UDP` ويكتب المقاييس الواردة إلى قاعدة بيانات تُسمى `collectd`.
-      * يحدث التواصل مع واجهة برنامج تطبيق InfluxDB عبر الـ port `8086/TCP`.
-      * الخدمة تشارك شبكة Docker `sample-net` مع خدمة `grafana`.
+      * تم إنشاء مصدر بيانات `collectd` (وفقًا لمصطلحات InfluxDB، الإدخال `collectd`)، الذي يستمع على المنفذ `25826/UDP` ويكتب المقاييس الواردة إلى قاعدة بيانات تُسمى `collectd`.
+      * تتم الاتصالات مع واجهة برمجة تطبيقات InfluxDB عبر المنفذ `8086/TCP`.
+      * تشارك الخدمة شبكة Docker المُسماة `sample-net` مع خدمة `grafana`.
     
     
     
-    خدمة `grafana` مع Grafana مُهيأة كالتالي:
+    تم تكوين خدمة `grafana` مع Grafana على النحو التالي:
     
       * واجهة ويب Grafana متاحة على `http://10.0.30.30:3000`.
-      * الخدمة تشارك الشبكة `sample-net` Docker مع خدمة `influxdb`.
+      * تشارك الخدمة شبكة Docker المُسماة `sample-net` مع خدمة `influxdb`.
 
-### نشر InfluxDB وGrafana
+##  تكوين تصدير المقاييس إلى InfluxDB
 
-نشر InfluxDB وGrafana على مضيف Docker:
-1. إنشاء دليل عمل، على سبيل المثال، `/tmp/influxdb-grafana`، والانتقال إليه:
+--8<-- "../include/monitoring/docker-prerequisites.md"
+
+### نشر InfluxDB و Grafana
+
+نشر InfluxDB و Grafana على مضيف Docker:
+1.  اصنع مجلدًا للعمل، على سبيل المثال، `/tmp/influxdb-grafana`، وانتقل إليه:
     
     ```
     mkdir /tmp/influxdb-grafana
     cd /tmp/influxdb-grafana
     ```
     
-2. لعمل مصدر بيانات InfluxDB، ستحتاج إلى ملف يُسمى `types.db` يحتوي على أنواع قيم `collectd`.
+2.  لكي يعمل مصدر بيانات InfluxDB، ستحتاج إلى ملف يُسمى `types.db` يحتوي على أنواع قيم `collectd`.
     
-    هذا الملف يصف مواصفات مجموعات البيانات المُستخدمة بواسطة `collectd`. مثل هذه المجموعات تشمل تعريفات أنواع القياسات. معلومات مفصلة عن هذا الملف متاحة [هنا][link-typesdb].
+    يصف هذا الملف مواصفات مجموعات البيانات الذي يستخدمها `collectd`. تتضمن مجموعات البيانات هذه تعريفات لأنواع القياس. متاحة المعلومات المفصلة حول هذا الملف [هنا][link-typesdb].
     
-    [قم بتحميل ملف `types.db`][link-typesdb-file] من مستودع `collectd` على GitHub وضعه في الدليل العملي.
+    [قم بتنزيل ملف `types.db`][link-typesdb-file] من مستودع مشروع `collectd` على GitHub وضعه في مجلد العمل.
     
-3. احصل على ملف التهيئة الأساسي InfluxDB بتنفيذ الأمر التالي: 
+3.  احصل على ملف تكوين InfluxDB الأساسي بتنفيذ الأمر التالي: 
     
     ```
     docker run --rm influxdb influxd config > influxdb.conf
     ```
     
-4. قم بتفعيل مصدر بيانات `collectd` في ملف تهيئة InfluxDB `influxdb.conf` بتغيير قيمة الـ parameter `enabled` في القسم `[[collectd]]` من `false` إلى `true`.
+4.  قم بتمكين مصدر بيانات `collectd` في ملف تكوين `influxdb.conf` لـ InfluxDB بتغيير قيمة المعلمة `enabled` في قسم `[[collectd]]` من `false` إلى `true`.
     
-    اترك باقي الـ parameters دون تغيير.
+    اترك باقي المعلمات كما هي.
    
-    يجب أن يكون القسم كالتالي:
+    يجب أن يظهر القسم على هذا النحو:
    
     ```
     [[collectd]]
@@ -68,7 +90,7 @@
       parse-multivalue-plugin = "split"  
     ```
     
-5. إنشاء ملف `docker-compose.yaml` في الدليل العملي بالمحتوى التالي:
+5.  أنشئ ملفًا بإسم `docker-compose.yaml` في مجلد العمل بالمحتوى التالي:
    
     ```
     version: "3"
@@ -100,22 +122,22 @@
       sample-net:
     ```
 
-    وفقًا للإعدادات في `volumes:`، سيستخدم InfluxDB
-    1. الدليل العملي كتخزين لقاعدة البيانات.
-    2. ملف التهيئة `influxdb.conf` الذي يقع في الدليل العملي.
-    3. ملف `types.db` بأنواع القيم القابلة للقياس الموجود في الدليل العملي.  
+    وفقًا للإعدادات في `volumes:`، ستستخدم InfluxDB
+    1.  مجلد العمل كمخزن لقاعدة البيانات.
+    2.  ملف التكوين `influxdb.conf` الموجود في مجلد العمل.
+    3.  ملف `types.db` بأنواع القيم القابلة للقياس الموجود في مجلد العمل.  
     
-6. بناء الخدمات بتنفيذ الأمر `docker-compose build`.
+6.  ابن الخدمات بتنفيذ أمر `docker-compose build`.
     
-7. تشغيل الخدمات بتنفيذ الأمر `docker-compose up -d influxdb grafana`.
+7.  قم بتشغيل الخدمات بتنفيذ أمر `docker-compose up -d influxdb grafana`.
     
-8. إنشاء قاعدة بيانات تُسمى `collectd` لمصدر بيانات InfluxDB المُناظر بتنفيذ الأمر التالي:
+8.  أنشئ قاعدة بيانات باسم `collectd` لمصدر بيانات InfluxDB المُقابل بتنفيذ الأمر التالي:
    
     ```
     curl -i -X POST http://10.0.30.30:8086/query --data-urlencode "q=CREATE DATABASE collectd"
     ```
     
-    يجب أن يعود خادم InfluxDB برد مشابه لـ:
+    يجب أن يُرجع خادم InfluxDB استجابة مشابهة لـ:
    
     ```
     HTTP/1.1 200 OK
@@ -130,13 +152,13 @@
     {"results":[{"statement_id":0}]}
     ```
     
-في هذه النقطة، يجب أن يكون InfluxDB يعمل، جاهزًا لتلقي المقاييس من `collectd`، ويجب أن تكون Grafana جاهزة لمراقبة وتصوير البيانات المخزنة في InfluxDB.
+في هذه اللحظة، يجب أن يكون InfluxDB قيد التشغيل، جاهزًا لاستقبال المقاييس من `collectd`، ويجب أن تكون Grafana جاهزة لمراقبة وتصور البيانات المخزنة في InfluxDB.
 
-### تهيئة `collectd`
+### تكوين `collectd`
 
-تهيئة `collectd` لتصدير المقاييس إلى InfluxDB:
-1. الاتصال بعقدة التصفية (على سبيل المثال، باستخدام بروتوكول SSH). تأكد من تسجيل الدخول كمستخدم root أو أي حساب آخر بصلاحيات المشرف.
-2. إنشاء ملف يُسمى `/etc/collectd/collectd.conf.d/export-to-influxdb.conf` بالمحتوى التالي:
+قم بتكوين `collectd` لتصدير المقاييس إلى InfluxDB:
+1. توصل بعقدة التصفية (على سبيل المثال، باستخدام بروتوكول SSH). تأكد من أنك مُسجل الدخول كمدير النظام أو أي حساب آخر بامتيازات المشرف.
+2. أنشئ ملفًا باسم `/etc/collectd/collectd.conf.d/export-to-influxdb.conf` بالمحتوى التالي:
    
     ```
     LoadPlugin network
@@ -146,13 +168,13 @@
     </Plugin>
     ```
     
-    تُهيأ الكائنات التالية هنا:
+    تتم هنا تكوين الكيانات التالية:
 
-    1. الخادم، لإرسال المقاييس إليه (`10.0.30.30`)
-    2. الـ port الذي يستمع عليه الخادم (`25826/UDP`)
+    1.  الخادم، لإرسال المقاييس إليه (`10.0.30.30`)
+    2.  المنفذ الذي يستمع عليه الخادم (`25826/UDP`)
     
-3. إعادة تشغيل خدمة `collectd` بتنفيذ الأمر المناسب:
+3. أعد تشغيل خدمة `collectd` بتنفيذ الأمر المناسب:
 
     --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
-الآن، InfluxDB يتلقى جميع المقاييس لعقدة التصفية. يمكنك تصوير المقاييس التي تهمك ومراقبتها [باستخدام Grafana][doc-grafana].
+الآن، يتلقى InfluxDB كل مقاييس عقدة التصفية. يمكنك تصور المقاييس التي تهمك ومراقبتها [باستخدام Grafana][doc-grafana].

@@ -1,9 +1,6 @@
-[user-roles-article]: ../user-guides/settings/users.md#user-roles
-[img-api-tokens-edit]: ../images/api-tokens-edit.png
+# نظرة عامة على API لـ Wallarm
 
-# نظرة عامة على Wallarm API
-
-Wallarm API يوفر التفاعل بين مكونات نظام Wallarm. يمكن استخدام طرق Wallarm API لإنشاء أو استرداد أو تحديث الحالات التالية:
+توفر واجهة برمجة التطبيقات (API) من Wallarm تفاعلًا بين مكونات نظام Wallarm. يمكنك استخدام طرق API في Wallarm لإنشاء، الحصول على، أو تحديث الحالات التالية:
 
 * الثغرات الأمنية
 * الهجمات
@@ -13,52 +10,52 @@ Wallarm API يوفر التفاعل بين مكونات نظام Wallarm. يمك
 * عقد الفلترة
 * إلخ.
 
-يتم تقديم وصف طرق API في **واجهة Wallarm API Console** المتاحة من واجهة Wallarm → الزاوية العلوية اليمنى → `؟` → **واجهة Wallarm API Console** أو مباشرةً عبر الرابط:
+يتم تقديم وصف طرق API في **واجهة Wallarm API** المتاحة من واجهة Wallarm ← أعلى اليمين ← `؟` → **واجهة Wallarm API** أو مباشرةً عبر الرابط:
 
-* https://apiconsole.us1.wallarm.com/ لـ[سحابة الولايات المتحدة](../about-wallarm/overview.md#us-cloud)
-* https://apiconsole.eu1.wallarm.com/ لـ[سحابة الاتحاد الأوروبي](../about-wallarm/overview.md#eu-cloud)
+* https://apiconsole.us1.wallarm.com/ لـ[السحابة الأمريكية](../about-wallarm/overview.md#us-cloud)
+* https://apiconsole.eu1.wallarm.com/ لـ[السحابة الأوروبية](../about-wallarm/overview.md#eu-cloud)
 
-![واجهة Wallarm API Console](../images/wallarm-api-reference.png)
+![واجهة Wallarm API](../images/wallarm-api-reference.png)
 
 ## نقطة نهاية API
 
-تُرسل طلبات API إلى عنوان URL التالي:
+يتم إرسال طلبات API إلى عنوان URL التالي:
 
-* `https://us1.api.wallarm.com/` لـ[سحابة الولايات المتحدة](../about-wallarm/overview.md#us-cloud)
-* `https://api.wallarm.com/` لـ[سحابة الاتحاد الأوروبي](../about-wallarm/overview.md#eu-cloud)
+* `https://us1.api.wallarm.com/` لـ[السحابة الأمريكية](../about-wallarm/overview.md#us-cloud)
+* `https://api.wallarm.com/` لـ[السحابة الأوروبية](../about-wallarm/overview.md#eu-cloud)
 
 ## مصادقة طلبات API
 
-يجب أن تكون مستخدمًا موثقًا لإجراء طلبات Wallarm API. تعتمد طريقة مصادقة طلبات API على العميل الذي يرسل الطلب:
+يجب أن تكون مستخدمًا مُعتمدًا لتقديم طلبات API إلى Wallarm. تعتمد طريقة مصادقة طلبات API على العميل الذي يرسل الطلب:
 
 * [واجهة مرجع API](#api-reference-ui)
 * [عميل API الخاص بك](#your-own-api-client)
 
-### واجهة Wallarm API Console
+### واجهة Wallarm API
 
-يُستخدم رمز لمصادقة الطلب. يتم توليد الرمز بعد المصادقة الناجحة في حسابك على Wallarm.
+يتم استخدام رمز لمصادقة الطلب. يتم توليد الرمز بعد المصادقة الناجحة في حساب Wallarm الخاص بك.
 
-1. قم بتسجيل الدخول إلى واجهة Wallarm الخاصة بك باستخدام الرابط:
-    * https://us1.my.wallarm.com/ لـسحابة الولايات المتحدة
-    * https://my.wallarm.com/ لـسحابة الاتحاد الأوروبي
-2. قم بتحديث صفحة واجهة Wallarm API Console باستخدام الرابط:
-    * https://apiconsole.us1.wallarm.com/ لـسحابة الولايات المتحدة
-    * https://apiconsole.eu1.wallarm.com/ لـسحابة الاتحاد الأوروبي
-3. انتقل إلى طريقة API المطلوبة → قسم **جربها الآن**، أدخل قيم المعلمات و**نفذ** الطلب.
+1. قم بتسجيل الدخول إلى واجهة Wallarm باستخدام الرابط: 
+    * https://us1.my.wallarm.com/ للسحابة الأمريكية
+    * https://my.wallarm.com/ للسحابة الأوروبية
+2. قم بتحديث صفحة واجهة Wallarm API باستخدام الرابط:
+    * https://apiconsole.us1.wallarm.com/ للسحابة الأمريكية
+    * https://apiconsole.eu1.wallarm.com/ للسحابة الأوروبية
+3. انتقل إلى طريقة API المطلوبة → القسم **جربها**، أدخل قيم الوسائط و**نفِّذ** الطلب.
 
 ### عميل API الخاص بك
 
-لمصادقة الطلبات من عميل API الخاص بك إلى Wallarm API:
+لمصادقة الطلبات من عميل API الخاص بك إلى API لـ Wallarm:
 
-1. قم بتسجيل الدخول إلى حسابك على Wallarm في [سحابة الولايات المتحدة](https://us1.my.wallarm.com/) أو [سحابة الاتحاد الأوروبي](https://my.wallarm.com/)  → **الإعدادات** → **رموز API**.
-1. [إنشاء](../user-guides/settings/api-tokens.md#configuring-tokens) رمز للوصول إلى Wallarm API.
-1. افتح رمزك وانسخ القيمة من قسم **الرمز**.
-1. أرسل الطلب المطلوب لـAPI مرورًا بقيمة **الرمز** في معيار رأس `X-WallarmApi-Token`.
+1. قم بتسجيل الدخول إلى حساب Wallarm الخاص بك في [السحابة الأمريكية](https://us1.my.wallarm.com/) أو [السحابة الأوروبية](https://my.wallarm.com/) → **الإعدادات** → **رموز API**.
+1. [قم بإنشاء](../user-guides/settings/api-tokens.md#configuring-tokens) رمز للوصول إلى API لـ Wallarm.
+1. افتح رمزك وانسخ القيمة من القطاع **الرمز**.
+1. أرسل طلب API المطلوب مرورًا بقيمة **الرمز** في معامل الرأس `X-WallarmApi-Token`.
 
-[المزيد عن رموز API →](../user-guides/settings/api-tokens.md)
+[مزيد من التفاصيل حول رموز API →](../user-guides/settings/api-tokens.md)
 
-## نهج Wallarm في تطوير API والتوثيق
+## نهج Wallarm في تطوير وتوثيق API
 
-Wallarm API Reference هو تطبيق صفحة واحدة (SPA) حيث يتم جلب جميع البيانات المعروضة ديناميكيًا من الـAPI. يدفع هذا التصميم Wallarm لاستخدام نهج [API-first](https://swagger.io/resources/articles/adopting-an-api-first-approach/) عندما يتم أولاً جعل البيانات والوظائف الجديدة متاحة في الـAPI العام وكخطوة تالية يتم وصفها في مرجع الـAPI. عادةً، يتم إصدار جميع الوظائف الجديدة بشكل متوازي في كل من الـAPI العام ومرجع الـAPI، لكن أحيانًا يتم إصدار تغييرات الـAPI الجديدة قبل تغييرات مرجع الـAPI، وبعض الوظائف متاحة عبر الـAPI العام فقط.
+مرجع API من Wallarm هو تطبيق صفحة واحدة (SPA) مع جميع البيانات المعروضة يتم جلبها ديناميكيًا من API. يدفع هذا التصميم Wallarm إلى استخدام نهج [إعطاء الأولوية لـ API](https://swagger.io/resources/articles/adopting-an-api-first-approach/) عندما يصبح البيانات والوظائف الجديدة متاحة أولاً في API العام وكخطوة تالية يتم وصفها في مرجع API. عادةً ما يتم إصدار جميع الوظائف الجديدة بالتوازي في كل من API العام ومرجع API، ولكن أحيانًا يتم إصدار تغييرات API الجديدة قبل تغييرات مرجع API، وبعض الوظائف متاحة عبر API العام فقط.
 
-يتم إنشاء Wallarm API Reference من ملف Swagger باستخدام أداة [Swagger UI](https://swagger.io/tools/swagger-ui/). يوفر مرجع الـAPI طريقة سهلة للتعرف على نقاط النهاية للـAPI والطرق وهياكل البيانات المتاحة. كما يوفر طريقة بسيطة لتجربة جميع نقاط النهاية المتاحة.
+يتم إنشاء مرجع API من Wallarm من ملف Swagger باستخدام أداة [Swagger UI](https://swagger.io/tools/swagger-ui/). يوفر مرجع API طريقة سهلة للتعرف على نقاط النهاية، والطرق، وهياكل البيانات المتاحة في API. كما يوفر طريقة بسيطة لتجربة جميع نقاط النهاية المتاحة.

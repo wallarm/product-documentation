@@ -1,65 +1,52 @@
-[img-verification-statuses]:    ../../images/user-guides/events/attack-verification-statuses.png
-[img-verify-attack]:            ../../images/user-guides/events/verify-attack.png
-[img-verified-icon]:            ../../images/user-guides/events/verified.png#mini
-[img-error-icon]:               ../../images/user-guides/events/error.png#mini
-[img-forced-icon]:              ../../images/user-guides/events/forced.png#mini
-[img-sheduled-icon]:            ../../images/user-guides/events/sheduled.png#mini
-[img-cloud-icon]:               ../../images/user-guides/events/cloud.png#mini
-[img-skip-icon]:                ../../images/user-guides/events/skipped.png#mini
-
-[al-brute-force-attack]:      ../../attacks-vulns-list.md#bruteforce-attack
-[al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
-[al-bola]:                    ../../attacks-vulns-list.md#broken-object-level-authorization-bola
+![حالات التحقق من الهجوم بحالات مختلفة][img-verification-statuses]
 
 # تحقق من الهجمات
 
- والارم بيتحقق تلقائيًا من الهجمات عشان يشوف الثغرات الفعالة.
+تقوم Wallarm تلقائيًا [بإعادة التحقق](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) من الهجمات للكشف عن الضعف النشط.
 
-ممكن تشوف حالة التحقق من الهجمة وتجبر التحقق مرة تانية من تبويب **الهجمات**. الهجمة المختارة هتكون أساس لإنشاء مجموعة اختبار الهجمة.
+يمكنك التحقق من حالة التحقق من الهجوم وفرض إعادة التحقق من الهجوم في علامة التبويب **الهجمات**. سيتم استخدام الهجوم المحدد كأساس لتوليد مجموعة اختبار الهجوم.
 
-![الهجمات بحالات التحقق المختلفة][img-verification-statuses]
+## تحقق من حالة التحقق من الهجوم
 
-## شوف حالة التحقق من الهجمة
+1. انقر على علامة التبويب **الهجمات**.
+2. تحقق من الحالة في عمود **التحقق النشط**.
 
-1. اضغط على تبويب **الهجمات**.
-2. شوف الحالة في عمود **التحقق الفعال**.
+## أسطورة حالات التحقق من الهجوم
 
-## أسطورة حالة التحقق من الهجمة
+* ![مُحقق][img-verified-icon] *مُحقق*: تم التحقق من الهجوم.
+* ![خطأ][img-error-icon] *خطأ*: محاولة للتحقق من نوع الهجوم الذي لا يدعم التحقق. [أسباب محتملة](#attack-types-that-do-not-support-verification)
+* ![تم التخطي][img-skip-icon] *تم التخطي*: تم تخطي محاولة للتحقق من نوع الهجوم. [أسباب محتملة](#attack-types-that-do-not-support-verification)
+* ![مُفروض][img-forced-icon] *مُفروض*: الهجوم لديه أولوية مُرفعة في قائمة التحقق.
+* ![مُجدول][img-sheduled-icon] *مُجدول*: الهجوم في قائمة الانتظار للتحقق.
+* ![لا يمكن الاتصال][img-cloud-icon] *لا يمكن الاتصال بالخادم*: لا يمكن الوصول إلى الخادم في هذا الوقت.
 
-* ![متحقق][img-verified-icon] *متحقق*: الهجمة تم التحقق منها.
-* ![خطأ][img-error-icon] *خطأ*: محاولة للتحقق من نوع هجمة مش بيدعم التحقق. [الأسباب الممكنة](#attack-types-that-do-not-support-verification)
-* ![تجاوزت][img-skip-icon] *تجاوزت*: محاولة للتحقق من نوع هجمة تم تجاهلها. [الأسباب الممكنة](#attack-types-that-do-not-support-verification)
-* ![مفروض][img-forced-icon] *مفروض*: الهجمة ليها أولوية مرتفعة في قوائم التحقق.
-* ![مجدول][img-sheduled-icon] *مجدول*: الهجمة موجودة في قائمة الانتظار للتحقق.
-* ![ما قدرتش اتصل بالسيرفر][img-cloud-icon] *ما قدرتش اتصل بالسيرفر*: مش قادر أصل للسيرفر دلوقتي.
+## فرض التحقق من الهجوم
 
-## إجبار التحقق من الهجمة
+1. حدد هجومًا.
+2. انقر على رمز الحالة في عمود **التحقق النشط**.
+3. انقر على *فرض التحقق*.
 
-1. اختار هجمة.
-2. اضغط على علامة الحالة في عمود **التحقق الفعال**.
-3. اضغط *إجبار التحقق*.
-
-والارم هيرفع أولوية التحقق من الهجمة في القائمة.
+سترفع Wallarm أولوية التحقق من الهجوم في القائمة.
 
 ![تحقق من الهجمات][img-verify-attack]
 
-## أنواع الهجمات اللي مش بتدعم التحقق
+## أنواع الهجمات التي لا تدعم التحقق
 
-الهجمات من الأنواع التالية مش بتدعم التحقق:
+الهجمات من الأنواع التالية لا تدعم التحقق:
 
-* [هجمات القوة الغاشمة][al-brute-force-attack]
-* [تصفح بالإكراه][al-forced-browsing]
+* [الهجوم بقوة الغلبة][al-brute-force-attack]
+* [التصفح القسري][al-forced-browsing]
 * [BOLA][al-bola]
-* هجمات بحد أقصى لمعالجة الطلبات
-* هجمات الثغرات الأمنية المقفلة
-* هجمات مش فيها بيانات كافية للتحقق
-* [هجمات مكونة من مجموعات واردة من IPs مصدرية](../../admin-en/configuration-guides/protecting-with-thresholds.md)
+* الهجمات التي تحتوي على حد لمعالجة الطلب
+* الهجمات التي تم إغلاق الثغرات الأمنية الخاصة بها بالفعل
+* الهجمات التي لا تحتوي على بيانات كافية للتحقق
+* [الهجمات المتكونة من ضربات مجموعة حسب عناوين IPs الأصلية](../../admin-en/configuration-guides/protecting-with-thresholds.md)
 
-هيفشل إعادة تحقق الهجمة في الحالات التالية:
+سيفشل إعادة التحقق من الهجوم في الحالات التالية:
 
-* هجمات أرسلت عبر البروتوكول gRPC أو Protobuff
-* هجمات أرسلت عبر HTTP نسخة غير 1.x
-* هجمات أرسلت بطريقة مختلفة عن: GET, POST, PUT, HEAD, PATCH, OPTIONS, DELETE, LOCK, UNLOCK, MOVE, TRACE
-* مش قادر أصل لعنوان الطلب الأصلي
-* إشارات الهجمة موجودة في رأس `HOST`
-* [عنصر الطلب](../rules/request-processing.md) اللي فيه إشارات الهجمة مختلف عن أي من التالي: `uri` , `header`, `query`, `post`, `path`, `action_name`, `action_ext`
+* الهجمات المرسلة عبر بروتوكول gRPC أو Protobuff
+* الهجمات المرسلة عبر نسخة بروتوكول HTTP غير 1.x
+* الهجمات المرسلة عبر طريقة غير واحدة من التالية: GET، POST، PUT، HEAD، PATCH، OPTIONS، DELETE، LOCK، UNLOCK، MOVE، TRACE
+* فشل في الوصول إلى عنوان طلب أصلي
+* علامات الهجوم موجودة في رأس الـ`HOST`
+* [عنصر الطلب](../rules/request-processing.md) الذي يحتوي على علامات الهجوم مختلف عن واحد من التالية: `uri`، `header`، `query`، `post`، `path`، `action_name`، `action_ext`

@@ -1,8 +1,8 @@
-* نسخة منصة كوبرنتس 1.23-1.25
-* مدير الحزم [Helm](https://helm.sh/)
-* توافق الخدمات الخاصة بك مع [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) الإصدار 1.6.4 أو أقل
-* الوصول إلى الحساب بدور **المدير** وتعطيل المصادقة الثنائية في لوحة تحكم وولارم لـ [US Cloud](https://us1.my.wallarm.com/) أو [EU Cloud](https://my.wallarm.com/)
-* الوصول إلى `https://us1.api.wallarm.com` للعمل مع US Wallarm Cloud أو إلى `https://api.wallarm.com` للعمل مع EU Wallarm Cloud
-* الوصول إلى `https://charts.wallarm.com` لإضافة رسوم بيانية Helm من وولارم. تأكد من أن الوصول غير محظور بواسطة جدار ناري
-* الوصول إلى مستودعات وولارم على Docker Hub `https://hub.docker.com/r/wallarm`. تأكد من أن الوصول غير محظور بواسطة جدار ناري
-* الوصول إلى عناوين IP لـ Google Cloud Storage المدرجة ضمن [الرابط](https://www.gstatic.com/ipranges/goog.json). عندما تقوم [بإدراج قائمة سماح، قائمة حظر، أو قائمة رمادية][ip-list-docs] لدول بأكملها، مناطق، أو مراكز بيانات بدلاً من عناوين IP فردية، يسترجع عقدة وولارم عناوين IP الدقيقة المتعلقة بالمدخلات في قوائم IP من قاعدة البيانات المجمعة المستضافة على Google Storage
+* نسخة منصة Kubernetes 1.23-1.25
+* مدير حزم [Helm](https://helm.sh/)
+* التوافقية لخدماتكم مع [متحكم دخول NGINX المجتمعي](https://github.com/kubernetes/ingress-nginx) إصدار 1.6.4 أو أقل
+* الوصول إلى الحساب بدور **المدير** وتعطيل التوثيق الثنائي في وحدة التحكم Wallarm لـ [السحاب الأمريكي](https://us1.my.wallarm.com/) أو [السحاب الأوروبي](https://my.wallarm.com/)
+* الوصول إلى `https://us1.api.wallarm.com` للعمل مع سحاب Wallarm الأمريكي أو إلى `https://api.wallarm.com` للعمل مع سحاب Wallarm الأوروبي
+* الوصول إلى `https://charts.wallarm.com` لإضافة خرائط Wallarm Helm. تأكد من عدم حجب الوصول بواسطة جدار الحماية
+* الوصول إلى مستودعات Wallarm على Docker Hub `https://hub.docker.com/r/wallarm`. تأكد من عدم حجب الوصول بواسطة جدار الحماية
+* الوصول إلى عناوين IP لتخزين Google Cloud المدرجة ضمن [الرابط](https://www.gstatic.com/ipranges/goog.json). عندما تقوم [بإضافة عناوين IP إلى القائمة السمحة، القائمة السوداء، أو القائمة الرمادية][ip-list-docs] لدول، مناطق، أو مراكز بيانات بأكملها بدلاً من عناوين IP فردية، يسترد عقد Wallarm عناوين IP الدقيقة المتعلقة بالمدخلات في قوائم الIP من قاعدة البيانات المجمعة المستضافة على Google Storage

@@ -6,7 +6,7 @@
     ```bash
     sudo service nginx restart
     ```
-=== "سينتوس أو أمازون لينكس 2.0.2021 وأقل"
+=== "سينتوس أو أمازون لينكس 2.0.2021 وما دون"
     ```bash
     sudo systemctl restart nginx
     ```

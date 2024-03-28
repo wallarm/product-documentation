@@ -1,6 +1,6 @@
-# مُحلل Base64
+# محلل Base64
 
-مُحلل **Base64** بيقوم بترميز وفك ترميز قيمة عنصر الطلب بترميز base64. يمكن تطبيق المُحلل ده على أي سلسلة.
+يقوم محلل **Base64** بتشفيروفك تشفير قيمة عنصر الطلب بتشفير base64. يمكن تطبيق هذا المحلل على أي سلسلة.
 
 **مثال:**
 
@@ -11,10 +11,10 @@ POST http://example.com/login/index.php HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 ```
 
-بجسم الطلب
+مع الجسم
 
 ```
 username=admin&passwd=MDEyMzQ=
 ```
 
-، النقطة `POST_FORM_URLENCODED_passwd_BASE64_value` بتشير لقيمة `01234` اللي تم فك ترميزها من base64 واللي تم تمريرها في مُعامل `passwd` لجسم الطلب في صيغة form-urlencoded.
+يشير نقطة `POST_FORM_URLENCODED_passwd_BASE64_value` إلى قيمة `01234` المفككة من التشفير base64 التي يتم تمريرها في معامل `passwd` من جسم الطلب بتنسيق form-urlencoded.

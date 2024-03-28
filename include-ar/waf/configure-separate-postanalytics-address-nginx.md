@@ -1,4 +1,4 @@
-إضافة عناوين خوادم postanalytics للملف `/etc/nginx/conf.d/wallarm.conf`:
+أضف عناوين خوادم postanalytics إلى الملف `/etc/nginx/conf.d/wallarm.conf`:
 
 ```bash
 upstream wallarm_tarantool {
@@ -8,11 +8,11 @@ upstream wallarm_tarantool {
     keepalive 2;
     }
 
-    # محذوف
+    # تم التغاضي
 
 wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
-* يجب تحديد قيمة `max_conns` لكل من خوادم Tarantool العلوية لمنع إنشاء اتصالات زائدة.
-* يجب ألا تقل قيمة `keepalive` عن عدد خوادم Tarantool.
-* السطر `# wallarm_tarantool_upstream wallarm_tarantool;` معلق بشكل افتراضي - من فضلكم، احذفوا `#`.
+* يجب تحديد قيمة `max_conns` لكل من خوادم Tarantool الواقعة في المنبع لمنع إنشاء اتصالات زائدة.
+* لا يجب أن تكون قيمة `keepalive` أقل من عدد خوادم Tarantool.
+* السطر `# wallarm_tarantool_upstream wallarm_tarantool;` معلق بشكل افتراضي - يرجى حذف `#`.

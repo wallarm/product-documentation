@@ -1,31 +1,31 @@
-# توسيع وتوافر عالٍ لـ Wallarm Sidecar
+# توسيع النطاق والتوفر العالي لـ Wallarm Sidecar
 
-تتركز هذه الدليل على التفاصيل الدقيقة للتوسيع، والتوافر العالي (HA)، والتخصيص الصحيح لموارد [حل Wallarm Sidecar][sidecar-docs]. عن طريق تكوين هذه بفعالية، يمكنك تعزيز الموثوقية والأداء لـ Wallarm Sidecar، مع ضمان الحد الأدنى من الفترة التحت القائمة ومعالجة الطلبات بكفاءة.
+يهتم هذا الدليل بالتفاصيل الدقيقة للتوسيع والتوفر العالي (HA) ، وتخصيص النوابل مناسبا لـ[حل Wallarm Sidecar][sidecar-docs]. عن طريق تكوين هذه بشكل فعال ، يمكنك تحسين الثقة والأداء لـ Wallarm Sidecar ، مما يضمن وقت التوقف الأدنى ومعالجة الطلب بشكل فعال.
 
-يتم تصنيف التهيئة على نطاق واسع إلى قسمين:
+تتم تصنيف التكوين عادةً في قسمين:
 
-* الإعدادات المخصصة للتحكم في خطة Wallarm Sidecar
-* إعدادات لحمل العمل التطبيقي مع sidecar المثبت
+* إعدادات مخصصة لطائرة تحكم Wallarm Sidecar
+* إعدادات لحمل العمل التطبيقي مع القطعة المضافة
 
-تعتمد التوسيع والتوفر العالي لـ Wallarm Sidecar على ممارسات Kubernetes القياسية. لفهم الأساسيات قبل تطبيق توصياتنا، إذا فكرت في استكشاف هذه الروابط الموصى بها:
+تعتمد التوسع والتوفرية العالية لـ Wallarm Sidecar على ممارسات Kubernetes القياسية. لفهم الأساسيات قبل تطبيق توصياتنا ، ضع في اعتبارك استكشاف هذه الروابط الموصى بها:
 
-* [توسيع الوحدات الأفقية في Kubernetes (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/)
-* [الكتل ذات التوافر العالي في Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/)
-* [تعيين موارد وحدة المعالجة المركزية (CPU) للحاويات والوحدات](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/)
+* [توسيع النطاق الأفقي لوحدة البود في Kubernetes (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/)
+* [الكتل ذات الاستعمال العالي في Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/)
+* [تحديد موارد وحدة المعالجة المركزية للحاويات والأقراص](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/)
 
-## التوسع في خطة التحكم Wallarm Sidecar
+## توسيع طائرة تحكم Wallarm Sidecar
 
-حل Wallarm Sidecar [يتألف من مكونين: وحدة تحكم وتحليل ما بعد (Tarantool)][sidecar-arch-docs]. يتطلب كل منهما تكوينات توسع فردية، تتضمن معلمات Kubernetes مثل `replicas`، `requests`، و`podAntiAffinity`.
+[حل Wallarm Sidecar يتألف من مكونين: متحكم وما بعد التحليل (Tarantool)][sidecar-arch-docs] . كل واحد يتطلب تكوينات توسعة فردية ، تتضمن معلمات Kubernetes مثل `replicas`، `requests`، و `podAntiAffinity`.
 
-### وحدة التحكم
+### المتحكم Controller
 
-تعمل وحدة التحكم Sidecar كخطاف قبول تحويل، حيث تقوم بحقن حاويات  sidecar في وحدة التطبيق. في معظم الحالات، لا يلزم توسيع HPA. لنشر التوافر العالي، فكر في الإعدادات التالية لملف `values.yaml`:
+يعمل Sidecar Controller كـ webhook ذو القبول المتحول، حيث يدمج الحاويات الجانبية في Pod التطبيق. في معظم الحالات، ليس من الضروري توسعة HPA. بالنسبة للتوزيع عالي الاستعمال، فكر في الإعدادات التالية لملف `values.yaml`:
 
-* استخدم أكثر من نموذج واحد من وحدة sidecar. يمكن التحكم في هذا من خلال سمة [`controller.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L877).
-* اختياريا، قم بتعيين [`controller.resources.requests.cpu` و `controller.resources.requests.memory`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L1001) لضمان الاحتفاظ بالموارد لوحدة التحكم في وحدة Pod.
-* اختياريا، استخدم القلة التكافؤية لتوزيع pods الوحدة التحكم عبر العقد المختلفة لتوفير المرونة في حالة فشل العقدة.
+* استخدم أكثر من مثيل واحد للPod الجانبي. يمكن التحكم في هذا باستخدام السمة [`controller.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L877).
+* اختيارياً ، ضبط [`controller.resources.requests.cpu` و`controller.resources.requests.memory`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L1001) لضمان النوابل المحجوزة لـ Pod المتحكم.
+* اختيارياً ، استخدم pod anti-affinity لتوزيع أقراص المتحكم عبر أقراص مختلفة لتقديم المرونة في حالة فشل العقدة.
 
-فيما يلي مثال على القسم `controller` المعدل في ملف `values.yaml`، والذي يتضمن هذه التوصيات:
+فيما يلي مثال على القسم `controller` المُعدَّل في ملف `values.yaml` ، حيث يتم دمج هذه التوصيات:
 
 ```yaml
 controller:
@@ -55,19 +55,19 @@ controller:
       memory: 32Mi
 ```
 
-### تحليل ما بعد (Tarantool)
+### ما بعد التحليل (Tarantool)
 
-يتعامل مكون postanalytics مع حركة مرور جميع حاويات sidecar المثبتة في حمل العمل التطبيقي ، لا يمكن توسيع هذا المكون عن طريق HPA.
+المكون ما بعد التحليل يتعامل مع حركة المرور من جميع الحاويات الجانبية المُدمجة في حمل عمل تطبيقك. هذا الجزء لا يمكن توسعته بواسطة HPA.
 
-لشركة التوافر العالي، يمكنك ضبط عدد النسخ يدويا باستخدام الإعدادات الآتية في ملف `values.yaml`:
+بالنسبة للتوزيع العالي الاستعمال، يمكنك تعديل عدد التكرارات يدويًا باستخدام إعدادات الأتربة الآتية `values.yaml`:
 
-* استخدم أكثر من نموذج واحد لوحدة الترانتول. يمكن التحكم في هذا من خلال سمة [`postanalytics.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L382).
-* قم بتكوين [`postanalytics.tarantool.config.arena`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L610C7-L610C7) بالجيجابايتات (GB) بناء على حجم حركة المرور المتوقعة للتطبيق العمل. هذا الإعداد يحدد الذاكرة القصوى التي سيراعيها تراتنول. للحصول على إرشادات الحساب، قد تجد السامي لتوصياتنا لخيارات النشر الأخرى مفيدة [نفس توصياتنا لخيارات النشر الأخرى][tarantool-memory-recommendations].
-* محاذاة [`postanalytics.tarantool.resources.limits` و `postanalytics.tarantool.resources.requests`](https://github.com/wallarm/sidecar/blob/4eb1a4c4f8d20989757c50c40e192eb7eb1f2169/helm/values.yaml#L639) مع configuration الأرينا. ضع الحدود في أو أعلى من قيمة الأرينا للتعامل مع الطلب الذروة وتجنب تعطل الذاكرة. ضمان طلبات الوفاء أو تجاوز قيمة الأرينا للأداء المثالي لـ Tarantool. للحصول على معلومات أكثر، راجع [توثيق كوبرنيتس](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
-* اختياريا، قم بتعيين `resources.requests` و `resources.limits` لجميع الحاويات الأخرى في قسم `postanalytics` لضمان التخصيص المخصص للموارد لبود Tarantool. تشمل هذه الحاويات `postanalytics.init`، `postanalytics.cron`, `postanalytics.appstructure`, و `postanalytics.antibot`.
-* اختياريا، تنفيذ عدم التكافؤ ضد pod لتوزيع pods postanalytics عبر العقد المختلفة لتوفير المرونة في حالة فشل العقدة.
+* استخدم أكثر من مثيل واحد لـ Tarantool Pod. يمكن التحكم في هذا بواسطة السمة [`postanalytics.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L382).
+* قم بتكوين [`postanalytics.tarantool.config.arena`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L610C7-L610C7) بالجيجابايت (GB) بناء على حجم حركة المرور المتوقعة إلى حمل العمل التطبيقي. يحدد هذا الإعداد الذاكرة القصوى التي سيستخدمها تارنتول. لإرشادات الحساب ، قد تكون مفيدة [نفس التوصيات الخاصة بنا لخيارات التوزيع الأخرى][tarantool-memory-recommendations].
+* مراقبة [`postanalytics.tarantool.resources.limits`و`postanalytics.tarantool.resources.requests`](https://github.com/wallarm/sidecar/blob/4eb1a4c4f8d20989757c50c40e192eb7eb1f2169/helm/values.yaml#L639) مع تكوين `arena`. قم بتعيين `limits` على أو أعلى من قيمة `arena` للتعامل مع الطلب الذروة وتجنب الأعطال المرتبطة بالذاكرة. ضمان أن `requests` ترتقي أو تجاوز قيمة `arena` لأداء Tarantool المثالي. لمزيد من المعلومات، راجع [توثيق Kubernetes](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
+* اختيارياً ، قم بتعيين `resources.requests` و `resources.limits` لجميع الحاويات الأخرى ضمن قسم `postanalytics` لضمان التخصيص المُخصّص لموارد Tarantool Pod. تتضمن هذه الحاويات التالية: `postanalytics.init`، `postanalytics.cron`، `postanalytics.appstructure`، و`postanalytics.antibot`.
+* اختيارياً ، قم بتنفيذ pod anti-affinity لتوزيع حاويات البود `postanalytics` في أقراص مختلفة لتوفير المرونة في حالة فشل العقدة.
 
-فيما يلي مثال على القسم `postanalytics` المعدل في ملف `values.yaml`، والذي يتضمن هذه التوصيات:
+فيما يلي مثال على القسم `postanalytics` المُعدَّل في ملف `values.yaml` ، حيث يتم دمج هذه التوصيات:
 
 ```yaml
 postanalytics:
@@ -132,29 +132,29 @@ postanalytics:
           topologyKey: kubernetes.io/hostname
 ```
 
-## توسيع حمل العمل التطبيقي مع الحاويات sidecar المثبتة
+## توسيع نطاق عبء العمل التطبيقي مع حاويات القطعة المضافة
 
-عند استخدام توسيع الوحدات الأفقية (HPA) لإدارة حمل العمل التطبيقي، من الضروري تكوين `resources.requests` لكل حاوية في الوحدة بما في ذلك تلك التي يتم حقنها بواسطة Wallarm Sidecar.
+عند استخدام التوسع الأفقي لـ Pod (HPA) لإدارة أوزان العمل التطبيقية ، من الضروري تكوين `resources.requests` لكل حاوية في Pod بما في ذلك تلك المدمجة بواسطة Wallarm Sidecar.
 
-### الاحتياجات الأساسية
+### متطلبات أساسية
 
-لإنشاء [HPA](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/) بنجاح على الوحدات الحاويات Wallarm، تأكد من تلبية هذه الاحتياجات الأساسية:
+لتطبيق [HPA](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/) بنجاح لحاويات Wallarm ، تأكد من تحقيق هذه الشروط المسبقة:
 
-* [خادم المقاييس](https://github.com/kubernetes-sigs/metrics-server#readme) مُعد ومهيأ في تجمع Kubernetes الخاص بك.
-* [`resources.request`](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/) مكونة لجميع الواحدات في وحدة التطبيق، بما في ذلك وحدات البداية التهيئة.
+* [خادم المقاييس](https://github.com/kubernetes-sigs/metrics-server#readme) مُكوّن ومُدرج في عقدة Kubernetes الخاصة بك.
+* تم تكوين [`resources.request`](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/) لجميع الحاويات في البود التطبيقي ، بما في ذلك الحاويات الابتدائية.
 
-    يجب تحديد تخصيص الموارد لوحدة التطبيق في ظهورها. بالنسبة لحاويات التي تم حقنها بواسطة Wallarm، يتم توضيح إعدادات الواحدات أدناه، مع إمكانية التخصيص سواء [على أساس عام أو لكل وحدة][sidecar-conf-area].
+يجب تحديد توزيع موارد الحاوية التطبيقية في بيان الحاوية. بالنسبة للحاويات التي أدرجتها Wallarm ، يتم توضيح إعدادات الموارد أدناه ، مع إمكانية التخصيص على أساس [العالمي ولكل بود][sidecar-conf-area].
 
-### التخصيص العام عبر قيم الرسم البياني Helm
+### التوزيع العالمي عبر قيم الرسم البياني Helm
 
-| نمط نشر الوحدة | اسم الوحدة        | قيمة الرسم البياني                                         |
+| نمط توزيع الحاوية | اسم الحاوية        | قيمة الرسم البياني                                      |
 |-------------------|-----------------------|--------------------------------------------------|
-| [الانقسام، الفردي][single-split-deployment]     | sidecar-proxy         | config.sidecar.containers.proxy.resources        |
-| انقسام             | sidecar-helper        | config.sidecar.containers.helper.resources       |
-| الانقسام، الفردي     | sidecar-init-iptables | config.sidecar.initContainers.iptables.resources |
-| انقسام             | sidecar-init-helper   | config.sidecar.initContainers.helper.resources   |
+| [Split, Single][single-split-deployment]     | sidecar-proxy         | config.sidecar.containers.proxy.resources        |
+| Split             | sidecar-helper        | config.sidecar.containers.helper.resources       |
+| Split, Single     | sidecar-init-iptables | config.sidecar.initContainers.iptables.resources |
+| Split             | sidecar-init-helper   | config.sidecar.initContainers.helper.resources   |
 
-مثال على قيم الرسم البياني لحلم لإدارة الموارد (الطلبات والحدود) على أساس عام:
+مثال على قيم الرسم البياني لـ Helm لإدارة الموارد (الطلبات والحدود) على نطاق عالمي:
 
 ```yaml
 config:
@@ -195,32 +195,32 @@ config:
             memory: 64Mi
 ```
 
-### التخصيص لكل وحدة عبر توضيحات الوحدة
+### تخصيص على أساس كل بود عبر توصيف البود
 
-| نمط نشر الوحدة | اسم الوحدة        | التوضيح                                                             |
+| نمط توزيع الحاوية | اسم الحاوية        | توصيف |
 |-------------------|-----------------------|------------------------------------------------------------------------|
-| [الفردي، الانقسام][single-split-deployment]     | sidecar-proxy         | sidecar.wallarm.io/proxy-{cpu,memory,cpu-limit,memory-limit}         |
-| انقسام             | sidecar-helper        | sidecar.wallarm.io/helper-{cpu,memory,cpu-limit,memory-limit}        |
-| الفردي، الانقسام     | sidecar-init-iptables | sidecar.wallarm.io/init-iptables-{cpu,memory,cpu-limit,memory-limit} |
-| انقسام             | sidecar-init-helper   | sidecar.wallarm.io/init-helper-{cpu,memory,cpu-limit,memory-limit}   |
+| [Single, Split][single-split-deployment]     | sidecar-proxy         | sidecar.wallarm.io/proxy-{cpu,memory,cpu-limit,memory-limit}         |
+| Split             | sidecar-helper        | sidecar.wallarm.io/helper-{cpu,memory,cpu-limit,memory-limit}        |
+| Single, Split     | sidecar-init-iptables | sidecar.wallarm.io/init-iptables-{cpu,memory,cpu-limit,memory-limit} |
+| Split             | sidecar-init-helper   | sidecar.wallarm.io/init-helper-{cpu,memory,cpu-limit,memory-limit}   |
 
-مثال على توضيحات لإدارة الموارد (الطلبات والحدود) على أساس لكل وحدة (مع تمكين نمط الوحدة `فردي`):
+مثال على التوصيفات لإدارة الموارد (الطلبات والحدود) على أساس كل بود (مع تمكين نمط الحاوية `single`):
 
 ```yaml hl_lines="16-24"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: تطبيقي
+  name: myapp
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: تطبيقي
+      app: myapp
   template:
     metadata:
       labels:
-        app: تطبيقي
+        app: myapp
         wallarm-sidecar: enabled
       annotations:
         sidecar.wallarm.io/proxy-cpu: 200m
@@ -242,7 +242,7 @@ spec:
 
 ## مثال
 
-في الأسفل هو مثال على ملف`values.yaml` للرسم البياني Wallarm بالإعدادات المذكورة أعلاه المطبقة. يفترض هذا المثال أن الموارد للحاويات التي تم ضخها من قبل Wallarm يتم نسبتها على أساس عالمي.
+أدناه مثال لملف `values.yaml` للرسم البياني لـ Wallarm مع تطبيق الإعدادات المذكورة أعلاه. يفترض هذا المثال أن الموارد للحاويات المدمجة بواسطة Wallarm يتم تخصيصها على نطاق عالمي.
 
 ```yaml
 controller:

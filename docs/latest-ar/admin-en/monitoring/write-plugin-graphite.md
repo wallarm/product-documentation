@@ -7,47 +7,47 @@
 [link-collectd-naming]:         https://collectd.org/wiki/index.php/Naming_schema
 [link-write-plugin]:            https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_write_graphite
 
-#   تصدير المقاييس إلى Graphite عبر الإضافة `collectd` للكتابة
+#   تصدير المقاييس إلى Graphite عبر إضافة `collectd` للكتابة
 
-هذا المستند يقدم مثالًا على استخدام الإضافة `write_graphite` لتصدير المقاييس إلى Graphite.
+توفر هذه الوثيقة مثالاً على استخدام إضافة `write_graphite` لتصدير المقاييس إلى Graphite.
 
-##  مثال على سير العمل
+##  سير عمل مثالي
 
 --8<-- "../include/monitoring/metric-example.md"
 
-![مثال على سير العمل][img-write-plugin-graphite]
+![سير العمل المثالي][img-write-plugin-graphite]
 
-المخطط التالي مستخدم في هذا المستند:
-*   يتم نشر عقدة فلتر Wallarm على مضيف يمكن الوصول إليه عبر عنوان الـ IP `10.0.30.5` واسم النطاق المؤهل بالكامل `node.example.local`.
+يستخدم المخطط التالي في هذه الوثيقة:
+*   يتم نشر عقدة تصفية Wallarm على مضيف يمكن الوصول إليه عبر عنوان IP `10.0.30.5` واسم المجال المؤهل بالكامل `node.example.local`.
 
-    إضافة `write_graphite` لـ `collectd` على عقدة الفلتر مُعدة كالتالي:
+    تم تكوين إضافة `write_graphite` لـ `collectd` على عقدة التصفية كما يلي:
 
-      *   جميع المقاييس يتم إرسالها إلى الخادم `10.0.30.30` الذي يستمع على المنفذ `2003/TCP`.
-      *   بعض الإضافات الخاصة بـ Wallarm في `collectd` تدعم [النسخ المتعددة][link-collectd-naming]، لذا فإن الإضافة `write_graphite` تحتوي على المعامل `SeparateInstances` مُضبط على قيمة `true`. تعني القيمة `true` أن الإضافة يمكنها العمل مع عدة نسخ.
+      *   يتم إرسال جميع المقاييس إلى الخادم `10.0.30.30` الذي يستمع على المنفذ `2003/TCP`.
+      *   تدعم بعض إضافات `collectd` الخاصة بـ Wallarm [حالات][link-collectd-naming] متعددة، لذلك تحتوي إضافة `write_graphite` على معامل `SeparateInstances` مضبوط على `true`. القيمة `true` تعني أن الإضافة يمكن أن تعمل مع عدة حالات.
     
-    قائمة كاملة بخيارات الإضافة متاحة [هنا][link-write-plugin].
+    قائمة كاملة بخيارات الإضافة متوفرة [هنا][link-write-plugin].
     
-*   كلا من خدمات `graphite` و `grafana` يتم نشرها كحاويات Docker على مضيف منفصل بعنوان الـ IP `10.0.30.30`.
+*   تم نشر خدمتي `graphite` و`grafana` كحاويات Docker على مضيف منفصل بعنوان IP `10.0.30.30`.
     
-    خدمة `graphite` مع Graphite مُعدة كالتالي:
+    يتم تكوين خدمة `graphite` مع Graphite كما يلي:
 
-      *   تستمع للاتصالات الواردة على المنفذ `2003/TCP`، والذي سوف يرسل إليه `collectd` مقاييس عقدة الفلتر.
-      *   تستمع للاتصالات الواردة على المنفذ `8080/TCP`، من خلاله سوف تحدث الاتصالات مع Grafana.
-      *   الخدمة تشارك الشبكة `sample-net` Docker مع خدمة `grafana`.
+      *   تستمع للاتصالات الواردة على المنفذ `2003/TCP`، الذي سيُرسل إليه `collectd` المقاييس من عقدة التصفية.
+      *   تستمع للاتصالات الواردة على المنفذ `8080/TCP`، الذي ستحدث من خلاله التواصل مع Grafana.
+      *   تشارك الخدمة شبكة Docker `sample-net` مع خدمة `grafana`.
 
-    خدمة `grafana` مع Grafana مُعدة كالتالي:
+    يتم تكوين خدمة `grafana` مع Grafana كما يلي:
 
       *   واجهة ويب Grafana متاحة على `http://10.0.30.30:3000`.
-      *   الخدمة تشارك الشبكة `sample-net` Docker مع خدمة `graphite`.
+      *   تشارك الخدمة شبكة Docker `sample-net` مع خدمة `graphite`.
 
 ##  تكوين تصدير المقاييس إلى Graphite
 
 --8<-- "../include/monitoring/docker-prerequisites.md"
 
-### نشر Graphite و Grafana
+### نشر Graphite وGrafana
 
-نشر Graphite و Grafana على مضيف Docker:
-1.  انشئ ملف `docker-compose.yaml` بالمحتوى التالي:
+نشر Graphite وGrafana على مضيف Docker:
+1.  إنشاء ملف `docker-compose.yaml` بالمحتوى التالي:
     
     ```
     version: "3"
@@ -76,17 +76,17 @@
       sample-net:
     ```
     
-2.  قم ببناء الخدمات بتنفيذ أمر `docker-compose build`.
+2.  بناء الخدمات بتنفيذ أمر `docker-compose build`.
     
-3.  قم بتشغيل الخدمات بتنفيذ أمر `docker-compose up -d graphite grafana`.
+3.  تشغيل الخدمات بتنفيذ أمر `docker-compose up -d graphite grafana`.
     
-في هذه المرحلة، يجب أن يكون Graphite يعمل وجاهزًا لاستقبال المقاييس من `collectd`، و Grafana جاهزًا لمراقبة وتصور البيانات المخزنة في Graphite.
+في هذه المرحلة، يجب أن يكون Graphite قيد التشغيل وجاهزًا لاستقبال المقاييس من `collectd`، وGrafana جاهزًا لمراقبة البيانات وتصورها المخزنة في Graphite.
 
 ### تكوين `collectd`
 
-قم بتكوين `collectd` لتنزيل المقاييس إلى Graphite:
-1.  اتصل بعقدة الفلتر (على سبيل المثال، باستخدام بروتوكول SSH). تأكد من تسجيل الدخول كـ `root` أو حساب آخر له صلاحيات المدير.
-2.  قم بإنشاء ملف بالاسم `/etc/collectd/collectd.conf.d/export-to-graphite.conf` بالمحتوى التالي:
+تكوين `collectd` لتحميل المقاييس إلى Graphite:
+1.  الاتصال بعقدة التصفية (على سبيل المثال، باستخدام بروتوكول SSH). تأكد من تسجيل الدخول كـ `root` أو حساب آخر بصلاحيات المدير.
+2.  إنشاء ملف بالاسم `/etc/collectd/collectd.conf.d/export-to-graphite.conf` بالمحتوى التالي:
     
     ```
     LoadPlugin write_graphite
@@ -101,15 +101,15 @@
     </Plugin>
     ```
     
-    الكائنات التالية مُكونة هنا:
+    الكيانات المكونة هنا:
     
-    1.  اسم المضيف الذي منه يتم جمع المقاييس (`node.example.local`).
-    2.  الخادم الذي يجب إرسال المقاييس إليه (`10.0.30.30`).
+    1.  اسم المضيف الذي يتم منه جمع المقاييس (`node.example.local`).
+    2.  الخادم الذي ينبغي أرسال المقاييس إليه (`10.0.30.30`).
     3.  منفذ الخادم (`2003`) والبروتوكول (`tcp`).
-    4.  منطق نقل البيانات: بيانات نسخة واحدة من الإضافة مفصولة عن بيانات نسخ أخرى (`SeparateInstances true`).
+    4.  منطق نقل البيانات: تفصل بيانات حالة إضافة عن بيانات حالة أُخرى (`SeparateInstances true`).
     
-3.  أعد تشغيل خدمة `collectd` بتشغيل الأمر المناسب:
+3.  إعادة تشغيل خدمة `collectd` بتنفيذ الأمر المناسب:
 
     --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
-الآن سوف يحصل Graphite على جميع مقاييس عقدة الفلتر. يمكنك تصور المقاييس التي تهمك، ومراقبتها [مع Grafana][doc-grafana].
+الآن سيتلقى Graphite جميع مقاييس عقدة التصفية. يمكنك تصور المقاييس التي تهمك، ومراقبتها [مع Grafana][doc-grafana].

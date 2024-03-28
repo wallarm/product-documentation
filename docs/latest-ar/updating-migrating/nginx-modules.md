@@ -1,45 +1,44 @@
-[wallarm-status-instr]:             ../admin-en/configure-statistics-service.md
-[ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
-[waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
-[blocking-page-instr]:              ../admin-en/configuration-guides/configure-block-page-and-code.md
-[logging-instr]:                    ../admin-en/configure-logging.md
-[proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md
-[process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[configure-selinux-instr]:          ../admin-en/configure-selinux.md
-[configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
-[dynamic-dns-resolution-nginx]:     ../admin-en/configure-dynamic-dns-resolution-nginx.md
-[img-wl-console-users]:             ../images/check-users.png 
-[img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
-[nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
-[overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                     ../user-guides/ip-lists/overview.md
-[wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[oob-docs]:                         ../installation//oob/overview.md
-[sqli-attack-docs]:                 ../attacks-vulns-list.md#sql-injection
-[xss-attack-docs]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
-[web-server-mirroring-examples]:    ../installation/oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+#[wallarm-status-instr]:             ../admin-en/configure-statistics-service.md
+#[ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
+#[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
+#[waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
+#[blocking-page-instr]:              ../admin-en/configuration-guides/configure-block-page-and-code.md
+#[logging-instr]:                    ../admin-en/configure-logging.md
+#[proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md
+#[process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+#[configure-selinux-instr]:          ../admin-en/configure-selinux.md
+#[configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+#[install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
+#[dynamic-dns-resolution-nginx]:     ../admin-en/configure-dynamic-dns-resolution-nginx.md
+#[img-wl-console-users]:             ../images/check-users.png 
+#[img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
+#[nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+#[nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
+#[overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
+#[graylist-docs]:                     ../user-guides/ip-lists/overview.md
+#[wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+#[oob-docs]:                         ../installation//oob/overview.md
+#[sqli-attack-docs]:                 ../attacks-vulns-list.md#sql-injection
+#[xss-attack-docs]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
+#[web-server-mirroring-examples]:    ../installation/oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 
+# ترقية وحدات Wallarm NGINX
 
-# ترقية Wallarm NGINX الوحدات
+تصف هذه التعليمات الخطوات لترقية وحدات Wallarm NGINX 4.x المثبتة من الحزم الفردية إلى الإصدار 4.10. هذه هي الوحدات المثبتة وفقًا لواحدة من التعليمات التالية:
 
-تصف هذه التعليمات الخطوات لترقية Wallarm NGINX الوحدات 4.x المثبتة من الحزم الفردية إلى الإصدار 4.10. هذه هي الوحدات التي تم تثبيتها وفقًا لإحدى التعليمات البرمجية التالية:
-
-* [حزم فردية لـ NGINX ثابت](../installation/nginx/dynamic-module.md)
+* [حزم فردية لـ NGINX مستقر](../installation/nginx/dynamic-module.md)
 * [حزم فردية لـ NGINX Plus](../installation/nginx-plus.md)
-* [حزم فردية لـ NGINX المقدمة من التوزيع](../installation/nginx/dynamic-module-from-distr.md)
+* [حزم فردية لـ NGINX المقدمة من التوزيعة](../installation/nginx/dynamic-module-from-distr.md)
 
-لترقية الفرع نهاية الحياة (3.6 أو أقل) ، يرجى استخدام [تعليمات مختلفة](older-versions/nginx-modules.md).
+لترقية النود القديم (3.6 أو أقل)، يرجى استخدام [التعليمات المختلفة](older-versions/nginx-modules.md).
 
-## وسائل الترقية
+## طرق الترقية
 
 --8<-- "../include/waf/installation/upgrade-methods.md"
 
 ## الترقية باستخدام المثبت الشامل
 
-استخدم الإجراء أدناه لترقية Wallarm NGINX الوحدات 4.x إلى الإصدار 4.10 باستخدام [المثبت الشامل](../installation/nginx/all-in-one.md).
+استخدم الإجراء أدناه لترقية وحدات Wallarm NGINX 4.x إلى الإصدار 4.10 باستخدام [المثبت الشامل](../installation/nginx/all-in-one.md).
 
 ### متطلبات الترقية باستخدام المثبت الشامل
 
@@ -47,13 +46,13 @@
 
 ### إجراء الترقية
 
-* إذا تم تثبيت وحدات الفلترة ووحدات postanalytics على نفس الخادم، فاتبع التعليمات أدناه لترقية الكل.
+* إذا تم تثبيت وحدات النود التصيفية و postanalytics على نفس الخادم، فاتبع الإرشادات أدناه لترقية الكل.
 
-    ستحتاج إلى تشغيل وحدة من الإصدار الأحدث باستخدام المثبت الشامل على جهاز نظيف، واختبار أنه يعمل بشكل جيد وإيقاف السابق وتكوين حركة المرور لتتدفق عبر الجهاز الجديد بدلاً من السابق.
+    ستحتاج إلى تشغيل نود من الإصدار الأحدث باستخدام المثبت الشامل على جهاز نظيف، اختبر أنه يعمل بشكل جيد وأوقف الأول وقم بتهيئة حركة المرور لتمر عبر الجهاز الجديد بدلاً من الجهاز السابق.
 
-* إذا تم تثبيت وحدات الفلترة و postanalytics على خوادم مختلفة، **أولاً** قم بترقية وحدة postanalytics و**ثم** وحدة الفلترة باستخدام هذه [التعليمات](../updating-migrating/separate-postanalytics.md).
+* إذا تم تثبيت وحدات النود التصيفية و postanalytics على خوادم مختلفة، **قم أولا** بترقية وحدة postanalytics و **بعد ذلك** وحدة التصفية باستخدام هذه [الإرشادات](../updating-migrating/separate-postanalytics.md).
 
-### الخطوة 1: إعداد جهاز نظيف
+### الخطوة 1: إعداد الجهاز النظيف
 
 --8<-- "../include/waf/installation/all-in-one-clean-machine.md"
 
@@ -61,121 +60,121 @@
 
 --8<-- "../include/waf/installation/all-in-one-nginx.md"
 
-### الخطوة 3: إعداد Wallarm token
+### الخطوة 3: تحضير الرمز الشريطي لـ Wallarm
 
 --8<-- "../include/waf/installation/all-in-one-token.md"
 
-### الخطوة 4: تحميل مثبت Wallarm الشامل
+### الخطوة 4: تنزيل المثبت الشامل لـ Wallarm
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-### الخطوة 5: تشغيل مثبت Wallarm الشامل
+### الخطوة 5: تشغيل المثبت الشامل لـ Wallarm
 
-#### وحدة تصفية العقد وpostanalytics على نفس الخادم
+#### وحدة التصنيف (Filtering node) وpostanalytics على نفس الخادم
 
 --8<-- "../include/waf/installation/all-in-one-installer-run.md"
 
-#### وحدة تصفية العقد وpostanalytics على خوادم مختلفة
+#### وحدة التصنيف (Filtering node) وpostanalytics على خوادم مختلفة
 
-!!! warning "تسلسل الخطوات لترقية وحدات الفلترة وpostanalytics"
-    إذا تم تثبيت وحدة الفلترة ووحدة postanalytics على خوادم مختلفة ، فيجب ترقية حزم postanalytics قبل تحديث حزمة وحدة الفلترة.
+!!! warning "تسلسل الخطوات لترقية وحدات التصنيف وpostanalytics"
+    إذا تم تثبيت وحدات التصنيف وpostanalytics على خوادم مختلفة، فيجب عليك ترقية حزم postanalytics قبل تحديث حزم التصنيف.
 
-1. قم بترقية وحدة postanalytics باتباع هذه [التعليمات](separate-postanalytics.md).
-1. ترقية وحدة تصفية العقد:
+1. قم بترقية وحدة postanalytics باتباع هذه [الإرشادات](separate-postanalytics.md).
+1. ترقية وحدة التصنيف (Filtering node):
 
     === "API token"
         ```bash
         # إذا كنت تستخدم الإصدار x86_64:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<المجموعة>' sh wallarm-4.10.2.x86_64-glibc.sh filtering
 
         # إذا كنت تستخدم الإصدار ARM64:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<المجموعة>' sh wallarm-4.10.2.aarch64-glibc.sh filtering
         ```        
 
-        تضع المتغير `WALLARM_LABELS` المجموعة التي سيتم إضافة العقدة إليها (تستخدم لتجميع العقدات بطريقة منطقية في واجهة Wallarm Console UI).
+        تضبط النسق `WALLARM_LABELS` للمجموعة التي ستضاف إليها النود (تعتمد لتجميع النود منطقياً في واجهة المستخدم لـ Wallarm Console).
 
-    === "Node token"
+    === "Node التوكن"
         ```bash
         # إذا كنت تستخدم الإصدار x86_64:
-        sudo sh wallarm-4.10.1.x86_64-glibc.sh filtering
+        sudo sh wallarm-4.10.2.x86_64-glibc.sh filtering
 
         # إذا كنت تستخدم الإصدار ARM64:
-        sudo sh wallarm-4.10.1.aarch64-glibc.sh filtering
+        sudo sh wallarm-4.10.2.aarch64-glibc.sh filtering
         ```
 
-### الخطوة 6: نقل تكوين NGINX وpostanalytics من قديم لجهاز العقدة الجديد
+### الخطوة 6: نقل تكوين NGINX و postanalytics من محترف النود القديم إلى الجديد
 
-قم بنقل تكوين NGINX المتعلق بالعقدة وتكوين postanalytics من الملفات التكوين على الجهاز القديم إلى الملفات على الجهاز الجديد. يمكنك القيام بذلك من خلال نسخ التوجيهات المطلوبة.
+قم بنقل تكوين النود المتعلق بـ NGINX و postanalytics من الملفات التكوينية على الجهاز القديم إلى الملفات على الجهاز الجديد. يمكنك أن تفعل ذلك بنسخ التوجيهات المطلوبة.
 
 **ملفات المصدر**
 
-على جهاز قديم، اعتمادا على نظام التشغيل وإصدار NGINX، قد تكون ملفات التهيئة NGINX تقع في دلائل مختلفة ولها أسماء مختلفة. الأكثر شيوعًا هي الأتية:
+على الجهاز القديم، حسب نظام التشغيل وإصدار NGINX، قد تكون ملفات التكوين NGINX موجودة في دلائل مختلفة ولها أسماء مختلفة. الأكثر شيوعا هي:
 
 * `/etc/nginx/conf.d/default.conf` مع إعدادات NGINX
-* `/etc/nginx/conf.d/wallarm-status.conf` مع إعدادات مراقبة العقدة Wallarm. الوصف التفصيلي متاح ضمن [الرابط][wallarm-status-instr]
+* `/etc/nginx/conf.d/wallarm-status.conf` مع إعدادات مراقبة نود Wallarm. الوصف التفصيلي متاح ضمن [الرابط][wallarm-status-instr]
 
-أيضًا، يتواجد عادة تكوين الوحدة postanalytics (إعدادات قاعدة بيانات Tarantool) هنا:
+وعادةً ما يكون تكوين وحدة postanalytics (إعدادات قاعدة البيانات Tarantool) موجودًا هنا:
 
 * `/etc/default/wallarm-tarantool` أو
 * `/etc/sysconfig/wallarm-tarantool`
 
 **ملفات الهدف**
 
-حيث أن المثبت الشامل يعمل مع مجموعات مختلفة من نظم التشغيل وإصدارات NGINX، على جهازك الجديد، قد تكون [ملفات الهدف](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) لديها أسماء مختلفة وتكون في دلائل مختلفة.
+بما أن المثبت الشامل يعمل مع مجموعات مختلفة من نظام التشغيل و إصدارات NGINX، قد يكون على جهاز الجديد لديك [ملفات الهدف](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) لها أسماء مختلفة وتقع في دلائل مختلفة.
 
 ### الخطوة 7: إعادة تشغيل NGINX
 
 --8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-### الخطوة 8: اختبار عملية Wallarm node
+### الخطوة 8: اختبار تشغيل نود Wallarm
 
-لاختبار عملية العقدة الجديدة:
+لاختبار تشغيل النود الجديد:
 
-1. أرسل الطلب مع هجمات تجريبية [SQLI][sqli-attack-docs] و [XSS][xss-attack-docs] إلى عنوان المورد المحمي:
+1. أرسل الطلب مع اختبار [SQLI][sqli-attack-docs] و [XSS][xss-attack-docs] هجمات إلى عنوان المورد المحمي:
 
     ```
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-1. افتح Wallarm Console → قسم **الهجمات** في [US Cloud](https://us1.my.wallarm.com/attacks) أو [EU Cloud](https://my.wallarm.com/attacks) وتأكد من أن الهجمات تظهر في القائمة.
-1. بمجرد أن يتم مزامنة بيانات المتجر الخاص بك (القواعد، قوائم IP) مع العقدة الجديدة، قم بإجراء بعض الهجمات الاختبارية للتأكد من أن قواعدك تعمل كما هو متوقع.
+1. افتح واجهة Wallarm Console → قسم **الهجمات** في [السحابة الأمريكية](https://us1.my.wallarm.com/attacks) أو [السحابة الأوروبية](https://my.wallarm.com/attacks) وتأكد من أن الهجمات تظهر في القائمة.
+1. بمجرد مزامنة بيانات السحابة المخزنة الخاصة بك (القواعد، قوائم IP) إلى النود الجديد، قم بإجراء بعض الهجمات الاختبارية للتأكد من أن قواعدك تعمل كما هو متوقع.
 
-### الخطوة 9: تكوين إرسال حركة المرور إلى Wallarm node
+### الخطوة 9: تكوين إرسال حركة المرور إلى نود Wallarm
 
-اعتمادًا على أسلوب النشر المستخدم، قم بالإعدادات التالية:
+اعتمادًا على النهج الذي تم تنفيذه للتشغيل، قم بتنفيذ الإعدادات التالية:
 
-=== "داخل السطر"
-    قم بتحديث الأهداف لتحميل الموازن الخاص بك لإرسال حركة المرور إلى Wallarm instance. للحصول على التفاصيل، يرجى الرجوع إلى تعليمات التعليم البرمجي الخاصة بموازن التحميل الخاص بك.
+=== "انتشاء"
+    تحديث أهداف التوازن الخاصة بك لإرسال الحركة إلى عينة Wallarm. للتفاصيل، يرجى الرجوع إلى وثائق التوازن الخاصة بك.
 
-    قبل إعادة توجيه حركة المرور بشكل كامل إلى العقدة الجديدة، من الأفضل أن تقوم أولا بإعادة توجيه جزء منها والتحقق من أن العقدة الجديدة تتصرف كما هو متوقع.
+    قبل إعادة توجيه الحركة بشكل كامل إلى النود الجديد، يوصى أولا بإعادة توجيهها جزئيا والتحقق من أن النود الجديد يتصرف وفقًا للتوقعات.
 
-=== "خارج النطاق"
-    قم بتكوين خادم الويب الخاص بك أو خادم الوكيل (على سبيل المثال، NGINX، Envoy) لمراقبة حركة المرور الواردة إلى Wallarm node. بالنسبة لتفاصيل التكوين، نوصي بالرجوع إلى تعليمات خادم الويب الخاص بك أو خادم الوكيل.
+=== "Out-of-Band"
+    قم بتكوين خادم الويب أو الخادم الوكيل (مثل NGINX، Envoy) لمرآة حركة المرور الواردة إلى نود Wallarm. قم بالرجوع إلى وثائق خادم الويب أو خادم الوكيل للحصول على تفاصيل التكوين.
 
-    داخل [الرابط][web-server-mirroring-examples]، ستجد تكوين المثال لأكثر خادم ويب وخادم وكيل شعبية (NGINX, Traefik, Envoy).
+    داخل [الرابط][web-server-mirroring-examples]، ستجد تكوين النموذج لأكثر خوادم الويب وأجهزة توجيه الوكيل شهرة (NGINX, Traefik, Envoy).
 
-### الخطوة 10: إزالة العقدة القديمة
+### الخطوة 10: حذف النود القديم
 
-1. احذف العقدة القديمة في Wallarm Console → **عقد** بحدد العقدة الخاصة بك وانقر على **حذف**.
+1. حذف النود القديم في Wallarm Console → **Nodes** بتحديد نود الخاص بك والنقر على **Delete**.
 1. تأكيد الإجراء.
     
-    عندما يتم حذف العقدة من السحابة، سوف يتوقف ترشيح الطلبات لتطبيقاتك. يتم حذف العقدة التصفية ولا يمكن التراجع. سيتم حذف العقدة من قائمة العقد دائمًا.
+    عند حذف النود من السحابة، سوف يتوقف عن ترشيح الطلبات إلى التطبيقات الخاصة بك. لا يمكن التراجع عن حذف النود التصفية. سيتم حذف النود من قائمة النود نهائيًا.
 
-1. حذف آلة مع العقدة القديمة أو مجرد تنظيفها من مكونات Wallarm node:
+1. حذف الجهاز مع النود القديم أو فقط تنظيفه من مكونات نود Wallarm:
 
-    === "Debian"
+    === "ديبيان"
         ```bash
         sudo apt remove wallarm-node nginx-module-wallarm
         ```
-    === "Ubuntu"
+    === "أوبونتو"
         ```bash
         sudo apt remove wallarm-node nginx-module-wallarm
         ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "سنتْ أو أمازون لينكس 2.0.2021x وأقل"
         ```bash
         sudo yum remove wallarm-node nginx-module-wallarm
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "روكي لينكس أو أوراكل لينكس 8.x"
         ```bash
         sudo yum remove wallarm-node nginx-module-wallarm
         ```
@@ -186,10 +185,10 @@
 
 ## الترقية اليدوية
 
-استخدم الإجراء أدناه لترقية Wallarm NGINX الوحدات 4.x يدويًا إلى الإصدار 4.8.
+استخدم الإجراء أدناه لترقية وحدات Wallarm NGINX 4.x إلى الإصدار 4.8 يدويًا.
 
-!!! info "دعم 4.10"
-    لم يتم بعد تحديث حزم DEB/RPM لتثبيت العقدة اليدوي إلى اصدار 4.10.
+!!! info "الدعم لـ 4.10"
+    لم يتم تحديث حزم الـ DEB/RPM لتثبيت النود اليدوي إلى الإطلاق 4.10 بعد
 
 ### متطلبات الترقية اليدوية
 
@@ -197,48 +196,48 @@
 
 ### إجراء الترقية
 
-* إذا تم تثبيت وحدات الفلترة و postanalytics على نفس الخادم، ثم اتبع التعليمات أدناه لترقية كل الحزم.
-* إذا تم تثبيت وحدات الفلترة و postanalytics على خوادم مختلفة، **أولاً** قم بترقية وحدة postanalytics باستخدام هذه [التعليمات](separate-postanalytics.md) ومن ثم قم بتنفيذ الخطوات التالية لوحدات الفلترة العقدة.
+* إذا تم تثبيت وحدات النود التصيفية و postanalytics على نفس الخادم، فاتبع الإرشادات أدناه لترقية الحزم الكل.
+* إذا تم تثبيت وحدات النود التصيفية و postanalytics على خوادم مختلفة، **قم أولا** بترقية وحدة postanalytics باتباع هذه [الإرشادات](separate-postanalytics.md) ثم تنفيذ الخطوات أدناه لوحدات النود التصيفية.
 
-### الخطوة 1: ترقية NGINX إلى الإصدار الأحدث
+### الخطوة 1: ترقية NGINX إلى الإصدار الأخير
 
-قم بترقية NGINX إلى الإصدار الأحدث باستخدام التعليمات البرمجية ذات الصلة:
+ترقية NGINX إلى الإصدار الأخير باستخدام التعليمات ذات الصلة:
 
-=== "NGINX ثابت"
+=== "NGINX مستقر"
 
-    التوزيعات الحزم المدير المثبتة:
+    التوزيعات القائمة على DEB:
 
     ```bash
     sudo apt update
     sudo apt -y install nginx
     ```
 
-    التوزيعات الحزم المدير المثبتة:
+    التوزيعات القائمة على RPM:
 
     ```bash
     sudo yum update
     sudo yum install -y nginx
     ```
 === "NGINX Plus"
-    بالنسبة لـ NGINX Plus، يرجى اتباع [تعليمات الترقية الرسمية](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#upgrading-nginx-plus).
-=== "NGINX من Debian/CentOS repository"
-    بالنسبة لـ NGINX [المثبتة من Debian/CentOS repository](../installation/nginx/dynamic-module-from-distr.md)، يرجى تجاوز هذه الخطوة. سيتم ترقية إصدار NGINX المثبت [في وقت لاحق](#step-4-upgrade-wallarm-packages) جنبًا إلى جنب مع وحدات Wallarm.
+بالنسبة لـ NGINX Plus، يرجى اتباع [التعليمات الرسمية ](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#upgrading-nginx-plus).
+=== "NGINX من المستودعاتDebian/CentOS"
+بالنسبة لـ NGINX [مثبتة من مستودعات Debian/CentOS](../installation/nginx/dynamic-module-from-distr.md)، يرجى تخطي هذه الخطوة. سيتم ترقية الإصدار الحالي لـ NGINX [في وقت لاحق](#step-4-upgrade-wallarm-packages) جنبا إلى جنب مع وحدات Wallarm.
 
-إذا كانت البنية التحتية الخاصة بك تحتاج إلى استخدام إصدار محدد من NGINX، يرجى الاتصال بدعم فني Wallarm[الدعم الفني](mailto:support@wallarm.com) لبناء الوحدة Wallarm لإصدار مخصص من NGINX.
+إذا كانت بنيتك تحتاج إلى استخدام إصدار محدد من NGINX، يرجى الاتصال بـ [دعم فنيWallarm](mailto:support@wallarm.com) لبناء وحدة Wallarm لإصدار مخصص من NGINX.
 
 ### الخطوة 2: أضف مستودع Wallarm الجديد
 
-قم بحذف عنوان مستودع Wallarm السابق وأضف مستودعاً مع حزمة الإصدار الجديد من Wallarm node. يرجى استخدام الأوامر للمنصة المناسبة.
+حذف عنوان مستودع Wallarm السابق وأضف مستودعًا مع حزمة نسخة النود Wallarm الجديدة. يرجى استخدام الأوامر المناسبة للمنصة الخاصة بك
 
 **CentOS و Amazon Linux 2.0.2021x وأقل**
 
-=== "CentOS 7 و Amazon Linux 2.0.2021x وأقل"
+=== "سنتْ OS 7 وأمازون لينكس 2.0.2021x وأقل"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
     ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+=== "ألمالينكس، روكي لينكس أو أوراكل لينكس 8.x"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
@@ -251,43 +250,43 @@
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
     ```
 
-**Debian و Ubuntu**
+**ديبيان وأوبونتو**
 
-1. افتح الملف مع عنوان مستودع Wallarm في المحرر النصي المثبت. في هذه التعليمات، يتم استخدام **vim**.
+1. افتح الملف المحتوي على عنوان مستودع Wallarm  في المحرر النصي المثبت. في هذه التعليمات، يتم استخدام **vim**.
 
     ```bash
     sudo vim /etc/apt/sources.list.d/wallarm.list
     ```
-2. علق أو احذف عنوان المستودع السابق.
+2. اعتبرها غير فعالة أو حذف عنوان المستودع السابق.
 3. أضف عنوان المستودع الجديد:
 
-    === "Debian 10.x (buster)"
-        !!! warning "غير مدعوم بواسطة NGINX ثابت و NGINX Plus"
-            لا يمكن تثبيت الإصدارات الرسمية لـ NGINX (ثابتة وPlus) وبالتالي Wallarm node 4.4 وما فوق على Debian 10.x (buster). يرجى استخدام هذا OS فقط إذا تم [تثبيت NGINX من مستودعات Debian/CentOS](../installation/nginx/dynamic-module-from-distr.md).
+    === "ديبيان 10.x (Buster)"
+        !!! warning "غير مدعومة من قبل NGINX مستقر و NGINX Plus"
+            الإصدارات الرسمية لـ NGINX (مستقرة و Plus) و، على النتيجة، لا يمكن تثبيت النود الخاصة بـ Wallarm 4.4 وما فوق على ديبيان 10.x (Buster). يرجى استخدام هذا نظام التشغيل فقط إذا كان [NGINX يتم تثبيته من مستودعات Debian/CentOS](../installation/nginx/dynamic-module-from-distr.md).
 
         ```bash
         deb https://repo.wallarm.com/debian/wallarm-node buster/4.8/
         ```
-    === "Debian 11.x (bullseye)"
+    === "ديبيان 11.x (bullseye)"
         ```bash
         deb https://repo.wallarm.com/debian/wallarm-node bullseye/4.8/
         ```
-    === "Ubuntu 18.04 LTS (bionic)"
+    === "أوبونتو 18.04 LTS (bionic)"
         ```bash
         deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/4.8/
         ```
-    === "Ubuntu 20.04 LTS (focal)"
+    === "أوبونتو 20.04 LTS (focal)"
         ```bash
         deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.8/
         ```
 
 ### الخطوة 3: ترقية حزم Wallarm
 
-#### وحدة تصفية العقد وpostanalytics على نفس الخادم
+#### وحدة التصنيف (Filtering node) وpostanalytics على نفس الخادم
 
-1. نفذ الأمر التالي لتحديث وحدات الفلترة وpostanalytics:
+1. نفذ الأمر التالي لترقية وحدات وحدة التصنيف وpostanalytics:
 
-    === "Debian"
+    === "ديبيان"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
@@ -296,7 +295,7 @@
         --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
         --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
-    === "Ubuntu"
+    === "أوبونتو"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
@@ -305,11 +304,11 @@
         --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
         --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "سنتْ OS أو أمازون لينكس 2.0.2021x وأقل"
         ```bash
         sudo yum update
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "ألمالينكس، روكي لينكس أو أوراكل لينكس 8.x"
         ```bash
         sudo yum update
         ```
@@ -317,21 +316,22 @@
         ```bash
         sudo yum update
         ```
-2. إذا طلب المدير الحزم للتأكيد على إعادة كتابة محتوى ملف التكوين `/etc/cron.d/wallarm-node-nginx`، أرسل الخيار `Y`.
 
-    يجب تحديث محتوى `/etc/cron.d/wallarm-node-nginx` ليتم تنزيل البرنامج النصي الجديد الذي يحسب RPS.
+2. إذا طلب مدير الحزم تأكيد لإعادة كتابة محتوى ملف التكوين `/etc/cron.d/wallarm-node-nginx`، أرسل الخيار `Y`.
 
-    بشكل افتراضي، يستخدم مدير الحزم الخيار `N` ولكن الخيار `Y` مطلوب لحساب RPS بشكل صحيح.
+    يجب تحديث محتوى `/etc/cron.d/wallarm-node-nginx` لتنزيل البرنامج النصي الجديد الذي يعد RPS.
 
-#### وحدة تصفية العقد وpostanalytics على خوادم مختلفة
+    افتراضيًا، يستخدم مدير الحزم الخيار `N` ولكن هناك حاجة للخيار `Y` لحساب RPS بشكل صحيح.
 
-!!! warning "تسلسل الخطوات لترقية وحدات الفلترة وpostanalytics"
-    إذا كانت وحدة الفلترة ووحدة postanalytics مثبتة على خوادم مختلفة، فيجب ترقية حزم postanalytics قبل تحديث حزم وحدة الفلترة.
+#### وحدة التصنيف (Filtering node) وpostanalytics على خوادم مختلفة
 
-1. قم بترقية حزم postanalytics باتباع هذه [التعليمات](separate-postanalytics.md).
-2. قم بترقية حزم Wallarm node:
+!!! warning "تسلسل الخطوات لترقية وحدات التصنيف وpostanalytics"
+    إذا تم تثبيت وحدات التصنيف وpostanalytics على خوادم مختلفة، فيجب ترقية حزم postanalytics قبل تحديث حزم وحدة التصنيف.
 
-    === "Debian"
+1. قم بترقية حزم postanalytics باتباع هذه [الإرشادات](separate-postanalytics.md).
+2. قم بترقية حزم نود Wallarm:
+
+    === "ديبيان"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
@@ -340,7 +340,7 @@
         --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
         --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
-    === "Ubuntu"
+    === "أوبونتو"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
@@ -349,11 +349,11 @@
         --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.8.md"
 
         --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "سنتْ OS أو أمازون لينكس 2.0.2021x وأقل"
         ```bash
         sudo yum update
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "ألمالينكس، روكي لينكس أو أوراكل لينكس 8.x"
         ```bash
         sudo yum update
         ```
@@ -361,49 +361,49 @@
         ```bash
         sudo yum update
         ```
-3. إذا طلب مدير الحزم تأكيدًا لكتابة المحتوى في تكوين الملف `/etc/cron.d/wallarm-node-nginx`، أرسل الخيار `Y`.
+3. إذا طلب مدير الحزم تأكيد لإعادة كتابة محتوى ملف التكوين `/etc/cron.d/wallarm-node-nginx`، أرسل الخيار `Y`.
 
-    يجب تحديث المحتوى `/etc/cron.d/wallarm-node-nginx` يجب أن يتجدد ليتم تنزيل برنامج الكتابة الجديد الذي يحسب RPS.
+    يجب تحديث محتوى `/etc/cron.d/wallarm-node-nginx` لتنزيل البرنامج النصي الجديد الذي يعد RPS.
 
-    بشكل افتراضي، يستخدم مدير الحزم الخيار `N` ولكن الخيار `Y` مطلوبٌ لحساب RPS بشكل صحيح.
+    افتراضيًا، يستخدم مدير الحزم الخيار `N` ولكن هناك حاجة للخيار `Y` لحساب RPS بشكل صحيح.
 
-### الخطوة 4: تحديث نوع العقدة
+### الخطوة 4: تحديث نوع النود
 
-!!! info "فقط للعقد التي تم تثبيتها باستخدام النص البرمجي `addnode`"
-    اتبع هذه الخطوة فقط إذا كانت عقدة من الإصدار السابق متصلة بـ Wallarm Cloud باستخدام النص البرمجي `addnode`. تم إزالة هذا النص البرمجي[أزالة](what-is-new.md#removal-of-the-email-password-based-node-registration) واستبداله بـ `register-node`، والذي يتطلب رمزًا لتسجيل العقدة في السحابية.
+!!! info "فقط للعقد المثبتة باستخدام النصي 'addnode'"
+    فقط قم باتباع هذه الخطوة إذا كانت نود الإصدار السابق متصلة بـ Wallarm Cloud باستخدام نصي 'addnode'. تم [إزالة](what-is-new.md#removal-of-the-email-password-based-node-registration) هذا النص واستبدل بـ 'register-node'، الذي يحتاج إلى رمز لتسجيل النود في السحابة.
 
-1. تأكد من أن حسابك في Wallarm له دور **المسؤول** عن طريق التنقل إلى قائمة المستخدمين في [US Cloud](https://us1.my.wallarm.com/settings/users) أو [EU Cloud](https://my.wallarm.com/settings/users).
+1. تأكد من أن حساب Wallarm الخاص بك لديه دور **المشرف** بالانتقال إلى قائمة المستخدمين في [السحابة الأمريكية](https://us1.my.wallarm.com/settings/users) أو [السحابة الأوروبية](https://my.wallarm.com/settings/users).
 
-    ![قائمة المستخدمين في Wallarm console][img-wl-console-users]
-1. افتح Wallarm Console → **عقد** في [US Cloud](https://us1.my.wallarm.com/nodes) أو [EU Cloud](https://my.wallarm.com/nodes) وقم بإنشاء عقدة من نوع **Wallarm node**.
+    ![قائمة المستخدمين في واجهة Wallarm console][img-wl-console-users]
+1. افتح واجهة Wallarm Console → **Nodes** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes) وأنشئ نود من النوع **Wallarm node**.
 
     ![إنشاء Wallarm node][img-create-wallarm-node]
 
-    !!! info "If the postanalytics module is installed on a separate server"
-        إذا تم تثبيت الوحدة الأولية لمعالجة الحركة ووحدة postanalytics على أجهزة خوادم متميزة، يُوصى بتوصيل هذه الوحدات بـ Wallarm Cloud باستخدام نفس رمز العقدة. واجهة المستخدم Wallarm Console UI ستعرض كل وحدة كمثيل عقدة منفصل، على سبيل المثال:
+    !!! info "إذا تم تثبيت وحدة postanalytics على خادم مستقل"
+        إذا تم تثبيت وحدات معالجة حركة المرور الأولية وpostanalytics على خوادم مستقلة، يوصى بتوصيل هذه الوحدات بـ Wallarm Cloud باستخدام نفس رمز النود. ستعرض واجهة المستخدم لـ Wallarm Console كل وحدة بوصفها نموذج نود مستقل، مثال على ذلك:
 
-        ![عقدة ولها عدة مثيلات](../images/user-guides/nodes/wallarm-node-with-two-instances.png)
+        ![Node مع عدة نماذج](../images/user-guides/nodes/wallarm-node-with-two-instances.png)
 
-        لقد تم بالفعل إنشاء Wallarm node أثناء [ترقية وحدة postanalytics المتميزة](separate-postanalytics.md). لتوصيل الوحدة الأولية لمعالجة الحركة بالسحابة باستخدام بيانات الاعتماد الخاصة بالعقدة نفسها:
+        تم إنشاء نود Wallarm بالفعل خلال [ترقية postanalytics module المنفصل](separate-postanalytics.md). لتوصيل وحدة معالجة حركة المرور الأولية بالسحابة باستخدام نفس بيانات التفويض الخاصة بالنود:
 
-        1. نسخ رمز العقدة الذي تم إنشاؤه أثناء ترقية وحدة postanalytics المتميزة.
-        1. انتقل إلى الخطوة الرابعة في القائمة أدناه.
-1. انسخ الرمز المُنشأ.
-1. أيقف خدمة NGINX للتخفيف من خطر حساب RPS غير صحيح:
+        1. انسخ رمز النود المُولد خلال ترقية postanalytics module المنفصل.
+        1. استمر في الخطوة الرابعة في القائمة أدناه.
+1. انسخ الرمز المولد.
+1. أوقف خدمة NGINX لتقليل خطر حساب RPS غير صحيح:
 
-    === "Debian"
+    === "ديبيان"
         ```bash
         sudo systemctl stop nginx
         ```
-    === "Ubuntu"
+    === "أوبونتو"
         ```bash
         sudo service nginx stop
         ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "سنتْ OS أو أمازون لينكس 2.0.2021x وأقل"
         ```bash
         sudo systemctl stop nginx
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "ألمالينكس، روكي لينكس أو أوراكل لينكس 8.x"
         ```bash
         sudo systemctl stop nginx
         ```
@@ -411,36 +411,36 @@
         ```bash
         sudo systemctl stop nginx
         ```
-1. نفذ نص برمجي `register-node` لتشغيل **Wallarm node**:
+1. نفذ النصي `register-node` لتشغيل **Wallarm node**:
 
-    === "US Cloud"
+    === "السحابة الأمريكية"
         ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com --force
+        sudo /usr/share/wallarm-common/register-node -t <الرمز المشفر> -H us1.api.wallarm.com --force
         ```
-    === "EU Cloud"
+    === "السحابة الأوروبية"
         ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <TOKEN> --force
+        sudo /usr/share/wallarm-common/register-node -t <الرمز المشفر> --force
         ```
+    
+    * `<الرمز المشفر>` هو القيمة المنسوخة من الرمز الشريطي للنود أو رمز API بدور 'Deploy'.
+    * خيار `--force` يفرض إعادة كتابة بيانات الوصول إلى السحابة المحددة في الملف `/etc/wallarm/node.yaml`.
 
-    * `<TOKEN>` هو القيمة المنسوخة لرمز العقدة أو رمز API بدور `Deploy`.
-    * الخيار `--force` يجبر على إعادة كتابة بيانات الوصول إلى Wallarm Cloud المُحددة في ملف `/etc/wallarm/node.yaml`.
+### الخطوة 5: تحديث صفحة الحظر لـ Wallarm
 
-### الخطوة 5: تحديث صفحة الحظر Wallarm
+في النسخة الجديدة من النود، غيرت صفحة Wallarm sample blocking [تم تغييرها](what-is-new.md#new-blocking-page). الشعار ورسالة الدعم على الصفحة الآن فارغة بشكل افتراضي.
 
-في الإصدار الجديد من العقدة، تم تغيير صفحة الحظر العينية Wallarm. الشعار وبريد الدعم الإلكتروني على الصفحة الآن فارغان افتراضيًا.
-
-إذا تم تكوين الصفحة `&/usr/share/nginx/html/wallarm_blocked.html` ليتم إرجاعها في استجابة لطلبات التظليل، [انسخ وتخصص](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) الإصدار الجديد من الصفحة النموذجية.
+إذا تم تكوين الصفحة `&/usr/share/nginx/html/wallarm_blocked.html` لتعود في الرد على الطلبات المحظورة، [انسخ وقم بتخصيص](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) النسخة الجديدة من الصفحة العينة.
 
 ### الخطوة 6: إعادة تشغيل NGINX
 
 --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
-### الخطوة 7: اختبار عملية Wallarm node
+### الخطوة 7: اختبار تشغيل نود Wallarm
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
 ### تخصيص الإعدادات
 
-تم تحديث وحدات Wallarm إلى الإصدار 4.8. ستتم تطبيق إعدادات العقدة الفلترة السابقة على الإصدار الجديد تلقائيًا. للقيام بإعدادات إضافية، استخدم [التوجيهات المتاحة](../admin-en/configure-parameters-en.md).
+تم تحديث وحدات Wallarm إلى الإصدار 4.8. ستتم تطبيق إعدادات النود التصفية السابقة تلقائيًا على الإصدار الجديد. لإجراء إعدادات إضافية، استخدم [التوجيهات المتاحة](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"

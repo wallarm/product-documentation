@@ -1,6 +1,6 @@
-# نشر Wallarm من خلال صورة آلة GCP
+# تنصيب Wallarm من صورة آلة GCP
 
-يوفر هذا المقال التعليمات لنشر Wallarm على GCP باستخدام [الصورة الرسمية للآلة](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node). يمكن نشر الحل إما [بشكل مباشر][inline-docs] أو [خارج نطاق العملية][oob-docs].
+توفر هذه المقالة تعليمات لتنصيب Wallarm على GCP باستخدام [الصورة الرسمية للآلة](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node). يمكن نشر الحل إما [ضمن الشبكة][inline-docs] أو [خارج النطاق][oob-docs].
 
 ## حالات الاستخدام
 
@@ -16,14 +16,14 @@
 
 --8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
 
-## 7. تكوين إرسال الحركة إلى نموذج Wallarm
+## 7. تهيئة إرسال الحركة إلى نموذج Wallarm
 
 --8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
 
-## 8. اختبار عملية Wallarm
+## 8. اختبار تشغيل Wallarm
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
 
-## 9. ضبط الحل المنشور بدقة
+## 9. تعديل دقيق للحل المنصب
 
 --8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options-4.8.md"

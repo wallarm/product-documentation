@@ -18,32 +18,32 @@ spec:
           image: wallarm/node:3.6.2-1
           imagePullPolicy: Always
           env:
-          # نقطة النهاية لـ API Wallarm: 
+          # نقطة نهاية API لـ Wallarm: 
           # "api.wallarm.com" للسحابة الأوروبية
           # "us1.api.wallarm.com" للسحابة الأمريكية
           - name: WALLARM_API_HOST
             value: "api.wallarm.com"
-          # اسم مستخدم بدور التنصيب
+          # اسم المستخدم للمستخدم ذو دور النشر
           - name: DEPLOY_USER
             value: "username"
-          # كلمة مرور المستخدم بدور التنصيب
+          # كلمة مرور المستخدم ذو دور النشر
           - name: DEPLOY_PASSWORD
             value: "password"
           - name: DEPLOY_FORCE
             value: "true"
-          # كمية الذاكرة بـ جيجابايت لبيانات تحليل الطلبات
+          # كمية الذاكرة بالجيجابايت لبيانات تحليل الطلبات
           - name: TARANTOOL_MEMORY_GB
             value: "2"
           ports:
           - name: http
-            # المنفذ الذي تستقبل عليه حاوية Wallarm الجانبية الطلبات
+            # المنفذ الذي تقبل فيه الحاوية الجانبية لـ Wallarm الطلبات
             # من كائن الخدمة
             containerPort: 80
           volumeMounts:	
           - mountPath: /etc/nginx/sites-enabled	
             readOnly: true	
             name: wallarm-nginx-conf
-        # تعريف حاوية التطبيق الرئيسية الخاصة بك
+        # تعريف حاوية التطبيق الرئيسي الخاص بك
         - name: myapp
           image: <Image>
           resources:
@@ -51,10 +51,10 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-          # المنفذ الذي تقبل عليه حاوية التطبيق الطلبات الواردة
+          # المنفذ الذي تقبل فيه حاوية التطبيق طلبات الواردة
           - containerPort: 8080
       volumes:
-      # عنصر Wallarm: تعريف مجلد wallarm-nginx-conf
+      # عنصر Wallarm: تعريف حجم wallarm-nginx-conf
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

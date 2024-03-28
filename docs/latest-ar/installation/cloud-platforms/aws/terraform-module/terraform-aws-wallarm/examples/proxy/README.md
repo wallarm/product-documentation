@@ -1,74 +1,74 @@
-# نشر Wallarm كبروكسي في AWS VPC
+# نشر Wallarm كوكيل في AWS VPC
 
-هذا المثال يوضح كيفية نشر Wallarm كبروكسي داخلي لـ AWS Virtual Private Cloud (VPC) الحالي باستخدام [وحدة Terraform](https://registry.terraform.io/modules/wallarm/wallarm/aws/).
+توضح هذه المثال كيفية نشر Wallarm كوكيل مضمن داخل AWS Virtual Private Cloud (VPC) القائم باستخدام [وحدة Terraform](https://registry.terraform.io/modules/wallarm/wallarm/aws/).
 
-حل بروكسي Wallarm يوفر طبقة وظيفية إضافية كموجه لحركة مرور HTTP المتقدم مع وظائف أمان WAF وAPI.
+توفر حلول وكيل Wallarm طبقة إضافية وظيفية للشبكة تعمل كموجه متقدم لحركة مرور HTTP مع وظائف أمان WAF وAPI.
 
-يمكنك رؤية مرونة الحل بالعمل من خلال تجربة [حل البروكسي المتقدم](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced).
+يمكنك رؤية مرونة الحل بالعمل من خلال تجربة [الحل المتقدم للوكيل](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced).
 
 ## حالات الاستخدام
 
-من بين جميع [خيارات نشر Wallarm المدعومة](https://docs.wallarm.com/installation/supported-deployment-options)، يُوصى بوحدة Terraform لنشر Wallarm على AWS VPC في هذه **حالات الاستخدام**:
+من بين جميع [خيارات نشر Wallarm المدعومة](https://docs.wallarm.com/installation/supported-deployment-options)، يُوصى باستخدام وحدة Terraform لنشر Wallarm على AWS VPC في **حالات الاستخدام** التالية:
 
-* البنية التحتية الحالية لديك تقع على AWS.
-* تستخدم ممارسات البنية التحتية ككود (IaC). تسمح وحدة Terraform من Wallarm بالإدارة والتجهيز الآلي لعقدة Wallarm على AWS، مما يعزز الكفاءة والاتساق.
+* تقع البنية التحتية القائمة لديك على AWS.
+* تستفيد من ممارسة البنية التحتية ككود (IaC). تتيح وحدة Terraform الخاصة بـWallarm إدارة وتوفير تلقائي لعقدة Wallarm على AWS، مما يعزز الكفاءة والتناسق.
 
 ## المتطلبات
 
-* Terraform 1.0.5 أو أعلى [مثبت محليًا](https://learn.hashicorp.com/tutorials/terraform/install-cli)
-* الوصول إلى الحساب بدور **المدير** [الدور](https://docs.wallarm.com/user-guides/settings/users/#user-roles) في وحدة التحكم Wallarm في سحابة الاتحاد الأوروبي [Cloud](https://docs.wallarm.com/about-wallarm/overview/#cloud)
-* الوصول إلى `https://us1.api.wallarm.com` عند العمل مع سحابة Wallarm الأمريكية أو إلى `https://api.wallarm.com` عند العمل مع سحابة Wallarm الأوروبية. يرجى التأكد من عدم حظر الوصول بواسطة جدار الحماية
+* تثبيت Terraform 1.0.5 أو أعلى [محليًا](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+* الوصول إلى الحساب بدور **المدير** [الدور](https://docs.wallarm.com/user-guides/settings/users/#user-roles) في واجهة Wallarm في [السحابة](https://docs.wallarm.com/about-wallarm/overview/#cloud) الأمريكية أو الأوروبية
+* الوصول إلى `https://us1.api.wallarm.com` عند العمل مع سحابة Wallarm الأمريكية أو إلى `https://api.wallarm.com` عند العمل مع سحابة Wallarm الأوروبية. يرجى التأكد من أن الوصول غير محظور بواسطة جدار الحماية
 
-## هندسة الحل
+## هيكل الحل
 
-![مخطط بروكسي Wallarm](https://github.com/wallarm/terraform-aws-wallarm/blob/main/images/wallarm-as-proxy.png?raw=true)
+![مخطط وكيل Wallarm](https://github.com/wallarm/terraform-aws-wallarm/blob/main/images/wallarm-as-proxy.png?raw=true)
 
-حل بروكسي Wallarm في هذا المثال له المكونات التالية:
+يتضمن مثال حل وكيل Wallarm ما يلي:
 
-* موازن تحميل التطبيقات الذي يواجه الإنترنت يقوم بتوجيه الحركة إلى عقد Wallarm.
-* عقد Wallarm تحلل الحركة وتقوم بتوكيل أي طلبات أخرى. العناصر المقابلة في المخطط هي A, B, C لمثيلات EC2.
+* موازن التحميل الخاص بالتطبيقات المتاحة للإنترنت يوجه حركة المرور إلى عقد Wallarm.
+* تعقد Wallarm التي تحلل حركة المرور وتعمل كوكيل لأي طلبات أخرى. العناصر المقابلة في المخطط هي النماذج A، B، C من النماذج الحاسوبية EC2.
 
-    يعمل المثال بوضع مراقبة عقد Wallarm الذي يحدد السلوك الموصوف. يمكن أيضًا تشغيل عقد Wallarm في أوضاع أخرى تشمل تلك الهادفة إلى منع الطلبات الضارة وتمرير تلك المشروعة فقط. لمعرفة المزيد عن أوضاع عقد Wallarm، استخدم [التوثيق الخاص بنا](https://docs.wallarm.com/admin-en/configure-wallarm-mode/).
-* الخدمات التي توكل عقد Wallarm الطلبات إليها. يمكن أن تكون الخدمة من أي نوع، مثل:
+    يعمل المثال بعقد Wallarm في وضع المراقبة الذي يحدد السلوك الموصوف. يمكن أيضًا لعقد Wallarm أن تعمل في أوضاع أخرى تهدف إلى حجب الطلبات الضارة وإعادة توجيه الطلبات المشروعة فقط. لمعرفة المزيد حول أوضاع عقد Wallarm، استخدم [توثيقنا](https://docs.wallarm.com/admin-en/configure-wallarm-mode/).
+* الخدمات التي تعمل كوكيل عقد Wallarm لطلباتها. يمكن أن تكون الخدمة من أي نوع، مثل:
 
-    * تطبيق AWS API Gateway متصل ب VPC عبر نقاط نهاية VPC (تغطي النشر باستخدام Wallarm Terraform في [المثال لـ API Gateway](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/apigateway))
+    * تطبيق AWS API Gateway المتصل بـVPC عبر نقاط نهاية VPC (يغطي نشر Wallarm Terraform المقابل في [المثال لـAPI Gateway](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/apigateway))
     * AWS S3
-    * عقد EKS تعمل في مجموعة EKS (يُوصى بتكوين موازن التحميل الداخلي أو خدمة NodePort في هذه الحالة)
+    * النماذج الحاسوبية التي تعمل في مجمع EKS (يُوصى بتكوين Internal Load Balancer أو خدمة NodePort لهذه الحالة)
     * أي خدمة خلفية أخرى
 
-    بشكل افتراضي، ستقوم عقد Wallarm بتمرير الحركة إلى `https://httpbin.org`. خلال هذا الإطلاق المثال، ستتمكن من تحديد أي نطاق أو مسار خدمة آخر متاح من AWS Virtual Private Cloud (VPC) لتوجيه الحركة إليه.
+    بشكل افتراضي، ستعمل عقد Wallarm على توجيه حركة المرور إلى `https://httpbin.org`. خلال إطلاق هذا المثال، ستتمكن من تحديد أي نطاق خدمة آخر أو مسار متاح من AWS Virtual Private Cloud (VPC) لتوجيه حركة المرور إليه.
 
-    خيار التكوين `https_redirect_code = 302` سيسمح لك بإعادة توجيه طلبات HTTP إلى HTTPS بأمان بواسطة AWS ALB.
+    خيار تكوين الوحدة `https_redirect_code = 302` سيتيح لك إعادة توجيه طلبات HTTP إلى HTTPS بأمان بواسطة AWS ALB.
 
-سيتم نشر جميع المكونات المدرجة (باستثناء الخادم الموكل) بواسطة وحدة `wallarm` المقدمة.
+سيتم نشر جميع العناصر المدرجة (ما عدا الخادم الموكّل) بواسطة وحدة `wallarm` المثال المقدمة.
 
 ## مكونات الكود
 
-هذا المثال يحتوي على مكونات الكود التالية:
+يحتوي هذا المثال على مكونات الكود التالية:
 
-* `main.tf`: الإعداد الرئيسي لوحدة `wallarm` التي سيتم نشرها كحل بروكسي. ينتج الإعداد AWS ALB و عقد Wallarm.
-* `ssl.tf`: تكوين تفريغ SSL/TLS الذي يصدر تلقائيًا شهادة جديدة من مدير شهادات AWS (ACM) للنطاق المحدد في متغير `domain_name` ويربطها بـ AWS ALB.
+* `main.tf`: التكوين الرئيسي لوحدة `wallarm` لنشرها كحل وكيل. ينتج التكوين AWS ALB وعقد Wallarm.
+* `ssl.tf`: تكوين تحميل SSL/TLS الذي يصدر تلقائيًا شهادة جديدة من AWS Certificate Manager (ACM) للنطاق المحدد في متغير `domain_name` ويربطها بـAWS ALB.
 
-    لتعطيل هذه الميزة، قم بإزالة أو التعليق على ملفات `ssl.tf` و `dns.tf`، وكذلك قم بالتعليق على خيارات `lb_ssl_enabled`, `lb_certificate_arn`, `https_redirect_code`, `depends_on` في تعريف وحدة `wallarm`. مع تعطيل الميزة، ستتمكن من استخدام ميناء HTTP (80) فقط.
-* `dns.tf`: تكوين AWS Route 53 الذي يوفر سجل DNS لـ AWS ALB.
+    لتعطيل الميزة، قم بإزالة أو التعليق على ملفات `ssl.tf` و `dns.tf`، وأيضًا التعليق على خيارات `lb_ssl_enabled`, `lb_certificate_arn`, `https_redirect_code`, `depends_on` في تعريف وحدة `wallarm`. بتعطيل الميزة، ستتمكن من استخدام ميناء HTTP (80) فقط.
+* `dns.tf`: تكوين AWS Route 53 الذي يوفر سجل DNS لـAWS ALB.
 
     لتعطيل الميزة، اتبع الملاحظة أعلاه.
 
-## تشغيل مثال حل بروكسي Wallarm AWS
+## تشغيل مثال حل وكيل Wallarm AWS
 
-1. اشترك في وحدة التحكم Wallarm في [السحابة الأوروبية](https://my.wallarm.com/nodes) أو [السحابة الأمريكية](https://us1.my.wallarm.com/nodes).
-1. افتح وحدة التحكم Wallarm → **العقد** وأنشئ العقدة من نوع **عقدة Wallarm**.
-1. انسخ رمز العقدة المُنشأ.
-1. انسخ مستودع الرمز المحتوي على الكود المثالي إلى جهازك:
+1. قم بالتسجيل في واجهة Wallarm على [السحابة الأوروبية](https://my.wallarm.com/nodes) أو [السحابة الأمريكية](https://us1.my.wallarm.com/nodes).
+1. افتح واجهة Wallarm → **العقد** وأنشئ عقدة من نوع **عقدة Wallarm**.
+1. انسخ رمز العقدة المولد.
+1. انسخ مستودع الكود المثالي إلى جهازك:
 
     ```
     git clone https://github.com/wallarm/terraform-aws-wallarm.git
     ```
-1. اضبط قيم المتغيرات في خيارات `default` في ملف `examples/proxy/variables.tf` للمستودع المستنسخ واحفظ التغييرات.
-1. اضبط بروتوكول الخادم الموكل وعنوانه في `examples/proxy/main.tf` → `proxy_pass`.
+1. حدد قيم المتغيرات في خيارات `default` في ملف `examples/proxy/variables.tf` من المستودع الذي تم نسخه واحفظ التغييرات.
+1. حدد بروتوكول وعنوان الخادم الموكّل في `examples/proxy/main.tf` → `proxy_pass`.
 
-    بشكل افتراضي، ستقوم Wallarm بتوجيه الحركة إلى `https://httpbin.org`. إذا كانت القيمة الافتراضية تلبي احتياجاتك، اتركه كما هو.
-1. نشر المكدس بتنفيذ الأوامر التالية من دليل `examples/proxy`:
+    بشكل افتراضي، ستعمل Wallarm على توجيه حركة المرور إلى `https://httpbin.org`. إذا كانت القيمة الافتراضية تلبي احتياجاتك، اتركها كما هي.
+1. قم بنشر المجمع بتنفيذ الأوامر التالية من دليل `examples/proxy`:
 
     ```
     terraform init
@@ -85,15 +85,16 @@ terraform destroy
 
 ### Wallarm ينشئ وينهي العقد بشكل متكرر
 
-تركيز تكوين مجموعة AWS Auto Scaling المقدم على أعلى موثوقية وسلاسة الخدمة. قد يكون السبب وراء الإنشاء والإنهاء المتكرر لمثيلات EC2 خلال تهيئة مجموعة AWS Auto Scaling ناتجًا عن فشل في فحوصات الصحة.
+يتركز تكوين مجموعة التوسيع التلقائي AWS المقدمة على أعلى موثوقية وسلاسة الخدمة. قد يكون الإنشاء والإنهاء المتكرر لنماذج EC2 أثناء تهيئة مجموعة التوسيع التلقائي AWS ناتجًا عن فشل في الفحوصات الصحية.
 
-لمعالجة المشكلة، يرجى مراجعة وإصلاح الإعدادات التالية:
+لمعالجة القضية، يرجى مراجعة وإصلاح الإعدادات التالية:
 
-* رمز العقدة Wallarm له قيمة صحيحة تم نسخها من واجهة المستخدم لوحدة التحكم Wallarm
+* رمز عقدة Wallarm له قيمة صالحة تم نسخها من واجهة Wallarm
 * تكوين NGINX صالح
-* تم حل أسماء النطاقات المحددة في تكوين NGINX بنجاح (على سبيل المثال، قيمة `proxy_pass`)
+* أسماء النطاقات المحددة في تكوين NGINX تم حلها بنجاح (مثل قيمة `proxy_pass`)
 
-**الطريقة القصوى** إذا كانت الإعدادات المذكورة أعلاه صحيحة، يمكنك محاولة العثور على سبب المشكلة عن طريق تعطيل فحوصات الصحة ELB يدويًا في إعدادات مجموعة الAuto Scaling. سيبقي ذلك العقد نشطة حتى لو كان تكوين الخدمة غير صالح ولن تتم إعادة التشغيل. ستتمكن من استكشاف السجلات وتصحيح الخدمة بدلاً من التحقيق في المشكلة في عدة دقائق.
+
+**الطريقة القصوى** إذا كانت الإعدادات المذكورة أعلاه صالحة، يمكنك محاولة العثور على سبب المشكلة من خلال تعطيل فحوصات الصحة ELB يدويًا في إعدادات مجموعة التوسيع التلقائي. سيحافظ ذلك على النماذج الحاسوبية نشطة حتى لو كان التكوين الخدمي غير صالح، ولن تعاد تشغيل النماذج. ستتمكن من استكشاف السجلات وتصحيح الخدمة بدلاً من التحقيق في المشكلة خلال بضع دقائق.
 
 ## المراجع
 

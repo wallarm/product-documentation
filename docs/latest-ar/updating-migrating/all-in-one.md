@@ -1,175 +1,171 @@
-[statistics-service-all-parameters]:        ../admin-en/configure-statistics-service.md
-[img-attacks-in-interface]:                 ../images/admin-guides/test-attacks-quickstart.png
-[tarantool-status]:                         ../images/tarantool-status.png
-[configure-proxy-balancer-instr]:           ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[ptrav-attack-docs]:                        ../attacks-vulns-list.md#path-traversal
+[خدمة-الإحصاءات-كل-المعايير]:        ../admin-en/configure-statistics-service.md
+[صورة-الهجمات-في-الواجهة]:             ../images/admin-guides/test-attacks-quickstart.png
+[حالة-تارانتول]:                        ../images/tarantool-status.png
+[تعليمات-ضبط-البروكسي-الموازن]:      ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+[وثائق-الهجوم-بمسار-الارتداد]:           ../attacks-vulns-list.md#path-traversal
 
-# تحديث عقدة Wallarm بمقتنيات مثبت كل شيء في الواحد
+# ترقية عقدة Wallarm باستخدام مثبت All-in-One 
 
-هذه التعليمات توصف الخطوات لتحديث عقدة Wallarm 4.x المثبتة باستخدام [مثبت كل شيء في الواحد](../installation/nginx/all-in-one.md) إلى الإصدار 4.10.
+تصف هذه التعليمات الخطوات لترقية عقدة Wallarm 4.x المثبتة باستخدام [مثبت الكل في واحد] (../installation/nginx/all-in-one.md) إلى الإصدار 4.10.
 
 ## المتطلبات
 
 --8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
 
-## إجراء التحديث
+## إجراء الترقية 
 
-يختلف إجراء التحديث بناءً على كيفية تثبيت وحدات تصفية العقد وتحليلات ما بعد:
+إجراء الترقية يختلف حسب طريقة تثبيت وحدات العقدة التصفية وpostanalytics:
 
-* [على نفس الخادم](#filtering-node-and-postanalytics-on-the-same-server): يتم تحديث الوحدات معاً
-* [على خوادم مختلفة](#filtering-node-and-postanalytics-on-different-servers): **أولاً** قم بتحديث وحدة تحليلات ما بعد ثم **بعد ذلك** قم بتحديث وحدة التصفية
+* [على نفس الخادم](#filtering-node-and-postanalytics-on-the-same-server): الوحدات تتم ترقيتها جميعًا
+* [على خوادم مختلفة](#filtering-node-and-postanalytics-on-different-servers): **أولاً** قم بترقية وحدة postanalytics و**بعد ذلك** وحدة التصفية.
 
-## وحدة التصفية وتحليلات ما بعد على نفس الخادم
+## العقدة التصفية وpostanalytics على نفس الخادم
 
-استخدم الإجراءات أدناه لتحديث وحدات تصفية العقد وتحليلات ما بعد المثبتة باستخدام مثبت كل شيء في الواحد على نفس الخادم.
+استخدم الإجراء أدناه لترقية وحدات العقدة التصفية وpostanalytics المثبتة باستخدام مثبت الكل في واحد على نفس الخادم.
 
-### الخطوة 1: إعداد رمز Wallarm
+### الخطوة 1: إعداد رمز Wallarm Token
 
-لتحديث العقدة، ستحتاج إلى رمز Wallarm من [أحد الأنواع](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation). لإعداد الرمز:
+لترقية العقدة، ستحتاج إلى رمزWallarm من [أحد الأنواع](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation). لإعداد الرمز:
 
 === "رمز API"
-
-    1. افتح واجهة Wallarm Console → **الإعدادات** → **رموز API** في [السحابة الأمريكية](https://us1.my.wallarm.com/settings/api-tokens) أو [السحابة الأوروبية](https://my.wallarm.com/settings/api-tokens).
-    1. ابحث أو أنشئ رمز API بدور المصدر `Deploy`.
+    1. افتح واجهة المستخدم الرسومية لـ Wallarm Console → **الإعدادات** → **رموز API** في [سحابة US](https://us1.my.wallarm.com/settings/api-tokens) أو [سحابة EU](https://my.wallarm.com/settings/api-tokens).
+    1. ابحث عن رمز API أو قم بإنشاء واحد مع دور المصدر 'Deploy'.
     1. انسخ هذا الرمز.
+    
+=== "الرمز الخاص بالعقدة"
+    للترقية، استخدم نفس رمز العقدة الذي تم استخدامه للتثبيت:
+    
+    1. افتح واجهة المستخدم الرسومية لـ Wallarm Console → **العُقد** في [سحابة US](https://us1.my.wallarm.com/nodes) أو [سحابة EU](https://my.wallarm.com/nodes).
+    1. في مجموعتك الخاصة بالعقدة الحالية، انسخ الرمز باستخدام القائمة التي تظهر بجانب العقدة→ **نسخ الرمز**.
 
-=== "رمز العقدة"
-
-    للتحديث، استخدم نفس رمز العقدة الذي تم استخدامه للتثبيت:
-
-    1. افتح واجهة Wallarm Console → **العقد** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes).
-    1. في مجموعة العقد الموجودة لديك، انسخ الرمز باستخدام قائمة العقدة → **نسخ الرمز**.
-
-### الخطوة 2: تنزيل أحدث نسخة من مثبت Wallarm الشامل
+### الخطوة 2: تنزيل أحدث إصدار من مركب Wallarm All-in-One
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-### الخطوة 3: تشغيل مثبت Wallarm الشامل
+### الخطوة 3: تشغيل مركب Wallarm All-in-One
 
-قم بتشغيل السكريبت المنزَل:
+قم بتشغيل السكربت الذي تم تنزيله:
 
 === "رمز API"
     ```bash
-    # إذا كنت تستخدم النسخة x86_64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
+    # إذا كنت تستخدم الإصدار x86_64:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
 
-    # إذا كنت تستخدم النسخة ARM64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
+    # إذا كنت تستخدم الإصدار ARM64:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
     ```
 === "رمز العقدة"
     ```bash
-    # إذا كنت تستخدم النسخة x86_64:
-    sudo sh wallarm-4.10.1.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
+    # إذا كنت تستخدم الإصدار x86_64:
+    sudo sh wallarm-4.10.2.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
 
-    # إذا كنت تستخدم النسخة ARM64:
-    sudo sh wallarm-4.10.1.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
+    # إذا كنت تستخدم الإصدار ARM64:
+    sudo sh wallarm-4.10.2.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
     ```
 
-* `<GROUP>` يحدد اسم المجموعة التي سيتم إضافة العقدة إليها (يُستخدم لتجميع العقد بشكل منطقي في واجهة مستخدم Wallarm Console). يُطبق فقط عند استخدام رمز API.
-* `<TOKEN>` هو قيمة الرمز المنسوخة.
-* `<CLOUD>` هي سحابة Wallarm التي سيتم تسجيل العقدة الجديدة فيها. يمكن أن تكون إما `US` أو `EU`.
+* `<GROUP>` تضبط اسم المجموعة التي ستضاف إليها العقدة (يستخدم لتجميع العقدات من الناحية المنطقية في واجهة المستخدم الرسومية لـ Wallarm Console). يطبق فقط إذا كنت تستخدم رمز API.
+* `<TOKEN>` هو قيمة الرمز الذي تم نسخه.
+* `<CLOUD>` هي سحابة Wallarm التي ستتم فيها تسجيل العقدة الجديدة. يمكن أن تكون إما `US` أو `EU`.
 
-### الخطوة 4: إعادة تشغيل NGINX
+### الخطوة 4: أعد تشغيل NGINX
 
 --8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-### الخطوة 5: اختبار تشغيل عقدة Wallarm
+### الخطوة 5: اختبر عملية العقدة Wallarm
 
-لتجربة تشغيل العقدة الجديدة:
+لاختبار عملية العقدة الجديدة:
 
-1. أرسل طلب مع هجوم اختبار [تجاوز المسار][ptrav-attack-docs] إلى عنوان مورد محمي:
+1. أرسل الطلب مع طريقة اختبار الهجوم [Path Traversal][وثائق-الهجوم-بمسار-الارتداد] إلى عنوان المورد المحمي:
 
     ```
     curl http://localhost/etc/passwd
     ```
 
-1. افتح واجهة Wallarm Console → قسم **الهجمات** في [السحابة الأمريكية](https://us1.my.wallarm.com/attacks) أو [السحابة الأوروبية](https://my.wallarm.com/attacks) وتأكد من ظهور الهجمات في القائمة.
-1. حالما يتم مزامنة بياناتك المخزنة بالسحابة (القواعد، قوائم ال IP) إلى العقدة الجديدة، قم بإجراء بعض الهجمات الاختبارية للتأكد من أن قواعدك تعمل كما هو متوقع.
+1. افتح واجهة المستخدم الرسومية لـ Wallarm Console → القسم **الهجمات** في [سحابة US](https://us1.my.wallarm.com/attacks) أو [سحابة EU](https://my.wallarm.com/attacks) وتأكد من عرض الهجمات في القائمة.
+1. بمجرد أن يتم مزامنة بيانات السحابة المخزنة (القواعد، قائمة IP) إلى العقدة الجديدة، قم ببعض الهجمات الاختبارية للتأكد من أن القواعد الخاصة بك تعمل كما هو متوقع.
 
-## وحدة التصفية وتحليلات ما بعد على خوادم مختلفة
+## العقدة التصفية وpostanalytics على خوادم مختلفة
 
-!!! warning "تسلسل الخطوات لتحديث وحدة التصفية وتحليلات ما بعد"
-    إذا تم تثبيت وحدة التصفية وتحليلات ما بعد على خوادم مختلفة، فمن الضروري تحديث حزم تحليلات ما بعد قبل تحديث حزم وحدة التصفية.
+!!! تحذير "تسلسل الخطوات لترقية العقدة التصفية ووحدات postanalytics"
+    إذا كانت العقدة التصفية ووحدات postanalytics مثبتة على خوادم مختلفة، فمن الضروري ترقية حزم postanalytics قبل تحديث حزم العقدة التصفية.
 
-### الخطوة 1: إعداد رمز Wallarm
+### الخطوة 1: إعداد رمز Wallarm Token
 
-لتحديث العقدة، ستحتاج إلى رمز Wallarm من [أحد الأنواع](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation). لإعداد الرمز:
+لترقية العقدة، ستحتاج إلى رمزWallarm من [أحد الأنواع](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation). لإعداد الرمز:
 
 === "رمز API"
-
-    1. افتح واجهة Wallarm Console → **الإعدادات** → **رموز API** في [السحابة الأمريكية](https://us1.my.wallarm.com/settings/api-tokens) أو [السحابة الأوروبية](https://my.wallarm.com/settings/api-tokens).
-    1. ابحث أو أنشئ رمز API بدور المصدر `Deploy`.
+    1. افتح واجهة المستخدم الرسومية لـ Wallarm Console → **الإعدادات** → **رموز API** في [سحابة US](https://us1.my.wallarm.com/settings/api-tokens) أو [سحابة EU](https://my.wallarm.com/settings/api-tokens).
+    1. ابحث عن رمز API أو قم بإنشاء واحد مع دور المصدر 'Deploy'.
     1. انسخ هذا الرمز.
+    
+=== "الرمز الخاص بالعقدة"
+    للترقية، استخدم نفس رمز العقدة الذي تم استخدامه للتثبيت:
+    
+    1. افتح واجهة المستخدم الرسومية لـ Wallarm Console → **العُقد** في [سحابة US](https://us1.my.wallarm.com/nodes) أو [سحابة EU](https://my.wallarm.com/nodes).
+    1. في مجموعتك الخاصة بالعقدة الحالية، انسخ الرمز باستخدام القائمة التي تظهر بجانب العقدة→ **نسخ الرمز**.
 
-=== "رمز العقدة"
+### الخطوة 2: تنزيل أحدث إصدار من مركب Wallarm All-in-One لجهاز postanalytics
 
-    للتحديث، استخدم نفس رمز العقدة الذي تم استخدامه للتثبيت:
-
-    1. افتح واجهة Wallarm Console → **العقد** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes).
-    1. في مجموعة العقد الموجودة لديك، انسخ الرمز باستخدام قائمة العقدة → **نسخ الرمز**.
-
-### الخطوة 2: تنزيل أحدث نسخة من مثبت Wallarm الشامل إلى جهاز تحليلات ما بعد
-
-تتم هذه الخطوة على جهاز تحليلات ما بعد.
-
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
-
-### الخطوة 3: تشغيل مثبت Wallarm الشامل لتحديث تحليلات ما بعد
-
-تتم هذه الخطوة على جهاز تحليلات ما بعد.
-
-=== "رمز API"
-    ```bash
-    # إذا كنت تستخدم النسخة x86_64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
-
-    # إذا كنت تستخدم النسخة ARM64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
-    ```
-=== "رمز العقدة"
-    ```bash
-    # إذا كنت تستخدم النسخة x86_64:
-    sudo sh wallarm-4.10.1.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
-
-    # إذا كنت تستخدم النسخة ARM64:
-    sudo sh wallarm-4.10.1.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
-    ```
-
-* `<GROUP>` يحدد اسم المجموعة التي سيتم إضافة العقدة إليها (يُستخدم لتجميع العقد بشكل منطقي في واجهة مستخدم Wallarm Console). يُطبق فقط عند استخدام رمز API.
-* `<TOKEN>` هو قيمة الرمز المنسوخة.
-* `<CLOUD>` هي سحابة Wallarm التي سيتم تسجيل العقدة الجديدة فيها. يمكن أن تكون إما `US` أو `EU`.
-
-### الخطوة 4: تنزيل أحدث نسخة من مثبت Wallarm الشامل إلى جهاز وحدة التصفية
-
-تتم هذه الخطوة على جهاز وحدة التصفية.
+يتم هذا الإجراء على جهاز postanalytics.
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-### الخطوة 5: تشغيل مثبت Wallarm الشامل لتحديث وحدة التصفية
+### الخطوة 3: تشغيل مركب Wallarm All-in-One لترقية postanalytics
 
-تتم هذه الخطوة على جهاز وحدة التصفية.
+يتم هذا الإجراء على جهاز postanalytics.
 
 === "رمز API"
     ```bash
-    # إذا كنت تستخدم النسخة x86_64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
+    # إذا كنت تستخدم الإصدار x86_64:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
 
-    # إذا كنت تستخدم النسخة ARM64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.1.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
+    # إذا كنت تستخدم الإصدار ARM64:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
     ```
 === "رمز العقدة"
     ```bash
-    # إذا كنت تستخدم النسخة x86_64:
-    sudo sh wallarm-4.10.1.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
+    # إذا كنت تستخدم الإصدار x86_64:
+    sudo sh wallarm-4.10.2.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
 
-    # إذا كنت تستخدم النسخة ARM64:
-    sudo sh wallarm-4.10.1.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
+    # إذا كنت تستخدم الإصدار ARM64:
+    sudo sh wallarm-4.10.2.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
     ```
 
-* `<GROUP>` يحدد اسم المجموعة التي سيتم إضافة العقدة إليها (يُستخدم لتجميع العقد بشكل منطقي في واجهة مستخدم Wallarm Console). يُطبق فقط عند استخدام رمز API.
-* `<TOKEN>` هو قيمة الرمز المنسوخة.
-* `<CLOUD>` هي سحابة Wallarm التي سيتم تسجيل العقدة الجديدة فيها. يمكن أن تكون إما `US` أو `EU`.
+* `<GROUP>` تضبط اسم المجموعة التي ستضاف إليها العقدة (يستخدم لتجميع العقدات من الناحية المنطقية في واجهة المستخدم الرسومية لـ Wallarm Console). يطبق فقط إذا كنت تستخدم رمز API.
+* `<TOKEN>` هو قيمة الرمز الذي تم نسخه.
+* `<CLOUD>` هي سحابة Wallarm التي ستتم فيها تسجيل العقدة الجديدة. يمكن أن تكون إما `US` أو `EU`.
 
-### الخطوة 6: التحقق من التفاعل بين وحدة التصفية وتحليلات ما بعد المنفصلة
+### الخطوة 4: تنزيل أحدث إصدار من مركب Wallarm All-in-One لماكينة العقدة التصفية
+
+يتم هذا الخطوة على جهاز العقدة التصفية.
+
+--8<-- "../include/waf/installation/all-in-one-installer-download.md"
+
+### الخطوة 5: تشغيل مركب Wallarm All-in-One لترقية العقدة التصفية
+
+يتم هذا الخطوة على جهاز العقدة التصفية.
+
+=== "رمز API"
+    ```bash
+    # إذا كنت تستخدم الإصدار x86_64:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
+
+    # إذا كنت تستخدم الإصدار ARM64:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.2.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
+    ```
+=== "رمز العقدة"
+    ```bash
+    # إذا كنت تستخدم الإصدار x86_64:
+    sudo sh wallarm-4.10.2.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
+
+    # إذا كنت تستخدم الإصدار ARM64:
+    sudo sh wallarm-4.10.2.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
+    ```
+
+* `<GROUP>` تضبط اسم المجموعة التي ستضاف إليها العقدة (يستخدم لتجميع العقدات من الناحية المنطقية في واجهة المستخدم الرسومية لـ Wallarm Console). يطبق فقط إذا كنت تستخدم رمز API.
+* `<TOKEN>` هو قيمة الرمز الذي تم نسخه.
+* `<CLOUD>` هي سحابة Wallarm التي ستتم فيها تسجيل العقدة الجديدة. يمكن أن تكون إما `US` أو `EU`.
+
+### الخطوة 6: التحقق من التفاعل بين وحدات العقدة التصفية وpostanalytics المنفصلة
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"

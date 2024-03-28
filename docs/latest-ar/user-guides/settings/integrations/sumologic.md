@@ -1,48 +1,48 @@
 # Sumo Logic
 
-[Sumo Logic](https://www.sumologic.com/) ده منصة تحليلات بيانات الآلة الأصلية للسحابة، بتوفر للمؤسسات رؤى فورية عن عمليات تكنولوجيا المعلومات بتاعتهم، الأمان، وأداء التطبيقات. يمكنك إعداد Wallarm عشان يبعت رسائل لـ Sumo Logic.
+[Sumo Logic](https://www.sumologic.com/) هي منصة تحليلات بيانات الآلة المُعتمِدة على السحابة، والتي تقدم للمنظمات رؤى لحظية حول عمليات تكنولوجيا المعلومات الخاصة بها، والأمن، وأداء التطبيقات. يمكنكَ إعداد Wallarm لإرسال الرسائل إلى Sumo Logic.
 
-## إعداد الدمج
+## إعداد الإدماج
 
-في واجهة Sumo Logic الاستخدام:
+في واجهة مستخدم Sumo Logic:
 
-1. إعداد مُجمِّع مُستضاف باتباع [التعليمات](https://help.sumologic.com/03Send-Data/Hosted-Collectors/Configure-a-Hosted-Collector).
-2. إعداد مصدر لسجلات ومقاييس HTTP باتباع [التعليمات](https://help.sumologic.com/03Send-Data/Sources/02Sources-for-Hosted-Collectors/HTTP-Source).
-3. نسخ عنوان المصدر **HTTP Source Address (URL)** المُقدم.
+1. قم بتكوين مُجمِّع مستضاف وفقًا لل[تعليمات](https://help.sumologic.com/03Send-Data/Hosted-Collectors/Configure-a-Hosted-Collector).
+2. قم بتكوين مصدر لسجلات HTTP والمقاييس وفقًا لل[تعليمات](https://help.sumologic.com/03Send-Data/Sources/02Sources-for-Hosted-Collectors/HTTP-Source).
+3. انسخ عنوان **HTTP Source Address (URL)** المُقدَّم.
 
-في واجهة Wallarm الاستخدام:
+في واجهة مستخدم Wallarm:
 
-1. افتح قسم **الدمج**.
-1. اضغط على كتلة **Sumo Logic** أو اضغط على زر **أضف دمج** واختار **Sumo Logic**.
-1. أدخِل اسم دمج.
-1. الصق قيمة عنوان المصدر المُنسوخة في حقل **HTTP Source Address (URL)**.
-1. اختر أنواع الأحداث لتشغيل الإشعارات.
+1. افتح قسم **الإدماجات**.
+1. انقر على كتلة **Sumo Logic** أو انقر على زر **إضافة إدماج** واختر **Sumo Logic**.
+1. أدخل اسمًا للإدماج.
+1. الصق القيمة المنسوخة لعنوان **HTTP Source Address (URL)** في حقل **HTTP Source Address (URL)**.
+1. اختر أنواع الأحداث لتحفيز الإشعارات.
 
-    ![دمج Sumo Logic](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
+    ![إدماج Sumo Logic](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 
-    تفاصيل عن الأحداث المتاحة:
+    تفاصيل حول الأحداث المتاحة:
 
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-1. اضغط **اختبر الدمج** عشان تتأكد من صحة الإعدادات، توافر سحابة Wallarm، وصيغة الإشعار.
+1. انقر على **اختبار الإدماج** لفحص صحة التكوين، وتوافر سحابة Wallarm، وتنسيق الإشعار.
 
     اختبار إشعار Sumo Logic:
 
     ```json
     {
-        summary:"[رسالة اختبار] [شريك الاختبار (US)] تم الكشف عن ثغرة جديدة",
+        summary:"[رسالة اختبار] [شريك اختبار(US)] تم اكتشاف ثغرة جديدة",
         description:"نوع الإشعار: ثغرة
 
-                    تم الكشف عن ثغرة جديدة في النظام الخاص بك.
+                    تم اكتشاف ثغرة جديدة في نظامك.
 
-                    الرقم التعريفي: 
+                    الهوية: 
                     العنوان: اختبار
                     النطاق: example.com
                     المسار: 
                     الطريقة: 
-                    الكشف بواسطة: 
+                    المكتشف من قبل: 
                     المعامل: 
-                    النوع: معلومات
+                    النوع: معلومة
                     التهديد: متوسط
 
                     المزيد من التفاصيل: https://us1.my.wallarm.com/object/555
@@ -65,22 +65,22 @@
                 title:"اختبار",
                 discovered_by:null,
                 threat:"متوسط",
-                type:"معلومات"
+                type:"معلومة"
             }
         }
     }
     ```
 
-1. اضغط **أضِف دمج**.
+1. انقر على **إضافة إدماج**.
 
 ## إعداد تنبيهات إضافية
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## تعطيل وحذف الدمج
+## تعطيل وحذف الإدماج
 
 --8<-- "../include/integrations/integrations-disable-delete.md"
 
-## عدم توافر النظام وخطأ في مُعاملات الدمج
+## عدم توفر النظام ومعلمات الإدماج غير صحيحة
 
 --8<-- "../include/integrations/integration-not-working.md"

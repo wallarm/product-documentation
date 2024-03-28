@@ -1,6 +1,6 @@
-# تثبيت Wallarm من صورة أمازون للجهاز
+# نشر Wallarm باستخدام صورة آلة أمازون
 
-يقدم هذا المقال تعليمات لتثبيت Wallarm على AWS باستخدام [صورة أمازون الرسمية للجهاز (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD). يمكن تثبيت الحل إما [داخل الخط][inline-docs] أو [خارج الخط][oob-docs].
+توفر لكم هذه المقالة تعليمات لنشر Wallarm على AWS باستخدام [صورة آلة أمازون (AMI) الرسمية](https://aws.amazon.com/marketplace/pp/B073VRFXSD). يمكن نشر الحل إما [على الخط][inline-docs] أو [خارج الخط][oob-docs].
 
 ## حالات الاستخدام
 
@@ -12,15 +12,15 @@
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-for-cloud-images.md"
 
-## 7. تكوين إرسال الحركة إلى نسخة Wallarm 
+## 7. تهيئة إرسال الحركة إلى نسخة Wallarm
 
 --8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob-latest.md"
 
-## 8. اختبار عملية Wallarm
+## 8. اختبار تشغيل Wallarm
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
 
-## 9. ضبط الحل المثبت بدقة
+## 9. ضبط الحل المنشور بدقة
 
 --8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
 

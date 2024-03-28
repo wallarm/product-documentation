@@ -1,37 +1,37 @@
-# WAAP/WAF
+# واجهة الحماية السحابية لتطبيقات الويب وAPI
 
-وولارم كلاود-نيتيف WAAP (حماية تطبيقات الويب وواجهات البرمجة) بتوفر حماية متقدمة للتطبيقات وواجهات البرمجة في أي بيئة للعميل. WAAP بتاع وولارم هو جيل جديد من ال WAF (جدار حماية تطبيقات الويب) اللي بيدعم بروتوكولات واجهات البرمجة المتعددة، زي REST, SOAP, GraphQL, وغيرها، وبيعتمد على فحص الباكت بعمق علشان يغطي [أهم 10 مخاطر من OWASP](https://owasp.org/www-project-top-ten/) وأكتر. WAAP بيقدم دقة عالية في اكتشاف [التهديدات المختلفة](../attacks-vulns-list.md)، بما في ده الصفر-ديز، وعدد قليل من [الإيجابيات الكاذبة](../about-wallarm/protecting-against-attacks.md#false-positives). ده بيسمح لك بحماية بنيتك التحتية بسرعة وفعالية.
+توفر واجهة الحماية السحابية لتطبيقات الويب وAPI من Wallarm حماية متقدمة للتطبيقات وواجهات برمجة التطبيقات في أي بيئة عملاء. WAAP من Wallarm هو جيل جديد من جدار حماية التطبيقات الويب يدعم بروتوكولات API متعددة، مثل REST، SOAP، GraphQL، وغيرها، ويعتمد على تفتيش عميق للباكيتات لتغطية كاملة ل[أوائل العشرة من OWASP](https://owasp.org/www-project-top-ten/) وأكثر. توفر WAAP دقة عالية في الكشف عن [التهديدات المتنوعة](../attacks-vulns-list.md)، بما في ذلك التهديدات اليوم الصفري، وعدد قليل من [الإيجابيات الخاطئة](../about-wallarm/protecting-against-attacks.md#false-positives). هذا يتيح لك حماية بنيتك التحتية بسرعة وفعالية.
 
-![هجمات عبر بروتوكولات](../images/user-guides/dashboard/api-protocols.png)
+![هجوم حسب البروتوكولات](../images/user-guides/dashboard/api-protocols.png)
 
-## مبادئ عامة
+## المبادئ العامة
 
-الترافيك بيتم التعامل معاه عن طريق مكونين: عقد التصفية من وولارم وسحابة وولارم. عقد التصفية من وولارم بتتوزع في بنية العميل التحتية وبتكون مسؤولة عن تحليل الترافيك ومنع الهجمات. إحصائيات الهجوم المجمعة بتتبعت لسحابة وولارم للتحليل الإحصائي ومعالجة الأحداث. سحابة وولارم كمان مسؤولة عن الإدارة المركزية والتكامل مع أدوات الأمان الأخرى.
+يتم التعامل مع حركة المرور بواسطة مكونين: عقد تصفية Wallarm وسحابة Wallarm. يتم نشر عقد تصفية Wallarm في بنية التحتية للعميل وهي مسؤولة عن تحليل حركة المرور وحجب الهجمات. يتم إرسال إحصاءات الهجمات المجمعة إلى سحابة Wallarm للتحليل الإحصائي ومعالجة الأحداث. كما تتولى سحابة Wallarm مسؤولية الإدارة المركزية والتكامل مع أدوات الأمان الأخرى.
 
-![!مخطط الأرشيف 1](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
+![!مخطط العمارة](../images/about-wallarm-waf/overview/filtering-node-cloud.png)
 
-وولارم بيدعم خيارات توزيع متنوعة، بما في ده السحابة العامة، والتوزيعات المحلية، وال SaaS كامل، والتكامل مع Kubernetes، Gateway APIs، Security Edges، وغيرها. عقد التصفية من وولارم يمكن توزيعها إما [بطريقة مباشرة](../installation/inline/overview.md) أو [خارج السلسلة](../installation/oob/overview.md)، حسب احتياجاتك وبنيتك التحتية. خيارات تكوين السياسة الأمنية المرنة تسمح لك بالتحويل السريع بين [الأوضاع](../admin-en/configure-wallarm-mode.md) من المراقبة إلى المنع، بدون خوف من منع الترافيك الشرعي.
+تدعم Wallarm خيارات نشر متنوعة، بما في ذلك السحابة العامة، والنشر داخل المؤسسات، والنشر الكامل كخدمة SaaS، والتكامل مع Kubernetes، وواجهات API للبوابة، وأطراف الأمان، إلخ. يمكن نشر عقد تصفية Wallarm إما [داخل الشبكة](../installation/inline/overview.md) أو [خارج الشبكة](../installation/oob/overview.md)، حسب احتياجاتك وبنيتك التحتية. خيارات تكوين سياسة الأمان المرنة تتيح لك التبديل بسرعة بين وضعيات [المراقبة والحجب](../admin-en/configure-wallarm-mode.md)، مما يزيل الخوف من حجب حركة المرور الشرعية.
 
 ## تدابير الحماية
 
-WAAP من وولارم بيوفر مجموعة واسعة من تدابير الأمان لحماية تطبيقاتك من جميع أنواع التهديدات، مش بس بالمحدود لـ:
+توفر WAAP من Wallarm مجموعة واسعة من تدابير الأمان لحماية التطبيقات الخاصة بك من جميع أنواع التهديدات، بما في ذلك على سبيل المثال لا الحصر:
 
-* طوابع محدثة ضد XSS, SQLi, RCE، وغيرها.
+* الطوابع المحدثة ضد XSS، SQLi، RCE، إلخ.
 * التصحيح الافتراضي
 * إنشاء كاشفات مخصصة
-* [حماية DDoS للطبقة 7](../admin-en/configuration-guides/protecting-against-ddos.md)
-* [حماية من مرتكبي الهجمات المتعددة](../admin-en/configuration-guides/protecting-with-thresholds.md)
-* تحديد المعدل
-* [حماية ضد القوة الغاشمة](../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [حماية ضد التصفح القسري](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
+* [حماية من L7 DDoS](../admin-en/configuration-guides/protecting-against-ddos.md)
+* [الحماية من مرتكبي عدة هجمات](../admin-en/configuration-guides/protecting-with-thresholds.md)
+* تحديد معدل
+* [حماية من الاختراق العنيف](../admin-en/configuration-guides/protecting-against-bruteforce.md)
+* [حماية من التصفح القسري](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
 * [حماية BOLA](../admin-en/configuration-guides/protecting-against-bola-trigger.md)
 * [التصفية حسب المواقع الجغرافية وأنواع المصادر](../user-guides/ip-lists/overview.md)
-* خلاصات IPs الضارة
+* تغذية IP الخبيثة
 
-## قدرات إضافية
+## القدرات الإضافية
 
-بالإضافة لحماية التطبيقات، وولارم كلاود-نيتيف WAAP بتقدم قدرات لفحص [الأصول المعرضة للخطر](../user-guides/scanner.md) وتقييم مستوى الأمان. ده بيسمح لك بتحديد الثغرات قبل ما المخترقين يهاجموها.
+بالإضافة إلى حماية التطبيقات، توفر واجهة الحماية السحابية لتطبيقات الويب وAPI من Wallarm القدرة على فحص [الأصول المكشوفة](../user-guides/scanner.md) وتقييم مستوى الأمان. هذا يتيح لك تحديد نقاط الضعف قبل أن يهاجمها المخترقون.
 
-قدرات التقرير المرنة [للتقارير](../user-guides/dashboards/owasp-api-top-ten.md) و[التكامل](../user-guides/settings/integrations/integrations-intro.md) مع تطبيقات أخرى بتسمح لك بالتعرف بسرعة على التهديدات الظاهرة والرد عليها في الوقت المناسب.
+تتيح قدرات [التقارير](../user-guides/dashboards/owasp-api-top-ten.md) المرنة و[التكامل](../user-guides/settings/integrations/integrations-intro.md) مع تطبيقات أخرى لك التعرف بسرعة على التهديدات الناشئة والرد عليها في الوقت المناسب.
 
-القدرات المتقدمة في الحماية وتحليل واجهات البرمجة ممكن [تزاد](../about-wallarm/subscription-plans.md) حسب الحاجة.
+يمكن [إضافة](../about-wallarm/subscription-plans.md) قدرات تحليل وحماية API المتقدمة حسب الحاجة.

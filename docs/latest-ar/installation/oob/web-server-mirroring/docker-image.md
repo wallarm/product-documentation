@@ -28,29 +28,29 @@
 [alibaba-ecs-docs]:                 ../../cloud-platforms/alibaba-cloud/docker-container.md
 [api-policy-enf-docs]:              ../../../api-policy-enforcement/overview.md
 
-# نشر Wallarm OOB من صورة Docker
+# تجهيز Wallarm OOB من الصورة المستخدمة Docker
 
-يوفر هذا المقال تعليمات لنشر [Wallarm OOB](overview.md) باستخدام [صورة Docker المبنية على NGINX](https://hub.docker.com/r/wallarm/node). الحل الموصوف هنا مصمم لتحليل حركة المرور المعكوسة بواسطة خادم الويب أو البروكسي.
+تقدم هذه المقالة تعليمات حول تجهيز [Wallarm OOB](overview.md) بالاستفادة من الصورة المستخدمة [NGINX-based Docker](https://hub.docker.com/r/wallarm/node). التحليل الوارد هنا صمم لتحليل حركة المرور المتكررة التي يوفرها الويب الخادم الأولي أو الخادم الوكيل.
 
-## حالات الاستخدام
+## سيناريوهات الاستخدام
 
 --8<-- "../include/waf/installation/docker-images/nginx-based-use-cases.md"
 
-## متطلبات
+## المتطلبات
 
 --8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
 
-## 1. تكوين عكس حركة المرور
+## 1. تكوين تكرار حركة المرور
 
 --8<-- "../include/waf/installation/sending-traffic-to-node-oob.md"
 
-## 2. إعداد ملف التكوين لتحليل حركة المرور المعكوسة والمزيد
+## 2. إعداد ملف تكوين لتحليل حركة المرور المكررة وأكثر
 
-لتمكين عقد Wallarm من تحليل حركة المرور المعكوسة، تحتاج إلى تكوين إعدادات إضافية في ملف منفصل وتحميله على الحاوية Docker. ملف التكوين الافتراضي الذي يحتاج إلى تعديل يقع في `/etc/nginx/sites-enabled/default` داخل صورة Docker.
+لتمكين عقدات Wallarm من تحليل حركة المرور المتكررة، يجب عليك تكوين الإعدادات الإضافية في ملف منفصل وتوصيله بحاوية Docker. الملف التكوين الافتراضي الذي يحتاج إلى تعديل موجود في `/etc/nginx/sites-enabled/default` ضمن الصورة المستخدمة Docker.
 
-في هذا الملف، تحتاج إلى تحديد تكوين عقدة Wallarm لمعالجة حركة المرور المعكوسة وأي إعدادات أخرى مطلوبة. اتبع هذه التعليمات للقيام بذلك:
+في هذا الملف، يجب عليك تحديد تكوين عقدة Wallarm لمعالجة حركة المرور المتكررة وأي إعدادات أخرى مطلوبة. اتبع هذه التعليمات للقيام بذلك:
 
-1. قم بإنشاء ملف تكوين NGINX المحلي باسم `default` بالمحتويات التالية:
+1. قم بإنشاء ملف التكوين NGINX المحلي المسمى `default` بالمحتوى التالي:
 
     ```
     server {
@@ -69,7 +69,7 @@
 
             wallarm_force server_addr $http_x_server_addr;
             wallarm_force server_port $http_x_server_port;
-            # قم بتغيير 222.222.222.22 إلى عنوان خادم المعكس
+            # Change 222.222.222.22 to the address of the mirroring server
             set_real_ip_from  222.222.222.22;
             real_ip_header    X-Forwarded-For;
             real_ip_recursive on;
@@ -87,68 +87,69 @@
     }
     ```
 
-    * تتطلب التوجيهات `set_real_ip_from` و `real_ip_header` لعرض [عناوين IP للمهاجمين][proxy-balancer-instr] في لوحة تحكم Wallarm.
-    * تتطلب التوجيهات `wallarm_force_response_*` لتعطيل تحليل كل الطلبات ما عدا النسخ المستلمة من حركة المرور المعكوسة.
-    * التوجيه `wallarm_mode` هو [وضع][waf-mode-instr] تحليل حركة المرور. نظرًا لأنه لا يمكن [حجب][oob-advantages-limitations] الطلبات الضارة، الوضع الوحيد المقبول من Wallarm هو الرصد. بالنسبة للنشر في الخط، هناك أوضاع حجب آمنة وحجب أيضًا، ولكن حتى إذا قمت بتعيين التوجيه `wallarm_mode` إلى قيمة مختلفة عن الرصد، تستمر العقدة في مراقبة حركة المرور وتسجيل الحركة الضارة فقط (بصرف النظر عن الوضع المحدد للتعطيل).
-1. حدد أي توجيهات Wallarm أخرى مطلوبة. يمكنك الرجوع إلى توثيق [معايير تكوين Wallarm](../../../admin-en/configure-parameters-en.md) و[حالات استخدام التكوين](#configuring-the-use-cases) لفهم الإعدادات التي قد تكون مفيدة لك.
-1. إذا لزم الأمر، قم بتعديل إعدادات NGINX الأخرى لتخصيص سلوكه. استشر [توثيق NGINX](https://nginx.org/en/docs/beginners_guide.html) للحصول على مساعدة.
+    * توجب وجود التوجيهات `set_real_ip_from` و `real_ip_header` لتعريض عناوين IP للمهاجمين في منصة [Wallarm Console][proxy-balancer-instr].
+    * يتطلب توجيه `wallarm_force_response_*` تعطيل تحليل كل الطلبات باستثاء النسخ المتلقاة من حركة المرور المتكررة.
+    * التوجيه `wallarm_mode` هو [وضع[a][waf-mode-instr] تحليل حركة المرور. منذ أن الطلبات الخبيثة لا يمكن[a][oob-advantages-limitations] حظرها, الوضع الوحيد الذي يقبله Wallarm هو المراقبة. لتجهيزها بشكل خطي, أيضاً هناك أوضاع آمنة للحظر ووضع حظر ولكن حتى ان قمت بتحديد التوجيه `wallarm_mode` لقيمة مختلفة عن المراقبة, سوف يستمر العقد في مراقبة حركة المرور وتسجيل فقط حركة   
+ المرور الخبيثة (باستثناء الوضع المحدد للإيقاف).
+1. حدد أي توجيهات Wallarm مطلوبة أخرى. يمكنك الرجوع لتوثيق [معلمات تكوين Wallarm](../../../admin-en/configure-parameters-en.md) و [استخدام السيناريوهات](#configuring-the-use-cases) لفهم أي إعدادات قد تكون مفيدة لك.
+1. إذا كان ذلك ضرورياً، قم بتعديل إعدادات NGINX الأخرى لتخصيص سلوكها. استشر [توثيق NGINX](https://nginx.org/en/docs/beginners_guide.html) للمساعدة.
 
-يمكنك أيضًا تحميل ملفات أخرى إلى الدلائل التالية للحاوية إذا لزم الأمر:
+يمكنك أيضاً توصيل الملفات الأخرى إلى الدلائل الاستعدادية التالية للحاوية إذا تطلب الأمر:
 
-* `/etc/nginx/conf.d` — الإعدادات العامة
-* `/etc/nginx/sites-enabled` — إعدادات المضيف الافتراضي
+* `/etc/nginx/conf.d` — الإعدادات المشتركة
+* `/etc/nginx/sites-enabled` — إعدادات المضيف الافتراضي 
 * `/opt/wallarm/usr/share/nginx/html` — الملفات الثابتة
 
-## 3. الحصول على رمز لربط العقدة بالسحاب
+## 3. احصل على رمز لتوصيل العقدة بالسحابة
 
-احصل على رمز Wallarm من [النوع المناسب][wallarm-token-types]:
+احصل على رمز Wallarm من ال[نوع المناسب][wallarm-token-types]:
 
-=== "رمز API"
+=== "رمز ال API"
 
-    1. افتح لوحة تحكم Wallarm → **الإعدادات** → **رموز API** في [سحابة الولايات المتحدة](https://us1.my.wallarm.com/settings/api-tokens) أو [سحابة الاتحاد الأوروبي](https://my.wallarm.com/settings/api-tokens).
-    1. ابحث عن رمز API بدور المصدر `نشر` أو أنشئ واحدًا.
+    1. افتح  واجهة Wallarm → **الإعدادات** → ** رموز ال API** في [السحابة الأمريكية](https://us1.my.wallarm.com/settings/api-tokens) أو [السحابة الأوروبية](https://my.wallarm.com/settings/api-tokens).
+    1. ابحث أو أنشئ رمز API بدور مصدر `Deploy`.
     1. انسخ هذا الرمز.
 
 === "رمز العقدة"
 
-    1. افتح لوحة تحكم Wallarm → **العقد** في [سحابة الولايات المتحدة](https://us1.my.wallarm.com/nodes) أو [سحابة الاتحاد الأوروبي](https://my.wallarm.com/nodes).
-    1. قم بإحدى الخطوات التالية: 
-        * أنشئ عقدة من نوع **عقدة Wallarm** وانسخ الرمز الذي تم توليده.
-        * استخدم مجموعة عقد موجودة - انسخ الرمز باستخدام قائمة العقدة → **نسخ الرمز**.
+    1. افتح واجهة Wallarm → **العقدات** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes).
+    1. قم بإحدى التالي: 
+        * أنشئ عقدة من نوع **Wallarm node** وانسخ الرمز الناتج.
+        * استخدم مجموعة العقدة الحالية - انسخ الرمز باستخدام قائمة العقدة → **نسخ الرمز**.
 
 ## 4. تشغيل حاوية Docker مع العقدة
 
-قم بتشغيل حاوية Docker مع العقدة [محمّلةً](https://docs.docker.com/storage/volumes/) بملف التكوين الذي قمت بإنشائه للتو.
+تشغيل حاوية Docker مع العقدة [mounting](https://docs.docker.com/storage/volumes/) الملف التكوين الذي أنشأته للتو.
 
-=== "سحابة الولايات المتحدة"
+=== "السحابة الأمريكية"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.1-1
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.2-1
     ```
-=== "سحابة الاتحاد الأوروبي"
+=== "السحابة الأوروبية"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.1-1
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.2-1
     ```
 
-المتغيرات البيئية التالية يجب أن تُمرر إلى الحاوية:
+ينبغي تمرير المتغيرات البيئية التالية للحاوية:
 
 --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
 
-## 5. تجريب عملية عقدة Wallarm
+## 5. اختبار تشغيل عقدة Wallarm
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## تكوين السجلات
+## تكوين السجل
 
-تم تفعيل السجلات بشكل افتراضي. دلائل السجلات هي:
+السجل مفعل بشكل افتراضي. الدلائل السجلية هي:
 
 * `/var/log/nginx` — سجلات NGINX
 * `/opt/wallarm/var/log/wallarm` — [سجلات عقدة Wallarm][logging-instr]
 
 ## تكوين المراقبة
 
-لمراقبة عقدة الفلترة، هناك سكريبتات متوافقة مع Nagios داخل الحاوية. انظر التفاصيل في [مراقبة عقدة الفلترة][doc-monitoring].
+لمراقبة عقدة التصفية، هناك سكربتات متوافقة مع Nagios داخل الحاوية. راجع التفاصيل في [مراقبة عقدة التصفية][doc-monitoring].
 
-مثال على تشغيل السكريبتات:
+مثال على تشغيل السكربتات:
 
 ``` bash
 docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_tarantool_timeframe -w 1800 -c 900
@@ -158,10 +159,10 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_export_delay -w 120 -c 300
 ```
 
-* `<WALLARM_NODE_CONTAINER_ID>` هو معرف حاوية Docker التي تعمل لعقدة Wallarm. للحصول على المعرف، قم بتشغيل `docker ps` وانسخ المعرف المناسب.
+* `<WALLARM_NODE_CONTAINER_ID>` هو الرقم التعريفي لعقدة Wallarm المشتغلة في حاوية Docker. للحصول على الرقم التعريفي، قم بتشغيل `docker ps` وانسخ الرقم التعريفي المطلوب.
 
-## تكوين حالات الاستخدام
+## تكوين سيناريو الاستخدام
 
-يجب أن يصف ملف التكوين الذي تم تحميله على الحاوية Docker تكوين عقدة الفلترة في [التوجيهات المتاحة](../../../admin-en/configure-parameters-en.md). أدناه بعض خيارات تكوين عقدة الفلترة المستخدمة بشكل شائع:
+يجب أن يصف الملف التكوين الذي يمت للحاوية Docker توصيف عقدة التصفية في [التوجيهات المتاحة](../../../admin-en/configure-parameters-en.md). فيما يلي بعض الخيارات المشتركة لتوصيف عقدة التصفية:
 
 --8<-- "../include/waf/installation/linux-packages/common-customization-options.md"

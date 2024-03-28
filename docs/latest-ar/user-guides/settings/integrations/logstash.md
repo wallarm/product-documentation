@@ -1,17 +1,17 @@
 # Logstash
 
-[Logstash](https://www.elastic.co/logstash) هو أداة مفتوحة المصدر لمعالجة البيانات وإدارة السجلات تم تطويرها بواسطة Elastic. يمكنك ضبط Wallarm لإرسال إشعارات الأحداث المكتشفة إلى Logstash.
+[Logstash](https://www.elastic.co/logstash) هو أداة مفتوحة المصدر لمعالجة البيانات وإدارة السجلات طورتها Elastic. يمكنك ضبط Wallarm لإرسال إشعارات بالأحداث المكتشفة إلى Logstash.
 
 ## تنسيق الإشعار
 
-Wallarm يرسل الإشعارات إلى Logstash عبر **webhooks** بتنسيق JSON. مجموعة الكائنات JSON تعتمد على الحدث الذي يقوم Wallarm بالإشعار به.
+Wallarm يرسل الإشعارات إلى Logstash عبر **الويب هوك** بتنسيق JSON. يعتمد مجموعة الكائنات JSON على الحدث الذي يشعر عنه Wallarm.
 
-مثال على إشعار بكشف ضربة جديدة:
+مثال على إشعار الضربة الجديدة المكتشفة:
 
 ```json
 [
     {
-        "summary": "[Wallarm] تم كشف ضربة جديدة",
+        "summary": "[Wallarm] New hit detected",
         "details": {
         "client_name": "TestCompany",
         "cloud": "EU",
@@ -61,74 +61,74 @@ Wallarm يرسل الإشعارات إلى Logstash عبر **webhooks** بتنس
 
 ## المتطلبات
 
-يجب أن تلبي تكوينة Logstash المتطلبات التالية:
+يجب أن تلبي تكوينات Logstash المتطلبات التالية:
 
 * قبول طلبات POST أو PUT
 * قبول طلبات HTTPS
-* وجود URL عام
+* امتلاك URL عام
 
-مثال على تكوينة Logstash:
+مثال على تكوين Logstash:
 
 ```bash linenums="1"
 input {
-  http { # إضافة الإدخال لحركة البيانات HTTP و HTTPS
-    port => 5044 # منفذ للطلبات الواردة
-    ssl => true # معالجة حركة البيانات HTTPS
+  http { # مكمل الإدخال لحركة HTTP وHTTPS
+    port => 5044 # المنفذ للطلبات الواردة
+    ssl => true # معالجة حركة HTTPS
     ssl_certificate => "/etc/server.crt" # شهادة TLS لـ Logstash
     ssl_key => "/etc/server.key" # المفتاح الخاص لشهادة TLS
   }
 }
 output {
-  stdout {} # إضافة الإخراج لطباعة سجلات Logstash على سطر الأوامر
+  stdout {} # مكمل الإخراج لطباعة سجلات Logstash في سطر الأوامر
   ...
 }
 ```
 
-ستجد المزيد من التفاصيل في [الوثائق الرسمية لـ Logstash](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html).
+يمكنك العثور على المزيد من التفاصيل في [الوثائق الرسمية لـ Logstash](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html).
 
-## ضبط الاندماج
+## إعداد الاندماج
 
-1. انتقل إلى ضبط الاندماج مع Logstash في وحدة تحكم Wallarm → **الاندماجات** → **Logstash**.
+1. انتقل إلى إعداد اندماج Logstash في Wallarm Console → **Integrations** → **Logstash**.
 1. أدخل اسم الاندماج.
-1. حدد URL Logstash المستهدف (URL Webhook).
-1. إذا لزم الأمر، قم بتكوين الإعدادات المتقدمة:
+1. حدد URL Logstash المستهدف (Webhook URL).
+1. إذا لزم الأمر، قم بتهيئة الإعدادات المتقدمة:
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 1. اختر أنواع الأحداث لتشغيل الإشعارات.
 
     ![اندماج Logstash](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-    التفاصيل على الأحداث المتوفرة:
+    التفاصيل حول الأحداث المتاحة:
 
     --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-1. انقر **اختبر الاندماج** للتحقق من صحة التكوين، توفر سحابة Wallarm، وتنسيق الإشعار.
+1. انقر **اختبر الاندماج** للتحقق من صحة التكوين، توافر Wallarm Cloud، وتنسيق الإشعار.
 
-    سجل Logstash الاختباري:
+    سجل Logstash التجريبي:
 
     ```json
     [
         {
-            summary:"[رسالة اختبار] [شريك الاختبار(US)] تم كشف ثغرة أمنية جديدة",
-            description:"نوع الإشعار: vuln
+            summary:"[Test message] [Test partner(US)] New vulnerability detected",
+            description:"Notification type: vuln
 
-                        تم كشف ثغرة أمنية جديدة في نظامك.
+                        New vulnerability was detected in your system.
 
-                        الرقم التعريفي: 
-                        العنوان: Test
-                        النطاق: example.com
-                        المسار: 
-                        الطريقة: 
-                        اكتشف بواسطة: 
-                        المعامل: 
-                        النوع: Info
-                        الخطر: متوسط
+                        ID: 
+                        Title: Test
+                        Domain: example.com
+                        Path: 
+                        Method: 
+                        Discovered by: 
+                        Parameter: 
+                        Type: Info
+                        Threat: Medium
 
-                        المزيد من التفاصيل: https://us1.my.wallarm.com/object/555
+                        More details: https://us1.my.wallarm.com/object/555
 
 
-                        العميل: TestCompany
-                        السحابة: US
+                        Client: TestCompany
+                        Cloud: US
                         ",
             details:{
                 client_name:"TestCompany",
@@ -143,7 +143,7 @@ output {
                     path:null,
                     title:"Test",
                     discovered_by:null,
-                    threat:"متوسط",
+                    threat:"Medium",
                     type:"Info"
                 }
             }
@@ -151,40 +151,40 @@ output {
     ]
     ```
 
-1. انقر **أضف الاندماج**.
+1. انقر **أضف اندماج**.
 
-## ضبط إشعارات إضافية
+## إعداد تنبيهات إضافية
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## استخدام Logstash كجامع بيانات وسيط
+## استخدام Logstash كمجمع بيانات وسيط
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
 على سبيل المثال:
 
-![تدفق Webhook](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![تدفق الويب هوك](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
-لتسجيل أحداث Wallarm باستخدام هذا المخطط:
+لتسجيل أحداث Wallarm باستخدام هذه الخطة:
 
-1. قم بتكوين جامع البيانات لقراءة webhooks الواردة وإعادة توجيه السجلات إلى النظام التالي. Wallarm يرسل الأحداث إلى جامعي البيانات عبر webhooks.
-1. قم بتكوين نظام SIEM للحصول على السجلات من جامع البيانات وقراءتها.
-1. قم بضبط Wallarm لإرسال السجلات إلى جامع البيانات.
+1. قم بتكوين مجمع البيانات لقراءة الويب هوك الواردة ولإعادة توجيه السجلات إلى النظام التالي. Wallarm يرسل الأحداث إلى مجمعي البيانات عبر الويب هوك.
+1. قم بتكوين نظام إدارة المعلومات الأمنية لاستقبال وقراءة السجلات من مجمع البيانات.
+1. قم بتكوين Wallarm لإرسال السجلات إلى مجمع البيانات.
 
-    يمكن لـ Wallarm إرسال السجلات إلى أي جامع بيانات عبر webhooks.
+    يمكن لـ Wallarm إرسال السجلات إلى أي مجمع بيانات عبر الويب هوك.
 
-    للاندماج مع Fluentd أو Logstash، يمكنك استخدام بطاقات الاندماج المناسبة في واجهة مستخدم Wallarm Console.
+    للاندماج مع Fluentd أو Logstash، يمكنك استخدام بطاقات الاندماج المقابلة في واجهة مستخدم Wallarm Console.
 
-    للاندماج مع جامعي بيانات آخرين، يمكنك استخدام [بطاقة الاندماج webhook](webhook.md) في واجهة مستخدم Wallarm Console.
+    للاندماج مع مجمعي بيانات آخرين، يمكنك استخدام [بطاقة الاندماج عبر الويب هوك](webhook.md) في واجهة مستخدم Wallarm Console.
 
-قمنا بوصف بعض الأمثلة حول كيفية ضبط الاندماج مع جامعي البيانات الشهيرة التي تعيد توجيه السجلات إلى أنظمة SIEM:
+وصفنا بعض الأمثلة على كيفية تكوين الاندماج مع مجمعي البيانات الشهيرة الموجهة لأنظمة إدارة المعلومات الأمنية:
 
 * [Wallarm → Logstash → IBM QRadar](webhook-examples/logstash-qradar.md)
 * [Wallarm → Logstash → Splunk Enterprise](webhook-examples/logstash-splunk.md)
 * [Wallarm → Logstash → Micro Focus ArcSight Logger](webhook-examples/logstash-arcsight-logger.md)
 * [Wallarm → Logstash → Datadog](webhook-examples/fluentd-logstash-datadog.md)
 
-    Wallarm يدعم أيضًا [الاندماج الأصلي مع Datadog عبر واجهة برمجة تطبيقات Datadog](datadog.md). لا يتطلب الاندماج الأصلي استخدام جامع بيانات وسيط.
+    كما يدعم Wallarm [الاندماج الأصلي مع Datadog عبر واجهة برمجة تطبيقات Datadog](datadog.md). الاندماج الأصلي لا يتطلب استخدام مجمع بيانات وسيط.
 
 ## تعطيل وحذف اندماج
 

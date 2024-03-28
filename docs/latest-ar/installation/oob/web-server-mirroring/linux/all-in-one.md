@@ -38,21 +38,21 @@ search:
 [restart-nginx-step]:               #step-6-restart-nginx
 [separate-postanalytics-installation-aio]:  ../../../../admin-en/installation-postanalytics-en.md#all-in-one-automatic-installation
 
-# التثبيت بواسطة المثبت كل في واحد
+# التوظيف باستخدام الأداة All-in-One
 
-هذه التعليمات تصف الخطوات لتثبيت Wallarm كوحدة نمطية ديناميكية [OOB](../overview.md) باستخدام **المثبت كل في واحد** المصمم لتبسيط وتوحيد عملية تثبيت عقدة Wallarm كوحدة نمطية ديناميكية لـ NGINX في بيئات متنوعة. يقوم هذا المثبت تلقائيًا بتحديد إصدارات نظام التشغيل وNGINX لديك، وتثبيت جميع الاعتماديات الضرورية.
+توفر هذه التعليمات الخطوات التي توضح كيفية تثبيت Wallarm كوحدة نمطية ديناميكية [OOB](../overview.md) باستخدام **أداة التثبيت All-in-One** المصممة لتبسيط وتوحيد عملية تثبيت وحدة Wallarm النمطية التي تعمل كوحدة لـ NGINX في مختلف البيئات. تقوم هذه الأداة بتحديد نظام التشغيل وإصدارات NGINX تلقائياً، ثم تثبت جميع الاعتمادات اللازمة.
 
-بالمقارنة مع حزم Linux الفردية التي تقدمها Wallarm لـ [NGINX](nginx-stable.md), [NGINX Plus](nginx-plus.md), و[NGINX المقدم من التوزيع](nginx-distro.md), فإن **المثبت كل في واحد** يبسط العملية بأداء الإجراءات التالية تلقائيًا:
+بالمقارنة بالحزم الفردية لنظام التشغيل Linux التي توفرها Wallarm لـ [NGINX](nginx-stable.md)، و[NGINX Plus](nginx-plus.md)، و[نسخة NGINX الموزعة مسبقًا](nginx-distro.md)، تبسط أداة التثبيت **All-in-One** العملية من خلال القيام تلقائياً بالإجراءات التالية:
 
-1. التحقق من نظام التشغيل وإصدار NGINX لديك.
+1. التحقق من نظام التشغيل وإصدار NGINX الخاص بك.
 1. إضافة مستودعات Wallarm لنظام التشغيل وإصدار NGINX المكتشف.
 1. تثبيت حزم Wallarm من هذه المستودعات.
-1. ربط الوحدة النمطية Wallarm المثبتة بـ NGINX الخاص بك.
-1. ربط عقدة التصفية بـ Wallarm Cloud باستخدام الرمز المميز المقدم.
+1. التوصيل بوحدة Wallarm المثبتة مع NGINX الخاص بك.
+1. توصيل العقدة التصفية بـ Wallarm Cloud باستخدام الرمز المميز المقدم.
 
-![المثبت كل في واحد مقارنةً بالتثبيت اليدوي](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+![الأداة All-in-One مقارنة بالتثبيت اليدوي](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
-## حالات الاستخدام
+## سيناريوهات الاستخدام
 
 --8<-- "../include/waf/installation/all-in-one/use-cases.md"
 
@@ -60,25 +60,25 @@ search:
 
 --8<-- "../include/waf/installation/all-in-one-requirements.md"
 
-## الخطوة 1: تثبيت NGINX والاعتماديات
+## الخطوة 1: تثبيت NGINX والاعتمادات اللازمة
 
 --8<-- "../include/waf/installation/all-in-one-nginx.md"
 
-## الخطوة 2: تحضير رمز Wallarm
+## الخطوة 2: استعد رمز Wallarm المميز
 
 --8<-- "../include/waf/installation/all-in-one-token.md"
 
-## الخطوة 3: تنزيل مثبت Wallarm كل في واحد
+## الخطوة 3: تحميل المثبت All-in-One من Wallarm
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-## الخطوة 4: تشغيل مثبت Wallarm كل في واحد
+## الخطوة 4: تشغيل المثبت All-in-One من Wallarm
 
 --8<-- "../include/waf/installation/all-in-one-installer-run.md"
 
-الأوامر في الخطوات التالية متشابهة لتثبيتات x86_64 وARM64.
+أوامر الخطوات اللاحقة هي نفسها للتثبيتات x86_64 و ARM64.
 
-## الخطوة 5: تمكين عقدة Wallarm لتحليل حركة المرور
+## الخطوة 5: تمكين عقدة Wallarm لتحليل الحركة
 
 --8<-- "../include/waf/installation/oob/steps-for-mirroring-linux-all-in-one.md"
 
@@ -86,46 +86,46 @@ search:
 
 --8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-## الخطوة 7: تهيئة إرسال حركة المرور إلى عقدة Wallarm
+## الخطوة 7: تكوين إرسال الحركة إلى عقدة Wallarm
 
 --8<-- "../include/waf/installation/sending-traffic-to-node-oob.md"
 
-## الخطوة 8: اختبار تشغيل عقدة Wallarm
+## الخطوة 8: تجربة عملية عقدة Wallarm
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## الخطوة 9: تنقيح الحل المُطبق
+## الخطوة 9: ضبط الحل المنصوب بشكل دقيق
 
-يتم تثبيت وحدة Wallarm الديناميكية بالإعدادات الافتراضية. قد تحتاج عقدة التصفية إلى بعض التهيئة الإضافية بعد النشر.
+تم تثبيت الوحدة النمطية الديناميكية لـ Wallarm مع الإعدادات الافتراضية. قد تحتاج العقدة التصفية إلى بعض التكوينات الإضافية بعد النشر.
 
-يتم تعريف إعدادات Wallarm باستخدام [توجيهات NGINX](../../../../admin-en/configure-parameters-en.md) أو واجهة مستخدم Wallarm Console. يجب تعيين التوجيهات في الملفات التالية على جهاز بعقدة Wallarm:
+يتم تعريف إعدادات Wallarm باستخدام [التوجيهات NGINX](../../../../admin-en/configure-parameters-en.md) أو واجهة المستخدم الرسومية لـ Wallarm Console. يجب تعيين التوجيهات في الملفات التالية على الجهاز التي تحتوي على العقدة Wallarm:
 
 * `/etc/nginx/nginx.conf` مع إعدادات NGINX
-* `/etc/nginx/wallarm-status.conf` مع إعدادات مراقبة عقدة Wallarm. الوصف الدقيق متوفر ضمن [الرابط][wallarm-status-instr]
-* `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` مع إعدادات الإضافة `collectd` التي تجمع الإحصائيات من Tarantool
+* `/etc/nginx/wallarm-status.conf` مع إعدادات مراقبة العقدة Wallarm. وصف مفصل متاح داخل [الرابط][wallarm-status-instr]
+* `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` مع الإعدادات للإضافة `collectd` التي تجمع الإحصائيات من Tarantool
 
-فيما يلي بعض الإعدادات النموذجية التي يمكنك تطبيقها إذا لزم الأمر:
+أدناه هناك بعض التوجيهات الأنماطية التي يمكنك تطبيقها إذا كانت بحاجة:
 
-* [تخصيص الموارد لعقد Wallarm][memory-instr]
-* [تسجيل متغيرات عقدة Wallarm][logging-instr]
-* [استخدام موازنة أو خادم وكيل خلف عقدة التصفية][proxy-balancer-instr]
-* [تحديد وقت معالجة الطلب الواحد في توجيه `wallarm_process_time_limit`][process-time-limit-instr]
-* [تحديد وقت الانتظار للرد من الخادم في توجيه NGINX `proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
-* [تحديد الحجم الأقصى للطلب في توجيه NGINX `client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
-* [تكوين الحل بدقة DNS ديناميكي في NGINX][dynamic-dns-resolution-nginx]
+* [تخصيص الموارد للعقد Wallarm][memory-instr]
+* [تسجيل متغيرات العقد Wallarm][logging-instr]
+* [استخدام متوازن للخادم الوسيط وراء العقدة التصفية][proxy-balancer-instr]
+* [الحد من وقت معالجة الطلبات الفردية في التوجيه `wallarm_process_time_limit`][process-time-limit-instr]
+* [الحد من وقت الانتظار للرد من الخادم في التوجيه `proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
+* [الحد من الحجم الأقصى للطلب في التوجيه `client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
+* [تكوين الدقة الديناميكية لـ DNS في NGINX][dynamic-dns-resolution-nginx]
 
 ## خيارات التشغيل
 
 --8<-- "../include/waf/installation/all-in-one/launch-options.md"
 
-## البدء في التثبيت من جديد
+## بدء التثبيت من جديد
 
-إذا كنت بحاجة إلى حذف تثبيت عقدة Wallarm والبدء من جديد، اتبع الخطوات أدناه.
+إذا كنت بحاجة إلى حذف تثبيت العقدة Wallarm والبدء من جديد, فاتبع الخطوات أدناه.
 
-!!! warning "تأثير البدء في التثبيت من جديد"
-    البدء في التثبيت من جديد يتضمن إيقاف وحذف خدمات Wallarm الجارية، وبالتالي إيقاف تصفية حركة المرور حتى إعادة التثبيت. يجب توخي الحذر في بيئات حركة المرور الإنتاجية أو الحيوية، حيث يترك هذا حركة المرور غير مُصفَّاة وعُرضة للمخاطر.
+!!! warning "تأثير بدء التثبيت من جديد"
+    بدء التثبيت من جديد يشمل إيقاف وحذف الخدمات الجارية لـ Wallarm, مما يعلق تصفية الحركة حتى إعادة التثبيت. كن حذراً في بيئات الإنتاج أو الحركة الحرجة, حيث يترك الحركة غير مصفاة وعرضة للخطر.
 
-    لترقية عقدة موجودة (على سبيل المثال، من 4.8 إلى 4.10)، انظر إلى [تعليمات الترقية](../../../../updating-migrating/all-in-one.md).
+    لترقية العقدة الموجودة (مثلاً, من 4.8 إلى 4.10), راجع [تعليمات الترقية](../../../../updating-migrating/all-in-one.md).
 
 1. إنهاء عمليات Wallarm وإزالة ملفات التكوين:
 
@@ -133,4 +133,4 @@ search:
     sudo systemctl stop wallarm
     sudo rm -rf /opt/wallarm
     ```
-1. تابع عملية إعادة التثبيت باتباع التعليمات الإعدادية من [الخطوة الثانية](#step-2-prepare-wallarm-token).
+2. استمر في عملية إعادة التثبيت عن طريق اتباع تعليمات الإعداد من [الخطوة الثانية](#step-2-prepare-wallarm-token).

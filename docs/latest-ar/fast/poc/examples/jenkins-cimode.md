@@ -1,20 +1,10 @@
-[jenkins-config-pipeline]:      https://jenkins.io/doc/book/pipeline
-[fast-node-token]:              ../../operations/create-node.md
-[jenkins-parameterized-build]:  https://wiki.jenkins.io/display/JENKINS/Parameterized+Build
-[jenkins-example-env-var]:     ../../../images/fast/poc/common/examples/jenkins-cimode/jenkins-add-token-example.png
-[fast-example-jenkins-result]:  ../../../images/fast/poc/common/examples/jenkins-cimode/jenkins-result-example.png
-[fast-ci-mode-record]:          ../ci-mode-recording.md#environment-variables-in-recording-mode
-[fast-ci-mode-test]:            ../ci-mode-testing.md#environment-variables-in-testing-mode
-[mail-to-us]:                   mailto:support@wallarm.com
-[fast-examples-github]:         https://github.com/wallarm/fast-examples 
-
 # دمج FAST مع Jenkins
 
-يتم تكوين دمج FAST في وضع CI مع سير عمل Jenkins من خلال ملف `Jenkinsfile`. تتوفر المزيد من التفاصيل حول تكوين سير عمل Jenkins في [وثائق Jenkins الرسمية][jenkins-config-pipeline].
+يتم ضبط دمج FAST في وضع CI مع سير عمل Jenkins عبر ملف `Jenkinsfile`. المزيد من التفاصيل حول ضبط سير عمل Jenkins متاحة في [التوثيق الرسمي لـ Jenkins][jenkins-config-pipeline].
 
-## تمرير Token Node لـ FAST
+## تمرير رمز عقدة FAST
 
-لكي تستخدم [رمز نود FAST][fast-node-token] بأمان، امرر قيمته في [متغير البيئة في إعدادات مشروعك][jenkins-parameterized-build].
+للاستخدام الآمن لرمز [عقدة FAST][fast-node-token]، يتم تمرير قيمته في [متغير البيئة ضمن إعدادات مشروعك][jenkins-parameterized-build].
 
 ![تمرير متغير بيئة Jenkins][jenkins-example-env-var]
 
@@ -24,7 +14,7 @@
 
 --8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
-??? info "مثال على خطوة الاختبار الأوتوماتيكي مع تشغيل نود FAST في وضع التسجيل"
+??? info "مثال على خطوة الاختبار الآلي مع تشغيل عقدة FAST في وضع التسجيل"
     ```
     stage('Run autotests with recording FAST node') {
           steps {
@@ -39,20 +29,20 @@
        }
     ```
 
-    يشمل المثال الخطوات التالية:
+    يشتمل المثال على الخطوات التالية:
 
     1. إنشاء شبكة Docker `my-network`.
-    2. تشغيل نود FAST في وضع التسجيل على الشبكة `my-network`.
-    3. تشغيل أداة الاختبار الأوتوماتيكي Selenium باستخدام نود FAST كوكيل على الشبكة `my-network`.
-    4. تشغيل التطبيق الاختباري والاختبارات الأوتوماتيكية.
-    5. إيقاف Selenium ونود FAST.
+    2. تشغيل عقدة FAST في وضع التسجيل على الشبكة `my-network`.
+    3. تشغيل أداة الاختبار الآلي Selenium بعقدة FAST كوكيل على الشبكة `my-network`.
+    4. تشغيل تطبيق الاختبار والاختبارات الآلية.
+    5. إيقاف Selenium وعقدة FAST.
     6. حذف شبكة `my-network`.
 
-## إضافة خطوة الاختبار الأمني
+## إضافة خطوة اختبار الأمان
 
 --8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
-??? info "مثال على خطوة الاختبار الأمني"
+??? info "مثال على خطوة اختبار الأمان"
 
     ```
     stage('Run security tests') {
@@ -66,23 +56,23 @@
        }
     ```
 
-    يتضمن المثال الخطوات التالية:
+    يشتمل المثال على الخطوات التالية:
 
     1. إنشاء شبكة Docker `my-network`.
-    2. تشغيل التطبيق الاختباري على شبكة `my-network`.
-    3. تشغيل نود FAST في وضع الاختبار على شبكة `my-network`. تم تجاهل متغير `TEST_RECORD_ID` لأنه تم إنشاء مجموعة الطلبات الأساسية في pipeline الحالي وهي آخر ما تم تسجيله. سيتم إيقاف نود FAST تلقائيًا عندما يتم الانتهاء من الاختبار.
-    4. إيقاف التطبيق الاختباري.
+    2. تشغيل تطبيق الاختبار على الشبكة `my-network`.
+    3. تشغيل عقدة FAST في وضع الاختبار على الشبكة `my-network`. يتم حذف متغير `TEST_RECORD_ID` لأنه تم إنشاء مجموعة الطلبات الأساسية في سير العمل الحالي وهي آخر ما تم تسجيله. سيتم إيقاف عقدة FAST تلقائيًا عند انتهاء الاختبار.
+    4. إيقاف تطبيق الاختبار.
     5. حذف شبكة `my-network`.
 
 ## الحصول على نتيجة الاختبار
 
-سيتم عرض نتيجة الاختبار الأمني على واجهة Jenkins.
+ستُعرض نتيجة اختبار الأمان على واجهة Jenkins.
 
-![نتيجة تشغيل نود FAST في وضع الاختبار][fast-example-jenkins-result]
+![نتيجة تشغيل عقدة FAST في وضع الاختبار][fast-example-jenkins-result]
 
-## المزيد من الأمثلة
+## مزيد من الأمثلة
 
-يمكنك إيجاد أمثلة لدمج FAST مع سير عمل Jenkins على [GitHub][fast-examples-github] الخاص بنا.
+يمكنك العثور على أمثلة لدمج FAST مع سير عمل Jenkins على [GitHub][fast-examples-github].
 
-!!! info "لمزيد من الاستفسارات"
-    إذا كان لديك أي أسئلة تتعلق بدمج FAST، يرجى [التواصل معنا][mail-to-us].
+!!! info "للأسئلة الإضافية"
+    إذا كان لديك أسئلة متعلقة بدمج FAST، يرجى [التواصل معنا][mail-to-us].

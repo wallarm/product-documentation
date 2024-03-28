@@ -1,8 +1,8 @@
-=== "توزيعات قائمة على DEB"
+=== "توزيعات تعتمد على DEB"
     ```bash
     sudo apt -y install --no-install-recommends collectd-utils
     ```
-=== "توزيعات قائمة على RPM"
+=== "توزيعات تعتمد على RPM"
     ```bash
     sudo yum install -y collectd-utils
     ```

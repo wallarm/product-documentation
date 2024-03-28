@@ -1,160 +1,160 @@
-[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
-[blocking-page-instr]:              ../../admin-en/configuration-guides/configure-block-page-and-code.md
-[logging-instr]:                    ../../admin-en/configure-logging.md
-[proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
-[process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[allocating-memory-guide]:          ../../admin-en/configuration-guides/allocate-resources-for-node.md
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
-[nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
-[overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                     ../../user-guides/ip-lists/overview.md
-[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
-[envoy-process-time-limit-docs]:    ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
+[waf-mode-instr]: ../../admin-en/configure-wallarm-mode.md
+[blocking-page-instr]: ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[logging-instr]: ../../admin-en/configure-logging.md
+[proxy-balancer-instr]: ../../admin-en/using-proxy-or-balancer-en.md
+[process-time-limit-instr]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[allocating-memory-guide]: ../../admin-en/configuration-guides/allocate-resources-for-node.md
+[ptrav-attack-docs]: ../../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]: ../../images/admin-guides/test-attacks-quickstart.png
+[nginx-process-time-limit-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]: ../../user-guides/rules/configure-overlimit-res-detection.md
+[graylist-docs]: ../../user-guides/ip-lists/overview.md
+[waf-mode-instr]: ../../admin-en/configure-wallarm-mode.md
+[envoy-process-time-limit-docs]: ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
 [envoy-process-time-limit-block-docs]: ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
-[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
+[ip-lists-docs]: ../../user-guides/ip-lists/overview.md
 
-# تحديث صورة Docker NGINX- أو Envoy-based المستندة إلى نهاية العمر 
+# ترقية صورة Docker التي تعتمد على NGINX أو Envoy والتي وصلت إلى نهاية العمر الافتراضي
 
-توجد هذه التعليمات البرامجية لوصف الخطوات التي تحتاج إلى اتباعها لتحديث الصورة التنفيذية النشطة لبرنامج Docker NGINX- أو Envoy-based (الإصدار 3.6 وما دونه) إلى الإصدار 4.10.
+هذه التعليمات تصف الخطوات لترقية الصورة العاملة التي تعتمد على Docker NGINX أو Envoy والتي وصلت إلى نهاية العمر الافتراضي (الإصدار 3.6 والأقل) إلى الإصدار 4.10.
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
-## متطلبات
+## المتطلبات
 
 --8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
 
-## الخطوة 1: إبلاغ الدعم الفنى لـ Wallarm بأنك تقوم بترقية وحدات العقدة الفلترية (فقط إذا كنت تقوم بترقية العقدة 2.18 أو أقل)
+## الخطوة 1: أبلغ الدعم الفني لـWallarm بأنك تقوم بترقية وحدات العقدة الفلترة (فقط إذا كنت تقوم بترقية العقدة 2.18 أو أقل)
 
-إذا كنت تقوم بترقية العقدة 2.18 أو أقل، فالرجاء إبلاغ [الدعم الفني لـ Wallarm](mailto:support@wallarm.com) بأنك تقوم بترقية وحدات العقدة الفلترية إلى 4.10 واطلب تمكين منطق القائمة IP الجديدة لحساب Wallarm الخاص بك. عند تمكين المنطق الجديد للقائمة IP، يرجى التأكد من توفر القسم [**قوائم IP**](../../user-guides/ip-lists/overview.md) في واجهة Wallarm.
+إذا كنت تقوم بترقية العقدة 2.18 أو أقل، يرجى إبلاغ [الدعم الفني لـWallarm](mailto:support@wallarm.com) بأنك تقوم بترقية وحدات العقدة الفلترة إلى 4.10 وطلب تمكين منطق القائمة الجديدة لحساب Wallarm الخاص بك. عند تمكين منطق القائمة الجديد، يرجى التأكد من أن القسم [**القائمات الفرعية**](../../user-guides/ip-lists/overview.md) من Wallarm Console متاح.
 
 ## الخطوة 2: تعطيل وحدة التحقق من التهديدات النشطة (فقط إذا كنت تقوم بترقية العقدة 2.16 أو أقل)
 
-إذا كنت تقوم بترقية العقدة Wallarm 2.16 أو أقل، فيُرجى تعطيل وحدة [التحقق من التهديدات النشطة](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) من خلال واجهة Wallarm Console → **الثغرات الأمنية** → **تكوين**.
+إذا كنت تقوم بترقية Wallarm node 2.16 أو أقل، يرجى تعطيل وحدة [التحقق من التهديدات النشطة](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) في Wallarm Console → **الثغرات الأمنية**→ **اضبط**.
 
-قد يؤدي استمرار تشغيل الوحدة إلى حدوث [إيجابيات زائفة](../../about-wallarm/protecting-against-attacks.md#false-positives) أثناء عملية الترقية. يقلل تعطيل الوحدة من هذا المخاطرة.
+يمكن أن يسبب تشغيل الوحدة [الإيجابيات الكاذبة](../../about-wallarm/protecting-against-attacks.md#false-positives) أثناء عملية الترقية. تعطيل الوحدة يقلل من هذا المخاطر.
 
 ## الخطوة 3: تحديث منفذ API
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## الخطوة 4: تنزيل الصورة المحدثة لوحدة التصفية
+## الخطوة 4: تنزيل صورة العقدة الفلترة المحدثة
 
-=== "NGINX-based صور"
+=== "صورة تعتمد على NGINX"
     ``` bash
-    docker pull wallarm/node:4.10.1-1
+    docker pull wallarm/node:4.10.2-1
     ```
-=== "Envoy-based صور"
+=== "صورة تعتمد على Envoy"
     ``` bash
     docker pull wallarm/envoy:4.8.0-1
     ```
 
-## الخطوة 5: التحول إلى الاتصال بواسطة رمز القسائم مع السحابة Wallarm
+## الخطوة 5: الانتقال إلى الاتصال القائم على الرمز المميز مع Wallarm Cloud
 
-مع الإصدار 4.x، تم تحديث الأسلوب المستخدم لربط الحاوية مع السحابة Wallarm كمايلي:
+مع إصدار الإصدار 4.x، تم تحديث النهج لتوصيل الحاوية بـWallarm Cloud كما يلي:
 
-* [تم إهمال الأسلوب الذي يعتمد على "البريد الإلكتروني وكلمة المرور"](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). في هذا الأسلوب، تم تسجيل العقدة في السحابة Wallarm تلقائيًا بمجرد بدء التشغيل مع اعتماد استخدم بشكل صحيح في متغيرات `DEPLOY_USER` و `DEPLOY_PASSWORD`.
-* تم دخول الأسلوب القائم على القسائم. لربط الحاوية بالسحابة، قم بتشغيل الحاوية مع متغير `WALLARM_API_TOKEN` الذي يحتوي على رمز العقدة Wallarm المنسوخ من واجهة المستخدم Wallarm Console.
+* [تم إهمال النهج القائم على "البريد الإلكتروني وكلمة المرور"](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). في هذا النهج، تم تسجيل العقدة في Wallarm Cloud تلقائيًا بمجرد بدء تشغيل الحاوية مع إدخال البيانات المعتمدة في المتغيرات `DEPLOY_USER` و`DEPLOY_PASSWORD`.
+* تم تضمين النهج القائم على الرمز المميز. لتوصيل الحاوية بالCloud، تشغيل الحاوية مع متغير `WALLARM_API_TOKEN` الذي يحتوي على الرمز المميز للعقدة Wallarm المنسوخ من واجهة المستخدم Wallarm Console.
 
-من الأفضل أن تستخدم الأسلوب الجديد لتشغيل الصورة 4.10. سيتم حذف الأسلوب القائم على "البريد الإلكتروني وكلمة المرور" في الإصدارات المستقبلية، يرجى الترحيل قبل هذا الحدث.
+يوصى باستخدام النهج الجديد لتشغيل الصورة 4.10. سيتم حذف النهج القائم على "البريد الإلكتروني وكلمة المرور" في الإصدارات المستقبلية، يرجى الترحيل قبل ذلك.
 
-لإنشاء عقدة Wallarm جديدة والحصول على رمزها:
+لإنشاء عقدة Wallarm جديدة والحصول على الرمز المميز الخاص بها:
 
-1. قم بفتح واجهة Wallarm Console → **العقدة** نافذة في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes) وأنشئ العقدة من نوع **العقدة Wallarm**.
+1. افتح Wallarm Console → **العقد** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes) وقم بإنشاء العقدة من نوع **Wallarm node**.
 
-    ![إنشاء العقدة Wallarm](../../images/user-guides/nodes/create-cloud-node.png)
-1. قم بنسخ الرمز المولد.
+    ![إنشاء Wallarm node](../../images/user-guides/nodes/create-cloud-node.png)
+1. انسخ الرمز المميز المولد.
 
-## الخطوة 6: نقل القوائم المسموحة والقوائم المرفوضة من الإصدار السابق لـ Wallarm node إلى 4.10 (فقط إذا كنت تقوم بترقية العقدة 2.18 أو أقل)
+## الخطوة 6: نقل القوائم البيضاء والقوائم السوداء من الإصدار السابق للعقدة Wallarm إلى الإصدار 4.10 (فقط في حالة ترقية العقدة 2.18 أو أقل)
 
-إذا كنت تقوم بترقية العقدة 2.18 أو أقل، فقم بـ[الترحيل](../migrate-ip-lists-to-node-3.md) لتكوينات القائمة المسموحة والقائمة المرفوضة من الإصدار السابق لـ Wallarm node إلى 4.10.
+إذا كنت ترقي العقدة 2.18 أو أقل، [نقل](../migrate-ip-lists-to-node-3.md) تكوين القائمة البيضاء والقائمة السوداء من الإصدار السابق للعقدة Wallarm إلى الإصدار 4.10.
 
-## الخطوة 7: التبديل عن الخيارات التكوينية المهملة
+## الخطوة 7: الانتقال من خيارات التكوين المستهجنة
 
-توجد الخيارات التكوينية التالية المهملة:
+توجد الخيارات التكوينية المستهجنة التالية:
 
-* تم تجاهل متغير البيئة `WALLARM_ACL_ENABLE`. إذا تم [ترحيل](../migrate-ip-lists-to-node-3.md) قوائم IP إلى الإصدار الجديد من العقدة، فقم بإزالة هذا المتغير من الأمر `docker run`.
-* تم تغيير أسماء التوجيهات NGINX التالية:
+* تم إهمال متغير البيئة `WALLARM_ACL_ENABLE`. إذا تم [نقل](../migrate-ip-lists-to-node-3.md) القوائم الفرعية إلى الإصدار الجديد من العقدة، قم بإزالة هذا المتغير من أمر `docker run`.
+* تمت إعادة تسمية التعليمات التوجيهية لـNGINX التالية:
 
     * `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
     * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
     * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
     * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
-    لقد قمنا فقط بتغيير أسماء التوجيهات، وظلت منطقيتها كما هي. سيتم تجاهل التوجيهات ذات الأسماء السابقة قريبًا، لذا نوصيك بإعادة تسميتها قبل ذلك.
+    لم نغير سوى أسماء التعليمات التوجيهية، ويظل منطقها كما هو. ستتم إزالة التعليمات التوجيهية ذات الأسماء القديمة قريبًا، لذا نوصيك بإعادة تسميتها قبل ذلك.
     
-    يرجى التحقق مما إذا كانت التوجيهات ذات الأسماء السابقة محددة بشكل صريح في ملفات التكوين المثبتة. إذا كان الأمر كذلك، فقم باعادة تسميتها.
-* تم تغيير [متغير التسجيل](../../admin-en/configure-logging.md#filter-node-variables) `wallarm_request_time` إلى `wallarm_request_cpu_time`.
+    يرجى التحقق مما إذا كانت التعليمات التوجيهية ذات الأسماء القديمة محددة بشكل صريح في ملفات التكوين المثبتة. إذا كان الأمر كذلك، قم بإعادة تسميتها.
+* تمت إعادة تسمية متغير التسجيل `wallarm_request_time` إلى `wallarm_request_cpu_time`.
 
-    قمنا فقط بتغيير اسم المتغير، بينما ظلت منطقيته كما هي. يتم دعم الاسم القديم مؤقتًا أيضًا، لكنه من الأفضل اعادة تسمية المتغير.
-* تم تغيير أسماء المعلمات Envoy التالية:
+    لم نغير سوى اسم المتغير، ويظل منطقه كما هو. الاسم القديم مدعوم مؤقتًا أيضًا، ولكن ما زال من المستحسن إعادة تسمية المتغير.
+* تمت إعادة تسمية العوامل التالية لـEnvoy:
 
     * `lom` → [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
     * `instance` → [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
-    * قسم `tsets` → `rulesets`، وبالتالي فإن الإدخالات `tsN` في هذا القسم → `rsN`
+    * القسم `tsets` → `rulesets، وبالتالي الإدخالات` tsN `في هذا القسم →` rsN `
     * `ts` → [`ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
     * `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
 
-    قمنا فقط بتغيير أسماء المعلمات، بينما ظلت منطقيتها كما هي. سيتم تجاهل المعلمات ذات الأسماء السابقة قريبًا، لذا نوصيك بإعادة تسميتها قبل ذلك.
+    لم نغير سوى أسماء العوامل، ويظل منطقها كما هو. ستتم إزالة العوامل ذات الأسماء القديمة قريبًا، لذا نوصيك بإعادة تسميتها قبل ذلك.
     
-    يرجى التحقق مما إذا كانت المعلمات ذات الأسماء السابقة محددة بشكل صريح في ملفات التكوين المثبتة. إذا كان الأمر كذلك، فقم بإعادة تسميتها.
+    يرجى التحقق مما إذا كانت العوامل ذات الأسماء القديمة محددة بشكل صريح في ملفات التكوين المثبتة. إذا كان الأمر كذلك، قم بإعادة تسميتها.
 
-## الخطوة 8: تحديث صفحة الحظر Wallarm (إذا كان يتم الترقية إلى الصورة المستندة إلى NGINX)
+## الخطوة 8: تحديث صفحة حجب Wallarm (في حالة ترقية صورة تعتمد على NGINX)
 
-في الإصدار الجديد من العقدة، تم [تغيير](what-is-new.md#new-blocking-page) صفحة الحظر العينية لـ Wallarm. الشعار والبريد الالكتروني للدعم الموجود على الصفحة الآن فارغ بشكل افتراضي.
+في الإصدار الجديد من العقدة، تم [تغيير](what-is-new.md#new-blocking-page) صفحة الحجب النموذجية لـWallarm. الشعار والبريد الإلكتروني للدعم على الصفحة فارغان الآن بشكل افتراضي.
 
-إذا تم تكوين الحاوية Docker لإرجاع الصفحة `&/usr/share/nginx/html/wallarm_blocked.html` إلى الطلبات المحظورة، فقم بتغيير هذا التكوين على النحو التالي:
+إذا تم تكوين الحاوية Docker لإرجاع الصفحة `&/usr/share/nginx/html/wallarm_blocked.html` للطلبات المحجوبة، قم بتغيير هذا التكوين على النحو التالي:
 
-1. [نسخ وتخصيص](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) الإصدار الجديد من الصفحة العينية.
-1. [تغيير قاعدة](../../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) تقديم الصفحة المخصصة وملف تكوين NGINX إلى حاوية Docker جديدة في الخطوة التالية.
+1. [نسخ وتخصيص](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) الإصدار الجديد من الصفحة النموذجية.
+1. [تثبيت](../../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) الصفحة المخصصة وملف تكوين NGINX لحاوية Docker جديدة في الخطوة التالية.
 
-## الخطوة 9: مراجعة التحديثات الهندسية الأخيرة (للصورة المستندة إلى NGINX Docker)
+## الخطوة 9: مراجعة التحديثات المعمارية الأخيرة (للصورة التي تعتمد على Docker و NGINX)
 
-أدخل التحديث الأخير [تغييرات هندسية](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image) التي قد تؤثر على المستخدمين، وخاصة أولئك الذين يقومون بتثبيت ملفات التكوين المخصصة أثناء تنشيط الحاوية بسبب تغيير مسارات بعض الملفات. يرجى التعرف على هذه التغييرات لضمان التكوين الصحيح واستخدام الصورة الجديدة.
+قد [أدخل التعديل الأخير](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image) تحديثات معمارية قد تكون لها تأثير على المستخدمين، خاصة أولئك الذين يتعلقون بملفات التكوين المخصصة أثناء بدء تشغيل الحاوية بسبب التغييرات في مسارات بعض الملفات. يرجى التعرف على هذه التغييرات لضمان التكوين السليم واستخدام الصورة الجديدة.
 
-## الخطوة 10: نقل تكوين الكشف عن الهجوم `overlimit_res` من التوجيهات إلى القاعدة
+## الخطوة 10: نقل تكوين اكتشاف الهجمات `overlimit_res` من التعليمات التوجيهية إلى القاعدة
 
 --8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-docker.md"
 
-## الخطوة 11: إيقاف التشغيل للحاوية
+## الخطوة 11: إيقاف تشغيل الحاوية العاملة
 
 ```bash
-docker stop <RUNNING_CONTAINER_NAME>
+docker stop <اسم الحاوية العاملة>
 ```
 
 ## الخطوة 12: تشغيل الحاوية باستخدام الصورة المحدثة
 
-قم بتشغيل الحاوية باستخدام الصورة المحدثة وإجراء التعديلات اللازمة على مسارات الملفات المحملة إذا قامت بذلك [التغييرات الأخيرة على الصورة](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image).
+شغل الحاوية باستخدام صورة محدثة وقم بإجراء التعديلات اللازمة على مسارات الملفات المثبتة إذا كان مطلوبًا بالنظر لـ[التغييرات الأخيرة في الصورة](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image).
 
 هناك خياران لتشغيل الحاوية باستخدام الصورة المحدثة:
 
-* **مع متغيرات البيئة** يحدد التكوين الأساسي للعقدة الفلترية
-    * [تعليمات لحاوية Docker المستندة على NGINX →](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
-    * [تعليمات لحاوية Docker المستندة على Envoy →](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)
-* **في الملف التكويني المثبت** يحدد التكوين المتقدم للعقدة الفلترية
-    * [تعليمات لحاوية Docker المستندة على NGINX →](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
-    * [تعليمات لحاوية Docker المستندة على Envoy →](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
+* **مع متغيرات البيئة** تحدد التكوين الأساسي للعقدة الفلترة
+    * [تعليمات للحاوية ذات التركيب Docker القائم على NGINX →](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
+    * [تعليمات للحاوية ذات التركيب Docker القائم على Envoy →](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)
+* **في الملف التكوين المثبت** يحدد التكوين المتقدم للعقدة الفلترة
+    * [تعليمات للحاوية ذات التركيب Docker القائم على NGINX →](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+    * [تعليمات للحاوية ذات التركيب Docker القائم على Envoy →](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
 
-## الخطوة 13: ضبط إعدادات حالة التحكيم البينية للعقدة Wallarm على التغييرات المطلقة في الإصدارات الأخيرة (فقط إذا كنت تقوم بترقية العقدة 2.18 أو أقل)
+## الخطوة 13: ضبط إعدادات وضع الترشيح للعقدة Wallarm للتغييرات التي تم إصدارها في الإصدارات الأخيرة (فقط في حالة ترقية العقدة 2.18 أو أقل)
 
-1. تأكد من أن السلوك المتوقع للإعدادات المدرجة أدناه يتوافق مع [منطق التغيير في وضع الترشيح `off` و `monitoring`](what-is-new.md#filtration-modes):
-      * متغير البيئة [`WALLARM_MODE`](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) أو التوجيه [`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode) من حاوية Docker المستندة على NGINX
-      * متغير البيئة [`WALLARM_MODE`](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables) أو التوجيه [`mode`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) من حاوية Docker المستندة على Envoy
-      * [القاعدة العامة للترشيح التي تم تكوينها في نافذة Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)
-      * [قواعد الترشيح مستهدفة المنتهى المكونة في نافذة Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console)
-2. إذا لم يتطابق السلوك المتوقع مع منطق وضع الترشيح المتغيّر، يُرجى ضبط إعدادات وضع الترشيح على التغييرات المطلقة باستخدام [التعليمات](../../admin-en/configure-wallarm-mode.md).
+1. تأكد من أن السلوك المتوقع للإعدادات المدرجة أدناه يتوافق مع [المنطق المتغير لأوضاع الترشيح `off` و `monitoring`](what-is-new.md#filtration-modes):
+      * متغير البيئة [`WALLARM_MODE`](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) أو التوجيه [`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode) للحاوية ذات التركيب Docker القائم على NGINX
+      * متغير البيئة [`WALLARM_MODE`](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables) أو التوجيه [`mode`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) للحاوية التي تعتمد على Envoy
+      * [قاعدة الترشيح العامة المكونة في Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)
+      * [قواعد الترشيح الموجهة نحو النهاية المكونة في Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console)
+2. إذا لم يتوافق السلوك المتوقع مع منطق وضع الترشيح المتغير، يرجى ضبط إعدادات وضع الترشيح للتغييرات التي تم إصدارها باستخدام [التعليمات](../../admin-en/configure-wallarm-mode.md).
 
-## الخطوة 14: اختبار عملية العقدة الفلترية
+## الخطوة 14: اختبار عملية العقدة الفلترة
 
 --8<-- "../include/waf/installation/test-after-node-type-upgrade.md"
 
-## الخطوة 15: حذف العقدة الفلترية للإصدار السابق
+## الخطوة 15: حذف العقدة الفلترة للإصدار السابق
 
-إذا كانت الصورة المنفذة للإصدار 4.10 تعمل بشكل صحيح، فيمكنك حذف العقدة الفلترية للإصدار السابق في قسم واجهة Wallarm Console → **العقدة**.
+إذا كانت صورة الإصدار 4.10 العاملة تعمل بشكل صحيح، يمكنك حذف العقدة الفلترة للإصدار السابق في قسم Wallarm Console → **العقد**.
 
 ## الخطوة 16: إعادة تمكين وحدة التحقق من التهديدات النشطة (فقط إذا كنت تقوم بترقية العقدة 2.16 أو أقل)
 
-راجع [التوصية على تعيين وحدة التحقق من التهديدات النشطة](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) وقم بتمكينها مرة أخرى إذا لزم الأمر.
+تعرف على [التوصية حول إعداد وحدة التحقق من التهديدات النشطة](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) وأعد تمكينها إذا كان مطلوبًا.
 
-بعد فترة من الزمن، تأكد من عدم حدوث إيجابيات كاذبة بسبب عملية الوحدة. إذا اكتشفت إيجابيات كاذبة، الرجاء الاتصال بـ [الدعم الفني لـ Wallarm](mailto:support@wallarm.com).
+بعد فترة، تأكد من أن تشغيل الوحدة لا يسبب إيجابيات كاذبة. إذا اكتشفت إيجابيات كاذبة، يرجى الاتصال بـ[الدعم الفني لـWallarm](mailto:support@wallarm.com).

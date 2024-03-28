@@ -1,19 +1,19 @@
 ```
-[info] في انتظار تشغيل TestRun للفحص...
-[info] تسجيل الأساسيات لـ TestRun#N 'DEMO TEST RUN'
-[info] بدء TestRun#N جديد 'DEMO TEST RUN'
-[info] طلب الوكيل POST http://ojs.example.local/rest/user/login
-[info] تنفيذ مجموعة اختبارات للأساس #X
+[info] في انتظار TestRun للتحقق...
+[info] تسجيل أساسيات لـ TestRun#N 'DEMO TEST RUN'
+[info] بدأ TestRun#N جديد 'DEMO TEST RUN'
+[info] استجابة الوكيل POST http://ojs.example.local/rest/user/login
+[info] تشغيل مجموعة اختبارات للأساس #X
 ...
-[info] تشغيل اختبارات امتداد الافتراضي 'rce-dotnet-jackson' للمعامل 'POST_value'
+[info] تشغيل اختبارات الإضافة الافتراضية 'rce-dotnet-jackson' للمُعامل 'POST_value'
 ...
-[info] تشغيل اختبارات امتداد الافتراضي 'spel-oob' للمعامل 'POST_JSON_DOC_HASH_email_value'
-[info] تشغيل اختبارات الامتداد المخصص 'mod-extension' للمعامل 'POST_JSON_DOC_HASH_email_value'
+[info] تشغيل اختبارات الإضافة الافتراضية 'spel-oob' للمُعامل 'POST_JSON_DOC_HASH_email_value'
+[info] تشغيل اختبارات الإضافة المخصصة 'mod-extension' للمُعامل 'POST_JSON_DOC_HASH_email_value'
 [info] تم العثور على ثغرة SQLI في المضيف ojs.example.local ...
 ...
-[info] تشغيل اختبارات امتداد الافتراضي 'spel-oob' للمعامل 'URI_value'
-تشغيل اختبارات الامتداد المخصص 'non-mod-extension' للمعامل 'URI_value'
+[info] تشغيل اختبارات الإضافة الافتراضية 'spel-oob' للمُعامل 'URI_value'
+تشغيل اختبارات الإضافة المخصصة 'non-mod-extension' للمُعامل 'URI_value'
 [info] تم العثور على ثغرة SQLI في المضيف ojs.example.local ...
 ...
-[info] تم العثور على 2 ثغرات، وتمييز مجموعة الاختبار للأساس #X بالفشل
+[info] تم العثور على ثغرتين، تعيين مجموعة الاختبار للأساس #X على أنها فاشلة
 ```

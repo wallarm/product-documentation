@@ -1,8 +1,8 @@
-## 1. تثبيت NGINX Plus والتوابع
+## 1. تثبيت NGINX Plus والتبعيات
 
-ثبت NGINX Plus والتوابع الخاصة به باستخدام هذه [التعليمات الرسمية من NGINX](https://www.nginx.com/resources/admin-guide/installing-nginx-plus/).
+لتثبيت NGINX Plus والتبعيات الخاصة به، استخدم [التعليمات الرسمية من NGINX](https://www.nginx.com/resources/admin-guide/installing-nginx-plus/).
 
-!!! info "التثبيت على Amazon Linux 2.0.2021x وأقل"
+!!! info "تثبيت على Amazon Linux 2.0.2021x وأقل"
     لتثبيت NGINX Plus على Amazon Linux 2.0.2021x وأقل، استخدم تعليمات CentOS 7.
 
 ## 2. إضافة مستودعات Wallarm
@@ -97,7 +97,7 @@
     load_module modules/ngx_http_wallarm_module.so;
     ```
 
-    مثال التكوين مع إضافة الأمر:
+    مثال التكوين مع الأمر المضاف:
 
     ```
     user  nginx;
@@ -108,12 +108,12 @@
     pid        /var/run/nginx.pid;
     ```
 
-3. انسخ ملفات التكوين لإعداد النظام:
+3. انسخ ملفات الإعداد للنظام:
 
     ``` bash
     sudo cp /usr/share/doc/nginx-plus-module-wallarm/examples/*.conf /etc/nginx/conf.d/
     ```
 
-## 5. ربط العقدة الفلترة ب Wallarm Cloud
+## 5. ربط العقدة الفلترة بـ Wallarm Cloud
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"

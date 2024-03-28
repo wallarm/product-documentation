@@ -1,34 +1,34 @@
 # نشر Wallarm على AWS باستخدام Terraform
 
-توفر Wallarm [وحدة Terraform](https://registry.terraform.io/modules/wallarm/wallarm/aws/) لنشر العقدة إلى [AWS](https://aws.amazon.com/) من البيئة المتوافقة مع Terraform. استخدم هذه التعليمات لاستكشاف الوحدة وتجربة أمثلة النشر المقدمة.
+تقدم Wallarm [وحدة Terraform](https://registry.terraform.io/modules/wallarm/wallarm/aws/) لنشر العقدة على [AWS](https://aws.amazon.com/) من بيئة متوافقة مع Terraform. استخدم هذه التعليمات لاستكشاف الوحدة وتجربة أمثلة النشر المقدمة.
 
-عن طريق تنفيذ وحدة Terraform الخاصة بـ Wallarm ، قدمنا الحل الذي يتيح خيارين أساسيين لنشر Wallarm: **[داخل الخط](../../../inline/overview.md) (الذي هو الوكيل في هذه طريقة النشر)** وحلول الأمان [**Out‑of‑band (mirror)**](../../../oob/overview.md). يتم التحكم بسهولة في خيار النشر عبر متغير وحدة Wallarm `preset`.
+من خلال تنفيذ وحدة Terraform الخاصة بـ Wallarm ، قدمنا الحل الذي يتيح خيارين رئيسيين لنشر Wallarm: خيارات الأمان **[داخل الخط](../../../inline/overview.md) (التي تعتبر proxy في هذه الطريقة النشر)** و [**خارج النطاق (mirror)**](../../../oob/overview.md). يتم التحكم بسهولة في خيار النشر بواسطة متغير الوحدة `preset` الخاص بـ Wallarm.
 
 ## حالات الاستخدام
 
-من بين جميع [خيارات نشر Wallarm](../../../supported-deployment-options.md) المدعومة ، يوصى بوحدة Terraform لنشر Wallarm في هذه الحالات:
+من بين جميع خيارات نشر Wallarm المدعومة [Wallarm deployment options](../../../supported-deployment-options.md)، يُنصح بوحدة Terraform لنشر Wallarm في هذه **حالات الاستخدام**:
 
-* بنية البيانات الحالية موجودة على AWS.
-* أنت تستفيد من ممارسة البنية كرمز (IaC). تتيح وحدة Terraform الخاصة بـ Wallarm إدارة وتوفير العقدة Wallarm تلقائيًا على AWS ، مما يعزز الكفاءة والاتساق.
+* البنية التحتية الحالية لك تقع على AWS.
+* تستفيد من ممارسة البنية كشفرة (IaC). تسمح وحدة Wallarm's Terraform بالإدارة التلقائية والتوفير للعقدة Wallarm على AWS ، مما يعزز الكفاءة والاتساق.
 
-## المتطلبات
+## المتطلبات 
 
-* ترا كوبكوب 1.0.5 أو أعلى [مثبت محليًا](https://learn.hashicorp.com/tutorials/terraform/install-cli)
-* الوصول إلى الحساب بدور **مسؤول** [الدور](../../../../user-guides/settings/users.md#user-roles) في Wallarm Console في الولايات المتحدة أو السحابة الأوروبية [السحابة](../../../../about-wallarm/overview.md#cloud)
-* الوصول إلى `https://us1.api.wallarm.com` إذا كنت تعمل مع السحابة الأمريكية Wallarm أو إلى `https://api.wallarm.com` إذا كنت تعمل مع السحابة الأوروبية Wallarm. يرجى التأكد من عدم حظر الوصول بواسطة جدار حماية
+* تثبيت Terraform 1.0.5 أو أعلى [على المستوى المحلي](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+* الوصول إلى الحساب بـ **الدور** [المشرف](../../../../user-guides/settings/users.md#user-roles) في Wallarm Console في الولايات المتحدة أو السحابة الأوروبية [Cloud](../../../../about-wallarm/overview.md#cloud)
+* الوصول إلى `https://us1.api.wallarm.com` إذا كنت تعمل مع US Wallarm Cloud أو إلى `https://api.wallarm.com` إذا كنت تعمل مع EU Wallarm Cloud. يرجى التأكد من أن الوصول غير محظور بواسطة جدار الحماية
 
-لن يتضمن هذا الموضوع تعليمات لإنشاء جميع موارد AWS اللازمة لنشر Wallarm, مثل عنقود VPC. للحصول على التفاصيل, يرجى الرجوع إلى [دليل Terraform](https://learn.hashicorp.com/tutorials/terraform/module-use) ذات الصلة.
+لا يتضمن هذا الموضوع تعليمات لإنشاء جميع موارد AWS اللازمة لنشر Wallarm ، مثل مجموعة VPC. للحصول على التفاصيل، راجع الدليل ذو الصلة [دليل Terraform](https://learn.hashicorp.com/tutorials/terraform/module-use).
 
-## كيفية استخدام وحدة Terraform AWS Wallarm؟
+## كيفية استخدام وحدة Wallarm AWS Terraform؟
 
-لنشر Wallarm للإنتاج باستخدام وحدة Terraform AWS:
+لنشر Wallarm للإنتاج باستخدام وحدة AWS Terraform:
 
-1. سجل للحصول على Wallarm Console في [US Cloud](https://us1.my.wallarm.com/signup) أو [EU Cloud](https://my.wallarm.com/signup).
-1. قم بفتح Wallarm Console → **العقد** وأنشئ العقدة من نوع **العقدة Wallarm**.
+1. اشترك في Wallarm Console في [US Cloud](https://us1.my.wallarm.com/signup) أو [EU Cloud](https://my.wallarm.com/signup).
+2. افتح Wallarm Console → **Nodes** وأنشئ العقدة من نوع **Wallarm node**.
 
-   ![خلق العقدة Wallarm](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
-1. انسخ الرمز المميز للعقدة المنشأ.
-1. أضف كود الوحدة `wallarm` إلى تكوين Terraform الخاص بك:
+![إنشاء عقدة Wallarm](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+3. انسخ رمز العقدة المُستخدم.
+4. أضف كود الوحدة `wallarm` إلى تكوين Terraform الخاص بك:
 
     ```conf
     module "wallarm" {
@@ -42,74 +42,74 @@
       proxy_pass = "https://..."
       token      = "..."
 
-      ...
+      
     }
     ```
-1. قم بتعيين قيم المتغير في تكوين الوحدة `wallarm` :
+5. قم بتعيين قيم المتغير في تكوين الوحدة `wallarm`:
 
 | المتغير  | الوصف | النوع | مطلوب؟ |
 | --------- | ----------- | --------- | --------- |
-| `instance_type` | [نوع مثيل EC2 من Amazon](https://aws.amazon.com/ec2/instance-types/) لاستخدامه لنشر Wallarm ، على سبيل المثال: `t3.small`. | سلسلة | نعم
-| `vpc_id` | [معرف Amazon Virtual Private Cloud](https://docs.aws.amazon.com/managedservices/latest/userguide/find-vpc.html) لنشر مثيل Wallarm EC2 لـ. | سلسلة | نعم
-| `token` | [رمز العقدة Wallarm](../../../../user-guides/nodes/nodes.md#creating-a-node)المنسوخ من واجهة المستخدم UI لـ Wallarm Console.<br><div class="admonition info"> <p class="admonition-title">استخدام رمز واحد للعديد من التثبيتات</p> <p> يمكن استخدام نفس الرمز في عدة عمليات تثبيت بغض النظر عن المنصة [المنصة](../../../../installation/supported-deployment-options.md) المحددة. وهو ما يتيح تجميعاً منطقياً لمثيلات العقدة في  واجهة المستخدم بـ Wallarm Console. على سبيل المثال: تقوم بنشر العديد من عقد Wallarm إلى بيئة التطوير ، وكل عقدة تكون على جهاز خاص بها تملكه مطور معين. </p></div> | سلسلة | نعم
-| **المتغيرات الخاصة بـ Wallarm** | | | |
-| `host` | [سيرفر API Wallarm](../../../../about-wallarm/overview.md#cloud). القيم الممكنة:<ul><li>`us1.api.wallarm.com` للسحابة الأمريكية</li><li>`api.wallarm.com` للسحابة الأوروبية</li></ul> بشكل افتراضي ، `api.wallarm.com`. | سلسلة | لا
-`upstream` | [نسخة عقدة Wallarm](../../../../updating-migrating/versioning-policy.md#version-list) لتكون معتمدة. الحد الأدنى المدعوم من الإصدارات هو `4.0`.<br> <br> بشكل افتراضي ، `4.8`. | سلسلة | لا
-| `preset` | مخطط نشر Wallarm. القيم الممكنة:<ul><li>`proxy`</li><li>`mirror`</li></ul>بشكل افتراضي ، `proxy`. | سلسلة | لا
-| `proxy_pass` | بروتوكول الخادم المكدس والعنوان. ستقوم العقدة Wallarm بمعالجة الطلبات المرسلة إلى العنوان المحدد وتكدس المشروعات الشرعية أيضًا. يمكن تحديد "http" أو "https" كبروتوكول. يمكن تحديد العنوان كاسم نطاق أو عنوان IP ، ومنفذ اختياري. | سلسلة | نعم، إذا كان `preset` هو `proxy`
-| `mode` | [وضع تصفية المرور](../../../../admin-en/configure-wallarm-mode.md). القيم الممكنة: `off` ، `monitoring` ، `safe_blocking` ، `block`.<br><br> بشكل افتراضي ، `monitoring`. | سلسلة | لا
-|`libdetection` | ما إذا كان يجب [استخدام مكتبة libdetection](../../../../about-wallarm/protecting-against-attacks.md#library-libdetection) خلال تحليل المرور.<br><br>بشكل افتراضي ، `true`. | منطقي | لا
-|`global_snippet` | التهيئة المخصصة لتضاف إلى التهيئة العالمية لـ NGINX. يمكنك وضع الملف مع التهيئة في دليل الشيفرة Terraform وتحديد المسار إلى هذا الملف في هذا المتغير.<br><br>ستجد مثالًا على التهيئة المتغيرة في [مثال تنفيذ الحل المتقدم للكدس](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L17). | سلسلة | لا
-|`http_snippet` | التهيئة المخصصة لتضاف إلى مربع التكوين `http` لـ NGINX. يمكنك وضع الملف مع التهيئة في دليل الشيفرة Terraform وتحديد المسار إلى هذا الملف في هذا المتغير.<br><br>ستجد مثالًا على التهيئة المتغيرة في [مثال تنفيذ الحل المتقدم للكدس](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L18). | سلسلة | لا
-|`server_snippet` | التهيئة المخصصة لتضاف إلى مربع التكوين `server` لـ NGINX. يمكنك وضع الملف مع التهيئة في دليل الشيفرة Terraform وتحديد المسار إلى هذا الملف في هذا المتغير.<br><br> ستجد مثالًا على التهيئة المتغيرة في [مثال تنفيذ الحل المتقدم للكدس](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L19). | سلسلة | لا
-|`post_script` | النص البرمجي المخصص لتشغيله بعد ال [نص البرمجي للتهيئة الأولية للعقدة Wallarm (`cloud-init.py`)](../../cloud-init.md). يمكنك وضع الملف مع أي نص برمجي في دليل الشيفرة Terraform وتحديد المسار إلى هذا الملف في هذا المتغير.<br><br>ستجد مثالًا على التهيئة المتغيرة في [مثال تنفيذ الحل المتقدم للكدس](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L34). | سلسلة | لا
-| **تكوين النشر AWS** | | | |
-| `app_name` | بادئة لأسماء موارد AWS التي ستنشئها وحدة Wallarm.<br><br>بشكل افتراضي ، `wallarm`. | سلسلة | لا
-| `app_name_no_template` | ما إذا كان يجب استخدام الأحرف الكبيرة والأرقام والأحرف الخاصة في أسماء موارد AWS التي ستنشئها وحدة Wallarm. إذا كان `false` ، فإن أسماء الموارد ستتضمن أحرفًا صغيرة فقط.<br><br>بشكل افتراضي ، `false`. | منطقي | لا
-| `lb_subnet_ids` | [قائمة معرفات الشبكات الفرعية لـ AWS Virtual Private Cloud](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html) لنشر ميزان تحميل التطبيق فيها. القيمة المستحسنة هي الشبكات الفرعية العامة المرتبطة بجدول المسار الذي يحتوي على مسار إلى بوابة الإنترنت. | list(string) | لا
-| `instance_subnet_ids` | [قائمة معرفات الشبكات الفرعية لـ AWS Virtual Private Cloud](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html) لنشر مثيلات Wallarm EC2 فيها. القيمة الموصى بها هي الشبكات الفرعية الخاصة المكونة للاتصالات الخروجية فقط. | list(string) | لا
-| `lb_enabled` | ما إذا كان يجب إنشاء ميزان تحميل تطبيق AWS. سيتم إنشاء مجموعة هدف بأي قيمة تم تمريرها في هذا المتغير ما لم يتم تحديد مجموعة هدف مخصصة في المتغير `custom_target_group`.<br><br>بشكل افتراضي ، `true`. | منطقي | لا
-| `lb_internal` | هل يجب جعل ميزان تحميل التطبيق [ميزان تحميل داخلي](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-internal-load-balancers.html). بشكل افتراضي ، تكون ALB من النوع الذي يواجه الإنترنت.  إذا كنت تستخدم النهج غير المتزامن للتعامل مع الاتصالات ، فالقيمة الموصى بها هي `true`.<br><br>بشكل افتراضي ، `false`. | منطقي | لا
-| `lb_deletion_protection` | هل يجب تمكين الحماية لمنع [ميزان تحميل التطبيق من الحذف عن طريق الخطأ](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#deletion-protection). بالنسبة لعمليات النشر الإنتاجية ، فإن القيمة الموصى بها هي `true`.<br><br>بشكل افتراضي ، `true`. | منطقي | لا
-| `lb_ssl_enabled` | هل يجب [التفاوض على اتصالات SSL](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies) بين العميل ومتوازن التحميل التطبيق. إذا كان `true` ، فيتطلب متغيران `lb_ssl_policy` و `lb_certificate_arn`. يوصى به لعمليات النشر الإنتاجية.<br><br>بشكل افتراضي ، `false`. | منطقي | لا
-| `lb_ssl_policy` | [سياسة الأمان لميزان تحميل التطبيق](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies). | سلسلة | نعم، إذا كان `lb_ssl_enabled` هو `true`
-| `lb_certificate_arn` | [اسم المورد الأمازون (ARN)](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html) للشهادة ACM (AWS Certificate Manager). | سلسلة | نعم، إذا كان `lb_ssl_enabled` هو `true`
-| `custom_target_group` | اسم المجموعة الهدف الموجودة لـ [إرفاقها بالمجموعة Auto Scaling المنشأة](https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html). بشكل افتراضي ، سيتم إنشاء مجموعة هدف جديدة وإرفاقها. إذا كانت القيمة غير الافتراضية ، سيتم تعطيل إنشاء ALB من AWS. | سلسلة | لا
-| `inbound_allowed_ip_ranges` | قائمة بعناوين IP المصدر والشبكات للسماح بالاتصالات الداخلية من المثيلات Wallarm. يرجى الاحتفاظ في الاعتبار أن AWS تقنع حركة مرور ميزان التحميل حتى لو كانت تنشأ من الشبكات الفرعية العامة.<br><br>بشكل افتراضي:<ul><li>`"10.0.0.0/8",`</li><li>`"172.16.0.0/12",`</li><li>`"192.168.0.0/16"`</li></ul> | list(string) | لا
-| `outbound_allowed_ip_ranges` | قائمة بعناوين IP المصدر والشبكات للسماح بالاتصالات الخارجية من مثيل Wallarm باتجاهها.<br><br>بشكل افتراضي: `"0.0.0.0/0"`. | list(string) | لا
-| `extra_ports` | قائمة بالمنافذ الإضافية الداخلية للشبكة للسماح بالاتصالات الداخلية من المثيلات Wallarm. سيتم تطبيق التكوين على مجموعة الأمان. list(number) | لا
-| `extra_public_ports` | قائمة بالمنافذ الإضافية للشبكة العامة للسماح بالاتصالات الداخلية من المثيلات Wallarm.| list(number) | لا
-| `extra_policies` | سياسات IAM لـ AWS ترتبط مع Wallarm الكومة. أمر يمكن أن يكون مفيدًا أن تستخدم مع متغير `post_script` التي تعمل السيناريو الذي يطلب البيانات من Amazon S3. | list(string) | لا
-| `source_ranges` | قائمة بعناوين IP المصدر والشبكات للسماح باتصال ميزان تحميل التطبيق AWS منهم.<br><br>بشكل افتراضي ، `"0.0.0.0/0"`. | list(string) | لا
-| `https_redirect_code` | رمز لتوجيه الطلب HTTP إلى HTTPS. القيم الممكنة: <ul><li>`0` - التوجيه معطل</li><li>`301` - توجيه دائم</li><li>`302` - توجيه مؤقت</li></ul>بشكل افتراضي ، `0`. | رقم | لا
-| `asg_enabled` | هل يجب إنشاء [مجموعة Auto Scaling من AWS](https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-groups.html).<br><br>بشكل افتراضي ، `true` | منطقي | لا
-| `min_size` | الحد الأدنى لعدد المثيلات في مجموعة Auto Scaling من AWS التي تم إنشاؤها.<br><br>بشكل افتراضي ، `1`. | رقم | لا
-| `max_size` | الحد الأقصى لعدد المثيلات في مجموعة Auto Scaling من AWS التي تم إنشاؤها.<br><br>بشكل افتراضي ، `3`. | رقم | لا
-| `desired_capacity` | العدد الأولي للمثيلات في مجموعة Auto Scaling من AWS التي تم إنشاؤها. يجب أن يكون أكبر من أو يساوي `min_size` وأقل من أو يساوي `max_size`.<br> <br> بشكل افتراضي ، `1`. | رقم | لا
-| `autoscaling_enabled` | ما إذا كان يجب تمكين [توسيع التوازن التلقائي EC2 Amazon](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html) لكومة Wallarm.<br><br>بشكل افتراضي ، `false`. | منطقي | لا
-| `autoscaling_cpu_target` | متوسط نسبة استخدام وحدة المعالجة المركزية للحفاظ على مجموعة Auto Scaling من AWS فيها. بشكل افتراضي ، `70.0`. | سلسلة | لا
-| `ami_id` | [معرف Amazon Machine Image](https://docs.aws.amazon.com/managedservices/latest/userguide/find-ami.html) الذي سيتم استخدامه لنشر مثيل Wallarm. بشكل افتراضي (السلسلة الفارغة) ، يتم استخدام أحدث صورة من المصدر المرجعي. أنت مرحب بك لإنشاء AMI مخصص استنادًا إلى العقدة Wallarm. | سلسلة | لا
-| `key_name` | اسم [زوج المفاتيح AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) الذي سيتم استخدامه للاتصال بالعقد Wallarm عبر SSH. بشكل افتراضي ، يتم تعطيل اتصال SSH. | سلسلة | لا
-| `tags` | الوسوم لموارد AWS التي ستنشئها وحدة Wallarm.| خريطة (السلسلة) | لا
+| `instance_type` | [نوع العينة Amazon EC2](https://aws.amazon.com/ec2/instance-types/) المستخدم لنشر Wallarm، مثلاً: `t3.small`. | string | نعم |
+| `vpc_id` | [ID of the AWS Virtual Private Cloud](https://docs.aws.amazon.com/managedservices/latest/userguide/find-vpc.html) لنشر Wallarm EC2 العينة. | string | نعم
+| `token` | [رمز عقدة Wallarm](../../../../user-guides/nodes/nodes.md#creating-a-node) تم نسخه من واجهة UI لوحة تحكم Wallarm.<br><div class="admonition info"> <p class="admonition-title">استخدام رمز واحد لعدد من التثبيتات</p> <p>يمكنك استخدام هذا الرمز في عدة تثبيتات بغض النظر عن [المنصة](../../../../installation/supported-deployment-options.md) المختارة. يسمح ذلك بتجميع منطقي لعينات العقدة في واجهة UI لوحة تحكم Wallarm. مثال: يمكنك نشر عدة عقد Wallarm إلى بيئة التطوير، كل عقدة على جهازها الخاص المملوكة لمطور معين.</p></div> | string | نعم
+| **متغيرات Wallarm ذات الصلة** | | | |
+| `host` | [سيرفر API لـ Wallarm](../../../../about-wallarm/overview.md#cloud). القيم الممكنة:<ul><li>`us1.api.wallarm.com` لـ US Cloud</li><li>`api.wallarm.com` لـ EU Cloud</li></ul> بشكل افتراضي، `api.wallarm.com`. | string | لا
+| `upstream` | [إصدار عقدة Wallarm](../../../../updating-migrating/versioning-policy.md#version-list) التي ستُنشر. الحد الأدنى المدعوم هو `4.0`.<br><br>بشكل افتراضي, `4.8`. | string | لا
+| `preset` | مخطط نشر Wallarm. القيم الممكنة:<ul><li>`proxy`</li><li>`mirror`</li></ul> بشكل افتراضي، `proxy`. | string | لا
+| `proxy_pass` | بروتوكول الخادم الذي تم توجيهه والعنوان. ستعالج العقدة Wallarm الطلبات المرسلة إلى العنوان المحدد وستكون شرعية لتوجيهها إلى. يمكن تحديد 'http' أو 'https' كبروتوكول. يمكن تحديد العنوان بواسطة اسم النطاق أو عنوان IP، ومنفذ اختياري. | string | نعم، إذا كان `preset` هو `proxy`
+| `mode` | [وضع تصفية حركة المرور](../../../../admin-en/configure-wallarm-mode.md). القيم الممكنة: `off`, `monitoring`, `safe_blocking`, `block`.<br><br>بشكل افتراضي، `monitoring`. | string | لا
+|`libdetection` | سواء كانت النية هي [استخدام مكتبة الكشف](../../../../about-wallarm/protecting-against-attacks.md#library-libdetection) خلال تحليل حركة المرور.<br><br>بشكل افتراضي، `true`. | bool |لا
+|`global_snippet` | التكوين المخصّص الذي سيتم إضافته إلى التكوين العالمي لـ NGINX. يمكنك وضع الملف الذي يحتوي على التكوين في دليل كود Terraform وتحديد المسار إلى هذا الملف في هذا المتغير.<br><br>ستجد مثالاً على تكوين المتغير في [المثال على نشر الحل الأكثر تقدمًا للـ proxy](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L17). | string | لا
+|`http_snippet` | التكوين المخصص الذي سيتم إضافته إلى القسم `http` في تكوين NGINX. يمكنك وضع الملف الذي يحتوي على التكوين في دليل كود Terraform وتحديد المسار إلى هذا الملف في هذا المتغير.<br><br>ستجد مثالاً على تكوين المتغير في [المثال على نشر الحل الأكثر تقدمًا للـ proxy](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L18). | string | لا
+|`server_snippet` | التكوين المخصّص الذي سيتم إضافته إلى القسم `server` في تكوين NGINX. يمكنك وضع الملف الذي يحتوي على التكوين في دليل كود Terraform وتحديد المسار إلى هذا الملف في هذا المتغير<br><br>ستجد مثالاً على تكوين المتغير في [المثال على نشر الحل الأكثر تقدمًا للـ proxy](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L19). | string | لا
+|`post_script` | البرنامج النصي المخصص الذي سيتم تشغيله بعد [سكريبت تهيئة العقدة Wallarm (`cloud-init.py`)](../../cloud-init.md). يمكنك وضع الملف الذي يحتوي على أي سكريبت في دليل كود Terraform وتحديد المسار إلى هذا الملف في هذا المتغير.<br><br>ستجد مثالاً على تكوين المتغير في [المثال على نشر الحل الأكثر تقدمًا للـ proxy](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L34). | string | لا
+| **تكوين النشر على AWS** | | | |
+| `app_name` | بادئة لأسماء موارد AWS التي ستنشئها وحدة Wallarm.<br><br>بشكل افتراضي، `wallarm`. | string | لا
+| `app_name_no_template` | سواء أم لا استخدام أحرف كبيرة، أرقام وأحرف خاصة في أسماء الموارد AWS التي ستنشئها وحدة Wallarm. إذا كان `false`، فإن أسماء الموارد ستتضمن فقط أحرف صغيرة.<br><br>بشكل افتراضي، `false`. | bool | لا
+| `lb_subnet_ids` | [قائمة أرقام تعريف فرعيات شبكة الخصوصية الافتراضية AWS](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html) لنشر موزع الحمولة التطبيقي في. القيمة المستحسنة هي الفرعيات العامة المرتبطة بجدول الطرق الذي يحتوي على طريق إلى بوابة الإنترنت. | list(string) | لا
+| `instance_subnet_ids` | [قائمة أرقام تعريف فرعيات شبكة الخصوصية الافتراضية AWS](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html) لنشر عينات Wallarm EC2 في. القيمة المستحسنة هي الفرعيات الخاصة المكونة للاتصالات الخروج فقط. | list(string) | لا
+| `lb_enabled` | سواء كان من المقرر إنشاء موزع حمولة تطبيق AWS. ستتم إنشاء مجموعة هدف مع أي قيمة ممرة في هذا المتغير إلا إذا تم تحديد مجموعة هدف مخصصة في المتغير `custom_target_group`.<br><br>بشكل افتراضي، `true`. | bool | لا
+| `lb_internal` | سواء كان من المقرر جعل موزع الحمولة التطبيقي [موزع حمولة داخلي](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-internal-load-balancers.html). بشكل افتراضي، ALB لديه نوع يواجه الإنترنت. إذا كنت تستخدم النهج غير المتزامن للتعامل مع الاتصالات، فالقيمة الموصى بها هي `true`.<br><br>بشكل افتراضي، `false`. | bool | لا
+| `lb_deletion_protection` | سواء كان من المقرر تمكين الحماية لـ [موزع الحمولة التطبيقي ليتم منع حذفه بطريق الخطأ](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#deletion-protection). لنشرات التطبيقات الإنتاجية، القيمة المستحسنة هي `true`.<br><br>بشكل افتراضي، `true`. | bool | لا
+| `lb_ssl_enabled` | سواء كان من المقرر [تفاوض اتصالات SSL](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies) بين عميل وموزع حمولة التطبيق. إذا كان `true`، فإن المتغيرات `lb_ssl_policy` و `lb_certificate_arn` مطلوبة. يُنصح بذلك للنشرات الإنتاجية.<br><br>بشكل افتراضي، `false`. | bool | لا
+| `lb_ssl_policy` | [سياسة الأمان لموزع الحمولة التطبيقي](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies). | string | نعم، إذا كان `lb_ssl_enabled` هو `true`
+| `lb_certificate_arn` | [اسم المورد الأمازون (ARN)](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html) من الشهادة ACM (AWS Certificate Manager) . | string | نعم، إذا كان `lb_ssl_enabled` هو `true`
+| `custom_target_group` | اسم المجموعة الهدف الحالي لـ [ مرفق للمجموعة المتمددة تلقائيًا المُنشأة](https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html). بشكل افتراضي، ستتم إنشاء مجموعة هدف جديدة والمرفقة. إذا كانت القيمة غير الافتراضية، سيتم تعطيل إنشاء ALB. | string | لا
+| `inbound_allowed_ip_ranges` | قائمة عناوين IP المصدر والشبكات للسماح باتصالات الداخلية إلى عينات Wallarm من. يرجى مراعاة أن AWS تقنع بحركة مرور موزع الحمولة حتى لو كان مصدرها من الفرعيات العامة.<br><br>بشكل افتراضي:<ul><li>`"10.0.0.0/8",`</li><li>`"172.16.0.0/12",`</li><li>`"192.168.0.0/16"`</li></ul> | list(string) | لا
+| `outbound_allowed_ip_ranges` | قائمة عناوين IP المصدر والشبكات للسماح باتصالات الخروج من عينة Wallarm.<br><br>بشكل افتراضي: `"0.0.0.0/0"`. | list(string) | لا
+| `extra_ports` | قائمة أرقام البرامج النصية الإضافية داخل الشبكة للسماح باتصالات الداخلية إلى عينات Wallarm من. سيتم تطبيق التكوين على مجموعة الأمان. | list(number) | لا
+| `extra_public_ports` | قائمة أرقام البرامج النصية الإضافية في الشبكة العامة للسماح باتصالات الداخلية إلى عينات Wallarm من.| list(number) | لا
+| `extra_policies` | سياسات IAM AWS التي سيتم ربطها بستك Wallarm. يمكن أن يكون من المفيد استخدامها مع متغير `post_script` والذي يعمل سكريبت يطالب ببيانات من Amazon S3. | list(string) | لا
+| `source_ranges` | قائمة عناوين IP المصدر والشبكات للسماح بحركة مرور موزع حمولة التطبيق AWS من.<br><br>بشكل افتراضي، `"0.0.0.0/0"`. | list(string) | لا
+| `https_redirect_code` | كود لإعادة توجيه الطلب HTTP إلى HTTPS. القيم الممكنة: <ul><li>`0` - التوجيه معطل</li><li>`301` - إعادة توجيه دائمة</li><li>`302` - إعادة توجيه مؤقتة</li></ul>بشكل افتراضي،  `0`. | number | لا
+| `asg_enabled` | سواء كان من المقرر إنشاء [مجموعة توسيع تلقائي AWS](https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-groups.html).<br><br>بشكل افتراضي، `true` | bool | لا
+| `min_size` | العدد الأدنى من العينات في المجموعة المتمددة تلقائياً المنشأة AWS.<br><br>بشكل افتراضي، `1`.| number | لا
+| `max_size` | العدد الأقصى من العينات في المجموعة المتمددة تلقائياً المنشأة AWS.<br><br>بشكل افتراضي، `3`.| number | لا
+| `desired_capacity` | العدد الأولي من العينات في المجموعة المتمددة تلقائياً المنشأة AWS. يجب أن يكون أكبر من أو مساويًا لـ `min_size` وأقل من أو مساويًا لـ `max_size`.<br><br>بشكل افتراضي، `1`.| number | لا
+| `autoscaling_enabled` | سواء كان من المقرر تمكين [Amazon EC2 Auto Scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html) لكتلة Wallarm.<br><br>بشكل افتراضي، `false`. | bool | لا
+| `autoscaling_cpu_target` | النسبة المئوية المتوسطة لاستخدام الوحدة المركزية للمعالجة للحفاظ على المجموعة المتمددة تلقائياً AWS عند. بشكل افتراضي، `70.0`. | string | لا
+| `ami_id` | [رمز تعريف الصورة الأمازون](https://docs.aws.amazon.com/managedservices/latest/userguide/find-ami.html) الذي سيُستخدم لنشر Wallarm. بشكل افتراضي (سلسلة فارغة)، يتم استخدام الصورة الأخيرة من المصدر. أنت مدعو لإنشاء AMI مخصصة على أساس العقدة Wallarm. | string | لا
+| `key_name` | اسم [زوج مفاتيح AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) الذي سيُستخدم للاتصال بـ Wallarm عبر SSH. بشكل افتراضي، الاتصال عبر SSH معطل. | string | لا
+| `tags` | الوسوم لموارد AWS التي ستنشئها وحدة Wallarm.| map(string) | لا
 
 ## تجربة وحدة Wallarm Terraform مع الأمثلة
 
-لقد أعددنا أمثلة على طرق مختلفة لاستخدام وحدة Wallarm ، حتى تتمكن من تجربة ذلك قبل نشره في البيئة الإنتاجية:
+لقد أعددنا أمثلة لطرق مختلفة لاستخدام وحدة Wallarm، حتى تتمكن من تجربتها قبل النشر على الإنتاج:
 
-* [الوكيل في AWS VPC](proxy-in-aws-vpc.md)
-* [الوكيل لـ API Gateway من أمازون](proxy-for-aws-api-gateway.md)
-* [OOB لـ NGINX ، Envoy أو تطابق المرايا](oob-for-web-server-mirroring.md)
+* [Proxy في AWS VPC](proxy-in-aws-vpc.md)
+* [Proxy لـ Amazon API Gateway](proxy-for-aws-api-gateway.md)
+* [OOB لـ NGINX، Envoy أو أمثالهم مع التطابق](oob-for-web-server-mirroring.md)
 
-## مزيد من المعلومات حول Wallarm و Terraform
+## معلومات إضافية حول Wallarm و Terraform
 
-تدعم Terraform العديد من التكاملات (موفري الخدمة) وتكوينات جاهزة للاستخدام (وحدات) متاحة للمستخدمين عبر السجل [السجل](https://www.terraform.io/registry#navigating-the-registry) العام الذي يتم تعبئته من قبل العديد من البائعين.
+يدعم Terraform عدد من التكاملات (**المزودين**) والتكوينات الجاهزة للاستخدام (**الوحدات**) المتاحة للمستخدمين عبر الـ [سجلتها](https://www.terraform.io/registry#navigating-the-registry) العامة، التي تكونت بواسطة العديد من البائعين.
 
-إلى هذا السجل ، نشر Wallarm:
+إلى هذا السجل، نشرت Wallarm:
 
-* ال [وحدة Wallarm](https://registry.terraform.io/modules/wallarm/wallarm/aws/) لنشر العقدة إلى AWS من البيئة المتوافقة مع Terraform. موضوع هذه المقالة.
-* ال [موفر Wallarm](../../../../admin-en/managing/terraform-provider.md) لإدارة Wallarm عبر Terraform.
+* [وحدة Wallarm](https://registry.terraform.io/modules/wallarm/wallarm/aws/) لنشر العقدة على AWS من البيئة المتوافقة مع Terraform. موضحة في المقالة الحالية.
+* المزود [Wallarm provider](../../../../admin-en/managing/terraform-provider.md) لإدارة Wallarm عبر Terraform.
 
-هؤلاء الاثنان عبارة عن عناصر مستقلة تُستخدم لأغراض مختلفة ولا تتطلب بعضها البعض.
+هذين الاثنين هما عناصر مستقلة تستخدم لأغراض مختلفة، ولا يتطلبان بعضهما البعض.
 
-## القيود 
-* يتعذر حالياً [اكتشاف تحقق من البيانات الاعتماد](../../../../about-wallarm/credential-stuffing.md)
+## القيود
+* [الكشف عن طرق الاستغلال](../../../../about-wallarm/credential-stuffing.md) غير مدعومة حالياً.

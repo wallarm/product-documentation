@@ -13,10 +13,10 @@ upstream wallarm_tarantool {
 wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
-!!! تحذير "الشروط المطلوبة"
-    من الضروري أن تتوافق على الشروط التالية لمعاملات `max_conns` و `keepalive`:
+!!! warning "الشروط المطلوبة"
+    يجب تحقيق الشروط التالية لمعلمتي `max_conns` و `keepalive`:
     
-    * قيمة معامل `keepalive` لا يجب أن تكون أقل من عدد خوادم Tarantool.
-    * يجب تحديد قيمة معامل `max_conns` لكل من خوادم Tarantool العلوية لمنع إنشاء اتصالات زائدة.
+    * يجب ألا تقل قيمة معلمة `keepalive` عن عدد خوادم Tarantool.
+    * يجب تحديد قيمة معلمة `max_conns` لكل من خوادم Tarantool العليا لمنع إنشاء اتصالات زائدة.
 
-    سلسلة `# wallarm_tarantool_upstream wallarm_tarantool;` معلقة بشكل افتراضي - يرجى حذف `#`.
+    السطر `# wallarm_tarantool_upstream wallarm_tarantool;` معلق بشكل افتراضي - يرجى حذف `#`.

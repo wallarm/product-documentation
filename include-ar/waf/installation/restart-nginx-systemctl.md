@@ -1,4 +1,4 @@
-أعد تشغيل NGINX باستخدام الأمر التالي:
+استخدم الأمر التالي لإعادة تشغيل NGINX:
 
 ```bash
 sudo systemctl restart nginx

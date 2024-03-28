@@ -1,8 +1,8 @@
-=== "توزيعات قائمة على DEB"
+=== "توزيعات تعتمد على DEB"
     ```bash
     /etc/collectd/collectd.conf.d/wallarm-tarantool.conf
     ```
-=== "توزيعات قائمة على RPM"
+=== "توزيعات تعتمد على RPM"
     ```bash
     /etc/collectd.d/wallarm-tarantool.conf
     ```

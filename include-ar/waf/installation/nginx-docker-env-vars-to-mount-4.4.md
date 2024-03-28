@@ -1,4 +1,4 @@
 متغير البيئة | الوصف | مطلوب
 --- | ---- | ----
-`WALLARM_API_TOKEN` | شفرة التوكن لعقدة Wallarm.<br><div class="admonition info"> <p class="admonition-title">استخدام توكن واحد لعدة تثبيتات</p> <p>يمكنك استخدام توكن واحد في عدة تثبيتات بغض النظر عن المنصة المختارة. يسمح ذلك بالتجميع المنطقي لمثيلات العقد في واجهة المستخدم لـ Wallarm Console. مثال: تنصب عدة عقد Wallarm في بيئة تطوير، كل عقدة على جهازها الخاص الذي يمتلكه مطور معين.</p></div> | نعم
-`WALLARM_API_HOST` | سيرفر واجهة برمجة تطبيقات Wallarm:<ul><li>`us1.api.wallarm.com` للسحاب الأمريكي</li><li>`api.wallarm.com` للسحاب الأوروبي</li></ul>الافتراضي: `api.wallarm.com`. | لا
+`WALLARM_API_TOKEN` | رمز عقدة Wallarm.<br><div class="admonition info"> <p class="admonition-title">استخدام رمز واحد لعدة تركيبات</p> <p>يمكنك استخدام رمز واحد في عدة تركيبات بغض النظر عن المنصة المختارة. يسمح ذلك بتجميع العقد منطقياً في واجهة مستخدم Wallarm Console. مثال: تنشر عدة عقد Wallarm في بيئة تطوير، كل عقدة على جهاز خاص بمطور معين.</p></div> | نعم
+`WALLARM_API_HOST` | خادم API Wallarm:<ul><li>`us1.api.wallarm.com` للسحابة الأمريكية</li><li>`api.wallarm.com` للسحابة الأوروبية</li></ul>الافتراضي: `api.wallarm.com`. | لا

@@ -20,7 +20,7 @@
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.6/x86_64/wallarm-node-repo-4.6-0.el7.noarch.rpm
     ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+=== "AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
@@ -31,13 +31,13 @@
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
     ```
 
-## 2. تثبيت NGINX مع حزم Wallarm
+## 2. تنصيب NGINX مع حزم Wallarm
 
-الأمر يثبت الحزم التالية:
+تقوم الأمر بتنصيب الحزم التالية:
 
 * `nginx` لـ NGINX
-* `libnginx-mod-http-wallarm` أو `nginx-mod-http-wallarm` لوحدة NGINX-Wallarm
-* `wallarm-node` لوحدة [postanalytics][install-postanalytics-docs]، قاعدة بيانات تارانتول وحزم NGINX-Wallarm الإضافية
+* `libnginx-mod-http-wallarm` أو `nginx-mod-http-wallarm` لوحدة Wallarm NGINX
+* `wallarm-node` لوحدة [postanalytics][install-postanalytics-docs]، قاعدة بيانات Tarantool وحزم Wallarm NGINX الإضافية
 
 === "Debian 10.x (buster)"
     ```bash
@@ -51,7 +51,7 @@
     ```bash
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+=== "AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
     ```bash
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
@@ -62,7 +62,7 @@
 
 ## 3. ربط وحدة Wallarm
 
-نسخ ملفات التكوين لإعداد النظام:
+انسخ ملفات الإعداد لضبط النظام:
 
 === "Debian"
     ```bash
@@ -72,7 +72,7 @@
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+=== "AlmaLinux، Rocky Linux أو Oracle Linux 8.x"
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
@@ -81,6 +81,6 @@
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
 
-## 4. ربط العقدة التصفية بسحابة Wallarm
+## 4. ربط العقدة الفلترة بسحابة Wallarm
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"

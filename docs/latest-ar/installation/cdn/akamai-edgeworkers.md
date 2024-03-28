@@ -1,55 +1,55 @@
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
+[وثائق-الهجمات-ptrav]:                ../../attacks-vulns-list.md#path-traversal
+[صورة-الهجمات-في-واجهة-المستخدم]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
-# Akamai EdgeWorkers مع Wallarm Code Bundle
+# Akamai EdgeWorkers مع حزمة الشفرة Wallarm
 
-[Akamai EdgeWorkers](https://techdocs.akamai.com/edgeworkers/docs) هي منصة قوية لحوسبة الأطراف تتيح تنفيذ منطق مخصص ونشر وظائف JavaScript خفيفة على طرف المنصة. للعملاء الذين يقومون بتشغيل واجهات برمجة التطبيقات والمرور عبر Akamai EdgeWorkers، توفر Wallarm حزمة كود يمكن نشرها على Akamai EdgeWorkers لتأمين بنيتها التحتية.
+[Akamai EdgeWorkers](https://techdocs.akamai.com/edgeworkers/docs) هو منصة حوسبة على الحافة قوية تتيح تنفيذ منطق مخصص وإيداع وظائف JavaScript خفيفة الوزن على الحافة. بالنسبة للعملاء الذين لديهم واجهات البرمجة التطبيقية API وحركة المرور، Wallarm يقدم حزمة شفرة يمكن ان تضاف على EdgeWorkers لتأمين البنية التحتية.
 
-تشمل الحل نشر عقدة Wallarm خارجيًا وحقن الكود المخصص أو السياسات داخل المنصة المحددة. هذا يمكن المرور ليتم توجيهه إلى عقدة Wallarm الخارجية لتحليله والحماية من التهديدات المحتملة. يطلق عليها موصلات Wallarm، وهي تعتبر الحلقة الأساسية بين المنصات مثل Azion Edge، Akamai Edge، Mulesoft، Apigee، و AWS Lambda، وعقدة Wallarm الخارجية. هذا النهج يضمن التكامل السلس، تحليل المرور الآمن، التخفيف من المخاطر، وأمن المنصة بشكل عام.
+الحل يتضمن نشر العقدة Wallarm خارجيا وحقن الشفرة المخصصة أو السياسات في المنصة المعينة. هذا يمكن توجيه حركة المرور إلى العقدة الخارجية Wallarm للتحليل والحماية من التهديدات المحتملة. تُشار إليها بوصلات Wallarm، وهي تعمل كرابط أساسي بين منصات مثل Azion Edge، وAkamai Edge، وMulesoft، وApigee، وAWS Lambda، والعقدة الخارجية Wallarm. تضمن هذه الطريقة التكامل السلس، وتحليل حركة المرور الآمن، وتقليل المخاطر، وأمن المنصة الشامل.
 
 ## حالات الاستخدام
 
-من بين جميع [خيارات نشر Wallarm المدعومة](../supported-deployment-options.md)، تعتبر هذه الحل الأنسب للحالات التالية:
+من بين جميع [خيارات نشر Wallarm](../supported-deployment-options.md) المدعومة، هذا الحل هو الموصى به للحالات الاستخدام التالية:
 
-* تأمين واجهات برمجة التطبيقات أو المرور الجاري على Akamai EdgeWorkers.
-* الحاجة إلى حل أمان يقدم مراقبة شاملة للهجمات، التقارير، والحجب الفوري للطلبات الخبيثة.
+* تأمين واجهات البرمجة التطبيقية API أو حركة المرور التي تعمل على Akamai EdgeWorkers.
+* الحاجة إلى حل أمني يقدم رصد شامل للهجمات، والإبلاغ عنها، وحجب الطلبات الخبيثة على الفور.
 
 ## القيود
 
-يحتوي الحل على بعض القيود حيث يعمل فقط مع الطلبات الواردة:
+يوجد للحل القيود المعينة وهو يعمل فقط مع الطلبات الواردة:
 
-* لا يعمل الكشف عن الثغرات الأمنية باستخدام طريقة [الكشف السلبي](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) بشكل صحيح. يحدد الحل ما إذا كانت واجهة برمجة التطبيقات معرضة للخطر أم لا بناءً على ردود الخادم على الطلبات الخبيثة النموذجية للثغرات الأمنية التي يختبرها.
-* [اكتشاف واجهة برمجة التطبيقات في Wallarm](../../api-discovery/overview.md) لا يمكنه استكشاف جرد واجهة برمجة التطبيقات بناءً على المرور الخاص بك، حيث يعتمد الحل على تحليل الاستجابة.
-* [الحماية ضد التصفح القسري](../../admin-en/configuration-guides/protecting-against-bruteforce.md) غير متاحة حيث تتطلب تحليل رمز الاستجابة.
+* لا يعمل اكتشاف الثغرات باستخدام [طريقة الكشف السلبية](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) بشكل صحيح. تحدد الحل إذا كانت واجهة البرمجة التطبيقية API معرضة للخطر أم لا بناءً على ردود الخادم على الطلبات الخبيثة التي تكون مميزة للثغرات التي يستهدفها الاختبار.
+* لا يمكن أن [اكتشاف واجهات البرمجة التطبيقية API لـ Wallarm](../../api-discovery/overview.md) يستكشف جرد الواجهات البرمجة التطبيقية API بناءً على حركة المرور الخاصة بك، حيث يعتمد الحل على تحليل الاستجابة.
+* الحماية ضد الاستعراض القسري غير متوفرة لأنها تحتاج إلى تحليل كود الاستجابة.
 
-هناك أيضًا قيود ناتجة عن [قيود منتج EdgeWorkers](https://techdocs.akamai.com/edgeworkers/docs/limitations) و[http-request](https://techdocs.akamai.com/edgeworkers/docs/http-request):
+هناك أيضا قيود ناشئة عن [محددات منتج EdgeWorkers](https://techdocs.akamai.com/edgeworkers/docs/limitations) و [http-request](https://techdocs.akamai.com/edgeworkers/docs/http-request):
 
-* الطريقة المدعومة الوحيدة لتوصيل المرور هي TLS المحسن.
-* الحجم الأقصى لرأس الاستجابة هو 8000 بايت.
-* الحجم الأقصى للجسم هو 1 ميغابايت.
-* طرق HTTP غير مدعومة: `CONNECT`, `TRACE`, `OPTIONS` (الطرق المدعومة: `GET`, `POST`, `HEAD`, `PUT`, `PATCH`, `DELETE`).
+* الطريقة المدعومة الوحيدة لتسليم حركة المرور هي TLS المُحسَّن.
+* أقصى حجم لرأس الاستجابة هو 8000 بايت.
+* أقصى حجم للجسم هو 1 MB.
+* الطرق HTTP غير المدعومة: `CONNECT`, `TRACE`, `OPTIONS` (الطرق المدعومة: `GET`, `POST`, `HEAD`, `PUT`, `PATCH`, `DELETE`).
 * الرؤوس غير المدعومة: `connection`, `keep-alive`, `proxy-authenticate`, `proxy-authorization`, `te`, `trailers`, `transfer-encoding`, `host`, `content-length`, `vary`, `accept-encoding`, `content-encoding`, `upgrade`.
 
 ## المتطلبات
 
-للمضي قدماً في النشر، تأكد من أنك تفي بالمتطلبات التالية:
+للمتابعة مع النشر، تأكد من توفر الشروط التالية:
 
-* فهم تقنيات Akamai EdgeWorkers
-* واجهات برمجة التطبيقات أو المرور يجري من خلال Akamai EdgeWorkers.
+* فهم تكنولوجيا Akamai EdgeWorkers
+* واجهات برمجة التطبيقات API أو حركة المرور التي تعمل عبر Akamai EdgeWorkers.
 
 ## النشر
 
-لتأمين واجهات برمجة التطبيقات على Akamai EdgeWorkers مع Wallarm، اتبع هذه الخطوات:
+لاضافة الحماية لواجهات برمجة التطبيقات API على Akamai EdgeWorkers بواسطة Wallarm، أتبع هذه الخطوات:
 
-1. نشر عقدة Wallarm باستخدام أحد خيارات النشر المتاحة.
-1. الحصول على حزمة كود Wallarm وتشغيلها على Akamai EdgeWorkers.
+1. انشر عقدة Wallarm باستخدام واحدة من الخيارات المتاحة للنشر.
+1. احصل على حزمة الشفرة Wallarm وشغلها على Akamai EdgeWorkers.
 
 ### 1. نشر عقدة Wallarm
 
-عند استخدام Wallarm على Akamai EdgeWorkers، تدفق المرور [مباشر](../inline/overview.md).
+عند استخدام Wallarm على Akami EdgeWorkers، حركة المرور من خلال الطريق [في-خط](../inline/overview.md).
 
-1. اختر إحدى [حلول نشر عقدة Wallarm المدعومة أو الأدوات](../supported-deployment-options.md#in-line) للنشر المباشر واتبع التعليمات المقدمة.
-1. قم بتكوين العقدة المنشورة باستخدام القالب التالي:
+1. اختر واحدة من [حلول نشر العقدة Wallarm المدعومة أو الأعمال الفنية](../supported-deployment-options.md#in-line) للنشر في-خط واتبع التعليمات الواردة للنشر.
+1. قم بتكوين العقدة التي تم نشرها باستخدام القالب التالي:
 
     ```
     server {
@@ -71,7 +71,7 @@
 
         server_name yourdomain-for-wallarm-node.tld;
 
-        ### تكوين SSL هنا
+        ### SSL configuration here
 
         access_log off;
         wallarm_mode off;
@@ -100,59 +100,59 @@
     }
     ```
 
-    يرجى الانتباه إلى الإعدادات التالية:
+    يرجى التأكد من التركيز على التكوينات التالية:
 
-    * شهادات TLS/SSL للمرور الآمن HTTPS: لتمكين عقدة Wallarm من التعامل مع المرور الآمن HTTPS، قم بتكوين شهادات TLS/SSL بشكل مناسب. ستعتمد التكوينات المحددة على طريقة النشر المختارة. على سبيل المثال، إذا كنت تستخدم NGINX، يمكنك الرجوع إلى [مقالته](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) للحصول على إرشادات.
-    * تكوين [وضع تشغيل Wallarm](../../admin-en/configure-wallarm-mode.md).
-1. بمجرد اكتمال النشر، قم بتسجيل ملاحظة عنوان IP للعقدة حيث ستحتاج إليه لاحقًا لضبط عنوان توجيه الطلبات الواردة.
+    * شهادات TLS / SSL لحركة المرور HTTPS: لتمكين العقدة Wallarm من التعامل مع حركة المرور HTTPS الآمنة، قم بتكوين شهادات TLS / SSL بالتوافق. سيعتمد التكوين على الطريقة المختارة للنشر. على سبيل المثال، إذا كنت تستخدم NGINX، يمكنك الاطلاع على [مقالته](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) للحصول على التوجيه.
+    * [تكوين وضع تشغيل Wallarm](../../admin-en/configure-wallarm-mode.md).
+1. بمجرد الانتهاء من النشر، قم بتدوين عنوان IP للعينة عقدة حيث ستحتاجه لاحقا لتعيين العنوان لتحويل الطلبات الواردة.
 
-### 2. الحصول على حزمة كود Wallarm وتشغيلها على Akamai EdgeWorkers
+### 2. احصل على حزمة الشفرة Wallarm وشغلها على Akamai EdgeWorkers
 
-للحصول على حزمة كود Wallarm و[تشغيلها](https://techdocs.akamai.com/edgeworkers/docs/deploy-hello-world-1) على Akamai EdgeWorkers، اتبع هذه الخطوات:
+للحصول على و [تشغيل](https://techdocs.akamai.com/edgeworkers/docs/deploy-hello-world-1) حزمة الشفرة Wallarm على Akamai EdgeWorkers، اتبع هذه الخطوات:
 
-1. اتصل بـ [support@wallarm.com](mailto:support@wallarm.com) للحصول على حزمة كود Wallarm.
+1. اتصل [support@wallarm.com](mailto:support@wallarm.com) للحصول على حزمة الشفرة Wallarm.
 1. [أضف](https://techdocs.akamai.com/edgeworkers/docs/add-edgeworkers-to-contract) EdgeWorkers إلى عقدك على Akamai.
-1. [إنشاء](https://techdocs.akamai.com/edgeworkers/docs/create-an-edgeworker-id) معرّف EdgeWorker.
-1. افتح المعرّف المُنشأ، اضغط على **إنشاء إصدار** و[ارفع](https://techdocs.akamai.com/edgeworkers/docs/deploy-hello-world-1) حزمة كود Wallarm.
-1. **فعّل** الإصدار المُنشأ، في البداية في بيئة المرحلة.
-1. بعد التأكد من أن كل شيء يعمل بشكل صحيح، كرر نشر الإصدار في بيئة الإنتاج.
-1. في **مدير خصائص Akamai**، اختر أو أنشئ خاصية جديدة حيث ترغب في تثبيت Wallarm.
-1. [إنشاء](https://techdocs.akamai.com/edgeworkers/docs/add-the-edgeworker-behavior-1) سلوك جديد مع EdgeWorker الذي تم إنشاؤه حديثًا، ويمكنك تسميته على سبيل المثال **Wallarm Edge** وإضافة المعايير التالية:
+1. [أنشئ](https://techdocs.akamai.com/edgeworkers/docs/create-an-edgeworker-id) رقم معرف EdgeWorker.
+1. افتح الرقم المعرف الذي تم إنشاؤه، اضغط على **Create Version** و [ارفع](https://techdocs.akamai.com/edgeworkers/docs/deploy-hello-world-1) حزمة الشفرة Wallarm.
+1. **فِعِّل** الإصدار الذي تم إنشاؤه، في البداية في بيئة المرحلة.
+1. بعد التأكد من أن كل شيء يعمل بشكل صحيح، كرر نشر الإصدار في البيئة الإنتاج.
+1. في **Akamai Property Manager**، اختر أو أنشئ ملكية جديدة حيث تريد تثبيت Wallarm.
+1. [أنشئ](https://techdocs.akamai.com/edgeworkers/docs/add-the-edgeworker-behavior-1) سلوكًا جديدًا مع EdgeWorker الذي تم إنشاؤه حديثًا، وادعه على سبيل المثال **Wallarm Edge** وأضف المعايير التالية:
 
     ```
-    إذا 
-    رأس الطلب
+    If 
+    Request Header 
     X-EDGEWRK-REAL-IP 
-    غير موجود
+    does not exist
     ```
-1. إنشاء سلوك آخر **Wallarm Node** بـ **خادم الأصل** يشير إلى [العقدة المنشورة مسبقًا](#1-نشر-عقدة-wallarm). قم بتبديل **إعادة توجيه رأس المضيف** إلى **اسم المضيف الأصلي** وإضافة المعايير التالية:
+1. أنشئ سلوكًا آخر  **Wallarm Node** مع **Origin Server** يشير إلى [العقدة التي تم نشرها مسبقا](#1-nشر-عقدة-wallarm). امزج **Forward Host Header** إلى **Origin Hostname** وأضف المعايير التالية:
 
     ```
-    إذا 
-    رأس الطلب
+    If 
+    Request Header 
     X-EDGEWRK-REAL-IP 
-    موجود
+    exist
     ```
-1. أضف متغير خاصية جديد `PMUSER_WALLARM_MODE` بـ [القيمة](../../admin-en/configure-wallarm-mode.md) `monitoring` (الافتراضي) أو `block`.
-    
-    اختر **مخفي** لإعدادات الأمان.
-1. احفظ الإصدار الجديد ونشره في البداية إلى بيئة المرحلة، و[ثم](https://techdocs.akamai.com/api-acceleration/docs/test-stage) إلى الإنتاج.
+1. أضف متغير الخاصية الجديد `PMUSER_WALLARM_MODE` مع [القيمة](../../admin-en/configure-wallarm-mode.md) `monitoring` (افتراضي) أو `block`. 
+
+    اختر **Hidden** لإعدادات الأمان.
+1. حفظ الإصدار الجديد ونشره في البداية إلى بيئة المرحلة، و[ثم](https://techdocs.akamai.com/api-acceleration/docs/test-stage) إلى الإنتاج.
 
 ## الاختبار
 
-لاختبار وظائف السياسة المنشورة، اتبع الخطوات التالية:
+لاختبار وظائف السياسة المنشأة، اتبع هذه الخطوات:
 
-1. إرسال طلب باستخدام هجوم [Path Traversal][ptrav-attack-docs] الاختباري إلى واجهة برمجة التطبيقات الخاصة بك:
+1. أرسل الطلب مع الاختبار الهجوم [Path Traversal][وثائق-الهجمات-ptrav] لواجهة برمجة التطبيق API الخاصة بك:
 
     ```
     curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
     ```
-1. افتح وحدة التحكم في Wallarm → قسم **الهجمات** في [سحابة الولايات المتحدة](https://us1.my.wallarm.com/attacks) أو [سحابة الاتحاد الأوروبي](https://my.wallarm.com/attacks) وتأكد من ظهور الهجوم في القائمة.
+1. افتح Wallarm Console → قسم **Attacks** في [السحابة الأمريكية](https://us1.my.wallarm.com/attacks) أو [السحابة الأوروبية](https://my.wallarm.com/attacks) وتأكد من أن الهجوم يظهر في القائمة.
     
-    ![الهجمات في الواجهة][attacks-in-ui-image]
+    ![الهجمات في الواجهة][صورة-الهجمات-في-واجهة-المستخدم]
 
-    إذا كان وضع عقدة Wallarm مضبوط على الحجب، سيتم حجب الطلب أيضًا.
+    إذا تم ضبط وضع العقدة Wallarm على الحجب، سيتم حجب الطلب أيضا.
 
 ## هل تحتاج إلى مساعدة؟
 
-إذا واجهت أي مشكلات أو كنت بحاجة إلى مساعدة في النشر الموصوف لـ Wallarm بالتعاون مع Akamai EdgeWorkers، يمكنك التواصل مع فريق [دعم Wallarm](mailto:support@wallarm.com). هم متاحون لتقديم الإرشادات والمساعدة في حل أي مشاكل قد تواجهها خلال عملية التنفيذ.
+إذا واجهت أي مشاكل أو تحتاج إلى مساعدة بشأن نشر Wallarm الذي تم وصفه بالتعاون مع Akamai EdgeWorkers، يمكنك التواصل مع فريق [دعم Wallarm](mailto:support@wallarm.com). هم متواجدون لتقديم الإرشاد والمساعدة في حل أي مشاكل قد تواجهها أثناء عملية التنفيذ.

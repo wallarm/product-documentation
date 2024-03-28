@@ -1,19 +1,19 @@
-# اعتبارات توفر عالي (متحكم دخول مبني على NGINX)
+# اعتبارات توفر عالي (وحدة تحكم الدخول المبنية على NGINX)
 
-هذه المقالة تقدم توصيات لضبط متحكم الدخول Wallarm ليكون عالي التوفر ومحميًا من التوقف.
+توفر هذه المقالة توصيات لتكوين وحدة تحكم الدخول الخاصة بـ Wallarm لكي تكون ذات توفر عالٍ ومحمية من أوقات التوقف.
 
 --8<-- "../include/ingress-controller-best-practices-intro.md"
 
-## توصيات الضبط
+## توصيات التكوين
 
-التوصيات التالية تخص البيئات التي يعتبر فيها توقف التطبيق عن العمل شيئا خطيرا (بيئات الإنتاج).
+التوصيات التالية ذات صلة بالبيئات الحرجة (الإنتاجية).
 
-* استخدم أكثر من نسخة مثيل لمتحكم الدخول. يتم التحكم في السلوك باستخدام الصفة `controller.replicaCount` في ملف `values.yaml`. على سبيل المثال:
+* استخدم أكثر من نموذج لوحدات حاويات وحدة التحكم في الدخول. يتم التحكم في السلوك باستخدام الخاصية `controller.replicaCount` في ملف `values.yaml`. على سبيل المثال:
     ```
     controller:
       replicaCount: 2
     ```
-* اجبر تجمع Kubernetes على وضع مثيلات متحكم الدخول على عقد مختلفة: هذا سيزيد من مقاومة خدمة الدخول في حال فشل عقدة. يتم التحكم في هذا السلوك باستخدام ميزة مضاد التوافقية لـ pod في Kubernetes، والتي يتم ضبطها في ملف `values.yaml`. على سبيل المثال:
+* اجبر تجمع Kubernetes على وضع وحدات حاويات وحدة التحكم في الدخول على عقد مختلفة: هذا سيزيد من مرونة خدمة الدخول في حال حدوث فشل في أحد العقد. يتم التحكم في هذا السلوك باستخدام ميزة مكافحة التماثل لوحدات حاويات Kubernetes، والتي يتم تكوينها في ملف `values.yaml`. على سبيل المثال:
     ```
     controller:
       affinity:
@@ -27,7 +27,7 @@
                   - nginx-ingress
             topologyKey: "kubernetes.io/hostname"
     ```
-* في التجمعات التي قد تتعرض لزيادات مفاجئة في الحركة أو ظروف أخرى قد تبرر استخدام ميزة [التوسع الأفقي لـ pod في Kubernetes (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) يمكن تفعيلها في ملف `values.yaml` باستخدام المثال التالي:
+* في التجمعات الخاضعة لزيادات مفاجئة في الحركة أو ظروف أخرى قد تبرر استخدام ميزة [توسيع الحاويات الأفقي (HPA) في Kubernetes](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)، يمكن تفعيلها في ملف `values.yaml` باستخدام المثال التالي:
     ```
     controller:
       autoscaling:
@@ -37,7 +37,7 @@
         targetCPUUtilizationPercentage: 50
         targetMemoryUtilizationPercentage: 50
     ```
-* تشغيل على الأقل نسختين من خدمة تحليلات ما بعد البيانات Wallarm على أساس قاعدة البيانات Tarantool. هذه المثيلات تتضمن `ingress-controller-wallarm-tarantool` في الاسم. يتم التحكم في السلوك في ملف `values.yaml` باستخدام الصفة `controller.wallarm.tarantool.replicaCount`. على سبيل المثال: 
+* تشغيل ما لا يقل عن نموذجين من خدمة postanalytics الخاصة بـ Wallarm، المبنية على قاعدة بيانات Tarantool. تتضمن هذه الحاويات `ingress-controller-wallarm-tarantool` في الاسم. يتم التحكم في السلوك في ملف `values.yaml` باستخدام الخاصية `controller.wallarm.tarantool.replicaCount`. على سبيل المثال:
     ```
     controller:
       wallarm:
@@ -45,17 +45,17 @@
           replicaCount: 2
     ```
 
-## إجراءات الضبط
+## إجراء التكوين
 
-يُنصح باستخدام الخيار `--set` من الأوامر `helm install` و `helm upgrade` لتكوين الإعدادات المذكورة، على سبيل المثال:
+لتعيين التكوينات المذكورة، يُنصح باستخدام خيار `--set` من أوامر `helm install` و `helm upgrade`، على سبيل المثال:
 
-=== "تنصيب متحكم الدخول"
+=== "تثبيت وحدة التحكم في الدخول"
     ```bash
     helm install --set controller.replicaCount=2 <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
-    هناك أيضًا [معايير أخرى](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart) مطلوبة لتنصيب متحكم الدخول بشكل صحيح. الرجاء إدخالهم في الخيار `--set` كذلك.
-=== "تحديث معايير متحكم الدخول"
+    هناك أيضًا [معايير أخرى](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart) مطلوبة لتثبيت وحدة التحكم في الدخول بشكل صحيح. الرجاء تمريرها أيضًا في خيار `--set`.
+=== "تحديث معايير وحدة التحكم في الدخول"
     ```bash
     helm upgrade --reuse-values --set controller.replicaCount=2 <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```

@@ -1,14 +1,14 @@
-1. احصُل على رمز Wallarm من [النوع المناسب][wallarm-token-types]:
+1. استخدم رمز Wallarm من [النوع المناسب][wallarm-token-types]:
 
     === "رمز API"
 
-        1. افتح لوحة تحكم Wallarm → **الإعدادات** → **رموز API** في [السحابة الأمريكية](https://us1.my.wallarm.com/settings/api-tokens) أو [السحابة الأوروبية](https://my.wallarm.com/settings/api-tokens).
-        1. ابحث أو أنشئ رمز API بدور مصدر `Deploy`.
+        1. افتح واجهة Wallarm → **الإعدادات** → **رموز API** في [السحابة الأمريكية](https://us1.my.wallarm.com/settings/api-tokens) أو [السحابة الأوروبية](https://my.wallarm.com/settings/api-tokens).
+        1. ابحث عن رمز API مع دور المصدر `Deploy` أو أنشئ واحدًا.
         1. انسخ هذا الرمز.
 
     === "رمز العقدة"
 
-        1. افتح لوحة تحكم Wallarm → **العقد** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes).
+        1. افتح واجهة Wallarm → **العقد** في [السحابة الأمريكية](https://us1.my.wallarm.com/nodes) أو [السحابة الأوروبية](https://my.wallarm.com/nodes).
         1. قم بإحدى الخطوات التالية:
             * أنشئ عقدة من نوع **عقدة Wallarm** وانسخ الرمز المُنشأ.
-            * استخدم مجموعة عقد موجودة - انسخ الرمز باستخدام قائمة العقدة → **انسخ الرمز**.
+            * استخدم مجموعة العقد الموجودة - انسخ الرمز باستخدام قائمة العقدة → **نسخ الرمز**.

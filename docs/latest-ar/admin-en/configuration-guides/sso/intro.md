@@ -6,17 +6,17 @@
 [link-saml]:                https://wiki.oasis-open.org/security/FrontPage
 [link-saml-sso-roles]:      https://www.oasis-open.org/committees/download.php/27819/sstc-saml-tech-overview-2.0-cd-02.pdf     
 
-يمكنك استخدام تقنية Single Sign‑On (SSO) لتوثيق مستخدمي شركتك لبوابة Wallarm إذا كانت شركتك تستخدم بالفعل حل SSO بـ[SAML][link-saml].
+يمكنك استخدام تقنية تسجيل الدخول الموحّد (SSO) لمصادقة مستخدمي شركتك إلى بوابة Wallarm إذا كانت شركتك تستخدم بالفعل حل SSO بتقنية [SAML][link-saml].
 
-يمكن دمج Wallarm مع أي حل يدعم معيار SAML. تصف أدلة SSO التكامل باستخدام [Okta][doc-admin-sso-okta] أو [Google Suite (G Suite)][doc-admin-sso-gsuite] كمثال.
+يمكن تكامل Wallarm مع أي حل يدعم معيار SAML. تصف الأدلة SSO التكامل باستخدام [Okta][doc-admin-sso-okta] أو [مجموعة Google (G Suite)][doc-admin-sso-gsuite] كمثال.
 
-الوثائق المتعلقة بتكوين وتشغيل Wallarm مع SSO تفترض ما يلي:
-*   Wallarm يعمل كـ **مزود خدمة** (SP).
-*   Google أو Okta يعمل كـ **مزود هوية** (IdP).
+تفترض الوثائق المتعلقة بتكوين وتشغيل Wallarm مع SSO ما يلي:
+*   يعمل Wallarm كموفر **خدمة** (SP).
+*   تعمل Google أو Okta كموفر **هوية** (IdP).
 
-يمكن العثور على مزيد من المعلومات حول الأدوار في SAML SSO هنا ([PDF][link-saml-sso-roles]).
+يمكن العثور على معلومات إضافية حول الأدوار في SAML SSO هنا ([PDF][link-saml-sso-roles]).
 
-!!! تحذير "تمكين خدمة SSO"
-    بشكل افتراضي، لا يتوفر اتصال SSO على Wallarm بدون تفعيل الخدمة المناسبة. لتفعيل خدمة SSO، يرجى الاتصال بمدير حسابك أو [فريق دعم Wallarm](mailto:support@wallarm.com).
+!!! تحذير "تفعيل خدمة SSO"
+    بشكل افتراضي، لا تتوفر اتصال SSO على Wallarm دون تفعيل الخدمة المناسبة. لتفعيل خدمة SSO، يرجى الاتصال بمدير حسابك أو بفريق دعم [Wallarm](mailto:support@wallarm.com).
     
-    إذا لم يتم تفعيل خدمة SSO، فلن تكون الكتل المتعلقة بـSSO ظاهرة في قسم **التكاملات** في واجهة Wallarm.
+    إذا لم يتم تفعيل خدمة SSO، فلن تكون كتل المتعلقة بSSO مرئية في قسم **التكاملات** في لوحة تحكم Wallarm.

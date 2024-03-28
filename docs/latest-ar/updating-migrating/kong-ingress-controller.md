@@ -1,22 +1,22 @@
-[ip-lists-docs]: ../user-guides/ip-lists/overview.md
+[وثائق-قوائم-الآي-بي]: ../user-guides/ip-lists/overview.md
 
-# ترقية وحدة التحكم في الدخول Kong مع وحدات Wallarm المدمجة
+# ترقية وحدة التحكم Kong Ingress مع تكامل وحدات Wallarm
 
-توضح هذه التعليمات الخطوات لترقية وحدة التحكم في الدخول القائمة على Kong من Wallarm المُنشرة بالإصدار 4.x إلى الإصدار الجديد مع وحدة Wallarm 4.6.
+تصف هذه التعليمات الخطوات لترقية وحدة التحكم Kong Ingress التي تعتمد على Wallarm والمُنشرة بالإصدار 4.x إلى الإصدار الجديد مع وحدة Wallarm الإصدار 4.6.
 
 ## المتطلبات
 
 --8<-- "../include/waf/installation/kong-ingress-controller-reqs.md"
 
-## الخطوة 1: تحديث مستودع Helm الخاص بـ Wallarm
+## الخطوة 1: تحديث مستودع Helm الخاص بـWallarm
 
 ```bash
 helm repo update wallarm
 ```
 
-## الخطوة 2: مراجعة جميع تغييرات مظاهر K8s القادمة
+## الخطوة 2: مراجعة جميع التغييرات القادمة لتوثيق K8s
 
-لتجنب تغيير غير متوقع في سلوك وحدة التحكم في الدخول، راجع جميع تغييرات مظاهر K8s القادمة باستخدام [Helm Diff Plugin](https://github.com/databus23/helm-diff). يُظهر هذا الإضافة الفروق بين مظاهر K8s لإصدار وحدة التحكم في الدخول المنشور والإصدار الجديد.
+لتجنب التغييرات غير المتوقعة في سلوك وحدة التحكم Ingress، مراجعة جميع التغييرات القادمة لتوثيق K8s باستخدام [إضافة Helm Diff](https://github.com/databus23/helm-diff). تُخرج هذه الإضافة الفروق بين توثيق K8s لإصدار وحدة التحكم Ingress المُنشر والإصدار الجديد.
 
 لتثبيت وتشغيل الإضافة:
 
@@ -31,53 +31,53 @@ helm repo update wallarm
     helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/kong --version 4.6.3 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: اسم إصدار Helm مع مخطط وحدة التحكم في الدخول
-    * `<NAMESPACE>`: النيم سبيس الذي يتم نشر مخطط Helm مع وحدة التحكم في الدخول به
-    * `<PATH_TO_VALUES>`: مسار ملف `values.yaml` الذي يحدد إعدادات وحدة التحكم في الدخول 4.6 - يمكنك استخدام ذلك الذي تم إنشاؤه لتشغيل إصدار وحدة التحكم في الدخول السابق
-3. تأكد من أنه لا توجد تغييرات يمكن أن تؤثر على استقرار الخدمات الجارية وفحص الأخطاء من stdout بعناية.
+    * `<RELEASE_NAME>`: اسم إصدار Helm الذي يحتوي على توثيق Ingress
+    * `<NAMESPACE>`: الفضاء الاسمي الذي تم فيه نشر توثيق Ingress بواسطة Helm
+    * `<PATH_TO_VALUES>`: المسار إلى ملف `values.yaml` الذي يحدد إعدادات Ingress 4.6 - يمكن استخدام الذي تم إنشاؤه لتشغيل إصدار Ingress السابق
+3. التأكد من أنه لا توجد تغييرات قد تؤثر على استقرار الخدمات المشغلة وفحص الأخطاء ظاهرةً بدقة.
 
-    إذا كان stdout فارغًا، تأكد من صحة ملف `values.yaml`.
+    إذا كان المخرج فارغًا، التأكد من صحة ملف `values.yaml`.
 
-## الخطوة 3: ترقية وحدة التحكم في الدخول
+## الخطوة 3: ترقية وحدة التحكم Ingress
 
-ترقية وحدة التحكم في الدخول Kong المنشورة:
+الترقية لوحدة التحكم Kong Ingress المُنشرة:
 
 ``` bash
 helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/kong --version 4.6.3 -f <PATH_TO_VALUES>
 ```
 
-* `<RELEASE_NAME>`: اسم إصدار Helm مع مخطط وحدة التحكم في الدخول
-* `<NAMESPACE>`: النيم سبيس الذي يتم نشر مخطط Helm مع وحدة التحكم في الدخول به
-* `<PATH_TO_VALUES>`: مسار ملف `values.yaml` الذي يحدد إعدادات وحدة التحكم في الدخول 6 - يمكنك استخدام ذلك الذي تم إنشاؤه لتشغيل إصدار وحدة التحكم في الدخول السابق
+* `<RELEASE_NAME>`: اسم إصدار Helm الذي يحتوي على توثيق Ingress
+* `<NAMESPACE>`: الفضاء الاسمي الذي تم فيه نشر توثيق Ingress بواسطة Helm
+* `<PATH_TO_VALUES>`: المسار إلى ملف `values.yaml` الذي يحدد إعدادات Ingress 4.6 - يمكن استخدام الذي تم إنشاؤه لتشغيل إصدار Ingress السابق
 
-## الخطوة 4: اختبار وحدة التحكم في الدخول المُرقّاة
+## الخطوة 4: اختبار وحدة التحكم Ingress بعد الترقية
 
-1. تأكد من ترقية إصدار مخطط Helm:
+1. التأكد من ترقية إصدار توثيق Helm:
 
     ```bash
     helm list -n <NAMESPACE>
     ```
 
-    حيث `<NAMESPACE>` هو النيم سبيس الذي يتم نشر مخطط Helm مع وحدة التحكم في الدخول به.
+    حيث `<NAMESPACE>` هو الفضاء الاسمي الذي تم فيه نشر توثيق Ingress بواسطة Helm.
 
-    يجب أن يتطابق إصدار المخطط مع `kong-4.6.3`.
-1. احصل على تفاصيل البود Wallarm للتحقق من بدء تشغيلها بنجاح:
+    إصدار التوثيق يجب أن يتطابق مع `kong-4.6.3`.
+1. الحصول على تفاصيل حزمة Wallarm للتحقق من بدء تشغيلها بنجاح:
 
     ```bash
     kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=kong
     ```
 
-    يجب عرض كل بود كالتالي: **READY: N/N** و **STATUS: Running**، مثل:
+    يجب أن تُظهر كل حزمة التالي: **جاهز: N/N** و **الحالة: يعمل**، على سبيل المثال:
 
     ```
-    NAME                                                      READY   STATUS    RESTARTS   AGE
-    wallarm-ingress-kong-54cf88b989-gp2vg                     1/1     Running   0          91m
-    wallarm-ingress-kong-wallarm-tarantool-86d9d4b6cd-hpd5k   4/4     Running   0          91m
+    NAME                                                      جاهز   الحالة    إعادة التشغيل   العمر
+    wallarm-ingress-kong-54cf88b989-gp2vg                     1/1     يعمل   0          91د
+    wallarm-ingress-kong-wallarm-tarantool-86d9d4b6cd-hpd5k   4/4     يعمل   0          91د
     ```
-1. أرسل هجمات [Path Traversal](../attacks-vulns-list.md#path-traversal) الاختبارية إلى خدمة Wallarm Ingress Controller:
+1. إرسال هجمات اختبار [Path Traversal](../attacks-vulns-list.md#path-traversal) إلى خدمة Kong Ingress Controller:
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    تحقق من معالجة الحل الخاص بالإصدار الأحدث للطلب الخبيث كما كان في الإصدار السابق.
+    التحقق من معالجة الحل بالإصدار الجديد للطلب الضار كما كان في الإصدار السابق.

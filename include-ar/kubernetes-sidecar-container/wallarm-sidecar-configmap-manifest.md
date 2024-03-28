@@ -11,20 +11,20 @@ data:
           server_name localhost;
           root /usr/share/nginx/html;
           index index.html index.htm;
-          # برجاء استبدال <WALLARM_MODE> في ما يلي بوضع تصفية الطلبات:
+          # الرجاء استبدال <WALLARM_MODE> أدناه بنمط تصفية الطلبات:
           # off لتعطيل معالجة الطلبات
-          # monitoring لمعالجة الطلبات دون حظرها
-          # safe_blocking لحظر الطلبات الضارة القادمة من عناوين IP المُدرجة بالقائمة الرمادية فقط
-          # block لمعالجة كل الطلبات وحظر تلك الضارة منها
+          # monitoring لمعالجة الطلبات ولكن دون حظرها
+          # safe_blocking لحظر الطلبات الضارة الواردة فقط من عناوين IP المدرجة في القائمة الرمادية
+          # block لمعالجة كل الطلبات وحظر الضار منها
           wallarm_mode <WALLARM_MODE>;
           # wallarm_instance 1;
           set_real_ip_from 0.0.0.0/0;
           real_ip_header X-Forwarded-For;
           location / {
-                  # برجاء استبدال <APP_CONTAINER_PORT> في ما يلي برقم المنفذ
-                  # الذي يقبل الحاوية الطلبات الواردة عليه،
-                  # يجب أن يكون القيمة مطابقة ل ports.containerPort
-                  # في تعريف حاوية التطبيق الرئيسي الخاص بك
+                  # الرجاء استبدال <APP_CONTAINER_PORT> أدناه برقم المنفذ
+                  # الذي يستقبل عليه الحاوية الطلبات الواردة،
+                  # يجب أن يكون القيمة مطابقة لports.containerPort
+                  # في تعريف حاوية التطبيق الرئيسية لديك
                   proxy_pass http://localhost:<APP_CONTAINER_PORT>;
                   include proxy_params;
           }

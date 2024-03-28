@@ -1,38 +1,6 @@
-[link-ssh-keys]:            https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair
-[link-sg]:                  https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-a-base-security-group
-[link-launch-instance]:     https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-launch-instance
+# نشر Wallarm OOB من صورة أمازون
 
-[anchor1]:      #2-create-a-security-group
-[anchor2]:      #1-create-a-pair-of-ssh-keys-in-aws
-
-[img-create-sg]:                ../../../images/installation-ami/common/create_sg.png
-[versioning-policy]:            ../../../updating-migrating/versioning-policy.md#version-list
-[img-wl-console-users]:         ../../../images/check-user-no-2fa.png
-[img-create-wallarm-node]:      ../../../images/user-guides/nodes/create-cloud-node.png
-[deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
-[node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
-[api-token]:                        ../../../user-guides/settings/api-tokens.md
-[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[platform]:                         ../../../installation/supported-deployment-options.md
-[ptrav-attack-docs]:                ../../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
-[wallarm-nginx-directives]:         ../../../admin-en/configure-parameters-en.md
-[autoscaling-docs]:                 ../../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
-[real-ip-docs]:                     ../../../admin-en/using-proxy-or-balancer-en.md
-[allocate-memory-docs]:             ../../../admin-en/configuration-guides/allocate-resources-for-node.md
-[limiting-request-processing]:      ../../../user-guides/rules/configure-overlimit-res-detection.md
-[logs-docs]:                        ../../../admin-en/configure-logging.md
-[oob-advantages-limitations]:       ../overview.md#advantages-and-limitations
-[wallarm-mode]:                     ../../../admin-en/configure-wallarm-mode.md
-[wallarm-api-via-proxy]:            ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[img-grouped-nodes]:                ../../../images/user-guides/nodes/grouped-nodes.png
-[cloud-init-spec]:                  ../../cloud-platforms/cloud-init.md
-[wallarm_force_directive]:          ../../../admin-en/configure-parameters-en.md#wallarm_force
-[web-server-mirroring-examples]:    overview.md#examples-of-web-server-configuration-for-traffic-mirroring
-
-# نشر وولارم OOB من صورة أمازون
-
-هذا المقال يوفر تعليمات لنشر [وولارم OOB](overview.md) على AWS باستخدام [الصورة الرسمية لآلة أمازون (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD). الحل الموصوف هنا مصمم لتحليل حركة مرور معكوسة بواسطة خادم ويب أو بروكسي.
+توفر هذه المقالة التعليمات لنشر [Wallarm OOB](overview.md) على AWS باستخدام [الصورة الرسمية لآلة أمازون (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD). الحل الموصوف هنا مصمم لتحليل حركة المرور المعكوسة بواسطة الويب أو خادم الوكيل.
 
 ## حالات الاستخدام
 
@@ -40,44 +8,44 @@
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami-latest.md"
 
-## 6. ربط النسخة بسحابة وولارم
+## 6. الاتصال بالنسخة السحابية من Wallarm
 
-نسخة السحابة تتصل بسحابة وولارم عبر سكربت [cloud-init.py][cloud-init-spec]. يقوم هذا السكربت بتسجيل العقدة مع سحابة وولارم باستخدام رمز معطى، يضبطها عالميًا على [وضع][wallarm-mode] الرصد، ويضع توجيهات [`wallarm_force`][wallarm_force_directive] في قسم `location /` لـ NGINX لتحليل نسخ حركة المرور المعكوسة فقط. إعادة تشغيل NGINX يكمل الإعداد.
+يتصل عقدة النسخة السحابية بالسحابة من Wallarm عبر السكربت [`cloud-init.py`][cloud-init-spec]. يقوم هذا السكريبت بتسجيل العقدة مع السحابة من Wallarm باستخدام الرمز المقدم، ويعمل على تحديدها عالميًا إلى وضع [المراقبة][wallarm-mode]، ويقوم بتعيين الأوامر [`wallarm_force`][wallarm_force_directive] في كتلة `location /` في NGINX لتحليل نسخ حركة المرور المعكوسة فقط. إعادة تشغيل NGINX تنهي الإعداد.
 
-قم بتشغيل سكربت `cloud-init.py` على النسخة المنشأة من صورة السحابة كالتالي:
+قم بتشغيل السكريبت `cloud-init.py` على النسخة المنشأة من الصورة السحابية كما يلي:
 
-=== "سحابة أمريكا"
+=== "US Cloud"
     ``` bash
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring -p mirror -H us1.api.wallarm.com
     ```
-=== "سحابة أوروبا"
+=== "EU Cloud"
     ``` bash
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring -p mirror
     ```
 
-* `WALLARM_LABELS='group=<GROUP>'` يضبط اسم مجموعة عقدة (موجودة، أو، إذا لم تكن موجودة، سيتم إنشاؤها). يطبق فقط إذا كنت تستخدم رمز API.
-* `<TOKEN>` هو قيمة الرمز المنسوخة.
+* `WALLARM_LABELS='group=<GROUP>'` يحدد اسم مجموعة العقدة (موجودة، أو، إذا لم تكن موجودة، سيتم إنشاؤها). يتم تطبيقه فقط إذا كان يستخدم رمز API.
+* `<TOKEN>` هو القيمة المنسوخة للرمز.
 
-## 7. تكوين خادم ويب أو بروكسي لعكس حركة المرور إلى العقدة وولارم
+## 7. تكوين الويب أو خادم الوكيل لعكس حركة المرور إلى عقدة Wallarm
 
-1. قم بتكوين خادم الويب أو البروكسي (مثل NGINX, Envoy) لعكس حركة المرور الواردة إلى عقدة وولارم. بالنسبة لتفاصيل التكوين، نوصي بالرجوع إلى توثيق خادم الويب أو البروكسي الخاص بك.
-
-    داخل [الرابط][web-server-mirroring-examples]، ستجد تكوين مثالي لأشهر خوادم الويب والبروكسي (NGINX, Traefik, Envoy).
-1. ضع التكوين التالي في ملف `/etc/nginx/sites-enabled/default` على النسخة مع العقدة:
+1. قم بتكوين خادم الويب أو الوكيل (مثلاً NGINX، Envoy) لعكس حركة المرور الواردة إلى عقدة Wallarm. للحصول على تفاصيل التكوين، نوصي بالرجوع إلى دليل خادم الويب أو الوكيل.
+   
+   داخل [الرابط][web-server-mirroring-examples]، ستجد التكوين المثالي لأشهر خوادم الويب والوكلاء (NGINX، Traefik، Envoy).
+1. قم بتعيين التكوين التالي في ملف `/etc/nginx/sites-enabled/default` على النسخة بالعقدة:
 
     ```
     location / {
         include /etc/nginx/presets.d/mirror.conf;
         
-        # تغيير 222.222.222.22 إلى عنوان خادم العكس
+        # قم بتغيير 222.222.222.22 إلى عنوان خادم العكس
         set_real_ip_from  222.222.222.22;
         real_ip_header    X-Forwarded-For;
     }
     ```
 
-    توجيهات `set_real_ip_from` و `real_ip_header` مطلوبة لعرض [عناوين IP للمهاجمين][real-ip-docs] في واجهة وولارم.
+    أوامر `set_real_ip_from` و`real_ip_header` مطلوبة لعرض عناوين IP للمخترقين في [وحدة تحكم Wallarm][real-ip-docs].
 
-## 8. اختبار تشغيل وولارم
+## 8. اختبار تشغيل Wallarm
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
 

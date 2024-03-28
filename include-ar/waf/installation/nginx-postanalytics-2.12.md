@@ -6,7 +6,7 @@
     ```bash
     sudo apt install --no-install-recommends wallarm-node nginx-module-wallarm
     ```
-=== "سينتوس"
+=== "سنتوس"
     ```bash
     sudo yum install wallarm-node nginx-module-wallarm
     ```

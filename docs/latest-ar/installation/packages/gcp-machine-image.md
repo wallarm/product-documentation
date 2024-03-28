@@ -1,30 +1,30 @@
-[link-launch-instance]:     https://cloud.google.com/deep-learning-vm/docs/quickstart-marketplace
+[رابط تشغيل النموذج]:     https://cloud.google.com/deep-learning-vm/docs/quickstart-marketplace
 
-[img-ssh-key-generation]:       ../../images/installation-gcp/common/ssh-key-generation.png
-[versioning-policy]:            ../../updating-migrating/versioning-policy.md#version-list
-[img-wl-console-users]:         ../../images/check-user-no-2fa.png
-[img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
-[deployment-platform-docs]:     ../../installation/supported-deployment-options.md
-[node-token]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
-[api-token]:                        ../../user-guides/settings/api-tokens.md
-[wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[platform]:                         ../../installation/supported-deployment-options.md
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
-[wallarm-nginx-directives]:         ../../admin-en/configure-parameters-en.md
-[autoscaling-docs]:                 ../../admin-en/installation-guides/google-cloud/autoscaling-overview.md
-[real-ip-docs]:                     ../../admin-en/using-proxy-or-balancer-en.md
-[allocate-memory-docs]:             ../../admin-en/configuration-guides/allocate-resources-for-node.md
-[limiting-request-processing]:      ../../user-guides/rules/configure-overlimit-res-detection.md
-[logs-docs]:                        ../../admin-en/configure-logging.md
-[oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
-[wallarm-mode]:                     ../../admin-en/configure-wallarm-mode.md
-[inline-docs]:                      ../inline/overview.md
-[oob-docs]:                         ../oob/overview.md
-[wallarm-api-via-proxy]:            ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
-[img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
-[cloud-init-spec]:                  ../cloud-platforms/cloud-init.md
-[wallarm_force_directive]:          ../../admin-en/configure-parameters-en.md#wallarm_force
+[صورة توليد مفتاح SSH]:       ../../images/installation-gcp/common/ssh-key-generation.png
+[سياسة الإصدار]:            ../../updating-migrating/versioning-policy.md#version-list
+[صورة واجهة مستخدمي Wallarm]:         ../../images/check-user-no-2fa.png
+[صورة إنشاء عقدة Wallarm]:      ../../images/user-guides/nodes/create-cloud-node.png
+[وثائق منصات النشر]:     ../../installation/supported-deployment-options.md
+[رمز عقدة]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
+[رمز API]:                        ../../user-guides/settings/api-tokens.md
+[أنواع رموز Wallarm]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[منصة]:                         ../../installation/supported-deployment-options.md
+[وثائق هجمات تعدي المسار]:                ../../attacks-vulns-list.md#path-traversal
+[صورة هجمات في واجهة المستخدم]:              ../../images/admin-guides/test-attacks-quickstart.png
+[توجيهات Wallarm Nginx]:         ../../admin-en/configure-parameters-en.md
+[وثائق التوسع التلقائي]:                 ../../admin-en/installation-guides/google-cloud/autoscaling-overview.md
+[وثائق العنوان الحقيقي]:                     ../../admin-en/using-proxy-or-balancer-en.md
+[وثائق تخصيص الذاكرة]:             ../../admin-en/configuration-guides/allocate-resources-for-node.md
+[تحديد معالجة الطلب]:      ../../user-guides/rules/configure-overlimit-res-detection.md
+[وثائق السجلات]:                        ../../admin-en/configure-logging.md
+[مميزات وقيود OOB]:       ../oob/overview.md#advantages-and-limitations
+[وضع Wallarm]:                     ../../admin-en/configure-wallarm-mode.md
+[وثائق Inline]:                      ../inline/overview.md
+[وثائق OOB]:                         ../oob/overview.md
+[Wallarm API عبر بروكسي]:            ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+[أمثلة تكوين خادم الويب لمرآة البيانات]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[صورة العقد المجمعة]:                ../../images/user-guides/nodes/grouped-nodes.png
+[مواصفات بدء تشغيل السحابة]:                  ../cloud-platforms/cloud-init.md
+[توجيه Wallarm_force]:          ../../admin-en/configure-parameters-en.md#wallarm_force
 
 --8<-- "../include/waf/installation/cloud-platforms/article-for-inline-oob-gcp-image.md"

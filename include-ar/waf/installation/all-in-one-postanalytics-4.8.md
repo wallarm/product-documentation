@@ -9,7 +9,7 @@
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.aarch64-glibc.sh postanalytics
     ```        
 
-    المتغير `WALLARM_LABELS` يقوم بتحديد المجموعة التي سيتم إضافة العقدة إليها (يستخدم للتجميع المنطقي للعُقد في واجهة المستخدم لـ Wallarm Console).
+    تقوم متغير `WALLARM_LABELS` بتعيين المجموعة التي سيتم إضافة العقدة إليها (يستخدم للتجميع المنطقي للعقد في واجهة مستخدم Wallarm Console).
 
 === "رمز العقدة"
     ```bash

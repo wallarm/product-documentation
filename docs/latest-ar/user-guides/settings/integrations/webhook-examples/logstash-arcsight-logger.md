@@ -1,83 +1,83 @@
-# التكامل بين مُسجل Micro Focus ArcSight و Logstash
+# تكامل Micro Focus ArcSight Logger عبر Logstash
 
-توفر هذه التعليمات مثالاً لتكامل Wallarm مع جامع بيانات Logstash لتوجيه الأحداث لاحقًا إلى نظام مُسجل ArcSight.
+تزودك هذه التعليمات بمثال على تكامل Wallarm مع جمّاع البيانات Logstash لإعادة توجيه الأحداث إلى نظام ArcSight Logger.
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![تدفق Webhook](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
+![تدفق الويب هوك](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
 
-!!! info "التكامل مع نسخة المؤسسات من ArcSight ESM"
-    لتكوين توجيه السجلات من Logstash إلى نسخة المؤسسات من ArcSight ESM، يُنصح بتكوين موصل Syslog على جانب ArcSight ثم توجيه السجلات من Logstash إلى منفذ الموصل. للحصول على وصف أكثر تفصيلاً للموصلات، يُرجى تنزيل **دليل مستخدم SmartConnector** من [وثائق ArcSight SmartConnector الرسمية](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs).
+!!! info "التكامل مع نسخة Enterprise من ArcSight ESM"
+    لتهيئة إعادة توجيه السجلات من Logstash إلى نسخة Enterprise من ArcSight ESM، يُوصى بتكوين الرابط Syslog على جانب ArcSight ثم إعادة توجيه السجلات من Logstash إلى منفذ الرابط. للحصول على وصف أكثر تفصيلًا للروابط، يُرجى تحميل **دليل مستخدم SmartConnector** من [التوثيق الرسمي لـ ArcSight SmartConnector](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs).
 
 ## الموارد المستخدمة
 
-* [مُسجل ArcSight 7.1](#arcsight-logger-configuration) مُثبت على CentOS 7.8 بعنوان WEB URL `https://192.168.1.73:443`
-* [Logstash 7.7.0](#logstash-configuration) مُثبت على Debian 11.x (bullseye) ومتاح على `https://logstash.example.domain.com`
-* حق الوصول كمدير إلى وحدة تحكم Wallarm في [سحابة الاتحاد الأوروبي](https://my.wallarm.com) لـ [تكوين تكامل Logstash](#configuration-of-logstash-integration)
+* [ArcSight Logger 7.1](#arcsight-logger-configuration) مثبّت على CentOS 7.8 بعنوان ويب `https://192.168.1.73:443`
+* [Logstash 7.7.0](#logstash-configuration) مثبّت على Debian 11.x (bullseye) ومتاح على `https://logstash.example.domain.com`
+* وصول المدير إلى وحدة التحكم Wallarm في [السحابة الأوروبية](https://my.wallarm.com) لـ [تهيئة تكامل Logstash](#configuration-of-logstash-integration)
 
 --8<-- "../include/cloud-ip-by-request.md"
 
-بما أن الروابط لخدمات مُسجل ArcSight وLogstash مذكورة كأمثلة، فهي لا تُستجيب.
+نظرًا لأن الروابط إلى خدمات ArcSight Logger وLogstash مذكورة كأمثلة، فإنها لا تستجيب.
 
-### تكوين مُسجل ArcSight
+### تهيئة ArcSight Logger
 
-تم تكوين مُسجل ArcSight لاستقبال السجلات `سجلات Logstash من Wallarm` على النحو التالي:
+تم تكوين مستقبل السجلات في ArcSight Logger `سجلات Wallarm Logstash` على النحو التالي:
 
-* يتم استقبال السجلات عبر UDP (`النوع = مستقبل UDP`)
-* المنفذ المستمع هو `514`
-* يتم تحليل الأحداث بمُحلل syslog
-* إعدادات أخرى افتراضية
+* يتم استلام السجلات عبر UDP (`النوع = مستقبل UDP`)
+* منفذ الاستماع هو `514`
+* يتم تحليل الأحداث بمحلل syslog
+* الإعدادات الافتراضية الأخرى
 
-![تكوين المُستقبل في مُسجل ArcSight](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
+![تهيئة المستقبل في ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
 
-للحصول على وصف أكثر تفصيلاً لتكوين المُستقبل، يُرجى تنزيل **دليل تثبيت المُسجل** للإصدار المناسب من [وثائق مُسجل ArcSight الرسمية](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc).
+للحصول على وصف أكثر تفصيلًا لتهيئة المستقبل، يُرجى تحميل **دليل تثبيت Logger** للنسخة المناسبة من [التوثيق الرسمي لـ ArcSight Logger](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc).
 
-### تكوين Logstash
+### تهيئة Logstash
 
-بما أن Wallarm يُرسل السجلات إلى جامع البيانات الوسيط Logstash عبر webhooks، يجب أن يلبي تكوين Logstash المتطلبات التالية:
+بما أن Wallarm يرسل السجلات إلى جمّاع البيانات Logstash الوسيط عبر الويب هوك، يجب أن تلبي تهيئة Logstash المتطلبات التالية:
 
 * قبول طلبات POST أو PUT
 * قبول طلبات HTTPS
-* وجود URL عامة
-* توجيه السجلات إلى مُسجل ArcSight، هذا المثال يستخدم الإضافة `syslog` لتوجيه السجلات
+* امتلاك عنوان URL عام
+* إعادة توجيه السجلات إلى ArcSight Logger، يستخدم هذا المثال البرنامج المساعد `syslog` لإعادة توجيه السجلات
 
-تم تكوين Logstash في ملف `logstash-sample.conf`:
+تمت تهيئة Logstash في ملف `logstash-sample.conf`:
 
-* تم تكوين معالجة webhook الواردة في قسم `input`:
-    * يتم إرسال حركة المرور إلى المنفذ 5044
-    * تم تكوين Logstash لقبول الاتصالات HTTPS فقط
-    * شهادة TLS الخاصة بـ Logstash والموقعة من CA موثوق به علنًا تقع ضمن الملف `/etc/server.crt`
-    * المفتاح الخاص بشهادة TLS يقع ضمن الملف `/etc/server.key`
-* تم تكوين توجيه السجلات إلى مُسجل ArcSight وإخراج السجل في قسم `output`:
-    * يتم توجيه جميع سجلات الأحداث من Logstash إلى مُسجل ArcSight على عنوان IP `https://192.168.1.73:514`
-    * يتم توجيه السجلات من Logstash إلى مُسجل ArcSight بتنسيق JSON وفقًا لمعيار [Syslog](https://en.wikipedia.org/wiki/Syslog)
-    * يتم إنشاء الاتصال مع مُسجل ArcSight عبر UDP
-    * يتم طباعة سجلات Logstash إضافيًا على سطر الأوامر (السطر 15 من الكود). يُستخدم الإعداد للتحقق من تسجيل الأحداث عبر Logstash
+* تمت تهيئة معالجة ويب هوك الوارد في قسم `input`:
+    * يتم إرسال الحركة إلى المنفذ 5044
+    * Logstash مهيأ لقبول الاتصالات HTTPS فقط
+    * شهادة TLS Logstash الموقعة من CA ذات ثقة عامة موجودة ضمن الملف `/etc/server.crt`
+    * المفتاح الخاص لشهادة TLS موجود ضمن الملف `/etc/server.key`
+* تمت تهيئة إعادة توجيه السجلات إلى ArcSight Logger وإخراج السجل في قسم `output`:
+    * يتم إعادة توجيه جميع سجلات الأحداث من Logstash إلى ArcSight Logger على عنوان IP `https://192.168.1.73:514`
+    * يتم إعادة توجيه السجلات من Logstash إلى ArcSight Logger بتنسيق JSON وفقًا لمعيار [Syslog](https://en.wikipedia.org/wiki/Syslog)
+    * يتم إنشاء الاتصال مع ArcSight Logger عبر UDP
+    * يتم طباعة سجلات Logstash إضافيًا على سطر الأوامر (السطر الكودي 15). الإعداد مستخدم للتحقق من أن الأحداث تُسجل عبر Logstash
 
 ```bash linenums="1"
 input {
-  http { # إضافة المدخلات لحركة المرور HTTP وHTTPS
-    port => 5044 # منفذ للطلبات الواردة
-    ssl => true # معالجة حركة المرور HTTPS
-    ssl_certificate => "/etc/server.crt" # شهادة TLS الخاصة بـ Logstash
-    ssl_key => "/etc/server.key" # المفتاح الخاص بشهادة TLS
+  http { # البرنامج المساعد لحركة البيانات HTTP و HTTPS
+    port => 5044 # منفذ الطلبات الواردة
+    ssl => true # معالجة حركة البيانات HTTPS
+    ssl_certificate => "/etc/server.crt" # شهادة TLS لـ Logstash
+    ssl_key => "/etc/server.key" # المفتاح الخاص لشهادة TLS
   }
 }
 output {
-  syslog { # إضافة المخرجات لتوجيه السجلات من Logstash عبر Syslog
-    host => "192.168.1.73" # عنوان IP لتوجيه السجلات إليه
-    port => "514" # المنفذ لتوجيه السجلات إليه
+  syslog { # البرنامج المساعد لإعادة توجيه السجلات من Logstash عبر Syslog
+    host => "192.168.1.73" # عنوان IP لإعادة توجيه السجلات إليه
+    port => "514" # المنفذ لإعادة توجيه السجلات إليه
     protocol => "udp" # بروتوكول الاتصال
-    codec => json # تنسيق السجلات الموجهة
+    codec => json # تنسيق السجلات المعاد توجيهها
   }
-  stdout {} # إضافة المخرجات لطباعة سجلات Logstash على سطر الأوامر
+  stdout {} # البرنامج المساعد لطباعة سجلات Logstash على سطر الأوامر
 }
 ```
 
-الوصف التفصيلي أكثر لملفات التكوين متاح في [وثائق Logstash الرسمية](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html).
+وصف أكثر تفصيلًا لملفات التهيئة متاح في [التوثيق الرسمي لـ Logstash](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html).
 
-!!! info "اختبار تكوين Logstash"
-    للتحقق من إنشاء سجلات Logstash وتوجيهها إلى مُسجل ArcSight، يمكن إرسال طلب POST إلى Logstash.
+!!! info "اختبار تهيئة Logstash"
+    للتحقق من أن سجلات Logstash يتم إنشاؤها وإعادة توجيهها إلى ArcSight Logger، يمكن إرسال طلب POST إلى Logstash.
 
     **مثال الطلب:**
     ```curl
@@ -87,25 +87,25 @@ output {
     **سجلات Logstash:**
     ![سجلات Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
 
-    **الحدث في مُسجل ArcSight:**
-    ![حدث مُسجل ArcSight](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
+    **الحدث في ArcSight Logger:**
+    ![حدث ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
 
-### تكوين تكامل Logstash
+### تهيئة تكامل Logstash
 
 --8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![تكامل Webhook مع Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![تكامل الويب هوك مع Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-[المزيد من التفاصيل حول تكوين تكامل Logstash](../logstash.md)
+[المزيد من التفاصيل حول تهيئة تكامل Logstash](../logstash.md)
 
 ## اختبار المثال
 
 --8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
 
-سيسجل Logstash الحدث كما يلي:
+سيُسجل Logstash الحدث على النحو التالي:
 
-![سجل حول مستخدم جديد في مُسجل ArcSight من Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
+![سجل عن المستخدم الجديد في ArcSight Logger من Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
 
-سيتم عرض الإدخال التالي في أحداث مُسجل ArcSight:
+سيتم عرض الإدخال التالي في أحداث ArcSight Logger:
 
-![بطاقة المستخدم الجديد في مُسجل ArcSight من Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)
+![بطاقة المستخدم الجديد في ArcSight Logger من Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)

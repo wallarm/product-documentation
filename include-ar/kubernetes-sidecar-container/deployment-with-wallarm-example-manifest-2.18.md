@@ -13,40 +13,40 @@ spec:
         app: myapp
     spec:
       containers:
-        # عنصر Wallarm: تعريف حاوية Wallarm sidecar
+        # عنصر Wallarm: تعريف حاوية القطعة الجانبية Wallarm 
         - name: wallarm
           image: wallarm/node:2.18.1-5
           imagePullPolicy: Always
           env:
-          # نقطة نهاية API Wallarm:
+          # نقطة نهاية واجهة برمجة تطبيقات Wallarm: 
           # "api.wallarm.com" للسحابة الأوروبية
           # "us1.api.wallarm.com" للسحابة الأمريكية
           - name: WALLARM_API_HOST
             value: "api.wallarm.com"
-          # اسم المستخدم الذي يمتلك دور النشر
+          # اسم المستخدم للمستخدم بدور النشر
           - name: DEPLOY_USER
             value: "username"
-          # كلمة المرور للمستخدم الذي يمتلك دور النشر
+          # كلمة المرور للمستخدم بدور النشر
           - name: DEPLOY_PASSWORD
             value: "password"
           - name: DEPLOY_FORCE
             value: "true"
-          # إذا كان سيتم تفعيل وظيفة حظر عنوان IP
+          # ما إذا كان سيتم تفعيل وظيفة حظر الآي بي
           - name: WALLARM_ACL_ENABLE
             value: "true"
-          # كمية الذاكرة بالجيجا بايت لبيانات تحليل الطلبات
+          # كمية الذاكرة بالجيجابايت لبيانات تحليلات الطلبات
           - name: TARANTOOL_MEMORY_GB
             value: "2"
           ports:
           - name: http
-            # المنفذ الذي يقبل عليه حاوية Wallarm sidecar الطلبات
+            # المنفذ الذي تقبل عليه حاوية القطعة الجانبية Wallarm الطلبات
             # من كائن الخدمة
             containerPort: 80
-          volumeMounts:	
-          - mountPath: /etc/nginx/sites-enabled	
-            readOnly: true	
+          volumeMounts:    
+          - mountPath: /etc/nginx/sites-enabled    
+            readOnly: true    
             name: wallarm-nginx-conf
-        # تعريف حاوية التطبيق الرئيسية الخاص بك
+        # تعريف حاوية التطبيق الرئيسية الخاصة بك
         - name: myapp
           image: <Image>
           resources:
@@ -54,10 +54,10 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-          # المنفذ الذي تقبل عليه حاوية التطبيق الواردة الطلبات
+          # المنفذ الذي تقبل عليه حاوية التطبيق الطلبات الواردة
           - containerPort: 8080
       volumes:
-      # عنصر Wallarm: تعريف حجم wallarm-nginx-conf
+      # عنصر Wallarm: تعريف وحدة التخزين wallarm-nginx-conf
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

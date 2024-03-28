@@ -6,7 +6,7 @@
     ```bash
     sudo apt install --no-install-recommends wallarm-node nginx-module-wallarm
     ```
-=== "سينتوس أو أمازون لينكس 2.0.2021 وأقل"
+=== "سنتوس أو أمازون لينكس 2.0.2021 وما دون"
     ```bash
     sudo yum install wallarm-node nginx-module-wallarm
     ```

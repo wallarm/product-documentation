@@ -1,12 +1,12 @@
-# نظرة عامة على منع إساءة استخدام API
+# نظرة عامة على منع إساءة استخدام واجهة برمجة التطبيقات
 
-شاهد الفيديو التوضيحي لدينا لتصبح على دراية بأنواع البوتات المختلفة التي يمكن لوحدة [**منع إساءة استخدام API**](../about-wallarm/api-abuse-prevention.md) في منصة Wallarm حماية تطبيقاتك منها، ولفهم إمكاناتها في منع إساءة استخدام API بواسطة البوتات.
+شاهد الفيديو التوضيحي لتتعرف على أنواع البوتات المختلفة التي يمكن لمنصة Wallarm حماية تطبيقاتك منها من خلال وحدة [**منع إساءة استخدام واجهة برمجة التطبيقات**](../about-wallarm/api-abuse-prevention.md)،وكي تفهم إمكاناتها لمنع إساءة استخدام واجهة برمجة التطبيقات بواسطة البوتات.
 
 <div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/FRxpPqmVziY" title="مشغل فيديوهات YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/FRxpPqmVziY" title="مشغل فيديو YouTube" frameborder="0" allow="التسارع؛ التشغيل التلقائي؛ الكتابة على الحافظة؛ التشفير الإعلامي؛ الجيروسكوب؛ الصورة في الصورة؛ مشاركة الويب" allowfullscreen></iframe>
 </div>
 
-**مقالات توثيق ذات صلة**
+**مقالات الوثائق ذات الصلة**
 
-* [نظرة عامة على منع إساءة استخدام API](../about-wallarm/api-abuse-prevention.md)
-* [دليل المستخدم لمنع إساءة استخدام API](../user-guides/api-abuse-prevention.md)
+* [نظرة عامة على منع إساءة استخدام واجهة برمجة التطبيقات](../about-wallarm/api-abuse-prevention.md)
+* [دليل المستخدم لمنع إساءة استخدام واجهة برمجة التطبيقات](../user-guides/api-abuse-prevention.md)

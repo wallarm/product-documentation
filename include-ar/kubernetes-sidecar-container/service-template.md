@@ -8,8 +8,8 @@ spec:
     app: myapp
   ports:
   - port: {{ .Values.service.port }}
-    # بورت الحاوية الجانبية لوولارم؛
-    # يجب أن تكون القيمة مطابقة ل ports.containerPort
-    # في تعريف حاوية وولارم الجانبية
+    # منفذ حاوية الجانبية لـ Wallarm؛ 
+    # يجب أن تكون القيمة مطابقة لـ ports.containerPort
+    # في تعريف حاوية الجانبية لـ Wallarm
     targetPort: 8080
 ```
