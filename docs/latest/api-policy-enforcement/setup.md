@@ -9,7 +9,7 @@ This article describes how to enable and configure your API protection based on 
 
     ![Upload specification](../images/api-policies-enforcement/specificaton-upload.png)
 
-Note that you will not be able to start configuring API specification enforcement based on the specification, until its file is successfully uploaded.
+Note that you will not be able to start configuring API specification enforcement, until its file is successfully uploaded.
 
 ## Step 2: Set actions for violations of policies
 
@@ -35,7 +35,7 @@ Note that you will not be able to start configuring API specification enforcemen
 
     --8<-- "../include/api-policies-enforcement/api-policies-violations.md"
 
-    When using the specification for API specification enforcement for the first time, it is recommended to set `Monitor` as a reaction to make sure that the specification is applied to the necessary endpoints and detects real errors.
+    When using the specification for setting security policies for the first time, it is recommended to set `Monitor` as a reaction to make sure that the specification is applied to the necessary endpoints and detects real errors.
 
 ## Step 3: Configure specific cases or disable
 
