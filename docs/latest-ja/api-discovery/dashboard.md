@@ -7,4 +7,4 @@
 
 # API ディスカバリーダッシュボード <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
---8<-- "../include/api-discovery/dashboard.md"
+--8<-- "../include-ja/api-discovery/dashboard.md"

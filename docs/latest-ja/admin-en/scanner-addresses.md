@@ -11,7 +11,7 @@
 
 USクラウド（https://us1.my.wallarm.com）から、Wallarmが企業のリソースをスキャンして[脆弱性](../glossary-en.md#vulnerability)を調べ、攻撃や脆弱性を再確認するためのIPアドレスリストです：
 
---8<-- "../include/scanner-ip-request-us.md"
+--8<-- "../include-ja/scanner-ip-request-us.md"
 
 !!! info "IPアドレスリストの取得"
     [スキャナーのIPアドレスが記載されたプレーンテキストファイルをダウンロードしてください。][file-ips-list-us]
@@ -20,7 +20,7 @@ USクラウド（https://us1.my.wallarm.com）から、Wallarmが企業のリソ
 
 EUクラウド（https://my.wallarm.com）から、Wallarmが企業のリソースをスキャンして[脆弱性](../glossary-en.md#vulnerability)を調べ、攻撃や脆弱性を再確認するためのIPアドレスリストです：
 
---8<-- "../include/scanner-ip-request.md"
+--8<-- "../include-ja/scanner-ip-request.md"
 
 !!! info "IPアドレスリストの取得"
     [スキャナーのIPアドレスが記載されたプレーンテキストファイルをダウンロードしてください。][file-ips-list-eu]
