@@ -1,7 +1,4 @@
-When there are several triggers with identical conditions and some of them have nesting level URI, requests to lower nesting level URI will be counted only in the trigger with the filter by the lower nesting level URI.
-
-!!! info "Trigger's condition"
-    Trigger's condition defines a situation when a trigger should be applied. For example: **Brute force**, **Forced browsing**, **BOLA**. It is selected at the fist step of a new trigger creation.
+When there are several triggers with identical conditions (for example, **Brute force**, **Forced browsing**, **BOLA**) and some of them have nesting level URI, requests to lower nesting level URI will be counted only in the trigger with the filter by the lower nesting level URI.
 
 Triggers without URI filter are considered to be the higher nesting level.
 
