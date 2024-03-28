@@ -1,170 +1,170 @@
-[deployment-platform-docs]:    ../../supported-deployment-options.md
+[deployment-platform-docs]: ../../supported-deployment-options.md
 
-# حلول Wallarm المستندة لـ eBPF (الإصدار التجريبي)
+# حل Wallarm القائم على eBPF (الإصدار التجريبي)
 
-تقدم Wallarm نسخة تجريبية من حل الأمان الخاص بها المستند لـ eBPF التي تستفيد من قوة نواة Linux والتي تتكامل بسلاسة مع بيئات Kubernetes. تشرح هذه المقالة كيفية استخدام ونشر الحل باستخدام الرسم البياني لـ Helm.
+تقدم Wallarm إصدارًا تجريبيًا من حلها الأمني القائم على eBPF الذي يستخدم قوة نواة Linux ويدمج بسلاسة مع بيئات Kubernetes. توضح هذه المقالة كيفية استخدام ونشر الحل باستخدام الخريطة Helm.
 
-## تدفق الحركة
+## تدفق المرور
 
-تدفق الحركة مع حل Wallarm المستند لـ eBPF:
+تدفق المرور مع حل Wallarm القائم على eBPF:
 
-![تدفق الحركة eBPF](../../../images/waf-installation/epbf/ebpf-traffic-flow.png)
+![تدفق المرور في eBPF](../../../images/waf-installation/epbf/ebpf-traffic-flow.png)
 
-تم تصميم الحل eBPF لمراقبة حركة المرور باستخدام البروتوكولات التالية:
+الحل eBPF مصمم لمراقبة المرور باستخدام البروتوكولات التالية:
 
 * HTTP 1.x أو HTTP 2
 * Proxy v1 أو Proxy v2
 
-قد تستخدم الحركة تشفير TLS / SSL أو نقل البيانات النصية العادية. تحليل حركة المرور SSL محدود للخوادم التي تستخدم مكتبة OpenSSL المشتركة (على سبيل المثال، NGINX ، HAProxy) ولا يتوفر للخوادم التي تستخدم تنفيذات SSL أخرى مثل Envoy.
+قد يستخدم المرور تشفير TLS/SSL أو نقل البيانات النصي العادي. يقتصر تحليل مرور SSL على الخوادم التي تستخدم مكتبة OpenSSL المشتركة (مثل NGINX، HAProxy) ولا يتوفر للخوادم التي تستخدم تنفيذات SSL أخرى مثل Envoy.
 
 ## كيف يعمل
 
-يتألف نظام التشغيل Linux من النواة والمساحة المستخدم حيث تدير النواة موارد الأجهزة والمهام الحرجة، في حين تعمل التطبيقات في المساحة المستخدم. ضمن هذه البيئة، يتيح eBPF (الفلتر الحزم Berkeley الموسع) تنفيذ البرامج المخصصة داخل نواة Linux، بما في ذلك تلك التي تركز على الأمان. [اقرأ المزيد عن eBPF](https://ebpf.io/what-is-ebpf/)
+يتألف نظام التشغيل Linux من النواة والمساحة المستخدم، حيث تدير النواة موارد الأجهزة والمهام الحرجة، بينما تعمل التطبيقات في مساحة المستخدم. في هذا البيئة، يتيح eBPF (Extended Berkeley Packet Filter) تنفيذ البرامج المخصصة داخل نواة Linux، بما في ذلك تلك المركزة على الأمن. [اقرأ المزيد عن eBPF](https://ebpf.io/what-is-ebpf/)
 
-باعتبار أن Kubernetes يستغل قدرات النواة لمهام حاسمة مثل عزل العمليات وإدارة الموارد والشبكات، فإنه يخلق بيئة ملائمة لدمج حلول الأمان المستندة لك eBPF. بما يتماشى مع هذا، تقدم Wallarm حل أمان مستند لـ eBPF يتم دمجه بسلاسة مع Kubernetes، مستفيدة من وظائف النواة.
+نظراً لأن Kubernetes يستخدم قدرات نواة Linux للمهام الحرجة مثل عزل العمليات وإدارة الموارد والشبكات، فإنه يخلق بيئة مواتية لدمج الحلول الأمنية القائمة على eBPF. وفقًا لهذا، تقدم Wallarm حلًا أمنيًا قائمًا على eBPF يدمج بسلاسة مع Kubernetes، مستفيدًا من وظائف النواة.
 
-الحل يتألف من عامل ينشئ مرآة لحركة المرور ويعيدها إلى عقدة Wallarm. خلال التنشيط، يمكنك تحديد مستوى المرآة إما على مستوى الفضاء الاسمي أو على مستوى العقدة. تحلل العقدة حركة المرور المتمركزة بحثاً عن التهديدات الأمنية، دون حظر أي نشاط ضار. بدلاً من ذلك، يسجل النشاط المكتشف في سحابة Wallarm، مما يوفر رؤية في أمن الحركة من خلال واجهة المستخدم Wallarm Console.
+يتكون الحل من وكيل يولد مرآة للمرور ويحيلها إلى العقدة Wallarm. أثناء النشر، يمكنك تحديد مستوى المرآة إما على مستوى الفضاء الأسمي أو مستوى الوعاء. تدقق عقدة Wallarm في المرور المتطابق للأمن، دون حظر أي نشاط ضار. بدلاً من ذلك، يسجل النشاط الذي تم اكتشافه في Cloud Wallarm، مما يوفر الرؤية في أمن المرور من خلال واجهة المستخدم Wallarm Console.
 
-الشكل التالي يوضح مكونات الحل:
+يوضح الرسم البياني التالي مكونات الحل:
 
 ![مكونات eBPF](../../../images/waf-installation/epbf/ebpf-components.png)
 
-يتم نشر العامل eBPF على شكل مجموعة Daemo PulHier.setMaxon 在每个 عقدة عامل Kubernetes. لضمان سلامة الوظائف، يجب أن يعمل حاوية العامل في وضع متميز مع القدرات الأساسية التالية: `SYS_PTRACE` و`SYS_ADMIN`.
+وكيل eBPF يتم نشره كـ DaemonSet على كل عقدة عامل Kubernetes. لضمان الوظيفة الجيدة، يجب تشغيل وعاء الوكيل في وضع ممتاز مع القدرات الأساسية التالية: `SYS_PTRACE` و `SYS_ADMIN`.
 
-علاوة على ذلك، يعالج الحل رموز الاستجابة، مما يخول وحدة [اكتشاف الواجهة البرمجية للتطبيق](../../../api-discovery/overview.md) الأساسية لـ Wallarm لتحديد نقاط النهاية الخاصة بك، وبناء جرد الواجهة البرمجية للتطبيق، وضمان أنه يبقى حديث.
+بالإضافة إلى ذلك، يعالج الحل أكواد الرد، مما يمكّن وحدة [اكتشاف API](../../../api-discovery/overview.md) الأساسية في Wallarm لتحديد نقاط نهاية API الخاصة بك، وتشييد مخزون API الخاص بك، وضمان بقائه محدثًا.
 
-## حالات الاستخدام
+## الحالات الاستخدامية
 
-من بين كل [خيارات التنشيط الخاصة بـ Wallarm](../../supported-deployment-options.md)، هذا الحل هو الواحد الموصى به للعملية خارج النطاق. من خلال التقاط نسخة متطابقة من حركة المرور بدلاً من العمل بشكل متوازي، تضمن الحل eBPF عدم انقطاع تدفق الحركة. تقلل هذه النهج من التأثير على حركة المرور المباشرة، وتتجنب إدخال تأخيرات إضافية التي قد تؤثر على الزمن المستغرق.
+من بين جميع خيارات نشر Wallarm المدعومة [خيارات نشر Wallarm](../../supported-deployment-options.md)، هذا الحل هو الأكثر توصية للعمل خارج النطاق. من خلال التقاط نسخة متطابقة من المرور بدلاً من العمل في الخط، يضمن حل eBPF المستندة على المرور دون انقطاع. تقلل هذه النهج التأثير على المرور المباشر، وتتجنب إدخال تأخيرات إضافية قد تؤثر على الكمون.
 
 ## المتطلبات التقنية
 
-تأكد من تحقيق المتطلبات التقنية الأساسية التالية لنشر حل eBPF بنجاح:
+تأكد من استيفاء الشروط التقنية الأولية التالية للنشر الناجح لحل eBPF:
 
-* الإصدار المدعوم من Kubernetes :
-  
-    * AWS - Kubernetes 1.24 وما فوق
+* الإصدار التي تدعمها Kubernetes:
+
+    * AWS - Kubernetes 1.24 وما فوق   
     * Azure - Kubernetes 1.26 وما فوق
     * GCP - أي إصدار من Kubernetes
-    * الخادم على الأجهزة الفعلية - Kubernetes 1.22 وما فوق
-* تثبيت [cert-manager](https://cert-manager.io/docs/installation/helm/) لتمكين العامل من توجيه حركة المرور المتقاطعة إلى عقدة معالجة Wallarm بطريقة آمنة.
-* مدير الحزم [Helm v3](https://helm.sh/).
-* الإصدار 5.10 أو 5.15 من نواة Linux مع تمكين BTF (BPF Type Format). مدعوم على Ubuntu، Debian، RedHat، Google COS، أو Amazon Linux 2.
-* معالج من نوع x86_64.
-* بينما يكون الحل في مرحلة التجربة، لا يمكن تنفيذ المرايا بكفاءة على جميع الموارد في Kubernetes. لذلك، نوصي بتمكين تنفيذ المرايا بشكل خاص لـ NGINX Ingress controllers، Kong Ingress controllers، أو خوادم NGINX العادية في Kubernetes.
-* يجب أن يكون لديك حساب المستخدم [**صلاحية المسؤول**](../../../user-guides/settings/users.md#user-roles) إلى واجهة المستخدم Wallarm Console.
+    * الخادم العاري - Kubernetes 1.22 وما فوق
+* تثبيت [مدير الشهادات](https://cert-manager.io/docs/installation/helm/) لتمكين الوكيل من تطابق المرور المرآة إلى عقدة معالجة Wallarm بطريقة آمنة.
+* إدارة الحزم [Helm v3](https://helm.sh/).
+* إصدار نواة Linux 5.10 أو 5.15 مع تمكين BTF (BPF Type Format). يتم دعمه في Ubuntu، Debian، RedHat، Google COS، أو Amazon Linux 2.
+* المعالج بالعمارة x86_64.
+* بينما الحل في البيتا، ليست جميع الموارد Kubernetes يمكن أن تكون متطابقة بشكل فعال. لذلك، نوصي بتمكين تطابق المرور على وجه التحديد لوحدات التحكم NGINX Ingress، أو وحدات التحكم Kong Ingress، أو خوادم NGINX العادية في Kubernetes.
+* يجب أن يكون لحساب المستخدم الخاص بك [وصول **المدير**](../../../user-guides/settings/users.md#user-roles) إلى وحدة التحكم Wallarm.
 
-إذا كانت حالة الاستخدام الخاصة بك تختلف عن المتطلبات المدرجة، فاتصل بالمهندسين التقنيين في الدعم في [Wallarm enWallarm](mailto:sales@wallarm.com) بتقديم معلومات تقنية مفصلة حول بيئتك لاستكشاف التعديلات المحتملة لتلبية احتياجاتك المحددة.
+إذا كانت حالة الاستخدام الخاصة بك تختلف عن المتطلبات المدرجة، اتصل ب [مبرمجي المبيعات](mailto:sales@wallarm.com) التوفير معلومات تقنية مفصلة حول بيئتك لاستكشاف التعديلات المحتملة لتلبية احتياجاتك المحددة.
 
 ## الوصول إلى الشبكة
 
-لضمان عملية الحل بشكل صحيح في البيئات التي تحد من الحركة الخروجية، قم بتكوين الوصول إلى الشبكة للسماح بالموارد الخارجية التالية:
+لضمان عمل الحل بشكل صحيح في البيئات ذات المرور الصادر المقيد، قم بتكوين الوصول إلى الشبكة للسماح بالموارد الخارجية التالية:
 
-* `https://charts.wallarm.com` لإضافة الرسوم البيانية لـ Helm الخاصة بـ Wallarm.
-* `https://hub.docker.com/r/wallarm` لاسترجاع صور Wallarm Docker من Docker Hub.
-* بالنسبة للمستخدمين الذين يعملون مع سحابة Wallarm الأمريكية، يمكنهم الوصول إلى `https://us1.api.wallarm.com`. بالنسبة لأولئك الذين يستخدمون سحابة Wallarm في الاتحاد الأوروبي، يمكنهم الوصول إلى `https://api.wallarm.com`.
+* `https://charts.wallarm.com` لإضافة خرائط Wallarm Helm.
+* `https://hub.docker.com/r/wallarm` لاسترداد صور Docker من Wallarm من Docker Hub
+* بالنسبة للمستخدمين الذين يعملون مع Wallarm Cloud الأمريكية، قم بالوصول إلى `https://us1.api.wallarm.com`. بالنسبة لأولئك الذين يستخدمون Wallarm Cloud الأوروبي، قم بالدخول على `https://api.wallarm.com`.
 
-## التنشيط
+## النشر
 
 لنشر حل Wallarm eBPF:
 
-1. قم بإنشاء عقدة Wallarm.
-1. قم بتنشيط الرسم البياني لـ Wallarm Helm.
-1. قم بتمكين تنفيذ المرايا.
-1. اختبر عملية Wallarm eBPF.
+1. إنشاء العقدة Wallarm.
+1. نشر الخريطة Helm Wallarm.
+1. تمكين تطابق المرور.
+1. اختبار عملية Wallarm eBPF.
 
-### الخطوة 1: إنشاء عقدة Wallarm
+### الخطوة 1: إنشاء العقدة Wallarm
 
 1. افتح Wallarm Console → **Nodes** عبر الرابط أدناه:
 
-    * https://us1.my.wallarm.com/nodes للسحابة الأمريكية
-    * https://my.wallarm.com/nodes للسحابة الأوروبية
-1. قم بإنشاء عقدة تصفية من نوع **Wallarm node** وانسخ الرمز التعريفي المولد لها.
-    
-    ![!إنشاء عقدة Wallarm](../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    * https://us1.my.wallarm.com/nodes بالنسبة لـ Cloud الأمريكية
+    * https://my.wallarm.com/nodes بالنسبة لـ Cloud الأوروبية
+1. إعداد عقدة الترشيح مع نوع **Wallarm node** ونسخ الرمز المكون.
 
-### الخطوة 2: نشر الرسم البياني لـ Wallarm Helm
+    ![!انشاء عقدة Wallarm](../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 
-1. تأكد من أن بيئتك تفي بالمتطلبات الأعلى وأن [cert-manager](https://cert-manager.io/docs/installation/helm/) مثبت.
-1. أضف [مستودع الرسم البياني الخاص بـ Wallarm](https://charts.wallarm.com/):
+### الخطوة 2: نشر الخريطة Helm Wallarm
+
+1. تأكد من أن بيئتك تلبي المتطلبات المذكورة أعلاه وأن [مدير الشهادات](https://cert-manager.io/docs/installation/helm/) مثبت.
+1. أضف [مستودع الرسم البياني Wallarm](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
     helm repo update wallarm
     ```
-1. أنشئ الملف `values.yaml` مع [تكوين الحل Wallarm eBPF](helm-chart-for-wallarm.md).
+1. قم بإنشاء ملف `values.yaml` مع [تكوين حل Wallarm eBPF](helm-chart-for-wallarm.md).
 
     مثال على الملف مع التكوين الأدنى:
 
-    === "سحابة الولايات المتحدة"
+    === "US Cloud"
         ```yaml
         config:
           api:
             token: "<NODE_TOKEN>"
             host: "us1.api.wallarm.com"
         ```
-    === "سحابة الاتحاد الأوروبي"
+    === "EU Cloud"
         ```yaml
         config:
           api:
             token: "<NODE_TOKEN>"
         ```
     
-    `<NODE_TOKEN>` هو رمز العقدة Wallarm التي ستتم تشغيلها في Kubernetes.
+    `<NODE_TOKEN>` هو رمز العقدة Wallarm التي يتم تشغيلها في Kubernetes.
 
     --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
-1. قم بتنشيط الرسم البياني لـ Wallarm Helm:
+1. نشر الخريطة Helm Wallarm:
 
     ``` bash
-    helm install --version 0.10.23 <RELEASE_NAME> wallarm/wallarm-oob --wait -n wallarm-ebpf --create-namespace -f <PATH_TO_VALUES>
+    helm install --version 0.10.26 <RELEASE_NAME> wallarm/wallarm-oob --wait -n wallarm-ebpf --create-namespace -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>` هو الاسم للإصدار Helm لـ الرسم البياني الخاص بـ Wallarm eBPF
-    * `wallarm-ebpf` هو مكان اسم جديد لتنشيط الإصدار Helm الخاص بـ Wallarm eBPF chart، يُنصح بنشره في مكان اسم منفصل
-    * `<PATH_TO_VALUES>` هو المسار إلى الملف `values.yaml`
+    * `<RELEASE_NAME>` هو الاسم للإصدار Helm من رسم eBPF Wallarm
+    * `wallarm-ebpf` هو الفضاء الاسمي الجديد لنشر الإصدار Helm مع الرسم البياني eBPF Wallarm، يوصى بنشره في فضاء اسمي منفصل
+    * `<PATH_TO_VALUES>` هو المسار إلى ملف `values.yaml`
 
-### الخطوة 3: تمكين تنفيذ المرايا
+### الخطوة 3: تمكين تطابق المرور
 
-نوصي بتمكين تنفيذ المرايا للاستفادة بشكل فعال من حل Wallarm eBPF لـ NGINX Ingress controller، Kong Ingress controller، أو خوادم NGINX العادية.
+نوصي بتمكين تطابق المرور لاستخدام حل Wallarm eBPF بشكل فعال لوحدة التحكم NGINX Ingress، أو وحدة التحكم Kong Ingress، أو خوادم NGINX العادية.
 
-بشكل افتراضي، الحل المنشط لا يحلل أي حركة مرور. لتمكين تحليل حركة المرور، تحتاج إلى تمكين تنفيذ المرايا على المستوى المطلوب والذي يمكن أن يكون:
+بشكل افتراضي، الحل المنشور لا يحلل أي مرور. لتمكين تحليل المرور، تحتاج إلى تمكين تطابق المرور على المستوى المرغوب، الذي يمكن أن يكون:
 
-* لمكان اسم
-* لعقدة
-* لاسم عقدة أو حاوية
+* للفضاء الاسمي
+* للوعاء
+* لاسم العقدة أو الوعاء
 
-هناك طريقتين لتمكين تنفيذ المرايا: باستخدام المرشحات الديناميكية كملصقات للمكان الاسمي أو التوصيفات للعقدة، أو التحكم فيها من خلال كتلة `config.agent.mirror.filters` في الملف `values.yaml`. يمكنك أيضًا دمج هذه الأساليب. [المزيد من التفاصيل](selecting-packets.md)
+هناك طريقتان لتمكين تطابق المرور: باستخدام فلاتر ديناميكية على شكل تسميات الفضاء الاسمي أو تعليمات التوجيه pod، أو التحكم فيه من خلال كتلة `config.agent.mirror.filters` في ملف `values.yaml`. يمكنك أيضًا دمج هذه النهج. [المزيد من التفاصيل](selecting-packets.md)
 
-#### لمكان اسم باستخدام ملصق
+#### للفضاء الاسمي باستخدام تسمية
 
-لتمكين المرايا لمكان الاسم، قم بضبط ملصق المكان الاسمي `wallarm-mirror` إلى `enabled`:
+لتمكين المرآة للفضاء الاسمي، قم بتعيين تسمية الفضاء الاسمي `wallarm-mirror` إلى `enabled`:
 
 ```
 kubectl label ns <NAMESPACE> wallarm-mirror=enabled
 ```
 
-#### للعقدة باستخدام توصيف
+#### للوعاء باستخدام تعليمة توجيه
 
-لتمكين المرايا للعقدة، قم بوضع توصيف `mirror.wallarm.com/enabled` ل `true`:
+لتمكين المرآة للوعاء، قم بتعيين تعليمة توجيه `mirror.wallarm.com/enabled` إلى `true`:
 
 ```bash
 kubectl patch deployment <DEPLOYMENT_NAME> -n <NAMESPACE> -p '{"spec": {"template":{"metadata":{"annotations":{"mirror.wallarm.com/enabled":"true"}}}} }'
 ```
 
-#### لمكان اسمي، عقدة، حاوية، أو اسم عقدة باستخدام `values.yaml`
+#### للفضاء الاسمي، الوعاء، الوعاء، أو العقدة باستخدام `values.yaml`
 
-للحصول على تحكم أدق، يمكنك استخدام كتلة `config.agent.mirror.filters` في الملف `values.yaml` للـ Wallarm eBPF لتحديد مستوى المرايا. اقرأ [المقال](selecting-packets.md) حول كيفية تكوين المرشحات وكيف يتفاعلون مع ملصقات Wallarm للمكان الاسمي وتوصيفات العقدة.
+للتحكم أكثر دقة، يمكنك استخدام كتلة `config.agent.mirror.filters` في ملف `values.yaml` للرسم البياني Wallarm eBPF لتحديد مستوى المرآة. اقرأ [المقالة](selecting-packets.md) حول كيفية تكوين فلاتر وكيفية التفاعل مع تسميات الفضاء الاسمي Wallarm وتعليمات التوجيه في الوعاء.
 
 ### الخطوة 4: اختبار عملية Wallarm eBPF
 
-لاختبار أن Wallarm eBPF يعمل بشكل صحيح:
+للاختبار أن Wallarm eBPF تعمل بشكل صحيح:
 
-1. احصل على تفاصيل العقدة Wallarm للتحقق من أنه تم بدء تشغيلها بنجاح:
+1. احصل على تفاصيل وعاء Wallarm للتحقق من أنها تم بدءها بنجاح:
 
     ```bash
     kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-oob
     ```
 
-    كل عقدة يجب أن تعرض الأتي: **READY: N/N** و **STATUS: Running ،e.g.:
+    يجب عرض الوعاء لكل منهما ما يلي: **READY: N/N** و **STATUS: Running**، على سبيل المثال:
 
     ```
     NAME                                                   READY   STATUS    RESTARTS   AGE
@@ -172,23 +172,22 @@ kubectl patch deployment <DEPLOYMENT_NAME> -n <NAMESPACE> -p '{"spec": {"templat
     wallarm-ebpf-wallarm-oob-aggregation-f68959465-vchxb   4/4     Running   0          30m
     wallarm-ebpf-wallarm-oob-processing-694fcf9b47-rknx9   4/4     Running   0          30m
     ```
-1. أرسل هجوم [اختراق المسار](../../../attacks-vulns-list.md#path-traversal) التجريبي للتطبيق عن طريق استبدال `<LOAD_BALANCER_IP_OR_HOSTNAME>` بالعنوان IP الفعلي أو اسم DNS لناقل الحمولة الذي يقوم بتوجيه الحركة إليه:
+1. أرسل هجوم الاختبار [Path Traversal](../../../attacks-vulns-list.md#path-traversal) للتطبيق عن طريق استبدال `<LOAD_BALANCER_IP_OR_HOSTNAME>` بالعنوان IP الفعلي أو اسم DNS لموزع الحمولة الذي يوجه المرور إليه:
 
     ```bash
     curl https://<LOAD_BALANCER_IP_OR_HOSTNAME>/etc/passwd
     ```
 
-    بما أن حل Wallarm eBPF يعمل وفقًا للنهج الخارجي من النطاق، فإنه لا يحظر الهجمات ولكن يقوم فقط بتسجيلها.
+    نظرًا لأن حل Wallarm eBPF يعمل بنهج خارج النطاق، فإنه لا يحظر الهجمات ولكن فقط يسجلها.
 
-    للتحقق من أن الهجوم قد تم تسجيله، انتقل إلى Wallarm Console → **Events**:
+    للتحقق من أن الهجوم تم تسجيله، انتقل إلى Wallarm Console → **Events**:
 
-    ![!هجمات في واجهة المستخدم](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
+    ![!الهجمات في الواجهة](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
 
 ## القيود
 
-* لا يقوم الحل بحظر الطلبات الضارة على الفور حيث يستمر تحليل حركة المرور بغض النظر عن تدفق الحركة الفعلي.
+* الحل لا يحظر فوريًا الطلبات الخبيثة حيث يتابع تحليل المرور بغض النظر عن تدفق المرور الفعلي.
 
-    Wallarm فقط تلاحظ الهجمات وتوفر لك ال[تفاصيل في واجهة المستخدم Wallarm Console](../../..//user-guides/events/analyze-attack.md).
-* لا يتم دعم اكتشاف الضعف على أساس [الكشف السلبي](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) حيث أن أجسام الاستجابة من الخادم المطلوبة لتحديد الضعف ليست متطابقة.
-* بينما الحل في مرحلة التجربة، لا يمكن تنفيذ المرايا بشكل فعال على جميع الموارد في Kubernetes. لذلك، نوصي بتمكين تنفيذ المرايا خاصةً لـ NGINX Ingress controllers، Kong Ingress controllers، أو خوادم NGINX العادية في Kubernetes.
-* [اكتشاف سرقة بيانات الاعتماد](../../../about-wallarm/credential-stuffing.md) ليس مدعومًا حاليًا.
+    Wallarm فقط تلاحظ الهجمات وتوفر لك [التفاصيل في وحدة التحكم Wallarm](../../..//user-guides/events/analyze-attack.md).
+* كشف الثغرات الأمنية القائمة على [الكشف السلبي](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) غير متاح حيث أن أجسام الرد من الخادم المطلوبة لتحديد الثغرات الأمنية لا يتم تطابقها.
+* بينما الحل ما زال في البيتا، ليست كل موارد Kubernetes يمكن أن تكون متطابقة بشكل فعال. لذلك، نوصي بتمكين تطابق المرور خصيصاً لوحدات التحكم NGINX Ingress، أو وحدات التحكم Kong Ingress، أو خوادم NGINX العادية في Kubernetes.
