@@ -1,6 +1,6 @@
 # Manual BOLA Protection
 
-Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either read or modify its data bypassing an authorization mechanism. This article describes BOLA protection measures provided by [WAAP](../../about-wallarm/waap-overview.md)'s triggers.
+Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either read or modify its data, bypassing an authorization mechanism. This article describes BOLA protection measures provided by [WAAP](../../about-wallarm/waap-overview.md)'s triggers.
 
 !!! info "Other BOLA protection measures"
     Alternatively or additionally, you can configure [Automatic BOLA protection for endpoints found by API Discovery](protecting-against-bola.md).
@@ -9,7 +9,7 @@ Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../../atta
 
 By default, Wallarm automatically discovers only vulnerabilities of the BOLA type (also known as IDOR) but does not detect its exploitation attempts. Consider the example below to learn how to configure protection from BOLA attacks.
 
-Let us say your e-commerce `wmall-example.com` platform for online stores (shops) stores financial information under for each hosted shop under `/shops/<PARTICULAR_SHOP>/financial_info` you want to prevent malicious actors from getting the list of all hosted shop names via a simple script manipulating the names in the list, replacing `<PARTICULAR_SHOP>` in the URL. To do that, you may set a `30 requests from the same IP per 30 seconds` threshold to block IPs targeting addresses matching the pattern and exceeding this limit.
+Let us say your e-commerce `wmall-example.com` platform for online stores (shops) stores financial information for each hosted shop under `/shops/<PARTICULAR_SHOP>/financial_info`. You want to prevent malicious actors from getting the list of all hosted shop names. Such list can be obtained via a simple script manipulating the names in the list, replacing `<PARTICULAR_SHOP>` in the URL. To prevent this, you may set a `30 requests from the same IP per 30 seconds` threshold to block IPs targeting addresses matching the pattern and exceeding this limit.
 
 To provide this protection:
 
@@ -24,17 +24,17 @@ To provide this protection:
 
 1. Do not use in this case: 
 
-    * The **Application** filter, but be aware that you can use it to set trigger only to react to the requests targeting domains of selected application.
-    * The **IP** filter, but be aware that you can use it to set trigger only to react to specific IPs originating requests.
+    * The **Application** filter, but be aware that you can use it to set trigger only to react to the requests targeting domains of selected applications.
+    * The **IP** filter, but be aware that you can use it to set triggers only to react to specific IPs originating requests.
 
 1. Select the **Denylist IP address** - `Block for 4 hour` trigger reaction. Wallarm will put origin IP to the [denylist](../../user-guides/ip-lists/overview.md) after the threshold is exceeded and block all further requests from it.
-1. Select the **Mark as BOLA** trigger reaction. Requests received after exceeding the threshold will be marked as the BOLA attack and displayed in the **Attacks** section of Wallarm Console. In some cases, you can use this reaction alone to have information about the attack, but not to block anything.
+1. Select the **Mark as BOLA** trigger reaction. Requests received after exceeding the threshold will be marked as the BOLA attack and displayed in the **Attacks** section of Wallarm Console. Sometimes, you can use this reaction alone to have information about the attack, but not to block anything.
 1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
 
 ## Testing
 
 !!! info "Testing in your environment"
-    To test the **BOLA** trigger in your environment, in the trigger and the requests below, replace domain to your own.
+    To test the **BOLA** trigger in your environment, in the trigger and the requests below, replace the domain with your own.
 
 To test the trigger described in the [Configuring](#configuring) section:
 

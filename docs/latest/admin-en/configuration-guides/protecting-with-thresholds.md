@@ -1,14 +1,14 @@
 # Protection from Multi-Attack Perpetrators
 
-When Wallarm is in [blocking mode](../../admin-en/configure-wallarm-mode.md), it automatically blocks all requests with malicious payloads, letting only legitimate requests through. You can configure additional protection for your applications and API by setting the Wallarm reaction in case if number of different malicious payloads from the same IP (often referred to as **multi-attack perpetrator**) exceeds specified threshold.
+When Wallarm is in [blocking mode](../../admin-en/configure-wallarm-mode.md), it automatically blocks all requests with malicious payloads, letting only legitimate requests through. You can configure additional protection for your applications and API by setting the Wallarm reaction in case if number of different malicious payloads from the same IP (often referred to as **multi-attack perpetrator**) exceeds a specified threshold.
 
-Such perpetrators can be automatically placed into the denylist, which starts blocking **all requests from them**, not spending time on analysis of whether they are malicious or not, just basing of the fact that this source produced a lot of malicious requests in the past.
+Such perpetrators can be automatically placed into the denylist, which starts blocking **all requests from them**, not spending time on analysis of whether they are malicious or not, just because that this source produced a lot of malicious requests in the past.
 
 ## Configuring
 
 Consider the example below to learn how to configure protection from multi-attack perpetrators.
 
-Let us say you consider that more than 3 malicious payloads per hour from some IP as enough reason to completely block it. To do that, you set the corresponding threshold and instruct the system to block the origin IP for 1 hour.
+Let us say you consider that more than 3 malicious payloads per hour from some IP as enough reason to block it completely. To do that, you set the corresponding threshold and instruct the system to block the origin IP for 1 hour.
 
 To provide this protection:
 
@@ -22,9 +22,9 @@ To provide this protection:
 1. Do not set any filters, but be aware that in other cases you can use separately or combined:
 
     * **Type** is a [type](../../attacks-vulns-list.md) of attack detected in the request or a type of vulnerability the request is directed to.
-    * **Application** is the [application](../../user-guides/settings/applications.md) that receives the request or in which an incident is detected.
+    * **Application** is the [application](../../user-guides/settings/applications.md) that receives the request.
     * **IP** is an IP address from which the request is sent. The filter expects only single IPs, it does not allow subnets, locations and source types.
-    * **Domain** is the domain that receives the request or in which an incident is detected.
+    * **Domain** is the domain that receives the request.
     * **Response status** is the response code returned to the request.
 
 1. Select the **Denylist IP address** - `Block for 1 hour` trigger reaction. Wallarm will put origin IP to the [denylist](../../user-guides/ip-lists/overview.md) after the threshold is exceeded and block all further requests from it.
@@ -39,13 +39,13 @@ New company accounts are featured by the pre-configured (default) **Number of ma
 
 [Graylist](../../user-guides/ip-lists/overview.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../../user-guides/ip-lists/overview.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
 
-The trigger is released in any node filtration mode, so that it will graylist IPs regardless of the node mode.
+The trigger is released in any node filtration mode, so it will graylist IPs regardless of the node mode.
 
 However, the node analyzes the graylist only in the **safe blocking** mode. To block malicious requests originating from graylisted IPs, switch the node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) to safe blocking learning its features first.
 
 The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
 
-You can temporary disable, modify or delete the default trigger.
+You can temporarily disable, modify or delete the default trigger.
 
 ## Testing
 
