@@ -1,4 +1,4 @@
-# GraphQL API Protection <a href="../subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# GraphQL API Protection <a href="../about-wallarm/subscription-plans.md#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL by default even under the basic [WAAP](../about-wallarm/subscription-plans.md) subscription plan. However, some aspects of the protocol allow implementing [GraphQL specific](../attacks-vulns-list.md#graphql-attack) attacks related to excessive information exposure and DoS. This document describes how to use Wallarm to protect your APIs from these attacks by setting **GraphQL policy** - a set of limits for the GraphQL requests.
 
@@ -20,7 +20,7 @@ To set and apply GraphQL policy:
 1. In **If request is**, [describe](../user-guides/rules/rules.md#rule-branches) endpoint URI to apply the rule to and other conditions:
 
     * URI of your GraphQL endpoint (in the rout, usually contains `/graphql`)
-    * POST or GET method - see [Supported GraphQL formats](#supported-graphql-formats); leave method unspecified if your want the rule to set the same limitations both for POST and GET requests
+    * POST or GET method - see [Supported GraphQL formats](#supported-graphql-formats); leave method unspecified if you want the rule to set the same limitations both for POST and GET requests
     * Set the `CONTENT-TYPE` header value - see [Supported GraphQL formats](#supported-graphql-formats)
 
         Note that you can set when the rule must be applied using different condition combinations, for example, you can use URI and leave other conditions unspecified or set `CONTENT-TYPE` header to `application/graphql` without specifying any endpoint. You can also create several rules with different conditions and set different limits and reactions in them.

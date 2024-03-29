@@ -87,7 +87,6 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <li><a href="./user-guides/rules/rate-limiting/">Rate Limiting</a></li>    
     <li><a href="./user-guides/rules/vpatch-rule/">Virtual Patching</a></li>
     <li><a href="./user-guides/rules/regex-rule/">User-Defined Detectors</a></li>
-    <li><a href="./api-protection/graphql-rule/">GraphQL Policy</a></li>
     </ul></p>
 </div>
 
