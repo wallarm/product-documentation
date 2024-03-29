@@ -1,0 +1,1 @@
+--8<-- "latest-ar/fast/ssl/install-certificate-on-fast-node.md"

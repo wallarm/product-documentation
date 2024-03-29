@@ -1,0 +1,1 @@
+--8<-- "latest-ar/updating-migrating/cdn-node.md"

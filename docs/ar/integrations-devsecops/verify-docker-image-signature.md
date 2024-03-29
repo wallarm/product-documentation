@@ -1,0 +1,1 @@
+--8<-- "latest-ar/integrations-devsecops/verify-docker-image-signature.md"

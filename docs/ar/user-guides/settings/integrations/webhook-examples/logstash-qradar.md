@@ -1,0 +1,1 @@
+--8<-- "latest-ar/user-guides/settings/integrations/webhook-examples/logstash-qradar.md"

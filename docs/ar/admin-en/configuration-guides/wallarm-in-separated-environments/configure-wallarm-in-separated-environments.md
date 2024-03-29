@@ -1,0 +1,1 @@
+--8<-- "latest-ar/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md"

@@ -1,0 +1,1 @@
+--8<-- "latest-ar/fast/poc/examples/jenkins-cimode.md"

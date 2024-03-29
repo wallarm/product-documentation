@@ -178,8 +178,11 @@ a.md-header__button.md-logo:not(:hover) + .back-wallarmcom {
   display: none;
 }
 
-a.md-header__button.md-logo:after {
+[dir="ltr"] a.md-header__button.md-logo:after {
   content: "|";
+}
+
+a.md-header__button.md-logo:after {
   position: absolute;
   top: 13.195px;
   left: 139px;
@@ -292,6 +295,12 @@ a.md-tabs__link:hover {
 .md-nav--primary .md-nav__icon--left {
   margin-right: 0.3rem;
 }
+
+[dir="rtl"] .md-nav--primary .md-nav__icon--left {
+  margin-left: 0.3rem;
+  margin-right: unset;
+}
+
 .md-nav__icon--left {
   width: 14px;
   height: 14px;
@@ -346,6 +355,8 @@ a.md-tabs__link:hover {
   }
   .md-sidebar--primary {
     top: 97px;
+  }
+  [dir=ltr] .md-sidebar--primary {
     width: 15rem !important;
   }
   .versions {
@@ -490,6 +501,11 @@ svg.navigation-arrow {
   margin-right: 0.5rem;
   width: 24px;
   height: 24px;
+}
+
+[dir="rtl"] .icon-homepage:before {
+  margin-left: 0.5rem;
+  margin-right: unset;
 }
 
 /* Homepage icons */

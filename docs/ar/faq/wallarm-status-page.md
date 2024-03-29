@@ -1,0 +1,1 @@
+--8<-- "latest-ar/faq/wallarm-status-page.md"

@@ -1,0 +1,1 @@
+--8<-- "latest-ar/fast/qsg/test-preparation.md"

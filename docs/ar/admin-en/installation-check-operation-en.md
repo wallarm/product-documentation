@@ -1,0 +1,1 @@
+--8<-- "latest-ar/admin-en/installation-check-operation-en.md"

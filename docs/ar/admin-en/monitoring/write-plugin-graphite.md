@@ -1,0 +1,1 @@
+--8<-- "latest-ar/admin-en/monitoring/write-plugin-graphite.md"

@@ -56,30 +56,30 @@
 
     <div id="feedbackInput" class="feedback-input" style="display: none;">
 
-        <p style="font-weight: bold;">How can we improve this article? (Optional)</p>
+        <p style="font-weight: bold;">{{ config.extra.analytics.feedback.negative.ask_reason }}</p>
 
         <div>
             <input type="radio" id="unclear" name="reason" value="unclear" required>
-            <label for="unclear">Information is unclear or confusing</label>
+            <label for="unclear">{{ config.extra.analytics.feedback.negative.unclear }}</label>
         </div>
     
         <div>
             <input type="radio" id="missing" name="reason" value="missing" required>
-            <label for="missing">Insufficient information</label>
+            <label for="missing">{{ config.extra.analytics.feedback.negative.missing }}</label>
         </div>
 
         <div>
             <input type="radio" id="outdated" name="reason" value="outdated" required>
-            <label for="outdated">Outdated or incorrect information</label>
+            <label for="outdated">{{ config.extra.analytics.feedback.negative.outdated }}</label>
         </div>
 
         <div class="feedback-textarea-div">
-          <textarea autocapitalize="off" autocomplete="off" autocorrect="off" name="feedback" placeholder="Share your experience in more detail" rows="3" spellcheck="false"></textarea>
+          <textarea autocapitalize="off" autocomplete="off" autocorrect="off" name="feedback" placeholder="{{ config.extra.analytics.feedback.negative.ask_reason.input_placeholder }}" rows="3" spellcheck="false"></textarea>
           <p class="character-count">0/240</p>
         </div>
 
         <div class="feedback-submit-div">
-          <button type="button" class="feedback-submit-button">Send</button>
+          <button type="button" class="feedback-submit-button">{{ config.extra.analytics.feedback.negative.send_button }}</button>
         </div>
     </div>
   </form>
@@ -160,6 +160,11 @@
           vertical-align: middle;
           transition: all 0.3s ease;
           background-color: #FFFFFF;
+      }
+
+      [dir="rtl"] .feedback-input input[type="radio"] + label::before {
+        margin-right: 0px;
+        margin-left: 10px;
       }
 
       input[type="radio"]:checked + label::before {

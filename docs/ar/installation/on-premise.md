@@ -1,0 +1,1 @@
+--8<-- "latest-ar/installation/on-premise.md"
