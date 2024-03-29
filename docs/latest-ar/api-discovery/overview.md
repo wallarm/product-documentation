@@ -91,4 +91,5 @@
 شاهد فيديو توضيحي حول اكتشاف واجهة برمجة التطبيقات:
 
 <div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/0bRHVtpWkJ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
