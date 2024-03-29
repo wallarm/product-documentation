@@ -71,7 +71,7 @@ This article lists and briefly describes attacks and vulnerabilities the Wallarm
 Wallarm **automatically detects** listed vulnerabilities and attacks and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
 
 !!! info "Required configuration for some attack types"
-    Some attacks and vulnerabilities, such as behavioral ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola)), [API abuse](#api-abuse) and [credential stuffing](#credential-stuffing) are not detected by default. For such attacks/vulnerabilities, required configuration is specifically defined.
+    Some attacks and vulnerabilities, such as behavioral ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola)), [API abuse](#api-abuse), [GraphQL](#graphql-attack) and [credential stuffing](#credential-stuffing) are not detected by default. For such attacks/vulnerabilities, required configuration is specifically defined.
 
 ??? info "Watch video about how Wallarm protects against OWASP Top 10"
     <div class="video-wrapper">
@@ -480,6 +480,37 @@ Wallarm detects and mitigates forced browsing only if it has one or more configu
 *   Limit the number of authentication/authorization attempts per a certain time period for the web application.
 *   Block new authentication/authorization attempts after a certain number of failed attempts.
 *   Set necessary and sufficient access rights for the web application's files and directories.
+
+## GraphQL attack
+
+**Attack**
+
+**Wallarm code:** `graphql_attacks`
+
+**Description:**
+
+GraphQL has peculiarities that allow implementing the protocol specific attacks related to excessive information exposure and DoS, for example:
+
+* An attacker may attempt to perform a Denial of Service (DoS) or cause other issues by exploiting how the server handles excessively large inputs.
+* An attacker may send request with an excessively long string value for a variable or argument to overwhelm the server's resources (Excessive Value Length attack).
+* Queries can be nested, which allows requesting complex data structures in one go; however, this flexibility can be exploited to create a deeply nested query that could potentially overwhelm the server.
+* Aliases offer the capability to rename the result fields to prevent conflicts and enable better data organization; however, an attacker may exploit this feature to launch a Resource Exhaustion or Denial of Service (DoS) attack.
+* Multiple queries (operations) can be batched together in a single HTTP-request; by combining multiple operations into a single request, an attacker organize batching attack and try to bypass security measures such as rate limiting.
+* An attacker may leverage the introspection system to uncover details about the schema of the GraphQL API; by querying the system, an attacker may potentially gain knowledge about all types, queries, mutations, and fields that are available in the API, and use this data to construct more precise and damaging queries.
+* When debug mode is left turned on by developers, an attacker may gather precious information from excessive error reporting messages such as entire stack traces or tracebacks. An attacker may get access to the debug mode via “debug=1“ parameter in URI.
+
+An adequate measure for preventing these type of threats is setting limits for GraphQL requests, such as request and value sizes, query depth, allowed number of batched queries, etc. In Wallarm, you set these limits in [GraphQL policy](api-protection/graphql-rule.md) - any GraphQL requests exceeding limits are considered to be a GraphQL attack.
+
+**Required configuration:**
+
+Wallarm detects and mitigates GraphQL attacks only if it has one or more configured [Detect GraphQL attacks rules](api-protection/graphql-rule.md) (requires node 4.10.3 of higher).
+
+**In addition to Wallarm protection:**
+
+* Require authentication for accessing sensitive or restricted GraphQL APIs.
+* Sanitize inputs and outputs to prevent injection attacks and protect against malicious input values.
+* Implement comprehensive logging mechanisms to track and analyze GraphQL query activity, including request details and response data.
+* Run GraphQL servers in secure execution environments with restricted permissions and access controls. 
 
 ## Information exposure
 

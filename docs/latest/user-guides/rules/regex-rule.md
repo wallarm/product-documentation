@@ -28,7 +28,7 @@ To set and apply your own attack detector:
     * **Attack** - the type of attack that will be detected when the parameter value in the request matches the regular expression.
 
 1. In **In this part of request**, specify [request parts](request-processing.md) in which you want to search for attack signs.
-1. Wait for the [rule compilation to complete](rules.md#ruleset-lifecycle).
+1. Wait for the [rule compilation and uploading to the filtering node to complete](rules.md#ruleset-lifecycle).
 
 ## Rule examples
 
