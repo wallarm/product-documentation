@@ -57,7 +57,7 @@ nav:
       - Disabling bot protection for specific URLs and requests: user-guides/rules/api-abuse-url.md
     - BOLA Protection (APID): admin-en/configuration-guides/protecting-against-bola.md
     - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
-    - GraphQL API Protection: api-protection/graphql-rule.md
+  # - GraphQL API Protection: api-protection/graphql-rule.md
   - API Attack Surface:
     - Overview: about-wallarm/attack-surface.md
     - Exposed Assets: user-guides/scanner.md

@@ -102,7 +102,7 @@ Specify in the search string:
 * `multiple_payloads`: to search for attacks detected by the [Number of malicious payloads](../../admin-en/configuration-guides/protecting-with-thresholds.md) trigger and blocked requests from IPs [denylisted](../../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) because of the attacks of this type.
 * `credential_stuffing`: to search for attempts to use stolen authentication credentials ([credential stuffing](../../about-wallarm/credential-stuffing.md)).
 * `ebpf`: to search for attacks detected by the [Wallarm eBPF-based solution](../../installation/oob/ebpf/deployment.md).
-* `graphql_attacks`: to search for all violations of the [organization's GraphQL policy](../../api-protection/graphql-rule.md). Also, specific violations can be searched by:
+* <a name="graphql-tags"></a> `graphql_attacks`: to search for all violations of the [organization's GraphQL policy](../../api-protection/graphql-rule.md). Also, specific violations can be searched by:
     * `gql_doc_size`: violation of maximum allowed total query size
     * `gql_value_size`: violation of maximum allowed value size
     * `gql_depth`: violation of maximum allowed query depth
