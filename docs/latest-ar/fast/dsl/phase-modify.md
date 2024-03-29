@@ -29,8 +29,6 @@
     ??? info "مثال 1"
         `'HEADER_COOKIE_value': 'C=qwerty123'`
 
-        ![مرحلة التعديل](../../images/fast/dsl/common/phases/modify.png)
-
 * إذا لم يتم تعيين قيمة المفتاح، فسيتم مسح قيمة عنصر الطلب الأساسي المقابل.
     
     ??? info "مثال"

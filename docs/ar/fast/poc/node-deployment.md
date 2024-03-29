@@ -1,0 +1,1 @@
+--8<-- "latest-ar/fast/poc/node-deployment.md"

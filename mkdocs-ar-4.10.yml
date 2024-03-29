@@ -11,12 +11,12 @@ extra:
     feedback:
       title: هل كانت هذه الصفحة مفيدة؟
       ratings:
-        - icon: /images/happy-feedback.png
+        - icon: /ar/images/happy-feedback.png
           name: هذه الصفحة كانت مفيدة
           data: 1
           note: >-
             شكرا لملاحظاتك!
-        - icon: /images/disappointed-feedback.png
+        - icon: /ar/images/disappointed-feedback.png
           name: يمكن تحسين هذه الصفحة
           data: 0
           note: >- 
@@ -97,7 +97,7 @@ nav:
     - منع الاعتداء على API:
       - نظرة عامة: about-wallarm/api-abuse-prevention.md
       - إدارة الملف الشخصي لمنع سوء استخدام API: user-guides/api-abuse-prevention.md
-      - تعطيل حماية الروبوتات لعناوين URL والطلبات المحددة: user-guides/rules/api-abuse-url.md
+      - استكشاف البوتات المكتشفة: user-guides/api-abuse-prevention-explore.md
     - حماية BOLA(APID): admin-en/configuration-guides/protecting-against-bola.md
     - اكتشاف تزوير البيانات: about-wallarm/credential-stuffing.md
   - سطح الهجوم API:
@@ -511,7 +511,9 @@ nav:
         - تحديث وحدات NGINX WC Wallarm EOL: updating-migrating/older-versions/nginx-modules.md
         - تحديث وحدة Postanalytics EOL: updating-migrating/older-versions/separate-postanalytics.md
         - تحديث صورة دوكر NGINX- أو Envoy-based EOL: updating-migrating/older-versions/docker-container.md
+        - ترقية نهاية عمر واجهة تحكم NGINX Ingress المتكاملة مع وحدات Wallarm: updating-migrating/older-versions/ingress-controller.md
         - تحديث صورة العقدة السحابية EOL: updating-migrating/older-versions/cloud-image.md
+        - ترقية عقدة العميل متعددة التواجد EOL: updating-migrating/older-versions/multi-tenant.md
         - نقل القائمة البيضاء والقائمة السوداء من Wallarm node EOL: updating-migrating/migrate-ip-lists-to-node-3.md
       - سياسة الإصدارات للعقدة: updating-migrating/versioning-policy.md
       - الجرد من الإصدارات للعقدة: updating-migrating/node-artifact-versions.md

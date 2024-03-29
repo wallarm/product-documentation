@@ -1,0 +1,1 @@
+--8<-- "latest-ar/user-guides/events/check-incident.md"

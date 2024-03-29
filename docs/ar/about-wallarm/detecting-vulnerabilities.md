@@ -1,0 +1,1 @@
+--8<-- "latest-ar/about-wallarm/detecting-vulnerabilities.md"

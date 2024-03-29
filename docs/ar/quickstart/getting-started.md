@@ -1,0 +1,1 @@
+--8<-- "latest-ar/quickstart/getting-started.md"

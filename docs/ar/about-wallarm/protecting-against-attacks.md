@@ -1,0 +1,1 @@
+--8<-- "latest-ar/about-wallarm/protecting-against-attacks.md"

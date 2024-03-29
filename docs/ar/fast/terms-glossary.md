@@ -1,0 +1,1 @@
+--8<-- "latest-ar/fast/terms-glossary.md"

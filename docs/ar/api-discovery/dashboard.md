@@ -1,0 +1,1 @@
+--8<-- "latest-ar/api-discovery/dashboard.md"

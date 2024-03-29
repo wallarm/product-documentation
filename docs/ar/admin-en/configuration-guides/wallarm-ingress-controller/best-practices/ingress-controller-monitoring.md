@@ -1,0 +1,1 @@
+--8<-- "latest-ar/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md"

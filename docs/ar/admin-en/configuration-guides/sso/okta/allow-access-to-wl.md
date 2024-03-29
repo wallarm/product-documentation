@@ -1,0 +1,1 @@
+--8<-- "latest-ar/admin-en/configuration-guides/sso/okta/allow-access-to-wl.md"
