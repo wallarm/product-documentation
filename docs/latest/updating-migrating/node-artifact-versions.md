@@ -130,6 +130,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ## Helm chart for Wallarm eBPF‑based solution
 
+### 0.10.27 (2024-03-29)
+
+* Fixed incorrect behavior in case of processing/aggregation init container fail
+
 ### 0.10.26 (2024-03-27)
 
 * Implemented Certificate Authority (CA) verification for traffic from the eBPF agent to the Wallarm processing node

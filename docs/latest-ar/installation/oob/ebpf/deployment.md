@@ -115,7 +115,7 @@
 1. نشر الخريطة Helm Wallarm:
 
     ``` bash
-    helm install --version 0.10.26 <RELEASE_NAME> wallarm/wallarm-oob --wait -n wallarm-ebpf --create-namespace -f <PATH_TO_VALUES>
+    helm install --version 0.10.27 <RELEASE_NAME> wallarm/wallarm-oob --wait -n wallarm-ebpf --create-namespace -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` هو الاسم للإصدار Helm من رسم eBPF Wallarm
