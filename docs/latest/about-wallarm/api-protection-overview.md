@@ -6,8 +6,8 @@ API Protection includes:
 
 <!--
 * API Specification Enforcement -->
-* [Automatic BOLA Protection](#automatic-bola-protection) provides automatic protection against BOLA attacks that were marked as #1 threat in OWASP API Top-10. Wallarm automatically discovers vulnerable endpoints and protects them against enumeration.
-* [API Abuse Prevention](#api-abuse-prevention) protects your application and APIs against different types of automated threats. Based on behavioral analysis Wallarm can easily identify and block malicious bots such as  Scrappers, Security Crawlers, etc.  
+* [Automatic BOLA Protection](#automatic-bola-protection) provides automatic protection against BOLA attacks that were marked as #1 threat in OWASP API Top 10. Wallarm automatically discovers vulnerable endpoints and protects them against enumeration.
+* [API Abuse Prevention](#api-abuse-prevention) protects your applications and APIs against different types of automated threats. Based on behavioral analysis Wallarm can easily identify and block malicious bots such as  Scrappers, Security Crawlers, etc.  
 * [Credential Stuffing Detection](#credential-stuffing-detection) provides one more layer of protection against Account Takeover attacks. Wallarm allows you to recognize even a single use of compromised credentials, which is important to identify low and slow Credential Stuffing attacks.
 <!--* GraphQL API Protection protects your GraphQL APIs against specialized attacks that exploit protocol specific such as batching, nesting queries, introspection, etc. It can prevent Resource Exhaustion, Denial of Service (DoS), Excessive Information Exposure and other attacks.-->
 
@@ -19,7 +19,7 @@ While WAAP/WAF is available under the basic Cloud Native WAAP subscription, to
 
 Use Wallarm's API Discovery module to discover endpoints vulnerable to broken object level authorization (BOLA) threat and automatically protect from attacks trying to exploit this vulnerability.
 
-![BOLA trigger](../../images/user-guides/bola-protection/trigger-enabled-state.png)
+![BOLA trigger](../images/user-guides/bola-protection/trigger-enabled-state.png)
 
 Automatic BOLA protection serves as a great extension or replacement to the [manually created](../admin-en/configuration-guides/protecting-against-bola-trigger.md) BOLA protection rules. You can configure automatic BOLA protection to make Wallarm's behavior match your organization security profile.
 
