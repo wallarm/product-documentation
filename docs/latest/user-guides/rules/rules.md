@@ -22,6 +22,7 @@ Using rules, you can provide the multiple protections measures for your applicat
 * [Apply a virtual patch](../../user-guides/rules/vpatch-rule.md)
 * [Create your own detection rule](../../user-guides/rules/regex-rule.md)
 * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
+* Provide [protection from GraphQL specific attacks](../../api-protection/graphql-rule.md)
 * Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
 * Fine tune request processing by [managing request parsers](../../user-guides/rules/request-processing.md#managing-parsers)
 * Configure the additional layer of the application security by [changing server response headers](../../user-guides/rules/add-replace-response-header.md)
