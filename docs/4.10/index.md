@@ -47,9 +47,10 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 <div class="navigation-card">
     <h3 class="icon-homepage api-threat-prevent">API Protection</h3>
     <p><ul>
+    <li><a href="./about-wallarm/api-protection-overview/">Overview</a></li>
+    <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA Protection</a></li>
     <!-- <li><a href="./api-policy-enforcement/overview/">API Policy Enforcement</a></li> -->
     <li><a href="./about-wallarm/api-abuse-prevention/">API Abuse Prevention</a></li>
-    <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA Protection</a></li>
     <li><a href="./about-wallarm/credential-stuffing/">Credential Stuffing Detection</a></li>
     <!-- <li><a href="./api-protection/graphql-rule/">GraphQL API Protection</a></li> -->
     </ul></p>
