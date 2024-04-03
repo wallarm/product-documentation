@@ -6,11 +6,14 @@ Being the extended protection, GraphQL API Protection is the part of the advance
 
 ## Supported GraphQL formats
 
-GraphQL queries are typically sent as HTTP POST requests to a GraphQL server endpoint. The request includes a `CONTENT-TYPE` header to specify the media type of the body sent to the server. For `CONTENT-TYPE`, the `application/json` and `application/graphql` are two commonly used options, but `text/plain` and `multipart/form-data` can also occur.
+GraphQL queries are typically sent as HTTP POST requests to a GraphQL server endpoint. The request includes a `CONTENT-TYPE` header to specify the media type of the body sent to the server. For `CONTENT-TYPE`, Wallarm supports:
 
-GraphQL queries can be also sent as HTTP GET requests. In such case, the query is included as a query parameter in the URL. While GET requests can be used for GraphQL queries, it's less common than the POST requests, especially for the more complex queries. The cause of that is that GET requests are typically used for idempotent operations (i.e., operations that can be repeated without different outcomes), and they have length restrictions that can be problematic for longer queries. Also, encoding a complex query as a URL might be challenging due to the URL's character limitations.
+* commonly used options: `application/json` and `application/graphql` 
+* options that can also occur: `text/plain` and `multipart/form-data`
 
-Wallarm supports both POST and GET HTTP methods and all content types for GraphQL requests.
+GraphQL queries can be also sent as HTTP GET requests. In such case, the query is included as a query parameter in the URL. While GET requests can be used for GraphQL queries, it's less common than the POST requests, especially for the more complex queries. The cause of that is that GET requests are typically used for idempotent operations (i.e., operations that can be repeated without different outcomes), and they have length restrictions that can be problematic for longer queries.
+
+Wallarm supports both POST and GET HTTP methods for GraphQL requests.
 
 ## Creating and applying the rule
 
@@ -19,7 +22,7 @@ To set and apply GraphQL policy:
 1. Proceed to Wallarm Console → **Rules** → **Add rule**.
 1. In **If request is**, [describe](../user-guides/rules/rules.md#rule-branches) endpoint URI to apply the rule to and other conditions:
 
-    * URI of your GraphQL endpoint (in the rout, usually contains `/graphql`)
+    * URI of your GraphQL endpoint (in the route, usually contains `/graphql`)
     * POST or GET method - see [Supported GraphQL formats](#supported-graphql-formats); leave method unspecified if you want the rule to set the same limitations both for POST and GET requests
     * Set the `CONTENT-TYPE` header value - see [Supported GraphQL formats](#supported-graphql-formats)
 
