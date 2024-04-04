@@ -12,13 +12,16 @@ Note that besides protection from forced browsing, you can configure protection 
 
 Consider the example below to learn how to configure forced browsing protection.
 
-Let us say you own the online `book-sale` application. You want to prevent malicious actors from trying names of hidden directories and files under its `book-sale-example.com` domain (forced browsing attack). To do that, you may set a `404 responses to the same IP` threshold for your domain to `30 per 30 seconds` to block IPs exceeding this limit.
+Let us say you own the online `book-sale` application. You want to prevent malicious actors from trying names of hidden directories and files under its `book-sale-example.com` domain (forced browsing attack). To provide this protection, for your domain, you can limit number of 404 responses per time interval, and set to block IPs exceeding this limit:
 
 To provide this protection:
 
 1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **Forced browsing** condition.
 1. Set the threshold for the number of 404 response codes returned to the requests having the same origin IP requests to 30 per 30 seconds.
+
+    Note that these are the example values - when configuring trigger for your own traffic, you should define a threshold considering a legitimate usage statistics.
+
 1. Set the **URI** filter as displayed on the screenshot, including:
 
     * `**` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any number of components". They will cover all the addresses under the `book-sale-example.com`.
@@ -30,7 +33,7 @@ To provide this protection:
 
 1. Do not use in this case: 
 
-    * The **Application** filter, but be aware that you can use it to set triggers only to react to the requests targeting domains of selected applications.
+    * The **Application** filter, but be aware that you can use it to set triggers only to react to the requests targeting domains or specific endpoints of selected applications.
     * The **IP** filter, but be aware that you can use it to set triggers only to react to specific IPs originating requests.
 
 1. Select the **Denylist IP address** - `Block for 4 hour` trigger reaction. Wallarm will put origin IP to the [denylist](../../user-guides/ip-lists/overview.md) after the threshold is exceeded and block all further requests from it.
@@ -42,7 +45,7 @@ You can configure several triggers for forced browsing protection.
 ## Testing
 
 !!! info "Testing in your environment"
-    To test the **Forced browsing** trigger in your environment, in the trigger and the requests below, replace the domain with your own.
+    To test the **Forced browsing** trigger in your environment, in the trigger and the requests below, replace the domain with any public one (e.g. `example.com`).
 
 To test the trigger described in the [Configuring](#configuring) section:
 

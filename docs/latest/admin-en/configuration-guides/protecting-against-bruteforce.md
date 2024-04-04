@@ -13,13 +13,14 @@ Note that:
 
 Consider the example below to learn how to configure brute force protection.
 
-Let us say you want to prevent malicious actors from trying various passwords to gain authorized access to your `rent-car` application via its authentication endpoints (brute force attack). To do that, you may set a `30 requests from the same IP per 30 seconds` threshold to block IPs exceeding this limit when addressing authentication endpoints.
-
-To provide this protection:
+Let us say you want to prevent malicious actors from trying various passwords to gain authorized access to your `rent-car` application via its authentication endpoints (brute force attack). To provide this protection, for your authentication endpoints, you can limit number of requests per time interval, and set to block IPs exceeding this limit:
 
 1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **Brute force** condition.
 1. Set the threshold of 30 requests from the same IP per 30 seconds.
+
+    Note that these are the example values - when configuring trigger for your own traffic, you should define a threshold considering a legitimate usage statistics.
+
 1. Set the **Application** filter to `rent-car` (the application should be [registered](../../user-guides/settings/applications.md) in Wallarm).
 1. Set the **URI** filter as displayed on the screenshot, including:
 
@@ -29,6 +30,7 @@ To provide this protection:
         Combined, they cover, for example:
         `https://rent-car-example.com/users/login`
         `https://rentappc-example.com/usrs/us/p-login/sq`
+        (note that for entire trigger to work, domains should be [linked](../../user-guides/settings/applications.md#automatic-application-identification) to selected application)
 
         ![Brute force trigger example](../../images/user-guides/triggers/trigger-example6.png)
     
@@ -45,7 +47,7 @@ You can configure several triggers for brute force protection.
 ## Testing
 
 !!! info "Testing in your environment"
-    To test the **Brute force** trigger in your environment, in the trigger and the requests below, replace the domain and application to your own. The application should be registered in Wallarm and set to have the domain as its part as described in [Setting up applications](../../user-guides/settings/applications.md).
+    To test the **Brute force** trigger in your environment, in the trigger and the requests below, replace the domain with any public one (e.g. `example.com`). Set your own [application](../../user-guides/settings/applications.md) and link the domain to it.
 
 To test the trigger described in the [Configuring](#configuring) section:
 

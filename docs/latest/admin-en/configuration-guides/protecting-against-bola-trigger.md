@@ -9,13 +9,14 @@ Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../../atta
 
 By default, Wallarm automatically discovers only vulnerabilities of the BOLA type (also known as IDOR) but does not detect its exploitation attempts. Consider the example below to learn how to configure protection from BOLA attacks.
 
-Let us say your e-commerce `wmall-example.com` platform for online stores (shops) stores financial information for each hosted shop under `/shops/<PARTICULAR_SHOP>/financial_info`. You want to prevent malicious actors from getting the list of all hosted shop names. Such list can be obtained via a simple script manipulating the names in the list, replacing `<PARTICULAR_SHOP>` in the URL. To prevent this, you may set a `30 requests from the same IP per 30 seconds` threshold to block IPs targeting addresses matching the pattern and exceeding this limit.
-
-To provide this protection:
+Let us say your e-commerce `wmall-example.com` platform for online stores (shops) stores information for each hosted shop under `/shops/<PARTICULAR_SHOP>/`. You want to prevent malicious actors from getting the list of all hosted shop names. Such list can be obtained via a simple script manipulating the names in the list, replacing `<PARTICULAR_SHOP>` in the URL. To prevent this, for your shop hosting route, you can limit number of requests per time interval, and set to block IPs exceeding this limit:
 
 1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **BOLA** condition.
 1. Set the threshold 30 requests from the same IP per 30 seconds.
+
+    Note that these are the example values - when configuring trigger for your own traffic, you should define a threshold considering a legitimate usage statistics.
+
 1. Set the **URI** filter as displayed on the screenshot, including:
 
     * `*` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any one component". They will cover all the `wmall-example.com/shops/<PARTICULAR_SHOP>/financial_info` addresses.
@@ -24,7 +25,7 @@ To provide this protection:
 
 1. Do not use in this case: 
 
-    * The **Application** filter, but be aware that you can use it to set trigger only to react to the requests targeting domains of selected applications.
+    * The **Application** filter, but be aware that you can use it to set trigger only to react to the requests targeting domains or specific endpoints of selected applications.
     * The **IP** filter, but be aware that you can use it to set triggers only to react to specific IPs originating requests.
 
 1. Select the **Denylist IP address** - `Block for 4 hour` trigger reaction. Wallarm will put origin IP to the [denylist](../../user-guides/ip-lists/overview.md) after the threshold is exceeded and block all further requests from it.
@@ -34,7 +35,7 @@ To provide this protection:
 ## Testing
 
 !!! info "Testing in your environment"
-    To test the **BOLA** trigger in your environment, in the trigger and the requests below, replace the domain with your own.
+    To test the **BOLA** trigger in your environment, in the trigger and the requests below, replace the domain with any public one (e.g. `example.com`).
 
 To test the trigger described in the [Configuring](#configuring) section:
 
