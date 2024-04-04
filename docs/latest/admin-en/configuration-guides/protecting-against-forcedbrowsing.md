@@ -26,7 +26,7 @@ To provide this protection:
 
     * `**` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any number of components". They will cover all the addresses under the `book-sale-example.com`.
 
-        ![Forced browsing trigger example](../../images/user-guides/triggers/trigger-example5.png)
+        ![Forced browsing trigger example](../../images/user-guides/triggers/trigger-example5-4.8.png)
 
     * Besides configuring the pattern we need in this example, you can enter specific URIs (for example, URI of your resource file directory) or set trigger to work at any endpoint by not specifying any URI.
     * If using nested URIs, consider [trigger processing priorities](../../user-guides/triggers/triggers.md#trigger-processing-priorities).

@@ -32,7 +32,7 @@ Let us say you want to prevent malicious actors from trying various passwords to
         `https://rentappc-example.com/usrs/us/p-login/sq`
         (note that for entire trigger to work, domains should be [linked](../../user-guides/settings/applications.md#automatic-application-identification) to selected application)
 
-        ![Brute force trigger example](../../images/user-guides/triggers/trigger-example6.png)
+        ![Brute force trigger example](../../images/user-guides/triggers/trigger-example6-4.8.png)
     
     * Besides configuring the pattern we need in this example, you can enter specific URIs or set trigger to work at any endpoint by not specifying any URI.
     * If using nested URIs, consider [trigger processing priorities](../../user-guides/triggers/triggers.md#trigger-processing-priorities).

@@ -21,7 +21,7 @@ Let us say your e-commerce `wmall-example.com` platform for online stores (shops
 
     * `*` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any one component". They will cover all the `wmall-example.com/shops/<PARTICULAR_SHOP>/financial_info` addresses.
 
-        ![BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
+        ![BOLA trigger](../../images/user-guides/triggers/trigger-example7-4.8.png)
 
 1. Do not use in this case: 
 
