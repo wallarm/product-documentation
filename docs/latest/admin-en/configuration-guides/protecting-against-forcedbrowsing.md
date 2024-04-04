@@ -1,51 +1,58 @@
 # Protection Against Forced Browsing
 
-Forced browsing attack is one of the attack types that is not detected by Wallarm out-of-the-box, its detection should be properly configured as this guide describes.
+A forced browsing attack is one of the attack types not detected by Wallarm out-of-the-box, its detection should be appropriately configured as this guide describes.
 
 [Forced browsing](../../attacks-vulns-list.md#forced-browsing) attacks are characterized by a large number of response codes 404 returned to requests to different URIs for a limited timeframe. 
     
-The aim of this attack is to enumerate and access hidden resources (e.g. directories and files containing information on application components). The forced browsing attack type usually allows attackers to collect the information about application and then perform other attack types by exploiting this information.
+This attack aims to enumerate and access hidden resources (e.g. directories and files containing information on application components). The forced browsing attack type usually allows attackers to collect information about the application and perform other attack types by exploiting this information.
 
-Note that besides protection from forced browsing, in a similar way, you can configure protection against [brute-force attacks](protecting-against-bruteforce.md).
+Note that besides protection from forced browsing, you can configure protection against [brute-force attacks](protecting-against-bruteforce.md) similarly.
 
 ## Configuring
 
-To configure protection against forced browsing:
+Consider the example below to learn how to configure forced browsing protection.
+
+Let us say you own the online `book-sale` application. You want to prevent malicious actors from trying names of hidden directories and files under its `book-sale-example.com` domain (forced browsing attack). To provide this protection, for your domain, you can limit number of 404 responses per time interval, and set to block IPs exceeding this limit:
+
+To provide this protection:
 
 1. Open Wallarm Console → **Triggers** and open the window for trigger creation.
 1. Select the **Forced browsing** condition.
-1. Set the threshold for the number of the 404 response codes returned to the requests having the same origin IP requests.
-1. If required, specify **URI** to activate the trigger only for requests sent to certain endpoints, for example:
-    
-    * Specify the URI of the resource file directory.
-    * If using nested URIs, consider [trigger processing priorities](#trigger-processing-priorities).
-    * If the URI is not specified, the trigger will be activated at any endpoint with the request number exceeding the threshold.
+1. Set the threshold for the number of 404 response codes returned to the requests having the same origin IP requests to 30 per 30 seconds.
 
-    URI can be configured via the [URI constructor](../../user-guides/rules/rules.md#uri-constructor) or [advanced edit form](../../user-guides/rules/rules.md#advanced-edit-form) in the trigger creation window.
+    Note that these are the example values - when configuring trigger for your own traffic, you should define a threshold considering a legitimate usage statistics.
 
-1. If required, set other trigger filters:
+1. Set the **URI** filter as displayed on the screenshot, including:
 
-    * **Application** the requests are addressed to.
-    * One or more **IP** the requests are sent from.
+    * `**` [wildcard](../../user-guides/rules/rules.md#using-wildcards) in the path meaning "any number of components". They will cover all the addresses under the `book-sale-example.com`.
 
-1. Select trigger reactions:
+        ![Forced browsing trigger example](../../images/user-guides/triggers/trigger-example5-4.8.png)
 
-    * **Mark as forced browsing**. Requests received after the threshold exceeding will be marked as the forced browsing attack and displayed in the **Attacks** section of Wallarm Console.
-    * **Denylist IP address** and the period for IP address blocking to add IP addresses of malicious request sources to the [denylist](../../user-guides/ip-lists/overview.md). The Wallarm node will block all requests originated from the denylisted IP after the threshold was exceeded.
-    * **Graylist IP address** and the period to [graylist](../../user-guides/ip-lists/overview.md) IP addresses of malicious request sources. The Wallarm node will block requests originated from the graylisted IPs only if requests contain [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs. Brute‑force attacks originated from graylisted IPs are not blocked.
+    * Besides configuring the pattern we need in this example, you can enter specific URIs (for example, URI of your resource file directory) or set trigger to work at any endpoint by not specifying any URI.
+    * If using nested URIs, consider [trigger processing priorities](../../user-guides/triggers/triggers.md#trigger-processing-priorities).
 
-    ![Forced browsing trigger example](../../images/user-guides/triggers/trigger-example5.png)
+1. Do not use in this case: 
 
-1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
+    * The **Application** filter, but be aware that you can use it to set triggers only to react to the requests targeting domains or specific endpoints of selected applications.
+    * The **IP** filter, but be aware that you can use it to set triggers only to react to specific IPs originating requests.
 
-You can configure several triggers for brute force protection.
+1. Select the **Denylist IP address** - `Block for 4 hour` trigger reaction. Wallarm will put origin IP to the [denylist](../../user-guides/ip-lists/overview.md) after the threshold is exceeded and block all further requests from it.
+1. Select the **Mark as forced browsing** trigger reaction. Requests received after exceeding the threshold will be marked as the forced browsing attack and displayed in the **Attacks** section of Wallarm Console. Sometimes, you can use this reaction alone to have information about the attack but not to block anything.
+1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually, it takes 2-4 minutes).
+
+You can configure several triggers for forced browsing protection.
 
 ## Testing
 
-1. Send the number of requests that exceeds the configured threshold to the protected URI. For example, 31 requests to `https://example.com/config.json` (matches `https://example.com/**.**`):
+!!! info "Testing in your environment"
+    To test the **Forced browsing** trigger in your environment, in the trigger and the requests below, replace the domain with any public one (e.g. `example.com`).
+
+To test the trigger described in the [Configuring](#configuring) section:
+
+1. Send the number of requests that exceeds the configured threshold to the protected URI. For example, 50 requests to `https://book-sale-example.com/config.json` (matches `https://book-sale-example.com/**.**`):
 
     ```bash
-    for (( i=0 ; $i<32 ; i++ )) ; do curl https://example.com/config.json ; done
+    for (( i=0 ; $i<51 ; i++ )) ; do curl https://book-sale-example.com/config.json ; done
     ```
 2. If the trigger reaction is **Denylist IP address**, open Wallarm Console → **IP lists** → **Denylist** and check that source IP address is blocked.
 
@@ -54,13 +61,9 @@ You can configure several triggers for brute force protection.
 
     ![Forced browsing attack in the interface](../../images/user-guides/events/forced-browsing-attack.png)
 
-    The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
+    The number of displayed requests corresponds to the number of requests sent after exceeding the trigger threshold ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 
-    To search for the forced browsing attacks, you can use the `dirbust` filter. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
-
-## Trigger processing priorities
-            
---8<-- "../include/trigger-processing-priorities.md"
+    To search for forced browsing attacks, you can use the `dirbust` filter. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
 ## Requirements and restrictions
 
