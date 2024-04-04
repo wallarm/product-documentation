@@ -21,7 +21,7 @@ Beginning with release 4.10.4, Wallarm introduces protection from these attacks.
 
 [Learn how to configure GraphQL API Protection](../api-protection/graphql-rule.md)
 
-![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
+![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png) -->
 
 ## API Specification Enforcement
 
@@ -37,7 +37,7 @@ Additionally, this update introduces new parameters for some deployment options,
 
 [Learn how to configure API Specification Enforcement](../api-policy-enforcement/setup.md)
 
-![Specification - use for applying security policies](../images/api-policies-enforcement/api-policies-enforcement-events.png) -->
+![Specification - use for applying security policies](../images/api-policies-enforcement/api-policies-enforcement-events.png)
 
 ## Optimized and more secure NGINX-based Docker image
 
