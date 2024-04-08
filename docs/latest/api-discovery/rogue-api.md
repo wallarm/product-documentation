@@ -25,10 +25,10 @@ To set up monitoring rogue APIs on hourly basis:
 1. Set uploading from URL parameters and start the process.
 1. Click the **Rogue APIs detection** tab.
 
-    !!! info "API policy enforcement"
-        Besides rogue API detection, specifications may be used for [API policy enforcement](../api-policy-enforcement/overview.md).
+    !!! info "API specification enforcement"
+        Besides rogue API detection, specifications may be used for [API specification enforcement](../api-policy-enforcement/overview.md).
 
-1. Select **Use specification for rogue APIs detection**.
+1. Select **Use for rogue APIs detection**.
 1. Select **Applications** and **Hosts** - only endpoints related to the selected hosts will be searched for rogue APIs.
 
     If necessary, select **Compare with all current and future discovered applications hosts** - all hosts (of the selected applications) known now and all hosts that will be discovered in future will be included into comparison.
