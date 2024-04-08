@@ -21,6 +21,9 @@ As both specification and API itself changes in time, consider the following:
 * Comparison re-starts if you save new settings for it
 * Comparison re-starts if you pick new file (by name or full URI)
 * Comparison re-starts if file uploaded from URI has changes and the **Regularly update the specification** (every hour) option is selected
+* You can re‑start comparison at any moment via specification menu → **Restart comparison**.
+
+Also, you can download the previously uploaded specification via **API Specifications** → specification details window → **Download specification**.
 
 ### Step 1: Upload specification
 
@@ -29,7 +32,7 @@ As both specification and API itself changes in time, consider the following:
 
     ![Upload specification](../images/api-policies-enforcement/specificaton-upload.png)
 
-Note that you will not be able to start configuring rogue API detection, until specification file is successfully uploaded.
+Note that you will not be able to start configuring rogue API detection, until the specification file is successfully uploaded.
 
 ### Step 2: Set rogue API detection parameters
 
@@ -57,26 +60,17 @@ In the details of such endpoints, in the **Specification conflicts** section, th
 
 Shadow APIs are also displayed among the riskiest endpoints at the [API Discovery Dashboard](dashboard.md).
 
-## Find rogue APIs by one-time comparison
-
-You can upload your specification to perform one-time comparison of its content with endpoints revealed by API Discovery up to the moment. To do so, in the comparison settings, select to upload from local machine or deselect the **Perform regular comparison** option for specification uploaded from URL.
-
-Consider the following:
-
-* You can re‑start comparison at any moment via specification menu → **Restart comparison**.
-* You can download the previously uploaded specification via **API Specifications** → specification details window → **Download specification**.
-
 ## Specification versions and zombie APIs
 
-Unlike shadow and orphan APIs, zombie APIs require comparison of different specification versions:
+Unlike shadow and orphan APIs, [zombie APIs](#zombie-api) require comparison of different specification versions:
 
-* In case of [hourly automatic comparison](#monitor-rogue-apis-on-hourly-basis), just put new version to the URL where you host your specification - it will be processed by an hourly schedule or immediately if you select **Restart comparison** from the specification menu.
-* In case when regular comparison is not used:
+* If during [setup](#setup) the **Regularly update the specification** option was selected, just put new version to the URL where you host your specification - it will be processed by an hourly schedule or immediately if you select **Restart comparison** from the specification menu.
+* If the **Regularly update the specification** option was not selected:
 
-    * If uploading from URL, change this URL to the new one or put new content to the same URL.
-    * If uploading from the local machine, open the specification dialog in the Wallarm Console, then upload a new file or the same one with new content.
+    * If uploading from URL and having a new content there, just click **Restart comparison**
+    * If uploading from the local machine, open the specification dialog, select new file and save changes. File must have a different name.
 
-    Then save specification, and from its menu, select **Restart comparison**.
+All listed will consider the new content to be a next version of the specification. The versions will be compared and zombie API will be displayed.
 
 ## Working with multiple specifications
 
