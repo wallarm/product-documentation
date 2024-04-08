@@ -10,19 +10,29 @@ The [API Discovery](overview.md) module automatically identifies shadow, orphan 
 
 ![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
-## Monitor rogue APIs on hourly basis
+## Setup
 
-You can upload your specification to perform one-time comparison of its content with endpoints revealed by API Discovery up to the moment. But two things can change in time:
+To start finding the rogue APIs, you need to upload specification, select it to be used for rogue API detection and set detection parameters.
 
-* Your actual API inventory (changes will be revealed by API Discovery)
-* Your own specification (new versions can arrive)
+As both specification and API itself changes in time, consider the following:
 
-So to set up a constant monitoring of rogue API, you have an option of comparison **on the hourly basis**. To use the option, specification must be uploaded from URL. The specification itself will be updated before each comparison.
+* Comparison starts after first setup
+* Comparison re-starts if any [changes in API](track-changes.md) are found
+* Comparison re-starts if you save new settings for it
+* Comparison re-starts if you pick new file (by name or full URI)
+* Comparison re-starts if file uploaded from URI has changes and the **Regularly update the specification** (every hour) option is selected
 
-To set up monitoring rogue APIs on hourly basis:
+### Step 1: Upload specification
 
-1. In the **API Specifications** section in the [US](https://us1.my.wallarm.com/api-specifications) or [EU](https://my.wallarm.com/api-specifications) Cloud, click **Upload specification**.
-1. Set uploading from URL parameters and start the process.
+1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
+1. Set specification upload parameters and start uploading.
+
+    ![Upload specification](../images/api-policies-enforcement/specificaton-upload.png)
+
+Note that you will not be able to start configuring rogue API detection, until specification file is successfully uploaded.
+
+### Step 2: Set rogue API detection parameters
+
 1. Click the **Rogue APIs detection** tab.
 
     !!! info "API specification enforcement"
@@ -31,15 +41,11 @@ To set up monitoring rogue APIs on hourly basis:
 1. Select **Use for rogue APIs detection**.
 1. Select **Applications** and **Hosts** - only endpoints related to the selected hosts will be searched for rogue APIs.
 
-    If necessary, select **Compare with all current and future discovered applications hosts** - all hosts (of the selected applications) known now and all hosts that will be discovered in future will be included into comparison.
-
-    You can change comparison settings at any moment later - after this the comparison will be re‑done providing new results.
-
-1. Leave the **Perform regular comparison** option selected (it is by default).
-
     ![API Discovery - API Specifications - uploading API specification to find rogue APIs](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
 
-As uploading is finished, the number of rogue (shadow, orphan and zombie) APIs will be displayed for each specification in the list of **API Specifications**.
+## Viewing found rogue APIs
+
+As comparison is finished, the number of rogue (shadow, orphan and zombie) APIs will be displayed for each specification in the list of **API Specifications**.
 
 ![API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 
