@@ -25,11 +25,10 @@ The image provided below visually represents the priorities and combinations of 
 This means that:
 
 * In any mode, if IP is found in the earlier list, the next one is not considered.
-* Denylisted IPs are blocked even when the node is in `off` or `Monitoring` mode.
 * Graylist is only considered in `Safe blocking` mode.
 
 !!! warning "Exceptions"
-    If [`wallarm_acl_access_phase off`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase), the Wallarm node does not analyze the denylist in the `off` mode and does not block requests from denylisted IPs in the `Monitoring` mode.
+    If [`wallarm_acl_access_phase off`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase), the Wallarm node does not block requests from denylisted IPs in the `Monitoring` mode.
 
 ## Configuring IP lists
 
