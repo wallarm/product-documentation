@@ -43,7 +43,7 @@ All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
 <a name="params"></a>By clicking the endpoint, you can also find the endpoint details, including request statistics, headers and parameters of requests and responses with the relevant data types:
 
-![Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
+![Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params-4.10.png)
 
 Each request/response parameter information includes:
 
@@ -88,7 +88,7 @@ The **API Discovery** module unifies such elements into the `{parameter_X}` form
 
 Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
 
-![API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
+![API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path-4.10.png)
 
 Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
 
