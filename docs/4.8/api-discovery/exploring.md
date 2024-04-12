@@ -107,7 +107,7 @@ You can also copy some endpoint URL to the clipboard and use it to search for th
 
 ## Creating rules for API endpoints
 
-You can quickly create a new [custom rule](../user-guides/rules/intro.md) from any endpoint of API inventory: 
+You can quickly create a new [custom rule](../user-guides/rules/rules.md) from any endpoint of API inventory: 
 
 1. In this endpoint menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
 1. In the create rule window, specify rule information and then click **Create**.
