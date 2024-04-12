@@ -73,6 +73,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.8.9 (2024-04-12)
+
+* Fixed performance issue
+
 ### 4.8.8 (2024-02-29)
 
 * Fixed an issue where partially downloaded custom ruleset files were mistakenly validated as complete. Chunked downloading has been implemented to address this issue
