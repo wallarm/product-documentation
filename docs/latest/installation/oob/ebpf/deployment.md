@@ -189,5 +189,9 @@ To test that the Wallarm eBPF operates correctly:
 * The solution does not instantly block malicious requests since traffic analysis proceeds irrespective of actual traffic flow.
 
     Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../..//user-guides/events/analyze-attack.md).
-* Vulnerability detection based on [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) is not supported as server response bodies required for vulnerability identification are not mirrored.
+* As server response bodies are not mirrored:
+
+    * Vulnerability detection based on [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) is not supported
+    * Displaying API endpoint [response structure in API Discovery](../../../api-discovery/exploring.md#endpoint-details) is not supported
+
 * While the solution is in beta, not all Kubernetes resources can be mirrored effectively. Therefore, we recommend enabling traffic mirroring specifically for NGINX Ingress controllers, Kong Ingress controllers, or regular NGINX servers in Kubernetes.
