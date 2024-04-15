@@ -19,10 +19,6 @@ The solution has certain limitations as it only works with incoming requests:
 * The [Wallarm API Discovery](../../api-discovery/overview.md) cannot explore API inventory based on your traffic, as the solution relies on response analysis.
 * The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis.
 
-There are also other limitations:
-
-* TBD
-
 ## Requirements
 
 To proceed with the deployment, ensure that you meet the following requirements:
@@ -37,74 +33,13 @@ To secure with Wallarm applications on AWS that use Node.js lambdas, follow thes
 1. Deploy a Wallarm node on the AWS instance.
 1. Obtain the Wallarm Node.js script for AWS Lambda and run it.
 
-### 1. Deploy a Wallarm node
-
-When integrating Wallarm with Cloudflare, the traffic flow can operate both [in-line](../inline/overview.md) and [out-of-band (OOB)](../oob/overview.md). Therefore, choose one of the supported Wallarm node deployment options:
-
-* [Options for in-line deployment](../../installation/supported-deployment-options.md#in-line)
-* [Options for out-of-band (OOB) deployment](../../installation/supported-deployment-options.md#out-of-band)
-
-Configure the deployed node using the following template:
-
-```
-server {
-    listen 80;
-
-    server_name _;
-
-	access_log off;
-	wallarm_mode off;
-
-	location / {
-		proxy_set_header Host $http_x_forwarded_host;
-		proxy_pass http://unix:/tmp/wallarm-nginx.sock;
-	}
-}
-
-server {
-    listen 443 ssl;
-
-    server_name yourdomain-for-wallarm-node.tld;
-
-	### SSL configuration here
-
-	access_log off;
-	wallarm_mode off;
-
-	location / {
-		proxy_set_header Host $http_x_forwarded_host;
-		proxy_pass http://unix:/tmp/wallarm-nginx.sock;
-	}
-}
-
-
-server {
-	listen unix:/tmp/wallarm-nginx.sock;
-	
-	server_name _;
-	
-	wallarm_mode monitoring;
-	#wallarm_mode block;
-
-	real_ip_header CF-Connecting-IP;
-	set_real_ip_from unix:;
-
-	location / {
-		echo_read_request_body;
-	}
-}
-```
-
-Please ensure to pay attention to the following configurations:
-
-* TLS/SSL certificates for HTTPS traffic: To enable the Wallarm node to handle secure HTTPS traffic, configure the TLS/SSL certificates accordingly. The specific configuration will depend on the chosen deployment method. For example, if you are using NGINX, you can refer to [its article](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) for guidance.
-* [Wallarm operation mode](../../admin-en/configure-wallarm-mode.md) configuration.
-
-### 2. Request Wallarm support to activate Cloudflare integration
+### 1. Request Wallarm support to activate Cloudflare integration
 
 Contact [support@wallarm.com](mailto:support@wallarm.com) to request the activation of Cloudflare integration and obtain the `<CONNECTOR_ID>`.
 
-### 3. Set Cloudflare worker and routes
+Consider that when integrating Wallarm with Cloudflare, the traffic flow can operate both [in-line](../inline/overview.md) and [out-of-band (OOB)](../oob/overview.md). Therefore, discuss with the support which option is most suitable in your case.
+
+### 2. Set Cloudflare worker and routes
 
 In Cloudflare, do the following:
 
