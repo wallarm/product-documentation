@@ -14,3 +14,9 @@ The system can perform the following actions in case of found inconsistency:
 
 * **Monitor** - mark a request as incorrect, but do not block, put it in the **Attacks** section as monitored
 * **Not tracked** - do nothing
+
+Note that several specifications can be used for setting policies. In case when one request falls on two different specifications (the same policy and different actions in different specifications), the following will happen:
+
+* **Block** and **Block** - the request will be blocked and one event will be added to the **Attacks** section with status `Blocked`.
+* **Monitor** and **Block** - the request will be blocked and two events will be added to the **Attacks** section with status `Blocked`.
+* **Monitor** and **Monitor** - the request will be blocked and two events will be added to the **Attacks** section with status `Monitoring`.
