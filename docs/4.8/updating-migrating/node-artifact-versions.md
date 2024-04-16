@@ -10,6 +10,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.8.10 (2024-04-11)
+
+* Fixed an issue causing performance problems for all-in-one installer-based [Wallarm NGINX Ingress controller](#helm-chart-for-wallarm-nginx-ingress-controller)
+
 ### 4.8.9 (2024-02-14)
 
 * Fixed an issue where partially downloaded custom ruleset files were mistakenly validated as complete. Chunked downloading has been implemented to address this issue

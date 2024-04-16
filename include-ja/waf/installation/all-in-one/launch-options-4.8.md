@@ -1,7 +1,7 @@
 全てインワンスクリプトをダウンロードしたら、以下の方法でヘルプを得ることができます：
 
 ```
-sudo sh ./wallarm-4.8.9.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-4.8.10.x86_64-glibc.sh -- -h
 ```
 
 それにより、以下が返されます：
@@ -35,18 +35,18 @@ sudo sh ./wallarm-4.8.9.x86_64-glibc.sh -- -h
 === "US Cloud"
     ```bash
     # x86_64バージョンを使用する場合：
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
 
     # ARM64バージョンを使用する場合：
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```bash
     # x86_64バージョンを使用する場合：
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.x86_64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.x86_64-glibc.sh -- --batch -t <TOKEN>
 
     # ARM64バージョンを使用する場合：
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.aarch64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.aarch64-glibc.sh -- --batch -t <TOKEN>
     ```
 
 ### ノードインストールの段階を個別に実行する
@@ -61,25 +61,25 @@ sudo sh ./wallarm-4.8.9.x86_64-glibc.sh -- -h
 === "US Cloud"
     ```bash
     # x86_64バージョンを使用する場合：
-    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.9.x86_64-glibc.sh
-    sudo sh wallarm-4.8.9.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.x86_64-glibc.sh
+    sudo sh wallarm-4.8.10.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
 
     # ARM64バージョンを使用する場合：
-    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.9.aarch64-glibc.sh
-    sudo sh wallarm-4.8.9.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.aarch64-glibc.sh
+    sudo sh wallarm-4.8.10.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```
     # x86_64バージョンを使用する場合：
-    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.9.x86_64-glibc.sh
-    sudo sh wallarm-4.8.9.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.x86_64-glibc.sh
+    sudo sh wallarm-4.8.10.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
 
     # ARM64バージョンを使用する場合：
-    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.9.aarch64-glibc.sh
-    sudo sh wallarm-4.8.9.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.aarch64-glibc.sh
+    sudo sh wallarm-4.8.10.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
     ```
 

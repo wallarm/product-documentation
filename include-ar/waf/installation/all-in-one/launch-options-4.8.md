@@ -1,7 +1,7 @@
 فور تحميل السكريبت المتكامل، يمكنك الحصول على المساعدة به باستخدام:
 
 ```
-sudo sh ./wallarm-4.8.9.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-4.8.10.x86_64-glibc.sh -- -h
 ```
 
 الذي يعيد:
@@ -35,18 +35,18 @@ sudo sh ./wallarm-4.8.9.x86_64-glibc.sh -- -h
 === "سحابة US"
     ```bash
     # إذا كنت تستخدم النسخة x86_64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
 
     # إذا كنت تستخدم النسخة ARM64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
     ```
 === "سحابة EU"
     ```bash
     # إذا كنت تستخدم النسخة x86_64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.x86_64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.x86_64-glibc.sh -- --batch -t <TOKEN>
 
     # إذا كنت تستخدم النسخة ARM64:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.aarch64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.aarch64-glibc.sh -- --batch -t <TOKEN>
     ```
 
 ### تنفيذ مراحل تثبيت العقدة بشكل منفصل
@@ -61,25 +61,25 @@ sudo sh ./wallarm-4.8.9.x86_64-glibc.sh -- -h
 === "سحابة US"
     ```bash
     # إذا كنت تستخدم النسخة x86_64:
-    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.9.x86_64-glibc.sh
-    sudo sh wallarm-4.8.9.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.x86_64-glibc.sh
+    sudo sh wallarm-4.8.10.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
 
     # إذا كنت تستخدم النسخة ARM64:
-    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.9.aarch64-glibc.sh
-    sudo sh wallarm-4.8.9.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.aarch64-glibc.sh
+    sudo sh wallarm-4.8.10.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
     ```
 === "سحابة EU"
     ```
     # إذا كنت تستخدم النسخة x86_64:
-    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.9.x86_64-glibc.sh
-    sudo ش wallarm-4.8.9.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.x86_64-glibc.sh
+    sudo ش wallarm-4.8.10.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
 
     # إذا كنت تستخدم النسخة ARM64:
-    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.9.aarch64-glibc.sh
-    sudo ش wallarm-4.8.9.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.aarch64-glibc.sh
+    sudo ش wallarm-4.8.10.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
     ```
 

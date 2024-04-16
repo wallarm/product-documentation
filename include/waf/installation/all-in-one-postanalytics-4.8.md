@@ -3,10 +3,10 @@ To install postanalytics separately with all-in-one installer, use:
 === "API token"
     ```bash
     # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.x86_64-glibc.sh postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.x86_64-glibc.sh postanalytics
 
     # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.9.aarch64-glibc.sh postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.8.10.aarch64-glibc.sh postanalytics
     ```        
 
     The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -14,8 +14,8 @@ To install postanalytics separately with all-in-one installer, use:
 === "Node token"
     ```bash
     # If using the x86_64 version:
-    sudo sh wallarm-4.8.9.x86_64-glibc.sh postanalytics
+    sudo sh wallarm-4.8.10.x86_64-glibc.sh postanalytics
 
     # If using the ARM64 version:
-    sudo sh wallarm-4.8.9.aarch64-glibc.sh postanalytics
+    sudo sh wallarm-4.8.10.aarch64-glibc.sh postanalytics
     ```
