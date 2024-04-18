@@ -1,6 +1,6 @@
 # What is new in Wallarm node 4.10
 
-The new version of the Wallarm node has been released! This update introduces an advanced feature for credential stuffing detection, further enhancing the security of your APIs.
+The new version of the Wallarm node has been released! This update introduces an advanced feature for credential stuffing detection and specification-based security policies, further enhancing the security of your APIs.
 
 !!! info "Selected artifacts enhanced in release 4.10"
     Only few artifacts, including the all-in-one installer, the NGINX-based Docker image and cloud images (AMI, GCP Image) have been released as part of version 4.10, featuring support for the newly introduced capabilities.
@@ -23,11 +23,9 @@ Beginning with release 4.10.4, Wallarm introduces protection from these attacks.
 
 ![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
 
+## API Specification Enforcement
 
-
-## API Policy Enforcement
-
-In this latest update, we introduce API Policy Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.
+In this latest update, we introduce API Specification Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.
 
 This strengthens security by preventing potential attack attempts and also optimizes API performance by avoiding overloading and misuse.
 
@@ -37,11 +35,9 @@ Additionally, this update introduces new parameters for some deployment options,
 * For NGINX Ingress Controller: the [`controller.wallarm.apifirewall`](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) values group.
 * For NGINX-based Docker image: the environment variable `WALLARM_APIFW_ENABLE`.
 
-[Learn how to configure API Policy Enforcement](../api-policy-enforcement/setup.md)
+[Learn how to configure API Specification Enforcement](../api-policy-enforcement/setup.md)
 
-![Specification - use for API policy enforcement](../images/api-policies-enforcement/api-policies-enforcement-events.png)
-
--->
+![Specification - use for applying security policies](../images/api-policies-enforcement/api-policies-enforcement-events.png)  -->
 
 ## Optimized and more secure NGINX-based Docker image
 

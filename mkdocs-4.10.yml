@@ -47,7 +47,7 @@ nav:
     - Overview: about-wallarm/api-protection-overview.md
     # - OWASP Top 10: ...
     # - OWASP API Top 10: ...
-    # - API Policy Enforcement:
+    # - Specification Enforcement:
     #   - Overview: api-policy-enforcement/overview.md
     #   - Setup: api-policy-enforcement/setup.md
     #   - Viewing Events: api-policy-enforcement/viewing-events.md

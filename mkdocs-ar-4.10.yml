@@ -90,10 +90,10 @@ nav:
     # - نظرة عامة: ...
     # - OWASP Top 10: ...
     # - OWASP API Top 10: ...
-    # - تفعيل السياسات API:
-    #   - نظرة عامة: api-policy-enforcement/overview.md
-    #   - إعداد: api-policy-enforcement/setup.md
-    #   - عرض الأحداث: api-policy-enforcement/viewing-events.md
+    - تفعيل السياسات API:
+      - نظرة عامة: api-policy-enforcement/overview.md
+      - إعداد: api-policy-enforcement/setup.md
+      - عرض الأحداث: api-policy-enforcement/viewing-events.md
     - منع الاعتداء على API:
       - نظرة عامة: about-wallarm/api-abuse-prevention.md
       - إدارة الملف الشخصي لمنع سوء استخدام API: user-guides/api-abuse-prevention.md

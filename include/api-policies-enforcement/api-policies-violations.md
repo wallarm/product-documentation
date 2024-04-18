@@ -8,5 +8,15 @@
 The system can perform the following actions in case of found inconsistency:
 
 * **Block** - block a request and put in the [**Attacks**](../user-guides/events/check-attack.md) section as blocked
+
+    !!! info "Filtration mode"
+        The Wallarm node will block requests only when the blocking [filtration mode][waf-mode-instr] is enabled for target endpoint - otherwise, **Monitor** action will be performed.
+
 * **Monitor** - mark a request as incorrect, but do not block, put it in the **Attacks** section as monitored
 * **Not tracked** - do nothing
+
+Note that several specifications can be used for setting policies. In case when one request falls on two different specifications (the same policy and different actions in different specifications), the following will happen:
+
+* **Block** and **Block** - the request will be blocked and one event will be added to the **Attacks** section with status `Blocked`.
+* **Monitor** and **Block** - the request will be blocked and two events will be added to the **Attacks** section with status `Blocked`.
+* **Monitor** and **Monitor** - the request will be blocked and two events will be added to the **Attacks** section with status `Monitoring`.
