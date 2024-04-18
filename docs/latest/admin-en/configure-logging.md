@@ -25,6 +25,8 @@ This article guides you on how to find the log files of a Wallarm filtering node
     *   `registernode_loop-out.log` (only in the Docker containers): the log of activity of the wrapper script running the `register-node` script while it is succeeded.
     *   `weak-jwt-detect-out.log`: the log of the [JWT vulnerability](../attacks-vulns-list.md#weak-jwt) detection.
     *   `detect-cred-stuffing-out.log`: the log of the [credential stuffing detection](../about-wallarm/credential-stuffing.md).
+    * `api-firewall-out.log`: the log of the [API specification enforcement](../api-policy-enforcement/overview.md).
+
 === "Other installation methods"
     For installations using other methods, such as [DEB/RPM packages](../installation/nginx/dynamic-module.md), log files are located within the `/var/log/wallarm` directory.
 
