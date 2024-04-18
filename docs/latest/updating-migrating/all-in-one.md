@@ -51,18 +51,18 @@ Run the downloaded script:
 === "API token"
     ```bash
     # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.3.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.4.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
 
     # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.3.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.4.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
     ```
 === "Node token"
     ```bash
     # If using the x86_64 version:
-    sudo sh wallarm-4.10.3.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
+    sudo sh wallarm-4.10.4.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
 
     # If using the ARM64 version:
-    sudo sh wallarm-4.10.3.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
+    sudo sh wallarm-4.10.4.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f
     ```
 
 * `<GROUP>` sets a group name into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI). Only applied if using an API token.
@@ -121,18 +121,18 @@ This step is performed on the postanalytics machine.
 === "API token"
     ```bash
     # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.3.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.4.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
 
     # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.3.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.4.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
     ```
 === "Node token"
     ```bash
     # If using the x86_64 version:
-    sudo sh wallarm-4.10.3.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
+    sudo sh wallarm-4.10.4.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
 
     # If using the ARM64 version:
-    sudo sh wallarm-4.10.3.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
+    sudo sh wallarm-4.10.4.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f postanalytics
     ```
 
 * `<GROUP>` sets a group name into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI). Only applied if using an API token.
@@ -152,18 +152,18 @@ This step is performed on the filtering node machine.
 === "API token"
     ```bash
     # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.3.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.4.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
 
     # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.3.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.10.4.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
     ```
 === "Node token"
     ```bash
     # If using the x86_64 version:
-    sudo sh wallarm-4.10.3.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
+    sudo sh wallarm-4.10.4.x86_64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
 
     # If using the ARM64 version:
-    sudo sh wallarm-4.10.3.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
+    sudo sh wallarm-4.10.4.aarch64-glibc.sh -- --batch -t <TOKEN> -c <CLOUD> -f filtering
     ```
 
 * `<GROUP>` sets a group name into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI). Only applied if using an API token.
