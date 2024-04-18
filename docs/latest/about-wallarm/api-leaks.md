@@ -1,6 +1,6 @@
 # API Leaks
 
-The **API Leaks** module of the Wallarm platform actively scans your selected domains to check for the leaks of API tokens. This article gives an overview of API Leaks: issues addressed by it, its purpose and main possibilities.
+The **API Leaks** module of the Wallarm platform actively scans your selected domains to check for the leaks of API tokens. This article gives an overview of the module: issues addressed by it, its purpose and main possibilities.
 
 The module can operate in two different modes: 
 
@@ -28,12 +28,15 @@ The **API Leaks** Wallarm module helps to solve these issues by providing the fo
 
 ## Define your domains to search for API leaks
 
-You can define a list of your domains (**target domains**) where you want to search for the exposed API tokens. As you add the domains, Wallarm automatically searches them for subdomains and then checks the entire scope on presence of API leaks.
+You can define a list of your domains (**target domains**) where you want to search for API leaks. Once you specify target domains, Wallarm performs the following two-step procedure: 
+
+1. **Passive scan** (**happened leaks**): checks public resources for published (leaked) data related to these domains.
+1. **Active scan** (**potential leaks**): automatically searches the listed domains for subdomains and then - as an unauthenticated user - sends requests to their endpoints and checks responses and the source code of pages for presence of sensitive data like credentials, API keys, client secrets, authorization tokens, email addresses, public and private API schemas (API specifications).
 
 To define target domains to search for API leaks:
 
 1. In the **API Leaks** section, click **Configure**.
-1. At the **Scope** tab, click **Add domain**, add domain name and confirm adding.
+1. At the **Scope** tab, add your domains. You can use the names of domains, found by the [API Discovery](../api-discovery/overview.md) module (if enabled) or by [Wallarm's Scanner](../user-guides/scanner.md).
 
     Wallarm will start searching for subdomains and leaked credentials published under the domain. The search progress and results will be displayed at the **Status** tab.
 
