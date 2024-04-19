@@ -117,9 +117,6 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ## Helm chart for Sidecar
 
-!!! info "Pending upgrade to 4.10"
-    This artifact has not been updated to Wallarm node 4.10 yet; an upgrade is pending. The 4.10 features are not supported on nodes deployed with this artifact.
-
 [How to upgrade](sidecar-proxy.md)
 
 ### 4.10.2 (2024-04-19)
