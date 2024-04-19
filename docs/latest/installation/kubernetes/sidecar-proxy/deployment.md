@@ -190,6 +190,51 @@ To test that the Wallarm Sidecar operates correctly:
 
     ![Attacks in the interface][attacks-in-ui-image]
 
+## ARM64 deployment
+
+With the Sidecar proxy's Helm chart version 4.10.2, ARM64 processor compatibility is introduced. Initially set for x86 architectures, deploying on ARM64 nodes involves modifying the Helm chart parameters.
+
+In ARM64 settings, Kubernetes nodes often carry an `arm64` label. To assist the Kubernetes scheduler in allocating the Wallarm workload to the appropriate node type, reference this label using `nodeSelector`, `tolerations`, or affinity rules in the Wallarm Helm chart configuration.
+
+Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), which uses the `kubernetes.io/arch: arm64` label for relevant nodes. This template is modifiable for compatibility with other cloud setups, respecting their ARM64 labeling conventions.
+
+=== "nodeSelector"
+    ```yaml
+    config:
+      wallarm:
+        api:
+          token: "<NODE_TOKEN>"
+          # If using an API token, uncomment the following line and specify your node group name
+          # nodeGroup: "defaultSidecarGroup"
+      postanalytics:
+        nodeSelector:
+          kubernetes.io/arch: arm64
+      controller:
+        nodeSelector:
+          kubernetes.io/arch: arm64
+    ```
+=== "tolerations"
+    ```yaml
+    config:
+      wallarm:
+        api:
+          token: "<NODE_TOKEN>"
+          # If using an API token, uncomment the following line and specify your node group name
+          # nodeGroup: "defaultSidecarGroup"
+      postanalytics:
+        tolerations:
+          - key: kubernetes.io/arch
+            operator: Equal
+            value: arm64
+            effect: NoSchedule
+      controller:
+        tolerations:
+          - key: kubernetes.io/arch
+            operator: Equal
+            value: arm64
+            effect: NoSchedule
+    ```
+
 ## Customization
 
 Wallarm pods have been injected based on the [default `values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml) and the custom configuration you specified on the 2nd deployment step.
