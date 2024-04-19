@@ -35,7 +35,7 @@ helm repo update wallarm
 2. تشغيل الإضافة:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.3 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.4 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: اسم إصدار Helm مع مخطط وحدة التحكم Ingress
@@ -50,7 +50,7 @@ helm repo update wallarm
 قم بترقية وحدة التحكم NGINX Ingress المنشورة:
 
 ``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.3 -f <PATH_TO_VALUES>
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.4 -f <PATH_TO_VALUES>
 ```
 
 * `<RELEASE_NAME>`: اسم إصدار Helm مع مخطط وحدة التحكم Ingress
@@ -67,7 +67,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.1
 
     حيث `<NAMESPACE>` هو النطاق الذي تم نشر مخطط Helm مع وحدة التحكم Ingress به.
 
-    يجب أن تتوافق نسخة المخطط مع `wallarm-ingress-4.10.3`.
+    يجب أن تتوافق نسخة المخطط مع `wallarm-ingress-4.10.4`.
 1. احصل على قائمة الحاويات:
 
     ``` bash

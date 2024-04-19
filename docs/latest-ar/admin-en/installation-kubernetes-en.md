@@ -92,7 +92,7 @@
 1. تثبيت حزم Wallarm:
 
     ``` bash
-    helm install --version 4.10.3 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 4.10.4 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` هو اسم الإصدار Helm للمتحكم الرسم البياني لـ Ingress

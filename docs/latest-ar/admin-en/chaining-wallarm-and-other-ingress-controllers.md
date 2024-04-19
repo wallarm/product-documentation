@@ -101,7 +101,7 @@
     لمعرفة المزيد من خيارات التكوين ، يرجى استخدام [الرابط](configure-kubernetes-en.md).
 1. قم بتثبيت رسم Wallarm Ingress Helm:
     ``` bash
-    helm install --version 4.10.3 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace
+    helm install --version 4.10.4 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace
     ```
 
     * `internal-ingress` هو اسم إصدار Helm

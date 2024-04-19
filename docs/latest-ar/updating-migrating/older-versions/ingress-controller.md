@@ -197,7 +197,7 @@
 2. قم بتشغيل البرنامج المساعد:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.3 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.4 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: اسم الإصدار Helm للرسم البياني لـ Ingress controller
@@ -304,7 +304,7 @@
 2. قم بتثبيت واجهة تحكم Ingress 4.10:
 
     ```bash
-    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.3 -f <PATH_TO_VALUES>
+    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.4 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: اسم لإصدار Helm لرسم البياني لواجهة التحكم Ingress
@@ -340,7 +340,7 @@
     2. قم بإنشاء إصدار جديد مع واجهة التحكم Ingress 4.10:
 
         ```bash
-        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.3 -f `<PATH_TO_VALUES>`
+        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.4 -f `<PATH_TO_VALUES>`
         ```
 
         * `<RELEASE_NAME>`: اسم لإصدار Helm لرسم البياني لواجهة التحكم Ingress
@@ -392,7 +392,7 @@
 
     ```bash
     cat objects-to-remove.txt | xargs kubectl delete --wait=false -n <NAMESPACE>    && \
-    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.3 -f `<PATH_TO_VALUES>`
+    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.10.4 -f `<PATH_TO_VALUES>`
     ```
 
     لتقليل وقت توقف الخدمة، فإنه لا يُوصى بتنفيذ الأوامر بشكل منفصل.
@@ -418,7 +418,7 @@
     helm ls
     ```
 
-    يجب أن يتوافق إصدار الرسم البياني مع `wallarm-ingress-4.10.3`.
+    يجب أن يتوافق إصدار الرسم البياني مع `wallarm-ingress-4.10.4`.
 2. احصل على قائمة الحمولات التي تحدد اسم واجهة التحكم Ingress في `<INGRESS_CONTROLLER_NAME>`:
     
     ``` bash
