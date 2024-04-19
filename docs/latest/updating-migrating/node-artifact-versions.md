@@ -115,24 +115,40 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 * Initial release 4.8, [see changelog](what-is-new.md) -->
 
-<!-- ## Helm chart for Sidecar
+## Helm chart for Sidecar
 
 !!! info "Pending upgrade to 4.10"
     This artifact has not been updated to Wallarm node 4.10 yet; an upgrade is pending. The 4.10 features are not supported on nodes deployed with this artifact.
 
 [How to upgrade](sidecar-proxy.md)
 
-### 4.8.1 (2023-11-15)
+### 4.10.2 (2024-04-19)
 
-* Optimize Wallarm Cloud's export of brute, dirbust, and BOLA statistics to avoid delays in reaction to attacks under high request loads and numerous triggers
+* Added support for [credential stuffing detection](../about-wallarm/credential-stuffing.md)
+* Added support for ARM64 processors
+* Bump Alpine version to 3.19
+* Upgrade NGINX to version 1.24.0 from 1.21.6
+* The following [built-in NGINX modules](../installation/kubernetes/sidecar-proxy/customization.md#enabling-additional-nginx-modules) are not distributed with the Sidecar solution anymore:
 
-### 4.8.0 (2023-10-19)
+    * [ngx_http_auth_digest_module.so](https://github.com/atomx/nginx-http-auth-digest)
+    * [ngx_http_influxdb_module.so](https://github.com/influxdata/nginx-influxdb-module)
+    * [ngx_http_modsecurity_module.so](https://github.com/SpiderLabs/ModSecurity)
+    * [ngx_http_opentracing_module.so](https://github.com/opentracing-contrib/nginx-opentracing)
+* Fixed the vulnerabilities of the critical and high risk levels:
 
-* Initial release 4.8, [see changelog](what-is-new.md)
-* Added support for [API tokens](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation) to create filtering nodes and connect them to the Cloud during solution deployment. With API tokens, you can control the lifetime of your tokens and enhance node organization in the UI by setting a node group name.
-
-    Node group names are set using the `config.wallarm.api.nodeGroup` parameter in **values.yaml**, with `defaultSidecarGroup` as the default name. Optionally, you can control the names of node groups based on the applications' pods using the `sidecar.wallarm.io/wallarm-node-group` annotation.
-* Fix [CVE-2023-38039](https://github.com/advisories/GHSA-99j9-jf36-9747) -->
+    * [CVE-2020-14343](https://nvd.nist.gov/vuln/detail/CVE-2020-14343)
+    * [CVE-2017-18342](https://nvd.nist.gov/vuln/detail/CVE-2017-18342)
+    * [CVE-2020-1747](https://nvd.nist.gov/vuln/detail/CVE-2020-1747)
+    * [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920)
+    * [CVE-2019-11324](https://nvd.nist.gov/vuln/detail/CVE-2019-11324)
+    * [CVE-2023-5363](https://nvd.nist.gov/vuln/detail/CVE-2023-5363)
+    * [CVE-2024-25062](https://nvd.nist.gov/vuln/detail/CVE-2024-25062)
+    * [CVE-2021-41816](https://nvd.nist.gov/vuln/detail/CVE-2021-41816)
+    * [CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327)
+    * [CVE-2021-33621](https://nvd.nist.gov/vuln/detail/CVE-2021-33621)
+    * [CVE-2021-41819](https://nvd.nist.gov/vuln/detail/CVE-2021-41819)
+    * [CVE-2021-41817](https://nvd.nist.gov/vuln/detail/CVE-2021-41817)
+    * [CVE-2023-28755](https://nvd.nist.gov/vuln/detail/CVE-2023-28755)
 
 ## Helm chart for Wallarm eBPF‑based solution
 

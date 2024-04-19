@@ -106,7 +106,7 @@ Generate a filtering node token of the [appropriate type][node-token-types] to c
 1. Deploy the Wallarm Helm chart:
 
     ``` bash
-    helm install --version 4.8.1 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
+    helm install --version 4.10.2 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Wallarm Sidecar chart
@@ -197,7 +197,3 @@ Wallarm pods have been injected based on the [default `values.yaml`](https://git
 You can customize the Wallarm proxy behavior even more on both the global and per-pod levels and get the most out of the Wallarm solution for your company.
 
 Just proceed to the [Wallarm proxy solution customization guide](customization.md).
-
-## Limitations
-
-* [Credential stuffing detection][cred-stuffing-docs] is currently unsupported, as the Helm chart has not been updated to the 4.10 release yet

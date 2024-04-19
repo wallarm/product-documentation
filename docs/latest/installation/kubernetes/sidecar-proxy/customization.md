@@ -229,13 +229,9 @@ The sidecar solution will accept TLS/SSL traffic, terminate it, and forward plai
 
 Docker image of the Wallarm sidecar is distributed with the following additional NGINX modules disabled by default:
 
-* [ngx_http_auth_digest_module.so](https://github.com/atomx/nginx-http-auth-digest)
 * [ngx_http_brotli_filter_module.so](https://github.com/google/ngx_brotli)
 * [ngx_http_brotli_static_module.so](https://github.com/google/ngx_brotli)
 * [ngx_http_geoip2_module.so](https://github.com/leev/ngx_http_geoip2_module)
-* [ngx_http_influxdb_module.so](https://github.com/influxdata/nginx-influxdb-module)
-* [ngx_http_modsecurity_module.so](https://github.com/SpiderLabs/ModSecurity)
-* [ngx_http_opentracing_module.so](https://github.com/opentracing-contrib/nginx-opentracing)
 
 You can enable additional modules only on a per-pod basis by setting Pod's annotation `sidecar.wallarm.io/nginx-extra-modules`.
 
