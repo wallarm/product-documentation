@@ -57,7 +57,7 @@
             --name waf-node \
             --dns-name-label wallarm-waf \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:4.10.2-1 \
+            --image registry-1.docker.io/wallarm/node:4.10.4-1 \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com' WALLARM_API_HOST='us1.api.wallarm.com' WALLARM_LABELS='group=<GROUP>'
          ```
     === "الأمر للسحابة Wallarm الأوروبية"
@@ -67,7 +67,7 @@
             --name waf-node \
             --dns-name-label wallarm-waf \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:4.10.2-1 \
+            --image registry-1.docker.io/wallarm/node:4.10.4-1 \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com' WALLARM_LABELS='group=<GROUP>'
          ```
         
@@ -145,7 +145,7 @@
             --name waf-node \
             --dns-name-label wallarm-waf \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:4.10.2-1 \
+            --image registry-1.docker.io/wallarm/node:4.10.4-1 \
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} WALLARM_API_HOST='us1.api.wallarm.com' WALLARM_LABELS='group=<GROUP>'
@@ -157,7 +157,7 @@
             --name waf-node \
             --dns-name-label wallarm-waf \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:4.10.2-1 \
+            --image registry-1.docker.io/wallarm/node:4.10.4-1 \
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} WALLARM_LABELS='group=<GROUP>'

@@ -43,7 +43,7 @@
 
 === "صورة تعتمد على NGINX"
     ``` bash
-    docker pull wallarm/node:4.10.2-1
+    docker pull wallarm/node:4.10.4-1
     ```
 === "صورة تعتمد على Envoy"
     ``` bash
