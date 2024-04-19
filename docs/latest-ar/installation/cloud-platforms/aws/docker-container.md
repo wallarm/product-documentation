@@ -78,7 +78,7 @@
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.10.2-1"
+                "image": "registry-1.docker.io/wallarm/node:4.10.4-1"
                 }
             ],
             "family": "wallarm-api-security-node"
@@ -116,7 +116,7 @@
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.10.2-1"
+                "image": "registry-1.docker.io/wallarm/node:4.10.4-1"
                 }
             ],
             "family": "wallarm-api-security-node"
@@ -250,7 +250,7 @@
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.10.2-1"
+                "image": "registry-1.docker.io/wallarm/node:4.10.4-1"
                 }
             ],
             "volumes": [
@@ -299,7 +299,7 @@
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.10.2-1"
+                "image": "registry-1.docker.io/wallarm/node:4.10.4-1"
                 }
             ],
             "volumes": [
