@@ -552,7 +552,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <a class="do-card" href="../../installation/connectors/cloudflare/">
             <img class="non-zoomable" src="../../images/platform-icons/cloudflare.png" />
             <h3>Cloudflare</h3>
-            <p>Deploy Wallarm to secure APIs running via Cloudflare</p>
+            <p>Deploy Wallarm to secure traffic running via Cloudflare</p>
         </a>
     </div>
 </div>
@@ -1136,7 +1136,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <a class="do-card" href="../../installation/connectors/cloudflare/">
             <img class="non-zoomable" src="../../images/platform-icons/cloudflare.png" />
             <h3>Cloudflare</h3>
-            <p>Deploy Wallarm to secure APIs running via Cloudflare</p>
+            <p>Deploy Wallarm to secure traffic running via Cloudflare</p>
         </a>
     </div>
 </div>

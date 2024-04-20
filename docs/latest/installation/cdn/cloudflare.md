@@ -7,6 +7,16 @@
 
 The solution involves deploying and configuring the Wallarm node externally and injecting custom code into Cloudflare's worker object. This enables traffic to be directed to the external Wallarm node for analysis and protection against potential threats. In the scenario, the Cloudflare itself serves as connector between your applications and Wallarm providing secure traffic analysis, risk mitigation, and overall security.
 
+<a name="cloudflare-modes"></a> The Cloudflare integration supports both [in-line](../inline/overview.md) and [out-of-band](../oob/overview.md) modes. Below diagrams show the traffic flow for both cases.
+
+=== "In-line traffic flow"
+
+    If Wallarm is configured to block malicious activity:
+
+    ![Cloudflare with Wallarm - in-line scheme](../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-inline.png)
+=== "Out-of-band traffic flow"
+    ![Cloudflare with Wallarm - out-of-band scheme](../../images/waf-installation/gateways/cloudflare/cloudflare-traffic-flow-oob.png)
+
 ## Use cases
 
 Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is recommended in case when you provide access to your applications via Cloudflare.
@@ -28,16 +38,20 @@ To proceed with the deployment, ensure that you meet the following requirements:
 
 ## Deployment
 
-To secure with Wallarm applications on AWS that use Node.js lambdas, follow these steps:
+To secure with Wallarm your applications that are delivered via Cloudflare:
 
-1. Deploy a Wallarm node on the AWS instance.
-1. Obtain the Wallarm Node.js script for AWS Lambda and run it.
+1. Request Wallarm support to activate Cloudflare integration.
+1. Set Cloudflare worker and routes to route traffic to Wallarm for analysis.
 
 ### 1. Request Wallarm support to activate Cloudflare integration
 
-Contact [support@wallarm.com](mailto:support@wallarm.com) to request the activation of Cloudflare integration and obtain the `<CONNECTOR_ID>`.
+Contact [support@wallarm.com](mailto:support@wallarm.com) to request the activation of Cloudflare integration and obtain the `<FILTERING_NODE_URL>`. Consider the following:
 
-Consider that when integrating Wallarm with Cloudflare, the traffic flow can operate both [in-line](../inline/overview.md) and [out-of-band (OOB)](../oob/overview.md). Therefore, discuss with the support which option is most suitable in your case.
+* As the traffic flow [can operate](#cloudflare-modes) both in-line and out-of-band (OOB), you need to discuss with the support which option suits you.
+
+* Wallarm support team will deploy a filtering node in a trustworthy cloud environment and fully configure it for processing your traffic redirected from Cloudflare.
+
+    Alternatively, you can install node in your own infrastructure (see options for [in-line](../../installation/supported-deployment-options.md#in-line) and [out-of band (OOB)](../../installation/supported-deployment-options.md#out-of-band) installation) and request Wallarm support to help you to prepare the node for integration with Cloudflare.
 
 ### 2. Set Cloudflare worker and routes
 
@@ -48,7 +62,7 @@ In Cloudflare, do the following:
 
     ```
     // Configuration
-    const wallarm_node = "https://<CONNECTOR_ID>.connect.aws.wallarm-cloud.com"; // Replace with your Wallarm node URL
+    const wallarm_node = "https://<FILTERING_NODE_URL>"; // Replace with your Wallarm node URL
     const wallarm_mode = "async"; //"async" or "inline" - choose based on your needs
 
     addEventListener("fetch", event => {
@@ -154,4 +168,4 @@ To test the functionality of the deployed policy, follow these steps:
 
 ## Need assistance?
 
-If you encounter any issues or require assistance with the described deployment of Wallarm in conjunction with AWS Lambda, you can reach out to the [Wallarm support](mailto:support@wallarm.com) team. They are available to provide guidance and help resolve any problems you may face during the implementation process.
+If you encounter any issues or require assistance with the described deployment of Wallarm in conjunction with Cloudflare, you can reach out to the [Wallarm support](mailto:support@wallarm.com) team. They are available to provide guidance and help resolve any problems you may face during the implementation process.
