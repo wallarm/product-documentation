@@ -17,6 +17,6 @@ The system can perform the following actions in case of found inconsistency:
 
 Note that several specifications can be used for setting policies. In case when one request falls on two different specifications (the same policy and different actions in different specifications), the following will happen:
 
-* **Block** and **Block** - the request will be blocked and one event will be added to the **Attacks** section with status `Blocked`.
-* **Monitor** and **Block** - the request will be blocked and two events will be added to the **Attacks** section with status `Blocked`.
-* **Monitor** and **Monitor** - the request will be blocked and two events will be added to the **Attacks** section with status `Monitoring`.
+* **Block** and **Block** - the request will be blocked and two events will be added to the **Attacks** section with status `Blocked` pointing at the reason of blocking and at the fact that the request violated two different specifications.
+* **Monitor** and **Block** - the request will be blocked and one event will be added to the **Attacks** section with status `Blocked` explaining the reason of blocking.
+* **Monitor** and **Monitor** - the request will not be blocked and two events will be added to the **Attacks** section with status `Monitoring` pointing at the fact that specific policy was violated.
