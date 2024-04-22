@@ -72,7 +72,7 @@ Beginning with release 4.10, Wallarm introduces real-time detection and notifica
 !!! info "Selected artifacts supporting credential stuffing detection"
     A limited selection of artifacts, such as the all-in-one installer, NGINX Ingress Controller, NGINX-based Docker image, and cloud images (AMI, GCP Image), now support the newly introduced credential stuffing detection feature.
 
-<!--## API Specification Enforcement
+## API Specification Enforcement
 
 In this latest update, we introduce API Specification Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.
 
@@ -87,7 +87,7 @@ Additionally, this update introduces new parameters for some deployment options,
 [Learn how to configure API Specification Enforcement](../../api-policy-enforcement/setup.md)
 
 ![Specification - use for applying security policies](../../images/api-policies-enforcement/api-policies-enforcement-events.png)
--->
+
 ## Detection of the new attack types
 
 Wallarm detects new attack types:
