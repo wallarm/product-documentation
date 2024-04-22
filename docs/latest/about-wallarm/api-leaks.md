@@ -55,6 +55,8 @@ You can manage the decisions on what to do  with the found leaks as follows:
 * Apply a virtual patch to block all attempts to use the leaked tokens.
 
     A [virtual patch rule](../user-guides/rules/vpatch-rule.md) will be created.
+    
+    Note that creating virtual patch is only possible when the leaked secret value is 6 or more symbols or regular expression is no more than 4096 symbols - `Not applicable` remediation status will be displayed if these conditions are not met. The limitations aim to prevent the legitimate traffic blocking.
 
 * Mark the leak as false if you think it was added by mistake.
 * Close the leaks to stop protection once all leaked tokens were regenerated or removed. This will remove the virtual patch rule.
