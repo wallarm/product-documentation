@@ -231,6 +231,11 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](cloud-image.md)
 
+### 4.10.4-1 (2024-04-19)
+
+* Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
+* Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
+
 ### 4.10.2-2 (2024-03-20)
 
 * The `readahead` parameter value for Tarantool has been decreased to 32KB
