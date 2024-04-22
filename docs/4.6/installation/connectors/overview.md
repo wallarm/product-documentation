@@ -16,7 +16,7 @@ Alternatively, the monitoring mode allows users to gain knowledge about potentia
 
 ## Use cases
 
-* Securing all APIs deployed with Azion Edge, Akamai Edge, Mulesoft, Apigee, AWS Lambda or similar tool by creating only one component in the current infrastrucure - the component like the Wallarm code/policy/proxy depending on the silution being used.
+* Securing all APIs deployed with Azion Edge, Akamai Edge, Mulesoft, Apigee, AWS Lambda or similar tool by creating only one component in the current infrastrucure - the component like the Wallarm code/policy/proxy depending on the solution being used.
 * Requiring a security solution that offers comprehensive attack observation, reporting, and instant blocking of malicious requests.
 
 ## Limitations
@@ -36,5 +36,6 @@ Currently, Wallarm offers connectors for the following platforms:
 * [Akamai EdgeWorkers](akamai-edgeworkers.md)
 * [Azion Edge](azion-edge.md)
 * [AWS Lamdba](aws-lambda.md)
+* [Cloudflare](cloudflare.md)
 
 If you couldn't find the connector you are looking for, please feel free to contact our [Sales team](mailto:sales@wallarm.com) to discuss your requirements and explore potential solutions.

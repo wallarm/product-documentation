@@ -548,6 +548,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>AWS Lambda</h3>
             <p>Deploy Wallarm to secure APIs on AWS that utilize Node.js lambdas</p>
         </a>
+        
+        <a class="do-card" href="../../installation/connectors/cloudflare/">
+            <img class="non-zoomable" src="../../images/platform-icons/cloudflare.png" />
+            <h3>Cloudflare</h3>
+            <p>Deploy Wallarm to secure traffic running via Cloudflare</p>
+        </a>
     </div>
 </div>
 
@@ -1125,6 +1131,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <img class="non-zoomable" src="../../images/platform-icons/aws-lambda.svg" />
             <h3>AWS Lambda</h3>
             <p>Deploy Wallarm to secure APIs on AWS that utilize Node.js lambdas</p>
+        </a>
+        
+        <a class="do-card" href="../../installation/connectors/cloudflare/">
+            <img class="non-zoomable" src="../../images/platform-icons/cloudflare.png" />
+            <h3>Cloudflare</h3>
+            <p>Deploy Wallarm to secure traffic running via Cloudflare</p>
         </a>
     </div>
 </div>

@@ -247,6 +247,7 @@ nav:
       - Akamai EdgeWorkers: installation/cdn/akamai-edgeworkers.md
       - Azion Edge: installation/cdn/azion-edge.md
       - AWS Lambda: installation/cdn/aws-lambda.md
+      - Cloudflare: installation/cdn/cloudflare.md
     - Kubernetes:
       - Ingress:
         - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
@@ -302,6 +303,7 @@ nav:
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
       - Azion Edge: installation/connectors/azion-edge.md
       - AWS Lambda: installation/connectors/aws-lambda.md
+      - Cloudflare: installation/connectors/cloudflare.md
     - Packages:
       - Docker Images:
         - NGINX-based: admin-en/installation-docker-en.md
