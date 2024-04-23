@@ -18,6 +18,31 @@ The Wallarm filtering node can process incoming requests in the following modes 
 
 --8<-- "../include/wallarm-modes-description-latest.md"
 
+## Filtration mode and final system behavior
+
+When setting the filtration mode, consider the following about Wallarm behavior:
+
+* There can be different filtration modes for different applications/domains/endpoints
+* Setting the filtration mode to `off` does not mean nothing will be detected or blocked. If enabled, the following will continue working:
+
+    * [Rate limiting](../user-guides/rules/rate-limiting.md)
+    * [Virtual patches](../user-guides/rules/vpatch-rule.md) will continue blocking requests to selected endpoints, including the ones applied with [user-defined detectors](../user-guides/rules/regex-rule.md)
+    * [Masking sensitive data](../user-guides/rules/sensitive-data-rule.md)
+    * [Changing server response headers](../user-guides/rules/add-replace-response-header.md)
+    * [Automatic protection against BOLA attacks](../api-discovery/bola-protection.md) by the API Discovery module
+
+* Setting the filtration mode to `monitoring` does not mean nothing will be blocked. If configured to block, the following will continue blocking:
+
+    * Virtual patches
+    * [IP Denylist](../user-guides/ip-lists/overview.md), including:
+
+        * Addresses added manually
+        * Behavioral protection ([manual BOLA](../admin-en/configuration-guides/protecting-against-bola-trigger.md), [brute force](../admin-en/configuration-guides/protecting-against-bruteforce.md) and [forced browsing](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md))
+        * [Multi-attack protection](../admin-en/configuration-guides/protecting-with-thresholds.md)
+        * [API abuse prevention](../user-guides/api-abuse-prevention.md)
+
+* Setting the filtration mode to `safe_blocking` allows being safe from false positives: the node blocks less - even what was described as malicious requests will be blocked only if request-originating IP is listed by you (graylist)
+
 ## Methods of the filtration mode configuration
 
 The filtration mode can be configured in the following ways:
