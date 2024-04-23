@@ -17,7 +17,7 @@ Beginning with release 4.10, Wallarm introduces real-time detection and notifica
 
 With the 4.10.1 release, we are enhancing Wallarm API Discovery now giving you in-depth information about your API responses. This functionality will discover your API endpoint response structures, highlighting changes, detecting new and unused parameters, and identifying sensitive data.
 
-![APID responses](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
+![APID responses](../images/about-wallarm-waf/api-discovery/discovered-request-params-4.10.png)
 
 <!--## GraphQL API protection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
