@@ -10,6 +10,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.10.5 (2024-04-23)
+
+* Fixed the API Abuse Prevention module logging issues
+
 ### 4.10.4 (2024-04-18)
 
 * Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
