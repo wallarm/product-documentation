@@ -1,11 +1,8 @@
 # API Leaks
 
-The **API Leaks** module of the Wallarm platform actively scans your selected domains for leaks of API tokens. This article gives an overview of the module: issues addressed by it, its purpose and main possibilities.
+The **API Leaks** module of the Wallarm platform actively scans your selected domains for the leaks of the credential data (API tokens and keys, passwords, client secrets, usernames, emails and others). This article gives an overview of the module: issues addressed by it, its purpose and main possibilities.
 
-The module can operate in two different modes: 
-
-* **Only detect** API leaks and report that to users via the **API Leaks** section in Wallarm Cloud.
-* Detect and [**perform measures to block**](#making-decisions) usage of leaked credentials until they are regenerated or removed. This requires deployed Wallarm [node(s)](../user-guides/nodes/nodes.md).
+While searching for API leaks is the module's main goal, it also allows [applying remediation](#making-decisions) (virtual patches) to selected leaks in case you have deployed Wallarm [node(s)](../user-guides/nodes/nodes.md). This will block usage of the leaked data in all requests.
 
 ![API Leaks](../images/about-wallarm-waf/api-leaks/api-leaks-add.png)
 
@@ -14,24 +11,24 @@ The module can operate in two different modes:
 
 ## Issues addressed by API Leaks
 
-Your organization may use a number of API tokens to provide access to the different parts of your API. If these tokens leak, they become a security threat.
+Your organization may use a number of API credentials to provide access to the different parts of your API. If these credentials leak, they become a security threat.
 
-In order to protect your APIs, you need to monitor public repositories to find any leaked API tokens without missing a single instance – otherwise, you are still at risk. To achieve this, you have to constantly analyze a massive amount of data repeatedly.
+In order to protect your APIs, you need to monitor public repositories to find any leaked API credentials without missing a single instance – otherwise, you are still at risk. To achieve this, you have to constantly analyze a massive amount of data repeatedly.
 
 If leaked API secrets are found, an all-round response is needed to prevent harm to your APIs. This involves finding all the places where the leaked secrets are used, regenerating them in all these places, and blocking the use of the compromised versions – and this has to be done quickly, and with 100% completeness. This is difficult to accomplish manually.
 
 The **API Leaks** Wallarm module helps to solve these issues by providing the following:
 
-* Automatic detection of API tokens leaked by your selected domains and logging of detected leaks in the Wallarm Console UI.
-* Risk level detection.
-* Ability to make your own decisions on how the leaked data problems should be remediated in each case.
+* Automatic detection of API credentials (API tokens and keys, passwords, client secrets, usernames and emails) leaked by your selected domains and logging of detected leaks in the Wallarm Console UI.
+* Prioritization and risk-evaluation of found API leaks.
+* Ability to promptly respond to API leakages with actionable technical remediation.
 
 ## Define your domains to search for API leaks
 
 You can define a list of your domains (**target domains**) where you want to search for API leaks. Once you specify target domains, Wallarm performs the following two-step procedure: 
 
-1. **Passive scan** (**happened leaks**): checks public resources for published (leaked) data related to these domains.
-1. **Active scan** (**potential leaks**): automatically searches the listed domains for subdomains. Then - as an unauthenticated user - sends requests to their endpoints and checks responses and the source code of pages for the presence of sensitive data. The following data is searched for: credentials, API keys, client secrets, authorization tokens, email addresses, public and private API schemas (API specifications).
+1. **Passive scan**: checks public resources for published (leaked) data related to these domains.
+1. **Active scan**: automatically searches the listed domains for subdomains. Then - as an unauthenticated user - sends requests to their endpoints and checks responses and the source code of pages for the presence of sensitive data. The following data is searched for: credentials, API keys, client secrets, authorization tokens, email addresses, public and private API schemas (API specifications).
 
 To define target domains to search for API leaks:
 
@@ -52,20 +49,20 @@ The **API Leaks** section provides a rich visual representation of your current 
 
 You can manage the decisions on what to do  with the found leaks as follows:
 
-* Apply a virtual patch to block all attempts to use the leaked tokens.
+* Apply a virtual patch to block all attempts to use the leaked API credentials.
 
     A [virtual patch rule](../user-guides/rules/vpatch-rule.md) will be created.
     
     Note that creating virtual patch is only possible when the leaked secret value is 6 or more symbols or regular expression is no more than 4096 symbols - `Not applicable` remediation status will be displayed if these conditions are not met. The limitations aim to prevent the legitimate traffic blocking.
 
 * Mark the leak as false if you think it was added by mistake.
-* Close the leaks to stop protection once all leaked tokens were regenerated or removed. This will remove the virtual patch rule.
-* Even if a leak is closed, it is not deleted. Reopen and then apply remediation to start protection again.
+* Close the leaks to mark that the problem is solved.
+* Even if a leak is closed, it is not deleted. Reopen it to mark that problem is still actual.
 
-## Attempts to use leaked tokens
+## Viewing requests blocked by virtual patches
 
-In Wallarm Console → **Attacks**, set the **Type** filter to `Virtual patch` (`vpatch`) to see all attempts of leaked tokens usage.
+You can view requests blocked by [virtual patches](../user-guides/rules/vpatch-rule.md) in Wallarm Console → **Attacks** by setting the **Type** filter to `Virtual patch` (`vpatch`).
 
 ![Events - API leaks via vpatch](../images/about-wallarm-waf/api-leaks/api-leaks-in-events.png)
 
-For now, you can track leaked token usage attempts only if `vpatch` is applied.
+Note that this filter will list not only the virtual patch events caused by the **API Leaks** module but also all the other virtual patches, created for different purposes.
