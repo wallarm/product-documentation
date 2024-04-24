@@ -81,6 +81,7 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 1. Add the [Wallarm chart repository](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
+    helm repo update wallarm
     ```
 1. Create the `values.yaml` file with the [solution configuration](customization.md).
 

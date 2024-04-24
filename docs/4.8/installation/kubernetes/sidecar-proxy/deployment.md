@@ -89,6 +89,7 @@ Generate a filtering node token of the [appropriate type][node-token-types] to c
 1. Add the [Wallarm chart repository](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
+    helm repo update wallarm
     ```
 1. Create the `values.yaml` file with the [Wallarm Sidecar configuration](customization.md). Example of the file with the minimum configuration is below.
 
