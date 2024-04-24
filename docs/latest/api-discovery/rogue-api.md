@@ -10,34 +10,45 @@ The [API Discovery](overview.md) module automatically identifies shadow, orphan 
 
 ![API Discovery - highlighting and filtering rogue API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
-## Monitor rogue APIs on hourly basis
+## Setup
 
-You can upload your specification to perform immediate comparison of its content with endpoints revealed by API Discovery up to the moment. But two things can change in time:
+To start finding the rogue APIs, you need to upload specification, select it to be used for rogue API detection and set detection parameters.
 
-* Your actual API inventory (changes will be revealed by API Discovery)
-* Your own specification (new versions can arrive)
+As both specification and API itself changes in time, consider the following:
 
-So to set up a constant monitoring of rogue API, you have an option of comparison **on the hourly basis**. To use the option, specification must be uploaded from URL. The specification itself will be updated before each comparison.
+* Comparison starts after first setup
+* Comparison re-starts if any [changes in API](track-changes.md) are found
+* Comparison re-starts if you save new settings for it
+* Comparison re-starts if you pick new file (by name or full URI)
+* Comparison re-starts if file uploaded from URI has changes and the **Regularly update the specification** (every hour) option is selected
+* You can re‑start comparison at any moment via specification menu → **Restart comparison**.
 
-To set up monitoring rogue APIs on hourly basis:
+Also, you can download the previously uploaded specification via **API Specifications** → specification details window → **Download specification**.
 
-1. Navigate to the **API Specifications** section in the [US](https://us1.my.wallarm.com/api-specifications) or [EU](https://my.wallarm.com/api-specifications) Cloud.
-1. Click **Upload specification**.
-1. Select a specification to upload. It must be in the OpenAPI 3.0 JSON or YAML format.
-1. Set comparison parameters:
+### Step 1: Upload specification
 
-    * Application(s) and host(s) - only endpoints related to the selected applications/hosts will be compared. If you select **Compare with all current and future discovered applications hosts**, all hosts (of the selected applications) known now and all hosts that will be discovered in future will be included into comparison.
+1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
+1. Set specification upload parameters and start uploading.
 
-        You can change comparison settings at any moment later - after this the comparison will be re‑done providing new results.
+    ![Upload specification](../images/api-policies-enforcement/specificaton-upload.png)
 
-    * Select uploading from URL. If necessary, you can specify a token for authentication.
-    * Leave the **Perform regular comparison** option selected (it is by default).
+Note that you will not be able to start configuring rogue API detection, until the specification file is successfully uploaded.
+
+### Step 2: Set rogue API detection parameters
+
+1. Click the **Rogue APIs detection** tab.
+
+    !!! info "API specification enforcement"
+        Besides rogue API detection, specifications may be used for [API specification enforcement](../api-policy-enforcement/overview.md).
+
+1. Select **Use for rogue APIs detection**.
+1. Select **Applications** and **Hosts** - only endpoints related to the selected hosts will be searched for rogue APIs.
 
     ![API Discovery - API Specifications - uploading API specification to find rogue APIs](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
 
-1. Start uploading.
+## Viewing found rogue APIs
 
-As uploading is finished, the number of rogue (shadow, orphan and zombie) APIs will be displayed for each specification in the list of **API Specifications**.
+As comparison is finished, the number of rogue (shadow, orphan and zombie) APIs will be displayed for each specification in the list of **API Specifications**.
 
 ![API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 
@@ -49,26 +60,17 @@ In the details of such endpoints, in the **Specification conflicts** section, th
 
 Shadow APIs are also displayed among the riskiest endpoints at the [API Discovery Dashboard](dashboard.md).
 
-## Find rogue APIs by one-time comparison
-
-You can upload your specification to perform immediate one-time comparison of its content with endpoints revealed by API Discovery up to the moment. To do so, in the comparison settings, select to upload from local machine or deselect the **Perform regular comparison** option for specification uploaded from URL.
-
-Consider the following:
-
-* You can re‑start comparison at any moment via specification menu → **Restart comparison**.
-* You can download the previously uploaded specification via **API Specifications** → specification details window → **Download specification**.
-
 ## Specification versions and zombie APIs
 
-Unlike shadow and orphan APIs, zombie APIs require comparison of different specification versions:
+Unlike shadow and orphan APIs, [zombie APIs](#zombie-api) require comparison of different specification versions:
 
-* In case of [hourly automatic comparison](#monitor-rogue-apis-on-hourly-basis), just put new version to the URL where you host your specification - it will be processed by an hourly schedule or immediately if you select **Restart comparison** from the specification menu.
-* In case when regular comparison is not used:
+* If during [setup](#setup) the **Regularly update the specification** option was selected, just put new version to the URL where you host your specification - it will be processed by an hourly schedule or immediately if you select **Restart comparison** from the specification menu.
+* If the **Regularly update the specification** option was not selected:
 
-    * If uploading from URL, change this URL to the new one or put new content to the same URL.
-    * If uploading from the local machine, open the specification dialog in the Wallarm Console, then upload a new file or the same one with new content.
+    * If uploading from URL and having a new content there, just click **Restart comparison**
+    * If uploading from the local machine, open the specification dialog, select new file and save changes. File must have a different name.
 
-    Then save specification, and from its menu, select **Restart comparison**.
+All listed will consider the new content to be a next version of the specification. The versions will be compared and zombie API will be displayed.
 
 ## Working with multiple specifications
 

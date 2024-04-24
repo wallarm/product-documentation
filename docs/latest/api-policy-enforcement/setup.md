@@ -11,7 +11,7 @@ This article describes how to enable and configure your API protection based on 
 
     ![Upload specification](../images/api-policies-enforcement/specificaton-upload.png)
 
-Note that you will not be able to start configuring API specification enforcement, until its file is successfully uploaded.
+Note that you will not be able to start configuring API specification enforcement, until the specification file is successfully uploaded.
 
 ## Step 2: Set actions for violations of policies
 
