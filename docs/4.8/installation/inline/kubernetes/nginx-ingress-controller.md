@@ -80,6 +80,7 @@ To install the Wallarm Ingress Controller:
     
     ```
     helm repo add wallarm https://charts.wallarm.com
+    helm repo update wallarm
     ```
 
 1. Create the `values.yaml` file with the [Wallarm configuration][configure-nginx-ing-controller-docs]. Example of the file with the minimum configuration is below.

@@ -55,7 +55,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 1. Add the [Wallarm Helm charts repository](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
-    helm repo update
+    helm repo update wallarm
     ```
 1. Create the `values.yaml` file with the following Wallarm configuration:
 
