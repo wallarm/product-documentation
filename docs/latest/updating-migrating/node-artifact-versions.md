@@ -159,6 +159,12 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ## Helm chart for Wallarm eBPF‑based solution
 
+### 0.10.28 (2024-04-24)
+
+* Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
+* Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
+* Added support for NGINX v1.25.4
+
 ### 0.10.27 (2024-03-29)
 
 * Fixed incorrect behavior in case of processing/aggregation init container fail
@@ -295,6 +301,11 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](cloud-image.md)
 
+<!--### wallarm-node-4-10-20240418-112335
+
+* Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
+* Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
+-->
 ### wallarm-node-4-10-20240220-234618
 
 * Updated the `appstructure` package
