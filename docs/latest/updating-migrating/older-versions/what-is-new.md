@@ -122,7 +122,7 @@ Wallarm detects new attack types:
 
 [JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely. JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
 
-Starting from version 4.4, you can enable Wallarm to [detect the following JWT weaknesses](../../about-wallarm/detecting-vulnerabilities.md#weak-jwts-detection):
+Starting from version 4.4, you can enable Wallarm to [detect the following JWT weaknesses](../../attacks-vulns-list.md#weak-jwt):
 
 * Unencrypted JWTs
 * JWTs signed using compromised secret keys
@@ -268,7 +268,7 @@ There are the following new features for request source control:
     The **safe blocking** mode enables a significant reduction of [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from graylisted IP addresses.
 
     For automatic IP address graylisting, a newly released [**Number of malicious payloads** trigger](../../admin-en/configuration-guides/protecting-with-thresholds.md) can be used.
-* Automated allowlisting of [Wallarm Vulnerability Scanner](../../about-wallarm/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
+* Automated allowlisting of [Wallarm Vulnerability Scanner](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
 * Ability to allowlist, denylist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region, or data center.
 * Ability to allowlist, denylist, or graylist request sources for specific applications.
 * New NGINX directive and Envoy parameter `disable_acl` to disable request origin analysis.
@@ -369,7 +369,7 @@ New blocking page with the new layout looks as follows by default:
     [Instructions on deploying the Wallarm NGINX‑based Docker container →](../../admin-en/installation-docker-en.md)
 * New parameters of the file `node.yaml` to configure the synchronization of the Wallarm Cloud and filtering nodes: `api.local_host` and `api.local_port`. New parameters allow specifying a local IP address and port of the network interface to send requests to Wallarm API through.
 
-    [See the full list of `node.yaml` parameters for Wallarm Cloud and filtering node synchronization setup →](../../admin-en/configure-cloud-node-synchronization-en.md#credentials-to-access-the-wallarm-cloud)
+    [See the full list of `node.yaml` parameters for Wallarm Cloud and filtering node synchronization setup →](../../admin-en/configure-cloud-node-synchronization-en.md#access-parameters)
 
 ## Disabling IPv6 connections for the NGINX-based Wallarm Docker container
 

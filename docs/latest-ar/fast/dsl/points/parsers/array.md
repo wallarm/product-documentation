@@ -5,7 +5,7 @@
 [anchor3]:      #the-example-of-using-the-formurlencoded-parser-and-the-array-filter
 [anchor4]:      #the-example-of-using-the-multipart-parser-and-the-array-filter
 [anchor5]:      #the-example-of-using-the-xmltag-filter-and-the-array-filter
-[anchor6]:      #the-example-of-using-the-jsonobj-filter-and-the-array-filter
+[anchor6]:      #the-example-of-using-the-json_obj-filter-and-the-array-filter
 
 
 # مُرشِح الصفيف

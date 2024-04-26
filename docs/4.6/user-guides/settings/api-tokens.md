@@ -29,7 +29,7 @@ You can renew the token value at any moment.
 
 Consider that:
 
-* If the token owner has been [disabled](../../user-guides/settings/users.md#disable-access-for-a-user), all one's tokens are automatically disabled as well.
+* If the token owner has been [disabled](../../user-guides/settings/users.md#disabling-and-deleting-users), all one's tokens are automatically disabled as well.
 * If the token owner has been reduced in permissions, corresponding permissions will be removed from all one's tokens.
 * All disabled tokens are automatically removed in a week after disabling.
 * To enable previously disabled token, save it with the new expiration date.

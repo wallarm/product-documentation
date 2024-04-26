@@ -7,7 +7,7 @@
 [img-cloud-icon]:           ../../images/user-guides/events/cloud.png#mini
 [img-skip-icon]:                ../../images/user-guides/events/skipped.png#mini
 
-[al-brute-force-attack]:      ../../attacks-vulns-list.md#bruteforce-attack
+[al-brute-force-attack]:      ../../attacks-vulns-list.md#brute-force-attack
 [al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
 [al-bola]:                    ../../attacks-vulns-list.md#broken-object-level-authorization-bola
 

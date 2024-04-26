@@ -2,10 +2,10 @@
 
 [anchor1]:      #the-example-of-using-the-get-filter-with-the-array-filter
 [anchor2]:      #the-example-of-using-the-header-filter-with-the-array-filter
-[anchor3]:      #the-example-of-using-the-formurlencoded-parser-and-the-array-filter
+[anchor3]:      #the-example-of-using-the-form_urlencoded-parser-and-the-array-filter
 [anchor4]:      #the-example-of-using-the-multipart-parser-and-the-array-filter
-[anchor5]:      #the-example-of-using-the-xmltag-filter-and-the-array-filter
-[anchor6]:      #the-example-of-using-the-jsonobj-filter-and-the-array-filter
+[anchor5]:      #the-example-of-using-the-xml_tag-filter-and-the-array-filter
+[anchor6]:      #the-example-of-using-the-json_obj-filter-and-the-array-filter
 
 
 # Array Filter

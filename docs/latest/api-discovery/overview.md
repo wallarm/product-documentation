@@ -7,7 +7,7 @@ The API built inventory includes the following elements:
 * API endpoints
 * Request methods (GET, POST, and others)
 * Required and optional GET, POST, and header parameters of requests and responses including:
-    * [Type/format](./exploring.md#parameter-format-and-data-type) of data sent in each parameter    
+    * [Type/format](./exploring.md#format-and-data-type) of data sent in each parameter    
     * Date and time when parameter information was last updated
 
 !!! info "Availability of response parameters"
@@ -25,7 +25,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 **As you have your API inventory discovered by Wallarm, you can**:
 
-* Have a full visibility into the whole API estate including the list of [external and internal](exploring.md#distinguish-external-and-internal-apis) APIs.
+* Have a full visibility into the whole API estate including the list of [external and internal](exploring.md#external-vs-internal) APIs.
 * See [what data](exploring.md#endpoint-details) is going into and out of the APIs.
 * Get a list of endpoints with the open vulnerabilities.
 * Get a list of the threats that occurred over the past 7 days per any given API endpoint.

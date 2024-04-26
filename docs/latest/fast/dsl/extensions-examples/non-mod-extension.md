@@ -1,5 +1,5 @@
 [link-meta-info]:           ../create-extension.md#structure-of-the-meta-info-section
-[link-send-headers]:        ../phase-send.md#working-with-the-host-header
+[link-send-headers]:        ../phase-send.md
 [link-using-extension]:     ../using-extension.md
 [link-app-examination]:     app-examination.md
 

@@ -8,7 +8,7 @@
 
 ![مثال على ضربة](images/user-guides/events/analyze-attack-raw.png)
 
-[تفاصيل عن معلمات الضربة](user-guides/events/analyze-attack.md#analyze-requests-in-an-attack)
+[تفاصيل عن معلمات الضربة](user-guides/events/analyze-attack.md#analyze-requests-in-an-event)
 
 ## الهجوم
 

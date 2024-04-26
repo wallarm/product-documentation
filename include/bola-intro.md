@@ -13,7 +13,7 @@ By default, Wallarm automatically discovers only vulnerabilities of the BOLA typ
     * Requests that do not contain signs of other attack types, e.g. requests are not considered to be a BOLA attack if:
 
         * These requests contain signs of [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks).
-        * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](../../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
+        * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](../../user-guides/rules/regex-rule.md#creating-and-applying-rule).
 
 ## Requirements
 

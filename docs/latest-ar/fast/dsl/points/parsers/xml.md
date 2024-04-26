@@ -2,13 +2,13 @@
 [link-xmltag-array]:        array.md#the-example-of-using-the-xmltag-filter-and-the-array-filter
 [link-array]:               array.md
 
-[anchor1]:      #xmlcomment-filter
-[anchor2]:      #xmldtd-filter
-[anchor3]:      #xmldtdentity-filter
-[anchor4]:      #xmlpi-filter
-[anchor5]:      #xmltag-filter
-[anchor6]:      #xmltagarray-filter
-[anchor7]:      #xmlattr-filter
+[anchor1]:      #xml_comment-filter
+[anchor2]:      #xml_dtd-filter
+[anchor3]:      #xml_dtd_entity-filter
+[anchor4]:      #xml_pi-filter
+[anchor5]:      #xml_tag-filter
+[anchor6]:      #xml_tag_array-filter
+[anchor7]:      #xml_attr-filter
 
 # معالج XML
 

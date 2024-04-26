@@ -1,7 +1,7 @@
 [al-sqli]:                ../../attacks-vulns-list.md#sql-injection
 [al-xss]:                 ../../attacks-vulns-list.md#crosssite-scripting-xss
 [al-rce]:                 ../../attacks-vulns-list.md#remote-code-execution-rce
-[al-brute-force]:         ../../attacks-vulns-list.md#bruteforce-attack
+[al-brute-force]:         ../../attacks-vulns-list.md#brute-force-attack
 [al-path-traversal]:      ../../attacks-vulns-list.md#path-traversal
 [al-crlf]:                ../../attacks-vulns-list.md#crlf-injection
 [al-open-redirect]:       ../../attacks-vulns-list.md#open-redirect
@@ -190,7 +190,7 @@ Existem os seguintes métodos para especificar o período:
 
         `semana`, `mês`, `ano` podem ser usados como `<unidade>`. Por exemplo: `esta semana` retornará eventos detectados na segunda-feira, terça-feira e quarta-feira desta semana, se hoje for quarta-feira.
 
-O formato de data e hora depende das configurações especificadas no seu [perfil](../settings/account.md#changing-your-date-time-format):
+O formato de data e hora depende das configurações especificadas no seu [perfil](../settings/account.md):
 
 * MM/DD/YYYY se **MDY** estiver selecionado
 * DD/MM/YYYY se **DMY** estiver selecionado

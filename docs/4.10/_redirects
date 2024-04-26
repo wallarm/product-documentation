@@ -636,9 +636,9 @@
 /4.8/user-guides/rules/ignore-attacks-in-binary-data/ /4.8/about-wallarm/protecting-against-attacks/#ignoring-certain-attack-signs-in-the-binary-data
 /4.8/user-guides/rules/wallarm-mode-rule/ /4.8/admin-en/configure-wallarm-mode/#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console
 
-/user-guides/settings/general/ /admin-en/configure-wallarm-mode/#setting-up-the-general-filtration-rule-in-wallarm-console
-/4.8/user-guides/settings/general/ /4.8/admin-en/configure-wallarm-mode/#setting-up-the-general-filtration-rule-in-wallarm-console
-/4.6/user-guides/settings/general/ /4.6/admin-en/configure-wallarm-mode/#setting-up-the-general-filtration-rule-in-wallarm-console
+/user-guides/settings/general/ /admin-en/configure-wallarm-mode/#setting-up-general-filtration-rule-in-wallarm-console
+/4.8/user-guides/settings/general/ /4.8/admin-en/configure-wallarm-mode/#setting-up-general-filtration-rule-in-wallarm-console
+/4.6/user-guides/settings/general/ /4.6/admin-en/configure-wallarm-mode/#setting-up-general-filtration-rule-in-wallarm-console
 
 /user-guides/rules/api-abuse-url/ /user-guides/api-abuse-prevention/#exceptions-for-target-urls-and-specific-requests
 /4.8/user-guides/rules/api-abuse-url/ /4.8/user-guides/api-abuse-prevention/#exceptions-for-target-urls-and-specific-requests

@@ -1,7 +1,7 @@
 [al-sqli]:                ../../attacks-vulns-list.md#sql-injection
 [al-xss]:                 ../../attacks-vulns-list.md#crosssite-scripting-xss
 [al-rce]:                 ../../attacks-vulns-list.md#remote-code-execution-rce
-[al-brute-force]:         ../../attacks-vulns-list.md#bruteforce-attack
+[al-brute-force]:         ../../attacks-vulns-list.md#brute-force-attack
 [al-path-traversal]:      ../../attacks-vulns-list.md#path-traversal
 [al-crlf]:                ../../attacks-vulns-list.md#crlf-injection
 [al-open-redirect]:       ../../attacks-vulns-list.md#open-redirect
@@ -212,7 +212,7 @@ There are the following methods to specify the period:
 
         `week`, `month`, `year` can be used as `<unit>`. For example: `this week` will return events detected on Monday, Tuesday and Wednesday this week if today is Wednesday.
 
-Date and time format depends on the settings specified in your [profile](../settings/account.md#changing-your-date-time-format):
+Date and time format depends on the settings specified in your [profile](../settings/account.md):
 
 * MM/DD/YYYY if **MDY** is selected
 * DD/MM/YYYY if **DMY** is selected

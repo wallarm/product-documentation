@@ -287,7 +287,7 @@ Yeni düzene sahip yeni engelleme sayfası varsayılan olarak şöyle görünür
     [Wallarm NGINX tabanlı Docker konteynerinin kurulum talimatları →](../../admin-en/installation-docker-en.md)
 * Wallarm Bulutu ve filtreleme düğümlerinin senkronizasyonunu yapılandırmak için `node.yaml` dosyasının yeni parametreleri: `api.local_host` ve `api.local_port`. Yeni parametreler, Wallarm API'ye istekte bulunmak için bir ağ arayüzünün yerel IP adresini ve portunu belirtmenize olanak tanır.
 
-    [Wallarm Bulutu ve filtreleme düğümlerinin senkronizasyon kurulumu için `node.yaml` parametrelerinin tam listesi →](../../admin-en/configure-cloud-node-synchronization-en.md#credentials-to-access-the-wallarm-cloud)
+    [Wallarm Bulutu ve filtreleme düğümlerinin senkronizasyon kurulumu için `node.yaml` parametrelerinin tam listesi →](../../admin-en/configure-cloud-node-synchronization-en.md#access-parameters)
 
 ## IPv6 bağlantılarının devre dışı bırakılması için NGINX tabanlı Wallarm Docker konteyneri
 

@@ -4,8 +4,8 @@
 [link-get-point]:           ../../dsl/points/parsers/http.md#get-filter
 [link-post-point]:          ../../dsl/points/parsers/http.md#post-filter
 [link-path-point]:          ../../dsl/points/parsers/http.md#path-filter
-[link-action-name-point]:   ../../dsl/points/parsers/http.md#actionname-filter
-[link-action-ext-point]:    ../../dsl/points/parsers/http.md#actionext-filter
+[link-action-name-point]:   ../../dsl/points/parsers/http.md#action_name-filter
+[link-action-ext-point]:    ../../dsl/points/parsers/http.md#action_ext-filter
 [link-uri-point]:           ../../dsl/points/parsers/http.md#uri-filter
 
 [doc-point-list]:           ../../dsl/points/parsers.md

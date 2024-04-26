@@ -7,7 +7,7 @@ These instructions describe the steps to upgrade the end‑of‑life multi-tenan
 
 ## Requirements
 
-* Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../../installation/multi-tenant/configure-accounts.md#tenant-account-structure)
+* Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../../installation/multi-tenant/overview.md#tenant-accounts)
 * Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Step 1: Contact the Wallarm support team
@@ -98,7 +98,7 @@ To rewrite the configuration, do the following:
 
 ### Get UUIDs of your tenants
 
-To get the list of tenants, send authenticated requests to Wallarm API. Authentication approach is the same as the one [used for tenant creation](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
+To get the list of tenants, send authenticated requests to Wallarm API. Authentication approach is the same as the one [used for tenant creation](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api).
 
 1. Get `clientid`(s) to later find UUIDs related to them:
 
@@ -126,7 +126,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
                     -H "X-WallarmApi-Token: <YOUR_TOKEN>"
                     ```
             
-            Where `PARTNER_ID` is the one obtained at [**Step 2**](../../installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) of the tenant creation procedure.
+            Where `PARTNER_ID` is the one obtained at [**Step 2**](../../installation/multi-tenant/configure-accounts.md#step-1-sign-up-and-send-a-request-to-activate-the-multitenancy-feature) of the tenant creation procedure.
 
             Response example:
 

@@ -8,7 +8,7 @@
 
 ![Hit の例](images/user-guides/events/analyze-attack-raw.png)
 
-[ヒットのパラメータ詳細](user-guides/events/analyze-attack.md#analyze-requests-in-an-attack)
+[ヒットのパラメータ詳細](user-guides/events/analyze-attack.md#analyze-requests-in-an-event)
 
 ## 攻撃
 

@@ -2,7 +2,7 @@
 
 Recommended CPU usage by Wallarm is about 10-15%, meaning that filtering nodes will be able to handle a x10 traffic spike. If a Wallarm node consumes more CPU than it was expected and you need to reduce CPU usage, use this guide.
 
-To reveal the longest request processing episodes and thus the primary CPU consumers, you can [enable extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginx‑based-filter-node) and monitor the processing time.
+To reveal the longest request processing episodes and thus the primary CPU consumers, you can [enable extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node) and monitor the processing time.
 
 You can do the following to lower the CPU load by Wallarm:
 

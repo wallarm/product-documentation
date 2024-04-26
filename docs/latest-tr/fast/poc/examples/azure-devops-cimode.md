@@ -49,7 +49,7 @@ Güvenlik testini gerçekleştirmek için talimatlara uyun:
 2. Uygulamanın çalıştırılmasının __ardından__ diğer gerekli [variables](../ci-mode-testing.md#environment-variables-in-testing-mode) ile `CI_MODE=testing` modunda FAST Docker konteynırını çalıştırma komutu ekleyin.
 
     !!! info "Kaydedilmiş baz istek setini kullanım"
-        Baz taleplerin seti başka bir pipeline'da kaydedildiyse, kaydın ID'sini [TEST_RECORD_ID](../ci-mode-testing.md#переменные-в-режиме-тестирования) değişkenine belirtin. Aksi takdirde, son kaydedilen set kullanılacaktır.
+        Baz taleplerin seti başka bir pipeline'da kaydedildiyse, kaydın ID'sini [TEST_RECORD_ID](../ci-mode-testing.md#environment-variables-in-testing-mode) değişkenine belirtin. Aksi takdirde, son kaydedilen set kullanılacaktır.
 
     Komutun örneği:
 

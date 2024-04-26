@@ -24,7 +24,7 @@ If you perform the initial rollout of Wallarm protection for environments, it is
 From time to time changes might be needed in your existing Wallarm infrastructure. Depending on your organization's change management policy, you might be required to test all potentially risky changes in a non-production environment, and then apply the changes in your production environment.
 
 The following approaches are recommended to test and gradually change the configuration of different Wallarm components and features:
-* [Low-level configuration of Wallarm filtering nodes in all form-factors](#low-level-onfiguration-of-wallarm-filtering-nodes-in-all-form-factors)
+* [Low-level configuration of Wallarm filtering nodes in all form-factors](#low-level-configuration-of-wallarm-filtering-nodes-in-all-form-factors)
 * [Configuration of Wallarm node rules](#configuration-of-wallarm-node-rules)
 
 ### Low-level Configuration of Wallarm Filtering Nodes in All Form-factors

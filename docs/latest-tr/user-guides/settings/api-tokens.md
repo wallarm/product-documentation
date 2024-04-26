@@ -29,7 +29,7 @@ Anahtar değerini istediğiniz zaman yenileyebilirsiniz.
 
 Şunları dikkate alın:
 
-* Anahtar sahibi [devre dışı bırakıldıysa](../../user-guides/settings/users.md#disable-access-for-a-user), tüm anahtarlar özomatik olarak devre dışı bırakılır.
+* Anahtar sahibi [devre dışı bırakıldıysa](../../user-guides/settings/users.md#disabling-and-deleting-users), tüm anahtarlar özomatik olarak devre dışı bırakılır.
 * Anahtar sahibinin izinleri azaltıldıysa, ilgili izinler tüm anahtarlarından kaldırılır.
 * Tüm pasif hale getirilen anahtarlar, pasif hale getirilmelerinden bir hafta sonra otomatik olarak silinir.
 * Daha önce devre dışı bırakılan bir anahtarı etkinleştirmek için, onu yeni bir son kullanma tarihi ile kaydedin.

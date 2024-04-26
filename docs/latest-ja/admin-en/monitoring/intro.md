@@ -1,6 +1,6 @@
 [link-collectd]:            https://collectd.org/
 
-[av-bruteforce]:            ../../attacks-vulns-list.md#bruteforce-attack
+[av-bruteforce]:            ../../attacks-vulns-list.md#brute-force-attack
 [doc-postanalitycs]:        ../installation-postanalytics-en.md
 
 [link-collectd-naming]:     https://collectd.org/wiki/index.php/Naming_schema

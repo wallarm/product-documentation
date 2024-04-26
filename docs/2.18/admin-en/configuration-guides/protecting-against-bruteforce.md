@@ -4,7 +4,7 @@ Behavioral attack (brute‑force attack) is one of the attack types that can be 
 
 There are the following classes of brute‑force attacks:
 
-* [Regular brute‑force attacks](../../attacks-vulns-list.md#bruteforce-attack): password brute‑forcing, session identifier brute‑forcing, credential stuffing. These attacks are characterized by a large number of requests with different forced parameter values sent to a typical URI for a limited timeframe.
+* [Regular brute‑force attacks](../../attacks-vulns-list.md#brute-force-attack): password brute‑forcing, session identifier brute‑forcing, credential stuffing. These attacks are characterized by a large number of requests with different forced parameter values sent to a typical URI for a limited timeframe.
 * [Forced browsing](../../attacks-vulns-list.md#forced-browsing). These attacks are characterized by a large number of response codes 404 returned to requests to different URIs for a limited timeframe. 
     
     The aim of this attack is to enumerate and access hidden resources (e.g. directories and files containing information on application components). The forced browsing attack type usually allows attackers to collect the information about application and then perform other attack types by exploiting this information.

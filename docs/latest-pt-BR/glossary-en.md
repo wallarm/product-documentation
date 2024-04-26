@@ -8,7 +8,7 @@ Um hit é uma solicitação maliciosa serializada (solicitação maliciosa origi
 
 ![Exemplo de hit](images/user-guides/events/analyze-attack-raw.png)
 
-[Detalhes dos parâmetros de hit](user-guides/events/analyze-attack.md#analyze-requests-in-an-attack)
+[Detalhes dos parâmetros de hit](user-guides/events/analyze-attack.md#analyze-requests-in-an-event)
 
 ## Ataque
 

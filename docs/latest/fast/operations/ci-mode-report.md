@@ -1,6 +1,6 @@
 [anchor-report-mode]:              #running-fast-node-in-report-mode
 
-[doc-ci-mode-testing-report]:      ../poc/ci-mode-testing.md#getting-the-report-about-the-test
+[doc-ci-mode-testing-report]:      ../poc/ci-mode-testing.md#deployment-of-a-fast-node-in-the-testing-mode
 [doc-ci-mode-testing]:             ../poc/ci-mode-testing.md
 [doc-get-token]:                   create-node.md
 [deploy-docker-with-fast-node]:    ../qsg/deployment.md#4-deploy-the-fast-node-docker-container

@@ -49,7 +49,7 @@ FASTがCIモードでAzure DevOpsパイプラインに統合される設定は`a
 2. アプリケーションを実行するコマンドの__後に__、他の必要な[変数](../ci-mode-testing.md#environment-variables-in-testing-mode)とともに`CI_MODE=testing`モードでFAST Dockerコンテナを実行するコマンドを追加します。
 
     !!! info "記録されたベースラインリクエストのセットを使用する"
-        ベースラインリクエストのセットが別のパイプラインで記録されていた場合は、その記録IDを[TEST_RECORD_ID](../ci-mode-testing.md#переменные-в-режиме-тестирования)変数で指定します。それ以外の場合は、最後に記録されたセットが使用されます。
+        ベースラインリクエストのセットが別のパイプラインで記録されていた場合は、その記録IDを[TEST_RECORD_ID](../ci-mode-testing.md#environment-variables-in-testing-mode)変数で指定します。それ以外の場合は、最後に記録されたセットが使用されます。
 
     コマンドの例:
 

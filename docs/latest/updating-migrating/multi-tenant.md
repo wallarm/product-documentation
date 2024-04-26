@@ -9,7 +9,7 @@ To upgrade the end‑of‑life multi-tenant node (3.6 or lower), please use the 
 
 ## Requirements
 
-* Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../installation/multi-tenant/configure-accounts.md#tenant-account-structure)
+* Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../installation/multi-tenant/overview.md#tenant-accounts)
 * Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Follow standard upgrade procedure

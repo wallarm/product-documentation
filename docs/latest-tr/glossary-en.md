@@ -8,7 +8,7 @@ Hit, serileştirilmiş kötü niyetli bir istektir (filtreleme düğümü taraf�
 
 ![Hit örneği](images/user-guides/events/analyze-attack-raw.png)
 
-[Hit parametreleri hakkında ayrıntılar](user-guides/events/analyze-attack.md#analyze-requests-in-an-attack)
+[Hit parametreleri hakkında ayrıntılar](user-guides/events/analyze-attack.md#analyze-requests-in-an-event)
 
 ## Saldırı
 

@@ -1,7 +1,7 @@
 [link-doc-ami-creation]:        create-image.md
 [link-doc-lb-guide]:            load-balancing-guide.md
 
-[link-ssh-keys-guide]:          ../../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys
+[link-ssh-keys-guide]:          ../../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys-in-aws
 [link-security-group-guide]:    ../../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group
 
 [link-doc-as-faq]:              https://aws.amazon.com/autoscaling/faqs/

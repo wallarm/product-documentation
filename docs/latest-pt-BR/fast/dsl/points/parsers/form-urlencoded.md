@@ -1,6 +1,6 @@
 [link-ruby]:                        http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
 [link-formurlencoded-array]:        array.md#the-example-of-using-the-formurlencoded-parser-and-the-array-filter
-[link-formurlencoded-hash]:         hash.md#the-example-of-using-the-formurlencoded-parser-with-the-hash-filter
+[link-formurlencoded-hash]:         hash.md#the-example-of-using-the-form_urlencoded-parser-with-the-hash-filter
 
 # Analisador Form_urlencoded
 

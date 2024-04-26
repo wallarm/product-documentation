@@ -24,7 +24,7 @@ To deploy and configure Wallarm to analyze a traffic mirror, you need to:
 1. Configure Wallarm to analyze the traffic copy - the instructions above are equiped with the required steps.
 1. Configure your infrastructure to produce a copy of your incoming traffic and send the copy to a Wallarm node as to an additional backend.
 
-    For configuration details, we recommend to refer to the documentation of components being used in your infrastructure. [Below](#examples-of-web-server-configuration-for-traffic-mirroring) we give configuration examples for some popular solutions like NGINX, Envoy and similar but the real configuration depends on the pecularities of your instrastructure.
+    For configuration details, we recommend to refer to the documentation of components being used in your infrastructure. [Below](#configuration-examples-for-traffic-mirroring) we give configuration examples for some popular solutions like NGINX, Envoy and similar but the real configuration depends on the pecularities of your instrastructure.
 
 ## Configuration examples for traffic mirroring
 

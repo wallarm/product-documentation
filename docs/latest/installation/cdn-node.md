@@ -7,7 +7,7 @@
 [cname-required-modal]:             ../images/waf-installation/quickstart/cname-required-modal.png
 [attacks-in-ui]:                    ../images/admin-guides/test-attacks-quickstart.png
 [user-roles-docs]:                  ../user-guides/settings/users.md
-[update-origin-ip-docs]:            ../user-guides/nodes/cdn-node.md#updating-the-origin-address-of-the-protected-resource
+[update-origin-ip-docs]:            ../user-guides/nodes/cdn-node.md#updating-the-origin-address-of-the-protected-resourse
 [rules-docs]:                       ../user-guides/rules/rules.md
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 [integration-docs]:                 ../user-guides/settings/integrations/integrations-intro.md
@@ -15,7 +15,7 @@
 [application-docs]:                 ../user-guides/settings/applications.md
 [nodes-ui-docs]:                    ../user-guides/nodes/cdn-node.md
 [events-docs]:                      ../user-guides/events/check-attack.md
-[graylist-populating-docs]:         ../user-guides/ip-lists/overview.md#managing-graylist
+[graylist-populating-docs]:         ../user-guides/ip-lists/overview.md
 [graylist-docs]:                    ../user-guides/ip-lists/overview.md
 [link-app-conf]:                    ../user-guides/settings/applications.md
 [varnish-cache]:                    #why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node

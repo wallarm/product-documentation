@@ -5,7 +5,7 @@
 
 This document provides the lists of [Wallarm Scanner](../user-guides/scanner.md) IP addresses for US and EU Clouds.
 
-It is recommended to add addresses from the corresponding list to the **whitelists** of your software or hardware facilities (besides Wallarm) that you use to automatically filter and block traffic. This will [prevent](../user-guides/scanner.md#preventing-scanner-from-being-blocking) Wallarm Scanner from being blocked by these facilities.
+It is recommended to add addresses from the corresponding list to the **whitelists** of your software or hardware facilities (besides Wallarm) that you use to automatically filter and block traffic. This will [prevent](../user-guides/scanner.md#preventing-scanner-from-being-blocked) Wallarm Scanner from being blocked by these facilities.
 
 ## US Cloud
 

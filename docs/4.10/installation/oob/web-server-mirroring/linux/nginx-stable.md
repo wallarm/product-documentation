@@ -30,7 +30,7 @@ search:
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../../installation/supported-deployment-options.md
 [oob-advantages-limitations]:       ../../overview.md#advantages-and-limitations
-[web-server-mirroring-examples]:    ../overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[web-server-mirroring-examples]:    ../overview.md#configuration-examples-for-traffic-mirroring
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 
 --8<-- "latest/installation/oob/web-server-mirroring/linux/nginx-stable.md"

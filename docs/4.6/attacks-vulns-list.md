@@ -60,9 +60,9 @@
 [anchor-main-list]:     #the-main-list-of-attacks-and-vulnerabilities        
 [anchor-special-list]:  #the-list-of-special-attacks-and-vulnerabilities
 
-[anchor-brute]: #bruteforce-attack
+[anchor-brute]: #brute-force-attack
 [anchor-rce]:   #remote-code-execution-rce
-[anchor-ssrf]:  #server-side-request-forgery-ssrf
+[anchor-ssrf]:  #serverside-request-forgery-ssrf
 
 [link-imap-wiki]:                                https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol
 [link-smtp-wiki]:                                https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol

@@ -39,7 +39,7 @@ açıklama: Bu belge, FAST'ın algıladığı yazılım güvenlik açıklarını
 [anchor-vuln-list]:     #vulnerabilities-list
 
 [anchor-rce]:   #remote-code-execution-rce
-[anchor-ssrf]:  #server-side-request-forgery-ssrf
+[anchor-ssrf]:  #serverside-request-forgery-ssrf
 
 # FAST Tarafından Belirlenebilecek Güvenlik Açıkları
 

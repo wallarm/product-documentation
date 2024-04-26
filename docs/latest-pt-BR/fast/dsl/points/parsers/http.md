@@ -10,8 +10,8 @@
 
 [anchor1]:      #uri-filter
 [anchor2]:      #path-filter
-[anchor3]:      #actionname-filter
-[anchor4]:      #actionext-filter
+[anchor3]:      #action_name-filter
+[anchor4]:      #action_ext-filter
 [anchor5]:      #get-filter
 [anchor6]:      #header-filter
 [anchor7]:      #post-filter

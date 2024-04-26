@@ -69,7 +69,7 @@ There are two ways of adding endpoints to the list:
 
 * Manually - you can also include your own unique authentication endpoints, ensuring full protection. When adding manually, set [URI](../user-guides/rules/rules.md#uri-constructor) and the way of searching for authentication parameters:
 
-    * By **Exact location of parameters** - you will need to indicate the exact endpoint [request points](../user-guides/rules/rules.md#points) where password and login are located.
+    * By **Exact location of parameters** - you will need to indicate the exact endpoint [request points](../user-guides/rules/rules.md#configuring) where password and login are located.
     <!--
         ![Credential Stuffing - Add authentication endpoint - Exact location](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-exact-location.png)
     -->

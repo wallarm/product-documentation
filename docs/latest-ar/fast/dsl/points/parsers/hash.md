@@ -1,10 +1,10 @@
 [link-ruby]:        http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
 
 [anchor1]:      #the-example-of-using-the-get-filter-and-the-hash-filter
-[anchor2]:      #the-example-of-using-the-formurlencoded-parser-with-the-hash-filter
+[anchor2]:      #the-example-of-using-the-form_urlencoded-parser-with-the-hash-filter
 [anchor3]:      #the-example-of-using-the-multipart-filter-and-the-hash-filter
 [anchor4]:      #the-example-of-using-the-jsondoc-parser-and-the-hash-filter
-[anchor5]:      #the-example-of-using-the-jsonobj-filter-and-the-hash-filter
+[anchor5]:      #the-example-of-using-the-json_obj-filter-and-the-hash-filter
 [anchor6]:      #the-example-of-using-the-jsonarray-filter-and-the-hash-filter
 
 # مرشح الجدول

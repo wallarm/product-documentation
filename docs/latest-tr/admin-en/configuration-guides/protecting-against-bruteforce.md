@@ -4,7 +4,7 @@ Davranışsal saldırı (brüt-kuvvet saldırısı) Wallarm'ın uygun şekilde y
 
 Aşağıdaki sınıflarında brüt-kuvvet saldırıları bulunur:
 
-* [Düzenli brüt-kuvvet saldırıları](../../attacks-vulns-list.md#bruteforce-attack): parola brüt-kuvvetleme, oturum tanımlayıcı brüt-kuvvetleme, kimlik bilgileri doldurma. Bu saldırılar, kısıtlı bir zaman çerçevesinde tipik bir URI'ye farklı zor tanımlama değerlerine sahip bir dizi istekle karakterizedir.
+* [Düzenli brüt-kuvvet saldırıları](../../attacks-vulns-list.md#brute-force-attack): parola brüt-kuvvetleme, oturum tanımlayıcı brüt-kuvvetleme, kimlik bilgileri doldurma. Bu saldırılar, kısıtlı bir zaman çerçevesinde tipik bir URI'ye farklı zor tanımlama değerlerine sahip bir dizi istekle karakterizedir.
 * [Zorla gezinme](../../attacks-vulns-list.md#forced-browsing). Bu saldırılar, kısıtlı bir zaman çerçevesinde farklı URI'lara yönlendirilen isteklere bir dizi 404 yanıt kodu ile karakterizedir.
     
     Bu saldırının amacı, gizli kaynakları (ör. uygulama bileşenleri hakkında bilgi içeren dizinler ve dosyalar) numaralandırmaktır ve erişim sağlamaktır. Zorla gezinme saldırı türü genellikle saldırganların, uygulama hakkında bilgi toplamalarına ve bu bilgileri istismar ederek diğer saldırı türlerini gerçekleştirmelerine izin verir.

@@ -3,7 +3,7 @@
 
 [doc-mod-extension]:            extensions-examples/mod-extension.md
 [doc-non-mod-extension]:        extensions-examples/non-mod-extension.md
-[doc-testpolicy]:               logic.md#how-test-policy-influences-the-request-processing
+[doc-testpolicy]:               logic.md
 
 [img-test-policy-insertion-points]:      ../../images/fast/dsl/common/using-extensions/tp_insertion_points.png
 [img-test-policy-attacks]:              ../../images/fast/dsl/common/using-extensions/tp_attacks_test.png

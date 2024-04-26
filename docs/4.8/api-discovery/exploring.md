@@ -57,7 +57,7 @@ Each parameter information includes:
     * Medical data like medical license number
     * Personally identifiable information (PII) like full name, passport number or SSN
 
-* [Type/format](#parameter-format-and-data-type) of data sent in this parameter
+* [Type/format](#format-and-data-type) of data sent in this parameter
 * Date and time when parameter information was last updated
 
 ### Format and data type

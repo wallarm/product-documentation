@@ -7,7 +7,7 @@
 * نقاط نهاية واجهة برمجة التطبيقات
 * طرق الطلب (GET، POST، وغيرها)
 * المعلمات المطلوبة والاختيارية لـ GET، POST، والمعلمات الرأسية بما في ذلك:
-    * [نوع/تنسيق](./exploring.md#parameter-format-and-data-type) البيانات المرسلة في كل معلمة
+    * [نوع/تنسيق](./exploring.md#format-and-data-type) البيانات المرسلة في كل معلمة
     * تاريخ ووقت آخر تحديث لمعلومات المعلمة
 
 ![نقاط النهاية التي اكتشفها اكتشاف واجهة برمجة التطبيقات](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)

@@ -6,7 +6,7 @@ After enabling the [IP blocking functionality](../../../configure-ip-blocking-en
 
 * If Wallarm detects at least three different attack vectors from an IP address the address is automatically added to the denylist and blocked for 1 hour. If a similar behavior from the same IP address is detected again the IP is blocked for 2 hours, etc.
 * Ability to [manage the denylist of IPs](../../../../user-guides/denylist.md) from your Wallarm account UI.
-* Ability to use Wallarm to protect against behavior‑based attacks such as [brute-force](../../../../attacks-vulns-list.md#bruteforce-attack), [path traversal attacks](../../../../attacks-vulns-list.md#path-traversal) or [forced browsing](../../../../attacks-vulns-list.md#forced-browsing).
+* Ability to use Wallarm to protect against behavior‑based attacks such as [brute-force](../../../../attacks-vulns-list.md#brute-force-attack), [path traversal attacks](../../../../attacks-vulns-list.md#path-traversal) or [forced browsing](../../../../attacks-vulns-list.md#forced-browsing).
 
 To enable the IP blocking functionality in the Ingress controller, please follow the instructions below:
 1. Upgrade Wallarm Ingress controller Helm chart to version 1.7.0 or later from the [GitHub](https://github.com/wallarm/ingress-chart) repository (including the `values.yaml` file).

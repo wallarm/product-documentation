@@ -32,7 +32,7 @@ search:
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 [oob-advantages-limitations]:       ../../../oob/overview.md#advantages-and-limitations
-[web-server-mirroring-examples]:    ../../../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[web-server-mirroring-examples]:    ../../../oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
 [download-aio-step]:                #step-3-download-all-in-one-wallarm-installer
 [enable-traffic-analysis-step]:     #step-5-enable-wallarm-node-to-analyze-traffic
 [restart-nginx-step]:               #step-6-restart-nginx
