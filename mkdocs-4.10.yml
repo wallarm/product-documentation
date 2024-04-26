@@ -6,6 +6,9 @@ theme:
 docs_dir: docs/4.10
 site_dir: site
 
+validation:
+  anchors: warn
+
 nav:
   - Quick Start:
     - Wallarm Overview: about-wallarm/overview.md
