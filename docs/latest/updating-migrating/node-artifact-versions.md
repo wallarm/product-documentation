@@ -17,6 +17,9 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ### 4.10.4 (2024-04-18)
 
 * Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
+
+    To start using the functionality, [additional configuration](../api-policy-enforcement/setup.md#step-3-configure-specific-cases-or-disable) is required.
+
 * Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
 * Added support for NGINX v1.25.4
 
@@ -207,6 +210,9 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ### 4.10.4-1 (2024-04-18)
 
 * Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
+
+    In case of mounting your own custom configuration file, to start using the functionality, [additional configuration](../api-policy-enforcement/setup.md#step-3-configure-specific-cases-or-disable) is required.
+
 * Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
 * Added support for NGINX v1.25.4
 

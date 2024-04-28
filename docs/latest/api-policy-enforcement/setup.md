@@ -56,6 +56,9 @@ You need to:
         proxy_pass http://127.0.0.1:8088$1;
         error_page 404 431         = @wallarm-apifw-fallback;
         error_page 500 502 503 504 = @wallarm-apifw-fallback;
+        
+        allow 127.0.0.0/8;
+        deny all;
     }
     location @wallarm-apifw-fallback {
         wallarm_mode off;
@@ -72,3 +75,23 @@ In some cases that may be necessary to disable the API Specification Enforcement
 * For NGINX [package deployments](../installation/supported-deployment-options.md#packages) including ones via [all-in-one installer](../installation/nginx/all-in-one.md), for any `server` section where API Specification Enforcement is used by means of the [`wallarm_enable_apifw`](../admin-en/configure-parameters-en.md#wallarm_enable_apifw) NGINX directive set to `off`.
 * For NGINX-based Docker image, by means of the `WALLARM_APIFW_ENABLE` [environment variable](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) set to `false`.
 * For NGINX Ingress Controller, by means of the [`controller.wallarm.apifirewall`](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) values group with `enable` set to `false`.
+
+## Troubleshooting
+
+After installation of the Wallarm node version 4.10.4 or later, in Docker or NGINX log files, you may obtain the following error messages related to API Specification Enforcement, like:
+
+```
+2024/04/26 15:12:53 [error] 42#42: *15 Please modify your Nginx configuration in order to enable OpenAPI Enforcement
+Put the next snippet into 'server' block with server_name '<SERVER_NAME>':
+== begin of the config snippet ===
+
+<CONFIG_SNIPPET>
+
+== end of the config snippet ===
+, client: 127.0.0.1, server: <SERVER_NAME>, request: "GET / HTTP/1.1", host: "127.0.0.1"```
+```
+
+If you get this message:
+
+* Ignore it if you do not intend to use API Specification Enforcement
+* To properly configure API Specification Enforcement and/or remove error messages, place `<CONFIG_SNIPPET>` described in [Step 3](#step-3-configure-specific-cases-or-disable) into `server` section(s) with mentioned `<SERVER_NAME>`.
