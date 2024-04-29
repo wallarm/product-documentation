@@ -14,14 +14,14 @@ API Protection includes:
 
 While WAAP/WAF is available under the basic Cloud Native WAAP subscription, tools of the API Protection bundle are the part of the [Advanced API Security](../about-wallarm/subscription-plans.md#subscription-plans) subscription.
 
-## API Specification Enforcement
+<!--## API Specification Enforcement
 
 The **API Specification Enforcement** is designed to apply security policies to your APIs basing on your uploaded specifications. Its primary function is to detect discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs. When such inconsistencies are identified, the system can take predefined actions to address them.
 
 ![Specification - use for applying security policies](../images/api-policies-enforcement/specification-use-for-api-policies-enforcement.png)
 
 [Proceed to detailed description and configuration →](../api-policy-enforcement/overview.md)
-
+r-->
 ## Automatic BOLA Protection
 
 Use Wallarm's API Discovery module to discover endpoints vulnerable to broken object level authorization (BOLA) threat and automatically protect from attacks trying to exploit this vulnerability.
