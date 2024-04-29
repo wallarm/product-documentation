@@ -4,7 +4,7 @@ Wallarm's API Protection is an advanced set of capabilities that extend basic [W
 
 API Protection includes:
 
-* [API Specification Enforcement](#api-specification-enforcement) is designed to apply security policies to your APIs basing on your uploaded specifications. It detects discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs and take predefined actions if discrepancies are found.
+<!--* [API Specification Enforcement](#api-specification-enforcement) is designed to apply security policies to your APIs basing on your uploaded specifications. It detects discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs and take predefined actions if discrepancies are found.-->
 * [Automatic BOLA Protection](#automatic-bola-protection) provides automatic protection against BOLA attacks that were marked as #1 threat in OWASP API Top 10. Wallarm automatically discovers vulnerable endpoints and protects them against enumeration.
 * [API Abuse Prevention](#api-abuse-prevention) protects your applications and APIs against different types of automated threats. Based on behavioral analysis Wallarm can easily identify and block malicious bots such as  Scrappers, Security Crawlers, etc.  
 * [Credential Stuffing Detection](#credential-stuffing-detection) provides one more layer of protection against Account Takeover attacks. Wallarm allows you to recognize even a single use of compromised credentials, which is important to identify low and slow Credential Stuffing attacks.
