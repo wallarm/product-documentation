@@ -129,6 +129,14 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](sidecar-proxy.md)
 
+### 4.10.4 (2024-04-29)
+
+* Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
+* Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
+* Bump Alpine version to 3.19
+* Bump Golang version to 1.22.2
+* Bump Golang dependencies
+
 ### 4.10.2 (2024-04-19)
 
 * Added support for [credential stuffing detection](../about-wallarm/credential-stuffing.md)
