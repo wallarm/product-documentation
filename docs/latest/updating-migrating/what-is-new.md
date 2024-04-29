@@ -29,7 +29,7 @@ Beginning with release 4.10.4, Wallarm introduces protection from these attacks.
 
 ![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
 
-## API Specification Enforcement
+<!--## API Specification Enforcement
 
 In this latest update, we introduce API Specification Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.
 
@@ -43,8 +43,8 @@ Additionally, this update introduces new parameters for some deployment options,
 
 [Learn how to configure API Specification Enforcement](../api-policy-enforcement/setup.md)
 
-![Specification - use for applying security policies](../images/api-policies-enforcement/api-policies-enforcement-events.png)  -->
-
+![Specification - use for applying security policies](../images/api-policies-enforcement/api-policies-enforcement-events.png)
+-->
 ## Optimized and more secure NGINX-based Docker image
 
 The [Docker image of Wallarm's NGINX-based filtering node](../admin-en/installation-docker-en.md) has been revamped for enhanced security and optimization. Key updates include:
