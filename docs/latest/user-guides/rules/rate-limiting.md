@@ -1,3 +1,5 @@
+[api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
+
 # Rate Limiting
 
 The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#owasp-api-top-10-2023-dashboard) list of most serious API security risks. Lack of rate limiting is one of the main causes of this risk. Without proper rate limiting measures, APIs are vulnerable to attacks such as denial-of-service (DoS), brute force and API overuse. This article explains how to safeguard your API and users with the Wallarm's rate limit regulation rule.
@@ -12,8 +14,8 @@ Note that rate limiting described in this article is one of the ways for the loa
 
 To set and apply rate limit:
 
-1. Proceed to Wallarm Console → **Rules** → **Add rule**.
-1. In **If request is**, [describe](rules.md#branch-description) the scope to apply the rule to.
+--8<-- "../include/rule-creation-initial-step.md"
+1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
 1. In **Then**, choose **Set rate limit** and set a desired limit for connections to your scope:
 
     * Maximum number for the requests per second or minute.

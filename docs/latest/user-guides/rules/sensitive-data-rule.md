@@ -1,12 +1,13 @@
 [img-masking]:              ../../images/user-guides/rules/sensitive-data-rule.png
 [rule-creation-options]:    ../../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
 [request-processing]:       ../../user-guides/rules/request-processing.md
+[api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 
 # Masking Sensitive Data
 
 It is crucial that sensitive data in your requests remains secure within your infrastructure and is not transmitted to any third-party service including [Wallarm Cloud](../../about-wallarm/overview.md#how-wallarm-works). This goal is achieved using the [shared responsibility model](../../about-wallarm/shared-responsibility.md): from its side, Wallarm transmits no data except the one about malicious requests, which makes exposure of sensitive data highly unlikely - from your side, masking of sensitive data is expected which additionally guarantees that protected information fields will never leave your security perimeter.
 
-Wallarm provides the **Mask sensitive data** rule to configure data masking. The Wallarm node sends the following data to the Wallarm Cloud:
+Wallarm provides the **Mask sensitive data** [rule](../rules/rules.md) to configure data masking. The Wallarm node sends the following data to the Wallarm Cloud:
 
 * Serialized requests with attacks
 * Wallarm system counters
@@ -22,8 +23,8 @@ It can affect the display of attacks, active attack (threat) verification, and t
 
 To set and apply data mask:
 
-1. Proceed to Wallarm Console → **Rules** → **Add rule**.
-1. In **If request is**, [describe](rules.md#branch-description) the scope to apply the rule to.
+--8<-- "../include/rule-creation-initial-step.md"
+1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
 1. In **Then**, choose **Mask sensitive data**.
 1. In **In this part of request**, specify [request points](request-processing.md) for which its original value should be cut.
 1. Wait for the [rule compilation and uploading to the filtering node to complete](rules.md#ruleset-lifecycle).

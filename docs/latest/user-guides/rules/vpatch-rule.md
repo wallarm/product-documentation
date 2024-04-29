@@ -3,6 +3,7 @@
 [img-regex-example1]:       ../../images/user-guides/rules/regex-rule-1.png
 [rule-creation-options]:    ../../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
 [request-processing]:       ../../user-guides/rules/request-processing.md
+[api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 
 # Virtual Patching
 
@@ -15,7 +16,19 @@ Wallarm provides the following [rules](../../user-guides/rules/rules.md) to crea
 
 ## Creating and applying the rule
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include/rule-creation-initial-step.md"
+1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
+1. In **Then**, choose one of the following:
+
+    * **Create a virtual patch**
+    * **Create regexp-based attack indicator** rule with **Virtual patch** option (see [details](../../user-guides/rules/regex-rule.md))
+
+1. For the common **Create a virtual patch** rule, set whether to block any request or only the ones containing specific attack signs (**Any request** vs. **Selected**).
+1. In **In this part of request**, specify request points for which you wish to set the rule. Wallarm will restrict requests that have the same values for the selected request parameters.
+
+    All available points are described [here](request-processing.md), you can choose those matching your particular use case.
+
+1. Wait for the [rule compilation and uploading to the filtering node to complete](rules.md#ruleset-lifecycle).
 
 ## Rule examples
 
