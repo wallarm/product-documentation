@@ -132,6 +132,11 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](sidecar-proxy.md)
 
+### 4.10.5 (2024-04-30)
+
+* Fixed the API Abuse Prevention module logging issues
+* Fixed Docker labels
+
 ### 4.10.4 (2024-04-29)
 
 * Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
