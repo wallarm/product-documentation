@@ -54,6 +54,9 @@ NGINXベースのWallarmノードを使用したAPIポリシー適用には、�
         proxy_pass http://127.0.0.1:8088$1;
         error_page 404 431         = @wallarm-apifw-fallback;
         error_page 500 502 503 504 = @wallarm-apifw-fallback;
+        
+        allow 127.0.0.0/8;
+        deny all;
     }
     location @wallarm-apifw-fallback {
         wallarm_mode off;
