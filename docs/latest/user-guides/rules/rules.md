@@ -16,13 +16,14 @@ Rules are configured in the **Rules** section in the [US](https://us1.my.wallarm
 
 ## What you can do with rules
 
-Using rules, you can provide the multiple protections measures for your applications and APIs, and also fine tune how attacks are detected, how the Wallarm nodes and some Wallarm components work:
+Using rules, you can provide the multiple protection measures for your applications and APIs, and also fine tune how attacks are detected, how the Wallarm nodes and some Wallarm components work:
 
 * [Set rate limit](../../user-guides/rules/rate-limiting.md)
 * [Apply a virtual patch](../../user-guides/rules/vpatch-rule.md)
 * [Create your own detection rule](../../user-guides/rules/regex-rule.md)
 * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
 * Provide [protection from GraphQL specific attacks](../../api-protection/graphql-rule.md)
+* Set up the [specific filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console) for particular domains/endpoints
 * Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
 * Fine tune request processing by [managing request parsers](../../user-guides/rules/request-processing.md#managing-parsers)
 * Configure the additional layer of the application security by [changing server response headers](../../user-guides/rules/add-replace-response-header.md)

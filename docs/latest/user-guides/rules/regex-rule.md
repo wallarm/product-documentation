@@ -3,6 +3,7 @@
 [img-regex-example2]:       ../../images/user-guides/rules/regex-rule-2.png
 [img-regex-id]:             ../../images/user-guides/rules/regex-id.png
 [request-processing]:       ../../user-guides/rules/request-processing.md
+[api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 
 # User-Defined Detectors
 
@@ -12,8 +13,8 @@ Wallarm provides the **Create regexp-based attack indicator** [rule](../../user-
 
 To set and apply your own attack detector:
 
-1. Proceed to Wallarm Console → **Rules** → **Add rule**.
-1. In **If request is**, [describe](rules.md#branch-description) the scope to apply the rule to.
+--8<-- "../include/rule-creation-initial-step.md"
+1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
 1. In **Then**, choose **Create regexp-based attack indicator** and set your attack indicator parameters:
 
     * **Regular expression** - regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Syntax and specifics of regular expressions are described in the [instructions on adding rules](rules.md#condition-type-regex).

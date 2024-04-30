@@ -1,5 +1,6 @@
 [rule-creation-options]:    ../user-guides/events/analyze-attack.md#analyze-requests-in-an-attack
 [request-processing]:       ../user-guides/rules/request-processing.md
+[api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
 # Attack Detection Procedure
 
@@ -197,11 +198,18 @@ The rule **Ignore certain attack types** allows disabling detection of certain a
 
 By default, the Wallarm node marks the request as an attack if detecting the signs of any attack type in any request element. However, some requests containing attack signs can actually be legitimate (e.g. the body of the request publishing the post on the Database Administrator Forum may contain the [malicious SQL command](../attacks-vulns-list.md#sql-injection) description).
 
-If the Wallarm node marks the standard payload of the request as the malicious one, a [false positive](#false-positives) occurs. To prevent false positives, standard attack detection rules need to be adjusted using the custom rules of certain types to accommodate protected application specificities. One of such custom rule types is **Ignore certain attack types**.
+If the Wallarm node marks the standard payload of the request as the malicious one, a [false positive](#false-positives) occurs. To prevent false positives, standard attack detection rules need to be adjusted using the custom rules of certain types to accommodate protected application specificities. Wallarm provides the **Ignore certain attack types** [rule](../user-guides/rules/rules.md) to do this.
 
 **Creating and applying the rule**
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include/rule-creation-initial-step.md"
+1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to.
+1. In **Then**, choose **Ignore certain attack types** and set whether to ignore only the signs of the specific attacks (select them) or signs of all attacks.
+1. In **In this part of request**, specify request points for which you wish to set the rule.
+
+    All available points are described [here](../user-guides/rules/request-processing.md), you can choose those matching your particular use case.
+
+1. Wait for the [rule compilation to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
 
 **Rule example**
 
@@ -226,18 +234,27 @@ To do so, set the **Ignore certain attack types** rule as displayed on the scree
 
 ## Ignoring certain attack signs in the binary data
 
-The rules **Allow binary data** and **Allow certain file types** are used to adjust the standard attack detection rules for binary data.
-
 By default, the Wallarm node analyzes incoming requests for all known attack signs. During the analysis, the Wallarm node may not consider the attack signs to be regular binary symbols and mistakenly detect malicious payloads in the binary data.
 
-Using the rules **Allow binary data** and **Allow certain file types**, you can explicitly specify request elements containing binary data. During specified request element analysis, the Wallarm node will ignore the attack signs that can never be passed in the binary data.
+Using the **Allow binary data** and **Allow certain file types** [rules](../user-guides/rules/rules.md), you can explicitly specify request elements containing binary data. During specified request element analysis, the Wallarm node will ignore the attack signs that can never be passed in the binary data.
 
 * The **Allow binary data** rule allows fine-tuning attack detection for request elements containing binary data (e.g. archived or encrypted files).
 * The **Allow certain file types** rule allows fine-tuning attack detection for request elements containing specific file types (e.g. PDF, JPG).
 
 **Creating and applying the rule**
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include/rule-creation-initial-step.md"
+1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to.
+1. In **Then**, choose one of the following:
+
+    * **Allow binary data**
+    * **Allow certain file types** (select one or several file types)
+
+1. In **In this part of request**, specify request points in which you wish to set the rule.
+
+    All available points are described [here](../user-guides/rules/request-processing.md), you can choose those matching your particular use case.
+
+1. Wait for the [rule compilation to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
 
 **Rule example**
 

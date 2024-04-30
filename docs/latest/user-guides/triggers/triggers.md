@@ -18,7 +18,7 @@ Each trigger consists of the following components that you can configure:
 
 Using triggers, you can:
 
-* Provide the following protections measures for your applications and APIs:
+* Provide the following protection measures for your applications and APIs:
 
     * [Protection from multi-attack perpetrators](../../admin-en/configuration-guides/protecting-with-thresholds.md)
     * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)

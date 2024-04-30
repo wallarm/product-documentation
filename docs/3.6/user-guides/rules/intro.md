@@ -12,7 +12,7 @@ One important thing about making changes to the rules is that these changes don'
 
 ## What you can do with rules
 
-Using rules, you can provide the multiple protections measures for your applications and APIs, and also fine tune how attacks are detected, how the Wallarm nodes and some Wallarm components work:
+Using rules, you can provide the multiple protection measures for your applications and APIs, and also fine tune how attacks are detected, how the Wallarm nodes and some Wallarm components work:
 
 * [Apply a virtual patch](../../user-guides/rules/vpatch-rule.md)
 * [Create your own detection rule](../../user-guides/rules/regex-rule.md)

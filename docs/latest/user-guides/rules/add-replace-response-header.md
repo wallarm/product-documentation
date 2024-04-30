@@ -1,3 +1,5 @@
+[api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
+
 # Changing Server Response Headers
 
 The **Change server response headers** [rule](../../user-guides/rules/rules.md) allows adding, deleting server response headers and changing its values.
@@ -17,19 +19,18 @@ The rule **Change server response headers** can also be used to address any of y
 
 ## Creating and applying the rule
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+To create and apply the rule:
 
-To create and apply the rule in the **Rules** section:
 
-1. Create the rule **Change server response headers** in the **Rules** section of Wallarm Console. The rule consists of the following components:
+--8<-- "../include/rule-creation-initial-step.md"
+1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
+1. In **Then**, choose **Change server response headers** and set:
 
-      * **Condition** [describes](rules.md#branch-description) the endpoints to apply the rule to.
-      * Name of the header to be added or to replace its value.
-      * New value of the specified header.
+    * Name of the header to be added or to replace its value.
+    * New value(s) of the specified header.
+    * To delete an existing response header, leave its value on the **Replace** tab empty.
 
-        To delete an existing response header, please leave the value of this header on the **Replace** tab empty.
-
-2. Wait for the [rule compilation to complete](rules.md#ruleset-lifecycle).
+1. Wait for the [rule compilation to complete](rules.md#ruleset-lifecycle).
 
 ## Example: adding security policy header and its value
 

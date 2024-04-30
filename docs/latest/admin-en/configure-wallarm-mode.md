@@ -1,3 +1,4 @@
+[api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 [link-wallarm-mode-override]:       ../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
 [rule-creation-options]:            ../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
 [acl-access-phase]:                 ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
@@ -99,15 +100,11 @@ The general filtration mode setting is represented as **Set filtration mode** [d
 
 ### Setting up endpoint-targeted filtration rules in Wallarm Console
 
-You can set filtration mode for specific branches, endpoints and relying on other conditions. Such rules can be created from different sections of Wallarm Console and will be stored in the **Rules** section. They have higher priority than the [general filtration rule set in Wallarm Console](#setting-up-general-filtration-rule-in-wallarm-console).
+You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Set filtration mode** [rule](../user-guides/rules/rules.md) to do this. Such rules have higher priority than the [general filtration rule set in Wallarm Console](#setting-up-general-filtration-rule-in-wallarm-console).
 
 To create a new filtration mode rule:
 
-1. Proceed to Wallarm Console:
-
-    * **Rules** → **Add rule** or your branch → **Add rule**.
-    * **Attacks** / **Incidents** → attack/incident → hit → **Rule**.
-    * **API Discovery** (if [enabled](../api-discovery/setup.md#enable)) → your endpoint → **Create rule**.
+--8<-- "../include/rule-creation-initial-step.md"
 
 1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to. If you initiated the rule for specific branch, hit or endpoint, they will define the scope - if necessary, you can add more conditions.
 
