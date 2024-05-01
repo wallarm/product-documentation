@@ -22,6 +22,7 @@
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 [cloud-init-spec]:                  ../../../cloud-platforms/cloud-init.md
 [wallarm_force_directive]:          ../../../../admin-en/configure-parameters-en.md#wallarm_force
+[ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 
 # Deploying Wallarm from GCP Machine Image
 

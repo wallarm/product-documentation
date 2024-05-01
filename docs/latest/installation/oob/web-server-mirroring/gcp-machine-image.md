@@ -24,6 +24,7 @@
 [cloud-init-spec]:                  ../../cloud-platforms/cloud-init.md
 [wallarm_force_directive]:          ../../../admin-en/configure-parameters-en.md#wallarm_force
 [web-server-mirroring-examples]:    overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[ip-lists-docs]:                    ../../../user-guides/ip-lists/overview.md
 
 # Deploying Wallarm OOB from GCP Machine Image
 
