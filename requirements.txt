@@ -1,10 +1,10 @@
 git+https://${CLONE_INSIDERS_TOKEN}:x-oauth-basic@github.com/wallarm/mkdocs-material-insiders.git@c927b56
 pymdown-extensions==10.7
 pygments==2.17.2
-mkdocs-minify-plugin==0.8.0
+mkdocs-minify-plugin==0.7.1
 prependnewline==1.2
 mkdocs-meta-descriptions-plugin==3.0.0
-markdown==3.6
+markdown==3.5.2
 importlib_metadata==7.0.1
 mkdocs-glightbox==0.3.7
 pillow==10.3.0

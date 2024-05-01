@@ -163,4 +163,3 @@ edit_uri: ../product-documentation/edit/master/docs/latest/
 validation:
   absolute_links: ignore
   unrecognized_links: ignore
-  anchors: ignore
