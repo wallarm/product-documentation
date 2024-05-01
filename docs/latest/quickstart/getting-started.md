@@ -29,11 +29,7 @@ Wallarm manages separate American and European cloud instances, each distinct in
 1. Follow the registration link either in the [US](https://us1.my.wallarm.com/signup) or [EU](https://my.wallarm.com/signup) Wallarm Cloud and input your personal data.
 1. Confirm your account by following the link from the confirmation message sent to your email.
 
-Once an account is registered and confirmed, it is automatically assigned with **Free tier** or **Free trial** depending on the Wallarm Cloud being used.
-
-In the US Cloud, Free tier allows you to explore the power of the Wallarm solution for free on 500 thousand monthly requests.
-
-In the EU Cloud, there is a trial period allowing you to explore the Wallarm solution for free for 14 days.
+Once an account is registered and confirmed, it is automatically assigned with **Free tier** that allows you to explore the power of the Wallarm solution for free on 500 thousand monthly requests.
 
 Continue by deploying the [first Wallarm filtering node](#start-securing-your-traffic).
 

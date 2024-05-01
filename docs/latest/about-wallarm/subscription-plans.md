@@ -69,9 +69,9 @@ Wallarm notifies **Administrators** and **Global Administrators** of your accoun
 
 In addition to that, the Wallarm Console UI displays the message about subscription issues for all users.
 
-## Free tier subscription plan (US Cloud)
+## Free tier subscription plan
 
-When a new user is registered in Wallarm Console of the **[US Cloud](overview.md#cloud)**, a new client account with a **Free Tier** subscription plan is automatically created in the Wallarm system.
+When a new user is registered in [Wallarm Console](overview.md#cloud), a new client account with a **Free Tier** subscription plan is automatically created in the Wallarm system.
 
 The Free Tier subscription includes:
 
@@ -91,23 +91,3 @@ These restrictions will be in effect until the first day of the next month. Cont
 Information about the Free Tier subscription usage is displayed in Wallarm Console → **Settings** → **Subscriptions**.
 
 Wallarm notifies **Administrators** and **Global Administrators** of your account via email when 85%, 100%, 185% and 200% of the free request quota have been exceeded.
-
-## Trial period (EU Cloud)
-
-When a new user is registered in Wallarm Console of the **[EU Cloud](overview.md#cloud)**, a new client account with an active trial period is automatically created in the Wallarm system.
-
-* The trial period is free.
-* The trial period lasts 14 days.
-* Wallarm trial provides the maximum set of modules and features that can be included in the WAAP [plan](#subscription-plans).
-* The trial period can be extended for 14 days more only once.
-
-    The trial period can be extended in the Wallarm Console → **Settings** → **Subscriptions** section and via the button from the email notifying about the end of the trial period. The email is sent only to users with the [role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles).
-* If the trial period expired:
-
-    * The account in Wallarm Console will be blocked.
-    * The Wallarm node and Wallarm Cloud synchronization will be stopped.
-    * The Wallarm node will operate locally but will not get any updates from the Wallarm Cloud as well as will not upload data to the Cloud.
-    
-    When a paid subscription to Wallarm is activated, access to the client account is restored for all users.
-
-Information about the trial period is displayed in Wallarm Console → **Settings** → **Subscriptions**.

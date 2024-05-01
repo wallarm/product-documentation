@@ -23,7 +23,7 @@
 The **Nodes** section of the Wallarm Console UI allows you to manage the nodes of the [**Wallarm node**](nodes.md) and **CDN node** types. This article is about CDN nodes.
 
 !!! info "CDN nodes under Free tier"
-    Deployment of the CDN node type is not supported under the [Free tier plan](../../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud).
+    Deployment of the CDN node type is not supported under the [Free tier plan](../../about-wallarm/subscription-plans.md#free-tier-subscription-plan).
 
 --8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.md"
 
