@@ -17,7 +17,7 @@ You can interfere in the bot protection process. If denylisted or graylisted IP 
 
 ## Bot attacks
 
-You can explore attacks performed by bots in Wallarm Console → **Attacks** section. Use `api_abuse` search key or select `API Abuse` from the **Type** filter.
+You can explore attacks performed by bots in Wallarm Console → **Attacks** section. Use the `api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys or select the appropriate options from the **Type** filter.
 
 ![API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
