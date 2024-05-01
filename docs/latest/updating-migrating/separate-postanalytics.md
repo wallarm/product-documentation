@@ -162,7 +162,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
 ### Step 3: Update the node type
 
 !!! info "Only for nodes installed using the `addnode` script"
-    Only follow this step if a node of a previous version is connected to the Wallarm Cloud using the `addnode` script. This script has been [removed](what-is-new.md#removal-of-the-email-password-based-node-registration) and replaced by the `register-node`, which requires a token to register the node in the Cloud.
+    Only follow this step if a node of a previous version is connected to the Wallarm Cloud using the `addnode` script. This script has been [removed](older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens) and replaced by the `register-node`, which requires a token to register the node in the Cloud.
 
 1. Make sure that your Wallarm account has the **Administrator** role by navigating to the user list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
 

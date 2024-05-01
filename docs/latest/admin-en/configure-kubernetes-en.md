@@ -88,8 +88,8 @@ Allows you to enable or disable Wallarm functions.
 
 Wallarm API endpoint. Can be:
 
-* `us1.api.wallarm.com` for the [US cloud](../about-wallarm/overview.md#us-cloud).
-* `api.wallarm.com` for the [EU cloud](../about-wallarm/overview.md#eu-cloud),
+* `us1.api.wallarm.com` for the [US cloud](../about-wallarm/overview.md#cloud).
+* `api.wallarm.com` for the [EU cloud](../about-wallarm/overview.md#cloud),
 
 **Default value**: `api.wallarm.com`
 

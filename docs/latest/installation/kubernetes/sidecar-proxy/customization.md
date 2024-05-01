@@ -221,7 +221,7 @@ To enable SSL/TLS termination:
     helm upgrade <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar -f values.yaml
     ```
 1. [Apply](pod-annotations.md#how-to-use-annotations) the `sidecar.wallarm.io/profile: tls-profile` annotation to the application pod.
-1. Once the configuration is applied, you can test the solution by following the steps described [here](deployment.md#step-4-test-the-wallarm-sidecar-proxy-operation), replacing HTTP with HTTPS protocol.
+1. Once the configuration is applied, you can test the solution by following the steps described [here](deployment.md#step-4-test-the-wallarm-sidecar-operation), replacing HTTP with HTTPS protocol.
 
 The sidecar solution will accept TLS/SSL traffic, terminate it, and forward plain HTTP traffic to the application pod.
 

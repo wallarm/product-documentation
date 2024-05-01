@@ -20,7 +20,7 @@
 [oob-docs]:                         ../installation//oob/overview.md
 [sqli-attack-docs]:                 ../attacks-vulns-list.md#sql-injection
 [xss-attack-docs]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
-[web-server-mirroring-examples]:    ../installation/oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[web-server-mirroring-examples]:    ../installation/oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
 
 
 # Upgrading Wallarm NGINX modules
@@ -222,7 +222,7 @@ Upgrade NGINX to the latest version using the relevant instructions:
 === "NGINX Plus"
     For NGINX Plus, please follow the [official upgrade instructions](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#upgrading-nginx-plus).
 === "NGINX from Debian/CentOS repository"
-    For NGINX [installed from Debian/CentOS repository](../installation/nginx/dynamic-module-from-distr.md), please skip this step. The installed NGINX version will be upgraded [later](#step-4-upgrade-wallarm-packages) along with the Wallarm modules.
+    For NGINX [installed from Debian/CentOS repository](../installation/nginx/dynamic-module-from-distr.md), please skip this step. The installed NGINX version will be upgraded [later](#step-3-upgrade-wallarm-packages) along with the Wallarm modules.
 
 If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build the Wallarm module for a custom version of NGINX.
 
@@ -370,7 +370,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
 ### Step 4: Update the node type
 
 !!! info "Only for nodes installed using the `addnode` script"
-    Only follow this step if a node of a previous version is connected to the Wallarm Cloud using the `addnode` script. This script has been [removed](what-is-new.md#removal-of-the-email-password-based-node-registration) and replaced by the `register-node`, which requires a token to register the node in the Cloud.
+    Only follow this step if a node of a previous version is connected to the Wallarm Cloud using the `addnode` script. This script has been [removed](older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens) and replaced by the `register-node`, which requires a token to register the node in the Cloud.
 
 1. Make sure that your Wallarm account has the **Administrator** role by navigating to the user list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
 
@@ -425,17 +425,11 @@ Delete the previous Wallarm repository address and add a repository with a new W
     * `<TOKEN>` is the copied value of the node token or API token with the `Deploy` role.
     * The `--force` option forces rewriting of the Wallarm Cloud access credentials specified in the `/etc/wallarm/node.yaml` file.
 
-### Step 5: Update the Wallarm blocking page
-
-In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
-
-If the page `&/usr/share/nginx/html/wallarm_blocked.html` was configured to be returned in response to blocked requests, [copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
-
-### Step 6: Restart NGINX
+### Step 5: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
-### Step 7: Test Wallarm node operation
+### Step 6: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 

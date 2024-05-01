@@ -59,7 +59,7 @@ The regular expression field value is:
 
 The Wallarm node operating in the blocking [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) blocks such vulnerability exploitation attempts by default.
 
-The Spring Cloud Function component also has the active vulnerability (CVE-2022-22963). If using this component and the Wallarm node mode is different from blocking, create the virtual patch as described [below](#example-block-all-requests-with-the-class-cloud-function-routing-expression-header).
+The Spring Cloud Function component also has the active vulnerability (CVE-2022-22963). If using this component and the Wallarm node mode is different from blocking, create the virtual patch as described [below](#block-all-requests-with-class-cloud-function-routing-expression-header).
 
 ### Block all requests with `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` header
 
@@ -74,7 +74,7 @@ If using this component and the Wallarm node [mode](../../admin-en/configure-wal
 
 The Wallarm node operating in the blocking [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) blocks such vulnerability exploitation attempts by default.
 
-There is also the 0-day vulnerability in [Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html) (Spring4Shell). Learn how to block its exploitation attempts with the [reqexp-based virtual patch](#example-block-all-requests-with-the-classmoduleclassloader-body-parameters).
+There is also the 0-day vulnerability in [Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html) (Spring4Shell). Learn how to block its exploitation attempts with the [reqexp-based virtual patch](#block-all-requests-with-classmoduleclassloader-body-parameters).
 
 ## Partial disabling
 

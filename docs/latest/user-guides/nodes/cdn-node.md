@@ -7,14 +7,14 @@
 [cname-required-modal]:             ../../images/waf-installation/quickstart/cname-required-modal.png
 [attacks-in-ui]:                    ../../images/admin-guides/test-attacks-quickstart.png
 [user-roles-docs]:                  ../settings/users.md
-[update-origin-ip-docs]:            #updating-the-origin-address-of-the-protected-resource
+[update-origin-ip-docs]:            #updating-the-origin-address-of-the-protected-resourse
 [rules-docs]:                       ../rules/rules.md
 [ip-lists-docs]:                    ../ip-lists/overview.md
 [integration-docs]:                 ../settings/integrations/integrations-intro.md
 [trigger-docs]:                     ../triggers/triggers.md
 [application-docs]:                 ../settings/applications.md
 [events-docs]:                      ../events/check-attack.md
-[graylist-populating-docs]:         ../ip-lists/overview.md#managing-graylist
+[graylist-populating-docs]:         ../ip-lists/overview.md
 [link-app-conf]:                    ../settings/applications.md
 [using-varnish-cache]:              #using-varnish-cache
 

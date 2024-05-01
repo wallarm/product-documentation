@@ -24,7 +24,7 @@
 
 [doc-testpolicy-creation-example]:  ../qsg/test-preparation.md#2-create-a-test-policy-targeted-at-xss-vulnerabilities
 [doc-about-timeout]:                create-testrun.md
-[doc-node-deployment]:              ../poc/node-deployment.md#run-docker-container-with-the-fast-node
+[doc-node-deployment]:              ../poc/node-deployment.md#deployment-of-the-docker-container-with-the-fast-node
 
 [link-wl-portal-new-policy]:    https://us1.my.wallarm.com/testing/policies/new#general 
 [link-wl-portal-policy-tab]:    https://us1.my.wallarm.com/testing/policies

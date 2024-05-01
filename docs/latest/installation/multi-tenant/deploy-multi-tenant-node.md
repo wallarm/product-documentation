@@ -20,7 +20,7 @@ Choose the multi-tenant node deployment option based on your infrastructure and 
 
         --8<-- "../include/waf/features/multi-tenancy/partner-client-term.md"
         
-    * The Wallarm node identifies the tenant that receives the traffic by the unique identifier of a tenant ([`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) or [`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md#configuration-options-for-the-envoy‑based-wallarm-node) in Envoy installation).
+    * The Wallarm node identifies the tenant that receives the traffic by the unique identifier of a tenant ([`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) or [`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md) in Envoy installation).
     * For the domains `https://tenant1.com` and `https://tenant2.com`, the DNS A records with the partner or client IP address `225.130.128.241` are configured. This setting is shown as an example, a different setting can be used on the partner and tenant side.
     * On the partner's side, proxying of legitimate requests to the addresses of tenant Tenant 1 (`http://upstream1:8080`) and Tenant 2 (`http://upstream2:8080`) is configured. This setting is shown as an example, a different setting can be used on the partner and tenant side.
 
@@ -51,7 +51,7 @@ Multi-tenant node:
 ## Deployment requirements
 
 * [Configured tenant accounts](configure-accounts.md)
-* Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](configure-accounts.md#tenant-account-structure)
+* Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](overview.md#tenant-accounts)
 * [Supported platform for the filtering node installation](../../installation/supported-deployment-options.md)
 
 ## Recommendations for a multi-tenant node deployment

@@ -62,7 +62,7 @@ To test the trigger described in the [Configuring](#configuring) section:
 
     ![Brute force attack in the interface](../../images/user-guides/events/brute-force-attack.png)
 
-    The number of displayed requests corresponds to the number of requests sent after exceeding the trigger threshold ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
+    The number of displayed requests corresponds to the number of requests sent after exceeding the trigger threshold ([more details on detecting behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 
     To search for brute force attacks, you can use the `brute` filter. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 

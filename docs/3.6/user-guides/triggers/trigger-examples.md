@@ -60,7 +60,7 @@ If an IP address was denylisted by this trigger, the filtering node would block 
 
 To mark requests as a regular brute-force attack, the trigger with the condition **Brute force** should be configured.
 
-If 31 or more requests are sent to `https://example.com/api/v1/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which requests were originated will be added to the denylist.
+If 31 or more requests are sent to `https://example.com/api/v1/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#brute-force-attack) and the IP address from which requests were originated will be added to the denylist.
 
 ![Brute force trigger with counter](../../images/user-guides/triggers/trigger-example6.png)
 

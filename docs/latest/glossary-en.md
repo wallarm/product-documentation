@@ -8,7 +8,7 @@ A hit is a serialized malicious request (original malicious request and metadata
 
 ![Hit example](images/user-guides/events/analyze-attack-raw.png)
 
-[Details on hit parameters](user-guides/events/analyze-attack.md#analyze-requests-in-an-attack)
+[Details on hit parameters](user-guides/events/analyze-attack.md#analyze-requests-in-an-event)
 
 ## Attack
 
@@ -90,7 +90,7 @@ Custom rules enable you to set up individual rules for the traffic processing, e
 * Apply a virtual patch blocking requests that exploit an active vulnerability
 * Disable attack detection in certain requests, etc.
 
-A custom ruleset is not empty by default, it contains the rules created for all clients registered in the Cloud, e.g. the filtration mode rule with the value from the [**Settings → General** tab](admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console).
+A custom ruleset is not empty by default, it contains the rules created for all clients registered in the Cloud, e.g. the filtration mode rule with the value from the [**Settings → General** tab](admin-en/configure-wallarm-mode.md#setting-up-general-filtration-rule-in-wallarm-console).
 
 [More details on custom rulesets](user-guides/rules/rules.md)
 

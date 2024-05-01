@@ -48,9 +48,9 @@ After that, the user will be notified by an email that the login using SSO is di
 
 ## SSO and API authentication
 
-When SSO is enabled for the user, authentication for [requests to Wallarm API](../../../api/overview.md#your-own-client) becomes unavailable for this user. To get working API credentials, you have two options: 
+When SSO is enabled for the user, authentication for [requests to Wallarm API](../../../api/overview.md#your-own-api-client) becomes unavailable for this user. To get working API credentials, you have two options: 
 
-* If the **strict SSO** mode is not used, create user without SSO option under your company account, and create [API token(s)](../../../api/overview.md#your-own-client).
+* If the **strict SSO** mode is not used, create user without SSO option under your company account, and create [API token(s)](../../../api/overview.md#your-own-api-client).
 * If the **strict SSO** mode is used, you can enable API authentication for the SSO users with the **Administrator** role. To do this, select **Enable API access** from this user menu. The `SSO+API` auth method is enabled for the user which allows creating API tokens.
 
     Later you can disable API authentication for the user by selecting **Disable API access**. If this is done, all existing API tokens will be deleted and in a week - removed.

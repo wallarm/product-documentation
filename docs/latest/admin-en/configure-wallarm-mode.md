@@ -210,7 +210,7 @@ http {
 ### Setting up the filtration mode in Wallarm Console
 
 * [General filtration rule](#setting-up-general-filtration-rule-in-wallarm-console): **Monitoring**.
-* [Filtration rules](#setting-up-filtration-rules-in-rules-section):
+* [Filtration rules](#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console):
     * If the request meets the following conditions:
         * Method: `POST`
         * First part of the path: `main`

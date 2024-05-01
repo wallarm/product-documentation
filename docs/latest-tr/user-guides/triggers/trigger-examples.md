@@ -60,7 +60,7 @@ Bu tetikleyici tarafından reddetme listesine alınan bir IP adresi varsa, filtr
 
 İsteklerin düzenli bir kaba kuvvet saldırısı olarak işaretlenmesi için, **Kaba Kuvvet** durumu olan bir tetikleyici yapılandırılmalıdır.
 
-Eğer 30 saniye içinde `https://example.com/api/v1/login` adresine 31 veya daha fazla istek gönderilirse, bu istekler bir [kaba kuvvet saldırısı](../../attacks-vulns-list.md#bruteforce-attack) olarak işaretlenir ve isteklerin kaynaklandığı IP adresi reddetme listesine eklenir.
+Eğer 30 saniye içinde `https://example.com/api/v1/login` adresine 31 veya daha fazla istek gönderilirse, bu istekler bir [kaba kuvvet saldırısı](../../attacks-vulns-list.md#brute-force-attack) olarak işaretlenir ve isteklerin kaynaklandığı IP adresi reddetme listesine eklenir.
 
 ![Kaba kuvvet tetikleyicisi with counter](../../images/user-guides/triggers/trigger-example6.png)
 

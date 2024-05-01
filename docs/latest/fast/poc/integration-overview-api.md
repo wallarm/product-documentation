@@ -2,7 +2,7 @@
 [img-sample-job-no-recording]:  ../../images/fast/poc/en/integration-overview/sample-job-no-recording.png
 
 [doc-testrun]:                  ../operations/internals.md#test-run
-[doc-container-deployment]:     node-deployment.md#deployment-of-the-docker-container
+[doc-container-deployment]:     node-deployment.md#deployment-of-the-docker-container-with-the-fast-node
 [doc-testrun-creation]:         node-deployment.md#creating-a-test-run 
 [doc-testrun-copying]:          node-deployment.md#copying-a-test-run     
 [doc-proxy-configuration]:      proxy-configuration.md

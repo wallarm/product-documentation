@@ -25,7 +25,7 @@
 [platform]:                         ../../installation/supported-deployment-options.md
 [oob-docs]:                         ../oob/overview.md
 [oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
-[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 [cred-stuffing-docs]:               ../../about-wallarm/credential-stuffing.md
 

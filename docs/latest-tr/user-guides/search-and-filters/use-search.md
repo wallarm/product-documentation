@@ -1,7 +1,7 @@
 [al-sqli]: ../../attacks-vulns-list.md#sql-injection
 [al-xss]: ../../attacks-vulns-list.md#crosssite-scripting-xss
 [al-rce]: ../../attacks-vulns-list.md#remote-code-execution-rce
-[al-brute-force]: ../../attacks-vulns-list.md#bruteforce-attack
+[al-brute-force]: ../../attacks-vulns-list.md#brute-force-attack
 [al-path-traversal]: ../../attacks-vulns-list.md#path-traversal
 [al-crlf]: ../../attacks-vulns-list.md#crlf-injection
 [al-open-redirect]: ../../attacks-vulns-list.md#open-redirect
@@ -190,7 +190,7 @@ Dönemi belirtmek için aşağıdaki yöntemler kullanılabilir:
 
         `hafta`, `ay`, `yıl` `<unit>` olarak kullanılabilir. Örneğin: `this week` bugün Çarşamba olduğunda, bu haftanın Pazartesi, Salı ve Çarşamba günlerinde tespit edilen olayları döndürecektir.
 
-Tarih ve saat formatı, [profilinizde](../settings/account.md#changing-your-date-time-format) belirtilen ayarlara bağlıdır:
+Tarih ve saat formatı, [profilinizde](../settings/account.md) belirtilen ayarlara bağlıdır:
 
 * **MDY** seçilmişse MM/DD/YYYY
 * **DMY** seçilmişse DD/MM/YYYY

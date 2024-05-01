@@ -1,4 +1,4 @@
-[filtration-mode-priorities-docs]:  ../../../admin-en/configure-wallarm-mode.md#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override
+[filtration-mode-priorities-docs]:  ../../../admin-en/configure-wallarm-mode.md#setting-up-priorities-of-filtration-mode-configuration-methods-using-wallarm_mode_allow_override
 [applications-docs]:                ../../../user-guides/settings/applications.md
 [custom-blocking-page-docs]:        ../../../admin-en/configuration-guides/configure-block-page-and-code.md
 [nginx-directives-docs]:            ../../../admin-en/configure-parameters-en.md

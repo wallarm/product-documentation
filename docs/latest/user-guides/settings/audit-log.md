@@ -20,7 +20,7 @@ On the **Settings** → **Activity log** tab of Wallarm Console, you can check t
 
 The logs also include information on the following actions and objects:
 
-* [Vulnerability marked as the false positive](../vulnerabilities.md#marking-vulnerabilities-as-false-positives)
+* [Vulnerability marked as the false positive](../vulnerabilities.md#vulnerability-lifecycle)
 * [Rechecked attack](../events/verify-attack.md)
 
 ![Activity log](../../images/user-guides/settings/audit-log.png)

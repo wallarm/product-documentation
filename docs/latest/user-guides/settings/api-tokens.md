@@ -29,7 +29,7 @@ You can renew the token value at any moment.
 
 Consider that:
 
-* If the token owner has been [disabled](../../user-guides/settings/users.md#disable-access-for-a-user), all one's tokens are automatically disabled as well.
+* If the token owner has been [disabled](../../user-guides/settings/users.md#disabling-and-deleting-users), all one's tokens are automatically disabled as well.
 * If the token owner has been reduced in permissions, corresponding permissions will be removed from all one's tokens.
 * All disabled tokens are automatically removed in a week after disabling.
 * To enable previously disabled token, save it with the new expiration date.
@@ -89,7 +89,7 @@ To create an API token with the permissions based on the global [roles](../../us
         }
         ```
 
-        This request creates an API token with Global Administrator's permissions that can be used for the [tenant creation](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
+        This request creates an API token with Global Administrator's permissions that can be used for the [tenant creation](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api).
 
 1. From the response, get the `id` of the created token and send the GET request to the `/v2/api_tokens/{id}/secret` route using this `id`.
 1. Copy the `secret` value from the response and use it as the API token for request authentication.

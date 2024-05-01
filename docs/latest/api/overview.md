@@ -15,8 +15,8 @@ Wallarm API provides interaction between components of the Wallarm system. You c
 
 Description of API methods is given in the **Wallarm API Console** available from Wallarm Console → top right → `?` → **Wallarm API Console** or directly by the link:
 
-* https://apiconsole.us1.wallarm.com/ for the [US cloud](../about-wallarm/overview.md#us-cloud)
-* https://apiconsole.eu1.wallarm.com/ for the [EU cloud](../about-wallarm/overview.md#eu-cloud)
+* https://apiconsole.us1.wallarm.com/ for the [US cloud](../about-wallarm/overview.md#cloud)
+* https://apiconsole.eu1.wallarm.com/ for the [EU cloud](../about-wallarm/overview.md#cloud)
 
 ![Wallarm API Console](../images/wallarm-api-reference.png)
 
@@ -24,14 +24,14 @@ Description of API methods is given in the **Wallarm API Console** available fro
 
 API requests are sent to the following URL:
 
-* `https://us1.api.wallarm.com/` for the [US cloud](../about-wallarm/overview.md#us-cloud)
-* `https://api.wallarm.com/` for the [EU cloud](../about-wallarm/overview.md#eu-cloud)
+* `https://us1.api.wallarm.com/` for the [US cloud](../about-wallarm/overview.md#cloud)
+* `https://api.wallarm.com/` for the [EU cloud](../about-wallarm/overview.md#cloud)
 
 ## Authentication of API requests
 
 You must be a verified user to make Wallarm API requests. The method of API requests authentication depends on the client sending the request:
 
-* [API Reference UI](#api-reference-ui)
+* [API Reference UI](#wallarm-api-console)
 * [Your own API client](#your-own-api-client)
 
 ### Wallarm API Console

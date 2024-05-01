@@ -138,7 +138,7 @@ In this example, if API Discovery finds new endpoints that are not listed in the
 
 The shadow APIs put businesses at risk, as attackers can exploit them to gain access to critical systems, steal valuable data, or disrupt operations, further compounded by the fact that APIs often act as gatekeepers to critical data and that a range of OWASP API vulnerabilities can be exploited to bypass API security.
 
-In terms of your uploaded API [specifications](#upload-specifications-and-set-comparison-parameters), shadow API is an endpoint presented in actual traffic (detected by API Discovery) and not presented in your specification.
+In terms of your uploaded API specifications, shadow API is an endpoint presented in actual traffic (detected by API Discovery) and not presented in your specification.
 
 As you find shadow APIs with Wallarm, you can update your specifications to include missing endpoints and further perform monitoring and security activities towards your API inventory in its full view.
 

@@ -1,4 +1,4 @@
-[access-wallarm-api-docs]: #your-own-client
+[access-wallarm-api-docs]: overview.md#your-own-api-client
 [application-docs]:        ../user-guides/settings/applications.md
 
 # Wallarm API request examples

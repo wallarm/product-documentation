@@ -42,7 +42,7 @@ All detected bytes are provided in the anomaly description:
 ![Anomaly description][img-anomaly-description]
 
 ??? info "Fuzzer operation example"
-    Let the payload size of 250 bytes [replace](fuzzer-configuration.md#payloads-section) the first 250 bytes of some point value.
+    Let the payload size of 250 bytes [replace](fuzzer-configuration.md) the first 250 bytes of some point value.
 
     In these conditions, the fuzzer creates two requests to send all known anomalous bytes: one with the payload of 250 bytes and another with the payload of 5 bytes.
 

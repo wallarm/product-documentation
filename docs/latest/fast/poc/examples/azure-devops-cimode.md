@@ -49,7 +49,7 @@ To implement security testing, follow the instructions:
 2. Add the command running FAST Docker container in the `CI_MODE=testing` mode with other required [variables](../ci-mode-testing.md#environment-variables-in-testing-mode) __after__ the command running the application.
 
     !!! info "Using the recorded set of baseline requests"
-        If the set of baseline requests was recorded in another pipeline, specify the record ID in the [TEST_RECORD_ID](../ci-mode-testing.md#переменные-в-режиме-тестирования) variable. Otherwise, the last recorded set will be used.
+        If the set of baseline requests was recorded in another pipeline, specify the record ID in the [TEST_RECORD_ID](../ci-mode-testing.md#environment-variables-in-testing-mode) variable. Otherwise, the last recorded set will be used.
 
     Example of the command:
 

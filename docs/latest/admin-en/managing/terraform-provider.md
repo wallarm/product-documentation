@@ -57,7 +57,7 @@ To connect Wallarm Terraform provider to your Wallarm account in the [US](https:
     ```
 
 * `<WALLARM_API_TOKEN>` allows to access API of your Wallarm account. [How to get it →](../../user-guides/settings/api-tokens.md)
-* `<CLIENT_ID>` is ID of tenant (client); required only when [multitenancy](../../installation/multi-tenant/overview.md) feature is used. Take `id` (not `uuid`) as described [here](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
+* `<CLIENT_ID>` is ID of tenant (client); required only when [multitenancy](../../installation/multi-tenant/overview.md) feature is used. Take `id` (not `uuid`) as described [here](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api).
 
 See [details](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) in the Wallarm provider documentation.
 

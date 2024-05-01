@@ -1,10 +1,10 @@
 [link-ruby]:        http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
 
 [bağlantı1]:      #the-example-of-using-the-get-filter-and-the-hash-filter
-[bağlantı2]:      #the-example-of-using-the-formurlencoded-parser-with-the-hash-filter
+[bağlantı2]:      #the-example-of-using-the-form_urlencoded-parser-with-the-hash-filter
 [bağlantı3]:      #the-example-of-using-the-multipart-filter-and-the-hash-filter
 [bağlantı4]:      #the-example-of-using-the-jsondoc-parser-and-the-hash-filter
-[bağlantı5]:      #the-example-of-using-the-jsonobj-filter-and-the-hash-filter
+[bağlantı5]:      #the-example-of-using-the-json_obj-filter-and-the-hash-filter
 [bağlantı6]:      #the-example-of-using-the-jsonarray-filter-and-the-hash-filter
 
 

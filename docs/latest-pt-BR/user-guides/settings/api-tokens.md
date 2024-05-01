@@ -29,7 +29,7 @@ Você pode renovar o valor do token a qualquer momento.
 
 Leve em consideração que:
 
-* Se o proprietário do token foi [desativado](../../user-guides/settings/users.md#disable-access-for-a-user), todos os seus tokens são automaticamente desativados também.
+* Se o proprietário do token foi [desativado](../../user-guides/settings/users.md#disabling-and-deleting-users), todos os seus tokens são automaticamente desativados também.
 * Se o proprietário do token teve suas permissões reduzidas, as permissões correspondentes serão removidas de todos os seus tokens.
 * Todos os tokens desativados são automaticamente removidos uma semana após a desativação.
 * Para ativar um token previamente desativado, salve-o com a nova data de vencimento.

@@ -48,7 +48,7 @@ Copy the settings for processing and proxying requests from the following config
 
       * Select the image version `4.10.x`
       * For AWS, select the [created security group](../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group) in the field **Security Group Settings**
-      * For AWS, select the name of the [created key pair](../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys) in the field **Key Pair Settings**
+      * For AWS, select the name of the [created key pair](../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys-in-aws) in the field **Key Pair Settings**
 3. Confirm the instance launch.
 4. For GCP, configure the instance following these [instructions](../../installation/cloud-platforms/gcp/machine-image.md#2-configure-the-filtering-node-instance).
 
@@ -56,7 +56,7 @@ Copy the settings for processing and proxying requests from the following config
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [General filtration rule configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)
+      * [General filtration rule configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-general-filtration-rule-in-wallarm-console)
       * [Endpoint-targeted filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 
@@ -66,8 +66,8 @@ Copy the settings for processing and proxying requests from the following config
       * [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
       * [GCP documentation](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
 2. Create a new Wallarm node and connect it to the Wallarm Cloud using the generated token as described in the instructions for the cloud platform:
-      * [AWS](../../installation/cloud-platforms/aws/ami.md#5-connect-the-filtering-node-to-the-wallarm-cloud)
-      * [GCP](../../installation/cloud-platforms/gcp/machine-image.md#4-connect-the-filtering-node-to-the-wallarm-cloud)
+      * [AWS](../../installation/cloud-platforms/aws/ami.md#5-generate-a-token-to-connect-an-instance-to-the-wallarm-cloud)
+      * [GCP](../../installation/cloud-platforms/gcp/machine-image.md#4-generate-a-token-to-connect-an-instance-to-the-wallarm-cloud)
 
 ## Step 8: Copy the filtering node settings from the previous version to the new version
 

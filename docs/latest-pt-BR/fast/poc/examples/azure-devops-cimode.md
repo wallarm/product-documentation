@@ -49,7 +49,7 @@ Para implementar o teste de segurança, siga as instruções:
 2. Adicione o comando de execução do contêiner Docker FAST no modo `CI_MODE=testing` com outras [variáveis](../ci-mode-testing.md#environment-variables-in-testing-mode) necessárias __após__ o comando de execução da aplicação.
 
     !!! info "Usando o conjunto gravado de solicitações base"
-        Se o conjunto de solicitações base foi gravado em outro pipeline, especifique o ID de gravação na variável [TEST_RECORD_ID](../ci-mode-testing.md#переменные-в-режиме-тестирования). Caso contrário, o último conjunto gravado será utilizado.
+        Se o conjunto de solicitações base foi gravado em outro pipeline, especifique o ID de gravação na variável [TEST_RECORD_ID](../ci-mode-testing.md#environment-variables-in-testing-mode). Caso contrário, o último conjunto gravado será utilizado.
 
     Exemplo do comando:
 

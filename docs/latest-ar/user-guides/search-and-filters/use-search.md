@@ -1,7 +1,7 @@
 [al-sqli]:                ../../attacks-vulns-list.md#sql-injection
 [al-xss]:                 ../../attacks-vulns-list.md#crosssite-scripting-xss
 [al-rce]:                 ../../attacks-vulns-list.md#remote-code-execution-rce
-[al-brute-force]:         ../../attacks-vulns-list.md#bruteforce-attack
+[al-brute-force]:         ../../attacks-vulns-list.md#brute-force-attack
 [al-path-traversal]:      ../../attacks-vulns-list.md#path-traversal
 [al-crlf]:                ../../attacks-vulns-list.md#crlf-injection
 [al-open-redirect]:       ../../attacks-vulns-list.md#open-redirect

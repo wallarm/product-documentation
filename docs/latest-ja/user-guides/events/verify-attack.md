@@ -6,7 +6,7 @@
 [img-sheduled-icon]:            ../../images/user-guides/events/sheduled.png#mini
 [img-cloud-icon]:           ../../images/user-guides/events/cloud.png#mini
 
-[al-brute-force-attack]:      ../../attacks-vulns-list.md#bruteforce-attack
+[al-brute-force-attack]:      ../../attacks-vulns-list.md#brute-force-attack
 [al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
 
 # 攻撃の検証

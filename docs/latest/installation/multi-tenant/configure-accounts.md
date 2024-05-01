@@ -68,7 +68,7 @@ At this step, a tenant account linked to a global account will be created.
     `X-WallarmApi-Token` | [API token](../../user-guides/settings/api-tokens.md#configuring-tokens) with the **Global Administrator**'s permissions. | Header | Yes, when sending a request from your own API client
     `name` | Tenant's name. | Body | Yes
     `vuln_prefix` | Vulnerability prefix Wallarm will use for vulnerability tracking and association with the tenant. The prefix must contain four capital letters or numbers and be related to a tenant's name, e.g.: `TNNT` for the tenant `Tenant`. | Body | Yes
-    `partner_uuid` | [Main tenant UUID](#step-2-get-access-to-the-tenant-account-creation) received when creating a global account. | Body | Yes
+    `partner_uuid` | [Main tenant UUID](#step-1-sign-up-and-send-a-request-to-activate-the-multitenancy-feature) received when creating a global account. | Body | Yes
 
     ??? info "Show an example of the request sent from your own API client"
         === "US Cloud"

@@ -1,4 +1,4 @@
-[rule-creation-options]:    ../user-guides/events/analyze-attack.md#analyze-requests-in-an-attack
+[rule-creation-options]:    ../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
 [request-processing]:       ../user-guides/rules/request-processing.md
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 

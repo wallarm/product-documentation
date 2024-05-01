@@ -26,7 +26,7 @@
 [inline-docs]:                      ../inline/overview.md
 [oob-docs]:                         ../oob/overview.md
 [oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
-[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 
 # Installing as a Dynamic Module for Distribution-Provided NGINX

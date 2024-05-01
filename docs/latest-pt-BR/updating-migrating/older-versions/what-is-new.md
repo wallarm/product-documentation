@@ -287,7 +287,7 @@ A nova página de bloqueio com o novo layout fica assim por padrão:
     [Instruções sobre a implantação do contêiner Docker Wallarm baseado em NGINX →](../../admin-en/installation-docker-en.md)
 * Novos parâmetros do arquivo `node.yaml` para configurar a sincronização da nuvem Wallarm e dos nodes filtrantes: `api.local_host` e `api.local_port`. Os novos parâmetros permitem especificar um endereço IP local e uma porta da interface de rede para enviar solicitações para a API Wallarm.
 
-    [Veja a lista completa de parâmetros `node.yaml` para configurar a sincronização da nuvem Wallarm e dos nodes filtrantes →](../../admin-en/configure-cloud-node-synchronization-en.md#credentials-to-access-the-wallarm-cloud)
+    [Veja a lista completa de parâmetros `node.yaml` para configurar a sincronização da nuvem Wallarm e dos nodes filtrantes →](../../admin-en/configure-cloud-node-synchronization-en.md#access-parameters)
 
 ## Desativando conexões IPv6 para o contêiner Docker Wallarm baseado em NGINX
 

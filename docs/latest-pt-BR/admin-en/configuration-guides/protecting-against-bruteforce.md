@@ -4,7 +4,7 @@ Ataque comportamental (ataque de força bruta) é um dos tipos de ataque que pod
 
 Existem as seguintes classes de ataques de força bruta:
 
-* [Ataques de força bruta regulares](../../attacks-vulns-list.md#bruteforce-attack): quebra de senha por força bruta, identificador de sessão por força bruta, preenchimento de credenciais. Esses ataques são caracterizados por um grande número de solicitações com diferentes valores de parâmetro forçado enviados para um URI típico por um período limitado de tempo.
+* [Ataques de força bruta regulares](../../attacks-vulns-list.md#brute-force-attack): quebra de senha por força bruta, identificador de sessão por força bruta, preenchimento de credenciais. Esses ataques são caracterizados por um grande número de solicitações com diferentes valores de parâmetro forçado enviados para um URI típico por um período limitado de tempo.
 * [Navegação forçada](../../attacks-vulns-list.md#forced-browsing). Esses ataques são caracterizados por um grande número de códigos de resposta 404 retornados a solicitações para diferentes URIs por um período limitado de tempo.
 
     O objetivo desse ataque é enumerar e acessar recursos ocultos (por exemplo, diretórios e arquivos contendo informações sobre componentes de aplicação). O tipo de ataque de navegação forçada geralmente permite aos invasores coletar informações sobre a aplicação e, em seguida, realizar outros tipos de ataque, explorando essas informações.

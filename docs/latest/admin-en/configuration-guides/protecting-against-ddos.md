@@ -46,7 +46,7 @@ Wallarm provides a wide range of protection measures across L7 DDoS threats:
 * [Forced browsing trigger](protecting-against-bruteforce.md) to prevent malicious attempts to detect a web application's hidden resources, namely directories and files.
 * Geolocation filtering using [denylists and graylists](../../user-guides/ip-lists/overview.md). Prevent access to applications and APIs for certain regions distributing attacks.
 * Block untrusted origins using [denylists and graylists](../../user-guides/ip-lists/overview.md). To protect from targeted attacks, it may be helpful to block any untrustworthy origins (Tor, Proxy, VPN) which allow an attacker to hide location and bypass geofilters.
-* [Logic (Data) bomb](#data-bomb) detection. Wallarm automatically detects and blocks malicious requests containing Zip or XML bomb.
+* [Logic (Data) bomb](#proto-attacks-logicbombs) detection. Wallarm automatically detects and blocks malicious requests containing Zip or XML bomb.
 * [Rate limiting](../../user-guides/rules/rate-limiting.md) configuration. Specify the maximum number of connections that can be made to a particular API scope. If a request exceeds the defined limit, Wallarm rejects it.
 
 If you are using NGINX-based Wallarm node, it is recommended to configure NGINX to enhance your security across L7 DDoS as follows:

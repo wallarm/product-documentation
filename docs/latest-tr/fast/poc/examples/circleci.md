@@ -20,7 +20,7 @@
 [doc-get-token]:                ../../operations/create-node.md
 [doc-stopping-recording]:       ../stopping-recording.md
 [doc-waiting-for-tests]:        ../waiting-for-tests.md
-[doc-node-ready-for-recording]: ../node-deployment.md#do-one-time-check-of-test-run-state
+[doc-node-ready-for-recording]: ../node-deployment.md#creating-a-test-run
 
 [link-api-recoding-mode]:       ../integration-overview-api.md#deployment-via-the-api-when-baseline-requests-recording-takes-place
 

@@ -39,7 +39,7 @@ description: この文書は、FASTが検出するソフトウェアの脆弱性
 [anchor-vuln-list]:     #vulnerabilities-list
 
 [anchor-rce]:   #remote-code-execution-rce
-[anchor-ssrf]:  #server-side-request-forgery-ssrf
+[anchor-ssrf]:  #serverside-request-forgery-ssrf
 
 # FASTによって検出可能な脆弱性
 

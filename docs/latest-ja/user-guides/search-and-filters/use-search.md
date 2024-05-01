@@ -1,7 +1,7 @@
 [al-sqli]:                ../../attacks-vulns-list.md#sql-injection
 [al-xss]:                 ../../attacks-vulns-list.md#crosssite-scripting-xss
 [al-rce]:                 ../../attacks-vulns-list.md#remote-code-execution-rce
-[al-brute-force]:         ../../attacks-vulns-list.md#bruteforce-attack
+[al-brute-force]:         ../../attacks-vulns-list.md#brute-force-attack
 [al-path-traversal]:      ../../attacks-vulns-list.md#path-traversal
 [al-crlf]:                ../../attacks-vulns-list.md#crlf-injection
 [al-open-redirect]:       ../../attacks-vulns-list.md#open-redirect
@@ -188,7 +188,7 @@ APIプロトコルによるヒットをフィルタリングするために、`p
 
         `<unit>`は`week`、`month`、`year`を使うことが出来ます。例えば、`this week`は今日が水曜日なら、今週の月曜日、火曜日、そして水曜日に検出されたイベントを返します。
 
-日付と時間の形式は、あなたの[プロフィール](../settings/account.md#changing-your-date-time-format)で指定されている設定に依存します :
+日付と時間の形式は、あなたの[プロフィール](../settings/account.md)で指定されている設定に依存します :
 
 * **MDY**が選択されている場合はMM/DD/YYYY
 * **DMY**が選択されている場合はDD/MM/YYYY

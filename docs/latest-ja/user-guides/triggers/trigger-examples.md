@@ -60,7 +60,7 @@
 
 リクエストを通常のブルートフォース攻撃としてマークするためには、**Brute force**の条件を持ったトリガーを設定する必要があります。
 
-`https://example.com/api/v1/login`に31回以上のリクエストが30秒で送信されると、これらのリクエストは[ブルートフォース攻撃](../../attacks-vulns-list.md#bruteforce-attack)としてマークされ、リクエスト元のIPアドレスはブロックリストに追加されます。
+`https://example.com/api/v1/login`に31回以上のリクエストが30秒で送信されると、これらのリクエストは[ブルートフォース攻撃](../../attacks-vulns-list.md#brute-force-attack)としてマークされ、リクエスト元のIPアドレスはブロックリストに追加されます。
 
 ![Brute force trigger with counter](../../images/user-guides/triggers/trigger-example6.png)
 

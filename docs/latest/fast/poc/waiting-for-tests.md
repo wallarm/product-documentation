@@ -1,5 +1,5 @@
 [doc-get-token]:                    prerequisites.md#anchor-token
-[doc-get-testrun-id]:               node-deployment.md#obtaining-test-run
+[doc-get-testrun-id]:               node-deployment.md#obtaining-a-test-run
 [doc-get-testrun-status]:       ../operations/check-testrun-status.md
 
 [doc-get-testrun-status]:   ../operations/check-testrun-status.md

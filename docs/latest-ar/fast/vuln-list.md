@@ -39,7 +39,7 @@ description: هذا الوثيقة تقوم بسرد ثغرات البرمجيا
 [anchor-vuln-list]:     #vulnerabilities-list
 
 [anchor-rce]:   #remote-code-execution-rce
-[anchor-ssrf]:  #server-side-request-forgery-ssrf
+[anchor-ssrf]:  #serverside-request-forgery-ssrf
 
 
 # الثغرات التي يمكن لـ FAST اكتشافها

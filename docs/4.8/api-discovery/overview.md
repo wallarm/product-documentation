@@ -7,7 +7,7 @@ The API built inventory includes the following elements:
 * API endpoints
 * Request methods (GET, POST, and others)
 * Required and optional GET, POST, and header parameters including:
-    * [Type/format](./exploring.md#parameter-format-and-data-type) of data sent in each parameter    
+    * [Type/format](./exploring.md#format-and-data-type) of data sent in each parameter    
     * Date and time when parameter information was last updated
 
 ![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)

@@ -1,4 +1,4 @@
-[variability-in-endpoints-docs]:       ../../api-discovery/exploring.md#variability-in-endpoints
+[variability-in-endpoints-docs]:       ../../api-discovery/exploring.md#variability
 [changes-in-api-docs]:       ../../api-discovery/track-changes.md
 [bola-protection-for-endpoints-docs]:  ../../api-discovery/bola-protection.md
 

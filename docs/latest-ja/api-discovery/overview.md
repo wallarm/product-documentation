@@ -7,7 +7,7 @@ Wallarm プラットフォームの **API Discovery** モジュールは、実�
 * API エンドポイント
 * リクエスト方法（GET、POST など）
 * 必須およびオプションの GET、POST、およびヘッダーパラメーター、これには以下が含まれます：
-    * 各パラメーターで送信されるデータの[タイプ/フォーマット](./exploring.md#parameter-format-and-data-type)
+    * 各パラメーターで送信されるデータの[タイプ/フォーマット](./exploring.md#format-and-data-type)
     * パラメーター情報が最後に更新された日時
 
 ![API Discovery によって発見されたエンドポイント](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)

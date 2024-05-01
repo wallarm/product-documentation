@@ -6,7 +6,7 @@
 [img-ci-mode]:                  ../../images/fast/poc/en/integration-overview/ci-mode-common.png
 [img-ci-mode-build-id]:         ../../images/fast/poc/en/integration-overview/ci-build-id-common.png
 
-[anchor-build-id]:              #deploying-fast-node-with-ci-mode-for-use-in-concurrent-cicd-workflows
+[anchor-build-id]:              #deploying-the-fast-node-with-ci-mode-for-use-in-concurrent-cicd-workflows
 
 [doc-qsg]:              ../qsg/deployment-options.md
 

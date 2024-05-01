@@ -9,7 +9,7 @@ The risk score is made up of various factors, each having its own weight when ca
 | Factor | Description | Default weight |
 | --- | --- | --- |
 | Active vulnerabilities | [Active vulnerabilities](../about-wallarm/detecting-vulnerabilities.md)  may result in unauthorized data access or corruption. | 9 |
-| Potentially vulnerable to BOLA | Presence of the [variable path parts](exploring.md#variability-in-endpoints), such as user IDs, e.g. `/api/articles/author/{parameter_X}`. Attackers can manipulate object IDs and, in case of insufficient request authentication, either read or modify the object sensitive data ([BOLA attacks](../admin-en/configuration-guides/protecting-against-bola.md)). | 6 |
+| Potentially vulnerable to BOLA | Presence of the [variable path parts](exploring.md#variability), such as user IDs, e.g. `/api/articles/author/{parameter_X}`. Attackers can manipulate object IDs and, in case of insufficient request authentication, either read or modify the object sensitive data ([BOLA attacks](../admin-en/configuration-guides/protecting-against-bola.md)). | 6 |
 | Parameters with sensitive data | Rather than directly attacking APIs, attackers can steal [sensitive data](overview.md#sensitive-data-detection) and use it to seamlessly reach your resources. | 8 |
 | Number of query and body parameters | A large number of parameters increases the number of attack directions. | 6 |
 | Accepts XML / JSON objects | XML or JSON objects passed in requests may be used by attackers to transfer malicious XML external entities and injections to the server. | 6 |

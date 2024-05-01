@@ -19,7 +19,7 @@
 [wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../supported-deployment-options.md
 [oob-advantages-limitations]:       ../overview.md#advantages-and-limitations
-[web-server-mirroring-examples]:    overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[web-server-mirroring-examples]:    overview.md#configuration-examples-for-traffic-mirroring
 [memory-instr]:                     ../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [ip-lists-docs]:                    ../../../user-guides/ip-lists/overview.md
 [aws-ecs-docs]:                     ../../cloud-platforms/aws/docker-container.md

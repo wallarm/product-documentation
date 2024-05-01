@@ -50,7 +50,7 @@ You can create rules with specified action but not linked to any endpoint - they
 * Default rules are inherited by all branches.
 
 !!! info "Traffic filtration mode default rule"
-    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
+    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-general-filtration-rule-in-wallarm-console) setting.
 
 ### Viewing branch rules
 
@@ -115,7 +115,7 @@ The value specified in the URI constructor can be completed by other conditions 
 Can you use wildcards when working with URI constructor in Wallarm? No and yes. "No" means you cannot use them [classically](https://en.wikipedia.org/wiki/Wildcard_character), "yes" means you can achieve the same result acting like this:
 
 * Within parsed components of your URI, instead of wildcards, use regular expressions.
-* Place `*` or `**` symbol into the URI field itself to replace one or any number of components (see examples in the section [above](#working-with-uri-constructor)).
+* Place `*` or `**` symbol into the URI field itself to replace one or any number of components (see examples in the section [above](#uri-constructor)).
 
 **Some details**
 

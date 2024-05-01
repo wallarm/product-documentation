@@ -60,7 +60,7 @@ Se um endereço IP foi colocado na lista de negação por este gatilho, o nó de
 
 Para marcar solicitações como um ataque de força bruta regular, o gatilho com a condição **Força bruta** deve ser configurado.
 
-Se 31 ou mais solicitações forem enviadas para `https://example.com/api/v1/login` em 30 segundos, essas solicitações serão marcadas como [ataque de força bruta](../../attacks-vulns-list.md#bruteforce-attack) e o endereço IP de onde as solicitações se originaram será adicionado à lista de negação.
+Se 31 ou mais solicitações forem enviadas para `https://example.com/api/v1/login` em 30 segundos, essas solicitações serão marcadas como [ataque de força bruta](../../attacks-vulns-list.md#brute-force-attack) e o endereço IP de onde as solicitações se originaram será adicionado à lista de negação.
 
 ![Gatilho de força bruta com contador](../../images/user-guides/triggers/trigger-example6.png)
 

@@ -45,7 +45,7 @@ Request view provides the following options for Wallarm behavior fine-tuning:
 * **Disable base64** to indicate the base64 parser incorrectly applied to the request element.
 
     The button opens a pre-filled form for setting up the [rule disabling the parser](../../user-guides/rules/request-processing.md#managing-parsers).
-* **Rule** to create [any individual rule](../rules/rules.md#rule) to handle certain requests.
+* **Rule** to create [any individual rule](../rules/rules.md) to handle certain requests.
 
     The button opens a rule setup form pre-filled with the request data.
 
@@ -76,7 +76,7 @@ In Wallarm, there are several ways for IP to get into the denylist. Depending on
 
 * You add it manually (in the **Attacks** section, use `blocked_source` search or `Blocked Source` filter)
 * It performs a behavioral attack and is automatically denylisted by:
-    * [API Abuse Prevention](../../user-guides/ip-lists/overview.md#automatic-bots-ips-denylisting) module (`api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys, the appropriate **Type** filters)
+    * [API Abuse Prevention](../../about-wallarm/api-abuse-prevention.md) module (`api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys, the appropriate **Type** filters)
     * [`Brute force`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger (`brute`, `Brute force`)
     * [`Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger (`dirbust`, `Forced browsing`)
     * [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) trigger (`bola`, `BOLA`)

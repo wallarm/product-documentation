@@ -1,12 +1,12 @@
 [link-ruby]:                    http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
 [link-hash]:                    hash.md
 [link-array]:                   array.md
-[link-jsonobj-array]:           array.md#the-example-of-using-the-jsondoc-filter-and-the-array-filter
-[link-jsonobj-hash]:            hash.md#the-example-of-using-the-jsonobj-filter-and-the-hash-filter
-[link-jsonarray-hash]:          hash.md#the-example-of-using-the-jsonarray-filter-and-the-hash-filter
+[link-jsonobj-array]:           array.md#the-example-of-using-the-json_obj-filter-and-the-array-filter
+[link-jsonobj-hash]:            hash.md#the-example-of-using-the-json_obj-filter-and-the-hash-filter
+[link-jsonarray-hash]:          hash.md#the-example-of-using-the-json_array-filter-and-the-hash-filter
 
-[anchor1]:          #jsonobj-filter
-[anchor2]:          #jsonarray-filter
+[anchor1]:          #json_obj-filter
+[anchor2]:          #json_array-filter
 
 
 # Json_doc Parser
