@@ -63,6 +63,7 @@ To ensure the solution functions correctly in environments with restricted outbo
 * `https://charts.wallarm.com` to add the Wallarm Helm charts.
 * `https://hub.docker.com/r/wallarm` to retrieve Wallarm Docker images from Docker Hub.
 * For users working with the US Wallarm Cloud, access `https://us1.api.wallarm.com`. For those using the EU Wallarm Cloud, access `https://api.wallarm.com`.
+* The [specified IP addresses on Google Cloud Storage](https://www.gstatic.com/ipranges/goog.json). This access is crucial for downloading updates to attack detection rules, and retrieving exact IPs of countries, regions, or data centers you have added to your [allowlist, denylist, or graylist](../../../user-guides/ip-lists/overview.md).
 
 ## Deployment
 

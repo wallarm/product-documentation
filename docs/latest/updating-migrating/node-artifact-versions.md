@@ -37,6 +37,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
     * [CVE-2021-43809](https://nvd.nist.gov/vuln/detail/CVE-2021-43809)
     * [CVE-2023-48795](https://nvd.nist.gov/vuln/detail/CVE-2023-48795)
+* Required access to [specified IP addresses on Google Cloud Storage](https://www.gstatic.com/ipranges/goog.json) to download attack detection rules. This access is also crucial for downloading single IP addresses linked to countries, databases, and subnets on the denylist, allowlist, and graylist, as previously documented in deployment guides
 
 ### 4.10.1 (2024-02-21)
 
@@ -97,6 +98,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ### 4.10.2 (2024-02-21)
 
 * Restored OpenTracing
+* Required access to [specified IP addresses on Google Cloud Storage](https://www.gstatic.com/ipranges/goog.json) to download attack detection rules. This access is also crucial for downloading single IP addresses linked to countries, databases, and subnets on the denylist, allowlist, and graylist, as previously documented in deployment guides
 
 ### 4.10.1 (2024-02-21)
 
@@ -176,6 +178,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
     * [CVE-2021-41819](https://nvd.nist.gov/vuln/detail/CVE-2021-41819)
     * [CVE-2021-41817](https://nvd.nist.gov/vuln/detail/CVE-2021-41817)
     * [CVE-2023-28755](https://nvd.nist.gov/vuln/detail/CVE-2023-28755)
+* Required access to [specified IP addresses on Google Cloud Storage](https://www.gstatic.com/ipranges/goog.json) to download attack detection rules. This access is also crucial for downloading single IP addresses linked to countries, databases, and subnets on the denylist, allowlist, and graylist, as previously documented in deployment guides
 
 ## Helm chart for Wallarm eBPF‑based solution
 
@@ -238,6 +241,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
     * [CVE-2021-43809](https://nvd.nist.gov/vuln/detail/CVE-2021-43809)
     * [CVE-2023-48795](https://nvd.nist.gov/vuln/detail/CVE-2023-48795)
+* Required access to [specified IP addresses on Google Cloud Storage](https://www.gstatic.com/ipranges/goog.json) to download attack detection rules. This access is also crucial for downloading single IP addresses linked to countries, databases, and subnets on the denylist, allowlist, and graylist, as previously documented in deployment guides
 
 ### 4.10.1-1 (2024-02-21)
 
@@ -299,6 +303,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
     * [CVE-2021-43809](https://nvd.nist.gov/vuln/detail/CVE-2021-43809)
     * [CVE-2023-48795](https://nvd.nist.gov/vuln/detail/CVE-2023-48795)
+* Required access to [specified IP addresses on Google Cloud Storage](https://www.gstatic.com/ipranges/goog.json) to download attack detection rules. This access is also crucial for downloading single IP addresses linked to countries, databases, and subnets on the denylist, allowlist, and graylist, as previously documented in deployment guides
 
 ### 4.10.1-2 (2024-02-21)
 

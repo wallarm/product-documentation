@@ -29,6 +29,10 @@ Beginning with release 4.10.4, Wallarm introduces protection from these attacks.
 
 ![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
 
+## Google Cloud Storage access requirements
+
+Starting with release 4.10.2-x, Wallarm node instances require access to [specified IP addresses on Google Cloud Storage](https://www.gstatic.com/ipranges/goog.json) to download attack detection rules. This access is also essential for downloading single IP addresses associated with countries, databases, and subnets added to the denylist, allowlist, and graylist. While this requirement is not new and has been previously documented in deployment guides, it serves as a reminder and highlights the expanded purpose for this access.
+
 <!--## API Specification Enforcement
 
 In this latest update, we introduce API Specification Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.

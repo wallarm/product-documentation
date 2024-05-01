@@ -16,6 +16,7 @@ Among all supported [Wallarm deployment options](../../../supported-deployment-o
 * Terraform 1.0.5 or higher [installed locally](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 * Access to the account with the **Administrator** [role](../../../../user-guides/settings/users.md#user-roles) in Wallarm Console in the US or EU [Cloud](../../../../about-wallarm/overview.md#cloud)
 * Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Access to the [specified IP addresses on Google Cloud Storage](https://www.gstatic.com/ipranges/goog.json). This access is crucial for downloading updates to attack detection rules, and retrieving exact IPs of countries, regions, or data centers you have added to your [allowlist, denylist, or graylist](../../../../user-guides/ip-lists/overview.md)
 
 This topic does not include instructions for creating all AWS resources necessary to deploy Wallarm, such as a VPC cluster. For details, refer to the relevant [Terraform guide](https://learn.hashicorp.com/tutorials/terraform/module-use).
 
