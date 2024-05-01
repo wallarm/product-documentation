@@ -2,7 +2,7 @@
 
 This policy outlines retention periods for different datasets collected by Wallarm and stored in the Wallarm Cloud.
 
-| Dataset                                                                                                                                                                                                                                | Paid subscription | Free tier/Free trial |
+| Dataset                                                                                                                                                                                                                                | Paid subscription | Free tier |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|------------------|
 | Data on attacks, hits, and incidents detected by the filtering nodes                                                                                                                                                                         | 6 months        | 3 months |
 | Data on vulnerabilities detected by the filtering nodes or the **Active threat verification** module                                                                                                                                                                  | 6 months        | 3 months |
