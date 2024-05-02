@@ -305,20 +305,81 @@ Below is the recommended secure custom SCC for the Wallarm postanalytics pod tai
     ```
     oc adm policy add-scc-to-user wallarm-sidecar-deployment system:serviceaccount:wallarm-sidecar:wlrm-sidecar-wallarm-sidecar-postanalytics
     ```
-1. [Proceed with the Sidecar solution deployment](#deployment), taking into account the following specifics:
+1. [Proceed with the Sidecar solution deployment](#deployment), ensuring you use the same namespace and release names for the Sidecar controller as previously mentioned.
+1. [Disable the usage of iptables](customization.md/#capturing-incoming-traffic-port-forwarding) to eliminate the need for a privileged iptables container. This can be accomplished either globally by modifying the `values.yaml` file or on a per-pod basis.
     
-    * In the `values.yaml` file, [disable the usage of iptables](customization.md/#capturing-incoming-traffic-port-forwarding) to avoid the need for a privileged iptables container:
+    === "Disabling iptables via the `values.yaml`"
+        1. In the `values.yaml`, set `config.injectionStrategy.iptablesEnable` to `false`.
 
-        ```yaml
-        config:
-          injectionStrategy:
-            iptablesEnable: false
-          wallarm:
-            api:
-              ...
+            ```yaml
+            config:
+              injectionStrategy:
+                iptablesEnable: false
+              wallarm:
+                api:
+                  ...
+            ```
+        1. Update the `spec.ports.targetPort` setting in your Service manifest to point to the `proxy` port. If iptables-based traffic capture is disabled, the Wallarm sidecar container will publish a port with the name `proxy`.
+
+            ```yaml hl_lines="9"
+            apiVersion: v1
+            kind: Service
+            metadata:
+              name: myapp-svc
+              namespace: default
+            spec:
+              ports:
+                - port: 80
+                  targetPort: proxy
+                  protocol: TCP
+                  name: http
+              selector:
+                app: myapp
+            ```
+    === "Disabling iptables via the pod annotation"
+        1. Disable iptables on a per-pod basis by setting the Pod's annotation `sidecar.wallarm.io/sidecar-injection-iptables-enable` to `"false"`.
+        1. Update the `spec.ports.targetPort` setting in your Service manifest to point to the `proxy` port. If iptables-based traffic capture is disabled, the Wallarm sidecar container will publish a port with the name `proxy`.
+
+        ```yaml hl_lines="16-17 34"
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: myapp
+          namespace: default
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              app: myapp
+          template:
+            metadata:
+              labels:
+                app: myapp
+                wallarm-sidecar: enabled
+              annotations:
+                sidecar.wallarm.io/sidecar-injection-iptables-enable: "false"
+            spec:
+              containers:
+                - name: application
+                  image: kennethreitz/httpbin
+                  ports:
+                    - name: http
+                      containerPort: 80
+        ---
+        apiVersion: v1
+        kind: Service
+        metadata:
+          name: myapp-svc
+          namespace: default
+        spec:
+          ports:
+            - port: 80
+              targetPort: proxy
+              protocol: TCP
+              name: http
+          selector:
+            app: myapp
         ```
-
-    * Specify the same namespace and release names for the Sidecar controller as mentioned above when running the `helm install` command.
 1. To verify the correct SCC application to the postanalytics pod from the previous step, execute the following command, replacing `wlrm-sidecar-wallarm-sidecar-postanalytics-6db4564c75-2s76t` with the actual postanalytics pod name:
 
     ```
