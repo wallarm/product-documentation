@@ -292,10 +292,10 @@ When installing the Sidecar solution into an OpenShift platform, it is necessary
 1. Allow the Wallarm Sidecar solution to use this SCC policy:
     
     ```
-    oc adm policy add-scc-to-user wallarm-sidecar-deployment system:serviceaccount:<NAMESPACE>:<POSTANALYTICS_POD_SERVICE_ACCOUNT_NAME>
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment system:serviceaccount:<WALLARM_SIDECAR_NAMESPACE>:<POSTANALYTICS_POD_SERVICE_ACCOUNT_NAME>
     ```
 
-    * `<NAMESPACE>` is a namespace where the Wallarm Sidecar solution will be deployed.
+    * `<WALLARM_SIDECAR_NAMESPACE>` is a namespace where the Wallarm Sidecar solution will be deployed.
     * `<POSTANALYTICS_POD_SERVICE_ACCOUNT_NAME>` is auto-generated and usually follows the format `<RELEASE_NAME>-wallarm-sidecar-postanalytics`, where `<RELEASE_NAME>` is the Helm release name you will assign during `helm install`.
 
     For example, assuming the namespace name is `wallarm-sidecar` and the Helm release name is `wlrm-sidecar`, the command would look like this:
@@ -381,12 +381,24 @@ When installing the Sidecar solution into an OpenShift platform, it is necessary
 1. To verify the correct SCC application to the postanalytics pod from the previous step, execute the following commands:
 
     ```
-    NAMESPACE="wallarm-sidecar"
-    POD=$(kubectl -n ${NAMESPACE} get pods -o name -l "app.kubernetes.io/component=postanalytics" | cut -d '/' -f 2)
-    kubectl -n ${NAMESPACE}  get pod ${POD} -o jsonpath='{.metadata.annotations.openshift\.io\/scc}{"\n"}'
+    WALLARM_SIDECAR_NAMESPACE="wallarm-sidecar"
+    POD=$(kubectl -n ${WALLARM_SIDECAR_NAMESPACE} get pods -o name -l "app.kubernetes.io/component=postanalytics" | cut -d '/' -f 2)
+    kubectl -n ${WALLARM_SIDECAR_NAMESPACE}  get pod ${POD} -o jsonpath='{.metadata.annotations.openshift\.io\/scc}{"\n"}'
     ```
 
     The expected output should be `wallarm-sidecar-deployment`.
+1. Update the SCC for your application pod to match the permissions in the initial `wallarm-sidecar-deployment` policy, especially the allowance of UID 101 in the `runAsUser` block. This is crucial as the Wallarm sidecar container, injected during deployment, runs under UID 101 and requires specific permissions.
+
+    Use the command below to apply the `wallarm-sidecar-deployment` policy you previously created. Typically, you would develop a custom policy tailored to your application's and Wallarm's requirements.
+
+    ```
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment system:<APP_NAMESPACE>:<APP_POD_SERVICE_ACCOUNT_NAME>
+    ```
+1. Deploy the application with the updated SCC, e.g.:
+
+    ```
+    kubectl -n <APP_NAMESPACE> apply -f <MANIFEST_FILE>
+    ```
 
 ## Customization
 
