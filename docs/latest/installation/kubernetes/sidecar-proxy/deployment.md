@@ -381,7 +381,9 @@ When installing the Sidecar solution into an OpenShift platform, it is necessary
 1. To verify the correct SCC application to the postanalytics pod from the previous step, execute the following command, replacing `wlrm-sidecar-wallarm-sidecar-postanalytics-6db4564c75-2s76t` with the actual postanalytics pod name:
 
     ```
-    kubectl -n wallarm-sidecar get pod wlrm-sidecar-wallarm-sidecar-postanalytics-6db4564c75-2s76t -o jsonpath='{.metadata.annotations.openshift\.io\/scc}{"\n"}'
+    NAMESPACE="wallarm-sidecar"
+    POD=$(kubectl -n ${NAMESPACE} get pods -o name -l "app.kubernetes.io/component=postanalytics" | cut -d '/' -f 2)
+    kubectl -n ${NAMESPACE}  get pod ${POD} -o jsonpath='{.metadata.annotations.openshift\.io\/scc}{"\n"}'
     ```
 
     The expected output should be `wallarm-sidecar-deployment`.
