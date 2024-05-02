@@ -238,7 +238,9 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
 
 ## Security Context Constraints (SCC) in OpenShift
 
-When installing the Sidecar solution into an OpenShift platform, it is necessary to define a custom Security Context Constraint (SCC) to suit the security requirements of the platform. The default constraints may be insufficient for the Wallarm solution, potentially leading to errors. Below is the recommended custom SCC for the Wallarm Sidecar solution tailored for OpenShift.
+When installing the Sidecar solution into an OpenShift platform, it is necessary to define a custom Security Context Constraint (SCC) to suit the security requirements of the platform. The default constraints may be insufficient for the Wallarm solution, potentially leading to errors.
+
+Below is the recommended custom SCC for the Wallarm Sidecar solution tailored for OpenShift. This configuration is designed for running the solution in non-privileged mode without iptables usage.
 
 !!! warning "Apply the SCC before deploying the solution"
     Ensure the SCC is applied prior to deploying the Wallarm Sidecar solution.
