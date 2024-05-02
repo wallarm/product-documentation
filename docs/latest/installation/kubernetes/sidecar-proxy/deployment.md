@@ -378,7 +378,7 @@ When installing the Sidecar solution into an OpenShift platform, it is necessary
           selector:
             app: myapp
         ```
-1. To verify the correct SCC application to the postanalytics pod from the previous step, execute the following command, replacing `wlrm-sidecar-wallarm-sidecar-postanalytics-6db4564c75-2s76t` with the actual postanalytics pod name:
+1. To verify the correct SCC application to the postanalytics pod from the previous step, execute the following commands:
 
     ```
     NAMESPACE="wallarm-sidecar"
