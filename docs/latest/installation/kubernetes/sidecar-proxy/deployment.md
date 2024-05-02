@@ -236,6 +236,97 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
             effect: NoSchedule
     ```
 
+## Security Context Constraints (SCC) in OpenShift
+
+When integrating the Sidecar controller into an OpenShift environment, it is necessary to define a custom Security Context Constraints (SCC) to suit the security requirements of the postanalytics pod. The default constraints may be insufficient for the Wallarm solution, potentially leading to errors.
+
+Below is the recommended secure custom SCC for the Wallarm postanalytics pod tailored for OpenShift. This configuration establishes strict control over pods, limiting many common attack vectors and minimizing the possibility of pods running with root privileges.
+
+!!! warning "Apply the SCC before deploying the solution"
+    Ensure the SCC is applied prior to deploying the Wallarm Sidecar solution.
+
+1. Define the custom SCC in the `wallarm-scc.yaml` file as follows:
+
+    ```yaml
+    allowHostDirVolumePlugin: false
+    allowHostIPC: false
+    allowHostNetwork: false
+    allowHostPID: false
+    allowHostPorts: false
+    allowPrivilegeEscalation: false
+    allowPrivilegedContainer: false
+    allowedCapabilities:
+    - NET_BIND_SERVICE
+    apiVersion: security.openshift.io/v1
+    defaultAddCapabilities: null
+    fsGroup:
+      type: MustRunAs
+    groups: []
+    kind: SecurityContextConstraints
+    metadata:
+      annotations:
+        kubernetes.io/description: wallarm-sidecar-deployment
+      name: wallarm-sidecar-deployment
+    priority: null
+    readOnlyRootFilesystem: false
+    requiredDropCapabilities:
+    - ALL
+    runAsUser:
+      type: MustRunAs
+      uid: 101
+    seLinuxContext:
+      type: MustRunAs
+    seccompProfiles:
+    - runtime/default
+    supplementalGroups:
+      type: RunAsAny
+    users: []
+    volumes:
+    - configMap
+    - emptyDir
+    - secret
+    ```
+1. Apply this policy to a cluster:
+
+    ```
+    kubectl apply -f wallarm-scc.yaml
+    ```
+1. Allow the Wallarm Sidecar controller to use this SCC policy:
+    
+    ```
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment system:serviceaccount:<SIDECAR_CONTROLLER_NAMESPACE>:<POSTANALYTICS_POD_SERVICE_NAME>
+    ```
+
+    * `<SIDECAR_CONTROLLER_NAMESPACE>` is a namespace where the Sidecar controller will be deployed.
+    * `<POSTANALYTICS_POD_SERVICE_NAME>` is auto-generated and usually follows the format `<RELEASE_NAME>-wallarm-sidecar-postanalytics`, where `<RELEASE_NAME>` is the release name you will assign during the Sidecar controller deployment.
+
+    For example, assuming the namespace name is `wallarm-sidecar` and the release name is `wlrm-sidecar`, the command would look like this:
+    
+    ```
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment system:serviceaccount:wallarm-sidecar:wlrm-sidecar-wallarm-sidecar-postanalytics
+    ```
+1. [Proceed with the Sidecar solution deployment](#deployment), taking into account the following specifics:
+    
+    * In the `values.yaml` file, [disable the usage of iptables](customization.md/#capturing-incoming-traffic-port-forwarding) to avoid the need for a privileged iptables container:
+
+        ```yaml
+        config:
+          injectionStrategy:
+            iptablesEnable: false
+          wallarm:
+            api:
+              ...
+        ```
+
+    * Specify the same namespace and release names for the Sidecar controller as mentioned above when running the `helm install` command.
+1. To verify the correct SCC application to the postanalytics pod from the previous step, execute the following command, replacing `wlrm-sidecar-wallarm-sidecar-postanalytics-6db4564c75-2s76t` with the actual postanalytics pod name:
+
+    ```
+    kubectl -n wallarm-sidecar get pod wlrm-sidecar-wallarm-sidecar-postanalytics-6db4564c75-2s76t -o jsonpath='{.metadata.annotations.openshift\.io\/scc}{"\n"}'
+    ```
+
+    The expected output should be `wallarm-sidecar-deployment`.
+
 ## Customization
 
 Wallarm pods have been injected based on the [default `values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml) and the custom configuration you specified on the 2nd deployment step.
