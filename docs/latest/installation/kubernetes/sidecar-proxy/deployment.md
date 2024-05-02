@@ -238,9 +238,7 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
 
 ## Security Context Constraints (SCC) in OpenShift
 
-When installing the Sidecar solution into an OpenShift platform, it is necessary to define a custom Security Context Constraint (SCC) to suit the security requirements of the platform. The default constraints may be insufficient for the Wallarm solution, potentially leading to errors.
-
-Below is the recommended secure custom SCC for the Wallarm postanalytics pod tailored for OpenShift. This configuration establishes strict control over pods, limiting many common attack vectors and minimizing the possibility of pods running with root privileges.
+When installing the Sidecar solution into an OpenShift platform, it is necessary to define a custom Security Context Constraint (SCC) to suit the security requirements of the platform. The default constraints may be insufficient for the Wallarm solution, potentially leading to errors. Below is the recommended custom SCC for the Wallarm Sidecar solution tailored for OpenShift.
 
 !!! warning "Apply the SCC before deploying the solution"
     Ensure the SCC is applied prior to deploying the Wallarm Sidecar solution.
@@ -291,21 +289,21 @@ Below is the recommended secure custom SCC for the Wallarm postanalytics pod tai
     ```
     kubectl apply -f wallarm-scc.yaml
     ```
-1. Allow the Wallarm Sidecar controller to use this SCC policy:
+1. Allow the Wallarm Sidecar solution to use this SCC policy:
     
     ```
-    oc adm policy add-scc-to-user wallarm-sidecar-deployment system:serviceaccount:<SIDECAR_CONTROLLER_NAMESPACE>:<POSTANALYTICS_POD_SERVICE_NAME>
+    oc adm policy add-scc-to-user wallarm-sidecar-deployment system:serviceaccount:<NAMESPACE>:<POSTANALYTICS_POD_SERVICE_ACCOUNT_NAME>
     ```
 
-    * `<SIDECAR_CONTROLLER_NAMESPACE>` is a namespace where the Sidecar controller will be deployed.
-    * `<POSTANALYTICS_POD_SERVICE_NAME>` is auto-generated and usually follows the format `<RELEASE_NAME>-wallarm-sidecar-postanalytics`, where `<RELEASE_NAME>` is the release name you will assign during the Sidecar controller deployment.
+    * `<NAMESPACE>` is a namespace where the Wallarm Sidecar solution will be deployed.
+    * `<POSTANALYTICS_POD_SERVICE_ACCOUNT_NAME>` is auto-generated and usually follows the format `<RELEASE_NAME>-wallarm-sidecar-postanalytics`, where `<RELEASE_NAME>` is the Helm release name you will assign during `helm install`.
 
-    For example, assuming the namespace name is `wallarm-sidecar` and the release name is `wlrm-sidecar`, the command would look like this:
+    For example, assuming the namespace name is `wallarm-sidecar` and the Helm release name is `wlrm-sidecar`, the command would look like this:
     
     ```
     oc adm policy add-scc-to-user wallarm-sidecar-deployment system:serviceaccount:wallarm-sidecar:wlrm-sidecar-wallarm-sidecar-postanalytics
     ```
-1. [Proceed with the Sidecar solution deployment](#deployment), ensuring you use the same namespace and release names for the Sidecar controller as previously mentioned.
+1. [Proceed with the Sidecar solution deployment](#deployment), ensuring you use the same namespace and Helm release name for the Sidecar solution as previously mentioned.
 1. [Disable the usage of iptables](customization.md/#capturing-incoming-traffic-port-forwarding) to eliminate the need for a privileged iptables container. This can be accomplished either globally by modifying the `values.yaml` file or on a per-pod basis.
     
     === "Disabling iptables via the `values.yaml`"
