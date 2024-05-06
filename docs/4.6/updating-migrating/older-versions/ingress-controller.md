@@ -4,6 +4,7 @@
 [graylist-docs]:                     ../../user-guides/ip-lists/graylist.md
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
+[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 
 # Upgrading EOL NGINX Ingress controller with integrated Wallarm modules
 
