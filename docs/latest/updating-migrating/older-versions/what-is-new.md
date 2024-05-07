@@ -78,6 +78,8 @@ Wallarm detects regular attacks (SQLi, RCE, [etc.](../../attacks-vulns-list.md))
 
 Beginning with release 4.10.4, Wallarm introduces protection from these attacks. Protection is set by configuring your organization's GraphQL policy - a set of limits for the GraphQL requests. Requests exceeding any of set limits the filtering node will handle in accordance with the active filtration mode - will only register policy violations or will register and block such attempts.
 
+To start using the functionality, you need to create at least one [**Detect GraphQL attacks** rule](../../api-protection/graphql-rule.md#creating-and-applying-the-rule) in Wallarm Console.
+
 [Learn how to configure GraphQL API Protection](../../api-protection/graphql-rule.md)
 
 ![GraphQL thresholds](../../images/user-guides/rules/graphql-rule.png)

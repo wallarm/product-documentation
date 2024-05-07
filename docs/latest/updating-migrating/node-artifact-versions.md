@@ -21,6 +21,9 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
     To start using the functionality, [additional configuration](../api-policy-enforcement/setup.md#step-3-configure-specific-cases-or-disable) is required.
 
 * Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
+
+    To start using the functionality, you need to create at least one [**Detect GraphQL attacks** rule](../api-protection/graphql-rule.md#creating-and-applying-the-rule) in Wallarm Console.
+
 * Added support for NGINX v1.25.4
 
 ### 4.10.3 (2024-03-18)
@@ -230,6 +233,9 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
     In case of mounting your own custom configuration file, to start using the functionality, [additional configuration](../api-policy-enforcement/setup.md#step-3-configure-specific-cases-or-disable) is required.
 
 * Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
+
+    To start using the functionality, you need to create at least one [**Detect GraphQL attacks** rule](../api-protection/graphql-rule.md#creating-and-applying-the-rule) in Wallarm Console.
+
 * Added support for NGINX v1.25.4
 
 ### 4.10.2-1 (2024-03-08)
