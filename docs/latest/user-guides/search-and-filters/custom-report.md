@@ -16,7 +16,7 @@ CSV report may include several CSV files, one for each type of event - attack, i
 
 ## Creating report
 
-In Wallarm Console, a custom report can be created from the **Attacks**, **Incidents** or **Vulnerabilities** section. Whichever section you use, the report will contain all type of events - attack, incidents, vulnerabilities. Report content depends on current filters. Filters applied at **Attacks** are automatically applied also for **Incidents** and vice versa. For **Vulnerabilities** the report will always contain the list of currently active vulnerabilities.
+In Wallarm Console, a custom report can be created from the **Attacks**, **Incidents** or **Vulnerabilities** section. Whichever section you use, the report will contain all types of events - attacks, incidents, and vulnerabilities. Report content depends on the current filters. Filters applied for the attacks are automatically applied also for the incidents and vice versa. For vulnerabilities, the report will always contain the list of currently active vulnerabilities.
 
 To create a report:
 
