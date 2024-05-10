@@ -9,6 +9,8 @@ Wallarm provides the following subscription plans:
 
     The Advanced API Security subscription plan is sold as an add-on for Cloud Native WAAP.
 
+* **API Attack Surface** provides a comprehensive view of publicly exposed APIs and related information with zero deployment and minimal configuration.
+
 ## Subscription plans
 
 | Feature | Cloud Native WAAP | WAAP + Advanced API Security |
