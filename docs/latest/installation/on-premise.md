@@ -42,7 +42,7 @@ Begin with a clean operating system installation featuring only essential softwa
 
     === "Debian-based OS"
         ```
-        apt-get install iproute iptables bash curl ca-certificates
+        apt-get install iproute2 iptables bash curl ca-certificates
         ```
     === "Red Hat-based OS"
         ```
@@ -52,7 +52,7 @@ Begin with a clean operating system installation featuring only essential softwa
 * SWAP memory is disabled.
 
     ```
-    swapoff -a
+    swapon -s
     ```
 
 **System requirements**
@@ -76,7 +76,7 @@ For more than 1 billion requests per month:
 **Network requirements**
 
 * Allowed outgoing connections to `https://onprem.wallarm.com` with 80 and 443 ports for downloading the license key and the installation/upgrade packages. This domain operates from a static IP address and the DNS must also resolve it.
-* A 3-5 level DNS wildcard configured for the instance, such as `*.wallarm.companyname.tld`.
+* A 3-5 level DNS wildcard record configured for the instance, e.g. `*.wallarm.companyname.tld`. Ensure that the instance is accessible via these DNS resolutions from any filtering node, browser, or external integration agent.
 * A valid SSL/TLS wildcard certificate (and key) issued from either a trusted or an internal CA. All filtering node instances and browsers must recognize this SSL/TLS certificate/key pair as trusted.
 
 ### Procedure
