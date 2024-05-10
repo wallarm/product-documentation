@@ -18,17 +18,70 @@ For on-premise deployment, you need to deploy the Wallarm Cloud on your infrastr
 
 ### Requirements
 
-To deploy Wallarm Cloud, prepare a compute instance meeting these criteria:
+To deploy Wallarm Cloud on-premise, you need to prepare a compute instance meeting the criteria below.
 
-* Ubuntu 22.04 LTS or RedHat 9.x with minimal additional software installed.
-* At least 16 physical CPU cores, 48 GB RAM, and 300 GB of SSD disk space on the root partition, without additional mounts. For production environments, 500+ GB of SSD space is recommended.
-* A 3-5 level DNS wildcard configured for the instance, such as `*.wallarm.companyname.tld`.
+**Operating system**
+
+* CentOS: 8
+* Ubuntu LTS 18.04, 20.04, 22.04
+* Debian 10.x, 11.x, 12.x
+* Red Hat Enterprise Linux 8
+
+**Software dependencies**
+
+Begin with a clean operating system installation featuring only essential software. The deployment process will subsequently install any additional packages (including containerd, Kubernetes, etc). Ensure that the following conditions are met:
+
+* The SSHd service is operational on TCP port 22, with SSH key authentication enabled.
+* The following packages are pre-installed (these are typically included by default in most systems):
+
+    * `iproute`
+    * `iptables`
+    * `bash`
+    * `curl`
+    * `ca-certificates`
+
+    === "Debian-based OS"
+        ```
+        apt-get install iproute2 iptables bash curl ca-certificates
+        ```
+    === "Red Hat-based OS"
+        ```
+        yum install iproute iptables bash curl ca-certificates
+        ```
+* SELinux is fully disabled, the permissive mode is insufficient due to performance considerations.
+* SWAP memory is disabled.
+
+    ```
+    swapon -s
+    ```
+
+**System requirements**
+
+The server should be dedicated as a standalone unit. Allocating dedicated power is advisable. Resource requirements vary based on the expected incoming traffic load.
+
+For less than 1 billion requests per month:
+
+* 16+ cores
+* 48 GB+ memory
+* 300 GB of SSD root storage (HDDs are inadequate due to their slow performance; NVMe is acceptable but not necessary). Ensure that the server configuration includes only the default operating system mounts to the root directory and, optionally, the boot directory (`/boot`). Avoid setting up any additional disk volumes or storage partitions.
+* Additional 100 GB of storage for every 100 million requests per month, to accommodate data for 1 year
+
+For more than 1 billion requests per month:
+
+* 32+ cores
+* 80 GB+ memory (120 GB recommended)
+* 500 GB of SSD root storage (HDDs are inadequate due to their slow performance; NVMe is acceptable but not necessary). Ensure that the server configuration includes only the default operating system mounts to the root directory and, optionally, the boot directory (`/boot`). Avoid setting up any additional disk volumes or storage partitions.
+* Additional 100 GB of storage for every 100 million requests per month, to accommodate data for 1 year
+
+**Network requirements**
+
+* Allowed outgoing connections to `https://onprem.wallarm.com` with 80 and 443 ports for downloading the license key and the installation/upgrade packages. This domain operates from a static IP address and the DNS must also resolve it.
+* A 3-5 level DNS wildcard record configured for the instance, e.g. `*.wallarm.companyname.tld`. Ensure that the instance is accessible via these DNS resolutions from any filtering node, browser, or external integration agent.
 * A valid SSL/TLS wildcard certificate (and key) issued from either a trusted or an internal CA. All filtering node instances and browsers must recognize this SSL/TLS certificate/key pair as trusted.
-* Allowed outgoing connections to Wallarm's on-premise license service IP address (single static IP address; provided during integration) for downloading the license key and the installation/upgrade packages.
 
 ### Procedure
 
-To deploy Wallarm Cloud on-premise:
+To deploy Wallarm Cloud on-premise on the prepared compute instance:
 
 1. Contact our [sales team](mailto:sales@wallarm.com?subject=Wallarm%20on-premise%20deployment&body=Dear%20Wallarm%20Sales%20Team%2C%0A%0AI%20am%20writing%20to%20express%20my%20interest%20in%20deploying%20the%20Wallarm%20platform%20on-premise.%20Could%20you%20please%20provide%20me%20with%20the%20necessary%20scripts%20for%20deployment%2C%20detailed%20information%20on%20the%20appropriate%20subscription%20plans%2C%20and%20comprehensive%20instructions%3F)  to obtain the deployment script for the Cloud services, the corresponding instructions, and the initial credentials.
 1. Prepare a virtual (or physical) machine according to the requirements outlined above.
