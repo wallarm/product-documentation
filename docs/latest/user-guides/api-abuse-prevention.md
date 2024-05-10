@@ -29,12 +29,12 @@ To create an API abuse profile:
 
     * **Reaction**:
     
-        * **Disabled** - the system will not protect from this type of bot. 
+        * **Disabled** - Wallarm will not protect from this type of bot. 
         * **Register attack** - detected malicious bot activities will be displayed in the [**Attacks**](../user-guides/events/check-attack.md) section of Wallarm Console, requests will not be blocked.
 
-            From such events details, you can quickly block the bot with the **Add source IP to denylist** button. The IP is added to the denylist forever, but in the **IP Lists** section you can delete it or change the time of staying in the list.
+            From such event details, you can quickly block the bot with the **Add source IP to denylist** button. The IP is added to the denylist forever, but in the **IP Lists** section you can delete it or change the time of staying in the list.
 
-        * **Denylist IP** or **Graylist IP** - the bot's IP is added to the corresponding list for the selected period of time and requests are blocked. Learn more about difference between deny- and graylist [here](../user-guides/ip-lists/overview.md).
+        * **Denylist IP** or **Graylist IP** - the bot's IP is added to the corresponding list for the selected period, and requests are blocked. Learn more about the difference between deny- and graylist [here](../user-guides/ip-lists/overview.md).
 
     * **Sensitivity**:
     
@@ -44,7 +44,10 @@ To create an API abuse profile:
 
             ![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
-1. Set the **Analyze behavior by** parameter: TBD
+1. Set the **Analyze behavior by** parameter:
+
+    * **Applications** - analyze requests to all of the domains of the application together.
+    * **Domains** - analyze requests to each of the domains of the application separately.
 
     Once the API abuse profile is configured, the module will start the [traffic analysis and blocking supported automated threats](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works).
 
