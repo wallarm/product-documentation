@@ -39,27 +39,6 @@ If one or several detectors point to [bot attack signs](#automated-threats-block
 
 The solution deeply observes traffic anomalies before attributing them as malicious bot actions and blocking their origins. Since metric collection and analysis take some time, the module does not block malicious bots in real-time once the first malicious request originated but significantly reduces abnormal activity on average.
 
-## Tolerance
+## Setup
 
-You can configure how strictly the signs of a malicious bot are monitored and thus control the number of false positive detections. This is set with the **Tolerance** parameter within [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-profiles).
-
-There are three available levels:
-
-* **Low** tolerance to bots means LESS bots access your applications, but this may block some legitimate requests due to false positives.
-* **Normal** tolerance uses optimal rules to avoid many false positives and prevent most malicious bot requests from reaching APIs.
-* **High** tolerance to bots means MORE bots access your applications, but then no legitimate requests will be dropped.
-
-## Reaction to malicious bots
-
-You can configure API Abuse Prevention to react to malicious bots in one of the following ways:
-
-* **Add to denylist**: Wallarm will [denylist](../user-guides/ip-lists/overview.md) bots' IPs for the selected time (default value is `Add for a day` - 24 hours) and block all traffic these IPs produce.
-* **Add to graylist**: Wallarm will [graylist](../user-guides/ip-lists/overview.md) bots' IPs for the selected time (default value is `Add for a day` - 24 hours) and block only requests originating from these IPs and containing the signs of the following attacks:
-
-    * [Input validation attacks](../about-wallarm/protecting-against-attacks.md#input-validation-attacks)
-    * [Attacks of the vpatch type](../user-guides/rules/vpatch-rule.md)
-    * [Attacks detected based on regular expressions](../user-guides/rules/regex-rule.md)
-
-* **Only monitor**: Wallarm will display the detected bot activity in the [**Attacks**](../user-guides/events/check-attack.md) section but will add the bot's IP neither to deny- nor to graylist. 
-
-    From such events details, you can quickly block the bot with the **Add source IP to denylist** button. The IP is added to the denylist forever, but in the **IP Lists** section you can delete it or change the time of staying in the list.
+To start malicious bot detection and mitigation with the **API Abuse Prevention** module, create and configure one or more [API abuse profiles](../user-guides/api-abuse-prevention.md#creating-profiles).

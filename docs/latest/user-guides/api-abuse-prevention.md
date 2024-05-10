@@ -19,19 +19,32 @@ To enable API Abuse Prevention:
 
 ## Creating profiles
 
-API abuse profiles are used to configure how Wallarm's **API Abuse Prevention** detects and mitigates malicious bots. Each profile defines which applications should be protected from what type of bots, what should be the level of tolerance to that bots and what should be the reaction to their activities.
+API abuse profiles are used to configure how Wallarm's **API Abuse Prevention** detects and mitigates malicious bots. Each profile defines which applications should be protected from what type of bots, with what sensitivity each type of bot should be detected and what should be the reaction to this bot's activities.
 
 To create an API abuse profile:
 
-1. In Wallarm Console → **API Abuse Prevention**, click **Create profile**.
-1. Select applications to protect.
-1. Select [tolerance](../about-wallarm/api-abuse-prevention.md#tolerance) level.
-1. If necessary, in the **Protect from** section, limit the [types of bots](../about-wallarm/api-abuse-prevention.md#automated-threats-blocked-by-api-abuse-prevention) to protect from.
-1. Select the appropriate [reaction to malicious bots](../about-wallarm/api-abuse-prevention.md#reaction-to-malicious-bots).
-1. If reaction is to add to deny- or graylist, set the time during which the IP will be in the list. Default value is `Add for a day`. 
-1. Set name and optionally description.
+1. Go to Wallarm Console → **API Abuse Prevention** in the [US](https://us1.my.wallarm.com/api-abuse-prevention/) or [EU](https://my.wallarm.com/api-abuse-prevention/) Cloud and click **Create profile**.
+1. Select application(s) to protect.
+1. Enable reaction and sensitivity for the [types of bots](../about-wallarm/api-abuse-prevention.md#automated-threats-blocked-by-api-abuse-prevention) you want to protect from:
 
-    ![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+    * **Reaction**:
+    
+        * **Disabled** - the system will not protect from this type of bot. 
+        * **Register attack** - detected malicious bot activities will be displayed in the [**Attacks**](../user-guides/events/check-attack.md) section of Wallarm Console, requests will not be blocked.
+
+            From such events details, you can quickly block the bot with the **Add source IP to denylist** button. The IP is added to the denylist forever, but in the **IP Lists** section you can delete it or change the time of staying in the list.
+
+        * **Denylist IP** or **Graylist IP** - the bot's IP is added to the corresponding list for the selected period of time and requests are blocked. Learn more about difference between deny- and graylist [here](../user-guides/ip-lists/overview.md).
+
+    * **Sensitivity**:
+    
+        * **Paranoid** - the higher sensitivity means that LESS bots access your applications, but this may block some legitimate requests due to false positives.
+        * **Normal** (default, recommended) - uses optimal rules to avoid many false positives and prevent most malicious bot requests from reaching APIs.
+        * **Safe mode** - the lower sensitivity means that MORE bots access your applications, but then no legitimate requests will be dropped.
+
+            ![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+
+1. Set the **Analyze behavior by** parameter: TBD
 
     Once the API abuse profile is configured, the module will start the [traffic analysis and blocking supported automated threats](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works).
 
