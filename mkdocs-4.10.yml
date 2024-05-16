@@ -59,6 +59,10 @@ nav:
       - Exploring Detected Bots: user-guides/api-abuse-prevention-explore.md
     - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
     - GraphQL API Protection: api-protection/graphql-rule.md
+    - API Sessions:
+      - Overview: api-sessions/overview.md
+      - Setup: api-sessions/setup.md
+      - Exploring Sessions: api-sessions/exploring.md
   - API Attack Surface:
     - Overview: about-wallarm/attack-surface.md
     - Exposed Assets: user-guides/scanner.md
