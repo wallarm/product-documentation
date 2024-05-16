@@ -234,6 +234,17 @@ With the value set to `on`, NGINX has the ability to enter an emergency mode; if
 
     This parameter can be set inside the http, server, and location blocks.
 
+### wallarm_file_check_interval
+
+Defines an interval between checking new data in proton.db and custom ruleset file. The unit of measure is specified in the suffix as follows:
+* no suffix for minutes
+* `s` for seconds
+* `ms` for milliseconds
+
+!!! info
+    This parameter is configured only inside the http block.
+    
+    **Default value**: `1` (one minute)
 
 ### wallarm_force
 
@@ -262,17 +273,18 @@ Value of **0** turns the limit off.
 !!! warning "The directive is deprecated"
     Starting with Wallarm node 3.6, please use the [`wallarm_protondb_path`](#wallarm_protondb_path) directive instead. Just change the directive name, its logic did not change.
 
-### wallarm_file_check_interval
+### wallarm_http_v2_stream_max_len
 
-Defines an interval between checking new data in proton.db and custom ruleset file. The unit of measure is specified in the suffix as follows:
-* no suffix for minutes
-* `s` for seconds
-* `ms` for milliseconds
+This directive sets the maximum allowed length of an HTTP/2 stream in bytes. When half of the specified value is reached, an HTTP/2 `GOAWAY` frame is sent to the client to facilitate graceful stream termination. If the stream is not closed and the maximum length is reached, the connection is forcefully terminated by NGINX.
+
+If this option is not configured, stream lengths remain unlimited, potentially causing unbounded memory consumption by the NGINX process, particularly in gRPC environments with long-lived connections.
 
 !!! info
-    This parameter is configured only inside the http block.
+    Currently this directive is available only for nodes deployed with [all-in-one installer](../installation/nginx/all-in-one.md) version 4.10.6 or higher.
+
+    This parameter can be set within the http, server, and location blocks.
     
-    **Default value**: `1` (one minute)
+    The directive does not have a default value, there are no limits on the length of HTTP/2 streams by default.
 
 ### wallarm_instance
 

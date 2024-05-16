@@ -96,10 +96,7 @@ Specify in the search string:
 * `experimental`: to search for experimental attacks detected based on [custom regular expression](../rules/regex-rule.md).
 * `bola`: to search for attacks exploiting the [BOLA (IDOR) vulnerability](../../attacks-vulns-list.md#broken-object-level-authorization-bola).
 * `mass_assignment`: to search for [Mass Assignment](../../attacks-vulns-list.md#mass-assignment) attack attempts.
-* `api_abuse`: to search for [basic bot types that includes server response time increase, fake account creation, and scalping](../../attacks-vulns-list.md#api-abuse).
-* `account_takeover`: to search for [account takeover attempts](../../attacks-vulns-list.md#api-abuse-account-takeover).
-* `scraping`: to search for [scraping attempts](../../attacks-vulns-list.md#api-abuse-scraping).
-* `security_crawlers`: to search for [scanning attempts performed by security crawlers](../../attacks-vulns-list.md#api-abuse-security-crawlers).
+* `api_abuse`: to search for [bot attacks](../../attacks-vulns-list.md#api-abuse).
 * `ssrf`: to search for [Server‑side Request Forgery (SSRF) and attacks](../../attacks-vulns-list.md#serverside-request-forgery-ssrf).
 
 An attack name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
