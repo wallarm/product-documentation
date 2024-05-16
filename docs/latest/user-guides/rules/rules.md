@@ -270,64 +270,35 @@ To match requests with regular expressions, the PIRE library is used. Mostly, th
 
 **Testing regular expressions**
 
-To test the regular expression, you can use the **cpire** utility on supported Debian or Ubuntu:
+To test a regular expression, you can install the **cpire** utility using the Wallarm [all-in-one installer](../../installation/nginx/all-in-one.md) on your Linux-based OS and use it as follows:
 
-1. Add Wallarm repository:
+1. Download the Wallarm all-in-one installer if it is not downloaded yet:
 
-    === "Debian 10.x (buster)"
-        ```bash
-        sudo apt update
-        sudo apt -y install dirmngr
-        curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node buster/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-        sudo apt update
-        ```
-    === "Debian 11.x (bullseye)"
-        ```bash
-        sudo apt update
-        sudo apt -y install dirmngr
-        curl -fSsL https://repo.wallarm.com/wallarm.gpg | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/wallarm.gpg --import
-        sudo chmod 644 /etc/apt/trusted.gpg.d/wallarm.gpg
-        sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node bullseye/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-        sudo apt update
-        ```
-    === "Ubuntu 18.04 LTS (bionic)"
-        ```bash
-        sudo apt update
-        curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-        sudo apt update
-        ```
-    === "Ubuntu 20.04 LTS (focal)"
-        ```bash
-        sudo apt update
-        curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-        sudo apt update
-        ```
-    === "Ubuntu 22.04 LTS (jammy)"
-        ```bash
-        sudo apt update
-        curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb https://repo.wallarm.com/ubuntu/wallarm-node jammy/4.8/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-        sudo apt update
-        ```
-2. Install the **cpire** utility:
-
-    ```bash
-    sudo apt -y install libcpire-utils
     ```
-3. Run the **cpire** utility:
-    ```bash
-    cpire-runner -R '<YOUR_REGULAR_EXPRESSION>'
+    curl -O https://meganode.wallarm.com/4.10/wallarm-4.10.6.x86_64-glibc.sh
     ```
-4. Enter the value to check whether it matches with the regular expression. The utility will return the result:
+1. Install the Wallarm modules if they are not installed yet:
+    
+    ```
+    sudo sh wallarm-4.10.6.x86_64-glibc.sh -- --batch
+    ```
+1. Run the **cpire** utility:
+    
+    ```bash
+    /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
+    ```
+1. Enter the value to check whether it matches with the regular expression.
+
+    The utility will return the result:
+    
     * `0` if the value matches with the regular expression
     * `FAIL` if the value does not match with the regular expression
     * Error message if the regular expression is invalid
 
     !!! warning "Specifics of handling the `\` character"
         If the expression includes `\`, please escape it with `[]` and `\` (for example, `[\\]`).
+
+<!-- docker run --rm -it wallarm/node:4.10.6-rc2 /opt/wallarm/usr/bin/cpire-runner ARGUMENTS -->
 
 **Examples of regular expressions added via Wallarm Console**
 

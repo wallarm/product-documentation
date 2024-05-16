@@ -459,6 +459,14 @@ The 4.10.1 release addresses multiple high and critical severity vulnerabilities
 
 Among the vulnerabilities addressed are those identified by [CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327), [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920), and several others. A full list of resolved vulnerabilities, along with their corresponding CVEs specific to each node deployment artifact, can be found within the [inventory of node artifact versions](../node-artifact-versions.md).
 
+## HTTP/2 stream length control directive
+
+The [`wallarm_http_v2_stream_max_len`](../../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len) directive to control the maximum length of HTTP/2 streams has been introduced. It helps in preventing excessive memory consumption in long-lived gRPC connections.
+
+## Distinct search tags for Account Takeover, Scraping and Security Crawlers
+
+Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag.
+
 ## Upgrade process
 
 1. Review [recommendations for the modules upgrade](../general-recommendations.md).

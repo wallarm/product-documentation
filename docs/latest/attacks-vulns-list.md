@@ -116,7 +116,7 @@ If the metrics point to bot attack signs, the module [denylists or graylists](ab
 
 **Attack**
 
-**Wallarm code:** `account_takeover`
+**Wallarm code:** `account_takeover` (`api_abuse` before 4.10.6)
 
 **Description:**
 
@@ -141,7 +141,7 @@ Wallarm detects and mitigates the account takeover attacks only if it has the [A
 
 **Attack**
 
-**Wallarm code:** `scraping`
+**Wallarm code:** `scraping` (`api_abuse` before 4.10.6)
 
 **Description:**
 
@@ -169,7 +169,7 @@ The **API Abuse Prevention** module uses the complex bot detection model to dete
 
 **Attack**
 
-**Wallarm code:** `security_crawlers`
+**Wallarm code:** `security_crawlers` (`api_abuse` before 4.10.6)
 
 **Description:**
 
