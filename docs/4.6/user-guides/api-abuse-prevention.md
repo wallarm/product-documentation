@@ -48,7 +48,7 @@ You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Deny
 
 You can interfere in the bot protection process. If denylisted or graylisted IP actually is not used by a malicious bot, you can either delete the IP from the list or [allowlist](../user-guides/ip-lists/allowlist.md) it. Wallarm does not block any requests originating from allowlisted IPs including malicious ones.
 
-You can also explore bot API abuse attacks performed by bots in Wallarm Console → **Attacks** section. Use the `api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys or select the appropriate options from the **Type** filter.
+You can also explore bot API abuse attacks performed by bots in Wallarm Console → **Attacks** section. Use the `api_abuse` search key or select the appropriate option from the **Type** filter.
 
 ![API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
@@ -90,7 +90,7 @@ There are two ways of adding IP addresses to the exception list:
 
     ![API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
 
-* From the **Attacks** section: use the `api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys or select the appropriate options from the **Type** filter, then expand the required event and click **Add to exception list**.
+* From the **Attacks** section: use the `api_abuse` search key or select the appropriate option from the **Type** filter, then expand the required event and click **Add to exception list**.
 
     ![API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
 

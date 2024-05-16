@@ -721,7 +721,7 @@ You may follow these recommendations:
 
 **Attack**
 
-**Wallarm code:** `account_takeover`
+**Wallarm code:** `api_abuse`
 
 **Description:**
 
@@ -751,7 +751,7 @@ You may follow these recommendations:
 
 **Attack**
 
-**Wallarm code:** `security_crawlers`
+**Wallarm code:** `api_abuse`
 
 **Description:**
 
@@ -786,7 +786,7 @@ You may follow these recommendations:
 
 **Attack**
 
-**Wallarm code:** `scraping`
+**Wallarm code:** `api_abuse`
 
 **Description:**
 
