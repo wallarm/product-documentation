@@ -1,26 +1,21 @@
 # API Sessions Setup <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Intro TBD. This article TBD.
+This article describes how to enable and configure [API Sessions](overview.md) to monitor and display the user sessions in your applications' traffic.
 
 ## Enabling
 
-The **API Sessions** module is disabled by default.
+The API Session functionality is available in the **Advanced API Security** [subscription plan](../about-wallarm/subscription-plans.md#subscription-plans). It is disabled by default.
 
 To enable API Sessions:
 
-1. Make sure your Wallarm node is of the 4.10.2 or higher [version](../updating-migrating/versioning-policy.md#version-list).
-1. Make sure your [subscription plan](subscription-plans.md#subscription-plans) includes the **API Sessions** module. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
-1. Make sure you are logged in under user with the **Administrator** or **Global Administrator** [role](../user-guides/settings/users.md#user-roles).
-1. If you want to enable API Sessions only for the selected applications, ensure that the applications are added as described in the [Setting up applications](../user-guides/settings/applications.md) article.
-1. Enable API Sessions for the required applications/endpoints in Wallarm Console → **API Sessions** → **Configure API Sessions**.
-
-    ![!API Sessions - Settings](../images/api-sessions/api-sessions-settings.png)
-
-Once the API Sessions module is enabled, it will start the analysis of the requests to your selected applications/endpoints and joining these requests into user sessions. The monitored sessions will be displayed in the **API Sessions** section of Wallarm Console.
+1. Check that your Wallarm node is 4.10.2 or later.
+1. Request the [Wallarm support team](mailto:support@wallarm.com) to enable API Sessions.
 
 ## Configuring
 
-By clicking the **Configure API Sessions** button in the **API Sessions** section, you proceed to the session monitoring options:
+For now, all API Session configuration is performed by the [Wallarm support team](mailto:support@wallarm.com).
+
+<!--By clicking the **Configure API Sessions** button in the **API Sessions** section, you proceed to the session monitoring options:
 
 * At **Monitored sessions**, select hosts or/and applications: only requests targeting them will be analyzed for the possibility of joining in a session. You can also select **Monitor all sessions**.
 
@@ -41,4 +36,4 @@ For example, if you specify `example.com:8080/path1/path2` URI with `Application
 
 ...requests to `Application 01`'s endpoint `example.com:8080/path1/path2` will be analyzed and requests containing both `traced-par-ex-1` and `traced-par-ex-2` and `traced-par-ex-3` will be considered to be the part of the same session. If some of the parameters are missing, rule 2 will be applied.
 
-If, for example, you additionally want to have information about `traced-par-ex-5` parameter, you add this parameter to the list of traced, but do not add it to any identification rule. As a result, it will be displayed in the session request details, but will not be used for session identification.
+If, for example, you additionally want to have information about `traced-par-ex-5` parameter, you add this parameter to the list of traced, but do not add it to any identification rule. As a result, it will be displayed in the session request details, but will not be used for session identification.-->

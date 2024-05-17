@@ -6,12 +6,14 @@ The **API Sessions** module of the Wallarm platform monitors and displays the us
 
 The main issue the **API Sessions** module deals with is that when dealing only with attacks, presented in the **Events** section, you cannot see their full contexts: the logic sequence of requests that the attack is the part of. This context allows revealing of more general patterns in how your applications are being attacked as well as understanding of which business logic will be affected by the taken security measures.
 
+![!API Sessions section - monitored sessions](../images/api-sessions/api-sessions.png)
+
 **As you have the API sessions monitored by Wallarm, you can**:
 
-* [Track user activity](#viewing-monitored-api-sessions) by displaying a list of requests made in a single session, so you can identify unusual patterns of behavior or deviations from typical usage.
-* [Inspect shadow APIs](#inspecting-sessions-with-requests-to-shadow-apis) requested in user sessions.
-* [Identify performance issues](#analyzing-session-performance-issues) and bottlenecks to optimize user experience.
-* Know which API flow/business logic sequences will be affected before tuning a particular false positive, applying the virtual patch, adding rules, or enabling API Abuse controls.
+* [Track user activity](exploring.md) by displaying a list of requests made in a single session, so you can identify unusual patterns of behavior or deviations from typical usage.
+* [Inspect shadow APIs](exploring.md#inspecting-sessions-with-requests-to-shadow-apis) requested in user sessions.
+* [Identify performance issues](exploring.md#analyzing-session-performance-issues) and bottlenecks to optimize user experience.
+* Know which API flow/business logic sequences will be affected before tuning a particular [false positive](../about-wallarm/protecting-against-attacks.md#false-positives), applying the [virtual patch](../user-guides/rules/vpatch-rule.md), adding [rules](../user-guides/rules/rules.md), or enabling [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) controls.
 
 ## How API Sessions module works
 
