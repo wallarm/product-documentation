@@ -270,35 +270,41 @@ To match requests with regular expressions, the PIRE library is used. Mostly, th
 
 **Testing regular expressions**
 
-To test a regular expression, you can install the **cpire** utility using the Wallarm [all-in-one installer](../../installation/nginx/all-in-one.md) on your Linux-based OS and use it as follows:
+To test a regular expression, use the Wallarm **cpire** utility. Install it via the [Wallarm all-in-one installer](../../installation/nginx/all-in-one.md) on your Linux-based OS, or run it from the [Wallarm NGINX-based Docker image](../../admin-en/installation-docker-en.md) as follows:
 
-1. Download the Wallarm all-in-one installer if it is not downloaded yet:
+=== "All-in-one installer"
+    1. Download the Wallarm all-in-one installer if it is not downloaded yet:
 
-    ```
-    curl -O https://meganode.wallarm.com/4.10/wallarm-4.10.6.x86_64-glibc.sh
-    ```
-1. Install the Wallarm modules if they are not installed yet:
+        ```
+        curl -O https://meganode.wallarm.com/4.10/wallarm-4.10.6.x86_64-glibc.sh
+        ```
+    1. Install the Wallarm modules if they are not installed yet:
+        
+        ```
+        sudo sh wallarm-4.10.6.x86_64-glibc.sh -- --batch
+        ```
+    1. Run the **cpire** utility:
+        
+        ```bash
+        /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
+        ```
+    1. Enter the value to check whether it matches with the regular expression.
+=== "NGINX-based Docker image"
+    1. Run the **cpire** utility from the Wallarm Docker image:
     
-    ```
-    sudo sh wallarm-4.10.6.x86_64-glibc.sh -- --batch
-    ```
-1. Run the **cpire** utility:
-    
-    ```bash
-    /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
-    ```
-1. Enter the value to check whether it matches with the regular expression.
+        ```
+        docker run --rm -it wallarm/node:4.10.6-1 /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
+        ```
+    1. Enter the value to check whether it matches with the regular expression.
 
-    The utility will return the result:
-    
-    * `0` if the value matches with the regular expression
-    * `FAIL` if the value does not match with the regular expression
-    * Error message if the regular expression is invalid
+The utility will return the result:
 
-    !!! warning "Specifics of handling the `\` character"
-        If the expression includes `\`, please escape it with `[]` and `\` (for example, `[\\]`).
+* `0` if the value matches with the regular expression
+* `FAIL` if the value does not match with the regular expression
+* Error message if the regular expression is invalid
 
-<!-- docker run --rm -it wallarm/node:4.10.6-rc2 /opt/wallarm/usr/bin/cpire-runner ARGUMENTS -->
+!!! warning "Specifics of handling the `\` character"
+    If the expression includes `\`, please escape it with `[]` and `\` (for example, `[\\]`).
 
 **Examples of regular expressions added via Wallarm Console**
 
