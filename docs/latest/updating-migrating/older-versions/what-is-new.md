@@ -449,7 +449,7 @@ Now you can easily group node instances using one [**API token**](../../user-gui
 For example: 
 
 ```bash
-docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:4.10.5-1
+docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:4.10.6-1
 ```
 ...will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).
 
@@ -463,9 +463,11 @@ Among the vulnerabilities addressed are those identified by [CVE-2020-36327](htt
 
 The [`wallarm_http_v2_stream_max_len`](../../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len) directive to control the maximum length of HTTP/2 streams has been introduced. It helps in preventing excessive memory consumption in long-lived gRPC connections.
 
-## Distinct search tags for Account Takeover, Scraping and Security Crawlers
+To use this variable in a [Docker container](../../admin-en/installation-docker-en.md), specify it in your NGINX configuration file and mount the file into the container.
 
-Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag.
+<!-- ## Distinct search tags for Account Takeover, Scraping and Security Crawlers
+
+Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag. -->
 
 ## Upgrade process
 

@@ -15,11 +15,11 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 * Enhanced OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
 * Introduced the [`wallarm_http_v2_stream_max_len`](../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len) directive to control the maximum length of HTTP/2 streams, helping prevent excessive memory consumption in long-lived gRPC connections
 * Added support for NGINX v1.26.0
-* Introduced distinct [search tags](../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types, improving specificity over the previous general `api_abuse` tag
 * Fixed compatibility issues with the Kong Gateway
 * Resolved a memory leak issue where memory continued to be consumed after an overlimit attack was triggered, even when no further attack checks were conducted
 * Return proper non-zero exit codes during installation errors, addressing previous issues
 * Include the [**cpire-runner**](../user-guides/rules/rules.md#condition-type-regex) utility, which facilitates testing of regular expressions intended for user-defined attack detectors
+<!-- * Introduced distinct [search tags](../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types, improving specificity over the previous general `api_abuse` tag -->
 
 ### 4.10.5 (2024-04-23)
 
@@ -233,7 +233,15 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](docker-container.md)
 
-<!-- re-check all the released items - do they include additional docs changes? (the wallarm_http_v2_stream_max_len desc). are new search tags supported by docker and others based on 4.10.6? if not, it must be described in the attack and vuln list, enrich the cpire utility docs. what is new also must be recheked if we need tpo specify that some installation forms do not suppport the released changes -->
+### 4.10.6-1 (2024-05-17)
+
+* Enhanced OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
+* Introduced the [`wallarm_http_v2_stream_max_len`](../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len) directive to control the maximum length of HTTP/2 streams, helping prevent excessive memory consumption in long-lived gRPC connections
+
+    To use this variable in a Docker container, specify it in your NGINX configuration file and mount the file into the container.
+* Resolved a memory leak issue where memory continued to be consumed after an overlimit attack was triggered, even when no further attack checks were conducted
+* Include the [**cpire-runner**](../user-guides/rules/rules.md#condition-type-regex) utility, which facilitates testing of regular expressions intended for user-defined attack detectors
+<!-- * Introduced distinct [search tags](../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types, improving specificity over the previous general `api_abuse` tag -->
 
 ### 4.10.5-1 (2024-04-30)
 

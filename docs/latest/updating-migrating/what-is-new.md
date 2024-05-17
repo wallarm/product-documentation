@@ -109,9 +109,11 @@ Among the vulnerabilities addressed are those identified by [CVE-2020-36327](htt
 
 Starting from the release 4.10.6, the [`wallarm_http_v2_stream_max_len`](../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len) directive to control the maximum length of HTTP/2 streams has been introduced. It helps in preventing excessive memory consumption in long-lived gRPC connections.
 
-## Distinct search tags for Account Takeover, Scraping and Security Crawlers (node 4.10.6 and higher)
+To use this variable in a [Docker container](../admin-en/installation-docker-en.md), specify it in your NGINX configuration file and mount the file into the container.
 
-Starting from the release 4.10.6, distinct [search tags](../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag.
+<!-- ## Distinct search tags for Account Takeover, Scraping and Security Crawlers (node 4.10.6 and higher)
+
+Starting from the release 4.10.6, distinct [search tags](../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag. -->
 
 ## When upgrading node 3.6 and lower
 

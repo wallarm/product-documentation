@@ -280,7 +280,7 @@ This directive sets the maximum allowed length of an HTTP/2 stream in bytes. Whe
 If this option is not configured, stream lengths remain unlimited, potentially causing unbounded memory consumption by the NGINX process, particularly in gRPC environments with long-lived connections.
 
 !!! info
-    Currently this directive is available only for nodes deployed with [all-in-one installer](../installation/nginx/all-in-one.md) version 4.10.6 or higher.
+    Currently this directive is available only for nodes deployed with [all-in-one installer](../installation/nginx/all-in-one.md) or [NGINX-based Docker image](installation-docker-en.md) version 4.10.6 or higher.
 
     This parameter can be set within the http, server, and location blocks.
     
