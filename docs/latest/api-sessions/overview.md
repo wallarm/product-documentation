@@ -13,6 +13,7 @@ The main issue the **API Sessions** module deals with is that when dealing only 
 * [Track user activity](exploring.md) by displaying a list of requests made in a single session, so you can identify unusual patterns of behavior or deviations from typical usage.
 * [Inspect shadow APIs](exploring.md#inspecting-sessions-with-requests-to-shadow-apis) requested in user sessions.
 * [Identify performance issues](exploring.md#analyzing-session-performance-issues) and bottlenecks to optimize user experience.
+* [Verify API abuse detection accuracy](exploring.md#inspecting-sessions-with-api-abuse-attacks) by viewing the entire sequence of requests that was flagged as malicious bot activity.
 * Know which API flow/business logic sequences will be affected before tuning a particular [false positive](../about-wallarm/protecting-against-attacks.md#false-positives), applying the [virtual patch](../user-guides/rules/vpatch-rule.md), adding [rules](../user-guides/rules/rules.md), or enabling [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) controls.
 
 ## How API Sessions module works

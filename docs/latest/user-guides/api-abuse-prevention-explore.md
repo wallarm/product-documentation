@@ -46,3 +46,15 @@ The **API Abuse Prevention** module compiles client traffic into URL patterns. T
 | LANGUAGE | Language-related parts. | `en`, `fr` |
 | HEALTHCHECK | Content related to the health check endpoints. | - |
 | VARY | The segment is marked as VARY if it is impossible to attribute it to other categories. A variable part of the URL path. | - |
+
+## Bot attacks in API sessions
+
+You can additionally verify API abuse detection accuracy by viewing the API sessions that the bot attack is the part of (requires the [API Sessions](../api-sessions/overview.md) being enabled).
+
+To see the session that the API abuse attack is the part of, in the **Attacks** section, in corresponding attack details, click **Explore the Session**. Wallarm will switch to the **API Sessions** section displaying the session this bot attack belongs to.
+
+![API Abuse attack in API Sessions](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-in-sessions.png)
+
+Expand the session details to identify which sequence of requests was flagged as malicious bot activity. If necessary, you can expand request details, view its content and immediately use the **Add source IP to denylist** or **Add to exception list** options.
+
+You can switch back to the **Attacks** section using **Explore the attack**.
