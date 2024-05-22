@@ -331,6 +331,14 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](cloud-image.md)
 
+### 4.10.6-1 (2024-05-22)
+
+* Enhanced OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
+* Introduced the [`wallarm_http_v2_stream_max_len`](../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len) directive to control the maximum length of HTTP/2 streams, helping prevent excessive memory consumption in long-lived gRPC connections
+* Resolved a memory leak issue where memory continued to be consumed after an overlimit attack was triggered, even when no further attack checks were conducted
+* Include the [**cpire-runner**](../user-guides/rules/rules.md#condition-type-regex) utility, which facilitates testing of regular expressions intended for user-defined attack detectors
+<!-- * Introduced distinct [search tags](../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types, improving specificity over the previous general `api_abuse` tag -->
+
 ### 4.10.5-1 (2024-05-16)
 
 * Fixed the API Abuse Prevention module logging issues
