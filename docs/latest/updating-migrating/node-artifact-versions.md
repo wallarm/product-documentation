@@ -89,6 +89,16 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.10.6 (2024-05-22)
+
+* Added the `controller.wallarm.<CONTAINER>.extraEnvs` chart values to allow passing additional environment variables to Docker containers utilized by the solution
+* Enhanced OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
+* Introduced the [`wallarm_http_v2_stream_max_len`](../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len) directive to control the maximum length of HTTP/2 streams, helping prevent excessive memory consumption in long-lived gRPC connections
+
+    To apply this directive during Ingress controller deployment, include it in the [`controller.config.http-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#http-snippet), `server-snippet`, or `location-snippet` values. Alternatively, use the [`nginx.ingress.kubernetes.io/server-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet) Ingress annotation.
+* Resolved a memory leak issue where memory continued to be consumed after an overlimit attack was triggered, even when no further attack checks were conducted
+<!-- * Introduced distinct [search tags](../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types, improving specificity over the previous general `api_abuse` tag -->
+
 ### 4.10.5 (2024-04-30)
 
 * Fixed the API Abuse Prevention module logging issues
@@ -151,6 +161,15 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## Helm chart for Sidecar
 
 [How to upgrade](sidecar-proxy.md)
+
+### 4.10.6 (2024-05-22)
+
+* Enhanced OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
+* Introduced the [`wallarm_http_v2_stream_max_len`](../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len) directive to control the maximum length of HTTP/2 streams, helping prevent excessive memory consumption in long-lived gRPC connections
+
+    To apply this directive during Sidecar controller deployment, include it in the [per-pod snippets or includes](../installation/kubernetes/sidecar-proxy/customization.md#using-custom-nginx-configuration).
+* Resolved a memory leak issue where memory continued to be consumed after an overlimit attack was triggered, even when no further attack checks were conducted
+<!-- * Introduced distinct [search tags](../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types, improving specificity over the previous general `api_abuse` tag -->
 
 ### 4.10.5 (2024-04-30)
 
@@ -311,6 +330,14 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 4.10.6-1 (2024-05-22)
+
+* Enhanced OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
+* Introduced the [`wallarm_http_v2_stream_max_len`](../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len) directive to control the maximum length of HTTP/2 streams, helping prevent excessive memory consumption in long-lived gRPC connections
+* Resolved a memory leak issue where memory continued to be consumed after an overlimit attack was triggered, even when no further attack checks were conducted
+* Include the [**cpire-runner**](../user-guides/rules/rules.md#condition-type-regex) utility, which facilitates testing of regular expressions intended for user-defined attack detectors
+<!-- * Introduced distinct [search tags](../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types, improving specificity over the previous general `api_abuse` tag -->
 
 ### 4.10.5-1 (2024-05-16)
 
