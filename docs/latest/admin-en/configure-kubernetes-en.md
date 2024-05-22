@@ -37,6 +37,19 @@ controller:
         successThreshold: 1
         timeoutSeconds: 1
       resources: {}
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
+    wallarm-appstructure:
+      resources: {}
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
+    wallarm-antibot:
+      resources: {}
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
     metrics:
       enabled: false
 
@@ -55,14 +68,27 @@ controller:
         loadBalancerSourceRanges: []
         servicePort: 18080
         type: ClusterIP
-    synccloud:
+    addnode:
       resources: {}
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
+    cron:
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
     collectd:
       resources: {}
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
     apiFirewall:
       enabled: true
       config:
         ...
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
 ```
 
 To change this setting, we recommend using the option `--set` of `helm install` (if installing the Ingress controller) or `helm upgrade` (if updating the installed Ingress controller parameters). For example:
@@ -195,6 +221,10 @@ controller:
         logFormat: TEXT
       ...
 ```
+
+### controller.wallarm.container_name.extraEnvs
+
+Extra environment variables to be passed to the Docker containers utilized by the solution.
 
 ## Global Controller Settings 
 

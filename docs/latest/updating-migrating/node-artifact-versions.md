@@ -102,7 +102,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 4.10.6 (2024-05-22)
 
-* Added the `controller.wallarm.<CONTAINER>.extraEnvs` chart values to allow passing additional environment variables to Docker containers utilized by the solution
+* Added the [`controller.wallarm.container_name.extraEnvs`](../admin-en/configure-kubernetes-en.md#controllerwallarmcontainernameextraenvs) chart values to allow passing additional environment variables to Docker containers utilized by the solution
 * Enhanced OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
 * Introduced the [`wallarm_http_v2_stream_max_len`](../admin-en/configure-parameters-en.md#wallarm_http_v2_stream_max_len) directive to control the maximum length of HTTP/2 streams, helping prevent excessive memory consumption in long-lived gRPC connections
 
