@@ -51,7 +51,7 @@ A token is used for request authentication. The token is generated after success
 To authenticate requests from your own API client to Wallarm API:
 
 1. Sign in to your Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)  → **Settings** → **API tokens**.
-1. [Create](../user-guides/settings/api-tokens.md#configuring-tokens) token to access the Wallarm API.
+1. [Create token](../user-guides/settings/api-tokens.md) to access the Wallarm API.
 1. Open your token and copy value from the **Token** section.
 1. Send the required API request passing the **Token** value in the `X-WallarmApi-Token` header parameter.
 
