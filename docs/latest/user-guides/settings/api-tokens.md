@@ -24,6 +24,10 @@ You can generate either personal or shared API tokens:
 
 You have the option to set an expiration date for each token. Once set, the token will be deactivated after the specified date.
 
+We issue an email notification 3 days prior to a token's expiration date. For short-term tokens with an expiration period of less than 3 days, no notification is sent.
+
+For personal tokens, the email is sent directly to the token owner, and for shared tokens, all administrators receive the notification.
+
 ## Token permissions
 
 For each token, you can set permissions that do not exceed the scope of permissions associated with your user role.
