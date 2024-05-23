@@ -17,6 +17,13 @@ The session information includes:
 
 You can use search and filters. In search, fuzzy terms (`*` and `?`) are acceptable. The search will be performed on the endpoints that were accessed in the sessions.
 
+## Limitations
+
+Currently API Sessions have some limitations. In the **API Sessions** section:
+
+* The [credential stuffing](../about-wallarm/credential-stuffing.md), [brute force](../admin-en/configuration-guides/protecting-against-bruteforce.md), [forced browsing](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md), and [BOLA](../admin-en/configuration-guides/protecting-against-bola-trigger.md) attack types are not marked. 
+* The [denylisted](../user-guides/ip-lists/overview.md) events are not presented.
+
 ## Inspecting sessions with requests to shadow APIs
 
 You can [get a list of shadow API endpoints](../api-discovery/rogue-api.md#viewing-found-rogue-apis) using the **API Discovery** module. Then, in **API Sessions**, use search to get the list of sessions with requests to these endpoints.
