@@ -28,6 +28,7 @@
 [cwe-538]:  https://cwe.mitre.org/data/definitions/538.html
 [cwe-541]:  https://cwe.mitre.org/data/definitions/541.html
 [cwe-548]:  https://cwe.mitre.org/data/definitions/548.html
+[CWE-598]:  https://cwe.mitre.org/data/definitions/598.html
 [cwe-601]:  https://cwe.mitre.org/data/definitions/601.html
 [cwe-611]:  https://cwe.mitre.org/data/definitions/611.html
 [cwe-776]:  https://cwe.mitre.org/data/definitions/776.html
@@ -385,24 +386,30 @@ You may follow these recommendations:
 
 **Vulnerability/Attack**
 
-**CWE codes:** [CWE-200][cwe-200] (see also: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548])
+**CWE codes:** [CWE-200][cwe-200] (see also: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548], [CWE-598][cwe-598])
 
 **Wallarm code:** `infoleak`
 
 **Description:**
 
-The application either intentionally or unintentionally discloses sensitive information to a subject that is not authorized to access it.
+This vulnerability involves the unauthorized disclosure of sensitive information by an application, potentially providing attackers with critical data for further malicious activities.
 
-The vulnerability of this type can be detected only by the method of [passive detection](about-wallarm/detecting-vulnerabilities.md#passive-detection). If the response to the request discloses sensitive information, Wallarm records an incident and an active vulnerability of the **Information exposure** type. Some kinds of sensitive information that can be detected by Wallarm include:
+Some types of sensitive information:
 
-* System and environment status (for example: stack trace, warnings, fatal errors)
+* Private, personal information, such as emails, financial data, contact details, etc.
+* System status and environment, such as the operating system and installed packages
 * Network status and configuration
-* The application code or internal state
-* Metadata (for example, logging of connections or message headers)
+* Source code or internal state
+* Metadata, e.g. logging of connections or message headers
 
-**Remediation:**
+Wallarm [prevents](admin-en/configure-wallarm-mode.md#available-filtration-modes) malicious attempts to access sensitive data and identifies security vulnerabilities when your application inadvertently exposes sensitive information.
 
-You may follow the recommendation to prohibit a web application from having the ability to display any sensitive information.
+Information exposure vulnerabilities, detected by Wallarm, can arise through server responses or the transfer of sensitive PII data in query parameters of GET requests. For PII exposures via query parameters, Wallarm specifically targets endpoints identified by its [API Discovery](api-discovery/overview.md) module.
+
+**In addition to Wallarm protection:**
+
+* Prohibit web applications from having the ability to display any sensitive information.
+* Preferably use the POST HTTP method instead of GET for transmitting sensitive data, such as in registration and login forms.
 
 ### Vulnerable Component
 
