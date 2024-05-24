@@ -85,31 +85,60 @@ At this point, you should have Graphite running and ready to receive metrics fro
 ### Configuring `collectd`
 
 Configure `collectd` to download metrics to Graphite:
-1.  Connect to the filter node (for example, using the SSH protocol). Make sure you are logged in as `root` or another account with superuser privileges.
-2.  Create a file named `/etc/collectd/collectd.conf.d/export-to-graphite.conf` with the following content:
-    
-    ```
-    LoadPlugin write_graphite
-    
-    <Plugin write_graphite>
-     <Node "node.example.local">
-       Host "10.0.30.30"
-       Port "2003"
-       Protocol "tcp"
-       SeparateInstances true
-     </Node>
-    </Plugin>
-    ```
-    
-    The following entities are configured here:
-    
-    1.  The host name from which metrics are collected (`node.example.local`).
-    2.  The server to which metrics should be sent (`10.0.30.30`).
-    3.  The server port (`2003`) and the protocol (`tcp`).
-    4.  The data transfer logic: the data of one instance of the plugin is separated from the data of another instance (`SeparateInstances true`).
-    
-3.  Restart the `collectd` service by running the appropriate command:
 
-    --8<-- "../include/monitoring/collectd-restart-2.16.md"
+=== "Docker image, cloud image, all-in-one installer"
+    1. Connect to the filter node (for example, using the SSH protocol). Make sure you are logged in as `root` or another account with superuser privileges.
+    1. Add the following configuration to the `/opt/wallarm/etc/collectd/wallarm-collectd.conf` file:
+
+        ```
+        LoadPlugin write_graphite
+        
+        <Plugin write_graphite>
+          <Node "node.example.local">
+            Host "10.0.30.30"
+            Port "2003"
+            Protocol "tcp"
+            SeparateInstances true
+          </Node>
+        </Plugin>
+        ```
+      
+        The following entities are configured here:
+        
+        1.  The host name from which metrics are collected (`node.example.local`).
+        2.  The server to which metrics should be sent (`10.0.30.30`).
+        3.  The server port (`2003`) and the protocol (`tcp`).
+        4.  The data transfer logic: the data of one instance of the plugin is separated from the data of another instance (`SeparateInstances true`).
+    1. Restart the `wallarm` service by running the following command:
+
+        ```bash
+        sudo systemctl restart wallarm
+        ```
+=== "Other installations"
+    1. Connect to the filter node (for example, using the SSH protocol). Make sure you are logged in as `root` or another account with superuser privileges.
+    1. Create a file named `/etc/collectd/collectd.conf.d/export-to-graphite.conf` with the following content:
+
+        ```
+        LoadPlugin write_graphite
+        
+        <Plugin write_graphite>
+          <Node "node.example.local">
+            Host "10.0.30.30"
+            Port "2003"
+            Protocol "tcp"
+            SeparateInstances true
+          </Node>
+        </Plugin>
+        ```
+      
+        The following entities are configured here:
+        
+        1.  The host name from which metrics are collected (`node.example.local`).
+        2.  The server to which metrics should be sent (`10.0.30.30`).
+        3.  The server port (`2003`) and the protocol (`tcp`).
+        4.  The data transfer logic: the data of one instance of the plugin is separated from the data of another instance (`SeparateInstances true`).
+    1. Restart the `collectd` service by running the appropriate command:
+
+        --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
 Now Graphite will receive all metrics of the filter node. You can visualize the metrics you are interested in, and monitor them [with Grafana][doc-grafana].
