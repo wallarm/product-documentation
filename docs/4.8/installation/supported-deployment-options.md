@@ -1085,6 +1085,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Apigee</h3>
             <p>Deploy Wallarm to secure APIs running on Apigee</p>
         </a>
+
+        <a class="do-card" href="../../installation/api-gateways/layer7-api-gateway/">
+            <img class="non-zoomable" src="../../images/platform-icons/layer7.png" />
+            <h3>Layer7 API Gateways</h3>
+            <p>Deploy Wallarm to secure APIs managed with Layer7 API Gateways</p>
+        </a>
     </div>
 </div>
 
@@ -1126,6 +1132,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <img class="non-zoomable" src="../../images/platform-icons/cloudflare.png" />
             <h3>Cloudflare</h3>
             <p>Deploy Wallarm to secure traffic running via Cloudflare</p>
+        </a>
+        
+        <a class="do-card" href="../../installation/connectors/layer7-api-gateway/">
+            <img class="non-zoomable" src="../../images/platform-icons/layer7.png" />
+            <h3>Layer7 API Gateways</h3>
+            <p>Deploy Wallarm to secure APIs managed with Layer7 API Gateways</p>
         </a>
     </div>
 </div>

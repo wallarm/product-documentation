@@ -37,5 +37,6 @@ Currently, Wallarm offers connectors for the following platforms:
 * [Azion Edge](azion-edge.md)
 * [AWS Lamdba](aws-lambda.md)
 * [Cloudflare](cloudflare.md)
+* [Layer7 API Gateways](layer7-api-gateway.md)
 
 If you couldn't find the connector you are looking for, please feel free to contact our [Sales team](mailto:sales@wallarm.com) to discuss your requirements and explore potential solutions.

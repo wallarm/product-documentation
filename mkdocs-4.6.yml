@@ -296,6 +296,7 @@ nav:
     - API Gateways:
       - Mulesoft: installation/api-gateways/mulesoft.md
       - Apigee: installation/api-gateways/apigee.md
+      - Layer7 API Gateways: installation/api-gateways/layer7-api-gateway.md
     - Connectors:
       - Overview: installation/connectors/overview.md
       - Mulesoft: installation/connectors/mulesoft.md
@@ -304,6 +305,7 @@ nav:
       - Azion Edge: installation/connectors/azion-edge.md
       - AWS Lambda: installation/connectors/aws-lambda.md
       - Cloudflare: installation/connectors/cloudflare.md
+      - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
     - Packages:
       - Docker Images:
         - NGINX-based: admin-en/installation-docker-en.md
