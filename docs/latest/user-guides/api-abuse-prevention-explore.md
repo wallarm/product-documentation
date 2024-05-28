@@ -1,8 +1,8 @@
-# Exploring Detected Bots <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Exploring Bot Activity <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-This article describes how to view the information about malicious bots detected by the [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) module and attacks performed by these bots.
+[API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) identifies malicious bot activity based on ML algorithms. Such attacks are impossible to analyze based on a single blocked request. Therefore, it is essential that the Wallarm platform offers a wide range of tools to investigate bot activity from different angles.
  
-## Blocked bots in IP Lists
+<!--## Blocked bots in IP Lists
 
 The **API Abuse Prevention** module blocks bots by adding them to the [denylist](../user-guides/ip-lists/overview.md) or [graylist](../user-guides/ip-lists/overview.md) for 1 hour.
 
@@ -14,8 +14,8 @@ You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Deny
     As a result of [detectors' work](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works), every detected bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
 
 You can interfere in the bot protection process. If denylisted or graylisted IP actually is not used by a malicious bot, you can either delete the IP from the list or [allowlist](../user-guides/ip-lists/overview.md) it. Wallarm does not block any requests originating from allowlisted IPs including malicious ones.
-
-## Bot attacks
+-->
+## Attacks
 
 You can explore attacks performed by bots in Wallarm Console → **Attacks** section. Use the `api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys or select the appropriate options from the **Type** filter.
 
@@ -31,7 +31,7 @@ The heatmaps:
 * **Behavior** visualizes the suspicious behavior score of the current and other detected bots including their degree of suspicious behavior, amount of requests to critical or sensitive endpoints, RPS and the number of bot detectors that detected them as bots.
 * **HTTP errors** visualizes the API errors caused by bot activities including the number of different endpoints they target, the number of unsafe requests they make, their RPS, and the number of error response codes they receive.
 
-Each heatmap includes detailed description of its bubble size, color and position meaning (use **Show more**). You can zoom in heatmap by drawing rectangular around required area.
+<!--Each heatmap includes detailed description of its bubble size, color and position meaning (use **Show more**). You can zoom in heatmap by drawing rectangular around required area.
 
 The **API Abuse Prevention** module compiles client traffic into URL patterns. The URL pattern may have the following segments:
 
@@ -45,13 +45,11 @@ The **API Abuse Prevention** module compiles client traffic into URL patterns. T
 | AUTH | Content related to the authentication/authorization endpoints. | - |
 | LANGUAGE | Language-related parts. | `en`, `fr` |
 | HEALTHCHECK | Content related to the health check endpoints. | - |
-| VARY | The segment is marked as VARY if it is impossible to attribute it to other categories. A variable part of the URL path. | - |
+| VARY | The segment is marked as VARY if it is impossible to attribute it to other categories. A variable part of the URL path. | - | -->
 
 ## Bot attacks in API sessions
 
-You can additionally verify API abuse detection accuracy by viewing the API sessions that the bot attack is the part of (requires the [API Sessions](../api-sessions/overview.md) being enabled).
-
-To see the session that the API abuse attack is the part of, in the **Attacks** section, in corresponding attack details, click **Explore the Session**. Wallarm will switch to the **API Sessions** section displaying the session this bot attack belongs to.
+You can easily validate detected malicious bot activity by switching from **Attacks** to **API Sessions** with the **Explore the Session** button. This button is available only for attacks for which there are saved sessions (see session retention period in [How API Sessions work](../api-sessions.md#how-api-sessions-work)). Within a session, you can analyze the sequence of requests that matches the malicious pattern and find out why it was blocked. If necessary, you can view all requests within a given session to understand the full context of the behavior of the selected actor.
 
 ![API Abuse attack in API Sessions](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-in-sessions.png)
 
