@@ -58,6 +58,7 @@ More detailed information about access of different user roles to the Wallarm en
 | **Filtration mode**        | View and manage                      | View                     | View                         | - |
 | **Applications**    | View and manage                      | View                     | View                         | - |
 | **Users**           | View and manage                      | -                        | View                         | - |
+| **API tokens**           | Manage personal and shared tokens | Manage personal tokens | - | - |
 | **Activity log**    | View                                 | -                        | View                         | - |
 
 ## Inviting a user

@@ -3,99 +3,54 @@
 
 # API Tokens
 
-In Wallarm Console → **Settings** → **API tokens**, you can manage tokens for [API request authentication](../../api/overview.md).
+In Wallarm Console → **Settings** → **API tokens**, you can manage tokens for [API request authentication](../../api/overview.md) and for [filtering node deployment](../../installation/supported-deployment-options.md).
+
+Wallarm API tokens offer flexible management options. You can choose the token's type, such as personal or shared, set its expiration date, and specify permissions.
 
 ![Wallarm API token][img-api-tokens-edit]
 
-This section is available for the users of **[all roles][user-roles-article]** besides **Read Only** and **API developer**.
+## Personal and shared tokens
 
-## Configuring tokens
+You can generate either personal or shared API tokens:
 
-Users can create own tokens and use them (which means, view token value and include it into API request to authenticate it). For each own token you can set permissions, but not wider than the ones your user has. Optionally, you can set expiration date for the token - if set, the token will be disabled after that date. Also, you can disable/enable your tokens manually.
+* Personal tokens are designated for individual use, according to the permissions assigned to them. Only [Administrators and Analysts](users.md#user-roles) can create and use personal tokens.
 
-You can renew the token value at any moment.
+    The value of a personal token can be copied and utilized solely by its owner. However, administrators can view the list of user tokens within the company account.
+* Shared tokens are designed for use by multiple users or systems. They provide access to resources or functionalities collectively, without being linked to any individual personal account.
 
-**Administrators** / **Global Administrators** can view and manage all tokens in the company account. Besides private tokens, they can create shared ones, that can be viewed/used by other administrators. When specifying permissions for the tokens, they can select to take these permissions from the selected role:
+    Only Administrators and Global Administrators can generate these tokens, and only other administrators within the company can use them.
 
-* Administrator
-* Analyst
-* API Developer
-* Read only
-* Deploy - API tokens with this role are used to [deploy Wallarm nodes](../../user-guides/nodes/nodes.md#creating-a-node)
-* Сustom - switches back to the manual permission selection. To create a token for [OpenAPI security testing], the custom role with the corresponding permissions is required.
+## Token expiration
 
-!!! info "Token privacy"
-    No other users (even administrators) can use your private tokens (which means, view or copy token value). Besides, non-administrators will not even see your tokens.
+You have the option to set an expiration date for each token. Once set, the token will be deactivated after the specified date.
 
-Consider that:
+We issue an email notification 3 days prior to a token's expiration date. For short-term tokens with an expiration period of less than 3 days, no notification is sent.
 
-* If the token owner has been [disabled](../../user-guides/settings/users.md#disabling-and-deleting-users), all one's tokens are automatically disabled as well.
-* If the token owner has been reduced in permissions, corresponding permissions will be removed from all one's tokens.
-* All disabled tokens are automatically removed in a week after disabling.
-* To enable previously disabled token, save it with the new expiration date.
+For personal tokens, the email is sent directly to the token owner, and for shared tokens, all administrators receive the notification.
 
-## Creating tokens with global role permissions
+## Token permissions
 
-To create an API token with the permissions based on the global [roles](../../user-guides/settings/users.md#user-roles) like Global Administrator, Global Analyst or Global Read Only, do the following:
+For each token, you can set permissions that do not exceed the scope of permissions associated with your user role.
 
-1. Log in to the [US](https://us1.my.wallarm.com/) or [EU](https://my.wallarm.com/) Wallarm Console under the [appropriate user](#configuring-tokens).
-1. At the top right, select `?` → **Wallarm API Console**. Wallarm API console is opened:
+You can assign token permissions based on predefined user roles or customize them:
 
-    * https://apiconsole.us1.wallarm.com/ for the US Cloud
-    * https://apiconsole.eu1.wallarm.com/ for the EU Cloud
+* Administrator, Analyst, API Develover, Read Only and the equivalent Global roles - a token assigned one of these roles will inherit the permissions detailed in our [user role system](users.md#user-roles).
+* Deploy - API tokens with this role are used to [deploy Wallarm nodes](../../installation/supported-deployment-options.md).
+* Сustom permissions - switches to the manual permission selection.
 
-    Note that Wallarm API Console retrieves authentication data from the Wallarm Console. If you change user in Wallarm Console, refresh the Wallarm API Console page for the new authentication.
- 
-1. Send the POST request to the `/v2/api_tokens` route with the following parameters:
+    To create a token for [OpenAPI security testing](../../fast/openapi-security-testing.md), the custom role with the corresponding permissions is required.
 
-    ```bash
-    {
-    "client_id": <CLIENT_ID>,
-    "realname": "<NAME_FOR_YOUR_API_TOKEN>",
-    "user_id": <USER_ID>,
-    "enabled": true,
-    "expire_at": "<TOKEN_EXPIRATION_DATE_AND_TIME>",
-    "permissions": [
-        "<REQUIRED_GLOBAL_ROLE>"
-    ]
-    }
-    ```
+If the permissions of a personal token owner are reduced, the persmissions of their tokens will be adjusted correspondingly.
 
-    Where:
+## Disabling and re-enabling tokens
 
-    * `<NAME_FOR_YOUR_API_TOKEN>` is recommended to explain the token purpose.
-    * `<USER_ID>` defines the user who owns the token, and `<CLIENT_ID>` - the company account this user belongs to.
-    
-        Obtain these IDs by sending the POST request to the `/v1/user` route.
+You can manually disable or enable your tokens. Once disabled, a token immediately stops functioning.
 
-    * `<TOKEN_EXPIRATION_DATE_AND_TIME>` in [ISO 8601 format](https://www.cl.cam.ac.uk/~mgk25/iso-time.html), for example `2033-06-13T04:56:01.037Z`.
-    * `<REQUIRED_GLOBAL_ROLE>` can be:
-        
-        * `partner_admin` for Global Administrator
-        * `partner_analytic` for Global Analyst
-        * `partner_auditor` for Global Read Only
+Disabled tokens are automatically deleted one week after deactivation.
 
-    ??? info "Example"
-        ```bash
-        {
-        "client_id": 1010,
-        "realname": "Token for tenant creation",
-        "user_id": 10101011,
-        "enabled": true,
-        "expire_at": "2033-06-13T04:56:01.037Z",
-        "permissions": [
-            "partner_admin"
-        ]
-        }
-        ```
+To re-enable a previously disabled token, assign it a new expiration date.
 
-        This request creates an API token with Global Administrator's permissions that can be used for the [tenant creation](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api).
-
-1. From the response, get the `id` of the created token and send the GET request to the `/v2/api_tokens/{id}/secret` route using this `id`.
-1. Copy the `secret` value from the response and use it as the API token for request authentication.
-
-    !!! info "Copying token from Wallarm Console"
-        As created API token is displayed in Wallarm Console, you can also copy it from the token's menu in **Settings** → **API Tokens**.
+If a token owner is [disabled](../../user-guides/settings/users.md#disabling-and-deleting-users), their tokens are also automatically disabled.
 
 ## Backward-compatible tokens
 
