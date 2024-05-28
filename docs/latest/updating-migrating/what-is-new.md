@@ -122,9 +122,9 @@ Starting from the release 4.10.6, the [`wallarm_http_v2_stream_max_len`](../admi
 
 To use this variable in a [Docker container](../admin-en/installation-docker-en.md), specify it in your NGINX configuration file and mount the file into the container.
 
-<!-- ## Distinct search tags for Account Takeover, Scraping and Security Crawlers (node 4.10.6 and higher)
+## Distinct search tags for Account Takeover, Scraping and Security Crawlers (node 4.10.6 and higher)
 
-Starting from the release 4.10.6, distinct [search tags](../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag. -->
+Starting from the release 4.10.6, distinct [search tags](../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag.
 
 ## When upgrading node 3.6 and lower
 
