@@ -54,6 +54,20 @@ To secure APIs on the Layer7 API Gateways using Wallarm, follow these steps:
     }
 
     server {
+        listen 443 ssl;
+
+        ### SSL configuration here
+
+        access_log off;
+        wallarm_mode off;
+
+        location / {
+            proxy_set_header Host $http_x_wallarm_forwarded_host;
+            proxy_pass http://unix:/tmp/wallarm-nginx.sock;
+        }
+    }
+
+    server {
         listen 8080;
         location / {
             return 200;
@@ -61,23 +75,32 @@ To secure APIs on the Layer7 API Gateways using Wallarm, follow these steps:
     }
     ```
 
+    Please ensure to pay attention to the following configurations:
+
+    * TLS/SSL certificates for HTTPS traffic: To enable the Wallarm node to handle secure HTTPS traffic, configure the TLS/SSL certificates accordingly. The specific configuration will depend on the chosen deployment method. For example, if you are using NGINX, you can refer to [its article](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) for guidance.
+
 1. Once the deployment is complete, make a note of the node instance IP as you will need it later to set the address for incoming request forwarding.
 
-### 2. Retrieve certificate
+### 2. TLS configuration (if needed)
+
+This step is only needed if the node is deployed externally (for example, Cloud node). If the node is deployed inside your own infrastructure, you may just use HTTP (depending on your own security policies).
 
 1. Access Layer7 API Gateways UI.
 1. Go to **Tasks** → **Certificates**, **Keys and Secrets** → **Manage Certificates**.
 1. To retrieve the certificate from the node, use the **Retrieve via SSL** option with the node URI.
-1. Access the certificate options and select **Certificate is a Trust Anchor**.
+1. If you use a self-signed certificate, access the certificate options and select **Certificate is a Trust Anchor**.
 
 ### 3. Create Wallarm policy
 
 1. Access Layer7 API Gateways UI.
 1. For the corresponding server, select **Create policy** from the menu.
-1. Set **Policy Type** to **Included Policy Fragment**. Name it, for example, `wallarm-mirror`.
+1. Set **Policy Type** to **Included Policy Fragment**. Name it `wallarm-mirror`.
+
+    ![Layer7 API Gateways Wallarm policy fragment](../../images/waf-installation/gateways/layer7/layer7-policy-fragment.png)
+
 1. Create the following XML file and import its content into the policy:
 
-    ??? info "`wallarm-mirror.xml`"
+    ??? info "`wallarm-mirror-failsafe.xml`"
         ```xml
         <?xml version="1.0" encoding="UTF-8"?>
         <exp:Export Version="3.0"
@@ -104,49 +127,52 @@ To secure APIs on the Layer7 API Gateways using Wallarm, follow these steps:
                         <L7p:HeaderValue stringValue="${response.http.status}"/>
                         <L7p:RemoveExisting booleanValue="true"/>
                     </L7p:AddHeader>
-                    <L7p:HttpRoutingAssertion>
-                        <L7p:FailOnErrorStatus booleanValue="false"/>
-                        <L7p:ForceIncludeRequestBody booleanValue="true"/>
-                        <L7p:ProtectedServiceUrl stringValue="${wallarm_node_addr}/${request.url.path}?${request.url.query}"/>
-                        <L7p:ProxyPassword stringValueNull="null"/>
-                        <L7p:ProxyUsername stringValueNull="null"/>
-                        <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
-                            <L7p:ForwardAll booleanValue="true"/>
-                            <L7p:Rules httpPassthroughRules="included">
-                                <L7p:item httpPassthroughRule="included">
-                                    <L7p:Name stringValue="Cookie"/>
-                                </L7p:item>
-                                <L7p:item httpPassthroughRule="included">
-                                    <L7p:Name stringValue="SOAPAction"/>
-                                </L7p:item>
-                            </L7p:Rules>
-                        </L7p:RequestHeaderRules>
-                        <L7p:RequestParamRules httpPassthroughRuleSet="included">
-                            <L7p:ForwardAll booleanValue="true"/>
-                            <L7p:Rules httpPassthroughRules="included"/>
-                        </L7p:RequestParamRules>
-                        <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
-                            <L7p:ForwardAll booleanValue="true"/>
-                            <L7p:Rules httpPassthroughRules="included">
-                                <L7p:item httpPassthroughRule="included">
-                                    <L7p:Name stringValue="Set-Cookie"/>
-                                </L7p:item>
-                            </L7p:Rules>
-                        </L7p:ResponseHeaderRules>
-                        <L7p:ResponseMsgDest stringValue="wallarm_response"/>
-                        <L7p:SamlAssertionVersion intValue="2"/>
-                    </L7p:HttpRoutingAssertion>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <L7p:HttpRoutingAssertion>
+                            <L7p:FailOnErrorStatus booleanValue="false"/>
+                            <L7p:ForceIncludeRequestBody booleanValue="true"/>
+                            <L7p:ProtectedServiceUrl stringValue="${wallarm_node_addr}/${request.url.path}?${request.url.query}"/>
+                            <L7p:ProxyPassword stringValueNull="null"/>
+                            <L7p:ProxyUsername stringValueNull="null"/>
+                            <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                                <L7p:ForwardAll booleanValue="true"/>
+                                <L7p:Rules httpPassthroughRules="included">
+                                    <L7p:item httpPassthroughRule="included">
+                                        <L7p:Name stringValue="Cookie"/>
+                                    </L7p:item>
+                                    <L7p:item httpPassthroughRule="included">
+                                        <L7p:Name stringValue="SOAPAction"/>
+                                    </L7p:item>
+                                </L7p:Rules>
+                            </L7p:RequestHeaderRules>
+                            <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                                <L7p:ForwardAll booleanValue="true"/>
+                                <L7p:Rules httpPassthroughRules="included"/>
+                            </L7p:RequestParamRules>
+                            <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                                <L7p:ForwardAll booleanValue="true"/>
+                                <L7p:Rules httpPassthroughRules="included">
+                                    <L7p:item httpPassthroughRule="included">
+                                        <L7p:Name stringValue="Set-Cookie"/>
+                                    </L7p:item>
+                                </L7p:Rules>
+                            </L7p:ResponseHeaderRules>
+                            <L7p:ResponseMsgDest stringValue="wallarm_response"/>
+                            <L7p:SamlAssertionVersion intValue="2"/>
+                        </L7p:HttpRoutingAssertion>
+                        <L7p:TrueAssertion/>
+                    </wsp:OneOrMore>
                 </wsp:All>
             </wsp:Policy>
         </exp:Export>
         ```
 
 1. Select **Create policy** once again.
-1. Set **Policy Type** to **Global Policy Fragment**. Name it, for example, `message-completed`.
+1. Set **Policy Type** to **Global Policy Fragment**. Name it `message-completed`.
 1. For the policy, set the `wallarm_node_addr` variable to the URL of the Wallarm node.
 1. Include the previously created `wallarm-mirror` policy fragment.
 
-    ![Layer7 API Gateways Wallarm policy](../../images/waf-installation/gateways/layer7/layer7-policy.png)
+    ![Layer7 API Gateways Wallarm policy](../../images/waf-installation/gateways/layer7/layer7-policy.png)    
 
 1. Save and activate the policy.
 
