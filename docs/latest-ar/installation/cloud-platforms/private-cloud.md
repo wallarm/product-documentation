@@ -23,7 +23,18 @@
 * عناوين IP المستخدمة بواسطة Docker Hub في حال اخترت تشغيل Wallarm من صورة Docker.
 * `34.111.12.147` (`repo.wallarm.com`) في حال اخترت تثبيت عقدة Wallarm من حزم Linux الفردية لـ [NGINX stable](../nginx/dynamic-module.md)/[NGINX Plus](../nginx-plus.md)/[NGINX المُقدم من التوزيع](../nginx/dynamic-module-from-distr.md). يتم تنزيل حزم تثبيت العقدة من هذا العنوان.
 * `35.244.197.238` (`https://meganode.wallarm.com`) في حال اخترت تثبيت Wallarm من [مثبت شامل](../nginx/all-in-one.md). يتم تنزيل المثبت من هذا العنوان.
-* عناوين IP لـ Google Cloud Storage المدرجة ضمن [الرابط](https://www.gstatic.com/ipranges/goog.json). عندما تقوم بـ [تسمية عناوين IP بالقائمة البيضاء أو السوداء أو الرمادية][ip-lists-docs] لدول، مناطق، أو مراكز بيانات بدلاً من عناوين IP الفردية، تسترجع عقدة Wallarm العناوين الدقيقة المتعلقة بالمدخلات في قوائم IP من قاعدة البيانات المجمعة المستضافة على Google Storage.
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 
 ## الخطوة 3: اختيار نموذج النشر ومكون Wallarm
 

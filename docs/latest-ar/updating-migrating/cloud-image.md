@@ -6,7 +6,7 @@
 
 ## المتطلبات
 
---8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
+--8<-- "../include-ar/waf/installation/basic-reqs-for-upgrades.md"
 
 ## الخطوة 1: إطلاق نسخة جديدة بعقدة تصفية 4.10
 

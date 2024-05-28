@@ -3,5 +3,16 @@
 * Tüm komutların bir süper kullanıcı (örneğin `root`) olarak yürütülmesi
 * Paketleri indirmek için `https://repo.wallarm.com` adresine erişim. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
 * ABD Wallarm Bulutu ile çalışmak için `https://us1.api.wallarm.com`'a veya AB Wallarm Bulutu ile çalışmak için `https://api.wallarm.com`'a erişim. Erişim yalnızca proxy sunucusu üzerinden yapılandırılabilirse, o zaman [talimatları][configure-proxy-balancer-instr] kullanın
-* Google Cloud Storage'ın IP adreslerine [link](https://www.gstatic.com/ipranges/goog.json) içerisinde listelenenlere erişim. Tam ülkeleri, bölgeleri veya veri merkezlerini, tekil IP adreslerinin yerine [izin verme, reddetme veya gri liste][ip-lists-docs] yaptığınızda, Wallarm düğümü, IP listelerindeki girişlerle ilgili kesin IP adreslerini Google Depolama'da barındırılan toplu veritabanından alır
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * Yüklü metin düzenleyici **vim**, **nano** veya başka bir şey. Talimatta, **vim** kullanılır

@@ -23,7 +23,18 @@ Access in private clouds is typically granted based on IP addresses. Wallarm req
 * IP addresses used by Docker Hub if you choose to run Wallarm from a Docker image.
 * `34.111.12.147` (`repo.wallarm.com`) if you choose to install Wallarm node from individual Linux packages for [NGINX stable](../nginx/dynamic-module.md)/[NGINX Plus](../nginx-plus.md)/[distribution-provided NGINX](../nginx/dynamic-module-from-distr.md). Packages for node installation are downloaded from this address.
 * `35.244.197.238` (`https://meganode.wallarm.com`) if you choose to install Wallarm from [all-in-one installer](../nginx/all-in-one.md). The installer is downloaded from this address.
-* The IP addresses of Google Cloud Storage listed within the [link](https://www.gstatic.com/ipranges/goog.json). When you [allowlist, denylist, or graylist][ip-lists-docs] entire countries, regions, or data centers instead of individual IP addresses, the Wallarm node retrieves precise IP addresses related to the entries in the IP lists from the aggregated database hosted on Google Storage.
+* The IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-lists-docs] countries, regions, or data centers.
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 
 ## Step 3: Choose the deployment model and Wallarm artifact
 

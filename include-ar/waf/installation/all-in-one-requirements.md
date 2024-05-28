@@ -13,5 +13,16 @@
 
 * الوصول إلى `https://meganode.wallarm.com` لتحميل مثبت Wallarm الشامل. تأكد من عدم حجب الوصول بواسطة جدار الحماية.
 * الوصول إلى `https://us1.api.wallarm.com` للعمل مع سحابة Wallarm الأمريكية أو إلى `https://api.wallarm.com` للعمل مع سحابة Wallarm الأوروبية. إذا كان يمكن تكوين الوصول عبر خادم وكيل فقط، استخدم [التعليمات][configure-proxy-balancer-instr].
-* الوصول إلى عناوين IP لمخزن Google Cloud المدرجة ضمن [الرابط](https://www.gstatic.com/ipranges/goog.json). عندما تقوم بإضافة دول، مناطق، أو مراكز بيانات بأكملها إلى القائمة البيضاء، القائمة السوداء، أو القائمة الرمادية بدلاً من عناوين IP الفردية، يقوم عقدة Wallarm بجلب عناوين IP الدقيقة المتعلقة بالمدخلات في قوائم IP من قاعدة البيانات المجمعة المستضافة على مخزن Google.
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * تنفيذ جميع الأوامر كمستخدم ذو صلاحيات عليا (مثل `root`).

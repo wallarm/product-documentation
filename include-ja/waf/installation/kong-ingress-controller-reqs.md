@@ -5,5 +5,16 @@
 * US Wallarm Cloudと連携するための`https://us1.api.wallarm.com`へのアクセスまたはEU Wallarm Cloudと連携するための`https://api.wallarm.com`へのアクセス
 * WallarmのHelmチャートを追加するための`https://charts.wallarm.com`へのアクセス
 * Docker Hub上のWallarmリポジトリへのアクセス `https://hub.docker.com/r/wallarm`
-* [リンク](https://www.gstatic.com/ipranges/goog.json)内に記載されたGoogle Cloud StorageのIPアドレスへのアクセス。個々のIPアドレスではなく、全体の国、地域、データセンターを[許可リスト、拒否リスト、またはグレーリスト][ip-lists-docs]に登録すると、WallarmノードはGoogle Storageでホストされる集約データベースからIPリストのエントリに関連する正確なIPアドレスを取得します
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarmコンソールで**管理者**ロールのアカウントへのアクセス

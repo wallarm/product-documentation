@@ -21,7 +21,18 @@
 * الوصول إلى `https://us1.api.wallarm.com` للعمل مع US Wallarm Cloud أو إلى `https://api.wallarm.com` للعمل مع EU Wallarm Cloud
 * الوصول إلى `https://charts.wallarm.com` لإضافة Wallarm Helm charts. تأكد من أن الوصول غير محظور بواسطة جدار الحماية
 * الوصول إلى Wallarm repositories على Docker Hub `https://hub.docker.com/r/wallarm`. تأكد من أن الوصول غير محظور بواسطة جدار الحماية
-* الوصول إلى عناوين IP لـ Google Cloud Storage المدرجة في الـ [link](https://www.gstatic.com/ipranges/goog.json). عندما تضمن ، تستثني ، أو تسلم الكتاب ](../user-guides/ip-lists/overview.md) البلدان بالكامل أو المناطق أو مراكز البيانات بدلاً من عناوين IP فردية ، يستعيد العقدة Wallarm العناوين IP الدقيقة المتعلقة بالإدخالات في قوائم IP من قاعدة البيانات المجمعة المستضافة على Google Storage
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * نشر كومة Kubernetes تعمل على كونترولر Ingress
 
 ## نشر Wallarm Ingress كونترولر وربطه مع كونترولر Ingress إضافي

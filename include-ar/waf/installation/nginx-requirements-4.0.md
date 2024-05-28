@@ -8,5 +8,16 @@
 * لمعالجة الطلبات والتحليلات اللاحقة على خوادم مختلفة: تم تثبيت التحليلات اللاحقة على خادم منفصل بناءً على [التعليمات][install-postanalytics-instr]
 * الوصول إلى `https://repo.wallarm.com` لتنزيل الحزم. تأكد من أن الوصول ليس محظورًا بواسطة جدار حماية
 * الوصول إلى `https://us1.api.wallarm.com` للعمل مع سحابة Wallarm الأمريكية أو إلى `https://api.wallarm.com` للعمل مع سحابة Wallarm الأوروبية. إذا كان يمكن تكوين الوصول عبر خادم وكيل فقط، فاستخدم [التعليمات][configure-proxy-balancer-instr]
-* الوصول إلى عناوين IP لتخزين Google Cloud المدرجة ضمن [الرابط](https://www.gstatic.com/ipranges/goog.json). عندما تقوم ب[إدراج، استبعاد، أو تصنيف باللون الرمادي][ip-lists-docs] للدول بأكملها، المناطق، أو مراكز البيانات بدلاً من عناوين IP الفردية، يسترجع عقدة Wallarm عناوين IP الدقيقة المتعلقة بالتدخلات في قوائم IP من قاعدة البيانات المجمعة المستضافة على تخزين Google
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * تثبيت محرر النصوص **vim**، **nano**، أو أيٍ آخر. في التعليمات، يُستخدم **vim**

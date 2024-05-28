@@ -192,7 +192,7 @@
 
 ### متطلبات الترقية اليدوية
 
---8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
+--8<-- "../include-ar/waf/installation/basic-reqs-for-upgrades.md"
 
 ### إجراء الترقية
 

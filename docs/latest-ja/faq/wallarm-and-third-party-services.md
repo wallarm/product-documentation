@@ -6,9 +6,6 @@ Wallarmプラットフォームとサードパーティサービスの相互作�
 
 Wallarmプラットフォームは以下のサードパーティサービスと相互作用します：
 
-* [許可された、拒否された、またはグレーリスト化された](../user-guides/ip-lists/overview.md)国、地域、データセンターに登録されたIPアドレスの実際のリストをダウンロードするためのGCPストレージ。
-
-    Wallarmをインストールする前に、お使いのマシンが[GCPストレージのIPアドレス](https://www.gstatic.com/ipranges/goog.json)にアクセスできることを確認することをお勧めします。
 * 標準的なTarantoolインスタンスのデータをアップロードするためのTarantoolフィードバックサーバー (`https://feedback.tarantool.io`)。
 
     インメモリストレージTarantoolは、`wallarm-tarantool`パッケージからあなたのマシンにデプロイされたWallarmのpostanalyticsモジュールによって使用されます。 Tarantoolストレージは2つのインスタンス、カスタム（`wallarm-tarantool`）と標準（`tarantool`）としてデプロイされます。標準インスタンスはデフォルトでカスタムインスタンスと一緒にデプロイされ、Wallarmのコンポーネントには使用されません。

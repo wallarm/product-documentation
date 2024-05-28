@@ -8,5 +8,16 @@
 * リクエスト処理とポスト分析を別々のサーバーで行う場合：[手順][install-postanalytics-instr]に従って別のサーバーにポスト分析をインストールすること
 * パッケージをダウンロードするための `https://repo.wallarm.com`へのアクセス。ファイアウォールによってアクセスがブロックされていないことを確認してください
 * US Wallarm Cloudを利用するための `https://us1.api.wallarm.com` または EU Wallarm Cloudを利用するための `https://api.wallarm.com`へのアクセス。アクセスはプロキシサーバー経由のみで設定可能な場合は、[手順][configure-proxy-balancer-instr]を使用してください
-* [リンク](https://www.gstatic.com/ipranges/goog.json)内にリストされているGoogle Cloud StorageのIPアドレスへのアクセス。個々のIPアドレスではなく、国、地域、データセンター全体を[許可リスト、拒否リスト、またはグレーリスト][ip-lists-docs]に登録する場合、WallarmノードはGoogle Storageでホストされている集約データベースから、IPリストのエントリに関連する正確なIPアドレスを取得します
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * テキストエディター **vim**、**nano**、またはそれ以外のものをインストールしていること。この説明書では**vim**を使用します

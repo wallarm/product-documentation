@@ -23,7 +23,18 @@ O acesso nas nuvens privadas é normalmente concedido com base em endereços IP.
 * Endereços IP usados pelo Docker Hub se você escolher executar Wallarm a partir de uma imagem Docker.
 * `34.111.12.147` (`repo.wallarm.com`) se você escolher instalar o nó Wallarm a partir de pacotes Linux individuais para [NGINX estável](../nginx/dynamic-module.md)/[NGINX Plus](../nginx-plus.md)/[NGINX fornecido pela distribuição](../nginx/dynamic-module-from-distr.md). Pacotes para instalação do nó são baixados deste endereço.
 * `35.244.197.238` (`https://meganode.wallarm.com`) se você escolher instalar o Wallarm a partir do [instalador all-in-one] (../nginx/all-in-one.md). O instalador é baixado deste endereço.
-* Os endereços IP do Google Cloud Storage listados na [link] (https://www.gstatic.com/ipranges/goog.json). Quando você [permite, nega ou lista cinza][ip-lists-docs] países inteiros, regiões ou data centers em vez de endereços IP individuais, o nó Wallarm recupera endereços IP precisos relacionados às entradas nas listas IP do banco de dados agregado hospedado no Google Storage.
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 
 ## Passo 3: Escolha o modelo de implantação e o artefato Wallarm
 

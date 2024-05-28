@@ -8,5 +8,16 @@
 * İstek işleme ve postanalytics'in farklı sunucularda: postanalytic'in [talimatlara][install-postanalytics-instr] göre ayrı bir sunucuya kurulması
 * Paketleri indirmek için `https://repo.wallarm.com` 'a erişim. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
 * US Wallarm Bulutu ile çalışmak için `https://us1.api.wallarm.com` 'a veya EU Wallarm Bulutu ile çalışmak için `https://api.wallarm.com` 'a erişim. Erişim yalnızca proxy sunucu üzerinden yapılandırılabiliyorsa, o zaman [talimatları][configure-proxy-balancer-instr] kullanın
-* Google Cloud Storage'ın IP adreslerine [bağlantıda](https://www.gstatic.com/ipranges/goog.json) listelenen erişim. Bireysel IP adreslerinin yerine tüm ülkeleri, bölgeleri veya veri merkezlerini [izin verilen liste, reddedilen liste veya gri liste][ip-lists-docs] yaparken, Wallarm düğümü, IP listelerindeki girişlerle ilgili kesin IP adreslerini Google Storage'da barındırılan toplanan veritabanından alır
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * Yüklü metin düzenleyici **vim**, **nano** veya başka herhangi biri. Talimatta **vim** kullanılır
