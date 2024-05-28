@@ -38,7 +38,7 @@ This article provides instructions for deploying [Wallarm OOB](overview.md) usin
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-latest.md"
 
 ## 1. Configure traffic mirroring
 

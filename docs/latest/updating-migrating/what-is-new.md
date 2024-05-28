@@ -31,9 +31,20 @@ To start using the functionality, you need to create at least one [**Detect Grap
 
 ![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
 
-## Google Cloud Storage access requirements
+## New requirements for restricted networks for node operation
 
-Starting with release 4.10.2-x, Wallarm node instances require access to [specified IP addresses on Google Cloud Storage](https://www.gstatic.com/ipranges/goog.json) to download attack detection rules. This access is also essential for downloading single IP addresses associated with countries, databases, and subnets added to the denylist, allowlist, and graylist. While this requirement is not new and has been previously documented in deployment guides, it serves as a reminder and highlights the expanded purpose for this access.
+Starting with release 4.10.2-x, Wallarm node instances require access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-policy-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers.
+
+=== "US Cloud"
+    ```
+    34.96.64.17
+    34.110.183.149
+    ```
+=== "EU Cloud"
+    ```
+    34.160.38.183
+    34.144.227.90
+    ```
 
 ## API Specification Enforcement
 

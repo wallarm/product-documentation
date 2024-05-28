@@ -37,6 +37,7 @@ search:
 [enable-traffic-analysis-step]:     #step-5-enable-wallarm-node-to-analyze-traffic
 [restart-nginx-step]:               #step-6-restart-nginx
 [separate-postanalytics-installation-aio]:  ../../../../admin-en/installation-postanalytics-en.md#all-in-one-automatic-installation
+[api-spec-enforcement-docs]:        ../../../../api-policy-enforcement/overview.md
 
 # Deploying with All-in-One Installer
 
@@ -58,7 +59,7 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](ng
 
 ## Requirements
 
---8<-- "../include/waf/installation/all-in-one-requirements.md"
+--8<-- "../include/waf/installation/all-in-one-requirements-latest.md"
 
 ## Step 1: Install NGINX and dependencies
 

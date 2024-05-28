@@ -14,6 +14,7 @@
 [envoy-process-time-limit-docs]:    ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
 [envoy-process-time-limit-block-docs]: ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
+[api-policy-enf-docs]:              ../../api-policy-enforcement/overview.md
 
 # Upgrading an EOL Docker NGINX- or Envoy-based image
 
@@ -23,7 +24,7 @@ These instructions describe the steps to upgrade the running end‑of‑life Doc
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-latest.md"
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules (only if upgrading node 2.18 or lower)
 

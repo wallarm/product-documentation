@@ -23,6 +23,7 @@
 [cloud-init-spec]:                  ../../../cloud-platforms/cloud-init.md
 [wallarm_force_directive]:          ../../../../admin-en/configure-parameters-en.md#wallarm_force
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
+[api-spec-enforcement-docs]:        ../../../../api-policy-enforcement/overview.md
 
 # Deploying Wallarm from GCP Machine Image
 
