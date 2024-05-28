@@ -8,7 +8,7 @@ The Wallarm NGINX-based filtering node can be deployed using a [Docker image](ht
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-latest.md"
 
 ## Options for running the container
 

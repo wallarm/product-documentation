@@ -6,6 +6,7 @@
 [aio-docs]:                         ../nginx/all-in-one.md
 [waf-directives-instr]:             ../../admin-en/configure-parameters-en.md
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
+[api-spec-enforcement-docs]:        ../../api-policy-enforcement/overview.md
 
 # Running Wallarm on Heroku
 
@@ -22,7 +23,18 @@ At present, there is no official Docker image for Heroku from Wallarm. So, this 
 * Administrator access to Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
-* Access to the [specified IP addresses on Google Cloud Storage](https://www.gstatic.com/ipranges/goog.json). This access is crucial for downloading updates to attack detection rules, and retrieving exact IPs of countries, regions, or data centers you have added to your [allowlist, denylist, or graylist][ip-lists-docs]
+* Access to the IP addresses below for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-lists-docs] countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 
 ## Step 1: Prepare Wallarm Docker configuration
 

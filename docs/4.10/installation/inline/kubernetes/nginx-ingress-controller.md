@@ -17,5 +17,6 @@ search:
 [best-practices-for-ingress-monitoring]: ../../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
 [node-token-types]:                      ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [chaining-doc]:                          ../../../admin-en/chaining-wallarm-and-other-ingress-controllers.md
+[api-spec-enforcement-docs]:             ../../../api-policy-enforcement/overview.md
 
 --8<-- "latest/admin-en/installation-kubernetes-en.md"

@@ -1,4 +1,5 @@
 [ip-lists-docs]: ../user-guides/ip-lists/overview.md
+[api-spec-enforcement-docs]:        ../api-policy-enforcement/overview.md
 
 # Upgrading Wallarm Sidecar
 
@@ -6,7 +7,7 @@ These instructions describe the steps to upgrade Wallarm Sidecar 4.x to the new 
 
 ## Requirements
 
---8<-- "../include/waf/installation/sidecar-proxy-reqs.md"
+--8<-- "../include/waf/installation/sidecar-proxy-reqs-latest.md"
 
 ## Step 1: Update the Wallarm Helm chart repository
 

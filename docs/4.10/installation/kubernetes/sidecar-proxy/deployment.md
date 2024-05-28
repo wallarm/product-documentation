@@ -10,5 +10,6 @@
 [filtration-mode-docs]:                       ../../../admin-en/configure-wallarm-mode.md
 [node-token-types]:                           ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [cred-stuffing-docs]:                         ../../../about-wallarm/credential-stuffing.md
+[api-spec-enforcement-docs]:                  ../../../api-policy-enforcement/overview.md
 
 --8<-- "latest/installation/kubernetes/sidecar-proxy/deployment.md"

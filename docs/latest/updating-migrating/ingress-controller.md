@@ -5,6 +5,7 @@
 [ip-list-docs]:                     ../user-guides/ip-lists/overview.md
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
+[api-spec-enforcement-docs]:        ../api-policy-enforcement/overview.md
 
 # Upgrading NGINX Ingress controller with integrated Wallarm modules
 

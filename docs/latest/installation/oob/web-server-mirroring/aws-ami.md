@@ -30,6 +30,7 @@
 [wallarm_force_directive]:          ../../../admin-en/configure-parameters-en.md#wallarm_force
 [web-server-mirroring-examples]:    overview.md#configuration-examples-for-traffic-mirroring
 [ip-lists-docs]:                    ../../../user-guides/ip-lists/overview.md
+[api-spec-enforcement-docs]:        ../../../api-policy-enforcement/overview.md
 
 # Deploying Wallarm OOB from Amazon Image
 

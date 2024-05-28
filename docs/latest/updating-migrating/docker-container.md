@@ -14,6 +14,7 @@
 [envoy-process-time-limit-docs]:    ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
 [envoy-process-time-limit-block-docs]: ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
+[api-policy-enf-docs]:              ../api-policy-enforcement/overview.md
 
 # Upgrading the Docker NGINX- or Envoy-based image
 
@@ -26,7 +27,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-latest.md"
 
 ## Step 1: Download the updated filtering node image
 

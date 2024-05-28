@@ -47,7 +47,7 @@ The Wallarm Sidecar has 2 standard stages in its lifecycle:
 
 ## Requirements
 
---8<-- "../include/waf/installation/sidecar-proxy-reqs.md"
+--8<-- "../include/waf/installation/sidecar-proxy-reqs-latest.md"
 
 ## Deployment
 
