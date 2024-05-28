@@ -11,6 +11,18 @@ To upgrade the end‑of‑life multi-tenant node (3.6 or lower), please use the 
 
 * Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../installation/multi-tenant/overview.md#tenant-accounts)
 * Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Access to the IP addresses below for downloading updates to attack detection rules and API specifications, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers.
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 
 ## Follow standard upgrade procedure
 

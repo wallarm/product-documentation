@@ -17,7 +17,7 @@
 
 ## متطلبات
 
---8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
+--8<-- "../include-ar/waf/installation/basic-reqs-for-upgrades.md"
 
 ## الخطوة 1: التواصل مع الدعم الفني لـ Wallarm بأنك تقوم بترقية الوحدات النمطية للعقدة الفلترة (فقط إذا كنت تقوم بترقية العقدة الإصدار 2.18 أو الإصدار الأقل)
 

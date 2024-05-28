@@ -21,6 +21,7 @@
 [sqli-attack-docs]:                 ../../attacks-vulns-list.md#sql-injection
 [xss-attack-docs]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
 [web-server-mirroring-examples]:    ../../installation/oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[ip-lists-docs]:                     ../../user-guides/ip-lists/overview.md
 
 # Upgrading EOL Wallarm NGINX modules
 
