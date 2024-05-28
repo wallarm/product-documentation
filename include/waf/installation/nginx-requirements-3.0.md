@@ -4,5 +4,16 @@
 * For the request processing and postanalytics on different servers: postanalytics installed on the separate server upon the [instructions][install-postanalytics-instr]
 * Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
 * Access to `https://us1.api.wallarm.com:444` for working with US Wallarm Cloud or to `https://api.wallarm.com:444` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
-* Access to the IP addresses of Google Cloud Storage listed within the [link](https://www.gstatic.com/ipranges/goog.json). When you [allowlist, denylist, or graylist][ip-lists-docs] entire countries, regions, or data centers instead of individual IP addresses, the Wallarm node retrieves precise IP addresses related to the entries in the IP lists from the aggregated database hosted on Google Storage
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-lists-docs] countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * Installed text editor **vim**, **nano**, or any other. In the instruction, **vim** is used

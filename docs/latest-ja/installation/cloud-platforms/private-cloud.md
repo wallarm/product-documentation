@@ -23,7 +23,18 @@
 * DockerイメージからWallarmを実行する場合には、Docker Hubを使用するIPアドレス。
 * `34.111.12.147` (`repo.wallarm.com`): [NGINX stable](../nginx/dynamic-module.md)/[NGINX Plus](../nginx-plus.md)/[ディストリビューション供給のNGINX](../nginx/dynamic-module-from-distr.md) に対する個別のLinuxパッケージからWallarmノードをインストールする場合。ノードのインストール用のパッケージは、このアドレスからダウンロードされます。
 * `35.244.197.238` (`https://meganode.wallarm.com`): [オールインワンインストーラ](../nginx/all-in-one.md) からWallarmをインストールする場合。インストーラーは、このアドレスからダウンロードされます。
-* [link](https://www.gstatic.com/ipranges/goog.json) に記載されているGoogle Cloud StorageのIPアドレス。更新可能なIPアドレスリストのエントリーに関連する正確なIPアドレスを取得するため、WallarmノードはGoogle Storageにホストされている集計データベースから、特定の国、地域、またはデータセンター全体ではなく個々のIPアドレスを更新します。
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 
 ## Step 3: 展開モデルとWallarmアーティファクトを選択する
 

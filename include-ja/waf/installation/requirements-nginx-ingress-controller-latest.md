@@ -5,4 +5,15 @@
 * 米国のWallarm Cloudと連携するための `https://us1.api.wallarm.com` へのアクセス、又はEUのWallarm Cloudと連携するための `https://api.wallarm.com` へのアクセスが必要です
 * WallarmのHelmチャートを追加するための `https://charts.wallarm.com` へのアクセスが必要です。そのアクセスがファイアーウォールによってブロックされていないことを確認してください
 * Docker Hub上のWallarmリポジトリ `https://hub.docker.com/r/wallarm` へのアクセスが必要です。そのアクセスがファイアーウォールによってブロックされていないことを確認してください
-* [このリンク](https://www.gstatic.com/ipranges/goog.json)に示されたGoogle Cloud StorageのIPアドレスへのアクセスが必要です。個々のIPアドレスの代わりに、全体の国、地域、データセンターを[許可リスト、拒否リスト、或いはグレーリスト][ip-list-docs]にする場合、WallarmノードはGoogle Storageにホストされた集約されたデーアベースから関連する正確なIPアドレスを取得します
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```

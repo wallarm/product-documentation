@@ -6,9 +6,6 @@ If some issues occur during the Wallarm platform and third-party services intera
 
 The Wallarm platform interacts with the following third-party services:
 
-* GCP storage to download an actual list of IP addresses registered in [denylisted](../user-guides/denylist.md) countries, regions and data centers.
-
-    Before installing Wallarm, we recommend to ensure your machine has access to [GCP storage IP addresses](https://www.gstatic.com/ipranges/goog.json).
 * Tarantool feedback server (`https://feedback.tarantool.io`) to upload standard Tarantool instance data to.
 
     The in-memory storage Tarantool is used by the Wallarm postanalytics module deployed to your machine from the `wallarm-tarantool` package. The Tarantool storage is deployed as two instances, custom (`wallarm-tarantool`) and standard (`tarantool`). A standard instance is deployed along with a custom one by default and is not used by the Wallarm components.

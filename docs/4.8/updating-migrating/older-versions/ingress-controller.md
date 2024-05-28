@@ -21,7 +21,7 @@ These instructions describe the steps to upgrade deployed end‑of‑life Wallar
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller.md"
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules (only if upgrading node 2.18 or lower)
 

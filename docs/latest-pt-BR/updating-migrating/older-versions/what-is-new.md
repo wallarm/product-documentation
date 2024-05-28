@@ -118,11 +118,18 @@ O novo método de implantação permite que você configure o node CD Wallarm fo
 
 ## Requisitos do sistema para a instalação do node de filtragem
 
-* O node de filtragem agora suporta [lista de permissões, lista de negação e lista cinza](../../user-guides/ip-lists/overview.md) de endereços IP. O Wallarm Console permite adicionar IPs únicos e **países** ou **data centers** a qualquer tipo de lista de IPs.
+* Wallarm node instances now require access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers.
 
-    O node Wallarm baixa uma lista atual de endereços IP registrados em países, regiões ou data centers incluídos na lista de permissões, lista de negação ou lista cinza do armazenamento GCP. Por padrão, o acesso a esse armazenamento pode estar restrito em seu sistema. Permitir acesso ao armazenamento GCP é um novo requisito para a máquina virtual instalar o node de filtragem.
-
-    [Faixa de endereços IP do GCP que devem ser permitidos →](https://www.gstatic.com/ipranges/goog.json)
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * O node de filtragem agora envia dados para a nuvem usando `us1.api.wallarm.com:443` (US Cloud) e `api.wallarm.com:443` (EU Cloud) em vez de `us1.api.wallarm.com:444` e `api.wallarm.com:444`.
 
     Se o seu servidor com o node implantado tiver acesso limitado aos recursos externos e o acesso for concedido a cada recurso separadamente, após a atualização para a versão 4.x, a sincronização entre o node de filtragem e a nuvem será interrompida. O node atualizado precisa ter acesso concedido ao endpoint da API com a nova porta.

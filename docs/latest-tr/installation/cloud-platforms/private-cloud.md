@@ -23,7 +23,18 @@ Wallarm'ı özel bulutunuza dağıtmadan önce, uygulama manzaranızın kapsamı
 * IP adresleri Docker Hub tarafından kullanılmaktadır eğer Wallarm'ı Docker görüntüsünden çalıştırmayı seçerseniz.
 * `34.111.12.147` (`repo.wallarm.com`) eğer Wallarm düğümünü [NGINX stabil](../nginx/dynamic-module.md)/[NGINX Plus](../nginx-plus.md)/[dağıtım sağlayan NGINX](../nginx/dynamic-module-from-distr.md) için bireysel Linux paketlerinden yüklemeyi seçerseniz. Düğüm yüklemesi için paketler bu adresten indirilir.
 * `35.244.197.238` (`https://meganode.wallarm.com`) eğer Wallarm'ı [tümleşik yükleyici](../nginx/all-in-one.md) ile yüklemeyi seçerseniz. Yükleyici bu adresten indirilir.
-* [link](https://www.gstatic.com/ipranges/goog.json) içerisinde listelenen Google Cloud Storage IP adresleri. Eğer bireysel IP adreslerinin yerine tüm ülkeleri, bölgeleri veya veri merkezlerini [beyaz liste, karaliste veya gri liste][ip-lists-docs] olarak eklerseniz, Wallarm düğümü IP listelerindeki girdilere ilişkin kesin IP adreslerini Google Depolama'da barındırılan toplu veritabanından alır.
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 
 ## Adım 3: Dağıtım modelini ve Wallarm eserini seçin
 

@@ -118,11 +118,18 @@ Yeni dağıtım yöntemi, Wallarm CDN düğümünü altyapınızın dışında 1
 
 ## Filtreleme düğümünün kurulumu için sistem gereksinimleri
 
-* Filtreleme düğümü artık IP adresini [izin verilmiş, reddedilmiş ve gri listeye alınmış](../../user-guides/ip-lists/overview.md) olarak destekler. Wallarm Konsol, hem tekli IP'leri hem de **ülkeleri** veya **veri merkezlerini** herhangi bir IP listesi türüne eklemenize olanak tanır.
+* Wallarm node instances now require access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers.
 
-    Wallarm düğümü, izin verilmiş, reddedilmiş veya gri listeye alınmış ülkeler, bölgeler veya veri merkezlerinde kayıtlı olan IP adreslerinin güncel listesini GCP depolamadan indirir. Varsayılan olarak, sisteminizde bu depoya erişim kısıtlanabilir. GCP depolamasına erişim sağlamanın, filtreleme düğümünü kuracak olan sanal makineye yeni bir gereksinim olduğunu unutmayın.
-
-    [İzin verilmesi gereken GCP IP adresleri aralığı →](https://www.gstatic.com/ipranges/goog.json)
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * Filtreleme düğümü artık verileri `us1.api.wallarm.com:443` (ABD Bulutu) ve `api.wallarm.com:443` (AB Bulutu) üzerinden Buluta yükler, bunun yerine `us1.api.wallarm.com:444` ve `api.wallarm.com:444` kullanmaz.
 
     Dağıtılmış düğümle sunucunuzun dış kaynaklara sınırlı erişimi varsa ve erişim her kaynağa ayrı ayrı verilirse, 4.x sürümüne yükseltildikten sonra filtreleme düğümü ve Bulut arasındaki senkronizasyon duracaktır. Yükseltilen düğümün, yeni porta sahip API uç noktasına erişim hakkı verilmesi gerekmektedir.

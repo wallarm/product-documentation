@@ -6,9 +6,6 @@ Se ocorrerem alguns problemas durante a interação entre a plataforma Wallarm e
 
 A plataforma Wallarm interage com os seguintes serviços de terceiros:
 
-* Armazenamento GCP para baixar uma lista atual de endereços IP registrados em países, regiões e centros de dados [permitidos, negados ou cinzentos](../user-guides/ip-lists/overview.md).
-
-    Antes de instalar a Wallarm, recomendamos garantir que a sua máquina tenha acesso aos [endereços IP de armazenamento GCP](https://www.gstatic.com/ipranges/goog.json).
 * Servidor de feedback do Tarantool (`https://feedback.tarantool.io`) para carregar dados padrão da instância Tarantool.
 
     O armazenamento na memória do Tarantool é usado pelo módulo pós-analítico da Wallarm instalado na sua máquina a partir do pacote `wallarm-tarantool`. O armazenamento do Tarantool é instalado como duas instâncias, personalizado (`wallarm-tarantool`) e padrão (`tarantool`). Uma instância padrão é instalada junto com a personalizada por padrão e não é utilizada pelos componentes da Wallarm.

@@ -21,7 +21,18 @@ O encadeamento do Ingress Controller permite que você utilize um controller exi
 * Acesso a `https://us1.api.wallarm.com` para trabalhar com a Wallarm Cloud dos EUA ou a `https://api.wallarm.com` para trabalhar com a Wallarm Cloud da UE
 * Acesso a `https://charts.wallarm.com` para adicionar os gráficos Helm da Wallarm. Certifique-se de que o acesso não é bloqueado por um firewall
 * Acesso aos repositórios Wallarm no Docker Hub `https://hub.docker.com/r/wallarm`. Garanta que o acesso não é bloqueado por um firewall
-* Acesso aos endereços IP do Google Cloud Storage listados no [link](https://www.gstatic.com/ipranges/goog.json). Quando você [allowlist, denylist, ou graylist](../user-guides/ip-lists/overview.md) países inteiros, regiões ou data centers em vez de endereços IP individuais, o nó Wallarm recupera endereços IP precisos relacionados às entradas nas listas de IP do banco de dados agregado hospedado no Google Storage
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * Cluster do Kubernetes implantado rodando um Ingress controller
 
 ## Implantando o Wallarm Ingress controller e o encadeando com um Ingress Controller adicional

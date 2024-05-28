@@ -7,5 +7,16 @@
 * A execução de todos os comandos como superusuário (por exemplo, `root`)
 * Acesso a `https://repo.wallarm.com` para baixar pacotes. Certifique-se de que o acesso não esteja bloqueado por um firewall
 * Acesso a `https://us1.api.wallarm.com` para trabalhar com a Nuvem Wallarm dos EUA ou a `https://api.wallarm.com` para trabalhar com a Nuvem Wallarm da UE. Se o acesso só pode ser configurado via servidor proxy, então use as [instruções][configure-proxy-balancer-instr]
-* Acesso aos endereços IP do Google Cloud Storage listados no seguinte [link](https://www.gstatic.com/ipranges/goog.json). Quando você [adiciona à lista permitida, lista de bloqueio ou lista de cinza][ip-lists-docs] países inteiros, regiões ou centros de dados em vez de endereços IP individuais, o nó Wallarm obtém endereços IP precisos relacionados às entradas nas listas de IP da base de dados agregada hospedada no Google Storage
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * Editor de texto instalado **vim**, **nano**, ou qualquer outro. Na instrução, **vim** é usado

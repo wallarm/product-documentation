@@ -5,4 +5,15 @@
 * الوصول إلى `https://us1.api.wallarm.com` للعمل مع سحابة Wallarm الأمريكية أو إلى `https://api.wallarm.com` للعمل مع سحابة Wallarm الأوروبية
 * الوصول إلى `https://charts.wallarm.com` لإضافة الرسوم البيانية لـ Wallarm Helm. تأكد من عدم حجب الوصول بواسطة جدار الحماية
 * الوصول إلى مستودعات Wallarm على Docker Hub `https://hub.docker.com/r/wallarm`. تأكد من عدم حجب الوصول بواسطة جدار الحماية
-* الوصول إلى عناوين IP لتخزين Google Cloud المدرجة ضمن [الرابط](https://www.gstatic.com/ipranges/goog.json). عندما تقوم [بتضمين أو استبعاد أو تصنيف بلدان أو مناطق أو مراكز بيانات بالقائمة البيضاء أو السوداء أو الرمادية][ip-list-docs] بدلاً من عناوين IP الفردية، يسترجع عقدة Wallarm عناوين IP الدقيقة المتعلقة بالمدخلات في قوائم الIP من قاعدة البيانات المجمعة المستضافة على Google Storage
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```

@@ -22,7 +22,18 @@
 * الوصول كمسؤول إلى وحدة التحكم Wallarm في [السحابة الأمريكية](https://us1.my.wallarm.com/) أو [السحابة الأوروبية](https://my.wallarm.com/)
 * الوصول إلى `https://meganode.wallarm.com` لتنزيل برنامج التثبيت الشامل لـ Wallarm
 * الوصول إلى `https://us1.api.wallarm.com` للعمل مع السحابة الأمريكية لـ Wallarm ، أو إلى `https://api.wallarm.com` للعمل مع السحابة الأوروبية لـ Wallarm
-* الوصول إلى عناوين IP لـ Google Cloud Storage المدرجة ضمن [الرابط](https://www.gstatic.com/ipranges/goog.json). عندما تسمح ، أو ترفض ، أو تضع [قائمة رمادية][وثائق-قوائم-ip] للبلدان بأكملها ، أو المناطق ، أو مراكز البيانات بدلاً من العناوين IP الفردية، تسترد العقدة Wallarm العناوين IP الدقيقة المتعلقة بالإدخالات في قوائم IP من قاعدة بيانات مجمعة مستضافة على Google Storage.
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 
 ## الخطوة 1: إعداد تكوين Docker لـ Wallarm
 

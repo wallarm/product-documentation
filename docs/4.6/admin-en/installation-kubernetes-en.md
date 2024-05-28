@@ -34,7 +34,7 @@ Among all supported [Wallarm deployment options][deployment-platform-docs], this
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller.md"
 
 !!! info "See also"
     * [What is Ingress?](https://kubernetes.io/docs/concepts/services-networking/ingress/)

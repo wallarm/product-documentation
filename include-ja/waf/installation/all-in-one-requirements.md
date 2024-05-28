@@ -13,5 +13,16 @@
 
 * all-in-one Wallarmインストーラーをダウンロードするための `https://meganode.wallarm.com` へのアクセス。アクセスがファイアウォールによってブロックされていないことを確認してください。
 * US Wallarm Cloudを利用するための `https://us1.api.wallarm.com` または EU Wallarm Cloudを利用するための `https://api.wallarm.com` へのアクセス。アクセスがプロキシサーバー経由でのみ設定できる場合は、[instructions][configure-proxy-balancer-instr] を使用してください。
-* Google Cloud StorageのIPアドレスへのアクセスはここから[list](https://www.gstatic.com/ipranges/goog.json) にリストされています。個々のIPアドレスではなく全国、地域、またはデータセンターを [許可リスト、拒否リスト、グレーリスト][ip-lists-docs] として設定する際、WallarmノードはGoogleストレージにホストされている集約データベースからIPリストのエントリに関連する正確なIPアドレスを取得します。
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * 全てのコマンドをスーパーユーザー（例：`root`）として実行します。

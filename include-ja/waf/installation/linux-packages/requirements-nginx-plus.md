@@ -7,5 +7,16 @@
 * 全てのコマンドをスーパーユーザー（例えば `root`）として実行
 * パッケージをダウンロードするための `https://repo.wallarm.com` へのアクセス。ファイアウォールによってアクセスがブロックされていないことを確認してください
 * US Wallarm Cloudを使用するための `https://us1.api.wallarm.com` またはEU Wallarm Cloudを使用するための `https://api.wallarm.com` へのアクセス。アクセスがプロキシサーバー経由でのみ設定可能な場合は、[指示][configure-proxy-balancer-instr]を使用してください
-* Google Cloud StorageのIPアドレスへのアクセスが[リンク](https://www.gstatic.com/ipranges/goog.json)内にリストされています。あなたが個々のIPアドレスではなく、全体の国、地域、またはデータセンターを[ホワイトリスト化、ブラックリスト化、またはグレーリスト化][ip-lists-docs]すると、WallarmノードはGoogleストレージにホストされている集約データベースからIPリストのエントリーに関連する正確なIPアドレスを取得します
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * **vim**、 **nano** 、またはその他のテキストエディタをインストールしている。この指示では、**vim**が使用されます

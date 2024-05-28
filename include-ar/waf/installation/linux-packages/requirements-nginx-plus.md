@@ -7,5 +7,16 @@
 * تنفيذ جميع الأوامر كمستخدم فائق الصلاحيات (مثل `root`)
 * الوصول إلى `https://repo.wallarm.com` لتنزيل الحزم. تأكد من عدم حظر الوصول بواسطة جدار الحماية
 * الوصول إلى `https://us1.api.wallarm.com` للعمل مع سحابة Wallarm الأمريكية أو إلى `https://api.wallarm.com` للعمل مع سحابة Wallarm الأوروبية. إذا كان يمكن تكوين الوصول عبر خادم وكيل فقط، فيُرجى استخدام [التعليمات][configure-proxy-balancer-instr]
-* الوصول إلى عناوين IP الخاصة بمخزن Google Cloud المدرجة ضمن [الرابط](https://www.gstatic.com/ipranges/goog.json). عند [الإدراج في القائمة البيضاء، القائمة السوداء، أو القائمة الرمادية][ip-lists-docs] لدول كاملة، مناطق، أو مراكز بيانات بدلا من عناوين IP الفردية، يسترجع عقدة Wallarm عناوين IP الدقيقة المتعلقة بالمدخلات في قوائم IP من قاعدة البيانات المجمعة المستضافة على Google Storage
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * تثبيت محرر نصوص **vim**، **nano**، أو أي آخر. في التعليمات، يُستخدم **vim**

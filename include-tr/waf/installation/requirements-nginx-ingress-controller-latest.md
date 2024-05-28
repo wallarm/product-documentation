@@ -5,4 +5,15 @@
 * US Wallarm Cloud ile çalışmak için `https://us1.api.wallarm.com` adresine erişim veya EU Wallarm Cloud ile çalışmak için `https://api.wallarm.com` adresine erişim
 * Wallarm Helm şemalarını eklemek için `https://charts.wallarm.com` adresine erişim. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
 * Docker Hub'deki Wallarm depolarına `https://hub.docker.com/r/wallarm` adresinden erişim. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
-* Google Cloud Storage'ın IP adreslerine [bağlantıda](https://www.gstatic.com/ipranges/goog.json) listelenenlerden erişim. [Beyaz listeye al, karaliste, veya grid listeye][ip-list-docs] bütün ülkeleri, bölgeleri veya veri merkezlerini tekil IP adreslerinin yerine, Wallarm düğümü IP listelerindeki girdilerle ilgili kesin IP adreslerini Google Storage'ta barındırılan toplu veritabanından alır
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```

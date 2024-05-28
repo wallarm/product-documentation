@@ -20,7 +20,18 @@ Ingress denetleyicisi zincirlemesi, mevcut bir denetleyiciyi uygulama koruması 
 * US Wallarm Cloud ile çalışmak için `https://us1.api.wallarm.com` veya EU Wallarm Cloud ile çalışmak için `https://api.wallarm.com` 'a erişim
 * Wallarm Helm grafiklerini eklemek için `https://charts.wallarm.com` 'a erişim. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
 * Docker Hub'daki Wallarm depolarına `https://hub.docker.com/r/wallarm` erişim. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
-* Google Cloud Storage'daki IP adreslerine erişim, işte [bağlantı](https://www.gstatic.com/ipranges/goog.json). Tüm ülkeler, bölgeler veya veri merkezlerini bireysel IP adreslerinin yerine [izin verme, engelleme veya grileştirme](../user-guides/ip-lists/overview.md) yaptığınızda, Wallarm düğümü, IP listelerindeki girişlere ilişkin kesin IP adreslerini Google Depolama'da barındırılan toplanan veritabanından alır
+* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 * Dağıtılmış bir Kubernetes kümesi çalışan bir Ingress denetleyicisi
 
 ## Wallarm Ingress Denetleyicisini Dağıtma ve Ek Ingress Denetleyicisi ile Zincirleme

@@ -6,9 +6,6 @@ Wallarm platformu ve üçüncü taraf hizmetlerle etkileşim sırasında bazı s
 
 Wallarm platformu aşağıdaki üçüncü taraf hizmetlerle etkileşime girer:
 
-* [Beyaz listeye alınmış, karalisteye alınmış veya gri listeye alınmış](../user-guides/ip-lists/overview.md) ülkelerde, bölgelerde ve veri merkezlerinde kayıtlı IP adreslerinin gerçek listesini indirmek için GCP depolama alanı.
-
-    Wallarm'ı kurmadan önce, makinenizin [GCP depolama IP adreslerine](https://www.gstatic.com/ipranges/goog.json) erişime sahip olduğunu sağlamanızı öneririz.
 * Standart Tarantool örneği verilerini yükleme için Tarantool geri bildirim sunucusu (`https://feedback.tarantool.io`).
 
     Bellek içi depolama Tarantool, makinenize `wallarm-tarantool` paketinden dağıtılan Wallarm postanalitik modülü tarafından kullanılır. Tarantool depolama, özel (`wallarm-tarantool`) ve standart (`tarantool`) olmak üzere iki örnekte dağıtılır. Bir standart örneğin varsayılan olarak özel bir örnekle birlikte dağıtılır ve Wallarm bileşenleri tarafından kullanılmaz.
