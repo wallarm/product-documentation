@@ -102,7 +102,7 @@ The **API Abuse Prevention** module uses the complex bot detection model to dete
 
 * [Scalping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-005_Scalping) is characterized by bots making online store products unavailable for real customers, e.g. by reserving all items so that they become out of stock but do not make any profit.
 
-If the metrics point to bot attack signs, the module [denylists or graylists](about-wallarm/api-abuse-prevention.md#reaction-to-malicious-bots) the source of the anomaly traffic for 1 hour.
+If the metrics point to bot attack signs, the module [denylists or graylists](user-guides/api-abuse-prevention.md#creating-profiles) the source of the anomaly traffic for 1 hour.
 
 **In addition to Wallarm protection:**
 

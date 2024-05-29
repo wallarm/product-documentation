@@ -46,7 +46,7 @@ To disable bot protection for specific URL or request type:
 
 1. In **Then**, choose **Set API Abuse Prevention mode** and set:
 
-    * **Default** - for the described scope (specific URL or request), the protection from bots will work in a usual way defined by common API Abuse Prevention [profiles](#creating-profiles).
+    * **Default** - for the described scope (specific URL or request), the protection from bots will work in a usual way defined by common API Abuse Prevention [profiles](api-abuse-prevention.md#creating-profiles).
     * **Do not check for bot activity** - for the described URL and/or request type, the check for bot activity will not be performed.
 
 1. Optionally, in the comment, specify the reason of creating the rule for this URL/request type.
