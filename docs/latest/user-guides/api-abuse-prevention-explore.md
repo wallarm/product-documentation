@@ -49,7 +49,7 @@ The **API Abuse Prevention** module compiles client traffic into URL patterns. T
 
 ## Bot attacks in API sessions
 
-You can easily validate detected malicious bot activity by switching from **Attacks** to **API Sessions** with the **Explore the Session** button. This button is available only for attacks for which there are saved sessions (see session retention period in [How API Sessions work](../api-sessions.md#how-api-sessions-work)). Within a session, you can analyze the sequence of requests that matches the malicious pattern and find out why it was blocked. If necessary, you can view all requests within a given session to understand the full context of the behavior of the selected actor.
+You can easily validate detected malicious bot activity by switching from **Attacks** to [**API Sessions**](../api-sessions.md) with the **Explore the Session** button. This button is available only for attacks for which there are saved sessions (see session retention period in [limitations](../api-sessions.md#limitations) for API Sessions). Within a session, you can analyze the sequence of requests that matches the malicious pattern and find out why it was blocked. If necessary, you can view all requests within a given session to understand the full context of the behavior of the selected actor.
 
 ![API Abuse attack in API Sessions](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-in-sessions.png)
 

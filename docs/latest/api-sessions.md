@@ -16,9 +16,9 @@ The main issue the **API Sessions** module deals with is that when dealing only 
 -->
 ## How API Sessions work
 
-API Sessions group all requests (legitimate and attacks) within a session according to predetermined rules. Only certain metadata is saved for requests, which eliminates the transfer and processing of sensitive information in the Wallarm Cloud. The identified sequence of requests allows you to recreate the context around a certain event and understand what the attacker did before the recorded incident and what happened after. API Sessions give the security team a convenient tool for conducting investigations and allow you to easily validate identified malicious behavioral patterns detected using [Abuse Prevention](about-wallarm/api-abuse-prevention.md).
+API Sessions group all requests (legitimate and attacks) within a session according to predetermined rules. Only certain metadata is saved for requests, which eliminates the transfer and processing of sensitive information in the Wallarm Cloud. The identified sequence of requests allows you to analyze the context around a certain event and understand what the attacker did before the recorded incident and what happened after. API Sessions give the security team a convenient tool for conducting investigations and allow you to easily validate identified malicious behavioral patterns detected [using](user-guides/api-abuse-prevention-explore.md#bot-attacks-in-api-sessions) Abuse Prevention.
 
-Sessions for the last 7 days are displayed in the **API Sessions** section of the Wallarm Console.
+Use the **API Sessions** section of the Wallarm Console to analyze session content. When working with data, consider existing [limitations](#limitations).
 
 ![!API Sessions section - monitored sessions](../images/api-sessions/api-sessions.png)
 
@@ -30,5 +30,6 @@ API Sessions operate in beta mode and is enabled and configured through [Wallarm
 
 Currently API Sessions have some limitations. In the **API Sessions** section:
 
+* Only sessions for the last 7 days are stored and displayed. Older sessions are automatically deleted.
 * The [credential stuffing](about-wallarm/credential-stuffing.md), [brute force](admin-en/configuration-guides/protecting-against-bruteforce.md), [forced browsing](admin-en/configuration-guides/protecting-against-forcedbrowsing.md), and [BOLA](admin-en/configuration-guides/protecting-against-bola-trigger.md) attack types are not marked. 
 * The [denylisted](user-guides/ip-lists/overview.md) events are not presented.
