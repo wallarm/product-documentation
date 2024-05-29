@@ -25,7 +25,7 @@ nav:
     - API Discovery: user-guides/dashboards/api-discovery.md
     - OWASP API Top 10: user-guides/dashboards/owasp-api-top-ten.md
     - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
-    - Events:
+    - Attacks & Incidents:
       - Search and Filters: user-guides/search-and-filters/use-search.md
       - Checking Attacks: user-guides/events/check-attack.md
       - Checking Incidents: user-guides/events/check-incident.md

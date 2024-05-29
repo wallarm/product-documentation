@@ -20,7 +20,7 @@ API Sessions group all requests (legitimate and attacks) within a session accord
 
 Use the **API Sessions** section of the Wallarm Console to analyze session content. When working with data, consider existing [limitations](#limitations).
 
-![!API Sessions section - monitored sessions](../images/api-sessions/api-sessions.png)
+![!API Sessions section - monitored sessions](images/api-sessions/api-sessions.png)
 
 ## Enabling and configuring
 
