@@ -96,9 +96,9 @@ This step is only needed if the node is deployed externally (for example, Cloud 
 1. For the corresponding server, select **Create policy** from the menu.
 1. Set **Policy Type** to **Included Policy Fragment**. Name it `wallarm-mirror`.
 
-    ![Layer7 API Gateways Wallarm policy fragment](../../images/waf-installation/gateways/layer7/layer7-policy-fragment.png)
+    ![Layer7 API Gateways Wallarm included policy fragment](../../images/waf-installation/gateways/layer7/layer7-policy-fragment-included.png)
 
-1. Create the following XML file and import its content into the policy:
+1. Create the following XML file and import its content into the included policy fragment using the **Import Policy** button:
 
     ??? info "`wallarm-mirror-failsafe.xml`"
         ```xml
@@ -167,10 +167,19 @@ This step is only needed if the node is deployed externally (for example, Cloud 
         </exp:Export>
         ```
 
-1. Select **Create policy** once again.
-1. Set **Policy Type** to **Global Policy Fragment**. Name it `message-completed`.
-1. For the policy, set the `wallarm_node_addr` variable to the URL of the Wallarm node.
-1. Include the previously created `wallarm-mirror` policy fragment.
+1. Select **Create policy** for your server once again.
+1. Set **Policy Type** to **Global Policy Fragment**.
+1. Set **Policy Tag** to **message-completed**.
+
+    !!! warning "Using `message-completed` tag"
+        It is important to use the `message-completed` tag instead of the `message-received` to avoid putting the added headers into the actual user request. The `message-completed` is called after it was already processed, but the response was not sent to the client yet. At this point we also have access to the response status code. 
+
+1. Name global policy fragment `message-completed`.
+
+    ![Layer7 API Gateways Wallarm global policy fragment](../../images/waf-installation/gateways/layer7/layer7-policy-fragment-global.png)
+
+1. For the created global policy fragment, use **Set Context Variable**, set **Variable Name** to `wallarm_node_addr`, and **Expression** to the URL of the Wallarm node.
+1. Use **Include Policy Fragment** to include the previously created `wallarm-mirror` included policy fragment into you global policy fragment.
 
     ![Layer7 API Gateways Wallarm policy](../../images/waf-installation/gateways/layer7/layer7-policy.png)    
 
