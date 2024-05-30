@@ -41,7 +41,10 @@ To secure APIs on the Layer7 API Gateways using Wallarm, follow these steps:
 
     ```
     server {
-        listen 80;
+        listen 443 ssl;
+
+        ### SSL configuration here    
+        
         wallarm_mode monitoring;
 
         real_ip_header $http_x_wallarm_real_ip;
@@ -50,20 +53,6 @@ To secure APIs on the Layer7 API Gateways using Wallarm, follow these steps:
 
         location / {
             proxy_pass http://localhost:8080;
-        }
-    }
-
-    server {
-        listen 443 ssl;
-
-        ### SSL configuration here
-
-        access_log off;
-        wallarm_mode off;
-
-        location / {
-            proxy_set_header Host $http_x_wallarm_forwarded_host;
-            proxy_pass http://unix:/tmp/wallarm-nginx.sock;
         }
     }
 
@@ -172,7 +161,7 @@ This step is only needed if the node is deployed externally (for example, Cloud 
 1. Set **Policy Tag** to **message-completed**.
 
     !!! warning "Using `message-completed` tag"
-        It is important to use the `message-completed` tag instead of the `message-received` to avoid putting the added headers into the actual user request. The `message-completed` is called after it was already processed, but the response was not sent to the client yet. At this point we also have access to the response status code. 
+        It is important to use the `message-completed` tag instead of the `message-received` to avoid putting the added headers into the actual user request. The `message-completed` is called after it was already processed, but the response was not sent to the client yet. 
 
 1. Name global policy fragment `message-completed`.
 
