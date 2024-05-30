@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/monitoring/write-plugin-graphite.md"
+--8<-- "3.6/admin-en/monitoring/write-plugin-graphite.md"
