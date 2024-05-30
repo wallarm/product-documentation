@@ -179,7 +179,7 @@ This step is only needed if the node is deployed externally (for example, Cloud 
     ![Layer7 API Gateways Wallarm global policy fragment](../../images/waf-installation/gateways/layer7/layer7-policy-fragment-global.png)
 
 1. For the created global policy fragment, use **Set Context Variable**, set **Variable Name** to `wallarm_node_addr`, and **Expression** to the URL of the Wallarm node.
-1. Use **Include Policy Fragment** to include the previously created `wallarm-mirror` included policy fragment into you global policy fragment.
+1. Use **Include Policy Fragment** to include the previously created `wallarm-mirror` included policy fragment into your global policy fragment.
 
     ![Layer7 API Gateways Wallarm policy](../../images/waf-installation/gateways/layer7/layer7-policy.png)    
 
