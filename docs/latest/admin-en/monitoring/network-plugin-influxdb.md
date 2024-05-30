@@ -157,24 +157,48 @@ At this point, InfluxDB should be running, ready to receive metrics from `collec
 ### Configuring `collectd`
 
 Configure `collectd` to export metrics to InfluxDB:
-1. Connect to the filter node (for example, by using the SSH protocol). Make sure you are logged in as root or another account with superuser privileges.
-2. Create a file named `/etc/collectd/collectd.conf.d/export-to-influxdb.conf` with the following content:
-   
-    ```
-    LoadPlugin network
-    
-    <Plugin "network">
-        Server "10.0.30.30" "25826"
-    </Plugin>
-    ```
-    
-    The following entities are configured here:
 
-    1.  The server, to send metrics to (`10.0.30.30`)
-    2.  The port that server listens on (`25826/UDP`)
-    
-3. Restart the `collectd` service by running the appropriate command:
+=== "Docker image, cloud image, all-in-one installer"
+    1. Connect to the filter node (for example, by using the SSH protocol). Make sure you are logged in as root or another account with superuser privileges.
+    1. Add the following configuration to the `/opt/wallarm/etc/collectd/wallarm-collectd.conf` file:
+      
+        ```
+        LoadPlugin network
+        
+        <Plugin "network">
+          Server "Server IPv4/v6 address or FQDN" "Server port"
+        </Plugin>
+        ```
+        
+        The following entities are configured here:
 
-    --8<-- "../include/monitoring/collectd-restart-2.16.md"
+        1.  The server, to send metrics to (`10.0.30.30`)
+        1.  The port that server listens on (`25826/UDP`)
+        
+    1. Restart the `wallarm` service by running the following command:
+
+        ```bash
+        sudo systemctl restart wallarm
+        ```
+=== "Other installations"
+    1. Connect to the filter node (for example, by using the SSH protocol). Make sure you are logged in as root or another account with superuser privileges.
+    1. Create a file named `/etc/collectd/collectd.conf.d/export-to-influxdb.conf` with the following content:
+      
+        ```
+        LoadPlugin network
+        
+        <Plugin "network">
+            Server "10.0.30.30" "25826"
+        </Plugin>
+        ```
+        
+        The following entities are configured here:
+
+        1.  The server, to send metrics to (`10.0.30.30`)
+        1.  The port that server listens on (`25826/UDP`)
+        
+    1. Restart the `collectd` service by running the appropriate command:
+
+        --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
 Now InfluxDB receives all the metrics of the filter node. You can visualize the metrics you are interested in and monitor them [with Grafana][doc-grafana].

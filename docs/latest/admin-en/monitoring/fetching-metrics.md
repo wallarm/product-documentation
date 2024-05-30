@@ -30,27 +30,49 @@ You can export the metrics collected by `collectd` directly to the tools that su
 ### Exporting Metrics via the `collectd` Network Plugin
 
 Configure and connect the [network plugin][link-network-plugin] to `collectd`:
-1.  In the `/etc/collectd/collectd.conf.d/` directory, create a file with the `.conf` extension (e.g., `export-via-network.conf`) and the following content:
 
-    ```
-    LoadPlugin network
+=== "Docker image, cloud image, all-in-one installer"
+    1.  Add the following configuration to the `/opt/wallarm/etc/collectd/wallarm-collectd.conf` file:
     
-    <Plugin "network">
-      Server "Server IPv4/v6 address or FQDN" "Server port"
-    </Plugin>
-    ```
+        ```
+        LoadPlugin network
+        
+        <Plugin "network">
+          Server "Server IPv4/v6 address or FQDN" "Server port"
+        </Plugin>
+        ```
 
-    As stated in this file, the plugin will be loaded upon starting `collectd`, operate in the client mode, and send the filter node’s metrics data to the specified server.
+        As stated in this configuration, the plugin will be loaded upon starting `collectd`, operate in the client mode, and send the filter node’s metrics data to the specified server.
+    1.  Configure a server that will receive data from the `collectd` client. The necessary configuration steps depend on the selected server (see examples for [`collectd`][link-collectd-networking] and [InfluxDB][link-influxdb-collectd]).
     
-2.  Configure a server that will receive data from the `collectd` client. The necessary configuration steps depend on the selected server (see examples for [`collectd`][link-collectd-networking] and [InfluxDB][link-influxdb-collectd]).
     
-    
-    !!! info "Working with the Network Plugin"
-        The network plugin works over UDP (see the [plugin documentation][link-network-plugin-docs]). Make sure that the server allows communication over UDP for metrics collection to be operational.
-         
-3.  Restart the `collectd` service by executing the appropriate command:
+        !!! info "Working with the Network Plugin"
+            The network plugin works over UDP (see the [plugin documentation][link-network-plugin-docs]). Make sure that the server allows communication over UDP for metrics collection to be operational.
+    1.  Restart the `wallarm` service by running the following command:
 
-    --8<-- "../include/monitoring/collectd-restart-2.16.md"
+        ```bash
+        sudo systemctl restart wallarm
+        ```
+=== "Other installations"
+    1.  In the `/etc/collectd/collectd.conf.d/` directory, create a file with the `.conf` extension (e.g., `export-via-network.conf`) and the following content:
+
+        ```
+        LoadPlugin network
+        
+        <Plugin "network">
+          Server "Server IPv4/v6 address or FQDN" "Server port"
+        </Plugin>
+        ```
+
+        As stated in this file, the plugin will be loaded upon starting `collectd`, operate in the client mode, and send the filter node’s metrics data to the specified server.
+    1.  Configure a server that will receive data from the `collectd` client. The necessary configuration steps depend on the selected server (see examples for [`collectd`][link-collectd-networking] and [InfluxDB][link-influxdb-collectd]).
+    
+    
+        !!! info "Working with the Network Plugin"
+            The network plugin works over UDP (see the [plugin documentation][link-network-plugin-docs]). Make sure that the server allows communication over UDP for metrics collection to be operational.
+    1.  Restart the `collectd` service by executing the appropriate command:
+
+        --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
 !!! info "Example"
     Read an [example of exporting metrics][doc-network-plugin-example] to InfluxDB via the Network plugin with subsequent visualization of the metrics in Grafana.
