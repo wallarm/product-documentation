@@ -1,9 +1,9 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
-# Layer7 API Gateways
+# Broadcom Layer7 API Gateways
 
-[Layer7 API Gateways](https://www.broadcom.com/products/software/api-management/layer7-api-gateways) is a robust solution to control and secure organization's API traffic. With Wallarm, you can additionally secure APIs controlled by Layer7 API Gateways. This article explains how to integrate Layer7 API Gateways with Wallarm by deploying the Wallarm policy.
+Broadcom's [Layer7 API Gateways](https://www.broadcom.com/products/software/api-management/layer7-api-gateways) is a robust solution to control and secure organization's API traffic. With Wallarm, you can additionally secure APIs controlled by Layer7 API Gateways. This article explains how to integrate Layer7 API Gateways with Wallarm by deploying the Wallarm policy.
 
 The Wallarm policy for Layer7 API Gateways supports the [out-of-band](../oob/overview.md) mode. Diagram below shows the traffic flow for APIs on the Layer7 API Gateways with Wallarm policy applied.
 

@@ -1087,7 +1087,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
         <a class="do-card" href="../../installation/api-gateways/layer7-api-gateway/">
             <img class="non-zoomable" src="../../images/platform-icons/layer7.png" />
-            <h3>Layer7 API Gateways</h3>
+            <h3>Broadcom Layer7 API Gateways</h3>
             <p>Deploy Wallarm to secure APIs managed with Layer7 API Gateways</p>
         </a>
     </div>
@@ -1135,7 +1135,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         
         <a class="do-card" href="../../installation/connectors/layer7-api-gateway/">
             <img class="non-zoomable" src="../../images/platform-icons/layer7.png" />
-            <h3>Layer7 API Gateways</h3>
+            <h3>Broadcom Layer7 API Gateways</h3>
             <p>Deploy Wallarm to secure APIs managed with Layer7 API Gateways</p>
         </a>
     </div>
