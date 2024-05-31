@@ -3,7 +3,7 @@
 
 Vulnerability Detection and Mitigation Best Practices
 
-## Follow the best practices for Active threat verification <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Follow the best practices for Active threat verification <a href="../subscription-plans/#waap-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
 One method Wallarm uses to [detect vulnerabilities](../about-wallarm/detecting-vulnerabilities.md) is **Active threat verification**.
 

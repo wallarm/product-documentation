@@ -1,4 +1,4 @@
-# Shadow and Orphan API Detection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Shadow and Orphan API Detection <a href="../../about-wallarm/subscription-plans/#waap-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 Watch our demo video to become familiar with how you can detect [shadow and orphan endpoints](../api-discovery/rogue-api.md) in your API using Wallarm.
 

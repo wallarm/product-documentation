@@ -5,7 +5,7 @@ The new version of the Wallarm node has been released! This update introduces an
 !!! info "Selected artifacts enhanced in release 4.10"
     Several artifacts, including individual DEB/RPM packages for NGINX, a Helm chart for the Kong Ingress Controller, and an Envoy-based Docker image, have NOT been released as part of version 4.10 and therefore do not support the newly introduced capabilities.
 
-## Credential stuffing detection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+## Credential stuffing detection <a href="../../about-wallarm/subscription-plans/#waap-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 Beginning with release 4.10, Wallarm introduces real-time detection and notifications for credential stuffing attempts. Credential stuffing, the automated submission of stolen or weak username/email and password pairs into website login forms to illegitimately access user accounts, is now closely monitored. This feature allows you to identify accounts with compromised credentials and take action to secure them, such as notifying account owners and temporarily suspending account access.
 
@@ -19,7 +19,7 @@ With the 4.10.1 release, we are enhancing Wallarm API Discovery now giving you i
 
 ![APID responses](../images/about-wallarm-waf/api-discovery/discovered-request-params-4.10.png)
 
-## GraphQL API protection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+## GraphQL API protection <a href="../../about-wallarm/subscription-plans/#waap-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL by default. However, some aspects of the protocol allow implementing [GraphQL specific](../attacks-vulns-list.md#graphql-attack) attacks related to excessive information exposure and DoS.
 

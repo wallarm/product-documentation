@@ -2,14 +2,13 @@
 
 When subscribing to Wallarm, you choose a plan that meets your business needs the most. From this document, you can learn available subscription plans and the functionality they enable.
 
-Wallarm provides the following subscription plans:
+## WAAP / Advanced API Security
 
-* **Cloud Native WAAP (Web Application & API Protection)** that is a Next-Gen WAF providing web applications and APIs with protection against common threats.
-* **Advanced API Security** provides comprehensive API discovery and threat prevention across your entire portfolio, regardless of protocol.
+The **WAAP** (Web Application & API Protection) or **Cloud Native WAAP** is a Next-Gen WAF providing web applications and APIs with protection against common threats.
 
-    The Advanced API Security subscription plan is sold as an add-on for Cloud Native WAAP.
+**Advanced API Security** provides comprehensive API discovery and threat prevention across your entire portfolio, regardless of protocol. The subscription plan is sold as an add-on for Cloud Native WAAP.
 
-## Subscription plans
+Comparison of these two subscriptions plans are provided in the table below.
 
 | Feature | Cloud Native WAAP | WAAP + Advanced API Security |
 | ------- | ----------------- | --------------------- |
@@ -61,23 +60,20 @@ Information about an active plan is displayed in Wallarm Console → **Settings*
 
 ![Paid subscription plan](../images/user-guides/settings/subscriptions/subscriptions.png)
 
-## Subscription notifications
+## API Attack Surface
 
-Wallarm notifies **Administrators** and **Global Administrators** of your account via emails about any issues with a subscription:
+The **API Attack Surface** subscription plan provides a comprehensive view of publicly exposed APIs and related information with **zero deployment** and minimal configuration.
 
-* Subscription time period expiration (60, 30, 15 days before and when the time period has expired)
-* Exceedance of monthly quota for processed requests (when 85% and 100% of a quota has been reached)
+Currently, the subscription plan includes the [API Leaks](../about-wallarm/api-leaks.md) module.
 
-In addition to that, the Wallarm Console UI displays the message about subscription issues for all users.
-
-## Free tier subscription plan
+## Free Tier
 
 When a new user is registered in [Wallarm Console](overview.md#cloud), a new client account with a **Free Tier** subscription plan is automatically created in the Wallarm system.
 
 The Free Tier subscription includes:
 
 * The Wallarm features available for free up to the quota of **500 thousand requests per month** with no limitation in time. The quota resets on the first day of each month.
-* Access to the Wallarm platform as [Advanced API Security](#subscription-plans), except for the following:
+* Access to the Wallarm platform as [Advanced API Security](#waap-advanced-api-security), except for the following:
 
     * [Exposed asset](../user-guides/scanner.md) Scanner
     * The [API Abuse Prevention](api-abuse-prevention.md) module
@@ -92,3 +88,12 @@ These restrictions will be in effect until the first day of the next month. Cont
 Information about the Free Tier subscription usage is displayed in Wallarm Console → **Settings** → **Subscriptions**.
 
 Wallarm notifies **Administrators** and **Global Administrators** of your account via email when 85%, 100%, 185% and 200% of the free request quota have been exceeded.
+
+## Subscription notifications
+
+Wallarm notifies **Administrators** and **Global Administrators** of your account via emails about any issues with a subscription:
+
+* Subscription time period expiration (60, 30, 15 days before and when the time period has expired)
+* Exceedance of monthly quota for processed requests (when 85% and 100% of a quota has been reached)
+
+In addition to that, the Wallarm Console UI displays the message about subscription issues for all users.
