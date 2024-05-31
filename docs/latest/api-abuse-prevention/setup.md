@@ -19,7 +19,8 @@ A profile defines from what type of bots to protect, with what sensitivity each 
 
 To create an API abuse profile:
 
-1. In the **API Abuse Prevention** section, click **Create profile**.
+1. In the **API Abuse Prevention** section, switch to the **Profiles** tab.
+1. Click **Create profile**.
 1. Select [automated threats](../api-abuse-prevention/overview.md#automated-threats-blocked-by-api-abuse-prevention) to protect from, set the **Reaction**:
     
     * **Disabled** - Wallarm will not protect from this type of bot. 

@@ -15,6 +15,20 @@ You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Deny
 
 You can interfere in the bot protection process. If denylisted or graylisted IP actually is not used by a malicious bot, you can either delete the IP from the list or [allowlist](../user-guides/ip-lists/overview.md) it. Wallarm does not block any requests originating from allowlisted IPs including malicious ones.
 -->
+## Statistics
+
+API Abuse Prevention conveniently visualizes the data on bot activities for the last 30 days at the **Statistics** tab. This includes:
+
+* **Bot activity**: general number of bot attacks and attacks by [bot type](../about-wallarm/api-abuse-prevention.md#automated-threats-blocked-by-api-abuse-prevention) for the period.
+* **Top attackers**: IPs of attackers with most attacks for the period.
+* **Top targets**: API hosts or paths most attacked during the period.
+
+    Click in any section to switch to the corresponding [**Attacks**](#attacks).
+
+* **Summary for period**: number of IPs, [deny- or graylisted](../user-guides/api-abuse-prevention.md#creating-profiles) within the period as bots with information of how many detectors identified the bot. Click to switch to **IP Lists** [history](../user-guides/ip-lists/overview.md#ip-list-history).
+
+![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+
 ## Attacks
 
 You can explore attacks performed by bots in Wallarm Console → **Attacks** section. Use the `api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys or select the appropriate options from the **Type** filter.
