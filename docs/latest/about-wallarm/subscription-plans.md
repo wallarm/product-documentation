@@ -38,6 +38,7 @@ Comparison of these two subscriptions plans are provided in the table below.
 | [Sensitive data detection](../api-discovery/overview.md#sensitive-data-detection) | No | Yes |
 | [API Specification Enforcement](../api-policy-enforcement/overview.md) | No | Yes |
 | **Security testing and vulnerability assessment** | | |
+| [API Leaks](../about-wallarm/api-leaks.md) | No | Yes |
 | [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | No | Yes |
 | [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | No | Yes |
 | [OpenAPI security testing on CI/CD](../fast/openapi-security-testing.md) |  No | Yes |
