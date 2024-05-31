@@ -1,4 +1,4 @@
-# API Sessions <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Sessions <a href="../subscription-plans/#waap-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 The **API Sessions** module depicts the interaction of individual actors with the business logic of APIs or applications. API Sessions allow identify various behavioral and business-logic flaws and facilitate investigations of security incidents. This article gives an overview of **API Sessions**: describes how it works, enabled and configured, which limitations it currently has.
 

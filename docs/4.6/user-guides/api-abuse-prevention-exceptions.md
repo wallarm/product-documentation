@@ -1,4 +1,4 @@
-# API Abuse Prevention Exceptions <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention Exceptions <a href="../../about-wallarm/subscription-plans/#waap-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 This article describes how to fine tune [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) by marking legitimate bots and disabling bot protection for particular target URLs and request types.
 
