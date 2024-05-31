@@ -2,17 +2,13 @@
 
 When subscribing to Wallarm, you choose a plan that meets your business needs the most. From this document, you can learn available subscription plans and the functionality they enable.
 
-Wallarm provides the following subscription plans:
-
-* **Cloud Native WAAP (Web Application & API Protection)** that is a Next-Gen WAF [providing](#waap--advanced-api-security) web applications and APIs with protection against common threats.
-* **Advanced API Security** [provides](#waap--advanced-api-security) comprehensive API discovery and threat prevention across your entire portfolio, regardless of protocol.
-
-    The Advanced API Security subscription plan is sold as an add-on for Cloud Native WAAP.
-
-* **API Attack Surface** [provides](#api-attack-surface) a comprehensive view of publicly exposed APIs and related information with zero deployment and minimal configuration.
-* **Free Tier** provides [most features](#free-tier) of Advanced API Security for free up to the [quota](#free-tier).
-
 ## WAAP / Advanced API Security
+
+The **WAAP** (Web Application & API Protection) or **Cloud Native WAAP** is a Next-Gen WAF providing web applications and APIs with protection against common threats.
+
+**Advanced API Security** provides comprehensive API discovery and threat prevention across your entire portfolio, regardless of protocol. The subscription plan is sold as an add-on for Cloud Native WAAP.
+
+Comparison of these two subscriptions plans are provided in the table below.
 
 | Feature | Cloud Native WAAP | WAAP + Advanced API Security |
 | ------- | ----------------- | --------------------- |
@@ -77,7 +73,7 @@ When a new user is registered in [Wallarm Console](overview.md#cloud), a new cli
 The Free Tier subscription includes:
 
 * The Wallarm features available for free up to the quota of **500 thousand requests per month** with no limitation in time. The quota resets on the first day of each month.
-* Access to the Wallarm platform as [Advanced API Security](#subscription-plans), except for the following:
+* Access to the Wallarm platform as [Advanced API Security](#waap-advanced-api-security), except for the following:
 
     * [Exposed asset](../user-guides/scanner.md) Scanner
     * The [API Abuse Prevention](api-abuse-prevention.md) module
