@@ -226,6 +226,32 @@ controller:
 
 Extra environment variables to be passed to the Docker containers utilized by the solution.
 
+The example below shows how to pass the `https_proxy` and `no_proxy` variables to Docker containers. This setup directs outgoing HTTPS traffic through a designated proxy, while local traffic bypasses it. Such configuration is crucial in environments where external communications, like those with the Wallarm API, must pass through a proxy for security reasons.
+
+```yaml
+controller:
+  wallarm:
+    apiHost: api.wallarm.com
+    enabled: "true"
+    token:  <API_TOKEN>
+    addnode:
+      extraEnvs:
+        - name: https_proxy
+          value: https://1.1.1.1:3128
+    cron:
+      extraEnvs:
+        - name: https_proxy
+          value: https://1.1.1.1:3128
+        - name: no_proxy
+          value: "localhost"
+    collectd:
+      extraEnvs:
+        - name: https_proxy
+          value: https://1.1.1.1:3128
+        - name: no_proxy
+          value: "localhost"
+```
+
 ## Global Controller Settings 
 
 Implemented via [ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/).
