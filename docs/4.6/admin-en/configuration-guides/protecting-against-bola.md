@@ -75,7 +75,7 @@ Example of the trigger to detect and block BOLA attacks aimed at shop financial 
 
 You can configure several triggers with different filters for BOLA protection.
 
-## Automatic BOLA protection for endpoints discovered by API Discovery <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+## Automatic BOLA protection for endpoints discovered by API Discovery <a href="../../../about-wallarm/subscription-plans/#waap-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Automatic BOLA protection is available if you use the **[API Discovery](../../api-discovery/overview.md)** module.
 

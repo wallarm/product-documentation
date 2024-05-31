@@ -376,7 +376,7 @@ Possible values are `on` (response analysis is enabled) and `off` (response anal
 !!! warning "Improve performance"
     You are recommended to disable processing of static files through `location` to improve performance.
 
-### wallarm_parse_websocket <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### wallarm_parse_websocket <a href="../../about-wallarm/subscription-plans/#waap-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 Wallarm provides full WebSockets support under the API Security subscription plan. By default, the WebSockets' messages are not analyzed for attacks.
 
