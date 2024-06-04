@@ -113,7 +113,7 @@ Specify in the search string:
     * `gql_docs_per_batch`: violation of maximum allowed number of batched queries
     * `gql_introspection`: forbidden introspection query
     * `gql_debug`: forbidden debug mode query
-* <a name="spec-violation-tags"></a>`api_specification`: to search for all [specification-based](../../api-policy-enforcement/overview.md) violations. Also, specific violations can be searched by:
+* <a name="spec-violation-tags"></a>`api_specification`: to search for all [specification-based](../../api-specification-enforcement/overview.md) violations. Also, specific violations can be searched by:
     * `undefined_endpoint`: attempt to request the endpoint not presented in your specification
     * `undefined_parameter`: requests marked as attacks because they include parameters not presented for this endpoint in your specification
     * `missing_parameter`: requests marked as attacks because they does not include the parameter or its value that are marked as required in your specification
@@ -420,9 +420,9 @@ You can find the node UUID in the **Nodes** section, [node details](../../user-g
 
 ### Search by specification
 
-To get the list of events related to specific [specification policy violations](../../api-policy-enforcement/overview.md), in the search field specify `spec:'<SPECIFICATION-ID>'`. To get `<SPECIFICATION-ID>`, in **API Specifications**, open your specification for editing - `specid` will be displayed in your browser address field.
+To get the list of events related to specific [specification policy violations](../../api-specification-enforcement/overview.md), in the search field specify `spec:'<SPECIFICATION-ID>'`. To get `<SPECIFICATION-ID>`, in **API Specifications**, open your specification for editing - `specid` will be displayed in your browser address field.
 
-![Specification - use for applying security policies](../../images/api-policies-enforcement/api-policies-enforcement-events.png)
+![Specification - use for applying security policies](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
 Blocked and monitored events may be presented depending on the configured policy violation actions. In the event details, the violation type and link to the causing specification are displayed.
 

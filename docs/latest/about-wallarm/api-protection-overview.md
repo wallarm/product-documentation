@@ -18,9 +18,9 @@ While WAAP/WAF is available under the basic Cloud Native WAAP subscription, to
 
 The **API Specification Enforcement** is designed to apply security policies to your APIs basing on your uploaded specifications. Its primary function is to detect discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs. When such inconsistencies are identified, the system can take predefined actions to address them.
 
-![Specification - use for applying security policies](../images/api-policies-enforcement/specification-use-for-api-policies-enforcement.png)
+![Specification - use for applying security policies](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
 
-[Proceed to detailed description and configuration →](../api-policy-enforcement/overview.md)
+[Proceed to detailed description and configuration →](../api-specification-enforcement/overview.md)
 
 ## Automatic BOLA Protection
 

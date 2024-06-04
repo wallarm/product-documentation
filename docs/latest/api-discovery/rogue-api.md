@@ -30,7 +30,7 @@ Also, you can download the previously uploaded specification via **API Specifica
 1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
 1. Set specification upload parameters and start uploading.
 
-    ![Upload specification](../images/api-policies-enforcement/specificaton-upload.png)
+    ![Upload specification](../images/api-specification-enforcement/specificaton-upload.png)
 
 Note that you will not be able to start configuring rogue API detection, until the specification file is successfully uploaded.
 
@@ -39,7 +39,7 @@ Note that you will not be able to start configuring rogue API detection, until t
 1. Click the **Rogue APIs detection** tab.
 
     !!! info "API specification enforcement"
-        Besides rogue API detection, specifications may be used for [API specification enforcement](../api-policy-enforcement/overview.md).
+        Besides rogue API detection, specifications may be used for [API specification enforcement](../api-specification-enforcement/overview.md).
 
 1. Select **Use for rogue APIs detection**.
 1. Select **Applications** and **Hosts** - only endpoints related to the selected hosts will be searched for rogue APIs.

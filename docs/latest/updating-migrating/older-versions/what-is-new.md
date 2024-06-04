@@ -97,14 +97,14 @@ Additionally, this update introduces new parameters for some deployment options,
 * For NGINX-based Docker image: the environment variable `WALLARM_APIFW_ENABLE`.
 
 !!! info "Required configuration"
-    You need [additional configuration](../../api-policy-enforcement/setup.md#step-3-configure-specific-cases-or-disable) when using API Specification Enforcement with the NGINX-based Wallarm nodes installed with:
+    You need [additional configuration](../../api-specification-enforcement/setup.md#step-3-configure-specific-cases-or-disable) when using API Specification Enforcement with the NGINX-based Wallarm nodes installed with:
 
       * [All-in-one installer](../../installation/nginx/all-in-one.md)
       * [Docker image](../../admin-en/installation-docker-en.md) - only when you [mount](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file) your own custom configuration file
 
-[Learn how to configure API Specification Enforcement](../../api-policy-enforcement/setup.md)
+[Learn how to configure API Specification Enforcement](../../api-specification-enforcement/setup.md)
 
-![Specification - use for applying security policies](../../images/api-policies-enforcement/api-policies-enforcement-events.png)
+![Specification - use for applying security policies](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
 ## Detection of the new attack types
 
@@ -161,7 +161,7 @@ The new deployment method lets you configure the Wallarm CDN node outside your i
 
 ## System requirements for the filtering node installation
 
-* Wallarm node instances now require access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../../api-policy-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../user-guides/ip-lists/overview.md) countries, regions, or data centers.
+* Wallarm node instances now require access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../user-guides/ip-lists/overview.md) countries, regions, or data centers.
 
     === "US Cloud"
         ```

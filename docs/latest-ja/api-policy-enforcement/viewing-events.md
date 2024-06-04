@@ -12,7 +12,7 @@ API仕様書をアップロードし、仕様ベースのポリシー適用の�
 
 **攻撃**セクションでは、**比較対象...** フィルターまたは`spec:'<SPECIFICATION-ID>'` [検索タグ](../user-guides/search-and-filters/use-search.md#search-by-specification)を使用して、選択した仕様書のポリシー違反に関連するすべてのイベントを見つけます。`<SPECIFICATION-ID>`を取得するには、**API仕様書**であなたの仕様書を編集用に開きます - `specid`はブラウザのアドレス欄に表示されます。
 
-![仕様書 - APIポリシー適用のために使用](../images/api-policies-enforcement/api-policies-enforcement-events.png)
+![仕様書 - APIポリシー適用のために使用](../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
 設定されたポリシー違反アクションによっては、ブロックされたイベントとモニタリングされたイベントが表示される場合があります。イベントの詳細には、違反タイプと原因となる仕様書へのリンクが表示されます。特定の違反を探すには**タイプ**フィルターを使用してください。
 

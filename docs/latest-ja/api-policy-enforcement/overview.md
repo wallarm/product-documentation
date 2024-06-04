@@ -2,7 +2,7 @@
 
 **API ポリシー適用**は、アップロードされた仕様に基づいてセキュリティポリシーをAPIに適用するために設計されています。その主な機能は、仕様のエンドポイント記述とREST APIへの実際のリクエストとの間の不一致を検出することです。このような不一致が特定されると、システムはそれらに対処するために事前に定義されたアクションを実行できます。
 
-![API ポリシー適用 - ダイアグラム](../images/api-policies-enforcement/api-policy-enforcement-diagram.png)
+![API ポリシー適用 - ダイアグラム](../images/api-specification-enforcement/api-specification-enforcement-diagram.png)
 
 ## API ポリシー適用が対処する問題
 

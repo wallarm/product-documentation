@@ -88,7 +88,7 @@ Additionally, this update introduces new parameters for some deployment options,
 
 [Learn how to configure API Policy Enforcement](../../api-policy-enforcement/setup.md)
 
-![Specification - use for API policy enforcement](../images/api-policies-enforcement/api-policies-enforcement-events.png)
+![Specification - use for API policy enforcement](../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
 -->
 

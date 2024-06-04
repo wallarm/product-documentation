@@ -4,7 +4,7 @@
 
 The **API Specification Enforcement** is designed to apply security policies to your APIs basing on your uploaded specifications. Its primary function is to detect discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs. When such inconsistencies are identified, the system can take predefined actions to address them.
 
-![API Specification Enforcement - diagram](../images/api-policies-enforcement/api-policy-enforcement-diagram.png)
+![API Specification Enforcement - diagram](../images/api-specification-enforcement/api-specification-enforcement-diagram.png)
 
 ## Issues addressed by API Specification Enforcement
 

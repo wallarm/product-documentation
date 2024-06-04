@@ -7,7 +7,7 @@
 1. [US Cloud](https://us1.my.wallarm.com/api-specifications/)または[EU Cloud](https://my.wallarm.com/api-specifications/)の**API仕様**セクションで、**仕様をアップロード**をクリックします。
 1. 仕様アップロードパラメータを設定し、アップロードを開始します。
 
-    ![仕様のアップロード](../images/api-policies-enforcement/specificaton-upload.png)
+    ![仕様のアップロード](../images/api-specification-enforcement/specificaton-upload.png)
 
 仕様のファイルが正常にアップロードされるまで、APIポリシーの設定を開始することはできません。
 
@@ -29,7 +29,7 @@
 
 1. リクエストが仕様に違反した場合のシステムの反応を設定します。
 
-    ![仕様 - APIポリシー適用に使用](../images/api-policies-enforcement/specification-use-for-api-policies-enforcement.png)
+    ![仕様 - APIポリシー適用に使用](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
 
     可能な違反の詳細：
 

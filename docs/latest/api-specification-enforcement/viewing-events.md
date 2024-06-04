@@ -14,7 +14,7 @@ In the **Attacks** section, to find events related to specification-based policy
 
 Blocked and monitored events may be presented depending on the configured policy violation actions. In the event details, the violation type and link to the causing specification are displayed.
 
-![Specification - use for applying security policies](../images/api-policies-enforcement/api-policies-enforcement-events.png)
+![Specification - use for applying security policies](../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
 ## Overlimit events
 
