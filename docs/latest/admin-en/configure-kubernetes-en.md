@@ -37,6 +37,19 @@ controller:
         successThreshold: 1
         timeoutSeconds: 1
       resources: {}
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
+    wallarm-appstructure:
+      resources: {}
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
+    wallarm-antibot:
+      resources: {}
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
     metrics:
       enabled: false
 
@@ -55,14 +68,27 @@ controller:
         loadBalancerSourceRanges: []
         servicePort: 18080
         type: ClusterIP
-    synccloud:
+    addnode:
       resources: {}
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
+    cron:
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
     collectd:
       resources: {}
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
     apiFirewall:
       enabled: true
       config:
         ...
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+        - value: EXTRA_ENV_VAR_VALUE
 ```
 
 To change this setting, we recommend using the option `--set` of `helm install` (if installing the Ingress controller) or `helm upgrade` (if updating the installed Ingress controller parameters). For example:
@@ -194,6 +220,36 @@ controller:
         ### TEXT|JSON
         logFormat: TEXT
       ...
+```
+
+### controller.wallarm.container_name.extraEnvs
+
+Extra environment variables to be passed to the Docker containers utilized by the solution. Supported starting from the release 4.10.6.
+
+The example below shows how to pass the `https_proxy` and `no_proxy` variables to Docker containers. This setup directs outgoing HTTPS traffic through a designated proxy, while local traffic bypasses it. Such configuration is crucial in environments where external communications, like those with the Wallarm API, must pass through a proxy for security reasons.
+
+```yaml
+controller:
+  wallarm:
+    apiHost: api.wallarm.com
+    enabled: "true"
+    token:  <API_TOKEN>
+    addnode:
+      extraEnvs:
+        - name: https_proxy
+          value: https://1.1.1.1:3128
+    cron:
+      extraEnvs:
+        - name: https_proxy
+          value: https://1.1.1.1:3128
+        - name: no_proxy
+          value: "localhost"
+    collectd:
+      extraEnvs:
+        - name: https_proxy
+          value: https://1.1.1.1:3128
+        - name: no_proxy
+          value: "localhost"
 ```
 
 ## Global Controller Settings 
