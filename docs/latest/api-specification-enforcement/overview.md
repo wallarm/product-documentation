@@ -29,7 +29,7 @@ Requests may violate your specification by different positions:
 
 --8<-- "../include/api-policies-enforcement/api-policies-violations.md"
 
-When using API Policy Enforcement, the CPU consumption normally increases by about 20%.
+When using API Specification Enforcement, the CPU consumption normally increases by about 20%.
 
 To limit resource consumption, API Specification Enforcement has limits by time (50 ms) and request size (1024 KB) - when exceeding these limits, it stops processing the request and creates the **Specification processing overlimit** [event](viewing-events.md#overlimit-events) in the **Attacks** section, saying that one of these limits was exceeded.
 
