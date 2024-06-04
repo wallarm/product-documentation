@@ -224,7 +224,7 @@ controller:
 
 ### controller.wallarm.container_name.extraEnvs
 
-Extra environment variables to be passed to the Docker containers utilized by the solution.
+Extra environment variables to be passed to the Docker containers utilized by the solution. Supported starting from the release 4.10.6.
 
 The example below shows how to pass the `https_proxy` and `no_proxy` variables to Docker containers. This setup directs outgoing HTTPS traffic through a designated proxy, while local traffic bypasses it. Such configuration is crucial in environments where external communications, like those with the Wallarm API, must pass through a proxy for security reasons.
 
