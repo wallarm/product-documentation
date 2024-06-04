@@ -1,4 +1,4 @@
-# API Leaks <a href="../../about-wallarm/subscription-plans/#waap-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a> <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# API Leaks <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a> <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
 The **API Leaks** module of the Wallarm platform actively scans your selected domains for the leaks of the credential data (API tokens and keys, passwords, client secrets, usernames, emails and others). This article gives an overview of the module: issues addressed by it, its purpose and main possibilities.
 

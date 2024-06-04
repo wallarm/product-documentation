@@ -1,7 +1,7 @@
 [file-ips-list-us]: ../downloads/scanner-ip-addresses-us.txt
 [file-ips-list-eu]: ../downloads/scanner-ip-addresses-eu.txt
 
-# Wallarm Scanner Addresses <a href="../../about-wallarm/subscription-plans/#waap-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Wallarm Scanner Addresses <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 This document provides the lists of [Wallarm Scanner](../user-guides/scanner.md) IP addresses for US and EU Clouds.
 

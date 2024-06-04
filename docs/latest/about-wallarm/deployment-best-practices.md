@@ -133,7 +133,7 @@ Wallarm is constantly working to improve the filtering node software, with new r
 * All Wallarm nodes connected to the same Wallarm account will receive the same set of default and custom rules for traffic filtering. You still can apply different rules for different applications by using proper application IDs or unique HTTP request parameters like headers, query string parameters, etc.
 * If you have the trigger configured to automatically block an IP address ([trigger example](../user-guides/triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)), the system will block the IP for all applications in a Wallarm account.
 
-## Follow the best practices for Active threat verification <a href="../subscription-plans/#waap-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Follow the best practices for Active threat verification <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
 One method Wallarm uses to [detect vulnerabilities](../about-wallarm/detecting-vulnerabilities.md) is **Active threat verification**.
 

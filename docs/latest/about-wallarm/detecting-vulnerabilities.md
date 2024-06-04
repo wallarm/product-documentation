@@ -26,7 +26,7 @@ With passive detection, Wallarm detects a vulnerability due to the security inci
 
 Passive vulnerability detection is enabled by default.
 
-### Active threat verification <a href="../subscription-plans/#waap-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### Active threat verification <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 Wallarm's Active Threat Verification turns attackers into your own penetration testers. It analyzes initial attack attempts, then explores other ways the same attack could be exploited. This exposes weak spots in your environment that even the original attackers did not find. [Read more](../vulnerability-detection/active-threat-verification/overview.md)
 
@@ -45,7 +45,7 @@ The module is disabled by default. To enable it:
 
 You further have the ability to [adjust or customize the module's behavior](../vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md) for specific endpoints.
 
-### Vulnerability Scanner <a href="../subscription-plans/#waap-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### Vulnerability Scanner <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 #### How it works
 
