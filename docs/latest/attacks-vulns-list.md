@@ -523,22 +523,21 @@ Wallarm detects and mitigates GraphQL attacks only if it has one or more configu
 
 **Description:**
 
-This vulnerability involves the unauthorized disclosure of sensitive information by an application, potentially providing attackers with critical data for further malicious activities.
+This vulnerability involves the unauthorized disclosure of sensitive information by an application, potentially providing attackers with sensitive data for further malicious activities.
 
 Some types of sensitive information:
 
 * Private, personal information, such as emails, financial data, contact details, etc.
+* Technical information disclosed in error messages, stack trace
 * System status and environment, such as the operating system and installed packages
-* Network status and configuration
 * Source code or internal state
-* Metadata, e.g. logging of connections or message headers
 
 Wallarm detects information exposure in two ways:
 
 * Server response analysis: Wallarm employs [techniques](about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods) such as passive detection, vulnerability scanning, and active threat verification to analyze server responses. These methods are aimed at identifying vulnerabilities by checking if application responses inadvertently expose sensitive information.
 * API Discovery insights: When endpoints identified by the [API Discovery](api-discovery/overview.md) module transfer Personally Identifiable Information (PII) in query parameters of GET requests, Wallarm recognizes these as vulnerable.
 
-Attacks often use legitimate-looking requests or exploit other vulnerabilities (e.g., SQL injection) that lead to unintentional data leaks, such as SQL errors revealing system capabilities or stack traces exposing system architecture. Wallarm does not specifically identify `infoleak` attacks as a distinct category, it detects and records security incidents when they occur in response to real traffic. However, such incidents are rare because Wallarm's proactive measures enable the early detection of `infoleak` vulnerabilities, allowing you to address them before an attack occurs.
+Wallarm does not specifically classify `infoleak` attacks but detects and records the corresponding security incidents as they happen. However, incidents are infrequent. Wallarm's detection mechanisms alert you promptly if such exposure begins, allowing for quick vulnerability remediation. Additionally, using Wallarm's filtering node in [blocking mode](admin-en/configure-wallarm-mode.md#available-filtration-modes) helps prevent exposures by blocking any attack attempts, significantly reducing the likelihood of data leaks.
 
 **In addition to Wallarm protection:**
 
