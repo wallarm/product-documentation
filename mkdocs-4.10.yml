@@ -49,9 +49,9 @@ nav:
     # - OWASP Top 10: ...
     # - OWASP API Top 10: ...
     - Specification Enforcement:
-      - Overview: api-policy-enforcement/overview.md
-      - Setup: api-policy-enforcement/setup.md
-      - Viewing Events: api-policy-enforcement/viewing-events.md
+      - Overview: api-specification-enforcement/overview.md
+      - Setup: api-specification-enforcement/setup.md
+      - Viewing Events: api-specification-enforcement/viewing-events.md
     - Automatic BOLA Protection: admin-en/configuration-guides/protecting-against-bola.md
     - API Abuse Prevention:
       - Overview: about-wallarm/api-abuse-prevention.md

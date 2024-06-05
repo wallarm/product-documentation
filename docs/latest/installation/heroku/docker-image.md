@@ -6,7 +6,7 @@
 [aio-docs]:                         ../nginx/all-in-one.md
 [waf-directives-instr]:             ../../admin-en/configure-parameters-en.md
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
-[api-spec-enforcement-docs]:        ../../api-policy-enforcement/overview.md
+[api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
 
 # Running Wallarm on Heroku
 

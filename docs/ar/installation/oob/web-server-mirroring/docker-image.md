@@ -31,6 +31,6 @@ search:
 [gcp-gce-docs]:                     ../../cloud-platforms/gcp/docker-container.md
 [azure-container-docs]:             ../../cloud-platforms/azure/docker-container.md
 [alibaba-ecs-docs]:                 ../../cloud-platforms/alibaba-cloud/docker-container.md
-[api-policy-enf-docs]:              ../../../api-policy-enforcement/overview.md
+[api-policy-enf-docs]:              ../../../api-specification-enforcement/overview.md
 
 --8<-- "latest-ar/installation/oob/web-server-mirroring/docker-image.md"

@@ -9,7 +9,7 @@
 1. في قسم **مواصفات واجهة برمجة التطبيقات** في [السحابة الأمريكية](https://us1.my.wallarm.com/api-specifications/) أو [السحابة الأوروبية](https://my.wallarm.com/api-specifications/)، انقر على **تحميل المواصفات**.
 1. قم بتعيين معايير تحميل المواصفات وابدء بالتحميل.
 
-    ![تحميل المواصفات](../images/api-policies-enforcement/specificaton-upload.png)
+    ![تحميل المواصفات](../images/api-specification-enforcement/specificaton-upload.png)
 
 لاحظ أنه لن يكون بإمكانك البدء بتهيئة تطبيق سياسة واجهة برمجة التطبيقات استنادًا إلى المواصفات، حتى يتم تحميل ملفها بنجاح.
 
@@ -31,7 +31,7 @@
 
 1. حدد كيف يجب أن يتفاعل النظام إذا كانت الطلبات تخالف مواصفاتك.
 
-    ![المواصفات - استخدامها لتطبيق سياسة واجهة برمجة التطبيقات](../images/api-policies-enforcement/specification-use-for-api-policies-enforcement.png)
+    ![المواصفات - استخدامها لتطبيق سياسة واجهة برمجة التطبيقات](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
 
     التفاصيل حول الانتهاكات المحتملة:
 

@@ -9,7 +9,7 @@ This article describes how to enable and configure your API protection based on 
 1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
 1. Set specification upload parameters and start uploading.
 
-    ![Upload specification](../images/api-policies-enforcement/specificaton-upload.png)
+    ![Upload specification](../images/api-specification-enforcement/specificaton-upload.png)
 
 Note that you will not be able to start configuring API specification enforcement, until the specification file is successfully uploaded.
 
@@ -31,7 +31,7 @@ Note that you will not be able to start configuring API specification enforcemen
 
 1. Set how the system should react if requests violate your specification.
 
-    ![Specification - use for applying security policies](../images/api-policies-enforcement/specification-use-for-api-policies-enforcement.png)
+    ![Specification - use for applying security policies](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
 
     Details on possible violations:
 

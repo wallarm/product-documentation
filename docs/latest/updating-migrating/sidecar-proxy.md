@@ -1,5 +1,5 @@
 [ip-lists-docs]: ../user-guides/ip-lists/overview.md
-[api-spec-enforcement-docs]:        ../api-policy-enforcement/overview.md
+[api-spec-enforcement-docs]:        ../api-specification-enforcement/overview.md
 
 # Upgrading Wallarm Sidecar
 

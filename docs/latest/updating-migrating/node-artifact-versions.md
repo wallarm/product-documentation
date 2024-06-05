@@ -27,9 +27,9 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 4.10.4 (2024-04-18)
 
-* Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
+* Added support for [API Specification Enforcement](../api-specification-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
 
-    To start using the functionality, [additional configuration](../api-policy-enforcement/setup.md#step-3-configure-specific-cases-or-disable) is required.
+    To start using the functionality, [additional configuration](../api-specification-enforcement/setup.md#step-3-configure-specific-cases-or-disable) is required.
 
 * Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
 
@@ -51,7 +51,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
     * [CVE-2021-43809](https://nvd.nist.gov/vuln/detail/CVE-2021-43809)
     * [CVE-2023-48795](https://nvd.nist.gov/vuln/detail/CVE-2023-48795)
-* Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-policy-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
+* Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
     === "US Cloud"
         ```
@@ -116,7 +116,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 4.10.4 (2024-04-19)
 
-* Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
+* Added support for [API Specification Enforcement](../api-specification-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
 * Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
 * Fixed performance issue
 
@@ -133,7 +133,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ### 4.10.2 (2024-02-21)
 
 * Restored OpenTracing
-* Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-policy-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
+* Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
     === "US Cloud"
         ```
@@ -200,7 +200,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 4.10.4 (2024-04-29)
 
-* Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
+* Added support for [API Specification Enforcement](../api-specification-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
 * Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
 * Bump Alpine version to 3.19
 * Bump Golang version to 1.22.2
@@ -233,7 +233,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
     * [CVE-2021-41819](https://nvd.nist.gov/vuln/detail/CVE-2021-41819)
     * [CVE-2021-41817](https://nvd.nist.gov/vuln/detail/CVE-2021-41817)
     * [CVE-2023-28755](https://nvd.nist.gov/vuln/detail/CVE-2023-28755)
-* Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-policy-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
+* Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
     === "US Cloud"
         ```
@@ -250,10 +250,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 0.10.28 (2024-04-24)
 
-* Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
+* Added support for [API Specification Enforcement](../api-specification-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
 * Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
 * Added support for NGINX v1.25.4
-* Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-policy-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
+* Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
     === "US Cloud"
         ```
@@ -313,9 +313,9 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 4.10.4-1 (2024-04-18)
 
-* Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
+* Added support for [API Specification Enforcement](../api-specification-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
 
-    In case of mounting your own custom configuration file, to start using the functionality, [additional configuration](../api-policy-enforcement/setup.md#step-3-configure-specific-cases-or-disable) is required.
+    In case of mounting your own custom configuration file, to start using the functionality, [additional configuration](../api-specification-enforcement/setup.md#step-3-configure-specific-cases-or-disable) is required.
 
 * Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
 
@@ -332,7 +332,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
     * [CVE-2021-43809](https://nvd.nist.gov/vuln/detail/CVE-2021-43809)
     * [CVE-2023-48795](https://nvd.nist.gov/vuln/detail/CVE-2023-48795)
-* Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-policy-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
+* Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
     === "US Cloud"
         ```
@@ -401,7 +401,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 4.10.4-1 (2024-04-19)
 
-* Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
+* Added support for [API Specification Enforcement](../api-specification-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
 * Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
 
 ### 4.10.2-2 (2024-03-20)
@@ -417,7 +417,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
     * [CVE-2021-43809](https://nvd.nist.gov/vuln/detail/CVE-2021-43809)
     * [CVE-2023-48795](https://nvd.nist.gov/vuln/detail/CVE-2023-48795)
-* Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-policy-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
+* Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
     === "US Cloud"
         ```
@@ -460,7 +460,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 <!--### wallarm-node-4-10-20240418-112335
 
-* Added support for [API Specification Enforcement](../api-policy-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
+* Added support for [API Specification Enforcement](../api-specification-enforcement/overview.md) (using the functionality increases CPU consumption normally by about 20%)
 * Added support for [GraphQL API Protection](../api-protection/graphql-rule.md)
 -->
 ### wallarm-node-4-10-20240220-234618

@@ -63,7 +63,7 @@ To ensure the solution functions correctly in environments with restricted outbo
 * `https://charts.wallarm.com` to add the Wallarm Helm charts.
 * `https://hub.docker.com/r/wallarm` to retrieve Wallarm Docker images from Docker Hub.
 * For users working with the US Wallarm Cloud, access `https://us1.api.wallarm.com`. For those using the EU Wallarm Cloud, access `https://api.wallarm.com`.
-* The IP addresses below for downloading updates to attack detection rules and [API specifications](../../../api-policy-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../../user-guides/ip-lists/overview.md) countries, regions, or data centers.
+* The IP addresses below for downloading updates to attack detection rules and [API specifications](../../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../../user-guides/ip-lists/overview.md) countries, regions, or data centers.
 
     === "US Cloud"
         ```

@@ -21,7 +21,7 @@ Ingress controller chaining enables you to utilize an existing controller to get
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
 * Access to `https://charts.wallarm.com` to add the Wallarm Helm charts. Ensure the access is not blocked by a firewall
 * Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`. Make sure the access is not blocked by a firewall
-* Access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-policy-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
+* Access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
     === "US Cloud"
         ```

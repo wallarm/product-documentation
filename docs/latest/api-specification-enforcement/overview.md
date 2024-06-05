@@ -4,7 +4,7 @@
 
 The **API Specification Enforcement** is designed to apply security policies to your APIs basing on your uploaded specifications. Its primary function is to detect discrepancies between the endpoint descriptions in your specification and the actual requests made to your REST APIs. When such inconsistencies are identified, the system can take predefined actions to address them.
 
-![API Specification Enforcement - diagram](../images/api-policies-enforcement/api-policy-enforcement-diagram.png)
+![API Specification Enforcement - diagram](../images/api-specification-enforcement/api-specification-enforcement-diagram.png)
 
 ## Issues addressed by API Specification Enforcement
 
@@ -29,7 +29,7 @@ Requests may violate your specification by different positions:
 
 --8<-- "../include/api-policies-enforcement/api-policies-violations.md"
 
-When using API Policy Enforcement, the CPU consumption normally increases by about 20%.
+When using API Specification Enforcement, the CPU consumption normally increases by about 20%.
 
 To limit resource consumption, API Specification Enforcement has limits by time (50 ms) and request size (1024 KB) - when exceeding these limits, it stops processing the request and creates the **Specification processing overlimit** [event](viewing-events.md#overlimit-events) in the **Attacks** section, saying that one of these limits was exceeded.
 
