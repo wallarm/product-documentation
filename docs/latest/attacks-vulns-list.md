@@ -533,9 +533,12 @@ Some types of sensitive information:
 * Source code or internal state
 * Metadata, e.g. logging of connections or message headers
 
-Wallarm [prevents](admin-en/configure-wallarm-mode.md#available-filtration-modes) malicious attempts to access sensitive data and identifies security vulnerabilities when your application inadvertently exposes sensitive information.
+Wallarm detects information exposure in two ways:
 
-Information exposure vulnerabilities, detected by Wallarm, can arise through server responses or the transfer of sensitive PII data in query parameters of GET requests. For PII exposures via query parameters, Wallarm specifically targets endpoints identified by its [API Discovery](api-discovery/overview.md) module.
+* Server response analysis: Wallarm employs [techniques](about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods) such as passive detection, vulnerability scanning, and active threat verification to analyze server responses. These methods are aimed at identifying vulnerabilities by checking if application responses inadvertently expose sensitive information.
+* API Discovery insights: When endpoints identified by the [API Discovery](api-discovery/overview.md) module transfer Personally Identifiable Information (PII) in query parameters of GET requests, Wallarm recognizes these as vulnerable.
+
+Attacks often use legitimate-looking requests or exploit other vulnerabilities (e.g., SQL injection) that lead to unintentional data leaks, such as SQL errors revealing system capabilities or stack traces exposing system architecture. Wallarm does not specifically identify `infoleak` attacks as a distinct category, it detects and records security incidents when they occur in response to real traffic. However, such incidents are rare because Wallarm's proactive measures enable the early detection of `infoleak` vulnerabilities, allowing you to address them before an attack occurs.
 
 **In addition to Wallarm protection:**
 
