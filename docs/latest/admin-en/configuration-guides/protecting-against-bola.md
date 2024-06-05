@@ -2,7 +2,7 @@
 [changes-in-api-docs]:       ../../api-discovery/track-changes.md
 [bola-protection-for-endpoints-docs]:  ../../api-discovery/bola-protection.md
 
-# Automatic BOLA Protection for Endpoints Found by API Discovery <a href="../../../about-wallarm/subscription-plans/#waap-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# Automatic BOLA Protection for Endpoints Found by API Discovery <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 This article describes automatic BOLA protection for endpoints discovered by [API Discovery](../../api-discovery/overview.md) (APID).
 
