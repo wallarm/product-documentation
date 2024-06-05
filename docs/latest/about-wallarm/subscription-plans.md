@@ -23,7 +23,7 @@ Wallarm is the only solution that unifies best-in-class API Security and WAAP ca
 | [BOLA protection](../admin-en/configuration-guides/protecting-against-bola.md) | Manual triggers | Automated protection |
 | [API Abuse Prevention (bot management)](../about-wallarm/api-abuse-prevention.md) | No | Yes |
 | [Credential Stuffing Detection](../about-wallarm/credential-stuffing.md) | No | Yes |
-| [API Specification Enforcement](../api-policy-enforcement/overview.md) | No | Yes |
+| [API Specification Enforcement](../api-specification-enforcement/overview.md) | No | Yes |
 | [GraphQL security policies](../api-protection/graphql-rule.md) | No | Yes |
 | **Security posture** | | |
 | [Exposed asset scanner](../user-guides/scanner.md) | Yes | Yes |
