@@ -19,13 +19,11 @@ You can interfere in the bot protection process. If denylisted or graylisted IP 
 
 API Abuse Prevention conveniently visualizes the data on bot activities for the last 30 days at the **Statistics** tab. This includes:
 
-* **Bot activity**: general number of bot attacks and attacks by [bot type](../about-wallarm/api-abuse-prevention.md#automated-threats-blocked-by-api-abuse-prevention) for the period.
+* Summary: number of IPs, [deny- or graylisted](../user-guides/api-abuse-prevention.md#creating-profiles) within the period.
+* **Bot activity**: number of bot attacks by [bot type](../about-wallarm/api-abuse-prevention.md#automated-threats-blocked-by-api-abuse-prevention) for the dates within the period.
 * **Top attackers**: IPs of attackers with most attacks for the period.
 * **Top targets**: API hosts or paths most attacked during the period.
-
-    Click in any section to switch to the corresponding [**Attacks**](#attacks).
-
-* **Summary for period**: number of IPs, [deny- or graylisted](../user-guides/api-abuse-prevention.md#creating-profiles) within the period as bots with information of how many detectors identified the bot. Click to switch to **IP Lists** [history](../user-guides/ip-lists/overview.md#ip-list-history).
+* **Behavioral patterns**: number of bot attacks within the period identified by the specific detector and different sets of [detectors](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works).
 
 ![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
