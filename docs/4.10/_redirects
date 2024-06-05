@@ -643,4 +643,4 @@
 /user-guides/rules/api-abuse-url/ /user-guides/api-abuse-prevention/#exceptions-for-target-urls-and-specific-requests
 /4.8/user-guides/rules/api-abuse-url/ /4.8/user-guides/api-abuse-prevention/#exceptions-for-target-urls-and-specific-requests
 
-/api-policy-enforcement/ /api-specification-enforcement/
+/api-policy-enforcement/* /api-specification-enforcement/:splat
