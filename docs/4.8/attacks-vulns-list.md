@@ -470,19 +470,21 @@ Wallarm detects and mitigates forced browsing only if it has one or more configu
 
 **Description:**
 
-This vulnerability involves the unauthorized disclosure of sensitive information by an application, potentially providing attackers with critical data for further malicious activities.
+This vulnerability involves the unauthorized disclosure of sensitive information by an application, potentially providing attackers with sensitive data for further malicious activities.
 
 Some types of sensitive information:
 
 * Private, personal information, such as emails, financial data, contact details, etc.
+* Technical information disclosed in error messages, stack trace
 * System status and environment, such as the operating system and installed packages
-* Network status and configuration
 * Source code or internal state
-* Metadata, e.g. logging of connections or message headers
 
-Wallarm [prevents](admin-en/configure-wallarm-mode.md#available-filtration-modes) malicious attempts to access sensitive data and identifies security vulnerabilities when your application inadvertently exposes sensitive information.
+Wallarm detects information exposure in two ways:
 
-Information exposure vulnerabilities, detected by Wallarm, can arise through server responses or the transfer of sensitive PII data in query parameters of GET requests. For PII exposures via query parameters, Wallarm specifically targets endpoints identified by its [API Discovery](api-discovery/overview.md) module.
+* Server response analysis: Wallarm employs [techniques](about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods) such as passive detection, vulnerability scanning, and active threat verification to analyze server responses. These methods are aimed at identifying vulnerabilities by checking if application responses inadvertently expose sensitive information.
+* API Discovery insights: When endpoints identified by the [API Discovery](api-discovery/overview.md) module transfer Personally Identifiable Information (PII) in query parameters of GET requests, Wallarm recognizes these as vulnerable.
+
+Wallarm does not specifically classify `infoleak` attacks but detects and records the corresponding security incidents as they happen. However, incidents are infrequent. Wallarm's detection mechanisms alert you promptly if such exposure begins, allowing for quick vulnerability remediation. Additionally, using Wallarm's filtering node in [blocking mode](admin-en/configure-wallarm-mode.md#available-filtration-modes) helps prevent exposures by blocking any attack attempts, significantly reducing the likelihood of data leaks.
 
 **In addition to Wallarm protection:**
 
