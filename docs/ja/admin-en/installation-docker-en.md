@@ -25,6 +25,6 @@
 [gcp-gce-docs]:                     ../installation/cloud-platforms/gcp/docker-container.md
 [azure-container-docs]:             ../installation/cloud-platforms/azure/docker-container.md
 [alibaba-ecs-docs]:                 ../installation/cloud-platforms/alibaba-cloud/docker-container.md
-[api-policy-enf-docs]:              ../api-policy-enforcement/overview.md
+[api-policy-enf-docs]:              ../api-specification-enforcement/overview.md
 
 --8<-- "latest-ja/admin-en/installation-docker-en.md"

@@ -86,7 +86,7 @@ Additionally, this update introduces new parameters for some deployment options,
 * For NGINX Ingress Controller: the [`controller.wallarm.apifirewall`](../../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) values group.
 * For NGINX-based Docker image: the environment variable `WALLARM_APIFW_ENABLE`.
 
-[Learn how to configure API Policy Enforcement](../../api-policy-enforcement/setup.md)
+[Learn how to configure API Policy Enforcement](../../api-specification-enforcement/setup.md)
 
 ![Specification - use for API policy enforcement](../images/api-specification-enforcement/api-specification-enforcement-events.png)
 

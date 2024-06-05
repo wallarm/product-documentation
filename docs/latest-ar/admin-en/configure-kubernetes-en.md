@@ -173,7 +173,7 @@ controller:
 <!--
 ### controller.wallarm.apifirewall
 
-Controls the configuration of [API Policy Enforcement](../api-policy-enforcement/overview.md), available starting from release 4.10. By default, it is enabled and configured as shown below. If you are using this feature, it is recommended to keep these values unchanged.
+Controls the configuration of [API Policy Enforcement](../api-specification-enforcement/overview.md), available starting from release 4.10. By default, it is enabled and configured as shown below. If you are using this feature, it is recommended to keep these values unchanged.
 
 ```yaml
 controller:
