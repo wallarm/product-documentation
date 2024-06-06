@@ -11,6 +11,13 @@ With Wallarm's integrations you will always stay informed about critical events,
 
 Manage the feature at the **Integrations** section of Wallarm Console, and the **Triggers** section for configuring additional alerts for your integrations.
 
+!!! info "Notifications that cannot be disabled"
+    While integrations and triggers are the tools that allow **configuring** your notifications, Wallarm will also send to your user email some notifications that cannot be disabled:
+
+    * [Subscription](../../../about-wallarm/subscription-plans.md) notifications
+    * [API token expiration](../../../user-guides/settings/api-tokens.md#token-expiration) notifications
+    * [Hit sampling](../../../user-guides/events/analyze-attack.md#sampling-of-hits) notifications
+
 ![Integrations](../../../images/user-guides/settings/integrations/integration-panel.png)
 
 Wallarm connects effortlessly with a number of existing tools and platforms. The number of integrations with one system is not limited.
