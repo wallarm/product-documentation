@@ -31,7 +31,7 @@ Knowledge of accounts with stolen or weak passwords allows you to initiate measu
 
 Wallarm does not block requests with compromised credentials to avoid blocking legitimate users even if their passwords are weak or were compromised. However, note that credential stuffing attempts can be blocked if:
 
-* They are part of detected malicious bot activity and you have enabled the [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) module.
+* They are part of detected malicious bot activity and you have enabled the [API Abuse Prevention](../api-abuse-prevention/overview.md) module.
 * They are part of requests with other [attack signs](../attacks-vulns-list.md).
 
 ## Enabling

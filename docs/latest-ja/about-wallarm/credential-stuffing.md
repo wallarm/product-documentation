@@ -31,7 +31,7 @@ Wallarmのクレデンシャルスタッフィング検出は、以下の一連�
 
 Wallarmは、正当なユーザーもブロックすることを避けるため、侵害された資格情報を持つリクエストをブロックしません。ただし、以下の場合はクレデンシャルスタッフィング試行がブロックされることに注意してください：
 
-* 検出された悪意のあるボット活動の一部であり、[API Abuse Prevention](../about-wallarm/api-abuse-prevention.md)モジュールを有効にした場合。
+* 検出された悪意のあるボット活動の一部であり、[API Abuse Prevention](../api-abuse-prevention/overview.md)モジュールを有効にした場合。
 * 他の[攻撃の兆候](../attacks-vulns-list.md)の一部であるリクエストです。
 
 ## 有効化

@@ -47,7 +47,7 @@ Wallarm çözümü, manuel kural yapılandırması olmadan ve ultra düşük yan
 <div class="navigation-card">
     <h3 class="icon-homepage api-threat-prevent">API Koruma</h3>
     <p><ul>
-    <li><a href="./about-wallarm/api-abuse-prevention/">API Kötüye Kullanımı Önleme</a></li>
+    <li><a href="./api-abuse-prevention/overview/">API Kötüye Kullanımı Önleme</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA Koruma</a></li>
     <li><a href="./attacks-vulns-list/#api-abuse-account-takeover">Hesap Ele Geçirme</a></li>
     <li><a href="./attacks-vulns-list/#api-abuse-scraping">İçerik Kazıma</a></li>

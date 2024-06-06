@@ -48,7 +48,7 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
 <div class="navigation-card">
     <h3 class="icon-homepage api-threat-prevent">API保護</h3>
     <p><ul>
-    <li><a href="./about-wallarm/api-abuse-prevention/">API 濫用防止</a></li>
+    <li><a href="./api-abuse-prevention/overview/">API 濫用防止</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA 保護</a></li>
     <li><a href="./about-wallarm/credential-stuffing/">クレデンシャルスタッフィング検知</a></li>
     </ul></p>

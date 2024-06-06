@@ -30,7 +30,7 @@ O Wallarm oferece os seguintes planos de assinatura:
 | **Proteção contra ameaças automáticas** | | |
 | [Proteção contra força bruta](../admin-en/configuration-guides/protecting-against-bruteforce.md) | Sim | Sim |
 | [Proteção BOLA (IDOR)](../admin-en/configuration-guides/protecting-against-bola.md) | Configuração manual | Proteção automática |
-| [Prevenção ao Abuso de API](../about-wallarm/api-abuse-prevention.md) | Não | Sim |
+| [Prevenção ao Abuso de API](../api-abuse-prevention/overview.md) | Não | Sim |
 | **Opções de observabilidade** | | |
 | [Descoberta de API](../about-wallarm/api-discovery.md) | Não | Sim |
 | [Encontrando APIs sombra, órfãs e zumbis](../about-wallarm/api-discovery.md#shadow-orphan-and-zombie-apis) com a Descoberta de API | Não | Sim |
@@ -75,7 +75,7 @@ O plano de assinatura Free Tier inclui:
 
     * Scanners de [Vulnerabilidade](detecting-vulnerabilities.md#vulnerability-scanner) e [Ativos Expostos](../user-guides/scanner.md)
     * O recurso [Prevenção de ameaças ativas](detecting-vulnerabilities.md#active-threat-verification)
-    * O módulo [Prevenção de Abuso de API](api-abuse-prevention.md)
+    * O módulo [Prevenção de Abuso de API](../api-abuse-prevention/overview.md)
     * Implementação do tipo [Nó CDN](../installation/cdn-node.md)
     * Cobertura parcial do Top 10 de API do OWASP devido à indisponibilidade do Scanner de Vulnerabilidades
     * Acesso à API Wallarm

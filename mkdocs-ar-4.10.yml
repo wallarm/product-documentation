@@ -95,9 +95,9 @@ nav:
       - إعداد: api-specification-enforcement/setup.md
       - عرض الأحداث: api-specification-enforcement/viewing-events.md
     - منع الاعتداء على API:
-      - نظرة عامة: about-wallarm/api-abuse-prevention.md
-      - إدارة الملف الشخصي لمنع سوء استخدام API: user-guides/api-abuse-prevention.md
-      - استكشاف البوتات المكتشفة: user-guides/api-abuse-prevention-explore.md
+      - نظرة عامة: api-abuse-prevention/overview.md
+      - إدارة الملف الشخصي لمنع سوء استخدام API: api-abuse-prevention/setup.md
+      - استكشاف البوتات المكتشفة: api-abuse-prevention/exploring-bots.md
     - حماية BOLA(APID): admin-en/configuration-guides/protecting-against-bola.md
     - اكتشاف تزوير البيانات: about-wallarm/credential-stuffing.md
   - سطح الهجوم API:

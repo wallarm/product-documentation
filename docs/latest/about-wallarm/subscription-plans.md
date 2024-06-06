@@ -21,7 +21,7 @@ Wallarm is the only solution that unifies best-in-class API Security and WAAP ca
 | [Forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md) | Yes | Yes |
 | [Distributed rate limiting](../user-guides/rules/rate-limiting.md) | Yes | Yes |
 | [BOLA protection](../admin-en/configuration-guides/protecting-against-bola.md) | Manual triggers | Automated protection |
-| [API Abuse Prevention (bot management)](../about-wallarm/api-abuse-prevention.md) | No | Yes |
+| [API Abuse Prevention (bot management)](../api-abuse-prevention/overview.md) | No | Yes |
 | [Credential Stuffing Detection](../about-wallarm/credential-stuffing.md) | No | Yes |
 | [API Specification Enforcement](../api-specification-enforcement/overview.md) | No | Yes |
 | [GraphQL security policies](../api-protection/graphql-rule.md) | No | Yes |
@@ -64,7 +64,7 @@ The Free Tier accounts allow:
 
     * [Exposed assets scanner](../user-guides/scanner.md)
     * [Vulnerability assessment](../user-guides/vulnerabilities.md)
-    * [API Abuse Prevention](api-abuse-prevention.md)
+    * [API Abuse Prevention](../api-abuse-prevention/overview.md)
     * [Wallarm-hosted deployment options](../installation/cdn-node.md)
 
 If a Free Tier account exceeds 100% of the monthly quota, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled. These restrictions will be in effect until the first day of the next month.

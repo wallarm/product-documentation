@@ -48,7 +48,7 @@ A vulnerabilidade BOLA (Broken Object Level Authorization) permite que um invaso
 
 ## Empregue a Prevenção de Abuso de API
 
-[Configure perfis de abuso de API](../user-guides/api-abuse-prevention.md) para parar e bloquear bots que realizam abusos de API como tomada de conta, raspagem, crawlers de segurança e outras ações maliciosas automatizadas direcionadas às suas APIs.
+[Configure perfis de abuso de API](../api-abuse-prevention/setup.md) para parar e bloquear bots que realizam abusos de API como tomada de conta, raspagem, crawlers de segurança e outras ações maliciosas automatizadas direcionadas às suas APIs.
 
 ## Crie regras personalizadas de detecção de ataques
 

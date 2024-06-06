@@ -55,8 +55,8 @@ nav:
     # - OWASP Top 10: ...
     # - OWASP API Top 10: ...
     - API Kötüye Kullanım Önleme:
-      - Genel Bakış: about-wallarm/api-abuse-prevention.md
-      - API Kötüye Kullanımı Önleme Profil Yönetimi: user-guides/api-abuse-prevention.md
+      - Genel Bakış: api-abuse-prevention/overview.md
+      - API Kötüye Kullanımı Önleme Profil Yönetimi: api-abuse-prevention/setup.md
       - Belirli URL'ler ve istemler için bot korumasını devre dışı bırakma: user-guides/rules/api-abuse-url.md
     - BOLA Koruma:
       - Yapılandırma: admin-en/configuration-guides/protecting-against-bola.md

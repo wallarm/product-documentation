@@ -41,7 +41,7 @@ Ayrıca, bir DDoS saldırısını mümkün olduğunca hızlı bir şekilde belir
 
 Wallarm, L7 DDoS tehditlerine karşı çeşitli koruma önlemleri sunar:
 
-* [API İstismarı Önleme](../../about-wallarm/api-abuse-prevention.md). Çeşitli türdeki kötü niyetli botları tanımlayıp durdurmaya yardımcı olmak için API İstismarı Önleme işlevini etkinleştirin.
+* [API İstismarı Önleme](../../api-abuse-prevention/overview.md). Çeşitli türdeki kötü niyetli botları tanımlayıp durdurmaya yardımcı olmak için API İstismarı Önleme işlevini etkinleştirin.
 * [Kaba kuvvet tetikleyicisi](protecting-against-bruteforce.md) bazı parametre değerlerini, örneğin şifreleri zorla çözmeye çalışan büyük miktarda isteği önlemek için.
 * [Zorla gezinme tetiği](protecting-against-bruteforce.md) bir web uygulamasının gizli kaynaklarını, yani dizinleri ve dosyaları tespit etmeye çalışan kötü niyetli girişimleri önlemek için.
 * Saldırıları dağıtan belirli bölgeler için uygulamalara ve API'lere erişimi önlemek amacıyla [yasaklı listeler ve gri listeler](../../user-guides/ip-lists/overview.md) kullanarak coğrafi konum filtrelemesi.

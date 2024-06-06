@@ -76,7 +76,7 @@ In Wallarm, there are several ways for IP to get into the denylist. Depending on
 
 * You add it manually (in the **Attacks** section, use `blocked_source` search or `Blocked Source` filter)
 * It performs a behavioral attack and is automatically denylisted by:
-    * [API Abuse Prevention](../../about-wallarm/api-abuse-prevention.md) module (`api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys, the appropriate **Type** filters)
+    * [API Abuse Prevention](../../api-abuse-prevention/overview.md) module (`api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys, the appropriate **Type** filters)
     * [`Brute force`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger (`brute`, `Brute force`)
     * [`Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger (`dirbust`, `Forced browsing`)
     * [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) trigger (`bola`, `BOLA`)

@@ -3,7 +3,7 @@
 Wallarmプラットフォームは、あなたのクラウドアプリケーションとAPIを保護するために特別に適したものとなります。そのハイブリッド構造が次のようなサービスを提供し、あなたのリソースを守ります：
 
 * 超低い誤検出率を持つ[ハッカー攻撃からの保護](protecting-against-attacks.md) 
-* [APIの悪用をするボットからの保護](api-abuse-prevention.md)
+* [APIの悪用をするボットからの保護](../api-abuse-prevention/overview.md)
 * [APIの把握](../api-discovery/overview.md)
 * [脆弱性の自動検出](detecting-vulnerabilities.md)
 

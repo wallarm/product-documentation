@@ -97,7 +97,7 @@
 * [حماية من القوة الغاشمة](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * [حماية BOLA](../../admin-en/configuration-guides/protecting-against-bola.md)
 * [عبور الحظر عند الناسبة للأحمال المشبوهة](../../admin-en/configuration-guides/protecting-with-thresholds.md)
-* [منع استخدام API بشكل سيئ](../../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works)
+* [منع استخدام API بشكل سيئ](../../api-abuse-prevention/overview.md#how-api-abuse-prevention-works)
 
 لاحظ أنه إذا قمت بحذف الـ IP المدرج تلقائيًا يدويًا، إذا تم اكتشاف نشاط ضار جديد فسيتم إضافته تلقائيًا مرة أخرى ولكن:
 

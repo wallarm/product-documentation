@@ -3,7 +3,7 @@
 Wallarm platformu, bulut uygulamalarınızı ve API'lerinizi korumak için eşsiz bir şekilde uygundur. Hibrit mimarisi, kaynaklarınızı aşağıdaki özelliklerle korur:
 
 * Ultra düşük yanlış pozitiflerle [hacker saldırılarına karşı koruma](protecting-against-attacks.md)
-* [API tacizine karşı botlara karşı koruma](api-abuse-prevention.md)
+* [API tacizine karşı botlara karşı koruma](../api-abuse-prevention/overview.md)
 * [API Keşfi](api-discovery.md)
 * [Otomatik kırılganlık tespiti](detecting-vulnerabilities.md)
 

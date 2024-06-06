@@ -695,7 +695,7 @@ A set of basic bot types that includes server response time increase, fake accou
 
 Wallarm detects API abuse only if the filtering node has version 4.2 or above.
 
-The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following bot types:
+The [API Abuse Prevention](api-abuse-prevention/overview.md) module uses the complex bot detection model to detect the following bot types:
 
 * API abuse targeted at server response time increase or server unavailability. Usually, it is achieved by malicious traffic spikes.
 * [Fake account creation](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-019_Account_Creation) and [Spamming](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-017_Spamming) are creation of fake accounts or confirmation of fake content (e.g. feedback). Usually, it does not result in service unavailability but slows down or degrades regular business processes, e.g.:
@@ -705,7 +705,7 @@ The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses th
 
 * [Scalping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-005_Scalping) is characterized by bots making online store products unavailable for real customers, e.g. by reserving all items so that they become out of stock but do not make any profit.
 
-If the metrics point to bot attack signs, the module [denylists or graylists](user-guides/api-abuse-prevention.md#creating-profiles) the source of the anomaly traffic for 1 hour.
+If the metrics point to bot attack signs, the module [denylists or graylists](api-abuse-prevention/setup.md#creating-profiles) the source of the anomaly traffic for 1 hour.
 
 **Remediation:**
 
@@ -731,7 +731,7 @@ A type of cyber attack where a malicious actor gains access to someone else's ac
 
 Wallarm detects API abuse only if the filtering node has version 4.2 or above.
 
-The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following account takeover bot types:
+The [API Abuse Prevention](api-abuse-prevention/overview.md) module uses the complex bot detection model to detect the following account takeover bot types:
 
 * [Credential cracking](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) includes brute force, dictionary (word list) and guessing attacks used against authentication processes of the application to identify valid account credentials.
 * [Credential stuffing](https://owasp.org/www-community/attacks/Credential_stuffing) is the automated injection of stolen user credentials into website login forms, in order to fraudulently gain access to user accounts.
@@ -763,7 +763,7 @@ Furthermore, some security crawlers may be poorly designed and inadvertently cau
 
 Wallarm detects API abuse only if the filtering node has version 4.2 or above.
 
-The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following security crawlers bot types:
+The [API Abuse Prevention](api-abuse-prevention/overview.md) module uses the complex bot detection model to detect the following security crawlers bot types:
 
 * [Fingerprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-004_Fingerprinting.html) exploits specific requests which are sent to the application eliciting information in order to profile the application.
 * [Footprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-018_Footprinting.html) is an information gathering with the objective of learning as much as possible about the composition, configuration and security mechanisms of the application.
@@ -798,7 +798,7 @@ Web scraping can be used for malicious purposes. For example, scrapers can be us
 
 Wallarm detects API abuse only if the filtering node has version 4.2 or above.
 
-The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the [scraping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-011_Scraping) bot type which is collecting accessible data and/or processed output from the application that may result in private or non-free content becoming available for any user.
+The [API Abuse Prevention](api-abuse-prevention/overview.md) module uses the complex bot detection model to detect the [scraping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-011_Scraping) bot type which is collecting accessible data and/or processed output from the application that may result in private or non-free content becoming available for any user.
 
 **Remediation:**
 

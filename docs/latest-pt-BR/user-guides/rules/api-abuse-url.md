@@ -1,6 +1,6 @@
 # Desativando a proteção contra bots para URLs e solicitações específicas
 
-O módulo [**Prevenção de Abuso de API**](../../about-wallarm/api-abuse-prevention.md) da plataforma Wallarm identifica e combate bots com base nos [perfis](../../user-guides/api-abuse-prevention.md) que definem as aplicações específicas a serem protegidas, os tipos de bots direcionados, o nível de tolerância, etc. Além disso, a regra **Definir modo de Prevenção de Abuso de API** mencionada neste artigo permite desativar a proteção contra bots para URLs e solicitações específicas.
+O módulo [**Prevenção de Abuso de API**](../../api-abuse-prevention/overview.md) da plataforma Wallarm identifica e combate bots com base nos [perfis](../../api-abuse-prevention/setup.md) que definem as aplicações específicas a serem protegidas, os tipos de bots direcionados, o nível de tolerância, etc. Além disso, a regra **Definir modo de Prevenção de Abuso de API** mencionada neste artigo permite desativar a proteção contra bots para URLs e solicitações específicas.
 
 Como o [construtor de URI](../../user-guides/rules/add-rule.md#uri-constructor) da regra inclui elementos de URL e solicitação, como cabeçalhos, você pode usar a regra para desativar a proteção contra bots tanto para URLs que os alvos de solicitação quanto para os tipos de solicitação específicos, por exemplo, para solicitações que contêm cabeçalhos específicos.
 
@@ -18,7 +18,7 @@ Para desativar a proteção contra bots para URL ou tipo de solicitação espec�
 
 1. Em **Então**, escolha **Definir modo de Prevenção de Abuso de API** e configure:
 
-   * **Padrão** - para o escopo descrito (URL ou solicitação específica), a proteção contra bots funcionará de uma maneira usual definida pelos perfis comuns de Prevenção de Abuso de API [perfis](../../user-guides/api-abuse-prevention.md).
+   * **Padrão** - para o escopo descrito (URL ou solicitação específica), a proteção contra bots funcionará de uma maneira usual definida pelos perfis comuns de Prevenção de Abuso de API [perfis](../../api-abuse-prevention/setup.md).
    * **Não verificar a atividade do bot** - para a URL e/ou tipo de solicitação descrito, a verificação da atividade do bot não será realizada.
   
 1. Opcionalmente, no comentário, especifique o motivo da criação da regra para esta URL/tipo de solicitação.

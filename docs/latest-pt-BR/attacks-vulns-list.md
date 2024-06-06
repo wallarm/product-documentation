@@ -686,7 +686,7 @@ Um conjunto de tipos de bot básicos que inclui o aumento do tempo de resposta d
 
 A Wallarm detecta o abuso da API apenas se o nó de filtragem tiver a versão 4.2 ou superior.
 
-O módulo [Prevenção de abuso de API](about-wallarm/api-abuse-prevention.md) usa o modelo complexo de detecção de bots para detectar o seguinte tipo de bots:
+O módulo [Prevenção de abuso de API](api-abuse-prevention/overview.md) usa o modelo complexo de detecção de bots para detectar o seguinte tipo de bots:
 
 * Abuso da API destinado a aumentar o tempo de resposta do servidor ou indisponibilidade do servidor. Normalmente, é alcançado por picos de tráfego maliciosos.
 * [Criação de conta falsa](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-019_Account_Creation) e [Spamming](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-017_Spamming) é a criação de contas falsas ou confirmação de conteúdo falso (por exemplo, feedback). Geralmente, não resulta na indisponibilidade do serviço, mas retarda ou degrada processos de negócios regulares, por exemplo:
@@ -696,7 +696,7 @@ O módulo [Prevenção de abuso de API](about-wallarm/api-abuse-prevention.md) u
 
 * [Scalping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-005_Scalping) é caracterizado por bots tornando produtos de lojas online indisponíveis para clientes reais, por exemplo, reservando todos os itens para que eles fiquem fora de estoque, mas não geram qualquer lucro.
 
-Se as métricas apontam para sinais de ataque de bot, o módulo [denylists ou graylists](about-wallarm/api-abuse-prevention.md#reaction-to-malicious-bots) a fonte do tráfego de anomalias por 1 hora.
+Se as métricas apontam para sinais de ataque de bot, o módulo [denylists ou graylists](api-abuse-prevention/overview.md#reaction-to-malicious-bots) a fonte do tráfego de anomalias por 1 hora.
 
 **Solução:**
 
@@ -722,7 +722,7 @@ Um tipo de ataque cibernético no qual um ator malicioso ganha acesso à conta d
 
 A Wallarm detecta o abuso da API apenas se o nó de filtragem tiver a versão 4.2 ou superior.
 
-O módulo [Prevenção de abuso de API](about-wallarm/api-abuse-prevention.md) usa o modelo complexo de detecção de bots para detectar os seguintes tipos de bots de Assumir Conta:
+O módulo [Prevenção de abuso de API](api-abuse-prevention/overview.md) usa o modelo complexo de detecção de bots para detectar os seguintes tipos de bots de Assumir Conta:
 
 * [Crack de Credencial](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) inclui ataques de força bruta, dicionário (lista de palavras) e palpite usados contra processos de autenticação do aplicativo para identificar credenciais de conta válidas.
 * [Preenchimento de Credenciais](https://owasp.org/www-community/attacks/Credential_stuffing) é a injeção automatizada de credenciais de usuário roubadas em formulários de login do site, a fim de obter acesso fraudulento a contas de usuários.
@@ -754,7 +754,7 @@ Além disso, alguns rastreadores de segurança podem ser mal projetados e inadve
 
 A Wallarm detecta o abuso da API apenas se o nó de filtragem tiver a versão 4.2 ou superior.
 
-O módulo [Prevenção de abuso de API](about-wallarm/api-abuse-prevention.md) usa o modelo complexo de detecção de bots para detectar os seguintes tipos de bots Rastreadores de Segurança:
+O módulo [Prevenção de abuso de API](api-abuse-prevention/overview.md) usa o modelo complexo de detecção de bots para detectar os seguintes tipos de bots Rastreadores de Segurança:
 
 * [Digitalização de dados](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-004_Fingerprinting) explora solicitações específicas que são enviadas ao aplicativo trazendo informações para perfilar o aplicativo.
 * [Footprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-018_Footprinting.html) é uma coleta de informações com o objetivo de aprender o máximo possível sobre a composição, configuração e mecanismos de segurança do aplicativo.
@@ -789,7 +789,7 @@ A raspagem da web pode ser usada para fins maliciosos. Por exemplo, os raspadore
 
 A Wallarm detecta o abuso da API apenas se o nó de filtragem tiver a versão 4.2 ou superior.
 
-O módulo [Prevenção de abuso de API](about-wallarm/api-abuse-prevention.md) usa o modelo complexo de detecção de bots para detectar o tipo de bot [scraping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-011_Scraping) que está coletando dados acessíveis e / ou saída processada do aplicativo que pode resultar em conteúdo privado ou não gratuito tornando-se disponível para qualquer usuário.
+O módulo [Prevenção de abuso de API](api-abuse-prevention/overview.md) usa o modelo complexo de detecção de bots para detectar o tipo de bot [scraping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-011_Scraping) que está coletando dados acessíveis e / ou saída processada do aplicativo que pode resultar em conteúdo privado ou não gratuito tornando-se disponível para qualquer usuário.
 
 **Solução:**
 

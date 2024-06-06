@@ -48,7 +48,7 @@ The Broken Object Level Authorization (BOLA) vulnerability allows an attacker to
 
 ## Employ API Abuse Prevention
 
-[Set up API abuse profiles](../user-guides/api-abuse-prevention.md) to stop and block bots performing API abuse like account takeover, scraping, security crawlers and other automated malicious actions targeted at your APIs.
+[Set up API abuse profiles](../api-abuse-prevention/setup.md) to stop and block bots performing API abuse like account takeover, scraping, security crawlers and other automated malicious actions targeted at your APIs.
 
 ## Create custom attack detection rules
 

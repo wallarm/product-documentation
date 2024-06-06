@@ -50,7 +50,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 <div class="navigation-card">
     <h3 class="icon-homepage api-threat-prevent">API Protection</h3>
     <p><ul>
-    <li><a href="./about-wallarm/api-abuse-prevention/">API Abuse Prevention</a></li>
+    <li><a href="./api-abuse-prevention/overview/">API Abuse Prevention</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA Protection</a></li>
     <li><a href="./attacks-vulns-list/#api-abuse-account-takeover">Account Takeover</a></li>
     <li><a href="./attacks-vulns-list/#api-abuse-scraping">Content Scraping</a></li>

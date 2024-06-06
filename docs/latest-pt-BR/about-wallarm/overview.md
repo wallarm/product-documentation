@@ -3,7 +3,7 @@
 A plataforma Wallarm é especialmente adequada para proteger suas aplicações em nuvem e APIs. Sua arquitetura híbrida protege seus recursos ao oferecer:
 
 * [Proteção contra ataques de hackers](protecting-against-attacks.md) com falsos positivos ultra baixos
-* [Proteção contra bots que realizam abuso de API](api-abuse-prevention.md)
+* [Proteção contra bots que realizam abuso de API](../api-abuse-prevention/overview.md)
 * [Descoberta de API](api-discovery.md)
 * [Detecção automática de vulnerabilidades](detecting-vulnerabilities.md)
 

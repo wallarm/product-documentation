@@ -29,4 +29,4 @@ The **API Abuse Prevention** delivers detection and mitigation of bots performin
 
 **API Abuse Prevention** uses the complex bot detection model that involves ML-based methods as well as statistical and mathematical anomaly search methods and cases of direct abuse. The module self-learns the normal traffic profile and identifies dramatically different behavior as anomalies.
 
-[Proceed to detailed description and configuration →](api-abuse-prevention.md)
+[Proceed to detailed description and configuration →](../api-abuse-prevention/overview.md)
