@@ -19,6 +19,13 @@ Scheduled PDF reports can be sent on a daily, weekly, or monthly basis. PDF repo
 
     --8<-- "../include/integrations/events-for-integrations-mail.md"
 
+    !!! info "Notifications that cannot be disabled"
+        Wallarm will also send to your user email some notifications that cannot be disabled:
+
+        * [Subscription](../../../about-wallarm/subscription-plans.md) notifications
+        * [API token expiration](../../../user-guides/settings/api-tokens.md#token-expiration) notifications
+        * [Hit sampling](../../../user-guides/events/analyze-attack.md#sampling-of-hits) notifications
+
 1. Click **Test integration** to check configuration correctness, availability of the Wallarm Cloud, and the notification format.
 
     This will send the test notifications with the prefix `[Test message]`:
