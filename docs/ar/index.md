@@ -47,7 +47,7 @@ hide:
 <div class="navigation-card">
     <h3 class="icon-homepage api-threat-prevent">حماية API</h3>
     <p><ul>
-    <li><a href="./about-wallarm/api-abuse-prevention/">منع إساءة استخدام API</a></li>
+    <li><a href="./api-abuse-prevention/overview/">منع إساءة استخدام API</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-bola/">حماية BOLA</a></li>
     <li><a href="./about-wallarm/credential-stuffing/">كشف سرقة الاعتمادات</a></li>
     </ul></p>

@@ -1,1 +1,0 @@
---8<-- "latest-tr/user-guides/api-abuse-prevention.md"

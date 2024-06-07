@@ -1,6 +1,6 @@
 # Belirli URL'ler ve İstekler İçin Bot Korumasını Devre Dışı Bırakma
 
-Wallarm platformunun [**API İstismar Önleme**](../../about-wallarm/api-abuse-prevention.md) modülü, korunacak belirli uygulamaları, hedeflenen bot türlerini, tolerans seviyesini vb. belirleyen [profiler](../../user-guides/api-abuse-prevention.md) tabanlı botları tespit eder ve karşı tedbir alır. Ek olarak, bu makalede belirtilen **API İstismar Önleme modunu Ayarlama** kuralı, belirli URL'ler ve istekler için bot korumasını devre dışı bırakmanıza olanak sağlar.
+Wallarm platformunun [**API İstismar Önleme**](../../api-abuse-prevention/overview.md) modülü, korunacak belirli uygulamaları, hedeflenen bot türlerini, tolerans seviyesini vb. belirleyen [profiler](../../api-abuse-prevention/setup.md) tabanlı botları tespit eder ve karşı tedbir alır. Ek olarak, bu makalede belirtilen **API İstismar Önleme modunu Ayarlama** kuralı, belirli URL'ler ve istekler için bot korumasını devre dışı bırakmanıza olanak sağlar.
 
 Kuralın [URI oluşturucusu](../../user-guides/rules/add-rule.md#uri-constructor) hem URL hem de istek elemanları içerir, dolayısıyla bu kuralı, isteklerin hedeflediği URL'ler ve belirli istek türleri için bot korumasını devre dışı bırakmak amacıyla kullanabilirsiniz. Örneğin, belirli başlıklar içeren istekler için kullanabilirsiniz.
 
@@ -18,7 +18,7 @@ Belirli bir URL veya istek türü için bot korumasını devre dışı bırakmak
 
 1. **Sonra** bölümünde, **API İstismar Önleme modunu Ayarla**'yı seçin ve ayarlayın:
 
-    * **Varsayılan** - Belirtilen kapsam (belirli URL veya istek) için, botlardan koruma, genel API İstismar Önleme [profileri](../../user-guides/api-abuse-prevention.md) tarafından belirlenen alışıldık şekilde çalışacaktır.
+    * **Varsayılan** - Belirtilen kapsam (belirli URL veya istek) için, botlardan koruma, genel API İstismar Önleme [profileri](../../api-abuse-prevention/setup.md) tarafından belirlenen alışıldık şekilde çalışacaktır.
     * **Bot aktivitesi için kontrol etme** - Tanımlanan URL ve/veya istek türü için bot aktivitesi kontrolü gerçekleştirilmeyecektir.
 
 1. İsteğe bağlı olarak, bu URL/istek türü için kural oluşturma sebebini yorum kısmında belirtin.

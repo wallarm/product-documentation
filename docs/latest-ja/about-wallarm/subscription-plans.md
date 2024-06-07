@@ -30,7 +30,7 @@ Wallarmでは次のサブスクリプションプランを提供しています�
 | **自動化された脅威からの保護** | | |
 | [Brute-force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) | はい | はい |
 | [BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola.md) | 手動設定 | 自動保護 |
-| [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) | いいえ | はい |
+| [API Abuse Prevention](../api-abuse-prevention/overview.md) | いいえ | はい |
 | **観察可能性のオプション** | | |
 | [API Discovery](../api-discovery/overview.md) | いいえ | はい |
 | API Discoveryを使用して[影のAPIを見つける](../api-discovery/rogue-api.md#shadow-api) | いいえ | はい |
@@ -75,7 +75,7 @@ Free Tierのサブスクリプションには以下が含まれます：
 
     * [脆弱性](detecting-vulnerabilities.md#vulnerability-scanner)と[露出した資産](../user-guides/scanner.md)のスキャナ
     * [Active threat prevention](detecting-vulnerabilities.md#active-threat-verification)の機能
-    * [API Abuse Prevention](api-abuse-prevention.md)モジュール
+    * [API Abuse Prevention](../api-abuse-prevention/overview.md)モジュール
     * [CDNノード](../installation/cdn-node.md)タイプのデプロイメント
     * 脆弱性スキャナの利用不可によるOWASP API Top 10の部分的カバレッジ
     * Wallarm APIへのアクセス

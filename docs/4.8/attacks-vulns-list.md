@@ -91,7 +91,7 @@ A set of basic bot types that includes server response time increase, fake accou
 
 **Required configuration:**
 
-Wallarm detects and mitigates API abuse attacks only if it has the [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module enabled and properly configured.
+Wallarm detects and mitigates API abuse attacks only if it has the [API Abuse Prevention](api-abuse-prevention/overview.md) module enabled and properly configured.
 
 The **API Abuse Prevention** module uses the complex bot detection model to detect the following bot types:
 
@@ -103,7 +103,7 @@ The **API Abuse Prevention** module uses the complex bot detection model to dete
 
 * [Scalping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-005_Scalping) is characterized by bots making online store products unavailable for real customers, e.g. by reserving all items so that they become out of stock but do not make any profit.
 
-If the metrics point to bot attack signs, the module [denylists or graylists](user-guides/api-abuse-prevention.md#creating-profiles) the source of the anomaly traffic for 1 hour.
+If the metrics point to bot attack signs, the module [denylists or graylists](api-abuse-prevention/setup.md#creating-profiles) the source of the anomaly traffic for 1 hour.
 
 **In addition to Wallarm protection:**
 
@@ -125,9 +125,9 @@ A type of cyber attack where a malicious actor gains access to someone else’s 
 
 **Required configuration:**
 
-Wallarm detects and mitigates the account takeover attacks only if it has the [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module enabled and properly configured.
+Wallarm detects and mitigates the account takeover attacks only if it has the [API Abuse Prevention](api-abuse-prevention/overview.md) module enabled and properly configured.
 
-[API Abuse Prevention](about-wallarm/api-abuse-prevention.md) detects bots performing a [credential cracking](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) usually performed as a brute force attack on the critical endpoints or/and endpoints that are related to authentication and/or registration endpoints. The automatic threshold of acceptable behavior metrics is calculated based on legitimate traffic for 1 hour.
+[API Abuse Prevention](api-abuse-prevention/overview.md) detects bots performing a [credential cracking](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) usually performed as a brute force attack on the critical endpoints or/and endpoints that are related to authentication and/or registration endpoints. The automatic threshold of acceptable behavior metrics is calculated based on legitimate traffic for 1 hour.
 
 **In addition to Wallarm protection:**
 
@@ -152,7 +152,7 @@ Web scraping can be used for malicious purposes. For example, scrapers can be us
 
 **Required configuration:**
 
-Wallarm detects and mitigates the scraping attacks only if it has the [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module enabled and properly configured.
+Wallarm detects and mitigates the scraping attacks only if it has the [API Abuse Prevention](api-abuse-prevention/overview.md) module enabled and properly configured.
 
 The **API Abuse Prevention** module uses the complex bot detection model to detect the [scraping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-011_Scraping) bot type which is collecting accessible data and/or processed output from the application that may result in private or non-free content becoming available for any user.
 
@@ -180,7 +180,7 @@ Furthermore, some security crawlers may be poorly designed and inadvertently cau
 
 **Required configuration:**
 
-Wallarm detects and mitigates the security crawlers attacks only if it has the [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module enabled and properly configured.
+Wallarm detects and mitigates the security crawlers attacks only if it has the [API Abuse Prevention](api-abuse-prevention/overview.md) module enabled and properly configured.
 
 The **API Abuse Prevention** module uses the complex bot detection model to detect the following security crawlers bot types:
 

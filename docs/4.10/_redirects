@@ -640,9 +640,38 @@
 /4.8/user-guides/settings/general/ /4.8/admin-en/configure-wallarm-mode/#setting-up-general-filtration-rule-in-wallarm-console
 /4.6/user-guides/settings/general/ /4.6/admin-en/configure-wallarm-mode/#setting-up-general-filtration-rule-in-wallarm-console
 
-/user-guides/rules/api-abuse-url/ /user-guides/api-abuse-prevention/#exceptions-for-target-urls-and-specific-requests
-/4.8/user-guides/rules/api-abuse-url/ /4.8/user-guides/api-abuse-prevention/#exceptions-for-target-urls-and-specific-requests
+/user-guides/rules/api-abuse-url/ /api-abuse-prevention/setup/#exceptions-for-target-urls-and-specific-requests
+/4.8/user-guides/rules/api-abuse-url/ /4.8/api-abuse-prevention/setup/#exceptions-for-target-urls-and-specific-requests
 
 /api-policy-enforcement/* /api-specification-enforcement/:splat
 /ja/api-policy-enforcement/* /ja/api-specification-enforcement/:splat
 /ar/api-policy-enforcement/* /ar/api-specification-enforcement/:splat
+
+/about-wallarm/api-abuse-prevention/ /api-abuse-prevention/overview/
+/user-guides/api-abuse-prevention/ /api-abuse-prevention/setup/
+/user-guides/api-abuse-prevention-exceptions/ /api-abuse-prevention/exceptions/
+/user-guides/api-abuse-prevention-explore/ /api-abuse-prevention/exploring-bots/
+/4.8/about-wallarm/api-abuse-prevention/ /4.8/api-abuse-prevention/overview/
+/4.8/user-guides/api-abuse-prevention/ /4.8/api-abuse-prevention/setup/
+/4.8/user-guides/api-abuse-prevention-exceptions/ /4.8/api-abuse-prevention/exceptions/
+/4.8/user-guides/api-abuse-prevention-explore/ /4.8/api-abuse-prevention/exploring-bots/
+/4.6/about-wallarm/api-abuse-prevention/ /4.6/api-abuse-prevention/overview/
+/4.6/user-guides/api-abuse-prevention/ /4.6/api-abuse-prevention/setup/
+/4.6/user-guides/api-abuse-prevention-exceptions/ /4.6/api-abuse-prevention/exceptions/
+/4.6/user-guides/api-abuse-prevention-explore/ /4.6/api-abuse-prevention/exploring-bots/
+/ja/about-wallarm/api-abuse-prevention/ /ja/api-abuse-prevention/overview/
+/ja/user-guides/api-abuse-prevention/ /ja/api-abuse-prevention/setup/
+/ja/user-guides/api-abuse-prevention-exceptions/ /ja/api-abuse-prevention/exceptions/
+/ja/user-guides/api-abuse-prevention-explore/ /ja/api-abuse-prevention/exploring-bots/
+/tr/about-wallarm/api-abuse-prevention/ /tr/api-abuse-prevention/overview/
+/tr/user-guides/api-abuse-prevention/ /tr/api-abuse-prevention/setup/
+/tr/user-guides/api-abuse-prevention-exceptions/ /tr/api-abuse-prevention/exceptions/
+/tr/user-guides/api-abuse-prevention-explore/ /tr/api-abuse-prevention/exploring-bots/
+/pt-br/about-wallarm/api-abuse-prevention/ /pt-br/api-abuse-prevention/overview/
+/pt-br/user-guides/api-abuse-prevention/ /pt-br/api-abuse-prevention/setup/
+/pt-br/user-guides/api-abuse-prevention-exceptions/ /pt-br/api-abuse-prevention/exceptions/
+/pt-br/user-guides/api-abuse-prevention-explore/ /pt-br/api-abuse-prevention/exploring-bots/
+/ar/about-wallarm/api-abuse-prevention/ /ar/api-abuse-prevention/overview/
+/ar/user-guides/api-abuse-prevention/ /ar/api-abuse-prevention/setup/
+/ar/user-guides/api-abuse-prevention-exceptions/ /ar/api-abuse-prevention/exceptions/
+/ar/user-guides/api-abuse-prevention-explore/ /ar/api-abuse-prevention/exploring-bots/

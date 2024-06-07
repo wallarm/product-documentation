@@ -55,8 +55,8 @@ nav:
     # - OWASP Top 10: ...
     # - OWASP API Top 10: ...
     - Prevenção de Abuso de API:
-      - Visão Geral: about-wallarm/api-abuse-prevention.md
-      - Gerenciamento do Perfil de Prevenção de Abuso de API: user-guides/api-abuse-prevention.md
+      - Visão Geral: api-abuse-prevention/overview.md
+      - Gerenciamento do Perfil de Prevenção de Abuso de API: api-abuse-prevention/setup.md
       - Desabilitando a proteção de bot para URLs e solicitações específicas: user-guides/rules/api-abuse-url.md
     - Proteção BOLA:
       - Configuração: admin-en/configuration-guides/protecting-against-bola.md

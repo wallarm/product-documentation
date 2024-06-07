@@ -47,7 +47,7 @@ A solução Wallarm protege APIs, microsserviços e aplicações web contra as a
 <div class="navigation-card">
     <h3 class="icon-homepage api-threat-prevent">Proteção de API</h3>
     <p><ul>
-    <li><a href="./about-wallarm/api-abuse-prevention/">Prevenção de Abuso de API</a></li>
+    <li><a href="./api-abuse-prevention/overview/">Prevenção de Abuso de API</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-bola/">Proteção contra BOLA</a></li>
     <li><a href="./attacks-vulns-list/#api-abuse-account-takeover">Roubo de Conta</a></li>
     <li><a href="./attacks-vulns-list/#api-abuse-scraping">Raspagem de Conteúdo</a></li>

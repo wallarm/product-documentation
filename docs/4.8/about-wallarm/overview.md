@@ -23,7 +23,7 @@ Wallarm extends discovery to deliver real protection by detecting and blocking a
 
 * Detects attacks both [inline](../installation/inline/overview.md) and [out-of-band](../installation/oob/overview.md).
 * Combats [various threats](../attacks-vulns-list.md), from web-based to API-specific ones, like code injections, remote code execution, brute force, BOLA, and more.
-* Identifies [API specific malicious bot abuse](api-abuse-prevention.md).
+* Identifies [API specific malicious bot abuse](../api-abuse-prevention/overview.md).
 * Counters Layer 7 Denial of Service attacks with customizable [rate limiting](../user-guides/rules/rate-limiting.md).
 * Allows users to create [custom defenses](../user-guides/rules/regex-rule.md) by setting their own threat definitions, complementing the built-in measures.
 * Maps attacks with your system's vulnerabilities to highlight critical incidents.

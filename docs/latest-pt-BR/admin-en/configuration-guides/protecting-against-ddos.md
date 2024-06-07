@@ -41,7 +41,7 @@ Também é necessário preparar um plano de resposta para identificar o ataque D
 
 O Wallarm fornece uma ampla gama de medidas de proteção contra ameaças DDoS L7:
 
-* [Prevenção de Abuso de API](../../about-wallarm/api-abuse-prevention.md). Ative a funcionalidade Prevenção de Abuso de API para identificar e interromper vários tipos de bots maliciosos.
+* [Prevenção de Abuso de API](../../api-abuse-prevention/overview.md). Ative a funcionalidade Prevenção de Abuso de API para identificar e interromper vários tipos de bots maliciosos.
 * [Gatilho de força bruta](protecting-against-bruteforce.md) para prevenir um número massivo de solicitações forçando alguns valores de parâmetros, como senhas.
 * [Gatilho de navegação forçada](protecting-against-bruteforce.md) para prevenir tentativas maliciosas de detectar recursos ocultos de um aplicativo da web, nomeadamente diretórios e arquivos.
 * Filtragem geográfica usando [listas de negação e de cinza](../../user-guides/ip-lists/overview.md). Previnir o acesso aos aplicativos e APIs de determinadas regiões que distribuem ataques.

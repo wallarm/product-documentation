@@ -30,7 +30,7 @@ Wallarm aşağıdaki abonelik planlarını sunmaktadır:
 | **Otomatik tehditlerden korunma** | | |
 | [Brute-force koruması](../admin-en/configuration-guides/protecting-against-bruteforce.md) | Evet | Evet |
 | [BOLA (IDOR) koruması](../admin-en/configuration-guides/protecting-against-bola.md) | Manuel kurulum | Otomatik koruma |
-| [API İstismarı Önleme](../about-wallarm/api-abuse-prevention.md) | Hayır | Evet |
+| [API İstismarı Önleme](../api-abuse-prevention/overview.md) | Hayır | Evet |
 | **Gözlem opsiyonları** | | |
 | [API Taraması](../about-wallarm/api-discovery.md) | Hayır | Evet |
 | [API Taraması ile varolan gölge, öksüz ve zombi API'lerin bulunması](../about-wallarm/api-discovery.md#shadow-orphan-and-zombie-apis) | Hayır | Evet |
@@ -75,7 +75,7 @@ Yeni bir kullanıcı **[US Cloud](overview.md#cloud)** Wallarm Konsolu'nda kayde
 
     * [Zaafiyet](detecting-vulnerabilities.md#vulnerability-scanner) ve [Tespite maruz varlık](../user-guides/scanner.md) Tarayıcıları
     * [Aktif tehditleri önleme](detecting-vulnerabilities.md#active-threat-verification) özelliği
-    * [API İstismarı Önleme](api-abuse-prevention.md) modülü
+    * [API İstismarı Önleme](../api-abuse-prevention/overview.md) modülü
     * [CDN node](../installation/cdn-node.md) türü dağıtımı
     * Zaafiyet Tarayıcısı'nın kullanılamaması nedeniyle OWASP API Top 10'un kısmi kapsamı
     * Wallarm API'ye erişim

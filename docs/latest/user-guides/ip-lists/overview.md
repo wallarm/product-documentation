@@ -97,7 +97,7 @@ You can enable Wallarm to denylist or graylist IP addresses automatically if the
 * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * [BOLA Protection](../../admin-en/configuration-guides/protecting-against-bola.md)
 * [Exceeded threshold for malicious payloads](../../admin-en/configuration-guides/protecting-with-thresholds.md)
-* [API Abuse Prevention](../../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works)
+* [API Abuse Prevention](../../api-abuse-prevention/overview.md#how-api-abuse-prevention-works)
 
 Note that if you manually delete an automatically listed IP, if new malicious activity is detected it will be automatically added again but:
 

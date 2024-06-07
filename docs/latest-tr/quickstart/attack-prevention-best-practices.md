@@ -48,7 +48,7 @@ Kırık Nesne Düzeyi Yetkilendirme (BOLA) açıklığı, bir saldırganın API 
 
 ## API İstismarınu Önlemeyi Uygulayın
 
-[API istismar profilleri oluşturun](../user-guides/api-abuse-prevention.md) API'lerinize yönelik hesap ele geçirme, kazıma, güvenlik crawler'ları ve diğer otomatik kötü niyetli hareketleri durdurup, engelleyin.
+[API istismar profilleri oluşturun](../api-abuse-prevention/setup.md) API'lerinize yönelik hesap ele geçirme, kazıma, güvenlik crawler'ları ve diğer otomatik kötü niyetli hareketleri durdurup, engelleyin.
 
 ## Özel saldırı tespit kuralları oluşturun
 

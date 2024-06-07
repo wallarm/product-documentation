@@ -54,10 +54,10 @@ nav:
       - Viewing Events: api-specification-enforcement/viewing-events.md
     - Automatic BOLA Protection: admin-en/configuration-guides/protecting-against-bola.md
     - API Abuse Prevention:
-      - Overview: about-wallarm/api-abuse-prevention.md
-      - Setup: user-guides/api-abuse-prevention.md
-      - Exceptions: user-guides/api-abuse-prevention-exceptions.md
-      - Exploring Bot Activity: user-guides/api-abuse-prevention-explore.md
+      - Overview: api-abuse-prevention/overview.md
+      - Setup: api-abuse-prevention/setup.md
+      - Exceptions: api-abuse-prevention/exceptions.md
+      - Exploring Bot Activity: api-abuse-prevention/exploring-bots.md
     - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
     - GraphQL API Protection: api-protection/graphql-rule.md
   - API Attack Surface:

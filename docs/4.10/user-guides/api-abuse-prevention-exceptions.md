@@ -1,1 +1,0 @@
---8<-- "latest/user-guides/api-abuse-prevention-exceptions.md"

@@ -30,7 +30,7 @@
 | **الحماية من التهديدات الآلية** | | |
 | [الحماية من كسر الكلمات السرية](../admin-en/configuration-guides/protecting-against-bruteforce.md) | نعم | نعم |
 | [حماية BOLA (IDOR)](../admin-en/configuration-guides/protecting-against-bola.md) | إعداد يدوي | حماية آلية |
-| [منع استغلال API](../about-wallarm/api-abuse-prevention.md) | لا | نعم |
+| [منع استغلال API](../api-abuse-prevention/overview.md) | لا | نعم |
 | [الكشف عن سرقة كلمات السر](../about-wallarm/credential-stuffing.md) | لا | نعم |
 | **خيارات المراقبة** | | |
 | [اكتشاف API](../api-discovery/overview.md) | لا | نعم |
@@ -78,7 +78,7 @@
 * الوصول إلى منصة Wallarm كما هو الحال في [الأمان المتقدم لAPI](#subscription-plans)، باستثناء ما يلي:
 
     * ماسح الأصول المعرضة
-    * وحدة [منع استغلال API](api-abuse-prevention.md)
+    * وحدة [منع استغلال API](../api-abuse-prevention/overview.md)
     * توزيع نوع [عقدة CDN](../installation/cdn-node.md)
 
 **ماذا يحدث إذا تجاوزت الحصة؟**

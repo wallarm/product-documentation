@@ -59,8 +59,8 @@ nav:
     - ダッシュボード: api-discovery/dashboard.md
   - API保護:
     - API乱用防止:
-      - 概要: about-wallarm/api-abuse-prevention.md
-      - API乱用防止プロファイル管理: user-guides/api-abuse-prevention.md
+      - 概要: api-abuse-prevention/overview.md
+      - API乱用防止プロファイル管理: api-abuse-prevention/setup.md
       - 特定のURLとリクエストに対するbot保護の無効化: user-guides/rules/api-abuse-url.md
     - BOLA保護(APID): admin-en/configuration-guides/protecting-against-bola.md
     - Credential Stuffing検出: about-wallarm/credential-stuffing.md
