@@ -46,7 +46,7 @@ O módulo **Prevenção de Abuso de API** no estado desativado é fornecido com 
 Para ativar a Prevenção de Abuso de API:
 
 1. Verifique se seu tráfego é filtrado pelo nó Wallarm 4.2 ou posterior.
-1. Certifique-se de que seu [plano de assinatura](subscription-plans.md#subscription-plans) inclui **Prevenção de Abuso de API**. Para alterar o plano de assinatura, envie um pedido para [sales@wallarm.com](mailto:sales@wallarm.com).
+1. Certifique-se de que seu [plano de assinatura](../about-wallarm/subscription-plans.md) inclui **Prevenção de Abuso de API**. Para alterar o plano de assinatura, envie um pedido para [sales@wallarm.com](mailto:sales@wallarm.com).
 1. No Console Wallarm → **Prevenção de Abuso de API**, crie ou habilite pelo menos um [perfil de Abuso de API](../api-abuse-prevention/setup.md).
 
     !!! info "Acesso às configurações de Prevenção de Abuso de API"
