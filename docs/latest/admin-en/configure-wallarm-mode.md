@@ -90,6 +90,78 @@ In this example, the filtration modes are defined for the resources as follows:
       2. The `block` mode is applied to the requests sent to the virtual server `SERVER_C` that contain the `/main/login` path.
       3. The `safe_blocking` mode is applied to the requests sent to the virtual server `SERVER_C` that contain the `/main/reset-password` path.
 
+**Setting `wallarm_mode` in specific deployments**
+
+Peculiarities on how the `wallarm_mode` directive is set in the specific deployments are described below. Note that the values and their meanings are the same as for the `wallarm_mode` directive.
+
+=== "Docker"
+    When deploying Wallarm nodes via docker containers, pass the `WALLARM_MODE` environment variable. 
+    
+    NGINX example (see details [here](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)):
+
+    ```
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/node:4.10.6-1
+    ```
+
+    Envoy example (see details [here](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)):
+
+    ```
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/envoy:4.8.0-1
+    ```
+
+    Alternatively, include the corresponding directive/parameter in the configuration file and run the container mounting this file. For NGINX, this will be as this article describes above; see **Envoy** tab for its peculiarities.
+=== "Envoy"
+    For the Envoy‑based Wallarm nodes, in the Envoy configuration file, in the `conf` section of the Wallarm configuration, use the `mode` parameter.
+    
+    For example:
+
+    ```
+    listeners:
+    - address:
+        filter_chains:
+        - filters:
+        - name: envoy.http_connection_manager
+            typed_config:
+            http_filters:
+            - name: wallarm
+                typed_config:
+                "@type": type.googleapis.com/wallarm.Wallarm
+                conf:
+                    ...
+                    mode: "monitoring"
+                    mode_allow_override: "off"
+                    ...
+                ...
+    ```
+    
+    See details on specifying mode in Envoy [here](../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings).
+=== "NGINX and Kong Ingress controllers"
+    For NGINX and Kong Ingress controllers, use the `wallarm-mode` annotations.
+
+    Example for NGINX (see details [here](../admin-en/installation-kubernetes-en.md#step-2-enabling-traffic-analysis-for-your-ingress)):
+    
+    ```
+    kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-mode=monitoring
+    ```
+
+    Example for Kong (see details [here](../installation/kubernetes/kong-ingress-controller/deployment.md#step-3-enable-traffic-analysis-for-your-ingress)):
+
+    ```
+    kubectl annotate ingress <KONG_INGRESS_NAME> -n <KONG_INGRESS_NAMESPACE> wallarm.com/wallarm-mode=monitoring
+    ```
+=== "Sidecar"
+    For the Wallarm Sidecar solution, in the Wallarm-specific part of the default `values.yaml`, set the `mode` parameter:
+
+    ```
+    config:
+    wallarm:
+        ...
+        mode: monitoring
+        modeAllowOverride: "on"
+    ```
+
+    See details on specifying mode for Sidecar [here](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md).
+
 ### Setting up general filtration rule in Wallarm Console
 
 You can define the general filtration mode for all incoming requests in **Settings** → **General** in the [US](https://us1.my.wallarm.com/settings/general) or [EU](https://my.wallarm.com/settings/general) Cloud.
