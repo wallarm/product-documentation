@@ -2,6 +2,13 @@
 
 [Credential stuffing](../attacks-vulns-list.md#credential-stuffing) is a cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple websites. This article describes how to detect this type of threats using Wallarm's **Credential Stuffing Detection**.
 
+<div>
+        <script src="https://js.storylane.io/js/v1/storylane.js"></script>
+        <div class="sl-embed" style="position:relative;padding-bottom:calc(51.72% + 27px);width:100%;height:0;transform:scale(1)">
+          <iframe class="sl-demo" src="https://wallarm.storylane.io/demo/jly2gzsr4t8e" name="sl-embed" allow="fullscreen" style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+        </div>
+      </div>
+
 A credential stuffing attack is hazardous because of the common practice of reusing identical usernames and passwords across different services, along with the tendency to choose easily guessable (weak) passwords. A successful credential stuffing attack requires fewer attempts, so attackers can send requests much less frequently, which makes standard measures like brute force protection ineffective.
 
 ## How Wallarm addresses credential stuffing
