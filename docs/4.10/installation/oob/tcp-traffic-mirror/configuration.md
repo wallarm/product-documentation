@@ -10,7 +10,7 @@ Version: 1
 GoreplayMiddleware:
   Enabled: true
   Goreplay:
-    Filter: <your network interface, i.e. "lo:" or "enp7s0:">
+    Filter: <your network interface and port, e.g. "lo:" or "enp7s0:">
     ExtraArgs:
       - ...
       - ...
@@ -56,7 +56,9 @@ Controls whether the Wallarm node is enabled for TCP traffic mirror analysis.
 
 ## GoreplayMiddleware.Goreplay.Filter
 
-Specifies a network interface to capture traffic from. If no value is specified, it captures traffic from all network interfaces on the instance. Example configuration:
+Specifies a network interface to capture traffic from. If no value is specified, it captures traffic from all network interfaces on the instance.
+
+Note that the value should be the network interface and port separated by a colon (`:`). Examples of filters include `eth0:`, `eth0:80`, or `:80` (to intercept a specific port on all interfaces), e.g.:
 
 ```yaml
 Version: 1
@@ -74,7 +76,9 @@ ip link show command
 
 ## GoreplayMiddleware.Goreplay.ExtraArgs
 
-Specifies arguments for what traffic to capture:
+Specifies arguments for what traffic to capture or any [other extra arguments](https://github.com/buger/goreplay/blob/master/docs/Request-filtering.md) passed to GoReplay.
+
+Usage examples:
 
 * For VLAN-wrapped mirrored traffic, provide the following:
 
@@ -83,11 +87,12 @@ Specifies arguments for what traffic to capture:
     GoreplayMiddleware:
       Enabled: true
       Goreplay:
-        Filter: <your network interface, i.e. "lo:" or "enp7s0:">
+        Filter: <your network interface and port, e.g. "lo:" or "enp7s0:">
         ExtraArgs:
           - -input-raw-vlan
           - -input-raw-vlan-vid
-          - 42 # VID of your vlan
+          # VID of your VLAN, e.g.:
+          # - 42
     ```
 
 * For VXLAN-wrapped mirrored traffic (e.g. for AWS traffic mirroring), provide the following:
@@ -97,14 +102,16 @@ Specifies arguments for what traffic to capture:
     GoreplayMiddleware:
       Enabled: true
       Goreplay:
-        Filter: <your network interface, i.e. "lo:" or "enp7s0:">
+        Filter: <your network interface and port, e.g. "lo:" or "enp7s0:">
         ExtraArgs:
           - -input-raw-engine
           - vxlan
-          - -input-raw-vxlan-port # custom VXLAN UDP port
-          - 4789                  # custom VXLAN UDP port
-          - -input-raw-vxlan-vni  # specific VNI (capture all by default)
-          - 1                     # specific VNI
+          # Custom VXLAN UDP port, e.g.:
+          # - -input-raw-vxlan-port 
+          # - 4789
+          # Specific VNI (by default, all VNIs are captured), e.g.:
+          # - -input-raw-vxlan-vni
+          # - 1
     ```
 
 ## GoreplayMiddleware.Middleware.ParseResponses
@@ -117,7 +124,7 @@ Ensure response mirroring is configured in your environment to the target instan
 
 ## GoreplayMiddleware.Middleware.ResponseTimeout
 
-Specifies the maximum time to wait for a response in seconds. If a response is not received within this time, the Wallarm processes stop waiting does not parse the corresponding response.
+Specifies the maximum time to wait for a response. If a response is not received within this time, the Wallarm processes stop waiting the corresponding response.
 
 Default: `5s`.
 
@@ -230,7 +237,7 @@ Default: `info`.
 
 Specifies the destination for log output. Options are `stdout`, `stderr`, or a path to a log file.
 
-Default: `/opt/wallarm/var/log/wallarm/go-node.log`.
+Default: `stderr`. However, the node redirects `stderr` to the `/opt/wallarm/var/log/wallarm/go-node.log` file.
 
 ## Metrics.Enabled
 
