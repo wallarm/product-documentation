@@ -1,30 +1,44 @@
 # Deploying the Node for TCP Traffic Mirror Analysis
 
-Wallarm provides a foundational artifact for deploying its filtering node, specifically designed for TCP traffic mirror analysis. This guide explains how to deploy and configure the Wallarm filtering node in this form-factor.
+Wallarm provides an artifact for deploying its filtering node, specifically designed for TCP traffic mirror analysis. This guide explains how to deploy and configure the Wallarm filtering node in this form-factor.
 
 ## Use cases
 
 Among all supported [out-of-band deployment options](../../supported-deployment-options.md#out-of-band), this solution is recommended for the following scenarios:
 
-* You prefer to capture traffic mirrors at the TCP level and require a security solution to analyze this specific traffic.
+* You prefer to capture TCP traffic mirrored at the network layer and require a security solution to analyze this specific traffic.
 * NGINX- or Envoy-based deployment artifacts are either unavailable, too slow, or consume excessive resources. The solution for TCP traffic mirror analysis is low-resource consuming, as it independently parses and analyzes traffic.
-* Your network includes virtual interfaces configured for TCP traffic mirroring, with the mirrored traffic targeting certain servers without being tied to specific web servers like NGINX.
 
 ## How does it work
 
-This solution operates in out-of-band (OOB) mode, capturing mirrored TCP traffic directly from the network interface, independent of web servers like NGINX. The solution uses Goreplay to capture the traffic and handle encapsulations (e.g., VLAN, VXLAN). The captured traffic is then parsed, reassembled, and analyzed for threats by the Wallarm services.
+This solution operates in out-of-band (OOB) mode, capturing mirrored TCP traffic directly from the network interface, independent of web servers like NGINX. The solution uses [GoReplay](https://goreplay.org) to capture the traffic and handle encapsulations (e.g., VLAN, VXLAN). The captured traffic is then parsed, reassembled, and analyzed for threats by the Wallarm services.
 
-It seamlessly swaps between multiple traffic sources. When multiple data sources are directed to a traffic mirror target (the instance with the Wallarm node), the solution efficiently collects and decrypts traffic, allowing flexible monitoring without disruption. By reassembling TCP traffic, the Wallarm node ensures accurate threat detection and analysis, ensuring no suspicious activity is missed.
+It seamlessly swaps between multiple traffic sources. When multiple data sources are directed to a traffic mirror target (the instance with the Wallarm node), the solution efficiently collects traffic, allowing flexible monitoring without disruption. By reassembling TCP traffic, the Wallarm node ensures accurate threat detection and analysis, ensuring no suspicious activity is missed.
 
 Additionally, the solution supports response mirror parsing, allowing non-interrupted traffic flow while providing Wallarm features that rely on response data. These features include vulnerability discovery, API discovery, and more.
 
 ## Requirements
 
-* Understanding of TCP traffic mirroring flow and the specifics of your environment to configure the solution effectively.
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 * The machine intended for running the node must meet the following criteria:
 
     * Linux OS
     * x86_64/ARM64 architecture
+    * Executing all commands as a superuser (e.g. `root`).
+    * Allowed outgoing connections to `https://meganode.wallarm.com` to download the Wallarm installer
+    * Allowed outgoing connections to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
+    * Allowed outgoing connections to the IP addresses below for downloading updates to attack detection rules and [API specifications](../../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../../user-guides/ip-lists/overview.md) countries, regions, or data centers
+
+        === "US Cloud"
+            ```
+            34.96.64.17
+            34.110.183.149
+            ```
+        === "EU Cloud"
+            ```
+            34.160.38.183
+            34.144.227.90
+            ```
 * Traffic and response mirroring must be configured with both source and target set up, and the prepared instance chosen as a mirror target. Specific environment requirements must be met, such as allowing specific protocols for traffic mirroring configurations.
 
 ## Step 1: Prepare Wallarm token
@@ -64,10 +78,11 @@ Version: 1
 GoreplayMiddleware:
   Enabled: true
   Goreplay:
-    Filter: <your network interface, i.e. "lo:" or "enp7s0:">
-    ExtraArgs:
-      - ...
-      - ...
+    Filter: <your network interface and port, e.g. "lo:" or "enp7s0:">
+    # To capture VLAN or VXLAN or pass other extra arguments to GoReplay:
+    # ExtraArgs:
+      # - ...
+      # - ...
 ```
 
 In the [article](configuration.md), you will find the list of more supported configuration parameters.
@@ -79,10 +94,12 @@ To specify the network interface to capture from:
 1. Check network interfaces available on the host:
 
     ```
-    ip link show command
+    ip link show
     ```
 
-1. Specify the network interface in the `Filter` parameter, e.g.:
+1. Specify the network interface in the `Filter` parameter.
+
+    Note that the value should be the network interface and port separated by a colon (`:`). Examples of filters include `eth0:`, `eth0:80`, or `:80` (to intercept a specific port on all interfaces), e.g.:
 
     ```yaml
     Version: 1
@@ -101,11 +118,12 @@ Version: 1
 GoreplayMiddleware:
   Enabled: true
   Goreplay:
-    Filter: <your network interface, i.e. "lo:" or "enp7s0:">
+    Filter: <your network interface and port, e.g. "lo:" or "enp7s0:">
     ExtraArgs:
       - -input-raw-vlan
       - -input-raw-vlan-vid
-      - 42 # VID of your vlan
+      # VID of your VLAN, e.g.:
+      # - 42
 ```
 
 ### Capturing VXLAN (AWS mirroring)
@@ -117,14 +135,16 @@ Version: 1
 GoreplayMiddleware:
   Enabled: true
   Goreplay:
-    Filter: <your network interface, i.e. "lo:" or "enp7s0:">
+    Filter: <your network interface and port, e.g. "lo:" or "enp7s0:">
     ExtraArgs:
       - -input-raw-engine
       - vxlan
-      - -input-raw-vxlan-port # custom VXLAN UDP port
-      - 4789                  # custom VXLAN UDP port
-      - -input-raw-vxlan-vni  # specific VNI (capture all by default)
-      - 1                     # specific VNI
+      # Custom VXLAN UDP port, e.g.:
+      # - -input-raw-vxlan-port 
+      # - 4789
+      # Specific VNI (by default, all VNIs are captured), e.g.:
+      # - -input-raw-vxlan-vni
+      # - 1
 ```
 
 ## Step 4: Run the Wallarm installer
@@ -175,7 +195,7 @@ To check that the attack has been registered, proceed to Wallarm Console → **E
 * To check if there is traffic on the network interface you are trying to capture from, run the following command on your machine:
 
     ```
-    tcpdump -i <INTERFACE_NAME>
+    sudo tcpdump -i <INTERFACE_NAME>
     ```
 * To verify if the filtering node detects traffic:
 
@@ -189,7 +209,7 @@ To check that the attack has been registered, proceed to Wallarm Console → **E
     Restart the Wallarm service:
 
     ```
-    sydo systemctl restart wallarm
+    sudo systemctl restart wallarm
     ```
 
     Logs are written to `/opt/wallarm/var/log/wallarm/go-node.log` by default. You can read them there.
@@ -207,7 +227,7 @@ To check that the attack has been registered, proceed to Wallarm Console → **E
         ```
         sudo ./aionext-0.2.2.aarch64.sh -- --help
         ```
-* You can also run the installer in an **interactive** mode by choosing the `tcp-capture` mode in the 1st step:
+* You can also run the installer in an **interactive** mode and choose the `tcp-capture` mode in the 1st step:
 
     === "x86_64 version"
         ```
@@ -227,6 +247,25 @@ To check that the attack has been registered, proceed to Wallarm Console → **E
       Enabled: true
     ```
 
+## Upgrade and reinstallation
+
+To upgrade or reinstall the node:
+
+1. Get the [installer version](../../../updating-migrating/node-artifact-versions.md#wallarm-node-for-tcp-traffic-mirror-analysis) you need.
+1. Run the new installer script as described above, but change the script version.
+
+Your current `/opt/wallarm/etc/wallarm/go-node.yaml`, `/opt/wallarm/etc/wallarm/node.yaml` and log files will be backed up to the directory `/opt/wallarm/wallarm-backup-<timestamp>`.
+
+If there is a problem with the upgrade or reinstallation process:
+
+1. Remove the current installation:
+
+    ```
+    sudo systemctl stop wallarm && sudo rm -rf /opt/wallarm
+    ```
+1. Install the node as usual following the installation steps from above.
+
 ## Limitations
 
 * [Rate limits](../../../user-guides/rules/rate-limiting.md) and [IP lists](../../../user-guides/ip-lists/overview.md) are not supported yet.
+* Traffic decryption is not supported. The solution only analyzes raw TCP traffic.
