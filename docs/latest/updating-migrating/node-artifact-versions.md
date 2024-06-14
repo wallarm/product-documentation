@@ -58,6 +58,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * [Initial release](../installation/oob/ebpf/deployment.md) -->
 
+## Wallarm node for TCP traffic mirror analysis
+
+### 0.2.2 (2024-06-18)
+
+* Initial release
+
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
