@@ -3,7 +3,7 @@
 
 # Upgrading Wallarm Sidecar
 
-These instructions describe the steps to upgrade Wallarm Sidecar 4.x to the new version with Wallarm node 4.8.
+These instructions describe the steps to upgrade Wallarm Sidecar 4.x to the new version with Wallarm node 4.10.
 
 ## Requirements
 
