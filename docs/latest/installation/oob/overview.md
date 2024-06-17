@@ -31,16 +31,25 @@ Despite the OOB deployment approach safety, it has some limitations:
 
     Wallarm only observes attacks and provides you with the [details in Wallarm Console](../..//user-guides/events/analyze-attack.md).
 * Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
+
+    An exception is the [TCP traffic mirror analysis solution](tcp-traffic-mirror/deployment.md), which supports response mirror parsing.
 * The [Wallarm API Discovery](../../api-discovery/overview.md) does not explore API inventory based on your traffic as server responses required for the module operation are not mirrored.
 
-    An exception is the [eBPF](ebpf/deployment.md) solution, which conducts API inventory discovery by analyzing response codes.
+    The exceptions are:
+
+    * [eBPF](ebpf/deployment.md) solution, which conducts API inventory discovery by analyzing response codes.
+    * [TCP traffic mirror analysis solution](tcp-traffic-mirror/deployment.md), which supports response mirror parsing.
 * The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis which is currently not feasible.
-    
-    An exception is the [eBPF](ebpf/deployment.md) solution, which analyzes response codes, making it suitable for this purpose.
+
+    The exceptions are:
+
+    * [eBPF](ebpf/deployment.md) solution, which analyzes response codes, making it suitable for this purpose.
+    * [TCP traffic mirror analysis solution](tcp-traffic-mirror/deployment.md), which supports response mirror parsing.
 
 ## Supported deployment options
 
 Wallarm offers the following Out-of-Band (OOB) deployment options:
 
-* Many available Wallarm artifacts can be used to [deploy Wallarm for analyzing traffic mirrored by services like NGINX, Envoy, Istio, etc.](web-server-mirroring/overview.md) These services typically offer built-in features for traffic mirroring, and Wallarm artifacts are well-suited for analyzing traffic mirrored by such solutions.
 * [eBPF-based solution](ebpf/deployment.md)
+* The solution for [TCP traffic mirror analysis](tcp-traffic-mirror/deployment.md)
+* Many available Wallarm artifacts can be used to [deploy Wallarm for analyzing traffic mirrored by services like NGINX, Envoy, Istio, etc.](web-server-mirroring/overview.md) These services typically offer built-in features for traffic mirroring, and Wallarm artifacts are well-suited for analyzing traffic mirrored by such solutions.
