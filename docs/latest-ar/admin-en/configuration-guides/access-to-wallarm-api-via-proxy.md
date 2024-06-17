@@ -46,7 +46,7 @@ no_proxy="127.0.0.1, 127.0.0.8, 127.0.0.9, localhost"
 عند تثبيت عقدة فلترة بواسطة المثبِّت [الكل في واحد](../../installation/nginx/all-in-one.md)، تأكد من إضافة علم `--preserve-env=https_proxy,no_proxy` إلى الأمر الذي ينفذ السكربت، على سبيل المثال:
 
 ```
-sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-<VERSION>.<ARCH>-glibc.sh --preserve-env=https_proxy,no_proxy
+sudo --preserve-env=https_proxy,no_proxy env WALLARM_LABELS='group=<GROUP>' sh wallarm-<VERSION>.<ARCH>-glibc.sh
 ```
 
 هذا يضمن تطبيق إعدادات البروكسي (`https_proxy`, `no_proxy`) بشكل صحيح خلال عملية التثبيت.
