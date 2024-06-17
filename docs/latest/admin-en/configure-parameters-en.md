@@ -202,8 +202,6 @@ A path to the [custom ruleset](../user-guides/rules/rules.md) file that contains
 
 The directive enables `on` / disables `off` [API Specification Enforcement](../api-specification-enforcement/overview.md), available from release 4.10 onwards. Please note that activating this feature does not substitute for the required subscription and configuration through the Wallarm Console UI.
 
-Currently this directive is available only for NGINX nodes deployed with [all-in-one installer](../installation/nginx/all-in-one.md).
-
 !!! info
     This parameter can be set inside the `server` blocks.
 
@@ -280,8 +278,6 @@ This directive sets the maximum allowed length of an HTTP/2 stream in bytes. Whe
 If this option is not configured, stream lengths remain unlimited, potentially causing unbounded memory consumption by the NGINX process, particularly in gRPC environments with long-lived connections.
 
 !!! info
-    Currently this directive is not supported by nodes deployed with the Google Cloud Machine Image.
-
     This parameter can be set within the http, server, and location blocks.
     
     The directive does not have a default value, there are no limits on the length of HTTP/2 streams by default.
@@ -318,8 +314,6 @@ A path to the Wallarm private key used for encryption/decryption of proton.db an
 This directive determines whether the Wallarm NGINX module generates the `/tmp/proton_last_memlimit.req` file containing request details when a memory limit is exceeded. This can be invaluable for debugging issues related to request memory limit processing.
 
 !!! info
-    Currently this directive is available only for NGINX nodes deployed with [all-in-one installer](../installation/nginx/all-in-one.md) version 4.8.8 or higher.
-
     This parameter can be set within the http, server, and location blocks.
     
     **Default value**: `on`.
