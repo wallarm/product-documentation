@@ -7,7 +7,8 @@ Wallarm provides an artifact for deploying its filtering node, specifically desi
 Among all supported [out-of-band deployment options](../../supported-deployment-options.md#out-of-band), this solution is recommended for the following scenarios:
 
 * You prefer to capture TCP traffic mirrored at the network layer and require a security solution to analyze this specific traffic.
-* NGINX- or Envoy-based deployment artifacts are either unavailable, too slow, or consume excessive resources. The solution for TCP traffic mirror analysis is low-resource consuming, as it independently parses and analyzes traffic.
+* NGINX or Envoy-based deployment artifacts are unavailable, too slow, or consume too many resources. In this case, implementing HTTP traffic mirror analysis can be resource-intensive. The TCP traffic mirror analysis runs independently from web servers, avoiding these issues.
+* You require a security solution that also parses responses, enabling features like [vulnerability detection](../../../about-wallarm/detecting-vulnerabilities.md) and [API discovery](../../../api-discovery/overview.md), which rely on response data.
 
 ## How does it work
 
@@ -78,11 +79,12 @@ Version: 1
 GoreplayMiddleware:
   Enabled: true
   Goreplay:
-    Filter: <your network interface and port, e.g. "lo:" or "enp7s0:">
-    # To capture VLAN or VXLAN or pass other extra arguments to GoReplay:
-    # ExtraArgs:
-      # - ...
-      # - ...
+    Filter: "enp7s0:"
+    ExtraArgs:
+      - -input-raw-engine
+      - vxlan
+  Wallarm:
+    RealIpHeader: "X-Real-IP"
 ```
 
 In the [article](configuration.md), you will find the list of more supported configuration parameters.
@@ -145,6 +147,21 @@ GoreplayMiddleware:
       # Specific VNI (by default, all VNIs are captured), e.g.:
       # - -input-raw-vxlan-vni
       # - 1
+```
+
+### Identifying the original client IP address
+
+By default, Wallarm reads the source IP address from the network packet's IP headers. However, proxies and load balancers can change this to their own IPs.
+
+To preserve the real client IP, these intermediaries often add an HTTP header (e.g., `X-Real-IP`, `X-Forwarded-For`). The `RealIpHeader` parameter tells Wallarm which header to use to extract the original client IP, e.g.:
+
+```yaml
+Version: 1
+
+GoreplayMiddleware:
+  ...
+  Wallarm:
+    RealIpHeader: "X-Real-IP"
 ```
 
 ## Step 4: Run the Wallarm installer
