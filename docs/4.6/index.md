@@ -127,7 +127,6 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 <div class="navigation-card">
     <h3 class="icon-homepage operations-title">Operations</h3>
     <p><ul>
-    <li><a href="./admin-en/configure-wallarm-mode/">Filtration Mode</a></li>
     <li><a href="./user-guides/settings/applications/">Applications</a></li>
     <li><a href="./admin-en/configure-parameters-en/">NGINX‑Based Nodes</a></li>
     <li><a href="./admin-en/using-proxy-or-balancer-en/">Proper Reporting of End‑User IP</a></li>
