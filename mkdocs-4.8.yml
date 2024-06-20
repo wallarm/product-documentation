@@ -201,22 +201,28 @@ nav:
     # - Triggers: ...
   - Deployment:
     - Deployment Options: installation/supported-deployment-options.md
-    - Out-of-Band:
-      - Overview: installation/oob/overview.md
-      - Mirroring by NGINX, Envoy and Similar:
-        - Overview: installation/oob/web-server-mirroring/overview.md
-        - Public Clouds:
-          - AWS:
-            - AMI: installation/oob/web-server-mirroring/aws-ami.md
-            - Terraform Module: installation/oob/terraform-module/mirroring-by-web-server.md
-          - GCP:
-            - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
-        - Docker: installation/oob/web-server-mirroring/docker-image.md
-        - Linux:
-          - All-in-One Installer: installation/oob/web-server-mirroring/linux/all-in-one.md
-          - Individual Packages for NGINX Stable: installation/oob/web-server-mirroring/linux/nginx-stable.md
-          - Individual Packages for NGINX Plus: installation/oob/web-server-mirroring/linux/nginx-plus.md
-          - Individual Packages for Distribution-Provided NGINX: installation/oob/web-server-mirroring/linux/nginx-distro.md
+    - Edge:
+      - Section.io: installation/cdn-node.md
+      - Akamai EdgeWorkers: installation/cdn/akamai-edgeworkers.md
+      - Azion Edge: installation/cdn/azion-edge.md
+      - AWS Lambda: installation/cdn/aws-lambda.md
+      - Cloudflare: installation/cdn/cloudflare.md
+    - API Gateways:
+      - Mulesoft: installation/api-gateways/mulesoft.md
+      - Apigee: installation/api-gateways/apigee.md
+      - Layer7 API Gateways: installation/api-gateways/layer7-api-gateway.md
+    - Kubernetes:
+      - Ingress:
+        - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
+        - Kong Ingress Controller:
+          - Deploy: installation/kubernetes/kong-ingress-controller/deployment.md
+          - Customization: installation/kubernetes/kong-ingress-controller/customization.md
+      - Sidecar:
+        - Deploy: installation/kubernetes/sidecar-proxy/deployment.md
+        - Customization: installation/kubernetes/sidecar-proxy/customization.md
+        - Scaling and High Availability: installation/kubernetes/sidecar-proxy/scaling.md
+        - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+        - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
     - Public Clouds:
       - Amazon Web Services:
         - AMI: installation/cloud-platforms/aws/ami.md
@@ -232,24 +238,15 @@ nav:
         - Azure Container Instances: installation/cloud-platforms/azure/docker-container.md
       - Alibaba Cloud:
         - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
-    - Edge:
-      - Section.io: installation/cdn-node.md
-      - Akamai EdgeWorkers: installation/cdn/akamai-edgeworkers.md
-      - Azion Edge: installation/cdn/azion-edge.md
-      - AWS Lambda: installation/cdn/aws-lambda.md
-      - Cloudflare: installation/cdn/cloudflare.md
-    - Kubernetes:
-      - Ingress:
-        - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
-        - Kong Ingress Controller:
-          - Deploy: installation/kubernetes/kong-ingress-controller/deployment.md
-          - Customization: installation/kubernetes/kong-ingress-controller/customization.md
-      - Sidecar:
-        - Deploy: installation/kubernetes/sidecar-proxy/deployment.md
-        - Customization: installation/kubernetes/sidecar-proxy/customization.md
-        - Scaling and High Availability: installation/kubernetes/sidecar-proxy/scaling.md
-        - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
-        - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
+    - Connectors:
+      - Overview: installation/connectors/overview.md
+      - Mulesoft: installation/connectors/mulesoft.md
+      - Apigee: installation/connectors/apigee.md
+      - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
+      - Azion Edge: installation/connectors/azion-edge.md
+      - AWS Lambda: installation/connectors/aws-lambda.md
+      - Cloudflare: installation/connectors/cloudflare.md
+      - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
     - In-Line:
       - Overview: installation/inline/overview.md
       - Compute Instances:
@@ -285,19 +282,22 @@ nav:
           - Scaling and High Availability: installation/inline/kubernetes/sidecar-proxy/scaling.md
           - Helm Chart Values: installation/inline/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
           - Pod's Annotations: installation/inline/kubernetes/sidecar-proxy/pod-annotations.md
-    - API Gateways:
-      - Mulesoft: installation/api-gateways/mulesoft.md
-      - Apigee: installation/api-gateways/apigee.md
-      - Layer7 API Gateways: installation/api-gateways/layer7-api-gateway.md
-    - Connectors:
-      - Overview: installation/connectors/overview.md
-      - Mulesoft: installation/connectors/mulesoft.md
-      - Apigee: installation/connectors/apigee.md
-      - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
-      - Azion Edge: installation/connectors/azion-edge.md
-      - AWS Lambda: installation/connectors/aws-lambda.md
-      - Cloudflare: installation/connectors/cloudflare.md
-      - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
+    - Out-of-Band:
+      - Overview: installation/oob/overview.md
+      - Mirroring by NGINX, Envoy and Similar:
+        - Overview: installation/oob/web-server-mirroring/overview.md
+        - Public Clouds:
+          - AWS:
+            - AMI: installation/oob/web-server-mirroring/aws-ami.md
+            - Terraform Module: installation/oob/terraform-module/mirroring-by-web-server.md
+          - GCP:
+            - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
+        - Docker: installation/oob/web-server-mirroring/docker-image.md
+        - Linux:
+          - All-in-One Installer: installation/oob/web-server-mirroring/linux/all-in-one.md
+          - Individual Packages for NGINX Stable: installation/oob/web-server-mirroring/linux/nginx-stable.md
+          - Individual Packages for NGINX Plus: installation/oob/web-server-mirroring/linux/nginx-plus.md
+          - Individual Packages for Distribution-Provided NGINX: installation/oob/web-server-mirroring/linux/nginx-distro.md
     - Packages:
       - Docker Images:
         - NGINX-based: admin-en/installation-docker-en.md
