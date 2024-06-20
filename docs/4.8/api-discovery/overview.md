@@ -10,7 +10,12 @@ The API built inventory includes the following elements:
     * [Type/format](./exploring.md#format-and-data-type) of data sent in each parameter    
     * Date and time when parameter information was last updated
 
-![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+<div>
+    <script src="https://js.storylane.io/js/v1/storylane.js"></script>
+    <div class="sl-embed" style="position:relative;padding-bottom:calc(60.95% + 27px);width:100%;height:0;transform:scale(1)">
+        <iframe class="sl-demo" src="https://wallarm.storylane.io/demo/cgqrxqwhmgyp" name="sl-embed" allow="fullscreen" style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+    </div>
+</div>
 
 ## Issues addressed by API Discovery
 
