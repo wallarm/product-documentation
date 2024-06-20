@@ -268,7 +268,7 @@ Depending on the API endpoint logic, an attacker can either just read data on we
 
 This vulnerability is also known as IDOR (Insecure Direct Object Reference).
 
-[More details on the vulnerability](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa1-broken-object-level-authorization.md)
+[More details on the vulnerability](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/)
 
 **Remediation:**
 
@@ -648,7 +648,7 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 During a Mass Assignment attack, attackers try to bind HTTP request parameters into program code variables or objects. If an API is vulnerable and allows binding, attackers may change sensitive object properties that are not intended to be exposed, which could lead to privilege escalation, bypassing security mechanisms, and more.
 
-APIs vulnerable to Mass Assignment attacks allow converting client input to internal variables or object properties without proper filtering. This vulnerability is included in the [OWASP API Top 10 (API6:2019 Mass Assignment)](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa6-mass-assignment.md) list of most serious API security risks.
+APIs vulnerable to Mass Assignment attacks allow converting client input to internal variables or object properties without proper filtering. This vulnerability is included in the [OWASP API Security Top 10 2023 (API3:2023 Broken Object Property Level Authorization)](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/) list of most serious API security risks.
 
 Starting from release 4.4.3, Wallarm mitigates Mass Assignment attempts.
 

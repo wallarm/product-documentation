@@ -75,6 +75,6 @@ By incorporating these additional practices along with the [Wallarm L7 DDoS prot
 
 ## Check and enhance the coverage of OWASP API top threats
 
-The OWASP API Security Top 10 is a gold standard for the evaluation of security risk in APIs. To help you measure your API's security posture against these API threats, Wallarm offers the [dashboards](../user-guides/dashboards/owasp-api-top-ten.md) that provide clear visibility and metrics for mitigation of the top threats of both the 2019 and 2023 versions.
+The OWASP API Security Top 10 is a gold standard for the evaluation of security risk in APIs. To help you measure your API's security posture against these API threats, Wallarm offers the [dashboard](../user-guides/dashboards/owasp-api-top-ten.md) that provides clear visibility and metrics for mitigation of the top threats of the 2023 version.
 
 These dashboards help you to assess the overall security state and proactively address discovered security issues by setting up appropriate security controls.
