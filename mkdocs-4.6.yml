@@ -486,7 +486,7 @@ nav:
       - Tarantool troubleshooting: faq/tarantool.md
       - CPU high usage troubleshooting: faq/cpu.md
       - Attacks are not uploaded to the Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
-      - Addressing Wallarm node issues alerted by OWASP dashboards: faq/node-issues-on-owasp-dashboards.md
+      - Addressing Wallarm node issues alerted by the OWASP dashboard: faq/node-issues-on-owasp-dashboards.md
       - Legitimate request is blocked: faq/wrong-blocking.md
       - Interaction with Third-Party Services: faq/wallarm-and-third-party-services.md
     - Changelog & News: news.md

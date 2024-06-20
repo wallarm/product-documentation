@@ -1,6 +1,6 @@
 # Setting rate limit
 
-Lack of rate limiting is included in the [OWASP API Top 10 2019](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa4-lack-of-resources-and-rate-limiting.md) list of most serious API security risks. Without proper rate limiting measures, APIs are vulnerable to attacks such as denial-of-service (DoS), brute force and API overuse. This article explains how to safeguard your API and users with the Wallarm's rate limit regulation rule.
+Lack of rate limiting is included in the [OWASP API Top 10 2023](https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/) list of most serious API security risks. Without proper rate limiting measures, APIs are vulnerable to attacks such as denial-of-service (DoS), brute force and API overuse. This article explains how to safeguard your API and users with the Wallarm's rate limit regulation rule.
 
 Wallarm provides the **Set rate limit** rule to help prevent excessive traffic to your API. This rule enables you to specify the maximum number of connections that can be made to a particular scope, while also ensuring that incoming requests are evenly distributed. If a request exceeds the defined limit, Wallarm rejects it and returns the code you selected in the rule.
 

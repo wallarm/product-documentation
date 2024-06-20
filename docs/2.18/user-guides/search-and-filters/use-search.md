@@ -101,7 +101,7 @@ An attack name can be specified in both uppercase and lowercase letters: `SQLI`,
 
 You can find attacks associated with the OWASP top threats by using the OWASP threat tags. The format to search for these attacks is `owasp_api1_2023`.
 
-These tags correspond to the original numbering of threats as defined by OWASP. Wallarm associates attacks with the OWASP API Top threats of both the 2019 and 2023 versions.
+These tags correspond to the original numbering of threats as defined by OWASP. Wallarm associates attacks with the OWASP API Top threats of the 2023 version.
 
 ### Search by known attacks (CVE and well‑known exploits)
 
