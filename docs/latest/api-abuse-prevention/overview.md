@@ -21,19 +21,21 @@ API Abuse Prevention uses multiple detectors to identify the malicious bots. The
 
 The following detectors may be involved:
 
-* **Request interval** analyzing the time intervals between consecutive requests to find lacks the randomness which is the sign of bot behavior.
-* **Request uniqueness** analyzing the number of unique endpoints visited during a session. If a client consistently visits a low percentage of unique endpoints, such as 10% or less, it is likely that it is a bot rather than a human user.
-* **Request rate** analyzing the number of requests made in a specific time interval. If an API client consistently makes a high percentage of requests over a certain threshold, it is likely that it is a bot rather than a human user.
 * **Bad user-agent** analyzing the `User-Agent` headers included in requests. This detector checks for specific signatures, including those belonging to crawlers, scrapers, and security checkers.
-* **Outdated browser** analyzing the browser and platform used in requests. If a client is using an outdated or unsupported browser or platform, it is likely that it is a bot rather than a human user.
+* **Authentication abuse** analyzing the ratio of authentication requests against a predetermined threshold and the number of requests per interval to identify anomalous behavior. The detector also incorporates the total volume of authentication requests for an application in order to avoid false positives.
+* **Request uniqueness** analyzing the number of unique endpoints visited during a session. If a client consistently visits a low percentage of unique endpoints, such as 10% or less, it is likely that it is a bot rather than a human user.
 * **Suspicious behavior score** analyzing usual and unusual business logic API requests taken during a session. 
 * **Business logic score** analyzing usage of the critical or sensitive API endpoints within the context of your application behavior.
+* **Request rate** analyzing the number of requests made in a specific time interval. If an API client consistently makes a high percentage of requests over a certain threshold, it is likely that it is a bot rather than a human user.
+* **Request interval** analyzing the time intervals between consecutive requests to find lacks the randomness which is the sign of bot behavior.
+* **Query abuse** analyzing a volume of requests that exceed a predefined threshold as an anomaly. Clients that exceed a threshold for queries that vary a parameter are also considered anomalies. Moreover, the detector compares client query patterns to normal behavior to identify bot activity.
+* **Outdated browser** analyzing the browser and platform used in requests. If a client is using an outdated or unsupported browser or platform, it is likely that it is a bot rather than a human user.
 * **Wide scope** analyzing breadth of IP activity to behaviorally identify crawler-like bots.
 
 !!! info "Confidence"
     As a result of detectors' work, every [detected](../api-abuse-prevention/exploring-bots.md) bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
 
-![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-detectors.png)
 
 If one or several detectors point to [bot attack signs](#automated-threats-blocked-by-api-abuse-prevention), the module denylists or graylists the source of the anomaly traffic for 1 hour. Wallarm counts bot IPs that were deny- and graylisted within 30 days and displays how many percents these amounts increased or decreased compared to the previous 30 day period.
 
