@@ -17,7 +17,7 @@ You have the flexibility to select the endpoints you wish to subject to testing:
 
 ## Requirements
 
-* An active **Advanced API Security** [subscription plan](../about-wallarm/subscription-plans.md#subscription-plans). If you are on a different plan, please contact our [sales team](mailto:sales@wallarm.com) to transition to the required one.
+* An active **Advanced API Security** [subscription plan](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security). If you are on a different plan, please contact our [sales team](mailto:sales@wallarm.com) to transition to the required one.
 
 ## Running security testing
 

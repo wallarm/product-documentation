@@ -38,7 +38,7 @@ The Active Threat Verification capabilities:
 
 The module is disabled by default. To enable it:
 
-1. Ensure you have an active **Advanced API Security** [subscription plan](subscription-plans.md#subscription-plans). The module is only available under this plan.
+1. Ensure you have an active **Advanced API Security** [subscription plan](subscription-plans.md#waap-and-advanced-api-security). The module is only available under this plan.
 
     If you are on a different plan, please contact our [sales team](mailto:sales@wallarm.com) to transition to the required one.
 1. Proceed to Wallarm Console → **Vulnerabilities** → **Configure** by following the link for the [US Cloud](https://us1.my.wallarm.com/vulnerabilities/active?configure=true) or [EU Cloud](https://my.wallarm.com/vulnerabilities/active?configure=true), and toggle on the **Active threat verification** switch.

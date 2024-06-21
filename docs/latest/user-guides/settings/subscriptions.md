@@ -17,7 +17,7 @@ To activate, cancel, or change a subscription, please send a request to [sales@w
 
 ## Free tier usage
 
-If you have registered in Wallarm Cloud and are using the [Free Tier](../../about-wallarm/subscription-plans.md#free-tier-subscription-plan) subscription plan, the subscription card displays the following information:
+If you have registered in Wallarm Cloud and are using the [Free Tier](../../about-wallarm/subscription-plans.md#free-tier) subscription plan, the subscription card displays the following information:
 
 * **Free Tier** subscription tile
 * **API Discovery** subscription tile (included in Free Tier)

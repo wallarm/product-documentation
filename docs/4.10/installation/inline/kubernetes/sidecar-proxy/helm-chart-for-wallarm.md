@@ -10,7 +10,7 @@ search:
 [filtration-mode-priorities-docs]:    ../../../../admin-en/configure-wallarm-mode.md#setting-up-priorities-of-filtration-mode-configuration-methods-using-wallarm_mode_allow_override
 [libdetection-docs]:                  ../../../../about-wallarm/protecting-against-attacks.md#libdetection-overview
 [passive-detection-docs]:             ../../../../about-wallarm/detecting-vulnerabilities.md#passive-detection
-[subscriptions-docs]:                 ../../../../about-wallarm/subscription-plans.md#subscription-plans
+[subscriptions-docs]:                 ../../../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security
 [active-threat-verification-docs]:    ../../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification
 [node-token-types]:                   ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [denylist-docs]:                      ../../../../user-guides/ip-lists/overview.md

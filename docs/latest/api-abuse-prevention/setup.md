@@ -4,7 +4,7 @@ This article describes how to enable and configure the [API Abuse Prevention](..
 
 ## Enabling
 
-The API Abuse Prevention module is available in the **Advanced API Security** [subscription plan](../about-wallarm/subscription-plans.md#subscription-plans). It is disabled by default.
+The API Abuse Prevention module is available in the **Advanced API Security** [subscription plan](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security). It is disabled by default.
 
 To enable API Abuse Prevention:
 
