@@ -27,6 +27,30 @@ To deploy Wallarm Cloud on-premise, you need to prepare a compute instance meeti
 * Debian 10.x, 11.x, 12.x
 * Red Hat Enterprise Linux 8
 
+**System requirements**
+
+The server should be dedicated as a standalone unit. Allocating dedicated power is advisable. Resource requirements vary based on the expected incoming traffic load.
+
+For less than 1 billion requests per month:
+
+* 16+ cores
+* 48 GB+ memory
+* 300 GB of SSD root storage (HDDs are inadequate due to their slow performance; NVMe is acceptable but not necessary). Ensure that the server configuration includes only the default operating system mounts to the root directory and, optionally, the boot directory (`/boot`). Avoid setting up any additional disk volumes or storage partitions.
+* Additional 100 GB of storage for every 100 million requests per month, to accommodate data for 1 year
+
+For more than 1 billion requests per month:
+
+* 32+ cores
+* 80 GB+ memory (120 GB recommended)
+* 500 GB of SSD root storage (HDDs are inadequate due to their slow performance; NVMe is acceptable but not necessary). Ensure that the server configuration includes only the default operating system mounts to the root directory and, optionally, the boot directory (`/boot`). Avoid setting up any additional disk volumes or storage partitions.
+* Additional 100 GB of storage for every 100 million requests per month, to accommodate data for 1 year
+
+**Network requirements**
+
+* Allowed outgoing connections to `https://onprem.wallarm.com` with 80 and 443 ports for downloading the license key and the installation/upgrade packages. This domain operates from a static IP address and the DNS must also resolve it.
+* A 3-5 level DNS wildcard record configured for the instance, e.g. `*.wallarm.companyname.tld`. Ensure that the instance is accessible via these DNS resolutions from any Wallarm filtering node and any client that needs to have this access (probably, you will want to hide it for access only from your VPN, do so then or maybe you will want to have it accessible from any browser and any IP address outside, configure it as you need to)
+* A valid SSL/TLS wildcard certificate (and key) issued from either a trusted or an internal CA. All filtering node instances and browsers must recognize this SSL/TLS certificate/key pair as trusted.
+
 **Software dependencies**
 
 Begin with a clean operating system installation featuring only essential software. The deployment process will subsequently install any additional packages (including containerd, Kubernetes, etc). Ensure that the following conditions are met:
@@ -54,30 +78,6 @@ Begin with a clean operating system installation featuring only essential softwa
     ```
     swapon -s
     ```
-
-**System requirements**
-
-The server should be dedicated as a standalone unit. Allocating dedicated power is advisable. Resource requirements vary based on the expected incoming traffic load.
-
-For less than 1 billion requests per month:
-
-* 16+ cores
-* 48 GB+ memory
-* 300 GB of SSD root storage (HDDs are inadequate due to their slow performance; NVMe is acceptable but not necessary). Ensure that the server configuration includes only the default operating system mounts to the root directory and, optionally, the boot directory (`/boot`). Avoid setting up any additional disk volumes or storage partitions.
-* Additional 100 GB of storage for every 100 million requests per month, to accommodate data for 1 year
-
-For more than 1 billion requests per month:
-
-* 32+ cores
-* 80 GB+ memory (120 GB recommended)
-* 500 GB of SSD root storage (HDDs are inadequate due to their slow performance; NVMe is acceptable but not necessary). Ensure that the server configuration includes only the default operating system mounts to the root directory and, optionally, the boot directory (`/boot`). Avoid setting up any additional disk volumes or storage partitions.
-* Additional 100 GB of storage for every 100 million requests per month, to accommodate data for 1 year
-
-**Network requirements**
-
-* Allowed outgoing connections to `https://onprem.wallarm.com` with 80 and 443 ports for downloading the license key and the installation/upgrade packages. This domain operates from a static IP address and the DNS must also resolve it.
-* A 3-5 level DNS wildcard record configured for the instance, e.g. `*.wallarm.companyname.tld`. Ensure that the instance is accessible via these DNS resolutions from any filtering node, browser, or external integration agent.
-* A valid SSL/TLS wildcard certificate (and key) issued from either a trusted or an internal CA. All filtering node instances and browsers must recognize this SSL/TLS certificate/key pair as trusted.
 
 ### Procedure
 
@@ -107,7 +107,6 @@ The deployment process for the on-premise Wallarm filtering node is similar to s
 
 To deploy a filtering node, prepare a compute instance meeting these criteria:
 
-* NGINX artifacts access required if deploying the node as an NGINX module or in any setup that involves NGINX installation on the instance.
 * Sufficient CPU, memory, and storage to support node operation, tailored to your traffic volume. Refer to the general resource allocation recommendations provided [here](../admin-en/configuration-guides/allocate-resources-for-node.md).
 * Access to the TCP/80 and TCP/443 ports of the on-premise Cloud instance.
 * Follow any other requirements specified in the deployment method article you choose.
@@ -118,8 +117,8 @@ To deploy a filtering node on-premise:
 
 1. Select a [deployment option](supported-deployment-options.md) from the available choices and adhere to the provided instructions. All options, including in-line and out-of-band (OOB) configurations, support on-premise deployment.
 
-    During the node setup, in the parameters that define the Wallarm Cloud host, specify the address of the Wallarm Cloud instance you created earlier.
-1. Ensure the domain of the running instance resolves to its IP address. For instance, if the domain is configured as `my.wallarm.node.com`, this domain should point to the instance's IP.
+    During the node setup, in the parameters that define the Wallarm Cloud host, specify `api.wallarm.companyname.tld` where `wallarm.companyname.tld` is the domain of the Wallarm Cloud instance you created earlier.
+1. Ensure the domain of the running instance resolves to its IP address. For instance, if the domain is configured as `wallarm.node.com`, this domain should point to the instance's IP.
 
 ## Testing the deployment
 
@@ -131,3 +130,11 @@ To test the deployment:
     curl http://localhost/etc/passwd
     ```
 1. Open the deployed Wallarm Console UI and check that the corresponding attack appeared in the attack list.
+
+## Limitations
+
+The following functionalities are currently not supported by the on-premise Wallarm solution:
+
+* [Exposed Asset Scanner](../user-guides/scanner.md)
+* [Active Threat Verification](../vulnerability-detection/active-threat-verification/overview.md)
+* [API Leaks](../about-wallarm/api-leaks.md)
