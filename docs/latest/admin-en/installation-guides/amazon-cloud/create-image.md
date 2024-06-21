@@ -2,8 +2,8 @@
 [link-docs-aws-node-setup]:         ../../../installation/cloud-platforms/aws/ami.md
 [link-ssh-keys-guide]:              ../../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys-in-aws
 [link-security-group-guide]:        ../../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group
-[link-cloud-connect-guide]:         ../../../installation/cloud-platforms/aws/ami.md#5-connect-the-filtering-node-to-the-wallarm-cloud
-[link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/aws/ami.md#8-configure-sending-traffic-to-the-wallarm-instance
+[link-cloud-connect-guide]:         ../../../installation/cloud-platforms/aws/ami.md#6-connect-the-instance-to-the-wallarm-cloud
+[link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/aws/ami.md#7-configure-sending-traffic-to-the-wallarm-instance
 [link-docs-check-operation]:        ../../installation-check-operation-en.md
 
 [img-launch-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/launch-ami-wizard.png 
