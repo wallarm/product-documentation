@@ -98,7 +98,7 @@ To rewrite the configuration, do the following:
 
 ### Get UUIDs of your tenants
 
-To get the list of tenants, send authenticated requests to Wallarm API. Authentication approach is the same as the one [used for tenant creation](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
+To get the list of tenants, send authenticated requests to Wallarm API. Authentication approach is the same as the one [used for tenant creation](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api).
 
 1. Get `clientid`(s) to later find UUIDs related to them:
 

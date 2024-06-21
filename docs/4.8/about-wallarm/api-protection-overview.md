@@ -9,7 +9,7 @@ API Protection includes:
 
 <!--Diagram for API Protection bundle of Wallarm products, being prepared by Iskandar-->
 
-While WAAP/WAF is available under the basic Cloud Native WAAP subscription, tools of the API Protection bundle are the part of the [Advanced API Security](../about-wallarm/subscription-plans.md#subscription-plans) subscription.
+While WAAP/WAF is available under the basic Cloud Native WAAP subscription, tools of the API Protection bundle are the part of the [Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription.
 
 ## Automatic BOLA Protection
 

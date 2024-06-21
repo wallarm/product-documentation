@@ -2,7 +2,7 @@
 
 The filtering node regularly synchronizes with the Wallarm Cloud to:
 
-* Get updates for [traffic processing rules (LOM)](../about-wallarm/protecting-against-attacks.md#custom-rules-for-request-analysis)
+* Get updates for [traffic processing rules (LOM)](../user-guides/rules/rules.md)
 * Get updates of [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton)
 * Send data on detected attacks and vulnerabilities
 * Send metrics for processed traffic

@@ -426,7 +426,7 @@ Unique identifier of the tenant for the [multi-tenant](../installation/multi-ten
 
     Know how to:
     
-    * [Get the UUID of the tenant during tenant creation →](../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)
+    * [Get the UUID of the tenant during tenant creation →](../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api)
     * [Get the list of UUIDs of existing tenants →](../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)
     
 Configuration example:
@@ -665,7 +665,7 @@ By default, limits are off.
 
 Sets the time limit for processing a single request for an NGINX worker in seconds.
 
-If the time exceeds the limit, data about NGINX workers is written to the `stalled_workers_count` and `stalled_workers` [statistic](configure-statistics-service.md##working-with-the-statistics-service) parameters.
+If the time exceeds the limit, data about NGINX workers is written to the `stalled_workers_count` and `stalled_workers` [statistic](configure-statistics-service.md#working-with-the-statistics-service) parameters.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.

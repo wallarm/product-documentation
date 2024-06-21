@@ -27,8 +27,8 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 **As you have your API inventory discovered by Wallarm, you can**:
 
-* Have a full visibility into the whole API estate including the list of [external and internal](exploring.md#distinguish-external-and-internal-apis) APIs.
-* See what data is [going into the APIs](exploring.md#viewing-endpoint-parameters).
+* Have a full visibility into the whole API estate including the list of [external and internal](exploring.md#external-vs-internal) APIs.
+* See what data is [going into the APIs](exploring.md#endpoint-details).
 * Get a list of endpoints with the open vulnerabilities.
 * Get a list of the threats that occurred over the past 7 days per any given API endpoint.
 * Filter out only attacked APIs, sort them by number of hits.

@@ -39,8 +39,8 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
       * [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
       * [GCP documentation](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
 2. Create a new Wallarm node and connect it to the Wallarm Cloud using the generated token as described in the instructions for the cloud platform:
-      * [AWS](../installation/cloud-platforms/aws/ami.md#5-generate-a-token-to-connect-an-instance-to-the-wallarm-cloud)
-      * [GCP](../installation/cloud-platforms/gcp/machine-image.md#4-generate-a-token-to-connect-an-instance-to-the-wallarm-cloud)
+      * [AWS](../installation/cloud-platforms/aws/ami.md#5-connect-the-filtering-node-to-the-wallarm-cloud)
+      * [GCP](../installation/cloud-platforms/gcp/machine-image.md#4-connect-the-filtering-node-to-the-wallarm-cloud)
 
 ## Step 3: Review recent architectural updates
 

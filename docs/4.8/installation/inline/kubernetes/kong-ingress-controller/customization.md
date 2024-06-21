@@ -8,8 +8,8 @@ search:
 [applications-docs]:                         ../../../../user-guides/settings/applications.md
 [passive-vuln-detection-docs]:               ../../../../about-wallarm/detecting-vulnerabilities.md#passive-detection
 [active-threat-ver-docs]:                    ../../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification
-[subscription-docs]:                         ../../../../about-wallarm/subscription-plans.md#subscription-plans
-[get-tenant-via-api-docs]:                   ../../../multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api
+[subscription-docs]:                         ../../../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security
+[get-tenant-via-api-docs]:                   ../../../multi-tenant/configure-accounts.md#via-the-wallarm-api
 [multitenancy-overview]:                    ../../../multi-tenant/overview.md
 [get-tenant-uuids-docs]:                    ../../../../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants
 [available-filtration-modes]:               ../../../../admin-en/configure-wallarm-mode.md#available-filtration-modes
