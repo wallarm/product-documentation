@@ -32,7 +32,7 @@ The MuleSoft integration does not allow the Wallarm node to fully analyze respon
 * Server responses are required for [passive vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection).
 * [Protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md).
 
-When applying the policy for out-of-band traffic analysis, be aware that this method has certain limitations, which also apply to the policy. More details can be found at the provided [link](../oob/overview.md#advantages-and-limitations).
+When applying the policy for out-of-band traffic analysis, be aware that this method has certain limitations, which also apply to the policy. More details can be found at the provided [link](../oob/overview.md#limitations).
 
 ## Requirements
 
