@@ -17,7 +17,7 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
 
 ## Limitations
 
-The Layer7 API Gateways integration supports only the out-of-band traffic analysis, be aware that this method has certain limitations, which also apply to the policy. More details can be found at the provided [link](../oob/overview.md#advantages-and-limitations).
+The Layer7 API Gateways integration supports only the out-of-band traffic analysis, be aware that this method has certain limitations, which also apply to the policy. More details can be found at the provided [link](../oob/overview.md#limitations).
 
 ## Requirements
 
