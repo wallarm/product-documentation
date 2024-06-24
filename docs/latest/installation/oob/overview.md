@@ -18,33 +18,25 @@ The diagram below provides a visual representation of the general traffic flow i
 
 ![OOB scheme](../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
 
-## Advantages and limitations
+## Advantages
 
 The OOB approach to the Wallarm deployment offers several advantages over other deployment methods, such as in-line deployments:
 
 * It does not introduce latency or other performance issues that can occur when the security solution operates in-line with the primary data path. 
 * It provides flexibility and ease of deployment, as the solution can be added or removed from the network without affecting the primary data path.
 
-Despite the OOB deployment approach safety, it has some limitations:
+## Limitations
 
-* Wallarm does not instantly block malicious requests since traffic analysis proceeds irrespective of actual traffic flow.
+Despite the OOB deployment approach safety, it has some limitations. The table below details the limitations associated with various deployment options:
 
-    Wallarm only observes attacks and provides you with the [details in Wallarm Console](../..//user-guides/events/analyze-attack.md).
-* Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
-
-    An exception is the [TCP traffic mirror analysis solution](tcp-traffic-mirror/deployment.md), which supports response mirror parsing.
-* The [Wallarm API Discovery](../../api-discovery/overview.md) does not explore API inventory based on your traffic as server responses required for the module operation are not mirrored.
-
-    The exceptions are:
-
-    * [eBPF](ebpf/deployment.md) solution, which conducts API inventory discovery by analyzing response codes.
-    * [TCP traffic mirror analysis solution](tcp-traffic-mirror/deployment.md), which supports response mirror parsing.
-* The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis which is currently not feasible.
-
-    The exceptions are:
-
-    * [eBPF](ebpf/deployment.md) solution, which analyzes response codes, making it suitable for this purpose.
-    * [TCP traffic mirror analysis solution](tcp-traffic-mirror/deployment.md), which supports response mirror parsing.
+| Feature | [eBPF](ebpf/deployment.md) | [TCP mirror](tcp-traffic-mirror/deployment.md) | [Web server mirror](web-server-mirroring/overview.md) |
+| --- | --- | --- | --- | 
+| Instant blocking of malicious requests | - | - | - |
+| Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) | - | + | - |
+| [API Discovery](../../api-discovery/overview.md) | + (excludes response structure) | + | - |
+| [Protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) | + | + | - |
+| [Rate limiting](../../user-guides/rules/rate-limiting.md) | - | - | - |
+| [IP lists](../../user-guides/ip-lists/overview.md) | - | - | - |
 
 ## Supported deployment options
 
