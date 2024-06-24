@@ -12,11 +12,11 @@ Among all supported [out-of-band deployment options](../../supported-deployment-
 
 ## How does it work
 
-This solution operates in out-of-band (OOB) mode, capturing mirrored TCP traffic directly from the network interface, independent of web servers like NGINX. The solution uses [GoReplay](https://goreplay.org) to capture the traffic and handle encapsulations (e.g., VLAN, VXLAN). The captured traffic is then parsed, reassembled, and analyzed for threats by the Wallarm services.
+This solution operates in out-of-band (OOB) mode, capturing mirrored TCP traffic directly from the network interface, independent of web servers like NGINX. The captured traffic is then parsed, reassembled, and analyzed for threats.
 
-It seamlessly swaps between multiple traffic sources. When multiple data sources are directed to a traffic mirror target (the instance with the Wallarm node), the solution efficiently collects traffic, allowing flexible monitoring without disruption. By reassembling TCP traffic, the Wallarm node ensures accurate threat detection and analysis, ensuring no suspicious activity is missed.
+It functions as a mirror target, seamlessly switching between multiple traffic sources. The solution supports traffic tagged with VLAN (802.1q), VXLAN, or SPAN.
 
-Additionally, the solution supports response mirror parsing, allowing non-interrupted traffic flow while providing Wallarm features that rely on response data. These features include vulnerability discovery, API discovery, and more.
+Additionally, the solution enables response mirror parsing, providing Wallarm features that rely on response data. These features include [vulnerability detection](../../../about-wallarm/detecting-vulnerabilities.md), [API discovery](../../../api-discovery/overview.md) and more.
 
 ## Requirements
 
@@ -41,6 +41,7 @@ Additionally, the solution supports response mirror parsing, allowing non-interr
             34.144.227.90
             ```
 * Traffic and response mirroring must be configured with both source and target set up, and the prepared instance chosen as a mirror target. Specific environment requirements must be met, such as allowing specific protocols for traffic mirroring configurations.
+* Mirrored traffic is tagged with either VLAN (802.1q), VXLAN, or SPAN. 
 
 ## Step 1: Prepare Wallarm token
 
@@ -72,7 +73,7 @@ To download Wallarm installation script and make it executable, use the followin
 
 ## Step 3: Prepare the configurarion file
 
-Create the `wallarm-node-conf.yaml` file on the instance. The solution requires proper configuration to identify the network interface and the traffic format (e.g., VLAN, VXLAN). The minimal content should include the following settings:
+Create the `wallarm-node-conf.yaml` file on the instance. The solution requires proper configuration to identify the network interface and the traffic format (e.g., VLAN, VXLAN). The example content of the file:
 
 ```yaml
 Version: 1
@@ -284,5 +285,9 @@ If there is a problem with the upgrade or reinstallation process:
 
 ## Limitations
 
-* [Rate limits](../../../user-guides/rules/rate-limiting.md) and [IP lists](../../../user-guides/ip-lists/overview.md) are not supported yet.
+* Due to its out-of-band (OOB) operation, which analyzes traffic independently from actual flow, the solution has several inherent limitations:
+
+    * It does not instantly block malicious requests. Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../../user-guides/events/analyze-attack.md).
+    * [Rate limiting](../../../user-guides/rules/rate-limiting.md) is not supported as it is impossible to limit load on target servers.
+    * [Filtering by IP addresses](../../../user-guides/ip-lists/overview.md) is not supported.
 * Traffic decryption is not supported. The solution only analyzes raw TCP traffic.
