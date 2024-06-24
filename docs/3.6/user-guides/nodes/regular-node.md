@@ -7,7 +7,7 @@ The regular filtering node is used in Linux‑based, Kubernetes sidecar and Dock
 The regular filtering node is created while setting up integration with the platform:
 
 * [NGINX](../../installation/nginx/dynamic-module.md)
-* [NGINX Plus](../..//installation/nginx-plus.md)
+* [NGINX Plus](../../installation/nginx-plus.md)
 * [Docker](../../admin-en/installation-docker-en.md)
 * [Kubernetes sidecar container](../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
 * [Kong](../../admin-en/installation-kong-en.md)

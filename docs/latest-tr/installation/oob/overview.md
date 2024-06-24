@@ -29,7 +29,7 @@ OOB'ların güvenilir dağıtımı olmasına rağmen, bazı sınırlamaları var
 
 * Wallarm, trafik analizinin gerçek trafik akışına bakılmaksızın ilerlemesine bağlı olarak kötün niyetli talepleri hemen engellemez.
 
-    Wallarm sadece saldırıları gözlemler ve size [Wallarm Konsolu'ndaki detayları](../..//user-guides/events/analyze-attack.md) sunar.
+    Wallarm sadece saldırıları gözlemler ve size [Wallarm Konsolu'ndaki detayları](../../user-guides/events/analyze-attack.md) sunar.
 * [Pasif algılama](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) yöntemi ile zafiyet tespiti doğru bir şekilde çalışmaz. Çözüm, bir API'nin savunmasız olup olmadığını, sunucunun zafiyetleri test etmek için tipik olan kötü niyetli taleplere yanıt vermesine dayanarak belirler.
 * [Wallarm API Keşfi](../../about-wallarm/api-discovery.md), sunucu yanıtlarının modül çalışması için gerekli olduğu API envanterini sizin trafiğinize dayanarak araştırmaz.
 * [Zorla gezinmeye karşı koruma](../../admin-en/configuration-guides/protecting-against-bruteforce.md), yanıt kodu analizi gerektirir ki bu şu anlık teknik olarak mümkün değildir.

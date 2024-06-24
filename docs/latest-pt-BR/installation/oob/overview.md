@@ -29,7 +29,7 @@ Apesar da segurança da abordagem de implantação OOB, tem algumas limitações
 
 * O Wallarm não bloqueia instantaneamente as solicitações maliciosas, pois a análise de tráfego prossegue independentemente do fluxo de tráfego real.
 
-    O Wallarm apenas observa os ataques e fornece a você os [detalhes no console do Wallarm](../..//user-guides/events/analyze-attack.md).
+    O Wallarm apenas observa os ataques e fornece a você os [detalhes no console do Wallarm](../../user-guides/events/analyze-attack.md).
 * A descoberta de vulnerabilidades usando o método de [detecção passiva](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) não funciona corretamente. A solução determina se uma API é vulnerável ou não com base nas respostas do servidor a solicitações maliciosas típicas das vulnerabilidades que testa.
 * A [Descoberta de API do Wallarm](../../about-wallarm/api-discovery.md) não explora o inventário de API com base no seu tráfego, pois as respostas do servidor necessárias para a operação do módulo não são espelhadas.
 * A [proteção contra a navegação forçada](../../admin-en/configuration-guides/protecting-against-bruteforce.md) não está disponível, pois exige a análise do código de resposta, o que atualmente não é viável.
