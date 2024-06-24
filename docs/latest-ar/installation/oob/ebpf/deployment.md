@@ -188,6 +188,6 @@ kubectl patch deployment <DEPLOYMENT_NAME> -n <NAMESPACE> -p '{"spec": {"templat
 
 * الحل لا يحظر فوريًا الطلبات الخبيثة حيث يتابع تحليل المرور بغض النظر عن تدفق المرور الفعلي.
 
-    Wallarm فقط تلاحظ الهجمات وتوفر لك [التفاصيل في وحدة التحكم Wallarm](../../..//user-guides/events/analyze-attack.md).
+    Wallarm فقط تلاحظ الهجمات وتوفر لك [التفاصيل في وحدة التحكم Wallarm](../../../user-guides/events/analyze-attack.md).
 * كشف الثغرات الأمنية القائمة على [الكشف السلبي](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) غير متاح حيث أن أجسام الرد من الخادم المطلوبة لتحديد الثغرات الأمنية لا يتم تطابقها.
 * بينما الحل ما زال في البيتا، ليست كل موارد Kubernetes يمكن أن تكون متطابقة بشكل فعال. لذلك، نوصي بتمكين تطابق المرور خصيصاً لوحدات التحكم NGINX Ingress، أو وحدات التحكم Kong Ingress، أو خوادم NGINX العادية في Kubernetes.
