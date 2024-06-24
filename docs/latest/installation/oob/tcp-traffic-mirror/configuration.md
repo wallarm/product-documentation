@@ -12,8 +12,8 @@ GoreplayMiddleware:
   Goreplay:
     Filter: <your network interface and port, e.g. "lo:" or "enp7s0:">
     ExtraArgs:
-      - ...
-      - ...
+      - -input-raw-engine
+      - vxlan
   Middleware:
     RouteConfig:
       Wallarm:
@@ -60,9 +60,9 @@ ip link show command
 
 ### GoreplayMiddleware.Goreplay.ExtraArgs
 
-Specifies arguments for what traffic to capture or any [other extra arguments](https://github.com/buger/goreplay/blob/master/docs/Request-filtering.md) passed to GoReplay.
+This parameter allows you to specify [extra arguments](https://github.com/buger/goreplay/blob/master/docs/Request-filtering.md) to be passed to GoReplay.
 
-Usage examples:
+Typically, you will use it to define the types of mirrored traffic requiring analysis, such as VLAN, VXLAN. For example:
 
 * For VLAN-wrapped mirrored traffic, provide the following:
 
@@ -96,6 +96,16 @@ Usage examples:
           # Specific VNI (by default, all VNIs are captured), e.g.:
           # - -input-raw-vxlan-vni
           # - 1
+    ```
+
+* If the mirrored traffic is not wrapped in additional protocols like VLAN or VXLAN, you can omit the `ExtraArgs` configuration. Unencapsulated traffic is parsed by default.
+
+    ```yaml
+    Version: 1
+    GoreplayMiddleware:
+      Enabled: true
+      Goreplay:
+        Filter: <your network interface and port, e.g. "lo:" or "enp7s0:">
     ```
 
 ### GoreplayMiddleware.Middleware.RouteConfig
@@ -261,11 +271,9 @@ Default: `5s`.
 
 ### GoreplayMiddleware.Wallarm.WallarmDirPath
 
-Specifies the directory path for node configuration files. Files are placed in `/opt/wallarm` and then in the specified directory.
+Specifies the directory path for node configuration files. Typically, you do not need to modify this parameter. If you need assistance, please contact the [Wallarm support team](mailto:support@wallarm.com).
 
-Typically, you do not need to modify this parameter. If you need assistance, please contact the [Wallarm support team](mailto:support@wallarm.com).
-
-Default: `/etc/wallarm` which means `/opt/wallarm/etc/wallarm`.
+Default: `/opt/wallarm/etc/wallarm`.
 
 ### GoreplayMiddleware.Wallarm.APIFirewall.Enabled
 
