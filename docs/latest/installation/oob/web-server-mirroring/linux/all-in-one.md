@@ -31,7 +31,7 @@ search:
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
-[oob-advantages-limitations]:       ../../../oob/overview.md#advantages-and-limitations
+[oob-advantages-limitations]:       ../../../oob/overview.md#limitations
 [web-server-mirroring-examples]:    ../../../oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
 [download-aio-step]:                #step-3-download-all-in-one-wallarm-installer
 [enable-traffic-analysis-step]:     #step-5-enable-wallarm-node-to-analyze-traffic
