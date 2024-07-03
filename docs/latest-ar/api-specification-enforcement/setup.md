@@ -39,35 +39,6 @@
 
     عند استخدام المواصفات لأول مرة لتطبيق سياسة واجهة برمجة التطبيقات، يُنصح بتعيين `Monitor` كرد فعل للتأكد من أن المواصفات تُطبق على النقاط الضرورية وتكتشف الأخطاء الحقيقية.
 
-## الخطوة 3: تهيئة حالات مُحددة أو تعطيل
-
-تحتاج إلى تهيئة إضافية عند استخدام تطبيق سياسة واجهة برمجة التطبيقات مع عُقد Wallarm المستندة إلى NGINX والمُثبتة باستخدام:
-
-* [مُثبت شامل](../installation/nginx/all-in-one.md)
-* [صورة Docker](../admin-en/installation-docker-en.md) - فقط عندما تقوم بـ [تحميل](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file) ملف تهيئة مُخصص الخاص بك
-
-تحتاج إلى:
-
-1. إضافة القطعة التالية في ملفات تهيئة NGINX، في كل قسم `server` حيث يجب أن يعمل تطبيق سياسة واجهة برمجة التطبيقات:
-
-    ```
-    location ~ ^/wallarm-apifw(.*)$ {
-        wallarm_mode off;
-        proxy_pass http://127.0.0.1:8088$1;
-        error_page 404 431         = @wallarm-apifw-fallback;
-        error_page 500 502 503 504 = @wallarm-apifw-fallback;
-        
-        allow 127.0.0.0/8;
-        deny all;
-    }
-    location @wallarm-apifw-fallback {
-        wallarm_mode off;
-        return 500 "API FW fallback";
-    }
-    ```
-
-1. بما أن تطبيق سياسة واجهة برمجة التطبيقات لا يدعم [gRPC](https://en.wikipedia.org/wiki/GRPC)، إذا كان بعض عُقدك أو مواقع/خوادم تستخدم gRPC، عطل تطبيق سياسة واجهة برمجة التطبيقات لها كما هو موضح أدناه.
-
 **التعطيل**
 
 في بعض الحالات، قد يكون من الضروري تعطيل وظيفة تطبيق سياسة واجهة برمجة التطبيقات لبعض أجزاء واجهة برمجة التطبيقات الخاصة بك. يمكن القيام بذلك:
