@@ -39,36 +39,7 @@ Note that you will not be able to start configuring API specification enforcemen
 
     When using the specification for setting security policies for the first time, it is recommended to set `Monitor` as a reaction to make sure that the specification is applied to the necessary endpoints and detects real errors.
 
-## Step 3: Configure specific cases or disable
-
-You need additional configuration when using API Specification Enforcement with the NGINX-based Wallarm nodes installed with:
-
-* [All-in-one installer](../installation/nginx/all-in-one.md)
-* [Docker image](../admin-en/installation-docker-en.md) - only when you [mount](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file) your own custom configuration file
-
-You need to:
-
-1. Add the following snippet in the NGINX configuration files, in each `server` section where API Specification Enforcement should run:
-
-    ```
-    location ~ ^/wallarm-apifw(.*)$ {
-        wallarm_mode off;
-        proxy_pass http://127.0.0.1:8088$1;
-        error_page 404 431         = @wallarm-apifw-fallback;
-        error_page 500 502 503 504 = @wallarm-apifw-fallback;
-        
-        allow 127.0.0.0/8;
-        deny all;
-    }
-    location @wallarm-apifw-fallback {
-        wallarm_mode off;
-        return 500 "API FW fallback";
-    }
-    ```
-
-1. As API Specification Enforcement does not support [gRPC](https://en.wikipedia.org/wiki/GRPC), if some of your nodes or locations/servers use gRPC, disable API Specification Enforcement for them as described below.
-
-**Disabling**
+## Disabling
 
 In some cases that may be necessary to disable the API Specification Enforcement functionality for some parts of your API. This can be done:
 

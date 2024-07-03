@@ -79,21 +79,6 @@ In this file, you need to specify the Wallarm node configuration to process mirr
 
             wallarm_mode monitoring;
 
-            location ~ ^/wallarm-apifw(.*)$ {
-                    wallarm_mode off;
-                    proxy_pass http://127.0.0.1:8088$1;
-                    error_page 404 431         = @wallarm-apifw-fallback;
-                    error_page 500 502 503 504 = @wallarm-apifw-fallback;
-        
-                    allow 127.0.0.0/8;
-                    deny all;
-            }
-
-            location @wallarm-apifw-fallback {
-                    wallarm_mode off;
-                    return 500 "API FW fallback";
-            }
-
             location / {
                     
                     proxy_pass http://example.com;
@@ -137,11 +122,11 @@ Run the Docker container with the node [mounting](https://docs.docker.com/storag
 
 === "US Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.6-1
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.7-1
     ```
 === "EU Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.6-1
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.7-1
     ```
 
 The following environment variables should be passed to the container:

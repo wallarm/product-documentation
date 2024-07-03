@@ -24,11 +24,11 @@ To run the container:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.10.6-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.10.7-1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:4.10.6-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:4.10.7-1
         ```
 
 You can pass the following basic filtering node settings to the container via the option `-e`:
@@ -58,11 +58,11 @@ To run the container:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.6-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.7-1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.6-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.7-1
         ```
 
     * The `-e` option passes the following required environment variables to the container:
@@ -88,21 +88,6 @@ To run the container:
                     index index.html index.htm;
 
                     wallarm_mode monitoring;
-                    
-                    location ~ ^/wallarm-apifw(.*)$ {
-                          wallarm_mode off;
-                          proxy_pass http://127.0.0.1:8088$1;
-                          error_page 404 431         = @wallarm-apifw-fallback;
-                          error_page 500 502 503 504 = @wallarm-apifw-fallback;
-        
-                          allow 127.0.0.0/8;
-                          deny all;
-                    }
-
-                    location @wallarm-apifw-fallback {
-                          wallarm_mode off;
-                          return 500 "API FW fallback";
-                    }
 
                     location / {
                             

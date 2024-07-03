@@ -10,6 +10,15 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.10.7 (2024-07-03)
+
+* Added support for NGINX v1.26.1 stable
+* Added support for NGINX v1.25.5 mainline
+* Added support for NGINX Plus R32
+* Fixed the `syncnode` issue `Could not update (TypeError): no implicit conversion of nil into String` that sometimes appeared when registering a node in Wallarm Cloud using a node token
+* [API Specification Enforcement](../api-specification-enforcement/overview.md) no longer requires manual NGINX configuration changes in `server` sections
+* Optimized OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
+
 ### 4.10.6 (2024-05-16)
 
 * Enhanced OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
@@ -99,6 +108,12 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 4.10.7 (2024-07-03)
+
+* Fixed the `syncnode` issue `Could not update (TypeError): no implicit conversion of nil into String` that sometimes appeared when registering a node in Wallarm Cloud using a node token
+* Optimized OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
+* Upgraded the controller to Go 1.21.11 for CVE fixes
 
 ### 4.10.6 (2024-05-22)
 
@@ -296,6 +311,14 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 4.10.7-1 (2024-07-03)
+
+* Upgraded the Alpine Linux version used in the Docker image to 3.20
+* Upgraded the NGINX stable version used in the image to 1.26.1
+* Fixed the `syncnode` issue `Could not update (TypeError): no implicit conversion of nil into String` that sometimes appeared when registering a node in Wallarm Cloud using a node token
+* [API Specification Enforcement](../api-specification-enforcement/overview.md) no longer requires manual NGINX configuration changes in `server` sections
+* Optimized OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
 
 ### 4.10.6-1 (2024-05-17)
 
