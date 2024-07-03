@@ -96,12 +96,6 @@ Additionally, this update introduces new parameters for some deployment options,
 * For NGINX Ingress Controller: the [`controller.wallarm.apifirewall`](../../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) values group.
 * For NGINX-based Docker image: the environment variable `WALLARM_APIFW_ENABLE`.
 
-!!! info "Required configuration"
-    You need [additional configuration](../../api-specification-enforcement/setup.md#step-3-configure-specific-cases-or-disable) when using API Specification Enforcement with the NGINX-based Wallarm nodes installed with:
-
-      * [All-in-one installer](../../installation/nginx/all-in-one.md)
-      * [Docker image](../../admin-en/installation-docker-en.md) - only when you [mount](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file) your own custom configuration file
-
 [Learn how to configure API Specification Enforcement](../../api-specification-enforcement/setup.md)
 
 ![Specification - use for applying security policies](../../images/api-specification-enforcement/api-specification-enforcement-events.png)
