@@ -308,9 +308,9 @@ If the listed parameters are explicitly specified in the configuration files and
 The [Docker image of Wallarm's NGINX-based filtering node](../../admin-en/installation-docker-en.md) has been revamped for enhanced security and optimization. Key updates include:
 
 * The Docker image is now built on Alpine Linux, replacing Debian, to provide a more secure and lightweight artifact. Please note that the `auth-pam` and `subs-filter` NGINX modules, previously included, are no longer packaged with the Docker image.
-* Updated to the latest stable version of NGINX, 1.24.0, replacing the previous 1.14.x version. Although most vulnerabilities in 1.14.x were patched by the Debian team (the prior image was based on Debian 10.x), upgrading to 1.24.0 addresses remaining vulnerabilities for improved security.
+* Updated to the latest stable version of NGINX, 1.26.1, replacing the previous 1.14.x version. Although most vulnerabilities in 1.14.x were patched by the Debian team (the prior image was based on Debian 10.x), upgrading to 1.26.1 addresses remaining vulnerabilities for improved security.
 
-      The NGINX upgrade, along with the switch to Alpine Linux, resolves the HTTP/2 Rapid Reset Vulnerability (CVE-2023-44487), due to the Alpine-specific patch implemented in NGINX 1.24.0.
+      The NGINX upgrade, along with the switch to Alpine Linux, resolves the HTTP/2 Rapid Reset Vulnerability (CVE-2023-44487), due to the Alpine-specific patch implemented in NGINX 1.26.1.
 
 * Support for processors with ARM64 architecture, which is automatically identified during the installation process.
 * Inside the Docker container, all operations now utilize the non-root user `wallarm`, a change from the previous `root` user setup. It affects the NGINX process as well.

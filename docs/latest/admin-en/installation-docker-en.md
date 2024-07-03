@@ -102,6 +102,29 @@ To run the container:
 
             * `/etc/nginx/nginx.conf` - This is the main NGINX configuration file. If you decide to mount this file, additional steps are necessary for proper Wallarm functionality:
 
+                1. In `nginx.conf`, add the following setting at the top level:
+
+                    ```
+                    include /etc/nginx/modules-enabled/*.conf;
+                    ```
+                1. In `nginx.conf`, add the `wallarm_srv_include /etc/nginx/wallarm-apifw-loc.conf;` directive in the `http` block. This specifies the path to the configuration file for [API Specification Enforcement][api-policy-enf-docs].
+                1. Mount the `wallarm-apifw-loc.conf` file to the specified path. The content should be:
+
+                    ```
+                    location ~ ^/wallarm-apifw(.*)$ {
+                            wallarm_mode off;
+                            proxy_pass http://127.0.0.1:8088$1;
+                            error_page 404 431         = @wallarm-apifw-fallback;
+                            error_page 500 502 503 504 = @wallarm-apifw-fallback;
+                            allow 127.0.0.0/8;
+                            deny all;
+                    }
+
+                    location @wallarm-apifw-fallback {
+                            wallarm_mode off;
+                            return 500 "API FW fallback";
+                    }
+                    ```
                 1. Mount the `/etc/nginx/conf.d/wallarm-status.conf` file, ensuring its contents align with the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/4.10/conf/nginx_templates/wallarm-status.conf.tmpl).
                 1. Within the NGINX configuration files, set up the configuration for the [`/wallarm-status` service][node-status-docs] according to the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/4.10/conf/nginx_templates/default.conf.tmpl#L32).
             * `/etc/nginx/conf.d` — common settings

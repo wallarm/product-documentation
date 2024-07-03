@@ -37,35 +37,6 @@
 
     仕様をAPIポリシー適用に初めて使用する場合は、仕様が必要なエンドポイントに適用され、実際のエラーを検出することを確認するために、反応として`モニター`を設定することを推奨します。
 
-## ステップ3: 特定のケースを設定するか無効にする
-
-NGINXベースのWallarmノードを使用したAPIポリシー適用には、以下のインストーラでインストールされたもので追加の設定が必要です：
-
-* [オールインワンインストーラ](../installation/nginx/all-in-one.md)
-* [Dockerイメージ](../admin-en/installation-docker-en.md) - 自分のカスタム設定ファイルを[マウント](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)する場合のみ
-
-以下の手順を実行してください：
-
-1. APIポリシー適用を実行する各`server`セクションに、以下のスニペットをNGINX設定ファイルに追加します：
-
-    ```
-    location ~ ^/wallarm-apifw(.*)$ {
-        wallarm_mode off;
-        proxy_pass http://127.0.0.1:8088$1;
-        error_page 404 431         = @wallarm-apifw-fallback;
-        error_page 500 502 503 504 = @wallarm-apifw-fallback;
-        
-        allow 127.0.0.0/8;
-        deny all;
-    }
-    location @wallarm-apifw-fallback {
-        wallarm_mode off;
-        return 500 "API FW fallback";
-    }
-    ```
-
-1. APIポリシー適用が[gRPC](https://en.wikipedia.org/wiki/GRPC)をサポートしていないため、いずれかのノードやロケーション/サーバーがgRPCを使用している場合は、それらに対してAPIポリシー適用を無効にします。
-
 **無効化**
 
 APIの一部をAPIポリシー適用機能から除外する必要がある場合、以下の方法で行うことができます：
