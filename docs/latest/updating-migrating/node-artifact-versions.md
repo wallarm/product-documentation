@@ -10,6 +10,15 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.10.7 (2024-07-03)
+
+* Added support for NGINX v1.26.1 stable
+* Added support for NGINX v1.25.5 mainline
+* Added support for NGINX Plus R32
+* Fixed the `syncnode` issue `Could not update (TypeError): no implicit conversion of nil into String` that sometimes appeared when registering a node in Wallarm Cloud using a node token
+* [API Specification Enforcement](../api-specification-enforcement/overview.md) no longer requires manual NGINX configuration changes in `server` sections
+* Optimized OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
+
 ### 4.10.6 (2024-05-16)
 
 * Enhanced OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
