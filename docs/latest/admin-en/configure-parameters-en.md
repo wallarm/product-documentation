@@ -678,6 +678,19 @@ By default, limits are off.
     This parameter can be set inside the http, server, and/or location blocks.
 
 
+### wallarm_srv_include
+
+Specifies the path to the configuration file for [API Specification Enforcement](../api-specification-enforcement/overview.md). This file is included with all deployment artifacts by default, and usually no changes are needed.
+
+However, if you use an [NGINX-based Docker image with a custom `nginx.conf`](installation-docker-en.md#run-the-container-mounting-the-configuration-file), you must specify this directive and place the file at the specified path.
+
+The directive is available from release 4.10.7 onwards.
+
+!!! info
+    The parameter is configured inside the http block only.
+
+    **Default value**: `/etc/nginx/wallarm-apifw-loc.conf;`.
+
 ### wallarm_stalled_worker_timeout
 
 Sets the time limit for processing a single request for an NGINX worker in seconds.
