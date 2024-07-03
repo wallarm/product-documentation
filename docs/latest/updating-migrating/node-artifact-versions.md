@@ -403,6 +403,11 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](cloud-image.md)
 
+### 4.10.7-1 (2024-07-03)
+
+* Fixed the `syncnode` issue `Could not update (TypeError): no implicit conversion of nil into String` that sometimes appeared when registering a node in Wallarm Cloud using a node token
+* Optimized OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
+
 ### 4.10.6-1 (2024-05-22)
 
 * Enhanced OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
