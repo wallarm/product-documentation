@@ -306,6 +306,14 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](docker-container.md)
 
+### 4.10.7-1 (2024-07-03)
+
+* Upgraded the Alpine Linux version used in the Docker image to 3.20
+* Upgraded the NGINX stable version used in the image to 1.26.1
+* Fixed the `syncnode` issue `Could not update (TypeError): no implicit conversion of nil into String` that sometimes appeared when registering a node in Wallarm Cloud using a node token
+* [API Specification Enforcement](../api-specification-enforcement/overview.md) no longer requires manual NGINX configuration changes in `server` sections
+* Optimized OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
+
 ### 4.10.6-1 (2024-05-17)
 
 * Enhanced OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
