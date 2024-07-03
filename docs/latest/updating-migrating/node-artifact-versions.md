@@ -109,6 +109,12 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.10.7 (2024-07-03)
+
+* Fixed the `syncnode` issue `Could not update (TypeError): no implicit conversion of nil into String` that sometimes appeared when registering a node in Wallarm Cloud using a node token
+* Optimized OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
+* Upgraded the controller to Go 1.21.11 for CVE fixes
+
 ### 4.10.6 (2024-05-22)
 
 * Added the [`controller.wallarm.container_name.extraEnvs`](../admin-en/configure-kubernetes-en.md#controllerwallarmcontainer_nameextraenvs) chart values to allow passing additional environment variables to Docker containers utilized by the solution
