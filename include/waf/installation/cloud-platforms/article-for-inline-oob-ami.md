@@ -2,6 +2,8 @@
 
 This article provides instructions for deploying Wallarm on AWS using the [official Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD). The solution can be deployed either [in-line][inline-docs] or [Out-of-Band][oob-docs].
 
+The latest Wallarm AMI is based on Debian 12 and uses NGINX 1.22.1 from the Debian repository.
+
 ## Use cases
 
 --8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"

@@ -2,6 +2,8 @@
 
 The Wallarm NGINX-based filtering node can be deployed using a [Docker image](https://hub.docker.com/r/wallarm/node). This node supports both x86_64 and ARM64 processor operating systems, which are automatically identified during installation. This article provides guidance on how to run the node from the Docker image.
 
+The Docker image is based on Alpine Linux and the NGINX version provided by Alpine. Currently, the latest image uses Alpine Linux version 3.20, which includes NGINX stable 1.26.1.
+
 ## Use cases
 
 --8<-- "../include/waf/installation/docker-images/nginx-based-use-cases.md"
