@@ -52,35 +52,35 @@ You can configure the weight of each factor in [risk score](risk-score.md) calcu
 
 ### Customizing sensitive data detection
 
-API Discovery detects sensitive data in requests. To make sensitive data detection fully comply with the specific needs of your company and industry-specific regulations such as GDPR, HIPAA, PCI DSS, etc., API Discovery provides the ability of fine-tuning the detection process. Customization empowers you to meet your company unique data protection obligations. Additionally, if any proprietary or specialized sensitive data elements are presented in your data flows, you will benefit from the ability to define custom regular expressions for its precise identification.
+API Discovery detects sensitive data in requests and responses. To make sensitive data detection fully comply with your company's specific needs and industry-specific regulations such as GDPR, HIPAA, PCI DSS, etc., API Discovery provides the ability to fine-tune the detection process. Customization empowers you to meet your company's unique data protection obligations. Additionally, if any proprietary or specialized sensitive data elements are presented in your data flows, you will benefit from the ability to define custom regular expressions for their precise identification.
 
 Sensitive data detection is configured with the set **sensitive data patterns** - each pattern defines specific sensitive data and settings for its search. API Discovery goes with the set of default patterns. You can modify default patterns and add your own in Wallarm Console → **API Discovery** → **Configure API Discovery** → **Sensitive data**.
 
-You cannot delete the default patterns. If you modified them, you can at any moment restore them to the initial settings. You own patterns can be both modified and deleted at any moment. You can temporarily disable any pattern without deleting it.
+You can modify or disable the default (out-of-box) patterns and quickly restore them to initial settings if necessary. Your own patterns can be created, modified, disabled and deleted at any moment.
 
-**Scores**
+**Confidence scores**
 
-You can use patterns and context words to configure your sensitive data detection. Choose the confidence scores from `0.1` to `1.0` for your patterns and context words to specify how confident you are that matching to this expression or presence of the string or word means presence of sensitive data. Use appropriate scores to detect more real entities and produce fewer false positives.
+You can use patterns and context words to configure your sensitive data detection. Choose the confidence scores from `0.1` to `1.0` for your patterns and context words to specify how confident you are that matching this expression or the presence of the string or word next to the sensitive data means the presence of sensitive data. Use appropriate scores to detect more real entities and produce fewer false positives.
 
-It is recommended that you adjust score values after trying them on real traffic data.
+You should adjust confidence scores after trying them on actual traffic data.
 
-**Pattern based detection**
+**Pattern-based detection**
 
-You can use a string or a regular expression in [PCRE](https://www.pcre.org/) format as patterns for parameter's **value**. When you use a regular expression, detection becomes much more precise. You can use several patterns with different scores. If any is matched, the sensitive data is detected.
+Use a regular expression in [PCRE](https://www.pcre.org/) format to match the expected sensitive data value. When you use a regular expression, detection becomes much more precise. You can use several patterns with different scores. If any is matched, the sensitive data is detected.
 
-Patterns are good for fixed-length tokens, IDs, and URIs.
+Patterns are suitable for fixed-length tokens, IDs, and URIs.
 
 **Context words**
 
-Wallarm looks at 5 words ahead of the value that matched the pattern and if a context word is among them, it boosts the resulting confidence score. The context words can be the URL path, query parameter name, JSON keys, and other parameters close to the value.
+Wallarm looks at the words around the suspected sensitive data that match the pattern. If any of the context words is found, it boosts the resulting confidence score. The context can come from URL path, query parameter name, JSON keys, the parameter’s value itself, and other parameters next to it.
 
 ![API Discovery – Settings - Sensitive data](../images/about-wallarm-waf/api-discovery/api-discovery-settings-sd.png)
 
-**Context word only based detection**
+**Context word only-based detection**
 
-If you specify context words without patterns, Wallarm decides on sensitive data presence based on presence of the words. The more the sum of the confidence scores is, the more chances that the parameter will be marked as having your described sensitive data.
+If you specify context words without patterns, Wallarm decides on sensitive data presence based on the presence of the words. The more the confidence scores sum, the more likely the parameter will be marked as having your described sensitive data.
 
-For some context-only searches, it is necessary to declare some words as **definitive**: if definitive word is not presented in the value’s context, the parameter definitely does not contain sensitive data.
+For some context-only searches, it is necessary to declare some words as **definitive**: if the definitive word is not presented in the value's context, the parameter does not contain sensitive data.
 
 Example: personal_name
 
@@ -90,9 +90,9 @@ Context words:
 * first
 * middle
 
-We have to match on `middle_name`, but not on `name` or on `middle`. So, we set a score for `name` to `0.1` so we will not match on `name`. But we have to give `middle` a big score of `0.5`, because “middle_name” is a strong combination.
+We must match `middle_name,` but not `name` or `middle`. So, we set a score for `name` to `0.1` so we will not match `name`. But we must give `middle` a big score of `0.5` because "middle_name" is a strong combination.
 
-To not make us detect on “middle” without `name`, we mark `name` as definitive for an entity. If `name` is not found, no sensitive data is detected.
+To prevent us from detecting "middle" without `name,` we mark `name` as definitive for an entity. If `name` is not found, no sensitive data is detected.
 
 ![API Discovery – Settings - Sensitive data - Creating custom pattern](../images/about-wallarm-waf/api-discovery/api-discovery-settings-sd-own-pattern.png)
 
