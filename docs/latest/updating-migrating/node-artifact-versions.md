@@ -110,7 +110,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 * Fixed the `syncnode` issue `Could not update (TypeError): no implicit conversion of nil into String` that sometimes appeared when registering a node in Wallarm Cloud using a node token
 * Optimized OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
-* Upgraded the controller to Go 1.21.11 for CVE fixes
+* Upgraded the controller to Go 1.21.11 for the [CVE-2024-24790](https://github.com/advisories/GHSA-49gw-vxvf-fc2g) fix
 
 ### 4.10.6 (2024-05-22)
 
