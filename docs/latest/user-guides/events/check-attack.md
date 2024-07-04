@@ -8,12 +8,13 @@
 [search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
 [img-verification-statuses]:    ../../images/user-guides/events/attack-verification-statuses.png
 [img-verify-attack]:            ../../images/user-guides/events/verify-attack.png
-[img-verified-icon]:            ../../images/user-guides/events/verified.png#mini
+[img-verified-icon]:            ../../images/user-guides/events/verified.png
 [img-error-icon]:               ../../images/user-guides/events/error.png#mini
 [img-forced-icon]:              ../../images/user-guides/events/forced.png#mini
 [img-sheduled-icon]:            ../../images/user-guides/events/sheduled.png#mini
-[img-cloud-icon]:           ../../images/user-guides/events/cloud.png#mini
+[img-cloud-icon]:               ../../images/user-guides/events/cloud.png#mini
 [img-skip-icon]:                ../../images/user-guides/events/skipped.png#mini
+[img-happening-icon]:           ../../images/user-guides/events/happening.png#mini
 [al-brute-force-attack]:      ../../attacks-vulns-list.md#brute-force-attack
 [al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
 [al-bola]:                    ../../attacks-vulns-list.md#broken-object-level-authorization-bola
@@ -33,20 +34,21 @@ In Wallarm Console, you can check detected attacks in the **Attacks** section.
 
 ## Attack list
 
-The attack list presents data on attacks for the selected period (today's attacks by default), including the number of unique [malicious payload](../../glossary-en.md#malicious-payload), blocking status (depends on the [traffic filtration mode](../../admin-en/configure-wallarm-mode.md)), and [verification status](#verifying-attacks).
+The attack list presents data on attacks for the selected period (today's attacks by default), including the number of unique [malicious payload](../../glossary-en.md#malicious-payload), blocking status (depends on the [traffic filtration mode](../../admin-en/configure-wallarm-mode.md)),  [verification status](#verifying-attacks), and other data.
 
 ![Attacks tab][img-attacks-tab]
 
 Note that you [can use][use-search] search field and filters as alternatives.
 
-To get the attack details, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is the example of the API call for **getting the first 50 attacks detected in the last 24 hours**.
+## Grouping of hits
 
-Please replacing `TIMESTAMP` with the date 24 hours ago converted to the [Unix Timestamp](https://www.unixtimestamp.com/) format.
+When forming the attack list, Wallarm groups [hits](../../glossary-en.md#hit) sent from the same IP address into one attack. If grouped hits have different attack types, malicious payloads and URLs, attack parameters will be marked with the `[multiple]` tag in the attack list.
 
---8<-- "../include/api-request-examples/get-attacks-en.md"
+Grouping is by default enabled in Wallarm Console → **Triggers** with the **Hits from the same IP** default trigger which activates when a single IP address originates more than 50 hits within 15 minutes.
 
-!!! warning "Getting 100 or more attacks"
-    For attack and hit sets containing 100 or more records, it is best to retrieve them in smaller pieces rather than fetching large datasets all at once, in order to optimize performance. [Explore the corresponding request example](../../api/request-examples.md#get-a-large-number-of-attacks-100-and-more)
+![Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
+
+You can adjust grouping under your needs: do this by creating your custom triggers of the **Hits from the same IP** type. Creating any custom trigger deletes the default one, if you delete all your custom triggers, the default is restored. You can also pause grouping by temporary disabling the default trigger.
 
 ## Attack details
 
@@ -89,6 +91,62 @@ Note that search/filters will display both `Monitoring` and - if sending informa
 
 Within the `Blocked` events, use tags to switch to the reason of denylisting - BOLA settings, API Abuse Prevention, trigger or causing record in denylist.
 -->
+
+## Sampling of hits
+
+When forming the attack details, Wallarm automatically makes information about attack more comfortable for analysis by displaying only unique [hits](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) - non-unique (comparable and identical) hits are dropped from uploading to the Wallarm Cloud and not displayed. This process is called hit **sampling**.
+
+Hit sampling does not affect the quality of attack detection but helps to avoid its slowdown. Wallarm node continues attack detection and [blocking](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) even with hit sampling enabled.
+
+The **Hits sampling is enabled** notification shows that sampling works now. You can click this notification or add [`sampled`](../search-and-filters/use-search.md#search-for-sampled-hits) to the search field to see only attacks that sampling was applied to. In the attack details you will see how many similar hits were detected but not displayed:
+
+![Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
+
+!!! info "Displaying dropped hits in the attack list"
+    Since dropped hits are not uploaded to the Wallarm Cloud, certain hits or whole attacks can be absent in the list of attacks.
+
+Since dropped requests are still requests processed by the Wallarm node, the RPS value in the node details UI increases with each dropped request. The number of requests and hits on the [Threat Prevention dashboard](../dashboards/threat-prevention.md) also includes the number of dropped hits.
+
+**When hit sampling is enabled**
+
+* For [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), hit sampling is disabled by default. If the percentage of attacks in your traffic is high, hit sampling is performed in two sequential stages: **extreme** and **regular**.
+* For [behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), attacks of the [Data bomb](../../attacks-vulns-list.md#data-bomb) and [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources): the **regular** sampling algorithm is enabled by default. **Extreme** sampling starts only if the percentage of attacks in your traffic is high.
+* For events from denylisted IPs, sampling is configured on the node side. It uploads only the first 10 identical requests to the Cloud while applying a sampling algorithm to the rest of the hits.
+
+When the sampling algorithm is enabled, in the **Attacks** section, the **Hits sampling is enabled** notification is displayed.
+
+Sampling will be automatically disabled once the percentage of attacks in the traffic decreases.
+
+**How hit sampling works**
+
+Hit sampling is performed in two sequential stages: **extreme** and **regular**.
+
+Regular algorithm processes only hits saved after the extreme stage, unless hits are of the [behavioral](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types. If extreme sampling is disabled for hits of these types, the regular algorithm processes the original hit set.
+
+**Extreme sampling**
+
+The extreme sampling algorithm has the following core logic:
+
+* If hits are of the [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks) type, the algorithm uploads to the Cloud only those with unique [malicious payloads](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). If several hits with the same payload are detected within an hour, only the first of them is uploaded to the Cloud and the others are dropped.
+* If hits are of the [behavioral](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types, the algorithm uploads to the Cloud only the first 10% of them detected within an hour.
+
+**Regular sampling**
+
+The regular sampling algorithm has the following core logic:
+
+1. The first 5 identical hits for each hour are saved in the sample in the Wallarm Cloud. The rest of the hits are not saved in the sample, but their number is recorded in a separate parameter.
+
+    The hits are identical if all of the following parameters have the same values:
+
+    * Attack type
+    * Parameter with the malicious payload
+    * Target address
+    * Request method
+    * Response code
+    * Originating IP address
+2. Hit samples are grouped into [attacks](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) in the event list.
+
+
 ## False positives
 
 False positive occurs when attack signs are detected in the legitimate request. To prevent the filtering node from recognizing such requests as attacks in future, you can mark all or specific requests of the attack as false positives.
@@ -111,8 +169,9 @@ Wallarm automatically [rechecks](../../about-wallarm/detecting-vulnerabilities.m
 
 Verification statuses:
 
-* ![Verified][img-verified-icon] **Verified**: The attack has been verified.
-* ![Error][img-error-icon] **Error**: An attempt to verify an attack type that does not support verification:
+* ![Happening now][img-happening-icon] **Happening now**: the attack is happening now; it will be verified when finished.
+* ![Verified][img-verified-icon] **Verified**: the attack has been verified.
+* ![Error][img-error-icon] **Error**: an attempt to verify an attack type that does not support verification:
 
     * [Brute-force][al-brute-force-attack]
     * [Forced browsing][al-forced-browsing]
@@ -122,7 +181,7 @@ Verification statuses:
     * Attacks that do not contain enough data for verification
     * [Attacks that consist of hits grouped by originating IPs](../../admin-en/configuration-guides/protecting-with-thresholds.md)
 
-* ![Skipped][img-skip-icon] **Skipped**: An attempt to verify an attack type has been skipped. Possible reasons:
+* ![Skipped][img-skip-icon] **Skipped**: an attempt to verify an attack type has been skipped. Possible reasons:
 
     * Attacks sent via the gRPC or Protobuff protocol
     * Attacks sent via the HTTP protocol of the version different from 1.x
@@ -131,6 +190,17 @@ Verification statuses:
     * Attack signs are in the `HOST` header
     * [Request element](../rules/request-processing.md) containing attack signs is different from one of the following: `uri` , `header`, `query`, `post`, `path`, `action_name`, `action_ext`
 
-* ![Sheduled][img-sheduled-icon] **Scheduled**: The attack is queued for verification. To raise the priority of the attack verification in the queue, click the verification icon and then **Force verification**.
-* ![Forced][img-forced-icon] **Forced**: The attack has a raised priority in the verification queue.
-* ![Could not connect][img-cloud-icon] **Could not connect to the server**: It is not possible to access the server at this time.
+* ![Sheduled][img-sheduled-icon] **Scheduled**: the attack is queued for verification. To raise the priority of the attack verification in the queue, click the verification icon and then **Force verification**.
+* ![Forced][img-forced-icon] **Forced**: the attack has a raised priority in the verification queue.
+* ![Could not connect][img-cloud-icon] **Could not connect to the server**: it is not possible to access the server at this time.
+
+## API calls to get attacks
+
+To get the attack details, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is the example of the API call for **getting the first 50 attacks detected in the last 24 hours**.
+
+Please replacing `TIMESTAMP` with the date 24 hours ago converted to the [Unix Timestamp](https://www.unixtimestamp.com/) format.
+
+--8<-- "../include/api-request-examples/get-attacks-en.md"
+
+!!! warning "Getting 100 or more attacks"
+    For attack and hit sets containing 100 or more records, it is best to retrieve them in smaller pieces rather than fetching large datasets all at once, in order to optimize performance. [Explore the corresponding request example](../../api/request-examples.md#get-a-large-number-of-attacks-100-and-more)

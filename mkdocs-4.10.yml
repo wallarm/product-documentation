@@ -29,7 +29,6 @@ nav:
       - Checking Attacks: user-guides/events/check-attack.md
       - Checking Incidents: user-guides/events/check-incident.md
       - Search and Filters: user-guides/search-and-filters/use-search.md
-      - Grouping and Sampling: user-guides/events/grouping-and-sampling.md
   # - API Sessions: api-sessions.md
     - Creating Reports: user-guides/search-and-filters/custom-report.md
     - Activity Log: user-guides/settings/audit-log.md
