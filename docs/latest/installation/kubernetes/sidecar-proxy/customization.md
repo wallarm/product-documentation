@@ -225,6 +225,38 @@ To enable SSL/TLS termination:
 
 The sidecar solution will accept TLS/SSL traffic, terminate it, and forward plain HTTP traffic to the application pod.
 
+### Certificates for the admission webhook
+
+Starting with release 4.10.7, you have the option to issue and use your own certificates for the admission webhook. The certificate is essential for secure communication between the webhook and the Kubernetes API server.
+
+By default, the solution automatically generates certificates for the admission webhook using [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen).
+
+To use your own certificates, the following options are available:
+
+* **Using cert-manager**: If you use [`cert-manager`](https://cert-manager.io/) in your cluster and prefer it for generating the admission webhook certificate, update your `values.yaml` as follows.
+
+    This will automatically disable `certgen`.
+
+    ```yaml
+    controller:
+      admissionWebhook:
+        certManager:
+          enabled: true
+    ```
+* **Manual certificate upload**: You can manually upload certificates by adding the following configuration to `values.yaml`. This will automatically disable `certgen`.
+
+    ```yaml
+    controller:
+      admissionWebhook:
+        secret:
+          enabled: true
+          ca: <base64-encoded-CA-certificate>
+          crt: <base64-encoded-certificate>
+          key: <base64-encoded-private-key>
+    ```
+
+If you are upgrading from version 4.10.6 or earlier to 4.10.7, please follow the [specific upgrade instructions][sidecar-upgrade-docs]. This update introduces a breaking change, requiring solution re-installation.
+
 ### Enabling additional NGINX modules
 
 Docker image of the Wallarm sidecar is distributed with the following additional NGINX modules disabled by default:

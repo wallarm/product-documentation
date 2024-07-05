@@ -62,6 +62,14 @@ Additionally, this update introduces new parameters for some deployment options,
 
 ![Specification - use for applying security policies](../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
+## Breaking changes in certificate provisioning for Sidecar admission webhook
+
+The [latest release 4.10.7](node-artifact-versions.md#helm-chart-for-sidecar) introduces breaking changes, requiring a reinstallation of the solution. The default method for generating the admission webhook certificate has been replaced with the [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen) process. During the upgrade, certificates will be automatically generated using the new `certgen` process.
+
+Additionally, this release allows you to use [`cert-manager` for admission webhook certificate provisioning or specify certificates manually](../installation/kubernetes/sidecar-proxy/customization.md#certificates-for-the-admission-webhook).
+
+Due to this breaking change, you need to follow [specific upgrade instructions](sidecar-proxy.md), including removing old certificate artifacts and applying the new configuration.
+
 ## Optimized and more secure NGINX-based Docker image
 
 The [Docker image of Wallarm's NGINX-based filtering node](../admin-en/installation-docker-en.md) has been revamped for enhanced security and optimization. Key updates include:

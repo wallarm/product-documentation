@@ -9,5 +9,6 @@ search:
 [allocate-resources-for-node-docs]:       ../../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [disable-acl-directive-docs]:             ../../../../admin-en/configure-parameters-en.md#disable_acl
 [wallarm-attack-prevention-best-practices-docs]: ../../../../quickstart/attack-prevention-best-practices.md
+[sidecar-upgrade-docs]:                   ../../../../updating-migrating/sidecar-proxy.md
 
 --8<-- "latest/installation/kubernetes/sidecar-proxy/customization.md"

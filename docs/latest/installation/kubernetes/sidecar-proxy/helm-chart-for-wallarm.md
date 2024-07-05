@@ -5,7 +5,7 @@ This document describes Wallarm-specific Helm chart values you can change during
 !!! info "Priorities of global and per-pod's settings"
     Per-pod's annotations [take precedence](customization.md#configuration-area) over Helm chart values.
 
-The Wallarm-specific part of the [default `values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml) looks like the following:
+The Wallarm-specific part of the [default `values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml) that you might need to change looks like the following:
 
 ```yaml
 config:
@@ -36,6 +36,16 @@ postanalytics:
     host: ""
     port: 3313
   ...
+# Optional part for custom admission webhook certificate provisioning
+# controller:
+#  admissionWebhook:
+#    certManager:
+#      enabled: false
+#    secret:
+#      enabled: false
+#      ca: <base64-encoded-CA-certificate>
+#      crt: <base64-encoded-certificate>
+#      key: <base64-encoded-private-key>
 ```
 
 ## config.wallarm.api.token
@@ -212,3 +222,27 @@ The specified host must be accessible from the Kubernetes cluster where the Side
 The TCP port on which the Wallarm postanalytics module is running. By default, it uses port 3313 as the Sidecar solution deploys the module on this port.
 
 If `postanalytics.external.enabled` is set to `true`, specify the port on which the module is running on the specified external host.
+
+## controller.admissionWebhook.certManager.enabled
+
+Whether to use [`cert-manager`](https://cert-manager.io/) for generating the admission webhook certificate instead of the default [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen). Supported starting with release 4.10.7
+
+**Default value**: `false`.
+
+## controller.admissionWebhook.secret.enabled
+
+Whether to manually upload certificates for the admission webhook instead of using the default [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen). Supported starting with release 4.10.7.
+
+**Default value**: `false`.
+
+If set to `true`, specify the base64-encoded CA certificate, server certificate, and private key, e.g.:
+
+```yaml
+controller:
+  admissionWebhook:
+    secret:
+      enabled: true
+      ca: <base64-encoded-CA-certificate>
+      crt: <base64-encoded-certificate>
+      key: <base64-encoded-private-key>
+```
