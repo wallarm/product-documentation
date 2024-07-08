@@ -67,7 +67,7 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
 
 ### Step 2: Prepare clean machine
 
---8<-- "../include/waf/installation/all-in-one-clean-machine.md"
+--8<-- "../include/waf/installation/all-in-one-clean-machine-latest.md"
 
 ### Step 3: Install NGINX and dependencies
 

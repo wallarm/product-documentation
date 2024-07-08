@@ -55,7 +55,7 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.10
 
 ### Step 1: Prepare clean machine
 
---8<-- "../include/waf/installation/all-in-one-clean-machine.md"
+--8<-- "../include/waf/installation/all-in-one-clean-machine-latest.md"
 
 ### Step 2: Install NGINX and dependencies
 
