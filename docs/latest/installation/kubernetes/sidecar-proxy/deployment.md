@@ -45,6 +45,8 @@ The Wallarm Sidecar has 2 standard stages in its lifecycle:
 1. At the **initial** stage, the controller injects Wallarm sidecar resources into the Pod configuring it based on the Helm chart values and pod annotations and connecting the node components to the Wallarm Cloud.
 1. At the **runtime** stage, the solution analyzes and proxies/forwards requests involving the postanalytics module.
 
+The solution uses Docker images based on Alpine Linux and the NGINX version provided by Alpine. Currently, the latest images use Alpine Linux version 3.20, which includes NGINX stable version 1.26.1.
+
 ## Requirements
 
 --8<-- "../include/waf/installation/sidecar-proxy-reqs-latest.md"
@@ -107,7 +109,7 @@ Generate a filtering node token of the [appropriate type][node-token-types] to c
 1. Deploy the Wallarm Helm chart:
 
     ``` bash
-    helm install --version 4.10.6 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
+    helm install --version 4.10.7 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Wallarm Sidecar chart

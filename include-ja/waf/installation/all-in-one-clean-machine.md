@@ -5,8 +5,9 @@
 * CentOS 7, 8 Stream, 9 Stream
 * Alma/Rocky Linux 9
 * RHEL 8.x
+* RHEL 9.x
 * Oracle Linux 8.x
-* Redos
+* Redox
 * SuSe Linux
 * その他（リストは常に広がっています。OSがリストに含まれているかを確認するために、[Wallarmサポートチーム](mailto:support@wallarm.com)に連絡してください）
 

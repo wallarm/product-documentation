@@ -29,7 +29,7 @@ Use the procedure below to upgrade the end‑of‑life postanalytics module (ver
 
 ### Step 1: Prepare clean machine
 
---8<-- "../include/waf/installation/all-in-one-clean-machine.md"
+--8<-- "../include/waf/installation/all-in-one-clean-machine-latest.md"
 
 ### Step 2: Prepare Wallarm token
 
