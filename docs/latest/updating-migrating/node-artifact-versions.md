@@ -201,6 +201,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 * **Breaking change**: The default method for generating the admission webhook certificate is now [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen), replacing the previous method. Multiple options for [self-provisioning certificates](../installation/kubernetes/sidecar-proxy/customization.md#certificates-for-the-admission-webhook) have been introduced. 
 
     Due to this breaking change, you need to follow [specific upgrade instructions](sidecar-proxy.md), including removing old certificate artifacts and applying the new configuration.
+* As of Docker image release 4.10.7, the Sidecar solution now uses Alpine Linux version 3.20 with NGINX stable version 1.26.1
 * Fixed the `syncnode` issue `Could not update (TypeError): no implicit conversion of nil into String` that sometimes appeared when registering a node in Wallarm Cloud using a node token
 * Optimized OpenAPI data type detection by the [API Discovery](../api-discovery/overview.md) module
 
