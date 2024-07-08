@@ -212,7 +212,7 @@ nav:
     # - Triggers: ...
     - Attack and Vulnerability Types: attacks-vulns-list.md
   - Deployment:
-    - Deployment Options: installation/supported-deployment-options.md
+    - Deployment Options: /4.6/installation/supported-deployment-options/
     - Out-of-Band:
       - Overview: installation/oob/overview.md
       - Mirroring by NGINX, Envoy and Similar:

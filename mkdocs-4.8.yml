@@ -11,7 +11,7 @@ nav:
     - Wallarm Overview: about-wallarm/overview.md
     - Getting Started: quickstart/getting-started.md
     - Subscription Plans: about-wallarm/subscription-plans.md
-    - Deployment Guides: /installation/supported-deployment-options/
+    - Deployment Guides: /4.8/installation/supported-deployment-options/
     - Best Practices: quickstart/attack-prevention-best-practices.md
     - Video Guides:
       - Wallarm Platform Settings: demo-videos/overview.md
