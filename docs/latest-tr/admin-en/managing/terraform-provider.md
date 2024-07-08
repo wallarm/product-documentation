@@ -67,7 +67,7 @@ Wallarm sağlayıcı ile, Terraform üzerinden şunları yönetebilirsiniz:
 
 * Hesabınızdaki [Düğümler](../../user-guides/nodes/nodes.md)
 * [Uygulamalar](../../user-guides/settings/applications.md)
-* [Kurallar](../../user-guides/rules/intro.md)
+* [Kurallar](../../user-guides/rules/rules.md)
 * [Tetikleyiciler](../../user-guides/triggers/triggers.md)
 * [Reddedilenlist](../../user-guides/ip-lists/denylist.md), [izinlisten](../../user-guides/ip-lists/allowlist.md) ve [gri listeler](../../user-guides/ip-lists/graylist.md)'deki IP'ler
 * [Kullanıcılar](../../user-guides/settings/users.md)

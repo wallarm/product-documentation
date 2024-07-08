@@ -107,4 +107,4 @@ Varsayılan olarak, IP istisna listesine sonsuza dek eklenir. Bunu değiştirebi
 
 İyi botların IP'lerini [istisna listesi](#istisna-listesi-ile-çalışma) üzerinden işaretlemenin yanı sıra, hem isteklerin hedefi olan URL'ler hem de belirli istek türleri için bot korumasını devre dışı bırakabilirsiniz, örneğin, belirli başlıkları içeren istekler için.
 
-API Hırsızlığını Önleme yapılandırmasıyla karşılaştırıldığında, bu özellik API Hırsızlık profilinde **değil**, ayrı olarak yapılandırılır - [**API Hırsızlık Önleme modunu ayarla**](../user-guides/rules/api-abuse-url.md) kuralının yardımı ile.
+API Hırsızlığını Önleme yapılandırmasıyla karşılaştırıldığında, bu özellik API Hırsızlık profilinde **değil**, ayrı olarak yapılandırılır - [**API Hırsızlık Önleme modunu ayarla**](../api-abuse-prevention/exceptions.md) kuralının yardımı ile.

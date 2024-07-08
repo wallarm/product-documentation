@@ -21,7 +21,7 @@ Tüm desteklenen [Wallarm dağıtım seçenekleri](../supported-deployment-optio
 Çözümün yalnızca gelen isteklerle çalıştığı belirli sınırlamaları vardır:
 
 * [Pasif tespit](../../about-wallarm/detecting-vulnerabilities.md#pasif-detection) yöntemiyle zafiyet tespiti düzgün çalışmaz. Çözüm, hedefine ulaşılan sunucu yanıtlarına dayanarak bir API'nin zafiyete sahip olup olmadığını belirler.
-* [Wallarm API Keşfi](../../about-wallarm/api-discovery.md), trafik verilerinize dayanarak API envanterini bulamaz çünkü çözüm yanıt analizine dayanır.
+* [Wallarm API Keşfi](../../api-discovery/overview.md), trafik verilerinize dayanarak API envanterini bulamaz çünkü çözüm yanıt analizine dayanır.
 * [Zorla gezinmeye karşı koruma](../../admin-en/configuration-guides/protecting-against-bruteforce.md) mevcut değildir çünkü yanıt kodu analizi gerektirir.
 
 Başka sınırlamalar da vardır:

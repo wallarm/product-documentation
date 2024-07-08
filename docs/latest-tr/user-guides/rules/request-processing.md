@@ -49,7 +49,7 @@ URL ayrıştırıcısına aşağıdaki etiketler karşılık gelir:
             * `action_name` — `cb-common`
             * `action_ext` — `ffc63abe`
         
-        Bu sorunu çözmek için, URI yapıcısının [gelişmiş düzenleme formu](add-rule.md#advanced-edit-form)nda **action_name** ve **action_ext** noktalarını manuel olarak düzenleyin.
+        Bu sorunu çözmek için, URI yapıcısının [gelişmiş düzenleme formu](rules.md#advanced-edit-form)nda **action_name** ve **action_ext** noktalarını manuel olarak düzenleyin.
 
 * `?` sembolünden sonraki [sorgu dizesi parametreleri](#query-string-parameters) için **query**.
 
@@ -327,7 +327,7 @@ Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'name']` — `John Doe`
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'iat']` — `1516239022`
 
-Uygulanacak [kural](add-rule.md)ı tanımlarken bir istek öğesi:
+Uygulanacak [kural](rules.md)ı tanımlarken bir istek öğesi:
 
 * İlk olarak JWT içeren bir istek parçasının ayrıştırıcısını seçin
 * `jwt` ayrıştırıcısının değeri olarak listelenen `jwt_*` parametrelerinden birini belirtin, örneğin, `name` JWT yük parametresinin değeri için:

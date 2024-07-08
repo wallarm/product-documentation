@@ -6,7 +6,7 @@ Wallarm'ın entegrasyonları sayesinde, kritik olaylar hakkında her zaman bilgi
 
 * [Tespit edilen hitlere](../../../user-guides/events/check-attack.md) ilişkin anlık uyarılar, böylece tehditlere karşı hemen eyleme geçebilirsiniz.
 * Sistem olaylarına (kayıtlı [kullanıcılarda](../../../user-guides/settings/users.md), entegrasyonlarda ve [uygulamalarda](../../../user-guides/settings/applications.md) yapılan değişiklikler) dair güncellemeler, böylece daima kontrol sahibi olursunuz.
-* Güvenlik profilinizdeki önemli değişiklikler, örneğin [kurallarınızın](../../../user-guides/rules/intro.md) ve [tetikleyicilerinizin](../../../user-guides/triggers/triggers.md) değişmesi hakkında bilgi alırsınız.
+* Güvenlik profilinizdeki önemli değişiklikler, örneğin [kurallarınızın](../../../user-guides/rules/rules.md) ve [tetikleyicilerinizin](../../../user-guides/triggers/triggers.md) değişmesi hakkında bilgi alırsınız.
 * Altyapınızdaki olası [zafiyetler](../../../about-wallarm/detecting-vulnerabilities.md) ve risk seviyeleri hakkında zamanında uyarılar, böylece en tehlikeli zayıflıkları öncelikli olarak ele alabilirsiniz.
 
 Özelliği, Wallarm Konsolu'ndaki **Entegrasyonlar** bölümünde yönetin ve entegrasyonlarınız için ek uyarılar yapılandırmak için **Tetikleyiciler** bölümünü kullanın.

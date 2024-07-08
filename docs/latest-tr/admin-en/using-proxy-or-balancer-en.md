@@ -25,7 +25,7 @@ Eğer Wallarm düğümü proxy sunucusu veya yük dengeleyici IP adresini isteğ
 	Eğer istekler yük dengeleyiciden geçtiyse ve kaba kuvvet saldırı belirtileri varsa, Wallarm bu yük dengeleyici IP adresini engeller ve bu düğün üzerinden geçen tüm diğer istekleri engeller.
 * [Aktif tehdit doğrulama](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) modülü ve [Güvenlik Açığı Tarayıcı](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner), örneğin:
 
-	Wallarm, Aktif tehdit doğrulama modülü ve Güvenlik Açığı Tarayıcı tarafından oluşturulan [test saldırılarının köken olan IP adresini](scanner-address-eu-cloud.md) yük dengeleyici IP adresi olarak kabul eder. Böylece, test saldırıları, Wallarm Konsolu'nda yük dengeleyici IP adresinden kaynaklanan saldırılar olarak görüntülenir ve Wallarm tarafından ekstra bir yük oluşturacak şekilde ek olarak kontrol edilir.
+	Wallarm, Aktif tehdit doğrulama modülü ve Güvenlik Açığı Tarayıcı tarafından oluşturulan [test saldırılarının köken olan IP adresini](scanner-addresses.md) yük dengeleyici IP adresi olarak kabul eder. Böylece, test saldırıları, Wallarm Konsolu'nda yük dengeleyici IP adresinden kaynaklanan saldırılar olarak görüntülenir ve Wallarm tarafından ekstra bir yük oluşturacak şekilde ek olarak kontrol edilir.
 
 Eğer Wallarm düğümü [IPC soketi](https://en.wikipedia.org/wiki/Unix_domain_socket) üzerinden bağlanıyorsa, `0.0.0.0` bir istek kaynağı olarak kabul edilir.
 

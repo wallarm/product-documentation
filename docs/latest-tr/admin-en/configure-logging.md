@@ -1,7 +1,7 @@
 [link-nginx-logging-docs]:  https://docs.nginx.com/nginx/admin-guide/monitoring/logging/
 [doc-vuln-list]:            ../attacks-vulns-list.md
 [doc-monitor-node]:         monitoring/intro.md
-[doc-lom]:                  ../user-guides/rules/compiling.md
+[doc-lom]:                  ../user-guides/rules/rules.md
 
 
 #   Filtre Düğümü Günlükleriyle Çalışma
@@ -16,7 +16,7 @@ Bir filtre düğümü, aşağıdaki günlük dosyalarını `/var/log/wallarm` kl
 *   `tarantool.log`: postanalitik modül işlemlerinin günlük kaydı.
 *   `sync-ip-lists.log` (önceki düğüm sürümlerinde `sync-blacklist.log` olarak adlandırılır): filtre düğümünün [IP listeleri](../user-guides/ip-lists/overview.md)ne tek nesneler veya alt ağlar olarak eklenen IP adresleri ile senkronizasyon günlüğü.
 *   `sync-ip-lists-source.log` (önceki düğüm sürümlerinde `sync-mmdb.log` olarak adlandırılır): filtre düğümünün ülkelerde, bölgelerde ve veri merkezlerinde kayıtlı IP adresleri ile [IP listeleri](../user-guides/ip-lists/overview.md) üzerinden senkronizasyon günlüğü.
-*   `appstructure.log` (yalnızca Docker konteynırlarında): [API Discovery](../about-wallarm/api-discovery.md) modül aktivitesinin günlüğü.
+*   `appstructure.log` (yalnızca Docker konteynırlarında): [API Discovery](../api-discovery/overview.md) modül aktivitesinin günlüğü.
 *   `registernode_loop.log` (yalnızca Docker konteynırlarında): başarılı oldukça `register-node` betiğini çalıştıran wrapper betiğin etkinliği günlüğü.
 *   `weak-jwt-detect.log`: [JWT güvenlik açığı](../attacks-vulns-list.md#weak-jwt) tespit günlüğü.
 

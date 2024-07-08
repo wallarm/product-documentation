@@ -6,5 +6,5 @@
     * Yüksek risk
     * Orta risk
     * Düşük risk
-* [Kurallar](../../../user-guides/rules/intro.md) ve [tetikleyiciler](../../../user-guides/triggers/triggers.md) değişti (kural veya tetikleyici oluşturma, güncelleme veya silme)
+* [Kurallar](../../../user-guides/rules/rules.md) ve [tetikleyiciler](../../../user-guides/triggers/triggers.md) değişti (kural veya tetikleyici oluşturma, güncelleme veya silme)
 * [Kapsam (maruz kalan varlıklar)](../../scanner.md) değişti: ana bilgisayarlarda, hizmetlerde ve alan adlarında güncellemeler

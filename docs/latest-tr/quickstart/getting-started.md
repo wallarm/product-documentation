@@ -1,16 +1,16 @@
-[operation-mode-rule-docs]:         user-guides/rules/wallarm-mode-rule.md
-[filtration-modes-docs]:            admin-en/configure-wallarm-mode.md
-[graylist-docs]:                    user-guides/ip-lists/graylist.md
-[wallarm-cloud-docs]:               about-wallarm/overview.md#cloud
-[user-roles-docs]:                  user-guides/settings/users.md
-[rules-docs]:                       user-guides/rules/intro.md
-[ip-lists-docs]:                    user-guides/ip-lists/overview.md
-[integration-docs]:                 user-guides/settings/integrations/integrations-intro.md
-[trigger-docs]:                     user-guides/triggers/triggers.md
-[application-docs]:                 user-guides/settings/applications.md
-[events-docs]:                      user-guides/events/check-attack.md
-[sqli-attack-desc]:                 attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  attacks-vulns-list.md#crosssite-scripting-xss
+[operation-mode-rule-docs]:         ../user-guides/rules/wallarm-mode-rule.md
+[filtration-modes-docs]:            ../admin-en/configure-wallarm-mode.md
+[graylist-docs]:                    ../user-guides/ip-lists/graylist.md
+[wallarm-cloud-docs]:               ../about-wallarm/overview.md#cloud
+[user-roles-docs]:                  ../user-guides/settings/users.md
+[rules-docs]:                       ../user-guides/rules/rules.md
+[ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
+[integration-docs]:                 ../user-guides/settings/integrations/integrations-intro.md
+[trigger-docs]:                     ../user-guides/triggers/triggers.md
+[application-docs]:                 ../user-guides/settings/applications.md
+[events-docs]:                      ../user-guides/events/check-attack.md
+[sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
+[xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
 
 # Wallarm platform ile hızlı başlangıç
 
@@ -24,7 +24,7 @@ Wallarm'ı, herhangi bir bileşeni ortamınıza dağıtmadan ve hatta kaydolmada
 
 Playground'da, Wallarm Console görünümüne gerçek verilerle dolmuş gibi erişebilirsiniz. Wallarm Console, işlenen trafikle ilgili verileri görüntüleyen ve platformun ince ayarını sağlayan önemli bir Wallarm platform bileşenidir. Bu nedenle, Playground ile ürünün nasıl çalıştığını öğrenebilir ve öğrenebilir, sadece okuma modunda kullanışlı kullanım örnekleri alabilirsiniz.
 
-![Hesap oluşturmak için UI](images/playground.png)
+![Hesap oluşturmak için UI](../images/playground.png)
 
 Wallarm çözümünün yeteneklerini trafiğinizde denemek için [ücretsiz bir hesap oluşturun](#create-wallarm-account-and-get-free-tier).
 
@@ -34,7 +34,7 @@ Bir Wallarm hesabı oluşturmak için:
 
 1. Kişisel verilerinizi gireceğiniz Wallarm Bulutu'ndaki [ABD](https://us1.my.wallarm.com/signup) veya [AB](https://my.wallarm.com/signup) kayıt bağlantısını takip edin.
 
-    [Wallarm Bulutları hakkında daha fazla bilgi →](about-wallarm/overview.md#cloud)
+    [Wallarm Bulutları hakkında daha fazla bilgi →](../about-wallarm/overview.md#cloud)
 1. Hesabınızı, e-postanıza gönderilen onay mesajındaki bağlantıyı takip ederek onaylayın.
 
 Bir hesap kaydedildikten ve onaylandıktan sonra, otomatik olarak **Ücretsiz katman** veya **Ücretsiz deneme** alır, bu da kullanılan Wallarm Cloud'a bağlıdır:
@@ -46,7 +46,7 @@ Bir hesap kaydedildikten ve onaylandıktan sonra, otomatik olarak **Ücretsiz ka
 
 ## Wallarm filtreleme düğümünü dağıtın
 
-Wallarm, filtreleme düğümü dağıtımında [birçok seçenek sunar](installation/supported-deployment-options.md). Bu seçenekleri öğrenip en uygun olanını seçebilir veya aşağıda anlatıldığı gibi Wallarm ile hızlı başlamak için en hızlı yolu takip edebilirsiniz.
+Wallarm, filtreleme düğümü dağıtımında [birçok seçenek sunar](../installation/supported-deployment-options.md). Bu seçenekleri öğrenip en uygun olanını seçebilir veya aşağıda anlatıldığı gibi Wallarm ile hızlı başlamak için en hızlı yolu takip edebilirsiniz.
 
 Düğümü altyapınızın bir bileşeni olarak hızlı bir şekilde dağıtmak için önce şunlara sahip olduğunuzdan emin olun:
 
@@ -57,7 +57,7 @@ Docker görüntüsünden Wallarm filtreleme düğümünü dağıtın:
 
 1. [ABD Bulutu'nda](https://us1.my.wallarm.com/nodes) veya [AB Bulutu'nda](https://my.wallarm.com/nodes) Wallarm Console → **Düğümler**'i açın ve **Wallarm düğümü** tipinde bir düğüm oluşturun.
 
-    ![Düğüm oluşturulan Wallarm](images/create-wallarm-node-empty-list.png)
+    ![Düğüm oluşturulan Wallarm](../images/create-wallarm-node-empty-list.png)
 
     **Çok kiracılı düğüm** kutucuğu için, işaretlemeyin. Bu kutu, hızlı başlangıcın bir parçası olmayan ilgili özellik kurulumuyla ilişkilidir.
 1. Oluşturulan jetonu kopyalayın.
@@ -79,7 +79,7 @@ Ortam değişkeni | Açıklama| Gerekli
 `WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>`us1.api.wallarm.com` ABD Bulutu için</li><li>`api.wallarm.com` AB Bulutu için</li></ul>Varsayılan: `api.wallarm.com`. | Hayır
 `WALLARM_MODE` | Düğüm modu:<ul><li>`block` kötü niyetli talepleri engellemek için</li><li>`safe_blocking` yalnızca [gri listeye alınmış IP adreslerinden][graylist-docs] gelen kötü niyetli talepleri engellemek için</li><li>`monitoring` talepleri analiz etmek ama engellememek için</li><li>`off` trafik analizini ve işlemeyi devre dışı bırakmak için</li></ul>Varsayılan: `monitoring`.<br>[Filtrasyon modları hakkında ayrıntılı açıklama →][filtration-modes-docs] | Hayır
 
-Dağıtımı test etmek için, [Path Traversal](attacks-vulns-list.md#path-traversal) kötü niyetli yükü ile ilk saldırıyı çalıştırın:
+Dağıtımı test etmek için, [Path Traversal](../attacks-vulns-list.md#path-traversal) kötü niyetli yükü ile ilk saldırıyı çalıştırın:
 
 ```
 curl http://localhost/etc/passwd
@@ -87,9 +87,9 @@ curl http://localhost/etc/passwd
 
 `NGINX_BACKEND` `example.com` ise, curl komutunda ek olarak `-H 'Host: example.com'` seçeneğini geçin.
 
-Düğüm varsayılan olarak **gözetim** [filtrasyon modunda](admin-en/configure-wallarm-mode.md#available-filtration-modes) çalışırken, Wallarm düğümü saldırıyı engellemeyecek ancak onu kaydedecektir. Saldırının kaydedildiğini kontrol etmek için Wallarm Console → **Etkinlikler**'e gidin:
+Düğüm varsayılan olarak **gözetim** [filtrasyon modunda](../admin-en/configure-wallarm-mode.md#available-filtration-modes) çalışırken, Wallarm düğümü saldırıyı engellemeyecek ancak onu kaydedecektir. Saldırının kaydedildiğini kontrol etmek için Wallarm Console → **Etkinlikler**'e gidin:
 
-![Arayüzdeki saldırılar](images/admin-guides/test-attacks-quickstart.png)
+![Arayüzdeki saldırılar](../images/admin-guides/test-attacks-quickstart.png)
 
 ## Sonraki adımlar
 
@@ -97,8 +97,8 @@ Wallarm düğümünün hızlı dağıtımı başarıyla tamamlandı!
 
 Dağıtım aşamasından daha fazlasını almak için:
 
-* [Docker ile NGINX tabanlı Wallarm düğümünün tam dağıtım rehberini öğrenin](admin-en/installation-docker-en.md)
-* [Wallarm tarafından desteklenen tüm dağıtım seçeneklerini öğrenin](installation/supported-deployment-options.md)
+* [Docker ile NGINX tabanlı Wallarm düğümünün tam dağıtım rehberini öğrenin](../admin-en/installation-docker-en.md)
+* [Wallarm tarafından desteklenen tüm dağıtım seçeneklerini öğrenin](../installation/supported-deployment-options.md)
 
 Dağıtılmış düğümü daha fazla ince ayarlamak için özellikleri öğrenin:
 

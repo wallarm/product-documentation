@@ -24,7 +24,7 @@ Alternatif olarak, izleme modu, kullanıcıların web uygulamaları ve API'lerin
 Çözüm, yalnızca gelen isteklerle çalıştığı için belirli sınırlamaları vardır:
 
 * [Pasif algılama](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) yöntemi kullanılarak gerçekleştirilen güvenlik açığı keşfi düzgün çalışmaz. Çözüm, test ettiği güvenlik açıklarına tipik olan kötü amaçlı isteklere sunucu yanıtlarına dayanarak bir API'nin güvenlik açığı olup olmadığını belirler.
-* [Wallarm API Keşfi](../../about-wallarm/api-discovery.md) yanıt analizine dayandığı için trafiğinize dayalı olarak API envanterinizi keşfedemez.
+* [Wallarm API Keşfi](../../api-discovery/overview.md) yanıt analizine dayandığı için trafiğinize dayalı olarak API envanterinizi keşfedemez.
 * Yanıt kodu analizi gerektiren [zorlamalı taramaya karşı koruma](../../admin-en/configuration-guides/protecting-against-bruteforce.md) mevcut değildir.
 
 ## Desteklenen dağıtım seçenekleri

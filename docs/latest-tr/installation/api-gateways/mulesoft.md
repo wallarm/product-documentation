@@ -23,7 +23,7 @@ Tüm desteklenen [Wallarm dağıtım seçenekleri](../supported-deployment-optio
 Çözüm, yalnızca gelen isteklerle çalıştığı için belirli sınırlamalara sahiptir:
 
 * [Pasif tespit](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) yöntemiyle güvenlik açığı keşfi düzgün çalışmaz. Çözüm, denediği güvenlik açıklarına tipik olan kötü amaçlı isteklere sunucu yanıtlarına dayanarak bir API'nin savunmasız olup olmadığını belirler.
-* [Wallarm API Keşfi](../../about-wallarm/api-discovery.md), çözümün yanıt analizine dayandığı için trafik üzerinden API envanterini keşfedemez.
+* [Wallarm API Keşfi](../../api-discovery/overview.md), çözümün yanıt analizine dayandığı için trafik üzerinden API envanterini keşfedemez.
 * Yanıt kodu analizini gerektirdiği için [zorlanmış göz atma karşı koruma](../../admin-en/configuration-guides/protecting-against-bruteforce.md) mevcut değildir.
 
 ## Gereksinimler

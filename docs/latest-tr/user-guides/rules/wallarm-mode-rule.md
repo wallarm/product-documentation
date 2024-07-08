@@ -24,11 +24,11 @@ Bu kuralı uygulamak için NGINX yapılandırma dosyaları, işletim modunun [me
 
 ## Kuralın varsayılan örneği
 
-Wallarm, `Filtreleme modunu ayarla` kuralının örneğini [varsayılan](../../user-guides/rules/view.md#default-rules) seviyede otomatik olarak oluşturur. Sistem, değerini [genel filtreleme modu](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) ayarına dayalı olarak belirler.
+Wallarm, `Filtreleme modunu ayarla` kuralının örneğini [varsayılan](../../user-guides/rules/rules.md#default-rules) seviyede otomatik olarak oluşturur. Sistem, değerini [genel filtreleme modu](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) ayarına dayalı olarak belirler.
 
 Bu kural örneği silinemez. Değerini değiştirmek için sistem [genel filtreleme modu](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) ayarını değiştirin.
 
-Tüm diğer varsayılan kurallar gibi, `Filtreleme modunu ayarla` varsayılan kuralı tüm dallar tarafından [miras alınır](../../user-guides/rules/view.md)
+Tüm diğer varsayılan kurallar gibi, `Filtreleme modunu ayarla` varsayılan kuralı tüm dallar tarafından [miras alınır](../../user-guides/rules/rules.md)
 
 ## Örnek: Kullanıcı Kaydı Sırasında İstek Engellemeyi Devre Dışı Bırakma
 

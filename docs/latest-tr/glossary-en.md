@@ -91,7 +91,7 @@ Bir özel kural seti, Wallarm düğümlerinin Wallarm Bulutu'ndan indirdiği der
 
 Bir özel kural seti varsayılan olarak boş değildir, Bulut'ta kayıtlı tüm müşteriler için oluşturulan kuralları içerir, örneğin [**Ayarlar → Genel** sekmesinde](user-guides/settings/general.md) değeri olan filtreleme modu kuralı.
 
-[Özel kural setleri hakkında daha fazla ayrıntı](user-guides/rules/intro.md)
+[Özel kural setleri hakkında daha fazla ayrıntı](user-guides/rules/rules.md)
 
 ## Geçersiz İstek
 Filtre düğümü tarafından kontrol edilen ve LOM kurallarına uymayan bir istek.

@@ -46,7 +46,7 @@ Talep görünümü, Wallarm davranışının ince ayarını yapmak için aşağ�
 * [**Yanlış pozitif olarak işaretle** ve **Yanlış**](false-attack.md) talep ögelerine hatalı şekilde uygulanan base64 ayrıştırıcısını belirtmek için **base64'ü devre dışı bırak**.
   
     Buton, ayrıştırıcıyı devre dışı bırakan [kuralı](../rules/disable-request-parsers.md) ayarlamak için önceden doldurulmuş bir form açar.
-* Belirli talepleri ele almak için [herhangi bir özel kural](../rules/add-rule.md#rule) oluşturmak için **Kural**.
+* Belirli talepleri ele almak için [herhangi bir özel kural](../rules/rules.md#rule) oluşturmak için **Kural**.
 
     Buton, talep verisiyle doldurulmuş bir kural kurulum formu açar.
 

@@ -102,4 +102,4 @@ IP adreslerini önceden veya zaten yanlışlıkla kötü amaçlı bot etkinliği
 
 Bu, yanlış pozitif tespitlerden kaçınmaya yardımcı olabilir ve uygulamalarınızı test etme durumunda, bu uygulamaların bazı uç noktaları için bot korumasını geçici olarak devre dışı bırakmanız gerekebilir.
 
-Diğer API Kötüye Kullanma Önleme konfigürasyonu karşılaştırıldığında, bu yetenek **API Kötüye Kullanma** [profili](../api-abuse-prevention/setup.md) içinde değil, ayrı ayrı yapılandırılır - [**Set API Kötüye Kullanma Önleme modu**](../user-guides/rules/api-abuse-url.md) kuralının yardımıyla.
+Diğer API Kötüye Kullanma Önleme konfigürasyonu karşılaştırıldığında, bu yetenek **API Kötüye Kullanma** [profili](../api-abuse-prevention/setup.md) içinde değil, ayrı ayrı yapılandırılır - [**Set API Kötüye Kullanma Önleme modu**](../api-abuse-prevention/exceptions.md) kuralının yardımıyla.

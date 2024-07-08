@@ -17,18 +17,18 @@ Varsayılan olarak, Wallarm düğümü gelen tüm istekleri bilinen saldırı i�
 
 1. Hangi şekilde olursa olsun, belirli bir istek öğesinde geçirilen ikili veriler için saldırı algılama kurallarını ayarlamak için, Wallarm Konsolu'nun **Kurallar** bölümünde **İkili verilere izin ver** kuralını oluşturun. Kural, aşağıdaki bileşenlerden oluşur:
 
-      * **Koşul** [açıklar](add-rule.md#branch-description) kuralın uygulanacağı uç noktaları.
+      * **Koşul** [açıklar](rules.md#branch-description) kuralın uygulanacağı uç noktaları.
       * **İstek kısmı** orijinal istek öğesine işaret eder ve ikili verileri içerir.
 
          --8<-- "../include-tr/waf/features/rules/request-part-reference.md"
 2. Belirli dosya türlerinin belirli bir istek öğesinde geçirilmesi için saldırı algılama kurallarını ayarlamak için, Wallarm Konsolu'nun **Kurallar** bölümünde **Belirli dosya türlerine izin ver** kuralını oluşturun. Kural, aşağıdaki bileşenlerden oluşur:
 
-      * **Koşul** [açıklar](add-rule.md#branch-description) kuralın uygulanacağı uç noktaları.
+      * **Koşul** [açıklar](rules.md#branch-description) kuralın uygulanacağı uç noktaları.
       * Saldırı işaretlerini yoksayacak dosya türleri.
       * **İstek kısmı** belirtilen dosya türlerini içeren orijinal istek öğesine işaret eder.
 
          --8<-- "../include-tr/waf/features/rules/request-part-reference.md"
-3. [Kural derlemesinin tamamlanmasını](compiling.md) bekleyin.
+3. [Kural derlemesinin tamamlanmasını](rules.md) bekleyin.
 
 ## Kural Örneği
 

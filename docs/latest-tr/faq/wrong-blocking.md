@@ -25,7 +25,7 @@ Wallarm tarafından engellenen meşru bir talebin sorununu çözmek için aşağ
 1. Eğer yanlış bir engelleme ise, problemi şu önlemlerden birini veya bir kombinasyonunu uygulayarak çözün: 
 
     * [Yanlış pozitiflere](../user-guides/events/false-attack.md) karşı önlemler
-    * [Kural](../user-guides/rules/intro.md)ları yeniden yapılandırma
+    * [Kural](../user-guides/rules/rules.md)ları yeniden yapılandırma
     * [Tetikleyicileri](../user-guides/triggers/triggers.md) yeniden yapılandırma
     * [IP listelerini](../user-guides/ip-lists/overview.md) düzenleme
 

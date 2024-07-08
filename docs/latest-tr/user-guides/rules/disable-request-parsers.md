@@ -16,12 +16,12 @@ Bu tür durumlarda yanlış pozitifleri engellemek için, kuralları **Request P
 
 1. Wallarm Konsolu'ndaki **Kurallar** bölümünde **Request Parser'ı Devre Dışı Bırak/Etkinleştir** kuralını oluşturun. Kural aşağıdaki bileşenlerden oluşur:
 
-      * **Durum**, kuralın uygulanacağı uç noktaları [tanımlar](add-rule.md#branch-description).
+      * **Durum**, kuralın uygulanacağı uç noktaları [tanımlar](rules.md#branch-description).
       * Belirtilen istek öğesi için devre dışı bırakılacak/etkinleştirilecek parserlar.
       * **İstek Parçası**, seçilen parserlarla çözümlenecek/çözümlenmeyecek orijinal istek öğesini belirtir.
 
          --8<-- "../include-tr/waf/features/rules/request-part-reference.md"
-2. [Kural derlemesinin tamamlanmasını](compiling.md) bekleyin.
+2. [Kural derlemesinin tamamlanmasını](rules.md) bekleyin.
 
 ## Kural örneği
 

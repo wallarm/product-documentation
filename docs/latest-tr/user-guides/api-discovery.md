@@ -1,6 +1,6 @@
 # API Keşfi <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm Konsolunun **API Keşfi** bölümü, [API envanterinizi](../about-wallarm/api-discovery.md) yönetmenize ve onun keşfini ince ayar yapmanıza olanak tanır. Bu kılavuz bu bölümün nasıl kullanılacağına dair size yönerge sağlar.
+Wallarm Konsolunun **API Keşfi** bölümü, [API envanterinizi](../api-discovery/overview.md) yönetmenize ve onun keşfini ince ayar yapmanıza olanak tanır. Bu kılavuz bu bölümün nasıl kullanılacağına dair size yönerge sağlar.
 
 Bu bölüm, sadece aşağıdaki [rollerdeki](../user-guides/settings/users.md#user-roles) kullanıcılar tarafından kullanılabilir:
 
@@ -62,12 +62,12 @@ Her parametre bilgisi şunları içerir:
     * Tıbbi lisans numarası gibi tıbbi veriler
     * Tam ad, pasaport numarası veya SSN gibi kişisel olarak tanımlanabilir bilgiler (PII) 
 
-* Bu parametrede gönderilen verinin [Türü / formatı](../about-wallarm/api-discovery.md#parameter-types-and-formats) 
+* Bu parametrede gönderilen verinin [Türü / formatı](../api-discovery/overview.md#parameter-types-and-formats) 
 * Parametre bilgisinin en son ne zaman güncellendiği
 
 ## API'deki değişiklikleri takip etme
 
-Belirli bir süre zarfında API'deki ne tür [değişikliklerin gerçekleştiğini](../about-wallarm/api-discovery.md#tracking-changes-in-api) kontrol edebilirsiniz. Bunu yapmak için, **Değişikliklerden bu yana** filtresinden, uygun dönemi veya tarihi seçin. Uç nokta listesinde aşağıdaki işaretler görüntülenecektir:
+Belirli bir süre zarfında API'deki ne tür [değişikliklerin gerçekleştiğini](../api-discovery/overview.md#tracking-changes-in-api) kontrol edebilirsiniz. Bunu yapmak için, **Değişikliklerden bu yana** filtresinden, uygun dönemi veya tarihi seçin. Uç nokta listesinde aşağıdaki işaretler görüntülenecektir:
 
 * **Yeni**, dönem içinde listeye eklenen uç noktalar için.
 * Dönem içinde yeni keşfedilmiş parametrelere sahip olan veya `Kullanılmıyor` durumunu elde eden uç noktalar için **Değiştirildi**. Uç nokta ayrıntılarında, bu tür parametreler ilgili bir işaretle belirtilecektir.
@@ -102,7 +102,7 @@ Hangi dönemin seçildiğine bakılmaksızın, eğer **Yeni**, **Değiştirildi*
 
 ## Risk skoru ile çalışma
 
-[Risk skoru](../about-wallarm/api-discovery.md#endpoint-risk-score), hangi uç noktaların muhtemelen bir saldırı hedefi olacağını ve dolayısıyla güvenlik çabalarınızın odak noktası olması gerektiğini anlamanıza yardımcı olur.
+[Risk skoru](../api-discovery/overview.md#endpoint-risk-score), hangi uç noktaların muhtemelen bir saldırı hedefi olacağını ve dolayısıyla güvenlik çabalarınızın odak noktası olması gerektiğini anlamanıza yardımcı olur.
 
 Risk skoru `1` (en düşük) ila `10` (en yüksek) arasında olabilir:
 
@@ -147,7 +147,7 @@ Ayrıca, uç noktanın URL'sini panoya kopyalayabilir ve olayları aramak için 
 
 ## API envanteri ve kuralları
 
-API envanterinden herhangi bir uç noktadan yeni bir [özel kural](../user-guides/rules/intro.md) hızlıca oluşturabilirsiniz:
+API envanterinden herhangi bir uç noktadan yeni bir [özel kural](../user-guides/rules/rules.md) hızlıca oluşturabilirsiniz:
 
 1. Bu uç nokta menüsünden **Kural Oluştur** 'u seçin. Kural oluşturma penceresi görüntülenir. Uç noktası adresi otomatik olarak pencereye ayrıştırılır.
 1. Kural oluşturma penceresinde, kural bilgilerini belirtin ve ardından **Oluştur** 'u tıklayın.
@@ -156,7 +156,7 @@ API envanterinden herhangi bir uç noktadan yeni bir [özel kural](../user-guide
 
 ## Gölge, öksüz ve zombi API'yi gösterme
 
-**API Keşfi** modülü, mactual kayıtlı trafik ile [müşterilerin tarafından verilen özelliklerin](../user-guides/api-specifications.md) karşılaştırılması sonucunda korsan (gölge, öksüz ve zombi) API'leri otomatik olarak açığa çıkarır. Wallarm tarafından keşfedilen uç noktalar arasında [korsan API'leri](../about-wallarm/api-discovery.md#shadow-orphan-and-zombie-apis) göstermek için:
+**API Keşfi** modülü, mactual kayıtlı trafik ile [müşterilerin tarafından verilen özelliklerin](../api-discovery/rogue-api.md) karşılaştırılması sonucunda korsan (gölge, öksüz ve zombi) API'leri otomatik olarak açığa çıkarır. Wallarm tarafından keşfedilen uç noktalar arasında [korsan API'leri](../api-discovery/overview.md#shadow-orphan-and-zombie-apis) göstermek için:
 
 * **Karşılaştırılanları...** filtresini kullanarak özellik karşılaştırmalarını seçin - yalnızca onlar için korsan API'ler, **Sorunlar** sütununda özel işaretler ile vurgulanır.
 
@@ -197,7 +197,7 @@ API uç noktalarını BOLA otomatik koruma durumuna göre filtreleyebilirsiniz. 
 
 ### API Keşfi için uygulamaların seçilmesi
 
-Eğer [API Keşfi](../about-wallarm/api-discovery.md) aboneliği şirket hesabınız için satın alınmışsa, Wallarm Konsolu → **API Keşfi** → **API Keşfi Yapılandır** ile API Keşfi ile trafik analizini etkinleştirebilir/devredışı bırakabilirsiniz.
+Eğer [API Keşfi](../api-discovery/overview.md) aboneliği şirket hesabınız için satın alınmışsa, Wallarm Konsolu → **API Keşfi** → **API Keşfi Yapılandır** ile API Keşfi ile trafik analizini etkinleştirebilir/devredışı bırakabilirsiniz.
 
 API Keşfi'ni tüm uygulamalar veya yalnızca seçilenler için etkinleştir/devre dışı bırakabilirsiniz.
 
@@ -207,7 +207,7 @@ API Keşfi'ni tüm uygulamalar veya yalnızca seçilenler için etkinleştir/dev
 
 ### Risk skoru hesaplamasını özelleştirme
 
-[Risk skoru](../about-wallarm/api-discovery.md#endpoint-risk-score) hesaplamasında, her faktörün ağırlığını ve hesaplama yöntemini yapılandırabilirsiniz.
+[Risk skoru](../api-discovery/overview.md#endpoint-risk-score) hesaplamasında, her faktörün ağırlığını ve hesaplama yöntemini yapılandırabilirsiniz.
 
 Varsayılanlar: 
 

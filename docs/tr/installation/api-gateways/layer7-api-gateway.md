@@ -1,0 +1,1 @@
+--8<-- "latest/installation/api-gateways/layer7-api-gateway.md"

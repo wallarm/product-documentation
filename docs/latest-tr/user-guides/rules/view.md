@@ -32,7 +32,7 @@ Her kural için, sistem şu parametreleri görüntüler: son değiştirilme zama
 
 Herhangi bir uç noktaya bağlı olmayan belirtilmiş eylemle kurallar oluşturabilirsiniz - bunlar **varsayılan kurallar** olarak adlandırılır. Bu tür kurallar tüm uç noktalara uygulanır.
 
-* Varsayılan bir kural oluşturmak için, [standart prosedür](add-rule.md) izleyin ancak URI'yi boş bırakın. Herhangi bir uç noktaya bağlı olmayan yeni bir kural oluşturulacak.
+* Varsayılan bir kural oluşturmak için, [standart prosedür](rules.md) izleyin ancak URI'yi boş bırakın. Herhangi bir uç noktaya bağlı olmayan yeni bir kural oluşturulacak.
 * Oluşturulan varsayılan kuralların listesini görmek için, **Varsayılan kurallar** düğmesine tıklayın.
 
 !!! info "Trafik filtreleme modunun varsayılan kuralı"
@@ -47,8 +47,8 @@ Kurallar, kural dalının aşağısına miras alınır. Prensipler:
 * Tüm dallar [varsayılan](#default-rules) kuralları miras alır.
 * Bir dalda, çocuk uç noktaları ebeveynden kuralları miras alır.
 * Ayrık, kalıtımdan önceliklidir.
-* Doğrudan belirtilen, [regex](add-rule.md#condition-type-regex) üzerinde önceliklidir.
-* Durum [duyarlı](add-rule.md#condition-type-equal), [hassas olmayan](add-rule.md#condition-type-iequal-aa) üzerinde önceliklidir.
+* Doğrudan belirtilen, [regex](rules.md#condition-type-regex) üzerinde önceliklidir.
+* Durum [duyarlı](rules.md#condition-type-equal), [hassas olmayan](rules.md#condition-type-iequal-aa) üzerinde önceliklidir.
 
 Kural dalıyla çalışmanın bazı ayrıntıları aşağıda verilmiştir:
 

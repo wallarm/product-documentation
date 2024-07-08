@@ -1,6 +1,6 @@
 # Envoy tabanlı Wallarm düğümünü ayarlama seçenekleri
 
-[link-lom]:                     ../../../user-guides/rules/intro.md
+[link-lom]:                     ../../../user-guides/rules/rules.md
 
 [anchor-process-time-limit]:    #processtimelimit
 [anchor-tsets]:                 #filtering-mode-settings

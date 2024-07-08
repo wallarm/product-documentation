@@ -1,6 +1,6 @@
-[variability-in-endpoints-docs]:       ../about-wallarm/api-discovery.md#variability-in-endpoints
+[variability-in-endpoints-docs]:       ../api-discovery/overview.md#variability-in-endpoints
 [changes-in-api-docs]:       api-discovery.md#tracking-changes-in-api
-[bola-protection-for-endpoints-docs]:  ../about-wallarm/api-discovery.md#automatic-bola-protection
+[bola-protection-for-endpoints-docs]:  ../api-discovery/overview.md#automatic-bola-protection
 
 # BOLA Koruması <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
@@ -8,7 +8,7 @@
 
 Bu bölüm, aşağıdaki koşullar altında mevcuttur:
 
-* [API Keşif](../about-wallarm/api-discovery.md) modülü etkindir
+* [API Keşif](../api-discovery/overview.md) modülü etkindir
 * Kullanıcı [rolü](settings/users.md#user-roles) ya **Yönetici** ya da **Global Yönetici'dir**
   
     Bu bölüm ayrıca **Analizciler** ve **Global Analizciler** içinde salt okunur modda mevcuttur.

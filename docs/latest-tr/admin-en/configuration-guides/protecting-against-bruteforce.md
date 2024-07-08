@@ -49,7 +49,7 @@ Tetiği yapılandırma adımları:
     * Zorla gezinme saldırılarına karşı koruma yapılandırıyorsanız, kaynak dosya dizininin URI'sini belirtin.
     * Eğer URI belirtilmemişse, istek sayısı eşiği aşan herhangi bir uç noktada tetikleyici etkinleştirilir.
 
-   URI, tetikleyici oluşturma penceresinde [URI yapıcısı](../../user-guides/rules/add-rule.md#uri-constructor) veya [gelişmiş düzenleme formu](../../user-guides/rules/add-rule.md#advanced-edit-form) aracılığıyla yapılandırılabilir.
+   URI, tetikleyici oluşturma penceresinde [URI yapıcısı](../../user-guides/rules/rules.md#uri-constructor) veya [gelişmiş düzenleme formu](../../user-guides/rules/rules.md#advanced-edit-form) aracılığıyla yapılandırılabilir.
 
     !!! warning "İç içe URI'lerle tetikleyiciler"
        Eşleşen koşullara sahip tetikleyicilerde iç içe URI'ler belirtilirse, daha düşük iç içe seviye URI'ye yapılan istekler yalnızca daha düşük iç içe seviye URI ile filtreye sahip tetikleyicide sayılır. Aynı şey 404 yanıt kodları için de geçerlidir.

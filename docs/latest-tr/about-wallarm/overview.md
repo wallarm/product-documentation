@@ -4,7 +4,7 @@ Wallarm platformu, bulut uygulamalarınızı ve API'lerinizi korumak için eşsi
 
 * Ultra düşük yanlış pozitiflerle [hacker saldırılarına karşı koruma](protecting-against-attacks.md)
 * [API tacizine karşı botlara karşı koruma](../api-abuse-prevention/overview.md)
-* [API Keşfi](api-discovery.md)
+* [API Keşfi](../api-discovery/overview.md)
 * [Otomatik kırılganlık tespiti](detecting-vulnerabilities.md)
 
 Wallarm, aşağıdaki ana bileşenlerden oluşur:

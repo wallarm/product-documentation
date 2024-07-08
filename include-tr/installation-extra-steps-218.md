@@ -16,8 +16,8 @@ Bu durumda, filtreleme düğümünün istek kaynak adresi olarak müşterinin IP
 
 Wallarm Tarayıcı, şirketinizin kaynaklarını açıklıklar için kontrol eder. Tarama, kullanılan Wallarm Bulut türüne bağlı olarak aşağıdaki listelerden birindeki IP adreslerini kullanarak yapılır:
 
-* [ABD Bulut kullanıcıları için ABD Tarayıcı adresleri](scanner-address-us-cloud.md)
-* [AB Bulut kullanıcıları için AB Tarayıcı adresleri](scanner-address-eu-cloud.md)
+* [ABD Bulut kullanıcıları için ABD Tarayıcı adresleri](scanner-addresses.md)
+* [AB Bulut kullanıcıları için AB Tarayıcı adresleri](scanner-addresses.md)
 
 Wallarm Tarayıcısını kullanıyorsanız, ağ kapsamındaki güvenlik yazılımınızda (örneğin, güvenlik duvarları, istila tespit sistemleri vb.) Wallarm Tarayıcı IP adreslerini içerecek şekilde izin listelerini yapılandırmanız gerekmektedir.
 

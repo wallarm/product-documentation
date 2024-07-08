@@ -8,7 +8,7 @@
 [attacks-in-ui]:                    ../../images/admin-guides/test-attacks-quickstart.png
 [user-roles-docs]:                  ../settings/users.md
 [update-origin-ip-docs]:            #updating-the-origin-address-of-the-protected-resource
-[rules-docs]:                       ../rules/intro.md
+[rules-docs]:                       ../rules/rules.md
 [ip-lists-docs]:                    ../ip-lists/overview.md
 [integration-docs]:                 ../settings/integrations/integrations-intro.md
 [trigger-docs]:                     ../triggers/triggers.md

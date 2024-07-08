@@ -26,7 +26,7 @@ Artık Wallarm NGINX Ingress Controller ile ARM64 işlemcileri destekliyoruz. AR
 
 ## Belirli URL'leri ve bot kontrolünden istekleri dışlamak
 
-API Abuse Prevention modülü artık daha esnek. [**Set API Abuse Prevention mode** rule](../user-guides/rules/api-abuse-url.md) kullanarak kötü niyetli bot eylemlerinin kontrol edilmemesi gereken belirli URL'leri ve istekleri seçebilirsiniz. Yanlış pozitifleri önlemek ve uygulamalarınızı test ederken bazı parçaların bot kontrolünü kapatmanız gereken zamanlar için yararlıdır. Örneğin, pazarlama için Klaviyo kullanıyorsanız, `Klaviyo/1.0` GET isteklerini kontrol etmemesi için kuralı ayarlayabilirsiniz, böylece gereksiz engellemeler olmaksızın sorunsuz çalışır.
+API Abuse Prevention modülü artık daha esnek. [**Set API Abuse Prevention mode** rule](../api-abuse-prevention/exceptions.md) kullanarak kötü niyetli bot eylemlerinin kontrol edilmemesi gereken belirli URL'leri ve istekleri seçebilirsiniz. Yanlış pozitifleri önlemek ve uygulamalarınızı test ederken bazı parçaların bot kontrolünü kapatmanız gereken zamanlar için yararlıdır. Örneğin, pazarlama için Klaviyo kullanıyorsanız, `Klaviyo/1.0` GET isteklerini kontrol etmemesi için kuralı ayarlayabilirsiniz, böylece gereksiz engellemeler olmaksızın sorunsuz çalışır.
 
 ## Resmi imza ile NGINX tabanlı Docker imaj doğrulaması
 

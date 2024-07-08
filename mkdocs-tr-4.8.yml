@@ -21,7 +21,7 @@ watch:
 nav:
   - Hızlı Başlangıç:
     - Wallarm Genel Bakış: about-wallarm/overview.md
-    - Hızlı Başlangıç Kılavuzu: quickstart.md
+    - Hızlı Başlangıç Kılavuzu: quickstart/getting-started.md
     - Video Kılavuzlar:
       - Wallarm Platform Ayarları: demo-videos/overview.md
       - CVE'leri ve İlgili Saldırıları Analiz Etme: demo-videos/events-inspection.md
@@ -29,7 +29,7 @@ nav:
       - Gölge ve Yetim API: demo-videos/shadow-api.md
       - API Kötüye Kullanım Önleme Genel Bakış: demo-videos/api-abuse-prevention.md
       - API Sızıntıları Genel Bakışı: demo-videos/api-leaks.md
-    - Dağıtım Kılavuzları: /installation/supported-deployment-options/
+    - Dağıtım Kılavuzları: /tr/installation/supported-deployment-options/
     - Abonelik Planları:
       - Genel Bakış: about-wallarm/subscription-plans.md
       - Aboneliği Yönetme: user-guides/settings/subscriptions.md
@@ -38,37 +38,50 @@ nav:
     - Tehdit Önleme: user-guides/dashboards/threat-prevention.md
     - API Keşif: user-guides/dashboards/api-discovery.md
     - OWASP API Top 10: user-guides/dashboards/owasp-api-top-ten.md
+    - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
     - Etkinlikler:
       - Etkinlik Arama ve Filtreler: user-guides/search-and-filters/use-search.md
       - Etkinlikleri Kontrol Etme: user-guides/events/check-attack.md
       - Saldırıları Analiz Etme: user-guides/events/analyze-attack.md
       - Yanıltıcı Saldırılar: user-guides/events/false-attack.md
       - Saldırıları Doğrulama: user-guides/events/verify-attack.md
+      - Olayları Kontrol Etme: user-guides/events/check-incident.md
     - Raporlar: user-guides/search-and-filters/custom-report.md
     - Aktivite Kaydı: user-guides/settings/audit-log.md
   - API Keşif:
-    - Genel Bakış: about-wallarm/api-discovery.md
-    - API Portföy Yönetim: user-guides/api-discovery.md
-    - API Şartnameleri Yönetim: user-guides/api-specifications.md
+    - Genel Bakış: api-discovery/overview.md
+    - Kurulum: api-discovery/setup.md
+    - API Envanterini Keşfetme: api-discovery/exploring.md
+    - API Değişikliklerini Takip Etme: api-discovery/track-changes.md
+    - Uç Nokta Risk Skoru: api-discovery/risk-score.md
+    - Gölge, Sahipsiz, Zombi API: api-discovery/rogue-api.md
+    - BOLA Otomatik Algılama Şablonu: api-discovery/bola-protection.md
+    - Kontrol Paneli: api-discovery/dashboard.md
   - API Koruma:
+    - Genel Bakış: about-wallarm/api-protection-overview.md
+    - API Özellik Uygulaması:
+      - Genel Bakış: api-specification-enforcement/overview.md
+      - Kurulum: api-specification-enforcement/setup.md
+      - Olayları Görüntüleme: api-specification-enforcement/viewing-events.md
+    - Otomatik BOLA Koruması: admin-en/configuration-guides/protecting-against-bola.md
     # - Genel Bakış: ...
     # - OWASP Top 10: ...
     # - OWASP API Top 10: ...
     - API Kötüye Kullanım Önleme:
       - Genel Bakış: api-abuse-prevention/overview.md
       - API Kötüye Kullanımı Önleme Profil Yönetimi: api-abuse-prevention/setup.md
-      - Belirli URL'ler ve istemler için bot korumasını devre dışı bırakma: user-guides/rules/api-abuse-url.md
-    - BOLA Koruma:
-      - Yapılandırma: admin-en/configuration-guides/protecting-against-bola.md
-      - BOLA otomatik algılama şablonu: user-guides/bola-protection.md
+      - Belirli URL'ler ve istemler için bot korumasını devre dışı bırakma: api-abuse-prevention/exceptions.md
+      - Bot Etkinliğini Keşfetme: api-abuse-prevention/exploring-bots.md
+    - Kimlik Bilgisi Doldurma Tespiti: about-wallarm/credential-stuffing.md
+    - GraphQL API Koruması: api-protection/graphql-rule.md
   - API Duruş Yönetimi:
-    - Genel Bakış: about-wallarm/detecting-vulnerabilities.md
+    - Genel Bakış: about-wallarm/attack-surface.md
+    - Güvenlik Açıklarını Tespit Etme: about-wallarm/detecting-vulnerabilities.md
     - Algılanan Kırılganlıkların Yönetimi: user-guides/vulnerabilities.md
+    - Güvenlik Açığı Arama ve Filtreleri: user-guides/search-and-filters/use-search-vuln.md
     - Tarayıcı İşlem Desteği:
       - Tarayıcı Ayarları: user-guides/scanner.md
-      - Tarayıcı Adresleri:
-        - AB Bulutu için Tarayıcı Adresleri: admin-en/scanner-address-eu-cloud.md
-        - ABD Bulutu için Tarayıcı Adresleri: admin-en/scanner-address-us-cloud.md
+      - Tarayıcı Adresleri: admin-en/scanner-addresses.md
       - Kaynak Tarayıcısını Durdurmak için Wallarm Destek İletişimi: admin-en/scanner-complaint-en.md
     - Aktif Tehdit Doğrulama:
       - Genel Bakış: vulnerability-detection/active-threat-verification/overview.md
@@ -189,20 +202,20 @@ nav:
           - Mozilla Firefox: fast/ssl/browsers-ssl/firefox-ssl.md
       - Sorun Giderme: fast/tshoot.md
   - WAAP/WAF:
+    - Genel Bakış: about-wallarm/waap-overview.md
     - Saldırı Tespit Prosedürü: about-wallarm/protecting-against-attacks.md
     - DDoS Koruma: admin-en/configuration-guides/protecting-against-ddos.md
     - Brute Force Koruma: admin-en/configuration-guides/protecting-against-bruteforce.md
+    - Zorla Göz Atma Koruması: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
+    - Manuel BOLA Koruması: admin-en/configuration-guides/protecting-against-bola-trigger.md
+    - Çoklu Saldırı Koruması: admin-en/configuration-guides/protecting-with-thresholds.md
     - Coğrafi Konum Kısıtlamaları:
       - Genel Bakış: user-guides/ip-lists/overview.md
       - İzinli Listesi: user-guides/ip-lists/allowlist.md
       - Gri Liste: user-guides/ip-lists/graylist.md
       - Engellenmiş Liste: user-guides/ip-lists/denylist.md
     - Kurallar:
-      - Uygulama Profili Kuralları: user-guides/rules/intro.md
-      - Uygulama Profili Kurallarını İnceleme: user-guides/rules/view.md
-      - Uygulama Profiline Kural Ekleme: user-guides/rules/add-rule.md
-      - Özel Kural Seti Oluşturma ve Kaldırma: user-guides/rules/compiling.md
-      - Özel Kural Seti Yedekleme ve Geri Yükleme: user-guides/rules/backup.md
+      - Kurallar: user-guides/rules/rules.md
       - İsteklerin Analiz ve Ayrıştırılması: user-guides/rules/request-processing.md
       - Mevcut Kural Türleri:
         - İstek Ayrıştırıcıları Yönetme: user-guides/rules/disable-request-parsers.md
@@ -221,6 +234,10 @@ nav:
     - Saldırı ve Kırılganlık Türleri: attacks-vulns-list.md
   - Dağıtım:
     - Dağıtım Seçenekleri: installation/supported-deployment-options.md
+    - eBPF:
+      - Dağıtım: installation/oob/ebpf/deployment.md
+      - Helm Chart Değerleri: installation/oob/ebpf/helm-chart-for-wallarm.md
+      - Yansıtma için Paket Seçimi: installation/oob/ebpf/selecting-packets.md
     - Band Dışı:
       - Genel Bakış: installation/oob/overview.md
       - NGINX, Envoy ve Benzeri ile Aynılaştırma:
@@ -257,6 +274,7 @@ nav:
       - Akamai EdgeWorkers: installation/cdn/akamai-edgeworkers.md
       - Azion Edge: installation/cdn/azion-edge.md
       - AWS Lambda: installation/cdn/aws-lambda.md
+      - Cloudflare: installation/cdn/cloudflare.md
     - Kubernetes:
       - Ingress:
         - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
@@ -266,6 +284,7 @@ nav:
       - Yan Araba:
         - Kurulum: installation/kubernetes/sidecar-proxy/deployment.md
         - Özelleştirme: installation/kubernetes/sidecar-proxy/customization.md
+        - Ölçeklendirme ve Yüksek Erişilebilirlik: installation/kubernetes/sidecar-proxy/scaling.md
         - Helm Grafik Değerleri: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
         - Kapsamın Ekler: installation/kubernetes/sidecar-proxy/pod-annotations.md
     - Sıralı:
@@ -300,11 +319,17 @@ nav:
         - Sidecar Controller:
           - Kurulum: installation/inline/kubernetes/sidecar-proxy/deployment.md
           - Özelleştirme: installation/inline/kubernetes/sidecar-proxy/customization.md
+          - Ölçeklendirme ve Yüksek Erişilebilirlik: installation/inline/kubernetes/sidecar-proxy/scaling.md
           - Helm chart values: installation/inline/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
           - Kapsam Ekler: installation/inline/kubernetes/sidecar-proxy/pod-annotations.md
+      - eBPF:
+        - Dağıtım: installation/kubernetes/ebpf/deployment.md
+        - Helm Chart Değerleri: installation/kubernetes/ebpf/helm-chart-for-wallarm.md
+        - Yansıtma için Paket Seçimi: installation/kubernetes/ebpf/selecting-packets.md
     - API Ağ Geçitleri:
       - Mulesoft: installation/api-gateways/mulesoft.md
       - Apigee: installation/api-gateways/apigee.md
+      - Layer7 API Gateways: installation/api-gateways/layer7-api-gateway.md
     - Bağlayıcılar:
       - Genel Bakış: installation/connectors/overview.md
       - Mulesoft: installation/connectors/mulesoft.md
@@ -312,6 +337,8 @@ nav:
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
       - Azion Edge: installation/connectors/azion-edge.md
       - AWS Lambda: installation/connectors/aws-lambda.md
+      - Cloudflare: installation/connectors/cloudflare.md
+      - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
     - Paketler:
       - Docker Images:
         - NGINX tabanlı: admin-en/installation-docker-en.md
@@ -326,6 +353,7 @@ nav:
         - GCP Machine Image: installation/packages/gcp-machine-image.md
       - AWS için Terraform Modülü: installation/cloud-platforms/aws/terraform-module/overview.md
     - Özel Dağıtım:
+      - On-Premise: installation/on-premise.md
       - Özel NGINX Paketleri: installation/custom/custom-nginx-version.md
       - Heroku: installation/heroku/docker-image.md
       - Özel Dağıtım Seçenekleri: installation/custom/request-custom-deployment.md

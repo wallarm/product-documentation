@@ -12,7 +12,7 @@ Bazı durumlarda, saldırıları manuel olarak algılamak için bir imza eklemek
 
 Bunu yapmak için, *Regexp ile saldırı belirteci oluştur* kuralını oluşturmanız ve alanları doldurmanız gerekiyor:
 
-* *Düzenli İfade*: Düzenli ifade (imza). İfadenin takibenki parametrenin değeriyle eşleşirse, bu talep bir saldırı olarak algılanır. Düzenli ifadelerin sözdizimi ve özellikleri, [kuralların eklenmesi talimatlarında](add-rule.md#condition-type-regex) ayrıntılı olarak açıklanmıştır.
+* *Düzenli İfade*: Düzenli ifade (imza). İfadenin takibenki parametrenin değeriyle eşleşirse, bu talep bir saldırı olarak algılanır. Düzenli ifadelerin sözdizimi ve özellikleri, [kuralların eklenmesi talimatlarında](rules.md#condition-type-regex) ayrıntılı olarak açıklanmıştır.
 
     !!! warning "Kuraldaki belirtilen düzenli ifadenin değiştirilmesi"
         **Regexp ile saldırı belirteci oluştur** tipindeki mevcut bir kuralın düzenli ifadesini değiştirmek, önceki ifadeyi kullanan [**Regexp tabanlı saldırı tespitini devre dışı bırak**](#partial-disabling-of-a-new-detection-rule) kurallarının otomatik olarak silinmesine neden olur.

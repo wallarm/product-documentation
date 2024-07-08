@@ -250,7 +250,7 @@ Aşağıdaki istek kaynağı kontrol parametreleri kullanımdan kaldırıldı:
 
 Wallarm, uygulama API'sını otomatik olarak tanımlayan modül **API Discovery** ile dağıtılır. Bu modül varsayılan olarak devre dışıdır.
 
-[API Discovery modülü üzerine ayrıntılar →](../../about-wallarm/api-discovery.md)
+[API Discovery modülü üzerine ayrıntılar →](../../api-discovery/overview.md)
 
 ## libdetection kütüphanesi ile iyileştirilmiş saldırı analizi
 

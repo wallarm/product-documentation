@@ -32,9 +32,9 @@ Wallarm aşağıdaki abonelik planlarını sunmaktadır:
 | [BOLA (IDOR) koruması](../admin-en/configuration-guides/protecting-against-bola.md) | Manuel kurulum | Otomatik koruma |
 | [API İstismarı Önleme](../api-abuse-prevention/overview.md) | Hayır | Evet |
 | **Gözlem opsiyonları** | | |
-| [API Taraması](../about-wallarm/api-discovery.md) | Hayır | Evet |
-| [API Taraması ile varolan gölge, öksüz ve zombi API'lerin bulunması](../about-wallarm/api-discovery.md#shadow-orphan-and-zombie-apis) | Hayır | Evet |
-| [Hassas veri tespiti](../about-wallarm/api-discovery.md) | Hayır | Evet |
+| [API Taraması](../api-discovery/overview.md) | Hayır | Evet |
+| [API Taraması ile varolan gölge, öksüz ve zombi API'lerin bulunması](../api-discovery/overview.md#shadow-orphan-and-zombie-apis) | Hayır | Evet |
+| [Hassas veri tespiti](../api-discovery/overview.md) | Hayır | Evet |
 | **Güvenlik testi ve zafiyet değerlendirmesi** | | |
 | [Aktif tehdit doğrulaması](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | Hayır | Evet |
 | [Zaafiyet Tarayıcısı](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | Hayır | Evet |

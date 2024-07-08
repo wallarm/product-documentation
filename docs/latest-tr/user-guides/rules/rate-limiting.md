@@ -11,7 +11,7 @@ Wallarm, çerezler veya JSON alanları gibi çeşitli istek parametrelerini ince
 Oran limitini ayarlamak ve uygulamak için:
 
 1. Wallarm Konsolu'na gidin → **Kurallar** → **Kural ekle**.
-1. **Eğer istek şu ise**, [tanımlayın](add-rule.md#branch-description) kuralın uygulanacağı kapsamı.
+1. **Eğer istek şu ise**, [tanımlayın](rules.md#branch-description) kuralın uygulanacağı kapsamı.
 1. **Sonra**, **Oran limiti belirle**'yi seçin ve kapsamınıza olan bağlantılar için istediğiniz limiti ayarlayın:
 
     * Saniye başına veya dakika başına taleplerin maksimum sayısı.
@@ -31,7 +31,7 @@ Oran limitini ayarlamak ve uygulamak için:
 
     !!! info "Değer uzunluğu üzerindeki kısıtlamalar"
         Sınırları ölçmek için kullandığınız parametre değerlerinin en fazla uzunluğu 8000 semboldür.
-1. [Kural derlemesinin tamamlanmasını](compiling.md) bekleyin.
+1. [Kural derlemesinin tamamlanmasını](rules.md) bekleyin.
 
 ## Kural örnekleri
 
@@ -63,7 +63,7 @@ Uygulamanızın her kullanıcı oturumuna benzersiz bir ID atadığını ve bunu
 
 ![Örnek](../../images/user-guides/rules/rate-limit-for-jwt.png)
 
-`Authorization` değeri için kullanılan [regex](add-rule.md#condition-type-regex) ''^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$''dir.
+`Authorization` değeri için kullanılan [regex](rules.md#condition-type-regex) ''^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$''dir.
 
 Kullanıcı oturumlarını yönetmek için JWT (JSON Web Tokens) kullanıyorsanız, kuralı JWT'yi [deşifre etmek](request-processing.md#jwt) ve yükünden oturum ID'sini çıkarmak için ayarlayabilirsiniz:
 

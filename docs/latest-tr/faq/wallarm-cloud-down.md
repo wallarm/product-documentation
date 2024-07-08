@@ -15,7 +15,7 @@ Devam eden işlemler:
 
 * Düğüm ile Bulut arasında son başarılı [senkronizasyon](../admin-en/configure-wallarm-mode.md#available-filtration-modes) sırasında düğüme yüklenen kuralları kullanarak yapılandırılan [modda](../admin-en/configure-cloud-node-synchronization-en.md) trafik işlemi. Düğümün devam etmesiyle, aşağıdaki unsurların en son sürümleri programlanmış zamanda Bulut'tan yüklenir ve düğümde yerel olarak saklanır:
 
-    * [Özel kural seti](../user-guides/rules/compiling.md)
+    * [Özel kural seti](../user-guides/rules/rules.md)
     * [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton)
 
 * [IP listeleri](../user-guides/ip-lists/overview.md) de düğüme yüklenir ve içinde saklanır. Yüklenen adresler geçerlilik süresi/dakikası sona erene kadar işlenecektir.
@@ -36,7 +36,7 @@ Devam eden işlemler:
 * [Tetikleyiciler](../user-guides/triggers/triggers.md) çalışmayı durdurur ve dolayısıyla:
     * [IP listeleri](../user-guides/ip-lists/overview.md) güncellenmez.
     * [Tetikleyiciye bağlı bildirimler](../user-guides/triggers/triggers.md) çıkmaz.
-* [API envanterini keşfetme](../about-wallarm/api-discovery.md) işlemi çalışmayı durdurur.
+* [API envanterini keşfetme](../api-discovery/overview.md) işlemi çalışmayı durdurur.
 * [Aktif tehdit doğrulama](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) durur.
 * [Kaba kuvvet saldırıları](../admin-en/configuration-guides/protecting-against-bruteforce.md) tespit edilmez.
 * Entegrasyonlar durdurulur, aşağıdakiler dahil:
