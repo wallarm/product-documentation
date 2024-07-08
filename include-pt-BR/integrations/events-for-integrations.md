@@ -6,5 +6,5 @@
     * Alto risco
     * Risco médio
     * Baixo risco
-* [Regras](../../../user-guides/rules/intro.md) e [gatilhos](../../../user-guides/triggers/triggers.md) alterados (criando, atualizando ou excluindo a regra ou gatilho)
+* [Regras](../../../user-guides/rules/rules.md) e [gatilhos](../../../user-guides/triggers/triggers.md) alterados (criando, atualizando ou excluindo a regra ou gatilho)
 * [Escopo (ativos expostos)](../../scanner.md) alterado: atualizações em hosts, serviços e domínios

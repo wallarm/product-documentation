@@ -49,7 +49,7 @@ As seguintes etiquetas correspondem ao interpretador de URL:
             * `nome_da_ação` — `cb-common`
             * `ext_da_ação` — `ffc63abe`
         
-        Para corrigir isso, edite manualmente os pontos **nome_da_ação** e **ext_da_ação** no [formulário de edição avançada](add-rule.md#advanced-edit-form) do construtor de URI.
+        Para corrigir isso, edite manualmente os pontos **nome_da_ação** e **ext_da_ação** no [formulário de edição avançada](rules.md#advanced-edit-form) do construtor de URI.
 
 * **consulta** para [parâmetros da string de consulta](#query-string-parameters) após o símbolo `?`.
 
@@ -327,7 +327,7 @@ Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'name']` — `John Doe`
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'iat']` — `1516239022`
 
-Ao definir um elemento de solicitação a [regra](add-rule.md) é aplicada a:
+Ao definir um elemento de solicitação a [regra](rules.md) é aplicada a:
 
 * Escolha primeiro o interpretador da parte da solicitação contendo o JWT
 * Especifique um dos parâmetros `jwt_*` listados como o valor do interpretador `jwt`, por exemplo, para o valor do parâmetro `name` na carga JWT:

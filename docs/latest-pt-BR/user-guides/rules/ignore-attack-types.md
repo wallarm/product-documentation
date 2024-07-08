@@ -14,7 +14,7 @@ Para criar e aplicar a regra na seção **Regras**:
 
 1. Crie a regra **Ignore certos tipos de ataque** na seção **Regras** do Console Wallarm. A regra consiste nos seguintes componentes:
 
-      * **Condição** [descreve](add-rule.md#branch-description) os pontos finais para aplicar a regra.
+      * **Condição** [descreve](rules.md#branch-description) os pontos finais para aplicar a regra.
       * Tipos de ataque a serem ignorados no elemento de solicitação especificado.
 
         A guia **Certos tipos de ataques** permite selecionar um ou mais tipos de ataque que o nó Wallarm pode detectar no momento da criação da regra.
@@ -25,7 +25,7 @@ Para criar e aplicar a regra na seção **Regras**:
 
          --8<-- "../include-pt-BR/waf/features/rules/request-part-reference.md"
 
-2. Aguarde a [compilação da regra ser concluída](compiling.md).
+2. Aguarde a [compilação da regra ser concluída](rules.md).
 
 ## Exemplo de regra
 

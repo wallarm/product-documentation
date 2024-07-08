@@ -12,7 +12,7 @@ Em alguns casos, pode ser útil adicionar uma assinatura para detecção de ataq
 
 Para fazer isso, você precisa criar a regra *Criar indicador de ataque baseado em regexp* e preencher os campos:
 
-* *Expressão regular*: expressão regular (assinatura). Se o valor do seguinte parâmetro corresponder à expressão, essa solicitação é detectada como um ataque. A sintaxe e especificidades das expressões regulares são descritas nas [instruções sobre a adição de regras](add-rule.md#condition-type-regex).
+* *Expressão regular*: expressão regular (assinatura). Se o valor do seguinte parâmetro corresponder à expressão, essa solicitação é detectada como um ataque. A sintaxe e especificidades das expressões regulares são descritas nas [instruções sobre a adição de regras](rules.md#condition-type-regex).
 
     !!! alert "Alterando a expressão regular especificada na regra"
         A modificação da expressão regular especificada na regra existente do tipo **Criar indicador de ataque baseado em regexp** resulta na eliminação automática das regras [**Desativar detecção de ataque baseada em regexp**](#partial-disabling-of-a-new-detection-rule) que usam a expressão anterior.

@@ -91,7 +91,7 @@ As regras personalizadas permitem que você configure regras individuais para o 
 
 Um conjunto de regras personalizadas não está vazio por padrão, ele contém as regras criadas para todos os clientes registrados no cloud, por exemplo, a regra do modo de filtragem com o valor da [**aba Configurações → Geral**](user-guides/settings/general.md).
 
-[Mais detalhes sobre conjuntos de regras personalizadas](user-guides/rules/intro.md)
+[Mais detalhes sobre conjuntos de regras personalizadas](user-guides/rules/rules.md)
 
 ## Solicitação Inválida
 Uma solicitação que foi verificada pelo nó de filtro e não coincide com as regras do LOM.

@@ -250,7 +250,7 @@ Existem os seguintes novos recursos para controle da fonte da requisição:
 
 Novos nodes Wallarm são distribuídos com o módulo **API Discovery** que identifica a API do aplicativo automaticamente. O módulo está desativado por padrão.
 
-[Detalhes sobre o módulo API Discovery →](../../about-wallarm/api-discovery.md)
+[Detalhes sobre o módulo API Discovery →](../../api-discovery/overview.md)
 
 ## Análise de ataque aprimorada com a biblioteca libdetection
 

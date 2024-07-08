@@ -32,9 +32,9 @@ O Wallarm oferece os seguintes planos de assinatura:
 | [Proteção BOLA (IDOR)](../admin-en/configuration-guides/protecting-against-bola.md) | Configuração manual | Proteção automática |
 | [Prevenção ao Abuso de API](../api-abuse-prevention/overview.md) | Não | Sim |
 | **Opções de observabilidade** | | |
-| [Descoberta de API](../about-wallarm/api-discovery.md) | Não | Sim |
-| [Encontrando APIs sombra, órfãs e zumbis](../about-wallarm/api-discovery.md#shadow-orphan-and-zombie-apis) com a Descoberta de API | Não | Sim |
-| [Detecção de dados sensíveis](../about-wallarm/api-discovery.md) | Não | Sim |
+| [Descoberta de API](../api-discovery/overview.md) | Não | Sim |
+| [Encontrando APIs sombra, órfãs e zumbis](../api-discovery/overview.md#shadow-orphan-and-zombie-apis) com a Descoberta de API | Não | Sim |
+| [Detecção de dados sensíveis](../api-discovery/overview.md) | Não | Sim |
 | **Testes de segurança e avaliação de vulnerabilidades** | | |
 | [Verificação de ameaças ativas](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | Não | Sim |
 | [Scanner de Vulnerabilidades](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | Não | Sim |

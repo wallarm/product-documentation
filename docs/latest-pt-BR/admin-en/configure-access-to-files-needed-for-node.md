@@ -21,7 +21,7 @@ O algoritmo procura as permissões do arquivo realizando as seguintes etapas (va
     `(TYPE)` permite que você especifique o arquivo específico para o qual o parâmetro é definido. Os valores possíveis são `proton.db` ou `lom`.
 
     !!! aviso "significado do valor `lom`"
-         Preste atenção que o valor `lom` aponta para o arquivo de [conjunto de regras personalizadas](../user-guides/rules/compiling.md) `/etc/wallarm/custom_ruleset`.
+         Preste atenção que o valor `lom` aponta para o arquivo de [conjunto de regras personalizadas](../user-guides/rules/rules.md) `/etc/wallarm/custom_ruleset`.
 
 1. Parâmetros `syncnode.(user,group,mode)` configurados explicitamente no arquivo `node.yaml`.
 1. Para instalação baseada em NGINX, valor do `nginx_group` no arquivo `/usr/share/wallarm-common/engine/*`.

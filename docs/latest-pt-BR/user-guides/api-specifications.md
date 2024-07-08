@@ -6,7 +6,7 @@ Na seção **Especificações da API** da Wallarm Console UI, você pode manter 
 
 ## Revelando API sombra, órfã e zumbi
 
-Com o [**API Discovery**](../about-wallarm/api-discovery.md) em uso, suas especificações de API carregadas na seção **Especificações da API** podem ser comparadas com o que foi automaticamente detectado pelo API Discovery. Como resultado dessa comparação, a Wallarm [encontra e mostra APIs irregulares (sombra, órfã e zumbi)](../about-wallarm/api-discovery.md#shadow-orphan-and-zombie-apis).
+Com o [**API Discovery**](../api-discovery/overview.md) em uso, suas especificações de API carregadas na seção **Especificações da API** podem ser comparadas com o que foi automaticamente detectado pelo API Discovery. Como resultado dessa comparação, a Wallarm [encontra e mostra APIs irregulares (sombra, órfã e zumbi)](../api-discovery/overview.md#shadow-orphan-and-zombie-apis).
 
 Para executar a comparação:
 

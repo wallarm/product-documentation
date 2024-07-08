@@ -110,7 +110,7 @@ Na guia **Geral**, você pode especificar um dos seguintes modos de filtração:
 
 Você pode ajustar o modo de filtração para processar solicitações que atendem a suas condições personalizadas na guia **Regras** do Console Wallarm. Estas regras têm uma prioridade maior do que a [regra de filtração geral definida no Console Wallarm](#setting-up-the-general-filtration-rule-in-wallarm-console).
 
-* [Detalhes sobre o trabalho com regras na guia **Regras** →](../user-guides/rules/intro.md)
+* [Detalhes sobre o trabalho com regras na guia **Regras** →](../user-guides/rules/rules.md)
 * [Guia passo a passo para criar uma regra que gerencia o modo de filtração →](../user-guides/rules/wallarm-mode-rule.md)
 
 !!! info "A sincronização do Cloud Wallarm e do nó de filtragem"

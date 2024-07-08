@@ -28,7 +28,7 @@ Agora suportamos processadores ARM64 com o Wallarm NGINX Ingress Controller. À 
 
 ## Excluindo URLs e solicitações específicas das verificações de bot
 
-O módulo de prevenção de abuso de API agora é mais flexível. Você pode escolher URLs e solicitações específicas que não devem ser verificadas para ações de bots maliciosos usando a regra [**Definir modo de prevenção de abuso de API**](../user-guides/rules/api-abuse-url.md). Isso é útil para evitar falsos positivos e para momentos em que você está testando suas aplicações e precisa desativar as verificações de bot em algumas partes. Por exemplo, se você estiver usando o Klaviyo para marketing, poderá configurar a regra para que ela não verifique as solicitações GET `Klaviyo/1.0`, permitindo que ela funcione sem problemas sem bloqueios desnecessários.
+O módulo de prevenção de abuso de API agora é mais flexível. Você pode escolher URLs e solicitações específicas que não devem ser verificadas para ações de bots maliciosos usando a regra [**Definir modo de prevenção de abuso de API**](../api-abuse-prevention/exceptions.md). Isso é útil para evitar falsos positivos e para momentos em que você está testando suas aplicações e precisa desativar as verificações de bot em algumas partes. Por exemplo, se você estiver usando o Klaviyo para marketing, poderá configurar a regra para que ela não verifique as solicitações GET `Klaviyo/1.0`, permitindo que ela funcione sem problemas sem bloqueios desnecessários.
 
 ## Verificação da imagem Docker baseada em NGINX com assinatura oficial
 

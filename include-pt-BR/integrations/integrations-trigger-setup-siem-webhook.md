@@ -9,7 +9,7 @@ As seguintes condições estão disponíveis para notificação:
     * Acertos não salvos na [amostra](../events/analyze-attack.md#sampling-of-hits).
 * Número de incidentes
 * IP na lista de negação
-* [Mudanças na API](../../about-wallarm/api-discovery.md#tracking-changes-in-api)
+* [Mudanças na API](../../api-discovery/overview.md#tracking-changes-in-api)
 * Usuário adicionado
 
 ### Etapa 2: Adicionando filtros

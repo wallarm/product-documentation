@@ -24,11 +24,11 @@ Para implementar essa regra, os arquivos de configuração do NGINX devem permit
 
 ## Instância padrão da regra
 
-A Wallarm cria automaticamente a instância da regra `Definir modo de filtragem` no nível [padrão](../../user-guides/rules/view.md#default-rules). O sistema define seu valor com base na [configuração do modo de filtragem geral](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console).
+A Wallarm cria automaticamente a instância da regra `Definir modo de filtragem` no nível [padrão](../../user-guides/rules/rules.md#default-rules). O sistema define seu valor com base na [configuração do modo de filtragem geral](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console).
 
 Essa instância da regra não pode ser excluída. Para alterar seu valor, modifique a [configuração do modo de filtragem geral](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) do sistema.
 
-Como todas as outras regras padrão, a regra padrão `Definir modo de filtragem` é [herdada](../../user-guides/rules/view.md) por todos os ramos.
+Como todas as outras regras padrão, a regra padrão `Definir modo de filtragem` é [herdada](../../user-guides/rules/rules.md) por todos os ramos.
 
 ## Exemplo: Desabilitando o bloqueio de solicitações durante o registro do usuário
 

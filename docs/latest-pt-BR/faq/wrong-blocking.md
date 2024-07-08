@@ -25,7 +25,7 @@ Para resolver o problema de uma solicitação legítima ser bloqueada pelo Walla
 1. Se for um bloqueio errado, resolva o problema aplicando uma ou uma combinação de medidas:
 
     * Medidas contra [falsos positivos](../user-guides/events/false-attack.md)
-    * Reconfigurando [regras](../user-guides/rules/intro.md)
+    * Reconfigurando [regras](../user-guides/rules/rules.md)
     * Reconfigurando [gatilhos](../user-guides/triggers/triggers.md)
     * Modificando [listas de IP](../user-guides/ip-lists/overview.md)
 

@@ -102,4 +102,4 @@ Além de marcar bons IPs de bots via [lista de exceções](#exception-list), voc
 
 Isso pode ajudar a evitar detecções de falsos positivos e também pode ser útil no caso de testar suas aplicações quando você pode precisar desativar temporariamente a proteção do bot para alguns de seus endpoints.
 
-Observe que, comparado a outra configuração de Prevenção de Abuso de API, essa habilidade é configurada **não** dentro do [perfil](../api-abuse-prevention/setup.md) de Abuso de API, mas separadamente - com a ajuda da regra [**Definir modo de Prevenção de Abuso de API**](../user-guides/rules/api-abuse-url.md).
+Observe que, comparado a outra configuração de Prevenção de Abuso de API, essa habilidade é configurada **não** dentro do [perfil](../api-abuse-prevention/setup.md) de Abuso de API, mas separadamente - com a ajuda da regra [**Definir modo de Prevenção de Abuso de API**](../api-abuse-prevention/exceptions.md).

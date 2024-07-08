@@ -211,7 +211,7 @@ O botão [**Marcar como falso positivo**](../events/false-attack.md#mark-an-atta
 
 ## Novos pontos de extremidade no seu inventário da API
 
-As mudanças podem ocorrer na sua API. Elas serão descobertas pelo módulo [**API Discovery**](../../about-wallarm/api-discovery.md). Possíveis [mudanças](../../user-guides/api-discovery.md#tracking-changes-in-api) são:
+As mudanças podem ocorrer na sua API. Elas serão descobertas pelo módulo [**API Discovery**](../../api-discovery/overview.md). Possíveis [mudanças](../../api-discovery/exploring.md#tracking-changes-in-api) são:
 
 * Um novo ponto de extremidade é descoberto
 * Um ponto de extremidade tem mudanças (novos parâmetros ou parâmetros excluídos)

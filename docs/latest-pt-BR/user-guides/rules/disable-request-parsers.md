@@ -16,12 +16,12 @@ Para criar e aplicar a regra na seção **Regras**:
 
 1. Crie a regra **Desativar/Ativar analisador de solicitação** na seção **Regras** do Console Wallarm. A regra consiste nos seguintes componentes:
 
-      * **Condição** [descreve](add-rule.md#branch-description) os endpoints para aplicar a regra.
+      * **Condição** [descreve](rules.md#branch-description) os endpoints para aplicar a regra.
       * Analisadores a serem desativados / ativados para o elemento de solicitação especificado.      
       * **Parte da solicitação** aponta para o elemento de solicitação original a ser analisado / não analisado com os analisadores selecionados.
 
          --8<-- "../include-pt-BR/waf/features/rules/request-part-reference.md"
-2. Aguarde a [compilação da regra ser concluída](compiling.md).
+2. Aguarde a [compilação da regra ser concluída](rules.md).
 
 ## Exemplo de regra
 

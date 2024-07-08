@@ -19,7 +19,7 @@ search:
 [attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [versioning-policy]:                ../../../updating-migrating/versioning-policy.md#version-list
 [node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
-[node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
+[node-token]:                       ../../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../supported-deployment-options.md

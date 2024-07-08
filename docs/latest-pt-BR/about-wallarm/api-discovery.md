@@ -2,7 +2,7 @@
 
 O módulo **API Discovery** da plataforma Wallarm [constrói](#habilita%C3%A7%C3%A3o-econfigura%C3%A7%C3%A3o-da-descoberta-da-api) o inventário da API REST do seu aplicativo com base no uso real da API. O módulo analisa continuamente as solicitações de tráfego real e constrói o inventário da API com base nos resultados da análise. Este artigo fornece uma visão geral da **API Discovery**: questões abordadas por ela, seu propósito e principais possibilidades.
 
-Para obter informações sobre como usar o módulo de **API Discovery**, consulte o [guia do usuário](../user-guides/api-discovery.md).
+Para obter informações sobre como usar o módulo de **API Discovery**, consulte o [guia do usuário](../api-discovery/exploring.md).
 
 ## Problemas resolvidos por API Discovery
 
@@ -15,15 +15,15 @@ Como o módulo API Discovery usa o tráfego real como fonte de dados, isso ajuda
 **Conforme você descobre seu inventário de API com a Wallarm, você pode**:
 
 * Ter uma visibilidade total de todo o patrimônio da API, incluindo a lista de APIs [externas e internas](#apis-externas-e-internas).
-* Ver quais dados estão [entrando nas APIs](../user-guides/api-discovery.md#params).
+* Ver quais dados estão [entrando nas APIs](../api-discovery/exploring.md#params).
 * Entender quais pontos finais são [mais prováveis](#pontua%C3%A7%C3%A3o-de-risco-do-ponto-de-extremidade) de ser um alvo de ataque.
 * Ver as APIs mais atacadas nos últimos 7 dias.
 * Filtrar apenas APIs atacadas, classificá-las por número de acertos.
 * Filtrar APIs que consomem e transportam dados sensíveis.
 * Encontrar APIs [sombra, órfãs e zumbis](#api-sombra-%C3%B3rf%C3%A3s-e-zumbis).
-* [Baixar](../user-guides/api-discovery.md#baixar-a-especifica%C3%A7%C3%A3o-openapi-oas-do-seu-invent%C3%A1rio-da-api) pontos finais descobertos como especificação no formato OpenAPI v3 e comparar com suas próprias especificações de API para encontrar pontos finais apresentados em suas especificações mas não descobertos pela Wallarm (pontos finais que não estão em uso, também conhecidos como "API zumbi").
+* [Baixar](../api-discovery/exploring.md#baixar-a-especifica%C3%A7%C3%A3o-openapi-oas-do-seu-invent%C3%A1rio-da-api) pontos finais descobertos como especificação no formato OpenAPI v3 e comparar com suas próprias especificações de API para encontrar pontos finais apresentados em suas especificações mas não descobertos pela Wallarm (pontos finais que não estão em uso, também conhecidos como "API zumbi").
 * [Rastrear mudanças](#rastrear-mudan%C3%A7as-na-api) na API que ocorreram dentro do período de tempo selecionado.
-* [Criar regras](../user-guides/api-discovery.md#invent%C3%A1rio-de-api-e-regras) rapidamente para qualquer ponto final da API.
+* [Criar regras](../api-discovery/exploring.md#invent%C3%A1rio-de-api-e-regras) rapidamente para qualquer ponto final da API.
 * Obter uma lista completa das solicitações maliciosas para qualquer ponto de extremidade da API.
 * Fornecer aos seus desenvolvedores acesso ao inventário da API construída para revisão e download.
 
@@ -37,7 +37,7 @@ API Discovery usa uma abordagem híbrida para conduzir a análise localmente e n
 
 1. O API Discovery analisa o tráfego legítimo localmente. A Wallarm analisa os pontos de extremidade para os quais as solicitações são feitas e quais parâmetros são passados.
 1. De acordo com esses dados, as estatísticas são criadas e enviadas para o Nuvem.
-1. A Nuvem Wallarm agrega as estatísticas recebidas e constrói uma [descrição da API](../user-guides/api-discovery.md) em sua base.
+1. A Nuvem Wallarm agrega as estatísticas recebidas e constrói uma [descrição da API](../api-discovery/exploring.md) em sua base.
 
     !!! info "Detecção de ruído"
         Solicitações raras ou únicas são [consideradas como ruído](#detec%C3%A7%C3%A3o-de-ru%C3%ADdo) e não incluídas no inventário da API.
@@ -133,7 +133,7 @@ Essas opções são:
 * Criação de regra personalizada para o ponto final específico.
 * Download da especificação OpenAPI (OAS) para pontos finais individuais da API e uma API completa como arquivo `swagger.json`.
 
-Saiba mais sobre as opções disponíveis no [Guia do usuário](../user-guides/api-discovery.md).
+Saiba mais sobre as opções disponíveis no [Guia do usuário](../api-discovery/exploring.md).
 
 ## Pontuação de risco do ponto de extremidade
 
@@ -149,9 +149,9 @@ A pontuação de risco é composta por vários fatores, incluindo:
 * **Objetos XML ou JSON** passados na solicitação do ponto final podem ser usados pelos atacantes para transferir entidades externas XML maliciosas e injeções para o servidor.
 
 !!! info "Configurando cálculo de pontuação de risco"
-    Para adaptar a estimativa de pontuação de risco de acordo com sua compreensão da importância dos fatores, você pode [configurar](../user-guides/api-discovery.md#configurar-o-c%C3%A1lculo-da-pontua%C3%A7%C3%A3o-de-risco) o peso de cada fator no cálculo da pontuação de risco e o método de cálculo.
+    Para adaptar a estimativa de pontuação de risco de acordo com sua compreensão da importância dos fatores, você pode [configurar](../api-discovery/exploring.md#configurar-o-c%C3%A1lculo-da-pontua%C3%A7%C3%A3o-de-risco) o peso de cada fator no cálculo da pontuação de risco e o método de cálculo.
 
-[Aprenda como trabalhar com a pontuação de risco →](../user-guides/api-discovery.md#trabalhar-com-a-pontua%C3%A7%C3%A3o-de-risco)
+[Aprenda como trabalhar com a pontuação de risco →](../api-discovery/exploring.md#trabalhar-com-a-pontua%C3%A7%C3%A3o-de-risco)
 
 ## Rastrear mudanças na API
 
@@ -171,7 +171,7 @@ Com o módulo **API Discovery** da Wallarm, você pode:
 * Certificar-se de que PII e outros parâmetros inesperados não começaram a ser transferidos para os pontos de extremidade.
 * Configurar notificações sobre mudanças em sua API por meio de [gatilhos](../user-guides/triggers/trigger-examples.md#new-endpoints-in-your-api-inventory) com a condição **Mudanças na API**.
 
-Aprenda como trabalhar com o recurso de rastreamento de mudanças no [Guia do usuário](../user-guides/api-discovery.md#rastrear-mudan%C3%A7as-na-api).
+Aprenda como trabalhar com o recurso de rastreamento de mudanças no [Guia do usuário](../api-discovery/exploring.md#rastrear-mudan%C3%A7as-na-api).
 
 ## APIs externas e internas
 
@@ -226,7 +226,7 @@ API Discovery permite descobrir APIs rogue (sombra, órfãs e zumbis).
 
 Uma **API sombra** refere-se a uma API não documentada que existe dentro da infraestrutura de uma organização sem a devida autorização ou supervisão. Eles colocam negócios em risco, pois os invasores podem explorá-los para acessar sistemas críticos, roubar dados valiosos ou interromper as operações. Além disso, é reforçado pelo fato de que as APIs geralmente atuam como guardiões de dados críticos e uma variedade de vulnerabilidades da API OWASP pode ser explorada para contornar a segurança da API.
 
-Em termos de suas [especificações](../user-guides/api-specifications.md) da API enviadas, a API sombra é um ponto de extremidade apresentado no tráfego atual (detectado pela API Discovery) e não apresentado estruturas de composição de suas especificações.
+Em termos de suas [especificações](../api-specification-enforcement/overview.md) da API enviadas, a API sombra é um ponto de extremidade apresentado no tráfego atual (detectado pela API Discovery) e não apresentado estruturas de composição de suas especificações.
 
 Conforme você encontra APIs sombras com a Wallarm, pode atualizar suas especificações para incluir pontos de extremidade ausentes e realizar atividades adicionais de monitoramento e segurança para o seu inventário de API na sua íntegra.
 
@@ -242,12 +242,12 @@ Em termos de suas especificações de API carregadas, a API zumbi é um ponto de
 
 Encontrar API zumbi com a Wallarm pode ser o motivo para verificar novamente a configuração da API de seus aplicativos para realmente desativar tais pontos finais.
 
-O módulo API Discovery automaticamente descobre APIs sombras, órfãs e zumbis comparando o inventário da API descoberto com as especificações fornecidas pelos clientes. Você carrega suas especificações de API na seção [**Especificações da API**](../user-guides/api-specifications.md) e o módulo automaticamente destaca pontos finais sombra, órfãs e zumbis.
+O módulo API Discovery automaticamente descobre APIs sombras, órfãs e zumbis comparando o inventário da API descoberto com as especificações fornecidas pelos clientes. Você carrega suas especificações de API na seção [**Especificações da API**](../api-specification-enforcement/overview.md) e o módulo automaticamente destaca pontos finais sombra, órfãs e zumbis.
 
 ![API Discovery - destacando e filtrando API rogue](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
-* [Saiba como carregar especificações para encontrar APIs rogue →](../user-guides/api-specifications.md#revelando-api-sombra-%C3%B3rf%C3%A3s-e-zumbis)
-* [Saiba como exibir APIs rogue encontradas na seção API Discovery →](../user-guides/api-discovery.md#exibindo-api-sombra-e-%C3%B3rf%C3%A3s)
+* [Saiba como carregar especificações para encontrar APIs rogue →](../api-specification-enforcement/overview.md#revelando-api-sombra-%C3%B3rf%C3%A3s-e-zumbis)
+* [Saiba como exibir APIs rogue encontradas na seção API Discovery →](../api-discovery/exploring.md#exibindo-api-sombra-e-%C3%B3rf%C3%A3s)
 
 ## Segurança dos dados carregados para o Cloud da Wallarm
 

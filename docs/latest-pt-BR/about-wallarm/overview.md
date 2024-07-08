@@ -4,7 +4,7 @@ A plataforma Wallarm é especialmente adequada para proteger suas aplicações e
 
 * [Proteção contra ataques de hackers](protecting-against-attacks.md) com falsos positivos ultra baixos
 * [Proteção contra bots que realizam abuso de API](../api-abuse-prevention/overview.md)
-* [Descoberta de API](api-discovery.md)
+* [Descoberta de API](../api-discovery/overview.md)
 * [Detecção automática de vulnerabilidades](detecting-vulnerabilities.md)
 
 A Wallarm consiste nos seguintes componentes principais:

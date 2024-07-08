@@ -1,6 +1,6 @@
-[variability-in-endpoints-docs]:       ../../about-wallarm/api-discovery.md#variability-in-endpoints
-[changes-in-api-docs]:       ../../user-guides/api-discovery.md#tracking-changes-in-api
-[bola-protection-for-endpoints-docs]:  ../../about-wallarm/api-discovery.md#automatic-bola-protection
+[variability-in-endpoints-docs]:       ../../api-discovery/overview.md#variability-in-endpoints
+[changes-in-api-docs]:       ../../api-discovery/exploring.md#tracking-changes-in-api
+[bola-protection-for-endpoints-docs]:  ../../api-discovery/overview.md#automatic-bola-protection
 
 # Configuração da proteção BOLA (IDOR)
 
@@ -47,7 +47,7 @@ Para o nó Wallarm identificar os ataques BOLA:
         example.com/lojas/*/informacoes_financeiras
         ```
 
-        O URI pode ser configurado através do [construtor de URI](../../user-guides/rules/add-rule.md#uri-constructor) ou [formulário de edição avançada](../../user-guides/rules/add-rule.md#advanced-edit-form) na janela de criação de gatilho.
+        O URI pode ser configurado através do [construtor de URI](../../user-guides/rules/rules.md#uri-constructor) ou [formulário de edição avançada](../../user-guides/rules/rules.md#advanced-edit-form) na janela de criação de gatilho.
 
     * (Opcional) [**Aplicação**](../../user-guides/settings/applications.md) para ser protegida contra ataques BOLA e receber o número especificado de solicitações.
 
@@ -77,7 +77,7 @@ Você pode configurar vários gatilhos com diferentes filtros para a proteção 
 
 ## Proteção automática BOLA para endpoints descobertos pelo recurso de Descoberta de API <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-A proteção automática BOLA está disponível se você utilizar o módulo **[Descoberta de API](../../about-wallarm/api-discovery.md)**.
+A proteção automática BOLA está disponível se você utilizar o módulo **[Descoberta de API](../../api-discovery/overview.md)**.
 
 Para habilitar a autoproteção, vá para o console Wallarm → **Proteção BOLA** e ative a opção:
 

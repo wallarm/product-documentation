@@ -202,7 +202,7 @@ Para substituir o nó regular pós-análises pelo Wallarm node:
     <p class="admonition-title">Usando um token para várias instalações</p>
     <p>Você tem duas opções para usar um token para várias instalações:</p>
     <ul>
-    <li>**Para todas as versões de nó**, você pode usar um [**token de nó**](../../quickstart.md#deploy-the-wallarm-filtering-node) em várias instalações, independentemente da [plataforma](../../installation/supported-deployment-options.md) selecionada. Isso permite a agrupação lógica de instâncias de nó na interface do usuário do Console Wallarm. Exemplo: você implanta vários nós Wallarm em um ambiente de desenvolvimento, cada nó está em sua própria máquina de propriedade de um determinado desenvolvedor.</li>
+    <li>**Para todas as versões de nó**, você pode usar um [**token de nó**](../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node) em várias instalações, independentemente da [plataforma](../../installation/supported-deployment-options.md) selecionada. Isso permite a agrupação lógica de instâncias de nó na interface do usuário do Console Wallarm. Exemplo: você implanta vários nós Wallarm em um ambiente de desenvolvimento, cada nó está em sua própria máquina de propriedade de um determinado desenvolvedor.</li>
     <li>
     <p>**A partir do nó 4.6**, para agrupamento de nós, você pode usar um [**token API**](../../user-guides/settings/api-tokens.md) com a função `Deploy` junto com a flag `--labels 'group=<GROUP>'`, por exemplo:</p>
 

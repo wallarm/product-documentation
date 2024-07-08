@@ -7,7 +7,7 @@ search:
 [deployment-platform-docs]:        ../../../../installation/supported-deployment-options.md
 [attack-detection-docs]:           ../../../../about-wallarm/protecting-against-attacks.md
 [vulnerability-detection-docs]:    ../../../../about-wallarm/detecting-vulnerabilities.md
-[api-discovery-docs]:              ../../../../about-wallarm/api-discovery.md
+[api-discovery-docs]:              ../../../../api-discovery/overview.md
 [kong-ing-controller-scheme]:      ../../../../images/waf-installation/kubernetes/kong-ingress-controller/solution-architecture.png
 [multitenancy-overview]:           ../../../multi-tenant/overview.md
 [applications-docs]:               ../../../../user-guides/settings/applications.md

@@ -19,7 +19,7 @@ Entre todas as [opções de implantação da Wallarm](../supported-deployment-op
 A solução tem certas limitações, pois só funciona com solicitações recebidas:
 
 * A descoberta de vulnerabilidades usando o método [detecção passiva](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) não funciona adequadamente. A solução determina se uma API é vulnerável ou não com base nas respostas do servidor a solicitações maliciosas que são típicas para as vulnerabilidades que ela testa.
-* O [Descoberta de API Wallarm](../../about-wallarm/api-discovery.md) não pode explorar o inventário da API com base no seu tráfego, pois a solução relies on na análise de resposta.
+* O [Descoberta de API Wallarm](../../api-discovery/overview.md) não pode explorar o inventário da API com base no seu tráfego, pois a solução relies on na análise de resposta.
 * A [proteção contra navegação forçada](../../admin-en/configuration-guides/protecting-against-bruteforce.md) não está disponível pois requer análise do código de resposta.
 
 Também existem limitações causadas pelas [limitações do produto EdgeWorkers](https://techdocs.akamai.com/edgeworkers/docs/limitations) e [solicitação HTTP](https://techdocs.akamai.com/edgeworkers/docs/http-request):

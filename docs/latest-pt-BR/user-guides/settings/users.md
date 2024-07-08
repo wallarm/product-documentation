@@ -29,7 +29,7 @@ Usuários dos clientes Wallarm podem ter as seguintes funções:
 * **Administrador** com acesso a todas as configurações da Wallarm
 * **Analista** com acesso para visualizar as principais configurações da Wallarm e gerenciar informações sobre ataques, [incidentes][link-glossary-incident] e [vulnerabilidades][link-glossary-vulnerability]
 * **Somente leitura** com acesso para visualizar as principais configurações da Wallarm
-* **Desenvolvedor de API** com acesso para visualizar e baixar o inventário da API descoberto pelo módulo [Descoberta de API](../../about-wallarm/api-discovery.md). Essa função permite distinguir usuários cujas tarefas só exigem o uso da Wallarm para obter dados atualizados sobre as APIs da empresa. Esses usuários não têm acesso a nenhuma parte do console da Wallarm, exceto **Descoberta de API** e **configurações → perfil**.
+* **Desenvolvedor de API** com acesso para visualizar e baixar o inventário da API descoberto pelo módulo [Descoberta de API](../../api-discovery/overview.md). Essa função permite distinguir usuários cujas tarefas só exigem o uso da Wallarm para obter dados atualizados sobre as APIs da empresa. Esses usuários não têm acesso a nenhuma parte do console da Wallarm, exceto **Descoberta de API** e **configurações → perfil**.
 
 O recurso [multilocatário](../../installation/multi-tenant/overview.md) também permite que você use as funções globais **Administrador Global**, **Analista Global**, **Somente Leitura Global**. Funções globais fornecem aos usuários acesso à conta de locatário técnico e contas de locatário vinculadas, funções regulares fornecem aos usuários acesso apenas à conta de locatário técnico.
 

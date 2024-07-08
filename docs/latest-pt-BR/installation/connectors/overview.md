@@ -24,7 +24,7 @@ Alternativamente, o modo de monitoramento permite que os usuários adquiram conh
 A solução tem certas limitações, pois só funciona com solicitações de entrada:
 
 * A descoberta de vulnerabilidades usando o método de [detecção passiva](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) não funciona adequadamente. A solução determina se uma API é vulnerável ou não com base nas respostas do servidor a solicitações maliciosas típicas das vulnerabilidades que testa.
-* [Descoberta da API Wallarm](../../about-wallarm/api-discovery.md) não pode explorar o inventário da API com base no seu tráfego, pois a solução depende da análise da resposta.
+* [Descoberta da API Wallarm](../../api-discovery/overview.md) não pode explorar o inventário da API com base no seu tráfego, pois a solução depende da análise da resposta.
 * A [proteção contra navegação forçada](../../admin-en/configuration-guides/protecting-against-bruteforce.md) não está disponível, pois requer análise do código de resposta.
 
 ## Opções de implantação suportadas

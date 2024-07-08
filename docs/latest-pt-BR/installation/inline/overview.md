@@ -16,7 +16,7 @@ A solução Wallarm Inline é adequada para os seguintes casos de uso:
 A abordagem de implementação em linha para a implantação da Wallarm oferece várias vantagens em relação a outros métodos de implementação, como as [implantações OOB](../oob/overview.md):
 
 * A Wallarm bloqueia instantaneamente solicitações maliciosas, pois a análise de tráfego ocorre em tempo real.
-* Todos os recursos da Wallarm, incluindo o [API Discovery](../../about-wallarm/api-discovery.md) e a [detecção de vulnerabilidades](../../about-wallarm/detecting-vulnerabilities.md), funcionam sem limitações já que a Wallarm tem acesso a ambas as requisições recebidas e respostas do servidor.
+* Todos os recursos da Wallarm, incluindo o [API Discovery](../../api-discovery/overview.md) e a [detecção de vulnerabilidades](../../about-wallarm/detecting-vulnerabilities.md), funcionam sem limitações já que a Wallarm tem acesso a ambas as requisições recebidas e respostas do servidor.
 
 Para implementar um esquema inline, você precisará alterar a rota do tráfego em sua infraestrutura. Além disso, considere cuidadosamente a [alocação de recursos](../../admin-en/configuration-guides/allocate-resources-for-node.md) para os nós Wallarm para garantir um serviço ininterrupto.
 

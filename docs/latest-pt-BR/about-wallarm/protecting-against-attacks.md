@@ -201,7 +201,7 @@ Para ajustar a análise de solicitação padrão da Wallarm às especificidades 
 * [Desativar / Ativar analisadores](../user-guides/rules/disable-request-parsers.md)
 * [Ajuste fino da detecção de ataque overlimit_res](../user-guides/rules/configure-overlimit-res-detection.md)
 
-O conjunto de regras personalizadas [compilada](../user-guides/rules/compiling.md) é aplicada junto com as regras padrão de **proton.db** ao analisar as solicitações.
+O conjunto de regras personalizadas [compilada](../user-guides/rules/rules.md) é aplicada junto com as regras padrão de **proton.db** ao analisar as solicitações.
 
 ## Monitoramento e bloqueio de ataques
 

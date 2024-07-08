@@ -67,7 +67,7 @@ Com o provedor Wallarm, via Terraform você pode gerenciar:
 
 * [Nós](../../user-guides/nodes/nodes.md) em sua conta
 * [Aplicativos](../../user-guides/settings/applications.md)
-* [Regras](../../user-guides/rules/intro.md)
+* [Regras](../../user-guides/rules/rules.md)
 * [Gatilhos](../../user-guides/triggers/triggers.md)
 * IPs na [lista de negação](../../user-guides/ip-lists/denylist.md), [lista de permissão](../../user-guides/ip-lists/allowlist.md) e [lista cinza](../../user-guides/ip-lists/graylist.md)
 * [Usuários](../../user-guides/settings/users.md)

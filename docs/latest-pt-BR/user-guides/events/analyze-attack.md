@@ -47,7 +47,7 @@ A visualização da solicitação oferece as seguintes opções para ajuste fino
 * **Desativar base64** para indicar que o analisador base64 foi aplicado incorretamente ao elemento da solicitação.
 
     O botão abre um formulário preenchido para configurar a [regra que desativa o analisador](../rules/disable-request-parsers.md).
-* **Regra** para criar [qualquer regra individual](../rules/add-rule.md#rule) para lidar com certas solicitações.
+* **Regra** para criar [qualquer regra individual](../rules/rules.md#rule) para lidar com certas solicitações.
 
     O botão abre um formulário de configuração de regra preenchido com os dados da solicitação.
 
