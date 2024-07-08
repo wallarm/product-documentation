@@ -54,7 +54,7 @@ nav:
     - نظرة عامة على Wallarm: about-wallarm/overview.md
     - البدء: quickstart/getting-started.md
     - خطط الاشتراك: about-wallarm/subscription-plans.md
-    - دلائل التنصيب: /installation/supported-deployment-options/
+    - دلائل التنصيب: /ar/installation/supported-deployment-options/
     - أفضل الممارسات: quickstart/attack-prevention-best-practices.md
     - دلائل الفيديو:
       - إعدادات منصة Wallarm: demo-videos/overview.md
@@ -87,6 +87,7 @@ nav:
     - حماية BOLA التلقائية: api-discovery/bola-protection.md
     - لوحة التحكم: api-discovery/dashboard.md
   - حماية API:
+    - نظرة عامة: about-wallarm/api-protection-overview.md
     # - نظرة عامة: ...
     # - OWASP Top 10: ...
     # - OWASP API Top 10: ...
@@ -97,9 +98,11 @@ nav:
     - منع الاعتداء على API:
       - نظرة عامة: api-abuse-prevention/overview.md
       - إدارة الملف الشخصي لمنع سوء استخدام API: api-abuse-prevention/setup.md
+      - استثناءات: api-abuse-prevention/exceptions.md
       - استكشاف البوتات المكتشفة: api-abuse-prevention/exploring-bots.md
     - حماية BOLA(APID): admin-en/configuration-guides/protecting-against-bola.md
     - اكتشاف تزوير البيانات: about-wallarm/credential-stuffing.md
+    - حماية API لـ GraphQL: api-protection/graphql-rule.md
   - سطح الهجوم API:
     - نظرة عامة: about-wallarm/attack-surface.md
     - الأصول المكشوفة: user-guides/scanner.md
@@ -288,6 +291,7 @@ nav:
       - Akamai EdgeWorkers: installation/cdn/akamai-edgeworkers.md
       - Azion Edge: installation/cdn/azion-edge.md
       - AWS Lambda: installation/cdn/aws-lambda.md
+      - Cloudflare: installation/cdn/cloudflare.md
     - Kubernetes:
       - Ingress:
         - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
@@ -342,6 +346,7 @@ nav:
     - بوابات API:
       - Mulesoft: installation/api-gateways/mulesoft.md
       - Apigee: installation/api-gateways/apigee.md
+      - Layer7 API Gateways: installation/api-gateways/layer7-api-gateway.md
     - الوصلات:
       - نظرة عامة: installation/connectors/overview.md
       - Mulesoft: installation/connectors/mulesoft.md
@@ -349,6 +354,8 @@ nav:
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
       - Azion Edge: installation/connectors/azion-edge.md
       - AWS Lambda: installation/connectors/aws-lambda.md
+      - Cloudflare: installation/connectors/cloudflare.md
+      - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
     - الحزم:
       - Docker Images:
         - نظام NGINX: admin-en/installation-docker-en.md

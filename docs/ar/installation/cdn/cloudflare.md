@@ -1,0 +1,1 @@
+--8<-- "latest/installation/cdn/cloudflare.md"
