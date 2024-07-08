@@ -227,7 +227,7 @@ The sidecar solution will accept TLS/SSL traffic, terminate it, and forward plai
 
 ### Certificates for the admission webhook
 
-Starting with release 4.10.7, you have the option to issue and use your own certificates for the admission webhook. The certificate is essential for secure communication between the webhook and the Kubernetes API server.
+Starting with release 4.10.7, you have the option to issue and use your own certificates for the admission webhook.
 
 By default, the solution automatically generates certificates for the admission webhook using [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen).
 
