@@ -640,5 +640,5 @@
 /4.8/user-guides/settings/general/ /4.8/admin-en/configure-wallarm-mode/#setting-up-the-general-filtration-rule-in-wallarm-console
 /4.6/user-guides/settings/general/ /4.6/admin-en/configure-wallarm-mode/#setting-up-the-general-filtration-rule-in-wallarm-console
 
-/user-guides/rules/api-abuse-url/ /api-abuse-prevention/setup/#exceptions-for-target-urls-and-specific-requests
-/4.8/user-guides/rules/api-abuse-url/ /4.8/api-abuse-prevention/setup/#exceptions-for-target-urls-and-specific-requests
+/user-guides/rules/api-abuse-url/ /api-abuse-prevention/exceptions/#exceptions-for-target-urls-and-specific-requests
+/4.8/user-guides/rules/api-abuse-url/ /4.8/api-abuse-prevention/exceptions/#exceptions-for-target-urls-and-specific-requests
