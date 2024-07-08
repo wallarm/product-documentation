@@ -16,8 +16,8 @@ Nesse caso, se desejar que o nó de filtragem receba o endereço IP do cliente c
 
 O Scanner Wallarm verifica os recursos de sua empresa em busca de vulnerabilidades. A varredura é realizada usando endereços IP de uma das seguintes listas (dependendo do tipo de Wallarm Cloud que você está usando):
 
-* [Endereços do Scanner US para usuários do Cloud US](scanner-address-us-cloud.md)
-* [Endereços do Scanner EU para usuários do Cloud EU](scanner-address-eu-cloud.md)
+* [Endereços do Scanner US para usuários do Cloud US](scanner-addresses.md)
+* [Endereços do Scanner EU para usuários do Cloud EU](scanner-addresses.md)
 
 Se você está usando o Scanner Wallarm, precisa configurar as listas de permissões em seu software de segurança de escopo de rede (como firewalls, sistemas de detecção de intrusão, etc.) para conter os endereços IP do Scanner Wallarm.
 

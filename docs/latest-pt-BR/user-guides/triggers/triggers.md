@@ -42,7 +42,7 @@ Uma condição é um evento de sistema para o qual deve ser notificado. As segui
     * Hits não salvos na [amostra](../events/analyze-attack.md#sampling-of-hits).
 * Número de incidentes
 * IP na lista negra
-* [Mudanças no estoque da API](../../about-wallarm/api-discovery.md#tracking-changes-in-api)
+* [Mudanças no estoque da API](../../api-discovery/overview.md#tracking-changes-in-api)
 * Hits do mesmo IP, exceto aqueles de força bruta, navegação forçada, BOLA (IDOR), limite de recursos, bomba de dados e tipos de ataque de patch virtual
 * Usuário adicionado
 
@@ -56,7 +56,7 @@ Os filtros são usados para detalhar condições. Por exemplo, você pode config
 
 Os seguintes filtros estão disponíveis:
 
-* **URI** (apenas para as condições **Força Bruta**, **Navegação Forçada** e **BOLA**): URI completa para a qual a solicitação foi enviada. URI pode ser configurado via [construtor de URL](../../user-guides/rules/add-rule.md#uri-constructor) ou [formulário de edição avançado](../../user-guides/rules/add-rule.md#advanced-edit-form).
+* **URI** (apenas para as condições **Força Bruta**, **Navegação Forçada** e **BOLA**): URI completa para a qual a solicitação foi enviada. URI pode ser configurado via [construtor de URL](../../user-guides/rules/rules.md#uri-constructor) ou [formulário de edição avançado](../../user-guides/rules/rules.md#advanced-edit-form).
 * **Tipo** é um [tipo](../../attacks-vulns-list.md) de ataque detectado na solicitação ou uma tipo de vulnerabilidade para a qual a solicitação está direcionada.
 * **Aplicativo** é o [aplicativo](../settings/applications.md) que recebe a solicitação ou no qual um incidente é detectado.
 * **IP** é um endereço IP do qual a solicitação é enviada.

@@ -9,7 +9,7 @@ Bildirim için aşağıdaki koşullar mevcuttur:
     * [Örnekte](../events/analyze-attack.md#sampling-of-hits) kaydedilmeyen hitler.
 * Olayların sayısı
 * Kara listeye alınan IP
-* [API'deki değişiklikler](../../about-wallarm/api-discovery.md#tracking-changes-in-api)
+* [API'deki değişiklikler](../../api-discovery/overview.md#tracking-changes-in-api)
 * Kullanıcı eklendi
 
 ### Adım 2: Filtreler Eklemek

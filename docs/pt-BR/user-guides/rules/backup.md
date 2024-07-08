@@ -1,1 +1,0 @@
---8<-- "latest-pt-BR/user-guides/rules/backup.md"

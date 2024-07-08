@@ -110,7 +110,7 @@ Wallarm Konsolu'nun **Kurallar** sekmesindeki yerel filtrasyon modu ayarları, *
 
 Wallarm Konsolu'nun **Kurallar** sekmesinde, özel koşullarınıza uyan isteklerin işlenmesi için filtreleme modunu hassas bir şekilde ayarlayabilirsiniz. Bu kurallar, [Wallarm Konsolu'nda belirlenen genel filtreleme kuralından](#setting-up-the-general-filtration-rule-in-wallarm-console) daha yüksek önceliğe sahiptir.
 
-* [**Kurallar** sekmesinde kurallarla çalışma ayrıntıları →](../user-guides/rules/intro.md)
+* [**Kurallar** sekmesinde kurallarla çalışma ayrıntıları →](../user-guides/rules/rules.md)
 * [Filtrasyon modunu yöneten bir kural oluşturma adım-adım kılavuzu →](../user-guides/rules/wallarm-mode-rule.md)
 
 !!! bilgi "Wallarm Bulutu ve filtreleme düğümü senkronizasyonu"

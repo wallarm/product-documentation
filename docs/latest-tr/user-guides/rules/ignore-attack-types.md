@@ -14,7 +14,7 @@ Wallarm düğümü, isteğin standart yükünü kötü niyetli olarak işaretler
 
 1. Wallarm Konsolu'nun **Kurallar** bölümünde **Belirli saldırı türlerini görmezden gel** kuralını oluşturun. Kural aşağıdaki bileşenlerden oluşur:
 
-      * **Durum** kuralın uygulanacağı uç noktaları [tanımlar](add-rule.md#branch-description).
+      * **Durum** kuralın uygulanacağı uç noktaları [tanımlar](rules.md#branch-description).
       * Belirtilen istek ögesinde yok sayılacak saldırı türleri.
         
         **Belirli saldırı türleri** sekmesi, kural oluşturulduğu sıradaki bir veya daha fazla saldırı türünü seçmenizi sağlar.
@@ -25,7 +25,7 @@ Wallarm düğümü, isteğin standart yükünü kötü niyetli olarak işaretler
         
          --8<-- "../include-tr/waf/features/rules/request-part-reference.md"
 
-2. [Kural derlemenin tamamlanmasını](compiling.md) bekleyin.
+2. [Kural derlemenin tamamlanmasını](rules.md) bekleyin.
 
 ## Kural örneği
 

@@ -33,5 +33,5 @@ IP listelerini yapılandırmak için:
 !!! uyarı "Ek trafik filtreleme tesislerinin kullanılması"
     Otomatik olarak trafik filtrelemek ve engellemek için ek tesisler (yazılım veya donanım) kullanıyorsanız, [Wallarm Tarayıcısı](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) için IP adreslerini izin verilenler listesine eklemenizi öneririz. Bu, Wallarm bileşenlerinin kaynaklarınızı sorunsuz bir şekilde taramasına izin verecektir.
 
-    * [Wallarm US Cloud'da kayıtlı Tarayıcı IP adresi](../../admin-en/scanner-address-us-cloud.md)
-    * [Wallarm EU Cloud'da kayıtlı Tarayıcı IP adresi](../../admin-en/scanner-address-eu-cloud.md)
+    * [Wallarm US Cloud'da kayıtlı Tarayıcı IP adresi](../../admin-en/scanner-addresses.md)
+    * [Wallarm EU Cloud'da kayıtlı Tarayıcı IP adresi](../../admin-en/scanner-addresses.md)

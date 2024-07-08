@@ -42,7 +42,7 @@ Bir koşul, hakkında bilgilendirilecek bir sistem olayıdır. Bildirim için a�
     * [Örnekte](../events/analyze-attack.md#sampling-of-hits) kaydedilmeyen darbeler.
 * Olay sayısı
 * Kara listeye alınmış IP
-* [API envanterindeki değişiklikler](../../about-wallarm/api-discovery.md#tracking-changes-in-api)
+* [API envanterindeki değişiklikler](../../api-discovery/overview.md#tracking-changes-in-api)
 * Aynı IP'den gelen darbeler, Kaba kuvvet, Zorla tarama, BOLA (IDOR), Kaynak aşırı sınırı, Veri bombası ve Sanal yama saldırı türlerinden olanlar hariç
 * Kullanıcı eklendi
 
@@ -56,7 +56,7 @@ Filtreler, koşulun ayrıntılandırılması için kullanılır. Örneğin, beli
 
 Aşağıdaki filtreler kullanılabilir:
 
-* **URI** (yalnızca **Kaba Kuvvet**, **Zorla Tarama** ve **BOLA** koşulları için): İsteğin gönderildiği tam URI. URI, [URI yapılandırıcısı](../../user-guides/rules/add-rule.md#uri-constructor) veya [gelişmiş düzenleme formu](../../user-guides/rules/add-rule.md#advanced-edit-form) aracılığıyla yapılandırılabilir.
+* **URI** (yalnızca **Kaba Kuvvet**, **Zorla Tarama** ve **BOLA** koşulları için): İsteğin gönderildiği tam URI. URI, [URI yapılandırıcısı](../../user-guides/rules/rules.md#uri-constructor) veya [gelişmiş düzenleme formu](../../user-guides/rules/rules.md#advanced-edit-form) aracılığıyla yapılandırılabilir.
 * **Tür** istekte tespit edilen bir saldırı türü veya isteğin yönlendirildiği bir zafiyet türüdür.
 * **Uygulama** isteği alan veya bir olayın tespit edildiği [uygulama](../settings/applications.md)dır.
 * **IP** isteğin gönderildiği bir IP adresidir.

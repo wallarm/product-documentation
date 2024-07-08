@@ -1,6 +1,6 @@
 [doc-nginx-install]: ../installation/nginx/dynamic-module-from-distr.md
-[doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
-[doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
+[doc-eu-scanner-ip-addresses]: scanner-addresses.md
+[doc-us-scanner-ip-addresses]: scanner-addresses.md
 [acl-access-phase]: #wallarm_acl_access_phase
 
 # NGINX tabanlı Wallarm düğümü için yapılandırma seçenekleri
@@ -187,7 +187,7 @@ Sunucu başlatıldığında proton.db ve özel kural seti dosya kopyası depolam
 
 ### wallarm_custom_ruleset_path
 
-Korunan uygulama hakkında bilgi içeren ve filtreleme düğümü ayarlarını içeren [özel kural seti](../user-guides/rules/intro.md) dosyasının bir yoludur.
+Korunan uygulama hakkında bilgi içeren ve filtreleme düğümü ayarlarını içeren [özel kural seti](../user-guides/rules/rules.md) dosyasının bir yoludur.
 
 !!! info
     Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.

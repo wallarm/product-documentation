@@ -107,4 +107,4 @@ A guia **Lista de exceções** fornece os dados históricos - você pode ver os 
 
 Além de marcar os IPs de bots bons por meio da [lista de exceções](#working-with-exception-list), você pode desativar a proteção bot tanto para as URLs que as solicitações visam como para os tipos de solicitação específicos, por exemplo, para solicitações que contenham cabeçalhos específicos.
 
-Observe que, em comparação com outras configurações de Prevenção de Abuso de API, essa capacidade é configurada **não** dentro do perfil de Abuso de API, mas separadamente - com a ajuda da regra [**Definir modo de Prevenção de Abuso de API**](../user-guides/rules/api-abuse-url.md).
+Observe que, em comparação com outras configurações de Prevenção de Abuso de API, essa capacidade é configurada **não** dentro do perfil de Abuso de API, mas separadamente - com a ajuda da regra [**Definir modo de Prevenção de Abuso de API**](../api-abuse-prevention/exceptions.md).

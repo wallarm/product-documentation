@@ -33,5 +33,5 @@ Para configurar listas de IP:
 !!! Aviso "Usando instalações adicionais de filtragem de tráfego"
     Observe que, se você usa instalações adicionais (software ou hardware) para filtrar e bloquear automaticamente o tráfego, recomenda-se que você configure uma lista de permissões com os endereços IP para o [Scanner Wallarm](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner). Isso permitirá que os componentes Wallarm digitalizem sem problemas seus recursos em busca de vulnerabilidades.
 
-    * [Endereço IP do scanner registrado na Wallarm US Cloud](../../admin-en/scanner-address-us-cloud.md)
-    * [Endereço IP do scanner registrado na Wallarm EU Cloud](../../admin-en/scanner-address-eu-cloud.md)
+    * [Endereço IP do scanner registrado na Wallarm US Cloud](../../admin-en/scanner-addresses.md)
+    * [Endereço IP do scanner registrado na Wallarm EU Cloud](../../admin-en/scanner-addresses.md)

@@ -19,7 +19,7 @@ Tüm desteklenen [Wallarm dağıtım seçenekleri](../supported-deployment-optio
 Çözüm, sadece gelen isteklerle çalıştığı için belirli kısıtlamalar vardır:
 
 * [Pasif tespit](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) yöntemiyle güvenlik açığı bulma düzgün çalışmaz. Çözüm, sunucunun tipik olarak test ettiği güvenlik açıkları için kötü amaçlı isteklere yanıtlara dayanarak bir API'nin güvenlik açığına sahip olup olmadığını belirler.
-* [Wallarm API Keşfi](../../about-wallarm/api-discovery.md), yanıt analizine dayandığından sizin trafiğinize dayalı API envanterini keşfedemez.
+* [Wallarm API Keşfi](../../api-discovery/overview.md), yanıt analizine dayandığından sizin trafiğinize dayalı API envanterini keşfedemez.
 * Yanıt kodu analizi gerektirdiğinden, [zorla gezinmeye karşı koruma](../../admin-en/configuration-guides/protecting-against-bruteforce.md) mevcut değildir.
 
 Ayrıca, [EdgeWorkers ürün kısıtlamaların](https://techdocs.akamai.com/edgeworkers/docs/limitations) ve [http-istek](https://techdocs.akamai.com/edgeworkers/docs/http-request) tarafından da neden olunan kısıtlamalar vardır:

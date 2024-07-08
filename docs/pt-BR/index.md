@@ -14,7 +14,7 @@ A solução Wallarm protege APIs, microsserviços e aplicações web contra as a
     <h3 class="icon-homepage quick-start-title">Início Rápido</h3>
     <p><ul>
     <li><a href="./about-wallarm/overview/">Visão Geral da Wallarm</a></li>
-    <li><a href="./quickstart/">Guia de Início Rápido</a></li>
+    <li><a href="./quickstart/getting-started/">Guia de Início Rápido</a></li>
     <li><a href="./demo-videos/overview/">Guias em Vídeo</a></li>
     <li><a href="./installation/supported-deployment-options/">Guias de Implantação</a></li>
     <li><a href="./about-wallarm/subscription-plans/">Planos de Assinatura</a></li>
@@ -37,10 +37,10 @@ A solução Wallarm protege APIs, microsserviços e aplicações web contra as a
 <div class="navigation-card">
     <h3 class="icon-homepage api-discovery-title">Descoberta de API</h3>
     <p><ul>
-    <li><a href="./about-wallarm/api-discovery/">Explorando Inventário de API</a></li>
-    <li><a href="./about-wallarm/api-discovery/#rastrear-mudancas-na-api">Rastreando Mudanças na API</a></li>
-    <li><a href="./about-wallarm/api-discovery/#pontuacao-de-risco-do-ponto-de-extremidade">Pontuação de Risco do Endpoint</a></li>
-    <li><a href="./about-wallarm/api-discovery/#api-sombra-orfas-e-zumbis">APIs Sombra, Órfãs e Zumbis</a></li>
+    <li><a href="./api-discovery/overview/">Explorando Inventário de API</a></li>
+    <li><a href="./api-discovery/track-changes/">Rastreando Mudanças na API</a></li>
+    <li><a href="./api-discovery/risk-score/">Pontuação de Risco do Endpoint</a></li>
+    <li><a href="./api-discovery/rogue-api/">APIs Sombra, Órfãs e Zumbis</a></li>
     </ul></p>
 </div>
 

@@ -10,7 +10,7 @@
 [img-wl-console-users]:         ../../../images/check-user-no-2fa.png
 [img-create-wallarm-node]:      ../../../images/user-guides/nodes/create-cloud-node.png
 [deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
-[node-token]:                       ../../../quickstart.md#walarm-filtreleme-dugumunu-kur
+[node-token]:                       ../../../quickstart/getting-started.md#walarm-filtreleme-dugumunu-kur
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#dugum-olusturma-icin-api-ve-dugum-tokenlari
 [platform]:                         ../../../installation/supported-deployment-options.md

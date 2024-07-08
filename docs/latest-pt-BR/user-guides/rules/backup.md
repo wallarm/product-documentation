@@ -4,7 +4,7 @@ Para se proteger contra regras acidentalmente mal configuradas ou excluídas, vo
 
 Existem as seguintes opções de backup de regras:
 
-* Criação de backup automático após cada [compilação do conjunto de regras personalizado](compiling.md). O número de backups automáticos é limitado a 7: para cada dia em que você altera as regras várias vezes, apenas o último backup é mantido.
+* Criação de backup automático após cada [compilação do conjunto de regras personalizado](rules.md). O número de backups automáticos é limitado a 7: para cada dia em que você altera as regras várias vezes, apenas o último backup é mantido.
 * Criação de backup manual a qualquer momento. O número de backups manuais é limitado a 5 por padrão. Se você precisar de mais, entre em contato com a equipe de [suporte técnico da Wallarm](mailto:support@wallarm.com).
 
 Você pode:

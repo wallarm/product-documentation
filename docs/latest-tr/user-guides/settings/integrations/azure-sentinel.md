@@ -58,7 +58,7 @@ Genel olarak, Wallarm, Sentinel'de aşağıdaki türlerde kayıtlar oluşturabil
 | Yüksek riskli yeni [zafiyet](../../../glossary-en.md#vulnerability) | `vuln_high_CL` |
 | Orta riskli yeni zafiyet | `vuln_medium_CL` |
 | Düşük riskli yeni zafiyet | `vuln_low_CL` |
-| Yeni [kurallar](../../../user-guides/rules/intro.md) | `rule_create_CL` |
+| Yeni [kurallar](../../../user-guides/rules/rules.md) | `rule_create_CL` |
 | Bir kuralın silinmesi | `rule_delete_CL` |
 | Mevcut bir kuralın değişiklikleri | `rule_update_CL` |
 | Yeni [tetikleyici](../../../user-guides/triggers/triggers.md) | `trigger_create_CL` |

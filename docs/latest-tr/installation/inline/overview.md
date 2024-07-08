@@ -16,7 +16,7 @@ Wallarm'ın çevrimiçi çözümü, aşağıdaki kullanım senaryoları için uy
 Wallarm dağıtımına çevrimiçi (inline) bir yaklaşımla, diğer dağıtım yöntemlerine göre, [OOB](../oob/overview.md) dağıtımları gibi, birkaç avantaj sunar:
 
 * Wallarm, trafik analizinin gerçek zamanlı olarak ilerlemesi nedeniyle kötü amaçlı istekleri anında engeller.
-* Wallarm'ın [API Keşif](../../about-wallarm/api-discovery.md) ve [açıklık tespiti](../../about-wallarm/detecting-vulnerabilities.md) dahil olmak üzere tüm özellikleri, hem gelen isteklere hem de sunucu yanıtlarına erişimi olduğu için herhangi bir kısıtlama olmadan çalışır.
+* Wallarm'ın [API Keşif](../../api-discovery/overview.md) ve [açıklık tespiti](../../about-wallarm/detecting-vulnerabilities.md) dahil olmak üzere tüm özellikleri, hem gelen isteklere hem de sunucu yanıtlarına erişimi olduğu için herhangi bir kısıtlama olmadan çalışır.
 
 Inline şemayı uygulamak için, altyapınızdaki trafik rotasını değiştirmeniz gerekecektir. Ayrıca, kesintisiz hizmet sağlamak için Wallarm düğümleri için [kaynak tahsisini](../../admin-en/configuration-guides/allocate-resources-for-node.md) dikkatlice göz önünde bulundurun.
 

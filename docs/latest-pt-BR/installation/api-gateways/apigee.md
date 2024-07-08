@@ -19,7 +19,7 @@ Entre todas as [opções de implementação da Wallarm](../supported-deployment-
 A solução tem certas limitações, pois só funciona com solicitações de entrada:
 
 * A descoberta de vulnerabilidades usando o método de [detecção passiva](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) não funciona corretamente. A solução determina se uma API é vulnerável ou não com base nas respostas do servidor para solicitações maliciosas que são típicas 
-* O [Wallarm API Discovery](../../about-wallarm/api-discovery.md) não pode explorar o inventário de APIs com base em seu tráfego, pois a solução depende da análise de resposta.
+* O [Wallarm API Discovery](../../api-discovery/overview.md) não pode explorar o inventário de APIs com base em seu tráfego, pois a solução depende da análise de resposta.
 * A [proteção contra navegação forçada](../../admin-en/configuration-guides/protecting-against-bruteforce.md) não está disponível, pois requer análise do código de resposta.
 
 ## Requisitos

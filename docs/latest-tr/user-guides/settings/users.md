@@ -29,7 +29,7 @@ Wallarm müşteri kullanıcıları aşağıdaki rollere sahip olabilir:
 * **Yönetici**: Tüm Wallarm ayarlarına erişim hakkı
 * **Analist**: Ana Wallarm ayarlarını görüntüleme ve saldırganlık, [olay][link-glossary-incident] ve [saldırganlık][link-glossary-vulnerability] bilgilerini yönetme yeteneği
 * **Salt Okunur**: Ana Wallarm ayarlarını görme yeteneği
-* **API Geliştirme**: [API Keşif](../../about-wallarm/api-discovery.md) modülü tarafından keşfedilen API envanterini görüntüleme ve indirme yeteneği. Bu, görevleri yalnızca Wallarm'ı kullanarak şirket API'leri hakkında güncel veri bulunan kullanıcıları belirlemeyi sağlar. Bu kullanıcıların Wallarm Konsolu bölümlerine **API Keşif** ve **Ayarlar → Profil** dışında erişimi yoktur.
+* **API Geliştirme**: [API Keşif](../../api-discovery/overview.md) modülü tarafından keşfedilen API envanterini görüntüleme ve indirme yeteneği. Bu, görevleri yalnızca Wallarm'ı kullanarak şirket API'leri hakkında güncel veri bulunan kullanıcıları belirlemeyi sağlar. Bu kullanıcıların Wallarm Konsolu bölümlerine **API Keşif** ve **Ayarlar → Profil** dışında erişimi yoktur.
 
 Çok katmanlı özellik[çok kiracılık](../../installation/multi-tenant/overview.md), **Global Yönetici**, **Global Analist**, **Global Salt Okunur** gibi global rolleri de kullanabilmenizi sağlar. Global roller, kullanıcılara teknik kiracı hesabına ve bağlantılı kiracı hesaplarına erişim sağlar, düzenli roller kullanıcıların yalnızca teknik kiracı hesabına erişimini sağlar.
 

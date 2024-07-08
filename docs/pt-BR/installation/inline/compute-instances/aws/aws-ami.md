@@ -15,7 +15,7 @@ search:
 [img-wl-console-users]:         ../../../../images/check-user-no-2fa.png
 [img-create-wallarm-node]:      ../../../../images/user-guides/nodes/create-cloud-node.png
 [deployment-platform-docs]:     ../../../../installation/supported-deployment-options.md
-[node-token]:                       ../../../../quickstart.md#deploy-the-wallarm-filtering-node
+[node-token]:                       ../../../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../../installation/supported-deployment-options.md

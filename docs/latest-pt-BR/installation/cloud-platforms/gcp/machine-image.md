@@ -6,7 +6,7 @@
 [img-cria-nó-wallarm]:         ../../../images/user-guides/nodes/create-cloud-node.png
 [documentos-plataforma-implantação]:    ../../../installation/supported-deployment-options.md
 
-[token-nó]:                      ../../../quickstart.md#deploy-the-wallarm-filtering-node
+[token-nó]:                      ../../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
 [token-api]:                     ../../../user-guides/settings/api-tokens.md
 [tipos-token-wallarm]:           ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [plataforma]:                    ../../../installation/supported-deployment-options.md

@@ -17,6 +17,6 @@ search:
 [wallarm-mode-rule-docs]:                   ../../../../user-guides/rules/wallarm-mode-rule.md
 [integrations-docs]:                        ../../../../user-guides/settings/integrations/integrations-intro.md
 [ip-lists-docs]:                            ../../../../user-guides/ip-lists/overview.md
-[rules-docs]:                               ../../../../user-guides/rules/intro.md
+[rules-docs]:                               ../../../../user-guides/rules/rules.md
 
 --8<-- "latest-pt-BR/installation/kubernetes/kong-ingress-controller/customization.md"

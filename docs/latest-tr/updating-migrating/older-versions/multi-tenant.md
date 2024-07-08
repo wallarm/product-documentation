@@ -3,7 +3,7 @@ Dilin nazik tonunu koruyun. Sonuç dosyasının tamamen orijinal dosyadaki ile a
 ../../images/admin-guides/test-attacks-quickstart.png
 ../../installation/multi-tenant/configure-accounts.md#tenant-account-structure
 mailto:support@wallarm.com
-../../user-guides/rules/compiling.md
+../../user-guides/rules/rules.md
 nginx-modules.md
 separate-postanalytics.md
 docker-container.md
@@ -29,7 +29,7 @@ Bu talimatlar, son ömrüne ulaşmış çok kiracılı düğümün (sürüm 3.6 
 
 ## Adım 1: Wallarm destek ekibi ile irtibata geçin
 
-Çok kiracılı düğüm yükseltme sırasında [özel kural seti oluşturma](../../user-guides/rules/compiling.md) özelliğinin en son sürümünü almak için [Wallarm destek ekibi](mailto:support@wallarm.com)'nden yardım isteyin.
+Çok kiracılı düğüm yükseltme sırasında [özel kural seti oluşturma](../../user-guides/rules/rules.md) özelliğinin en son sürümünü almak için [Wallarm destek ekibi](mailto:support@wallarm.com)'nden yardım isteyin.
 
 !!! info "Engellenen yükseltme"
     Özel kural seti oluşturma özelliğinin yanlış bir sürümünün kullanılması yükseltme işlemini engelleyebilir.

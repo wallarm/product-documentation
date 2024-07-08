@@ -1,0 +1,1 @@
+--8<-- "latest-ja/api-abuse-prevention/exploring-bots.md"

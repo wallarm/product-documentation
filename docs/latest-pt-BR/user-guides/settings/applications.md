@@ -8,7 +8,7 @@ Se a sua empresa tem várias aplicações, você pode achar conveniente não ape
 Usar aplicações permite que você:
 
 * Visualize eventos e estatísticas separadamente para cada aplicação
-* Configure [gatilhos](../triggers/triggers.md), [regras](../rules/add-rule.md) e outros recursos do Wallarm para certas aplicações
+* Configure [gatilhos](../triggers/triggers.md), [regras](../rules/rules.md) e outros recursos do Wallarm para certas aplicações
 * [Configure o Wallarm em ambientes separados](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)
 
 Para que o Wallarm identifique suas aplicações, é necessário atribuí-lo identificadores exclusivos através da diretiva apropriada na configuração do nó. Os identificadores podem ser definidos tanto para os domínios da aplicação quanto para os caminhos do domínio.

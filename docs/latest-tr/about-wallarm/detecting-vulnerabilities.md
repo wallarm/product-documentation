@@ -58,8 +58,8 @@ Zafiyet Tarayıcı, şirketin tüm açık varlıklarını tipik zafiyetler için
 * Her bir varlık için [Tarayıcıdan gönderilen isteklerin limiti](../user-guides/scanner.md#limiting-vulnerability-scanning), Wallarm Konsolu → **Tarayıcı** → **Yapılandır**da yapılandırılabilir.
 * Trafik otomatik filtreleme ve bloklama için ek tesislere (yazılım veya donanım) ihtiyaç duyuyorsanız, Wallarm Tarayıcının IP adreslerini kapsayan bir izin listesi oluşturmanız önerilir. Bu, Wallarm bileşenlerinin kaynaklarınızı zafiyetler için sorunsuzca tarayabilmesini sağlar.
 
-    * [Wallarm US Cloud'a kayıtlı Tarayıcı IP adresi](../admin-en/scanner-address-us-cloud.md)
-    * [Wallarm EU Cloud'a kayıtlı Tarayıcı IP adresi](../admin-en/scanner-address-eu-cloud.md)
+    * [Wallarm US Cloud'a kayıtlı Tarayıcı IP adresi](../admin-en/scanner-addresses.md)
+    * [Wallarm EU Cloud'a kayıtlı Tarayıcı IP adresi](../admin-en/scanner-addresses.md)
 
     Ek tesisler kullanmıyorsanız ama Wallarm Tarayıcısını kullanıyorsanız, Tarayıcı IP adreslerini manuel olarak izin vermeye gerek yoktur. Wallarm node 3.0 ile birlikte, Tarayıcı IP adresleri otomatik olarak izin listesine alınmıştır.
 
@@ -83,7 +83,7 @@ Tespit edilen tüm zafiyetler Wallarm Konsolu → **Zafiyetler** bölümünde g�
  
 ![Zafiyetler bölümü](../images/user-guides/vulnerabilities/check-vuln.png)   
  
-Eğer Wallarm platformunun [**API Keşif** modülünü](api-discovery.md) kullanıyorsanız, zafiyetler keşfedilen API uç noktalarıyla bağlantılıdır, örneğin:
+Eğer Wallarm platformunun [**API Keşif** modülünü](../api-discovery/overview.md) kullanıyorsanız, zafiyetler keşfedilen API uç noktalarıyla bağlantılıdır, örneğin:
 
 ![API Keşfi - Risk skoru](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 

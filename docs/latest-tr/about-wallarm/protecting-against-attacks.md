@@ -202,7 +202,7 @@ Wallarm'ın varsayılan talep analizini, korunan uygulamanın özelliklerine uya
 * [Analizcileri devre dışı bırakın/etkinleştirin](../user-guides/rules/disable-request-parsers.md)
 * [Aşırı sınır_sal planlanan saldırı tespitini ince ayarlayın](../user-guides/rules/configure-overlimit-res-detection.md)
 
-[Derlenmiş](../user-guides/rules/compiling.md) özel kurallar seti, isteklerin analizi sırasında **proton.db**'den standart kurallarla birlikte uygulanır.
+[Derlenmiş](../user-guides/rules/rules.md) özel kurallar seti, isteklerin analizi sırasında **proton.db**'den standart kurallarla birlikte uygulanır.
 
 ## Saldırıları İzleme ve Engelleme
 

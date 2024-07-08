@@ -23,13 +23,13 @@ Para criar e aplicar a regra na seção **Regras**:
 
 1. Crie a regra **Alterar headers de resposta do servidor** na seção **Regras** do Console Wallarm. A regra consiste nos seguintes componentes:
 
-     * **Condição** [descreve](add-rule.md#branch-description) os endpoints para aplicar a regra.
+     * **Condição** [descreve](rules.md#branch-description) os endpoints para aplicar a regra.
      * Nome do cabeçalho a ser adicionado ou para substituir seu valor.
      * Novo valor do cabeçalho especificado.
 
         Para excluir um cabeçalho de resposta existente, deixe o valor deste cabeçalho na guia **Substituir** vazio.
 
-2. Aguarde a [compilação da regra ser concluída](compiling.md).
+2. Aguarde a [compilação da regra ser concluída](rules.md).
 
 ## Exemplo de regra
 

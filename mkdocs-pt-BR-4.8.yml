@@ -21,7 +21,7 @@ watch:
 nav:
   - Início Rápido:
     - Visão Geral do Wallarm: about-wallarm/overview.md
-    - Guia de Início Rápido: quickstart.md
+    - Guia de Início Rápido: quickstart/getting-started.md
     - Guias em Vídeo:
       - Configurações da Plataforma Wallarm: demo-videos/overview.md
       - Analisando CVEs e Ataques Relacionados: demo-videos/events-inspection.md
@@ -29,7 +29,7 @@ nav:
       - API Sombra e Órfã: demo-videos/shadow-api.md
       - Prevenção de Abuso de API: demo-videos/api-abuse-prevention.md
       - Vazamentos de API: demo-videos/api-leaks.md
-    - Guias de Implantação: /installation/supported-deployment-options/
+    - Guias de Implantação: /pt-br/installation/supported-deployment-options/
     - Planos de Assinatura:
       - Visão Geral: about-wallarm/subscription-plans.md
       - Gerenciando a Assinatura: user-guides/settings/subscriptions.md
@@ -38,37 +38,52 @@ nav:
     - Prevenção de Ameaças: user-guides/dashboards/threat-prevention.md
     - Descoberta de API: user-guides/dashboards/api-discovery.md
     - OWASP API Top 10: user-guides/dashboards/owasp-api-top-ten.md
+    - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
     - Eventos:
       - Pesquisa de Eventos e Filtros: user-guides/search-and-filters/use-search.md
       - Verificando Eventos: user-guides/events/check-attack.md
       - Analisando Ataques: user-guides/events/analyze-attack.md
       - Ataques Falsos: user-guides/events/false-attack.md
       - Verificando Ataques: user-guides/events/verify-attack.md
+      - Verificação de Incidentes: user-guides/events/check-incident.md
     - Relatórios: user-guides/search-and-filters/custom-report.md
     - Log de Atividades: user-guides/settings/audit-log.md
   - Descoberta de API:
-    - Visão Geral: about-wallarm/api-discovery.md
-    - Gerenciando o Portfólio de API: user-guides/api-discovery.md
-    - Gerenciando Especificações de API: user-guides/api-specifications.md
+    - Visão Geral: api-discovery/overview.md
+    - Configuração: api-discovery/setup.md
+    - Explorando o Inventário de API: api-discovery/exploring.md
+    - Rastreamento de Alterações na API: api-discovery/track-changes.md
+    - Pontuação de Risco do Endpoint: api-discovery/risk-score.md
+    - API Sombra, Órfã, Zumbi: api-discovery/rogue-api.md
+    - Autoproteção BOLA: api-discovery/bola-protection.md
+    - Dashboard: api-discovery/dashboard.md
   - Proteção de API:
+    - Visão Geral: about-wallarm/api-protection-overview.md
     # - Visão Geral: ...
     # - OWASP Top 10: ...
     # - OWASP API Top 10: ...
+    - Aplicação da Especificação de API:
+      - Visão Geral: api-specification-enforcement/overview.md
+      - Configuração: api-specification-enforcement/setup.md
+      - Visualização de Eventos: api-specification-enforcement/viewing-events.md
     - Prevenção de Abuso de API:
       - Visão Geral: api-abuse-prevention/overview.md
       - Gerenciamento do Perfil de Prevenção de Abuso de API: api-abuse-prevention/setup.md
-      - Desabilitando a proteção de bot para URLs e solicitações específicas: user-guides/rules/api-abuse-url.md
+      - Exceções: api-abuse-prevention/exceptions.md
+      - Explorando a Atividade de Bots: api-abuse-prevention/exploring-bots.md
+    - Detecção de Preenchimento de Credenciais: about-wallarm/credential-stuffing.md
+    - Proteção de API GraphQL: api-protection/graphql-rule.md
     - Proteção BOLA:
       - Configuração: admin-en/configuration-guides/protecting-against-bola.md
       - Modelo de autodetecção BOLA: user-guides/bola-protection.md
   - Gerenciamento de Postura de API:
     - Visão Geral: about-wallarm/detecting-vulnerabilities.md
+    - Busca e Filtros de Vulnerabilidades: user-guides/search-and-filters/use-search-vuln.md
     - Gerenciando Vulnerabilidades Detectadas: user-guides/vulnerabilities.md
     - Suporte da Operação do Scanner:
+      - Visão Geral: about-wallarm/attack-surface.md
       - Configurações do Scanner: user-guides/scanner.md
-      - Endereços do Scanner:
-        - Endereços do Scanner para o Cloud EU: admin-en/scanner-address-eu-cloud.md
-        - Endereços do Scanner para o Cloud US: admin-en/scanner-address-us-cloud.md
+      - Endereços do Scanner: admin-en/scanner-addresses.md
       - Contatando o Suporte Wallarm para Parar o Scanner de Recursos: admin-en/scanner-complaint-en.md
     - Verificação Ativa de Ameaças:
       - Visão Geral: vulnerability-detection/active-threat-verification/overview.md
@@ -81,6 +96,7 @@ nav:
       - Visão Geral: about-wallarm/api-leaks.md
       - Gerenciando Vazamentos de API: user-guides/api-leaks.md
   - Teste de Segurança de API:
+    - Teste de Segurança OpenAPI: fast/openapi-security-testing.md
     - Visão Geral: fast/README.md
     - Integração: fast/onboarding/onboarding.md
     - Guia de Início Rápido:
@@ -187,20 +203,20 @@ nav:
         - Mozilla Firefox: fast/ssl/browsers-ssl/firefox-ssl.md
     - Solução de Problemas: fast/tshoot.md
   - WAAP/WAF:
+    - Visão Geral: about-wallarm/waap-overview.md
     - Procedimento de Detecção de Ataque: about-wallarm/protecting-against-attacks.md
     - Proteção DDoS: admin-en/configuration-guides/protecting-against-ddos.md
     - Proteção Contra Força Bruta: admin-en/configuration-guides/protecting-against-bruteforce.md
+    - Proteção contra Navegação Forçada: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
     - Restrições de Geolocalização:
       - Visão Geral: user-guides/ip-lists/overview.md
       - Lista Permitida: user-guides/ip-lists/allowlist.md
       - Lista Cinza: user-guides/ip-lists/graylist.md
       - Lista de Negada: user-guides/ip-lists/denylist.md
+    - Proteção Multi-Ataque: admin-en/configuration-guides/protecting-with-thresholds.md
+    - Proteção Manual BOLA: admin-en/configuration-guides/protecting-against-bola-trigger.md
     - Regras:
-      - Regras do Perfil de Aplicação: user-guides/rules/intro.md
-      - Inspecionando as Regras do Perfil de Aplicação: user-guides/rules/view.md
-      - Adicionando Regras no Perfil do Aplicativo: user-guides/rules/add-rule.md
-      - Construindo e Baixando um Conjunto de Regras Personalizado: user-guides/rules/compiling.md
-      - Backup e Restauração de Conjunto de Regras Personalizadas: user-guides/rules/backup.md
+      - Regras: user-guides/rules/rules.md
       - Análise e Interpretação de Pedidos: user-guides/rules/request-processing.md
       - Regras Disponíveis:
         - Gerenciando Analisadores de Solicitação: user-guides/rules/disable-request-parsers.md
@@ -221,6 +237,10 @@ nav:
     - Opções de Implantação: installation/supported-deployment-options.md
     - Out-of-Band:
       - Visão Geral: installation/oob/overview.md
+      - eBPF:
+        - Implantação: installation/oob/ebpf/deployment.md
+        - Valores do Helm Chart: installation/oob/ebpf/helm-chart-for-wallarm.md
+        - Selecionando Pacotes para Espelhamento: installation/oob/ebpf/selecting-packets.md
       - Espelhamento por NGINX, Envoy e Similares:
         - Visão Geral: installation/oob/web-server-mirroring/overview.md
         - Nuvens Públicas:
@@ -255,6 +275,7 @@ nav:
       - Akamai EdgeWorkers: installation/cdn/akamai-edgeworkers.md
       - Azion Edge: installation/cdn/azion-edge.md
       - AWS Lambda: installation/cdn/aws-lambda.md
+      - Cloudflare: installation/cdn/cloudflare.md
     - Kubernetes:
       - Ingress:
         - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
@@ -264,8 +285,13 @@ nav:
       - Sidecar:
         - Deploy: installation/kubernetes/sidecar-proxy/deployment.md
         - Personalização: installation/kubernetes/sidecar-proxy/customization.md
+        - Escalabilidade e Alta Disponibilidade: installation/kubernetes/sidecar-proxy/scaling.md
         - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
         - Annotations do Pod: installation/kubernetes/sidecar-proxy/pod-annotations.md
+      - eBPF:
+        - Implantação: installation/kubernetes/ebpf/deployment.md
+        - Valores do Helm Chart: installation/kubernetes/ebpf/helm-chart-for-wallarm.md
+        - Selecionando Pacotes para Espelhamento: installation/kubernetes/ebpf/selecting-packets.md
     - Em Linha:
       - Visão Geral: installation/inline/overview.md
       - Instâncias de Computação:
@@ -298,11 +324,13 @@ nav:
         - Sidecar Controller:
           - Deploy: installation/inline/kubernetes/sidecar-proxy/deployment.md
           - Customization: installation/inline/kubernetes/sidecar-proxy/customization.md
+          - Escalabilidade e Alta Disponibilidade: installation/inline/kubernetes/sidecar-proxy/scaling.md
           - Helm Chart Values: installation/inline/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
           - Pod's Annotations: installation/inline/kubernetes/sidecar-proxy/pod-annotations.md
     - Gateways de API:
       - Mulesoft: installation/api-gateways/mulesoft.md
       - Apigee: installation/api-gateways/apigee.md
+      - Layer7 API Gateways: installation/api-gateways/layer7-api-gateway.md
     - Conectores:
       - Visão Geral: installation/connectors/overview.md
       - Mulesoft: installation/connectors/mulesoft.md
@@ -310,6 +338,8 @@ nav:
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
       - Azion Edge: installation/connectors/azion-edge.md
       - AWS Lambda: installation/connectors/aws-lambda.md
+      - Cloudflare: installation/connectors/cloudflare.md
+      - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
     - Pacotes:
       - Docker Images:
         - Baseado em NGINX: admin-en/installation-docker-en.md
@@ -324,7 +354,9 @@ nav:
         - GCP Machine Image: installation/packages/gcp-machine-image.md
       - Módulo Terraform para AWS: installation/cloud-platforms/aws/terraform-module/overview.md
     - Implantação Personalizada:
+      - On-Premise: installation/on-premise.md
       - Pacotes NGINX Personalizados: installation/custom/custom-nginx-version.md
+      - Heroku: installation/heroku/docker-image.md
       - Opções de Implantação Personalizadas: installation/custom/request-custom-deployment.md
     - Opções Adicionais:
       - Encadeamento de Wallarm e Controladores de Ingress: admin-en/chaining-wallarm-and-other-ingress-controllers.md

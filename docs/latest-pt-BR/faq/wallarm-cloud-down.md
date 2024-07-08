@@ -15,7 +15,7 @@ O que continua a funcionar:
 
 * Processamento de tráfego no [modo] configurado(../admin-en/configure-wallarm-mode.md#available-filtration-modes) usando as regras carregadas no nó durante a última [sincronização](../admin-en/configure-cloud-node-synchronization-en.md) bem-sucedida entre o Cloud e o nó. O nó pode continuar a funcionar, pois as últimas versões dos seguintes elementos são carregadas do Cloud de acordo com a programação e armazenadas no nó localmente:
 
-    * [Conjunto de regras personalizado](../user-guides/rules/compiling.md)
+    * [Conjunto de regras personalizado](../user-guides/rules/rules.md)
     * [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton)
 
 * As [listas de IP](../user-guides/ip-lists/overview.md) também são carregadas no nó e armazenadas dentro dele. Os endereços carregados continuarão a ser tratados, mas apenas até a data/horário de expiração.
@@ -36,7 +36,7 @@ O que para de funcionar:
 * [Gatilhos](../user-guides/triggers/triggers.md) deixarão de funcionar e, portanto:
     * [Listas de IP](../user-guides/ip-lists/overview.md) param de ser atualizadas.
     * [Notificações baseadas em gatilhos](../user-guides/triggers/triggers.md) não aparecerão.
-* [Descoberta de inventário de API](../about-wallarm/api-discovery.md) não funcionará.
+* [Descoberta de inventário de API](../api-discovery/overview.md) não funcionará.
 * A [verificação de ameaças ativas](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) será interrompida.
 * [Ataques de força bruta](../admin-en/configuration-guides/protecting-against-bruteforce.md) não serão detectados.
 * As integrações serão interrompidas, incluindo que:

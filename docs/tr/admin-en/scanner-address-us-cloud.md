@@ -1,1 +1,0 @@
---8<-- "latest-tr/admin-en/scanner-address-us-cloud.md"

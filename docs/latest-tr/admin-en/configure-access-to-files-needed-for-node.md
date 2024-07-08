@@ -21,7 +21,7 @@ Algoritma, dosya izinlerini ararken aşağıdaki adımları gerçekleştirir (ö
     `(TYPE)`, parametrenin belirlendiği belirli bir dosyayı belirtmenize olanak sağlar. Olası değerler `proton.db` veya `lom`dur.
     
     !!! uyarı "`lom` değer anlamı"
-        `lom` değerinin [özel kurallar seti](../user-guides/rules/compiling.md) dosyası `/etc/wallarm/custom_ruleset`'i işaret ettiğine dikkat edin.
+        `lom` değerinin [özel kurallar seti](../user-guides/rules/rules.md) dosyası `/etc/wallarm/custom_ruleset`'i işaret ettiğine dikkat edin.
 
 1. `node.yaml` dosyasında açıkça belirlenmiş `syncnode.(user,group,mode)` parametreleri.
 1. NGINX tabanlı kurulumda, `/usr/share/wallarm-common/engine/*` dosyasındaki `nginx_group` değeri.

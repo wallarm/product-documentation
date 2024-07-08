@@ -23,7 +23,7 @@ nav:
     - Wallarm概要: about-wallarm/overview.md
     - はじめに: quickstart/getting-started.md
     - サブスクリプションプラン: about-wallarm/subscription-plans.md
-    - 展開ガイド: /installation/supported-deployment-options/
+    - 展開ガイド: /ja/installation/supported-deployment-options/
     - Wallarmのソリューションの導入と保守のベストプラクティス: about-wallarm/deployment-best-practices.md
     - ベストプラクティス: quickstart/attack-prevention-best-practices.md
     - ビデオガイド:
@@ -58,12 +58,19 @@ nav:
     - BOLA自動保護: api-discovery/bola-protection.md
     - ダッシュボード: api-discovery/dashboard.md
   - API保護:
+    - 概要: about-wallarm/api-protection-overview.md
     - API乱用防止:
       - 概要: api-abuse-prevention/overview.md
       - API乱用防止プロファイル管理: api-abuse-prevention/setup.md
-      - 特定のURLとリクエストに対するbot保護の無効化: user-guides/rules/api-abuse-url.md
+      - 特定のURLとリクエストに対するbot保護の無効化: api-abuse-prevention/exceptions.md
+      - ボット活動の探索: api-abuse-prevention/exploring-bots.md
     - BOLA保護(APID): admin-en/configuration-guides/protecting-against-bola.md
     - Credential Stuffing検出: about-wallarm/credential-stuffing.md
+    - GraphQL API保護: api-protection/graphql-rule.md
+    - 仕様の実施:
+      - 概要: api-specification-enforcement/overview.md
+      - 設定: api-specification-enforcement/setup.md
+      - イベントの表示: api-specification-enforcement/viewing-events.md
   - API攻撃面:
     - 概要: about-wallarm/attack-surface.md
     - 外部資産: user-guides/scanner.md
@@ -256,6 +263,7 @@ nav:
       - Akamai EdgeWorkers: installation/cdn/akamai-edgeworkers.md
       - Azion Edge: installation/cdn/azion-edge.md
       - AWS Lambda: installation/cdn/aws-lambda.md
+      - Cloudflare: installation/cdn/cloudflare.md
     - Kubernetes:
       - イングレス:
         - NGINXイングレスコントローラ: admin-en/installation-kubernetes-en.md
@@ -310,6 +318,7 @@ nav:
     - APIゲートウェイ:
       - Mulesoft: installation/api-gateways/mulesoft.md
       - Apigee: installation/api-gateways/apigee.md
+      - Layer7 API Gateways: installation/api-gateways/layer7-api-gateway.md
     - コネクタ:
       - 概要: installation/connectors/overview.md
       - Mulesoft: installation/connectors/mulesoft.md
@@ -317,6 +326,8 @@ nav:
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
       - Azion Edge: installation/connectors/azion-edge.md
       - AWS Lambda: installation/connectors/aws-lambda.md
+      - Cloudflare: installation/connectors/cloudflare.md
+      - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
     - パッケージ:
       - Dockerイメージ:
         - NGINXベース: admin-en/installation-docker-en.md

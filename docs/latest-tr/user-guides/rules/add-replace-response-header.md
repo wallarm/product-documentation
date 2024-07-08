@@ -23,13 +23,13 @@ Bu kural tipi genellikle uygulama güvenliğinin ek katmanını yapılandırmak 
 
 1. Wallarm Konsolu'nun **Kurallar** bölümünde **Sunucu yanıt başlıklarını değiştirme** kuralını oluşturun. Kural, aşağıdaki bileşenlerden oluşur:
 
-      * **Koşul**[kuralın uygulanacağı](add-rule.md#branch-description) uç noktaları tanımlar.
+      * **Koşul**[kuralın uygulanacağı](rules.md#branch-description) uç noktaları tanımlar.
       * Eklenmesi ya da değerinin değiştirilmesi gereken başlığın adı.
       * Belirtilen başlığın yeni değeri.
 
         Var olan bir yanıt başlığını silmek için, lütfen **Değiştir** sekmesinde bu başlığın değerini boş bırakın.
 
-2. [Kuralın derlenmesinin tamamlanmasını](compiling.md) bekleyin.
+2. [Kuralın derlenmesinin tamamlanmasını](rules.md) bekleyin.
 
 ## Kural örneği
 

@@ -8,7 +8,7 @@ Eğer şirketinizde birden fazla uygulamanız varsa, tüm şirketin trafiğinin 
 Uygulamaları kullanmak sizin:
   
 * Her bir uygulama için etkinlikleri ve istatistikleri ayrı ayrı görmeyi
-* Belirli uygulamalar için [tetikleyicileri](../triggers/triggers.md), [kuralları](../rules/add-rule.md) ve diğer Wallarm özelliklerini yapılandırmayı
+* Belirli uygulamalar için [tetikleyicileri](../triggers/triggers.md), [kuralları](../rules/rules.md) ve diğer Wallarm özelliklerini yapılandırmayı
 * [Wallarm'ı ayrı ortamlarda](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md) yapılandırmayı
 
 sağlar.

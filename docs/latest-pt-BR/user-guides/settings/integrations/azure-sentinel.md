@@ -58,7 +58,7 @@ Em geral, o Wallarm pode registrar no Sentinel os registros dos seguintes tipos:
 | Nova [vulnerabilidade](../../../glossary-en.md#vulnerability) de alto risco | `vuln_high_CL` |
 | Nova vulnerabilidade de médio risco | `vuln_medium_CL` |
 | Nova vulnerabilidade de baixo risco | `vuln_low_CL` |
-| Nova [regra](../../../user-guides/rules/intro.md) | `rule_create_CL` |
+| Nova [regra](../../../user-guides/rules/rules.md) | `rule_create_CL` |
 | Exclusão de uma regra | `rule_delete_CL` |
 | Alterações de uma regra existente | `rule_update_CL` |
 | Novo [gatilho](../../../user-guides/triggers/triggers.md) | `trigger_create_CL` |

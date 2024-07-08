@@ -32,7 +32,7 @@ Para cada regra, o sistema exibe os seguintes parâmetros: última modificação
 
 Você pode criar regras com ação especificada, mas não vinculadas a nenhum endpoint - elas são chamadas **regras padrão**. Essas regras são aplicadas a todos os endpoints.
 
-* Para criar uma regra padrão, siga o [procedimento padrão](add-rule.md), mas deixe o URI em branco. A nova regra não vinculada a nenhum endpoint será criada.
+* Para criar uma regra padrão, siga o [procedimento padrão](rules.md), mas deixe o URI em branco. A nova regra não vinculada a nenhum endpoint será criada.
 * Para ver a lista de regras padrão criadas, clique no botão **Regras padrão**.
 
 !!! info "Regra padrão do modo de filtragem de tráfego"
@@ -47,8 +47,8 @@ As regras são herdadas ao longo do ramo de regras. Princípios:
 * Todos os ramos herdam regras [padrão](#default-rules).
 * Em um ramo, os endpoints filhos herdam regras do pai.
 * Distinto tem prioridade sobre o herdado.
-* Diretamente especificado tem prioridade sobre [regex](add-rule.md#condition-type-regex).
-* Caso [sensível](add-rule.md#condition-type-equal) tem prioridade sobre [insensível](add-rule.md#condition-type-iequal-aa).
+* Diretamente especificado tem prioridade sobre [regex](rules.md#condition-type-regex).
+* Caso [sensível](rules.md#condition-type-equal) tem prioridade sobre [insensível](rules.md#condition-type-iequal-aa).
 
 Aqui estão alguns detalhes de como trabalhar com o ramo de regras:
 

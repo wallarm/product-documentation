@@ -211,7 +211,7 @@ Saldırı için [**Yanıltıcı pozitif olarak işaretle**](../events/false-atta
 
 ## API envanterinizde yeni uç noktalar
 
-API'nizde değişiklikler olabilir. Bunlar [**API Discovery**](../../about-wallarm/api-discovery.md) modülü tarafından keşfedilecekler. Olası [değişiklikler](../../user-guides/api-discovery.md#tracking-changes-in-api) şunları içerir:
+API'nizde değişiklikler olabilir. Bunlar [**API Discovery**](../../api-discovery/overview.md) modülü tarafından keşfedilecekler. Olası [değişiklikler](../../api-discovery/exploring.md#tracking-changes-in-api) şunları içerir:
 
 * Yeni bir uç nokta keşfedildi
 * Bir uç noktasında değişiklikler var (yeni veya silinen parametreler)

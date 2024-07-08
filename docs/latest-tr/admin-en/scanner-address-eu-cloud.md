@@ -5,7 +5,7 @@
 !!! bilgi
     Bu liste yalnızca AB Bulutu <https://my.wallarm.com> kullanıcıları için çalışır.
     
-    Eğer ABD Bulutu'nu <https://us1.my.wallarm.com> kullanıyorsanız, ABD Bulutu için tarayıcı adreslerinin listesine ilerleyin(scanner-address-us-cloud.md).
+    Eğer ABD Bulutu'nu <https://us1.my.wallarm.com> kullanıyorsanız, ABD Bulutu için tarayıcı adreslerinin listesine ilerleyin(scanner-addresses.md).
 
 Wallarm'ın şirket kaynaklarını [açıklıklar](../glossary-en.md#açıklık) için taradığı ve saldırıları ve açıklıkları yeniden kontrol ettiği AB Bulutu için IP adreslerinin listesi:
 

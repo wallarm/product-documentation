@@ -1,0 +1,1 @@
+--8<-- "latest-pt-BR/quickstart/getting-started.md"

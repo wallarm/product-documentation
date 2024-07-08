@@ -5,7 +5,7 @@
 !!! bilgi
     Bu liste, sadece ABD Bulutu'nu kullanacak olan kullanıcılar için geçerlidir <https://us1.my.wallarm.com>.
     
-    Eğer EU Bulutu'nu kullanıyorsanız, [EU Bulutu için tarayıcı adreslerinin listesi](scanner-address-eu-cloud.md)ne geçiş yapın.
+    Eğer EU Bulutu'nu kullanıyorsanız, [EU Bulutu için tarayıcı adreslerinin listesi](scanner-addresses.md)ne geçiş yapın.
 
 ABD Bulutu için IP adresleri listesi, Wallarm'ın şirket kaynaklarını [zaafiyetler](../glossary-en.md#vulnerability) için taradığı ve saldırıları ve zaafiyetleri tekrar kontrol ettiği:
 

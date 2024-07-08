@@ -4,7 +4,7 @@ Yanlışlıkla yanlış yapılandırılmış veya silinmiş kurallardan kendiniz
 
 Aşağıdaki kural yedekleme seçenekleri vardır:
 
-* Her bir [özel kurallar seti oluşturma](compiling.md) sonrası otomatik yedek oluşturma. Otomatik yedeklerin sayısı 7 ile sınırlıdır: kuralları birkaç kez değiştirdiğiniz her gün, yalnızca son yedek korunur.
+* Her bir [özel kurallar seti oluşturma](rules.md) sonrası otomatik yedek oluşturma. Otomatik yedeklerin sayısı 7 ile sınırlıdır: kuralları birkaç kez değiştirdiğiniz her gün, yalnızca son yedek korunur.
 * Herhangi bir zamanda manuel yedek oluşturma. Standart olarak manuel yedeklerin sayısı 5 ile sınırlıdır. Daha fazlasına ihtiyacınız varsa, [Wallarm teknik destek](mailto:support@wallarm.com) ekibiyle iletişime geçin.
 
 Yapabilecekleriniz:

@@ -1,6 +1,6 @@
 [doc-nginx-install]:    ../installation/nginx/dynamic-module-from-distr.md
-[doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
-[doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
+[doc-eu-scanner-ip-addresses]: scanner-addresses.md
+[doc-us-scanner-ip-addresses]: scanner-addresses.md
 [acl-access-phase]:            #wallarm_acl_access_phase
 
 # Opções de configuração para o nó Wallarm baseado em NGINX
@@ -187,7 +187,7 @@ Um diretório em que o catálogo de backup para o armazenamento de cópia do arq
 
 ### wallarm_custom_ruleset_path
 
-Um caminho para o arquivo [conjunto de regras personalizado](../user-guides/rules/intro.md) que contém informações sobre a estrutura da aplicação protegida e as configurações do nó de filtragem.
+Um caminho para o arquivo [conjunto de regras personalizado](../user-guides/rules/rules.md) que contém informações sobre a estrutura da aplicação protegida e as configurações do nó de filtragem.
 
 !!! info
     Este parâmetro pode ser definido dentro dos blocos http, server e location.

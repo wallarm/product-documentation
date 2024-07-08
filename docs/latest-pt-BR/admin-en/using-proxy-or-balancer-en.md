@@ -25,7 +25,7 @@ Se o nó Wallarm considerar o endereço IP do servidor proxy ou balanceador de c
 	Se as requisições passadas pelo balanceador de carga apresentarem sinais de ataque de força bruta, a Wallarm colocará este endereço IP do balanceador de carga na lista de negação e, portanto, bloqueará todas as futuras requisições passadas por este balanceador de carga.
 * O módulo [Verificação de ameaça ativa](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) e [Scanner de vulnerabilidades](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner), por exemplo:
 
-	A Wallarm considerará o endereço IP do balanceador de carga como o [endereço IP originando ataques de teste](scanner-address-eu-cloud.md) gerados pelo módulo de Verificação de ameaça ativa e pelo Scanner de vulnerabilidades. Assim, os ataques de teste serão exibidos no Console Wallarm como ataques originados a partir do endereço IP do balanceador de carga e serão adicionalmente verificados pela Wallarm, o que criará uma carga extra na aplicação.
+	A Wallarm considerará o endereço IP do balanceador de carga como o [endereço IP originando ataques de teste](scanner-addresses.md) gerados pelo módulo de Verificação de ameaça ativa e pelo Scanner de vulnerabilidades. Assim, os ataques de teste serão exibidos no Console Wallarm como ataques originados a partir do endereço IP do balanceador de carga e serão adicionalmente verificados pela Wallarm, o que criará uma carga extra na aplicação.
 * [Configurando o NGINX para ler o cabeçalho `X-Forwarded-For` (`X-Real-IP` ou similar](#configurando-o-nginx-para-ler-o-cabecalho-x-forwarded-for-x-real-ip-ou-similar)
 * [Configurando o NGINX para ler o cabeçalho `PROXY`](#configurando-o-nginx-para-ler-o-cabecalho-proxy)
 

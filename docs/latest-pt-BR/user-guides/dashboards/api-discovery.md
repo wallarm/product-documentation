@@ -1,11 +1,11 @@
 # Painel de Descoberta API <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-O painel de **Descoberta API** da Wallarm resume dados sobre sua API coletados pelo módulo [Descoberta API](../../about-wallarm/api-discovery.md). Ele fornece uma visão abrangente do inventário da sua API com base nas métricas:
+O painel de **Descoberta API** da Wallarm resume dados sobre sua API coletados pelo módulo [Descoberta API](../../api-discovery/overview.md). Ele fornece uma visão abrangente do inventário da sua API com base nas métricas:
 
 * Número de terminais por nível de risco
-* Os terminais [mais arriscados](../../about-wallarm/api-discovery.md#endpoint-risk-score) entre todo o inventário de API e entre os terminais recém-descobertos nos últimos 7 dias
+* Os terminais [mais arriscados](../../api-discovery/overview.md#endpoint-risk-score) entre todo o inventário de API e entre os terminais recém-descobertos nos últimos 7 dias
 
-    Os terminais mais arriscados são os mais propensos a serem um alvo de ataque devido a vulnerabilidades ativas, terminais sendo [novos](../../about-wallarm/api-discovery.md#tracking-changes-in-api) ou [ocultos](../../about-wallarm/api-discovery.md#shadow-orphan-and-zombie-apis), e outros fatores de risco. Cada terminal arriscado é fornecido com o número de acertos direcionados.
+    Os terminais mais arriscados são os mais propensos a serem um alvo de ataque devido a vulnerabilidades ativas, terminais sendo [novos](../../api-discovery/overview.md#tracking-changes-in-api) ou [ocultos](../../api-discovery/overview.md#shadow-orphan-and-zombie-apis), e outros fatores de risco. Cada terminal arriscado é fornecido com o número de acertos direcionados.
             
 * Mudanças na sua API nos últimos 7 dias por tipo (APIs novas, alteradas, não usadas)
 * Número total de terminais descobertos e quantos deles são externos e internos

@@ -1,6 +1,6 @@
 # Descoberta de API <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-A seção **Descoberta de API** do console Wallarm permite gerenciar seu [inventário de API](../about-wallarm/api-discovery.md), além de ajustar detalhadamente sua descoberta. Este guia instrui como usar esta seção.
+A seção **Descoberta de API** do console Wallarm permite gerenciar seu [inventário de API](../api-discovery/overview.md), além de ajustar detalhadamente sua descoberta. Este guia instrui como usar esta seção.
 
 A seção só está disponível para usuários com os seguintes [papéis](../user-guides/settings/users.md#user-roles):
 
@@ -62,12 +62,12 @@ Cada informação do parâmetro inclui:
     * Dados médicos como número de licença médica
     * Informações pessoalmente identificáveis (PII) como nome completo, número de passaporte ou SSN
 
-* [Tipo/formato](../about-wallarm/api-discovery.md#parameter-types-and-formats) de dados enviados neste parâmetro
+* [Tipo/formato](../api-discovery/overview.md#parameter-types-and-formats) de dados enviados neste parâmetro
 * Data e hora da última atualização das informações do parâmetro
 
 ## Rastreando mudanças na API
 
-Você pode verificar quais [mudanças ocorreram](../about-wallarm/api-discovery.md#tracking-changes-in-api) na API dentro do período de tempo especificado. Para fazer isso, a partir do filtro **Alterações desde**, selecione o período ou a data apropriada. As seguintes marcas serão exibidas na lista de endpoints:
+Você pode verificar quais [mudanças ocorreram](../api-discovery/overview.md#tracking-changes-in-api) na API dentro do período de tempo especificado. Para fazer isso, a partir do filtro **Alterações desde**, selecione o período ou a data apropriada. As seguintes marcas serão exibidas na lista de endpoints:
 
 * **Novo** para os endpoints adicionados à lista dentro do período.
 * **Alterado** para os endpoints que têm parâmetros recém-descobertos ou parâmetros que obtiveram o status `Não usado` dentro do período. Nos detalhes do endpoint, tais parâmetros terão uma marca correspondente.
@@ -102,7 +102,7 @@ O filtro **Mudanças na API** funciona de maneira diferente e mostra **apenas** 
 
 ## Trabalhando com pontuação de risco
 
-A [pontuação de risco](../about-wallarm/api-discovery.md#endpoint-risk-score) permite entender quais endpoints têm maior probabilidade de ser alvo de um ataque e, portanto, devem ser o foco de seus esforços de segurança.
+A [pontuação de risco](../api-discovery/overview.md#endpoint-risk-score) permite entender quais endpoints têm maior probabilidade de ser alvo de um ataque e, portanto, devem ser o foco de seus esforços de segurança.
 
 A pontuação de risco pode variar de `1` (menor) a `10` (maior):
 
@@ -147,7 +147,7 @@ Você também pode copiar a URL de algum endpoint para a área de transferência
 
 ## Inventário de API e regras
 
-Você pode criar rapidamente uma nova [regra personalizada](../user-guides/rules/intro.md) a partir de qualquer endpoint do inventário de API:
+Você pode criar rapidamente uma nova [regra personalizada](../user-guides/rules/rules.md) a partir de qualquer endpoint do inventário de API:
 
 1. No menu deste endpoint, selecione **Criar regra**. A janela de criação de regra é exibida. O endereço do endpoint é analisado na janela automaticamente.
 1. Na janela de criação de regra, especifique a informação da regra e, em seguida, clique em **Criar**.
@@ -156,7 +156,7 @@ Você pode criar rapidamente uma nova [regra personalizada](../user-guides/rules
 
 ## Exibindo API sombra, órfã e zumbi
 
-O módulo **Descoberta de API** descobre automaticamente APIs desonestas (sombra, órfã e zumbi) comparando o trânsito registrado real com as [especificações fornecidas pelos clientes](../user-guides/api-specifications.md). Para exibir [APIs desonestas](../about-wallarm/api-discovery.md#shadow-orphan-and-zombie-apis) entre endpoints descobertos pelo Wallarm:
+O módulo **Descoberta de API** descobre automaticamente APIs desonestas (sombra, órfã e zumbi) comparando o trânsito registrado real com as [especificações fornecidas pelos clientes](../api-specification-enforcement/overview.md). Para exibir [APIs desonestas](../api-discovery/overview.md#shadow-orphan-and-zombie-apis) entre endpoints descobertos pelo Wallarm:
 
 * Use o filtro **Comparar com...** para selecionar comparações de especificações - apenas para elas as APIs desonestas serão destacadas pelas marcas especiais na coluna **Problemas**.
 
@@ -197,7 +197,7 @@ Ao clicar no botão **Configurar Descoberta de API** na seção **Descoberta de 
 
 ### Escolhendo aplicativos para a Descoberta de API
 
-Se a assinatura [Descoberta de API](../about-wallarm/api-discovery.md) foi adquirida para a conta da sua empresa, você pode ativar/desativar a análise de tráfego com a Descoberta de API em Console Wallarm → **Descoberta de API** → **Configurar Descoberta de API**.
+Se a assinatura [Descoberta de API](../api-discovery/overview.md) foi adquirida para a conta da sua empresa, você pode ativar/desativar a análise de tráfego com a Descoberta de API em Console Wallarm → **Descoberta de API** → **Configurar Descoberta de API**.
 
 Você pode ativar/desativar a Descoberta de API para todos os aplicativos ou apenas os selecionados.
 
@@ -207,7 +207,7 @@ Quando você adiciona um novo aplicativo em **Configurações** → **[Aplicaç�
 
 ### Personalizando cálculo de pontuação de risco
 
-Você pode configurar o peso de cada fator no cálculo da [pontuação de risco](../about-wallarm/api-discovery.md#endpoint-risk-score) e o método de cálculo.
+Você pode configurar o peso de cada fator no cálculo da [pontuação de risco](../api-discovery/overview.md#endpoint-risk-score) e o método de cálculo.
 
 Padrões:
 

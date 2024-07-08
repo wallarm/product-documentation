@@ -12,7 +12,7 @@ Estas instruções descrevem as etapas para atualizar o nó multi-inquilino de f
 
 ## Passo 1: Entre em contato com a equipe de suporte da Wallarm
 
-Solicite a assistência da [equipe de suporte da Wallarm](mailto:support@wallarm.com) para obter a versão mais recente do recurso de [construção de conjunto de regras personalizado](../../user-guides/rules/compiling.md) durante a atualização do nó multi-inquilino.
+Solicite a assistência da [equipe de suporte da Wallarm](mailto:support@wallarm.com) para obter a versão mais recente do recurso de [construção de conjunto de regras personalizado](../../user-guides/rules/rules.md) durante a atualização do nó multi-inquilino.
 
 !!! info "Atualização bloqueada"
     O uso de uma versão incorreta do recurso de construção de conjunto de regras personalizado pode bloquear o processo de atualização.

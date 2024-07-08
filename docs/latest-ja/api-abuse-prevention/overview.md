@@ -78,19 +78,10 @@ API Abuse Preventionを有効にするには：
 
     このようなイベントの詳細から、あなたは**Add source IP to denylist**ボタンでボットを素早くブロックすることができます。IPは永久にブラックリストに追加されますが、**IP Lists**セクションでは、それを削除したり、リストに留まる時間を変更したりすることができます。
 
-## 悪意のあるボットとその攻撃の探求
-
-あなたはWallarm Console UIでボットの活動を以下のように調査することができます：
-
-* **IP lists**セクションで悪意のあるボットを探索します
-* **Events**セクションでボットが行ったAPIの乱用を表示します
-
-[Learn how to explore the bots' activity →](../api-abuse-prevention/setup.md#exploring-blocked-malicious-bots-and-their-attacks)
-
 ## 例外リスト
 
 例外リストとは、正当なボットまたはクローラーに関連していると知られているIPアドレス、サブネット、場所、ソースタイプのリストであり、したがってAPIの乱用防止モジュールによるブロックや制約から除外されます。
 
-あらかじめIPアドレスを例外リストに追加することも、既に誤って悪意のあるボットの活動と関連付けられているとフラグが立てられている場合でも、例外リストに追加することができます。 [Learn how to work with exception list →](../api-abuse-prevention/setup.md#working-with-exception-list)
+あらかじめIPアドレスを例外リストに追加することも、既に誤って悪意のあるボットの活動と関連付けられているとフラグが立てられている場合でも、例外リストに追加することができます。 [Learn how to work with exception list →](../api-abuse-prevention/exceptions.md)
 
 ![API Abuse prevention - Exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list.png)

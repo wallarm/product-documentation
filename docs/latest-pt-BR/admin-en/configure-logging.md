@@ -1,7 +1,7 @@
 [link-nginx-logging-docs]:  https://docs.nginx.com/nginx/admin-guide/monitoring/logging/
 [doc-vuln-list]:            ../attacks-vulns-list.md
 [doc-monitor-node]:         monitoring/intro.md
-[doc-lom]:                  ../user-guides/rules/compiling.md
+[doc-lom]:                  ../user-guides/rules/rules.md
 
 #   Trabalhando com Logs do Nó de Filtro
 
@@ -15,7 +15,7 @@ Um nó de filtro armazena os seguintes arquivos de log no diretório `/var/log/w
 *   `tarantool.log`: o log das operações do módulo pós-analítico.
 *   `sync-ip-lists.log` (nomeado como `sync-blacklist.log` nas versões anteriores do nó): o log da sincronização do nó de filtragem com os endereços IP adicionados às [listas IP](../user-guides/ip-lists/overview.md) como objetos únicos ou sub-redes.
 *   `sync-ip-lists-source.log` (nomeado como `sync-mmdb.log` nas versões anteriores do nó): o log da sincronização do nó de filtragem com os endereços IP registrados em países, regiões e data centers a partir das [listas IP](../user-guides/ip-lists/overview.md).
-*   `appstructure.log` (somente nos contêineres Docker): o log da atividade do módulo [Descoberta de API](../about-wallarm/api-discovery.md).
+*   `appstructure.log` (somente nos contêineres Docker): o log da atividade do módulo [Descoberta de API](../api-discovery/overview.md).
 *   `registernode_loop.log` (somente nos contêineres Docker): o log da atividade do script de início que executa o script `register-node` enquanto ele é executado com sucesso.
 *   `weak-jwt-detect.log`: o log da detecção da [vulnerabilidade JWT](../attacks-vulns-list.md#weak-jwt).
 

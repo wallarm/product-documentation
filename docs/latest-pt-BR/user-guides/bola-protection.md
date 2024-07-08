@@ -1,6 +1,6 @@
-[variability-in-endpoints-docs]:       ../about-wallarm/api-discovery.md#variability-in-endpoints
-[changes-in-api-docs]:       api-discovery.md#tracking-changes-in-api
-[bola-protection-for-endpoints-docs]:  ../about-wallarm/api-discovery.md#automatic-bola-protection
+[variability-in-endpoints-docs]:       ../api-discovery/overview.md#variability-in-endpoints
+[changes-in-api-docs]:       ../api-discovery/track-changes.md
+[bola-protection-for-endpoints-docs]:  ../api-discovery/overview.md#automatic-bola-protection
 
 # Proteção BOLA <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
@@ -8,7 +8,7 @@ A seção **Proteção BOLA** da Wallarm Console UI permite configurar a mitiga�
 
 Essa seção está disponível nas seguintes condições:
 
-* O módulo [API Discovery](../about-wallarm/api-discovery.md) está habilitado
+* O módulo [API Discovery](../api-discovery/overview.md) está habilitado
 * A [função](settings/users.md#user-roles) do usuário é **Administrador** ou **Administrador Global**
 
     A seção também está disponível em modo somente leitura para **Analistas** e **Analistas Globais**.

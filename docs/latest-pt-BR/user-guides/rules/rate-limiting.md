@@ -11,7 +11,7 @@ O Wallarm examina vários parâmetros de solicitação, como cookies ou campos J
 Para definir e aplicar o limite de taxa:
 
 1. Vá para Wallarm Console → **Regras** → **Adicionar regra**.
-1. Em **Se a solicitação é**, [descreva](add-rule.md#branch-description) o escopo para aplicar a regra.
+1. Em **Se a solicitação é**, [descreva](rules.md#branch-description) o escopo para aplicar a regra.
 1. Em **Depois**, escolha **Definir limite de taxa** e defina um limite desejado para conexões com seu escopo:
 
     * Número máximo para as solicitações por segundo ou minuto.
@@ -31,7 +31,7 @@ Para definir e aplicar o limite de taxa:
 
     !!! info "Restrições no comprimento do valor"
         O comprimento máximo permitido dos valores dos parâmetros pelos quais você mede os limites é de 8000 símbolos.
-1. Aguarde a [compilação da regra ser concluída](compiling.md).
+1. Aguarde a [compilação da regra ser concluída](rules.md).
 
 ## Exemplos de regras
 
@@ -63,7 +63,7 @@ Suponha que seu aplicativo atribua a cada sessão de usuário um ID único e o r
 
 ![Exemplo](../../images/user-guides/rules/rate-limit-for-jwt.png)
 
-A [regexp](add-rule.md#condition-type-regex) usada para o valor `Authorization` é ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`.
+A [regexp](rules.md#condition-type-regex) usada para o valor `Authorization` é ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`.
 
 Se você usa JWT (JSON Web Tokens) para gerenciar as sessões do usuário, pode ajustar a regra para [descriptografar](request-processing.md#jwt) o JWT e extrair o ID da sessão de seu payload da seguinte maneira:
 

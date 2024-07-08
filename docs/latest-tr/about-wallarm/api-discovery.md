@@ -2,7 +2,7 @@
 
 Wallarm platformunun **API Discovery** modülü, uygulamanızın gerçek API kullanımına dayalı olarak REST API envanterinizi [oluşturur](#enabling-and-configuring-api-discovery). Modül sürekli olarak gerçek trafik taleplerini analiz eder ve analiz sonuçlarına dayalı olarak API envanterini oluşturur. Bu makale, **API Discovery** hakkında genel bir bakış sunar: ele aldığı konular, amacı ve ana olanakları.
 
-**API Discovery** modülünün nasıl kullanılacağına dair bilgi için, kullanıcı klavuzuna başvurun: [user guide](../user-guides/api-discovery.md).
+**API Discovery** modülünün nasıl kullanılacağına dair bilgi için, kullanıcı klavuzuna başvurun: [user guide](../api-discovery/exploring.md).
 
 ## API Discovery tarafından ele alınan meseleler
 
@@ -15,15 +15,15 @@ API Discovery modülü, veri kaynağı olarak gerçek trafiği kullanır, bu da 
 **API envanterinizi Wallarm tarafından keşfettiğinizde, aşağıdaki işlemleri yapabilirsiniz**:
 
 * Tüm API varlıklarınızı, [dış ve iç](#external-and-internal-apis) API'lerin listesini de içerir bir şekilde tam olarak görüntüleyin.
-* Hangi verilerin [API'lere giriyor](../user-guides/api-discovery.md#params) olduğunu görün.
+* Hangi verilerin [API'lere giriyor](../api-discovery/exploring.md#params) olduğunu görün.
 * Hangi uç noktaların [muhtemelen](#endpoint-risk-score) bir saldırı hedefi olduğunu anlayın.
 * Son 7 günlük en fazla saldırıya uğramış API'leri görüntüleyin.
 * Yalnızca saldırıya uğramış API'leri filtreleyin, bunları hit sayısına göre sıralayın.
 * Hassas veri alıp taşıyan API'leri filtreleyin.
 * [Gölge, yetim ve zombi API'lerini](#shadow-orphan-and-zombie-apis) bulun.
-* Keşfedilen uç noktaları OpenAPI v3 biçiminde bir şartname olarak [indirin](../user-guides/api-discovery.md#download-openapi-specification-oas-of-your-api-inventory) ve Wallarm tarafından keşfedilmeyen (kullanılmayan, ayrıca "Zombi API" olarak bilinir) uç noktaları bulmak için bunları kendi API özelliklerinizle karşılaştırın.
+* Keşfedilen uç noktaları OpenAPI v3 biçiminde bir şartname olarak [indirin](../api-discovery/exploring.md#download-openapi-specification-oas-of-your-api-inventory) ve Wallarm tarafından keşfedilmeyen (kullanılmayan, ayrıca "Zombi API" olarak bilinir) uç noktaları bulmak için bunları kendi API özelliklerinizle karşılaştırın.
 * Seçilen bir süre içinde API'de gerçekleşen [değişiklikleri izleyin](#tracking-changes-in-api).
-* Herhangi bir API uç noktası için hızlıca [kurallar oluşturun](../user-guides/api-discovery.md#api-inventory-and-rules).
+* Herhangi bir API uç noktası için hızlıca [kurallar oluşturun](../api-discovery/exploring.md#api-inventory-and-rules).
 * Herhangi bir API uç noktası için kötü amaçlı taleplerin tam listesini alın.
 * Geliştiricilerinize, oluşturulan API envanterinin gözden geçirilmesi ve indirilmesine erişim sağlayın.
 
@@ -37,7 +37,7 @@ API Discovery, yerel ve Cloud'da analiz gerçekleştirmek için hibrit bir yakla
 
 1. API Discovery, meşru trafiği yerel olarak analiz eder. Wallarm, taleplerin hangi uç noktalara yapıldığını ve hangi parametrelerin geçirildiğini analiz eder.
 1. Bu verilere göre, istatistikler yapılır ve Cloud'a gönderilir.
-1. Wallarm Cloud, alınan istatistikleri toplar ve bunlara dayanarak bir [API açıklaması](../user-guides/api-discovery.md) oluşturur.
+1. Wallarm Cloud, alınan istatistikleri toplar ve bunlara dayanarak bir [API açıklaması](../api-discovery/exploring.md) oluşturur.
 
     !!! info "Gürültü tespiti"
         Nadir veya tek talepler [gürültü olarak belirlenir](#noise-detection) ve API envanterine dahil edilmez.
@@ -132,7 +132,7 @@ Bu seçenekler arasında:
 * Belirli bir uç nokta için özel kural oluşturma.
 * Bireysel API uç noktaları ve tüm API için OpenAPI özelliklerini `swagger.json` dosyası olarak indirme.
 
-Kullanılabilir seçenekler hakkında daha fazla bilgiyi [Kullanıcı rehberinde](../user-guides/api-discovery.md) öğrenin.
+Kullanılabilir seçenekler hakkında daha fazla bilgiyi [Kullanıcı rehberinde](../api-discovery/exploring.md) öğrenin.
 
 ## Uç nokta risk skoru
 
@@ -148,9 +148,9 @@ Risk skoru, çeşitli faktörlerden oluşur, bunlar arasında:
 * Uç nokta isteğinde iletilen **XML veya JSON nesneleri** saldırganlar tarafından, sunucuya kötü amaçlı XML dış etkinliklerini ve enjeksiyonlarını taşımak için kullanılabilir.
 
 !!! info "Risk skoru hesaplamasını yapılandırma"
-    Risk skoru tahminini faktörlerin önemine göre uyarlamanız gerekiyorsa, her faktörün risk skoru hesaplamasındaki ağırlığını ve hesaplama yöntemini [yapılandırabilirsiniz](../user-guides/api-discovery.md#customizing-risk-score-calculation).
+    Risk skoru tahminini faktörlerin önemine göre uyarlamanız gerekiyorsa, her faktörün risk skoru hesaplamasındaki ağırlığını ve hesaplama yöntemini [yapılandırabilirsiniz](../api-discovery/exploring.md#customizing-risk-score-calculation).
 
-[Risk skoru ile nasıl çalışılacağını öğrenin →](../user-guides/api-discovery.md#working-with-risk-score)
+[Risk skoru ile nasıl çalışılacağını öğrenin →](../api-discovery/exploring.md#working-with-risk-score)
 
 ## API'deki değişiklikleri izleme
 
@@ -170,7 +170,7 @@ Wallarm'ın **API Discovery** modülü kullanarak:
 * PII ve diğer beklenmedik parametrelerin uç noktalara aktarılmaya başlamadığını kontrol edebilirsiniz.
 * API'nizdeki değişiklikler hakkında [tetikleyiciler](../user-guides/triggers/trigger-examples.md#new-endpoints-in-your-api-inventory) ile **API'deki Değişiklikler** koşulu ile bildirimler yapılandırabilirsiniz.
 
-Değişiklik izleme özelliği ile nasıl çalışılacağını [Kullanıcı rehberinde](../user-guides/api-discovery.md#tracking-changes-in-api) öğrenin.
+Değişiklik izleme özelliği ile nasıl çalışılacağını [Kullanıcı rehberinde](../api-discovery/exploring.md#tracking-changes-in-api) öğrenin.
 
 ## Dış ve dahili API'ler
 
@@ -225,7 +225,7 @@ API Discovery, gölge (gölge, yetim ve zombi) API'leri ortaya çıkarmanıza iz
 
 Bir **gölge API**, bir organizasyonun altyapısı içinde uygun yetkilendirme veya denetim olmadan var olan belgelenmemiş bir API'yi ifade eder. İşletmeler için risk oluşturlar, çünkü saldırganlar onları kullanarak kritik sistemlere erişebilir, değerli veriler çalabilir veya işlemleri bozabilir ve ayrıca API'lerin genellikle kritik verilere kapıları olduğunu ve bir dizi OWASP API güvenlik açığının API güvenliğini aşmak için istismar edilebileceğini de dikkate almalısınız.
 
-Yüklenen API [belirtimlerinize](../user-guides/api-specifications.md) göre, gölge API belirtiminizde sunulmayan ancak gerçek trafikte (API Discovery tarafından tespit edilen) bir uç noktadır.
+Yüklenen API [belirtimlerinize](../api-discovery/rogue-api.md) göre, gölge API belirtiminizde sunulmayan ancak gerçek trafikte (API Discovery tarafından tespit edilen) bir uç noktadır.
 
 Gölge API'leri Wallarm ile bulduğunuzda, belirtimlerinizi eksik uç noktaları içerecek şekilde güncelleyebilir ve API envanterinizin tam görünümüne yönelik izleme ve güvenlik faaliyetlerinizi daha fazla gerçekleştirebilirsiniz.
 
@@ -241,12 +241,12 @@ Yüklenen API belirtimleriniz açısından, zombi API önceki belirtim versiyonu
 
 Wallarm ile zombi API bulmanız, uygulamalarınızın API konfigürasyonunu kontrol etme ve gerçekte bu tür uç noktaları devre dışı bırakma nedeni olabilir.
 
-API Discovery modülü, keşfedilen API envanterini müşterilerin sağladığı belirtimlerle karşılaştırarak otomatik olarak gölge, yetim ve zombi API'leri ortaya çıkartır. API belirtimlerinizi [**API Belirtimleri**](../user-guides/api-specifications.md) bölümünde yüklersiniz ve modül otomatik olarak gölge, yetim ve zombi uç noktalarını vurgular.
+API Discovery modülü, keşfedilen API envanterini müşterilerin sağladığı belirtimlerle karşılaştırarak otomatik olarak gölge, yetim ve zombi API'leri ortaya çıkartır. API belirtimlerinizi [**API Belirtimleri**](../api-discovery/rogue-api.md) bölümünde yüklersiniz ve modül otomatik olarak gölge, yetim ve zombi uç noktalarını vurgular.
 
 ![API Discovery - Kaçak API'nin belirtilmesi ve filtrelenmesi](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-rogue.png)
 
-* [Kaçak API'leri bulmak için karşılaştırma için belirtimlerin nasıl yükleneceğini öğrenin →](../user-guides/api-specifications.md#revealing-shadow-orphan-and-zombie-api)
-* [API Discovery bölümünde bulunan kaçak API'lerin nasıl görüntüleneceğini öğrenin →](../user-guides/api-discovery.md#displaying-shadow-and-orphan-api)
+* [Kaçak API'leri bulmak için karşılaştırma için belirtimlerin nasıl yükleneceğini öğrenin →](../api-discovery/rogue-api.md#revealing-shadow-orphan-and-zombie-api)
+* [API Discovery bölümünde bulunan kaçak API'lerin nasıl görüntüleneceğini öğrenin →](../api-discovery/exploring.md#displaying-shadow-and-orphan-api)
 
 ## Wallarm Bulutuna yüklenen verilerin güvenliği
 

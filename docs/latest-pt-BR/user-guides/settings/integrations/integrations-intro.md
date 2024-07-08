@@ -6,7 +6,7 @@ Com as integrações da Wallarm, você sempre ficará informado sobre eventos cr
 
 * Alertas instantâneos sobre [hits detectados](../../../user-guides/events/check-attack.md), para que você possa tomar medidas imediatas contra as ameaças.
 * Atualizações sobre eventos do sistema (mudanças em [usuários](../../../user-guides/settings/users.md) registrados, integrações e [aplicações](../../../user-guides/settings/applications.md)), garantindo que você esteja sempre no controle.
-* Notificação sobre mudanças importantes em seu perfil de segurança, como suas mudanças em [regras](../../../user-guides/rules/intro.md) e [gatilhos](../../../user-guides/triggers/triggers.md).
+* Notificação sobre mudanças importantes em seu perfil de segurança, como suas mudanças em [regras](../../../user-guides/rules/rules.md) e [gatilhos](../../../user-guides/triggers/triggers.md).
 * Avisos oportunos sobre possíveis [vulnerabilidades](../../../about-wallarm/detecting-vulnerabilities.md) em sua infraestrutura e seus níveis de risco, para que você possa abordar proativamente as fraquezas mais perigosas.
 
 Gerencie o recurso na seção **Integrações** do Console Wallarm e na seção **Gatilhos** para configurar alertas adicionais para suas integrações.

@@ -6,7 +6,7 @@ Wallarm Konsol Arayüzündeki **API Özellikleri** bölümünde, Wallarm'ın par
 
 ## Gölge, yetim ve zombi API'yi ortaya çıkarma
 
-[**API Keşif**](../about-wallarm/api-discovery.md) kullanımda olduğunda, **API Özellikleri** bölümünde yüklediğiniz API özellikleri, API Keşfinin otomatik olarak tespit ettiği şeyle karşılaştırılabilir. Bu karşılaştırmanın sonucunda, Wallarm [parazit (gölge, yetim ve zombi) API'leri bulur ve gösterir](../about-wallarm/api-discovery.md#shadow-orphan-and-zombie-apis).
+[**API Keşif**](../api-discovery/overview.md) kullanımda olduğunda, **API Özellikleri** bölümünde yüklediğiniz API özellikleri, API Keşfinin otomatik olarak tespit ettiği şeyle karşılaştırılabilir. Bu karşılaştırmanın sonucunda, Wallarm [parazit (gölge, yetim ve zombi) API'leri bulur ve gösterir](../api-discovery/overview.md#shadow-orphan-and-zombie-apis).
 
 Karşılaştırma yapmak için:
 

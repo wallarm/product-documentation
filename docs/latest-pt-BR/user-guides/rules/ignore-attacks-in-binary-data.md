@@ -17,18 +17,18 @@ Para criar e aplicar a regra na seção **Regras**:
 
 1. Para ajustar as regras de detecção de ataques para os dados binários passados no elemento de solicitação especificado de qualquer maneira, crie a regra **Permitir dados binários** na seção **Regras** do console Wallarm. A regra consiste nos seguintes componentes:
 
-    * **Condição** [descreve](add-rule.md#branch-description) os pontos finais para aplicar a regra.
+    * **Condição** [descreve](rules.md#branch-description) os pontos finais para aplicar a regra.
     * **Parte da solicitação** aponta para o elemento de solicitação original contendo os dados binários.
 
          --8<-- "../include-pt-BR/waf/features/rules/request-part-reference.md"
 2. Para ajustar as regras de detecção de ataques para certos tipos de arquivos passados no elemento de solicitação especificado, crie a regra **Permitir certos tipos de arquivo** na seção **Regras** do console Wallarm. A regra consiste nos seguintes componentes:
 
-    * **Condição** [descreve](add-rule.md#branch-description) os pontos finais para aplicar a regra.
+    * **Condição** [descreve](rules.md#branch-description) os pontos finais para aplicar a regra.
     * Tipos de arquivos para ignorar os sinais de ataque.
     * **Parte da solicitação** aponta para o elemento de solicitação original contendo os tipos de arquivos especificados.
 
          --8<-- "../include-pt-BR/waf/features/rules/request-part-reference.md"
-3. Aguarde a [compilação da regra ser concluída](compiling.md).
+3. Aguarde a [compilação da regra ser concluída](rules.md).
 
 ## Exemplo de regra
 

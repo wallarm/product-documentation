@@ -58,8 +58,8 @@ Scanner de Vulnerabilidades verifica todos os ativos expostos da empresa à proc
 * O [limite de solicitações enviadas a partir do Scanner](../user-guides/scanner.md#limiting-vulnerability-scanning) pode ser configurado para cada ativo em Wallarm Console → **Scanner** → **Configure**.
 * Se você usa instalações adicionais (software ou hardware) para filtrar e bloquear o tráfego automaticamente, recomenda-se que você configure uma lista de permissões com os endereços IP para o Scanner Wallarm. Isso permitirá que os componentes Wallarm escaneiem seus recursos em busca de vulnerabilidades sem problemas.
 
-    * [Endereço IP do Scanner registrado na Wallarm US Cloud](../admin-en/scanner-address-us-cloud.md)
-    * [Endereço IP do Scanner registrado na Wallarm EU Cloud](../admin-en/scanner-address-eu-cloud.md)
+    * [Endereço IP do Scanner registrado na Wallarm US Cloud](../admin-en/scanner-addresses.md)
+    * [Endereço IP do Scanner registrado na Wallarm EU Cloud](../admin-en/scanner-addresses.md)
 
     Se você não usa instalações adicionais, mas usa o Scanner Wallarm, você não precisa permitir manualmente os endereços IP do Scanner. A partir do nó Wallarm 3.0, os endereços IP do Scanner são automaticamente incluídos na lista de permissões.
 
@@ -83,7 +83,7 @@ Todas as vulnerabilidades detectadas são exibidas na seção Wallarm Console �
 
 ![Seção Vulnerabilidades](../images/user-guides/vulnerabilities/check-vuln.png)
 
-Se você usar o módulo [**API Discovery**](api-discovery.md) da plataforma Wallarm, as vulnerabilidades serão vinculadas aos endpoints de API descobertos, por exemplo:
+Se você usar o módulo [**API Discovery**](../api-discovery/overview.md) da plataforma Wallarm, as vulnerabilidades serão vinculadas aos endpoints de API descobertos, por exemplo:
 
 ![API Discovery - Pontuação de Risco](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 

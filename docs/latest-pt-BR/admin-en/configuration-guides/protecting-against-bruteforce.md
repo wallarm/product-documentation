@@ -49,7 +49,7 @@ Os passos para configurar o gatilho são:
     * Se você configurar proteção contra ataques de navegação forçada, especifique o URI do diretório de arquivo de recursos.
     * Se o URI não for especificado, o gatilho será ativado em qualquer endpoint com o número de solicitações excedendo o limite.
 
-    O URI pode ser configurado através do [construtor URI](../../user-guides/rules/add-rule.md#uri-constructor) ou [formulário de edição avançado](../../user-guides/rules/add-rule.md#advanced-edit-form) na janela de criação do gatilho.
+    O URI pode ser configurado através do [construtor URI](../../user-guides/rules/rules.md#uri-constructor) ou [formulário de edição avançado](../../user-guides/rules/rules.md#advanced-edit-form) na janela de criação do gatilho.
 
     !!! warning "Gatilhos com URIs aninhados"
         Se URIs aninhados forem especificados nos gatilhos com condições idênticas, as solicitações ao URI de nível de aninhamento inferior serão contadas apenas no gatilho com o filtro pelo URI de nível de aninhamento inferior. O mesmo vale para os códigos de resposta 404.
