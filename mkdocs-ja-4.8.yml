@@ -231,6 +231,9 @@ nav:
         - 展開: installation/oob/ebpf/deployment.md
         - Helm Chart Values: installation/oob/ebpf/helm-chart-for-wallarm.md
         - ミラーリング対象のパケットの選択: installation/oob/ebpf/selecting-packets.md
+      - TCPトラフィックミラー分析:
+        - 展開: installation/oob/tcp-traffic-mirror/deployment.md
+        - 設定: installation/oob/tcp-traffic-mirror/configuration.md
       - NGINX, Envoy, and Similarsによるミラーリング:
         - 概要: installation/oob/web-server-mirroring/overview.md
         - 公開クラウド:
