@@ -241,6 +241,9 @@ nav:
         - Implantação: installation/oob/ebpf/deployment.md
         - Valores do Helm Chart: installation/oob/ebpf/helm-chart-for-wallarm.md
         - Selecionando Pacotes para Espelhamento: installation/oob/ebpf/selecting-packets.md
+      - Análise de Espelhamento de Tráfego TCP:
+        - Implantar: installation/oob/tcp-traffic-mirror/deployment.md
+        - Configurar: installation/oob/tcp-traffic-mirror/configuration.md
       - Espelhamento por NGINX, Envoy e Similares:
         - Visão Geral: installation/oob/web-server-mirroring/overview.md
         - Nuvens Públicas:

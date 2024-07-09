@@ -238,6 +238,9 @@ nav:
       - Dağıtım: installation/oob/ebpf/deployment.md
       - Helm Chart Değerleri: installation/oob/ebpf/helm-chart-for-wallarm.md
       - Yansıtma için Paket Seçimi: installation/oob/ebpf/selecting-packets.md
+    - TCP Trafik Aynası Analizi:
+      - Dağıt: installation/oob/tcp-traffic-mirror/deployment.md
+      - Yapılandır: installation/oob/tcp-traffic-mirror/configuration.md
     - Band Dışı:
       - Genel Bakış: installation/oob/overview.md
       - NGINX, Envoy ve Benzeri ile Aynılaştırma:
