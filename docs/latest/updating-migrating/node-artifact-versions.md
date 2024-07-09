@@ -60,7 +60,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ## Wallarm node for TCP traffic mirror analysis
 
-### 0.2.2 (2024-06-18)
+### 0.3.0 (2024-07-09)
 
 * Initial release
 
