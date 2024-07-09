@@ -46,6 +46,8 @@ Specifies a network interface to capture traffic from. If no value is specified,
 Note that the value should be the network interface and port separated by a colon (`:`). Examples of filters include `eth0:`, `eth0:80`, or `:80` (to intercept a specific port on all interfaces), e.g.:
 
 ```yaml
+version: 2
+
 goreplay:
   filter: 'eth0:'
 ```
@@ -65,6 +67,8 @@ Typically, you will use it to define the types of mirrored traffic requiring ana
 * For VLAN-wrapped mirrored traffic, provide the following:
 
     ```yaml
+    version: 2
+
     goreplay:
       extra_args:
         - -input-raw-vlan
@@ -76,6 +80,8 @@ Typically, you will use it to define the types of mirrored traffic requiring ana
 * For VXLAN-wrapped mirrored traffic (e.g. for AWS traffic mirroring), provide the following:
 
     ```yaml
+    version: 2
+
     goreplay:
       extra_args:
         - -input-raw-engine
@@ -103,6 +109,8 @@ Configuration section where you specify settings for specific routes.
 Sets route-specific Wallarm configuration. Includes Wallarm mode and application IDs. Example configuration:
 
 ```yaml
+version: 2
+
 route_config:
   wallarm_application: 10
   routes:
