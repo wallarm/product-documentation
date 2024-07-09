@@ -23,7 +23,7 @@ To deploy Wallarm Cloud on-premise, you need to prepare a compute instance meeti
 **Operating system**
 
 * Ubuntu LTS 18.04, 20.04, 22.04
-* Debian 10.x, 11.x, 12.x
+* Debian 11.x, 12.x
 * Red Hat Enterprise Linux 8
 
 **System requirements**
