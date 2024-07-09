@@ -26,6 +26,8 @@ Use the **API Sessions** section of the Wallarm Console to analyze session conte
 
 API Sessions operate in beta mode and is enabled and configured through [Wallarm support](mailto:support@wallarm.com). This functionality requires node version 4.10.2 or later.
 
+To make the API Sessions functionality more precise, it is recommended to enable [JA3 fingerprinting](admin-en/enabling-ja3.md) for better identification of the the unauthenticated traffic.
+
 ## Limitations
 
 Currently API Sessions have some limitations. In the **API Sessions** section:

@@ -54,3 +54,9 @@ You can find **Disable** and **Delete** options in the profile menu.
 ## Exceptions
 
 You can fine tune API Abuse Prevention by [making exceptions](exceptions.md): marking legitimate bots and disabling bot protection for particular target URLs and request types.
+
+## Improving session mechanism
+
+API Abuse Prevention uses the [API Sessions](../api-sessions.md) mechanism when analyzing the bot behavior.
+
+To make the API Abuse Prevention functionality more precise, it is recommended to enable [JA3 fingerprinting](../admin-en/enabling-ja3.md) for better identification of the the unauthenticated traffic when combining requests into sessions.
