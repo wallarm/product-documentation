@@ -76,23 +76,18 @@ To download Wallarm installation script and make it executable, use the followin
 Create the `wallarm-node-conf.yaml` file on the instance. The solution requires proper configuration to identify the network interface and the traffic format (e.g., VLAN, VXLAN). The example content of the file:
 
 ```yaml
-Version: 1
-GoreplayMiddleware:
-  Enabled: true
-  Goreplay:
-    Filter: "enp7s0:"
-    ExtraArgs:
+goreplay:
+  filter: 'enp7s0:'
+  extra_args:
       - -input-raw-engine
       - vxlan
-  Wallarm:
-    RealIpHeader: "X-Real-IP"
 ```
 
 In the [article](configuration.md), you will find the list of more supported configuration parameters.
 
 ### Choosing a network interface for listening
 
-To specify the network interface to capture from:
+To specify the network interface to capture traffic from:
 
 1. Check network interfaces available on the host:
 
@@ -100,16 +95,13 @@ To specify the network interface to capture from:
     ip link show
     ```
 
-1. Specify the network interface in the `Filter` parameter.
+1. Specify the network interface in the `filter` parameter.
 
     Note that the value should be the network interface and port separated by a colon (`:`). Examples of filters include `eth0:`, `eth0:80`, or `:80` (to intercept a specific port on all interfaces), e.g.:
 
     ```yaml
-    Version: 1
-    GoreplayMiddleware:
-      Enabled: true
-      Goreplay:
-        Filter: "eth0:"
+    goreplay:
+      filter: 'eth0:'
     ```
 
 ### Capturing VLAN
@@ -117,52 +109,42 @@ To specify the network interface to capture from:
 If mirrored traffic is wrapped in VLAN, provide additional arguments:
 
 ```yaml
-Version: 1
-GoreplayMiddleware:
-  Enabled: true
-  Goreplay:
-    Filter: <your network interface and port, e.g. "lo:" or "enp7s0:">
-    ExtraArgs:
-      - -input-raw-vlan
-      - -input-raw-vlan-vid
-      # VID of your VLAN, e.g.:
-      # - 42
+goreplay:
+  filter: <your network interface and port, e.g. 'lo:' or 'enp7s0:'>
+  extra_args:
+    - -input-raw-vlan
+    - -input-raw-vlan-vid
+    # VID of your VLAN, e.g.:
+    # - 42
 ```
 
-### Capturing VXLAN (AWS mirroring)
+### Capturing VXLAN
 
 If mirrored traffic is wrapped in VXLAN (common in AWS), provide additional arguments:
 
 ```yaml
-Version: 1
-GoreplayMiddleware:
-  Enabled: true
-  Goreplay:
-    Filter: <your network interface and port, e.g. "lo:" or "enp7s0:">
-    ExtraArgs:
-      - -input-raw-engine
-      - vxlan
-      # Custom VXLAN UDP port, e.g.:
-      # - -input-raw-vxlan-port 
-      # - 4789
-      # Specific VNI (by default, all VNIs are captured), e.g.:
-      # - -input-raw-vxlan-vni
-      # - 1
+goreplay:
+  filter: <your network interface and port, e.g. 'lo:' or 'enp7s0:'>
+  extra_args:
+    - -input-raw-engine
+    - vxlan
+    # Custom VXLAN UDP port, e.g.:
+    # - -input-raw-vxlan-port 
+    # - 4789
+    # Specific VNI (by default, all VNIs are captured), e.g.:
+    # - -input-raw-vxlan-vni
+    # - 1
 ```
 
 ### Identifying the original client IP address
 
 By default, Wallarm reads the source IP address from the network packet's IP headers. However, proxies and load balancers can change this to their own IPs.
 
-To preserve the real client IP, these intermediaries often add an HTTP header (e.g., `X-Real-IP`, `X-Forwarded-For`). The `RealIpHeader` parameter tells Wallarm which header to use to extract the original client IP, e.g.:
+To preserve the real client IP, these intermediaries often add an HTTP header (e.g., `X-Real-IP`, `X-Forwarded-For`). The `real_ip_header` parameter tells Wallarm which header to use to extract the original client IP, e.g.:
 
 ```yaml
-Version: 1
-
-GoreplayMiddleware:
-  ...
-  Wallarm:
-    RealIpHeader: "X-Real-IP"
+http_inspector:
+  real_ip_header: "X-Real-IP"
 ```
 
 ## Step 4: Run the Wallarm installer
@@ -196,7 +178,7 @@ If needed, you can change the copied file after the installation is finished. To
 
 ## Step 5: Test the solution
 
-Send the test Path Traversal attack to the mirror source address by replacing `<MIRROR_SOURCE_ADDRESS>` with the actual IP address or DNS name of the instance:
+Send the test [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the mirror source address by replacing `<MIRROR_SOURCE_ADDRESS>` with the actual IP address or DNS name of the instance:
 
 ```
 curl http://<MIRROR_SOURCE_ADDRESS>/etc/passwd
@@ -220,8 +202,8 @@ To check that the attack has been registered, proceed to Wallarm Console → **E
     Set the log level in `/opt/wallarm/etc/wallarm/go-node.yaml` to `debug` as follows:
 
     ```yaml
-    Log:
-      Level: debug
+    log:
+      level: debug
     ```
 
     Restart the Wallarm service:
@@ -255,15 +237,6 @@ To check that the attack has been registered, proceed to Wallarm Console → **E
         ```
         sudo ./aionext-0.2.2.aarch64.sh
         ```
-
-    In this case, the minimal config file applied will look like the following. You can edit it later in `/opt/wallarm/etc/wallarm/go-node.yaml`:
-
-    ```yaml
-    Version: 1
-
-    GoreplayMiddleware:
-      Enabled: true
-    ```
 
 ## Upgrade and reinstallation
 
