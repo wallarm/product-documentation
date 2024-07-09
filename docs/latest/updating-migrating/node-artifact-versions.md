@@ -57,7 +57,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ## Wallarm node for TCP traffic mirror analysis
 
-### 0.2.2 (2024-06-18)
+### 0.3.0 (2024-07-09)
 
 * Initial release
 
