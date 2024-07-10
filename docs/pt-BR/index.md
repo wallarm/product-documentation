@@ -118,6 +118,7 @@ A solução Wallarm protege APIs, microsserviços e aplicações web contra as a
     <li><a href="./user-guides/settings/general/">Configurações de Logout</a></li>
     <li><a href="./user-guides/settings/api-tokens/">Tokens de API</a></li>
     <li><a href="./admin-en/configuration-guides/sso/intro/">SAML SSO</a></li>
+    <li><a href="./admin-en/configuration-guides/ldap/ldap/">Usando LDAP</a></li>
     </ul></p>
 </div>
 

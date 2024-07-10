@@ -408,6 +408,7 @@ nav:
       - SSO Kimlik Doğrulamasının Kullanıcılar İçin Yapılandırılması: admin-en/configuration-guides/sso/employ-user-auth.md
       - Yapılandırılmış SSO Kimlik Doğrulamanın Değiştirilmesi: admin-en/configuration-guides/sso/change-sso-provider.md
       - Tek oturum açma ile Wallarm hesabını kullanma: user-guides/use-sso.md
+    - LDAP'yi kullanma: admin-en/configuration-guides/ldap/ldap.md
   - Operasyonlar:
     # - Auto scaling: ...
     - Genel Bakış:

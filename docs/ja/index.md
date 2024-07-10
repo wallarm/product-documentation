@@ -120,6 +120,7 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
     <li><a href="./user-guides/settings/account/">ユーザープロファイル</a></li>
     <li><a href="./user-guides/settings/api-tokens/">APIトークン</a></li>
     <li><a href="./admin-en/configuration-guides/sso/intro/">SAML SSO</a></li>
+    <li><a href="./admin-en/configuration-guides/ldap/ldap/">LDAPの使用</a></li>
     </ul></p>
 </div>
 

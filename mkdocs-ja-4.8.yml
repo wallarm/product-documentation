@@ -441,6 +441,7 @@ nav:
       - ユーザーのSSO認証の設定: admin-en/configuration-guides/sso/employ-user-auth.md
       - 設定したSSO認証の変更: admin-en/configuration-guides/sso/change-sso-provider.md
       - シングルサインオンをWallarmアカウントに使用する: user-guides/use-sso.md
+    - LDAPの使用: admin-en/configuration-guides/ldap/ldap.md
   - 操作:
     - 概要:
       - Wallarmノード: user-guides/nodes/nodes.md

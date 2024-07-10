@@ -442,7 +442,8 @@ nav:
       - تكوين التوثيق SSO للأعضاء: admin-en/configuration-guides/sso/employ-user-auth.md
       - تغيير التوثيق SSO المحدد: admin-en/configuration-guides/sso/change-sso-provider.md
       - استخدام توثيق SSO على حساب Wallarm: user-guides/use-sso.md
-  - العمليات:
+      - باستخدام LDAP: admin-en/configuration-guides/ldap/ldap.md
+- العمليات:
     # - Autoscaling: ...
     - نظرة عامة:
       - عقد Wallarm: user-guides/nodes/nodes.md
