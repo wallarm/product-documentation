@@ -6,7 +6,7 @@ The **API Abuse Prevention** module of the Wallarm platform delivers detection a
 
 The **API Abuse Prevention** module detects the following bot types by default:
 
-* [API abuse](../attacks-vulns-list.md#api-abuse)
+* [Suspicious API activity](../attacks-vulns-list.md#api-abuse-suspicious-api-activity)
 * [Account takeover](../attacks-vulns-list.md#api-abuse-account-takeover)
 * [Security crawlers](../attacks-vulns-list.md#api-abuse-security-crawlers)
 * [Scraping](../attacks-vulns-list.md#api-abuse-scraping)

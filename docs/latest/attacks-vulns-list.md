@@ -72,14 +72,14 @@ This article lists and briefly describes attacks and vulnerabilities the Wallarm
 Wallarm **automatically detects** listed vulnerabilities and attacks and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
 
 !!! info "Required configuration for some attack types"
-    Some attacks and vulnerabilities, such as behavioral ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola)), [API abuse](#api-abuse), [GraphQL](#graphql-attack) and [credential stuffing](#credential-stuffing) are not detected by default. For such attacks/vulnerabilities, required configuration is specifically defined.
+    Some attacks and vulnerabilities, such as behavioral ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola)), [API abuse](#api-abuse-suspicious-api-activity), [GraphQL](#graphql-attack) and [credential stuffing](#credential-stuffing) are not detected by default. For such attacks/vulnerabilities, required configuration is specifically defined.
 
 ??? info "Watch video about how Wallarm protects against OWASP Top 10"
     <div class="video-wrapper">
     <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-## API abuse
+## API abuse - suspicious API activity
 
 **Attack**
 
