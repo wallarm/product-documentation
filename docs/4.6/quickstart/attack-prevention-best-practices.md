@@ -78,3 +78,12 @@ By incorporating these additional practices along with the [Wallarm L7 DDoS prot
 The OWASP API Security Top 10 is a gold standard for the evaluation of security risk in APIs. To help you measure your API's security posture against these API threats, Wallarm offers the [dashboard](../user-guides/dashboards/owasp-api-top-ten.md) that provides clear visibility and metrics for mitigation of the top threats of the 2023 version.
 
 These dashboards help you to assess the overall security state and proactively address discovered security issues by setting up appropriate security controls.
+
+## Enable JA3 fingerprinting
+
+To make the following functionality more precise:
+
+* [API Sessions](../api-sessions.md)
+* [API Abuse Prevention](../api-abuse-prevention/overview.md) using the API Sessions mechanism
+
+It is recommended to enable [JA3 fingerprinting](../admin-en/enabling-ja3.md#overview) for better identification of the unauthenticated traffic.
