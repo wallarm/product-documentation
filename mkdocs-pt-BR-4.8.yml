@@ -488,6 +488,7 @@ nav:
     - Acesso aos arquivos necessários para a operação do nó: admin-en/configure-access-to-files-needed-for-node.md
     - Resolução Dinâmica de DNS em NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
     - Configurando SELinux: admin-en/configure-selinux.md
+    - Habilitando impressão digital JA3: admin-en/enabling-ja3.md
     - Check-list de Testes de Aceitação do Usuário: admin-en/uat-checklist-en.md
     - Atualização do Nó:
       - O Que Há de Novo no Nó Wallarm 4.8: updating-migrating/what-is-new.md

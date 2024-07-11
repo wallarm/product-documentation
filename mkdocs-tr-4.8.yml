@@ -487,6 +487,7 @@ nav:
     - Node İşletimi İçin Gerekli Dosyaları Erişme: admin-en/configure-access-to-files-needed-for-node.md
     - NGINX'de Dinamik DNS Çözünürlüğü: admin-en/configure-dynamic-dns-resolution-nginx.md
     - SELinux Yapılandırması: admin-en/configure-selinux.md
+    - JA3 parmak izini etkinleştirme: admin-en/enabling-ja3.md
     - Wallarm Kullanıcı Kabul Test Kontrol Listesi: admin-en/uat-checklist-en.md
     - Node Yükseltme:
       - Wallarm node 4.8'de Yeni Olan Ne: updating-migrating/what-is-new.md
