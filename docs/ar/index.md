@@ -119,6 +119,7 @@ hide:
     <li><a href="./user-guides/settings/account/">ملف المستخدم</a></li>
     <li><a href="./user-guides/settings/api-tokens/">رموز API</a></li>
     <li><a href="./admin-en/configuration-guides/sso/intro/">SAML SSO</a></li>
+    <li><a href="./admin-en/configuration-guides/ldap/ldap/"> باستخدام LDAP</a></li>
     </ul></p>
 </div>
 

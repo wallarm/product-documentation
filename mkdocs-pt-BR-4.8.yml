@@ -437,6 +437,7 @@ nav:
       - Configurando a Autenticação SSO para Usuários: admin-en/configuration-guides/sso/employ-user-auth.md
       - Mudando a Autenticação SSO Configurada: admin-en/configuration-guides/sso/change-sso-provider.md
       - Usando logon único para a conta Wallarm: user-guides/use-sso.md
+    - Usando LDAP: admin-en/configuration-guides/ldap/ldap.md
   - Operações:
     # - Autoscaling: ...
     - Visão Geral:

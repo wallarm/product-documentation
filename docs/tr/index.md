@@ -119,6 +119,7 @@ Wallarm çözümü, manuel kural yapılandırması olmadan ve ultra düşük yan
     <li><a href="./user-guides/settings/general/">Çıkış Ayarları</a></li>
     <li><a href="./user-guides/settings/api-tokens/">API Tokenleri</a></li>
     <li><a href="./admin-en/configuration-guides/sso/intro/">SAML SSO</a></li>
+    <li><a href="./admin-en/configuration-guides/ldap/ldap/">LDAP'yi kullanma</a></li>
     </ul></p>
 </div>
 
