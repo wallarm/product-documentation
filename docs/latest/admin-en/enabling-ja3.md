@@ -4,16 +4,7 @@ This article describes how to enable JA3 fingerprinting for the most popular sof
 
 ## Overview
 
-The companies may have about 90% of the unauthenticated traffic which can make the [API Sessions](../api-sessions.md) and [API Abuse Prevention](../api-abuse-prevention/overview.md) (based on sessions) functionalities less useful if the sources of such traffic are not properly identified. By default this is solved by using the "IP address + user agent" client identification mechanism. However this mechanism by itself may be not very precise.
-
-This is good to have a different option for entity identification and [JA3 fingerprinting](https://www.peakhour.io/learning/fingerprinting/what-is-ja3-fingerprinting/) is a standard way to do that. JA3 fingerprinting is a method for creating fingerprints of SSL/TLS clients. Unlike traditional TLS fingerprinting that focuses on various aspects of the TLS handshake, JA3 zeroes in on the specifics of the TLS client's ClientHello packet. This packet, sent by clients initiating a TLS handshake, contains several details about the client's TLS preferences. JA3 gathers these details and compiles them into an MD5 hash. This hash represents the fingerprint of the client, providing a consistent and identifiable signature.
-
-## Requirements and limitations
-
-You should consider the following:
-
-* This functionality requires node version 4.10.2 or later.
-* Revision 110 of the Chrome browser introduces TLS ClientHello extension random permutation, which makes fingerprinting irrelevant with this browser (Firefox is planning to do the same). For non-browser clients, fingerprinting will continue working.
+Attackers frequently employ various techniques to bypass security measures, such as user agent (UA) spoofing and IP rotation. These methods make it challenging to detect behavioral attacks in the unauthenticated traffic. [JA3 fingerprinting](https://www.peakhour.io/learning/fingerprinting/what-is-ja3-fingerprinting/) generates an MD5 hash for specific parameters defined during the TLS negotiation between client and server. This fingerprinting method can enhance the identification of threat actors as part of [API session](../api-sessions.md) processing and contribute to building a behavioral profile for [API abuse prevention](../api-abuse-prevention/overview.md).
 
 ## NGINX
 
@@ -21,12 +12,12 @@ An ability to get a JA3 fingerprint from NGINX makes this identification method 
 
 | Module | Description | Installation |
 | - | - | - |
-| [Module #1](https://github.com/fooinha/nginx-ssl-ja3) | Main nginx module for JA3. Has the `THIS IS NOT PRODUCTION` mark. So there is no guarantee of success. | [Instruction](https://github.com/fooinha/nginx-ssl-ja3#compilation-and-installation) |
-| [Module #2](https://github.com/phuslu/nginx-ssl-fingerprint) | Second nginx module for JA3. It has the `high performance` label and also has likes and forks. | [Instruction](https://github.com/phuslu/nginx-ssl-fingerprint#quick-start) |
+| [nginx-ssl-ja3](https://github.com/fooinha/nginx-ssl-ja3) | Main nginx module for JA3. Has the `THIS IS NOT PRODUCTION` mark. So there is no guarantee of success. | [Instructions](https://github.com/fooinha/nginx-ssl-ja3#compilation-and-installation) |
+| [nginx-ssl-fingerprint](https://github.com/phuslu/nginx-ssl-fingerprint) | Second nginx module for JA3. It has the `high performance` label and also has likes and forks. | [Instructions](https://github.com/phuslu/nginx-ssl-fingerprint#quick-start) |
 
 In both modules, we need to patch OpenSSL and NGINX.
 
-An example of module installation (from module #2):
+An example of module installation (from the `nginx-ssl-fingerprint` module):
 
 ```
 # Clone
@@ -72,9 +63,6 @@ server {
 
 You can configure getting [JA3 fingerprints from AWS CloudFront](https://aws.amazon.com/about-aws/whats-new/2022/11/amazon-cloudfront-supports-ja3-fingerprint-headers/).
 
-!!! warning "Other AWS products"
-    [AWS ALB](https://aws.amazon.com/elasticloadbalancing/) cannot calculate JA3 fingerprints.
-
 Wallarm can integrate with CloudFront to get the `CloudFront-Viewer-JA3-Fingerprint` and `CloudFront-Viewer-TLS` JA3 headers:
 
 1. Go to the CloudFront console and select the **Origin Request Policies** tab.
@@ -83,7 +71,7 @@ Wallarm can integrate with CloudFront to get the `CloudFront-Viewer-JA3-Fingerpr
     ![CloudFront - creating origin request policy](../images/configuration-guides/ja3/aws-cloudfront-create-origin-request-policy.png)
 
 1. In the **Actions** section, select **Add Header**.
-1. In the **Header Name** field, enter `Cloudfront-viewer-ja3-fingerprint`.
+1. In the **Header Name** field, enter `CloudFront-Viewer-JA3-Fingerprint`.
 
     ![CloudFront - adding header to origin request policy](../images/configuration-guides/ja3/aws-cloudfront-origin-request-policy-add-header.png)
 
@@ -95,13 +83,21 @@ Wallarm can integrate with CloudFront to get the `CloudFront-Viewer-JA3-Fingerpr
 
     ![CloudFront - attach policy to distribution](../images/configuration-guides/ja3/aws-cloudfront-attach-policy-to-distribution.png)
 
-    Your origin request policy is now attached to your CloudFront distribution. Clients that make requests to your distribution will now have the `Cloudfront-viewer-ja3-fingerprint` header added to their requests.
+    Your origin request policy is now attached to your CloudFront distribution. Clients that make requests to your distribution will now have the `CloudFront-Viewer-JA3-Fingerprint` header added to their requests.
 
 ## Google Cloud
 
-You can configure getting JA3 fingerprints from the classic Google Cloud Application Load Balancer by configuring custom header and getting its value via the `tls_ja3_fingerprint` variable.
+You can configure getting JA3 fingerprints from the classic Google Cloud Application Load Balancer by configuring custom header and getting its value via the `tls_ja3_fingerprint` variable:
 
-To do so, follow the instructions [here](https://cloud.google.com/load-balancing/docs/https/custom-headers).
+1. Go to the Google Cloud console → **Load balancing**.
+1. Click **Backends**.
+1. Click the name of a backend service and then **Edit**.
+1. Click **Advanced configurations**.
+1. Under **Custom request headers**, click **Add header**.
+1. Enter the **Header name** and set the **Header value** to `tls_ja3_fingerprint`.
+1. Save changes.
+
+See detailed instructions [here](https://cloud.google.com/load-balancing/docs/https/custom-headers).
 
 Example configuration request:
 
