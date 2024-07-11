@@ -1,20 +1,15 @@
 # Exploring Bot Activity <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 [API Abuse Prevention](../api-abuse-prevention/overview.md) identifies malicious bot activity based on ML algorithms. Such attacks are impossible to analyze based on a single blocked request. Therefore, it is essential that the Wallarm platform offers a wide range of tools to investigate bot activity from different angles.
- 
-<!--## Blocked bots in IP Lists
 
-The **API Abuse Prevention** module blocks bots by adding them to the [denylist](../user-guides/ip-lists/overview.md) or [graylist](../user-guides/ip-lists/overview.md) for 1 hour.
+## API abuse dashboards
 
-You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Denylist** or **Graylist**. Explore IPs added with the `Bot` **Reason**.
+API Abuse Prevention conveniently visualizes the data on bot activities for the last 30 days at the **API Abuse Prevention** section → **Statistics** tab. Using timeline diagram you can easily identify spikes in bot activity. The additional **Top Attackers** and **Top Targets** widgets allow you to determine the most active bots and the most attacked APIs and applications. You can drill down to investigate these bot activities at the **Attacks** tab in one click on the dashboard element.
 
-![Denylisted bot IPs](../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
+You can also analyze bot behaviors at the **Behavioral patterns** in the bottom. Get detailed information on each detector and how they acted together to determine bot actions. This widget and the counters of [deny- or graylisted](setup.md#creating-profiles) IPs at the top right will link you to the **IP Lists** [history](../user-guides/ip-lists/overview.md#ip-list-history) where you can check when and for what period of time the bot's IP was placed to the blocking list.
 
-!!! info "Confidence"
-    As a result of [detectors' work](../api-abuse-prevention/overview.md#how-api-abuse-prevention-works), every detected bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
+![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
-You can interfere in the bot protection process. If denylisted or graylisted IP actually is not used by a malicious bot, you can either delete the IP from the list or [allowlist](../user-guides/ip-lists/overview.md) it. Wallarm does not block any requests originating from allowlisted IPs including malicious ones.
--->
 ## Attacks
 
 You can explore attacks performed by bots in Wallarm Console → **Attacks** section. Use the `api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys or select the appropriate options from the **Type** filter.
