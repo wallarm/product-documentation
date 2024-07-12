@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/enabling-ja3.md"
+--8<-- "4.8/admin-en/enabling-ja3.md"
