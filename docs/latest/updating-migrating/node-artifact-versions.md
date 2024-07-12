@@ -110,6 +110,15 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.10.8 (2024-07-12)
+
+* Fixed a memory leak in the [API Discovery](../api-discovery/overview.md) module
+* Upgraded the controller to Go 1.21.12
+* Fixed the vulnerabilities:
+
+    * [CVE-2024-24791](https://nvd.nist.gov/vuln/detail/CVE-2024-24791)
+    * [CVE-2024-5535](https://nvd.nist.gov/vuln/detail/CVE-2024-5535)
+
 ### 4.10.7 (2024-07-03)
 
 * Fixed the `syncnode` issue `Could not update (TypeError): no implicit conversion of nil into String` that sometimes appeared when registering a node in Wallarm Cloud using a node token
@@ -325,10 +334,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ### 4.10.8-1 (2024-07-12)
 
 * Fixed a memory leak in the [API Discovery](../api-discovery/overview.md) module
-* Fixed the vulnerabilities: 
-
-    * [CVE-2024-24791](https://nvd.nist.gov/vuln/detail/CVE-2024-24791)
-    * [CVE-2024-39689](https://nvd.nist.gov/vuln/detail/CVE-2024-39689)
+* Fixed the [CVE-2024-24791](https://nvd.nist.gov/vuln/detail/CVE-2024-24791) vulnerability
 
 ### 4.10.7-1 (2024-07-03)
 
@@ -423,6 +429,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 4.10.8-1 (2024-07-12)
+
+* Fixed a memory leak in the [API Discovery](../api-discovery/overview.md) module
 
 ### 4.10.7-1 (2024-07-03)
 
