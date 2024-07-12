@@ -293,7 +293,7 @@ To test a regular expression, use the Wallarm **cpire** utility. Install it via 
     1. Run the **cpire** utility from the Wallarm Docker image:
     
         ```
-        docker run --rm -it wallarm/node:4.10.7-1 /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
+        docker run --rm -it wallarm/node:4.10.8-1 /opt/wallarm/usr/bin/cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
         ```
     1. Enter the value to check whether it matches with the regular expression.
 
