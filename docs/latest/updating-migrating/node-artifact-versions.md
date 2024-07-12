@@ -10,6 +10,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.10.8 (2024-07-12)
+
+* Fixed a memory leak in the [API Discovery](../api-discovery/overview.md) module
+
 ### 4.10.7 (2024-07-03)
 
 * Added support for NGINX v1.26.1 stable
