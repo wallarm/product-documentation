@@ -499,6 +499,7 @@ nav:
     - الوصول إلى الملفات المطلوبة لعملية العقدة: admin-en/configure-access-to-files-needed-for-node.md
     - تحليل DNS ديناميكي في NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
     - تكوين SELinux: admin-en/configure-selinux.md
+    - تمكين بصمات الأصابع JA3: admin-en/enabling-ja3.md
     - تسليم الاختبار والقبول على قائمة التحقق Wallarm: admin-en/uat-checklist-en.md
     - ترقية العقدة:
       - ما الجديد في عقدة Wallarm 4.10: updating-migrating/what-is-new.md

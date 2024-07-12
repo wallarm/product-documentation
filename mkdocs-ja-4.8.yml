@@ -501,6 +501,7 @@ nav:
     - フィルタリングノードを操作するためのファイルへのアクセス: admin-en/configure-access-to-files-needed-for-node.md
     - NGINXでのダイナミックDNS解決: admin-en/configure-dynamic-dns-resolution-nginx.md
     - SELinuxの設定: admin-en/configure-selinux.md
+    - JA3 フィンガープリンティングを有効にする: admin-en/enabling-ja3.md
     - Wallarmユーザ受け入れテストチェックリスト: admin-en/uat-checklist-en.md
     - ノード更新:
       - Wallarm node 4.10の新規: updating-migrating/what-is-new.md

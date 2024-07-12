@@ -451,6 +451,7 @@ nav:
     - Access to Files Needed for Node Operation: admin-en/configure-access-to-files-needed-for-node.md
     - Dynamic DNS Resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
     - Configuring SELinux: admin-en/configure-selinux.md
+    - Enabling JA3 fingerprinting: admin-en/enabling-ja3.md
     - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
     - Node Upgrade:
       - What is new in Wallarm node 4.6: updating-migrating/what-is-new.md

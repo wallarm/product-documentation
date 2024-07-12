@@ -1,1 +1,1 @@
---8<-- "latest/api-abuse-prevention/setup.md"
+--8<-- "4.8/api-abuse-prevention/setup.md"
