@@ -325,10 +325,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ### 4.10.8-1 (2024-07-12)
 
 * Fixed a memory leak in the [API Discovery](../api-discovery/overview.md) module
-* Fixed the vulnerabilities: 
-
-    * [CVE-2024-24791](https://nvd.nist.gov/vuln/detail/CVE-2024-24791)
-    * [CVE-2024-39689](https://nvd.nist.gov/vuln/detail/CVE-2024-39689)
+* Fixed the [CVE-2024-24791](https://nvd.nist.gov/vuln/detail/CVE-2024-24791) vulnerability
 
 ### 4.10.7-1 (2024-07-03)
 
