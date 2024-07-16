@@ -14,12 +14,12 @@
 [al-port-scanner]:        ../../attacks-vulns-list.md#resource-scanning
 [al-infoleak]:            ../../attacks-vulns-list.md#information-exposure
 [al-vuln-component]:      ../../attacks-vulns-list.md#vulnerable-component
-[al-overlimit]:           ../../attacks-vulns-list.md#overlimiting-of-computational-resources
+[al-overlimit]:           ../../attacks-vulns-list.md#resource-overlimit
 [email-injection]:        ../../attacks-vulns-list.md#email-injection
 [ssi-injection]:          ../../attacks-vulns-list.md#ssi-injection
-[invalid-xml]:            ../../attacks-vulns-list.md#unsafe-xml-header
+[invalid-xml]:            ../../attacks-vulns-list.md#invalid-xml
 [ssti-injection]:         ../../attacks-vulns-list.md#serverside-template-injection-ssti
-[overlimit-res]:          ../../attacks-vulns-list.md#overlimiting-of-computational-resources
+[overlimit-res]:          ../../attacks-vulns-list.md#resource-overlimit
 
 # Event Search and Filters
 

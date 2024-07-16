@@ -1,6 +1,6 @@
 # The `overlimit_res` attack detection fine‑tuning
 
-The Wallarm node spends limited time on a single incoming request processing and if the time limit is exceeded, marks the request as the [resource overlimiting (`overlimit_res`)](../../attacks-vulns-list.md#overlimiting-of-computational-resources) attack. The **Fine-tune the overlimit_res attack detection** rule enables you to customize the time limit allocated for a single request processing and default node behavior when the limit is exceeded.
+The Wallarm node spends limited time on a single incoming request processing and if the time limit is exceeded, marks the request as the [resource overlimiting (`overlimit_res`)](../../attacks-vulns-list.md#resource-overlimit) attack. The **Fine-tune the overlimit_res attack detection** rule enables you to customize the time limit allocated for a single request processing and default node behavior when the limit is exceeded.
 
 Limiting the request processing time prevents the bypass attacks aimed at the Wallarm nodes. In some cases, the requests marked as `overlimit_res` can indicate insufficient resources allocated for the Wallarm node modules resulting in long request processing.
 
