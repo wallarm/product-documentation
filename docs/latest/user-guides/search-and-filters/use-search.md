@@ -14,12 +14,12 @@
 [al-port-scanner]:        ../../attacks-vulns-list.md#resource-scanning
 [al-infoleak]:            ../../attacks-vulns-list.md#information-exposure
 [al-vuln-component]:      ../../attacks-vulns-list.md#vulnerable-component
-[al-overlimit]:           ../../attacks-vulns-list.md#overlimiting-of-computational-resources
+[al-overlimit]:           ../../attacks-vulns-list.md#resource-overlimit
 [email-injection]:        ../../attacks-vulns-list.md#email-injection
 [ssi-injection]:          ../../attacks-vulns-list.md#ssi-injection
-[invalid-xml]:            ../../attacks-vulns-list.md#unsafe-xml-header
+[invalid-xml]:            ../../attacks-vulns-list.md#invalid-xml
 [ssti-injection]:         ../../attacks-vulns-list.md#serverside-template-injection-ssti
-[overlimit-res]:          ../../attacks-vulns-list.md#overlimiting-of-computational-resources
+[overlimit-res]:          ../../attacks-vulns-list.md#resource-overlimit
 
 # Event Search and Filters
 
@@ -96,10 +96,10 @@ Specify in the search string:
 * `experimental`: to search for experimental attacks detected based on [custom regular expression](../rules/regex-rule.md).
 * `bola`: to search for attacks exploiting the [BOLA (IDOR) vulnerability](../../attacks-vulns-list.md#broken-object-level-authorization-bola) and blocked requests from IPs [denylisted](../../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) because of the attacks of this type.
 * `mass_assignment`: to search for [Mass Assignment](../../attacks-vulns-list.md#mass-assignment) attack attempts.
-* `api_abuse`: to search for [basic bot types that includes server response time increase, fake account creation, and scalping](../../attacks-vulns-list.md#api-abuse-suspicious-api-activity).
-* `account_takeover` (`api_abuse` before 4.10.6): to search for [account takeover attempts](../../attacks-vulns-list.md#api-abuse-account-takeover).
-* `scraping` (`api_abuse` before 4.10.6): to search for [scraping attempts](../../attacks-vulns-list.md#api-abuse-scraping).
-* `security_crawlers` (`api_abuse` before 4.10.6): to search for [scanning attempts performed by security crawlers](../../attacks-vulns-list.md#api-abuse-security-crawlers).
+* `api_abuse`: to search for [basic bot types that includes server response time increase, fake account creation, and scalping](../../attacks-vulns-list.md#suspicious-api-activity).
+* `account_takeover` (`api_abuse` before 4.10.6): to search for [account takeover attempts](../../attacks-vulns-list.md#account-takeover).
+* `scraping` (`api_abuse` before 4.10.6): to search for [scraping attempts](../../attacks-vulns-list.md#scraping).
+* `security_crawlers` (`api_abuse` before 4.10.6): to search for [scanning attempts performed by security crawlers](../../attacks-vulns-list.md#security-crawlers).
 * `ssrf`: to search for [Server‑side Request Forgery (SSRF) and attacks](../../attacks-vulns-list.md#serverside-request-forgery-ssrf).
 * `blocked_source`: to search for attacks from **manually** [denylisted](../../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) IPs.
 * `multiple_payloads`: to search for attacks detected by the [Number of malicious payloads](../../admin-en/configuration-guides/protecting-with-thresholds.md) trigger and blocked requests from IPs [denylisted](../../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) because of the attacks of this type.

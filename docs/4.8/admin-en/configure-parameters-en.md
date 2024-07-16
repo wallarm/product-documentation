@@ -482,7 +482,7 @@ In the configuration above:
 
 Sets the time limit of a single request processing by the Wallarm node.
 
-If the time exceeds the limit, an error is recorded into the log and the request is marked as the [`overlimit_res`](../attacks-vulns-list.md#overlimiting-of-computational-resources) attack. Depending on the [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block) value, the attack can be either blocked, monitored or ignored.
+If the time exceeds the limit, an error is recorded into the log and the request is marked as the [`overlimit_res`](../attacks-vulns-list.md#resource-overlimit) attack. Depending on the [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block) value, the attack can be either blocked, monitored or ignored.
 
 The value is specified in milliseconds without units, e.g.:
 
