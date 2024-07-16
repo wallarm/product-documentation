@@ -878,12 +878,12 @@ Virtual patching is blocking specific or all requests to some endpoint that is p
 
 * Analyze the vulnerability mitigated by the patch and remove it so that the patch is not needed any more.
 
-### API leak
+<!--### API leak
 
 **Wallarm code:** `apileak`
 
 Description TBD (not presented in docs, but presented in UI)
-
+-->
 ## Vulnerabilities
 
 ### Authentication bypass
