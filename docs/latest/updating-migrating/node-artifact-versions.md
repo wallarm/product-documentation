@@ -209,6 +209,21 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](sidecar-proxy.md)
 
+### 4.10.8 (2024-07-17)
+
+* Fixed issues with starting the API Firewall service required for [API Specification Enforcement](../api-specification-enforcement/overview.md) in [split deployment mode](../installation/kubernetes/sidecar-proxy/customization.md#single-and-split-deployment-of-containers) of Wallarm containers
+* Fixed a memory leak in the [API Discovery](../api-discovery/overview.md) module
+* Introduced new configuration parameters for controlling NGINX `worker_connections` and `worker_processes`:
+
+    * [`config.nginx.workerProcesses`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#confignginxworkerconnections) and [`sidecar.wallarm.io/nginx-worker-processes`](../installation/kubernetes/sidecar-proxy/pod-annotations.md) chart value and pod annotation respectively
+    * [`config.nginx.workerConnections`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#confignginxworkerprocesses) and [`sidecar.wallarm.io/nginx-worker-connections`](../installation/kubernetes/sidecar-proxy/pod-annotations.md) chart value and pod annotation respectively
+* Bump Golang version to 1.22.5
+* The Sidecar controller now uses Alpine Linux version 3.20 with NGINX stable version 1.26.1, as previously introduced for the Docker image
+* Fixed the vulnerabilities:
+
+    * [CVE-2024-24791](https://nvd.nist.gov/vuln/detail/CVE-2024-24791)
+    * [CVE-2024-5535](https://nvd.nist.gov/vuln/detail/CVE-2024-5535)
+
 ### 4.10.7 (2024-07-03) - Breaking changes
 
 * **Breaking change**: The default method for generating the admission webhook certificate is now [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen), replacing the previous method. Multiple options for [self-provisioning certificates](../installation/kubernetes/sidecar-proxy/customization.md#certificates-for-the-admission-webhook) have been introduced. 

@@ -11,11 +11,6 @@ The **key features** of the Wallarm Sidecar solution:
 * Supports two modes of the Wallarm container deployment: for medium loads with the Wallarm services running in one container and for high loads with the Wallarm services split into several containers
 * Provides a dedicated entity for the postanalytics module that is the local data analytics backend for the Wallarm sidecar solution consuming most of the memory
 
-!!! info "If you are using the earlier Wallarm Sidecar solution"
-    If you are using the previous version of the Wallarm Sidecar solution, we recommend you migrate to the new one. With this release, we updated our Sidecar solution to leverage new Kubernetes capabilities and a wealth of customer feedback. The new solution does not require significant Kubernetes manifest changes, to protect an application, just deploy the chart and add labels and annotations to the pod.
-
-    For assistance in migrating to the Wallarm Sidecar solution v2.0, please contact [Wallarm technical support](mailto:support@wallarm.com).
-
 ## Use cases
 
 Among all supported [Wallarm deployment options][deployment-platform-docs], this solution is the recommended one for the following **use cases**:
@@ -109,7 +104,7 @@ Generate a filtering node token of the [appropriate type][node-token-types] to c
 1. Deploy the Wallarm Helm chart:
 
     ``` bash
-    helm install --version 4.10.7 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
+    helm install --version 4.10.8 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Wallarm Sidecar chart
