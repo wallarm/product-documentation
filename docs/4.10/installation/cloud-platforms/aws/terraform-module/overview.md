@@ -16,6 +16,18 @@ Among all supported [Wallarm deployment options](../../../supported-deployment-o
 * Terraform 1.0.5 or higher [installed locally](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 * Access to the account with the **Administrator** [role](../../../../user-guides/settings/users.md#user-roles) in Wallarm Console in the US or EU [Cloud](../../../../about-wallarm/overview.md#cloud)
 * Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../../../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../../../user-guides/ip-lists/overview.md) countries, regions, or data centers
+
+    === "US Cloud"
+        ```
+        34.96.64.17
+        34.110.183.149
+        ```
+    === "EU Cloud"
+        ```
+        34.160.38.183
+        34.144.227.90
+        ```
 
 This topic does not include instructions for creating all AWS resources necessary to deploy Wallarm, such as a VPC cluster. For details, refer to the relevant [Terraform guide](https://learn.hashicorp.com/tutorials/terraform/module-use).
 
@@ -110,3 +122,6 @@ To this registry, Wallarm published:
 * The [Wallarm provider](../../../../admin-en/managing/terraform-provider.md) for managing Wallarm via Terraform.
 
 These two are an independent elements used for different purposes, do not require each other.
+
+## Limitations
+* [Credential stuffing detection](../../../../about-wallarm/credential-stuffing.md) is currently unsupported

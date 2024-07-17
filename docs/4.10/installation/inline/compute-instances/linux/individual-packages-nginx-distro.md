@@ -29,6 +29,7 @@ search:
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../../installation/supported-deployment-options.md
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
+[cred-stuffing-docs]:               ../../../../about-wallarm/credential-stuffing.md
 
 # Installing as a Dynamic Module for Distribution-Provided NGINX
 
