@@ -1,1 +1,0 @@
---8<-- "latest/user-guides/rules/configure-overlimit-res-detection.md"

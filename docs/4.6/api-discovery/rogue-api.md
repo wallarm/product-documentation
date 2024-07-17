@@ -1,1 +1,0 @@
---8<-- "4.8/api-discovery/rogue-api.md"
