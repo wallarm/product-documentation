@@ -35,7 +35,7 @@ log:
   log_file: stderr
 ```
 
-### mode
+### mode (required)
 
 The Wallarm node operation mode. Currently, it can be only `tcp-capture`.
 
