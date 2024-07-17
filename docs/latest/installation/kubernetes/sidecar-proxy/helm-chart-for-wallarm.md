@@ -30,6 +30,9 @@ config:
     parseWebsocket: "off"
     unpackResponse: "on"
     ...
+  nginx:
+    workerProcesses: auto
+    workerConnections: 4096
 postanalytics:
   external:
     enabled: false
@@ -193,6 +196,22 @@ Whether to decompress compressed data returned in the application response:
 * `off`
 
 [**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-unpack-response`.
+
+## config.nginx.workerConnections
+
+The maximum [number of simultaneous connections](http://nginx.org/en/docs/ngx_core_module.html#worker_connections) that can be opened by an NGINX worker process.
+
+**Default value**: `4096`.
+
+[**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/nginx-worker-connections`.
+
+## config.nginx.workerProcesses
+
+[NGINX worker process number](http://nginx.org/en/docs/ngx_core_module.html#worker_processes).
+
+**Default value**: `auto`, which means the number of workers is set to the number of CPU cores.
+
+[**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/nginx-worker-processes`.
 
 ## postanalytics.external.enabled
 
