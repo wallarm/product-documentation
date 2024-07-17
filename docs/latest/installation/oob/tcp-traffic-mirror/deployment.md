@@ -78,6 +78,8 @@ Create the `wallarm-node-conf.yaml` file on the instance. The solution requires 
 ```yaml
 version: 2
 
+mode: tcp-capture
+
 goreplay:
   filter: 'enp7s0:'
   extra_args:
@@ -86,6 +88,10 @@ goreplay:
 ```
 
 In the [article](configuration.md), you will find the list of more supported configuration parameters.
+
+### Setting the mode (required)
+
+It is required to specify the `tcp-capture` mode in the corresponding chart value to run the solution for the TCP traffic mirror analysis.
 
 ### Choosing a network interface for listening
 
@@ -104,6 +110,8 @@ To specify the network interface to capture traffic from:
     ```yaml
     version: 2
 
+    mode: tcp-capture
+
     goreplay:
       filter: 'eth0:'
     ```
@@ -114,6 +122,8 @@ If mirrored traffic is wrapped in VLAN, provide additional arguments:
 
 ```yaml
 version: 2
+
+mode: tcp-capture
 
 goreplay:
   filter: <your network interface and port, e.g. 'lo:' or 'enp7s0:'>
@@ -130,6 +140,8 @@ If mirrored traffic is wrapped in VXLAN (common in AWS), provide additional argu
 
 ```yaml
 version: 2
+
+mode: tcp-capture
 
 goreplay:
   filter: <your network interface and port, e.g. 'lo:' or 'enp7s0:'>
@@ -152,6 +164,8 @@ To preserve the real client IP, these intermediaries often add an HTTP header (e
 
 ```yaml
 version: 2
+
+mode: tcp-capture
 
 http_inspector:
   real_ip_header: "X-Real-IP"
