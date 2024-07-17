@@ -145,7 +145,9 @@ If upgrading from the version 3.6 or lower, learn all changes from the [separate
       * [All-in-one installer](all-in-one.md)
       * [Docker container with the modules for NGINX](docker-container.md)
       * [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
+      * [Sidecar controller](sidecar-proxy.md)
       * [Cloud node image](cloud-image.md)
+      * [CDN node](cdn-node.md)
       * [Multi-tenant node](multi-tenant.md)
 
 ----------
