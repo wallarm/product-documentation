@@ -33,4 +33,64 @@ search:
 [web-server-mirroring-examples]:    ../overview.md#configuration-examples-for-traffic-mirroring
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 
---8<-- "latest/installation/oob/web-server-mirroring/linux/nginx-stable.md"
+# Installing Wallarm OOB Dynamic Module for NGINX Stable using Linux Packages
+
+These instructions describe the steps to install Wallarm as an [OOB](../overview.md) dynamic module using Linux packages for NGINX `stable` from nginx.org.
+
+Wallarm supports the following operating systems:
+
+* Debian 11.x (bullseye)
+* Ubuntu 18.04 LTS (bionic)
+* Ubuntu 20.04 LTS (focal)
+* Ubuntu 22.04 LTS (jammy)
+* CentOS 7.x
+* Amazon Linux 2.0.2021x and lower
+* AlmaLinux, Rocky Linux or Oracle Linux 8.x
+* RHEL 8.x
+
+## Use cases
+
+--8<-- "../include/waf/installation/linux-packages/nginx-stable-use-cases.md"
+
+## Requirements
+
+--8<-- "../include/waf/installation/linux-packages/requirements-nginx-stable.md"
+
+--8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-stable.md"
+
+## 6. Enable Wallarm to analyze the traffic
+
+--8<-- "../include/waf/installation/oob/steps-for-mirroring-linux.md"
+
+## 7. Restart NGINX
+
+--8<-- "../include/waf/root_perm_info.md"
+
+--8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+
+## 8. Configure sending traffic to the Wallarm instance
+
+--8<-- "../include/waf/installation/sending-traffic-to-node-oob.md"
+
+## 9. Test Wallarm node operation
+
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+
+## 10. Fine-tune the deployed solution
+
+The dynamic Wallarm module with default settings is installed for NGINX `stable`. The filtering node may require some additional configuration after deployment.
+
+Wallarm settings are defined using the [NGINX directives](../../../../admin-en/configure-parameters-en.md) or the Wallarm Console UI. Directives should be set in the following files on the machine with the Wallarm node:
+
+* `/etc/nginx/conf.d/default.conf` with NGINX settings
+* `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
+
+    The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `default.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
+* `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
+* `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool` with the Tarantool database settings
+
+Below there are a few of the typical settings that you can apply if needed:
+
+--8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+
+* [Configuring dynamic DNS resolution in NGINX][dynamic-dns-resolution-nginx]

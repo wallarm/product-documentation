@@ -1,0 +1,1 @@
+--8<-- "latest/fast/operations/create-node.md"

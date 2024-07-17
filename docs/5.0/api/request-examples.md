@@ -1,0 +1,1 @@
+--8<-- "latest/api/request-examples.md"

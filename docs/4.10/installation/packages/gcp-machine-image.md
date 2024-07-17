@@ -24,11 +24,14 @@ search:
 [logs-docs]:                        ../../admin-en/configure-logging.md
 [oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
 [wallarm-mode]:                     ../../admin-en/configure-wallarm-mode.md
+[inline-docs]:                      ../inline/overview.md
 [oob-docs]:                         ../oob/overview.md
 [wallarm-api-via-proxy]:            ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 [cloud-init-spec]:                  ../cloud-platforms/cloud-init.md
 [wallarm_force_directive]:          ../../admin-en/configure-parameters-en.md#wallarm_force
+[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
+[api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
 
---8<-- "latest/installation/packages/gcp-machine-image.md"
+--8<-- "../include/waf/installation/cloud-platforms/article-for-inline-oob-gcp-image.md"

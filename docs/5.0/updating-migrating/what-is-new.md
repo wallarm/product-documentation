@@ -1,0 +1,1 @@
+--8<-- "latest/updating-migrating/what-is-new.md"

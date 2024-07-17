@@ -1,0 +1,1 @@
+--8<-- "latest/admin-en/configuration-guides/sso/gsuite/setup-idp.md"
