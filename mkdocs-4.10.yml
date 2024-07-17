@@ -33,7 +33,7 @@ nav:
       - False Positives: user-guides/events/false-attack.md
       - Verifying Attacks: user-guides/events/verify-attack.md
   # - API Sessions: api-sessions.md
-    - Reports: user-guides/search-and-filters/custom-report.md
+    - Creating Reports: user-guides/search-and-filters/custom-report.md
     - Activity Log: user-guides/settings/audit-log.md
   - API Discovery:
     - Overview: api-discovery/overview.md
