@@ -1,0 +1,1 @@
+--8<-- "latest/fast/dsl/using-extension.md"

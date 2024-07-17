@@ -1,0 +1,679 @@
+/en/admin-en/configure-tarantool-en.html   /en/admin-en/configuration-guides/allocate-resources-for-waf-node.html
+/en/quickstart-en/qs-intro-en.html         /en/quickstart-en/how-wallarm-works/qs-intro-en.html
+/ru/admin-ru/configure-tarantool-ru.html   /ru/admin-ru/configuration-guides/allocate-memory-for-waf-node.html
+
+/ru/ https://docs.wallarm.ru/
+/ru https://docs.wallarm.ru/
+/en/ /
+/en  /
+
+/en/user-guides/cloud-ui/blacklist/blacklist.html /user-guides/blacklist
+/ru/user-guides/cloud-ui/blacklist/blacklist.html /user-guides/blacklist
+/admin-en/api-creds-en/ /api/overview/
+/admin-en/api-creds-en /api/overview/
+
+/release-notes-en/relnotes-en_v2.14/ /updating-migrating/what-is-new/
+/release-notes-ru/relnotes-en_v2.12/ /2.12/updating-migrating/what-is-new/
+/admin-en/update-linux-en/ /2.12/updating-migrating/nginx-modules/
+/admin-en/migrating-212-214/ /updating-migrating/nginx-modules/
+/admin-en/update-docker-en/ /updating-migrating/docker-container/
+/admin-en/update-postanalytics/ /updating-migrating/separate-postanalytics/
+/release-notes-en/relnotes-en_v2.14 /updating-migrating/what-is-new/
+/release-notes-ru/relnotes-en_v2.12 /2.12/updating-migrating/what-is-new/
+/admin-en/update-linux-en /2.12/updating-migrating/nginx-modules/
+/admin-en/migrating-212-214 /updating-migrating/nginx-modules/
+/admin-en/update-docker-en /updating-migrating/docker-container/
+/admin-en/update-postanalytics /updating-migrating/separate-postanalytics/
+
+/admin-en/installation-nginx-en/ /installation/nginx/dynamic-module/
+/admin-en/installation-nginxplus-en/ /installation/nginx-plus/
+/admin-en/installation-nginx-distr-en/ /installation/nginx/dynamic-module-from-distr/
+/admin-en/installation-nginx-en /installation/nginx/dynamic-module/
+/admin-en/installation-nginxplus-en /installation/nginx-plus/
+/admin-en/installation-nginx-distr-en /installation/nginx/dynamic-module-from-distr/
+
+/admin-en/troubleshooting/ /faq/common-errors-after-installation/
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq/ /faq/ingress-installation/
+/admin-en/troubleshooting /faq/common-errors-after-installation/
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq /faq/ingress-installation/
+
+/2.12/api/* /api/:splat 301!
+/2.12/faq/* /faq/:splat 301!
+/2.12/fast/* /fast/:splat 301!
+/2.14/api/* /api/:splat 301!
+/2.14/fast/* /fast/:splat 301!
+/2.14/api-firewall/* /api-firewall/:splat 301!
+/2.16/api/* /api/:splat 301!
+/2.16/fast/* /fast/:splat 301!
+/2.16/api-firewall/* /api-firewall/:splat 301!
+/2.18/fast/* /fast/:splat 301!
+/3.0/fast/* /fast/:splat 301!
+/2.12/admin-en/* /2.12
+/2.12/quickstart-en/* /2.12
+/2.12/updating-migrating/* /2.12
+/2.12/user-guides/* /2.12
+/2.12/partner-waf-node/* /2.12
+/2.12/attacks-vulns-list /2.12
+/2.12/attacks-vulns-list/ /2.12
+/2.12/glossary-en /2.12
+/2.12/glossary-en/ /2.12
+/2.10/* /2.12
+/2.10/ /2.12
+/2.10 /2.12
+/2.12/* /2.14
+/2.12/ /2.14
+/2.12 /2.14
+/2.14/* /2.16
+/2.14/ /2.16
+/2.14 /2.16
+/2.14/admin-en/* /2.14
+/2.14/quickstart-en/* /2.14
+/2.14/updating-migrating/* /2.14
+/2.14/user-guides/* /2.14
+/2.14/partner-waf-node/* /2.14
+/2.14/attacks-vulns-list /2.14
+/2.14/attacks-vulns-list/ /2.14
+/2.14/glossary-en /2.14
+/2.14/glossary-en/ /2.14
+/2.16/admin-en/* /2.16
+/2.16/quickstart-en/* /2.16
+/2.16/updating-migrating/* /2.16
+/2.16/user-guides/* /2.16
+/2.16/partner-waf-node/* /2.16
+/2.16/attacks-vulns-list /2.16
+/2.16/attacks-vulns-list/ /2.16
+/2.16/glossary-en /2.16
+/2.16/glossary-en/ /2.16
+/2.16/* /2.18
+/3.6/news/ /news/
+/3.0/admin-en/* /2.18
+/3.0/quickstart-en/* /2.18
+/3.0/updating-migrating/* /2.18
+/3.0/user-guides/* /2.18
+/3.0/waf-installation/* /2.18
+/3.0/installation/* /2.18
+/3.0/about-wallarm-waf/* /2.18
+/3.0/about-wallarm/* /2.18
+/3.0/partner-waf-node/* /2.18
+/3.0/attacks-vulns-list /2.18
+/3.0/attacks-vulns-list/ /2.18
+/3.0/glossary-en /2.18
+/3.0/glossary-en/ /2.18
+/3.0/* /3.2
+/3.2/admin-en/* /3.2
+/3.2/updating-migrating/* /3.2
+/3.2/user-guides/* /3.2
+/3.2/waf-installation/* /3.2
+/3.2/installation/* /3.2
+/3.2/about-wallarm-waf/* /3.2
+/3.2/about-wallarm/* /3.2
+/3.2/partner-waf-node/* /3.2
+/3.2/attacks-vulns-list /3.2
+/3.2/attacks-vulns-list/ /3.2
+/3.2/glossary-en /3.2
+/3.2/glossary-en/ /3.2
+/3.2/quickstart/ /3.2
+/4.2/faq/* /faq/:splat 301!
+/3.2/* /3.4
+/3.4/admin-en/* /3.4
+/3.4/quickstart/ /3.4
+/3.4/quickstart /3.4
+/3.4/updating-migrating/* /3.4
+/3.4/user-guides/* /3.4
+/3.4/waf-installation/* /3.4
+/3.4/installation/* /3.4
+/3.4/about-wallarm-waf/* /3.4
+/3.4/about-wallarm/* /3.4
+/3.4/partner-waf-node/* /3.4
+/3.4/attacks-vulns-list /3.4
+/3.4/attacks-vulns-list/ /3.4
+/3.4/glossary-en /3.4
+/3.4/glossary-en/ /3.4
+
+/4.0/admin-en/* /4.0
+/4.0/quickstart/ /4.0
+/4.0/quickstart /4.0
+/4.0/updating-migrating/* /4.0
+/4.0/user-guides/* /4.0
+/4.0/waf-installation/* /4.0
+/4.0/installation/* /4.0
+/4.0/about-wallarm-waf/* /4.0
+/4.0/about-wallarm/* /4.0
+/4.0/partner-waf-node/* /4.0
+/4.0/attacks-vulns-list /4.0
+/4.0/attacks-vulns-list/ /4.0
+/4.0/glossary-en /4.0
+/4.0/glossary-en/ /4.0
+
+/4.0/* /4.2
+/4.2/admin-en/* /4.2
+/4.2/installation/* /4.2
+/4.2/quickstart/ /4.2
+/4.2/quickstart /4.2
+/4.2/updating-migrating/* /4.2
+/4.2/user-guides/* /4.2
+/4.2/waf-installation/* /4.2
+/4.2/about-wallarm-waf/* /4.2
+/4.2/partner-waf-node/* /4.2
+/4.2/attacks-vulns-list /4.2
+/4.2/attacks-vulns-list/ /4.2
+/4.2/glossary-en /4.2
+/4.2/glossary-en/ /4.2
+
+/4.2/* /4.4
+/4.4/admin-en/* /4.4
+/4.4/installation/* /4.4
+/4.4/quickstart/ /4.4
+/4.4/quickstart /4.4
+/4.4/updating-migrating/* /4.4
+/4.4/user-guides/* /4.4
+/4.4/waf-installation/* /4.4
+/4.4/about-wallarm-waf/* /4.4
+/4.4/partner-waf-node/* /4.4
+/4.4/attacks-vulns-list /4.4
+/4.4/attacks-vulns-list/ /4.4
+/4.4/glossary-en /4.4
+/4.4/glossary-en/ /4.4
+
+/4.4/* /4.6
+/4.6/admin-en/* /4.6
+/4.6/installation/* /4.6
+/4.6/quickstart/* /4.6
+/4.6/updating-migrating/* /4.6
+/4.6/user-guides/* /4.6
+/4.6/about-wallarm/* /4.6
+/4.6/attacks-vulns-list/ /4.6
+/4.6/glossary-en/ /4.6
+/4.6/api/* /4.6
+/4.6/api-abuse-prevention/* /4.6
+/4.6/api-discovery/* /4.6
+/4.6/api-protection/* /4.6
+/4.6/api-specification-enforcement/* /4.6
+/4.6/demo-videos/* /4.6
+/4.6/faq/* /4.6
+/4.6/fast/* /4.6
+/4.6/integrations-devsecops/* /4.6
+/4.6/vulnerability-detection/* /4.6
+/4.6/api-sessions/ /4.6
+/4.6/news/ /4.6
+
+/quickstart-en/how-wallarm-works/qs-intro-en /about-wallarm/overview/
+/quickstart-en/how-wallarm-works/shared-responsibility /about-wallarm/shared-responsibility/
+/quickstart-en/how-wallarm-works/subscription-plans /about-wallarm/subscription-plans/
+/quickstart-en/how-wallarm-works/qs-intro-en/ /about-wallarm/overview/
+/quickstart-en/how-wallarm-works/shared-responsibility/ /about-wallarm/shared-responsibility/
+/quickstart-en/how-wallarm-works/subscription-plans/ /about-wallarm/subscription-plans/
+
+/user-guides/triggers/create-trigger /user-guides/triggers/triggers/#creating-triggers
+/user-guides/triggers/delete-trigger /user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/user-guides/triggers/disable-trigger /user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/user-guides/triggers/create-trigger/ /user-guides/triggers/triggers/#creating-triggers
+/user-guides/triggers/delete-trigger/ /user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/user-guides/triggers/disable-trigger/ /user-guides/triggers/triggers/#disabling-and-deleting-triggers
+
+/2.12/user-guides/triggers/create-trigger /2.12/user-guides/triggers/triggers/#creating-triggers
+/2.12/user-guides/triggers/delete-trigger /2.12/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/2.12/user-guides/triggers/disable-trigger /2.12/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/2.12/user-guides/triggers/create-trigger/ /2.12/user-guides/triggers/triggers/#creating-triggers
+/2.12/user-guides/triggers/delete-trigger/ /2.12/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/2.12/user-guides/triggers/disable-trigger/ /2.12/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+
+/2.14/user-guides/triggers/create-trigger /2.14/user-guides/triggers/triggers/#creating-triggers
+/2.14/user-guides/triggers/delete-trigger /2.14/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/2.14/user-guides/triggers/disable-trigger /2.14/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/2.14/user-guides/triggers/create-trigger/ /2.14/user-guides/triggers/triggers/#creating-triggers
+/2.14/user-guides/triggers/delete-trigger/ /2.14/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/2.14/user-guides/triggers/disable-trigger/ /2.14/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+
+/en/quick-installation/quick-dynamic-module-for-nginx.html /installation/nginx/dynamic-module/
+/en/quick-installation/quick-dynamic-module-for-nginx.html/ /installation/nginx/dynamic-module/
+
+/admin-en/api-en /api/overview/
+/admin-en/api-en/ /api/overview/
+/2.12/admin-en/api-en /api/overview/
+/2.12/admin-en/api-en/ /api/overview/
+/2.14/admin-en/api-en /api/overview/
+/2.14/admin-en/api-en/ /api/overview/
+
+/user-guides/search-and-filters/use-filter/ /user-guides/search-and-filters/use-search/
+/user-guides/search-and-filters/use-filter /user-guides/search-and-filters/use-search/
+/2.14/user-guides/search-and-filters/use-filter/ /2.14/user-guides/search-and-filters/use-search/
+/2.14/user-guides/search-and-filters/use-filter /2.14/user-guides/search-and-filters/use-search/
+/2.12/user-guides/search-and-filters/use-filter/ /2.12/user-guides/search-and-filters/use-search/
+/2.12/user-guides/search-and-filters/use-filter /2.12/user-guides/search-and-filters/use-search/
+
+/quickstart-en/qs-prereq-en/ /quickstart-en/qs-install-node-en/#requirements
+/quickstart-en/qs-prereq-en /quickstart-en/qs-install-node-en/#requirements
+/2.14/quickstart-en/qs-prereq-en/ /quickstart-en/qs-install-node-en/#requirements
+/2.14/quickstart-en/qs-prereq-en /quickstart-en/qs-install-node-en/#requirements
+/2.12/quickstart-en/qs-prereq-en/ /quickstart-en/qs-install-node-en/#requirements
+/2.12/quickstart-en/qs-prereq-en /quickstart-en/qs-install-node-en/#requirements
+
+/quickstart-en/qs-license-en/ /quickstart-en/qs-install-node-en/#requirements
+/quickstart-en/qs-license-en /quickstart-en/qs-install-node-en/#requirements
+/2.14/quickstart-en/qs-license-en/ /quickstart-en/qs-install-node-en/#requirements
+/2.14/quickstart-en/qs-license-en /quickstart-en/qs-install-node-en/#requirements
+/2.12/quickstart-en/qs-license-en/ /quickstart-en/qs-install-node-en/#requirements
+/2.12/quickstart-en/qs-license-en /quickstart-en/qs-install-node-en/#requirements
+
+/admin-en/sensitive-data-en/ /user-guides/rules/sensitive-data-rule/
+/admin-en/sensitive-data-en /user-guides/rules/sensitive-data-rule/
+/2.16/admin-en/sensitive-data-en/ /2.16/user-guides/rules/sensitive-data-rule/
+/2.16/admin-en/sensitive-data-en /2.16/user-guides/rules/sensitive-data-rule/
+/2.14/admin-en/sensitive-data-en/ /2.14/user-guides/rules/sensitive-data-rule/
+/2.14/admin-en/sensitive-data-en /2.14/user-guides/rules/sensitive-data-rule/
+
+/en/admin-en/api-creds-en.html /api/overview/
+/en/admin-en/installation-gcp-en.html /admin-en/installation-gcp-en/
+
+/admin-en/installation-guides/clouds-intro /admin-en/supported-platforms/#cloud-platforms
+/admin-en/installation-guides/clouds-intro/ /admin-en/supported-platforms/#cloud-platforms
+/2.16/admin-en/installation-guides/clouds-intro /2.16/admin-en/supported-platforms/#cloud-platforms
+/2.16/admin-en/installation-guides/clouds-intro/ /2.16/admin-en/supported-platforms/#cloud-platforms
+/2.14/admin-en/installation-guides/clouds-intro /2.14/admin-en/supported-platforms/#cloud-platforms
+/2.14/admin-en/installation-guides/clouds-intro/ /2.14/admin-en/supported-platforms/#cloud-platforms
+
+/user-guides/blacklist/ /user-guides/ip-lists/denylist/
+/admin-en/configure-ip-blocking-en/ /user-guides/ip-lists/denylist/
+/admin-en/configure-ip-blocking-iptables-en/ /user-guides/ip-lists/denylist/
+/admin-en/configure-ip-blocking-nginx-en/ /user-guides/ip-lists/denylist/
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses/ /user-guides/ip-lists/denylist/
+/admin-en/scanner-ips-whitelisting/ /user-guides/ip-lists/allowlist/#examples-of-ip-allowlist-usage
+/admin-en/block-part-en/ /admin-en/configure-wallarm-mode/
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses/ /user-guides/ip-lists/allowlist/#examples-of-ip-allowlist-usage
+/3.0/partner-waf-node/overview/ /2.18/partner-waf-node/overview/ 301!
+/3.0/partner-waf-node/creating-partner-account/ /2.18/partner-waf-node/creating-partner-account/ 301!
+/3.0/partner-waf-node/connecting-clients/ /2.18/partner-waf-node/connecting-clients/ 301!
+/3.0/partner-waf-node/installing-partner-waf-node/ /2.18/partner-waf-node/installing-partner-waf-node/ 301!
+
+/en/admin-en/installation-ami-en.html /admin-en/installation-ami-en/
+
+/quickstart-en/qs-install-node-en/ /quickstart/
+/quickstart-en/qs-setup-proxy-en/ /quickstart/
+/quickstart-en/qs-check-operation-en/ /admin-en/installation-check-operation-en/
+
+/3.0/quickstart-en/qs-install-node-en/ /3.0/quickstart/
+/3.0/quickstart-en/qs-setup-proxy-en/ /3.0/quickstart/
+/3.0/quickstart-en/qs-check-operation-en/ /3.0/admin-en/installation-check-operation-en/
+
+/2.18/quickstart-en/qs-install-node-en/ /2.18/quickstart/
+/2.18/quickstart-en/qs-setup-proxy-en/ /2.18/quickstart/
+/2.18/quickstart-en/qs-check-operation-en/ /2.18/admin-en/installation-check-operation-en/
+
+/user-guides/rules/add-rule/#equal /user-guides/rules/add-rule/#condition-type-equal
+/user-guides/rules/add-rule/#iequal /user-guides/rules/add-rule/#condition-type-iequal-aa
+/user-guides/rules/add-rule/#regex /user-guides/rules/add-rule/#condition-type-regex
+/user-guides/rules/add-rule/#absent /user-guides/rules/add-rule/#condition-type-absent
+
+/glossary-en/#attack-vector /glossary-en/#malicious-payload
+/en/admin-en/configure-backup-en.html /admin-en/configure-backup-en/
+/ru/admin-ru/configure-backup-ru.html https://docs.wallarm.ru/admin-ru/configure-backup-ru/
+
+/2.18/admin-en/scanner-address-us-en /2.18/admin-en/scanner-address-us-cloud/
+/2.18/admin-en/scanner-address-us-en/ /2.18/admin-en/scanner-address-us-cloud/
+/3.0/admin-en/scanner-address-us-en /3.0/admin-en/scanner-address-us-cloud/
+/3.0/admin-en/scanner-address-us-en/ /3.0/admin-en/scanner-address-us-cloud/
+/3.2/admin-en/scanner-address-us-en /3.2/admin-en/scanner-address-us-cloud/
+/3.2/admin-en/scanner-address-us-en/ /3.2/admin-en/scanner-address-us-cloud/
+/admin-en/scanner-address-us-en /admin-en/scanner-address-us-cloud/
+/admin-en/scanner-address-us-en/ /admin-en/scanner-address-us-cloud/
+
+/2.18/admin-en/scanner-address-en /2.18/admin-en/scanner-address-eu-cloud/
+/2.18/admin-en/scanner-address-en/ /2.18/admin-en/scanner-address-eu-cloud/
+/3.0/admin-en/scanner-address-en /3.0/admin-en/scanner-address-eu-cloud/
+/3.0/admin-en/scanner-address-en/ /3.0/admin-en/scanner-address-eu-cloud/
+/3.2/admin-en/scanner-address-en /3.2/admin-en/scanner-address-eu-cloud/
+/3.2/admin-en/scanner-address-en/ /3.2/admin-en/scanner-address-eu-cloud/
+/admin-en/scanner-address-en /admin-en/scanner-address-eu-cloud/
+/admin-en/scanner-address-en/ /admin-en/scanner-address-eu-cloud/
+
+/user-guides/rules/define-counters /admin-en/configuration-guides/protecting-against-bruteforce/
+/user-guides/rules/define-counters/ /admin-en/configuration-guides/protecting-against-bruteforce/
+/3.2/user-guides/rules/define-counters /3.2/admin-en/configuration-guides/protecting-against-bruteforce/
+/3.2/user-guides/rules/define-counters/ /3.2/admin-en/configuration-guides/protecting-against-bruteforce/
+/3.0/user-guides/rules/define-counters /3.0/admin-en/configuration-guides/protecting-against-bruteforce/
+/3.0/user-guides/rules/define-counters/ /3.0/admin-en/configuration-guides/protecting-against-bruteforce/
+/2.18/user-guides/rules/define-counters /2.18/admin-en/configuration-guides/protecting-against-bruteforce/
+/2.18/user-guides/rules/define-counters/ /2.18/admin-en/configuration-guides/protecting-against-bruteforce/
+
+/partner-waf-node/overview /installation/multi-tenant/overview/
+/partner-waf-node/creating-partner-account /installation/multi-tenant/configure-accounts
+/partner-waf-node/connecting-clients /installation/multi-tenant/configure-accounts
+/partner-waf-node/installing-partner-waf-node /installation/multi-tenant/deploy-multi-tenant-node
+/3.4/partner-waf-node/overview /3.4/installation/multi-tenant/overview/
+/3.4/partner-waf-node/creating-partner-account /3.4/installation/multi-tenant/configure-accounts
+/3.4/partner-waf-node/connecting-clients /3.4/installation/multi-tenant/configure-accounts
+/3.4/partner-waf-node/installing-partner-waf-node /3.4/installation/multi-tenant/deploy-multi-tenant-node
+/3.2/partner-waf-node/overview /3.2/installation/multi-tenant/overview/
+/3.2/partner-waf-node/creating-partner-account /3.2/installation/multi-tenant/configure-accounts
+/3.2/partner-waf-node/connecting-clients /3.2/installation/multi-tenant/configure-accounts
+/3.2/partner-waf-node/installing-partner-waf-node /3.2/installation/multi-tenant/deploy-multi-tenant-node
+/2.18/partner-waf-node/overview /2.18/installation/multi-tenant/overview/
+/2.18/partner-waf-node/creating-partner-account /2.18/installation/multi-tenant/configure-accounts
+/2.18/partner-waf-node/connecting-clients /2.18/installation/multi-tenant/configure-accounts
+/2.18/partner-waf-node/installing-partner-waf-node /2.18/installation/multi-tenant/deploy-multi-tenant-node
+
+/user-guides/nodes/regular-node/ /user-guides/nodes/nodes/
+/user-guides/nodes/cloud-node/ /user-guides/nodes/nodes/
+
+/faq/waf-aws-via-terraform-installation/ https://github.com/wallarm/terraform-example/wiki/Quick-start-with-Terraform-example-code#troubleshooting
+/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro/ https://github.com/wallarm/terraform-example/wiki
+/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc/ https://github.com/wallarm/terraform-example/wiki/Description-of-example-Terraform-code
+/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start/ https://github.com/wallarm/terraform-example/wiki/Quick-start-with-Terraform-example-code
+/3.6/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro/ https://github.com/wallarm/terraform-example/wiki
+/3.6/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc/ https://github.com/wallarm/terraform-example/wiki/Description-of-example-Terraform-code
+/3.6/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start/ https://github.com/wallarm/terraform-example/wiki/Quick-start-with-Terraform-example-code
+/3.4/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro/ https://github.com/wallarm/terraform-example/wiki
+/3.4/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc/ https://github.com/wallarm/terraform-example/wiki/Description-of-example-Terraform-code
+/3.4/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start/ https://github.com/wallarm/terraform-example/wiki/Quick-start-with-Terraform-example-code
+/2.18/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro/ https://github.com/wallarm/terraform-example/wiki
+/2.18/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc/ https://github.com/wallarm/terraform-example/wiki/Description-of-example-Terraform-code
+/2.18/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start/ https://github.com/wallarm/terraform-example/wiki/Quick-start-with-Terraform-example-code
+
+/user-guides/dashboard/intro/ /user-guides/dashboard/
+/user-guides/dashboard/waf/ /user-guides/dashboard/
+/user-guides/dashboard/scanner/ /user-guides/dashboard/#vulnerability-scanner
+/3.6/user-guides/dashboard/intro/ /user-guides/dashboard/
+/3.6/user-guides/dashboard/waf/ /user-guides/dashboard/
+/3.6/user-guides/dashboard/scanner/ /user-guides/dashboard/#vulnerability-scanner
+/3.4/user-guides/dashboard/intro/ /user-guides/dashboard/
+/3.4/user-guides/dashboard/waf/ /user-guides/dashboard/
+/3.4/user-guides/dashboard/scanner/ /user-guides/dashboard/#vulnerability-scanner
+
+/4.0/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/ /4.0/installation/kubernetes/sidecar-proxy/deployment/
+/4.0/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/ /4.0/installation/kubernetes/sidecar-proxy/deployment/
+/4.0/admin-en/installation-guides/kubernetes/wallarm-sidecar-container/ /4.0/installation/kubernetes/sidecar-proxy/deployment/
+/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/ /installation/kubernetes/sidecar-proxy/deployment/
+/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/ /installation/kubernetes/sidecar-proxy/deployment/
+/admin-en/installation-guides/kubernetes/wallarm-sidecar-container/ /installation/kubernetes/sidecar-proxy/deployment/
+
+/user-guides/ip-lists/greylist/ /user-guides/ip-lists/graylist/
+/4.0/user-guides/ip-lists/greylist/ /4.0/user-guides/ip-lists/graylist/
+/3.6/user-guides/ip-lists/greylist/ /3.6/user-guides/ip-lists/graylist/
+/3.4/user-guides/ip-lists/greylist/ /3.4/user-guides/ip-lists/graylist/
+
+/user-guides/ip-lists/blacklist/ /user-guides/ip-lists/denylist/
+/4.0/user-guides/ip-lists/blacklist/ /4.0/user-guides/ip-lists/denylist/
+/3.6/user-guides/ip-lists/blacklist/ /3.6/user-guides/ip-lists/denylist/
+/3.4/user-guides/ip-lists/blacklist/ /3.4/user-guides/ip-lists/denylist/
+/2.18/user-guides/blacklist/ /2.18/user-guides/denylist/
+
+/user-guides/ip-lists/whitelist/ /user-guides/ip-lists/allowlist/
+/4.0/user-guides/ip-lists/whitelist/ /4.0/user-guides/ip-lists/allowlist/
+/3.6/user-guides/ip-lists/whitelist/ /3.6/user-guides/ip-lists/allowlist/
+/3.4/user-guides/ip-lists/whitelist/ /3.4/user-guides/ip-lists/allowlist/
+/2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses/ /2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses/
+/2.18/admin-en/scanner-ips-whitelisting/ /2.18/admin-en/scanner-ips-allowlisting/
+
+/admin-en/mirror-traffic-en/ /admin-en/configuration-guides/traffic-mirroring/overview/
+/4.0/admin-en/mirror-traffic-en/ /4.0/admin-en/configuration-guides/traffic-mirroring/overview/
+/3.6/admin-en/mirror-traffic-en/ /3.6/admin-en/configuration-guides/traffic-mirroring/overview/
+/3.4/admin-en/mirror-traffic-en/ /3.4/admin-en/configuration-guides/traffic-mirroring/overview/
+/2.18/admin-en/mirror-traffic-en/ /2.18/admin-en/configuration-guides/traffic-mirroring/overview/
+
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses/ /user-guides/ip-lists/allowlist/#examples-of-ip-allowlist-usage
+/admin-en/scanner-ips-allowlisting/ /user-guides/ip-lists/allowlist/#examples-of-ip-allowlist-usage
+/user-guides/denylist/ /user-guides/ip-lists/denylist/
+
+/admin-en/installation-kong-en/ /installation/kubernetes/kong-ingress-controller/deployment/
+
+/about-wallarm-waf/* /about-wallarm/:splat 301!
+/2.18/about-wallarm-waf/* /2.18/about-wallarm/:splat 301!
+/3.4/about-wallarm-waf/* /3.4/about-wallarm/:splat 301!
+/3.6/about-wallarm-waf/* /3.6/about-wallarm/:splat 301!
+/4.0/about-wallarm-waf/* /4.0/about-wallarm/:splat 301!
+/waf-installation/* /installation/:splat 301!
+/2.18/waf-installation/* /2.18/installation/:splat 301!
+/3.4/waf-installation/* /3.4/installation/:splat 301!
+/3.6/waf-installation/* /3.6/installation/:splat 301!
+/4.0/waf-installation/* /4.0/installation/:splat 301!
+/admin-en/configuration-guides/allocate-resources-for-waf-node/ /admin-en/configuration-guides/allocate-resources-for-node/
+/2.18/admin-en/configuration-guides/allocate-resources-for-waf-node/ /2.18/admin-en/configuration-guides/allocate-resources-for-node/
+/3.4/admin-en/configuration-guides/allocate-resources-for-waf-node/ /3.4/admin-en/configuration-guides/allocate-resources-for-node/
+/3.6/admin-en/configuration-guides/allocate-resources-for-waf-node/ /3.6/admin-en/configuration-guides/allocate-resources-for-node/
+/4.0/admin-en/configuration-guides/allocate-resources-for-waf-node/ /4.0/admin-en/configuration-guides/allocate-resources-for-node/
+/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments/ /admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/
+/2.18/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /2.18/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/2.18/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments/ /2.18/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/
+/3.4/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /3.4/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/3.4/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments/ /3.4/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/
+/3.6/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /3.6/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/3.6/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments/ /3.6/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/
+/4.0/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /4.0/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/faq/waf-nginx-compatibility/ /faq/nginx-compatibility/ 
+/faq/waf-ingress-installation/ /faq/ingress-installation/
+/faq/common-errors-after-waf-installation/ /faq/common-errors-after-installation/
+/demo-videos/waf-overview/ /demo-videos/overview/ 
+/demo-videos/waf-events-inspection/ /demo-videos/events-inspection/
+/demo-videos/notifications/ /user-guides/triggers/triggers/
+
+/user-guides/settings/api-discovery/ /user-guides/api-discovery/#configuring-api-discovery
+/4.2/user-guides/settings/api-discovery/ /4.2/user-guides/api-discovery/#configuring-api-discovery
+/4.0/user-guides/settings/api-discovery/ /4.0/user-guides/api-discovery/#configuring-api-discovery
+/3.6/user-guides/settings/api-discovery/ /3.6/user-guides/api-discovery/#configuring-api-discovery
+
+/user-guides/dashboard/ /user-guides/dashboards/threat-prevention/
+/4.2/user-guides/dashboard/ /4.2/user-guides/dashboards/threat-prevention/
+/4.0/user-guides/dashboard/ /4.0/user-guides/dashboards/threat-prevention/
+/3.6/user-guides/dashboard/ /3.6/user-guides/dashboards/threat-prevention/
+
+/4.0/* /4.0
+/2.18/user-guides/vulnerabilities/analyze-vuln/ /2.18/user-guides/vulnerabilities/
+/2.18/user-guides/vulnerabilities/check-vuln/ /2.18/user-guides/vulnerabilities/
+/2.18/user-guides/vulnerabilities/close-open-vuln/ /2.18/user-guides/vulnerabilities/
+/2.18/user-guides/vulnerabilities/false-vuln/ /2.18/user-guides/vulnerabilities/
+/2.18/user-guides/vulnerabilities/recheck-vuln/ /2.18/user-guides/vulnerabilities/
+/3.6/user-guides/vulnerabilities/analyze-vuln/ /3.6/user-guides/vulnerabilities/
+/3.6/user-guides/vulnerabilities/check-vuln/ /3.6/user-guides/vulnerabilities/
+/3.6/user-guides/vulnerabilities/close-open-vuln/ /3.6/user-guides/vulnerabilities/
+/3.6/user-guides/vulnerabilities/false-vuln/ /3.6/user-guides/vulnerabilities/
+/3.6/user-guides/vulnerabilities/recheck-vuln/ /3.6/user-guides/vulnerabilities/
+/4.0/user-guides/vulnerabilities/analyze-vuln/ /4.0/user-guides/vulnerabilities/
+/4.0/user-guides/vulnerabilities/check-vuln/ /4.0/user-guides/vulnerabilities/
+/4.0/user-guides/vulnerabilities/close-open-vuln/ /4.0/user-guides/vulnerabilities/
+/4.0/user-guides/vulnerabilities/false-vuln/ /4.0/user-guides/vulnerabilities/
+/4.0/user-guides/vulnerabilities/recheck-vuln/ /4.0/user-guides/vulnerabilities/
+/4.2/user-guides/vulnerabilities/analyze-vuln/ /4.2/user-guides/vulnerabilities/
+/4.2/user-guides/vulnerabilities/check-vuln/ /4.2/user-guides/vulnerabilities/
+/4.2/user-guides/vulnerabilities/close-open-vuln/ /4.2/user-guides/vulnerabilities/
+/4.2/user-guides/vulnerabilities/false-vuln/ /4.2/user-guides/vulnerabilities/
+/4.2/user-guides/vulnerabilities/recheck-vuln/ /4.2/user-guides/vulnerabilities/
+/4.4/user-guides/vulnerabilities/analyze-vuln/ /4.4/user-guides/vulnerabilities/
+/4.4/user-guides/vulnerabilities/check-vuln/ /4.4/user-guides/vulnerabilities/
+/4.4/user-guides/vulnerabilities/close-open-vuln/ /4.4/user-guides/vulnerabilities/
+/4.4/user-guides/vulnerabilities/false-vuln/ /4.4/user-guides/vulnerabilities/
+/4.4/user-guides/vulnerabilities/recheck-vuln/ /4.4/user-guides/vulnerabilities/
+/user-guides/vulnerabilities/analyze-vuln/ /user-guides/vulnerabilities/
+/user-guides/vulnerabilities/check-vuln/ /user-guides/vulnerabilities/
+/user-guides/vulnerabilities/close-open-vuln/ /user-guides/vulnerabilities/
+/user-guides/vulnerabilities/false-vuln/ /user-guides/vulnerabilities/
+/user-guides/vulnerabilities/recheck-vuln/ /user-guides/vulnerabilities/
+
+/2.18/user-guides/scanner/check-scope/ /2.18/user-guides/scanner/
+/2.18/user-guides/scanner/configure-scanner-modules/ /2.18/user-guides/scanner/
+/2.18/user-guides/scanner/configure-scanner/ /2.18/user-guides/scanner/
+/2.18/user-guides/scanner/intro/ /2.18/user-guides/scanner/
+/2.18/user-guides/scanner/reserved-domains/ /2.18/user-guides/scanner/
+/3.6/user-guides/scanner/check-scope/ /3.6/user-guides/scanner/
+/3.6/user-guides/scanner/configure-scanner-modules/ /3.6/user-guides/scanner/
+/3.6/user-guides/scanner/configure-scanner/ /3.6/user-guides/scanner/
+/3.6/user-guides/scanner/intro/ /3.6/user-guides/scanner/
+/3.6/user-guides/scanner/reserved-domains/ /3.6/user-guides/scanner/
+/4.0/user-guides/scanner/check-scope/ /4.0/user-guides/scanner/
+/4.0/user-guides/scanner/configure-scanner-modules/ /4.0/user-guides/scanner/
+/4.0/user-guides/scanner/configure-scanner/ /4.0/user-guides/scanner/
+/4.0/user-guides/scanner/intro/ /4.0/user-guides/scanner/
+/4.0/user-guides/scanner/reserved-domains/ /4.0/user-guides/scanner/
+/4.2/user-guides/scanner/check-scope/ /4.2/user-guides/scanner/
+/4.2/user-guides/scanner/configure-scanner-modules/ /4.2/user-guides/scanner/
+/4.2/user-guides/scanner/configure-scanner/ /4.2/user-guides/scanner/
+/4.2/user-guides/scanner/intro/ /4.2/user-guides/scanner/
+/4.2/user-guides/scanner/reserved-domains/ /4.2/user-guides/scanner/
+/4.4/user-guides/scanner/check-scope/ /4.4/user-guides/scanner/
+/4.4/user-guides/scanner/configure-scanner-modules/ /4.4/user-guides/scanner/
+/4.4/user-guides/scanner/configure-scanner/ /4.4/user-guides/scanner/
+/4.4/user-guides/scanner/intro/ /4.4/user-guides/scanner/
+/4.4/user-guides/scanner/reserved-domains/ /4.4/user-guides/scanner/
+/user-guides/scanner/check-scope/ /user-guides/scanner/
+/user-guides/scanner/configure-scanner-modules/ /user-guides/scanner/
+/user-guides/scanner/configure-scanner/ /user-guides/scanner/
+/user-guides/scanner/intro/ /user-guides/scanner/
+/user-guides/scanner/reserved-domains/ /user-guides/scanner/
+
+/admin-en/admin-intro-en/ /admin-en/supported-platforms/
+/4.4/admin-en/admin-intro-en/ /4.4/admin-en/supported-platforms/
+
+/admin-en/configuration-guides/traffic-mirroring/envoy-example/ /installation/oob/web-server-mirroring/overview/#envoy
+/admin-en/configuration-guides/traffic-mirroring/istio-example/ /installation/oob/web-server-mirroring/overview/#istio
+/admin-en/configuration-guides/traffic-mirroring/nginx-example/ /installation/oob/web-server-mirroring/overview/#nginx
+/admin-en/configuration-guides/traffic-mirroring/traefik-example/ /installation/oob/web-server-mirroring/overview/#traefik
+/admin-en/configuration-guides/traffic-mirroring/overview/ /installation/oob/web-server-mirroring/overview/
+
+/admin-en/installation-nginx-overview/ /admin-en/installation-postanalytics-en/
+
+/installation/cloud-platforms/aws/terraform-module/examples/ /installation/cloud-platforms/aws/terraform-module/overview/#trying-wallarm-terraform-module-with-examples
+
+/admin-en/installation-ami-en/ /installation/cloud-platforms/aws/ami/
+/admin-en/installation-gcp-en/ /installation/cloud-platforms/gcp/machine-image/
+
+/admin-en/supported-platforms/ /installation/supported-deployment-options/
+/4.4/admin-en/supported-platforms/ /4.4/installation/supported-deployment-options/
+/4.2/admin-en/supported-platforms/ /4.2/installation/supported-deployment-options/
+/3.6/admin-en/supported-platforms/ /3.6/installation/supported-deployment-options/
+/2.18/admin-en/supported-platforms/ /2.18/installation/supported-deployment-options/
+/ja/admin-en/supported-platforms/ /ja/installation/supported-deployment-options/
+/4.4/ja/admin-en/supported-platforms/ /4.4/ja/installation/supported-deployment-options/
+
+/faq/nginx-compatibility/ /installation/custom/custom-nginx-version/
+
+/about-wallarm/deployment-best-practices/ /quickstart/attack-prevention-best-practices/
+
+/api-firewall/overview/ https://wallarm.github.io/api-firewall/
+/api-firewall/installation-guides/docker-container/ https://wallarm.github.io/api-firewall/installation-guides/docker-container/
+/api-firewall/demos/docker-compose/ https://wallarm.github.io/api-firewall/demos/docker-compose/
+/api-firewall/demos/kubernetes-cluster/ https://wallarm.github.io/api-firewall/demos/kubernetes-cluster/
+/api-firewall/release-notes/ https://wallarm.github.io/api-firewall/release-notes/
+
+/admin-en/attack-rechecker-best-practices/ /vulnerability-detection/active-threat-verification/running-test-on-staging/
+/user-guides/rules/change-request-for-active-verification/ /vulnerability-detection/active-threat-verification/modify-requests-before-replay/
+/4.4/admin-en/attack-rechecker-best-practices/ /4.4/vulnerability-detection/active-threat-verification/running-test-on-staging/
+/4.4/user-guides/rules/change-request-for-active-verification/ /4.4/vulnerability-detection/active-threat-verification/modify-requests-before-replay/
+/ja/admin-en/attack-rechecker-best-practices/ /ja/vulnerability-detection/active-threat-verification/running-test-on-staging/
+/ja/user-guides/rules/change-request-for-active-verification/ /ja/vulnerability-detection/active-threat-verification/modify-requests-before-replay/
+
+/about-wallarm/api-discovery/ /api-discovery/overview/
+/user-guides/api-discovery/ /api-discovery/exploring/
+/user-guides/api-specifications/ /api-discovery/rogue-api/
+/4.6/about-wallarm/api-discovery/ /4.6/api-discovery/overview/
+/4.6/user-guides/api-discovery/ /4.6/api-discovery/exploring/
+/4.6/user-guides/api-specifications/ /4.6/api-discovery/rogue-api/
+
+/quickstart/ /quickstart/getting-started/
+/4.6/quickstart/ /4.6/quickstart/getting-started/
+
+/user-guides/settings/subscriptions/ /about-wallarm/subscription-plans/
+/4.6/user-guides/settings/subscriptions/ /4.6/about-wallarm/subscription-plans/
+
+/admin-en/scanner-address-us-cloud/ /admin-en/scanner-addresses/
+/admin-en/scanner-address-eu-cloud/ /admin-en/scanner-addresses/
+/4.6/admin-en/scanner-address-us-cloud/ /4.6/admin-en/scanner-addresses/
+/4.6/admin-en/scanner-address-eu-cloud/ /4.6/admin-en/scanner-addresses/
+/4.4/admin-en/scanner-address-us-cloud/ /4.4/admin-en/scanner-addresses/
+/4.4/admin-en/scanner-address-eu-cloud/ /4.4/admin-en/scanner-addresses/
+
+/admin-en/scanner-complaint-en/ /user-guides/scanner/#contacting-wallarm-support-to-stop-the-resource-scanner
+/4.6/admin-en/scanner-complaint-en/ /4.6/user-guides/scanner/#contacting-wallarm-support-to-stop-the-resource-scanner
+/4.4/admin-en/scanner-complaint-en/ /4.4/user-guides/scanner/#contacting-wallarm-support-to-stop-the-resource-scanner
+
+/user-guides/api-leaks/ /about-wallarm/api-leaks/
+/4.6/user-guides/api-leaks/ /4.6/about-wallarm/api-leaks/
+/4.4/user-guides/api-leaks/ /4.4/about-wallarm/api-leaks/
+
+/user-guides/ip-lists/allowlist/ /user-guides/ip-lists/overview/
+/user-guides/ip-lists/graylist/ /user-guides/ip-lists/overview/
+/user-guides/ip-lists/denylist/ /user-guides/ip-lists/overview/
+/user-guides/triggers/trigger-examples/ /user-guides/triggers/triggers/
+/user-guides/triggers/trigger-examples/#detect-weak-jwts /about-wallarm/detecting-vulnerabilities/#weak-jwts-detection
+/user-guides/triggers/trigger-examples/#group-hits-originating-from-the-same-ip-into-one-attack /user-guides/events/analyze-attack/#grouping-of-hits
+/user-guides/bola-protection/ /admin-en/configuration-guides/protecting-against-bola/
+/4.8/user-guides/ip-lists/allowlist/ /4.8/user-guides/ip-lists/overview/
+/4.8/user-guides/ip-lists/graylist/ /4.8/user-guides/ip-lists/overview/
+/4.8/user-guides/ip-lists/denylist/ /4.8/user-guides/ip-lists/overview/
+/4.8/user-guides/triggers/trigger-examples/ /4.8/user-guides/triggers/triggers/
+/4.8/user-guides/triggers/trigger-examples/#detect-weak-jwts /4.8/about-wallarm/detecting-vulnerabilities/#weak-jwts-detection
+/4.8/user-guides/triggers/trigger-examples/#group-hits-originating-from-the-same-ip-into-one-attack /4.8/user-guides/events/analyze-attack/#grouping-of-hits
+/4.8/user-guides/bola-protection/ /4.8/admin-en/configuration-guides/protecting-against-bola/
+
+/tr/2.18/user-guides/nodes/cloud-node/ /tr/user-guides/nodes/nodes/
+/tr/2.18/user-guides/nodes/regular-node/ /tr/user-guides/nodes/nodes/
+/tr/2.18/admin-en/configure-ip-blocking-nginx-en/ /tr/user-guides/ip-lists/overview/
+/tr/3.6/installation/multi-tenant/configure-accounts/ /installation/multi-tenant/configure-accounts/
+/tr/2.18/admin-en/configure-parameters-en/ /tr/admin-en/configure-parameters-en/
+/tr/2.18/admin-en/configuration-guides/envoy/fine-tuning/ /tr/admin-en/configuration-guides/envoy/fine-tuning/
+/tr/2.18/admin-en/scanner-ips-allowlisting/ /tr/user-guides/ip-lists/overview/
+/tr/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/ /tr/installation/kubernetes/sidecar-proxy/deployment/
+/tr/2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses/ /tr/user-guides/ip-lists/overview/
+
+/ja/4.8/user-guides/rules/rules/ /ja/4.8/user-guides/rules/rules/
+/tr/4.8/user-guides/rules/rules/ /tr/4.8/user-guides/rules/rules/
+/pt-br/4.8/user-guides/rules/rules/ /pt-br/4.8/user-guides/rules/rules/
+
+/user-guides/rules/intro/ /user-guides/rules/rules/
+/user-guides/rules/add-rule/ /user-guides/rules/rules/#configuring
+/user-guides/rules/view/ /user-guides/rules/rules/#inspecting
+/user-guides/rules/compiling/ /user-guides/rules/rules/#ruleset-lifecycle
+/user-guides/rules/backup/ /user-guides/rules/rules/#backup-and-restore
+/user-guides/rules/disable-request-parsers/ /user-guides/rules/request-processing/#managing-parsers
+/user-guides/rules/ignore-attack-types/ /about-wallarm/protecting-against-attacks/#ignoring-certain-attack-types
+/user-guides/rules/ignore-attacks-in-binary-data/ /about-wallarm/protecting-against-attacks/#ignoring-certain-attack-signs-in-the-binary-data
+/user-guides/rules/wallarm-mode-rule/ /admin-en/configure-wallarm-mode/#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console
+/4.8/user-guides/rules/intro/ /4.8/user-guides/rules/rules/
+/4.8/user-guides/rules/add-rule/ /4.8/user-guides/rules/rules/#configuring
+/4.8/user-guides/rules/view/ /4.8/user-guides/rules/rules/#inspecting
+/4.8/user-guides/rules/compiling/ /4.8/user-guides/rules/rules/#ruleset-lifecycle
+/4.8/user-guides/rules/backup/ /4.8/user-guides/rules/rules/#backup-and-restore
+/4.8/user-guides/rules/disable-request-parsers/ /4.8/user-guides/rules/request-processing/#managing-parsers
+/4.8/user-guides/rules/ignore-attack-types/ /4.8/about-wallarm/protecting-against-attacks/#ignoring-certain-attack-types
+/4.8/user-guides/rules/ignore-attacks-in-binary-data/ /4.8/about-wallarm/protecting-against-attacks/#ignoring-certain-attack-signs-in-the-binary-data
+/4.8/user-guides/rules/wallarm-mode-rule/ /4.8/admin-en/configure-wallarm-mode/#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console
+
+/user-guides/settings/general/ /admin-en/configure-wallarm-mode/#setting-up-general-filtration-rule-in-wallarm-console
+/4.8/user-guides/settings/general/ /4.8/admin-en/configure-wallarm-mode/#setting-up-general-filtration-rule-in-wallarm-console
+/4.6/user-guides/settings/general/ /4.6/admin-en/configure-wallarm-mode/#setting-up-general-filtration-rule-in-wallarm-console
+
+/user-guides/rules/api-abuse-url/ /api-abuse-prevention/exceptions/#exceptions-for-target-urls-and-specific-requests
+/4.8/user-guides/rules/api-abuse-url/ /4.8/api-abuse-prevention/exceptions/#exceptions-for-target-urls-and-specific-requests
+
+/api-policy-enforcement/* /api-specification-enforcement/:splat
+/ja/api-policy-enforcement/* /ja/api-specification-enforcement/:splat
+/ar/api-policy-enforcement/* /ar/api-specification-enforcement/:splat
+
+/about-wallarm/api-abuse-prevention/ /api-abuse-prevention/overview/
+/user-guides/api-abuse-prevention/ /api-abuse-prevention/setup/
+/user-guides/api-abuse-prevention-exceptions/ /api-abuse-prevention/exceptions/
+/user-guides/api-abuse-prevention-explore/ /api-abuse-prevention/exploring-bots/
+/4.8/about-wallarm/api-abuse-prevention/ /4.8/api-abuse-prevention/overview/
+/4.8/user-guides/api-abuse-prevention/ /4.8/api-abuse-prevention/setup/
+/4.8/user-guides/api-abuse-prevention-exceptions/ /4.8/api-abuse-prevention/exceptions/
+/4.8/user-guides/api-abuse-prevention-explore/ /4.8/api-abuse-prevention/exploring-bots/
+/4.6/about-wallarm/api-abuse-prevention/ /4.6/api-abuse-prevention/overview/
+/4.6/user-guides/api-abuse-prevention/ /4.6/api-abuse-prevention/setup/
+/4.6/user-guides/api-abuse-prevention-exceptions/ /4.6/api-abuse-prevention/exceptions/
+/4.6/user-guides/api-abuse-prevention-explore/ /4.6/api-abuse-prevention/exploring-bots/
+/ja/about-wallarm/api-abuse-prevention/ /ja/api-abuse-prevention/overview/
+/ja/user-guides/api-abuse-prevention/ /ja/api-abuse-prevention/setup/
+/ja/user-guides/api-abuse-prevention-exceptions/ /ja/api-abuse-prevention/exceptions/
+/ja/user-guides/api-abuse-prevention-explore/ /ja/api-abuse-prevention/exploring-bots/
+/tr/about-wallarm/api-abuse-prevention/ /tr/api-abuse-prevention/overview/
+/tr/user-guides/api-abuse-prevention/ /tr/api-abuse-prevention/setup/
+/tr/user-guides/api-abuse-prevention-exceptions/ /tr/api-abuse-prevention/exceptions/
+/tr/user-guides/api-abuse-prevention-explore/ /tr/api-abuse-prevention/exploring-bots/
+/pt-br/about-wallarm/api-abuse-prevention/ /pt-br/api-abuse-prevention/overview/
+/pt-br/user-guides/api-abuse-prevention/ /pt-br/api-abuse-prevention/setup/
+/pt-br/user-guides/api-abuse-prevention-exceptions/ /pt-br/api-abuse-prevention/exceptions/
+/pt-br/user-guides/api-abuse-prevention-explore/ /pt-br/api-abuse-prevention/exploring-bots/
+/ar/about-wallarm/api-abuse-prevention/ /ar/api-abuse-prevention/overview/
+/ar/user-guides/api-abuse-prevention/ /ar/api-abuse-prevention/setup/
+/ar/user-guides/api-abuse-prevention-exceptions/ /ar/api-abuse-prevention/exceptions/
+/ar/user-guides/api-abuse-prevention-explore/ /ar/api-abuse-prevention/exploring-bots/

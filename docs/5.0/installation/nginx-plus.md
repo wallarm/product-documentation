@@ -1,0 +1,1 @@
+--8<-- "latest/installation/nginx-plus.md"
