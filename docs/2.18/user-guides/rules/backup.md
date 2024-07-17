@@ -1,1 +1,1 @@
---8<-- "4.6/user-guides/rules/backup.md"
+--8<-- "3.6/user-guides/rules/backup.md"

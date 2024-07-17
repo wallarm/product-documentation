@@ -1,10 +1,10 @@
 INHERIT: mkdocs-base.yml
 
 theme:
-  version: "4.4"
+  version: "4.6"
 
 docs_dir: docs/deprecated
-site_dir: site/4.4
+site_dir: site/4.6
 
 nav:
   - Home: index.md

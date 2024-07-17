@@ -1,1 +1,15 @@
---8<-- "4.6/about-wallarm/data-retention-policy.md"
+# Data retention policy
+
+This policy outlines retention periods for different datasets collected by Wallarm and stored in the Wallarm Cloud.
+
+| Dataset                                                                                                                                                                                                                                | Paid subscription | Free tier |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|------------------|
+| Data on attacks, hits, and incidents detected by the filtering nodes                                                                                                                                                                         | 6 months        | 3 months |
+| Data on vulnerabilities detected by the filtering nodes or the **Active threat verification** module                                                                                                                                                                  | 6 months        | 3 months |
+| Data on vulnerabilities detected by the Vulnerability Scanner                                                                                                                                                                          | 6 months        | 3 months |
+| Statistics on processed and blocked requests displayed on the [Threat Prevention dashboard](../user-guides/dashboards/threat-prevention.md)                                                                                                                          | 6 months        | 3 months |
+| [Company's exposed assets](../user-guides/scanner.md) detected by Exposed asset Scanner                                                                                                                                            | 6 months        | 3 months |
+| History of [allowlisted, denylisted, and graylisted IP addresses](../user-guides/ip-lists/overview.md)                                                                                                                                                                     | 3 months         | 3 months |
+| Automatically generated or manually created [rules](../user-guides/rules/intro.md) for proccessing traffic by Wallarm nodes                                                                                                              | ∞                | ∞ |
+| Wallarm account configuration: [users](../user-guides/settings/users.md), [applications](../user-guides/settings/applications.md), [integrations](../user-guides/settings/integrations/integrations-intro.md), [triggers](../user-guides/triggers/triggers.md) | ∞                | ∞ |
+| [Audit log](../user-guides/settings/audit-log.md) records                                                                                                                                                                           | 6 months         | 3 months         | 

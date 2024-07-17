@@ -175,6 +175,28 @@
 /4.4/glossary-en /4.4
 /4.4/glossary-en/ /4.4
 
+/4.4/* /4.6
+/4.6/admin-en/* /4.6
+/4.6/installation/* /4.6
+/4.6/quickstart/* /4.6
+/4.6/updating-migrating/* /4.6
+/4.6/user-guides/* /4.6
+/4.6/about-wallarm/* /4.6
+/4.6/attacks-vulns-list/ /4.6
+/4.6/glossary-en/ /4.6
+/4.6/api/* /4.6
+/4.6/api-abuse-prevention/* /4.6
+/4.6/api-discovery/* /4.6
+/4.6/api-protection/* /4.6
+/4.6/api-specification-enforcement/* /4.6
+/4.6/demo-videos/* /4.6
+/4.6/faq/* /4.6
+/4.6/fast/* /4.6
+/4.6/integrations-devsecops/* /4.6
+/4.6/vulnerability-detection/* /4.6
+/4.6/api-sessions/ /4.6
+/4.6/news/ /4.6
+
 /quickstart-en/how-wallarm-works/qs-intro-en /about-wallarm/overview/
 /quickstart-en/how-wallarm-works/shared-responsibility /about-wallarm/shared-responsibility/
 /quickstart-en/how-wallarm-works/subscription-plans /about-wallarm/subscription-plans/

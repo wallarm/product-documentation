@@ -14,7 +14,6 @@ COPY . .
 FROM latest as all
 RUN mkdocs build -f mkdocs-4.10.yml
 RUN mkdocs build -f mkdocs-4.8.yml
-RUN mkdocs build -f mkdocs-4.6.yml
 RUN mkdocs build -f mkdocs-deprecated.yml
 RUN mkdocs build -f mkdocs-3.6.yml
 RUN mkdocs build -f mkdocs-2.18.yml
@@ -44,7 +43,6 @@ CMD ["nginx", "-g", "daemon off;"]
 # FROM latest as all
 # RUN INSIDERS=true mkdocs build -f mkdocs-4.10.yml
 # RUN INSIDERS=true mkdocs build -f mkdocs-4.8.yml
-# RUN INSIDERS=true mkdocs build -f mkdocs-4.6.yml
 # RUN INSIDERS=true mkdocs build -f mkdocs-deprecated.yml
 # RUN INSIDERS=true mkdocs build -f mkdocs-3.6.yml
 # RUN INSIDERS=true mkdocs build -f mkdocs-2.18.yml

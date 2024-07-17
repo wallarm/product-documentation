@@ -1,1 +1,0 @@
---8<-- "4.8/admin-en/monitoring/available-metrics.md"
