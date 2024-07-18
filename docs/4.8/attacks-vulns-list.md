@@ -677,9 +677,7 @@ There are two scenarios the Wallarm node marks a request as the `overlimit_res` 
     Limiting the request processing time prevents the bypass attacks aimed at the Wallarm nodes. In some cases, the requests marked as `overlimit_res` can indicate insufficient resources allocated for the Wallarm node modules that lead to long request processing time.
 * The request uploads the gzip file weighing more than 512 MB.
 
-## Other
-
-### Blocked source
+## Blocked source
 
 **Attack**
 
@@ -689,7 +687,7 @@ There are two scenarios the Wallarm node marks a request as the `overlimit_res` 
 
 Attacks from **manually** [denylisted](user-guides/ip-lists/overview.md) IPs.
 
-### Virtual patch
+## Virtual patch
 
 **Attack**
 
@@ -713,7 +711,8 @@ Virtual patching is blocking specific or all requests to some endpoint that is p
 
 Description TBD (not presented in docs, but presented in UI)
 -->
-## Vulnerabilities
+
+## Other
 
 ### Authentication bypass
 
