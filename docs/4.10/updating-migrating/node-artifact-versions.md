@@ -209,6 +209,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](sidecar-proxy.md)
 
+### 4.10.9 (2024-07-18)
+
+* Fixed issues preventing sidecar proxy container from starting
+
 ### 4.10.8 (2024-07-17)
 
 * Fixed issues with starting the API Firewall service required for [API Specification Enforcement](../api-specification-enforcement/overview.md) in [split deployment mode](../installation/kubernetes/sidecar-proxy/customization.md#single-and-split-deployment-of-containers) of Wallarm containers

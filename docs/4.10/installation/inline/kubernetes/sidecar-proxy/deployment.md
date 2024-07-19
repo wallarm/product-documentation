@@ -123,7 +123,7 @@ Generate a filtering node token of the [appropriate type][node-token-types] to c
 1. Deploy the Wallarm Helm chart:
 
     ``` bash
-    helm install --version 4.10.8 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
+    helm install --version 4.10.9 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Wallarm Sidecar chart
