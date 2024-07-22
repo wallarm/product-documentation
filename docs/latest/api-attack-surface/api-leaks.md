@@ -1,13 +1,10 @@
 # API Leaks <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a> <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-The **API Leaks** module of the Wallarm platform actively scans your selected domains for the leaks of the credential data (API tokens and keys, passwords, client secrets, usernames, emails and others). This article gives an overview of the module: issues addressed by it, its purpose and main possibilities.
+The **API Leaks** component of the Wallarm's [API Attack Surface Management (AASM)](overview.md) actively scans your selected domains for the leaks of the credential data (API tokens and keys, passwords, client secrets, usernames, emails and others). This article gives an overview of the component: issues addressed by it, its purpose and main possibilities.
 
 While searching for API leaks is the module's main goal, it also allows [applying remediation](#making-decisions) (virtual patches) to selected leaks in case you have deployed Wallarm [node(s)](../user-guides/nodes/nodes.md). This will block usage of the leaked data in all requests.
 
-![API Leaks](../images/about-wallarm-waf/api-leaks/api-leaks-add.png)
-
-!!! info "Enabling API Leaks"
-    By default, the API Leaks module is disabled. To get access to the module, please send a request to [Wallarm technical support](mailto:support@wallarm.com).
+![API Leaks](../images/api-attack-surface/api-leaks-add.png)
 
 ## Issues addressed by API Leaks
 
@@ -17,7 +14,7 @@ In order to protect your APIs, you need to monitor public repositories to find a
 
 If leaked API secrets are found, an all-round response is needed to prevent harm to your APIs. This involves finding all the places where the leaked secrets are used, regenerating them in all these places, and blocking the use of the compromised versions – and this has to be done quickly, and with 100% completeness. This is difficult to accomplish manually.
 
-The **API Leaks** Wallarm module helps to solve these issues by providing the following:
+The **API Leaks** Wallarm component helps to solve these issues by providing the following:
 
 * Automatic detection of API credentials (API tokens and keys, passwords, client secrets, usernames and emails) leaked by your selected domains and logging of detected leaks in the Wallarm Console UI.
 * Prioritization and risk-evaluation of found API leaks.
@@ -32,24 +29,24 @@ You can define a list of your domains (**target domains**) where you want to sea
 
 To define target domains to search for API leaks:
 
-1. In the **API Leaks** section, click **Configure**.
+1. In the **API Attack Surface** or **API Leaks** section, click **Configure**.
 1. At the **Scope** tab, add your domains. You can use the names of domains, found by the [API Discovery](../api-discovery/overview.md) module (if enabled) or by [Wallarm's Scanner](../user-guides/scanner.md).
 
     Wallarm will start searching for subdomains and leaked credentials published under the domain. The search progress and results will be displayed at the **Status** tab.
 
-![API Leaks - Configuring scope](../images/about-wallarm-waf/api-leaks/api-leaks-configure-scope.png)
+![API Leaks - configuring scope](../images/api-attack-surface/api-leaks-configure-scope.png)
 
 ## Interactive visualization
 
 The **API Leaks** section provides a rich visual representation of your current situation regarding found API leaks. Use the graphics and filters to quickly analyze current situation with found leaks, click diagram elements to filter leaks by targets or risk levels.
 
-![API Leaks - Visualization](../images/about-wallarm-waf/api-leaks/api-leaks-visual.png)
+![API Leaks - Visualization](../images/api-attack-surface/api-leaks-visual.png)
 
 ## Making decisions
 
-You can manage the decisions on what to do  with the found leaks as follows:
+You can manage the decisions on what to do with the found leaks as follows:
 
-* Apply a virtual patch to block all attempts to use the leaked API credentials.
+* If you have a deployed Wallarm [node(s)](../user-guides/nodes/nodes.md), apply a virtual patch to block all attempts to use the leaked API credentials.
 
     A [virtual patch rule](../user-guides/rules/vpatch-rule.md) will be created.
     
@@ -63,6 +60,6 @@ You can manage the decisions on what to do  with the found leaks as follows:
 
 You can view requests blocked by [virtual patches](../user-guides/rules/vpatch-rule.md) in Wallarm Console → **Attacks** by setting the **Type** filter to `Virtual patch` (`vpatch`).
 
-![Events - API leaks via vpatch](../images/about-wallarm-waf/api-leaks/api-leaks-in-events.png)
+![Events - API leaks via vpatch](../images/api-attack-surface/api-leaks-in-events.png)
 
 Note that this filter will list not only the virtual patch events caused by the **API Leaks** module but also all the other virtual patches, created for different purposes.

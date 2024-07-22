@@ -61,9 +61,11 @@ nav:
     - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
     - GraphQL API Protection: api-protection/graphql-rule.md
   - API Attack Surface:
-    - Overview: about-wallarm/attack-surface.md
+    - Overview: api-attack-surface/overview.md
+    - API Surface: api-attack-surface/api-surface.md
+    - API Leaks: api-attack-surface/api-leaks.md
+  - Assets & Vulnerabilities:
     - Exposed Assets: user-guides/scanner.md
-    - API Leaks: about-wallarm/api-leaks.md
     - Vulnerability Assessment:
       - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md
       - Managing Vulnerabilities: user-guides/vulnerabilities.md
