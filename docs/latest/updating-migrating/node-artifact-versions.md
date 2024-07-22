@@ -116,6 +116,12 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](ingress-controller.md)
 
+### 4.10.9 (2024-07-19)
+
+* Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
+* Added support for the `remote_addr` point in [API Abuse Prevention](../api-abuse-prevention/overview.md) to fix the [API Sessions](../api-sessions.md) export issue
+* Fixed the [CVE-2024-6345](https://nvd.nist.gov/vuln/detail/CVE-2024-6345) vulnerability
+
 ### 4.10.8 (2024-07-12)
 
 * Fixed a memory leak in the [API Discovery](../api-discovery/overview.md) module
