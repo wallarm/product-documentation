@@ -13,7 +13,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ### 4.10.9 (2024-07-19)
 
 * Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
-* Added support for the `remote_addr` point in [API Abuse Prevention](../api-abuse-prevention/overview.md) to fix the [API Sessions](../api-sessions.md) export issue
+* Fixed issues exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module to [API Sessions](../api-sessions.md)
 * Fixed the [CVE-2024-6345](https://nvd.nist.gov/vuln/detail/CVE-2024-6345) vulnerability
 
 ### 4.10.8 (2024-07-12)
@@ -119,7 +119,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ### 4.10.9 (2024-07-19)
 
 * Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
-* Added support for the `remote_addr` point in [API Abuse Prevention](../api-abuse-prevention/overview.md) to fix the [API Sessions](../api-sessions.md) export issue
+* Fixed issues exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module to [API Sessions](../api-sessions.md)
 * Fixed the [CVE-2024-6345](https://nvd.nist.gov/vuln/detail/CVE-2024-6345) vulnerability
 
 ### 4.10.8 (2024-07-12)
@@ -220,6 +220,12 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## Helm chart for Sidecar
 
 [How to upgrade](sidecar-proxy.md)
+
+### 4.10.10 (2024-07-22)
+
+* Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
+* Fixed issues exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module to [API Sessions](../api-sessions.md)
+* Fixed the [CVE-2024-6345](https://nvd.nist.gov/vuln/detail/CVE-2024-6345) vulnerability
 
 ### 4.10.9 (2024-07-18)
 
@@ -362,6 +368,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](docker-container.md)
 
+### 4.10.9-1 (2024-07-22)
+
+* Fixed the [CVE-2024-6345](https://nvd.nist.gov/vuln/detail/CVE-2024-6345) vulnerability
+
 ### 4.10.8-1 (2024-07-12)
 
 * Fixed a memory leak in the [API Discovery](../api-discovery/overview.md) module
@@ -460,6 +470,11 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 4.10.9-1 (2024-07-22)
+
+* Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
+* Fixed issues exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module to [API Sessions](../api-sessions.md)
 
 ### 4.10.8-1 (2024-07-12)
 
