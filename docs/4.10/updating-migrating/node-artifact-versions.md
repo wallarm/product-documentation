@@ -471,6 +471,11 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](cloud-image.md)
 
+### 4.10.9-1 (2024-07-22)
+
+* Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
+* Fixed issues exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module to [API Sessions](../api-sessions.md)
+
 ### 4.10.8-1 (2024-07-12)
 
 * Fixed a memory leak in the [API Discovery](../api-discovery/overview.md) module
