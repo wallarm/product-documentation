@@ -268,7 +268,7 @@ To use your own certificates, the following options are available:
           key: <base64-encoded-private-key>
     ```
 
-If you are upgrading from version 4.10.6 or earlier to 4.10.7, please follow the [specific upgrade instructions][sidecar-upgrade-docs]. This update introduces a breaking change, requiring solution re-installation.
+If you are upgrading from version 4.10.6 or earlier, please follow the [specific upgrade instructions][sidecar-upgrade-docs]. This update introduces a breaking change, requiring solution re-installation.
 
 ### Enabling additional NGINX modules
 
