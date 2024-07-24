@@ -19,6 +19,7 @@ To detect vulnerabilities in the application, Wallarm sends requests with attack
 * **Passive detection**: the vulnerability was found due to the security incident that occurred.
 * **Active threat verification**: lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
 * **Vulnerability Scanner**: company's exposed assets are scanned for typical vulnerabilities.
+* **API Discovery insights**: the vulnerability was found by [API Discovery](../api-discovery/overview.md) module due to PII transfer in query parameters of GET requests.
 
 ### Passive detection
 
@@ -59,6 +60,10 @@ Vulnerability Scanner checks all company's exposed assets for typical vulnerabil
 * If you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you configure an allowlist with the [IP addresses](../admin-en/scanner-addresses.md) for the Wallarm Scanner. This will allow Wallarm components to seamlessly scan your resources for vulnerabilities.
 
     You do not need to manually allowlist Scanner IP addresses in Wallarm - starting with Wallarm node 3.0, Scanner IP addresses are allowlisted automatically.
+
+### API Discovery insights
+
+When endpoints identified by the [API Discovery](../api-discovery/overview.md) module transfer Personally Identifiable Information (PII) in query parameters of GET requests (see [CWE-598](https://cwe.mitre.org/data/definitions/598.html)), Wallarm recognizes these endpoints as having the [information exposure](../attacks-vulns-list.md#information-exposure) vulnerability.
 
 ## False positives
 
