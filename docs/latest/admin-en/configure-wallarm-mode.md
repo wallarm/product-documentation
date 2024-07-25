@@ -32,7 +32,7 @@ The filtration mode can be configured in the following ways:
 
 Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#setting-up-priorities-of-filtration-mode-configuration-methods-using-wallarm_mode_allow_override). By default, the settings specified in Wallarm Console have a higher priority than the `wallarm_mode` directive regardless of its value severity.
 
-### Configuration file `wallarm_mode` directive
+### Setting `wallarm_mode` directive
 
 !!! warning "Support of the `wallarm_mode` directive on the CDN node"
     Please note that the `wallarm_mode` directive cannot be configured on the [Wallarm CDN nodes](../installation/cdn-node.md). To configure the filtration mode of the CDN nodes, please use other available methods.
@@ -47,7 +47,7 @@ If different `wallarm_mode` directive values are defined for the `http`, `server
 
 **Setting `wallarm_mode` in specific deployments**
 
-Peculiarities on how the `wallarm_mode` directive is set in the specific deployments are described below. Note that the values and their meanings are the same as for the `wallarm_mode` directive.
+Peculiarities on how the `wallarm_mode` directive is set in the specific deployments are described below. Note that the values and their meanings are the same as for the `wallarm_mode` directive. Also consider that described configuration is applicable only for [in-line](../installation/inline/overview.md) deployments - for [Out-of-Band (OOB)](../installation/oob/overview.md) solutions only the `monitoring` mode can be active.
 
 === "Docker"
     When deploying Wallarm nodes via docker containers, pass the `WALLARM_MODE` environment variable. 
