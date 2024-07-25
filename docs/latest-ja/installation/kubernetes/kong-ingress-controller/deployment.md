@@ -40,9 +40,9 @@ Wallarmサービスと統合したKong Ingress Controllerは、以下のDeployme
 * **Ingress controller** (`wallarm-ingress-kong`)は、Helm chartの値に基づいてK8sクラスタにKong API GatewayとWallarmリソースを注入し、これを構成し、ノードコンポーネントをWallarm Cloudに接続します。
 * **Postanalyticsモジュール** (`wallarm-ingress-kong-wallarm-tarantool`)はこのソリューションのローカルデータ分析バックエンドです。このモジュールはメモリ内ストレージのTarantoolと一部のヘルパーコンテナ（collectd、攻撃エクスポートサービスなど）を使用します。
 
-## Enterprise Kong Ingress コントローラの制限事項
+##  Kong Ingress コントローラの制限事項
 
-Enterprise Kong Ingressコントローラ用の解説されたソリューションは、Wallarmレイヤーの微調整をWallarm Console UI経由でのみ許容します。
+ Kong Ingressコントローラ用の解説されたソリューションは、Wallarmレイヤーの微調整をWallarm Console UI経由でのみ許容します。
 
 ただし、Wallarmプラットフォームの一部の機能には、現在のエンタープライズソリューションの実装ではサポートされていない設定ファイルの変更が必要です。これにより次のWallarmの機能が利用できません:
 
@@ -125,7 +125,7 @@ Wallarmサービスと統合したKong Ingress Controllerをデプロイする�
 
         image:
           repository: wallarm/kong-ee-preview
-          license_secret: "<KONG-ENTERPRISE-LICENSE>"
+          license_secret: "<KONG--LICENSE>"
           vitals:
             enabled: false
           portal:
@@ -133,7 +133,7 @@ Wallarmサービスと統合したKong Ingress Controllerをデプロイする�
           rbac:
             enabled: false
 
-        enterprise:
+        :
           enabled: true
 
         ingressController:
@@ -149,7 +149,7 @@ Wallarmサービスと統合したKong Ingress Controllerをデプロイする�
 
         image:
           repository: wallarm/kong-ee-preview
-          license_secret: "<KONG-ENTERPRISE-LICENSE>"
+          license_secret: "<KONG--LICENSE>"
           vitals:
             enabled: false
           portal:
@@ -157,7 +157,7 @@ Wallarmサービスと統合したKong Ingress Controllerをデプロイする�
           rbac:
             enabled: false
 
-        enterprise:
+        :
           enabled: true
         
         ingressController:
@@ -171,7 +171,7 @@ Wallarmサービスと統合したKong Ingress Controllerをデプロイする�
 
         --8<-- "../include-ja/waf/installation/info-about-using-one-token-for-several-nodes.md"
     
-    * `<KONG-ENTERPRISE-LICENSE>` は [Kong Enterprise License](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong-enterprise-license)です
+    * `<KONG--LICENSE>` は [Kong  License](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong--license)です
 1. Wallarm Helmチャートをデプロイします:
 
     ``` bash
