@@ -9,9 +9,9 @@
 * [اكتشاف وتخفيف الهجمات](attack-detection-docs) في الوقت الحقيقي
 * [اكتشاف الثغرات الأمنية](vulnerability-detection-docs)
 * [اكتشاف قائمة APIs](api-discovery-docs)
-* خدمات Wallarm مدمجة بشكل أصلي في كل من الإصدارات المفتوحة المصدر وEnterprise [Kong API Gateway](https://docs.konghq.com/gateway/latest/)
+* خدمات Wallarm مدمجة بشكل أصلي في كل من الإصدارات المفتوحة المصدر و [Kong API Gateway](https://docs.konghq.com/gateway/latest/)
 * يعتمد هذا الحل على [Kong Ingress Controller الرسمي لـ Kong API Gateway](https://docs.konghq.com/kubernetes-ingress-controller/latest/) الذي يقدم دعمًا كاملًا لميزات Kong API Gateway
-* الدعم لـ Kong API Gateway 3.1.x (لكل من الإصدارات المفتوحة المصدر وEnterprise)
+* الدعم لـ Kong API Gateway 3.1.x (لكل من الإصدارات المفتوحة المصدر و)
 * ضبط طبقة Wallarm عبر واجهة مستخدم Wallarm وعلى أساس إنجرس وفقًا للتعليقات البرمجية
 
     !!! تحذير "دعم التعليقات البرمجية"
@@ -42,14 +42,14 @@
 
 ## القيود
 
-الحل الموصوف لـ Enterprise Kong Ingress controller يسمح بضبط طبقة Wallarm فقط عبر واجهة مستخدم Wallarm.
+الحل الموصوف لـ  Kong Ingress controller يسمح بضبط طبقة Wallarm فقط عبر واجهة مستخدم Wallarm.
 
-ومع ذلك، تتطلب بعض ميزات منصة Wallarm تغيير ملفات التكوين وهي غير مدعومة في تنفيذ الحل Enterprise الحالي. يجعل الأمر الميزات التالية من Wallarm غير متاحة:
+ومع ذلك، تتطلب بعض ميزات منصة Wallarm تغيير ملفات التكوين وهي غير مدعومة في تنفيذ الحل  الحالي. يجعل الأمر الميزات التالية من Wallarm غير متاحة:
 
 * [ميزة Multitenancy][multitenancy-overview]
 * [تكوين التطبيق][applications-docs]
-* [إعداد صفحة وكود الحظر المخصصة][custom-blocking-page-docs] - غير مدعومة من قبل كل من مراقبي الإنترنت Enterprise وOpen-Source Kong مع خدمات Wallarm
-* [اكتشاف منع البيانات الاعتماد][cred-stuffing-detection] - غير مدعومة من قبل كل من مراقبي الإنترنت Enterprise وOpen-Source Kong مع خدمات Wallarm
+* [إعداد صفحة وكود الحظر المخصصة][custom-blocking-page-docs] - غير مدعومة من قبل كل من مراقبي الإنترنت  وOpen-Source Kong مع خدمات Wallarm
+* [اكتشاف منع البيانات الاعتماد][cred-stuffing-detection] - غير مدعومة من قبل كل من مراقبي الإنترنت  وOpen-Source Kong مع خدمات Wallarm
 
 أما بالنسبة لـ Open-Source Kong Ingress controller مع خدمات Wallarm، يدعم التعدد والتكوين التطبيقي على أساس إنجرس عبر [التعليقات البرمجية](customization.md#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition).
 
@@ -116,7 +116,7 @@
             repository: wallarm/kong-kubernetes-ingress-controller
         ```  
         
-    مثال على الملف بالتكوين الأدنى لتشغيل **Enterprise** Kong Ingress controller مع خدمات Wallarm المدمجة:
+    مثال على الملف بالتكوين الأدنى لتشغيل **** Kong Ingress controller مع خدمات Wallarm المدمجة:
 
     === "US Cloud"
         ```yaml
@@ -126,7 +126,7 @@
 
         image:
           repository: wallarm/kong-ee-preview
-          license_secret: "<KONG-ENTERPRISE-LICENSE>"
+          license_secret: "<KONG--LICENSE>"
           vitals:
             enabled: false
           portal:
@@ -134,7 +134,7 @@
           rbac:
             enabled: false
 
-        enterprise:
+        :
           enabled: true
 
         ingressController:
@@ -150,7 +150,7 @@
 
         image:
           repository: wallarm/kong-ee-preview
-          license_secret: "<KONG-ENTERPRISE-LICENSE>"
+          license_secret: "<KONG--LICENSE>"
           vitals:
             enabled: false
           portal:
@@ -158,7 +158,7 @@
           rbac:
             enabled: false
 
-        enterprise:
+        :
           enabled: true
         
         ingressController:
@@ -172,7 +172,7 @@
 
         --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
     
-    * `<KONG-ENTERPRISE-LICENSE>` هو [ترخيص Kong Enterprise](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong-enterprise-license)
+    * `<KONG--LICENSE>` هو [ترخيص Kong ](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong--license)
 1. نشر رسم Wallarm Helm:
 
     ``` bash
@@ -193,7 +193,7 @@ kubectl annotate ingress <KONG_INGRESS_NAME> -n <KONG_INGRESS_NAMESPACE> wallarm
 
 حيث `<KONG_INGRESS_NAME>` هو اسم مورد Ingress في K8s توجه من خلاله API calls إلى microservices التي ترغب في حمايتها.
 
-أما بالنسبة لـ Enterprise Kong Ingress controller، يتم تمكين تحليل حركة المرور في وضع المراقبة بشكل عام لجميع موارد Ingress بشكل افتراضي.
+أما بالنسبة لـ  Kong Ingress controller، يتم تمكين تحليل حركة المرور في وضع المراقبة بشكل عام لجميع موارد Ingress بشكل افتراضي.
 
 ### الخطوة 4: اختبار Kong Ingress Controller مع خدمات Wallarm المدمجة
 

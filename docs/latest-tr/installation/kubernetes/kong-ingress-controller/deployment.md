@@ -125,7 +125,7 @@ Entegre Wallarm hizmetleri ile Kong Ingress Controller'ı dağıtmak için:
 
         image:
           repository: wallarm/kong-ee-preview
-          license_secret: "<KONG-ENTERPRISE-LICENSE>"
+          license_secret: "<KONG--LICENSE>"
           vitals:
             enabled: false
           portal:
@@ -133,7 +133,7 @@ Entegre Wallarm hizmetleri ile Kong Ingress Controller'ı dağıtmak için:
           rbac:
             enabled: false
 
-        enterprise:
+        :
           enabled: true
 
         ingressController:
@@ -149,7 +149,7 @@ Entegre Wallarm hizmetleri ile Kong Ingress Controller'ı dağıtmak için:
 
         image:
           repository: wallarm/kong-ee-preview
-          license_secret: "<KONG-ENTERPRISE-LICENSE>"
+          license_secret: "<KONG--LICENSE>"
           vitals:
             enabled: false
           portal:
@@ -157,7 +157,7 @@ Entegre Wallarm hizmetleri ile Kong Ingress Controller'ı dağıtmak için:
           rbac:
             enabled: false
 
-        enterprise:
+        :
           enabled: true
         
         ingressController:
@@ -171,7 +171,7 @@ Entegre Wallarm hizmetleri ile Kong Ingress Controller'ı dağıtmak için:
 
         --8<-- "../include-tr/waf/installation/info-about-using-one-token-for-several-nodes.md"
     
-    * `<KONG-ENTERPRISE-LICENSE>` [Kong Enterprise Lisansı](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong-enterprise-license)
+    * `<KONG--LICENSE>` [Kong  Lisansı](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong--license)
 1. Wallarm Helm grafiğini dağıtın:
 
     ``` bash
