@@ -8,41 +8,13 @@
 
 This article guides you on how to find the log files of a Wallarm filtering node.
 
-=== "All-in-one installer, NGINX-based Docker image, cloud images"
-    For installations via the [all-in-one installer](../installation/nginx/all-in-one.md), [NGINX-based Docker image](installation-docker-en.md), [Amazon Machine Image (AMI)](../installation/cloud-platforms/aws/ami.md) and [Google Cloud Machine Image](../installation/cloud-platforms/gcp/machine-image.md), log files are located within the `/opt/wallarm/var/log/wallarm` directory.
+Log files are located within the `/opt/wallarm/var/log/wallarm` directory. Here is a breakdown of the log files you will encounter and the type of information each contains:
 
-    Here is a breakdown of the log files you will encounter and the type of information each contains:
-
-    *   `brute-detect-out.log`: the log of fetching the brute force attack-related counters in the filter node cluster.
-    *   `export-attacks-out.log`: the log of exporting the attacks' data from the postanalytics module to the Wallarm cloud.
-    *   `export-counters-out.log`: the log of exporting the counters' data (see [“Monitoring the Filter Node”][doc-monitor-node]).
-    *   `export-environment-out.log`: the log of collecting the installed Wallarm package versions and uploading this data to the Wallarm Cloud to be displayed in the filtering node details in Wallarm Console. These processes are run once per hour. 
-    *   `syncnode-out.log`: the log of syncing the filter node with the Wallarm cloud (this includes fetching the [LOM][doc-lom] and proton.db files from the cloud).
-    *   `tarantool-out.log`: the log of the postanalytics module operations.
-    *   `sync-ip-lists-out.log` (named as `sync-blacklist-out.log` in the previous node versions): the log of syncing the filtering node with IP addresses added to [IP lists](../user-guides/ip-lists/overview.md) as single objects or subnets.
-    *   `sync-ip-lists-source-out.log` (named as `sync-mmdb-out.log` in the previous node versions): the log of syncing the filtering node with IP addresses registered in countries, regions and data centers from [IP lists](../user-guides/ip-lists/overview.md).
-    *   `appstructure-out.log` (only in the Docker containers): the log of the [API Discovery](../api-discovery/overview.md) module activity.
-    *   `registernode_loop-out.log` (only in the Docker containers): the log of activity of the wrapper script running the `register-node` script while it is succeeded.
-    *   `weak-jwt-detect-out.log`: the log of the [JWT vulnerability](../attacks-vulns-list.md#weak-jwt) detection.
-    *   `detect-cred-stuffing-out.log`: the log of the [credential stuffing detection](../about-wallarm/credential-stuffing.md).
-    * `api-firewall-out.log`: the log of the [API specification enforcement](../api-specification-enforcement/overview.md).
-
-=== "Other installation methods"
-    For installations using other methods, such as [DEB/RPM packages](../installation/nginx/dynamic-module.md), log files are located within the `/var/log/wallarm` directory.
-
-    Here is a breakdown of the log files you will encounter and the type of information each contains:
-
-    *   `brute-detect.log`: the log of fetching the brute force attack-related counters in the filter node cluster.
-    *   `export-attacks.log`: the log of exporting the attacks' data from the postanalytics module to the Wallarm cloud.
-    *   `export-counters.log`: the log of exporting the counters' data (see [“Monitoring the Filter Node”][doc-monitor-node]).
-    *   `export-environment.log`: the log of collecting the installed Wallarm package versions and uploading this data to the Wallarm Cloud to be displayed in the filtering node details in Wallarm Console. These processes are run once per hour. 
-    *   `syncnode.log`: the log of syncing the filter node with the Wallarm cloud (this includes fetching the [LOM][doc-lom] and proton.db files from the cloud).
-    *   `tarantool.log`: the log of the postanalytics module operations.
-    *   `sync-ip-lists.log` (named as `sync-blacklist.log` in the previous node versions): the log of syncing the filtering node with IP addresses added to [IP lists](../user-guides/ip-lists/overview.md) as single objects or subnets.
-    *   `sync-ip-lists-source.log` (named as `sync-mmdb.log` in the previous node versions): the log of syncing the filtering node with IP addresses registered in countries, regions and data centers from [IP lists](../user-guides/ip-lists/overview.md).
-    *   `appstructure.log` (only in the Docker containers): the log of the [API Discovery](../api-discovery/overview.md) module activity.
-    *   `registernode_loop.log` (only in the Docker containers): the log of activity of the wrapper script running the `register-node` script while it is succeeded.
-    *   `weak-jwt-detect.log`: the log of the [JWT vulnerability](../attacks-vulns-list.md#weak-jwt) detection.
+* `api-firewall-out.log`: the log of the [API specification enforcement](../api-specification-enforcement/overview.md).
+* `appstructure-out.log` (only in the Docker containers): the log of the [API Discovery](../api-discovery/overview.md) module activity.
+* `tarantool-out.log`: the log of the postanalytics module operations.
+* `wcli-out.log`: logs of all the Wallarm scirpts.
+* `collectd-out.log`
 
 ##  Configuring Extended Logging for the NGINX‑Based Filter Node
 

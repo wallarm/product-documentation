@@ -274,7 +274,7 @@ The delay between the recording of a request by the postanalytics module and dow
     * warning if `>60`
     * critical if `>300`
 * **Troubleshooting recommendations:**
-    * Read logs from the `/var/log/wallarm/export-attacks.log` or `/opt/wallarm/var/log/wallarm/export-attacks-out.log` file [depending on a node installation method](../configure-logging.md) and analyze errors. An increased value can be caused by low network throughput from the filter node to Wallarm's API service.
+    * Read logs from the `/opt/wallarm/var/log/wallarm/wcli-out.log` file. An increased value can be caused by low network throughput from the filter node to Wallarm's API service.
     * Check that enough memory is [allocated for Tarantool](../configuration-guides/allocate-resources-for-node.md#tarantool). The [`tnt_errors`][anchor-tnt] metric also increases when allocated memory is exceeded.
 
 ### Time of Storing Requests in the Postanalytics Module (in Seconds)
