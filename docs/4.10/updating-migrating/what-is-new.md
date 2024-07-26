@@ -142,7 +142,13 @@ If upgrading from the version 3.6 or lower, learn all changes from the [separate
 1. Review [recommendations for the module upgrade](general-recommendations.md).
 2. Upgrade installed modules following the instructions for your Wallarm node deployment option:
 
-      * [All-in-one installer](all-in-one.md)
+      * Wallarm NGINX modules with **all-in-one installer**
+
+        To improve and simplify the upgrade process, since version 4.10, upgrading of all node versions is performed using Wallarm's all-in-one installer. Use instructions:
+
+        * [For nodes installed using individual packages](../updating-migrating/nginx-modules.md)
+        * [For nodes already installed using all-in-one installer](all-in-one.md)
+
       * [Docker container with the modules for NGINX](docker-container.md)
       * [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Sidecar controller](sidecar-proxy.md)
