@@ -33,6 +33,23 @@ Once an account is registered and confirmed, it is automatically assigned with *
 
 Continue by deploying the [first Wallarm filtering node](#start-securing-your-traffic).
 
+## Know your API with zero deployment
+
+Knowing the full list of your organization's external APIs is the first step in mitigating potential security risks as unmonitored or undocumented APIs can become potential entry points for malicious attacks.
+
+Subscribe to Wallarm's [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) to immediately discover all your external hosts with their Web Apps & APIs and get:
+
+* List of your external hosts.
+* Protection score of your hosts - Wallarm will automatically test your found subdomains/hosts for the resistance against attacks on web and API services and evaluate their protection level.
+* Leaked credentials info for your hosts - Wallarm will actively scan your selected domains and public sources for the leaks of the credential data (API tokens and keys, passwords, client secrets, usernames, emails and others).
+
+You get all this simply by subscribing to the component in Wallarm - to get your information, you do not need to deploy anything.
+
+To start, do one of the following:
+
+* Contact [sales@wallarm.com](mailto:sales@wallarm.com) or 
+* Get pricing information and activate AASM on the Wallarm's official site [here](https://www.wallarm.com/product/aasm).
+
 ## Guided trial
 
 You can opt for a guided trial where our Sales Engineer team will assist you during the entire onboarding process. They will demonstrate the product's value over a 2-week period and help you deploy Wallarm filtering instances to filter your traffic.
