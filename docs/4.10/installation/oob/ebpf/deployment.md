@@ -198,12 +198,14 @@ To test that the Wallarm eBPF operates correctly:
 
 ## Limitations
 
-* The solution does not instantly block malicious requests since traffic analysis proceeds irrespective of actual traffic flow.
+* Due to its out-of-band (OOB) operation, which analyzes traffic independently from actual flow, the solution has several inherent limitations:
 
-    Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../..//user-guides/events/analyze-attack.md).
+    * It does not instantly block malicious requests. Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../../user-guides/events/analyze-attack.md).
+    * [Rate limiting](../../../user-guides/rules/rate-limiting.md) is not supported as it is impossible to limit load on target servers.
+    * [Filtering by IP addresses](../../../user-guides/ip-lists/overview.md) is not supported.
 * As server response bodies are not mirrored:
 
-    * Vulnerability detection based on [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) is not supported
-    * Displaying API endpoint [response structure in API Discovery](../../../api-discovery/exploring.md#endpoint-details) is not supported
+    * Vulnerability detection based on [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) is not supported.
+    * Displaying API endpoint [response structure in API Discovery](../../../api-discovery/exploring.md#endpoint-details) is not supported.
 
 * While the solution is in beta, not all Kubernetes resources can be mirrored effectively. Therefore, we recommend enabling traffic mirroring specifically for NGINX Ingress controllers, Kong Ingress controllers, or regular NGINX servers in Kubernetes.

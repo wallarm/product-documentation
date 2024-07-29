@@ -62,7 +62,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.3.0 (2024-07-09)
 
-* Initial release
+* [Initial release](../installation/oob/tcp-traffic-mirror/deployment.md)
 
 ## NGINX-based Docker image
 
