@@ -1,6 +1,6 @@
 # Recommendations for a safe node upgrade process
 
-This document describes recommendations and associated risks for a safe upgrade of Wallarm filtering node up to 4.10.
+This document describes recommendations and associated risks for a safe upgrade of Wallarm filtering node.
 
 ## Common recommendations
 
@@ -17,7 +17,7 @@ Below are the risks that may occur when updating the filtering node. To reduce t
 
 ### Changed functionality
 
-* [What is new in Wallarm node 4.10](what-is-new.md)
+* [What is new in Wallarm node 5.0](what-is-new.md)
 * [What is new if upgrading the EOL node (3.6 or lower)](older-versions/what-is-new.md)
 
 ### New false positives
@@ -43,7 +43,7 @@ The Wallarm node update process depends on the platform and installation forms. 
 * [Modules for NGINX, NGINX Plus](nginx-modules.md)
 * [Docker container with the modules for NGINX or Envoy](docker-container.md)
 * [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
-* [Kong Ingress controller with integrated Wallarm modules](kong-ingress-controller.md)
+<!-- * [Kong Ingress controller with integrated Wallarm modules](kong-ingress-controller.md) -->
 * [Sidecar](sidecar-proxy.md)
 * [Cloud node image](cloud-image.md)
 * [Multi-tenant node](multi-tenant.md)

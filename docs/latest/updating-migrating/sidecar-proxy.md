@@ -39,9 +39,9 @@ To install and run the plugin:
 
     If stdout is empty, make sure that the `values.yaml` file is valid.
 
-## Upgrading from version 4.10.6 or lower
+## Upgrading from version 4.10.6 or lower 4.10.x
 
-The [release 4.10.7](node-artifact-versions.md#helm-chart-for-sidecar) introduces breaking changes, requiring a reinstallation of the solution. The default method for generating the admission webhook certificate has been replaced with the [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen) process. During the upgrade, certificates will be automatically generated using the new `certgen` process.
+The [release 4.10.7](/4.10/updating-migrating/node-artifact-versions/#helm-chart-for-sidecar) introduced breaking changes, requiring a reinstallation of the solution. The default method for generating the admission webhook certificate has been replaced with the [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen) process. During the upgrade, certificates will be automatically generated using the new `certgen` process.
 
 Additionally, this release allows you to use [`cert-manager` for admission webhook certificate provisioning or specify certificates manually](../installation/kubernetes/sidecar-proxy/customization.md#certificates-for-the-admission-webhook).
 
@@ -80,7 +80,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.1
 
 * `<RELEASE_NAME>`: the name of the Helm release with the deployed Sidecar chart
 * `<NAMESPACE>`: the namespace the Sidecar is deployed to
-* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar 4.8 settings - you can use the one created for running the previous Sidecar version
+* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar 4.10 settings - you can use the one created for running the previous Sidecar version
 
 ## Test the upgraded Sidecar solution
 
