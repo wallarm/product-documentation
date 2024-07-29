@@ -22,7 +22,7 @@
 [allocate-memory-docs]:             ../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [limiting-request-processing]:      ../../../user-guides/rules/configure-overlimit-res-detection.md
 [logs-docs]:                        ../../../admin-en/configure-logging.md
-[oob-advantages-limitations]:       ../../oob/overview.md#advantages-and-limitations
+[oob-advantages-limitations]:       ../../oob/overview.md#limitations
 [wallarm-mode]:                     ../../../admin-en/configure-wallarm-mode.md
 [inline-docs]:                      ../../inline/overview.md
 [oob-docs]:                         ../../oob/overview.md

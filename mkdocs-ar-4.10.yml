@@ -257,6 +257,9 @@ nav:
         - نصب: installation/oob/ebpf/deployment.md
         - قيم Helm Chart: installation/oob/ebpf/helm-chart-for-wallarm.md
         - تحديد الحزم للتطابق: installation/oob/ebpf/selecting-packets.md
+      - تحليل مرآة حركة المرور TCP:
+        - نشر: installation/oob/tcp-traffic-mirror/deployment.md
+        - تكوين: installation/oob/tcp-traffic-mirror/configuration.md
       - المرآة بواسطة NGINX, Envoy ومماثلة:
         - نظرة عامة: installation/oob/web-server-mirroring/overview.md
         - الغيوم العامة:
