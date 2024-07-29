@@ -13,25 +13,6 @@
 * [NGINX Metrics and NGINX Wallarm Module Metrics](#nginx-metrics-and-nginx-wallarm-module-metrics)
 * [Postanalytics Module Metrics](#postanalytics-module-metrics)
 
-!!! warning "Breaking changes due to the deleted metrics"
-    Starting from version 4.0, the Wallarm node does not collect the following metrics:
-    
-    * `curl_json-wallarm_nginx/gauge-requests` - you can use the [`curl_json-wallarm_nginx/gauge-abnormal`](#number-of-requests) metric instead
-    * `curl_json-wallarm_nginx/gauge-attacks`
-    * `curl_json-wallarm_nginx/gauge-blocked`
-    * `curl_json-wallarm_nginx/gauge-time_detect`
-    * `curl_json-wallarm_nginx/derive-requests`
-    * `curl_json-wallarm_nginx/derive-attacks`
-    * `curl_json-wallarm_nginx/derive-blocked`
-    * `curl_json-wallarm_nginx/derive-abnormal`
-    * `curl_json-wallarm_nginx/derive-requests_lost`
-    * `curl_json-wallarm_nginx/derive-tnt_errors`
-    * `curl_json-wallarm_nginx/derive-api_errors`
-    * `curl_json-wallarm_nginx/derive-segfaults`
-    * `curl_json-wallarm_nginx/derive-memfaults`
-    * `curl_json-wallarm_nginx/derive-softmemfaults`
-    * `curl_json-wallarm_nginx/derive-time_detect`
-
 ## Metric Format
 
 The `collectd` metrics have the following view:
@@ -108,13 +89,7 @@ A number of issues have led to abnormal completion of the NGINX worker process. 
 
 * **Metric:** `curl_json-wallarm_nginx/gauge-segfaults`
 * **Metric value:** `0`
-* **Troubleshooting recommendations:**
-    1. Collect data about the current state using one of the following scripts:
-
-        * `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` if a filtering node is installed with all-in-one installer, NGINX-based Docker image, AMI or GCP cloud image
-        * `/usr/share/wallarm-common/collect-info.sh` for other deployment options
-    
-    2. Provide the generated file to the [Wallarm support team](mailto:support@wallarm.com) for investigation.
+* **Troubleshooting recommendations:** Share the `/opt/wallarm/var/log/wallarm/wcli-out.log` log file content with the [Wallarm support team](mailto:support@wallarm.com).
 
 ### Number of Situations Exceeding the Virtual Memory Limit
 
@@ -124,13 +99,7 @@ The number of situations when the virtual memory limit was exceeded.
     * `curl_json-wallarm_nginx/gauge-memfaults` if the limit in your system was exceeded
     * `curl_json-wallarm_nginx/gauge-softmemfaults` if the limit for proton.db +lom was exceeded ([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit)) 
 * **Metric value:** `0`
-* **Troubleshooting recommendations:**
-    1. Collect data about the current state using one of the following scripts:
-        
-        * `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` if a filtering node is installed with all-in-one installer, NGINX-based Docker image, AMI or GCP cloud image
-        * `/usr/share/wallarm-common/collect-info.sh` for other deployment options
-
-    2. Provide the generated file to the [Wallarm support team](mailto:support@wallarm.com) for investigation.
+* **Troubleshooting recommendations:** Share the `/opt/wallarm/var/log/wallarm/wcli-out.log` log file content with the [Wallarm support team](mailto:support@wallarm.com).
 
 ### Number of the proton.db Errors
 
@@ -140,11 +109,7 @@ The number of the proton.db errors except for those occurred due to the situatio
 * **Metric value:** `0`
 * **Troubleshooting recommendations:**
     1. Copy the error code from the NGINX logs (`wallarm: proton error: <ERROR_NUMBER>`).
-    1. Collect data about the current state using one of the following scripts:
-        
-        * `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` if a filtering node is installed with all-in-one installer, NGINX-based Docker image, AMI or GCP cloud image
-        * `/usr/share/wallarm-common/collect-info.sh` for other deployment options
-
+    1. Copy the `/opt/wallarm/var/log/wallarm/wcli-out.log` log file content.
     1. Provide the collected data to the [Wallarm support team](mailto:support@wallarm.com) for investigation.
 
 ### Version of proton.db
