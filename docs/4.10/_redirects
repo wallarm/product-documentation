@@ -687,3 +687,6 @@
 /installation/nginx/dynamic-module-from-distr/ /updating-migrating/nginx-modules/
 /installation/nginx/dynamic-module/ /updating-migrating/nginx-modules/
 /installation/nginx-plus/ /updating-migrating/nginx-modules/
+
+/about-wallarm/attack-surface/ /api-attack-surface/overview/
+/about-wallarm/api-leaks/ /api-attack-surface/api-leaks/
