@@ -459,28 +459,28 @@ nav:
     - Enabling JA3 fingerprinting: admin-en/enabling-ja3.md
     - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
     - Node Upgrade:
-      - What is new in Wallarm node 4.10: updating-migrating/what-is-new.md
+      - What is new in Wallarm node 5.0: updating-migrating/what-is-new.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
       - Filtering node upgrade instructions:
-        - Upgrading Wallarm NGINX Modules Installed from Individual Packages: updating-migrating/nginx-modules.md
-        - Upgrading Postanalytics Module Installed from Individual Packages: updating-migrating/separate-postanalytics.md
+        - Upgrading DEB/RPM Packages: updating-migrating/nginx-modules.md
+        - Upgrading Postanalytics Module Installed from DEB/RPM Packages: updating-migrating/separate-postanalytics.md
         - Upgrading Node Installed via All-in-One Installer: updating-migrating/all-in-one.md
-        - Upgrading the Wallarm Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
-        - Upgrading NGINX Ingress controller with integrated Wallarm modules: updating-migrating/ingress-controller.md
-        - Upgrading Kong Ingress controller with integrated Wallarm modules: updating-migrating/kong-ingress-controller.md
-        - Upgrading Wallarm Sidecar proxy: updating-migrating/sidecar-proxy.md
-        - Upgrading the cloud node image: updating-migrating/cloud-image.md
-        - Upgrading Wallarm CDN node: updating-migrating/cdn-node.md
-        - Upgrading the multi‑tenant node: updating-migrating/multi-tenant.md
+        - Upgrading the Wallarm Docker NGINX-Based Image: updating-migrating/docker-container.md
+        - Upgrading NGINX Ingress Controller with Integrated Wallarm Modules: updating-migrating/ingress-controller.md
+        # - Upgrading Kong Ingress controller with integrated Wallarm modules: updating-migrating/kong-ingress-controller.md
+        - Upgrading Wallarm Sidecar Proxy: updating-migrating/sidecar-proxy.md
+        - Upgrading the Cloud Node Image: updating-migrating/cloud-image.md
+        - Upgrading Wallarm CDN Node: updating-migrating/cdn-node.md
+        - Upgrading the Multi‑Tenant Node: updating-migrating/multi-tenant.md
       - Upgrading EOL Wallarm nodes (3.6 and lower):
         - What is new in Wallarm node (if upgrading an EOL node): updating-migrating/older-versions/what-is-new.md
-        - Upgrading EOL Wallarm NGINX modules: updating-migrating/older-versions/nginx-modules.md
-        - Upgrading the EOL postanalytics module: updating-migrating/older-versions/separate-postanalytics.md
-        - Upgrading an EOL Docker NGINX- or Envoy-based image: updating-migrating/older-versions/docker-container.md
-        - Upgrading EOL NGINX Ingress controller with integrated Wallarm modules: updating-migrating/older-versions/ingress-controller.md
-        - Upgrading an EOL cloud node image: updating-migrating/older-versions/cloud-image.md
-        - Upgrading the EOL multi‑tenant node: updating-migrating/older-versions/multi-tenant.md
-        - Migrating allowlists and denylists from EOL Wallarm node: updating-migrating/migrate-ip-lists-to-node-3.md
+        - Upgrading EOL Wallarm NGINX Modules: updating-migrating/older-versions/nginx-modules.md
+        - Upgrading the EOL Postanalytics Module: updating-migrating/older-versions/separate-postanalytics.md
+        - Upgrading an EOL Docker NGINX-Based Image: updating-migrating/older-versions/docker-container.md
+        - Upgrading EOL NGINX Ingress Controller with Integrated Wallarm Modules: updating-migrating/older-versions/ingress-controller.md
+        - Upgrading an EOL Cloud Node Image: updating-migrating/older-versions/cloud-image.md
+        - Upgrading the EOL Multi‑Tenant Node: updating-migrating/older-versions/multi-tenant.md
+        - Migrating Allowlists and Denylists from EOL Wallarm Node: updating-migrating/migrate-ip-lists-to-node-3.md
     - Node Versioning Policy: updating-migrating/versioning-policy.md
     - Inventory of Node Artifact Versions: updating-migrating/node-artifact-versions.md
     - Wallarm Scanner Addresses: admin-en/scanner-addresses.md

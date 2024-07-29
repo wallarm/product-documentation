@@ -9,7 +9,7 @@
 
 # Upgrading NGINX Ingress controller with integrated Wallarm modules
 
-These instructions describe the steps to upgrade deployed Wallarm NGINX-based Ingress Controller 4.x to the new version with Wallarm node 4.10.
+These instructions describe the steps to upgrade deployed Wallarm NGINX-based Ingress Controller 4.x to the new version with Wallarm node 5.0.
 
 To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/ingress-controller.md).
 
@@ -42,7 +42,7 @@ To install and run the plugin:
 
     * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
     * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
-    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Ingress controller 4.10 settings - you can use the one created for running the previous Ingress controller version
+    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Ingress controller 5.0 settings - you can use the one created for running the previous Ingress controller version
 3. Make sure that no changes can affect the stability of the running services and carefully examine the errors from stdout.
 
     If stdout is empty, make sure that the `values.yaml` file is valid.
@@ -57,7 +57,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.1
 
 * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
 * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
-* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Ingress controller 4.10 settings - you can use the one created for running the previous Ingress controller version
+* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Ingress controller 5.0 settings - you can use the one created for running the previous Ingress controller version
 
 ## Step 4: Test the upgraded Ingress controller
 

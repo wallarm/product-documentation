@@ -1,1 +1,1 @@
---8<-- "latest/faq/attacks-not-uploaded-to-cloud.md"
+--8<-- "4.10/faq/attacks-not-uploaded-to-cloud.md"

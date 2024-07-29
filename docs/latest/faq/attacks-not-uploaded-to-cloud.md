@@ -94,16 +94,5 @@ If the steps above do not help to resolve the issue, please capture the node log
     ```
 
     Copy an output.
-1. Run the Wallarm diagnostic script:
-
-    === "All-in-one installer, AMI or GCP image, NGINX-based Docker image"
-        ```bash
-        sudo /opt/wallarm/usr/share/wallarm-common/collect-info.sh
-        ```
-    === "Other deployment options"
-        ```bash
-        sudo /usr/share/wallarm-common/collect-info.sh
-        ```
-
-    Get the generated file with logs.
+1. Copy the `/opt/wallarm/var/log/wallarm/wcli-out.log` log file content.
 1. Send all collected data to the [Wallarm support team](mailto:support@wallarm.com) for further investigation.

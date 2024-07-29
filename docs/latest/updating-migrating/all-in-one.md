@@ -6,24 +6,57 @@
 
 # Upgrading Wallarm node with All-in-One Installer
 
-These instructions describe the steps to upgrade the Wallarm node 4.x installed using [all-in-one installer](../installation/nginx/all-in-one.md) to version 4.10.
+These instructions describe the steps to upgrade the Wallarm node 4.x installed using [all-in-one installer](../installation/nginx/all-in-one.md) to version 5.0.
+
+!!! info "Re-installation of the Wallarm services is required"
+    When upgrading from version 4.x using the all-in-one installer, it is recommended to perform a fresh installation of the node. For a safe procedure, install the new node on a new machine, redirect traffic to the new machine, and then remove the old one.
+    
+    Alternatively, you can stop and remove the services on your current machine and then re-install the node. However, this may cause some downtime, which is not recommended.
+
+    This article describes the safest migration method.
 
 ## Requirements
 
 --8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
 
-## Upgrade procedure
+<!-- ## Upgrade procedure
 
 The upgrade procedure differs depending on how filtering node and postanalytics modules are installed:
 
 * [On the same server](#filtering-node-and-postanalytics-on-the-same-server): modules are upgraded altogether
-* [On different servers](#filtering-node-and-postanalytics-on-different-servers): **first** upgrade the postanalytics module and **then** the filtering module
+* [On different servers](#filtering-node-and-postanalytics-on-different-servers): **first** upgrade the postanalytics module and **then** the filtering module -->
 
-## Filtering node and postanalytics on the same server
+<!-- ## Filtering node and postanalytics on the same server
 
-Use the procedure below to upgrade altogether the filtering node and postanalytics modules installed using all-in-one installer on the same server.
+Use the procedure below to upgrade altogether the filtering node and postanalytics modules installed using all-in-one installer on the same server. -->
 
-### Step 1: Prepare Wallarm token
+## Step 1: Install the new node version on a clean machine
+
+Install the newest version of the node on a **new machine** following one of the instructions. The guide will also cover the requirements for the machine.
+
+* [Filtering and postanalytics modules on the same server](../installation/nginx/all-in-one.md)
+* [Filtering and postanalytics modules on different servers](../admin-en/installation-postanalytics-en.md)
+
+During the installation, you can transfer the configuration files you used for the previous node and use them - nothing has changed in the node configuration.
+
+Then route the traffic to the new machine for the new node to process it.
+
+## Step 2: Remove the old node
+
+1. Once traffic is routed to the new machine and your Cloud-stored data (rules, IP lists) is synchronized, perform some test attacks to ensure your rules work as expected.
+1. Delete old node in Wallarm Console → **Nodes** by selecting your node and clicking **Delete**.
+1. Confirm the action.
+    
+    When the node is deleted from Cloud, it will stop filtration of requests to your applications. Deleting the filtering node cannot be undone. The node will be deleted from the list of nodes permanently.
+
+1. Delete machine with the old node or just clean it from Wallarm node components:
+
+    ```
+    sudo systemctl stop wallarm
+    sudo rm -rf /opt/wallarm
+    ```
+
+<!-- ### Step 1: Prepare Wallarm token
 
 To upgrade node, you will need a Wallarm token of [one of the types](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation). To prepare a token:
 
@@ -84,14 +117,9 @@ To test the new node operation:
     ```
 
 1. Open the Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and ensure attacks are displayed in the list.
-1. As soon as your Cloud stored data (rules, IP lists) is synchronized to the new node, perform some test attacks to make sure your rules work as expected.
+1. As soon as your Cloud stored data (rules, IP lists) is synchronized to the new node, perform some test attacks to make sure your rules work as expected. -->
 
-## Filtering node and postanalytics on different servers
-
-!!! warning "Sequence of steps to upgrade the filtering node and postanalytics modules"
-    If the filtering node and postanalytics modules are installed on different servers, then it is required to upgrade the postanalytics packages before updating the filtering node packages.
-
-### Step 1: Prepare Wallarm token
+<!-- ### Step 1: Prepare Wallarm token
 
 To upgrade node, you will need a Wallarm token of [one of the types](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation). To prepare a token:
 
@@ -172,4 +200,4 @@ This step is performed on the filtering node machine.
 
 ### Step 6: Check the filtering node and separate postanalytics modules interaction
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
+--8<-- "../include/waf/installation/all-in-one-postanalytics-check.md" -->
