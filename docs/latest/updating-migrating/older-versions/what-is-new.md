@@ -1,15 +1,15 @@
 # What is new in Wallarm node (if upgrading an EOL node)
 
-This page lists the changes available when upgrading the node of the deprecated version (3.6 and lower) up to version 4.10. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
+This page lists the changes available when upgrading the node of the deprecated version (3.6 and lower) up to version 5.0. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
 
 !!! warning "Wallarm nodes 3.6 and lower are deprecated"
     Wallarm nodes 3.6 and lower are recommended to be upgraded since they are [deprecated](../versioning-policy.md#version-list).
 
-    Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 4.x. Some settings of node 4.x are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
+    Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 5.x. Some settings of node 5.x are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
 
-## All-in-one installer
+## All-in-one installer and DEB/RPM packages deprecation
 
-Now, when installing and upgrading Wallarm node as a dynamic module for NGINX in various environments, you can use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
+Now, when installing and upgrading Wallarm node as a dynamic module for NGINX in various environments, you are recommended to use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
 
 The installer simplifies the process by automatically performing the following actions:
 
@@ -19,11 +19,13 @@ The installer simplifies the process by automatically performing the following a
 1. Connecting the installed Wallarm module to your NGINX.
 1. Connecting the filtering node to Wallarm Cloud using the provided token.
 
-[See details on how to deploy the node with all-in-one installer →](../../installation/nginx/all-in-one.md)
+[See details on how to upgrade the node with all-in-one installer →](nginx-modules.md)
+
+The DEB/RPM packages for the node installation have the "deprecated" status now.
 
 ## Breaking changes due to the deleted metrics
 
-Starting from version 4.0, the Wallarm node does not collect the following collectd metrics:
+The Wallarm node does not collect the following collectd metrics anymore:
 
 * `curl_json-wallarm_nginx/gauge-requests` - you can use the [`curl_json-wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests) metric instead
 * `curl_json-wallarm_nginx/gauge-attacks`
@@ -45,7 +47,7 @@ Starting from version 4.0, the Wallarm node does not collect the following colle
 
 The lack of proper rate limiting has been a significant problem for API security, as attackers can launch high-volume requests causing a denial of service (DoS) or overload the system, which hurts legitimate users.
 
-With Wallarm's rate limiting feature supported since Wallarm node 4.6, security teams can effectively manage the service's load and prevent false alarms, ensuring that the service remains available and secure for legitimate users. This feature offers various connection limits based on request and session parameters, including traditional IP-based rate limiting, JSON fields, base64 encoded data, cookies, XML fields, and more.
+With Wallarm's rate limiting feature, security teams can effectively manage the service's load and prevent false alarms, ensuring that the service remains available and secure for legitimate users. This feature offers various connection limits based on request and session parameters, including traditional IP-based rate limiting, JSON fields, base64 encoded data, cookies, XML fields, and more.
 
 For example, you can limit API connections for each user, preventing them from making thousands of requests per minute. This would put a heavy load on your servers and could cause the service to crash. By implementing rate limiting, you can protect your servers from overload and ensure that all users have fair access to the API.
 
@@ -63,7 +65,7 @@ Although the rate limiting rule is the recommended method for setting up the fea
 
 ## Credential stuffing detection <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-Beginning with release 4.10, Wallarm introduces real-time detection and notifications for credential stuffing attempts. Credential stuffing, the automated submission of stolen or weak username/email and password pairs into website login forms to illegitimately access user accounts, is now closely monitored. This feature allows you to identify accounts with compromised credentials and take action to secure them, such as notifying account owners and temporarily suspending account access.
+Wallarm introduces real-time detection and notifications for credential stuffing attempts. Credential stuffing, the automated submission of stolen or weak username/email and password pairs into website login forms to illegitimately access user accounts, is now closely monitored. This feature allows you to identify accounts with compromised credentials and take action to secure them, such as notifying account owners and temporarily suspending account access.
 
 [Learn how to configure Credential Stuffing Detection](../../about-wallarm/credential-stuffing.md)
 
@@ -76,7 +78,7 @@ Beginning with release 4.10, Wallarm introduces real-time detection and notifica
 
 Wallarm detects regular attacks (SQLi, RCE, [etc.](../../attacks-vulns-list.md)) in GraphQL by default. However, some aspects of the protocol allow implementing [GraphQL specific](../../attacks-vulns-list.md#graphql-attacks) attacks related to excessive information exposure and DoS.
 
-Beginning with release 4.10.4, Wallarm introduces protection from these attacks. Protection is set by configuring your organization's GraphQL policy - a set of limits for the GraphQL requests. Requests exceeding any of set limits the filtering node will handle in accordance with the active filtration mode - will only register policy violations or will register and block such attempts.
+Wallarm introduces protection from these attacks. Protection is set by configuring your organization's GraphQL policy - a set of limits for the GraphQL requests. Requests exceeding any of set limits the filtering node will handle in accordance with the active filtration mode - will only register policy violations or will register and block such attempts.
 
 To start using the functionality, you need to create at least one [**Detect GraphQL attacks** rule](../../api-protection/graphql-rule.md#creating-and-applying-the-rule) in Wallarm Console.
 
@@ -106,7 +108,7 @@ Wallarm detects new attack types:
 
 * [Broken Object Level Authorization](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/) (BOLA), also known as Insecure Direct Object References (or IDOR), became one of the most common API vulnerabilities. When an application includes an IDOR / BOLA vulnerability, it has a strong probability of exposing sensitive information or data to attackers. All the attackers need to do is exchange the ID of their own resource in the API call with an ID of a resource belonging to another user. The absence of proper authorization checks enables attackers to access the specified resource. Thus, every API endpoint that receives an ID of an object and performs any type of action on the object can be an attack target.
 
-    To prevent exploitation of this vulnerability, Wallarm node 4.2 and above contain a [new trigger](../../admin-en/configuration-guides/protecting-against-bola.md) which you can use to protect your endpoints from BOLA attacks. The trigger monitors the number of requests to a specified endpoint and creates a BOLA attack event when thresholds from the trigger are exceeded.
+    To prevent exploitation of this vulnerability, Wallarm node contains a [new trigger](../../admin-en/configuration-guides/protecting-against-bola.md) which you can use to protect your endpoints from BOLA attacks. The trigger monitors the number of requests to a specified endpoint and creates a BOLA attack event when thresholds from the trigger are exceeded.
 * [Mass Assignment](../../attacks-vulns-list.md#mass-assignment)
 
     During a Mass Assignment attack, attackers try to bind HTTP request parameters into program code variables or objects. If an API is vulnerable and allows binding, attackers may change sensitive object properties that are not intended to be exposed, which could lead to privilege escalation, bypassing security mechanisms, and more.
@@ -118,7 +120,7 @@ Wallarm detects new attack types:
 
 [JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely. JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
 
-Starting from version 4.4, you can enable Wallarm to [detect the following JWT weaknesses](../../attacks-vulns-list.md#weak-jwt):
+Now, Wallarm [detects the following JWT weaknesses](../../attacks-vulns-list.md#weak-jwt):
 
 * Unencrypted JWTs
 * JWTs signed using compromised secret keys
@@ -127,13 +129,13 @@ Starting from version 4.4, you can enable Wallarm to [detect the following JWT w
 
 JSON Web Token (JWT) is one of the most popular authentication methods. This makes it a favorite tool to perform attacks (for example SQLi or RCE) that are very difficult to find because the data in the JWT is encoded and it can be located anywhere in the request.
 
-Wallarm node 4.2 and above find the JWT anywhere in the request, [decodes](../../user-guides/rules/request-processing.md#jwt) it and blocks (in the appropriate [filtration mode](../../admin-en/configure-wallarm-mode.md)) any attack attempts through this authentication method.
+Wallarm node finds the JWT anywhere in the request, [decodes](../../user-guides/rules/request-processing.md#jwt) it and blocks (in the appropriate [filtration mode](../../admin-en/configure-wallarm-mode.md)) any attack attempts through this authentication method.
 
 ## Supported installation options
 
 * Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.9.5.
 
-    [Instructions on migrating to the Wallarm Ingress controller →](ingress-controller.md)
+    [Instructions on migrating to the latest Wallarm Ingress controller →](ingress-controller.md)
 * Added support for AlmaLinux, Rocky Linux and Oracle Linux 8.x instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
 
     Wallarm node packages for the alternative operating systems will be stored in the CentOS 8.x repository. 
@@ -141,7 +143,6 @@ Wallarm node 4.2 and above find the JWT anywhere in the request, [decodes](../..
 * Added support for Ubuntu 22.04 LTS (jammy)
 * Dropped support for CentOS 6.x (CloudLinux 6.x)
 * Dropped support for Debian 9.x
-* Dropped support for Debian 10.x for Wallarm to be installed as the module for either NGINX stable or NGINX Plus
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
 * Version of Envoy used in [Wallarm Envoy-based Docker image](../../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
@@ -169,13 +170,13 @@ The new deployment method lets you configure the Wallarm CDN node outside your i
         ```
 * The filtering node now uploads data to the Cloud using `us1.api.wallarm.com:443` (US Cloud) and `api.wallarm.com:443` (EU Cloud) instead of `us1.api.wallarm.com:444` and `api.wallarm.com:444`.
 
-    If your server with the deployed node has a limited access to the external resources and the access is granted to each resource separately, after upgrade to version 4.x the synchronization between the filtering node and the Cloud will stop. The upgraded node needs to be granted access to the API endpoint with the new port.
+    If your server with the deployed node has a limited access to the external resources and the access is granted to each resource separately, after upgrade the synchronization between the filtering node and the Cloud will stop. The upgraded node needs to be granted access to the API endpoint with the new port.
 
-## Unified registration of nodes in the Wallarm Cloud by tokens
+## Unified registration of nodes in the Wallarm Cloud by API tokens
 
-With the new release of Wallarm node, email-password based registration of Wallarm nodes in the Cloud has been removed. It is now mandatory to switch to the new token-based node registration method to continue with Wallarm node 4.10.
+With the new release of Wallarm node, email-password based registration of Wallarm nodes in the Cloud has been removed. It is now mandatory to switch to the new API token-based node registration method to continue with the newer node versions.
 
-The new release enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../installation/supported-deployment-options.md), which ensures a more secure and faster connection to the Wallarm Cloud as follows:
+The new release enables you to register the Wallarm node in the Wallarm Cloud by the **API token** on [any supported platform](../../installation/supported-deployment-options.md), which ensures a more secure and faster connection to the Wallarm Cloud as follows:
 
 * Dedicated user accounts of the **Deploy** role allowing only to install the node are no longer required.
 * Users' data remains securely stored in the Wallarm Cloud.
@@ -184,26 +185,23 @@ The new release enables you to register the Wallarm node in the Wallarm Cloud by
 
 Changes in node registration methods result in some updates in node types:
 
-* The node supporting the unified registration by token has the **Wallarm node** type. The script to be run on the server to register the node is named `register-node`.
+* The script to be run on the server to register the node is named `register-node`. Previously, the Wallarm node named [**cloud node**](/2.18/user-guides/nodes/cloud-node/) supported registration by the token but with the different script named `addcloudnode`.
 
-    Previously, the Wallarm node was named [**cloud node**](/2.18/user-guides/nodes/cloud-node/). It also supported registration by the token but with the different script named `addcloudnode`.
-
-    The cloud node is not required to be migrated to the new node type.
+    The cloud node is not required to be migrated to the new deployment process.
 * The [**regular node**](/2.18/user-guides/nodes/regular-node/) supporting the registration by "email-password" passed to the `addnode` script is deprecated.
 
-    Starting from version 4.0, registration of the node deployed as the NGINX, NGINX Plus module or the Docker container looks as follows:
+Now, registration of the node looks as follows:
 
-    1. Create the **Wallarm node** in Wallarm Console and copy the generated token.
-    1. Run the `register-node` script with the node token passed or run the Docker container with the `WALLARM_API_TOKEN` variable defined.
+1. Proceed to Wallarm Console → **Settings** → **API tokens**.
+1. [Generate the token](../../user-guides/settings/api-tokens.md) with the **Deploy** role.
+1. Run the required deployment artifact of the node with the API token passed in the corresponding parameters.
 
-    !!! info "Regular node support"
-        The regular node type is deprecated in release 4.x and will be removed in future releases.
-
-        It is recommended to replace the regular node with the **Wallarm node** before the regular type is removed. You will find the appropriate instructions in the node upgrade guides.
+!!! info "Regular node support"
+    The regular node type is deprecated and will be removed in future releases.
 
 ## Terraform module to deploy Wallarm on AWS
 
-Starting from release 4.0, you can easily deploy Wallarm to [AWS](https://aws.amazon.com/) from the Infrastructure as Code (IaC)-based environment using the [Wallarm Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/).
+You can now easily deploy Wallarm to [AWS](https://aws.amazon.com/) from the Infrastructure as Code (IaC)-based environment using the [Wallarm Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/).
 
 The Wallarm Terraform module is the scalable solution meeting the best industry standards of security and failover ensuring. During its deployment, you can choose either the **proxy** or **mirror** deployment option based on your requirements for the traffic flow.
 
@@ -213,7 +211,7 @@ We have also prepared the usage examples for both deployment options involving b
 
 ## Collecting statistics on blocked requests from denylisted sources
 
-Starting from the release 4.8, the Wallarm NGINX‑based filtering nodes now collect statistics on requests that have been blocked when their source is found in the denylist, enhancing your ability to evaluate attack strength. This includes access to the blocked request statistics and their samples, helping you minimize unnoticed activity. You can find this data in the Wallarm Console UI's **Attacks** section.
+The Wallarm NGINX‑based filtering nodes now collect statistics on requests that have been blocked when their source is found in the denylist, enhancing your ability to evaluate attack strength. This includes access to the blocked request statistics and their samples, helping you minimize unnoticed activity. You can find this data in the Wallarm Console UI's **Attacks** section.
 
 When using automatic IP blocking (e.g., with the brute force trigger configured), now you can analyze both the initial triggering requests and the samples of subsequent blocked requests. For requests blocked due to manual denylisting of their sources, the new functionality enhances visibility into blocked source actions.
 
@@ -231,7 +229,7 @@ This change introduces the new configuration parameters which by default are set
 
 ## Wallarm AWS image distributed with the ready-to-use `cloud-init.py` script
 
-If following the Infrastructure as Code (IaC) approach, you may need to use the [`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html) script to deploy the Wallarm node to AWS. Starting from release 4.0, Wallarm distributes its AWS cloud image with the ready‑to‑use `cloud-init.py` script.
+If following the Infrastructure as Code (IaC) approach, you may need to use the [`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html) script to deploy the Wallarm node to AWS. Now, Wallarm distributes its AWS cloud image with the ready‑to‑use `cloud-init.py` script.
 
 [Specification of the Wallarm `cloud-init` script](../../installation/cloud-platforms/cloud-init.md)
 
@@ -291,7 +289,7 @@ New Wallarm nodes are distributed with the module **API Discovery** automaticall
 
 ## Enhanced attack analysis with the libdetection library
 
-Attack analysis performed by Wallarm has been enhanced by involving an additional attack validation layer. Wallarm node 4.4 and above in all form-factors (including Envoy) are distributed with the libdetection library enabled by default. This library performs secondary fully grammar-based validation of all [SQLi](../../attacks-vulns-list.md#sql-injection) attacks reducing the number of false positives detected among SQL injections.
+Attack analysis performed by Wallarm has been enhanced by involving an additional attack validation layer. Wallarm node in all form-factors (including Envoy) are distributed with the libdetection library enabled by default. This library performs secondary fully grammar-based validation of all [SQLi](../../attacks-vulns-list.md#sql-injection) attacks reducing the number of false positives detected among SQL injections.
 
 !!! warning "Memory consumption increase"
     With the **libdetection** library enabled, the amount of memory consumed by NGINX/Envoy and Wallarm processes may increase by about 10%.
@@ -329,7 +327,7 @@ The [Docker image of Wallarm's NGINX-based filtering node](../../admin-en/instal
       * Directory with files containing credentials for the Wallarm node to connect to the Cloud: `/etc/wallarm` → `/opt/wallarm/etc/wallarm`.
 * The path to the `/usr/share` directory → `/opt/wallarm/usr/share`.
       
-      This introduces the new path to the [sample blocking page](../../admin-en/configuration-guides/configure-block-page-and-code.md), located at `/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`, and to the diagnostic script, found at `/opt/wallarm/usr/share/wallarm-common/collect-info.sh`.
+      This introduces the new path to the [sample blocking page](../../admin-en/configuration-guides/configure-block-page-and-code.md), located at `/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`.
 
 The newly released product features are also supported by the new NGINX-based Docker image of the new format.
 
@@ -338,7 +336,7 @@ The newly released product features are also supported by the new NGINX-based Do
 The [Amazon Machine Image (AMI)](../../installation/cloud-platforms/aws/ami.md) and [Google Cloud Machine Image](../../installation/cloud-platforms/gcp/machine-image.md) have been optimized. Key updates include:
 
 * The cloud images now use Debian 12.x (bookworm), the latest stable release, replacing the deprecated Debian 10.x (buster) for enhanced security.
-* Updated to the newer version of NGINX, 1.22.0, replacing the previous 1.14.x version.
+* Updated to the newer version of NGINX, 1.22.1, replacing the previous 1.14.x version.
 * Support for processors with ARM64 architecture, which is automatically identified during the installation process.
 * The cloud images are now built using the [all-in-one installer](../../installation/nginx/all-in-one.md), which changes its internal directory structure:
 
@@ -347,7 +345,7 @@ The [Amazon Machine Image (AMI)](../../installation/cloud-platforms/aws/ami.md) 
       * Directory with files containing credentials for the Wallarm node to connect to the Cloud: `/etc/wallarm` → `/opt/wallarm/etc/wallarm`.
       * The path to the `/usr/share` directory → `/opt/wallarm/usr/share`.
       
-          This introduces the new path to the [sample blocking page](../../admin-en/configuration-guides/configure-block-page-and-code.md), located at `/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`, and to the diagnostic script, found at `/opt/wallarm/usr/share/wallarm-common/collect-info.sh`.
+          This introduces the new path to the [sample blocking page](../../admin-en/configuration-guides/configure-block-page-and-code.md), located at `/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`.
       
       * The `/etc/nginx/conf.d/wallarm.conf` file with the global Wallarm filtering node settings has been removed.
 
@@ -377,7 +375,7 @@ New blocking page with the new layout looks as follows by default:
 
 ## Disabling IPv6 connections for the NGINX-based Wallarm Docker container
 
-The NGINX-based Wallarm Docker image 4.2 and above supports the new environment variable `DISABLE_IPV6`. This variable enables you to prevent NGINX from IPv6 connection processing, so that it only can process IPv4 connections.
+The NGINX-based Wallarm Docker image now supports the new environment variable `DISABLE_IPV6`. This variable enables you to prevent NGINX from IPv6 connection processing, so that it only can process IPv4 connections.
 
 ## Renamed parameters, files and metrics
 
@@ -400,7 +398,7 @@ The NGINX-based Wallarm Docker image 4.2 and above supports the new environment 
 * The file with the custom ruleset build `/etc/wallarm/lom` has been renamed to `/etc/wallarm/custom_ruleset`. In the file system of new node versions, there is only the file with the new name.
 
     Default values of the NGINX directive [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path) and Envoy parameter [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) have been changed appropriately. New default value is `/etc/wallarm/custom_ruleset`.
-* The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. Starting from the node version 4.0 the new name is used by default.
+* The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. The new name is used by default.
 * The collectd metric `gauge-lom_id` has been renamed to `gauge-custom_ruleset_id`.
 
     In new node versions, the collectd service collects both the deprecated and new metrics. The deprecated metric collection will be stopped in future releases.
@@ -446,7 +444,7 @@ The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#w
 
 ## Easy grouping for node instances
 
-Now you can easily group node instances using one [**API token**](../../user-guides/settings/api-tokens.md) with the `Deploy` role for their installation together with the `WALLARM_LABELS` variable and its `group` label. 
+Now you can easily group node instances using one [**API token**](../../user-guides/settings/api-tokens.md) with the `Deploy` role for their installation together with the `WALLARM_LABELS` variable and its `group` label.
 
 For example: 
 
@@ -457,9 +455,9 @@ docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKE
 
 ## Addressed vulnerabilities
 
-The 4.10.1 release addresses multiple high and critical severity vulnerabilities in Wallarm deployment artifacts, enhancing the software's security posture by replacing previously vulnerable components.
+The new releases address multiple high and critical severity vulnerabilities in Wallarm deployment artifacts, enhancing the software's security posture by replacing previously vulnerable components.
 
-Among the vulnerabilities addressed are those identified by [CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327), [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920), and several others. A full list of resolved vulnerabilities, along with their corresponding CVEs specific to each node deployment artifact, can be found within the [inventory of node artifact versions](../node-artifact-versions.md).
+Among the vulnerabilities addressed are those identified by [CVE-2020-36327](https://nvd.nist.gov/vuln/detail/CVE-2020-36327), [CVE-2023-37920](https://nvd.nist.gov/vuln/detail/CVE-2023-37920), and several others.
 
 ## HTTP/2 stream length control directive
 
@@ -482,7 +480,7 @@ Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for t
       * [Cloud node image](cloud-image.md)
       * [Multi-tenant node](multi-tenant.md)
       * [CDN node](../cdn-node.md)
-3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.10.
+3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to the latest.
 
 ----------
 
