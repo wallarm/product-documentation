@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   let main = document.querySelector(".md-main");
-  let isHomepage = location.pathname === "/" || location.pathname === "/ja/" || location.pathname === "/4.4/" || location.pathname === "/4.2/" || location.pathname === "/4.6/" || location.pathname === "/4.8/" || location.pathname === "/tr/" || location.pathname === "/pt-br/" || location.pathname === "/ar/" || location.pathname === "/index.html";
+  let isHomepage = location.pathname === "/" || location.pathname === "/ja/" || location.pathname === "/4.4/" || location.pathname === "/4.2/" || location.pathname === "/4.6/" || location.pathname === "/4.8/" | location.pathname === "/4.10/" || location.pathname === "/tr/" || location.pathname === "/pt-br/" || location.pathname === "/ar/" || location.pathname === "/index.html";
   if (main) {
     if (isHomepage) {
       main.classList.add('homepage');
@@ -39,7 +39,7 @@ injectScript('https://lftracker.leadfeeder.com/lftracker_v1_kn9Eq4Rwz5KaRlvP.js'
 
 // Version selection
 
-var rootVersion = '4.10';
+var rootVersion = '5.0';
 
 let pathsLang = window.location.pathname.split('/');
 
