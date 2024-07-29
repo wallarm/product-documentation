@@ -91,7 +91,7 @@ In the [article](configuration.md), you will find the list of more supported con
 
 ### Setting the mode (required)
 
-It is required to specify the `tcp-capture` mode in the corresponding chart value to run the solution for the TCP traffic mirror analysis.
+It is required to specify the `tcp-capture` mode in the corresponding parameter to run the solution for the TCP traffic mirror analysis.
 
 ### Choosing a network interface for listening
 
@@ -100,7 +100,7 @@ To specify the network interface to capture traffic from:
 1. Check network interfaces available on the host:
 
     ```
-    ip link show
+    ip addr show
     ```
 
 1. Specify the network interface in the `filter` parameter.

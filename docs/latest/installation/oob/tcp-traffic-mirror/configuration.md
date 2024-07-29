@@ -20,7 +20,6 @@ route_config:
   routes:
     - route: /example/api/v1
       wallarm_mode: off
-      wallarm_application: 1
     - route: /example/extra_api
       wallarm_application: 2
     - route: /example/testing
@@ -55,7 +54,7 @@ goreplay:
 To check network interfaces available on the host, run:
 
 ```
-ip link show command
+ip addr show
 ```
 
 ### goreplay.extra_args
