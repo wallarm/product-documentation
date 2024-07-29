@@ -280,24 +280,6 @@ If there is a problem with the upgrade or reinstallation process:
     ```
 1. Install the node as usual following the installation steps from above.
 
-## Upgrade and reinstallation
-
-To upgrade or reinstall the node:
-
-1. Get the [installer version](../../../updating-migrating/node-artifact-versions.md#wallarm-node-for-tcp-traffic-mirror-analysis) you need.
-1. Run the new installer script as described above, but change the script version.
-
-Your current `/opt/wallarm/etc/wallarm/go-node.yaml`, `/opt/wallarm/etc/wallarm/node.yaml` and log files will be backed up to the directory `/opt/wallarm/wallarm-backup-<timestamp>`.
-
-If there is a problem with the upgrade or reinstallation process:
-
-1. Remove the current installation:
-
-    ```
-    sudo systemctl stop wallarm && sudo rm -rf /opt/wallarm
-    ```
-1. Install the node as usual following the installation steps from above.
-
 ## Limitations
 
 * Due to its out-of-band (OOB) operation, which analyzes traffic independently from actual flow, the solution has several inherent limitations:
