@@ -48,7 +48,10 @@ Wallarm is the only solution that unifies best-in-class API Security and WAAP ca
 
 The **API Attack Surface** subscription plan provides a comprehensive view of publicly exposed APIs and related information with **zero deployment** and minimal configuration.
 
-Currently, the subscription plan includes the [API Leaks](../about-wallarm/api-leaks.md) functionality.
+The subscription plan provides the [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) product which includes:
+
+* [API Attack Surface Discovery](../api-attack-surface/api-surface.md)
+* [API Leaks](../api-attack-surface/api-leaks.md)
 
 ## Free Tier
 
