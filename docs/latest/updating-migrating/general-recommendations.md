@@ -48,4 +48,4 @@ The Wallarm node update process depends on the platform and installation forms. 
 * [Cloud node image](cloud-image.md)
 * [Multi-tenant node](multi-tenant.md)
 * [CDN node](cdn-node.md)
-* [Migrating allowlists and denylists from Wallarm node 2.18 and lower to 4.8](migrate-ip-lists-to-node-3.md)
+* [Migrating allowlists and denylists from Wallarm node 2.18 and lower to 5.0](migrate-ip-lists-to-node-3.md)
