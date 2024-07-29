@@ -364,6 +364,12 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 * [Initial release](../installation/oob/ebpf/deployment.md)
 
+## Wallarm node for TCP traffic mirror analysis
+
+### 0.3.0 (2024-07-09)
+
+* [Initial release](../installation/oob/tcp-traffic-mirror/deployment.md)
+
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)

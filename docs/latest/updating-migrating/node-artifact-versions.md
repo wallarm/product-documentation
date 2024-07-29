@@ -59,7 +59,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 0.3.0 (2024-07-09)
 
-* Initial release
+* [Initial release](../installation/oob/tcp-traffic-mirror/deployment.md)
 
 ## NGINX-based Docker image
 
