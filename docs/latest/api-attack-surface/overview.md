@@ -1,11 +1,11 @@
 # API Attack Surface Management  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-Wallarm's **API Attack Surface Management** (**AASM**) is an agentless detection solution tailored for the API ecosystem, designed to discover all external hosts with their Web Apps & APIs, identify missing WAFs, and eliminate API leaks.
+Wallarm's **API Attack Surface Management** (**AASM**) is an agentless detection solution tailored for the API ecosystem, designed to discover all external hosts with their APIs, evaluate their protection against Web and API-based attacks, identify missing WAF/WAAP solutions, and eliminate API leaks.
 
 API Attack Surface Management includes:
 
 * [API Attack Surface Discovery](api-surface.md)
-* [API Leaks](api-leaks.md)
+* [API Leaks Detection](api-leaks.md)
 
 ![AASM](../images/api-attack-surface/aasm.png)
 
@@ -13,9 +13,15 @@ API Attack Surface Management includes:
 
 Work with API Attack Surface Management looks as follows:
 
-* You bye subscription.
-* You set your target domains to be scanned.
+* You buy subscription.
+* You set your root domains to be scanned.
 * For specified domains, Wallarm searches for subdomains/hosts and lists them.
+
+    AASM system collects subdomains using various OSINT methods, such as passive DNS analysis, SSL/TLS certificate analysis, Certificate Transparency Logs analysis, via search engines and enumeration of the most frequently occurring subdomains.
+
+* Wallarm identifies geolocation and data center for each host.
+* Wallarm identifies exposed APIs on each host.
+* Wallarm identifies security solutions (WAF/WAAP) protecting the host and evaluate their efficiency.
 * Wallarm checks public resources for published (leaked) data related to specified domains.
 * At specified domains, Wallarm searches for revealed (leaked) sensitive data.
 * Wallarm lists leaks found for specified domains.
@@ -30,6 +36,6 @@ Once subscription is activated, to configure domain detection and API leaks reme
 
 ![AASM - configuring scope](../../images/api-attack-surface/aasm-scope.png)
 
-Wallarm will list all subdomains and show API leaks related to them if there are any. Note that domains are automatically re-scanned daily - new subdomains will be added automatically, previously listed but not found during re-scan will be deleted.
+Wallarm will list all subdomains and show API leaks related to them if there are any. Note that domains are automatically re-scanned daily - new subdomains will be added automatically, previously listed but not found during re-scan will remain in the list.
 
 You can re-start, pause or continue scanning for any domain manually at **Configure** → **Status**.

@@ -51,7 +51,7 @@ The **API Attack Surface** subscription plan provides a comprehensive view of pu
 The subscription plan provides the [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) product which includes:
 
 * [API Attack Surface Discovery](../api-attack-surface/api-surface.md)
-* [API Leaks](../api-attack-surface/api-leaks.md)
+* [API Leaks Detection](../api-attack-surface/api-leaks.md)
 
 ## Free Tier
 

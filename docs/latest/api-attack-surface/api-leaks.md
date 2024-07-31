@@ -22,15 +22,15 @@ The **API Leaks** Wallarm component helps to solve these issues by providing the
 
 ## Define your domains to search for API leaks
 
-You can define a list of your domains (**target domains**) where you want to search for API leaks. Once you specify target domains, Wallarm performs the following two-step procedure: 
+You can define a list of your root domains where you want to search for API leaks. Once you specify domains, Wallarm performs the following two-step procedure:
 
 1. **Passive scan**: checks public resources for published (leaked) data related to these domains.
 1. **Active scan**: automatically searches the listed domains for subdomains. Then - as an unauthenticated user - sends requests to their endpoints and checks responses and the source code of pages for the presence of sensitive data. The following data is searched for: credentials, API keys, client secrets, authorization tokens, email addresses, public and private API schemas (API specifications).
 
-To define target domains to search for API leaks:
+To define root domains to search for API leaks:
 
 1. In the **API Attack Surface** or **API Leaks** section, click **Configure**.
-1. At the **Scope** tab, add your domains. You can use the names of domains, found by the [API Discovery](../api-discovery/overview.md) module (if enabled) or by [Wallarm's Scanner](../user-guides/scanner.md).
+1. At the **Scope** tab, add your domains.
 
     Wallarm will start searching for subdomains and leaked credentials published under the domain. The search progress and results will be displayed at the **Status** tab.
 

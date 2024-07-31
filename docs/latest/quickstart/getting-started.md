@@ -37,7 +37,7 @@ Continue by deploying the [first Wallarm filtering node](#start-securing-your-tr
 
 Knowing the full list of your organization's external APIs is the first step in mitigating potential security risks as unmonitored or undocumented APIs can become potential entry points for malicious attacks.
 
-Subscribe to Wallarm's [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) to immediately discover all your external hosts with their Web Apps & APIs and get:
+Subscribe to Wallarm's [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) to immediately discover all your external hosts and their APIs and get:
 
 * List of your external hosts.
 * Protection score of your hosts - Wallarm will automatically test your found subdomains/hosts for the resistance against attacks on web and API services and evaluate their protection level.
