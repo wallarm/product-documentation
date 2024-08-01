@@ -298,6 +298,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Select an artifact or a solution for running Wallarm in-line on a compute instance</p>
         </div>
 
+        <a class="do-card" href="../../installation/inline/compute-instances/linux/all-in-one/">
+            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
+            <h3>Linux packages with all-in-one installation</h3>
+            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+        </a>
+
         <div id="inline-public-clouds-aws" class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
             <h3>Amazon Web Services</h3>
@@ -326,12 +332,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
             <h3>Docker images</h3>
             <p>Deploy the Wallarm node as a Docker container</p>
-        </div>
-
-        <div id="inline-packages-linux" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
-            <h3>Linux packages</h3>
-            <p>Install Wallarm on a supported OS as the NGINX module</p>
         </div>
 
     </div>
@@ -440,20 +440,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
     </div>
 
-    <div class="do-nested" data-for="inline-packages-linux">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
-            <h3>Linux packages</h3>
-            <p>Install Wallarm on a supported OS as the NGINX module</p>
-        </div>
-
-        <a class="do-card" href="../../installation/inline/compute-instances/linux/all-in-one/">
-            <h3>All-in-one installation</h3>
-            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
-        </a>
-    
-    </div>
-
     <div class="do-nested" data-for="inline-kubernetes">
         <div class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/kubernetes.svg" />
@@ -512,10 +498,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Docker images for Wallarm OOB deployment</p>
         </div>
 
-        <div id="mirroring-by-web-servers-linux-packages" class="do-card">
-            <h3>Linux</h3>
-            <p>Linux packages for Wallarm OOB deployment on a supported OS</p>
-        </div>
+        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/all-in-one/">
+            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
+            <h3>Linux packages with all-in-one installation</h3>
+            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+        </a>
 
     </div>
 
@@ -582,36 +569,22 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
     </div>
 
-    <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
-            <h3>Linux</h3>
-            <p>Linux packages for Wallarm OOB deployment on a supported OS</p>
-        </div>
-
-        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/all-in-one/">
-            <h3>All-in-one installation</h3>
-            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
-        </a>
-
-    </div>
-
 </div>
 
 ## Packages
 
 <div class="do-section">
     <div class="do-main">
+        <a class="do-card" href="../../installation/nginx/all-in-one/">
+            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
+            <h3>Linux packages with all-in-one installation</h3>
+            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+        </a>
+        
         <div id="packages-docker-images" class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
             <h3>Docker images</h3>
             <p>Deploy the Wallarm node as a Docker container</p>
-        </div>
-
-        <div id="packages-linux" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
-            <h3>Linux packages</h3>
-            <p>Install Wallarm on a supported OS as the NGINX module</p>
         </div>
 
         <div id="packages-cloud-images" class="do-card">
@@ -662,18 +635,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Use the official Machine Image to deploy Wallarm on Google Cloud</p>
         </a>
     </div>
-
-    <div class="do-nested" data-for="packages-linux">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
-            <h3>Linux packages</h3>
-            <p>Install Wallarm on a supported OS as the NGINX module</p>
-        </div>
-
-        <a class="do-card" href="../../installation/nginx/all-in-one/">
-            <h3>All-in-one installation</h3>
-            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
-        </a>
 
 </div>
 

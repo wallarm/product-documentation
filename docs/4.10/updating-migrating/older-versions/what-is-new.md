@@ -478,7 +478,7 @@ Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for t
 
       * [Upgrading modules for NGINX, NGINX Plus](nginx-modules.md) with **all-in-one installer**
 
-        To improve and simplify the upgrade process, since version 4.10, upgrading of all node versions is performed using Wallarm's all-in-one installer.
+        To improve and simplify the upgrade process, since version 4.10, upgrading of all node versions is performed using Wallarm's all-in-one installer. Manual upgrade with individual Linux packages is not supported any more.
 
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)

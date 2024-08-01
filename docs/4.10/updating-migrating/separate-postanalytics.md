@@ -22,6 +22,8 @@ To upgrade the end‑of‑life module (3.6 or lower), please use the [different 
     1. Installing Wallarm packages from these repositories.
     1. Connecting the installed Wallarm module to your NGINX.
     1. Connecting the filtering node to Wallarm Cloud using the provided token.
+    
+        Manual upgrade with individual Linux packages is not supported any more.
 
     ![All-in-one compared to manual](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
@@ -48,9 +50,6 @@ To upgrade the end‑of‑life module (3.6 or lower), please use the [different 
 ## Step 5: Upgrade the NGINX-Wallarm module on a separate server
 
 Once the postanalytics module is installed on the separate server, [upgrade its related NGINX-Wallarm module](nginx-modules.md) running on a different server.
-
-!!! info "Combining upgrade methods"
-    Both manual and automatic approaches can be used to upgrade the related NGINX-Wallarm module.
 
 ## Step 6: Re-connect the NGINX-Wallarm module to the postanalytics module
 

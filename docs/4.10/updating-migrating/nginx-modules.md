@@ -27,9 +27,9 @@
 
 These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x installed from the individual packages to version 4.10. These are the modules installed in accordance with one of the following instructions:
 
-* [Individual packages for NGINX stable](../../4.8/installation/nginx/dynamic-module.md)
-* [Individual packages for NGINX Plus](../../4.8/installation/nginx-plus.md)
-* [Individual packages for distribution-provided NGINX](../../4.8/installation/nginx/dynamic-module-from-distr.md)
+* Individual packages for NGINX stable
+* Individual packages for NGINX Plus
+* Individual packages for distribution-provided NGINX
 
 To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/nginx-modules.md).
 
@@ -41,6 +41,8 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
     1. Installing Wallarm packages from these repositories.
     1. Connecting the installed Wallarm module to your NGINX.
     1. Connecting the filtering node to Wallarm Cloud using the provided token.
+
+        Manual upgrade with individual Linux packages is not supported any more.
 
     ![All-in-one compared to manual](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 

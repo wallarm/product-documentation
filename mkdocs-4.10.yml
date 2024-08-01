@@ -261,6 +261,7 @@ nav:
     - In-Line:
       - Overview: installation/inline/overview.md
       - Compute Instances:
+        - Linux packages with all-in-one installation: installation/inline/compute-instances/linux/all-in-one.md
         - Amazon Web Services:
           - AMI: installation/inline/compute-instances/aws/aws-ami.md
           - ECS: installation/inline/compute-instances/aws/aws-ecs.md
@@ -276,9 +277,7 @@ nav:
           - ECS: installation/inline/compute-instances/alibaba/docker-image.md
         - Docker images:
           - NGINX-based: installation/inline/compute-instances/docker/nginx-based.md
-          - Envoy-based: installation/inline/compute-instances/docker/envoy-based.md
-        - Linux packages:
-          - All-in-One Installer: installation/inline/compute-instances/linux/all-in-one.md
+          - Envoy-based: installation/inline/compute-instances/docker/envoy-based.md  
       - Kubernetes:
         - NGINX Ingress Controller: installation/inline/kubernetes/nginx-ingress-controller.md
         - Kong Ingress Controller:
@@ -298,6 +297,7 @@ nav:
         - Selecting Packets for Mirroring: installation/oob/ebpf/selecting-packets.md
       - Mirroring by NGINX, Envoy and Similar:
         - Overview: installation/oob/web-server-mirroring/overview.md
+        - Linux packages with all-in-one installation: installation/oob/web-server-mirroring/linux/all-in-one.md
         - Public Clouds:
           - AWS:
             - AMI: installation/oob/web-server-mirroring/aws-ami.md
@@ -305,14 +305,11 @@ nav:
           - GCP:
             - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
         - Docker: installation/oob/web-server-mirroring/docker-image.md
-        - Linux:
-          - All-in-One Installer: installation/oob/web-server-mirroring/linux/all-in-one.md
     - Packages:
+      - Linux packages with all-in-one installation: installation/nginx/all-in-one.md
       - Docker Images:
         - NGINX-based: admin-en/installation-docker-en.md
         - Envoy-based: admin-en/installation-guides/envoy/envoy-docker.md
-      - Linux Packages:
-        - All‑in‑One Installer: installation/nginx/all-in-one.md
       - Cloud Images:
         - AWS AMI: installation/packages/aws-ami.md
         - GCP Machine Image: installation/packages/gcp-machine-image.md
