@@ -4,7 +4,7 @@ The **API Leaks** module of the Wallarm platform actively scans thousands of pub
 
 For information on how to use the **API Leaks** module, refer to its [user guide](../user-guides/api-leaks.md).
 
-![API Leaks](../images/about-wallarm-waf/api-leaks/api-leaks.png)
+![API Leaks](../images/api-attack-surface/api-leaks.png)
 
 ## Issues addressed by API Leaks
 
@@ -25,7 +25,7 @@ The **API Leaks** Wallarm module helps to solve these issues by providing the fo
 
 The **API Leaks** section provides rich visual representation for your current situation regarding found API leaks. This representation is interactive: you can click diagram elements to filter leaks by risk levels and sources.
 
-![API Leaks - Visualization](../images/about-wallarm-waf/api-leaks/api-leaks-visual.png)
+![API Leaks - Visualization](../images/api-attack-surface/api-leaks-visual.png)
 
 ## Access API Leaks
 
