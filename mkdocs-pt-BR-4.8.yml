@@ -80,12 +80,11 @@ nav:
     - Visão geral: api-attack-surface/overview.md
     - Descoberta de superfície de API: api-attack-surface/api-surface.md
     - Detecção de vazamentos de API: api-attack-surface/api-leaks.md
-- Ativos e Vulnerabilidades:
+  - Ativos e Vulnerabilidades:
     - Visão Geral: about-wallarm/detecting-vulnerabilities.md
     - Busca e Filtros de Vulnerabilidades: user-guides/search-and-filters/use-search-vuln.md
     - Gerenciando Vulnerabilidades Detectadas: user-guides/vulnerabilities.md
     - Suporte da Operação do Scanner:
-      - Visão Geral: about-wallarm/attack-surface.md
       - Configurações do Scanner: user-guides/scanner.md
       - Endereços do Scanner: admin-en/scanner-addresses.md
       - Contatando o Suporte Wallarm para Parar o Scanner de Recursos: admin-en/scanner-complaint-en.md

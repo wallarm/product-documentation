@@ -2,7 +2,7 @@
 
 **API漏洩**モジュールは、数千の公開レポジトリやソースを積極的にスキャンし、APIトークンの漏洩をチェックします。さらに、攻撃やAPIポートフォリオへの他の被害を防ぐために、漏洩したトークンをブロックするオプションも提供します。本記事では、API漏洩の管理方法について説明します。
 
-能力の基本的なまとめについては、**API漏洩**モジュールの[概要](../about-wallarm/api-leaks.md)をご参照ください。
+能力の基本的なまとめについては、**API漏洩**モジュールの[概要](../api-attack-surface/api-leaks)をご参照ください。
 
 ## API漏洩へのアクセス
 
@@ -19,13 +19,13 @@ Wallarmのコンソールでは、以下の通りに**API漏洩**セクション
 * 自動 - Wallarmは数千の公開レポジトリやソースを積極的にスキャンし、新たな漏洩をリストに追加します。**ステータス**で並べ替えて、`Opened`の漏洩を確認します - これらはあなたの注意が必要です。
 * 手動 - API漏洩を手動で追加します。それぞれが漏洩したトークンのセットとなります。
 
-![API漏洩 - 手動での追加](../images/about-wallarm-waf/api-leaks/api-leaks-add-manually.png)
+![API漏洩 - 手動での追加](../images/api-attack-surface/api-leaks-add-manually.png)
 
 ## 対話型ビジュアライゼーション
 
 **API漏洩**セクションでは、見つかったAPI漏洩に対する現状についての豊富な視覚表現が提供されます。グラフィックを使用して、見つかった漏洩についての現状を素早く分析し、ダイアグラムの要素をクリックしてリスクレベルやソースごとに漏洩をフィルタリングします。
 
-![API漏洩 - ビジュアライゼーション](../images/about-wallarm-waf/api-leaks/api-leaks-visual.png)
+![API漏洩 - ビジュアライゼーション](../images/api-attack-surface/api-leaks-visual.png)
 
 ## 決定の作成
 
@@ -43,6 +43,6 @@ API漏洩が自動的に追加された場合でも手動で追加された場�
 
 Wallarmのコンソールで**イベント**→**タイプ**フィルターを`Virtual patch` (`vpatch`)に設定すると、漏洩したトークンの使用を試みるすべての行為を確認することができます。
 
-![イベント - API漏洩を通じたvpatch](../images/about-wallarm-waf/api-leaks/api-leaks-in-events.png)
+![イベント - API漏洩を通じたvpatch](../images/api-attack-surface/api-leaks-in-events.png)
 
 現在のところ、漏洩したトークンの使用を試みを追跡することは、`vpatch`が適用されている場合にのみ可能です。

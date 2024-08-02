@@ -49,7 +49,7 @@
 * يفحص واجهات برمجة التطبيقات المحددة بحثًا عن نقاط ضعف.
 * [يختبر](../fast/openapi-security-testing.md) واجهات برمجة التطبيقات للكشف عن نقاط الضعف بناءً على مواصفات OpenAPI.
 * [ينشئ اختبارات أمان واجهات برمجة التطبيقات ديناميكيًا](../vulnerability-detection/active-threat-verification/overview.md) من حركة المرور الملحوظة.
-* [يتحقق من المستودعات العامة للبحث عن رموز واجهة برمجة التطبيقات المكشوفة](../about-wallarm/api-leaks.md).
+* [يتحقق من المستودعات العامة للبحث عن رموز واجهة برمجة التطبيقات المكشوفة](../api-attack-surface/api-leaks.md).
 
 ![الثغرات](../images/about-wallarm-waf/overview/vulnerabilities.png)
 
