@@ -36,15 +36,13 @@
 
 An **all-in-one installer** is designed to streamline and standardize the process of installing Wallarm node as a dynamic module for NGINX in various environments. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
 
-In comparison to the individual Linux packages offered by Wallarm for [NGINX](individual-packages-nginx-stable.md), [NGINX Plus](individual-packages-nginx-plus.md), and [distribution-provided NGINX](individual-packages-nginx-distro.md), the **all-in-one installer** simplifies the process by automatically performing the following actions:
+The **all-in-one installer** provides a simple node installation process by automatically performing the following actions:
 
 1. Checking your OS and NGINX version.
 1. Adding Wallarm repositories for the detected OS and NGINX version.
 1. Installing Wallarm packages from these repositories.
 1. Connecting the installed Wallarm module to your NGINX.
 1. Connecting the filtering node to Wallarm Cloud using the provided token.
-
-![All-in-one compared to manual](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 ## Use cases
 

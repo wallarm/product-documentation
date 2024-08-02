@@ -27,9 +27,9 @@
 
 These instructions describe the steps to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 5.0. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
-* [Individual packages for NGINX stable](/4.8/installation/nginx/dynamic-module/)
-* [Individual packages for NGINX Plus](/4.8/installation/nginx-plus/)
-* [Individual packages for distribution-provided NGINX](/4.8/installation/nginx/dynamic-module-from-distr/)
+* Individual packages for NGINX stable
+* Individual packages for NGINX Plus
+* Individual packages for distribution-provided NGINX
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
@@ -43,6 +43,8 @@ These instructions describe the steps to upgrade the end‑of‑life Wallarm NGI
     1. Installing Wallarm packages from these repositories.
     1. Connecting the installed Wallarm module to your NGINX.
     1. Connecting the filtering node to Wallarm Cloud using the provided token.
+
+        Manual upgrade with individual Linux packages is not supported any more.
 
     ![All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 

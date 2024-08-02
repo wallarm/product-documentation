@@ -7,7 +7,7 @@ This page lists the changes available when upgrading the node of the deprecated 
 
     Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 4.x. Some settings of node 4.x are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
 
-## All-in-one installer
+## All-in-one installer and DEB/RPM packages deprecation
 
 Now, when installing and upgrading Wallarm node as a dynamic module for NGINX in various environments, you use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
 
@@ -19,7 +19,9 @@ The installer simplifies the process by automatically performing the following a
 1. Connecting the installed Wallarm module to your NGINX.
 1. Connecting the filtering node to Wallarm Cloud using the provided token.
 
-[See details on how to deploy the node with all-in-one installer →](../../installation/nginx/all-in-one.md)
+[See details on how to upgrade the node with all-in-one installer →](nginx-modules.md)
+
+The DEB/RPM packages for the node installation have the "deprecated" status now.
 
 ## Breaking changes due to the deleted metrics
 

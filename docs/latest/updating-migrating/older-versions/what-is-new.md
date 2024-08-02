@@ -9,7 +9,7 @@ This page lists the changes available when upgrading the node of the deprecated 
 
 ## All-in-one installer and DEB/RPM packages deprecation
 
-Now, when installing and upgrading Wallarm node as a dynamic module for NGINX in various environments, you are recommended to use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
+Now, when installing and upgrading Wallarm node as a dynamic module for NGINX in various environments, you use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
 
 The installer simplifies the process by automatically performing the following actions:
 
@@ -474,7 +474,10 @@ Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for t
 1. Review [recommendations for the modules upgrade](../general-recommendations.md).
 2. Upgrade installed modules following the instructions for your Wallarm node deployment option:
 
-      * [Upgrading modules for NGINX, NGINX Plus](nginx-modules.md)
+      * [Upgrading modules for NGINX, NGINX Plus](nginx-modules.md) with **all-in-one installer**
+
+        To improve and simplify the upgrade process, upgrading of all node versions is performed using Wallarm's all-in-one installer. Manual upgrade with individual Linux packages is not supported any more.
+
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
