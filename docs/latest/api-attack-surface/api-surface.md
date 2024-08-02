@@ -1,8 +1,8 @@
-# API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
 The **API Attack Surface Discovery** component of the Wallarm's [API Attack Surface Management (AASM)](overview.md) scans your selected domains to discover all their external hosts and their APIs, evaluate their protection against Web and API-based attacks, and identify missing WAF/WAAP solutions. It works simply by subscribing in Wallarm - you do not need to deploy anything. This article gives an overview of the component.
 
-![API Attack Surface Discovery](../../images/api-attack-surface/aasm-api-surface.png)
+![API Attack Surface Discovery](../images/api-attack-surface/aasm-api-surface.png)
 
 ## Issues addressed by API Attack Surface Discovery
 
@@ -36,7 +36,7 @@ You can define a list of your **root domains** which you want to search for subd
 
     Wallarm will start searching for subdomains and [leaked credentials](api-leaks.md) published under the domain. The search progress and results will be displayed at the **Status** tab.
 
-![AASM - configuring scope](../../images/api-attack-surface/aasm-scope.png)
+![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
 
 Note that domains are automatically re-scanned daily - new subdomains will be added automatically, previously listed but not found during re-scan will remain in the list.
 
@@ -51,4 +51,4 @@ Also, the overall protection score is calculated for the entire Attack Surface. 
 * hosts without Web/API services
 * hosts which score was not evaluated due to service misconfiguration, errors or explicitly denied access
 
-![API surface - protection score](../../images/api-attack-surface/aasm-api-surface-protection-score.png)
+![API surface - protection score](../images/api-attack-surface/aasm-api-surface-protection-score.png)

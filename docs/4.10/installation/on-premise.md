@@ -136,4 +136,4 @@ The following functionalities are currently not supported by the on-premise Wall
 
 * [Exposed Asset Scanner](../user-guides/scanner.md)
 * [Active Threat Verification](../vulnerability-detection/active-threat-verification/overview.md)
-* [API Leaks](../about-wallarm/api-leaks.md)
+* [API Leaks](../api-attack-surface/api-leaks.md)

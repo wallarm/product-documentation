@@ -49,7 +49,7 @@ Managing deployed risk is the first line of defense, but reducing the risk exhib
 * Examines identified APIs for weak points.
 * [Tests](../fast/openapi-security-testing.md) APIs for vulnerabilities based on OpenAPI specifications.
 * [Dynamically creates API security tests](../vulnerability-detection/active-threat-verification/overview.md) from observed traffic.
-* [Checks public repositories for exposed API tokens](../about-wallarm/api-leaks.md).
+* [Checks public repositories for exposed API tokens](../api-attack-surface/api-leaks.md).
 
 ![Vulns](../images/about-wallarm-waf/overview/vulnerabilities.png)
 

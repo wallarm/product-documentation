@@ -34,7 +34,7 @@ When activating via Wallarm's website, scanning of the used email's domain start
 
 Once subscription is activated, to configure domain detection and API leaks remediation, in Wallarm Console → AASM → **API Attack Surface** or **API Leaks** section, click **Configure**. Add your domains to the scope, check the scanning status.
 
-![AASM - configuring scope](../../images/api-attack-surface/aasm-scope.png)
+![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
 
 Wallarm will list all subdomains and show API leaks related to them if there are any. Note that domains are automatically re-scanned daily - new subdomains will be added automatically, previously listed but not found during re-scan will remain in the list.
 
