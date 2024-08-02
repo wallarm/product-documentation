@@ -699,3 +699,11 @@
 
 /about-wallarm/attack-surface/ /api-attack-surface/overview/
 /about-wallarm/api-leaks/ /api-attack-surface/api-leaks/
+/ja/about-wallarm/attack-surface/ /ja/api-attack-surface/overview/
+/ja/about-wallarm/api-leaks/ /ja/api-attack-surface/api-leaks/
+/tr/about-wallarm/attack-surface/ /tr/api-attack-surface/overview/
+/tr/about-wallarm/api-leaks/ /tr/api-attack-surface/api-leaks/
+/pt-br/about-wallarm/attack-surface/ /pt-br/api-attack-surface/overview/
+/pt-br/about-wallarm/api-leaks/ /pt-br/api-attack-surface/api-leaks/
+/ar/about-wallarm/attack-surface/ /ar/api-attack-surface/overview/
+/ar/about-wallarm/api-leaks/ /ar/api-attack-surface/api-leaks/

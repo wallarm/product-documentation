@@ -4,7 +4,7 @@
 
 **API Sızıntıları** modülünün nasıl kullanılacağına dair bilgi için lütfen [kullanıcı kılavuzuna](../user-guides/api-leaks.md) başvurunuz.
 
-![API Sızıntıları](../images/about-wallarm-waf/api-leaks/api-leaks.png)
+![API Sızıntıları](../images/api-attack-surface/api-leaks.png)
 
 ## API Sızıntıları Tarafından Ele Alınan Sorunlar
 
@@ -25,7 +25,7 @@ Sızdırılan API sırları bulunursa, API'lerinize zarar gelmemesi için çok y
 
 **API Sızıntıları** bölümü, bulunan API sızıntılarına ilişkin güncel durumunuz için zengin görsel bir temsil sunar. Bu temsil, etkileşimlidir: diyagram öğelerine tıklayarak sızıntıları risk seviyelerine ve kaynaklarına göre filtreleyebilirsiniz.
 
-![API Sızıntıları - Görselleştirme](../images/about-wallarm-waf/api-leaks/api-leaks-visual.png)
+![API Sızıntıları - Görselleştirme](../images/api-attack-surface/api-leaks-visual.png)
 
 ## API Sızıntılarına Erişim
 

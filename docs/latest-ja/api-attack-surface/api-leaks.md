@@ -4,7 +4,7 @@ Wallarmプラットフォームの**API漏洩**モジュールは、APIトーク
 
 **API漏洩**モジュールの使用方法については、[ユーザーガイド](../user-guides/api-leaks.md)を参照してください。
 
-![API漏洩](../images/about-wallarm-waf/api-leaks/api-leaks.png)
+![API漏洩](../images/api-attack-surface/api-leaks.png)
 
 ## API漏洩が対処する問題
 
@@ -25,7 +25,7 @@ APIを保護するためには、公開リポジトリを監視して、漏洩�
 
 **API漏洩**セクションは、見つかったAPI漏洩に関する現状を豊かに視覚化します。この表現はインタラクティブで、ダイアグラム要素をクリックしてリスクレベルと情報源により漏洩をフィルタリングすることができます。
 
-![API漏洩 - 可視化](../images/about-wallarm-waf/api-leaks/api-leaks-visual.png)
+![API漏洩 - 可視化](../images/api-attack-surface/api-leaks-visual.png)
 
 ## API漏洩へのアクセス
 

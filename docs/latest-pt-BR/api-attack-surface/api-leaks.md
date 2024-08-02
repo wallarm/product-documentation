@@ -4,7 +4,7 @@ O módulo **Vazamentos de API** da plataforma Wallarm verifica ativamente milhar
 
 Para informações sobre como usar o módulo **Vazamentos de API**, consulte o respectivo [guia do usuário](../user-guides/api-leaks.md).
 
-![Vazamentos de API](../images/about-wallarm-waf/api-leaks/api-leaks.png)
+![Vazamentos de API](../images/api-attack-surface/api-leaks.png)
 
 ## Problemas abordados pelos Vazamentos de API
 
@@ -25,7 +25,7 @@ O módulo **Vazamentos de API** do Wallarm ajuda a resolver esses problemas forn
 
 A seção **Vazamentos de API** fornece uma rica representação visual para sua situação atual em relação aos vazamentos de API encontrados. Esta representação é interativa: você pode clicar em elementos do diagrama para filtrar vazamentos por níveis de risco e fontes.
 
-![Vazamentos de API - Visualização](../images/about-wallarm-waf/api-leaks/api-leaks-visual.png)
+![Vazamentos de API - Visualização](../images/api-attack-surface/api-leaks-visual.png)
 
 ## Acesso a Vazamentos de API
 

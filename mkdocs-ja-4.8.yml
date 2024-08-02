@@ -72,10 +72,12 @@ nav:
       - 設定: api-specification-enforcement/setup.md
       - イベントの表示: api-specification-enforcement/viewing-events.md
   - API攻撃面:
-    - 概要: about-wallarm/attack-surface.md
-    - 外部資産: user-guides/scanner.md
-    - APIリーク: about-wallarm/api-leaks.md
+    - 概要: api-attack-surface/overview.md
+    - API サーフェス検出: api-attack-surface/api-surface.md
+    - APIリーク: api-attack-surface/api-leaks.md
+  - 資産と脆弱性:
     - 脆弱性評価:
+      - 外部資産: user-guides/scanner.md
       - 脆弱性の検出: about-wallarm/detecting-vulnerabilities.md
       - 脆弱性の管理: user-guides/vulnerabilities.md
       - 検索とフィルタ: user-guides/search-and-filters/use-search-vuln.md

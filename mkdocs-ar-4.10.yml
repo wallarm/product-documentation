@@ -103,8 +103,11 @@ nav:
     - حماية BOLA(APID): admin-en/configuration-guides/protecting-against-bola.md
     - اكتشاف تزوير البيانات: about-wallarm/credential-stuffing.md
     - حماية API لـ GraphQL: api-protection/graphql-rule.md
-  - سطح الهجوم API:
-    - نظرة عامة: about-wallarm/attack-surface.md
+  - سطح هجوم API:
+    - ملخص: api-attack-surface/overview.md
+    - اكتشاف سطح API: api-attack-surface/api-surface.md
+    - اكتشاف تسربات API: api-attack-surface/api-leaks.md
+  - الأصول والثغرات:
     - الأصول المكشوفة: user-guides/scanner.md
     - تسربات API: about-wallarm/api-leaks.md
     - تقييم الضعف:
