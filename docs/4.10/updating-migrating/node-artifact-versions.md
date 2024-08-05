@@ -4,7 +4,9 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 ## All-in-one installer
 
-History of updates simultaneously applies to the x86_64 and ARM64 (beta) versions of [all-in-one installer](../installation/nginx/all-in-one.md).
+Since version 4.10, installation and upgrading of Wallarm nodes is performed **only** with all [all-in-one installer](../installation/nginx/all-in-one.md) Manual upgrade with individual Linux packages is not supported any more.
+
+History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 (beta) versions.
 
 [How to migrate from DEB/RPM packages](nginx-modules.md)
 

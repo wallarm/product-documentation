@@ -1,1 +1,1 @@
---8<-- "latest/installation/custom/custom-nginx-version.md"
+--8<-- "4.8/installation/custom/custom-nginx-version.md"

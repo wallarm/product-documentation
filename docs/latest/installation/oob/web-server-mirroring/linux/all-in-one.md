@@ -36,22 +36,20 @@ search:
 [download-aio-step]:                #step-3-download-all-in-one-wallarm-installer
 [enable-traffic-analysis-step]:     #step-5-enable-wallarm-node-to-analyze-traffic
 [restart-nginx-step]:               #step-6-restart-nginx
-[separate-postanalytics-installation-aio]:  ../../../../admin-en/installation-postanalytics-en.md#all-in-one-automatic-installation
+[separate-postanalytics-installation-aio]:  ../../../../admin-en/installation-postanalytics-en.md
 [api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
 
 # Deploying with All-in-One Installer
 
 These instructions describe the steps to install Wallarm as an [OOB](../overview.md) dynamic module using an **all-in-one installer** designed to streamline and standardize the process of installing Wallarm node as a dynamic module for NGINX in various environments. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
 
-In comparison to the individual Linux packages offered by Wallarm for [NGINX](nginx-stable.md), [NGINX Plus](nginx-plus.md), and [distribution-provided NGINX](nginx-distro.md), the **all-in-one installer** simplifies the process by automatically performing the following actions:
+The **all-in-one installer** provides a simple node installation process by automatically performing the following actions:
 
 1. Checking your OS and NGINX version.
 1. Adding Wallarm repositories for the detected OS and NGINX version.
 1. Installing Wallarm packages from these repositories.
 1. Connecting the installed Wallarm module to your NGINX.
 1. Connecting the filtering node to Wallarm Cloud using the provided token.
-
-![All-in-one compared to manual](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 ## Use cases
 

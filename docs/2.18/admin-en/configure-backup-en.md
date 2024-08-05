@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configure-backup-en.md"
+--8<-- "3.6/admin-en/configure-backup-en.md"

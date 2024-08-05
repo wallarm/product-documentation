@@ -72,9 +72,6 @@ Wallarm offers the following artifacts and solutions for running Wallarm on comp
 
 **Linux packages**
 
-* [Individual packages for NGINX stable](compute-instances/linux/individual-packages-nginx-stable.md)
-* [Individual packages for NGINX Plus](compute-instances/linux/individual-packages-nginx-plus.md)
-* [Individual packages for distribution-provided NGINX](compute-instances/linux/individual-packages-nginx-distro.md)
 * [All-in-one installer](compute-instances/linux/all-in-one.md)
 
 ### Running Wallarm on Kubernetes

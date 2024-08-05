@@ -677,3 +677,22 @@
 /ar/user-guides/api-abuse-prevention/ /ar/api-abuse-prevention/setup/
 /ar/user-guides/api-abuse-prevention-exceptions/ /ar/api-abuse-prevention/exceptions/
 /ar/user-guides/api-abuse-prevention-explore/ /ar/api-abuse-prevention/exploring-bots/
+
+/4.10/installation/inline/compute-instances/linux/individual-packages-nginx-distro/ /4.10/updating-migrating/nginx-modules/
+/4.10/installation/inline/compute-instances/linux/individual-packages-nginx-plus/ /4.10/updating-migrating/nginx-modules/
+/4.10/installation/inline/compute-instances/linux/individual-packages-nginx-stable/ /4.10/updating-migrating/nginx-modules/
+/4.10/installation/oob/web-server-mirroring/linux/nginx-distro/ /4.10/updating-migrating/nginx-modules/
+/4.10/installation/oob/web-server-mirroring/linux/nginx-plus/ /4.10/updating-migrating/nginx-modules/
+/4.10/installation/oob/web-server-mirroring/linux/nginx-stable/ /4.10/updating-migrating/nginx-modules/
+/4.10/installation/nginx/dynamic-module-from-distr/ /4.10/updating-migrating/nginx-modules/
+/4.10/installation/nginx/dynamic-module/ /4.10/updating-migrating/nginx-modules/
+/4.10/installation/nginx-plus/ /4.10/updating-migrating/nginx-modules/
+/installation/inline/compute-instances/linux/individual-packages-nginx-distro/ /updating-migrating/nginx-modules/
+/installation/inline/compute-instances/linux/individual-packages-nginx-plus/ /updating-migrating/nginx-modules/
+/installation/inline/compute-instances/linux/individual-packages-nginx-stable/ /updating-migrating/nginx-modules/
+/installation/oob/web-server-mirroring/linux/nginx-distro/ /updating-migrating/nginx-modules/
+/installation/oob/web-server-mirroring/linux/nginx-plus/ /updating-migrating/nginx-modules/
+/installation/oob/web-server-mirroring/linux/nginx-stable/ /updating-migrating/nginx-modules/
+/installation/nginx/dynamic-module-from-distr/ /updating-migrating/nginx-modules/
+/installation/nginx/dynamic-module/ /updating-migrating/nginx-modules/
+/installation/nginx-plus/ /updating-migrating/nginx-modules/

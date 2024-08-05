@@ -160,7 +160,6 @@ In this example, if a new attempt to use compromised credentials is detected, a 
 
 Currently, the Credential Stuffing Detection module is not supported on Wallarm nodes deployed via:
 
-* DEB/RPM packages for NGINX ([stable](../installation/nginx/dynamic-module.md), [distributive](../installation/nginx/dynamic-module-from-distr.md)) or [NGINX Plus](../installation/nginx-plus.md)
 * [Sidecar controller](../installation/kubernetes/sidecar-proxy/deployment.md)
 * [Kong Ingress controller](../installation/kubernetes/kong-ingress-controller/deployment.md)
 * [Terraform module for AWS](../installation/cloud-platforms/aws/terraform-module/overview.md)

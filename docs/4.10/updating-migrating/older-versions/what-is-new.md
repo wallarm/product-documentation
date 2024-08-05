@@ -7,9 +7,9 @@ This page lists the changes available when upgrading the node of the deprecated 
 
     Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 4.x. Some settings of node 4.x are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
 
-## All-in-one installer
+## All-in-one installer and DEB/RPM packages deprecation
 
-Now, when installing and upgrading Wallarm node as a dynamic module for NGINX in various environments, you can use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
+Now, when installing and upgrading Wallarm node as a dynamic module for NGINX in various environments, you use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
 
 The installer simplifies the process by automatically performing the following actions:
 
@@ -19,7 +19,9 @@ The installer simplifies the process by automatically performing the following a
 1. Connecting the installed Wallarm module to your NGINX.
 1. Connecting the filtering node to Wallarm Cloud using the provided token.
 
-[See details on how to deploy the node with all-in-one installer →](../../installation/nginx/all-in-one.md)
+[See details on how to upgrade the node with all-in-one installer →](nginx-modules.md)
+
+The DEB/RPM packages for the node installation have the "deprecated" status now.
 
 ## Breaking changes due to the deleted metrics
 
@@ -171,7 +173,7 @@ The new deployment method lets you configure the Wallarm CDN node outside your i
 
     If your server with the deployed node has a limited access to the external resources and the access is granted to each resource separately, after upgrade to version 4.x the synchronization between the filtering node and the Cloud will stop. The upgraded node needs to be granted access to the API endpoint with the new port.
 
-## Unified registration of nodes in the Wallarm Cloud by tokens
+## Unified registration of nodes in the Wallarm Cloud by API tokens
 
 With the new release of Wallarm node, email-password based registration of Wallarm nodes in the Cloud has been removed. It is now mandatory to switch to the new token-based node registration method to continue with Wallarm node 4.10.
 
@@ -476,7 +478,10 @@ Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for t
 1. Review [recommendations for the modules upgrade](../general-recommendations.md).
 2. Upgrade installed modules following the instructions for your Wallarm node deployment option:
 
-      * [Upgrading modules for NGINX, NGINX Plus](nginx-modules.md)
+      * [Upgrading modules for NGINX, NGINX Plus](nginx-modules.md) with **all-in-one installer**
+
+        To improve and simplify the upgrade process, since version 4.10, upgrading of all node versions is performed using Wallarm's all-in-one installer. Manual upgrade with individual Linux packages is not supported any more.
+
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)

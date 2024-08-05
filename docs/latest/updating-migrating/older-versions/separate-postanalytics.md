@@ -25,6 +25,8 @@ These instructions describe the steps to upgrade the end‑of‑life postanalyti
     1. Installing Wallarm packages from these repositories.
     1. Connecting the installed Wallarm module to your NGINX.
     1. Connecting the filtering node to Wallarm Cloud using the provided token.
+    
+        Manual upgrade with individual Linux packages is not supported any more.
 
     ![All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
