@@ -55,13 +55,21 @@ Wallarm çözümü, manuel kural yapılandırması olmadan ve ultra düşük yan
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage vuln-title">API Duruş Yönetimi</h3>
+    <h3 class="icon-homepage vuln-title">API Saldırı Yüzeyi</h3>
+    <p><ul>
+    <li><a href="./api-attack-surface/overview/">Genel Bakış</a></li> 
+    <li><a href="./api-attack-surface/api-surface/">API Yüzey Keşfi</a></li> 
+    <li><a href="./api-attack-surface/api-leaks/">API Sızıntılarını Yönetme</a></li> 
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3 class="icon-homepage vuln-title">Varlıklar ve Güvenlik Açıkları</h3>
     <p><ul>
     <li><a href="./user-guides/scanner/">Açık Varlık Tarayıcı</a></li>
     <li><a href="./about-wallarm/detecting-vulnerabilities/">Zafiyet Değerlendirmesi</a></li>
     <li><a href="./user-guides/vulnerabilities/">Zafiyet Yönetimi</a></li>
     <li><a href="./vulnerability-detection/active-threat-verification/overview/">Aktif Tehdit Doğrulama</a></li>
-    <li><a href="./about-wallarm/api-leaks/">API Sızıntı Düzeltme</a></li>
     </ul></p>
 </div>
 

@@ -19,13 +19,13 @@ There are two ways to register new leaks:
 * Automatic - Wallarm actively scans thousands of public repositories and sources and adds new leaks to the list. Sort by **Status** and view `Opened` leaks - they require your attention.
 * Manual - add API leaks manually. Each one is a set of leaked tokens.
 
-![API Leaks - Manual adding](../images/about-wallarm-waf/api-leaks/api-leaks-add-manually.png)
+![API Leaks - Manual adding](../images/api-attack-surface/api-leaks-add-manually.png)
 
 ## Interactive visualization
 
 The **API Leaks** section provides rich visual representation for your current situation regarding found API leaks. Use the graphics to quickly analyze current situation with found leaks, click diagram elements to filter leaks by risk levels and sources.
 
-![API Leaks - Visualization](../images/about-wallarm-waf/api-leaks/api-leaks-visual.png)
+![API Leaks - Visualization](../images/api-attack-surface/api-leaks-visual.png)
 
 ## Making decisions
 
@@ -43,6 +43,6 @@ Regardless of how the API leak was added - automatically or manually - the decis
 
 In Wallarm Console → **Attacks**, set the **Type** filter to `Virtual patch` (`vpatch`) to see all attempts of leaked tokens usage.
 
-![Events - API leaks via vpatch](../images/about-wallarm-waf/api-leaks/api-leaks-in-events.png)
+![Events - API leaks via vpatch](../images/api-attack-surface/api-leaks-in-events.png)
 
 For now, you can track the attempts of leaked tokens usage only if `vpatch` is applied.

@@ -2,7 +2,7 @@
 
 **API Sızıntıları** modülü, API belirteçlerinin sızıntıları için binlerce halka açık depoyu ve kaynağı aktif olarak tarar ve API portföyünüze saldırılara veya başka zararlara karşı korumak için sızdırılan belirteçleri engellemenize izin verir. Bu makale, API sızıntılarını nasıl yöneteceğinizi anlatmaktadır.
 
-Temel yeteneklerin bir özetini görmek için lütfen **API Sızıntıları** modülünün [genel bakışına](../about-wallarm/api-leaks.md) başvurun.
+Temel yeteneklerin bir özetini görmek için lütfen **API Sızıntıları** modülünün [genel bakışına](../api-attack-surface/api-leaks.md) başvurun.
 
 ## API Sızıntılarına Erişim
 
@@ -19,13 +19,13 @@ Yeni sızıntıları kaydetmek için iki yol vardır:
 * Otomatik - Wallarm, binlerce halka açık depoyu ve kaynağı aktif olarak tarar ve yeni sızıntıları listeye ekler. **Durum**a göre sıralayın ve `Açık` sızıntıları görüntüleyin - bunlar dikkatinizi gerektirir.
 * Manuel - API sızıntılarını manuel olarak ekleyin. Her biri, sızdırılan belirteçlerin bir setidir.
 
-![API Sızıntıları - Manuel ekleme](../images/about-wallarm-waf/api-leaks/api-leaks-add-manually.png)
+![API Sızıntıları - Manuel ekleme](../images/api-attack-surface/api-leaks-add-manually.png)
 
 ## Etkileşimli görselleştirme
 
 **API Sızıntıları** bölümü, bulunan API sızıntılarına ilişkin mevcut durumunuz için zengin bir görsel temsil sağlar. Sızıntıları risk seviyelerine ve kaynaklara göre filtrelemek için diyagram unsurlarını tıklayarak grafikleri kullanın ve bulunan sızıntılarla mevcut durumu hızlıca analiz edin.
 
-![API Sızıntıları - Görselleştirme](../images/about-wallarm-waf/api-leaks/api-leaks-visual.png)
+![API Sızıntıları - Görselleştirme](../images/api-attack-surface/api-leaks-visual.png)
 
 ## Karar verme
 
@@ -43,6 +43,6 @@ API sızıntısının nasıl eklendiğine bakılmaksızın - otomatik olarak vey
 
 Wallarm Konsolu → **Olaylar**da, sızdırılan belirteçlerin kullanım girişimlerini görmek için **Tür** filtresini `Sanal Yama` (`vpatch`) olarak ayarlayın.
 
-![Olaylar - vpatch aracılığıyla API sızıntıları](../images/about-wallarm-waf/api-leaks/api-leaks-in-events.png)
+![Olaylar - vpatch aracılığıyla API sızıntıları](../images/api-attack-surface/api-leaks-in-events.png)
 
 Şimdilik, sızdırılan belirteçlerin kullanılma girişimlerini `vpatch` uygulandıysa takip edebilirsiniz.

@@ -76,12 +76,15 @@ nav:
     - Proteção BOLA:
       - Configuração: admin-en/configuration-guides/protecting-against-bola.md
       - Modelo de autodetecção BOLA: user-guides/bola-protection.md
-  - Gerenciamento de Postura de API:
+  - Superfície de ataque da API:
+    - Visão geral: api-attack-surface/overview.md
+    - Descoberta de superfície de API: api-attack-surface/api-surface.md
+    - Detecção de vazamentos de API: api-attack-surface/api-leaks.md
+  - Ativos e Vulnerabilidades:
     - Visão Geral: about-wallarm/detecting-vulnerabilities.md
     - Busca e Filtros de Vulnerabilidades: user-guides/search-and-filters/use-search-vuln.md
     - Gerenciando Vulnerabilidades Detectadas: user-guides/vulnerabilities.md
     - Suporte da Operação do Scanner:
-      - Visão Geral: about-wallarm/attack-surface.md
       - Configurações do Scanner: user-guides/scanner.md
       - Endereços do Scanner: admin-en/scanner-addresses.md
       - Contatando o Suporte Wallarm para Parar o Scanner de Recursos: admin-en/scanner-complaint-en.md
@@ -92,9 +95,6 @@ nav:
         - Reescrevendo Solicitações Antes de Reproduzir Ataque: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
       - Casos de Uso:
         - Executando Testes em Não Produção: vulnerability-detection/active-threat-verification/running-test-on-staging.md
-    - Correção de Vazamentos de API:
-      - Visão Geral: about-wallarm/api-leaks.md
-      - Gerenciando Vazamentos de API: user-guides/api-leaks.md
   - Teste de Segurança de API:
     - Teste de Segurança OpenAPI: fast/openapi-security-testing.md
     - Visão Geral: fast/README.md

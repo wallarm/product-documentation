@@ -74,8 +74,11 @@ nav:
       - Bot Etkinliğini Keşfetme: api-abuse-prevention/exploring-bots.md
     - Kimlik Bilgisi Doldurma Tespiti: about-wallarm/credential-stuffing.md
     - GraphQL API Koruması: api-protection/graphql-rule.md
-  - API Duruş Yönetimi:
-    - Genel Bakış: about-wallarm/attack-surface.md
+  - API Saldırı Yüzeyi:
+    - Genel Bakış: api-attack-surface/overview.md
+    - API Yüzey Keşfi: api-attack-surface/api-surface.md
+    - API Sızıntılarını Yönetme: api-attack-surface/api-leaks.md
+  - Varlıklar ve Güvenlik Açıkları:
     - Güvenlik Açıklarını Tespit Etme: about-wallarm/detecting-vulnerabilities.md
     - Algılanan Kırılganlıkların Yönetimi: user-guides/vulnerabilities.md
     - Güvenlik Açığı Arama ve Filtreleri: user-guides/search-and-filters/use-search-vuln.md
@@ -90,9 +93,6 @@ nav:
         - Saldırı Oynatma Öncesi İstekleri Yeniden Yazma: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
       - Kullanım Senaryoları:
         - Üretim Dışı Testleri Çalıştırma: vulnerability-detection/active-threat-verification/running-test-on-staging.md
-    - API Sızıntıları Düzeltme:
-      - Genel Bakış: about-wallarm/api-leaks.md
-      - API Sızıntılarını Yönetme: user-guides/api-leaks.md
   - API Güvenliği Testi:
     - OpenAPI Güvenlik Testi: fast/openapi-security-testing.md
     - API Güvenlik Testi Çerçevesi:

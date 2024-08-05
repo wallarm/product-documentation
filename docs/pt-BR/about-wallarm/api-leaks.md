@@ -1,1 +1,0 @@
---8<-- "latest-pt-BR/about-wallarm/api-leaks.md"

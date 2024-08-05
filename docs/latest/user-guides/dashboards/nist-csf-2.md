@@ -8,7 +8,7 @@ The [NIST cybersecurity framework](https://www.nist.gov/cyberframework), created
 
 Wallarm provides the tools designed to understand your company's business landscape, resources, and potential security vulnerabilities. These tools illuminate your attack surface and assist in ranking assets according to their risk scores:
 
-* [API attack surface management](../../about-wallarm/attack-surface.md) is a set of capabilities that allows you to enumerate, assess, and manage the public attack surface presented by your APIs.
+* [API attack surface management](../../api-attack-surface/overview.md) is a set of capabilities that allows you to enumerate, assess, and manage the public attack surface presented by your APIs.
 * [API Discovery](../../api-discovery/overview.md) crafts a precise inventory of your application's REST API based on real-time usage, effectively identifying zombie, orphan, and shadow APIs.
 * [API risk scoring](../../api-discovery/risk-score.md): Wallarm automatically assigns risk scores for your API endpoints based on factors like data exposure and vulnerability presence, but also provides customization by letting you adjust the significance of these factors.
 
@@ -25,7 +25,7 @@ Wallarm provides robust protection against a wide range of known and emerging th
 To identify anomalies, indicators of compromise, and other potential adverse events, Wallarm emphasizes consistent monitoring of assets as follows:
 
 * [Vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md): Wallarm uses real Internet traffic to proactively identify and report security vulnerabilities. By analyzing attacker attempts and conducting exploitation tests, it uncovers both immediate and potential weaknesses, enabling real-time security monitoring.
-* [API leaks](../../about-wallarm/api-leaks.md): Wallarm's API Leaks module scans public repositories to identify exposed API tokens. Upon detecting leaks, Wallarm alerts you, allowing prompt analysis and action.
+* [API leaks](../../api-attack-surface/api-leaks.md): Wallarm's API Leaks module scans public repositories to identify exposed API tokens. Upon detecting leaks, Wallarm alerts you, allowing prompt analysis and action.
 * [OpenAPI Security Testing](../../fast/openapi-security-testing.md) automates API security checks within the software development lifecycle by seamlessly integrating with CI/CD pipelines via Docker. It creates test requests to expose vulnerabilities in endpoints, as defined in your OpenAPI specification, allowing you to address security issues before the API goes into production.
 
 ## Respond

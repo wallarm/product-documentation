@@ -56,9 +56,16 @@ hide:
 <div class="navigation-card">
     <h3 class="icon-homepage vuln-title">سطح هجوم API</h3>
     <p><ul>
-    <li><a href="./about-wallarm/attack-surface/">نظرة عامة</a></li>
+    <li><a href="./api-attack-surface/overview/">ملخص</a></li>
+    <li><a href="./api-attack-surface/api-surface/">اكتشاف سطح API</a></li>
+    <li><a href="./api-attack-surface/api-leaks/">اكتشاف تسربات API</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3 class="icon-homepage vuln-title">الأصول والثغرات</h3>
+    <p><ul>
     <li><a href="./user-guides/scanner/">الأصول المعرضة</a></li>
-    <li><a href="./about-wallarm/api-leaks/">تسريبات API</a></li>
     <li><a href="./about-wallarm/detecting-vulnerabilities/">تقييم الضعف</a></li>
     <li><a href="./vulnerability-detection/active-threat-verification/overview/">التحقق من التهديدات النشطة</a></li>
     </ul></p>

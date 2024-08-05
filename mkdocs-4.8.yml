@@ -54,9 +54,11 @@ nav:
       - Exceptions: api-abuse-prevention/exceptions.md
       - Exploring Detected Bots: api-abuse-prevention/exploring-bots.md
   - API Attack Surface:
-    - Overview: about-wallarm/attack-surface.md
+    - Overview: api-attack-surface/overview.md
+    - API Surface Discovery: api-attack-surface/api-surface.md
+    - API Leaks Detection: api-attack-surface/api-leaks.md
+  - Assets & Vulnerabilities:
     - Exposed Assets: user-guides/scanner.md
-    - API Leaks: about-wallarm/api-leaks.md
     - Vulnerability Assessment:
       - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md
       - Managing Vulnerabilities: user-guides/vulnerabilities.md

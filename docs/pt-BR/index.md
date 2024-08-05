@@ -55,13 +55,20 @@ A solução Wallarm protege APIs, microsserviços e aplicações web contra as a
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage vuln-title">Gestão de Postura de API</h3>
+    <h3 class="icon-homepage vuln-title">Superfície de ataque da API</h3>
+    <p><ul>
+    <li><a href="./api-attack-surface/overview/">Visão geral</a></li>    </p></ul>
+    <li><a href="./api-attack-surface/api-surface/">Detecção de vazamentos de API</a></li>    </p></ul>
+    <li><a href="./api-attack-surface/api-leaks/">Detecção de vazamentos de API</a></li>    </p></ul>
+</div>
+
+<div class="navigation-card">
+    <h3 class="icon-homepage vuln-title">Ativos e Vulnerabilidades</h3>
     <p><ul>
     <li><a href="./user-guides/scanner/">Scanner de Ativos Expostos</a></li>
     <li><a href="./about-wallarm/detecting-vulnerabilities/">Avaliação de Vulnerabilidades</a></li>
     <li><a href="./user-guides/vulnerabilities/">Gestão de Vulnerabilidades</a></li>
     <li><a href="./vulnerability-detection/active-threat-verification/overview/">Verificação Ativa de Ameaças</a></li>
-    <li><a href="./about-wallarm/api-leaks/">Remediação de Vazamentos de API</a></li>
     </ul></p>
 </div>
 

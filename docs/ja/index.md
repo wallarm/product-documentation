@@ -57,9 +57,16 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
 <div class="navigation-card">
     <h3 class="icon-homepage vuln-title">API攻撃面</h3>
     <p><ul>
-    <li><a href="./about-wallarm/attack-surface/">概要</a></li>
+    <li><a href="./api-attack-surface/overview/">概要</a></li> 
+    <li><a href="./api-attack-surface/api-surface/">API サーフェス検出</a></li>   
+    <li><a href="./api-attack-surface/api-leaks/">APIリーク</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3 class="icon-homepage vuln-title">資産と脆弱性</h3>
+    <p><ul>
     <li><a href="./user-guides/scanner/">公開されたアセット</a></li>
-    <li><a href="./about-wallarm/api-leaks/">API 情報漏えい</a></li>
     <li><a href="./about-wallarm/detecting-vulnerabilities/">脆弱性評価</a></li>
     <li><a href="./vulnerability-detection/active-threat-verification/overview/">アクティブな脅威検証</a></li>
     </ul></p>
