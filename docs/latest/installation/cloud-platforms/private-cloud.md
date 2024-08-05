@@ -22,8 +22,7 @@ Access in private clouds is typically granted based on IP addresses. Wallarm req
 * `35.235.66.155` to have access to the US Wallarm Cloud (`us1.api.wallarm.com`) to get security rules, upload attack data, etc.
 * `34.90.110.226` to have access to the EU Wallarm Cloud (`api.wallarm.com`) to get security rules, upload attack data, etc.
 * IP addresses used by Docker Hub if you choose to run Wallarm from a Docker image.
-* `34.111.12.147` (`repo.wallarm.com`) if you choose to install Wallarm node from individual Linux packages for [NGINX stable](../nginx/dynamic-module.md)/[NGINX Plus](../nginx-plus.md)/[distribution-provided NGINX](../nginx/dynamic-module-from-distr.md). Packages for node installation are downloaded from this address.
-* `35.244.197.238` (`https://meganode.wallarm.com`) if you choose to install Wallarm from [all-in-one installer](../nginx/all-in-one.md). The installer is downloaded from this address.
+* `35.244.197.238` (`https://meganode.wallarm.com`) to install Wallarm from [all-in-one installer](../nginx/all-in-one.md). The installer is downloaded from this address.
 * The IP addresses below for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-lists-docs] countries, regions, or data centers.
 
     === "US Cloud"
@@ -48,11 +47,7 @@ In this model, you deploy Wallarm as a virtual appliance within your private clo
 * Docker images:
     * [NGINX-based Docker image](../../admin-en/installation-docker-en.md)
     * [Envoy-based Docker image](../../admin-en/installation-guides/envoy/envoy-docker.md)
-* Linux packages:
-    * [Individual Linux packages for NGINX stable](../nginx/dynamic-module.md)
-    * [Individual Linux packages for NGINX Plus](../nginx-plus.md)
-    * [Individual Linux packages for Distribution-Provided NGINX](../nginx/dynamic-module-from-distr.md)
-    * [All‑in‑One Installer for Linux](../nginx/all-in-one.md)
+* [All‑in‑One Installer for Linux](../nginx/all-in-one.md)
 
 ### Kubernetes deployment
 

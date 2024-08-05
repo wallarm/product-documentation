@@ -173,7 +173,7 @@ The new deployment method lets you configure the Wallarm CDN node outside your i
 
     If your server with the deployed node has a limited access to the external resources and the access is granted to each resource separately, after upgrade to version 4.x the synchronization between the filtering node and the Cloud will stop. The upgraded node needs to be granted access to the API endpoint with the new port.
 
-## Unified registration of nodes in the Wallarm Cloud by tokens
+## Unified registration of nodes in the Wallarm Cloud by API tokens
 
 With the new release of Wallarm node, email-password based registration of Wallarm nodes in the Cloud has been removed. It is now mandatory to switch to the new token-based node registration method to continue with Wallarm node 4.10.
 

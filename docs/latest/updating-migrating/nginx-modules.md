@@ -27,9 +27,9 @@
 
 These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x installed from the individual packages to version 5.0. These are the modules installed in accordance with one of the following instructions:
 
-* [Individual packages for NGINX stable](/4.8/installation/nginx/dynamic-module/)
-* [Individual packages for NGINX Plus](/4.8/installation/nginx-plus/)
-* [Individual packages for distribution-provided NGINX](/4.8/installation/nginx/dynamic-module-from-distr/)
+* Individual packages for NGINX stable
+* Individual packages for NGINX Plus
+* Individual packages for distribution-provided NGINX
 
 !!! info "Upgrading with all-in-one installer"
     Since version 4.10, upgrading is performed using Wallarm's [all-in-one installer](../installation/nginx/all-in-one.md) as the individual Linux packages have been deprecated. This method simplifies the upgrade process and ongoing deployment maintenance compared to the previous approach.

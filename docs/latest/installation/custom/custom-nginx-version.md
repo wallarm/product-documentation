@@ -1,12 +1,6 @@
 # Custom NGINX Packages
 
-If you require Wallarm DEB/RPM packages for an NGINX version that is different from the stable version, NGINX Plus, or the distributive version, you can request a custom Wallarm build by following these instructions.
-
-By default, Wallarm DEB/RPM packages are available for the following NGINX versions:
-
-* Official open source NGINX `stable` - refer to the [installation instructions](../nginx/dynamic-module.md)
-* Distribution-provided NGINX - refer to the [installation instructions](../nginx/dynamic-module-from-distr.md)
-* Official commercial NGINX Plus - refer to the [installation instructions](../nginx-plus.md)
+If you require Wallarm for an NGINX version that is different from the versions supported by [all-in-one installation](../../installation/nginx/all-in-one.md), such as stable version, mainline NGINX Plus, or the distributive version, you can request a custom Wallarm build by following these instructions.
 
 The Wallarm module can be integrated with a custom build of NGINX, including NGINX `mainline`, by rebuilding the Wallarm packages. To rebuild the packages, please contact the [Wallarm technical support](mailto:support@wallarm.com) team and provide the following information:
 

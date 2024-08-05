@@ -46,7 +46,7 @@ These instructions describe the steps to upgrade the end‑of‑life Wallarm NGI
 
         Manual upgrade with individual Linux packages is not supported any more.
 
-    ![All-in-one compared to manual](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+    ![All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 ## Inform Wallarm technical support that you are upgrading EOL node
 

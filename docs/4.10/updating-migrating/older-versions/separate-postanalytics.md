@@ -28,7 +28,7 @@ These instructions describe the steps to upgrade the end‑of‑life postanalyti
     
         Manual upgrade with individual Linux packages is not supported any more.
 
-    ![All-in-one compared to manual](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+    ![All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 ## Requirements
 

@@ -53,7 +53,7 @@ The `wallarm_block_page` directive accepts the listed parameters in the followin
     You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the blocking page. For this, add the variable name in the format `${variable_name}` to the blocking page code, e.g. `${remote_addr}` to display the IP address from which the blocked request originated.
 
     !!! warning "Important information for Debian and CentOS users"
-        If you use an NGINX version lower than 1.11 installed from [CentOS/Debian](../../installation/nginx/dynamic-module-from-distr.md) repositories, you should remove the `request_id` variable from the page code to display the dynamic blocking page correctly:
+        If you use an NGINX version lower than 1.11 installed from CentOS/Debian repositories, you should remove the `request_id` variable from the page code to display the dynamic blocking page correctly:
         ```
         UUID ${request_id}
         ```

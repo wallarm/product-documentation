@@ -36,7 +36,7 @@ search:
 [download-aio-step]:                #step-3-download-all-in-one-wallarm-installer
 [enable-traffic-analysis-step]:     #step-5-enable-wallarm-node-to-analyze-traffic
 [restart-nginx-step]:               #step-6-restart-nginx
-[separate-postanalytics-installation-aio]:  ../../../../admin-en/installation-postanalytics-en.md#all-in-one-automatic-installation
+[separate-postanalytics-installation-aio]:  ../../../../admin-en/installation-postanalytics-en.md
 [api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
 
 # Deploying with All-in-One Installer
