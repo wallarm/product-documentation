@@ -7,7 +7,7 @@ search:
 [us-cloud-docs]:                      ../../../../about-wallarm/overview.md#cloud
 [eu-cloud-docs]:                      ../../../../about-wallarm/overview.md#cloud
 [configure-wallarm-mode-docs]:        ../../../../admin-en/configure-wallarm-mode.md
-[filtration-mode-priorities-docs]:    ../../../../admin-en/configure-wallarm-mode.md#setting-up-priorities-of-filtration-mode-configuration-methods-using-wallarm_mode_allow_override
+[filtration-mode-priorities-docs]:    ../../../../admin-en/configure-wallarm-mode.md#prioritization-of-methods
 [libdetection-docs]:                  ../../../../about-wallarm/protecting-against-attacks.md#libdetection-overview
 [passive-detection-docs]:             ../../../../about-wallarm/detecting-vulnerabilities.md#passive-detection
 [subscriptions-docs]:                 ../../../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security

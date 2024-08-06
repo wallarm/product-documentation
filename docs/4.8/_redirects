@@ -602,4 +602,4 @@
 /user-guides/rules/disable-request-parsers/ /user-guides/rules/request-processing/#managing-parsers
 /user-guides/rules/ignore-attack-types/ /about-wallarm/protecting-against-attacks/#ignoring-certain-attack-types
 /user-guides/rules/ignore-attacks-in-binary-data/ /about-wallarm/protecting-against-attacks/#ignoring-certain-attack-signs-in-the-binary-data
-/user-guides/rules/wallarm-mode-rule/ /admin-en/configure-wallarm-mode/#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console
+/user-guides/rules/wallarm-mode-rule/ /admin-en/configure-wallarm-mode/#endpoint-targeted-filtration-rules-in-wallarm-console

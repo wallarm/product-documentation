@@ -23,88 +23,72 @@ The Wallarm filtering node can process incoming requests in the following modes 
 
 The filtration mode can be configured in the following ways:
 
-* Assign a value to the `wallarm_mode` directive in the filtering node configuration file
+* [Set the `wallarm_mode` directive on the node side](#setting-wallarm_mode-directive)
+* [Define the general filtration rule in Wallarm Console](#general-filtration-rule-in-wallarm-console)
+* [Define the endpoint-targeted filtration rules in Wallarm Console](#endpoint-targeted-filtration-rules-in-wallarm-console)
 
-    !!! warning "Support of the `wallarm_mode` directive on the CDN node"
-        Please note that the `wallarm_mode` directive cannot be configured on the [Wallarm CDN nodes](../installation/cdn-node.md). To configure the filtration mode of the CDN nodes, please use other available methods.
-* Define the general filtration rule in Wallarm Console
-* Define the endpoint-targeted filtration rules in Wallarm Console
-
-Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#setting-up-priorities-of-filtration-mode-configuration-methods-using-wallarm_mode_allow_override). By default, the settings specified in Wallarm Console have a higher priority than the `wallarm_mode` directive regardless of its value severity.
+Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#prioritization-of-methods). By default, the settings specified in Wallarm Console have a higher priority than the `wallarm_mode` directive regardless of its value severity.
 
 ### Setting `wallarm_mode` directive
 
-!!! warning "Support of the `wallarm_mode` directive on the CDN node"
-    Please note that the `wallarm_mode` directive cannot be configured on the [Wallarm CDN nodes](../installation/cdn-node.md). To configure the filtration mode of the CDN nodes, please use other available methods.
+You can set the node filtration mode on the node side using the `wallarm_mode` directive. Peculiarities of how the `wallarm_mode` directive is set in different deployments are described below.
 
-Using the `wallarm_mode` directive in the filtering node configuration file, you can define filtration modes for different contexts. These contexts are ordered from the most global to the most local in the following list:
+Note that described configuration is applicable only for [in-line](../installation/inline/overview.md) deployments - for [out-of-band (OOB)](../installation/oob/overview.md) solutions only the `monitoring` mode can be active.
 
-* `http`: the directives are applied to the requests sent to the HTTP server.
-* `server`: the directives are applied to the requests sent to the virtual server.
-* `location`: the directives are only applied to the requests containing that particular path.
+=== "All-in-one installer"
 
-If different `wallarm_mode` directive values are defined for the `http`, `server`, and `location` blocks, the most local configuration has the highest priority.
+    For the NGINX-based nodes installed on Linux with [all-in-one installer](../installation/nginx/all-in-one.md), you can set the `wallarm_mode` directive in the filtering node configuration file. You can define filtration modes for different contexts. These contexts are ordered from the most global to the most local in the following list:
 
-**Setting `wallarm_mode` in specific deployments**
+    * `http`: the directives are applied to the requests sent to the HTTP server.
+    * `server`: the directives are applied to the requests sent to the virtual server.
+    * `location`: the directives are only applied to the requests containing that particular path.
 
-Peculiarities on how the `wallarm_mode` directive is set in the specific deployments are described below. Note that the values and their meanings are the same as for the `wallarm_mode` directive. Also consider that described configuration is applicable only for [in-line](../installation/inline/overview.md) deployments - for [Out-of-Band (OOB)](../installation/oob/overview.md) solutions only the `monitoring` mode can be active.
+    If different `wallarm_mode` directive values are defined for the `http`, `server`, and `location` blocks, the most local configuration has the highest priority.
 
-=== "Docker"
-    When deploying Wallarm nodes via docker containers, pass the `WALLARM_MODE` environment variable. 
-    
-    NGINX example (see details [here](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)):
+    See [configuration example](#configuration-example) below.
+
+=== "Docker NGINX‑based image"
+
+    When deploying the NGINX-based Wallarm nodes via docker containers, [pass](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) the `WALLARM_MODE` environment variable:
 
     ```
     docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/node:4.10.6-1
     ```
 
-    Envoy example (see details [here](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)):
+    Alternatively, [include](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file) the corresponding parameter in the configuration file and run the container mounting this file.
+
+=== "Docker Envoy‑based image"
+
+    When deploying the Envoy-based Wallarm nodes via docker containers, [pass](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables) the `WALLARM_MODE` environment variable:
 
     ```
     docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/envoy:4.8.0-1
     ```
 
-    Alternatively, include the corresponding directive/parameter in the configuration file and run the container mounting this file. For NGINX, this will be as this article describes above; see **Envoy** tab for its peculiarities.
-=== "Envoy"
-    For the Envoy‑based Wallarm nodes, in the Envoy configuration file, in the `conf` section of the Wallarm configuration, use the `mode` parameter.
-    
-    For example:
+    Alternatively, [include](../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) the corresponding parameter in the configuration file and run the container mounting this file.
 
-    ```
-    listeners:
-    - address:
-        filter_chains:
-        - filters:
-        - name: envoy.http_connection_manager
-            typed_config:
-            http_filters:
-            - name: wallarm
-                typed_config:
-                "@type": type.googleapis.com/wallarm.Wallarm
-                conf:
-                    ...
-                    mode: "monitoring"
-                    mode_allow_override: "off"
-                    ...
-                ...
-    ```
-    
-    See details on specifying mode in Envoy [here](../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings).
-=== "NGINX and Kong Ingress controllers"
-    For NGINX and Kong Ingress controllers, use the `wallarm-mode` annotations.
+=== "NGINX Ingress controller"
 
-    Example for NGINX (see details [here](../admin-en/installation-kubernetes-en.md#step-2-enabling-traffic-analysis-for-your-ingress)):
-    
+    For NGINX Ingress controller, use the `wallarm-mode` annotation:
+
     ```
     kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-mode=monitoring
     ```
 
-    Example for Kong (see details [here](../installation/kubernetes/kong-ingress-controller/deployment.md#step-3-enable-traffic-analysis-for-your-ingress)):
+    See example of how traffic analysis for your NGINX-based Ingress controller [is enabled](../admin-en/installation-kubernetes-en.md#step-2-enabling-traffic-analysis-for-your-ingress) by setting the filtration mode to `monitoring`.
+
+=== "Kong Ingress controller"
+
+    For Kong Ingress controller, use the `wallarm-mode` annotation:
 
     ```
     kubectl annotate ingress <KONG_INGRESS_NAME> -n <KONG_INGRESS_NAMESPACE> wallarm.com/wallarm-mode=monitoring
     ```
+
+    See example of how traffic analysis for your Kong-based Ingress controller [is enabled](../installation/kubernetes/kong-ingress-controller/deployment.md#step-3-enable-traffic-analysis-for-your-ingress) by setting the filtration mode to `monitoring`.
+
 === "Sidecar"
+
     For the Wallarm Sidecar solution, in the Wallarm-specific part of the default `values.yaml`, set the `mode` parameter:
 
     ```
@@ -115,7 +99,11 @@ Peculiarities on how the `wallarm_mode` directive is set in the specific deploym
         modeAllowOverride: "on"
     ```
 
-    See details on specifying mode for Sidecar [here](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md).
+    See details on specifying the filtration mode for Sidecar [here](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md).
+
+=== "CDN node"
+
+    The `wallarm_mode` directive cannot be configured on the [Wallarm CDN nodes](../installation/cdn-node.md). To configure the filtration mode of the CDN nodes, please use other [available methods](#configuration-methods).
 
 ### General filtration rule in Wallarm Console
 
@@ -127,7 +115,7 @@ The general filtration mode setting is represented as **Set filtration mode** [d
 
 ### Endpoint-targeted filtration rules in Wallarm Console
 
-You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Set filtration mode** [rule](../user-guides/rules/rules.md) to do this. Such rules have higher priority than the [general filtration rule set in Wallarm Console](#setting-up-general-filtration-rule-in-wallarm-console).
+You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Set filtration mode** [rule](../user-guides/rules/rules.md) to do this. Such rules have higher priority than the [general filtration rule set in Wallarm Console](#general-filtration-rule-in-wallarm-console).
 
 To create a new filtration mode rule:
 
@@ -233,8 +221,8 @@ http {
 
 ### Rules in Wallarm Console
 
-* [General filtration rule](#setting-up-general-filtration-rule-in-wallarm-console): **Monitoring**.
-* [Filtration rules](#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console):
+* [General filtration rule](#general-filtration-rule-in-wallarm-console): **Monitoring**.
+* [Filtration rules](#endpoint-targeted-filtration-rules-in-wallarm-console):
     * If the request meets the following conditions:
         * Method: `POST`
         * First part of the path: `main`

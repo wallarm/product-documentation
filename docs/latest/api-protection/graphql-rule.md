@@ -46,11 +46,11 @@ To set and apply GraphQL policy:
 
 Reaction to the policy violation is defined by the [filtration mode](../admin-en/configure-wallarm-mode.md) applied to the endpoints targeted by the rule.
 
-If you are using Wallarm in blocking mode and want to safely test GraphQL rules, you can easily enable monitoring mode for `/graphql` routes by creating a **Set filtration mode** rule [specifically](../admin-en/configure-wallarm-mode.md#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console) for your GraphQL route. Note that this rule will apply to all attacks, including SQLi, XSS, etc., so it is not recommended to leave it for a long time.
+If you are using Wallarm in blocking mode and want to safely test GraphQL rules, you can easily enable monitoring mode for `/graphql` routes by creating a **Set filtration mode** rule [specifically](../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console) for your GraphQL route. Note that this rule will apply to all attacks, including SQLi, XSS, etc., so it is not recommended to leave it for a long time.
 
 ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-2-action.png)
 
-Consider that you node configuration via the [`wallarm_mode_allow_override` directive](../admin-en/configure-wallarm-mode.md#setting-up-priorities-of-filtration-mode-configuration-methods-using-wallarm_mode_allow_override) may be set to ignore rules created in Wallarm Console. If this is a case, [explore](../admin-en/configure-wallarm-mode.md#methods-of-the-filtration-mode-configuration) and use other ways to change the filtration mode.
+Consider that you node configuration via the [`wallarm_mode_allow_override` directive](../admin-en/configure-wallarm-mode.md#prioritization-of-methods) may be set to ignore rules created in Wallarm Console. If this is a case, [explore](../admin-en/configure-wallarm-mode.md#configuration-methods) and use other ways to change the filtration mode.
 
 ## Exploring GraphQL attacks
 
