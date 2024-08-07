@@ -23,7 +23,7 @@ Using rules, you can provide the multiple protection measures for your applicati
 * [Create your own detection rule](../../user-guides/rules/regex-rule.md)
 * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
 * Provide [protection from GraphQL specific attacks](../../api-protection/graphql-rule.md)
-* Set up the [specific filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-endpoint-targeted-filtration-rules-in-wallarm-console) for particular domains/endpoints
+* Set up the [specific filtration mode](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console) for particular domains/endpoints
 * Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
 * Fine tune request processing by [managing request parsers](../../user-guides/rules/request-processing.md#managing-parsers)
 * Configure the additional layer of the application security by [changing server response headers](../../user-guides/rules/add-replace-response-header.md)
@@ -50,7 +50,7 @@ You can create rules with specified action but not linked to any endpoint - they
 * Default rules are inherited by all branches.
 
 !!! info "Traffic filtration mode default rule"
-    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-general-filtration-rule-in-wallarm-console) setting.
+    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) setting.
 
 ### Viewing branch rules
 
