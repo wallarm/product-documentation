@@ -1,6 +1,5 @@
 [link-using-search]:    ../search-and-filters/use-search.md
 [link-verify-attack]:   ../events/verify-attack.md
-[img-attacks-tab]:      ../../images/user-guides/events/check-attack.png
 [img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
 [img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
 [img-show-falsepositive]: ../../images/user-guides/events/filter-for-falsepositive.png
@@ -23,74 +22,59 @@
 [img-removed-attack-info]:      ../../images/user-guides/events/removed-attack-info.png
 [link-check-attack]:        check-attack.md
 [link-false-attack]:        false-attack.md
-[img-analyze-attack]:       ../../images/user-guides/events/analyze-attack.png
-[img-analyze-attack-raw]:   ../../images/user-guides/events/analyze-attack-raw.png
 [img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
 
 # Checking Attacks
 
-In Wallarm Console, you can check detected attacks in the **Attacks** section.
+In the **Attacks** section of the Wallarm Console, you can check detected attacks and perform actions regarding them to mitigate threats and prevent false positives.
 
-## Attack list
+### Checking attacks
 
-The attack list presents data on attacks for the selected period (today's attacks by default), including the number of unique [malicious payload](../../glossary-en.md#malicious-payload), blocking status (depends on the [traffic filtration mode](../../admin-en/configure-wallarm-mode.md)),  [verification status](#verifying-attacks), and other data.
+<div>
+  <script src="https://js.storylane.io/js/v1/storylane.js"></script>
+  <div class="sl-embed" style="position:relative;padding-bottom:calc(55.04% + 25px);width:100%;height:0;transform:scale(1)">
+    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/2k7dijltmvb4" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+  </div>
+</div>
 
-![Attacks tab][img-attacks-tab]
+Consider the following:
 
-Note that you [can use][use-search] search field and filters as alternatives.
+* Attack is a group of hits
+* Hit is a request plus metadata added by node
+* Malicious payload is a part of request with attack sign
+
+See details on that terms in a [Glossary](../../glossary-en.md).
+
+Also
+
+* Attack **Status** is what has been done by the node, this depends on the [traffic filtration mode](../../admin-en/configure-wallarm-mode.md)
+* **Active verification** is if target was [tested](#verifying-attacks) by other payloads to be vulnerable to this attack type
 
 ## Grouping of hits
 
-When forming the attack list, Wallarm groups [hits](../../glossary-en.md#hit) sent from the same IP address into one attack. If grouped hits have different attack types, malicious payloads and URLs, attack parameters will be marked with the `[multiple]` tag in the attack list.
+When forming the attack list, Wallarm [groups](../../glossary-en.md#attack) hits into one attack using two grouping methods:
 
-Grouping is by default enabled in Wallarm Console → **Triggers** with the **Hits from the same IP** default trigger which activates when a single IP address originates more than 50 hits within 15 minutes.
+* Basic grouping
+* Grouping of hits by source IP
+
+These methods do not exclude each other. If hits have characteristics of both methods, they are all grouped into one attack.
+
+**Basic grouping**
+
+The hits are grouped if they have the same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type.
+
+This hit grouping method is basic, applied to all hits and cannot be disabled or modified.
+
+**Grouping of hits by source IP**
+
+The hits are grouped if they have the same source IP address. If grouped hits have different attack types, malicious payloads and URLs, attack parameters will be marked with the `[multiple]` tag in the attack list.
+
+Grouping by source IP is by default enabled in Wallarm Console → **Triggers** with the **Hits from the same IP** default trigger which activates when a single IP address originates more than 50 hits within 15 minutes.
 
 ![Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
 
-You can adjust grouping under your needs: do this by creating your custom triggers of the **Hits from the same IP** type. Creating any custom trigger deletes the default one, if you delete all your custom triggers, the default is restored. You can also pause grouping by temporary disabling the default trigger.
-
-## Attack details
-
-Expand an attack to get the list of included requests and general attack details.
-
-![Requests in the event][img-analyze-attack]
-
-You can quickly create [rules](../rules/rules.md) to handle similar requests in future. Expand a request inside an attack to view it in a raw format.
-
-![Raw format of the request][img-analyze-attack-raw]
-
-<!--## Analyze requests from denylisted IPs
-
-[Denylisting](../../user-guides/ip-lists/overview.md) proves to be an effective defensive measure against high-volume attacks of different types. This is achieved by blocking requests at the earliest stage of processing. At the same time, it is equally important to gather comprehensive information on all blocked requests for further analysis.
-
-Wallarm offers the ability to collect and display statistics regarding blocked requests from denylisted source IPs. This empowers you to evaluate the potency of attacks originating from denylisted IPs, and conduct precise analysis of the requests from these IPs, exploring various parameters.
-
-!!! info "Feature availability"
-    Feature is available starting from node version 4.8, for NGINX-based nodes. By default it is [enabled](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable).
-    
-In Wallarm, there are several ways for IP to get into the denylist. Depending on the way used, you will need to [search](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) for the associated events using different tags/filters:
-
-* You add it manually (in the **Attacks** section, use `blocked_source` search or `Blocked Source` filter)
-* It performs a behavioral attack and is automatically denylisted by:
-    * [API Abuse Prevention](../../api-abuse-prevention/overview.md) module (`api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys, the appropriate **Type** filters)
-    * [`Brute force`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger (`brute`, `Brute force`)
-    * [`Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger (`dirbust`, `Forced browsing`)
-    * [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) trigger (`bola`, `BOLA`)
-    * `Number of malicious payloads` trigger (`multiple_payloads`, `Multiple payloads`)
-
-The listed behavioral attacks can be detected only after accumulating certain statistics the required amount of which depends on the corresponding trigger thresholds. Thus, in the first stage, before denylisting, Wallarm collects this information but all requests are passed and displayed within the `Monitoring` events.
-
-Once trigger thresholds are exceeded, malicious activity is considered to be detected, and Wallarm places the IP in the denylist, the node starts immediate blocking of all requests originating from them.
-
-As soon as sending of information about requests from denylisted IPs is enabled, you will see `Blocked` requests from these IPs in the event list. This applies to manually denylisted IPs as well.
-
-![Events related to denylisted IPs - sending data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
-
-Note that search/filters will display both `Monitoring` and - if sending information is enabled - `Blocked` events for each attack type. For manually denylisted IPs a `Monitoring` event never exists.
-
-Within the `Blocked` events, use tags to switch to the reason of denylisting - BOLA settings, API Abuse Prevention, trigger or causing record in denylist.
--->
+You can adjust grouping by source IP under your needs: do this by creating your custom triggers of the **Hits from the same IP** type. Creating any custom trigger deletes the default one, if you delete all your custom triggers, the default is restored. You can also pause grouping by temporary disabling the default trigger.
 
 ## Sampling of hits
 
@@ -113,15 +97,7 @@ Since dropped requests are still requests processed by the Wallarm node, the RPS
 * For [behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), attacks of the [Data bomb](../../attacks-vulns-list.md#data-bomb) and [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources): the **regular** sampling algorithm is enabled by default. **Extreme** sampling starts only if the percentage of attacks in your traffic is high.
 * For events from denylisted IPs, sampling is configured on the node side. It uploads only the first 10 identical requests to the Cloud while applying a sampling algorithm to the rest of the hits.
 
-When the sampling algorithm is enabled, in the **Attacks** section, the **Hits sampling is enabled** notification is displayed.
-
 Sampling will be automatically disabled once the percentage of attacks in the traffic decreases.
-
-**How hit sampling works**
-
-Hit sampling is performed in two sequential stages: **extreme** and **regular**.
-
-Regular algorithm processes only hits saved after the extreme stage, unless hits are of the [behavioral](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types. If extreme sampling is disabled for hits of these types, the regular algorithm processes the original hit set.
 
 **Extreme sampling**
 
@@ -131,6 +107,8 @@ The extreme sampling algorithm has the following core logic:
 * If hits are of the [behavioral](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types, the algorithm uploads to the Cloud only the first 10% of them detected within an hour.
 
 **Regular sampling**
+
+Regular algorithm processes only hits saved after the extreme stage, unless hits are of the [behavioral](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types. If extreme sampling is disabled for hits of these types, the regular algorithm processes the original hit set.
 
 The regular sampling algorithm has the following core logic:
 
