@@ -20,11 +20,12 @@ nav:
       - Shadow and Orphan API: demo-videos/shadow-api.md
       - API Abuse Prevention Overview: demo-videos/api-abuse-prevention.md
       - API Leaks Overview: demo-videos/api-leaks.md
-  - Dashboards and Reports:
-    - Threat Prevention: user-guides/dashboards/threat-prevention.md
-    - API Discovery: user-guides/dashboards/api-discovery.md
-    - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
-    - OWASP API Top 10: user-guides/dashboards/owasp-api-top-ten.md
+  - Threat Management:
+    - Dashboards:
+      - Threat Prevention: user-guides/dashboards/threat-prevention.md
+      - API Discovery: user-guides/dashboards/api-discovery.md
+      - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
+      - OWASP API 2023: user-guides/dashboards/owasp-api-top-ten.md
     - Attacks & Incidents:
       - Attack Analysis: user-guides/events/check-attack.md
       - Incident Analysis: user-guides/events/check-incident.md
