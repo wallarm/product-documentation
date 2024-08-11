@@ -1,18 +1,14 @@
-The **API Discovery** Wallarm dashboard summarizes data about your API collected by the [**API Discovery**][apid-overview] module. It provides a comprehensive overview of your API inventory based on the metrics:
+Review data about your API collected by the Wallarm's [**API Discovery**][apid-overview] with the **API Discovery** dashboard.
 
-* Number of endpoints by risk level
-* The [top risky][apid-risk-score] endpoints among the whole API inventory and among the newly discovered endpoints in the last 7 days
+<div>
+  <script src="https://js.storylane.io/js/v1/storylane.js"></script>
+  <div class="sl-embed" style="position:relative;padding-bottom:calc(54.13% + 25px);width:100%;height:0;transform:scale(1)">
+    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/e1bl1st5rxkv" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+  </div>
+</div>
 
-    The top risky endpoints are most likely to be an attack target due to active vulnerabilities, endpoints being [new][apid-track-changes] or [shadow][apid-rogue], and other risk factors. Each risky endpoint is provided with the number of targeting hits.
+Consider the following:
 
-* Number of identified [rogue][apid-rogue] (shadow, zombie and orphan) APIs      
-* Changes of your API in the last 7 days by type (new, changed, unused APIs)
-* Total number of discovered endpoints and how many of them are external and internal
-* Sensitive data in API by groups (personal, finance, etc.) and by types
-* API inventory: number of endpoints by the API host and the application
-
-![API Discovery widget][img-api-discovery-widget]
-
-The dashboard can uncover anomalies, such as risky frequently-used endpoints or high volume of sensitive data your API transfers. Additionally, it draws attention to the changes in API that you always need to check to exclude security risks. This helps you implement security controls to prevent endpoints from being targets of attacks.
-
-Click elements of the widget to go to the **API Discovery** section and view filtered data. If clicking hit number, you will be addresses to the [attack list][check-attack] with the attack data for the last 7 days.
+* How much your API endpoints are under risk is marked with the [risk score][apid-risk-score]
+* Pay attention to [changes][apid-track-changes] in your API (displayed for the last 7 days)
+* [Rogue API][apid-rogue] is a serious risk factor - upload your specification to compare with real traffic
