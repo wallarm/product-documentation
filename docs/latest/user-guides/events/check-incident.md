@@ -33,6 +33,24 @@ In Wallarm Console, you can analyze detected incidents in the **Incidents** sect
 
 To sort incidents by the time of the last request, you can use the **Sort by latest hit** switch.
 
+## Responding to incidents
+
+The [incidents](../../glossary-en.md#security-incident) are the attacks targeted at a confirmed vulnerability.
+
+![Incidents tab][img-incidents-tab]
+
+Once incident appeared in the **Incidents** section:
+
+1. Follow the link in the **Vulnerabilities** column to get detailed vulnerability information including instructions on how to fix this vulnerability and the list of related incidents. 
+
+     ![Vulnerability detailed information](../../images/user-guides/vulnerabilities/vuln-info.png)
+
+     **Fix the vulnerability** and then mark it closed in Wallarm. For detailed information, refer to [Managing Vulnerabilities](../user-guides/vulnerabilities.md) article.
+
+1. Go back to the incident in the list, investigate what mechanism caused the system reaction (note the `Blocked`, `Partially blocked` and `Monitoring` [statuses](../user-guides/events/check-attack.md#attacks) of the attacks), how the system will behave in future to alike requests and how to adjust (if necessary) this future behavior.
+
+     For incidents, this investigation and adjusting is performed [in the same way](check-attack.md#responding-to-attacks) as for all other attacks.
+
 ## API calls to get incidents
 
 To get the incident details, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is the example of the API call for **getting the first 50 incidents detected in the last 24 hours**.
