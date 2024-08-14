@@ -269,7 +269,7 @@ To upgrade or reinstall the node:
 1. Get the [installer version](../../../updating-migrating/node-artifact-versions.md#wallarm-node-for-tcp-traffic-mirror-analysis) you need.
 1. Run the new installer script as described above, but change the script version.
 
-Your current `/opt/wallarm/etc/wallarm/go-node.yaml`, `/opt/wallarm/etc/wallarm/node.yaml` and log files will be backed up to the directory `/opt/wallarm/wallarm-backup-<timestamp>`.
+Your current `/opt/wallarm/etc/wallarm/go-node.yaml`, `/opt/wallarm/etc/wallarm/node.yaml` and log files will be backed up to the directory `/opt/wallarm/aio-backups/<timestamp>`.
 
 If there is a problem with the upgrade or reinstallation process:
 
