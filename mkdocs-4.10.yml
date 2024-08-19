@@ -263,7 +263,7 @@ nav:
     - In-Line:
       - Overview: installation/inline/overview.md
       - Compute Instances:
-        - Linux packages with all-in-one installation: installation/inline/compute-instances/linux/all-in-one.md
+        - All-in-one installer: installation/inline/compute-instances/linux/all-in-one.md
         - Amazon Web Services:
           - AMI: installation/inline/compute-instances/aws/aws-ami.md
           - ECS: installation/inline/compute-instances/aws/aws-ecs.md
@@ -299,7 +299,7 @@ nav:
         - Selecting Packets for Mirroring: installation/oob/ebpf/selecting-packets.md
       - Mirroring by NGINX, Envoy and Similar:
         - Overview: installation/oob/web-server-mirroring/overview.md
-        - Linux packages with all-in-one installation: installation/oob/web-server-mirroring/linux/all-in-one.md
+        - All-in-one installer: installation/oob/web-server-mirroring/linux/all-in-one.md
         - Public Clouds:
           - AWS:
             - AMI: installation/oob/web-server-mirroring/aws-ami.md
@@ -308,7 +308,7 @@ nav:
             - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
         - Docker: installation/oob/web-server-mirroring/docker-image.md
     - Packages:
-      - Linux packages with all-in-one installation: installation/nginx/all-in-one.md
+      - All-in-one installer: installation/nginx/all-in-one.md
       - Docker Images:
         - NGINX-based: admin-en/installation-docker-en.md
         - Envoy-based: admin-en/installation-guides/envoy/envoy-docker.md
