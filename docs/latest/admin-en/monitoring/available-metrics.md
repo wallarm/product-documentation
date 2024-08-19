@@ -89,7 +89,9 @@ A number of issues have led to abnormal completion of the NGINX worker process. 
 
 * **Metric:** `curl_json-wallarm_nginx/gauge-segfaults`
 * **Metric value:** `0`
-* **Troubleshooting recommendations:** Share the `/opt/wallarm/var/log/wallarm/wcli-out.log` log file content with the [Wallarm support team](mailto:support@wallarm.com).
+* **Troubleshooting recommendations:**
+    1. Collect data about the current state using the `/opt/wallarm/collect-info.sh` script.
+    2. Provide the generated file to the [Wallarm support team](mailto:support@wallarm.com) for investigation.
 
 ### Number of Situations Exceeding the Virtual Memory Limit
 
@@ -99,7 +101,9 @@ The number of situations when the virtual memory limit was exceeded.
     * `curl_json-wallarm_nginx/gauge-memfaults` if the limit in your system was exceeded
     * `curl_json-wallarm_nginx/gauge-softmemfaults` if the limit for proton.db +lom was exceeded ([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit)) 
 * **Metric value:** `0`
-* **Troubleshooting recommendations:** Share the `/opt/wallarm/var/log/wallarm/wcli-out.log` log file content with the [Wallarm support team](mailto:support@wallarm.com).
+* **Troubleshooting recommendations:**
+    1. Collect data about the current state using the `/opt/wallarm/collect-info.sh` script.
+    2. Provide the generated file to the [Wallarm support team](mailto:support@wallarm.com) for investigation.
 
 ### Number of the proton.db Errors
 
@@ -109,7 +113,7 @@ The number of the proton.db errors except for those occurred due to the situatio
 * **Metric value:** `0`
 * **Troubleshooting recommendations:**
     1. Copy the error code from the NGINX logs (`wallarm: proton error: <ERROR_NUMBER>`).
-    1. Copy the `/opt/wallarm/var/log/wallarm/wcli-out.log` log file content.
+    1. Collect data about the current state using the `/opt/wallarm/collect-info.sh` script.
     1. Provide the collected data to the [Wallarm support team](mailto:support@wallarm.com) for investigation.
 
 ### Version of proton.db

@@ -18,7 +18,7 @@ This release focuses on technical refactoring and does not introduce any changes
 The following changes have been introduced in the file system of the Wallarm deployment artifacts:
 
 * Log file system: Previously, logs were recorded in multiple files, each for a dedicated script. Now, logs from almost all services are recorded into a single dedicated file, `wcli-out.log`. You can review the list of [previous log files](/4.10/admin-en/configure-logging/) and the [current one](../admin-en/configure-logging.md).
-* The Wallarm diagnostic script removal: The `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` file has been removed from the distributions. To provide the support team with debug data, please follow the [new procedure].
+* The diagnostic script path change: The `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` file has been moved to `/opt/wallarm/collect-info.sh`.
 
 ## Further feature introduction
 
