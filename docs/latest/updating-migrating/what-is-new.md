@@ -4,7 +4,7 @@ We are excited to announce the release of Wallarm Node 5.0! This major release i
 
 ## Overview
 
-The Wallarm filtering node has been re-engineered, transitioning from a **Ruby-based** implementation to one based on the **Go language and frameworks**. With this release, we focus on making the solution faster, more scalable, and more resource-efficient, both now and for the future development.
+The Wallarm node has been re-engineered, transitioning from a **Ruby-based** implementation to one based on the **Go language and frameworks**. With this release, we focus on making the solution faster, more scalable, and more resource-efficient, both now and for the future development.
 
 Regarding the exact metrics, the following performance improvements have been made:
 
@@ -18,7 +18,7 @@ This release focuses on technical refactoring and does not introduce any changes
 The following changes have been introduced in the file system of the Wallarm deployment artifacts:
 
 * Log file system: Previously, logs were recorded in multiple files, each for a dedicated script. Now, logs from almost all services are recorded into a single dedicated file, `wcli-out.log`. You can review the list of [previous log files](/4.10/admin-en/configure-logging/) and the [current one](../admin-en/configure-logging.md).
-* The Wallarm diagnostic script removal: The `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` file has been removed from the distributions. To provide the support team with debug data, please follow the [new procedure].
+* The diagnostic script path change: The `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` file has been moved to `/opt/wallarm/collect-info.sh`.
 
 ## Further feature introduction
 
