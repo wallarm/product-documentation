@@ -26,6 +26,7 @@ Here is a breakdown of the log files you will encounter and the type of informat
 *   `appstructure.log` (only in the Docker containers): the log of the [API Discovery](../api-discovery/overview.md) module activity.
 *   `registernode_loop.log` (only in the Docker containers): the log of activity of the wrapper script running the `register-node` script while it is succeeded.
 *   `weak-jwt-detect.log`: the log of the [JWT vulnerability](../attacks-vulns-list.md#weak-jwt) detection.
+* `go-node.log`: TCP traffic reassembling logs (only for the [TCP traffic mirror analysis deployment](../installation/oob/tcp-traffic-mirror/configuration.md)).
 
 ##  Configuring Extended Logging for the NGINX‑Based Filter Node
 
