@@ -4,7 +4,7 @@ We are excited to announce the release of Wallarm Node 5.0! This major release i
 
 ## Overview
 
-The Wallarm filtering node has been re-engineered, transitioning from a **Ruby-based** implementation to one based on the **Go language and frameworks**. With this release, we focus on making the solution faster, more scalable, and more resource-efficient, both now and for the future development.
+The Wallarm node has been re-engineered, transitioning from a **Ruby-based** implementation to one based on the **Go language and frameworks**. With this release, we focus on making the solution faster, more scalable, and more resource-efficient, both now and for the future development.
 
 Regarding the exact metrics, the following performance improvements have been made:
 
