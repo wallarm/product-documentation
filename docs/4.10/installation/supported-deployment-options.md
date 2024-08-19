@@ -300,8 +300,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
         <a class="do-card" href="../../installation/inline/compute-instances/linux/all-in-one/">
             <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
-            <h3>Linux packages with all-in-one installation</h3>
-            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+            <h3>All-in-one installer</h3>
+            <p>Let Wallarm detect your OS and NGINX version to install the appropriate modules</p>
         </a>
 
         <div id="inline-public-clouds-aws" class="do-card">
@@ -500,8 +500,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
         <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/all-in-one/">
             <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
-            <h3>Linux packages with all-in-one installation</h3>
-            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+            <h3>All-in-one installer</h3>
+            <p>Let Wallarm detect your OS and NGINX version to install the appropriate modules</p>
         </a>
 
     </div>
@@ -577,8 +577,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     <div class="do-main">
         <a class="do-card" href="../../installation/nginx/all-in-one/">
             <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
-            <h3>Linux packages with all-in-one installation</h3>
-            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+            <h3>All-in-one installer</h3>
+            <p>Let Wallarm detect your OS and NGINX version to install the appropriate modules</p>
         </a>
         
         <div id="packages-docker-images" class="do-card">

@@ -442,8 +442,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </div>
 
         <a class="do-card" href="../../installation/inline/compute-instances/linux/all-in-one/">
-            <h3>All-in-one installation</h3>
-            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+            <h3>All-in-one installer</h3>
+            <p>Let Wallarm detect your OS and NGINX version to install the appropriate modules</p>
         </a>
         
         <div id="inline-packages-linux-debian-10" class="do-card">
@@ -857,8 +857,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </div>
 
         <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/all-in-one/">
-            <h3>All-in-one installation</h3>
-            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+            <h3>All-in-one installer</h3>
+            <p>Let Wallarm detect your OS and NGINX version to install the appropriate modules</p>
         </a>
 
         <div id="mirroring-by-web-servers-linux-packages-debian-10" class="do-card">
@@ -1215,8 +1215,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </div>
 
         <a class="do-card" href="../../installation/nginx/all-in-one/">
-            <h3>All-in-one installation</h3>
-            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+            <h3>All-in-one installer</h3>
+            <p>Let Wallarm detect your OS and NGINX version to install the appropriate modules</p>
         </a>
 
         <div id="packages-linux-debian-10" class="do-card">
