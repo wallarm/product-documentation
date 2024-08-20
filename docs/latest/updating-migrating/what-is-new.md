@@ -4,12 +4,12 @@ We are excited to announce the release of Wallarm Node 5.0! This major release i
 
 ## Overview
 
-The Wallarm node has been re-engineered, transitioning from a **Ruby-based** implementation to one based on the **Go language and frameworks**. With this release, we focus on making the solution faster, more scalable, and more resource-efficient, both now and for the future development.
+The Wallarm node has been re-engineered, transitioning from a **Ruby-based** implementation to one based on the **Go language**. With this release, we focus on making the solution faster, more scalable, and more resource-efficient, both now and for the future development.
 
-Regarding the exact metrics, the following performance improvements have been made:
+Regarding the exact metrics, the following performance improvements have been made in the Wallarm postanalytics module:
 
-* CPU consumption by the Wallarm scripts has been decreased from 0.5 CPU to 0.1 CPU cores.
-* Memory consumption has been reduced by 400MB at traffic rates of 500 requests per second.
+* CPU consumption has been decreased from 0.5 CPU cores to 0.1 CPU cores.
+* Memory consumption has been reduced by 400 MB at a traffic rate of 500 requests per second.
 
 This release focuses on technical refactoring and does not introduce any changes in Wallarm functionality. All the features supported by the previous node version 4.10 are also present in 5.0.
 
