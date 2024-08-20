@@ -25,9 +25,9 @@
 [img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
 
-# Checking Attacks
+# Attack analysis
 
-In the **Attacks** section of the Wallarm Console, you can check detected attacks and perform actions regarding them to mitigate threats and prevent false positives.
+In the **Attacks** section of the Wallarm Console, you can analyze detected attacks and perform actions regarding them to prevent false positives and mitigate further threats.
 
 ### Checking attacks
 

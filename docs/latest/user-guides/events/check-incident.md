@@ -6,9 +6,9 @@
 [use-search]:             ../search-and-filters/use-search.md
 [search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
 
-# Checking Incidents
+# Incident Analysis
 
-In Wallarm Console, you can check detected incidents in the **Incidents** section. To find required data, please use the search field as described [here][use-search] or manually set required search filters.
+In Wallarm Console, you can analyze detected incidents in the **Incidents** section. To find required data, please use the search field as described [here][use-search] or manually set required search filters.
 
 ## Incidents
 
