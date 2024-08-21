@@ -18,6 +18,8 @@ It functions as a mirror target, seamlessly switching between multiple traffic s
 
 Additionally, the solution enables response mirror parsing, providing Wallarm features that rely on response data. These features include [vulnerability detection](../../../about-wallarm/detecting-vulnerabilities.md), [API discovery](../../../api-discovery/overview.md) and more.
 
+![!TCP traffic mirror scheme](../../../images/waf-installation/oob/tcp-mirror-analysis.png)
+
 ## Requirements
 
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
