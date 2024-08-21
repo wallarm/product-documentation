@@ -12,9 +12,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
-### 4.10.0 (TBD)
+### 5.0.1 (2024-08-21)
 
 * Initial release 5.0, [see changelog](what-is-new.md)
+* Added support for NGINX v1.26.2 stable
 
 <!-- ## DEB/RPM packages for NGINX
 
@@ -31,7 +32,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
-### 4.10.0 (TBD)
+### 5.0.1 (2024-08-21)
 
 * Initial release 5.0, [see changelog](what-is-new.md)
 
@@ -47,7 +48,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
-### 4.10.2 (TBD)
+### 5.0.1 (2024-08-21)
 
 * Initial release 5.0, [see changelog](what-is-new.md)
 
@@ -61,9 +62,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](docker-container.md)
 
-### 4.10.0-1 (TBD)
+### 5.0.1-1 (2024-08-21)
 
 * Initial release 5.0, [see changelog](what-is-new.md)
+* Added support for NGINX v1.26.2 stable
 
 <!-- ## Envoy-based Docker image
 
@@ -80,14 +82,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
-### 4.10.0-1 (TBD)
+### 5.0.1-1 (2024-08-21)
 
 * Initial release 5.0, [see changelog](what-is-new.md)
 
-## Google Cloud Platform Image
+<!-- ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
 
 ### wallarm-node-4-10-20240126-175315 (TBD)
 
-* Initial release 5.0, [see changelog](what-is-new.md)
+* Initial release 5.0, [see changelog](what-is-new.md) -->

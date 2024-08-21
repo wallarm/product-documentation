@@ -2,7 +2,7 @@
 
 The Wallarm NGINX-based filtering node can be deployed using a [Docker image](https://hub.docker.com/r/wallarm/node). This node supports both x86_64 and ARM64 processor operating systems, which are automatically identified during installation. This article provides guidance on how to run the node from the Docker image.
 
-The Docker image is based on Alpine Linux and the NGINX version provided by Alpine. Currently, the latest image uses Alpine Linux version 3.20, which includes NGINX stable 1.26.1.
+The Docker image is based on Alpine Linux and the NGINX version provided by Alpine. Currently, the latest image uses Alpine Linux version 3.20, which includes NGINX stable 1.26.2.
 
 ## Use cases
 
@@ -26,11 +26,11 @@ To run the container:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.10.9-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:5.0.1-1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:4.10.9-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:5.0.1-1
         ```
 
 You can pass the following basic filtering node settings to the container via the option `-e`:
@@ -60,11 +60,11 @@ To run the container:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.9-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.0.1-1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.10.9-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.0.1-1
         ```
 
     * The `-e` option passes the following required environment variables to the container:
@@ -127,8 +127,8 @@ To run the container:
                             return 500 "API FW fallback";
                     }
                     ```
-                1. Mount the `/etc/nginx/conf.d/wallarm-status.conf` file, ensuring its contents align with the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/4.10/conf/nginx_templates/wallarm-status.conf.tmpl).
-                1. Within the NGINX configuration files, set up the configuration for the [`/wallarm-status` service][node-status-docs] according to the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/4.10/conf/nginx_templates/default.conf.tmpl#L32).
+                1. Mount the `/etc/nginx/conf.d/wallarm-status.conf` file, ensuring its contents align with the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/5.0/conf/nginx_templates/wallarm-status.conf.tmpl).
+                1. Within the NGINX configuration files, set up the configuration for the [`/wallarm-status` service][node-status-docs] according to the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/5.0/conf/nginx_templates/default.conf.tmpl#L32).
             * `/etc/nginx/conf.d` — common settings
             * `/etc/nginx/sites-enabled` — virtual host settings
             * `/opt/wallarm/usr/share/nginx/html` — static files

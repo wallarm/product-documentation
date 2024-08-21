@@ -72,13 +72,13 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
 ## Step 4: Download all-in-one Wallarm installer
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download-4.10.md"
 
 ## Step 5: Run all-in-one Wallarm installer
 
 ### Filtering node and postanalytics on the same server
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include/waf/installation/all-in-one-installer-run-4.10.md"
 
 ### Filtering node and postanalytics on different servers
 
