@@ -42,7 +42,7 @@ To upgrade node, you will need a Wallarm token of [one of the types](../user-gui
 
 ### Step 2: Download newest version of all-in-one Wallarm installer
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download-4.10.md"
 
 ### Step 3: Run all-in-one Wallarm installer
 
@@ -112,7 +112,7 @@ To upgrade node, you will need a Wallarm token of [one of the types](../user-gui
 
 This step is performed on the postanalytics machine.
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download-4.10.md"
 
 ### Step 3: Run all-in-one Wallarm installer to upgrade postanalytics
 
@@ -143,7 +143,7 @@ This step is performed on the postanalytics machine.
 
 This step is performed on the filtering node machine.
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download-4.10.md"
 
 ### Step 5: Run all-in-one Wallarm installer to upgrade filtering node
 

@@ -124,7 +124,7 @@ If you need to delete the Wallarm node installation and start again, follow the 
 !!! warning "Impact of starting the installation over"
     Starting the installation over involves stopping and deleteing already running Wallarm services, thus pausing traffic filtering until reinstallation. Exercise caution in production or critical traffic environments, as this leaves traffic unfiltered and at risk.
 
-    To upgrade an existing node (e.g., from 4.8 to 4.10), see the [upgrade instructions](../../../../updating-migrating/all-in-one.md).
+    To upgrade an existing node (e.g., from 4.10 to 5.0), see the [upgrade instructions](../../../../updating-migrating/all-in-one.md).
 
 1. Terminate Wallarm processes and remove configuration files:
 
