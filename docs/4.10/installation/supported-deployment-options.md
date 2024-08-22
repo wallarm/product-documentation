@@ -474,12 +474,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Out-of-band deployment on Kubernetes using the eBPF technology</p>
         </a>
 
-        <a class="do-card" href="../../installation/oob/tcp-traffic-mirror/deployment/">
-            <img class="non-zoomable" src="../../images/platform-icons/tcp-mirror-analysis.svg" />
-            <h3>TCP Traffic Mirror Analysis</h3>
-            <p>Out-of-band deployment for TCP traffic mirror analysis</p>
-        </a>
-
         <div id="mirroring-by-web-servers" class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/web-server-mirroring.svg" />
             <h3>Mirroring by NGINX, Envoy and similar</h3>
