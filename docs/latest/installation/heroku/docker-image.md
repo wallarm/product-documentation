@@ -140,7 +140,7 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
             # Configure PORT in nginx config
             sed -i "s/\$PORT/$PORT/g" /etc/nginx/nginx.conf
             # Register Wallarm node in the Cloud
-            /opt/wallarm/register-node --token "$WALLARM_API_TOKEN" -H "$WALLARM_API_HOST" --labels "$WALLARM_LABELS"
+            /opt/wallarm/usr/bin/wcli init
             # Read default Wallarm environment variables
             export $(sed -e 's/=\(.*\)/="\1"/g' /opt/wallarm/env.list | grep -v "#" | xargs)
             # Export $PORT as $NGINX_PORT (required for the `export-metrics` script)
@@ -278,7 +278,7 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
     ```dockerfile
     FROM ubuntu:22.04
 
-    ARG VERSION="4.10.3"
+    ARG VERSION="5.0.1"
 
     ENV PORT=3000
     ENV WALLARM_LABELS="group=heroku"
@@ -329,10 +329,10 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
 Execute the following commands within the previously created directory:
 
 ```
-docker build -t wallarm-heroku:4.10.3 .
+docker build -t wallarm-heroku:5.0.1 .
 docker login
-docker tag wallarm-heroku:4.10.3 <DOCKERHUB_USERNAME>/wallarm-heroku:4.10.3
-docker push <DOCKERHUB_USERNAME>/wallarm-heroku:4.10.3
+docker tag wallarm-heroku:5.0.1 <DOCKERHUB_USERNAME>/wallarm-heroku:5.0.1
+docker push <DOCKERHUB_USERNAME>/wallarm-heroku:5.0.1
 ```
 
 ## Step 3: Run the built Docker image on Heroku
@@ -343,7 +343,7 @@ To deploy the image on Heroku:
 1. Construct a `Dockerfile` which will include the installation of necessary dependencies specific to your app's runtime. For a Node.js application, use the following template:
 
     ```dockerfile
-    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:4.10.3
+    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:5.0.1
 
     ENV NODE_MAJOR=20
 
@@ -403,7 +403,7 @@ To deploy the image on Heroku:
         1. Specify the node group name to add the Wallarm node to in the following environment variable:
 
         ```
-        heroku config:set WALLARM_LABELS=group=<NODE_GROUP_NAME>
+        heroku config:set WALLARM_LABELS=group=<NODE_GROUP_NAME> <HEROKU_APP_NAME>
         ```
     === "Node token"
         1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
@@ -412,12 +412,12 @@ To deploy the image on Heroku:
 
     === "US Cloud"
         ```
-        heroku config:set WALLARM_API_TOKEN=<NODE_TOKEN>
+        heroku config:set WALLARM_API_TOKEN=<NODE_TOKEN> <HEROKU_APP_NAME>
         ```
     === "EU Cloud"
         ```
-        heroku config:set WALLARM_API_HOST=api.wallarm.com
-        heroku config:set WALLARM_API_TOKEN=<NODE_TOKEN>
+        heroku config:set WALLARM_API_HOST=api.wallarm.com <HEROKU_APP_NAME>
+        heroku config:set WALLARM_API_TOKEN=<NODE_TOKEN> <HEROKU_APP_NAME>
         ```
 1. Push your application to trigger a restart, thereby deploying the Wallarm node:
 
