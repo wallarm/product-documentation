@@ -290,3 +290,4 @@ If there is a problem with the upgrade or reinstallation process:
     * [Rate limiting](../../../user-guides/rules/rate-limiting.md) is not supported as it is impossible to limit load on target servers.
     * [Filtering by IP addresses](../../../user-guides/ip-lists/overview.md) is not supported.
 * Traffic decryption is not supported. The solution only analyzes raw TCP traffic.
+* The solution does not support parsing responses over HTTP keep-alive connections yet.
