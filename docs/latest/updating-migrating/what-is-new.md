@@ -24,6 +24,12 @@ The following changes have been introduced in the file system of the Wallarm dep
 
 Starting with release 5.2, new features will be introduced exclusively in the node with the new Go-based implementation. Per our [versioning policy](node-artifact-versions.md), these new features will not be backported to the previous version (4.10).
 
+## New deployment option for TCP traffic mirror analysis
+
+With the launch of release 5.0, Wallarm introduces an artifact specifically designed for TCP traffic mirror analysis. This new deployment option, based on our advanced re-engineered node, enhances your ability to monitor and secure TCP traffic directly at the network layer.
+
+[Deployment instructions](../installation/oob/tcp-traffic-mirror/deployment.md)
+
 ## Which Wallarm nodes are recommended to be upgraded?
 
 * Client and multi-tenant Wallarm nodes of version 4.8 and 4.10 to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
