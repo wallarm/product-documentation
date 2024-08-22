@@ -23,7 +23,7 @@ search:
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../supported-deployment-options.md
-[oob-advantages-limitations]:       ../overview.md#advantages-and-limitations
+[oob-advantages-limitations]:       ../overview.md#limitations
 [web-server-mirroring-examples]:    overview.md#configuration-examples-for-traffic-mirroring
 [memory-instr]:                     ../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [ip-lists-docs]:                    ../../../user-guides/ip-lists/overview.md
