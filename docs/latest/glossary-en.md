@@ -12,19 +12,7 @@ A hit is a serialized malicious request (original malicious request and metadata
 
 ## Attack
 
-An attack is a single hit or multiple hits grouped by the following characteristics:
-
-* The same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type.
-
-    This hit grouping method is basic and applied to all hits.
-
-* The same source IP address if [grouping of hits by source IP](user-guides/events/analyze-attack.md#grouping-of-hits) is enabled. Other hit parameter values can differ.
-
-    This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
-
-    If hits are grouped by this method, the [**Mark as false positive**](user-guides/events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](about-wallarm/detecting-vulnerabilities.md#active-threat-verification) option are unavailable for the attack.
-
-The listed hit grouping methods do not exclude each other. If hits have characteristics of both methods, they are all grouped into one attack.
+An attack is a single hit or multiple hits [grouped](user-guides/events/grouping-sampling.md#grouping-of-hits).
 
 An example of an attack including a single hit:
 
@@ -33,6 +21,8 @@ An example of an attack including a single hit:
 An example of an attack including many hits:
 
 ![Attack with several hits](images/glossary/attack-with-several-hits-example.png)
+
+See [details](user-guides/events/check-attack.md) on how attacks in Wallarm are analyzed.
 
 ## Malicious Payload
 
