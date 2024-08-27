@@ -34,7 +34,7 @@ açıklama: Bu belge, FAST'ın algıladığı yazılım güvenlik açıklarını
 [link-owasp-ldapi-cheatsheet]:              https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html
 [link-owasp-sqli-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
 
-[link-ptrav-mitigation]:                    https://www.checkmarx.com/knowledge/knowledgebase/path-traversal
+[link-ptrav-mitigation]:                    https://owasp.org/www-community/attacks/Path_Traversal
 
 [anchor-vuln-list]:     #vulnerabilities-list
 

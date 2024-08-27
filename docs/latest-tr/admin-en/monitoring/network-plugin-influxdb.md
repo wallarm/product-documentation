@@ -3,8 +3,8 @@
 [doc-grafana]:                     working-with-grafana.md
 
 [link-collectd-networking]:        https://collectd.org/wiki/index.php/Networking_introduction
-[link-network-plugin]:             https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_network
-[link-typesdb]:                    https://collectd.org/documentation/manpages/types.db.5.shtml
+[link-network-plugin]:             https://www.collectd.org/documentation/manpages/collectd.conf.html
+[link-typesdb]:                    https://www.collectd.org/documentation/manpages/types.db.html
 [link-typesdb-file]:               https://github.com/collectd/collectd/blob/master/src/types.db
 
 #   `collectd` Ağ Eklentisi Üzerinden InfluxDB'ye Metrik Aktarımı

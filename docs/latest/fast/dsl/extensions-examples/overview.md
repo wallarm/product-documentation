@@ -4,7 +4,7 @@
 [link-app-examination]:     app-examination.md
 [link-juice-shop]:          https://www.owasp.org/index.php/OWASP_Juice_Shop_Project
 [link-juice-shop-deploy]:   https://github.com/bkimminich/juice-shop#setup
-[link-juice-shop-docs]:     https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/
+[link-juice-shop-docs]:     https://pwning.owasp-juice.shop/companion-guide/latest/
 [link-using-extension]:     ../using-extension.md
 
 

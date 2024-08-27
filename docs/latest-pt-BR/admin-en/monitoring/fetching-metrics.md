@@ -1,11 +1,11 @@
 [link-network-plugin]:              https://collectd.org/wiki/index.php/Plugin:Network
-[link-network-plugin-docs]:         https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_network
+[link-network-plugin-docs]:         https://www.collectd.org/documentation/manpages/collectd.conf.html
 [link-collectd-networking]:         https://collectd.org/wiki/index.php/Networking_introduction
 [link-influx-collectd-support]:     https://docs.influxdata.com/influxdb/v1.7/supported_protocols/collectd/
 [link-plugin-table]:                https://collectd.org/wiki/index.php/Table_of_Plugins
-[link-nagios-plugin-docs]:          https://collectd.org/documentation/manpages/collectd-nagios.1.shtml
+[link-nagios-plugin-docs]:          https://www.collectd.org/documentation/manpages/collectd-nagios.html
 [link-notif-common]:                https://collectd.org/wiki/index.php/Notifications_and_thresholds
-[link-notif-details]:               https://collectd.org/documentation/manpages/collectd-threshold.5.shtml
+[link-notif-details]:               https://www.collectd.org/documentation/manpages/collectd-threshold.html
 [link-influxdb-collectd]:           https://docs.influxdata.com/influxdb/v1.7/supported_protocols/collectd/
 [link-unixsock]:                    https://collectd.org/wiki/index.php/Plugin:UnixSock
 
