@@ -47,7 +47,7 @@
 [link-owasp-sqli-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
 [link-owasp-inputval-cheatsheet]:           https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html
 
-[link-ptrav-mitigation]:                    https://www.checkmarx.com/knowledge/knowledgebase/path-traversal
+[link-ptrav-mitigation]:                    https://owasp.org/www-community/attacks/Path_Traversal
 [link-wl-process-time-limit-directive]:     admin-en/configure-parameters-en.md#wallarm_process_time_limit
 
 [doc-vpatch]:   user-guides/rules/vpatch-rule.md

@@ -5,7 +5,7 @@
 [link-docker-ce]:               https://docs.docker.com/install/
 [link-docker-compose]:          https://docs.docker.com/compose/install/
 [link-collectd-naming]:         https://collectd.org/wiki/index.php/Naming_schema
-[link-write-plugin]:            https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_write_graphite
+[link-write-plugin]:            https://www.collectd.org/documentation/manpages/collectd.conf.html#plugin_write_graphite
 
 #   Exporting Metrics to Graphite via the `collectd` Write Plugin
 

@@ -2,7 +2,7 @@
 [img-wireshark]:            ../../../images/fast/dsl/common/extension-examples/wireshark.png
 
 [link-juice-shop]:          https://www.owasp.org/index.php/OWASP_Juice_Shop_Project
-[link-ojs-install-manual]:  https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part1/running.html
+[link-ojs-install-manual]:  https://pwning.owasp-juice.shop/companion-guide/latest/part1/running.html
 
 #   Examination of the Sample Application
 

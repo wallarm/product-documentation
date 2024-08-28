@@ -6,7 +6,7 @@
 [link-nagios-core-install]: https://support.nagios.com/kb/article/nagios-core-installing-nagios-core-from-source-96.html
 [link-nrpe-docs]:           https://github.com/NagiosEnterprises/nrpe/blob/master/README.md
 [link-visudo]:              https://www.sudo.ws/man/1.8.17/visudo.man.html
-[link-collectd-docs]:       https://collectd.org/documentation/manpages/collectd-nagios.1.shtml
+[link-collectd-docs]:       https://www.collectd.org/documentation/manpages/collectd-nagios.html
 [link-nrpe-readme]:         https://github.com/NagiosEnterprises/nrpe
 [link-nrpe-pdf]:            https://assets.nagios.com/downloads/nagioscore/docs/nrpe/NRPE.pdf
 [link-metric]:              ../../admin-en/monitoring/available-metrics.md#number-of-requests
