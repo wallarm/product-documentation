@@ -23,7 +23,7 @@ This article describes how you can analyze attacks detected by the Wallarm node 
 
 ### Attack analysis
 
-All the [attacks](#grouping-and-sampling) detected by the Wallarm node are displayed in the **Attacks** section of the Wallarm Console. You can [filter](../../user-guides/search-and-filters/use-search.md) the list by attack date, type and other criteria, expand any attack and its included requests for detailed analysis. If a detected attack turns out to be a [false positive](#false-positives), you can immediately mark it as one to prevent alike false positives in future. Also, on the basis of the detected attacks, you can create rules and perform other Wallarm configurations to mitigate further alike threats. Additionally, if the [active verification](../../vulnerability-detection/active-threat-verification/overview.md) is enabled, check its [status](../../vulnerability-detection/active-threat-verification/overview.md#possible-statuses) right in the attack list.
+All the [attacks](#grouping-and-sampling) detected by the Wallarm platform are displayed in the **Attacks** section of the Wallarm Console. You can [filter](../../user-guides/search-and-filters/use-search.md) the list by attack date, type and other criteria, expand any attack and its included requests for detailed analysis. If a detected attack turns out to be a [false positive](#false-positives), you can immediately mark it as one to prevent alike false positives in future. Also, on the basis of the detected attacks, you can create rules and perform other Wallarm configurations to mitigate further alike threats. Additionally, if the [active verification](../../vulnerability-detection/active-threat-verification/overview.md) is enabled, check its [status](../../vulnerability-detection/active-threat-verification/overview.md#possible-statuses) right in the attack list.
 
 <div>
   <script src="https://js.storylane.io/js/v1/storylane.js"></script>
@@ -32,19 +32,17 @@ All the [attacks](#grouping-and-sampling) detected by the Wallarm node are displ
   </div>
 </div>
 
-## Grouping and sampling
-
 Consider the following:
 
 * **Attack** is a [group](grouping-sampling.md#grouping-of-hits) of hits
 * **Hit** is a malicious request plus metadata added by node
 * **Malicious payload** is a part of request with attack sign
 
-See details on that terms in a [Glossary](../../glossary-en.md).
+Read more on that terms in a [Glossary](../../glossary-en.md).
 
-When forming the attack details, Wallarm automatically makes information about attack more comfortable for analysis by displaying only unique hits - non-unique (comparable and identical) hits are dropped from uploading to the Wallarm Cloud and not displayed. This process is called hit [sampling](grouping-sampling.md#sampling-of-hits).
+Each attack details contain all necessary information for analysis, such as attack's hits and malicious payload summary. To simplify analysis, only unique hits are stored in the attack details. Repeated malicious requests  are dropped from uploading to the Wallarm Cloud and not displayed. This process is called [hit sampling](grouping-sampling.md#sampling-of-hits).
 
-Hit sampling does not affect the quality of attack detection but helps to avoid its slowdown. Wallarm node continues attack detection and [blocking](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) even with hit sampling enabled.
+Hit sampling does not affect the quality of attack detection and Wallarm node continues protect your applications and APIs even with hit sampling enabled.
 
 ## False positives
 
