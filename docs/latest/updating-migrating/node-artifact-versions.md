@@ -60,6 +60,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ## Wallarm node for TCP traffic mirror analysis
 
+### 0.4.1 (2024-08-27)
+
+* Added support for wildcard matching in the [`route_config.routes.host`](../installation/oob/tcp-traffic-mirror/configuration.md#host) configuration parameter
+* Fixed a bug affecting inheritance in [`route_config.routes.routes.route`](../installation/oob/tcp-traffic-mirror/configuration.md#routesroute-or-route)
+
 ### 0.4.0 (2024-08-22)
 
 * [Initial release](../installation/oob/tcp-traffic-mirror/deployment.md)

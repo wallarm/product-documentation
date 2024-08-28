@@ -129,6 +129,45 @@ route_config:
 
 Specifies the route host.
 
+This parameter supports wildcard matching:
+
+* `*` matches any sequence of non-separator characters
+* `?` matches any single non-separator character
+* `'[' [ '^' ] { character-range } ']'`
+
+??? info "Wildcard matching syntax details"
+    ```
+    // The pattern syntax is:
+    //
+    //	pattern:
+    //		{ term }
+    //	term:
+    //		'*'         matches any sequence of non-Separator characters
+    //		'?'         matches any single non-Separator character
+    //		'[' [ '^' ] { character-range } ']'
+    //		            character class (must be non-empty)
+    //		c           matches character c (c != '*', '?', '\\', '[')
+    //		'\\' c      matches character c
+    //
+    //	character-range:
+    //		c           matches character c (c != '\\', '-', ']')
+    //		'\\' c      matches character c
+    //		lo '-' hi   matches character c for lo <= c <= hi
+    //
+    // Match requires pattern to match all of name, not just a substring.
+    ```
+
+For example:
+
+```yaml
+version: 2
+
+route_config:
+  wallarm_application: 10
+  routes:
+    - host: "*.host.com"
+```
+
 #### routes.route or route
 
 Defines specific routes. Routes can be configured with NGINX-like prefixes:
