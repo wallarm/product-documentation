@@ -16,6 +16,12 @@ You can explore attacks performed by bots in Wallarm Console → **Attacks** sec
 
 ![API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
+**Detector values**
+
+Pay your attention to the list of triggered [detectors](overview.md#how-api-abuse-prevention-works) and their values showing how big the deviation from normal behavior is for particular anomalies. On the figure above, for example, they are **Query abuse** with the value `326` when normal is `< 10`, **Request interval** with the value `0.05` when normal is `> 1` and others.
+
+**Heatmaps**
+
 Bot information is visualized in three heatmaps. In all heatmaps, the bigger the bubble, the closer it to red color and to the right upper corner - the more reasons to consider this IP to be a bot.
 
 On the heatmaps, you can also compare you current bot (**this bot**) with the other bots that attacked the same application within the past 24 hours. If too many bots did that, only 30 most suspicious will be displayed.
