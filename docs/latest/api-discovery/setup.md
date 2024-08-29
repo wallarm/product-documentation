@@ -72,7 +72,7 @@ Patterns are suitable for fixed-length tokens, IDs, and URIs.
 
 **Context words**
 
-Wallarm looks at the words around the suspected sensitive data that match the pattern. If any of the context words is found, it boosts the resulting confidence score. The context can come from URL path, query parameter name, JSON keys, the parameter’s value itself, and other parameters next to it.
+Wallarm looks at the words around the suspected sensitive data that match the pattern. If any of the context words is found, it boosts the resulting confidence score. The context can come from URL path, query parameter name, JSON keys, and other parameters next to it.
 
 ![API Discovery – Settings - Sensitive data](../images/about-wallarm-waf/api-discovery/api-discovery-settings-sd.png)
 
@@ -80,7 +80,7 @@ Wallarm looks at the words around the suspected sensitive data that match the pa
 
 If you specify context words without patterns, Wallarm decides on sensitive data presence based on the presence of the words. The more the confidence scores sum, the more likely the parameter will be marked as having your described sensitive data.
 
-For some context-only searches, it is necessary to declare some words as **definitive**: if the definitive word is not presented in the value's context, the parameter does not contain sensitive data.
+For some context-only searches, it is necessary to declare some words as **mandatory**: if the mandatory word is not presented in the value's context, the parameter does not contain sensitive data.
 
 Example: personal_name
 
@@ -92,7 +92,7 @@ Context words:
 
 We must match `middle_name,` but not `name` or `middle`. So, we set a score for `name` to `0.1` so we will not match `name`. But we must give `middle` a big score of `0.5` because "middle_name" is a strong combination.
 
-To prevent us from detecting "middle" without `name,` we mark `name` as definitive for an entity. If `name` is not found, no sensitive data is detected.
+To prevent us from detecting "middle" without `name,` we mark `name` as mandatory for an entity. If `name` is not found, no sensitive data is detected.
 
 ![API Discovery – Settings - Sensitive data - Creating custom pattern](../images/about-wallarm-waf/api-discovery/api-discovery-settings-sd-own-pattern.png)
 
