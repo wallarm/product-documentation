@@ -52,7 +52,7 @@ You can configure the weight of each factor in [risk score](risk-score.md) calcu
 
 ### Customizing sensitive data detection
 
-API Discovery detects sensitive data in requests and responses. To make sensitive data detection fully comply with your company's specific needs and industry-specific regulations such as GDPR, HIPAA, PCI DSS, etc., API Discovery provides the ability to fine-tune the detection process. Customization empowers you to meet your company's unique data protection obligations. Additionally, if any proprietary or specialized sensitive data elements are presented in your data flows, you will benefit from the ability to define custom regular expressions for their precise identification.
+API Discovery detects sensitive data in requests and responses. To make sensitive data detection fully comply with your company's specific needs and industry-specific regulations such as GDPR, HIPAA, PCI DSS, etc., API Discovery provides the ability to fine-tune the detection process (requires node version 5.0.2 or higher). Customization empowers you to meet your company's unique data protection obligations. Additionally, if any proprietary or specialized sensitive data elements are presented in your data flows, you will benefit from the ability to define custom regular expressions for their precise identification.
 
 Sensitive data detection is configured with the set **sensitive data patterns** - each pattern defines specific sensitive data and settings for its search. API Discovery goes with the set of default patterns. You can modify default patterns and add your own in Wallarm Console → **API Discovery** → **Configure API Discovery** → **Sensitive data**.
 
