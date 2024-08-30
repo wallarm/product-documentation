@@ -4,7 +4,7 @@ Wallarm's **API Attack Surface Management** (**AASM**) is an agentless detection
 
 API Attack Surface Management includes:
 
-* [API Attack Surface Discovery](api-surface.md)
+* [API Attack Surface Discovery (AASD)](api-surface.md)
 * [API Leaks Detection](api-leaks.md)
 
 ![AASM](../images/api-attack-surface/aasm.png)
