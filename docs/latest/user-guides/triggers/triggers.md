@@ -26,7 +26,7 @@ Using triggers, you can:
     * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
 
 * Set up extended alerts for different [integrations](../../user-guides/settings/integrations/integrations-intro.md).
-* Optimize attacks and incidents representation by [grouping hits](../../user-guides/events/analyze-attack.md#grouping-of-hits).
+* Optimize attacks and incidents representation by [grouping hits](../../user-guides/events/grouping-sampling.md/#grouping-of-hits).
 
 ## Understanding filters
 
@@ -59,7 +59,7 @@ New company accounts are featured by the following default (pre-configured) trig
 
     Hits can have different attack types, malicious payloads and URLs. These attack parameters will be marked with the `[multiple]` tag in the event list.
 
-    Due to different parameter values of grouped hits, the [Mark as false positive](../events/false-attack.md#mark-an-attack-as-a-false-positive) button will be unavailable for the whole attack, but you still will be able to mark certain hits as false positives. [Active verification of the attack](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) will also be unavailable.
+    Due to different parameter values of grouped hits, the [Mark as false positive](../events/check-attack.md#false-positives) button will be unavailable for the whole attack, but you still will be able to mark certain hits as false positives. [Active verification of the attack](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) will also be unavailable.
     
     The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
 * Graylist IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour

@@ -16,12 +16,12 @@ On the **Settings** → **Activity log** tab of Wallarm Console, you can check t
 * [Triggers](../triggers/triggers.md)
 * [Integrations](integrations/integrations-intro.md)
 * [Blocked IP address](../ip-lists/overview.md)
-* [Hit sampling](../events/analyze-attack.md#sampling-of-hits)
+* [Hit sampling](../events/grouping-sampling.md/#sampling-of-hits)
 
 The logs also include information on the following actions and objects:
 
 * [Vulnerability marked as the false positive](../vulnerabilities.md#vulnerability-lifecycle)
-* [Rechecked attack](../events/verify-attack.md)
+* [Rechecked attack](../../vulnerability-detection/active-threat-verification/overview.md)
 
 ![Activity log](../../images/user-guides/settings/audit-log.png)
 

@@ -205,7 +205,7 @@ To test that the Wallarm eBPF operates correctly:
 
 * The solution does not instantly block malicious requests since traffic analysis proceeds irrespective of actual traffic flow.
 
-    Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../..//user-guides/events/analyze-attack.md).
+    Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../..//user-guides/events/check-attack.md).
 * As server response bodies are not mirrored:
 
     * Vulnerability detection based on [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) is not supported

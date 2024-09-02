@@ -7,7 +7,7 @@ Besides the notifications you have already set up through the integration card, 
             * The experimental attacks based on the [custom regular expressions](../../../user-guides/rules/regex-rule.md).
         * For hits:
             * The experimental hits based on the [custom regular expressions](../../../user-guides/rules/regex-rule.md).
-            * Hits not saved in the [sample](../../events/analyze-attack.md#sampling-of-hits).
+            * Hits not saved in the [sample](../../events/grouping-sampling.md/#sampling-of-hits).
 
 * [Changes in API](../../../api-discovery/track-changes.md) took place
 * IP address was [denylisted](../../../user-guides/ip-lists/overview.md)

@@ -1,5 +1,5 @@
 [img-masking]:              ../../images/user-guides/rules/sensitive-data-rule.png
-[rule-creation-options]:    ../../user-guides/events/analyze-attack.md#analyze-requests-in-an-event
+[rule-creation-options]:    ../../user-guides/events/check-attack.md/#attack-analysis_1
 [request-processing]:       ../../user-guides/rules/request-processing.md
 [api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 

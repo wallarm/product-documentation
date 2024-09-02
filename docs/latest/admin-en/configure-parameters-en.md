@@ -47,7 +47,7 @@ The directive forces the NGINX-based Wallarm node to block requests originating 
 
 The directive enables `on` / disables `off` sending statistics about the requests from the [denylisted](../user-guides/ip-lists/overview.md) IPs from node to the Cloud.
 
-* With `wallarm_acl_export_enable on` the statistics on the requests from the denylisted IPs will be [displayed](../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) in the **Attacks** section.
+* With `wallarm_acl_export_enable on` the statistics on the requests from the denylisted IPs will be [displayed](../user-guides/events/check-attack.md) in the **Attacks** section.
 * With `wallarm_acl_export_enable off` the statistics on the requests from the denylisted IPs will not be displayed.
 
 !!! info

@@ -8,7 +8,7 @@ A hit is a serialized malicious request (original malicious request and metadata
 
 ![Hit example](images/user-guides/events/analyze-attack-raw.png)
 
-[Details on hit parameters](user-guides/events/analyze-attack.md#analyze-requests-in-an-event)
+[Details on hit parameters](user-guides/events/check-attack.md/#attack-analysis_1)
 
 ## Attack
 

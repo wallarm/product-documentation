@@ -9,7 +9,7 @@ The following conditions are available for notification:
             * The experimental attacks based on the [custom regular expressions](../../../user-guides/rules/regex-rule.md).
         * For hits:
             * The experimental hits based on the [custom regular expressions](../../../user-guides/rules/regex-rule.md).
-            * Hits not saved in the [sample](../../events/analyze-attack.md#sampling-of-hits).
+            * Hits not saved in the [sample](../../events/grouping-sampling.md/#sampling-of-hits).
 
 * Denylisted IP
 * [Changes in API](../../about-wallarm/api-discovery.md#tracking-changes-in-api)

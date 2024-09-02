@@ -1,5 +1,4 @@
 [link-using-search]:    ../search-and-filters/use-search.md
-[link-verify-attack]:   ../events/verify-attack.md
 [img-attacks-tab]:      ../../images/user-guides/events/check-attack.png
 [img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
 [img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png

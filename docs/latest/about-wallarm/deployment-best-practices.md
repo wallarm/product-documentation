@@ -97,7 +97,7 @@ Depending on your specific environment we recommend you configure the following 
 * Monitoring for the increased level of malicious requests detected by the Wallarm nodes. This trigger may signal one of the following potential problems:
 
     * You are under attack and the Wallarm node is successfully blocking malicious requests. You may consider reviewing the detected attacks and manually denylist (block) reported attacker IP addresses.
-    * You have an increased level of false positive attacks detected by the Wallarm nodes. You may consider escalating this to the [Wallarm technical support team](mailto:support@wallarm.com) or manually [mark the requests as false positives](../user-guides/events/false-attack.md).
+    * You have an increased level of false positive attacks detected by the Wallarm nodes. You may consider escalating this to the [Wallarm technical support team](mailto:support@wallarm.com) or manually [mark the requests as false positives](../user-guides/events/check-attack/#false-positives).
     * If you have the [denylisting trigger](../user-guides/triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour) active but still receive alerts about an increased level of attacks, then the alert may signal that the trigger is not working as expected.
 
     [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#slack-notification-if-2-or-more-sqli-hits-are-detected-in-one-minute)
