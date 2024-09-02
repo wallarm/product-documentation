@@ -21,7 +21,7 @@
       required_providers {
         wallarm = {
           source = "wallarm/wallarm"
-          version = "1.3.1"
+          version = "1.5.0"
         }
       }
     }
