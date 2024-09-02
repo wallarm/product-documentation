@@ -11,7 +11,7 @@ The Wallarm node reads a request source IP address from the NGINX variable `$rem
 
 ![Using balancer](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
 
-The request source IP address identified by the Wallarm node is displayed in the [attack details](../user-guides/events/check-attack.md#attacks) in Wallarm Console.
+The request source IP address identified by the Wallarm node is displayed in the [attack details](../user-guides/events/check-attack.md#attack-analysis) in Wallarm Console.
 
 ## Possible problems of using a proxy server or load balancer IP address as a request source address
 

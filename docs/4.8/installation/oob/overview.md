@@ -29,7 +29,7 @@ Despite the OOB deployment approach safety, it has some limitations:
 
 * Wallarm does not instantly block malicious requests since traffic analysis proceeds irrespective of actual traffic flow.
 
-    Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../user-guides/events/analyze-attack.md).
+    Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../user-guides/events/check-attack.md).
 * Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
 * The [Wallarm API Discovery](../../api-discovery/overview.md) does not explore API inventory based on your traffic as server responses required for the module operation are not mirrored.
 * The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis whis is currently not feasible.

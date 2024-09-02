@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/events/false-attack.md"
+--8<-- "3.6/user-guides/events/false-attack.md"

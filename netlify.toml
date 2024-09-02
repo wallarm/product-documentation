@@ -11,7 +11,7 @@ INSIDERS=true mkdocs build -f mkdocs-3.6.yml &&
 INSIDERS=true mkdocs build -f mkdocs-2.18.yml &&
 INSIDERS=true mkdocs build -f mkdocs-ja-4.8.yml &&
 INSIDERS=true mkdocs build -f mkdocs-tr-4.8.yml &&
-INSIDERS=true mkdocs build -f mkdocs-pt-BR-4.8.yml
+INSIDERS=true mkdocs build -f mkdocs-pt-BR-4.8.yml &&
 INSIDERS=true mkdocs build -f mkdocs-ar-4.10.yml
 """
 [[headers]]
