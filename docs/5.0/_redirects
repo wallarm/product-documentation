@@ -707,3 +707,16 @@
 /pt-br/about-wallarm/api-leaks/ /pt-br/api-attack-surface/api-leaks/
 /ar/about-wallarm/attack-surface/ /ar/api-attack-surface/overview/
 /ar/about-wallarm/api-leaks/ /ar/api-attack-surface/api-leaks/
+
+/user-guides/events/analyze-attack/ /user-guides/events/check-attack/
+/user-guides/events/false-attack/ /user-guides/events/check-attack/
+/user-guides/events/verify-attack/ /user-guides/events/check-attack/
+/user-guides/events/grouping-and-sampling/ /user-guides/events/grouping-sampling/
+/4.10/user-guides/events/analyze-attack/ /4.10/user-guides/events/check-attack/
+/4.10/user-guides/events/false-attack/ /4.10/user-guides/events/check-attack/
+/4.10/user-guides/events/verify-attack/ /4.10/user-guides/events/check-attack/
+/4.10/user-guides/events/grouping-and-sampling/ /4.10/user-guides/events/grouping-sampling/
+/4.8/user-guides/events/analyze-attack/ /4.8/user-guides/events/check-attack/
+/4.8/user-guides/events/false-attack/ /4.8/user-guides/events/check-attack/
+/4.8/user-guides/events/verify-attack/ /4.8/user-guides/events/check-attack/
+/4.8/user-guides/events/grouping-and-sampling/ /4.8/user-guides/events/grouping-sampling/
