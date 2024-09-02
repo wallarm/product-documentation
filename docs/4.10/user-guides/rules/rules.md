@@ -276,12 +276,12 @@ To test a regular expression, use the Wallarm **cpire** utility. Install it via 
     1. Download the Wallarm all-in-one installer if it is not downloaded yet:
 
         ```
-        curl -O https://meganode.wallarm.com/4.10/wallarm-4.10.9.x86_64-glibc.sh
+        curl -O https://meganode.wallarm.com/4.10/wallarm-4.10.11.x86_64-glibc.sh
         ```
     1. Install the Wallarm modules if they are not installed yet:
         
         ```
-        sudo sh wallarm-4.10.9.x86_64-glibc.sh -- --batch
+        sudo sh wallarm-4.10.11.x86_64-glibc.sh -- --batch
         ```
     1. Run the **cpire** utility:
         

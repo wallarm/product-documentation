@@ -12,6 +12,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.10.11 (2024-09-02)
+
+* Added support for NGINX v1.26.2 stable
+
 ### 4.10.9 (2024-07-19)
 
 * Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
