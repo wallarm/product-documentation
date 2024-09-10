@@ -247,7 +247,7 @@ nav:
       - Apigee: installation/connectors/apigee.md
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
       - Azion Edge: installation/connectors/azion-edge.md
-      - AWS Lambda: installation/connectors/aws-lambda.md
+      - CloudFront: installation/connectors/aws-lambda.md
       - Cloudflare: installation/connectors/cloudflare.md
       - Kong API Gateway: installation/connectors/kong-api-gateway.md
       - Istio: installation/connectors/istio.md
