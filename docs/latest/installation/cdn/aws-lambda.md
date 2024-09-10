@@ -1,181 +1,164 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[wallarm-hosted-connector-desc]:    ../connectors/overview.md#wallarm-edge-connectors
+[filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
 
-# Wallarm Node.js for AWS Lambda
+# Wallarm Connector for Amazon CloudFront
 
-[AWS Lambda@Edge](https://aws.amazon.com/lambda/edge/) is a serverless, event-driven compute service that allows you to run code for various types of applications or backend services without the need to provision or manage servers. By incorporating Wallarm Node.js code, you can proxy incoming traffic to the Wallarm node for analysis and filtering. This article provides instructions on configuring Wallarm for traffic analysis and filtration specifically for Node.js lambdas in your AWS application.
+[CloudFront](https://aws.amazon.com/cloudfront/) is a content delivery network operated by Amazon Web Services. Wallarm can act as a connector to secure and monitor traffic delivered through CloudFront.
 
-<!-- ![Lambda](../../images/waf-installation/gateways/aws-lambda-traffic-flow.png) -->
+The Wallarm filtering node is deployed externally and acts as a connector between CloudFront and Wallarm. On the CloudFront side, you only need to deploy additional Wallarm-provided Lambda@Edge functions to route traffic to the connector.
 
-The solution involves deploying the Wallarm node externally and injecting custom code or policies into the specific platform. This enables traffic to be directed to the external Wallarm node for analysis and protection against potential threats. Referred to as Wallarm's connectors, they serve as the essential link between platforms like Azion Edge, Akamai Edge, Mulesoft, Apigee, and AWS Lambda, and the external Wallarm node. This approach ensures seamless integration, secure traffic analysis, risk mitigation, and overall platform security.
+The CloudFront connector supports both [in-line](../inline/overview.md) and [out-of-band](../oob/overview.md) modes:
+
+=== "In-line traffic flow"
+
+    If Wallarm is configured to block malicious activity:
+
+    ![Cloudfront with Wallarm - in-line scheme](../../images/waf-installation/gateways/cloudfront/traffic-flow-inline.png)
+=== "Out-of-band traffic flow"
+    ![Cloudfront with Wallarm - out-of-band scheme](../../images/waf-installation/gateways/cloudfront/traffic-flow-oob.png)
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for the following use cases:
-
-* Securing applications on AWS that utilize Node.js lambdas.
-* Requiring a security solution that offers comprehensive attack observation, reporting, and instant blocking of malicious requests.
+Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is recommended in case when you deliver traffic through Amazon CloudFront.
 
 ## Limitations
 
-The solution has certain limitations as it only works with incoming requests:
+* The following [restrictions apply to Lambda@Edge functions](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-at-edge-function-restrictions.html#lambda-at-edge-restrictions-request-body):
 
-* Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
-* The [Wallarm API Discovery](../../api-discovery/overview.md) cannot explore API inventory based on your traffic, as the solution relies on response analysis.
-* The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis.
-
-There are also other limitations:
-
-* The HTTP packet body size is limited to 40 KB when intercepted at the Viewer request level and 1MB at the Origin request level.
-* The maximum response time from the Wallarm node is limited to 5 seconds for Viewer requests and 30 seconds for Origin requests.
-* Lambda@Edge does not work within private networks (VPC).
-* The maximum number of concurrently processed requests per region is 1,000 (Default Quota), but it can be increased up to tens of thousands.
+    * The body size is limited to 40 KB for viewer requests and 1MB for origin requests.
+    * The maximum response time from the Wallarm node is 5 seconds for viewer requests and 30 seconds for origin requests.
+    * Lambda@Edge does not support private networks (VPC).
+    * The default limit for concurrent requests is 1,000 per region, but it can be increased up to tens of thousands.
+* Vulnerability detection based on [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) and API [response structure in API Discovery](../../api-discovery/exploring.md#endpoint-details) are limited due to Lambda@Edge response trigger restrictions. Since Wallarm functions cannot receive response bodies and rely on them, these features are unavailable.
 
 ## Requirements
 
 To proceed with the deployment, ensure that you meet the following requirements:
 
-* Understanding of AWS Lambda technologies.
+* Understanding of AWS CloudFront and Lambda technologies.
 * APIs or traffic running on AWS.
 
-## Deployment
+### 1. Deploy a Wallarm connector
 
-To secure with Wallarm applications on AWS that use Node.js lambdas, follow these steps:
+You can deploy a Wallarm connector node either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
 
-1. Deploy a Wallarm node on the AWS instance.
-1. Obtain the Wallarm Node.js script for AWS Lambda and run it.
+=== "Wallarm Edge connector node"
+    --8<-- "../include/waf/installation/security-edge/add-connector.md"
+=== "Self-hosted connector node"
+    The current self-hosted node deployment has limitations. Full response analysis is not yet supported, which is why:
 
-### 1. Deploy a Wallarm node
+    * Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
+    * The [Wallarm API Discovery](../../api-discovery/overview.md) cannot explore API inventory based on your traffic, as the solution relies on response analysis.
+    * The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis.
 
-When integrating Wallarm with AWS Lambda, the traffic flow operates [in-line](../inline/overview.md). Therefore, choose one of the supported Wallarm node deployment artifacts for in-line deployment on AWS:
+    To deploy a self-hosted connector node:
 
-* [AWS AMI](../packages/aws-ami.md)
-* [Amazon Elastic Container Service (ECS)](../cloud-platforms/aws/docker-container.md)
+    1. Allocate an instance for deploying the node.
+    1. Choose one of the supported Wallarm node deployment solutions or artifacts for the [in-line](../supported-deployment-options.md#in-line) or [out-of-band](../oob/overview.md) deployment and follow the provided deployment instructions.
+    1. Configure the deployed node using the following template:
 
-Configure the deployed node using the following template:
+        ```
+        server {
+            listen 80;
 
-```
-server {
-    listen 80;
+            server_name _;
 
-    server_name _;
+            access_log off;
+            wallarm_mode off;
 
-	access_log off;
-	wallarm_mode off;
+            location / {
+                proxy_set_header Host $http_x_forwarded_host;
+                proxy_pass http://unix:/tmp/wallarm-nginx.sock;
+            }
+        }
 
-	location / {
-		proxy_set_header Host $http_x_forwarded_host;
-		proxy_pass http://unix:/tmp/wallarm-nginx.sock;
-	}
-}
+        server {
+            listen 443 ssl;
 
-server {
-    listen 443 ssl;
+            server_name yourdomain-for-wallarm-node.tld;
 
-    server_name yourdomain-for-wallarm-node.tld;
+            ### SSL configuration here
 
-	### SSL configuration here
+            access_log off;
+            wallarm_mode off;
 
-	access_log off;
-	wallarm_mode off;
-
-	location / {
-		proxy_set_header Host $http_x_forwarded_host;
-		proxy_pass http://unix:/tmp/wallarm-nginx.sock;
-	}
-}
+            location / {
+                proxy_set_header Host $http_x_forwarded_host;
+                proxy_pass http://unix:/tmp/wallarm-nginx.sock;
+            }
+        }
 
 
-server {
-	listen unix:/tmp/wallarm-nginx.sock;
-	
-	server_name _;
-	
-	wallarm_mode monitoring;
-	#wallarm_mode block;
+        server {
+            listen unix:/tmp/wallarm-nginx.sock;
+            
+            server_name _;
+            
+            wallarm_mode monitoring;
+            #wallarm_mode block;
 
-	real_ip_header X-Lambda-Real-IP;
-	set_real_ip_from unix:;
+            real_ip_header X-REAL-IP;
+            set_real_ip_from unix:;
 
-	location / {
-		echo_read_request_body;
-	}
-}
-```
+            location / {
+                echo_read_request_body;
+            }
+        }
+        ```
 
-Please ensure to pay attention to the following configurations:
+        Please ensure to pay attention to the following configurations:
 
-* TLS/SSL certificates for HTTPS traffic: To enable the Wallarm node to handle secure HTTPS traffic, configure the TLS/SSL certificates accordingly. The specific configuration will depend on the chosen deployment method. For example, if you are using NGINX, you can refer to [its article](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) for guidance.
-* [Wallarm operation mode](../../admin-en/configure-wallarm-mode.md) configuration.
+        * TLS/SSL certificates for HTTPS traffic: To enable the Wallarm node to handle secure HTTPS traffic, configure the TLS/SSL certificates accordingly. The specific configuration will depend on the chosen deployment method. For example, if you are using NGINX, you can refer to [its article](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) for guidance.
+        * [Wallarm operation mode](../../admin-en/configure-wallarm-mode.md) configuration.
 
-### 2. Obtain the Wallarm Node.js script for AWS Lambda and run it
+    1. Once the deployment is complete, make a note of the node instance IP as you will need it later to set the address for incoming request forwarding.
 
-To acquire and run the Wallarm Node.js script on AWS Lambda, follow these steps:
+### 2. Obtain and deploy the Wallarm Lambda@Edge functions
 
-1. Contact [support@wallarm.com](mailto:support@wallarm.com) to obtain the Wallarm Node.js.
-1. [Create](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) a new IAM policy with the following permissions: 
+To connect your CloudFront CDN with the Wallarm connector, you need to deploy the Wallarm Lambda@Edge functions on AWS.
 
-    ```
-    lambda:CreateFunction, 
-    lambda:UpdateFunctionCode, 
-    lambda:AddPermission, 
-    iam:CreateServiceLinkedRole, 
-    lambda:GetFunction, 
-    lambda:UpdateFunctionConfiguration, 
-    lambda:DeleteFunction, 
-    cloudfront:UpdateDistribution, 
-    cloudfront:CreateDistribution, 
-    lambda:EnableReplication. 
-    ```
-1. In the AWS Lambda service, create a new function using Node.js 14.x as the runtime and the role created in the previous step. Choose **Create a new role with basic Lambda permissions**.
-1. In the code source editor, paste the code received from the Wallarm support team.
-1. In the pasted code, update the `WALLARM_NODE_HOSTNAME` and `WALLARM_NODE_PORT` values to point to the [previously deployed Wallarm node](#1-deploy-a-wallarm-node).
-    
-    To send the traffic to the filtering node via 443/SSL, use the following configuration:
+There are two Python-based functions: one for request forwarding and analysis, and another for response forwarding and analysis.
 
-    ```
-    const WALLARM_NODE_PORT = '443';
+1. Contact [support@wallarm.com](mailto:support@wallarm.com) to get the Wallarm Lambda@Edge functions for your connector deployment (Wallarm- or self-hosted).
+1. Proceed to your AWS Console → **Services** → **Lambda** → **Functions**.
+1. Select the `us-east-1` (N. Virginia) region which is [required for Lambda@Edge functions](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-how-it-works-tutorial.html#lambda-edge-how-it-works-tutorial-create-function).
+1. **Create function** with the following settings:
 
-    var http = require('https');
-    ```
+    * Runtime: Python 3.x.
+    * Execution role: **Create a new role from AWS policy templates** → **Basic Lambda@Edge permissions (for CloudFront trigger)**.
+    * Other settings can remain as default.
+1. Once the function is created, on the **Code** tab, paste the Wallarm request processing code.
+1. Update the following parameters in the code:
 
-    If you are using a self-signed certificate, make the following change to disable strict certificate enforcement:
+    * `wlrm_node_addr`: your [Wallarm connector instance](#1-deploy-a-wallarm-connector) address.
+    * `wlrm_inline`: if using [out-of-band](../oob/overview.md) mode, set to `False`.
+    * If necessary, modify other parameters.
+1. Proceed to **Actions** → **Deploy to Lambda@Edge** and specify the following settings:
 
-    ```
-    var post_options = {
-        host: WALLARM_NODE_HOSTNAME,
-        port: WALLARM_NODE_PORT,
-        path: request.uri + request.querystring,
-        method: request.method,
-        // only need if self-signed cert
-        rejectUnauthorized: false, 
-        // 
-        headers: newheaders
-        
-    };
-    ```
-1. Go back to the IAM section and edit the newly created role by attaching the following policies: `AWSLambda_FullAccess`, `AWSLambdaExecute`, `AWSLambdaBasicExecutionRole`, `AWSLambdaVPCAccessExecutionRole`, and `LambdaDeployPermissions` created in the previous step.
-1. In Trust relationships, add the following change to **Service**:
+    * Configure new CloudFront trigger.
+    * Distribution: your CDN that routes traffic to the origin you want to protect.
+    * Cache behavior: the cache behavior for the Lambda function, typically `*`.
+    * CloudFront event: 
+        * **Origin request**: executes the function only when CloudFront CDN requests data from the backend. If CDN returns a cached response, the function will not be executed.
+        * **Viewer request**: executes the function for every request to CloudFront CDN.
+    * Check **Include body**.
+    * Check **Confirm deploy to Lambda@Edge**.
 
-    ```
-    "Service": [
-                        "edgelambda.amazonaws.com",
-                        "lambda.amazonaws.com"
-                    ]
-    ```
-1. Navigate to Lambda → Functions → <YOUR_FUNCTION> and click **Add Trigger**.
-1. In the Deploy to Lambda@Edge options, click **Deploy to Lambda@Edge** and select the CloudFront Distribution that needs to have the Wallarm handler added or create a new one.
+    ![Cloudfront function deployment](../../images/waf-installation/gateways/cloudfront/function-deploy.png)
+1. Repeat the procedure for the Wallarm-provided response function, selecting responses as the trigger.
 
-    During the process, choose the **Viewer request** for the CloudFront event and check the box for **Include body**.
+    Ensure the response trigger matches the request trigger (origin response for origin request, viewer response for viewer request).
 
 ## Testing
 
-To test the functionality of the deployed policy, follow these steps:
+To test the functionality of the deployed functions, follow these steps:
 
-1. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to your API:
+1. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to your CloudFront CDN:
 
     ```
-    curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
+    curl http://<CLOUDFRONT_CDN>/etc/passwd
     ```
 1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
     
@@ -183,6 +166,6 @@ To test the functionality of the deployed policy, follow these steps:
 
     If the Wallarm node mode is set to blocking, the request will also be blocked.
 
-## Need assistance?
+## Troubleshooting
 
-If you encounter any issues or require assistance with the described deployment of Wallarm in conjunction with AWS Lambda, you can reach out to the [Wallarm support](mailto:support@wallarm.com) team. They are available to provide guidance and help resolve any problems you may face during the implementation process.
+--8<-- "../include/waf/installation/security-edge/connector-troubleshooting.md"
