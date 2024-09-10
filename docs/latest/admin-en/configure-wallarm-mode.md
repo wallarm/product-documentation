@@ -101,6 +101,10 @@ Note that described configuration is applicable only for [in-line](../installati
 
     See details on specifying the filtration mode for Sidecar [here](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md).
 
+=== "Connectors"
+
+    For [Wallarm Edge connectors](../installation/connectors/overview.md#wallarm-edge-connectors), you specify the `wallarm_mode` value in the **Filtration mode** selector during the connector deployment.
+
 === "CDN node"
 
     The `wallarm_mode` directive cannot be configured on the [Wallarm CDN nodes](../installation/cdn-node.md). To configure the filtration mode of the CDN nodes, please use other [available methods](#configuration-methods).
