@@ -2,6 +2,11 @@
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
 [se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
+[api-token]:                        ../../user-guides/settings/api-tokens.md
+[self-hosted-connector-node-aio-conf]: ../connectors/self-hosted-node-conf/all-in-one-installer.md
+[api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[self-hosted-connector-node-helm-conf]: ../connectors/self-hosted-node-conf/helm-chart.md
 
 # Wallarm Connector for Amazon CloudFront
 
@@ -53,73 +58,22 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
 === "Edge node"
     To deploy a Wallarm-hosted node for the connector, follow the [instructions](../se-connector.md).
 === "Self-hosted node"
-    The current self-hosted node deployment has limitations. Full response analysis is not yet supported, which is why:
+    Choose an artifact for a self-hosted node deployment:
 
-    * Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
-    * The [Wallarm API Discovery](../../api-discovery/overview.md) cannot explore API inventory based on your traffic, as the solution relies on response analysis.
-    * The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis.
-
-    To deploy a self-hosted node for the connector:
-
-    1. Allocate an instance for deploying the node.
-    1. Choose one of the supported Wallarm node deployment solutions or artifacts for the [in-line](../supported-deployment-options.md#in-line) or [out-of-band](../oob/overview.md) deployment and follow the provided deployment instructions.
-    1. Configure the deployed node using the following template:
-
-        ```
-        server {
-            listen 80;
-
-            server_name _;
-
-            access_log off;
-            wallarm_mode off;
-
-            location / {
-                proxy_set_header Host $http_x_forwarded_host;
-                proxy_pass http://unix:/tmp/wallarm-nginx.sock;
-            }
-        }
-
-        server {
-            listen 443 ssl;
-
-            server_name yourdomain-for-wallarm-node.tld;
-
-            ### SSL configuration here
-
-            access_log off;
-            wallarm_mode off;
-
-            location / {
-                proxy_set_header Host $http_x_forwarded_host;
-                proxy_pass http://unix:/tmp/wallarm-nginx.sock;
-            }
-        }
+    <div class="do-section"><div class="do-main"><a class="do-card" id="aio-connector" style="color: var(--md-typeset-a-color)">
+                <h3><img class="non-zoomable" src="../../../images/platform-icons/linux.svg" /> All-in-one installer</h3><p>For Linux infrastructures on bare metal or VMs.</p>
+            </a><a class="do-card" id="helm-connector" style="color: var(--md-typeset-a-color)">
+                <h3><img class="non-zoomable" src="../../../images/platform-icons/helm.svg" /> Helm chart</h3><p>For infrastructures utilizing Kubernetes.</p>
+            </a></div></div>
 
 
-        server {
-            listen unix:/tmp/wallarm-nginx.sock;
-            
-            server_name _;
-            
-            wallarm_mode monitoring;
-            #wallarm_mode block;
+    <div class="aio-connector-installation" style="display:none">
+    --8<-- "../include/waf/installation/connectors/self-hosted-node-aio.md"
+    </div>
 
-            real_ip_header X-REAL-IP;
-            set_real_ip_from unix:;
-
-            location / {
-                echo_read_request_body;
-            }
-        }
-        ```
-
-        Please ensure to pay attention to the following configurations:
-
-        * TLS/SSL certificates for HTTPS traffic: To enable the Wallarm node to handle secure HTTPS traffic, configure the TLS/SSL certificates accordingly. The specific configuration will depend on the chosen deployment method. For example, if you are using NGINX, you can refer to [its article](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) for guidance.
-        * [Wallarm operation mode](../../admin-en/configure-wallarm-mode.md) configuration.
-
-    1. Once the deployment is complete, make a note of the node instance IP as you will need it later to set the address for incoming request forwarding.
+    <div class="helm-connector-installation" style="display:none">
+    --8<-- "../include/waf/installation/connectors/self-hosted-node-helm-chart.md"
+    </div>
 
 ### 2. Obtain and deploy the Wallarm Lambda@Edge functions
 
@@ -171,3 +125,34 @@ To test the functionality of the deployed functions, follow these steps:
     ![Attacks in the interface][attacks-in-ui-image]
 
     If the Wallarm node mode is set to blocking, the request will also be blocked.
+
+<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
+
+<script>
+    var aioDiv = document.querySelector('.aio-connector-installation');
+    var helmDiv = document.querySelector('.helm-connector-installation');
+
+    document.getElementById('aio-connector').addEventListener('click', function() {
+        aioDiv.style.display = 'block';
+        helmDiv.style.display = 'none';
+    });
+
+    document.getElementById('helm-connector').addEventListener('click', function() {
+        aioDiv.style.display = 'none';
+        helmDiv.style.display = 'block';
+    });
+</script>
+
+<style>
+
+.do-card h3 {
+    align-items: center;
+}
+
+.do-card h3 img {
+    height: 40px;
+    margin-bottom: unset;
+    position: initial;
+}
+
+</style>
