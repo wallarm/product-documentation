@@ -1,13 +1,15 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[wallarm-hosted-connector-desc]:    ../connectors/overview.md#wallarm-edge-connectors
+[filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
 
-# Cloudflare
+# Wallarm Connector for Cloudflare
 
-[Cloudflare](https://www.cloudflare.com/) is a security and performance service which offers features designed to enhance the security, speed, and reliability of websites and internet applications, including CDN, WAF, DNS services and SSL/TLS encryption. This article provides instructions on configuring Wallarm and Cloudflare to route your entire domain or selected application's Cloudflare traffic to the Wallarm node for analysis and filtering.
+[Cloudflare](https://www.cloudflare.com/) is a security and performance service which offers features designed to enhance the security, speed, and reliability of websites and internet applications, including CDN, WAF, DNS services and SSL/TLS encryption. Wallarm can act as a connector to secure APIs running on Cloudflare.
 
-The solution involves deploying and configuring the Wallarm node externally and injecting custom code into Cloudflare's worker object. This enables traffic to be directed to the external Wallarm node for analysis and protection against potential threats. In the scenario, the Cloudflare itself serves as connector between your applications and Wallarm providing secure traffic analysis, risk mitigation, and overall security.
+The Wallarm filtering node is deployed externally and acts as a connector between Cloudflare and Wallarm. On the Cloudflare side, you only need to run an additional worker using the Wallarm-provided code to route traffic to the connector.
 
-<a name="cloudflare-modes"></a> The Cloudflare integration supports both [in-line](../inline/overview.md) and [out-of-band](../oob/overview.md) modes. Below diagrams show the traffic flow for both cases.
+<a name="cloudflare-modes"></a> The Cloudflare integration supports both [in-line](../inline/overview.md) and [out-of-band](../oob/overview.md) modes:
 
 === "In-line traffic flow"
 
@@ -21,14 +23,6 @@ The solution involves deploying and configuring the Wallarm node externally and 
 
 Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is recommended in case when you provide access to your applications via Cloudflare.
 
-## Limitations
-
-The solution has certain limitations as it only works with incoming requests:
-
-* Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
-* The [Wallarm API Discovery](../../api-discovery/overview.md) cannot explore API inventory based on your traffic, as the solution relies on response analysis.
-* The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis.
-
 ## Requirements
 
 To proceed with the deployment, ensure that you meet the following requirements:
@@ -36,124 +30,103 @@ To proceed with the deployment, ensure that you meet the following requirements:
 * Understanding of Cloudflare technologies.
 * APIs or traffic running through Cloudflare.
 
-## Deployment
+### 1. Deploy a Wallarm connector
 
-To secure with Wallarm your applications that are delivered via Cloudflare:
+You can deploy a Wallarm connector node either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
 
-1. Request Wallarm support to activate Cloudflare integration.
-1. Set Cloudflare worker and routes to route traffic to Wallarm for analysis.
+=== "Wallarm Edge connector node"
+    --8<-- "../include/waf/installation/security-edge/add-connector.md"
+=== "Self-hosted connector node"
+    The current self-hosted node deployment has limitations. Full response analysis is not yet supported, which is why:
 
-### 1. Request Wallarm support to activate Cloudflare integration
+    * Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
+    * The [Wallarm API Discovery](../../api-discovery/overview.md) cannot explore API inventory based on your traffic, as the solution relies on response analysis.
+    * The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis.
 
-Contact [support@wallarm.com](mailto:support@wallarm.com) to request the activation of Cloudflare integration and obtain the `<FILTERING_NODE_URL>`. Consider the following:
+    To deploy a self-hosted connector node:
 
-* As the traffic flow [can operate](#cloudflare-modes) both in-line and out-of-band (OOB), you need to discuss with the support which option suits you.
+    1. Allocate an instance for deploying the node.
+    1. Choose one of the supported Wallarm node deployment solutions or artifacts for the [in-line](../supported-deployment-options.md#in-line) or [out-of-band](../oob/overview.md) deployment and follow the provided deployment instructions.
+    1. Configure the deployed node using the following template:
 
-* Wallarm support team will deploy a filtering node in a trustworthy cloud environment and fully configure it for processing your traffic redirected from Cloudflare.
+        ```
+        server {
+            listen 80;
 
-    Alternatively, you can install node in your own infrastructure (see options for [in-line](../../installation/supported-deployment-options.md#in-line) and [out-of band (OOB)](../../installation/supported-deployment-options.md#out-of-band) installation) and request Wallarm support to help you to prepare the node for integration with Cloudflare.
+            server_name _;
 
-### 2. Set Cloudflare worker and routes
+            access_log off;
+            wallarm_mode off;
 
-In Cloudflare, do the following:
-
-1. Select domain to be routed to Wallarm.
-1. For this domain, create worker with the following code:
-
-    ```
-    // Configuration
-    const wallarm_node = "https://<FILTERING_NODE_URL>"; // Replace with your Wallarm node URL
-    const wallarm_mode = "async"; //"async" or "inline" - choose based on your needs
-
-    addEventListener("fetch", event => {
-    event.passThroughOnException();
-    event.respondWith(handleRequest(event));
-    });
-
-    async function handleRequest(event) {
-
-    if (event.request._handled) return;
-    event.request._handled = true;
-    
-    let request = event.request;
-    request._handled = true;
-
-    // Clone the request to be able to read its body
-    let requestBody = await request.clone().text();
-
-    const url = new URL(request.url);
-
-    // Check if the request URL ends with a static extension
-    if (isStatic(url)) {
-        // If it is a static request, proceed with the original request without sending it to the backend
-        return await fetch(request);
-    }
-
-    if (wallarm_mode === "async") {
-        // In async mode, send the request to the backend asynchronously and proceed with the original request
-        sendToBackend(request, requestBody, true);
-    } else if (wallarm_mode === "inline") {
-        // In inline mode, wait for the backend response to decide on blocking the request
-        let node_response = await sendToBackend(request, requestBody, false);
-    
-        // If the backend server responds with 403, block the request
-        if(node_response.status === 403) {
-        return new Response("Request blocked.", { status: 403 });
+            location / {
+                proxy_set_header Host $http_x_forwarded_host;
+                proxy_pass http://unix:/tmp/wallarm-nginx.sock;
+            }
         }
-    }
-    // Proceed with the original request if not blocked
-    return await fetch(request);
-    
-    }
 
-    async function sendToBackend(request, body, sendasync) {
+        server {
+            listen 443 ssl;
 
-    const url = new URL(request.url);
+            server_name yourdomain-for-wallarm-node.tld;
 
-    let headers = {}
-    request.headers.forEach((value, key) => {
-        headers[key] = value
-    })
+            ### SSL configuration here
 
-    headers["X-FORWARDED-HOST"] = url.host;
+            access_log off;
+            wallarm_mode off;
 
-    // Create the options object for the fetch call, excluding the body initially
-    const fetchOptions = {
-        method: request.method,
-        headers: headers
-    };
-    
-    // Only add the body to the fetch options for methods other than GET and HEAD
-    if (request.method !== "GET" && request.method !== "HEAD") {
-        fetchOptions.body = body;
-    }
+            location / {
+                proxy_set_header Host $http_x_forwarded_host;
+                proxy_pass http://unix:/tmp/wallarm-nginx.sock;
+            }
+        }
 
-    if(sendasync){
-        // Perform the fetch without waiting for the response
-        fetch(wallarm_node + url.pathname + url.search, fetchOptions).then(response => {
-        // Optionally handle the async response
-        console.log("Async request sent to backend");
-        }).catch(error => {
-        console.error("Error sending async request to backend:", error);
-        });
-    }else{
-        return await fetch(wallarm_node + url.pathname + url.search, fetchOptions);
-    }
-    }
 
-    const staticExtensions = [".css", ".js",
-    ".jpg", ".jpeg", ".png", ".gif", ".svg", ".ico",
-    ".woff", ".woff2", ".eot", ".ttf", ".otf", ".webp", ".avif", ".mp4", ".webm"];
-    function isStatic(url) {
-    return staticExtensions.some(ext => url.pathname.endsWith(ext));
-    }
-    ```
+        server {
+            listen unix:/tmp/wallarm-nginx.sock;
+            
+            server_name _;
+            
+            wallarm_mode monitoring;
+            #wallarm_mode block;
 
-1. To set paths of your domain that you want to route to Wallarm, create the route object and link it to your worker. Within the route object, list one or several paths, for example, add `*.example.com/*` to route all domain's paths.
+            real_ip_header X-REAL-IP;
+            set_real_ip_from unix:;
+
+            location / {
+                echo_read_request_body;
+            }
+        }
+        ```
+
+        Please ensure to pay attention to the following configurations:
+
+        * TLS/SSL certificates for HTTPS traffic: To enable the Wallarm node to handle secure HTTPS traffic, configure the TLS/SSL certificates accordingly. The specific configuration will depend on the chosen deployment method. For example, if you are using NGINX, you can refer to [its article](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) for guidance.
+        * [Wallarm operation mode](../../admin-en/configure-wallarm-mode.md) configuration.
+
+    1. Once the deployment is complete, make a note of the node instance IP as you will need it later to set the address for incoming request forwarding.
+
+### 2. Obtain and deploy the Wallarm worker code
+
+To run a Cloudflare worker routing traffic to the Wallarm connector:
+
+1. Contact [support@wallarm.com](mailto:support@wallarm.com) to get the Wallarm worker code for your connector deployment (Wallarm- or self-hosted).
+1. [Create a Cloudflare worker](https://developers.cloudflare.com/workers/get-started/dashboard/) using the provided code.
+1. Set the address of your [Wallarm connector instance](#1-deploy-a-wallarm-connector) in the `wallarm_node` parameter.
+1. If using [out-of-band](../oob/overview.md) mode, set the `wallarm_mode` parameter to `async`.
+
+    Based on the selected mode, the worker controls whether traffic goes through the connector inline or if original traffic proceeds while a copy is inspected for malicious activities.
+
+    ![Cloudflare worker](../../images/waf-installation/gateways/cloudflare/worker-deploy.png)
+1. In **Website** → your domain, go to **Workers Routes** → **Add route**:
+
+    * In **Route**, specify the paths to be routed to Wallarm for analysis (e.g., `*.example.com/*` for all paths).
+    * In **Worker**, select the Wallarm worker you created.
+
+    ![Cloudflare add route](../../images/waf-installation/gateways/cloudflare/add-route.png)
 
 ## Testing
 
-To test the functionality of the deployed policy, follow these steps:
+To test the functionality of the deployed solution, follow these steps:
 
 1. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to your API:
 
@@ -164,8 +137,8 @@ To test the functionality of the deployed policy, follow these steps:
     
     ![Attacks in the interface][attacks-in-ui-image]
 
-    If the Wallarm node mode is set to blocking, the request will also be blocked.
+    If the Wallarm node mode is set to blocking and the traffic flows in-line, the request will also be blocked.
 
-## Need assistance?
+## Troubleshooting
 
-If you encounter any issues or require assistance with the described deployment of Wallarm in conjunction with Cloudflare, you can reach out to the [Wallarm support](mailto:support@wallarm.com) team. They are available to provide guidance and help resolve any problems you may face during the implementation process.
+--8<-- "../include/waf/installation/security-edge/connector-troubleshooting.md"
