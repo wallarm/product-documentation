@@ -10,15 +10,15 @@ Knowing the full list of your organization's external APIs is the first step in 
 
 The **API Attack Surface Discovery** Wallarm component helps to solve these issues by providing the following:
 
-* Automatic detection of external hosts for your selected domains.
+* Automatic detection of external hosts and open ports for your selected domains.
 * Automatic detection of found hosts' APIs.
 
     The following **API types** (protocols) can be detected: JSON-API, GraphQL, XML-RPC, JSON-RPC, OData, gRPC, WebSocket, SOAP, WebDav, HTML WEB.
 
     HTML WEB — an HTML Web page designed for human access with browsers. It can be a static HTML Web page or a single HTML page of an application that, in turn, may access some API.
 
-* Automatic protection level evaluation for found hosts.
-* Overall score for protection of the entire API surface.
+* Automatic WAAP score evaluation for found hosts.
+* Overall WAAP score of the entire API surface.
 * Asset summaries by security vendor, data center, and location.
 
     As one host may have more than one IP address, the assets statics by data centers and geo location is evaluated per IP address basis and not per-host basis. Due to the usage of CDNs the assets' location may be not representative.
@@ -42,13 +42,27 @@ Note that domains are automatically re-scanned daily - new hosts will be added a
 
 You can re-start, pause or continue scanning for any domain manually at **Configure** → **Status**.
 
-## Protection score
+## WAAP score
 
-Wallarm automatically tests your found hosts for the resistance against attacks on web and API services and assigns the protection score and grade. You can sort and filter hosts by protection score.
+Wallarm automatically tests your hosts for the resistance against attacks on web and API services and assigns the protection score and grade. A higher score means stronger protection.
 
-Also, the overall protection score is calculated for the entire Attack Surface. The overall score is calculated as the average score for all hosts identified on the network perimeter. The following hosts are excluded from the evaluation:
+The final WAAP score is calculated as:
+
+```
+((AppSec + FalsePositive) / 2 + APISec) / 2
+```
+
+* **AppSec** - resistance to web attacks like SQL injection, XSS, and command injection.
+* **APISec** - resistance to API attacks, including those targeting GraphQL, SOAP, and gRPC protocols.
+* **FalsePositive** - the ability to accurately allow legitimate requests without mistakenly identifying them as threats.
+
+For each host, you can download a detailed WAAP score evaluation report in PDF format.
+
+An overall protection score is also calculated as the average score across all hosts, reflecting the protection level of the entire attack surface.
+
+![API surface - protection score](../images/api-attack-surface/aasm-api-surface-protection-score.png)
+
+The following hosts are excluded from the evaluation:
 
 * Hosts without Web/API services
 * Hosts which score was not evaluated due to service misconfiguration, errors or explicitly denied access
-
-![API surface - protection score](../images/api-attack-surface/aasm-api-surface-protection-score.png)
