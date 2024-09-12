@@ -126,6 +126,21 @@ The node operates in **[blocking mode][available-filtration-modes] by default**,
 
 To test the functionality of the deployed connector, follow these steps:
 
+1. Verify that the Wallarm pods are up and running:
+
+    ```
+    kubectl -n wallarm-node get pods
+    ```
+
+    `wallarm-node` is the namespace where the Wallarm node service is deployed.
+
+    Each pod status should be **STATUS: Running** or **READY: N/N**. For example:
+
+    ```
+    NAME                                READY   STATUS    RESTARTS   AGE
+    next-aggregation-5fb5d5444b-6c8n8   3/3     Running   0          51m
+    next-processing-7c487bbdc6-4j6mz    3/3     Running   0          51m
+    ```
 1. Retrieve the Kong Gateway IP (which is usually configured as a `LoadBalancer` service):
 
     ```
