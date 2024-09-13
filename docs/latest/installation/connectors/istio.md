@@ -88,14 +88,14 @@ Deploy the Wallarm node as a separate service in your Kubernetes cluster using H
 1. Apply the Envoy filter and cluster configuration to mirror traffic to the Wallarm node using Lua scripts:
 
     ```
-    kubectl apply -f envoy-filter-new.yaml
-    kubectl apply -f envoy-cluster-new.yaml
+    kubectl apply -f wallarm-envoy-gw-http-filter.yaml
+    kubectl apply -f wallarm-envoy-cluster-svc-endpoint.yaml
     ```
 1. Create ConfigMaps to mount the Wallarm connector and its Lua dependencies within the Istio Ingress controller namespace:
 
     ```
-    kubectl -n <ISTIO_INGRESS_NS> apply -f manual-mpack.yaml
-    kubectl -n <ISTIO_INGRESS_NS> apply -f manual-rrasync.yaml
+    kubectl -n <ISTIO_INGRESS_NS> apply -f wallarm-cm-lua-mpack-lib.yaml
+    kubectl -n <ISTIO_INGRESS_NS> apply -f wallarm-cm-lua-rrasync.yaml
     ```
 1. Modify the Istio Ingress Gateway deployment to mount these ConfigMaps by applying the `patch.yaml` file:
 
