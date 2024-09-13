@@ -101,14 +101,16 @@ The node operates in **[blocking mode][available-filtration-modes] by default**,
     ```
     helm upgrade --install <KONG_RELEASE_NAME> kong/ingress -n <KONG_NS> --values values.yaml
     ```
-1. Activate the Wallarm Lua plugin by creating a `KongPlugin` resource and specifying the Wallarm node service address:
+1. Activate the Wallarm Lua plugin by creating a `KongClusterPlugin` resource and specifying the Wallarm node service address:
 
     ```yaml
     echo '
     apiVersion: configuration.konghq.com/v1
-    kind: KongPlugin
+    kind: KongClusterPlugin
     metadata:
       name: kong-lua
+      annotations:
+        kubernetes.io/ingress.class: kong
     config:
       wallarm_node_address: "http://next-processing.wallarm-node.svc.cluster.local:5000"
     plugin: kong-lua
@@ -116,10 +118,11 @@ The node operates in **[blocking mode][available-filtration-modes] by default**,
     ```
 
     `wallarm-node` is the namespace where the Wallarm node service is deployed.
-1. Add the `konghq.com/plugins: kong-lua` annotation to your Service, Ingress, or Gateway API route to enable the plugin for selected services:
+1. Add the following annotations to your Ingress or Gateway API route to enable the plugin for selected services:
 
     ```
     konghq.com/plugins: kong-lua
+    kubernetes.io/ingress.class: kong
     ```
 
 ## Testing
