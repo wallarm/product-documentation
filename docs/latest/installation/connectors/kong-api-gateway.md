@@ -70,12 +70,14 @@ The node operates in **[blocking mode][available-filtration-modes] by default**,
 
     === "US Cloud"
         ```
-        helm upgrade --install --version 0.5.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
+        helm upgrade --install --version 0.5.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com --set config.connector.http_inspector.real_ip_header=X-Real-IP
         ```
     === "EU Cloud"
         ```
-        helm upgrade --install --version 0.5.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
+        helm upgrade --install --version 0.5.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com --set config.connector.http_inspector.real_ip_header=X-Real-IP
         ```
+
+    `config.connector.http_inspector.real_ip_header` specifies the header to extract the client's real IP address when traffic passes through proxies or load balancers.
 
 ### Step 2: Obtain and deploy the Wallarm Lua plugin
 
@@ -173,4 +175,5 @@ TBD before making this docs public:
 1. mention Kong connector in connector articles where needed
 1. add resource requirements, e.g. 4 CPU fits the solution but 2 is not enough (based on my experience)
 1. Add an artifact to the artifact inventory
+1. describe all values yaml parameters on a separate page
  -->

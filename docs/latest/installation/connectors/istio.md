@@ -75,12 +75,14 @@ Deploy the Wallarm node as a separate service in your Kubernetes cluster using H
 
     === "US Cloud"
         ```
-        helm upgrade --install --version 0.5.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
+        helm upgrade --install --version 0.5.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com --set config.connector.http_inspector.real_ip_header=X-Real-IP
         ```
     === "EU Cloud"
         ```
-        helm upgrade --install --version 0.5.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
+        helm upgrade --install --version 0.5.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com --set config.connector.http_inspector.real_ip_header=X-Real-IP
         ```
+
+    `config.connector.http_inspector.real_ip_header` specifies the header to extract the client's real IP address when traffic passes through proxies or load balancers.
 
 ### Step 2: Configure Envoy to mirror traffic to the Wallarm node
 
