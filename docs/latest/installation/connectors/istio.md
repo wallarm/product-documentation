@@ -12,6 +12,8 @@ Wallarm provides a connector for securing APIs managed by Istio to analyze traff
 
 The integration relies on a Lua plugin, deployed within the Envoy proxy, to handle traffic mirroring and communication with the Wallarm node.
 
+![Istio with Wallarm plugin](../../images/waf-installation/gateways/istio/traffic-flow-oob.png)
+
 ## Use cases
 
 This solution is recommended when real-time traffic analysis is unnecessary, and asynchronous analysis is sufficient.
