@@ -234,9 +234,6 @@ nav:
         - Deploy: installation/kubernetes/ebpf/deployment.md
         - Helm Chart Values: installation/kubernetes/ebpf/helm-chart-for-wallarm.md
         - Selecting Packets for Mirroring: installation/kubernetes/ebpf/selecting-packets.md
-      - TCP Traffic Mirror Analysis:
-        - Deploy: installation/oob/tcp-traffic-mirror/deployment.md
-        - Configure: installation/oob/tcp-traffic-mirror/configuration.md
     - Public Clouds:
       - Amazon Web Services:
         - AMI: installation/cloud-platforms/aws/ami.md
@@ -298,6 +295,9 @@ nav:
         - Deploy: installation/oob/ebpf/deployment.md
         - Helm Chart Values: installation/oob/ebpf/helm-chart-for-wallarm.md
         - Selecting Packets for Mirroring: installation/oob/ebpf/selecting-packets.md
+      - TCP Traffic Mirror Analysis:
+        - Deploy: installation/oob/tcp-traffic-mirror/deployment.md
+        - Configure: installation/oob/tcp-traffic-mirror/configuration.md
       - Mirroring by NGINX, Envoy and Similar:
         - Overview: installation/oob/web-server-mirroring/overview.md
         - All-in-one installer: installation/oob/web-server-mirroring/linux/all-in-one.md
