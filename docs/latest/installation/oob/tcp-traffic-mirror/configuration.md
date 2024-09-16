@@ -32,6 +32,10 @@ log:
   pretty: true
   level: debug
   log_file: stderr
+  access_log:
+    enabled: true
+    verbose: true
+    log_file: stderr
 ```
 
 ### mode (required)
@@ -211,7 +215,7 @@ To preserve the real client IP, these intermediaries often add an HTTP header (e
 
 ### log.pretty
 
-Controls the log format. Set to `true` for human-readable logs, or `false` for JSON logs.
+Controls the error and access log format. Set to `true` for human-readable logs, or `false` for JSON logs.
 
 Default: `true`.
 
@@ -223,9 +227,31 @@ Default: `info`.
 
 ### log.log_file
 
-Specifies the destination for log output. Options are `stdout`, `stderr`, or a path to a log file.
+Specifies the destination for error log output. Options are `stdout`, `stderr`, or a path to a log file.
 
 Default: `stderr`. However, the node redirects `stderr` to the file `/opt/wallarm/var/log/wallarm/go-node.log`.
+
+### log.access_log (version 0.5.1 and above)
+
+#### enabled
+
+Controls whether to collect access logs.
+
+Default: `true`.
+
+#### verbose
+
+Controls whether to include detailed information about each request in the access log output.
+
+Default: `true`.
+
+#### log_file
+
+Specifies the destination for access log output. Options are `stdout`, `stderr`, or a path to a log file.
+
+Default: `stderr`. However, the node redirects `stderr` to the file `/opt/wallarm/var/log/wallarm/go-node.log`.
+
+If not set, the [`log.log_file`](#loglog_file) setting is used.
 
 ## Advanced settings
 
