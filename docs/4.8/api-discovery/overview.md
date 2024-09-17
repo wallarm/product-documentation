@@ -67,7 +67,10 @@ The API inventory will display the endpoints and parameters that exceeded these 
 Also, the API Discovery performs filtering of requests relying on the other criteria:
 
 * Only those requests to which the server responded in the 2xx range are processed.
-* Requests that do not conform to the design principles of the REST API are not processed. This is done by controlling the `Content-Type` header parameter of responses: if the `Content-Type` parameter does not contain `application` as a type and `json` as a subtype, such request is considered to be non-REST API and is filtered out. Example of REST API response:  `Content-Type: application/json;charset=utf-8`. If the parameter does not exist, API Discovery analyzes the request.
+* Requests that do not conform to the design principles of the REST API are not processed.
+
+    This is done by controlling the `Content-Type` header of responses: if it does not contain `application/json` (like `Content-Type: application/json;charset=utf-8`), the request is considered to be a non-REST API and is not analyzed.
+
 * Standard fields such as `Accept` and alike are discarded.
 
 ### Sensitive data detection
