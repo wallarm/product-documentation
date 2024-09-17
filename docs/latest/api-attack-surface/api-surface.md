@@ -48,7 +48,7 @@ Wallarm automatically tests your found hosts for the resistance against attacks 
 
 Also, the overall protection score is calculated for the entire Attack Surface. The overall score is calculated as the average score for all hosts identified on the network perimeter. The following hosts are excluded from the evaluation:
 
-* hosts without Web/API services
-* hosts which score was not evaluated due to service misconfiguration, errors or explicitly denied access
+* Hosts without Web/API services
+* Hosts which score was not evaluated due to service misconfiguration, errors or explicitly denied access
 
 ![API surface - protection score](../images/api-attack-surface/aasm-api-surface-protection-score.png)
