@@ -60,6 +60,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ## Wallarm node for TCP traffic mirror analysis
 
+### 0.5.2 (2024-09-17)
+
+* Fixed an issue with the C memory allocator that caused a performance slowdown
+
 ### 0.5.1 (2024-09-16)
 
 * Added configurable access log output via [`log.access_log` parameters](../installation/oob/tcp-traffic-mirror/configuration.md#logaccess_log-version-051-and-above)
