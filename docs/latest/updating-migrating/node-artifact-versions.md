@@ -12,6 +12,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.0.2 (2024-09-18)
+
+* Fixed installation failure issue when no WAAP + API Security subscription is activated
+* Fixed delays in attack export
+
 ### 5.0.1 (2024-08-21)
 
 * Initial release 5.0, [see changelog](what-is-new.md)
@@ -31,6 +36,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 5.0.2 (2024-09-18)
+
+* Fixed installation failure issue when no WAAP + API Security subscription is activated
+* Fixed delays in attack export
 
 ### 5.0.1 (2024-08-21)
 
@@ -62,6 +72,8 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.5.2 (2024-09-17)
 
+* Fixed installation failure issue when no WAAP + API Security subscription is activated
+* Fixed delays in attack export
 * Fixed an issue with the C memory allocator that caused a performance slowdown
 
 ### 0.5.1 (2024-09-16)
@@ -87,6 +99,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 5.0.2-1 (2024-09-18)
+
+* Fixed installation failure issue when no WAAP + API Security subscription is activated
+* Fixed delays in attack export
 
 ### 5.0.1-1 (2024-08-21)
 
