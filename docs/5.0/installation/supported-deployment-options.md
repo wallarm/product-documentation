@@ -265,6 +265,18 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Cloudflare</h3>
             <p>Deploy Wallarm to secure traffic running via Cloudflare</p>
         </a>
+
+        <a class="do-card" href="../../installation/connectors/kong-api-gateway/">
+            <img class="non-zoomable" src="../../images/platform-icons/kong-new.svg" />
+            <h3>Kong API Gateway</h3>
+            <p>Deploy Wallarm to secure APIs managed by Kong Ingress Controller</p>
+        </a>
+
+        <a class="do-card" href="../../installation/connectors/istio/">
+            <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
+            <h3>Istio</h3>
+            <p>Deploy Wallarm to secure APIs managed by Istio</p>
+        </a>
         
         <a class="do-card" href="../../installation/connectors/layer7-api-gateway/">
             <img class="non-zoomable" src="../../images/platform-icons/layer7.png" />
