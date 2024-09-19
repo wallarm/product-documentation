@@ -46,14 +46,54 @@ The Wallarm node operation mode. Currently, it can be only `tcp-capture`.
 
 Specifies a network interface to capture traffic from. If no value is specified, it captures traffic from all network interfaces on the instance.
 
-Note that the value should be the network interface and port separated by a colon (`:`). Examples of filters include `eth0:`, `eth0:80`, or `:80` (to intercept a specific port on all interfaces), e.g.:
+The value should be the network interface and port separated by a colon (`:`), e.g.:
 
-```yaml
-version: 2
+=== "Interface:Port"
+    ```yaml
+    version: 2
 
-goreplay:
-  filter: 'eth0:'
-```
+    goreplay:
+      filter: 'eth0:80'
+    ```
+
+    To capture traffic from multiple interfaces and ports, use `goreplay.filter` along with `goreplay.extra_args`, e.g.:
+
+    ```yaml
+    version: 2
+
+    goreplay:
+      filter: 'eth0:80'
+      extra_args:
+        - "-input-raw"
+        - "eth0:8080"
+        - "-input-raw"
+        - "eth0:8081"
+        - "-input-raw"
+        - "eth1:80"
+    ```
+
+    The `filter` sets GoReplay with the `-input-raw` argument, and `extra_args` allows for specifying additional `-input-raw` inputs.
+=== "All ports on interface"
+    ```yaml
+    version: 2
+
+    goreplay:
+      filter: 'eth0:'
+    ```
+=== "Specific port on all interfaces"
+    ```yaml
+    version: 2
+
+    goreplay:
+      filter: ':80'
+    ```
+=== "All interfaces and ports"
+    ```yaml
+    version: 2
+
+    goreplay:
+      filter: ':'
+    ```
 
 To check network interfaces available on the host, run:
 
@@ -65,39 +105,53 @@ ip addr show
 
 This parameter allows you to specify [extra arguments](https://github.com/buger/goreplay/blob/master/docs/Request-filtering.md) to be passed to GoReplay.
 
-Typically, you will use it to define the types of mirrored traffic requiring analysis, such as VLAN, VXLAN. For example:
+* Typically, you will use it to define the types of mirrored traffic requiring analysis, such as VLAN, VXLAN. For example:
 
-* For VLAN-wrapped mirrored traffic, provide the following:
+    === "VLAN-wrapped mirrored traffic"
+        ```yaml
+        version: 2
+
+        goreplay:
+          extra_args:
+            - -input-raw-vlan
+            - -input-raw-vlan-vid
+            # VID of your VLAN, e.g.:
+            # - 42
+        ```
+    === "VXLAN-wrapped mirrored traffic (common in AWS)"
+        ```yaml
+        version: 2
+
+        goreplay:
+          extra_args:
+            - -input-raw-engine
+            - vxlan
+            # Custom VXLAN UDP port, e.g.:
+            # - -input-raw-vxlan-port 
+            # - 4789
+            # Specific VNI (by default, all VNIs are captured), e.g.:
+            # - -input-raw-vxlan-vni
+            # - 1
+        ```
+
+    If the mirrored traffic is not wrapped in additional protocols like VLAN or VXLAN, you can omit the `extra_args` configuration. Unencapsulated traffic is parsed by default.
+* You can extend `filter` with `extra_args` to capture additional interfaces and ports:
 
     ```yaml
     version: 2
 
     goreplay:
+      filter: 'eth0:80'
       extra_args:
-        - -input-raw-vlan
-        - -input-raw-vlan-vid
-        # VID of your VLAN, e.g.:
-        # - 42
+        - "-input-raw"
+        - "eth0:8080"
+        - "-input-raw"
+        - "eth0:8081"
+        - "-input-raw"
+        - "eth1:80"
     ```
 
-* For VXLAN-wrapped mirrored traffic (e.g. for AWS traffic mirroring), provide the following:
-
-    ```yaml
-    version: 2
-
-    goreplay:
-      extra_args:
-        - -input-raw-engine
-        - vxlan
-        # Custom VXLAN UDP port, e.g.:
-        # - -input-raw-vxlan-port 
-        # - 4789
-        # Specific VNI (by default, all VNIs are captured), e.g.:
-        # - -input-raw-vxlan-vni
-        # - 1
-    ```
-
-* If the mirrored traffic is not wrapped in additional protocols like VLAN or VXLAN, you can omit the `extra_args` configuration. Unencapsulated traffic is parsed by default.
+    The `filter` sets GoReplay with the `-input-raw` argument, and `extra_args` allows for specifying additional `-input-raw` inputs.
 
 ### route_config
 
