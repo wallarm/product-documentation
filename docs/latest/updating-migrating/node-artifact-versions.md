@@ -130,6 +130,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
+### 5.0.2-1 (2024-09-19)
+
+* Fixed installation failure issue when no WAAP + API Security subscription is activated
+* Fixed delays in attack export
+
 ### 5.0.1-1 (2024-08-21)
 
 * Initial release 5.0, [see changelog](what-is-new.md)
