@@ -133,32 +133,108 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
 
     set -e
 
+    log() {
+        local msg="$1"
+        local level="$2"
+        if [ -z "$level" ]; then
+            level="INFO"
+        fi
+        echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$level] $msg"
+    }
+
+    log "Script execution started."
+
+    # Ensure necessary directories exist
+    log "Ensuring necessary directories exist for supervisord."
+    mkdir -p /opt/wallarm/var/log/wallarm
+    mkdir -p /opt/wallarm/run/supervisor
+
     if [ ! -z "$WALLARM_API_TOKEN" ]; then
-        echo "WALLARM_API_TOKEN is set, checking configuration"
+        log "WALLARM_API_TOKEN is set, checking configuration."
         if [[ $DYNO == web.* ]]; then
-            echo "Heroku dyno type [$DYNO] is 'web', running Wallarm configuration scripts"
-            # Configure PORT in nginx config
-            sed -i "s/\$PORT/$PORT/g" /etc/nginx/nginx.conf
+            log "Heroku dyno type [$DYNO] is 'web', proceeding with Wallarm configuration."
+            # Propagate env vars
+            log "Propagating environment variables from /opt/wallarm/env.list."
+            set -a
+            source /opt/wallarm/env.list
+            if [ -s /etc/wallarm-override/env.list ]; then
+                log "Propagating environment variables from /etc/wallarm-override/env.list."
+                source /etc/wallarm-override/env.list
+            fi
+            set +a
+
             # Register Wallarm node in the Cloud
-            /opt/wallarm/register-node --token "$WALLARM_API_TOKEN" -H "$WALLARM_API_HOST" --labels "$WALLARM_LABELS"
-            # Read default Wallarm environment variables
-            export $(sed -e 's/=\(.*\)/="\1"/g' /opt/wallarm/env.list | grep -v "#" | xargs)
+            log "Registering Wallarm node in the cloud."
+            /opt/wallarm/register-node
+
+            # Configure PORT in nginx config
+            log "Replacing \$PORT in Nginx configuration with value $PORT."
+            sed -i "s/\$PORT/${PORT}/g" /etc/nginx/nginx.conf
+
+            # Verify that PORT was replaced successfully
+            log "Checking if the PORT in Nginx configuration was successfully replaced."
+            if cat /etc/nginx/nginx.conf | grep -q "listen ${PORT}"; then
+                    log "Successfully replaced PORT in Nginx configuration with value $PORT."
+            else
+                    log "Failed to replace PORT in Nginx configuration!" "ERROR"
+                    exit 1
+            fi
+
             # Export $PORT as $NGINX_PORT (required for the `export-metrics` script)
+            log "Exporting PORT as NGINX_PORT for Wallarm metrics."
             export NGINX_PORT="$PORT"
             export -n TT_MEMTX_MEMORY
-            # Read user-set Wallarm variables
-            # [ -s /etc/wallarm-override/env.list ] && export $(sed -e 's/=\(.*\)/="\1"/g' /etc/wallarm-override/env.list | grep -v "#" | xargs)
-            # Launch all Wallarm services and NGINX under supervisord in the background
-            /opt/wallarm/usr/bin/python3.10 /opt/wallarm/usr/bin/supervisord -c /opt/wallarm/etc/supervisord.conf
-    else
-        echo "Heroku dyno type [$DYNO] is not 'web', skipping Wallarm configuration"
+
+            if [ ! -z "$NGINX_PORT" ]; then
+                    sed -i -r "s#http://127.0.0.8/wallarm-status#http://127.0.0.8:$NGINX_PORT/wallarm-status#" \
+                    /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
+            fi
+
+            # Start all Wallarm services and NGINX under supervisord
+            log "Starting all Wallarm services and NGINX under supervisord."
+            /opt/wallarm/usr/bin/python3.10 /opt/wallarm/usr/bin/supervisord -c /opt/wallarm/etc/supervisord.conf --loglevel=debug
+            # Check if supervisord started successfully
+            log "Checking if supervisord process is running."
+            if pgrep -f "supervisord" > /dev/null; then
+                log "supervisord process started successfully."
+            else
+                log "Failed to start supervisord process!" "ERROR"
+                exit 1
+            fi
+
+            # Check the status of services managed by supervisord
+            log "Checking the status of all services managed by supervisord every 10s during 3 minutes."
+            timeout=0
+
+            while (/opt/wallarm/usr/bin/supervisorctl -c /opt/wallarm/etc/supervisord.conf status | grep -qv "RUNNING");
+            do
+                log "One or more services failed to start!" "ERROR"
+                log "Waiting 10s and check it again"
+                sleep 10s
+                timeout=$(( timeout + 10 ))
+
+                if [ $timeout -ge 180 ];
+                then
+                  log "One or more services failed to start!" "ERROR"
+                  /opt/wallarm/usr/bin/supervisorctl -c /opt/wallarm/etc/supervisord.conf status
+                  exit 1
+                fi
+            done
+
+            log "All services are running successfully."
+            log "Wallarm configuration completed."
+
+        else
+            log "Heroku dyno type [$DYNO] is not 'web', skipping Wallarm configuration."
         fi
     else
-        echo "WALLARM_API_TOKEN is not set, just executing CMD"
+        log "WALLARM_API_TOKEN is not set, executing CMD."
     fi
 
     # Execute the CMD command
+    log "Executing command: $@"
     exec "$@"
+    log "Script execution finished."
     ```
 
 1. Set the `entrypoint.sh` file permissions to `-rwxr-xr-x` by executing the following command:
@@ -278,7 +354,7 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
     ```dockerfile
     FROM ubuntu:22.04
 
-    ARG VERSION="4.10.3"
+    ARG VERSION="5.0.2"
 
     ENV PORT=3000
     ENV WALLARM_LABELS="group=heroku"
@@ -329,10 +405,10 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
 Execute the following commands within the previously created directory:
 
 ```
-docker build -t wallarm-heroku:4.10.3 .
+docker build -t wallarm-heroku:5.0.2 .
 docker login
-docker tag wallarm-heroku:4.10.3 <DOCKERHUB_USERNAME>/wallarm-heroku:4.10.3
-docker push <DOCKERHUB_USERNAME>/wallarm-heroku:4.10.3
+docker tag wallarm-heroku:5.0.2 <DOCKERHUB_USERNAME>/wallarm-heroku:5.0.2
+docker push <DOCKERHUB_USERNAME>/wallarm-heroku:5.0.2
 ```
 
 ## Step 3: Run the built Docker image on Heroku
@@ -343,7 +419,7 @@ To deploy the image on Heroku:
 1. Construct a `Dockerfile` which will include the installation of necessary dependencies specific to your app's runtime. For a Node.js application, use the following template:
 
     ```dockerfile
-    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:4.10.3
+    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:5.0.2
 
     ENV NODE_MAJOR=20
 
