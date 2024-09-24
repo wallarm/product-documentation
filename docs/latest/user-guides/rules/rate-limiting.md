@@ -119,7 +119,11 @@ For example, the rule limiting each customer by 10 POST requests per minute to `
 
 The rate limit functionality has the following limitations and peculiarities:
 
-* Rate limiting rule is supported by all [Wallarm deployment forms](../../installation/supported-deployment-options.md) except for the Envoy-based Docker image and OOB deployment.
+* Rate limiting rule is supported by all [Wallarm deployment forms](../../installation/supported-deployment-options.md) **except for**:
+
+    * Envoy-based Docker image
+    * OOB Wallarm deployment
+    * MuleSoft, Amazon CloudFront and Cloudflare connectors
 * The maximum allowed length of parameter values by which you measure limits is 8000 symbols.
 * If you have multiple Wallarm nodes and the incoming traffic on each node meets the rate limit rule, they are limited independently.
 * When multiple rate limit rules apply to incoming requests, the rule with the lowest rate limit is used to limit the requests.

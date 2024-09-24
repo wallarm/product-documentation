@@ -3,7 +3,7 @@
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
 [wallarm-hosted-connector-desc]:    ../connectors/overview.md#wallarm-edge-connectors
 
-# Wallarm Connector for Mulesoft
+# Wallarm Connector for MuleSoft
 
 [MuleSoft](https://www.mulesoft.com/) is an integration platform that enables seamless connectivity and data integration between services with an API gateway serving as the entry point for client applications to access APIs. Wallarm can act as a connector to secure APIs running on MuleSoft.
 
@@ -16,6 +16,11 @@ The Wallarm connector for MuleSoft supports only [in-line](../inline/overview.md
 ## Use cases
 
 Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for securing APIs deployed on the MuleSoft Anypoint platform with only one policy.
+
+## Limitations
+
+* [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
+* [Multitenancy](../multi-tenant/overview.md) is not supported yet.
 
 ## Requirements
 
