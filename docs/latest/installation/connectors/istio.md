@@ -60,7 +60,7 @@ To secure APIs managed by Istio and Envoy proxy, follow these steps:
 1. Deploy the Wallarm filtering node service in your Kubernetes cluster.
 1. Configure the Envoy proxy in Istio to mirror traffic and send it to the Wallarm node for out-of-band analysis.
 
-### Step 1: Deploy a Wallarm node
+### 1: Deploy a Wallarm node
 
 Deploy the Wallarm node as a separate service in your Kubernetes cluster using Helm.
 
@@ -88,7 +88,7 @@ Deploy the Wallarm node as a separate service in your Kubernetes cluster using H
 
     `config.connector.http_inspector.real_ip_header` specifies the header to extract the client's real IP address when traffic passes through proxies or load balancers.
 
-### Step 2: Configure Envoy to mirror traffic to the Wallarm node
+### 2: Configure Envoy to mirror traffic to the Wallarm node
 
 1. Contact [support@wallarm.com](mailto:support@wallarm.com) to obtain the Wallarm Lua plugin code for Istio. The filenames provided by the support team are used in the following steps.
 1. Apply the Envoy filter and cluster configuration to mirror traffic to the Wallarm node using Lua scripts:

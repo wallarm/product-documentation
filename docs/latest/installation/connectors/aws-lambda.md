@@ -7,9 +7,9 @@
 
 [CloudFront](https://aws.amazon.com/cloudfront/) is a content delivery network operated by Amazon Web Services. Wallarm can act as a connector to secure and monitor traffic delivered through CloudFront.
 
-The Wallarm filtering node is deployed externally and acts as a connector between CloudFront and Wallarm. On the CloudFront side, you only need to deploy additional Wallarm-provided Lambda@Edge functions to route traffic to the connector.
+To use Wallarm as a connector for CloudFront, you need to **deploy the Wallarm node externally** and **run Wallarm-provided Lambda@Edge functions** to route traffic to the Wallarm node for analysis.
 
-The CloudFront connector supports both [in-line](../inline/overview.md) and [out-of-band](../oob/overview.md) modes:
+The CloudFront connector supports both [in-line](../inline/overview.md) and [out-of-band](../oob/overview.md) traffic analysis:
 
 === "In-line traffic flow"
 
@@ -40,20 +40,24 @@ To proceed with the deployment, ensure that you meet the following requirements:
 * Understanding of AWS CloudFront and Lambda technologies.
 * APIs or traffic running on AWS.
 
-### 1. Deploy a Wallarm connector
+## Deployment
 
-You can deploy a Wallarm connector node either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
+### 1. Deploy a Wallarm node
 
-=== "Wallarm Edge connector node"
+The Wallarm node is a core component of the Wallarm platform that you need to deploy. It inspects incoming traffic, detects malicious activities, and can be configured to mitigate threats.
+
+You can deploy it either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
+
+=== "Wallarm Edge node"
     --8<-- "../include/waf/installation/security-edge/add-connector.md"
-=== "Self-hosted connector node"
+=== "Self-hosted node"
     The current self-hosted node deployment has limitations. Full response analysis is not yet supported, which is why:
 
     * Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
     * The [Wallarm API Discovery](../../api-discovery/overview.md) cannot explore API inventory based on your traffic, as the solution relies on response analysis.
     * The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis.
 
-    To deploy a self-hosted connector node:
+    To deploy a self-hosted node for the connector:
 
     1. Allocate an instance for deploying the node.
     1. Choose one of the supported Wallarm node deployment solutions or artifacts for the [in-line](../supported-deployment-options.md#in-line) or [out-of-band](../oob/overview.md) deployment and follow the provided deployment instructions.
@@ -117,7 +121,7 @@ You can deploy a Wallarm connector node either hosted by Wallarm or in your own 
 
 ### 2. Obtain and deploy the Wallarm Lambda@Edge functions
 
-To connect your CloudFront CDN with the Wallarm connector, you need to deploy the Wallarm Lambda@Edge functions on AWS.
+To connect your CloudFront CDN with the Wallarm node, you need to deploy the Wallarm Lambda@Edge functions on AWS.
 
 There are two Python-based functions: one for request forwarding and analysis, and another for response forwarding and analysis.
 
@@ -132,7 +136,7 @@ There are two Python-based functions: one for request forwarding and analysis, a
 1. Once the function is created, on the **Code** tab, paste the Wallarm request processing code.
 1. Update the following parameters in the code:
 
-    * `wlrm_node_addr`: your [Wallarm connector instance](#1-deploy-a-wallarm-connector) address.
+    * `wlrm_node_addr`: your [Wallarm node instance](#1-deploy-a-wallarm-node) address.
     * `wlrm_inline`: if using [out-of-band](../oob/overview.md) mode, set to `False`.
     * If necessary, modify other parameters.
 1. Proceed to **Actions** → **Deploy to Lambda@Edge** and specify the following settings:

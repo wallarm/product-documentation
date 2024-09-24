@@ -7,9 +7,9 @@
 
 [Cloudflare](https://www.cloudflare.com/) is a security and performance service which offers features designed to enhance the security, speed, and reliability of websites and internet applications, including CDN, WAF, DNS services and SSL/TLS encryption. Wallarm can act as a connector to secure APIs running on Cloudflare.
 
-The Wallarm filtering node is deployed externally and acts as a connector between Cloudflare and Wallarm. On the Cloudflare side, you only need to run an additional worker using the Wallarm-provided code to route traffic to the connector.
+To use Wallarm as a connector for Cloudflare, you need to **deploy the Wallarm node externally** and **run a Cloudflare worker using the Wallarm-provided code** to route traffic to the Wallarm node for analysis.
 
-<a name="cloudflare-modes"></a> The Cloudflare integration supports both [in-line](../inline/overview.md) and [out-of-band](../oob/overview.md) modes:
+<a name="cloudflare-modes"></a> The Cloudflare connector supports both [in-line](../inline/overview.md) and [out-of-band](../oob/overview.md) traffic flows:
 
 === "In-line traffic flow"
 
@@ -30,20 +30,24 @@ To proceed with the deployment, ensure that you meet the following requirements:
 * Understanding of Cloudflare technologies.
 * APIs or traffic running through Cloudflare.
 
-### 1. Deploy a Wallarm connector
+## Deployment
 
-You can deploy a Wallarm connector node either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
+### 1. Deploy a Wallarm node
 
-=== "Wallarm Edge connector node"
+The Wallarm node is a core component of the Wallarm platform that you need to deploy. It inspects incoming traffic, detects malicious activities, and can be configured to mitigate threats.
+
+You can deploy it either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
+
+=== "Wallarm Edge node"
     --8<-- "../include/waf/installation/security-edge/add-connector.md"
-=== "Self-hosted connector node"
+=== "Self-hosted node"
     The current self-hosted node deployment has limitations. Full response analysis is not yet supported, which is why:
 
     * Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
     * The [Wallarm API Discovery](../../api-discovery/overview.md) cannot explore API inventory based on your traffic, as the solution relies on response analysis.
     * The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis.
 
-    To deploy a self-hosted connector node:
+    To deploy a self-hosted node for the connector:
 
     1. Allocate an instance for deploying the node.
     1. Choose one of the supported Wallarm node deployment solutions or artifacts for the [in-line](../supported-deployment-options.md#in-line) or [out-of-band](../oob/overview.md) deployment and follow the provided deployment instructions.
@@ -107,14 +111,14 @@ You can deploy a Wallarm connector node either hosted by Wallarm or in your own 
 
 ### 2. Obtain and deploy the Wallarm worker code
 
-To run a Cloudflare worker routing traffic to the Wallarm connector:
+To run a Cloudflare worker routing traffic to the Wallarm node:
 
 1. Contact [support@wallarm.com](mailto:support@wallarm.com) to get the Wallarm worker code for your connector deployment (Wallarm- or self-hosted).
 1. [Create a Cloudflare worker](https://developers.cloudflare.com/workers/get-started/dashboard/) using the provided code.
-1. Set the address of your [Wallarm connector instance](#1-deploy-a-wallarm-connector) in the `wallarm_node` parameter.
+1. Set the address of your [Wallarm node instance](#1-deploy-a-wallarm-node) in the `wallarm_node` parameter.
 1. If using [out-of-band](../oob/overview.md) mode, set the `wallarm_mode` parameter to `async`.
 
-    Based on the selected mode, the worker controls whether traffic goes through the connector inline or if original traffic proceeds while a copy is inspected for malicious activities.
+    Based on the selected mode, the worker controls whether traffic goes through the Wallarm node inline or if original traffic proceeds while a copy is inspected for malicious activities.
 
     ![Cloudflare worker](../../images/waf-installation/gateways/cloudflare/worker-deploy.png)
 1. In **Website** → your domain, go to **Workers Routes** → **Add route**:
