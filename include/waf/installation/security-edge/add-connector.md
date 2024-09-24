@@ -1,6 +1,6 @@
 To deploy a [Wallarm-hosted node for the connector][wallarm-hosted-connector-desc]:
 
-1. Proceed to Wallarm Console → **Nodes** → **Connectors** → **Add connector**.
+1. Proceed to Wallarm Console **Security Edge** → **Connectors** → **Add connector**.
 1. Specify the node deployment settings:
 
     * **Regions**: select one or more regions to deploy the Wallarm node for the connector. We recommend choosing regions close to where your APIs or applications are deployed. Multiple regions improve geo-redundancy by balancing the load if an instance becomes unavailable.
