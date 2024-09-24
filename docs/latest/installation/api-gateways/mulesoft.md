@@ -7,9 +7,9 @@
 
 [MuleSoft](https://www.mulesoft.com/) is an integration platform that enables seamless connectivity and data integration between services with an API gateway serving as the entry point for client applications to access APIs. Wallarm can act as a connector to secure APIs running on MuleSoft.
 
-The Wallarm filtering node is deployed externally and acts as a connector between Mulesoft and Wallarm. On the MuleSoft side, you only need to apply the Wallarm-provided policy to route traffic to the connector.
+To use Wallarm as a connector for MuleSoft, you need to **deploy the Wallarm node externally** and **apply the Wallarm-provided policy in MuleSoft** to route traffic to the Wallarm node for analysis.
 
-The Wallarm policy for MuleSoft supports only [in-line](../inline/overview.md) mode:
+The Wallarm connector for MuleSoft supports only [in-line](../inline/overview.md) traffic analysis:
 
 ![Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
 
@@ -29,26 +29,22 @@ To proceed with the deployment, ensure that you meet the following requirements:
 
 ## Deployment
 
-To secure APIs on the Mulesoft Anypoint platform using Wallarm policy, follow these steps:
+### 1. Deploy a Wallarm node
 
-1. Deploy a Wallarm connector node.
-1. Obtain the Wallarm policy and upload it to Mulesoft Exchange.
-1. Attach the Wallarm policy to your API.
+The Wallarm node is a core component of the Wallarm platform that you need to deploy. It inspects incoming traffic, detects malicious activities, and can be configured to mitigate threats.
 
-### 1. Deploy a Wallarm connector
+You can deploy it either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
 
-You can deploy a Wallarm connector node either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
-
-=== "Wallarm Edge connector node"
+=== "Wallarm Edge node"
     --8<-- "../include/waf/installation/security-edge/add-connector.md"
-=== "Self-hosted connector node"
+=== "Self-hosted node"
     The current self-hosted node deployment has limitations. Full response analysis is not yet supported, which is why:
 
     * In some environments, [Wallarm API Discovery](../../api-discovery/overview.md) may generate additional endpoints. Consult [Wallarm support](mailto:support@wallarm.com) for configuration options.
     * Server responses are required for [passive vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection).
     * [Protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md).
 
-    To deploy a self-hosted connector node:
+    To deploy a self-hosted node for the connector:
 
     1. Allocate an instance for deploying the node.
     1. Choose one of the supported Wallarm node deployment solutions or artifacts for the [in-line deployment](../supported-deployment-options.md#in-line) and follow the provided deployment instructions.
@@ -160,7 +156,7 @@ To apply the Wallarm policy to all APIs using [Mulesoft's Automated policy optio
 
 1. In your Anypoint Platform, navigate to **API Manager** → **Automated Policies**.
 1. Click **Add automated policy** and select the Wallarm policy from Exchange.
-1. Specify an address of the [Wallarm connector instance](#1-deploy-a-wallarm-connector) including `http://` or `https://`.
+1. Specify an address of the [Wallarm node instance](#1-deploy-a-wallarm-node) including `http://` or `https://`.
 1. If necessary, modify other parameters.
 1. Apply the policy.
 
@@ -172,7 +168,7 @@ To secure an individual API with the Wallarm policy, follow these steps:
 
 1. In your Anypoint Platform, navigate to **API Manager** and select the desired API.
 1. Navigate to **Policies** → **Add policy** and select the Wallarm policy.
-1. Specify an address of the [Wallarm connector instance](#1-deploy-a-wallarm-connector) including `http://` or `https://`.
+1. Specify an address of the [Wallarm node instance](#1-deploy-a-wallarm-node) including `http://` or `https://`.
 1. If necessary, modify other parameters.
 1. Apply the policy.
 
