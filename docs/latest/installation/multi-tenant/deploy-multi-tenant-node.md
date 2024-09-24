@@ -42,7 +42,11 @@ Choose the multi-tenant node deployment option based on your infrastructure and 
 
 Multi-tenant node:
 
-* Can be installed on the same [platforms](../../installation/supported-deployment-options.md) and according to the same instructions as a regular filtering node.
+* Can be installed on the same [platforms](../../installation/supported-deployment-options.md) and according to the same instructions as a regular filtering node, **except for**:
+
+    * MuleSoft connector
+    * Amazon CloudFront connector
+    * Cloudflare connector
 * Can be installed on the **technical tenant** or **tenant** level. If you want to provide a tenant with access to Wallarm Console, the filtering node must be installed at the corresponding tenant level.
 * Can be configured according to the same instructions as a regular filtering node.
 * The directive [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) is used to split traffic by the tenants.
