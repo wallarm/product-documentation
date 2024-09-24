@@ -436,12 +436,12 @@ Before adding the Ingress annotation:
             # -- Additional volumeMounts to the controller main container.
             extraVolumeMounts:
             - name: custom-block-pages
-                mountPath: /usr/share/nginx/blockpages
+              mountPath: /usr/share/nginx/blockpages
             # -- Additional volumes to the controller pod.
             extraVolumes:
             - name: custom-block-pages
-                configMap:
-                name: customized-pages
+              configMap:
+              name: customized-pages
             <...>
         ```
 
