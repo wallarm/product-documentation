@@ -353,6 +353,8 @@ To modify the sample blocking page or provide your own, do the following:
     kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="<PAGE_ADDRESS>"
     ```
 
+See the detailed [example](#ingress-annotations).
+
 ### Frequent modifications
 
 To add your company logo, in the `wallarm_blocked_renamed.html` file, modify and uncomment:
@@ -407,16 +409,46 @@ To apply the settings to the Docker container, the NGINX configuration file with
 
 Before adding the Ingress annotation:
 
-1. [Create ConfigMap from the files](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files) `wallarm_blocked_renamed.html` and `block.html`.
-2. Mount created ConfigMap to the pod with Wallarm Ingress controller. For this, please update the Deployment object relevant for Wallarm Ingress controller following the [instructions](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap).
+1. [Prepare](#copy) your modified `wallarm_blocked_renamed.html` for blocked attacks and `wallarm_blocked_renamed-2.html` for blocked requests from denylisted IPs.
+1. [Create ConfigMap from the files](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files):
 
-    !!! info "Directory for mounted ConfigMap"
-        Since existing files in the directory used to mount ConfigMap can be deleted, it is recommended to create a new directory for the files mounted via ConfigMap.
+    ```
+    kubectl -n <CONTROLLER_NAMESPACE> create configmap customized-pages --from-file=wallarm_blocked_renamed.html --from-file=wallarm_blocked_renamed-2.html
+    ```
+
+1. To [mount]((https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap)) created ConfigMap to the pod with Wallarm Ingress controller, do the following:
+
+    * Update values.yaml you use to deploy the ingress chart:
+
+        ```
+        controller:
+            wallarm:
+            <...>
+            # -- Additional volumeMounts to the controller main container.
+            extraVolumeMounts:
+            - name: custom-block-pages
+              mountPath: /usr/share/nginx/blockpages
+            # -- Additional volumes to the controller pod.
+            extraVolumes:
+            - name: custom-block-pages
+              configMap:
+              name: customized-pages
+            <...>
+        ```
+
+    * Apply changes to your controller release:
+
+        ```
+        helm -n <CONTROLLER_NAMESPACE> upgrade <CHART-RELEASE-NAME> wallarm/wallarm-ingress --reuse-values -f values.yaml
+        ```
+
+        !!! info "Directory for mounted ConfigMap"
+            Since existing files in the directory used to mount ConfigMap can be deleted, it is recommended to create a new directory for the files mounted via ConfigMap.
 
 Ingress annotations:
 
 ```bash
-kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="&/opt/wallarm/usr/share/nginx/html/wallarm_blocked_renamed.html response_code=445 type=attack;&/usr/share/nginx/html/block.html response_code=445 type=acl_ip,acl_source"
+kubectl -n <INGRESS_NAMESPACE> annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page="&/usr/share/nginx/blockpages/wallarm_blocked_renamed.html response_code=445 type=attack;&/usr/share/nginx/blockpages/wallarm_blocked_renamed-2.html response_code=445 type=acl_ip,acl_source"
 ```
 
 #### Pod annotations (if using Sidecar controller)
