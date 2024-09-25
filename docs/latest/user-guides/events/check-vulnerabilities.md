@@ -1,4 +1,4 @@
-# Vulnerabilities
+# Vulnerability Analysis
 
 In the **Vulnerabilities** section of the Wallarm Console, you can manage vulnerabilities.
 
