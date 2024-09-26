@@ -39,15 +39,22 @@ Perform the following configuration in the NGINX [configuration file](https://do
     1. For the Wallarm node to accept mirrored traffic, set the following configuration in the `server` NGINX block:
 
         ```
-        wallarm_force server_addr $http_x_server_addr;
-        wallarm_force server_port $http_x_server_port;
-        # Change 222.222.222.22 to the address of the mirroring server
-        set_real_ip_from  222.222.222.22;
-        real_ip_header    X-Forwarded-For;
-        real_ip_recursive on;
-        wallarm_force response_status 0;
-        wallarm_force response_time 0;
-        wallarm_force response_size 0;
+        server {
+            listen 80;
+            wallarm_mode monitoring;
+
+            ...
+
+            wallarm_force server_addr $http_x_server_addr;
+            wallarm_force server_port $http_x_server_port;
+            # Change 222.222.222.22 to the address of the mirroring server
+            #set_real_ip_from  222.222.222.22;
+            #real_ip_header    X-Forwarded-For;
+            #real_ip_recursive on;
+            wallarm_force response_status 0;
+            wallarm_force response_time 0;
+            wallarm_force response_size 0;
+        }
         ```
 
         * The `set_real_ip_from` and `real_ip_header` directives are required to have Wallarm Console [display the IP addresses of the attackers][proxy-balancer-instr].
