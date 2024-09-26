@@ -15,6 +15,11 @@ Install the latest NGINX version of:
         sudo apt update 
         sudo apt -y install --no-install-recommends nginx
         ```
+    === "Ubuntu LTS 20.04, 22.04"
+        ```bash
+        sudo apt-get update
+        sudo apt-get install nginx
+        ```
     === "CentOS 7.x"
         ```bash
         sudo yum -y update 
