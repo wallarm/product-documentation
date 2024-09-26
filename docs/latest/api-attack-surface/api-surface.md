@@ -4,20 +4,21 @@ The **API Attack Surface Discovery** (**AASD**) component of the Wallarm's [API 
 
 ![API Attack Surface Discovery](../images/api-attack-surface/aasm-api-surface.png)
 
-## Issues addressed by API Attack Surface Discovery
+## Addressed issues
 
 Knowing the full list of your organization's external APIs is the first step in mitigating potential security risks as unmonitored or undocumented APIs can become potential entry points for malicious attacks.
 
 The **API Attack Surface Discovery** Wallarm component helps to solve these issues by providing the following:
 
-* Automatic detection of external hosts and open ports for your selected domains.
+* Automatic detection of external hosts for your selected domains.
+* Automatic detection of found hosts' open ports.
 * Automatic detection of found hosts' APIs.
 
     The following **API types** (protocols) can be detected: JSON-API, GraphQL, XML-RPC, JSON-RPC, OData, gRPC, WebSocket, SOAP, WebDav, HTML WEB.
 
     HTML WEB — an HTML Web page designed for human access with browsers. It can be a static HTML Web page or a single HTML page of an application that, in turn, may access some API.
 
-* Automatic WAAP score evaluation for found hosts.
+* Automatic [WAAP score](#waap-score) evaluation for found hosts.
 * Overall WAAP score of the entire API surface.
 * Asset summaries by security vendor, data center, and location.
 
@@ -27,7 +28,7 @@ The **API Attack Surface Discovery** Wallarm component helps to solve these issu
 
 You get all this simply by subscribing to the component in Wallarm - you do not need to deploy anything and get the analyzed data immediately.
 
-## Define your domains to search for hosts
+## Domains to search for hosts
 
 You can define a list of your **root domains** which you want to search for hosts as follows:
 
@@ -38,9 +39,24 @@ You can define a list of your **root domains** which you want to search for host
 
 ![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
 
-Note that domains are automatically re-scanned daily - new hosts will be added automatically, previously listed but not found during re-scan will remain in the list.
+Note that domains are automatically re-scanned every 3 days - new hosts will be added automatically, previously listed but not found during re-scan will remain in the list.
 
 You can re-start, pause or continue scanning for any domain manually at **Configure** → **Status**.
+
+## Data on found hosts
+
+Once hosts are found for your domains, in Wallarm Console go to the **API Attack Surface** section. Click the host in the list to see: 
+
+* Host's found open ports
+* Host's found APIs
+* Details on the host's evaluated [WAAP score](#waap-score)
+
+<div>
+  <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
+  <div class="sl-embed" style="position:relative;padding-bottom:calc(60.65% + 25px);width:100%;height:0;transform:scale(1)">
+    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/dqmlj6dzflgq?embed=inline" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+  </div>
+</div>
 
 ## WAAP score
 
@@ -57,13 +73,6 @@ The final WAAP score is calculated as:
 * **FalsePositive** - the ability to accurately allow legitimate requests without mistakenly identifying them as threats.
 
 For each host, you can download a detailed WAAP score evaluation report in PDF format.
-
-<div>
-  <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
-  <div class="sl-embed" style="position:relative;padding-bottom:calc(60.65% + 25px);width:100%;height:0;transform:scale(1)">
-    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/dqmlj6dzflgq?embed=inline" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
-  </div>
-</div>
 
 An overall score is also calculated as the average WAAP score across all hosts, reflecting the protection level of the entire attack surface.
 
