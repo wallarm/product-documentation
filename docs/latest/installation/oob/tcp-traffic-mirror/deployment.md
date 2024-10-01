@@ -36,11 +36,13 @@ Additionally, the solution enables response mirror parsing, providing Wallarm fe
             ```
             34.96.64.17
             34.110.183.149
+            35.235.66.155
             ```
         === "EU Cloud"
             ```
             34.160.38.183
             34.144.227.90
+            34.90.110.226
             ```
 * Traffic and response mirroring must be configured with both source and target set up, and the prepared instance chosen as a mirror target. Specific environment requirements must be met, such as allowing specific protocols for traffic mirroring configurations.
 * Mirrored traffic is tagged with either VLAN (802.1q), VXLAN, or SPAN. 
