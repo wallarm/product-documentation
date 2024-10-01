@@ -71,7 +71,7 @@ See also the [Threat Prevention Dashboard](../user-guides/dashboards/threat-prev
 3. Wait for around 3 minutes.
 4. Resend the request and check if Wallarm detects it as an attack and blocks it.
 
-See also [Working with false attacks](../user-guides/events/check-attack/#false-positives).
+See also [Working with false attacks](../user-guides/events/check-attack#false-positives).
 
 ## Wallarm Detects Vulnerabilities and Creates Security Incidents
 

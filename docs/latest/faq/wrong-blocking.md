@@ -24,7 +24,7 @@ To resolve the issue of a legitimate request being blocked by Wallarm, follow th
 1. Examine the event to determine if it indicates a wrong or legitimate blocking.
 1. If it is a wrong blocking, solve the issue by applying one or a combination of measures: 
 
-    * Measures against [false positives](../user-guides/events/check-attack/#false-positives)
+    * Measures against [false positives](../user-guides/events/check-attack#false-positives)
     * Re-configuring [rules](../user-guides/rules/rules.md)
     * Re-configuring [triggers](../user-guides/triggers/triggers.md)
     * Modifying [IP lists](../user-guides/ip-lists/overview.md)

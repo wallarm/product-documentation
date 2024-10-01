@@ -22,7 +22,7 @@ An example of an attack including many hits:
 
 ![Attack with several hits](images/glossary/attack-with-several-hits-example.png)
 
-See [details](user-guides/events/check-attack.md) on how attacks in Wallarm are analyzed.
+See [details](user-guides/events/check-attack.md) on how to understand and analyze attacks.
 
 ## Malicious Payload
 

@@ -18,11 +18,11 @@
 
 # Grouping and Sampling of Hits
 
-When [analyzing attacks](check-attack.md), it is important to understand that in Wallarm an [attack](../../glossary-en.md#attack) is a group of [hits](../../glossary-en.md#hit) (grouping) and only unique hits are displayed within the attack (sampling). This article describes how attacks are organized for your comfortable analysis by grouping and sampling of hits.
+When [analyzing attacks](check-attack.md), it is important to understand how malicious requests are presented. Wallarm uses hit grouping and sampling techniques to simplify the attack list. These techniques are explained in this article.
 
 ## Grouping of hits
 
-Wallarm groups hits into one attack using two grouping methods:
+Wallarm groups [hits](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) into one attack using two grouping methods:
 
 * Basic grouping
 * Grouping of hits by source IP
@@ -38,6 +38,10 @@ This hit grouping method is basic, applied to all hits and cannot be disabled or
 ### Grouping of hits by source IP
 
 The hits are grouped if they have the same source IP address. If grouped hits have different attack types, malicious payloads and URLs, attack parameters will be marked with the `[multiple]` tag in the attack list.
+
+This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
+
+If hits are grouped by this method, the [**Mark as false positive**](check-attack.md#false-positives) button and the [active verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) option are unavailable for the attack.
 
 Grouping by source IP is by default enabled in Wallarm Console → **Triggers** with the **Hits from the same IP** default trigger which activates when a single IP address originates more than 50 hits within 15 minutes.
 
