@@ -79,11 +79,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
         ```
         34.96.64.17
         34.110.183.149
+        35.235.66.155
         ```
     === "EU Cloud"
         ```
         34.160.38.183
         34.144.227.90
+        34.90.110.226
         ```
 
 ### 4.10.1 (2024-02-21)
@@ -182,11 +184,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
         ```
         34.96.64.17
         34.110.183.149
+        35.235.66.155
         ```
     === "EU Cloud"
         ```
         34.160.38.183
         34.144.227.90
+        34.90.110.226
         ```
 
 ### 4.10.1 (2024-02-21)
@@ -316,11 +320,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
         ```
         34.96.64.17
         34.110.183.149
+        35.235.66.155
         ```
     === "EU Cloud"
         ```
         34.160.38.183
         34.144.227.90
+        34.90.110.226
         ```
 
 ## Helm chart for Wallarm eBPF‑based solution
@@ -336,11 +342,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
         ```
         34.96.64.17
         34.110.183.149
+        35.235.66.155
         ```
     === "EU Cloud"
         ```
         34.160.38.183
         34.144.227.90
+        34.90.110.226
         ```
 
 ### 0.10.27 (2024-03-29)
@@ -428,11 +436,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
         ```
         34.96.64.17
         34.110.183.149
+        35.235.66.155
         ```
     === "EU Cloud"
         ```
         34.160.38.183
         34.144.227.90
+        34.90.110.226
         ```
 
 ### 4.10.1-1 (2024-02-21)
@@ -527,11 +537,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
         ```
         34.96.64.17
         34.110.183.149
+        35.235.66.155
         ```
     === "EU Cloud"
         ```
         34.160.38.183
         34.144.227.90
+        34.90.110.226
         ```
 
 ### 4.10.1-2 (2024-02-21)
