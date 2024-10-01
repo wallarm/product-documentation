@@ -10,10 +10,12 @@
         ```
         34.96.64.17
         34.110.183.149
+        35.235.66.155
         ```
     === "EU Cloud"
         ```
         34.160.38.183
         34.144.227.90
+        34.90.110.226
         ```
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or the [EU Cloud](https://my.wallarm.com/)

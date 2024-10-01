@@ -17,11 +17,13 @@ To upgrade the end‑of‑life multi-tenant node (3.6 or lower), please use the 
         ```
         34.96.64.17
         34.110.183.149
+        35.235.66.155
         ```
     === "EU Cloud"
         ```
         34.160.38.183
         34.144.227.90
+        34.90.110.226
         ```
 
 ## Follow standard upgrade procedure

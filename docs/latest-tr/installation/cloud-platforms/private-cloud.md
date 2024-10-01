@@ -29,11 +29,13 @@ Wallarm'ı özel bulutunuza dağıtmadan önce, uygulama manzaranızın kapsamı
         ```
         34.96.64.17
         34.110.183.149
+        35.235.66.155
         ```
     === "EU Cloud"
         ```
         34.160.38.183
         34.144.227.90
+        34.90.110.226
         ```
 
 ## Adım 3: Dağıtım modelini ve Wallarm eserini seçin

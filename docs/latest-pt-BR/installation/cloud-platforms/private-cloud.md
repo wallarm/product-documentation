@@ -29,11 +29,13 @@ O acesso nas nuvens privadas é normalmente concedido com base em endereços IP.
         ```
         34.96.64.17
         34.110.183.149
+        35.235.66.155
         ```
     === "EU Cloud"
         ```
         34.160.38.183
         34.144.227.90
+        34.90.110.226
         ```
 
 ## Passo 3: Escolha o modelo de implantação e o artefato Wallarm

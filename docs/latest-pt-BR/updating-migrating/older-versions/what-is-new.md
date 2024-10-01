@@ -124,11 +124,13 @@ O novo método de implantação permite que você configure o node CD Wallarm fo
         ```
         34.96.64.17
         34.110.183.149
+        35.235.66.155
         ```
     === "EU Cloud"
         ```
         34.160.38.183
         34.144.227.90
+        34.90.110.226
         ```
 * O node de filtragem agora envia dados para a nuvem usando `us1.api.wallarm.com:443` (US Cloud) e `api.wallarm.com:443` (EU Cloud) em vez de `us1.api.wallarm.com:444` e `api.wallarm.com:444`.
 
