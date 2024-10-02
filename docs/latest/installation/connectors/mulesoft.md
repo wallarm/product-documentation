@@ -125,7 +125,7 @@ To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these step
 1. Within the `pom.xml` file → `groupId` parameter at the top of the file, specify your Mulesoft Business Group ID.
 
     You can find your organization ID by navigating to Mulesoft Anypoint Platform → **Access Management** → **Business Groups** → choose your organization → copy its ID.
-1. In your Maven `.m2` directory, update the `settings.xml` file with your Exchange credentials:
+1. In the `conf` directory, create a `settings.xml` file with the content below. Replace `username` and `password` with your actual credentials.
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -144,7 +144,8 @@ To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these step
 1. Deploy the policy to Mulesoft using the following command:
 
     ```
-    mvn clean deploy
+    cd ..
+    make all
     ```
 
 Your custom policy is now available in your Mulesoft Anypoint Platform Exchange.
