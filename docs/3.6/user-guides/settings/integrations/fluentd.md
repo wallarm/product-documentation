@@ -71,7 +71,7 @@ The Fluentd configuration should meet the following requirements:
 * Accept HTTPS requests
 * Have public URL
 
-Fluentd confiration example:
+Fluentd configuration example:
 
 ```bash linenums="1"
 <source>
