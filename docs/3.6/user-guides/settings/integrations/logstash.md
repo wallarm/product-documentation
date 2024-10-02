@@ -71,7 +71,7 @@ The Logstash configuration should meet the following requirements:
 * Accept HTTPS requests
 * Have public URL
 
-Logstash confiration example:
+Logstash configuration example:
 
 ```bash linenums="1"
 input {
