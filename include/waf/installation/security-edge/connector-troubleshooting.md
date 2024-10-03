@@ -1,0 +1,2 @@
+* If the Wallarm-hosted node status in the Wallarm Console is **Failed**, something went wrong with the deployment. Please report it on the [Wallarm Support portal](https://support.wallarm.com/), and we will investigate.
+* For any other issues or assistance, please also leave a request on the [Wallarm Support portal](https://support.wallarm.com/). We are available to help with any deployment problems.

@@ -29,6 +29,7 @@ By default, Wallarm considers each application to be the `default` application w
     * The [environment variable](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) `WALLARM_APPLICATION` if Wallarm is installed as NGINX-based Docker container.
     * The [Ingress annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `wallarm-application` if Wallarm is installed as the Ingress controller.
     * The parameter [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) if Wallarm is installed as Envoy-based Docker container with a mounted configuration file.
+    * The application configuration in the Edge connector setup window.
 
     The value can be a positive integer except for `0`.
 
@@ -44,7 +45,7 @@ You can configure an automatic application identification on the base of:
 * Specific request header or part of URLs using `map` NGINX directive
 
 !!! info "NGINX only"
-    Listed approaches are applicable only for NGINX-based node deployments.
+    Listed approaches are applicable only for NGINX-based self-hosted node deployments.
 
 ### Application identification on base of specific request headers
 
