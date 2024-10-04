@@ -22,7 +22,11 @@ This article describes how you can analyze attacks detected by the Wallarm node 
 
 ### Attack analysis
 
-All the [attacks](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) detected by the Wallarm platform are displayed in the **Attacks** section of the Wallarm Console. You can [filter](../../user-guides/search-and-filters/use-search.md) the list by attack date, type and other criteria, expand any attack and its included requests for detailed analysis. If a detected attack turns out to be a [false positive](#false-positives), you can immediately mark it as one to prevent alike false positives in future. Also, on the basis of the detected attacks, you can create rules and perform other Wallarm configurations to mitigate further alike threats. Additionally, if the [active verification](../../vulnerability-detection/active-threat-verification/overview.md) is enabled, check its [status](../../vulnerability-detection/active-threat-verification/overview.md#possible-statuses) right in the attack list.
+All the [attacks](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) detected by the Wallarm platform are displayed in the **Attacks** section of the Wallarm Console. You can [filter](../../user-guides/search-and-filters/use-search.md) the list by attack date, type and other criteria, expand any attack and its included requests for detailed analysis.
+
+If a detected attack turns out to be a [false positive](#false-positives), you can immediately mark it as one to prevent alike false positives in future. Also, on the basis of the detected attacks, you can create rules and perform other Wallarm configurations to mitigate further alike threats.
+
+Additionally, if the [active verification](../../vulnerability-detection/active-threat-verification/overview.md) is enabled, check its [status](../../vulnerability-detection/active-threat-verification/overview.md#possible-statuses) right in the attack list.
 
 <div>
   <script src="https://js.storylane.io/js/v1/storylane.js"></script>

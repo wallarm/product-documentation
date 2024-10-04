@@ -1,6 +1,6 @@
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 [link-wallarm-mode-override]:       ../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
-[rule-creation-options]:            ../user-guides/events/check-attack.md/#attack-analysis_1
+[rule-creation-options]:            ../user-guides/events/check-attack.md#attack-analysis_1
 [acl-access-phase]:                 ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
 [img-mode-rule]:                    ../images/user-guides/rules/wallarm-mode-rule.png
 

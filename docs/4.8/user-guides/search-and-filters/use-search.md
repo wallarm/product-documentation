@@ -380,7 +380,7 @@ Examples:
 
 ### Search for sampled hits
 
-To search for the [sampled hits](../events/grouping-sampling.md/#sampling-of-hits), add `sampled` to the search string.
+To search for the [sampled hits](../events/grouping-sampling.md#sampling-of-hits), add `sampled` to the search string.
 
 ### Search by node UUID
 

@@ -1,4 +1,4 @@
-[rule-creation-options]:    ../user-guides/events/check-attack.md/#attack-analysis_1
+[rule-creation-options]:    ../user-guides/events/check-attack.md#attack-analysis_1
 [request-processing]:       ../user-guides/rules/request-processing.md
 [api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
@@ -13,11 +13,11 @@ The Wallarm platform continuously analyzes application traffic and mitigates mal
 * The same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type.
 
     This hit grouping method is basic and applied to all hits.
-* The same source IP address if [grouping of hits by source IP](../user-guides/events/grouping-sampling.md/#grouping-of-hits) is enabled. Other hit parameter values can differ.
+* The same source IP address if [grouping of hits by source IP](../user-guides/events/grouping-sampling.md#grouping-of-hits) is enabled. Other hit parameter values can differ.
 
     This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
 
-    If hits are grouped by this method, the [**Mark as false positive**](../user-guides/events/check-attack#false-positives#mark-an-attack-as-a-false-positive) button and the [active verification](detecting-vulnerabilities.md#active-threat-verification) option are unavailable for the attack.
+    If hits are grouped by this method, the [**Mark as false positive**](../user-guides/events/check-attack.md#false-positives) button and the [active verification](detecting-vulnerabilities.md#active-threat-verification) option are unavailable for the attack.
 
 The listed hit grouping methods do not exclude each other. If hits have characteristics of both methods, they are all grouped into one attack.
 
@@ -292,7 +292,7 @@ When analyzing requests for attacks, Wallarm uses the standard ruleset that prov
 
 In such cases, standard rules need to be adjusted to accommodate protected application specificities by using the following methods:
 
-* Analyze potential false positives (by filtering all attacks by the [tag `!known`](../user-guides/search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits)) and if confirming false positives, [mark](../user-guides/events/check-attack#false-positives) particular attacks or hits appropriately. Wallarm will automatically create the rules disabling analysis of the same requests for detected attack signs.
+* Analyze potential false positives (by filtering all attacks by the [tag `!known`](../user-guides/search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits)) and if confirming false positives, [mark](../user-guides/events/check-attack.md#false-positives) particular attacks or hits appropriately. Wallarm will automatically create the rules disabling analysis of the same requests for detected attack signs.
 * [Disable detection of certain attack types](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) in particular requests.
 * [Disable detection of certain attack signs in binary data](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data).
 * [Disable parsers mistakenly applied to the requests](../user-guides/rules/request-processing.md#managing-parsers).

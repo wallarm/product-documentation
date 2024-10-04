@@ -26,7 +26,7 @@ Using triggers, you can:
     * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
 
 * Set up extended alerts for different [integrations](../../user-guides/settings/integrations/integrations-intro.md).
-* Optimize attacks and incidents representation by [grouping hits](../../user-guides/events/grouping-sampling.md/#grouping-of-hits).
+* Optimize attacks and incidents representation by [grouping hits](../../user-guides/events/grouping-sampling.md#grouping-of-hits).
 
 ## Understanding filters
 

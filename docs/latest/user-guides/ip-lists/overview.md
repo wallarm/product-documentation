@@ -110,10 +110,10 @@ Note that if you manually delete an automatically listed IP, if new malicious ac
 
 ## Requests from denylisted IPs
 
-Even if IP is in the denylist, it is good to have information about further requests from it. This allows conducting precise analysis of IP's behavior. By [default](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable), Wallarm collects and displays statistics regarding blocked requests from denylisted source IPs.
+Even if IP is in the denylist, it is good to have information about further requests from it. This allows conducting precise analysis of IP's behavior. Wallarm collects and displays statistics regarding blocked requests from denylisted source IPs.
 
 !!! info "Feature availability"
-    Feature is available starting from node version 4.8, for NGINX-based nodes.
+    Feature is available starting from node version 4.8, for NGINX-based nodes. You can control this with the [wallarm_acl_export_enable](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) directive.
 
 Such information is available for:
 
@@ -126,17 +126,17 @@ Such information is available for:
     * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
     * [Multi-attack protection](../../admin-en/configuration-guides/protecting-with-thresholds.md)
 
-The listed behavioral attacks can be detected only after accumulating certain statistics the required amount of which depends on the corresponding trigger thresholds. Thus, in the first stage, before denylisting, Wallarm collects this information but all requests are passed and displayed within the `Monitoring` events.
+The listed behavioral attacks can be detected only after accumulating certain statistics the required amount of which depends on the corresponding trigger thresholds. Thus, in the first stage, before denylisting, Wallarm collects this information but all requests are passed and displayed as the attacks with the `Monitoring` status.
 
-Once trigger thresholds are exceeded, malicious activity is considered to be detected, and Wallarm places the IP in the denylist, the node starts immediate blocking of all requests originating from them.
-
-As soon as sending of information about requests from denylisted IPs is enabled, you will see `Blocked` requests from these IPs in the event list. This applies to manually denylisted IPs as well.
+Once trigger thresholds are exceeded, Wallarm adds the IP to the denylist and blocks further requests. You will see `Blocked` requests from this IP in the attack list. This applies to manually denylisted IPs as well.
 
 ![Events related to denylisted IPs - sending data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
 
-Note that search/filters will display both `Monitoring` and - if sending information is enabled - `Blocked` events for each attack type. For manually denylisted IPs a `Monitoring` event never exists.
+Use [search tags of filters](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) to find requests from denylisted IPs: [API abuse related](../../attacks-vulns-list.md#api-abuse), `brute`, `dirbust`, `bola`, `multiple_payloads` for automatically listed, `blocked_source` - for manual ones.
 
-Within the `Blocked` events, use tags to switch to the reason of denylisting - BOLA settings, API Abuse Prevention, trigger or causing record in denylist.
+Note that search/filters will display both attacks in the `Monitoring` status and - if sending information is enabled - with the `Blocked` status for each attack type. For manually denylisted IPs an attack with the `Monitoring` status never exists.
+
+Among the attacks in the `Blocked` status, use tags to switch to the reason of denylisting - BOLA settings, API Abuse Prevention, trigger or causing record in denylist.
 
 ## Getting notifications on the denylisted IPs
 

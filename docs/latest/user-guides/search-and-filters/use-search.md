@@ -96,7 +96,7 @@ Specify in the search string:
 * `experimental`: to search for experimental attacks detected based on [custom regular expression](../rules/regex-rule.md).
 * `bola`: to search for attacks exploiting the [BOLA (IDOR) vulnerability](../../attacks-vulns-list.md#broken-object-level-authorization-bola) and blocked requests from IPs [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) because of the attacks of this type.
 * `mass_assignment`: to search for [Mass Assignment](../../attacks-vulns-list.md#mass-assignment) attack attempts.
-* `api_abuse`: to search for [basic bot types that includes server response time increase, fake account creation, and scalping](../../attacks-vulns-list.md#suspicious-api-activity).
+* `api_abuse`: to search for [suspicious bot activity](../../attacks-vulns-list.md#suspicious-api-activity).
 * `account_takeover` (`api_abuse` before 4.10.6): to search for [account takeover attempts](../../attacks-vulns-list.md#account-takeover).
 * `scraping` (`api_abuse` before 4.10.6): to search for [scraping attempts](../../attacks-vulns-list.md#scraping).
 * `security_crawlers` (`api_abuse` before 4.10.6): to search for [scanning attempts performed by security crawlers](../../attacks-vulns-list.md#security-crawlers).
