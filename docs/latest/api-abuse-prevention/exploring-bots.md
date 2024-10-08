@@ -16,6 +16,8 @@ You can explore attacks performed by bots in Wallarm Console → **Attacks** sec
 
 ![API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
+Note that even if the bot IP is placed into the denylist by API Abuse Prevention, by default, Wallarm collects and [displays](../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) statistics regarding blocked requests originating from it.
+
 **Detector values**
 
 Pay your attention to the list of triggered [detectors](overview.md#how-api-abuse-prevention-works) and their values showing how big the deviation from normal behavior is for particular anomalies. On the figure above, for example, they are **Query abuse** with the value `326` when normal is `< 10`, **Request interval** with the value `0.05` when normal is `> 1` and others.

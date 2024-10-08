@@ -9,7 +9,7 @@
 [active-threat-verification-docs]:    ../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification
 [node-token-types]:                   ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [denylist-docs]:                      ../../../user-guides/ip-lists/overview.md
-[denylist-view-events-docs]:          ../../../user-guides/events/check-attack.md
+[denylist-view-events-docs]:          ../../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips
 
 # Wallarm-Specific Values of the Sidecar Helm Chart
 

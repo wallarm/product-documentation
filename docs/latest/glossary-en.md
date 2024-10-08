@@ -8,7 +8,7 @@ A hit is a serialized malicious request (original malicious request and metadata
 
 ![Hit example](images/user-guides/events/analyze-attack-raw.png)
 
-[Details on hit parameters](user-guides/events/check-attack.md/#attack-analysis_1)
+[Details on hit parameters](user-guides/events/check-attack.md#attack-analysis_1)
 
 ## Attack
 
@@ -22,7 +22,7 @@ An example of an attack including many hits:
 
 ![Attack with several hits](images/glossary/attack-with-several-hits-example.png)
 
-See [details](user-guides/events/check-attack.md) on how attacks in Wallarm are analyzed.
+See [details](user-guides/events/check-attack.md) on how to understand and analyze attacks.
 
 ## Malicious Payload
 

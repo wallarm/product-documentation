@@ -75,7 +75,7 @@ Specify in the search string:
 * `sqli`: to search for [SQL injection][al-sqli] attacks.
 * `xss`: to search for [Cross Site Scripting][al-xss] attacks.
 * `rce`: to search for [OS Commanding][al-rce] attacks.
-* `brute`: to search for [brute-force][al-brute-force] attacks and blocked requests from IPs [denylisted](../../user-guides/events/check-attack.md) because of the attacks of this type.
+* `brute`: to search for [brute-force][al-brute-force] attacks and blocked requests from IPs [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) because of the attacks of this type.
 * `ptrav`: to search for [path traversal][al-path-traversal] attacks.
 * `crlf`: to search for [CRLF injection][al-crlf] attacks.
 * `redir`: to search for [open redirect][al-open-redirect] attacks.
@@ -86,7 +86,7 @@ Specify in the search string:
 * `overlimit_res`: to search for attacks aimed at [overlimiting of computational resources][al-overlimit].
 * `xxe`: to search for [XML External Entity][al-xxe] attacks.
 * `vpatch`: to search for [virtual patches][al-virtual-patch].
-* `dirbust`: to search for [forced browsing][al-forced-browsing] attacks and blocked requests from IPs [denylisted](../../user-guides/events/check-attack.md) because of the attacks of this type.
+* `dirbust`: to search for [forced browsing][al-forced-browsing] attacks and blocked requests from IPs [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) because of the attacks of this type.
 * `ldapi`: to search for [LDAP injection][al-ldapi] attacks.
 * `scanner`: to search for [port scanner][al-port-scanner] attacks.
 * `infoleak`: to search for attacks of [information disclosure][al-infoleak].
@@ -94,12 +94,12 @@ Specify in the search string:
 * `ssi`: to search for [SSI Injections][ssi-injection].
 * `overlimit_res`: to search for attacks of the [resource overlimiting][overlimit-res] type.
 * `experimental`: to search for experimental attacks detected based on [custom regular expression](../rules/regex-rule.md).
-* `bola`: to search for attacks exploiting the [BOLA (IDOR) vulnerability](../../attacks-vulns-list.md#broken-object-level-authorization-bola) and blocked requests from IPs [denylisted](../../user-guides/events/check-attack.md) because of the attacks of this type.
+* `bola`: to search for attacks exploiting the [BOLA (IDOR) vulnerability](../../attacks-vulns-list.md#broken-object-level-authorization-bola) and blocked requests from IPs [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) because of the attacks of this type.
 * `mass_assignment`: to search for [Mass Assignment](../../attacks-vulns-list.md#mass-assignment) attack attempts.
 * `api_abuse`: to search for [bot attacks](../../attacks-vulns-list.md#api-abuse).
 * `ssrf`: to search for [Server‑side Request Forgery (SSRF) and attacks](../../attacks-vulns-list.md#serverside-request-forgery-ssrf).
-* `blocked_source`: to search for attacks from **manually** [denylisted](../../user-guides/events/check-attack.md) IPs.
-* `multiple_payloads`: to search for attacks detected by the [Number of malicious payloads](../../admin-en/configuration-guides/protecting-with-thresholds.md) trigger and blocked requests from IPs [denylisted](../../user-guides/events/check-attack.md) because of the attacks of this type.
+* `blocked_source`: to search for attacks from **manually** [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) IPs.
+* `multiple_payloads`: to search for attacks detected by the [Number of malicious payloads](../../admin-en/configuration-guides/protecting-with-thresholds.md) trigger and blocked requests from IPs [denylisted](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) because of the attacks of this type.
 
 An attack name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 
@@ -380,7 +380,7 @@ Examples:
 
 ### Search for sampled hits
 
-To search for the [sampled hits](../events/grouping-sampling.md/#sampling-of-hits), add `sampled` to the search string.
+To search for the [sampled hits](../events/grouping-sampling.md#sampling-of-hits), add `sampled` to the search string.
 
 ### Search by node UUID
 

@@ -94,10 +94,11 @@ Switch back to the **Now** tab to get the current state of the IP list, allowing
 
 You can enable Wallarm to denylist or graylist IP addresses automatically if they produce some suspicious traffic. This can be done for:
 
+* [API abuse prevention](../../api-abuse-prevention/overview.md)
 * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [BOLA Protection](../../admin-en/configuration-guides/protecting-against-bola.md)
-* [Exceeded threshold for malicious payloads](../../admin-en/configuration-guides/protecting-with-thresholds.md)
-* [API Abuse Prevention](../../api-abuse-prevention/overview.md#how-api-abuse-prevention-works)
+* [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
+* [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
+* [Multi-attack protection](../../admin-en/configuration-guides/protecting-with-thresholds.md)
 
 Note that if you manually delete an automatically listed IP, if new malicious activity is detected it will be automatically added again but:
 
@@ -106,6 +107,36 @@ Note that if you manually delete an automatically listed IP, if new malicious ac
     For example, if IP address was automatically denylisted for 4 hours due to BOLA attack from it and you delete it from denylist, it will not be re-added within next 2 hours, even if attacks occur.
 
 * For **API Abuse Prevention** - immediately
+
+## Requests from denylisted IPs
+
+Even if IP is in the denylist, it is good to have information about further requests from it. This allows conducting precise analysis of IP's behavior. Wallarm collects and displays statistics regarding blocked requests from denylisted source IPs.
+
+!!! info "Feature availability"
+    Feature is available starting from node version 4.8, for NGINX-based nodes. You can control this with the [wallarm_acl_export_enable](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) directive.
+
+Such information is available for:
+
+* Manually denylisted IPs
+* IPs, automatically denylisted by:
+
+    * [API abuse prevention](../../api-abuse-prevention/overview.md)
+    * [Brute force protection](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+    * [Forced browsing protection](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
+    * [BOLA protection](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
+    * [Multi-attack protection](../../admin-en/configuration-guides/protecting-with-thresholds.md)
+
+The listed behavioral attacks can be detected only after accumulating certain statistics the required amount of which depends on the corresponding trigger thresholds. Thus, in the first stage, before denylisting, Wallarm collects this information but all requests are passed and displayed as the attacks with the `Monitoring` status.
+
+Once trigger thresholds are exceeded, Wallarm adds the IP to the denylist and blocks further requests. You will see `Blocked` requests from this IP in the attack list. This applies to manually denylisted IPs as well.
+
+![Events related to denylisted IPs - sending data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
+
+Use [search tags of filters](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) to find requests from denylisted IPs: [API abuse related](../../attacks-vulns-list.md#api-abuse), `brute`, `dirbust`, `bola`, `multiple_payloads` for automatically listed, `blocked_source` - for manual ones.
+
+Note that search/filters will display both attacks in the `Monitoring` status and - if sending information is enabled - with the `Blocked` status for each attack type. For manually denylisted IPs an attack with the `Monitoring` status never exists.
+
+Among the attacks in the `Blocked` status, use tags to switch to the reason of denylisting - BOLA settings, API Abuse Prevention, trigger or causing record in denylist.
 
 ## Getting notifications on the denylisted IPs
 

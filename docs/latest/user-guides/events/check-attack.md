@@ -22,7 +22,11 @@ This article describes how you can analyze attacks detected by the Wallarm node 
 
 ### Attack analysis
 
-All the [attacks](grouping-sampling.md#grouping-of-hits) detected by the Wallarm platform are displayed in the **Attacks** section of the Wallarm Console. You can [filter](../../user-guides/search-and-filters/use-search.md) the list by attack date, type and other criteria, expand any attack and its included requests for detailed analysis. If a detected attack turns out to be a [false positive](#false-positives), you can immediately mark it as one to prevent alike false positives in future. Also, on the basis of the detected attacks, you can create rules and perform other Wallarm configurations to mitigate further alike threats. Additionally, if the [active verification](../../vulnerability-detection/active-threat-verification/overview.md) is enabled, check its [status](../../vulnerability-detection/active-threat-verification/overview.md#possible-statuses) right in the attack list.
+All the [attacks](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) detected by the Wallarm platform are displayed in the **Attacks** section of the Wallarm Console. You can [filter](../../user-guides/search-and-filters/use-search.md) the list by attack date, type and other criteria, expand any attack and its included requests for detailed analysis.
+
+If a detected attack turns out to be a [false positive](#false-positives), you can immediately mark it as one to prevent alike false positives in future. Also, on the basis of the detected attacks, you can create rules and perform other Wallarm configurations to mitigate further alike threats.
+
+Additionally, if the [active verification](../../vulnerability-detection/active-threat-verification/overview.md) is enabled, check its [status](../../vulnerability-detection/active-threat-verification/overview.md#possible-statuses) right in the attack list.
 
 <div>
   <script src="https://js.storylane.io/js/v1/storylane.js"></script>
@@ -31,13 +35,13 @@ All the [attacks](grouping-sampling.md#grouping-of-hits) detected by the Wallarm
   </div>
 </div>
 
-Consider the following:
+In Wallarm:
 
 * **Attack** is a [group](grouping-sampling.md#grouping-of-hits) of hits
 * **Hit** is a malicious request plus metadata added by node
 * **Malicious payload** is a part of request with attack sign
 
-Read more on that terms in a [Glossary](../../glossary-en.md).
+Read details [here](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components).
 
 Each attack details contain all necessary information for analysis, such as attack's hits and malicious payload summary. To simplify analysis, only unique hits are stored in the attack details. Repeated malicious requests  are dropped from uploading to the Wallarm Cloud and not displayed. This process is called [hit sampling](grouping-sampling.md#sampling-of-hits).
 
@@ -45,12 +49,10 @@ Hit sampling does not affect the quality of attack detection and Wallarm node co
 
 ## False positives
 
-False positive occurs when attack signs are detected in the legitimate request. To prevent the filtering node from recognizing such requests as attacks in future, you can mark all or specific requests of the attack as false positives.
+False positive occurs when [attack signs](../../about-wallarm/protecting-against-attacks.md#library-libproton) are detected in the legitimate request.
 
-If a false positive mark is added for the attack of the type different from [information exposure](../../attacks-vulns-list.md#information-exposure), the rule disabling analysis of the same requests for detected [attack signs](../../about-wallarm/protecting-against-attacks.md#library-libproton) is automatically created. Note that it is not displayed Wallarm Console.
+To prevent the filtering node from recognizing such requests as attacks in future, **you can mark all or specific requests of the attack as false positives**. This automatically creates a rule to skip similar attack sign detection in similar requests, though it does not appear in the Wallarm Console.
 
-<!--If a false positive mark is added for the incident with the [Information Exposure](../../attacks-vulns-list.md#information-exposure) attack type, the rule disabling analysis of the same requests for detected [vulnerability signs](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods) is automatically created.
--->
 You can undo a false positive mark only within a few seconds after the mark was applied. If you decided to undo it later, this can be done only by sending a request to [Wallarm technical support](mailto: support@wallarm.com).
 
 The default view of the attack list presents only actual attacks (without false positives) - to change that, under **All attacks** switch from **Default view** to **With false positives** or **Only false positives**.

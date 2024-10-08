@@ -322,7 +322,7 @@ Below is the recommended custom SCC for the Wallarm Sidecar solution tailored fo
     oc adm policy add-scc-to-user wallarm-sidecar-deployment system:serviceaccount:wallarm-sidecar:wlrm-sidecar-wallarm-sidecar-postanalytics
     ```
 1. [Proceed with the Sidecar solution deployment](#deployment), ensuring you use the same namespace and Helm release name for the Sidecar solution as previously mentioned.
-1. [Disable the usage of iptables](customization.md/#capturing-incoming-traffic-port-forwarding) to eliminate the need for a privileged iptables container. This can be accomplished either globally by modifying the `values.yaml` file or on a per-pod basis.
+1. [Disable the usage of iptables](customization.md#capturing-incoming-traffic-port-forwarding) to eliminate the need for a privileged iptables container. This can be accomplished either globally by modifying the `values.yaml` file or on a per-pod basis.
     
     === "Disabling iptables via the `values.yaml`"
         1. In the `values.yaml`, set `config.injectionStrategy.iptablesEnable` to `false`.

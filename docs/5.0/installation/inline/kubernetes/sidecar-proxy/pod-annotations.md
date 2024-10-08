@@ -15,6 +15,6 @@ search:
 [active-threat-verification-docs]:  ../../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification
 [subscriptions-docs]:               ../../../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security
 [denylist-docs]:                    ../../../../user-guides/ip-lists/overview.md
-[denylist-view-events-docs]:        ../../../../user-guides/events/check-attack.md
+[denylist-view-events-docs]:        ../../../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips
 
 --8<-- "latest/installation/kubernetes/sidecar-proxy/pod-annotations.md"

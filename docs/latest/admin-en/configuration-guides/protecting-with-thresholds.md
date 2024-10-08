@@ -29,6 +29,8 @@ To provide this protection:
 
 1. Select the **Denylist IP address** - `Block for 1 hour` trigger reaction. Wallarm will put origin IP to the [denylist](../../user-guides/ip-lists/overview.md) after the threshold is exceeded and block all further requests from it.
 
+    Note that even if the bot IP is placed into the denylist by multi-attack protection, by default, Wallarm collects and [displays](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips) statistics regarding blocked requests originating from it.
+
     ![Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
         
 1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
