@@ -9,7 +9,7 @@
 
 In Wallarm Console, you can analyze detected incidents in the **Incidents** section. To find required data, please use the search field as described [here][use-search] or manually set required search filters.
 
-## Incidents
+## Checking incidents
 
 ![Incidents tab][img-incidents-tab]
 
