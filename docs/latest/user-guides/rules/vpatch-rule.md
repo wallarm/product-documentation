@@ -17,12 +17,12 @@ Wallarm provides the following [rules](../../user-guides/rules/rules.md) to crea
 ## Creating and applying the rule
 
 --8<-- "../include/rule-creation-initial-step.md"
+1. Choose **Mitigation controls** →
+
+    * **Virtual patch** or
+    * **Custom attack detector** (with **Virtual patch** option - see [details](../../user-guides/rules/regex-rule.md))
+
 1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
-1. In **Then**, choose one of the following:
-
-    * **Create a virtual patch**
-    * **Create regexp-based attack indicator** rule with **Virtual patch** option (see [details](../../user-guides/rules/regex-rule.md))
-
 1. For the common **Create a virtual patch** rule, set whether to block any request or only the ones containing specific attack signs (**Any request** vs. **Selected**).
 1. In **In this part of request**, specify request points for which you wish to set the rule. Wallarm will restrict requests that have the same values for the selected request parameters.
 

@@ -205,8 +205,9 @@ If the Wallarm node marks the standard payload of the request as the malicious o
 **Creating and applying the rule**
 
 --8<-- "../include/rule-creation-initial-step.md"
+1. Choose **Fine-tuning attack detection** → **Ignore certain attacks**.
 1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to.
-1. In **Then**, choose **Ignore certain attack types** and set whether to ignore only the signs of the specific attacks (select them) or signs of all attacks.
+1. Set whether to ignore only the signs of the specific attacks (select them) or signs of all attacks.
 1. In **In this part of request**, specify request points for which you wish to set the rule.
 
     All available points are described [here](../user-guides/rules/request-processing.md), you can choose those matching your particular use case.
@@ -238,20 +239,16 @@ To do so, set the **Ignore certain attack types** rule as displayed on the scree
 
 By default, the Wallarm node analyzes incoming requests for all known attack signs. During the analysis, the Wallarm node may not consider the attack signs to be regular binary symbols and mistakenly detect malicious payloads in the binary data.
 
-Using the **Allow binary data** and **Allow certain file types** [rules](../user-guides/rules/rules.md), you can explicitly specify request elements containing binary data. During specified request element analysis, the Wallarm node will ignore the attack signs that can never be passed in the binary data.
+Using the **Allow binary data** <!-- (temporary unavailable, see PLUTO-6979) and **Allow certain file types** -->[rule](../user-guides/rules/rules.md), you can explicitly specify request elements containing binary data. During specified request element analysis, the Wallarm node will ignore the attack signs that can never be passed in the binary data.
 
 * The **Allow binary data** rule allows fine-tuning attack detection for request elements containing binary data (e.g. archived or encrypted files).
-* The **Allow certain file types** rule allows fine-tuning attack detection for request elements containing specific file types (e.g. PDF, JPG).
+<!--* The **Allow certain file types** rule allows fine-tuning attack detection for request elements containing specific file types (e.g. PDF, JPG).-->
 
 **Creating and applying the rule**
 
 --8<-- "../include/rule-creation-initial-step.md"
+1. Choose **Fine-tuning attack detection** → **Binary data processing**.
 1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to.
-1. In **Then**, choose one of the following:
-
-    * **Allow binary data**
-    * **Allow certain file types** (select one or several file types)
-
 1. In **In this part of request**, specify request points in which you wish to set the rule.
 
     All available points are described [here](../user-guides/rules/request-processing.md), you can choose those matching your particular use case.
@@ -262,7 +259,7 @@ Using the **Allow binary data** and **Allow certain file types** [rules](../user
 
 Let us say when the user uploads the binary file with the image using the form on the site, the client sends the POST request of the type `multipart/form-data` to `https://example.com/uploads/`. The binary file is passed in the body parameter `fileContents` and you need to allow this.
 
-To do so, set the **Allow binary data** rule as displayed on the screenshot::
+To do so, set the **Allow binary data** rule as displayed on the screenshot:
 
 ![Example of the rule "Allow binary data"](../images/user-guides/rules/ignore-binary-attacks-example.png)
 

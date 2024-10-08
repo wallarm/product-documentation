@@ -14,8 +14,9 @@ Wallarm provides the **Create regexp-based attack indicator** [rule](../../user-
 To set and apply your own attack detector:
 
 --8<-- "../include/rule-creation-initial-step.md"
+1. Choose **Mitigation controls** → **Custom attack detector**.
 1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
-1. In **Then**, choose **Create regexp-based attack indicator** and set your attack indicator parameters:
+1. Set your attack indicator parameters:
 
     * **Regular expression** - regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Syntax and specifics of regular expressions are described in the [instructions on adding rules](rules.md#condition-type-regex).
 
@@ -80,14 +81,14 @@ There is also the 0-day vulnerability in [Spring Core Framework](https://docs.sp
 
 If the created rule should be partially disabled for a particular branch, this can easily be done by creating the **Disable regexp-based attack detection** rule with the following fields:
 
-- *Regular expression*: previously created regular expressions that must be ignored.
+- **Regular expression**: previously created regular expressions that must be ignored.
 
     !!! warning "Behavior of the rule if the regular expression was changed"
         Changing the regular expression specified in the existing rule of the type [**Create regexp-based attack indicator**](#creating-and-applying-rule) results in automatic deletion of the rules **Disable regexp-based attack detection** that use the previous expression.
 
         To disable attack detection by a new regular expression, please create a new rule **Disable regexp-based attack detection** with the new regular expression specified.
 
-- *in this part of request*: indicates the parameter that requires setting up an exception.
+- **in this part of request**: indicates the parameter that requires setting up an exception.
 
 **Example: Permit an Incorrect X-Authentication Header for a Designated URL**
 
@@ -95,12 +96,12 @@ Let's say you have a script at `example.com/test.php`, and you want to change th
 
 To create the relevant rule:
 
-1. Go to the *Rules* tab
-1. Find or create the branch for `example.com/test.php` and click *Add rule*
-1. Choose *Disable regexp-based attack detection*
-1. Select the regular expression that you want to disable
-1. Set the point `Header X-AUTHENTICATION`
-1. Click *Create*
+1. Go to the **Rules** tab
+1. Find or create the branch for `example.com/test.php` and click **Add rule**.
+1. Choose **Fine-tuning attack detection** → **Ignore certain custom based**.
+1. Select the regular expression that you want to disable.
+1. Set the point `Header X-AUTHENTICATION`.
+1. Click **Create**.
 
 ![Regex rule second example][img-regex-example2]
 
