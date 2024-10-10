@@ -20,6 +20,12 @@ The following changes have been introduced in the file system of the Wallarm dep
 * Log file system: Previously, logs were recorded in multiple files, each for a dedicated script. Now, logs from almost all services are recorded into a single dedicated file, `wcli-out.log`. You can review the list of [previous log files](/4.10/admin-en/configure-logging/) and the [current one](../admin-en/configure-logging.md).
 * The diagnostic script path change: The `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` file has been moved to `/opt/wallarm/collect-info.sh`.
 
+## Customizing sensitive data detection in API Discovery (node 5.0.3 and higher)
+
+API Discovery detects and highlights sensitive data consumed and carried by your APIs. Starting from version 5.0.3, you can [fine-tune](../api-discovery/setup.md#customizing-sensitive-data-detection) the existing detection process and add your own sensitive data patterns.
+
+Patterns are used to define which sensitive data is detected and how. To modify default patterns and add your own, in Wallarm Console go to **API Discovery** → **Configure API Discovery** → **Sensitive data**.
+
 ## Further feature introduction
 
 Starting with release 5.2, new features will be introduced exclusively in the node with the new Go-based implementation. Per our [versioning policy](node-artifact-versions.md), these new features will not be backported to the previous version (4.10).
