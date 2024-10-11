@@ -40,7 +40,7 @@ log:
 
 ### mode (required)
 
-The Wallarm node operation mode. Currently, it can be only `tcp-capture`.
+The Wallarm node operation mode. It should be `tcp-capture` for TCP traffic mirror analysis.
 
 ### goreplay.filter
 

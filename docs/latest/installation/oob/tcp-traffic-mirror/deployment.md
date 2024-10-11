@@ -259,11 +259,11 @@ To check that the attack has been registered, proceed to Wallarm Console → **E
 
     === "x86_64 version"
         ```
-        sudo ./aionext-0.5.2.x86_64.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.x86_64.sh
         ```
     === "ARM64 version"
         ```
-        sudo ./aionext-0.5.2.aarch64.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.aarch64.sh
         ```
 
 ## Upgrade and reinstallation
