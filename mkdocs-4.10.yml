@@ -28,7 +28,6 @@ nav:
     - Attacks & Incidents:
       - Attack Analysis: user-guides/events/check-attack.md
       - Incident Analysis: user-guides/events/check-incident.md
-      - Vulnerability Analysis: user-guides/events/check-vulnerabilities.md
       - Search and Filters: user-guides/search-and-filters/use-search.md
       - Grouping and Sampling: user-guides/events/grouping-sampling.md
   # - API Sessions: api-sessions.md
