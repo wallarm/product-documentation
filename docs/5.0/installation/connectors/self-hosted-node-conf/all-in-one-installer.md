@@ -1,0 +1,1 @@
+--8<-- "latest/installation/connectors/self-hosted-node-conf/all-in-one-installer.md"
