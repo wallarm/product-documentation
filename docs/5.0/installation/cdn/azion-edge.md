@@ -1,1 +1,0 @@
---8<-- "latest/installation/cdn/azion-edge.md"
