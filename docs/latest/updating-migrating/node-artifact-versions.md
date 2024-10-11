@@ -4,13 +4,19 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 ## All-in-one installer
 
-Since version 4.10, installation and upgrading of Wallarm nodes is performed **only** with all [all-in-one installer](../installation/nginx/all-in-one.md) Manual upgrade with individual Linux packages is not supported any more.
+Since version 4.10, installation and upgrading of Wallarm nodes is performed **only** with all [all-in-one installer](../installation/nginx/all-in-one.md). Manual upgrade with individual Linux packages is not supported any more.
 
 History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 (beta) versions.
 
 [How to migrate from DEB/RPM packages](nginx-modules.md)
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
+
+### 5.0.3 (2024-10-10)
+
+* Added support for [customizing sensitive data detection](../api-discovery/setup.md#customizing-sensitive-data-detection) in API Discovery
+* Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
+* Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
 
 ### 5.0.2 (2024-09-18)
 
@@ -37,6 +43,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 5.0.3 (2024-10-10)
+
+* Added support for [customizing sensitive data detection](../api-discovery/setup.md#customizing-sensitive-data-detection) in API Discovery
+* Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
+* Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
+
 ### 5.0.2 (2024-09-18)
 
 * Fixed installation failure issue when no WAAP + API Security subscription is activated
@@ -57,6 +69,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Sidecar
 
 [How to upgrade](sidecar-proxy.md)
+
+### 5.0.3 (2024-10-10)
+
+* Added support for [customizing sensitive data detection](../api-discovery/setup.md#customizing-sensitive-data-detection) in API Discovery
+* Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
+* Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
 
 ### 5.0.2 (2024-09-19)
 
@@ -105,6 +123,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](docker-container.md)
 
+### 5.0.3-1 (2024-10-10)
+
+* Added support for [customizing sensitive data detection](../api-discovery/setup.md#customizing-sensitive-data-detection) in API Discovery
+* Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
+* Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
+
 ### 5.0.2-1 (2024-09-18)
 
 * Fixed installation failure issue when no WAAP + API Security subscription is activated
@@ -129,6 +153,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 5.0.3-1 (2024-10-10)
+
+* Added support for [customizing sensitive data detection](../api-discovery/setup.md#customizing-sensitive-data-detection) in API Discovery
+* Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
+* Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
 
 ### 5.0.2-1 (2024-09-19)
 
