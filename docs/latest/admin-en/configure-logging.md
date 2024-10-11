@@ -14,7 +14,7 @@ Log files are located within the `/opt/wallarm/var/log/wallarm` directory. Here 
 * `appstructure-out.log` (only in the Docker containers): the log of the [API Discovery](../api-discovery/overview.md) module activity.
 * `tarantool-out.log`: the log of the postanalytics module operations.
 * `wcli-out.log`: logs of most Wallarm services, including brute force detection, attack export to the Cloud, and the status of node synchronization with the Cloud, etc.
-* `go-node.log`: TCP traffic reassembling logs (only for the [TCP traffic mirror analysis deployment](../installation/oob/tcp-traffic-mirror/configuration.md)).
+* `go-node.log`: native node logs (only for the [TCP traffic mirror analysis](../installation/oob/tcp-traffic-mirror/configuration.md) and [self-hosted connector](../installation/connectors/overview.md) deployment).
 
 ##  Configuring Extended Logging for the NGINX‑Based Filter Node
 
