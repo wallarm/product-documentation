@@ -119,34 +119,48 @@ To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these step
 
 1. Contact [support@wallarm.com](mailto:support@wallarm.com) to obtain the Wallarm Mulesoft policy for your connector deployment (Wallarm- or self-hosted).
 1. Extract the policy archive once you receive it.
-1. Navigate to the policy directory:
-
-    ```
-    cd <POLICY_DIRECTORY/wallarm
-    ```
 1. Within the `pom.xml` file → `groupId` parameter at the top of the file, specify your Mulesoft Business Group ID.
 
     You can find your organization ID by navigating to Mulesoft Anypoint Platform → **Access Management** → **Business Groups** → choose your organization → copy its ID.
-1. In the `conf` directory, create a `settings.xml` file with the content below. Replace `username` and `password` with your actual credentials.
+1. Create the `conf` directory and a `settings.xml` file inside it with the following content:
 
-    ```xml
-    <?xml version="1.0" encoding="UTF-8"?>
-    <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-      <servers>
-        <server>
-          <id>exchange-server</id>
-          <username>myusername</username>
-          <password>mypassword</password>
-        </server>
-      </servers>
-    </settings>
-    ```
+    === "Username and password"
+        Replace `username` and `password` with your actual credentials:
+
+        ```xml
+        <?xml version="1.0" encoding="UTF-8"?>
+        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+        <servers>
+            <server>
+                <id>exchange-server</id>
+                <username>myusername</username>
+                <password>mypassword</password>
+            </server>
+        </servers>
+        </settings>
+        ```
+    === "Token (if MFA is enabled)"
+        [Generate and specify your token](https://docs.mulesoft.com/access-management/saml-bearer-token) in the `password` parameter:
+
+        ```xml
+        <?xml version="1.0" encoding="UTF-8"?>
+        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+        <servers>
+            <server>
+                <id>anypoint-exchange-v3</id>
+                <username>~~~Token~~~</username>
+                <password>01234567-89ab-cdef-0123-456789abcdef</password>
+            </server>
+        </servers>
+        </settings>
+        ```
 1. Deploy the policy to Mulesoft using the following command:
 
     ```
-    cd ..
     mvn clean deploy
     ```
 
