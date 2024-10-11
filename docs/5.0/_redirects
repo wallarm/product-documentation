@@ -720,3 +720,19 @@
 /4.8/user-guides/events/false-attack/ /4.8/user-guides/events/check-attack/
 /4.8/user-guides/events/verify-attack/ /4.8/user-guides/events/check-attack/
 /4.8/user-guides/events/grouping-and-sampling/ /4.8/user-guides/events/grouping-sampling/
+
+/installation/cdn/akamai-edgeworkers/ /installation/connectors/akamai-edgeworkers/
+/installation/cdn/azion-edge/ /installation/connectors/azion-edge/
+/installation/cdn/aws-lambda/ /installation/connectors/aws-lambda/
+/installation/cdn/cloudflare/ /installation/connectors/cloudflare/
+/installation/api-gateways/mulesoft/ /installation/connectors/mulesoft/
+/installation/api-gateways/apigee/ /installation/connectors/apigee/
+/installation/api-gateways/layer7-api-gateway/ /installation/connectors/layer7-api-gateway/
+
+/4.10/installation/cdn/akamai-edgeworkers/ /4.10/installation/connectors/akamai-edgeworkers/
+/4.10/installation/cdn/azion-edge/ /4.10/installation/connectors/azion-edge/
+/4.10/installation/cdn/aws-lambda/ /4.10/installation/connectors/aws-lambda/
+/4.10/installation/cdn/cloudflare/ /4.10/installation/connectors/cloudflare/
+/4.10/installation/api-gateways/mulesoft/ /4.10/installation/connectors/mulesoft/
+/4.10/installation/api-gateways/apigee/ /4.10/installation/connectors/apigee/
+/4.10/installation/api-gateways/layer7-api-gateway/ /4.10/installation/connectors/layer7-api-gateway/
