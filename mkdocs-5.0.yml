@@ -254,6 +254,9 @@ nav:
       - Kong API Gateway: installation/connectors/kong-api-gateway.md
       - Istio: installation/connectors/istio.md
       - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
+      - Self-Hosted Node Configuration:
+        - All-in-one Installer: installation/connectors/self-hosted-node-conf/all-in-one-installer.md
+        - Helm Chart: installation/connectors/self-hosted-node-conf/helm-chart.md
     - In-Line:
       - Overview: installation/inline/overview.md
       - Compute Instances:
