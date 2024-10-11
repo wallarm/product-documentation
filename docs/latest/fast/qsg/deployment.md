@@ -6,7 +6,6 @@
 
 [link-https-google-gruyere]:    https://google-gruyere.appspot.com
 [link-docker-docs]:             https://docs.docker.com/
-[link-wl-fast-trial]:           https://fast.wallarm.com/signup
 [link-wl-console]:              https://us1.my.wallarm.com
 [link-ssl-installation]:        ../ssl/intro.md
 
@@ -49,7 +48,7 @@ It is suggested that you use the Docker Community Edition (CE). However, any Doc
 
 1.  Log in to the [My Wallarm portal][link-wl-console] using your Wallarm account.
 
-    If you do not have one, then [create an account][link-wl-fast-trial].
+    If you do not have one, then contact the [Wallarm Sales Team](mailto:sales@wallarm.com) to get access.
 
 2.  Select the “Nodes” tab, then click the **Create FAST node** button (or the **Add FAST node** link).
 

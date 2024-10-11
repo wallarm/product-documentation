@@ -6,7 +6,6 @@
 
 [link-https-google-gruyere]:    https://google-gruyere.appspot.com
 [link-docker-docs]:             https://docs.docker.com/
-[link-wl-fast-trial]:           https://fast.wallarm.com/signup
 [link-wl-console]:              https://us1.my.wallarm.com
 [link-ssl-installation]:        ../ssl/intro.md
 
@@ -49,7 +48,7 @@
 
 1.  قم بتسجيل الدخول إلى [بوابة My Wallarm][link-wl-console] باستخدام حساب Wallarm الخاص بك.
 
-    إذا لم يكن لديك واحد، [أنشئ حسابًا][link-wl-fast-trial].
+    If you do not have one, then contact the [Wallarm Sales Team](mailto:sales@wallarm.com) to get access.
 
 2.  اختر علامة التبويب "العقد"، ثم انقر على زر **إنشاء عقدة FAST** (أو رابط **إضافة عقدة FAST**).
 

@@ -1,5 +1,3 @@
-[link-trial-account]:   https://fast.wallarm.com/signup/
-
 #   Wallarm Bulut Listesi
 
 FAST işleyişi için iki buluta güvenir. Bu bulutlar coğrafi konuma göre ayrılmıştır. Bunlar:
@@ -17,8 +15,7 @@ FAST işleyişi için iki buluta güvenir. Bu bulutlar coğrafi konuma göre ayr
 !!! uyarı "Lütfen, dikkat edin"
     **Wallarm bulutları ile etkileşimin kuralları:**
         
-    * Yalnızca aynı bulutta bulunan bir Wallarm portalı ve API sunucusu ile etkileşime girebilirsiniz.
-    * [Wallarm deneme hesabına][link-trial-account] kaydolursanız, bu Amerikan bulutuna bağlanacaktır.
+    Yalnızca aynı bulutta bulunan bir Wallarm portalı ve API sunucusu ile etkileşime girebilirsiniz.
         
     **Wallarm bulutları ve FAST belgeleri:** 
 

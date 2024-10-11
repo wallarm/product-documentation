@@ -1,6 +1,5 @@
 [link-wl-portal-us]:        https://us1.my.wallarm.com
 [link-wl-portal-eu]:        https://my.wallarm.com    
-[link-fast-trial]:          https://fast.wallarm.com/signup/
 [link-selenium]:            https://www.seleniumhq.org/
 
 [doc-create-node]:          ../operations/create-node.md
@@ -12,10 +11,7 @@
 
 FASTをCI / CDワークフローに統合するには、次のものが必要です：
 
-* WallarmポータルへのアクセスとWallarmのアカウント。
-    
-    アカウントがない場合は[ここ][link-fast-trial]から作成してください（このアカウントはAmerican cloudに紐づけられます）
-    
+* Contact the [Wallarm Sales Team](mailto:sales@wallarm.com) to get access to the Wallarm account and FAST node management.
 * FASTノードのDockerコンテナは、HTTPSプロトコル（`TCP/443`）を介して`us1.api.wallarm.com` Wallarm APIサーバーにアクセスできる必要があります。
 --8<-- "../include-ja/fast/cloud-note.md"
 

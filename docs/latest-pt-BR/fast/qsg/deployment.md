@@ -6,7 +6,6 @@
 
 [link-https-google-gruyere]:    https://google-gruyere.appspot.com
 [link-docker-docs]:             https://docs.docker.com/
-[link-wl-fast-trial]:           https://fast.wallarm.com/signup
 [link-wl-console]:              https://us1.my.wallarm.com
 [link-ssl-installation]:        ../ssl/intro.md
 
@@ -49,7 +48,7 @@ Configure o software Docker em sua máquina. Consulte o [guia de instalação][l
 
 1.  Faça login no portal [My Wallarm][link-wl-console] usando sua conta Wallarm.
 
-    Se você ainda não tem uma, então [crie uma conta][link-wl-fast-trial].
+    If you do not have one, then contact the [Wallarm Sales Team](mailto:sales@wallarm.com) to get access.
 
 2.  Selecione a guia "Nodes", depois clique no botão **Criar nó FAST** (ou no link **Adicionar nó FAST**).
 

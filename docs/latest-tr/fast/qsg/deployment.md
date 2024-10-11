@@ -6,7 +6,6 @@
 
 [link-https-google-gruyere]:    https://google-gruyere.appspot.com
 [link-docker-docs]:             https://docs.docker.com/
-[link-wl-fast-trial]:           https://fast.wallarm.com/signup
 [link-wl-console]:              https://us1.my.wallarm.com
 [link-ssl-installation]:        ../ssl/intro.md
 
@@ -49,7 +48,7 @@ Docker Community Edition (CE) kullanmanız önerilir. Ancak, herhangi bir Docker
 
 1.  Wallarm hesabınızı kullanarak [My Wallarm portalına][link-wl-console] giriş yapın.
 
-    Eğer bir hesabınız yoksa, buradan [bir hesap oluşturun][link-wl-fast-trial].
+    If you do not have one, then contact the [Wallarm Sales Team](mailto:sales@wallarm.com) to get access.
 
 2.  “Düğümler” sekmesini seçin, ardından **FAST node oluştur** düğmesine tıklayın (veya **FAST node ekle** bağlantısına tıklayın).
 

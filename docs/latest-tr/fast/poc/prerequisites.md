@@ -1,6 +1,5 @@
 [link-wl-portal-us]:        https://us1.my.wallarm.com
 [link-wl-portal-eu]:        https://my.wallarm.com    
-[link-fast-trial]:          https://fast.wallarm.com/signup/
 [link-selenium]:            https://www.seleniumhq.org/
 
 [doc-create-node]:          ../operations/create-node.md
@@ -12,10 +11,7 @@
 
 FAST'ı bir CI/CD iş akışına entegre etmek için ihtiyacınız olanlar:
 
-* Wallarm portalına ve bir Wallarm hesabına erişim.
-    
-    Eğer bir hesabınız yoksa bir [hesap][link-fast-trial] oluşturun (bu hesap Amerikan buluta bağlanacak)
-    
+* Contact the [Wallarm Sales Team](mailto:sales@wallarm.com) to get access to the Wallarm account and FAST node management.
 * FAST düğümünün Docker konteyneri, `us1.api.wallarm.com` Wallarm API sunucusuna HTTPS protokolü (`TCP/443`) üzerinden erişim sağlamalıdır
 --8<-- "../include-tr/fast/cloud-note.md"
 

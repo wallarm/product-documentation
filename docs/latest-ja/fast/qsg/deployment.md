@@ -6,7 +6,6 @@
 
 [link-https-google-gruyere]:    https://google-gruyere.appspot.com
 [link-docker-docs]:             https://docs.docker.com/
-[link-wl-fast-trial]:           https://fast.wallarm.com/signup
 [link-wl-console]:              https://us1.my.wallarm.com
 [link-ssl-installation]:        ../ssl/intro.md
 
@@ -49,7 +48,7 @@ Docker Community Edition（CE）の使用を推奨します。ただし、任意
 
 1.  Wallarmアカウントを使って[My Wallarmポータル][link-wl-console]にログインします。
 
-    アカウントを持っていない場合は、[新規作成][link-wl-fast-trial]してください。
+    If you do not have one, then contact the [Wallarm Sales Team](mailto:sales@wallarm.com) to get access.
 
 2.  「Nodes」タブを選択してから、**Create FAST node ボタン** か **Add FAST node リンク** をクリックします。
 

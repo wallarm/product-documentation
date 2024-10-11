@@ -1,5 +1,3 @@
-[link-trial-account]:   https://fast.wallarm.com/signup/
-
 # Lista de Nuvens Wallarm
 
 O FAST depende de duas nuvens para o seu funcionamento. Essas nuvens são divididas com base na localização geográfica. Elas são:
@@ -17,8 +15,7 @@ Durante seu funcionamento, o FAST interage com o portal Wallarm e o servidor API
 !!! warning "Por favor, preste atenção"
     **Regras de interação com as nuvens Wallarm:**
         
-    * Você só pode interagir com um portal Wallarm e um servidor API que estão localizados na mesma nuvem.
-    * Se você criar uma [conta de teste Wallarm][link-trial-account], ela estará vinculada à nuvem americana.
+    Você só pode interagir com um portal Wallarm e um servidor API que estão localizados na mesma nuvem.
         
     **Nuvens Wallarm e documentação FAST:** 
 

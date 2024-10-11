@@ -1,6 +1,5 @@
 [link-wl-portal-us]:        https://us1.my.wallarm.com
 [link-wl-portal-eu]:        https://my.wallarm.com    
-[link-fast-trial]:          https://fast.wallarm.com/signup/
 [link-selenium]:            https://www.seleniumhq.org/
 
 [doc-create-node]:          ../operations/create-node.md
@@ -12,10 +11,7 @@
 
 To enable integrating FAST into a CI/CD workflow, you will need
 
-* Access to the Wallarm portal and a Wallarm account.
-    
-    Create an [account][link-fast-trial] if you do not have one (this account will be tied to the American cloud)
-    
+* Contact the [Wallarm Sales Team](mailto:sales@wallarm.com) to get access to the Wallarm account and FAST node management.
 * The FAST node's Docker container should have access to the `us1.api.wallarm.com` Wallarm API server via the HTTPS protocol (`TCP/443`)
 --8<-- "../include/fast/cloud-note.md"
 

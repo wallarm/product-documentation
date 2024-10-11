@@ -1,6 +1,5 @@
 [link-wl-portal-us]:        https://us1.my.wallarm.com
 [link-wl-portal-eu]:        https://my.wallarm.com    
-[link-fast-trial]:          https://fast.wallarm.com/signup/
 [link-selenium]:            https://www.seleniumhq.org/
 
 [doc-create-node]:          ../operations/create-node.md
@@ -14,7 +13,7 @@ Para habilitar a integração do FAST em um fluxo de trabalho CI/CD, você preci
 
 * Acesso ao portal Wallarm e uma conta Wallarm.
     
-    Crie uma [conta][link-fast-trial] se você não tiver uma (esta conta será vinculada à nuvem americana)
+    If you do not have one, then contact the [Wallarm Sales Team](mailto:sales@wallarm.com) to get access.
     
 * O contêiner Docker do nó FAST deve ter acesso ao servidor API Wallarm `us1.api.wallarm.com` via protocolo HTTPS (`TCP/443`)
 --8<-- "../include-pt-BR/fast/cloud-note.md"
