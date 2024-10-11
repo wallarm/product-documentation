@@ -1,5 +1,3 @@
-[link-trial-account]:   https://fast.wallarm.com/signup/
-
 #   Wallarm Clouds List
 
 FAST relies on two clouds for its operation. These clouds are divided based on geographical location. They are:
@@ -17,8 +15,7 @@ During its operation, FAST interacts with the Wallarm portal and API server that
 !!! warning "Please, pay attention"
     **Rules of interaction with Wallarm clouds:**
         
-    * You can only interact with a Wallarm portal and API server that are located in the same cloud.
-    * If you sign up for a [Wallarm trial account][link-trial-account], then it will be tied to the American cloud.
+    You can only interact with a Wallarm portal and API server that are located in the same cloud.
         
     **Wallarm clouds and FAST documentation:** 
 
