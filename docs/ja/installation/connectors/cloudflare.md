@@ -3,4 +3,4 @@ search:
   exclude: true
 ---
 
---8<-- "latest/installation/cdn/cloudflare.md"
+--8<-- "latest/installation/connectors/cloudflare.md"
