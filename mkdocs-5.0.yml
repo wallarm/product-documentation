@@ -33,7 +33,6 @@ nav:
       - Grouping and Sampling: user-guides/events/grouping-sampling.md
 # - API Sessions: api-sessions.md
     - Reports: user-guides/search-and-filters/custom-report.md
-    - Activity Log: user-guides/settings/audit-log.md
   - API Discovery:
     - Overview: api-discovery/overview.md
     - Setup: api-discovery/setup.md
@@ -393,6 +392,7 @@ nav:
       - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md
       - Using single sign‑on to Wallarm account: user-guides/use-sso.md
     - Using LDAP: admin-en/configuration-guides/ldap/ldap.md
+    - Activity Log: user-guides/settings/audit-log.md
   - Operations:
     # - Autoscaling: ...
     - Overview:

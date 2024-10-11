@@ -11,6 +11,16 @@ Covering the [OWASP API Security Top 10 2023](https://owasp.org/API-Security/edi
   </div>
 </div>
 
+## Threat assessment
+
+Wallarm estimates the risk for each API threat based on applied **security controls** and discovered vulnerabilities:
+
+* **Red** - it happens if there are no security controls applied or your APIs have active high risk vulnerabilities.
+* **Yellow** - it happens if security controls are only partially applied or your APIs have active medium or low risk vulnerabilities.
+* **Green** indicates that your APIs are protected and do not have open vulnerabilities.
+
+## Wallarm security controls for OWASP API 2023
+
 Wallarm security platform provides full-fledged protection against OWASP API Security Top 10 2023 by the following security controls:
 
 | OWASP API Top 10 threat 2023 | Wallarm security controls |
