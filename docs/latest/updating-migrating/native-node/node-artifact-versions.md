@@ -8,7 +8,7 @@ The all-in-one installer for the native node is used for [TCP traffic mirror ana
 
 History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 (beta) versions.
 
-[How to upgrade]
+[How to upgrade](all-in-one.md)
 
 ### 0.5.2 (2024-09-17)
 
@@ -40,7 +40,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 The Helm chart for the native node is used for self-hosted node deployments with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio.md) connectors.
 
-[How to upgrade]
+[How to upgrade](helm-chart.md)
 
 ### 0.5.3  (2024-10-01)
 

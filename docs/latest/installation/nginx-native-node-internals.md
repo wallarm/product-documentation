@@ -284,8 +284,8 @@ The native node does not rely on NGINX. It was developed for environments where 
 
 The following artifacts are available for deploying the NGINX node:
 
-* [All-in-one installer]
-* [Helm chart]
+* [All-in-one installer](native-node/all-in-one.md)
+* [Helm chart](native-node/helm-chart.md)
 
 Find your **use case below** and deploy the NGINX node in the appropriate form-factor.
 
@@ -340,14 +340,6 @@ The native node works with the following platforms with no limitations:
         </a>
     </div>
 </div>
-
-<!-- в описании all deployment options на главной указать что это для self-hosted.
-в док-ии на коннекторы указать что в запросы к ноде добавляются специальные заголовоки по которым нода узнает что они от коннекторов
-завести задачу чтобы отразить в all deployment artifacts хэлм чарты
-в гйде для docker nginx дать ссылки на alibaba ecs и тд
-я уже в какой-то доке тоже встаивла скрипты или стили ли из stylesheets, надо проверить что они првоеряются учитывая что там контент included
-в tcp -> deploy в блоке про upgrade дать ссылку на апгрейд
- -->
 
 <link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
 

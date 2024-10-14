@@ -268,21 +268,16 @@ To check that the attack has been registered, proceed to Wallarm Console → **E
 
 ## Upgrade and reinstallation
 
-To upgrade or reinstall the node:
+* To upgrade the node, follow the [instructions](../../../updating-migrating/native-node/all-in-one.md).
+* If there is a problem with the upgrade or reinstallation process:
 
-1. Get the [installer version](../../../updating-migrating/node-artifact-versions.md#wallarm-node-for-tcp-traffic-mirror-analysis) you need.
-1. Run the new installer script as described above, but change the script version.
+    1. Remove the current installation:
 
-Your current `/opt/wallarm/etc/wallarm/go-node.yaml`, `/opt/wallarm/etc/wallarm/node.yaml` and log files will be backed up to the directory `/opt/wallarm/aio-backups/<timestamp>`.
-
-If there is a problem with the upgrade or reinstallation process:
-
-1. Remove the current installation:
-
-    ```
-    sudo systemctl stop wallarm && sudo rm -rf /opt/wallarm
-    ```
-1. Install the node as usual following the installation steps from above.
+        ```
+        sudo systemctl stop wallarm && sudo rm -rf /opt/wallarm
+        ```
+    
+    1. Install the node as usual following the installation steps from above.
 
 ## Limitations
 
