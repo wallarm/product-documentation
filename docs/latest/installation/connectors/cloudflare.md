@@ -118,8 +118,8 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
 
 To run a Cloudflare worker routing traffic to the Wallarm node:
 
-1. Contact [support@wallarm.com](mailto:support@wallarm.com) to get the Wallarm worker code for your connector deployment (Wallarm- or self-hosted).
-1. [Create a Cloudflare worker](https://developers.cloudflare.com/workers/get-started/dashboard/) using the provided code.
+1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Connector configuration** and download a code bundle for your platform.
+1. [Create a Cloudflare worker](https://developers.cloudflare.com/workers/get-started/dashboard/) using the downloaded code.
 1. Set the address of your [Wallarm node instance](#1-deploy-a-wallarm-node) in the `wallarm_node` parameter.
 1. If using [out-of-band](../oob/overview.md) mode, set the `wallarm_mode` parameter to `async`.
 
