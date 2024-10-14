@@ -4,7 +4,7 @@
 [configure-proxy-balancer-instr]:           ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [ptrav-attack-docs]:                        ../attacks-vulns-list.md#path-traversal
 
-# Upgrading Wallarm node with All-in-One Installer
+# Upgrading Wallarm NGINX Node with All-in-One Installer
 
 These instructions describe the steps to upgrade the Wallarm node 4.x installed using [all-in-one installer](../installation/nginx/all-in-one.md) to version 5.0.
 
