@@ -8,6 +8,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div class="do-section">
     <div class="do-main">
+        <a class="do-card" href="../../installation/se-connector/">
+            <img class="non-zoomable" src="../../images/platform-icons/se-connector.svg" />
+            <h3>Security Edge Connectors</h3>
+            <p>Deploy a Wallarm-hosted node for MuleSoft, CloudFront, or Cloudflare</p>
+        </a>
+
         <a class="do-card" href="../../installation/cdn-node/">
             <img class="non-zoomable" src="../../images/platform-icons/section-io.svg" />
             <h3>Section.io</h3>
