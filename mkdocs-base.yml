@@ -17,6 +17,7 @@ plugins:
           - extra.js
           - feedback.js
           - supported-platforms.js
+          - nginx-native-node-deployments.js
       css_files:
           - extra_new.css
           - supported-platforms.css
