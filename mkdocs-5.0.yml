@@ -321,6 +321,7 @@ nav:
       - Native Node:
         - All-in-one installer: installation/native-node/all-in-one.md
         - Helm chart: installation/native-node/helm-chart.md
+        - Artifact Versions and Changelog: updating-migrating/native-node/node-artifact-versions.md
     - Custom Deployment:
       - On-Premise: installation/on-premise.md
       - Custom NGINX Packages: installation/custom/custom-nginx-version.md
