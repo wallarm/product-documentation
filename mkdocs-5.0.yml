@@ -307,15 +307,19 @@ nav:
           - GCP:
             - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
         - Docker: installation/oob/web-server-mirroring/docker-image.md
-    - Packages:
-      - All-in-one installer: installation/nginx/all-in-one.md
-      - Docker Images:
-        - NGINX-based: admin-en/installation-docker-en.md
-        - Envoy-based: admin-en/installation-guides/envoy/envoy-docker.md
-      - Cloud Images:
-        - AWS AMI: installation/packages/aws-ami.md
-        - GCP Machine Image: installation/packages/gcp-machine-image.md
-      - Terraform Module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
+    - All Deployment Artifacts:
+      - NGINX Node:
+        - All-in-one installer: installation/nginx/all-in-one.md
+        - Docker Images:
+          - NGINX-based: admin-en/installation-docker-en.md
+          - Envoy-based: admin-en/installation-guides/envoy/envoy-docker.md
+        - Cloud Images:
+          - AWS AMI: installation/packages/aws-ami.md
+          - GCP Machine Image: installation/packages/gcp-machine-image.md
+        - Terraform Module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
+      - Native Node:
+        - All-in-one installer: installation/native-node/all-in-one.md
+        - Helm chart: installation/native-node/helm-chart.md
     - Custom Deployment:
       - On-Premise: installation/on-premise.md
       - Custom NGINX Packages: installation/custom/custom-nginx-version.md
