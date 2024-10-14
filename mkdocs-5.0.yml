@@ -317,6 +317,7 @@ nav:
           - AWS AMI: installation/packages/aws-ami.md
           - GCP Machine Image: installation/packages/gcp-machine-image.md
         - Terraform Module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
+        - Artifact Versions and Changelog: updating-migrating/node-artifact-versions.md
       - Native Node:
         - All-in-one installer: installation/native-node/all-in-one.md
         - Helm chart: installation/native-node/helm-chart.md
@@ -480,7 +481,6 @@ nav:
         - Upgrading the EOL Multi‑Tenant Node: updating-migrating/older-versions/multi-tenant.md
         - Migrating Allowlists and Denylists from EOL Wallarm Node: updating-migrating/migrate-ip-lists-to-node-3.md
     - Node Versioning Policy: updating-migrating/versioning-policy.md
-    - Inventory of Node Artifact Versions: updating-migrating/node-artifact-versions.md
     - Wallarm Scanner Addresses: admin-en/scanner-addresses.md
   - References:
     - FAQ:
