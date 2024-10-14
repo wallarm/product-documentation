@@ -5,6 +5,7 @@
 [applications-docs]:                ../../user-guides/settings/applications.md
 [available-filtration-modes]:       ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
 [ui-filtration-mode]:              ../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console
+[self-hosted-connector-node-helm-conf]: self-hosted-node-conf/helm-chart.md
 
 # Wallarm Connector for Istio Ingress
 
@@ -76,6 +77,8 @@ Deploy the Wallarm node as a separate service in your Kubernetes cluster using H
         ```
 
     `config.connector.http_inspector.real_ip_header` specifies the header to extract the client's real IP address when traffic passes through proxies or load balancers.
+
+    [All configuration parameters][self-hosted-connector-node-helm-conf]
 
 ### 2: Configure Envoy to mirror traffic to the Wallarm node
 
