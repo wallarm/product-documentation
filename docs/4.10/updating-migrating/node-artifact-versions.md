@@ -130,6 +130,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 4.10.13 (2024-10-11)
+
+* Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
+* Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
+* Fixed [API Discovery](../api-discovery/overview.md) missing status code
+
 ### 4.10.9 (2024-07-19)
 
 * Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
