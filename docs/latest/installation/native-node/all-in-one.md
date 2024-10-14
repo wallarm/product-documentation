@@ -42,9 +42,14 @@ The machine intended for running the native node with the all-in-one installer m
 
 To download the native node all-in-one installer, run the following command:
 
-```
-curl -O https://meganode.wallarm.com/next/aionext-0.5.2.x86_64.sh
-```
+=== "x86_64 version"
+    ```bash
+    curl -O https://meganode.wallarm.com/next/aionext-0.5.2.x86_64.sh
+    ```
+=== "ARM64 version"
+    ```bash
+    curl -O https://meganode.wallarm.com/next/aionext-0.5.2.aarch64.sh
+    ```
 
 The native node all-in-one installer can be run in two **modes**, depending on your use case. Refer to the relevant instructions for running the node:
 
