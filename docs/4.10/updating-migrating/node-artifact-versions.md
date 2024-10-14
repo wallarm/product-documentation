@@ -12,6 +12,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.10.13 (2024-10-11)
+
+* Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
+* Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
+* Fixed [API Discovery](../api-discovery/overview.md) missing status code
+
 ### 4.10.11 (2024-09-02)
 
 * Added support for NGINX v1.26.2 stable
