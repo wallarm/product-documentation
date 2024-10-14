@@ -28,7 +28,7 @@ To proceed with the deployment, ensure that you meet the following requirements:
 
 * Understanding of the Mulesoft platform.
 * [Docker](https://docs.docker.com/engine/install/) installed and running on your host system.
-* [Maven (`mvn`)](https://maven.apache.org/install.html) 3.8 or an earlier version is installed. Higher versions of Maven may encounter compatibility issues with the Mule plugin.
+* [Maven (`mvn`)](https://maven.apache.org/install.html).
 * You have been assigned the Mulesoft Exchange contributor's role, enabling you to upload artifacts to your organization's Mulesoft Anypoint Platform account.
 * Your [Mulesoft Exchange credentials (username and password)](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange#deploying-a-policy-created-using-the-maven-archetype) are specified in the `<MAVEN_DIRECTORY>/conf/settings.xml` file.
 * Your application and API are linked and running on Mulesoft.
