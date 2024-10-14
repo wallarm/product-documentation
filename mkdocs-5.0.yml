@@ -308,6 +308,7 @@ nav:
             - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
         - Docker: installation/oob/web-server-mirroring/docker-image.md
     - All Deployment Artifacts:
+      - NGINX vs Native Nodes: installation/nginx-native-node-internals.md
       - NGINX Node:
         - All-in-one installer: installation/nginx/all-in-one.md
         - Docker Images:
