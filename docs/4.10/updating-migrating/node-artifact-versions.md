@@ -12,6 +12,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 4.10.13 (2024-10-11)
+
+* Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
+* Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
+* Fixed [API Discovery](../api-discovery/overview.md) missing status code
+
 ### 4.10.11 (2024-09-02)
 
 * Added support for NGINX v1.26.2 stable
@@ -124,6 +130,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 4.10.13 (2024-10-11)
+
+* Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
+* Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
+* Fixed [API Discovery](../api-discovery/overview.md) missing status code
+
 ### 4.10.9 (2024-07-19)
 
 * Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
@@ -230,6 +242,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Sidecar
 
 [How to upgrade](sidecar-proxy.md)
+
+### 4.10.13 (2024-10-11)
+
+* Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
+* Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
+* Fixed [API Discovery](../api-discovery/overview.md) missing status code
 
 ### 4.10.10 (2024-07-22)
 
@@ -382,6 +400,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](docker-container.md)
 
+### 4.10.13-1 (2024-10-11)
+
+* Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
+* Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
+* Fixed [API Discovery](../api-discovery/overview.md) missing status code
+
 ### 4.10.9-1 (2024-07-22)
 
 * Fixed the [CVE-2024-6345](https://nvd.nist.gov/vuln/detail/CVE-2024-6345) vulnerability
@@ -487,7 +511,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
-### 4.10.9-1 (2024-07-22)
+### 4.10.13-1 (2024-07-22)
 
 * Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
 * Fixed issues exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module to [API Sessions](../api-sessions.md)
