@@ -117,8 +117,8 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
 
 To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these steps:
 
-1. Contact [support@wallarm.com](mailto:support@wallarm.com) to obtain the Wallarm Mulesoft policy for your connector deployment (Wallarm- or self-hosted).
-1. Extract the policy archive once you receive it.
+1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Connector configuration** and download a code bundle for your platform.
+1. Extract the policy archive.
 1. Within the `pom.xml` file → `groupId` parameter at the top of the file, specify your Mulesoft Business Group ID.
 
     You can find your organization ID by navigating to Mulesoft Anypoint Platform → **Access Management** → **Business Groups** → choose your organization → copy its ID.
