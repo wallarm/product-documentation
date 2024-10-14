@@ -467,6 +467,7 @@ nav:
         - Upgrading the Multi‑Tenant Node: updating-migrating/multi-tenant.md
       - Native node upgrade instructions:
         - All-in-one installer: updating-migrating/native-node/all-in-one.md
+        - Helm chart: updating-migrating/native-node/helm-chart.md
       - Upgrading EOL Wallarm nodes (3.6 and lower):
         - What is new in Wallarm node (if upgrading an EOL node): updating-migrating/older-versions/what-is-new.md
         - Upgrading EOL Wallarm NGINX Modules: updating-migrating/older-versions/nginx-modules.md
