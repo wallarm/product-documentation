@@ -209,6 +209,7 @@ nav:
   - Deployment:
     - Deployment Options: installation/supported-deployment-options.md
     - Edge:
+      - Security Edge Connectors: installation/se-connector.md
       - Section.io: installation/cdn-node.md
     - Kubernetes:
       - Ingress:
