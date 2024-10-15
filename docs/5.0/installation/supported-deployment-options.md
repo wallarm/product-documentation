@@ -8,6 +8,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div class="do-section">
     <div class="do-main">
+        <a class="do-card" href="../../installation/se-connector/">
+            <img class="non-zoomable" src="../../images/platform-icons/se-connector.svg" />
+            <h3>Security Edge Connectors</h3>
+            <p>Deploy a Wallarm-hosted node for MuleSoft, CloudFront, or Cloudflare</p>
+        </a>
+
         <a class="do-card" href="../../installation/cdn-node/">
             <img class="non-zoomable" src="../../images/platform-icons/section-io.svg" />
             <h3>Section.io</h3>
@@ -207,9 +213,9 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
         
         <a class="do-card" href="../../installation/connectors/aws-lambda/">
-            <img class="non-zoomable" src="../../images/platform-icons/aws-lambda.svg" />
-            <h3>AWS Lambda</h3>
-            <p>Deploy Wallarm to secure APIs on AWS that utilize Node.js lambdas</p>
+            <img class="non-zoomable" src="../../images/platform-icons/aws-cloudfront.svg" />
+            <h3>CloudFront</h3>
+            <p>Deploy Wallarm to secure traffic delivered through Amazon CloudFront</p>
         </a>
         
         <a class="do-card" href="../../installation/connectors/cloudflare/">
