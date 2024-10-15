@@ -37,7 +37,7 @@
 
 ## إعداد إشعارات إضافية
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include/integrations/integrations-trigger-setup-ar.md"
 
 ### مثال: إشعار Slack إذا تم اكتشاف ضربتين SQLi أو أكثر خلال دقيقة
 

@@ -103,7 +103,7 @@
 
     التفاصيل على الأحداث المتاحة:
 
-    --8<-- "../include/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations-ar.md"
 
 1. انقر على **اختبار التكامل** للتحقق من صحة التكوين، توافر وحدة تحكم Wallarm وصيغة الإشعار.
 
@@ -158,7 +158,7 @@
 
 ## إعداد التنبيهات الإضافية
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include/integrations/integrations-trigger-setup-ar.md"
 
 ## استخدام Fluentd كجامع بيانات وسيط
 

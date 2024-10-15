@@ -1,24 +1,15 @@
-# OWASP API Security Top 10 2023 Dashboard
+# OWASP API 2023 Dashboard
 
 The [OWASP API Security Top 10](https://owasp.org/www-project-api-security/) is a gold standard for the evaluation of security risk in APIs. To help you measure your API's security posture against these API threats, Wallarm offers the dashboard that provides clear visibility and metrics for threat mitigation.
 
 Covering the [OWASP API Security Top 10 2023](https://owasp.org/API-Security/editions/2023/en/0x00-header/), the dashboard allows you to assess the overall security state and proactively implement security controls to address identified issues.
 
-![OWASP API Top 10 2023](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
-
-## Threat assessment
-
-Wallarm estimates the risk for each API threat based on applied **security controls** and discovered vulnerabilities:
-
-* **Red** - it happens if there are no security controls applied or your APIs have active high risk vulnerabilities.
-* **Yellow** - it happens if security controls are only partially applied or your APIs have active medium or low risk vulnerabilities.
-* **Green** indicates that your APIs are protected and do not have open vulnerabilities.
-
-For each OWASP API Top 10 threat you can find detailed info about the threat, available security controls, corresponding vulnerabilities, and investigate related attacks:
-
-![OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash-details.png)
-
-## Wallarm security controls for OWASP API 2023
+<div>
+  <script src="https://js.storylane.io/js/v1/storylane.js"></script>
+  <div class="sl-embed" style="position:relative;padding-bottom:calc(54.13% + 25px);width:100%;height:0;transform:scale(1)">
+    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/qgq0xmld3wzb" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+  </div>
+</div>
 
 Wallarm security platform provides full-fledged protection against OWASP API Security Top 10 2023 by the following security controls:
 

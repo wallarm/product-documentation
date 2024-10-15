@@ -27,7 +27,7 @@
 
     تفاصيل حول الأحداث المتاحة:
 
-    --8<-- "../include/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations-ar.md"
 
 1. انقر **اختبار التكامل** للتحقق من صحة الإعداد، توفر السحابة Wallarm، وتنسيق الإشعار.
 

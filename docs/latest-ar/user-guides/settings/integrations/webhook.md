@@ -204,14 +204,14 @@
 
     تفاصيل حول الأحداث المتاحة:
 
-    --8<-- "../include/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations-ar.md"
 
 1. انقر على **اختبار التكامل** للتحقق من صحة الإعدادات، وتوفر سحابة Wallarm، وتنسيق الإشعارات. يتم دائمًا إرسال الإشعارات الاختبارية بتنسيق JSON Array، حتى إذا تم اختيار New Line Delimited JSON (NDJSON).
 1. انقر **إضافة التكامل**.
 
 ## إعداد التنبيهات الإضافية
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include/integrations/integrations-trigger-setup-ar.md"
 
 ### مثال: الإشعار إلى URL الويب هوك إذا تمت إضافة عنوان IP إلى القائمة السوداء
 

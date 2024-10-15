@@ -15,7 +15,7 @@
 
     التفاصيل على الأحداث المتاحة:
 
-    --8<-- "../include/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations-ar.md"
 
 1. اضغط **اختبار التكامل** للتحقق من صحة الإعدادات، توافر سحابة Wallarm، وتنسيق الإشعار.
 
@@ -29,7 +29,7 @@
 
 ## إعداد التنبيهات الإضافية
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include/integrations/integrations-trigger-setup-ar.md"
 
 ## تعطيل وحذف التكامل
 

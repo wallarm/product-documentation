@@ -37,7 +37,7 @@
 
 ## إعداد التنبيهات الإضافية
 
---8<-- "../include/integrations/integrations-trigger-setup-limited.md"
+--8<-- "../include/integrations/integrations-trigger-setup-limited-ar.md"
 
 ## تعطيل وحذف تكامل
 

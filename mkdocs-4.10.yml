@@ -387,6 +387,7 @@ nav:
       - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md
       - Using single sign‑on to Wallarm account: user-guides/use-sso.md
     - Using LDAP: admin-en/configuration-guides/ldap/ldap.md
+    - Activity Log: user-guides/settings/audit-log.md
   - Operations:
     # - Autoscaling: ...
     - Overview:
