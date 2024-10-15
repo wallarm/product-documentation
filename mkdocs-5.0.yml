@@ -253,6 +253,9 @@ nav:
       - Kong API Gateway: installation/connectors/kong-api-gateway.md
       - Istio: installation/connectors/istio.md
       - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
+      - Self-Hosted Node Configuration:
+        - All-in-one Installer: installation/connectors/self-hosted-node-conf/all-in-one-installer.md
+        - Helm Chart: installation/connectors/self-hosted-node-conf/helm-chart.md
     - In-Line:
       - Overview: installation/inline/overview.md
       - Compute Instances:
@@ -303,15 +306,22 @@ nav:
           - GCP:
             - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
         - Docker: installation/oob/web-server-mirroring/docker-image.md
-    - Packages:
-      - All-in-one installer: installation/nginx/all-in-one.md
-      - Docker Images:
-        - NGINX-based: admin-en/installation-docker-en.md
-        - Envoy-based: admin-en/installation-guides/envoy/envoy-docker.md
-      - Cloud Images:
-        - AWS AMI: installation/packages/aws-ami.md
-        - GCP Machine Image: installation/packages/gcp-machine-image.md
-      - Terraform Module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
+    - All Deployment Artifacts:
+      - NGINX vs Native Nodes: installation/nginx-native-node-internals.md
+      - NGINX Node:
+        - All-in-one installer: installation/nginx/all-in-one.md
+        - Docker Images:
+          - NGINX-based: admin-en/installation-docker-en.md
+          - Envoy-based: admin-en/installation-guides/envoy/envoy-docker.md
+        - Cloud Images:
+          - AWS AMI: installation/packages/aws-ami.md
+          - GCP Machine Image: installation/packages/gcp-machine-image.md
+        - Terraform Module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
+        - Artifact Versions and Changelog: updating-migrating/node-artifact-versions.md
+      - Native Node:
+        - All-in-one installer: installation/native-node/all-in-one.md
+        - Helm chart: installation/native-node/helm-chart.md
+        - Artifact Versions and Changelog: updating-migrating/native-node/node-artifact-versions.md
     - Custom Deployment:
       - On-Premise: installation/on-premise.md
       - Custom NGINX Packages: installation/custom/custom-nginx-version.md
@@ -447,7 +457,7 @@ nav:
     - Node Upgrade:
       - What is new in Wallarm node 5.0: updating-migrating/what-is-new.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
-      - Filtering node upgrade instructions:
+      - NGINX node upgrade instructions:
         - Upgrading DEB/RPM Packages: updating-migrating/nginx-modules.md
         - Upgrading Postanalytics Module Installed from DEB/RPM Packages: updating-migrating/separate-postanalytics.md
         - Upgrading Node Installed via All-in-One Installer: updating-migrating/all-in-one.md
@@ -458,6 +468,9 @@ nav:
         - Upgrading the Cloud Node Image: updating-migrating/cloud-image.md
         - Upgrading Wallarm CDN Node: updating-migrating/cdn-node.md
         - Upgrading the Multi‑Tenant Node: updating-migrating/multi-tenant.md
+      - Native node upgrade instructions:
+        - All-in-one installer: updating-migrating/native-node/all-in-one.md
+        - Helm chart: updating-migrating/native-node/helm-chart.md
       - Upgrading EOL Wallarm nodes (3.6 and lower):
         - What is new in Wallarm node (if upgrading an EOL node): updating-migrating/older-versions/what-is-new.md
         - Upgrading EOL Wallarm NGINX Modules: updating-migrating/older-versions/nginx-modules.md
@@ -468,7 +481,6 @@ nav:
         - Upgrading the EOL Multi‑Tenant Node: updating-migrating/older-versions/multi-tenant.md
         - Migrating Allowlists and Denylists from EOL Wallarm Node: updating-migrating/migrate-ip-lists-to-node-3.md
     - Node Versioning Policy: updating-migrating/versioning-policy.md
-    - Inventory of Node Artifact Versions: updating-migrating/node-artifact-versions.md
     - Wallarm Scanner Addresses: admin-en/scanner-addresses.md
   - References:
     - FAQ:
