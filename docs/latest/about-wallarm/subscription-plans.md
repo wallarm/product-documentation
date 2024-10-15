@@ -53,6 +53,18 @@ The subscription plan provides the [API Attack Surface Management (AASM)](../api
 * [API Attack Surface Discovery](../api-attack-surface/api-surface.md)
 * [API Leaks Detection](../api-attack-surface/api-leaks.md)
 
+## Security Edge
+
+The Security Edge subscription plan allows you to deploy the Wallarm node on the Wallarm Edge, eliminating the need for onsite installation and management.
+
+With Wallarm handling node hosting and maintenance, you can focus on your core infrastructure while benefiting from robust traffic filtering, attack detection, and secure communication - all backed by Wallarm.
+
+Available Security Edge deployments include:
+
+* [Security Edge Connectors](../installation/se-connector.md)
+
+To inquire about this subscription, please contact [sales@wallarm.com](mailto:sales@wallarm.com).
+
 ## Free Tier
 
 For smaller companies and educational purposes, Wallarm offers the option to create a Free Tier account yourself. You can choose the Wallarm cloud that best suits your storage preferences:
