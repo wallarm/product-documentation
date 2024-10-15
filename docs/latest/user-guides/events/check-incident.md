@@ -45,9 +45,9 @@ Once incident appeared in the **Incidents** section:
 
      ![Vulnerability detailed information](../../images/user-guides/vulnerabilities/vuln-info.png)
 
-     **Fix the vulnerability** and then mark it closed in Wallarm. For detailed information, refer to [Managing Vulnerabilities](../user-guides/vulnerabilities.md) article.
+     **Fix the vulnerability** and then mark it closed in Wallarm. For detailed information, refer to [Managing Vulnerabilities](../vulnerabilities.md) article.
 
-1. Go back to the incident in the list, investigate what mechanism caused the system reaction (note the `Blocked`, `Partially blocked` and `Monitoring` [statuses](../user-guides/events/check-attack.md#attacks) of the attacks), how the system will behave in future to alike requests and how to adjust (if necessary) this future behavior.
+1. Go back to the incident in the list, investigate what mechanism caused the system reaction (note the `Blocked`, `Partially blocked` and `Monitoring` [statuses](check-attack.md#attack-analysis) of the attacks), how the system will behave in future to alike requests and how to adjust (if necessary) this future behavior.
 
      For incidents, this investigation and adjusting is performed [in the same way](check-attack.md#responding-to-attacks) as for all other attacks.
 

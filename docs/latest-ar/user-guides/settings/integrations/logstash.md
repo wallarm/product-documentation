@@ -100,7 +100,7 @@ output {
 
     التفاصيل حول الأحداث المتاحة:
 
-    --8<-- "../include/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations-ar.md"
 
 1. انقر **اختبر الاندماج** للتحقق من صحة التكوين، توافر Wallarm Cloud، وتنسيق الإشعار.
 
@@ -155,7 +155,7 @@ output {
 
 ## إعداد تنبيهات إضافية
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include/integrations/integrations-trigger-setup-ar.md"
 
 ## استخدام Logstash كمجمع بيانات وسيط
 

@@ -22,7 +22,7 @@
 
     تفاصيل حول الأحداث المتاحة:
 
-    --8<-- "../include/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations-ar.md"
 
 1. انقر على **اختبار الإدماج** لفحص صحة التكوين، وتوافر سحابة Wallarm، وتنسيق الإشعار.
 
@@ -75,7 +75,7 @@
 
 ## إعداد تنبيهات إضافية
 
---8<-- "../include/integrations/integrations-trigger-setup.md"
+--8<-- "../include/integrations/integrations-trigger-setup-ar.md"
 
 ## تعطيل وحذف الإدماج
 
