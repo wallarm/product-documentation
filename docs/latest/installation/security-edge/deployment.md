@@ -1,4 +1,4 @@
-# Security Edge Inline
+# Security Edge Inline <a href="../../../about-wallarm/subscription-plans/#security-edge"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 The **Wallarm Security Edge** service offers a streamlined way to deploy Wallarm nodes in a Wallarm‑hosted environment for real‑time, **inline** traffic analysis. Deployed and fully managed by Wallarm across geographically distributed locations, the service provides robust protection for your entire API landscape without the need for any onsite installation. 
 
