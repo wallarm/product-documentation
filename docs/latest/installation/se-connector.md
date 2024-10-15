@@ -2,7 +2,7 @@
 [filtration-mode-docs]:             ../admin-en/configure-wallarm-mode.md
 [se-connector-hosts-locations-img]: ../images/waf-installation/security-edge/connectors/hosts-locations.png
 
-# Security Edge Connectors
+# Security Edge Connectors <a href="../../../about-wallarm/subscription-plans/#security-edge"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
 
 The **Wallarm Security Edge** service offers a streamlined way to deploy Wallarm nodes for [**connectors**](connectors/overview.md) in a Wallarm‑hosted environment. Deployed and fully managed by Wallarm across geographically distributed locations, the service provides robust protection for your entire API landscape without the need for any onsite installation.
 
@@ -24,6 +24,7 @@ Wallarm Edge service provides a secure cloud environment where the Wallarm node 
 
 You only need to specify the connector settings. Wallarm will handle the deployment and provide you with an endpoint to route traffic from your platform.
 
+1. The Security Edge deployment is available only with the corresponding subscription. Contact sales@wallarm.com to obtain it.
 1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Add connector**.
 
     ![!][se-connector-setup-img]

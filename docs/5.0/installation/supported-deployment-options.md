@@ -8,16 +8,34 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div class="do-section">
     <div class="do-main">
-        <a class="do-card" href="../../installation/se-connector/">
-            <img class="non-zoomable" src="../../images/platform-icons/se-connector.svg" />
-            <h3>Security Edge Connectors</h3>
-            <p>Deploy a Wallarm-hosted node for MuleSoft, CloudFront, or Cloudflare</p>
-        </a>
+        <div id="wallarm-se" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/wallarm-se.svg" />
+            <h3>Wallarm Security Edge</h3>
+            <p>Deploy Wallarm nodes in a Wallarm‑hosted environment</p>
+        </div>
 
         <a class="do-card" href="../../installation/cdn-node/">
             <img class="non-zoomable" src="../../images/platform-icons/section-io.svg" />
             <h3>Section.io</h3>
             <p>Deploy Wallarm node on Section.io without third-party components in your infrastructure</p>
+        </a>
+    </div>
+    
+    <div class="do-nested" data-for="wallarm-se">
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/wallarm-se.svg" />
+            <h3>Wallarm Security Edge</h3>
+            <p>Deploy Wallarm nodes in a Wallarm‑hosted environment</p>
+        </div>
+
+        <a class="do-card" href="../../installation/security-edge/deployment/">
+            <h3>Edge Inline</h3>
+            <p>Wallarm hosted node for real‑time, inline traffic analysis</p>
+        </a>
+
+        <a class="do-card" href="../../installation/se-connector/">
+            <h3>Edge Connector</h3>
+            <p>Wallarm-hosted node for MuleSoft, CloudFront, or Cloudflare</p>
         </a>
     </div>
 </div>
