@@ -20,18 +20,18 @@ nav:
       - Shadow and Orphan API: demo-videos/shadow-api.md
       - API Abuse Prevention Overview: demo-videos/api-abuse-prevention.md
       - API Leaks Overview: demo-videos/api-leaks.md
-  - Dashboards and Reports:
-    - Threat Prevention: user-guides/dashboards/threat-prevention.md
-    - API Discovery: user-guides/dashboards/api-discovery.md
-    - OWASP API Top 10: user-guides/dashboards/owasp-api-top-ten.md
-    - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
+  - Threat Management:
+    - Dashboards:
+      - Threat Prevention: user-guides/dashboards/threat-prevention.md
+      - API Discovery: user-guides/dashboards/api-discovery.md
+      - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
+      - OWASP API 2023: user-guides/dashboards/owasp-api-top-ten.md
     - Attacks & Incidents:
       - Attack Analysis: user-guides/events/check-attack.md
       - Incident Analysis: user-guides/events/check-incident.md
       - Search and Filters: user-guides/search-and-filters/use-search.md
       - Grouping and Sampling: user-guides/events/grouping-sampling.md
-    - Creating Reports: user-guides/search-and-filters/custom-report.md
-    - Activity Log: user-guides/settings/audit-log.md
+    - Reports: user-guides/search-and-filters/custom-report.md
   - API Discovery:
     - Overview: api-discovery/overview.md
     - Setup: api-discovery/setup.md
@@ -392,6 +392,7 @@ nav:
       - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md
       - Using single sign‑on to Wallarm account: user-guides/use-sso.md
     - Using LDAP: admin-en/configuration-guides/ldap/ldap.md
+    - Activity Log: user-guides/settings/audit-log.md
   - Operations:
     # - Autoscaling: ...
     - Overview:

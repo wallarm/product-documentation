@@ -1,8 +1,13 @@
-# NIST Cyber Security Framework 2.0 (Beta)
+# NIST CSF 2.0 Dashboard (Beta)
 
-The [NIST cybersecurity framework](https://www.nist.gov/cyberframework), created by the National Institute of Standards and Technology, defines key pillars for an effective security strategy. Wallarm's services align with the most of NIST pillars, ensuring comprehensive protection for our customers. Our dashboard demonstrates this alignment and assists in configuring the platform's features.
+The [NIST cybersecurity framework (CSF)](https://www.nist.gov/cyberframework), created by the National Institute of Standards and Technology, defines key pillars for an effective security strategy. Wallarm's services align with the most of NIST pillars, ensuring comprehensive protection for our customers. Our dashboard demonstrates this alignment and assists in configuring the platform's features.
 
-![NIST Dashboard](../../images/user-guides/dashboard/nist-csf-2-dash.png)
+<div>
+  <script src="https://js.storylane.io/js/v1/storylane.js"></script>
+  <div class="sl-embed" style="position:relative;padding-bottom:calc(54.13% + 25px);width:100%;height:0;transform:scale(1)">
+    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/4rynq5qejumh" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+  </div>
+</div>
 
 ## Identify
 
