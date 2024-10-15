@@ -28,9 +28,13 @@ Work with API Attack Surface Management looks as follows:
 
 ## Enabling and setup
 
-To use AASM, the Wallarm's [API Attack Surface](../about-wallarm/subscription-plans.md#api-attack-surface) subscription plan should be active for your company. Refer to the administrator of your Wallarm account. If you are an administrator, contact [sales@wallarm.com](mailto:sales@wallarm.com) or get pricing information and activate AASM on the Wallarm's official site [here](https://www.wallarm.com/product/aasm).
+To use AASM, the Wallarm's [API Attack Surface](../about-wallarm/subscription-plans.md#api-attack-surface) subscription plan should be active for your company. To activate, do one of the following:
 
-When activating via Wallarm's website, scanning of the used email's domain starts immediately while you negotiate sales team. After activation, you can add additional domains to the scope.
+* If you do not have Wallarm account yet, get pricing information and activate AASM on the Wallarm's official site [here](https://www.wallarm.com/product/aasm).
+
+    When activating, scanning of the used email's domain starts immediately while you negotiate sales team. After activation, you can add additional domains to the scope.
+
+* If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
 Once subscription is activated, to configure domain detection and API leaks remediation, in Wallarm Console → AASM → **API Attack Surface** or **API Leaks** section, click **Configure**. Add your domains to the scope, check the scanning status.
 
