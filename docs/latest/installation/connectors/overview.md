@@ -24,7 +24,6 @@ With connectors, traffic can be analyzed either [in-line](../inline/overview.md)
 Wallarm Edge Connectors are those where the Wallarm node is deployed, hosted, and managed by Wallarm in a secure cloud environment:
 
 * **Autoscaling**: node instances automatically scale to handle varying traffic loads.
-* **HTTPS security**: Wallarm automatically generates a Let's Encrypt certificate for secure communication.
 * **Region selection**: choose deployment regions closer to your infrastructure for better performance and redundancy.
 * **Allowed source hosts**: control which hosts are allowed to send traffic to the node.
 
