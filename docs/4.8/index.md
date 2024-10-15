@@ -26,14 +26,13 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage dashboard-title">Dashboards and Reports</h3>
+    <h3 class="icon-homepage dashboard-title">Threat Management</h3>
     <p><ul>
-    <li><a href="./user-guides/dashboards/threat-prevention/">Threat Prevention</a></li>
-    <li><a href="./user-guides/dashboards/api-discovery/">API Discovery</a></li>
-    <li><a href="./user-guides/dashboards/owasp-api-top-ten/">OWASP API Top 10</a></li>
-    <li><a href="./user-guides/search-and-filters/use-search/">Attacks & Incidents</a></li>
-    <li><a href="./user-guides/search-and-filters/custom-report/">Creating Reports</a></li>
-    <li><a href="./user-guides/settings/audit-log/">Activity Log</a></li>
+    <li><a href="./user-guides/dashboards/threat-prevention/">Dashboards</a></li>
+    <li><a href="./user-guides/events/check-attack/">Attack Analysis</a></li>
+    <li><a href="./user-guides/events/check-incident/">Incident Analysis</a></li>
+    <!-- <li><a href="./api-sessions/">API Sessions</a></li> -->
+    <li><a href="./user-guides/search-and-filters/custom-report/">Reports</a></li>
     </ul></p>
 </div>
 
@@ -132,6 +131,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <li><a href="./user-guides/settings/api-tokens/">API Tokens</a></li>
     <li><a href="./admin-en/configuration-guides/sso/intro/">SAML SSO</a></li>
     <li><a href="./admin-en/configuration-guides/ldap/ldap/">Using LDAP</a></li>
+    <li><a href="./user-guides/settings/audit-log/">Activity Log</a></li>
     </ul></p>
 </div>
 

@@ -29,8 +29,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <li><a href="./user-guides/events/check-attack/">Attack Analysis</a></li>
     <li><a href="./user-guides/events/check-incident/">Incident Analysis</a></li>
     <!-- <li><a href="./api-sessions/">API Sessions</a></li> -->
-<li><a href="./user-guides/search-and-filters/custom-report/">Creating Reports</a></li>
-    <li><a href="./user-guides/settings/audit-log/">Activity Log</a></li>
+    <li><a href="./user-guides/search-and-filters/custom-report/">Reports</a></li>
     </ul></p>
 </div>
 
@@ -130,6 +129,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <li><a href="./user-guides/settings/api-tokens/">API Tokens</a></li>
     <li><a href="./admin-en/configuration-guides/sso/intro/">SAML SSO</a></li>
     <li><a href="./admin-en/configuration-guides/ldap/ldap/">Using LDAP</a></li>
+    <li><a href="./user-guides/settings/audit-log/">Activity Log</a></li>
     </ul></p>
 </div>
 
