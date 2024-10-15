@@ -63,6 +63,18 @@ To activate the subscription plan, do one of the following:
 
 * If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
+## Security Edge
+
+The Security Edge subscription plan allows you to deploy the Wallarm node on the Wallarm Edge, eliminating the need for onsite installation and management.
+
+With Wallarm handling node hosting and maintenance, you can focus on your core infrastructure while benefiting from robust traffic filtering, attack detection, and secure communication - all backed by Wallarm.
+
+Available Security Edge deployments include:
+
+* [Security Edge Connectors](../installation/se-connector.md)
+
+To inquire about this subscription, please contact [sales@wallarm.com](mailto:sales@wallarm.com).
+
 ## Free Tier
 
 For smaller companies and educational purposes, Wallarm offers the option to create a Free Tier account yourself. You can choose the Wallarm cloud that best suits your storage preferences:
