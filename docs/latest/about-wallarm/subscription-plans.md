@@ -44,6 +44,8 @@ Wallarm is the only solution that unifies best-in-class API Security and WAAP ca
 | Period of event storage | 6 month | 6 month |
 | Support | Standard/Advanced/Platinum | Standard/Advanced/Platinum |
 
+To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wallarm.com).
+
 ## API Attack Surface
 
 The **API Attack Surface** subscription plan provides a comprehensive view of publicly exposed APIs and related information with **zero deployment** and minimal configuration.
@@ -52,6 +54,14 @@ The subscription plan provides the [API Attack Surface Management (AASM)](../api
 
 * [API Attack Surface Discovery](../api-attack-surface/api-surface.md)
 * [API Leaks Detection](../api-attack-surface/api-leaks.md)
+
+To activate the subscription plan, do one of the following:
+
+* If you do not have Wallarm account yet, get pricing information and activate AASM on the Wallarm's official site [here](https://www.wallarm.com/product/aasm).
+
+    When activating, scanning of the used email's domain starts immediately while you negotiate sales team. After activation, you can add additional domains to the scope.
+
+* If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
 ## Free Tier
 
@@ -73,6 +83,3 @@ The Free Tier accounts allow:
 If a Free Tier account exceeds 100% of the monthly quota, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled. These restrictions will be in effect until the first day of the next month.
 
 You can easily remove all restrictions by [migrating to paid subscriptions](mailto:sales@wallarm.com).
-
-!!! info "Recommendation on usage"
-    Using a Free Tier account for functional evaluation and comparisons is not recommended. You should [contact our support team](https://www.wallarm.com/request-demo) and request a free trial subscription instead.
