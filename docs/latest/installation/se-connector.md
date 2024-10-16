@@ -40,6 +40,7 @@ One endpoint can handle multiple connections from different hosts.
     * **Allowed hosts**: specify which hosts the node will accept and analyze traffic from.
 
         If a specified host does not exist or is unreachable, the 415 error will be returned, and the traffic will not be processed.
+    
     * **Location configuration**: assign unique application IDs to specific hosts and locations, if needed.
 
         ![!][se-connector-hosts-locations-img]
