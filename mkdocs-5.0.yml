@@ -209,6 +209,9 @@ nav:
   - Deployment:
     - Deployment Options: installation/supported-deployment-options.md
     - Edge:
+      - Wallarm Security Edge:
+        - Inline: installation/security-edge/deployment.md
+        - Connectors: installation/se-connector.md
       - Section.io: installation/cdn-node.md
     - Kubernetes:
       - Ingress:
@@ -247,7 +250,7 @@ nav:
       - Apigee: installation/connectors/apigee.md
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
       - Azion Edge: installation/connectors/azion-edge.md
-      - AWS Lambda: installation/connectors/aws-lambda.md
+      - CloudFront: installation/connectors/aws-lambda.md
       - Cloudflare: installation/connectors/cloudflare.md
       - Kong API Gateway: installation/connectors/kong-api-gateway.md
       - Istio: installation/connectors/istio.md

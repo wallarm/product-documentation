@@ -1,44 +1,49 @@
-# Deploying Wallarm with Connectors
+# Deploying Wallarm as a Connector
 
-API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, Mulesoft, Apigee, and AWS Lambda. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of "connectors" specifically designed for such cases.
+API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, Mulesoft, Apigee, and CloudFront. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of "connectors" specifically designed for such cases.
 
 ## How it works
 
-The solution involves deploying the Wallarm node externally and injecting custom code or policies into the specific platform. This enables traffic to be directed to the external Wallarm node for analysis and protection against potential threats. Referred to as Wallarm's connectors, they serve as the essential link between platforms and the external Wallarm node.
+Wallarm's connector solution integrates with third-party platforms, such as API gateways or edge platforms, to filter and analyze traffic. The solution operates with two main components:
 
-The following scheme demonstrates high-level traffic flow in the Wallarm blocking [mode](../../admin-en/configure-wallarm-mode.md):
+* The **Wallarm node**, hosted either by Wallarm or the client, performs traffic analysis and security checks.
+* A **Wallarm-provided code bundle or policy** which is injected into the third-party platform to route traffic for analysis to the Wallarm node.
 
-![image](../../images/waf-installation/general-traffic-flow-for-connectors.png)
+With connectors, traffic can be analyzed either [in-line](../inline/overview.md) or [out-of-band](../oob/overview.md):
 
-Traffic is analyzed in-line, the injected Wallarm script captures requests and forwards them to the node for analysis. Depending on the response from the node, malicious activities are blocked, and only legitimate requests are allowed to access the APIs.
+=== "In-line traffic flow"
 
-Alternatively, the monitoring mode allows users to gain knowledge about potential threats web applications and APIs may encounter. In this mode, the logic of traffic flow remains the same, but the node does not block attacks, it only registers and records them in the Wallarm Cloud, accessible through the Wallarm Console.
+    If Wallarm is configured to [block](../../admin-en/configure-wallarm-mode.md) malicious activity:
 
-## Use cases
+    ![image](../../images/waf-installation/general-traffic-flow-for-connectors-inline.png)
+=== "Out-of-band traffic flow"
+    ![image](../../images/waf-installation/general-traffic-flow-for-connectors-oob.png)
 
-* Securing all APIs deployed with Azion Edge, Akamai Edge, Mulesoft, Apigee, AWS Lambda or similar tool by creating only one component in the current infrastrucure - the component like the Wallarm code/policy/proxy depending on the solution being used.
-* Requiring a security solution that offers comprehensive attack observation, reporting, and instant blocking of malicious requests.
+## Security Edge connectors
 
-## Limitations
+Security Edge Connectors are those where the Wallarm node is deployed, hosted, and managed by Wallarm in a secure cloud environment:
 
-The solution has certain limitations as it only works with incoming requests:
+* **Autoscaling**: node instances automatically scale to handle varying traffic loads.
+* **Region selection**: choose deployment regions closer to your infrastructure for better performance and redundancy.
+* **Allowed source hosts**: control which hosts are allowed to send traffic to the node.
 
-* Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
-* The [Wallarm API Discovery](../../api-discovery/overview.md) cannot explore API inventory based on your traffic, as the solution relies on response analysis.
-* The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis.
+!!! info "Supported platforms"
+    Currently, Edge connectors are available only for Mulesoft, CloudFront, and Cloudflare.
 
-## Supported deployment options
+## Supported platforms
 
-Currently, Wallarm offers connectors for the following platforms:
+Wallarm offers connectors for the following platforms:
 
-* [Mulesoft](mulesoft.md)
-* [Apigee](apigee.md)
-* [Akamai EdgeWorkers](akamai-edgeworkers.md)
-* [Azion Edge](azion-edge.md)
-* [AWS Lamdba](aws-lambda.md)
-* [Cloudflare](cloudflare.md)
-* [Kong Ingress Controller](kong-api-gateway.md)
-* [Istio Ingress](istio.md)
-* [Layer7 API Gateways](layer7-api-gateway.md)
+| Connector | Supported traffic flow mode | Connector hosting |
+| --- | ---- | ---- |
+| [Mulesoft](mulesoft.md) | In-line | Wallarm Edge, client-hosted |
+| [Apigee](apigee.md) | In-line |Client-hosted |
+| [Akamai EdgeWorkers](akamai-edgeworkers.md) | In-line |Client-hosted |
+| [Azion Edge](azion-edge.md) | In-line |Client-hosted |
+| [Amazon CloudFront](aws-lambda.md) | In-line, out-of-band | Wallarm Edge, client-hosted |
+| [Cloudflare](cloudflare.md) | In-line, out-of-band | Wallarm Edge, client-hosted |
+| [Kong Ingress Controller](kong-api-gateway.md) | In-line | Client-hosted |
+| [Istio Ingress](istio.md) | Out-of-band | Client-hosted |
+| [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | Out-of-band |Client-hosted |
 
 If you couldn't find the connector you are looking for, please feel free to contact our [Sales team](mailto:sales@wallarm.com) to discuss your requirements and explore potential solutions.

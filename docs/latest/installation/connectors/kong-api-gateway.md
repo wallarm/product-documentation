@@ -51,7 +51,7 @@ To secure APIs managed by Kong Ingress Controller, follow these steps:
 1. Deploy the Wallarm filtering node service in your Kubernetes cluster.
 1. Obtain and deploy the Wallarm Lua plugin to route incoming traffic from the Kong Ingress Controller to the Wallarm filtering node for analysis.
 
-### Step 1: Deploy a Wallarm node
+### 1: Deploy a Wallarm node
 
 Deploy the Wallarm node as a separate service in your Kubernetes cluster using Helm.
 
@@ -81,7 +81,7 @@ The node operates in **[blocking mode][available-filtration-modes] by default**,
 
     `config.connector.http_inspector.real_ip_header` specifies the header to extract the client's real IP address when traffic passes through proxies or load balancers.
 
-### Step 2: Obtain and deploy the Wallarm Lua plugin
+### 2: Obtain and deploy the Wallarm Lua plugin
 
 1. Contact [support@wallarm.com](mailto:support@wallarm.com) to obtain the Wallarm Lua plugin code for your Kong Ingress Controller.
 1. Create a ConfigMap with the plugin code:
