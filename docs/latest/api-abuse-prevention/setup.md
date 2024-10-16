@@ -44,6 +44,8 @@ To create an API abuse profile:
     * **Applications** - analyze requests to all of the domains of the application together.
     * **Domains** - analyze requests to each of the domains of the application separately.
 
+Once created, profiles will protect your selected applications from the malicious bots of selected types. Protection and data analysis is performed based on the traffic targeting applications.
+
 ## Disabling and deleting profiles
 
 Disabled profiles are the ones that the **API Abuse Prevention** module does not use during traffic analysis but that are still displayed in the profile list. You can re-enable disabled profiles at any moment. If there are no enabled profiles, the module does not block malicious bots.
