@@ -1,6 +1,6 @@
 # Security Edge Inline <a href="../../../about-wallarm/subscription-plans/#security-edge"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
 
-The **Wallarm Security Edge** service offers a streamlined way to deploy Wallarm nodes in a Wallarm‑hosted environment for real‑time, **inline** traffic analysis. Deployed and fully managed by Wallarm across geographically distributed locations, the service provides robust protection for your entire API landscape without the need for any onsite installation. 
+The **Security Edge** platform provides a streamlined, managed service for deploying nodes across geographically distributed locations within a Wallarm-hosted environment. One of its key deployment options is **inline** deployment, offering real-time, robust protection for your entire API landscape without the need for any onsite installation.
 
 This is an ideal solution for securing APIs when you can redirect traffic from your hosts to Wallarm's edge nodes by modifying the CNAME records in your DNS settings.
 
@@ -12,9 +12,8 @@ Wallarm Edge service provides a secure cloud environment where the Wallarm node 
 
 * Turnkey deployment: deploy Wallarm nodes in globally distributed locations with minimal setup.
 * Autoscaling: node instances automatically scale to handle varying traffic loads.
-* Operational transparency: monitor logs, operational alerts, and node performance easily within the Wallarm console.
 * Reduced costs: lower operational overhead with Wallarm-managed nodes, allowing faster deployment and scalability.
-* Seamless integration: Simple configuration with your existing CDN or load balancers, allowing you to protect your API landscape without disruptions.
+* Seamless integration: simple configuration with your existing CDN or load balancers, allowing you to protect your API landscape without disruptions.
 
 ## Running the Edge inline node
 
@@ -43,9 +42,6 @@ Wallarm Edge service provides a secure cloud environment where the Wallarm node 
 * Second-level domains (e.g., `domain.com`) are not supported. Use subdomains (e.g., `www.domain.com`) instead.
 * Only domains shorter than 64 characters are supported.
 * Only HTTPS traffic is supported; HTTP is not allowed.
-* HTTP ports are not supported. Only HTTPS ports are allowed.
-
-    If necessary, contact Wallarm support for enabling HTTP ports if necessary.
 
 <!-- You can not manual add certificate - only issue a new one.???
 no cert manageent again?

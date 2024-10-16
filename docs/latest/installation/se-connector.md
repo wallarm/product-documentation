@@ -4,7 +4,7 @@
 
 # Security Edge Connectors <a href="../../../about-wallarm/subscription-plans/#security-edge"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
 
-The **Wallarm Security Edge** service offers a streamlined way to deploy Wallarm nodes for [**connectors**](connectors/overview.md) in a Wallarm‑hosted environment. Deployed and fully managed by Wallarm across geographically distributed locations, the service provides robust protection for your entire API landscape without the need for any onsite installation.
+The **Security Edge** platform provides a streamlined, managed service for deploying nodes across geographically distributed locations within a Wallarm-hosted environment. One of its key deployment options is the [**connector**](connectors/overview.md) node deployment, offering robust protection for your entire API landscape without the need for any onsite installation.
 
 ![!](../images/waf-installation/security-edge/connectors/traffic-flow.png)
 
@@ -14,7 +14,6 @@ Wallarm Edge service provides a secure cloud environment where the Wallarm node 
 
 * Turnkey deployment: deploy Wallarm nodes in globally distributed locations with minimal setup.
 * Autoscaling: node instances automatically scale to handle varying traffic loads.
-* Operational transparency: monitor logs, operational alerts, and node performance easily within the Wallarm console.
 * Reduced costs: lower operational overhead with Wallarm-managed nodes, allowing faster deployment and scalability.
 
 !!! info "Supported platforms"
