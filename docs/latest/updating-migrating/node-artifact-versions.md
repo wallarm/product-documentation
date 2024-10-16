@@ -14,7 +14,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.0.3 (2024-10-10)
 
-* Added support for [customizing sensitive data detection](../api-discovery/setup.md#customizing-sensitive-data-detection) in API Discovery
+* Added support for [customizing sensitive data detection](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) in API Discovery
 * Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
 * Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
 
@@ -45,7 +45,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.0.3 (2024-10-10)
 
-* Added support for [customizing sensitive data detection](../api-discovery/setup.md#customizing-sensitive-data-detection) in API Discovery
+* Added support for [customizing sensitive data detection](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) in API Discovery
 * Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
 * Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
 
@@ -72,7 +72,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.0.3 (2024-10-10)
 
-* Added support for [customizing sensitive data detection](../api-discovery/setup.md#customizing-sensitive-data-detection) in API Discovery
+* Added support for [customizing sensitive data detection](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) in API Discovery
 * Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
 * Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
 
@@ -125,7 +125,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.0.3-1 (2024-10-10)
 
-* Added support for [customizing sensitive data detection](../api-discovery/setup.md#customizing-sensitive-data-detection) in API Discovery
+* Added support for [customizing sensitive data detection](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) in API Discovery
 * Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
 * Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
 
@@ -156,7 +156,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.0.3-1 (2024-10-10)
 
-* Added support for [customizing sensitive data detection](../api-discovery/setup.md#customizing-sensitive-data-detection) in API Discovery
+* Added support for [customizing sensitive data detection](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) in API Discovery
 * Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
 * Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
 
