@@ -19,9 +19,9 @@ With connectors, traffic can be analyzed either [in-line](../inline/overview.md)
 === "Out-of-band traffic flow"
     ![image](../../images/waf-installation/general-traffic-flow-for-connectors-oob.png)
 
-## Wallarm Edge connectors
+## Security Edge connectors
 
-Wallarm Edge Connectors are those where the Wallarm node is deployed, hosted, and managed by Wallarm in a secure cloud environment:
+Security Edge Connectors are those where the Wallarm node is deployed, hosted, and managed by Wallarm in a secure cloud environment:
 
 * **Autoscaling**: node instances automatically scale to handle varying traffic loads.
 * **Region selection**: choose deployment regions closer to your infrastructure for better performance and redundancy.

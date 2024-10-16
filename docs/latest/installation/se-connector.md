@@ -4,13 +4,13 @@
 
 # Security Edge Connectors <a href="../../../about-wallarm/subscription-plans/#security-edge"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
 
-The **Security Edge** platform provides a streamlined, managed service for deploying nodes across geographically distributed locations within a Wallarm-hosted environment. One of its key deployment options is the [**connector**](connectors/overview.md) node deployment, offering robust protection for your entire API landscape without the need for any onsite installation.
+The **Security Edge** platform provides a managed service for deploying nodes across geographically distributed locations within a Wallarm-hosted environment. One of its key deployment options is the [**connector**](connectors/overview.md) node deployment, offering robust protection for your entire API landscape without the need for any onsite installation.
 
 ![!](../images/waf-installation/security-edge/connectors/traffic-flow.png)
 
 ## How it works
 
-Wallarm Edge service provides a secure cloud environment where the Wallarm node is deployed, hosted, and managed by Wallarm:
+Security Edge service provides a secure cloud environment where the Wallarm node is deployed, hosted, and managed by Wallarm:
 
 * Turnkey deployment: deploy Wallarm nodes in globally distributed locations with minimal setup.
 * Autoscaling: node instances automatically scale to handle varying traffic loads.
@@ -22,6 +22,8 @@ Wallarm Edge service provides a secure cloud environment where the Wallarm node 
 ## Deploying the Edge node for a connector
 
 You only need to specify the connector settings. Wallarm will handle the deployment and provide you with an endpoint to route traffic from your platform.
+
+One endpoint can handle multiple connections from different hosts.
 
 1. The Security Edge deployment is available only with the corresponding subscription. Contact sales@wallarm.com to obtain it.
 1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Add connector**.
@@ -36,6 +38,8 @@ You only need to specify the connector settings. Wallarm will handle the deploym
         Each node requires a general application ID, with the option to assign specific IDs for locations or instances.
     
     * **Allowed hosts**: specify which hosts the node will accept and analyze traffic from.
+
+        If a specified host does not exist or is unreachable, the 415 error will be returned, and the traffic will not be processed.
     * **Location configuration**: assign unique application IDs to specific hosts and locations, if needed.
 
         ![!][se-connector-hosts-locations-img]
@@ -53,3 +57,10 @@ After deploying the Edge node, you will need to inject Wallarm code into your pl
 * [MuleSoft](connectors/mulesoft.md)
 * [CloudFront](connectors/aws-lambda.md)
 * [Cloudflare](connectors/cloudflare.md)
+
+<!-- add the schreenshot with the green status and RPS and with no "staging" mentioned
+rename the "connector configuration" button the connectors
+mention that users can edit settings on the deployment SE and that can delete and what happens if they delete the SE deployment
+if the SE node, code connector is downloaded from the UI. if self-hosted, it should be requested from the sales team
+mention that we upgrade the edge node oursleves. latest stable with all features
+ -->

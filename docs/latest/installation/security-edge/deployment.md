@@ -1,14 +1,14 @@
 # Security Edge Inline <a href="../../../about-wallarm/subscription-plans/#security-edge"><img src="../../../images/security-edge-tag.svg" style="border: none;"></a>
 
-The **Security Edge** platform provides a streamlined, managed service for deploying nodes across geographically distributed locations within a Wallarm-hosted environment. One of its key deployment options is **inline** deployment, offering real-time, robust protection for your entire API landscape without the need for any onsite installation.
+The **Security Edge** platform provides a managed service for deploying nodes across geographically distributed locations within a Wallarm-hosted environment. One of its key deployment options is **inline** deployment, offering real-time, robust protection for your entire API landscape without the need for any onsite installation.
 
 This is an ideal solution for securing APIs when you can redirect traffic from your hosts to Wallarm's edge nodes by modifying the CNAME records in your DNS settings.
 
-![!](../../images/waf-installation/se-inline.png)
+![!](../../images/waf-installation/security-edge/inline/traffic-flow.png)
 
 ## How it works
 
-Wallarm Edge service provides a secure cloud environment where the Wallarm node is deployed, hosted, and managed by Wallarm:
+Security Edge service provides a secure cloud environment where the Wallarm node is deployed, hosted, and managed by Wallarm:
 
 * Turnkey deployment: deploy Wallarm nodes in globally distributed locations with minimal setup.
 * Autoscaling: node instances automatically scale to handle varying traffic loads.
@@ -19,7 +19,7 @@ Wallarm Edge service provides a secure cloud environment where the Wallarm node 
 
 1. The Security Edge deployment is available only with the corresponding subscription. Contact sales@wallarm.com to obtain it.
 1. Go to the Wallarm Console → **Security Edge** → **Edge inline** → **Add origin**.
-1. Specify the **origin** (source server or infrastructure) that will send traffic to the Wallarm Edge node. This can be either an IP address or a domain.
+1. Specify the **origin** (source server or infrastructure) where the Edge node will forward the filtered traffic. This can be either an IP address or a domain.
 1. Choose one or more **regions** to deploy the Wallarm node.
 
     We recommend selecting regions close to where your APIs or applications are hosted. Deploying in multiple regions enhances geo-redundancy and ensures high availability.
@@ -39,10 +39,11 @@ Wallarm Edge service provides a secure cloud environment where the Wallarm node 
 
 ## Limitations
 
-* Second-level domains (e.g., `domain.com`) are not supported. Use subdomains (e.g., `www.domain.com`) instead.
+* Second-level domains are not supported  (e.g., instead `domain.com` use `www.domain.com`).
 * Only domains shorter than 64 characters are supported.
 * Only HTTPS traffic is supported; HTTP is not allowed.
 
 <!-- You can not manual add certificate - only issue a new one.???
 no cert manageent again?
+wallarm edge -> security edge
   -->

@@ -65,7 +65,7 @@ To activate the subscription plan, do one of the following:
 
 ## Security Edge
 
-The Security Edge subscription plan allows you to deploy the Wallarm node on the Wallarm Edge, eliminating the need for onsite installation and management.
+The Security Edge subscription plan allows you to deploy the Wallarm node on the managed environment, eliminating the need for onsite installation and management.
 
 With Wallarm handling node hosting and maintenance, you can focus on your core infrastructure while benefiting from robust traffic filtering, attack detection, and secure communication - all backed by Wallarm.
 
