@@ -36,14 +36,14 @@ Wallarm offers connectors for the following platforms:
 
 | Connector | Supported traffic flow mode | Connector hosting |
 | --- | ---- | ---- |
-| [Mulesoft](mulesoft.md) | In-line | Wallarm Edge, client-hosted |
-| [Apigee](apigee.md) | In-line |Client-hosted |
-| [Akamai EdgeWorkers](akamai-edgeworkers.md) | In-line |Client-hosted |
-| [Azion Edge](azion-edge.md) | In-line |Client-hosted |
-| [Amazon CloudFront](aws-lambda.md) | In-line, out-of-band | Wallarm Edge, client-hosted |
-| [Cloudflare](cloudflare.md) | In-line, out-of-band | Wallarm Edge, client-hosted |
-| [Kong Ingress Controller](kong-api-gateway.md) | In-line | Client-hosted |
-| [Istio Ingress](istio.md) | Out-of-band | Client-hosted |
-| [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | Out-of-band |Client-hosted |
+| [Mulesoft](mulesoft.md) | In-line | Security Edge, self-hosted |
+| [Apigee](apigee.md) | In-line |Self-hosted |
+| [Akamai EdgeWorkers](akamai-edgeworkers.md) | In-line |Self-hosted |
+| [Azion Edge](azion-edge.md) | In-line |Self-hosted |
+| [Amazon CloudFront](aws-lambda.md) | In-line, out-of-band | Security Edge, self-hosted |
+| [Cloudflare](cloudflare.md) | In-line, out-of-band | Security Edge, self-hosted |
+| [Kong Ingress Controller](kong-api-gateway.md) | In-line | Self-hosted |
+| [Istio Ingress](istio.md) | Out-of-band | Self-hosted |
+| [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | Out-of-band |Self-hosted |
 
 If you couldn't find the connector you are looking for, please feel free to contact our [Sales team](mailto:sales@wallarm.com) to discuss your requirements and explore potential solutions.

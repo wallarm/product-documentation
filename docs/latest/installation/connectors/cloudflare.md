@@ -44,7 +44,7 @@ The Wallarm node is a core component of the Wallarm platform that you need to de
 
 You can deploy it either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
 
-=== "Wallarm Edge node"
+=== "Edge node"
     To deploy a Wallarm-hosted node for the connector, follow the [instructions](../se-connector.md).
 === "Self-hosted node"
     The current self-hosted node deployment has limitations. Full response analysis is not yet supported, which is why:
