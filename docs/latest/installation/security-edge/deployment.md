@@ -42,8 +42,3 @@ Security Edge service provides a secure cloud environment where the Wallarm node
 * Second-level domains are not supported  (e.g., instead `domain.com` use `www.domain.com`).
 * Only domains shorter than 64 characters are supported.
 * Only HTTPS traffic is supported; HTTP is not allowed.
-
-<!-- You can not manual add certificate - only issue a new one.???
-no cert manageent again?
-wallarm edge -> security edge
-  -->
