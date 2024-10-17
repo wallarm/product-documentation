@@ -4,8 +4,8 @@ command = """
 git clone https://${CLONE_INSIDERS_TOKEN}:x-oauth-basic@github.com/wallarm/mkdocs-material-insiders.git &&
 cd mkdocs-material-insiders &&
 git checkout c927b56 &&
-cd .. &&
 pip3 install --no-cache-dir -r requirements.txt &&
+cd .. &&
 npm install pngquant &&
 INSIDERS=true mkdocs build -f mkdocs-5.0.yml &&
 INSIDERS=true mkdocs build -f mkdocs-4.10.yml &&
