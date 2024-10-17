@@ -5,6 +5,7 @@ git clone https://${CLONE_INSIDERS_TOKEN}:x-oauth-basic@github.com/wallarm/mkdoc
 cd mkdocs-material-insiders &&
 git checkout c927b56 &&
 pip3 install --no-cache-dir -r requirements.txt &&
+pip3 install mkdocs-material mkdocs-material-extensions &&
 cd .. &&
 npm install pngquant &&
 INSIDERS=true mkdocs build -f mkdocs-5.0.yml &&
