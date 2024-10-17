@@ -16,16 +16,5 @@
 * Acesso a `https://us1.api.wallarm.com` para trabalhar com a Nuvem Wallarm dos EUA ou a `https://api.wallarm.com` para trabalhar com a Nuvem Wallarm da UE. Se o acesso só pode ser configurado via servidor proxy, então use as [instruções][configure-proxy-balancer-instr].
 * Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 * Execução de todos os comandos como um superusuário (por exemplo, `root`).

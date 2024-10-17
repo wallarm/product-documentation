@@ -120,18 +120,7 @@ O novo método de implantação permite que você configure o node CD Wallarm fo
 
 * Wallarm node instances now require access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers.
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 * O node de filtragem agora envia dados para a nuvem usando `us1.api.wallarm.com:443` (US Cloud) e `api.wallarm.com:443` (EU Cloud) em vez de `us1.api.wallarm.com:444` e `api.wallarm.com:444`.
 
     Se o seu servidor com o node implantado tiver acesso limitado aos recursos externos e o acesso for concedido a cada recurso separadamente, após a atualização para a versão 4.x, a sincronização entre o node de filtragem e a nuvem será interrompida. O node atualizado precisa ter acesso concedido ao endpoint da API com a nova porta.

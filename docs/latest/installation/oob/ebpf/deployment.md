@@ -65,18 +65,7 @@ To ensure the solution functions correctly in environments with restricted outbo
 * For users working with the US Wallarm Cloud, access `https://us1.api.wallarm.com`. For those using the EU Wallarm Cloud, access `https://api.wallarm.com`.
 * The IP addresses below for downloading updates to attack detection rules and [API specifications](../../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../../user-guides/ip-lists/overview.md) countries, regions, or data centers.
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 
 ## Deployment
 

@@ -28,18 +28,7 @@ Starting with version 3.x, the filtering node supports IP address [allowlisting,
 
 The Wallarm node requires access to specific IP addresses to download actual lists of IPs for allowlisted, denylisted, or graylisted countries, regions, or data centers. If your system typically restricts external access, you will need to allow connectivity to these IPs to successfully install the filtering node:
 
-=== "US Cloud"
-    ```
-    34.96.64.17
-    34.110.183.149
-    35.235.66.155
-    ```
-=== "EU Cloud"
-    ```
-    34.160.38.183
-    34.144.227.90
-    34.90.110.226
-    ```
+--8<-- "../include/wallarm-cloud-ips.md"
 
 ## Filtration modes
 
