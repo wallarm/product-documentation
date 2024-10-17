@@ -2,7 +2,6 @@
 publish = "site"
 command = """
 git clone https://${CLONE_INSIDERS_TOKEN}:x-oauth-basic@github.com/wallarm/mkdocs-material-insiders.git &&
-mkdocs-material-insiders &&
 cd mkdocs-material-insiders &&
 git checkout c927b56 &&
 cd .. &&
