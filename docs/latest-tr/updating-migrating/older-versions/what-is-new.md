@@ -120,18 +120,7 @@ Yeni dağıtım yöntemi, Wallarm CDN düğümünü altyapınızın dışında 1
 
 * Wallarm node instances now require access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers.
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 * Filtreleme düğümü artık verileri `us1.api.wallarm.com:443` (ABD Bulutu) ve `api.wallarm.com:443` (AB Bulutu) üzerinden Buluta yükler, bunun yerine `us1.api.wallarm.com:444` ve `api.wallarm.com:444` kullanmaz.
 
     Dağıtılmış düğümle sunucunuzun dış kaynaklara sınırlı erişimi varsa ve erişim her kaynağa ayrı ayrı verilirse, 4.x sürümüne yükseltildikten sonra filtreleme düğümü ve Bulut arasındaki senkronizasyon duracaktır. Yükseltilen düğümün, yeni porta sahip API uç noktasına erişim hakkı verilmesi gerekmektedir.

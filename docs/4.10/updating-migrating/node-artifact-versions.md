@@ -81,18 +81,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * [CVE-2023-48795](https://nvd.nist.gov/vuln/detail/CVE-2023-48795)
 * Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 
 ### 4.10.1 (2024-02-21)
 
@@ -192,18 +181,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Restored OpenTracing
 * Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 
 ### 4.10.1 (2024-02-21)
 
@@ -334,18 +312,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * [CVE-2023-28755](https://nvd.nist.gov/vuln/detail/CVE-2023-28755)
 * Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 
 ## Helm chart for Wallarm eBPF‑based solution
 
@@ -356,18 +323,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Added support for NGINX v1.25.4
 * Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 
 ### 0.10.27 (2024-03-29)
 
@@ -456,18 +412,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * [CVE-2023-48795](https://nvd.nist.gov/vuln/detail/CVE-2023-48795)
 * Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 
 ### 4.10.1-1 (2024-02-21)
 
@@ -557,18 +502,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * [CVE-2023-48795](https://nvd.nist.gov/vuln/detail/CVE-2023-48795)
 * Required access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions, or data centers
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 
 ### 4.10.1-2 (2024-02-21)
 

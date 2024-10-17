@@ -23,18 +23,7 @@ O encadeamento do Ingress Controller permite que você utilize um controller exi
 * Acesso aos repositórios Wallarm no Docker Hub `https://hub.docker.com/r/wallarm`. Garanta que o acesso não é bloqueado por um firewall
 * Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 * Cluster do Kubernetes implantado rodando um Ingress controller
 
 ## Implantando o Wallarm Ingress controller e o encadeando com um Ingress Controller adicional

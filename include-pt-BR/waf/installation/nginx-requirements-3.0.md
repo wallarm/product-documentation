@@ -6,16 +6,5 @@
 * Acesso a `https://us1.api.wallarm.com:444` para trabalhar com a Wallarm Cloud dos EUA ou a `https://api.wallarm.com:444` para trabalhar com a Wallarm Cloud da UE. Se o acesso puder ser configurado apenas através do servidor proxy, use as [instruções][configure-proxy-balancer-instr]
 * Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 * Editor de texto instalado **vim**, **nano**, ou qualquer outro. Na instrução, **vim** é usado
