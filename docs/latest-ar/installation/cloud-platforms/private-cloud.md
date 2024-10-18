@@ -25,18 +25,7 @@
 * `35.244.197.238` (`https://meganode.wallarm.com`) في حال اخترت تثبيت Wallarm من [مثبت شامل](../nginx/all-in-one.md). يتم تنزيل المثبت من هذا العنوان.
 * Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 
 ## الخطوة 3: اختيار نموذج النشر ومكون Wallarm
 

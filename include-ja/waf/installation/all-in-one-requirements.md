@@ -16,16 +16,5 @@
 * US Wallarm Cloudを利用するための `https://us1.api.wallarm.com` または EU Wallarm Cloudを利用するための `https://api.wallarm.com` へのアクセス。アクセスがプロキシサーバー経由でのみ設定できる場合は、[instructions][configure-proxy-balancer-instr] を使用してください。
 * Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
 
-    === "US Cloud"
-        ```
-        34.96.64.17
-        34.110.183.149
-        35.235.66.155
-        ```
-    === "EU Cloud"
-        ```
-        34.160.38.183
-        34.144.227.90
-        34.90.110.226
-        ```
+    --8<-- "../include/wallarm-cloud-ips.md"
 * 全てのコマンドをスーパーユーザー（例：`root`）として実行します。
