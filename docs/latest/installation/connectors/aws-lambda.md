@@ -1,6 +1,5 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
-[wallarm-hosted-connector-desc]:    ../connectors/overview.md#wallarm-edge-connectors
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
 [se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
 
@@ -51,7 +50,7 @@ The Wallarm node is a core component of the Wallarm platform that you need to de
 
 You can deploy it either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
 
-=== "Wallarm Edge node"
+=== "Edge node"
     To deploy a Wallarm-hosted node for the connector, follow the [instructions](../se-connector.md).
 === "Self-hosted node"
     The current self-hosted node deployment has limitations. Full response analysis is not yet supported, which is why:
@@ -128,7 +127,7 @@ To connect your CloudFront CDN with the Wallarm node, you need to deploy the Wal
 
 There are two Python-based functions: one for request forwarding and analysis, and another for response forwarding and analysis.
 
-1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Connector configuration** and download a code bundle for your platform.
+1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download a code bundle for your platform.
 1. Proceed to your AWS Console → **Services** → **Lambda** → **Functions**.
 1. Select the `us-east-1` (N. Virginia) region which is [required for Lambda@Edge functions](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-how-it-works-tutorial.html#lambda-edge-how-it-works-tutorial-create-function).
 1. **Create function** with the following settings:
@@ -172,7 +171,3 @@ To test the functionality of the deployed functions, follow these steps:
     ![Attacks in the interface][attacks-in-ui-image]
 
     If the Wallarm node mode is set to blocking, the request will also be blocked.
-
-## Troubleshooting
-
---8<-- "../include/waf/installation/security-edge/connector-troubleshooting.md"

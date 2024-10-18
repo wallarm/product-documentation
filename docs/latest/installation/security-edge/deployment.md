@@ -43,7 +43,6 @@ Security Edge service provides a secure cloud environment where the Wallarm node
 * Only domains shorter than 64 characters are supported.
 * Only HTTPS traffic is supported; HTTP is not allowed.
 
-<!-- You can not manual add certificate - only issue a new one.???
-no cert manageent again?
-wallarm edge -> security edge
-  -->
+## Upgrading the Edge node
+
+Since the Edge node is a managed solution, Wallarm takes care of all upgrades. The latest stable node version is always deployed on the Edge.

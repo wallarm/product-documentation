@@ -103,7 +103,7 @@ Note that described configuration is applicable only for [in-line](../installati
 
 === "Connectors"
 
-    For [Wallarm Edge connectors](../installation/connectors/overview.md#wallarm-edge-connectors), you specify the `wallarm_mode` value in the **Filtration mode** selector during the connector deployment.
+    For [Security Edge connectors](../installation/se-connector.md), you specify the `wallarm_mode` value in the **Filtration mode** selector during the connector deployment.
 
 === "CDN node"
 

@@ -6,7 +6,7 @@ API deployment can be done in various ways, including utilizing external tools s
 
 Wallarm's connector solution integrates with third-party platforms, such as API gateways or edge platforms, to filter and analyze traffic. The solution operates with two main components:
 
-* The **Wallarm node**, hosted either by Wallarm or the client, performs traffic analysis and security checks.
+* The **Wallarm node**, hosted either by [Wallarm](../se-connector.md) or the client, performs traffic analysis and security checks.
 * A **Wallarm-provided code bundle or policy** which is injected into the third-party platform to route traffic for analysis to the Wallarm node.
 
 With connectors, traffic can be analyzed either [in-line](../inline/overview.md) or [out-of-band](../oob/overview.md):
@@ -19,31 +19,20 @@ With connectors, traffic can be analyzed either [in-line](../inline/overview.md)
 === "Out-of-band traffic flow"
     ![image](../../images/waf-installation/general-traffic-flow-for-connectors-oob.png)
 
-## Security Edge connectors
-
-Security Edge Connectors are those where the Wallarm node is deployed, hosted, and managed by Wallarm in a secure cloud environment:
-
-* **Autoscaling**: node instances automatically scale to handle varying traffic loads.
-* **Region selection**: choose deployment regions closer to your infrastructure for better performance and redundancy.
-* **Allowed source hosts**: control which hosts are allowed to send traffic to the node.
-
-!!! info "Supported platforms"
-    Currently, Edge connectors are available only for Mulesoft, CloudFront, and Cloudflare.
-
 ## Supported platforms
 
 Wallarm offers connectors for the following platforms:
 
 | Connector | Supported traffic flow mode | Connector hosting |
 | --- | ---- | ---- |
-| [Mulesoft](mulesoft.md) | In-line | Wallarm Edge, client-hosted |
-| [Apigee](apigee.md) | In-line |Client-hosted |
-| [Akamai EdgeWorkers](akamai-edgeworkers.md) | In-line |Client-hosted |
-| [Azion Edge](azion-edge.md) | In-line |Client-hosted |
-| [Amazon CloudFront](aws-lambda.md) | In-line, out-of-band | Wallarm Edge, client-hosted |
-| [Cloudflare](cloudflare.md) | In-line, out-of-band | Wallarm Edge, client-hosted |
-| [Kong Ingress Controller](kong-api-gateway.md) | In-line | Client-hosted |
-| [Istio Ingress](istio.md) | Out-of-band | Client-hosted |
-| [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | Out-of-band |Client-hosted |
+| [Mulesoft](mulesoft.md) | In-line | Security Edge, self-hosted |
+| [Apigee](apigee.md) | In-line |Self-hosted |
+| [Akamai EdgeWorkers](akamai-edgeworkers.md) | In-line |Self-hosted |
+| [Azion Edge](azion-edge.md) | In-line |Self-hosted |
+| [Amazon CloudFront](aws-lambda.md) | In-line, out-of-band | Security Edge, self-hosted |
+| [Cloudflare](cloudflare.md) | In-line, out-of-band | Security Edge, self-hosted |
+| [Kong Ingress Controller](kong-api-gateway.md) | In-line | Self-hosted |
+| [Istio Ingress](istio.md) | Out-of-band | Self-hosted |
+| [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | Out-of-band |Self-hosted |
 
 If you couldn't find the connector you are looking for, please feel free to contact our [Sales team](mailto:sales@wallarm.com) to discuss your requirements and explore potential solutions.
