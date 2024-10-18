@@ -10,6 +10,8 @@ You can also analyze bot behaviors at the **Behavioral patterns** in the bottom.
 
 ![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
+If no bot activities were detected, this information will be displayed by the widgets.
+
 ## Attacks
 
 You can explore attacks performed by bots in Wallarm Console → **Attacks** section. Use the `api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys or select the appropriate options from the **Type** filter.
