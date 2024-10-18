@@ -1,9 +1,9 @@
-# Wallarm On-Premise Deployment (Pre-Release)
+# Wallarm On-Premise Deployment
 
-Wallarm offers a pre-release version of its on-premise solution designed for partners, large enterprises, and any organization looking for a comprehensive on-premise security system. This offering allows for the integration of Wallarm's security infrastructure directly into their own environments. The article provides information on how to access and make use of this offering.
+Wallarm offers an on-premise solution designed for partners, large enterprises, and any organization looking for a comprehensive on-premise security system. This offering allows for the integration of Wallarm's security infrastructure directly into their own environments. The article provides information on how to access and make use of this offering.
 
 !!! info "Contact for any inquiries"
-    As the solution is in pre-release, please contact [Wallarm's sales team](mailto:sales@wallarm.com) for any questions or requests regarding on-premise deployment.
+    Please contact [Wallarm's sales team](mailto:sales@wallarm.com) for any questions or requests regarding on-premise deployment.
 
 The Wallarm architecture is built around [two main components](../about-wallarm/overview.md#how-wallarm-works):
 
