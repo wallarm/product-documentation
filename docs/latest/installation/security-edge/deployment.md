@@ -42,3 +42,7 @@ Security Edge service provides a secure cloud environment where the Wallarm node
 * Second-level domains are not supported  (e.g., instead `domain.com` use `www.domain.com`).
 * Only domains shorter than 64 characters are supported.
 * Only HTTPS traffic is supported; HTTP is not allowed.
+
+## Upgrading the Edge node
+
+Since the Edge node is a managed solution, Wallarm takes care of all upgrades. The latest stable node version is always deployed on the Edge.

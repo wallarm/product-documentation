@@ -6,7 +6,7 @@ API deployment can be done in various ways, including utilizing external tools s
 
 Wallarm's connector solution integrates with third-party platforms, such as API gateways or edge platforms, to filter and analyze traffic. The solution operates with two main components:
 
-* The **Wallarm node**, hosted either by Wallarm or the client, performs traffic analysis and security checks.
+* The **Wallarm node**, hosted either by [Wallarm](../se-connector.md) or the client, performs traffic analysis and security checks.
 * A **Wallarm-provided code bundle or policy** which is injected into the third-party platform to route traffic for analysis to the Wallarm node.
 
 With connectors, traffic can be analyzed either [in-line](../inline/overview.md) or [out-of-band](../oob/overview.md):
@@ -18,17 +18,6 @@ With connectors, traffic can be analyzed either [in-line](../inline/overview.md)
     ![image](../../images/waf-installation/general-traffic-flow-for-connectors-inline.png)
 === "Out-of-band traffic flow"
     ![image](../../images/waf-installation/general-traffic-flow-for-connectors-oob.png)
-
-## Security Edge connectors
-
-Security Edge Connectors are those where the Wallarm node is deployed, hosted, and managed by Wallarm in a secure cloud environment:
-
-* **Autoscaling**: node instances automatically scale to handle varying traffic loads.
-* **Region selection**: choose deployment regions closer to your infrastructure for better performance and redundancy.
-* **Allowed source hosts**: control which hosts are allowed to send traffic to the node.
-
-!!! info "Supported platforms"
-    Currently, Edge connectors are available only for Mulesoft, CloudFront, and Cloudflare.
 
 ## Supported platforms
 

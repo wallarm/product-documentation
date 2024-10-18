@@ -1,6 +1,5 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
-[wallarm-hosted-connector-desc]:    ../connectors/overview.md#wallarm-edge-connectors
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
 [se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
 
@@ -119,7 +118,7 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
 
 To run a Cloudflare worker routing traffic to the Wallarm node:
 
-1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Connector configuration** and download a code bundle for your platform.
+1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download a code bundle for your platform.
 1. [Create a Cloudflare worker](https://developers.cloudflare.com/workers/get-started/dashboard/) using the downloaded code.
 1. Set the address of your [Wallarm node instance](#1-deploy-a-wallarm-node) in the `wallarm_node` parameter.
 1. If using [out-of-band](../oob/overview.md) mode, set the `wallarm_mode` parameter to `async`.
@@ -148,7 +147,3 @@ To test the functionality of the deployed solution, follow these steps:
     ![Attacks in the interface][attacks-in-ui-image]
 
     If the Wallarm node mode is set to blocking and the traffic flows in-line, the request will also be blocked.
-
-## Troubleshooting
-
---8<-- "../include/waf/installation/security-edge/connector-troubleshooting.md"

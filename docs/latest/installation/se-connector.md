@@ -19,7 +19,9 @@ Security Edge service provides a secure cloud environment where the Wallarm node
 !!! info "Supported platforms"
     Currently, Edge connectors are available only for MuleSoft, CloudFront, and Cloudflare.
 
-## Deploying the Edge node for a connector
+## Running Security Edge Connectors
+
+### 1. Deploying the Edge node for a connector
 
 You only need to specify the connector settings. Wallarm will handle the deployment and provide you with an endpoint to route traffic from your platform.
 
@@ -51,17 +53,27 @@ One endpoint can handle multiple connections from different hosts.
 
 ![!](../images/waf-installation/security-edge/connectors/copy-endpoint.png)
 
-## Injecting Wallarm code on a platform running your APIs
+You can change the Edge node deployment settings at any time while the node is in **Active** status. The node will be re-deployed, starting from the **Pending** status to **Active**. The endpoint will not change, but it will be unavailable during the re-deployment process.
 
-After deploying the Edge node, you will need to inject Wallarm code into your platform to route traffic to the deployed node. Follow the instructions below for this process:
+### 2. Injecting Wallarm code on a platform running your APIs
 
-* [MuleSoft](connectors/mulesoft.md)
-* [CloudFront](connectors/aws-lambda.md)
-* [Cloudflare](connectors/cloudflare.md)
+After deploying the Edge node, you will need to inject Wallarm code into your platform to route traffic to the deployed node.
 
-<!-- add the schreenshot with the green status and RPS and with no "staging" mentioned
-rename the "connector configuration" button the connectors
-mention that users can edit settings on the deployment SE and that can delete and what happens if they delete the SE deployment
-if the SE node, code connector is downloaded from the UI. if self-hosted, it should be requested from the sales team
-mention that we upgrade the edge node oursleves. latest stable with all features
- -->
+1. Download a code bundle for your platform from the Wallarm Console UI.
+
+    ![!](../images/waf-installation/security-edge/connectors/download-code-bundle.png)
+1. Apply the bundle on your API management platform following the instructions:
+
+    * [MuleSoft](connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
+    * [CloudFront](connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
+    * [Cloudflare](connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
+
+## Deleting the Edge node
+
+If you delete the Edge node, its endpoint becomes unavailable, and you will no longer be able to redirect traffic through it for security analysis.
+
+The Wallarm code bundle injected into your platform will still try to reach the node endpoint specified in the bundle settings. However, it will fail with the `failed: Couldn't resolve address` error, and traffic will continue to flow to its target without passing through the Edge node.
+
+## Troubleshooting
+
+--8<-- "../include/waf/installation/security-edge/connector-troubleshooting.md"

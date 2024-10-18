@@ -1,7 +1,6 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
-[wallarm-hosted-connector-desc]:    ../connectors/overview.md#wallarm-edge-connectors
 [se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
 
 # Wallarm Connector for MuleSoft
@@ -118,7 +117,7 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
 
 To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these steps:
 
-1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Connector configuration** and download a code bundle for your platform.
+1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download a code bundle for your platform.
 1. Extract the policy archive.
 1. Within the `pom.xml` file → `groupId` parameter at the top of the file, specify your Mulesoft Business Group ID.
 
@@ -224,8 +223,6 @@ To uninstall the policy, simply perform the first step of the update process.
 
 ## Troubleshooting
 
-* If the solution does not perform as expected, refer to the logs of your API by accessing Mulesoft Anypoint Platform → **Runtime Manager** → your application → **Logs**.
+If the solution does not perform as expected, refer to the logs of your API by accessing Mulesoft Anypoint Platform → **Runtime Manager** → your application → **Logs**.
 
-    You can also verify whether the policy is applied to the API by navigating to your API in the **API Manager** and reviewing the policies applied on the **Policies** tab. For automated policies, you can use the **See covered APIs** option to view the APIs covered and the reasons for any exclusions.
-
---8<-- "../include/waf/installation/security-edge/connector-troubleshooting.md"
+You can also verify whether the policy is applied to the API by navigating to your API in the **API Manager** and reviewing the policies applied on the **Policies** tab. For automated policies, you can use the **See covered APIs** option to view the APIs covered and the reasons for any exclusions.
