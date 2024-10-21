@@ -11,18 +11,7 @@ To deploy a self-hosted Wallarm node on bare metal or VMs without containers, us
         * `https://us1.api.wallarm.com` or `https://api.wallarm.com` for US/EU Wallarm Cloud
         * IP addresses below for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
 
-            === "US Cloud"
-                ```
-                34.96.64.17
-                34.110.183.149
-                35.235.66.155
-                ```
-            === "EU Cloud"
-                ```
-                34.160.38.183
-                34.144.227.90
-                34.90.110.226
-                ```
+            --8<-- "../include/wallarm-cloud-ips.md"
 1. Issue a **trusted** SSL/TLS certificate for the machine's domain and upload it to the machine along with the private key. Self-signed certificates are not allowed.
 1. Open Wallarm Console → **Settings** → **API tokens** and create [API token][api-token] with the `Deploy` role.
 

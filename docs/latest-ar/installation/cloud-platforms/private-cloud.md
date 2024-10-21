@@ -18,8 +18,9 @@
 
 يتم منح الوصول في السحابات الخاصة عادةً استنادًا إلى عناوين IP. يتطلب Wallarm الوصول إلى السجلات DNS التالية:
 
-* `35.235.66.155` للوصول إلى Wallarm Cloud الأمريكي (`us1.api.wallarm.com`) للحصول على قواعد الأمان، تحميل بيانات الهجمات، إلخ.
-* `34.90.110.226` للوصول إلى Wallarm Cloud الأوروبي (`api.wallarm.com`) للحصول على قواعد الأمان، تحميل بيانات الهجمات، إلخ.
+* The following addresses to have access to the Wallarm Cloud to get security rules, upload attack data, etc.
+
+    --8<-- "../include/wallarm-cloud-ips.md"
 * عناوين IP المستخدمة بواسطة Docker Hub في حال اخترت تشغيل Wallarm من صورة Docker.
 * `34.111.12.147` (`repo.wallarm.com`) في حال اخترت تثبيت عقدة Wallarm من حزم Linux الفردية لـ [NGINX stable](../nginx/dynamic-module.md)/[NGINX Plus](../nginx-plus.md)/[NGINX المُقدم من التوزيع](../nginx/dynamic-module-from-distr.md). يتم تنزيل حزم تثبيت العقدة من هذا العنوان.
 * `35.244.197.238` (`https://meganode.wallarm.com`) في حال اخترت تثبيت Wallarm من [مثبت شامل](../nginx/all-in-one.md). يتم تنزيل المثبت من هذا العنوان.

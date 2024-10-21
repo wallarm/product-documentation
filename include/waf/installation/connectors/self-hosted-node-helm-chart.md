@@ -13,18 +13,7 @@ This method sets up the Wallarm node as a load balancer with a public IP, allowi
         * `https://us1.api.wallarm.com` or `https://api.wallarm.com` for US/EU Wallarm Cloud
         * IP addresses below for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
 
-            === "US Cloud"
-                ```
-                34.96.64.17
-                34.110.183.149
-                35.235.66.155
-                ```
-            === "EU Cloud"
-                ```
-                34.160.38.183
-                34.144.227.90
-                34.90.110.226
-                ```
+            --8<-- "../include/wallarm-cloud-ips.md"
 1. Open Wallarm Console → **Settings** → **API tokens** and create [API token][api-token] with the `Deploy` role.
 
     You will need this to connect the cluster with the node to the Wallarm Cloud. 
@@ -71,8 +60,8 @@ This method sets up the Wallarm node as a load balancer with a public IP, allowi
               certManager:
                 enabled: true
                 issuerRef: # Tell Wallarm Load Balancer which cert-manager entity to use
-                name: letsencrypt-prod # The name of the cert-manager Issuer or ClusterIssuer
-                kind: ClusterIssuer # If it is Issuer (namespace-scoped) or ClusterIssuer (cluster-wide)
+                  name: letsencrypt-prod # The name of the cert-manager Issuer or ClusterIssuer
+                  kind: ClusterIssuer # If it is Issuer (namespace-scoped) or ClusterIssuer (cluster-wide)
         ```
 
         Or with `helm upgrade`:
