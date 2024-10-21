@@ -93,6 +93,19 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ## Wallarm node for TCP traffic mirror analysis
 
+### 0.7.0 (2024-10-16)
+
+* Fixed an issue where some internal service connector headers were not being stripped before processing
+
+### 0.6.0 (2024-10-10)
+
+* Added support for [customizing sensitive data detection](../api-discovery/setup.md#customizing-sensitive-data-detection) in API Discovery
+* Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
+* Fixed memory leak related to IP addresses that are not in [IP lists](../user-guides/ip-lists/overview.md) but have [known source](../user-guides/ip-lists/overview.md#select-object)
+* Updated artifact naming from "next" to "native"
+    
+    `https://meganode.wallarm.com/next/aionext-<VERSION>.<ARCH>.sh` → `https://meganode.wallarm.com/native/aio-native-<VERSION>.<ARCH>.sh`
+
 ### 0.5.2 (2024-09-17)
 
 * Fixed installation failure issue when no WAAP + API Security subscription is activated
