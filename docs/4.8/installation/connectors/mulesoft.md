@@ -3,4 +3,4 @@ search:
   exclude: true
 ---
 
---8<-- "latest/installation/connectors/mulesoft.md"
+--8<-- "4.10/installation/connectors/mulesoft.md"

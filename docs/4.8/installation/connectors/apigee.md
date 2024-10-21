@@ -3,4 +3,4 @@ search:
   exclude: true
 ---
 
---8<-- "latest/installation/connectors/apigee.md"
+--8<-- "4.10/installation/connectors/apigee.md"

@@ -265,10 +265,9 @@ nav:
         - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
     - エッジ:
       - Section.io: installation/cdn-node.md
-      - Akamai EdgeWorkers: installation/cdn/akamai-edgeworkers.md
-      - Azion Edge: installation/cdn/azion-edge.md
-      - AWS Lambda: installation/cdn/aws-lambda.md
-      - Cloudflare: installation/cdn/cloudflare.md
+      - Wallarmセキュリティエッジ:
+        - インライン: installation/security-edge/deployment.md
+        - コネクタ: installation/se-connector.md
     - Kubernetes:
       - イングレス:
         - NGINXイングレスコントローラ: admin-en/installation-kubernetes-en.md
