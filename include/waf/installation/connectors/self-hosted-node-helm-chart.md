@@ -27,11 +27,11 @@ This method sets up the Wallarm node as a load balancer with a public IP, allowi
 
     === "US Cloud"
         ```
-        helm upgrade --install --version 0.5.3 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com --set processing.service.type=LoadBalancer --set config.connector.http_inspector.real_ip_header=X-Real-IP
+        helm upgrade --install --version 0.5.3 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com --set processing.service.type=LoadBalancer
         ```
     === "EU Cloud"
         ```
-        helm upgrade --install --version 0.5.3 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com --set processing.service.type=LoadBalancer --set config.connector.http_inspector.real_ip_header=X-Real-IP
+        helm upgrade --install --version 0.5.3 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com --set processing.service.type=LoadBalancer
         ```
 
     [All configuration parameters][self-hosted-connector-node-helm-conf]
@@ -59,9 +59,11 @@ This method sets up the Wallarm node as a load balancer with a public IP, allowi
               enabled: true
               certManager:
                 enabled: true
-                issuerRef: # Tell Wallarm Load Balancer which cert-manager entity to use
-                  name: letsencrypt-prod # The name of the cert-manager Issuer or ClusterIssuer
-                  kind: ClusterIssuer # If it is Issuer (namespace-scoped) or ClusterIssuer (cluster-wide)
+                issuerRef:
+                  # The name of the cert-manager Issuer or ClusterIssuer
+                  name: letsencrypt-prod
+                  # If it is Issuer (namespace-scoped) or ClusterIssuer (cluster-wide)
+                  kind: ClusterIssuer
         ```
 
         Or with `helm upgrade`:
@@ -70,7 +72,7 @@ This method sets up the Wallarm node as a load balancer with a public IP, allowi
         helm upgrade <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --set config.connector.certificate.enabled=true --set config.connector.certificate.certManager.enabled=true --set config.connector.certificate.certManager.issuerRef.name=letsencrypt-prod --set config.connector.certificate.certManager.issuerRef.kind=ClusterIssuer
         ```
     === "existingSecret"
-        You can pull SSL/TLS certificate and secret from Kubernetes secrets.
+        You can pull SSL/TLS certificate from an existing Kubernetes secrets in the same namespace.
 
         ```yaml
         config:
@@ -79,7 +81,8 @@ This method sets up the Wallarm node as a load balancer with a public IP, allowi
               enabled: true
               existingSecret:
                 enabled: true
-                name: my-secret-name # The name of the Kubernetes secret containing the certificate and private key
+                # The name of the Kubernetes secret containing the certificate and private key
+                name: my-secret-name
         ```
 
         Or with `helm upgrade`:

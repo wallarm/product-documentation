@@ -109,14 +109,16 @@ config:
       enabled: true
       certManager:
         enabled: true
-        issuerRef: # Tell Wallarm Load Balancer which cert-manager entity to use
-          name: letsencrypt-prod # The name of the cert-manager Issuer or ClusterIssuer
-          kind: ClusterIssuer # If it is Issuer (namespace-scoped) or ClusterIssuer (cluster-wide)
+        issuerRef:
+          # The name of the cert-manager Issuer or ClusterIssuer
+          name: letsencrypt-prod
+          # If it is Issuer (namespace-scoped) or ClusterIssuer (cluster-wide)
+          kind: ClusterIssuer
 ```
 
 #### existingSecret
 
-You can use this configuration block to pull SSL/TLS certificate and secret from Kubernetes secrets.
+You can use this configuration block to pull an SSL/TLS certificate from an existing Kubernetes secret in the same namespace.
 
 Example configuration:
 
@@ -127,7 +129,8 @@ config:
       enabled: true
       existingSecret:
         enabled: true
-        name: my-secret-name # The name of the Kubernetes secret containing the certificate and private key
+        # The name of the Kubernetes secret containing the certificate and private key
+        name: my-secret-name
 ```
 
 #### customSecret
@@ -301,7 +304,6 @@ config:
       workers: auto
       api_firewall_enabled: true
       wallarm_dir: /opt/wallarm/etc/wallarm
-      real_ip_header: "x-real-ip"
 
 processing:
   metrics:
@@ -326,12 +328,6 @@ Default: `true`.
 Specifies the directory path for node configuration files. Typically, you do not need to modify this parameter. If you need assistance, please contact the [Wallarm support team](mailto:support@wallarm.com).
 
 Default: `/opt/wallarm/etc/wallarm`.
-
-### config.connector.http_inspector.real_ip_header
-
-By default, Wallarm reads the source IP address from the request IP headers. However, proxies and load balancers can change this to their own IPs.
-
-To preserve the real client IP, these intermediaries often add an HTTP header (e.g., `X-Real-IP`, `X-Forwarded-For`). The `real_ip_header` parameter tells Wallarm which header to use to extract the original client IP.
 
 ### processing.metrics.enabled
 

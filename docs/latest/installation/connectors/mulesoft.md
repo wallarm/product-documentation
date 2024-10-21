@@ -157,7 +157,7 @@ To test the functionality of the deployed policy, follow these steps:
 1. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to your API:
 
     ```
-    curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
+    curl http://<YOUR_APP_DOMAIN>/etc/passwd
     ```
 1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
     
