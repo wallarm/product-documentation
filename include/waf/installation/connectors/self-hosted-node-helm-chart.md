@@ -27,11 +27,11 @@ This method sets up the Wallarm node as a load balancer with a public IP, allowi
 
     === "US Cloud"
         ```
-        helm upgrade --install --version 0.5.3 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com --set processing.service.type=LoadBalancer
+        helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com --set processing.service.type=LoadBalancer
         ```
     === "EU Cloud"
         ```
-        helm upgrade --install --version 0.5.3 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com --set processing.service.type=LoadBalancer
+        helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com --set processing.service.type=LoadBalancer
         ```
 
     [All configuration parameters][self-hosted-connector-node-helm-conf]

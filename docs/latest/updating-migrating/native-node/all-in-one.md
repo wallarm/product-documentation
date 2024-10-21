@@ -17,13 +17,13 @@ Download the latest installer version on the machine where your current native n
 
 === "x86_64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/next/aionext-0.5.2.x86_64.sh
-    chmod +x aionext-0.5.2.x86_64.sh
+    curl -O https://meganode.wallarm.com/native/aio-native-0.7.0.x86_64.sh
+    chmod +x aio-native-0.7.0.x86_64.sh
     ```
 === "ARM64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/next/aionext-0.5.2.aarch64.sh
-    chmod +x aionext-0.5.2.aarch64.sh
+    curl -O https://meganode.wallarm.com/native/aio-native-0.7.0.aarch64.sh
+    chmod +x aio-native-0.7.0.aarch64.sh
     ```
 
 ## 2. Run the new installer
@@ -39,36 +39,36 @@ For the configuration file, you can reuse the one used during the initial instal
     === "x86_64 version"
         ```bash
         # US Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
         # EU Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
         ```
     === "ARM64 version"
         ```bash
         # US Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
         # EU Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
         ```
 * For a self-hosted native node deployed for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md):
 
     === "x86_64 version"
         ```bash
         # US Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
         # EU Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
         ```
     === "ARM64 version"
         ```bash
         # US Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
         # EU Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
         ```
 
 Your current `/opt/wallarm/etc/wallarm/go-node.yaml`, `/opt/wallarm/etc/wallarm/node.yaml` and log files will be backed up to the directory `/opt/wallarm/aio-backups/<timestamp>`.

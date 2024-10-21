@@ -20,13 +20,13 @@ To deploy a self-hosted Wallarm node on bare metal or VMs without containers, us
 
     === "x86_64 version"
         ```bash
-        curl -O https://meganode.wallarm.com/next/aionext-0.5.2.x86_64.sh
-        chmod +x aionext-0.5.2.x86_64.sh
+        curl -O https://meganode.wallarm.com/native/aio-native-0.7.0.x86_64.sh
+        chmod +x aio-native-0.7.0.x86_64.sh
         ```
     === "ARM64 version"
         ```bash
-        curl -O https://meganode.wallarm.com/next/aionext-0.5.2.aarch64.sh
-        chmod +x aionext-0.5.2.aarch64.sh
+        curl -O https://meganode.wallarm.com/native/aio-native-0.7.0.aarch64.sh
+        chmod +x aio-native-0.7.0.aarch64.sh
         ```
 1. Create the `wallarm-node-conf.yaml` file on the machine with the following minimal configuration:
 
@@ -47,18 +47,18 @@ To deploy a self-hosted Wallarm node on bare metal or VMs without containers, us
     === "x86_64 version"
         ```bash
         # US Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
         # EU Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
         ```
     === "ARM64 version"
         ```bash
         # US Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
         # EU Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aionext-0.5.2.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
         ```
 
     * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).

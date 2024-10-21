@@ -55,6 +55,16 @@ The Helm chart for the native node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
-### 0.5.3  (2024-10-01)
+### 0.7.0 (2024-10-17)
+
+* Fixed an issue where some internal service connector headers were not being stripped before processing
+* Added support for [customizing sensitive data detection](../../api-discovery/setup.md#customizing-sensitive-data-detection) in API Discovery
+* Fixed memory leak on duplicate response headers in [libproton](../../about-wallarm/protecting-against-attacks.md#library-libproton)
+* Fixed memory leak related to IP addresses that are not in [IP lists](../../user-guides/ip-lists/overview.md) but have [known source](../../user-guides/ip-lists/overview.md#select-object)
+* Updated artifact naming from "next" to "native"
+    
+    `wallarm/wallarm-node-next` → `wallarm/wallarm-node-native`
+
+### 0.5.3 (2024-10-01)
 
 * Initial release
