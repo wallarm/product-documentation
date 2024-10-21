@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configure-wallarm-mode.md"
+--8<-- "4.10/admin-en/configure-wallarm-mode.md"

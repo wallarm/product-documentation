@@ -274,10 +274,9 @@ nav:
         - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
     - Edge:
       - Section.io: installation/cdn-node.md
-      - Akamai EdgeWorkers: installation/cdn/akamai-edgeworkers.md
-      - Azion Edge: installation/cdn/azion-edge.md
-      - AWS Lambda: installation/cdn/aws-lambda.md
-      - Cloudflare: installation/cdn/cloudflare.md
+      - Wallarm Güvenlik Kenarı:
+        - Satır İçi: installation/security-edge/deployment.md
+        - Bağlayıcılar: installation/se-connector.md
     - Kubernetes:
       - Ingress:
         - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
