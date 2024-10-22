@@ -21,6 +21,13 @@ If [requirements](#requirements) are met, you can configure LDAP integration in 
 
 ![Configuring LDAP integration](../../../images/admin-guides/configuration-guides/ldap/configuring-ldap.png)
 
-As basic options, set LDAP server URL and port in **LDAP Server**, and base distribution name **Base DN**. Select authentication type and, if SSL/TLS encryption should be used, configure it by pasting the corresponding certificate and private key values.
-
 In LDAP integration, you need to map LDAP groups to [user roles](../../../user-guides/settings/users.md#user-roles) in Wallarm. You need to map at least one LDAP group and may add as many additional as necessary.
+
+As basic options, set: 
+
+* LDAP server URL and port in **LDAP Server**.
+* Base distribution name **Base DN**.
+* **Bind DN** and password: full name of an object in the LDAP hierarchy that is used to bind (connect) to LDAP server. Should be accompanied by the password.
+* **Email attribute name** specifies the name of the field at the LDAP server, where user email should be stored.
+* Authentication type is set to `Simple` and cannot be changed.
+* If SSL/TLS encryption should be used, configure it by pasting the corresponding certificate and private key values.
