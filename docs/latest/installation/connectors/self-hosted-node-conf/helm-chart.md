@@ -16,7 +16,7 @@ helm upgrade --set config.api.token=<VALUE> <WALLARM_RELEASE_NAME> wallarm/walla
 
 ## Basic settings
 
-The Wallarm-specific part of the [default `values.yaml`](https://github.com/wallarm/node-next/blob/main/chart/values.yaml) that you basically might need to change looks like the following:
+The Wallarm-specific part of the default `values.yaml` that you basically might need to change looks like the following:
 
 ```yaml
 config:
@@ -295,7 +295,7 @@ Default: `debug`.
 
 ## Advanced settings
 
-The Wallarm-specific part of the [default `values.yaml`](https://github.com/wallarm/node-next/blob/main/chart/values.yaml) that you additionally might need to change looks like the following:
+The Wallarm-specific part of the default `values.yaml` that you additionally might need to change looks like the following:
 
 ```yaml
 config:
