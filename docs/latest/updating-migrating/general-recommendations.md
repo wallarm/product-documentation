@@ -47,5 +47,4 @@ The Wallarm node update process depends on the platform and installation forms. 
 * [Sidecar](sidecar-proxy.md)
 * [Cloud node image](cloud-image.md)
 * [Multi-tenant node](multi-tenant.md)
-* [CDN node](cdn-node.md)
 * [Migrating allowlists and denylists from Wallarm node 2.18 and lower to 5.0](migrate-ip-lists-to-node-3.md)

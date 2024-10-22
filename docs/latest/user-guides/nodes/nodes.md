@@ -1,6 +1,6 @@
 # Wallarm nodes
 
-The **Nodes** section of the Wallarm Console UI allows you to manage the nodes of the **Wallarm node** and [**CDN node**](cdn-node.md) types. This article is about Wallarm nodes.
+The **Nodes** section of the Wallarm Console UI allows you to manage self-hosted node instances.
 
 Wallarm node modules should be deployed to the customer's environment for Wallarm to mitigate the malicious traffic. Wallarm node operates as a proxy by mitigating malicious requests and forwarding legitimate requests to the protected resource.
 

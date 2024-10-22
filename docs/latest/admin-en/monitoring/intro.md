@@ -31,9 +31,6 @@ You can monitor the state of a filter node using the node-provided metrics. This
 
 In addition to the `collectd` metrics, Wallarm provides you with the metric format compatible with Prometheus and basic JSON metrics. Read about these formats in the [separate article](../configure-statistics-service.md).
 
-!!! warning "Support of the monitoring service on the CDN node"
-    Please note that the `collectd` service is not supported by the [Wallarm CDN nodes](../../installation/cdn-node.md).
-
 ##  Need for Monitoring
 
 Failure or unstable work in the Wallarm module can lead to complete or partial denial of service for user requests to an application protected by a filter node.

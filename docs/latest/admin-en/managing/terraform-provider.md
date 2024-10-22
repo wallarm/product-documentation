@@ -76,8 +76,8 @@ With the Wallarm provider, via Terraform you can manage:
 * [Scanner](../../user-guides/scanner.md) scope
 * [Vulnerabilities](../../user-guides/vulnerabilities.md)
 
-!!! info "Wallarm Terraform provider and CDN nodes"
-    Currently [CDN nodes](../../user-guides/nodes/cdn-node.md) cannot be managed via the Wallarm Terraform provider.
+!!! info "Wallarm Terraform provider and Edge nodes"
+    Currently, Edge [inline](../../installation/security-edge/deployment.md) and [connector](../../installation/se-connector.md) nodes cannot be managed via the Wallarm Terraform provider.
 
 See how to perform the listed operations in the Wallarm provider [documentation](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs).
 
