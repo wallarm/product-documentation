@@ -105,10 +105,6 @@ Note that described configuration is applicable only for [in-line](../installati
 
     For [Security Edge connectors](../installation/se-connector.md), you specify the `wallarm_mode` value in the **Filtration mode** selector during the connector deployment.
 
-=== "CDN node"
-
-    The `wallarm_mode` directive cannot be configured on the [Wallarm CDN nodes](../installation/cdn-node.md). To configure the filtration mode of the CDN nodes, please use other [available methods](#configuration-methods).
-
 ### General filtration rule in Wallarm Console
 
 You can define the general filtration mode for all incoming requests in **Settings** → **General** in the [US](https://us1.my.wallarm.com/settings/general) or [EU](https://my.wallarm.com/settings/general) Cloud.
@@ -134,8 +130,8 @@ Note that to create a filtration mode rule, you can also [call the Wallarm API d
 
 ### Prioritization of methods
 
-!!! warning "Support of the `wallarm_mode_allow_override` directive on the CDN node"
-    Please note that the `wallarm_mode_allow_override` directive cannot be configured on the [Wallarm CDN nodes](../installation/cdn-node.md).
+!!! warning "Support of the `wallarm_mode_allow_override` directive on the Edge node"
+    Please note that the `wallarm_mode_allow_override` directive cannot be customized on the Wallarm Edge [inline](../installation/security-edge/deployment.md) and [connector](../installation/se-connector.md) nodes.
 
 The `wallarm_mode_allow_override` directive manages the ability to apply rules that are defined on Wallarm Console instead of using the `wallarm_mode` directive values from the filtering node configuration file.
 

@@ -91,7 +91,6 @@ The Free Tier accounts allow:
     * [Exposed assets scanner](../user-guides/scanner.md)
     * [Vulnerability assessment](../user-guides/vulnerabilities.md)
     * [API Abuse Prevention](../api-abuse-prevention/overview.md)
-    * [Wallarm-hosted deployment options](../installation/cdn-node.md)
 
 If a Free Tier account exceeds 100% of the monthly quota, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled. These restrictions will be in effect until the first day of the next month.
 

@@ -54,7 +54,6 @@ With the launch of release 5.0, Wallarm introduces an artifact specifically desi
       * [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Sidecar controller](sidecar-proxy.md)
       * [Cloud node image](cloud-image.md)
-      * [CDN node](cdn-node.md)
       * [Multi-tenant node](multi-tenant.md)
 
 ----------

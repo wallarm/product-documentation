@@ -209,10 +209,8 @@ nav:
   - Deployment:
     - Deployment Options: installation/supported-deployment-options.md
     - Edge:
-      - Wallarm Security Edge:
-        - Inline: installation/security-edge/deployment.md
-        - Connectors: installation/se-connector.md
-      - Section.io: installation/cdn-node.md
+      - Inline: installation/security-edge/deployment.md
+      - Connectors: installation/se-connector.md
     - Kubernetes:
       - Ingress:
         - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
@@ -398,9 +396,7 @@ nav:
     - Activity Log: user-guides/settings/audit-log.md
   - Operations:
     # - Autoscaling: ...
-    - Overview:
-      - Wallarm nodes: user-guides/nodes/nodes.md
-      - CDN filtering nodes: user-guides/nodes/cdn-node.md
+    - Wallarm Node Overview: user-guides/nodes/nodes.md
     - Configuration Options for NGINX‑Based Node: admin-en/configure-parameters-en.md
     - Configuration Options for Envoy‑Based Node: admin-en/configuration-guides/envoy/fine-tuning.md
     - Fine‑tuning of Ingress Controller:
@@ -459,7 +455,6 @@ nav:
         # - Upgrading Kong Ingress controller with integrated Wallarm modules: updating-migrating/kong-ingress-controller.md
         - Upgrading Wallarm Sidecar Proxy: updating-migrating/sidecar-proxy.md
         - Upgrading the Cloud Node Image: updating-migrating/cloud-image.md
-        - Upgrading Wallarm CDN Node: updating-migrating/cdn-node.md
         - Upgrading the Multi‑Tenant Node: updating-migrating/multi-tenant.md
       - Upgrading EOL Wallarm nodes (3.6 and lower):
         - What is new in Wallarm node (if upgrading an EOL node): updating-migrating/older-versions/what-is-new.md

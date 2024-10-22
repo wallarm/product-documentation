@@ -148,12 +148,6 @@ Wallarm node finds the JWT anywhere in the request, [decodes](../../user-guides/
 
 [See the full list of supported installation options →](../../installation/supported-deployment-options.md)
 
-## New method for the serverless Wallarm node deployment
-
-The new deployment method lets you configure the Wallarm CDN node outside your infrastructure in 15 minutes. You need to just point to the domain to be protected and add the Wallarm CNAME record to the domain's DNS records.
-
-[Instructions on the CDN node deployment](../../installation/cdn-node.md)
-
 ## System requirements for the filtering node installation
 
 * Wallarm node instances now require access to the IP addresses below for downloading updates to attack detection rules and [API specifications](../../api-specification-enforcement/overview.md), as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted](../../user-guides/ip-lists/overview.md) countries, regions, or data centers.
@@ -473,7 +467,6 @@ Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for t
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
       * [Multi-tenant node](multi-tenant.md)
-      * [CDN node](../cdn-node.md)
 3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to the latest.
 
 ----------
