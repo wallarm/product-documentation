@@ -5,7 +5,6 @@
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
-[self-hosted-connector-node-helm-conf]: ../connectors/self-hosted-node-conf/helm-chart.md
 
 # Wallarm Connector for MuleSoft
 
@@ -52,14 +51,7 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
     Choose an artifact for a self-hosted node deployment and follow the attached instructions:
 
     * [All-in-one installer](../native-node/all-in-one.md) for Linux infrastructures on bare metal or VMs
-
-    <div class="do-section"><div class="do-main"><a class="do-card" id="helm-connector" style="color: var(--md-typeset-a-color)">
-                <h3><img class="non-zoomable" src="../../../images/platform-icons/helm.svg" /> Helm chart</h3><p>For infrastructures utilizing Kubernetes.</p>
-            </a></div></div>
-
-    <div class="helm-connector-installation" style="display:none">
-    --8<-- "../include/waf/installation/connectors/self-hosted-node-helm-chart.md"
-    </div>
+    * [Helm chart](../native-node/helm-chart.md) for infrastructures utilizing Kubernetes
 
 ### 2. Obtain and upload the Wallarm policy to Mulesoft Exchange
 
@@ -174,34 +166,3 @@ To uninstall the policy, simply perform the first step of the update process.
 If the solution does not perform as expected, refer to the logs of your API by accessing Mulesoft Anypoint Platform → **Runtime Manager** → your application → **Logs**.
 
 You can also verify whether the policy is applied to the API by navigating to your API in the **API Manager** and reviewing the policies applied on the **Policies** tab. For automated policies, you can use the **See covered APIs** option to view the APIs covered and the reasons for any exclusions.
-
-<link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
-
-<script>
-    var aioDiv = document.querySelector('.aio-connector-installation');
-    var helmDiv = document.querySelector('.helm-connector-installation');
-
-    document.getElementById('aio-connector').addEventListener('click', function() {
-        aioDiv.style.display = 'block';
-        helmDiv.style.display = 'none';
-    });
-
-    document.getElementById('helm-connector').addEventListener('click', function() {
-        aioDiv.style.display = 'none';
-        helmDiv.style.display = 'block';
-    });
-</script>
-
-<style>
-
-.do-card h3 {
-    align-items: center;
-}
-
-.do-card h3 img {
-    height: 40px;
-    margin-bottom: unset;
-    position: initial;
-}
-
-</style>
