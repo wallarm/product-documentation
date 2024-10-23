@@ -4,7 +4,6 @@
 [se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [api-token]:                        ../../user-guides/settings/api-tokens.md
-[self-hosted-connector-node-aio-conf]: ../connectors/self-hosted-node-conf/all-in-one-installer.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
 [self-hosted-connector-node-helm-conf]: ../connectors/self-hosted-node-conf/helm-chart.md
 
@@ -58,18 +57,13 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
 === "Edge node"
     To deploy a Wallarm-hosted node for the connector, follow the [instructions](../se-connector.md).
 === "Self-hosted node"
-    Choose an artifact for a self-hosted node deployment:
+    Choose an artifact for a self-hosted node deployment and follow the attached instructions:
 
-    <div class="do-section"><div class="do-main"><a class="do-card" id="aio-connector" style="color: var(--md-typeset-a-color)">
-                <h3><img class="non-zoomable" src="../../../images/platform-icons/linux.svg" /> All-in-one installer</h3><p>For Linux infrastructures on bare metal or VMs.</p>
-            </a><a class="do-card" id="helm-connector" style="color: var(--md-typeset-a-color)">
+    * [All-in-one installer](../native-node/all-in-one.md) for Linux infrastructures on bare metal or VMs
+
+    <div class="do-section"><div class="do-main"><a class="do-card" id="helm-connector" style="color: var(--md-typeset-a-color)">
                 <h3><img class="non-zoomable" src="../../../images/platform-icons/helm.svg" /> Helm chart</h3><p>For infrastructures utilizing Kubernetes.</p>
             </a></div></div>
-
-
-    <div class="aio-connector-installation" style="display:none">
-    --8<-- "../include/waf/installation/connectors/self-hosted-node-aio.md"
-    </div>
 
     <div class="helm-connector-installation" style="display:none">
     --8<-- "../include/waf/installation/connectors/self-hosted-node-helm-chart.md"
