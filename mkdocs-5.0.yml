@@ -255,7 +255,6 @@ nav:
       - Istio: installation/connectors/istio.md
       - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
       - Self-Hosted Node Configuration:
-        - All-in-one Installer: installation/connectors/self-hosted-node-conf/all-in-one-installer.md
         - Helm Chart: installation/connectors/self-hosted-node-conf/helm-chart.md
     - In-Line:
       - Overview: installation/inline/overview.md
@@ -294,9 +293,7 @@ nav:
         - Deploy: installation/oob/ebpf/deployment.md
         - Helm Chart Values: installation/oob/ebpf/helm-chart-for-wallarm.md
         - Selecting Packets for Mirroring: installation/oob/ebpf/selecting-packets.md
-      - TCP Traffic Mirror Analysis:
-        - Deploy: installation/oob/tcp-traffic-mirror/deployment.md
-        - Configure: installation/oob/tcp-traffic-mirror/configuration.md
+      - TCP Traffic Mirror Analysis: installation/oob/tcp-traffic-mirror/deployment.md
       - Mirroring by NGINX, Envoy and Similar:
         - Overview: installation/oob/web-server-mirroring/overview.md
         - All-in-one installer: installation/oob/web-server-mirroring/linux/all-in-one.md
@@ -320,7 +317,9 @@ nav:
         - Terraform Module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
         - Artifact Versions and Changelog: updating-migrating/node-artifact-versions.md
       - Native Node:
-        - All-in-one installer: installation/native-node/all-in-one.md
+        - All-in-one installer:
+          - Install: installation/native-node/all-in-one.md
+          - Configure: installation/native-node/all-in-one-conf.md
         - Helm chart: installation/native-node/helm-chart.md
         - Artifact Versions and Changelog: updating-migrating/native-node/node-artifact-versions.md
     - Custom Deployment:

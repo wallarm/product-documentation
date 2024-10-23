@@ -31,7 +31,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.5.1 (2024-09-16)
 
-* Added configurable access log output via [`log.access_log` parameters](../../installation/oob/tcp-traffic-mirror/configuration.md#logaccess_log-version-051-and-above)
+* Added configurable access log output via [`log.access_log` parameters](../../installation/native-node/all-in-one-conf.md#logaccess_logenabled)
 
 ### 0.5.0 (2024-09-11)
 
@@ -43,7 +43,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.4.1 (2024-08-27)
 
-* Added support for wildcard matching in the [`route_config.routes.host`](../../installation/oob/tcp-traffic-mirror/configuration.md#host) configuration parameter
+* Added support for wildcard matching in the [`route_config.routes.host`](../../installation/native-node/all-in-one-conf.md#host) configuration parameter
 
 ### 0.4.0 (2024-08-22)
 

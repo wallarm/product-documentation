@@ -80,7 +80,7 @@ goreplay:
       - vxlan
 ```
 
-In the [article](configuration.md), you will find the list of more supported configuration parameters.
+In the [article](../../native-node/all-in-one-conf.md), you will find the list of more supported configuration parameters.
 
 ### Setting the mode (required)
 

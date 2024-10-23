@@ -32,7 +32,7 @@ Run the new installer as shown below. It will stop the currently running Wallarm
 
 You can reuse the previously generated [API token for the `Deploy` role](../../user-guides/settings/api-tokens.md) and the node group name.
 
-For the configuration file, you can reuse the one used during the initial installation. The structure has not changed. Only add new parameters or modify existing ones if necessary as per the instructions for [TCP traffic analysis](../../installation/oob/tcp-traffic-mirror/configuration.md) or the [native node for connectors](../../installation/connectors/self-hosted-node-conf/all-in-one-installer.md).
+For the configuration file, you can reuse the one used during the initial installation. The structure has not changed. Only add new parameters or modify existing ones if necessary - see the [supported configuration options](../../installation/native-node/all-in-one-conf.md).
 
 * For a self-hosted native node deployed with [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), or [Cloudflare](../../installation/connectors/cloudflare.md) connector:
 
