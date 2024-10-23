@@ -255,11 +255,11 @@ Defines specific routes. Routes can be configured with NGINX-like prefixes:
 
 ```yaml
 - route: [ = | ~ | ~* | ^~ |   ]/location
-           |   |   |    |    ^ prefix (lower priority than regexes)
-           |   |   |    ^ prefix (higher priority than regexes)
-           |   |   ^re case insensitive
-           |   ^re case sensitive
-           ^exact match
+        #  |   |   |    |    ^ prefix (lower priority than regexes)
+        #  |   |   |    ^ prefix (higher priority than regexes)
+        #  |   |   ^re case insensitive
+        #  |   ^re case sensitive
+        #  ^exact match
 ```
 
 For example, to match only the exact route:

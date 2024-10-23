@@ -287,7 +287,7 @@ The following artifacts are available for deploying the NGINX node:
 * [All-in-one installer](native-node/all-in-one.md)
 * [Helm chart](native-node/helm-chart.md)
 
-Find your **use case below** and deploy the NGINX node in the appropriate form-factor.
+Find your **use case below** and deploy the native node in the appropriate form-factor.
 
 ### Connectors
 
