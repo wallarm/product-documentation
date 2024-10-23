@@ -88,6 +88,7 @@ The Free Tier accounts allow:
 * Process up to **500 thousand requests per month** with no limitation in time.
 * Access to the Wallarm platform as [Advanced API Security](#waap-and-advanced-api-security), except for the following:
 
+    * Security Edge [Inline](../installation/security-edge/deployment.md) and [Connectors](../installation/se-connector.md)
     * [Exposed assets scanner](../user-guides/scanner.md)
     * [Vulnerability assessment](../user-guides/vulnerabilities.md)
     * [API Abuse Prevention](../api-abuse-prevention/overview.md)
