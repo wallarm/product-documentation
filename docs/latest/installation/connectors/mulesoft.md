@@ -58,6 +58,8 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
 To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these steps:
 
 1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download a code bundle for your platform.
+
+    If running a self-hosted node, contact sales@wallarm.com to get the code bundle.
 1. Extract the policy archive.
 1. Within the `pom.xml` file → `groupId` parameter at the top of the file, specify your Mulesoft Business Group ID.
 

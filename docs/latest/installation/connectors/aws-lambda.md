@@ -68,6 +68,8 @@ To connect your CloudFront CDN with the Wallarm node, you need to deploy the Wal
 There are two Python-based functions: one for request forwarding and analysis, and another for response forwarding and analysis.
 
 1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download a code bundle for your platform.
+
+    If running a self-hosted node, contact sales@wallarm.com to get the code bundle.
 1. Proceed to your AWS Console → **Services** → **Lambda** → **Functions**.
 1. Select the `us-east-1` (N. Virginia) region which is [required for Lambda@Edge functions](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-how-it-works-tutorial.html#lambda-edge-how-it-works-tutorial-create-function).
 1. **Create function** with the following settings:

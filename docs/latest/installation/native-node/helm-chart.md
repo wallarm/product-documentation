@@ -79,7 +79,7 @@ The Kubernetes cluster for deploying the native node with the Helm chart must me
     1. Register a domain and point it to the load balancer's external IP by creating an A record in your DNS provider.
 
         After the DNS propagates, you can access the service via the domain name (this may take some time).
-    1. Obtain a **trusted** SSL/TLS certificate for the domain. Self-signed certificates are not allowed.
+    1. Obtain a **trusted** SSL/TLS certificate for the domain. Self-signed certificates are not supported yet.
 
         There are the following ways to issue and apply the certificate:
 
