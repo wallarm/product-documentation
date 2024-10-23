@@ -1,18 +1,15 @@
-[us-cloud-docs]:                      ../../../about-wallarm/overview.md#cloud
-[eu-cloud-docs]:                      ../../../about-wallarm/overview.md#cloud
+[us-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
+[eu-cloud-docs]:                      ../../about-wallarm/overview.md#cloud
 
-# Helm Chart Configuration for Wallarm Connectors
+# Configuring Native Node with the Helm Chart
 
-When deploying a self-hosted Wallarm node for connectors using a Helm chart, configuration is specified in the `values.yaml` file or through the CLI. This document outlines the available configuration parameters.
+When deploying the self-hosted [Wallarm native node](../nginx-native-node-internals.md#native-node) using the Helm chart, configuration is specified in the `values.yaml` file or through the CLI. This document outlines the available configuration parameters.
 
 To modify settings after deployment, use the following command with the parameters you wish to change:
 
 ```
 helm upgrade --set config.api.token=<VALUE> <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node
 ```
-
-!!! info "Supported platforms"
-    This document covers configurations for self-hosted nodes deployed for Mulesoft, Cloudflare, or Amazon CloudFront connectors. For other connectors, please refer to the relevant installation instructions.
 
 ## Basic settings
 
@@ -68,7 +65,7 @@ processing:
 
 ### config.api.token (required)
 
-An [API token](../../../user-guides/settings/api-tokens.md) for connecting the node to the Wallarm Cloud.
+An [API token](../../user-guides/settings/api-tokens.md) for connecting the node to the Wallarm Cloud.
 
 To generate an API token:
 
@@ -199,23 +196,23 @@ config:
 
 ### config.connector.mode
 
-Traffic [filtration mode](../../../admin-en/configure-wallarm-mode.md): `block`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
+Traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
 
 Default: `monitoring`.
 
 The mode can be [overridden for specific routes](#wallarm_mode).
 
-### route_config
+### config.connector.route_config
 
 Configuration section where you specify settings for specific routes.
 
-### route_config.wallarm_application
+### config.connector.route_config.wallarm_application
 
-[Wallarm application ID](../../../user-guides/settings/applications.md). This value can be overridden for specific routes.
+[Wallarm application ID](../../user-guides/settings/applications.md). This value can be overridden for specific routes.
 
 Default: `-1`.
 
-### route_config.routes
+### config.connector.route_config.routes
 
 Sets route-specific Wallarm configuration. Includes Wallarm mode and application IDs. Example configuration:
 
@@ -279,11 +276,11 @@ To match routes with a regular expression:
 
 #### wallarm_application
 
-Sets the [Wallarm application ID](../../../user-guides/settings/applications.md). Overrides the `route_config.wallarm_application` for specific endpoints.
+Sets the [Wallarm application ID](../../user-guides/settings/applications.md). Overrides the `route_config.wallarm_application` for specific endpoints.
 
 #### wallarm_mode
 
-Traffic [filtration mode](../../../admin-en/configure-wallarm-mode.md): `block`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
+Traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
 
 Default: `monitoring`.
 
@@ -292,6 +289,25 @@ Default: `monitoring`.
 Log level, can be `debug`, `info`, `warn`, `error`, `fatal`.
 
 Default: `debug`.
+
+### processing.service.type
+
+Wallarm service type. Can be:
+
+* `LoadBalancer` for running the service as a load balancer with a public IP for easy traffic routing.
+
+    This is suitable for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md) or [Amazon CloudFront](../connectors/aws-lambda.md) connectors.
+* `ClusterIP` for internal traffic, without exposing a public IP.
+
+    This is suitable for [Kong API Gateway](../connectors/kong-api-gateway.md) or [Istio](../connectors/istio.md) connectors.
+
+Default: `ClusterIP`.
+
+### processing.service.port
+
+Wallarm service port.
+
+Default: `5000`.
 
 ## Advanced settings
 
@@ -319,7 +335,7 @@ Default: `auto`, which means the number of workers is set to the number of CPU c
 
 ### config.connector.http_inspector.api_firewall_enabled
 
-Controls whether [API Specification Enforcement](../../../api-specification-enforcement/overview.md) is enabled. Please note that activating this feature does not substitute for the required subscription and configuration through the Wallarm Console UI.
+Controls whether [API Specification Enforcement](../../api-specification-enforcement/overview.md) is enabled. Please note that activating this feature does not substitute for the required subscription and configuration through the Wallarm Console UI.
 
 Default: `true`.
 
@@ -331,7 +347,7 @@ Default: `/opt/wallarm/etc/wallarm`.
 
 ### processing.metrics.enabled
 
-Controls whether [Prometheus metrics](../../../admin-en/configure-statistics-service.md#working-with-the-statistics-service) are enabled. This parameter must be set to `true` as the Wallarm node does not function properly without it.
+Controls whether [Prometheus metrics](../../admin-en/configure-statistics-service.md#working-with-the-statistics-service) are enabled. This parameter must be set to `true` as the Wallarm node does not function properly without it.
 
 Default: `true`.
 

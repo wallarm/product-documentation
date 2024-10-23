@@ -254,8 +254,6 @@ nav:
       - Kong API Gateway: installation/connectors/kong-api-gateway.md
       - Istio: installation/connectors/istio.md
       - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
-      - Self-Hosted Node Configuration:
-        - Helm Chart: installation/connectors/self-hosted-node-conf/helm-chart.md
     - In-Line:
       - Overview: installation/inline/overview.md
       - Compute Instances:
@@ -320,7 +318,9 @@ nav:
         - All-in-one installer:
           - Install: installation/native-node/all-in-one.md
           - Configure: installation/native-node/all-in-one-conf.md
-        - Helm chart: installation/native-node/helm-chart.md
+        - Helm chart:
+          - Deploy: installation/native-node/helm-chart.md
+          - Configure: installation/native-node/helm-chart-conf.md
         - Artifact Versions and Changelog: updating-migrating/native-node/node-artifact-versions.md
     - Custom Deployment:
       - On-Premise: installation/on-premise.md
