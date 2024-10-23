@@ -117,17 +117,17 @@ You can quickly create a new [custom rule](../user-guides/rules/rules.md) from a
 
 ![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
-## Downloading OpenAPI specification (OAS) of your API inventory
+## Exporting API inventory data
 
-The API Discovery UI provides you with an option to download the [OpenAPI v3](https://spec.openapis.org/oas/v3.0.0) specification of either an individual API endpoint or an entire API discovered by Wallarm.
+The API Discovery UI provides you with an option to export the current filtered list of endpoints as the [OpenAPI v3](https://spec.openapis.org/oas/v3.0.0) specification or CSV file.
 
-* The **Download OAS** button on the API inventory page returns `swagger.json` for the entire inventory or only the filtered data if any filters were applied before downloading.
+To export, in Wallarm Console → **API Discovery**, use the **OAS/CSV** option. Consider the following:
 
-    With the downloaded data, you can test endpoints on your side, for example, upload them to the Postman.
+* For **OAS**, Wallarm returns the `swagger.json` with filtered endpoints. You can also use the **Download OAS** button in an individual endpoint menu
 
-    !!! warning "API host information in downloaded Swagger file"
-        If a discovered API inventory contains several API hosts, endpoints from all API hosts will be included in the downloaded Swagger file. Currently, the API host information is not included in the file.
+    By utilizing the downloaded specification with other applications like Postman, you can conduct endpoints' vulnerability and other tests. In addition, it allows for a closer examination of the endpoints' capabilities to uncover the processing of sensitive data and the presence of undocumented parameters.
 
-* The **Download OAS** button in an individual endpoint menu returns `swagger.json` for the selected endpoint.
+* For **CSV**, Wallarm returns filtered endpoints data in a simple text comma-separated format, making it easy to export it into other programs.
 
-    By utilizing the downloaded specification with other applications like Postman, you can conduct endpoint vulnerability and other tests. In addition, it allows for a closer examination of the endpoint's capabilities to uncover the processing of sensitive data and the presence of undocumented parameters.
+!!! warning "API host information in downloaded Swagger file"
+    If a discovered API inventory contains several API hosts, endpoints from all API hosts will be included in the downloaded file. Currently, the API host information is not included in the file.
