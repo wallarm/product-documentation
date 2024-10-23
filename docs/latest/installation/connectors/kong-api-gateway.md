@@ -1,4 +1,4 @@
-[self-hosted-connector-node-helm-conf]: self-hosted-node-conf/helm-chart.md
+[self-hosted-connector-node-helm-conf]: ../native-node/helm-chart-conf.md
 
 # Wallarm Connector for Kong Ingress Controller
 

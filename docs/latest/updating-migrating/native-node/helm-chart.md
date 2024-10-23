@@ -36,7 +36,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-node-native --version
 
 * `<RELEASE_NAME>`: the name of the existing Helm release
 * `<NAMESPACE>`: the namespace with the Helm release
-* `<PATH_TO_VALUES>`: the path to the [`values.yaml` file](../../installation/connectors/self-hosted-node-conf/helm-chart.md) defining the deployed solution configuration, you can use the one created for running the previous version
+* `<PATH_TO_VALUES>`: the path to the [`values.yaml` file](../../installation/native-node/helm-chart-conf.md) defining the deployed solution configuration, you can use the one created for running the previous version
 
 ## 3. Verify the upgrade
 
