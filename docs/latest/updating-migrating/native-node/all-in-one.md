@@ -39,36 +39,36 @@ For the configuration file, you can reuse the one used during the initial instal
     === "x86_64 version"
         ```bash
         # US Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com --preserve false
 
         # EU Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
         ```
     === "ARM64 version"
         ```bash
         # US Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com --preserve false
 
         # EU Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
         ```
 * For a self-hosted native node deployed for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md):
 
     === "x86_64 version"
         ```bash
         # US Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com --preserve false
 
         # EU Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
         ```
     === "ARM64 version"
         ```bash
         # US Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com --preserve false
 
         # EU Cloud
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.7.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
         ```
 
 Your current `/opt/wallarm/etc/wallarm/go-node.yaml`, `/opt/wallarm/etc/wallarm/node.yaml` and log files will be backed up to the directory `/opt/wallarm/aio-backups/<timestamp>`.
