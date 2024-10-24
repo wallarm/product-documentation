@@ -63,8 +63,6 @@ helm repo update wallarm
 
 ### 3. Prepare the configurarion file
 
-Create the `values.yaml` with a minimal configuration.
-
 === "LoadBalancer"
     Deploying the native Wallarm node as a LoadBalancer with a public IP allows you to route traffic from MuleSoft, Cloudflare, and Amazon CloudFront to this IP for security analysis and filtration.
 
@@ -78,6 +76,7 @@ Create the `values.yaml` with a minimal configuration.
             ```yaml
             config:
               connector:
+                mode: monitoring
                 certificate:
                   enabled: true
                   certManager:
@@ -97,6 +96,7 @@ Create the `values.yaml` with a minimal configuration.
             ```yaml
             config:
               connector:
+                mode: monitoring
                 certificate:
                   enabled: true
                   existingSecret:
@@ -113,6 +113,7 @@ Create the `values.yaml` with a minimal configuration.
             ```yaml
             config:
               connector:
+                mode: monitoring
                 certificate:
                   enabled: true
                   customSecret:
@@ -127,7 +128,16 @@ Create the `values.yaml` with a minimal configuration.
 === "ClusterIP"
     When deploying Wallarm as a connector for Kong API Gateway or Istio you deploy the native node for this connector with the ClusterIP type for internal traffic, without exposing a public IP.
 
-    In this case, no custom `values.yaml` is required, as the default settings provide the minimal configuration for deployment.
+    Create the `values.yaml` configuration file with the following minimal configuration:
+
+    ```yaml
+    config:
+      connector:
+        mode: monitoring
+    processing:
+      service:
+        type: ClusterIP
+    ```
 
 [All configuration parameters](helm-chart-conf.md)
 
