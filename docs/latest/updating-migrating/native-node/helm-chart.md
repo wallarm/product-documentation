@@ -7,18 +7,23 @@
 
 These instructions describe the steps to upgrade the [native node deployed using Helm chart](../../installation/native-node/helm-chart.md).
 
+[View Helm chart releases](node-artifact-versions.md)
+
 ## Requirements
 
 The Kubernetes cluster for deploying the native node with the Helm chart must meet the following criteria:
 
-* [Helm v3](https://helm.sh/) package manager installed
+* [Helm v3](https://helm.sh/) package manager installed.
+* Inbound access from your API gateway or CDN where your APIs are running.
 * Outbound access to:
 
-    * `https://meganode.wallarm.com` to download the Wallarm installer
+    * `https://charts.wallarm.com` to download the Wallarm Helm chart
+    * `https://hub.docker.com/r/wallarm` to download the Docker images required for the deployment
     * `https://us1.api.wallarm.com` or `https://api.wallarm.com` for US/EU Wallarm Cloud
     * IP addresses below for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
+* In addition to the above, you should have the **Administrator** role assigned in Wallarm Console.
 
 ## 1. Update the Wallarm Helm chart repository
 
@@ -26,7 +31,7 @@ The Kubernetes cluster for deploying the native node with the Helm chart must me
 helm repo update wallarm
 ```
 
-## 2. Upgrade the native node Kubernetes service
+## 2. Upgrade the Wallarm Kubernetes service
 
 Upgrade the deployed Kubernetes service or Load Balancer:
 
@@ -39,8 +44,6 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-node-native --version
 * `<PATH_TO_VALUES>`: the path to the [`values.yaml` file](../../installation/native-node/helm-chart-conf.md) defining the deployed solution configuration, you can use the one created for running the previous version
 
 ## 3. Verify the upgrade
-
-To test the functionality of the deployed connector, follow these steps:
 
 1. Verify that the Wallarm pods are up and running:
 
@@ -55,7 +58,7 @@ To test the functionality of the deployed connector, follow these steps:
     next-aggregation-5fb5d5444b-6c8n8   3/3     Running   0          51m
     next-processing-7c487bbdc6-4j6mz    3/3     Running   0          51m
     ```
-1. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to your gateway:
+1. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to your API gateway:
 
     ```
     curl https://<GATEWAY_IP>/etc/passwd

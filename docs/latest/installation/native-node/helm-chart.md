@@ -24,8 +24,8 @@ Deploy the native node with Helm chart in the following cases:
 
 The Kubernetes cluster for deploying the native node with the Helm chart must meet the following criteria:
 
-* [Helm v3](https://helm.sh/) package manager installed
-* Inbound access from your API gateway or CDN where your APIs are running
+* [Helm v3](https://helm.sh/) package manager installed.
+* Inbound access from your API gateway or CDN where your APIs are running.
 * Outbound access to:
 
     * `https://charts.wallarm.com` to download the Wallarm Helm chart
@@ -43,7 +43,9 @@ The Kubernetes cluster for deploying the native node with the Helm chart must me
 * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
 * [Multitenancy](../multi-tenant/overview.md) is not supported yet.
 
-## 1. Deploy a node
+## Deployment
+
+### 1. Deploy a node
 
 === "LoadBalancer"
     Deploying the native Wallarm node as a LoadBalancer with a public IP allows you to route traffic from MuleSoft, Cloudflare, and Amazon CloudFront to this IP for security analysis and filtration.
@@ -150,7 +152,7 @@ The Kubernetes cluster for deploying the native node with the Helm chart must me
     1. Open Wallarm Console → **Settings** → **API tokens** and create [API token][api-token] with the `Deploy` role.
 
         You will need this to connect the cluster with the node to the Wallarm Cloud. 
-    1. Add the [Wallarm chart repository](https://charts.wallarm.com/):
+    1. Add the [Wallarm chart repository](https://charts.wallarm.com/) to the cluster:
         
         ```
         helm repo add wallarm https://charts.wallarm.com
@@ -169,7 +171,7 @@ The Kubernetes cluster for deploying the native node with the Helm chart must me
 
         [All configuration parameters](helm-chart-conf.md)
 
-## 2. Apply Wallarm code to an API management service
+### 2. Apply Wallarm code to an API management service
 
 After deploying the node, the next step is to apply the Wallarm code to your API management platform or service in order to route traffic to the deployed node.
 
@@ -182,4 +184,6 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [Kong API Gateway](../connectors/kong-api-gateway.md#2-obtain-and-deploy-the-wallarm-lua-plugin)
     * [Istio](../connectors/istio.md#2-configure-envoy-to-mirror-traffic-to-the-wallarm-node)
 
-<!-- TBD: upgrade instructions -->
+## Upgrade
+
+To upgrade the node, follow the [instructions](../../updating-migrating/native-node/helm-chart.md).
