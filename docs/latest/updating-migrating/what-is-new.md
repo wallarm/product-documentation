@@ -22,7 +22,7 @@ The following changes have been introduced in the file system of the Wallarm dep
 
 ## Customizing sensitive data detection in API Discovery (node 5.0.3 and higher)
 
-API Discovery detects and highlights sensitive data consumed and carried by your APIs. Starting from version 5.0.3, you can [fine-tune](../api-discovery/setup.md#customizing-sensitive-data-detection) the existing detection process and add your own sensitive data patterns.
+API Discovery detects and highlights sensitive data consumed and carried by your APIs. Starting from version 5.0.3, you can [fine-tune](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection#customizing-sensitive-data-detection) the existing detection process and add your own sensitive data patterns.
 
 Patterns are used to define which sensitive data is detected and how. To modify default patterns and add your own, in Wallarm Console go to **API Discovery** → **Configure API Discovery** → **Sensitive data**.
 

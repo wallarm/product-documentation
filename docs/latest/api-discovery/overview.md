@@ -80,7 +80,7 @@ Also, the API Discovery performs filtering of requests relying on the other crit
 
 ### Sensitive data detection
 
-API Discovery detects and highlights sensitive data consumed and carried by your APIs:
+API Discovery [detects and highlights](sensitive-data.md) sensitive data consumed and carried by your APIs:
 
 * Technical data like IP and MAC addresses
 * Login credentials like secret keys and passwords
@@ -88,7 +88,7 @@ API Discovery detects and highlights sensitive data consumed and carried by your
 * Medical data like medical license number
 * Personally identifiable information (PII) like full name, passport number or SSN
 
-API Discovery provides the ability to [configure](setup.md#customizing-sensitive-data-detection) the detection process and add your own sensitive data patterns (requires node version 5.0.3 or higher).
+API Discovery provides the ability to configure the detection process and add your own sensitive data patterns (requires node version 5.0.3 or higher).
 
 ### Security of data uploaded to the Wallarm Cloud
 
