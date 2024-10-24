@@ -14,6 +14,15 @@ To provide seamless integration with your company's existing user management sys
 
 * LDAP configuration is not available until activated, for activation, contact the [Wallarm support team](mailto:support@wallarm.com).
 * You can only use authentication via either LDAP or SSO but not both of them. To configure LDAP, first remove SSO, if you have it.
+* In your LDAP, the users must have the following attributes: 
+
+    * `displayName`
+    * `mail` or `email` (can be customized)
+
+* The groups must: 
+
+    * Be `groupOfNames` or `groupOfUniqueNames` 
+    * Have the `member` attribute
 
 ## Setup
 
@@ -22,6 +31,11 @@ If [requirements](#requirements) are met, you can configure LDAP integration in 
 ![Configuring LDAP integration](../../../images/admin-guides/configuration-guides/ldap/configuring-ldap.png)
 
 In LDAP integration, you need to map LDAP groups to [user roles](../../../user-guides/settings/users.md#user-roles) in Wallarm. You need to map at least one LDAP group and may add as many additional as necessary.
+
+!!! info "LDAP group DN"
+    For **LDAP group name**, use group DN, for example: 
+    
+    `cn=wallarm_partner_admin,ou=groups,dc=users,dc=example,dc=com`
 
 As basic options, set: 
 
