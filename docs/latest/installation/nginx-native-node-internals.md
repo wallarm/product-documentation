@@ -282,7 +282,7 @@ The NGINX node is suitable for the [out-of-band traffic](oob/overview.md) analys
 
 The native node does not rely on NGINX. It was developed for environments where NGINX is not required or where a more lightweight and platform-agnostic solution is preferred.
 
-The following artifacts are available for deploying the NGINX node:
+The following artifacts are available for deploying the native node:
 
 * [All-in-one installer](native-node/all-in-one.md)
 * [Helm chart](native-node/helm-chart.md)
