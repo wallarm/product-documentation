@@ -134,7 +134,7 @@ To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these step
                 xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
         <servers>
             <server>
-                <id>exchange-server</id>
+                <id>anypoint-exchange-v3</id>
                 <username>myusername</username>
                 <password>mypassword</password>
             </server>
@@ -161,7 +161,7 @@ To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these step
 1. Deploy the policy to Mulesoft using the following command:
 
     ```
-    mvn clean deploy
+    mvn clean deploy -s conf/settings.xml
     ```
 
 Your custom policy is now available in your Mulesoft Anypoint Platform Exchange.
