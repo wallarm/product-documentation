@@ -352,7 +352,7 @@ Default: `-1`.
 
 ### route_config.wallarm_mode
 
-General traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
+General traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `safe_blocking`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
 
 The mode can be [overridden for specific routes](#wallarm_mode).
 
@@ -429,7 +429,7 @@ Sets the [Wallarm application ID](../../user-guides/settings/applications.md). O
 
 #### wallarm_mode
 
-Host-specific traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
+Host-specific traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `safe_blocking`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
 
 Default: `monitoring`.
 
