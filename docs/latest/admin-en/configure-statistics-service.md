@@ -81,7 +81,7 @@ To change an IP address and/or port of the statistics service, follow the instru
 
     * A new service address in the `listen` directive.
     * If required, change the `allow` directive to allow access from addresses other than loopback addresses (the default configuration file allows access only to loopback addresses).
-1. Add the `status_endpoint` parameter with the new address value to the `node.yaml` file (`/opt/wallarm/etc/wallarm/node.yaml` for Docker NGINX-based image, cloud images and all-in-one installer - use search to locate files in other installations), e.g.:
+1. Add the `status_endpoint` parameter with the new address value to the `node.yaml` file (`/opt/wallarm/etc/wallarm/node.yaml` for Docker NGINX-based image, cloud images, NGINX node all-in-one installer and native node - use search to locate files in other installations), e.g.:
 
     ```bash
     hostname: example-node-name
@@ -105,7 +105,7 @@ To change an IP address and/or port of the statistics service, follow the instru
         # For all-in-one installer:
         /opt/wallarm/etc/wallarm-collectd.d/nginx-wallarm.conf
         ```
-    === "AMI, GCP image, or Docker NGINX-based image"
+    === "AMI, GCP image, or Docker image"
         ```bash
         /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
         ```

@@ -101,9 +101,12 @@ Note that described configuration is applicable only for [in-line](../installati
 
     See details on specifying the filtration mode for Sidecar [here](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md).
 
-=== "Connectors"
+=== "Edge Connectors"
 
     For [Security Edge connectors](../installation/se-connector.md), you specify the `wallarm_mode` value in the **Filtration mode** selector during the connector deployment.
+=== "Native node"
+    * For native node all-in-one installer, use the [`route_config.wallarm_mode`](../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parameter.
+    * For native node Helm chart, use the [`config.connector.mode`](../installation/native-node/helm-chart-conf.md#configconnectormode) parameter.
 
 ### General filtration rule in Wallarm Console
 

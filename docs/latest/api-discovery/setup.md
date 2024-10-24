@@ -4,25 +4,10 @@ This article describes how to enable, configure and debug the [API Discovery](ov
 
 ## Enable
 
-API Discovery is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node installation, except for the Debian 11.x and Ubuntu 22.04 individual packages. During node deployment, it installs the API Discovery module but keeps it disabled by default.
+API Discovery is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node installation. During node deployment, it installs the API Discovery module but keeps it disabled by default.
 
 To enable and run API Discovery correctly:
 
-1. If you install node from the individual packages, make sure your Wallarm node is of the [supported version](../updating-migrating/versioning-policy.md#version-list).
-
-    To ensure that you always have access to the full range of the API Discovery features, it is recommended to check for updates to the `wallarm-appstructure` package on a regular basis as follows:
-
-
-    === "Debian Linux"
-        ```bash
-        sudo apt update
-        sudo apt install wallarm-appstructure
-        ```
-    === "RedHat Linux"
-        ```bash
-        sudo yum update
-        sudo yum install wallarm-appstructure
-        ```
 1. Make sure your [subscription plan](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) includes **API Discovery**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 1. In Wallarm Console → **API Discovery** → **Configure API Discovery**, enable traffic analysis with API Discovery.
 
@@ -62,17 +47,7 @@ To view the current configuration and perform changes, in Wallarm Console, go to
 
 To get and analyze the API Discovery logs, you can use the following methods:
 
-* If the Wallarm node is installed from individual DEM/RPM packages: run the standard utility **journalctl** or **systemctl** inside the instance.
-
-    === "journalctl"
-        ```bash
-        journalctl -u wallarm-appstructure
-        ```
-    === "systemctl"
-        ```bash
-        systemctl status wallarm-appstructure
-        ```
-* If the Wallarm node is deployed from the Docker container, Amazon Machine Image (AMI) or Google Cloud Machine Image: read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` inside the container.
+* Read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` on the machine where the node is running.
 * If the Wallarm node is deployed as the Kubernetes Ingress controller: check the status of the pod running the Tarantool and `wallarm-appstructure` containers. The pod status must be **Running**.
 
     ```bash
