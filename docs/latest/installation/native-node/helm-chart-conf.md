@@ -8,7 +8,7 @@ When deploying the self-hosted [Wallarm native node](../nginx-native-node-intern
 To modify settings after deployment, use the following command with the parameters you wish to change:
 
 ```
-helm upgrade --set config.api.token=<VALUE> <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node
+helm upgrade --set config.api.token=<VALUE> <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node
 ```
 
 ## Basic settings

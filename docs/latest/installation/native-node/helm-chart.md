@@ -105,7 +105,7 @@ The Kubernetes cluster for deploying the native node with the Helm chart must me
             Or with `helm upgrade`:
 
             ```
-            helm upgrade <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --set config.connector.certificate.enabled=true --set config.connector.certificate.certManager.enabled=true --set config.connector.certificate.certManager.issuerRef.name=letsencrypt-prod --set config.connector.certificate.certManager.issuerRef.kind=ClusterIssuer
+            helm upgrade <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --set config.connector.certificate.enabled=true --set config.connector.certificate.certManager.enabled=true --set config.connector.certificate.certManager.issuerRef.name=letsencrypt-prod --set config.connector.certificate.certManager.issuerRef.kind=ClusterIssuer
             ```
         === "existingSecret"
             You can pull SSL/TLS certificate from an existing Kubernetes secrets in the same namespace.
@@ -124,7 +124,7 @@ The Kubernetes cluster for deploying the native node with the Helm chart must me
             Or with `helm upgrade`:
 
             ```
-            helm upgrade <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --set config.connector.certificate.enabled=true --set config.connector.certificate.existingSecret.enabled=true --set config.connector.certificate.existingSecret.name=my-secret-name
+            helm upgrade <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --set config.connector.certificate.enabled=true --set config.connector.certificate.existingSecret.enabled=true --set config.connector.certificate.existingSecret.name=my-secret-name
             ```
         === "customSecret"
             The `customSecret` configuration allows you to define a certificate directly as base64-encoded values.
@@ -144,7 +144,7 @@ The Kubernetes cluster for deploying the native node with the Helm chart must me
             Or with `helm upgrade`:
 
             ```
-            helm upgrade <WALLARM_RELEASE_NAME> wallarm/wallarm-node-next -n wallarm-node --set config.connector.certificate.enabled=true --set config.connector.certificate.customSecret.enabled=true --set config.connector.certificate.customSecret.ca=<BASE64_CA> --set config.connector.certificate.customSecret.crt=<BASE64_CERTIFICATE> --set config.connector.certificate.customSecret.key=<BASE64_PRIVATE_KEY>
+            helm upgrade <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --set config.connector.certificate.enabled=true --set config.connector.certificate.customSecret.enabled=true --set config.connector.certificate.customSecret.ca=<BASE64_CA> --set config.connector.certificate.customSecret.crt=<BASE64_CERTIFICATE> --set config.connector.certificate.customSecret.key=<BASE64_PRIVATE_KEY>
             ```
 === "ClusterIP"
     When deploying Wallarm as a connector for Kong API Gateway or Istio you deploy the native node for this connector with the ClusterIP type for internal traffic, without exposing a public IP.
