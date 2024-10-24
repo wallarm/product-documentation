@@ -2,6 +2,9 @@
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:             ../../admin-en/configure-wallarm-mode.md
 [se-connector-setup-img]:           ../../images/waf-installation/se-connector-setup.png
+[ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
+[api-token]:                        ../../user-guides/settings/api-tokens.md
+[api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
 
 # Wallarm Connector for MuleSoft
 
@@ -45,79 +48,18 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
 === "Edge node"
     To deploy a Wallarm-hosted node for the connector, follow the [instructions](../se-connector.md).
 === "Self-hosted node"
-    The current self-hosted node deployment has limitations. Full response analysis is not yet supported, which is why:
+    Choose an artifact for a self-hosted node deployment and follow the attached instructions:
 
-    * In some environments, [Wallarm API Discovery](../../api-discovery/overview.md) may generate additional endpoints. Consult [Wallarm support](mailto:support@wallarm.com) for configuration options.
-    * Server responses are required for [passive vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection).
-    * [Protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md).
-
-    To deploy a self-hosted node for the connector:
-
-    1. Allocate an instance for deploying the node.
-    1. Choose one of the supported Wallarm node deployment solutions or artifacts for the [in-line deployment](../supported-deployment-options.md#in-line) and follow the provided deployment instructions.
-    1. Configure the deployed node using the following template:
-
-        ```
-        server {
-            listen 80;
-
-            server_name _;
-
-            access_log off;
-            wallarm_mode off;
-
-            location / {
-                proxy_set_header Host $http_x_forwarded_host;
-                proxy_pass http://unix:/tmp/wallarm-nginx.sock;
-            }
-        }
-
-        server {
-            listen 443 ssl;
-
-            server_name yourdomain-for-wallarm-node.tld;
-
-            ### SSL configuration here
-
-            access_log off;
-            wallarm_mode off;
-
-            location / {
-                proxy_set_header Host $http_x_forwarded_host;
-                proxy_pass http://unix:/tmp/wallarm-nginx.sock;
-            }
-        }
-
-
-        server {
-            listen unix:/tmp/wallarm-nginx.sock;
-            
-            server_name _;
-            
-            wallarm_mode monitoring;
-            #wallarm_mode block;
-
-            real_ip_header X-REAL-IP;
-            set_real_ip_from unix:;
-
-            location / {
-                echo_read_request_body;
-            }
-        }
-        ```
-
-        Please ensure to pay attention to the following configurations:
-
-        * TLS/SSL certificates for HTTPS traffic: To enable the Wallarm node to handle secure HTTPS traffic, configure the TLS/SSL certificates accordingly. The specific configuration will depend on the chosen deployment method. For example, if you are using NGINX, you can refer to [its article](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) for guidance.
-        * [Wallarm operation mode](../../admin-en/configure-wallarm-mode.md) configuration.
-
-    1. Once the deployment is complete, make a note of the node instance IP as you will need it later to set the address for incoming request forwarding.
+    * [All-in-one installer](../native-node/all-in-one.md) for Linux infrastructures on bare metal or VMs
+    * [Helm chart](../native-node/helm-chart.md) for infrastructures utilizing Kubernetes
 
 ### 2. Obtain and upload the Wallarm policy to Mulesoft Exchange
 
 To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these steps:
 
 1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download a code bundle for your platform.
+
+    If running a self-hosted node, contact sales@wallarm.com to get the code bundle.
 1. Extract the policy archive.
 1. Within the `pom.xml` file → `groupId` parameter at the top of the file, specify your Mulesoft Business Group ID.
 
@@ -203,7 +145,7 @@ To test the functionality of the deployed policy, follow these steps:
 1. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to your API:
 
     ```
-    curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
+    curl http://<YOUR_APP_DOMAIN>/etc/passwd
     ```
 1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
     

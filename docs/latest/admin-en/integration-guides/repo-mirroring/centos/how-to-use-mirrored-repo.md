@@ -8,7 +8,7 @@
 
 #   How to Install Wallarm Packages from the Local JFrog Artifactory Repository for CentOS
 
-To install Wallarm packages from the [JFrog Artifactory repository][doc-repo-mirroring] on a host dedicated to a filter node, perform the following actions on this host:
+To install Wallarm packages from the [JFrog Artifactory repository][doc-repo-mirroring] on a host dedicated to an NGINX filter node, perform the following actions on this host:
 1.  Navigate to the JFrog Artifactory web UI via either the domain name or IP address (e.g., `http://jfrog.example.local:8081/artifactory`).
 
     Log in to the web UI with a user account.

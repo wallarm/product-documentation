@@ -18,8 +18,9 @@ Wallarm'ı özel bulutunuza dağıtmadan önce, uygulama manzaranızın kapsamı
 
 Özel bulutlarda genellikle IP adreslerine dayalı olarak erişim sağlanır. Wallarm, aşağıdaki DNS kayıtlarına erişim yapmayı gerektirir:
 
-* `35.235.66.155` ABD Wallarm Cloud'una (`us1.api.wallarm.com`) erişim sağlamalıdır ki bu, güvenlik kurallarını almak, saldırı verilerini yüklemek vb. işlemler için gereklidir.
-* `34.90.110.226` AB Wallarm Cloud'una (`api.wallarm.com`) erişim sağlamalıdır ki bu, güvenlik kurallarını almak, saldırı verilerini yüklemek vb. işlemler için gereklidir.
+* The following addresses to have access to the Wallarm Cloud to get security rules, upload attack data, etc.
+
+    --8<-- "../include/wallarm-cloud-ips.md"
 * IP adresleri Docker Hub tarafından kullanılmaktadır eğer Wallarm'ı Docker görüntüsünden çalıştırmayı seçerseniz.
 * `34.111.12.147` (`repo.wallarm.com`) eğer Wallarm düğümünü [NGINX stabil](../nginx/dynamic-module.md)/[NGINX Plus](../nginx-plus.md)/[dağıtım sağlayan NGINX](../nginx/dynamic-module-from-distr.md) için bireysel Linux paketlerinden yüklemeyi seçerseniz. Düğüm yüklemesi için paketler bu adresten indirilir.
 * `35.244.197.238` (`https://meganode.wallarm.com`) eğer Wallarm'ı [tümleşik yükleyici](../nginx/all-in-one.md) ile yüklemeyi seçerseniz. Yükleyici bu adresten indirilir.

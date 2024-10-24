@@ -108,7 +108,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <li><a href="./installation/connectors/overview/">Connectors</a></li>
     <li><a href="./installation/inline/overview/">In-Line</a></li>
     <li><a href="./installation/oob/overview/">Out-of-Band</a></li>
-    <li><a href="./installation/supported-deployment-options/#packages">Packages</a></li>
+    <li><a href="./installation/nginx-native-node-internals/">All deployment artifacts</a></li>
     </ul></p>
 </div>
 

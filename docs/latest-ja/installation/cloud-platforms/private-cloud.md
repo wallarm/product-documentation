@@ -18,8 +18,9 @@
 
 通常、プライベートクラウドへのアクセスはIPアドレスに基づいて許可されます。Wallarmは以下のDNSレコードへのアクセスが必要です：
 
-* `35.235.66.155` アメリカ合衆国のWallarm Cloud (`us1.api.wallarm.com`) へのアクセスを許可して、セキュリティルールを取得し、攻撃データをアップロードします。
-* `34.90.110.226` ヨーロッパのWallarm Cloud (`api.wallarm.com`)へのアクセスを許可して、セキュリティルールを取得し、攻撃データをアップロードします。
+* The following addresses to have access to the Wallarm Cloud to get security rules, upload attack data, etc.
+
+    --8<-- "../include/wallarm-cloud-ips.md"
 * DockerイメージからWallarmを実行する場合には、Docker Hubを使用するIPアドレス。
 * `34.111.12.147` (`repo.wallarm.com`): [NGINX stable](../nginx/dynamic-module.md)/[NGINX Plus](../nginx-plus.md)/[ディストリビューション供給のNGINX](../nginx/dynamic-module-from-distr.md) に対する個別のLinuxパッケージからWallarmノードをインストールする場合。ノードのインストール用のパッケージは、このアドレスからダウンロードされます。
 * `35.244.197.238` (`https://meganode.wallarm.com`): [オールインワンインストーラ](../nginx/all-in-one.md) からWallarmをインストールする場合。インストーラーは、このアドレスからダウンロードされます。
