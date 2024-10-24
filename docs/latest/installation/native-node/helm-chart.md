@@ -34,6 +34,7 @@ The Kubernetes cluster for deploying the native node with the Helm chart must me
     * IP addresses below for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
+* If deploying with the `LoadBalancer` type, you need a domain and a trusted SSL/TLS certificate.
 * In addition to the above, you should have the **Administrator** role assigned in Wallarm Console.
 
 ## Limitations
@@ -45,46 +46,32 @@ The Kubernetes cluster for deploying the native node with the Helm chart must me
 
 ## Deployment
 
-### 1. Deploy a node
+### 1. Prepare Wallarm token
+
+To install node, you will need a token for registering the node in the Wallarm Cloud. To prepare a token:
+
+1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+1. Find or create API token with the `Deploy` source role.
+1. Copy this token.
+
+### 2. Add the Wallarm Helm chart repository
+
+```
+helm repo add wallarm https://charts.wallarm.com
+helm repo update wallarm
+```
+
+### 3. Prepare the configurarion file
+
+Create the `values.yaml` with a minimal configuration.
 
 === "LoadBalancer"
     Deploying the native Wallarm node as a LoadBalancer with a public IP allows you to route traffic from MuleSoft, Cloudflare, and Amazon CloudFront to this IP for security analysis and filtration.
 
-    1. Open Wallarm Console → **Settings** → **API tokens** and create [API token][api-token] with the `Deploy` role.
-
-        You will need this to connect the cluster with the node to the Wallarm Cloud. 
-    1. Add the [Wallarm chart repository](https://charts.wallarm.com/) to the cluster:
-        
-        ```
-        helm repo add wallarm https://charts.wallarm.com
-        helm repo update wallarm
-        ```
-    1. Deploy the Wallarm load balancer in the cluster:
-
-        === "US Cloud"
-            ```
-            helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com --set processing.service.type=LoadBalancer
-            ```
-        === "EU Cloud"
-            ```
-            helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com --set processing.service.type=LoadBalancer
-            ```
-
-        [All configuration parameters](helm-chart-conf.md)
-    1. Get the external IP for the Wallarm load balancer:
-
-        ```
-        kubectl get svc -n wallarm
-        ```
-
-        Find the external IP for the `next-processing` service.
-    1. Register a domain and point it to the load balancer's external IP by creating an A record in your DNS provider.
-
-        After the DNS propagates, you can access the service via the domain name (this may take some time).
-    1. Obtain a **trusted** SSL/TLS certificate for the domain. Self-signed certificates are not supported yet.
-
-        There are the following ways to issue and apply the certificate:
-
+    1. Register a domain for the load balancer.
+    1. Obtain a **trusted** SSL/TLS certificate.
+    1. Create the `values.yaml` configuration file with the following minimal configuration. Choose the tab for your preferred method of applying the certificate:
+    
         === "cert-manager"
             If you use [`cert-manager`](https://cert-manager.io/) in your cluster, you can generate the SSL/TLS certificate with it.
 
@@ -100,12 +87,9 @@ The Kubernetes cluster for deploying the native node with the Helm chart must me
                       name: letsencrypt-prod
                       # If it is Issuer (namespace-scoped) or ClusterIssuer (cluster-wide)
                       kind: ClusterIssuer
-            ```
-
-            Or with `helm upgrade`:
-
-            ```
-            helm upgrade <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --set config.connector.certificate.enabled=true --set config.connector.certificate.certManager.enabled=true --set config.connector.certificate.certManager.issuerRef.name=letsencrypt-prod --set config.connector.certificate.certManager.issuerRef.kind=ClusterIssuer
+            processing:
+              service:
+                type: LoadBalancer
             ```
         === "existingSecret"
             You can pull SSL/TLS certificate from an existing Kubernetes secrets in the same namespace.
@@ -119,12 +103,9 @@ The Kubernetes cluster for deploying the native node with the Helm chart must me
                     enabled: true
                     # The name of the Kubernetes secret containing the certificate and private key
                     name: my-secret-name
-            ```
-
-            Or with `helm upgrade`:
-
-            ```
-            helm upgrade <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --set config.connector.certificate.enabled=true --set config.connector.certificate.existingSecret.enabled=true --set config.connector.certificate.existingSecret.name=my-secret-name
+            processing:
+              service:
+                type: LoadBalancer
             ```
         === "customSecret"
             The `customSecret` configuration allows you to define a certificate directly as base64-encoded values.
@@ -139,39 +120,44 @@ The Kubernetes cluster for deploying the native node with the Helm chart must me
                     ca: LS0...  # Base64-encoded CA
                     crt: LS0... # Base64-encoded certificate
                     key: LS0... # Base64-encoded private key
-            ```
-
-            Or with `helm upgrade`:
-
-            ```
-            helm upgrade <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --set config.connector.certificate.enabled=true --set config.connector.certificate.customSecret.enabled=true --set config.connector.certificate.customSecret.ca=<BASE64_CA> --set config.connector.certificate.customSecret.crt=<BASE64_CERTIFICATE> --set config.connector.certificate.customSecret.key=<BASE64_PRIVATE_KEY>
+            processing:
+              service:
+                type: LoadBalancer
             ```
 === "ClusterIP"
     When deploying Wallarm as a connector for Kong API Gateway or Istio you deploy the native node for this connector with the ClusterIP type for internal traffic, without exposing a public IP.
 
-    1. Open Wallarm Console → **Settings** → **API tokens** and create [API token][api-token] with the `Deploy` role.
+    In this case, no custom `values.yaml` is required, as the default settings provide the minimal configuration for deployment.
 
-        You will need this to connect the cluster with the node to the Wallarm Cloud. 
-    1. Add the [Wallarm chart repository](https://charts.wallarm.com/) to the cluster:
-        
-        ```
-        helm repo add wallarm https://charts.wallarm.com
-        helm repo update wallarm
-        ```
-    1. Deploy the Wallarm node service:
+[All configuration parameters](helm-chart-conf.md)
 
-        === "US Cloud"
-            ```
-            helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
-            ```
-        === "EU Cloud"
-            ```
-            helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
-            ```
+### 4. Deploy the Wallarm service
 
-        [All configuration parameters](helm-chart-conf.md)
+=== "US Cloud"
+    ```
+    helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com --set
+    ```
+=== "EU Cloud"
+    ```
+    helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com --set
+    ```
 
-### 2. Apply Wallarm code to an API management service
+### 5. Get the Wallarm load balancer
+
+If deploying with the `LoadBalancer` type:
+
+1. Get the external IP for the Wallarm load balancer:
+
+    ```
+    kubectl get svc -n wallarm
+    ```
+
+    Find the external IP for the `next-processing` service.
+1. Create an A record in your DNS provider, pointing your domain to the external IP.
+
+    After the DNS propagates, you can access the service via the domain name.
+
+### 6. Apply Wallarm code to an API management service
 
 After deploying the node, the next step is to apply the Wallarm code to your API management platform or service in order to route traffic to the deployed node.
 
