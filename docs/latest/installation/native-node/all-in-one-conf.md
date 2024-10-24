@@ -30,7 +30,7 @@ The Wallarm node operation mode. It can be:
       address: ":5050"
       tls_cert: path/to/tls-cert.crt
       tls_key: path/to/tls-key.key
-      blocking: false
+      blocking: true
       allowed_networks:
         - 0.0.0.0/0
       allowed_hosts:
@@ -39,6 +39,7 @@ The Wallarm node operation mode. It can be:
 
     route_config:
       wallarm_application: 10
+      wallarm_mode: monitoring
       routes:
         - route: /example/api/v1
           wallarm_mode: off
@@ -80,6 +81,7 @@ The Wallarm node operation mode. It can be:
 
     route_config:
       wallarm_application: 10
+      wallarm_mode: monitoring
       routes:
         - route: /example/api/v1
           wallarm_mode: off
@@ -140,11 +142,11 @@ Path to the private key corresponding to the TLS/SSL certificate (typically a `.
 
 ### connector.blocking
 
-Defines whether to [block](../../admin-en/configure-wallarm-mode.md) malicious requests (`true`) or only log them. In OOB (Out-of-Band) mode, traffic blocking is disabled, and the node will only log malicious traffic regardless of this setting.
+Typically, you do not need to modify this parameter. Specific blocking behavior for malicious requests is controlled by the [`wallarm_mode`](#route_configwallarm_mode) parameter.
 
-Default: `false` - monitor and log malicious activity in the Wallarm Console.
+This parameter enables the native node's general capability to block incoming requests, whether they are malicious, from denylisted IPs, or any other conditions that require blocking.
 
-The mode can be [overridden for specific routes](#wallarm_mode).
+Defalt: `false`.
 
 ### connector.allowed_networks
 
@@ -348,6 +350,14 @@ Configuration section where you specify settings for specific routes.
 
 Default: `-1`.
 
+### route_config.wallarm_mode
+
+General traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
+
+The mode can be [overridden for specific routes](#wallarm_mode).
+
+Default: `monitoring`.
+
 ### route_config.routes
 
 Sets route-specific Wallarm configuration. Includes Wallarm mode and application IDs. Example configuration:
@@ -357,6 +367,7 @@ version: 2
 
 route_config:
   wallarm_application: 10
+  wallarm_mode: monitoring
   routes:
     - host: example.com
       wallarm_application: 1
@@ -418,7 +429,7 @@ Sets the [Wallarm application ID](../../user-guides/settings/applications.md). O
 
 #### wallarm_mode
 
-Traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
+Host-specific traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
 
 Default: `monitoring`.
 

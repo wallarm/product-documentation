@@ -81,6 +81,10 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
       address: ":5050"
       tls_cert: path/to/tls-cert.crt
       tls_key: path/to/tls-key.key
+      blocking: true
+    
+    route_config:
+      wallarm_mode: monitoring
     ```
 
     In the `connector.tls_cert` and `connector.tls_key`, you specify the paths to a **trusted** certificate and private key issued for the machine's domain.
