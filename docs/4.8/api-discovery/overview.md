@@ -83,6 +83,18 @@ API Discovery detects and highlights sensitive data consumed and carried by your
 * Medical data like medical license number
 * Personally identifiable information (PII) like full name, passport number or SSN
 
+### Sensitive business flows
+
+API Discovery allows [marking](sbf.md) specific endpoints as the key ones for some sensitive business flows, such as: 
+
+* Authentication
+* Account management
+* Billing
+* SMS gateway functioning
+* ...and others
+
+Once tags are assigned, you can filter your endpoints by flow to regularly check them for vulnerabilities or breaches.
+
 ### Security of data uploaded to the Wallarm Cloud
 
 API Discovery analyzes most of the traffic locally. The module sends to the Wallarm Cloud only the discovered endpoints, parameter names and various statistical data (time of arrival, their number, etc.) All data is transmitted via a secure channel: before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm.
