@@ -174,24 +174,14 @@ If needed, you can change the copied file after the installation is finished. To
 === "tcp-capture"
     [Proceed to the deployment testing](../oob/tcp-traffic-mirror/deployment.md#step-5-test-the-solution).
 
-## Debugging
+## Verifying the node operation
 
-To verify if the node detects traffic:
+To verify the node is detecting traffic, you can check the logs:
 
-1. Set the log level in `/opt/wallarm/etc/wallarm/go-node.yaml` to `debug` as follows:
+* The Native Node logs are written to `/opt/wallarm/var/log/wallarm/go-node.log` by default.
+* [Standard logs](../../admin-en/configure-logging.md) of the filtering node such as whether the data is sent to the Wallarm Cloud, detected attacks, etc. are located in the directory `/opt/wallarm/var/log/wallarm`.
 
-    ```yaml
-    log:
-      level: debug
-    ```
-1. Restart the Wallarm service:
-
-    ```
-    sudo systemctl restart wallarm
-    ```
-1. Logs are written to `/opt/wallarm/var/log/wallarm/go-node.log` by default. You can read them there.
-
-[Standard logs](../../admin-en/configure-logging.md) of the filtering node such as whether the data is sent to the Wallarm Cloud, detected attacks, etc. are located in the directory `/opt/wallarm/var/log/wallarm`.
+For additional debugging, set the [`log.level`](all-in-one-conf.md#loglevel) parameter to `debug`.
 
 ## Installer launch options
 

@@ -207,30 +207,19 @@ To check that the attack has been registered, proceed to Wallarm Console → **E
 
 ![!Attacks in the interface](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
 
-## Debugging
+## Verifying the node operation
 
 * To check if there is traffic on the network interface you are trying to capture from, run the following command on your machine:
 
     ```
     sudo tcpdump -i <INTERFACE_NAME>
     ```
-* To verify if the filtering node detects traffic:
+* To verify the node is detecting traffic, you can check the logs:
 
-    Set the log level in `/opt/wallarm/etc/wallarm/go-node.yaml` to `debug` as follows:
+    * The Native Node logs are written to `/opt/wallarm/var/log/wallarm/go-node.log` by default.
+    * [Standard logs](../../../admin-en/configure-logging.md) of the filtering node such as whether the data is sent to the Wallarm Cloud, detected attacks, etc. are located in the directory `/opt/wallarm/var/log/wallarm`.
 
-    ```yaml
-    log:
-      level: debug
-    ```
-
-    Restart the Wallarm service:
-
-    ```
-    sudo systemctl restart wallarm
-    ```
-
-    Logs are written to `/opt/wallarm/var/log/wallarm/go-node.log` by default. You can read them there.
-* Standard logs of the filtering node such as whether the data is sent to the Wallarm Cloud, detected attacks, etc. are located in the directory `/opt/wallarm/var/log/wallarm`.
+For additional debugging, set the [`log.level`](../../native-node/all-in-one-conf.md#loglevel) parameter to `debug`.
 
 ## Installer launch options
 
