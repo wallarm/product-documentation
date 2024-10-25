@@ -80,7 +80,7 @@ goreplay:
       - vxlan
 ```
 
-In the [article](configuration.md), you will find the list of more supported configuration parameters.
+In the [article](../../native-node/all-in-one-conf.md), you will find the list of more supported configuration parameters.
 
 ### Setting the mode (required)
 
@@ -207,30 +207,19 @@ To check that the attack has been registered, proceed to Wallarm Console → **E
 
 ![!Attacks in the interface](../../../images/waf-installation/epbf/ebpf-attack-in-ui.png)
 
-## Debugging
+## Verifying the node operation
 
 * To check if there is traffic on the network interface you are trying to capture from, run the following command on your machine:
 
     ```
     sudo tcpdump -i <INTERFACE_NAME>
     ```
-* To verify if the filtering node detects traffic:
+* To verify the node is detecting traffic, you can check the logs:
 
-    Set the log level in `/opt/wallarm/etc/wallarm/go-node.yaml` to `debug` as follows:
+    * The Native Node logs are written to `/opt/wallarm/var/log/wallarm/go-node.log` by default.
+    * [Standard logs](../../../admin-en/configure-logging.md) of the filtering node such as whether the data is sent to the Wallarm Cloud, detected attacks, etc. are located in the directory `/opt/wallarm/var/log/wallarm`.
 
-    ```yaml
-    log:
-      level: debug
-    ```
-
-    Restart the Wallarm service:
-
-    ```
-    sudo systemctl restart wallarm
-    ```
-
-    Logs are written to `/opt/wallarm/var/log/wallarm/go-node.log` by default. You can read them there.
-* Standard logs of the filtering node such as whether the data is sent to the Wallarm Cloud, detected attacks, etc. are located in the directory `/opt/wallarm/var/log/wallarm`.
+For additional debugging, set the [`log.level`](../../native-node/all-in-one-conf.md#loglevel) parameter to `debug`.
 
 ## Installer launch options
 
@@ -257,21 +246,16 @@ To check that the attack has been registered, proceed to Wallarm Console → **E
 
 ## Upgrade and reinstallation
 
-To upgrade or reinstall the node:
+* To upgrade the node, follow the [instructions](../../../updating-migrating/native-node/all-in-one.md).
+* If there is a problem with the upgrade or reinstallation process:
 
-1. Get the [installer version](../../../updating-migrating/node-artifact-versions.md#wallarm-node-for-tcp-traffic-mirror-analysis) you need.
-1. Run the new installer script as described above, but change the script version.
+    1. Remove the current installation:
 
-Your current `/opt/wallarm/etc/wallarm/go-node.yaml`, `/opt/wallarm/etc/wallarm/node.yaml` and log files will be backed up to the directory `/opt/wallarm/aio-backups/<timestamp>`.
-
-If there is a problem with the upgrade or reinstallation process:
-
-1. Remove the current installation:
-
-    ```
-    sudo systemctl stop wallarm && sudo rm -rf /opt/wallarm
-    ```
-1. Install the node as usual following the installation steps from above.
+        ```
+        sudo systemctl stop wallarm && sudo rm -rf /opt/wallarm
+        ```
+    
+    1. Install the node as usual following the installation steps from above.
 
 ## Limitations
 

@@ -16,7 +16,7 @@
 
 #   How to Mirror the Wallarm Repository for CentOS
 
-You can create and use a local copy (also known as a *mirror*) of the Wallarm repository to be sure that all filter nodes in your infrastructure are deployed from a single source and have the same version number.
+You can create and use a local copy (also known as a *mirror*) of the Wallarm repository to be sure that all NGINX filter nodes in your infrastructure are deployed from a single source and have the same version number.
 
 This document will guide you through the process of mirroring the Wallarm repository for a CentOS 7 server via the JFrog Artifactory repository manager.
 

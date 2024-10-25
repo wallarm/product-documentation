@@ -1,1 +1,0 @@
---8<-- "latest-ar/installation/cdn/aws-lambda.md"

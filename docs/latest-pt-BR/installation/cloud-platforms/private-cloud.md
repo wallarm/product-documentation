@@ -18,8 +18,9 @@ Em nuvens privadas, geralmente existem restrições sobre as conexões de saída
 
 O acesso nas nuvens privadas é normalmente concedido com base em endereços IP. Wallarm requer acesso aos seguintes registros DNS:
 
-* `35.235.66.155` para acessar a Wallarm Cloud dos EUA (`us1.api.wallarm.com`) e obter regras de segurança, fazer upload de dados de ataque, etc.
-* `34.90.110.226` para acessar a Wallarm Cloud da UE (`api.wallarm.com`) e obter regras de segurança, fazer upload de dados de ataque, etc.
+* The following addresses to have access to the Wallarm Cloud to get security rules, upload attack data, etc.
+
+    --8<-- "../include/wallarm-cloud-ips.md"
 * Endereços IP usados pelo Docker Hub se você escolher executar Wallarm a partir de uma imagem Docker.
 * `34.111.12.147` (`repo.wallarm.com`) se você escolher instalar o nó Wallarm a partir de pacotes Linux individuais para [NGINX estável](../nginx/dynamic-module.md)/[NGINX Plus](../nginx-plus.md)/[NGINX fornecido pela distribuição](../nginx/dynamic-module-from-distr.md). Pacotes para instalação do nó são baixados deste endereço.
 * `35.244.197.238` (`https://meganode.wallarm.com`) se você escolher instalar o Wallarm a partir do [instalador all-in-one] (../nginx/all-in-one.md). O instalador é baixado deste endereço.

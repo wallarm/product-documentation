@@ -5,6 +5,7 @@
 [applications-docs]:                ../../user-guides/settings/applications.md
 [available-filtration-modes]:       ../../admin-en/configure-wallarm-mode.md#available-filtration-modes
 [ui-filtration-mode]:              ../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console
+[self-hosted-connector-node-helm-conf]: ../native-node/helm-chart-conf.md
 
 # Wallarm Connector for Istio Ingress
 
@@ -49,35 +50,11 @@ To secure APIs managed by Istio and Envoy proxy, follow these steps:
 1. Deploy the Wallarm filtering node service in your Kubernetes cluster.
 1. Configure the Envoy proxy in Istio to mirror traffic and send it to the Wallarm node for out-of-band analysis.
 
-### 1: Deploy a Wallarm node
+### 1. Deploy a Wallarm Native Node
 
-Deploy the Wallarm node as a separate service in your Kubernetes cluster using Helm.
+To deploy the Wallarm node as a separate service in your Kubernetes cluster, follow the [instructions](../native-node/helm-chart.md).
 
-1. Generate an API token to connect the Wallarm node to the Wallarm Cloud:
-
-    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. Find or create API token with the `Deploy` source role.
-    1. Copy this token.
-1. Add the [Wallarm chart repository](https://charts.wallarm.com/):
-    
-    ```
-    helm repo add wallarm https://charts.wallarm.com
-    helm repo update wallarm
-    ```
-1. Deploy the Wallarm filtering node service:
-
-    === "US Cloud"
-        ```
-        helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com --set config.connector.http_inspector.real_ip_header=X-Real-IP
-        ```
-    === "EU Cloud"
-        ```
-        helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com --set config.connector.http_inspector.real_ip_header=X-Real-IP
-        ```
-
-    `config.connector.http_inspector.real_ip_header` specifies the header to extract the client's real IP address when traffic passes through proxies or load balancers.
-
-### 2: Configure Envoy to mirror traffic to the Wallarm node
+### 2. Configure Envoy to mirror traffic to the Wallarm node
 
 1. Contact [support@wallarm.com](mailto:support@wallarm.com) to obtain the Wallarm Lua plugin code for Istio. The filenames provided by the support team are used in the following steps.
 1. Apply the Envoy filter and cluster configuration to mirror traffic to the Wallarm node using Lua scripts:

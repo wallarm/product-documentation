@@ -1,3 +1,5 @@
+[self-hosted-connector-node-helm-conf]: ../native-node/helm-chart-conf.md
+
 # Wallarm Connector for Kong Ingress Controller
 
 To secure APIs managed by [Kong Ingress Controller](https://docs.konghq.com/kubernetes-ingress-controller/latest/), Wallarm provides a connector that integrates seamlessly into your Kubernetes environment. By deploying the Wallarm filtering node and connecting it to Kong via a custom Lua plugin, incoming traffic is analyzed in real-time, allowing Wallarm to mitigate malicious requests before they reach your services.
@@ -40,37 +42,11 @@ To secure APIs managed by Kong Ingress Controller, follow these steps:
 1. Deploy the Wallarm filtering node service in your Kubernetes cluster.
 1. Obtain and deploy the Wallarm Lua plugin to route incoming traffic from the Kong Ingress Controller to the Wallarm filtering node for analysis.
 
-### 1: Deploy a Wallarm node
+### 1. Deploy a Wallarm Native Node
 
-Deploy the Wallarm node as a separate service in your Kubernetes cluster using Helm.
+To deploy the Wallarm node as a separate service in your Kubernetes cluster, follow the [instructions](../native-node/helm-chart.md).
 
-The node operates in **[blocking mode][available-filtration-modes] by default**, meaning malicious requests will be blocked, and a 403 response will be returned. You can [change this mode in the Wallarm Console UI][ui-filtration-mode].
-
-1. Generate an API token to connect the Wallarm node to the Wallarm Cloud:
-
-    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. Find or create API token with the `Deploy` source role.
-    1. Copy this token.
-1. Add the [Wallarm chart repository](https://charts.wallarm.com/):
-    
-    ```
-    helm repo add wallarm https://charts.wallarm.com
-    helm repo update wallarm
-    ```
-1. Deploy the Wallarm filtering node service:
-
-    === "US Cloud"
-        ```
-        helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com --set config.connector.http_inspector.real_ip_header=X-Real-IP
-        ```
-    === "EU Cloud"
-        ```
-        helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com --set config.connector.http_inspector.real_ip_header=X-Real-IP
-        ```
-
-    `config.connector.http_inspector.real_ip_header` specifies the header to extract the client's real IP address when traffic passes through proxies or load balancers.
-
-### 2: Obtain and deploy the Wallarm Lua plugin
+### 2. Obtain and deploy the Wallarm Lua plugin
 
 1. Contact [support@wallarm.com](mailto:support@wallarm.com) to obtain the Wallarm Lua plugin code for your Kong Ingress Controller.
 1. Create a ConfigMap with the plugin code:
@@ -162,9 +138,5 @@ You can [change the filtration mode via the Wallarm Console UI][ui-filtration-mo
 <!-- 
 TBD before making this docs public:
 1. Describe the difference between this Kong installation and https://docs.wallarm.com/installation/kubernetes/kong-ingress-controller/deployment/ - the first one installs the Wallarm plugin for already running Kong IC, the 2nd one deploys the Kong IC with integrated Wallarm services altogether (we patch the official Kong IC and distribute it)
-1. Think on how to reflect this solution on the deployment option page and in the left navigation
-1. mention Kong connector in connector articles where needed
 1. add resource requirements, e.g. 4 CPU fits the solution but 2 is not enough (based on my experience)
-1. Add an artifact to the artifact inventory
-1. describe all values yaml parameters on a separate page
  -->

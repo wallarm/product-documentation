@@ -18,7 +18,9 @@ In Wallarm Console, go to **API Discovery** → **Configure API Discovery** → 
 
 ## Customizing sensitive data detection
 
-To make sensitive data detection fully comply with your company's specific needs and industry-specific regulations such as GDPR, HIPAA, PCI DSS, etc., API Discovery provides the ability to fine-tune the detection process (requires node version 5.0.3 or higher). Customization empowers you to meet your company's unique data protection obligations. Additionally, if any proprietary or specialized sensitive data elements are presented in your data flows, you will benefit from the ability to define custom regular expressions for their precise identification.
+To make sensitive data detection fully comply with your company's specific needs and industry-specific regulations such as GDPR, HIPAA, PCI DSS, etc., API Discovery provides the ability to fine-tune the detection process (requires NGINX Node 5.0.3 or Native Node 0.7.0 or higher).
+
+Customization empowers you to meet your company's unique data protection obligations. Additionally, if any proprietary or specialized sensitive data elements are presented in your data flows, you will benefit from the ability to define custom regular expressions for their precise identification.
 
 Sensitive data detection is configured with the set **sensitive data patterns** - each pattern defines specific sensitive data and settings for its search. API Discovery goes with the set of default patterns. You can modify default patterns and add your own in Wallarm Console → **API Discovery** → **Configure API Discovery** → **Sensitive data**.
 

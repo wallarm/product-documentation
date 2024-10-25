@@ -88,7 +88,7 @@ API Discovery [detects and highlights](sensitive-data.md) sensitive data consume
 * Medical data like medical license number
 * Personally identifiable information (PII) like full name, passport number or SSN
 
-API Discovery provides the ability to configure the detection process and add your own sensitive data patterns (requires node version 5.0.3 or higher).
+API Discovery provides the ability to configure the detection process and add your own sensitive data patterns (requires NGINX Node 5.0.3 or Native Node 0.7.0 or higher).
 
 ### Security of data uploaded to the Wallarm Cloud
 

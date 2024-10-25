@@ -19,8 +19,9 @@ In private clouds, there are often restrictions on outgoing connections. To ensu
 
 Access in private clouds is typically granted based on IP addresses. Wallarm requires access to the following DNS records:
 
-* `35.235.66.155` to have access to the US Wallarm Cloud (`us1.api.wallarm.com`) to get security rules, upload attack data, etc.
-* `34.90.110.226` to have access to the EU Wallarm Cloud (`api.wallarm.com`) to get security rules, upload attack data, etc.
+* The following addresses to have access to the Wallarm Cloud to get security rules, upload attack data, etc.
+
+    --8<-- "../include/wallarm-cloud-ips.md"
 * IP addresses used by Docker Hub if you choose to run Wallarm from a Docker image.
 * `35.244.197.238` (`https://meganode.wallarm.com`) to install Wallarm from [all-in-one installer](../nginx/all-in-one.md). The installer is downloaded from this address.
 * The IP addresses below for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-lists-docs] countries, regions, or data centers.

@@ -547,10 +547,33 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 </div>
 
-## Packages
+## All Deployment Artifacts
 
 <div class="do-section">
     <div class="do-main">
+
+        <div id="packages-nginx-node" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/nginx.svg">
+            <h3>NGINX Node</h3>
+            <p>Node for infrastructures that rely on NGINX</p>
+        </div>
+
+        <div id="packages-native-node" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/native-node.svg">
+            <h3>Native Node</h3>
+            <p>Self-hosted node for connectors or TCP traffic</p>
+        </div>
+
+    </div>
+
+    <div class="do-nested" data-for="packages-nginx-node">
+
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/nginx.svg">
+            <h3>NGINX Node</h3>
+            <p>Node for infrastructures that rely on NGINX</p>
+        </div>
+
         <a class="do-card" href="../../installation/nginx/all-in-one/">
             <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
             <h3>All-in-one installer</h3>
@@ -611,6 +634,28 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Use the official Machine Image to deploy Wallarm on Google Cloud</p>
         </a>
     </div>
+    
+    <div class="do-nested" data-for="packages-native-node">
+
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/nginx.svg">
+            <h3>Native Node</h3>
+            <p>Self-hosted node for connectors or TCP traffic</p>
+        </div>
+
+        <a class="do-card" href="../../installation/native-node/all-in-one/">
+            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
+            <h3>All-in-one installer</h3>
+            <p>Run the Native Node on a virtual machine on Linux</p>
+        </a>
+
+        <a class="do-card" href="../../installation/native-node/helm-chart/">
+            <img class="non-zoomable" src="../../images/platform-icons/helm.svg" />
+            <h3>Helm chart</h3>
+            <p>Run the Native Node in an infrastructure utilizing K8s</p>
+        </a>
+    </div>
+
 
 </div>
 

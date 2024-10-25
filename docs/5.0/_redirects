@@ -736,3 +736,25 @@
 /4.10/installation/api-gateways/mulesoft/ /4.10/installation/connectors/mulesoft/
 /4.10/installation/api-gateways/apigee/ /4.10/installation/connectors/apigee/
 /4.10/installation/api-gateways/layer7-api-gateway/ /4.10/installation/connectors/layer7-api-gateway/
+
+/ar/installation/cdn/akamai-edgeworkers/ /ar/installation/connectors/akamai-edgeworkers/
+/ar/installation/cdn/azion-edge/ /ar/installation/connectors/azion-edge/
+/ar/installation/cdn/aws-lambda/ /ar/installation/connectors/aws-lambda/
+/ar/installation/cdn/cloudflare/ /ar/installation/connectors/cloudflare/
+
+/ja/installation/cdn/akamai-edgeworkers/ /ja/installation/connectors/akamai-edgeworkers/
+/ja/installation/cdn/azion-edge/ /ja/installation/connectors/azion-edge/
+/ja/installation/cdn/aws-lambda/ /ja/installation/connectors/aws-lambda/
+/ja/installation/cdn/cloudflare/ /ja/installation/connectors/cloudflare/
+
+/pt-br/installation/cdn/akamai-edgeworkers/ /pt-br/installation/connectors/akamai-edgeworkers/
+/pt-br/installation/cdn/azion-edge/ /pt-br/installation/connectors/azion-edge/
+/pt-br/installation/cdn/aws-lambda/ /pt-br/installation/connectors/aws-lambda/
+/pt-br/installation/cdn/cloudflare/ /pt-br/installation/connectors/cloudflare/
+
+/tr/installation/cdn/akamai-edgeworkers/ /tr/installation/connectors/akamai-edgeworkers/
+/tr/installation/cdn/azion-edge/ /tr/installation/connectors/azion-edge/
+/tr/installation/cdn/aws-lambda/ /tr/installation/connectors/aws-lambda/
+/tr/installation/cdn/cloudflare/ /tr/installation/connectors/cloudflare/
+
+/installation/oob/tcp-traffic-mirror/configuration/ /installation/native-node/all-in-one-conf/
