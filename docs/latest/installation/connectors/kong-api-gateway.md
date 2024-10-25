@@ -44,7 +44,7 @@ To secure APIs managed by Kong Ingress Controller, follow these steps:
 
 ### 1. Deploy a Wallarm Native Node
 
-To deploy the Wallarm node as a separate service in your Kubernetes cluster, follow the [instructions](../native-node/helm-chart.md#clusterip).
+To deploy the Wallarm node as a separate service in your Kubernetes cluster, follow the [instructions](../native-node/helm-chart.md).
 
 ### 2. Obtain and deploy the Wallarm Lua plugin
 
