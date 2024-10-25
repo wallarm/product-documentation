@@ -11,18 +11,18 @@
 
 # Deploying the Native Node with Helm Chart
 
-The [Wallarm native node](../nginx-native-node-internals.md), which operates independently of NGINX, is designed for deployment with some connectors. You can run the native node on as a separate service or as a load balancer in your Kubernetes cluster using the Helm chart.
+The [Wallarm Native Node](../nginx-native-node-internals.md), which operates independently of NGINX, is designed for deployment with some connectors. You can run the Native Node on as a separate service or as a load balancer in your Kubernetes cluster using the Helm chart.
 
 ## Use cases
 
-Deploy the native node with Helm chart in the following cases:
+Deploy the Native Node with Helm chart in the following cases:
 
 * When you deploy a Wallarm connector for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md) or [Amazon CloudFront](../connectors/aws-lambda.md) and require the node to be self-hosted. This is ideal if you are already using Kubernetes management platforms like OpenShift, Amazon EKS, Azure AKS, or Google GKE. The node is set up as a load balancer with a public IP for easy traffic routing.
 * When you deploy a Wallarm connector for [Kong API Gateway](../connectors/kong-api-gateway.md) or [Istio](../connectors/istio.md). The node is deployed with the clusterIP type for internal traffic, without exposing a public IP.
 
 ## Requirements
 
-The Kubernetes cluster for deploying the native node with the Helm chart must meet the following criteria:
+The Kubernetes cluster for deploying the Native Node with the Helm chart must meet the following criteria:
 
 * [Helm v3](https://helm.sh/) package manager installed.
 * Inbound access from your API gateway or CDN where your APIs are running.
@@ -126,7 +126,7 @@ helm repo update wallarm
                 type: LoadBalancer
             ```
 === "ClusterIP"
-    When deploying Wallarm as a connector for Kong API Gateway or Istio you deploy the native node for this connector with the ClusterIP type for internal traffic, without exposing a public IP.
+    When deploying Wallarm as a connector for Kong API Gateway or Istio you deploy the Native Node for this connector with the ClusterIP type for internal traffic, without exposing a public IP.
 
     Create the `values.yaml` configuration file with the following minimal configuration:
 

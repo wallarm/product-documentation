@@ -1,14 +1,14 @@
 # Internals of NGINX and Native Self-Hosted Wallarm Nodes
 
-The Wallarm Node is the core component of the Wallarm platform, responsible for filtering and analyzing traffic. You can deploy it in your environment (self-hosted) or on Wallarm's Security Edge. When deploying a **self-hosted node**, you have two options: the **NGINX node** or the **native node**.
+The Wallarm Node is the core component of the Wallarm platform, responsible for filtering and analyzing traffic. You can deploy it in your environment (self-hosted) or on Wallarm's Security Edge. When deploying a **self-hosted node**, you have two options: the **NGINX Node** or the **Native Node**.
 
 These two nodes differ architecturally and are designed for specific deployment use cases.
 
-## NGINX node
+## NGINX Node
 
-The NGINX node integrates seamlessly with NGINX, making it perfect for infrastructures that already rely on NGINX for traffic management. It leverages NGINX's capabilities while adding Wallarm's security and traffic filtering features.
+The NGINX Node integrates seamlessly with NGINX, making it perfect for infrastructures that already rely on NGINX for traffic management. It leverages NGINX's capabilities while adding Wallarm's security and traffic filtering features.
 
-The following artifacts are available for deploying the NGINX node:
+The following artifacts are available for deploying the NGINX Node:
 
 * [All-in-one installer](nginx/all-in-one.md)
 * [Docker image](../admin-en/installation-docker-en.md)
@@ -16,11 +16,11 @@ The following artifacts are available for deploying the NGINX node:
 * [GCP Machine Image](packages/gcp-machine-image.md)
 * Helm chart for [NGINX Ingress Controller](../admin-en/installation-kubernetes-en.md), [Sidecar Controller](kubernetes/sidecar-proxy/deployment.md), [eBPF](kubernetes/ebpf/deployment.md) deployments
 
-Find your **use case below** and deploy the NGINX node in the appropriate form-factor.
+Find your **use case below** and deploy the NGINX Node in the appropriate form-factor.
 
 ### Kubernetes
 
-Find an NGINX node deployment solution for your Kubernetes environment:
+Find an NGINX Node deployment solution for your Kubernetes environment:
 
 <div class="do-section">
     <div class="do-main">
@@ -49,7 +49,7 @@ Find an NGINX node deployment solution for your Kubernetes environment:
 
 API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, Mulesoft, Apigee, and CloudFront. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of ["connectors"](connectors/overview.md) specifically designed for such cases.
 
-The NGINX node is used for the platforms listed below, however the analysis is limited to incoming requests.
+The NGINX Node is used for the platforms listed below, however the analysis is limited to incoming requests.
 
 <div class="do-section">
     <div class="do-main">
@@ -82,7 +82,7 @@ The NGINX node is used for the platforms listed below, however the analysis is l
 
 ### In-line
 
-Traffic to protected APIs passes through Wallarm NGINX node instances before it reaches the API. There is no chance of an attacker bypassing Wallarm nodes as long as they are inline and are the only path available to end users. [Read more](inline/overview.md)
+Traffic to protected APIs passes through Wallarm NGINX Node instances before it reaches the API. There is no chance of an attacker bypassing Wallarm nodes as long as they are inline and are the only path available to end users. [Read more](inline/overview.md)
 
 <div class="do-section">
     <div class="do-main">
@@ -214,7 +214,7 @@ Traffic to protected APIs passes through Wallarm NGINX node instances before it 
 
 ### Out-of-band
 
-The NGINX node is suitable for the [out-of-band traffic](oob/overview.md) analysis when traffic mirror is produced by NGINX, Envoy or another web server.
+The NGINX Node is suitable for the [out-of-band traffic](oob/overview.md) analysis when traffic mirror is produced by NGINX, Envoy or another web server.
 
 <div class="do-section">
     <div class="do-main">
@@ -278,22 +278,22 @@ The NGINX node is suitable for the [out-of-band traffic](oob/overview.md) analys
 
 </div>
 
-## Native node
+## Native Node
 
-The native node does not rely on NGINX. It was developed for environments where NGINX is not required or where a more lightweight and platform-agnostic solution is preferred.
+The Native Node does not rely on NGINX. It was developed for environments where NGINX is not required or where a more lightweight and platform-agnostic solution is preferred.
 
-The following artifacts are available for deploying the native node:
+The following artifacts are available for deploying the Native Node:
 
 * [All-in-one installer](native-node/all-in-one.md)
 * [Helm chart](native-node/helm-chart.md)
 
-Find your **use case below** and deploy the native node in the appropriate form-factor.
+Find your **use case below** and deploy the Native Node in the appropriate form-factor.
 
 ### Connectors
 
 API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, Mulesoft, Apigee, and CloudFront. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of ["connectors"](connectors/overview.md) specifically designed for such cases.
 
-The native node works with the following platforms with no limitations:
+The Native Node works with the following platforms with no limitations:
 
 <div class="do-section">
     <div class="do-main">

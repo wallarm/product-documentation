@@ -104,9 +104,9 @@ Note that described configuration is applicable only for [in-line](../installati
 === "Edge Connectors"
 
     For [Security Edge connectors](../installation/se-connector.md), you specify the `wallarm_mode` value in the **Filtration mode** selector during the connector deployment.
-=== "Native node"
-    * For native node all-in-one installer, use the [`route_config.wallarm_mode`](../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parameter.
-    * For native node Helm chart, use the [`config.connector.mode`](../installation/native-node/helm-chart-conf.md#configconnectormode) parameter.
+=== "Native Node"
+    * For Native Node all-in-one installer, use the [`route_config.wallarm_mode`](../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parameter.
+    * For Native Node Helm chart, use the [`config.connector.mode`](../installation/native-node/helm-chart-conf.md#configconnectormode) parameter.
 
 ### General filtration rule in Wallarm Console
 

@@ -4,7 +4,7 @@ This document lists available versions of the [native Wallarm node](../../instal
 
 ## All-in-one installer
 
-The all-in-one installer for the native node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), and [Cloudflare](../../installation/connectors/cloudflare.md) connectors.
+The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), and [Cloudflare](../../installation/connectors/cloudflare.md) connectors.
 
 History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 (beta) versions.
 
@@ -51,7 +51,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ## Helm chart
 
-The Helm chart for the native node is used for self-hosted node deployments with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio.md) connectors.
+The Helm chart for the Native Node is used for self-hosted node deployments with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio.md) connectors.
 
 [How to upgrade](helm-chart.md)
 

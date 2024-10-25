@@ -50,7 +50,7 @@ To secure APIs managed by Istio and Envoy proxy, follow these steps:
 1. Deploy the Wallarm filtering node service in your Kubernetes cluster.
 1. Configure the Envoy proxy in Istio to mirror traffic and send it to the Wallarm node for out-of-band analysis.
 
-### 1. Deploy a Wallarm native node
+### 1. Deploy a Wallarm Native Node
 
 To deploy the Wallarm node as a separate service in your Kubernetes cluster, follow the [instructions](../native-node/helm-chart.md#clusterip).
 

@@ -5,7 +5,7 @@
 
 # Upgrading Wallarm Native Node with All-in-One Installer
 
-These instructions describe the steps to upgrade the [native node installed using all-in-one installer](../../installation/native-node/all-in-one.md).
+These instructions describe the steps to upgrade the [Native Node installed using all-in-one installer](../../installation/native-node/all-in-one.md).
 
 [View all-in-one installer releases](node-artifact-versions.md)
 
@@ -25,7 +25,7 @@ These instructions describe the steps to upgrade the [native node installed usin
 
 ## 1. Download the new installer version
 
-Download the latest installer version on the machine where your current native node is running:
+Download the latest installer version on the machine where your current Native Node is running:
 
 === "x86_64 version"
     ```bash

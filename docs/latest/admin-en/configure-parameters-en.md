@@ -195,7 +195,7 @@ A path to the [custom ruleset](../user-guides/rules/rules.md) file that contains
     
     **Default value**:
     
-    * `/opt/wallarm/etc/wallarm/custom_ruleset` for Docker NGINX-based image, cloud images, NGINX node all-in-one installer and native node installations
+    * `/opt/wallarm/etc/wallarm/custom_ruleset` for Docker NGINX-based image, cloud images, NGINX Node all-in-one installer and Native Node installations
     * `/etc/wallarm/custom_ruleset` for other installation artifacts
 
 ### wallarm_enable_apifw
@@ -300,7 +300,7 @@ A path to the Wallarm private key used for encryption/decryption of proton.db an
 !!! info
     **Default value**:
     
-    * `/opt/wallarm/etc/wallarm/private.key` for Docker NGINX-based image, cloud images, NGINX node all-in-one installer and native node installations
+    * `/opt/wallarm/etc/wallarm/private.key` for Docker NGINX-based image, cloud images, NGINX Node all-in-one installer and Native Node installations
     * `/etc/wallarm/private.key` for other installation artifacts
 
 
@@ -575,7 +575,7 @@ A path to the [proton.db](../about-wallarm/protecting-against-attacks.md#library
     
     **Default value**:
     
-    * `/opt/wallarm/etc/wallarm/proton.db` for Docker NGINX-based image, cloud images, NGINX node all-in-one installer and native node installations
+    * `/opt/wallarm/etc/wallarm/proton.db` for Docker NGINX-based image, cloud images, NGINX Node all-in-one installer and Native Node installations
     * `/etc/wallarm/proton.db` for other installation artifacts
 
 ### wallarm_rate_limit

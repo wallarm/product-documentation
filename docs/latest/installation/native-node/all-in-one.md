@@ -3,7 +3,7 @@
 
 # Deploying the Native Node with All-in-One Installer
 
-The [Wallarm native node](../nginx-native-node-internals.md), which operates independently of NGINX, is designed for Wallarm connector self-hosted deployment and TCP traffic mirror analysis. You can run the native node on a virtual machine with a Linux OS using the all-in-one installer.
+The [Wallarm Native Node](../nginx-native-node-internals.md), which operates independently of NGINX, is designed for Wallarm connector self-hosted deployment and TCP traffic mirror analysis. You can run the Native Node on a virtual machine with a Linux OS using the all-in-one installer.
 
 ## Use cases and deployment modes
 
@@ -16,7 +16,7 @@ The [Wallarm native node](../nginx-native-node-internals.md), which operates ind
 
 ## Requirements
 
-The machine intended for running the native node with the all-in-one installer must meet the following criteria:
+The machine intended for running the Native Node with the all-in-one installer must meet the following criteria:
 
 * Linux OS.
 * x86_64/ARM64 architecture.

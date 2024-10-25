@@ -3,7 +3,7 @@
 
 # Configuring Native Node with the Helm Chart
 
-When deploying the self-hosted [Wallarm native node](../nginx-native-node-internals.md#native-node) using the Helm chart, configuration is specified in the `values.yaml` file or through the CLI. This document outlines the available configuration parameters.
+When deploying the self-hosted [Wallarm Native Node](../nginx-native-node-internals.md#native-node) using the Helm chart, configuration is specified in the `values.yaml` file or through the CLI. This document outlines the available configuration parameters.
 
 To modify settings after deployment, use the following command with the parameters you wish to change:
 

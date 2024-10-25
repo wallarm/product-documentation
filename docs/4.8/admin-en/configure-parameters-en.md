@@ -295,7 +295,7 @@ A path to the Wallarm private key used for encryption/decryption of proton.db an
 This directive determines whether the Wallarm NGINX module generates the `/tmp/proton_last_memlimit.req` file containing request details when a memory limit is exceeded. This can be invaluable for debugging issues related to request memory limit processing.
 
 !!! info
-    Currently this directive is available only for NGINX nodes deployed with [all-in-one installer](../installation/nginx/all-in-one.md) version 4.8.8 or higher.
+    Currently this directive is available only for NGINX Nodes deployed with [all-in-one installer](../installation/nginx/all-in-one.md) version 4.8.8 or higher.
 
     This parameter can be set within the http, server, and location blocks.
     

@@ -456,7 +456,7 @@ nav:
     - Node Upgrade:
       - What is new in Wallarm node 5.0: updating-migrating/what-is-new.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
-      - NGINX node upgrade instructions:
+      - NGINX Node upgrade instructions:
         - Upgrading DEB/RPM Packages: updating-migrating/nginx-modules.md
         - Upgrading Postanalytics Module Installed from DEB/RPM Packages: updating-migrating/separate-postanalytics.md
         - Upgrading Node Installed via All-in-One Installer: updating-migrating/all-in-one.md
@@ -466,7 +466,7 @@ nav:
         - Upgrading Wallarm Sidecar Proxy: updating-migrating/sidecar-proxy.md
         - Upgrading the Cloud Node Image: updating-migrating/cloud-image.md
         - Upgrading the Multi‑Tenant Node: updating-migrating/multi-tenant.md
-      - Native node upgrade instructions:
+      - Native Node upgrade instructions:
         - All-in-one installer: updating-migrating/native-node/all-in-one.md
         - Helm chart: updating-migrating/native-node/helm-chart.md
       - Upgrading EOL Wallarm nodes (3.6 and lower):

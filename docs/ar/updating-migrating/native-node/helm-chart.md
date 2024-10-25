@@ -5,13 +5,13 @@
 
 # Upgrading Wallarm Native Node with Helm Chart
 
-These instructions describe the steps to upgrade the [native node deployed using Helm chart](../../installation/native-node/helm-chart.md).
+These instructions describe the steps to upgrade the [Native Node deployed using Helm chart](../../installation/native-node/helm-chart.md).
 
 [View Helm chart releases](node-artifact-versions.md)
 
 ## Requirements
 
-The Kubernetes cluster for deploying the native node with the Helm chart must meet the following criteria:
+The Kubernetes cluster for deploying the Native Node with the Helm chart must meet the following criteria:
 
 * [Helm v3](https://helm.sh/) package manager installed.
 * Inbound access from your API gateway or CDN where your APIs are running.

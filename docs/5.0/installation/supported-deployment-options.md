@@ -554,13 +554,13 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
         <div id="packages-nginx-node" class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/nginx.svg">
-            <h3>NGINX node</h3>
+            <h3>NGINX Node</h3>
             <p>Node for infrastructures that rely on NGINX</p>
         </div>
 
         <div id="packages-native-node" class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/native-node.svg">
-            <h3>Native node</h3>
+            <h3>Native Node</h3>
             <p>Self-hosted node for connectors or TCP traffic</p>
         </div>
 
@@ -570,7 +570,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
         <div class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/nginx.svg">
-            <h3>NGINX node</h3>
+            <h3>NGINX Node</h3>
             <p>Node for infrastructures that rely on NGINX</p>
         </div>
 
@@ -639,20 +639,20 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
         <div class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/nginx.svg">
-            <h3>Native node</h3>
+            <h3>Native Node</h3>
             <p>Self-hosted node for connectors or TCP traffic</p>
         </div>
 
         <a class="do-card" href="../../installation/native-node/all-in-one/">
             <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
             <h3>All-in-one installer</h3>
-            <p>Run the native node on a virtual machine on Linux</p>
+            <p>Run the Native Node on a virtual machine on Linux</p>
         </a>
 
         <a class="do-card" href="../../installation/native-node/helm-chart/">
             <img class="non-zoomable" src="../../images/platform-icons/helm.svg" />
             <h3>Helm chart</h3>
-            <p>Run the native node in an infrastructure utilizing K8s</p>
+            <p>Run the Native Node in an infrastructure utilizing K8s</p>
         </a>
     </div>
 

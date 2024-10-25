@@ -1,6 +1,6 @@
 # Configuring Native Node with the All-in-One Installer
 
-When deploying the self-hosted [Wallarm native node](../nginx-native-node-internals.md#native-node) using the all-in-one installer, you create the `.yaml` configuration file. In this file, you can specify node configiration, all the parameters for that are described in this document.
+When deploying the self-hosted [Wallarm Native Node](../nginx-native-node-internals.md#native-node) using the all-in-one installer, you create the `.yaml` configuration file. In this file, you can specify node configiration, all the parameters for that are described in this document.
 
 To modify the settings after the node is running:
 
@@ -19,7 +19,7 @@ The Wallarm node operation mode. It can be:
 * `tcp-capture` for [TCP traffic mirror analysis](../oob/tcp-traffic-mirror/deployment.md).
 
 === "connector-server"
-    If you installed the native node for a Wallarm connector, the basic configuration looks as follows:
+    If you installed the Native Node for a Wallarm connector, the basic configuration looks as follows:
 
     ```yaml
     version: 2
@@ -58,7 +58,7 @@ The Wallarm node operation mode. It can be:
         log_file: stderr
     ```
 === "tcp-capture"
-    If you installed the native node for TCP traffic mirror analysis, the basic configuration looks as follows:
+    If you installed the Native Node for TCP traffic mirror analysis, the basic configuration looks as follows:
 
     ```yaml
     version: 2
@@ -144,7 +144,7 @@ Path to the private key corresponding to the TLS/SSL certificate (typically a `.
 
 Typically, you do not need to modify this parameter. Specific blocking behavior for malicious requests is controlled by the [`wallarm_mode`](#route_configwallarm_mode) parameter.
 
-This parameter enables the native node's general capability to block incoming requests, whether they are malicious, from denylisted IPs, or any other conditions that require blocking.
+This parameter enables the Native Node's general capability to block incoming requests, whether they are malicious, from denylisted IPs, or any other conditions that require blocking.
 
 Defalt: `false`.
 
