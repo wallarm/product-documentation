@@ -18,7 +18,7 @@ The **API Attack Surface Discovery** Wallarm component helps to solve these issu
 
     HTML WEB — an HTML Web page designed for human access with browsers. It can be a static HTML Web page or a single HTML page of an application that, in turn, may access some API.
 
-* Automatic [WAAP score](#waap-score) evaluation for found hosts.
+* Automatic [security posture](#security-posture) evaluation for found hosts.
 * Overall WAAP score of the entire API surface.
 * Asset summaries by security vendor, data center, and location.
 
@@ -49,7 +49,7 @@ Once hosts are found for your domains, in Wallarm Console go to the **API Attack
 
 * Host's found open ports
 * Host's found APIs
-* Details on the host's evaluated [WAAP score](#waap-score)
+* Details on the host's [evaluated](#security-posture) WAAP score
 
 <div>
   <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
@@ -58,27 +58,27 @@ Once hosts are found for your domains, in Wallarm Console go to the **API Attack
   </div>
 </div>
 
-## WAAP score
+## Security posture
 
-Wallarm automatically tests your hosts for the resistance against attacks on web and API services and assigns the protection score and grade. A higher score means stronger protection.
-
-The final WAAP score is calculated as:
-
-```
-((AppSec + FalsePositive) / 2 + APISec) / 2
-```
-
-* **AppSec** - resistance to web attacks like SQL injection, XSS, and command injection.
-* **APISec** - resistance to API attacks, including those targeting GraphQL, SOAP, and gRPC protocols.
-* **FalsePositive** - the ability to accurately allow legitimate requests without mistakenly identifying them as threats.
-
-For each host, you can download a detailed WAAP score evaluation report in PDF format.
-
-An overall score is also calculated as the average WAAP score across all hosts, reflecting the protection level of the entire attack surface.
+Wallarm automatically assesses your external network perimeter’s security posture and reflects its state as **Total score** from 0 (worse) to 100 (best) protection.
 
 ![API surface - protection score](../images/api-attack-surface/aasm-api-surface-protection-score.png)
 
-The following hosts are excluded from the evaluation:
+The total score is calculated using a complex proprietary formula that incorporates:
 
-* Hosts without Web/API services
-* Hosts which score was not evaluated due to service misconfiguration, errors or explicitly denied access
+* **WAAP coverage score** reflects the coverage of external web and API services by WAF/WAAP solutions. The score is calculated as the share of HTTP/HTTPS ports protected with WAF/WAAP security.
+* **Average WAAP score** represents the resistance of external hosts to web and API attacks. The score is calculated as an average score among all hosts where AASM identified active WAAP solutions in blocking mode and the WAAP score was evaluated without errors.
+
+    WAAP score of specific endpoint is the result of its testing by Wallarm, it is calculated as:
+
+    ```
+    ((AppSec + FalsePositive) / 2 + APISec) / 2
+    ```
+
+    * `AppSec` - resistance to web attacks like SQL injection, XSS, and command injection.
+    * `APISec` - resistance to API attacks, including those targeting GraphQL, SOAP, and gRPC protocols.
+    * `FalsePositive` - the ability to accurately allow legitimate requests without mistakenly identifying them as threats.
+
+    For each host, you can download a detailed WAAP score evaluation report in PDF format.
+
+* **Additional metrics** such as TLS coverage, presence of security issues, and detected API leaks.
