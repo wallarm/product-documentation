@@ -1,8 +1,8 @@
-# Configuring Native Node with the All-in-One Installer
+# Configuring Native Node with the All-in-One Installer or Docker Image
 
-When deploying the self-hosted [Wallarm Native Node](../nginx-native-node-internals.md#native-node) using the all-in-one installer, you create the `.yaml` configuration file. In this file, you can specify node configiration, all the parameters for that are described in this document.
+When deploying the self-hosted [Wallarm Native Node](../nginx-native-node-internals.md#native-node) using the all-in-one installer or the Docker image, you create the `.yaml` configuration file. In this file, you can specify node configiration, all the parameters for that are described in this document.
 
-To modify the settings after the node is running:
+To modify the settings after the node is running using the all-in-one installer:
 
 1. Update the `/opt/wallarm/etc/wallarm/go-node.yaml` file. The initial configuration file is copied to this path during installation.
 1. Restart the Wallarm service to apply changes:
@@ -10,6 +10,8 @@ To modify the settings after the node is running:
     ```
     sudo systemctl restart wallarm
     ```
+
+If the node is deployed using a Docker image, it is recommended to update the configuration file on the host machine and restart the Docker container with the updated file.
 
 ## mode (required)
 
@@ -36,6 +38,10 @@ The Wallarm node operation mode. It can be:
       allowed_hosts:
         - w.com
         - "*.test.com"
+      mesh:
+        discovery: dns
+        name: go-node-mesh-discovery
+        port: 9093
 
     route_config:
       wallarm_application: 10
@@ -136,9 +142,13 @@ Path to the TLS/SSL certificate (usually a `.crt` or `.pem` file) issued for the
 
 The certificate must be provided by a trusted Certificate Authority (CA) to ensure secure communication.
 
+If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
+
 ### connector.tls_key (required)
 
 Path to the private key corresponding to the TLS/SSL certificate (typically a `.key` file).
+
+If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
 
 ### connector.blocking
 
@@ -198,6 +208,44 @@ connector:
     - w.com
     - "*.test.com"
 ```
+
+### connector.mesh
+
+The mesh feature is used in `connector-server` mode for Wallarm nodes to ensure consistent traffic processing when multiple node replicas are deployed. It routes requests and their corresponding responses to the same node, even if initially handled by different replicas. This is critical when horizontally scaling, such as with auto-scaling or multiple replicas in ECS.
+
+!!! info "Kubernetes environments"
+    In Kubernetes, use the [Helm chart for native Wallarm node deployment](helm-chart.md). Mesh is automatically configured when auto-scaling or multiple replicas are detected, with no extra setup needed.
+
+To configure the mesh in ECS:
+
+1. Set up service discovery (e.g., [AWS Cloud Map](https://docs.aws.amazon.com/cloud-map/latest/dg/what-is-cloud-map.html), [Google Cloud DNS](https://cloud.google.com/dns/), or similar services) to allow nodes in the mesh to dynamically find and communicate with each other.
+
+    Without service discovery, the mesh will not function properly, as nodes will be unable to locate each other, leading to traffic routing issues.
+1. Configure the Wallarm node to use the mesh by specifying the `connector.mesh` parameters in the configuration file as shown below:
+
+```yaml
+version: 2
+
+connector:
+  mesh:
+    discovery: dns
+    name: go-node-mesh-discovery
+    port: 9093
+```
+
+#### discovery
+
+Defines how nodes in the mesh discover each other. Currently, only the `dns` value is allowed.
+
+Nodes discover each other using DNS. The DNS record must resolve to the IP addresses of all nodes participating in the mesh.
+
+#### name
+
+The DNS domain name used by nodes to resolve the IP addresses of other nodes in the mesh. This is typically set to a value that resolves to all the node instances in the ECS service.
+
+#### port
+
+Specifies the internal port used for communication between nodes in the mesh. This port is not exposed externally and is reserved for node-to-node traffic within the ECS cluster.
 
 ## TCP mirror-specific settings
 

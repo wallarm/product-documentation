@@ -318,6 +318,9 @@ nav:
         - All-in-one installer:
           - Install: installation/native-node/all-in-one.md
           - Configure: installation/native-node/all-in-one-conf.md
+        - Docker image:
+          - Deploy: installation/native-node/docker-image.md
+          - Configure: /installation/native-node/all-in-one-conf/
         - Helm chart:
           - Deploy: installation/native-node/helm-chart.md
           - Configure: installation/native-node/helm-chart-conf.md
