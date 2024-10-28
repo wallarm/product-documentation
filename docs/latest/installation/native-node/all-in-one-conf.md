@@ -36,6 +36,10 @@ The Wallarm node operation mode. It can be:
       allowed_hosts:
         - w.com
         - "*.test.com"
+      mesh:
+        discovery: dns
+        name: go-node-mesh-discovery
+        port: 9093
 
     route_config:
       wallarm_application: 10
@@ -198,6 +202,39 @@ connector:
     - w.com
     - "*.test.com"
 ```
+
+### connector.mesh
+
+The mesh feature is used in `connector-server` mode for Wallarm nodes to ensure consistent traffic processing when multiple node replicas are deployed. It allows requests and their corresponding responses to be routed to the same node, even if they are initially handled by different replicas. This is crucial in environments where the node runs as a part of an autoscaling ECS service.
+
+The mesh configuration (if specified) is automatically applied in ECS under two conditions:
+
+* Replicas > 1: If your ECS service is configured to run more than one replica of the node.
+* Auto-scaling: If auto-scaling is enabled, the mesh adapts to ensure nodes communicate correctly as the service scales up or down.
+
+```yaml
+version: 2
+
+connector:
+  mesh:
+    discovery: dns
+    name: go-node-mesh-discovery
+    port: 9093
+```
+
+#### discovery
+
+Defines how nodes in the mesh discover each other. Currently, only the `dns` value is allowed.
+
+Nodes discover each other using DNS. The DNS record must resolve to the IP addresses of all nodes participating in the mesh.
+
+#### name
+
+The DNS domain name used by nodes to resolve the IP addresses of other nodes in the mesh. This is typically set to a value that resolves to all the node instances in the ECS service.
+
+#### port
+
+Specifies the internal port used for communication between nodes in the mesh. This port is not exposed externally and is reserved for node-to-node traffic within the ECS cluster.
 
 ## TCP mirror-specific settings
 
