@@ -1,57 +1,60 @@
-# The `overlimit_res` attack detection fine‑tuning
+# Limiting Request Processing Time
 
-The Wallarm node spends limited time on a single incoming request processing and if the time limit is exceeded, marks the request as the [resource overlimiting (`overlimit_res`)](../../attacks-vulns-list.md#resource-overlimit) attack. The **Fine-tune the overlimit_res attack detection** rule enables you to customize the time limit allocated for a single request processing and default node behavior when the limit is exceeded.
+The Wallarm node spends limited time on a single incoming request processing and if the time limit is exceeded, marks the request as the [resource overlimit (`overlimit_res`)](../../attacks-vulns-list.md#resource-overlimit) attack. You can customize the time limit allocated for a single request processing and node behavior when the limit is exceeded.
 
 Limiting the request processing time prevents the bypass attacks aimed at the Wallarm nodes. In some cases, the requests marked as `overlimit_res` can indicate insufficient resources allocated for the Wallarm node modules resulting in long request processing.
 
-## Default node behavior
+## General configuration
 
-The Wallarm node is configured to spend no more than **1,000 milliseconds** on a single incoming request processing by default.
+In Wallarm Console → **Settings** → **General** → **Limit request processing time**, you can check the general configuration for request processing time limit. This configuration affects all endpoints unless overridden by [specific endpoint configuration](#specific-endpoint-configuration).
 
-If the time limit is exceeded, the Wallarm node:
+By default, this is: 
 
-1. Stops request processing.
-1. Marks the request as the `overlimit_res` attack and uploads attack details to the Wallarm Cloud.
+* **1,000 milliseconds** on a single incoming request processing.
+* Response to exceeding is **Interrupt Wallarm processing and bypass** which means Wallarm: 
 
-    If the processed request part also contains other [attack types](../../attacks-vulns-list.md), the Wallarm node uploads details on them to the Cloud as well.
+    * Stops request processing.
+    * Marks the request as the `overlimit_res` attack and displays it in **Attacks**. If the processed request part contains other [attack types](../../attacks-vulns-list.md), the attacks of the corresponding types will be displayed as well.
+    * Allows original request to reach the application (protection bypass). Note that the application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
 
-    Attacks of the corresponding types will be displayed in the [event list](../events/check-attack.md) in Wallarm Console.
-1. <a name="request-blocking"></a>In the **monitoring** [mode](../../admin-en/configure-wallarm-mode.md), the node forwards the original request to the application address. The application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
+![Limit request processing time - General configuration](../../images/user-guides/rules/fine-tune-overlimit-detection-generic.png)
 
-    In the **safe blocking** mode, the node blocks the request if it originates from the [graylisted](../ip-lists/overview.md) IP address. Otherwise, the node forwards the original request to the application address. The application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
-
-    In the **block** mode, the node blocks the request.
-
-!!! info "Request processing in the "Disabled" mode"
-    In the **disabled** [mode](../../admin-en/configure-wallarm-mode.md), the node does not analyze incoming traffic and, consequently, does not catch the attacks aimed at resource overlimiting.
-
-## Changing the default node behavior
+You can change the general configuration by adjusting time limit.
 
 !!! warning "Risk of protection bypass or running out of system memory"
-    * It is recommended to change the default node behavior only in the strictly specific locations where it is really necessary, e.g. where the upload of the large files is performed, and where there is no risk of protection bypass and vulnerability exploit.
-    * The high time limit and/or continuation of request processing after the limit is exceeded can trigger memory exhaustion or out-of-time request processing.
+    * It is recommended to change the default node behavior only in the strictly [specific locations](#specific-endpoint-configuration) where it is really necessary, e.g. where the upload of the large files is performed, and where there is no risk of protection bypass and vulnerability exploit.
+    * The high time limit can trigger memory exhaustion.
 
-The **Fine-tune the overlimit_res attack detection** rule enables you to change the default node behavior as follows:
+You can also change response to **Block request**  which means Wallarm: 
+
+* Stops request processing.
+* Marks the request as the `overlimit_res` attack and displays it in **Attacks**. If the processed request part contains other [attack types](../../attacks-vulns-list.md), the attacks of the corresponding types will be displayed as well.
+* Blocks request. Note that the legitimate requests have the risk to be blocked.
+
+!!! info "Filtration mode required for blocking"
+    Note that blocking will only work when the node is in the **blocking** filtration [mode](../../admin-en/configure-wallarm-mode.md) or **safe blocking** for the requests originating from the [graylisted](../ip-lists/overview.md) IP addresses.
+
+## Specific endpoint configuration
+
+The **Limit request processing time** [rule](../../user-guides/rules/rules.md) enables you to override the [general](#general-configuration) or parent configuration by setting it different for specific endpoint. You can:
 
 * Set custom limit on a single request processing
-* Stop or continue the request processing when the time limit is exceeded
+* Change system response (descriptions of each are [above](#general-configuration))
 
-    If the node continues request processing after the time limit has been exceeded, it uploads data on detected attacks to the Cloud only after the request processing is fully completed.
+To create a rule: 
 
-    If the rule is set to stop processing, the node stops the request processing once the time limit is exceeded. It then forwards the request unless it is set to record an attack and is in blocking mode. In that case, the node blocks the request and logs the `overlimit_res` attack.
-* Register the `overlimit_res` attack when the request processing time limit is exceeded or not
+To set specific endpoint configuration for request processing time limit:
 
-    If the node is configured to register the attack, it either [blocks the request or forwards it to the application address](#request-blocking) depending on the filtration mode.
-
-    If the node is not configured to register the attack and the request does not contain other attack types, the node forwards the original request to the application address. If the request contains other attack types, the node either blocks the request or forwards it to the application address depending on the filtration mode
-
-The rule DOES NOT allow to:
-
-* Set the blocking mode for the `overlimit_res` attacks separately from other configurations. If the **Register and display in the events** option is chosen, the node either blocks the `overlimit_res` attack or forwards it to the application address depending on the [filtration mode](../../admin-en/configure-wallarm-mode.md) set for the corresponding endpoint.
+--8<-- "../include/rule-creation-initial-step.md"
+1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
+1. In **Then**, choose **Limit request processing time** and set parameters.
 
 ## Rule example
 
-* The rule increases the time limit for processing each POST request to `https://example.com/upload` up to 1,020 milliseconds. The specified endpoint performs large file uploading.
-* Other parameters of the node behavior remain default - if the node processes the request longer than 1,020 milliseconds, it stops the request processing and registers the `overlimit_res` attack.
+Let us say the general configuration is **1,000 milliseconds** and **Block request** response (and the node is in the `blocking` mode), and you have many `overlimit_res` attacks for the `https://example.com/upload`. The investigation shows that the endpoint is used for the large file uploading and the legitimate requests are actually being blocked because of exceeding the processing time.
+
+To provide normal endpoint functioning, for it specifically, we need to increase the time for request processing. Moreover, we want just notification (not blocking) for the cases when the limit is exceeded.
+
+To do so, set the **Limit request processing time** rule as displayed on the screenshot.
 
 ![The "Register and display in the events" rule example](../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)
