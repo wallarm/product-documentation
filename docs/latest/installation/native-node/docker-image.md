@@ -120,6 +120,6 @@ To verify the node is detecting traffic, you can check the logs:
 
 For additional debugging, set the [`log.level`](all-in-one-conf.md#loglevel) parameter to `debug`.
 
-<!-- ## Upgrade
+## Upgrade
 
-To upgrade the node, follow the [instructions](../../updating-migrating/native-node/docker-image.md). -->
+To upgrade the node, follow the [instructions](../../updating-migrating/native-node/docker-image.md).
