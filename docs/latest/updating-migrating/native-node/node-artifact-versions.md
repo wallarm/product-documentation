@@ -13,6 +13,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 0.7.0 (2024-10-16)
 
 * Fixed an issue where some internal service connector headers were not being stripped before processing
+* Added support for the mesh feature in `connector-server` mode, enabling consistent request/response routing across multiple node replicas
+
+    This introdcues the new configuration parameters under [`connector.mesh`](../../installation/native-node/all-in-one-conf.md#connectormesh) to configure the mesh functionality.
 
 ### 0.6.0 (2024-10-10)
 
@@ -66,5 +69,22 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
     `wallarm/wallarm-node-next` → `wallarm/wallarm-node-native`
 
 ### 0.5.3 (2024-10-01)
+
+* Initial release
+
+## Docker image
+
+The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), and [Cloudflare](../../installation/connectors/cloudflare.md) connectors.
+
+[How to upgrade](docker-image.md)
+
+### 0.7.0 (2024-10-16)
+
+* Fixed an issue where some internal service connector headers were not being stripped before processing
+* Added support for the mesh feature in `connector-server` mode, enabling consistent request/response routing across multiple node replicas
+
+    This introdcues the new configuration parameters under [`connector.mesh`](../../installation/native-node/all-in-one-conf.md#connectormesh) to configure the mesh functionality.
+
+### 0.6.0 (2024-10-10)
 
 * Initial release
