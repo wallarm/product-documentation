@@ -547,7 +547,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 </div>
 
-## All Deployment Artifacts
+## All deployment artifacts
 
 <div class="do-section">
     <div class="do-main">
@@ -638,7 +638,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     <div class="do-nested" data-for="packages-native-node">
 
         <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/nginx.svg">
+            <img class="non-zoomable" src="../../images/platform-icons/native-node.svg">
             <h3>Native Node</h3>
             <p>Self-hosted node for connectors or TCP traffic</p>
         </div>
@@ -653,6 +653,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <img class="non-zoomable" src="../../images/platform-icons/helm.svg" />
             <h3>Helm chart</h3>
             <p>Run the Native Node in an infrastructure utilizing K8s</p>
+        </a>
+
+        <a class="do-card" href="../../installation/native-node/docker-image/">
+            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
+            <h3>Docker image</h3>
+            <p>Run the Native Node in a containerized environment using Docker</p>
         </a>
     </div>
 
