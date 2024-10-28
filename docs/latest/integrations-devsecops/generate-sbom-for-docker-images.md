@@ -21,6 +21,7 @@ Below is the list of [signed](verify-docker-image-signature.md) Wallarm Docker i
     * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
     * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
     * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
+* [wallarm/node-native-aio](https://hub.docker.com/r/wallarm/node-native-aio): the [Docker image for the self-hosted Native Node deployment](../installation/native-node/docker-image.md) for Wallarm connectors
 
 ## Requirements
 
