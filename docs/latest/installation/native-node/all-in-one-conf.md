@@ -140,9 +140,13 @@ Path to the TLS/SSL certificate (usually a `.crt` or `.pem` file) issued for the
 
 The certificate must be provided by a trusted Certificate Authority (CA) to ensure secure communication.
 
+If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
+
 ### connector.tls_key (required)
 
 Path to the private key corresponding to the TLS/SSL certificate (typically a `.key` file).
+
+If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
 
 ### connector.blocking
 
