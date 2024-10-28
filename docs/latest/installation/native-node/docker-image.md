@@ -115,11 +115,11 @@ After deploying the node, the next step is to apply the Wallarm code to your API
 
 To verify the node is detecting traffic, you can check the logs:
 
-* The Native Node logs are written to `/opt/wallarm/var/log/wallarm/go-node.log` by default.
+* The Native Node logs are written to `/opt/wallarm/var/log/wallarm/go-node.log` by default, with additional output available in stdout.
 * [Standard logs](../../admin-en/configure-logging.md) of the filtering node such as whether the data is sent to the Wallarm Cloud, detected attacks, etc. are located in the directory `/opt/wallarm/var/log/wallarm`.
 
 For additional debugging, set the [`log.level`](all-in-one-conf.md#loglevel) parameter to `debug`.
 
-## Upgrade
+<!-- ## Upgrade
 
-To upgrade the node, follow the [instructions](../../updating-migrating/native-node/docker-image.md).
+To upgrade the node, follow the [instructions](../../updating-migrating/native-node/docker-image.md). -->
