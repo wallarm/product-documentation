@@ -211,12 +211,17 @@ connector:
 
 ### connector.mesh
 
-The mesh feature is used in `connector-server` mode for Wallarm nodes to ensure consistent traffic processing when multiple node replicas are deployed. It allows requests and their corresponding responses to be routed to the same node, even if they are initially handled by different replicas. This is crucial in environments where the node runs as a part of an autoscaling ECS service.
+The mesh feature is used in `connector-server` mode for Wallarm nodes to ensure consistent traffic processing when multiple node replicas are deployed. It routes requests and their corresponding responses to the same node, even if initially handled by different replicas. This is critical when horizontally scaling, such as with auto-scaling or multiple replicas in ECS.
 
-The mesh configuration (if specified) is automatically applied in ECS under two conditions:
+!!! info "Kubernetes environments"
+    In Kubernetes, use the [Helm chart for native Wallarm node deployment](helm-chart.md). Mesh is automatically configured when auto-scaling or multiple replicas are detected, with no extra setup needed.
 
-* Replicas > 1: If your ECS service is configured to run more than one replica of the node.
-* Auto-scaling: If auto-scaling is enabled, the mesh adapts to ensure nodes communicate correctly as the service scales up or down.
+To configure the mesh in ECS:
+
+1. Set up service discovery (e.g., [AWS Cloud Map](https://docs.aws.amazon.com/cloud-map/latest/dg/what-is-cloud-map.html), [Google Cloud DNS](https://cloud.google.com/dns/), or similar services) to allow nodes in the mesh to dynamically find and communicate with each other.
+
+    Without service discovery, the mesh will not function properly, as nodes will be unable to locate each other, leading to traffic routing issues.
+1. Configure the Wallarm node to use the mesh by specifying the `connector.mesh` parameters in the configuration file as shown below:
 
 ```yaml
 version: 2
