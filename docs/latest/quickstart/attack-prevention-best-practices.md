@@ -64,6 +64,14 @@ In certain scenarios, it may be beneficial to manually add an [attack detection 
 
 The Wallarm node sends attack information to the Wallarm Cloud. Certain data, like authorization (cookies, tokens, passwords), personal data, and payment credentials, should remain within the server where it is processed. [Create a data masking rule](../user-guides/rules/sensitive-data-rule.md) to cut the original value of specific request points before sending them to the Wallarm Cloud, ensuring sensitive data stays within your trusted environment.
 
+## Analyze user sessions
+
+Dealing only with the attacks, presented in the **Attacks** or **Incidents** section, you cannot see their full contexts: the logic sequence of requests that the attack is the part of. 
+
+Wallarm's [**API Sessions**](../api-sessions/overview.md) provide this context to allow revealing of more general patterns in how your applications are being attacked as well as understanding of which business logic will be affected by the taken security measures.
+
+Analyze user sessions to identify a logic of the threat actor behavior, verify attack and malicious bot detection accuracy, track shadow, zombie and other endpoints in risk, identify the performance issues and more.
+
 ## Seamless SIEM/SOAR integration & Instant alerts for critical events
 
 Wallarm offers seamless integration with [various SIEM/SOAR systems](../user-guides/settings/integrations/integrations-intro.md) such as Sumo Logic, Splunk and others enabling you to effortlessly export all attack information to your SOC center for centralized management.

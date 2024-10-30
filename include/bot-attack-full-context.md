@@ -1,0 +1,5 @@
+Once the malicious bot activity is detected by Wallarm's [API Abuse Prevention][link-api-abuse-prevention] and displayed in the [**Attacks**][link-attacks] section, you have an ability to know the full context of this attack's requests: to which user session they belong and what the full sequence of requests in this session is. This allows investigating all activity of the actor to verify whether the decision to mark this actor as malicious bot was correct.
+
+To perform this analysis, in Wallarm Console → **Attacks**, access the bot attack details, then click **Explore in API Sessions**. Wallarm will open the [**API Session**][link-sessions] section filtered: the session(s) related to this bot activities will be displayed.
+
+![!API Sessions section - monitored sessions][img-api-sessions-api-abuse]

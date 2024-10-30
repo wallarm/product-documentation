@@ -31,7 +31,10 @@ nav:
       - Incident Analysis: user-guides/events/check-incident.md
       - Search and Filters: user-guides/search-and-filters/use-search.md
       - Grouping and Sampling: user-guides/events/grouping-sampling.md
-  # - API Sessions: api-sessions.md
+    - API Sessions: 
+      - Overview: api-sessions/overview.md
+      - Setup: api-sessions/setup.md
+      - Exploring API Sessions: api-sessions/exploring.md
     - Reports: user-guides/search-and-filters/custom-report.md
   - API Discovery:
     - Overview: api-discovery/overview.md
