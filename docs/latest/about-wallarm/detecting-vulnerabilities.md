@@ -16,14 +16,14 @@ For example: if the response to the request sent to read the `/etc/passwd` conte
 
 To detect vulnerabilities in the application, Wallarm sends requests with attack signs using the following methods:
 
-* **Passive detection**: the vulnerability was found due to the security incident that occurred.
+* **Passive detection** identifies vulnerabilities by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
 * **Active threat verification**: lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
 * **Vulnerability Scanner**: company's exposed assets are scanned for typical vulnerabilities.
 * **API Discovery insights**: the vulnerability was found by [API Discovery](../api-discovery/overview.md) module due to PII transfer in query parameters of GET requests.
 
 ### Passive detection
 
-With passive detection, Wallarm detects a vulnerability due to the security incident that occurred. If an application vulnerability has been exploited during an attack, Wallarm records the security incident and the exploited vulnerability.
+Passive detection refers to identifying vulnerabilities by analyzing actual traffic, including both requests and responses. Vulnerabilities may be uncovered during a security incident, where a malicious request successfully exploits a flaw, resulting in the detection of both an incident and a vulnerability. Or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
 
 Passive vulnerability detection is enabled by default.
 
