@@ -4,6 +4,25 @@ The Wallarm node spends limited time on a single incoming request processing and
 
 Limiting the request processing time prevents the bypass attacks aimed at the Wallarm nodes. In some cases, the requests marked as `overlimit_res` can indicate insufficient resources allocated for the Wallarm node modules resulting in long request processing.
 
+## How to use the feature
+
+If you see a lot of the `overlimit_res` attacks in the **Attacks** section, locate the targeted endpoint and define the following:
+
+* Does this endpoint deal with the large data (files, etc.) and thus needs more time?
+
+    * If **yes**, increase time limit [for this endpoint specifically](#specific-endpoint-configuration). This will reduce the unprocessed part of request and thus lower the risk of attacks hidden there.
+    * If **no**, the endpoint might be under attack, investigate its protection and activities related to it in [**API Discovery**](../../api-discovery/overview.md), [**API Sessions**](../../api-sessions.md), and [**Attacks**](../../user-guides/events/check-attack.md). Adjust protection as described [here](../../user-guides/events/check-attack.md#responding-to-attacks).
+
+* Does this endpoint experience `overlimit_res` problem together with **a lot of other** endpoints?
+
+    * If **yes**, consider allocating more resources for the Wallarm node modules which will decrease the request processing time or check the correctness of general configuration.
+    * If **no**, see the previous point.
+
+* Does this endpoint immediately affect user experience and satisfaction?
+
+    * If **yes**, do not change the default **not blocking** behavior. Legitimate traffic will definitely not be blocked, and you will still receive the information about problems as `overlimit_res` in **Attacks**.
+    * If **no**, [for this endpoint specifically](#specific-endpoint-configuration), change response to **Block**.
+
 ## General configuration
 
 In Wallarm Console → **Settings** → **General** → **Limit request processing time**, you can check the general configuration for request processing time limit. This configuration affects all endpoints unless overridden by [specific endpoint configuration](#specific-endpoint-configuration).
@@ -15,7 +34,7 @@ By default, this is:
 
     * Stops request processing.
     * Marks the request as the `overlimit_res` attack and displays it in **Attacks**. If the processed request part contains other [attack types](../../attacks-vulns-list.md), the attacks of the corresponding types will be displayed as well.
-    * Allows original request to reach the application (protection bypass). Note that the application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
+    * Allows original request to reach the application (protection bypass). Note that the application has the risk to be exploited by the attacks included in both processed and unprocessed request parts. The default general configuration and [adjusting for specific endpoints](#specific-endpoint-configuration) minimizes this risk.
 
 ![Limit request processing time - General configuration](../../images/user-guides/rules/fine-tune-overlimit-detection-generic.png)
 
@@ -29,12 +48,14 @@ Changing the response to **Block request** means that Wallarm:
 
 * Stops request processing.
 * Marks the request as the `overlimit_res` attack and displays it in **Attacks**. If the processed request part contains other [attack types](../../attacks-vulns-list.md), the attacks of the corresponding types will be displayed as well.
-* Blocks request. Note that the legitimate requests have the risk to be blocked.
+* Blocks request. Note that the legitimate requests have the risk to be blocked. Keeping the default general configuration and setting for blocking [only for specific endpoints](#specific-endpoint-configuration) minimizes this risk.
 
 !!! info "Filtration mode required for blocking"
     Note that blocking will only work when the node is in the **blocking** filtration [mode](../../admin-en/configure-wallarm-mode.md) or **safe blocking** for the requests originating from the [graylisted](../ip-lists/overview.md) IP addresses.
 
 ## Specific endpoint configuration
+
+The [default general configuration](#general-configuration) is well tested average approach and is never recommended to be changed. However, you can reach even better balance providing both protection and not blocking the legitimate traffic. Do this by adjusting time limit **specifically** for the endpoints with processing time out of average and **specifically** changing response to **blocking** where it is not immediately risky.
 
 The **Limit request processing time** [rule](../../user-guides/rules/rules.md) enables you to override the [general](#general-configuration) or parent configuration by setting it different for specific endpoint. You can:
 
