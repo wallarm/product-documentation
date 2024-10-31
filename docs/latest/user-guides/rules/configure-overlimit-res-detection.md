@@ -1,27 +1,28 @@
+[api-discovery-enable-link]:    ../../api-discovery/setup.md#enable
+
 # Limiting Request Processing Time
 
 The Wallarm node spends limited time on a single incoming request processing and if the time limit is exceeded, marks the request as the [resource overlimit (`overlimit_res`)](../../attacks-vulns-list.md#resource-overlimit) attack. You can customize the time limit allocated for a single request processing and node behavior when the limit is exceeded.
 
 Limiting the request processing time prevents the bypass attacks aimed at the Wallarm nodes. In some cases, the requests marked as `overlimit_res` can indicate insufficient resources allocated for the Wallarm node modules resulting in long request processing.
 
-## How to use the feature
+## Responding to resource overlimit attacks
 
-If you see a lot of the `overlimit_res` attacks in the **Attacks** section, locate the targeted endpoint and define the following:
+Starting from node version 5.1.0, all requests that exceed the configured processing time limits are listed in the **Attacks** section under the `overlimit_res` keyword. The following information will help you determine if the default node behavior in response to these requests is appropriate or if adjustments are needed:
 
 * Does this endpoint deal with the large data (files, etc.) and thus needs more time?
 
     * If **yes**, increase time limit [for this endpoint specifically](#specific-endpoint-configuration). This will reduce the unprocessed part of request and thus lower the risk of attacks hidden there.
     * If **no**, the endpoint might be under attack, investigate its protection and activities related to it in [**API Discovery**](../../api-discovery/overview.md), [**API Sessions**](../../api-sessions.md), and [**Attacks**](../../user-guides/events/check-attack.md). Adjust protection as described [here](../../user-guides/events/check-attack.md#responding-to-attacks).
 
-* Does this endpoint experience `overlimit_res` problem together with **a lot of other** endpoints?
-
-    * If **yes**, consider allocating more resources for the Wallarm node modules which will decrease the request processing time or check the correctness of general configuration.
-    * If **no**, see the previous point.
+* Does this endpoint experience `overlimit_res` problem together with **a lot of other** endpoints? If **yes**, consider [allocating more resources](../../admin-en/configuration-guides/allocate-resources-for-node.md) for the Wallarm node modules which will decrease the request processing time or check the correctness of general configuration.
 
 * Does this endpoint immediately affect user experience and satisfaction?
 
     * If **yes**, do not change the default **not blocking** behavior. Legitimate traffic will definitely not be blocked, and you will still receive the information about problems as `overlimit_res` in **Attacks**.
-    * If **no**, [for this endpoint specifically](#specific-endpoint-configuration), change response to **Block**.
+    * If **no**, [for this endpoint specifically](#specific-endpoint-configuration), consider changing response to **Block**.
+
+The presence of the `overlimit_res` attacks on endpoints is generally normal but should stay within expected limits. High volumes suggest it may be worth performing analysis and actions described above.
 
 ## General configuration
 
@@ -34,7 +35,7 @@ By default, this is:
 
     * Stops request processing.
     * Marks the request as the `overlimit_res` attack and displays it in **Attacks**. If the processed request part contains other [attack types](../../attacks-vulns-list.md), the attacks of the corresponding types will be displayed as well.
-    * Allows original request to reach the application (protection bypass). Note that the application has the risk to be exploited by the attacks included in both processed and unprocessed request parts. The default general configuration and [adjusting for specific endpoints](#specific-endpoint-configuration) minimizes this risk.
+    * Allows original request to reach the application (protection bypass).<!-- Note that the application has the risk to be exploited by the attacks included in both processed and unprocessed request parts. The default general configuration and [adjusting for specific endpoints](#specific-endpoint-configuration) minimizes this risk.-->
 
 ![Limit request processing time - General configuration](../../images/user-guides/rules/fine-tune-overlimit-detection-generic.png)
 
@@ -70,7 +71,7 @@ To set specific endpoint configuration for request processing time limit:
 
 ## Rule example
 
-Let us say you have the default general configuration of **1,000 milliseconds** and **Interrupt Wallarm processing and bypass** response (and the node is in the `blocking` mode), and you have many `overlimit_res` attacks for the `https://example.com/upload`. The investigation shows that the endpoint is used for the large file uploading and the legitimate requests are marked as `overlimit_res` attacks because of exceeding the processing time.
+Let us say you have the default general configuration of **1,000 milliseconds** and **Interrupt Wallarm processing and bypass** response, and you have many `overlimit_res` attacks for the `https://example.com/upload`. The investigation shows that the endpoint is used for the large file uploading and the legitimate requests are marked as `overlimit_res` attacks because of exceeding the processing time.
 
 To reduce the number of unnecessary `overlimit_res` notifications and lower the chance of malicious payloads hiding in the unprocessed part of the request, for this endpoint specifically, we need to increase the time for request processing.
 

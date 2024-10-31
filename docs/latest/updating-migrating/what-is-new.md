@@ -31,6 +31,7 @@ Patterns are used to define which sensitive data is detected and how. To modify 
 Wallarm [limits the request processing](../user-guides/rules/configure-overlimit-res-detection.md) time to avoid running out of system memory which can lead to the node being down to leave your applications unprotected. Now the transparency of this mechanism is increased:
 
 * All the cases of exceeding the limit are registered and immediately displayed in **Attacks** as `overlimit_res` events - you can easily locate and analyze them.
+* In all the cases of exceeding the limit, the processing of requests stops.
 * Configuring of system behavior is easier now - general configuration is displayed in **Settings** → **General** and can be modified there.
 * The **Limit request processing time** (former **Fine-tune the overlimit_res attack detection**) rule is simplified to set different configurations for specific endpoints.
 
