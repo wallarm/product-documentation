@@ -493,7 +493,7 @@ In the configuration above:
 ### wallarm_process_time_limit
 
 !!! warning "The directive has been deprecated"
-    Starting from the version 3.6, it is recommended to fine-tune the `overlimit_res` attack detection using the [rule **Fine‑tune the overlimit_res attack detection**](../user-guides/rules/configure-overlimit-res-detection.md).
+    Starting from the version 3.6, it is recommended to fine-tune the `overlimit_res` attack detection using the [**Limit request processing time**](../user-guides/rules/configure-overlimit-res-detection.md) rule (former "Fine-tune the overlimit_res attack detection").
     
     The `wallarm_process_time_limit` directive is temporarily supported but will be removed in future releases.
 
@@ -516,7 +516,7 @@ wallarm_process_time_limit 2000; # 2000 milliseconds
 ### wallarm_process_time_limit_block
 
 !!! warning "The directive has been deprecated"
-    Starting from the version 3.6, it is recommended to fine-tune the `overlimit_res` attack detection using the [rule **Fine‑tune the overlimit_res attack detection**](../user-guides/rules/configure-overlimit-res-detection.md).
+    Starting from the version 3.6, it is recommended to fine-tune the `overlimit_res` attack detection using the [**Limit request processing time**](../user-guides/rules/configure-overlimit-res-detection.md) rule (former "Fine-tune the overlimit_res attack detection").
     
     The `wallarm_process_time_limit_block` directive is temporarily supported but will be removed in future releases.
 

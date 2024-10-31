@@ -19,13 +19,13 @@ By default, this is:
 
 ![Limit request processing time - General configuration](../../images/user-guides/rules/fine-tune-overlimit-detection-generic.png)
 
-You can change the general configuration by adjusting time limit.
+You can change the general configuration by adjusting time limit and changing the response.
 
 !!! warning "Risk of protection bypass or running out of system memory"
     * It is recommended to change the default node behavior only in the strictly [specific locations](#specific-endpoint-configuration) where it is really necessary, e.g. where the upload of the large files is performed, and where there is no risk of protection bypass and vulnerability exploit.
     * The high time limit can trigger memory exhaustion.
 
-You can also change response to **Block request**  which means Wallarm: 
+Changing the response to **Block request** means that Wallarm: 
 
 * Stops request processing.
 * Marks the request as the `overlimit_res` attack and displays it in **Attacks**. If the processed request part contains other [attack types](../../attacks-vulns-list.md), the attacks of the corresponding types will be displayed as well.
@@ -41,8 +41,6 @@ The **Limit request processing time** [rule](../../user-guides/rules/rules.md) e
 * Set custom limit on a single request processing
 * Change system response (descriptions of each are [above](#general-configuration))
 
-To create a rule: 
-
 To set specific endpoint configuration for request processing time limit:
 
 --8<-- "../include/rule-creation-initial-step.md"
@@ -51,9 +49,9 @@ To set specific endpoint configuration for request processing time limit:
 
 ## Rule example
 
-Let us say the general configuration is **1,000 milliseconds** and **Block request** response (and the node is in the `blocking` mode), and you have many `overlimit_res` attacks for the `https://example.com/upload`. The investigation shows that the endpoint is used for the large file uploading and the legitimate requests are actually being blocked because of exceeding the processing time.
+Let us say you have the default general configuration of **1,000 milliseconds** and **Interrupt Wallarm processing and bypass** response (and the node is in the `blocking` mode), and you have many `overlimit_res` attacks for the `https://example.com/upload`. The investigation shows that the endpoint is used for the large file uploading and the legitimate requests are marked as `overlimit_res` attacks because of exceeding the processing time.
 
-To provide normal endpoint functioning, for it specifically, we need to increase the time for request processing. Moreover, we want just notification (not blocking) for the cases when the limit is exceeded.
+To reduce the number of unnecessary `overlimit_res` notifications and lower the chance of malicious payloads hiding in the unprocessed part of the request, for this endpoint specifically, we need to increase the time for request processing.
 
 To do so, set the **Limit request processing time** rule as displayed on the screenshot.
 
