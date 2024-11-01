@@ -4,21 +4,16 @@ Earlier, the [`wallarm_process_time_limit`][nginx-process-time-limit-docs] and [
 
 If the `overlimit_res` attack detection settings are customized via the listed directives, it is recommended to transfer them to the rule as follows:
 
-1. Open Wallarm Console → **Rules** and proceed to the [**Fine-tune the overlimit_res attack detection**][overlimit-res-rule-docs] rule setup.
+1. Open Wallarm Console → **Rules** and proceed to the [**Limit request processing time**][overlimit-res-rule-docs] rule setup.
 1. Configure the rule as done via the NGINX directives:
 
     * The rule condition should match the NGINX configuration block with the `wallarm_process_time_limit` and `wallarm_process_time_limit_block` directives specified.
     * The time limit for the node to process a single request (milliseconds): the value of `wallarm_process_time_limit`.
-    * Request processing: the **Stop processing** option is recommended.
     
         !!! warning "Risk of running out of system memory"
             The high time limit and/or continuation of request processing after the limit is exceeded can trigger memory exhaustion or out-of-time request processing.
     
-    * Register the overlimit_res attack: the **Register and display in the events** option is recommended.
-
-        If the `wallarm_process_time_limit_block` or `process_time_limit_block` value is `off`, choose the **Do not create attack event** option.
-    
-    * The rule does not have the explicit equivalent option for the `wallarm_process_time_limit_block` directive. If the rule sets **Register and display in the events**, the node will either block or pass the `overlimit_res` attack depending on the [node filtration mode][waf-mode-instr]:
+    * The node will either block or pass the `overlimit_res` attack depending on the [node filtration mode][waf-mode-instr]:
 
         * In the **monitoring** mode, the node forwards the original request to the application address. The application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
         * In the **safe blocking** mode, the node blocks the request if it is originated from the [graylisted][graylist-docs] IP address. Otherwise, the node forwards the original request to the application address. The application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
