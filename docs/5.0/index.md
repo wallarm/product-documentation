@@ -61,7 +61,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <p><ul>
     <li><a href="./api-attack-surface/overview/">Overview</a></li>
     <li><a href="./api-attack-surface/api-surface/">API Attack Surface Discovery</a></li>
-    <li><a href="./api-attack-surface/api-leaks/">API Leaks Detection</a></li>
+    <li><a href="./api-attack-surface/security-issues/">Security Issues</a></li>
     </ul></p>
 </div>
 

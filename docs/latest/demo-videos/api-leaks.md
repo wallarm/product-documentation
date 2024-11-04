@@ -1,4 +1,4 @@
-# API Leaks overview
+# API Leaks Overview
 
 Watch our demo video to gain familiarity with the various types of API leaks that the Wallarm platform's [**API Leaks**](../api-attack-surface/api-leaks.md) module discovers, and to understand how it can remediate any detected leaks.
 
@@ -8,4 +8,4 @@ Watch our demo video to gain familiarity with the various types of API leaks tha
 
 **Related documentation articles**
 
-* [API Leaks](../api-attack-surface/api-leaks.md)
+* [AASM - Security Issues Detection](../api-attack-surface/security-issues.md)
