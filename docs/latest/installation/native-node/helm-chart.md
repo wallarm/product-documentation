@@ -145,11 +145,11 @@ helm repo update wallarm
 
 === "US Cloud"
     ```
-    helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com --set
+    helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
     ```
 === "EU Cloud"
     ```
-    helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com --set
+    helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
     ```
 
 ### 5. Get the Wallarm load balancer
@@ -159,7 +159,7 @@ If deploying with the `LoadBalancer` type:
 1. Get the external IP for the Wallarm load balancer:
 
     ```
-    kubectl get svc -n wallarm
+    kubectl get svc -n wallarm-node
     ```
 
     Find the external IP for the `next-processing` service.

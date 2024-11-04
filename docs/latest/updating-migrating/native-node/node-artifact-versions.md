@@ -67,6 +67,9 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 * Updated artifact naming from "next" to "native"
     
     `wallarm/wallarm-node-next` → `wallarm/wallarm-node-native`
+* Updated the `config.wallarm_node_address` parameter value in the `KongClusterPlugin` Kubernetes resource used to activate the Wallarm Lua plugin:
+
+    `http://next-processing.wallarm-node.svc.cluster.local:5000` → `http://native-processing.wallarm-node.svc.cluster.local:5000`
 
 ### 0.5.3 (2024-10-01)
 

@@ -81,7 +81,7 @@ To deploy the Wallarm node as a separate service in your Kubernetes cluster, fol
       annotations:
         kubernetes.io/ingress.class: kong
     config:
-      wallarm_node_address: "http://next-processing.wallarm-node.svc.cluster.local:5000"
+      wallarm_node_address: "http://native-processing.wallarm-node.svc.cluster.local:5000"
     plugin: kong-lua
     ' | kubectl apply -f -
     ```
