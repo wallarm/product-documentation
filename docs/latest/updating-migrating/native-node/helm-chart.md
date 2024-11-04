@@ -55,8 +55,8 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-node-native --version
 
     ```
     NAME                                READY   STATUS    RESTARTS   AGE
-    next-aggregation-5fb5d5444b-6c8n8   3/3     Running   0          51m
-    next-processing-7c487bbdc6-4j6mz    3/3     Running   0          51m
+    native-aggregation-5fb5d5444b-6c8n8   3/3     Running   0          51m
+    native-processing-7c487bbdc6-4j6mz    3/3     Running   0          51m
     ```
 1. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to your API gateway:
 
