@@ -110,8 +110,8 @@ To test the functionality of the deployed connector, follow these steps:
 
     ```
     NAME                                READY   STATUS    RESTARTS   AGE
-    next-aggregation-5fb5d5444b-6c8n8   3/3     Running   0          51m
-    next-processing-7c487bbdc6-4j6mz    3/3     Running   0          51m
+    native-aggregation-5fb5d5444b-6c8n8   3/3     Running   0          51m
+    native-processing-7c487bbdc6-4j6mz    3/3     Running   0          51m
     ```
 1. Retrieve the Kong Gateway IP (which is usually configured as a `LoadBalancer` service):
 

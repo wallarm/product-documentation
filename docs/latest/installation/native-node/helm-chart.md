@@ -162,7 +162,7 @@ If deploying with the `LoadBalancer` type:
     kubectl get svc -n wallarm-node
     ```
 
-    Find the external IP for the `next-processing` service.
+    Find the external IP for the `native-processing` service.
 1. Create an A record in your DNS provider, pointing your domain to the external IP.
 
     After the DNS propagates, you can access the service via the domain name.
