@@ -1,1 +1,0 @@
---8<-- "latest-ja/api-attack-surface/api-leaks.md"
