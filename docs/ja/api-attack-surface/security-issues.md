@@ -1,0 +1,1 @@
+--8<-- "latest-ja/api-attack-surface/security-issues.md"

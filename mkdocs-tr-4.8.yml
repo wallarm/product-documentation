@@ -77,7 +77,7 @@ nav:
   - API Saldırı Yüzeyi:
     - Genel Bakış: api-attack-surface/overview.md
     - API Yüzey Keşfi: api-attack-surface/api-surface.md
-    - API Sızıntılarını Yönetme: api-attack-surface/api-leaks.md
+    - API Sızıntılarını Yönetme: api-attack-surface/security-issues.md
   - Varlıklar ve Güvenlik Açıkları:
     - Güvenlik Açıklarını Tespit Etme: about-wallarm/detecting-vulnerabilities.md
     - Algılanan Kırılganlıkların Yönetimi: user-guides/vulnerabilities.md

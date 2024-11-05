@@ -32,10 +32,10 @@ You get all this simply by subscribing to the component in Wallarm - you do not 
 
 You can define a list of your **root domains** which you want to search for hosts as follows:
 
-1. In the **API Attack Surface** or **API Leaks** section, click **Configure**.
+1. In the **API Attack Surface** or **Security Issues** section, click **Configure**.
 1. At the **Scope** tab, add your domains.
 
-    Wallarm will start searching for hosts and [leaked credentials](api-leaks.md) published under the domain. The search progress and results will be displayed at the **Status** tab.
+    Wallarm will start searching for hosts and their [security issues](security-issues.md). The search progress and results will be displayed at the **Status** tab.
 
 ![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
 
@@ -81,4 +81,4 @@ The total score is calculated using a complex proprietary formula that incorpora
 
     For each host, you can download a detailed WAAP score evaluation report in PDF format.
 
-* **Additional metrics** such as TLS coverage, presence of security issues, and detected API leaks.
+* **Additional metrics** such as TLS coverage, presence of security issues, and detected security issues.

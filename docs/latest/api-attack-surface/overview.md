@@ -1,11 +1,11 @@
 # API Attack Surface Management  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-Wallarm's **API Attack Surface Management** (**AASM**) is an agentless detection solution designed to discover all external hosts with their APIs, evaluate their protection against Web and API-based attacks, identify missing WAF/WAAP solutions, and eliminate API leaks.
+Wallarm's **API Attack Surface Management** (**AASM**) is an agentless detection solution designed to discover all external hosts with their APIs, evaluate their protection against Web and API-based attacks, identify missing WAF/WAAP solutions, and detect the discovered endpoints' security issues.
 
 API Attack Surface Management includes:
 
 * [API Attack Surface Discovery (AASD)](api-surface.md)
-* [API Leaks Detection](api-leaks.md)
+* [Security Issues Detection](security-issues.md)
 
 ![AASM](../images/api-attack-surface/aasm.png)
 
@@ -22,9 +22,8 @@ Work with API Attack Surface Management looks as follows:
 * Wallarm identifies geolocation and data center for each host.
 * Wallarm identifies exposed APIs on each host.
 * Wallarm identifies security solutions (WAF/WAAP) protecting the host and evaluate their efficiency.
-* Wallarm checks public resources for published (leaked) data related to specified domains.
-* At specified domains, Wallarm searches for revealed (leaked) sensitive data.
-* Wallarm lists leaks found for specified domains.
+* Wallarm checks found domains/hosts for [security issues](security-issues.md).
+* If found, security issues are listed and described for you to be able to solve them.
 
 ## Enabling and setup
 
@@ -36,10 +35,10 @@ To use AASM, the Wallarm's [API Attack Surface](../about-wallarm/subscription-pl
 
 * If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
-Once subscription is activated, to configure domain detection and API leaks remediation, in Wallarm Console → AASM → **API Attack Surface** or **API Leaks** section, click **Configure**. Add your domains to the scope, check the scanning status.
+Once subscription is activated, to configure domain detection and start searching for security issues, in Wallarm Console → AASM → **API Attack Surface** or **Security Issues** section, click **Configure**. Add your domains to the scope, check the scanning status.
 
 ![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
 
-Wallarm will list all subdomains and show API leaks related to them if there are any. Note that domains are automatically re-scanned daily - new subdomains will be added automatically, previously listed but not found during re-scan will remain in the list.
+Wallarm will list all subdomains and show security issues related to them if there are any. Note that domains are automatically re-scanned daily - new subdomains will be added automatically, previously listed but not found during re-scan will remain in the list.
 
 You can re-start, pause or continue scanning for any domain manually at **Configure** → **Status**.

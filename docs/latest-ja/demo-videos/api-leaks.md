@@ -8,4 +8,4 @@
 
 **関連するドキュメンテーション記事**
 
-* [APIリークの概要](../api-attack-surface/api-leaks.md)
+* [APIリークの概要](../api-attack-surface/security-issues.md)

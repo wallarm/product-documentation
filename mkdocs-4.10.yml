@@ -61,7 +61,7 @@ nav:
   - API Attack Surface:
     - Overview: api-attack-surface/overview.md
     - API Surface Discovery: api-attack-surface/api-surface.md
-    - API Leaks Detection: api-attack-surface/api-leaks.md
+    - Detecting Security Issues: api-attack-surface/security-issues.md
   - Assets & Vulnerabilities:
     - Exposed Assets: user-guides/scanner.md
     - Vulnerability Assessment:

@@ -106,7 +106,7 @@ nav:
   - سطح هجوم API:
     - ملخص: api-attack-surface/overview.md
     - اكتشاف سطح API: api-attack-surface/api-surface.md
-    - اكتشاف تسربات API: api-attack-surface/api-leaks.md
+    - اكتشاف تسربات API: api-attack-surface/security-issues.md
   - الأصول والثغرات:
     - الأصول المكشوفة: user-guides/scanner.md
     - تقييم الضعف:
