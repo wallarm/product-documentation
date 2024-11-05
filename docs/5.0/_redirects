@@ -758,3 +758,7 @@
 /tr/installation/cdn/cloudflare/ /tr/installation/connectors/cloudflare/
 
 /installation/oob/tcp-traffic-mirror/configuration/ /installation/native-node/all-in-one-conf/
+
+/api-attack-surface/api-leaks/ /api-attack-surface/security-issues/
+/4.10/api-attack-surface/api-leaks/ /4.10/api-attack-surface/security-issues/
+/4.8/api-attack-surface/api-leaks/ /4.8/api-attack-surface/security-issues/
