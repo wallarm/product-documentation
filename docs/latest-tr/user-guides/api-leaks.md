@@ -2,7 +2,7 @@
 
 **API Sızıntıları** modülü, API belirteçlerinin sızıntıları için binlerce halka açık depoyu ve kaynağı aktif olarak tarar ve API portföyünüze saldırılara veya başka zararlara karşı korumak için sızdırılan belirteçleri engellemenize izin verir. Bu makale, API sızıntılarını nasıl yöneteceğinizi anlatmaktadır.
 
-Temel yeteneklerin bir özetini görmek için lütfen **API Sızıntıları** modülünün [genel bakışına](../api-attack-surface/api-leaks.md) başvurun.
+Temel yeteneklerin bir özetini görmek için lütfen **API Sızıntıları** modülünün [genel bakışına](../api-attack-surface/security-issues.md) başvurun.
 
 ## API Sızıntılarına Erişim
 

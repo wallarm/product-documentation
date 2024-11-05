@@ -2,7 +2,7 @@
 
 O módulo **API Leaks** verifica ativamente milhares de repositórios públicos e fontes em busca de vazamentos de tokens de API, e permite que você bloqueie qualquer token vazado para prevenir ataques ou outros danos ao seu portfólio de API. Este artigo proporciona informações sobre como gerenciar os vazamentos de API.
 
-Para um resumo básico das capacidades, por favor, consulte a visão geral do módulo **API Leaks** [aqui](../api-attack-surface/api-leaks.md).
+Para um resumo básico das capacidades, por favor, consulte a visão geral do módulo **API Leaks** [aqui](../api-attack-surface/security-issues.md).
 
 ## Acessando API Leaks
 

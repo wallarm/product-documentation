@@ -79,7 +79,7 @@ nav:
   - Superfície de ataque da API:
     - Visão geral: api-attack-surface/overview.md
     - Descoberta de superfície de API: api-attack-surface/api-surface.md
-    - Detecção de vazamentos de API: api-attack-surface/api-leaks.md
+    - Detecção de vazamentos de API: api-attack-surface/security-issues.md
   - Ativos e Vulnerabilidades:
     - Visão Geral: about-wallarm/detecting-vulnerabilities.md
     - Busca e Filtros de Vulnerabilidades: user-guides/search-and-filters/use-search-vuln.md
