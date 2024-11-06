@@ -29,7 +29,7 @@ To install and run the plugin:
 2. Run the plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n wallarm-sidecar wallarm/wallarm-sidecar --version 5.0.3 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n wallarm-sidecar wallarm/wallarm-sidecar --version 5.1.0 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name of the Wallarm Sidecar Helm release.
@@ -75,7 +75,7 @@ helm install --version 5.0.2 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wa
 Upgrade the deployed components of the Sidecar solution:
 
 ``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 5.0.3 -f <PATH_TO_VALUES>
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 5.1.0 -f <PATH_TO_VALUES>
 ```
 
 * `<RELEASE_NAME>`: the name of the Helm release with the deployed Sidecar chart

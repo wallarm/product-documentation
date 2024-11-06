@@ -12,6 +12,18 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.1.0 (2024-11-06)
+
+* Added support for API Sessions
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
+* Fixed logging to properly show the violations of [specification-based policies](../api-specification-enforcement/overview.md#how-it-works) by improving NGINX [variables](../admin-en/configure-logging.md#filter-node-variables):
+
+    * `wallarm_attack_type`
+    * `wallarm_attack_type_list`
+
+* Reduced memory usage during node registration
+
 ### 5.0.3 (2024-10-10)
 
 * Added support for [customizing sensitive data detection](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) in API Discovery
@@ -43,6 +55,18 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 5.1.0 (2024-11-06)
+
+* Added support for API Sessions
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
+* Fixed logging to properly show the violations of [specification-based policies](../api-specification-enforcement/overview.md#how-it-works) by improving NGINX [variables](../admin-en/configure-logging.md#filter-node-variables):
+
+    * `wallarm_attack_type`
+    * `wallarm_attack_type_list`
+
+* Reduced memory usage during node registration
+
 ### 5.0.3 (2024-10-10)
 
 * Added support for [customizing sensitive data detection](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) in API Discovery
@@ -70,6 +94,18 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+### 5.1.0 (2024-11-06)
+
+* Added support for API Sessions
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
+* Fixed logging to properly show the violations of [specification-based policies](../api-specification-enforcement/overview.md#how-it-works) by improving NGINX [variables](../admin-en/configure-logging.md#filter-node-variables):
+
+    * `wallarm_attack_type`
+    * `wallarm_attack_type_list`
+
+* Reduced memory usage during node registration
+
 ### 5.0.3 (2024-10-10)
 
 * Added support for [customizing sensitive data detection](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) in API Discovery
@@ -95,7 +131,19 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](docker-container.md)
 
-### 5.0.3-1 (2024-10-10)
+### 5.1.0-1 (2024-11-06)
+
+* Added support for API Sessions
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
+* Fixed logging to properly show the violations of [specification-based policies](../api-specification-enforcement/overview.md#how-it-works) by improving NGINX [variables](../admin-en/configure-logging.md#filter-node-variables):
+
+    * `wallarm_attack_type`
+    * `wallarm_attack_type_list`
+
+* Reduced memory usage during node registration
+
+### 5.1.0-1 (2024-10-10)
 
 * Added support for [customizing sensitive data detection](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) in API Discovery
 * Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
@@ -126,7 +174,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
-### 5.0.3-1 (2024-10-10)
+### 5.1.0-1 (2024-10-10)
 
 * Added support for [customizing sensitive data detection](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) in API Discovery
 * Fixed memory leak on duplicate response headers in [libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)
