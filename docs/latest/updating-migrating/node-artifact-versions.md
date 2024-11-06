@@ -16,13 +16,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 <!--* Added support for API Sessions-->
 * [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
-* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
+<!--* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
 * Fixed logging to properly show the violations of [specification-based policies](../api-specification-enforcement/overview.md#how-it-works) by improving NGINX [variables](../admin-en/configure-logging.md#filter-node-variables):
 
     * `wallarm_attack_type`
     * `wallarm_attack_type_list`
 
-* Reduced memory usage during node registration
+-->* Reduced memory usage during node registration
 
 ### 5.0.3 (2024-10-10)
 
@@ -59,13 +59,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 <!--* Added support for API Sessions-->
 * [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
-* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
+<!--* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
 * Fixed logging to properly show the violations of [specification-based policies](../api-specification-enforcement/overview.md#how-it-works) by improving NGINX [variables](../admin-en/configure-logging.md#filter-node-variables):
 
     * `wallarm_attack_type`
     * `wallarm_attack_type_list`
 
-* Reduced memory usage during node registration
+-->* Reduced memory usage during node registration
 
 ### 5.0.3 (2024-10-10)
 
@@ -98,13 +98,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 <!--* Added support for API Sessions-->
 * [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
-* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
+<!--* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
 * Fixed logging to properly show the violations of [specification-based policies](../api-specification-enforcement/overview.md#how-it-works) by improving NGINX [variables](../admin-en/configure-logging.md#filter-node-variables):
 
     * `wallarm_attack_type`
     * `wallarm_attack_type_list`
 
-* Reduced memory usage during node registration
+-->* Reduced memory usage during node registration
 
 ### 5.0.3 (2024-10-10)
 
@@ -135,13 +135,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 <!--* Added support for API Sessions-->
 * [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
-* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
+<!--* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
 * Fixed logging to properly show the violations of [specification-based policies](../api-specification-enforcement/overview.md#how-it-works) by improving NGINX [variables](../admin-en/configure-logging.md#filter-node-variables):
 
     * `wallarm_attack_type`
     * `wallarm_attack_type_list`
 
-* Reduced memory usage during node registration
+-->* Reduced memory usage during node registration
 
 ### 5.0.3-1 (2024-10-10)
 
@@ -178,13 +178,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 <!--* Added support for API Sessions-->
 * [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
-* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
+<!--* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
 * Fixed logging to properly show the violations of [specification-based policies](../api-specification-enforcement/overview.md#how-it-works) by improving NGINX [variables](../admin-en/configure-logging.md#filter-node-variables):
 
     * `wallarm_attack_type`
     * `wallarm_attack_type_list`
 
-* Reduced memory usage during node registration
+-->* Reduced memory usage during node registration
 
 ### 5.0.3-1 (2024-10-10)
 
