@@ -1,3 +1,8 @@
+[link-attacks]:                 ../user-guides/events/check-attack.md
+[link-sessions]:                ../api-sessions/overview.md
+[link-api-abuse-prevention]:    ../api-abuse-prevention/overview.md
+[img-api-sessions-api-abuse]:   ../images/api-sessions/api-sessions-api-abuse.png
+
 # Exploring Bot Activity <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 [API Abuse Prevention](../api-abuse-prevention/overview.md) identifies malicious bot activity based on ML algorithms. Such attacks are impossible to analyze based on a single blocked request. Therefore, it is essential that the Wallarm platform offers a wide range of tools to investigate bot activity from different angles.
@@ -50,12 +55,6 @@ The **API Abuse Prevention** module compiles client traffic into URL patterns. T
 | HEALTHCHECK | Content related to the health check endpoints. | - |
 | VARY | The segment is marked as VARY if it is impossible to attribute it to other categories. A variable part of the URL path. | - | -->
 
-## Bot attacks in API sessions
+## Verifying API abuse detection accuracy with API Sessions
 
-You can easily validate detected malicious bot activity by switching from **Attacks** to [**API Sessions**](../api-sessions.md) with the **Explore the Session** button. This button is available only for attacks for which there are saved sessions (see session retention period in [limitations](../api-sessions.md#limitations) for API Sessions). Within a session, you can analyze the sequence of requests that matches the malicious pattern and find out why it was blocked. If necessary, you can view all requests within a given session to understand the full context of the behavior of the selected actor.
-
-![API Abuse attack in API Sessions](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-in-sessions.png)
-
-Expand the session details to identify which sequence of requests was flagged as malicious bot activity. If necessary, you can expand request details, view its content and immediately use the **Add source IP to denylist** or **Add to exception list** options.
-
-You can switch back to the **Attacks** section using **Explore the attack**.
+--8<-- "../include/bot-attack-full-context.md"

@@ -4,6 +4,9 @@
 [img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
 [use-search]:             ../search-and-filters/use-search.md
 [search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
+[link-attacks]:         ../../user-guides/events/check-attack.md
+[link-incidents]:       ../../user-guides/events/check-incident.md
+[link-sessions]:        ../../api-sessions/overview.md
 
 # Incident Analysis
 
@@ -33,6 +36,10 @@ In Wallarm Console, you can analyze detected incidents in the **Incidents** sect
 
 To sort incidents by the time of the last request, you can use the **Sort by latest hit** switch.
 
+## Full context of threat actor activities
+
+--8<-- "../include/request-full-context.md"
+
 ## Responding to incidents
 
 The [incidents](../../glossary-en.md#security-incident) are the attacks targeted at a confirmed vulnerability.
@@ -41,12 +48,15 @@ The [incidents](../../glossary-en.md#security-incident) are the attacks targeted
 
 Once incident appeared in the **Incidents** section:
 
+1. Optionally (recommended), [investigate the full context](#full-context-of-threat-actor-activities) of the incident's malicious requests: to which [user session](../../api-sessions/overview.md) they belong and what the full sequence of requests in this session is.
+
+     This allows seeing all activity and logic of the threat actor and understanding attack vectors and what resources can be compromised.
+  
 1. Follow the link in the **Vulnerabilities** column to get detailed vulnerability information including instructions on how to fix this vulnerability and the list of related incidents. 
 
      ![Vulnerability detailed information](../../images/user-guides/vulnerabilities/vuln-info.png)
 
      **Fix the vulnerability** and then mark it closed in Wallarm. For detailed information, refer to [Managing Vulnerabilities](../vulnerabilities.md) article.
-
 1. Go back to the incident in the list, investigate what mechanism caused the system reaction (note the `Blocked`, `Partially blocked` and `Monitoring` [statuses](check-attack.md#attack-analysis) of the attacks), how the system will behave in future to alike requests and how to adjust (if necessary) this future behavior.
 
      For incidents, this investigation and adjusting is performed [in the same way](check-attack.md#responding-to-attacks) as for all other attacks.

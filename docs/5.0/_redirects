@@ -766,3 +766,6 @@
 /pt-br/api-attack-surface/api-leaks/ /pt-br/api-attack-surface/security-issues/
 /ja/api-attack-surface/api-leaks/ /ja/api-attack-surface/security-issues/
 /ar/api-attack-surface/api-leaks/ /ar/api-attack-surface/security-issues/
+
+
+/api-sessions/ /api-sessions/overview/

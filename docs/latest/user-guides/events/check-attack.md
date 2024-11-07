@@ -15,6 +15,9 @@
 [link-false-attack]:        false-attack.md
 [img-current-attack]:       ../../images/user-guides/events/analyze-current-attack.png
 [glossary-attack-vector]:   ../../glossary-en.md#malicious-payload
+[link-attacks]:         ../../user-guides/events/check-attack.md
+[link-incidents]:       ../../user-guides/events/check-incident.md
+[link-sessions]:        ../../api-sessions/overview.md
 
 # Attack Analysis
 
@@ -47,6 +50,10 @@ Each attack details contain all necessary information for analysis, such as atta
 
 Hit sampling does not affect the quality of attack detection and Wallarm node continues protect your applications and APIs even with hit sampling enabled.
 
+## Full context of threat actor activities
+
+--8<-- "../include/request-full-context.md"
+
 ## False positives
 
 False positive occurs when [attack signs](../../about-wallarm/protecting-against-attacks.md#library-libproton) are detected in the legitimate request.
@@ -72,6 +79,10 @@ When dealing with this task, you will need to identify what type of attack took 
     * `Partially blocked` - some hits of the attack were blocked and others were only registered.
     * `Monitoring` - all hits of the attack were registered but not blocked.
     * `Bot detected` - this is bot, check action within the attack.
+
+1. Optionally (recommended), [investigate the full context](#full-context-of-threat-actor-activities) of the attack's malicious requests: to which [user session](../../api-sessions/overview.md) they belong and what the full sequence of requests in this session is.
+
+    This allows seeing all activity and logic of the threat actor and understanding attack vectors and what resources can be compromised.
 
 1. If you think it was not an actual attack, mark it [false positive](#false-positives).
 1. **Understand** - become aware of the Wallarm mechanism that detected and reacted to attack.

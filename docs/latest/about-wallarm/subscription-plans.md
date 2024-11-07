@@ -28,6 +28,7 @@ Wallarm is the only solution that unifies best-in-class API Security and WAAP ca
 | **Security posture** | | |
 | [Exposed asset scanner](../user-guides/scanner.md) | Yes | Yes |
 | [Vulnerability assessment](../user-guides/vulnerabilities.md) | Yes | Yes |
+| [API Sessions](../api-sessions/overview.md) | No | Yes |
 | [API Discovery](../api-discovery/overview.md) | No | Yes |
 | [Sensitive data detection](../api-discovery/overview.md#sensitive-data-detection) | No | Yes |
 | [Rogue API Detection (shadow, orphan zombie)](../api-discovery/rogue-api.md) | No | Yes |

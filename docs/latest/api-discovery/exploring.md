@@ -92,7 +92,9 @@ Click the endpoint to expand its parameters and view which type was automaticall
 
 Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
 
-## Monitoring attacks on API endpoints
+## Endpoint activities
+
+### Attacks
 
 Number of attacks on API endpoints for the last 7 days are displayed in the **Hits** column. You can request displaying only attacked endpoints by selecting in filters: **Others** → **Attacked endpoints**.
 
@@ -107,6 +109,14 @@ attacks last 7 days endpoint_id:<YOUR_ENDPOINT_ID>
 ```
 
 You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
+
+### All activities
+
+The number of all requests related to the endpoint is displayed in the **Requests** column. Click this number to open the [**API Sessions**](../api-sessions/overview.md) section with the list of user sessions for the last week with these requests.
+
+Within each found session, only requests to your endpoint will be initially displayed - in session, remove filter by endpoint to see all requests for context.
+
+A structured view of session activity helps in understanding your endpoint place in malicious and legitimate activities, its relation to sensitive business flows and required protection measures.
 
 ## Creating rules for API endpoints
 
