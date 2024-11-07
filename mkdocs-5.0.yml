@@ -34,7 +34,7 @@ nav:
     - API Sessions: 
       - Overview: api-sessions/overview.md
       - Setup: api-sessions/setup.md
-      - Exploring API Sessions: api-sessions/exploring.md
+      - Exploring: api-sessions/exploring.md
     - Reports: user-guides/search-and-filters/custom-report.md
   - API Discovery:
     - Overview: api-discovery/overview.md

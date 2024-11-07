@@ -16,9 +16,9 @@ As soon as Wallarm's [API Sessions](overview.md) identified user sessions relate
 
 You can investigate what happened within the specified time interval. To do so, set the date/time filter. Only sessions with the requests that took place at specified time will be displayed - only requests from that time interval will be displayed within each session.
 
-![!API Sessions - activities within timeframe](../images/api-sessions/api-sessions-timeframe.png)
+![!API Sessions - activities within specific time](../images/api-sessions/api-sessions-timeframe.png)
 
-Hint: use the [link to your session](#sharing-session-information) and **then** set time interval to see only requests from the selected session within the selected time.
+Hint: use the [link to your session](#sharing-session-information) in your own browser and **then** set time interval to see only requests from the selected session within the selected time.
 
 ## Specific activities within session
 
@@ -30,7 +30,7 @@ In session details, you can see a comprehensive statistics providing information
 
 Note that is-session filters communicate with general filters of the **API Sessions** section: 
 
-* Any session opened after general filters applied will share this filters (inside the session, you can click **Show all requests** to cancel that).
+* Any session opened after general filters applied will share these filters (inside the session, you can click **Show all requests** to cancel that).
 * Use the **Apply filters** button to apply general filters within your current session.
 
 ## Inspecting affected endpoints
@@ -43,7 +43,7 @@ Click **Explore in API Discovery** to switch to the endpoint information in the 
 
 ## Identifying performance issues
 
-Use the **Time,ms** and **Size,bytes** columns in the session request details to identify performance issues and bottlenecks to optimize the user experience.
+Use the **Time,ms** and **Size,bytes** columns in the session request details to compare presented data with the average expected values. Significantly exceeded values signal about possible performance issues and bottlenecks and the possibility to optimize the user experience.
 
 ## Verifying API abuse detection accuracy
 
