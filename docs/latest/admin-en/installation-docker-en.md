@@ -127,8 +127,8 @@ To run the container:
                             return 500 "API FW fallback";
                     }
                     ```
-                1. Mount the `/etc/nginx/conf.d/wallarm-status.conf` file, ensuring its contents align with the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/5.0/conf/nginx_templates/wallarm-status.conf.tmpl).
-                1. Within the NGINX configuration files, set up the configuration for the [`/wallarm-status` service][node-status-docs] according to the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/5.0/conf/nginx_templates/default.conf.tmpl#L32).
+                1. Mount the `/etc/nginx/conf.d/wallarm-status.conf` file, ensuring its contents align with the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/5.1/conf/nginx_templates/wallarm-status.conf.tmpl).
+                1. Within the NGINX configuration files, set up the configuration for the [`/wallarm-status` service][node-status-docs] according to the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/5.1/conf/nginx_templates/default.conf.tmpl#L32).
             * `/etc/nginx/conf.d` — common settings
             * `/etc/nginx/sites-enabled` — virtual host settings
             * `/opt/wallarm/usr/share/nginx/html` — static files
