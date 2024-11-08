@@ -4,7 +4,7 @@ This article describes how to enable JA3 fingerprinting for the most popular sof
 
 ## Overview
 
-Attackers frequently employ various techniques to bypass security measures, such as user agent (UA) spoofing and IP rotation. These methods make it challenging to detect behavioral attacks in the unauthenticated traffic. [JA3 fingerprinting](https://www.peakhour.io/learning/fingerprinting/what-is-ja3-fingerprinting/) generates an MD5 hash for specific parameters defined during the TLS negotiation between client and server. This fingerprinting method can enhance the identification of threat actors as part of [API session](../api-sessions.md) processing and contribute to building a behavioral profile for [API abuse prevention](../api-abuse-prevention/overview.md).
+Attackers frequently employ various techniques to bypass security measures, such as user agent (UA) spoofing and IP rotation. These methods make it challenging to detect behavioral attacks in the unauthenticated traffic. [JA3 fingerprinting](https://www.peakhour.io/learning/fingerprinting/what-is-ja3-fingerprinting/) generates an MD5 hash for specific parameters defined during the TLS negotiation between client and server. This fingerprinting method can enhance the identification of threat actors as part of [API session](../api-sessions/overview.md) processing and contribute to building a behavioral profile for [API abuse prevention](../api-abuse-prevention/overview.md).
 
 ## NGINX
 

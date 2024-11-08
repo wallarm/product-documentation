@@ -45,4 +45,4 @@ The solution deeply observes traffic anomalies before attributing them as malici
 
 To start malicious bot detection and mitigation with the **API Abuse Prevention** module, create and configure one or more [API abuse profiles](../api-abuse-prevention/setup.md#creating-profiles).
 
-To make the API Abuse Prevention functionality more precise, it is recommended to enable [JA3 fingerprinting](../admin-en/enabling-ja3.md) for better identification of the the unauthenticated traffic when combining requests into [sessions](../api-sessions.md).
+To make the API Abuse Prevention functionality more precise, it is recommended to enable [JA3 fingerprinting](../admin-en/enabling-ja3.md) for better identification of the the unauthenticated traffic when combining requests into [sessions](../api-sessions/overview.md).

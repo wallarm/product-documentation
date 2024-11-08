@@ -13,7 +13,7 @@ Starting from node version 5.1.0, all requests that exceed the configured proces
 * Does this endpoint deal with the large data (files, etc.) and thus needs more time?
 
     * If **yes**, increase time limit [for this endpoint specifically](#specific-endpoint-configuration). This will reduce the unprocessed part of request and thus lower the risk of attacks hidden there.
-    * If **no**, the endpoint might be under attack, investigate its protection and activities related to it in [**API Discovery**](../../api-discovery/overview.md), [**API Sessions**](../../api-sessions.md), and [**Attacks**](../../user-guides/events/check-attack.md). Adjust protection as described [here](../../user-guides/events/check-attack.md#responding-to-attacks).
+    * If **no**, the endpoint might be under attack, investigate its protection and activities related to it in [**API Discovery**](../../api-discovery/overview.md), [**API Sessions**](../../api-sessions/overview.md), and [**Attacks**](../../user-guides/events/check-attack.md). Adjust protection as described [here](../../user-guides/events/check-attack.md#responding-to-attacks).
 
 * Does this endpoint experience `overlimit_res` problem together with **a lot of other** endpoints? If **yes**, consider [allocating more resources](../../admin-en/configuration-guides/allocate-resources-for-node.md) for the Wallarm node modules which will decrease the request processing time or check the correctness of general configuration.
 

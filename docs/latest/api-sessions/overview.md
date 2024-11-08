@@ -11,7 +11,7 @@ The primary challenge the API Sessions address is the lack of full context when 
 **As you have the API sessions monitored by Wallarm, you can**:
 
 * [Track user activity](exploring.md#full-context-of-threat-actor-activities) by displaying a list of requests made in a single session, so you can identify unusual patterns of behavior or deviations from typical usage.
-* Know which API flow/business logic sequences will be affected before tuning a particular [false positive](../about-wallarm/protecting-against-attacks.md#false-positives), applying the [virtual patch](../user-guides/rules/vpatch-rule.md), adding [rules](../user-guides/rules/rules.md), or enabling [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) controls.
+* Know which API flow/business logic sequences will be affected before tuning a particular [false positive](../about-wallarm/protecting-against-attacks.md#false-positives), applying the [virtual patch](../user-guides/rules/vpatch-rule.md), adding [rules](../user-guides/rules/rules.md), or enabling [API Abuse Prevention](../api-abuse-prevention/overview.md) controls.
 * [Inspect endpoints](exploring.md) requested in user sessions to quickly assess their protection status, risk level, and any detected issues such as being [shadow or zombie](../api-discovery/rogue-api.md).
 * [Identify performance issues](exploring.md#identifying-performance-issues) and bottlenecks to optimize the user experience.
 * [Verify API abuse detection accuracy](exploring.md#verifying-api-abuse-detection-accuracy) by viewing the entire sequence of requests that were flagged as malicious bot activity.
