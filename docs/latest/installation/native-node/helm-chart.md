@@ -76,7 +76,6 @@ helm repo update wallarm
             ```yaml
             config:
               connector:
-                mode: monitoring
                 certificate:
                   enabled: true
                   certManager:
@@ -96,7 +95,6 @@ helm repo update wallarm
             ```yaml
             config:
               connector:
-                mode: monitoring
                 certificate:
                   enabled: true
                   existingSecret:
@@ -113,7 +111,6 @@ helm repo update wallarm
             ```yaml
             config:
               connector:
-                mode: monitoring
                 certificate:
                   enabled: true
                   customSecret:
@@ -131,9 +128,6 @@ helm repo update wallarm
     Create the `values.yaml` configuration file with the following minimal configuration:
 
     ```yaml
-    config:
-      connector:
-        mode: monitoring
     processing:
       service:
         type: ClusterIP
@@ -145,11 +139,11 @@ helm repo update wallarm
 
 === "US Cloud"
     ```
-    helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
+    helm upgrade --install --version 0.8.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
     ```
 === "EU Cloud"
     ```
-    helm upgrade --install --version 0.7.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
+    helm upgrade --install --version 0.8.1 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
     ```
 
 ### 5. Get the Wallarm load balancer

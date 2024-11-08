@@ -40,7 +40,7 @@ config:
         # key: LS0...
     
     allowed_hosts: []
-    mode: block
+    mode: monitoring
 
     route_config: {}
       # wallarm_application: -1
@@ -198,7 +198,7 @@ config:
 
 General traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `safe_blocking`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
 
-Default: `block`.
+Default: `monitoring`.
 
 The mode can be [overridden for specific routes](#wallarm_mode).
 
