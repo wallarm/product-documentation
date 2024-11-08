@@ -61,7 +61,7 @@ kubectl delete secret <RELEASE_NAME>-wallarm-sidecar-admission-tls -n wallarm-si
 ### Step 5: Deploy the new solution version
 
 ``` bash
-helm install --version 5.0.2 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar -f <PATH_TO_VALUES>
+helm install --version 5.0.3 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar -f <PATH_TO_VALUES>
 ```
 
 * `<RELEASE_NAME>` is the name for the Helm release. It is recommended to re-use the same name you used for the initial deployment of the solution.
