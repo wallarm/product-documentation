@@ -1,6 +1,6 @@
-# What is new in Wallarm node 5.X series
+# What Is New in NGINX Wallarm Node 5.X Series
 
-Wallarm node 5.X series introduces an efficiency-oriented change in technology stack along with the new unique features and improvements.
+[NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.X series introduces an efficiency-oriented change in technology stack along with the new unique features and improvements.
 
 !!! info "Series in brief"
     * 5.0.1 - new technology stack for efficiency (Go language-based node)

@@ -1,8 +1,8 @@
 # NGINX Node Artifact Versions and Changelog
 
-This document lists available [patch versions](versioning-policy.md#version-format) of the [NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.0 in different form-factors. You can track new patch version releases and plan timely upgrades based on this document.
+This document lists available [patch versions](versioning-policy.md#version-format) of the [NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.X series in different form-factors. You can track new patch version releases and plan timely upgrades based on this document.
 
-See also: [What is new in Wallarm node 5.X series](../updating-migrating/what-is-new.md)
+See also: [What Is New in NGINX Wallarm Node 5.X Series](../updating-migrating/what-is-new.md)
 
 ## All-in-one installer
 
