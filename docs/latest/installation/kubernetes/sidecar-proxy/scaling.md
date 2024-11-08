@@ -64,7 +64,7 @@ For the HA deployment, you can manually adjust the amount of replicas using the 
 * Use more than one instance of the Tarantool Pod. Control this with the [`postanalytics.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L382) attribute.
 * Configure [`postanalytics.tarantool.config.arena`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L610C7-L610C7) in gigabytes (GB) based on the anticipated traffic volume to the application workload. This setting determines the maximum memory Tarantool will utilize. For calculation guidelines, you may find useful [the same of our recommendations for other deployment options][tarantool-memory-recommendations].
 * Align [`postanalytics.tarantool.resources.limits` and `postanalytics.tarantool.resources.requests`](https://github.com/wallarm/sidecar/blob/4eb1a4c4f8d20989757c50c40e192eb7eb1f2169/helm/values.yaml#L639) with the `arena` configuration. Set `limits` at or above the `arena` value to handle peak demand and avoid memory-related crashes. Ensure `requests` meet or exceed the `arena` value for Tarantool's optimal performance. For further information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
-* Optionally, set `resources.requests` and `resources.limits` for all other containers within the `postanalytics` section to ensure dedicated resource allocation for the Tarantool Pod. These containers include `postanalytics.init`, `postanalytics.cron`, `postanalytics.appstructure`, and `postanalytics.antibot`.
+* Optionally, set `resources.requests` and `resources.limits` for all other containers within the `postanalytics` section to ensure dedicated resource allocation for the Tarantool Pod. These containers include `postanalytics.init`, `postanalytics.supervisord`, and `postanalytics.appstructure`.
 * Optionally, implement pod anti-affinity to distribute postanalytics pods across different nodes to provide resilience in case of a node failure.
 
 Here is an example of the adjusted `postanalytics` section in the `values.yaml` file, incorporating these recommendations:
@@ -90,7 +90,7 @@ postanalytics:
       requests:
         cpu: 50m
         memory: 150Mi
-  cron:
+  supervisord:
     resources:
       limits:
         cpu: 250m
@@ -99,14 +99,6 @@ postanalytics:
         cpu: 50m
         memory: 150Mi
   appstructure:
-    resources:
-      limits:
-        cpu: 250m
-        memory: 300Mi
-      requests:
-        cpu: 50m
-        memory: 150Mi
-  antibot:
     resources:
       limits:
         cpu: 250m
@@ -290,7 +282,7 @@ postanalytics:
       requests:
         cpu: 50m
         memory: 150Mi
-  cron:
+  supervisord:
     resources:
       limits:
         cpu: 250m
@@ -299,14 +291,6 @@ postanalytics:
         cpu: 50m
         memory: 150Mi
   appstructure:
-    resources:
-      limits:
-        cpu: 250m
-        memory: 300Mi
-      requests:
-        cpu: 50m
-        memory: 150Mi
-  antibot:
     resources:
       limits:
         cpu: 250m
