@@ -2,6 +2,8 @@
 
 This document lists available [patch versions](versioning-policy.md#version-format) of the [NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.0 in different form-factors. You can track new patch version releases and plan timely upgrades based on this document.
 
+See also: [What is new in Wallarm node 5.X series](../updating-migrating/what-is-new.md)
+
 ## All-in-one installer
 
 Since version 4.10, installation and upgrading of Wallarm nodes is performed **only** with all [all-in-one installer](../installation/nginx/all-in-one.md). Manual upgrade with individual Linux packages is not supported any more.
@@ -14,7 +16,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.1.0 (2024-11-06)
 
-* Added support for [API Sessions](../api-sessions/overview.md)<!-- (using the functionality increases CPU (?) consumption normally by about TBD%)-->
+* Added support for [API Sessions](../api-sessions/overview.md)
 * [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
 * Reduced memory usage during node registration
 
