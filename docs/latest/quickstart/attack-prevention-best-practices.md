@@ -97,7 +97,7 @@ These dashboards help you to assess the overall security state and proactively a
 
 To make the following functionality more precise:
 
-* [API Sessions](../api-sessions.md)
+* [API Sessions](../api-sessions/overview.md)
 * [API Abuse Prevention](../api-abuse-prevention/overview.md) using the API Sessions mechanism
 
 It is recommended to enable [JA3 fingerprinting](../admin-en/enabling-ja3.md#overview) for better identification of the unauthenticated traffic.

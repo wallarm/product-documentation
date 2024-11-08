@@ -25,7 +25,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 4.10.9 (2024-07-19)
 
 * Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
-* Fixed issues exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module to [API Sessions](../api-sessions.md)
+* Fixed issues in exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module
 * Fixed the [CVE-2024-6345](https://nvd.nist.gov/vuln/detail/CVE-2024-6345) vulnerability
 
 ### 4.10.8 (2024-07-12)
@@ -128,7 +128,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 4.10.9 (2024-07-19)
 
 * Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
-* Fixed issues exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module to [API Sessions](../api-sessions.md)
+* Fixed issues exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module
 * Fixed the [CVE-2024-6345](https://nvd.nist.gov/vuln/detail/CVE-2024-6345) vulnerability
 
 ### 4.10.8 (2024-07-12)
@@ -230,7 +230,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 4.10.10 (2024-07-22)
 
 * Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
-* Fixed issues exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module to [API Sessions](../api-sessions.md)
+* Fixed issues exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module
 * Fixed the [CVE-2024-6345](https://nvd.nist.gov/vuln/detail/CVE-2024-6345) vulnerability
 
 ### 4.10.9 (2024-07-18)
@@ -459,7 +459,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 4.10.13-1 (2024-07-22)
 
 * Fixed the Tarantool reconnect issue for [API Abuse Prevention](../api-abuse-prevention/overview.md)
-* Fixed issues exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module to [API Sessions](../api-sessions.md)
+* Fixed issues exporting malicious behavior patterns detected by the [API Abuse Prevention](../api-abuse-prevention/overview.md) module
 
 ### 4.10.8-1 (2024-07-12)
 

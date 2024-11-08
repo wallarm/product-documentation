@@ -8,7 +8,7 @@ These two nodes differ architecturally and are designed for specific deployment 
 
 The NGINX Node integrates seamlessly with NGINX, making it perfect for infrastructures that already rely on NGINX for traffic management. It leverages NGINX's capabilities while adding Wallarm's security and traffic filtering features.
 
-The following artifacts are available for deploying the NGINX Node:
+The following [artifacts](../updating-migrating/node-artifact-versions.md) are available for deploying the NGINX Node:
 
 * [All-in-one installer](nginx/all-in-one.md)
 * [Docker image](../admin-en/installation-docker-en.md)
