@@ -92,7 +92,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 5.1
 
     Where `wallarm-sidecar` is the namespace the Sidecar is deployed to. You can change this value if the namespace is different.
 
-    The chart version should correspond to `wallarm-sidecar-5.0.2`.
+    The chart version should correspond to `wallarm-sidecar-5.1.0`.
 1. Get the Wallarm control plane details to check it has been successfully started:
 
     ```bash
