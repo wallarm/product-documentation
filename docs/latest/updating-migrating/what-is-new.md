@@ -20,6 +20,30 @@ The following changes have been introduced in the file system of the Wallarm dep
 * Log file system: Previously, logs were recorded in multiple files, each for a dedicated script. Now, logs from almost all services are recorded into a single dedicated file, `wcli-out.log`. You can review the list of [previous log files](/4.10/admin-en/configure-logging/) and the [current one](../admin-en/configure-logging.md).
 * The diagnostic script path change: The `/opt/wallarm/usr/share/wallarm-common/collect-info.sh` file has been moved to `/opt/wallarm/collect-info.sh`.
 
+## API Sessions (node 5.1.0 and higher)
+
+In this latest update, we introduce a unique security feature tailored for the API economy—[API Sessions](../api-sessions/overview.md). This addition gives you visibility into attacks, anomalies, and user behavior across your APIs, providing transparency into how users interact with your APIs and applications.
+
+![!API Sessions section - monitored sessions](../images/api-sessions/api-sessions.png)
+
+Attackers often exploit vulnerable endpoints by blending their actions with legitimate user behavior. Without the full context of how those sessions unfold, identifying patterns or threats becomes a time-consuming process involving multiple tools and systems. Organizations  do not have an appropriate visibility at the API level. 
+
+With API Sessions, security teams now have the ability to see all relevant activity grouped by user session, offering unparalleled visibility into attack sequences, user anomalies, and normal behaviors. Investigations that once took hours or days can now be conducted directly from the Wallarm Console in just minutes.
+
+Key features:
+
+* Visibility into attacks, anomalies, and user behavior: View and analyze every request made in a session to track attack vectors and suspicious patterns.
+* Support for both legacy and modern sessions: Whether your applications rely on cookie-based sessions or JWT/OAuth, Wallarm API Sessions ensures full compatibility and visibility.
+* Seamlessly navigate between individual attacks and their sessions.
+
+With API Sessions, security teams can now easily:
+
+* Investigate the full activity of threat actors to understand potential attack paths and compromised resources.
+* Identify how shadow or zombie APIs are being accessed, mitigating risks from undocumented or outdated APIs.
+* Share key insights with colleagues to foster collaboration during security investigations.
+
+See [documentation](../api-sessions/overview.md) for details.
+
 ## Customizing sensitive data detection in API Discovery (node 5.0.3 and higher)
 
 API Discovery detects and highlights sensitive data consumed and carried by your APIs. Starting from version 5.0.3, you can [fine-tune](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection) the existing detection process and add your own sensitive data patterns.

@@ -14,15 +14,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.1.0 (2024-11-06)
 
-<!--* Added support for API Sessions-->
+* Added support for [API Sessions](../api-sessions/overview.md)<!-- (using the functionality increases CPU (?) consumption normally by about TBD%)-->
 * [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
-<!--* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
-* Fixed logging to properly show the violations of [specification-based policies](../api-specification-enforcement/overview.md#how-it-works) by improving NGINX [variables](../admin-en/configure-logging.md#filter-node-variables):
-
-    * `wallarm_attack_type`
-    * `wallarm_attack_type_list`
-
--->* Reduced memory usage during node registration
+* Reduced memory usage during node registration
 
 ### 5.0.3 (2024-10-10)
 
@@ -57,7 +51,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.1.0 (2024-11-06)
 
-<!--* Added support for API Sessions-->
+* Added support for [API Sessions](../api-sessions/overview.md)
 * [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
 * Reduced memory usage during node registration
 * Added new configuration options for [API Specification Enforcement](../api-specification-enforcement/overview.md)
@@ -93,15 +87,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.1.0 (2024-11-06)
 
-<!--* Added support for API Sessions-->
+* Added support for [API Sessions](../api-sessions/overview.md)
 * [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
-<!--* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
-* Fixed logging to properly show the violations of [specification-based policies](../api-specification-enforcement/overview.md#how-it-works) by improving NGINX [variables](../admin-en/configure-logging.md#filter-node-variables):
-
-    * `wallarm_attack_type`
-    * `wallarm_attack_type_list`
-
--->* Reduced memory usage during node registration
+* Reduced memory usage during node registration
 
 ### 5.0.3 (2024-10-10)
 
@@ -130,15 +118,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.1.0-1 (2024-11-06)
 
-<!--* Added support for API Sessions-->
+* Added support for [API Sessions](../api-sessions/overview.md)
 * [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
-<!--* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
-* Fixed logging to properly show the violations of [specification-based policies](../api-specification-enforcement/overview.md#how-it-works) by improving NGINX [variables](../admin-en/configure-logging.md#filter-node-variables):
-
-    * `wallarm_attack_type`
-    * `wallarm_attack_type_list`
-
--->* Reduced memory usage during node registration
+* Reduced memory usage during node registration
 
 ### 5.0.3-1 (2024-10-10)
 
@@ -173,15 +155,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.1.0-1 (2024-11-06)
 
-<!--* Added support for API Sessions-->
+* Added support for [API Sessions](../api-sessions/overview.md)
 * [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
-<!--* Bumped [APIFW](https://wallarm.github.io/api-firewall/) version to 0.8.3
-* Fixed logging to properly show the violations of [specification-based policies](../api-specification-enforcement/overview.md#how-it-works) by improving NGINX [variables](../admin-en/configure-logging.md#filter-node-variables):
-
-    * `wallarm_attack_type`
-    * `wallarm_attack_type_list`
-
--->* Reduced memory usage during node registration
+* Reduced memory usage during node registration
 
 ### 5.0.3-1 (2024-10-10)
 
