@@ -26,7 +26,7 @@ By default, Wallarm considers each application to be the `default` application w
     * The [environment variable](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) `WALLARM_APPLICATION` if Wallarm is installed as NGINX-based Docker container.
     * The [Ingress annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `wallarm-application` if Wallarm is installed as the Ingress controller.
     * The parameter [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) if Wallarm is installed as Envoy-based Docker container with a mounted configuration file.
-    * For Native Node all-in-one installer, use the [`route_config.wallarm_application`](../../installation/native-node/all-in-one-conf.md#route_configwallarm_application) parameter.
+    * For Native Node all-in-one installer and Docker image, use the [`route_config.wallarm_application`](../../installation/native-node/all-in-one-conf.md#route_configwallarm_application) parameter.
     * For Native Node Helm chart, use the [`config.connector.route_config.wallarm_application`](../../installation/native-node/helm-chart-conf.md#configconnectorroute_configwallarm_application) parameter.
     * The application configuration in the Edge connector setup window.
 

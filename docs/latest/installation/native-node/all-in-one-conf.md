@@ -156,7 +156,7 @@ Typically, you do not need to modify this parameter. Specific blocking behavior 
 
 This parameter enables the Native Node's general capability to block incoming requests, whether they are malicious, from denylisted IPs, or any other conditions that require blocking.
 
-Defalt: `false`.
+Defalt: `true`.
 
 ### connector.allowed_networks
 
@@ -246,6 +246,12 @@ The DNS domain name used by nodes to resolve the IP addresses of other nodes in 
 #### port
 
 Specifies the internal port used for communication between nodes in the mesh. This port is not exposed externally and is reserved for node-to-node traffic within the ECS cluster.
+
+### connector.url_normalize
+
+Enables URL normalization before selecting route configurations and analyzing data with libproton.
+
+Default: `true`.
 
 ## TCP mirror-specific settings
 

@@ -112,4 +112,4 @@ To test the functionality of the deployed functions, follow these steps:
     
     ![Attacks in the interface][attacks-in-ui-image]
 
-    If the Wallarm node mode is set to blocking, the request will also be blocked.
+    If the Wallarm node mode is set to [blocking](../../admin-en/configure-wallarm-mode.md) and the traffic flows in-line, the request will also be blocked.

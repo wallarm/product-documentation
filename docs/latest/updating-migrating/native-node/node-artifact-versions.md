@@ -10,6 +10,22 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.8.1 (2024-11-06)
+
+* Fixed regression in the `request_id` format introduced in 0.8.0
+
+### 0.8.0 (2024-11-06)
+
+* Added support for [API Sessions](../../api-sessions/overview.md)
+* [Improved](../what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* Changed default values for the following parameters:
+
+    * The [`connector.blocking`](../../installation/native-node/all-in-one-conf.md#connectorblocking) parameter now defaults to `true`, enabling the Native Node's general capability to block incoming requests without manual configuration during deployment.
+    * The [`route_config.wallarm_mode`](../../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parameter, which sets the traffic filtration mode, now defaults to `monitoring`, providing an optimal setup for initial deployments.
+* Added URL normalization before selecting route configurations and analyzing data with libproton (controlled by the [`controller.url_normalize`](../../installation/native-node/all-in-one-conf.md#connectorurl_normalize) parameter which is set to `true` by default)
+* Reduced memory usage during node registration
+* Some bug fixes
+
 ### 0.7.0 (2024-10-16)
 
 * Fixed an issue where some internal service connector headers were not being stripped before processing
@@ -58,6 +74,14 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.8.1 (2024-11-07)
+
+* Added support for [API Sessions](../../api-sessions/overview.md)
+* [Improved](../what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* The [`config.connector.mode`](../../installation/native-node/helm-chart-conf.md#configconnectormode) parameter, which sets the traffic filtration mode, now defaults to `monitoring`, providing an optimal setup for initial deployments
+* Reduced memory usage during node registration
+* Some bug fixes
+
 ### 0.7.0 (2024-10-17)
 
 * Fixed an issue where some internal service connector headers were not being stripped before processing
@@ -80,6 +104,18 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), and [Cloudflare](../../installation/connectors/cloudflare.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.8.1 (2024-11-06)
+
+* Added support for [API Sessions](../../api-sessions/overview.md)
+* [Improved](../what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* Changed default values for the following parameters:
+
+    * The [`connector.blocking`](../../installation/native-node/all-in-one-conf.md#connectorblocking) parameter now defaults to `true`, enabling the Native Node's general capability to block incoming requests without manual configuration during deployment.
+    * The [`route_config.wallarm_mode`](../../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parameter, which sets the traffic filtration mode, now defaults to `monitoring`, providing an optimal setup for initial deployments.
+* Added URL normalization before selecting route configurations and analyzing data with libproton (controlled by the [`controller.url_normalize`](../../installation/native-node/all-in-one-conf.md#connectorurl_normalize) parameter which is set to `true` by default)
+* Reduced memory usage during node registration
+* Some bug fixes
 
 ### 0.7.0 (2024-10-16)
 
