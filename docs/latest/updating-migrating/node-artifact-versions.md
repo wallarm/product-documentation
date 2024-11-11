@@ -14,6 +14,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.1.1 (2024-11-08)
+
+* Fixed some bugs in the `wallarm-status` service operation
+
 ### 5.1.0 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
