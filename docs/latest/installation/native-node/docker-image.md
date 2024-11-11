@@ -48,7 +48,7 @@ The Docker image for the Native Node is ideal if you are already using container
 docker pull wallarm/node-native-aio:0.8.1
 ```
 
-### 2. Prepare the configurarion file
+### 2. Prepare the configuration file
 
 Create the `wallarm-node-conf.yaml` file with the following minimal configuration for the Native Node:
 

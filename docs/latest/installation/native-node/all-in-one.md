@@ -67,7 +67,7 @@ Download Wallarm installation script and make it executable:
     chmod +x aio-native-0.8.1.aarch64.sh
     ```
 
-### 3. Prepare the configurarion file
+### 3. Prepare the configuration file
 
 Create the `wallarm-node-conf.yaml` file on the machine with the following minimal configuration:
 

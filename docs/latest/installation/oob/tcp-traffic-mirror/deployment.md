@@ -64,7 +64,7 @@ To download Wallarm installation script and make it executable, use the followin
     chmod +x aio-native-0.8.1.aarch64.sh
     ```
 
-## Step 3: Prepare the configurarion file
+## Step 3: Prepare the configuration file
 
 Create the `wallarm-node-conf.yaml` file on the instance. The solution requires proper configuration to identify the network interface and the traffic format (e.g., VLAN, VXLAN). The example content of the file:
 

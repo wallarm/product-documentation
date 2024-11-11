@@ -61,7 +61,7 @@ helm repo add wallarm https://charts.wallarm.com
 helm repo update wallarm
 ```
 
-### 3. Prepare the configurarion file
+### 3. Prepare the configuration file
 
 === "LoadBalancer"
     Deploying the native Wallarm node as a LoadBalancer with a public IP allows you to route traffic from MuleSoft, Cloudflare, and Amazon CloudFront to this IP for security analysis and filtration.
