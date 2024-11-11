@@ -17,7 +17,7 @@ During the [API abuse profile setup](../api-abuse-prevention/setup.md#creating-p
 
 The **API Abuse Prevention** module uses the complex bot detection model that involves ML-based methods as well as statistical and mathematical anomaly search methods and cases of direct abuse. The module self-learns the normal traffic profile and identifies dramatically different behavior as anomalies.
 
-API Abuse Prevention uses multiple detectors to identify the malicious bots. The module provides statistics on what detectors were involved in marking the ones.
+API Abuse Prevention uses multiple detectors to identify the malicious bots [within their sessions](../api-sessions/overview.md#api-sessions-and-api-abuse-prevention). The module provides statistics on what detectors were involved in marking the ones.
 
 The following detectors may be involved:
 

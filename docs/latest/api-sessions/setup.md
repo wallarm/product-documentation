@@ -39,11 +39,14 @@ By default, sessions are identified with the **built-in set** of such parameters
 
 You can add your own identification parameters based on your applications' logic. To do so, go to Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter and select **Group sessions by this key** for it.
 
+!!! info "Impact **to** bot detection by `API Abuse prevention`"
+    Wallarm's API Abuse Prevention uses sessions for the malicious bot detection. Adding your own session identification parameters based on your applications' logic makes both session detection and API Abuse Prevention's bot detection more precise. See [details](overview.md#api-sessions-and-api-abuse-prevention).
+
 ![!API Sessions - Configuration](../images/api-sessions/api-sessions-settings.png)
 
 You can add several grouping keys, they are tried in specified order - next is tried only if previous did not work. Drag to change the order. You own keys are always tried before the built-in ones.
 
-!!! info "Impact of `Mask sensitive data` rule"
+!!! info "Impact **from** `Mask sensitive data` rule"
     For the parameter to work as a grouping key, it should not be affected by the the [Mask sensitive data](../user-guides/rules/sensitive-data-rule.md) rule.
 
 ## Data protection
