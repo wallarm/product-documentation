@@ -2,6 +2,8 @@
 
 Wallarm's **API Sessions** provide visibility into user sessions within your traffic. For each session, Wallarm gathers detailed request data, enabling a structured view of session activity. This article gives an overview of API Sessions: issues addressed by it, its purpose and main possibilities.
 
+API Sessions require [NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.1.0 or [native Wallarm node](../installation/nginx-native-node-internals.md#native-node) 0.8.0.
+
 ![!API Sessions section - monitored sessions](../images/api-sessions/api-sessions.png)
 
 ## Addressed issues
