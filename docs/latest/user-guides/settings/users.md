@@ -55,6 +55,7 @@ More detailed information about access of different user roles to the Wallarm en
 | **Rules**           | View and manage                      | View and manage          | View                         | - |
 | **Credential Stuffing Detection**           | View and manage                      | View and manage          | View                         | - |
 | **BOLA protection**           | View and manage                      | View          | - | - |
+| **Security Edge**    | View and manage                      | View                        | -                            | - |
 | **Integrations**    | View and manage                      | -                        | -                            | - |
 | **Filtration mode**        | View and manage                      | View                     | View                         | - |
 | **Applications**    | View and manage                      | View                     | View                         | - |
