@@ -10,6 +10,12 @@ You can also analyze bot behaviors at the **Behavioral patterns** in the bottom.
 
 ![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
+If no bot activities were detected, the **Legitimate traffic** state is displayed:
+
+![API abuse prevention statistics - no bots detected](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-nobots.png)
+
+Note that bot detection relies on the traffic - if there is no sufficient amount of one, API Abuse Prevention notifies about that with the **Insufficient data to build statistics** message. You can [check](setup.md#per-profile-traffic) the per-profile traffic on the **Profiles** tab.
+
 ## Attacks
 
 You can explore attacks performed by bots in Wallarm Console → **Attacks** section. Use the `api_abuse`, `account_takeover`, `scraping` and `security_crawlers` search keys or select the appropriate options from the **Type** filter.
