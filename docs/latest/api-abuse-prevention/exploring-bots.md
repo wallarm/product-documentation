@@ -14,7 +14,7 @@ If no bot activities were detected, the **Legitimate traffic** state is displaye
 
 ![API abuse prevention statistics - no bots detected](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-nobots.png)
 
-Note that bot detection relies on the traffic - if there is no sufficient amount of one, API Abuse Prevention notifies about that with the **Waiting for your data...** message.
+Note that bot detection relies on the traffic - if there is no sufficient amount of one, API Abuse Prevention notifies about that with the **Insufficient data to build statistics** message. You can [check](setup.md#per-profile-traffic) the per-profile traffic on the **Profiles** tab.
 
 ## Attacks
 

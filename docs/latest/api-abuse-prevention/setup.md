@@ -44,7 +44,7 @@ To create an API abuse profile:
     * **Applications** - analyze requests to all of the domains of the application together.
     * **Domains** - analyze requests to each of the domains of the application separately.
 
-Once created, profiles will protect your selected applications from the malicious bots of selected types. Note that protection and data analysis depend on profile's application traffic presence and amount. Pay your attention to the per-profile status:
+<a name="per-profile-traffic"></a>Once created, profiles will protect your selected applications from the malicious bots of selected types. Note that protection and data analysis depend on profile's application traffic presence and amount. Pay your attention to the per-profile status:
 
 ![API abuse prevention - profiles](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-profiles-per-profile-status.png)
 
