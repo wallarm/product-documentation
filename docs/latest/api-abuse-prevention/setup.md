@@ -44,6 +44,10 @@ To create an API abuse profile:
     * **Applications** - analyze requests to all of the domains of the application together.
     * **Domains** - analyze requests to each of the domains of the application separately.
 
+<a name="per-profile-traffic"></a>Once created, profiles will protect your selected applications from the malicious bots of selected types. Note that protection and data analysis depend on profile's application traffic presence and amount. Pay your attention to the per-profile status:
+
+![API abuse prevention - profiles](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-profiles-per-profile-status.png)
+
 ## Disabling and deleting profiles
 
 Disabled profiles are the ones that the **API Abuse Prevention** module does not use during traffic analysis but that are still displayed in the profile list. You can re-enable disabled profiles at any moment. If there are no enabled profiles, the module does not block malicious bots.
