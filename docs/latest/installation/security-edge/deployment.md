@@ -70,11 +70,11 @@ For specific **locations** within hosts, you can further customize:
 * `proxy_send_timeout`: sets the time Wallarm waits for the origin server to acknowledge request data before terminating the connection. Default is `60s`.
 * `client_max_body_size`: limits the maximum request body size allowed from the client to the origin server (useful for file uploads or data size control). Default is `1MB`.
 
-Each location inherits settings from the host level but can be customized to allow different configurations per path, e.g.:
+Each location inherits settings from the host level but can be individually customized. Locations not explicitly configured will follow the general settings specified at the host level.
+
+The below example configuration customizes settings per path to meet specific needs: `/auth` prioritizes security with blocking mode enabled, while `/data` allows larger uploads by increasing the `client_max_body_size` to 5MB.
 
 ![!](../../images/waf-installation/security-edge/inline/locations.png)
-
-This configuration customizes settings per path to meet specific needs: `/auth` prioritizes security with blocking mode enabled, while `/data` allows larger uploads by increasing the `client_max_body_size` to 5MB.
 
 ### 4. Certififcate CNAME configuration
 
