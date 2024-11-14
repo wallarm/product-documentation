@@ -39,7 +39,7 @@ injectScript('https://lftracker.leadfeeder.com/lftracker_v1_kn9Eq4Rwz5KaRlvP.js'
 
 // Version selection
 
-var rootVersion = '5.x and 0.x';
+var rootVersion = '5.x';
 
 let pathsLang = window.location.pathname.split('/');
 
