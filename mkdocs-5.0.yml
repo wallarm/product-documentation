@@ -1,7 +1,7 @@
 INHERIT: mkdocs-base.yml
 
 theme:
-  version: "5.0"
+  version: "5.x and 0.x"
 
 docs_dir: docs/5.0
 site_dir: site
