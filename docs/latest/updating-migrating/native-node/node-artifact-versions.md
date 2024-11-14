@@ -10,6 +10,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.8.3 (2024-11-14)
+
+* Added support for Mulesoft connector v3.0.x
+
 ### 0.8.2 (2024-11-11)
 
 * Fixed some bugs in the `wallarm-status` service operation
@@ -78,6 +82,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.8.3 (2024-11-14)
+
+* Added support for Mulesoft connector v3.0.x
+
 ### 0.8.2 (2024-11-11)
 
 * Fixed some bugs in the `wallarm-status` service operation
@@ -112,6 +120,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), and [Cloudflare](../../installation/connectors/cloudflare.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.8.3 (2024-11-14)
+
+* Added support for Mulesoft connector v3.0.x
 
 ### 0.8.2 (2024-11-11)
 
