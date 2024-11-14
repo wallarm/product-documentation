@@ -239,10 +239,9 @@ To do so, set the **Ignore certain attack types** rule as displayed on the scree
 
 By default, the Wallarm node analyzes incoming requests for all known attack signs. During the analysis, the Wallarm node may not consider the attack signs to be regular binary symbols and mistakenly detect malicious payloads in the binary data.
 
-Using the **Allow binary data** <!-- (temporary unavailable, see PLUTO-6979) and **Allow certain file types** -->[rule](../user-guides/rules/rules.md), you can explicitly specify request elements containing binary data. During specified request element analysis, the Wallarm node will ignore the attack signs that can never be passed in the binary data.
+Using the **Allow binary data** [rule](../user-guides/rules/rules.md), you can explicitly specify request elements containing binary data. During specified request element analysis, the Wallarm node will ignore the attack signs that can never be passed in the binary data.
 
 * The **Allow binary data** rule allows fine-tuning attack detection for request elements containing binary data (e.g. archived or encrypted files).
-<!--* The **Allow certain file types** rule allows fine-tuning attack detection for request elements containing specific file types (e.g. PDF, JPG).-->
 
 **Creating and applying the rule**
 
