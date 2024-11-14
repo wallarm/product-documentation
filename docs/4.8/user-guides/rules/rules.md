@@ -21,7 +21,6 @@ Using rules, you can control how Wallarm mitigates attacks on your applications 
 * Mitigation controls:
 
     * [Advanced rate limiting](../../user-guides/rules/rate-limiting.md)
-    * [GraphQL API protection](../../api-protection/graphql-rule.md)
     * [Virtual patches](../../user-guides/rules/vpatch-rule.md)
     * [Custom attack detectors](../../user-guides/rules/regex-rule.md)
 
