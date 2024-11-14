@@ -40,7 +40,7 @@ The Wallarm node operation mode. It can be:
         - "*.test.com"
       mesh:
         discovery: dns
-        name: go-node-mesh-discovery
+        name: native-node-mesh-discovery
         port: 9093
 
     route_config:
@@ -120,13 +120,6 @@ Ensure the port is not `80`, `8080`, `9000`, or `3313`, as these are used by oth
 
     connector:
       address: '192.158.1.38:5050'
-    ```
-=== "All ports on IP"
-    ```yaml
-    version: 2
-
-    connector:
-      address: '192.158.1.38:'
     ```
 === "Specific port on all IPs"
     ```yaml
@@ -229,7 +222,7 @@ version: 2
 connector:
   mesh:
     discovery: dns
-    name: go-node-mesh-discovery
+    name: native-node-mesh-discovery
     port: 9093
 ```
 

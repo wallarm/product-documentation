@@ -36,7 +36,7 @@ helm repo update wallarm
 Upgrade the deployed Kubernetes service or Load Balancer:
 
 ``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-node-native --version 0.8.2 -f <PATH_TO_VALUES>
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-node-native --version 0.8.3 -f <PATH_TO_VALUES>
 ```
 
 * `<RELEASE_NAME>`: the name of the existing Helm release

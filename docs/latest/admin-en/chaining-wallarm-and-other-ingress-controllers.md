@@ -103,7 +103,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
     To learn more configuration options, please use the [link](configure-kubernetes-en.md).
 1. Install the Wallarm Ingress Helm chart:
     ``` bash
-    helm install --version 5.1.0 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace
+    helm install --version 5.1.1 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace
     ```
 
     * `internal-ingress` is the name of Helm release
