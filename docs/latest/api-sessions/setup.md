@@ -1,8 +1,10 @@
 # API Sessions Setup <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-[API Sessions](overview.md) include the built-in rules for the session identification and requires only enabled Wallarm [node](../about-wallarm/overview.md#how-wallarm-works) to start working immediately after you purchase the [Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription plan. Optionally, you can fine-tune API Sessions under your needs as described in this article.
+[API Sessions](overview.md) include the built-in rules for the session identification and requires only enabled Wallarm [node](../about-wallarm/overview.md#how-wallarm-works) to start working. Optionally, you can fine-tune API Sessions under your needs as described in this article.
 
 ## Session context
+
+Context in API sessions is information that enriches request data by grouping them into logical sessions and adding metadata to provide deeper insights into session activity. Configuring context allows you to specify which aspects or additional data should be tracked and associated with each session.
 
 Set session context by adding extra parameters, associating sessions with sensitive business flows and highlighting parameters that can be used for user and user role identification.
 
@@ -10,8 +12,7 @@ Set session context by adding extra parameters, associating sessions with sensit
 
 In **API Sessions**, within session, the request details by default include: 
 
-* Built-in parameters for [session grouping](#session-grouping) (presented in request).
-* Parameters (presented in request) added by you for session grouping.
+* Parameter that worked for [session grouping](#session-grouping) - yours or the one from the built-in set.
 * For malicious requests - full request content.
 
 You can add any additional (context) [parameters](../user-guides/rules/request-processing.md) that you need to understand the session content: what and in what order the actor did. To do so, add these parameters in Wallarm Console → **API Sessions** → **Session context parameters**. Once added, Wallarm will export them to the Wallarm Cloud and [display](#data-protection) in Wallarm Console, in details of your session requests.
@@ -26,7 +27,7 @@ You can associate sessions with sensitive business flows. To do so, in Wallarm C
 
 ### User and role
 
-You can highlight session parameters, that should be used for naming the session actor (user) and his role. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter, then from **Type**, select `User` or `Role`.
+You can highlight session parameters, that should be used for naming the session actor (user) and its role. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter, then from **Type**, select `User` or `Role`.
 
 ![!API Sessions - user and user role](../images/api-sessions/api-sessions-user-role-select.png)
 
@@ -38,15 +39,19 @@ By default, sessions are identified with the **built-in set** of such parameters
 
 You can add your own identification parameters based on your applications' logic. To do so, go to Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter and select **Group sessions by this key** for it.
 
+!!! info "Impact **to** bot detection by `API Abuse prevention`"
+    Wallarm's API Abuse Prevention uses sessions for the malicious bot detection. Adding your own session identification parameters based on your applications' logic makes both session detection and API Abuse Prevention's bot detection more precise. See [details](overview.md#api-sessions-and-api-abuse-prevention).
+
 ![!API Sessions - Configuration](../images/api-sessions/api-sessions-settings.png)
 
 You can add several grouping keys, they are tried in specified order - next is tried only if previous did not work. Drag to change the order. You own keys are always tried before the built-in ones.
 
-Note that for parameter to work as a grouping key, it should not be affected by the the [Mask sensitive data](../user-guides/rules/sensitive-data-rule.md) rule.
+!!! info "Impact **from** `Mask sensitive data` rule"
+    For the parameter to work as a grouping key, it should not be affected by the the [Mask sensitive data](../user-guides/rules/sensitive-data-rule.md) rule.
 
 ## Data protection
 
-Be sure to hash sensitive parameters before exporting them to the Wallarm Cloud. Note that hashing will transform the actual value into unreadable - the presence of parameter and particular but unknown value will provide the limited information for the analysis.
+For API Sessions, from node to the Cloud, Wallarm only exports parameters selected by you. If they contain sensitive data, be sure to hash it before exporting. Note that hashing will transform the actual value into unreadable - the presence of parameter and particular but unknown value will provide the limited information for the analysis.
 
 To hash the sensitive parameters, once they are added in Wallarm Console → **API Sessions** → **Session context parameters**, select the **Hashing (secret)** option for them.
 
