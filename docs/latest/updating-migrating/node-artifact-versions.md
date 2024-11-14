@@ -55,6 +55,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 5.1.1 (2024-11-14)
+
+* Fixed the [GHSA-c5pj-mqfh-rvc3](https://scout.docker.com/vulnerabilities/id/GHSA-c5pj-mqfh-rvc3) vulnerability
+* Fixed some bugs in the `wallarm-status` service operation
+
 ### 5.1.0 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
