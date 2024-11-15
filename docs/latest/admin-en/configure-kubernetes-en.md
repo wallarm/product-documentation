@@ -210,6 +210,12 @@ controller:
       ### Enable or disable API Firewall functionality (true|false)
       ###
       enabled: true
+      readBufferSize: 8192
+      writeBufferSize: 8192
+      maxRequestBodySize: 4194304
+      disableKeepalive: false
+      maxConnectionsPerIp: 0
+      maxRequestsPerConnection: 0
       config:
         mainPort: 18081
         healthPort: 18082
@@ -221,6 +227,17 @@ controller:
         logFormat: TEXT
       ...
 ```
+
+Where (default values are presented in the example above):
+
+| Setting | Description |
+| ------- | ----------- |
+| `readBufferSize` | Per-connection buffer size for request reading. This also limits the maximum header size. Increase this buffer if your clients send multi-KB RequestURIs and/or multi-KB headers (for example, BIG cookies). |
+| `writeBufferSize` | Per-connection buffer size for response writing.
+| `maxRequestBodySize` | Maximum request body size. The server rejects requests with bodies exceeding this limit. |
+| `disableKeepalive` | Disables the keep-alive connections. The server will close all the incoming connections after sending the first response to the client if this option is set to `true`. |
+| `maxConnectionsPerIp` | Maximum number of concurrent client connections allowed per IP. `0` = `unlimited`. |
+| `maxRequestsPerConnection` | Maximum number of requests served per connection. The server closes the connection after the last request. The `Connection: close` header is added to the last response. `0` = `unlimited`. |
 
 ### controller.wallarm.container_name.extraEnvs
 
