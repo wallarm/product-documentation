@@ -373,10 +373,6 @@ Changes of custom rules do NOT take effect instantly. Changes are applied to the
 
 Adding a new rule, deleting or changing existing rules in the Wallarm Console → **Rules** launch a custom ruleset build. During the building process, rules are optimized and compiled into a format adopted for the filtering node. The process of building a custom ruleset typically takes from a few seconds for a small number of rules to up to an hour for complex rule trees.
 
-Custom ruleset build status and expected completion time are displayed in Wallarm Console. If there is no build in progress, the interface displays the date of the last completed build.
-
-![Build status](../../images/user-guides/rules/build-rules-status.png)
-
 ### Uploading to filtering node
 
 Custom ruleset build is uploaded to the filtering node during the filtering node and Wallarm Cloud synchronization. By default, synchronization of the filtering node and Wallarm Cloud is launched every 2‑4 minutes. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
