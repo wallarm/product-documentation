@@ -6,7 +6,8 @@
     * 5.0.1 - new technology stack for efficiency (Go language-based node)
     * 5.0.2 - fixes
     * 5.0.3 - customizing sensitive data detection in API Discovery
-    * 5.1.0 - API Sessions and limiting request processing time
+    * 5.1.0 - API Sessions, limiting request processing time, new Ingress controller settings for API Specification Enforcement
+    * 5.1.1 - fixes
 
     See also: series' [artifacts](../updating-migrating/node-artifact-versions.md) by dates.
 

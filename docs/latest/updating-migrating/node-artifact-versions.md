@@ -65,9 +65,17 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Added support for [API Sessions](../api-sessions/overview.md)
 * [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
 * Reduced memory usage during node registration
-* Added new configuration options for [API Specification Enforcement](../api-specification-enforcement/overview.md)
+* Added new settings for API Specification Enforcement:
 
-    <!--List of options and their description will be provided later-->
+    * `readBufferSize`
+    * `readBufferSize`
+    * `writeBufferSize`
+    * `maxRequestBodySize`
+    * `disableKeepalive`
+    * `maxConnectionsPerIp`
+    * `maxRequestsPerConnection`
+
+        See descriptions and default values [here](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall).
 
 ### 5.0.3 (2024-10-10)
 
