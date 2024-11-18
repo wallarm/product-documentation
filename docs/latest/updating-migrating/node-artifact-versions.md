@@ -40,17 +40,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Initial release 5.0, [see changelog](what-is-new.md)
 * Added support for NGINX v1.26.2 stable
 
-<!-- ## DEB/RPM packages for NGINX
-
-!!! info "Pending upgrade to 4.10"
-    This artifact has not been updated to Wallarm node 4.10 yet; an upgrade is pending. The 4.10 features are not supported on nodes deployed with this artifact.
-
-[How to upgrade](nginx-modules.md)
-
-### 4.8.0 (2023-10-19)
-
-* Initial release 4.8, [see changelog](what-is-new.md) -->
-
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)

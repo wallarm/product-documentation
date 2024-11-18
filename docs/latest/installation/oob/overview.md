@@ -1,6 +1,6 @@
 # Overview of the Wallarm Out-of-Band Deployment
 
-Wallarm can be deployed as an Out-of-Band (OOB) security solution inspecting requests via a mirror of the traffic. This article explains the approach in detail.
+Wallarm can be deployed as a self-hosted Out-of-Band (OOB) security solution inspecting requests via a mirror of the traffic. This article explains the approach in detail.
 
 The OOB approach involves placing the Wallarm solution on a separate network segment, where it can inspect incoming traffic without affecting the primary data path and, as a result, the application performance. All incoming requests including malicious ones reach the servers they are addressed.
 

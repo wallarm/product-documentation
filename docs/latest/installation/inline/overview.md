@@ -25,9 +25,17 @@ When deploying Wallarm nodes on public clouds like AWS or GCP for production env
 
 ## Deployment models and supported deployment methods
 
-When it comes to deploying Wallarm in-line, there are two common models to consider: compute instance deployment and Kubernetes deployment.
+When it comes to deploying Wallarm in-line, there are the following common models to consider:
+
+* Wallarm Security Edge
+* Selh-hosted node deployment on a compute instance
+* Selh-hosted node deployment on Kubernetes
 
 You can choose the deployment model and method based on your infrastructure specifics. If you need assistance in choosing the right deployment model and method, please feel free to contact our [sales team](mailto:sales@wallarm.com) and provide them with additional information about your infrastructure for tailored guidance.
+
+### Running Wallarm Security Edge
+
+The Security Edge platform provides a managed service for deploying nodes across geographically distributed locations within a Wallarm-hosted environment. [Read more](../security-edge/deployment.md)
 
 ### Running Wallarm on compute instances
 

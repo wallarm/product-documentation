@@ -1,6 +1,6 @@
 # Configuration of the blocking page and error code (NGINX)
 
-These instructions describe the method to customize the blocking page and error code returned in the response to blocked requests. The configuration is only relevant for the NGINX Nodes.
+These instructions describe the method to customize the blocking page and error code returned in the response to blocked requests. The configuration is only relevant for the self-hosted NGINX Nodes.
 
 The custom blocking page is returned in response to the requests blocked due to the following reasons:
 

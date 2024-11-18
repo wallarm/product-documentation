@@ -248,6 +248,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div class="do-section">
     <div class="do-main">
+        <a class="do-card" href="../../installation/security-edge/deployment/">
+            <img class="non-zoomable" src="../../images/platform-icons/se-inline.svg" />
+            <h3>Edge Inline</h3>
+            <p>Wallarm-hosted node for real‑time, inline traffic analysis</p>
+        </a>
+
         <div id="inline-compute-instances" class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/compute-instance.svg" />
             <h3>Compute instances</h3>
