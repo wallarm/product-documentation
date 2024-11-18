@@ -8,24 +8,22 @@ This is an ideal solution for securing APIs when you can redirect traffic from y
 
 ## How it works
 
-Security Edge service provides a secure cloud environment where the Wallarm node is deployed, hosted, and managed by Wallarm:
+Security Edge service provides a secure cloud environment where Wallarm nodes are deployed, hosted, and managed by Wallarm:
 
-* Turnkey deployment: minimal setup is required for Wallarm to automatically deploys nodes across globally distributed locations.
+* Turnkey deployment: minimal setup is required for Wallarm to automatically deploy nodes across globally distributed locations.
 * Autoscaling: nodes automatically scale horizontally to handle varying traffic loads, with no manual configuration needed.
 * Reduced costs: lower operational overhead with Wallarm-managed nodes, allowing faster deployment and scalability.
 * Seamless integration: simple configuration with your existing CDN or load balancers, allowing you to protect your API landscape without disruptions.
 
 Currently, the Edge inline node supports only direct, Internet-facing deployment. It cannot operate behind a third-party service, such as a CDN or DDoS protection provider (e.g., Cloudflare, Akamai), that routes traffic.
 
-Only one Edge inline node deployment is allowed per account (or a tenant's account). In this single deployment, you can configure multiple origins to forward traffic to and multiple hosts to protect.
+## Configuring the Edge Inline
 
-## Deploying the Edge inline
-
-To run the Edge inline node, go to the Wallarm Console → **Security Edge** → **Edge inline** → **Configure**.
+To run the Edge inline, go to the Wallarm Console → **Security Edge** → **Edge inline** → **Configure**. You can configure multiple origins to forward traffic to and multiple hosts to protect.
 
 If this section is unavailable, your account may lack the appropriate subscription, please contact sales@wallarm.com to obtain it.
 
-You can modify the Edge node deployment settings anytime. The node will be re-deployed, starting from the **Pending** status to **Active**. The existing CNAME records will remain unchanged.
+You can modify the Edge node deployment settings anytime. The nodes will be re-deployed, starting from the **Pending** status to **Active**. The existing CNAME records will remain unchanged.
 
 ### 1. General settings
 
@@ -34,7 +32,7 @@ In **General settings**, specify the following:
 1. Choose one or more **regions** to deploy the Edge node.
 
     We recommend selecting regions close to where your APIs or applications are hosted. Deploying in multiple regions enhances geo-redundancy and ensures high availability.
-1. Specify **origins** to which the Edge node will forward filtered traffic. You can enter an IP address or domain, with an optional port (defaults to 443 if unspecified).
+1. Specify **origins** to which the Edge node will forward filtered traffic. You can enter an IP address, domain name or FQDN, with an optional port (defaults to 443 if unspecified).
 
     You can add multiple origins if needed, as the node supports directing traffic to multiple backends.
 
@@ -44,7 +42,7 @@ Later, when adding hosts for traffic analysis and filtering, you will assign eac
 
 ### 2. Certificates
 
-To securely direct traffic to your origins Wallarm needs to obtain certificates for your domains. These certificates will be issued based on the DNS zones you specify in the **Certificates** section.
+To securely direct traffic to your origins, Wallarm needs to obtain certificates for your domains. These certificates will be issued based on the DNS zones you specify in the **Certificates** section.
 
 Once configuration is complete, Wallarm will provide a CNAME for each DNS zone. Add this CNAME record to your DNS settings to verify domain ownership and complete the certificate issuance process.
 
@@ -95,15 +93,15 @@ DNS changes can take up to 24 hours to propagate. Once propagated, Wallarm will 
 * Only domains shorter than 64 characters are supported.
 * Only HTTPS traffic is supported; HTTP is not allowed.
 
-## Upgrading the Edge node
+## Upgrading the Edge Inline
 
 Since the Edge node is a managed solution, Wallarm takes care of all upgrades. The latest stable node version is always deployed on the Edge.
 
-## Deleting the Edge node
+## Deleting the Edge Inline
 
-To delete your Edge deployment, you need to unsubscribe from the Wallarm Security Edge platform. Direct deletion of the deployment itself is not available. If you wish to proceed, please contact sales@wallarm.com, and they will cancel your Security Edge subscription, resulting in the node's deactivation.
+To delete your Edge deployment, you need to unsubscribe from the Wallarm Security Edge platform by contacting sales@wallarm.com. We will cancel your Security Edge subscription, resulting in the nodes' deactivation.
 
-If you intend to delete and re-create the node, you can adjust the settings of the existing deployment, and the node will be re-deployed with the updated configuration.
+If you intend to delete and re-create the nodes, you can adjust the settings of the existing deployment, and the nodes will be re-deployed with the updated configuration.
 
 ## Statuses
 
