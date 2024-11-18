@@ -259,6 +259,7 @@ nav:
       - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
     - In-Line:
       - Overview: installation/inline/overview.md
+      - Security Edge: installation/security-edge/deployment.md
       - Compute Instances:
         - All-in-one installer: installation/inline/compute-instances/linux/all-in-one.md
         - Amazon Web Services:

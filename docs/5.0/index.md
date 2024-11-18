@@ -143,7 +143,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <li><a href="./admin-en/using-proxy-or-balancer-en/">Proper Reporting of End‑User IP</a></li>
     <li><a href="./admin-en/configuration-guides/allocate-resources-for-node/">Resource Allocation</a></li>
     <li><a href="./admin-en/configure-logging/">Filtering Node Logs</a></li>
-    <li><a href="./updating-migrating/what-is-new/">Node Upgrade</a></li>
+    <li><a href="./updating-migrating/what-is-new/">Self-Hosted Node Upgrade</a></li>
     </ul></p>
 </div>
 
