@@ -9,7 +9,7 @@ There are various scenarios where you may require a custom Wallarm deployment bu
 * You require an out-of-band solution for a specially crafted traffic mirror.
 * Services are compatible with custom versions or types of Ingress controllers, web servers, load balancers, etc that are not mentioned in the documentation.
 
-    If you are looking for the Wallarm DEB/RPM packages for a custom NGINX version, refer to the [specific instructions](custom-nginx-version.md) on how to get it.
+    If you are looking for the installer for a custom NGINX version, refer to the [specific instructions](custom-nginx-version.md) on how to get it.
 
 To request a custom Wallarm deployment option:
 

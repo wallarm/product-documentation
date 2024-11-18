@@ -1,6 +1,6 @@
-# Allocating Resources for Wallarm Node
+# Allocating Resources for Wallarm NGINX Node
 
-The amount of memory and CPU resources allocated for the filtering node determines the quality and speed of request processing. These instructions describe the recommendations for filtering node memory allocation.
+The amount of memory and CPU resources allocated for the Wallarm NGINX node determines the quality and speed of request processing. These instructions describe the recommendations for self-hosted NGINX node memory allocation.
 
 In a filtering node there are two main memory and CPU consumers:
 

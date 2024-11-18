@@ -1,9 +1,9 @@
 # Identifying an original client IP address if using an HTTP proxy or a load balancer (NGINX)
 
-These instructions describe the NGINX configuration required to identify an originating IP address of a client connecting to your servers through an HTTP proxy or load balancer.
+These instructions describe the NGINX configuration required to identify an originating IP address of a client connecting to your servers through an HTTP proxy or load balancer. This is relevant for the self-hosted NGINX-based nodes.
 
-* If the Wallarm node is installed from the DEB / RPM packages, AWS / GCP images or the NGINX-based Docker image, please use the **current instructions**.
-* If the Wallarm node is deployed as the K8s Ingress controller, please use [these instructions](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md).
+* If the self-hosted Wallarm node is installed from the all-in-one installer, AWS / GCP images or the NGINX-based Docker image, please use the **current instructions**.
+* If the self-hosted Wallarm node is deployed as the K8s Ingress controller, please use [these instructions](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md).
 
 ## How Wallarm node identifies an IP address of a request
 
@@ -44,8 +44,7 @@ If a load balancer or proxy server appends a header `X-Forwarded-For` (`X-Real-I
 
 1. Open the following configuration file of NGINX installed with the Wallarm node:
 
-    * `/etc/nginx/conf.d/default.conf` if the Wallarm node is installed from the DEB / RPM packages or all-in-one installer.
-    * `/etc/nginx/nginx.conf` if the Wallarm node is deployed from the AWS / GCP image.
+    * `/etc/nginx/sites-enabled/default` if the Wallarm node is installed from the all-in-one installer or the AWS / GCP image.
     * If the Wallarm node is deployed from the NGINX-based Docker image, you should create and edit the NGINX configuration file locally and mount it to the Docker container at the path `/etc/nginx/sites-enabled/default`. You can copy an initial NGINX configuration file and get the instructions on mounting the file to the container from the [instructions on the Wallarm NGINX-based Docker instructions](installation-docker-en.md#run-the-container-mounting-the-configuration-file).
 2. In the NGINX context `location` or higher, add the directive `set_real_ip_from` with a proxy server or load balancer IP address. If a proxy server or load balancer has several IP addresses, please add an appropriate number of separate directives. For example:
 
@@ -86,8 +85,7 @@ If a load balancer or proxy server supports the [PROXY protocol](https://www.hap
 
 1. Open the following configuration file of NGINX installed with the Wallarm node:
 
-    * `/etc/nginx/conf.d/default.conf` if the Wallarm node is installed from the DEB / RPM packages or all-in-one installer.
-    * `/etc/nginx/nginx.conf` if the Wallarm node is deployed from the AWS / GCP image.
+    * `/etc/nginx/sites-enabled/default` if the Wallarm node is installed from the all-in-one installer or the AWS / GCP image.
     * If the Wallarm node is deployed from the NGINX-based Docker image, you should create and edit the NGINX configuration file locally and mount it to the Docker container at the path `/etc/nginx/sites-enabled/default`. You can copy an initial NGINX configuration file and get the instructions on mounting the file to the container from the [instructions on the Wallarm NGINX-based Docker instructions](installation-docker-en.md#run-the-container-mounting-the-configuration-file).
 2. In the NGINX context `server`, add the parameter `proxy_protocol` to the directive `listen`.
 3. In the NGINX context `location` or higher, add the directive `set_real_ip_from` with a proxy server or load balancer IP address. If a proxy server or load balancer has several IP addresses, please add an appropriate number of separate directives. For example:

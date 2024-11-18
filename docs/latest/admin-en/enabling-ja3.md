@@ -8,7 +8,7 @@ Attackers frequently employ various techniques to bypass security measures, such
 
 ## NGINX
 
-An ability to get a JA3 fingerprint from NGINX makes this identification method available in all NGINX-based Wallarm [deployment options](../installation/supported-deployment-options.md). There are two NGINX modules for JA3:
+An ability to get a JA3 fingerprint from NGINX makes this identification method available in all NGINX-based Wallarm [deployment options](..//installation/nginx-native-node-internals.md#nginx-node). There are two NGINX modules for JA3:
 
 | Module | Description | Installation |
 | - | - | - |

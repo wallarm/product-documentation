@@ -28,7 +28,7 @@ By default, Wallarm considers each application to be the `default` application w
     * The parameter [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) if Wallarm is installed as Envoy-based Docker container with a mounted configuration file.
     * For Native Node all-in-one installer and Docker image, use the [`route_config.wallarm_application`](../../installation/native-node/all-in-one-conf.md#route_configwallarm_application) parameter.
     * For Native Node Helm chart, use the [`config.connector.route_config.wallarm_application`](../../installation/native-node/helm-chart-conf.md#configconnectorroute_configwallarm_application) parameter.
-    * The application configuration in the Edge connector setup window.
+    * The application configuration in the Edge inline or connector setup window.
 
     The value can be a positive integer except for `0`.
 

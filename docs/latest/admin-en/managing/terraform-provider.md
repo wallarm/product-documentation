@@ -65,7 +65,7 @@ See [details](https://registry.terraform.io/providers/wallarm/wallarm/latest/doc
 
 With the Wallarm provider, via Terraform you can manage:
 
-* [Nodes](../../user-guides/nodes/nodes.md) in your account
+* [Self-hosted nodes](../../user-guides/nodes/nodes.md)
 * [Applications](../../user-guides/settings/applications.md)
 * [Rules](../../user-guides/rules/rules.md)
 * [Triggers](../../user-guides/triggers/triggers.md)
