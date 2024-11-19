@@ -19,7 +19,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 5.1.0 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
-* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
 * Reduced memory usage during node registration
 
 ### 5.0.3 (2024-10-10)
@@ -50,7 +50,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 5.1.0 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
-* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
 * Reduced memory usage during node registration
 * Added new settings for API Specification Enforcement:
 
@@ -62,7 +62,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * `maxConnectionsPerIp`
     * `maxRequestsPerConnection`
 
-        See descriptions and default values [here](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall).
+    See descriptions and default values [here](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall).
 
 ### 5.0.3 (2024-10-10)
 
@@ -94,7 +94,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 5.1.0 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
-* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
 * Reduced memory usage during node registration
 
 ### 5.0.3 (2024-10-10)
@@ -125,7 +125,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 5.1.0-1 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
-* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
 * Reduced memory usage during node registration
 
 ### 5.0.3-1 (2024-10-10)
@@ -162,7 +162,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 5.1.0-1 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
-* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
 * Reduced memory usage during node registration
 
 ### 5.0.3-1 (2024-10-10)
