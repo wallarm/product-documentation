@@ -1,6 +1,6 @@
 # Native Node Artifact Versions and Changelog
 
-This document lists available versions of the [native Wallarm node](../../installation/nginx-native-node-internals.md#native-node) 5.0 in different form-factors. You can track new patch version releases and plan timely upgrades based on this document.
+This document lists available [versions](../versioning-policy.md) of the [Native Wallarm Node](../installation/nginx-native-node-internals.md#native-node) 0.x in various form factors, helping you track releases and plan upgrades.
 
 ## All-in-one installer
 
