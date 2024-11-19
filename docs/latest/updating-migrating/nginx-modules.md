@@ -62,7 +62,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
 --8<-- "../include/waf/installation/all-in-one-clean-machine-latest.md"
 
-## Step 2: Install NGINX and dependencies
+## Step 2: Install latest NGINX and dependencies
 
 --8<-- "../include/waf/installation/all-in-one-nginx.md"
 

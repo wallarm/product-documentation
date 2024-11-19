@@ -32,7 +32,7 @@ Use the procedure below to upgrade altogether the filtering node and postanalyti
 
 ## Step 1: Install the new node version on a clean machine
 
-Install the newest version of the node on a **new machine** following one of the instructions. The guide will also cover the requirements for the machine.
+Install the newest version of the node on a **new machine** alongside the most recent version of NGINX by following one of the guides. The guide also covers the requirements for the machine.
 
 * [Filtering and postanalytics modules on the same server](../installation/nginx/all-in-one.md)
 * [Filtering and postanalytics modules on different servers](../admin-en/installation-postanalytics-en.md)
