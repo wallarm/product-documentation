@@ -46,6 +46,13 @@ Note that you will not be able to start configuring rogue API detection, until t
 
     ![API Discovery - API Specifications - uploading API specification to find rogue APIs](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
 
+### Disabling
+
+Rogue API detection is based on uploaded specification or several specifications each having the **Use for rogue APIs detection** option selected. Consider that unchecking this option for some specification or deleting this specification will result in:
+
+* Stopping of rogue API detection based on this specification and 
+* **Removing all data** about rogue API found based on this specification previously
+
 ## Viewing found rogue APIs
 
 As comparison is finished, the number of rogue (shadow, orphan and zombie) APIs will be displayed for each specification in the list of **API Specifications**.
