@@ -361,12 +361,12 @@
 * لتطابق أي سلسلة تشمل قيمة واحدة أو عدة قيم: <code>admin\\.exe</code>, <code>admin\\.bat</code>, <code>admin\\.sh</code>, <code>cmd\\.exe</code>, <code>cmd\\.bat</code>, <code>cmd\\.sh</code>
 
     ```
-    (admin|cmd)[\].(exe|bat|sh)
+    (admin|cmd)[\\].(exe|bat|sh)
     ```
 * لتطابق أي سلسلة تشمل قيمة واحدة أو عدة قيم: <code>onmouse</code> مع أحرف صغيرة وكبيرة, <code>onload</code> مع أحرف صغيرة وكبيرة, <code>win\\.ini</code>, <code>prompt</code>
 
     ```
-    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\].ini|prompt
+    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\\].ini|prompt
     ```
 * لتطابق أي سلسلة تبدأ بـ `Mozilla` ولكن لا تحتوي على السلسلة `1aa875F49III`
     

@@ -307,12 +307,12 @@ Para testar a expressão regular, você pode usar a utilidade **cpire** no Debia
 * Para combinar qualquer string que inclui um ou vários valores: <code>admin\\.exe</code>, <code>admin\\.bat</code>, <code>admin\\.sh</code>, <code>cmd\\.exe</code>, <code>cmd\\.bat</code>, <code>cmd\\.sh</code>
 
     ```
-    (admin|cmd)[\].(exe|bat|sh)
+    (admin|cmd)[\\].(exe|bat|sh)
     ```
 * Para combinar qualquer string que inclui um ou vários valores: <code>onmouse</code> com letras em minúsculas e maiúsculas, <code>onload</code> com letras em minúsculas e maiúsculas, <code>win\\.ini</code>, <code>prompt</code>
 
     ```
-    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\].ini|prompt
+    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\\].ini|prompt
     ```
 * Para combinar qualquer string que comece com `Mozilla` mas não contenha a string `1aa875F49III`
     

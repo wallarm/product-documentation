@@ -281,7 +281,7 @@ To test a regular expression, use the Wallarm **cpire** utility. Install it via 
     1. Install the Wallarm modules if they are not installed yet:
         
         ```
-        sudo sh wallarm-5.1.1.x86_64-glibc.sh -- --batch
+        sudo sh wallarm-5.1.1.x86_64-glibc.sh -- --batch --token <API_TOKEN>
         ```
     1. Run the **cpire** utility:
         
@@ -341,12 +341,12 @@ The utility will return the result:
 * To match any string that includes one or several values: <code>admin\\.exe</code>, <code>admin\\.bat</code>, <code>admin\\.sh</code>, <code>cmd\\.exe</code>, <code>cmd\\.bat</code>, <code>cmd\\.sh</code>
 
     ```
-    (admin|cmd)[\].(exe|bat|sh)
+    (admin|cmd)[\\].(exe|bat|sh)
     ```
 * To match any string that includes one or several values: <code>onmouse</code> with letters in lower and upper case, <code>onload</code> with letters in lower and upper case, <code>win\\.ini</code>, <code>prompt</code>
 
     ```
-    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\].ini|prompt
+    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\\].ini|prompt
     ```
 * To match any string that starts with `Mozilla` but does not contain the string `1aa875F49III`
     

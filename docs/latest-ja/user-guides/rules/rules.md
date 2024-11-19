@@ -360,12 +360,12 @@ WallarmのURIコンストラクタでワイルドカードを使用すること�
 * 以下のいずれかの値を含む文字列と一致するために: <code>admin\\.exe</code>, <code>admin\\.bat</code>, <code>admin\\.sh</code>, <code>cmd\\.exe</code>, <code>cmd\\.bat</code>, <code>cmd\\.sh</code>
 
     ```
-    (admin|cmd)[\].(exe|bat|sh)
+    (admin|cmd)[\\].(exe|bat|sh)
     ```
 * 下記のいずれかの値を含む任意の文字列と一致するために: <code>onmouse</code> の大文字小文字交互、<code>onload</code>の大文字小文字交互、<code>win\\.ini</code>, <code>prompt</code>
 
     ```
-    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\].ini|prompt
+    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\\].ini|prompt
     ```
 * 任意の `Mozilla`で始まる文字列と一致し、`1aa875F49III`という文字列を含まないための表現
 
