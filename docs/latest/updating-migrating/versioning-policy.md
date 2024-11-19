@@ -1,8 +1,10 @@
 # Wallarm Node Versioning Policy
 
-This document details Wallarm's versioning policy for its self-hosted filtering nodes, available as [NGINX-based and Native nodes](../installation/nginx-native-node-internals.md). It covers versioning standards, release schedules, and compatibility guidelines to help you choose, update, and manage node versions effectively.
+This document details Wallarm's versioning policy for self-hosted filtering nodes, available as [NGINX-based and Native Nodes](../installation/nginx-native-node-internals.md). It covers versioning standards, release schedules, and compatibility guidelines to help you choose, update, and manage node versions effectively.
 
 Each node version is released as a set of artifacts - such as Docker images, Helm charts, or all-in-one installers - packaged for deployment on different platforms.
+
+The document does not cover Edge node versioning as it is a managed solution, automatically upgraded by Wallarm to the latest stable version.
 
 ## Version list
 
@@ -27,24 +29,24 @@ Node versions follow this format:
 | ------- | ----------- | ----------------- |
 | `<MAJOR_VERSION>` | Major version changes indicate significant updates, major new features, or breaking changes. Increments by +1, e.g., `4.x` and `5.x`. | Every 6 months or as needed for major changes |
 | `<MINOR_VERSION>` | Minor version changes include enhancements and new capabilities within existing functionality, without introducing major new use cases. Increments by +1, e.g., `5.0` and `5.1`. | Monthly |
-| `<PATCH_VERSION>` | Patches for minor bug fixes or specific enhancements. Applies to the latest minor release only. Increments by +1, e.g., `5.1.0` and `5.1.1`. | As needed |
-| `<BUILD_NUMBER>` (optional) | Optional build identifier, auto-assigned in some packaged versions. Increments by +1, e.g., `5.1.0-1` and `5.1.0-2`. | As new `<PATCH_VERSION>` released |
+| `<PATCH_VERSION>` | Patches for minor bug fixes or specific enhancements. Applies to the latest minor release only. Increments by +1, +2, or higher, e.g., `5.1.0` and `5.1.1`. | As needed |
+| `<BUILD_NUMBER>` (optional) | Indicates modifications unrelated to the Wallarm Node itself (e.g., dependency updates in the Helm chart). This number increments (e.g., `5.1.0-1`, `5.1.0-2`) only if changes are made to the artifact between patch releases. | As needed |
 
 This versioning approach applies equally to both the NGINX and Native Nodes. Major releases for one node type are mirrored in the other.
 
 ## Version support policy
 
-Wallarm supports the 2 most recent major versions, including bug fixes, feature updates, and vulnerability patches.
+Wallarm supports the 2 latest major versions, limited to their latest minor versions, with bug fixes, feature updates, and vulnerability patches. For example, only the latest minor version of 5.x (e.g., 5.12) will be supported once 6.x is released.
 
 Upon the release of a new major version, support for the corresponding version minus two (e.g., 6.x → 4.x) will end after 3 months.
 
-Deprecated versions remain available for download but do not receive updates.
+Deprecated versions remain downloadable but are no longer updated.
 
 ## NGINX compatibility
 
 Most NGINX Node artifacts align with the stable version from upstream NGINX sources.
 
-For example, the Wallarm Ingress Controller is based on the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). When a new upstream version is released, Wallarm updates its version within 30 days, issuing it as a new minor release.
+For example, the Wallarm Ingress Controller is based on the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). When an upstream version is marked for deprecation, Wallarm updates to the new stable version within 30 days, releasing it as a minor version. Updates may occur earlier to ensure compatibility but will not delay beyond the deprecation designation.
 
 ## New version notification
 
