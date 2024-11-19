@@ -1,6 +1,6 @@
 # Native Node Artifact Versions and Changelog
 
-This document lists available versions of the [native Wallarm node](../../installation/nginx-native-node-internals.md#native-node) 5.0 in different form-factors. You can track new patch version releases and plan timely upgrades based on this document.
+This document lists available [versions](../versioning-policy.md) of the [Native Wallarm Node](../../installation/nginx-native-node-internals.md#native-node) 0.x in various form factors, helping you track releases and plan upgrades.
 
 ## All-in-one installer
 
@@ -25,7 +25,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 0.8.0 (2024-11-06)
 
 * Added support for [API Sessions](../../api-sessions/overview.md)
-* [Improved](../what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* [Improved](../what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
 * Changed default values for the following parameters:
 
     * The [`connector.blocking`](../../installation/native-node/all-in-one-conf.md#connectorblocking) parameter now defaults to `true`, enabling the Native Node's general capability to block incoming requests without manual configuration during deployment.
@@ -93,7 +93,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 ### 0.8.1 (2024-11-07)
 
 * Added support for [API Sessions](../../api-sessions/overview.md)
-* [Improved](../what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* [Improved](../what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
 * The [`config.connector.mode`](../../installation/native-node/helm-chart-conf.md#configconnectormode) parameter, which sets the traffic filtration mode, now defaults to `monitoring`, providing an optimal setup for initial deployments
 * Reduced memory usage during node registration
 * Some bug fixes
@@ -132,7 +132,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 ### 0.8.1 (2024-11-06)
 
 * Added support for [API Sessions](../../api-sessions/overview.md)
-* [Improved](../what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* [Improved](../what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
 * Changed default values for the following parameters:
 
     * The [`connector.blocking`](../../installation/native-node/all-in-one-conf.md#connectorblocking) parameter now defaults to `true`, enabling the Native Node's general capability to block incoming requests without manual configuration during deployment.

@@ -1,7 +1,8 @@
 INHERIT: mkdocs-base.yml
 
 theme:
-  version: "5.0"
+  version: "5.x"
+  versionNative: "0.x"
 
 docs_dir: docs/5.0
 site_dir: site
@@ -461,7 +462,7 @@ nav:
     - Enabling JA3 fingerprinting: admin-en/enabling-ja3.md
     - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
     - Self-Hosted Node Upgrade:
-      - What Is New in NGINX Wallarm Node 5.X Series: updating-migrating/what-is-new.md
+      - What is New in Wallarm Node 5.x and 0.x: updating-migrating/what-is-new.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
       - NGINX Node upgrade instructions:
         - Upgrading DEB/RPM Packages: updating-migrating/nginx-modules.md

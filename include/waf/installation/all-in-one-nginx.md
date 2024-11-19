@@ -5,22 +5,17 @@ Install the latest NGINX version of:
 * **NGINX Plus** - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 * **Distribution-Provided NGINX** - to install, use the following commands:
 
-    === "Debian 10.x (buster)"
-        ```bash
-        sudo apt-get update 
-        sudo apt -y install --no-install-recommends nginx
-        ```
-    === "Debian 11.x (bullseye)"
+    === "Debian"
         ```bash
         sudo apt update 
         sudo apt -y install --no-install-recommends nginx
         ```
-    === "Ubuntu LTS 20.04, 22.04"
+    === "Ubuntu"
         ```bash
         sudo apt-get update
         sudo apt-get install nginx
         ```
-    === "CentOS 7.x"
+    === "CentOS"
         ```bash
         sudo yum -y update 
         sudo yum install -y nginx

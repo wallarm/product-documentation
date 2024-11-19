@@ -1,8 +1,6 @@
 # NGINX Node Artifact Versions and Changelog
 
-This document lists available [patch versions](versioning-policy.md#version-format) of the [NGINX Wallarm node](../installation/nginx-native-node-internals.md#nginx-node) 5.X series in different form-factors. You can track new patch version releases and plan timely upgrades based on this document.
-
-See also: [What Is New in NGINX Wallarm Node 5.X Series](../updating-migrating/what-is-new.md)
+This document lists available  [versions](versioning-policy.md) of the [NGINX Wallarm Node](../installation/nginx-native-node-internals.md#nginx-node) 5.x in various form factors, helping you track releases and plan upgrades.
 
 ## All-in-one installer
 
@@ -21,7 +19,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 5.1.0 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
-* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
 * Reduced memory usage during node registration
 
 ### 5.0.3 (2024-10-10)
@@ -52,7 +50,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 5.1.0 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
-* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
 * Reduced memory usage during node registration
 * Added new settings for API Specification Enforcement:
 
@@ -64,7 +62,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * `maxConnectionsPerIp`
     * `maxRequestsPerConnection`
 
-        See descriptions and default values [here](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall).
+    See descriptions and default values [here](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall).
 
 ### 5.0.3 (2024-10-10)
 
@@ -96,7 +94,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 5.1.0 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
-* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
 * Reduced memory usage during node registration
 
 ### 5.0.3 (2024-10-10)
@@ -127,7 +125,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 5.1.0-1 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
-* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
 * Reduced memory usage during node registration
 
 ### 5.0.3-1 (2024-10-10)
@@ -164,7 +162,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 5.1.0-1 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
-* [Improved](what-is-new.md#new-in-limiting-request-processing-time-node-510-and-higher) limiting request processing time
+* [Improved](what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
 * Reduced memory usage during node registration
 
 ### 5.0.3-1 (2024-10-10)

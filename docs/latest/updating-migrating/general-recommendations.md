@@ -1,6 +1,6 @@
-# Recommendations for a safe node upgrade process
+# Safe Node Upgrade Recommendations
 
-This document describes recommendations and associated risks for a safe upgrade of Wallarm filtering node.
+This document describes recommendations and associated risks for a safe upgrade of Wallarm Nodes.
 
 ## Common recommendations
 
@@ -9,7 +9,7 @@ This document describes recommendations and associated risks for a safe upgrade 
 * For the model with separated development and production environments, update the filtering node gradually. First, apply and test new version in non-production environments, then in production environments. Detailed recommendations are described in the [instructions for configuring Wallarm nodes for separated environments](../admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md#gradual-rollout-of-new-wallarm-node-changes).
 * Before upgrading the filtering node, disable traffic routing through the node using any method available to you (e.g. by setting [traffic filtration mode](../admin-en/configure-wallarm-mode.md) to `off`).
 * Once filtering node module is upgraded, set the node filtration mode to `monitoring`. If all modules work correctly and there is no abnormal number of new false positives in the `monitoring` mode for a day, then put the filtering node in the `block` mode.
-* Update NGINX to the latest version available before applying Wallarm node updates. If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build the Wallarm module for a custom version of NGINX.
+* If using the [NGINX node](../installation/nginx-native-node-internals.md#nginx-node), upgrade NGINX to the latest version available before applying Wallarm node updates. If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build the Wallarm module for a custom version of NGINX.
 
 ## Possible risks
 
@@ -17,7 +17,7 @@ Below are the risks that may occur when updating the filtering node. To reduce t
 
 ### Changed functionality
 
-* [What is new in Wallarm node 5.0](what-is-new.md)
+* [What is new in Wallarm Node 5.x and 0.x](what-is-new.md)
 * [What is new if upgrading the EOL node (3.6 or lower)](older-versions/what-is-new.md)
 
 ### New false positives
@@ -40,11 +40,18 @@ Also, it is recommended to monitor the filtering node operation: if you find sig
 
 The Wallarm node update process depends on the platform and installation forms. Please select the installation form and follow the appropriate instructions:
 
-* [Modules for NGINX, NGINX Plus](nginx-modules.md)
-* [Docker container with the modules for NGINX or Envoy](docker-container.md)
-* [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
-<!-- * [Kong Ingress controller with integrated Wallarm modules](kong-ingress-controller.md) -->
-* [Sidecar](sidecar-proxy.md)
-* [Cloud node image](cloud-image.md)
-* [Multi-tenant node](multi-tenant.md)
-* [Migrating allowlists and denylists from Wallarm node 2.18 and lower to 5.0](migrate-ip-lists-to-node-3.md)
+* NGINX Node:
+
+    * [Modules for NGINX, NGINX Plus](nginx-modules.md)
+    * [All-in-one installer](all-in-one.md)
+    * [Docker container with the modules for NGINX or Envoy](docker-container.md)
+    * [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
+    * [Sidecar](sidecar-proxy.md)
+    * [Cloud node image](cloud-image.md)
+    * [Multi-tenant node](multi-tenant.md)
+    * [Migrating allowlists and denylists from Wallarm node 2.18 and lower to 5.0](migrate-ip-lists-to-node-3.md)
+* Native Node:
+
+    * [All-in-one installer](native-node/all-in-one.md)
+    * [Helm chart](native-node/helm-chart.md)
+    * [Docker image](native-node/docker-image.md)

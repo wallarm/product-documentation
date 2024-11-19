@@ -21,16 +21,29 @@
 >
 
   <!-- Version selector -->
+
   <div id="versionsDiv" class="versions" style="display: none;">
-    <button type="button" id="versionsMain" class="versions-main" onClick="versionClicked(event)">
-        Version {{ config.theme.version }}
+    {% if config.theme.versionNative %}
+      <button type="button" id="versionsMain" class="versions-main" onClick="versionClicked(event)">
+        Version {{ config.theme.version }} and {{ config.theme.versionNative }}
       <svg class="versions-drop" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2.25" fill="none">
         <path d="M8 10.5L12 14.5L16 10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
       </button>
+    
+    {% else %}
+
+    <button type="button" id="versionsMain" class="versions-main" onClick="versionClicked(event)">
+      Version {{ config.theme.version }}
+    <svg class="versions-drop" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2.25" fill="none">
+      <path d="M8 10.5L12 14.5L16 10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    </button>
+
+    {% endif %}
   <span class="divider"></span>
   <div id="versionsList" style="display: none;" class="versions-list" tabindex="-1">
-    <a href="" onClick="goToVersion(event, '{{ config.theme.version }}', '5.0')">Version 5.0</a>
+    <a href="" onClick="goToVersion(event, '{{ config.theme.version }}', '5.x')">Versions 5.x and 0.x</a>
     <a href="" onClick="goToVersion(event, '{{ config.theme.version }}', '4.10')">Version 4.10</a>
     <a href="" onClick="goToVersion(event, '{{ config.theme.version }}', '4.8')">Version 4.8</a>
     <a href="" onClick="goToVersion(event, '{{ config.theme.version }}', '4.6')">Version 4.6 &#9888;</a>
