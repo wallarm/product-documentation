@@ -43,6 +43,30 @@ The Wallarm node does not collect the following collectd metrics anymore:
 * `curl_json-wallarm_nginx/derive-softmemfaults`
 * `curl_json-wallarm_nginx/derive-time_detect`
 
+## API Sessions
+
+We introduce a unique security feature tailored for the API economy - [API Sessions](../../api-sessions/overview.md). This addition gives you visibility into attacks, anomalies, and user behavior across your APIs, providing transparency into how users interact with your APIs and applications.
+
+![!API Sessions section - monitored sessions](../../images/api-sessions/api-sessions.png)
+
+Attackers often exploit vulnerable endpoints by blending their actions with legitimate user behavior. Without the full context of how those sessions unfold, identifying patterns or threats becomes a time-consuming process involving multiple tools and systems. Organizations  do not have an appropriate visibility at the API level. 
+
+With API Sessions, security teams now have the ability to see all relevant activity grouped by user session, offering unparalleled visibility into attack sequences, user anomalies, and normal behaviors. Investigations that once took hours or days can now be conducted directly from the Wallarm Console in just minutes.
+
+Key features:
+
+* Visibility into attacks, anomalies, and user behavior: View and analyze every request made in a session to track attack vectors and suspicious patterns.
+* Support for both legacy and modern sessions: Whether your applications rely on cookie-based sessions or JWT/OAuth, Wallarm API Sessions ensures full compatibility and visibility.
+* Seamlessly navigate between individual attacks and their sessions.
+
+With API Sessions, security teams can now easily:
+
+* Investigate the full activity of threat actors to understand potential attack paths and compromised resources.
+* Identify how shadow or zombie APIs are being accessed, mitigating risks from undocumented or outdated APIs.
+* Share key insights with colleagues to foster collaboration during security investigations.
+
+[Read more](../../api-sessions/overview.md)
+
 ## Rate limits
 
 The lack of proper rate limiting has been a significant problem for API security, as attackers can launch high-volume requests causing a denial of service (DoS) or overload the system, which hurts legitimate users.
@@ -453,6 +477,18 @@ To use this variable in a [Docker container](../../admin-en/installation-docker-
 ## Distinct search tags for Account Takeover, Scraping and Security Crawlers
 
 Distinct [search tags](../../user-guides/search-and-filters/use-search.md) for the `account_takeover`, `scraping`, and `security_crawlers` attack types have been introduced, improving specificity over the previous general `api_abuse` tag.
+
+## Native Node for connectors and TCP traffic mirror
+
+We are excited to introduce the Native Node, a new deployment option for the Wallarm Node that operates independently of NGINX. This solution was developed for environments where NGINX is not required or where a platform-agnostic approach is preferred. 
+
+Currently, it is tailored for the following deployments:
+
+* MuleSoft, Cloudflare, and CloudFront connectors with both request and response analysis
+* Kong API Gateway and Istio Ingress connectors
+* TCP traffic mirror analysis
+
+[Read more](../../installation/nginx-native-node-internals.md#native-node)
 
 ## Upgrade process
 
