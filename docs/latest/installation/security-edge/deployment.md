@@ -13,9 +13,7 @@ Security Edge service provides a secure cloud environment where Wallarm nodes ar
 * Turnkey deployment: minimal setup is required for Wallarm to automatically deploy nodes across globally distributed locations.
 * Autoscaling: nodes automatically scale horizontally to handle varying traffic loads, with no manual configuration needed.
 * Reduced costs: lower operational overhead with Wallarm-managed nodes, allowing faster deployment and scalability.
-* Seamless integration: simple configuration with your existing CDN or load balancers, allowing you to protect your API landscape without disruptions.
-
-Currently, the Edge inline node supports only direct, Internet-facing deployment. It cannot operate behind a third-party service, such as a CDN or DDoS protection provider (e.g., Cloudflare, Akamai), that routes traffic.
+* Seamless integration: simple configuration, allowing you to protect your API landscape without disruptions.
 
 ## Configuring the Edge Inline
 
@@ -90,8 +88,12 @@ DNS changes can take up to 24 hours to propagate. Once propagated, Wallarm will 
 
 ## Limitations
 
+* Currently, the Edge inline node supports only direct, Internet-facing deployment. It cannot operate behind a third-party service, such as a CDN or DDoS protection provider (e.g., Cloudflare, Akamai), that routes traffic.
+* Only third-level or higher domains are supported (e.g., instead `domain.com` use `www.domain.com`).
 * Only domains shorter than 64 characters are supported.
 * Only HTTPS traffic is supported; HTTP is not allowed.
+* Certificate CNAME records must be added to initiate the Edge node deployment.
+* If the certificate CNAME is not added within 14 days, the node deployment will fail.
 
 ## Upgrading the Edge Inline
 
