@@ -362,12 +362,12 @@ To test the regular expression, you can use the **cpire** utility on supported D
 * To match any string that includes one or several values: <code>admin\\.exe</code>, <code>admin\\.bat</code>, <code>admin\\.sh</code>, <code>cmd\\.exe</code>, <code>cmd\\.bat</code>, <code>cmd\\.sh</code>
 
     ```
-    (admin|cmd)[\].(exe|bat|sh)
+    (admin|cmd)[\\].(exe|bat|sh)
     ```
 * To match any string that includes one or several values: <code>onmouse</code> with letters in lower and upper case, <code>onload</code> with letters in lower and upper case, <code>win\\.ini</code>, <code>prompt</code>
 
     ```
-    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\].ini|prompt
+    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\\].ini|prompt
     ```
 * To match any string that starts with `Mozilla` but does not contain the string `1aa875F49III`
     

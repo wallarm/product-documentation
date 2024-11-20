@@ -307,12 +307,12 @@ Düzenli ifadenizi test etmek için, desteklenen Debian ya da Ubuntu üzerinde *
 * <code>admin\\.exe</code>, <code>admin\\.bat</code>, <code>admin\\.sh</code>, <code>cmd\\.exe</code>, <code>cmd\\.bat</code>, <code>cmd\\.sh</code> gibi bir veya birden fazla değeri içeren herhangi bir dizeyi eşlemek için
 
     ```
-    (admin|cmd)[\].(exe|bat|sh)
+    (admin|cmd)[\\].(exe|bat|sh)
     ```
 * Büyük veya küçük harfli <code>onmouse</code>, büyük veya küçük harfli <code>onload</code>, <code>win\\.ini</code>, <code>prompt</code> olan biri veya birkaç değeri içeren herhangi bir dizeyi eşlemek için
 
     ```
-    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\].ini|prompt
+    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\\].ini|prompt
     ```
 * `Mozilla` ile başlayan ancak `1aa875F49III` stringini içermeyen herhangi bir dizeyi eşlemek için
     

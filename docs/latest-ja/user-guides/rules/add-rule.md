@@ -301,12 +301,12 @@ WallarmのURIコンストラクタでワイルドカードを使用できます�
 * 以下の値のうち一つ以上を含む任意の文字列に一致する：`admin\\.exe`、`admin\\.bat`、`admin\\.sh`、`cmd\\.exe`、`cmd\\.bat`、`cmd\\.sh`
 
     ```
-    (admin|cmd)[\].(exe|bat|sh)
+    (admin|cmd)[\\].(exe|bat|sh)
     ```
 * 以下の値のうち一つ以上を含む任意の文字列に一致する：大文字小文字を区別しない `onmouse`、大文字小文字を区別しない `onload`、`win\\.ini`、`prompt`
 
     ```
-    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\].ini|prompt
+    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\\].ini|prompt
     ```
 * `Mozilla` で始まる任意の文字列に一致する、ただし `1aa875F49III` という文字列を含まない
     
