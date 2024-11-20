@@ -33,6 +33,21 @@ In **General settings**, specify the following:
 1. Specify **origins** to which the Edge node will forward filtered traffic. You can enter an IP address, domain name or FQDN, with an optional port (defaults to 443 if unspecified).
 
     You can add multiple origins if needed, as the node supports directing traffic to multiple backends.
+1. Ensure your origins allow incoming traffic from the IP ranges used by the selected regions:
+
+    === "us-east-1"
+        ```
+        18.215.213.205
+        44.214.56.120
+        44.196.111.152
+        ```
+    === "us-west-1"
+        ```
+        52.8.91.20
+        13.56.117.139
+        54.177.237.34
+        50.18.177.184
+        ```
 
 Later, when adding hosts for traffic analysis and filtering, you will assign each host or location to its designated origin.
 
