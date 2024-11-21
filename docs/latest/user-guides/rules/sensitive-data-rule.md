@@ -24,8 +24,8 @@ It can affect the display of attacks, active attack (threat) verification, and t
 To set and apply data mask:
 
 --8<-- "../include/rule-creation-initial-step.md"
+1. Choose **Change requests/responses** → **Mask sensitive data**.
 1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
-1. In **Then**, choose **Mask sensitive data**.
 1. In **In this part of request**, specify [request points](request-processing.md) for which its original value should be cut.
 1. Wait for the [rule compilation and uploading to the filtering node to complete](rules.md#ruleset-lifecycle).
 

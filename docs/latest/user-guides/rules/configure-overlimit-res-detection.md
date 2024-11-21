@@ -66,8 +66,9 @@ The **Limit request processing time** [rule](../../user-guides/rules/rules.md) e
 To set specific endpoint configuration for request processing time limit:
 
 --8<-- "../include/rule-creation-initial-step.md"
+1. Choose **Fine-tuning attack detection** → **Limit request processing time**.
 1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
-1. In **Then**, choose **Limit request processing time** and set parameters.
+1. Set parameters.
 
 ## Rule example
 

@@ -15,8 +15,9 @@ Note that rate limiting described in this article is one of the ways for the loa
 To set and apply rate limit:
 
 --8<-- "../include/rule-creation-initial-step.md"
+1. Choose **Mitigation controls** → **Advanced rate limiting**.
 1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
-1. In **Then**, choose **Set rate limit** and set a desired limit for connections to your scope:
+1. Set a desired limit for connections to your scope:
 
     * Maximum number for the requests per second or minute.
     * **Burst** - maximum number of excessive requests to be buffered once the specified RPS/RPM is exceeded and to be processed once the rate is back to normal. `0` by default.
