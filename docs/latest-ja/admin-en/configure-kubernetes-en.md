@@ -144,7 +144,6 @@ postanalyticsサービスのために割り当てられたメモリの量を指�
 
 以下の追加のパラメータがサポートされています。
 
-* `enable-wallarm` - NGINXでWallarmモジュールを有効化します
 * [wallarm-upstream-connect-attempts](configure-parameters-en.md#wallarm_tarantool_upstream)
 * [wallarm-upstream-reconnect-interval](configure-parameters-en.md#wallarm_tarantool_upstream)
 * [wallarm-process-time-limit](configure-parameters-en.md#wallarm_process_time_limit)
@@ -209,17 +208,17 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
 * Ingressリソースに以下の[`nginx.ingress.kubernetes.io/server-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet)アノテーションを適用します：
 
     ```bash
-    kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection on/off;"
+    kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection off;"
     ```
 * パラメータ`controller.config.server-snippet`をHelmチャートに渡します：
 
     === "Ingressコントローラのインストール"
         ```bash
-        helm install --set controller.config.server-snippet='wallarm_enable_libdetection on/off;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm install --set controller.config.server-snippet='wallarm_enable_libdetection off;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
         正しいIngressコントローラのインストールには[他のパラメータが必要です](#additional-settings-for-helm-chart)。それらも`--set`オプションで渡してください。
     === "Ingressコントローラパラメータの更新"
         ```bash
-        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection on/off;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection off;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```

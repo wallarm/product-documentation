@@ -19,7 +19,6 @@ This setup allows fine-tuning Wallarm only via the Wallarm Console UI. Some Wall
 * [Multitenancy feature][multitenancy-overview]
 * [Application configuration][applications-docs]
 * [Custom blocking page and code setup][custom-blocking-page-docs]
-* Local control of Wallarm's filtration mode is not supported, and it defaults to [blocking][available-filtration-modes]. You can [change this mode via the Wallarm Console UI][ui-filtration-mode].
 
 ## Requirements
 
@@ -124,19 +123,7 @@ To test the functionality of the deployed connector, follow these steps:
     curl -H "Host: kong-lua-test.wallarm" $PROXY_IP/etc/passwd
     ```
 
-    The expected response is the following since the node operates in **[blocking mode][available-filtration-modes] by default**:
-
-    ```json
-    {"error": {"code": 403, "message": "request blocked"}}
-    ```
+    Since the node operates in the [monitoring mode][available-filtration-modes] by default, the Wallarm node will not block the attack but will register it.
 1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
 
     ![Attacks in the interface][attacks-in-ui-image]
-
-You can [change the filtration mode via the Wallarm Console UI][ui-filtration-mode] if needed.
-
-<!-- 
-TBD before making this docs public:
-1. Describe the difference between this Kong installation and https://docs.wallarm.com/installation/kubernetes/kong-ingress-controller/deployment/ - the first one installs the Wallarm plugin for already running Kong IC, the 2nd one deploys the Kong IC with integrated Wallarm services altogether (we patch the official Kong IC and distribute it)
-1. add resource requirements, e.g. 4 CPU fits the solution but 2 is not enough (based on my experience)
- -->

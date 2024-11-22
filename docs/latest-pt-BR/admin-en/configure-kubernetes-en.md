@@ -175,7 +175,6 @@ Implementado via [ConfigMap](https://kubernetes.github.io/ingress-nginx/user-gui
 
 Além dos padrão, os seguintes parâmetros adicionais são suportados:
 
-* `enable-wallarm` - habilita o módulo Wallarm em NGINX
 * [wallarm-acl-export-enable](configure-parameters-en.md#wallarm_acl_export_enable)
 * [wallarm-upstream-connect-attempts](configure-parameters-en.md#wallarm_tarantool_upstream)
 * [wallarm-upstream-reconnect-interval](configure-parameters-en.md#wallarm_tarantool_upstream)
@@ -241,17 +240,17 @@ Você pode controlar o modo [**libdetection**](../about-wallarm/protecting-again
 * Aplicando a seguinte anotação [`nginx.ingress.kubernetes.io/server-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet) ao recurso Ingress:
 
     ```bash
-    kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection on/off;"
+    kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection off;"
     ```
 * Passe o parâmetro `controller.config.server-snippet` para o Helm chart:
 
     === "Instalação do controlador de Ingress"
         ```bash
-        helm install --set controller.config.server-snippet='wallarm_enable_libdetection on/off;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm install --set controller.config.server-snippet='wallarm_enable_libdetection off;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
         Existem também [outros parâmetros](#configurações-adicionais-para-helm-chart) necessários para a instalação correta do controlador de Ingress. Por favor, passe-os na opção `--set` também.
     === "Atualizando parâmetros do controlador Ingress"
         ```bash
-        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection on/off;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection off;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
