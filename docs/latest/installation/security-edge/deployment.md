@@ -21,7 +21,7 @@ To run the Edge inline, go to the Wallarm Console → **Security Edge** → **Ed
 
 If this section is unavailable, your account may lack the appropriate subscription, please contact sales@wallarm.com to obtain it.
 
-You can modify the Edge node deployment settings anytime. The nodes will be re-deployed, starting from the **Pending** status to **Active**. The existing CNAME records will remain unchanged.
+You can update the Edge node deployment settings once it reaches **Active** status. The node will be re‑deployed with existing CNAME records remaining unchanged.
 
 ### 1. General settings
 
@@ -89,15 +89,15 @@ The below example configuration customizes settings per path to meet specific ne
 
 ### 4. Certififcate CNAME configuration
 
-After configuring your setup, add the CNAME records provided in the Wallarm Console to your DNS provider's settings for each DNS zone. These records are required for Wallarm to verify domain ownership and issue certificates.
+After configuration is finished, add the CNAME records provided in the Wallarm Console to your DNS provider's settings for each DNS zone. These records are required for Wallarm to verify domain ownership and issue certificates.
 
 DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node deployment once the CNAME records are verified.
 
 ### 5. CNAME configuration for traffic routing
 
-Once the certificate CNAME record is applied and verified, the Edge deployment status in the Wallarm Console will change to **Deploying**, indicating that the node deployment has started. This process typically takes ~10 minutes.
+Once the certificate CNAME is verified (~10 minutes), a **Traffic CNAME** will be available for each host on the **Hosts** tab of the Edge node page. Copy it and update your DNS settings to route traffic to Wallarm.
 
-When the deployment reaches **Active** status, refresh the Edge nodes page to access the CNAME record for traffic routing. Copy this CNAME and update your DNS settings to route traffic to Wallarm.
+![!](../../images/waf-installation/security-edge/inline/host-traffic-cname.png)
 
 DNS changes can take up to 24 hours to propagate. Once propagated, Wallarm will proxy all traffic to your origins and mitigate malicious requests.
 
@@ -122,13 +122,19 @@ If you intend to delete and re-create the nodes, you can adjust the settings of 
 
 ## Statuses
 
-The following statuses may appear in Edge nodes:
+The Edge node section provides real-time statuses of the deployment and configuration state for your origins, hosts, and regions:
 
-* **Pending cert CNAME**: Wallarm is waiting for the required certificate CNAME records to be added to DNS for certificate issuance.
-* **Cert CNAME error**: There was an issue verifying the certificate CNAME in DNS. Please check that the CNAME is correctly configured.
+=== "Origins"
+    ![!](../../images/waf-installation/security-edge/inline/origin-statuses.png)
+=== "Hosts"
+    ![!](../../images/waf-installation/security-edge/inline/host-statuses.png)
+=== "Regions"
+    ![!](../../images/waf-installation/security-edge/inline/region-statuses.png)
+
+* **Pending cert CNAME**: Waiting for the certificate CNAME records to be added to DNS for certificate issuance.
+* **Pending traffic CNAME**: The deployment is complete, awaiting the addition of the traffic CNAME record to route traffic to the Edge node.
 * **Deploying**: The Edge node is currently being set up and will be available soon.
-* **Pending traffic CNAME**: The deployment is complete, and Wallarm is awaiting the addition of the traffic CNAME record to route traffic to the Edge node.
-* **Deployment failed**: The Edge node deployment did not succeed. Check configuration settings and try to redeploy.
 * **Active**: The Edge node is fully operational and filtering traffic as configured.
-* **Degraded**: The Edge node is active but may have limited functionality or be experiencing minor issues. Please contact the [Wallarm Support team](https://support.wallarm.com) to get help.
-* **Deleting**: The Edge node is being removed from the environment and will no longer filter traffic once deletion is complete.
+* **Cert CNAME error**: There was an issue verifying the certificate CNAME in DNS. Please check that the CNAME is correctly configured.
+* **Deployment failed**: The Edge node deployment did not succeed, e.g. due to the certificate CNAME not added within 14 days. Check configuration settings and try to redeploy or contact the [Wallarm Support team](https://support.wallarm.com) to get help.
+* **Degraded**: The Edge node is active in the region but may have limited functionality or be experiencing minor issues. Please contact the [Wallarm Support team](https://support.wallarm.com) to get help.
