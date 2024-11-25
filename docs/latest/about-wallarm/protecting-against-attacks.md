@@ -8,11 +8,19 @@ The Wallarm platform continuously analyzes application traffic and mitigates mal
 
 ## What is attack and what are attack components?
 
+<div>
+  <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
+  <div class="sl-embed" style="position:relative;padding-bottom:calc(61.18% + 25px);width:100%;height:0;transform:scale(1)">
+    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/pmaofaxiwniz?embed=inline" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+  </div>
+</div>
+
 <a name="attack"></a>**Attack** is a single hit or multiple hits grouped by the following characteristics:
 
-* The same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type.
+* The same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type. New hit should arrive within an hour from the last - otherwise it will go to a separate attack.
 
     This hit grouping method is basic and applied to all hits.
+
 * The same source IP address if [grouping of hits by source IP](../user-guides/events/grouping-sampling.md#grouping-of-hits) is enabled. Other hit parameter values can differ.
 
     This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
