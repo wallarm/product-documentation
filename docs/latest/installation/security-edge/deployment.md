@@ -75,7 +75,13 @@ Once configuration is complete, Wallarm will provide a CNAME for each DNS zone. 
 
 In the **Hosts** section:
 
-1. Specify the domains or optional subdomains that will direct traffic to the Wallarm node for analysis. Each host entry must match a DNS zone previously defined in the **Certificates** section.
+1. Specify the domains and ports or optional subdomains that will direct traffic to the Wallarm node for analysis. Each host entry must match a DNS zone previously defined in **Certificates**.
+
+    ??? info "Allowed ports"
+        Directing traffic from HTTP ports to the Edge node is not allowed. The following ports are supported:
+
+        443, 444, 1443, 1760, 2001, 2087, 2096, 4333, 4334, 4430, 4440, 4443 4466, 4993, 5000, 5001, 5454, 7003, 7443, 7741, 8010, 8012, 8070, 8071, 8072, 8075, 8076, 8077, 8078, 8081, 8082, 8084, 8085, 8086, 8088, 8090, 8092, 8093, 8094, 8095, 8096, 8097, 8098, 8099, 8104, 8181, 8243, 8282, 8383, 8443, 8444, 8448, 8585, 8723, 8787, 8801, 8866, 9052, 9090, 9093, 9111, 9193, 9440, 9443, 9797, 44300, 44301, 44302, 44395, 44443, 52233, 55180, 55553, and 60000
+
 1. (Optional) Associate the host's traffic with a [Wallarm application](../../user-guides/settings/applications.md) to categorize and manage different API instances or services on the Wallarm platform.
 1. Set the [Wallarm mode](../../admin-en/configure-wallarm-mode.md) for each host.
 1. Choose an origin where the Wallarm node will forward the filtered traffic from each host.
