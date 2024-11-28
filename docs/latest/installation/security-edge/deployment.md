@@ -25,15 +25,25 @@ You can update the Edge node deployment settings once it reaches **Active** stat
 
 ### 1. General settings
 
-In **General settings**, specify the following:
+In general settings, you specify regions to deploy the Edge node and origins to forward filtered traffic.
 
-1. Choose one or more **regions** to deploy the Edge node.
+#### Regions
 
-    We recommend selecting regions close to where your APIs or applications are hosted. Deploying in multiple regions enhances geo-redundancy and ensures high availability.
-1. Specify **origins** to which the Edge node will forward filtered traffic. You can enter an IP address, domain name or FQDN, with an optional port (defaults to 443 if unspecified).
+Choose one or more regions to deploy the Edge node. We recommend selecting regions close to where your APIs or applications are hosted.
 
-    You can add multiple origins if needed, as the node supports directing traffic to multiple backends.
-1. Ensure your origins allow incoming traffic from the IP ranges used by the selected regions:
+Deploying in multiple regions enhances geo-redundancy and ensures high availability.
+
+#### Origin servers
+
+Specify origins to which the Edge node will forward filtered traffic. For each origin, provide a server IP address, domain name, or FQDN with an optional port (default: 443).
+
+If an origin has multiple servers, you can specify all of them. Requests are distributed as follows:
+
+* The round-robin algorithm is used. The first request is sent to the first server, the second to the next, and so on, cycling back to the first server after the last.
+* With IP-based session persistence, traffic from the same IP consistently routes to the same server.
+
+!!! info "Allow traffic from Wallarm IP ranges to origins"
+    Your origins should allow incoming traffic from the IP ranges used by the selected regions:
 
     === "us-east-1"
         ```
@@ -49,9 +59,9 @@ In **General settings**, specify the following:
         50.18.177.184
         ```
 
-Later, when adding hosts for traffic analysis and filtering, you will assign each host or location to its designated origin.
-
 ![!](../../images/waf-installation/security-edge/inline/general-settings-section.png)
+
+Later, when adding hosts for traffic analysis and filtering, you will assign each host or location to its designated origin.
 
 ### 2. Certificates
 
