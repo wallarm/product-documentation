@@ -28,7 +28,8 @@ To deploy Wallarm Cloud on-premise, you need to prepare a compute instance meeti
 
 **System requirements**
 
-The server should be dedicated as a standalone unit. Allocating dedicated power is advisable.
+* The server should be dedicated as a standalone unit. Allocating dedicated power is advisable.
+* `root` privileges are required for installation, upgrades, and debugging.
 
 Minimal resource requirements:
 
@@ -37,7 +38,7 @@ Minimal resource requirements:
 * 300 GB of SSD root storage (HDDs are inadequate due to their slow performance; NVMe is acceptable but not necessary). Ensure that the server configuration includes only the default operating system mounts to the root directory and, optionally, the boot directory (`/boot`). Avoid setting up any additional disk volumes or storage partitions.
 * Additional 100 GB of storage for every 100 million requests per month, to accommodate data for 1 year
 
-For more than 1 billion requests per month, the minimal requirements are:
+For more than 1 billion requests per month, the recommended resource requirements:
 
 * 32+ cores
 * 80 GB+ memory (120 GB recommended)
@@ -68,7 +69,6 @@ For more than 1 billion requests per month, the minimal requirements are:
         * `alertmanager.wallarm.companyname.tld`
         * `grafana.wallarm.companyname.tld`
 * A valid SSL/TLS wildcard certificate (and key) issued from either a trusted or an internal CA. All filtering node instances and browsers must recognize this SSL/TLS certificate/key pair as trusted.
-* `root` privileges are required for installation, upgrades, and debugging.
 
 **Software dependencies**
 
