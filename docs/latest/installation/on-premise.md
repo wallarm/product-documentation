@@ -28,26 +28,46 @@ To deploy Wallarm Cloud on-premise, you need to prepare a compute instance meeti
 
 **System requirements**
 
-The server should be dedicated as a standalone unit. Allocating dedicated power is advisable. Resource requirements vary based on the expected incoming traffic load.
+* The server should be dedicated as a standalone unit. Allocating dedicated power is advisable.
+* `root` privileges are required for installation, upgrades, and debugging.
 
-For less than 1 billion requests per month:
+Minimal resource requirements:
 
 * 16+ cores
 * 48 GB+ memory
 * 300 GB of SSD root storage (HDDs are inadequate due to their slow performance; NVMe is acceptable but not necessary). Ensure that the server configuration includes only the default operating system mounts to the root directory and, optionally, the boot directory (`/boot`). Avoid setting up any additional disk volumes or storage partitions.
 * Additional 100 GB of storage for every 100 million requests per month, to accommodate data for 1 year
 
-For more than 1 billion requests per month:
+For more than 1 billion requests per month, the recommended resource requirements:
 
 * 32+ cores
 * 80 GB+ memory (120 GB recommended)
 * 500 GB of SSD root storage (HDDs are inadequate due to their slow performance; NVMe is acceptable but not necessary). Ensure that the server configuration includes only the default operating system mounts to the root directory and, optionally, the boot directory (`/boot`). Avoid setting up any additional disk volumes or storage partitions.
 * Additional 100 GB of storage for every 100 million requests per month, to accommodate data for 1 year
 
-**Network requirements**
+<a name="network_reqs_cloud"></a>**Network requirements**
 
-* Allowed outgoing connections to `https://onprem.wallarm.com` with 80 and 443 ports for downloading the license key and the installation/upgrade packages. This domain operates from a static IP address and the DNS must also resolve it.
-* A 3-5 level DNS wildcard record configured for the instance, e.g. `*.wallarm.companyname.tld`. Ensure that the instance is accessible via these DNS resolutions from any Wallarm filtering node and any client that needs to have this access (probably, you will want to hide it for access only from your VPN, do so then or maybe you will want to have it accessible from any browser and any IP address outside, configure it as you need to)
+* Allowed outgoing connections to `https://onprem.wallarm.com` and `https://meganode.wallarm.com` with 80 and 443 ports for downloading the license key and the installation/upgrade packages. This domain operates from a static IP address and the DNS must also resolve it.
+* A 3-5 level DNS wildcard record configured for the instance (e.g., `*.wallarm.companyname.tld`).
+
+    Ensure the instance is accessible via these DNS records to Wallarm filtering nodes and required clients. Access can be restricted via VPN or left open for external access as per your security requirements.
+
+    ??? info "Alternative domain names"
+        If a wildcard Common Name (CN) is not feasible, configure the following individual domain names:
+
+        * `wallarm.companyname.tld`
+        * `my.wallarm.companyname.tld`
+        * `api.wallarm.companyname.tld`
+        * `sso.wallarm.companyname.tld `
+        * `ldap.wallarm.companyname.tld`
+        * `console.wallarm.companyname.tld`
+        * `ui.wallarm.companyname.tld`
+        * `ql.wallarm.companyname.tld`
+        * `minio.wallarm.companyname.tld`
+        * `minio-ui.wallarm.companyname.tld`
+        * `prometheus.wallarm.companyname.tld`
+        * `alertmanager.wallarm.companyname.tld`
+        * `grafana.wallarm.companyname.tld`
 * A valid SSL/TLS wildcard certificate (and key) issued from either a trusted or an internal CA. All filtering node instances and browsers must recognize this SSL/TLS certificate/key pair as trusted.
 
 **Software dependencies**
@@ -72,6 +92,7 @@ Begin with a clean operating system installation featuring only essential softwa
         yum install iproute iptables bash curl ca-certificates
         ```
 * SELinux is fully disabled, the permissive mode is insufficient due to performance considerations.
+* Any firewall (e.g., `firewalld`, `ufw`) is fully disabled to avoid network restrictions.
 * SWAP memory is disabled.
 
     ```
@@ -85,7 +106,9 @@ To deploy Wallarm Cloud on-premise on the prepared compute instance:
 1. Contact our [sales team](mailto:sales@wallarm.com?subject=Wallarm%20on-premise%20deployment&body=Dear%20Wallarm%20Sales%20Team%2C%0A%0AI%20am%20writing%20to%20express%20my%20interest%20in%20deploying%20the%20Wallarm%20platform%20on-premise.%20Could%20you%20please%20provide%20me%20with%20the%20necessary%20scripts%20for%20deployment%2C%20detailed%20information%20on%20the%20appropriate%20subscription%20plans%2C%20and%20comprehensive%20instructions%3F)  to obtain the deployment script for the Cloud services, the corresponding instructions, and the initial credentials.
 1. Prepare a virtual (or physical) machine according to the requirements outlined above.
 1. Upload the installation package to the prepared instance and execute it to deploy the solution components.
-1. Configure a DNS wildcard record to point to the IP address of the prepared instance. For example, if you want to delegate a wildcard DNS record `*.wallarm.companyname.tld`, ensure that at least `my.wallarm.companyname.tld` and `api.wallarm.companyname.tld` are resolved to the IP address of the prepared instance.
+1. Configure a DNS wildcard record pointing to the instance's IP address (e.g., `*.wallarm.companyname.tld`).
+
+    Ensure that subdomains such as `my.wallarm.companyname.tld`, `api.wallarm.companyname.tld`, and other [required individual domain names](#network_reqs_cloud) resolve to this IP address.
 1. Follow the initial configuration guide provided with the installation package.
 1. Once configured, access `https://my.wallarm.companyname.tld` (or the corresponding domain record you configured) and attempt to log in using the initial credentials provided with the installation package.
 
