@@ -26,7 +26,14 @@ The primary challenge the API Sessions address is the lack of full context when 
 
 All traffic that Wallarm node is enabled to secure is organized into sessions and displayed in the **API Sessions** section.
 
-You can customize how requests should be grouped into sessions based on your applications' logic. Also, you can specify which parameters should be displayed within session to help you to understand the session content: what and in what order the actor did (context parameters). See details in [API Sessions Setup](setup.md).
+You can customize how requests should be grouped into sessions based on your applications' logic. Also, you can specify which parameters should be displayed within session to help you to understand the session content: what and in what order the user did (context parameters). See details in [API Sessions Setup](setup.md).
+
+<div>
+  <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
+  <div class="sl-embed" style="position:relative;padding-bottom:calc(61.36% + 25px);width:100%;height:0;transform:scale(1)">
+    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/4awxsghrjc8u?embed=inline" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+  </div>
+</div>
 
 Note that Wallarm stores and displays sessions **only for the last week**. The older sessions are deleted to provide an optimal performance and resource consumption.
 
