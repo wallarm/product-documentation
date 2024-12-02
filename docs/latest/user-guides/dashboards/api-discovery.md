@@ -1,8 +1,3 @@
----
-search:
-  exclude: true
----
-
 [apid-overview]:                 ../../api-discovery/overview.md
 [apid-risk-score]:              ../../api-discovery/risk-score.md
 [apid-track-changes]:           ../../api-discovery/track-changes.md

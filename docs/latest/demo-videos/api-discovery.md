@@ -1,8 +1,3 @@
----
-search:
-  exclude: true
----
-
 # API Discovery Demo Video <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 Watch our demo video to discover the full potential of the Wallarm platform's [**API Discovery**](../api-discovery/overview.md) module. Get familiar with the API inventory it builds based on actual API usage and learn how to leverage the presented information.
