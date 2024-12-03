@@ -25,15 +25,25 @@ You can update the Edge node deployment settings once it reaches **Active** stat
 
 ### 1. General settings
 
-In **General settings**, specify the following:
+In general settings, you specify regions to deploy the Edge node and origins to forward filtered traffic.
 
-1. Choose one or more **regions** to deploy the Edge node.
+#### Regions
 
-    We recommend selecting regions close to where your APIs or applications are hosted. Deploying in multiple regions enhances geo-redundancy and ensures high availability.
-1. Specify **origins** to which the Edge node will forward filtered traffic. You can enter an IP address, domain name or FQDN, with an optional port (defaults to 443 if unspecified).
+Choose one or more regions to deploy the Edge node. We recommend selecting regions close to where your APIs or applications are hosted.
 
-    You can add multiple origins if needed, as the node supports directing traffic to multiple backends.
-1. Ensure your origins allow incoming traffic from the IP ranges used by the selected regions:
+Deploying in multiple regions enhances geo-redundancy and ensures high availability.
+
+#### Origin servers
+
+Specify origins to which the Edge node will forward filtered traffic. For each origin, provide a server IP address, domain name, or FQDN with an optional port (default: 443).
+
+If an origin has multiple servers, you can specify all of them. Requests are distributed as follows:
+
+* The round-robin algorithm is used. The first request is sent to the first server, the second to the next, and so on, cycling back to the first server after the last.
+* With IP-based session persistence, traffic from the same IP consistently routes to the same server.
+
+!!! info "Allow traffic from Wallarm IP ranges to origins"
+    Your origins should allow incoming traffic from the IP ranges used by the selected regions:
 
     === "us-east-1"
         ```
@@ -49,9 +59,9 @@ In **General settings**, specify the following:
         50.18.177.184
         ```
 
-Later, when adding hosts for traffic analysis and filtering, you will assign each host or location to its designated origin.
-
 ![!](../../images/waf-installation/security-edge/inline/general-settings-section.png)
+
+Later, when adding hosts for traffic analysis and filtering, you will assign each host or location to its designated origin.
 
 ### 2. Certificates
 
@@ -65,7 +75,13 @@ Once configuration is complete, Wallarm will provide a CNAME for each DNS zone. 
 
 In the **Hosts** section:
 
-1. Specify the domains or optional subdomains that will direct traffic to the Wallarm node for analysis. Each host entry must match a DNS zone previously defined in the **Certificates** section.
+1. Specify the domains and ports or optional subdomains that will direct traffic to the Wallarm node for analysis. Each host entry must match a DNS zone previously defined in **Certificates**.
+
+    ??? info "Allowed ports"
+        Directing traffic from HTTP ports to the Edge node is not allowed. The following ports are supported:
+
+        443, 444, 1443, 1760, 2001, 2087, 2096, 4333, 4334, 4430, 4440, 4443 4466, 4993, 5000, 5001, 5454, 7003, 7443, 7741, 8010, 8012, 8070, 8071, 8072, 8075, 8076, 8077, 8078, 8081, 8082, 8084, 8085, 8086, 8088, 8090, 8092, 8093, 8094, 8095, 8096, 8097, 8098, 8099, 8104, 8181, 8243, 8282, 8383, 8443, 8444, 8448, 8585, 8723, 8787, 8801, 8866, 9052, 9090, 9093, 9111, 9193, 9440, 9443, 9797, 44300, 44301, 44302, 44395, 44443, 52233, 55180, 55553, and 60000
+
 1. (Optional) Associate the host's traffic with a [Wallarm application](../../user-guides/settings/applications.md) to categorize and manage different API instances or services on the Wallarm platform.
 1. Set the [Wallarm mode](../../admin-en/configure-wallarm-mode.md) for each host.
 1. Choose an origin where the Wallarm node will forward the filtered traffic from each host.
