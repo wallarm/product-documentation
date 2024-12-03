@@ -139,11 +139,11 @@ helm repo update wallarm
 
 === "US Cloud"
     ```
-    helm upgrade --install --version 0.8.3 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
+    helm upgrade --install --version 0.9.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=us1.api.wallarm.com
     ```
 === "EU Cloud"
     ```
-    helm upgrade --install --version 0.8.3 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
+    helm upgrade --install --version 0.9.0 <WALLARM_RELEASE_NAME> wallarm/wallarm-node-native -n wallarm-node --create-namespace --set config.api.token=<WALLARM_API_TOKEN> --set config.api.host=api.wallarm.com
     ```
 
 ### 5. Get the Wallarm load balancer

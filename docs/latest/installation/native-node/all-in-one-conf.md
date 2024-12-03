@@ -543,7 +543,7 @@ metrics:
   listen_address: :9000
   legacy_status:
     enabled: true
-    listen_address: 127.0.0.8:80
+    listen_address: 127.0.0.1:10246
 
 health_check:
   enabled: true
@@ -628,7 +628,7 @@ Default: `true`.
 
 Sets the address and port where `/wallarm-status` metrics in JSON format will be exposed. To access these metrics, use the `/wallarm-status` endpoint.
 
-Default: `127.0.0.8:80`.
+Default: `127.0.0.1:10246`.
 
 ### health_check.enabled
 
