@@ -264,5 +264,5 @@ For additional debugging, set the [`log.level`](../../native-node/all-in-one-con
     * It does not instantly block malicious requests. Wallarm only observes attacks and provides you with the [details in Wallarm Console](../../../user-guides/events/check-attack.md).
     * [Rate limiting](../../../user-guides/rules/rate-limiting.md) is not supported as it is impossible to limit load on target servers.
     * [Filtering by IP addresses](../../../user-guides/ip-lists/overview.md) is not supported.
-* Traffic decryption is not supported. The solution only analyzes raw TCP traffic.
+* The solution analyzes only unencrypted HTTP traffic over raw TCP, not encrypted HTTPS traffic.
 * The solution does not support parsing responses over HTTP keep-alive connections yet.
