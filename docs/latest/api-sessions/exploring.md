@@ -45,6 +45,12 @@ Click **Explore in API Discovery** to switch to the endpoint information in the 
 
 Use the **Time,ms** and **Size,bytes** columns in the session request details to compare presented data with the average expected values. Significantly exceeded values signal about possible performance issues and bottlenecks and the possibility to optimize the user experience.
 
+## Sessions by users and roles
+
+If you [configured](setup.md#users-and-roles) API Sessions to obtain information on users and their roles, you can filter sessions by users and roles.
+
+![!API Sessions - user and user role display](../images/api-sessions/api-sessions-user-role-display.png)
+
 ## Verifying API abuse detection accuracy
 
 --8<-- "../include/bot-attack-full-context.md"

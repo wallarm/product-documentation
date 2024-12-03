@@ -92,13 +92,15 @@ API Discovery provides the ability to configure the detection process and add yo
 
 ### Sensitive business flows
 
-API Discovery allows [marking](sbf.md) specific endpoints as the key ones for some sensitive business flows, such as: 
+API Discovery automatically [marks](sbf.md) specific endpoints as the key ones for some sensitive business flows, such as: 
 
 * Authentication
 * Account management
 * Billing
 * SMS gateway functioning
 * ...and others
+
+You can manually adjust the assigned tags and manually set tags for the endpoints of your choice.
 
 Once tags are assigned, you can filter your endpoints by flow to regularly check them for vulnerabilities or breaches.
 

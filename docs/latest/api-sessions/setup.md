@@ -21,15 +21,28 @@ You can add any additional (context) [parameters](../user-guides/rules/request-p
 
 ### Sensitive business flows
 
-You can associate sessions with sensitive business flows. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter and select **Context** for it.
+<!--You can associate sessions with sensitive business flows. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter and select **Context** for it.
 
 ![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-select.png)
+-->
 
-### User and role
+If some of the session requests target the endpoints that in [API Discovery](../api-discovery/overview.md) were [marked](../api-discovery/sbf.md) as important for some sensitive business flows, such session will be marked as affecting this business flow as well.
 
-You can highlight session parameters, that should be used for naming the session actor (user) and its role. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter, then from **Type**, select `User` or `Role`.
+![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-no-select.png)
 
-![!API Sessions - user and user role](../images/api-sessions/api-sessions-user-role-select.png)
+Wallarm lists business flows and displays number and percentage of requests related to the flow from the total number of session requests.
+
+Use the **Business flow** filter to quickly analyze all the sessions affecting specific flows.
+
+### Users and roles
+
+You can highlight session parameters, that should be used for naming the session user and its role. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter, then from **Type**, select `User` or `Role`.
+
+![!API Sessions - user and user role setup](../images/api-sessions/api-sessions-user-role-select.png)
+
+Once you configured parameters to be used for user and his/her role identification, these parameters are started to be filled for the sessions. You can filter sessions by users and roles.
+
+![!API Sessions - user and user role display](../images/api-sessions/api-sessions-user-role-display.png)
 
 ## Session grouping
 
