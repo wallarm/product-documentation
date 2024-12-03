@@ -10,6 +10,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.9.0 (2024-12-04)
+
+* The default endpoint for JSON-formatted `/wallarm-status` metrics has changed to `127.0.0.1:10246` (the `metrics.legacy_status.listen_address` parameter value). This legacy service is critical for Node functionality but does not require direct interaction.
+
 ### 0.8.3 (2024-11-14)
 
 * Added support for Mulesoft connector v3.0.x
@@ -82,6 +86,12 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.9.0 (2024-12-04)
+
+* Some fixes for consistent traffic distribution across all aggregation replicas.
+* The default endpoint for JSON-formatted `/wallarm-status` metrics has changed to `127.0.0.1:10246` (the `metrics.legacy_status.listen_address` parameter value). This legacy service is critical for Node functionality but does not require direct interaction.
+* Minor fixes to increase reliability under diverse deployment conditions.
+
 ### 0.8.3 (2024-11-14)
 
 * Added support for Mulesoft connector v3.0.x
@@ -120,6 +130,12 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), and [Cloudflare](../../installation/connectors/cloudflare.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.9.0 (2024-12-04)
+
+* Some fixes for consistent traffic distribution across all aggregation replicas.
+* The default endpoint for JSON-formatted `/wallarm-status` metrics has changed to `127.0.0.1:10246` (the `metrics.legacy_status.listen_address` parameter value). This legacy service is critical for Node functionality but does not require direct interaction.
+* Minor fixes to increase reliability under diverse deployment conditions.
 
 ### 0.8.3 (2024-11-14)
 
