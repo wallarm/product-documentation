@@ -19,20 +19,12 @@ You can add any additional (context) [parameters](../user-guides/rules/request-p
 
 ![!API Sessions - context parameters](../images/api-sessions/api-sessions-context-parameters.png)
 
-### Sensitive business flows
+<!--### Sensitive business flows
 
-<!--You can associate sessions with sensitive business flows. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter and select **Context** for it.
+You can associate sessions with sensitive business flows. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter and select **Context** for it.
 
 ![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-select.png)
 -->
-
-If some of the session requests target the endpoints that in [API Discovery](../api-discovery/overview.md) were [marked](../api-discovery/sbf.md) as important for some sensitive business flows, such session will be marked as affecting this business flow as well.
-
-![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-no-select.png)
-
-Wallarm lists business flows and displays number and percentage of requests related to the flow from the total number of session requests.
-
-Use the **Business flow** filter to quickly analyze all the sessions affecting specific flows.
 
 ### Users and roles
 

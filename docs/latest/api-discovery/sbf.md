@@ -13,14 +13,9 @@ The abuse of the sensitive business flows is ranked six ([API6](https://owasp.or
 
 ## Automatic marking
 
-At the moment when the new endpoint is discovered, API Discovery automatically checks if it potentially belongs to one or several sensitive business flows:
+On finding a new endpoint, API Discovery automatically checks if it potentially belongs to one or several sensitive business flows:
 
-* **Admin** (administrative) flows - endpoints related to applications' administrative functions and activities. Such endpoints are usually targeted by attackers in order to access functionality intended for privileged users only (BFLA), escalate privileges and gaining control over the system.
-* **Auth** (authentication) flows - endpoints critical to access control, as they verify user identity and manage permissions. As the entry point to the app, they are often the first target for attackers seeking to bypass security, gain unauthorized access, and take over accounts.
-* **Acc create** (account creation) and **Acc mgmt** (account management) flows - the key administrative flows relating to your applications.
-* **Billing** flows - sensitive due to usage and possible breach of critical personal financial data and susceptible to fraud.
-* **SMS GW** (SMS gateway) flows - endpoints sensitive because attackers can exploit them in SMS pumping attacks, flooding them with messages to inflate costs. Since these endpoints are connected to API gateways and payment systems, this can lead to financial loss and system overload.
-* **AI** (artificial intelligence) flows - related to the systems that use ML models, neural networks, chatbots or systems that in turn access some paid third-party AI services, such as OpenAI.
+--8<-- "../include/default-sbf.md"
 
 Automatic checking is performed based on the keywords from the endpoint URL, for example, `payment`, `subscription` `purchase`, etc. for the **Billing** flow or `auth`, `token`, `login`, etc. for **Authentication**. If matches are found, the endpoint is automatically assigned to the corresponding flow(s).
 
@@ -38,7 +33,7 @@ You can do the same in the endpoint details.
 
 ## Business flows in Sessions
 
-Wallarm's [API Sessions](../api-sessions/overview.md) group requests of your applications' traffic into user sessions. If some of these requests target the endpoints that in API Discovery were marked as important for some sensitive business flows, such session will be [marked](../api-sessions/setup.md#sensitive-business-flows) as affecting this business flow as well.
+Wallarm's [API Sessions](../api-sessions/overview.md) group requests of your applications' traffic into user sessions. If some of these requests target the endpoints that in API Discovery were marked as important for some sensitive business flows, such session will be [marked](../api-sessions/exploring.md#sensitive-business-flows) as affecting this business flow as well.
 
 ![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-no-select.png)
 

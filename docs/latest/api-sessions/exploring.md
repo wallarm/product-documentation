@@ -45,6 +45,20 @@ Click **Explore in API Discovery** to switch to the endpoint information in the 
 
 Use the **Time,ms** and **Size,bytes** columns in the session request details to compare presented data with the average expected values. Significantly exceeded values signal about possible performance issues and bottlenecks and the possibility to optimize the user experience.
 
+### Sensitive business flows
+
+If some of the session requests target the endpoints that in [API Discovery](../api-discovery/overview.md) were [marked](../api-discovery/sbf.md) as important for some sensitive business flows, such session will be marked as affecting this business flow as well.
+
+![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-no-select.png)
+
+Wallarm lists business flows and displays number and percentage of requests related to the flow from the total number of session requests.
+
+Sessions can be associated with one of the following sensitive business flows:
+
+--8<-- "../include/default-sbf.md"
+
+Use the **Business flow** filter to quickly analyze all the sessions affecting specific flows.
+
 ## Sessions by users and roles
 
 If you [configured](setup.md#users-and-roles) API Sessions to obtain information on users and their roles, you can filter sessions by users and roles.
