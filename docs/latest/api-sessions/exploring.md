@@ -45,7 +45,7 @@ Click **Explore in API Discovery** to switch to the endpoint information in the 
 
 Use the **Time,ms** and **Size,bytes** columns in the session request details to compare presented data with the average expected values. Significantly exceeded values signal about possible performance issues and bottlenecks and the possibility to optimize the user experience.
 
-### Sensitive business flows
+## Sensitive business flows
 
 If some of the session requests target the endpoints that in [API Discovery](../api-discovery/overview.md) were [marked](../api-discovery/sbf.md) as important for some sensitive business flows, such session will be marked as affecting this business flow as well.
 
