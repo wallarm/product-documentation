@@ -41,6 +41,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <p><ul>
     <li><a href="./api-discovery/overview/">Exploring API Inventory</a></li>
     <li><a href="./api-discovery/track-changes/">Tracking Changes in API</a></li>
+    <li><a href="./api-discovery/sbf/">Sensitive Business Flows</a></li>
     <li><a href="./api-discovery/risk-score/">Endpoint Risk Score</a></li>
     <li><a href="./api-discovery/rogue-api/">Shadow, Orphan, Zombie API</a></li>
     </ul></p>

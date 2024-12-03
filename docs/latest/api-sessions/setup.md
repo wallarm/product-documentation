@@ -19,17 +19,22 @@ You can add any additional (context) [parameters](../user-guides/rules/request-p
 
 ![!API Sessions - context parameters](../images/api-sessions/api-sessions-context-parameters.png)
 
-### Sensitive business flows
+<!--### Sensitive business flows
 
 You can associate sessions with sensitive business flows. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter and select **Context** for it.
 
 ![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-select.png)
+-->
 
-### User and role
+### Users and roles
 
-You can highlight session parameters, that should be used for naming the session actor (user) and its role. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter, then from **Type**, select `User` or `Role`.
+You can highlight session parameters, that should be used for naming the session user and its role. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter, then from **Type**, select `User` or `Role`.
 
-![!API Sessions - user and user role](../images/api-sessions/api-sessions-user-role-select.png)
+![!API Sessions - user and user role setup](../images/api-sessions/api-sessions-user-role-select.png)
+
+Once you configured parameters to be used for user and his/her role identification, these parameters are started to be filled for the sessions. You can filter sessions by users and roles.
+
+![!API Sessions - user and user role display](../images/api-sessions/api-sessions-user-role-display.png)
 
 ## Session grouping
 
