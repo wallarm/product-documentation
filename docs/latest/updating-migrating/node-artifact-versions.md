@@ -12,6 +12,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.2.0 (TBD)
+
+* New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    These variables log parameters containing malicious payloads and attack sign IDs enabling advanced debugging of Node behavior.
+* Minor bug fixes
+
 ### 5.1.1 (2024-11-08)
 
 * Fixed some bugs in the `wallarm-status` service operation
@@ -41,6 +48,17 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 5.2.0 (TBD)
+
+* Upgraded to Community Ingress NGINX Controller version 1.11.3, aligning with the upstream Helm chart version 4.11.3
+* Breaking changes introduced by the Community Ingress NGINX Controller upgrade:
+
+    * Discontinued support for Opentracing and Zipkin modules, now only supporting Opentelemetry
+    * Dropped support for `PodSecurityPolicy`
+* Compatibility extended up to Kubernetes version 1.30
+* Updated to NGINX 1.25.5
+* Minor bug fixes
 
 ### 5.1.1 (2024-11-14)
 
@@ -122,6 +140,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](docker-container.md)
 
+### 5.2.0 (TBD)
+
+* New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    These variables log parameters containing malicious payloads and attack sign IDs enabling advanced debugging of Node behavior.
+* Minor bug fixes
+
 ### 5.1.0-1 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
@@ -158,6 +183,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)
+
+### 5.2.0 (TBD)
+
+* New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    These variables log parameters containing malicious payloads and attack sign IDs enabling advanced debugging of Node behavior.
+* Minor bug fixes
 
 ### 5.1.0-1 (2024-11-06)
 
