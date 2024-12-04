@@ -3,11 +3,14 @@
 [gl-lom]:                       ../glossary-en.md#custom-ruleset-the-former-term-is-lom
 [doc-selinux]:                  configure-selinux.md
 
-# Configuration of the Statistics Service
+# Statistics Service
 
-To obtain statistics about the filter node, use the `wallarm_status` directive, which is written in the NGINX configuration file.
+You can obtain Wallarm [NGINX or Native](../installation/nginx-native-node-internals.md) node statistics using the `wallarm_status` service. This article describes how to configure and use the service.
 
-## Configuring the Statistics Service
+!!! info "Native node statistics service"
+    For [Native](../installation/nginx-native-node-internals.md#native-node) nodes, although still available, `wallarm_status` is a legacy service. The main one is the `metrics` service available by `curl localhost:9000/metrics` (see ["metrics"](../installation/native-node/all-in-one-conf.md#metricsenabled) parameters in the Native node configuration).
+
+## Setup
 
 !!! warning "Important"
 
@@ -176,7 +179,7 @@ To obtain statistics in the Prometheus format from node deployment options that 
     curl http://127.0.0.8/wallarm-status-prometheus
     ```
 
-##  Working with the Statistics Service
+##  Usage
 
 To obtain the filter node statistics, make a request from one of the allowed IP addresses (see above):
 
