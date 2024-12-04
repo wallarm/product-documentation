@@ -3,11 +3,11 @@
 [gl-lom]:                       ../glossary-en.md#custom-ruleset-the-former-term-is-lom
 [doc-selinux]:                  configure-selinux.md
 
-# Configuration of the Statistics Service
+# Statistics Service
 
-To obtain statistics about the filter node, use the `wallarm_status` directive, which is written in the NGINX configuration file.
+You can obtain Wallarm filtering node statistics using the `wallarm_status` service. This article describes how to configure and use the service.
 
-## Configuring the Statistics Service
+## Setup
 
 !!! warning "Important"
 
@@ -166,7 +166,7 @@ By default, the statistics are returned only in the JSON format. To get the stat
     curl http://127.0.0.8/wallarm-status-prometheus
     ```
 
-##  Working with the Statistics Service
+##  Usage
 
 To obtain the filter node statistics, make a request from one of the allowed IP addresses (see above):
 

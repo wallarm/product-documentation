@@ -21,7 +21,7 @@ The `collectd` metrics have the following view:
 host/plugin[-plugin_instance]/type[-type_instance]
 ```
 
-A detailed description of the metric format is available at this [link](../monitoring/intro.md#how-metrics-look).
+A detailed description of the metric format is available at this [link](../monitoring/intro.md#metrics-format).
 
 !!! note
     * In the list of available metrics below, the host name (the `host/` part) is omitted.

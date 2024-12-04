@@ -429,10 +429,10 @@ nav:
     - Splitting Traffic and Settings by Applications: user-guides/settings/applications.md
     - Blocking Page and Error Code: admin-en/configuration-guides/configure-block-page-and-code.md
     - Monitoring & Failover:
-      - Checking the Node Operation: admin-en/installation-check-operation-en.md
-      - Configuring a Failover Method: admin-en/configure-backup-en.md
+      - Checking Node Operation: admin-en/installation-check-operation-en.md
+      - Configuring Failover Method: admin-en/configure-backup-en.md
       - Filtering Node Logs: admin-en/configure-logging.md
-      - Configuration of the Statistics Service: admin-en/configure-statistics-service.md
+      - Statistics Service: admin-en/configure-statistics-service.md
       - Using a Mirrored Wallarm Repository:
         - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
         - Installing Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
