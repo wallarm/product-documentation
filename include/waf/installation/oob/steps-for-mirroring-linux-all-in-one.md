@@ -31,3 +31,14 @@ Perform the following configuration in the NGINX [configuration file](https://do
     ```
 
     Since malicious requests [cannot][oob-advantages-limitations] be blocked, the only [mode][waf-mode-instr] Wallarm accepts is monitoring. For in-line deployment, there are also safe blocking and blocking modes but even if you set the `wallarm_mode` directive to a value different from monitoring, the node continues to monitor traffic and only record malicious traffic (aside from the mode set to off).
+1. If present, remove the `try_files` directive from the NGINX locations to ensure traffic is directed to Wallarm without local file interference:
+    
+    ```diff
+    server {
+        ...
+        location / {
+    -        # try_files $uri $uri/ =404;
+        }
+        ...
+    }
+    ```

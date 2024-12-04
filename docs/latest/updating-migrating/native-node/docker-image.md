@@ -72,4 +72,6 @@ To verify that the node is functioning correctly:
     ```
     curl http://localhost/etc/passwd
     ```
+    
+    If traffic is configured to be proxied to `example.com`, include the `-H "Host: example.com"` header in the request.
 1. Verify that the upgraded node operates as expected compared to the previous version.
