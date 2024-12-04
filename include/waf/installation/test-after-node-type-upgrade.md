@@ -3,6 +3,8 @@
     ```
     curl http://localhost/etc/passwd
     ```
+
+    If traffic is configured to be proxied to `example.com`, include the `-H Host: example.com` header in the request.
 1. Make sure the node of the new type processes the request in the same way as the **regular** node did, e.g.:
 
     * Blocks the request if the appropriate [filtration mode][waf-mode-instr] is configured.

@@ -1,32 +1,23 @@
-By default, the deployed Wallarm node does not analyze incoming traffic. To start analysis, configure Wallarm to proxy traffic via the `/etc/nginx/conf.d/default.conf` file on the machine with the installed node:
+By default, the deployed Wallarm Node does not analyze incoming traffic.
 
-1. Set an IP address for Wallarm to proxy legitimate traffic to. It can be an IP of an application instance, load balancer, or DNS name, etc., depending on your architecture.
+To enable traffic analysis and proxying of legitimate traffic, update the [NGINX configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/), typically located at `/etc/nginx/sites-available/default`.
+    
+The following minimal configuration adjustments are necessary:
 
-    To do so, edit the `proxy_pass` value, e.g. Wallarm should send legitimate requests to `http://10.80.0.5`:
+1. Set the Wallarm Node to `wallarm_mode monitoring;`. This mode is recommended for initial deployments and testing.
 
-    ```
-    server {
-        listen 80;
-        listen [::]:80 ipv6only=on;
+    Wallarm also supports more modes like blocking and safe blocking, which you can [read more][waf-mode-instr].
+1. Determine where the node should forward legitimate traffic by adding the `proxy_pass` directive in the required locations. This could be to the IP of an application server, a load balancer, or a DNS name.
+1. If present, remove the `try_files` directive from the modified locations to ensure traffic is directed to Wallarm without local file interference.
 
-        ...
-
-        location / {
-            proxy_pass http://10.80.0.5; 
-            ...
-        }
+```diff
+server {
+    ...
++   wallarm_mode monitoring;
+    location / { 
++        proxy_pass http://example.com;
+-        # try_files $uri $uri/ =404;
     }
-    ```
-1. For the Wallarm node to analyze the incoming traffic, set the `wallarm_mode` directive to `monitoring`:
-
-    ```
-    server {
-        listen 80;
-        listen [::]:80 ipv6only=on;
-        wallarm_mode monitoring;
-
-        ...
-    }
-    ```
-
-    The monitoring mode is the recommended one for the first deployment and solution testing. Wallarm provides safe blocking and blocking modes as well, [read more][waf-mode-instr].
+    ...
+}
+```
