@@ -27,7 +27,7 @@
 
 # Monitoring Filtering Node
 
-You can monitor the state of the Wallarm filtering node (both [NGINX and Native](../../installation/nginx-native-node-internals.md)) using the node-provided metrics. This article describes how to operate with the metrics gathered by the [`collectd`][link-collectd] service that is installed on every filtering node. The `collectd` service provides several ways to transfer data and can serve as a source of metrics for many monitoring systems, offering you control over the state of the filtering nodes.
+You can monitor the state of the Wallarm filtering node using the node-provided metrics. This article describes how to operate with the metrics gathered by the [`collectd`][link-collectd] service that is installed on every filtering node. The `collectd` service provides several ways to transfer data and can serve as a source of metrics for many monitoring systems, offering you control over the state of the filtering nodes.
 
 In addition to the `collectd` metrics, Wallarm provides you with the metric format compatible with Prometheus and basic JSON metrics. Read about these formats in the [separate article](../configure-statistics-service.md).
 
@@ -61,7 +61,7 @@ You can monitor both the Wallarm module and the postanalytics module even if the
 
 For monitoring to work, it is required that:
 
-* For [Wallarm NGINX nodes](../../installation/nginx-native-node-internals.md#nginx-node), NGINX returns the statistics to the filtering node (`wallarm_status on`)
+* NGINX returns the statistics to the filtering node (`wallarm_status on`)
 * The filtration mode is in the `monitoring`/`safe_blocking`/`block` [mode](../configure-wallarm-mode.md#available-filtration-modes).
   
 By default, this service is accessible at `http://127.0.0.8/wallarm-status`. The address may differ if you have [changed](../configure-statistics-service.md#changing-an-ip-address-andor-port-of-the-statistics-service) it.

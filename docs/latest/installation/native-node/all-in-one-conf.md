@@ -608,7 +608,7 @@ Default: `info@*`.
 
 ### metrics.enabled
 
-Controls whether [Prometheus metrics](../../admin-en/configure-statistics-service.md#working-with-the-statistics-service) are enabled. This parameter must be set to `true` as the Wallarm node does not function properly without it.
+Controls whether [Prometheus metrics](../../admin-en/configure-statistics-service.md#usage) are enabled. This parameter must be set to `true` as the Wallarm node does not function properly without it.
 
 Default: `true`.
 
@@ -620,7 +620,7 @@ Default: `:9000` (all network interfaces on the port 9000).
 
 ### metrics.legacy_status.enabled
 
-Controls whether the [`/wallarm-status`](../../admin-en/configure-statistics-service.md#working-with-the-statistics-service) metrics service is enabled. This parameter must be set to `true` as the Wallarm node does not function properly without it.
+Controls whether the [`/wallarm-status`](../../admin-en/configure-statistics-service.md#usage) metrics service is enabled. This parameter must be set to `true` as the Wallarm node does not function properly without it.
 
 Default: `true`.
 

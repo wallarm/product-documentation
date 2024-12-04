@@ -347,7 +347,7 @@ Default: `/opt/wallarm/etc/wallarm`.
 
 ### processing.metrics.enabled
 
-Controls whether [Prometheus metrics](../../admin-en/configure-statistics-service.md#working-with-the-statistics-service) are enabled. This parameter must be set to `true` as the Wallarm node does not function properly without it.
+Controls whether [Prometheus metrics](../../admin-en/configure-statistics-service.md#usage) are enabled. This parameter must be set to `true` as the Wallarm node does not function properly without it.
 
 Default: `true`.
 

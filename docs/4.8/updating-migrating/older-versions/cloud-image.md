@@ -71,7 +71,7 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
       * `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
       * `/etc/nginx/conf.d/wallarm-status.conf` with the filtering node monitoring service settings
 
-        Make sure the copied file contents correspond to the [recommended safe configuration](../../admin-en/configure-statistics-service.md#configuring-the-statistics-service).
+        Make sure the copied file contents correspond to the [recommended safe configuration](../../admin-en/configure-statistics-service.md#setup).
 
       * `/etc/environment` with environment variables
       * `/etc/default/wallarm-tarantool` with Tarantool settings

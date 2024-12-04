@@ -695,7 +695,7 @@ The directive is available from release 4.10.7 onwards.
 
 Sets the time limit for processing a single request for an NGINX worker in seconds.
 
-If the time exceeds the limit, data about NGINX workers is written to the `stalled_workers_count` and `stalled_workers` [statistic](configure-statistics-service.md#working-with-the-statistics-service) parameters.
+If the time exceeds the limit, data about NGINX workers is written to the `stalled_workers_count` and `stalled_workers` [statistic](configure-statistics-service.md#usage) parameters.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.

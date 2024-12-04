@@ -76,7 +76,7 @@ Copy the settings for processing and proxying requests from the following config
       * `/etc/nginx/nginx.conf` and other files with NGINX settings
       * `/etc/nginx/conf.d/wallarm-status.conf` with the filtering node monitoring service settings
 
-        Make sure the copied file contents correspond to the [recommended safe configuration](../../admin-en/configure-statistics-service.md#configuring-the-statistics-service).
+        Make sure the copied file contents correspond to the [recommended safe configuration](../../admin-en/configure-statistics-service.md#setup).
 
       * `/etc/environment` with environment variables
       * any other custom configuration files for request processing and proxying, taking into account the recent [architectural changes](what-is-new.md#optimized-cloud-images)

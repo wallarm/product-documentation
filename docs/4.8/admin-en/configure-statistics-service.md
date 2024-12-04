@@ -5,10 +5,7 @@
 
 # Statistics Service
 
-You can obtain Wallarm [NGINX or Native](../installation/nginx-native-node-internals.md) node statistics using the `wallarm_status` service. This article describes how to configure and use the service.
-
-!!! info "Native node statistics service"
-    For [Native](../installation/nginx-native-node-internals.md#native-node) nodes, although still available, `wallarm_status` is a legacy service. The main one is the `metrics` service available by `curl localhost:9000/metrics` (see ["metrics"](../installation/native-node/all-in-one-conf.md#metricsenabled) parameters in the Native node configuration).
+You can obtain Wallarm filtering node statistics using the `wallarm_status` service. This article describes how to configure and use the service.
 
 ## Setup
 
