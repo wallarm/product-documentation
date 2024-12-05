@@ -14,9 +14,9 @@ These instructions describe the steps to upgrade deployed end‑of‑life Wallar
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
 !!! warning "The upgraded version of Community Ingress NGINX Controller"
-    If you upgrade the node from version 3.4 or lower, please note that the version of Community Ingress NGINX Controller the Wallarm Ingress controller is based on has been upgraded from 0.26.2 to 1.9.5.
+    If you upgrade the node from version 3.4 or lower, please note that the version of Community Ingress NGINX Controller the Wallarm Ingress controller is based on has been upgraded from 0.26.2 to 1.11.3.
     
-    Since the operation of Community Ingress NGINX Controller 1.9.5 has been significantly changed, its configuration has to be adjusted to these changes during the Wallarm Ingress controller upgrade.
+    Since the operation of Community Ingress NGINX Controller 1.11.3 has been significantly changed, its configuration has to be adjusted to these changes during the Wallarm Ingress controller upgrade.
 
     These instructions contain the list of Community Ingress NGINX Controller settings you probably have to change. Nevertheless, please draw up and individual plan for the configuration migration based on the [Community Ingress NGINX Controller release notes](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md). 
 
