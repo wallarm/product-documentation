@@ -94,7 +94,7 @@ nav:
       - Kullanım Senaryoları:
         - Üretim Dışı Testleri Çalıştırma: vulnerability-detection/active-threat-verification/running-test-on-staging.md
   - API Güvenliği Testi:
-    - OpenAPI Güvenlik Testi: fast/openapi-security-testing.md
+#   - OpenAPI Güvenlik Testi: fast/openapi-security-testing.md
     - API Güvenlik Testi Çerçevesi:
       - Genel Bakış: fast/README.md
       - İlk Kullanıma Alma: fast/onboarding/onboarding.md

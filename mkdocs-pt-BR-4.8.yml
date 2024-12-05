@@ -96,7 +96,7 @@ nav:
       - Casos de Uso:
         - Executando Testes em Não Produção: vulnerability-detection/active-threat-verification/running-test-on-staging.md
   - Teste de Segurança de API:
-    - Teste de Segurança OpenAPI: fast/openapi-security-testing.md
+#   - Teste de Segurança OpenAPI: fast/openapi-security-testing.md
     - Visão Geral: fast/README.md
     - Integração: fast/onboarding/onboarding.md
     - Guia de Início Rápido:

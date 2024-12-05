@@ -89,7 +89,7 @@ nav:
       - ユースケース:
         - ノンポード上のテストの実行: vulnerability-detection/active-threat-verification/running-test-on-staging.md
   - APIセキュリティテスト:
-    - OpenAPIセキュリティテスト: fast/openapi-security-testing.md
+#   - OpenAPIセキュリティテスト: fast/openapi-security-testing.md
     - APIセキュリティテストフレームワーク:
       - 概要: fast/README.md
       - オンボーディング: fast/onboarding/onboarding.md
