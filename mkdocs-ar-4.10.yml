@@ -121,7 +121,7 @@ nav:
       - حالات الاستخدام:
         - تشغيل الاختبارات على غير الإنتاج: vulnerability-detection/active-threat-verification/running-test-on-staging.md
   - اختبار الأمان API:
-    - اختبار الأمان OpenAPI: fast/openapi-security-testing.md
+#   - اختبار الأمان OpenAPI: fast/openapi-security-testing.md
     - إطار عمل لاختبار الأمان API:
       - نظرة عامة: fast/README.md
       - البدء: fast/onboarding/onboarding.md

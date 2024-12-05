@@ -47,7 +47,6 @@ Managing deployed risk is the first line of defense, but reducing the risk exhib
 
 * [Identifies vulnerabilities](../user-guides/vulnerabilities.md) through passive traffic analysis.
 * Examines identified APIs for weak points.
-* [Tests](../fast/openapi-security-testing.md) APIs for vulnerabilities based on OpenAPI specifications.
 * [Dynamically creates API security tests](../vulnerability-detection/active-threat-verification/overview.md) from observed traffic.
 * [Checks public repositories for exposed API tokens](../api-attack-surface/security-issues.md).
 
