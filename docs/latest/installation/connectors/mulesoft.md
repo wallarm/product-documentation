@@ -61,9 +61,51 @@ To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these step
 
     If running a self-hosted node, contact sales@wallarm.com to get the code bundle.
 1. Extract the policy archive.
-1. Within the `pom.xml` file → `groupId` parameter at the top of the file, specify your Mulesoft Business Group ID.
+1. Within the `pom.xml` file, specify the following:
 
-    You can find your organization ID by navigating to Mulesoft Anypoint Platform → **Access Management** → **Business Groups** → choose your organization → copy its ID.
+    === "Global instance"
+        1. Navigate to Mulesoft Anypoint Platform → **Access Management** → **Business Groups** → choose your organization → copy its ID.
+        1. Specify the copied group ID in the `groupId` parameter of the `pom.xml` file:
+
+        ```xml hl_lines="2"
+        <?xml version="1.0" encoding="UTF-8"?>
+            <groupId>BUSINESS_GROUP_ID</groupId>
+            <artifactId>wallarm</artifactId>
+        ```
+    === "Regional instance"
+        1. Navigate to Mulesoft Anypoint Platform → **Access Management** → **Business Groups** → choose your organization → copy its ID.
+        1. Specify the copied group ID in the `groupId` parameter of the `pom.xml` file.
+        1. For Mulesoft instances hosted in specific regions, update the `pom.xml` file to use the corresponding regional URLs. For example, for a European instance of Mulesoft:
+
+        ```xml hl_lines="2 7 14 24"
+        <?xml version="1.0" encoding="UTF-8"?>
+            <groupId>BUSINESS_GROUP_ID</groupId>
+            <artifactId>wallarm</artifactId>
+            
+            <properties>
+                <mule.maven.plugin.version>4.1.2</mule.maven.plugin.version>
+                <exchange.url>https://maven.eu1.anypoint.mulesoft.com/api/v1/organizations/${project.groupId}/maven</exchange.url>
+            </properties>
+
+            <distributionManagement>
+                <repository>
+                    <id>anypoint-exchange-v3</id>
+                    <name>Anypoint Exchange</name>
+                    <url>https://maven.eu1.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven
+                    </url>
+                    <layout>default</layout>
+                </repository>
+            </distributionManagement>
+
+            <repositories>
+                <repository>
+                    <id>anypoint-exchange-v3</id>
+                    <name>Anypoint Exchange</name>
+                    <url>https://maven.eu1.anypoint.mulesoft.com/api/v3/maven</url>
+                    <layout>default</layout>
+                </repository>
+            </repositories>
+        ```
 1. Create the `conf` directory and a `settings.xml` file inside it with the following content:
 
     === "Username and password"
