@@ -285,6 +285,7 @@ The Native Node does not rely on NGINX. It was developed for environments where 
 The following artifacts are available for deploying the Native Node:
 
 * [All-in-one installer](native-node/all-in-one.md)
+* [Docker image](native-node/docker-image.md)
 * [Helm chart](native-node/helm-chart.md)
 
 Find your **use case below** and deploy the Native Node in the appropriate form-factor.
