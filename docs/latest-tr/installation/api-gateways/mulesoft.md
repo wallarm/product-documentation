@@ -153,7 +153,7 @@ Wallarm politikasını tüm API'lere veya bireysel bir API'ye ekleyebilirsiniz.
 
 #### Politikanın tüm API'lere eklenmesi
 
-Wallarm politikasını tüm API'lere uygulamak için [Mulesoft'un Otomatik politika opsiyonunu](https://docs.mulesoft.com/gateway/1.4/policies-automated-applying) kullanarak aşağıdaki adımları izleyin:
+Wallarm politikasını tüm API'lere uygulamak için [Mulesoft'un Otomatik politika opsiyonunu](https://docs.mulesoft.com/mule-gateway/policies-automated-overview) kullanarak aşağıdaki adımları izleyin:
 
 1. Anypoint Platformunuzda, **API Manager** → **Automated Policies** yolunu izleyin.
 1. **Add automated privacy** seçeneğine tıklayın ve Exchange'den Wallarm politikasını seçin.

@@ -161,7 +161,7 @@
 
 #### اعتماد السياسة على جميع الواجهات البرمجية (APIs)
 
-لتطبيق سياسة Wallarm على جميع الواجهات البرمجية (APIs) باستخدام [خيار سياسة Mulesoft المؤتمتة](https://docs.mulesoft.com/gateway/1.4/policies-automated-applying)، اتبع الخطوات التالية:
+لتطبيق سياسة Wallarm على جميع الواجهات البرمجية (APIs) باستخدام [خيار سياسة Mulesoft المؤتمتة](https://docs.mulesoft.com/mule-gateway/policies-automated-overview)، اتبع الخطوات التالية:
 
 1. في منصة Anypoint الخاصة بك، انتقل إلى **API Manager** → **Automated Policies**.
 1. انقر على **Add automated policy** ثم حدد سياسة Wallarm من Exchange.

@@ -153,7 +153,7 @@ Você pode anexar a política Wallarm a todas as APIs ou a uma API individual.
 
 #### Anexando a política a todas as APIs
 
-Para aplicar a política Wallarm a todas as APIs usando a opção de política automatizada do [Mulesoft](https://docs.mulesoft.com/gateway/1.4/policies-automated-applying), siga estes passos:
+Para aplicar a política Wallarm a todas as APIs usando a opção de política automatizada do [Mulesoft](https://docs.mulesoft.com/mule-gateway/policies-automated-overview), siga estes passos:
 
 1. Na sua Plataforma Anypoint, navegue até **API Manager** → **Automated Policies**.
 1. Clique em **Add automated policy** e selecione a política Wallarm do Exchange.
