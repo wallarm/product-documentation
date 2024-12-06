@@ -163,6 +163,8 @@ To set up an Amazon S3 integration:
         ```
 1. Click **Add integration**.
 
+--8<-- "../include/cloud-ip-by-request.md"
+
 To control the amount of stored data, it is recommended to set up an automatic deletion of old objects from your Amazon S3 bucket as described [here](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html).
 
 ## Disabling and deleting an integration

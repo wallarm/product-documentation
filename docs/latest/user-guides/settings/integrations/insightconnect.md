@@ -38,6 +38,8 @@ Thirdly, finish the setup in Wallarm UI:
 
 1. Click **Add integration**.
 
+--8<-- "../include/cloud-ip-by-request.md"
+
 ## Setting up additional alerts
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
