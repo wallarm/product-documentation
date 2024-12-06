@@ -31,6 +31,9 @@ The following detectors may be involved:
 * **Query abuse** analyzing a volume of requests that exceed a predefined threshold as an anomaly. Clients that exceed a threshold for queries that vary a parameter are also considered anomalies. Moreover, the detector compares client query patterns to normal behavior to identify bot activity.
 * **Outdated browser** analyzing the browser and platform used in requests. If a client is using an outdated or unsupported browser or platform, it is likely that it is a bot rather than a human user.
 * **Wide scope** analyzing breadth of IP activity to behaviorally identify crawler-like bots.
+* **IP rotation** analyzing requests for being a part of the [account takeover](../attacks-vulns-list.md#account-takeover) attacks where the attacker uses a pool of IP addresses.
+* **Session rotation** analyzing requests for being a part of the [account takeover](../attacks-vulns-list.md#account-takeover) attacks where the attacker uses a pool of sessions.
+* **Slow ATO** analyzing requests for being a part of the slow or long-lasting [account takeover](../attacks-vulns-list.md#account-takeover) attacks.
 
 !!! info "Confidence"
     As a result of detectors' work, every [detected](../api-abuse-prevention/exploring-bots.md) bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
