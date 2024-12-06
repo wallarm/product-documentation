@@ -35,6 +35,8 @@ In Wallarm UI:
 
 1. Click **Add integration**.
 
+--8<-- "../include/cloud-ip-by-request.md"
+
 ## Disabling and deleting an integration
 
 --8<-- "../include/integrations/integrations-disable-delete.md"

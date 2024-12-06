@@ -40,6 +40,8 @@ In the Wallarm Console UI:
 
 1. Click **Add integration**.
 
+--8<-- "../include/cloud-ip-by-request.md"
+
 ## Types of Wallarm logs
 
 Overall, Wallarm can log in Sentinel the records of the following types:

@@ -153,6 +153,8 @@ You will find more details in the [official Logstash documentation](https://www.
 
 1. Click **Add integration**.
 
+--8<-- "../include/cloud-ip-by-request.md"
+
 ## Setting up additional alerts
 
 --8<-- "../include/integrations/integrations-trigger-setup.md"
