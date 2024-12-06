@@ -529,7 +529,6 @@ nav:
       - Ataques não são carregados no Cloud Wallarm: faq/attacks-not-uploaded-to-cloud.md
       - Abordando problemas de nó Wallarm alertados por painéis OWASP: faq/node-issues-on-owasp-dashboards.md
       - Solicitação legítima é bloqueada: faq/wrong-blocking.md
-      - Interação com Serviços de Terceiros: faq/wallarm-and-third-party-services.md
     - Changelog & Notícias: news.md
     - Referência da API Wallarm:
       - Visão Geral: api/overview.md

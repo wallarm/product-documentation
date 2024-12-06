@@ -481,7 +481,6 @@ nav:
       - Attacks are not uploaded to the Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
       - Addressing Wallarm node issues alerted by the OWASP dashboard: faq/node-issues-on-owasp-dashboards.md
       - Legitimate request is blocked: faq/wrong-blocking.md
-      - Interaction with Third-Party Services: faq/wallarm-and-third-party-services.md
     - Changelog & News: news.md
     - Wallarm API Reference:
       - Overview: api/overview.md

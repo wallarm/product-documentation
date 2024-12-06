@@ -542,7 +542,6 @@ nav:
       - الهجمات لم يتم تحميلها إلى Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
       - مشكلات العقدة المنبثقة من لوحات القيادة OWASP: faq/node-issues-on-owasp-dashboards.md
       - الطلب الشرعي محظور: faq/wrong-blocking.md
-      - التفاعل مع الخدمات الثالثة: faq/wallarm-and-third-party-services.md
     - السجل الزمني & الأخبار: news.md
     - مرجع الواجهة البرمجية لـ Wallarm:
       - نظرة عامة: api/overview.md
