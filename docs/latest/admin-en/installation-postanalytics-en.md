@@ -1,5 +1,4 @@
 [tarantool-status]:           ../images/tarantool-status.png
-[configure-selinux-instr]:    configure-selinux.md
 [configure-proxy-balancer-instr]:   configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-wl-console-users]:             ../images/check-user-no-2fa.png
 [wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
