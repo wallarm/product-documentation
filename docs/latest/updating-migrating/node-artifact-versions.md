@@ -212,10 +212,17 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Initial release 5.0, [see changelog](what-is-new.md)
 
-<!-- ## Google Cloud Platform Image
+## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
 
-### wallarm-node-4-10-20240126-175315 (TBD)
+### wallarm-node-5-2-20241206-185646 (2024-12-07)
 
-* Initial release 5.0, [see changelog](what-is-new.md) -->
+* New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    These variables log parameters containing malicious payloads and attack sign IDs enabling advanced debugging of Node behavior.
+* Minor bug fixes
+
+### wallarm-node-5-1-20241108-120238 (2024-11-08)
+
+* Initial release 5.x, [see changelog](what-is-new.md)
