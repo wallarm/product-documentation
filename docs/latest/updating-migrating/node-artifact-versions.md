@@ -12,7 +12,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
-### 5.2.0 (TBD)
+### 5.2.1 (2024-12-07)
 
 * New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
@@ -49,7 +49,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
-### 5.2.0 (TBD)
+### 5.2.1 (2024-12-07)
 
 * Upgraded to Community Ingress NGINX Controller version 1.11.3, aligning with the upstream Helm chart version 4.11.3
 * Breaking changes introduced by the Community Ingress NGINX Controller upgrade:
@@ -140,7 +140,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](docker-container.md)
 
-### 5.2.0 (TBD)
+### 5.2.1 (2024-12-07)
 
 * New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
@@ -184,7 +184,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
-### 5.2.0 (TBD)
+### 5.2.1 (2024-12-07)
 
 * New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
