@@ -145,7 +145,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
     These variables log parameters containing malicious payloads and attack sign IDs enabling advanced debugging of Node behavior.
-* Minor bug fixes
+* Moved image source and Dockerfile from [GitHub](https://github.com/wallarm/docker-wallarm-node) to an internal GitLab repository
 
 ### 5.1.0-1 (2024-11-06)
 
