@@ -15,6 +15,15 @@ Security Edge service provides a secure cloud environment where Wallarm nodes ar
 * Reduced costs: lower operational overhead with Wallarm-managed nodes, allowing faster deployment and scalability.
 * Seamless integration: simple configuration, allowing you to protect your API landscape without disruptions.
 
+## Limitations
+
+* Currently, the Edge inline node supports only direct, Internet-facing deployment. It cannot operate behind a third-party service, such as a CDN or DDoS protection provider (e.g., Cloudflare, Akamai), that routes traffic.
+* Only third-level or higher domains are supported (e.g., instead `domain.com` use `www.domain.com`).
+* Only domains shorter than 64 characters are supported.
+* Only HTTPS traffic is supported; HTTP is not allowed.
+* Certificate CNAME records must be added to initiate the Edge node deployment.
+* If the certificate CNAME is not added within 14 days, the node deployment will fail.
+
 ## Configuring the Edge Inline
 
 To run the Edge inline, go to the Wallarm Console → **Security Edge** → **Edge inline** → **Configure**. You can configure multiple origins to forward traffic to and multiple hosts to protect.
@@ -117,14 +126,17 @@ Once the certificate CNAME is verified (~10 minutes), a **Traffic CNAME** will b
 
 DNS changes can take up to 24 hours to propagate. Once propagated, Wallarm will proxy all traffic to your origins and mitigate malicious requests.
 
-## Limitations
+## Telemetry portal
 
-* Currently, the Edge inline node supports only direct, Internet-facing deployment. It cannot operate behind a third-party service, such as a CDN or DDoS protection provider (e.g., Cloudflare, Akamai), that routes traffic.
-* Only third-level or higher domains are supported (e.g., instead `domain.com` use `www.domain.com`).
-* Only domains shorter than 64 characters are supported.
-* Only HTTPS traffic is supported; HTTP is not allowed.
-* Certificate CNAME records must be added to initiate the Edge node deployment.
-* If the certificate CNAME is not added within 14 days, the node deployment will fail.
+The telemetry portal for Security Edge Inline in Wallarm provides real-time insights into Edge Node performance via a Grafana dashboard. It displays metrics such as CPU usage, requests per second per host, and response times.
+
+This feature enables proactive monitoring of Edge Nodes, allowing you to independently verify node status and diagnose issues related to origins or hosts, particularly when a node is in a degraded state.
+
+![!](../../images/waf-installation/security-edge/inline/telemetry-portal.png)
+
+**Run telemetry portal** once the Node reaches the **Active** status. It becomes accessible via a direct link from the Security Edge section ~5 minutes after initiation. Authentication uses the credentials you employ for the Wallarm Console.
+
+![!](../../images/waf-installation/security-edge/inline/run-telemetry-portal.png)
 
 ## Upgrading the Edge Inline
 
