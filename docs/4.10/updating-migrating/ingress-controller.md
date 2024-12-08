@@ -15,7 +15,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-4.10.md"
 
 ## Step 1: Update the Wallarm Helm chart repository
 

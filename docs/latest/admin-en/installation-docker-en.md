@@ -26,11 +26,11 @@ To run the container:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:5.1.0-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:5.2.1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:5.1.0-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:5.2.1
         ```
 
 You can pass the following basic filtering node settings to the container via the option `-e`:
@@ -60,11 +60,11 @@ To run the container:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.1.0-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.2.1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.1.0-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.2.1
         ```
 
     * The `-e` option passes the following required environment variables to the container:
@@ -73,7 +73,7 @@ To run the container:
     
     * The `-v` option mounts the directory with the configuration file `default` to the `/etc/nginx/sites-enabled` container directory.
 
-        ??? info "See an example of the mounted file with minimal settings"
+        ??? info "See the example `/etc/nginx/sites-enabled` minimal content"
             ```bash
             server {
                     listen 80 default_server;
@@ -99,7 +99,7 @@ To run the container:
             }
             ```
 
-        !!! info "Mounting other configuration files"
+        ??? info "Mounting other configuration files"
             The container directories used by NGINX:
 
             * `/etc/nginx/nginx.conf` - This is the main NGINX configuration file. If you decide to mount this file, additional steps are necessary for proper Wallarm functionality:
@@ -127,8 +127,40 @@ To run the container:
                             return 500 "API FW fallback";
                     }
                     ```
-                1. Mount the `/etc/nginx/conf.d/wallarm-status.conf` file, ensuring its contents align with the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/5.1/conf/nginx_templates/wallarm-status.conf.tmpl).
-                1. Within the NGINX configuration files, set up the configuration for the [`/wallarm-status` service][node-status-docs] according to the [template](https://github.com/wallarm/docker-wallarm-node/blob/stable/5.1/conf/nginx_templates/default.conf.tmpl#L32).
+                1. Mount the `/etc/nginx/conf.d/wallarm-status.conf` file with the content below. It is crucial not to modify any lines from the provided configuration as this may interfere with the successful upload of node metrics to the Wallarm cloud.
+
+                    ```
+                    server {
+                      # Port should match the NGINX_PORT variable value
+                      listen 127.0.0.8:80;
+
+                      server_name localhost;
+
+                      allow 127.0.0.0/8;
+                      deny all;
+
+                      wallarm_mode off;
+                      disable_acl "on";
+                      wallarm_enable_apifw off;
+                      access_log off;
+
+                      location ~/wallarm-status$ {
+                        wallarm_status on;
+                      }
+                    }
+                    ```
+                1. Within your NGINX configuration file, set up the following configuration for the `/wallarm-status` endpoint:
+
+                    ```
+                    location /wallarm-status {
+                        # Allowed addresses should match the WALLARM_STATUS_ALLOW variable value
+                        allow xxx.xxx.x.xxx;
+                        allow yyy.yyy.y.yyy;
+                        deny all;
+                        wallarm_status on format=prometheus;
+                        wallarm_mode off;
+                    }
+                    ```
             * `/etc/nginx/conf.d` — common settings
             * `/etc/nginx/sites-enabled` — virtual host settings
             * `/opt/wallarm/usr/share/nginx/html` — static files

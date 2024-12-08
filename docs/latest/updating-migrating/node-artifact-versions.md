@@ -12,6 +12,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.2.1 (2024-12-07)
+
+* New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    These variables log request points containing malicious payloads and attack sign IDs, thereby enabling advanced debugging of Node behavior.
+* Minor bug fixes
+
 ### 5.1.1 (2024-11-08)
 
 * Fixed some bugs in the `wallarm-status` service operation
@@ -41,6 +48,17 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 5.2.1 (2024-12-07)
+
+* Upgraded to Community Ingress NGINX Controller version 1.11.3, aligning with the upstream Helm chart version 4.11.3
+* Breaking changes introduced by the Community Ingress NGINX Controller upgrade:
+
+    * Discontinued support for Opentracing and Zipkin modules, now only supporting Opentelemetry
+    * Dropped support for `PodSecurityPolicy`
+* Compatibility extended up to Kubernetes version 1.30
+* Updated to NGINX 1.25.5
+* Minor bug fixes
 
 ### 5.1.1 (2024-11-14)
 
@@ -122,6 +140,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](docker-container.md)
 
+### 5.2.1 (2024-12-07)
+
+* New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    These variables log parameters containing malicious payloads and attack sign IDs enabling advanced debugging of Node behavior.
+* Moved image source and Dockerfile from [GitHub](https://github.com/wallarm/docker-wallarm-node) to an internal GitLab repository
+
 ### 5.1.0-1 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
@@ -159,6 +184,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
+### 5.2.1 (2024-12-07)
+
+* New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    These variables log parameters containing malicious payloads and attack sign IDs enabling advanced debugging of Node behavior.
+* Minor bug fixes
+
 ### 5.1.0-1 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
@@ -180,10 +212,17 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Initial release 5.0, [see changelog](what-is-new.md)
 
-<!-- ## Google Cloud Platform Image
+## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
 
-### wallarm-node-4-10-20240126-175315 (TBD)
+### wallarm-node-5-2-20241206-185646 (2024-12-07)
 
-* Initial release 5.0, [see changelog](what-is-new.md) -->
+* New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    These variables log parameters containing malicious payloads and attack sign IDs enabling advanced debugging of Node behavior.
+* Minor bug fixes
+
+### wallarm-node-5-1-20241108-120238 (2024-11-08)
+
+* Initial release 5.x, [see changelog](what-is-new.md)
