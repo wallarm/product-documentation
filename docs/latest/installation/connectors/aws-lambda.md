@@ -28,16 +28,19 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
 
 ## Limitations
 
-* The following [restrictions apply to Lambda@Edge functions](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-at-edge-function-restrictions.html#lambda-at-edge-restrictions-request-body):
+* Lambda@Edge function-level restrictions:
 
+    * Lambda@Edge functions are not triggered by viewer responses with HTTP status codes 4xx.
+    * Lambda@Edge does not allow access to the response body in both origin response and viewer response events, restricting the ability to perform any actions based on the content of the response.
     * The body size is limited to 40 KB for viewer requests and 1MB for origin requests.
     * The maximum response time from the Wallarm node is 5 seconds for viewer requests and 30 seconds for origin requests.
     * Lambda@Edge does not support private networks (VPC).
     * The default limit for concurrent requests is 1,000 per region, but it can be increased up to tens of thousands.
-* Wallarm Lambda@Edge functions operate at the origin level, meaning they do not monitor requests handled by CDN cache. Thus, potential attacks in such requests go undetected.
-* Vulnerability detection based on [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) and API [response structure in API Discovery](../../api-discovery/exploring.md#endpoint-details) are limited due to Lambda@Edge response trigger restrictions. Since Wallarm functions cannot receive response bodies and rely on them, these features are unavailable.
-* [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
-* [Multitenancy](../multi-tenant/overview.md) is not supported yet.
+    * Wallarm Lambda@Edge functions operate at the origin level, meaning they do not monitor requests handled by CDN cache. Thus, potential attacks in such requests go undetected.
+* Feature restrictions:
+    * Vulnerability detection based on [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) and API [response structure in API Discovery](../../api-discovery/exploring.md#endpoint-details) are limited due to Lambda@Edge response trigger restrictions. Since Wallarm functions cannot receive response bodies and rely on them, these features are unavailable.
+    * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
+    * [Multitenancy](../multi-tenant/overview.md) is not supported yet.
 
 ## Requirements
 
