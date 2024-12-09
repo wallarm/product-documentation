@@ -109,6 +109,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+### 5.2.1 (2024-12-09)
+
+* New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
+
+    These variables log request points containing malicious payloads and attack sign IDs, thereby enabling advanced debugging of Node behavior.
+* Minor bug fixes
+
 ### 5.1.0 (2024-11-06)
 
 * Added support for [API Sessions](../api-sessions/overview.md)
