@@ -30,7 +30,6 @@ Wallarm is the only solution that unifies best-in-class API Security and WAAP ca
 | [Rogue API Detection (shadow, orphan zombie)](../api-discovery/rogue-api.md) | No | Yes |
 | **Security testing** | | |
 | [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | Yes | Yes |
-| [OpenAPI security testing](../fast/openapi-security-testing.md) |  No | Yes |
 | **Additional options** | | |
 | [Deployment options](../installation/supported-deployment-options.md) | All | All |
 | [Integrations](../user-guides/settings/integrations/integrations-intro.md) | All | All |

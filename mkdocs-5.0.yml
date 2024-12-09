@@ -81,7 +81,7 @@ nav:
       - Use Cases:
         - Running Tests on Non‑Production: vulnerability-detection/active-threat-verification/running-test-on-staging.md
   - API Security Testing:
-    - OpenAPI Security Testing: fast/openapi-security-testing.md
+#   - OpenAPI Security Testing: fast/openapi-security-testing.md
     - Framework for API Security Testing:
       - Overview: fast/README.md
       - Onboarding: fast/onboarding/onboarding.md

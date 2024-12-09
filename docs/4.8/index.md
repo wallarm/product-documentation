@@ -78,7 +78,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 <div class="navigation-card">
     <h3 class="icon-homepage api-security-testing">API Security Testing</h3>
     <p><ul>
-    <li><a href="./fast/openapi-security-testing/">OpenAPI Security Testing</a></li>
+    <!--<li><a href="./fast/openapi-security-testing/">OpenAPI Security Testing</a></li>-->
     <li><a href="./fast/">Framework for API Security Testing</a></li>
     <li><a href="./fast/operations/test-policy/fuzzer-intro/">API Fuzzing</a></li>
     <li><a href="./fast/dsl/intro/">DSL for Custom Detects</a></li>

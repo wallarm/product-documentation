@@ -31,7 +31,7 @@ To identify anomalies, indicators of compromise, and other potential adverse eve
 
 * [Vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md): Wallarm uses real Internet traffic to proactively identify and report security vulnerabilities. By analyzing attacker attempts and conducting exploitation tests, it uncovers both immediate and potential weaknesses, enabling real-time security monitoring.
 * [API leaks](../../api-attack-surface/security-issues.md#api-leaks): Wallarm's **Security Issues Detection** module scans public repositories to identify exposed API tokens. Upon detecting leaks, Wallarm alerts you, allowing prompt analysis and action.
-* [OpenAPI Security Testing](../../fast/openapi-security-testing.md) automates API security checks within the software development lifecycle by seamlessly integrating with CI/CD pipelines via Docker. It creates test requests to expose vulnerabilities in endpoints, as defined in your OpenAPI specification, allowing you to address security issues before the API goes into production.
+<!--* [OpenAPI Security Testing](../../fast/openapi-security-testing.md) automates API security checks within the software development lifecycle by seamlessly integrating with CI/CD pipelines via Docker. It creates test requests to expose vulnerabilities in endpoints, as defined in your OpenAPI specification, allowing you to address security issues before the API goes into production.-->
 
 ## Respond
 

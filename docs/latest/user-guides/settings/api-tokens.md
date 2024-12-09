@@ -34,13 +34,13 @@ For each token, you can set permissions that do not exceed the scope of permissi
 
 You can assign token permissions based on predefined user roles or customize them:
 
-* Administrator, Analyst, API Develover, Read Only and the equivalent Global roles - a token assigned one of these roles will inherit the permissions detailed in our [user role system](users.md#user-roles).
+* Administrator, Analyst, API Developer, Read Only and the equivalent Global roles - a token assigned one of these roles will inherit the permissions detailed in our [user role system](users.md#user-roles).
 * Deploy - API tokens with this role are used to [deploy Wallarm nodes](../../installation/supported-deployment-options.md).
-* Сustom permissions - switches to the manual permission selection.
+* Custom permissions - switches to the manual permission selection.
+<!--
+    To create a token for [OpenAPI security testing](../../fast/openapi-security-testing.md), the custom role with the corresponding permissions is required.-->
 
-    To create a token for [OpenAPI security testing](../../fast/openapi-security-testing.md), the custom role with the corresponding permissions is required.
-
-If the permissions of a personal token owner are reduced, the persmissions of their tokens will be adjusted correspondingly.
+If the permissions of a personal token owner are reduced, the permissions of their tokens will be adjusted correspondingly.
 
 ## Disabling and re-enabling tokens
 
