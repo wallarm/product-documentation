@@ -581,7 +581,7 @@ Besides common [detectors](api-abuse-prevention/overview.md#how-api-abuse-preven
 
 * **IP rotation** for account takeover attacks using a pool of IP addresses.
 * **Session rotation** for account takeover attacks using a pool of IP sessions.
-* **Slow ATO** for slow or long-lasting account takeover attacks.
+* **Persistent ATO** for account takeover attacks that occur gradually over an extended period.
 
 API Abuse Prevention detects bots performing a [credential cracking](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) usually performed as a brute force attack on the critical endpoints or/and endpoints that are related to authentication and/or registration endpoints. The automatic threshold of acceptable behavior metrics is calculated based on legitimate traffic for 1 hour.
 
