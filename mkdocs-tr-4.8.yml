@@ -528,7 +528,6 @@ nav:
       - Saldırılar Wallarm Cloud'ye yüklenmiyor: faq/attacks-not-uploaded-to-cloud.md
       - Wallarm node'un OWASP dashboardları tarafından uyarılan konuların adresi: faq/node-issues-on-owasp-dashboards.md
       - Meşru isteğin engellenmesi: faq/wrong-blocking.md
-      - Üçüncü Taraf Hizmetlerle Etkileşim: faq/wallarm-and-third-party-services.md
     - Değişiklik Kaydı & Haberler: news.md
     - Wallarm API Referans:
       - Genel Bakış: api/overview.md
