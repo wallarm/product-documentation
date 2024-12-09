@@ -128,13 +128,13 @@ DNS changes can take up to 24 hours to propagate. Once propagated, Wallarm will 
 
 ## Telemetry portal
 
-The telemetry portal for Security Edge Inline in Wallarm provides real-time insights into Edge Node performance via a Grafana dashboard. It displays metrics such as CPU usage, requests per second per host, and response times.
+The telemetry portal for Security Edge Inline provides a Grafana dashboard with real-time insights into metrics on traffic processed by Wallarm.
 
-This feature enables proactive monitoring of Edge Nodes, allowing you to independently verify node status and diagnose issues related to origins or hosts, particularly when a node is in a degraded state.
+The dashboard displays key metrics such as total processed requests, RPS, detected and blocked attacks, deployed Edge node number, resource consumption, number of 5xx responses, etc.
 
 ![!](../../images/waf-installation/security-edge/inline/telemetry-portal.png)
 
-**Run telemetry portal** once the Node reaches the **Active** status. It becomes accessible via a direct link from the Security Edge section ~5 minutes after initiation. Authentication uses the credentials you employ for the Wallarm Console.
+**Run telemetry portal** once the Node reaches the **Active** status. It becomes accessible via a direct link from the Security Edge section ~5 minutes after initiation.
 
 ![!](../../images/waf-installation/security-edge/inline/run-telemetry-portal.png)
 
