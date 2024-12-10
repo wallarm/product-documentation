@@ -223,7 +223,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
-### wallarm-node-5-2-20241206-185646 (2024-12-07)
+### wallarm-node-5-2-20241209-114655 (2024-12-07)
 
 * New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
 
