@@ -152,10 +152,10 @@ If you intend to delete and re-create the nodes, you can adjust the settings of 
 
 The Edge node section provides real-time statuses of the deployment and configuration state for your origins, hosts, and regions:
 
-=== "Origins"
-    ![!](../../images/waf-installation/security-edge/inline/origin-statuses.png)
 === "Hosts"
     ![!](../../images/waf-installation/security-edge/inline/host-statuses.png)
+=== "Origins"
+    ![!](../../images/waf-installation/security-edge/inline/origin-statuses.png)
 === "Regions"
     ![!](../../images/waf-installation/security-edge/inline/region-statuses.png)
 
