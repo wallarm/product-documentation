@@ -1,50 +1,38 @@
 [link-selinux]:     https://www.redhat.com/en/topics/linux/what-is-selinux
 [doc-monitoring]:   monitoring/intro.md
 
-# Configuring SELinux
+# SELinux Troubleshooting
 
-If the [SELinux][link-selinux] mechanism is enabled on a host with a filter node, it may interfere with the filter node, rendering it inoperable:
-* The filter node's RPS (requests per second) and APS (attacks per second) values will not be exported to the Wallarm cloud.
-* It will not be possible to export filter node metrics to monitoring systems via the TCP protocol (see [“Monitoring the Filter Node”][doc-monitoring]).  
+[SELinux][link-selinux] is installed and enabled by default on RedHat‑based Linux distributions (e.g., CentOS or Amazon Linux 2.0.2021x and lower). SELinux can also be installed on other Linux distributions, such as Debian or Ubuntu.
 
-
-SELinux is installed and enabled by default on RedHat‑based Linux distributions (e.g., CentOS or Amazon Linux 2.0.2021x and lower). SELinux can also be installed on other Linux distributions, such as Debian or Ubuntu.  
-
-It is mandatory to either disable SELinux or configure SELinux so it does not disrupt the filter node operation.
-
-## Check SELinux Status
-
-Execute the following command:
+Check SELinux presence and status by executing the following command:
 
 ``` bash
 sestatus
 ```
 
-Examine the output:
-* `SELinux status: enabled`
-* `SELinux status: disabled`
+## Automatic configuration
 
-## Configure SELinux
+If the SELinux mechanism is enabled on a host with a filtering node, during node installation or upgrade, the [all-in-one installer](../installation/inline/compute-instances/linux/all-in-one.md) performs its automatic configuration for the node not to interfere with it.
 
-Allow the `collectd` utility to use a TCP socket to make the filter node operable with SELinux enabled. To do so, execute the following command:
+This means, in most cases there will be no problems caused by SELinux.
 
-``` bash
-setsebool -P collectd_tcp_network_connect 1
-```
+## Troubleshooting
 
-Check if the aforementioned command executed successfully by running the following command:
+If after [automatic configuration](#automatic-configuration) you still experience the problems that can be caused by SeLinux:
 
-``` bash
-semanage export | grep collectd_tcp_network_connect
-```
+* The filter node's RPS (requests per second) and APS (attacks per second) values will not be exported to the Wallarm cloud.
+* It will not be possible to export filter node metrics to monitoring systems via the TCP protocol (see [“Monitoring the Filter Node”][doc-monitoring]).
+* Other possible problems.
 
-The output should contain this string:
-```
-boolean -m -1 collectd_tcp_network_connect
-```
+Do the following:
 
-## Disable SELinux 
+1. Temporarily disable SELinux by executing the `setenforce 0` command.
 
-To set SELinux to a disabled state
-*   either execute the `setenforce 0` command (SELinux will be disabled until the next reboot) or
-*   set the value of the `SELINUX` variable to `disabled` in the `/etc/selinux/config` file, then reboot (SELinux will be disabled permanently).
+    SELinux will be disabled until the next reboot.
+
+1. Check whether the problem(s) disappeared.
+1. [Contact](mailto:support@wallarm.com) Wallarm's technical support for help.
+
+    !!! warning "SELinux permanent disabling not recommended"
+        It is not recommended to disable SELinux permanently due to the security issues.
