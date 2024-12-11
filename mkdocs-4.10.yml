@@ -435,7 +435,6 @@ nav:
     - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
     - Access to Files Needed for Node Operation: admin-en/configure-access-to-files-needed-for-node.md
     - Dynamic DNS Resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
-    - Configuring SELinux: admin-en/configure-selinux.md
     - Enabling JA3 fingerprinting: admin-en/enabling-ja3.md
     - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
     - Node Upgrade:
@@ -466,15 +465,16 @@ nav:
     - Wallarm Scanner Addresses: admin-en/scanner-addresses.md
   - References:
     - FAQ:
-      - Installing Wallarm Ingress controller: faq/ingress-installation.md
-      - Errors after Wallarm node installation: faq/common-errors-after-installation.md
-      - Wallarm service status page: faq/wallarm-status-page.md
-      - Wallarm Cloud is down: faq/wallarm-cloud-down.md
-      - Tarantool troubleshooting: faq/tarantool.md
-      - CPU high usage troubleshooting: faq/cpu.md
-      - Attacks are not uploaded to the Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
-      - Addressing Wallarm node issues alerted by the OWASP dashboard: faq/node-issues-on-owasp-dashboards.md
-      - Legitimate request is blocked: faq/wrong-blocking.md
+      - Installing Wallarm Ingress Controller: faq/ingress-installation.md
+      - Errors after Wallarm Node Installation: faq/common-errors-after-installation.md
+      - Wallarm Service Status Page: faq/wallarm-status-page.md
+      - Wallarm Cloud is Down: faq/wallarm-cloud-down.md
+      - Tarantool Troubleshooting: faq/tarantool.md
+      - SELinux Troubleshooting: admin-en/configure-selinux.md
+      - CPU High Usage Troubleshooting: faq/cpu.md
+      - Attacks are not Uploaded to Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
+      - Addressing Wallarm Node Issues Alerted by OWASP dashboard: faq/node-issues-on-owasp-dashboards.md
+      - Legitimate Request is Blocked: faq/wrong-blocking.md
     - Changelog & News: news.md
     - Wallarm API Reference:
       - Overview: api/overview.md
