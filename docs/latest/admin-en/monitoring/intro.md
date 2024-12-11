@@ -23,6 +23,8 @@
 [doc-collectd-nagios]:      fetching-metrics.md#exporting-metrics-using-the-collectd-nagios-utility
 [doc-collectd-notices]:     fetching-metrics.md#sending-notifications-from-collectd
 
+[doc-selinux]:  ../configure-selinux.md
+
 # Monitoring Filtering Node
 
 You can monitor the state of the Wallarm filtering node (both [NGINX and Native](../../installation/nginx-native-node-internals.md)) using the node-provided metrics. This article describes how to operate with the metrics gathered by the [`collectd`][link-collectd] service that is installed on every filtering node. The `collectd` service provides several ways to transfer data and can serve as a source of metrics for many monitoring systems, offering you control over the state of the filtering nodes.

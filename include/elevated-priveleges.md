@@ -1,3 +1,3 @@
 !!! warning "Prerequisites"
-    * Prior to taking any steps listed below, make sure SELinux is properly configured if it is installed on the operating system. Configuration is done automatically by all-in-one installer during the node installation, see [details][configure-selinux-instr].
+    * Prior to taking any steps listed below, either [disable or configure](../admin-en/configure-selinux.md) SELinux if it is installed on the operating system.
     * Make sure that you execute all commands below as superuser (e.g. `root`).
