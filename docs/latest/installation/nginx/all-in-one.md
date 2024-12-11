@@ -112,11 +112,6 @@ Below there are a few of the typical settings that you can apply if needed:
 * [Limiting the maximum request size in the NGINX directive `client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
 * [Configuring dynamic DNS resolution in NGINX][dynamic-dns-resolution-nginx]
 
-Note that if the [SELinux](https://www.redhat.com/en/topics/linux/what-is-selinux) mechanism is enabled on a host with a filtering node, the all-in-one installer performs automatic configuration for the node not to interfere with it. [Contact](mailto:support@wallarm.com) Wallarm's technical support if you still problems that can be caused by SeLinux:
-
-* The filter node's RPS (requests per second) and APS (attacks per second) values are not exported to the Wallarm Cloud.
-* It is impossible to export filter node [metrics](../../admin-en/monitoring/intro.md) to monitoring systems via the TCP protocol.
-
 ## Launch options
 
 --8<-- "../include/waf/installation/all-in-one/launch-options.md"

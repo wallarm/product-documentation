@@ -1,5 +1,5 @@
 * Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
-* Properly configured SELinux (automatically done by all-in-one installer, see [details][configure-selinux-instr])
+* SELinux disabled or configured upon the [instructions][configure-selinux-instr]
 * Executing all commands as a superuser (e.g. `root`)
 * For the request processing and postanalytics on different servers: postanalytics installed on the separate server upon the [instructions][install-postanalytics-instr]
 * Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall

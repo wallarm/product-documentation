@@ -1,6 +1,7 @@
 [doc-configure-kubernetes]:     configure-kubernetes-en.md
 [link-prometheus]:              https://prometheus.io/
 [gl-lom]:                       ../glossary-en.md#custom-ruleset-the-former-term-is-lom
+[doc-selinux]:                  configure-selinux.md
 
 # Statistics Service
 
@@ -140,12 +141,7 @@ To change an IP address and/or port of the statistics service, follow the instru
         /opt/wallarm/etc/collectd/collectd.conf.d/wallarm-tarantool.conf
         ```
 
-If SELinux is installed on the filtering node host, it should be properly configured for the node not to interfere with it. This configuration is automatically done during the node installation with [all-in-one installer](../installation/inline/compute-instances/linux/all-in-one.md). [Contact](mailto:support@wallarm.com) Wallarm's technical support if you still problems that can be caused by SeLinux:
-
-* The filter node's RPS (requests per second) and APS (attacks per second) values are not exported to the Wallarm Cloud.
-* It is impossible to export filter node [metrics](../admin-en/monitoring/intro.md) to monitoring systems via the TCP protocol.
-
-For simplicity, this document assumes that SELinux is disabled.
+If SELinux is installed on the filter node host, make sure that SELinux is either [configured or disabled][doc-selinux]. For simplicity, this document assumes that SELinux is disabled.
 
 Be aware that the local `wallarm-status` output will reset following the application of the above settings.
 
