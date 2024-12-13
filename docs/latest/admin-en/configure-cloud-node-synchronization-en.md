@@ -21,16 +21,13 @@ The `node.yaml` file may contain the following access parameters:
 | Parameter | Description | Default value |
 | --------- | ----------- | ------------- |
 | `hostname`       | Filtering node name. This variable is **required** to be set in the `node.yaml` file. | Provided by `register-node` |
-| `regtoken`       | Token for node to be able to access the Wallarm API. | Provided by `register-node` |
-| `uuid`           | Filtering node UUID. This variable is **required** to be set in the `node.yaml` file. | Provided by `regtoken` |
-| `secret`         | Secret key to access the Wallarm API. This variable is **required** to be set in the `node.yaml` file. | Provided by `regtoken` |
+| `api.regtoken`       | Token for node to be able to access the Wallarm API. | Provided by `register-node` |
+| `api.uuid`           | Filtering node UUID. This variable is **required** to be set in the `node.yaml` file. | Provided by `regtoken` |
+| `api.secret`         | Secret key to access the Wallarm API. This variable is **required** to be set in the `node.yaml` file. | Provided by `regtoken` |
 | `api.host`       | Wallarm API endpoint. Can be:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul> | `api.wallarm.com` |
 | `api.port`       | Wallarm API port. | `443` |
 | `api.use_ssl`  | Whether to use SSL when connecting to Wallarm API. | `true` |
 | `api.ca_verify`  | Whether to enable/disable Wallarm API server certificate verification. Can be:<ul><li>`true` to enable verification</li><li>`false` to disable verification</li></ul>. | `true` |
-| `api.ca_file`  | Path to the SSL certificate file. | `/usr/share/wallarm-common/ca.pem` |
-| `api.localhost` | Local IP address of the network interface through which requests to Wallarm API are sent. This parameter is required if the network interface used by default restricts access to Wallarm API (for example, access to the Internet may be closed). | - |
-| `api.localport` | Port of the network interface through which requests to Wallarm API are sent. This parameter is required if the network interface used by default restricts access to Wallarm API (for example, access to the Internet may be closed). | - |
 
 To change synchronization parameters, proceed with the following steps:
 
@@ -55,6 +52,4 @@ To change the interval between filtering node and Wallarm Cloud synchronizations
 
 ## Configuration example
 
-Note that besides parameters providing the filtering node access to the Cloud (general and `api` sections, described in this article), the `node.yaml` file may also contain parameters providing different processes [the access to files](configure-access-to-files-needed-for-node.md) needed for the node operation (`syncnode` section).
-
---8<-- "../include/node-cloud-sync-configuration-example.md"
+--8<-- "../include/node-cloud-sync-configuration-example-5.x.md"
