@@ -49,6 +49,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 5.2.2 (2024-12-11)
+
+* Re-apply the fix for the [GHSA-c5pj-mqfh-rvc3](https://scout.docker.com/vulnerabilities/id/GHSA-c5pj-mqfh-rvc3) vulnerability
+
 ### 5.2.1 (2024-12-07)
 
 * Upgraded to Community Ingress NGINX Controller version 1.11.3, aligning with the upstream Helm chart version 4.11.3
