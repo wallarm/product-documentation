@@ -456,7 +456,6 @@ nav:
       - How Filtering Node Works in Separated Environments: admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md
       - Configuration Recommendations: admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md
     - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-    - Access to Files Needed for Node Operation: admin-en/configure-access-to-files-needed-for-node.md
     - Dynamic DNS Resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
     - Enabling JA3 fingerprinting: admin-en/enabling-ja3.md
     - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
