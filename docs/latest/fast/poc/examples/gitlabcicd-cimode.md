@@ -93,8 +93,8 @@ You can find examples of integrating FAST to GitLab CI/CD workflow on our [GitHu
 !!! info "Further questions"
     If you have questions related to FAST integration, please [contact us][mail-to-us].
 
-## Demo videos
+<!-- ## Demo videos
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/NRQT_7ZMeko" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+</div> -->

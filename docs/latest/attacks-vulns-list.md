@@ -74,10 +74,10 @@ Wallarm **automatically detects** listed vulnerabilities and attacks and perform
 !!! info "Required configuration for some attack types"
     Some attacks and vulnerabilities, such as behavioral ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola)), [API abuse](#suspicious-api-activity), [GraphQL](#graphql-attacks) and [credential stuffing](#credential-stuffing) are not detected by default. For such attacks/vulnerabilities, required configuration is specifically defined.
 
-??? info "Watch video about how Wallarm protects against OWASP Top 10"
+<!-- ??? info "Watch video about how Wallarm protects against OWASP Top 10"
     <div class="video-wrapper">
     <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+    </div> -->
 
 ## DDoS attacks
 
