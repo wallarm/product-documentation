@@ -31,7 +31,7 @@ The following detectors may be involved:
 * **Wide scope** analyzing breadth of IP activity to behaviorally identify crawler-like bots.
 * **IP rotation** analyzing requests for being a part of the [account takeover](../attacks-vulns-list.md#account-takeover) attacks where the attackers utilize a pool of IP addresses.
 * **Session rotation** analyzing requests for being a part of the [account takeover](../attacks-vulns-list.md#account-takeover) attacks where the attackers exploit a pool of sessions.
-* **Persistent ATO** analyzing requests for being a part a part of the [account takeover](../attacks-vulns-list.md#account-takeover) attacks that occur gradually over an extended period.
+* **Persistent ATO** analyzing requests for being a part of the [account takeover](../attacks-vulns-list.md#account-takeover) attacks that occur gradually over an extended period.
 
 !!! info "Confidence"
     As a result of detectors' work, every [detected](../api-abuse-prevention/exploring-bots.md) bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
