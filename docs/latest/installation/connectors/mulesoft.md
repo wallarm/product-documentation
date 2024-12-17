@@ -193,7 +193,13 @@ To test the functionality of the deployed policy, follow these steps:
 
     If the Wallarm node mode is set to [blocking](../../admin-en/configure-wallarm-mode.md) and the traffic flows in-line, the request will also be blocked.
 
-## Upgrading and uninstalling
+## Troubleshooting
+
+If the solution does not perform as expected, refer to the logs of your API by accessing Mulesoft Anypoint Platform → **Runtime Manager** → your application → **Logs**.
+
+You can also verify whether the policy is applied to the API by navigating to your API in the **API Manager** and reviewing the policies applied on the **Policies** tab. For automated policies, you can use the **See covered APIs** option to view the APIs covered and the reasons for any exclusions.
+
+## Upgrading the policy
 
 To upgrade the deployed Wallarm policy to a [newer version](code-bundle-inventory.md#mulesoft), follow these steps:
 
@@ -209,10 +215,8 @@ To upgrade the deployed Wallarm policy to a [newer version](code-bundle-inventor
 
 If the Wallarm policy is applied as an automated policy, direct upgrades may not be possible. In such cases, remove the current policy and reapply the new version manually.
 
+Policy upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
+
+## Uninstalling the policy
+
 To uninstall the Wallarm policy, use the **Remove policy** option in either the automated policy list or the list of policies applied to an individual API.
-
-## Troubleshooting
-
-If the solution does not perform as expected, refer to the logs of your API by accessing Mulesoft Anypoint Platform → **Runtime Manager** → your application → **Logs**.
-
-You can also verify whether the policy is applied to the API by navigating to your API in the **API Manager** and reviewing the policies applied on the **Policies** tab. For automated policies, you can use the **See covered APIs** option to view the APIs covered and the reasons for any exclusions.
