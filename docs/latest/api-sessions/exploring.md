@@ -47,7 +47,11 @@ Use the **Time,ms** and **Size,bytes** columns in the session request details to
 
 ## Sensitive business flows
 
-If some of the session requests target the endpoints that in [API Discovery](../api-discovery/overview.md) were [marked](../api-discovery/sbf.md) as important for some sensitive business flows, such session will be marked as affecting this business flow as well.
+In [API Discovery](../api-discovery/overview.md), the [sensitive business flow](../api-discovery/sbf.md) capability allows automatic and manual identification of endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities.
+
+If the sessions' requests affect the endpoints that in API Discovery were tagged as important for some sensitive business flows, such sessions are automatically tagged as affecting this business flow as well.
+
+Once sessions are assigned with the sensitive business flow tags, it becomes possible to filter them by a specific business flow which makes it easier to select the sessions that are most important to analyze.
 
 ![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-no-select.png)
 
