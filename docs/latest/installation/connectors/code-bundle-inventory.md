@@ -96,16 +96,3 @@ The current version is specified in the `data.handler.lua.VERSION` parameter of 
 * Initial release
 
 <!-- ## Broadcom - TBD -->
-
-
-
-
-<!-- update the internal page with the inventorY!
-
-
-+++ может быть нам надо ченджлоги какие-то писать для пользователй? а то они ведь не в курсе что новый коннектор есть
-
-cloudfront, cloudflare, istio - непонятно как пользователю понять, какая у них версия
-указыватьполностью версию в кусках кода, а не только мажорную и минорную версии
-
-убрать лимитейшкн на страницу блокировки и мб преефразировать??? и в статье про страницу блокировки тоже. cloudflare -->
