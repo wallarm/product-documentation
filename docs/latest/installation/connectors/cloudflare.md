@@ -89,3 +89,17 @@ To test the functionality of the deployed solution, follow these steps:
     ![Attacks in the interface][attacks-in-ui-image]
 
     If the Wallarm node mode is set to [blocking](../../admin-en/configure-wallarm-mode.md) and the traffic flows in-line, the request will also be blocked.
+
+## Upgrading the Cloudflare worker
+
+To upgrade the deployed Cloudflare worker to a [newer version](code-bundle-inventory.md#cloudflare):
+
+1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download the updated Wallarm Cloudflare code bundle.
+
+    If running a self-hosted node, contact sales@wallarm.com to get the updated code bundle.
+1. Replace the code in your deployed Cloudflare worker with the updated bundle.
+
+    Preserve the existing values for parameters like `wallarm_node`, `wallarm_mode`, and others.
+1. **Deploy** the updated functions.
+
+Worker upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
