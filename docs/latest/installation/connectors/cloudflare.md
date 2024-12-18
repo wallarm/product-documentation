@@ -10,7 +10,7 @@
 
 [Cloudflare](https://www.cloudflare.com/) is a security and performance service which offers features designed to enhance the security, speed, and reliability of websites and internet applications, including CDN, WAF, DNS services and SSL/TLS encryption. Wallarm can act as a connector to secure APIs running on Cloudflare.
 
-To use Wallarm as a connector for Cloudflare, you need to **deploy the Wallarm node externally** and **run a Cloudflare worker using the Wallarm-provided code** to route traffic to the Wallarm node for analysis.
+To use Wallarm as a connector for Cloudflare, you need to **deploy the Wallarm Node externally** and **run a Cloudflare worker using the Wallarm-provided code** to route traffic to the Wallarm Node for analysis.
 
 <a name="cloudflare-modes"></a> The Cloudflare connector supports both [in-line](../inline/overview.md) and [out-of-band](../oob/overview.md) traffic flows:
 
@@ -40,9 +40,9 @@ To proceed with the deployment, ensure that you meet the following requirements:
 
 ## Deployment
 
-### 1. Deploy a Wallarm node
+### 1. Deploy a Wallarm Node
 
-The Wallarm node is a core component of the Wallarm platform that you need to deploy. It inspects incoming traffic, detects malicious activities, and can be configured to mitigate threats.
+The Wallarm Node is a core component of the Wallarm platform that you need to deploy. It inspects incoming traffic, detects malicious activities, and can be configured to mitigate threats.
 
 You can deploy it either hosted by Wallarm or in your own infrastructure, depending on the level of control you require.
 
@@ -56,16 +56,14 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
 
 ### 2. Obtain and deploy the Wallarm worker code
 
-To run a Cloudflare worker routing traffic to the Wallarm node:
+To run a Cloudflare worker routing traffic to the Wallarm Node:
 
 1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download a code bundle for your platform.
 
     If running a self-hosted node, contact sales@wallarm.com to get the code bundle.
 1. [Create a Cloudflare worker](https://developers.cloudflare.com/workers/get-started/dashboard/) using the downloaded code.
-1. Set the address of your [Wallarm node instance](#1-deploy-a-wallarm-node) in the `wallarm_node` parameter.
-1. If using [out-of-band](../oob/overview.md) mode, set the `wallarm_mode` parameter to `async`.
-
-    Based on the selected mode, the worker controls whether traffic goes through the Wallarm node inline or if original traffic proceeds while a copy is inspected for malicious activities.
+1. Set the address of your [Wallarm Node instance](#1-deploy-a-wallarm-node) in the `wallarm_node` parameter.
+1. If required, modify [other parameters](#configuration-options).
 
     ![Cloudflare worker](../../images/waf-installation/gateways/cloudflare/worker-deploy.png)
 1. In **Website** → your domain, go to **Workers Routes** → **Add route**:
@@ -88,7 +86,26 @@ To test the functionality of the deployed solution, follow these steps:
     
     ![Attacks in the interface][attacks-in-ui-image]
 
-    If the Wallarm node mode is set to [blocking](../../admin-en/configure-wallarm-mode.md) and the traffic flows in-line, the request will also be blocked.
+    If the Wallarm Node mode is set to [blocking](../../admin-en/configure-wallarm-mode.md) and the traffic flows in-line, the request will also be blocked.
+
+## Configuration options
+
+In the worker code, you can specify the following parameters:
+
+| Parameter | Description | Required? |
+| --------- | ----------- | --------- |
+| `wallarm_node` | Sets the address of your [Wallarm Node instance](#1-deploy-a-wallarm-node). | Yes |
+| `wallarm_mode` | Determines traffic handling mode: `inline` (default) processes traffic through the Wallarm Node directly, while `async` analyzes a [copy](../oob/overview.md) of the traffic without affecting the original flow. | No |
+| `wallarm_send_rsp_body` | Enables response body analysis for schema [discovery](../../api-discovery/overview.md) and enhanced attack detection, such as [brute force](../../admin-en/configuration-guides/protecting-against-bruteforce.md). Default: `true` (enabled). | No |
+| `wallarm_response_body_limit` | Limit for a response body size (in bytes) the Node can parse and analyze. Default is `0x4000`. | No |
+| `wallarm_block_page.custom_path`<br>(Native Node 0.8.3+ and worker 3.0.0+) | URL of a custom blocking page returned with HTTP 403 responses from the Node, for example: `https://example.com/block-page.html`.<br>Default: `null` (uses detailed Wallarm-provided error page if `html_page` is `true`). | No |
+| `wallarm_block_page.html_page`<br>(Native Node 0.8.3+ and worker 3.0.0+) | Enables a custom HTML blocking page for malicious requests. Default: `false` (returns a simple HTTP 403). | No |
+| `wallarm_block_page.support_email`<br>(Native Node 0.8.3+ and worker 3.0.0+) | Email displayed on the blocking page for reporting issues. Default: `support@mycorp.com`. | No |
+
+??? info "Show Wallarm-provided error page"
+    The Wallarm-provided error page returned with HTTP 403 responses looks as follows:
+
+    ![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 ## Upgrading the Cloudflare worker
 
@@ -102,4 +119,4 @@ To upgrade the deployed Cloudflare worker to a [newer version](code-bundle-inven
     Preserve the existing values for parameters like `wallarm_node`, `wallarm_mode`, and others.
 1. **Deploy** the updated functions.
 
-Worker upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
+Worker upgrades may require a Wallarm Node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
