@@ -1,1 +1,0 @@
---8<-- "latest-ar/fast/poc/waiting-for-tests.md"

@@ -1,1 +1,0 @@
---8<-- "latest/fast/openapi-security-testing.md"

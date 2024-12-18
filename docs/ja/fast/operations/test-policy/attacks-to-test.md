@@ -1,1 +1,0 @@
---8<-- "latest-ja/fast/operations/test-policy/attacks-to-test.md"

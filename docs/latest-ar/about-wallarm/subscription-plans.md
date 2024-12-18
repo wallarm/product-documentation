@@ -39,7 +39,6 @@
 | **اختبار الأمان وتقييم الثغرات** | | |
 | [التحقق من التهديدات النشطة](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | لا | نعم |
 | [ماسح الثغرات](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | لا | نعم |
-| [اختبار أمان OpenAPI على CI/CD](../fast/openapi-security-testing.md) |  لا | نعم |
 | **مراقبة حوادث الأمان** | | |
 | [التكاملات](../user-guides/settings/integrations/integrations-intro.md) مع SIEMs، المراسلين، إلخ | الكل | الكل |
 | [سجل التدقيق](../user-guides/settings/audit-log.md) | نعم | نعم |

@@ -1,1 +1,0 @@
---8<-- "latest-tr/fast/poc/integration-overview-ci-mode.md"

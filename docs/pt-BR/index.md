@@ -73,16 +73,6 @@ A solução Wallarm protege APIs, microsserviços e aplicações web contra as a
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-security-testing">Testes de Segurança de API</h3>
-    <p><ul>
-    <li><a href="./fast/">Framework para Testes de Segurança de API</a></li>
-    <li><a href="./fast/operations/test-policy/fuzzer-intro/">Fuzzing de API</a></li>
-    <li><a href="./fast/dsl/intro/">DSL para Detecções Personalizadas</a></li>
-    <li><a href="./fast/poc/integration-overview/">Integração com CI/CD</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
     <h3 class="icon-homepage waap-waf-title">WAAP/WAF</h3>
     <p><ul>
     <li><a href="./about-wallarm/protecting-against-attacks/">Procedimento de Detecção de Ataques</a></li>

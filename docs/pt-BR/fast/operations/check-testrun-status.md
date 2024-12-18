@@ -1,1 +1,0 @@
---8<-- "latest-pt-BR/fast/operations/check-testrun-status.md"

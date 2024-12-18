@@ -1,1 +1,0 @@
---8<-- "latest-pt-BR/fast/poc/examples/azure-devops-cimode.md"

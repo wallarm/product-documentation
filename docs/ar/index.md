@@ -72,17 +72,6 @@ hide:
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-security-testing">اختبار أمان API</h3>
-    <p><ul>
-    <li><a href="./fast/openapi-security-testing/">اختبار أمان OpenAPI</a></li>
-    <li><a href="./fast/">إطار لاختبار أمان API</a></li>
-    <li><a href="./fast/operations/test-policy/fuzzer-intro/">Fuzzing API</a></li>
-    <li><a href="./fast/dsl/intro/">DSL للكشف المخصص</a></li>
-    <li><a href="./fast/poc/integration-overview/">التكامل في CI/CD</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
     <h3 class="icon-homepage waap-waf-title">WAAP/WAF</h3>
     <p><ul>
     <li><a href="./about-wallarm/waap-overview/">نظرة عامة</a></li>
