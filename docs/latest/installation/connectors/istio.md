@@ -69,11 +69,65 @@ To deploy the Wallarm node as a separate service in your Kubernetes cluster, fol
     kubectl -n <ISTIO_INGRESS_NS> apply -f wallarm-cm-lua-mpack-lib.yaml
     kubectl -n <ISTIO_INGRESS_NS> apply -f wallarm-cm-lua-rrasync.yaml
     ```
-1. Modify the Istio Ingress Gateway deployment to mount these ConfigMaps by applying the `patch.yaml` file:
+1. To mount the ConfigMaps, update your Istio Ingress Gateway deployment. Depending on how you manage Istio (Helm, IstioOperator, or custom deployment), apply the changes accordingly.
 
-    ```
-    kubectl -n <ISTIO_INGRESS_NS> patch deploy istio-ingressgateway --type strategic --patch-file patch.yaml
-    ```
+    The following are the configuration examples:
+
+    === "Using Helm"
+        If Istio was installed using Helm, you can mount the ConfigMaps by updating the `values.yaml` file for the Istio Ingress Gateway:
+
+        ```yaml
+        gateways:
+          istio-ingressgateway:
+            name: istio-ingressgateway
+            additionalVolumes:
+              - name: lua-mpack
+                configMap:
+                  name: lua-msgpack-lib
+              - name: lua-rrasync
+                configMap:
+                  name: rr-async-packed
+            additionalVolumeMounts:
+              - name: lua-mpack
+                mountPath: /usr/local/share/lua/5.1/msgpack
+              - name: lua-rrasync
+                mountPath: /usr/local/share/lua/5.1/rrasync
+        ```
+
+        ```
+        helm upgrade istio-base istio/gateway -n <ISTIO_INGRESS_NS> -f values.yaml
+        ```
+    === "Using IstioOperator"
+        If Istio was installed using IstioOperator, you can mount the ConfigMaps by updating the `IstioOperator` resource:
+
+        ```yaml
+        apiVersion: install.istio.io/v1alpha1
+        kind: IstioOperator
+        spec:
+          components:
+            ingressGateways:
+              - name: istio-ingressgateway
+                enabled: true
+                k8s:
+                  volumes:
+                    - name: lua-mpack
+                      configMap:
+                        name: lua-msgpack-lib
+                    - name: lua-rrasync
+                      configMap:
+                        name: rr-async-packed
+                  volumeMounts:
+                    - name: lua-mpack
+                      mountPath: /usr/local/share/lua/5.1/msgpack
+                      container: istio-proxy
+                    - name: lua-rrasync
+                      mountPath: /usr/local/share/lua/5.1/rrasync
+                      container: istio-proxy
+        ```
+
+        ```
+        kubectl apply -f istio-operator.yaml
+        ```
 
 ## Testing
 
@@ -109,3 +163,12 @@ To test the functionality of the deployed connector, follow these steps:
     ```
     kubectl -n gonode logs native-processing-7c487bbdc6-4j6mz --tail 100 -f
     ```
+
+## Upgrading the Wallarm Lua plugin
+
+To upgrade the deployed Wallarm Lua plugin to a [newer version](code-bundle-inventory.md#istio):
+
+1. Contact support@wallarm.com to obtain the updated Wallarm Lua plugin code for your Istio Ingress.
+1. Deploy the updated plugin as described in the [Step 2](#2-configure-envoy-to-mirror-traffic-to-the-wallarm-node).
+
+Plugin upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
