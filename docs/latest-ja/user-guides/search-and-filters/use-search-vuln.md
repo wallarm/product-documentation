@@ -35,7 +35,7 @@
 
 検索文字列に指定：
 
-* `anomaly`：[FAST](../../fast/README.md)によって検出された[異常][al-anomaly]脆弱性を検索。
+<!-- * `anomaly`：[FAST](../../fast/README.md)によって検出された[異常][al-anomaly]脆弱性を検索。 -->
 * `sqli`：[SQLインジェクション][al-sqli]脆弱性を検索。
 * `xss`：[クロスサイトスクリプティング][al-xss]脆弱性を検索。
 * `rce`：[OSコマンド実行][al-rce]脆弱性を検索。

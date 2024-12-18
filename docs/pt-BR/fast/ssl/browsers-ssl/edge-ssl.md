@@ -1,1 +1,0 @@
---8<-- "latest-pt-BR/fast/ssl/browsers-ssl/edge-ssl.md"

@@ -1,1 +1,0 @@
---8<-- "latest-tr/fast/ssl/install-certificate-on-fast-node.md"

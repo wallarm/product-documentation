@@ -1,1 +1,0 @@
---8<-- "latest-tr/fast/operations/env-variables.md"

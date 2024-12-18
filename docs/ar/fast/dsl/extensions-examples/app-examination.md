@@ -1,1 +1,0 @@
---8<-- "latest-ar/fast/dsl/extensions-examples/app-examination.md"

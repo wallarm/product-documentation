@@ -1,1 +1,0 @@
---8<-- "latest-ar/fast/dsl/detect/markers.md"

@@ -1,1 +1,0 @@
---8<-- "latest/fast/poc/integration-overview-api.md"

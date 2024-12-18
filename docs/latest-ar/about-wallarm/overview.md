@@ -47,7 +47,7 @@
 
 * [تحديد الثغرات](../user-guides/vulnerabilities.md) من خلال تحليل حركة المرور السلبي.
 * يفحص واجهات برمجة التطبيقات المحددة بحثًا عن نقاط ضعف.
-* [يختبر](../fast/openapi-security-testing.md) واجهات برمجة التطبيقات للكشف عن نقاط الضعف بناءً على مواصفات OpenAPI.
+<!-- * [يختبر](../fast/openapi-security-testing.md) واجهات برمجة التطبيقات للكشف عن نقاط الضعف بناءً على مواصفات OpenAPI. -->
 * [ينشئ اختبارات أمان واجهات برمجة التطبيقات ديناميكيًا](../vulnerability-detection/active-threat-verification/overview.md) من حركة المرور الملحوظة.
 * [يتحقق من المستودعات العامة للبحث عن رموز واجهة برمجة التطبيقات المكشوفة](../api-attack-surface/security-issues.md).
 

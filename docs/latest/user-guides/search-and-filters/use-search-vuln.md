@@ -54,7 +54,7 @@ Below you will find the list of attributes and modifiers available for use in se
 
 Specify in the search string:
 
-* `anomaly`: to search for [anomaly][al-anomaly] vulnerabilities detected by [FAST](../../fast/README.md).
+<!-- * `anomaly`: to search for [anomaly][al-anomaly] vulnerabilities detected by [FAST](../../fast/README.md). -->
 * `sqli`: to search for [SQL injection][al-sqli] vulnerabilities.
 * `xss`: to search for [cross site scripting][al-xss] vulnerabilities.
 * `rce`: to search for [OS commanding][al-rce] vulnerabilities.
