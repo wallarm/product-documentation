@@ -209,8 +209,8 @@ To upgrade the deployed Wallarm policy to a [newer version](code-bundle-inventor
 
     For example, if upgrading from 2.x to 3.x:
 
-    * **Host expression**: use the default value `#[attributes.headers['x-forwarded-host']]` unless specific changes are needed.
-    * **IP expression**: use the default value `#[attributes.headers['x-forwarded-for']]` unless specific changes are needed.
+    * **CLIENT HOST EXPRESSION**: use the default value `#[attributes.headers['x-forwarded-host']]` unless specific changes are needed.
+    * **CLIENT IP EXPRESSION**: use the default value `#[attributes.headers['x-forwarded-for']]` unless specific changes are needed.
 1. Save changes.
 
 If the Wallarm policy is applied as an automated policy, direct upgrades may not be possible. In such cases, remove the current policy and reapply the new version manually.
