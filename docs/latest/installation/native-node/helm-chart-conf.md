@@ -55,7 +55,13 @@ config:
         #   route: /api
         #   wallarm_application: 3
 
-    log_level: debug
+    log:
+      pretty: false
+      level: info
+      log_file: stdout
+      access_log:
+        enabled: true
+        verbose: false
 
 processing:
   service:
@@ -284,11 +290,39 @@ Host-specific traffic [filtration mode](../../admin-en/configure-wallarm-mode.md
 
 Default: `monitoring`.
 
-### config.connector.log_level
+### config.connector.log
+
+The `config.connector.log.*` configuration section is available starting with the Native Node Helm chart version 0.10.0. Previously, logging was managed solely via the `config.connector.log_level` parameter.
+
+#### pretty
+
+Controls the error and access log format. Set to `true` for human-readable logs, or `false` for JSON logs.
+
+Default: `false`.
+
+#### level
 
 Log level, can be `debug`, `info`, `warn`, `error`, `fatal`.
 
-Default: `debug`.
+Default: `info`.
+
+#### log_file
+
+Specifies the destination for error and access log output. Options are `stdout`, `stderr`, or a path to a log file.
+
+Default: `stdout`.
+
+#### access_log.enabled
+
+Controls whether to collect access logs.
+
+Default: `true`.
+
+#### access_log.verbose
+
+Controls whether to include detailed information about each request in the access log output.
+
+Default: `false`.
 
 ### processing.service.type
 

@@ -42,6 +42,7 @@ The Wallarm node operation mode. It can be:
         discovery: dns
         name: native-node-mesh-discovery
         port: 9093
+      url_normalize: true
 
     route_config:
       wallarm_application: 10
@@ -84,6 +85,7 @@ The Wallarm node operation mode. It can be:
     middleware:
       parse_responses: true
       response_timeout: 5s
+      url_normalize: true
 
     route_config:
       wallarm_application: 10
@@ -385,6 +387,14 @@ Specifies the maximum time to wait for a response. If a response is not received
 
 Default: `5s`.
 
+### middleware.url_normalize
+
+Enables URL normalization before selecting route configurations and analyzing data with libproton.
+
+Supported starting from the Native Node 0.10.0.
+
+Default: `true`.
+
 ## Basic settings
 
 ### route_config
@@ -530,6 +540,7 @@ http_inspector:
   api_firewall_database: /opt/wallarm/var/lib/wallarm-api/2/wallarm_api.db
   wallarm_dir: /opt/wallarm/etc/wallarm
   shm_dir: /tmp
+  wallarm_process_time_limit: 1s
 
 tarantool_exporter:
   address: 127.0.0.1:3313
@@ -587,6 +598,14 @@ Default: `/opt/wallarm/etc/wallarm`.
 HTTP analyzer shared directory. Typically, you do not need to modify this parameter.
 
 Default: `/tmp`.
+
+### http_inspector.wallarm_process_time_limit
+
+Defines the maximum time for processing a single HTTP request by the Wallarm Native Node.
+
+If the limit is exceeded, the request is marked as an [`overlimit_res`](../../attacks-vulns-list.md#resource-overlimit) attack and blocked.
+
+You can configure the limit in this parameter or [via the Wallarm Console](../../user-guides/rules/configure-overlimit-res-detection.md), which also controls whether to block such requests. Wallarm Console settings override local configurations.
 
 ### tarantool_exporter.address
 
