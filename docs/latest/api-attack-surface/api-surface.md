@@ -10,7 +10,7 @@ Knowing the full list of your organization's external APIs is the first step in 
 
 The **API Attack Surface Discovery** Wallarm component helps to solve these issues by providing the following:
 
-* Automatic detection of external hosts for your selected domains.
+* Automatic detection of external hosts for your [selected domains](setup.md).
 * Automatic detection of found hosts' open ports.
 * Automatic detection of found hosts' APIs.
 
@@ -27,21 +27,6 @@ The **API Attack Surface Discovery** Wallarm component helps to solve these issu
 * Automatic detection of security issues for found hosts.
 
 You get all this simply by subscribing to the component in Wallarm - you do not need to deploy anything and get the analyzed data immediately.
-
-## Domains to search for hosts
-
-You can define a list of your **root domains** which you want to search for hosts as follows:
-
-1. In the **API Attack Surface** or **Security Issues** section, click **Configure**.
-1. At the **Scope** tab, add your domains.
-
-    Wallarm will start searching for hosts and their [security issues](security-issues.md). The search progress and results will be displayed at the **Status** tab.
-
-![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
-
-Note that domains are automatically re-scanned every 3 days - new hosts will be added automatically, previously listed but not found during re-scan will remain in the list.
-
-You can re-start, pause or continue scanning for any domain manually at **Configure** → **Status**.
 
 ## Data on found hosts
 

@@ -1,6 +1,6 @@
 # Detecting Security Issues <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-Once [API Surface Discovery](api-surface.md) finds the external hosts of your domains, Wallarm checks if these hosts have any security issues. Once found, the issues are listed and described in the **Security Issues** section. This article describes how to use the presented information.
+Once [API Surface Discovery](api-surface.md) finds the external hosts of your [selected domains](setup.md), Wallarm checks if these hosts have any security issues. Once found, the issues are listed and described in the **Security Issues** section. This article describes how to use the presented information.
 
 ## Exploring security issues
 
@@ -14,16 +14,32 @@ Here, the detailed information on found issues is presented, including:
 * Risk level evaluation and distribution of security issues by these levels
 * Top vulnerable hosts list
 
-## Define your domains to search for security issues
+## List of detected issues
 
-You can define a list of your root domains where you want to search for security issues:
+Wallarm automatically detects the following security issues:
 
-1. In the **API Attack Surface** or **Security Issues** section, click **Configure**.
-1. At the **Scope** tab, add your domains.
-
-    Wallarm will start searching for subdomains and leaked credentials published under the domain. The search progress and results will be displayed at the **Status** tab.
-
-![Security issues - configuring scope](../images/api-attack-surface/security-issues-configure-scope.png)
+| Type | Description |
+| ------- | ------- |
+| Management interface | The remote management interface or administrative panel is publicly accessible over the Internet, exposing the system to potential attacks. Malicious adversaries could exploit this by performing password-guessing attacks, credential stuffing, or leveraging known vulnerabilities in the service to gain unauthorized access. |
+| Authentication bypass | An authentication bypass vulnerability allows an attacker to circumvent the authentication mechanism and gain unauthorized access to protected resources. This security flaw can lead to unauthorized access to sensitive data, privilege escalation, or complete system compromise. |
+| BOLA | Attackers can exploit API endpoints vulnerable to broken object-level authorization by manipulating the ID of an object sent within the request. This may lead to unauthorized access to sensitive data. See [details](../attacks-vulns-list.md#broken-object-level-authorization-bola). |
+| File read | The application has an arbitrary file read vulnerability, allowing an attacker to read files on the server without proper authorization. This security flaw can lead to unauthorized access to sensitive information, including configuration files, source code, or user data, compromising the entire system's security. |
+| File upload | An arbitrary file upload vulnerability allows a malicious user to upload potentially harmful files to a server, bypassing intended restrictions. This security flaw can lead to remote command execution through web shells, overwriting of critical system files, malware distribution, or even complete server compromise. |
+| Information exposure | This vulnerability involves the unauthorized disclosure of sensitive information by an application, potentially providing attackers with sensitive data for further malicious activities. See [details](../attacks-vulns-list.md#information-exposure). |
+| LFI | A local file inclusion (LFI) vulnerability allows an attacker to manipulate file paths within a web application due to inadequate input validation. This security flaw can result in unauthorized access to sensitive system files, code execution, and potentially complete system compromise, often as a stepping stone for more severe exploits. |
+| Misconfiguration | Security misconfigurations include vulnerabilities caused by improperly configured systems, such as enabled debug mode, excessive information in error messages, TLS/SSL misconfiguration, and missing or wrongly set CORS policy. |
+| Missing authentication | Sensitive application or API endpoint is accessible without proper authentication mechanisms in place. This vulnerability can lead to unauthorized access and manipulation of sensitive data, potentially resulting in data breaches, service disruptions, or compromise of the entire system's integrity. |
+| RCE | Remote code execution - this vulnerability occurs due to incorrect validation and parsing of user input. An attacker can inject malicious code into a request to a web application, and the application will execute this code. Also, the attacker can try to execute certain commands for the operating system that the vulnerable web application runs on. See [details](../attacks-vulns-list.md#remote-code-execution-rce). |
+| Open redirect | An open redirect vulnerability allows user-controlled input to specify a link to an external site for redirection. Attackers can exploit this to redirect users to malicious websites, potentially leading to phishing attacks or other security risks. |
+| Sensitive API exposure | Due to improper security measures or misconfiguration, an API endpoint, documentation, or functionality is unintentionally exposed or accessible to unauthorized users. This exposure can potentially lead to more targeted attacks, unauthorized access to sensitive data, or the exploitation of system vulnerabilities by providing attackers with valuable information about the system's structure. |
+| SQLi | SQL injection - vulnerability to this attack occurs due to insufficient filtration of user input. An SQL injection attack is performed by injecting a specially crafted query to an SQL database. See [details](../attacks-vulns-list.md#sql-injection). |
+| SSRF | Server‑side request forgery - a successful SSRF attack may allow an attacker to make requests on behalf of the attacked web server; this potentially leads to revealing the web application's network ports in use, scanning the internal networks, and bypassing authorization. See [details](../attacks-vulns-list.md#serverside-request-forgery-ssrf). |
+| Subdomain takeover | A subdomain is vulnerable to potential takeover because it points to non-existent resources. This vulnerability allows attackers to claim and control these subdomains, potentially leading to phishing attacks, data theft, or reputation damage for the original domain owner. |
+| User enumeration | A vulnerability allows the unauthorized enumeration of user accounts or sensitive data through system responses. This weakness can lead to unauthorized access, targeted attacks, or serve as a starting point for further system exploitation. |
+| Vulnerable component | Using obsolete software components containing known vulnerabilities poses a risk as it allows potential attackers to exploit known vulnerabilities. Furthermore this indicates insufficient patch management processes within the organization. |
+| XSS | Cross‑site scripting - a cross‑site scripting attack allows an attacker to execute a prepared arbitrary code in a user's browser. See [details](../attacks-vulns-list.md#crosssite-scripting-xss). |
+| XXE | Attack on XML external entity - the vulnerability allows an attacker to inject an external entity in an XML document to be evaluated by an XML parser and then executed on the target web server. See [details](../attacks-vulns-list.md#attack-on-xml-external-entity-xxe). |
+| API leak | A leaked API key can allow attackers to impersonate authorized users, access confidential financial data, and even manipulate transaction flows. See [details](#api-leaks). |
 
 ## API leaks
 
@@ -44,7 +60,7 @@ You can manage the decisions on what to do with the found leaks:
 * Close the leaks to mark that the problem is solved.
 * Even if a leak is closed, it is not deleted. Reopen it to mark that problem is still actual.
 
-## Viewing requests blocked by virtual patches
+**Viewing requests blocked by virtual patches**
 
 You can view requests blocked by [virtual patches](../user-guides/rules/vpatch-rule.md) in Wallarm Console → **Attacks** by setting the **Type** filter to `Virtual patch` (`vpatch`).
 
