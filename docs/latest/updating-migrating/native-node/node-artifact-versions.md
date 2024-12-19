@@ -10,6 +10,20 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.10.0 (2024-12-19)
+
+* Added URL normalization before selecting route configurations and analyzing data with libproton in `tcp-capture` mode
+
+    This is controlled by the [`middleware.url_normalize`](../../installation/native-node/all-in-one-conf.md#middlewareurl_normalize) parameter (`true` by default).
+* Introduced the [`http_inspector.wallarm_process_time_limit`](../../installation/native-node/all-in-one-conf.md#http_inspectorwallarm_process_time_limit) parameter to control request processing time locally
+
+    The default is `1s` unless overridden by Wallarm Console settings.
+* Prometheus metrics updates (available in the :9000 port):
+
+    * Removed obsolete metrics with static zero values.
+    * Enhanced `http_inspector_requests_processed` and `http_inspector_threats_found` metrics with `anything` allowed to be specified in `source` label values.
+    * Added the `http_inspector_adjusted_counters` metric for tracking request and attack counts.
+
 ### 0.9.1 (2024-12-10)
 
 * Minor bug fixes
@@ -90,6 +104,11 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.10.0 (2024-12-19)
+
+* Introduced more granular logging configuration options in the [`config.connector.log`](../../installation/native-node/helm-chart-conf.md#configconnectorlog) section, replacing the single `config.connector.log_level` parameter
+* The default log level is now `info` (previously `debug`)
+
 ### 0.9.1 (2024-12-10)
 
 * Minor bug fixes
@@ -138,6 +157,21 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), and [Cloudflare](../../installation/connectors/cloudflare.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.10.0 (2024-12-19)
+
+* Resolved the critical [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) vulnerability and addressed several minor vulnerabilities
+* Added URL normalization before selecting route configurations and analyzing data with libproton in `tcp-capture` mode
+
+    This is controlled by the [`middleware.url_normalize`](../../installation/native-node/all-in-one-conf.md#middlewareurl_normalize) parameter (`true` by default).
+* Introduced the [`http_inspector.wallarm_process_time_limit`](../../installation/native-node/all-in-one-conf.md#http_inspectorwallarm_process_time_limit) parameter to control request processing time locally
+
+    The default is `1s` unless overridden by Wallarm Console settings.
+* Prometheus metrics updates (available in the :9000 port):
+
+    * Removed obsolete metrics with static zero values.
+    * Enhanced `http_inspector_requests_processed` and `http_inspector_threats_found` metrics with `anything` allowed to be specified in `source` label values.
+    * Added the `http_inspector_adjusted_counters` metric for tracking request and attack counts.
 
 ### 0.9.1 (2024-12-10)
 
