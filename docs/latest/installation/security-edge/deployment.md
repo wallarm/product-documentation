@@ -112,7 +112,7 @@ The below example configuration customizes settings per path to meet specific ne
 
 ![!](../../images/waf-installation/security-edge/inline/locations.png)
 
-### 4. Certififcate CNAME configuration
+### 4. Certificate CNAME configuration
 
 After configuration is finished, add the CNAME records provided in the Wallarm Console to your DNS provider's settings for each DNS zone. These records are required for Wallarm to verify domain ownership and issue certificates.
 
