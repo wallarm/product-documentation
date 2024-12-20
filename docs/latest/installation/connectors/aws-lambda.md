@@ -117,3 +117,19 @@ To test the functionality of the deployed functions, follow these steps:
     ![Attacks in the interface][attacks-in-ui-image]
 
     If the Wallarm node mode is set to [blocking](../../admin-en/configure-wallarm-mode.md) and the traffic flows in-line, the request will also be blocked.
+
+## Upgrading the Lambda@Edge functions
+
+To upgrade the deployed Lambda@Edge function to a [newer version](code-bundle-inventory.md#cloudfront):
+
+1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download the updated Wallarm Lambda@Edge functions.
+
+    If running a self-hosted node, contact sales@wallarm.com to get the updated code bundle.
+1. Replace the code in your deployed Lambda@Edge functions with the updated bundle.
+
+    Preserve the existing values for parameters like `wlrm_node_addr`, `wlrm_inline`, and others.
+
+    Keep the existing function triggers unchanged.
+1. **Deploy** the updated functions.
+
+Function upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
