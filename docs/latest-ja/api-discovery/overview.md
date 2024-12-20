@@ -96,7 +96,7 @@ API Discovery デモビデオをご覧ください：
 
 ## Playground での API Discovery のチェック
 
-ノードを環境にデプロイしてサインアップする前にモジュールを試すには、[Wallarm Playground の API Discovery](https://my.us1.wallarm.com/playground?utm_source=wallarm_docs_apidja) を探索してください。
+ノードを環境にデプロイしてサインアップする前にモジュールを試すには、[Wallarm Playground の API Discovery](https://playground.wallarm.com/api-discovery/?utm_source=wallarm_docs_apidja) を探索してください。
 
 Playground では、API Discovery ビューに実際のデータが記入されたようにアクセスできるため、モジュールの動作を学び、試すことができ、読み取り専用モードでの使用例をいくつか得ることができます。
 
