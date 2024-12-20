@@ -104,7 +104,7 @@ Watch API Discovery demo video:
 
 ## Checking API Discovery in playground
 
-To try the module even before signing up and deploying the node to your environment, explore [API Discovery in Wallarm Playground](https://my.us1.wallarm.com/playground).
+To try the module even before signing up and deploying the node to your environment, explore [API Discovery in Wallarm Playground](https://playground.wallarm.com/api-discovery).
 
 In Playground, you can access the API Discovery view like it is filled with real data and thus learn and try out how the module works, and get some useful examples of its usage in the read-only mode.
 

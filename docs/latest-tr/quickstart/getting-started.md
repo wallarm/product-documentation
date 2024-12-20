@@ -20,7 +20,7 @@ Hızlı bir başlangıç kapsamında, Wallarm hesabınızı kaydedecek ve birka�
 
 ## Playground'da Wallarm'ı Öğrenin
 
-Wallarm'ı, herhangi bir bileşeni ortamınıza dağıtmadan ve hatta kaydolmadan önce keşfetmek için [Wallarm Playground](https://my.us1.wallarm.com/playground?utm_source=wallarm_docs_quickstarttr) kullanın.
+Wallarm'ı, herhangi bir bileşeni ortamınıza dağıtmadan ve hatta kaydolmadan önce keşfetmek için [Wallarm Playground](https://playground.wallarm.com/?utm_source=wallarm_docs_quickstarttr) kullanın.
 
 Playground'da, Wallarm Console görünümüne gerçek verilerle dolmuş gibi erişebilirsiniz. Wallarm Console, işlenen trafikle ilgili verileri görüntüleyen ve platformun ince ayarını sağlayan önemli bir Wallarm platform bileşenidir. Bu nedenle, Playground ile ürünün nasıl çalıştığını öğrenebilir ve öğrenebilir, sadece okuma modunda kullanışlı kullanım örnekleri alabilirsiniz.
 
