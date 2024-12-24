@@ -127,3 +127,18 @@ To test the functionality of the deployed connector, follow these steps:
 1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
 
     ![Attacks in the interface][attacks-in-ui-image]
+
+## Upgrading the Wallarm Lua plugin
+
+To upgrade the deployed Wallarm Lua plugin to a [newer version](code-bundle-inventory.md#kong-api-gateway):
+
+1. Contact support@wallarm.com to obtain the updated Wallarm Lua plugin code for your Kong Ingress Controller.
+1. Update the ConfigMap with the plugin code:
+
+    ```
+    kubectl apply -f wallarm-kong-lua.yaml -n <KONG_NS>
+    ```
+    
+    `<KONG_NS>` is the namespace where your Kong Ingress Controller is deployed.
+
+Plugin upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.

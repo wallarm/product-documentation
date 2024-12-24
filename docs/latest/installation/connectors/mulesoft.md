@@ -156,18 +156,6 @@ Your custom policy is now available in your Mulesoft Anypoint Platform Exchange.
 
 You can attach the Wallarm policy to either all APIs or an individual API.
 
-#### Attaching the policy to all APIs
-
-To apply the Wallarm policy to all APIs using [Mulesoft's Automated policy option](https://docs.mulesoft.com/mule-gateway/policies-automated-overview), follow these steps:
-
-1. In your Anypoint Platform, navigate to **API Manager** → **Automated Policies**.
-1. Click **Add automated policy** and select the Wallarm policy from Exchange.
-1. Specify an address of the [Wallarm node instance](#1-deploy-a-wallarm-node) including `http://` or `https://`.
-1. If necessary, modify other parameters.
-1. Apply the policy.
-
-![Wallarm policy](../../images/waf-installation/gateways/mulesoft/automated-policy.png)
-
 #### Attaching the policy to an individual API
 
 To secure an individual API with the Wallarm policy, follow these steps:
@@ -178,7 +166,17 @@ To secure an individual API with the Wallarm policy, follow these steps:
 1. If necessary, modify other parameters.
 1. Apply the policy.
 
-![Wallarm policy](../../images/waf-installation/gateways/mulesoft/policy-for-an-api.png)
+![Wallarm policy](../../images/waf-installation/gateways/mulesoft/policy-setup.png)
+
+#### Attaching the policy to all APIs
+
+To apply the Wallarm policy to all APIs using [Mulesoft's Automated policy option](https://docs.mulesoft.com/mule-gateway/policies-automated-overview), follow these steps:
+
+1. In your Anypoint Platform, navigate to **API Manager** → **Automated Policies**.
+1. Click **Add automated policy** and select the Wallarm policy from Exchange.
+1. Specify an address of the [Wallarm node instance](#1-deploy-a-wallarm-node) including `http://` or `https://`.
+1. If necessary, modify other parameters.
+1. Apply the policy.
 
 ## Testing
 
@@ -195,18 +193,30 @@ To test the functionality of the deployed policy, follow these steps:
 
     If the Wallarm node mode is set to [blocking](../../admin-en/configure-wallarm-mode.md) and the traffic flows in-line, the request will also be blocked.
 
-## Updating and uninstalling
-
-To update the deployed Wallarm policy, follow these steps:
-
-1. Remove the currently deployed Wallarm policy using the **Remove policy** option in either the automated policy list or the list of policies applied to an individual API.
-1. Add the new policy following the steps 2-3 above.
-1. Restart attached applications in the **Runtime Manager** to apply new policy.
-
-To uninstall the policy, simply perform the first step of the update process.
-
 ## Troubleshooting
 
 If the solution does not perform as expected, refer to the logs of your API by accessing Mulesoft Anypoint Platform → **Runtime Manager** → your application → **Logs**.
 
 You can also verify whether the policy is applied to the API by navigating to your API in the **API Manager** and reviewing the policies applied on the **Policies** tab. For automated policies, you can use the **See covered APIs** option to view the APIs covered and the reasons for any exclusions.
+
+## Upgrading the policy
+
+To upgrade the deployed Wallarm policy to a [newer version](code-bundle-inventory.md#mulesoft):
+
+1. Download the updated Wallarm policy and upload it to Mulesoft Exchange, as described in [Step 2](#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange).
+1. Once the new version appears in Exchange, go to **API Manager** → your API → **Policies** → Wallarm policy → **Edit configuration** → **Advanced options** and choose the new policy version from the dropdown.
+1. If the new version introduces additional parameters, provide the necessary values.
+
+    For example, if upgrading from 2.x to 3.x:
+
+    * **CLIENT HOST EXPRESSION**: use the default value `#[attributes.headers['x-forwarded-host']]` unless specific changes are needed.
+    * **CLIENT IP EXPRESSION**: use the default value `#[attributes.headers['x-forwarded-for']]` unless specific changes are needed.
+1. Save changes.
+
+If the Wallarm policy is applied as an automated policy, direct upgrades may not be possible. In such cases, remove the current policy and reapply the new version manually.
+
+Policy upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
+
+## Uninstalling the policy
+
+To uninstall the Wallarm policy, use the **Remove policy** option in either the automated policy list or the list of policies applied to an individual API.
