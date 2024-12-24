@@ -100,7 +100,7 @@ In the worker code, you can specify the following parameters:
 | `wallarm_response_body_limit` | Limit for a response body size (in bytes) the Node can parse and analyze. Default is `0x4000`. | No |
 | `wallarm_block_page.custom_path`<br>(Worker version 1.0.1+) | URL of a custom blocking page returned with HTTP 403 responses from the Node, for example: `https://example.com/block-page.html`.<br>Default: `null` (uses detailed Wallarm-provided error page if `html_page` is `true`). | No |
 | `wallarm_block_page.html_page`<br>(Worker version 1.0.1+) | Enables a custom HTML blocking page for malicious requests. Default: `false` (returns a simple HTTP 403). | No |
-| `wallarm_block_page.support_email`<br>(Worker version 1.0.1+) | Email displayed on the blocking page for reporting issues. Default: `support@mycorp.com`. | No |
+| `wallarm_block_page.support_email`<br>(Worker version 1.0.1+) | Email displayed on the blocking page for reporting issues. Default: `support@mycorp.com`. | Yes, if `html_page` is `true` |
 
 ??? info "Show Wallarm-provided error page"
     The Wallarm-provided error page returned with HTTP 403 responses looks as follows:

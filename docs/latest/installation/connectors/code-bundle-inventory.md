@@ -79,11 +79,9 @@ Requires Native Node version 0.8.3 or higher.
 
 ## Kong API Gateway
 
-The current version is specified in the `data.handler.lua.VERSION` parameter of the Wallarm Lua plugin code.
-
 [How to upgrade](kong-api-gateway.md#upgrading-the-wallarm-lua-plugin)
 
-### 1.1.0 (2024-09-13)
+### 1.0.0 (2024-09-13)
 
 * Initial release
 
@@ -91,7 +89,7 @@ The current version is specified in the `data.handler.lua.VERSION` parameter of 
 
 [How to upgrade](istio.md#upgrading-the-wallarm-lua-plugin)
 
-### 0.4.5 (2024-09-13)
+### 1.0.0 (2024-09-13)
 
 * Initial release
 
