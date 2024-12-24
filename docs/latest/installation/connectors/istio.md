@@ -71,63 +71,36 @@ To deploy the Wallarm node as a separate service in your Kubernetes cluster, fol
     ```
 1. To mount the ConfigMaps, update your Istio Ingress Gateway deployment. Depending on how you manage Istio (Helm, IstioOperator, or custom deployment), apply the changes accordingly.
 
-    The following are the configuration examples:
+    For example, if Istio was installed using IstioOperator, you can mount the ConfigMaps by updating the `IstioOperator` resource:
 
-    === "Using Helm"
-        If Istio was installed using Helm, you can mount the ConfigMaps by updating the `values.yaml` file for the Istio Ingress Gateway:
+    ```yaml
+    apiVersion: install.istio.io/v1alpha1
+    kind: IstioOperator
+    spec:
+      components:
+        ingressGateways:
+          - name: istio-ingressgateway
+            enabled: true
+            k8s:
+              volumes:
+                - name: lua-mpack
+                  configMap:
+                    name: lua-msgpack-lib
+                - name: lua-rrasync
+                  configMap:
+                    name: rr-async-packed
+              volumeMounts:
+                - name: lua-mpack
+                  mountPath: /usr/local/share/lua/5.1/msgpack
+                  container: istio-proxy
+                - name: lua-rrasync
+                  mountPath: /usr/local/share/lua/5.1/rrasync
+                  container: istio-proxy
+    ```
 
-        ```yaml
-        gateways:
-          istio-ingressgateway:
-            name: istio-ingressgateway
-            additionalVolumes:
-              - name: lua-mpack
-                configMap:
-                  name: lua-msgpack-lib
-              - name: lua-rrasync
-                configMap:
-                  name: rr-async-packed
-            additionalVolumeMounts:
-              - name: lua-mpack
-                mountPath: /usr/local/share/lua/5.1/msgpack
-              - name: lua-rrasync
-                mountPath: /usr/local/share/lua/5.1/rrasync
-        ```
-
-        ```
-        helm upgrade istio-base istio/gateway -n <ISTIO_INGRESS_NS> -f values.yaml
-        ```
-    === "Using IstioOperator"
-        If Istio was installed using IstioOperator, you can mount the ConfigMaps by updating the `IstioOperator` resource:
-
-        ```yaml
-        apiVersion: install.istio.io/v1alpha1
-        kind: IstioOperator
-        spec:
-          components:
-            ingressGateways:
-              - name: istio-ingressgateway
-                enabled: true
-                k8s:
-                  volumes:
-                    - name: lua-mpack
-                      configMap:
-                        name: lua-msgpack-lib
-                    - name: lua-rrasync
-                      configMap:
-                        name: rr-async-packed
-                  volumeMounts:
-                    - name: lua-mpack
-                      mountPath: /usr/local/share/lua/5.1/msgpack
-                      container: istio-proxy
-                    - name: lua-rrasync
-                      mountPath: /usr/local/share/lua/5.1/rrasync
-                      container: istio-proxy
-        ```
-
-        ```
-        kubectl apply -f istio-operator.yaml
-        ```
+    ```
+    kubectl apply -f istio-operator.yaml
+    ```
 
 ## Testing
 
