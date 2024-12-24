@@ -252,6 +252,7 @@ nav:
       - AWS Lambda: installation/connectors/aws-lambda.md
       - Cloudflare: installation/connectors/cloudflare.md
       - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
+      - سجل تغييرات حزمة الكود: installation/connectors/code-bundle-inventory.md
     - الحزم:
       - Docker Images:
         - نظام NGINX: admin-en/installation-docker-en.md

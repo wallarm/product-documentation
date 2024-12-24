@@ -224,6 +224,7 @@ nav:
       - AWS Lambda: installation/connectors/aws-lambda.md
       - Cloudflare: installation/connectors/cloudflare.md
       - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
+      - コードバンドル変更ログ: installation/connectors/code-bundle-inventory.md
     - パッケージ:
       - Dockerイメージ:
         - NGINXベース: admin-en/installation-docker-en.md
