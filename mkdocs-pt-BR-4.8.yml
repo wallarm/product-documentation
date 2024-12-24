@@ -235,6 +235,7 @@ nav:
       - AWS Lambda: installation/connectors/aws-lambda.md
       - Cloudflare: installation/connectors/cloudflare.md
       - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
+      - Registro de Alterações do Pacote de Código: installation/connectors/code-bundle-inventory.md
     - Pacotes:
       - Docker Images:
         - Baseado em NGINX: admin-en/installation-docker-en.md
