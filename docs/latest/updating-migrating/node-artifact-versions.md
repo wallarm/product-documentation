@@ -12,6 +12,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.2.11 (2024-12-25)
+
+* Added support for NGINX Mainline v1.27.2 and 1.27.3
+* Added support for NGINX Plus R33
+* Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
+* Minor bug fixes
+
 ### 5.2.1 (2024-12-07)
 
 * New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
@@ -150,6 +157,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 5.2.11 (2024-12-25)
+
+* Added support for NGINX Mainline v1.27.2 and 1.27.3
+* Added support for NGINX Plus R33
+* Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
+* Minor bug fixes
 
 ### 5.2.1 (2024-12-07)
 
