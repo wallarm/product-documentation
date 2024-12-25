@@ -1,8 +1,8 @@
 Install the latest NGINX version of:
 
 * **NGINX `stable`** - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
-* **NGINX Mainline** (the latest supported version is v1.25.5) - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
-* **NGINX Plus** - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+* **NGINX Mainline** (the latest supported version is v1.27.3) - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
+* **NGINX Plus** (the latest supported version is NGINX Plus R33) - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 * **Distribution-Provided NGINX** - to install, use the following commands:
 
     === "Debian"

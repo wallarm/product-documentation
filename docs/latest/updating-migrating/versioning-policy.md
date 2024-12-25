@@ -29,7 +29,7 @@ Node versions follow this format:
 | ------- | ----------- | ----------------- |
 | `<MAJOR_VERSION>` | Major version changes indicate significant updates, major new features, or breaking changes. Increments by +1, e.g., `4.x` and `5.x`. | Every 6 months or as needed for major changes |
 | `<MINOR_VERSION>` | Minor version changes include enhancements and new capabilities within existing functionality, without introducing major new use cases. Increments by +1, e.g., `5.0` and `5.1`. | Monthly |
-| `<PATCH_VERSION>` | Patches for minor bug fixes or specific enhancements. Applies to the latest minor release only. Increments by +1, +2, or higher, e.g., `5.1.0` and `5.1.1`. | As needed |
+| `<PATCH_VERSION>` | Patches for minor bug fixes or specific enhancements. Applies to the latest minor release only. The number increases sequentially based on the number of commits in the release branch (+1, +2, etc.). For example, `5.1.0` and `5.1.1`. | As needed |
 | `<BUILD_NUMBER>` (optional) | Indicates modifications unrelated to the Wallarm Node itself (e.g., dependency updates in the Helm chart). This number increments (e.g., `5.1.0-1`, `5.1.0-2`) only if changes are made to the artifact between patch releases. | As needed |
 
 This versioning approach applies equally to both the NGINX and Native Nodes. Major releases for one node type are mirrored in the other.
