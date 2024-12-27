@@ -64,7 +64,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
 ## Step 2: Install NGINX and dependencies
 
---8<-- "../include/waf/installation/all-in-one-nginx.md"
+--8<-- "../include/waf/installation/all-in-one-nginx-4.10.md"
 
 ## Step 3: Prepare Wallarm token
 

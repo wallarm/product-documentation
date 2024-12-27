@@ -78,7 +78,7 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
 
 ## Step 3: Install NGINX and dependencies
 
---8<-- "../include/waf/installation/all-in-one-nginx.md"
+--8<-- "../include/waf/installation/all-in-one-nginx-4.10.md"
 
 ## Step 4: Prepare Wallarm token
 
