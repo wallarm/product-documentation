@@ -170,8 +170,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.2.11 (2024-12-25)
 
-* Added support for NGINX Mainline v1.27.2 and 1.27.3
-* Added support for NGINX Plus R33
 * Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
 * Fixed an issue where some requests were processed unsuccessfully, potentially affecting API Sessions, Credential Stuffing, and API Abuse Prevention
 
