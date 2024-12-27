@@ -116,6 +116,14 @@ The below example configuration customizes settings per path to meet specific ne
 
 After configuration is finished, add the CNAME records provided in the Wallarm Console to your DNS provider's settings for each DNS zone. These records are required for Wallarm to verify domain ownership and issue certificates.
 
+![](../../images/waf-installation/security-edge/inline/cert-cname.png)
+
+For example, if `myservice.com` is specified in the DNS zone, the cart CNAME is the following:
+
+```
+_acme-challenge.myservice.com CNAME _acme-challenge.<WALLARM_CLOUD>-<CLIENT_ID>-<DEPLOYMENT_ID>.acme.aws.wallarm-cloud.com
+```
+
 DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node deployment once the CNAME records are verified.
 
 ### 5. CNAME configuration for traffic routing
