@@ -56,6 +56,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 5.2.11 (2024-12-27)
+
+* Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
+* Fixed an issue where some requests were processed unsuccessfully, potentially affecting API Sessions, Credential Stuffing, and API Abuse Prevention
+
 ### 5.2.2 (2024-12-11)
 
 * Re-apply the fix for the [GHSA-c5pj-mqfh-rvc3](https://scout.docker.com/vulnerabilities/id/GHSA-c5pj-mqfh-rvc3) vulnerability
@@ -119,6 +124,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Sidecar
 
 [How to upgrade](sidecar-proxy.md)
+
+### 5.2.11 (2024-12-27)
+
+* Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
+* Fixed an issue where some requests were processed unsuccessfully, potentially affecting API Sessions, Credential Stuffing, and API Abuse Prevention
 
 ### 5.2.1 (2024-12-09)
 
