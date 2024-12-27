@@ -60,7 +60,7 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
 
 To route traffic from Fastly to the Wallarm Node, you need to deploy a Fastly Compute service with the corresponding Wallarm logic:
 
-1. Contact sales@wallarm.com to get the Wallarm binary.
+1. Contact sales@wallarm.com to get the `Wallarm-API-security.tar.gz` Wallarm package.
 1. Go to **Fastly** UI → **Account** → **API tokens** → **Personal tokens** → **Create token**:
 
     * Type: Automation token
@@ -73,7 +73,7 @@ To route traffic from Fastly to the Wallarm Node, you need to deploy a Fastly Co
     Once created, copy the generated `--service-id`:
 
     ![](../../images/waf-installation/gateways/fastly/create-compute-service.png)
-1. Go to the local directory containing the Wallarm binary and deploy it:
+1. Go to the local directory containing the Wallarm package and deploy it:
 
     ```
     fastly compute deploy --service-id=<SERVICE_ID> --package=Wallarm-API-security.tar.gz --token=<FASTLY_TOKEN>
@@ -121,7 +121,7 @@ Create the `wallarm_config` config defining Wallarm-specific settings:
     | `ORIGIN_BACKEND` | Host name for the backend specified in Compute service settings. | Yes |
     | `WALLARM_MODE_ASYNC` | Enables traffic [copy](../oob/overview.md) analysis without affecting the original flow (`true`) or inline analysis (`false`, default). | No |
     | `WALLARM_DEBUG` | Writes debug information to tailing logs (`true`) or disables it (`false`, default). | No |
-    | `WALLARM_RESPONSE_BODY_SIZE_LIMIT` | Limit for a response body size the Node can parse and analyze. Non-numerical values like `none` (default) mean no limit. | No |
+    | `WALLARM_RESPONSE_BODY_SIZE_LIMIT` | Limit for a response body size the Node can parse and analyze (in bytes). Non-numerical values like `none` (default) mean no limit. | No |
     | `ORIGIN_PASS_CACHE` | Forces pass-through behavior for requests sent to the origin backend, bypassing Fastly's caching layer (`true`). By default, the Fastly's caching layer is used (`false`). | No |
     | `ORIGIN_PRESERVE_HOST` | Retains the original `Host` header from the client request instead of replacing it with the origin backend's hostname via the `X-Forwarded-Host` header. Useful for backends relying on the original `Host` for routing or logging. Default: `false`. | No |
 1. **Link** the config store to the Wallarm Compute service.
@@ -376,7 +376,7 @@ To test the functionality of the deployed solution, follow these steps:
 To upgrade the deployed Fastly Compute service to a [newer version](code-bundle-inventory.md#fastly):
 
 1. Contact sales@wallarm.com to get the updated code bundle.
-1. Go to the directory containing the updated Wallarm binary archive and run:
+1. Go to the directory containing the updated `Wallarm-API-security.tar.gz` Wallarm package archive and run:
 
     ```
     fastly compute deploy --service-id=<SERVICE_ID> --package=Wallarm-API-security.tar.gz --token=<FASTLY_TOKEN>
