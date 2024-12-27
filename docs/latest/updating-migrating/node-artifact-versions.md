@@ -17,7 +17,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Added support for NGINX Mainline v1.27.2 and 1.27.3
 * Added support for NGINX Plus R33
 * Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
-* Minor bug fixes
+* Fixed an issue where some requests were processed unsuccessfully, potentially affecting API Sessions, Credential Stuffing, and API Abuse Prevention
 
 ### 5.2.1 (2024-12-07)
 
@@ -163,7 +163,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Added support for NGINX Mainline v1.27.2 and 1.27.3
 * Added support for NGINX Plus R33
 * Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
-* Minor bug fixes
+* Fixed an issue where some requests were processed unsuccessfully, potentially affecting API Sessions, Credential Stuffing, and API Abuse Prevention
 
 ### 5.2.1 (2024-12-07)
 
