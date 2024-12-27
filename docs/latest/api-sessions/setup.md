@@ -55,7 +55,7 @@ For API Sessions, from node to the Cloud, Wallarm only exports parameters select
 
 To hash the sensitive parameters, once they are added in Wallarm Console → **API Sessions** → **Session context parameters**, select the **Hashing (secret)** option for them.
 
-Wallarm hashes the selected parameters before export using the [MD5 hashing algorithm](https://en.wikipedia.org/wiki/MD5).
+Wallarm hashes the selected parameters before export.
 
 ## Analyzed traffic
 
