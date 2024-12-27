@@ -387,8 +387,3 @@ To upgrade the deployed Fastly Compute service to a [newer version](code-bundle-
 1. **Activate** the new service version in the Fastly UI.
 
 Compute service upgrades may require a Wallarm Node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
-
-
-<!-- create the task for fastly binary donload in the UI -->
-<!-- in the articles about native node check that fastly is mentioned as well -->
-<!-- reflect fastly in the list of all code bundles for connectors -->
