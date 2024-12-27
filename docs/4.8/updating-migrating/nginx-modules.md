@@ -59,7 +59,7 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.8 
 
 ### Step 2: Install NGINX and dependencies
 
---8<-- "../include/waf/installation/all-in-one-nginx.md"
+--8<-- "../include/waf/installation/all-in-one-nginx-4.10.md"
 
 ### Step 3: Prepare Wallarm token
 

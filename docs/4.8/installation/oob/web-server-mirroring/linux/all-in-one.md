@@ -62,7 +62,7 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](ng
 
 ## Step 1: Install NGINX and dependencies
 
---8<-- "../include/waf/installation/all-in-one-nginx.md"
+--8<-- "../include/waf/installation/all-in-one-nginx-4.10.md"
 
 ## Step 2: Prepare Wallarm token
 

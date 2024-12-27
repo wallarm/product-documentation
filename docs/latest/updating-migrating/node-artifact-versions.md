@@ -17,7 +17,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Added support for NGINX Mainline v1.27.2 and 1.27.3
 * Added support for NGINX Plus R33
 * Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
-* Minor bug fixes
+* Fixed an issue where some requests were processed unsuccessfully, potentially affecting API Sessions, Credential Stuffing, and API Abuse Prevention
 
 ### 5.2.1 (2024-12-07)
 
@@ -55,6 +55,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 5.2.11 (2024-12-27)
+
+* Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
+* Fixed an issue where some requests were processed unsuccessfully, potentially affecting API Sessions, Credential Stuffing, and API Abuse Prevention
 
 ### 5.2.2 (2024-12-11)
 
@@ -120,6 +125,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+### 5.2.11 (2024-12-27)
+
+* Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
+* Fixed an issue where some requests were processed unsuccessfully, potentially affecting API Sessions, Credential Stuffing, and API Abuse Prevention
+
 ### 5.2.1 (2024-12-09)
 
 * New `$wallarm_attack_point_list` and `$wallarm_attack_stamp_list` variables for [extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginxbased-filter-node)
@@ -163,7 +173,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Added support for NGINX Mainline v1.27.2 and 1.27.3
 * Added support for NGINX Plus R33
 * Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
-* Minor bug fixes
+* Fixed an issue where some requests were processed unsuccessfully, potentially affecting API Sessions, Credential Stuffing, and API Abuse Prevention
 
 ### 5.2.1 (2024-12-07)
 
