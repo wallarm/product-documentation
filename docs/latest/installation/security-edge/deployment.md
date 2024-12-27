@@ -152,7 +152,7 @@ Since the Edge node is a managed solution, Wallarm takes care of all upgrades. T
 
 ## Deleting the Edge Inline
 
-To delete your Edge deployment, you need to unsubscribe from the Wallarm Security Edge platform by contacting sales@wallarm.com. We will cancel your Security Edge subscription, resulting in the nodes' deactivation.
+To delete your Edge deployment, click **Configure** → **Delete**.
 
 If you intend to delete and re-create the nodes, you can adjust the settings of the existing deployment, and the nodes will be re-deployed with the updated configuration.
 
