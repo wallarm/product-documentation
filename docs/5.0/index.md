@@ -70,7 +70,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <p><ul>
     <li><a href="./user-guides/scanner/">Exposed Assets</a></li>
     <li><a href="./about-wallarm/detecting-vulnerabilities/">Vulnerability Assessment</a></li>
-    <li><a href="./vulnerability-detection/active-threat-verification/overview/">Active Threat Verification</a></li>
+    <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
     </ul></p>
 </div>
 
