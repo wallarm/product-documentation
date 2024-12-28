@@ -28,13 +28,13 @@ A detecção passiva de vulnerabilidades está ativada por padrão.
 
 ### Verificação de ameaças ativas <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
-A Verificação de Ameaças Ativas da Wallarm transforma os invasores em seus próprios testers de penetração. Ele analisa as primeiras tentativas de ataque e, em seguida, explora outras maneiras pelas quais o mesmo ataque pode ser explorado. Isso expõe pontos fracos em seu ambiente que até mesmo os invasores originais não encontraram. [Leia mais](../vulnerability-detection/active-threat-verification/overview.md)
+A Verificação de Ameaças Ativas da Wallarm transforma os invasores em seus próprios testers de penetração. Ele analisa as primeiras tentativas de ataque e, em seguida, explora outras maneiras pelas quais o mesmo ataque pode ser explorado. Isso expõe pontos fracos em seu ambiente que até mesmo os invasores originais não encontraram. [Leia mais](../vulnerability-detection/threat-replay-testing/overview.md)
 
 Os recursos da Verificação de Ameaças Ativas:
 
 * **Testes em tempo real**: Utiliza dados de ataque ao vivo para identificar pontos fracos atuais e futuros, mantendo-o um passo à frente dos hackers.
 * **Simulação segura e inteligente**: Ignora detalhes sensíveis de autenticação e remove o código prejudicial nos testes. Simula técnicas de ataque para máxima segurança, não arriscando danos reais.
-* **Testes seguros em ambiente não produtivo**: Permite que você [execute checagens de vulnerabilidade em um ambiente de teste ou desenvolvimento](../vulnerability-detection/active-threat-verification/running-test-on-staging.md) usando dados reais de produção, mas sem os riscos como sobrecarga do sistema ou exposição de dados.
+* **Testes seguros em ambiente não produtivo**: Permite que você [execute checagens de vulnerabilidade em um ambiente de teste ou desenvolvimento](../vulnerability-detection/threat-replay-testing/setup.md) usando dados reais de produção, mas sem os riscos como sobrecarga do sistema ou exposição de dados.
 
 O módulo está desativado por padrão. Para ativá-lo:
 
@@ -43,7 +43,7 @@ O módulo está desativado por padrão. Para ativá-lo:
     Se você estiver em um plano diferente, entre em contato com nossa [equipe de vendas](mailto:sales@wallarm.com) para fazer a transição para o necessário.
 1. Acesse Wallarm Console → **Vulnerabilidades** → **Configure** seguindo o link para [US Cloud](https://us1.my.wallarm.com/vulnerabilities/active?configure=true) ou [EU Cloud](https://my.wallarm.com/vulnerabilities/active?configure=true), e alterne a chave **Verificação de ameaça ativa**.
 
-Você tem ainda a capacidade de [ajustar ou personalizar o comportamento do módulo](../vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md) para endpoints específicos.
+Você tem ainda a capacidade de [ajustar ou personalizar o comportamento do módulo](../vulnerability-detection/threat-replay-testing/setup.md#enable) para endpoints específicos.
 
 ### Scanner de Vulnerabilidades <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 

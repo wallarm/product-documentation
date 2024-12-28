@@ -17,7 +17,7 @@ For example: if the response to the request sent to read the `/etc/passwd` conte
 To detect vulnerabilities in the application, Wallarm sends requests with attack signs using the following methods:
 
 * **Passive detection** identifies vulnerabilities by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
-* **Active threat verification**: lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
+* **Threat Replay Testing**: lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
 * **Vulnerability Scanner**: company's exposed assets are scanned for typical vulnerabilities.
 * **API Discovery insights**: the vulnerability was found by [API Discovery](../api-discovery/overview.md) module due to PII transfer in query parameters of GET requests.
 
@@ -27,24 +27,16 @@ Passive detection refers to identifying vulnerabilities by analyzing actual traf
 
 Passive vulnerability detection is enabled by default.
 
-### Active threat verification <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### Threat Replay Testing <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
-Wallarm's Active Threat Verification turns attackers into your own penetration testers. It analyzes initial attack attempts, then explores other ways the same attack could be exploited. This exposes weak spots in your environment that even the original attackers did not find. [Read more](../vulnerability-detection/active-threat-verification/overview.md)
+Wallarm's Threat Replay Testing turns attackers into your own penetration testers. It analyzes initial attack attempts, then explores other ways the same attack could be exploited. This exposes weak spots in your environment that even the original attackers did not find. [Read more](../vulnerability-detection/threat-replay-testing/overview.md)
 
-The Active Threat Verification capabilities:
+The Threat Replay Testing capabilities:
 
 * **Real-time testing**: Uses live attack data to spot current and potential future weak spots, keeping you one step ahead of hackers.
 * **Safe & smart simulation**: Skips sensitive authentication details and removes harmful code in tests. Simulates attack techniques for max security, not risking actual harm.
-* **Safe non-production tests**: Enables you to [run vulnerability checks in a staging or development setup](../vulnerability-detection/active-threat-verification/running-test-on-staging.md) using real production data, but without the risks like system overload or data exposure.
+* **Safe non-production tests**: Enables you to [run vulnerability checks in a staging or development setup](../vulnerability-detection/threat-replay-testing/setup.md) using real production data, but without the risks like system overload or data exposure.
 
-The module is disabled by default. To enable it:
-
-1. Ensure you have an active **Advanced API Security** [subscription plan](subscription-plans.md#waap-and-advanced-api-security). The module is only available under this plan.
-
-    If you are on a different plan, please contact our [sales team](mailto:sales@wallarm.com) to transition to the required one.
-1. Proceed to Wallarm Console → **Vulnerabilities** → **Configure** by following the link for the [US Cloud](https://us1.my.wallarm.com/vulnerabilities/active?configure=true) or [EU Cloud](https://my.wallarm.com/vulnerabilities/active?configure=true), and toggle on the **Active threat verification** switch.
-
-You further have the ability to [adjust or customize the module's behavior](../vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md) for specific endpoints.
 
 ### Vulnerability Scanner <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 

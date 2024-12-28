@@ -30,9 +30,9 @@ These instructions describe the steps to upgrade the running end‑of‑life Doc
 
 If upgrading node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 5.0 and ask to enable new IP list logic for your Wallarm account. When new IP list logic is enabled, please ensure the section [**IP lists**](../../user-guides/ip-lists/overview.md) of Wallarm Console is available.
 
-## Step 2: Disable the Active threat verification module (only if upgrading node 2.16 or lower)
+## Step 2: Disable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
 
-If upgrading Wallarm node 2.16 or lower, please disable the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Vulnerabilities** → **Configure**.
+If upgrading Wallarm node 2.16 or lower, please disable the [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Vulnerabilities** → **Configure**.
 
 The module operation can cause [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) during the upgrade process. Disabling the module minimizes this risk.
 
@@ -144,8 +144,8 @@ There are two options for running the container using the updated image:
 
 If the deployed image of the version 5.0 operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.
 
-## Step 16: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
+## Step 16: Re-enable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
 
-Learn the [recommendation on the Active threat verification module setup](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) and re-enable it if required.
+Learn the [recommendation on the Threat Replay Testing module setup](../../vulnerability-detection/threat-replay-testing/setup.md) and re-enable it if required.
 
 After a while, ensure the module operation does not cause false positives. If discovering false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).

@@ -73,13 +73,10 @@ nav:
       - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md
       - Managing Vulnerabilities: user-guides/vulnerabilities.md
       - Search and Filters: user-guides/search-and-filters/use-search-vuln.md
-    - Active Threat Verification:
-      - Overview: vulnerability-detection/active-threat-verification/overview.md
-      - Configuration:
-        - Enabling Globally or for Specific Endpoints: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
-        - Rewriting Requests Before Attack Replaying: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
-      - Use Cases:
-        - Running Tests on Non‑Production: vulnerability-detection/active-threat-verification/running-test-on-staging.md
+    - Threat Replay Testing:
+      - Overview: vulnerability-detection/threat-replay-testing/overview.md
+      - Setup: vulnerability-detection/threat-replay-testing/setup.md
+      - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
   - WAAP/WAF:
     - Overview: about-wallarm/waap-overview.md
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md

@@ -151,6 +151,6 @@ Se a imagem implantada da versão 4.8 opera corretamente, você pode excluir o n
 
 ## Passo 15: Reative o módulo de verificação de ameaça ativa (somente se atualizando o nó 2.16 ou inferior)
 
-Aprenda a [recomendação sobre a configuração do módulo de verificação de ameaça ativa](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) e reative-o se necessário.
+Aprenda a [recomendação sobre a configuração do módulo de verificação de ameaça ativa](../../vulnerability-detection/threat-replay-testing/setup.md) e reative-o se necessário.
 
 Depois de um tempo, certifique-se de que a operação do módulo não causa falsos positivos. Em caso de false positives, entre em contato com o [suporte técnico da Wallarm](mailto:support@wallarm.com).

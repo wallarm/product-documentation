@@ -122,6 +122,6 @@ sudo systemctl restart nginx
 
 ## ステップ13：アクティブな脅威検証モジュールを再有効化する（ノード2.16またはそれ以下をアップグレードする場合のみ）
 
-[アクティブな脅威検証モジュールの設定に関する推奨事項](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md)を学び、必要に応じて再有効化します。
+[アクティブな脅威検証モジュールの設定に関する推奨事項](../../vulnerability-detection/threat-replay-testing/setup.md)を学び、必要に応じて再有効化します。
 
 しらべて、モジュールの操作が偽の陽性を引き起こさないことを確認します。偽の陽性を発見した場合、[Wallarm技術サポート](mailto:support@wallarm.com)にご連絡ください。

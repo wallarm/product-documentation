@@ -6,7 +6,7 @@ Wallarm'ın [vulnerabilities](../about-wallarm/detecting-vulnerabilities.md) tes
 
 **Aktif tehdit doğrulaması**, saldırganları sızma testi uzmanlarına dönüştürmenize ve uygulamalarınızın/API'lerinizin zafiyetler için araştırdıkları etkinliklerinden olası güvenlik sorunlarını keşfetmenize olanak sağlar. Bu modül, trafikten gerçek saldırı verilerini kullanarak uygulama uç noktalarını araştırarak olası zafiyetleri bulur. Bu yöntem varsayılan olarak devre dışıdır.
 
-[**Aktif tehdit doğrulama** modülü konfigürasyonu için en iyi uygulamaları öğrenin →](../vulnerability-detection/active-threat-verification/running-test-on-staging.md)
+[**Aktif tehdit doğrulama** modülü konfigürasyonu için en iyi uygulamaları öğrenin →](../vulnerability-detection/threat-replay-testing/setup.md)
 
 API Envanteri
 

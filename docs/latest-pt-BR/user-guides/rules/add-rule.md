@@ -339,8 +339,8 @@ As seguintes regras são suportadas:
 * [Alterar cabeçalhos de resposta do servidor](add-replace-response-header.md)
 * [Definir o modo de filtragem][link-filter-mode-rule]
 * [Mascarar dados sensíveis][link-sensitive-data-rule]
-* [Definir modo de verificação de ameaça ativa](../../vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md)
-* [Reescrever ataque antes da verificação ativa](../../vulnerability-detection/active-threat-verification/modify-requests-before-replay.md)
+* [Definir modo de verificação de ameaça ativa](../../vulnerability-detection/threat-replay-testing/setup.md#enable)
+* [Reescrever ataque antes da verificação ativa](../../vulnerability-detection/active-threat-verification/setup.md#rewrites)
 * [Aplicar um patch virtual][link-virtual-patch]
 * [Regras de detecção definidas pelo usuário][link-regex-rule]
 * [Ignorar certos tipos de ataques](ignore-attack-types.md)

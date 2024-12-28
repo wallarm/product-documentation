@@ -35,8 +35,6 @@ Wallarmでは次のサブスクリプションプランを提供しています�
 | [API Discovery](../api-discovery/overview.md) | いいえ | はい |
 | API Discoveryを使用して[影のAPIを見つける](../api-discovery/rogue-api.md#shadow-api) | いいえ | はい |
 | [Sensitive data detection](../api-discovery/overview.md) | いいえ | はい |
-| **セキュリティテストと脆弱性の評価** | | |
-| [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | いいえ | はい |
 | [脆弱性スキャナ](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | いいえ | はい |
 | **セキュリティイベントの監視** | | |
 | SIEM、メッセンジャー等との[Integrations](../user-guides/settings/integrations/integrations-intro.md) | すべて | すべて |

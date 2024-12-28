@@ -123,6 +123,6 @@ Filtreleme düğümünün yeni sürümü başarıyla yapılandırıldıysa ve te
 
 ## Adım 13: Aktif tehdit doğrulama modülünü yeniden etkinleştirin (sadece 2.16 veya daha düşük düğümü güncellerken)
 
-[Aktif tehdit doğrulama modülü kurulumu hakkında tavsiyeleri](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) öğrenin ve gerekiyorsa yeniden etkinleştirin.
+[Aktif tehdit doğrulama modülü kurulumu hakkında tavsiyeleri](../../vulnerability-detection/threat-replay-testing/setup.md) öğrenin ve gerekiyorsa yeniden etkinleştirin.
 
 Bir süre sonra, modülün işlemi yanıltıcı pozitiflere neden olmadığından emin olun. Yanıltıcı pozitifler bulunursa, lütfen [Wallarm teknik destek](mailto:support@wallarm.com) ile iletişime geçin.

@@ -139,4 +139,4 @@ Wallarmが[脆弱性を検出する](../about-wallarm/detecting-vulnerabilities.
 
 **アクティブな脅威検証**では、攻撃者をペネトレーションテスターに変え、アプリやAPIに対する攻撃を形成し、可能なセキュリティ問題を発見します。このモジュールは、トラフィックから得た実際の攻撃データを使用して、アプリケーションのエンドポイントを探り、可能な脆弱性を探します。デフォルトではこの方法は無効になっています。
 
-[**アクティブな脅威検証** モジュールの設定のためのベストプラクティスを学ぶ →](../vulnerability-detection/active-threat-verification/running-test-on-staging.md)
+[**アクティブな脅威検証** モジュールの設定のためのベストプラクティスを学ぶ →](../vulnerability-detection/threat-replay-testing/setup.md)

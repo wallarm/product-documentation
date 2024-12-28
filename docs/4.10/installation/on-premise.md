@@ -158,5 +158,5 @@ To test the deployment:
 The following functionalities are currently not supported by the on-premise Wallarm solution:
 
 * [Exposed Asset Scanner](../user-guides/scanner.md)
-* [Active Threat Verification](../vulnerability-detection/active-threat-verification/overview.md)
+* [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md)
 * [API Leaks](../api-attack-surface/security-issues.md)

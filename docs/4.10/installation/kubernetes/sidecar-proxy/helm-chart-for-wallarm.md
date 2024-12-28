@@ -177,7 +177,7 @@ Whether to analyze the application responses for attacks. Possible values:
 * `on` (default)
 * `off`
 
-Response analysis is required for vulnerability detection during [passive detection][passive-detection-docs] and [active threat verification][active-threat-verification-docs].
+Response analysis is required for vulnerability detection during [passive detection][passive-detection-docs] and [threat replay testing][active-threat-verification-docs].
 
 [**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-response`.
 

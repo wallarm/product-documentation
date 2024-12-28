@@ -58,7 +58,7 @@ Son kullanma tarihi geçmiş Wallarm NGINX modüllerini (sürüm 3.6 ve altı) [
 
 * Süzgeç düğümü ve sonrasında analitik modülleri farklı sunucularda kuruluysa, **önce** sonrasında analitik modülünü yükseltin ve **sonra** süzgeç modülünü aşağıdaki [talimatları](separate-postanalytics.md) izleyerek yükseltin.
 
-### Adım 1: Active threat verification modülünü devre dışı bırakın (2.16 veya daha eski bir düğüm yükseltirken)
+### Adım 1: Threat Replay Testing modülünü devre dışı bırakın (2.16 veya daha eski bir düğüm yükseltirken)
 
 Wallarm düğüm 2.16 veya daha eski bir sürüm yükseltirken, lütfen Wallarm Konsolunda → **Zaafiyetler** → **Yapılandır** kısmında [Aktif tehdit doğrulama](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) modülünü devre dışı bırakın.
 
@@ -284,7 +284,7 @@ Kullanılan dağıtım yaklaşımına bağlı olarak, aşağıdaki ayarları ger
 * Süzgeç düğümü ve sonrasında analitik modülleri aynı sunucuda kuruluysa, aşağıdaki talimatları izleyerek tüm paketleri yükseltin.
 * Süzgeç düğümü ve sonrasında analitik modülleri farklı sunucularda kuruluysa, **önce** sonrasında analitik modülünü yükseltin ve sonra bu [talimatları](separate-postanalytics.md) izleyerek süzgeç modülünü yükseltin.
 
-### Adım 1: Active threat verification modülünü devre dışı bırakın (2.16 veya daha eski bir düğüm yükseltirken)
+### Adım 1: Threat Replay Testing modülünü devre dışı bırakın (2.16 veya daha eski bir düğüm yükseltirken)
 
 Wallarm düğüm 2.16 veya daha eski bir sürüm yükseltirken, lütfen Wallarm Konsolunda → **Zaafiyetler** → **Yapılandır** kısmında [Aktif tehdit doğrulama](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) modülünü devre dışı bırakın.
 
@@ -601,9 +601,9 @@ server {
 
 --8<-- "../include-tr/waf/installation/test-after-node-type-upgrade.md"
 
-### Adım 16: Active threat verification modülünü yeniden etkinleştirin (2.16 veya daha eski bir düğüm yükseltirken)
+### Adım 16: Threat Replay Testing modülünü yeniden etkinleştirin (2.16 veya daha eski bir düğüm yükseltirken)
 
-[Active threat verification modülünün kurulum önerilerini](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) öğrenin ve gerektiği takdirde yeniden etkinleştirin.
+[Threat Replay Testing modülünün kurulum önerilerini](../../vulnerability-detection/threat-replay-testing/setup.md) öğrenin ve gerektiği takdirde yeniden etkinleştirin.
 
 Bir süre sonra, modülün işlemi yanlış pozitiflere neden olmadığından emin olun. Yanlış pozitifler bulursanız, lütfen [Wallarm teknik desteğine](mailto:support@wallarm.com) başvurun.
 

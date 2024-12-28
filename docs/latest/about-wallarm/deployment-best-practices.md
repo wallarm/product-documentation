@@ -45,7 +45,7 @@ Analyzing requests with the [**libdetection** library](protecting-against-attack
 
 ## Configure proper reporting of end-user IP addresses
 
-For Wallarm filtering nodes located behind a load balancer or CDN please make sure to configure your filtering nodes to properly report end-user IP addresses (otherwise the [IP list functionality](../user-guides/ip-lists/overview.md), [Active threat verification](detecting-vulnerabilities.md#active-threat-verification), and some other features will not work):
+For Wallarm filtering nodes located behind a load balancer or CDN please make sure to configure your filtering nodes to properly report end-user IP addresses (otherwise the [IP list functionality](../user-guides/ip-lists/overview.md), [Threat Replay Testing](detecting-vulnerabilities.md#active-threat-verification), and some other features will not work):
 
 * [Instructions for NGINX-based Wallarm nodes](../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images and Docker node container)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
@@ -133,10 +133,10 @@ Wallarm is constantly working to improve the filtering node software, with new r
 * All Wallarm nodes connected to the same Wallarm account will receive the same set of default and custom rules for traffic filtering. You still can apply different rules for different applications by using proper application IDs or unique HTTP request parameters like headers, query string parameters, etc.
 * If you have the trigger configured to automatically block an IP address ([trigger example](../user-guides/triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)), the system will block the IP for all applications in a Wallarm account.
 
-## Follow the best practices for Active threat verification <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Follow the best practices for Threat Replay Testing <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
-One method Wallarm uses to [detect vulnerabilities](../about-wallarm/detecting-vulnerabilities.md) is **Active threat verification**.
+One method Wallarm uses to [detect vulnerabilities](../about-wallarm/detecting-vulnerabilities.md) is **Threat Replay Testing**.
 
-**Active threat verification** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
+**Threat Replay Testing** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
 
-[Learn the best practices for the **Active threat verification** module configuration →](../vulnerability-detection/active-threat-verification/running-test-on-staging.md)
+[Learn the best practices for the **Threat Replay Testing** module configuration →](../vulnerability-detection/threat-replay-testing/setup.md)

@@ -462,6 +462,6 @@ Ingress notlarını Ingress denetleyicisi 4.8'de yayımlanan değişikliklere ay
 
 ## Adım 11: Etkin tehdit teyit etme modülünü yeniden etkinleştirin (yalnızca düğüm 2.16 veya daha alt bir versiyon yükseltiliyorsa)
 
-[Etkin tehdit teyit etme modülü kurulumu hakkında öneriyi](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) öğrenin ve gerekiyorsa modülü yeniden etkinleştirin.
+[Etkin tehdit teyit etme modülü kurulumu hakkında öneriyi](../../vulnerability-detection/threat-replay-testing/setup.md) öğrenin ve gerekiyorsa modülü yeniden etkinleştirin.
 
 Bir süre sonra, modülün işleminin yanlış pozitiflere sebep olmadığından emin olun. Eğer yanlış pozitifler bulunursa, lütfen [Wallarm teknik destek)](mailto:support@wallarm.com) ile iletişime geçin.

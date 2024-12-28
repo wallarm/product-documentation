@@ -28,13 +28,13 @@ Pasif zafiyet tespiti varsayılan olarak etkindir.
 
 ### Aktif tehdit doğrulaması <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
-Wallarm'ın Aktif Tehdit Doğrulaması, saldırganları kendi penetre testçilerinize dönüştürür. İlk saldırı girişimlerini analiz eder, ardından aynı saldırının başka yollarla nasıl sömürülebileceğine dair diğer yolları araştırır. Bu, orijinal saldırganların bile bulamadığı ortamınızdaki zayıf noktaları ortaya çıkarır. [Daha fazla bilgi](../vulnerability-detection/active-threat-verification/overview.md)
+Wallarm'ın Aktif Tehdit Doğrulaması, saldırganları kendi penetre testçilerinize dönüştürür. İlk saldırı girişimlerini analiz eder, ardından aynı saldırının başka yollarla nasıl sömürülebileceğine dair diğer yolları araştırır. Bu, orijinal saldırganların bile bulamadığı ortamınızdaki zayıf noktaları ortaya çıkarır. [Daha fazla bilgi](../vulnerability-detection/threat-replay-testing/overview.md)
 
 Aktif Tehdit Doğrulama yetenekleri:
 
 * **Gerçek zamanlı test**: Canlı saldırı verilerini kullanarak mevcut ve potansiyel gelecek zayıf noktaları bulur, sizi hackerların bir adım önünde tutar.
 * **Güvenli & akıllı simülasyon**: Hassas kimlik doğrulama detaylarını atlar ve testlerde zararlı kodu kaldırır. Maksimum güvenlik için saldırı tekniklerini simüle eder, gerçek zarar riskini yoktur.
-* **Güvenli olmayan üretim testleri**: Gerçek üretim verilerini kullanarak bir sahneleme veya geliştirme kurulumunda [zafiyet kontrollerini çalıştırmanızı](../vulnerability-detection/active-threat-verification/running-test-on-staging.md) sağlar, ancak sistem aşırı yüklenme veya veri ifşası riskleri gibi riskler olmaz.
+* **Güvenli olmayan üretim testleri**: Gerçek üretim verilerini kullanarak bir sahneleme veya geliştirme kurulumunda [zafiyet kontrollerini çalıştırmanızı](../vulnerability-detection/threat-replay-testing/setup.md) sağlar, ancak sistem aşırı yüklenme veya veri ifşası riskleri gibi riskler olmaz.
 
 Modül varsayılan olarak devre dışıdır. Aktive etmek için:
 
@@ -43,7 +43,7 @@ Modül varsayılan olarak devre dışıdır. Aktive etmek için:
     Eğer başka bir planda bulunuyorsanız, lütfen gerekli olan plana geçmek için bizimle [satış ekibimizle](mailto:sales@wallarm.com) irtibata geçin.
 1.  Wallarm Konsolu → **Zafiyetler** → **Yapılandır** bölümüne gidin ve [US Cloud](https://us1.my.wallarm.com/vulnerabilities/active?configure=true) veya [EU Cloud](https://my.wallarm.com/vulnerabilities/active?configure=true) için olan linki takip etmekle, **Aktif tehdit doğrulaması** anahtarını açın.
 
-Ayrıca, belirli uç noktalar için [modülün davranışını ayarlama veya özelleştirme](../vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md) yeteneğine sahip olacaksınız.
+Ayrıca, belirli uç noktalar için [modülün davranışını ayarlama veya özelleştirme](../vulnerability-detection/threat-replay-testing/setup.md#enable) yeteneğine sahip olacaksınız.
 
 ### Zafiyet Tarayıcısı <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 

@@ -151,6 +151,6 @@ Eğer 4.8 sürümünün dağıtım görüntüsü doğru şekilde çalışıyorsa
 
 ## Adım 15: Etkin tehdit doğrulama modülünü yeniden etkinleştirin (yalnızca 2.16 veya daha düşük düğüm yükseltiliyorsa)
 
-[Etkin tehdit doğrulama modülü kurulumuna dair önerileri](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) öğrenin ve gerekiyorsa yeniden etkinleştirin.
+[Etkin tehdit doğrulama modülü kurulumuna dair önerileri](../../vulnerability-detection/threat-replay-testing/setup.md) öğrenin ve gerekiyorsa yeniden etkinleştirin.
 
 Bir süre sonra, modül işlemi yanlış pozitifler oluşturmadığından emin olun. Eğer yanlış pozitifler keşfederseniz, [Wallarm teknik destek ekibine](mailto:support@wallarm.com) lütfen başvurun.

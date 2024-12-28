@@ -44,11 +44,11 @@
     * `Cookie`
     * `Authorization: Basic`
     * `Viewstate`
-* アプリケーションが非標準的な認証方法を使用している場合やリクエストの認証が必要ない場合、**アクティブ脅威検証**モジュールはトラフィックからの任意のリクエストを再放送し、システムに悪影響を与える可能性があります。例えば、100以上のお金の取引や注文を繰り返すなどです。この状況のリスクを最小限に抑えるために、[攻撃の再生のためのテスト環境やステージング環境を使用する](../vulnerability-detection/active-threat-verification/running-test-on-staging.md#optional-configure-attack-rechecker-request-rewriting-rules-run-tests-against-a-copy-of-the-application)ことと、[非標準的なリクエスト認証パラメータをマスクする](../vulnerability-detection/active-threat-verification/running-test-on-staging.md#configure-proper-data-masking-rules)ことを推奨します。
+* アプリケーションが非標準的な認証方法を使用している場合やリクエストの認証が必要ない場合、**アクティブ脅威検証**モジュールはトラフィックからの任意のリクエストを再放送し、システムに悪影響を与える可能性があります。例えば、100以上のお金の取引や注文を繰り返すなどです。この状況のリスクを最小限に抑えるために、[攻撃の再生のためのテスト環境やステージング環境を使用する](../vulnerability-detection/threat-replay-testing/setup.md#optional-configure-attack-rechecker-request-rewriting-rules-run-tests-against-a-copy-of-the-application)ことと、[非標準的なリクエスト認証パラメータをマスクする](../vulnerability-detection/threat-replay-testing/setup.md#configure-proper-data-masking-rules)ことを推奨します。
 
 #### 設定
 
-**アクティブ脅威検証**モジュールはデフォルトでは無効になっています。適切に動作させるためには、有効にし、適切に設定する必要があります。**アクティブ脅威検証**の設定オプションと、これらのオプションの設定のベストプラクティスについては、[こちらのドキュメント](../vulnerability-detection/active-threat-verification/running-test-on-staging.md)をご覧ください。
+**アクティブ脅威検証**モジュールはデフォルトでは無効になっています。適切に動作させるためには、有効にし、適切に設定する必要があります。**アクティブ脅威検証**の設定オプションと、これらのオプションの設定のベストプラクティスについては、[こちらのドキュメント](../vulnerability-detection/threat-replay-testing/setup.md)をご覧ください。
 
 ### 脆弱性スキャナー <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 

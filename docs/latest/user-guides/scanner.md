@@ -101,7 +101,7 @@ In the **Scanner** section, every asset has a switch that allows you to turn vul
 
 ### Limiting vulnerability scanning
 
-Wallarm Scanner uses test malicious requests to detect vulnerabilities in discovered resources based on the resource response. To avoid overwhelming your resources, you can manage the Requests Per Second (RPS) and Requests Per Minute (RPM) of Wallarm Scanner requests. The Active Threat Verification module also limits requests based on user-defined values when they are directed at resources from exposed assets.
+Wallarm Scanner uses test malicious requests to detect vulnerabilities in discovered resources based on the resource response. To avoid overwhelming your resources, you can manage the Requests Per Second (RPS) and Requests Per Minute (RPM) of Wallarm Scanner requests. The Threat Replay Testing module also limits requests based on user-defined values when they are directed at resources from exposed assets.
 
 To set the same limits for all domains and IP addresses, click **Configure** and set values in the corresponding section.
 

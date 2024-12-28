@@ -139,4 +139,4 @@ Um dos métodos que o Wallarm usa para [detectar vulnerabilidades](../about-wall
 
 A **Verificação de ameaça ativa** permite que você transforme atacantes em testadores de penetração e descubra possíveis problemas de segurança a partir de sua atividade enquanto eles sondam seus aplicativos/APIs em busca de vulnerabilidades. Este módulo encontra possíveis vulnerabilidades sondando os endpoints da aplicação usando dados reais de ataque do tráfego. Por padrão, este método está desativado.
 
-[Conheça as melhores práticas para a configuração do módulo **Verificação de ameaça ativa** →](../vulnerability-detection/active-threat-verification/running-test-on-staging.md)
+[Conheça as melhores práticas para a configuração do módulo **Verificação de ameaça ativa** →](../vulnerability-detection/threat-replay-testing/setup.md)
