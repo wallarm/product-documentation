@@ -86,13 +86,10 @@ nav:
       - Tarayıcı Ayarları: user-guides/scanner.md
       - Tarayıcı Adresleri: admin-en/scanner-addresses.md
       - Kaynak Tarayıcısını Durdurmak için Wallarm Destek İletişimi: admin-en/scanner-complaint-en.md
-    - Aktif Tehdit Doğrulama:
-      - Genel Bakış: vulnerability-detection/active-threat-verification/overview.md
-      - Yapılandırma:
-        - Genel Olarak veya Belirli Uç Noktalar için Etkinleştirme: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
-        - Saldırı Oynatma Öncesi İstekleri Yeniden Yazma: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
-      - Kullanım Senaryoları:
-        - Üretim Dışı Testleri Çalıştırma: vulnerability-detection/active-threat-verification/running-test-on-staging.md
+    - Threat Replay Testing:
+      - Overview: vulnerability-detection/threat-replay-testing/overview.md
+      - Setup: vulnerability-detection/threat-replay-testing/setup.md
+      - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
   - WAAP/WAF:
     - Genel Bakış: about-wallarm/waap-overview.md
     - Saldırı Tespit Prosedürü: about-wallarm/protecting-against-attacks.md

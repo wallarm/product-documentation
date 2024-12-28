@@ -77,7 +77,7 @@ A configuração de detecção de vulnerabilidade pode ser ajustada usando o bot
 * Ativar / desativar a reverificação de vulnerabilidades com o Scanner usando a opção **Reverificar vulnerabilidades**.
 * Ativar / desativar o módulo **Verificação de ameaça ativa** para detecção e reverificação de vulnerabilidades. Observe que essa opção controla o módulo em si, não apenas o processo de reverificação.
 
-    Por padrão, este módulo está desativado, aprenda suas melhores práticas de configuração [melhores práticas](../vulnerability-detection/active-threat-verification/running-test-on-staging.md) antes de ativá-lo.
+    Por padrão, este módulo está desativado, aprenda suas melhores práticas de configuração [melhores práticas](../vulnerability-detection/threat-replay-testing/setup.md) antes de ativá-lo.
 
 ![Configurações de verificação de vulnerabilidade](../images/user-guides/vulnerabilities/vuln-scan-settings.png)
 

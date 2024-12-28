@@ -81,13 +81,10 @@ nav:
       - 脆弱性の検出: about-wallarm/detecting-vulnerabilities.md
       - 脆弱性の管理: user-guides/vulnerabilities.md
       - 検索とフィルタ: user-guides/search-and-filters/use-search-vuln.md
-    - アクティブ脅威検証:
-      - 概要: vulnerability-detection/active-threat-verification/overview.md
-      - 設定:
-        - グローバルまたは特定のエンドポイントでの有効化: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
-        - 攻撃再生前のリクエストの書き換え: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
-      - ユースケース:
-        - ノンポード上のテストの実行: vulnerability-detection/active-threat-verification/running-test-on-staging.md
+    - Threat Replay Testing:
+      - Overview: vulnerability-detection/threat-replay-testing/overview.md
+      - Setup: vulnerability-detection/threat-replay-testing/setup.md
+      - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
   - WAAP/WAF:
     - 概要: about-wallarm/waap-overview.md
     - DDoS保護: admin-en/configuration-guides/protecting-against-ddos.md

@@ -123,6 +123,6 @@ Se a nova versão do nó de filtragem estiver configurada e testada com sucesso,
 
 ## Passo 13: Reative o módulo de verificação de ameaças ativas (somente se estiver atualizando o nó 2.16 ou inferior)
 
-Aprenda a [recomendação sobre a configuração do módulo de Verificação de Ameaça Ativa](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) e reative-o, se necessário.
+Aprenda a [recomendação sobre a configuração do módulo de Verificação de Ameaça Ativa](../../vulnerability-detection/threat-replay-testing/setup.md) e reative-o, se necessário.
 
 Depois de um tempo, assegure-se de que a operação do módulo não cause falsos positivos. Se encontrar falsos positivos, entre em contato com o [suporte técnico do Wallarm](mailto:support@wallarm.com).

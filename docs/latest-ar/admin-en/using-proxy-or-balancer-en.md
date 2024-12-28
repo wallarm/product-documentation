@@ -23,9 +23,9 @@
 * [حماية من الهجمات القوية](configuration-guides/protecting-against-bruteforce.md) ، على سبيل المثال:
 
     إذا كانت الطلبات التي تمر عبر موزع الحمولة تحتوي على علامات هجوم قوية ، فسوف تضيف Wallarm هذا العنوان IP إلى قائمة الرفض وبالتالي ستمنع جميع الطلبات اللاحقة التي تعبر عبر هذا الموزع.
-* النموذج [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) و [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) ، على سبيل المثال:
+* النموذج [Threat Replay Testing](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) و [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) ، على سبيل المثال:
 
-    ستعتبر Wallarm أن عنوان IP الموزع هو [عنوان IP المنشئ للهجمات الاختبار](../admin-en/scanner-addresses.md) التي تم إنشاؤها بواسطة  Active threat verification module و Vulnerability Scanner. وبالتالي، سيتم عرض الهجمات الاختبار في لوحة التحكم Wallarm كهجمات نشأت من عنوان IP للموزع وسيتم التحقق منها إضافياً من Wallarm مما سيؤدي إلى إنشاء حمولة إضافية على التطبيق.
+    ستعتبر Wallarm أن عنوان IP الموزع هو [عنوان IP المنشئ للهجمات الاختبار](../admin-en/scanner-addresses.md) التي تم إنشاؤها بواسطة  Threat Replay Testing module و Vulnerability Scanner. وبالتالي، سيتم عرض الهجمات الاختبار في لوحة التحكم Wallarm كهجمات نشأت من عنوان IP للموزع وسيتم التحقق منها إضافياً من Wallarm مما سيؤدي إلى إنشاء حمولة إضافية على التطبيق.
 
 إذا كانت الوحدة Wallarm متصلة عبر [IPC socket](https://en.wikipedia.org/wiki/Unix_domain_socket)، فيعتبر `0.0.0.0` كمصدر للطلب.
 

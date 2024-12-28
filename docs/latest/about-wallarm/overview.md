@@ -47,7 +47,7 @@ Managing deployed risk is the first line of defense, but reducing the risk exhib
 
 * [Identifies vulnerabilities](../user-guides/vulnerabilities.md) through passive traffic analysis.
 * Examines identified APIs for weak points.
-* [Dynamically creates API security tests](../vulnerability-detection/active-threat-verification/overview.md) from observed traffic.
+* [Dynamically creates API security tests](../vulnerability-detection/threat-replay-testing/overview.md) from observed traffic.
 * [Checks public repositories for exposed API tokens](../api-attack-surface/security-issues.md).
 
 ![Vulns](../images/about-wallarm-waf/overview/vulnerabilities.png)

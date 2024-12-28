@@ -113,13 +113,10 @@ nav:
       - الكشف عن الضعف: about-wallarm/detecting-vulnerabilities.md
       - إدارة الضعف: user-guides/vulnerabilities.md
       - البحث والمرشحات: user-guides/search-and-filters/use-search-vuln.md
-    - التحقق من الهجمات النشطة:
-      - نظرة عامة: vulnerability-detection/active-threat-verification/overview.md
-      - التكوين:
-        - تمكينه عالميًا أو لنقاط النهاية المحددة: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
-        - إعادة كتابة الطلبات قبل إعادة تشغيل الهجوم: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
-      - حالات الاستخدام:
-        - تشغيل الاختبارات على غير الإنتاج: vulnerability-detection/active-threat-verification/running-test-on-staging.md
+    - Threat Replay Testing:
+      - Overview: vulnerability-detection/threat-replay-testing/overview.md
+      - Setup: vulnerability-detection/threat-replay-testing/setup.md
+      - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
   - WAAP/WAF:
     - نظرة عامة: about-wallarm/waap-overview.md
     - حماية DDoS: admin-en/configuration-guides/protecting-against-ddos.md

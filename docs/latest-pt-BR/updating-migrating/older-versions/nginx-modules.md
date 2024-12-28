@@ -205,7 +205,7 @@ server {
 
 ### Passo 9: Reative o módulo de Verificação de ameaças ativas (somente se estiver atualizando o nó 2.16 ou abaixo)
 
-Aprenda a [recomendação sobre a configuração do módulo Verificação de ameaças ativas](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) e reative-o, se necessário.
+Aprenda a [recomendação sobre a configuração do módulo Verificação de ameaças ativas](../../vulnerability-detection/threat-replay-testing/setup.md) e reative-o, se necessário.
 
 Depois de um tempo, verifique se a operação do módulo não está causando falsos positivos. Se descobrir falsos positivos, entre em contato com o [suporte técnico da Wallarm](mailto:support@wallarm.com).
 

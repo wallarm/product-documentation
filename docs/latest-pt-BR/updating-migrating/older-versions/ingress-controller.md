@@ -30,7 +30,7 @@ Quando a nova lógica de listas de IP estiver ativada, abra o Console Wallarm e 
 
 ## Passo 2: Desative o módulo de verificação de ameaças ativas (apenas se atualizar o nó 2.16 ou inferior)
 
-Se estiver atualizando o nó Wallarm 2.16 ou inferior, desative o módulo [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) no Console Wallarm → **Vulnerabilities** → **Configure**.
+Se estiver atualizando o nó Wallarm 2.16 ou inferior, desative o módulo [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) no Console Wallarm → **Vulnerabilities** → **Configure**.
 
 A operação do módulo pode causar [falsos positivos](../../about-wallarm/protecting-against-attacks.md#false-positives) durante o processo de atualização. Desativar o módulo minimiza este risco.
 
@@ -460,6 +460,6 @@ Ajuste as seguintes anotações do Ingress para as mudanças lançadas no contro
 
 ## Passo 11: Reative o módulo de verificação de ameaça ativa (apenas se atualizar o nó 2.16 ou inferior)
 
-Conheça a [recomendação sobre a configuração do módulo de verificação de ameaças ativas](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) e reative-o se necessário.
+Conheça a [recomendação sobre a configuração do módulo de verificação de ameaças ativas](../../vulnerability-detection/threat-replay-testing/setup.md) e reative-o se necessário.
 
 Depois de um tempo, garanta que a operação do módulo não cause falsos positivos. Se descobrir falsos positivos, por favor, entre em contato com o [suporte técnico da Wallarm](mailto:support@wallarm.com).

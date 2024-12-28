@@ -77,7 +77,7 @@ Zafiyet algılama konfigürasyonu, **Yapılandır** düğmesi kullanılarak daha
 * Tarayıcı ile zafiyetlerin yeniden kontrolünü etkinleştirin / devre dışı bırakın **Zafiyetleri Yeniden Kontrol Et** seçeneği kullanılarak.
 * Zafiyet tespiti ve yeniden kontrolü için **Aktif tehdit doğrulaması** modülünü etkinleştirin / devre dışı bırakın. Bu seçenek, modülün kendisini kontrol eder, sadece yeniden kontrol sürecini değil.
 
-    Bu modül varsayılan olarak devre dışıdır, etkinleştirmeden önce yapılandırmasının [en iyi uygulamalarını](../vulnerability-detection/active-threat-verification/running-test-on-staging.md) öğrenin.
+    Bu modül varsayılan olarak devre dışıdır, etkinleştirmeden önce yapılandırmasının [en iyi uygulamalarını](../vulnerability-detection/threat-replay-testing/setup.md) öğrenin.
 
 ![Zafiyet tarama ayarları](../images/user-guides/vulnerabilities/vuln-scan-settings.png)
 

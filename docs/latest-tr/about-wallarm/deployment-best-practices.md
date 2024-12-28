@@ -139,4 +139,4 @@ Wallarm'ın [güvenlik açıklarını tespit etme](../about-wallarm/detecting-vu
 
 **Aktif tehdit doğrulaması**, uygulamalarınıza/API'larınıza saldırarak olası güvenlik sorunlarını keşfeden saldırganları penetre testçisine dönüştürmenizi sağlar. Bu modül, trafiğin gerçek saldırı verilerini kullanarak uygulama uç noktalarını sonda bulma olasılıklarını bulur. Bu yöntem varsayılan olarak devre dışı bırakılmıştır.
 
-[**Aktif tehdit doğrulama** modülü yapılandırması için en iyi uygulamaları öğrenin →](../vulnerability-detection/active-threat-verification/running-test-on-staging.md)
+[**Aktif tehdit doğrulama** modülü yapılandırması için en iyi uygulamaları öğrenin →](../vulnerability-detection/threat-replay-testing/setup.md)

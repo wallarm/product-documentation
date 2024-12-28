@@ -3,13 +3,13 @@
 
 Vulnerability Detection and Mitigation Best Practices
 
-## Follow the best practices for Active threat verification <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Follow the best practices for Threat Replay Testing <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
-One method Wallarm uses to [detect vulnerabilities](../about-wallarm/detecting-vulnerabilities.md) is **Active threat verification**.
+One method Wallarm uses to [detect vulnerabilities](../about-wallarm/detecting-vulnerabilities.md) is **Threat Replay Testing**.
 
-**Active threat verification** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
+**Threat Replay Testing** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
 
-[Learn the best practices for the **Active threat verification** module configuration →](../vulnerability-detection/active-threat-verification/running-test-on-staging.md)
+[Learn the best practices for the **Threat Replay Testing** module configuration →](../vulnerability-detection/threat-replay-testing/setup.md)
 
 
 

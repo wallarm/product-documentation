@@ -358,7 +358,7 @@ For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override str
 
 ### wallarm_parse_response
 
-Whether to analyze the application responses. Response analysis is required for vulnerability detection during [passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification). 
+Whether to analyze the application responses. Response analysis is required for vulnerability detection during [passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [threat replay testing](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification). 
 
 Possible values are `on` (response analysis is enabled) and `off` (response analysis is disabled).
 

@@ -29,9 +29,9 @@ If upgrading node 2.18 or lower, inform [Wallarm technical support](mailto:suppo
 
 When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
 
-## Step 2: Disable the Active threat verification module (only if upgrading node 2.16 or lower)
+## Step 2: Disable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
 
-If upgrading Wallarm node 2.16 or lower, please disable the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Vulnerabilities** → **Configure**.
+If upgrading Wallarm node 2.16 or lower, please disable the [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Vulnerabilities** → **Configure**.
 
 The module operation can cause [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) during the upgrade process. Disabling the module minimizes this risk.
 
@@ -461,8 +461,8 @@ Adjust the following Ingress annotations to the changes released in Ingress cont
 
     In new node versions, the Wallarm blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
 
-## Step 11: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
+## Step 11: Re-enable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
 
-Learn the [recommendation on the Active threat verification module setup](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) and re-enable it if required.
+Learn the [recommendation on the Threat Replay Testing module setup](../../vulnerability-detection/threat-replay-testing/setup.md) and re-enable it if required.
 
 After a while, ensure the module operation does not cause false positives. If discovering false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).

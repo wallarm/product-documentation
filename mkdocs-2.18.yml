@@ -146,7 +146,7 @@ nav:
       - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
       - Learning the amount of requests per month handled by the application: admin-en/operation/learn-incoming-request-number.md
     - Support of the Scanner Operation:
-      - Best practices for configuring the Active threat verification feature: admin-en/attack-rechecker-best-practices.md
+      - Best practices for configuring the Threat Replay Testing feature: admin-en/attack-rechecker-best-practices.md
       - Disabling the IP Address Blocking of the Wallarm Scanner: admin-en/scanner-ips-allowlisting.md 
       - Scanner Addresses:
         - Scanner Addresses for EU Cloud: admin-en/scanner-address-eu-cloud.md
@@ -184,7 +184,7 @@ nav:
         - Setting response headers: user-guides/rules/add-replace-response-header.md
         - Filtration mode rule: user-guides/rules/wallarm-mode-rule.md
         - Rules for Data Masking: user-guides/rules/sensitive-data-rule.md
-        - Customizing the module for active threat verification: user-guides/rules/change-request-for-active-verification.md
+        - Customizing the module for Threat Replay Testing: user-guides/rules/change-request-for-active-verification.md
         - Virtual Patching: user-guides/rules/vpatch-rule.md
         - User‑Defined Detection Rules: user-guides/rules/regex-rule.md
         - Ignoring certain attack types: user-guides/rules/ignore-attack-types.md

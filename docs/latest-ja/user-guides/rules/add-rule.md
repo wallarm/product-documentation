@@ -333,8 +333,8 @@ WallarmのURIコンストラクタでワイルドカードを使用できます�
 * [サーバー応答ヘッダーの変更](add-replace-response-header.md)
 * [フィルタリングモードの設定][link-filter-mode-rule]
 * [機密データのマスキング][link-sensitive-data-rule]
-* [アクティブな脅威検証のモードの設定](../../vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md)
-* [アクティブな検証の前の攻撃の書き換え](../../vulnerability-detection/active-threat-verification/modify-requests-before-replay.md)
+* [アクティブな脅威検証のモードの設定](../../vulnerability-detection/threat-replay-testing/setup.md#enable)
+* [アクティブな検証の前の攻撃の書き換え](../../vulnerability-detection/active-threat-verification/setup.md#rewrites)
 * [仮想パッチの適用][link-virtual-patch]
 * [ユーザー定義の検出ルール][link-regex-rule]
 * [特定の攻撃タイプの無視](ignore-attack-types.md)

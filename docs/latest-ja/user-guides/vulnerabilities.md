@@ -77,7 +77,7 @@ Wallarmは定期的にアクティブな脆弱性と解決済みの脆弱性の�
 * スキャナを使用した脆弱性の再チェックを有効/無効にすることができます。**脆弱性再チェック**オプションを使用します。
 * 脆弱性の検出と再チェックのための**アクティブな脅威の確認**モジュールを有効/無効にします。注意してください、このオプションはモジュール自体を制御し、再チェックプロセスだけでなく。
 
-    デフォルトでは、このモジュールは無効になっており、有効化する前にその設定[ベストプラクティス](../vulnerability-detection/active-threat-verification/running-test-on-staging.md)を学びます。
+    デフォルトでは、このモジュールは無効になっており、有効化する前にその設定[ベストプラクティス](../vulnerability-detection/threat-replay-testing/setup.md)を学びます。
 
 ![脆弱性スキャンの設定](../images/user-guides/vulnerabilities/vuln-scan-settings.png)
 

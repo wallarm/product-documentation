@@ -11,7 +11,7 @@ By deploying and using the filtering nodes in all stages of your software develo
 
 ## Configure proper reporting of end-user IP addresses - технические бест практисы,плюс ссылка на это должна быть в каждой инструкции по деплою
 
-For Wallarm filtering nodes located behind a load balancer or CDN please make sure to configure your filtering nodes to properly report end-user IP addresses (otherwise the [IP list functionality](user-guides/ip-lists/overview.md), [Active threat verification](detecting-vulnerabilities.md#active-threat-verification), and some other features will not work):
+For Wallarm filtering nodes located behind a load balancer or CDN please make sure to configure your filtering nodes to properly report end-user IP addresses (otherwise the [IP list functionality](user-guides/ip-lists/overview.md), [Threat Replay Testing](detecting-vulnerabilities.md#active-threat-verification), and some other features will not work):
 
 * [Instructions for NGINX-based Wallarm nodes](../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images and Docker node container)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)

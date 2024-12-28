@@ -339,8 +339,8 @@ Aşağıdaki kurallar desteklenmektedir:
 * [Sunucu yanıt başlıklarını değiştir](add-replace-response-header.md)
 * [Filtrasyon modunu ayarla][link-filter-mode-rule]
 * [Hassas verileri maskala][link-sensitive-data-rule]
-* [Aktif tehdit doğrulama modunu ayarla](../../vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md)
-* [Aktif doğrulama öncesi saldırıları yeniden yaz](../../vulnerability-detection/active-threat-verification/modify-requests-before-replay.md)
+* [Aktif tehdit doğrulama modunu ayarla](../../vulnerability-detection/threat-replay-testing/setup.md#enable)
+* [Aktif doğrulama öncesi saldırıları yeniden yaz](../../vulnerability-detection/active-threat-verification/setup.md#rewrites)
 * [Sanal bir yama uygula][link-virtual-patch]
 * [Kullanıcı tarafından tanımlanmış tespit kuralları][link-regex-rule]
 * [Belirli saldırı türlerini yoksay](ignore-attack-types.md)

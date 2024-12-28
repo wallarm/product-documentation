@@ -30,7 +30,7 @@
 
 ## Step 2: アクティブな脅威確認モジュールを無効化する (ノード2.16以下をアップグレードする場合のみ)
 
-Wallarm ノード 2.16 以下をアップグレードする場合、Wallarm Console → **Vulnerabilities** → **Configure** で [Active Threat Verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) モジュールを無効にしてください。
+Wallarm ノード 2.16 以下をアップグレードする場合、Wallarm Console → **Vulnerabilities** → **Configure** で [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) モジュールを無効にしてください。
 
 モジュールの動作は、アップグレードプロセス中に [False Positives](../../about-wallarm/protecting-against-attacks.md#false-positives) を引き起こす可能性があります。モジュールを無効にすることで、このリスクを最小限に抑えられます。
 
@@ -150,6 +150,6 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## Step 15: アクティブな脅威確認モジュールを再度有効にする (ノード2.16以下をアップグレードする場合のみ)
 
-[アクティブな脅威確認モジュールの設定に関する推奨事項](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) を確認し、必要に応じて再度有効にしてください。
+[アクティブな脅威確認モジュールの設定に関する推奨事項](../../vulnerability-detection/threat-replay-testing/setup.md) を確認し、必要に応じて再度有効にしてください。
 
 しばらくしてから、モジュールの動作が偽陽性を引き起こさないことを確認してください。偽陽性が発見された場合は、[Wallarm テクニカルサポート](mailto:support@wallarm.com)にご連絡ください。

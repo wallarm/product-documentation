@@ -66,9 +66,9 @@ Besides any other help, ask to enable new IP lists logic for your Wallarm accoun
 
 * If filtering node and postanalytics modules are installed on different servers, **first** upgrade the postanalytics module and **then** the filtering module following these [instructions](separate-postanalytics.md).
 
-## Step 1: Disable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 1: Disable the Threat Replay Testing module (if upgrading node 2.16 or lower)
 
-If upgrading Wallarm node 2.16 or lower, please disable the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Vulnerabilities** → **Configure**.
+If upgrading Wallarm node 2.16 or lower, please disable the [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Vulnerabilities** → **Configure**.
 
 The module operation can cause [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) during the upgrade process. Disabling the module minimizes this risk.
 
@@ -217,9 +217,9 @@ If the page `&/usr/share/nginx/html/wallarm_blocked.html` was configured to be r
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Step 10: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
+## Step 10: Re-enable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
 
-Learn the [recommendation on the Active threat verification module setup](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) and re-enable it if required.
+Learn the [recommendation on the Threat Replay Testing module setup](../../vulnerability-detection/threat-replay-testing/setup.md) and re-enable it if required.
 
 After a while, ensure the module operation does not cause false positives. If discovering false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).
 

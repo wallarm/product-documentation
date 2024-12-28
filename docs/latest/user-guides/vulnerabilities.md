@@ -5,7 +5,7 @@ Vulnerabilities are security flaws in an infrastructure that may be exploited by
 Wallarm employs various techniques to [discover](../about-wallarm/detecting-vulnerabilities.md) security weaknesses, which include:
 
 * **Passive detection**: the vulnerability was found by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
-* **Active threat verification**: the vulnerability was found during the attack verification process.
+* **Threat Replay Testing**: the vulnerability was found during the attack verification process.
 * **Vulnerability Scanner**: the vulnerability was found during the [exposed asset](scanner.md) scanning process.
 * **API Discovery insights**: the vulnerability was found by [API Discovery](../api-discovery/overview.md) module due to PII transfer in query parameters of GET requests.
 
@@ -59,7 +59,7 @@ Wallarm regularly rechecks both active and closed vulnerabilities. This involves
 
 Active vulnerabilities and vulnerabilities fixed less than a month ago are rechecked once a day. Vulnerabilities that were fixed more than a month ago are rechecked once a week.
 
-Depending on the initial vulnerability detection method, the testing is performed by either **Vulnerability Scanner** or the **Active Threat Verification** module. The configuration settings for the automated rechecking process can be controlled via the [**Configure**](#configuring-vulnerability-detection) button.
+Depending on the initial vulnerability detection method, the testing is performed by either **Vulnerability Scanner** or the **Threat Replay Testing** module. The configuration settings for the automated rechecking process can be controlled via the [**Configure**](#configuring-vulnerability-detection) button.
 
 It is not possible to recheck vulnerabilities that were detected passively.
 
@@ -76,9 +76,9 @@ The vulnerability detection configuration can be fine-tuned using the **Configur
 
     You can also find the same toggle switch in the **Scanner** section. Changing the switch in one section will automatically update the setting in the other section as well.
 * Enable / disable vulnerability rechecking with the Scanner by using the **Recheck vulnerabilities** option.
-* Enable / disable the **Active threat verification** module for vulnerability detection and rechecking. Note that this option controls the module itself, not just the rechecking process.
+* Enable / disable the **Threat Replay Testing** module for vulnerability detection and rechecking. Note that this option controls the module itself, not just the rechecking process.
 
-    By default, this module is disabled, learn its configuration [best practices](../vulnerability-detection/active-threat-verification/running-test-on-staging.md) before enabling.
+    By default, this module is disabled, learn its configuration [best practices](../vulnerability-detection/threat-replay-testing/setup.md) before enabling.
 
 ![Vuln scan settings](../images/user-guides/vulnerabilities/vuln-scan-settings.png)
 

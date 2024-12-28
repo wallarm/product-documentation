@@ -88,13 +88,10 @@ nav:
       - Configurações do Scanner: user-guides/scanner.md
       - Endereços do Scanner: admin-en/scanner-addresses.md
       - Contatando o Suporte Wallarm para Parar o Scanner de Recursos: admin-en/scanner-complaint-en.md
-    - Verificação Ativa de Ameaças:
-      - Visão Geral: vulnerability-detection/active-threat-verification/overview.md
-      - Configuração:
-        - Habilitar Globalmente ou Para Endpoints Específicos: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
-        - Reescrevendo Solicitações Antes de Reproduzir Ataque: vulnerability-detection/active-threat-verification/modify-requests-before-replay.md
-      - Casos de Uso:
-        - Executando Testes em Não Produção: vulnerability-detection/active-threat-verification/running-test-on-staging.md
+    - Threat Replay Testing:
+      - Overview: vulnerability-detection/threat-replay-testing/overview.md
+      - Setup: vulnerability-detection/threat-replay-testing/setup.md
+      - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
   - WAAP/WAF:
     - Visão Geral: about-wallarm/waap-overview.md
     - Procedimento de Detecção de Ataque: about-wallarm/protecting-against-attacks.md

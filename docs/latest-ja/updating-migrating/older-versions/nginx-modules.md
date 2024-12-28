@@ -345,7 +345,7 @@ server {
 
 ## ステップ 17: アクティブな脅威検証モジュールを再度有効化する（ノード 2.16 以下をアップグレードする場合のみ）
 
-[アクティブな脅威検証モジュールのセットアップに関する推奨事項](../../vulnerability-detection/active-threat-verification/running-test-on-staging.md) を学び、必要に応じて再度有効にしてください。
+[アクティブな脅威検証モジュールのセットアップに関する推奨事項](../../vulnerability-detection/threat-replay-testing/setup.md) を学び、必要に応じて再度有効にしてください。
 
 しばらくして、モジュールの動作が誤検知を引き起こさないことを確認してください。誤検知がある場合は、[Wallarmの技術サポート](mailto:support@wallarm.com)に連絡してください。
 
