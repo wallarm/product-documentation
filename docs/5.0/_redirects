@@ -769,3 +769,33 @@
 
 
 /api-sessions/ /api-sessions/overview/
+
+/vulnerability-detection/active-threat-verification/overview/ /vulnerability-detection/threat-replay-testing/overview/
+/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /vulnerability-detection/threat-replay-testing/setup/#enable
+/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /vulnerability-detection/threat-replay-testing/setup/#rewrites
+/vulnerability-detection/active-threat-verification/running-test-on-staging/ /vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
+
+/4.10/vulnerability-detection/active-threat-verification/overview/ /4.10/vulnerability-detection/threat-replay-testing/overview/
+/4.10/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /4.10/vulnerability-detection/threat-replay-testing/setup/#enable
+/4.10/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /4.10/vulnerability-detection/threat-replay-testing/setup/#rewrites
+/4.10/vulnerability-detection/active-threat-verification/running-test-on-staging/ /4.10/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
+/4.8/vulnerability-detection/active-threat-verification/overview/ /4.8/vulnerability-detection/threat-replay-testing/overview/
+/4.8/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /4.8/vulnerability-detection/threat-replay-testing/setup/#enable
+/4.8/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /4.8/vulnerability-detection/threat-replay-testing/setup/#rewrites
+/4.8/vulnerability-detection/active-threat-verification/running-test-on-staging/ /4.8/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
+/tr/vulnerability-detection/active-threat-verification/overview/ /tr/vulnerability-detection/threat-replay-testing/overview/
+/tr/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /tr/vulnerability-detection/threat-replay-testing/setup/#enable
+/tr/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /tr/vulnerability-detection/threat-replay-testing/setup/#rewrites
+/tr/vulnerability-detection/active-threat-verification/running-test-on-staging/ /tr/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
+/pt-br/vulnerability-detection/active-threat-verification/overview/ /pt-br/vulnerability-detection/threat-replay-testing/overview/
+/pt-br/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /pt-br/vulnerability-detection/threat-replay-testing/setup/#enable
+/pt-br/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /pt-br/vulnerability-detection/threat-replay-testing/setup/#rewrites
+/pt-br/vulnerability-detection/active-threat-verification/running-test-on-staging/ /pt-br/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
+/ja/vulnerability-detection/active-threat-verification/overview/ /ja/vulnerability-detection/threat-replay-testing/overview/
+/ja/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /ja/vulnerability-detection/threat-replay-testing/setup/#enable
+/ja/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /ja/vulnerability-detection/threat-replay-testing/setup/#rewrites
+/ja/vulnerability-detection/active-threat-verification/running-test-on-staging/ /ja/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
+/ar/vulnerability-detection/active-threat-verification/overview/ /ar/vulnerability-detection/threat-replay-testing/overview/
+/ar/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /ar/vulnerability-detection/threat-replay-testing/setup/#enable
+/ar/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /ar/vulnerability-detection/threat-replay-testing/setup/#rewrites
+/ar/vulnerability-detection/active-threat-verification/running-test-on-staging/ /ar/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
