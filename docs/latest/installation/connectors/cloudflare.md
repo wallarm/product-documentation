@@ -52,6 +52,7 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
     Choose an artifact for a self-hosted node deployment and follow the attached instructions:
 
     * [All-in-one installer](../native-node/all-in-one.md) for Linux infrastructures on bare metal or VMs
+    * [Docker image](../native-node/docker-image.md) for environments that use containerized deployments
     * [Helm chart](../native-node/helm-chart.md) for infrastructures utilizing Kubernetes
 
 ### 2. Obtain and deploy the Wallarm worker code
