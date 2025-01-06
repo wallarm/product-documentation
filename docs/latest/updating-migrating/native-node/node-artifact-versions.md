@@ -12,7 +12,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.10.1 (2025-01-02)
 
-* Added support for the Fastly connector
+* Added support for the [Fastly](../../installation/connectors/fastly.md) connector
 * Fixed potential request loss at mesh startup
 * Security fix in a dependency for [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)
 
@@ -112,7 +112,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.10.1 (2025-01-02)
 
-* Added support for the Fastly connector
+* Added support for the [Fastly](../../installation/connectors/fastly.md) connector
 * Fixed potential request loss at mesh startup
 * Security fix in a dependency for [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)
 
@@ -172,7 +172,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.10.1 (2025-01-02)
 
-* Added support for the Fastly connector
+* Added support for the [Fastly](../../installation/connectors/fastly.md) connector
 * Fixed potential request loss at mesh startup
 * Security fix in a dependency for [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)
 

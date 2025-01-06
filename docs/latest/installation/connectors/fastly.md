@@ -124,6 +124,8 @@ Create the `wallarm_config` config defining Wallarm-specific settings:
     | `WALLARM_RESPONSE_BODY_SIZE_LIMIT` | Limit for a response body size the Node can parse and analyze (in bytes). Non-numerical values like `none` (default) mean no limit. | No |
     | `ORIGIN_PASS_CACHE` | Forces pass-through behavior for requests sent to the origin backend, bypassing Fastly's caching layer (`true`). By default, the Fastly's caching layer is used (`false`). | No |
     | `ORIGIN_PRESERVE_HOST` | Retains the original `Host` header from the client request instead of replacing it with the origin backend's hostname via the `X-Forwarded-Host` header. Useful for backends relying on the original `Host` for routing or logging. Default: `false`. | No |
+    | `LOGGING_ENDPOINT` | Sets a logging endpoint for the connector. Default: tailing logs (stderr). | No |
+
 1. **Link** the config store to the Wallarm Compute service.
 
 ![](../../images/waf-installation/gateways/fastly/config-store.png)
