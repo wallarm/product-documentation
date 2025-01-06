@@ -249,6 +249,7 @@ nav:
       - AWS Lambda: installation/connectors/aws-lambda.md
       - Cloudflare: installation/connectors/cloudflare.md
       - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
+      - Fastly: installation/connectors/fastly.md
       - سجل تغييرات حزمة الكود: installation/connectors/code-bundle-inventory.md
     - الحزم:
       - Docker Images:

@@ -147,6 +147,7 @@ nav:
       - Kong API Gateway: installation/connectors/kong-api-gateway.md
       - Istio: installation/connectors/istio.md
       - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
+      - Fastly: installation/connectors/fastly.md
       - Code Bundle Changelog: installation/connectors/code-bundle-inventory.md
     - In-Line:
       - Overview: installation/inline/overview.md

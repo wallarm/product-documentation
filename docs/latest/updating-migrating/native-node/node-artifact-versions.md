@@ -4,7 +4,7 @@ This document lists available [versions](../versioning-policy.md) of the [Native
 
 ## All-in-one installer
 
-The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), and [Cloudflare](../../installation/connectors/cloudflare.md) connectors.
+The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md) or [Fastly](../../installation/connectors/fastly.md) connectors.
 
 History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 (beta) versions.
 
@@ -12,7 +12,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.10.1 (2025-01-02)
 
-* Added support for the Fastly connector
+* Added support for the [Fastly](../../installation/connectors/fastly.md) connector
 * Fixed potential request loss at mesh startup
 * Security fix in a dependency for [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)
 
@@ -106,13 +106,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ## Helm chart
 
-The Helm chart for the Native Node is used for self-hosted node deployments with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio.md) connectors.
+The Helm chart for the Native Node is used for self-hosted node deployments with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Fastly](../../installation/connectors/fastly.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio.md) connectors.
 
 [How to upgrade](helm-chart.md)
 
 ### 0.10.1 (2025-01-02)
 
-* Added support for the Fastly connector
+* Added support for the [Fastly](../../installation/connectors/fastly.md) connector
 * Fixed potential request loss at mesh startup
 * Security fix in a dependency for [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)
 
@@ -166,13 +166,13 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ## Docker image
 
-The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), and [Cloudflare](../../installation/connectors/cloudflare.md) connectors.
+The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), and [Fastly](../../installation/connectors/fastly.md) connectors.
 
 [How to upgrade](docker-image.md)
 
 ### 0.10.1 (2025-01-02)
 
-* Added support for the Fastly connector
+* Added support for the [Fastly](../../installation/connectors/fastly.md) connector
 * Fixed potential request loss at mesh startup
 * Security fix in a dependency for [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)
 
