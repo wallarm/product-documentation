@@ -41,7 +41,7 @@ The hits are grouped if they have the same source IP address. If grouped hits ha
 
 This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
 
-If hits are grouped by this method, the [**Mark as false positive**](check-attack.md#false-positives) button and the [active verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) option are unavailable for the attack.
+If hits are grouped by this method, the [**Mark as false positive**](check-attack.md#false-positives) button and the [active verification](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) option are unavailable for the attack.
 
 Grouping by source IP is by default enabled in Wallarm Console → **Triggers** with the **Hits from the same IP** default trigger which activates when a single IP address originates more than 50 hits within 15 minutes.
 
