@@ -7,7 +7,7 @@
 [libdetection-docs]:                ../../../about-wallarm/protecting-against-attacks.md#libdetection-overview
 [wallarm-modes-docs]:               ../../../admin-en/configure-wallarm-mode.md
 [passive-detection-docs]:           ../../../about-wallarm/detecting-vulnerabilities.md#passive-detection
-[active-threat-verification-docs]:  ../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification
+[active-threat-verification-docs]:  ../../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing
 [subscriptions-docs]:               ../../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security
 [denylist-docs]:                    ../../../user-guides/ip-lists/overview.md
 [denylist-view-events-docs]:        ../../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips

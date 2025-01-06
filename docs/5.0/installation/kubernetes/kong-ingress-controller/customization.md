@@ -2,7 +2,7 @@
 [wallarm-mode-docs]:                         ../../../admin-en/configure-wallarm-mode.md
 [applications-docs]:                         ../../../user-guides/settings/applications.md
 [passive-vuln-detection-docs]:               ../../../about-wallarm/detecting-vulnerabilities.md#passive-detection
-[active-threat-ver-docs]:                    ../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification
+[active-threat-ver-docs]:                    ../../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing
 [subscription-docs]:                         ../../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security
 [get-tenant-via-api-docs]:                   ../../multi-tenant/configure-accounts.md#via-the-wallarm-api
 [multitenancy-overview]:                    ../../multi-tenant/overview.md
