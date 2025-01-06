@@ -27,7 +27,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
       * [GCP Marketplace](https://console.cloud.google.com/marketplace/details/wallarm-node-195710/wallarm-node)
 2. At the launch step, set the following settings:
 
-      * Select the image version `5.0.x`
+      * Select the image version `5.x.x`
       * For AWS, select the [created security group](../installation/cloud-platforms/aws/ami.md#2-create-a-security-group) in the field **Security Group Settings**
       * For AWS, select the name of the [created key pair](../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys-in-aws) in the field **Key Pair Settings**
 3. Confirm the instance launch.
