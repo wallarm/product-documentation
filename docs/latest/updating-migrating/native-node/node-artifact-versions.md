@@ -10,6 +10,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.10.1 (2025-01-02)
+
+* Added support for the Fastly connector
+* Fixed potential request loss at mesh startup
+* Security fix in a dependency for [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)
+
 ### 0.10.0 (2024-12-19)
 
 * Added URL normalization before selecting route configurations and analyzing data with libproton in `tcp-capture` mode
@@ -104,6 +110,12 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.10.1 (2025-01-02)
+
+* Added support for the Fastly connector
+* Fixed potential request loss at mesh startup
+* Security fix in a dependency for [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)
+
 ### 0.10.0 (2024-12-19)
 
 * Introduced more granular logging configuration options in the [`config.connector.log`](../../installation/native-node/helm-chart-conf.md#configconnectorlog) section, replacing the single `config.connector.log_level` parameter
@@ -157,6 +169,12 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), and [Cloudflare](../../installation/connectors/cloudflare.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.10.1 (2025-01-02)
+
+* Added support for the Fastly connector
+* Fixed potential request loss at mesh startup
+* Security fix in a dependency for [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)
 
 ### 0.10.0 (2024-12-19)
 
