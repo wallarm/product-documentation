@@ -58,13 +58,13 @@ Download Wallarm installation script and make it executable:
 
 === "x86_64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/native/aio-native-0.10.0.x86_64.sh
-    chmod +x aio-native-0.10.0.x86_64.sh
+    curl -O https://meganode.wallarm.com/native/aio-native-0.10.1.x86_64.sh
+    chmod +x aio-native-0.10.1.x86_64.sh
     ```
 === "ARM64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/native/aio-native-0.10.0.aarch64.sh
-    chmod +x aio-native-0.10.0.aarch64.sh
+    curl -O https://meganode.wallarm.com/native/aio-native-0.10.1.aarch64.sh
+    chmod +x aio-native-0.10.1.aarch64.sh
     ```
 
 ### 3. Prepare the configuration file
@@ -112,40 +112,40 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
 
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
     
     For the ARM64 installer version:
 
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
 === "tcp-capture"
     For the x86_64 installer version:
         
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
     
     For the ARM64 installer version:
 
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -185,21 +185,21 @@ For additional debugging, set the [`log.level`](all-in-one-conf.md#loglevel) par
 
     === "x86_64 version"
         ```
-        sudo ./aio-native-0.10.0.x86_64.sh -- --help
+        sudo ./aio-native-0.10.1.x86_64.sh -- --help
         ```
     === "ARM64 version"
         ```
-        sudo ./aio-native-0.10.0.aarch64.sh -- --help
+        sudo ./aio-native-0.10.1.aarch64.sh -- --help
         ```
 * You can also run the installer in an **interactive** mode and choose the required mode in the 1st step:
 
     === "x86_64 version"
         ```
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.0.x86_64.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.x86_64.sh
         ```
     === "ARM64 version"
         ```
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.0.aarch64.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.aarch64.sh
         ```
 
 ## Upgrade and reinstallation
