@@ -4,22 +4,24 @@ With the [sensitive business flow](sbf.md) capability, Wallarm's [API Discovery]
 
 ## Addressed issues
 
-The abuse of the sensitive business flows is ranked six ([API6](https://owasp.org/API-Security/editions/2023/en/0xa6-unrestricted-access-to-sensitive-business-flows/)) among OWASP API Top 10 risks. Wallarm allows clearly identify the endpoints tied to such flows to:
+The abuse of the sensitive business flows ranks sixth ([API6](https://owasp.org/API-Security/editions/2023/en/0xa6-unrestricted-access-to-sensitive-business-flows/)) among OWASP API Top 10 risks. Protecting these sensitive business flows ensures business continuity, prevents leaking of sensitive data, reputation risks, and financial damage.
 
-* Regularly monitor and audit these endpoints for vulnerabilities or breaches.
+WIth the sensitive business flows capability, Wallarm highlights health of the business-critical functions and helps to:
+
+* Regularly monitor and audit endpoints related to sensitive business flows for vulnerabilities or breaches.
 * Prioritize them for development, maintenance, and security efforts.
 * Implement stronger security measures (e.g., encryption, authentication, access controls, and rate limits).
 * Easily produce audit trails and evidence of data protection measures.
 
 ## Automatic tagging
 
-On finding a new endpoint, API Discovery automatically checks if it potentially belongs to one or several sensitive business flows:
+For your convenience, API Discovery tags endpoints as belonging to sensitive business flows automatically - on discovering a new endpoint, it checks whether this endpoint potentially belongs to one or more sensitive business flows:
 
 --8<-- "../include/default-sbf.md"
 
-Automatic checking is performed based on the keywords from the endpoint URL, for example, `payment`, `subscription` `purchase`, etc. for the **Billing** flow or `auth`, `token`, `login`, etc. for **Authentication**. If matches are found, the endpoint is automatically assigned to the corresponding flow(s).
+Automatic checks are conducted using keywords from the endpoint URL. For example, keywords like `payment`, `subscription`, or `purchase` automatically associate the endpoint with the **Billing** flow, while keywords such as `auth`, `token`, or `login` link it to the **Authentication** flow. If matches are detected, the endpoint is automatically assigned to the appropriate flow.
 
-If necessary, later you can manually adjust the list of assigned business flows as described in the section below.
+The automatic tagging discovers most of the sensitive business flows. However, it is also possible to manually adjust the list of assigned business flows as described in the section below.
 
 ## Tagging endpoints manually
 
