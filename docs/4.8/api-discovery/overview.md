@@ -85,15 +85,13 @@ API Discovery detects and highlights sensitive data consumed and carried by your
 
 ### Sensitive business flows
 
-API Discovery allows [marking](sbf.md) specific endpoints as the key ones for some sensitive business flows, such as: 
+With the [sensitive business flow](sbf.md) capability, API Discovery can automatically identify endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities.
 
-* Authentication
-* Account management
-* Billing
-* SMS gateway functioning
-* ...and others
+In addition to automatic identification, you can manually adjust the assigned sensitive business flow tags and manually set tags for the endpoints of your choice.
 
-Once tags are assigned, you can filter your endpoints by flow to regularly check them for vulnerabilities or breaches.
+Once endpoints are assigned with the sensitive business flow tags, it becomes possible to filter all discovered endpoint by a specific business flow which makes it easier on protecting the most critical business capabilities.
+
+![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
 
 ### Security of data uploaded to the Wallarm Cloud
 

@@ -1,1 +1,1 @@
---8<-- "latest/api-discovery/sbf.md"
+--8<-- "4.10/api-discovery/sbf.md"
