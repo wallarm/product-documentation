@@ -41,10 +41,13 @@ In Simple SSO [mode](intro.md#sso-modes), in your SAML SSO solution (identity pr
 * `last_name`
 * `wallarm_role:[role]` where `role` is:
 
+    * `admin`
+    * `analytic`
+    * `api_developer`
     * `partner_admin`
-    * `Remaining TBD`
+    * `partner_analytic`
 
-        See all role descriptions [here](../../../user-guides/settings/users.md#user-roles).
+        See all role descriptions [here](../../../user-guides/settings/users.md#user-roles). Contact the [Wallarm support team](mailto:support@wallarm.com) to get more roles available.
 
 ![SAML SSO solution - G Suite - Mapping](../../../images/admin-guides/configuration-guides/sso/simple-sso-mapping.png)
 
