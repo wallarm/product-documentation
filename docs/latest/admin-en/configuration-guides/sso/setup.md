@@ -41,11 +41,13 @@ In Simple SSO [mode](intro.md#sso-modes), in your SAML SSO solution (identity pr
 * `last_name`
 * `wallarm_role:[role]` where `role` is:
 
-    * `admin`
-    * `analytic`
-    * `api_developer`
-    * `partner_admin`
-    * `partner_analytic`
+    * `admin` (**Administrator**)
+    * `analytic` (**Analyst**)
+    * `api_developer` (**API Developer**)
+    * `auditor` (**Read Only**)
+    * `partner_admin` (**Global Administrator**)
+    * `partner_analytic` (**Global Analyst**)
+    * `partner_auditor` (**Global Read Only**)
 
         See all role descriptions [here](../../../user-guides/settings/users.md#user-roles). Contact the [Wallarm support team](mailto:support@wallarm.com) to get more roles available.
 
