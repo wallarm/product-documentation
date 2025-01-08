@@ -56,6 +56,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 5.2.12 (2025-01-08)
+
+* Resolved the [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) controller vulnerability
+
 ### 5.2.11 (2024-12-27)
 
 * Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
