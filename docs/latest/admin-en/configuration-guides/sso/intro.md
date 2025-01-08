@@ -1,22 +1,52 @@
-# Overview of integration with the SAML SSO solution
-
-[doc-admin-sso-gsuite]:     gsuite/overview.md
-[doc-admin-sso-okta]:       okta/overview.md
+# SAML SSO Authentication Overview
 
 [link-saml]:                https://wiki.oasis-open.org/security/FrontPage
 [link-saml-sso-roles]:      https://www.oasis-open.org/committees/download.php/27819/sstc-saml-tech-overview-2.0-cd-02.pdf     
 
-You can use Single Sign‑On (SSO) technology to authenticate your company's users to the Wallarm portal if your company already uses a [SAML][link-saml] SSO solution.
+You can use single sign‑on (SSO) technology to authenticate your company's users to the Wallarm portal if your company already uses a [SAML][link-saml] SSO solution. Wallarm can be integrated with any solution that supports the SAML standard ([PDF][link-saml-sso-roles]).
 
-Wallarm can be integrated with any solution that supports the SAML standard. The SSO guides describe integration using [Okta][doc-admin-sso-okta] or [Google Suite (G Suite)][doc-admin-sso-gsuite] as an example.
+## SSO modes
 
-The documents related to the configuration and operation of Wallarm with SSO assume the following:
-*   Wallarm acts as a **service provider** (SP).
-*   Google or Okta acts as an **identity provider** (IdP).
+Wallarm provides the following SSO modes:
 
-More information about roles in SAML SSO can be found here ([PDF][link-saml-sso-roles]).
+* [Simple SSO](#simple-sso) (since 2025) - provides you with the ability of performing all user management right from you SAML SSO solution with no need to create or configure users separately in Wallarm.
 
-!!! warning "Enabling the SSO service"
-    By default, SSO connection on Wallarm is not available without activating the appropriate service. To activate the SSO service, please contact your account manager or the [Wallarm support team](mailto:support@wallarm.com).
-    
-    If no SSO service is activated, then SSO-related blocks will not be visible in the **Integrations** section in Wallarm Console.
+There are also legacy approaches - in Wallarm, create users and set their permissions by assigning roles; integrate with your SAML SSO solution (identity provider) for users to be able to login using their existing account:
+
+* [Simple SSO (legacy)](#simple-sso-legacy) - provide SSO login possibility for selected users.
+* [Strict SSO (legacy)](#strict-sso-legacy) - set SSO login necessity for all company's users.
+
+## Simple SSO
+
+This SSO [mode](#sso-modes) was introduced in 2025, providing you with the ability of performing all user management right from you SAML SSO solution. This includes both user account creation and permission management via groups. No need to create or configure users separately in Wallarm.
+
+In your SAML SSO solution (identity provider), you create users and add them to groups, set users' permissions by mapping groups to Wallarm [roles](../../../user-guides/settings/users.md#user-roles); integrate with Wallarm and it will use data from your solution.
+
+![SAML SSO solution - G Suite - Mapping](../../../images/admin-guides/configuration-guides/sso/simple-sso-mapping.png)
+
+See details on setup [here](setup.md#simple-sso-mapping).
+
+## Simple SSO (legacy)
+
+In this [mode](#sso-modes), you: 
+
+1. In Wallarm, create users and set their permissions by assigning [roles](../../../user-guides/settings/users.md#user-roles).
+1. Integrate with your SAML SSO solution (identity provider) for users to be able to login using their existing account.
+1. [Select](employ-user-auth.md) users for whom the SSO authentication will be available.
+
+See details on setup [here](setup.md#setup-integration).
+
+## Strict SSO (legacy)
+
+Wallarm supports the **Strict SSO (legacy)** [mode](#sso-modes) that differs from the [Simple SSO (legacy)](#simple-sso-legacy) in that it enables SSO authentication for all company account users at once. Other characteristics of the strict SSO mode are:
+
+* The authentication method for all existing users of the account is switched to SSO.
+* All new users get the SSO as the authentication method by default.
+* Authentication method cannot be switched to anything different from SSO for any user.
+
+To enable or disable the strict SSO mode, contact the [Wallarm support team](mailto:support@wallarm.com).
+
+See details on setup [here](setup.md#setup-integration).
+
+!!! info "How active sessions are treated when enabling strict SSO"
+    If there are any users signed into the company account when it is switched to the strict SSO mode, these sessions remain active. After sign out, the users will be prompted to use SSO.
