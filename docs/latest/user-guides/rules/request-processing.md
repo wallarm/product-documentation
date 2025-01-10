@@ -341,6 +341,28 @@ When defining a request element the [rule](rules.md) is applied to:
 
 ![JWT param desc in a rule](../../images/user-guides/rules/request-element-desc.png)
 
+#### gcl
+
+Identifies and parses specific points of GraphQL requests, such as:
+
+ * `gql` (simple)
+ * `gql_query` (+ key like in hash),
+ * `gql_mutation` (+ key like in hash),
+ * `gql_subscription`  (+ key like in hash),
+ * `gql_alias` (simple)
+ * `gql_arg` (simple)
+ * `gql_dir` (+ key like in hash)
+ * `gql_spread` (+ key like in hash)
+ * `gql_fragment` (+ key like in hash)
+ * `gql_type` (+ key like in hash)
+ * `gql_inline` (simple)
+ * `gql_var` (+ key like in hash)
+
+This serves for improved detection of the [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks) in GraphQL specific request points. Requires NGINX Node TBD or Native Node TBD or higher.
+
+!!! info "GraphQL protection with Wallarm"
+    While [always enabled](#managing-parsers) parser by default provides detection of regular attacks (SQLi, RCE, etc.) in GraphQL, Wallarm also allow **configuring** [protection from GraphQL-specific attacks](../../api-protection/graphql-rule.md).
+
 ### Norms
 
 The norms are applied to parsers for array and key data types. Norms are used to define the boundaries of data analysis. The value of the norm is indicated in the parser tag. For example: **hash_all**, **hash_name**.
