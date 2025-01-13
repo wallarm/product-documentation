@@ -54,7 +54,7 @@ See detailed information on working with groups [here](groups.md).
 
 ## Changing user settings
 
-Once a user appears in the user list, you can edit their settings using the **Edit user settings** option from the corresponding user menu. This allows you to change their assigned user role, first name, and last name.
+Once a user appears in the user list, you can edit their settings using the **Edit user settings** option from the corresponding user menu. This allows you to change their first name, and last name.
 
 ## Disabling 2FA
 

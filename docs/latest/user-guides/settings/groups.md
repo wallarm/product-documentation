@@ -1,3 +1,6 @@
+[link-glossary-incident]:       ../../glossary-en.md#security-incident
+[link-glossary-vulnerability]:  ../../glossary-en.md#vulnerability
+
 # Managing Access and Permissions
 
 Wallarm uses **groups** to provide users with access to [Wallarm Cloud](../../about-wallarm/overview.md#how-wallarm-works) resources and set users' permissions.
@@ -83,6 +86,27 @@ More detailed information about access of different user roles to the Wallarm en
 | **Users**           | View and manage                      | -                        | View                         | - |
 | **API tokens**           | Manage personal and shared tokens | Manage personal tokens | - | - |
 | **Activity log**    | View                                 | -                        | View                         | - |
+
+## Global administrators
+
+In the context of groups one [role](#user-roles) is specific - **global administrators**. Users of this role are the only ones whose access and permissions are not defined by any group:
+
+* User of this role always has access to all tenants of the account.
+* Permissions are as ones of the **Administrator** - in each tenant of account.
+* This user needs not and cannot be added to any group.
+
+## Automatic groups
+
+To avoid the situation when a [newly created](users.md) user is not in any group and thus has no access to the system, when creating or inviting a new user, you set this user's [role](#user-roles) and among groups, this does one of the following:
+
+* Automatically creates the group with permissions set this user role, add the current tenant to the group, add the created user to the group.
+* If automatic group with that role already exists, add the created user to it.
+
+The automatically created groups get the `Auto` tag next to its name.
+
+![Group - list of groups - autogroup](../../images/user-guides/settings/groups/groups-list-autogroup.png)
+
+Note that you can view the details of automatically created groups, but cannot edit them (cannot add/remove tenants and users, cannot change permissions).
 
 <!--## Groups and SSO integration
 
