@@ -14,7 +14,8 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Added support for the [Fastly](../../installation/connectors/fastly.md) connector
 * Fixed potential request loss at mesh startup
-* Security fix in a dependency for [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)
+* Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
+* Fixed an issue where some requests were processed unsuccessfully, potentially affecting API Sessions, Credential Stuffing, and API Abuse Prevention
 
 ### 0.10.0 (2024-12-19)
 
@@ -114,7 +115,8 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 * Added support for the [Fastly](../../installation/connectors/fastly.md) connector
 * Fixed potential request loss at mesh startup
-* Security fix in a dependency for [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)
+* Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
+* Fixed an issue where some requests were processed unsuccessfully, potentially affecting API Sessions, Credential Stuffing, and API Abuse Prevention
 
 ### 0.10.0 (2024-12-19)
 
@@ -174,7 +176,8 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 * Added support for the [Fastly](../../installation/connectors/fastly.md) connector
 * Fixed potential request loss at mesh startup
-* Security fix in a dependency for [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338)
+* Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
+* Fixed an issue where some requests were processed unsuccessfully, potentially affecting API Sessions, Credential Stuffing, and API Abuse Prevention
 
 ### 0.10.0 (2024-12-19)
 
