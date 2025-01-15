@@ -60,7 +60,7 @@ nav:
     - GraphQL API Protection: api-protection/graphql-rule.md
   - API Attack Surface:
     - Overview: api-attack-surface/overview.md
-    - API Surface Discovery: api-attack-surface/api-surface.md
+    - API Attack Surface Discovery: api-attack-surface/api-surface.md
     - Detecting Security Issues: api-attack-surface/security-issues.md
   - Assets & Vulnerabilities:
     - Exposed Assets: user-guides/scanner.md

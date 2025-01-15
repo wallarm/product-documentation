@@ -1,6 +1,6 @@
 # Detecting Security Issues <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-Once [API Surface Discovery](api-surface.md) finds the external hosts of your [selected domains](setup.md), Wallarm checks if these hosts have any security issues. Once found, the issues are listed and described in the **Security Issues** section. This article describes how to use the presented information.
+Once [API Attack Surface Discovery](api-surface.md) finds the external hosts of your [selected domains](setup.md), Wallarm checks if these hosts have any security issues. Once found, the issues are listed and described in the **Security Issues** section. This article describes how to use the presented information.
 
 ## Exploring security issues
 
@@ -41,7 +41,17 @@ Wallarm automatically detects the following security issues:
 | XXE | Attack on XML external entity - the vulnerability allows an attacker to inject an external entity in an XML document to be evaluated by an XML parser and then executed on the target web server. See [details](../attacks-vulns-list.md#attack-on-xml-external-entity-xxe). |
 | API leak | A leaked API key can allow attackers to impersonate authorized users, access confidential financial data, and even manipulate transaction flows. See [details](#api-leaks). |
 
+## Issue lifecycle
+
+Once a security issue is detected, it obtains the **Open** status meaning some measures are required to mitigate it. In the issue details, you can close it (means it was resolved) or mark as false.
+
+![Security issues details - Lifecycle controls](../images/api-attack-surface/security-issue-details-lifecycle.png)
+
+You can also re-evaluate and adjust the risk level of the issue.
+
 ## API leaks
+
+Among other types of security issues, Wallarm detects cases of public exposure of API credentials (API leaks). The leaked API keys can allow attackers to impersonate authorized users, access confidential financial data, and even manipulate transaction flows.
 
 Wallarm searches for the API leak security issues with the following two-step procedure:
 
