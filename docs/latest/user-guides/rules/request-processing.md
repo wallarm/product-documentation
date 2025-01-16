@@ -347,18 +347,17 @@ Parses GraphQL executable definitions (queries, mutations, subscriptions and fra
 
 Filters:
 
- * `gql` (simple)
- * `gql_query` (+ key like in hash) for a query operation
- * `gql_mutation` (+ key like in hash) for a mutation operation
- * `gql_subscription`  (+ key like in hash) for a subscription operation
- * `gql_alias` (simple)
- * `gql_arg` (simple) for the field arguments
- * `gql_dir` (+ key like in hash) for a directive
- * `gql_spread` (+ key like in hash) for a fragment spread
- * `gql_fragment` (+ key like in hash) for a fragment definition
- * `gql_type` (+ key like in hash) for the named type of a fragment definition or inline fragment
- * `gql_inline` (simple) for an inline fragment
- * `gql_var` (+ key like in hash)
+ * **gql_query** or **hash** (`key:value`) for a query operation
+ * **gql_mutation** or **hash** (`key:value`) for a mutation operation
+ * **gql_subscription** or **hash** (`key:value`) for a subscription operation
+ * **gql_alias** for a field alias
+ * **gql_arg** for the field arguments
+ * **gql_dir** or **hash** (`key:value`) for a directive
+ * **gql_spread** or **hash** (`key:value`) for a fragment spread
+ * **gql_fragment** or **hash** (`key:value`) for a fragment definition
+ * **gql_type** or **hash** (`key:value`) for the named type of a fragment definition or inline fragment
+ * **gql_inline** for an inline fragment
+ * **gql_var** or **hash** (`key:value`) for a variable definition
 
 Example:
 
@@ -384,13 +383,13 @@ fragment UserFields on User {
     content
   }
 }
-
-[..., gql, gql_query, 'GetUser', hash, 'user', gql_arg, hash, 'id'] - '1'
-[..., gql, gql_query, 'GetUser', hash, 'user', gql_spread, 'UserFields', gql_dir, 'include', gql_arg, hash, 'if'] - 'true'
-[..., gql, gql_query, 'GetAllUsers', hash, 'users', gql_arg, hash, 'limit'] - '10'
-[..., gql, gql_query, 'GetAllUsers', hash, 'users', gql_spread, 'UserFields', gql_dir, 'include', gql_arg, hash, 'if'] - 'true'
-[..., gql, gql_fragment, 'UserFields', gql_type, 'User', hash, 'posts', gql_arg, hash, 'status'] - 'published'
 ```
+
+* `[..., gql, gql_query, 'GetUser', hash, 'user', gql_arg, hash, 'id']` — `1`
+* `[..., gql, gql_query, 'GetUser', hash, 'user', gql_spread, 'UserFields', gql_dir, 'include', gql_arg, hash, 'if']` — `true`
+* `[..., gql, gql_query, 'GetAllUsers', hash, 'users', gql_arg, hash, 'limit']` — `10`
+* `[..., gql, gql_query, 'GetAllUsers', hash, 'users', gql_spread, 'UserFields', gql_dir, 'include', gql_arg, hash, 'if']` — `true`
+* `[..., gql, gql_fragment, 'UserFields', gql_type, 'User', hash, 'posts', gql_arg, hash, 'status']` — `published`
 
 This serves for improved detection of the [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks) in GraphQL specific request points. Requires NGINX Node TBD or Native Node TBD or higher.
 
