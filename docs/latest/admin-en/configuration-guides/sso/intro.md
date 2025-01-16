@@ -1,24 +1,22 @@
 # SAML SSO Authentication Overview
 
-[link-saml]:                https://wiki.oasis-open.org/security/FrontPage
-[link-saml-sso-roles]:      https://www.oasis-open.org/committees/download.php/27819/sstc-saml-tech-overview-2.0-cd-02.pdf     
-
-You can use single sign‑on (SSO) technology to authenticate your company's users to the Wallarm portal if your company already uses a [SAML][link-saml] SSO solution. Wallarm can be integrated with any solution that supports the SAML standard ([PDF][link-saml-sso-roles]).
+You can use single sign‑on (SSO) technology to authenticate your company's users to the Wallarm Console if your company already uses a SAML SSO solution. Wallarm can be integrated with any solution that supports the SAML standard PDF.
 
 ## SSO modes
 
 Wallarm provides the following SSO modes:
 
 * [Simple SSO](#simple-sso) (since 2025) - provides you with the ability of performing all user management right from you SAML SSO solution with no need to create or configure users separately in Wallarm.
+* Legacy approaches - in Wallarm, create users and set their permissions by assigning roles; integrate with your SAML SSO solution (identity provider) for users to be able to login using their existing account:
 
-There are also legacy approaches - in Wallarm, create users and set their permissions by assigning roles; integrate with your SAML SSO solution (identity provider) for users to be able to login using their existing account:
+    * [Simple SSO (legacy)](#simple-sso-legacy) - provide SSO login possibility for selected users.
+    * [Strict SSO (legacy)](#strict-sso-legacy) - set SSO login necessity for all company's users.
 
-* [Simple SSO (legacy)](#simple-sso-legacy) - provide SSO login possibility for selected users.
-* [Strict SSO (legacy)](#strict-sso-legacy) - set SSO login necessity for all company's users.
+It is recommended to migrate from legacy versions to the new one. To do so, contact the [Wallarm support team](mailto:support@wallarm.com).
 
 ## Simple SSO
 
-This SSO [mode](#sso-modes) was introduced in 2025, providing you with the ability of performing all user management right from you SAML SSO solution. This includes both user account creation and permission management via groups. No need to create or configure users separately in Wallarm.
+This SSO [mode](#sso-modes) was introduced in 2025, providing you with the ability of performing all user management right from your SAML SSO solution. This includes both user account creation and permission management via groups. No need to create or configure users separately in Wallarm.
 
 In your SAML SSO solution (identity provider), you create users and add them to groups, set users' permissions by mapping groups to Wallarm [roles](../../../user-guides/settings/users.md#user-roles); integrate with Wallarm and it will use data from your solution.
 

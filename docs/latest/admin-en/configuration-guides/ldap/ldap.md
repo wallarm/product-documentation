@@ -1,6 +1,6 @@
 # Using LDAP
 
-You can use LDAP technology to authenticate your company's users to the Wallarm portal if your company already uses a LDAP solution. This article describes how to configure an LDAP integration with your directory service.
+You can use LDAP technology to authenticate your company's users to the Wallarm Console if your company already uses a LDAP solution. This article describes how to configure an LDAP integration with your directory service.
 
 ## Overview
 
