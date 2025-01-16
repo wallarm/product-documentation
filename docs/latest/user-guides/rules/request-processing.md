@@ -343,20 +343,54 @@ When defining a request element the [rule](rules.md) is applied to:
 
 #### gcl
 
-Identifies and parses specific points of GraphQL requests, such as:
+Parses GraphQL executable definitions (queries, mutations, subscriptions and fragments).
+
+Filters:
 
  * `gql` (simple)
- * `gql_query` (+ key like in hash),
- * `gql_mutation` (+ key like in hash),
- * `gql_subscription`  (+ key like in hash),
+ * `gql_query` (+ key like in hash) for a query operation
+ * `gql_mutation` (+ key like in hash) for a mutation operation
+ * `gql_subscription`  (+ key like in hash) for a subscription operation
  * `gql_alias` (simple)
- * `gql_arg` (simple)
- * `gql_dir` (+ key like in hash)
- * `gql_spread` (+ key like in hash)
- * `gql_fragment` (+ key like in hash)
- * `gql_type` (+ key like in hash)
- * `gql_inline` (simple)
+ * `gql_arg` (simple) for the field arguments
+ * `gql_dir` (+ key like in hash) for a directive
+ * `gql_spread` (+ key like in hash) for a fragment spread
+ * `gql_fragment` (+ key like in hash) for a fragment definition
+ * `gql_type` (+ key like in hash) for the named type of a fragment definition or inline fragment
+ * `gql_inline` (simple) for an inline fragment
  * `gql_var` (+ key like in hash)
+
+Example:
+
+```
+query GetUser {
+  user(id: "1") {
+    ...UserFields @include(if: true)
+  }
+}
+
+query GetAllUsers {
+  users(limit: 10) {
+    ...UserFields @include(if: true)
+  }
+}
+
+fragment UserFields on User {
+  id
+  name
+  email
+  posts(status: "published") {
+    title
+    content
+  }
+}
+
+[..., gql, gql_query, 'GetUser', hash, 'user', gql_arg, hash, 'id'] - '1'
+[..., gql, gql_query, 'GetUser', hash, 'user', gql_spread, 'UserFields', gql_dir, 'include', gql_arg, hash, 'if'] - 'true'
+[..., gql, gql_query, 'GetAllUsers', hash, 'users', gql_arg, hash, 'limit'] - '10'
+[..., gql, gql_query, 'GetAllUsers', hash, 'users', gql_spread, 'UserFields', gql_dir, 'include', gql_arg, hash, 'if'] - 'true'
+[..., gql, gql_fragment, 'UserFields', gql_type, 'User', hash, 'posts', gql_arg, hash, 'status'] - 'published'
+```
 
 This serves for improved detection of the [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks) in GraphQL specific request points. Requires NGINX Node TBD or Native Node TBD or higher.
 
