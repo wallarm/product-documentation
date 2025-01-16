@@ -30,7 +30,7 @@ To run the Edge inline, go to the Wallarm Console → **Security Edge** → **Ed
 
 If this section is unavailable, your account may lack the appropriate subscription, please contact sales@wallarm.com to obtain it.
 
-You can update the Edge node deployment settings once it reaches **Active** status. The node will be re‑deployed with existing CNAME records remaining unchanged.
+You can update the Edge node deployment settings at any time. The node will be re‑deployed with existing CNAME records remaining unchanged.
 
 ### 1. General settings
 
