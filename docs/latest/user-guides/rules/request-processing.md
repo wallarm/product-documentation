@@ -386,10 +386,10 @@ fragment UserFields on User {
 ```
 
 * `[..., gql, gql_query, 'GetUser', hash, 'user', gql_arg, hash, 'id']` — `1`
-* `[..., gql, gql_query, 'GetUser', hash, 'user', gql_spread, 'UserFields', gql_dir, 'include', gql_arg, hash, 'if']` — `true`
+* `[..., gql, gql_query, 'GetUser', hash, 'user', gql_spread,` `'UserFields', gql_dir, 'include', gql_arg, hash, 'if']` — `true`
 * `[..., gql, gql_query, 'GetAllUsers', hash, 'users', gql_arg, hash, 'limit']` — `10`
-* `[..., gql, gql_query, 'GetAllUsers', hash, 'users', gql_spread, 'UserFields', gql_dir, 'include', gql_arg, hash, 'if']` — `true`
-* `[..., gql, gql_fragment, 'UserFields', gql_type, 'User', hash, 'posts', gql_arg, hash, 'status']` — `published`
+* `[..., gql, gql_query, 'GetAllUsers', hash, 'users',` `gql_spread, 'UserFields', gql_dir, 'include', gql_arg, hash, 'if']` — `true`
+* `[..., gql, gql_fragment, 'UserFields', gql_type,` `'User', hash, 'posts', gql_arg, hash, 'status']` — `published`
 
 This serves for improved detection of the [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks) in GraphQL specific request points. Requires NGINX Node TBD or Native Node TBD or higher.
 
