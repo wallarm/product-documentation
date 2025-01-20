@@ -341,23 +341,23 @@ When defining a request element the [rule](rules.md) is applied to:
 
 ![JWT param desc in a rule](../../images/user-guides/rules/request-element-desc.png)
 
-#### gcl
+#### gql
 
 Parses GraphQL executable definitions (queries, mutations, subscriptions and fragments).
 
 Filters:
 
- * **gql_query** or **hash** (`key:value`) for a query operation
- * **gql_mutation** or **hash** (`key:value`) for a mutation operation
- * **gql_subscription** or **hash** (`key:value`) for a subscription operation
+ * **gql_query** for a query operation
+ * **gql_mutation** for a mutation operation
+ * **gql_subscription** for a subscription operation
  * **gql_alias** for a field alias
  * **gql_arg** for the field arguments
- * **gql_dir** or **hash** (`key:value`) for a directive
- * **gql_spread** or **hash** (`key:value`) for a fragment spread
- * **gql_fragment** or **hash** (`key:value`) for a fragment definition
- * **gql_type** or **hash** (`key:value`) for the named type of a fragment definition or inline fragment
+ * **gql_dir** for a directive
+ * **gql_spread** for a fragment spread
+ * **gql_fragment** for a fragment definition
+ * **gql_type** for the named type of a fragment definition or inline fragment
  * **gql_inline** for an inline fragment
- * **gql_var** or **hash** (`key:value`) for a variable definition
+ * **gql_var** for a variable definition
 
 Example:
 
