@@ -49,6 +49,15 @@ Use the **Time,ms** and **Size,bytes** columns in the session request details to
 
 --8<-- "../include/bot-attack-full-context.md"
 
+## Adjusting attack detection
+
+You can adjust how Wallarm behaves regarding attack detection directly from the malicious request of the session: 
+
+* The attack may be marked as [false-positive](../about-wallarm/protecting-against-attacks.md#false-positives) - the filtering node will not recognize such requests as attacks in future.
+* The [rule](../user-guides/rules/rules.md) may be created - once active, the rule will alter the default Wallarm behavior during the analysis of requests and their further processing.
+
+![!API Sessions - request details - available actions](../images/api-sessions/api-sessions-request-details-actions.png)
+
 ## Sharing session information
 
 If you found suspicious behavior in the session and would like to share insights with colleagues and store the session for further analysis, use the **Copy link** or **Download CSV** in the session details.
