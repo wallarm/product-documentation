@@ -123,6 +123,6 @@ If there is a problem with the upgrade or reinstallation process:
     ```
     sudo systemctl stop wallarm && sudo rm -rf /opt/wallarm
     ```
-1. Reinstall the node as usual for [TCP traffic analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) or the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), or [Fastly](../../installation/connectors/fastly.md) connectors.
+1. Reinstall the node as usual for [TCP traffic analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) or the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md) or [Fastly](../../installation/connectors/fastly.md) connectors.
 
     Or follow the upgrade procedure described above.

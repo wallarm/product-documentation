@@ -71,12 +71,6 @@ The NGINX Node is used for the platforms listed below, however the analysis is l
             <h3>Azion Edge</h3>
             <p>Secure APIs running on Azion Edge</p>
         </a>
-        
-        <a class="do-card" href="../../installation/connectors/layer7-api-gateway/">
-            <img class="non-zoomable" src="../../images/platform-icons/layer7.png" />
-            <h3>Broadcom Layer7 API Gateways</h3>
-            <p>Secure APIs managed with Layer7 API Gateways</p>
-        </a>
     </div>
 </div>
 
@@ -326,6 +320,18 @@ The Native Node works with the following platforms with no limitations:
             <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
             <h3>Istio</h3>
             <p>Deploy Wallarm to secure APIs managed by Istio</p>
+        </a>
+
+        <a class="do-card" href="../../installation/connectors/layer7-api-gateway/">
+            <img class="non-zoomable" src="../../images/platform-icons/layer7.png" />
+            <h3>Broadcom Layer7 API Gateways</h3>
+            <p>Secure APIs managed with Layer7 API Gateways</p>
+        </a>
+
+        <a class="do-card" href="../../installation/connectors/fastly/">
+            <img class="non-zoomable" src="../../images/platform-icons/fastly.png" />
+            <h3>Fastly</h3>
+            <p>Deploy Wallarm to secure APIs running on Fastly</p>
         </a>
     </div>
 </div>

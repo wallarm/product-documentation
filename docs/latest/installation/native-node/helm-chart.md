@@ -171,6 +171,8 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [MuleSoft](../connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
     * [Cloudflare](../connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
     * [Amazon CloudFront](../connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
+    * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)
+    * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
     * [Kong API Gateway](../connectors/kong-api-gateway.md#2-obtain-and-deploy-the-wallarm-lua-plugin)
     * [Istio](../connectors/istio.md#2-configure-envoy-to-mirror-traffic-to-the-wallarm-node)
 

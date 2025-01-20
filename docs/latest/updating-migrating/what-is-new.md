@@ -58,7 +58,7 @@ We are excited to introduce the Native Node, a new deployment option for the Wal
 
 Currently, it is tailored for the following deployments:
 
-* MuleSoft, Cloudflare, and CloudFront connectors with both request and response analysis
+* MuleSoft, Cloudflare, CloudFront, Broadcom Layer7 API Gateway, Fastly connectors with both request and response analysis
 * Kong API Gateway and Istio Ingress connectors
 * TCP traffic mirror analysis
 

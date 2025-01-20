@@ -17,7 +17,7 @@ Security Edge service provides a secure cloud environment where the Wallarm node
 * Reduced costs: lower operational overhead with Wallarm-managed nodes, allowing faster deployment and scalability.
 
 !!! info "Supported platforms"
-    Currently, Edge connectors are available only for MuleSoft, CloudFront, and Cloudflare.
+    Currently, Edge connectors are available only for MuleSoft, CloudFront, Cloudflare, Fastly.
 
 ## Running Security Edge Connectors
 
