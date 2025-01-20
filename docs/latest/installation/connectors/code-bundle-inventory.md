@@ -93,6 +93,14 @@ Requires Native Node version 0.8.3 or higher.
 
 * Initial release
 
+## Broadcom Layer7 API Gateway
+
+[How to upgrade](layer7-api-gateway.md#upgrading-the-wallarm-policies)
+
+### 1.0.0 (2024-11-07)
+
+* Initial release
+
 ## Fastly
 
 [How to upgrade](fastly.md#upgrading-the-wallarm-compute-service-on-fastly)
@@ -104,5 +112,3 @@ Requires Native Node version 0.8.3 or higher.
 ### 1.0.0 (2025-01-02)
 
 * Initial release
-
-<!-- ## Broadcom - TBD -->
