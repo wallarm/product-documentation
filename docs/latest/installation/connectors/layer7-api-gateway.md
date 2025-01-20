@@ -92,7 +92,7 @@ To test the functionality of the deployed policy, follow these steps:
 
 ## Upgrading the Wallarm policies
 
-To upgrade the Wallarm policies deployed on Broadcom to a [newer version](code-bundle-inventory.md#fastly):
+To upgrade the Wallarm policies deployed on Broadcom to a [newer version](code-bundle-inventory.md#broadcom-layer7-api-gateway):
 
 1. Contact sales@wallarm.com to get the updated code bundle.
 1. Import the updated policy files into the existing policy instances in Policy Manager as described in the [deployment steps](#import-new-broadcom-policies).
@@ -106,3 +106,4 @@ Policy upgrades may require a Wallarm Node upgrade, especially for major version
 <!-- в статьях по установке нейтив ноды из aio, докера и тд в части finish installation не все платформы перечислены как будто -->
 <!-- обновить надо еще в конфлюенсе документ -->
 <!-- starting from 0.8.0 -->
+<!-- в SE еще не все указаны платформы -->
