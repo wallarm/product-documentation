@@ -15,7 +15,7 @@ The [Wallarm Native Node](../nginx-native-node-internals.md), which operates ind
 
 ## Use cases
 
-Deploy the Native Node when setting up a Wallarm connector for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md) or [Amazon CloudFront](../connectors/aws-lambda.md) and require a self-hosted node.
+Deploy the Native Node when setting up a Wallarm connector for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md) and require a self-hosted node.
 
 The Docker image for the Native Node is ideal if you are already using container orchestration platforms like AWS ECS or other Docker-based environments. The Wallarm node runs as a Docker container within your service, enabling security filtering and traffic inspection for your API management platform.
 
@@ -106,6 +106,8 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [MuleSoft](../connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange)
     * [Cloudflare](../connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
     * [Amazon CloudFront](../connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
+    * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)
+    * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly) 
 
 ## Verifying the node operation
 

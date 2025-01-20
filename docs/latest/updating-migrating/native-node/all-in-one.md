@@ -47,7 +47,7 @@ You can reuse the previously generated [API token for the `Deploy` role](../../u
 For the configuration file, you can reuse the one used during the initial installation. Only add new parameters or modify existing ones if necessary - see the [supported configuration options](../../installation/native-node/all-in-one-conf.md).
 
 === "connector-server"
-    The `connector-server` mode is used when you deployed the self-hosted node with [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md) or [Fastly](../../installation/connectors/fastly.md) connector.
+    The `connector-server` mode is used when you deployed the self-hosted node with [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md) connector.
 
     For the x86_64 installer version:
 
@@ -123,6 +123,6 @@ If there is a problem with the upgrade or reinstallation process:
     ```
     sudo systemctl stop wallarm && sudo rm -rf /opt/wallarm
     ```
-1. Reinstall the node as usual for [TCP traffic analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) or the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), or [Fastly](../../installation/connectors/fastly.md) connectors.
+1. Reinstall the node as usual for [TCP traffic analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) or the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md) or [Fastly](../../installation/connectors/fastly.md) connectors.
 
     Or follow the upgrade procedure described above.

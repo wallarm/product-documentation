@@ -17,7 +17,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <a class="do-card" href="../../installation/se-connector/">
             <img class="non-zoomable" src="../../images/platform-icons/se-connectors.svg" />
             <h3>Edge Connector</h3>
-            <p>Wallarm-hosted node for MuleSoft, CloudFront, or Cloudflare</p>
+            <p>Wallarm-hosted node for MuleSoft, CloudFront, Cloudflare, or Fastly</p>
         </a>
     </div>
 </div>
@@ -240,6 +240,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <img class="non-zoomable" src="../../images/platform-icons/layer7.png" />
             <h3>Broadcom Layer7 API Gateways</h3>
             <p>Deploy Wallarm to secure APIs managed with Layer7 API Gateways</p>
+        </a>
+
+        <a class="do-card" href="../../installation/connectors/fastly/">
+            <img class="non-zoomable" src="../../images/platform-icons/fastly.png" />
+            <h3>Fastly</h3>
+            <p>Deploy Wallarm to secure APIs running on Fastly</p>
         </a>
     </div>
 </div>

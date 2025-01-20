@@ -330,7 +330,7 @@ Wallarm service type. Can be:
 
 * `LoadBalancer` for running the service as a load balancer with a public IP for easy traffic routing.
 
-    This is suitable for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md) or [Amazon CloudFront](../connectors/aws-lambda.md) connectors.
+    This is suitable for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md) connectors.
 * `ClusterIP` for internal traffic, without exposing a public IP.
 
     This is suitable for [Kong API Gateway](../connectors/kong-api-gateway.md) or [Istio](../connectors/istio.md) connectors.
