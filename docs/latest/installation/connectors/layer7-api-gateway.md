@@ -100,10 +100,3 @@ To upgrade the Wallarm policies deployed on Broadcom to a [newer version](code-b
 1. **Save and Activate** the updated policies.
 
 Policy upgrades may require a Wallarm Node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
-
-
-
-<!-- в статьях по установке нейтив ноды из aio, докера и тд в части finish installation не все платформы перечислены как будто -->
-<!-- обновить надо еще в конфлюенсе документ -->
-<!-- starting from 0.8.0 -->
-<!-- в SE еще не все указаны платформы -->
