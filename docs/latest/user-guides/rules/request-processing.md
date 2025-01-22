@@ -343,7 +343,7 @@ When defining a request element the [rule](rules.md) is applied to:
 
 #### gql
 
-Parses GraphQL executable definitions (queries, mutations, subscriptions and fragments).
+Parses GraphQL executable definitions (queries, mutations, subscriptions and fragments) that enables an improved detection of the [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks) in GraphQL specific request points. Requires NGINX Node TBD or Native Node TBD or higher.
 
 Filters:
 
@@ -351,7 +351,7 @@ Filters:
  * **gql_mutation** for a mutation operation
  * **gql_subscription** for a subscription operation
  * **gql_alias** for a field alias
- * **gql_arg** for the field arguments
+ * **gql_arg** for field arguments
  * **gql_dir** for a directive
  * **gql_spread** for a fragment spread
  * **gql_fragment** for a fragment definition
@@ -359,7 +359,7 @@ Filters:
  * **gql_inline** for an inline fragment
  * **gql_var** for a variable definition
 
-Example:
+Examples:
 
 ```
 query GetUser {
@@ -367,13 +367,23 @@ query GetUser {
     ...UserFields @include(if: true)
   }
 }
+```
 
+* `[..., gql, gql_query, 'GetUser', hash, 'user', gql_arg, hash, 'id']` — `1`
+* `[..., gql, gql_query, 'GetUser', hash, 'user', gql_spread,` `'UserFields', gql_dir, 'include', gql_arg, hash, 'if']` — `true`
+
+```
 query GetAllUsers {
   users(limit: 10) {
     ...UserFields @include(if: true)
   }
 }
+```
 
+* `[..., gql, gql_query, 'GetAllUsers', hash, 'users', gql_arg, hash, 'limit']` — `10`
+* `[..., gql, gql_query, 'GetAllUsers', hash, 'users',` `gql_spread, 'UserFields', gql_dir, 'include', gql_arg, hash, 'if']` — `true`
+
+```
 fragment UserFields on User {
   id
   name
@@ -385,13 +395,11 @@ fragment UserFields on User {
 }
 ```
 
-* `[..., gql, gql_query, 'GetUser', hash, 'user', gql_arg, hash, 'id']` — `1`
-* `[..., gql, gql_query, 'GetUser', hash, 'user', gql_spread,` `'UserFields', gql_dir, 'include', gql_arg, hash, 'if']` — `true`
-* `[..., gql, gql_query, 'GetAllUsers', hash, 'users', gql_arg, hash, 'limit']` — `10`
-* `[..., gql, gql_query, 'GetAllUsers', hash, 'users',` `gql_spread, 'UserFields', gql_dir, 'include', gql_arg, hash, 'if']` — `true`
 * `[..., gql, gql_fragment, 'UserFields', gql_type,` `'User', hash, 'posts', gql_arg, hash, 'status']` — `published`
 
-This serves for improved detection of the [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks) in GraphQL specific request points. Requires NGINX Node TBD or Native Node TBD or higher.
+The parser allows extracting and displaying values of [GraphQL request parameters in API Sessions](../../api-sessions/overview.md#graphql-requests-in-api-sessions) and applying [rules](rules.md) to GraphQL specific parts of requests:
+
+![Example of the rule applied to GraphQL request point"](../../images/user-guides/rules/rule-applied-to-graphql-point.png)
 
 !!! info "GraphQL protection with Wallarm"
     While [always enabled](#managing-parsers) parser by default provides detection of regular attacks (SQLi, RCE, etc.) in GraphQL, Wallarm also allow **configuring** [protection from GraphQL-specific attacks](../../api-protection/graphql-rule.md).
