@@ -1,74 +1,90 @@
 # SAML SSO Authentication Setup
 
 [img-disable-sso-provider]:     ../../../images/admin-guides/configuration-guides/sso/disable-sso-provider.png
-
 [doc-setup-sso-gsuite]:     gsuite/overview.md
 [doc-setup-sso-okta]:       okta/overview.md
 
-This article describes how to enable and configure Wallarm's [SAML SSO Authentication](intro.md).
+This article describes the generic flow of enabling and configuring Wallarm's [SAML SSO Authentication](intro.md).
 
-## Select mode and enable
+You can also get acquainted with examples for [G Suite](sso-gsuite.md) and [Okta](sso-okta.md) SAML SSO solutions.
 
-By default, SSO connection on Wallarm is not available without activating the appropriate service. To activate the SSO service: 
+## Step 1: Activate SSO service
 
-1. Select the [SSO mode](intro.md#sso-modes) matching your needs.
-1. Contact the [Wallarm support team](mailto:support@wallarm.com) to activate.
-1. [Setup integration](#setup-integration) between your SAML SSO solution and Wallarm.
-    
-If no SSO service is activated, then SSO-related blocks will not be visible in the **Integrations** section in Wallarm Console.
+By default, SSO service for authentication in Wallarm is not active, corresponding blocks are not visible in the **Integrations** section in Wallarm Console.
 
-## Migrating between modes
+To activate the SSO service, contact the [Wallarm support team](mailto:support@wallarm.com).
 
-To migrate to a SSO mode different from you current one, contact the [Wallarm support team](mailto:support@wallarm.com).
+## Step 2 (Wallarm): Generate metadata
 
-## Setup integration
+You need Wallarm metadata to enter on the SAML SSO solution side:
 
-To set up integration between your SAML SSO solution and Wallarm:
+1. In Wallarm Console, go to **Integrations** → **SSO SAML AUTHENTICATION** and initiate the appropriate integration. Note that only one SSO integration can be active at the moment.
 
-1. Make sure the SSO service is [enabled](#select-mode-and-enable) in a selected mode.
-1. Act as described in [G Suite](../../../admin-en/configuration-guides/sso/gsuite/overview.md) or [Okta](../../../admin-en/configuration-guides/sso/okta/overview.md) examples.
-1. If in **Simple SSO** mode, provide [required mapping](#simple-sso-mapping).
-1. If in **Simple SSO (legacy)** mode, [enable SSO](../../../admin-en/configuration-guides/sso/employ-user-auth.md) for selected users.
+    ![Integrations - SSO](../../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
 
-## Simple SSO mapping
+1. In the SSO configuration wizard, at the **Send details** step, overview the metadata to be sent to your SAML SSO solution.
+1. Copy metadata or save them as XML.
 
-In Simple SSO [mode](intro.md#sso-modes), in your SAML SSO solution (identity provider), you create users and add them to groups, set users' permissions by mapping groups to Wallarm [roles](../../../user-guides/settings/users.md#user-roles); integrate with Wallarm and it will use data from your solution.
+See example for [G Suite](sso-gsuite.md#step-2-wallarm-generate-metadata).
 
-[Setup](#setup-integration) as all other modes, obligatory add mapping for the following attributes:
+## Step 3 (SAML SSO solution): Configure application
 
-* `email`
-* `first_name`
-* `last_name`
-* `wallarm_role:[role]` where `role` is:
+1. Log in to your SAML SSO solution.
+1. Configure application that will provide access to Wallarm.
+1. Copy the application's metadata or save them as XML.
+1. Make sure the application is activated and users have access to it.
 
-    * `admin` (**Administrator**)
-    * `analytic` (**Analyst**)
-    * `api_developer` (**API Developer**)
-    * `auditor` (**Read Only**)
-    * `partner_admin` (**Global Administrator**)
-    * `partner_analytic` (**Global Analyst**)
-    * `partner_auditor` (**Global Read Only**)
+See examples for [G Suite](sso-gsuite.md#step-3-g-suite-configure-application) and [Okta](sso-okta.md#step-3-okta-configure-application).
 
-        See all role descriptions [here](../../../user-guides/settings/users.md#user-roles). Contact the [Wallarm support team](mailto:support@wallarm.com) to get more roles available.
+## Step 4 (SAML SSO solution): Configure provisioning
 
-![SAML SSO solution - G Suite - Mapping](../../../images/admin-guides/configuration-guides/sso/simple-sso-mapping.png)
+The **provisioning** is an automatic transfer of data from SAML SSO solution to Wallarm: your SAML SSO solution users and their group membership define access to Wallarm and permissions there; all user management is performed on SAML SSO solution side.
 
-##  Disabling and removing
+For this to work, provide the attribute mapping:
 
-**Disabling**
+1. In the application providing access to Wallarm, map the attributes:
 
-To disable SSO, go to **Integrations**. In the block of the corresponding SSO provider, from the menu select **Disable**.
+    * `email`
+    * `first_name`
+    * `last_name`
+    * user group(s) to `wallarm_role:[role]` where `role` is:
 
-Note that when you disable or remove SSO authentication, it will be disabled for all users. Users will be notified that SSO authentication is disabled and the password needs to be restored.
+        * `admin` (**Administrator**)
+        * `analytic` (**Analyst**)
+        * `api_developer` (**API Developer**)
+        * `auditor` (**Read Only**)
+        * `partner_admin` (**Global Administrator**)
+        * `partner_analytic` (**Global Analyst**)
+        * `partner_auditor` (**Global Read Only**)
 
-![disabling-sso-provider][img-disable-sso-provider]
+            See all role descriptions [here](../../../user-guides/settings/users.md#user-roles). Contact the [Wallarm support team](mailto:support@wallarm.com) to get more roles available.
 
-After confirmation, the SSO provider will be disconnected, but its settings will be saved and you can enable this provider again in the future. In addition, after disabling, you will be able to connect another SSO provider (another service as an identity provider).
+1. Save the changes.
 
-**Deleting**
+See example for [G Suite](sso-gsuite.md#step-4-g-suite-configure-provisioning).
 
-Compared to disabling, deleting the SSO provider integration will cause the loss of all its settings without the possibility of recovery. If you need to reconnect your provider, you will need to reconfigure it.
+**Turning provisioning off**
 
-To delete SSO provider, go to **Integrations**. In the block of the corresponding SSO provider, from the menu select **Delete**.
+You can turn the provisioning option off. If it is off, for users that you have in your SAML SSO solution, you will need to create corresponding users in Wallarm. User roles will also be defined in Wallarm.
 
-After confirmation, the selected SSO provider will be removed and will no longer be available. Also, you will be able to connect to another SSO provider.
+To turn the **provisioning off**, contact the [Wallarm support team](mailto:support@wallarm.com).
+
+With provisioning turned off, you should manually create users, set their roles and select users that should login via SSO - the remaining will use login/password. You can also enable **Strict SSO** option which enables SSO authentication for all company account users at once. Other characteristics of Strict SSO are:
+
+* The authentication method for all existing users of the account is switched to SSO.
+* All new users get the SSO as the authentication method by default.
+* Authentication method cannot be switched to anything different from SSO for any user.
+
+When provisioning is off, user management is performed in Wallarm Console → **Settings** → **Users** as described [here](../../../user-guides/settings/users.md). Mapping with SAML SSO solution uses the `email` attribute.
+
+## Step 5 (Wallarm): Enter SSO SAML solution metadata
+
+1. In Wallarm Console, in the SSO configuration wizard, proceed to the **Upload metadata** step.
+1. Do one of the following:
+
+    * Upload G Suite metadata as an XML file.
+    * Enter metadata manually as follows.
+
+1. Complete SSO configuration wizard. Connection between Wallarm to SAML SSO solution will be tested.
+
+See examples for [G Suite](sso-gsuite.md#step-5-wallarm-enter-g-suite-metadata) and [Okta](sso-okta.md#step-6-wallarm-enter-okta-metadata).

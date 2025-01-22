@@ -1,9 +1,6 @@
-[img-gsuite-sso-provider-wl]:   ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-sso-provider-wl.png
-[img-sp-metadata]:              ../../../../images/admin-guides/configuration-guides/sso/gsuite/sp-metadata.png
 
-[doc-setup-idp]:                setup-idp.md
 
-#   Step 1: Generating Parameters on the Wallarm Side (G Suite)
+#   Step 1: Generating Parameters on the Wallarm side (G Suite)
 
 To connect SSO with G Suite, you will first need to generate some parameters on the Wallarm side.
 

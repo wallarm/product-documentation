@@ -95,7 +95,7 @@ You can manage Wallarm Console users and their permissions directly from your SA
 * Immediate access to Wallarm Console under SSO credentials.
 * Permissions specified by the role.
 
-For this to work, you need to configure integration between Wallarm and your SAML SSO solution in the **Simple SSO** (2025) mode as described [here](../../admin-en/configuration-guides/sso/setup.md#simple-sso-mapping).
+For this to work, you need to configure integration between Wallarm and your SAML SSO solution with **provisioning** option enabled as described [here](../../admin-en/configuration-guides/sso/setup.md#step-4-saml-sso-solution-configure-provisioning).
 
 ## Changing user settings
 
