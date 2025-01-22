@@ -1,1 +1,1 @@
---8<-- "latest/api-protection/graphql-rule.md"
+--8<-- "4.10/api-protection/graphql-rule.md"
