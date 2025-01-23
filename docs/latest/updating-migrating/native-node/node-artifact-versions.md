@@ -12,6 +12,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.10.1 (2025-01-02)
 
+* Added support for sensitive business flows in [API Discovery](../api-discovery/sbf.md) and [API Sessions](../api-sessions/exploring.md#sensitive-business-flows)
 * Added support for the [Fastly](../../installation/connectors/fastly.md) connector
 * Fixed potential request loss at mesh startup
 * Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
@@ -114,6 +115,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.10.1 (2025-01-02)
 
+* Added support for sensitive business flows in [API Discovery](../api-discovery/sbf.md) and [API Sessions](../api-sessions/exploring.md#sensitive-business-flows)
 * Added support for the [Fastly](../../installation/connectors/fastly.md) connector
 * Fixed potential request loss at mesh startup
 * Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities
@@ -176,6 +178,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.10.1 (2025-01-02)
 
+* Added support for sensitive business flows in [API Discovery](../api-discovery/sbf.md) and [API Sessions](../api-sessions/exploring.md#sensitive-business-flows)
 * Added support for the [Fastly](../../installation/connectors/fastly.md) connector
 * Fixed potential request loss at mesh startup
 * Resolved the [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) and [CVE-2024-45338](https://scout.docker.com/vulnerabilities/id/CVE-2024-45338) vulnerabilities

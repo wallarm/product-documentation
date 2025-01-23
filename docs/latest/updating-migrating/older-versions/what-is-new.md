@@ -140,6 +140,23 @@ Wallarm detects new attack types:
 
     A successful SSRF attack may allow an attacker to make requests on behalf of the attacked web server; this potentially leads to revealing the web application's network ports in use, scanning the internal networks, and bypassing authorization.
 
+## Sensitive business flows in API Discovery and API Sessions
+
+!!! tip ""
+    [NGINX Node 5.2.11 and higher](node-artifact-versions.md) and [Native Node 0.10.1 and higher](native-node/node-artifact-versions.md)
+
+With the sensitive business flow capability, Wallarm's [API Discovery](../api-discovery/overview.md) can automatically identify endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities.
+
+This allows regular monitoring and audit of endpoints related to sensitive business flows for vulnerabilities or breaches and prioritizing them for development, maintenance, and security efforts.
+
+![API Discovery - Sensitive business flows](../../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
+
+Identified sensitive business flows are propagated to Wallarm's [API Sessions](../../api-sessions/overview.md): if session's requests affect the endpoints that in API Discovery were tagged as important for some sensitive business flows, such session will be automatically [tagged](../../api-sessions/exploring.md#sensitive-business-flows) as affecting this business flow as well.
+
+Once sessions are assigned with the sensitive business flow tags, it becomes possible to filter them by a specific business flow which makes it easier to select the sessions that are most important to analyze.
+
+![!API Sessions - sensitive business flows](../../images/api-sessions/api-sessions-sbf-no-select.png)
+
 ## Checking JSON Web Token strength
 
 [JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely. JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
