@@ -261,6 +261,7 @@ nav:
       - Webhook: user-guides/settings/integrations/webhook.md
   - User Management:
     - Overview: user-guides/settings/users.md
+    - Access and Permissions: user-guides/settings/groups.md
     - User Profile: user-guides/settings/account.md
     - API Tokens: user-guides/settings/api-tokens.md
     - Using Single Sign‑On (SSO):
