@@ -45,6 +45,30 @@ Click **Explore in API Discovery** to switch to the endpoint information in the 
 
 Use the **Time,ms** and **Size,bytes** columns in the session request details to compare presented data with the average expected values. Significantly exceeded values signal about possible performance issues and bottlenecks and the possibility to optimize the user experience.
 
+## Sensitive business flows
+
+In [API Discovery](../api-discovery/overview.md), the [sensitive business flow](../api-discovery/sbf.md) capability (requires NGINX Node 5.2.11 or native Node 0.10.1 or higher) allows automatic and manual identification of endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities.
+
+If the sessions' requests affect the endpoints that in API Discovery were tagged as important for some sensitive business flows, such sessions are automatically tagged as affecting this business flow as well.
+
+Once sessions are assigned with the sensitive business flow tags, it becomes possible to filter them by a specific business flow which makes it easier to select the sessions that are most important to analyze.
+
+![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-no-select.png)
+
+Wallarm lists business flows and displays number and percentage of requests related to the flow from the total number of session requests.
+
+Sessions can be associated with one of the following sensitive business flows:
+
+--8<-- "../include/default-sbf.md"
+
+Use the **Business flow** filter to quickly analyze all the sessions affecting specific flows.
+
+## Sessions by users and roles
+
+If you [configured](setup.md#users-and-roles) API Sessions to obtain information on users and their roles, you can filter sessions by users and roles.
+
+![!API Sessions - user and user role display](../images/api-sessions/api-sessions-user-role-display.png)
+
 ## Verifying API abuse detection accuracy
 
 --8<-- "../include/bot-attack-full-context.md"
