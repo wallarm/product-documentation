@@ -1,0 +1,1 @@
+--8<-- "latest-pr-BR/user-guides/settings/groups.md"

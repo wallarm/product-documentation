@@ -309,6 +309,7 @@ nav:
       - Tetikleyici örnekleri: user-guides/triggers/trigger-examples.md
   - Kullanıcı Yönetimi:
     - Genel Bakış: user-guides/settings/users.md
+    - Access and Permissions: user-guides/settings/groups.md
     - Kullanıcı Profili: user-guides/settings/account.md
     - Oturum Kapatma Ayarları: user-guides/settings/general.md
     - API Tokenları: user-guides/settings/api-tokens.md
