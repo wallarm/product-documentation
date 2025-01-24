@@ -143,9 +143,9 @@ Wallarm detects new attack types:
 ## Sensitive business flows in API Discovery and API Sessions
 
 !!! tip ""
-    [NGINX Node 5.2.11 and higher](node-artifact-versions.md) and [Native Node 0.10.1 and higher](native-node/node-artifact-versions.md)
+    [NGINX Node 5.2.11 and higher](../node-artifact-versions.md) and [Native Node 0.10.1 and higher](../native-node/node-artifact-versions.md)
 
-With the sensitive business flow capability, Wallarm's [API Discovery](../api-discovery/overview.md) can automatically identify endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities.
+With the sensitive business flow capability, Wallarm's [API Discovery](../../api-discovery/overview.md) can automatically identify endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities.
 
 This allows regular monitoring and audit of endpoints related to sensitive business flows for vulnerabilities or breaches and prioritizing them for development, maintenance, and security efforts.
 
