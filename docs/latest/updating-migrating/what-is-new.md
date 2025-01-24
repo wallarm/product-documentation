@@ -52,6 +52,23 @@ API Discovery detects and highlights sensitive data consumed and carried by your
 
 Patterns are used to define which sensitive data is detected and how. To modify default patterns and add your own, in Wallarm Console go to **API Discovery** → **Configure API Discovery** → **Sensitive data**.
 
+## Sensitive business flows in API Discovery and API Sessions
+
+!!! tip ""
+    [NGINX Node 5.2.11 and higher](node-artifact-versions.md) and [Native Node 0.10.1 and higher](native-node/node-artifact-versions.md)
+
+With the sensitive business flow capability, Wallarm's [API Discovery](../api-discovery/overview.md) can automatically identify endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities.
+
+This allows regular monitoring and audit of endpoints related to sensitive business flows for vulnerabilities or breaches and prioritizing them for development, maintenance, and security efforts.
+
+![API Discovery - Sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
+
+Identified sensitive business flows are propagated to Wallarm's [API Sessions](../api-sessions/overview.md): if session's requests affect the endpoints that in API Discovery were tagged as important for some sensitive business flows, such session will be automatically [tagged](../api-sessions/exploring.md#sensitive-business-flows) as affecting this business flow as well.
+
+Once sessions are assigned with the sensitive business flow tags, it becomes possible to filter them by a specific business flow which makes it easier to select the sessions that are most important to analyze.
+
+![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-no-select.png)
+
 ## Native Node for connectors and TCP traffic mirror
 
 We are excited to introduce the Native Node, a new deployment option for the Wallarm Node that operates independently of NGINX. This solution was developed for environments where NGINX is not required or where a platform-agnostic approach is preferred. 
