@@ -60,7 +60,9 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
 
 To route traffic from Fastly to the Wallarm Node, you need to deploy a Fastly Compute service with the corresponding Wallarm logic:
 
-1. Contact sales@wallarm.com to get the `Wallarm-API-security.tar.gz` Wallarm package.
+1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download the Wallarm package.
+
+    If running a self-hosted node, contact sales@wallarm.com to get the package.
 1. Go to **Fastly** UI → **Account** → **API tokens** → **Personal tokens** → **Create token**:
 
     * Type: Automation token
@@ -76,7 +78,7 @@ To route traffic from Fastly to the Wallarm Node, you need to deploy a Fastly Co
 1. Go to the local directory containing the Wallarm package and deploy it:
 
     ```
-    fastly compute deploy --service-id=<SERVICE_ID> --package=Wallarm-API-security.tar.gz --token=<FASTLY_TOKEN>
+    fastly compute deploy --service-id=<SERVICE_ID> --package=wallarm-api-security.tar.gz --token=<FASTLY_TOKEN>
     ```
 
     The success message:
@@ -377,11 +379,13 @@ To test the functionality of the deployed solution, follow these steps:
 
 To upgrade the deployed Fastly Compute service to a [newer version](code-bundle-inventory.md#fastly):
 
-1. Contact sales@wallarm.com to get the updated code bundle.
-1. Go to the directory containing the updated `Wallarm-API-security.tar.gz` Wallarm package archive and run:
+1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download the updated code bundle.
+
+    If running a self-hosted node, contact sales@wallarm.com to get the updated code bundle.
+1. Go to the directory containing the updated `wallarm-api-security.tar.gz` Wallarm package archive and run:
 
     ```
-    fastly compute deploy --service-id=<SERVICE_ID> --package=Wallarm-API-security.tar.gz --token=<FASTLY_TOKEN>
+    fastly compute deploy --service-id=<SERVICE_ID> --package=wallarm-api-security.tar.gz --token=<FASTLY_TOKEN>
     ```
 
     * `<SERVICE_ID>` with the ID of your deployed Wallarm service.
