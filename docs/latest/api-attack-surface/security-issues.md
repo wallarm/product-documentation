@@ -40,6 +40,7 @@ Wallarm automatically detects the following security issues:
 | XSS | Cross‑site scripting - a cross‑site scripting attack allows an attacker to execute a prepared arbitrary code in a user's browser. See [details](../attacks-vulns-list.md#crosssite-scripting-xss). |
 | XXE | Attack on XML external entity - the vulnerability allows an attacker to inject an external entity in an XML document to be evaluated by an XML parser and then executed on the target web server. See [details](../attacks-vulns-list.md#attack-on-xml-external-entity-xxe). |
 | API leak | A leaked API key can allow attackers to impersonate authorized users, access confidential financial data, and even manipulate transaction flows. See [details](#api-leaks). |
+| Vulnerable software | Vulnerable software versions pose a significant risk of unauthorized access to systems, stolen data, malware, or operation disruption. The vulnerability has a high risk of exploitation, as the attackers actively seek out known vulnerabilities in outdated software. |
 
 ## Issue lifecycle
 
