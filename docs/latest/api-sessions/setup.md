@@ -4,18 +4,18 @@
 
 ## Session context
 
-Context in API sessions is information that enriches request data by grouping them into logical sessions and adding metadata to provide deeper insights into session activity. Configuring context allows you to specify which aspects or additional data should be tracked and associated with each session.
+Context in API sessions is information that enriches request data by grouping them into logical sessions and adding response and metadata to provide deeper insights into session activity. Configuring context allows you to specify which aspects or additional data should be tracked and associated with each session.
 
-Set session context by adding extra parameters, associating sessions with sensitive business flows and highlighting parameters that can be used for user and user role identification.
+Set session context by adding extra request and response parameters, associating sessions with sensitive business flows and highlighting parameters that can be used for user and user role identification.
 
 ### Extra parameters
 
 In **API Sessions**, within session, the request details by default include: 
 
-* Parameter that worked for [session grouping](#session-grouping) - yours or the one from the built-in set.
+* Parameter of request or response that worked for [session grouping](#session-grouping) - yours or the one from the built-in set.
 * For malicious requests - full request content.
 
-You can add any additional (context) [parameters](../user-guides/rules/request-processing.md) that you need to understand the session content: what and in what order the actor did. To do so, add these parameters in Wallarm Console → **API Sessions** → **Session context parameters**. Once added, Wallarm will export them to the Wallarm Cloud and [display](#data-protection) in Wallarm Console, in details of your session requests.
+You can add any additional (context) [parameters](../user-guides/rules/request-processing.md) both for requests and for their related responses, that you need to understand the session content: what and in what order the actor did and what the response was. To do so, add these parameters in Wallarm Console → **API Sessions** → **Session context parameters**. Once added, Wallarm will export them to the Wallarm Cloud and [display](#data-protection) in Wallarm Console, in details of your session requests.
 
 ![!API Sessions - context parameters](../images/api-sessions/api-sessions-context-parameters.png)
 
@@ -38,11 +38,11 @@ Once you configured parameters to be used for user and his/her role identificati
 
 ## Session grouping
 
-Wallarm groups requests of your applications' traffic into user sessions based on selected headers/parameters of the requests. All the requests having the same value of the selected header/parameter are grouped into one session.
+Wallarm groups requests of your applications' traffic into user sessions based on selected headers/parameters of the requests or responses. All the requests having the same value of the selected header/parameter are grouped into one session. Alternatively, if header/parameter of a response was used for grouping, all the requests which corresponding response has the same value of the selected header/parameter are grouped into one session.
 
 By default, sessions are identified with the **built-in set** of such parameters (not displayed in Wallarm Console). Its logic is to try most common identification parameters, such as `PHPSESSID` or `SESSION-ID` headers, and if they do not work - form session based on the combination of `request source IP and user-agent` (or at least IP if user-agent is not presented).
 
-You can add your own identification parameters based on your applications' logic. To do so, go to Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter and select **Group sessions by this key** for it.
+You can add your own identification parameters based on your applications' logic. To do so, go to Wallarm Console → **API Sessions** → **Session context parameters**, add your request or response parameter and select **Group sessions by this key** for it.
 
 !!! info "Impact **to** bot detection by `API Abuse prevention`"
     Wallarm's API Abuse Prevention uses sessions for the malicious bot detection. Adding your own session identification parameters based on your applications' logic makes both session detection and API Abuse Prevention's bot detection more precise. See [details](overview.md#api-sessions-and-api-abuse-prevention).
