@@ -107,7 +107,7 @@ Requires Native Node version 0.8.3 or higher.
 
 ### 1.1.0 (2025-01-06)
 
-* Added support for [log streaming endpoints](https://www.fastly.com/documentation/guides/integrations/logging/) with configuring via the optional `LOGGING_ENDPOINT` [parameter](fastly.md#4-create-the-wallarm-config-store).
+* Added support for [log streaming endpoints](https://www.fastly.com/documentation/guides/integrations/logging/) with configuring via the optional `LOGGING_ENDPOINT` [parameter](fastly.md#4-create-the-wallarm-config-store)
 
 ### 1.0.0 (2025-01-02)
 
