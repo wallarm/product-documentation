@@ -54,7 +54,12 @@ If an origin has multiple servers, you can specify all of them. Requests are dis
 !!! info "Allow traffic from Wallarm IP ranges to origins"
     Your origins should allow incoming traffic from the IP ranges used by the selected regions:
 
-    === "eu-central-2"
+    === "eu-central-1 (Frankfurt)"
+        ```
+        3.76.66.246
+        18.195.202.193
+        ```
+    === "eu-central-2 (Zurich)"
         ```
         51.96.131.55
         16.63.191.19
