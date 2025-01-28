@@ -175,14 +175,18 @@ To test the functionality of the deployed functions, follow these steps:
 
 To upgrade the deployed Lambda@Edge function to a [newer version](code-bundle-inventory.md#cloudfront):
 
-1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download the updated Wallarm Lambda@Edge functions.
+=== "Manual download and deploy"
+    1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download the updated Wallarm Lambda@Edge functions.
 
-    If running a self-hosted node, contact sales@wallarm.com to get the updated code bundle.
-1. Replace the code in your deployed Lambda@Edge functions with the updated bundle.
+        If running a self-hosted node, contact sales@wallarm.com to get the updated code bundle.
+    1. Replace the code in your deployed Lambda@Edge functions with the updated bundle.
 
-    Preserve the existing values for parameters like `wlrm_node_addr`, `wlrm_inline`, and others.
+        Preserve the existing values for parameters like `wlrm_node_addr`, `wlrm_inline`, and others.
 
-    Keep the existing function triggers unchanged.
-1. **Deploy** the updated functions.
+        Keep the existing function triggers unchanged.
+    1. **Deploy** the updated functions.
+=== "Deploying functions from AWS SAR"
+    1. Repeat the steps outlined in the [2nd step](#2-obtain-and-deploy-the-wallarm-lambdaedge-functions) using the new version of the functions.
+    1. After linking the updated functions to your distributions, remove the previous versions of the functions from the CloudFront triggers to avoid conflicts.
 
 Function upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
