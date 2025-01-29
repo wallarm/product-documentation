@@ -176,7 +176,7 @@ Since the Edge node is a managed solution, Wallarm takes care of all upgrades. T
 
 ## Deleting the Edge Inline
 
-To delete your Edge deployment, click **Configure** → **Delete**.
+To delete your Edge deployment, click **Configure** → **Admin settings** → **Delete**.
 
 If you intend to delete and re-create the nodes, you can adjust the settings of the existing deployment, and the nodes will be re-deployed with the updated configuration.
 
