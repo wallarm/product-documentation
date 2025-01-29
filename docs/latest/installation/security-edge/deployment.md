@@ -112,9 +112,17 @@ For specific **locations** within hosts, you can further customize:
 * Origin. The path defined in the location will automatically append to the origin.
 * Wallarm application.
 * Filtration mode.
-* `proxy_read_timeout`: defines how long Wallarm waits for a response from the origin server before closing the connection. Default is `60s`.
-* `proxy_send_timeout`: sets the time Wallarm waits for the origin server to acknowledge request data before terminating the connection. Default is `60s`.
-* `client_max_body_size`: limits the maximum request body size allowed from the client to the origin server (useful for file uploads or data size control). Default is `1MB`.
+* `proxy_read_timeout`: defines how long Wallarm waits for a response from the origin server before closing the connection.
+* `proxy_send_timeout`: sets the time Wallarm waits for the origin server to acknowledge request data before terminating the connection.
+* `client_max_body_size`: limits the maximum request body size allowed from the client to the origin server (useful for file uploads or data size control).
+* `proxy_buffer_size`: sets the size (in kilobytes) of the buffer used for reading the first part of the response received from the origin (backend).
+* `proxy_busy_buffers_size`: limits the total size (in kilobytes) of buffers that can be busy sending a response to the client while the response is not yet fully read. In the meantime, the rest of the buffers can be used for reading the response and, if needed, buffering part of the response to a temporary file.
+* `proxy_buffers` number and size: sets the number and size (in kilobytes) of the buffers used for reading a response from the origin (backend), for a single connection.
+* `proxy_request_buffering`: enables or disables buffering of a client request body.
+
+    When enabled, the entire request body is read from the client before sending the request to a host. 
+    
+    When disabled, the request body is sent to the host immediately as it is received. In this case, the request cannot be passed to the origin (backend) next if NGINX already started sending the request body.
 
 Each location inherits settings from the host level but can be individually customized. Locations not explicitly configured will follow the general settings specified at the host level.
 
