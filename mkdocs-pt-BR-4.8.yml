@@ -311,6 +311,7 @@ nav:
       - Exemplos de Acionador: user-guides/triggers/trigger-examples.md
   - Gerenciamento de Usuários:
     - Visão Geral: user-guides/settings/users.md
+    - Access and Permissions: user-guides/settings/groups.md
     - Perfil de Usuário: user-guides/settings/account.md
     - Configurações de Logout: user-guides/settings/general.md
     - Tokens de API: user-guides/settings/api-tokens.md

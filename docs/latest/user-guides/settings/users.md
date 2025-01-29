@@ -18,50 +18,9 @@
 
 # Managing Users
 
-Invite your team members to your Wallarm account and assign each one a specific role to safeguard sensitive information and limit account actions. Manage users under **Settings** → **Users**.
+Invite your team members to your Wallarm account and set permissions to safeguard sensitive information and limit account actions. Manage users under **Settings** → **Users**.
 
 Only **Administrator** and **Global Administrator** roles have user management privileges.
-
-## User roles
-
-Users of Wallarm clients can have the following roles:
-
-* **Administrator** with access to all Wallarm settings.
-* **Analyst** with access to view main Wallarm settings, and manage information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability].
-* **Read Only** with access to view main Wallarm settings.
-* **API Developer** with access to view and download the API inventory discovered by the [API Discovery](../../api-discovery/overview.md) module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery**, its dashboard, and **Settings → Profile**.
-* **Deploy** with access to create Wallarm filtering nodes using the `addnode` script and with no access to Wallarm Console.
-
-    !!! warning "Using the Deploy role to install the Wallarm node 4.0"
-        The **Deploy** user role is recommended to be used to install only nodes 3.6 and lower since the [`addnode` script is deprecated in the release of version 4.0](../../updating-migrating/older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-api-tokens).
-
-The [multitenancy](../../installation/multi-tenant/overview.md) feature also enables you to use the global roles **Global Administrator**, **Global Analyst**, **Global Read Only**. Global roles provide users with access to the technical tenant account and linked tenant accounts, regular roles provide users with access only to the technical tenant account.
-
-More detailed information about access of different user roles to the Wallarm entities is provided in the table below. Entity management covers entity creating, editing, and deleting.
-
-| Entity              | Administrator / Global Administrator | Analyst / Global Analyst | Read Only / Global Read Only | API Developer |
-|---------------------|--------------------------------------|--------------------------|------------------------------|---|
-| **Filtering nodes**       | View and manage                      | View                     | View                         | - |
-| **Dashboard**       | View                                 | View                     | View                         | - |
-| **Attacks**          | View and manage                      | View and manage          | View                         | - |
-| **Incidents**          | View and manage                      | View and manage          | View                         | - |
-| **API Sessions**          | View and manage                      | View          | View                         | - |
-| **Vulnerabilities** | View and manage                      | View and manage          | View              | - |
-| **API inventory by API Discovery**   | View and manage                      | View and manage          | -                            | View and download |
-| **API Specifications**   | View and manage                      | View          | View                            | View |
-| **Scanner**         | View and manage                      | View and manage          | View                         | - |
-| **Triggers**        | View and manage                      | -                        | -                            | - |
-| **IP lists**       | View, manage, and export             | View, manage, and export | View and export              | - |
-| **Rules**           | View and manage                      | View and manage          | View                         | - |
-| **Credential Stuffing Detection**           | View and manage                      | View and manage          | View                         | - |
-| **BOLA protection**           | View and manage                      | View          | - | - |
-| **Security Edge**    | View and manage                      | View                        | -                            | - |
-| **Integrations**    | View and manage                      | -                        | -                            | - |
-| **Filtration mode**        | View and manage                      | View                     | View                         | - |
-| **Applications**    | View and manage                      | View                     | View                         | - |
-| **Users**           | View and manage                      | -                        | View                         | - |
-| **API tokens**           | Manage personal and shared tokens | Manage personal tokens | - | - |
-| **Activity log**    | View                                 | -                        | View                         | - |
 
 ## Inviting a user
 
@@ -87,9 +46,15 @@ This link leads them to the Wallarm signup page to create their account by choos
 
 After signup, they will be added to your user list and will receive a confirmation email.
 
+## Managing users' access and permission
+
+Wallarm uses groups to provide users with access to Wallarm Cloud resources and set users' permissions. Include user in one or several groups in **Settings** → **Groups**.
+
+See detailed information on working with groups [here](groups.md).
+
 ## Changing user settings
 
-Once a user appears in the user list, you can edit their settings using the **Edit user settings** option from the corresponding user menu. This allows you to change their assigned user role, first name, and last name.
+Once a user appears in the user list, you can edit their settings using the **Edit user settings** option from the corresponding user menu. This allows you to change their first name, and last name.
 
 ## Disabling 2FA
 

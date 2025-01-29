@@ -325,6 +325,7 @@ nav:
       - Webhook: user-guides/settings/integrations/webhook.md
   - إدارة الأعضاء:
     - نظرة عامة: user-guides/settings/users.md
+    - Access and Permissions: user-guides/settings/groups.md
     - ملف المستخدم: user-guides/settings/account.md
     - الرموز المميزة لواجهة برمجة التطبيقات: user-guides/settings/api-tokens.md
     - استخدام Single Sign‑On (SSO):

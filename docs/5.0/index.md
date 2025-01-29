@@ -127,7 +127,8 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 <div class="navigation-card">
     <h3 class="icon-homepage user-management-title">User Management</h3>
     <p><ul>
-    <li><a href="./user-guides/settings/users/">Overview</a></li>
+    <li><a href="./user-guides/settings/users/">Overview</a></li> 
+    <li><a href="./user-guides/settings/groups/">Access and Permissions</a></li>
     <li><a href="./user-guides/settings/account/">User Profile</a></li>
     <li><a href="./user-guides/settings/api-tokens/">API Tokens</a></li>
     <li><a href="./admin-en/configuration-guides/sso/intro/">SAML SSO</a></li>

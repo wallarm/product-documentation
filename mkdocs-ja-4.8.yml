@@ -328,6 +328,7 @@ nav:
       - Webhook: user-guides/settings/integrations/webhook.md
   - ユーザー管理:
     - 概要: user-guides/settings/users.md
+    - Access and Permissions: user-guides/settings/groups.md
     - ユーザープロフィール: user-guides/settings/account.md
     - APIトークン: user-guides/settings/api-tokens.md
     - シングルサインオン(SSO)使用:
