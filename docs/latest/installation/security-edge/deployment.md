@@ -130,7 +130,13 @@ The below example configuration customizes settings per path to meet specific ne
 
 ![!](../../images/waf-installation/security-edge/inline/locations.png)
 
-### 4. Certificate CNAME configuration
+### 4. Admin settings
+
+In the **Admin settings** section, select the Edge node version to deploy. It is recommended to deploy the latest version available from the list.
+
+![!](../../images/waf-installation/security-edge/inline/admin-settings.png)
+
+### 5. Certificate CNAME configuration
 
 After configuration is finished, add the CNAME records provided in the Wallarm Console to your DNS provider's settings for each DNS zone. These records are required for Wallarm to verify domain ownership and issue certificates.
 
@@ -144,7 +150,7 @@ _acme-challenge.myservice.com CNAME _acme-challenge.<WALLARM_CLOUD>-<CLIENT_ID>-
 
 DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node deployment once the CNAME records are verified.
 
-### 5. CNAME configuration for traffic routing
+### 6. CNAME configuration for traffic routing
 
 Once the certificate CNAME is verified (~10 minutes), a **Traffic CNAME** will be available for each host on the **Hosts** tab of the Edge node page. Copy it and update your DNS settings to route traffic to Wallarm.
 
