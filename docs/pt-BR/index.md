@@ -73,7 +73,7 @@ A solução Wallarm protege APIs, microsserviços e aplicações web contra as a
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage waap-waf-title">WAAP/WAF</h3>
+    <h3 class="icon-homepage waap-title">Cloud-Native WAAP</h3>
     <p><ul>
     <li><a href="./about-wallarm/protecting-against-attacks/">Procedimento de Detecção de Ataques</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-ddos/">Proteção Contra DDoS</a></li>

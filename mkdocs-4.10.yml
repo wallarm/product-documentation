@@ -72,7 +72,7 @@ nav:
       - Overview: vulnerability-detection/threat-replay-testing/overview.md
       - Setup: vulnerability-detection/threat-replay-testing/setup.md
       - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
-  - WAAP/WAF:
+  - Cloud-Native WAAP:
     - Overview: about-wallarm/waap-overview.md
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
     - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md

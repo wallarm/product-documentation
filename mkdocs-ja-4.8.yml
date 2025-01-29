@@ -85,7 +85,7 @@ nav:
       - Overview: vulnerability-detection/threat-replay-testing/overview.md
       - Setup: vulnerability-detection/threat-replay-testing/setup.md
       - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
-  - WAAP/WAF:
+  - クラウドネイティブ WAAP:
     - 概要: about-wallarm/waap-overview.md
     - DDoS保護: admin-en/configuration-guides/protecting-against-ddos.md
     - ブルートフォース保護: admin-en/configuration-guides/protecting-against-bruteforce.md

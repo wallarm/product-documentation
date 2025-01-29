@@ -1,4 +1,4 @@
-# WAAP/WAF
+# Cloud-Native WAAP
 
 WallarmのクラウドネイティブWAAP（Web Application & API Protection）は、お客様の環境におけるアプリケーションとAPIに高度な保護を提供します。WallarmのWAAPは、REST、SOAP、GraphQLなどの複数のAPIプロトコルをサポートし、[OWASPトップ10](https://owasp.org/www-project-top-ten/)などを完全にカバーするためのディープパケットインスペクションを含む次世代WAF（Web Application Firewall）です。WAAPは、0-dayや少数の[誤検知](../about-wallarm/protecting-against-attacks.md#false-positives)を含む[様々な脅威](../attacks-vulns-list.md)を高精度で検出し、迅速かつ効果的にインフラを保護することができます。
 
