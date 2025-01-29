@@ -50,8 +50,8 @@
          ```bash
          az container create \
             --resource-group myResourceGroup \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
+            --name wallarm-node \
+            --dns-name-label wallarm \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:4.6.2-1 \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com' WALLARM_API_HOST='us1.api.wallarm.com'
@@ -60,8 +60,8 @@
          ```bash
          az container create \
             --resource-group myResourceGroup \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
+            --name wallarm-node \
+            --dns-name-label wallarm \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:4.6.2-1 \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com'
@@ -138,8 +138,8 @@
          ```bash
          az container create \
             --resource-group myResourceGroup \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
+            --name wallarm-node \
+            --dns-name-label wallarm \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:4.6.2-1 \
             --gitrepo-url <URL_OF_GITREPO> \
@@ -150,8 +150,8 @@
          ```bash
          az container create \
             --resource-group myResourceGroup \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
+            --name wallarm-node \
+            --dns-name-label wallarm \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:4.6.2-1 \
             --gitrepo-url <URL_OF_GITREPO> \

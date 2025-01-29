@@ -60,8 +60,8 @@ In these instructions, the container is deployed using the Azure CLI as follows:
          ```bash
          az container create \
             --resource-group myResourceGroup \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
+            --name wallarm-node \
+            --dns-name-label wallarm \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:3.6.2-1 \
             --environment-variables DEPLOY_USER=${DEPLOY_USER} DEPLOY_PASSWORD=${DEPLOY_PASSWORD} NGINX_BACKEND='example.com'
@@ -70,8 +70,8 @@ In these instructions, the container is deployed using the Azure CLI as follows:
          ```bash
          az container create \
             --resource-group myResourceGroup \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
+            --name wallarm-node \
+            --dns-name-label wallarm \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:3.6.2-1 \
             --environment-variables DEPLOY_USER=${DEPLOY_USER} DEPLOY_PASSWORD=${DEPLOY_PASSWORD} NGINX_BACKEND='example.com' WALLARM_API_HOST='us1.api.wallarm.com'
@@ -150,8 +150,8 @@ To deploy the container with environment variables and mounted configuration fil
          ```bash
          az container create \
             --resource-group myResourceGroup \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
+            --name wallarm-node \
+            --dns-name-label wallarm \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:3.6.2-1 \
             --gitrepo-url <URL_OF_GITREPO> \
@@ -162,8 +162,8 @@ To deploy the container with environment variables and mounted configuration fil
          ```bash
          az container create \
             --resource-group myResourceGroup \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
+            --name wallarm-node \
+            --dns-name-label wallarm \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:3.6.2-1 \
             --gitrepo-url <URL_OF_GITREPO> \

@@ -54,8 +54,8 @@ Nestas instruções, o contêiner é implantado usando a CLI Azure.
          ```bash
          az container create \
             --resource-group meuGrupoDeRecursos \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
+            --name wallarm-node \
+            --dns-name-label wallarm \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:4.8.0-1 \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com' WALLARM_API_HOST='us1.api.wallarm.com'
@@ -64,8 +64,8 @@ Nestas instruções, o contêiner é implantado usando a CLI Azure.
          ```bash
          az container create \
             --resource-group meuGrupoDeRecursos \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
+            --name wallarm-node \
+            --dns-name-label wallarm \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:4.8.0-1 \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com'
@@ -142,8 +142,8 @@ Para implantar o contêiner com variáveis de ambiente e arquivo de configuraç�
          ```bash
          az container create \
             --resource-group meuGrupoDeRecursos \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
+            --name wallarm-node \
+            --dns-name-label wallarm \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:4.8.0-1 \
             --gitrepo-url <URL_DO_GITREPO> \
@@ -154,8 +154,8 @@ Para implantar o contêiner com variáveis de ambiente e arquivo de configuraç�
          ```bash
          az container create \
             --resource-group meuGrupoDeRecursos \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
+            --name wallarm-node \
+            --dns-name-label wallarm \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:4.8.0-1 \
             --gitrepo-url <URL_DO_GITREPO> \
