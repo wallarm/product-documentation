@@ -49,4 +49,4 @@ API Sessions support working with [GraphQL requests](../user-guides/rules/reques
 
 ![!API Sessions configuration - GraphQL request parameter](../images/api-sessions/api-sessions-graphql.png)
 
-Requires NGINX Node TBD or Native Node TBD or higher.
+Requires NGINX Node 5.3.0 or higher, not supported by Native Node so far.
