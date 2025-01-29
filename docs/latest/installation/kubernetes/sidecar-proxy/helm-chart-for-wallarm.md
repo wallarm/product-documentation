@@ -21,6 +21,14 @@ config:
         enabled: false
         secretKey: token
         secretName: wallarm-api-token
+    apiFirewall:
+      mode: "on"
+      readBufferSize: 8192
+      writeBufferSize: 8192
+      maxRequestBodySize: 4194304
+      disableKeepalive: false
+      maxConnectionsPerIp: 0
+      maxRequestsPerConnection: 0
     fallback: "on"
     mode: monitoring
     modeAllowOverride: "on"
@@ -120,6 +128,34 @@ To store the node token in K8s secrets and pull it to the Helm chart:
     ```
 
 **Default value**: `existingSecret.enabled: false` that points the Helm chart to get the Wallarm node token from `config.wallarm.api.token`.
+
+## config.wallarm.apiFirewall
+
+Controls the configuration of [API Specification Enforcement][api-spec-enforcement-docs], available starting from release 4.10. By default, it is enabled and configured as shown below. If you are using this feature, it is recommended to keep these values unchanged.
+
+```yaml
+config:
+  wallarm:
+    apiFirewall:
+      mode: "on"
+      readBufferSize: 8192
+      writeBufferSize: 8192
+      maxRequestBodySize: 4194304
+      disableKeepalive: false
+      maxConnectionsPerIp: 0
+      maxRequestsPerConnection: 0
+```
+
+Since [node 5.3.0][sidecar-5.3.0-changelog], the following is presented (see default values in the example above):
+
+| Setting | Description |
+| ------- | ----------- |
+| `readBufferSize` | Per-connection buffer size for request reading. This also limits the maximum header size. Increase this buffer if your clients send multi-KB RequestURIs and/or multi-KB headers (for example, BIG cookies). |
+| `writeBufferSize` | Per-connection buffer size for response writing.
+| `maxRequestBodySize` | Maximum request body size. The server rejects requests with bodies exceeding this limit. |
+| `disableKeepalive` | Disables the keep-alive connections. The server will close all the incoming connections after sending the first response to the client if this option is set to `true`. |
+| `maxConnectionsPerIp` | Maximum number of concurrent client connections allowed per IP. `0` = `unlimited`. |
+| `maxRequestsPerConnection` | Maximum number of requests served per connection. The server closes the connection after the last request. The `Connection: close` header is added to the last response. `0` = `unlimited`. |
 
 ## config.wallarm.fallback
 

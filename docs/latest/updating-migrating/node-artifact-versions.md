@@ -117,7 +117,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Added new settings for API Specification Enforcement:
 
     * `readBufferSize`
-    * `readBufferSize`
     * `writeBufferSize`
     * `maxRequestBodySize`
     * `disableKeepalive`
@@ -163,6 +162,17 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * Analyzing specific parts of GraphQL requests in API sessions
     
 * Fixed invalid time value in serialized requests to properly display the [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) attacks
+* Added new settings for API Specification Enforcement:
+
+    * `readBufferSize`
+    * `writeBufferSize`
+    * `maxRequestBodySize`
+    * `disableKeepalive`
+    * `maxConnectionsPerIp`
+    * `maxRequestsPerConnection`
+
+    See descriptions and default values [here](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmapifirewall).
+
 <!--* Added configurable parameters for API FW in Helm chart values
 * Added configurable parameter for NGINX extended logging in Helm chart values-->
 
