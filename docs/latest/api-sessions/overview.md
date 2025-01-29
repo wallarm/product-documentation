@@ -42,3 +42,11 @@ Note that Wallarm stores and displays sessions **only for the last week**. The o
 Wallarm's [API Abuse Prevention](../api-abuse-prevention/overview.md) detects malicious bots analyzing the sequences of requests in one or several related sessions, for example, sessions having the same value of the `SESSION-ID` header and only divided by time/date.
 
 Thus, when you [customize how requests are grouped](setup.md#session-grouping) into sessions in accordance with your specific application logic, it affects the work of API Abuse Prevention making both session identification and bot detection more precise.
+
+## GraphQL requests in API Sessions
+
+API Sessions support working with [GraphQL requests](../user-guides/rules/request-processing.md#gql) and their specific request points, you can configure sessions to extract and display values of GraphQL request parameters.
+
+![!API Sessions configuration - GraphQL request parameter](../images/api-sessions/api-sessions-graphql.png)
+
+Requires NGINX Node 5.3.0 or higher, not supported by Native Node so far.

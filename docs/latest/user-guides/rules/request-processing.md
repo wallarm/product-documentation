@@ -341,6 +341,69 @@ When defining a request element the [rule](rules.md) is applied to:
 
 ![JWT param desc in a rule](../../images/user-guides/rules/request-element-desc.png)
 
+#### gql
+
+Parses GraphQL executable definitions (queries, mutations, subscriptions and fragments) that enables an improved detection of the [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks) in GraphQL specific request points. Requires NGINX Node 5.3.0 or higher, not supported by Native Node so far.
+
+Filters:
+
+ * **gql_query** for a query operation
+ * **gql_mutation** for a mutation operation
+ * **gql_subscription** for a subscription operation
+ * **gql_alias** for a field alias
+ * **gql_arg** for field arguments
+ * **gql_dir** for a directive
+ * **gql_spread** for a fragment spread
+ * **gql_fragment** for a fragment definition
+ * **gql_type** for the named type of a fragment definition or inline fragment
+ * **gql_inline** for an inline fragment
+ * **gql_var** for a variable definition
+
+Examples:
+
+```
+query GetUser {
+  user(id: "1") {
+    ...UserFields @include(if: true)
+  }
+}
+```
+
+* `[..., gql, gql_query, 'GetUser', hash, 'user', gql_arg, hash, 'id']` — `1`
+* `[..., gql, gql_query, 'GetUser', hash, 'user', gql_spread,` `'UserFields', gql_dir, 'include', gql_arg, hash, 'if']` — `true`
+
+```
+query GetAllUsers {
+  users(limit: 10) {
+    ...UserFields @include(if: true)
+  }
+}
+```
+
+* `[..., gql, gql_query, 'GetAllUsers', hash, 'users', gql_arg, hash, 'limit']` — `10`
+* `[..., gql, gql_query, 'GetAllUsers', hash, 'users',` `gql_spread, 'UserFields', gql_dir, 'include', gql_arg, hash, 'if']` — `true`
+
+```
+fragment UserFields on User {
+  id
+  name
+  email
+  posts(status: "published") {
+    title
+    content
+  }
+}
+```
+
+* `[..., gql, gql_fragment, 'UserFields', gql_type,` `'User', hash, 'posts', gql_arg, hash, 'status']` — `published`
+
+The parser allows extracting and displaying values of [GraphQL request parameters in API Sessions](../../api-sessions/overview.md#graphql-requests-in-api-sessions) and applying [rules](rules.md) to GraphQL specific parts of requests:
+
+![Example of the rule applied to GraphQL request point"](../../images/user-guides/rules/rule-applied-to-graphql-point.png)
+
+!!! info "GraphQL protection with Wallarm"
+    While [always enabled](#managing-parsers) parser by default provides detection of regular attacks (SQLi, RCE, etc.) in GraphQL, Wallarm also allow **configuring** [protection from GraphQL-specific attacks](../../api-protection/graphql-rule.md).
+
 ### Norms
 
 The norms are applied to parsers for array and key data types. Norms are used to define the boundaries of data analysis. The value of the norm is indicated in the parser tag. For example: **hash_all**, **hash_name**.
