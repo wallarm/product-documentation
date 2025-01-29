@@ -4,18 +4,18 @@
 
 ## Session context
 
-Context in API sessions is information that enriches request data by grouping them into logical sessions and adding metadata to provide deeper insights into session activity. Configuring context allows you to specify which aspects or additional data should be tracked and associated with each session.
+Context in API sessions is information that enriches request data by grouping them into logical sessions and adding response data and metadata to provide deeper insights into session activity. Configuring context allows you to specify which aspects or additional data should be tracked and associated with each session.
 
-Set session context by adding extra parameters, associating sessions with sensitive business flows and highlighting parameters that can be used for user and user role identification.
+Set session context by adding extra request and response parameters, associating sessions with sensitive business flows and highlighting parameters that can be used for user and user role identification.
 
 ### Extra parameters
 
 In **API Sessions**, within session, the request details by default include: 
 
-* Parameter that worked for [session grouping](#session-grouping) - yours or the one from the built-in set.
+* Parameter of request or response that worked for [session grouping](#session-grouping) - yours or the one from the built-in set.
 * For malicious requests - full request content.
 
-You can add any additional (context) [parameters](../user-guides/rules/request-processing.md) that you need to understand the session content: what and in what order the actor did. To do so, add these parameters in Wallarm Console → **API Sessions** → **Session context parameters**. Once added, Wallarm will export them to the Wallarm Cloud and [display](#data-protection) in Wallarm Console, in details of your session requests.
+You can add any additional (context) [parameters](../user-guides/rules/request-processing.md) both for requests and for their related responses, that you need to understand the session content: what and in what order the actor did and what the response was. To do so, add these parameters in Wallarm Console → **API Sessions** → **Session context parameters**. Once added, Wallarm will export them to the Wallarm Cloud and [display](#data-protection) in Wallarm Console, in details of your session requests.
 
 ![!API Sessions - context parameters](../images/api-sessions/api-sessions-context-parameters.png)
 
@@ -38,11 +38,11 @@ Once you configured parameters to be used for user and his/her role identificati
 
 ## Session grouping
 
-Wallarm groups requests of your applications' traffic into user sessions based on selected headers/parameters of the requests. All the requests having the same value of the selected header/parameter are grouped into one session.
+Wallarm groups requests of your applications' traffic into user sessions based on the **equal values** of the selected headers/parameters of the requests and/or responses. In configuration, these are parameters marked to be grouping keys. See how grouping keys work in the [example](#grouping-keys-example).
 
 By default, sessions are identified with the **built-in set** of such parameters (not displayed in Wallarm Console). Its logic is to try most common identification parameters, such as `PHPSESSID` or `SESSION-ID` headers, and if they do not work - form session based on the combination of `request source IP and user-agent` (or at least IP if user-agent is not presented).
 
-You can add your own identification parameters based on your applications' logic. To do so, go to Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter and select **Group sessions by this key** for it.
+You can add your own identification parameters based on your applications' logic. To do so, go to Wallarm Console → **API Sessions** → **Session context parameters**, add your request or response parameter and select **Group sessions by this key** for it.
 
 !!! info "Impact **to** bot detection by `API Abuse prevention`"
     Wallarm's API Abuse Prevention uses sessions for the malicious bot detection. Adding your own session identification parameters based on your applications' logic makes both session detection and API Abuse Prevention's bot detection more precise. See [details](overview.md#api-sessions-and-api-abuse-prevention).
@@ -53,6 +53,26 @@ You can add several grouping keys, they are tried in specified order - next is t
 
 !!! info "Impact **from** `Mask sensitive data` rule"
     For the parameter to work as a grouping key, it should not be affected by the the [Mask sensitive data](../user-guides/rules/sensitive-data-rule.md) rule.
+
+<a name="grouping-keys-example"></a>**Example of how grouping keys work**
+
+Let us say you have a route login which returns a specific `<TOKEN>` in `response_body →` `json_doc → hash → token` parameter of the response. In the further requests, this `<TOKEN>` is used somewhere in `get → token` or `post → json_doc → hash → token`.
+
+You can configure 3 parameters to be used as grouping keys (for response body, get and post requests). They will be tried in the following order (next is tried only if previous did not work):
+
+1. `response_body → json_doc → hash → token`
+2. `get → token`
+3. `post → json_doc → hash → token`
+4. (built-in set, will be used if none of previous work)
+
+![!API Sessions - example of grouping keys in work](../images/api-sessions/api-sessions-grouping-keys.png)
+
+Requests:
+
+* curl `example.com -d '{in: 'bbb'}'` with response `'{token: aaa}'` → session "A" (**grouping key #1 worked**)
+* curl `example.com -d '{in: 'ccc'}' '{token: 'aaa'}'` with response without token → session "A" (**grouping key #3 worked**)
+
+The same parameter value `aaa` groups these requests into one session.
 
 ## Data protection
 
