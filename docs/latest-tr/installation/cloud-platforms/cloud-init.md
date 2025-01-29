@@ -62,8 +62,7 @@ optional arguments:
   -h, --help            show this help message and exit
   -t TOKEN, --token TOKEN
                         Wallarm node token copied from the Wallarm Console UI.
-  -H HOST, --host HOST  Wallarm API server specific for the Wallarm Cloud being used: https://docs.wallarm.com/about-wallarm-
-                        waf/overview/#cloud. By default, api.wallarm.com.
+  -H HOST, --host HOST  Wallarm API server specific for the Wallarm Cloud being used: https://docs.wallarm.com/about-wallarm/overview/#cloud. By default, api.wallarm.com.
   --skip-register       Skips the stage of local running the node created in the Wallarm Cloud (skips the register-node script
                         execution). This stage is crucial for successful node deployment.
   -p {proxy,mirror,custom}, --preset {proxy,mirror,custom}
@@ -73,8 +72,7 @@ optional arguments:
                         Traffic filtration mode: https://docs.wallarm.com/admin-en/configure-parameters-en/#wallarm_mode.
   --proxy-pass PROXY_PASS
                         Proxied server protocol and address. Required if "proxy" is specified as a preset.
-  --libdetection        Whether to use the libdetection library during the traffic analysis: https://docs.wallarm.com/about-wallarm-
-                        waf/protecting-against-attacks.md#library-libdetection.
+  --libdetection        Whether to use the libdetection library during the traffic analysis: https://docs.wallarm.com/about-wallarm/protecting-against-attacks/#library-libdetection.
   --global-snippet GLOBAL_SNIPPET_FILE
                         Custom configuration to be added to the NGINX global configuration.
   --http-snippet HTTP_SNIPPET_FILE
