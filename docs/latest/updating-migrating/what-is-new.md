@@ -31,6 +31,18 @@ With API Sessions, security teams can now easily:
 
 [Read more](../api-sessions/overview.md)
 
+## Response parameters in API Sessions
+
+!!! tip ""
+    [NGINX Node 5.3.0 and higher](node-artifact-versions.md), not supported by [Native Node ](native-node/node-artifact-versions.md) so far
+
+Wallarm's [API Sessions](../api-sessions/overview.md) provide visibility into sequences of user activities. With this addition not only request but also response information is available within each session:
+
+* You can configure any headers and parameters of responses to be displayed within their corresponding requests providing a clear and full picture of user activities.
+* You can use response parameters as grouping keys for sessions (see [example](../api-sessions/setup.md#grouping-keys-example)), which makes grouping of requests into sessions more precise.
+
+![!API Sessions - example of grouping keys in work](../images/api-sessions/api-sessions-grouping-keys.png)
+
 ## New in limiting request processing time
 
 !!! tip ""
@@ -68,6 +80,25 @@ Identified sensitive business flows are propagated to Wallarm's [API Sessions](.
 Once sessions are assigned with the sensitive business flow tags, it becomes possible to filter them by a specific business flow which makes it easier to select the sessions that are most important to analyze.
 
 ![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-no-select.png)
+
+## Full-fledged GraphQL parser
+
+!!! tip ""
+    [NGINX Node 5.3.0 and higher](node-artifact-versions.md), not supported by [Native Node ](native-node/node-artifact-versions.md) so far
+
+The full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) is an enhancement significantly improving the detection of input validation attacks (e.g., SQL injections) within GraphQL requests, offering **greater accuracy and minimal false positives**.
+
+Key benefits:
+
+* **Improved detection** of input validation attacks (e.g., SQL injections)
+* **Detailed parameter insights**: extract and display values of GraphQL request parameters in API Sessions, utilizing them as session context parameters.
+
+    ![!API Sessions configuration - GraphQL request parameter](../images/api-sessions/api-sessions-graphql.png)
+
+* **Precise attack search**: precisely identify attacks in specific GraphQL request components, such as arguments, directives, and variables.
+* **Advanced rule application**: apply granular protection rules to specific GraphQL request parts. This enables fine-tuning and configuring exclusions for certain attack types in defined parts of GraphQL request.
+
+    ![Example of the rule applied to GraphQL request point"](../images/user-guides/rules/rule-applied-to-graphql-point.png)
 
 ## Native Node for connectors and TCP traffic mirror
 
