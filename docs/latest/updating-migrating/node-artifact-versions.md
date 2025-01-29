@@ -12,6 +12,17 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.3.0 (2024-01-29)
+
+* Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
+* Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
+
+    * Improved detection of the input validation attacks in GraphQL-specific request points
+    * Fine-tuning attack detection for specific GraphQL points (e.g. disable detection of specific attack types in specific points)
+    * Analyzing specific parts of GraphQL requests in API sessions
+
+* Fixed invalid time value in serialized requests to properly display the [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) attacks
+
 ### 5.2.11 (2024-12-25)
 
 * Added support for NGINX Mainline v1.27.2 and 1.27.3
@@ -56,6 +67,17 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 5.3.0 (2024-01-29)
+
+* Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
+* Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
+
+    * Improved detection of the input validation attacks in GraphQL-specific request points
+    * Fine-tuning attack detection for specific GraphQL points (e.g. disable detection of specific attack types in specific points)
+    * Analyzing specific parts of GraphQL requests in API sessions
+    
+* Fixed invalid time value in serialized requests to properly display the [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) attacks
 
 ### 5.2.12 (2025-01-08)
 
@@ -131,6 +153,19 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+### 5.3.0 (2024-01-29)
+
+* Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
+* Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
+
+    * Improved detection of the input validation attacks in GraphQL-specific request points
+    * Fine-tuning attack detection for specific GraphQL points (e.g. disable detection of specific attack types in specific points)
+    * Analyzing specific parts of GraphQL requests in API sessions
+    
+* Fixed invalid time value in serialized requests to properly display the [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) attacks
+<!--* Added configurable parameters for API FW in Helm chart values
+* Added configurable parameter for NGINX extended logging in Helm chart values-->
+
 ### 5.2.11 (2024-12-27)
 
 * Added support for sensitive business flows in [API Discovery](../api-discovery/sbf.md) and [API Sessions](../api-sessions/exploring.md#sensitive-business-flows)
@@ -174,6 +209,17 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 5.3.0 (2024-01-29)
+
+* Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
+* Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
+
+    * Improved detection of the input validation attacks in GraphQL-specific request points
+    * Fine-tuning attack detection for specific GraphQL points (e.g. disable detection of specific attack types in specific points)
+    * Analyzing specific parts of GraphQL requests in API sessions
+    
+* Fixed invalid time value in serialized requests to properly display the [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) attacks
 
 ### 5.2.11 (2024-12-25)
 

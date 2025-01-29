@@ -67,6 +67,18 @@ With API Sessions, security teams can now easily:
 
 [Read more](../../api-sessions/overview.md)
 
+## Response parameters in API Sessions
+
+!!! tip ""
+    [NGINX Node 5.3.0 and higher](../node-artifact-versions.md), not supported by [Native Node ](../native-node/node-artifact-versions.md) so far
+
+Wallarm's [API Sessions](../../api-sessions/overview.md) provide visibility into sequences of user activities. With this addition not only request but also response information is available within each session:
+
+* You can configure any headers and parameters of responses to be displayed within their corresponding requests providing a clear and full picture of user activities.
+* You can use response parameters as grouping keys for sessions (see [example](../../api-sessions/setup.md#grouping-keys-example)), which makes grouping of requests into sessions more precise.
+
+![!API Sessions - example of grouping keys in work](../../images/api-sessions/api-sessions-grouping-keys.png)
+
 ## Rate limits
 
 The lack of proper rate limiting has been a significant problem for API security, as attackers can launch high-volume requests causing a denial of service (DoS) or overload the system, which hurts legitimate users.
@@ -143,7 +155,7 @@ Wallarm detects new attack types:
 ## Sensitive business flows in API Discovery and API Sessions
 
 !!! tip ""
-    [NGINX Node 5.2.11 and higher](../node-artifact-versions.md) and [Native Node 0.10.1 and higher](../native-node/node-artifact-versions.md)
+    [NGINX Node 5.3.0 and higher](../node-artifact-versions.md) and [Native Node 0.10.1 and higher](../native-node/node-artifact-versions.md)
 
 With the sensitive business flow capability, Wallarm's [API Discovery](../../api-discovery/overview.md) can automatically identify endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities.
 
@@ -156,6 +168,25 @@ Identified sensitive business flows are propagated to Wallarm's [API Sessions](.
 Once sessions are assigned with the sensitive business flow tags, it becomes possible to filter them by a specific business flow which makes it easier to select the sessions that are most important to analyze.
 
 ![!API Sessions - sensitive business flows](../../images/api-sessions/api-sessions-sbf-no-select.png)
+
+## Full-fledged GraphQL parser
+
+!!! tip ""
+    [NGINX Node 5.3.0 and higher](../node-artifact-versions.md), not supported by [Native Node ](../native-node/node-artifact-versions.md) so far
+
+The full-fledged [GraphQL parser](../../user-guides/rules/request-processing.md#gql) is an enhancement significantly improving the detection of input validation attacks (e.g., SQL injections) within GraphQL requests, offering **greater accuracy and minimal false positives**.
+
+Key benefits:
+
+* **Improved detection** of input validation attacks (e.g., SQL injections)
+* **Detailed parameter insights**: extract and display values of GraphQL request parameters in API Sessions, utilizing them as session context parameters.
+
+    ![!API Sessions configuration - GraphQL request parameter](../../images/api-sessions/api-sessions-graphql.png)
+
+* **Precise attack search**: precisely identify attacks in specific GraphQL request components, such as arguments, directives, and variables.
+* **Advanced rule application**: apply granular protection rules to specific GraphQL request parts. This enables fine-tuning and configuring exclusions for certain attack types in defined parts of GraphQL request.
+
+    ![Example of the rule applied to GraphQL request point"](../../images/user-guides/rules/rule-applied-to-graphql-point.png)
 
 ## Checking JSON Web Token strength
 
@@ -475,7 +506,7 @@ Now you can easily group node instances using one [**API token**](../../user-gui
 For example: 
 
 ```bash
-docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:5.2.11
+docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:5.3.0
 ```
 ...will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).
 
