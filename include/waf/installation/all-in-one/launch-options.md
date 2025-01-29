@@ -61,24 +61,24 @@ This functionality is supported starting from version 4.10.0 of the all-in-one i
 === "US Cloud"
     ```bash
     # If using the x86_64 version:
-    curl -O https://meganode.wallarm.com/5.2/wallarm-5.3.0.x86_64-glibc.sh
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.x86_64-glibc.sh
     sudo sh wallarm-5.3.0.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
 
     # If using the ARM64 version:
-    curl -O https://meganode.wallarm.com/5.2/wallarm-5.3.0.aarch64-glibc.sh
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.aarch64-glibc.sh
     sudo sh wallarm-5.3.0.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```
     # If using the x86_64 version:
-    curl -O https://meganode.wallarm.com/5.2/wallarm-5.3.0.x86_64-glibc.sh
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.x86_64-glibc.sh
     sudo sh wallarm-5.3.0.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
 
     # If using the ARM64 version:
-    curl -O https://meganode.wallarm.com/5.2/wallarm-5.3.0.aarch64-glibc.sh
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.aarch64-glibc.sh
     sudo sh wallarm-5.3.0.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
     ```
