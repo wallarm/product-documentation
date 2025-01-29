@@ -4,7 +4,7 @@ When subscribing to Wallarm, you choose a plan that meets your business needs th
 
 Wallarm provides the following subscription plans:
 
-* **Cloud Native WAAP (Web Application & API Protection)** that is a Next-Gen WAF providing web applications and APIs with protection against common threats.
+* **Cloud Native WAAP (Web Application & API Protection)** provides web applications and APIs with protection against common threats.
 * **Advanced API Security** provides comprehensive API discovery and threat prevention across your entire portfolio, regardless of protocol.
 
     The Advanced API Security subscription plan is sold as an add-on for Cloud Native WAAP.

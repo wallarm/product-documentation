@@ -90,7 +90,7 @@ nav:
       - Overview: vulnerability-detection/threat-replay-testing/overview.md
       - Setup: vulnerability-detection/threat-replay-testing/setup.md
       - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
-  - WAAP/WAF:
+  - Bulut-yerel WAAP:
     - Genel Bakış: about-wallarm/waap-overview.md
     - Saldırı Tespit Prosedürü: about-wallarm/protecting-against-attacks.md
     - DDoS Koruma: admin-en/configuration-guides/protecting-against-ddos.md

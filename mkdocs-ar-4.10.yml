@@ -117,7 +117,7 @@ nav:
       - Overview: vulnerability-detection/threat-replay-testing/overview.md
       - Setup: vulnerability-detection/threat-replay-testing/setup.md
       - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
-  - WAAP/WAF:
+  - WAAP السحابي الأصلي:
     - نظرة عامة: about-wallarm/waap-overview.md
     - حماية DDoS: admin-en/configuration-guides/protecting-against-ddos.md
     - حماية Brute Force: admin-en/configuration-guides/protecting-against-bruteforce.md

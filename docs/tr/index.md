@@ -74,7 +74,7 @@ Wallarm çözümü, manuel kural yapılandırması olmadan ve ultra düşük yan
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage waap-waf-title">WAAP/WAF</h3>
+    <h3 class="icon-homepage waap-title">Cloud-Native WAAP</h3>
     <p><ul>
     <li><a href="./about-wallarm/protecting-against-attacks/">Saldırı Tespit Prosedürü</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-ddos/">DDoS Koruma</a></li>

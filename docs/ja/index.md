@@ -73,7 +73,7 @@ Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱�
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage waap-waf-title">WAAP/WAF</h3>
+    <h3 class="icon-homepage waap-title">Cloud-Native WAAP</h3>
     <p><ul>
     <li><a href="./about-wallarm/waap-overview/">概要</a></li>
     <li><a href="./admin-en/configuration-guides/protecting-against-ddos/">DDoS 防御</a></li>
