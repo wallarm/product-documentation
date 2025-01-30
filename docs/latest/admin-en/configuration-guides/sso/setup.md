@@ -61,7 +61,7 @@ For this to work, provide the attribute mapping:
 
 1. Save the changes.
 
-See example for [G Suite](sso-gsuite.md#step-4-g-suite-configure-provisioning).
+See example for [Okta](sso-okta.md#step-5-okta-configure-provisioning).
 
 **Turning provisioning off**
 
@@ -88,3 +88,24 @@ When provisioning is off, user management is performed in Wallarm Console → **
 1. Complete SSO configuration wizard. Connection between Wallarm to SAML SSO solution will be tested.
 
 See examples for [G Suite](sso-gsuite.md#step-5-wallarm-enter-g-suite-metadata) and [Okta](sso-okta.md#step-6-wallarm-enter-okta-metadata).
+
+## Step 6 (Wallarm): Configure provisioning (optional)
+
+This step only should be fulfilled if your SAML SSO solution does not support mapping of groups to different attributes (like in [case](sso-gsuite.md#step-6-wallarm-configure-provisioning---part-2) of Google)
+
+1. Proceed to the **Roles mapping** step.
+1. Map one or several SSO groups to Wallarm roles. Available roles are:
+
+    * `admin` (**Administrator**)
+    * `analytic` (**Analyst**)
+    * `api_developer` (**API Developer**)
+    * `auditor` (**Read Only**)
+    * `partner_admin` (**Global Administrator**)
+    * `partner_analytic` (**Global Analyst**)
+    * `partner_auditor` (**Global Read Only**)
+
+        See all role descriptions [here](../../../user-guides/settings/users.md#user-roles). Contact the [Wallarm support team](mailto:support@wallarm.com) to get more roles available.
+
+    ![SSO groups to Wallarm roles - mapping in Wallarm](../../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
+
+1. Complete SSO configuration wizard. Wallarm to G Suite connection will be tested.

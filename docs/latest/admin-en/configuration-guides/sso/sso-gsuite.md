@@ -86,7 +86,7 @@ To configure application in G Suite:
 1. Activate application via **Edit Service** → **Service status** → **ON for everyone**.
 1. Save the changes.
 
-## Step 4 (G Suite): Configure provisioning
+## Step 4 (G Suite): Configure provisioning - part 1
 
 The **provisioning** is an automatic transfer of data from SAML SSO solution (G Suite) to Wallarm: your G Suite users and their group membership define access to Wallarm and permissions there; all user management is performed on G Suite side.
 
@@ -97,21 +97,13 @@ For this to work, provide the attribute mapping:
     * `email`
     * `first_name`
     * `last_name`
-    * user group(s) to `wallarm_role:[role]` where `role` is:
-
-        * `admin` (**Administrator**)
-        * `analytic` (**Analyst**)
-        * `api_developer` (**API Developer**)
-        * `auditor` (**Read Only**)
-        * `partner_admin` (**Global Administrator**)
-        * `partner_analytic` (**Global Analyst**)
-        * `partner_auditor` (**Global Read Only**)
-
-            See all role descriptions [here](../../../user-guides/settings/users.md#user-roles). Contact the [Wallarm support team](mailto:support@wallarm.com) to get more roles available.
+    * user group(s) to `wallarm_roles` tag
 
     ![SAML SSO solution - G Suite - Mapping](../../../images/admin-guides/configuration-guides/sso/simple-sso-mapping.png)
 
 1. Save the changes.
+
+    Configuring provisioning will continue in [step 6](#step-6-wallarm-configure-provisioning---part-2) on Wallarm side.
 
 ## Step 5 (Wallarm): Enter G Suite metadata
 
@@ -129,6 +121,24 @@ For this to work, provide the attribute mapping:
         * **Certificate** → **X.509 Certificate**
 
             ![Entering the metadata manually][img-transfer-metadata-manually]
+
+
+## Step 6 (Wallarm): Configure provisioning - part 2
+
+1. Proceed to the **Roles mapping** step.
+1. Map one or several SSO groups to Wallarm roles. Available roles are:
+
+    * `admin` (**Administrator**)
+    * `analytic` (**Analyst**)
+    * `api_developer` (**API Developer**)
+    * `auditor` (**Read Only**)
+    * `partner_admin` (**Global Administrator**)
+    * `partner_analytic` (**Global Analyst**)
+    * `partner_auditor` (**Global Read Only**)
+
+        See all role descriptions [here](../../../user-guides/settings/users.md#user-roles). Contact the [Wallarm support team](mailto:support@wallarm.com) to get more roles available.
+
+    ![SSO groups to Wallarm roles - mapping in Wallarm](../../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
 
 1. Complete SSO configuration wizard. Wallarm to G Suite connection will be tested.
 
