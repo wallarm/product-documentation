@@ -172,9 +172,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * `maxRequestsPerConnection`
 
     See descriptions and default values [here](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmapifirewall).
-
-<!--* Added configurable parameters for API FW in Helm chart values
-* Added configurable parameter for NGINX extended logging in Helm chart values-->
+* Added the [`config.nginx.logs.extended`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#confignginxlogsextended) and [`config.nginx.logs.format`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#confignginxlogsformat) Helm chart values for extended logging in NGINX
 
 ### 5.2.11 (2024-12-27)
 

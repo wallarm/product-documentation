@@ -41,6 +41,9 @@ config:
   nginx:
     workerProcesses: auto
     workerConnections: 4096
+    logs:
+      extended: false
+      format: text
 postanalytics:
   external:
     enabled: false
@@ -248,6 +251,22 @@ The maximum [number of simultaneous connections](http://nginx.org/en/docs/ngx_co
 **Default value**: `auto`, which means the number of workers is set to the number of CPU cores.
 
 [**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/nginx-worker-processes`.
+
+## config.nginx.logs.extended
+
+Enables extended logging in NGINX. The extended logs include request time, upstream response time, request length, connection details, etc.
+
+Supported starting from the 5.3.0 release.
+
+**Default value**: `false`.
+
+## config.nginx.logs.format
+
+Specifies the format of extended logs when `config.nginx.logs.extended` is set to `true`. Supports `text` and `json` formats.
+
+Supported starting from the 5.3.0 release.
+
+**Default value**: `text`.
 
 ## postanalytics.external.enabled
 
