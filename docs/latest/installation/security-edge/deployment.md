@@ -112,9 +112,7 @@ For specific **locations** within hosts, you can further customize:
 * Origin. The path defined in the location will automatically append to the origin.
 * Wallarm application.
 * Filtration mode.
-* `proxy_read_timeout`: defines how long Wallarm waits for a response from the origin server before closing the connection. Default is `60s`.
-* `proxy_send_timeout`: sets the time Wallarm waits for the origin server to acknowledge request data before terminating the connection. Default is `60s`.
-* `client_max_body_size`: limits the maximum request body size allowed from the client to the origin server (useful for file uploads or data size control). Default is `1MB`.
+* Some [NGINX directives](https://nginx.org/en/docs/http/ngx_http_proxy_module.html). By default, these directives use NGINX's standard values, as specified in the NGINX documentation.
 
 Each location inherits settings from the host level but can be individually customized. Locations not explicitly configured will follow the general settings specified at the host level.
 
@@ -122,7 +120,15 @@ The below example configuration customizes settings per path to meet specific ne
 
 ![!](../../images/waf-installation/security-edge/inline/locations.png)
 
-### 4. Certificate CNAME configuration
+### 4. Admin settings
+
+In the **Admin settings** section, select the Edge node version to deploy. It is recommended to deploy the latest version available from the list.
+
+For the changelog of versions, refer to the [article](../../updating-migrating/node-artifact-versions.md#all-in-one-installer). The Edge node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge node version indicates minor changes.
+
+![!](../../images/waf-installation/security-edge/inline/admin-settings.png)
+
+### 5. Certificate CNAME configuration
 
 After configuration is finished, add the CNAME records provided in the Wallarm Console to your DNS provider's settings for each DNS zone. These records are required for Wallarm to verify domain ownership and issue certificates.
 
@@ -136,7 +142,7 @@ _acme-challenge.myservice.com CNAME _acme-challenge.<WALLARM_CLOUD>-<CLIENT_ID>-
 
 DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node deployment once the CNAME records are verified.
 
-### 5. CNAME configuration for traffic routing
+### 6. CNAME configuration for traffic routing
 
 Once the certificate CNAME is verified (~10 minutes), a **Traffic CNAME** will be available for each host on the **Hosts** tab of the Edge node page. Copy it and update your DNS settings to route traffic to Wallarm.
 
@@ -158,11 +164,13 @@ The dashboard displays key metrics such as total processed requests, RPS, detect
 
 ## Upgrading the Edge Inline
 
-Since the Edge node is a managed solution, Wallarm takes care of all upgrades. The latest stable node version is always deployed on the Edge.
+To upgrade the Edge node with the latest changes, go to **Configure** → **Admin settings** and select a version from the list. Using the latest version is recommended for optimal performance and security.
+
+For the changelog of versions, refer to the [article](../../updating-migrating/node-artifact-versions.md#all-in-one-installer). The Edge node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge node version indicates minor changes.
 
 ## Deleting the Edge Inline
 
-To delete your Edge deployment, click **Configure** → **Delete**.
+To delete your Edge deployment, click **Configure** → **Admin settings** → **Delete**.
 
 If you intend to delete and re-create the nodes, you can adjust the settings of the existing deployment, and the nodes will be re-deployed with the updated configuration.
 
