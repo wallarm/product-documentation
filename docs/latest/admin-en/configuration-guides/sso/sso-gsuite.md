@@ -12,11 +12,13 @@
 
 This guide covers the process of connecting the [G Suite](https://gsuite.google.com/) (Google) service as an identity provider to Wallarm, which acts as the service provider.
 
+To fulfill steps, you need accounts with administration rights both for Wallarm and G Suite.
+
 ## Step 1 (Wallarm): Activate SSO service
 
 By default, SSO service for authentication in Wallarm is not active, corresponding blocks are not visible in the **Integrations** section in Wallarm Console.
 
-To activate the SSO service, contact the [Wallarm support team](mailto:support@wallarm.com).
+To activate the SSO service, contact the [Wallarm support team](https://support.wallarm.com/).
 
 ## Step 2 (Wallarm): Generate metadata
 
@@ -36,16 +38,6 @@ You need Wallarm metadata to enter on the G Suite side:
 1. Copy metadata or save them as XML. 
 
 ## Step 3 (G Suite): Configure application
-
-!!! info "Prerequisites"
-    The following values are used as demonstration values in this guide:
-
-    * `WallarmApp` as a value for the **Application Name** parameter (in G Suite).
-    * `https://sso.online.wallarm.com/acs` as a value for the **ACS URL** parameter (in G Suite).
-    * `https://sso.online.wallarm.com/entity-id` as a value for the **Entity ID** parameter (in G Suite).
-
-!!! warning
-    Ensure that you replace the sample values for the **ACS URL** and **Entity ID** parameters with the real ones obtained in the previous step.
 
 To configure application in G Suite:
 
@@ -83,7 +75,7 @@ To configure application in G Suite:
 
     ![Application page in G Suite][img-app-page]
 
-1. Activate application via **Edit Service** → **Service status** → **ON for everyone**.
+1. Provide G Suite users with access to the created application by via **Edit Service** → **Service status** → **ON for everyone**.
 1. Save the changes.
 
 ## Step 4 (G Suite): Configure provisioning - part 1
@@ -136,10 +128,8 @@ For this to work, provide the attribute mapping:
     * `partner_analytic` (**Global Analyst**)
     * `partner_auditor` (**Global Read Only**)
 
-        See all role descriptions [here](../../../user-guides/settings/users.md#user-roles). Contact the [Wallarm support team](mailto:support@wallarm.com) to get more roles available.
+        See all role descriptions [here](../../../user-guides/settings/users.md#user-roles).
 
     ![SSO groups to Wallarm roles - mapping in Wallarm](../../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
 
-1. Complete SSO configuration wizard. Wallarm to G Suite connection will be tested.
-
-    ![Completing SSO wizard][img-sp-wizard-finish]
+1. Complete SSO configuration wizard. Wallarm will test if data to/from your G Suite can now be transferred.

@@ -14,11 +14,13 @@
 
 This guide covers the process of connecting the [Okta][link-okta] service as an identity provider to Wallarm, which acts as the service provider.
 
+To fulfill steps, you need accounts with administration rights both for Wallarm and Okta.
+
 ## Step 1 (Wallarm): Activate SSO service
 
 By default, SSO service for authentication in Wallarm is not active, corresponding blocks are not visible in the **Integrations** section in Wallarm Console.
 
-To activate the SSO service, contact the [Wallarm support team](mailto:support@wallarm.com).
+To activate the SSO service, contact the [Wallarm support team](https://support.wallarm.com/).
 
 ## Step 2 (Wallarm): Generate metadata
 
@@ -38,16 +40,6 @@ You need Wallarm metadata to enter on the Okta side:
 1. Copy metadata or save them as XML.
 
 ## Step 3 (Okta): Configure application
-
-!!! info "Prerequisites"
-    The following values are used as demonstration values in this guide:
-    
-    *   `WallarmApp` as a value for the **App name** parameter (in Okta).
-    *   `https://sso.online.wallarm.com/acs` as a value for the **Single sign‑on URL** parameter (in Okta).
-    *   `https://sso.online.wallarm.com/entity-id` as a value for the **Audience URI** parameter (in Okta).
-
-!!! warning
-    Ensure that you replace the sample values for the **Single sign‑on URL** and **Audience URI** parameters with the real ones obtained in the previous step.
 
 To configure application in Okta:
 
@@ -88,17 +80,11 @@ To configure application in Okta:
     * Click **Identity Provider metadata** and save displayed data as XML.
     * Click **View Setup instructions** and copy displayed data.
 
-## Step 4 (Okta): Allow access to Wallarm application
-
-1. In Okta, click **Administrator** → **Dashboard** → **Assign Applications**
-
-    ![Okta dashboard][img-dashboard]
-
-1. Select users and the Wallarm application.
+1. Provide Okta users with access to the created application by going to **Administrator** → **Dashboard** → **Assign Applications** and assigning users to the application.
 
     ![Assigning users to the application][img-assignments]
 
-## Step 5 (Okta): Configure provisioning
+## Step 4 (Okta): Configure provisioning
 
 The **provisioning** is an automatic transfer of data from SAML SSO solution (Okta) to Wallarm: your Okta users and their group membership define access to Wallarm and permissions there; all user management is performed on Okta side.
 
@@ -119,11 +105,11 @@ For this to work, provide the attribute mapping:
         * `partner_analytic` (**Global Analyst**)
         * `partner_auditor` (**Global Read Only**)
 
-            See all role descriptions [here](../../../user-guides/settings/users.md#user-roles). Contact the [Wallarm support team](mailto:support@wallarm.com) to get more roles available.
+            See all role descriptions [here](../../../user-guides/settings/users.md#user-roles).
 
 1. Save the changes.
 
-## Step 6 (Wallarm): Enter Okta metadata
+## Step 5 (Wallarm): Enter Okta metadata
 
 1. In Wallarm Console, in the SSO configuration wizard, proceed to the **Upload metadata** step.
 1. Do one of the following:
@@ -137,6 +123,4 @@ For this to work, provide the attribute mapping:
     
             ![Entering the metadata manually][img-transfer-metadata-manually]
     
-1. Complete SSO configuration wizard. Wallarm to Okta connection will be tested.
-
-    ![Completing SSO wizard][img-sp-wizard-finish]
+1. Complete SSO configuration wizard. Wallarm will test if data to/from your Okta can now be transferred.

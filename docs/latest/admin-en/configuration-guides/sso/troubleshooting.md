@@ -4,13 +4,13 @@ This article describes how to troubleshoot Wallarm's [SAML SSO Authentication](i
 
 ### SSO and API authentication
 
-When SSO is enabled for the user, authentication for [requests to Wallarm API](../../../api/overview.md#your-own-api-client) becomes unavailable for this user. To get working API credentials, different options depending on the SSO [mode](intro.md#sso-modes): 
+When SSO is enabled for the user, authentication for [requests to Wallarm API](../../../api/overview.md#your-own-api-client) becomes unavailable for this user. To get working API credentials, different options depending on the used SSO [options](intro.md#available-options):
 
-* If **Simple SSO** or **Strict SSO (legacy)** mode is used, you can enable API authentication for the SSO users with the **Administrator** role. To do this, select **Enable API access** from this user menu. The `SSO+API` auth method is enabled for the user which allows creating API tokens.
+* When provisioning is on or off with the strict SSO option, you can enable API authentication for the SSO users with the **Administrator** role. To do this, select **Enable API access** from this user menu. The `SSO+API` auth method is enabled for the user which allows creating API tokens.
 
     Later you can disable API authentication for the user by selecting **Disable API access**. If this is done, all existing API tokens will be deleted and in a week - removed.
 
-* If **Simple SSO (legacy)** mode is used, create user without SSO option under your company account, and create [API token(s)](../../../api/overview.md#your-own-api-client).
+* When provisioning is off and strict SSO is not used, create user without SSO option under your company account, and create [API token(s)](../../../api/overview.md#your-own-api-client).
 
 ### Cannot sign in issues
 
@@ -18,7 +18,7 @@ If the user cannot sign in via SSO, the error message is displayed with one of t
 
 | Error code | Description | How to fix |
 |--|--|--|
-| `saml_auth_not_found + userid` | User does not have SSO enabled. | Enable SSO as described in the section [above](#enabling-sso-authentication-for-users). |
+| `saml_auth_not_found + userid` | Provisioning is off and user does not have SSO enabled. | Enable SSO in Wallarm Console → **Settings** → **Users** → user menu → **Enable SSO**. |
 | `saml_auth_not_found + clientid` | Client does not have an SSO integration in the **Integrations** section. | Follow the instructions in the [integration with the SAML SSO](intro.md) documentation. |
 | `invalid_saml_response` or `no_mail_in_saml_response` | The SSO provider gave an unexpected response. It may be a sign of a misconfigured SSO integration. | Do one of the following:<br><ul><li>Make sure there are no mistakes in the SSO integration configured in the **Integrations** section of Wallarm Console.</li><li>Make sure there are no mistakes in the configuration on the SSO provider side.</li></ul> |
 | `user_not_found` | Wallarm did not find the user with the specified email. | Create a user with this email in Wallarm Console. |
