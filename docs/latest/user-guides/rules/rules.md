@@ -29,9 +29,11 @@ Using rules, you can control how Wallarm mitigates attacks on your applications 
 
     * [Override filtration mode](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console) for particular domains/endpoints
     * [Ignore certain attacks](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types)
+    * [Disable custom attack detectors](../../user-guides/rules/regex-rule.md#partial-disabling) for particular domains/endpoints or request parts
     * Configure [binary data processing](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)  
-    * Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
     * Fine tune request processing by [configuring parsers](../../user-guides/rules/request-processing.md#managing-parsers)
+    * [Disable API Abuse Prevention](../../api-abuse-prevention/exceptions.md#exceptions-for-target-urls-and-specific-requests) for specific domains/endpoints and requests
+    * Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
 
 
 * Change requests/responses:
