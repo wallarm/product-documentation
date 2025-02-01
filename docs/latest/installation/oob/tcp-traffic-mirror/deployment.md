@@ -55,13 +55,13 @@ To download Wallarm installation script and make it executable, use the followin
 
 === "x86_64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/native/aio-native-0.10.1.x86_64.sh
-    chmod +x aio-native-0.10.1.x86_64.sh
+    curl -O https://meganode.wallarm.com/native/aio-native-0.11.0.x86_64.sh
+    chmod +x aio-native-0.11.0.x86_64.sh
     ```
 === "ARM64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/native/aio-native-0.10.1.aarch64.sh
-    chmod +x aio-native-0.10.1.aarch64.sh
+    curl -O https://meganode.wallarm.com/native/aio-native-0.11.0.aarch64.sh
+    chmod +x aio-native-0.11.0.aarch64.sh
     ```
 
 ## Step 3: Prepare the configuration file
@@ -69,7 +69,7 @@ To download Wallarm installation script and make it executable, use the followin
 Create the `wallarm-node-conf.yaml` file on the instance. The solution requires proper configuration to identify the network interface and the traffic format (e.g., VLAN, VXLAN). The example content of the file:
 
 ```yaml
-version: 2
+version: 3
 
 mode: tcp-capture
 
@@ -101,7 +101,7 @@ To specify the network interface to capture traffic from:
     Note that the value should be the network interface and port separated by a colon (`:`). Examples of filters include `eth0:`, `eth0:80`, or `:80` (to intercept a specific port on all interfaces), e.g.:
 
     ```yaml
-    version: 2
+    version: 3
 
     mode: tcp-capture
 
@@ -114,7 +114,7 @@ To specify the network interface to capture traffic from:
 If mirrored traffic is wrapped in VLAN, provide additional arguments:
 
 ```yaml
-version: 2
+version: 3
 
 mode: tcp-capture
 
@@ -132,7 +132,7 @@ goreplay:
 If mirrored traffic is wrapped in VXLAN (common in AWS), provide additional arguments:
 
 ```yaml
-version: 2
+version: 3
 
 mode: tcp-capture
 
@@ -156,7 +156,7 @@ By default, Wallarm reads the source IP address from the network packet's IP hea
 To preserve the real client IP, these intermediaries often add an HTTP header (e.g., `X-Real-IP`, `X-Forwarded-For`). The `real_ip_header` parameter tells Wallarm which header to use to extract the original client IP, e.g.:
 
 ```yaml
-version: 2
+version: 3
 
 mode: tcp-capture
 
@@ -171,18 +171,18 @@ To install the Wallarm node for TCP traffic mirror analysis, run the following c
 === "x86_64 version"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.11.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.11.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
 === "ARM64 version"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.11.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.11.0.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -227,22 +227,42 @@ For additional debugging, set the [`log.level`](../../native-node/all-in-one-con
 
     === "x86_64 version"
         ```
-        sudo ./aio-native-0.10.1.x86_64.sh -- --help
+        sudo ./aio-native-0.11.0.x86_64.sh -- --help
         ```
     === "ARM64 version"
         ```
-        sudo ./aio-native-0.10.1.aarch64.sh -- --help
+        sudo ./aio-native-0.11.0.aarch64.sh -- --help
         ```
 * You can also run the installer in an **interactive** mode and choose the `tcp-capture` mode in the 1st step:
 
     === "x86_64 version"
         ```
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.x86_64.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.11.0.x86_64.sh
         ```
     === "ARM64 version"
         ```
-        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.aarch64.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.11.0.aarch64.sh
         ```
+* You can use the node in API Discovery-only mode (available since version 0.11.0). In this mode, attacks are detected and [logged](../../../admin-en/configure-logging.md) locally by the node but not exported to Wallarm Cloud. Meanwhile, [API Discovery](../../../api-discovery/overview.md) remains fully functional, detecting your API inventory and uploading it to the Cloud for visualization.
+
+    This mode is for those who want to review their API inventory and identify sensitive data first, and plan controlled attack data export accordingly. However, disabling attack export is rare, as Wallarm securely processes attack data and provides [sensitive attack data masking](../../../user-guides/rules/sensitive-data-rule.md) if needed.
+
+    To enable API Discovery-only mode:
+
+    1. Create or modify the `/etc/wallarm-override/env.list` file:
+
+        ```
+        sudo mkdir /etc/wallarm-override
+        sudo vim env.list
+        ```
+
+        Add the following variable:
+
+        ```
+        WALLARM_APID_ONLY=true
+        ```
+    
+    1. Follow the [node installation procedure from the 1st step](#step-1-prepare-wallarm-token).
 
 ## Upgrade and reinstallation
 

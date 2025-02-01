@@ -10,6 +10,27 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.11.0 (2025-01-31)
+
+* Added support for the [`WALLARM_APID_ONLY` environment variable](../../installation/native-node/all-in-one.md#installer-launch-options) which enables API Discovery-only mode
+
+    In this mode, attacks are blocked locally (if [enabled](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)) but not exported to Wallarm Cloud, while [API Discovery](../../api-discovery/overview.md) remains fully functional. This mode is rarely needed, in most environments, using this mode is unnecessary.
+* Improved the Native Node's interaction with GoReplay, resulting in the following configuration changes:
+
+    ``` diff
+    -version: 2
+    +version: 3
+
+    -middleware:
+    +goreplay:
+      parse_responses: true
+      response_timeout: 5s
+      url_normalize: true
+    ```
+
+    During upgrade, update the `version` value and replace the `middleware` section with `goreplay` if explicitly specified in the initial configuration file.
+* Fixed a small HTTP parsing bug in the `tcp-capture` mode
+
 ### 0.10.1 (2025-01-02)
 
 * Added support for sensitive business flows in [API Discovery](../../api-discovery/sbf.md) and [API Sessions](../../api-sessions/exploring.md#sensitive-business-flows)
@@ -113,6 +134,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.11.0 (2025-01-31)
+
+* Fixed some bugs
+
 ### 0.10.1 (2025-01-02)
 
 * Added support for sensitive business flows in [API Discovery](../../api-discovery/sbf.md) and [API Sessions](../../api-sessions/exploring.md#sensitive-business-flows)
@@ -175,6 +200,12 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.11.0 (2025-01-31)
+
+* Added support for the [`WALLARM_APID_ONLY` environment variable](../../installation/native-node/docker-image.md#4-run-the-docker-container) which enables API Discovery-only mode
+
+    In this mode, attacks are blocked locally (if [enabled](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)) but not exported to Wallarm Cloud, while [API Discovery](../../api-discovery/overview.md) remains fully functional. This mode is rarely needed, in most environments, using this mode is unnecessary.
 
 ### 0.10.1 (2025-01-02)
 
