@@ -387,8 +387,6 @@ In Node version 0.10.1 and earlier, this parameter is set as `middleware.respons
 
 Enables URL normalization before selecting route configurations and analyzing data with libproton.
 
-Supported starting from the Native Node 0.10.0.
-
 Default: `true`.
 
 In Node version 0.10.1 and earlier, this parameter is set as `middleware.url_normalize`.
