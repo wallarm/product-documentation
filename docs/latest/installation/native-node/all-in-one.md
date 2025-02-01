@@ -203,6 +203,32 @@ For additional debugging, set the [`log.level`](all-in-one-conf.md#loglevel) par
         ```
         sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.aarch64.sh
         ```
+* You can use the node in API Discovery-only mode (available since version 0.11.0). In this mode, attacks detected in your traffic are blocked locally by the node (if [enabled](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)) but not exported to Wallarm Cloud. Meanwhile, [API Discovery](../../api-discovery/overview.md) remains fully functional, detecting your API inventory and uploading it to the Cloud for visualization.
+
+    This mode is for those who want to review their API inventory and identify sensitive data first, and plan controlled attack data export accordingly. However, disabling attack export is rare, as Wallarm securely processes attack data and provides [sensitive attack data masking](../../user-guides/rules/sensitive-data-rule.md) if needed.
+
+    To enable API Discovery-only mode:
+
+    1. Create or modify the `/etc/wallarm-override/env.list` file:
+
+        ```
+        sudo mkdir /etc/wallarm-override
+        sudo vim env.list
+        ```
+
+        Add the following variable:
+
+        ```
+        WALLARM_APID_ONLY=true
+        ```
+    
+    1. Follow the [node installation procedure](#installation).
+
+    With the API Discovery-only mode enabled, the `/opt/wallarm/var/log/wallarm/wcli-out.log` log returns the following message:
+
+    ```json
+    {"level":"info","component":"reqexp","time":"2025-01-31T11:59:38Z","message":"requests export skipped (disabled)"}
+    ```
 
 ## Upgrade and reinstallation
 
