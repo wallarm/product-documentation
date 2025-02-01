@@ -68,7 +68,7 @@ The Wallarm node operation mode. It can be:
     If you installed the Native Node for TCP traffic mirror analysis, the basic configuration looks as follows:
 
     ```yaml
-    version: 2
+    version: 3
 
     mode: tcp-capture
 
@@ -78,15 +78,13 @@ The Wallarm node operation mode. It can be:
         - -input-raw-engine
         - vxlan
       path: /opt/wallarm/usr/bin/gor
-
-    http_inspector:
-      real_ip_header: "X-Real-IP"
-    
-    middleware:
       parse_responses: true
       response_timeout: 5s
       url_normalize: true
 
+    http_inspector:
+      real_ip_header: "X-Real-IP"
+    
     route_config:
       wallarm_application: 10
       wallarm_mode: monitoring
@@ -258,7 +256,7 @@ The value should be the network interface and port separated by a colon (`:`), e
 
 === "Interface:Port"
     ```yaml
-    version: 2
+    version: 3
 
     goreplay:
       filter: 'eth0:80'
@@ -267,7 +265,7 @@ The value should be the network interface and port separated by a colon (`:`), e
     To capture traffic from multiple interfaces and ports, use `goreplay.filter` along with `goreplay.extra_args`, e.g.:
 
     ```yaml
-    version: 2
+    version: 3
 
     goreplay:
       filter: 'eth0:80'
@@ -283,21 +281,21 @@ The value should be the network interface and port separated by a colon (`:`), e
     The `filter` sets GoReplay with the `-input-raw` argument, and `extra_args` allows for specifying additional `-input-raw` inputs.
 === "All ports on interface"
     ```yaml
-    version: 2
+    version: 3
 
     goreplay:
       filter: 'eth0:'
     ```
 === "Specific port on all interfaces"
     ```yaml
-    version: 2
+    version: 3
 
     goreplay:
       filter: ':80'
     ```
 === "All interfaces and ports"
     ```yaml
-    version: 2
+    version: 3
 
     goreplay:
       filter: ':'
@@ -317,7 +315,7 @@ This parameter allows you to specify [extra arguments](https://github.com/buger/
 
     === "VLAN-wrapped mirrored traffic"
         ```yaml
-        version: 2
+        version: 3
 
         goreplay:
           extra_args:
@@ -328,7 +326,7 @@ This parameter allows you to specify [extra arguments](https://github.com/buger/
         ```
     === "VXLAN-wrapped mirrored traffic (common in AWS)"
         ```yaml
-        version: 2
+        version: 3
 
         goreplay:
           extra_args:
@@ -346,7 +344,7 @@ This parameter allows you to specify [extra arguments](https://github.com/buger/
 * You can extend `filter` with `extra_args` to capture additional interfaces and ports:
 
     ```yaml
-    version: 2
+    version: 3
 
     goreplay:
       filter: 'eth0:80'
@@ -367,13 +365,7 @@ The path to the GoReplay binary file. Typically, you do not need to modify this 
 
 Default: `/opt/wallarm/usr/bin/gor`.
 
-### http_inspector.real_ip_header
-
-By default, Wallarm reads the source IP address from the network packet's IP headers. However, proxies and load balancers can change this to their own IPs.
-
-To preserve the real client IP, these intermediaries often add an HTTP header (e.g., `X-Real-IP`, `X-Forwarded-For`). The `real_ip_header` parameter tells Wallarm which header to use to extract the original client IP.
-
-### middleware.parse_responses
+### goreplay.parse_responses
 
 Controls whether to parse mirrored responses. This enables Wallarm features that rely on response data, such as [vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) and [API discovery](../../api-discovery/overview.md).
 
@@ -381,19 +373,31 @@ By default, `true`.
 
 Ensure response mirroring is configured in your environment to the target instance with the Wallarm node.
 
-### middleware.response_timeout
+In Node version 0.10.1 and earlier, this parameter is set as `middleware.parse_responses`.
+
+### goreplay.response_timeout
 
 Specifies the maximum time to wait for a response. If a response is not received within this time, the Wallarm processes stop waiting the corresponding response.
 
 Default: `5s`.
 
-### middleware.url_normalize
+In Node version 0.10.1 and earlier, this parameter is set as `middleware.response_timeout`.
+
+### goreplay.url_normalize
 
 Enables URL normalization before selecting route configurations and analyzing data with libproton.
 
 Supported starting from the Native Node 0.10.0.
 
 Default: `true`.
+
+In Node version 0.10.1 and earlier, this parameter is set as `middleware.url_normalize`.
+
+### http_inspector.real_ip_header
+
+By default, Wallarm reads the source IP address from the network packet's IP headers. However, proxies and load balancers can change this to their own IPs.
+
+To preserve the real client IP, these intermediaries often add an HTTP header (e.g., `X-Real-IP`, `X-Forwarded-For`). The `real_ip_header` parameter tells Wallarm which header to use to extract the original client IP.
 
 ## Basic settings
 
@@ -419,24 +423,44 @@ Default: `monitoring`.
 
 Sets route-specific Wallarm configuration. Includes Wallarm mode and application IDs. Example configuration:
 
-```yaml
-version: 2
+=== "connector-server"
+    ```yaml
+    version: 2
 
-route_config:
-  wallarm_application: 10
-  wallarm_mode: monitoring
-  routes:
-    - host: example.com
-      wallarm_application: 1
+    route_config:
+      wallarm_application: 10
+      wallarm_mode: monitoring
       routes:
-        - route: /app2
-          wallarm_application: 2
-    - host: api.example.com
-      route: /api
-      wallarm_application: 100
-    - route: /testing
-      wallarm_mode: off
-```
+        - host: example.com
+          wallarm_application: 1
+          routes:
+            - route: /app2
+              wallarm_application: 2
+        - host: api.example.com
+          route: /api
+          wallarm_application: 100
+        - route: /testing
+          wallarm_mode: off
+    ```
+=== "tcp-capture"
+    ```yaml
+    version: 3
+
+    route_config:
+      wallarm_application: 10
+      wallarm_mode: monitoring
+      routes:
+        - host: example.com
+          wallarm_application: 1
+          routes:
+            - route: /app2
+              wallarm_application: 2
+        - host: api.example.com
+          route: /api
+          wallarm_application: 100
+        - route: /testing
+          wallarm_mode: off
+    ```
 
 #### host
 
@@ -446,14 +470,24 @@ This parameter supports wildcard matching similar to [`connector.allowed_hosts`]
 
 For example:
 
-```yaml
-version: 2
+=== "connector-server"
+    ```yaml
+    version: 2
 
-route_config:
-  wallarm_application: 10
-  routes:
-    - host: "*.host.com"
-```
+    route_config:
+      wallarm_application: 10
+      routes:
+        - host: "*.host.com"
+    ```
+=== "tcp-capture"
+    ```yaml
+    version: 3
+
+    route_config:
+      wallarm_application: 10
+      routes:
+        - host: "*.host.com"
+    ```
 
 #### routes.route or route
 
@@ -530,36 +564,68 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
 
 ## Advanced settings
 
-```yaml
-version: 2
+=== "connector-server"
+    ```yaml
+    version: 2
 
-http_inspector:
-  workers: auto
-  libdetection_enabled: true
-  api_firewall_enabled: true
-  api_firewall_database: /opt/wallarm/var/lib/wallarm-api/2/wallarm_api.db
-  wallarm_dir: /opt/wallarm/etc/wallarm
-  shm_dir: /tmp
-  wallarm_process_time_limit: 1s
+    http_inspector:
+      workers: auto
+      libdetection_enabled: true
+      api_firewall_enabled: true
+      api_firewall_database: /opt/wallarm/var/lib/wallarm-api/2/wallarm_api.db
+      wallarm_dir: /opt/wallarm/etc/wallarm
+      shm_dir: /tmp
+      wallarm_process_time_limit: 1s
 
-tarantool_exporter:
-  address: 127.0.0.1:3313
-  enabled: true
+    tarantool_exporter:
+      address: 127.0.0.1:3313
+      enabled: true
 
-log:
-  proton_log_mask: info@*
+    log:
+      proton_log_mask: info@*
 
-metrics:
-  enabled: true
-  listen_address: :9000
-  legacy_status:
-    enabled: true
-    listen_address: 127.0.0.1:10246
+    metrics:
+      enabled: true
+      listen_address: :9000
+      legacy_status:
+        enabled: true
+        listen_address: 127.0.0.1:10246
 
-health_check:
-  enabled: true
-  listen_address: :8080
-```
+    health_check:
+      enabled: true
+      listen_address: :8080
+    ```
+=== "tcp-capture"
+    ```yaml
+    version: 3
+
+    http_inspector:
+      workers: auto
+      libdetection_enabled: true
+      api_firewall_enabled: true
+      api_firewall_database: /opt/wallarm/var/lib/wallarm-api/2/wallarm_api.db
+      wallarm_dir: /opt/wallarm/etc/wallarm
+      shm_dir: /tmp
+      wallarm_process_time_limit: 1s
+
+    tarantool_exporter:
+      address: 127.0.0.1:3313
+      enabled: true
+
+    log:
+      proton_log_mask: info@*
+
+    metrics:
+      enabled: true
+      listen_address: :9000
+      legacy_status:
+        enabled: true
+        listen_address: 127.0.0.1:10246
+
+    health_check:
+      enabled: true
+      listen_address: :8080
+    ```
 
 ### http_inspector.workers
 

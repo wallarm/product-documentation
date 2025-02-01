@@ -86,7 +86,7 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
     In the `connector.tls_cert` and `connector.tls_key`, you specify the paths to a **trusted** certificate and private key issued for the machine's domain.
 === "tcp-capture"
     ```yaml
-    version: 2
+    version: 3
 
     mode: tcp-capture
 

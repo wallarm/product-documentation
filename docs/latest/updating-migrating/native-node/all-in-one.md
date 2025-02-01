@@ -71,7 +71,21 @@ For the configuration file, you can reuse the one used during the initial instal
 === "tcp-capture"
     The `tcp-capture` mode is used when you deployed the self-hosted node for [TCP traffic analysis](../../installation/oob/tcp-traffic-mirror/deployment.md).
 
-    For the x86_64 installer version:
+    !!! info "If upgrading to Node version 0.11.0 or higher"
+        If upgrading to Node version 0.11.0 or higher, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that parameters previously set in the `middleware` section are moved to the `goreplay` section:
+
+        ```diff
+        -version: 2
+        +version: 3
+
+        -middleware:
+        +goreplay:
+          parse_responses: true
+          response_timeout: 5s
+          url_normalize: true
+        ```
+
+    The upgrade command for the x86_64 installer version:
         
     ```bash
     # US Cloud
@@ -81,7 +95,7 @@ For the configuration file, you can reuse the one used during the initial instal
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.10.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
     ```
     
-    For the ARM64 installer version:
+    The upgrade command for the ARM64 installer version:
 
     ```bash
     # US Cloud
