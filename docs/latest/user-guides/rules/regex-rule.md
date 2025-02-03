@@ -5,7 +5,7 @@
 [request-processing]:       ../../user-guides/rules/request-processing.md
 [api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 
-# User-Defined Detectors
+# Custom Attack Detectors
 
 Wallarm provides the **Create regexp-based attack indicator** [rule](../../user-guides/rules/rules.md) to define your own attack signs that are described with the regular expressions.
 
@@ -98,7 +98,7 @@ To create the relevant rule:
 
 1. Go to the **Rules** tab
 1. Find or create the branch for `example.com/test.php` and click **Add rule**.
-1. Choose **Fine-tuning attack detection** → **Ignore certain custom based**.
+1. Choose **Fine-tuning attack detection** → **Disable custom attack detector**.
 1. Select the regular expression that you want to disable.
 1. Set the point `Header X-AUTHENTICATION`.
 1. Click **Create**.
