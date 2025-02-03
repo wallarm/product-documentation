@@ -43,7 +43,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Added URL normalization before selecting route configurations and analyzing data with libproton in `tcp-capture` mode
 
-    This is controlled by the [`middleware.url_normalize`](../../installation/native-node/all-in-one-conf.md#middlewareurl_normalize) parameter (`true` by default).
+    This is controlled by the [`middleware.url_normalize`](../../installation/native-node/all-in-one-conf.md#goreplayurl_normalize) parameter (`true` by default).
 * Introduced the [`http_inspector.wallarm_process_time_limit`](../../installation/native-node/all-in-one-conf.md#http_inspectorwallarm_process_time_limit) parameter to control request processing time locally
 
     The default is `1s` unless overridden by Wallarm Console settings.
@@ -220,7 +220,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 * Resolved the critical [CVE-2024-45337](https://scout.docker.com/vulnerabilities/id/CVE-2024-45337) vulnerability and addressed several minor vulnerabilities
 * Added URL normalization before selecting route configurations and analyzing data with libproton in `tcp-capture` mode
 
-    This is controlled by the [`middleware.url_normalize`](../../installation/native-node/all-in-one-conf.md#middlewareurl_normalize) parameter (`true` by default).
+    This is controlled by the [`middleware.url_normalize`](../../installation/native-node/all-in-one-conf.md#goreplayurl_normalize) parameter (`true` by default).
 * Introduced the [`http_inspector.wallarm_process_time_limit`](../../installation/native-node/all-in-one-conf.md#http_inspectorwallarm_process_time_limit) parameter to control request processing time locally
 
     The default is `1s` unless overridden by Wallarm Console settings.
