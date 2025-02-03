@@ -1,3 +1,5 @@
+[api-discovery-enable-link]:        ../api-discovery/setup.md#enable
+
 # API Abuse Prevention Exceptions <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 This article describes how to fine tune [API Abuse Prevention](../api-abuse-prevention/overview.md) by marking legitimate bots and disabling bot protection for particular target URLs and request types.
@@ -39,12 +41,11 @@ To do that, Wallarm provides the **Set API Abuse Prevention mode** rule (support
 
 To disable bot protection for specific URL or request type:
 
-1. Proceed to Wallarm Console → **Rules** → **Add rule**.
-1. In **If request is**, [describe](../user-guides/rules/rules.md#uri-constructor) the requests and/or URLs to apply the rule to.
+--8<-- "../include/rule-creation-initial-step.md"
 
-    To specify the URL, if you use the [**API Discovery**](../api-discovery/overview.md) module and have your endpoints discovered, you can also quickly create the rule for the endpoint using its menu.
-
-1. In **Then**, choose **Set API Abuse Prevention mode** and set:
+1. Choose **Fine-tuning attack detection** → **Override API abuse profiles**. 
+1. In **If request is**, [describe](../user-guides/rules/rules.md#uri-constructor) the requests and/or URLs to apply the rule to. If you initiated the rule for specific branch, hit or endpoint, they will define the scope - if necessary, you can add more conditions.
+1. Select a desired mode:
 
     * **Default** - for the described scope (specific URL or request), the protection from bots will work in a usual way defined by common API Abuse Prevention [profiles](setup.md#creating-profiles).
     * **Do not check for bot activity** - for the described URL and/or request type, the check for bot activity will not be performed.

@@ -16,18 +16,29 @@ Rules are configured in the **Rules** section in the [US](https://us1.my.wallarm
 
 ## What you can do with rules
 
-Using rules, you can provide the multiple protection measures for your applications and APIs, and also fine tune how attacks are detected, how the Wallarm nodes and some Wallarm components work:
+Using rules, you can control how Wallarm mitigates attacks on your applications and APIs, fine tune attack detection, and change request/responses:
 
-* [Set rate limit](../../user-guides/rules/rate-limiting.md)
-* [Apply a virtual patch](../../user-guides/rules/vpatch-rule.md)
-* [Create your own detection rule](../../user-guides/rules/regex-rule.md)
-* [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
-* Provide [protection from GraphQL specific attacks](../../api-protection/graphql-rule.md)
-* Set up the [specific filtration mode](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console) for particular domains/endpoints
-* Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
-* Fine tune request processing by [managing request parsers](../../user-guides/rules/request-processing.md#managing-parsers)
-* Configure the additional layer of the application security by [changing server response headers](../../user-guides/rules/add-replace-response-header.md)
-* Fine tune attack detection by setting to [ignore certain attack types](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) and to [ignore certain attack signs in the binary data](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
+* Mitigation controls:
+
+    * [Advanced rate limiting](../../user-guides/rules/rate-limiting.md)
+    * [GraphQL API protection](../../api-protection/graphql-rule.md)
+    * [Virtual patches](../../user-guides/rules/vpatch-rule.md)
+    * [Custom attack detectors](../../user-guides/rules/regex-rule.md)
+
+* Fine-tuning attack detection:
+
+    * [Override filtration mode](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console) for particular domains/endpoints
+    * [Ignore certain attacks](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types)
+    * [Disable custom attack detectors](../../user-guides/rules/regex-rule.md#partial-disabling) for particular domains/endpoints or request parts
+    * Configure [binary data processing](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
+    * Fine tune request processing by [configuring parsers](../../user-guides/rules/request-processing.md#managing-parsers)
+    * [Disable API Abuse Prevention](../../api-abuse-prevention/exceptions.md#exceptions-for-target-urls-and-specific-requests) for specific domains/endpoints and requests
+    * Fine tune node functioning by [limiting the request processing time](../../user-guides/rules/configure-overlimit-res-detection.md)
+
+* Change requests/responses:
+
+    * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
+    * Configure the additional layer of the application security by [changinge response headers](../../user-guides/rules/add-replace-response-header.md)
 
 ## Rule branches
 

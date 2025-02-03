@@ -441,8 +441,9 @@ To prevent false positives in such cases, Wallarm provides the **Disable/Enable 
 **Creating and applying the rule**
 
 --8<-- "../include/rule-creation-initial-step.md"
+1. Choose **Fine-tuning attack detection** → **Configure parsers**.
 1. In **If request is**, [describe](rules.md#configuring) the scope to apply the rule to.
-1. In **Then**, choose **Disable/Enable request parser** and add parsers to be `off`/`on`.
+1. Add parsers to be `off`/`on`.
 1. In **In this part of request**, specify request points for which you wish to set the rule. Wallarm will restrict requests that have the same values for the selected request parameters.
 
     All available points are described in this article above, you can choose those matching your particular use case.
@@ -453,6 +454,6 @@ To prevent false positives in such cases, Wallarm provides the **Disable/Enable 
 
 Let us say the requests to `https://example.com/users/` require the authentication header `X-AUTHTOKEN`. The header value may contain specific symbol combinations (e.g. `=` in the end) that may be potentially decoded by Wallarm with the parser `base64` resulting in false detection of attack sign. You need to prevent this decoding to avoid false positives. 
 
-To do so, set the **Disable/Enable request parser** rule as displayed on the screenshot:
+To do so, set the rule as displayed on the screenshot:
 
 ![Example of the rule "Disable/Enable request parser"](../../images/user-guides/rules/disable-parsers-example.png)

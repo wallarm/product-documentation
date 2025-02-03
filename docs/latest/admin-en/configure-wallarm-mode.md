@@ -124,9 +124,9 @@ To create a new filtration mode rule:
 
 --8<-- "../include/rule-creation-initial-step.md"
 
+1. Choose **Fine-tuning attack detection** → **Override filtration mode**. 
 1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to. If you initiated the rule for specific branch, hit or endpoint, they will define the scope - if necessary, you can add more conditions.
-
-1. In **Then**, choose **Set filtration mode** and select a desired mode.
+1. Select a desired mode.
 1. Save changes and wait for the [rule compilation to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
 
 Note that to create a filtration mode rule, you can also [call the Wallarm API directly](../api/request-examples.md#create-the-rule-setting-filtration-mode-to-monitoring-for-the-specific-application).
