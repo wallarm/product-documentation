@@ -19,6 +19,8 @@ Wallarm supports both POST and GET HTTP methods for GraphQL requests.
 
 ## Creating and applying the rule
 
+GraphQL rule is recommended to be created for the GraphQL specific endpoints. Creating it as a [default](../user-guides/rules/rules.md#default-rules) rule for the entire system is not recommended.
+
 To set and apply GraphQL policy:
 
 --8<-- "../include/rule-creation-initial-step.md"
@@ -44,6 +46,8 @@ To set and apply GraphQL policy:
     By default, a policy sets maximum POST request query size to 100 KB, value size to 10 KB, query depth and batched query limits to 10, aliases to 5, plus deny introspection and debug queries as displayed on the screenshot (note that you can change default values to your own considering statistics of your common legitimate GraphQL queries):
         
     ![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
+
+Once created, the rule may be at any moment temporarily disabled and later re-enabled again using the **Mode** parameter of the rule.
 
 <!-- temporary unavailable, bug: https://wallarm.atlassian.net/browse/PLUTO-6979?focusedCommentId=208654
 ## Reaction to policy violation
