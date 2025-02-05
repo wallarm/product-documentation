@@ -144,7 +144,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
     * `-p`: port the filtering node listens to. The value should be the same as the instance port.
     * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `WALLARM_API_TOKEN` explicitly.
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-4.10.md"
 1. [Test the filtering node operation](#testing-the-filtering-node-operation).
 
 ## Testing the filtering node operation

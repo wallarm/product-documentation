@@ -351,7 +351,7 @@ To deploy the container with environment variables and configuration file mounte
 
         It is recommended to pass the variable `WALLARM_API_TOKEN` in the `secrets` object.
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-4.10.md"
     
     * All configuration file parameters are described in the [AWS documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html).
 1. Register the task definition based on the JSON configuration file by using the [`aws ecs register‑task‑definition`](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html) command:
