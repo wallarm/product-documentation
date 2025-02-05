@@ -331,22 +331,12 @@ nav:
     - ユーザープロフィール: user-guides/settings/account.md
     - APIトークン: user-guides/settings/api-tokens.md
     - シングルサインオン(SSO)使用:
-      - SAML SSOソリューションとの統合の概要: admin-en/configuration-guides/sso/intro.md
-      - G SuiteとのSSOの接続:
-        - G SuiteとのSSO接続の手順の概要: admin-en/configuration-guides/sso/gsuite/overview.md
-        - "ステップ1：Wallarm側でのパラメータ生成（G Suite）": admin-en/configuration-guides/sso/gsuite/setup-sp.md
-        - "ステップ2：G Suiteにアプリケーションの作成と設定": admin-en/configuration-guides/sso/gsuite/setup-idp.md
-        - "ステップ3：G SuiteメタデータをWallarm設定ウィザードに転送": admin-en/configuration-guides/sso/gsuite/metadata-transfer.md
-        - "ステップ4：G Suite側でWallarmアプリケーションへのアクセスを許可": admin-en/configuration-guides/sso/gsuite/allow-access-to-wl.md
-      - OktaとのSSOの接続:
-        - OktaとのSSO接続ステップの概要: admin-en/configuration-guides/sso/okta/overview.md
-        - "ステップ1：Wallarm側でのパラメータ生成（Okta）": admin-en/configuration-guides/sso/okta/setup-sp.md
-        - "ステップ2：Oktaでのアプリケーション作成と設定": admin-en/configuration-guides/sso/okta/setup-idp.md
-        - "ステップ3：OktaメタデータをWallarm設定ウィザードに送信": admin-en/configuration-guides/sso/okta/metadata-transfer.md
-        - "ステップ4：Okta側でWallarmへのアクセス許可": admin-en/configuration-guides/sso/okta/allow-access-to-wl.md
-      - ユーザーのSSO認証の設定: admin-en/configuration-guides/sso/employ-user-auth.md
-      - 設定したSSO認証の変更: admin-en/configuration-guides/sso/change-sso-provider.md
-      - シングルサインオンをWallarmアカウントに使用する: user-guides/use-sso.md
+    - Using SSO:
+      - Overview: admin-en/configuration-guides/sso/intro.md
+      - Setup: admin-en/configuration-guides/sso/setup.md
+      - G Suite Example: admin-en/configuration-guides/sso/sso-gsuite.md
+      - Okta Example: admin-en/configuration-guides/sso/sso-okta.md
+      - Troubleshooting: admin-en/configuration-guides/sso/troubleshooting.md
     - LDAPの使用: admin-en/configuration-guides/ldap/ldap.md
   - 操作:
     - 概要:

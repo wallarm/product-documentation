@@ -1,1 +1,0 @@
---8<-- "latest-ar/admin-en/configuration-guides/sso/change-sso-provider.md"

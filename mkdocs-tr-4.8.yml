@@ -312,23 +312,12 @@ nav:
     - Kullanıcı Profili: user-guides/settings/account.md
     - Oturum Kapatma Ayarları: user-guides/settings/general.md
     - API Tokenları: user-guides/settings/api-tokens.md
-    - Tek Oturum Açma (SSO) Kullanma:
-      - SAML SSO çözümü ile entegrasyonun genel bakışı: admin-en/configuration-guides/sso/intro.md
-      - SSO'yu G Suite ile Bağlama:
-        - SSO'yu G Suite ile Bağlamanın Aşamalarına Genel Bakış: admin-en/configuration-guides/sso/gsuite/overview.md
-        - "1. Adım: Wallarm Tarafından Parametrelerin Oluşturulması (G Suite)": admin-en/configuration-guides/sso/gsuite/setup-sp.md
-        - "2. Adım: G Suite'te Bir Uygulama Oluşturma ve Yapılandırma": admin-en/configuration-guides/sso/gsuite/setup-idp.md
-        - "3. Adım: G Suite Meta Verilerini Wallarm Kurulum Sihirbazına Aktarma": admin-en/configuration-guides/sso/gsuite/metadata-transfer.md
-        - "4. Adım: G Suite Tarafından Wallarm Uygulamasına Erişime İzin Verme": admin-en/configuration-guides/sso/gsuite/allow-access-to-wl.md
-      - SSO'yu Okta ile Bağlama:
-        - SSO'yu Okta ile Bağlamanın Aşamalarına Genel Bakış: admin-en/configuration-guides/sso/okta/overview.md
-        - "1. Adım: Wallarm Tarafından Parametrelerin Oluşturulması (Okta)": admin-en/configuration-guides/sso/okta/setup-sp.md
-        - "2. Adım: Okta Uygulama Oluşturma ve Yapılandırma": admin-en/configuration-guides/sso/okta/setup-idp.md
-        - "3. Adım: Okta Meta Verilerini Wallarm Kurulum Sihirbazına Aktarma": admin-en/configuration-guides/sso/okta/metadata-transfer.md
-        - "4. Adım: Okta Tarafından Wallarm Uygulamasına Erişime İzin Verme": admin-en/configuration-guides/sso/okta/allow-access-to-wl.md
-      - SSO Kimlik Doğrulamasının Kullanıcılar İçin Yapılandırılması: admin-en/configuration-guides/sso/employ-user-auth.md
-      - Yapılandırılmış SSO Kimlik Doğrulamanın Değiştirilmesi: admin-en/configuration-guides/sso/change-sso-provider.md
-      - Tek oturum açma ile Wallarm hesabını kullanma: user-guides/use-sso.md
+    - Using SSO:
+      - Overview: admin-en/configuration-guides/sso/intro.md
+      - Setup: admin-en/configuration-guides/sso/setup.md
+      - G Suite Example: admin-en/configuration-guides/sso/sso-gsuite.md
+      - Okta Example: admin-en/configuration-guides/sso/sso-okta.md
+      - Troubleshooting: admin-en/configuration-guides/sso/troubleshooting.md
     - LDAP'yi kullanma: admin-en/configuration-guides/ldap/ldap.md
   - Operasyonlar:
     # - Auto scaling: ...

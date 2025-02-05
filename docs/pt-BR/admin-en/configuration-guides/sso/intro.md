@@ -1,1 +1,1 @@
---8<-- "latest-pt-BR/admin-en/configuration-guides/sso/intro.md"
+--8<-- "latest/admin-en/configuration-guides/sso/intro.md"
