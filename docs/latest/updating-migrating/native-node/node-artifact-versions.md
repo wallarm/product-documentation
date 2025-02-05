@@ -10,6 +10,18 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.12.0 (2025-02-05)
+
+* Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
+* Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
+
+    * Improved detection of the input validation attacks in GraphQL-specific request points
+    * Fine-tuning attack detection for specific GraphQL points (e.g. disable detection of specific attack types in specific points)
+    * Analyzing specific parts of GraphQL requests in API sessions
+
+* Fixed invalid time value in serialized requests to properly display the [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) attacks
+* Fixed problem for the `invalid_xml` attack detection in responses
+
 ### 0.11.0 (2025-01-31)
 
 * Added support for the [`WALLARM_APID_ONLY` environment variable](../../installation/native-node/all-in-one.md#installer-launch-options) which enables API Discovery-only mode
@@ -134,6 +146,18 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.12.0 (2025-02-05)
+
+* Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
+* Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
+
+    * Improved detection of the input validation attacks in GraphQL-specific request points
+    * Fine-tuning attack detection for specific GraphQL points (e.g. disable detection of specific attack types in specific points)
+    * Analyzing specific parts of GraphQL requests in API sessions
+
+* Fixed invalid time value in serialized requests to properly display the [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) attacks
+* Fixed problem for the `invalid_xml` attack detection in responses
+
 ### 0.11.0 (2025-01-31)
 
 * Fixed some bugs
@@ -200,6 +224,18 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.12.0 (2025-02-05)
+
+* Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
+* Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
+
+    * Improved detection of the input validation attacks in GraphQL-specific request points
+    * Fine-tuning attack detection for specific GraphQL points (e.g. disable detection of specific attack types in specific points)
+    * Analyzing specific parts of GraphQL requests in API sessions
+
+* Fixed invalid time value in serialized requests to properly display the [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) attacks
+* Fixed problem for the `invalid_xml` attack detection in responses
 
 ### 0.11.0 (2025-01-31)
 
