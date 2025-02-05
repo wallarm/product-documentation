@@ -799,3 +799,9 @@
 /ar/vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification/ /ar/vulnerability-detection/threat-replay-testing/setup/#enable
 /ar/vulnerability-detection/active-threat-verification/modify-requests-before-replay/ /ar/vulnerability-detection/threat-replay-testing/setup/#rewrites
 /ar/vulnerability-detection/active-threat-verification/running-test-on-staging/ /ar/vulnerability-detection/threat-replay-testing/setup/#host-and-replay-host
+
+/admin-en/configuration-guides/sso/employ-user-auth/ /admin-en/configuration-guides/sso/intro/#available-options
+/admin-en/configuration-guides/sso/change-sso-provider/ /admin-en/configuration-guides/sso/setup/#disabling-and-deletion
+/user-guides/use-sso/ /admin-en/configuration-guides/sso/intro/
+/admin-en/configuration-guides/sso/gsuite/* /admin-en/configuration-guides/sso/sso-gsuite/
+/admin-en/configuration-guides/sso/okta/* /admin-en/configuration-guides/sso/sso-okta/
