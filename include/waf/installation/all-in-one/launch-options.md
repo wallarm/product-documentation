@@ -88,3 +88,34 @@ Finally, to complete the installation, you need to [enable Wallarm to analyze tr
 ### Separate installation of filtering and postanalytics nodes
 
 The filtering/postanalytics switch provides the option to install the postanalytics module [separately][separate-postanalytics-installation-aio]. Without this switch, both filtering and postanalytics components are installed together by default.
+
+### API Discovery-only mode
+
+You can use the node in API Discovery-only mode (available since version 5.3.7). In this mode, attacks - including those detected by the Node's built-in mechanisms and those requiring additional configuration (e.g., credential stuffing, API specification violation attempts, and malicious activity from denylisted and graylisted IPs) - are detected and blocked locally (if enabled) but not exported to Wallarm Cloud. Since there is no attack data in the Cloud, [Threat Replay Testing][threat-replay-testing-docs] does not work. Traffic from whitelisted IPs is allowed.
+
+Meanwhile, [API Discovery][api-discovery-docs], [API session tracking][api-sessions-docs], and [security vulnerability detection][vuln-detection-docs] remain fully functional, detecting relevant security entities and uploading them to the Cloud for visualization.
+
+This mode is for those who want to review their API inventory and identify sensitive data first, and plan controlled attack data export accordingly. However, disabling attack export is rare, as Wallarm securely processes attack data and provides [sensitive attack data masking][masking-sensitive-data-rule] if needed.
+
+To enable API Discovery-only mode:
+
+1. Create or modify the `/etc/wallarm-override/env.list` file:
+
+    ```
+    sudo mkdir /etc/wallarm-override
+    sudo vim /etc/wallarm-override/env.list
+    ```
+
+    Add the following variable:
+
+    ```
+    WALLARM_APID_ONLY=true
+    ```
+
+1. Follow the [node installation procedure](#requirements).
+
+With the API Discovery-only mode enabled, the `/opt/wallarm/var/log/wallarm/wcli-out.log` log returns the following message:
+
+```json
+{"level":"info","component":"reqexp","time":"2025-01-31T11:59:38Z","message":"requests export skipped (disabled)"}
+```
