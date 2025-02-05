@@ -215,7 +215,7 @@ For additional debugging, set the [`log.level`](all-in-one-conf.md#loglevel) par
 
         ```
         sudo mkdir /etc/wallarm-override
-        sudo vim env.list
+        sudo vim /etc/wallarm-override/env.list
         ```
 
         Add the following variable:
