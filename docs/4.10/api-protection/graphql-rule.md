@@ -1,3 +1,5 @@
+[api-discovery-enable-link]:        ../api-discovery/setup.md#enable
+
 # GraphQL API Protection <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Wallarm detects regular attacks (SQLi, RCE, [etc.](../attacks-vulns-list.md)) in GraphQL by default even under the basic [WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription plan. However, some aspects of the protocol allow implementing [GraphQL specific](../attacks-vulns-list.md#graphql-attacks) attacks related to excessive information exposure and DoS. This document describes how to use Wallarm to protect your APIs from these attacks by setting **GraphQL policy** - a set of limits for the GraphQL requests.
@@ -17,9 +19,12 @@ Wallarm supports both POST and GET HTTP methods for GraphQL requests.
 
 ## Creating and applying the rule
 
+GraphQL rule is recommended to be created for the GraphQL specific endpoints. Creating it as a [default](../user-guides/rules/rules.md#default-rules) rule for the entire system is not recommended.
+
 To set and apply GraphQL policy:
 
-1. Proceed to Wallarm Console → **Rules** → **Add rule**.
+--8<-- "../include/rule-creation-initial-step.md"
+1. Choose **Mitigation controls** → **GraphQL API protection**.
 1. In **If request is**, [describe](../user-guides/rules/rules.md#rule-branches) endpoint URI to apply the rule to and other conditions:
 
     * URI of your GraphQL endpoint (in the route, usually contains `/graphql`)
@@ -28,7 +33,7 @@ To set and apply GraphQL policy:
 
         Note that you can set when the rule must be applied using different condition combinations, for example, you can use URI and leave other conditions unspecified or set `CONTENT-TYPE` header to `application/graphql` without specifying any endpoint. You can also create several rules with different conditions and set different limits and reactions in them.
 
-1. In **Then**, choose **Detect GraphQL attacks** and set thresholds for GraphQL requests in accordance with your traffic metrics (if left empty/unselected, no limitation is applied by this criteria):
+1. Set thresholds for GraphQL requests in accordance with your traffic metrics (if left empty/unselected, no limitation is applied by this criteria):
 
     * **Maximum total query size in kilobytes** - sets the upper limit for the size of an entire GraphQL query. It's crucial for preventing Denial of Service (DoS) attacks that exploit server resources by submitting excessively large queries.
     * **Maximum value size in kilobytes** - sets the maximum size for any individual value (whether a variable or query parameter) within a GraphQL query. This limit helps mitigate attacks that attempt to overwhelm the server through Excessive Value Length, where attackers send requests with overly long string values for variables or arguments.
@@ -41,6 +46,8 @@ To set and apply GraphQL policy:
     By default, a policy sets maximum POST request query size to 100 KB, value size to 10 KB, query depth and batched query limits to 10, aliases to 5, plus deny introspection and debug queries as displayed on the screenshot (note that you can change default values to your own considering statistics of your common legitimate GraphQL queries):
         
     ![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
+
+Once created, the rule may be at any moment temporarily disabled and later re-enabled again using the **Mode** parameter of the rule.
 
 ## Reaction to policy violation
 
@@ -57,8 +64,6 @@ Consider that you node configuration via the [`wallarm_mode_allow_override` dire
 You can explore GraphQL policy violations (GraphQL attacks) in Wallarm Console → **Attacks** section. Use the GraphQL specific [search keys](../user-guides/search-and-filters/use-search.md#graphql-tags) or corresponding filters:
 
 ![GraphQL attacks](../images/user-guides/rules/graphql-attacks.png)
-
-<!--## Rule examples
 
 ### Setting policy for your GraphQL endpoints to block attacks
 
@@ -87,4 +92,3 @@ To do so:
 1. As filtration mode for `example.com/graphql` is `block` and you want `monitoring` for `example.com/graphql/v2`, configure the **Set filtration mode** rule as displayed on the screenshot:
 
     ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-2-action.png)
--->

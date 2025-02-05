@@ -19,6 +19,8 @@ Wallarm supports both POST and GET HTTP methods for GraphQL requests.
 
 ## Creating and applying the rule
 
+GraphQL rule is recommended to be created for the GraphQL specific endpoints. Creating it as a [default](../user-guides/rules/rules.md#default-rules) rule for the entire system is not recommended.
+
 To set and apply GraphQL policy:
 
 --8<-- "../include/rule-creation-initial-step.md"
@@ -45,7 +47,8 @@ To set and apply GraphQL policy:
         
     ![GraphQL thresholds](../images/user-guides/rules/graphql-rule.png)
 
-<!-- temporary unavailable, bug: https://wallarm.atlassian.net/browse/PLUTO-6979?focusedCommentId=208654
+Once created, the rule may be at any moment temporarily disabled and later re-enabled again using the **Mode** parameter of the rule.
+
 ## Reaction to policy violation
 
 Reaction to the policy violation is defined by the [filtration mode](../admin-en/configure-wallarm-mode.md) applied to the endpoints targeted by the rule.
@@ -54,15 +57,13 @@ If you are using Wallarm in blocking mode and want to safely test GraphQL rules,
 
 ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-2-action.png)
 
-Consider that you node configuration via the [`wallarm_mode_allow_override` directive](../admin-en/configure-wallarm-mode.md#prioritization-of-methods) may be set to ignore rules created in Wallarm Console. If this is a case, [explore](../admin-en/configure-wallarm-mode.md#configuration-methods) and use other ways to change the filtration mode.-->
+Consider that you node configuration via the [`wallarm_mode_allow_override` directive](../admin-en/configure-wallarm-mode.md#prioritization-of-methods) may be set to ignore rules created in Wallarm Console. If this is a case, [explore](../admin-en/configure-wallarm-mode.md#configuration-methods) and use other ways to change the filtration mode.
 
 ## Exploring GraphQL attacks
 
 You can explore GraphQL policy violations (GraphQL attacks) in Wallarm Console → **Attacks** section. Use the GraphQL specific [search keys](../user-guides/search-and-filters/use-search.md#graphql-tags) or corresponding filters:
 
 ![GraphQL attacks](../images/user-guides/rules/graphql-attacks.png)
-
-<!--## Rule examples
 
 ### Setting policy for your GraphQL endpoints to block attacks
 
@@ -91,4 +92,3 @@ To do so:
 1. As filtration mode for `example.com/graphql` is `block` and you want `monitoring` for `example.com/graphql/v2`, configure the **Set filtration mode** rule as displayed on the screenshot:
 
     ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-2-action.png)
--->
