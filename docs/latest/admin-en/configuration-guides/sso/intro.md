@@ -2,7 +2,7 @@
 
 You can use single sign‑on (SSO) technology to authenticate your company's users to the Wallarm Console. Wallarm seamlessly integrates with any identity provider (IdP) that supports the SAML standard, such as Google or Okta, while acting as the service provider (SP).
 
-![Integrations - SSO](../../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
+![Integrations - SSO](../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
 
 ## Available options
 

@@ -330,7 +330,6 @@ nav:
     - 概要: user-guides/settings/users.md
     - ユーザープロフィール: user-guides/settings/account.md
     - APIトークン: user-guides/settings/api-tokens.md
-    - シングルサインオン(SSO)使用:
     - Using SSO:
       - Overview: admin-en/configuration-guides/sso/intro.md
       - Setup: admin-en/configuration-guides/sso/setup.md

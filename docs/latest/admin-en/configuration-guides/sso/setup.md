@@ -22,7 +22,7 @@ You need Wallarm metadata to enter on the SAML SSO solution side:
 
     You can integrate Google, Okta or any other (**Custom**) SAML SSO solution. Note that only one SSO integration can be active at the moment.
 
-    ![Integrations - SSO](../../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
+    ![Integrations - SSO](../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
 
 1. In the SSO configuration wizard, at the **Send details** step, overview the metadata to be sent to your SAML SSO solution.
 1. Copy metadata or save them as XML.
@@ -98,7 +98,7 @@ This step only should be fulfilled if your SAML SSO solution does not support ma
 
         See all role descriptions [here](../../../user-guides/settings/users.md#user-roles).
 
-    ![SSO groups to Wallarm roles - mapping in Wallarm](../../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
+    ![SSO groups to Wallarm roles - mapping in Wallarm](../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
 
 1. Complete SSO configuration wizard. Wallarm will test if data to/from your SAML SSO Solution can now be transferred.
 

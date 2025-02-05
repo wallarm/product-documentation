@@ -217,7 +217,6 @@ nav:
       - Applications: user-guides/settings/applications.md
       - Users: user-guides/settings/users.md
       - Activity Log: user-guides/settings/audit-log.md
-    - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
   - Upgrading and Migrating:
     - What is new in Wallarm node 2.18: updating-migrating/what-is-new.md
     - Filtering node versioning policy: updating-migrating/versioning-policy.md

@@ -102,7 +102,7 @@ Para criar um token de API com as permissões baseadas nos [papéis](../../user-
 Anteriormente, o UUID e a chave secreta eram usados para autenticação de solicitações, que agora é substituída por tokens. O UUID e a chave secreta que você estava usando são automaticamente transformados no token **compatível com versões anteriores**. Com este token, as solicitações autenticadas com UUID e chave secreta continuarão funcionando.
 
 !!! warning "Renove o token ou ative SSO"
-    Se você renovar o valor do token compatível com versões anteriores ou habilitar o [SSO/strict SSO](../../admin-en/configuration-guides/sso/employ-user-auth.md) para o proprietário deste token, a compatibilidade com versões anteriores termina - todas as solicitações autenticadas com o antigo UUID e chave secreta pararão de funcionar.
+    Se você renovar o valor do token compatível com versões anteriores ou habilitar o [SSO/strict SSO](../../admin-en/configuration-guides/sso/setup.md) para o proprietário deste token, a compatibilidade com versões anteriores termina - todas as solicitações autenticadas com o antigo UUID e chave secreta pararão de funcionar.
 
 Você também pode usar o valor gerado do token compatível com versões anteriores, passando-o no parâmetro de cabeçalho `X-WallarmApi-Token` de suas solicitações.
 
