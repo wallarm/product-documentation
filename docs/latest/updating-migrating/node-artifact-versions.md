@@ -12,7 +12,15 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
-### 5.3.0 (2024-01-29)
+### 5.3.7 (2025-02-04)
+
+* Added support for the [`WALLARM_APID_ONLY` environment variable](../installation/nginx/all-in-one.md#api-discovery-only-mode) which enables API Discovery-only mode
+
+    In this mode, attacks are blocked locally (if enabled) but not exported to Wallarm Cloud, while [API Discovery](../api-discovery/overview.md), [API session tracking](../api-sessions/overview.md), and [security vulnerability detection](../about-wallarm/detecting-vulnerabilities.md) remain fully functional. This mode is rarely needed, in most environments, using this mode is unnecessary.
+* Fix for the `invalid_xml` attack detection in responses
+* Minor GraphQL parser fixes
+
+### 5.3.0 (2025-01-29)
 
 * Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
 * Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
@@ -68,7 +76,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
-### 5.3.0 (2024-01-29)
+### 5.3.0 (2025-01-29)
 
 * Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
 * Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
@@ -152,7 +160,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
-### 5.3.0 (2024-01-29)
+### 5.3.0 (2025-01-29)
 
 * Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
 * Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
@@ -218,7 +226,15 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](docker-container.md)
 
-### 5.3.0 (2024-01-29)
+### 5.3.7 (2025-02-04)
+
+* Added support for the `WALLARM_APID_ONLY` environment variable which enables API Discovery-only mode while [running the Docker image](../admin-en/installation-docker-en.md)
+
+    In this mode, attacks are blocked locally (if enabled) but not exported to Wallarm Cloud, while [API Discovery](../../api-discovery/overview.md), [API session tracking](../../api-sessions/overview.md), and [security vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) remain fully functional. This mode is rarely needed, in most environments, using this mode is unnecessary.
+* Fix for the `invalid_xml` attack detection in responses
+* Minor GraphQL parser fixes
+
+### 5.3.0 (2025-01-29)
 
 * Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
 * Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
@@ -279,7 +295,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
-### 5.3.0 (2024-01-30)
+### 5.3.0 (2025-01-30)
 
 * Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
 * Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
