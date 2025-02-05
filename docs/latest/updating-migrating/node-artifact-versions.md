@@ -230,7 +230,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Added support for the `WALLARM_APID_ONLY` environment variable which enables API Discovery-only mode while [running the Docker image](../admin-en/installation-docker-en.md)
 
-    In this mode, attacks are blocked locally (if enabled) but not exported to Wallarm Cloud, while [API Discovery](../../api-discovery/overview.md), [API session tracking](../../api-sessions/overview.md), and [security vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) remain fully functional. This mode is rarely needed, in most environments, using this mode is unnecessary.
+    In this mode, attacks are blocked locally (if enabled) but not exported to Wallarm Cloud, while [API Discovery](../api-discovery/overview.md), [API session tracking](../api-sessions/overview.md), and [security vulnerability detection](../about-wallarm/detecting-vulnerabilities.md) remain fully functional. This mode is rarely needed, in most environments, using this mode is unnecessary.
 * Fix for the `invalid_xml` attack detection in responses
 * Minor GraphQL parser fixes
 
