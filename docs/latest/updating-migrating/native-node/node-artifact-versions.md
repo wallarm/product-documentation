@@ -12,14 +12,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.12.0 (2025-02-05)
 
-* Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
-* Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
+* Added support for response parameters in [API Sessions](../../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../../api-sessions/setup.md#session-grouping) (see detailed [change description](../../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
+* Added a full-fledged [GraphQL parser](../../user-guides/rules/request-processing.md#gql) (see detailed [change description](../../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
 
     * Improved detection of the input validation attacks in GraphQL-specific request points
     * Fine-tuning attack detection for specific GraphQL points (e.g. disable detection of specific attack types in specific points)
     * Analyzing specific parts of GraphQL requests in API sessions
 
-* Fixed invalid time value in serialized requests to properly display the [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) attacks
+* Fixed invalid time value in serialized requests to properly display the [resource overlimit](../../user-guides/rules/configure-overlimit-res-detection.md) attacks
 * Fixed problem for the `invalid_xml` attack detection in responses
 
 ### 0.11.0 (2025-01-31)
@@ -148,14 +148,14 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.12.0 (2025-02-05)
 
-* Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
-* Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
+* Added support for response parameters in [API Sessions](../../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../../api-sessions/setup.md#session-grouping) (see detailed [change description](../../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
+* Added a full-fledged [GraphQL parser](../../user-guides/rules/request-processing.md#gql) (see detailed [change description](../../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
 
     * Improved detection of the input validation attacks in GraphQL-specific request points
     * Fine-tuning attack detection for specific GraphQL points (e.g. disable detection of specific attack types in specific points)
     * Analyzing specific parts of GraphQL requests in API sessions
 
-* Fixed invalid time value in serialized requests to properly display the [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) attacks
+* Fixed invalid time value in serialized requests to properly display the [resource overlimit](../../user-guides/rules/configure-overlimit-res-detection.md) attacks
 * Fixed problem for the `invalid_xml` attack detection in responses
 
 ### 0.11.0 (2025-01-31)
@@ -227,14 +227,14 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.12.0 (2025-02-05)
 
-* Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
-* Added a full-fledged [GraphQL parser](../user-guides/rules/request-processing.md#gql) (see detailed [change description](../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
+* Added support for response parameters in [API Sessions](../../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../../api-sessions/setup.md#session-grouping) (see detailed [change description](../../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
+* Added a full-fledged [GraphQL parser](../../user-guides/rules/request-processing.md#gql) (see detailed [change description](../../updating-migrating/what-is-new.md#full-fledged-graphql-parser)) that allows:
 
     * Improved detection of the input validation attacks in GraphQL-specific request points
     * Fine-tuning attack detection for specific GraphQL points (e.g. disable detection of specific attack types in specific points)
     * Analyzing specific parts of GraphQL requests in API sessions
 
-* Fixed invalid time value in serialized requests to properly display the [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) attacks
+* Fixed invalid time value in serialized requests to properly display the [resource overlimit](../../user-guides/rules/configure-overlimit-res-detection.md) attacks
 * Fixed problem for the `invalid_xml` attack detection in responses
 
 ### 0.11.0 (2025-01-31)
