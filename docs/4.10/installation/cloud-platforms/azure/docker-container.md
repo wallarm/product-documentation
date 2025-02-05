@@ -98,7 +98,7 @@ In these instructions, the container is deployed using the Azure CLI.
     * `--image`: name of the Wallarm node Docker image.
     * `--environment-variables`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `WALLARM_API_TOKEN` explicitly.
 
-        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-4.10.md"
 1. Open the [Azure portal](https://portal.azure.com/) and ensure the created resource is displayed in the list of resources.
 1. [Test the filtering node operation](#testing-the-filtering-node-operation).
 

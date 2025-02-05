@@ -18,5 +18,9 @@ search:
 [ptrav-attack-docs]:                ../../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../../../images/admin-guides/test-attacks-quickstart.png
 [api-policy-enf-docs]:              ../../../../api-specification-enforcement/overview.md
+[filtration-modes]:                 ../../../../admin-en/configure-wallarm-mode.md#available-filtration-modes
+[api-discovery-docs]:               ../../../../api-discovery/overview.md
+[sensitive-data-rule]:              ../../../../user-guides/rules/sensitive-data-rule.md
+[apid-only-mode-details]:           ../../../../installation/nginx/all-in-one.md#api-discovery-only-mode
 
 --8<-- "latest/installation/cloud-platforms/gcp/docker-container.md"
