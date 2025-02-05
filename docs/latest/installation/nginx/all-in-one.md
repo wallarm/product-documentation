@@ -35,6 +35,11 @@
 [restart-nginx-step]:               #step-6-restart-nginx
 [separate-postanalytics-installation-aio]:  ../../admin-en/installation-postanalytics-en.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[threat-replay-testing-docs]:       ../../vulnerability-detection/threat-replay-testing/overview.md
+[api-discovery-docs]:               ../../api-discovery/overview.md
+[api-sessions-docs]:                ../../api-sessions/overview.md
+[vuln-detection-docs]:              ../../about-wallarm/detecting-vulnerabilities.md
+[masking-sensitive-data-rule]:      ../../user-guides/rules/sensitive-data-rule.md
 
 # Deploying with All-in-One Installer
 

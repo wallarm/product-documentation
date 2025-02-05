@@ -1,7 +1,7 @@
 As soon as you have the all-in one script downloaded, you can get help on it with:
 
 ```
-sudo sh ./wallarm-5.3.0.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-5.3.7.x86_64-glibc.sh -- -h
 ```
 
 Which returns:
@@ -35,18 +35,18 @@ Below are examples of commands to run the script in batch mode for node installa
 === "US Cloud"
     ```bash
     # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.7.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
 
     # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.7.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```bash
     # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.x86_64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.7.x86_64-glibc.sh -- --batch -t <TOKEN>
 
     # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.aarch64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.7.aarch64-glibc.sh -- --batch -t <TOKEN>
     ```
 
 ### Separate execution of node installation stages
@@ -61,25 +61,25 @@ This functionality is supported starting from version 4.10.0 of the all-in-one i
 === "US Cloud"
     ```bash
     # If using the x86_64 version:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.x86_64-glibc.sh
-    sudo sh wallarm-5.3.0.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.7.x86_64-glibc.sh
+    sudo sh wallarm-5.3.7.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
 
     # If using the ARM64 version:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.aarch64-glibc.sh
-    sudo sh wallarm-5.3.0.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.7.aarch64-glibc.sh
+    sudo sh wallarm-5.3.7.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```
     # If using the x86_64 version:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.x86_64-glibc.sh
-    sudo sh wallarm-5.3.0.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.7.x86_64-glibc.sh
+    sudo sh wallarm-5.3.7.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
 
     # If using the ARM64 version:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.0.aarch64-glibc.sh
-    sudo sh wallarm-5.3.0.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.7.aarch64-glibc.sh
+    sudo sh wallarm-5.3.7.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
     ```
 
@@ -88,3 +88,34 @@ Finally, to complete the installation, you need to [enable Wallarm to analyze tr
 ### Separate installation of filtering and postanalytics nodes
 
 The filtering/postanalytics switch provides the option to install the postanalytics module [separately][separate-postanalytics-installation-aio]. Without this switch, both filtering and postanalytics components are installed together by default.
+
+### API Discovery-only mode
+
+You can use the node in API Discovery-only mode (available since version 5.3.7). In this mode, attacks - including those detected by the Node's built-in mechanisms and those requiring additional configuration (e.g., credential stuffing, API specification violation attempts, and malicious activity from denylisted and graylisted IPs) - are detected and blocked locally (if enabled) but not exported to Wallarm Cloud. Since there is no attack data in the Cloud, [Threat Replay Testing][threat-replay-testing-docs] does not work. Traffic from whitelisted IPs is allowed.
+
+Meanwhile, [API Discovery][api-discovery-docs], [API session tracking][api-sessions-docs], and [security vulnerability detection][vuln-detection-docs] remain fully functional, detecting relevant security entities and uploading them to the Cloud for visualization.
+
+This mode is for those who want to review their API inventory and identify sensitive data first, and plan controlled attack data export accordingly. However, disabling attack export is rare, as Wallarm securely processes attack data and provides [sensitive attack data masking][masking-sensitive-data-rule] if needed.
+
+To enable API Discovery-only mode:
+
+1. Create or modify the `/etc/wallarm-override/env.list` file:
+
+    ```
+    sudo mkdir /etc/wallarm-override
+    sudo vim /etc/wallarm-override/env.list
+    ```
+
+    Add the following variable:
+
+    ```
+    WALLARM_APID_ONLY=true
+    ```
+
+1. Follow the [node installation procedure](#requirements).
+
+With the API Discovery-only mode enabled, the `/opt/wallarm/var/log/wallarm/wcli-out.log` log returns the following message:
+
+```json
+{"level":"info","component":"reqexp","time":"2025-01-31T11:59:38Z","message":"requests export skipped (disabled)"}
+```

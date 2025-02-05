@@ -255,7 +255,7 @@ For additional debugging, set the [`log.level`](../../native-node/all-in-one-con
 
         ```
         sudo mkdir /etc/wallarm-override
-        sudo vim env.list
+        sudo vim /etc/wallarm-override/env.list
         ```
 
         Add the following variable:

@@ -137,7 +137,7 @@ Run the Docker container with the node [mounting](https://docs.docker.com/storag
 
 The following environment variables should be passed to the container:
 
---8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+--8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-4.10.md"
 
 ## 5. Testing Wallarm node operation
 

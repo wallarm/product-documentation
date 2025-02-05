@@ -14,7 +14,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Added support for the [`WALLARM_APID_ONLY` environment variable](../../installation/native-node/all-in-one.md#installer-launch-options) which enables API Discovery-only mode
 
-    In this mode, attacks are blocked locally (if [enabled](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)) but not exported to Wallarm Cloud, while [API Discovery](../../api-discovery/overview.md) remains fully functional. This mode is rarely needed, in most environments, using this mode is unnecessary.
+    In this mode, attacks are blocked locally (if enabled) but not exported to Wallarm Cloud, while [API Discovery](../../api-discovery/overview.md), [API session tracking](../../api-sessions/overview.md), and [security vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) remain fully functional. This mode is rarely needed, in most environments, using this mode is unnecessary.
 * Improved the Native Node's interaction with GoReplay, resulting in the following configuration changes:
 
     ``` diff
@@ -205,7 +205,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 * Added support for the [`WALLARM_APID_ONLY` environment variable](../../installation/native-node/docker-image.md#4-run-the-docker-container) which enables API Discovery-only mode
 
-    In this mode, attacks are blocked locally (if [enabled](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)) but not exported to Wallarm Cloud, while [API Discovery](../../api-discovery/overview.md) remains fully functional. This mode is rarely needed, in most environments, using this mode is unnecessary.
+    In this mode, attacks are blocked locally (if enabled) but not exported to Wallarm Cloud, while [API Discovery](../../api-discovery/overview.md), [API session tracking](../../api-sessions/overview.md), and [security vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) remain fully functional. This mode is rarely needed, in most environments, using this mode is unnecessary.
 
 ### 0.10.1 (2025-01-02)
 
