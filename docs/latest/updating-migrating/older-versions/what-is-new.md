@@ -70,7 +70,7 @@ With API Sessions, security teams can now easily:
 ## Response parameters in API Sessions
 
 !!! tip ""
-    [NGINX Node 5.3.0 and higher](../node-artifact-versions.md), [Native Node 0.12.0](../native-node/node-artifact-versions.md)
+    [NGINX Node 5.3.0 and higher](../node-artifact-versions.md) and [Native Node 0.12.0 and higher](../native-node/node-artifact-versions.md)
 
 Wallarm's [API Sessions](../../api-sessions/overview.md) provide visibility into sequences of user activities. With this addition not only request but also response information is available within each session:
 
@@ -172,7 +172,7 @@ Once sessions are assigned with the sensitive business flow tags, it becomes pos
 ## Full-fledged GraphQL parser
 
 !!! tip ""
-    [NGINX Node 5.3.0 and higher](../node-artifact-versions.md), [Native Node 0.12.0](../native-node/node-artifact-versions.md)
+    [NGINX Node 5.3.0 and higher](../node-artifact-versions.md) and [Native Node 0.12.0 and higher](../native-node/node-artifact-versions.md)
 
 The full-fledged [GraphQL parser](../../user-guides/rules/request-processing.md#gql) is an enhancement significantly improving the detection of input validation attacks (e.g., SQL injections) within GraphQL requests, offering **greater accuracy and minimal false positives**.
 

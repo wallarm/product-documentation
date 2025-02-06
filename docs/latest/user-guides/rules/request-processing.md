@@ -343,7 +343,7 @@ When defining a request element the [rule](rules.md) is applied to:
 
 #### gql
 
-Parses GraphQL executable definitions (queries, mutations, subscriptions and fragments) that enables an improved detection of the [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks) in GraphQL specific request points. Requires NGINX Node 5.3.0 or higher, not supported by Native Node so far.
+Parses GraphQL executable definitions (queries, mutations, subscriptions and fragments) that enables an improved detection of the [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks) in GraphQL specific request points. Requires NGINX Node 5.3.0 or higher or native node 0.12.0.
 
 Filters:
 
