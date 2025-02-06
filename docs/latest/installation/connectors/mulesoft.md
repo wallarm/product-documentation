@@ -18,7 +18,7 @@ The Wallarm connector for MuleSoft supports only [in-line](../inline/overview.md
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for securing APIs deployed on the MuleSoft Anypoint platform with only one policy.
+Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for securing APIs deployed on the MuleSoft Anypoint platform (including Enterprise Edition) with only one policy.
 
 ## Limitations
 
@@ -123,6 +123,11 @@ To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these step
                 <username>myusername</username>
                 <password>mypassword</password>
             </server>
+            <server>
+                <id>mulesoft-releases-ee</id>
+                <username>myusername</username>
+                <password>mypassword</password>
+            </server>
         </servers>
         </settings>
         ```
@@ -137,6 +142,11 @@ To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these step
         <servers>
             <server>
                 <id>anypoint-exchange-v3</id>
+                <username>~~~Token~~~</username>
+                <password>01234567-89ab-cdef-0123-456789abcdef</password>
+            </server>
+            <server>
+                <id>mulesoft-releases-ee</id>
                 <username>~~~Token~~~</username>
                 <password>01234567-89ab-cdef-0123-456789abcdef</password>
             </server>

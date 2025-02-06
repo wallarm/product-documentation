@@ -25,7 +25,18 @@ The current version can be found in the `pom.xml` file of the downloaded Wallarm
 | Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
 | ------------------- | ------------------- |
 | 2.x                 | 0.8.2 and lower     |
-| 3.x                 | 0.8.3 and higher    |
+| 3.0.x               | 0.8.3 and higher    |
+| 3.2.x               | 0.10.1 and higher   |
+
+### 3.2.0 (2025-01-31)
+
+Requires Native Node version 0.10.1 or higher.
+
+* Added support for Mulesoft Enterprise Edition
+
+    The new version now requires authentication for two repositories. In addition to the standard `anypoint-exchange-v3` repository, you must also [configure the `mulesoft-releases-ee` repository](../../installation/connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange) in your Maven `settings.xml`. This change ensures proper access to artifacts available exclusively for Mulesoft Enterprise Edition users.
+* Bugfix: ensure the uniqueness of the request identifiers
+* Optimized memory consumption
 
 ### 3.0.1 (2024-11-20)
 
