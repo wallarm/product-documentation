@@ -1,29 +1,20 @@
-[link-points]:          points/intro.md
-[link-ruby-regexp]:     http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
-[link-logic]:           logic.md
-[link-markers]:         detect/markers.md
-[link-ext-logic]:       logic.md
+# Oluşturma Aşaması
 
-[img-generate-methods]:     ../../images/fast/dsl/en/phases/generate-methods.png
-[img-generate-payload]:     ../../images/fast/dsl/en/phases/generate-payload.png
+!!! info "Aşamanın Kapsamı"  
+    Bu aşama, modifiye edici bir eklenti içerisinde kullanılır ve çalışması için opsiyoneldir (YAML dosyasında `generate` bölümü ya mevcut ya da mevcut olmayabilir).
 
-# Üretme Aşaması
-
-!!! info "Aşamanın kapsamı"
-    Bu aşama, bir değişiklik uzantısında kullanılır ve işleyişi için isteğe bağlıdır (`generate` bölümü YAML dosyasında ya yoktur ya da vardır).
-
-    Bu aşamanın, değiştirilmeyen uzantının YAML dosyasından eksik olması gerekmektedir.
+    Bu aşama, değiştirmeyen eklentinin YAML dosyasında bulunmamalıdır.
     
-    Uzantı türleri hakkında detaylı bilgiye [buradan][link-ext-logic] ulaşabilirsiniz.
+    Eklenti türleri hakkında ayrıntılı bilgiyi [buradan][link-ext-logic] okuyabilirsiniz.
 
-!!! info "İstek öğesi açıklama sözdizimi"
-     Bir FAST uzantısı oluştururken, uygulamaya gönderilen HTTP isteğinin ve uygulamadan alınan HTTP yanıtının yapısını anlamalı ve çalışmanız gereken istek öğelerini doğru bir şekilde açıklamalısınız. 
+!!! info "İstek öğesi açıklama söz dizimi"  
+     Bir FAST eklentisi oluştururken, uygulamaya gönderilen HTTP isteğinin yapısını ve uygulamadan alınan HTTP yanıtının yapısını anlamanız gerekmektedir. Bu sayede, noktalardan yararlanarak çalışmanız gereken istek öğelerini doğru biçimde tanımlayabilirsiniz.
+     
+     Detaylı bilgiyi görmek için bu [linke][link-points] gidin.
+ 
+Bu aşama, temel isteğe eklenmek üzere belirli parametrelere payload yerleştirilerek oluşturulan test istekleri için kullanılacak yükü (payload) belirtir.
 
-     Detaylı bilgiye ulaşmak için bu [bağlantıya][link-points] tıklayın.
-  
- Bu aşama, bir test isteği oluşturmak için bir taban isteğinin belirli parametrelerine eklenmesi gereken bir yük belirtir.
-
-`generate` bölümünün yapısı şöyledir:
+`generate` bölümü aşağıdaki yapıya sahiptir:
 
 ```
 generate:
@@ -44,40 +35,41 @@ generate:
     - payload N
 ```
 
-* `into` parametresi, yükün eklenmesi gereken tek veya çoklu istek öğelerinin belirtilmesine izin verir. Bu parametrenin değeri bir dize veya dize dizisi olabilir. `into` parametresinin değeri olarak [Ruby formatında düzenli bir ifade][link-ruby-regexp] kullanabilirsiniz.
+* `into` parametresi, payload'un yerleştirileceği tek veya birden fazla istek öğesinin belirtilmesine olanak tanır. Bu parametrenin değeri bir dize veya dizeler dizisi olabilir. `into` parametresinin değeri olarak [Ruby formatlı düzenli ifade][link-ruby-regexp] kullanılabilir.
     
-    Bu parametre isteğe bağlıdır ve bölümde bulunmayabilir. Eğer `into` parametresi yoksa, yük, verilen test politikasına göre değiştirilebilir izin verilen istek öğesine eklenir.
+    Bu parametre opsiyoneldir ve bölümde bulunmayabilir. Eğer `into` parametresi belirtilmezse, payload, verilen test politikasına göre değiştirilebilen istek öğesine yerleştirilir.
     
-    Diyelim ki aşağıdaki değiştirilebilir istek öğeleri, test politikasına göre temel istekten çıkarılmıştır:
+    Test politikasına göre temel istekten aşağıdaki değiştirilebilir istek öğelerinin çıkarıldığını varsayalım:
     
     * `GET_uid_value`
     * `HEADER_COOKIE_value`
     
-    Uzantı, tüm değiştirilebilir öğeleri (a.k.a. eklem noktaları) sırayla işler. 
+    Eklenti, değiştirilebilir olan tüm öğeleri (aynı zamanda ekleme noktaları olarak da bilinir) sırasıyla işler.
     
-    Eğer `into` parametresi yoksa, yükler sırasıyla `GET_uid_value` parametresine yapıştırılır ve oluşturulan test istekleri hedef uygulamanın zafiyetleri için kontrol edilir. Ardından, test isteği sonuçları işlendikten sonra, uzantı `HEADER_COOKIE_value` parametresini işler ve yükleri bu parametreye benzer şekilde ekler.
+    Eğer `into` parametresi belirtilmezse, payload'lar sırasıyla `GET_uid_value` parametresine yapıştırılır ve oluşturulan test istekleri, hedef uygulamanın güvenlik açıklarını test etmek için kullanılır. Test isteklerinin sonuçları işlendiğinde, eklenti `HEADER_COOKIE_value` parametresini işler ve payload'ları aynı şekilde bu parametreye ekler.
     
-    Eğer `into` parametresi aşağıdaki örnekte olduğu gibi `GET_uid_value` istek parametresini içeriyorsa, yük `GET_uid_value` parametresine, ancak `HEADER_COOKIE_value` parametresine değil eklenir.
+    Eğer `into` parametresi, aşağıdaki örnekte gösterildiği gibi `GET_uid_value` istek parametresini içeriyorsa, payload yalnızca `GET_uid_value` parametresine eklenir; `HEADER_COOKIE_value` parametresine eklenmez.
     
     ```
     into: 
       - 'GET_uid_value'
     ```
-    Aşağıdaki örnekte sadece bir parametre bulunduğu için, into parametresi tek satırda yazılabilir:
+    
+    Aşağıdaki örnekte yalnızca bir parametre bulunduğundan, into parametresi değeri tek satırda yazılabilir:
     
     `into: 'GET_uid_value'`
 
-* "method" — bu isteğe bağlı parametre, yükün temel istek öğesine eklenmesi için kullanılacak yöntemlerin listesini belirtir. 
-    * `prefix` — yükü, temel istek öğesinin değerinden önce ekler.
-    * `postfix` — yükü, temel istek öğesinin değerinden sonra ekler.
-    * `random` — yükü, temel istek öğesinin değerinde rastgele bir yere ekler.
-    * `replace` — temel istek öğesinin değerini yükle değiştirir.
+* `method` — Bu isteğe bağlı parametre, payload'un temel istek öğesine yerleştirilmesi için kullanılacak yöntemlerin listesini belirtir. 
+    * `prefix` — Payload'u temel istek öğesi değerinin başına ekler.
+    * `postfix` — Payload'u temel istek öğesi değerinin sonuna ekler.
+    * `random` — Payload'u temel istek öğesi değerinin rastgele bir yerine ekler.
+    * `replace` — Temel istek öğesi değerini payload ile değiştirir.
     
-    ![Yük eklemet yöntemleri][img-generate-methods]
+    ![Payload insertion methods][img-generate-methods]
     
-    Eğer `method` parametresi yoksa, `replace` yöntemi varsayılan olarak kullanılır.
+    Eğer `method` parametresi belirtilmezse, varsayılan olarak `replace` yöntemi kullanılır.
     
-    Oluşturulan test isteklerinin sayısı, belirtilen `methods` sayısına bağlıdır: her ekleme yöntemi için bir test isteği.
+    Oluşturulan test isteklerinin sayısı, belirtilen `method` sayısına bağlıdır: her ekleme yöntemi için bir test isteği oluşturulur.
     
     Örneğin, aşağıdaki ekleme yöntemleri belirtilmişse:
     
@@ -87,45 +79,45 @@ generate:
       - replace
     ```
     
-    tek bir yük için iki test isteği oluşturulur; iki yük için dört test isteği oluşturulur (her bir yük için iki test isteği) ve böyle devam eder.
+    O zaman tek bir payload için iki test isteği oluşturulur; iki payload için dört test isteği (her payload için iki test isteği) oluşturulur ve böyle devam eder.
 
-* `payload` parametresi, bir test isteği oluşturmak için istek parametresine eklenmesi gereken yük listesini belirtir.
+* `payload` parametresi, hedef uygulamanın güvenlik açıklarını test etmek üzere oluşturulan test isteğine eklenmek için istek parametresine yerleştirilecek payload'ların listesini belirtir.
     
-    Bu parametre zorunludur ve bölümde daima bulunmalıdır. Liste en az bir yük içermelidir. Eğer birden çok yük varsa, FAST düğümü sırasıyla yükleri istek parametresine ekler ve oluşturulan her bir test isteği ile hedef uygulamanın zafiyetleri kontrol edilir.
+    Bu parametre zorunludur ve bölümde her zaman bulunmalıdır. Liste en az bir payload içermelidir. Eğer birden fazla payload varsa, FAST düğümü payload'ları istek parametresine sırasıyla ekler ve her oluşturulan test isteğini kullanarak hedef uygulamayı test eder.
     
-    ![Yük oluşturma][img-generate-payload]
+    ![Payload generation][img-generate-payload]
     
-    Yük, istek işlemesi sırasında parametrelerden birine eklenen bir dizedir.
+    Payload, istek işleme sırasında bir parametreye eklenen dizedir.
     
-    ??? info "Birden çok yükün örneği"
+    ??? info "Birden Fazla Payload Örneği"
         ```
         payload:
           - "') or 1=('1"
           - "/%5c../%5c../%5c../%5c../%5c../%5c../%5c../etc/passwd/"
         ```
     
-    Zafiyet algılama olanaklarını genişletmek için yükün bir parçası olarak özel işaretçileri kullanabilirsiniz:
+    Güvenlik açığı tespit olanaklarını daha da genişletmek için payload'un bir parçası olarak özel işaretleyiciler kullanabilirsiniz:
 
-    * **`STR_MARKER`** —  yükte, `STR_MARKER` ın belirtildiği yerde tam olarak bir rastgele dize koyun. 
-       
-         Örneğin, `STR_MARKER`  uygulamanın XXS zafiyeti olup olmadığını kontrol etmek için kullanılabilir.
+    * **`STR_MARKER`** — Payload'a, tam olarak `STR_MARKER` ifadesinin belirtildiği konuma rastgele bir dize ekler. 
+        
+        Örneğin, `STR_MARKER`, uygulamanın XXS açığı için test edilmesinde kullanılabilir.
         
         ??? info "Örnek"
             `'userSTR_MARKER'`
     
-     * **`CALC_MARKER`** — yükte, `CALC_MARKER` ın belirtildiği yerde tam olarak bir rastgele aritmetik ifade içeren bir dize koyun (örneğin, `1234*100`).
+    * **`CALC_MARKER`** — Payload'a, tam olarak `CALC_MARKER` ifadesinin belirtildiği konuma rastgele bir aritmetik ifadeyi (örneğin, `1234*100`) içeren bir dize ekler.
         
-        Örneğin,  `CALC_MARKER`  uygulamanın RCE zafiyeti olup olmadığını kontrol etmek için kullanılabilir.
+        Örneğin, `CALC_MARKER`, uygulamanın RCE açığı için test edilmesinde kullanılabilir.
         
         ??? info "Örnek"
             `'; bc <<< CALC_MARKER'`
     
-    * **`DNS_MARKER`** —  yükte, `DNS_MARKER` ın belirtildiği yerde tam olarak bir rastgele etki alanı içeren bir dize koyun (örneğin, `r4nd0m.wlrm.tl`).
+    * **`DNS_MARKER`** — Payload'a, tam olarak `DNS_MARKER` ifadesinin belirtildiği konuma rastgele bir alan adı (örneğin, `r4nd0m.wlrm.tl`) içeren bir dize ekler.
         
-        Örneğin, `DNS_MARKER` uygulamanın DNS Out-of-Bound zafiyetleri olup olmadığını kontrol etmek için kullanılabilir.
+        Örneğin, `DNS_MARKER`, uygulamanın DNS Out-of-Bound güvenlik açıklarını test etmek için kullanılabilir.
 
         ??? info "Örnek"
             `'; ping DNS_MARKER'`
     
-    !!! info "Marker işlem mantığı"
-        Algılama aşaması, sunucunun yanıtında herhangi bir yükten bir işaretçiyi algılarsa, saldırı başarılıdır, yani zafiyet başarıyla sömürülmüştür. Algılama aşamasının işaretçilerle çalışma hakkında ayrıntılı bilgi için şu [bağlantıya][link-markers] tıklayın.
+    !!! info "İşaretleyicilerin Çalışma Mantığı"
+        Detect aşaması, sunucu yanıtında herhangi bir payload'dan bir işaretleyici tespit ederse, saldırı başarılı sayılır; bu durum, güvenlik açığının başarıyla istismar edildiği anlamına gelir. İşaretleyicilerle çalışan Detect aşamasının detaylı bilgilerini görmek için bu [linke][link-markers] gidin.

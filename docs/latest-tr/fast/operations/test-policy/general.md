@@ -2,18 +2,18 @@
 
 # Temel Politika Yapılandırması
 
-Politika oluştururken veya düzenlerken, Wallarm hesabınızdaki politika düzenleyicinin **Genel** bölümüne yönlendirilirsiniz. Bu bölüm genel politika ayarlarını içerir:
+Politika oluştururken veya düzenlerken, Wallarm hesabınızdaki politika düzenleyicisinin **Genel** bölümüne yönlendirileceksiniz. Bu bölüm, genel politika ayarlarını içerir:
 
-![Politika düzenleyicinin Genel bölümü][img-tab-general]
+![Genel bölüm - Politika düzenleyici][img-tab-general]
 
-Bu bölüm aşağıdaki alanların doldurulmasını gerektirir:
+Bölümde aşağıdaki alanların doldurulması gerekmektedir:
 
 * politika adı
 * politika açıklaması
 
-Politikaya bir veya daha fazla etiket ekleyebilirsiniz. Bu, bu etiketle bir politikada kullanılan testleri hızlıca bulmanızı sağlar.
+Ayrıca politikaya bir veya daha fazla etiket ekleyebilirsiniz. Bu, belirli bir politikada kullanılan testleri bu etiketle hızlıca bulmanızı sağlar.
 
-Politika düzenleyicinin ilk bölümü aşağıdaki seçenekleri içerir:
+Politika düzenleyicisinin ilk kısmı aşağıdaki seçenekleri içerir:
 
-* Politika kullanımı üzerine istatistikler (bu veriler yalnızca mevcut politikalar için mevcuttur)
-* Metin formatında anlatılan test politikası
+* Politika kullanım istatistikleri (bu veri yalnızca mevcut politikalar için mevcuttur)
+* Metin formatında açıklanan test politikası

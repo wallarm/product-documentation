@@ -1,8 +1,8 @@
-| API çağrısı: | `POST /v1/test_run/test_run_id/action/stop` |      |
+| API call: | `POST /v1/test_run/test_run_id/action/stop` |      |
 | ------------- | ------------------------------------------ | ---- |
-| Yetkilendirme: | Gerekli | Token ile |
-| Token ile HTTP başlığı: | `X-WallarmAPI-Token` | Token değerini API sunucusuna iletmek için kullanılır |
-| Parametreler: | `test_run_id` **(gerekli)** | Kayıt baseline taleplerini durdurmak için test çalışmasının tanımlayıcısı |
+| Authorization: | Gerekli | Token ile birlikte |
+| HTTP header with the token: | `X-WallarmAPI-Token` | Token değerini API sunucusuna iletmek için kullanılır |
+| Parameters: | `test_run_id` **(gerekli)** | Standart isteklerin kaydının durdurulacağı test çalıştırmasının tanımlayıcısı |
 
 **Bir istek örneği:**
 ```

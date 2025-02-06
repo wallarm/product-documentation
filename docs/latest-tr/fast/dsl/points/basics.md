@@ -3,15 +3,15 @@
 
 # Temel Kavramlar
 
-[FAST genişletmeleri][link-fast], yeni test istekleri oluşturmak için kullanılan baseline istek öğesinin işlemlerini açıklar. *Noktaların* ana amacı, genişletme içinde açıklanan eylemlerin hangi veri parçasına uygulanması gerektiğini belirlemektir.
+[FAST extensions][link-fast], yeni test istekleri oluşturmak için kullanılan temel istek öğesi işleme mantığını açıklar. *Points*'in temel amacı, temel istekten hangi veri parçasının eklentide tanımlanan işlemlere tabi tutulacağını belirtmektir.
 
-Bir nokta, genişletmedeki belirtilen eylemin uygulanması gereken baseline isteğinin kısmını gösteren bir dizedir. Bu dize, gerekli verileri elde etmek için baseline isteğine uygulanması gereken parserların ve filtrelerin adlarını içerir.
+Bir point, eklentide belirtilen işlemin uygulanması gereken temel istek parçasını işaret eden bir dizedir. Bu dize, gerekli verilerin elde edilmesi için temel istek üzerinde uygulanması gereken parsers ve filtrelerin isimlerinin sırasını içerir.
 
-* *Parserlar* alınan dize girişine dayanarak veri yapıları oluşturur.
-* *Filtreler*, parserlar tarafından oluşturulan veri yapılarından belirli değerleri elde etmek için kullanılır.
+* *Parsers*, alınan dize girdisine dayalı veri yapıları oluşturur. 
+* *Filters*, parsers tarafından oluşturulan veri yapılarından belirli değerlerin elde edilmesi için kullanılır. 
 
-Diğer filtreler ve parserlar, filtrelerin işaret ettiği değerlere uygulanabilir. Sırayla parserları ve filtreleri isteğe uygulayarak, daha fazla işlem için gerekli olan istek öğesi değerlerini çıkarabilirsiniz.
+Filtrelerin işaret ettiği değerlere başka filtreler ve parsers da uygulanabilir. İstek üzerinde sırasıyla parsers ve filtreler uygulayarak, daha ileri işlemler için gerekli istek öğesi değerlerini çıkarabilirsiniz.  
 
-Bir noktada kullanılabilecek parser ve filtre çeşitliliği, hedef web uygulaması isteklerinin formatını kullanan genişletmelerin oluşturulmasına olanak sağlar.
+Bir point içerisinde kullanılabilecek parsers ve filtre çeşitliliği, hedef web uygulamasının istek formatını kullanan eklentilerin oluşturulmasına olanak tanır.
 
-[İzleyen alt bölümler][link-parsers] FAST DSL genişleme noktalarında kullanılabilecek parserları ve filtreleri tanımlar.
+[Aşağıdaki alt bölümler][link-parsers] FAST DSL eklenti noktalarında kullanılabilecek parsers ve filtreleri tanımlar.

@@ -1,110 +1,110 @@
 [splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
-# Logstash üzerinden Splunk Enterprise
+# Logstash ile Splunk Enterprise
 
-Bu talimatlar, Wallarm'ın Logstash veri koleksiyoncusu ile entegrasyonuna Splunk SIEM sistemine daha fazla olay yönlendirmesi için örnek sağlar.
+Bu talimatlar, Wallarm'ın Logstash veri toplayıcısı ile entegrasyon örneğini sunarak olayların Splunk SIEM sistemine iletilmesini sağlamaktadır.
 
---8<-- "../include-tr/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-scheme.png)
+![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-scheme.png)
 
 ## Kullanılan kaynaklar
 
-* WEB URL'ye sahip [Splunk Enterprise](#splunk-enterprise-configuration) `https://109.111.35.11:8000` ve API URL'si `https://109.111.35.11:8088`
-* Debian 11.x (bullseye) üzerinde kurulu [Logstash 7.7.0](#logstash-configuration) ve `https://logstash.example.domain.com` adresinde mevcut
-* Wallarm Console'a yönetici erişimi [EU cloud](https://my.wallarm.com) içinde [Logstash entegrasyonunu yapılandırmak için](#configuration-of-logstash-integration)
+* [Splunk Enterprise](#splunk-enterprise-configuration) ile WEB URL `https://109.111.35.11:8000` ve API URL `https://109.111.35.11:8088`
+* [Logstash 7.7.0](#logstash-configuration) Debian 11.x (bullseye) üzerinde kurulmuş ve `https://logstash.example.domain.com` adresinden erişilebilir
+* Wallarm Console'da [EU cloud](https://my.wallarm.com) üzerinde [Logstash entegrasyonunun yapılandırılması](#configuration-of-logstash-integration) için yönetici erişimi
 
---8<-- "../include-tr/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.md"
 
-Splunk Enterprise ve Logstash hizmetlerine verilen bağlantılar örnek olarak belirtildiği için yanıt vermiyorlar.
+Splunk Enterprise ve Logstash servislerine ait bağlantılar örnek olarak verildiğinden, yanıt vermemektedir.
 
 ### Splunk Enterprise yapılandırması
 
-Logstash kayıtları `Wallarm Logstash kayıtları` adıyla ve diğer varsayılan ayarlarla Splunk HTTP Event Controller'a gönderilir:
+Logstash günlükleri, `Wallarm Logstash logs` adı ve diğer varsayılan ayarlarla Splunk HTTP Event Controller'a gönderilmektedir:
 
-![HTTP Olayı Toplayıcısı Yapılandırması](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-setup.png)
+![HTTP Event Collector Configuration](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-setup.png)
 
-HTTP Event Controller'a erişmek için oluşturulan `93eaeba4-97a9-46c7-abf3-4e0c545fa5cb` jetonu kullanılacaktır.
+HTTP Event Controller'a erişmek için oluşturulan `93eaeba4-97a9-46c7-abf3-4e0c545fa5cb` token'ı kullanılacaktır.
 
-Splunk HTTP Olayı Toplayıcısının kurulumuna dair daha ayrıntılı bir açıklama [resmi Splunk belgelerinde](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector) mevcuttur.
+Splunk HTTP Event Controller kurulumu hakkında daha ayrıntılı açıklama [resmi Splunk dokümantasyonunda](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector) mevcuttur.
 
 ### Logstash yapılandırması
 
-Wallarm, kayıtları web aracılığıyla Logstash ara veri toplayıcısına gönderdiği için, Logstash yapılandırması aşağıdaki gereksinimleri karşılamalıdır:
+Wallarm, günlükleri webhooks aracılığıyla Logstash ara veri toplayıcısına gönderdiğinden, Logstash yapılandırması aşağıdaki gereksinimleri karşılamalıdır:
 
-* POST veya PUT isteklerini kabul et
-* HTTPS isteklerini kabul et
-* Halka açık URL'ye sahip ol
-* Kayıtları Splunk Enterprise'a ilet, bu örnekte kayıtları iletmek için `http` eklentisi kullanılıyor
+* POST veya PUT isteklerini kabul etmek
+* HTTPS isteklerini kabul etmek
+* Genel URL'ye sahip olmak
+* Günlükleri Splunk Enterprise'a iletmek; bu örnekte günlükleri iletmek için `http` eklentisi kullanılmaktadır
 
-Logstash `logstash-sample.conf` dosyasında yapılandırılmıştır:
+Logstash, `logstash-sample.conf` dosyasında yapılandırılmıştır:
 
-* Gelen webhook işleme, `input` bölümünde yapılandırılmıştır:
-    * Trafik, 5044 portuna gönderilir
-    * Logstash yalnızca HTTPS bağlantılarını kabul etmek üzere yapılandırılmıştır
-    * Logstash TLS sertifikası, bir genel olarak güvenilen CA tarafından imzalanmış olup `/etc/server.crt` dosyası içinde bulunmaktadır
-    * TLS sertifikası için özel anahtar `/etc/server.key` dosyası içinde bulunmaktadır
-* Splunk'a kayıtları iletmek ve log çıktısı, `output` bölümünde yapılandırılmıştır:
-    * Kayıtlar Logstash'dan Splunk'a JSON formatında iletilecektir
-    * Tüm olay kayıtları Logstash'dan Splunk API uç noktası olan `https://109.111.35.11:8088/services/collector/raw`'a POST istekleri aracılığıyla yönlendirilir. İstekleri yetkilendirmek için HTTPS Event Collector jetonu kullanılır
-    * Logstash kayıtları ek olarak komut satırına yazdırılır (15. kod satırı). Bu ayar, olayların Logstash aracılığıyla kaydedildiğini doğrulamak için kullanılır
+* Gelen webhook işlemesi `input` bölümünde yapılandırılır:
+    * Trafik port 5044'e gönderilir
+    * Logstash yalnızca HTTPS bağlantılarını kabul edecek şekilde yapılandırılmıştır
+    * Genel olarak güvenilir bir CA tarafından imzalanan Logstash TLS sertifikası `/etc/server.crt` dosyasında yer almaktadır
+    * TLS sertifikası için özel anahtar `/etc/server.key` dosyasında yer almaktadır
+* Günlüklerin Splunk'a iletilmesi ve log çıktısı `output` bölümünde yapılandırılır:
+    * Günlükler Logstash'dan Splunk'a JSON formatında iletilir
+    * Tüm olay günlükleri, POST istekleri aracılığıyla Logstash'dan Splunk API uç noktasına `https://109.111.35.11:8088/services/collector/raw` iletilir. İstekleri yetkilendirmek için HTTPS Event Collector token'ı kullanılır
+    * Logstash günlükleri ayrıca komut satırında (15. kod satırında) yazdırılır. Bu ayar, olayların Logstash üzerinden kaydedildiğini doğrulamak için kullanılır
 
 ```bash linenums="1"
 input {
-  http { # HTTP ve HTTPS trafik için giriş eklentisi
-    port => 5044 # gelen istekler için port
-    ssl => true # HTTPS trafik işleme
-    ssl_certificate => "/etc/server.crt" # Logstash TLS belgesi
-    ssl_key => "/etc/server.key" # TLS belgesi için özel anahtar
+  http { # input plugin for HTTP and HTTPS traffic
+    port => 5044 # port for incoming requests
+    ssl => true # HTTPS traffic processing
+    ssl_certificate => "/etc/server.crt" # Logstash TLS certificate
+    ssl_key => "/etc/server.key" # private key for TLS certificate
   }
 }
 output {
-  http { # Kayıtları Logstash'tan HTTP/HTTPS protokolü üzerinden iletme eklentisi
-    format => "json" # iletilebilecek kayıtların formatı
-    http_method => "post" # Kayıtları iletme işlemi için kullanılan HTTP metodu
-    url => "https://109.111.35.11:8088/services/collector/raw" # Iletilecek kayıtlar için hedef
-    headers => ["Authorization", "Splunk 93eaeba4-97a9-46c7-abf3-4e0c545fa5cb"] # İstekleri yetkilendiren HTTP başlıkları
+  http { # output plugin to forward logs from Logstash via HTTP/HTTPS protocol
+    format => "json" # format of forwarded logs
+    http_method => "post" # HTTP method used to forward logs
+    url => "https://109.111.35.11:8088/services/collector/raw" # ednpoint to forward logs to
+    headers => ["Authorization", "Splunk 93eaeba4-97a9-46c7-abf3-4e0c545fa5cb"] # HTTP headers to authorize requests
   }
-  stdout {} # Logstash kayıtlarını komut satırına yazdırmak için çıktı eklentisi
+  stdout {} # output plugin to print Logstash logs on the command line
 }
 ```
 
-Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Logstash belgelerinde](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html) mevcuttur.
+Yapılandırma dosyaları hakkında daha detaylı açıklama [resmi Logstash dokümantasyonunda](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html) mevcuttur.
 
-!!! bilgi "Logstash yapılandırmasını test etme"
-    Logstash loglarının oluşturulduğunu ve Splunk'a yönlendirildiğini kontrol etmek için, Logstash'a POST isteği gönderilebilir.
+!!! info "Logstash yapılandırmasının test edilmesi"
+    Logstash günlüklerinin oluşturulduğunu ve Splunk'a iletildiğini kontrol etmek için, POST isteği Logstash'e gönderilebilir.
 
-    **Örnek istek:**
+    **İstek örneği:**
     ```curl
     curl -X POST 'https://logstash.example.domain.com' -H "Content-Type: application/json" -H "Authorization: Splunk 93eaeba4-97a9-46c7-abf3-4e0c545fa5cb" -d '{"key1":"value1", "key2":"value2"}'
-  ```
+    ```
 
-    **Logstash logları:**
-    ![Logstash logları](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-curl-log.png)
+    **Logstash günlükleri:**
+    ![Logstash logs](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-curl-log.png)
 
     **Splunk olayı:**
-    ![Splunk olayları](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-curl-log.png)
+    ![Splunk events](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-curl-log.png)
 
 ### Logstash entegrasyonunun yapılandırılması
 
---8<-- "../include-tr/integrations/webhook-examples/create-logstash-webhook.md"
+--8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![Webhook entegrasyonu ile Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-[Logstash entegrasyonu yapılandırmasına dair daha fazla ayrıntı](../logstash.md)
+[Logstash entegrasyon yapılandırması hakkında daha fazla ayrıntı](../logstash.md)
 
-## Örnek testi
+## Örnek test
 
---8<-- "../include-tr/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
 
-Logstash olayı aşağıdaki gibi kaydedecek:
+Logstash, olayı aşağıdaki gibi kaydedecektir:
 
-![Logstash'tan Splunk'ta yeni kullanıcı hakkındaki log kayıdı](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-user-log.png)
+![Log about new user in Splunk from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-user-log.png)
 
-Aşağıdaki giriş Splunk olaylarında görüntülenecektir:
+Splunk olaylarında aşağıdaki kayıt görüntülenecektir:
 
-![Logstash'tan Splunk'ta yeni kullanıcı kartı](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
+![New user card in Splunk from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
 
-## Olayların bir pano içinde düzenlenmesi
+## Olayların bir gösterge panelinde düzenlenmesi
 
---8<-- "../include-tr/integrations/application-for-splunk.md"
+--8<-- "../include/integrations/application-for-splunk.md"

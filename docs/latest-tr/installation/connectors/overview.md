@@ -1,40 +1,39 @@
-# Wallarm'ı Konnektörler ile Dağıtmak
+# Wallarm'ı Bir Bağlayıcı Olarak Dağıtma
 
-API dağıtımı Azion Edge, Akamai Edge, Mulesoft, Apigee ve AWS Lambda gibi dış araçları kullanma dahil olmak üzere çeşitli yöntemlerle gerçekleştirilebilir. Bu API'ları Wallarm ile koruma yolunda arıyorsanız, bu durumlar için özel olarak tasarlanmış "konnektörler" şeklinde bir çözüm sunuyoruz.
+API dağıtımı, Azion Edge, Akamai Edge, Mulesoft, Apigee ve CloudFront gibi harici araçların kullanılması dahil olmak üzere çeşitli şekillerde gerçekleştirilebilir. Bu API'ları Wallarm ile güvence altına almanın bir yolunu arıyorsanız, bu tür durumlar için özel olarak tasarlanmış "connectors" şeklinde bir çözüm sunuyoruz.
 
-## Nasıl çalışır
+## Nasıl Çalışır
 
-Çözüm, Wallarm düğümünü dışarıda dağıtmayı ve özel kodu veya politikaları belirli bir platforma enjekte etmeyi içerir. Bu, trafiğin potansiyel tehditlere karşı analiz ve koruma için dış Wallarm düğümüne yönlendirilmesini sağlar. Wallarm'ın konnektörleri olarak adlandırılanlar, platformlar ve dış Wallarm düğümü arasındaki temel bağlantıyı sağlarlar.
+Wallarm'ın connector çözümü, API ağ geçitleri veya edge platformlar gibi üçüncü taraf platformlarla entegre olarak trafiği filtreler ve analiz eder. Çözüm, iki ana bileşenle çalışır:
 
-Aşağıdaki şema, Wallarm bloklama [modundaki](../../admin-en/configure-wallarm-mode.md) yüksek düzeyli trafik akışını göstermektedir:
+* **Wallarm node**, [Wallarm](../se-connector.md) veya müşteri tarafından barındırılan, trafik analizini ve güvenlik kontrollerini gerçekleştirir.
+* Üçüncü taraf platforma enjekte edilen ve trafiğin analiz için Wallarm node'una yönlendirilmesini sağlayan **Wallarm tarafından sağlanan kod paketi veya politika**.
 
-![image](../../images/waf-installation/general-traffic-flow-for-connectors.png)
+Connector’lar sayesinde, trafik ya [in-line](../inline/overview.md) ya da [out-of-band](../oob/overview.md) olarak analiz edilebilir:
 
-Trafik sıralı bir şekilde analiz edilir, enjekte edilen Wallarm scripti istekleri yakalar ve analiz için düğüme yönlendirir. Düğümden gelen yanıta bağlı olarak, kötü amaçlı aktiviteler engellenir ve yalnızca meşru isteklere API'lara erişime izin verilir.
+=== "Satır içi trafik akışı"
 
-Alternatif olarak, izleme modu, kullanıcıların web uygulamaları ve API'lerin karşılaşabileceği potansiyel tehditler hakkında bilgi edinmelerini sağlar. Bu modda, trafik akışının mantığı aynı kalır, ancak düğüm saldırıları engellemez, yalnızca onları Wallarm Bulutu'nda kaydeder ve Wallarm Konsolu üzerinden erişilebilir durumda tutar.
+    Eğer Wallarm, kötü amaçlı etkinliği [engelleyecek şekilde](../../admin-en/configure-wallarm-mode.md) yapılandırılmışsa:
 
-## Kullanım durumları
+    ![image](../../images/waf-installation/general-traffic-flow-for-connectors-inline.png)
+=== "Bant dışı trafik akışı"
+    ![image](../../images/waf-installation/general-traffic-flow-for-connectors-oob.png)
 
-* Azion Edge, Akamai Edge, Mulesoft, Apigee, AWS Lambda veya benzeri bir araçla dağıtılan tüm API'ları güvence altına almak için mevcut alt yapıda yalnızca bir bileşen oluşturarak - kullanılan çözüme bağlı olarak Wallarm kodu/politikası/proxy gibi bir bileşen.
-* Kapsamlı saldırı gözlemi, raporlama ve kötü amaçlı isteklerin anında engellenmesi sunan bir güvenlik çözümü gerektiriyor.
+## Desteklenen Platformlar
 
-## Sınırlamalar
+Wallarm, aşağıdaki platformlar için connector’lar sunar:
 
-Çözüm, yalnızca gelen isteklerle çalıştığı için belirli sınırlamaları vardır:
+| Connector | Desteklenen trafik akış modu | Bağlayıcı barındırması |
+| --- | ---- | ---- |
+| [Mulesoft](mulesoft.md) | Satır içi | Security Edge, kendi kendine barındırılan |
+| [Apigee](apigee.md) | Satır içi | kendi kendine barındırılan |
+| [Akamai EdgeWorkers](akamai-edgeworkers.md) | Satır içi | kendi kendine barındırılan |
+| [Azion Edge](azion-edge.md) | Satır içi | kendi kendine barındırılan |
+| [Amazon CloudFront](aws-lambda.md) | Satır içi, Bant dışı | Security Edge, kendi kendine barındırılan |
+| [Cloudflare](cloudflare.md) | Satır içi, Bant dışı | Security Edge, kendi kendine barındırılan |
+| [Kong Ingress Controller](kong-api-gateway.md) | Satır içi | kendi kendine barındırılan |
+| [Istio Ingress](istio.md) | Bant dışı | kendi kendine barındırılan |
+| [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | Satır içi | kendi kendine barındırılan |
+| [Fastly](fastly.md) | Satır içi, Bant dışı | Security Edge, kendi kendine barındırılan |
 
-* [Pasif algılama](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) yöntemi kullanılarak gerçekleştirilen güvenlik açığı keşfi düzgün çalışmaz. Çözüm, test ettiği güvenlik açıklarına tipik olan kötü amaçlı isteklere sunucu yanıtlarına dayanarak bir API'nin güvenlik açığı olup olmadığını belirler.
-* [Wallarm API Keşfi](../../api-discovery/overview.md) yanıt analizine dayandığı için trafiğinize dayalı olarak API envanterinizi keşfedemez.
-* Yanıt kodu analizi gerektiren [zorlamalı taramaya karşı koruma](../../admin-en/configuration-guides/protecting-against-bruteforce.md) mevcut değildir.
-
-## Desteklenen dağıtım seçenekleri
-
-Şu anda Wallarm, aşağıdaki platformlar için konnektörler sunmaktadır:
-
-* [Mulesoft](mulesoft.md)
-* [Apigee](apigee.md)
-* [Akamai EdgeWorkers](akamai-edgeworkers.md)
-* [Azion Edge](azion-edge.md)
-* [AWS Lamdba](aws-lambda.md)
-
-Aradığınız konnektörü bulamadıysanız, lütfen gereksinimlerinizi görüşmek ve potansiyel çözümleri keşfetmek için [Satış ekibimizle](mailto:sales@wallarm.com) iletişime geçmekten çekinmeyin.
+Aradığınız connector’ı bulamadıysanız, gereksinimlerinizi görüşmek ve potansiyel çözümleri keşfetmek için lütfen [Sales team](mailto:sales@wallarm.com) ile iletişime geçmekten çekinmeyin.

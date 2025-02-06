@@ -1,3 +1,4 @@
+```markdown
 [doc-testpolicy]:                   ../operations/internals.md#fast-test-policy
 [doc-testpolicy-creation-example]:  ../qsg/test-preparation.md#2-create-a-test-policy-targeted-at-xss-vulnerabilities
 [doc-waiting-for-tests]:            waiting-for-tests.md
@@ -14,85 +15,85 @@
 [anchor-stopping-fast-node]:        ci-mode-recording.md#stopping-and-removing-the-docker-container-with-the-fast-node-in-recording-mode
 [anchor-testing-mode]:              #deployment-of-a-fast-node-in-the-testing-mode
 
-#  Bir FAST Node'u Test Modunda Çalıştırma
+# Test Modunda FAST Node Çalıştırma
 
-Test modundayken, FAST düğümü kayıt modundaki temel isteklerden beslenen bir test kaydı temelinde bir test koşusu oluşturur ve hedef uygulama için güvenlik testi setini yürütür.
+Test modunda, FAST node, kaydetme modunda temel isteklerden doldurulan test kaydı baz alınarak bir test çalıştırması oluşturur ve hedef uygulama için yapılandırılmış güvenlik test setini yürütür.
 
-!!! bilgi "Bölüm Öngereklilikleri"
-    Bu bölümde anlatılan adımları takip etmek için bir [token][doc-get-token] almanız gerekiyor.
+!!! info "Bölüm Ön Koşulları"
+    Bu bölümde açıklanan adımları takip edebilmek için bir [token][doc-get-token] elde etmeniz gerekir.
     
-    Bu bölüm boyunca şu değerler örnek olarak kullanılır:
+    Bu bölümde örnek olarak kullanılan değerler:
         
-    * `tr_1234` bir test koşusu tanımlayıcısı olarak
-    * `rec_0001` bir test kaydı tanımlayıcısı olarak
-    * `bl_7777` bir temel istek tanımlayıcısı olarak
+    * `tr_1234`: bir test çalıştırmasının tanımlayıcısı
+    * `rec_0001`: bir test kaydının tanımlayıcısı
+    * `bl_7777`: bir temel isteğin tanımlayıcısı
 
-!!! bilgi "`docker-compose` Kurulumu"
-    Bu bölüm boyunca FAST düğümünün test modunda nasıl çalıştığını göstermek için [`docker-compose`][link-docker-compose] aracı kullanılacaktır.
+!!! info "Install `docker-compose`"
+    Bu bölümde, FAST node'un test modundaki çalışma şeklini göstermek için [`docker-compose`][link-docker-compose] aracı kullanılacaktır.
     
-    Bu aracın kurulum talimatları [burada][link-docker-compose-install] bulunabilir.
+    Bu aracın kurulum talimatları [burada][link-docker-compose-install] mevcuttur.
 
 ## Test Modunda Ortam Değişkenleri
 
-FAST düğümü yapılandırması ortam değişkenleri üzerinden yapılır. Aşağıdaki tablo, bir FAST düğümünü test modunda yapılandırmak için kullanılabilecek tüm ortam değişkenlerini içerir.
+FAST node yapılandırması, ortam değişkenleri aracılığıyla yapılır. Aşağıdaki tabloda, test modunda bir FAST node yapılandırırken kullanılabilecek tüm ortam değişkenleri yer almaktadır.
 
-| Ortam Değişkeni   | Değer  | Gerekli mi? |
-|--------------------	| --------	| -----------	|
-| `WALLARM_API_TOKEN`  	| Bir düğüm için token. | Evet |
-| `WALLARM_API_HOST`   	| Kullanılacak Wallarm API sunucusunun alan adı. <br>İzin verilen değerler: <br>`us1.api.wallarm.com` ABD bulutu için;<br>`api.wallarm.com` AB bulutu için.| Evet |
-| `CI_MODE`            	| FAST düğümünün işletim modu. <br>Gerekli değer: `testing`. | Evet |
-| `WORKERS` | Birçok temel istek ile paralel bir şekilde çalışan eş zamanlı iş parçacığı sayısı.<br>Varsayılan değer: `10`.| Hayır |
-| `TEST_RECORD_ID` | Bir test kaydının tanımlayıcısı.<br>Varsayılan: boş değer. | Hayır |
-| `TEST_RUN_NAME` | Test koşusunun adı.<br>Varsayılan değer benzer bir format içerir: "TestRun Sep 24 12:31 UTC”. | Hayır |
-| `TEST_RUN_DESC` | Test koşusunun açıklaması.<br>Varsayılan değer: boş string. | Hayır |
-| `TEST_RUN_POLICY_ID` | Test politikasının tanımlayıcısı.<br>Parametre eksikse, varsayılan politika devreye girer. | Hayır |
-| `TEST_RUN_RPS` | Bu parametre, sınama koşusu esnasında hedef uygulamaya gönderilecek test istek sayısını (*RPS*, *saniyedeki istekler*) sınırlandırır.<br>İzin verilen değer aralığı: 1'den 1000'e kadar (saniyedeki istekler)<br>Varsayılan değer: sınırsız. | Hayır |
-| `TEST_RUN_STOP_ON_FIRST_FAIL` | Bu parametre, bir zafiyet algılandığında FAST'ın davranışını belirler:<br>`true`: ilk tespit edilen zafiyette test koşusunun yürütmesini durdurur.<br>`false`: herhangi bir zafiyet algılanmış olsa bile tüm temel istekler işlenir.<br>Varsayılan değer: `false`. | Hayır |
-| `TEST_RUN_URI` | Hedef uygulamanın URI'si.<br>CI/CD süreci boyunca hedef uygulamanın IP adresi değişebilir, bu yüzden uygulamanın URI'sini kullanabilirsiniz. <br>Örneğin, `docker-compose` üzerinden yerleştirilen uygulamanın URI'si `http://app-test:3000` gibi görünebilir.  | Hayır |
-| `BUILD_ID` | Bir CI/CD iş akışının tanımlayıcısı. Bu tanımlayıcı, birkaç FAST düğümünün, aynı bulut FAST düğümünü kullanarak eşzamanlı olarak çalışmasına izin verir. Ayrıntılar için [bu][doc-concurrent-pipelines] belgeye bakın.| Hayır |
-| `FILE_EXTENSIONS_TO_EXCLUDE` | Test sürecinde değerlendirme işleminden hariç tutulması gereken statik dosya uzantıları listesi.<br>Bu uzantıları <code>&#124;</code> karakterini kullanarak enumere edebilirsiniz: <br><code>FILE_EXTENSIONS_TO_EXCLUDE='jpg&#124;ico&#124;png'</code> | Hayır |
-| `PROCESSES`            | FAST düğümünün kullanabileceği süreçlerin sayısı. Her süreç, `WORKERS` değişkeninde belirtilen iş parçacığı sayısını kullanır.<br>Varsayılan süreç sayısı: `1`.<br>Özel değer: `auto` [nproc](https://www.gnu.org/software/coreutils/manual/html_node/nproc-invocation.html#nproc-invocation) komutu kullanılarak hesaplanan CPU sayısının yarısına eşittir. | Hayır |
+| Ortam Değişkeni               | Değer  | Gerekli? |
+|-------------------------------|--------|----------|
+| `WALLARM_API_TOKEN`           | Bir node için token. | Evet |
+| `WALLARM_API_HOST`            | Kullanılacak Wallarm API sunucusunun alan adı. <br>İzin verilen değerler: <br>`us1.api.wallarm.com` ABD bulutu için; <br>`api.wallarm.com` AB bulutu için. | Evet |
+| `CI_MODE`                     | FAST node'un çalışma modu. <br>Zorunlu değer: `testing`. | Evet |
+| `WORKERS`                     | Paralel şekilde birden fazla temel istekle çalışan eşzamanlı iş parçacığı sayısı.<br>Varsayılan değer: `10`. | Hayır |
+| `TEST_RECORD_ID`              | Bir test kaydının tanımlayıcısı.<br>Varsayılan: boş değer. | Hayır |
+| `TEST_RUN_NAME`               | Test çalıştırmasının adı.<br>Varsayılan değer benzer formatta: “TestRun Sep 24 12:31 UTC”. | Hayır |
+| `TEST_RUN_DESC`               | Test çalıştırmasının açıklaması.<br>Varsayılan değer: boş string. | Hayır |
+| `TEST_RUN_POLICY_ID`          | Test politikasının tanımlayıcısı.<br>Eğer parametre belirtilmezse, varsayılan politika uygulanır. | Hayır |
+| `TEST_RUN_RPS`                | Bu parametre, test çalıştırması sırasında hedef uygulamaya gönderilecek test isteği sayısına (*RPS*, *saniyede istek sayısı*) bir sınır belirler.<br>İzin verilen değer aralığı: 1 ile 1000 (saniyede istek)<br>Varsayılan değer: limitsiz. | Hayır |
+| `TEST_RUN_STOP_ON_FIRST_FAIL` | Bu parametre, FAST'in bir güvenlik açığı tespit edildiğinde nasıl davranacağını belirtir:<br>`true`: tespit edilen ilk güvenlik açığında test çalıştırmasını durdurur.<br>`false`: herhangi bir güvenlik açığı tespit edilse de tüm temel istekleri işler.<br>Varsayılan değer: `false`. | Hayır |
+| `TEST_RUN_URI`                | Hedef uygulamanın URI'si.<br>CI/CD sürecinde hedef uygulamanın IP adresi değişebileceğinden, uygulama URI'si kullanılabilir. <br>Örneğin, `docker-compose` kullanılarak dağıtılan uygulamanın URI'si `http://app-test:3000` şeklinde olabilir. | Hayır |
+| `BUILD_ID`                    | Bir CI/CD iş akışının tanımlayıcısı. Bu tanımlayıcı, aynı bulut FAST node'u kullanarak birden fazla FAST node'un eşzamanlı çalışmasına olanak tanır. Detaylar için [bu][doc-concurrent-pipelines] belgeye bakın. | Hayır |
+| `FILE_EXTENSIONS_TO_EXCLUDE`  | Test sırasında değerlendirme sürecine dahil edilmeyecek statik dosya uzantılarının listesi.<br>Bu uzantıları <code>&#124;</code> karakteri ile sıralayabilirsiniz: <br><code>FILE_EXTENSIONS_TO_EXCLUDE='jpg&#124;ico&#124;png'</code> | Hayır |
+| `PROCESSES`                   | FAST node tarafından kullanılabilecek işlem sayısı. Her işlem, `WORKERS` değişkeninde belirtilen iş parçacığı sayısını kullanır.<br>Varsayılan işlem sayısı: `1`.<br>Özel değer: [nproc](https://www.gnu.org/software/coreutils/manual/html_node/nproc-invocation.html#nproc-invocation) komutu ile hesaplanan CPU sayısının yarısına eşit `auto`. | Hayır |
 
-!!! bilgi "Ayrıca bakın"
-    Belirli bir FAST düğüm işletim modu ile ilgili olmayan ortam değişkenlerinin açıklamaları [burada][doc-env-variables] bulunabilir.
+!!! info "See also"
+    Belirli bir FAST node çalışma moduna özgü olmayan ortam değişkenlerinin açıklamaları [burada][doc-env-variables] mevcuttur.
 
-## Bir Test Politikası Tanımlayıcısının Edinilmesi
+## Bir Test Politikası Tanımlayıcısı Edinme
 
-Kendi [test politikanızı][doc-testpolicy] kullanmayı planlıyorsanız, Wallarm bulutta [biri][link-wl-portal-new-policy] oluşturun. Daha sonra, tanımlayıcıyı FAST düğümünün Docker konteynerine test modunda bir FAST düğümü çalıştırırken `TEST_RUN_POLICY_ID` ortam değişkeni üzerinden geçirin.
+Kendi [test politikanızı][doc-testpolicy] kullanmayı planlıyorsanız, Wallarm cloud'da bir tane [oluşturun][link-wl-portal-new-policy]. Daha sonra, FAST node test modunda çalıştırılırken Docker konteynerine `TEST_RUN_POLICY_ID` ortam değişkeni aracılığıyla bu tanımlayıcıyı geçirmeniz gerekir.
 
-Aksi takdirde, varsayılan test politikasını kullanmayı seçerseniz, konteyner için `TEST_RUN_POLICY_ID` ortam değişkenini belirlemeyin.
+Aksi takdirde, varsayılan test politikasını kullanmayı tercih ederseniz, konteyner için `TEST_RUN_POLICY_ID` ortam değişkenini ayarlamayın.
 
-!!! bilgi "Nasıl Test Politikası Yaratılır"
-    “Hızlı Başlangıç” rehberi bir örnek test politikası oluşturmayı adım adım [nasıl yapacağınızı][doc-testpolicy-creation-example] anlatır.
+!!! info "How to Create a Test Policy"
+    “Quick Start” kılavuzu, örnek bir test politikası oluşturma adımlarını [adım adım talimatlar][doc-testpolicy-creation-example] olarak sunmaktadır.
 
-## Test kaydı tanımlayıcısının alınması
+## Bir Test Kaydı Tanımlayıcısı Edinme
+
+Test modunda belirli bir test kaydını kullanmak için, test kaydının tanımlayıcısını FAST node'a [`TEST_RECORD_ID`][anchor-testing-variables] parametresi ile geçirebilirsiniz. Böylece FAST node'u önceden kaydetme modunda çalıştırmaya gerek kalmaz. Önceden oluşturulmuş bir test kaydını, farklı node'larda ve test çalıştırmalarında aynı güvenlik testlerini gerçekleştirmek için kullanabilirsiniz.
  
-Belirli bir test kaydını test modunda kullanmak için, test kaydının tanımlayıcısını FAST düğümüne [`TEST_RECORD_ID`][anchor-testing-variables] parametresi ile geçirebilirsiniz. Böylece, ilk önce FAST düğümünü kayıt modunda çalıştırmanız gerekmez. Bunun yerine, önceden oluşturulmuş bir test kaydını kullanabilir ve farklı düğümler ve test koşularında aynı güvenlik testlerini birden çok kez gerçekleştirebilirsiniz.
- 
-Test kaydının tanımlayıcısını Wallarm portalı arayüzünden veya test modunda FAST düğümü günlüğünden alabilirsiniz. Eğer `TEST_RECORD_ID` parametresini kullanmazsanız, o zaman FAST düğümü düğümün son test kaydını kullanır.
+Test kaydının tanımlayıcısını Wallarm portal arayüzünden veya test modundaki FAST node log'undan alabilirsiniz. Eğer `TEST_RECORD_ID` parametresini kullanmazsanız, FAST node son test kaydını kullanacaktır.
 
-## Test Modunda Bir FAST Düğümünün Yerleştirilmesi
+## Test Modunda FAST Node Dağıtımı
 
-Daha önce oluşturulan `docker-compose.yaml` dosyası, bir FAST düğümünü test modunda çalıştırmak için uygundur.
-Bunu yapmak için, `CI_MODE` ortam değişkeninin değerini `testing` olarak değiştirmeniz gerekmektedir.
+Önceden oluşturulan `docker-compose.yaml` dosyası, test modunda FAST node çalıştırmak için uygundur.
+Bunu yapmak için, `CI_MODE` ortam değişkeninin değeri `testing` olarak değiştirilmelidir.
 
-Bu değişkenin değerini `docker-compose.yaml` dosyasındaki değeri değiştirerek ya da `docker-compose run` komutunun `-e` opsiyonu ile Docker konteynerine gerekli değeri ortam değişkeni olarak geçirerek değiştirebilirsiniz:
+Değişkenin değerini `docker-compose.yaml` dosyasında değiştirerek veya `docker-compose run` komutunun `-e` seçeneği ile gerekli değeri Docker konteynerine geçirerek değiştirebilirsiniz:
 
 ```
 docker-compose run --rm -e CI_MODE=testing fast
 ```
 
-!!! bilgi "Test hakkındaki raporu almak"
-    Test sonuçlarına ait raporu almak için, raporu indirecek dizini `-v {RAPORLAR_İÇİN_DIZIN}:/opt/reports/` opsiyonu kullanarak bağlayarak FAST düğüm Docker konteynerini yerleştirebilirsiniz.
+!!! info "Test Sonuç Raporunu Alma"
+    Test sonuçlarını içeren raporu almak için, FAST node Docker konteyneri dağıtılırken raporu indirmek üzere dizini `-v {DIRECTORY_FOR_REPORTS}:/opt/reports/` seçeneği ile bağlayın.
 
-    Güvenlik testi bittiğinde `{RAPORLAR_İÇİN_DIZIN}` dizininde kısa `<TEST KOŞUSU ADI>.<UNIX ZAMANI>.txt` raporu ve detaylı `<TEST KOŞUSU ADI>.<UNIX ZAMANI>.json` raporu bulacaksınız.
+    Güvenlik testleri tamamlandığında, `{DIRECTORY_FOR_REPORTS}` dizininde kısa `<TEST RUN NAME>.<UNIX TIME>.txt` raporu ve detaylı `<TEST RUN NAME>.<UNIX TIME>.json` raporu bulunacaktır.
 
-!!! bilgi "`docker-compose` komutunun opsiyonları"
-    Yukarıda anlatılan tüm ortam değişkenlerini `-e` opsiyonu ile bir FAST düğüm Docker konteynerine geçirebilirsiniz.
+!!! info "docker-compose Komutu Seçenekleri"
+    Yukarıda açıklanan herhangi bir ortam değişkenini, `-e` seçeneği ile FAST node Docker konteynerine geçirebilirsiniz.
 
-    Yukarıdaki örnekte ayrıca `--rm` opsiyonu da kullanıldı, böylece düğüm durdurulduğunda FAST düğüm konteyneri otomatik olarak atılır.
+    Yukarıdaki örnekte kullanılan `--rm` seçeneği sayesinde, FAST node konteyneri durduğunda otomatik olarak kaldırılır.
 
-Komut başarıyla çalışırsa, burada gösterilen benzer bir konsol çıktısı oluşturulur:
+Komut başarılı bir şekilde çalıştırılırsa, aşağıda gösterilen benzer bir konsol çıktısı üretilir:
 
 ```
  __      __    _ _
@@ -104,57 +105,59 @@ Komut başarıyla çalışırsa, burada gösterilen benzer bir konsol çıktıs�
            | _/ _ \\__ \ | |
            |_/_/ \_\___/ |_|
 
-Yükleniyor...
-INFO synccloud[13]: Yeni örneğin kaydedilmesi 16dd487f-3d40-4834-xxxx-8ff17842d60b
-INFO [1]: Hızlı tarayıcı için 0 özel genişleme yüklendi
-INFO [1]: Hızlı tarayıcı için 44 varsayılan genişleme yüklendi
-INFO [1]: Test koşusu oluşturmak için TestRecord#rec_0001'i kullan
-INFO [1]: TestRun#tr_1234 oluşturuldu
+Loading...
+INFO synccloud[13]: Registered new instance 16dd487f-3d40-4834-xxxx-8ff17842d60b
+INFO [1]: Loaded 0 custom extensions for fast scanner
+INFO [1]: Loaded 44 default extensions for fast scanner
+INFO [1]: Use TestRecord#rec_0001 for creating TestRun
+INFO [1]: TestRun#tr_1234 created
 ```
 
-Bu çıktı, başarıyla tamamlanan bir operasyonla birlikte `rec_0001` tanımlayıcılı test kaydının `tr_1234` tanımlayıcılı bir test koşusu oluşturmak için kullanıldığını bize bildirir.
+Bu çıktı, `rec_0001` tanımlayıcısına sahip test kaydının, `tr_1234` tanımlayıcılı bir test çalıştırması oluşturmak için kullanıldığını ve işlemin başarılı bir şekilde tamamlandığını bildirir.
 
-Daha sonra, FAST düğümü, test politikasına uyan test kaydındaki her temel istek için güvenlik testlerini oluşturur ve yürütür. Konsol çıktısı bu tür benzer mesajlar içerir:
-
-```
-INFO [1]: Baseline #bl_7777 için bir test seti çalıştırılıyor
-INFO [1]: Baseline #bl_7777 için test seti çalışıyor
-INFO [1]: Baseline isteği Hit#["hits_production_202_20xx10_v_1", "AW2xxxxxW26"]'nin alınması
-INFO [1]: İsimli 'Default Policy' TestPolitic'ni kullan
-```
-
-Bu çıktı, `bl_7777` tanımlayıcılı temel istek için test setinin sürdüğünü bize bildirir. Ayrıca, `TEST_RUN_POLICY_ID` ortam değişkeninin yokluğu nedeniyle varsayılan test politikasının kullanıldığını bize söyler.
-
-## Test Modundaki FAST Düğümü ile Docker Konteynerin Durdurulması ve Kaldırılması
-
-Alınan test sonuçlarına bağlı olarak, FAST düğümleri farklı şekillerde sonlandırabilir.
-
-Hedef uygulamada bazı zafiyetler tespit edilirse, FAST düğümü şuna benzer bir mesaj gösterir:
+Sonrasında, FAST node, test politikasına uyan test kaydı içindeki her temel istek için güvenlik testleri oluşturur ve yürütür. Konsol çıktısında benzer mesajlar yer alacaktır:
 
 ```
-INFO [1]: 4 zafiyet bulundu, Baseline #bl_7777 için test setini başarısız olarak işaretle
-ERROR [1]: TestRun#tr_1234 başarısız oldu
+INFO [1]: Running a test set for the baseline #bl_7777
+INFO [1]: Test set for the baseline #bl_7777 is running
+INFO [1]: Retrieving the baseline request Hit#["hits_production_202_20xx10_v_1", "AW2xxxxxW26"]
+INFO [1]: Use TestPolicy with name 'Default Policy'
 ```
 
-Bu durumda, dört zafiyet bulundu. `bl_7777` tanımlayıcılı temeldeki test seti başarısız olarak kabul edildi. `tr_1234` tanımlayıcılı ilgili test koşusu da başarısız olarak işaretlendi.
+Bu çıktı, `bl_7777` tanımlayıcısına sahip temel istekler için test setinin çalışmakta olduğunu bildirir. Ayrıca, `TEST_RUN_POLICY_ID` ortam değişkeninin belirtilmemesi nedeniyle varsayılan test politikasının kullanıldığını gösterir.
 
-Hedef uygulamada hiç zafiyet tespit edilmezse, FAST düğümü şuna benzer bir mesaj gösterir:
+## Test Modunda FAST Node İçeren Docker Konteynerini Durdurma ve Kaldırma
+
+Elde edilen test sonuçlarına bağlı olarak, FAST node'lar farklı şekillerde sonlanabilir.
+
+Hedef uygulamada bazı güvenlik açıkları tespit edilirse, FAST node aşağıdaki gibi bir mesaj gösterir:
 
 ```
-INFO [1]: Hiç sorun bulunamadı. Baseline #bl_7777 için test seti geçti.
-INFO [1]: TestRun#tr_1234 geçti
+INFO [1]: Found 4 vulnerabilities, marking the test set for baseline #bl_7777 as failed
+ERROR [1]: TestRun#tr_1234 failed
 ```
-Bu durumda, `tr_1234` tanımlayıcılı test koşusu geçmiş olarak kabul edilir.
 
-!!! uyarı "Güvenlik test setleri hakkında"
-    Yukarıdaki örnekler yalnızca bir test seti uygulandığını ima etmez. Her bir temel istek için bir test seti oluşturulur, bu test politikası ile FAST uyumludur. 
+Bu durumda, dört güvenlik açığı tespit edilmiştir. `bl_7777` tanımlayıcısına sahip temel isteğin test seti başarısız kabul edilir. İlgili `tr_1234` tanımlayıcılı test çalıştırması da başarısız olarak işaretlenir.
+
+Hedef uygulamada hiçbir güvenlik açığı tespit edilmezse, FAST node aşağıdaki gibi bir mesaj gösterir:
+
+```
+INFO [1]: No issues found. Test set for baseline #bl_7777 passed.
+INFO [1]: TestRun#tr_1234 passed
+```
+
+Bu durumda, `tr_1234` tanımlayıcısına sahip test çalıştırması başarılı kabul edilir.
+
+!!! warning "Güvenlik Test Setleri Hakkında"
+    Yukarıdaki örnekler, yalnızca bir test setinin yürütüldüğünü ima etmez. FAST test politikasına uyan her temel istek için bir test seti oluşturulur.
     
-    Burada sadece bir tek test setine ait mesaj gösterilmektedir, bu demonstration amaçlıdır.
+    Gösterim amaçlı olarak burada tek bir test setine ilişkin mesaj gösterilmiştir.
 
-FAST düğümü test sürecini tamamladıktan sonra, işlem kodunu çalışan CI/CD işi kısmında bulunan işleme döndürür. 
-* Eğer güvenlik test durumu "geçti" ve FAST düğümü test süreci boyunca hiç hata ile karşılaşmazsa, o zaman `0` işlem kodu döndürülür. 
-* Aksi takdirde, eğer güvenlik testleri başarısız olursa veya FAST düğümü test süreci boyunca bazı hatalarla karşılaşırsa, o zaman `1` işlem kodu döndürülür.
+FAST node, test sürecini tamamladıktan sonra sonlanır ve bir CI/CD işinin parçası olarak çalışan sürece bir çıkış kodu döndürür. 
+* Güvenlik test durumu “passed” ise ve FAST node test süreci sırasında herhangi bir hata ile karşılaşmazsa, `0` çıkış kodu döndürülür. 
+* Aksi takdirde, eğer güvenlik testleri başarısız olursa veya FAST node test süreci sırasında bazı hatalarla karşılaşırsa, `1` çıkış kodu döndürülür.
 
-Güvenlik testi tamamlandıktan sonra test modundaki FAST düğümü konteyneri otomatik olarak durdurulur. Ancak, daha önce [anlatıldığı gibi][anchor-stopping-fast-node] bir CI/CD aracı, düğüm ve konteyner ömür döngüsünün kontrolünde hala olabilir.
+Test modundaki FAST node konteyneri, güvenlik testleri tamamlandığında otomatik olarak duracaktır. Yine de, bir CI/CD aracı [daha önce açıklanan][anchor-stopping-fast-node] yöntemlerle node ve konteyner yaşam döngüsünü kontrol edebilir.
 
-[Örnekte yukarıda][anchor-testing-mode] FAST düğümü konteyneri `--rm` opsiyonu ile çalıştırılır. Bu, durdurulan konteynerin otomatik olarak kaldırılacağı anlamına gelir.
+[anchor-testing-mode] ile verilen örnekte, FAST node konteyneri `--rm` seçeneği ile çalıştırılmıştır. Bu, durdurulan konteynerin otomatik olarak kaldırılacağı anlamına gelir.
+```

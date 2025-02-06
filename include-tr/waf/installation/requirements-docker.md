@@ -1,2 +1,2 @@
-* **Deploy** veya **Yönetici** rolüne sahip hesaba ve [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) Wallarm Konsolu'nda iki faktörlü kimlik doğrulamanın devre dışı bırakılmış olmasına erişim
-* Eğer US Wallarm Bulutu ile çalışıyorsanız `https://us1.api.wallarm.com:444` adresine veya EU Wallarm Bulutu ile çalışıyorsanız `https://api.wallarm.com:444` adresine erişim. Lütfen erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun.
+* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) üzerindeki Wallarm Console'da **Deploy** veya **Administrator** rolüne sahip ve iki faktörlü doğrulama devre dışı bırakılmış hesaba erişim  
+* US Wallarm Cloud ile çalışılıyorsa `https://us1.api.wallarm.com:444` adresine, EU Wallarm Cloud ile çalışılıyorsa `https://api.wallarm.com:444` adresine erişim. Lütfen erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun.

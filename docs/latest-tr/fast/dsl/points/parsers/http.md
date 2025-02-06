@@ -16,11 +16,11 @@
 [anchor6]:      #header-filter
 [anchor7]:      #post-filter
 
-# HTTP Ayrıştırıcısı
+# HTTP Ayrıştırıcı
 
-Açık **HTTP ayrıştırıcısı**, yıllık istek işlemeyi gerçekleştirir. Adı, tarafından sağlanan filtreleri kullanırken bir noktada belirtilmemelidir.
+Varsayılan **HTTP ayrıştırıcısı**, isteğin yıllık işlenmesini gerçekleştirir. Sağladığı filtreleri kullanırken, nokta üzerinde ismi belirtilmemelidir.
 
-HTTP ayrıştırıcısı, temel talebe dayalı karmaşık bir veri yapısı oluşturur. Bu veri yapısının öğelerine ulaşmak için aşağıdaki filtreleri kullanabilirsiniz:
+HTTP ayrıştırıcısı, temel istek esasına dayalı olarak karmaşık bir veri yapısı oluşturur. Bu veri yapısının öğelerine erişmek için aşağıdaki filtreleri kullanabilirsiniz:
 
 * [URI][anchor1];
 * [Path][anchor2];
@@ -30,106 +30,104 @@ HTTP ayrıştırıcısı, temel talebe dayalı karmaşık bir veri yapısı olu�
 * [Header][anchor6];
 * [Post][anchor7].
 
-!!! info "Noktalarda filtre kullanma"
-    Filtreyi noktada kullanmak için filtrenin adını büyük harfle ekleyin.
+!!! info "Noktalarda filtre kullanımı"
+    Nokta üzerinde filtreyi kullanmak için filtre adını büyük harflerle ekleyin.
 
-## URI Filtresi
+## URI Filtre
 
-**URI** filtresi, talep hedefine olan mutlak yolu ifade eder. Mutlak yol, hedefin alan adını veya IP adresini izleyen `/` sembolüyle başlar.
+**URI** filtresi, istek hedefinin mutlak yoluna atıfta bulunur. Mutlak yol, hedefin alan adı veya IP adresini takip eden `/` sembolü ile başlar.
 
-URI filtresi, bir dize değerine başvurur. Bu filtre, karmaşık veri yapılarına (diziler veya karma tablolar gibi) başvuramaz.
+URI filtresi bir dize değerine atıfta bulunur. Bu filtre, karmaşık veri yapıları (diziler veya hash tabloları gibi) ile ilgili değildir.
 
-**Örnek:** 
+**Örnek:**
 
-`URI_value` noktası, `GET http://example.com/login/index.php` isteğindeki `/login/index.php` dizesine başvurur.
+`URI_value` noktası, `GET http://example.com/login/index.php` isteğinde yer alan `/login/index.php` dizisine atıfta bulunur.
 
+## Path Filtre
 
-## Path Filtresi
+**Path** filtresi, URI yol parçalarını içeren bir diziye atıfta bulunur. Bu dizinin elemanlarına, ilgili indeksleri kullanarak erişmeniz gerekir. Dizi indekslemesi `0` dan başlar.
 
-**Path** filtresi, URI yolu parçalarını içeren bir diziye başvurur. Bu dizinin öğelerine endekslerini kullanarak başvurulması gerekiyor. Dizi indeksleme, `0` ile başlar.
+!!! info "Noktalarda düzenli ifadeler"
+    Noktadaki indeks, [Ruby programlama dili][link-ruby] düzenli ifadesi olabilir.
 
-!!! info "Noktalardaki düzenli ifadeler"
-    Noktadaki indeks, [Ruby programlama dilinin][link-ruby] bir düzenli ifadesi olabilir.
+**Örnek:**
 
-**Örnek:** 
+`GET http://example.com/main/login/index.php HTTP/1.1` isteği için, Path filtresi aşağıdaki diziye atıfta bulunur:
 
-`GET http://example.com/main/login/index.php HTTP/1.1` talebi için Path filtresi aşağıdaki diziyi ifade eder:
-
-| İndeks  | Değer   |
+| Index  | Değer    |
 |--------|----------|
 | 0      | main     |
 | 1      | login    |
 
-* `PATH_0_value` noktası, Path filtresinin `0` indeksindeki dizide yer alan `main` değerine başvurur.
-* `PATH_1_value` noktası, Path filtresinin `1` indeksindeki dizide yer alan `login` değerine başvurur.
+* `PATH_0_value` noktası, Path filtresi ile `0` indeksli adreste bulunan `main` değerine atıfta bulunur.
+* `PATH_1_value` noktası, Path filtresi ile `1` indeksli adreste bulunan `login` değerine atıfta bulunur.
 
-Eğer talep URI'si yalnızca bir parça içeriyorsa, Path filtresi boş bir diziye başvurur.
+Eğer istek URI'si yalnızca bir parçadan oluşuyorsa, Path filtresi boş diziyi adresler.
 
 **Örnek:**
 
-`GET http://example.com/ HTTP/1.1` talebi için, Path filtresi boş bir diziye başvurur.
+`GET http://example.com/ HTTP/1.1` isteği için, Path filtresi boş diziyi adresler.
 
-## Action_name Filtresi
+## Action_name Filtre
 
-**Action_name** filtresi, URI'nin son `/` sembolünden başlayan ve noktayla biten kısmına başvurur.
+**Action_name** filtresi, URI'nin son `/` sembolünden sonraki ve nokta ile biten kısmına atıfta bulunur.
 
-Action_name filtresi, bir dize değerine başvurur. Bu filtre karmaşık veri yapılarına (diziler veya karma tablolar gibi) başvuramaz.
+Action_name filtresi, bir dize değerine atıfta bulunur. Bu filtre, karmaşık veri yapıları (diziler veya hash tabloları gibi) ile ilgili değildir.
 
-**Örnek:** 
-* `ACTION_NAME_value` noktası, `GET http://example.com/login/index.php` isteği için `index` değerine başvurur.
-* `ACTION_NAME_value` noktası, `GET http://example.com/login/` isteği için boş değere başvurur.
+**Örnek:**
+* `ACTION_NAME_value` noktası, `GET http://example.com/login/index.php` isteğinde `index` değerine atıfta bulunur.
+* `ACTION_NAME_value` noktası, `GET http://example.com/login/` isteğinde boş değere atıfta bulunur.
 
+## Action_ext Filtre
 
-## Action_ext Filtresi
+**Action_ext** filtresi, URI'nin, son `/` sembolünü takiben gelen ilk noktadan sonra başlayan kısmına atıfta bulunur. Eğer bu URI kısmı istekten eksikse, Action_ext filtresi noktada kullanılamaz.
 
-**Action_ext** filtresi, URI'nin son `/` sembolünü takiben gelen ilk noktadan sonra başlar. Eğer URI'nin bu kısmı talepten eksikse, Action_ext filtresi noktada kullanılamaz.
+Action_ext filtresi, bir dize değerine atıfta bulunur. Bu filtre, karmaşık veri yapıları (diziler veya hash tabloları gibi) ile ilgili değildir.
 
-Action_ext filtresi, bir dize değerine başvurur. Bu filtre karmaşık veri yapılarına (diziler veya karma tablolar gibi) başvuramaz.
+**Örnek:**
 
-**Örnek:** 
+* `ACTION_EXT_value` noktası, `GET http://example.com/main/login/index.php` isteğinde `php` değerine atıfta bulunur.
+* Action_ext filtresi, `GET http://example.com/main/login/` isteğine atıfta bulunan noktada kullanılamaz.
 
-* `ACTION_EXT_value` noktası, `GET http://example.com/main/login/index.php` isteği için 'PHP' değerine başvurur.
-* Action_ext filtresi, `GET http://example.com/main/login/` talebini başvuran noktada kullanılamaz.
+## Get Filtre
 
-## Get Filtresi
+**Get** filtresi, istek sorgu dizesinden gelen parametreleri içeren hash tablosuna atıfta bulunur. Bu hash tablosunun elemanlarına, parametre adları kullanılarak erişilmesi gerekir.
 
-**Get** filtresi, talep sorgu dizesinden parametreler içeren bir karma tabloya başvurur. Bu karma tablonun öğelerine parametrelerin adlarını kullanarak başvurulmalıdır.
+!!! info "Noktalarda düzenli ifadeler"
+    Noktadaki parametre adı, [Ruby programlama dili][link-ruby] düzenli ifadesi olabilir.
 
-!!! info "Noktalardaki düzenli ifadeler"
-    Noktadaki parametre adı, [Ruby programlama dilinin][link-ruby] bir düzenli ifadesi olabilir.
+Sorgu dizesi parametreleri, diziler ve hash tabloları gibi aşağıdaki karmaşık veri yapılarını da içerebilir. Bu yapılardaki öğelere erişmek için sırasıyla [Array][link-get-array] ve [Hash][link-get-hash] filtrelerini kullanın.
 
-Sorgu dizesi parametreleri ayrıca aşağıdaki karmaşık veri yapılarını da içerebilir: diziler ve karma tablolar. Bu yapıların öğelerine başvurmak için sırasıyla [Array][link-get-array] ve [Hash][link-get-hash] filtrelerini kullanın.
+**Örnek:**
 
-**Örnek:** 
+`POST http://example.com/login?id=01234&username=admin` isteği için, Get filtresi aşağıdaki hash tablosuna atıfta bulunur:
 
-`POST http://example.com/login?id=01234&username=admin` talebi için Get filtresi aşağıdaki karma tabloya başvurur:
+| Parametre adı | Değer  |
+|---------------|--------|
+| id            | 01234  |
+| username      | admin  |
 
-| Parametre Adı | Değer   |
-|---------------|---------|
-| id            | 01234   |
-| username      | admin   |
+* `GET_id_value` noktası, Get filtresi ile adreslenen hash tablosunda `id` parametresine karşılık gelen `01234` değerine atıfta bulunur.
+* `GET_username_value` noktası, Get filtresi ile adreslenen hash tablosunda `username` parametresine karşılık gelen `admin` değerine atıfta bulunur.
 
-* `GET_id_value` noktası, Get filtresi tarafından başvurulan karma tablodan `id` parametresine karşılık gelen `01234` değerine başvurur.
-* `GET_username_value` noktası, Get filtresi tarafından başvurulan karma tablodan `username` parametresine karşılık gelen `admin` değerine başvurur.
+## Header Filtre
 
+**Header** filtresi, başlık adları ve değerlerini içeren hash tablosuna atıfta bulunur. Bu hash tablosunun elemanlarına, başlık adlarını kullanarak erişmeniz gerekir.
 
-## Header Filtresi
-
-**Header** filtresi, başlık adları ve değerlerini içeren bir karma tabloya başvurur. Bu karma tablonun öğelerine başlıkların adlarını kullanarak başvurulmalıdır.
-
-!!! info "Bir noktadaki bir başlık adı"
-    Bir başlık adı noktada aşağıdaki şekillerden birinde belirtilebilir:
+!!! info "Noktada bir başlık adı"
+    Bir başlık adı nokta üzerinde şu şekillerde belirtilebilir:
 
     * Büyük harflerle
-    * Talepteki olduğu gibi
+    * İstekte belirtildiği şekilde
 
-!!! info "Noktalardaki düzenli ifadeler"
-    Başlık adı, noktada [Ruby programlama dilinin][link-ruby] bir düzenli ifadesi olabilir.
+!!! info "Noktalarda düzenli ifadeler"
+    Noktadaki başlık adı, [Ruby programlama dili][link-ruby] düzenli ifadesi olabilir.
 
+Başlık adı, ayrıca bir değer dizisini de içerebilir. Bu dizinin elemanlarına erişmek için [Array][link-header-array] filtresini kullanın.
 
-Başlık adı ayrıca bir dizi değerler de içerebilir. Bu dizinin öğelerine başvurmak için [Array][link-header-array] filtresini kullanın.
+**Örnek:**
 
-**Örnek:** 
+Aşağıdaki istek için
 
 ```
 GET /login/index.php HTTP/1.1
@@ -138,27 +136,27 @@ Host: example.com
 Accept-encoding: gzip
 ```
 
-talebi için, Header filtresi aşağıdaki karma tabloya başvurur:
+Header filtresi, aşağıdaki hash tablosuna atıfta bulunur:
 
-| Başlık Adı      | Değer        |
+| Başlık adı      | Değer       |
 |-----------------|-------------|
 | Connection      | keep-alive  |
 | Host            | example.com |
 | Accept-Encoding | gzip        |
 
-* `HEADER_Connection_value` noktası, Header filtresi tarafından başvurulan karma tablodan `Connection` başlığına karşılık gelen `keep-alive` değerine başvurur.
-* `HEADER_Host_value` noktası, Header filtresi tarafından başvurulan karma tablodan `Host` başlığına karşılık gelen `example.com` değerine başvurur.
-* `HEADER_Accept-Encoding_value` noktası, Header filtresi tarafından başvurulan karma tablodan `Accept-Encoding` başlığına karşılık gelen `gzip` değerine başvurur.
+* `HEADER_Connection_value` noktası, Header filtresi ile adreslenen hash tablosunda `Connection` başlığına karşılık gelen `keep-alive` değerine atıfta bulunur.
+* `HEADER_Host_value` noktası, Header filtresi ile adreslenen hash tablosunda `Host` başlığına karşılık gelen `example.com` değerine atıfta bulunur.
+* `HEADER_Accept-Encoding_value` noktası, Header filtresi ile adreslenen hash tablosunda `Accept-Encoding` başlığına karşılık gelen `gzip` değerine atıfta bulunur.
 
+## Post Filtre
 
+**Post** filtresi, istek gövdesi içeriğine atıfta bulunur.
 
-## Post Filtresi
+İstek gövdesi içeriği üzerinde ham formatta çalışmak için, noktada Post filtresinin adını kullanabilirsiniz.
 
-**Post** filtresi, talep gövde içeriğine başvurur.
+**Örnek:**
 
-İsteğin gövde içeriğiyle ham formatında çalışmak için noktada Post filtresinin adını kullanabilirsiniz.
-
-**Örnek:** 
+Aşağıdaki istek için
 
 ```
 POST http://example.com/main/index.php HTTP/1.1
@@ -166,16 +164,16 @@ Content-Type: text/plain
 Content-Length: 28
 ```
 
-talebi ve
+ve
 
 ```
-Bu basit bir gövde metnidir.
+This is a simple body text.
 ```
 
-gövdesi için, `POST_value` noktası, istek gövdesinden `Bu basit bir gövde metnidir.` değerine başvurur.
+gövdesi ile, `POST_value` noktası, istek gövdesindeki `This is a simple body text.` değerine atıfta bulunur.
 
-Ayrıca karmaşık veri yapıları içeren bir istek gövdesiyle de çalışabilirsiniz. İlgili veri yapılarının öğelerine başvurmak için Post filtreden sonra noktada aşağıdaki filtreleri ve ayrıştırıcıları kullanın: 
-* İsteğin gövde içeriği **form-urlencoded** formatında ise [Form_urlencoded][link-formurlencoded] ayrıştırıcı
-* İsteğin gövde içeriği **multipart** formatında ise [Multipart][link-multipart] ayrıştırıcı
-* İsteğin gövde içeriği **XML** formatında ise [XML ayrıştırıcısı tarafından sağlanan filtreler][link-xml] 
-* İsteğin gövde içeriği **JSON** formatında ise [Json_doc ayrıştırıcısı tarafından sağlanan filtreler][link-json] 
+Ayrıca, karmaşık veri yapıları içeren bir istek gövdesi ile de çalışabilirsiniz. İlgili veri yapılarına erişmek için, Post filtresinden sonra noktada aşağıdaki filtreleri ve ayrıştırıcıları kullanın:
+* **form-urlencoded** formatındaki istek gövdesi için [Form_urlencoded][link-formurlencoded] ayrıştırıcısı
+* **multipart** formatındaki istek gövdesi için [Multipart][link-multipart] ayrıştırıcısı
+* **XML** formatındaki istek gövdesi için [XML ayrıştırıcısının sağladığı filtreler][link-xml]
+* **JSON** formatındaki istek gövdesi için [Json_doc ayrıştırıcısının sağladığı filtreler][link-json]

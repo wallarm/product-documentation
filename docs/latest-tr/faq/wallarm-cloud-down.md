@@ -1,86 +1,84 @@
-# Wallarm Bulutu Çalışmıyor
+# Wallarm Cloud kapalı
 
-Wallarm Bulutu çalışmıyor olsa bile, Wallarm düğümleri bazı kısıtlamalarla saldırı önleme işlemlerine devam eder. Daha fazla bilgi için bu sorun giderme kılavuzunu kullanın.
+Eğer Wallarm Cloud kapalıysa, Wallarm düğümleri bazı sınırlamalarla saldırı önleme işlemlerine devam eder. Detaylı bilgi için bu sorun giderme kılavuzunu kullanın.
 
-## Wallarm Bulutu çalışmadığında Wallarm düğümü nasıl çalışır?
+## Wallarm Cloud kapalıyken Wallarm düğümü nasıl çalışır?
 
-Wallarm Bulutu, son derece kararlı ve ölçeklenebilir bir hizmettir. Ek olarak, şirketinizin tüm hesap verileri [yedeklemeler](#how-does-wallarm-protect-its-cloud-data-from-loss) tarafından korunmaktadır.
+Wallarm Cloud son derece kararlı ve ölçeklenebilir bir hizmettir. Ayrıca, şirketinizin hesap verileri [yedeklemeler](#how-does-wallarm-protect-its-cloud-data-from-loss) ile korunmaktadır.
 
-Ancak, nadir durumlarda Wallarm Bulutu geçici olarak durursa (örneğin, bakım için duraklatıldığında), bir Wallarm düğümü bazı kısıtlamalarla işlemeye devam eder.
+Ancak, nadir durumlarda Wallarm Cloud geçici olarak kapanır (örneğin, bakım amacıyla duraklatıldığında) ve Wallarm düğümü bazı sınırlamalarla çalışmaya devam eder.
 
-!!! bilgi "Wallarm Bulut durumunu kontrol etme"
-    Wallarm Bulut durumunu kontrol etmek için, [status.wallarm.com](https://status.wallarm.com/) adresini ziyaret edin. Bilgilendirilmek için güncelleme abonelikleri oluşturun.
+!!! info "Wallarm Cloud durumunu kontrol etme"
+    Wallarm Cloud durumunu kontrol etmek için [status.wallarm.com](https://status.wallarm.com/) adresini ziyaret edin. Sorunlardan haberdar olmak için güncellemeleri takip edin.
 
-Devam eden işlemler:
+Çalışmaya devam edenler:
 
-* Düğüm ile Bulut arasında son başarılı [senkronizasyon](../admin-en/configure-wallarm-mode.md#available-filtration-modes) sırasında düğüme yüklenen kuralları kullanarak yapılandırılan [modda](../admin-en/configure-cloud-node-synchronization-en.md) trafik işlemi. Düğümün devam etmesiyle, aşağıdaki unsurların en son sürümleri programlanmış zamanda Bulut'tan yüklenir ve düğümde yerel olarak saklanır:
+* Düğüm, Cloud ile düğüm arasında gerçekleştirilen son başarılı [senkronizasyon](../admin-en/configure-cloud-node-synchronization-en.md) sırasında düğüme yüklenen kurallar kullanılarak yapılandırılmış [mod](../admin-en/configure-wallarm-mode.md#available-filtration-modes) kapsamında trafiği işlemeye devam eder. Düğüm, Cloud’dan zaman çizelgesine göre yüklenen ve yerel olarak düğümde depolanan aşağıdaki öğelerin en güncel versiyonları sayesinde çalışmaya devam edebilir:
 
-    * [Özel kural seti](../user-guides/rules/rules.md)
+    * [Özel kural seti](../user-guides/rules/rules.md#ruleset-lifecycle)
     * [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton)
 
-* [IP listeleri](../user-guides/ip-lists/overview.md) de düğüme yüklenir ve içinde saklanır. Yüklenen adresler geçerlilik süresi/dakikası sona erene kadar işlenecektir.
+* [IP lists](../user-guides/ip-lists/overview.md) de düğüme yüklenir ve içerisinde depolanır. Yüklenen adresler, ancak geçerlilik tarihi/saatine kadar işlem görmeye devam edecektir.
 
-    Bu tarihler/saatler, Bulut'un kurtarıldığı ve senkronizasyon sağlandığı zamana kadar güncellenmeyecektir; ayrıca yeni/kaldırılan adresler de Bulut'un kurtarılması/senkronizasyonu tamamlanana kadar olmayacaktır.
+    Bu tarih/saat bilgileri, Cloud yeniden etkinleştirilip senkronize edilene kadar güncellenmeyecektir; ayrıca Cloud yeniden etkinleştirme/senkronizasyonu gerçekleşene kadar yeni veya silinen adresler olmayacaktır.
 
-    Listedeki bazı IP adreslerinin süresinin dolması, bu adreslerle ilgili [kaba kuvvet saldırılarına](../admin-en/configuration-guides/protecting-against-bruteforce.md) karşı korumanın sona ermesine neden olur.
+    Listelerdeki bazı IP adreslerinin süresinin dolması, bu adreslerle ilişkili [brute force saldırılara](../admin-en/configuration-guides/protecting-against-bruteforce.md) karşı korumanın sona ermesine yol açar.
 
 Çalışmayı durduranlar:
 
-* Düğüm, tespit edilen saldırılar ve güvenlik açıkları hakkındaki verileri toplar ancak Bulut'a gönderemez. [postanalytics modülü](../admin-en/installation-postanalytics-en.md) bulunan düğümünüzün, toplanan verilerin Bulut'a gönderilmesinden önce geçici olarak saklandığı bir bellek içi saklama alanı (Tarantool) olduğunu unutmayın. Bulut kurtarıldığında, tamponlanmış veri Bulut'a gönderilir.
+* Düğüm, tespit edilen saldırı ve güvenlik açıklarına ilişkin verileri toplar ancak bu verileri Cloud'a gönderemez. Düğümünüzün [postanalytics modülünün](../admin-en/installation-postanalytics-en.md) topladığı veriler, Cloud’a gönderilmeden önce geçici olarak bellek içi depolamada (Tarantool) saklanır. Cloud yeniden etkinleştirilir etmez, tamponlanmış veriler Cloud’a gönderilecektir.
 
-    !!! uyarı "Düğümün bellek içi depolama sınırlaması"
-        Tampon boyutu [kısıtlıdır](../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool) ve aşıldığında, eski veriler silinir. Bu nedenle, Bulut'un kapalı olduğu süre ve bu süre boyunca toplanan bilgiler miktarı, Bulut'un kurtarılmasının ardından Wallarm Console'unda yalnızca bazı verileri almanıza neden olabilir.
+    !!! warning "Düğüm bellek içi depolama sınırlaması"
+        Tampon boyutu [sınırlıdır](../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool) ve bu sınır aşıldığında eski veriler silinir. Bu nedenle, Cloud’ın kapalı kaldığı süre ve bu süre içinde toplanan bilgi miktarı, Cloud yeniden etkinleştirildikten sonra Wallarm Console’da yalnızca kısmi veriler görmenize sebep olabilir.
 
-* Düğüm, işlenen trafikle ilgili [metrikleri](../admin-en/monitoring/intro.md) toplar ancak Bulut'a gönderemez.
-* [Maruz kalan varlıklar](../user-guides/scanner.md) ve [tipik güvenlik açıklıkları](../user-guides/vulnerabilities.md) için tarama durur.
-* [Tetikleyiciler](../user-guides/triggers/triggers.md) çalışmayı durdurur ve dolayısıyla:
-    * [IP listeleri](../user-guides/ip-lists/overview.md) güncellenmez.
-    * [Tetikleyiciye bağlı bildirimler](../user-guides/triggers/triggers.md) çıkmaz.
-* [API envanterini keşfetme](../api-discovery/overview.md) işlemi çalışmayı durdurur.
-* [Aktif tehdit doğrulama](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) durur.
-* [Kaba kuvvet saldırıları](../admin-en/configuration-guides/protecting-against-bruteforce.md) tespit edilmez.
-* Entegrasyonlar durdurulur, aşağıdakiler dahil:
-    * Anlık ve e-posta [bildirimleri](../user-guides/settings/integrations/integrations-intro.md) çıkmaz.
-    * Raporlama durur.
-* Wallarm Console’ye erişim yok.
-* [Wallarm API](../api/overview.md) yanıt vermez.
+* Düğüm, işlenen trafik için [metrics](../admin-en/monitoring/intro.md) toplayabilir fakat bunları Cloud’a gönderemez.
+* Açığa çıkan [varlıklar](../user-guides/scanner.md) ve [tipik güvenlik açıkları](../user-guides/vulnerabilities.md) için tarama duracaktır.
+* [Triggers](../user-guides/triggers/triggers.md) çalışmayı durdurur ve bu nedenle:
+    * [IP lists](../user-guides/ip-lists/overview.md) güncellenmeyecektir.
+    * [Trigger tabanlı bildirimler](../user-guides/triggers/triggers.md) görünmeyecektir.
+* [Discovering API inventory](../api-discovery/overview.md) çalışmayacaktır.
+* [Threat Replay Testing](../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) duracaktır.
+* [Brute force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md) tespit edilmeyecektir.
+* Entegrasyonlar duracaktır, buna dahil:
+    * Anlık ve e-posta [bildirimleri](../user-guides/settings/integrations/integrations-intro.md) görünmeyecektir.
+    * Raporlama duracaktır.
+* Wallarm Console erişimi olmayacaktır.
+* [Wallarm API](../api/overview.md) yanıt vermeyecektir.
 
-Yukarıda açıklanan tam kapalı durum dışında, bazen yalnızca belirli servisler geçici olarak erişilemez olabilirken diğerleri işlemeye devam eder. Bu durumda, [status.wallarm.com](https://status.wallarm.com/) hizmeti size ilgili bilgileri sağlayacaktır.
+Yukarıda açıklanan tüm sistem kapanmasının yanı sıra, bazen yalnızca belirli hizmetlere geçici olarak erişilemeyebilirken diğerleri çalışmaya devam edebilir. Durum böyle ise, [status.wallarm.com](https://status.wallarm.com/) hizmeti ilgili bilgiyi sağlayacaktır.
 
-## Bulut kurtarma sonrası ne olur?
+## Cloud yeniden etkinleştirildikten sonra ne olur?
 
-Bulut kurtarma sonrası:
+* Wallarm Console erişimi yeniden sağlanır.
+* Düğüm, tamponlanmış bilgiyi Cloud’a gönderir (yukarıdaki sınırlamaları göz önünde bulundurun).
+* Triggers, yeni veriye tepki olarak bildirim gönderir ve IP’leri günceller.
+* IP’lerde herhangi bir değişiklik varsa, bunlar bir sonraki senkronizasyon sırasında düğüme gönderilir.
+* Tamamlanmamış bir [özel kural seti](#is-there-a-case-when-node-did-not-get-settings-saved-in-wallarm-console-before-wallarm-cloud-is-down) derlemesi varsa, yeniden başlatılır.
+* Cloud ve filtreleme düğümü, normal şekilde zaman çizelgesine göre senkronize olmaya devam eder.
 
-* Wallarm Console'a erişim geri yüklenir.
-* Düğüm, tamponlanmış bilgileri Bulut'a gönderir (yukarıdaki sınırlamaları dikkate alın).
-* Tetikleyiciler, yeni verilere bildirim göndererek ve IP'leri güncelleyerek tepki verir.
-* Eğer IP'lerde herhangi bir değişiklik varsa, bu, bir sonraki senkronizasyon sırasında düğüme gönderilir.
-* Eğer bitmemiş bir [özel kural seti](#is-there-a-case-when-node-did-not-get-settings-saved-in-wallarm-console-before-wallarm-cloud-is-down) oluşturulmuşsa, bu yeniden başlatılır.
-* Bulut ve filtreleme düğümü, genellikle olduğu gibi bir programda senkronize olur.
+## Wallarm Cloud kapalı olmadan önce Wallarm Console'da kaydedilen ayarların düğüme ulaşmadığı bir durum olabilir mi?
 
-## Wallarm Bulutu kapalıyken düğümün Wallarm Console'da kaydedilen ayarları alamadığı bir durum var mı?
+Evet, bu mümkündür. Örneğin, [senkronizasyon](../admin-en/configure-cloud-node-synchronization-en.md) aralığının 3 dakika olduğunu varsayalım ve:
 
-Evet, bu mümkün. Örneğin, [senkronizasyon](../admin-en/configure-cloud-node-synchronization-en.md) aralığının 3 dakika olduğunu ve:
+1. Özel kural setinin son derlemesi Cloud üzerinde 21 dakika önce tamamlanmış ve 20 dakika önce düğüme yüklenmiştir.
+2. Sonraki 6 senkronizasyon sırasında, yeni bir şey olmadığı için Cloud’dan hiç veri alınmamıştır.
+3. Ardından Cloud üzerinde kurallar değiştirildi ve yeni bir derleme başlatıldı – derlemenin tamamlanması 4 dakika sürmesi gerekirken, 2 dakika sonra Cloud kapandı.
+4. Düğüm yalnızca tamamlanmış derlemeyi alır; bu nedenle 2 dakikalık senkronizasyonlarda düğüme yüklenecek hiçbir veri olmayacaktır.
+5. Bir dakika sonra, düğüm yeni senkronizasyon isteğiyle gelir ancak Cloud yanıt vermez.
+6. Düğüm, 24 dakika eskimiş özel kural setine göre filtrelemeye devam eder ve bu süre, Cloud kapalı kaldıkça artmaya devam eder.
 
-1. Özel kural setinin son inşası Bulut üzerinde 21 dakika önce tamamlandı ve 20 dakika önce düğüme yüklendi.
-2. Sonraki 6 senkronizasyonda Bulut'tan hiçbir şey alınmadı çünkü yeni bir şey yoktu.
-3. Daha sonra kurallar Bulut'ta değiştirildi ve yeni bir inşa başladı - inşanın tamamlanması 4 dakika sürdü ancak 2 dakika sonra Bulut kapandı.
-4. Bir düğüm yalnızca tamamlanan inşayı alır, bu yüzden 2 dakika içindeki senkronizasyonlar düğüme yüklenecek bir şey vermez.
-5. 1 dakika daha geçtikten sonra, düğüm yeni bir senkronizasyon talebiyle gelir ancak Bulut yanıt vermez.
-6. Düğüm, 24 dakika önceki özel kural setine göre filtrelemeye devam eder ve bu yaş artar ve Bulut kapalıyken artmaya devam eder.
+## Wallarm Cloud verilerini kayıptan nasıl korur?
 
-## Wallarm Bulut verilerini kayıptan nasıl korur?
+Wallarm Cloud, Wallarm Console üzerinden bir kullanıcı tarafından sağlanan ve düğümlerden yüklenen **tüm verileri** saklar. Yukarıda belirtildiği gibi, Wallarm Cloud'un geçici olarak kapanması son derece nadir bir durumdur. Ancak böyle bir durum gerçekleşirse, saklı verilerin etkilenme olasılığı oldukça düşüktür. Bu da, yeniden etkinleştirildikten sonra tüm verilerinizle çalışmaya hemen devam edeceğiniz anlamına gelir.
 
-Wallarm Bulutu, bir kullanıcının Wallarm Console`da sağladığı ve düğümlerden yüklenen **tüm verileri** kaydeder. Yukarıda belirtildiği gibi, Wallarm Bulut'unun geçici olarak durması son derece nadir bir durumdur. Ancak, bu durum gerçekleşirse, durumun kaydedilen verileri etkileme olasılığı önemli ölçüde düşüktür. Bu da, kurtarma sonrası tüm verilerinizle hemen çalışmaya devam edeceğiniz anlamına gelir.
+Wallarm Cloud'un verilerini depolayan sabit disklerin yok edilme olasılığına karşı, Wallarm otomatik olarak yedeklemeler oluşturur ve gerekirse bunlardan geri yükleme yapar:
 
-Wallarm Bulut'un gerçek verilerini saklayan sabit disklerin yok olma şansı düşük bir durumla başa çıkmak için, Wallarm otomatik olarak yedeklemeler oluşturur ve gerektiğinde bunları geri yükler:
+* RPO: Yedekleme her 24 saatte bir oluşturulur
+* RTO: Sistem, en fazla 48 saat içerisinde yeniden kullanılabilir hale gelir
+* Son 14 yedek saklanır
 
-* RPO: yedekleme her 24 saatte bir oluşturulur
-* RTO: sistem en fazla 48 saat sonra tekrar kullanılabilir olacaktır.
-* 14 güncel yedekleme saklanır
+!!! info "RPO/RTO koruma ve erişilebilirlik parametreleri"
+    * **RPO (recovery point objective)**, veri yedeklemesinin sıklığını belirlemek için kullanılır: verilerin kaybedilebileceği maksimum süreyi tanımlar.
+    * **RTO (recovery time objective)**, bir felaket sonrası iş süreçlerini kabul edilebilir bir hizmet seviyesinde geri yüklemek için işletmenin sahip olduğu gerçek zaman miktarıdır; böylece yaşanabilecek tolere edilemez kesintilerin önüne geçilir.
 
-!!! bilgi "RPO/RTO koruma ve kullanılabilirlik parametreleri"
-    * **RPO (geri dönüş noktası objektifi)**, veri yedekleme sıklığının belirlenmesi için kullanılır: verilerin kaybolabileceği maksimum süreyi tanımlar.
-    * **RTO (geri dönüş süresi objektifi)**, bir felaketi önlemek için kabul edilebilir hizmet düzeyinde süreçleri geri yüklemek için bir işletmenin gerçek zamanıdır.
-
-Wallarm felaket kurtarma (DR) planı ve şirketiniz için özellikleri hakkında daha fazla bilgi için, [Wallarm destek servisiyle](mailto:support@wallarm.com) iletişime geçin.
+Wallarm felaketten kurtarma (DR) planı ve şirketiniz için olan özellikleri hakkında daha fazla bilgi edinmek için [Wallarm support](mailto:support@wallarm.com) ile iletişime geçin.

@@ -1,11 +1,11 @@
-| Wallarm düğüm davranışı | `kapalı` | `izleme` | `güvenli_blokaj` |`blok` |
-| -------- | - | - | - | -|
-| Gelen isteklerin aşağıdaki türlerde zararlı yükler içerip içermediğini analiz eder: [giriş doğrulama saldırıları](../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [vpatch saldırıları](../user-guides/rules/vpatch-rule.md) veya [düzenli ifadelere dayalı olarak tespit edilen saldırılar](../user-guides/rules/regex-rule.md) | - | + | + | + |
-| Zararlı istekleri Wallarm Bulut'a yükler, böylece olay listesinde görüntülenirler | - | + | + | + |
-| Zararlı istekleri engeller | - | - | Yalnızca [gri listeye alınan IP'lerden](../user-guides/ip-lists/graylist.md) gelenler | + |
-| [Kara listeye alınan IP'lerden](../user-guides/ip-lists/denylist.md)<sup>istisnaları görün</sup> gelen istekleri engeller | Kara listeyi analiz etmez | - | + | + |
-| [Gri listeye alınan IP'lerden](../user-guides/ip-lists/graylist.md) gelen istekleri engeller | Gri listeyi analiz etmez | - | Yalnızca zararlı yük içerenler | Gri listeyi analiz etmez |
-| [Beyaz listeye alınan IP'lerden](../user-guides/ip-lists/allowlist.md) gelen isteklere izin verir | Beyaz listeyi analiz etmez | + | + | + |
+| Wallarm node davranışı | `off` | `monitoring` | `safe_blocking` | `block` |
+| ---------------------- | ----- | ------------ | --------------- | ----- |
+| Gelen isteklerin, aşağıdaki tiplerde kötü amaçlı yükler içerip içermediğini analiz eder: [input validation attacks](../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md) veya [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md) | - | + | + | + |
+| Kötü amaçlı istekleri, olay listesinde görüntülenmeleri için Wallarm Cloud'a yükler | - | + | + | + |
+| Kötü amaçlı istekleri engeller | - | - | Yalnızca [graylisted IPs](../user-guides/ip-lists/graylist.md) kaynaklı olanlar | + |
+| [denylisted IPs](../user-guides/ip-lists/denylist.md)<sup>bkz. istisnalar</sup> kaynaklı istekleri engeller | Denylist'i analiz etmez | - | + | + |
+| [graylisted IPs](../user-guides/ip-lists/graylist.md) kaynaklı istekleri engeller | Graylist'i analiz etmez | - | Yalnızca kötü amaçlı yük içerenler | Graylist'i analiz etmez |
+| [allowlisted IPs](../user-guides/ip-lists/allowlist.md) kaynaklı istekleri izin verir | Allowlist'i analiz etmez | + | + | + |
 
-!!! uyarı "İstisnalar"
-    Eğer [`wallarm_acl_access_phase on`][acl-access-phase] ise, `kapalı` ve `izleme` modları dahil olmak üzere kara listeye alınan IP'lerden gelen istekler engellenir.
+!!! warning "Exceptions"
+    Eğer [`wallarm_acl_access_phase on`][acl-access-phase] aktifse, denylisted IP'lerden gelen istekler `off` ve `monitoring` modları dahil tüm modlarda engellenir

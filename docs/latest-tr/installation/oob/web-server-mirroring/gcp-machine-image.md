@@ -1,3 +1,4 @@
+```markdown
 [link-launch-instance]:     https://cloud.google.com/deep-learning-vm/docs/quickstart-marketplace
 
 [img-ssh-key-generation]:       ../../../images/installation-gcp/common/ssh-key-generation.png
@@ -5,7 +6,7 @@
 [img-wl-console-users]:         ../../../images/check-user-no-2fa.png
 [img-create-wallarm-node]:      ../../../images/user-guides/nodes/create-cloud-node.png
 [deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
-[node-token]:                       ../../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
+[node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../installation/supported-deployment-options.md
@@ -17,39 +18,70 @@
 [allocate-memory-docs]:             ../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [limiting-request-processing]:      ../../../user-guides/rules/configure-overlimit-res-detection.md
 [logs-docs]:                        ../../../admin-en/configure-logging.md
-[oob-advantages-limitations]:       ../overview.md#advantages-and-limitations
+[oob-advantages-limitations]:       ../overview.md#limitations
 [wallarm-mode]:                     ../../../admin-en/configure-wallarm-mode.md
 [wallarm-api-via-proxy]:            ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-grouped-nodes]:                ../../../images/user-guides/nodes/grouped-nodes.png
+[cloud-init-spec]:                  ../../cloud-platforms/cloud-init.md
+[wallarm_force_directive]:          ../../../admin-en/configure-parameters-en.md#wallarm_force
+[web-server-mirroring-examples]:    overview.md#configuration-examples-for-traffic-mirroring
+[ip-lists-docs]:                    ../../../user-guides/ip-lists/overview.md
+[api-spec-enforcement-docs]:        ../../../api-specification-enforcement/overview.md
 
-# GCP Makine İmajı'ndan Wallarm OOB'u Dağıtma
+# GCP Makine Görüntüsünden Wallarm OOB Dağıtımı
 
-Bu makale, [Wallarm OOB](overview.md)'nun Google Cloud Platform'da [resmi Makine İmajı](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node) kullanılarak dağıtılması için talimatları sağlamaktadır. Burada tarif edilen çözüm, bir web veya proxy sunucusu tarafından yansıtılan trafiği analiz etmek için tasarlanmıştır.
+Bu makale, [Wallarm OOB](overview.md)'un, [resmi Makine Görüntüsü](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node) kullanılarak Google Cloud Platform üzerinde dağıtımı için talimatlar sunmaktadır. Burada tanımlanan çözüm, bir web veya proxy sunucu tarafından aynalanan trafiği analiz etmek üzere tasarlanmıştır.
 
-## Kullanım senaryoları
+## Kullanım Senaryoları
 
---8<-- "../include-tr/waf/installation/cloud-platforms/gcp-machine-image-use-cases.md"
+--8<-- "../include/waf/installation/cloud-platforms/gcp-machine-image-use-cases.md"
 
---8<-- "../include-tr/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
 
-## 5. Wallarm'ın yansıtılan trafiği analiz etmesini sağlayın
+## 5. Filtreleme Düğümünü Wallarm Cloud'a Bağlayın
 
---8<-- "../include-tr/waf/installation/oob/steps-for-mirroring-cloud.md"
+Bulut örneğindeki düğüm, [cloud-init.py][cloud-init-spec] betiği aracılığıyla Cloud'a bağlanır. Bu betik, sağlanan bir jeton kullanarak düğümü Wallarm Cloud'a kaydeder, küresel olarak izleme [modu][wallarm-mode]na ayarlar ve NGINX'in `location /` bloğunda yalnızca aynalanan trafik kopyalarını analiz etmek üzere [`wallarm_force`][wallarm_force_directive] yönergelerini uygular. NGINX'in yeniden başlatılması, kurulumu tamamlar.
 
-## 6. NGINX'i Yeniden Başlatın
+Cloud görüntüsünden oluşturulan örnekte `cloud-init.py` betiğini aşağıdaki gibi çalıştırın:
 
---8<-- "../include-tr/waf/installation/cloud-platforms/restart-nginx.md"
+=== "US Cloud"
+    ``` bash
+    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring -p mirror -H us1.api.wallarm.com
+    ```
+=== "EU Cloud"
+    ``` bash
+    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring -p mirror
+    ```
 
-## 7. Web veya proxy sunucunuzu Wallarm düğümüne trafiği yansıtmak üzere yapılandırın
+* `WALLARM_LABELS='group=<GROUP>'` mevcut bir düğüm grubu adı ayarlar (varsa mevcut, yoksa oluşturulur). Bu yalnızca bir API jetonu kullanılıyorsa uygulanır.
+* `<TOKEN>` jetonun kopyalanan değeridir.
 
-Web veya sunucunuzu (ör. NGINX, Envoy), Wallarm düğümüne gelen trafiği yansıtmak üzere yapılandırın. Yapılandırma ayrıntıları için web veya proxy sunucunuzun belgelerine başvurmanızı öneririz.
+## 6. Web veya Proxy Sunucunuzu, Trafiği Wallarm Düğümüne Yansıtacak Şekilde Yapılandırın
 
-[Link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring) içinde, en popüler web ve proxy sunucularının (NGINX, Traefik, Envoy) örnek yapılandırmasını bulacaksınız.
+1. Web veya proxy sunucunuzu (örneğin NGINX, Envoy) gelen trafiği Wallarm düğümüne yansıtacak şekilde yapılandırın. Yapılandırma ayrıntıları için web veya proxy sunucunuzun belgelerine başvurmanızı öneririz.
 
-## 8. Wallarm işlemini test edin
+    [web-server-mirroring-examples] bağlantısı içinde, en popüler web ve proxy sunucularından (NGINX, Traefik, Envoy) biri için örnek yapılandırmayı bulabilirsiniz.
+1. Düğümün bulunduğu örnekteki `/etc/nginx/sites-enabled/default` dosyasına aşağıdaki yapılandırmayı ekleyin:
 
---8<-- "../include-tr/waf/installation/cloud-platforms/test-operation-oob.md"
+    ```
+    location / {
+        include /etc/nginx/presets.d/mirror.conf;
+        
+        # 222.222.222.22 adresini, aynalama sunucusunun adresi ile değiştirin
+        set_real_ip_from  222.222.222.22;
+        real_ip_header    X-Forwarded-For;
+    }
+    ```
 
-## 9. Dağıtılmış çözümü ince ayar yapın
+    Wallarm Console'un [saldırganların IP adreslerini görüntülemesi][real-ip-docs] için `set_real_ip_from` ve `real_ip_header` yönergeleri gereklidir.
 
---8<-- "../include-tr/waf/installation/cloud-platforms/fine-tuning-options.md"
+## 7. Wallarm İşlemini Test Edin
+
+--8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
+
+## 8. Dağıtılmış Çözümü İnce Ayar Yapın
+
+--8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+
+--8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+```

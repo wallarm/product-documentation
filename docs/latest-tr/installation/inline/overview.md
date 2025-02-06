@@ -1,87 +1,93 @@
-# Wallarm Node'un Çevrimiçi (Inline) Yerleştirmesi
+# Wallarm Node'un In-line Dağıtımı
 
-Wallarm, tehditleri gerçek zamanlı olarak hafifletmek için çevrimiçi olarak dağıtılabilir. Bu durumda, korunan API'lere yönlendirilen trafik, API'ye ulaşmadan önce Wallarm düğüm örneklerinden geçer. Kullanıcılar için tek yol olduğu sürece ve çevrimiçi oldukları sürece bir saldırganın Wallarm düğümlerini atlaması mümkün değildir. Bu makale yaklaşımı ayrıntılı olarak açıklar.
-Wallarm düğüm örnekleri, müşteri ile sunucular arasında yer alır, gelen trafiği analiz eder, kötü niyetli istekleri hafifletir ve meşru istekleri korunan sunucuya iletir.
+Wallarm, tehditleri gerçek zamanlı olarak hafifletmek için in-line olarak dağıtılabilir. Bu durumda, korunan API'lere gelen trafik, API'ye ulaşmadan önce Wallarm node örneklerinden geçer. Wallarm node'larının in-line olması ve son kullanıcılar için tek mevcut yol olması durumunda, saldırganların Wallarm node'larını atlatma şansı olmaz. Bu makale yaklaşımı ayrıntılarıyla açıklamaktadır.
 
-## Kullanım Senaryoları
+Wallarm node örnekleri, istemci ile sunucular arasında yer alarak gelen trafiği analiz eder, zararlı istekleri hafifletir ve meşru istekleri korunan sunucuya iletir.
 
-Wallarm'ın çevrimiçi çözümü, aşağıdaki kullanım senaryoları için uygundur:
+## Kullanım Durumları
 
-* Uygulama sunucusuna ulaşmadan önce SQli, XSS enjeksiyonları, API kötüye kullanımı, brute force gibi kötü niyetli istekleri hafifletir.
-* Sisteminizin aktif güvenlik açıkları hakkında bilgi edinin ve uygulama kodunu düzeltmeden önce sanal düzeltmeler uygulayın.
-* API envanterini gözlemleyin ve hassas verileri izleyin.
+Wallarm in-line çözümü aşağıdaki kullanım durumları için uygundur:
 
-## Avantajları ve Özel Gereklilikler
+* SQLi, XSS enjeksiyonları, API kötüye kullanımı, brute force gibi zararlı istekleri, uygulama sunucusuna ulaşmadan önce hafifletir.
+* Sistemin aktif güvenlik açıkları hakkında bilgi edinmenizi sağlar ve uygulama kodunu düzeltmeden önce sanal yamalar uygulamanıza imkan tanır.
+* API envanterini izler ve hassas verileri takip eder.
 
-Wallarm dağıtımına çevrimiçi (inline) bir yaklaşımla, diğer dağıtım yöntemlerine göre, [OOB](../oob/overview.md) dağıtımları gibi, birkaç avantaj sunar:
+## Avantajlar ve Özel Gereksinimler
 
-* Wallarm, trafik analizinin gerçek zamanlı olarak ilerlemesi nedeniyle kötü amaçlı istekleri anında engeller.
-* Wallarm'ın [API Keşif](../../api-discovery/overview.md) ve [açıklık tespiti](../../about-wallarm/detecting-vulnerabilities.md) dahil olmak üzere tüm özellikleri, hem gelen isteklere hem de sunucu yanıtlarına erişimi olduğu için herhangi bir kısıtlama olmadan çalışır.
+Wallarm dağıtımında in-line yaklaşım, [OOB](../oob/overview.md) dağıtımlara göre birkaç avantaj sunar:
 
-Inline şemayı uygulamak için, altyapınızdaki trafik rotasını değiştirmeniz gerekecektir. Ayrıca, kesintisiz hizmet sağlamak için Wallarm düğümleri için [kaynak tahsisini](../../admin-en/configuration-guides/allocate-resources-for-node.md) dikkatlice göz önünde bulundurun.
+* Wallarm, trafik analizi gerçek zamanlı gerçekleştirildiği için zararlı istekleri anında engeller.
+* Gelen istekler ve sunucu yanıtlarına erişim sağladığından, [API Discovery](../../api-discovery/overview.md) ve [vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) gibi tüm Wallarm özellikleri hiçbir kısıtlama olmaksızın çalışır.
 
-AWS veya GCP gibi halka açık bulutlarda Wallarm düğümlerini üretim ortamlarında dağıtırken, en iyi performans, ölçeklenebilirlik ve direnç için düzgün yapılandırılmış bir otomatik ölçeklendirme grubu kullanılması gerekmektedir (makalelere bakınız [AWS](../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md) veya [GCP](../../admin-en/installation-guides/google-cloud/autoscaling-overview.md)).
+In-line şemayı uygulamak için altyapınızdaki trafik rotasını değiştirmeniz gerekecektir. Ayrıca, kesintisiz hizmet sağlamak için Wallarm node'ları için [resource allocation](../../admin-en/configuration-guides/allocate-resources-for-node.md)'u dikkatlice göz önünde bulundurun.
+
+Üretim ortamlarında AWS veya GCP gibi kamu bulutlarında Wallarm node'larını dağıtırken, optimal performans, ölçeklenebilirlik ve dayanıklılık için düzgün yapılandırılmış bir autoscaling grubunun kullanılması gerekmektedir (bkz. [AWS](../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md) veya [GCP](../../admin-en/installation-guides/google-cloud/autoscaling-overview.md)).
 
 ## Dağıtım Modelleri ve Desteklenen Dağıtım Yöntemleri
 
-Wallarm'ı çevrimiçi olarak konumlandırmak söz konusu olduğunda, düşünülmesi gereken iki yaygın model vardır: hesaplama örneği dağıtımı ve Kubernetes dağıtımı.
+Wallarm in-line dağıtımı söz konusu olduğunda, aşağıdaki yaygın modeller dikkate alınmalıdır:
 
-Dağıtım modelini ve yöntemini altyapınızın özelliklerine göre seçebilirsiniz. Doğru dağıtım modelini ve yöntemini seçme konusunda yardıma ihtiyaç duyarsanız, lütfen [satış ekibimizle](mailto:sales@wallarm.com) iletişime geçmekten çekinmeyin ve size özel yönlendirmeler için altyapınız hakkında ek bilgiler sağlayın.
+* Wallarm Security Edge
+* Compute instance üzerinde self-hosted node dağıtımı
+* Kubernetes üzerinde self-hosted node dağıtımı
 
-### Wallarm'ı Hesaplama Örneklerinde Çalıştırma
+Dağıtım modelini ve yöntemini altyapınızın özelliklerine göre seçebilirsiniz. Doğru dağıtım modelini ve yöntemini seçme konusunda yardıma ihtiyaç duyarsanız, lütfen altyapınız hakkında ek bilgileri belirterek [sales team](mailto:sales@wallarm.com)'imizle iletişime geçiniz.
 
-Bu modelde, Wallarm'ı altyapınızda bir sanal cihaz olarak konuşlandırırsınız. Sanal cihaz, bir VM, konteyner veya bulut örneği olarak kurulabilir.
+### Wallarm Security Edge'in Çalıştırılması
 
-Bir Wallarm düğümünü konuşlandırırken, ağınızın topolojisi içinde farklı konumlara yerleştirme esnekliğine sahip olabilirsiniz. Ancak, önerilen yaklaşım, düğüm örneğini halka açık bir yük dengeleyici arkasına, arkadaki hizmetlerinizin önüne veya genellikle arka taraf hizmetlerinden önce bulunan özel bir yük dengeleyicinin önüne yerleştirmektir. Aşağıdaki diyagram, bu kurulumdaki tipik trafik akışını gösterir:
+Security Edge platformu, coğrafi olarak dağıtılmış konumlarda, Wallarm tarafından barındırılan bir ortamda node dağıtımını yöneten bir hizmet sunar. [Read more](../security-edge/deployment.md)
 
-![Çevrimiçi filtreleme şeması](../../images/waf-installation/inline/wallarm-inline-deployment-scheme.png)
+### Compute Instance'larda Wallarm'ın Çalıştırılması
 
-Yük dengeleyiciler iki tipe ayrılabilir: L4 ve L7. Yük dengeleyicinin tipi, Wallarm'ı mevcut altyapınıza entegre ederken SSL offloading'in nasıl ele alındığını belirler.
+Bu modelde, Wallarm altyapınız içerisinde sanal bir cihaz olarak dağıtılır. Sanal cihaz bir VM, konteyner veya bulut instance'ı olarak kurulabilir.
 
-* L4 tipi bir yük dengeleyici kullanıyorsanız, genellikle SSL offloading, yük dengeleyicinin arkasında bulunan bir web sunucu tarafından veya Wallarm örneği olmadan altyapınızdaki diğer araçlarla yapılır. Ancak, Wallarm düğümünü dağıtırken, Wallarm örneğinde SSL offloading'i yapılandırmanız gerekmektedir.
-* L7 tipi bir yük dengeleyici kullanıyorsanız, genellikle SSL offloading yük dengeleyici tarafından ele alınır ve Wallarm düğümü düz HTTP alır.
+Wallarm node dağıtırken, node'unuzu ağ topolojiniz içinde farklı konumlarda yerleştirme esnekliğine sahipsiniz. Ancak, önerilen yaklaşım, node örneğini arka uç hizmetlerinizin önünde, genel bir load balancer'ın arkasında veya arka uç hizmetlerinden önce tipik olarak bulunan özel bir load balancer'ın önünde konumlandırmaktır. Aşağıdaki şema, bu yapıdaki tipik trafik akışını göstermektedir:
 
-Wallarm, hesaplama örneklerinde çalıştırma için aşağıdaki eserleri ve çözümleri sunar:
+![In-line filtering scheme](../../images/waf-installation/inline/wallarm-inline-deployment-scheme.png)
 
-**Amazon Web Hizmetleri (AWS)**
+Load balancer'lar L4 ve L7 olmak üzere iki tipe ayrılabilir. Load balancer tipi, mevcut altyapınıza Wallarm'ı entegre ederken kritik öneme sahip olan SSL offloading'in nasıl yönetileceğini belirler.
+
+* Eğer L4 load balancer kullanıyorsanız, genellikle SSL offloading, load balancer'ın arkasında bulunan bir web sunucusu veya altyapınızdaki diğer yöntemlerle, Wallarm örneği olmadan gerçekleştirilir. Ancak, Wallarm node dağıtılırken, Wallarm örneği üzerinde SSL offloading yapılandırmanız gerekmektedir.
+* Eğer L7 load balancer kullanıyorsanız, genellikle SSL offloading load balancer tarafından kendisi gerçekleştirilir ve Wallarm node düz metin HTTP trafiği alır.
+
+Wallarm, compute instance'larında Wallarm'ı çalıştırmak için aşağıdaki bileşenleri ve çözümleri sunmaktadır:
+
+**Amazon Web Services (AWS)**
 
 * [AMI](compute-instances/aws/aws-ami.md)
 * [ECS](compute-instances/aws/aws-ecs.md)
 * Terraform modülü:
-    * [AWS VPC'de Proxy](compute-instances/aws/terraform-module-for-aws-vpc.md)
-    * [Amazon API Gateway için Proxy](compute-instances/aws/terraform-module-for-aws-api-gateway.md)
+    * [Proxy in AWS VPC](compute-instances/aws/terraform-module-for-aws-vpc.md)
+    * [Proxy for Amazon API Gateway](compute-instances/aws/terraform-module-for-aws-api-gateway.md)
 
 **Google Cloud Platform (GCP)**
 
-* [Makine imajı](compute-instances/gcp/machine-image.md)
+* [Machine image](compute-instances/gcp/machine-image.md)
 * [GCE](compute-instances/gcp/gce.md)
 
 **Microsoft Azure**
 
-* [Azure Konteyner Örnekleri](compute-instances/azure/docker-image.md)
+* [Azure Container Instances](compute-instances/azure/docker-image.md)
 
 **Alibaba Cloud**
 
 * [ECS](compute-instances/alibaba/docker-image.md)
 
-**Docker imajları**
+**Docker images**
 
-* [NGINX tabanlı](compute-instances/docker/nginx-based.md)
-* [Envoy tabanlı](compute-instances/docker/envoy-based.md)
+* [NGINX-based](compute-instances/docker/nginx-based.md)
+* [Envoy-based](compute-instances/docker/envoy-based.md)
 
 **Linux paketleri**
 
-* [NGINX sabit için bireysel paketler](compute-instances/linux/individual-packages-nginx-stable.md)
-* [NGINX Plus için bireysel paketler](compute-instances/linux/individual-packages-nginx-plus.md)
-* [Dağıtım sağlanan NGINX için bireysel paketler](compute-instances/linux/individual-packages-nginx-distro.md)
-* [Hepsi bir arada yükleyici](compute-instances/linux/all-in-one.md)
+* [All-in-one installer](compute-instances/linux/all-in-one.md)
 
-### Wallarm'ı Kubernetes'te Çalıştırma
+### Kubernetes Üzerinde Wallarm'ın Çalıştırılması
 
-Komu kabuk düzenlemesine yönelik olarak Kubernetes'i kullanıyorsanız, Wallarm, bir Kubernetes yerli çözümü olarak konuşlandırılabilir. Ingress veya yanlı teknik kontrolörler gibi özellikleri kullanarak Kubernetes kümelere sorunsuz bir şekilde entegre olur.
+Eğer konteyner orkestrasyonu için Kubernetes kullanıyorsanız, Wallarm Kubernetes-native bir çözüm olarak dağıtılabilir. Ingress veya sidecar controller gibi özelliklerden faydalanarak Kubernetes kümeleriyle sorunsuz entegrasyon sağlar.
 
-Wallarm, Kubernetes'te çalıştırmak için aşağıdaki eserleri ve çözümleri sunar:
+Wallarm, Kubernetes üzerinde Wallarm'ı çalıştırmak için aşağıdaki bileşenleri ve çözümleri sunmaktadır:
 
-* [NGINX Ingress Controller](../../admin-en/installation-kubernetes-en.md)
-* [Kong Ingress Controller](../kubernetes/kong-ingress-controller/deployment.md)
-* [Sidecar Controller](../kubernetes/sidecar-proxy/deployment.md)
+* [NGINX Ingress controller](../../admin-en/installation-kubernetes-en.md)
+* [Kong Ingress controller](../kubernetes/kong-ingress-controller/deployment.md)
+* [Sidecar controller](../kubernetes/sidecar-proxy/deployment.md)

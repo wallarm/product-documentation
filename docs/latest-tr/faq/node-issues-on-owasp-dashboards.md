@@ -1,17 +1,17 @@
-# OWASP panoları tarafından uyarılan Wallarm düğüm sorunlarına nasıl yanıt verilir
+# OWASP Gösterge Panelinde Bildirilen Wallarm düğüm sorunlarını ele alma
 
-Wallarm düğümleri güncellenmezse veya Bulut ile senkronizasyon sorunlarıyla karşılaşırsa, [OWASP panoları](../user-guides/dashboards/owasp-api-top-ten.md) üzerinde altyapı güvenliğini etkileyebilecek sorunları gösteren hata mesajları görünür. Bu makale, bu sorunlara nasıl yanıt verileceğini açıklar.
+Wallarm düğümleri güncellenmediğinde veya Cloud ile senkronizasyon sorunları yaşadığında, [OWASP dashboard](../user-guides/dashboards/owasp-api-top-ten.md) üzerinde, altyapı güvenliğini etkileyebilecek sorunları belirten hata mesajları görünür. Bu makale, bu sorunların nasıl ele alınacağını anlatmaktadır.
 
-Güncellenmeyen düğümler, önemli güvenlik güncellemelerinden yoksun olabilir, kötü niyetli trafiğin savunmaları atlatmasına izin verebilir. Senkronizasyon sorunları, düğümlerin Bulut'tan hayati güvenlik politikalarını almasını engelleyebilir. Bu sorunlar, çoğunlukla **OWASP API7 (Güvenlik Yapılandırma Hatası)** tehdidi ile ilgilidir; uygulama yığınının herhangi bir parçasında eksik güvenlik çözümü, sistemi savunmasız hale getirebilir. Bunu önlemek için, pano size düğüm işletim sorunları hakkında uyarır, örneğin:
+Güncel olmayan düğümler, kötü niyetli trafiğin savunmaları aşmasına neden olabilecek önemli güvenlik güncellemelerinden yoksun olabilir. Senkronizasyon sorunları, düğümlerin işlevselliğini aksatarak, Cloud'dan hayati güvenlik politikalarının alınmasını engelleyebilir. Bu sorunlar, uygulama yığını içerisindeki herhangi bir parçada eksik olan güvenlik çözümleri sistemin savunmasız hale gelmesine neden olabileceğinden, esas olarak **OWASP API7 (Güvenlik Yanlış Yapılandırması)** tehdidi ile ilişkilidir. Bunu önlemek için, gösterge paneli düğüm işletim sorunlarına karşı sizi uyarır, örneğin:
 
-![Node sorunlarıyla OWASP pano](../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
+![OWASP dash with node issues](../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
 
-Güvenli bir ortamı sürdürmek için, düzenli olarak Wallarm düğümlerini güncellemek ve senkronizasyon sorunlarına yanıt vermek çok önemlidir. İşte hata mesajlarını nasıl ele alacağınıza dair talimatlar:
+Güvenli bir ortamı sürdürmek için, Wallarm düğümlerinin düzenli olarak güncellenmesi ve senkronizasyon problemlerinin giderilmesi hayati önem taşır. İşte hata mesajlarıyla nasıl başa çıkılacağına dair talimatlar:
 
-1. Wallarm düğüm sürümünüz [ömür sonuna yaklaşıyorsa](../updating-migrating/versioning-policy.md#version-list), düğümünüzü en son sürüme yükseltmeniz önerilir.
-1. Wallarm Cloud senkronizasyonunda sorunlarla karşılaşırsanız, [ilgili ayarların](../admin-en/configure-cloud-node-synchronization-en.md) doğru olduğundan emin olun.
+1. Wallarm düğümünüzün sürümü [kullanım ömrünün sonuna yaklaşmış veya sona ermişse](../updating-migrating/versioning-policy.md#version-list), düğümünüzü en son sürüme yükseltmeniz önerilir.
+2. Wallarm Cloud senkronizasyonuyla ilgili sorunlarla karşılaşırsanız, [ilgili ayarların](../admin-en/configure-cloud-node-synchronization-en.md) doğru olduğundan emin olun.
 
-Senkronizasyon veya diğer sorunların çözümünde veya başka herhangi bir talepte yardıma ihtiyacınız varsa, [Wallarm destek ekibi](mailto:support@wallarm.com)nden yardım alabilirsiniz. Onlara aşağıdaki [kayıtları](../admin-en/configure-logging.md) analiz için sunun:
+Senkronizasyon veya diğer sorunların çözümünde veya başka herhangi bir konuda yardıma ihtiyacınız olursa, [Wallarm destek ekibi](mailto:support@wallarm.com)'nden yardım alabilirsiniz. Analiz için aşağıdaki [logları](../admin-en/configure-logging.md) sağlayın:
 
-* `syncnode` betiği ile ilgili sorunları kontrol etmek için `/var/log/wallarm/syncnode.log`'dan kayıtlar
-* Senkronizasyon sorunu hakkında ek bilgiler sağlamak için `/var/log/syslog` veya `/var/log/messages` dizininden (dağıtım seçeneğine bağlı olarak) kayıtlar
+* `/opt/wallarm/var/log/wallarm/wcli-out.log` dosyasındaki loglar, `syncnode` betiğinde herhangi bir sorun olup olmadığını kontrol etmek için
+* Senkronizasyon sorunu hakkında ek detaylar sağlayacak şekilde, dağıtım seçeneğine bağlı olarak `/var/log/syslog` veya `/var/log/messages` dizinindeki loglar

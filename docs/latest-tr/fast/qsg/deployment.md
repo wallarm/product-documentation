@@ -19,138 +19,138 @@
 [anchor6]:  #6-install-ssl-certificates 
     
     
-# FAST node deployment
+# FAST node dağıtımı
 
-Bu bölüm, FAST node'un kurulum ve ilk yapılandırma sürecinden sizi yönlendirecektir. Tüm gerekli adımlar tamamlandıktan sonra, HTTP ve HTTPS isteklerini [Google Gruyere][link-https-google-gruyere] uygulamasına proxy olarak hazır olan `localhost:8080` üzerinde dinleyen bir FAST node'unuz olacak. Node, Mozilla Firefox tarayıcısı ile birlikte makinenize kurulacak.
+Bu bölüm, FAST node'un kurulum ve ilk yapılandırma sürecinde size rehberlik edecektir. Gerekli tüm adımları tamamladıktan sonra çalışır durumda bir FAST node'a sahip olacaksınız. Node, HTTP ve HTTPS isteklerini [Google Gruyere][link-https-google-gruyere] uygulamasına yönlendirmeye hazır, `localhost:8080` üzerinde dinlemede olacaktır. Node, makinenize Mozilla Firefox tarayıcısı ile birlikte kurulmuş olacaktır.
     
-!!! info "Kullanılacak tarayıcıya dair not"
-    Rehberde Mozilla Firefox tarayıcısının kullanılması önerilir. Ancak, tüm HTTP ve HTTPS trafiğini FAST node'a gönderecek şekilde başarıyla yapılandırdıysanız, seçiminiz dahilinde herhangi bir tarayıcıyı kullanabilirsiniz.
+!!! info "Kullanılacak tarayıcı hakkında not"
+    Kılavuzda Mozilla Firefox tarayıcısının kullanılması önerilmektedir. Ancak, FAST node'un tüm HTTP ve HTTPS trafiğini yönlendirecek şekilde yapılandırmanız koşuluyla tercih ettiğiniz herhangi bir tarayıcıyı kullanmanız mümkündür.
 
-![Kullanımda FAST node dağıtım şeması][img-qsg-deployment-scheme]    
+![FAST node dağıtım şeması][img-qsg-deployment-scheme]    
         
-FAST node'u kurmak ve yapılandırmak için şu adımları izleyin:
+FAST node'un kurulumu ve yapılandırılması için aşağıdakileri yapın:
 
 1.  [Docker yazılımını kurun][anchor1].
-2.  [FAST node'unuzu Wallarm buluta bağlamak için kullanılacak bir token edin][anchor2].
+2.  [FAST node'unuzu Wallarm cloud ile bağlamak için kullanılacak bir token alın][anchor2].
 3.  [Gerekli ortam değişkenlerini içeren bir dosya hazırlayın][anchor3].
 4.  [FAST node Docker konteynerini dağıtın][anchor4].
-5.  [Proxy ile çalışmak için tarayıcıyı yapılandırın][anchor5].
+5.  [Tarayıcıyı proxy ile çalışacak şekilde yapılandırın][anchor5].
 6.  [SSL sertifikalarını yükleyin][anchor6].
             
-##  1.  Docker yazılımını kurun 
+##  1.  Docker yazılımını kurun
 
-Docker yazılımını makinenize kurun. Daha fazla bilgi için resmi Docker [kurulum rehberine][link-docker-docs] bakın.
+Makinenize Docker yazılımını kurun. Daha fazla bilgi için resmi Docker [kurulum kılavuzuna][link-docker-docs] bakın.
 
-Docker Community Edition (CE) kullanmanız önerilir. Ancak, herhangi bir Docker sürümü kullanılabilir.
+Docker Community Edition (CE) kullanmanız önerilmektedir. Ancak, herhangi bir Docker sürümü kullanılabilir.
     
     
-##  2.  FAST node'unuzun Wallarm buluta bağlanmak için kullanılacak bir tokeni edinmek
+##  2.  FAST node'unuzu Wallarm cloud ile bağlamak için kullanılacak bir token alın
 
 1.  Wallarm hesabınızı kullanarak [My Wallarm portalına][link-wl-console] giriş yapın.
 
-    If you do not have one, then contact the [Wallarm Sales Team](mailto:sales@wallarm.com) to get access.
+    Eğer bir hesabınız yoksa, erişim sağlamak için [Wallarm Sales Team](mailto:sales@wallarm.com) ile iletişime geçin.
 
-2.  “Düğümler” sekmesini seçin, ardından **FAST node oluştur** düğmesine tıklayın (veya **FAST node ekle** bağlantısına tıklayın).
+2.  “Nodes” sekmesini seçin, ardından **Create FAST node** düğmesine (veya **Add FAST node** bağlantısına) tıklayın.
 
-    ![Yeni bir düğüm oluşturma][img-fast-create-node]
+    ![Yeni bir node oluşturma][img-fast-create-node]
 
-3.  Bir diyalog penceresi açılır. Düğüme anlamlı bir ad verin ve **Oluştur** düğmesini seçin. Rehber, `DEMO NODE` adını kullanmanızı önerir.
+3.  Bir iletişim kutusu açılacaktır. Node için anlamlı bir isim verin ve **Create** düğmesini seçin. Kılavuz, `DEMO NODE` adının kullanılmasını önermektedir.
     
-4.  Oluşturulan düğümün **Token** alanının üzerine fare imlecinizi getirin ve değeri kopyalayın.
+4.  Oluşturulan node'un **Token** alanının üzerine fare imlecinizi getirin ve değeri kopyalayın.
 
     !!! info "Token hakkında not"
-        Tokeni bir Wallarm API çağrısıyla da almak mümkündür. Ancak, bu belgenin kapsamı dışındadır. 
+        Token, Wallarm API çağrısı yoluyla da alınabilir. Ancak, bu belgenin kapsamı dışındadır.
         
-##  3.  Gerekli ortam değişkenlerini içeren bir dosya hazırlayın 
+##  3.  Gerekli ortam değişkenlerini içeren bir dosya hazırlayın
 
-FAST node'un çalışabilmesi için bazı ortam değişkenlerini ayarlamanız gerekiyor.
+FAST node'un çalışması için birkaç ortam değişkeni ayarlamanız gerekmektedir.
 
-Bunu yapmak için bir metin dosyası oluşturun ve aşağıdaki metni ekleyin:
+Bunu yapmak için, bir metin dosyası oluşturun ve aşağıdaki metni ekleyin:
 
 ```
-WALLARM_API_TOKEN=<2. adımda elde ettiğiniz token değeri>
+WALLARM_API_TOKEN=<adım 2'de aldığınız token değeri>
 ALLOWED_HOSTS=google-gruyere.appspot.com
 ```
 
-Ortam değişkenlerini ayarladınız. Amaçlarını şöyle açıklayabiliriz:
-* `WALLARM_API_TOKEN` — düğümün Wallarm buluta bağlanmak için kullanılan token değerini belirler
-* `ALLOWED_HOSTS` — güvenlik testi oluşturacak isteklerin kapsamını sınırlar; güvenlik testleri yalnızca hedef uygulamanın bulunduğu `google-gruyere.appspot.com` alanına giden isteklerden oluşturulacak.
+Ortam değişkenlerini ayarlamış oldunuz. Amaçları şu şekildedir:
+* `WALLARM_API_TOKEN` — node'un Wallarm cloud'a bağlanması için kullanılan token değerini ayarlar.
+* `ALLOWED_HOSTS` — güvenlik testi üretilmesi için isteklerin kapsamını sınırlar; güvenlik testleri yalnızca hedef uygulamanın bulunduğu `google-gruyere.appspot.com` alanına yapılan isteklerden üretilecektir.
     
-!!! info "`ALLOWED_HOSTS` ortam değişkenini kullanma"
-    Tam etki alanı adının ayarlanması gerekli değildir. Bir alt dizeyi (ör. `google-gruyere` veya `appspot.com`) kullanabilirsiniz.
+!!! info "`ALLOWED_HOSTS` ortam değişkeninin kullanımı"
+    Tam etki alanı adı belirlemek zorunlu değildir. Bir alt dize (örneğin `google-gruyere` veya `appspot.com`) de kullanılabilir.
 
---8<-- "../include-tr/fast/wallarm-api-host-note.md"
+--8<-- "../include/fast/wallarm-api-host-note.md"
    
 ##  4.  FAST node Docker konteynerini dağıtın
 
 Bunu yapmak için aşağıdaki komutu çalıştırın:
 
 ```
-docker run --name <adı> --env-file=<önceki adımda oluşturulan ortam değişkenleri dosyası> -p <hedef port>:8080 wallarm/fast
+docker run --name <name> --env-file=<önceki adımda oluşturulan ortam değişkenleri dosyası> -p <hedef port>:8080 wallarm/fast
 ```
 
-Komuta birkaç argüman sağlamanız gerekiyor:
+Komuta birkaç argüman sağlamanız gerekmektedir:
     
-* **`--name`** *`<adı>`*
+* **`--name`** *`<name>`*
         
     Docker konteynerinin adını belirtir.
     
-    Mevcut tüm konteynerlerin adları arasında benzersiz olmalıdır.
+    Tüm mevcut konteyner isimleri arasında benzersiz olmalıdır.
     
 * **`--env-file=`** *`<önceki adımda oluşturulan ortam değişkenleri dosyası>`*
     
-    Konteynere dışarıdan aktarılacak tüm ortam değişkenlerini içeren bir dosyayı belirtir.
+    Konteynere aktarılacak tüm ortam değişkenlerini içeren dosyayı belirtir.
     
     [Önceki adımda][anchor3] oluşturduğunuz dosyanın yolunu belirtmelisiniz.
 
 * **`-p`** *`<hedef port>`* **`:8080`**
     
-    Konteynerin 8080 portunu hangi Docker ana bilgisayarının portuna eşleyeceğinizi belirtir. Varsayılan olarak ana bilgisayar, konteyner portlarına erişemez. 
+    Docker host'unun konteynerin 8080 portunun eşleneceği portu belirtir. Varsayılan olarak konteyner portlarına Docker host tarafından erişilemez.
     
-    Bir konteyner portuna Docker ana bilgisayarından erişim sağlamak için, `-p` argümanını kullanarak konteynerin dahili portunu dış port ile yayınlamalısınız. 
+    Docker host tarafından belirli bir konteyner portuna erişim sağlamak için, konteynerin dahili portunu dış porta yayınlamanız gerekmektedir. Bunun için `-p` argümanını kullanmalısınız.
     
-    Ayrıca, konteynerin portunu dışarıdan da erişilebilir hale getirmek için `-p <ana bilgisayar IP>:<hedef port>:8080` argümanını sağlayarak ana bilgisayar üzerinde bir IP adresine de yayınlayabilirsiniz.        
+    Konteynerin portunu dışarıdan erişilebilecek şekilde, Docker host üzerindeki bir non-loopback IP adresine de eşleyebilirsiniz. Bunun için `-p <host IP>:<hedef port>:8080` argümanını kullanın.
 
-!!! info "`docker run` komutunun bir örneği"
-    Aşağıdaki komutun çalıştırılması, `/home/user/fast.cfg` ortam değişkenleri dosyasını kullanan `fast-node` adlı bir konteyneri başlatır ve portunu `localhost:8080` adresine yayınlar:
+!!! info "`docker run` komutu örneği"
+    Aşağıdaki komutun çalıştırılması, adı `fast-node` olan, `/home/user/fast.cfg` ortam değişkenleri dosyasını kullanan ve portunu `localhost:8080` olarak eşleyen bir konteyner çalıştıracaktır:
 
     ```
     docker run --name fast-node --env-file=/home/user/fast.cfg -p 8080:8080 wallarm/fast
     ```
 
-Konteyner dağıtımı başarılıysa, aşağıdaki gibi bir konsol çıktısı almanız gerekir:
+Konteyner dağıtımı başarılı olursa, aşağıdaki gibi bir konsol çıktısı alacaksınız:
 
---8<-- "../include-tr/fast/console-include/qsg/fast-node-deployment-ok.md"
+--8<-- "../include/fast/console-include/qsg/fast-node-deployment-ok.md"
 
-Şimdi Wallarm buluta bağlı ve `google-gruyere.appspot.com` alanına gelen HTTP ve HTTPS isteklerini temel olarak kabul ederek `localhost:8080` üzerinde gelen istekleri dinleyen çalışabilir durumda bir FAST node'unuz olmalı.
+Artık Wallarm cloud ile bağlantılı, çalışmaya hazır bir FAST node'unuz olmalıdır. Node, `google-gruyere.appspot.com` alan adına yapılan istekleri temel istekler olarak tanıyarak `localhost:8080` üzerinden gelen HTTP ve HTTPS isteklerini dinlemektedir.
     
     
-##  5.  Proxy ile çalışmak için tarayıcıyı yapılandırın
+##  5.  Tarayıcıyı proxy ile çalışacak şekilde yapılandırın
 
-Tüm HTTP ve HTTPS isteklerini FAST node üzerinden proxy olarak yönlendirmek için tarayıcıyı yapılandırın.
+FAST node üzerinden tüm HTTP ve HTTPS isteklerini proxy'lemek için tarayıcıyı yapılandırın.
 
 Mozilla Firefox tarayıcısında proxy ayarlarını yapmak için aşağıdakileri yapın:
 
-1.  Tarayıcıyı açın. Menüden “Tercihler”i seçin. “Genel” sekmesini seçin ve “Ağ Ayarları”na kadar aşağıya kaydırın. **Ayarlar** düğmesini seçin.
+1.  Tarayıcıyı açın. Menüden “Preferences” öğesini seçin. “General” sekmesini seçin ve “Network Settings” bölümüne kadar aşağı kaydırın. **Settings** düğmesine tıklayın.
 
-    ![Mozilla Firefox ayarları][img-firefox-options]
+    ![Mozilla Firefox seçenekleri][img-firefox-options]
 
-2.  “Bağlantı Ayarları” penceresi açılır. **Manuel proxy yapılandırması** seçeneğini seçin. Proxy’yi aşağıdaki değerleri girerek yapılandırın:
+2.  “Connection Settings” penceresi açılacaktır. **Manual proxy configuration** seçeneğini seçin. Aşağıdaki değerleri girerek proxy'yi yapılandırın:
 
-    * HTTP proxy adresi olarak **`localhost`** ve HTTP proxy portu olarak **`8080`**. 
+    * HTTP proxy adresi olarak **`localhost`** ve HTTP proxy portu olarak **`8080`**.
     * SSL proxy adresi olarak **`localhost`** ve SSL proxy portu olarak **`8080`**.
         
-    Yaptığınız değişiklikleri uygulamak için **OK** düğmesini seçin.
+    Yaptığınız değişiklikleri uygulamak için **ОК** düğmesine tıklayın.
 
     ![Mozilla Firefox proxy ayarları][img-firefox-proxy-options]
     
     
-##  6.  SSL Sertifikalarını Yükleyin
+##  6.  SSL sertifikalarını yükleyin
 
-[Google Gruyere][link-https-google-gruyere] uygulamasıyla HTTPS üzerinden çalışırken, güvenli bağlantının kesildiğine dair aşağıdaki tarayıcı mesajıyla karşılaşabilirsiniz:
+HTTPS üzerinden [Google Gruyere][link-https-google-gruyere] uygulaması ile çalışırken, güvenli bağlantının kesintiye uğradığını belirten bir tarayıcı mesajıyla karşılaşabilirsiniz:
 
-![“Güvencesiz bağlantı” mesajı][img-insecure-connection]
+![“Güvensiz bağlantı” mesajı][img-insecure-connection]
 
-Web uygulamasıyla HTTPS üzerinden etkileşim kurabilmek için kendine imzalı bir FAST node SSL sertifikası eklemelisiniz. Bunu yapmak için bu [bağlantıya][link-ssl-installation] gidin, listeden tarayıcınızı seçin ve gerekli işlemleri yapın. Bu rehber, Mozilla Firefox tarayıcısının kullanılmasını önerir.
+Web uygulaması ile HTTPS üzerinden etkileşimde bulunabilmek için, self-signed FAST node SSL sertifikasını eklemeniz gerekmektedir. Bunu yapmak için, bu [linke][link-ssl-installation] gidin, listedeki tarayıcınızı seçin ve açıklanan gerekli adımları takip edin. Kılavuz Mozilla Firefox tarayıcısının kullanılmasını önermektedir.
         
-FAST node'unuzu çalıştırıp yapılandırdıysanız, artık bu bölümün tüm hedeflerini tamamlamış olmalısınız. Bir sonraki bölümde, birkaç temel istek temelinde bir dizi güvenlik testi oluşturmak için neyin gerekli olduğunu öğreneceksiniz.
+FAST node'unuzu çalıştırıp yapılandırdıktan sonra, bölümdeki tüm hedeflere ulaşmış olmalısınız. Bir sonraki bölümde, birkaç temel isteğe dayalı olarak bir dizi güvenlik testi oluşturmak için neler gerektiğini öğreneceksiniz.

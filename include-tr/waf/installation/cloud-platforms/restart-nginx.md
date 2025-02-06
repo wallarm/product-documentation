@@ -1,7 +1,7 @@
-Ayarları uygulamak için, Wallarm örneğinde NGINX'i yeniden başlatın:
+Ayarları uygulamak için, Wallarm örneğinde NGINX'yi yeniden başlatın:
 
 ``` bash
 sudo systemctl restart nginx
 ```
 
-Her konfigürasyon dosyası değişikliği, uygulamak için NGINX'in yeniden başlatılmasını gerektirir.
+Her yapılandırma dosyası değişikliği, ayarların uygulanabilmesi için NGINX'nin yeniden başlatılmasını gerektirir.

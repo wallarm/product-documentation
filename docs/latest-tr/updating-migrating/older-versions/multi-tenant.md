@@ -1,73 +1,59 @@
-Dilin nazik tonunu koruyun. Sonuç dosyasının tamamen orijinal dosyadaki ile aynı URL'lere sahip olduğundan emin olun:
-../../attacks-vulns-list.md#path-traversal
-../../images/admin-guides/test-attacks-quickstart.png
-../../installation/multi-tenant/configure-accounts.md#tenant-account-structure
-mailto:support@wallarm.com
-../../user-guides/rules/rules.md
-nginx-modules.md
-separate-postanalytics.md
-docker-container.md
-ingress-controller.md
-cloud-image.md
-https://docs.wallarm.com/3.6/installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account
-../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api
-../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid
-../../admin-en/configure-parameters-en.md#wallarm_application
-Aşağıdaki Wallarm.com belgesini İngilizceden Türkçeye çevirin:
-
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 
-# EOL çok kiracılı düğümün yükseltilmesi
+# Ömrünü Tamamlamış (EOL) Çok Kiracılı Node'un Güncellenmesi
 
-Bu talimatlar, son ömrüne ulaşmış çok kiracılı düğümün (sürüm 3.6 ve altı) 4.8'e kadar nasıl yükseltileceğini anlatır.
+Bu talimatlar, ömrünü tamamlamış (sürüm 3.6 ve altı) çok kiracılı node'un 5.0 sürümüne kadar güncellenmesi için izlenecek adımları açıklar.
 
 ## Gereksinimler
 
-* [Teknik kiracı hesabı](../../installation/multi-tenant/configure-accounts.md#tenant-account-structure) altında eklenen **Global yönetici** rolüne sahip kullanıcı tarafından daha fazla komutların çalıştırılması
-* Eğer ABD Wallarm Bulutu ile çalışılıyorsa `https://us1.api.wallarm.com` adresine veya AB Wallarm Bulutu ile çalışılıyorsa `https://api.wallarm.com` adresine erişim. Lütfen erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun.
+* [technical tenant account](../../installation/multi-tenant/overview.md#tenant-accounts) altında eklenmiş **Global administrator** rolüne sahip kullanıcı tarafından sonraki komutların yürütülmesi
+* US Wallarm Cloud ile çalışıyorsanız `https://us1.api.wallarm.com` adresine veya EU Wallarm Cloud ile çalışıyorsanız `https://api.wallarm.com` adresine erişim. Lütfen erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun.
+* Saldırı tespit kuralları güncellemeleri ve API spesifikasyonlarına erişim sağlamak, ayrıca beyaz listeye alınmış, kara listeye alınmış veya gri listeye alınmış ülkeler, bölgeler ya da veri merkezlerine ilişkin kesin IP'leri almak için aşağıdaki IP adreslerine erişim.
 
-## Adım 1: Wallarm destek ekibi ile irtibata geçin
+    --8<-- "../include/wallarm-cloud-ips.md"
 
-Çok kiracılı düğüm yükseltme sırasında [özel kural seti oluşturma](../../user-guides/rules/rules.md) özelliğinin en son sürümünü almak için [Wallarm destek ekibi](mailto:support@wallarm.com)'nden yardım isteyin.
+## Adım 1: Wallarm destek ekibi ile iletişime geçin
 
-!!! info "Engellenen yükseltme"
-    Özel kural seti oluşturma özelliğinin yanlış bir sürümünün kullanılması yükseltme işlemini engelleyebilir.
+Çok kiracılı node güncellemesi sırasında [custom ruleset building](../../user-guides/rules/rules.md#ruleset-lifecycle) özelliğinin en son sürümünü almak için [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişime geçin.
 
-Destek ekibi, çok kiracılı düğüm yükseltme ve gerekli yeniden yapılandırmayla ilgili tüm sorularınıza yanıt vermenize de yardımcı olacaktır.
+!!! info "Engellenmiş güncelleme"
+    Yanlış bir custom ruleset building sürümünün kullanılması güncelleme sürecini engelleyebilir.
 
-## Adım 2: Standart yükseltme prosedürünü izleyin
+Destek ekibi ayrıca çok kiracılı node'un güncellenmesiyle ve gerekli yeniden yapılandırmayla ilgili tüm sorularınızı yanıtlamanıza yardımcı olacaktır.
 
-Standart prosedürler aşağıdakiler içindir:
+## Adım 2: Standart güncelleme prosedürünü uygulayın
 
-* [Wallarm NGINX modüllerinin yükseltilmesi](nginx-modules.md)
-* [Postanalytics modülünün yükseltilmesi](separate-postanalytics.md)
-* [Wallarm Docker NGINX- veya Envoy-tabanlı imajının yükseltilmesi](docker-container.md)
-* [Entegre Wallarm modülleri ile NGINX Ingress denetleyicisinin yükseltilmesi](ingress-controller.md)
-* [Bulut düğüm imajının yükseltilmesi](cloud-image.md)
+Standart prosedürler aşağıdakilerdir:
 
-!!! warning "Çok kiracılı düğüm oluşturma"
-    Wallarm düğümü oluştururken lütfen **Çok kiracılı düğüm** seçeneğini seçin:
+* [Wallarm NGINX modüllerinin güncellenmesi](nginx-modules.md)
+* [postanalytics modülünün güncellenmesi](separate-postanalytics.md)
+* [Wallarm Docker NGINX tabanlı imajının güncellenmesi](docker-container.md)
+* [Entegre Wallarm modüllü NGINX Ingress controller'ın güncellenmesi](ingress-controller.md)
+* [cloud node imajının güncellenmesi](cloud-image.md)
 
-    ![Çok kiracılı düğüm oluşturmanın görüntüsü](../../images/user-guides/nodes/create-multi-tenant-node.png)
+!!! warning "Çok kiracılı node oluşturulması"
+    Wallarm node oluşturulurken, lütfen **Multi-tenant node** seçeneğini seçin:
 
-## Adım 3: Çok kiracılılığı yeniden yapılandırın
+    ![Multi-tenant node creation](../../images/user-guides/nodes/create-multi-tenant-node.png)
 
-Trafik ayarlarınızın kiracılarınızla ve uygulamalarıyla ilişkilendirilmesini yeniden yapılandırın. Aşağıdaki örneği göz önünde bulundurun. Örnekte:
+## Adım 3: Çok kiracılılık yeniden yapılandırması
 
-* Kiracı, ortağın müşterisini temsil eder. Ortağın iki müşterisi vardır.
-* `tenant1.com` ve `tenant1-1.com`u hedef alan trafik müşteri 1 ile ilişkilendirilmelidir.
-* `tenant2.com`u hedef alan trafik müşteri 2 ile ilişkilendirilmelidir.
-* Müşteri 1'in ayrıca üç uygulaması vardır:
+Trafiğin kiracılarınız ve onların uygulamalarıyla nasıl ilişkilendirileceğine dair yapılandırmayı yeniden yazın. Aşağıdaki örneğe göz atın. Örnekte:
+
+* Tenant, partnerin müşterisini temsil eder. Partnere ait iki müşteri bulunmaktadır.
+* `tenant1.com` ve `tenant1-1.com` hedefli trafik, müşteri 1 ile ilişkilendirilmelidir.
+* `tenant2.com` hedefli trafik, müşteri 2 ile ilişkilendirilmelidir.
+* Müşteri 1'in ayrıca üç uygulaması bulunmaktadır:
     * `tenant1.com/login`
     * `tenant1.com/users`
     * `tenant1-1.com`
 
-    Bu 3 yolu hedef alan trafik, ilgili uygulama ile ilişkilendirilmelidir; kalanı müşteri 1'in genel trafiği olarak kabul edilmelidir.
+    Bu 3 yol hedefli trafik, ilgili uygulama ile ilişkilendirilmelidir; kalan trafik müşteri 1’in genel trafiği olarak kabul edilmelidir.
 
 ### Önceki sürüm yapılandırmanızı inceleyin
 
-3.6'da, bu aşağıdaki gibi yapılandırılabilirdi:
+3.6 sürümünde, bu aşağıdaki gibi yapılandırılabilirdi:
 
 ```
 server {
@@ -98,36 +84,36 @@ server {
 }
 ```
 
-Yukarıdaki yapılandırmadaki notlar:
+Yukarıdaki yapılandırma ile ilgili notlar:
 
-* `Tenant1.com` ve `tenant1-1.com`u hedef alan trafik, `20` ve `23` değerleri aracılığıyla müşteri 1 ile ilişkilidir, bu değerler [API isteği](https://docs.wallarm.com/3.6/installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account) üzerinden bu müşteriye bağlanmıştır.
-* Diğer uygulamalarla kiracıları bağlamak için benzer API istekleri gönderilmiş olmalıdır.
-* Kiracılar ve uygulamalar ayrı varlıklardır, bu nedenle onları farklı yönergelerle yapılandırmak mantıklıdır. Ayrıca, ek API isteklerinden kaçınmak da elverişli olabilir. Kiracılar ve uygulamalar arasındaki ilişkileri yapılandırma üzerinden tanımlamak mantıklı olacaktır. Tüm bunlar mevcut yapılandırmada eksik ancak aşağıda açıklanan yeni 4.x yaklaşımında mevcut olacaktır.
+* `tenant1.com` ve `tenant1-1.com` hedefli trafik, bu müşteriye [API request](https://docs.wallarm.com/3.6/installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account) aracılığıyla `20` ve `23` değerleriyle ilişkilendirilmiştir.
+* Diğer uygulamaları kiracılara bağlamak için benzer API istekleri gönderilmiş olmalıdır.
+* Kiracılar ve uygulamalar ayrı varlıklar olduğundan, bunları farklı direktiflerle yapılandırmak mantıklıdır. Ek API isteklerinden kaçınmak da pratik olacaktır. Kiracılar ile uygulamalar arasındaki ilişkilerin yapılandırma üzerinden tanımlanması mantıklıdır. Mevcut yapılandırmada bu eksik olmakla birlikte, aşağıda açıklanan yeni 5.x yaklaşımında yer alacaktır.
 
-### 4.x yaklaşımını inceleyin
+### 5.x Yaklaşımını İnceleyin
 
-Sürüm 4.x'te, UUID düğüm yapılandırmasında kiracıyı tanımlama yoludur.
+5.x sürümünde, node yapılandırmasında tenant tanımlamanın yolu UUID kullanımıdır.
 
 Yapılandırmayı yeniden yazmak için aşağıdakileri yapın:
 
-1. Kiracılarınızın UUID'lerini alın.
-1. NGINX yapılandırma dosyasına kiracıları ekleyin ve uygulamalarını ayarlayın.
+1. Kiracılarınızın UUID'lerini edinin.
+1. Kiracıları dahil edip, uygulamalarını NGINX yapılandırma dosyasına ekleyin.
 
-### Kiracılarınızın UUID'lerini alın
+### Kiracılarınızın UUID'lerini Edinin
 
-Kiracıların listesini almak için Wallarm API'ye kimlik doğrulanmış istekler gönderin. Kimlik doğrulama yaklaşımı, [Kiracı oluşturma için kullanılan](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api) ile aynıdır.
+Kiracı listesini almak için, authenticated istekleri Wallarm API'ye gönderin. Kimlik doğrulama yöntemi, [tenant creation](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api) sırasında kullanılan yöntemle aynıdır.
 
-1. Daha sonra onlara ilişkin UUID'leri bulmak için `clientid`(ler) alın:
+1. Daha sonra UUID ile ilişkili olan `clientid`(leri) bulmak için alın:
 
-    === "Wallarm Konsolu aracılığıyla"
+    === "Via Wallarm Console"
 
-        Wallarm Konsol kullanıcı arayüzündeki **ID** sütunundan `clientid`(leri) kopyalayın:
+        Wallarm Console kullanıcı arayüzündeki **ID** sütunundan `clientid`(leri) kopyalayın:
         
-        ![Wallarm Konsolunda kiracıların seçimi](../../images/partner-waf-node/clients-selector-in-console-ann.png)
-    === "API'ye istek göndererek"
-        1. `/v2/partner_client` rotasına GET isteği gönderin:
+        ![Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+    === "By sending request to API"
+        1. `/v2/partner_client` yoluna GET isteği gönderin:
 
-            !!! info "Kendi istemcinizden gönderilen isteğin örneği"
+            !!! info "Kendi client'ınızdan gönderilen isteğe örnek"
                 === "US Cloud"
                     ``` bash
                     curl -X GET \
@@ -143,7 +129,7 @@ Kiracıların listesini almak için Wallarm API'ye kimlik doğrulanmış istekle
                     -H "X-WallarmApi-Token: <YOUR_TOKEN>"
                     ```
             
-            Burada `PARTNER_ID`, kiracı oluşturma işleminin [**Adım 2**](../../installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation)'sinde alınan PARTNER_ID’dır.
+            Burada `PARTNER_ID`, tenant oluşturma prosedüründeki [**Adım 2**](../../installation/multi-tenant/configure-accounts.md#step-1-sign-up-and-send-a-request-to-activate-the-multitenancy-feature)'de elde edilen değerdir.
 
             Yanıt örneği:
 
@@ -166,10 +152,10 @@ Kiracıların listesini almak için Wallarm API'ye kimlik doğrulanmış istekle
             }
             ```
 
-        1. Yanıttan `clientid`(leri) kopyalayın.
-1. Her kiracının UUID'sini almak için, `v1/objects/client` rotasına POST isteği gönderin:
+        1. Yanıt içerisinden `clientid`(leri) kopyalayın.
+1. Her kiracının UUID'sini almak için, `v1/objects/client` yoluna POST isteği gönderin:
 
-    !!! info "Kendi istemcinizden gönderilen isteğin örneği"
+    !!! info "Kendi client'ınızdan gönderilen isteğe örnek"
         === "US Cloud"
             ``` bash
             curl -X POST \
@@ -211,18 +197,18 @@ Kiracıların listesini almak için Wallarm API'ye kimlik doğrulanmış istekle
     }
     ```
 
-1. Yanıttan `uuid`(leri) kopyalayın.
+1. Yanıttan, `uuid`(leri) kopyalayın.
 
-### NGINX yapılandırma dosyasına kiracıları dahil edin ve uygulamalarını ayarlayın
+### Kiracıları Dahil Edin ve Uygulamalarını NGINX Yapılandırma Dosyasında Ayarlayın
 
 NGINX yapılandırma dosyasında:
 
-1. Yukarıda aldığınız kiracı UUID'lerini [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) yönergelerinde belirtin.
-1. Korunan uygulama kimliklerini [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) yönergelerinde belirleyin.
+1. Yukarıda aldığınız tenant UUID'lerini [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) direktiflerinde belirtin.
+1. Korunan uygulama ID'lerini [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) direktiflerinde ayarlayın.
 
-    Eğer düğüm 3.6 veya altı için kullanılan NGINX yapılandırması uygulama yapılandırmasını içeriyorsa, sadece kiracı UUID'lerini belirtin ve uygulama yapılandırmasını olduğu gibi bırakın.
+    Node 3.6 veya daha düşük için kullanılan NGINX yapılandırması uygulama yapılandırmasını içeriyorsa, sadece tenant UUID'lerini belirtip uygulama yapılandırmasını değiştirmeden bırakın.
 
-Örnekleme:
+Örnek:
 
 ```
 server {
@@ -256,9 +242,9 @@ server {
 
 Yukarıdaki yapılandırmada:
 
-* Kiracılar ve uygulamalar farklı yönergelerle yapılandırılır.
-* Kiracılar ve uygulamalar arasındaki ilişkiler, NGINX yapılandırma dosyasının ilgili bloklarındaki `wallarm_application` yönergeleri aracılığıyla tanımlanır.
+* Kiracılar ve uygulamalar farklı direktiflerle yapılandırılmıştır.
+* Kiracılar ile uygulamalar arasındaki ilişkiler, ilgili NGINX yapılandırma bloklarındaki `wallarm_application` direktifleri ile tanımlanmıştır.
 
-## Adım 4: Wallarm çok kiracılı düğüm işlemini test edin
+## Adım 4: Wallarm çok kiracılı node işleyişini test edin
 
---8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"

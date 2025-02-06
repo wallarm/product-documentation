@@ -1,4 +1,4 @@
-Tüm desteklenen [Wallarm dağıtım seçenekleri][platform] arasında, aşağıdaki **kullanım durumlarında** Docker imajını kullanarak Google Compute Engine (GCE) üzerinde Wallarm dağıtımı önerilir:
+Among all supported [Wallarm deployment options][platform], Google Compute Engine (GCE) üzerinde Docker image kullanılarak yapılan Wallarm dağıtımı şu **kullanım durumları** için önerilir:
 
-* Uygulamalarınız bir mikroservis mimarisi kullanıyorsa ve zaten GCE'de konteynerleştirilmiş ve çalışır durumdaysa.
-* Her konteyner üzerinde ince ayarlı kontrol gerektiriyorsanız, Docker imajı öne çıkar. Geleneksel VM tabanlı dağıtımlarla genellikle mümkün olanın ötesinde bir kaynak izolasyonu sağlar.
+* Uygulamalarınız mikroservis mimarisinden yararlanıyor ve zaten konteynerleştirilip GCE üzerinde çalışıyorsa.
+* Her bir konteyner üzerinde ince ayarlı kontrol ihtiyacınız varsa, Docker image bu konuda öne çıkar. Bu, geleneksel VM tabanlı dağıtımlarda genellikle mümkün olanın ötesinde bir kaynak izolasyonu seviyesi sağlar.

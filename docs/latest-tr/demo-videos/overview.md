@@ -1,32 +1,28 @@
 # Wallarm platform ayarları
 
-<!-- ## OWASP Top 10'a karşı uygulamaları koruma
+<!-- ## Uygulamaları OWASP Top 10'a Karşı Koruma
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-**İlgili belgeleme makaleleri**
+**İlgili dokümantasyon makaleleri**
 
-* [Wallarm tarafından tespit edilen saldırılar ve güvenlik açıkları listesi](../attacks-vulns-list.md)
-* [Wallarm'ın uygulamalardaki güvenlik açıklarını nasıl tespit ettiği](../about-wallarm/detecting-vulnerabilities.md)
+* [Wallarm tarafından tespit edilen saldırılar ve güvenlik açıklarının listesi](../attacks-vulns-list.md)
+* [Wallarm, uygulamalardaki güvenlik açıklarını nasıl tespit eder](../about-wallarm/detecting-vulnerabilities.md)
 
-## Wallarm Console özelliklerine genel bakış
+## Wallarm Console Özelliklerine Genel Bakış
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/R8v9npJAXSo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-**İlgili belgeleme makaleleri**
+**İlgili dokümantasyon makaleleri**
 
-* [Wallarm Console bölümleri için belgelendirme](../user-guides/user-intro.md) -->
+* [Wallarm Console bölümleri için dokümantasyon](../user-guides/user-intro.md) -->
 
-Demo videomuzu izleyerek Wallarm Console'da mevcut olan genel Wallarm ayarlarını keşfedin, örneğin [kullanıcı yönetimi](../user-guides/settings/users.md), düğüm [filtreleme modu](../user-guides/settings/general.md) kurulumu, [abonelik planı](../user-guides/settings/subscriptions.md) yönetimi, [uygulama konfigürasyonu](../user-guides/settings/applications.md) ve [aktivite logu](../user-guides/settings/audit-log.md).
+Wallarm Console’da sunulan genel Wallarm ayarlarını keşfetmek için demo videomuzu izleyin; örneğin [user management](../user-guides/settings/users.md), node [filtration mode](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) kurulumu, [subscription plan](../about-wallarm/subscription-plans.md) yönetimi, [application configuration](../user-guides/settings/applications.md) ve [activity log](../user-guides/settings/audit-log.md).
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/8kPa1EsQFaQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-
-**İlgili belgeleme makaleleri**
-
-* [Genel ayarlar](../user-guides/settings/general.md)

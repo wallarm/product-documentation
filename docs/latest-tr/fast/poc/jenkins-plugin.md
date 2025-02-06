@@ -13,23 +13,23 @@
 [fast-example-jenkins-plugin-result]:  ../../images/fast/poc/common/examples/jenkins-plugin/jenkins-plugin-result.png
 [fast-jenkins-cimode]:          examples/jenkins-cimode.md
 
-# Jenkins ile Wallarm FAST Eklentisinin Entegrasyonu
+# Wallarm FAST Plugin'nin Jenkins ile Entegrasyonu
 
 !!! warning "Uyumluluk"
-    Lütfen not edin ki Wallarm FAST eklentisi sadece Freestyle Jenkins projeleri ile çalışır.
+    Lütfen Wallarm FAST plugin'in yalnızca Freestyle Jenkins projeleriyle çalıştığını unutmayın.
     
-    Eğer proje Pipeline tipindeyse, lütfen [Jenkins ile FAST node entegrasyon örneği][fast-jenkins-cimode]'ne bakın.
+    Projeniz Pipeline tipindeyse, lütfen [Jenkins ile FAST node üzerinden entegrasyon örneğini][fast-jenkins-cimode] inceleyin.
 
-## Adım 1: Eklentinin Yüklenmesi
+## Adım 1: Plugin'in Yüklenmesi
 
-[Jenkins projesinde][jenkins-plugin-wallarm-fast] Plugin Manager kullanarak Wallarm FAST eklentisini yükle. Eklentilerin yönetimine dair daha detaylı bilgi [Jenkins'ın resmi dökümantasyonu][jenkins-manage-plugin]'nda bulunabilir.
+Plugin Manager kullanarak Jenkins projenize [Wallarm FAST plugin][jenkins-plugin-wallarm-fast]'ini yükleyin. Plugin yönetimi hakkında daha ayrıntılı bilgiyi [Jenkins resmi dokümantasyonunda][jenkins-manage-plugin] bulabilirsiniz.
 
-![Wallarm FAST eklentisinin yüklenmesi][jenkins-plugin-install]
+![Wallarm FAST plugin kurulumu][jenkins-plugin-install]
 
-Yükleme esnasında sorunlarla karşılaşıldıysa, eklentiyi manuel olarak oluşturun.
+Eğer yükleme sırasında problemlerle karşılaşırsanız, plugin'i manuel olarak inşa edin.
 
-??? info "Wallarm FAST eklentisinin manuel oluşturulması"
-    Wallarm FAST eklentisini manuel olarak oluşturmak için aşağıdaki adımları izleyin:
+??? info "Wallarm FAST Plugin'in Manuel İnşası"
+    Wallarm FAST plugin'in manuel olarak inşa edilmesi için aşağıdaki adımları izleyin:
 
     1. [Maven](https://maven.apache.org/install.html) CLI'nın yüklü olduğundan emin olun.
     2. Aşağıdaki komutları çalıştırın:
@@ -39,96 +39,96 @@ Yükleme esnasında sorunlarla karşılaşıldıysa, eklentiyi manuel olarak olu
         mvn package
         ```
         
-        Komutların başarılı bir şekilde çalıştırılmasının ardından `wallarm-fast.hpi` eklenti dosyası `target` dizinine oluşturulacaktır.
+        Komutların başarıyla çalıştırılmasının ardından, `target` dizininde `wallarm-fast.hpi` plugin dosyası oluşturulacaktır.
 
-    3. `wallarm-fast.hpi` eklentisini [Jenkins'ın talimatları](https://jenkins.io/doc/book/managing/plugins/#advanced-installation)'nı kullanarak yükleyin.
+    3. `wallarm-fast.hpi` plugin dosyasını [Jenkins talimatlarını](https://jenkins.io/doc/book/managing/plugins/#advanced-installation) kullanarak yükleyin.
 
-## Adım 2: Kayıt ve Test Adımlarını Eklemek
+## Adım 2: Kayıt ve Test Adımlarının Eklenmesi
 
-!!! info "Yapılandırılmış iş akışı"
-    İlerleyen talimatlar için, yapılandırılmış Jenkins iş akışının aşağıdaki maddelerden birine uygun olması gerekmektedir:
+!!! info "Yapılandırılmış İş Akışı"
+    İlerleyen talimatlarda, yapılandırılmış Jenkins iş akışının aşağıdaki noktalardan biriyle uyumlu olması gerekecektir:
 
-    * Test otomasyonu uygulanmış olmalı. Bu durumda, [talepleri kaydetme](#talepleri-kaydetme-adımını-eklemek) ve [güvenlik testi](#güvenlik-testi-adımını-eklemek) adımları eklenir.
-    * Bir temel talep seti kaydedilmiş olmalı. Bu durumda, [güvenlik testi](#güvenlik-testi-adımını-eklemek) adımı eklenir.
+    * Test otomasyonu uygulanmış olmalıdır. Bu durumda, [istek kaydetme](#adding-the-step-of-request-recording) ve [güvenlik testi](#adding-the-step-of-security-testing) adımları eklenecektir.
+    * Temel istek seti kaydedilmelidir. Bu durumda, [güvenlik testi](#adding-the-step-of-security-testing) adımı eklenecektir.
 
-### Talepleri Kaydetme Adımını Eklemek
+### İstek Kaydetme Adımının Eklenmesi
 
-Talepleri kaydetme adımını eklemek için, **Build** sekmesindeki `Record baselines` modunu seçin ve aşağıda belirtilen değişkenleri ayarlayın. Talepleri kaydetme adımı **otomatik uygulama test adımı öncesine** eklenmelidir.
-
-!!! warning "Ağ"
-    Talepleri kaydetme öncesinde, FAST plugin ve otomatik test işlemi için araçların aynı networkte olduğundan emin olun.
-
-??? info "Kayıt modunda değişkenler"
-
-    | Değişken              | Değer  | Gerekli   |
-    |--------------------   | --------  | -----------  |
-    | `Wallarm API token`     | Wallarm bulutundan bir token. | Evet |
-    | `Wallarm API host`      | Wallarm API server adresi. <br>İzin verilen değerler: <br>`us1.api.wallarm.com` Wallarm ABD bulutundaki server ve <br>`api.wallarm.com` Wallarm AB bulutundaki server için.<br>Varsayılan değer `us1.api.wallarm.com`. | Hayır |
-    | `Application host`      | Test uygulamasının adresi. Değer bir IP adres  veya alan adı olabilir. | Evet |
-    | `Application port`      | Test uygulamasının portu. Varsayılan değer 8080. | Hayır |
-    | `Fast port`   | FAST node portu. | Evet |
-    | `Inactivity timeout`    | Eğer hiçbir temel talep FAST node'a bu süre zarfında ulaşmazsa, tespit süreci ve FAST node durur.<br>İzin verilen değer aralığı: 1 saniyeden 1 haftaya kadar.<br>Değer saniye cinsinden girilmelidir.<br>Varsayılan değer: 600 saniye (10 dakika). | Hayır |
-    | `Fast name`             | FAST node Docker container adı. | Hayır |
-    | `Wallarm version`       | Kullanılan FAST node sürümü. | Hayır |
-    | `Local docker network`  | FAST node'ın çalıştığı Docker networkü. | Hayır |
-    | `Local docker ip`       | Çalışan FAST node'a atanacak olan IP adresi. | Hayır |
-    | `Without sudo`          | FAST node komutlarını, FAST node'u çalıştıran kullanıcının yetkileriyle çalıştırılıp çalıştırmayacağı. Varsayılan olarak, komutlar süper kullanıcı yetkileriyle (sudo ile) çalıştırılır.  |Hayır |
-
-**Test taleplerini kaydetmek için yapılandırılmış eklenti örneği:**
-
-![Talepleri kaydetmek için eklentinin yapılandırılması][jenkins-plugin-record-params]
-
-İkinci olarak, otomatik test adımını, FAST node'un bir proxy olarak eklenmesini güncelleyin.
-
-Test tamamlandığında FAST plugin otomatik olarak taleplerin kaydını durduracaktır.
-
-### Güvenlik Testi Adımını Eklemek
-
-Güvenlik testi adımını eklemek için, **Build** sekmesindeki `Playback baselines` modunu seçin ve aşağıda belirtilen değişkenleri kurun.
-
-Application zaten başlatılmış ve **güvenlik testi çalıştırılmadan önce** testler için kullanılabiliyor olmalıdır.
+İstek kaydetme adımını eklemek için **Build** sekmesinde `Record baselines` modunu seçin ve aşağıda tarif edilen değişkenleri yapılandırın. İstek kaydetme adımı, **otomatik uygulama testi adımından** önce eklenmelidir.
 
 !!! warning "Ağ"
-    Güvenlik testinden önce, FAST plugin ve application'ın aynı networkte olduğundan emin olun.
+    İstekleri kaydetmeden önce, FAST plugin ile otomatik test aracının aynı ağda olduğundan emin olun.
 
-??? info "Test modunda değişkenler"
+??? info "Kayıt Modundaki Değişkenler"
 
-    | Değişken              | Değer  | Gerekli   |
+    | Değişken              | Değer  | Zorunlu   |
     |--------------------   | --------  | -----------  |
-    | `Wallarm API token`     | Wallarm bulutundan bir token. | Evet |
-    | `Wallarm API host`    | Wallarm API server adresi. <br>İzin verilen değerler: <br>`us1.api.wallarm.com` Wallarm ABD bulutundaki server ve <br>`api.wallarm.com` Wallarm AB bulutundaki server için.<br>Varsayılan değer `us1.api.wallarm.com`. | Hayır |
-    | `Application host`      | Test uygulamasının adresi. Değer bir IP adresi veya bir alan adı olabilir. | Evet |
-    | `Application port`      | Test uygulamasının portu. Varsayılan değer 8080. | Hayır |
-    | `Policy id`   | [Test policy](../operations/test-policy/overview.md) ID.<br> Varsayılan değer is `0`-`Default Test Policy`. | Hayır |
-    | `TestRecord id`    | Test kayıt ID'si. [TEST_RECORD_ID](ci-mode-testing.md#environment-variables-in-testing-mode) ile eşleşir.<br>Varsayılan değer kullanılan FAST node tarafından yaratılan son test kaydıdır.| Hayır |
-    | `TestRun RPS`   | Uygulamaya gönderilecek test isteklerinin (*RPS*, *saniye başına istekler*) limiti.<br>Minimum değer: `1`.<br>Maksimum değer: `500`.<br>Varsayılan değer: `null` (RPS sınırsızdır).| Hayır |
-    | `TestRun name`   | Test çalıştırmasının adı.<br>Varsayılan olarak, değer test çalıştırmasının yaratma tarihinden otomatik olarak oluşturulur.| Hayır |
-    | `TestRun description`   | Test çalıştırmasının tanımı.| Hayır |
-    | `Stop on first fail`   | Bir hata meydana geldiğinde testin durdurulup durdurulmayacağı. | Hayır |
-    | `Fail build`   | Güvenlik testi sırasında açıklıklar bulunduğunda yapının hata ile bitip bitmeyeceği. | Hayır |
-    | `Exclude`   | Güvenlik testinden dışlanacak dosya uzantıları listesi.<br>Uzantıları ayırmak için &#448; sembolü kullanılır.<br> Varsayılan olarak, istisna yoktur.| Hayır |
-    | `Fast name`             | FAST node Docker container adı. | Hayır |
-    | `Wallarm version`       | Kullanılan FAST node sürümü. | Hayır |
-    | `Local docker network`  | FAST node'ın çalıştığı Docker networkü. | Hayır |
-    | `Local docker ip`       | Çalışan FAST node'a atanacak olan IP adresi. | Hayır |
-    | `Without sudo`          | FAST node komutlarını, FAST node'u çalıştıran kullanıcının yetkileriyle çalıştırılıp çalıştırmayacağı. Varsayılan olarak, komutlar süper kullanıcı yetkileriyle (sudo ile) çalıştırılır.  |Hayır|
+    | `Wallarm API token`     | Wallarm cloud'dan alınan token. | Evet |
+    | `Wallarm API host`      | Wallarm API sunucusunun adresi. <br>İzin verilen değerler: <br>`us1.api.wallarm.com` (Wallarm US cloud sunucusu için) ve <br>`api.wallarm.com` (Wallarm EU cloud sunucusu için).<br>Varsayılan değer: `us1.api.wallarm.com`. | Hayır |
+    | `Application host`      | Test uygulamasının adresi. Değer, IP adresi veya alan adı olabilir. | Evet |
+    | `Application port`      | Test uygulamasının portu. Varsayılan değer 8080'dir. | Hayır |
+    | `Fast port`   | FAST node'un portu. | Evet |
+    | `Inactivity timeout`    | Bu süre zarfında FAST node'a temel istekler gelmezse, kayıt işlemi FAST node ile birlikte durdurulur.<br>İzin verilen değer aralığı: 1 saniyeden 1 haftaya kadar.<br>Değer saniye cinsinden verilmelidir.<br>Varsayılan değer: 600 saniye (10 dakika). | Hayır |
+    | `Fast name`             | FAST node Docker konteynerinin adı. | Hayır |
+    | `Wallarm version`       | Kullanılan FAST node'un versiyonu. | Hayır |
+    | `Local docker network`  | FAST node'un çalıştığı Docker ağı. | Hayır |
+    | `Local docker ip`       | Çalışan FAST node'a atanacak IP adresi. | Hayır |
+    | `Without sudo`          | FAST node komutlarının, FAST node’u çalıştıran kullanıcının haklarıyla çalıştırılıp çalıştırılmayacağı. Varsayılan olarak, komutlar süper kullanıcı haklarıyla (sudo üzerinden) çalıştırılır. | Hayır |
 
-    !!! warning "Çalışan FAST node"
-        Eğer iş akışına talepleri kaydetme adımını ve güvenlik test adımını ekliyorsanız, FAST node Docker container'larının adları farklı olmalıdır.
+**Test kaydı için yapılandırılmış plugin örneği:**
 
-**Güvenlik testi için ayarlanmış eklenti örneği:**
+![İstek kaydı için plugin yapılandırma örneği][jenkins-plugin-record-params]
 
-![Güvenlik testi için eklenti ayarı][jenkins-plugin-playback-params]
+İkinci olarak, otomatik test adımına FAST node'u proxy olarak ekleyin.
 
-## Adım 3: Testin Sonucunu Almak
+Test tamamlandığında FAST plugin otomatik olarak istek kaydetmeyi durduracaktır.
 
-Güvenlik testinin sonucu Jenkins arayüzünde gösterilecektir.
+### Güvenlik Testi Adımının Eklenmesi
 
-![FAST eklentisinin çalıştırılmasının sonucu][fast-example-jenkins-plugin-result]
+Güvenlik testi adımını eklemek için **Build** sekmesinde `Playback baselines` modunu seçin ve aşağıda tarif edilen değişkenleri yapılandırın. 
 
-## Diğer Örnekler
+Uygulamanın, güvenlik testi başlamadan **önce** başlatılmış ve test için erişilebilir olduğuna dikkat edin.
 
-FAST'ın CircleCI iş akışı ile entegrasyon örneklerini [GitHub][fast-examples-github].
+!!! warning "Ağ"
+    Güvenlik testinden önce, FAST plugin ile uygulamanın aynı ağda olduğundan emin olun.
 
-!!! info "Daha Fazla Sorular"
-    Eğer FAST'ın entegrasyonu ile ilgili sorularınız varsa, lütfen [bize ulaşın][mail-to-us].
+??? info "Test Modundaki Değişkenler"
+
+    | Değişken              | Değer  | Zorunlu   |
+    |--------------------   | --------  | -----------  |
+    | `Wallarm API token`     | Wallarm cloud'dan alınan token. | Evet |
+    | `Wallarm API host`    | Wallarm API sunucusunun adresi. <br>İzin verilen değerler: <br>`us1.api.wallarm.com` (Wallarm US cloud sunucusu için) ve <br>`api.wallarm.com` (Wallarm EU cloud sunucusu için).<br>Varsayılan değer: `us1.api.wallarm.com`. | Hayır |
+    | `Application host`      | Test uygulamasının adresi. Değer, IP adresi veya alan adı olabilir. | Evet |
+    | `Application port`      | Test uygulamasının portu. Varsayılan değer 8080'dir. | Hayır |
+    | `Policy id`   | [Test policy](../operations/test-policy/overview.md) ID'si.<br>Varsayılan değer: `0`-`Default Test Policy`. | Hayır |
+    | `TestRecord id`    | Test kayıt ID'si. [TEST_RECORD_ID](ci-mode-testing.md#environment-variables-in-testing-mode)'ye karşılık gelir.<br>Varsayılan değer, kullanılan FAST node tarafından oluşturulan son test kaydıdır. | Hayır |
+    | `TestRun RPS`   | Hedef uygulamaya gönderilecek test isteklerinin (RPS, saniyedeki istek sayısı) limiti.<br>Minimum değer: `1`.<br>Maksimum değer: `500`.<br>Varsayılan değer: `null` (RPS sınırı yoktur).| Hayır |
+    | `TestRun name`   | Test çalışmasının adı.<br>Varsayılan olarak, test çalışmasının oluşturulma tarihinden otomatik olarak üretilir. | Hayır |
+    | `TestRun description`   | Test çalışmasının açıklaması. | Hayır |
+    | `Stop on first fail`   | Hata meydana geldiğinde testin durdurulup durdurulmayacağı. | Hayır |
+    | `Fail build`   | Güvenlik testi sırasında açıklar bulunması durumunda yapının hata ile sonlandırılıp sonlandırılmayacağı. | Hayır |
+    | `Exclude`   | Güvenlik testinden hariç tutulacak dosya uzantılarının listesi.<br>Uzantıları ayırmak için &#448; sembolü kullanılır.<br>Varsayılan olarak, hariç tutma yoktur. | Hayır |
+    | `Fast name`             | FAST node Docker konteynerinin adı. | Hayır |
+    | `Wallarm version`       | Kullanılan FAST node'un versiyonu. | Hayır |
+    | `Local docker network`  | FAST node'un çalıştığı Docker ağı. | Hayır |
+    | `Local docker ip`       | Çalışan FAST node'a atanacak IP adresi. | Hayır |
+    | `Without sudo`          | FAST node komutlarının, FAST node’u çalıştıran kullanıcının haklarıyla çalıştırılıp çalıştırılmayacağı. Varsayılan olarak, komutlar süper kullanıcı haklarıyla (sudo üzerinden) çalıştırılır. | Hayır |
+
+    !!! warning "FAST Node'un Çalıştırılması"
+        İstek kaydetme ve güvenlik testi adımını iş akışına eklerseniz, FAST node Docker konteynerlerinin adlarının farklı olması gerektiğini unutmayın.
+
+**Güvenlik testi için yapılandırılmış plugin örneği:**
+
+![Güvenlik testi için plugin yapılandırma örneği][jenkins-plugin-playback-params]
+
+## Adım 3: Test Sonuçlarının Alınması
+
+Güvenlik test sonuçları Jenkins arayüzünde görüntülenecektir.
+
+![FAST plugin çalıştırma sonucu][fast-example-jenkins-plugin-result]
+
+## Daha Fazla Örnek
+
+FAST'ın CircleCI iş akışına entegrasyonu örneklerini [GitHub'da][fast-examples-github] bulabilirsiniz.
+
+!!! info "Daha Fazla Soru"
+    FAST entegrasyonu ile ilgili sorularınız varsa, lütfen [bizimle iletişime geçin][mail-to-us].

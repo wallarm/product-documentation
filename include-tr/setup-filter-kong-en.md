@@ -1,43 +1,41 @@
-Filtreleme ve proxy kuralları `/etc/kong/nginx-wallarm.template` dosyasında yapılandırılmıştır.
+The filtering and proxying rules are configured in the `/etc/kong/nginx-wallarm.template` file.
 
-NGINX yapılandırma dosyaları ile çalışma hakkında detaylı bilgi almak için, [resmi NGINX belgelerine](https://nginx.org/en/docs/beginners_guide.html) geçiş yapın.
+NGINX yapılandırma dosyalarıyla çalışmaya ilişkin ayrıntılı bilgileri görmek için, lütfen [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html) sayfasına gidin.
 
-Wallarm direktifleri, Wallarm filtreleme düğümünün işlemleri belirler. Kullanılabilir Wallarm direktiflerinin listesini görmek için, [Wallarm yapılandırma seçenekleri](../admin-en/configure-parameters-en.md) sayfasına ilerleyin.
+Wallarm yönergeleri, Wallarm filtreleme düğümünün çalışma mantığını tanımlar. Mevcut Wallarm yönergelerinin listesini görmek için, lütfen [Wallarm configuration options](../admin-en/configure-parameters-en.md) sayfasına gidin.
 
 **Yapılandırma dosyası örneği**
 
-Aşağıdaki koşullarda çalışacak bir sunucuyu yapılandırmanız gerektiğini varsayalım:
-* Yalnızca HTTP trafiği işlenir. HTTPS istekleri işlenmez.
-* Aşağıdaki alan adları istekleri alır: `example.com` ve `www.example.com`.
+Sunucuyu aşağıdaki koşullarda çalışacak şekilde yapılandırmanız gerektiğini varsayalım:
+* Sadece HTTP trafiği işleniyor. HTTPS istekleri işlenmiyor.
+* Aşağıdaki alan adları istek almaktadır: `example.com` ve `www.example.com`.
 * Tüm istekler `10.80.0.5` sunucusuna iletilmelidir.
-* Gelen tüm isteklerin boyutu 1MB'tan küçük olarak düşünülür (varsayılan ayar).
-* Bir isteğin işlenmesi 60 saniyeden fazla sürmez (varsayılan ayar).
-* Wallarm izleme modunda çalışmalıdır.
-* İstemciler, ara bir HTTP yük dengeleyicisi olmadan filtreleme düğümüne doğrudan erişir.
+* Gelen tüm istekler 1MB'den küçük kabul edilir (varsayılan ayar).
+* Bir isteğin işlenmesi 60 saniyeden uzun sürmemelidir (varsayılan ayar).
+* Wallarm, izleme (monitor) modunda çalışmalıdır.
+* İstemciler, ara bir HTTP yük dengeleyici olmaksızın doğrudan filtreleme düğümüne erişir.
 
-Listelenen koşulları karşılamak için, yapılandırma dosyasının içeriği aşağıdaki gibi olmalıdır:
+Belirtilen koşulları karşılamak için, yapılandırma dosyasının içeriği aşağıdaki gibi olmalıdır:
 
 ```
-
     server {
       listen 80;
       listen [::]:80 ipv6only=on;
 
-      # trafiknin işlendiği alan adları
+      # trafiğin işleneceği alan adları
       server_name example.com; 
       server_name www.example.com;
 
-      # trafik işleme modunu izlemeye al
+      # trafik işlemenin izleme modunu etkinleştir
       wallarm_mode monitoring; 
       # wallarm_instance 1;
 
       location / {
-        # isteğin yönlendirileceği adresin ayarlanması
+        # istek iletimi için adresin ayarlanması
         proxy_pass http://10.80.0.5; 
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       }
     }
-
 ```

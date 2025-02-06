@@ -16,23 +16,23 @@
 
 # Test Politikalarını Kullanma
 
-Test politikaları, güvenlik testleri ile [ilişkilidir][doc-pol-tr-relations]. Bir test döngüsü oluştururken, her test politikası FAST düğüm davranışını tanımlar ve belirtir.
+Test politikaları, güvenlik testleri ile [ilişkili][doc-pol-tr-relations] durumdadır. Bir test tekrarı oluştururken, her test politikası FAST node davranışını tanımlar ve belirler.
 
 Test politikasını aşağıdaki yollarla belirtebilirsiniz:
 
-* Arayüz kullanılarak, test [oluşturulduğunda][doc-tr-creation-gui] veya [kopyalandığında][doc-tr-copying-gui], o zaman **Test politikası** açılır listesinden politikayı seçin:
+* Arayüzü kullanarak; test [oluşturulmuşsa][doc-tr-creation-gui] veya [kopyalanmışsa][doc-tr-copying-gui], **Test policy** açılır listesinden ilgili politikayı seçin:
 
-    ![Arayüz üzerinden test döngüsü oluştururken test politikasını seçme][img-set-policy-in-gui]
+    ![Arayüz üzerinden test politikası seçimi][img-set-policy-in-gui]
 
-* Test politikasını ID'sini belirtin:
-    * API isteğinde test [oluşturulduğunda][doc-tr-creation-api] veya [kopyalandığında][doc-tr-copying-api] API metotları üzerinden
-    * [FAST düğümde][doc-ci-mode] test yönetiliyorsa [`TEST_RUN_POLICY_ID`][doc-tr-pid-envvar] ortam değişkeninde
+* Test politika ID'sini belirtin:
+    * Test, API yöntemleriyle [oluşturulmuşsa][doc-tr-creation-api] veya [kopyalanmışsa][doc-tr-copying-api] API isteğinde
+    * Test yönetimini [FAST node][doc-ci-mode] ile gerçekleştiriyorsanız, [`TEST_RUN_POLICY_ID`][doc-tr-pid-envvar] ortam değişkeninde
         
-    Test politikası ID'sini Wallarm hesabınızdaki politikalar listesinde [EU bulutu][link-pol-list-eu] veya [US bulutu][link-pol-list-us] için bulabilirsiniz.
+    Test politika ID’sini, Wallarm hesabınızdaki [EU cloud][link-pol-list-eu] veya [US cloud][link-pol-list-us] için politika listesinden bulabilirsiniz.
 
-    ![Politika ID'sini alma][img-get-policy-id]
+    ![Politika ID alma][img-get-policy-id]
 
-!!! info "Varsayılan test politikası"
-    FAST otomatik olarak **Varsayılan Politika** oluşturur ve uygular. Bu politika, uygulamayı, en sık kullanılan istek noktalarını kontrol ederek tipik zafiyetler için test eder.
+!!! info "Default test policy"
+    FAST otomatik olarak **Default Policy** oluşturur ve uygular. Bu politika, uygulamadaki tipik güvenlik açıklarını, en sık kullanılan istek noktalarını kontrol ederek test eder.
 
-    Lütfen varsayılan test politikasının ayarlarının değiştirilemez olduğunu dikkate alın.
+    Lütfen varsayılan test politikasının ayarlarının değiştirilemeyeceğini unutmayın.

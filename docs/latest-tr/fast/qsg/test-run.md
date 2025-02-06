@@ -17,104 +17,104 @@
     
 #   Testi Çalıştırma
 
-Bu bölüm, güvenlik test setinin oluşturulup yürütülmesi sürecine rehberlik edecektir. Test seti, daha önce [oluşturduğunuz][link-previous-chapter] test politikası ve temel talebi kullanarak oluşturulacaktır. Gerekli tüm adımlar tamamlandığında, testlerinizin sonucunda bir XSS açıklığı bulacaksınız.
+Bu bölüm, bir güvenlik testi seti oluşturma ve yürütme sürecinde size rehberlik edecektir. Test seti, [önceden][link-previous-chapter] oluşturduğunuz test politikası ve başlangıç isteği kullanılarak oluşturulacaktır. Gerekli tüm adımlar tamamlandığında, testiniz sonucunda bir XSS açığı bulacaksınız.
 
-Uygulama güvenlik testine başlamak için, test çalışması oluşturulmalıdır. *Test çalışması*, tek seferlik bir zafiyet testi sürecini tanımlar. Her test çalışmasının doğru FAST işlemi için önemli olan benzersiz bir tanımlayıcısı vardır. Test çalışması oluşturulduğunda, test çalışması ID'si ve test politikası FAST düğümüne gönderilir. Daha sonra düğümde güvenlik testi süreci başlar.
+Uygulama güvenliği testine başlamak için bir test çalıştırması oluşturulmalıdır. *Test çalıştırması*, tek seferlik bir açık test etme sürecini tanımlar. Her test çalıştırmasının benzersiz bir tanımlayıcısı vardır; bu, FAST’in doğru çalışması için hayati öneme sahiptir. Bir test çalıştırması oluşturduğunuzda, test çalıştırması kimliği ve test politikası FAST node’una gönderilir. Ardından, node üzerinde güvenlik testi süreci başlatılır.
 
-FAST, güvenlik test setini aşağıdaki gibi oluşturur ve yürütür:
+FAST, güvenlik testi setini aşağıdaki şekilde oluşturur ve yürütür:
 
-1.  Düğüm, test politikası ve test çalışma ID'si kendisine gönderilene kadar tüm gelen talepleri şeffaf bir şekilde yönlendirir.
+1.  Test politikası ve test çalıştırması kimliği gönderilene kadar, node tüm gelen istekleri şeffafca proxy üzerinden aktarır.
 
-2.  Test çalışması oluşturulup çalıştırıldığında, FAST düğümü test politikası ve test çalışma ID'sini Wallarm bulutundan alır.
+2.  Test çalıştırması oluşturulup başlatıldığında, FAST node, Wallarm Cloud’dan test politikası ve test çalıştırması kimliğini alır.
 
-3.  Eğer düğüm, hedef uygulamaya bir temel talebi alırsa, o zaman:
-    1.  Düğüm, gelen talebi test çalışma ID'si ile işaretler
-    2.  İşaretlenmiş talep Wallarm buluta kaydedilir
-    3.  Başlangıç temel talebi hedef uygulamaya değiştirilmeden gönderilir
+3.  Node, hedef uygulamaya yönelik bir başlangıç isteği aldığında:
+    1.  Gelen isteğe test çalıştırması kimliğini ekler.
+    2.  İşaretlenen istek Wallarm Cloud’a kaydedilir.
+    3.  Başlangıç isteği, herhangi bir değişiklik yapılmadan hedef uygulamaya gönderilir.
     
-    !!! bilgi "Temel taleplerin kayıt süreci"
-        Bu sürece genellikle temel taleplerin kayıt süreci denir. Kaydı, bulutun web arayüzünden veya Wallarm API'sine bir API çağrısı yaparak durdurabilirsiniz. Düğüm, başlangıç temel taleplerini hedef uygulamaya göndermeye devam edecektir.
+    !!! info "Başlangıç İstekleri Kaydetme Süreci"
+        Bu süreç, genellikle başlangıç isteklerinin kaydedilmesi olarak adlandırılır. Kayıt işlemini Wallarm Cloud’un web arayüzünden veya Wallarm API’a yapılan bir API çağrısı aracılığıyla durdurabilirsiniz. Node, başlangıç isteklerini hedef uygulamaya göndermeye devam edecektir.
     
-    Temel taleplerin kaydedilmesi, düğümün test politikası ve test çalışma ID'sini ilk aldığı durumda başlar.
+    Başlangıç kaydı, node önce test politikası ve test çalıştırması kimliğini aldığında başlar.
     
-    FAST düğümü, bir isteğin temel olup olmadığını, `ALLOWED_HOSTS` çevre değişkenini incelerek belirler. Bu değişken, FAST düğümünün [dağıtım süreci][link-deployment] sırasında ayarlandı. Eğer talebin hedef alan adı bu değişken tarafından kabul edilirse, talep temel olarak kabul edilir. Eğer rehbere uyduysanız, `google-gruyere.appspot.com` alan adına yapılan tüm talepler temel olarak kabul edilir.
+    FAST node, bir isteğin başlangıç isteği olup olmadığını belirlemek için `ALLOWED_HOSTS` ortam değişkenini inceler. Bu değişken, FAST node’un [dağıtım süreci][link-deployment] sırasında ayarlanmıştır. Eğer isteğin hedef domaini, değişken tarafından izin verilenler arasında ise, istek başlangıç isteği olarak kabul edilir. Kılavuzu takip ettiyseniz, `google-gruyere.appspot.com` domainine yapılan tüm istekler başlangıç olarak değerlendirilecektir.
     
-    Hedefe yönelik olmayan tüm diğer talepler, herhangi bir değişiklik yapılmadan şeffaf bir şekilde yönlendirilir.
+    Hedef uygulamaya yönelik olmayan diğer tüm istekler, herhangi bir değişiklik yapılmadan şeffafca proxy üzerinden iletilir.
 
-4.  FAST düğümü, test çalışma ID'sine dayanarak Wallarm bulutundan tüm kaydedilmiş temel talepleri alır.
+4.  FAST node, test çalıştırması kimliğine dayanarak Wallarm Cloud’dan kaydedilmiş tüm başlangıç isteklerini çeker.
 
-5.  FAST düğümü, buluttan alınan test politikasını kullanarak her temel talep için güvenlik testleri oluşturur.
+5.  FAST node, Wallarm Cloud’dan aldığı test politikası kullanılarak her bir başlangıç isteği için güvenlik testleri oluşturur.
 
-6.  Oluşturulan güvenlik test seti, taleplerin hedef uygulamaya düğümden gönderilmesiyle yürütülür. Test sonuçları, test çalışma ID'si ile ilişkilendirilir ve bulutta saklanır.
+6.  Oluşturulan güvenlik testi seti, node üzerinden hedef uygulamaya istekler gönderilerek yürütülür. Test sonuçları test çalıştırması kimliği ile ilişkilendirilir ve Cloud’da saklanır.
 
-    ![FAST düğümünün iç mantığı][img-fast-node-internals]
+    ![FAST node iç mantığı][img-fast-node-internals]
 
-    !!! bilgi "Kullanımdaki bir test çalışması hakkında not"
-        Herhangi bir zaman diliminde, sadece bir test çalışması FAST düğümünde çalışabilir. Aynı düğüm için başka bir test çalışması oluşturursanız, mevcut test çalışması yürütme işlemi kesilir.
+    !!! info "Kullanımda Olan Test Çalıştırması Hakkında Not"
+        Belirli bir zaman diliminde FAST node üzerinde yalnızca bir test çalıştırması yürütülebilir. Aynı node için başka bir test çalıştırması oluşturduğunuzda, mevcut test çalıştırması kesintiye uğrar.
        
-Güvenlik test setinin oluşturulma ve uygulama sürecini başlatmak için aşağıdakileri yapın:
+Güvenlik testi setinin oluşturulması ve yürütülmesi sürecini başlatmak için aşağıdakileri yapın:
 
-1.  [Test çalışmasını oluşturun ve çalıştırın][anchor1]
-2.  [Daha önce oluşturduğunuz HTTPS temel isteğini yürütün][anchor2]
+1.  [Test çalıştırmasını oluşturun ve çalıştırın][anchor1]
+2.  [Önceden oluşturduğunuz HTTPS başlangıç isteğini çalıştırın][anchor2]
     
-##  1.  Test Çalışmasını Oluşturun ve Çalıştırın  
+##  1.  Test Çalıştırmasını Oluşturun ve Çalıştırın  
 
-Test çalışmasını, Wallarm hesap web arayüzünü kullanarak [talimatlara][link-create-tr-gui] uyarak oluşturun.
+Wallarm hesabı web arayüzü üzerinden [talimatları][link-create-tr-gui] izleyerek bir test çalıştırması oluşturun.
 
-Talimatları takip ettikten sonra, test çalışması oluştururken aşağıdaki temel parametreleri ayarlayın:
+Talimatları izledikten sonra, test çalıştırması oluştururken aşağıdaki temel parametreleri ayarlayın:
 
-* test çalışma adı: `DEMO TEST RUN`;
+* test çalıştırması adı: `DEMO TEST RUN`;
 * test politikası: `DEMO POLICY`;
-* FAST düğümü: `DEMO NODE`.
+* FAST node: `DEMO NODE`.
 
 Bu talimatlar gelişmiş ayarları içermemektedir.
 
-Test çalışması kaydedildikten sonra, ID'si otomatik olarak FAST düğümüne geçirilir. "Testruns" sekmesinde, yanıp sönen kırmızı bir nokta göstergesi olan oluşturulan test çalışmasını göreceksiniz. Bu gösterge, test çalışması için temel taleplerin kaydedildiğini anlamına gelir.
+Test çalıştırması kaydedildikten sonra, kimliği otomatik olarak FAST node’a iletilecektir. “Testruns” sekmesinde, yanıp sönen kırmızı nokta göstergesi ile oluşturulan test çalıştırmasını göreceksiniz. Bu gösterge, test çalıştırması için başlangıç isteklerinin kaydedildiğini ifade eder.
 
-Kaydedilen tüm temel talepleri görmek için "Baseline req." sütununa tıklayabilirsiniz.
+Kayıt altına alınan tüm başlangıç isteklerini görmek için “Baseline req.” sütununa tıklayabilirsiniz.
 
-![Kaydedilmiş temel talepleri görüntüleme][img-view-recording-cloud]
+![Kayıtlı Başlangıç İsteklerini Görüntüleme][img-view-recording-cloud]
 
-!!! bilgi "Düğümün kayda hazır olması"
-    FAST düğümünün adı `DEMO NODE` olan ve `DEMO TEST RUN` adlı test çalışması için temel talepleri kaydetmeye hazır olduğunu konsol çıktısında görene kadar beklemelisiniz
+!!! info "Kaydetme İçin Node’un Hazır Olması"
+    `DEMO TEST RUN` adlı test çalıştırması için `DEMO NODE` adlı FAST node’un başlangıç isteklerini kaydetmeye hazır olduğuna dair console çıktısını görene kadar beklemelisiniz.
     
-    Eğer düğüm, temel talebi kaydetmeye hazır ise, konsol çıktısında benzer bir mesaj göreceksiniz:
+    Eğer node başlangıç isteğini kaydetmeye hazırsa, console çıktısında şu benzer mesajı göreceksiniz:
     
-    `[info] TestRun#N ‘DEMO TEST RUN’ için temeller kaydediliyor`
+    `[info] TestRun#N ‘DEMO TEST RUN’ için başlangıç istekleri kaydediliyor`
     
-    Bu mesaj gösterildikten sonra düğüm, temel taleplere dayalı olarak bir güvenlik test seti oluşturabilecektir.    
+    Bu mesaj görüntülendikten sonra, node yalnızca başlangıç isteklerine dayanarak bir güvenlik testi seti oluşturabilecektir.
 
-Konsol çıktısından, FAST düğümünün adı `DEMO NODE` olan ve `DEMO TEST RUN` adlı test çalışması için temel talepleri kaydetmeye hazır olduğu görülür:
+Console çıktısından, `DEMO TEST RUN` adlı test çalıştırması için `DEMO NODE` adlı FAST node’un başlangıç isteklerini kaydetmeye hazır olduğu gözlemlenebilir:
 
---8<-- "../include-tr/fast/console-include/qsg/fast-node-ready-for-recording.md"
+--8<-- "../include/fast/console-include/qsg/fast-node-ready-for-recording.md"
     
     
-##  2.  Daha Önce Oluşturduğunuz HTTPS Temel İsteğini Yürütün
+##  2.  Önceden Oluşturduğunuz HTTPS Başlangıç İsteğini Çalıştırın
 
-Bunu yapmak için, önceden yapılandırılmış Mozilla Firefox tarayıcısını kullanarak [oluşturduğunuz][link-previous-chapter] bağlantıya gidin.
+Bunu yapmak için, önceden yapılandırılmış Mozilla Firefox tarayıcısını kullanarak [oluşturduğunuz bağlantıya][link-previous-chapter] gidin.
 
-!!! bilgi "Bir bağlantı örneği"
+!!! info "Bağlantı Örneği"
     <https://google-gruyere.appspot.com/430232491618310677730226710602783767322/snippets.gtl?password=paSSw0rd&uid=123>
 
-İstek uygulamasının sonucu aşağıda gösterilmiştir:
+İstek yürütme sonucunun çıktısı aşağıda gösterilmiştir:
 
-![İstek uygulamasının sonucu][img-request-exec-result]
+![İstek Yürütme Sonucu][img-request-exec-result]
 
-Konsol çıktısından, FAST düğümünün bir temel talebi kaydettiği görülür:
+Console çıktısından, FAST node’un bir başlangıç isteğini kaydettiği gözlemlenmektedir:
 
---8<-- "../include-tr/fast/console-include/qsg/fast-node-testing.md"
+--8<-- "../include/fast/console-include/qsg/fast-node-testing.md"
 
-Bazı temel taleplerin Wallarm buluta kaydedildiğini görebilirsiniz:
+Wallarm Cloud’a kaydedilmiş bazı başlangıç isteklerini gözlemleyebilirsiniz:
 
-![Gelen temel talepler][img-incoming-baselines]
+![Gelen Başlangıç İstekleri][img-incoming-baselines]
 
-Bu belge, gösterim amaçlı olarak sadece bir talebin uygulandığını önerir. Ek yönlendirilen talepler olmadığına göre, "Actions" açılır menüsünden **Kayıt İşlemini Durdur** seçeneğini seçerek temel kaydı durdurun.
+Bu belge, gösterim amaçlı olarak yalnızca bir isteğin yürütülmesini önermektedir. Hedef uygulamaya ek istek olmadığından, “Actions” açılır menüsünden **Stop recording** seçeneğini seçerek başlangıç kaydı sürecini durdurun.
 
-!!! bilgi "Test çalışması yürütme sürecinin kontrolü"
-    Oluşturduğunuz test çalışması için bir güvenlik test seti oldukça hızlı bir şekilde oluşturuldu. Ancak, süreç, temel taleplerin sayısına, kullanılan test politikasına ve hedef uygulamanın yanıt verme hızına bağlı olarak önemli ölçüde uzun sürebilir. "Actions" açılır menüsünden uygun bir seçeneği seçerek test sürecini duraklatabilir veya durdurabilirsiniz.
+!!! info "Test Çalıştırması Yürütme Sürecinin Kontrolü"
+    Oluşturduğunuz test çalıştırması için güvenlik testi seti oldukça hızlı oluşturulmuştur. Ancak, süreç; başlangıç isteklerinin sayısına, kullanılan test politikasına ve hedef uygulamanın tepki süresine bağlı olarak önemli bir zaman alabilir. “Actions” açılır menüsünden uygun seçeneği seçerek test sürecini duraklatabilir veya durdurabilirsiniz.
 
-Temel kaydın devam etmediği durumlarda, test süreci tamamlandığında test çalışması otomatik olarak durur. "Result" sütununda bulunan zafiyetler hakkında kısa bilgiler görüntülenir. FAST, uygulanan HTTPS talebi için bazı XSS zafiyetlerini bulmalıdır:
+Test süreci, herhangi bir başlangıç kaydının devam etmediği sürece tamamlandığında otomatik olarak duracaktır. Algılanan güvenlik açıkları hakkında kısa bilgiler “Result” sütununda gösterilecektir. FAST, yürütülen HTTPS isteği için bazı XSS güvenlik açıkları bulmalıdır:
 
-![Bulunan zafiyet][img-xss-found]
+![Bulunan Güvenlik Açığı][img-xss-found]
     
-Şimdi, bölüm hedeflerinin tamamını tamamlamış olmalı ve Google Gruyere uygulamasına yönelik HTTPS isteğinin test sonucu ile birlikte bulunmalısınız. Sonuç, bulunan üç XSS açıklığını gösterir.
+Artık, Google Gruyere uygulamasına yapılan HTTPS isteğinin test sonuçlarıyla birlikte bölümün tüm hedefleri tamamlanmıştır. Sonuç, üç adet XSS güvenlik açığının bulunduğunu göstermektedir.

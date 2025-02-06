@@ -1,48 +1,48 @@
-# Müşteri verileri için paylaşılan sorumluluk güvenlik modeli
+# Müşterilerin Verileri için Paylaşılan Sorumluluk Güvenlik Modeli
 
-Wallarm, paylaşılan sorumluluk güvenlik modeline dayanıyor. Bu modelde, tüm tarafların (Wallarm ve müşterileri) müşterilerin verilerinin, kişisel olarak tanımlanabilir bilgiler (PII) ve kart hamili verileri de dahil olmak üzere güvenliği konusunda farklı sorumluluk alanları vardır.
+Wallarm, paylaşılan sorumluluk güvenlik modeline dayanmaktadır. Bu modelde, müşterilerin verilerinin güvenliği (kişisel olarak tanımlanabilir bilgiler (PII) ve Kart Sahibi Verileri dahil) söz konusu olduğunda, tüm tarafların (Wallarm ve müşterileri) farklı sorumluluk alanları bulunmaktadır.
 
-Wallarm, iki ana bileşenin farklı sorumluluk alanlarında bulunduğu karma bir çözümdür (kısmen yazılım ve kısmen SaaS):
+Wallarm, farklı sorumluluk alanlarında iki ana bileşene sahip hibrit bir çözümdür (parça yazılım, parça SaaS):
 
-* **Wallarm filtreleme düğümü** yazılımı, altyapınızda dağıtılır ve tarafınızdan yönetilir. Wallarm düğüm bileşeni, son kullanıcı isteklerini filtrelemek, güvenli istekleri uygulamanıza göndermek ve kötü amaçlı istekleri engellemekten sorumludur. Wallarm düğümü, trafiği geçirir ve bir isteğin kötü amaçlı olup olmadığına yerel olarak karar verir. Trafik, analiz için Wallarm Bulutuna AYNALANMAZ.
-* **Wallarm Bulutu**, Wallarm tarafından yönetilen bir bulut bileşenidir, filtreleme düğümlerinden işlenmiş istekler ve tespit edilen saldırılar hakkında meta-bilgileri almak; ayrıca uygulama özel filtrasyon kuralları oluşturmak ve bu kuralları düğümlerin indirmesi için mevcut hale getirmekten sorumludur. Wallarm Konsolu ve genel API, güvenlik raporlarını ve bireysel olayları görmenizi sağlar; trafik filtreleme kurallarını yönetmek, Wallarm Konsolu kullanıcılarını, harici entegrasyonları vs.
+* **Wallarm filtering node** yazılımı, altyapınıza kurulmuş olup sizin tarafınızdan yönetilir. Wallarm node bileşeni, son kullanıcı isteklerini filtrelemek, uygulamanıza güvenli istekler göndermek ve kötü amaçlı istekleri engellemekten sorumludur. Wallarm node, trafiği iletir ve bir isteğin kötü amaçlı olup olmadığına yerel olarak karar verir. Trafik analiz için Wallarm Cloud'a yansıtılmaz.
+* **Wallarm Cloud**, Wallarm tarafından yönetilen bir bulut bileşenidir ve filtreleme nodelarından işlenen isteklerle ilgili meta bilgileri ve tespit edilen saldırıları almak; ayrıca uygulamaya özel filtreleme kuralları oluşturup bunların nodeların indirmesi için kullanılabilir hale getirilmesinden sorumludur. Wallarm Console ve genel API, güvenlik raporlarını ve bireysel olayları görme; trafik filtreleme kuralları, Wallarm Console kullanıcıları, dış entegrasyonlar vb. yönetimine olanak tanır.
 
-![Sorumluluk planı](../images/shared-responsibility.png)
+![Sorumluluklar Şeması](../images/shared-responsibility.png)
 
-## Wallarm sorumlulukları
+## Wallarm Sorumlulukları
 
-Wallarm şu konularda sorumludur:
+Wallarm aşağıdaki noktalardan sorumludur:
 
-* Wallarm bulut ortamlarının güvenlik ve kullanılabilirliği, Wallarm filtreleme düğüm kodunun güvenliği ve dahili Wallarm sistemleri.
+* Wallarm bulut ortamlarının güvenliği ve erişilebilirliği, Wallarm filtering node kodunun güvenliği ve iç Wallarm sistemlerinin güvenliği.
 
-    Bu, sunucu düzeyinde yamanın, Wallarm bulut hizmetini sağlamak için gerekli hizmetlerin işletilmesinin, güvenlik hızma karşı testin, güvenlik olay günlüğünün ve izleme, olay yönetimi, operasyonel izleme ve 24/7 destek dahil fakat bunlarla sınırlı değildir. Wallarm ayrıca, Wallarm bulut ortamlarının sunucu ve çevre duvarı yapılandırmalarını (güvenlik grupları) yönetmekten sorumludur.
+    Buna, ancak bunlarla sınırlı olmamak üzere: sunucu düzeyi yamaları, Wallarm bulut hizmetini sunmak için gerekli servislerin işletilmesi, güvenlik açıkları testi, güvenlik olay kaydı ve izleme, olay yönetimi, operasyonel izleme ve 7/24 destek dahildir. Wallarm ayrıca Wallarm bulut ortamlarının sunucu ve çevresel güvenlik duvarı yapılandırmalarını (güvenlik grupları) yönetmekle de sorumludur.
 
-* Wallarm filtreleme düğüm bileşenini periyodik olarak güncellemek. Bu güncellemelerin uygulanmasının müşterinin sorumluluğunda olduğunu lütfen unutmayın.
+* Wallarm filtering node bileşeninin periyodik olarak güncellenmesi. Bu güncellemelerin uygulanmasının müşterinin sorumluluğunda olduğunu unutmayın.
 
-* İstendiğinde, en son Wallarm SOC 2 Tip II denetim raporunun bir kopyasını sağlamak.
+* İstenildiği takdirde, size en güncel Wallarm SOC 2 Type II denetim raporunun bir kopyasını sağlamaktır.
 
-## Müşteri sorumlulukları
+## Müşteri Sorumlulukları
 
-Wallarm müşterileri aşağıdaki konulardan sorumludur:
+Wallarm müşterileri aşağıdaki noktalardan sorumludur:
 
-* Genel IT sistemine erişim ve sistem kullanım uygunluğu hakkında sağlam ve tutarlı dahili kontrolleri, Wallarm ile ilişkili tüm dahili bileşenler dahil olmak üzere uygulamak.
+* Wallarm ile ilişkili tüm dahili bileşenler için genel BT sistem erişimi ve sistem kullanım uygunluğu konusunda sağlam ve tutarlı dahili kontrollerin uygulanması, buna Wallarm filtering node ve Wallarm Cloud da dahildir.
 
-* Wallarm’ın hizmetleriyle ilgili herhangi bir materyal işlev ya da faaliyetlere daha önce dahil olan çalışanın işine son verilmiş olan kullanıcı hesaplarının kaldırılmasına uygulamak.
+* Wallarm hizmetleriyle ilişkili önemli fonksiyonlar veya faaliyetlerde daha önce yer alan ve artık görevde olmayan kullanıcı hesaplarının kaldırılmasını uygulamak.
 
-* Güvenlik çevrelerinden çıkan ve saldırıyla tespit edilmiş kötü niyetli isteklerin raporlanması olarak Wallarm bulutuna gönderilmiş olabilecek herhangi hassas veri için uygun [veri maskeleri kuralları](../user-guides/rules/sensitive-data-rule.md) yapılandırmak.
+* Müşteri güvenlik alanını terk edebilecek ve tespit edilen kötü amaçlı isteklerin raporlanması kapsamında Wallarm Cloud'a gönderilen herhangi bir hassas veri için uygun [veri maskeleme kuralları](../user-guides/rules/sensitive-data-rule.md) yapılandırmak.
 
-* Wallarm’ın hizmetleriyle ilgili müşteri kuruluşlarına ait işlemlerin uygun şekilde yetkilendirildiğinden emin olmak ve işlemlerin güvenli, zamanında ve tam olduğundan emin olmak.
+* Wallarm hizmetleriyle ilişkili müşteri organizasyonları için işlemlerin uygun şekilde yetkilendirildiğinden, işlemlerin güvenli, zamanında ve eksiksiz olduğundan emin olmak.
 
-* Hizmetleri tarafından sağlanan işlemlere direk dahil olan çalışanlarda Wallarm'ın hizmetlerinin gerçekleştirilmesiyle ilgili olarak herhangi bir değişiklikten Wallarm'ı zamanında haberdar etmek. Bu personel, Wallarm tarafından sağlanan hizmetlerle direk ilgili olan mali, teknik veya yardımcı idari fonksiyonlarda yer alabilir.
+* Wallarm tarafından gerçekleştirilen hizmetlerle doğrudan ilgilenen personeldeki herhangi bir değişikliği Wallarm'a zamanında bildirmek. Bu personel, Wallarm tarafından sağlanan hizmetlerle doğrudan ilişkili finansal, teknik veya ek idari işlevlerde yer alabilir.
 
-* Wallarm tarafından zamanında çıkarılmış olan yeni yazılım güncellemeleri ile filtreleme düğümlerini güncellemek.
+* Wallarm tarafından yayınlanan yeni yazılım güncellemeleriyle filtering nodeların zamanında güncellenmesi.
 
-* Bir iş sürekliliği ve afet kurtarma planı (BCDRP) geliştirmek ve gerektiğinde uygulamak, bu plan Wallarm tarafından sağlanan hizmetlerin devamını sağlayacaktır.
+* Wallarm tarafından sağlanan hizmetlerin devamını destekleyecek bir iş sürekliliği ve felaket kurtarma planı (BCDRP) geliştirmek ve gerekirse uygulamaya koymak.
 
-## Hassas verilerin maskelenmesi
+## Hassas Verilerin Maskelemesi
 
-Herhangi bir üçüncü taraf hizmeti ile olduğu gibi, bir Wallarm müşterisinin hangi müşteri verilerinin Wallarm'a gönderildiğini anlaması ve hassas verilerin asla Wallarm Bulutuna ulaşmayacağından emin olması önemlidir. PCI DSS, GDPR ve diğer gerekliliklere sahip Wallarm müşterilerinin hassas verileri özel kurallar kullanarak maskelenmesi önerilir.
+Herhangi bir üçüncü taraf hizmette olduğu gibi, bir Wallarm müşterisinin hangi müşteri verilerinin Wallarm'a gönderildiğini anlaması ve hassas verilerin hiçbir zaman Wallarm Cloud'a ulaşmayacağından emin olması önemlidir. PCI DSS, GDPR ve diğer gereksinimlere sahip Wallarm müşterilerinin özel kurallar kullanarak hassas verileri maskelemeleri önerilir.
 
-Filtreleme düğümlerinden Wallarm Bulutuna iletilen ve herhangi hassas ayrıntıları içerebilecek tek veri, tespit edilmiş kötü niyetli istekler hakkında bilgidir. Bir kötü niyetli isteğin herhangi bir hassas veri içermesi oldukça düşük bir ihtimaldir. Ancak, önerilen yaklaşım, `token`, `password`, `api_key`, `email`, `cc_number`, vb. gibi PII veya kredi kartı bilgileri içerebilecek HTTP istek alanlarını maskelemektir. Bu yaklaşımı kullanmak, belirtilen bilgi alanlarının asla güvenlik sınırlarınızı terk etmeyeceğini garanti edecektir.
+Filtreleme nodelardan Wallarm Cloud'a gönderilen ve hassas detaylar içerebilecek tek veri, tespit edilen kötü amaçlı isteklerle ilgili bilgilerdir. Kötü amaçlı bir isteğin herhangi bir hassas veri içermesi oldukça düşük bir ihtimaldir. Ancak, önerilen yaklaşım, `token`, `password`, `api_key`, `email`, `cc_number` vb. gibi PII veya kredi kartı detayları içerebilecek HTTP istek alanlarını maskelemektir. Bu yaklaşım, belirtilen bilgi alanlarının güvenlik çevrenizden asla çıkmayacağının garantisini verecektir.
 
-Bir filtreleme düğümünden Wallarm Bulutuna saldırı bilgilerini gönderirken hangi alanların (istek URI'sinde, başlıklarda veya gövdede) atlanması gerektiğini belirlemek için **Hassas verileri maskelene** adında özel bir kural uygulayabilirsiniz. Verilerin maskelenmesi hakkında daha fazla bilgi için, lütfen [belgeye](../user-guides/rules/sensitive-data-rule.md) bakın veya [Wallarm destek ekibi](mailto:request@wallarm.com) ile iletişime geçin.
+Filtreleme nodedan Wallarm Cloud'a saldırı bilgilerini gönderirken hangi alanların (istek URI'si, başlıkları veya gövdesi içerisinde) hariç tutulması gerektiğini belirtmek için **Mask sensitive data** adlı özel bir kural uygulayabilirsiniz. Verilerin maskelemesi hakkında ek bilgi için lütfen [belgeye](../user-guides/rules/sensitive-data-rule.md) bakın veya [Wallarm destek ekibi](mailto:request@wallarm.com) ile iletişime geçin.

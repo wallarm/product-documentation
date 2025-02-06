@@ -1,10 +1,10 @@
 ```
 ...
-  bağlantı noktaları:
+  ports:
   - port: 80
-    hedefPort: 80
-    protokol: TCP
-    ad: http
-  seçici:
-    çalıstır: myapp
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    run: myapp
 ```

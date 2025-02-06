@@ -1,17 +1,17 @@
-Wallarm filtreleme düğümü, Wallarm Bulutu ile etkileşim kurar. Düğümü Buluta bağlamanız gerekmektedir.
+The Wallarm filtreleme düğümü, Wallarm Cloud ile etkileşim kurar. Düğümü Cloud'a bağlamanız gerekir.
 
-Düğümü Buluta bağlarken, Wallarm Konsol UI'da görüntülenecek düğüm adını belirleyebilir ve düğümü uygun bir **düğüm grubuna** yerleştirebilirsiniz (UI'da düğümleri mantıksal olarak organize etmek için kullanılır).
+Düğümü Cloud'a bağlarken, düğüm adını ayarlayabilir, bu isim Wallarm Console UI'de görüntülenecek ve düğümü uygun **node group** içine yerleştirebilirsiniz (UI'de düğümlerin mantıksal olarak organize edilmesi için kullanılır).
 
-![Gruplandırılmış düğümler][img-grouped-nodes]
+![Grouped nodes][img-grouped-nodes]
 
-Düğümü Buluta bağlamak için, uygun türde bir Wallarm belirtecini kullanın: [wallarm-token-types]:
+Düğümü Cloud'a bağlamak için, [uygun tipteki][wallarm-token-types] bir Wallarm token'ı kullanın:
 
-=== "API belirteci"
+=== "API token"
 
-    1. Wallarm Konsolu'nu açın → **Ayarlar** → [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) 'da **API belirteçleri**.
-    1. `Deploy` kaynak rolü olan bir API belirteci bulun veya oluşturun.
-    1. Bu belirteci kopyalayın.
-    1. Filtreleme düğümünü kuran bir makinede `register-node` komut dizinini çalıştırın:
+    1. Wallarm Console → **Settings** → **API tokens** sayfasını açın ([US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens)).
+    1. `Deploy` kaynak rolüne sahip bir API token'ı bulun veya oluşturun.
+    1. Bu token'ı kopyalayın.
+    1. Filtreleme düğümünü kurduğunuz makinede `register-node` betiğini çalıştırın:
 
         === "US Cloud"
             ``` bash
@@ -21,17 +21,17 @@ Düğümü Buluta bağlamak için, uygun türde bir Wallarm belirtecini kullanı
             ``` bash
             sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>'
             ```
+        
+        * `<TOKEN>`, `Deploy` rolüne sahip API token'ın kopyalanmış değeridir.
+        * `--labels 'group=<GROUP>'` parametresi, düğümünüzü `<GROUP>` node group'una ekler (var olan; yoksa oluşturulur). Filtreleme ve postanalytics modüllerini [ayrı ayrı][install-postanalytics-instr] kuruyorsanız, bunları aynı gruba koymanız tavsiye edilir.
 
-        * `<TOKEN>` `Deploy` rolündeki API belirtecinin kopyalanan değeridir.
-        * `--labels 'group=<GROUP>'` parametresi, düğümünüzü `<GROUP>` düğüm grubuna yerleştirir (mevcut veya yoksa oluşturulur). Filtreleme ve post-analiz modüllerini [ayrı ayrı][install-postanalytics-instr] kuruyorsanız, bunların aynı gruba konulması önerilir.
+=== "Node token"
 
-=== "Düğüm belirteci"
-
-    1. Wallarm Konsolu'nu açın → [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes)'da **Düğümler**.
+    1. Wallarm Console → **Nodes** sayfasını açın ([US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes)).
     1. Aşağıdakilerden birini yapın: 
-        * **Wallarm düğümü** türünde bir düğüm oluşturun ve oluşturulan belirteci kopyalayın.
-        * Var olan bir düğüm grubunu kullanın - düğüm menüsünün → **Belirteci kopyala** seçeneği kullanarak belirteci kopyalayın.
-    1. Filtreleme düğümünü kurduğunuz bir makinede `register-node` komut dizinini çalıştırın:
+        * **Wallarm node** türünde bir düğüm oluşturun ve oluşturulan token'ı kopyalayın.
+        * Mevcut node group'u kullanın - düğümün menüsünden → **Copy token** ile token'ı kopyalayın.
+    1. Filtreleme düğümünü kurduğunuz makinede `register-node` betiğini çalıştırın:
 
         === "US Cloud"
             ``` bash
@@ -42,6 +42,6 @@ Düğümü Buluta bağlamak için, uygun türde bir Wallarm belirtecini kullanı
             sudo /usr/share/wallarm-common/register-node -t <TOKEN>
             ```
 
-    * `<TOKEN>` düğüm belirtecini(nin) kopyalanan değeridir. Filtreleme ve post-analiz modüllerini [ayrı ayrı][install-postanalytics-instr] kuruyorsanız, bunların aynı gruba aynı düğüm belirteci kullanarak konulması önerilir.
+    * `<TOKEN>`, kopyaladığınız node token'ının değeridir. Filtreleme ve postanalytics modüllerini [ayrı ayrı][install-postanalytics-instr] kuruyorsanız, aynı node token'ını kullanarak bunları aynı gruba koymanız tavsiye edilir.
 
-* Düğüm örneğinize özel bir ad belirlemek için `-n <HOST_NAME>` parametresini ekleyebilirsiniz. Son örnek adı: `HOST_NAME_NodeUUID` olacaktır.
+* Düğüm örneğiniz için özel bir ad belirlemek amacıyla `-n <HOST_NAME>` parametresini ekleyebilirsiniz. Nihai örnek adı: `HOST_NAME_NodeUUID`.

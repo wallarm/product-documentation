@@ -1,15 +1,15 @@
 BOLA koruması etkinleştirildiğinde, Wallarm:
 
-1. BOLA saldırılarının hedef olması muhtemel API uç noktalarını tanımlar, örneğin, [değişken yol parametreleri][variability-in-endpoints-docs] olanlar: `domain.com/path1/path2/path3/{variative_path4}`.
+1. BOLA saldırılarının hedefi olma olasılığı en yüksek API uç noktalarını tanımlar, örneğin [variability in path parameters][variability-in-endpoints-docs] içerenler: `domain.com/path1/path2/path3/{variative_path4}`.
 
-    !!! bilgi "Bu aşama bir süre alır"
-        Kırılgan API uç noktalarının tanımlanması, API envanterinin ve gelen trafik eğilimlerinin detaylı gözlemleri için gereken süreyi alır.
+    !!! info "Bu aşama biraz zaman alır"
+        Keşfedilen API envanterinin ve gelen trafik trendlerinin derinlemesine gözlemlenmesini gerektiren bir süre boyunca güvenlik açığı bulunan API uç noktalarının tanımlanması gerçekleşir.
     
-    Sadece **API Keşif** modülü tarafından keşfedilen API uç noktaları, otomatik şekilde BOLA saldırılarına karşı korumaktadır. Korumalı uç noktalar, [ilgili simgeyle vurgulanmıştır][bola-protection-for-endpoints-docs].
-1. Kırılgan API uç noktalarını BOLA saldırılarına karşı korur. Varsayılan koruma mantığı aşağıdaki gibidir:
+    Yalnızca **API Discovery** modülü tarafından keşfedilen API uç noktaları, otomatik olarak BOLA saldırılarına karşı korunur. Korunan uç noktalar [ilgili simge ile vurgulanır][bola-protection-for-endpoints-docs].
+1. Güvenlik açığı bulunan API uç noktalarını BOLA saldırılarına karşı korur. Varsayılan koruma mantığı aşağıdaki gibidir:
 
-    * Aynı IP'den gelen ve dakikada 180 istek eşiğini aşan kırılgan bir uç noktaya yapılan istekler BOLA saldırıları olarak kabul edilir.
-    * Sadece aynı IP'den gelen isteklerin eşiği aşıldığında BOLA saldırılarını etkinlik listesine kaydeder. Wallarm BOLA saldırılarını engellemez. İstekleriniz uygulamalarınıza gitmeye devam eder.
+    * Aynı IP'den gelen, dakika başına 180'i aşan istekler BOLA saldırısı olarak kabul edilir.
+    * Aynı IP'den gelen istek eşiğine ulaşıldığında BOLA saldırıları olay listesine yalnızca kaydedilir. Wallarm, BOLA saldırılarını engellemez. İstekler uygulamalarınıza ulaşmaya devam eder.
 
-        Otomatik koruma şablonundaki ilgili tepki, **Saldırıları sadece kaydet**'tir.
-1. Yeni kırılgan uç noktaları koruyarak ve kaldırılan uç noktalar için korumayı devre dışı bırakarak, [API'deki değişikliklere][changes-in-api-docs] tepki verir.
+        Otomatik koruma şablonundaki ilgili tepki **Only register attacks** olarak ayarlanmıştır.
+1. Yeni güvenlik açığı bulunan uç noktaları koruyarak ve kaldırılan uç noktalar için korumayı devre dışı bırakarak [API'deki değişikliklere][changes-in-api-docs] tepki verir.

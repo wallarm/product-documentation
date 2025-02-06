@@ -1,188 +1,169 @@
-[doc-about-tr-token]:   internals.md
+```markdown
+#   Test Çalıştırma Durumunun Kontrolü
 
-[img-testrun-velocity]: ../../images/fast/poc/en/checking-testrun-status/testrun-velocity.png
-[img-testrun-avg-rps]:  ../../images/fast/poc/en/checking-testrun-status/testrun-avg-rps.png
-[img-status-passed]:        ../../images/fast/qsg/common/test-interpretation/passed-colored.png
-[img-status-failed]:        ../../images/fast/qsg/common/test-interpretation/failed-colored.png
-[img-status-inprogress]:    ../../images/fast/qsg/common/test-interpretation/in-progress.png
-[img-status-error]:         ../../images/fast/qsg/common/test-interpretation/error-colored.png
-[img-status-waiting]:       ../../images/fast/qsg/common/test-interpretation/waiting-colored.png
-[img-status-interrupted]:   ../../images/fast/qsg/common/test-interpretation/interrupted-colored.png
-[img-test-runs]:            ../../images/fast/poc/en/checking-testrun-status/test-runs.png
+Test isteklerinin oluşturulması ve çalıştırılması süreçleri, ilk temel istek kaydedildiğinde başlar ve temel istek kaydetme işlemi [durdurulduğunda][doc-stop-recording] önemli bir süre boyunca devam edebilir. Test çalıştırmasının durumunu kontrol ederek, gerçekleştirilen süreçler hakkında bilgi edinebilirsiniz. Bunun için aşağıdaki yöntemler kullanılabilir:
 
-[link-wl-portal-testruns-in-progress]:  https://us1.my.wallarm.com/testing/?status=running
-
-[link-integration-chapter]:         integration-overview.md
-[link-vuln-list]:                   ../vuln-list.md
-
-[anchor-testrun-estimates]:         #estimates-of-test-runs-execution-speed-and-time-to-completion
-
-[doc-testrun-copying]:              copy-testrun.md
-[doc-stop-recording]:               stop-recording.md
-
-
-#   Test Çalıştırma Durumunun Kontrol Edilmesi
-
-İlk referans isteği kaydedildiğinde test isteklerinin oluşturulması ve uygulanması işlemleri başlar ve referans isteklerin kaydedilmesi sürecinden önemli bir süre sonra sona erebilir. Çalışan prosedürler hakkında bazı bilgiler almak için test çalıştırma durumunu kontrol edebilirsiniz. Bunun için aşağıdaki yöntemler kullanılabilir:
-
-* [Wallarm UI üzerinden durum kontrolü](#wallarm-ui-üzerinden-durum-kontrolü)
-* [API yöntemini kullanarak durum kontrolü](#api-yöntemini-kullanarak-durum-kontrolü)
+* [Wallarm UI üzerinden durumu kontrol etme](#checking-the-state-via-wallarm-ui)
+* [API yöntemiyle durumu kontrol etme](#checking-the-state-using-api-method)
 
 ## Wallarm UI Üzerinden Durum Kontrolü
 
-Test çalıştırma durumu Wallarm UI'da gerçek zamanlı olarak görüntülenir. Durumu kontrol etmek için:
+Test çalıştırma durumu, Wallarm UI'da gerçek zamanlı modda görüntülenir. Durumu kontrol etmek için:
 
-1. [US bulut](https://us1.my.wallarm.com/) veya [EU bulut](https://my.wallarm.com/) 'taki Wallarm hesabınıza giriş yapın.
-2. **Test çalışmaları** bölümünü açın ve gerekli test çalışmasına tıklayın.
+1. [US cloud](https://us1.my.wallarm.com/) veya [EU cloud](https://my.wallarm.com/) üzerinde Wallarm hesabınıza giriş yapın.
+2. **Test runs** bölümünü açın ve ilgili test çalıştırmasına tıklayın.
 
-![Test çalışması örneği][img-test-runs]
+![Test run example][img-test-runs]
 
-Her referans istek için durum gösterilir:
+Her temel istek için durum görüntülenir:
 
-* **Geçti** ![Durum: Geçti][img-status-passed]
+* **Passed** ![Status: Passed][img-status-passed]
         
-    Verilen referans isteği için hiçbir zafiyet bulunamadı.
+    İlgili temel istek için herhangi bir güvenlik açığı tespit edilmemiştir.
         
-* **Devam Ediyor** ![Durum: Devam Ediyor][img-status-inprogress]
+* **In progress** ![Status: In progress][img-status-inprogress]
               
-    Referans istek zafiyetler için test ediliyor.
+    Temel istek, güvenlik açıkları açısından test edilmektedir.
 
-* **Başarısız** ![Durum: Başarısız][img-status-failed]  
+* **Failed** ![Status: Failed][img-status-failed]  
         
-    Verilen referans isteği için zafiyetler bulundu. Her referans isteği için bulunan zafiyetlerin sayısı ve detaylarına ulaşmak için bir link gösterilir.
-
-* **Hata** ![Durum: Hata][img-status-error]  
+    İlgili temel istek için güvenlik açıkları tespit edilmiştir. Her temel istek için tespit edilen güvenlik açığı sayısı ve detaylar için link görüntülenir.
             
-    Gösterilen hata nedeniyle test süreci durduruldu:
-
-    * `Bağlantı başarısız`: ağ hatası
-    * `Auth hatası`: kimlik doğrulama parametreleri yanlış geçildi veya hiç geçilmedi
-    * `Geçersiz politikalar`: yapılandırılmış test politikasını uygulama başarısız oldu
-    * `Dahili istisna`: yanlış güvenlik testi konfigürasyonu
-    * `Kayıt hatası`: yanlış veya eksik istek parametreleri
-
-* **Bekliyor** ![Durum: Bekliyor][img-status-waiting]      
-        
-    Referans istek test için kuyruğa alındı. Sadece sınırlı sayıda isteği aynı anda test edilebilir. 
+* **Error** ![Status: Error][img-status-error]  
             
-* **Kesildi** ![Durum: Kesildi][img-status-interrupted]
+    Test süreci, aşağıdaki hatalardan ötürü durdurulmuştur:
+
+    * `Connection failed`: ağ hatası
+    * `Auth failed`: kimlik doğrulama parametreleri gönderilmedi ya da yanlış gönderildi
+    * `Invalid policies`: yapılandırılmış test politikasının uygulanması başarısız oldu
+    * `Internal exception`: yanlış güvenlik testi yapılandırması
+    * `Recording error`: yanlış veya eksik istek parametreleri
+
+* **Waiting** ![Status: Waiting][img-status-waiting]      
         
-    Test süreci ya **Testi kes** düğmesiyle ya da aynı FAST düğümünde başka bir test çalışması gerçekleştirildiğinde durduruldu.
+    Temel istek test için sıraya alınmıştır. Aynı anda yalnızca sınırlı sayıda istek test edilebilir. 
+            
+* **Interrupted** ![Status: Interrupted][img-status-interrupted]
+        
+    Test süreci ya **Interrupt testing** düğmesine basılarak kesildi ya da aynı FAST düğümü üzerinde başka bir test çalıştırması başladı.
 
-## API Yöntemini Kullanarak Durum Kontrolü
+## API Yöntemiyle Durum Kontrolü
 
-!!! bilgi "Gerekli bilgiler"
-    Aşağıda açıklanan adımları gerçekleştirebilmek için, aşağıdaki bilgilere ihtiyacınız olacaktır:
+!!! info "Gerekli Veriler"
+    Aşağıda belirtilen adımlara devam edebilmek için şu veriler gereklidir:
     
-    * bir belirteç
-    * bir test çalışma tanımlayıcı
+    * bir token
+    * bir test çalıştırma tanımlayıcısı
     
-    Test çalışma ve belirteç hakkında detaylı bilgiyi [burada][doc-about-tr-token] bulabilirsiniz.
+    Test çalıştırması ve token hakkında detaylı bilgiyi [buradan][doc-about-tr-token] edinebilirsiniz.
     
-    Bu belgede örnek değerlere referans verilmiştir:
+    Bu belgede örnek değer olarak aşağıdaki değerler kullanılmaktadır:
 
-    * `token_Qwe12345` bir belirteç olarak.
-    * `tr_1234` bir test çalışma tanımlayıcı olarak.
+    * Token olarak `token_Qwe12345`.
+    * Test çalıştırma tanımlayıcısı olarak `tr_1234`.
 
-!!! bilgi "Bir test çalışması kontrolünü hangi zaman dilimlerinde gerçekleştireceğinizi nasıl seçersiniz"
-    Önceden belirlenmiş bir süreye (örneğin, 15 saniye) test çalışması durumunu kontrol edebilirsiniz. Alternatif olarak, bir test çalışmanın tamamlanması için tahmini süreyi kullanabilir ve bir sonraki kontrolün ne zaman yapılacağını belirleyebilirsiniz. Bu tahmini, bir test çalışmasının durumunu kontrol ederken elde edebilirsiniz. [Aşağıda detaylar mevcuttur.][anchor-testrun-estimates]
 
-Bir test çalışma durumunu tek seferde kontrol etmek için, `https://us1.api.wallarm.com/v1/test_run/test_run_id`  URL'sine GET talebi gönderin:
+!!! info "Test çalıştırmasının durumunu kontrol etmek için doğru zaman aralığının seçilmesi"
+    Test çalıştırmasının durumunu önceden belirlenmiş bir zaman aralığında (örneğin, 15 saniye) kontrol edebilirsiniz. Alternatif olarak, test çalıştırmasının bitiş süresi tahmini kullanılarak bir sonraki kontrolün ne zaman yapılacağı belirlenebilir. Bu tahmini, test çalıştırmasının durumu kontrol edilirken edinebilirsiniz. [Detaylar için bkz.][anchor-testrun-estimates]
 
---8<-- "../include-tr/fast/operations/api-check-testrun-status.md"
+Test çalıştırmasının durumunu tek seferlik kontrol etmek için, GET isteğini URL `https://us1.api.wallarm.com/v1/test_run/test_run_id` adresine gönderin:
 
-API sunucusuna gelen talep başarılı ise, sunucunun yanıtıyla karşılaşırsınız. Yanıt, çok sayıda kullanışlı bilgi içerir:
+--8<-- "../include/fast/operations/api-check-testrun-status.md"
 
-* `vulns`: hedef uygulamada tespit edilen zafiyetler hakkında bilgi içeren bir dizi. Belirli bir zafiyet hakkındaki her zafiyet kaydı aşağıdaki verileri içerir:
-    * `id`: zafiyetin tanımlayıcısı.
-    * `threat`: zafiyet için tehdit seviyesini açıklayan 1 ile 100 arasında bir numara. Seviye ne kadar yüksekse, zafiyet o kadar ciddidir.
-    * `code`: zafiyete atanan bir kod.
+API sunucusuna yapılan istek başarılı olursa, sunucunun yanıtı size sunulur. Yanıt, aşağıdakiler de dahil olmak üzere birçok faydalı bilgiyi sağlar:
 
-    * `type`: zafiyet türü. Parametre [burada][link-vuln-list] açıklanan değerlerden birini alabilir.
+* `vulns`: hedef uygulamadaki tespit edilen güvenlik açıkları hakkında bilgiler içeren bir dizi. Her güvenlik açığı kaydı aşağıdaki verileri içerir:
+    * `id`: güvenlik açığının tanımlayıcısı.
     
-* `state`: test çalışması durumu. Parametre aşağıdaki değerlerden birini alabilir:
-    * `cloning`: referans isteklerin kopyalanması devam ediyor (bir test çalışması [kopyalanırken][doc-testrun-copying]).
-    * `running`: test çalışma çalışıyor ve uygulanıyor.
-    * `paused`: test çalışma uygulanması duraklatıldı.
-    * `interrupted`: test çalışma uygulanması kesildi (örneğin, bu düğüm tarafından yürütülen geçerli test çalışma yapılırken hızlı düğüm için yeni bir test çalışması oluşturuldu).
-    * `passed`: test çalışma uygulanması başarıyla tamamlandı (hiçbir zafiyet bulunamadı).
-    * `failed`: test çalışma uygulanması başarısızlıkla tamamlandı (bazı zafiyetler bulundu).
-    
-* `baseline_check_all_terminated_count`: tüm test isteği kontrollerinin tamamlandığı referans isteği sayısı.
-    
-* `baseline_check_fail_count`: bazı test isteği kontrollerinin başarısız olduğu referans isteği sayısı (başka bir deyişle, FAST, bir zafiyet buldu).
-    
-* `baseline_check_tech_fail_count`: teknik sorunlar nedeniyle bazı test isteği kontrollerinin başarısız olduğu referans isteği sayısı (örneğin, hedef uygulama belirli bir süreliğine kullanılamıyorsa).
-    
-* `baseline_check_passed_count`: tüm test isteği kontrollerinin geçtiği referans isteği sayısı (başka bir deyişle, FAST bir zafiyet bulamadı). 
-    
-* `baseline_check_running_count`: test isteği kontrollerinin hâlâ devam ettiği referans isteği sayısı.
-    
-* `baseline_check_interrupted_count`: tüm test isteği kontrollerinin kesildiği referans isteği sayısı (örneğin, test çalışmasının kesilmesi nedeniyle)
-    
-* `sended_requests_count`: hedef uygulamaya gönderilen test isteklerinin toplam sayısı.
-    
-* `start_time` ve `end_time`: test çalışmasının başladığı ve sona erdiği zaman. Zaman UNIX zaman formatında belirtilmiştir.
-    
-* `domains`: referans isteklerin hedeflendiği hedef uygulamanın alan adlarının listesi. 
-    
-* `baseline_count`: kaydedilen referans isteği sayısı.
-    
-* `baseline_check_waiting_count`: kontrol edilmeyi bekleyen referans isteği sayısı;
+    * `threat`: 1 ile 100 arasında bir sayı olarak, güvenlik açığının tehdit seviyesini tanımlar. Seviye ne kadar yüksekse, güvenlik açığı o kadar ciddidir.
+    * `code`: güvenlik açığına atanan kod.
 
-* `planing_requests_count`: hedef uygulamaya gönderilmeyi bekleyen test isteklerinin toplam sayısı.
+    * `type`: güvenlik açığı tipi. Bu parametre, [burada][link-vuln-list] açıklanan değerlerden birini alabilir.
+    
+* `state`: test çalıştırmasının durumu. Bu parametre aşağıdaki değerlerden birini alabilir:
+    * `cloning`: temel isteklerin kopyalanma işlemi devam ederken (bir test çalıştırmasının [kopyası oluşturulurken][doc-testrun-copying]).
+    * `running`: test çalıştırması çalışıyor ve işlem yapıyor.
+    * `paused`: test çalıştırması duraklatılmış.
+    * `interrupted`: test çalıştırması kesintiye uğramış (örneğin, mevcut test çalıştırması yürütülürken aynı FAST düğümü üzerinde yeni bir test çalıştırması başlatıldı).
+    * `passed`: test çalıştırması başarıyla tamamlanmış (güvenlik açığı tespit edilmemiştir).
+    * `failed`: test çalıştırması başarısız şekilde tamamlanmış (bazı güvenlik açıkları tespit edilmiştir).
+    
+* `baseline_check_all_terminated_count`: tüm test isteği kontrolleri tamamlanan temel isteklerin sayısı.
+    
+* `baseline_check_fail_count`: bazı test isteği kontrolleri başarısız olan temel isteklerin sayısı (yani, FAST bir güvenlik açığı tespit etti).
+    
+* `baseline_check_tech_fail_count`: hedef uygulamanın belirli bir süre boyunca kullanılamaması gibi teknik sorunlar nedeniyle bazı test isteği kontrolleri başarısız olan temel isteklerin sayısı.
+    
+* `baseline_check_passed_count`: tüm test isteği kontrollerini geçen temel isteklerin sayısı (yani, FAST bir güvenlik açığı tespit etmedi). 
+    
+* `baseline_check_running_count`: test isteği kontrolleri halen devam eden temel isteklerin sayısı.
+    
+* `baseline_check_interrupted_count`: tüm test isteği kontrolleri kesintiye uğrayan temel isteklerin sayısı (örneğin, test çalıştırmasının kesintiye uğraması nedeniyle)
+    
+* `sended_requests_count`: hedef uygulamaya gönderilen toplam test isteği sayısı.
+    
+* `start_time` ve `end_time`: sırasıyla test çalıştırmasının başladığı ve bittiği zaman. Zaman, UNIX zaman formatında belirtilmiştir.
+    
+* `domains`: temel isteklerin hedeflendiği hedef uygulamanın domain adlarının listesi.
+    
+* `baseline_count`: kaydedilen temel isteklerin sayısı.
+    
+* `baseline_check_waiting_count`: kontrol edilmek üzere bekleyen temel isteklerin sayısı;
 
-###  Test çıktısı hız ve tamamlanma süresi tahminleri
+* `planing_requests_count`: hedef uygulamaya gönderilmek üzere sıraya alınan toplam test isteği sayısı.
 
-API sunucusunun yanıtında, bir test çıktısının yürütme hızını ve tamamlanma zamanını tahmin etmenize olanak sağlayan ayrı bir parametreler grubu bulunur. Bu grup, aşağıdaki parametreleri içerir:
+###  Test Çalıştırmasının İşlem Hızının ve Tamamlanma Süresinin Tahmini
 
-* `current_rps`—FAST'ın uygulamaya istek gönderme hızının anlık değeridir.
+API sunucusunun yanıtında, test çalıştırmasının işlem hızı ve tamamlanma süresinin tahminini yapabilmenizi sağlayan ayrı bir parametre grubu bulunmaktadır. Grup aşağıdaki parametreleri içerir:
 
-    Bu, FAST'ın saniyedeki ortalama istek sayısını (RPS) ile ölçülür. Bu ortalama RPS, test çıktısının durumunun elde edilmesinden önceki 10 saniyelik süre zarfında FAST'ın hedef uygulamaya gönderdiği istek sayısıdır.
+* `current_rps`—FAST’ın, test çalıştırmasının durumu alınırken hedef uygulamaya gönderdiği anlık istek hızı (saniyedeki istek ortalaması).
+
+    Bu değer, ortalama istek/saniye (RPS) değeridir. Bu ortalama RPS, test çalıştırmasının durumu alınmadan 10 saniyelik süre içerisinde hedef uygulamaya gönderilen istek sayısı olarak hesaplanır. 
 
     **Örnek:**
-    Test çıktısının durumu 12:03:01'de elde edildiyse `current_rps` parametresinin değeri, *(12:02:51-12:03:01 zaman aralığında gönderilen isteklerin sayısı)/10* şeklinde hesaplanır.
+    Eğer test çalıştırmasının durumu 12:03:01'de alınırsa, `current_rps` parametresinin değeri, *(12:02:51-12:03:01 arasındaki gönderilen istek sayısı)/10* olarak hesaplanır.
 
-* `avg_rps`—FAST'ın uygulamaya istek göndermek için kullandığı ortalama hız (test çıktısının durumunun elde edilme anında).
+* `avg_rps`—FAST’ın, test çalıştırmasının durumu alınırken hedef uygulamaya gönderdiği ortalama istek hızı.
 
-    Bu değer, FAST'ın test çıktısının *tüm yürütme süresinde* hedef uygulamaya gönderdiği isteklerin ortalama sayısıdır:
+    Bu değer, FAST’ın test çalıştırması süresince hedef uygulamaya gönderdiği ortalama istek/saniye (RPS) sayısıdır:
 
-    * Test çıktısı hala yürütülüyorsa yürütmenin başlangıcından mevcut zamana kadar (`current time`-`start_time` eşittir).
-    * Test çıktısı yürütme işlemi tamamlandıysa, yürütmenin başlangıcından yürütmenin sonuna kadar (`end_time`-`start_time` eşittir).
+    * Test çalıştırmasının başlangıcından itibaren, eğer test çalıştırması halen devam ediyorsa (bu `current time`-`start_time` ile eşdeğerdir).
+    * Test çalıştırması bitmişse, test çalıştırmasının başlangıcından bitişine kadar (bu `end_time`-`start_time` ile eşdeğerdir).
 
-        `avg_rps` parametresinin değeri, *(`sended_requests_count`/(tüm test çıktısı yürütme süresi))* şeklinde hesaplanır.
+        `avg_rps` parametresinin değeri, *(`sended_requests_count`/(test çalıştırmasının toplam çalışma süresi))* olarak hesaplanır.
     
-* `estimated_time_to_completion`—test çıktının yürütmesinin muhtemelen tamamlanacağı süre (saniye cinsinden ve test çıktısının durumunun elde edildiği anda). 
+* `estimated_time_to_completion`—test çalıştırmasının durumunun alındığı anda, test çalıştırmasının tamamlanmasının muhtemel olacağı süre (saniye cinsinden). 
 
-    Parametrenin değeri `null` ise:
+    Parametre değeri `null` ise:
     
-    * Henüz hiçbir zafiyet kontrolü başlamamıştır (örneğin, yeni oluşturulan bir test çalışması için henüz referans isteği kaydedilmedi).
-    * Test çıktısı yürütülüyor değil (yani, herhangi bir durumda, `"state":"running"` hariç).
+    * Henüz hiçbir güvenlik açığı kontrolü devam etmiyorsa (örneğin, yeni oluşturulan bir test çalıştırması için henüz temel istek kaydı yapılmamışsa).
+    * Test çalıştırması yürütülmüyorsa (yani, `"state":"running"` dışındaki herhangi bir durumda).
 
-    `estimated_time_to_completion` parametresinin değeri, *(`planing_requests_count`/`current_rps`)* olarak hesaplanır.
+    `estimated_time_to_completion` parametresi, *(`planing_requests_count`/`current_rps`)* olarak hesaplanır.
     
-!!! uyarı "Test çıktısı hız ve süre tahminleri ile ilgili parametrelerin olası değerleri"
-    Bahsedilen parametrelerin değerleri, bir test çıktısının yürütmesinin ilk 10 saniyesinde `null`'dır.
+!!! warning "Test çalıştırmasının işlem hızı ve süre tahmini ile ilgili parametrelerin olası değerleri"
+    Yukarıda belirtilen parametre değerleri, test çalıştırmasının ilk 10 saniyesinde `null` olacaktır.
 
-`estimated_time_to_completion` parametresinin değerini bir sonraki test çalışma durum kontrolünün ne zaman yapılacağını belirlemek için kullanabilirsiniz. Not: değer artabilir veya azalabilir.
+`estimated_time_to_completion` parametresinin değeri, bir sonraki test çalıştırması durum kontrolünün ne zaman yapılacağına karar vermek için kullanılabilir. Bu değerin artabileceğini veya azalabileceğini unutmayın.
 
 **Örnek:**
 
-Bir test çıktısının durumunu `estimated_time_to_completion` süresinde kontrol etmek için aşağıdakileri yapın:
+Test çalıştırması bitiş süresi tahmini aralığında durum kontrolü yapmak için:
 
-1.  Test çalışmasının yürütmesi başladıktan sonra, test çıktısının durumunu birkaç kez elde edin. Örneğin, bunu 10 saniyelik aralıklarla yapabilirsiniz. `estimated_time_to_completion` parametresinin değeri `null` olmaması için bunu yapmaya devam edin.
+1.  Test çalıştırması başladıktan sonra, test çalıştırmasının durumunu birkaç kez alın. Örneğin, 10 saniyelik aralıklarla kontrol edebilirsiniz. `estimated_time_to_completion` parametresinin değeri `null` olana kadar bu işlemi tekrarlayın.
 
-2.  `estimated_time_to_completion` saniye sonra bir sonraki test çalışma durum kontrolünü gerçekleştirin.
+2.  `estimated_time_to_completion` saniye sonrasında test çalıştırmasının durumunu tekrar kontrol edin.
 
-3.  Test çalışmasının yürütmesi tamamlanana kadar önceki adımı tekrarlayın.
+3.  Test çalıştırması tamamlanana kadar önceki adımı tekrarlayın.
 
-!!! bilgi "Tahminlerin grafiksel gösterimi"
-    Wallarm web arayüzünü kullanarak tahminlerin değerlerini de elde edebilirsiniz.
+!!! info "Tahminlerin grafiksel gösterimi"
+    Tahmin değerlerini Wallarm web arayüzünü kullanarak da edinebilirsiniz.
     
-    Bunu yapmak için, Wallarm portalına giriş yapın ve şu anda yürütülen [test çalışmaları listesine][link-wl-portal-testruns-in-progress] gidin:
+    Bunun için, Wallarm portalına giriş yapıp, şu anda yürütülmekte olan [test çalıştırmaları listesini][link-wl-portal-testruns-in-progress] görüntüleyin:
     
-    ![Test çalışmasının hız ve yürütme süresi tahminleri][img-testrun-velocity]
+    ![Test run's speed and execution time estimates][img-testrun-velocity]
     
-    Test çalışmasının yürütmesi tamamlandığında, saniyede gönderilen ortalama isteklerin değerini görürsünüz:
+    Test çalıştırması tamamlandığında, ortalama istek/saniye değeri görüntülenir:
     
-    ![Ortalama isteklerin saniyedeki değeri][img-testrun-avg-rps]
+    ![Average requests per second value][img-testrun-avg-rps]
+```

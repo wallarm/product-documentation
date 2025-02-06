@@ -1,64 +1,64 @@
-# Micro Focus ArcSight Logger Fluentd üzerinden
+# Micro Focus ArcSight Logger via Fluentd
 
-Bu talimatlar, Wallarm'ın Fluentd veri toplayıcısıyla entegrasyon örneklerini ve daha sonra olayları ArcSight Logger sistemine yönlendirmeyi sağlar.
+Bu yönergeler, Wallarm'ın Fluentd veri toplayıcısı ile örnek entegrasyonunu ve bu entegrasyon sayesinde olayların ArcSight Logger sistemine iletilmesini sağlamaktadır.
 
---8<-- "../include-tr/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
+![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
 
-!!! bilgi "ArcSight ESM'nin Kurumsal sürümü ile entegrasyon"
-    Fluentd'den ArcSight ESM'nin Kurumsal sürümüne kayıtları yönlendirmek için, ArcSight tarafında Syslog Connector'u yapılandırmak ve daha sonra Fluentd'den kayıtları konektör bağlantı noktasına yönlendirmek önerilir. Konektörlerin daha ayrıntılı bir açıklamasını almak için, lütfen [resmi ArcSight SmartConnector belgeleri](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs) adresinden **SmartConnector Kullanıcı Kılavuzu** indirin.
+!!! info "Integration with the Enterprise version of ArcSight ESM"
+    Fluentd'den ArcSight ESM Enterprise sürümüne log iletimini yapılandırmak için, ArcSight tarafında Syslog Connector'ün yapılandırılması ve ardından Fluentd'den connector portuna logların iletilmesi önerilir. Konnektörler hakkında daha ayrıntılı bilgi için lütfen [resmi ArcSight SmartConnector dokümantasyonundan](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs) **SmartConnector User Guide**'ı indirin.
 
-## Kullanılan kaynaklar
+## Used resources
 
-* WEB URL'si olan [ArcSight Logger 7.1](#arcsight-logger-configuration) `https://192.168.1.73:443` CentOS 7.8 üzerinde yüklüdür
-* [Fluentd](#fluentd-configuration) Debian 11.x (bullseye) üzerinde yüklü ve `https://fluentd-example-domain.com` adresinde kullanılabilir
-* Wallarm Konsoluna yönetici erişimi [EU bulutta](https://my.wallarm.com) [Fluentd entegrasyonunu yapılandırmak](#configuration-of-fluentd-integration) için
+* CentOS 7.8 üzerine kurulmuş, WEB URL'si `https://192.168.1.73:443` olan [ArcSight Logger 7.1](#arcsight-logger-configuration)
+* Debian 11.x (bullseye) üzerine kurulmuş ve `https://fluentd-example-domain.com` üzerinden ulaşılabilen [Fluentd](#fluentd-configuration)
+* [Fluentd entegrasyonunu yapılandırmak](#configuration-of-fluentd-integration) için [EU cloud](https://my.wallarm.com) üzerindeki Wallarm Console'a yönetici erişimi
 
---8<-- "../include-tr/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.md"
 
-ArcSight Logger ve Fluentd servislerine olan bağlantılar örnek olarak alıntılandığından, yanıt vermezler.
+Örnek olarak gösterilen ArcSight Logger ve Fluentd servis bağlantıları yanıt vermemektedir.
 
-### ArcSight Logger yapılandırması
+### ArcSight Logger configuration
 
-ArcSight Logger, aşağıdaki şekilde yapılandırılmış `Wallarm Fluentd logları` alıcısına sahiptir:
+ArcSight Logger, `Wallarm Fluentd logs` isimli log alıcısını aşağıdaki şekilde yapılandırmıştır:
 
-* Loglar UDP üzerinden alınır (`Tür = UDP Alıcısı`)
-* Dinleme portu `514`
-* Olaylar syslog ayrıştırıcısı ile ayrıştırılır
+* Loglar UDP üzerinden alınır (`Type = UDP Receiver`)
+* Dinleme portu `514`'tür
+* Olaylar syslog ayrıştırıcısı ile işlenir
 * Diğer varsayılan ayarlar
 
-![ArcSight Logger'daki alıcı yapılandırması](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-setup.png)
+![Configuration of receiver in ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-setup.png)
 
-Alıcı yapılandırmasının daha ayrıntılı bir açıklamasını almak için, lütfen uygun bir sürümün **Logger Kurulum Kılavuzu**'nu [resmi ArcSight Logger belgeleri](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc) adresinden indirin.
+Alıcı yapılandırmasının daha ayrıntılı açıklamasını almak için lütfen [resmi ArcSight Logger dokümantasyonundan](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc) uygun sürüme ait **Logger Installation Guide**'ı indirin.
 
-### Fluentd yapılandırması
+### Fluentd configuration
 
-Wallarm, Fluentd ara veri toplayıcısına web kancaları aracılığıyla log gönderdiğinden, Fluentd yapılandırması aşağıdaki gereksinimleri karşılamalıdır:
+Wallarm, logları webhooks aracılığıyla Fluentd ara veri toplayıcısına gönderdiğinden, Fluentd yapılandırması aşağıdaki gereksinimleri karşılamalıdır:
 
-* POST veya PUT isteklerini kabul eder
-* HTTPS isteklerini kabul eder
-* Kamuya açık URL'ye sahip olur
-* Logları ArcSight Logger'a yönlendirir, bu örnekte logları yönlendirmek için `remote_syslog` eklentisi kullanılıyor
+* POST veya PUT isteklerini kabul etmeli
+* HTTPS isteklerini kabul etmeli
+* Genel bir URL'ye sahip olmalı
+* Logları ArcSight Logger'a yönlendirmeli; bu örnekte logları yönlendirmek için `remote_syslog` eklentisi kullanılmıştır
 
-Fluentd, `td-agent.conf` dosyasında yapılandırıldı:
+Fluentd, `td-agent.conf` dosyasında yapılandırılmıştır:
 
-* Gelen web kanca işleme `source` direktifi içinde yapılandırılır:
-    * Trafik 9880 portuna gönderilir
-    * Fluentd yalnızca HTTPS bağlantılarını kabul etmeye ayarlanır
-    * Genel olarak güvendiği CA tarafından imzalanmış Fluentd TLS sertifikası `/etc/ssl/certs/fluentd.crt` dosyası içinde yer alır
-    * TLS sertifikası için özel anahtar `/etc/ssl/private/fluentd.key` dosyası içinde bulunur
-* ArcSight Logger'a logları yönlendirme ve log çıktısı `match` direktifi içinde yapılandırılır:
-    * Tüm olay logları Fluentd'den kopyalanır ve ArcSight Logger'da `https://192.168.1.73:514` IP adresine yönlendirilir
-    * Loglar, Fluentd'den ArcSight Logger'a [Syslog](https://en.wikipedia.org/wiki/Syslog) standardına uygun JSON formatında yönlendirilir
-    * ArcSight Logger ile bağlantı UDP üzerinden kurulur
-    * Fluentd logları ek olarak komut satırında JSON formatında basılır (19-22 kod satırları). Bu ayar, olayların Fluentd üzerinden loglandığını doğrulamak için kullanılır
+* Gelen webhook işleme `source` yönergesinde yapılandırılmıştır:
+    * Trafik 9880 portuna yönlendirilir
+    * Fluentd yalnızca HTTPS bağlantılarını kabul edecek şekilde yapılandırılmıştır
+    * Genel olarak güvenilen bir CA tarafından imzalanan Fluentd TLS sertifikası `/etc/ssl/certs/fluentd.crt` dosyasında yer almaktadır
+    * TLS sertifikasına ait özel anahtar `/etc/ssl/private/fluentd.key` dosyasında bulunmaktadır
+* ArcSight Logger'a log yönlendirme ve log çıktısı `match` yönergesinde yapılandırılmıştır:
+    * Tüm olay logları Fluentd'den kopyalanarak `https://192.168.1.73:514` IP adresindeki ArcSight Logger'a yönlendirilir
+    * Loglar, Fluentd'den ArcSight Logger'a [Syslog](https://en.wikipedia.org/wiki/Syslog) standardına uygun JSON formatında iletilir
+    * ArcSight Logger ile bağlantı UDP üzerinden sağlanır
+    * Fluentd logları, ek olarak komut satırında JSON formatında (19-22 kod satırı) yazdırılır. Bu ayar, olayların Fluentd üzerinden kaydedildiğini doğrulamak için kullanılır
 
 ```bash linenums="1"
 <source>
-  @type http # HTTP ve HTTPS trafik için giriş eklentisi
-  port 9880 # gelen istekler için port
-  <transport tls> # bağlantıların işlenmesi için yapılandırma
+  @type http # input plugin for HTTP and HTTPS traffic
+  port 9880 # port for incoming requests
+  <transport tls> # configuration for connections handling
     cert_path /etc/ssl/certs/fluentd.crt
     private_key_path /etc/ssl/private/fluentd.key
   </transport>
@@ -66,53 +66,53 @@ Fluentd, `td-agent.conf` dosyasında yapılandırıldı:
 <match **>
   @type copy
   <store>
-      @type remote_syslog # Fluentd'den Syslog üzerinden logları yönlendirmek için çıkış eklentisi
-      host 192.168.1.73 # Logları yönlendirmek için IP adresi
-      port 514 # Logları yönlendirmek için port
-      protocol udp # bağlantı protokolü
+      @type remote_syslog # output plugin to forward logs from Fluentd via Syslog
+      host 192.168.1.73 # IP address to forward logs to
+      port 514 # port to forward logs to
+      protocol udp # connection protocol
     <format>
-      @type json # yönlendirilen logların formatı
+      @type json # format of forwarded logs
     </format>
   </store>
   <store>
-     @type stdout # Komut satırında Fluentd loglarını yazdırmak için çıkış eklentisi
-     output_type json # komut satırında yazdırılan logların formatı
+     @type stdout # output plugin to print Fluentd logs on the command line
+     output_type json # format of logs printed on the command line
   </store>
 </match>
 ```
 
-Yapılandırma dosyalarının daha ayrıntılı bir açıklaması, [resmi Fluentd belgelerinde](https://docs.fluentd.org/configuration/config-file) mevcuttur.
+Yapılandırma dosyalarının daha ayrıntılı açıklaması [resmi Fluentd dokümantasyonunda](https://docs.fluentd.org/configuration/config-file) mevcuttur.
 
-!!! bilgi "Fluentd yapılandırmasının test edilmesi"
-    Fluentd loglarının oluşturulduğunu ve ArcSight Logger'a yönlendirildiğini kontrol etmek için, Fluentd'ye PUT veya POST isteği gönderilebilir.
+!!! info "Testing Fluentd configuration"
+    Fluentd loglarının oluşturulduğunu ve ArcSight Logger'a yönlendirildiğini kontrol etmek için Fluentd'ye PUT veya POST isteği gönderilebilir.
 
-    **İstek örneği:**
+    **Request example:**
     ```curl
     curl -X POST 'https://fluentd-example-domain.com' -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}'
     ```
 
-    **Fluentd logları:**
-    ![Fluentd'deki Loglar](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-curl-log.png)
+    **Fluentd logs:**
+    ![Logs in Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-curl-log.png)
 
-    **ArcSight Logger'daki Olay:**
-    ![ArcSight Logger'daki Loglar](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-curl-log.png)
+    **Event in ArcSight Logger:**
+    ![Logs in ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-curl-log.png)
 
-### Fluentd entegrasyonu ayarları
+### Configuration of Fluentd integration
 
---8<-- "../include-tr/integrations/webhook-examples/create-fluentd-webhook.md"
+--8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![Fluentd ile Webhook entegrasyonu](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-[Fluentd entegrasyon yapılandırması hakkında daha fazla detay](../fluentd.md)
+[More details on the Fluentd integration configuration](../fluentd.md)
 
-## Örnek testi
+## Example testing
 
---8<-- "../include-tr/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
 
-Fluentd olayı şu şekilde loglar:
+Fluentd olayı aşağıdaki şekilde loglayacaktır:
 
-![Fluentd'da yeni kullanıcı hakkında log](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-user-log.png)
+![Fluentd log about new user](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-user-log.png)
 
-Aşağıdaki giriş ArcSight Logger olaylarında görüntülenecektir:
+ArcSight Logger olaylarında aşağıdaki giriş görüntülenecektir:
 
-![ArcCsiight Logger'daki Olaylar](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-user.png)
+![Events in ArccSiight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-user.png)

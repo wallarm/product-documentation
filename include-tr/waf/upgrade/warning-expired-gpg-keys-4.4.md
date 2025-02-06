@@ -1,15 +1,15 @@
-!!! uyarı "Hata "imzalar doğrulanamadı""
-    Eklenmiş GPG anahtarlarının süresi dolduysa, aşağıdaki hata döndürülür:
+!!! warning "Hata \"signatures couldn't be verified\""
+    Eğer eklenen GPG anahtarları süresi dolmuşsa, aşağıdaki hata dönecektir:
 
     ```
-    W: GPG hata: https://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/ Release: Aşağıdakiler
-    imzalar doğrulanamadı çünkü kamu anahtarı mevcut değil: NO_PUBKEY 1111FQQW999
-    E: 'https://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/ Release' deposu imzalanmamış.
-    N: Böyle bir depodan güvenli bir şekilde güncelleme yapılamaz ve bu nedenle varsayılan olarak devre dışı bırakılmıştır.
-    N: Depo oluşturma ve kullanıcı yapılandırma detayları için apt-secure(8) man sayfasına bakın.
+    W: GPG error: https://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/ Release:The following
+    signatures couldn't be verified because the public key is not available: NO_PUBKEY 1111FQQW999
+    E: The repository 'https://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/ Release' is not signed.
+    N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+    N: See apt-secure(8) manpage for repository creation and user configuration details.
     ```
 
-    Sorunu çözmek için, lütfen Wallarm paketleri için yeni GPG anahtarlarını içe aktarın ve ardından aşağıdaki komutları kullanarak paketleri yükseltin:
+    Sorunu düzeltmek için, lütfen Wallarm paketleri için yeni GPG anahtarlarını içe aktarın ve ardından aşağıdaki komutları kullanarak paketleri yükseltin:
 
     ```
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -

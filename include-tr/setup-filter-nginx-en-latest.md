@@ -1,55 +1,53 @@
-Aşağıdaki dosyalar, NGINX ve filtreleme düğümü ayarlarını içerir:
+The following files contain NGINX and filtering node settings:  
+Aşağıdaki dosyalar NGINX ve filtreleme düğümü ayarlarını içerir:
 
-* `/etc/nginx/nginx.conf`, NGINX'in yapılandırmasını tanımlar
-* `/etc/nginx/conf.d/wallarm.conf`, Wallarm filtreleme düğümünün genel yapılandırmasını tanımlar
-* `/etc/nginx/conf.d/wallarm-status.conf`, filtreleme düğümü izleme hizmeti yapılandırmasını tanımlar
+* `/etc/nginx/nginx.conf` NGINX yapılandırmasını tanımlar  
+* `/etc/nginx/conf.d/wallarm.conf` Wallarm filtreleme düğümünün küresel yapılandırmasını tanımlar  
+* `/etc/nginx/conf.d/wallarm-status.conf` Filtreleme düğümü izleme servisi yapılandırmasını tanımlar  
 
-NGINX ve Wallarm'ın işlemlerini tanımlamak için kendi yapılandırma dosyalarınızı oluşturabilirsiniz. Aynı şekilde işlenmesi gereken her alan adı grubu için `server` bloğuyla ayrı bir yapılandırma dosyası oluşturmanız önerilir.
+NGINX ve Wallarm'ın çalışmasını tanımlamak için kendi yapılandırma dosyalarınızı oluşturabilirsiniz. Aynı şekilde işlenecek alan adları grubu için her biri ayrı bir `server` bloğu içeren bir yapılandırma dosyası oluşturmanız önerilir.
 
-NGINX yapılandırma dosyalarıyla çalışma hakkında ayrıntılı bilgi için, [resmi NGINX belgelendirmesine](https://nginx.org/en/docs/beginners_guide.html) devam edin.
+NGINX yapılandırma dosyaları ile çalışma hakkında detaylı bilgi için lütfen [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html) sayfasına göz atın.
 
-Wallarm direktifleri, Wallarm filtreleme düğümünün işlem mantığını tanımlar. Kullanılabilir Wallarm direktiflerinin listesini görmek için, [Wallarm yapılandırma seçenekleri](configure-parameters-en.md) sayfasına devam edin.
+Wallarm yönergeleri, Wallarm filtreleme düğümünün çalışma mantığını tanımlar. Mevcut Wallarm yönergelerinin listesini görmek için lütfen [Wallarm configuration options](configure-parameters-en.md) sayfasına gidin.
 
-**Yapılandırma dosyası örneği**
+**Configuration file example**
 
-Sunucuyu aşağıdaki koşullarda çalışacak şekilde yapılandırmanız gerektiğini varsayalım:
-* Sadece HTTP trafiği işlenmektedir. HTTPS talepleri işlenmemektedir.
-* Talepleri alan alan adları: `example.com` ve `www.example.com`.
-* Tüm talepler `10.80.0.5` sunucusuna iletilmelidir.
-* Gelen tüm istekler 1MB'tan daha küçük boyutta olarak kabul edilir (varsayılan ayar).
-* Bir isteğin işlenmesi en fazla 60 saniye sürer (varsayılan ayar).
-* Wallarm, izleme modunda çalışmalıdır.
-* Kullanıcılar, filtreme düğümüne bir HTTP yük dengeleyici olmadan doğrudan erişirler.
+Sunucuyu aşağıdaki koşullar altında çalışacak şekilde yapılandırmanız gerektiğini varsayalım:  
+* Sadece HTTP trafiği işlenir. HTTPS istekleri işlenmez.  
+* Aşağıdaki alan adları istek alır: `example.com` ve `www.example.com`.  
+* Tüm istekler `10.80.0.5` sunucusuna yönlendirilmelidir.  
+* Gelen tüm istekler 1MB'den küçük kabul edilir (varsayılan ayar).  
+* Bir isteğin işlenmesi 60 saniyeden fazla sürmemelidir (varsayılan ayar).  
+* Wallarm, izleme modunda çalışmalıdır.  
+* İstemciler, ara bir HTTP yük dengeleyici olmadan doğrudan filtreleme düğümüne erişir.
 
-!!! bilgi "Bir yapılandırma dosyası oluşturma"
-    Özel bir NGINX yapılandırma dosyası (ör. `example.com.conf`) oluşturabilir veya varsayılan NGINX yapılandırma dosyasını (`default.conf`) değiştirebilirsiniz.
+!!! info "Creating a configuration file"  
+    Özel bir NGINX yapılandırma dosyası (örneğin, `example.com.conf`) oluşturabilir veya varsayılan NGINX yapılandırma dosyasını (`default.conf`) değiştirebilirsiniz.
     
-    Özel bir yapılandırma dosyası oluştururken, NGINX'in gelen bağlantıları boş bir portta dinlediğini kontrol edin.
+    Özel bir yapılandırma dosyası oluştururken, NGINX'in boşta olan port üzerinde gelen bağlantıları dinlediğinden emin olun.
 
-
-Belirtilen koşulları karşılamak için, yapılandırma dosyasının içeriği aşağıdaki gibi olmalıdır:
+Listelenen koşulları karşılamak için, yapılandırma dosyasının içeriği aşağıdaki gibi olmalıdır:
 
 ```
-
     server {
       listen 80;
       listen [::]:80 ipv6only=on;
 
-      # trafiğin işlendiği alan adları
+      # the domains for which traffic is processed
       server_name example.com; 
       server_name www.example.com;
 
-      # trafiğin izleme modunda işlenmesini açın
+      # turn on the monitoring mode of traffic processing
       wallarm_mode monitoring; 
       # wallarm_application 1;
 
       location / {
-        # istek yönlendirmesi için adres ayarı
+        # setting the address for request forwarding
         proxy_pass http://10.80.0.5; 
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       }
     }
-
 ```

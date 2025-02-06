@@ -1,4 +1,4 @@
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,30 +13,30 @@ spec:
         app: myapp
     spec:
       containers:
-        # Wallarm öğesi: Wallarm yan uygulama konteynerinin tanımlanması
+        # Wallarm unsuru: Wallarm yan konteynerinin tanımı
         - name: wallarm
           image: wallarm/node:3.2.1-1
           imagePullPolicy: Always
           env:
-          # Wallarm API endpoint: 
-          # AB Bulut için "api.wallarm.com"
-          # ABD Bulut için "us1.api.wallarm.com" 
+          # Wallarm API uç noktası: 
+          # "api.wallarm.com" EU Cloud için
+          # "us1.api.wallarm.com" US Cloud için
           - name: WALLARM_API_HOST
             value: "api.wallarm.com"
-          # Deploy rolü olan kullanıcının kullanıcı adı
+          # Dağıtım rolüne sahip kullanıcının kullanıcı adı
           - name: DEPLOY_USER
             value: "username"
-          # Deploy rolü olan kullanıcının şifresi
+          # Dağıtım rolüne sahip kullanıcının şifresi
           - name: DEPLOY_PASSWORD
             value: "password"
           - name: DEPLOY_FORCE
             value: "true"
-          # İstek analitiği verileri için GB cinsinden bellek miktarı
+          # İstek analiz verileri için GB cinsinden bellek miktarı
           - name: TARANTOOL_MEMORY_GB
             value: "2"
           ports:
           - name: http
-            # Service nesnesinden gelen istekleri kabul etmek için Wallarm yan uygulama konteynerının portu 
+            # Wallarm yan konteyneri, Service nesnesinden gelen istekleri kabul ettiği port
             containerPort: 80
           volumeMounts:	
           - mountPath: /etc/nginx/sites-enabled	
@@ -53,7 +53,7 @@ spec:
           # Uygulama konteynerinin gelen istekleri kabul ettiği port
           - containerPort: 8080
       volumes:
-      # Wallarm öğesi: wallarm-nginx-conf hacminin tanımlanması
+      # Wallarm unsuru: wallarm-nginx-conf hacminin tanımı
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

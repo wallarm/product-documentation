@@ -1,120 +1,130 @@
-# Şirketin Açık Varlıklarının Yönetimi <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Açığa Çıkan Varlıklar <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm Konsolu'nun **Scanner** bölümü, Wallarm Scanner tarafından otomatik olarak keşfedilen tüm halka açık varlıklarınızı, örneğin alan adlarını, IP adreslerini ve portları gözlemlemenizi sağlar.
+Wallarm Console'un **Scanner** bölümü, Wallarm Scanner tarafından otomatik olarak keşfedilen alan adları, IP adresleri ve portlar gibi tüm halka açık varlıklarınızı görmenizi sağlar.
 
-Proje büyüdükçe, kaynaklar artar ve kontrol azalır. Kaynaklar şirketin veri merkezlerinin dışında yer alabilir, bu da güvenliği tehlikeye atabilir. Wallarm, sonuçlar üzerinde görünürlük sağlayarak etik hackerlar gibi yöntemler kullanarak güvenliği değerlendirmeye yardımcı olur.
+Proje büyüdükçe, kaynaklar artar ve kontrol azalır. Kaynaklar şirketin veri merkezleri dışında yer alabilir; bu da güvenliği tehlikeye atabilir. Wallarm, etik hackerlara benzer yöntemler kullanarak güvenliği değerlendirmeye yardımcı olur ve sonuçlara dair görünürlük sağlar.
 
 ![Scanner section](../images/user-guides/scanner/check-scope.png)
 
-## Varlıkları eklemek
+## Varlık Ekleme
 
-Wallarm'ın şirketinizin açık varlıklarını keşfetmesini tetiklemek için, ilk halka açık varlığı manuel olarak ekleyin. **Alan adı veya IP ekleyin**'i tıklayın ve alan adlarınızdan veya IP'lerinizden birini girin:
+Wallarm'ın şirketinizin açık varlıklarını keşfetmesini tetiklemek için, ilk halka açık varlığı manuel olarak ekleyin. **Add domain or IP**'ye tıklayın ve alan adlarınızdan ya da IP adreslerinizden birini girin:
 
 ![Scanner section](../images/user-guides/scanner/add-asset-manually.png)
 
-Yeni alan adı veya IP adresi eklendikten sonra, Wallarm Scanner varlıkları aramak için tarama işlemine başlar ve bunları listeye ekler. Wallarm önce portları tarar ve daha sonra bu portlardaki ağ kaynaklarını tespit eder.
+Yeni alan adı veya IP adresi eklendikten sonra, Wallarm Scanner, kaynakla bağlantılı varlıkları aramak için tarama işlemini başlatır ve bunları listeye ekler. Wallarm önce portları tarar ve ardından bu portlardaki ağ kaynaklarını tespit eder.
 
-Açık varlıkların toplanması ve güncellenmesi sürecinde çeşitli yöntemler kullanılır:
+Açığa çıkan varlıkları toplama ve güncelleme sürecinde çeşitli yöntemler kullanılır:
 
 * Otomatik modlar
     * DNS bölge transferi ([AXFR](https://tools.ietf.org/html/rfc5936))
-    * NS ve MX kayıtları alma
-    * SPF kayıtları bilgileri alma
-    * Alt alan adı sözlüğü araması
-    * SSL sertifika ayrıştırma
-* Wallarm Konsolu UI veya [Wallarm API](../api/overview.md) üzerinden manuel veri girişi.
+    * NS ve MX kayıtlarının alınması
+    * SPF kayıt verilerinin alınması
+    * Alt alan adı sözlük araması
+    * SSL sertifikası ayrıştırma
+* Wallarm Console UI veya [Wallarm API](../api/overview.md) üzerinden manuel veri girişi.
 
-[Varlık keşif yöntemleri üzerinde kontrol](#fine-tuning-asset-scanning) sağlayabilirsiniz **Yapılandır** bölümünde.
+Açığa çıkan varlıkları toplama yöntemlerini **Configure** bölümünde [kontrol edebilirsiniz](#fine-tuning-asset-scanning).
 
-## Bir alan adını rezerve etme
+## Bir Alan Adını Rezerve Etme
 
-Wallarm'dan, yalnızca şirketinizin açık varlık listesine eklenmesi gereken alan adlarını rezerve etmesini isteyebilirsiniz. Bu alan adlarının başka hesaplar tarafından eklenmesini önlemek için, bir rezervasyon talebini [support@wallarm.com](mailto:support@wallarm.com) adresine gönderin.
+Sadece şirketinizin açık varlık listesine eklenebilecek alan adlarını Wallarm'dan rezerve etmesini isteyebilirsiniz. Diğer hesapların bu alan adlarını eklemesini önlemek için, [support@wallarm.com](mailto:support@wallarm.com) adresine bir rezervasyon talebi gönderin.
 
-## Varlıkları yönetme
+## Varlıkları Yönetme
 
-Wallarm, açık varlıkları alan adları, IP'ler ve hizmetler gruplarına kategorize eder. Bir IP adresi belirli bir veri merkezine aitse, AWS gibi Amazon için veya GCP gibi Google için ilgili etiket, varlığın yanında görüntülenir.
+Wallarm, açık varlıkları alan adları, IP adresleri ve servis grupları olarak kategorize eder. Bir IP adresi belirli bir veri merkezine aitse, örneğin Amazon için AWS ya da Google için GCP gibi ilgili etiket, varlığın yanında görüntülenir.
 
-Henüz herhangi bir kullanıcı tarafından görüntülenmeyen yeni keşfedilen varlıklar **Yeni** sekmesinde, güvenlik açığı taraması [devre dışı bırakılan](#disabling-vulnerability-scanning-for-certain-assets) varlıklar ise **Devre Dışı** sekmesinde gösterilir.
+Hiçbir kullanıcı tarafından görüntülenmemiş yeni keşfedilen varlıklar **New** sekmesinde gösterilir, oysa **Disabled** sekmesi, zafiyet taramasının [devre dışı bırakıldığı](#disabling-vulnerability-scanning-for-certain-assets) varlıkları gösterir.
 
-Kaynağın alan adı, IP adresi ve portu birbirine bağımlıdır. Bir varlığı seçerek, seçilen IP adresi ile ilişkili bir alan adı gibi ilişkilerini gözlemleyebilirsiniz:
+Kaynağın alan adı, IP adresi ve portu birbirine bağlıdır. Bir varlık seçerek, seçili IP adresiyle ilişkilendirilmiş bir alan adı gibi, onun bağlantılarını görebilirsiniz:
 
-![Birliktelikleri olan kapsam elementi](../images/user-guides/scanner/asset-with-associations.png)
+![Scope element with its associations](../images/user-guides/scanner/asset-with-associations.png)
 
-### Varlıkların bağlantılarını kontrol etme
+### Varlıkların Bağlantılarını Kontrol Etme
 
-Varsayılan olarak, daha yüksek önceliği olan varlıklar, daha düşük önceliği olanlar devre dışı bırakıldığında aktif kalır. Bir alan adını [devre dışı bırakmak](#disabling-vulnerability-scanning-for-certain-assets), ilişkili IP adreslerini ve portları devre dışı bırakır. Bir IP adresini [silme](#deleting-assets), ilişkili portları siler ancak alan adını aktif tutar. Varlıkların bağlantılarını silerek, bunları tek tek devre dışı bırakabilir veya silebilirsiniz.
+Varsayılan olarak, daha düşük öncelikli varlıklar devre dışı bırakıldığında, daha yüksek öncelikli varlıklar aktif kalır. Bir alan adını [devre dışı bırakmak](#disabling-vulnerability-scanning-for-certain-assets), ilişkili IP adreslerini ve portları devre dışı bırakır. Bir IP adresini [silmek](#deleting-assets) ise, ilişkili portları siler ancak alan adı aktif kalır. Varlıkların bağlantılarını silerek, her birini ayrı ayrı devre dışı bırakabilir veya silebilirsiniz.
 
 Her varlığın tarama ayarlarını bağımsız olarak yönetmek için:
 
-1. Birbirinden ayrılmasını istediğiniz varlık çiftinden bir varlığı seçin.
-1. Şu anki olanla eşleştirilmiş varlık yanındaki anahtara tıklayın.
+1. Birbirinden ayırmak istediğiniz varlık çiftinden bir varlık seçin.
+1. Şu an seçili olan varlıkla eşleşen varlığın yanındaki anahtara tıklayın.
 
-    Mevcut kaynağın adı kalın olarak gösterilir. Kullanıcı arayüzü ayrıca keşif tarihini de görüntüler.
+    Mevcut kaynağın adı kalın harflerle gösterilir. UI ayrıca keşif tarihini de görüntüler.
 
-![Kaynak bağlantısını devre dışı bırak](../images/user-guides/scanner/disable-association.png)
+![Disable the resource connection](../images/user-guides/scanner/disable-association.png)
 
-Varlıkların karşılıklı bağlantısını etkinleştirmek için, bağlantıyı devre dışı bırakırken yaptığınızın aynısını yapın.
+Varlıklar arasındaki bağlantıyı etkinleştirmek için, bağlantıyı devre dışı bırakırken uyguladığınız adımları izleyin.
 
-### Varlıkları silme
+### Varlıkları Silme
 
-Varlıkları **silerek**, Wallarm tarafından yanlışlıkla listeye eklenen varlıkları bildirebilirsiniz. Silinen varlıklar gelecekteki taramalar sırasında keşfedilmez.
+Varlıkları **silerek**, Wallarm tarafından yanlışlıkla listeye eklenen varlıkları raporlayabilirsiniz. Silinen varlıklar, gelecekteki taramalarda keşfedilmeyecektir.
 
 Yanlışlıkla silinen varlıkları geri almak için [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişime geçin.
 
-### Açık varlık listesindeki değişiklikler hakkında bildirimler
+### Açığa Çıkan Varlık Listesindeki Değişiklik Bildirimleri
 
-Wallarm, açık varlık listesindeki değişiklikler hakkında bildirimler gönderebilir: yeni keşfedilen açık varlıklar, devre dışı bırakılan ve silinenler.
+Wallarm, açığa çıkan varlık listesindeki değişiklikler hakkında size bildirimler gönderebilir: yeni keşfedilen açık varlıklar, devre dışı bırakılan ve silinenler.
 
-Bildirimleri almak için, Messenger'lar veya SOAR sistemleri (ör. PagerDuty, Opsgenie, Slack, Telegram) ile uygun [yerleşik entegrasyonları](settings/integrations/integrations-intro.md) yapılandırın.
+Bildirimleri almak için, mesajlaşma uygulamaları veya SOAR sistemleri (ör. PagerDuty, Opsgenie, Slack, Telegram) ile uygun [native integrations](settings/integrations/integrations-intro.md) yapılandırmasını yapın.
 
-Slack mesajı örneği:
+Slack mesajına bir örnek:
 
 ```
-[Test mesajı] [Test partner] Ağ perimetresi değişti
+[Test message] [Test partner] Network perimeter has changed
 
-Bildirim tipi: yeni_kapsam_nesnesi_ips
+Notification type: new_scope_object_ips
 
-Ağ perimetresinde yeni IP adresleri keşfedildi:
+New IP addresses were discovered in the network perimeter:
 8.8.8.8
 
-Müşteri: TestCompany
-Bulut: EU
+Client: TestCompany
+Cloud: EU
 ```
 
-## Varlık taramasının ince ayarını yapma
+## Varlık Taramasını İnce Ayar Yapma
 
-Wallarm'da varlık taramasının ince ayarını yapmak için **Yapılandır** düğmesini tıklayın. Oradan, Wallarm Scanner'ın şirketinizin açık varlıklarını bulmak için hangi yöntemleri kullandığını kontrol edebilirsiniz. Varsayılan olarak, tüm olası yöntemler kullanılır.
+Wallarm'da varlık taramasını ince ayar yapmak için, **Configure** düğmesine tıklayın. Buradan, Wallarm Scanner'ın şirketinizin açık varlıklarını bulmak için hangi yöntemleri kullandığını kontrol edebilirsiniz. Varsayılan olarak, tüm mevcut yöntemler kullanılır.
 
 ![Scanner config](../images/user-guides/vulnerabilities/scanner-configuration-options.png)
 
-Wallarm Scanner için **Temel Scanner işlevselliği** adında global bir anahtar da vardır. Bu anahtar, hem varlık tarama hem de güvenlik açığı bulma süreçlerini kontrol ederek, tüm şirket hesabınız için Scanner'ı etkinleştirir veya devre dışı bırakır. **Güvenlik Açıkları** bölümünde de aynı anahtarı bulabilirsiniz. Bir bölümdeki anahtarı değiştirmek, diğer bölümdeki ayarı otomatik olarak günceller.
+Wallarm Scanner için **Basic Scanner functionality** adında küresel bir anahtar da bulunmaktadır. Bu anahtar, varlık taraması ve zafiyet keşfi süreçlerini kontrol ederek, tüm şirket hesabınız için Scanner'ı etkinleştirir veya devre dışı bırakır. Aynı anahtarı **Vulnerabilities** bölümünde de bulabilirsiniz. Bir bölümdeki anahtarı değiştirmek, diğer bölümdeki ayarın otomatik olarak güncellenmesini sağlar.
 
-## Açık varlıkları güvenlik açıkları için tarama
+## Açığa Çıkan Varlıkları Zafiyetler İçin Tarama
 
-Wallarm, altyapınızdaki güvenlik sorunlarını keşfetmek için birden çok yöntem kullanır, bunlara açık varlıklarınızı tipik güvenlik açıkları için tarama da dahildir. Scanner, açık varlıklar toplandıktan sonra otomatik olarak tüm IP adreslerini ve alan adlarını güvenlik açıkları için kontrol eder.
+Wallarm, altyapınızdaki güvenlik açıklarını tespit etmek için, açık varlıklarınızı tipik zafiyetler açısından taramanın yanı sıra, birden fazla yöntem kullanır. Scanner, açık varlıklar toplandıktan sonra tüm IP adresleri ve alan adlarını zafiyetler açısından otomatik olarak kontrol eder.
 
-Wallarm Konsolu'nun [**Güvenlik Açıkları** bölümü](vulnerabilities.md), keşfedilen güvenlik açıklarını görüntüler ve hangi güvenlik açıklarının keşfedilmesi gerektiğini kontrol etmenizi sağlar.
+Wallarm Console'un [**Vulnerabilities** bölümü](vulnerabilities.md), keşfedilen zafiyetleri görüntüler ve hangi zafiyetlerin tespit edileceğini kontrol etmenizi sağlar.
 
-### Belli varlıklar için güvenlik açığı taramasını devre dışı bırakma
+### Belirli Varlıklar İçin Zafiyet Taramasını Devre Dışı Bırakma
 
-**Scanner** bölümünde, her varlığın, belirli bir varlık için güvenlik açığı taramasını açıp kapatmanızı sağlayan bir anahtarı vardır. Anahtar, şu anda seçili ve kalın metinle yazılmış olan varlığın solunda bulunur. Anahtarı bulmak için elementin üzerine gelmenize gerek yok.
+Scanner bölümünde, her varlığın, o belirli varlık için zafiyet taramasını açıp kapatmanızı sağlayan bir anahtarı vardır. Bu anahtar, şu anda seçili olan varlığın solunda bulunur ve kalın metinle görüntülenir. Anahtarı bulmak için öğe üzerine gelmenize gerek yoktur.
 
-### Güvenlik açığı taramasını sınırlama
+### Zafiyet Taramasını Sınırlama
 
-Wallarm Scanner, kaynak yanıtına dayalı olarak keşfedilen kaynaklardaki güvenlik açıklarını tespit etmek için test kötü amaçlı istekler kullanır. Kaynaklarınızı zor durumda bırakmamak için, Wallarm Scanner isteklerinin Saniyedeki İstekler (RPS) ve Dakikadaki İstekler (RPM)'ini yönetebilirsiniz. Aktif Tehdit Doğrulama modülü ayrıca, isteklerin açık varlıklardan kaynaklarına yönlendirildiği durumlarda kullanıcı tarafından tanımlanan değerlere dayalı olarak istekleri sınırlar.
+Wallarm Scanner, kaynak yanıtlarına dayanarak keşfedilen kaynaklardaki zafiyetleri tespit etmek için test amaçlı kötü niyetli istekler kullanır. Kaynaklarınızı aşırı yüklememek için, Wallarm Scanner isteklerinin Saniye Başına İstek (RPS) ve Dakika Başına İstek (RPM) sayılarını yönetebilirsiniz. Threat Replay Testing modülü de, açık varlıklardan gelen kaynaklara yönlendirildiklerinde, kullanıcı tanımlı değerlere dayanarak istekleri sınırlar.
 
-Tüm alan adları ve IP adresleri için aynı sınırlamaları belirlemek isterseniz, **Yapılandır**'ı tıklayın ve ilgili bölümde değerleri belirtin.
+Tüm alan adları ve IP adresleri için aynı limitleri ayarlamak üzere, **Configure** düğmesine tıklayın ve ilgili bölümde değerleri belirleyin.
 
-Belirli IP adresleri veya alan adları için sınırlamaları geçersiz kılmak için:
+Belirli IP adresleri veya alan adları için limitleri geçersiz kılmak için:
 
-1. **Alan Adı** veya **IP** tipindeki bir varlığı açın.
-1. **RPS sınırlarını belirleyin** düğmesini tıklayın ve sınırlamayı belirtin.
+1. **Domain** veya **IP** tipinde bir varlığı açın.
+1. **Set RPS limits** düğmesine tıklayın ve limiti belirtin.
 
-    Eğer bir alan adı için RPS belirliyorsanız, alan adının bağımlı olduğu her IP adresi için bunu **IP başına RPS** alanında istenen değeri girerek yapabilirsiniz.
-1. **Kaydet**'i tıklayın.
+    Bir alan adı için RPS ayarlanıyorsa, **RPS per IP** alanına istenen değeri girerek alan adına bağlı her bir IP adresi için ayarlayabilirsiniz.
+1. **Save** düğmesine tıklayın.
 
 Varsayılan ayarlara dönmek için, boş bir değer kullanın veya `0` girin.
 
-![Alan adı RPS ayarları](../images/user-guides/scanner/set-rps-for-domain.png)
+![Setting domain RPS](../images/user-guides/scanner/set-rps-for-domain.png)
 
-Birden fazla alan adı aynı IP adresi ile ilişkilendirilmişse, bu IP adresine giden isteklerin hızı, IP adresi için belirlenen sınırlamaları geçmeyecektir. Bir alan adı ile ilişkili birden fazla IP adresi var ise, bu IP adreslerine giden toplam istek hızı, bu alan adı için belirlenen sınırlamaları geçmeyecektir.
+Aynı IP adresine birden fazla alan adı bağlıysa, bu IP adresine gönderilen isteklerin hızı, IP adresi için belirlenen limitleri aşmaz. Bir alan adına birden fazla IP adresi bağlıysa, o alan içindeki bu IP adreslerine yapılan toplam istek hızı, alan için belirlenen limitleri aşmaz.
+
+## Scanner'ın Engellenmesini Önleme
+
+Wallarm dışında, trafiği otomatik olarak filtrelemek ve engellemek için ek araçlar (yazılım veya donanım) kullanıyorsanız, Wallarm Scanner için [IP adresleri](../admin-en/scanner-addresses.md) ile bir allowlist yapılandırmanız önerilir.
+
+Bu, Wallarm bileşenlerinin kaynaklarınızı kesintisiz bir şekilde zafiyetler için taramasını sağlayacaktır.
+
+## Kaynak Scanner'ı Durdurmak için Wallarm Destek ile İletişime Geçme
+
+Wallarm scanner, keşif için ayarlamadığınız şirket kaynaklarınızı tarıyorsa, kaynağın taramadan hariç tutulması için [Wallarm Support](mailto:support@wallarm.com) ile iletişime geçin.

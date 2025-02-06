@@ -1,6 +1,6 @@
-`ingress-controller-wallarm-tarantool` podu için Tarantool belleği, `values.yaml` dosyasındaki aşağıdaki bölümler kullanılarak yapılandırılır:
+Tarantool belleği, `values.yaml` dosyasındaki aşağıdaki bölümler kullanılarak `ingress-controller-wallarm-tarantool` pod'u için yapılandırılır:
 
-* GB olarak belleği ayarlamak için:
+* GB cinsinden bellek ayarlamak için:
     ```
     controller:
       wallarm:
@@ -8,7 +8,7 @@
           arena: "0.2"
     ```
 
-* CPU olarak belleği ayarlamak için:
+* CPU cinsinden bellek ayarlamak için:
     ```
     controller:
       wallarm:
@@ -22,15 +22,15 @@
               memory: 1640Mi
     ```
 
-Listelenen parametreler, `helm install` ve `helm upgrade` komutlarının `--set` seçeneği kullanılarak ayarlanır, örneğin:
+Listelemiş olduğumuz parametreler, `helm install` ve `helm upgrade` komutlarının `--set` seçeneği kullanılarak ayarlanır, örneğin:
 
 === "Ingress controller kurulumu"
     ```bash
     helm install --set controller.wallarm.tarantool.arena='0.4' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
-    Ayrıca, doğru Ingress kontrolcüsü kurulumu için [diğer gereken parametreler](../configure-kubernetes-en.md#additional-settings-for-helm-chart) bulunmaktadır. Lütfen onları da `--set` seçeneği ile belirtin.
-=== "Ingress controller parametrelerinin güncellenmesi"
+    Doğru Ingress controller kurulumu için gerekli [diğer parametreler](../configure-kubernetes-en.md#additional-settings-for-helm-chart) de vardır. Lütfen bunları da `--set` seçeneğiyle geçin.
+=== "Ingress controller parametrelerini güncelleme"
     ```bash
     helm upgrade --reuse-values --set controller.wallarm.tarantool.arena='0.4' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```

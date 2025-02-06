@@ -1,9 +1,8 @@
-| API çağırması: | `GET /v1/test_run/test_run_id`             |      |
-| ---------------- | ------------------------------------------ | ---- |
-| Yetkilendirme:   | Gerekli                                   | Token ile |
-| Token'li HTTP başlığı: | `X-WallarmAPI-Token`               | Token değerini API sunucusuna iletmek için kullanılır |
-| Parametreler:     | `test_run_id` **(gerekli)**               | Durumunun alınacağı test çalışmasının belirleyicisi |
-
+| API çağrısı: | `GET /v1/test_run/test_run_id` |      |
+| ------------- | ------------------------------------------ | ---- |
+| Yetkilendirme: | Zorunlu | Token ile |
+| Token içeren HTTP başlığı: | `X-WallarmAPI-Token` | API sunucusuna token değerini iletmek için kullanılır |
+| Parametreler: | `test_run_id` **(zorunlu)** | Durum bilgilerini almak için test çalışmasının tanımlayıcısı |
 
 **Bir istek örneği:**
 ```

@@ -2,17 +2,17 @@
 
 [anchor1]:      #the-example-of-using-the-get-filter-with-the-array-filter
 [anchor2]:      #the-example-of-using-the-header-filter-with-the-array-filter
-[anchor3]:      #the-example-of-using-the-formurlencoded-parser-and-the-array-filter
+[anchor3]:      #the-example-of-using-the-form_urlencoded-parser-and-the-array-filter
 [anchor4]:      #the-example-of-using-the-multipart-parser-and-the-array-filter
-[anchor5]:      #the-example-of-using-the-xmltag-filter-and-the-array-filter
+[anchor5]:      #the-example-of-using-the-xml_tag-filter-and-the-array-filter
 [anchor6]:      #the-example-of-using-the-json_obj-filter-and-the-array-filter
 
 
 # Dizi Filtresi
 
-**Dizi** filtresi, diziler içerebilecek olan temel istek öğelerinin değer dizisine atıfta bulunur.
+**Dizi** filtresi, dizi içerebilen herhangi bir temel istek öğesindeki değerler dizisine atıfta bulunur.
 
-Dizi filtresi, aşağıdaki filtreler ve ayrıştırıcılarla birlikte noktada kullanılabilir:
+Dizi filtresi, aşağıdaki filtreler ve ayrıştırıcılar ile birlikte nokta içinde kullanılabilir:
 * [Get][anchor1];
 * [Header][anchor2];
 * [Form_urlencoded][anchor3];
@@ -20,12 +20,12 @@ Dizi filtresi, aşağıdaki filtreler ve ayrıştırıcılarla birlikte noktada 
 * [Xml_tag][anchor5];
 * [Json_obj][anchor6].
 
-Bu dizinin öğeleri, indeksleri kullanarak anılmalıdır. Dizi indekslemesi `0` ile başlar.
+Bu dizinin elemanlarına, indeksler kullanılarak başvurulmalıdır. Dizi indekslemesi `0` ile başlar.
 
-!!! info "Noktalardaki düzenli ifadeler"
-    Noktadaki indeks, [Ruby programlama dilinin düzenli ifadesi][link-ruby] olabilir.
+!!! info "Noktadaki düzenli ifadeler"
+    Noktadaki indeks, [Ruby programlama dilinin düzenli ifadesi][link-ruby] olabilir.  
 
-## Get Filtresinin Dizi Filtresi ile Kullanımına Dair Örnek
+## Get Filtresi ile Dizi Filtresinin Kullanım Örneği
 
 Aşağıdaki
 
@@ -33,17 +33,17 @@ Aşağıdaki
 GET http://example.com/login?id[]="01234"&id[]="56789" HTTP/1.1
 ```
 
-istek için, Dizi filtresi `id` sorgu dizesi parametresine aşağıdaki diziye atıfta bulunur:
+isteği için, Get sorgu dizesi parametresi `id`'ye uygulanan Dizi filtresi aşağıdaki diziye atıfta bulunmaktadır:
 
-| İndeks  | Değer    |
+| Index  | Değer    |
 |--------|----------|
 | 0      | 01234    |
 | 1      | 56789    |
 
-* `GET_id_ARRAY_0_value`, Dizi filtresine adreslenen `id` sorgu dizesi parametre değerleri dizisinden `0` indeksine karşılık gelen `01234` değerine atıfta bulunur.
-* `GET_id_ARRAY_1_value`, Dizi filtresine adreslenen `id` sorgu dizesi parametre değerleri dizisinden `1` indeksine karşılık gelen `56789` değerine atıfta bulunur.
+* `GET_id_ARRAY_0_value`, Dizi filtresiyle ele alınan `id` sorgu dizesi parametre değerleri dizisindeki `0` indeksine karşılık gelen `01234` değerine atıfta bulunur.
+* `GET_id_ARRAY_1_value`, Dizi filtresiyle ele alınan `id` sorgu dizesi parametre değerleri dizisindeki `1` indeksine karşılık gelen `56789` değerine atıfta bulunur.
 
-## Header Filtresinin Dizi Filtresi ile Kullanımına Dair Örnek
+## Header Filtresi ile Dizi Filtresinin Kullanım Örneği
 
 Aşağıdaki
 
@@ -53,17 +53,17 @@ X-Identifier: 01234
 X-Identifier: 56789
 ```
 
-istek için, Dizi filtresi `X-Identifier` başlığına aşağıdaki diziye atıfta bulunur:
+isteği için, `X-Identifier` başlığına uygulanan Dizi filtresi aşağıdaki diziye atıfta bulunmaktadır:
 
-| İndeks  | Değer    |
+| Index  | Değer    |
 |--------|----------|
 | 0      | 01234    |
 | 1      | 56789    |
 
-* `HEADER_X-Identifier_ARRAY_0_value`, Dizi filtresine adreslenen `X-Identifier` başlık değerleri dizisinden `0` indeksine karşılık gelen `01234` değerine atıfta bulunur.
-* `HEADER_X-Identifier_ARRAY_1_value`, Dizi filtresine adreslenen `X-Identifier` başlık değerleri dizisinden `1` indeksine karşılık gelen `56789` değerine atıfta bulunur.
+* `HEADER_X-Identifier_ARRAY_0_value`, Dizi filtresiyle ele alınan `X-Identifier` başlık değerleri dizisindeki `0` indeksine karşılık gelen `01234` değerine atıfta bulunur.
+* `HEADER_X-Identifier_ARRAY_1_value`, Dizi filtresiyle ele alınan `X-Identifier` başlık değerleri dizisindeki `1` indeksine karşılık gelen `56789` değerine atıfta bulunur.
 
-## Form_urlencoded Ayrıştırıcısının ve Dizi Filtresinin Kullanımına Dair Örnek
+## Form_urlencoded Ayrıştırıcısı ve Dizi Filtresi Kullanım Örneği
 
 Aşağıdaki
 
@@ -72,23 +72,23 @@ POST http://example.com/login/index.php HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 ```
 
-istek için, aşağıdaki
+isteği ile birlikte
 
 ```
 id[]=01234&id[]=56789
 ```
 
-vücutla, Dizi filtresi form-urlencoded formatında istek gövdesindeki `id` parametresine aşağıdaki diziye atıfta bulunur:
+gövdesi için, form-urlencoded formatındaki istek gövdesindeki `id` parametresine uygulanan Dizi filtresi aşağıdaki diziye atıfta bulunmaktadır:
 
-| İndeks  | Değer    |
+| Index  | Değer    |
 |--------|----------|
 | 0      | 01234    |
 | 1      | 56789    |
 
-* `POST_FORM_URLENCODED_id_ARRAY_0_value`, Dizi filtresine adreslenen `id` parametre değerleri dizisinden `0` indeksine karşılık gelen `01234` değerine atıfta bulunur.
-* `POST_FORM_URLENCODED_id_ARRAY_1_value`, Dizi filtresine adreslenen `id` parametre değerleri dizisinden `1` indeksine karşılık gelen `56789` değerine atıfta bulunur.
+* `POST_FORM_URLENCODED_id_ARRAY_0_value`, Dizi filtresiyle ele alınan `id` parametre değerleri dizisindeki `0` indeksine karşılık gelen `01234` değerine atıfta bulunur.
+* `POST_FORM_URLENCODED_id_ARRAY_1_value`, Dizi filtresiyle ele alınan `id` parametre değerleri dizisindeki `1` indeksine karşılık gelen `56789` değerine atıfta bulunur.
 
-## Multipart Ayrıştırıcısının ve Dizi Filtresinin Kullanımına Dair Örnek
+## Multipart Ayrıştırıcısı ve Dizi Filtresi Kullanım Örneği
 
 Aşağıdaki
 
@@ -106,17 +106,17 @@ Content-Disposition: form-data; name="id[]"
 56789
 ```
 
-istek için, Dizi filtresi multipart formatındaki istek gövdesindeki `id` parametresine aşağıdaki diziye atıfta bulunur:
+isteği için, multipart formatındaki istek gövdesindeki `id` parametresine uygulanan Dizi filtresi aşağıdaki diziye atıfta bulunmaktadır:
 
-| İndeks  | Değer    |
+| Index  | Değer    |
 |--------|----------|
 | 0      | 01234    |
 | 1      | 56789    |
 
-* `POST_MULTIPART_id_ARRAY_0_value`, Dizi filtresine adreslenen `id` parametre değerleri dizisinden `0` indeksine karşılık gelen `01234` değerine atıfta bulunur.
-* `POST_MULTIPART_id_ARRAY_1_value`, Dizi filtresine adreslenen `id` parametre değerleri dizisinden `1` indeksine karşılık gelen `56789` değerine atıfta bulunur.
+* `POST_MULTIPART_id_ARRAY_0_value`, Dizi filtresiyle ele alınan `id` parametre değerleri dizisindeki `0` indeksine karşılık gelen `01234` değerine atıfta bulunur.
+* `POST_MULTIPART_id_ARRAY_1_value`, Dizi filtresiyle ele alınan `id` parametre değerleri dizisindeki `1` indeksine karşılık gelen `56789` değerine atıfta bulunur.
 
-## Xml_tag Filtresinin ve Dizi Filtresinin Kullanımına Dair Örnek
+## Xml_tag Filtresi ve Dizi Filtresi Kullanım Örneği
 
 Aşağıdaki
 
@@ -125,7 +125,7 @@ POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-istek için, aşağıdaki
+isteği ile birlikte
 
 ```
 <?xml version="1.0"?>
@@ -140,17 +140,17 @@ Sample text.
 </text>
 ```
 
-vücutla, Dizi filtresi XML formatındaki istek gövdesinden `text` etiketine aşağıdaki diziye atıfta bulunur:
+gövdesi için, XML formatındaki istek gövdesindeki `text` etiketine uygulanan Dizi filtresi aşağıdaki diziye atıfta bulunmaktadır:
 
-| İndeks  | Değer        |
+| Index  | Değer        |
 |--------|--------------|
 | 0      | Sample text. |
 | 1      | aaaa         |
 
-* `POST_XML_XML_TAG_text_ARRAY_0_value` noktası, Dizi filtresi tarafından adreslenen `text` etiketi değerleri dizisinden `0` indeksine karşılık gelen `Sample text.` değerine atıfta bulunur.
-* `POST_XML_XML_TAG_text_ARRAY_1_value` noktası, Dizi filtresi tarafından adreslenen `text` etiketi değerleri dizisinden `1` indeksine karşılık gelen `aaaa` değerine atıfta bulunur.
+* `POST_XML_XML_TAG_text_ARRAY_0_value`, Dizi filtresiyle ele alınan `text` etiket değerleri dizisindeki `0` indeksine karşılık gelen `Sample text.` değerine atıfta bulunur.
+* `POST_XML_XML_TAG_text_ARRAY_1_value`, Dizi filtresiyle ele alınan `text` etiket değerleri dizisindeki `1` indeksine karşılık gelen `aaaa` değerine atıfta bulunur.
 
-## Json_obj Filtresinin ve Dizi Filtresinin Kullanımına Dair Örnek
+## Json_obj Filtresi ve Dizi Filtresi Kullanım Örneği
 
 Aşağıdaki
 
@@ -159,7 +159,7 @@ POST http://example.com/main/login HTTP/1.1
 Content-type: application/json
 ```
 
-istek için, aşağıdaki
+isteği ile birlikte
 
 ```
 {
@@ -168,12 +168,12 @@ istek için, aşağıdaki
 }
 ```
 
-vücutla, Dizi filtresi, Json_doc ayrıştırıcısı ve Json_obj filtresi ile birlikte istek gövdesinden `rights` JSON nesnesine aşağıdaki diziye atıfta bulunur:
+gövdesi için, Json_doc ayrıştırıcısı ve Json_obj filtresiyle birlikte istek gövdesindeki `rights` JSON nesnesine uygulanan Dizi filtresi aşağıdaki diziye atıfta bulunmaktadır:
 
-| İndeks  | Değer    |
+| Index  | Değer    |
 |--------|----------|
 | 0      | read     |
 | 1      | write    |
 
-* `POST_JSON_DOC_JSON_OBJ_rights_ARRAY_0_value` noktası, Dizi filtresince adreslenen `rights` JSON nesnesi değerleri dizisinden `0` indeksine karşılık gelen `read` değerine atıfta bulunur.
-* `POST_JSON_DOC_JSON_OBJ_rights_ARRAY_1_value` noktası, Dizi filtresince adreslenen `rights` JSON nesnesi değerleri dizisinden `1` indeksine karşılık gelen `write` değerine atıfta bulunur.
+* `POST_JSON_DOC_JSON_OBJ_rights_ARRAY_0_value`, Dizi filtresiyle ele alınan `rights` JSON nesnesi değerleri dizisindeki `0` indeksine karşılık gelen `read` değerine atıfta bulunur.
+* `POST_JSON_DOC_JSON_OBJ_rights_ARRAY_1_value`, Dizi filtresiyle ele alınan `rights` JSON nesnesi değerleri dizisindeki `1` indeksine karşılık gelen `write` değerine atıfta bulunur.

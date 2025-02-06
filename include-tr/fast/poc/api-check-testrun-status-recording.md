@@ -1,11 +1,10 @@
-| API çağrısı: | `GET /v1/test_run/test_run_id` |      |
+| API call: | `GET /v1/test_run/test_run_id` |      |
 | ------------- | ------------------------------------------ | ---- |
-| Yetki: | Gerekli | Yetki, belirteç ile sağlanır |
-| Belirteçle HTTP başlığı: | `X-WallarmAPI-Token` | Belirteç değerinin API sunucusuna aktarılması için kullanılır |
-| Parametreler: | `test_run_id` **(gerekli)** | Durumu alınacak test çalışmasının tanımlayıcısı |
+| Yetkilendirme: | Gerekli | Yetkilendirme token ile sağlanır |
+| Token ile HTTP başlığı: | `X-WallarmAPI-Token` | Token değerini API sunucusuna iletmek için kullanılır |
+| Parametreler: | `test_run_id` **(gerekli)** | Durumu alınacak test koşusunun tanımlayıcısı |
 
-
-**Bir isteğin örneği:**
+**Bir istek örneği:**
 ```
 curl --request GET \
   --url https://us1.api.wallarm.com/v1/test_run/tr_1234 \
@@ -13,7 +12,7 @@ curl --request GET \
   --header 'X-WallarmAPI-Token: token_Qwe12345'
 ```
 
-**Bir yanıtın örneği:**
+**Bir yanıt örneği:**
 ```
 {
   "status": 200,

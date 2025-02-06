@@ -7,25 +7,25 @@
 [link-juice-shop-docs]:     https://pwning.owasp-juice.shop/companion-guide/latest/
 [link-using-extension]:     ../using-extension.md
 
-#   FAST Uzantılarının Örnekleri: Genel Bakış
+# FAST Uzantılarının Örnekleri: Genel Bakış
 
-Zayıf web uygulaması [OWASP Juice Shop][link-juice-shop] FAST uzantı mekanizmasının yeteneklerini göstermek için kullanılacak.
+Güvenlik açığı bulunan web uygulaması [OWASP Juice Shop][link-juice-shop], FAST uzantı mekanizmasının yeteneklerini göstermek için kullanılacaktır.
 
-Bu uygulama, çeşitli yollarla (örneğin, Docker, Node.JS veya Vagrant kullanarak) [dağıtılabilir][link-juice-shop-deploy].
+Bu uygulama, çeşitli şekillerde [dağıtılabilir][link-juice-shop-deploy] (örneğin, Docker, Node.JS veya Vagrant kullanarak).
 
-OWASP Juice Shop belgelerini, içerisinde yerleşik olan zayıflıkların listesini görmek için, aşağıdaki [bağlantıya][link-juice-shop-docs] ilerleyin.
+Uygulamaya gömülü güvenlik açıklarını listeleyen OWASP Juice Shop dokümantasyonunu görmek için aşağıdaki [link][link-juice-shop-docs] bağlantısına gidin.
 
-!!! warning "Zayıf bir uygulamayla çalışma"
-    OWASP Juice Shop'a ev sahipliği yapan makinenin internet erişimi veya gerçek verilere (örneğin, kullanıcı adı/şifre çiftleri) sahip olmasını önlemenizi öneririz.
+!!! warning "Güvenlik Açığı Bulunan Bir Uygulama ile Çalışma"
+    Önerimiz, OWASP Juice Shop'un çalıştığı hosta internet erişimi veya gerçek veriler (örneğin, giriş/parola çiftleri) sağlamamanızdır.
 
-“OWASP Juice Shop” hedef uygulamasını zayıflıklar için test etmek için aşağıdaki adımları uygulayın:
+“OWASP Juice Shop” hedef uygulamasını güvenlik açıklarına karşı test etmek için aşağıdaki adımları izleyin:
 
-1.  Web uygulamasını [inceleyin][link-app-examination] ve davranışıyla tanışın.
-2.  Bir örnek değiştirici uzantı [oluşturun][link-mod-extension].
-3.  Bir örnek değiştirici olmayan uzantı [oluşturun][link-non-mod-extension].
-4.  Oluşturulan uzantıları [kullanın][link-using-extension].
+1.  [Web uygulamasını inceleyin][link-app-examination] ve davranışlarını öğrenin.
+2.  [Örnek bir modifiye uzantısı oluşturun.][link-mod-extension]
+3.  [Örnek bir değişiklik yapmayan uzantı oluşturun.][link-non-mod-extension]
+4.  [Oluşturulan uzantıları kullanın.][link-using-extension]
 
-!!! info "İstek elementlerinin tanım sözdizimi"
-    Bir FAST uzantısı oluştururken, uygulamaya giden HTTP isteğinin yapısını ve uygulamadan alınan HTTP yanıtının yapısını anlamanız ve çalışmak istediğiniz istek elementlerini doğru bir şekilde tanımlamak için noktaları kullanmanız gerekmektedir.
+!!! info "İstek Öğeleri Açıklama Söz Dizimi"
+    Bir FAST uzantısı oluştururken, uygulamaya gönderilen HTTP isteğinin yapısını ve uygulamadan alınan HTTP yanıtının yapısını iyi anlamanız gerekmektedir. Bu, üzerinde çalışmanız gereken istek öğelerini points kullanarak doğru şekilde tanımlamanızı sağlar.
     
-    Detaylı bilgi için bu [bağlantıya][link-points] ilerleyin.
+    Detaylı bilgileri görmek için bu [link][link-points] bağlantısına gidin.

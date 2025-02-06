@@ -1,60 +1,60 @@
 # Sumo Logic
 
-Wallarm'ı Sumo Logic'e mesaj göndermek üzere ayarlayabilirsiniz.
+[Sumo Logic](https://www.sumologic.com/) kurumlara BT operasyonları, güvenlik ve uygulama performansı hakkında gerçek zamanlı içgörüler sağlayan bulut yerel, makine verisi analitiği platformudur. Wallarm'u Sumo Logic'e mesaj gönderecek şekilde yapılandırabilirsiniz.
 
-## Entegrasyonu ayarlama
+## Entegrasyonu Ayarlama
 
-Sumo Logic UI'da:
+Sumo Logic kullanıcı arayüzünde:
 
-1. [Talimatlara](https://help.sumologic.com/03Send-Data/Hosted-Collectors/Configure-a-Hosted-Collector) göre bir Hosted Collector yapılandırın.
-2. [Talimatlara](https://help.sumologic.com/03Send-Data/Sources/02Sources-for-Hosted-Collectors/HTTP-Source) göre bir HTTP Logs & Metrics Kaynağı yapılandırın.
-3. Sağlanan **HTTP Kaynak Adresini (URL)** kopyalayın.
+1. Aşağıdaki [talimatları](https://help.sumologic.com/03Send-Data/Hosted-Collectors/Configure-a-Hosted-Collector) izleyerek bir Hosted Collector yapılandırın.
+2. Aşağıdaki [talimatları](https://help.sumologic.com/03Send-Data/Sources/02Sources-for-Hosted-Collectors/HTTP-Source) izleyerek bir HTTP Logs & Metrics Source yapılandırın.
+3. Sağlanan **HTTP Source Address (URL)** değerini kopyalayın.
 
-Wallarm UI'da:
+Wallarm kullanıcı arayüzünde:
 
-1. **Entegrasyonlar** bölümünü açın.
-1. **Sumo Logic** bloğuna tıklayın veya **Entegrasyon ekle** düğmesine tıklayın ve **Sumo Logic** seçin.
+1. **Integrations** bölümünü açın.
+1. **Sumo Logic** bloğuna tıklayın veya **Add integration** düğmesine tıklayarak **Sumo Logic**'i seçin.
 1. Bir entegrasyon adı girin.
-1. Kopyalanan HTTP Kaynak Adresi (URL) değerini **HTTP Kaynak Adresi (URL)** alanına yapıştırın.
+1. Kopyaladığınız **HTTP Source Address (URL)** değerini **HTTP Source Address (URL)** alanına yapıştırın.
 1. Bildirimleri tetiklemek için olay türlerini seçin.
 
-    ![Sumo Logic entegrasyonu](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
+    ![Sumo Logic integration](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 
-    Mevcut olaylar hakkında ayrıntılar:
+    Mevcut olaylar hakkında detaylar:
 
-    --8<-- "../include-tr/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-1. Yapılandırma doğruluğunu, Wallarm Bulutu'nun mevcudiyetini ve bildirim formatını kontrol etmek için **Entegrasyonu test et**'e tıklayın.
+1. Yapılandırmanın doğruluğunu, Wallarm Cloud'un kullanılabilirliğini ve bildirim formatını kontrol etmek için **Test integration** düğmesine tıklayın.
 
-    Test Sumo Logic bildirimi:
+    Sumo Logic bildirimini test edin:
 
     ```json
     {
-        summary:"[Test mesajı] [Test ortağı(ABD)] Yeni güvenlik açığı tespit edildi",
-        description:"Bildirim tipi: güvenlik açığı
+        summary:"[Test message] [Test partner(US)] New vulnerability detected",
+        description:"Notification type: vuln
 
-                    Sisteminizde yeni bir güvenlik açığı tespit edildi.
+                    New vulnerability was detected in your system.
 
                     ID: 
-                    Başlık: Test
-                    Alan adı: example.com
-                    Yol: 
-                    Yöntem: 
-                    Tespit eden: 
-                    Parametre: 
-                    Tür: Bilgi
-                    Tehdit: Orta
+                    Title: Test
+                    Domain: example.com
+                    Path: 
+                    Method: 
+                    Discovered by: 
+                    Parameter: 
+                    Type: Info
+                    Threat: Medium
 
-                    Daha fazla ayrıntı: https://us1.my.wallarm.com/object/555
+                    More details: https://us1.my.wallarm.com/object/555
 
 
-                    Müşteri: TestŞirketi
-                    Bulut: ABD
+                    Client: TestCompany
+                    Cloud: US
                     ",
         details:{
-            client_name:"TestŞirketi",
-            cloud:"ABD",
-            notification_type:"güvenlik açığı",
+            client_name:"TestCompany",
+            cloud:"US",
+            notification_type:"vuln",
             vuln_link:"https://us1.my.wallarm.com/object/555",
             vuln:{
                 domain:"example.com",
@@ -64,23 +64,25 @@ Wallarm UI'da:
                 path:null,
                 title:"Test",
                 discovered_by:null,
-                threat:"Orta",
-                type:"Bilgi"
+                threat:"Medium",
+                type:"Info"
             }
         }
     }
     ```
 
-1. **Entegrasyon ekle** düğmesine tıklayın.
+1. **Add integration** düğmesine tıklayın.
 
-## Ek uyarıları ayarlama
+--8<-- "../include/cloud-ip-by-request.md"
 
---8<-- "../include-tr/integrations/integrations-trigger-setup.md"
+## Ek Uyarıların Ayarlanması
 
-## Entegrasyonu devre dışı bırakma ve silme
+--8<-- "../include/integrations/integrations-trigger-setup.md"
 
---8<-- "../include-tr/integrations/integrations-disable-delete.md"
+## Bir Entegrasyonun Devre Dışı Bırakılması ve Silinmesi
 
-## Sistem mevcudiyeti ve yanlış entegrasyon parametreleri
+--8<-- "../include/integrations/integrations-disable-delete.md"
 
---8<-- "../include-tr/integrations/integration-not-working.md"
+## Sistem Kullanılamazlığı ve Hatalı Entegrasyon Parametreleri
+
+--8<-- "../include/integrations/integration-not-working.md"

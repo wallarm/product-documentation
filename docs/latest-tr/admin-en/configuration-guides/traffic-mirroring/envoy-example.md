@@ -1,10 +1,10 @@
-# Trafik aynalama için Envoy yapılandırması örneği
+# Trafiğin Aynalanması için Envoy Yapılandırma Örneği
 
-Bu makale, trafik aynalaması ve [trafiği Wallarm düğümüne yönlendirmek için](overview.md) gerekli olan örnek Envoy yapılandırmasını sağlar.
+Bu makale, Envoy'un trafiği aynalaması ve Wallarm node'una yönlendirmesi için gereken örnek yapılandırmayı sunar ([trafiği aynala ve Wallarm node'una yönlendir](overview.md)).
 
-## Adım 1: Trafik aynalaması için Envoy yapılandırın
+## Adım 1: Trafiği aynalamak için Envoy'u yapılandırın
 
-Bu örnek, tek bir `listener`'in 80 portunu (TLS olmadan) dinlemesi ve tek bir `filter` içermesi aracılığıyla Envoy ile trafik aynalamayı yapılandırır. Orijinal hizmetın ve aynalanan trafik alan ek hizmetin adresleri `clusters` bloğunda belirtilmiştir.
+Bu örnek, TLS kullanılmayan, port 80'de dinleyen tek bir listener ve tek bir filter üzerinden Envoy ile trafik aynalama yapılandırmasını gösterir. Orijinal backend ile aynalanan trafiği alan ek backend'in adresleri, `clusters` bloğunda belirtilmiştir.
 
 ```yaml
 static_resources:
@@ -30,9 +30,9 @@ static_resources:
                 - match:
                     prefix: "/"
                   route:
-                    cluster: httpbin     # <-- orijinal gruba bağlantı
+                    cluster: httpbin     # <-- orijinal kümeye bağlantı
                     request_mirror_policies:
-                    - cluster: wallarm   # <-- aynalanan talepleri alan gruba bağlantı
+                    - cluster: wallarm   # <-- aynalanan istekleri alan kümeye bağlantı
                       runtime_fraction:
                         default_value:
                           numerator: 100
@@ -42,7 +42,7 @@ static_resources:
                 "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
 
   clusters:
-  ### Orijinal grubun tanımlaması
+  ### Orijinal kümenin tanımlanması
   ###
   - name: httpbin
     type: STRICT_DNS
@@ -53,14 +53,14 @@ static_resources:
       - lb_endpoints:
         - endpoint:
             address:
-              ### Orijinal uç noktanın adresi. Adres DNS adı
-              ### veya IP adresi, port_value TCP port numarasıdır
+              ### Orijinal uç noktanın adresi. Adres, DNS adı veya IP adresidir,
+              ### port_value ise TCP port numarasıdır.
               ###
               socket_address:
-                address: httpbin # <-- orijinal grubun tanımlaması
+                address: httpbin # <-- orijinal kümenin tanımı
                 port_value: 80
 
-  ### Aynalanan talepleri alan grubun tanımlaması
+  ### Aynalanan istekleri alan kümenin tanımlanması
   ###
   - name: wallarm
     type: STRICT_DNS
@@ -71,18 +71,17 @@ static_resources:
       - lb_endpoints:
         - endpoint:
             address:
-              ### Orijinal uç noktanın adresi. Adres DNS adı
-              ### veya IP adres, port_value TCP port numarasıdır. Wallarm
-              ### aynalama şeması herhangi bir portla dağıtılabilir fakat
-              ### varsayılan değer TCP/8445'tir.
+              ### Orijinal uç noktanın adresi. Adres, DNS adı veya IP adresidir,
+              ### port_value ise TCP port numarasıdır. Wallarm aynalama şeması herhangi bir portta
+              ### konuşlandırılabilir ancak varsayılan değer TCP/8445'tir.
               ###
               socket_address:
                 address: wallarm
                 port_value: 8445
 ```
 
-[Envoy dokümantasyonuna göz atın](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto)
+[Envoy belgelerini inceleyin](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto)
 
-## Adım 2: Aynalanan trafiği filtrelemek için Wallarm düğümünü yapılandırın
+## Adım 2: Aynalanan trafiği filtrelemesi için Wallarm node'unu yapılandırın
 
---8<-- "../include-tr/wallarm-node-configuration-for-mirrored-traffic.md"
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"

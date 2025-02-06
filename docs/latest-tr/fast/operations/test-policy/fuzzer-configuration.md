@@ -11,93 +11,92 @@
 [anchor-not-anomaly-section]:   #the-consider-result-not-an-anomaly-if-response-section
 [anchor-stop-section]:          #the-stop-fuzzing-if-response-section
 
-# Fuzzer Konfigürasyonu
+# Fuzzer Yapılandırması
 
-!!! info "Fuzzer'ı etkinleştirmek"
-    Fuzzer, varsayılan olarak devre dışıdır. Wallarm hesabınızdaki politika düzenleyicide **Fuzz testi** bölümünde etkinleştirebilirsiniz:
+!!! info "Fuzzer'ın Etkinleştirilmesi"
+    Fuzzer varsayılan olarak devre dışıdır. Wallarm hesabınızdaki **Fuzz testing** bölümünden etkinleştirebilirsiniz:
     
-    ![Fuzzer'ı etkinleştirme][img-enable-fuzzer]
+    ![Fuzzer'ı Etkinleştirme][img-enable-fuzzer]
 
-    Fuzzer anahtarı ve **Sadece özel DSL kullan** anahtarı **Test edilecek saldırılar** bölümünde birbirine karşıtır.
+    **Attacks to test** bölümündeki fuzzer anahtarı ile **Use only custom DSL** anahtarı birbirini dışlar.
 
-    Politika, varsayılan olarak bir fuzzer'ı desteklemez.
+    Varsayılan olarak politika bir fuzzer desteklemez.
 
-Fuzzer ve anomaliden ötürü ayarlar, politika düzenleyicinin **Fuzz testi** bölümünde bulunur.
+Fuzzer ve anomali tespitiyle ilgili ayarlar, politika düzenleyicisindeki **Fuzz testing** bölümünde yer alır.
 
-Uygulamanın anomalileri test etmek için, FAST hedef uygulamanın, anomali baytları içeren bir yük ile gönderilen talebin yanıtını analiz eder. Belirlenen koşullara bağlı olarak, FAST tarafından gönderilen talep anomali olarak tanınır ya da tanınmaz.
+Uygulamanın anomaliler açısından test edilmesi için FAST, hedef uygulamanın anomali baytları içeren bir yük ile yaptığı isteğe verdiği yanıtı analiz eder. Belirtilen koşullara bağlı olarak, FAST tarafından gönderilen istek anormal olarak algılanır ya da algılanmaz.
 
-Wallarm hesabınızdaki politika düzenleyicisi, size:
+Wallarm hesabınızdaki politika düzenleyici, size şu işlemleri yapma imkanı tanır:
 
-* **Payload ekle** ve **Başka bir yük ekle** butonlarına tıklayarak payload eklemeye 
-* **Durum ekle** ve **Başka bir durum ekle** butonlarına tıklayarak, fuzzer işlemi üzerinde etkisi olan koşulları eklemeye
-* Oluşturulan payloadları ve koşulları, yanlarında bulunan «—» sembolüne tıklayarak silmeye olanak verir
+* **Add payload** ve **Add another payload** düğmelerine tıklayarak yük ekleme
+* **Add condition** ve **Add another condition** düğmelerine tıklayarak fuzzer işlemini etkileyen koşullar ekleme
+* Yanlarında bulunan «—» simgesine tıklayarak oluşturulan yükleri ve koşulları silme
 
-![Payload ve durum yönetimi][img-manipulate-items]
+![Yük ve koşul yönetimi][img-manipulate-items]
 
-Durumları yapılandırırken aşağıdaki parametreleri kullanabilirsiniz:
+Koşulları yapılandırırken aşağıdaki parametreleri kullanabilirsiniz:
 
-* **Durum**: HTTPS yanıt kodu
-* **Uzunluk**: yanıt uzunluğu bayt olarak
-* **Zaman**: yanıt süresi saniye cinsinden
-* **Uzunluk farkı**: FAST ve orijinal baz çizgisi isteklerine verilen yanıtın uzunluğundaki fark, bayt cinsinden
-* **Zaman farkı**: FAST ve orijinal baz çizgisi isteklerine verilen yanıt süresi arasındaki fark, saniye cinsinden
-* **DOM farkı**: FAST ve orijinal baz çizgisi isteklerindeki DOM öğeleri sayısındaki fark
-* **Gövde**: [Ruby düzenli ifadesi][link-ruby-regexp]. Yanıt gövdesi bu düzenli ifadeyi karşıladığında durum yerine getirilir
+* **Status**: HTTPS yanıt kodu
+* **Length**: yanıt uzunluğu (bayt cinsinden)
+* **Time**: yanıt süresi (saniye cinsinden)
+* **Length diff**: FAST ve orijinal temel isteklerin yanıt uzunlukları arasındaki fark (bayt cinsinden)
+* **Time diff**: FAST ve orijinal temel isteklere verilen yanıt süresi arasındaki fark (saniye cinsinden)
+* **DOM diff**: FAST ve orijinal temel isteklerdeki DOM eleman sayıları arasındaki fark
+* **Body**: [Ruby regular expression][link-ruby-regexp]. Yanıt gövdesi bu düzenli ifadeyi karşıladığı sürece koşul sağlanmış kabul edilir
 
-İşte [**Yanıt alındığında fuzzing'i durdur**][anchor-stop-section] bölümünde, aşağıdaki parametreler de yapılandırılabilir:
+[**Stop fuzzing if response**][anchor-stop-section] bölümünde, aşağıdaki parametreler de yapılandırılabilir:
 
-* **Anomaliler**: algılanan anomali sayısı
-* **Zaman aşımı hataları**: sunucudan hiç yanıt alınmadığı zaman sayısı
+* **Anomalies**: tespit edilen anomali sayısı
+* **Timeout errors**: sunucudan yanıt alınamayan durumların sayısı
 
-Bu parametrelerin kombinasyonunu kullanarak, fuzzer işlemlerini etkileyen gerekli koşulları yapılandırabilirsiniz (aşağıya bakınız).
+Bu parametrelerin kombinasyonlarını kullanarak, fuzzer işlemlerini etkileyen gerekli koşulları yapılandırabilirsiniz (aşağıya bakınız).
 
-## "Payloadlar" Bölümü
+## "Payloads" Bölümü
 
-Bu bölüm, bir veya daha fazla payload yapılandırmak için kullanılır.
+Bu bölüm, bir veya daha fazla yükü yapılandırmak için kullanılır.
 
-Payload eklenirken, aşağıdaki veriler belirtilir:
+Yük eklenirken aşağıdaki veriler belirtilir:
 
-* yük boyutu 1'den 255 bayta
-* payload'ın ekleneceği değer: başlangıç, rastgele veya son pozisyon
+* 1 ile 255 bayt arasında yük boyutu
+* Yükün nerede ekleneceği: başlangıç, rastgele veya bitiş pozisyonu
 
-Payload değiştirilirken, aşağıdaki veriler belirtilir:
+Yük değiştirilirken aşağıdaki veriler belirtilir:
 
-* değiştirme metodu: değerdeki bir rastgele segmenti değiştirme — ilk `M` bayt, son `M` bayt veya bütün string
-* yük boyutu `M` 1'den 255 bayta
+* Değiştirme yöntemi: değerin rastgele bir segmentini değiştirmek — ilk `M` bayt, son `M` bayt veya tüm dize
+* 1 ile 255 bayt arasında `M` yük boyutu
 
+## "Consider Result an Anomaly if Response" Bölümü
 
-## "Yanıt Aldığında Sonucu Anomali Olarak Düşün" Bölümü
-
-Uygulamanın yanıtı, **Yanıt aldığında sonucu anomali olarak düşün** bölümünde yapılandırılan bütün koşulları karşılarsa, o zaman bir anomali bulunmuş olarak kabul edilir.
+Uygulamadan gelen yanıt, **Consider result an anomaly if response** bölümünde yapılandırılan tüm koşulları sağlıyorsa, bir anomali bulunmuş kabul edilir.
 
 **Örnek:**
 
-Eğer yanıt gövdesi `.*SQLITE_ERROR.*` düzenli ifadesini karşılıyorsa, o zaman gönderilen FAST talebinin bir anomaliye neden olduğunu düşünün:
+Eğer yanıt gövdesi `.*SQLITE_ERROR.*` düzenli ifadesini sağlıyorsa, gönderilen FAST isteğinin anomaliye sebep olduğu düşünülür:
 
-![Örnek durum][img-anomaly-condition]
+![Koşul örneği][img-anomaly-condition]
 
 !!! info "Varsayılan davranış"
-    Eğer bu bölümde hiçbir yapılandırılmış durum yoksa, fuzzer sunucu yanıtını baz istek yanıtına oranla anormal şekilde farlı parametrelerle algılar. Örneğin, uzun bir sunucu yanıt süresi sunucu yanıtının anomali olarak algılanmasına sebep olabilir.
+    Bu bölümde yapılandırılmış koşul yoksa, fuzzer, temel istek yanıtına göre anormal farklı parametreler içeren sunucu yanıtını tespit eder. Örneğin, uzun bir sunucu yanıt süresi, sunucu yanıtının anormal olduğunu tespit etmek için bir sebep olabilir.
 
-## "Yanıt Aldığında Sonucu Anomali Olarak Düşünme" Bölümü
+## "Consider result not an anomaly if response" Bölümü
 
-Eğer uygulamanın yanıtı, **Yanıt aldığında sonucu anomali olarak düşünme** bölümünde yapılandırılan bütün koşulları karşılarsa, o zaman bir anomali bulunmuş olarak kabul edilmez.
-
-**Örnek:**
-
-Eğer yanıt kodu `500`'den düşükse, o zaman gönderilen FAST talebinin bir anomaliye neden olmadığını düşünün:
-
-![Örnek durum][img-not-anomaly-condition]
-
-## "Yanıt Aldığında Fuzzing'i Durdur" Bölümü
-
-Eğer uygulamanın yanıtı, algılanan anomali sayısı veya zaman aşımı hata sayısı, **Yanıt alındığında fuzzing'i durdur** bölümünde yapılandırılan bütün koşulları karşılar ise, o zaman fuzzer anomali aramayı durdurur.
+Uygulamadan gelen yanıt, **Consider result not an anomaly if response** bölümünde yapılandırılan tüm koşulları sağlıyorsa, bir anomali bulunmamış kabul edilir.
 
 **Örnek:**
 
-Eğer iki'den fazla anomali algılanırsa, fuzzing durdurulur. Her anomali içinde iki'ye eşit olmayan herhangi bir sayıda tek anomalous bayta sahip olabilirsiniz.
+Eğer yanıt kodu `500`'den düşükse, gönderilen FAST isteğinin anomaliye sebep olmadığı düşünülür:
 
-![Örnek durum][img-stop-condition]
+![Koşul örneği][img-not-anomaly-condition]
+
+## "Stop fuzzing if response" Bölümü
+
+Uygulama yanıtı, tespit edilen anomali sayısı veya zaman aşımı hataları, **Stop fuzzing if response** bölümünde yapılandırılan tüm koşulları sağlıyorsa, fuzzer anomali aramayı durdurur.
+
+**Örnek:**
+
+İki veya daha fazla anomali tespit edilirse fuzzing durdurulacaktır. Her anomali durumunda, ikiye eşit olmayan herhangi bir sayıda tek anormal bayt olabilir.
+
+![Koşul örneği][img-stop-condition]
 
 !!! info "Varsayılan davranış"
-    Eğer fuzzing sürecini durdurma koşulları yapılandırılmamışsa, o zaman fuzzer tüm 255 anomalous baytı kontrol eder. Bir anomali algılandığında, payload içindeki her tek bayt durdurulur.
+    Fuzzing işlemini durdurmak için koşullar yapılandırılmamışsa, fuzzer 255 anormal baytı kontrol eder. Bir anomali tespit edildiğinde, yükdeki her bir bireysel bayt durdurulacaktır.

@@ -1,41 +1,41 @@
-[variability-in-endpoints-docs]:       ../../api-discovery/overview.md#variability-in-endpoints
-[changes-in-api-docs]:       ../../api-discovery/exploring.md#tracking-changes-in-api
-[bola-protection-for-endpoints-docs]:  ../../api-discovery/overview.md#automatic-bola-protection
+[variability-in-endpoints-docs]:       ../../api-discovery/exploring.md#variability
+[changes-in-api-docs]:       ../../api-discovery/track-changes.md
+[bola-protection-for-endpoints-docs]:  ../../api-discovery/bola-protection.md
 
-# Automatic BOLA Protection for Endpoints Found by API Discovery <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery Tarafından Bulunan Uç Noktalar için Otomatik BOLA Koruması <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-This article describes automatic BOLA protection for endpoints discovered by [API Discovery](../../api-discovery/overview.md) (APID).
+Bu makale, [API Discovery](../../api-discovery/overview.md) (APID) modülü tarafından bulunan uç noktalar için otomatik BOLA korumasını açıklamaktadır.
 
-!!! info "Other BOLA protection measures"
-    Alternatively or additionally, you can configure [BOLA protection with triggers](protecting-against-bola-trigger.md).
+!!! info "Diğer BOLA koruma önlemleri"
+    Alternatif olarak veya ek olarak, [BOLA korumasını tetikleyicilerle](protecting-against-bola-trigger.md) yapılandırabilirsiniz.
 
 --8<-- "../include/bola-intro.md"
 
-## Protection logic
+## Koruma Mantığı
 
 --8<-- "../include/waf/features/bola-mitigation/bola-auto-mitigation-logic.md"
 
-## Configuring
+## Yapılandırma
 
-!!! info "API Discovery required"
-    Automatic BOLA protection is available if you use the **[API Discovery](../../api-discovery/overview.md)** module.
+!!! info "API Discovery gerekli"
+    Otomatik BOLA koruması, **[API Discovery](../../api-discovery/overview.md)** modülünü kullanıyorsanız mevcuttur.
 
-To enable auto protection, proceed to Wallarm Console → **BOLA protection** and turn the switch to the enabled state:
+Otomatik korumayı etkinleştirmek için, Wallarm Console → **BOLA protection** bölümüne gidin ve anahtarı etkin konuma getirin:
 
 ![BOLA trigger](../../images/user-guides/bola-protection/trigger-enabled-state.png)
 
-Then you can fine-tune the default Wallarm behavior by editing the BOLA autodetection template as follows:
+Ardından, BOLA otomatik algılama şablonunu aşağıdaki gibi düzenleyerek varsayılan Wallarm davranışını ince ayar yapabilirsiniz:
 
-* Change the threshold for requests from the same IP to be marked as the BOLA attacks.
-* Change the reaction when exceeding threshold:
+* Aynı IP'den gelen isteklerin BOLA saldırıları olarak işaretlenmesi için eşiği değiştirin.
+* Eşik aşıldığında tepkiyi değiştirin:
 
-    * **Denylist IP** - Wallarm will [denylist](../../user-guides/ip-lists/overview.md) the IPs of the BOLA attack source and thus block all traffic these IPs produce.
-    * **Graylist IP** - Wallarm will [graylist](../../user-guides/ip-lists/overview.md) the IPs of the BOLA attack source and thus block only malicious requests from these IPs and only if the filtering node is in the safe blocking [mode](../../admin-en/configure-wallarm-mode.md).
+    * **Denylist IP** - Wallarm, BOLA saldırı kaynağının IP'lerini [denylist](../../user-guides/ip-lists/overview.md) yapacak ve bu sayede bu IP'lerden gelen tüm trafiği engelleyecektir.
+    * **Graylist IP** - Wallarm, BOLA saldırı kaynağının IP'lerini [graylist](../../user-guides/ip-lists/overview.md) yapacak ve bu sayede yalnızca zararlı istekleri, yalnızca filtreleme düğümü güvenli engelleme [modunda](../../admin-en/configure-wallarm-mode.md) ise engelleyecektir.
 
 ![BOLA trigger](../../images/user-guides/bola-protection/trigger-template.png)
 
-## Disabling
+## Devre Dışı Bırakma
 
-To disable automated BOLA protection, turn the switch to the disabled state in the **BOLA protection** section.
+Otomatik BOLA korumasını devre dışı bırakmak için, **BOLA protection** bölümünde anahtarı devre dışı konuma getirin.
 
-Once your API Discovery subscription is expired, automated BOLA protection is disabled automatically.
+API Discovery aboneliğiniz sona erdiğinde, otomatik BOLA koruması otomatik olarak devre dışı bırakılır.

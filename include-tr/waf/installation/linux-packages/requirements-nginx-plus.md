@@ -1,13 +1,13 @@
-* [US Bulutu](https://us1.my.wallarm.com/) veya [AB Bulutu](https://my.wallarm.com/) için Wallarm Konsolunda iki faktörlü kimlik doğrulamanın devre dışı bırakıldığı **Yönetici** rolüne sahip hesaba erişim
-* SELinux devre dışı bırakıldı veya [talimatlara][configure-selinux-instr] göre yapılandırıldı
-* NGINX Plus sürüm 28 (R28)
+* Wallarm Console'da [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) için iki faktörlü kimlik doğrulaması kapalı ve **Administrator** rolündeki hesaba erişim
+* [Talimatlara][configure-selinux-instr] uygun olarak SELinux'un devre dışı bırakılmış veya yapılandırılmış olması
+* NGINX Plus sürüm 29 veya 30 (R29 veya R30)
 
-    !!! bilgi "Özel NGINX Plus versiyonları"
-        Farklı bir versiyonunuz varsa, [Wallarm modülünün özel NGINX yapısına nasıl bağlanacağına][nginx-custom] ilişkin talimatlara başvurun.
-* Tüm komutların bir süper kullanıcı olarak (ör. `root`) çalıştırılması
+    !!! info "Custom NGINX Plus versions"
+        Farklı bir sürüm kullanıyorsanız, [how to connect the Wallarm module to custom build of NGINX][nginx-custom] üzerindeki talimatlara bakın
+* Tüm komutların süper kullanıcı (örn. `root`) olarak çalıştırılması
 * Paketleri indirmek için `https://repo.wallarm.com` adresine erişim. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
-* US Wallarm Bulutu ile çalışmak için `https://us1.api.wallarm.com` adresine veya AB Wallarm Bulutu ile çalışmak için `https://api.wallarm.com` adresine erişim. Erişim yalnızca proxy sunucu üzerinden yapılandırılabilirse, o zaman [talimatları][configure-proxy-balancer-instr] kullanın
-* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+* US Wallarm Cloud ile çalışmak için `https://us1.api.wallarm.com` adresine veya EU Wallarm Cloud ile çalışmak için `https://api.wallarm.com` adresine erişim. Erişim yalnızca proxy sunucusu üzerinden yapılandırılabiliyorsa, [instructions][configure-proxy-balancer-instr] talimatlarını kullanın
+* Saldırı tespit kurallarının güncellemelerini indirmek ve [allowlisted, denylisted, or graylisted][ip-lists-docs] ülkeler, bölgeler veya veri merkezleri için kesin IP'leri almak üzere aşağıdaki IP adreslerine erişim
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* Yüklü metin düzenleyici **vim**, **nano** veya başka bir tür. Talimatta **vim** kullanılır
+* Yüklü metin düzenleyici **vim**, **nano** veya benzeri; talimatlarda **vim** kullanılmaktadır

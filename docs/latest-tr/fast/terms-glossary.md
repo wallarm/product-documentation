@@ -5,108 +5,106 @@
 
 [vuln-anomaly]:     vuln-list.md#anomaly
 
-#   Terimler Sözlüğü
+# Sözlük
 
 ## Güvenlik Açığı
 
-Bir güvenlik açığı, bir web uygulamasının oluşturulması veya uygulanmasında gerek dikkatsizlikten gerek yetersiz bilgiden kaynaklanan ve bilgi güvenliği riskine yol açabilen bir hatadır.
+Güvenlik açığı, bir web uygulamasını inşa ederken veya uygularken ihmalkarlık ya da yetersiz bilgi nedeniyle yapılan ve bilgi güvenliği riskine yol açabilecek bir hatadır.
 
 Bilgi güvenliği riskleri şunlardır:
 
 * Yetkisiz veri erişimi; örneğin, kullanıcı verilerini okuma ve değiştirme erişimi.
-* Hizmetin reddi.
+* Hizmet reddi.
 * Veri bozulması ve diğerleri.
 
-Bir güvenlik açığı İnternet'in bir özelliği değildir. Bir güvenlik açığı sizin sisteminizin bir özelliğidir. Güvenlik açığınızın olup olmaması İnternet trafiğinizden bağımsızdır. İnternet trafiği, ancak, güvenlik açıklarını tespit etmek için kullanılabilir, Wallarm'ın yaptığı şeylerden sadece biri budur.
+Güvenlik açığı, İnternetin bir özelliği değildir. Güvenlik açığı, sisteminizin bir özelliğidir. Güvenlik açığına sahip olmanız ya da olmamanız, İnternet trafiğinize bağlı değildir. Ancak, İnternet trafiği, güvenlik açıklarını tespit etmek için kullanılabilir; bu, Wallarm'ın diğer işlevleri arasında yer almaktadır.
 
 ## Anomali
 
-Bir [tür][vuln-anomaly] güvenlik açığı.
+Bir [tür][vuln-anomaly] güvenlik açığıdır.
 
-##  Hedef Uygulama
+## Hedef Uygulama
 
-Bir hedef uygulama, FAST kullanılarak güvenlik açıkları için test edilmesi gereken bir web uygulaması veya bir API'dir.
+Bir hedef uygulama, FAST kullanılarak güvenlik açıkları için test edilmesi gereken bir web uygulaması ya da API'dir.
 
-**Ayrıca bakınız:** [FAST bileşenleri arası ilişkiler][doc-internals].
+**Ayrıca bakınız:** [relations between FAST components][doc-internals].
 
-##  İstek Kaynağı 
+## İstek Kaynağı
 
-Bir istek kaynağı, hedef uygulamayı HTTP ve HTTPS isteklerini kullanarak test edecek bir araçtır. FAST, bu isteklere dayanarak güvenlik test seti oluşturabilir ("temel istekler"e bakınız).
+Bir istek kaynağı, HTTP ve HTTPS istekleri kullanarak hedef uygulamayı test edecek olan bir araçtır. FAST, bu istekler temelinde güvenlik testi setini oluşturabilir (bkz. “baseline requests”).
 
-##  Güvenlik Test Seti
+## Güvenlik Test Seti
 
-Bir güvenlik test seti, hedef uygulamadaki güvenlik açıklarını ortaya çıkarmayı sağlar.
-Her güvenlik testi bir veya daha fazla test isteğinden oluşur.
+Bir güvenlik test seti, hedef uygulamadaki güvenlik açıklarını ortaya çıkarmaya olanak sağlar. Her güvenlik testi, bir veya daha fazla test isteğinden oluşur.
 
-##  Test İstekleri
+## Test İstekleri
 
-Test istekleri, hedef uygulamaya gönderilecek olan HTTP ve HTTPS istekleridir. Oluşturulan isteklerin bir güvenlik açığını tetikleme olasılığı yüksektir.
+Test istekleri, hedef uygulamaya gönderilecek HTTP ve HTTPS istekleridir. Oluşturulan isteklerin, güvenlik açığını tetiklemesi oldukça muhtemeldir.
 
-Bu tür istekler, test politikasını karşılayan temel istekler temel alınarak FAST tarafından oluşturulur.
+Bu tür istekler, test politikasını karşılayan baseline requests temelinde FAST tarafından oluşturulur.
 
-##  FAST Düğümü
+## FAST Node
 
-FAST düğümü, FAST bileşenlerinden biridir.
+FAST node, FAST bileşenlerinden biridir.
 
-Düğüm, HTTP ve HTTPS isteklerini ara bulucu olarak kullanır ve bu temel isteklere dayanarak güvenlik testleri oluşturur.
+Node, HTTP ve HTTPS isteklerini proxy'ler ve baseline requests temelinde güvenlik testleri oluşturur.
 
-Buna ek olarak, FAST düğümü güvenlik testlerini yürütür. Diğer bir deyişle, düğüm test isteklerini hedef uygulamaya gönderir ve uygulamanın yanıtını kontrol eder ve uygulamada herhangi bir güvenlik açığı olup olmadığını belirler.
+Buna ek olarak, FAST node güvenlik testlerini yürütür. Diğer bir deyişle, node, uygulamanın yanıtını kontrol etmek ve uygulamada herhangi bir güvenlik açığı olup olmadığını belirlemek için test isteklerini hedef uygulamaya gönderir.
 
-##  Wallarm Bulutu
+## Wallarm Cloud
 
-Wallarm Bulutu, FAST bileşenlerinden biridir.
-Bulut, kullanıcıya test politikaları oluşturma, test yürütme sürecini yönetme ve test sonuçlarını izleme arayüzü sağlar.
-
-**Ayrıca bakınız:**
-* [FAST bileşenleri arası ilişkiler][doc-internals],
-* [test politikalarıyla çalışma][doc-policies].
-
-
-##  Temel İstekler
-
-Temel istekler, istek kaynağından hedef uygulamaya yönlendirilen HTTP ve HTTPS istekleridir.
-FAST, bu isteklere dayanarak güvenlik testlerini oluşturur.
-
-Temel olmayan tüm istekler, FAST düğümünden geçirilirken, test seti oluşturma sürecinde bir kaynak olarak kullanılmazlar.
-
-##  Test Çalıştırma
-
-Bir test çalıştırması, FAST kullanılarak güvenlik açığı test sürecinin tek bir iterasyonunu ifade eder.
-
-Test çalıştırması, bir test politikasını bir FAST düğümüne iletir. Politika, hangi temel isteklerin güvenlik testlerine temel olarak hizmet edeceklerini belirler.
-
-Her test çalıştırması, bir token ile tek bir FAST düğümüne sıkı sıkıya bağlıdır.
-
-##  Test Politikası
-
-Bir test politikası, güvenlik açığı tespit sürecinin hangi kurallara göre yürütüleceğini belirleyen bir dizi kuraldır. Özellikle, uygulamanın hangi güvenlik açığı türleri için test edilmesi gerektiğini seçebilirsiniz. Buna ek olarak, politika, temel istekte hangi parametrelerin bir güvenlik test seti oluştururken değiştirilebileceğini belirler. Bu veri parçaları, FAST düğümü tarafından hedef uygulamanın saldırıya açık olup olmadığını bulmak için kullanılan test isteklerini oluşturmak için kullanılır.
+Wallarm Cloud, FAST bileşenlerinden biridir.
+Cloud, kullanıcılara test politikaları oluşturma, test yürütme sürecini yönetme ve test sonuçlarını gözlemleme arayüzü sağlar.
 
 **Ayrıca bakınız:**
-* [FAST bileşenleri arası ilişkiler][doc-internals],
-* [test politikalarıyla çalışma][doc-policies].
+* [relations between FAST components][doc-internals],
+* [working with test policies][doc-policies].
 
-##  Temel İstek Elemanı
+## Temel İstekler
 
-Bir istek elemanı, bir temel isteğin bir parçasıdır.
-Eleman örnekleri:
+Baseline requests, istek kaynağından hedef uygulamaya yönlendirilen HTTP ve HTTPS istekleridir.
+FAST, bu istekler temelinde güvenlik testlerini oluşturur.
 
-* HTTP başlığı, 
-* HTTP yanıt gövdesi, 
-* GET parametreleri, 
+FAST node aracılığıyla proxy'lenen tüm baseline olmayan istekler, test seti oluşturma sürecinde kaynak olarak kullanılmaz.
+
+## Test Çalışması
+
+Bir test çalışması, FAST kullanılarak gerçekleştirilen güvenlik açığı test sürecinin tek bir iterasyonunu tanımlar.
+
+Test çalışması, bir test politikasını FAST node'a iletir. Politika, hangi baseline requests'in güvenlik testleri için temel oluşturacağını belirler.
+
+Her test çalışması, token aracılığıyla tek bir FAST node ile yakından ilişkilendirilmiştir.
+
+## Test Politikası
+
+Bir test politikası, güvenlik açığı tespit sürecinin nasıl yürütüleceğini belirleyen kurallar bütünüdür. Özellikle, uygulamanın test edileceği güvenlik açığı türlerini seçebilirsiniz. Ayrıca, politika, bir güvenlik test seti oluşturulurken baseline istekteki hangi parametrelerin değiştirilebilir olduğunu belirler. Bu veriler, hedef uygulamanın istismar edilebilir olup olmadığını tespit etmek için kullanılacak test isteklerini oluşturmak için FAST node tarafından kullanılır.
+
+**Ayrıca bakınız:**
+* [relations between FAST components][doc-internals],
+* [working with test policies][doc-policies].
+
+## Temel İstek Öğesi
+
+Bir istek öğesi, baseline isteğin bir parçasıdır.
+Örnek öğeler:
+
+* HTTP başlığı,
+* HTTP yanıt gövdesi,
+* GET parametreleri,
 * POST parametreleri.
 
-##  Nokta
+## Nokta
 
-Bir nokta, temel isteğin bir elemanını işaret eden bir dizedir. Bu dize, gerekli veriyi elde etmek için temel isteğe uygulanması gereken ayrıştırıcıların ve filtrelerin isimlerinin bir dizisini içerir.
+Bir nokta, baseline isteğin bir öğesine işaret eden dizedir. Bu dize, gerekli veriyi elde etmek amacıyla baseline isteğe uygulanması gereken parser ve filtrelerin isim dizisinden oluşur.
 
-Noktalar, daha detaylı bir şekilde [burada][doc-points] açıklanmıştır.
+Noktalar daha detaylı olarak [burada][doc-points] açıklanmaktadır.
 
-##  Token
+## Token
 
-Bir token, aşağıdaki amaçları gerçekleştiren benzersiz bir gizli tanımlayıcıdır:
-* Bir test çalıştırmasını FAST düğümü ile bağlama.
-* Bir test çalıştırması oluşturma ve yönetme.
+Token, aşağıdaki amaçlara hizmet eden benzersiz gizli tanımlayıcıdır:
+* Bir test çalışmasını FAST node ile ilişkilendirmek.
+* Bir test çalışması oluşturmak ve yönetmek.
 
-Token, FAST düğümünün temel özelliklerinden biridir.
+Token, FAST node’un temel özelliklerinden biridir.
 
-**Ayrıca bakınız:** [FAST bileşenleri arası ilişkiler][doc-internals].
+**Ayrıca bakınız:** [relations between FAST components][doc-internals].

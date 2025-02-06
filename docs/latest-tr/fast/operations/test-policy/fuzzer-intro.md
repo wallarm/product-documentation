@@ -4,20 +4,20 @@
 [gl-vuln]:                      ../../terms-glossary.md#vulnerability
 [gl-anomaly]:                   ../../terms-glossary.md#anomaly
 
-# Anomali Tespit Süreci Konfigürasyonu: Genel Bakış
+# Anomali Tespit Süreci Yapılandırması: Genel Bakış
 
-[vulnerabilities][gl-vuln] tespitinin yanı sıra, FAST [anomalies][gl-anomaly] tespit edebilir *fuzzer* kullanarak.
+[vulnerabilities][gl-vuln] tespitinin yanı sıra, FAST *fuzzer* kullanarak [anomalies][gl-anomaly] tespit edebilir.
 
-Bu belgeleme bölümü aşağıdaki noktaları açıklar:
+Bu dokümantasyon bölümü aşağıdaki noktaları anlatmaktadır:
 
-* [Fuzzer İşlem Prensipleri][doc-fuzzer-internals]
-* [Politika Editörünü Kullanarak Fuzzer Konfigürasyonu][doc-fuzzer-configuration]
+* [Fuzzer Operasyon Prensipleri][doc-fuzzer-internals]
+* [Politika Düzenleyici Kullanılarak Fuzzer Yapılandırması][doc-fuzzer-configuration]
 
-??? bilgi "Anomali örneği"
-    Hedef uygulamanın [OWASP Juice Shop](https://www.owasp.org/www-project-juice-shop/) anormal davranışı, [FAST eklentisinin örneği](../../dsl/extensions-examples/mod-extension.md)nde gösterilmiştir.
+??? info "Anomali örneği"
+    Hedef uygulamanın [OWASP Juice Shop](https://www.owasp.org/www-project-juice-shop/) anormal davranışı [FAST uzantı örneğinde](../../dsl/extensions-examples/mod-extension.md) gösterilmiştir.
 
-    Bu hedef uygulama genellikle yanıltıcı bir kullanıcı adı ve şifre kombinasyonu ile gelen yetkilendirme isteğine `403 Yetkisiz` kodu ve `Geçersiz e-posta veya şifre.` mesajı ile yanıt verir.
+    Bu hedef uygulama, genellikle yanlış giriş ve şifre kombinasyonu ile yapılan yetkilendirme isteğine `403 Unauthorized` kodu ve `Invalid email or password.` mesajı ile yanıt verir.
 
-    Ancak, giriş değerinin herhangi bir parçası içinde `'` sembolü geçerse, uygulama `500 Dahili Sunucu Hatası` kodu ve `...SequelizeDatabaseError: SQLITE_ERROR:...` mesajı ile yanıt verir; bu davranış anormaldir.
+    Ancak, giriş değerinin herhangi bir bölümünde `'` sembolü kullanıldığında, uygulama `500 Internal Server Error` kodu ve `...SequelizeDatabaseError: SQLITE_ERROR:...` mesajı ile yanıt verir; bu davranış anomaldir.
 
-    Bu anomali, herhangi bir güvenlik açığının doğrudan kötüye kullanılmasına yol açmaz, ancak bir saldırganı uygulamanın mimarisi hakkında bilgi edinmeye ve [SQL Enjeksiyonu](../../vuln-list.md#sql-injection) saldırısını gerçekleştirmeye teşvik eder.
+    Bu anomali, herhangi bir zafiyetin doğrudan istismarına yol açmamakta, ancak saldırgana uygulama mimarisi hakkında bilgi sunmakta ve [SQL Injection](../../vuln-list.md#sql-injection) saldırısını gerçekleştirmesi için bir çağrı niteliğindedir.

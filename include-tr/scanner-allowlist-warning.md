@@ -1,4 +1,4 @@
-!!! uyarı "Wallarm Tarayıcısının IP Adreslerinin Engellemesini Devre Dışı Bırakın"
-    Zararlı istekleri algılarken varsayılan olarak engelleme modunu (`default block;`) kullanırsanız, isteklerin engellenmemesi gereken bir IP adresleri listesini Wallarm tarayıcı için açıkça belirtmelisiniz.
+!!! uyarı "Wallarm Scanner IP Addresses Engellemesini Devre Dışı Bırakma"
+    Eğer kötü amaçlı istekleri tespit ederken varsayılan olarak (`default block;`) engelleme modunu kullanıyorsanız, Wallarm scanner için isteklerin engellenmemesi gereken IP adresleri listesini açıkça belirtmeniz gerekir.
 
-    Tarayıcı IP adresleri için engelleme modunun devre dışı bırakılması hakkında daha fazla bilgiyi [burada](scanner-ips-allowlisting.md) okuyabilirsiniz.
+    Wallarm scanner IP adresleri için engelleme modunu devre dışı bırakma hakkında daha fazla bilgiyi [buradan](scanner-ips-allowlisting.md) okuyabilirsiniz.

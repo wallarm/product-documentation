@@ -1,48 +1,27 @@
 # Abonelikler
 
-Wallarm Konsolu'nun **Ayarlar** → **Abonelikler** kısmı Wallarm [abonelik planınızın](../../about-wallarm/subscription-plans.md) ayrıntılarını gösterir.
+Wallarm Console'un **Settings** → **Subscriptions** bölümü, Wallarm [subscription plan](../../about-wallarm/subscription-plans.md) bilgilerinizi gösterir.
 
 ## Ücretli abonelik planı
 
-Ücretli Wallarm abonelik planınız varsa, abonelik kartında aşağıdaki bilgileri görüntüler:
+Ücretli Wallarm abonelik planınız varsa, abonelik kartı aşağıdaki bilgileri gösterir:
 
 * Abonelik adı ve durumu
-* Abonelik sona erme tarihi
+* Abonelik bitiş tarihi
 * Filtreleme düğümü tarafından işlenen isteklerin istatistikleri
-* Abonelik planına dahil edilen modül ve özelliklerin seti (set, seçilen abonelik planına bağlıdır)
+* Seçilen abonelik planına bağlı olarak değişen, abonelik planına dahil olan modül ve özellikler seti
 
 ![Ücretli abonelik planı](../../images/user-guides/settings/subscriptions/subscriptions.png)
 
-Bir aboneliği etkinleştirmek, iptal etmek veya değiştirmek için lütfen bir istekte bulunun [sales@wallarm.com](mailto:sales@wallarm.com).
+Bir aboneliği aktifleştirmek, iptal etmek veya değiştirmek için lütfen [sales@wallarm.com](mailto:sales@wallarm.com)'a talep gönderin.
 
-## Ücretsiz katman kullanımı (US Bulutu)
+## Free Tier kullanımı
 
-Eğer US Bulutu'nda kayıtlıysanız ve [Ücretsiz Katman](../../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud) abonelik planını kullanıyorsanız, abonelik kartı aşağıdaki bilgileri görüntüler:
+Wallarm Cloud'a kayıt olduysanız ve [Free Tier](../../about-wallarm/subscription-plans.md#free-tier) abonelik planını kullanıyorsanız, abonelik kartı aşağıdaki bilgileri gösterir:
 
-* **Ücretsiz Katman** abonelik başlığı
-* **API Keşif** abonelik başlığı (Ücretsiz Katman'a dahildir)
+* **Free Tier** abonelik kartı
+* **API Discovery** abonelik kartı (Free Tier'a dahildir)
 * Filtreleme düğümü tarafından işlenen isteklerin istatistikleri
-* [Etkin modüller ve özelliklerin](../../about-wallarm/subscription-plans.md#free-tier-us-cloud) seti
+* [Etkinleştirilmiş modül ve özellikler seti](../../about-wallarm/subscription-plans.md#free-tier-us-cloud)
 
-Bir aboneliği etkinleştirmek, iptal etmek veya değiştirmek için lütfen bir istekte bulunun [sales@wallarm.com](mailto:sales@wallarm.com).
-
-## Deneme süresi (EU Bulutu)
-
-Eğer yakın zamanda EU Bulutu'nda kayıtlıysanız ve Wallarm'ın [deneme sürümünü](../../about-wallarm/subscription-plans.md#trial-period) kullanıyorsanız, abonelik kartı aşağıdaki bilgileri gösterir:
-
-* Abonelik adı ve durumu
-* Abonelik sona erme tarihi
-   
-    Deneme süresi 14 gün sürer ve bir kez daha 14 gün daha uzatılabilir.
-* Deneme süresini uzatma düğmesi
-  
-    Deneme süresi 14 gün sürer ve bir kez daha 14 gün daha uzatılabilir. Eğer deneme süresi zaten uzatıldıysa, düğme kullanılamaz.
-* Filtreleme düğümü tarafından işlenen isteklerin istatistikleri
-* Etkin modüller ve özelliklerin seti
-   
-    Wallarm denemesi, API Güvenlik [planına](../../about-wallarm/subscription-plans.md#subscription-plans) dahil edilebilecek en fazla modül ve özellik setini sağlar.
-* Eğer Wallarm ekibi ile onaylanmış PoC planınız varsa, PoC sonuçları belgesine bağlantı
-
-![Deneme süresi](../../images/user-guides/settings/subscriptions/subscriptions-trial-with-poc.png)
-
-Wallarm aboneliği hakkında daha fazla bilgi almak veya ücretli bir abonelik planını etkinleştirmek için lütfen bir istekte bulunun [sales@wallarm.com](mailto:sales@wallarm.com).
+Bir aboneliği aktifleştirmek, iptal etmek veya değiştirmek için lütfen [sales@wallarm.com](mailto:sales@wallarm.com)'a talep gönderin.

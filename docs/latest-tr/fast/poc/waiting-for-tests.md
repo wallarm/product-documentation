@@ -1,37 +1,37 @@
-[doc-get-token]: prerequisites.md#anchor-token
-[doc-get-testrun-id]: node-deployment.md#obtaining-test-run
-[doc-get-testrun-status]: ../operations/check-testrun-status.md
+[doc-get-token]:                    prerequisites.md#anchor-token
+[doc-get-testrun-id]:               node-deployment.md#obtaining-a-test-run
+[doc-get-testrun-status]:       ../operations/check-testrun-status.md
 
-[doc-get-testrun-status]: ../operations/check-testrun-status.md
+[doc-get-testrun-status]:   ../operations/check-testrun-status.md
 
-[doc-integration-overview]: integration-overview.md
+[doc-integration-overview]:         integration-overview.md
 
-# Testin Tamamlanmasını Beklemek
+# Testlerin Bitmesini Beklemek
 
-!!! bilgi "Bölüm Gereksinimleri"
-    Bu bölümde anlatılan adımları takip etmek için gerekenler:
+!!! info "Bölüm Önkoşulları"
+    Bu bölümde açıklanan adımları takip etmek için aşağıdakileri edinmeniz gerekir:
     
     * bir [token][doc-get-token].
-    * bir test çalıştırmasının [tanımlayıcısı][doc-get-testrun-id].
+    * bir test çalıştırma tanımlayıcısı [doc-get-testrun-id].
     
-    Aşağıdaki değerler, bölüm boyunca örnek değerler olarak kullanılır:
+    Bölüm boyunca örnek değerler olarak aşağıdaki değerler kullanılmıştır:
         
     * `token_Qwe12345` bir token olarak.
-    * `tr_1234` bir test çalıştırmasının tanımlayıcısı olarak.
+    * `tr_1234` bir test çalıştırma tanımlayıcısı olarak.
 
-Test isteklerinin oluşturulması ve yürütülmesi süreçleri, ilk temel istek kaydedildiğinde başlar ve temel isteklerin kaydedilmesi süreci durdurulduktan sonra önemli bir süre devam edebilir. Kendinizi test yürütme durumunu düzenli olarak kontrol ederek işlem gören süreçler hakkında bilgi edinebilirsiniz.
+Test isteklerinin oluşturulması ve yürütülmesi, ilk temel (baseline) isteğin kaydedilmesiyle başlayan işlemlerdir ve temel istek kaydedilmesi süreci durdurulduktan sonra önemli ölçüde zaman alabilir. Gerçekleşmekte olan işlemler hakkında bilgi edinmek için test çalıştırmasının durumunu periyodik olarak kontrol edebilirsiniz.
 
-[API çağrısını][doc-get-testrun-status] yürüttükten sonra, bir API sunucusundan test çalıştırmasının durumu hakkında bilgi içeren bir yanıt alacaksınız.
+[API çağrısını][doc-get-testrun-status] gerçekleştirdikten sonra, test çalıştırmasının durumu hakkında bilgileri içeren bir API sunucusundan yanıt alacaksınız.
 
-`state` ve `vulns` parametrelerinin değerleri temelinde, uygulamadaki güvenlik açıklarının varlığı veya yokluğu hakkında sonuç çıkarabilirsiniz.
+Uygulamadaki güvenlik açıklarının varlığı veya yokluğu, `state` ve `vulns` parametrelerinin değerlerine göre değerlendirilebilir.
 
-??? bilgi "Örnek"
-    Test çalışması durumunu sürekli sorgulayan bir süreç, API sunucusunun yanıtında `state:passed` parametresi bulunduğunda çıkış kodu `0` ile, `state:failed` parametresi bulunduğunda çıkış kodu `1` ile sona erer.
+??? info "Örnek"
+    API çağrısını periyodik olarak yaparak test çalıştırmasının durumunu sorgulayan bir işlem, API sunucusunun yanıtında `state:passed` parametresi bulunursa çıkış kodu `0` ile, `state:failed` parametresi bulunursa çıkış kodu `1` ile sonlanabilir.
 
-    Çıkış kodu değeri, genel CI/CD işinin durumunu hesaplamak için CI/CD aracı tarafından kullanılabilir.
+    CI/CD aracının, genel CI/CD işinin durumunu hesaplamak için çıkış kodu değerini kullanması mümkündür. 
 
-    Eğer bir FAST düğümü [CI modu](integration-overview-ci-mode.md) üzerinden dağıtıldıysa, o zaman FAST düğümünün çıkış kodu, genel CI/CD işinin durumunu yorumlamak için yeterli olabilir.
+    Eğer bir FAST node [CI mod](integration-overview-ci-mode.md) aracılığıyla dağıtıldıysa, FAST node'un çıkış kodu genel CI/CD işinin durumunu yorumlamak için yeterli olabilir. 
 
-    FAST tarafından etkinleştirilmiş CI/CD işinin CI/CD aracıyla nasıl etkileşimde bulunması gerektiği hakkında daha karmaşık bir mantık oluşturmak da mümkündür. Bunu yapmak için, API sunucusunun yanıtında bulunan diğer veri parçalarını kullanın.
+    FAST destekli CI/CD işinin CI/CD aracıyla nasıl etkileşim kurması gerektiğine dair daha karmaşık bir mantık oluşturmak mümkündür. Bunun için API sunucusunun yanıtında bulunan diğer veri parçalarını kullanabilirsiniz.
 
-Gerekirse, [“FAST ile CI/CD İş Akışı”][doc-integration-overview] belgesine başvurabilirsiniz.
+Gerekirse [“CI/CD Workflow with FAST”][doc-integration-overview] belgesine başvurabilirsiniz.
