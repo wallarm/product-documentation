@@ -1,12 +1,12 @@
-Entegrasyon testi, yapılandırma doğruluğunu, Wallarm Bulut'un kullanılabilirliğini ve bildirim formatını kontrol etmeyi sağlar. Entegrasyonu test etmek için, entegrasyonu oluştururken veya düzenlerken **Entegrasyonu test et** düğmesini kullanabilirsiniz.
+Entegrasyon testi, yapılandırmanın doğruluğunu, Wallarm Cloud'un erişilebilirliğini ve bildirim formatını kontrol etmeye olanak tanır. Entegrasyonu test etmek için, entegrasyon oluştururken veya düzenlerken **Test integration** düğmesini kullanabilirsiniz.
 
-Entegrasyon şu şekilde test edilir:
+Entegrasyon testi aşağıdaki şekilde gerçekleştirilir:
 
-* Ön eki `[Test mesajı]` olan test bildirimleri seçilen sisteme gönderilir.
-* Test bildirimleri aşağıdaki olayları kapsar (her biri tek bir kayıtta):
+* Seçilen sisteme, `[Test message]` ön eki ile test bildirimleri gönderilir.
+* Test bildirimleri aşağıdaki olayları kapsar (her biri ayrı bir kayıt olarak):
 
     * Şirket hesabında yeni kullanıcı
-    * Şirketin kapsamında yeni keşfedilen IP
+    * Şirket kapsamındaki yeni keşfedilen IP
     * Şirket hesabında yeni tetikleyici
     * Yeni keşfedilen güvenlik açığı
 * Test bildirimleri test verilerini içerir.

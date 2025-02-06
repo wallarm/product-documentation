@@ -1,0 +1,2 @@
+* Wallarm Console'daki Wallarm-hosted node durumunuz **Failed** ise, dağıtım sırasında bir hata oluşmuş demektir. Lütfen bunu [Wallarm Support portalı](https://support.wallarm.com/) üzerinden bildirin, biz de durumu araştıracağız.
+* Diğer herhangi bir sorun veya yardım ihtiyacınız için lütfen [Wallarm Support portalı](https://support.wallarm.com/) üzerinden bir talep bırakın. Dağıtım sorunlarınız konusunda her türlü yardıma hazırız.

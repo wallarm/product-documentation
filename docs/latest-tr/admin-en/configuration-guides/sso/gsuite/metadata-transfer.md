@@ -1,9 +1,9 @@
-#   Adım 3: G Suite Metadata'yı Wallarm Kurulum Sihirbazına Aktarma
+# Adım 3: G Suite Metadata'sını Wallarm Setup Wizard'a Aktarma
 
 [img-sp-wizard-transfer-metadata]:  ../../../../images/admin-guides/configuration-guides/sso/gsuite/sp-wizard-transfer-metadata.png
 [img-transfer-metadata-manually]:   ../../../../images/admin-guides/configuration-guides/sso/gsuite/transfer-metadata-manually.png
 [img-sp-wizard-finish]:             ../../../../images/admin-guides/configuration-guides/sso/gsuite/sp-wizard-finish.png
-[img-integration-tab]:              ../../../../images/admin-guides/configuration-guides/sso/gsuite/integration-tab.png
+[img-integration-tab]:               ../../../../images/admin-guides/configuration-guides/sso/gsuite/integration-tab.png
 
 [doc-setup-idp]:                    setup-idp.md
 [doc-allow-access-to-wl]:           allow-access-to-wl.md
@@ -11,49 +11,46 @@
 [anchor-upload-metadata-xml]:       #uploading-metadata-using-an-xml-file
 [anchor-upload-metadata-manually]:  #copying-parameters-manually
 
-Wallarm Konsolunda G Suite SSO kurulum sihirbazına geri dönün ve bir sonraki kurulum adımına devam etmek için *İleri* düğmesine tıklayın.
+Wallarm Console'daki G Suite SSO kurulum sihirbazına dönün ve bir sonraki kurulum adımına geçmek için *Next* düğmesine tıklayın.
 
-Bu aşamada, G Suite servisi tarafından üretilen metadata'yı Wallarm SSO kurulum sihirbazına sağlamanız gerekmektedir.
+Bu aşamada, G Suite hizmeti tarafından oluşturulan metadata'yı Wallarm SSO kurulum sihirbazına sağlamanız gerekmektedir.
 
-Metadata'yı aktarmanın iki yolu vardır:
-*   [Metadata'yı içeren bir XML dosyasını Wallarm kurulum sihirbazına yükleyin.][anchor-upload-metadata-xml]
-*   [Gerekli parametreleri manuel olarak kopyalayıp Wallarm kurulum sihirbazına yapıştırın.][anchor-upload-metadata-manually]
+Metadata aktarmanın iki yolu vardır:
+*   [XML dosyası ile metadata'yı Wallarm setup wizard'a yükleyin.][anchor-upload-metadata-xml]
+*   [Gerekli parametreleri Wallarm setup wizard'a manuel olarak kopyalayıp yapıştırın.][anchor-upload-metadata-manually]
 
+## XML Dosyası Kullanarak Metadata Yükleme
 
-##  Metadata'yı Bir XML Dosyası Kullanarak Yükleme
+Daha önce G Suite'de uygulamayı yapılandırırken metadata'yı bir XML dosyası olarak kaydettiyseniz (bakınız [Adım 2][doc-setup-idp]), *Upload* düğmesine tıklayın ve istenen dosyayı seçin. Dosyayı dosya yöneticinizden “XML” simgesine sürükleyerek de bunu gerçekleştirebilirsiniz. Dosyayı yükledikten sonra, bir sonraki adıma geçmek için *Next* düğmesine tıklayın.
 
-Eğer daha önce G Suite'de uygulamayı yapılandırırken G Suite'in metadata'sını bir XML dosyası olarak kaydettiyseniz ( [Adım 2'de][doc-setup-idp] ),*Yükle* düğmesine tıklayın ve istenen dosyayı seçin. Bu işlemi dosyayı dosya yöneticinizden “XML” simgesine sürükleyerek de gerçekleştirebilirsiniz. Dosyayı yükledikten sonra bir sonraki adıma geçmek için *İleri* düğmesine tıklayın.
+![Metadata yükleniyor][img-sp-wizard-transfer-metadata]
 
-![Metadata'yı yükleme][img-sp-wizard-transfer-metadata]
+## Parametreleri Manuel Olarak Kopyalama
 
+G Suite'de uygulamayı yapılandırırken sağlanan kimlik sağlayıcı parametrelerini kopyaladıysanız, kopyalanan parametreleri manuel olarak girmek için *Enter manually* bağlantısına tıklayın ve formu doldurun. 
 
-##  Parametreleri Manuel Olarak Kopyalama
+Wallarm setup wizard'ın alanlarına G Suite tarafından oluşturulan parametreleri aşağıdaki şekilde yerleştirin:
 
-G Suite'deki uygulamayı yapılandırırken sağlanan kimlik sağlayıcı parametrelerini kopyaladıysanız, kopyalanan parametreleri manuel olarak girmek ve formu doldurmak için *Manuel olarak gir* bağlantısına tıklayın.
+*   **SSO URL** → **Identity provider SSO URL**
+*   **Entity ID** → **Identity provider issuer**
+*   **Certificate** → **X.509 Certificate**
 
-G Suite tarafından üretilen parametreleri, Wallarm kurulum sihirbazındaki alanlarına aşağıdaki şekilde girin:
+Bir sonraki adıma geçmek için *Next* düğmesine tıklayın. Önceki adıma geri dönmek isterseniz, *Back* düğmesine tıklayın.
 
-*   **SSO URL** → **Kimlik sağlayıcı SSO URL**
-*   **Entity ID** → **Kimlik sağlayıcı issuer**
-*   **Certificate** → **X.509 Sertifikası**
+![Parametreler manuel giriliyor][img-transfer-metadata-manually]
 
-Bir sonraki adıma geçmek için *İleri* düğmesine tıklayın. Önceki adıma geri dönmek isterseniz, *Geri* düğmesine tıklayın.
+## SSO Sihirbazını Tamamlama
 
-![Metadata'yı manuel olarak girme][img-transfer-metadata-manually]
+Wallarm setup wizard'ın son adımında, G Suite hizmetine otomatik olarak bir test bağlantısı yapılacak ve SSO sağlayıcısı kontrol edilecektir.
 
+Gerekli tüm parametreler doğru şekilde doldurulduysa test başarılı bir şekilde tamamlandığında, kurulum sihirbazı G Suite hizmetinin kimlik sağlayıcı olarak bağlı olduğunu bildirecektir ve kullanıcılarınızı doğrulamak için SSO mekanizmasını bağlamaya başlayabilirsiniz.
 
-##  SSO Sihirbazını Tamamlama
+SSO yapılandırmasını tamamlamak için *Finish* düğmesine tıklayın veya ilgili düğmeye tıklayarak SSO'yu yapılandırmak üzere kullanıcı sayfasına gidin.
 
-Wallarm kurulum sihirbazının son adımında, G Suite hizmetine otomatik olarak bir test bağlantısı gerçekleştirilir ve SSO sağlayıcısı kontrol edilir.
+![SSO sihirbazının tamamlanması][img-sp-wizard-finish]
 
-Testin başarılı bir şekilde tamamlanmasının ardından (tüm gerekli parametreler doğru bir şekilde doldurulmuşsa), kurulum sihirbazı size G Suite hizmetinin bir kimlik sağlayıcı olarak bağlandığını ve kullanıcılarınızı doğrulamak için SSO mekanizmasını bağlamaya başlayabileceğinizi bildirir.
+SSO yapılandırma sihirbazını tamamladıktan sonra, Integration sekmesinde G Suite hizmetinin kimlik sağlayıcı olarak bağlı olduğunu ve başka SSO sağlayıcısının bulunmadığını görürsünüz.
 
-SSO yapılandırmasını *Bitir* düğmesine tıklayarak tamamlayın veya ilgili düğmeye tıklayarak kullanıcı sayfasına geçin ve SSO'yu yapılandırın.
+![SSO sihirbazını tamamladıktan sonraki “Integration” sekmesi][img-integration-tab]
 
-![SSO sihirbazını tamamlama][img-sp-wizard-finish]
-
-SSO yapılandırma sihirbazını tamamladıktan sonra, Entegrasyon sekmesinde G Suite hizmetinin bir kimlik sağlayıcı olarak bağlandığını ve başka SSO sağlayıcılarının bulunmadığını göreceksiniz.
-
-![SSO sihirbazını bitirdikten sonra "Entegrasyon" sekmesi][img-integration-tab]
-
-Şimdi, SSO yapılandırma sürecinin [bir sonraki adımına][doc-allow-access-to-wl] geçin.
+Şimdi, SSO yapılandırma sürecinin [bir sonraki adımına][doc-allow-access-to-wl] gidin.

@@ -1,8 +1,8 @@
-## 1. NGINX stable ve bağımlılıklarını yükleyin
+## 1. NGINX stable ve bağımlılıklarının kurulumu
 
-NGINX `stable`i NGINX deposundan yüklemek için aşağıdaki seçenekler bulunmaktadır:
+NGINX deposundan NGINX `stable`'ı kurmak için aşağıdaki seçenekler bulunmaktadır:
 
-* Yapı paketinden kurulum
+* Hazır paket kurulumundan
 
     === "Debian"
         ```bash
@@ -14,12 +14,12 @@ NGINX `stable`i NGINX deposundan yüklemek için aşağıdaki seçenekler bulunm
         sudo apt -y install nginx
         ```
     === "Ubuntu"
-        1. NGINX stable için gerekli bağımlılıkları yükleyin:
+        1. NGINX stable için gerekli bağımlılıkları kurun:
 
             ```bash
             sudo apt -y install curl gnupg2 ca-certificates lsb-release
             ```
-        1. NGINX stable yükleyin:
+        1. NGINX stable'ı kurun:
 
             ```bash
             echo "deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
@@ -27,11 +27,11 @@ NGINX `stable`i NGINX deposundan yüklemek için aşağıdaki seçenekler bulunm
             sudo apt update
             sudo apt -y install nginx
             ```
-    === "CentOS veya Amazon Linux 2.0.2021x ve daha düşük"
+    === "CentOS veya Amazon Linux 2.0.2021x ve altı"
 
-        1. CentOS 7.x'te bir EPEL deposu eklenmişse, bu depodan NGINX stable kurulumunu `exclude=nginx*` dosyasını `/etc/yum.repos.d/epel.repo` dosyasına ekleyerek devre dışı bırakın.
+        1. CentOS 7.x'e EPEL deposu eklenmişse, bu depodan NGINX stable kurulumunu devre dışı bırakmak için dosya `/etc/yum.repos.d/epel.repo` içerisine `exclude=nginx*` satırını ekleyin.
 
-            Değiştirilmiş `/etc/yum.repos.d/epel.repo` dosyasına bir örnek:
+            Değiştirilmiş dosya `/etc/yum.repos.d/epel.repo` örneği:
 
             ```bash
             [epel]
@@ -63,7 +63,7 @@ NGINX `stable`i NGINX deposundan yüklemek için aşağıdaki seçenekler bulunm
             gpgcheck=1
             ```
         
-        2. Resmi depodan NGINX stable yükleyin:
+        2. Resmi depodan NGINX stable'ı kurun:
 
             ```bash
             echo -e '\n[nginx-stable] \nname=nginx stable repo \nbaseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \ngpgcheck=1 \nenabled=1 \ngpgkey=https://nginx.org/keys/nginx_signing.key \nmodule_hotfixes=true' | sudo tee /etc/yum.repos.d/nginx.repo
@@ -75,16 +75,16 @@ NGINX `stable`i NGINX deposundan yüklemek için aşağıdaki seçenekler bulunm
         sudo yum install -y nginx
         ```
 
-* Kaynak kodunu [NGINX deposu](https://hg.nginx.org/pkg-oss/branches)'nun `stable` dalından derleyin ve aynı seçeneklerle kurulum yapın.
+* [NGINX repository](https://hg.nginx.org/pkg-oss/branches) üzerinden `stable` dalındaki kaynak kodun derlenmesi ve aynı seçeneklerle kurulumu.
 
-    !!! bilgi "AlmaLinux, Rocky Linux veya Oracle Linux 8.x için NGINX"
-        NGINX'i AlmaLinux, Rocky Linux veya Oracle Linux 8.x üzerine kurmanın tek seçeneği budur.
+    !!! info "NGINX for AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        AlmaLinux, Rocky Linux veya Oracle Linux 8.x üzerinde NGINX kurmanın tek seçeneği budur.
 
-NGINX kurulumu hakkında daha detaylı bilgi [resmi NGINX belgeleri](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/)nde bulunabilir.
+NGINX kurulumu hakkında daha ayrıntılı bilgiyi [resmi NGINX dokümantasyonunda](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/) bulabilirsiniz.
 
 ## 2. Wallarm depolarını ekleyin
 
-Wallarm node, Wallarm depolarından kurulur ve güncellenir. Depoları eklemek için platformunuz için komutları kullanın:
+Wallarm node, Wallarm depolarından kurulup güncellenir. Depoları eklemek için platformunuza uygun komutları kullanın:
 
 === "Debian 11.x (bullseye)"
     ```bash
@@ -117,7 +117,7 @@ Wallarm node, Wallarm depolarından kurulur ve güncellenir. Depoları eklemek i
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
     ```
-=== "Amazon Linux 2.0.2021x ve daha düşük"
+=== "Amazon Linux 2.0.2021x ve altı"
     ```bash
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
@@ -133,12 +133,12 @@ Wallarm node, Wallarm depolarından kurulur ve güncellenir. Depoları eklemek i
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
     ```
 
-## 3. Wallarm paketlerini yükleyin
+## 3. Wallarm paketlerini kurun
 
-Aşağıdaki paketler gerekli:
+Aşağıdaki paketler gereklidir:
 
-* NGINX-Wallarm modülü için `nginx-module-wallarm`
-* [postanalytics][install-postanalytics-docs] modülü, Tarantool veritabanı ve ek NGINX-Wallarm paketler için `wallarm-node`
+* `nginx-module-wallarm` – NGINX-Wallarm modülü için
+* `wallarm-node` – [postanalytics][install-postanalytics-docs] modülü, Tarantool veritabanı ve ek NGINX-Wallarm paketleri için
 
 === "Debian"
     ```bash
@@ -148,7 +148,7 @@ Aşağıdaki paketler gerekli:
     ```bash
     sudo apt -y install --no-install-recommends wallarm-node nginx-module-wallarm
     ```
-=== "CentOS veya Amazon Linux 2.0.2021x ve daha düşük"
+=== "CentOS veya Amazon Linux 2.0.2021x ve altı"
     ```bash
     sudo yum install -y wallarm-node nginx-module-wallarm
     ```
@@ -168,14 +168,14 @@ Aşağıdaki paketler gerekli:
     ```bash
     sudo vim /etc/nginx/nginx.conf
     ```
-2. `include /etc/nginx/conf.d/*;` satırının dosyaya eklenmiş olduğunu doğrulayın. Böyle bir satır yoksa, ekleyin.
-3. Aşağıdaki directive'i `worker_processes` directive'inden hemen sonra ekleyin:
+2. Dosyaya `include /etc/nginx/conf.d/*;` satırının eklendiğinden emin olun. Böyle bir satır yoksa, ekleyin.
+3. `worker_processes` direktifinin hemen sonrasına aşağıdaki direktifi ekleyin:
 
     ```bash
     load_module modules/ngx_http_wallarm_module.so;
     ```
 
-    Eklenmiş direktifli yapılandırma örneği:
+    Eklenen direktif içeren yapılandırma örneği:
 
     ```
     user  nginx;
@@ -192,6 +192,6 @@ Aşağıdaki paketler gerekli:
     sudo cp /usr/share/doc/nginx-module-wallarm/examples/*.conf /etc/nginx/conf.d/
     ```
 
-## 5. Filtreleme nodunu Wallarm Cloud'a bağlayın
+## 5. Filtreleme node'unu Wallarm Cloud'a bağlayın
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"

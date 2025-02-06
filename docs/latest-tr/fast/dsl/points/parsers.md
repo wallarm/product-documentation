@@ -18,8 +18,8 @@
 [link-xmltagarray]:             parsers/xml.md#xml_tag_array-filter
 [link-xmlattr]:                 parsers/xml.md#xml_attr-filter
 [link-jsondoc]:                 parsers/json.md
-[link-jsonobj]:                 parsers/json.md#jsonobj-filter
-[link-jsonarray]:               parsers/json.md#jsonarray-filter
+[link-jsonobj]:                 parsers/json.md#json_obj-filter
+[link-jsonarray]:               parsers/json.md#json_array-filter
 [link-array]:                   parsers/array.md
 [link-hash]:                    parsers/hash.md
 [link-gzip]:                    parsers/gzip.md
@@ -27,9 +27,9 @@
 
 # Ayrıştırıcılar ve Filtreler
 
-Bu bölüm, FAST DSL uzantı noktalarında kullanılabilen ayrıştırıcıları ve filtreleri açıklar.
+Bu bölüm, FAST DSL genişletme noktalarında kullanılabilecek ayrıştırıcıları ve filtreleri tanımlar.
 
-Aşağıda, sağladıkları filtrelerle birlikte ayrıştırıcıların bir listesi bulunmaktadır:
+Aşağıda, ayrıştırıcılar ve sağladıkları filtrelerin listesi verilmiştir:
 * [HTTP ayrıştırıcı][link-http]:
     * [URI filtresi][link-uri];
     * [Path filtresi][link-path];

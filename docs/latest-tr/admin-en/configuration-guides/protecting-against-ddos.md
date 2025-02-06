@@ -1,61 +1,59 @@
 # DDoS Koruması
 
-DDoS (Dağıtılmış Hizmet Engelleme) saldırısı, bir saldırganın bir web sitesini veya çevrimiçi hizmeti birçok kaynaktan gelen trafikle boğarak kullanılamaz hale getirmeye çalıştığı bir tür siber saldırıdır. Bu belge, DDoS koruması için tavsiyeleri ve kaynaklarınızı Wallarm ile nasıl koruyabileceğinizi anlatır.
+DDoS (Dağıtılmış Hizmet Reddi) saldırısı, saldırganın bir web sitesi veya çevrimiçi hizmeti, birden fazla kaynaktan gelen trafikle aşırı yükleyerek kullanılamaz hale getirmeyi hedeflediği bir siber saldırı türüdür. Bu belge, Wallarm ile kaynaklarınızı korumanız için DDoS koruması önerilerini ve yöntemlerini açıklamaktadır.
 
-DDoS saldırıları genellikle, bir botnet olarak adlandırılan, ele geçirilmiş bilgisayar sistemlerinin ağından başlatılır. Saldırganlar, bu sistemleri hedefe büyük miktarda trafik göndermek için kullanır, sunucuyu aşırı yükler ve meşru isteklere yanıt vermesini engeller. DDoS saldırıları, web siteleri, çevrimiçi oyunlar ve hatta sosyal medya platformları dahil olmak üzere her türlü çevrimiçi hizmete yönelik olabilir.
+DDoS saldırıları genellikle botnet olarak adlandırılan, ele geçirilmiş bilgisayar sistemleri ağlarından başlatılır. Saldırganlar, hedefe büyük miktarda trafik göndererek sunucuyu aşırı yükler ve bunun gerçek taleplere yanıt vermesini engeller. DDoS saldırıları; web siteleri, çevrimiçi oyunlar ve hatta sosyal medya platformları gibi herhangi bir çevrimiçi hizmeti hedef alabilir.
 
-Saldırganların bir DDoS saldırısını başlatmak için kullanabileceği birçok teknik vardır ve kullandıkları yöntemler ve araçlar önemli ölçüde değişebilir. Bazı saldırılar, bir sunucuya büyük miktarda bağlantı isteği göndermek gibi düşük seviye teknikler kullanan oldukça basittir, diğerleri ise IP adreslerini taklit etmek veya ağ altyapısındaki açıklıkları istismar etmek gibi karmaşık taktikler kullanır.
+Saldırganların DDoS saldırısı başlatmak için kullanabileceği birçok teknik bulunmaktadır ve kullandıkları yöntemler ile araçlar önemli ölçüde farklılık gösterebilir. Bazı saldırılar nispeten basit olup, sunucuya çok sayıda bağlantı isteği gönderme gibi düşük seviyeli teknikler kullanırken, bazıları IP adreslerini taklit etme veya ağ altyapısındaki güvenlik açıklarından yararlanma gibi daha karmaşık taktikler kullanır.
 
-## DDoS saldırı taksonomisi
+## DDoS Saldırı Sınıflandırması
 
-Saldırganların bir web sitesinin veya çevrimiçi hizmetin kullanılabilirliğini bozmak için kullanabileceği birkaç tür DDoS saldırısı vardır. İşte DDoS saldırılarının yaygın türleri:
-
-| OSI katmanı / Saldırı Türü | [Hacim artırma ve genişletme saldırıları](#volum-amplif-attacks) | [Protokol istismarları ve Mantık bombaları](#proto-attacks-logicbombs) |
+| OSI Katmanı / Saldırı Türü | [Hacimsel ve amplifikasyon saldırıları](#volum-amplif-attacks) | [Protokol sömürüleri ve Mantık bombaları](#proto-attacks-logicbombs) |
 | ---- | ----------- | -------- |
-| L3/L4 | <ul><li>UDP taşkını: Bu saldırılar, mevcut bant genişliğini tüketmeye ve hizmeti bozmaya çalışan bir hedefe büyük miktarda UDP paketi gönderir.</li><li>ICMP taşkını (Smurf saldırıları): Bu saldırılar, bant genişliğini tüketmeye ve hizmeti bozmaya çalışan bir hedefe büyük miktarda yankı talep paketi (genellikle "ping" talepleri olarak bilinir) göndermek için ICMP kullanır.</li></ul> | <ul><li>SYN taşkını: Bu saldırılar, TCP bağlantılarının kurulma şeklini istismar eder. Saldırgan, hedefe büyük miktarda SYN paketi gönderir, ancak bir bağlantı kurmak için kullanılan üç aşamalı tokalaşma sürecini asla tamamlamaz. Bu, hedef sunucunun kaynaklarını bağlayabilir, çünkü tokalaşma sürecinin tamamlanmasını bekler.</li><li>Ölüm Ping'i: Bu saldırılar, hedefi çökertmeye çalışan aşırı büyük paketleri bir hedefe gönderir. Paketler, hedefin işleyebileceği maksimum boyuttan daha büyüktür ve bunları ele almaya çalışma hedefin çökmesine veya kullanılamaz hale gelmesine neden olabilir.</li></ul> |
-| L7 | <ul><li>HTTP taşkını: Bu saldırılar, bir hedefi boğmak için bir sunucuya veya web uygulamasına görünüşte meşru çok sayıda GET veya POST isteği kullanır. Bu tür saldırılar genellikle botnetler kullanılarak yapılır; botnetler, saldırgan tarafından kontrol edilen zararlı yazılımlarla enfekte olmuş kompromize bilgisayar ağlarıdır.</li><li>Amplifikasyon saldırıları: Bu saldırılar, bir hedefe gönderilen trafik miktarını artırmak için genişletme tekniklerinin kullanılmasını kullanır. Örneğin, bir saldırgan, çok daha büyük bir yanıtla yanıt veren bir sunucuya küçük bir istek gönderebilir, etkili bir şekilde hedefe gönderilen trafik miktarını genişletir. Saldırganlar bir genişletme saldırısı başlatmak için birçok farklı teknik kullanabilir, bunlar arasında NTP amplifikasyonu, DNS amplifikasyonu vb. bulunur.</li></ul> | <ul><li>Slowloris: Slowloris saldırıları, minimum bant genişliğini gerektirir ve sadece bir bilgisayar kullanılarak gerçekleştirilebilir. Saldırı, bir web sunucusuna birçok eşzamanlı bağlantı başlatarak ve bunları uzun bir süre boyunca sürdürerek çalışır. Saldırgan, kısmi istekler gönderir ve bunları bir tamamlama aşamasına ulaşmalarını engellemek için ara sıra HTTP başlıklarıyla tamamlar.</li></ul> |
-| API/Uygulama özel (L7+) | <ul><li>Ağır İstek: Bu saldırılar, sunucunun yanıt olarak büyük miktarda veri göndermesine neden olan özel olarak oluşturulan istekleri kullanır. Bu tür bir saldırı genellikle hedefli saldırılarda kullanılır çünkü web uygulamanızın ön çalışmasını gerektirir ve bu açıklıklarını istismar etmeye dayanır.</li></ul> | <ul><li>Mantık Bombası: Bu saldırılar, büyük miktarda veri içeren ve istek işleme sırasında büyük kaynak tüketimine yol açan açıklıkları istismar etmek üzere tasarlanmış özel olarak oluşturulan istekleri kullanır. Farklı mantık bomba türleri vardır: XML Bombası, JSON Bombası, vb.</li></ul> |
+| L3/L4 | <ul><li>UDP flood: Bu saldırılar, mevcut bant genişliğini tüketmek ve hizmeti aksatmak amacıyla hedefe çok sayıda UDP paketi gönderir.</li><li>ICMP flood (Smurf saldırıları): Bu saldırılar, bant genişliğini tüketmek ve hizmeti aksatmak amacıyla hedefe büyük sayıda eko istek paketi (genellikle "ping" istekleri olarak bilinir) gönderir.</li></ul> | <ul><li>SYN flood: Bu saldırılar, TCP bağlantılarının kurulma şeklini sömürür. Saldırgan, hedefe çok sayıda SYN paketi gönderir ancak bağlantı kurulumu için gerekli üç aşamalı el sıkışma sürecini tamamlamaz. Bu durum, hedef sunucunun kaynaklarının el sıkışmanın tamamlanmasını beklerken tüketilmesine neden olabilir.</li><li>Ping of Death: Bu saldırılar, hedefe, işleyebileceğinden daha büyük boyutlu paketler göndererek çökmesine yol açmayı amaçlar. Bu paketler, hedefin işleyebileceği maksimum boyuttan daha büyüktür ve işlenmeye çalışıldığında hedefin çökmesine veya kullanılamaz hale gelmesine neden olabilir.</li></ul> |
+| L7 | <ul><li>HTTP flood: Bu saldırılar, hedefi aşırı yüklemek amacıyla sunucuya veya web uygulamasına çok sayıda görünüşte meşru GET veya POST isteği gönderir. Bu tür saldırılar genellikle, kötü amaçlı yazılımla enfekte edilmiş ele geçirilmiş bilgisayar sistemlerinin oluşturduğu botnetler kullanılarak gerçekleştirilir.</li><li>Amplifikasyon saldırıları: Bu saldırılar, hedefe gönderilen trafik hacmini artırmak amacıyla amplifikasyon tekniklerinden yararlanır. Örneğin, saldırgan küçük bir istek gönderip, sunucunun çok daha büyük bir yanıt döndürmesiyle etkin olarak hedefe gönderilen trafik hacmini artırabilir. Saldırganların amplifikasyon saldırısı başlatmak için kullanabileceği birkaç farklı teknik bulunmaktadır: NTP amplifikasyonu, DNS amplifikasyonu, vb.</li></ul> | <ul><li>Slowloris: Slowloris saldırıları, minimal bant genişliği gerektirdiği ve yalnızca tek bir bilgisayar kullanılarak gerçekleştirilebildiği için benzersizdir. Saldırı, bir web sunucusuna aynı anda birden fazla bağlantı başlatarak ve bu bağlantıları uzun süre açık tutarak gerçekleştirilir. Saldırgan, bağlantıların tamamlanmasını engellemek amacıyla ara ara HTTP başlıkları ekleyerek kısmi istekler gönderir.</li></ul>
+| API/Uygulama özel (L7+) | <ul><li>Heavy Request: Bu saldırılar, sunucunun yanıt olarak çok miktarda veri göndermesine sebep olacak şekilde özel olarak hazırlanmış istekler kullanır. Bu tür saldırılar, web uygulamanızın ön analizini gerektirdiğinden ve güvenlik açıklarının sömürülmesine dayalı olduğundan, genellikle hedefe yönelik saldırılarda kullanılır.</li></ul> | <ul><li>Logic Bomb: Bu saldırılar, hedef sistemlerde büyük kaynak tüketimine yol açan, istek işleme sırasında güvenlik açıklarını sömürmek amacıyla özel olarak hazırlanmış, büyük miktarda veri içeren istekler kullanır. Farklı mantık bombası türleri mevcuttur: XML Bomb, JSON Bomb, vb.</li></ul> |
 
-<a name="volum-amplif-attacks"></a>**Hacim artırma ve genişletme saldırıları** hedefi büyük miktarda trafikle boğmayı hedefler. Amaç, hedeflenen sunucunun veya ağın bant genişliğini veya hesaplama kaynaklarını doyurmak, böylece meşru isteklere yanıt verme yeteneğini engellemektir.
+<a name="volum-amplif-attacks"></a>**Hacimsel ve amplifikasyon saldırıları**; hedefin bant genişliği veya hesaplama kaynaklarını doygunluğa çıkartarak, meşru istekleri yanıt veremez hale getirmeyi amaçlar.
 
-<a name="proto-attacks-logicbombs"></a>**Protokol istismarları ve Mantık bombaları**, bir hizmetin veya ağın iletişim kurma şeklindeki açıklıkları istismar etmeyi hedefleyen DDoS saldırılarıdır. Bu saldırılar, belirli protokollerin istismarını kullanarak veya hedefin işlemekte zorlandığı bozuk paketler göndererek normal trafik akışını bozabilir.
+<a name="proto-attacks-logicbombs"></a>**Protokol sömürüleri ve Mantık bombaları** ise, bir hizmetin veya ağın iletişim şeklindeki güvenlik açıklarını sömüren DDoS saldırılarıdır. Bu saldırılar, belirli protokollerin sömürülmesi veya hedefin işleyemeyeceği şekilde bozuk paketlerin gönderilmesi yoluyla normal trafik akışını aksatabilir.
 
-## DDoS saldırılarından korunma
+## DDoS Saldırılarının Hafifletilmesi
 
-DDoS saldırıları birçok farklı formda olabilir ve farklı OSI katmanlarını hedefleyebilir, tek ölçüler etkili olmaz, DDoS saldırılarına karşı kapsamlı koruma sağlamak için bir dizi önlem kullanmak önemlidir.
+DDoS saldırıları farklı biçimlerde ortaya çıktığından ve farklı OSI katmanlarını hedef aldığından, tek bir önlemin yeterli olmadığı durumlarda, DDoS saldırılarına karşı kapsamlı bir koruma sağlamak için birden fazla önlemin kombinasyonunu kullanmak önemlidir.
 
-* İnternet Servis Sağlayıcıları ve Bulut Servis Sağlayıcıları genellikle L3-L4 DDoS saldırı savunmasının ilk hattını sağlar. Yüksek şiddetteki L3-L4 DDoS saldırıları için ek koruma araçları gereklidir, örneğin:
+* İnternet Servis Sağlayıcıları ve Cloud Service Providers (bulut servis sağlayıcıları) genellikle L3-L4 DDoS saldırılarına karşı ilk savunma hattını sağlar. Yüksek şiddette L3-L4 DDoS saldırıları için ek hafifletme araçları gereklidir, örneğin:
 
-    Saniyede 1 Gbps veya daha fazla trafik üreten DDoS saldırısı, trafik filtrelemenin (traffic scrubbing) gerçekleştirilmesi için özelleştirilmiş DDoS koruma hizmetlerini gerektirebilir. Traffic scrubbing, trafiği tüm kötü niyetli trafiği filtreleyen üçüncü taraf bir hizmete yönlendirecek bir tekniktir ve yalnızca meşru istekleri hizmetinize aktarır. L3-L4 DDoS saldırılarına karşı ek bir koruma önlemi olarak, NGFW gibi çözümleri de kullanabilirsiniz.
-* L7 DDoS saldırıları, aynı zamanda "uygulama katmanı" saldırıları olarak da bilinir, L3-L4 saldırılardan daha hedefe yönelik ve karmaşıktır. Genellikle, L7 DDoS saldırıları saldırıya uğrayan uygulamaların özelliklerine yöneliktir ve meşru trafikten ayırt etmek zor olabilir. L7 DDoS saldırılarına karşı korunmak için, uygulama katmanındaki trafiği analiz eden WAF/WAAP veya özelleştirilmiş Anti-DDoS çözümlerini kullanın. Ayrıca API Gateway veya WEB sunucunun en yüksek yükleri yönetebilmesini ayarlamak da önerilir.
+    1 Gbps veya daha yüksek hızda trafik üreten DDoS saldırıları, trafiğin temizlenmesini sağlayan özel DDoS koruma hizmetleri gerektirebilir. Trafik temizleme, kötü amaçlı trafiği filtreleyen üçüncü taraf bir hizmet üzerinden trafiğin yönlendirilmesi tekniğidir ve bu sayede servisinize yalnızca meşru istekler iletilir. L3-L4 DDoS saldırılarına karşı ek bir koruma önlemi olarak NGFW gibi çözümleri de kullanabilirsiniz.
+* L7 DDoS saldırıları, aynı zamanda “uygulama katmanı” saldırıları olarak da bilinir, L3-L4 saldırılarından daha hedefe yönelik ve sofistike saldırılardır. Genellikle, L7 DDoS saldırıları, uygulamalara özgü özelliklere yönelik olup, meşru trafik ile ayırt edilmesi zor olabilir. L7 DDoS saldırılarına karşı koruma sağlamak için WAAP veya uygulama katmanında trafiği analiz eden özel Anti-DDoS çözümlerini kullanın. Ayrıca, API Gateway veya WEB sunucusunun pik yükleri kaldırabilecek şekilde yapılandırılması tavsiye edilir.
 
-Koruma önlemlerini seçerken, aşağıdaki faktörlere dayanarak bir organizasyonun ihtiyaçlarını ve kaynaklarını dikkatlice değerlendirin:
+Koruma önlemlerini seçerken, aşağıdaki faktörler doğrultusunda bir organizasyonun ihtiyaçları ve kaynakları dikkatlice değerlendirilmelidir:
 
-* Saldırı türleri
-* Saldırıların boyutu
-* Bir web uygulaması veya API'nin karmaşıklığı ve maliyeti
+* Saldırı türü
+* Saldırı hacmi
+* Bir web uygulamasının veya API'nın karmaşıklığı ve maliyetleri
 
-Ayrıca, bir DDoS saldırısını mümkün olduğunca hızlı bir şekilde belirlemek ve zamanında önlemler almak için bir yanıt planı hazırlamanız gereklidir.
+Ayrıca, DDoS saldırısını en kısa sürede tespit edip zamanında karşı önlemler alabilmek için bir müdahale planının hazırlanması gerekmektedir.
 
 ## Wallarm ile L7 DDoS Koruması
 
-Wallarm, L7 DDoS tehditlerine karşı çeşitli koruma önlemleri sunar:
+Wallarm, L7 DDoS tehditlerine karşı geniş bir yelpazede koruma önlemleri sunar:
 
-* [API İstismarı Önleme](../../api-abuse-prevention/overview.md). Çeşitli türdeki kötü niyetli botları tanımlayıp durdurmaya yardımcı olmak için API İstismarı Önleme işlevini etkinleştirin.
-* [Kaba kuvvet tetikleyicisi](protecting-against-bruteforce.md) bazı parametre değerlerini, örneğin şifreleri zorla çözmeye çalışan büyük miktarda isteği önlemek için.
-* [Zorla gezinme tetiği](protecting-against-bruteforce.md) bir web uygulamasının gizli kaynaklarını, yani dizinleri ve dosyaları tespit etmeye çalışan kötü niyetli girişimleri önlemek için.
-* Saldırıları dağıtan belirli bölgeler için uygulamalara ve API'lere erişimi önlemek amacıyla [yasaklı listeler ve gri listeler](../../user-guides/ip-lists/overview.md) kullanarak coğrafi konum filtrelemesi.
-* Hedefli saldırılardan korunmak için, saldırganın yerini saklamasına ve jeofiltreleri atlatmasına olanak sağlayan güvenilmez kökenlerin (Tor, Proxy, VPN) [yasaklı listeler ve gri listeler](../../user-guides/ip-lists/overview.md) kullanılarak engellenmesi yardımcı olabilir.
-* [Mantık (Veri) bombası](#data-bomb) algılama. Wallarm, Zip veya XML bomba içeren zararlı istekleri otomatik olarak algılar ve engeller.
-* [Hız limiti](../../user-guides/rules/rate-limiting.md) yapılandırması. Belirli bir API kapsamına yapılabilecek maksimum bağlantı sayısını belirtin. Bir istek belirlenen limiti aşarsa, Wallarm onu reddeder.
+* [API Abuse Prevention](../../api-abuse-prevention/overview.md). Çeşitli kötü amaçlı botları tespit etmek ve durdurmak için API Abuse Prevention özelliğini etkinleştirin.
+* [Brute force trigger](protecting-against-bruteforce.md) belirli parametre değerlerinin, örneğin şifrelerin kaba kuvvetle denenmesini engellemek için massive sayıda isteği durdurur.
+* [Forced browsing trigger](protecting-against-bruteforce.md) bir web uygulamasının gizli kaynaklarını, yani dizinleri ve dosyaları tespit etmeye yönelik kötü niyetli girişimleri önler.
+* [denylists and graylists](../../user-guides/ip-lists/overview.md) kullanılarak coğrafi konum filtreleme. Saldırı yayan belirli bölgelerden uygulamalara ve API'lara erişimi engeller.
+* [denylists and graylists](../../user-guides/ip-lists/overview.md) ile güvenilmeyen kaynakları engelleyin. Hedefe yönelik saldırılara karşı, saldırganın konumunu gizlemesine ve coğrafi filtreleri aşmasına olanak tanıyan güvenilmez (Tor, Proxy, VPN) kaynakları engellemek yararlı olabilir.
+* [Logic (Data) bomb](#proto-attacks-logicbombs) tespiti. Wallarm, Zip veya XML bomb içeren kötü amaçlı istekleri otomatik olarak tespit eder ve engeller.
+* [Rate limiting](../../user-guides/rules/rate-limiting.md) yapılandırması. Belirli bir API kapsamına yapılabilecek maksimum bağlantı sayısını belirleyin. Bir istek tanımlı sınırı aştığında, Wallarm bu isteği reddeder.
 
-NGINX tabanlı Wallarm düğümünü kullanıyorsanız, L7 DDoS hakkında güvenliğinizi güçlendirmek için NGINX'i yapılandırmanız önerilir:
+NGINX tabanlı Wallarm node kullanıyorsanız, L7 DDoS saldırılarına karşı güvenliğinizi artırmak için NGINX'i aşağıdaki şekilde yapılandırmanız önerilir:
 
-* Önbellekleme. DDoS saldırıları altında oluşturulan bazı trafiklerin emilmesi ve web uygulamanıza veya API'nize ulaşmasını engellemek için yaygın isteklere yanıtları önbelleğe almayı yapılandırın.
-* Hız limiti. Gelen istekler için hız sınırlama kuralları oluşturun ve hedef web uygulamanıza veya API'nıza gönderilebilecek trafik miktarını sınırlayın.
-* Bağlantı sayısını sınırlama. Bir tek müşteri IP adresi tarafından açılan bağlantı sayısına bir sınır koymak suretiyle kaynakların aşırı kullanılmasını önleyebilirsiniz.
-* Yavaş bağlantıları kapatma. Bir bağlantı yeterli sıklıkta veri yazmazsa, bu bağlantı, uzun bir süre için açık kalmasını ve potansiyel olarak sunucunun yeni bağlantıları kabul etme yeteneğini engellemesini önlemek amacıyla kapatılabilir.
+* Caching. DDoS saldırıları sırasında üretilen trafiğin bir kısmını karşılamak ve bu trafiğin web uygulamanıza veya API'nıza ulaşmasını önlemek için yaygın isteklere verilen yanıtları önbelleğe alın.
+* Rate limiting. Hedef web uygulaması veya API'ya gönderilebilecek trafik hacmini sınırlamak için gelen istekler üzerinde rate limiting kuralları oluşturun.
+* Bağlantı sayısını sınırlama. Gerçek kullanıcılara uygun bir değere tek bir istemci IP adresi tarafından açılabilecek bağlantı sayısına sınır koyarak kaynak aşımını engelleyebilirsiniz.
+* Yavaş bağlantıları kapatma. Bir bağlantı yeterince sık veri göndermiyorsa, uzun süre açık kalmasını ve sunucunun yeni bağlantıları kabul etme yeteneğini engellemesini önlemek için kapatılabilir.
 
-[NGINX yapılandırma örneklerini ve diğer önerileri görün](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus/)
+[NGINX yapılandırması örnekleri ve diğer önerilere bakın](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus/)
 
-Eğer [Wallarm hizmetleri ile Kong tabanlı Ingress denetleyicisi](../../installation/kubernetes/kong-ingress-controller/deployment.md) kullanıyorsanız, [API Gateway'yi güvenli hale getirmek için en iyi uygulamaları](https://konghq.com/learning-center/api-gateway/secure-api-gateway) izlemeniz önerilir.
+Wallarm servisleri ile [Kong-based Ingress controller](../../installation/kubernetes/kong-ingress-controller/deployment.md) kullanıyorsanız, [API Gateway'i güvence altına almak için en iyi uygulamaları](https://konghq.com/learning-center/api-gateway/secure-api-gateway) takip etmeniz önerilir.

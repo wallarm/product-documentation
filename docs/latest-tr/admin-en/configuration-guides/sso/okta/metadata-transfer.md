@@ -1,4 +1,4 @@
-# Adım 3: Okta Metadata'nın Wallarm Kurulum Sihirbazına Aktarılması
+#   Adım 3: Okta Metadata'nın Wallarm Setup Wizard'a Aktarılması
 
 [img-transfer-metadata-manually]:   ../../../../images/admin-guides/configuration-guides/sso/okta/transfer-metadata-manually.png
 [img-sp-wizard-finish]:             ../../../../images/admin-guides/configuration-guides/sso/okta/sp-wizard-finish.png
@@ -8,41 +8,41 @@
 
 [link-metadata]:                    setup-idp.md#downloading-metadata
 
-Wallarm Konsolunda Okta SSO kurulum sihirbazına dönün ve bir sonraki kurulum adımına devam etmek için *İleri*'yi tıklayın.
+Wallarm Console'daki Okta SSO kurulum sihirbazına geri dönün ve sonraki kurulum adımına geçmek için *Next* düğmesine tıklayın.
 
-Bu adımda, Okta hizmeti tarafından [üretilen][link-metadata] metaveriyi sağlamanız gerekmektedir.
+Bu adımda, Okta servisi tarafından [üretilen][link-metadata] metadata'yı sağlamanız gerekmektedir.
 
-Kimlik sağlayıcı metaverisini (bu durumda Okta) Wallarm kurulum sihirbazına iletmenin iki yolu vardır:
-*   Bir XML metaveri dosyasını yükleyerek.
+Kimlik sağlayıcı metadata'sını (bu durumda Okta) Wallarm setup wizard'a aktarmanın iki yolu vardır:
+*   Metadata içeren bir XML dosyası yükleyerek.
 
-    *Yükle* düğmesini tıklayarak ve uygun dosyayı seçerek XML dosyasını yükleyin. Dosya yöneticinizden dosyayı "XML" simgesi alanına sürükleyerek de bunu yapabilirsiniz.
+    Uygun dosyayı seçmek için *Upload* düğmesine tıklayarak XML dosyasını yükleyin. Ayrıca dosyayı dosya yöneticinizden “XML” simgesi alanına sürükleyerek de yapabilirsiniz.
 
-*   Metaveriyi manuel olarak girerek.
+*   Metadata'yı manuel olarak girerek.
 
-    *Manuel olarak gir* bağlantısını tıklayın ve Okta hizmet parametrelerini aşağıdaki gibi kurulum sihirbazının alanlarına kopyalayın:
-   
-    *   **Identity Provider Single Sign‑On URL** alanına **Identity provider SSO URL**.
-    *   **Identity Provider Issuer** alanına **Identity provider issuer**.
-    *   **X.509 Certificate** alanına **X.509 Certificate**.
+    *Enter manually* bağlantısına tıklayın ve aşağıdaki şekilde Okta servis parametrelerini kurulum sihirbazı alanlarına kopyalayın:
     
-    ![Metaveriyi manuel olarak girme][img-transfer-metadata-manually]
+    *   **Identity Provider Single Sign‑On URL** alanını **Identity provider SSO URL** alanına.
+    *   **Identity Provider Issuer** alanını **Identity provider issuer** alanına.
+    *   **X.509 Certificate** alanını **X.509 Certificate** alanına.
     
-Bir sonraki adıma gitmek için *İleri*'yi tıklayın. Önceki adıma dönmek istiyorsanız, *Geri*'yi tıklayın.
+    ![Entering the metadata manually][img-transfer-metadata-manually]
+    
+Sonraki adıma geçmek için *Next* düğmesine tıklayın. Önceki adıma geri dönmek isterseniz *Back* düğmesine tıklayın.
 
 
-##  SSO Sihirbazını Tamamlama
+##  Completing SSO Wizard
 
-Wallarm kurulum sihirbazının son adımında, Okta hizmetine otomatik olarak bir test bağlantısı yapılır ve SSO sağlayıcısı kontrol edilir.
+Wallarm setup wizard'ın son adımında, Okta servisine otomatik olarak bir test bağlantısı gerçekleştirilecek ve SSO sağlayıcısı kontrol edilecektir.
 
-Testin başarıyla tamamlanmasının ardından (gerekli tüm parametreler doğru bir şekilde doldurulmuşsa), kurulum sihirbazı Okta hizmetinin bir kimlik sağlayıcı olarak bağlandığını ve SSO mekanizmasını kullanıcılarınızı kimlik doğrulamak için bağlamaya başlayabileceğinizi bildirecektir.
+Gerekli tüm parametreler doğru şekilde doldurulduysa ve test başarıyla tamamlandıktan sonra, kurulum sihirbazı Okta servisinin bir kimlik sağlayıcı olarak bağlandığını bildirir ve kullanıcılarınızı kimlik doğrulamak için SSO mekanizmasını bağlamaya başlayabilirsiniz.
 
-SSO'yu yapılandırmayı tamamlamak için *Bitir* düğmesini tıklayın veya SSO'yu yapılandırmak için kullanıcı sayfasına giderek ilgili düğmeyi tıklayın.
+SSO yapılandırmasını, *Finish* düğmesine tıklayarak veya kullanıcı sayfasına gidip ilgili düğmeye tıklayarak tamamlayın.
 
-![SSO sihirbazını tamamlama][img-sp-wizard-finish]
+![Completing SSO wizard][img-sp-wizard-finish]
 
-SSO yapılandırma sihirbazını tamamladıktan sonra, *Entegrasyon* sekmesinde Okta hizmetinin bir kimlik sağlayıcı olarak bağlandığını ve başka SSO sağlayıcılarının mevcut olmadığını göreceksiniz.
+SSO yapılandırma sihirbazını tamamladıktan sonra, *Integration* sekmesinde Okta servisinin bir kimlik sağlayıcı olarak bağlı olduğu ve başka SSO sağlayıcısının bulunmadığı görülecektir.
 
-![SSO sihirbazını bitirdikten sonra “Entegrasyon” sekmesi][img-integration-tab]
+![The “Integration” tab after finishing the SSO wizard][img-integration-tab]
 
 
-Şimdi, SSO yapılandırma sürecinin [bir sonraki adımına][doc-allow-access-to-wl] gidin.
+Şimdi, SSO yapılandırma sürecinin [sonraki adımına][doc-allow-access-to-wl] gidin.

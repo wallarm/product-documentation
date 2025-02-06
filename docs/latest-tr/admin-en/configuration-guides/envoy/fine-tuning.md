@@ -1,13 +1,13 @@
-# Envoy tabanlı Wallarm düğümünü ayarlama seçenekleri
+# Envoy tabanlı Wallarm düğümü için yapılandırma seçenekleri
 
 [link-lom]:                     ../../../user-guides/rules/rules.md
 
 [anchor-process-time-limit]:    #processtimelimit
 [anchor-tsets]:                 #filtering-mode-settings
 
-Envoy, gelen istekleri işlemek için Envoy konfigürasyon dosyasında tanımlanan takılabilir filtreleri kullanır. Bu filtreler, istekte gerçekleştirilecek işlemleri tanımlar. Örneğin, bir `envoy.http_connection_manager` filtresi, HTTP isteklerini yönlendirmek için kullanılır. Bu filtrenin kendi HTTP filtre seti vardır, bu filtreler isteğe uygulanabilir.
+Envoy, gelen istekleri işlemek için Envoy yapılandırma dosyasında tanımlanan eklenti filtrelerini kullanır. Bu filtreler, istek üzerinde gerçekleştirilecek eylemleri tanımlar. Örneğin, HTTP isteklerini proxylemek için `envoy.http_connection_manager` filtresi kullanılır. Bu filtrenin, isteğe uygulanabilecek kendi HTTP filtreleri seti vardır.
 
-Wallarm modülü, bir Envoy HTTP filtresi olarak tasarlanmıştır. Modülün genel ayarları, `wallarm` HTTP filtresine ayrılmış bir bölümde yer alır:
+Wallarm modülü, Envoy HTTP filtresi olarak tasarlanmıştır. Modülün genel ayarları, `wallarm` HTTP filtresine ayrılmış bir bölümde yer alır:
 
 ```
 listeners:
@@ -20,27 +20,27 @@ listeners:
            - name: wallarm
              typed_config:
               "@type": type.googleapis.com/wallarm.Wallarm
-              <Wallarm modülünün konfigürasyonu>
+              <the Wallarm module configuration>
               ...  
 ```
 
-!!! warning "İsteği işleme etkinleştirmek"
-    Wallarm modülünün bir HTTP istek gövdesini işlemesini sağlamak için, tampon filtresi, Envoy HTTP filtre zincirinde filtreleme düğümünden önce yerleştirilmelidir. Örneğin:
+!!! warning "İstek gövdesi işlemesini etkinleştir"
+    Wallarm modülünün bir HTTP istek gövdesini işlemesini sağlamak için, buffer filtresinin Envoy HTTP filtre zincirinde filtering node'dan önce yerleştirilmesi gerekir. Örneğin:
     
     ```
     http_filters:
     - name: envoy.buffer
       typed_config:
         "@type": type.googleapis.com/envoy.config.filter.http.buffer.v2.Buffer
-        max_request_bytes: <maksimum istek boyutu (bayt olarak)>
+        max_request_bytes: <maximum request size (in bytes)>
     - name: wallarm
       typed_config:
         "@type": type.googleapis.com/wallarm.Wallarm
-        <Wallarm modülünün konfigürasyonu>
+        <the Wallarm module configuration>
         ...
     ```
     
-    Gelen istek boyutu, `max_request_bytes` parametresinin değerini aşarsa, bu istek düşürülür ve Envoy, `413` yanıt kodunu ("Yük Kapasitesi Büyük") döndürür.
+    Gelen istek boyutu `max_request_bytes` parametresinin değerini aşarsa, bu istek düşürülür ve Envoy `413` yanıt kodunu (“Payload Too Large”) geri döndürür.
 
 ## İstek filtreleme ayarları
 
@@ -59,24 +59,24 @@ rulesets:
   ...
 ```
 
-`rs0` ... `rsN` girdileri, bir veya daha fazla parametre grubudur. Gruplar herhangi bir isme sahip olabilir (`conf` bölümündeki [`ruleset`](#ruleset_param) parametresi aracılığıyla daha sonra başvurulabilirler). Filtreleme düğümü konfigürasyonunda en az bir grup bulunmalıdır (örneğin, `rs0` adı ile).
+`rs0` ... `rsN` girdileri, bir veya daha fazla parametre grubudur. Gruplar, daha sonra `conf` bölümündeki [`ruleset`](#ruleset_param) parametresi aracılığıyla onlara başvurulabilmesi için herhangi bir isimde olabilir. Filtering node yapılandırmasında en az bir grup bulunmalıdır (örneğin, `rs0`).
 
-Bu bölümün varsayılan değerleri yoktur. Değerleri açıkça config dosyasında belirtmeniz gerekmektedir.
+Bu bölümün varsayılan değeri yoktur. Yapılandırma dosyasında değerleri açıkça belirtmeniz gerekir.
 
-!!! info "Tanımlama Seviyesi"
-    Bu bölüm sadece filtreleme düğümü seviyesinde tanımlanabilir.
+!!! info "Tanımlama seviyesi"
+    Bu bölüm sadece filtering node seviyesinde tanımlanabilir.
 
-Parametre | Açıklama | Varsayılan değer
+Parameter | Açıklama | Varsayılan Değer
 --- | ---- | -----
-`pdb` | `proton.db` dosyasının yolu. Bu dosya, uygulama yapısına bağlı olmayan istek filtreleme için küresel ayarları içerir. | `/etc/wallarm/proton.db`
-`custom_ruleset` | Korunan uygulama ve filtreleme düğümü ayarları hakkında bilgi içeren [özel kurallar listesi][link-lom] dosyasının yolu. |/etc/wallarm/custom_ruleset
-`key` | proton.db ve özel kurallar listesi dosyalarının şifreleme/şifre çözmek için kullanılan Wallarm özel anahtarının olduğu dosyanın yolu. |/etc/wallarm/private.key
-`general_ruleset_memory_limit` | proton.db ve özel kurallar listesi olan bir örneğin tarafından kullanılabilecek en fazla bellek miktarı için sınır. Bellek sınırı aşıldığında veya bazı talepler işlenirken, kullanıcı 500 hatası alır. Bu parametrede şu ekler kullanılabilir: <ul><li>`k` veya `K` kilobyt için</li><li>`m` veya `M` megabyte için</li><li>`g` veya `G` gigabyte için</li></ul> `0` değeri, sınırı kapatır. | `0`
-`enable_libdetection` | [**libdetection** kütüphanesi](../../../about-wallarm/protecting-against-attacks.md#library-libdetection) ile SQL Enjeksiyon saldırılarının ek doğrulamasını etkinleştirir/devre dışı bırakır. Kütüphane zararlı yükü onaylamazsa, istek meşru olarak kabul edilir. **libdetection** kütüphanesinin kullanılması, SQL Enjeksiyon saldırıları arasında yanlış pozitiflerin sayısını azaltmaya olanak sağlar.<br><br>Varsayılan olarak, **libdetection** kütüphanesi etkindir. En iyi saldırı algılama için, kütüphanenin etkin kalması önerilir.<br><br>**libdetection** kütüphanesi kullanılarak saldırıları analiz ederken, NGINX ve Wallarm süreçlerinin tükettiği bellek miktarı yaklaşık%10 artabilir. | `on`
+`pdb` | `proton.db` dosyasına giden yol. Bu dosya, uygulama yapısına bağlı olmayan istek filtreleme için küresel ayarları içerir. | `/etc/wallarm/proton.db`
+`custom_ruleset` | Korunan uygulama ve filtering node ayarlarını içeren [custom ruleset][link-lom] dosyasına giden yol. | `/etc/wallarm/custom_ruleset`
+`key` | proton.db ve custom ruleset dosyalarının şifreleme/şifre çözme işlemlerinde kullanılan Wallarm özel anahtarının bulunduğu dosyaya giden yol. | `/etc/wallarm/private.key`
+`general_ruleset_memory_limit` | proton.db ve custom ruleset’in bir örneği tarafından kullanılabilecek maksimum bellek miktarı için sınır. Bellek sınırı, istek işlenirken aşılırsa, kullanıcı 500 hatası alır. Bu parametrede aşağıdaki son ekler kullanılabilir:<ul><li>kilobyte için `k` veya `K`</li><li>megabyte için `m` veya `M`</li><li>gigabyte için `g` veya `G`</li></ul> `0` değeri limiti devre dışı bırakır. | `0`
+`enable_libdetection` | [**libdetection** library](../../../about-wallarm/protecting-against-attacks.md#library-libdetection) kullanılarak SQL enjeksiyon saldırılarının ek doğrulamasını etkinleştirir/devre dışı bırakır. Kütüphane kötü amaçlı yükü onaylamazsa, istek meşru kabul edilir. **libdetection** kütüphanesinin kullanılması, SQL enjeksiyon saldırıları arasındaki yanlış pozitiflerin sayısını azaltır.<br><br>Varsayılan olarak, **libdetection** kütüphanesi etkindir. En iyi saldırı tespiti için kütüphanenin etkin kalması önerilir.<br><br>**libdetection** kütüphanesiyle saldırı analizi yapılırken, NGINX ve Wallarm süreçleri tarafından tüketilen bellek yaklaşık %10 artabilir. | `on`
 
-##  Postanalitik modül ayarları
+## Postanalytics modül ayarları
 
-Filtreleme düğümünün `tarantool` bölümü, postanalitik modülle ilgili parametreleri içerir:
+Filtering node’un `tarantool` bölümü, postanalytics modülü ile ilgili parametreleri içerir:
 
 ```
 tarantool:
@@ -87,21 +87,21 @@ tarantool:
     reconnect_interval: 1
 ```
 
-`server` girdisi, Tarantool sunucusu için ayarları tanımlayan bir parametre grubudur.
+`server` girdisi, Tarantool server için ayarları tanımlayan bir parametre grubudur.
 
-!!! info "Tanımlama Seviyesi"
-    Bu bölüm sadece filtreleme düğümü seviyesinde tanımlanabilir.
+!!! info "Tanımlama seviyesi"
+    Bu bölüm sadece filtering node seviyesinde tanımlanabilir.
 
-Parametre | Açıklama | Varsayılan değer
+Parameter | Açıklama | Varsayılan Değer
 --- | ---- | -----
-`uri` | Tarantool sunucusuna bağlanmak için kullanılan kimlik bilgileri ile dize. Dize formatı `IP adresi` veya `alan adı:port`. | `localhost:3313`
-`max_packets` | Tarantool'a gönderilecek sıralanmış isteklerin sayısı için limit. Limiti kaldırmak için `0` parametre değeri olarak ayarlayın. | `512`
-`max_packets_mem` | Tarantool'a gönderilecek sıralanmış isteklerin toplam hacmi (bayt cinsinden) için limit. | `0` (hacim sınırlı değil)
-`reconnect_interval` | Tarantool sunucusuna yeniden bağlanma girişimleri arasındaki aralık (saniye cinsinden). `0` değeri, sunucu kullanılamaz hale geldiğinde, filtreleme düğümünün olabildiğince hızlı bir şekilde sunucuya yeniden bağlanmaya çalışacağı anlamına gelir (önerilmez). | `1`
+`uri` | Tarantool server ile bağlantı için kullanılan kimlik bilgilerini içeren dize. Dize formatı `IP address` veya `domain name:port` şeklindedir. | `localhost:3313`
+`max_packets` | Tarantool'a gönderilecek serileştirilmiş istek sayısı limiti. Sınırı kaldırmak için, parametre değeri olarak `0` ayarlayın. | `512`
+`max_packets_mem` | Tarantool'a gönderilecek serileştirilmiş isteklerin toplam hacmi (bayt cinsinden) limiti. | `0` (hacim sınırlı değildir)
+`reconnect_interval` | Tarantool ile yeniden bağlantı denemeleri arasındaki aralık (saniye cinsinden). `0` değeri, filtering node sunucu kullanılamazsa mümkün olan en kısa sürede yeniden bağlantı kurmaya çalışacağı anlamına gelir (önerilmez). | `1`
 
-##  Temel ayarlar
+## Temel ayarlar
 
-Wallarm konfigürasyonunun `conf` bölümü, filtreleme düğümünün temel operasyonlarını etkileyen parametreleri içerir:
+Wallarm yapılandırmasının `conf` bölümü, filtering node'un temel işlemlerini etkileyen parametreleri içerir:
 
 ```
 conf:
@@ -119,43 +119,46 @@ conf:
   parse_html_response: true
 ```
 
-!!! info "Tanımlama Seviyesi"
-    Daha esnek koruma seviyesi için, bu bölüm, rota veya sanal ana bilgisayar seviyesinde geçersiz kılınabilir:
+!!! info "Tanımlama seviyesi"
+    Daha esnek bir koruma seviyesi için, bu bölüm route veya virtual host seviyesinde geçersiz kılınabilir:
 
-    * Rota düzeyinde:
-
+    * Route seviyesinde:
+    
         ```
         routes:
         - match:
           typed_per_filter_config:
             wallarm:
               "@type": type.googleapis.com/wallarm.WallarmConf
-              <bölüm parametreleri>
+              <the section parameters>
         ```
         
-    * Sanal ana bilgisayar düzeyinde:
+    * Virtual host seviyesinde:
         ```
         virtual_hosts:
-        - name: <sanal ana bilgisayarın adı>
+        - name: <the name of the virtual host>
           typed_per_filter_config:
             wallarm:
               "@type": type.googleapis.com/wallarm.WallarmConf
-              <bölüm parametreleri>
+              <the section parameters>
         ```
-    `conf` bölümündeki parametrelerin, rota seviyesinde geçersiz kılınmış `conf` bölümündeki parametrelerle örtüşmesi durumunda rota seviyesindeki parametreler öncelikli olacaktır. Bu da sanal ana bilgisayar seviyesinde tanımlanan parametrelerin, filtreleme düğümü seviyesinde tanımlanan parametrelerden daha öncelikli olduğu anlamına gelir.
+    Route seviyesinde geçersiz kılınan `conf` bölümündeki parametreler, virtual host seviyesinde tanımlanan bölümdeki parametrelerin üzerinde önceliğe sahiptir; bu da filtering node seviyesinde listelenen parametrelerden daha yüksek öneme sahiptir.
 
-Parametre | Açıklama | Varsayılan değer
+Parameter | Açıklama | Varsayılan Değer
 --- | ---- | -----
-<a name="ruleset_param"></a>`ruleset` | `rulesets` bölümünde tanımlanmış olan parametre gruplarından biri. Bu parametre grubu, kullanılacak istek filtreleme kurallarını belirler.<br>Eğer `conf` bölümündeki bir filtreleme düğümünden bu parametre çıkarılırsa, bu parametre, rota veya sanal ana bilgisayar seviyesinde geçersiz kılınmış `conf` bölümüne dahil olmalıdır. | -
-`mode` | Düğüm modu:<ul><li>`block` - zararlı istekleri engeller.</li><li>`monitoring` - istekleri analiz eder ancak engellemez.</li><li>`safe_blocking` - sadece [gri listeli IP adreslerinden](../../../user-guides/ip-lists/graylist.md) kaynaklanan zararlı istekleri engeller.</li><li>`monitoring` - istekleri analiz eder ancak engellemez.</li><li>`off` - trafik analizi ve işlemeyi devre dışı bırakır.</li></ul><br>[Filtrasyon modlarının ayrıntılı açıklaması →](../../configure-wallarm-mode.md) | `block`
-`mode_allow_override` | `mode` parametresi ile ayarlanmış filtreleme düğümü modunu, özel kurallar listesi[link-lom] ile geçersiz kılmanızı sağlar:<ul><li>`off` - özel kurallar listesi dikkate alınmaz.</li><li>`strict` - özel kurallar listesi yalnızca işlem modunu güçlendirir.</li><li>`on` - işlem modunu hem sertleştirmek hem de yumuşatmak mümkündür.</li></ul>Örneğin, eğer `mode` parametresi `monitoring` değerine ve `mode_allow_override` parametresi `strict` değerine ayarlanırsa, bazı istekleri engellemek (`block`) mümkün olacak, ancak filtreleme düğümünü tamamen devre dışı bırakmak (`off`) mümkün olmayacaktır. | `off`
-<a name="application_param"></a>`application` | Wallarm Bulutunda kullanılacak olan korunan uygulamanın benzersiz tanımlayıcısı. Değer, `0` dışındaki pozitif bir tamsayı olabilir.<br><br>[Uygulamaların kurulumuyla ilgili daha fazla ayrıntı →](../../../user-guides/settings/applications.md) | `-1`
-<a name="partner_client_id_param"></a>`partner_client_uuid` | [Çoklu kiracı](../../../installation/multi-tenant/deploy-multi-tenant-node.md) Wallarm düğümü için [kiracı](../../../installation/multi-tenant/overview.md) benzersiz tanımlayıcısı. Değer, aşağıdaki gibi bir [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) formatında bir dize olmalıdır: <ul><li> `11111111-1111-1111-1111-111111111111`</li><li>`123e4567-e89b-12d3-a456-426614174000`</li></ul><p>Ne kadar:</p><ul><li>[Kiracının UUID'sini kiracı oluşturma sırasında alın →](../../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)</li><li>[Mevcut kiracıların UUID listesini alın →](../../../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)</li><ul>| -
-<a name="process_time_limit"></a>`process_time_limit` | <div class="admonition warning"> <p class="admonition-title">Bu parametre kullanımdan kaldırılmıştır</p> <p>3.6 versiyonundan itibaren, `overlimit_res` saldırı algılamasını <a href="../../../../user-guides/rules/configure-overlimit-res-detection/">**Fine-tune the overlimit_res attack detection** kuralını</a> kullanarak ince ayarlamak önerilir.<br> `process_time_limit` parametresi geçici olarak desteklenmektedir, ancak gelecekteki sürümlerde kaldırılacaktır.</p></div>Tek bir isteğin işlenme süresinin sınırı (milisaniye cinsinden). İstek belirlenen süre içinde işlenemezse, hata mesajı günlük dosyasına kaydedilir ve istek bir `overlimit_res` saldırısı olarak işaretlenir. | `1000`
-<a name="process_time_limit_block"></a>`process_time_limit_block` | <div class="admonition warning"> <p class="admonition-title">Bu parametre kullanımdan kaldırılmıştır</p> <p>3.6 versiyonundan itibaren, `overlimit_res` saldırı algılamasını <a href="../../../../user-guides/rules/configure-overlimit-res-detection/">**Fine-tune the overlimit_res attack detection** kuralını</a> kullanarak ince ayarlamak önerilir.<br> `process_time_limit_block` parametresi geçici olarak desteklenmektedir, ancak gelecekteki sürümlerde kaldırılacaktır.</p></div>Istek işleme süresi, `process_time_limit` parametresi aracılığıyla ayarlanan limiti aştığında alınacak eylem:<ul><li>`off` - istekler her zaman yoksayılır.</li><li>`on` - istekler her zaman engellenir, `mode: "off"` olmadıkça.</li><li>`attack` - `mode` parametresi aracılığıyla ayarlanan saldırı engelleme moduna bağlıdır:<ul><li>`off` - istekler işlenmez.</li><li>`monitoring` - istekler yoksayılır.</li><li>`block` - istekler engellenir.</li></ul></li></ul> | `attack`
-`wallarm_status` | [Filtreleme düğümü istatistik servisini](../../configure-statistics-service.md) etkinleştirir. | `false`
-`wallarm_status_format` | [Filtreleme düğümü istatistiklerinin](../../configure-statistics-service.md) formatı: `json` veya `prometheus`. | `json`
-`disable_acl` | İsteklerin kökenlerinin analizini devre dışı bırakmaya izin verir. Devre dışı bırakılırsa (`on`), filtreleme düğümü Wallarm Bulut'undan [IP listelerini](../../../user-guides/ip-lists/overview.md) indirmez ve istek kaynak IPs analizini atlar. | `off`
-`parse_response` | Uygulamanın yanıtlarını analiz etmek gerekir. Yanıt analizi, [pasif tespit](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) ve [aktif tehdit doğrulaması](../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) sırasında açığının tespit edilmesi için gereklidir.<br><br>Olası değerler `true` (yanıt analizi etkindir) ve `false` (yanıt analizi devre dışıdır). | `true`
-`unpack_response` | Uygulamanın yanıtında dönen sıkıştırılmış verilerin açılması gerekir. Olası değerler `true` (deşifre etme etkindir) ve `false` (deşifre etme devre dışıdır).<br><br>Bu parametre, yalnızca `parse_response true` ise etkilidir. | `true`
-`parse_html_response` | Uygulamanın yanıtında alınan HTML koduna HTML ayrıştırıcılarını uygulamak gerekir. Olası değerler `true` (HTML ayrıştırıcısı uygulanır) ve `false` (HTML ayrıştırıcısı uygulanmaz).<br><br>Bu parametre, yalnızca `parse_response true` ise etkilidir. | `true`
+<a name="ruleset_param"></a>`ruleset` | `rulesets` bölümünde tanımlanan parametre gruplarından biri. Bu parametre grubu, kullanılacak istek filtreleme kurallarını belirler.<br>Eğer bu parametre filtering node'un `conf` bölümünden çıkarılırsa, route veya virtual host seviyesinde geçersiz kılınan `conf` bölümünde bulunmalıdır. | -
+`mode` | Filtering node modu:<ul><li>`block` - kötü amaçlı istekleri engellemek.</li><li>`monitoring` - istekleri analiz etmek ancak engellememek.</li><li>`safe_blocking` - yalnızca [graylisted IP addresses](../../../user-guides/ip-lists/overview.md) kaynaklı kötü amaçlı istekleri engellemek.</li><li>`monitoring` - istekleri analiz etmek ancak engellememek.</li><li>`off` - trafik analizini ve işlemlerini devre dışı bırakmak.</li></ul><br>[Filtrasyon modlarının ayrıntılı açıklaması →](../../configure-wallarm-mode.md) | `block`
+`mode_allow_override` | Filtering node modunun, `mode` parametresiyle belirlenmiş halinin [custom ruleset][link-lom] ile geçersiz kılınmasına izin verir:<ul><li>`off` - custom ruleset göz ardı edilir.</li><li>`strict` - custom ruleset yalnızca operasyon modunu güçlendirebilir.</li><li>`on` - operasyon modunu güçlendirmek veya yumuşatmak mümkündür.</li></ul>Örneğin, `mode` parametresi `monitoring` olarak ayarlanır ve `mode_allow_override` parametresi `strict` olarak belirlenirse, bazı istekler engellenebilir (`block`), ancak filtering node tamamen devre dışı bırakılamaz (`off`). | `off`
+<a name="application_param"></a>`application` | Wallarm Cloud'da kullanılmak üzere, korunan uygulamanın benzersiz tanımlayıcısı. Değer, `0` hariç pozitif bir tam sayı olmalıdır.<br><br>[Uygulamaların kurulumu hakkında daha fazla detay →](../../../user-guides/settings/applications.md) | `-1`
+<a name="partner_client_id_param"></a>`partner_client_uuid` | Çok kullanıcılı (multi-tenant) Wallarm node için [tenant](../../../installation/multi-tenant/overview.md)ın benzersiz tanımlayıcısı. Değer, [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) formatında bir string olmalıdır, örneğin: <ul><li> `11111111-1111-1111-1111-111111111111`</li><li>`123e4567-e89b-12d3-a456-426614174000`</li></ul><p>Nasıl yapılır:</p><ul><li>[Tenant oluşturulması sırasında tenant'ın UUID'sini alın →](../../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api)</li><li>[Mevcut tenant'ların UUID listesini alın →](../../../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)</li><ul> | -
+<a name="process_time_limit"></a>`process_time_limit` | <div class="admonition warning"> <p class="admonition-title">Parametre kullanım dışı bırakıldı</p> <p>3.6 sürümünden itibaren, `overlimit_res` saldırı tespitinin <a href="../../../../user-guides/rules/configure-overlimit-res-detection/">**İstek işleme zamanını sınırla**</a> kuralı kullanılarak incelenmesi önerilmektedir (eski adıyla "overlimit_res saldırı tespitinin incelenmesi").<br>`process_time_limit` parametresi geçici olarak desteklenmektedir ancak gelecekteki sürümlerde kaldırılacaktır.</p></div>
+Limit, tek bir isteğin işlenme süresi içindir (milisaniye cinsinden). İstek, belirlenen süre içinde işlenemezse, hata mesajı log dosyasına kaydedilir ve istek `overlimit_res` saldırısı olarak işaretlenir. | `1000`
+<a name="process_time_limit_block"></a>`process_time_limit_block` | <div class="admonition warning"> <p class="admonition-title">Parametre kullanım dışı bırakıldı</p> <p>3.6 sürümünden itibaren, `overlimit_res` saldırı tespitinin <a href="../../../../user-guides/rules/configure-overlimit-res-detection/">**İstek işleme zamanını sınırla**</a> kuralı kullanılarak incelenmesi önerilmektedir (eski adıyla "overlimit_res saldırı tespitinin incelenmesi").<br>`process_time_limit_block` parametresi geçici olarak desteklenmektedir ancak gelecekteki sürümlerde kaldırılacaktır.</p></div>
+İstek işleme süresi, `process_time_limit` parametresiyle belirlenen sınırı aştığında alınacak eylem:
+<ul><li>`off` - istekler her zaman göz ardı edilir.</li><li>`on` - istekler, `mode: "off"` haricinde her zaman engellenir.</li><li>`attack` - `mode` parametresiyle belirlenen saldırı engelleme moduna bağlı olarak:<ul><li>`off` - istekler işlenmez.</li><li>`monitoring` - istekler göz ardı edilir.</li><li>`block` - istekler engellenir.</li></ul></li></ul> | `attack`
+`wallarm_status` | [Filtering node istatistik servisini](../../configure-statistics-service.md) etkinleştirip etkinleştirmeyeceğini belirler. | `false`
+`wallarm_status_format` | [Filtering node istatistiklerinin](../../configure-statistics-service.md) formatı: `json` veya `prometheus`. | `json`
+`disable_acl` | İstek kaynaklarının analizini devre dışı bırakmaya izin verir. Devre dışı bırakılırsa (`on`), filtering node Wallarm Cloud'dan [IP listelerini](../../../user-guides/ip-lists/overview.md) indirmez ve istek kaynak IP analizini atlar. | `off`
+`parse_response` | Uygulama yanıtlarının analiz edilip edilmeyeceğini belirler. Yanıt analizi, [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) ve [threat replay testing](../../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) sırasında güvenlik açığı tespiti için gereklidir.<br><br>Olası değerler: `true` (yanıt analizi etkin) ve `false` (yanıt analizi devre dışı). | `true`
+`unpack_response` | Uygulama yanıtında dönen sıkıştırılmış verilerin açılıp açılmayacağını belirler. Olası değerler: `true` (açma etkin) ve `false` (açma devre dışı).<br><br>Bu parametre yalnızca `parse_response true` iken etkindir. | `true`
+`parse_html_response` | Uygulama yanıtında alınan HTML koduna HTML ayrıştırıcılarının uygulanıp uygulanmayacağını belirler. Olası değerler: `true` (HTML ayrıştırıcı uygulanır) ve `false` (uygulanmaz).<br><br>Bu parametre yalnızca `parse_response true` iken etkindir. | `true`

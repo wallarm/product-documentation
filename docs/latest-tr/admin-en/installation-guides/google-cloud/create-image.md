@@ -1,7 +1,8 @@
+```markdown
 [link-docs-gcp-autoscaling]:        autoscaling-overview.md
 [link-docs-gcp-node-setup]:         ../../../installation/cloud-platforms/gcp/machine-image.md
-[link-cloud-connect-guide]:         ../../../installation/cloud-platforms/gcp/machine-image.md#4-connect-the-filtering-node-to-the-wallarm-cloud
-[link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/gcp/machine-image.md#5-enable-wallarm-to-analyze-the-traffic
+[link-cloud-connect-guide]:         ../../../installation/cloud-platforms/gcp/machine-image.md#5-connect-the-instance-to-the-wallarm-cloud
+[link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/gcp/machine-image.md#6-configure-sending-traffic-to-the-wallarm-instance
 [link-docs-check-operation]:        ../../installation-check-operation-en.md
 
 [img-vm-instance-poweroff]:     ../../../images/installation-gcp/auto-scaling/common/create-image/vm-poweroff.png
@@ -11,66 +12,67 @@
 [anchor-node]:  #1-creating-and-configuring-the-filtering-node-instance-on-the-google-cloud-platform
 [anchor-gcp]:   #2-creating-a-virtual-machine-image
 
-# Google Cloud Platform'da Wallarm filtreleme düğümü ile bir görüntü oluşturma
+#   Google Cloud Platform üzerinde Wallarm filtering node ile bir imaj oluşturma
 
-Wallarm filtreleme düğümlerinin Google Cloud Platform (GCP) üzerinde otomatik ölçeklenmesini ayarlamak için öncelikle sanal makine görüntülerine ihtiyacınız vardır. Bu belge, Wallarm filtreleme düğümünün yüklü olduğu sanal makinenin görüntüsünü hazırlama prosedürünü açıklar. Otomatik ölçeklemeyi ayarlama hakkında ayrıntılı bilgi için bu [bağlantıya][link-docs-gcp-autoscaling] gidin.
+Google Cloud Platform (GCP) üzerinde dağıtılan Wallarm filtering node'larının otomatik ölçeklenmesini ayarlamak için önce sanal makine imajlarına ihtiyacınız vardır. Bu doküman, Wallarm filtering node'unun kurulu olduğu sanal makine imajını hazırlama prosedürünü anlatmaktadır. Otomatik ölçekleme kurulumu ile ilgili detaylı bilgi için [bu bağlantıya][link-docs-gcp-autoscaling] geçiniz.
 
-GCP üzerinde Wallarm filtreleme düğümü ile bir görüntü oluşturmak için aşağıdaki işlemleri gerçekleştirin:
-1. [Google Cloud Platform üzerinde filtreleme düğümü örneğini oluşturma ve yapılandırma][anchor-node].
-2. [Yapılandırılmış filtreleme düğümü örneğinin temel alındığı sanal makine görüntüsünü oluşturma][anchor-gcp].
+GCP üzerinde Wallarm filtering node içeren bir imaj oluşturmak için aşağıdaki prosedürleri uygulayın:
+1.  [Google Cloud Platform üzerinde filtering node örneğini oluşturma ve yapılandırma][anchor-node].
+2.  [Yapılandırılmış filtering node örneği temelinde sanal makine imajı oluşturma][anchor-gcp].
 
-## 1.  Google Cloud Platform üzerinde filtreleme düğümü örneğini oluşturma ve yapılandırma
+##  1.  Google Cloud Platform üzerinde filtering node örneğini oluşturma ve yapılandırma
 
-Görüntü oluşturmadan önce, tek bir Wallarm filtreleme düğümünün ilk yapılandırmasını gerçekleştirmeniz gerekir. Bir filtreleme düğümünü yapılandırmak için aşağıdakileri yapın:
-1. GCP üzerinde bir filtreleme düğümü örneği [oluşturun ve yapılandırın][link-docs-gcp-node-setup].
+Bir imaj oluşturmadan önce, tek bir Wallarm filtering node'unun ilk yapılandırmasını yapmanız gerekmektedir. Filtering node'u yapılandırmak için aşağıdakileri uygulayın:
+1.  GCP üzerinde bir filtering node örneğini [oluşturun ve yapılandırın][link-docs-gcp-node-setup].
 
-   !!! warning "Filtreleme düğümüne internet bağlantısı sağlayın"
-       Filtreleme düğümünün düzgün çalışması için bir Wallarm API sunucusuna erişim gereklidir. Wallarm API sunucusunun seçimi, kullandığınız Wallarm Cloud'a bağlıdır:
+    !!! warning "Filtering node'a internet bağlantısı sağlayın"
+        Filtering node'un düzgün çalışabilmesi için Wallarm API sunucusuna erişim gerekmektedir. Hangi Wallarm Cloud'u kullandığınıza bağlı olarak, Wallarm API sunucusunun seçimi aşağıdaki gibidir:
+        
+        * US Cloud kullanıyorsanız, node'unuza `https://us1.api.wallarm.com` adresine erişim izni verilmelidir.
+        * EU Cloud kullanıyorsanız, node'unuza `https://api.wallarm.com` adresine erişim izni verilmelidir.
+    
+    --8<-- "../include/gcp-autoscaling-connect-ssh.md"
+
+2.  Filtering node'u [Wallarm Cloud ile bağlayın][link-cloud-connect-guide].
+
+    !!! warning "Wallarm Cloud ile bağlantı kurmak için bir token kullanın"
+        Filtering node'u Wallarm Cloud'a bağlarken bir token kullanmanız gerektiğini unutmayın. Aynı token ile birden fazla filtering node'unun Wallarm Cloud'a bağlanmasına izin verilmektedir.
        
-       * ABD Bulutunu kullanıyorsanız, düğümünüze `https://us1.api.wallarm.com` adresine erişim izni verilmesi gerekmektedir.
-       * EU Bulutunu kullanıyorsanız, düğümünüze `https://api.wallarm.com` adresine erişim izni verilmesi gerekmektedir.
-   
-   --8<-- "../include-tr/gcp-autoscaling-connect-ssh.md"
+        Böylece, filtering node'lar otomatik ölçeklenirken her birini elle bağlamanıza gerek kalmaz.
 
-2.  Filtreleme düğümünü Wallarm Cloud'a [bağlayın][link-cloud-connect-guide].
+3.  Filtering node'u, web uygulamanız için ters proxy (reverse proxy) olarak çalışacak şekilde [yapılandırın][link-docs-reverse-proxy-setup].
 
-    !!! warning "Wallarm Cloud'a bağlanmak için bir belirteç kullanın"
-       Filtreleme düğümünü bir belirteç kullanarak Wallarm Buluta bağlamanız gerektiğini lütfen unutmayın. Birden çok filtreleme düğümünün aynı belirteci kullanarak Wallarm Buluta bağlanmasına izin verilir.
-      
-      Böylece, otomatik ölçeklendiklerinde her bir filtreleme düğümünü Wallarm Buluta manuel olarak bağlamanız gerekmez.
+4.  Filtering node'unun doğru yapılandırıldığından ve web uygulamanızı kötü amaçlı isteklere karşı koruduğundan emin olun [kontrol edin][link-docs-check-operation].
 
-3.  Filtreleme düğümünü, web uygulamanız için bir ters proxy olarak [yapılandırın][link-docs-reverse-proxy-setup].
+Filtering node'unuz yapılandırıldıktan sonra, sanal makineyi aşağıdaki adımlarla kapatın:
+1.  Menüde **Compute Engine** bölümündeki **VM Instances** sayfasına gidin.
+2.  **Connect** sütununun sağındaki menü düğmesine tıklayarak açılır menüyü açın.
+3.  Açılır menüden **Stop** seçeneğini seçin.
 
-4.  Filtreleme düğümünün doğru bir şekilde yapılandırıldığını ve web uygulamanızı kötü niyetli isteklere karşı [koruduğundan emin olun][link-docs-check-operation].
+![Sanal makinenin kapatılması][img-vm-instance-poweroff]
 
-Filtreleme düğümünün yapılandırmasını tamamladıktan sonra, aşağıdaki eylemleri gerçekleştirerek sanal makineyi kapatın:
-1.  Menünün **Compute Engine** bölümünde **VM Instances** sayfasına gidin.
-2.  **Connect** sütununun sağında bulunan menü düğmesine tıklayarak açılır menüyü açın.
-3.  Açılır menüdeki **Stop** seçeneğini seçin.
-
-![Sanal makineyi kapatma][img-vm-instance-poweroff]
-
-!!! info "`poweroff` komutu kullanarak kapatma"
-    SSH protokolünü kullanarak sanal makineye bağlanarak aşağıdaki komutu çalıştırarak da sanal makineyi kapatma şansınız olabilir:
+!!! info "`poweroff` komutu kullanılarak kapatma"
+    SSH protokolüyle sanal makineye bağlanıp aşağıdaki komutu çalıştırarak da kapatabilirsiniz:
     
     ``` bash
  	poweroff
  	```
 
-## 2. Sanal makine görüntüsü oluşturma
+##  2.  Bir sanal makine imajı oluşturma
 
-Artık, yapılandırılmış filtreleme düğümü örneğinin temel alındığı bir sanal makine görüntüsü oluşturabilirsiniz. Bir görüntü oluşturmak için aşağıdaki adımları uygulayın:
-1.  Menünün **Compute Engine** bölümünde **Images** sayfasına gidin ve **Create image** düğmesine tıklayın.
-2.  **Name** alanına görüntü adını girin.
-3.  **Source** açılır listesinden **Disk** seçeneğini seçin.
-4.  **Source disk** açılır listesinden [daha önce oluşturulan][anchor-node] sanal makine örneğinin adını seçin.
+Artık yapılandırılmış filtering node örneğine dayalı bir sanal makine imajı oluşturabilirsiniz. Bir imaj oluşturmak için aşağıdaki adımları uygulayın:
+1.  Menüde **Compute Engine** bölümündeki **Images** sayfasına gidin ve **Create image** düğmesine tıklayın.
+2.  **Name** alanına imaj adını girin.
+3.  **Source** açılır listesinden **Disk**'i seçin.
+4.  **Source disk** açılır listesinden [önceden oluşturulan][anchor-node] sanal makine örneğinin adını seçin.
 
-    ![Görüntü oluşturma][img-create-image]
+    ![İmaj oluşturma][img-create-image]
 
-5.  Sanal makine görüntüsü oluşturma sürecini başlatmak için **Create** düğmesine tıklayın.
+5.  Sanal makine imajı oluşturma işlemini başlatmak için **Create** düğmesine tıklayın.
 
-Görüntü oluşturma süreci tamamlandığında, mevcut görüntülerin listesini içeren bir sayfaya yönlendirileceksiniz. Görüntünün başarıyla oluşturulduğundan ve listede olduğundan emin olun.
+İmaj oluşturma işlemi tamamlandığında, kullanılabilir imajların listesinin yer aldığı bir sayfaya yönlendirileceksiniz. İmajın başarılı bir şekilde oluşturulduğunu ve listede yer aldığını kontrol edin.
 
-![Görüntüler listesi][img-check-image]
+![İmajların listesi][img-check-image]
 
-Artık hazırlanan görüntüyü kullanarak Google Cloud Platform üzerinde Wallarm filtreleme düğümlerinin [otomatik ölçeklemesini ayarlayabilirsiniz][link-docs-gcp-autoscaling].
+Artık hazırlanan imajı kullanarak Google Cloud Platform üzerindeki Wallarm filtering node'larının [otomatik ölçeklenmesini][link-docs-gcp-autoscaling] ayarlayabilirsiniz.
+```

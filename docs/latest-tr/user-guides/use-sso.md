@@ -6,33 +6,34 @@
 [link-gsuite]:      https://gsuite.google.com/
 [link-okta]:        https://www.okta.com/
 
-#   Tek Oturum Açma (SSO) kullanarak Wallarm portalına giriş yapma
 
-Bu rehber, Tek Oturum Açma (SSO) teknolojisi kullanarak Wallarm portalında kullanıcı kimlik doğrulama sürecini kapsar.
+#   Wallarm portalına Tek Oturum Açma Kullanarak Giriş Yapma
 
-!!! bilgi "Önkoşullar"
-    Eğer SSO kimlik doğrulaması etkinleştirildiyse ve hesap rolünüz *Admin* değilse, artık yalnızca SSO kimlik doğrulamasını Wallarm portalına giriş yapmak için kullanabilirsiniz.
+Bu kılavuz, Tek Oturum Açma (SSO) teknolojisini kullanarak Wallarm portalında kullanıcı doğrulama sürecini ele alacaktır.
 
-    Bu rehber, zaten [Okta][link-okta] veya [G Suite][link-gsuite] gibi kimlik sağlayıcılarından birinde bir hesabınız olduğunu varsayar. Eğer bu durum söz konusu değilse, lütfen yöneticinizle iletişime geçin.
+!!! info "Ön Koşullar"
+    SSO doğrulaması etkinleştirildiyse ve hesabınızın rolü *Admin* değilse, artık Wallarm portalına giriş yapmak için yalnızca SSO doğrulamasını kullanabilirsiniz.
+    
+    Bu kılavuz, [Okta][link-okta] veya [G Suite][link-gsuite] gibi kimlik sağlayıcılarından biriyle zaten bir hesabınız olduğunu varsayar. Aksi takdirde, lütfen yöneticinizle iletişime geçin.
 
-SSO kullanarak kimlik doğrulama yapmak için Wallarm giriş sayfasına gidin.
+SSO kullanarak doğrulama yapmak için, Wallarm giriş sayfasına gidin.
 
-Eğer Wallarm'a giriş yapmak için `<bir_domain>.wallarm.com` gibi bir adres (ör., `benim.wallarm.com`) kullanıyorsanız, SSO ile giriş yapmak için *SAML SSO ile Giriş Yap* bağlantısını tıklamanız gerekecektir (giriş/şifre çifti öncelikli olarak kabul edilir).
+Eğer Wallarm'a giriş yapmak için `<some_domain>.wallarm.com` gibi bir adres (örn. `my.wallarm.com`) kullanıyorsanız, o zaman SSO ile giriş yapmak için *Sign in with SAML SSO* bağlantısına tıklamanız gerekmektedir (giriş/şifre ikilisi öncelikli kabul edilir).
 
-![“Giriş/şifre” çifti giriş sayfası][img-basic-auth]
+![The “login/password” pair login page][img-basic-auth]
 
-Eğer Wallarm'a giriş yapmak için `<şirket_domain>.wallarm.io` (hesabınızın ait olduğu şirkete ayrılmış domain) gibi bir adres kullanıyorsanız, öncelikli giriş yöntemi SSO girişi olacaktır ve giriş formu yukarıda verilenden farklı olacaktır.
+Eğer Wallarm'e, hesabınızın ait olduğu şirkete tahsis edilen `<company_domain>.wallarm.io` gibi bir adres kullanarak giriş yapıyorsanız, o zaman öncelikli giriş yöntemi SSO girişidir ve giriş formu yukarıda verilen formdan farklı olacaktır.
 
-![SSO giriş formu][img-sso-login-form]
+![SSO login form][img-sso-login-form]
 
-SSO kullanarak Wallarm'a giriş yapmak için e-postanızı girmeniz gerekmektedir.
+SSO kullanarak Wallarm'a giriş yapmak için, e-posta adresinizi girmeniz gerekmektedir.
 
-Girilen e-posta kayıtlıysa ve bunun için SSO kimlik doğrulama yapılandırılmış ise, Okta veya G Suite gibi bir Kimlik Sağlayıcı (IdP) hizmetine yönlendirilirsiniz. Eğer bu sağlayıcı tarafından da yetkilendirilmemişseniz, giriş sayfasına yönlendirilirsiniz. Aşağıda Okta ve G Suite hizmetlerinin giriş sayfaları gösterilmektedir.
+Girilen e-posta kayıtlıysa ve SSO doğrulaması için yapılandırılmışsa, Okta veya G Suite gibi bir kimlik sağlayıcı (IdP) hizmetine yönlendirileceksiniz. Eğer bu sağlayıcı tarafından yetkilendirilmezseniz, giriş sayfasına geri yönlendirileceksiniz. Aşağıda Okta ve G Suite hizmetlerinin giriş sayfaları gösterilmiştir.
 
-![Okta ve G Suite giriş sayfaları][img-idp-auth-pages]
+![Okta and G Suite login pages][img-idp-auth-pages]
 
-E-postanızı ve şifrenizi girin (iki faktörlü kimlik doğrulama ile ek seçenekler). Başarılı kimlik doğrulama sonrasında, kimlik sağlayıcı, talep edilen kaynağa (Wallarm) erişim haklarınızın kontrolünü sağlar ve sizi Wallarm portalına yönlendirir. Aynı zamanda, sağlayıcı, meşru bir kullanıcı olduğunuzu doğrulayan bir talebi, diğer gerekli parametrelerle birlikte Wallarm tarafına gönderir. Bu şekilde, Wallarm portalına giriş yapmış olursunuz ve dashboard sayfası açılır.
+E-posta adresinizi ve parolanızı (iki faktörlü doğrulama gibi ek seçeneklerle) girin. Kimlik sağlayıcı tarafından başarılı bir doğrulama gerçekleştirildikten ve talep edilen kaynağa (Wallarm) erişim hakları doğrulandıktan sonra, sağlayıcı sizi Wallarm portalına yönlendirir. Aynı zamanda, sağlayıcı, sizin meşru bir kullanıcı olduğunuzu onaylayan ve diğer gerekli parametreleri içeren bir isteği Wallarm tarafına gönderir. Bu şekilde, Wallarm portalına giriş yapmış olursunuz ve gösterge paneli sayfası açılır.
 
-![Wallarm portalı'nın Dashboard'u][img-wl-dashboard]
+![Wallarm portal's Dashboard][img-wl-dashboard]
 
-Bu, SSO kimlik doğrulama sürecini tamamlar.
+Bu adım, SSO doğrulama sürecini tamamlar.

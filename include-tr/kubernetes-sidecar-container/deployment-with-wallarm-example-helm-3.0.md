@@ -1,9 +1,9 @@
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    # Wallarm öğesi: Wallarm ConfigMap'i değiştirdikten sonra çalışan kapsayıcıları güncellemek için not
+    # Wallarm element: Wallarm ConfigMap değiştirildikten sonra çalışan pod'ları güncellemek için açıklama
     checksum/config: '{{ include (print $.Template.BasePath "/wallarm-sidecar-configmap.yaml") . | sha256sum }}'
   name: myapp
 spec:
@@ -16,7 +16,7 @@ spec:
         app: myapp
     spec:
       containers:
-        # Wallarm öğesi: Wallarm sidecar container tanımı
+        # Wallarm element: Wallarm sidecar container tanımı
         - name: wallarm
           image: {{ .Values.wallarm.image.repository }}:{{ .Values.wallarm.image.tag }}
           imagePullPolicy: {{ .Values.wallarm.image.pullPolicy | quote }}
@@ -33,13 +33,13 @@ spec:
             value: {{ .Values.wallarm.tarantool_memory_gb | quote }}
           ports:
           - name: http
-            # Service object'ten gelen talepleri Wallarm sidecar container kabul ettiği port 
+            # Wallarm sidecar container'ın Service nesnesinden istekleri kabul ettiği port
             containerPort: 80
           volumeMounts:
           - mountPath: /etc/nginx/sites-enabled
             readOnly: true
             name: wallarm-nginx-conf
-        # Ana uygulama kapsayıcınızın tanımı
+        # Ana uygulama container'ınızın tanımı
         - name: myapp
           image: <Image>
           resources:
@@ -47,10 +47,10 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-          # Uygulama kapsayıcının gelen talepleri kabul ettiği port
+          # Uygulama container'ının gelen istekleri kabul ettiği port
           - containerPort: 8080 
       volumes:
-      # Wallarm öğesi: wallarm-nginx-conf hacmi tanımı
+      # Wallarm element: wallarm-nginx-conf hacminin tanımı
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

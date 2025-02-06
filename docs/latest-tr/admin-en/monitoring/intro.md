@@ -25,152 +25,126 @@
 
 [doc-selinux]:  ../configure-selinux.md
 
-# Filtreleme düğümü izlemenin giriş
+# Filtreleme Düğümü İzleme
 
-Filtre düğümünün durumunu, düğümün sunduğu metrikleri kullanarak izleyebilirsiniz. Bu makale, her Wallarm filtre düğümünde kurulu olan [`collectd`][link-collectd] hizmeti tarafından toplanan metriklerle nasıl işlem yapılacağını tanımlar. `collectd` hizmeti, verileri aktarmak için birçok yol sunar ve birçok izleme sistemi için metrik kaynağı olarak hizmet edebilir, filtre düğümlerinin durumu üzerinde kontrol sağlayacak şekilde.
+Wallarm filtreleme düğümünün durumunu (hem [NGINX ve Native](../../installation/nginx-native-node-internals.md)) düğüm tarafından sağlanan metrikler kullanarak izleyebilirsiniz. Bu makale, her filtreleme düğümüne kurulu olan [`collectd`][link-collectd] servisi tarafından toplanan metriklerle nasıl çalışılacağını anlatmaktadır. `collectd` servisi, verileri aktarmanın birkaç yolunu sağlar ve birçok izleme sistemi için metrik kaynağı olarak görev yapabilir; size filtreleme düğümlerinin durumunu kontrol etme imkanı sunar.
 
-`collectd` metriklerine ek olarak, Wallarm size Prometheus ile uyumlu metrik formatı ve temel JSON metrikleri sunar. Bu formatlar hakkında [ayrı bir makalede](../configure-statistics-service.md) okuyabilirsiniz.
+`collectd` metriklerine ek olarak, Wallarm, Prometheus ile uyumlu metrik formatı ve temel JSON metriklerini de sunar. Bu formatlar hakkında bilgi edinmek için [ayrı makaleye](../configure-statistics-service.md) bakın.
 
-!!! uyarı "CDN düğümündeki izleme hizmetinin desteği"
-    Lütfen `collectd` hizmetinin [Wallarm CDN düğümleri](../../installation/cdn-node.md) tarafından desteklenmediğini unutmayın.
+##  Neden İzleme Gereklidir
 
-##  İzlemenin Gerekli Olması
+Wallarm modülünde meydana gelen arıza veya istikrarsız çalışma, filtreleme düğümü tarafından korunan bir uygulamaya yapılan kullanıcı isteklerinde kısmi veya tam hizmet reddine yol açabilir.
 
-Hatalı veya istikrarsız çalışan Wallarm modülü, filtre düğümü tarafından korunan bir uygulamaya kullanıcı taleplerine tam veya kısmi hizmet reddi yol açabilir.
+Postanalytics modülündeki arıza veya istikrarsız çalışma ise aşağıdaki işlevlerin erişilemez hale gelmesine neden olabilir:
+*   Saldırı verilerinin Wallarm Cloud'a yüklenmesi. Sonuç olarak, saldırılar Wallarm portalında gösterilmeyecektir.
+*   Davranışsal saldırıların tespiti (bkz. [brute-force attacks][av-bruteforce]).
+*   Korunan uygulamanın yapısı hakkında bilgi edinilmesi.
 
-Postanalytics modülünde hatalı veya istikrarsız çalışma, aşağıdaki işlevlerin erişilemezliğine yol açabilir:
-*   Saldırı verilerini Wallarm bulutuna yükleme. Sonuç olarak, saldırılar Wallarm portalında görüntülenmeyecektir.
-*   Davranışsal saldırıları tespit etme (bkz. [brute-force saldırıları][av-bruteforce]).
-*   Korunan uygulamanın yapısı hakkında bilgi almak.
+Wallarm modülü ve postanalytics modülü, postanalytics modülü [ayrı kurulmuş olsa bile][doc-postanalitycs] izlenebilir.
 
-Wallarm modülünü ve postanalytics modülünü, sonuncusu [ayrıca yüklendiyse][doc-postanalitycs] bile izleyebilirsiniz.
+!!! info "Terminoloji Anlaşması"
 
-
-
-!!! bilgi "Terminoloji anlaşması"
-
-    Wallarm modülünü ve postanalytics modülünü izlemek için aynı araçlar ve yöntemler kullanılır; bu nedenle bu rehber boyunca her iki modül de aksi belirtilmedikçe "filtre düğümü" olarak adlandırılacaktır.
+    Wallarm modülü ve postanalytics modülünü izlemek için aynı araçlar ve yöntemler kullanıldığından, aksi belirtilmedikçe bu kılavuz boyunca her iki modüle de “filtreleme düğümü” denilecektir.
     
-    Filtre düğümünün izlenmesini ayarlamak için tüm belgeler uygundur
+    Filtreleme düğümünün izlenmesinin nasıl kurulacağına dair tüm belgeler aşağıdakiler için uygundur:
 
-    *   ayrı ayrı dağıtılmış Wallarm modülleri,
-    *   ayrı ayrı dağıtılmış postanalytics modülleri, ve
-    *   birlikte dağıtılmış Wallarm ve postanalytics modülleri.
+    *   ayrı kurulmuş Wallarm modülleri,
+    *   ayrı kurulmuş postanalytics modülleri ve
+    *   birlikte kurulmuş Wallarm ve postanalytics modülleri.
 
+##  Ön Koşullar
 
-##  İzleme için Ön Gereksinimler
+İzlemenin çalışabilmesi için aşağıdakilerin sağlanması gerekmektedir:
 
-İzlemenin çalışması için gereklidir:
-* NGINX, filtre düğümüne istatistikleri döndürür (`wallarm_status on`),
-* Filtrasyon modu, `monitoring`/`safe_blocking`/`block` [modunda](../configure-wallarm-mode.md#available-filtration-modes) olmalıdır.
+*   [Wallarm NGINX düğümleri](../../installation/nginx-native-node-internals.md#nginx-node) için, NGINX filtreleme düğümüne istatistik döndürmelidir (`wallarm_status on`)
+*   Filtreleme modu, `monitoring`/`safe_blocking`/`block` [modunda](../configure-wallarm-mode.md#available-filtration-modes) olmalıdır.
   
-Varsayılan olarak, bu servis `http://127.0.0.8/wallarm-status` adresinden erişilebilir.
+Varsayılan olarak, bu servise `http://127.0.0.8/wallarm-status` adresinden erişilebilir. Adres, eğer [değiştirildiyse](../configure-statistics-service.md#changing-an-ip-address-andor-port-of-the-statistics-service) farklı olabilir.
 
-İstatistik hizmetini standart olmayan bir adreste kullanılabilir hale getirirseniz:
+##  Metrik Formatı
 
-1. Yeni adres değerini `/etc/wallarm/node.yaml` dosyasına `status_endpoint` parametresiyle ekleyin, örneğin:
+### `collectd` Metrik Formatı
 
-    ```bash
-    hostname: example-node-name
-    uuid: ea1xa0xe-xxxx-42a0-xxxx-b1b446xxxxxx
-    ...
-    status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
-    ```
-1. `collectd` yapılandırma dosyasında `URL` parametresini buna göre düzeltin. Bu dosyanın yeri, kullanmış olduğunuz işletim sisteminin dağıtım türüne bağlıdır:
-
-    --8<-- "../include-tr/monitoring/collectd-config-location.md"
-
-Tarantool için standart olmayan bir IP adresi veya port kullanılıyorsa, Tarantool yapılandırma dosyasını buna göre düzeltmeniz gerekecektir. Bu dosyanın konumu, kullanmış olduğunuz işletim sisteminin dağıtım türüne bağlıdır:
-
---8<-- "../include-tr/monitoring/tarantool-config-location.md"
-
-Filtre düğümü konakta SELinux kuruluysa, SELinux'un ya [yapılandırılmış ya da devre dışı bırakılmış][doc-selinux] olduğundan emin olun. Basitlik için, bu belge SELinux'un devre dışı bırakıldığını varsayar.
-
-##  Metriklerin Nasıl Göründüğü
-
-### `collectd` Metriklerin Nasıl Göründüğü
-
-Bir `collectd` metrik tanımlayıcısı aşağıdaki formatı içerir:
+Bir `collectd` metrik tanımlayıcısı aşağıdaki formata sahiptir:
 
 ```
 host/plugin[-plugin_instance]/type[-type_instance]
 ```
 
-Nerede
-*   `host`: metriğin elde edildiği konuğun Tam Nitelikli Alan Adı (FQDN)
-*   `plugin`: metriğin elde edildiği eklentinin adı,
-*   `-plugin_instance`: varsa eklentinin örneği,
-*   `type`: metrik değerinin tipi. İzin verilen türler:
+Burada
+*   `host`: Metrik alınan ana makinenin Tam Nitelikli Alan Adı (FQDN)
+*   `plugin`: Metrik alınan eklentinin adı,
+*   `-plugin_instance`: Varsa eklenti örneği,
+*   `type`: Metrik değer tipidir. Kabul edilen tipler:
     *   `counter`
     *   `derive`
     *   `gauge` 
     
-    Değer türleri hakkında ayrıntılı bilgi [burada][link-data-source] bulunabilir.
+    Değer tipleri hakkında detaylı bilgi [burada][link-data-source] mevcuttur.
 
-*   `-type_instance`: varsa bir tür örneği. Tür örneği, metriği almak istediğimiz değere eşdeğerdir.
+*   `-type_instance`: Varsa tipin örneği. Tip örneği, metriğin alınmak istendiği değere eşdeğerdir.
 
-Metrik formatlarının tam bir açıklaması [burada][link-collectd-naming] bulunabilir.
+Metrik formatlarının tam tanımı [burada][link-collectd-naming] mevcuttur.
 
-### Wallarm-Özel `collectd` Metriklerin Nasıl Göründüğü
+### Wallarm'a Özgü `collectd` Metrik Formatı
 
-Filtre düğümü, Wallarm-özel metrikleri toplamak için `collectd` kullanır.
+Filtreleme düğümü, Wallarm'a özgü metrikleri toplamak için `collectd` kullanır.
 
-Wallarm modülü ile NGINX metrikleri aşağıdaki formatı içerir:
+Wallarm modülü ile kullanılan NGINX metrikleri aşağıdaki formata sahiptir:
 
 ```
 host/curl_json-wallarm_nginx/type-type_instance
 ```
 
-Postanalytics modülünün metrikleri aşağıdaki formatı içerir:
+Postanalytics modülü metrikleri ise aşağıdaki formata sahiptir:
 
 ```
 host/wallarm-tarantool/type-type_instance
 ```
 
 
-!!! bilgi "Metrik Örnekleri"
-    `node.example.local` konaklı bir filtre düğümü için:
+!!! info "Metrik Örnekleri"
+    `node.example.local` ana makinesi üzerindeki bir filtreleme düğümü için:
 
-    * `node.example.local/curl_json-wallarm_nginx/gauge-abnormal` işlenmiş taleplerin metriği;
-    * `node.example.local/wallarm-tarantool/gauge-export_delay` Tarantool ihracat gecikmesinin saniye cinsinden metriği.
+    * `node.example.local/curl_json-wallarm_nginx/gauge-abnormal` işlenen istek sayısının metrikidir;
+    * `node.example.local/wallarm-tarantool/gauge-export_delay` Tarantool aktarım gecikmesinin (saniye cinsinden) metriğidir.
     
-    İzlenebilecek metriklerin tam listesi, [burada][doc-available-metrics] bulunabilir.
+    İzlenebilecek metriklerin tam listesine [buradan][doc-available-metrics] ulaşabilirsiniz.
 
+##  Metriklerin Toplanma Yöntemleri
 
-##  Metrikleri Almanın Yöntemleri
-
-Filtre düğümünden metrikleri birkaç şekilde toplayabilirsiniz:
-*   Verileri doğrudan `collectd` hizmetinden aktararak
-    *   [via the Network plugin for `collectd`][doc-network-plugin].
+Filtreleme düğümünden metrikleri toplamanın birkaç yöntemi vardır:
+*   `collectd` servisinden doğrudan veri ihracatı yaparak:
+    *   [ `collectd` için Network eklentisi aracılığıyla][doc-network-plugin].
     
-        Bu [eklenti][link-network-plugin], `collectd` metriklerini bir filtre düğümünden [`collectd`][link-collectd-networking] sunucusuna veya [InfluxDB][link-influxdb] veritabanına indirmesini sağlar.
+        Bu [eklenti][link-network-plugin], `collectd`'in filtreleme düğümünden verileri [`collectd`][link-collectd-networking] sunucusuna veya [InfluxDB][link-influxdb] veritabanına aktarmasına olanak tanır.
         
         
-        !!! bilgi "InfluxDB"
-            InfluxDB, `collectd` ve diğer veri kaynaklarından metriklerin toplanması için kullanılabilir, ardından görselleştirme (örneğin, InfluxDB'de saklanan metrikleri görselleştirmek için bir [Grafana][link-grafana] izleme sistemi).
+        !!! info "InfluxDB"
+            InfluxDB, `collectd` ve diğer veri kaynaklarından metriklerin toplanması ve ardından görselleştirilmesi için kullanılabilir (örneğin, InfluxDB'de depolanan metrikleri görselleştirmek amacıyla [Grafana][link-grafana] izleme sistemi ile).
         
-    *   [via one of the write plugins for `collectd`][doc-write-plugins].
+    *   [ `collectd` için yazma eklentilerinden biri aracılığıyla][doc-write-plugins].
   
-        Örneğin, `write_graphite` eklentisini kullanarak toplanan verileri [Graphite][link-graphite]'a aktarabilirsiniz.
+        Örneğin, toplanan verileri `write_graphite` eklentisi kullanarak [Graphite][link-graphite]'e aktarabilirsiniz.
   
         
         !!! info "Graphite"
-            Graphite, izleme ve görselleştirme sistemleri için bir veri kaynağı olarak kullanılabilir (örneğin, [Grafana][link-grafana]).
+            Graphite, izleme ve görselleştirme sistemleri için veri kaynağı olarak kullanılabilir (örneğin, [Grafana][link-grafana]).
         
   
-    Bu yöntem, aşağıdaki filtre düğümü dağıtım türleri için uygundur:
+    Bu yöntem, aşağıdaki filtreleme düğümü dağıtım türleri için uygundur:
 
-    *   bulutlar içinde: Amazon AWS, Google Cloud;
-    *   Linux için NGINX / NGINX Plus platformları.
+    *   Bulut ortamlarında: Amazon AWS, Google Cloud;
+    *   Linux üzerinde, NGINX/NGINX Plus platformları için.
 
-*   [By exporting data via `collectd-nagios`][doc-collectd-nagios].
+*   [ `collectd-nagios` aracılığıyla veri ihracatı yaparak][doc-collectd-nagios].
   
-    Bu [utility][link-collectd-nagios], `collectd` dan belirli bir metrik değerini alır ve bu değeri [Nagios uyumlu formatında][link-nagios-format] sunar.
+    Bu [araç][link-collectd-nagios], `collectd`'den verilen metrik değerini alır ve bunu [Nagios‑uyumlu formatta][link-nagios-format] sunar.
   
-    Bu yardımcı programı kullanarak metrikleri [Nagios][link-nagios] veya [Zabbix][link-zabbix] izleme sistemlerine aktarabilirsiniz.
+    Bu aracı kullanarak metrikleri [Nagios][link-nagios] veya [Zabbix][link-zabbix] izleme sistemlerine aktarabilirsiniz.
   
-    Bu yöntem, düğümün nasıl dağıtıldığına bakılmaksızın herhangi bir Wallarm filtre düğümü tarafından desteklenir.
+    Bu yöntem, nasıl dağıtıldığından bağımsız olarak herhangi bir Wallarm filtreleme düğümü tarafından desteklenir.
   
-*   [By sending notifications from `collectd`][doc-collectd-notices] when a metric has achieved a predetermined threshold value.
-
-    Bu yöntem, düğümün nasıl dağıtıldığına bakılmaksızın herhangi bir Wallarm filtre düğümü tarafından desteklenir.
+*   Metrik belirlenmiş eşik değerine ulaştığında `collectd`'den bildirim gönderimi yaparak.
+  
+    Bu yöntem, nasıl dağıtıldığından bağımsız olarak herhangi bir Wallarm filtreleme düğümü tarafından desteklenir.

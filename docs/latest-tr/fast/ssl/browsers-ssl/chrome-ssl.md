@@ -13,71 +13,70 @@
 [img-https-ok]:             ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-https-ok.png   
     
     
-    
-#   Google Chrome için FAST Node Öz İmzalı SSL Sertifikasının Kurulumu
+#   Google Chrome için FAST Node Self-signed SSL-certificate Kurulumu
 
-Google Chrome tarayıcısı için sertifikayı kurmak için aşağıdaki adımları izleyin:
+Google Chrome tarayıcısı için sertifikayı yüklemek amacıyla, aşağıdaki adımları izleyin:
 
-1.  Tarayıcınızın HTTP ve HTTPS proxy olarak FAST node'u kullanmaya ayarlandığından emin olun.
+1.  Tarayıcınızın, HTTP ve HTTPS proxy olarak FAST node'u kullanacak şekilde yapılandırıldığından emin olun.
 
-2.  `cert.der` dosyasını herhangi bir alan adından HTTP kullanarak tarayıcınızla isteyin.
+2.  Tarayıcı kullanarak herhangi bir domainden HTTP üzerinden `cert.der` dosyasını isteyin.
 
-    Örneğin, aşağıdaki linklerden birini kullanabilirsiniz:
+    Örneğin, aşağıdaki bağlantılardan birini kullanabilirsiniz:
     
     * <http://wallarm.get/cert.der>
     * <http://example.com/cert.der>
 
-    Tarayıcı sertifika dosyasını indirecektir. Konfigürasyona bağlı olarak, dosya ya varsayılan indirme dizinine yerleştirilir veya sizin tercih ettiğiniz bir dizinde olacaktır.
+    Tarayıcı, sertifika dosyasını indirecektir. Yapılandırmaya bağlı olarak, dosya ya varsayılan indirme dizinine ya da seçtiğiniz dizine yerleştirilecektir.
 
-    ![Öz imzalı FAST node sertifikasını talep etme][img-cert-request]
+    ![Kendi kendine imzalanmış FAST node sertifikasının istenmesi][img-cert-request]
 
-3.  Tarayıcının gizlilik ve güvenlik ayarlarını açın. Bunu yapmak için ya <chrome://settings/privacy> linkine gidin ya da tarayıcı ayarlarını açıp **Advanced (İleri)** butonunu seçerek ek ayarları genişletin.
+3.  Tarayıcının gizlilik ve güvenlik ayarları listesini açın. Bunu yapmak için, ya <chrome://settings/privacy> bağlantısına gidin ya da tarayıcı ayarlarını açıp listenin sonunda bulunan **Advanced** düğmesine tıklayarak ek ayarları genişletin.
 
-    ![Chrome gelişmiş ayarlar][img-adv-settings]
+    ![Chrome advanced settings][img-adv-settings]
     
-    “Manage certificates (Sertifikaları Yönet)” seçeneğini seçin.
+    “Manage certificates” seçeneğini seçin.
     
-    ![Chrome “Sertifikaları Yönet” ayarı][img-cert-mgmt]
+    ![Chrome “Manage certificates” ayarı][img-cert-mgmt]
 
-4.  Chrome sertifikalarına dair bilgilerin bulunduğu “Certificates (Sertifikalar)” penceresi açılır. "Trusted Root Certification Authorities (Güvenilen Kök Sertifika Otoritelerı)" sekmesine geçin ve **Import (İçe Aktar)** butonunu seçin. 
+4.  Chrome sertifikaları hakkında bilgileri içeren bir “Certificates” penceresi açılacaktır. “Trusted Root Certification Authorities” sekmesine geçin ve **Import** düğmesini seçin. 
 
-    ![“Sertifikalar” penceresi][img-cert-window]
+    ![“Certificates” penceresi][img-cert-window]
         
-    Bir Sertifika İçe Aktarma Sihirbazı açılır. **Next (İleri)** butonunu seçin.
+    Bir Sertifika İçe Aktarma Sihirbazı açılmalıdır. **Next** düğmesini seçin.
         
     ![Sertifika İçe Aktarma Sihirbazı][img-cert-wizard]
 
-5.  **Browse (Göz At)** butonunu seçin ve daha önce indirdiğiniz sertifika dosyasını seçin. 
+5.  **Browse** düğmesini seçin ve ardından daha önce indirdiğiniz sertifika dosyasını seçin. 
     
-    ![Sertifika dosyasını içe aktarma][img-cert-import]
+    ![Certificate file import][img-cert-import]
 
-    Gerekirse “All files (Tüm dosyalar)” dosya türünü seçin. **Next (İleri)** butonunu seçin.
+    Gerekirse “All files” dosya türünü seçin. **Next** düğmesini tıklayın.
 
-    ![Sertifika dosyasını seçme][img-cert-select]
+    ![Selection of the certificate file][img-cert-select]
 
-6.  Bir sertifika deposunu seçmeniz istenecektir. “Place all certificates in the following store (Tüm sertifikaları aşağıdaki depoda yerleştir)” seçeneğini seçin ve depo olarak "Trusted Root Certification Authorities (Güvenilen Kök Sertifika Otoritelerı)" seçeneğini belirtin. **Next (İleri)** butonunu seçin.
+6.  Bir sertifika deposu seçmeniz istenecek. "Place all certificates in the following store" seçeneğini seçin ve depo olarak "Trusted Root Certification Authorities" ayarlayın. **Next** düğmesine tıklayın.
 
-    ![Sertifika deposunu seçme][img-store]
+    ![Select certificate store][img-store]
     
-    Sertifika için uygun depoyu seçtiğinize emin olun ve **Finish (Bitir)** butonunu seçerek içe aktarılan işlemi başlatın.
+    Sertifika için uygun deponun seçildiğinden emin olun ve **Finish** düğmesine tıklayarak içe aktarma işlemini başlatın.
     
-    ![Sertifika içe aktarma sihirbazı özeti][img-wizard-resume]
+    ![Certificate import wizard resume][img-wizard-resume]
 
-7.  İçe aktarılacak sertifikanın parmak izinin doğrulanamaması hakkında bir uyarı mesajı alırsınız. İçe aktarma işlemini tamamlamak için **Yes (Evet)** butonunu seçin.
+7.  İçe aktarılan sertifikanın parmak izinin doğrulanamadığına dair bir uyarı mesajı gösterilecektir. İçe aktarma işlemini tamamlamak için **Yes** düğmesini seçin.
 
-    ![Parmak izi doğrulama uyarısı][img-fingerprint-warning]
+    ![Fingerprint validation warning][img-fingerprint-warning]
 
-    İçe aktarım işlemi başarılı olursa, "The import was successful (İçe aktarma başarılı oldu)" bilgilendirme mesajı görünecektir.
+    İçe aktarma başarılı olduğunda, “The import was successful” bilgi mesajı görünecektir.
 
-    ![Başarılı sertifika içe aktarma][img-import-ok]
+    ![Successful import of the certificate][img-import-ok]
     
-    Şimdi "Trusted Root Certification Authorities (Güvenilen Kök Sertifika Otoritelerı)" sekmesinde içe aktarılan sertifikayı görebilirsiniz. Sertifikanın adı ve son kullanma tarihi görselde gösterilenden farklı olacaktır.
+    Artık “Certificates” penceresinin “Trusted Root Certification Authorities” sekmesinde içe aktarılan sertifikayı göreceksiniz. Sertifikanızın adı ve son kullanma tarihinin resimde gösterilenden farklı olabileceğini unutmayın.
     
-    ![İçe aktarılan sertifika][img-installed-cert]
+    ![Installed certificate][img-installed-cert]
 
-8.  Sertifikanın düzgün bir şekilde yüklendiğini kontrol edin. Bunun için, herhangi bir siteye HTTPS üzerinden gidin. Herhangi bir güvenilmeyen sertifika hakkında uyarı mesajı olmaksızın siteye HTTPS sürümüne yönlendirilmeniz gerekir.
+8.  Sertifikanın doğru şekilde yüklendiğini kontrol edin. Bunu yapmak için, herhangi bir siteye HTTPS üzerinden gidin. Siteye, güvenilmeyen sertifikalarla ilgili herhangi bir uyarı mesajı olmadan, HTTPS sürümüne yönlendirilmelisiniz.
 
-    Örneğin, Google Gruyere sitesinin HTTPS sürümüne göz atabilirsiniz:
+    Örneğin, Google Gruyere sitesinin HTTPS sürümüne gidebilirsiniz:
     <https://google-gruyere.appspot.com>
 
     ![HTTPS çalışıyor][img-https-ok]

@@ -1,8 +1,8 @@
-Raporları ve bildirimleri geçici olarak göndermeyi durdurmak için, entegrasyonu devre dışı bırakabilirsiniz:
+Rapor göndermeyi ve bildirimleri geçici olarak durdurmak için entegrasyonu devre dışı bırakabilirsiniz:
 
-1. Wallarm Konsolu → [US](https://us1.my.wallarm.com/integrations/) veya [EU](https://my.wallarm.com/integrations/) Cloud'daki **Entegrasyonlar**'a gidin.
-2. Aktif bir entegrasyonu açın ve **Devre dışı bırak**'a tıklayın.
+1. [US](https://us1.my.wallarm.com/integrations/) veya [EU](https://my.wallarm.com/integrations/) Cloud'da Wallarm Console → **Integrations** bölümüne gidin.
+2. Aktif bir entegrasyonu açın ve **Disable** düğmesine tıklayın.
 
-Raporları ve bildirimleri yeniden göndermeyi etkinleştirmek için, devre dışı bırakılmış entegrasyonu açın ve **Etkinleştir**'e tıklayın.
+Rapor ve bildirim göndermeyi yeniden etkinleştirmek için, devre dışı bırakılan entegrasyonu açın ve **Enable** düğmesine tıklayın.
 
-Entegrasyonun devre dışı bırakılması sistem olayıdır. Sistem bildirimleri alıyorsanız, devre dışı bırakılmış entegrasyon hakkındaki mesajlar, [yapılandırılmış sisteme](integrations-intro.md#integration-types) gönderilir.
+Entegrasyonu devre dışı bırakmak sistem olayını gerçekleştirir. Sistem bildirimleri alıyorsanız, devre dışı bırakılan entegrasyon ile ilgili mesajlar [configured system](integrations-intro.md#integration-types) adresine gönderilecektir.

@@ -3,23 +3,23 @@
 
 [doc-setup-idp]:                setup-idp.md
 
-# Adım 1: Wallarm Tarafında Parametrelerin Oluşturulması (Okta)
+#   Adım 1: Wallarm Tarafında Parametrelerin Oluşturulması (Okta)
 
-SSO'yu Okta ile bağlamak için ilk olarak Wallarm tarafında bazı parametreler oluşturmanız gerekecektir.
+Okta ile SSO'yu bağlamak için önce Wallarm tarafında bazı parametreler oluşturmanız gerekecektir.
 
-!!! uyarı "SSO hizmetini öncelikle Wallarm tarafında etkinleştirin"
-    Varsayılan olarak, Wallarm'da SSO bağlantısı, uygun hizmeti etkinleştirmeden mevcut değildir. SSO hizmetini etkinleştirmek için lütfen hesap yöneticinizle veya [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişime geçin.
+!!! warning "Önce Wallarm tarafında SSO hizmetini etkinleştirin"
+    Varsayılan olarak, ilgili hizmet etkinleştirilmediği sürece Wallarm üzerindeki SSO bağlantısı mümkün değildir. SSO hizmetini etkinleştirmek için lütfen hesap yöneticiniz veya [Wallarm support team](mailto:support@wallarm.com) ile iletişime geçin.
 
-    Hizmeti etkinleştirdikten sonra aşağıdaki SSO bağlantı işlemine devam edebilirsiniz.
+    Hizmet etkinleştirildikten sonra aşağıdaki SSO bağlantı prosedürünü gerçekleştirebilirsiniz.
 
-Yönetici hesabınız kullanarak Wallarm Konsolu'na giriş yapın ve **Ayarlar → Entegrasyon → Okta SSO** adımlarını izleyerek Okta entegrasyon ayarlarına geçin.
+Yönetici hesabınızı kullanarak Wallarm Console'a giriş yapın ve **Settings → Integration → Okta SSO** adımlarını izleyerek Okta entegrasyonu ayarlarına geçin.
 
-![“Okta SSO” bloğu][img-okta-sso-provider-wl]
+![The “Okta SSO” block][img-okta-sso-provider-wl]
 
-Bu, SSO konfigürasyon sihirbazını açar. Sihirbazın ilk adımında, Okta hizmetine geçirilmesi gereken parametreler (hizmet sağlayıcının metaverileri) ile bir form sunulacaktır:
-*   **Wallarm Entity ID**, kimlik sağlayıcı için Wallarm uygulaması tarafından oluşturulan benzersiz bir uygulama tanımlayıcısıdır.
-*   **Assertion Consumer Service URL (ACS URL)**, kimlik sağlayıcının SamlResponse parametresi ile talepler gönderdiği Wallarm tarafında uygulamanın adresidir.
+Bu işlem SSO yapılandırma sihirbazını açacaktır. Sihirbazın ilk adımında, Okta hizmetine iletilmesi gereken parametreleri (hizmet sağlayıcının meta verileri) içeren bir form karşınıza çıkacaktır:
+*   **Wallarm Entity ID**, Wallarm uygulaması tarafından kimlik sağlayıcı için oluşturulan benzersiz uygulama tanımlayıcısıdır.
+*   **Assertion Consumer Service URL (ACS URL)**, kimlik sağlayıcının SamlResponse parametresi ile istek gönderdiği Wallarm tarafındaki uygulama adresidir.
 
-![Hizmet sağlayıcının metaverileri][img-sp-metadata]
+![Service provider's metadata][img-sp-metadata]
 
-Oluşturulan parametreler, Okta hizmet tarafında karşılık gelen alanlara girilmelidir (bkz. [Adım 2][doc-setup-idp]).
+Oluşturulan parametrelerin, Okta hizmet tarafındaki ilgili alanlara girilmesi gerekecektir (bkz. [Adım 2][doc-setup-idp]).

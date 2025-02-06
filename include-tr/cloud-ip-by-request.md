@@ -1,5 +1,6 @@
-!!! bilgi "Wallarm Cloud IP adresleri"
-    Sisteminize Wallarm Cloud erişimini sağlamak için, halka açık IP adreslerinin listesine ihtiyacınız olabilir:
+```markdown
+!!! info "Wallarm Cloud IP addresses"
+    Sisteminizin Wallarm Cloud erişimini sağlamak için, genel IP adreslerinin bir listesine ihtiyacınız olabilir:
 
     === "US Cloud"
         ```
@@ -19,3 +20,4 @@
         34.90.114.134
         35.204.127.78
         ```
+```

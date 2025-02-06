@@ -25,123 +25,112 @@ search:
 [img-node-with-several-instances]:  ../../../../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]:      ../../../../images/user-guides/nodes/create-cloud-node.png
 [nginx-custom]:                 ../../../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
-[node-token]:                       ../../../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
+[node-token]:                       ../../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../../user-guides/settings/api-tokens.md
 [platform]:                         ../../../supported-deployment-options.md
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
-[oob-advantages-limitations]:       ../../../oob/overview.md#advantages-and-limitations
-[web-server-mirroring-examples]:    ../../../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[oob-advantages-limitations]:       ../../../oob/overview.md#limitations
+[web-server-mirroring-examples]:    ../../../oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
+[download-aio-step]:                #step-3-download-all-in-one-wallarm-installer
+[enable-traffic-analysis-step]:     #step-5-enable-wallarm-node-to-analyze-traffic
+[restart-nginx-step]:               #step-6-restart-nginx
+[separate-postanalytics-installation-aio]:  ../../../../admin-en/installation-postanalytics-en.md
+[api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
 
-# Tüm Bir Arada Kurucuyla Dağıtım
+# Tüm Bir Arada Yükleyici ile Kurulum
 
-Bu talimatlar, Wallarm'ı çeşitli ortamlarda NGINX için bir dinamik modül olarak Wallarm düğümünü yüklemenin sürecini standardize etmek ve basitleştirmek için tasarlanmış bir **tüm bir arada kurucu** kullanarak bir [OOB](../overview.md) dinamik modül olarak kurma adımlarını anlatmaktadır. Bu kurucu, işletim sisteminizin ve NGINX sürümünüzü otomatik olarak tanımlar ve tüm gerekli bağımlılıkları yükler.
+Bu talimatlar, Wallarm'ı çeşitli ortamlarda NGINX için dinamik modül olarak kurmak amacıyla süreci basitleştirmek ve standartlaştırmak için tasarlanmış bir **tüm bir arada yükleyici** kullanarak [OOB](../overview.md) dinamik modülü olarak yükleme adımlarını açıklamaktadır. Bu yükleyici, işletim sisteminizin ve NGINX sürümünüzün otomatik olarak tespit edilmesini sağlar ve tüm gerekli bağımlılıkları kurar.
 
-Wallarm tarafından [NGINX](nginx-stable.md), [NGINX Plus](nginx-plus.md) ve [dağıtım sağlanan NGINX](nginx-distro.md) için sunulan ayrı Linux paketlerine kıyasla, **tüm bir arada kurucu** aşağıdaki işlemleri otomatik olarak gerçekleştirerek süreci basitleştirir:
+**Tüm bir arada yükleyici**, aşağıdaki işlemleri otomatik olarak gerçekleştiren basit bir node kurulum süreci sunar:
 
-1. İşletim sisteminizin ve NGINX sürümünüzü kontrol eder.
-2. Tespit edilen işletim sistemi ve NGINX sürümü için Wallarm depolarını ekler.
-3. Bu depolardan Wallarm paketlerini yükler.
+1. İşletim sisteminizi ve NGINX sürümünüzü kontrol eder.
+2. Tespit edilen OS ve NGINX sürümü için Wallarm depolarını ekler.
+3. Bu depolardan Wallarm paketlerini kurar.
 4. Yüklenen Wallarm modülünü NGINX'inize bağlar.
-5. Filtreleme düğümünü sağlanan belirteç kullanılarak Wallarm Bulutuna bağlar.
+5. Sağlanan tokeni kullanarak filtreleme node'unu Wallarm Cloud'a bağlar.
 
-![Tüm Bir Arada ile Manuel Karşılaştırıldı](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+## Kullanım Senaryoları
 
-## Kullanım Durumları
-
---8<-- "../include-tr/waf/installation/all-in-one/use-cases.md"
+--8<-- "../include/waf/installation/all-in-one/use-cases.md"
 
 ## Gereksinimler
 
---8<-- "../include-tr/waf/installation/all-in-one-requirements.md"
+--8<-- "../include/waf/installation/all-in-one-requirements-latest.md"
 
-## Adım 1: NGINX ve Bağımlılıkları Yükleme
+## Adım 1: NGINX ve Bağımlılıklarını Yükleyin
 
---8<-- "../include-tr/waf/installation/all-in-one-nginx.md"
+--8<-- "../include/waf/installation/all-in-one-nginx.md"
 
-## Adım 2: Wallarm Belirteci Hazırlama
+## Adım 2: Wallarm Tokenini Hazırlayın
 
---8<-- "../include-tr/waf/installation/all-in-one-token.md"
+--8<-- "../include/waf/installation/all-in-one-token.md"
 
-## Adım 3: Tüm bir arada Wallarm Kurucusunu İndirme
+## Adım 3: Tüm Bir Arada Wallarm Yükleyicisini İndirin
 
---8<-- "../include-tr/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-## Adım 4: Tüm bir arada Wallarm Kurucusunu Çalıştırma
+## Adım 4: Tüm Bir Arada Wallarm Yükleyicisini Çalıştırın
 
---8<-- "../include-tr/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include/waf/installation/all-in-one-installer-run.md"
 
-Daha ileri adımlardaki komutlar, x86_64 ve ARM64 kurulumları için aynıdır.
+İlerleyen adımlardaki komutlar, x86_64 ve ARM64 kurulumları için aynıdır.
 
-## Adım 5: Trafik Analizi İçin Wallarm Düğümünü Etkinleştirme
+## Adım 5: Wallarm Node'unu Trafiği Analiz Etmek Üzere Etkinleştirin
 
---8<-- "../include-tr/waf/installation/oob/steps-for-mirroring-linux-all-in-one.md"
+--8<-- "../include/waf/installation/oob/steps-for-mirroring-linux-all-in-one.md"
 
-## Adım 6: NGINX'i Yeniden Başlatma
+## Adım 6: NGINX'i Yeniden Başlatın
 
---8<-- "../include-tr/waf/installation/restart-nginx-systemctl.md"
+--8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-## Adım 7: Trafik Gönderimini Wallarm Düğümüne Yapılandırma
+## Adım 7: Trafiğin Wallarm Node'a Gönderilmesini Yapılandırın
 
---8<-- "../include-tr/waf/installation/sending-traffic-to-node-oob.md"
+--8<-- "../include/waf/installation/sending-traffic-to-node-oob.md"
 
-## Adım 8: Wallarm Düğüm İşleminin Test Edilmesi
+## Adım 8: Wallarm Node'unun Çalışmasını Test Edin
 
---8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## Adım 9: Dağıtılmış Çözümün İnce Ayarını Yapma
+## Adım 9: Dağıtılan Çözümü İnce Ayarlayın
 
-Varsayılan ayarlarla dinamik Wallarm modülü yüklendi. Filtreleme düğümü, dağıtımdan sonra bazı ek yapılandırmalar gerektirebilir.
+Dinamik Wallarm modülü, varsayılan ayarlarla yüklenmiştir. Dağıtımdan sonra, filtreleme node'u ek yapılandırmalara ihtiyaç duyabilir.
 
-Wallarm ayarları, [NGINX yönergeleri](../../../../admin-en/configure-parameters-en.md) veya Wallarm Console UI kullanılarak tanımlanır. Yönergeler, Wallarm düğümü ile makinedeki aşağıdaki dosyalara ayarlanmalıdır:
+Wallarm ayarlarını, [NGINX yönergeleri](../../../../admin-en/configure-parameters-en.md) veya Wallarm Console UI üzerinden tanımlayabilirsiniz. Yönergeler, Wallarm node'unun bulunduğu makinede aşağıdaki dosyalarda ayarlanmalıdır:
 
-* Wallarm düğümü izleme ayarları olan `/etc/nginx/wallarm-status.conf` ile NGINX ayarları olan `/etc/nginx/nginx.conf`
-* Tarantool'den istatistikleri toplayan `collectd` eklentisi için ayarlarla `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` 
+* Sunucu ve konum seviyeleri için: `/etc/nginx/sites-available/default`
+* http seviyesi için: `/etc/nginx/nginx.conf`
+* Wallarm node izleme ayarları için: `/etc/nginx/wallarm-status.conf` (Detaylı açıklama [linkte](wallarm-status-instr) mevcuttur)
+* Tarantool'dan istatistik toplayan `collectd` eklentisi için ayarlar: `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf`
 
-Aşağıda, gerektiğinde uygulayabileceğiniz tipik ayarların birkaçı bulunmaktadır:
+Aşağıda, gerekirse uygulayabileceğiniz tipik ayarlardan bazıları verilmiştir:
 
-* [Wallarm düğümleri için kaynak ayırma][memory-instr]
-* [Wallarm düğüm değişkenlerini günlüğe kaydetme][logging-instr]
-* [Filtreleme düğümünün arkasındaki proxy sunucu balancerını kullanma][proxy-balancer-instr]
-* [`wallarm_process_time_limit` yönergesindeki tek istek işleme süresini sınırlama][process-time-limit-instr]
-* [NGINX yönergesi `proxy_read_timeout` içinde sunucu yanıt bekleme süresini sınırlama](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
-* [NGINX yönergesi `client_max_body_size` içinde maksimum istek boyutunu sınırlama](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
-* [NGINX'te dinamik DNS çözünürlüğünün yapılandırılması][dynamic-dns-resolution-nginx]
+* [Wallarm node'ları için kaynak tahsisi][memory-instr]
+* [Wallarm node değişkenlerinin kaydedilmesi][logging-instr]
+* [Filtreleme node'unun arkasındaki proxy sunucusunun balancer'ının kullanılması][proxy-balancer-instr]
+* [`wallarm_process_time_limit` yönergesi içinde tek bir isteğin işlenme süresinin sınırlandırılması][process-time-limit-instr]
+* [NGINX yönergesi `proxy_read_timeout` içinde sunucu yanıt bekleme süresinin sınırlandırılması](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
+* [NGINX yönergesi `client_max_body_size` içinde maksimum istek boyutunun sınırlandırılması](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
+* [NGINX'de dinamik DNS çözümlemesinin yapılandırılması][dynamic-dns-resolution-nginx]
 
 ## Başlatma Seçenekleri
 
-Tüm bir arada betiği indirdiğinizde, şununla yardım alabilirsiniz:
+--8<-- "../include/waf/installation/all-in-one/launch-options.md"
 
-```
-sudo sh ./wallarm-4.8.0.x86_64-glibc.sh -- -h
-```
+## Kurulumu Baştan Başlatma
 
-Bu, döndürür:
+Wallarm node kurulumunu silip yeniden başlatmanız gerekirse, aşağıdaki adımları izleyin.
 
-```
-...
-Kullanım: setup.sh [seçenekler]... [argümanlar]... [filtrasyon/postanalitik]
+!!! warning "Kurulumu Baştan Başlatmanın Etkisi"
+    Kurulumu yeniden başlatmak, çalışan Wallarm servislerinin durdurulmasını ve silinmesini içerir, bu da yeniden yüklenene kadar trafik filtrasyonunun duraklamasına neden olur. Üretim veya kritik trafik ortamlarında dikkatli olun, çünkü bu durum trafiğin filtrelenmemesine ve risk altına girmesine yol açar.
 
-SEÇENEK                      AÇIKLAMA
--b, --batch                 Toplu mod, etkileşimli olmayan kurulum.
--t, --token TOKEN           Düğüm belirteci, yalnızca toplu modda kullanılır.
--c, --cloud CLOUD           Wallarm Bulut, US/EU'dan biri, varsayılan EU, yalnızca toplu modda kullanılır.
--H, --host HOST             Wallarm API adresi, örneğin, api.wallarm.com veya us1.api.wallarm.com, yalnızca toplu modda kullanılır.
--P, --port PORT             Wallarm API pot, örneğin, 443.
-    --no-ssl                Wallarm API erişimi için SSL'yi devre dışı bırakır.
-    --no-verify             SSL sertifika doğrulamasını devre dışı bırakır.
--f, --force                 Eğer aynı ada sahip bir düğüm varsa, yeni bir örnek oluşturur.
--h, --help
-    --version
-```
+    Mevcut bir node'u yükseltmek için (örneğin, 4.10'dan 5.0'a), [yükseltme talimatlarına](../../../../updating-migrating/all-in-one.md) bakın.
 
-Şunu not edin:
+1. Wallarm süreçlerini sonlandırın ve yapılandırma dosyalarını kaldırın:
 
-* `--batch` seçeneği, bir **toplu (etkileşimli olmayan) modu** etkinleştirir. Bu modda, ek parametreleri kullanmazsanız, düğüm betiği başlatıldıktan hemen sonra kurulur, kullanıcıdan ek etkileşim veya veri girişi gerektirmez. Toplu mod:
- 
-    * `--token` gerektirir
-    * Varsayılan olarak düğümü EU Bulut'a yükler
-    * Ek seçeneklerle betiğin davranışlarının değiştirmesine izin verir
-
-* `filtering/postanalytics` anahtarı postanalytics modülünü [ayrı ayrı](../../../../admin-en/installation-postanalytics-en.md#postanalytics-module-installation-via-all-in-one-installation-script) yüklemeyi sağlar. Anahtar kullanılmazsa, filtreleme ve postanalitik kısım birlikte yüklenir.
+    ```
+    sudo systemctl stop wallarm
+    sudo rm -rf /opt/wallarm
+    ```
+1. [2. adımda](#step-2-prepare-wallarm-token) verilen kurulum talimatlarını izleyerek yeniden yükleme sürecine devam edin.

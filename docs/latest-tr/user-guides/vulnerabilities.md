@@ -1,98 +1,99 @@
-# Zafiyetlerin Yönetimi
+# Güvenlik Açıklarını Yönetme
 
-Zafiyetler, altyapıdaki güvenlik açıklarıdır ve saldırganlar tarafından yetkisiz hasarlı eylemler gerçekleştirmek için kullanılabilirler. Wallarm Konsolundaki **Zafiyetler** bölümü, sistemlerinizde Wallarm tarafından algılanmış olan güvenlik hatalarını analiz etme ve yönetme imkanı sunar.
+Güvenlik açıkları, saldırganlar tarafından sisteminizde yetkisiz kötü niyetli işlemler gerçekleştirmek amacıyla istismar edilebilecek altyapıdaki güvenlik zaafiyetleridir. Wallarm Console’un **Güvenlik Açıkları** bölümü, Wallarm tarafından sisteminizde tespit edilen güvenlik zaafiyetlerini analiz etmenize ve yönetmenize olanak tanır.
 
-Wallarm, [keşfetme](../about-wallarm/detecting-vulnerabilities.md) için çeşitli teknikler kullanır. Bunlar arasında:
+Wallarm, [güvenlik zaafiyetlerini tespit etmek](../about-wallarm/detecting-vulnerabilities.md) için çeşitli teknikler kullanır, bunlar şunları içerir:
 
-* **Pasif algılama**: zafiyet, meydana gelen güvenlik olayı nedeniyle bulundu
-* **Aktif tehdit doğrulaması**: zafiyet, saldırının doğrulama süreci sırasında bulundu
-* **Zafiyet Tarayıcı**: zafiyet, [açığa çıkan varlık](scanner.md) tarama süreci sırasında bulundu
+* **Pasif tespit**: Güvenlik açığı, hem istekler hem yanıtlar dahil gerçek trafiğin analiz edilmesi sonucu tespit edilmiştir. Bu durum, gerçek bir zaafiyetin kullanıldığı bir güvenlik olayında veya isteklerin, doğrudan zaafiyet kullanımı olmaksızın, tehlike işaretleri (örneğin, tehlikeye karşı bozulmuş JWT'ler) göstermesi halinde meydana gelebilir.
+* **Threat Replay Testing**: Güvenlik açığı, saldırı doğrulama sürecinde tespit edilmiştir.
+* **Vulnerability Scanner**: Güvenlik açığı, [exposed asset](scanner.md) tarama süreci sırasında tespit edilmiştir.
+* **API Discovery Insights**: Güvenlik açığı, GET isteklerinin sorgu parametrelerinde PII aktarımı nedeniyle [API Discovery](../api-discovery/overview.md) modülü tarafından tespit edilmiştir.
 
-Wallarm, algılanan tüm zafiyetlerin geçmişini **Zafiyetler** bölümüne kaydeder:
+Wallarm, tespit edilen tüm güvenlik açıklarının geçmişini **Güvenlik Açıkları** bölümünde saklar:
 
-![Zafiyetler sekmesi](../images/user-guides/vulnerabilities/check-vuln.png)
+![Güvenlik Açıkları sekmesi](../images/user-guides/vulnerabilities/check-vuln.png)
 
-## Zafiyet ömrü
+## Güvenlik Açığı Yaşam Döngüsü
 
-Bir zafiyetin yaşam döngüsü, değerlendirme, düzeltme ve doğrulama aşamalarını içerir. Her aşamada, Wallarm size sorunu eksiksiz bir şekilde ele almak ve sistemnizi güçlendirmek için gerekli verileri sağlar. Ayrıca, Wallarm Konsolu, **Aktif** ve **Kapalı** durumlarını kullanarak zafiyetin durumunu kolaylıkla izlemenize ve yönetmenize olanak sağlar.
+Bir güvenlik açığının yaşam döngüsü, değerlendirme, iyileştirme ve doğrulama aşamalarını içerir. Her aşamada, Wallarm, sorunu kapsamlı bir şekilde ele almanız ve sisteminizi güçlendirmeniz için gerekli verileri sağlar. Ayrıca, Wallarm Console, **Active** ve **Closed** durumlarını kullanarak güvenlik açığı durumunu kolaylıkla izlemenizi ve yönetmenizi sağlar.
 
-* **Aktif** durum, zafiyetin altyapıyı tehdit ettiğini gösterir.
-* **Kapalı** durum, zafiyetin uygulama tarafında çözüldüğü ya da yanlış bir pozitif olduğu belirlendiğinde kullanılır.
+* **Active** durumu, güvenlik açığının altyapıda mevcut olduğunu belirtir.
+* **Closed** durumu, güvenlik açığı uygulama tarafında çözüldüğünde veya yanlış pozitif olarak belirlendiğinde kullanılır.
 
-    Bir [yanlış pozitif](../about-wallarm/detecting-vulnerabilities.md#false-positives), meşru bir varlığın yanlışlıkla bir zafiyet olarak tanımlanması durumudur. Eğer yanlış pozitif olduğuna inandığınız bir zafiyetle karşılaşırsanız, bunu zafiyet menüsündeki uygun seçenekle bildirebilirsiniz. Bu, Wallarm'ın zafiyet tanıma doğruluğunu artıracaktır. Wallarm, zafiyeti yanlış pozitif olarak yeniden sınıflandırır, durumunu **Kapalı**'ya değiştirir ve bunu daha fazla [yeniden kontrol](#verifying-vulnerabilities) etmez.
+    Bir [yanlış pozitif](../about-wallarm/detecting-vulnerabilities.md#false-positives), meşru bir varlığın yanlışlıkla güvenlik açığı olarak tanımlanması durumunda ortaya çıkar. Yanlış pozitif olduğunu düşündüğünüz bir güvenlik açığı ile karşılaşırsanız, güvenlik açığı menüsündeki uygun seçeneği kullanarak raporlayabilirsiniz. Bu, Wallarm'ın güvenlik açığı tespitinin doğruluğunu artırmaya yardımcı olacaktır. Wallarm, güvenlik açığını yanlış pozitif olarak yeniden sınıflandırır, durumunu **Closed** olarak değiştirir ve daha fazla [yeniden kontrol](#verifying-vulnerabilities) işlemine tabi tutmaz.
 
-Zafiyetleri yönetirken, zafiyet durumlarını manuel olarak değiştirebilirsiniz. Ayrıca, Wallarm düzenli olarak zafiyetleri [yeniden kontrol](#verifying-vulnerabilities) eder ve sonuçlara bağlı olarak zafiyetlerin durumunu otomatik olarak değiştirir.
+Güvenlik açıklarını yönetirken, durumlarını manuel olarak değiştirebilirsiniz. Ayrıca, Wallarm, düzenli olarak [yeniden kontrol](#verifying-vulnerabilities) yapar ve sonuçlara bağlı olarak güvenlik açığı durumlarını otomatik olarak günceller.
 
-![Zafiyet ömrü](../images/user-guides/vulnerabilities/vulnerability-lifecycle.png)
+![Güvenlik açığı yaşam döngüsü](../images/user-guides/vulnerabilities/vulnerability-lifecycle.png)
 
-Zafiyetlerin yaşam döngüsündeki değişiklikler, zafiyetin değişim geçmişinde yansıtılır.
+Güvenlik açığı yaşam döngüsündeki değişiklikler, güvenlik açığı değişiklik geçmişinde yansıtılır.
 
-## Zafiyetleri değerlendirme ve giderme
+## Güvenlik Açıklarını Değerlendirme ve İyileştirme
 
-Wallarm, risk seviyesini değerlendirmenize ve güvenlik sorunlarını ele almak için adımlar atmaya yardımcı olacak detaylarla her zafiyet sağlar:
+Wallarm, her güvenlik açığına, risk seviyesini değerlendirmenize ve güvenlik sorunlarını gidermek için adımlar atmanıza yardımcı olacak detayları sağlar:
 
-* Wallarm sistemi içinde zafiyetin eşsiz tanımlayıcısı
-* Zafiyetin istismarının sonuçlarının tehlikesini belirten risk seviyesi
+* Wallarm sisteminde güvenlik açığının benzersiz tanımlayıcısı
+* Güvenlik açığının sömürülmesinin sonuçlarının tehlikesini belirten risk seviyesi
 
-    Wallarm, ortak zafiyet puanlama sistem (CVSS) çerçevesini kullanarak otomatik olarak zafiyet riskini gösterir, bir zafiyetin istismar olasılığı, bunun sistem üzerindeki potansiyel etkisi gibi. Sisteminizin benzersiz gereksinimlerine ve güvenlik önceliklerinize dayanarak risk seviyesini kendi değerinize değiştirebilirsiniz.
-* Zafiyetin [türü](../attacks-vulns-list.md), bu tür aynı zamanda zafiyeti istismar eden saldırı türüne de karşılık gelir
-* Zafiyetin bulunduğu alan ve yol
-* Zafiyeti istismar eden kötü amaçlı yükü geçirmek için kullanılabilecek parametre
-* Zafiyetin hangi yöntemle [algılandığı](../about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods)
-* Bir zafiyetin istismar edilmesi durumunda etkilenebilecek hedef bileşen, **Sunucu**, **İstemci**, **Veritabanı** olabilir
-* Zafiyetin algılandığı tarih ve saat
-* Zafiyetin [son doğrulama tarihi](#verifying-vulnerabilities)
-* Ayrıntılı zafiyet açıklaması, istismar örneği ve önerilen düzeltme adımları
+    Wallarm, Common Vulnerability Scoring System (CVSS) çerçevesi, bir güvenlik açığının sömürülme olasılığı, sistem üzerindeki potansiyel etkisi vb. ile otomatik olarak risk seviyesini belirtir. Sisteminizin benzersiz gereksinimleri ve güvenlik önceliklerine göre risk seviyesini kendinize göre değiştirebilirsiniz.
+* [Güvenlik açığının türü](../attacks-vulns-list.md) (aynı zamanda açığı sömüren saldırı türü ile de ilişkilidir)
+* Güvenlik açığının bulunduğu alan ve yol
+* Güvenlik açığını sömürmek amacıyla kötü niyetli yük taşımak için kullanılabilecek parametre
+* Güvenliğin nasıl [tespit edildiği](../about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods)
+* Güvenlik açığının sömürülmesi durumunda etkilenebilecek hedef bileşen; bu **Server**, **Client** veya **Database** olabilir
+* Güvenlik açığının tespit edildiği tarih ve saat
+* Güvenlik açığının son [doğrulama tarihi](#verifying-vulnerabilities)
+* Güvenlik açığına ait detaylı açıklama, sömürü örneği ve önerilen iyileştirme adımları
 * İlgili olaylar
-* Zafiyet durum değişiklikleri geçmişi
+* Güvenlik açığı durum değişikliklerinin geçmişi
 
-Zafiyetleri, [arama string](search-and-filters/use-search.md) ve önceden tanımlanmış filtreleri kullanarak filtreleyebilirsiniz.
+Güvenlik açıklarını, [arama dizesi](search-and-filters/use-search.md) ve önceden tanımlanmış filtreleri kullanarak filtreleyebilirsiniz.
 
-![Ayrıntılı zafiyet bilgisi](../images/user-guides/vulnerabilities/vuln-info.png)
+![Güvenlik açığı detaylı bilgisi](../images/user-guides/vulnerabilities/vuln-info.png)
 
-Tüm zafiyetlerin uygulama tarafında düzeltilemesi gereklidir çünkü bunlar sistemnizi kötü amaçlı eylemlere daha yatkın hale getirir. Bir zafiyet düzeltilemiyorsa, [sanal yamam](rules/vpatch-rule.md) kuralını kullanmak ilgili saldırıları engellemeye ve bir olay riskini ortadan kaldırmaya yardımcı olabilir.
+Tüm güvenlik açıkları, sisteminizi kötü niyetli saldırılara karşı daha savunmasız hale getirdiğinden, uygulama tarafında düzeltilmelidir. Bir güvenlik açığı düzeltilemiyorsa, [virtual patch](rules/vpatch-rule.md) kuralını kullanmak, ilgili saldırıları engelleyerek olay riskini ortadan kaldırmaya yardımcı olabilir.
 
-## Zafiyetleri doğrulama <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Güvenlik Açıklarını Doğrulama <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
-Wallarm, aktif ve kapatılmış zafiyetleri düzenli olarak yeniden kontrol eder. Bu, daha önce keşfedilen bir güvenlik sorununu yeniden test etmeyi içerir. Yeniden kontrol sonucu, zafiyetin artık mevcut olmadığını gösteriyorsa, Wallarm durumunu **Kapalı**'ya değiştirir. Bu, sunucunun geçici olarak kullanılamaz olması durumunda da olabilir. Tersine, bir zafiyetin kapalı olduğunun yeniden kontrol edilmesi, zafiyetin hala uygulama içinde var olduğunu gösteriyorsa, Wallarm durumunu **Aktif**'e geri döndürür.
+Wallarm, aktif ve kapalı tüm güvenlik açıklarını düzenli olarak yeniden kontrol eder. Bu, daha önce tespit edilmiş bir güvenlik sorunu için altyapının yeniden test edilmesini içerir. Yeniden kontrol sonucu, güvenlik açığının artık mevcut olmadığını gösteriyorsa, Wallarm durumunu **Closed** olarak değiştirir. Bu durum, sunucunun geçici olarak kullanılamaz olması halinde de meydana gelebilir. Aksine, kapalı durumdaki bir güvenlik açığının yeniden kontrolü, açığın hala uygulamada mevcut olduğunu gösteriyorsa, Wallarm durumunu tekrar **Active** olarak günceller.
 
-Aktif zafiyetler ve bir aydan az bir süre önce düzeltilen zafiyetler günde bir kez yeniden kontrol edilir. Bir aydan fazla bir süre önce düzeltilmiş olan zafiyetler haftada bir kere yeniden kontrol edilir.
+Aktif güvenlik açıkları ve bir aydan az sürede düzeltilen açıklar günde bir kez yeniden kontrol edilir. Bir aydan fazla sürede düzeltilen güvenlik açıkları haftada bir kez yeniden kontrol edilir.
 
-Başlangıçtaki zafiyet algılama yöntemine bağlı olarak, test, **Zafiyet Tarayıcı** veya **Aktif Tehdit Doğrulama** modülü tarafından gerçekleştirilir. Otomatik yeniden kontrol süreci için yapılandırma ayarları, [**Yapılandır**](#configuring-vulnerability-detection) düğmesi aracılığıyla kontrol edilebilir.
+Başlangıçtaki güvenlik açığı tespit yöntemine bağlı olarak testler, ya **Vulnerability Scanner** ya da **Threat Replay Testing** modülü tarafından gerçekleştirilir. Otomatik yeniden kontrol süreci için yapılandırma ayarları, [**Configure**](#configuring-vulnerability-detection) düğmesi aracılığıyla kontrol edilebilir.
 
-Pasif olarak algılanan zafiyetlerin yeniden kontrol edilmesi mümkün değildir.
+Pasif olarak tespit edilen güvenlik açıklarını yeniden kontrol etmek mümkün değildir.
 
-Bir zafiyeti manuel olarak yeniden kontrol etmeniz gerekiyorsa, zafiyet menüsündeki uygun seçeneği kullanarak yeniden kontrol sürecini başlatabilirsiniz:
+Bir güvenlik açığını manuel olarak yeniden kontrol etmeniz gerekiyorsa, güvenlik açığı menüsündeki uygun seçeneği kullanarak yeniden kontrol sürecini başlatabilirsiniz:
 
-![Yeniden kontrol edilebilecek bir zafiyet](../images/user-guides/vulnerabilities/recheck-vuln.png)
+![Yeniden kontrol edilebilen bir güvenlik açığı](../images/user-guides/vulnerabilities/recheck-vuln.png)
 
-## Zafiyet algılamasının yapılandırılması
+## Güvenlik Açığı Tespit Yapılandırması
 
-Zafiyet algılama konfigürasyonu, **Yapılandır** düğmesi kullanılarak daha da geliştirilebilir, bu yöntemle aşağıdaki seçenekler ayarlanabilir:
+**Configure** düğmesini kullanarak, aşağıdaki seçeneklerle güvenlik açığı tespit yapılandırmasını ayrıntılı olarak ayarlayabilirsiniz:
 
-* Zafiyet Tarayıcısının algılamasını istediğiniz belirli zafiyet türlerini seçebilirsiniz. Tarayıcı varsayılan olarak tüm mevcut zafiyet türlerini hedefi alacak şekilde ayarlanmıştır.
-* Zafiyet ve [açığa çıkan varlık](scanner.md) keşif süreçlerini içeren **Temel Tarayıcı işlevini** etkinleştirin / devre dışı bırakın. Bu işlevsellik varsayılan olarak etkindir.
+* Vulnerability Scanner kullanarak tespit etmek istediğiniz belirli güvenlik açığı türlerini seçebilirsiniz. Varsayılan olarak, Scanner mevcut olan tüm güvenlik açığı türlerini hedefleyecek şekilde ayarlanmıştır.
+* Hem güvenlik açığı hem de [exposed asset](scanner.md) keşif süreçlerini içeren Basic Scanner işlevselliğini etkinleştirebilir / devre dışı bırakabilirsiniz. Varsayılan olarak, bu işlevsellik etkin durumdadır.
 
-    Aynı anahtar anahtarı **Tarayıcı** bölümünde de bulabilirsiniz. Anahtarı bir bölümde değiştirmek, diğer bölümdeki ayarı da otomatik olarak günceller.
-* Tarayıcı ile zafiyetlerin yeniden kontrolünü etkinleştirin / devre dışı bırakın **Zafiyetleri Yeniden Kontrol Et** seçeneği kullanılarak.
-* Zafiyet tespiti ve yeniden kontrolü için **Aktif tehdit doğrulaması** modülünü etkinleştirin / devre dışı bırakın. Bu seçenek, modülün kendisini kontrol eder, sadece yeniden kontrol sürecini değil.
+    Aynı geçiş anahtarını **Scanner** bölümünde de bulabilirsiniz. Bir bölümdeki anahtarı değiştirmeniz, diğer bölümdeki ayarın otomatik olarak güncellenmesini sağlar.
+* **Recheck vulnerabilities** seçeneğini kullanarak Scanner ile güvenlik açığı yeniden kontrolünü etkinleştirebilir / devre dışı bırakabilirsiniz.
+* Güvenlik açığı tespiti ve yeniden kontrolü için **Threat Replay Testing** modülünü etkinleştirebilir / devre dışı bırakabilirsiniz. Bu seçeneğin yalnızca yeniden kontrol sürecini değil, modülün kendisini kontrol ettiğine dikkat edin.
 
-    Bu modül varsayılan olarak devre dışıdır, etkinleştirmeden önce yapılandırmasının [en iyi uygulamalarını](../vulnerability-detection/threat-replay-testing/setup.md) öğrenin.
+    Varsayılan olarak, bu modül devre dışıdır; etkinleştirmeden önce yapılandırmasıyla ilgili [best practices](../vulnerability-detection/threat-replay-testing/setup.md)’i öğrenin.
 
-![Zafiyet tarama ayarları](../images/user-guides/vulnerabilities/vuln-scan-settings.png)
+![Vuln scan settings](../images/user-guides/vulnerabilities/vuln-scan-settings.png)
 
-Ayrıca, kullanıcı arayüzündeki [**Tarayıcı**](scanner.md) bölümünde hangi açığa çıkan varlıkların Zafiyet Tarayıcısı tarafından taranması gerektiğini ve Tarayıcının her varlık için izin verilen RPS/RPM'yi kontrol edebilirsiniz.
+Ayrıca, UI’nin [Scanner](scanner.md) bölümünde, Vulnerability Scanner tarafından hangi exposed asset’lerin taranacağını ve her varlık için Scanner tarafından üretilmesine izin verilen RPS/RPM miktarını kontrol edebilirsiniz.
 
-## Zafiyet raporunu indirme
+## Güvenlik Açığı Raporunu İndirme
 
-Zafiyet verilerini bir PDF veya CSV raporuna dışa aktarabilirsiniz. Bunun için kullanıcı arayüzündeki ilgili düğmeyi kullanabilirsiniz. Wallarm, raporu belirtilen adrese e-posta ile gönderecektir.
+UI’deki ilgili düğmeyi kullanarak, güvenlik açığı verilerini PDF veya CSV raporu olarak dışa aktarabilirsiniz. Wallarm, raporu belirtilen adrese e-posta ile gönderecektir.
 
-PDF, zafiyet ve olay özetleriyle görsel açıdan zengin raporlar sunmak için iyidir, CSV ise her zafiyet hakkında ayrıntılı bilgi sağladığından teknik amaçlar için daha uygundur. CSV, gösterge panoları oluşturmak, en savunmasız API ana makine/uygulama listesini oluşturmak ve daha fazlası için kullanılabilir.
+PDF, güvenlik açığı ve olay özetlerini içeren görsel olarak zengin raporlar sunmak için uygundur; CSV ise her güvenlik açığı hakkında detaylı bilgi sağlayarak teknik amaçlar için daha elverişlidir. CSV, panolar oluşturmak, en savunmasız API host/uygulamalarının listesini üretmek ve daha fazlası için kullanılabilir.
 
-## Zafiyetleri almak için API çağrısı
+## Güvenlik Açıklarını Almak için API Çağrısı
 
-Zafiyet ayrıntılarını almak için, Wallarm Konsolu Kullanıcı Arayüzünü kullanmanın yanı sıra Wallarm API'sini [direkt olarak çağırabilirsiniz](../api/overview.md). Aşağıda, ilgili API çağrısının örneği yer almaktadır.
+Güvenlik açığı detaylarını almak için, Wallarm Console UI’ı kullanmanın yanı sıra [Wallarm API'ye doğrudan çağrı](../api/overview.md) yapabilirsiniz. Aşağıda ilgili API çağrısının örneği bulunmaktadır.
 
-Son 24 saat içinde durumu **Aktif** olan ilk 50 zafiyeti almak için, aşağıdaki isteği kullanın ve `TIMESTAMP`'ı, tarihi 24 saat önceye dönüştürülen [Unix Zaman Damgası](https://www.unixtimestamp.com/) biçimine dönüştürerek yerine koyun:
+Son 24 saat içinde **Active** durumundaki ilk 50 güvenlik açığını almak için, aşağıdaki istekte `TIMESTAMP` kısmını 24 saat önceki tarihin [Unix Timestamp](https://www.unixtimestamp.com/) formatına dönüştürülmüş hali ile değiştirin:
 
---8<-- "../include-tr/api-request-examples/get-vulnerabilities.md"
+--8<-- "../include/api-request-examples/get-vulnerabilities.md"

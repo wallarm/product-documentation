@@ -1,4 +1,4 @@
-# Adım 4: G Suite Tarafında Wallarm Uygulamasına Erişime İzin Verme
+# Adım 4: G Suite Tarafında Wallarm Uygulamasına Erişim İzni Verme
 
 [img-gsuite-console]:           ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-console.png
 [img-user-list]:                ../../../../images/admin-guides/configuration-guides/sso/gsuite/user-list.png
@@ -7,29 +7,28 @@
 
 [doc-use-user-auth]:            ../employ-user-auth.md
 
-G Suite üzerinden kimlik doğrulama için, G Suite tarafında bir hesap oluşturulmalı ve kullanıcının Wallarm uygulamasına erişim hakları olmalıdır. Erişim haklarının verilmesi için gereken eylem dizisi aşağıda açıklanmıştır.
+G Suite üzerinden kimlik doğrulaması yapmak için, G Suite tarafında bir hesap oluşturulmalı ve kullanıcının Wallarm uygulamasına erişim hakkı olmalıdır. Erişim haklarının verilmesi için gereken işlem sırası aşağıda açıklanmıştır.
 
-*Users* blokuna tıklayarak G Suite'ın kullanıcı yönetim bölümüne gidin.
+*Users* bloğuna tıklayarak G Suite'in kullanıcı yönetimi bölümüne gidin.
 
-![G Suite konsolu][img-gsuite-console]
+![G Suite console][img-gsuite-console]
 
-SSO kimlik doğrulaması aracılığıyla uygulamaya erişim vermek üzere olduğunuz kullanıcının organizasyonunuzun kullanıcı listesinde olduğundan emin olun.
+SSO kimlik doğrulaması yoluyla uygulamaya erişim vereceğiniz kullanıcının, kuruluşunuzun kullanıcı listesinde yer aldığından emin olun.
 
-![G Suite kullanıcı listesi][img-user-list]
+![G Suite user list][img-user-list]
 
 Aşağıda gösterildiği gibi *SAML apps* menü öğesine tıklayarak SAML uygulamaları bölümüne gidin.
 
-![SAML uygulamalarına gidin][img-gsuite-navigation-saml]
+![Navigate to the SAML applications][img-gsuite-navigation-saml]
 
-İstenilen uygulamanın ayarlarını girin ve uygulamanın durumunun "Herkes için AÇIK" olduğundan emin olun. Uygulamanın durumu "Herkes için KAPALI" ise *Edit service* düğmesine tıklayın.
+İstediğiniz uygulamanın ayarlarına girin ve uygulamanın durumunun “ON for everyone” olduğundan emin olun. Uygulama durumu “OFF for everyone” ise, *Edit service* düğmesine tıklayın.
 
-![G Suite'teki uygulama sayfası][img-app-page]
+![Application page in G Suite][img-app-page]
 
-"Herkes için AÇIK" durumunu seçin ve *Save* tıklayın.
+“ON for everyone” durumunu seçin ve *Save*'e tıklayın.
 
-Bunun ardından servisin durumunun güncellendiğine dair bir mesaj alacaksınız. Wallarm uygulaması şimdi G Suite'teki organizasyonunuzun tüm kullanıcılarına SSO kimlik doğrulaması için kullanılabilecek.
-
+Bundan sonra, hizmetin durumunun güncellendiğine dair bir mesaj alacaksınız. Wallarm uygulaması artık G Suite içindeki kuruluşunuzdaki tüm kullanıcılar için SSO kimlik doğrulamasına açıktır.
 
 ##  Kurulum Tamamlandı
 
-G Suite tabanlı SSO'nun yapılandırması bu şekilde tamamlanmıştır ve şimdi [kullanıcıya özel][doc-use-user-auth] SSO kimlik doğrulamasını Wallarm tarafında yapılandırmaya başlayabilirsiniz.
+Bu, G Suite‑tabanlı SSO yapılandırmasını tamamlar ve şimdi Wallarm tarafında [user specific][doc-use-user-auth] SSO kimlik doğrulamasını yapılandırmaya başlayabilirsiniz.

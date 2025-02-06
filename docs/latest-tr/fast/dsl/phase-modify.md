@@ -4,34 +4,34 @@
 
 [img-modify]:           ../../images/fast/dsl/common/phases/modify.png
 
-# Değiştirme Aşaması
+# Değişiklik Aşaması
 
-!!! info "Fazın kapsamı"
-    Bu aşama, bir değiştirme genişlemesinde kullanılır ve işlemi için isteğe bağlıdır (`modify` bölümü, YAML dosyasında ya bulunabilir ya da bulunmayabilir).
+!!! info "Aşamanın Kapsamı"
+    Bu aşama, bir değişiklik yapan uzantıda kullanılır ve çalışması için isteğe bağlıdır (YAML dosyasında `modify` bölümü bulunabilir veya bulunmayabilir).
 
-    Bu aşama, değiştirme içermeyen genişletmenin YAML dosyasında bulunmamalıdır.
+    Bu aşama, değişiklik yapmayan uzantının YAML dosyasında yer almamalıdır.
     
-    Genişletme türlerini ayrıntılı olarak [burada][link-ext-logic] okuyun.
+    Uzantı türleri hakkında detaylı bilgi için [burayı][link-ext-logic] okuyun.
 
-!!! info "İstek elemanları açıklama sözdizimi"
-    Bir FAST genişlemesi oluştururken, uygulamaya gönderilen HTTP isteğin ve uygulamadan alınan HTTP yanıtın yapısını anlamanız ve üzerinde çalışmanız gereken istek elemanlarını doğru bir şekilde tanımlamanız gerekir. 
+!!! info "HTTP isteği öğeleri açıklama sözdizimi"
+    Bir FAST uzantısı oluştururken, uygulamaya gönderilen HTTP isteğinin yapısını ve uygulamadan alınan HTTP yanıtının yapısını anlamanız gerekir; böylece, noktaları kullanarak üzerinde çalışmanız gereken istek öğelerinin doğru tanımını yapabilirsiniz.
 
-    Detaylı bilgi için bu [bağlantıya][link-points] gidin.
+    Detaylı bilgi için, bu [linke][link-points] gidin.
  
-Bu aşama, gerektiğinde bir temel isteğin parametrelerinin değerlerini değiştirir. Temel istekte bulunmayan yeni bir elemanı Değiştirme aşamasını kullanarak ekleyemezsiniz. Örneğin, temel istekte `Cookie` HTTP başlığı bulunmuyorsa bunu ekleyemezsiniz.
+Bu aşama, gerekliyse temel (baseline) isteğin parametrelerinin değerlerinde değişiklik yapar. Temel istekte bulunmayan yeni bir öğe, Değişiklik aşamasıyla eklenemez. Örneğin, temel istek `Cookie` HTTP başlığını içermiyorsa, bu başlığı ekleyemezsiniz.
 
-Genişletme YAML dosyasındaki `modify` bölümü, bir dizi `<anahtar: değer>` çifti içerir. Her çift, belirli bir istek elemanını (anahtar) ve bu elemana eklenecek veriyi (değer) tanımlar. Anahtar, [Ruby düzenli ifadeler formatı][link-ruby-regexp]nda düzenli ifadeler içerebilir. Anahtarın değerine düzenli ifadeler uygulanamaz.
+Uzantının YAML dosyasındaki `modify` bölümü, `<anahtar: değer>` çiftlerinden oluşan bir dizi içerir. Her çift, belirli bir istek öğesini (anahtar) ve bu öğeye eklenmesi gereken verileri (değer) tanımlar. Anahtar, [Ruby regular expressions formatında][link-ruby-regexp] düzenli ifadeler içerebilir. Ancak, anahtarın değeri üzerinde düzenli ifadeler uygulanamaz.
 
-Değiştirme aşamasında, bir elemana yeni değerler atayabilir veya elemanın verilerini silebilirsiniz.
+Değişiklik aşamasında, öğeye yeni değerler atayabilir veya öğenin verilerini silebilirsiniz.
 
-* Eğer anahtarın değeri belirlenmişse, bu değer uygun temel istek elemanına atanacaktır. Eğer temel istekte anahtara karşılık gelen bir eleman yoksa, yeni eleman eklemesi yapılmayacaktır.
+* Eğer anahtarın değeri belirlenmişse, bu değer ilgili temel istek öğesine atanır. Temel istekte anahtar ile eşleşen bir öğe yoksa, yeni öğe eklemesi yapılmaz.
     
     ??? info "Örnek 1"
         `'HEADER_COOKIE_value': 'C=qwerty123'`
 
-        ![Değiştirme aşaması](../../images/fast/dsl/en/phases/modify.png)
+        ![Modify phase](../../images/fast/dsl/en/phases/modify.png)
 
-* Eğer anahtarın değeri belirlenmemişse, uygun temel istek elemanının değeri temizlenecektir.
+* Eğer anahtarın değeri belirlenmemişse, ilgili temel istek öğesinin değeri temizlenecektir.
     
     ??? info "Örnek"
         `'HEADER_COOKIE_value': ""`
@@ -40,7 +40,7 @@ Değiştirme aşamasında, bir elemana yeni değerler atayabilir veya elemanın 
     Aşağıdaki örnekte, temel istek aşağıdaki şekilde değiştirilecektir:
 
     1.  `Content-Type` başlığının değeri `application/xml` ile değiştirilecektir.
-    2.  `uid` GET parametresinin değeri temizlenecektir (parametre kendisi kaldırılmayacaktır).
+    2.  `uid` GET parametresinin değeri temizlenecektir (parametrenin kendisi kaldırılmayacaktır).
 
     ```
     modify:

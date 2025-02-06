@@ -7,69 +7,70 @@
 [link-typesdb]:                    https://www.collectd.org/documentation/manpages/types.db.html
 [link-typesdb-file]:               https://github.com/collectd/collectd/blob/master/src/types.db
 
-#   `collectd` Ağ Eklentisi Üzerinden InfluxDB'ye Metrik Aktarımı
+#   `collectd` Network Plugin vasıtasıyla InfluxDB'ye Metrik Aktarımı
 
-Bu belge, Ağ eklentisini kullanarak metrikleri InfluxDB zamansal veritabanına aktarma örneği sağlar. Ayrıca InfluxDB'de toplanan metrikleri nasıl görselleştireceğinizi Grafana ile de gösterir.
+Bu belge, Network eklentisini kullanarak metriklerin InfluxDB zaman serisi veritabanına aktarılması için bir örnek sunmaktadır. Ayrıca, InfluxDB'de toplanan metriklerin Grafana kullanılarak nasıl görselleştirileceğini de gösterecektir.
 
 ##  Örnek İş Akışı
 
---8<-- "../include-tr/monitoring/metric-example.md"
+--8<-- "../include/monitoring/metric-example.md"
 
 ![Örnek İş Akışı][img-network-plugin-influxdb]
 
-Bu belgede aşağıdaki dağıtım şeması kullanılmıştır:
-*   Wallarm filtre düğümü, `10.0.30.5` IP adresi ve `node.example.local` tamamen nitelendirilmiş alan adı ile erişilebilir bir ana bilgisayara dağıtılmıştır.
+Bu belgede aşağıdaki dağıtım şeması kullanılmaktadır:
+*   Wallarm filter düğümü, `10.0.30.5` IP adresi ve `node.example.local` tam nitelikli alan adı üzerinden erişilebilen bir ana bilgisayarda konuşlandırılmıştır.
     
-    Filtre düğümündeki `collectd` için `network` eklentisi, tüm metriklerin `25826/UDP` bağlantı noktasındaki `10.0.30.30` InfluxDB sunucusuna gönderileceği şekilde ayarlanmıştır.
+    Filter düğümündeki `collectd` için `network` eklentisi, tüm metriklerin `10.0.30.30` adresindeki InfluxDB sunucusuna `25826/UDP` portu üzerinden gönderilecek şekilde yapılandırılmıştır.
     
-    !!! info "Ağ eklentisi özellikleri"
-        Lütfen bu eklentinin UDP üzerinden çalıştığını unutmayın ([örnekleri kullanma][link-collectd-networking] ve `network` eklentisi [belgeleri][link-network-plugin] bakınız).
+      
+    !!! info "Network eklenti özellikleri"
+        Lütfen eklentinin UDP üzerinden çalıştığını unutmayın (bkz. `network` eklentisinin [örnek kullanımları][link-collectd-networking] ve [dokümantasyonu][link-network-plugin]).
     
     
-*   Hem `influxdb` hem grafana hizmetleri, `10.0.30.30` IP adresine sahip ayrı bir ana bilgisayarda Docker konteynerları olarak dağıtılmıştır.
+*   `influxdb` ve grafana servislerinin her ikisi de, `10.0.30.30` IP adresine sahip ayrı bir ana bilgisayarda Docker konteynerleri olarak dağıtılmıştır.
 
-    Aşağıdaki şekilde yapılandırılmış olan InfluxDB veritabanına sahip `influxdb` hizmeti:
+    InfluxDB veritabanına sahip `influxdb` servisi aşağıdaki şekilde yapılandırılmıştır:
 
-      * Bir `collectd` veri kaynağı oluşturulmuştur (InfluxDB terminolojisine göre `collectd` girişi), `25826/UDP` bağlantı noktasını dinler ve gelen metrikleri `collectd` adlı veritabanında yazar.
-      * InfluxDB API ile iletişim `8086/TCP` bağlantı noktası üzerinden gerçekleşir.
-      * Hizmet, `grafana` hizmeti ile `sample-net` Docker ağı paylaşır.
+      * `collectd` veri kaynağı oluşturulmuştur (InfluxDB terminolojisine göre `collectd` girişi); bu kaynak `25826/UDP` portunu dinler ve gelen metrikleri `collectd` adlı veritabanına yazar.
+      * InfluxDB API ile iletişim `8086/TCP` portu üzerinden gerçekleşir.
+      * Servis, `grafana` servisi ile `sample-net` Docker ağını paylaşır.
     
     
     
-    Aşağıdaki şekilde yapılandırılan Grafana'ya sahip `grafana` hizmeti:
+    Grafana içeren `grafana` servisi aşağıdaki şekilde yapılandırılmıştır:
     
-      * Grafana web konsolu `http://10.0.30.30:3000` adresinde mevcuttur.
-      * Hizmet, `influxdb` hizmeti ile `sample-net` Docker ağı paylaşır.
+      * Grafana web konsoluna `http://10.0.30.30:3000` adresinden erişilebilir.
+      * Servis, `influxdb` servisi ile `sample-net` Docker ağını paylaşır.
 
-##  Metriklerin InfluxDB'ye Aktarımının Yapılandırılması
+##  InfluxDB'ye Metrik Aktarımının Yapılandırılması
 
---8<-- "../include-tr/monitoring/docker-prerequisites.md"
+--8<-- "../include/monitoring/docker-prerequisites.md"
 
-### InfluxDB ve Grafana'nın Dağıtımı
+### InfluxDB ve Grafana'nın Dağıtılması
 
-Docker ana bilgisayarında InfluxDB ve Grafana'nın dağıtımını gerçekleştirin:
-1.  Örneğin, `/tmp/influxdb-grafana` adında bir çalışma dizini oluşturun ve o dizine gidin:
+Docker ana bilgisayarında InfluxDB ve Grafana'yı dağıtın:
+1.  Örneğin, `/tmp/influxdb-grafana` adlı bir çalışma dizini oluşturun ve bu dizine geçin:
     
     ```
     mkdir /tmp/influxdb-grafana
     cd /tmp/influxdb-grafana
     ```
     
-2.  InfluxDB veri kaynağı çalışması için, `collectd` değer türlerini içeren `types.db` adında bir dosyaya ihtiyacınız olacak.
+2.  InfluxDB veri kaynağının çalışabilmesi için, `collectd` değer tiplerini içeren `types.db` adlı bir dosyaya ihtiyacınız olacak.
     
-    Bu dosya, `collectd` tarafından kullanılan veri kümesi özelliklerini tanımlar. Bu veri kümeleri, ölçülebilir türlerin tanımlarını içerir. Bu dosya hakkında ayrıntılı bilgi [burada][link-typesdb] mevcuttur.
+    Bu dosya, `collectd` tarafından kullanılan veri seti özelliklerini tanımlar. Bu veri setleri ölçülebilir tip tanımlamalarını içerir. Bu dosya hakkında ayrıntılı bilgi [burada][link-typesdb] mevcuttur.
     
-    `collectd` projesinin GitHub deposundan [`types.db` dosyasını indirin][link-typesdb-file] ve çalışma dizinine yerleştirin.
+    `collectd` projesinin GitHub deposundan [``types.db`` dosyasını][link-typesdb-file] indirin ve çalışma dizinine yerleştirin.
     
-3.  Aşağıdaki komutu çalıştırarak temel InfluxDB yapılandırma dosyasını elde edin: 
+3.  Aşağıdaki komutu çalıştırarak temel InfluxDB yapılandırma dosyasını alın:
     
     ```
     docker run --rm influxdb influxd config > influxdb.conf
     ```
     
-4.  `influxdb.conf` InfluxDB yapılandırma dosyasındaki `[[collectd]]` bölümünde `enabled` parametresinin değerini `false` dan `true` ya değiştirerek `collectd` veri kaynağını etkinleştirin.
+4.  `influxdb.conf` InfluxDB yapılandırma dosyasında, `[[collectd]]` bölümündeki `enabled` parametresinin değerini `false`'dan `true`'ya değiştirerek `collectd` veri kaynağını etkinleştirin.
     
-    Diğer parametreleri olduğu gibi bırakın.
+    Diğer parametreleri değiştirmeyin.
    
     Bölüm aşağıdaki gibi görünmelidir:
    
@@ -89,7 +90,7 @@ Docker ana bilgisayarında InfluxDB ve Grafana'nın dağıtımını gerçekleşt
       parse-multivalue-plugin = "split"  
     ```
     
-5.  Çalışma dizininde, aşağıdaki içerikle bir `docker-compose.yaml` dosyası oluşturun:
+5.  Çalışma dizininde aşağıdaki içeriğe sahip bir `docker-compose.yaml` dosyası oluşturun:
    
     ```
     version: "3"
@@ -121,22 +122,22 @@ Docker ana bilgisayarında InfluxDB ve Grafana'nın dağıtımını gerçekleşt
       sample-net:
     ```
 
-    `volumes:` ayarlarına göre InfluxDB, 
-    1.  Veritabanı için çalışma dizinini kullanacaktır.
-    2.  Çalışma dizininde yer alan `influxdb.conf` yapılandırma dosyasını kullanacaktır.
-    3.  Çalışma dizininde yer alan ölçülebilir değerlerin türlerini içeren `types.db` dosyasını kullanacaktır.  
+    `volumes:` ayarlarına göre, InfluxDB:
+    1.  Veritabanı depolaması için çalışma dizinini kullanacak,
+    2.  Çalışma dizininde bulunan `influxdb.conf` yapılandırma dosyasını kullanacak,
+    3.  Çalışma dizininde bulunan, ölçülebilir değer tiplerini içeren `types.db` dosyasını kullanacaktır.  
     
-6.  `docker-compose build` komutunu yürüterek hizmetleri oluşturun.
+6.  `docker-compose build` komutunu çalıştırarak servisleri oluşturun.
     
-7.  `docker-compose up -d influxdb grafana` komutunu yürüterek hizmetleri çalıştırın.
+7.  `docker-compose up -d influxdb grafana` komutunu çalıştırarak servisleri başlatın.
     
-8.  İlgili InfluxDB veri kaynağı için `collectd` adında bir veritabanı oluşturmak üzere aşağıdaki komutu yürütün:
+8.  Aşağıdaki komutu çalıştırarak ilgili InfluxDB veri kaynağı için `collectd` adlı bir veritabanı oluşturun:
    
     ```
     curl -i -X POST http://10.0.30.30:8086/query --data-urlencode "q=CREATE DATABASE collectd"
     ```
     
-    InfluxDB sunucusu aşağıdakine benzer bir yanıt döndürmelidir:
+    InfluxDB sunucusu benzer bir yanıt döndürmelidir:
    
     ```
     HTTP/1.1 200 OK
@@ -151,29 +152,53 @@ Docker ana bilgisayarında InfluxDB ve Grafana'nın dağıtımını gerçekleşt
     {"results":[{"statement_id":0}]}
     ```
     
-Bu noktada, InfluxDB çalışıyor olmalı, `collectd` den metrikleri almak için hazır olmalı ve Grafana, InfluxDB'de saklanan verileri izlemek ve görselleştirmek için hazır olmalı.
+Bu noktada, InfluxDB çalışıyor, `collectd`'den metrikleri almaya hazır durumda ve Grafana, InfluxDB'de depolanan verileri izleyip görselleştirmeye hazırdır.
 
-### `collectd` Yapılandırılması
+### `collectd` Yapılandırması
 
-`collectd` yi, metrikleri InfluxDB'ye aktarmak üzere yapılandırın:
-1. Filtre düğümüne bağlanın (örneğin, SSH protokolünü kullanabilirsiniz). Root veya başka bir süper kullanıcı ayrıcalıklarına sahip bir hesap ile giriş yaptığınızdan emin olun.
-2. `/etc/collectd/collectd.conf.d/export-to-influxdb.conf` adında aşağıdaki içerikli bir dosya oluşturun:
-   
-    ```
-    LoadPlugin network
+`collectd`'i metrikleri InfluxDB'ye aktarmak üzere yapılandırın:
+
+=== "Docker image, cloud image, all-in-one installer"
+    1. Filtre düğümüne bağlanın (örneğin, SSH protokolü kullanarak). Root veya başka bir süper kullanıcı yetkilerine sahip hesapla giriş yaptığınızdan emin olun.
+    1. Aşağıdaki yapılandırmayı `/opt/wallarm/etc/collectd/wallarm-collectd.conf` dosyasına ekleyin:
+      
+        ```
+        LoadPlugin network
+        
+        <Plugin "network">
+          Server "Server IPv4/v6 address or FQDN" "Server port"
+        </Plugin>
+        ```
+        
+        Burada şu öğeler yapılandırılmaktadır:
     
-    <Plugin "network">
-        Server "10.0.30.30" "25826"
-    </Plugin>
-    ```
+        1.  Metriklerin gönderileceği sunucu (`10.0.30.30`)
+        1.  Sunucunun dinleyeceği port (`25826/UDP`)
+        
+    1. Aşağıdaki komutu çalıştırarak `wallarm` servisini yeniden başlatın:
     
-    Aşağıdaki varlıklar burada yapılandırılır:
-
-    1.  Metrikleri göndermek için sunucu (`10.0.30.30`)
-    2.  Sunucunun dinlediği bağlantı noktası (`25826/UDP`)
+        ```bash
+        sudo systemctl restart wallarm
+        ```
+=== "Diğer kurulumlar"
+    1. Filtre düğümüne bağlanın (örneğin, SSH protokolü kullanarak). Root veya başka bir süper kullanıcı yetkilerine sahip hesapla giriş yaptığınızdan emin olun.
+    1. Aşağıdaki içeriğe sahip `/etc/collectd/collectd.conf.d/export-to-influxdb.conf` adında bir dosya oluşturun:
+      
+        ```
+        LoadPlugin network
+        
+        <Plugin "network">
+            Server "10.0.30.30" "25826"
+        </Plugin>
+        ```
+        
+        Burada şu öğeler yapılandırılmaktadır:
     
-3. `collectd` hizmetini, uygun komutu çalıştırarak yeniden başlatın:
+        1.  Metriklerin gönderileceği sunucu (`10.0.30.30`)
+        1.  Sunucunun dinleyeceği port (`25826/UDP`)
+        
+    1. Uygun komutu çalıştırarak `collectd` servisini yeniden başlatın:
+    
+        --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
-    --8<-- "../include-tr/monitoring/collectd-restart-2.16.md"
-
-Şimdi InfluxDB, filtre düğümünün tüm metriklerini alır. İlgilendiğiniz metrikleri görselleştirebilir ve onları [Grafana ile][doc-grafana] izleyebilirsiniz.
+Artık InfluxDB, filtre düğümündeki tüm metrikleri almaktadır. İlgilendiğiniz metrikleri görselleştirebilir ve onları [Grafana ile][doc-grafana] izleyebilirsiniz.

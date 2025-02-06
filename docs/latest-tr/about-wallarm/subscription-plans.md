@@ -1,111 +1,96 @@
-# Wallarm abonelik planları
+# Wallarm Abonelik Planları
 
-Wallarm'a abone olurken, işletmenizin ihtiyaçlarını en iyi şekilde karşılayan bir plan seçersiniz. Bu belgeden, mevcut abonelik planları ve etkinleştirdikleri işlevleri öğrenebilirsiniz.
+Wallarm, çoklu bulut, cloud-native ve yerinde ortamlarda tüm API ve web uygulama portföyünüzü korumak için en iyi sınıf API Security ve WAAP yeteneklerini bir araya getiren tek çözümdür. İhtiyaçlarınıza en uygun işlevsellik setini kolayca seçebilirsiniz.
 
-Wallarm aşağıdaki abonelik planlarını sunmaktadır:
+## WAAP ve Gelişmiş API Güvenliği
 
-* **Cloud Native WAAP (Web Uygulaması ve API Koruması)** adı verilen Nex-Gen WAF, web uygulamalarına ve API'lere genel tehditlere karşı koruma sağlar.
-* **Gelişmiş API Güvenliği** protokolden bağımsız olarak tüm portföyünüzde kapsamlı API bulmayı ve tehdit önlemeyi sağlar.
+**Cloud Native WAAP** – WAAP (Web Application & API Protection) aboneliği, web uygulamalarını ve API’leri SQLi, XSS, brute force vb. yaygın tehditlere karşı korur. Tüm API protokollerini destekler ancak bazı belirli API tehditlerini kapsamamaktadır.
 
-    Gelişmiş API Güvenlik abonelik planı, Cloud Native WAAP için bir eklenti olarak satılmaktadır.
+**WAAP + Advanced API Security**. Bu paket, tüm OWASP API Top-10 tehditlerini kapsayacak şekilde genel WAAP yeteneklerini kapsamlı API Security araçlarıyla güçlendirir.
 
-## Abonelik planları
-
-| Özellik | Cloud Native WAAP | WAAP + Gelişmiş API Güvenliği |
+| Özellik | WAAP | WAAP + API Security |
 | ------- | ----------------- | --------------------- |
-| **OWASP kapsamı** | | |
-| [OWASP Top 10](https://owasp.org/www-project-top-ten/) | Evet | Evet |
-| [OWASP API Top 10](https://owasp.org/www-project-api-security/) | Kısmen <sup>⁕</sup> | Evet |
-| **Korunan kaynak türleri** | | |
-| Web uygulamaları | Evet | Evet |
-| API'ler | Kısmen <sup>⁕</sup> | Evet |
-| **API protokol desteği** | | |
-| Eski (SOAP, XML-RPC, WebDAV, WebForm) | Evet | Evet |
-| Ana akım (REST, GraphQL) | Evet | Evet |
-| Modern ve sürekli (gRPC, WebSocket) | Hayır | Evet |
-| **Gerçek zamanlı tehdit önleme** | | |
-| [Giriş doğrulama saldırıları](../about-wallarm/protecting-against-attacks.md#input-validation-attacks), örneğin SQL enjeksiyonu, RCE | Evet | Evet |
-| [Sanal yamalar](../user-guides/rules/vpatch-rule.md) | Evet | Evet |
-| [Coğrafi konum filtreleme](../user-guides/ip-lists/overview.md) | Evet | Evet |
-| **Otomatik tehditlerden korunma** | | |
-| [Brute-force koruması](../admin-en/configuration-guides/protecting-against-bruteforce.md) | Evet | Evet |
-| [BOLA (IDOR) koruması](../admin-en/configuration-guides/protecting-against-bola.md) | Manuel kurulum | Otomatik koruma |
-| [API İstismarı Önleme](../api-abuse-prevention/overview.md) | Hayır | Evet |
-| **Gözlem opsiyonları** | | |
-| [API Taraması](../api-discovery/overview.md) | Hayır | Evet |
-| [API Taraması ile varolan gölge, öksüz ve zombi API'lerin bulunması](../api-discovery/overview.md#shadow-orphan-and-zombie-apis) | Hayır | Evet |
-| [Hassas veri tespiti](../api-discovery/overview.md) | Hayır | Evet |
-| **Güvenlik testi ve zafiyet değerlendirmesi** | | |
-| [Aktif tehdit doğrulaması](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | Hayır | Evet |
-| [Zaafiyet Tarayıcısı](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | Hayır | Evet |
-| **Güvenlik olay monitörü** | | |
-| SIEM'ler, mesajlaşma uygulamaları etc ile [entegrasyonlar](../user-guides/settings/integrations/integrations-intro.md) | Hepsi | Hepsi |
-| [Denetim günlüğü](../user-guides/settings/audit-log.md) | Evet | Evet |
-| **Dağıtım** | | |
-| [Dağıtım seçenekleri](../installation/supported-deployment-options.md) | Hepsi | Hepsi |
-| [Çoklu kiracılık](../installation/multi-tenant/overview.md) | Talep üzerine evet | Talep üzerine evet |
-| **Kullanıcı yönetimi** | | |
-| Kullanıcılar için [SSO (SAML) doğrulama](../admin-en/configuration-guides/sso/intro.md) | Evet | Evet |
-| **Wallarm API** | | |
-| [Wallarm API'ye erişim](../api/overview.md) | Evet | Evet |
+| **Gerçek zamanlı koruma** | | |
+| [DDoS protection (L7)](../admin-en/configuration-guides/protecting-against-ddos.md) | Evet | Evet |
+| [Geo/source filtering](../user-guides/ip-lists/overview.md) | Evet | Evet |
+| [IP reputation feeds](../user-guides/ip-lists/overview.md#malicious-ip-feeds) | Evet | Evet |
+| [Attack stamps (SQLi, XSS, SSRF, etc.)](../about-wallarm/protecting-against-attacks.md#input-validation-attacks) | Evet | Evet |
+| [Customer defined signatures](../user-guides/rules/regex-rule.md) | Evet | Evet |
+| [Virtual patching](../user-guides/rules/vpatch-rule.md) | Evet | Evet |
+| [Brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) | Evet | Evet |
+| [Forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md) | Evet | Evet |
+| [Distributed rate limiting](../user-guides/rules/rate-limiting.md) | Evet | Evet |
+| [BOLA protection](../admin-en/configuration-guides/protecting-against-bola.md) | Manuel tetiklemeler | Otomatik koruma |
+| [API Abuse Prevention (bot management)](../api-abuse-prevention/overview.md) | Hayır | Evet |
+| [Credential Stuffing Detection](../about-wallarm/credential-stuffing.md) | Hayır | Evet |
+| [API Specification Enforcement](../api-specification-enforcement/overview.md) | Hayır | Evet |
+| [GraphQL security policies](../api-protection/graphql-rule.md) | Hayır | Evet |
+| **Güvenlik durumu** | | |
+| [Exposed asset scanner](../user-guides/scanner.md) | Evet | Evet |
+| [Vulnerability assessment](../user-guides/vulnerabilities.md) | Evet | Evet |
+| [API Sessions](../api-sessions/overview.md) | Hayır | Evet |
+| [API Discovery](../api-discovery/overview.md) | Hayır | Evet |
+| [Sensitive data detection](../api-discovery/overview.md#sensitive-data-detection) | Hayır | Evet |
+| [Rogue API Detection (shadow, orphan zombie)](../api-discovery/rogue-api.md) | Hayır | Evet |
+| **Ek Seçenekler** | | |
+| [Deployment options](../installation/supported-deployment-options.md) | Tümü | Tümü |
+| [Integrations](../user-guides/settings/integrations/integrations-intro.md) | Tümü | Tümü |
+| [Number of users](../user-guides/settings/users.md#inviting-a-user) | Sınırsız | Sınırsız |
+| [SSO authentication](../admin-en/configuration-guides/sso/intro.md) | Evet | Evet |
+| [Role-based access control (RBAC)](../user-guides/settings/users.md#user-roles) | Evet | Evet |
+| [Multi-tenant](../installation/multi-tenant/overview.md) | Evet (talep üzerine) | Evet (talep üzerine) |
+| Olay saklama süresi | 6 ay | 6 ay |
+| Destek | Standard/Advanced/Platinum | Standard/Advanced/Platinum |
 
-`⁕` Özellikler, WAAP'ın sınırlı bir API protokol seti aracılığıyla gönderilen istekleri analiz ettiği için API'leri kısmen korur çünkü bu özellikler, mevcut olmayan işlevlere bağlı olarak **Kısmen** çalışabilir.
+Abonelik planını etkinleştirmek için [sales@wallarm.com](mailto:sales@wallarm.com) ile iletişime geçin.
 
-Bir abonelik planını etkinleştirmek için lütfen [sales@wallarm.com](mailto:sales@wallarm.com) adresine bir istekte bulunun. Abonelik maliyeti, seçilen plana, süresine ve [gelen trafik hacmi](../admin-en/operation/learn-incoming-request-number.md)ne dayalı olarak belirlenecektir.
+## API Saldırı Yüzeyi
 
-Aktif plan hakkında bilgiler Wallarm Konsolu → **Ayarlar** → [**Abonelikler**](../user-guides/settings/subscriptions.md) bölümünde görüntülenir.
+API Saldırı Yüzeyi abonelik planı, hiçbir kurulum gerektirmeden ve minimum yapılandırma ile halka açık API’ler ve ilgili bilgilerin kapsamlı bir görünümünü sağlar.
 
-## Abonelik bildirimleri
+Abonelik planı, aşağıdakileri içeren [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) ürününü sunar:
 
-Wallarm, hesabınızdaki **Yöneticiler** ve **Küresel Yöneticilere** bir abonelikle ilgili herhangi bir sorun hakkında e-postalar yoluyla bildirimlerde bulunur:
+* [API Attack Surface Discovery](../api-attack-surface/api-surface.md)
+* [Security Issues Detection](../api-attack-surface/security-issues.md)
 
-* Abonelik süresinin sona ermesi (60, 30, 15 gün önce ve süre dolduğunda)
-* İşlenen istekler için aylık kota aşıldığında (kotanın %85'i ve %100'üne ulaşıldığında)
+Abonelik planını etkinleştirmek için aşağıdakilerden birini yapın:
 
-Buna ek olarak, Wallarm Konsolu UI tüm kullanıcılar için abonelik sorunları hakkında mesaj gösterir.
+* Eğer henüz bir Wallarm hesabınız yoksa, fiyatlandırma bilgilerini alıp AASM'yi Wallarm'ın resmi sitesinden [buradan](https://www.wallarm.com/product/aasm) etkinleştirin.
 
-## Ücretsiz katman abonelik planı (US Cloud)
+    Etkinleştirme sırasında, kullanılan e-postanın alan adı taraması hemen başlar ve satış ekibiyle müzakereleriniz sürerken çalışır. Etkinleştirdikten sonra, kapsam alanına ek domainler ekleyebilirsiniz.
 
-Yeni bir kullanıcı **[US Cloud](overview.md#cloud)** Wallarm Konsolu'nda kaydedildiğinde, Wallarm sistemine otomatik olarak **Ücretsiz Katman** abonelik planına sahip yeni bir müşteri hesabı oluşturulur.
+* Eğer zaten bir Wallarm hesabınız varsa, [sales@wallarm.com](mailto:sales@wallarm.com) ile iletişime geçin.
 
-Ücretsiz Katman aboneliği şunları içerir:
+## Security Edge
 
-* Ayın ilk günü her ay sıfırlanan diğer hiçbir kısıtlama olmaksızın **500 bin istek/ay** kotalı ücretsiz Wallarm özellikler.
-* Şu özellikler hariç olmak üzere Wallarm platformuna [Gelişmiş API Güvenlik](#subscription-plans) olarak erişim:
+Security Edge abonelik planı, Wallarm node'unu yönetilen ortamda dağıtmanıza olanak tanır ve bu sayede yerinde kurulum ve yönetim gereksinimini ortadan kaldırır.
 
-    * [Zaafiyet](detecting-vulnerabilities.md#vulnerability-scanner) ve [Tespite maruz varlık](../user-guides/scanner.md) Tarayıcıları
-    * [Aktif tehditleri önleme](detecting-vulnerabilities.md#active-threat-verification) özelliği
-    * [API İstismarı Önleme](../api-abuse-prevention/overview.md) modülü
-    * [CDN node](../installation/cdn-node.md) türü dağıtımı
-    * Zaafiyet Tarayıcısı'nın kullanılamaması nedeniyle OWASP API Top 10'un kısmi kapsamı
-    * Wallarm API'ye erişim
+Wallarm, node barındırma ve bakımını üstlenirken, sağlam trafik filtreleme, saldırı tespiti ve güvenli iletişim gibi avantajlardan yararlanarak temel altyapınıza odaklanmanızı sağlar – tüm bunlar Wallarm tarafından desteklenmektedir.
 
-**Kotanın aşıldığı durumda ne olur?**
+Kullanılabilir Security Edge dağıtım seçenekleri şunlardır:
 
-Şirket hesabı Ücretsiz Katman aylık kotasının %100'ünü aşarsa, Wallarm Konsolu'na erişim, tüm entegrasyonlarla birlikte devre dışı bırakılır. %200'e ulaşıldığında, Wallarm düğümlerinizdeki koruma devre dışı bırakılır.
+* [Security Edge Inline](../installation/security-edge/deployment.md)
+* [Security Edge Connectors](../installation/se-connector.md)
 
-Bu kısıtlamalar, bir sonraki ayın ilk gününe kadar etkili olacaktır. Hizmeti hemen geri almak için Wallarm [satış ekibi](mailto:sales@wallarm.com) ile iletişime geçerek ücretli abonelik planlarından birine geçin.
+Bu abonelik hakkında bilgi almak için lütfen [sales@wallarm.com](mailto:sales@wallarm.com) ile iletişime geçin.
 
-Ücretsiz Katman aboneliği kullanımı hakkında bilgiler Wallarm Konsolu → **Ayarlar** → [**Abonelikler**](../user-guides/settings/subscriptions.md) bölümünde görüntülenir.
+## Free Tier
 
-Wallarm, hesabınızdaki **Yöneticilere** ve **Küresel Yöneticilere** ücretsiz istek kotasının %85'i, %100'ü, %185'i ve %200'ü aşıldığında e-posta yoluyla bildirim yapar.
+Küçük işletmeler ve eğitim amaçları için Wallarm, kendi Free Tier hesabınızı oluşturma seçeneğini sunar. Depolama tercihlerinize en uygun olan Wallarm Cloud’u seçebilirsiniz:
 
-## Deneme süresi (EU Cloud)
+* [Create Free Tier account on the US Wallarm Cloud](https://us1.my.wallarm.com/signup)
+* [Create Free Tier account on the EU Wallarm Cloud](https://my.wallarm.com/signup)
 
-Yeni bir kullanıcı **[EU Cloud](overview.md#cloud)** Wallarm Konsolu'nda kaydedildiğinde, Wallarm sistemine aktif bir deneme süresi olan yeni bir müşteri hesabı otomatik olarak oluşturulur.
+Free Tier hesapları şunlara izin verir:
 
-* Deneme süresi ücretsizdir.
-* Deneme süresi 14 gündür.
-* Wallarm denemesi, API Güvenlik [planında](#subscription-plans) yer alabilecek modüller ve özelliklerin en fazla setini sunar.
-* Deneme süresi sadece bir kez daha 14 gün uzatılabilir.
+* Zaman sınırlaması olmaksızın, ayda **500 thousand requests per month** kadar işlem yapma imkânı.
+* Aşağıdakiler dışında Wallarm platformuna [Advanced API Security](#waap-and-advanced-api-security) olarak erişim:
 
-    Deneme süresi, Wallarm Konsolu → **Ayarlar** → [**Abonelikler**](../user-guides/settings/subscriptions.md) bölümünde ve deneme süresinin sona ermesi hakkında e-posta gönderen düğme üzerinden uzatılabilir. E-posta, sadece [**Yönetici** ve **Küresel Yönetici** rolüne](../user-guides/settings/users.md#user-roles) sahip kullanıcılara gönderilir.
-* Deneme süresi sona ererse:
+    * Security Edge [Inline](../installation/security-edge/deployment.md) ve [Connectors](../installation/se-connector.md)
+    * [Exposed assets scanner](../user-guides/scanner.md)
+    * [Vulnerability assessment](../user-guides/vulnerabilities.md)
+    * [API Abuse Prevention](../api-abuse-prevention/overview.md)
 
-    * Wallarm Konsolu'ndaki hesap engellenir.
-    * Wallarm düğümü ve Wallarm Cloud senkronizasyonu durdurulur.
-    * Wallarm düğümü yerel olarak çalışır, ancak Wallarm Cloud'dan güncelleme alamaz ve Cloud'a veri yükleyemez.
-    
-    Wallarm'a ücretli bir abonelik etkinleştirildiğinde, tüm kullanıcılar için müşteri hesabına erişim yeniden sağlanır.
+Eğer bir Free Tier hesabı aylık kotanın %100'ünü aşarsa, Wallarm Console erişiminiz ile tüm entegrasyonlar devre dışı bırakılır. %200'e ulaşıldığında ise Wallarm node’larınız üzerindeki koruma devre dışı kalır. Bu kısıtlamalar, bir sonraki ayın ilk gününe kadar geçerli olacaktır.
 
-Deneme süresi hakkındaki bilgiler Wallarm Konsolu → **Ayarlar** → [**Abonelikler**](../user-guides/settings/subscriptions.md) bölümünde görüntülenir.
+Tüm kısıtlamaları [ücretli aboneliklere](mailto:sales@wallarm.com) geçerek kolayca kaldırabilirsiniz.

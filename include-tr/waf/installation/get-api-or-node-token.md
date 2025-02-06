@@ -1,14 +1,14 @@
-1. [Uygun tip][wallarm-token-types] Wallarm jetonunu alın:
+1. [uygun türde][wallarm-token-types] Wallarm token'ı edinin:
 
-    === "API jetonu"
+    === "API token"
 
-        1. Wallarm Konsolu'nu açın → **Ayarlar** → **API jetonları** [ABD Bulutu](https://us1.my.wallarm.com/settings/api-tokens) veya [AB Bulutu](https://my.wallarm.com/settings/api-tokens)'nda.
-        1. `Deploy` kaynak rolüne sahip API jetonunu bulun veya oluşturun.
-        1. Bu jetonu kopyalayın.
+        1. [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinde Wallarm Console → **Settings** → **API tokens** yolunu açın.
+        1. `Deploy` kaynak rolüne sahip API token'ı bulun veya oluşturun.
+        1. Bu token'ı kopyalayın.
 
-    === "Düğüm jetonu"
+    === "Node token"
 
-        1. Wallarm Konsolu'nu açın → **Düğümler** [ABD Bulutu](https://us1.my.wallarm.com/nodes) veya [AB Bulutu](https://my.wallarm.com/nodes)'nda.
-        1. Aşağıdakilerden birini yapın:
-            * **Wallarm düğümü** tipinde düğüm oluşturun ve üretilen jetonu kopyalayın.
-            * Mevcut düğüm grubunu kullanın - jetonu düğüm menüsü üzerinden kopyalayın → **Tokeni kopyala**.
+        1. [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinde Wallarm Console → **Nodes** yolunu açın.
+        1. Aşağıdakilerden birini yapın: 
+            * **Wallarm node** türünde bir node oluşturun ve oluşturulan token'ı kopyalayın.
+            * Var olan node grubunu kullanın - node menüsünden → **Copy token** seçeneğini kullanarak token'ı kopyalayın.

@@ -8,65 +8,65 @@
 [doc-integration-overview]:     integration-overview.md
 
 
-#   FAST Düğümü ile Entegrasyon: İlkeler ve Adımlar
+#   FAST Node ile Entegrasyon: İlkeler ve Adımlar
 
-Bir performans testini CI modunda yapabilmek için FAST düğümünün iki modda sıralı olarak çalıştırılmış olması şarttır:
-1.  [Kayıt modu][doc-recording-mode]
-2.  [Test modu][doc-testing-mode]
+CI modunda güvenlik testi yürütmek için, bir FAST node iki modda sırasıyla çalıştırılmalıdır:
+1.  [Recording mode][doc-recording-mode]
+2.  [Testing mode][doc-testing-mode]
 
-`CI_MODE` ortam değişkeni bir FAST düğümünün çalışma modunun ne olduğunu belirler. Bu değişken aşağıdaki değerlere sahip olabilir:
+`CI_MODE` ortam değişkeni, FAST node'un çalışma modunu tanımlar. Bu değişken aşağıdaki değerleri alabilir:
 * `recording`
 * `testing`
 
-Bu senaryoda, FAST düğümü ilk olarak bir test kaydı oluşturur ve bu kayıda başlangıç taslak taleplerini yazar. Kaydın tamamlanmasının ardından, düğüm bu önceden kaydedilmiş talepleri temel olarak kullanarak bir güvenlik testini başlatır.  
+Bu senaryoda, FAST node önce bir test kaydı oluşturur ve temel istekleri buna yazar. Kayıt tamamlandıktan sonra, node, kaydedilen temel isteklere dayalı olarak güvenlik testleri için bir test çalışması oluşturur.
 
-Bu senaryo aşağıdaki resimde tasvir edilmiştir:
+Aşağıdaki resimde bu senaryo gösterilmiştir:
 
-![ci Modunda FAST Düğümü ile CI/CD İşi Örneği][img-sample-job-ci-mode]
+![An example of a CI/CD job with FAST node in the CI Mode][img-sample-job-ci-mode]
 
-İlgili iş akış adımları:
+İlgili iş akışı adımları şu şekildedir:
 
-1.  Hedef uygulamanın inşa edilmesi ve dağıtılması.   
+1.  Hedef uygulamanın oluşturulması ve dağıtılması.   
 
-2.  [FAST düğümünün kayıt modunda çalıştırılması][doc-recording-mode].
+2.  [FAST node'u recording modunda çalıştırma][doc-recording-mode].
 
-    Kayıt modunda FAST düğümü aşağıdaki eylemleri gerçekleştirir:
+    Recording modunda FAST node aşağıdaki işlemleri gerçekleştirir:
     
-    * Taleplerin kaynağından hedef uygulamaya kadar öntalepler yönlendirilir.
-    * Bu öntalepler, daha sonra temel alınarak güvenlik test seti oluşturmak amacıyla test kaydına kaydedilir.
+    * Temel istekleri, istek kaynağından hedef uygulamaya proxy'ler.
+    * Bu temel istekleri, daha sonra bunlara dayalı olarak güvenlik testi seti oluşturmak üzere test kaydına yazar.
     
-    !!! info "Test Çalıştırmaları Üzerine Not"
-        Kayıt modunda bir test çalışması oluşturulmaz.
+    !!! info "Test Çalışmaları Hakkında Not"
+        Recording modunda test çalışması oluşturulmaz.
 
-3.  Test aracının hazırlanması ve kurulumu:
+3.  Bir test aracının hazırlanması ve kurulması:
     
-    1.  Test aracının dağıtılması ve temel konfigürasyonunun yapılması.
+    1.  Test aracının dağıtılması ve temel yapılandırmasının gerçekleştirilmesi.
     
-    2.  [FAST düğümünün bir proxy sunucusu olarak konfigüre edilmesi][doc-proxy-configuration].
+    2.  [FAST node'u bir proxy sunucusu olarak yapılandırma][doc-proxy-configuration].
         
 4.  Mevcut testlerin çalıştırılması.
     
-    FAST düğümü öntalepleri hedef uygulamaya yönlendirir ve kaydeder.
+    FAST node, hedef uygulamaya temel istekleri proxy'ler ve kaydeder.
     
-5.  FAST düğümü kapsayıcının durdurulması ve çıkarılması.
+5.  FAST node konteynerinin durdurulması ve kaldırılması.
 
-    Eğer FAST düğümü çalışma sırasında kritik bir hata ile karşı karşıya gelmezse, ya [`INACTIVITY_TIMEOUT`][doc-recording-variables] şeklinde bir zamanlayıcı süresi bitene kadar ya da CI/CD aracı belirgin bir şekilde durdurulana kadar çalışmaya devam eder.
+    FAST node, çalışması sırasında kritik bir hatayla karşılaşmazsa, [`INACTIVITY_TIMEOUT`][doc-recording-variables] zamanlayıcısı dolana kadar veya CI/CD aracı konteyneri açıkça durdurana kadar çalışır.
     
-    Mevcut testler tamamlandıktan sonra, FAST düğümünün [durdurulması gerekir][doc-fast-container-stopping]. Bu, öntaleplerin kaydedilme sürecini sona erdiren bir işlemdir. Daha sonra düğüm kapsayıcısı çıkarılabilir.          
+    Mevcut testler tamamlandıktan sonra, FAST node [durdurulmalıdır][doc-fast-container-stopping]. Bu, temel isteklerin kaydedilme sürecini sonlandırır. Ardından node konteyneri kaldırılabilir.
 
-6.  [FAST düğümünün test modunda çalıştırılması][doc-testing-mode].
+6.  [FAST node'u testing modunda çalıştırma][doc-testing-mode].
 
-    Test modunda FAST düğümü aşağıdaki eylemleri gerçekleştirir:
+    Testing modunda FAST node aşağıdaki işlemleri gerçekleştirir:
     
-    * Adım 4'te kaydedilen muhtemel taleplere dayalı bir test çalışması oluşturur.
-    * Güvenlik test seti oluşturmayı ve yürütmeyi başlatır.
+    * Adım 4'te kaydedilen temel isteklere dayanarak bir test çalışması oluşturur.
+    * Bir güvenlik testi seti oluşturup yürütmeye başlar.
     
-7.  Test sonuçlarını alıp FAST düğümü kapsayıcısını durdurma.    
+7.  Test sonuçlarının alınması ve FAST node konteynerinin durdurulması.    
     
-    Eğer FAST düğümü çalışma sırasında kritik bir hata ile karşı karşıya gelmezse, güvenlik testleri tamamlanana kadar çalışmaya devam ederler. Ancak bu düğüm otomatik olarak sona erer. Daha sonra düğüm kapsayıcısı çıkarılabilir.
+    FAST node, çalışması sırasında kritik bir hatayla karşılaşmazsa, güvenlik testleri tamamlanana kadar çalışır. Node otomatik olarak kapanır. Ardından node konteyneri kaldırılabilir.
 
-##  Bir FAST Düğümü Kapsayıcısının Yaşam Alokası (CI Modu Üzerinden Dağıtma)
+##  FAST Node Konteynerinin Yaşam Döngüsü (CI Modu ile Dağıtım)
    
-Bu senaryo, Docker kapsayıcısındaki FAST düğümünün ilk olarak kayıt modunda çalıştığını, daha sonra test modunda çalıştığını varsayar. 
+Bu senaryo, FAST node içeren Docker konteynerinin önce recording modunda, sonra testing modunda çalıştırılacağını varsayar.
  
-FAST düğümü herhangi bir modda çalışmayı bitirdiğinde, düğüm kapsayıcısı kaldırılır. Bir diğer deyişle, operasyon modu her değiştiğinde, bir FAST düğümü konteyneri yeniden oluşturulur.
+FAST node herhangi bir modda çalışmasını tamamladıktan sonra, node konteyneri kaldırılır. Başka bir deyişle, işletim modu değiştiğinde FAST node konteyneri her seferinde yeniden oluşturulur.

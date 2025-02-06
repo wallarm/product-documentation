@@ -1,17 +1,17 @@
 | API çağrısı: | `POST /v1/test_run` |      |
 | ------------ | ------------------- | ---- |
 | Yetkilendirme: | Gerekli | Token ile |
-| Token ile HTTP başlığı: | `X-WallarmAPI-Token` |  Token’in değerini API sunucusuna geçirmek için kullanılır |
-| Parametreler: | `name` **(zorunlu)** | Test dizisinin adı |
-|  | `test_record_name` | Test kayıt adı. Tüm temel istekler bu test kaydına yerleştirilecektir.<br>Varsayılan değer: test dizisinin adı. |
-|  | `desc` | Testin detaylı açıklaması.<br>Varsayılan değer: boş dize |
-|  | `file_extensions_to_exclude` | Bu parametre, test sırasında değerlendirme sürecinden hariç tutulması gereken belirli dosya türlerinin belirlenmesine olanak sağlar. Bu dosya türleri, düzenli ifade tarafından belirlenir.<br>Örneğin, `ico` dosya uzantısını hariç tutmak için ayarladığınızda, `GET /favicon.ico` temel isteği FAST tarafından kontrol edilmeyecek ve atlanacaktır.<br>Düzenli ifadenin aşağıdaki formatı vardır:<br>- `.`: herhangi bir sayıda (sıfır veya daha fazla) herhangi bir karakter<br>- `x*`: herhangi bir sayıda (sıfır veya daha fazla) `x` karakteri<br>- `x?`: tek `x` karakteri (veya hiçbiri)<br>- herhangi bir tek dosya uzantısı (örneğin, `jpg`)<br>- dikey çubukla ayrılmış birkaç uzantı (örneğin, `jpg` &#124; `png`)<br>Varsayılan değer: boş dize (FAST, herhangi bir dosya uzantısına sahip temel istekleri kontrol eder). |
-|  | `policy_id` | Test politikasının belirleyicisi.<br>Eğer parametre eksikse, o zaman varsayılan politika etkinleştirilir |
-|  | `stop_on_first_fail` | Bu parametre, bir güvenlik açığı tespit edildiğinde FAST'ın davranışını belirtir:<br>`true`: ilk tespit edilen güvenlik açığından sonra test dizisinin uygulanmasını durdurun.<br>`false`: herhangi bir güvenlik açığı tespit edilmiş olsun veya olmasın, tüm temel istekleri işleme alınır.<br>Varsayılan değer: `false` |
-|  | `skip_duplicated_baselines` | Bu parametre, çoğaltılmış bir temel istekle karşılaşıldığında FAST'ın davranışını belirtir:<br>`true`: çoğaltılmış temel istekleri atla (eğer birkaç aynı temel istek varsa, o zaman test istekleri sadece ilk temel istek için oluşturulur).<br>`false`: her gelen temel istek için test istekleri oluşturulur.<br>Varsayılan değer: `true` |
-|  | `rps_per_baseline` | Bu parametre, hedef uygulamaya gönderilecek test isteklerinin sayıda bir sınırla belirtir (*RPS*, *saniyedeki istekler*) (örneğin, tek bir temel istekten 100 test isteği türetilebilir).<br>Sınır, her bir temel istek için (test sırasında bir temel istek için fazla `N` test isteği gönderilmez) belirlenir.<br>Minimum değer: `1`.<br>Maksimum değer: `500`.<br>Varsayılan değer: `null` (RPS sınırsızdır) |
-|  | `rps` | Bu parametre, yukarıda açıklanan parametreye benzer, fakat yalnızca tek bir temel istek yerine, test dizinine göre küresel olarak RPS'yi sınırlar.<br>Başka bir deyişle, test sırası boyunca test isteklerinin toplam sayısı, test sırasında kaydedilen temel isteklerin sayısı ne olursa olsun belirtilen değeri aşmamalıdır.<br>Minimum değer: `1`.<br>Maksimum değer: `1000`.<br>Varsayılan değer: `null` (RPS sınırsızdır) |
-|  | `inactivity_timeout` | Bu parametre, FAST düğümünün yeni bir temel isteğin gelmesini beklemek için beklediği saniye cinsinden zaman aralığını belirtir.<br>Bu davranış, [burada][doc-inactivity-timeout] detaylı olarak açıklanmıştır.<br>Zaman aşımının, kaydedilmiş olan temel istekler için güvenlik testlerinin oluşturulması ve uygulanması süreci üzerinde bir etkisi yoktur.<br>Minimum değer: `300` (300 saniye veya 5 dakika).<br>Maksimum değer: `86400` (86400 saniye veya 1 gün).<br>Varsayılan değer: `1800` (1800 saniye veya 30 dakika) |
+| Token içeren HTTP başlığı: | `X-WallarmAPI-Token` | Token değerini API sunucusuna iletmek için kullanılır |
+| Parametreler: | `name` **(gerekli)** | Test çalışmasının adı |
+|  | `test_record_name` | Test kaydı adı. Tüm temel istekler bu test kaydına yerleştirilecektir.<br>Varsayılan değer: test çalışmasının adı. |
+|  | `desc` | Test çalışmasının detaylı açıklaması.<br>Varsayılan değer: boş string |
+|  | `file_extensions_to_exclude` | Bu parametre, test sırasında değerlendirme sürecinden hariç tutulması gereken belirli dosya türlerini belirtmenizi sağlar. Bu dosya türleri düzenli ifade kullanılarak belirtilir.<br>Örneğin, eğer `ico` dosya uzantısının hariç tutulmasını ayarlarsanız, o zaman `GET /favicon.ico` temel isteği FAST tarafından kontrol edilmez ve atlanır.<br>Düzenli ifadenin formatı şöyledir:<br>- `.`: herhangi bir karakterin (sıfır veya daha fazla) herhangi bir sayısı<br>- `x*`: `x` karakterinden sıfır veya daha fazla adet<br>- `x?`: tek bir `x` karakteri (veya hiçbiri)<br>- herhangi tek bir dosya uzantısı (ör. `jpg`)<br>- dikey çubukla ayrılmış birkaç uzantı (ör. `jpg` &#124; `png`)<br>Varsayılan değer: boş string (FAST, temel istekleri herhangi bir dosya uzantısıyla kontrol eder). |
+|  | `policy_id` | Test politikasının tanımlayıcısı.<br>Eğer parametre eksikse, varsayılan politika devreye girer |
+|  | `stop_on_first_fail` | Bu parametre, FAST’in bir güvenlik açığı tespit edildiğinde gösterdiği davranışı belirtir:<br>`true`: tespit edilen ilk güvenlik açığında test çalışmasının yürütülmesi durdurulur.<br>`false`: herhangi bir güvenlik açığı tespit edilse de temel isteklerin tamamı işlenir.<br>Varsayılan değer: `false` |
+|  | `skip_duplicated_baselines` | Bu parametre, aynı olan temel isteklerle karşılaşıldığında FAST’in gösterdiği davranışı belirtir:<br>`true`: aynı olan temel istekler atlanır (birkaç aynı temel istek varsa, test istekleri yalnızca ilk temel istek için oluşturulur).<br>`false`: gelen her temel istek için test istekleri oluşturulur.<br>Varsayılan değer: `true` |
+|  | `rps_per_baseline` | Bu parametre, hedef uygulamaya gönderilecek test isteklerinin sayısına (*RPS*, saniyedeki istek sayısı) bir sınır getirilmesini sağlar (örneğin, tek bir temel isteğe bağlı 100 test isteği oluşturulabilir).<br>Sınır, temel istek başına belirlenir (bireysel bir temel istek için saniyede `N`'den fazla test isteği gönderilmez) test çalışmasında.<br>Minimum değer: `1`.<br>Maksimum değer: `500`.<br>Varsayılan değer: `null` (RPS sınırsızdır) |
+|  | `rps` | Bu parametre yukarıda açıklananla benzerdir, ancak temel istekle sınırlı kalmadan test çalışması başına global olarak RPS sınırı getirir.<br>Özetle, test çalışması sırasında kaç temel istek kaydedilmiş olursa olsun, saniyedeki toplam test isteği sayısı belirtilen değeri geçmemelidir.<br>Minimum değer: `1`.<br>Maksimum değer: `1000`.<br>Varsayılan değer: `null` (RPS sınırsızdır) |
+|  | `inactivity_timeout` | Bu parametre, FAST düğümünün yeni bir temel isteğin gelmesini beklediği saniye cinsinden zaman aralığını belirtir.<br>Bu davranışın detayları [here][doc-inactivity-timeout] açıklanmıştır.<br>Timeout, kaydedilmiş temel istekler için güvenlik testlerinin oluşturulması ve yürütülmesi süreçleri üzerinde etkili değildir.<br>Minimum değer: `300` (300 saniye veya 5 dakika).<br>Maksimum değer: `86400` (86400 saniye veya 1 gün).<br>Varsayılan değer: `1800` (1800 saniye veya 30 dakika) |
 
 **Bir isteğin örneği:**
 
@@ -26,7 +26,7 @@ curl --request POST \
 }'
 ```
 
-**Bir yanıtın örneği:**
+**Bir cevabın örneği:**
 
 ```
 {

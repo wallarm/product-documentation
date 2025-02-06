@@ -1,148 +1,162 @@
-[acl-access-phase]: ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
+```markdown
+[api-discovery-enable-link]:        ../api-discovery/setup.md#enable
+[link-wallarm-mode-override]:       ../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
+[rule-creation-options]:            ../user-guides/events/check-attack.md#attack-analysis_1
+[acl-access-phase]:                 ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
+[img-mode-rule]:                    ../images/user-guides/rules/wallarm-mode-rule.png
 
-# Filtrasyon modunun konfigürasyonu
+# Filtreleme Modu
 
-Filtrasyon modu, gelen isteklerin işlenmesi sırasında filtreleme düğümünün davranışını tanımlar. Bu talimatlar, mevcut filtreleme modlarını ve konfigürasyon yöntemlerini açıklar.
+Filtreleme modu, gelen istekleri işlerken filtreleme düğümünün davranışını tanımlar. Bu yönergeler, mevcut filtreleme modlarını ve yapılandırma yöntemlerini açıklar.
 
 ## Mevcut filtreleme modları
 
-Wallarm filtreleme düğümü, gelen istekleri aşağıdaki modlarda işleyebilir (en yumuşaktan en sıkıya):
+Wallarm filtreleme düğümü, gelen istekleri aşağıdaki modlarda işleyebilir (en hafif olandan en katı olanına doğru):
 
-* **Devre dışı** (`off`)
-* **İzleme** (`monitoring`)
-* **Güvenli engelleme** (`safe_blocking`)
-* **Engelleme** (`block`)
+* **Disabled** (`off`)
+* **Monitoring** (`monitoring`)
+* **Safe blocking** (`safe_blocking`)
+* **Blocking** (`block`)
 
---8<-- "../include-tr/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-latest.md"
 
-## Filtrasyon modu konfigürasyon yöntemleri
+## Yapılandırma yöntemleri
 
-Filtrasyon modu aşağıdaki şekillerde yapılandırılabilir:
+Filtreleme modu, aşağıdaki yollarla yapılandırılabilir:
 
-* Filtreleme düğümünün konfigürasyon dosyasındaki `wallarm_mode` yönergesine bir değer atayın.
+* [Düğüm tarafında `wallarm_mode` direktifini ayarlayın](#setting-wallarm_mode-directive)
+* [Wallarm Console'da genel filtreleme kuralını tanımlayın](#general-filtration-rule-in-wallarm-console)
+* [Wallarm Console'da uç noktaya yönelik filtreleme kurallarını tanımlayın](#endpoint-targeted-filtration-rules-in-wallarm-console)
 
-    !!! uyarı "CDN düğümündeki `wallarm_mode` yönergesinin desteği"
-        Lütfen `wallarm_mode` yönergesinin [Wallarm CDN düğümlerinde](../installation/cdn-node.md) yapılandırılamayacağını unutmayın. CDN düğümlerinin filtreleme modunu yapılandırmak için  lütfen diğer mevcut yöntemleri kullanın.
-* Wallarm Konsolu'nda genel filtreleme kuralını tanımlayın.
-* Wallarm Konsolu'nun **Kurallar** bölümünde bir filtreleme modu kuralı oluşturun.
+Filtreleme modu yapılandırma yöntemlerinin öncelikleri, [`wallarm_mode_allow_override` direktifinde](#prioritization-of-methods) belirlenir. Varsayılan olarak, Wallarm Console'da belirtilen ayarlar, değer şiddetine bakılmaksızın `wallarm_mode` direktifi tarafından belirtilen ayarlardan daha yüksek önceliğe sahiptir.
 
-Filtrasyon modu konfigürasyon yöntemlerinin öncelikleri, [`wallarm_mode_allow_override` yönergesi](#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override) ile belirlenir. Varsayılan olarak, Wallarm Konsolu'nda belirtilen ayarlar, değer ağırlığı ne olursa olsun `wallarm_mode` yönergesinden daha yüksek önceliğe sahiptir.
+### `wallarm_mode` direktifinin ayarlanması
 
-### `wallarm_mode` yönergesinde filtreleme modunu belirtme
+Düğüm tarafında `wallarm_mode` direktifini kullanarak düğüm filtreleme modunu ayarlayabilirsiniz. Farklı dağıtımlarda `wallarm_mode` direktifinin nasıl ayarlandığına dair ayrıntılar aşağıda açıklanmıştır.
 
-!!! uyarı "CDN düğümündeki `wallarm_mode` yönergesinin desteği"
-    Lütfen `wallarm_mode` yönergesinin [Wallarm CDN düğümlerinde](../installation/cdn-node.md) yapılandırılamayacağını unutmayın. CDN düğümlerinin filtreleme modunu yapılandırmak için lütfen diğer mevcut yöntemleri kullanın.
+Belirtilen yapılandırmanın yalnızca [in-line](../installation/inline/overview.md) dağıtımlar için geçerli olduğunu unutmayın - [out-of-band (OOB)](../installation/oob/overview.md) çözümlerinde yalnızca `monitoring` modu etkin olabilir.
 
-Filtreleme düğümünün konfigürasyon dosyasındaki `wallarm_mode` yönergesini kullanarak, farklı bağlamlar için filtreleme modlarını tanımlayabilirsiniz. Bu bağlamlar, en genel olanından en yerel olanına kadar aşağıdaki liste şeklinde düzenlenmiştir:
+=== "All-in-one installer"
 
-* `http`: `http` bloğu içindeki yönergeler HTTP sunucusuna gönderilen isteklere uygulanır.
-* `server`: `server` bloğu içindeki yönergeler sanal sunucuya gönderilen isteklere uygulanır.
-* `location`: `location` bloğu içindeki yönergeler, sadece belirtilen yolu içeren isteklere uygulanır.
+    Linux üzerinde [all-in-one installer](../installation/nginx/all-in-one.md) kullanılarak kurulan NGINX tabanlı düğümler için, filtreleme düğümü yapılandırma dosyasında `wallarm_mode` direktifini ayarlayabilirsiniz. Farklı bağlamlar için filtreleme modlarını tanımlayabilirsiniz. Bu bağlamlar, en globalden en yerel olana doğru aşağıdaki sırayla düzenlenmiştir:
 
-`http`, `server` ve `location` blokları için farklı `wallarm_mode` yönerge değerleri tanımlanmışsa, en yerel yapılandırma en yüksek önceliğe sahip olur.
+    * `http`: direktifler HTTP sunucusuna gönderilen isteklere uygulanır.
+    * `server`: direktifler sanal sunucuya gönderilen isteklere uygulanır.
+    * `location`: sadece belirtilen yol içeren isteklere direktifler uygulanır.
 
-**`wallarm_mode` yönergesinin kullanım örneği:**
+    `http`, `server` ve `location` blokları için farklı `wallarm_mode` direktif değerleri tanımlanırsa, en yerel yapılandırma en yüksek önceliğe sahiptir.
 
-```bash
-http {
+    Aşağıdaki [yapılandırma örneğine](#configuration-example) bakınız.
+
+=== "Docker NGINX‑based image"
+
+    Docker konteynerleri üzerinden NGINX tabanlı Wallarm düğümleri dağıtırken, [environment variable olarak geçin](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) `WALLARM_MODE`:
+
+    ```
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/node:5.3.0
+    ```
+
+    Alternatif olarak, [yapılandırma dosyasına ekleyin](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file) ve bu dosyayı monte ederek konteyneri çalıştırın.
+
+=== "Docker Envoy‑based image"
+
+    Docker konteynerleri üzerinden Envoy tabanlı Wallarm düğümleri dağıtırken, [environment variable olarak geçin](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables) `WALLARM_MODE`:
+
+    ```
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/envoy:4.8.0-1
+    ```
+
+    Alternatif olarak, [yapılandırma dosyasına ekleyin](../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) ve bu dosyayı monte ederek konteyneri çalıştırın.
+
+=== "NGINX Ingress controller"
+
+    NGINX Ingress controller için `wallarm-mode` anotasyonunu kullanın:
+
+    ```
+    kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-mode=monitoring
+    ```
+
+    Filtreleme modunu `monitoring` olarak ayarlayarak NGINX tabanlı Ingress controller'ınız için trafik analizinin nasıl [etkinleştirildiğine](../admin-en/installation-kubernetes-en.md#step-2-enabling-traffic-analysis-for-your-ingress) dair örneğe bakınız.
+
+=== "Kong Ingress controller"
+
+    Kong Ingress controller için `wallarm-mode` anotasyonunu kullanın:
+
+    ```
+    kubectl annotate ingress <KONG_INGRESS_NAME> -n <KONG_INGRESS_NAMESPACE> wallarm.com/wallarm-mode=monitoring
+    ```
+
+    Kong tabanlı Ingress controller'ınız için trafik analizinin nasıl [etkinleştirildiğine](../installation/kubernetes/kong-ingress-controller/deployment.md#step-3-enable-traffic-analysis-for-your-ingress) dair örneğe bakınız.
+
+=== "Sidecar"
+
+    Wallarm Sidecar çözümü için, varsayılan `values.yaml` dosyasının Wallarm ile ilgili bölümünde `mode` parametresini ayarlayın:
+
+    ```
+    config:
+    wallarm:
+        ...
+        mode: monitoring
+        modeAllowOverride: "on"
+    ```
+
+    Sidecar için filtreleme modunun nasıl belirtileceğine dair detayları [burada](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md) görebilirsiniz.
+
+=== "Edge Connectors"
+
+    [Security Edge connectors](../installation/se-connector.md) için, bağlantı dağıtımı sırasında **Filtration mode** seçicide `wallarm_mode` değerini belirtirsiniz.
+=== "Native Node"
+    * Native Node all-in-one installer ve Docker image için [`route_config.wallarm_mode`](../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parametresini kullanın.
+    * Native Node Helm chart için [`config.connector.mode`](../installation/native-node/helm-chart-conf.md#configconnectormode) parametresini kullanın.
+
+### Wallarm Console'da Genel Filtreleme Kuralı
+
+Gelen tüm istekler için genel filtreleme modunu **Settings** → **General** bölümünde [US](https://us1.my.wallarm.com/settings/general) veya [EU](https://my.wallarm.com/settings/general) Cloud üzerinden tanımlayabilirsiniz.
     
-    wallarm_mode monitoring;
-    
-    server {
-        server_name SERVER_A;
-    }
-    
-    server {
-        server_name SERVER_B;
-        wallarm_mode off;
-    }
-    
-    server {
-        server_name SERVER_C;
-        wallarm_mode off;
-        
-        location /main/content {
-            wallarm_mode monitoring;
-        }
-        
-        location /main/login {
-            wallarm_mode block;
-        }
+![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
-        location /main/reset-password {
-            wallarm_mode safe_blocking;
-        }
-    }
-}
-```
+Genel filtreleme modu ayarı, **Rules** bölümünde **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) kuralı olarak temsil edilir. Bu bölümdeki uç noktaya yönelik filtreleme kurallarının daha yüksek önceliğe sahip olduğunu unutmayın.
 
-Bu örnekte, kaynaklar için filtrasyon modları aşağıdaki şekilde tanımlanmıştır:
+### Wallarm Console'da Uç Noktaya Yönelik Filtreleme Kuralları
 
-1. `monitoring` modu, HTTP sunucusuna gönderilen isteklere uygulanır.
-2. `monitoring` modu, `SERVER_A` adlı sanal sunucuya gönderilen isteklere uygulanır.
-3. `off` modu, `SERVER_B` adlı sanal sunucuya gönderilen isteklere uygulanır.
-4. `off` modu, `SERVER_C` adlı sanal sunucuya gönderilen isteklere uygulanır, ancak `/main/content`, `/main/login` veya `/main/reset-password` yolunu içeren istekler hariç.
-    1. `monitoring` modu, `SERVER_C` adlı sanal sunucuya gönderilen ve `/main/content` yolunu içeren isteklere uygulanır.
-    2. `block` modu, `SERVER_C` adlı sanal sunucuya gönderilen ve `/main/login` yolunu içeren isteklere uygulanır.
-    3. `safe_blocking` modu, `SERVER_C` adlı sanal sunucuya gönderilen ve `/main/reset-password` yolunu içeren isteklere uygulanır.
+Belirli dallar, uç noktalar ve diğer koşullara bağlı olarak filtreleme modunu ayarlayabilirsiniz. Wallarm, bunu yapmak için **Set filtration mode** [kuralını](../user-guides/rules/rules.md) sağlar. Bu tür kurallar, [Wallarm Console'da ayarlanan genel filtreleme kuralından](#general-filtration-rule-in-wallarm-console) daha yüksek önceliğe sahiptir.
 
-### Wallarm Konsolu'nda genel filtrasyon kuralını ayarlama
+Yeni bir filtreleme modu kuralı oluşturmak için:
 
-[ABD Wallarm Bulutu](https://us1.my.wallarm.com/settings/general) veya [AB Wallarm Bulutu](https://my.wallarm.com/settings/general)'ndaki Wallarm Konsolu ayarlarının **Genel** sekmesindeki radyo düğmeleri, tüm gelen istekler için genel filtrasyon modunu tanımlar. Konfigürasyon dosyasındaki `http` bloğunda belirlenen `wallarm_mode` yönerge değeri, bu düğmelerle aynı eylem kapsamına sahiptir.
+--8<-- "../include/rule-creation-initial-step.md"
 
-Wallarm Konsolu'nun **Kurallar** sekmesindeki yerel filtrasyon modu ayarları, **Genel** sekmedeki global ayarlardan daha yüksek önceliğe sahiptir.
+1. **Fine-tuning attack detection** → **Override filtration mode** seçeneğini seçin. 
+1. **If request is** kısmında, kuralın uygulanacağı kapsamı [tanımlayın](../user-guides/rules/rules.md#configuring). Kuralı belirli bir dal, istek veya uç nokta için başlattıysanız, kapsam onlar tarafından tanımlanır - gerekirse daha fazla koşul ekleyebilirsiniz.
+1. İstenen modu seçin.
+1. Değişiklikleri kaydedin ve [kural derlemesinin tamamlanmasını](../user-guides/rules/rules.md#ruleset-lifecycle) bekleyin.
 
-**Genel** sekmede, aşağıdaki filtreleme modlarından birini belirtebilirsiniz: 
+Filtreleme modu kuralı oluşturmak için ayrıca [Wallarm API'sini doğrudan çağırabileceğinizi](../api/request-examples.md#create-the-rule-setting-filtration-mode-to-monitoring-for-the-specific-application) unutmayın.
 
-* **Yerel ayarlar (varsayılan)**: [`wallarm_mode` yönergesi](#specifying-the-filtering-mode-in-the-wallarm_mode-directive) kullanılarak belirlenen filtreleme modu uygulanır
-* [**İzleme**](#available-filtration-modes)
-* [**Güvenli engelleme**](#available-filtration-modes)
-* [**Engelleme**](#available-filtration-modes)
-    
-![Genel ayarlar sekmesi](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
+### Yöntemlerin Önceliklendirilmesi
 
-!!! bilgi "Wallarm Bulutu ve filtreleme düğümü senkronizasyonu"
-    Wallarm Konsolu'nda tanımlanan kurallar, Wallarm Bulutu ve filtreleme düğümünün senkronizasyon süreci sırasında uygulanır ve bu süreç her 2-4 dakikada bir gerçekleşir.
+!!! warning "Edge düğümünde `wallarm_mode_allow_override` direktifinin desteği"
+    Lütfen, `wallarm_mode_allow_override` direktifinin Wallarm Edge [inline](../installation/security-edge/deployment.md) ve [connector](../installation/se-connector.md) düğümlerinde özelleştirilemeyeceğini unutmayın.
 
-    [Filtreleme düğümü ve Wallarm Bulutu senkronizasyonu konfigürasyonu hakkında daha fazla detay →](configure-cloud-node-synchronization-en.md)
+`wallarm_mode_allow_override` direktifi, filtreleme düğümü yapılandırma dosyasındaki `wallarm_mode` direktifi değerlerini kullanmak yerine Wallarm Console'da tanımlanan kuralların uygulanabilmesini yönetir.
 
-### "Kurallar" sekmesinde filtreleme kurallarını ayarlama
+`wallarm_mode_allow_override` direktifi için geçerli olan değerler şunlardır:
 
-Wallarm Konsolu'nun **Kurallar** sekmesinde, özel koşullarınıza uyan isteklerin işlenmesi için filtreleme modunu hassas bir şekilde ayarlayabilirsiniz. Bu kurallar, [Wallarm Konsolu'nda belirlenen genel filtreleme kuralından](#setting-up-the-general-filtration-rule-in-wallarm-console) daha yüksek önceliğe sahiptir.
+* `off`: Wallarm Console'da belirtilen kurallar göz ardı edilir. Konfigürasyon dosyasında `wallarm_mode` direktifiyle belirtilen kurallar uygulanır.
+* `strict`: Sadece, konfigürasyon dosyasında `wallarm_mode` direktifiyle belirtilenlerden daha katı filtreleme modlarını tanımlayan Wallarm Cloud'daki kurallar uygulanır.
 
-* [**Kurallar** sekmesinde kurallarla çalışma ayrıntıları →](../user-guides/rules/rules.md)
-* [Filtrasyon modunu yöneten bir kural oluşturma adım-adım kılavuzu →](../user-guides/rules/wallarm-mode-rule.md)
+    Mevcut filtreleme modları, en hafif olandan en katı olana doğru yukarıda [listelenmiştir](#available-filtration-modes).
 
-!!! bilgi "Wallarm Bulutu ve filtreleme düğümü senkronizasyonu"
-    Wallarm Konsolu'nda tanımlanan kurallar, Wallarm Bulutu ve filtreleme düğümünün senkronizasyon süreci sırasında uygulanır ve bu süreç her 2-4 dakikada bir gerçekleşir.
+* `on` (varsayılan): Wallarm Console'da belirtilen kurallar uygulanır. Konfigürasyon dosyasında `wallarm_mode` direktifiyle belirtilen kurallar göz ardı edilir.
 
-    [Filtreleme düğümü ve Wallarm Bulutu senkronizasyon konfigürasyonu hakkında daha fazla detay →](configure-cloud-node-synchronization-en.md)
+`wallarm_mode_allow_override` direktifi değerinin tanımlanabileceği bağlamlar, en globalden en yerel olana doğru aşağıdaki listede sunulmuştur:
 
-### `wallarm_mode_allow_override` kullanarak filtreleme modu konfigürasyon yöntemlerinin önceliklerini ayarlama
+* `http`: `http` bloğu içindeki direktifler, HTTP sunucusuna gönderilen isteklere uygulanır.
+* `server`: `server` bloğu içindeki direktifler, sanal sunucuya gönderilen isteklere uygulanır.
+* `location`: `location` bloğu içindeki direktifler, yalnızca ilgili yolu içeren isteklere uygulanır.
 
-!!! uyarı "`wallarm_mode_allow_override` yönergesinin CDN düğümündeki desteği"
-    Lütfen `wallarm_mode_allow_override` yönergesinin [Wallarm CDN düğümlerinde](../installation/cdn-node.md) yapılandırılamayacağını unutmayın.
+`http`, `server` ve `location` blokları için farklı `wallarm_mode_allow_override` direktif değerleri tanımlanırsa, en yerel yapılandırma en yüksek önceliğe sahiptir.
 
-`wallarm_mode_allow_override` yönergesi, filtreleme düğümünün konfigürasyon dosyasındaki `wallarm_mode` yönerge değerlerini kullanmak yerine Wallarm Konsolu'nda tanımlanan kuralların uygulanabilirliğini yönetir.
-
-`wallarm_mode_allow_override` yönergesi için geçerli olan aşağıdaki değerler bulunmaktadır:
-
-* `off`: Wallarm Konsolu'nda belirtilen kurallar yoksayılır. Konfigürasyon dosyasındaki `wallarm_mode` yönergesi tarafından belirtilen kurallar uygulanır.
-* `strict`: Konfigürasyon dosyasındaki `wallarm_mode` yönergesi tarafından belirlenenlerden daha sıkı filtreleme modlarını tanımlayan Wallarm Bulutu'nda belirtilen kurallar uygulanır.
-
-    Mevcut filtrasyon modları, en yumuşaktan en sıkıya doğru sıralanarak [yukarıda](#available-filtration-modes) listelenmiştir.
-
-* `on` (varsayılan): Wallarm Konsolu'nda belirtilen kurallar uygulanır. Konfigürasyon dosyasındaki `wallarm_mode` yönergesi tarafından belirtilen kurallar yoksayılır.
-
-`wallarm_mode_allow_override` yönergesi değerinin tanımlanabileceği bağlamlar, en genel olanından en yerel olanına kadar, aşağıdaki listeye sunulmuştur:
-
-* `http`: `http` bloğu içindeki yönergeler HTTP sunucusuna gönderilen isteklere uygulanır.
-* `server`: `server` bloğu içindeki yönergeler sanal sunucuya gönderilen isteklere uygulanır.
-* `location`: `location` bloğu içindeki yönergeler, sadece belirtilen yolu içeren isteklere uygulanır.
-
-`http`, `server` ve `location` bloklarında farklı `wallarm_mode_allow_override` yönerge değerleri tanımlanırsa, en yerel yapılandırma en yüksek önceliğe sahip olur.
-
-**`wallarm_mode_allow_override` yönergesinin kullanım örneği:**
+**`wallarm_mode_allow_override` direktifinin kullanım örneği:**
 
 ```bash
 http {
@@ -165,17 +179,17 @@ http {
 }
 ```
 
-Bu konfigürasyon örneği, Wallarm Konsolu'ndan gelen filtrasyon modu kurallarının aşağıdaki uygulamaları ile sonuçlanır:
+Bu yapılandırma örneği, Wallarm Console'dan gelen filtreleme modu kurallarının uygulanmasıyla ilgili aşağıdaki durumları oluşturur:
 
-1. `SERVER_A` adlı sanal sunucuya gönderilen istekler için Wallarm Konsolu'nda belirlenen filtrasyon modu kuralları yoksayılır. `SERVER_A` sunucusuna karşılık gelen `server` bloğunda belirli `wallarm_mode` yönergesi yoktur, bu nedenle bu tür istekler için `http` bloğunda belirtilen `monitoring` filtreleme modu uygulanır.
-2. Wallarm Konsolu'nda belirlenen filtrasyon modu kuralları, `/main/login` yolunu içermeyen istekler dışında `SERVER_B` adlı sanal sunucuya gönderilen isteklere uygulanır.
-3. `SERVER_B` adlı sanal sunucuya gönderilen ve `/main/login` yolunu içeren isteklere, Wallarm Konsolu'nda belirlenen filtrasyon modu kuralları sadece `monitoring` modundan daha sıkı bir filtrasyon modu belirlediklerinde uygulanır.
+1. Sanal sunucu `SERVER_A`'ya gönderilen istekler için Wallarm Console'da tanımlanan filtreleme modu kuralları göz ardı edilir. `SERVER_A` sunucusuna karşılık gelen `server` bloğunda `wallarm_mode` direktifi belirtilmemiş olduğundan, `http` bloğunda belirtilen `monitoring` filtreleme modu bu istekler için uygulanır.
+2. Sanal sunucu `SERVER_B`'ye gönderilen istekler için Wallarm Console'da tanımlanan filtreleme modu kuralları, `/main/login` yolunu içeren istekler hariç uygulanır.
+3. Sanal sunucu `SERVER_B`'ye gönderilen ve `/main/login` yolunu içeren istekler için, Wallarm Console'da tanımlanan filtreleme modu kuralları yalnızca `monitoring` modundan daha katı bir filtreleme modu tanımlıyorsa uygulanır.
 
-## Filtrasyon modu konfigürasyon örneği
+## Yapılandırma Örneği
 
-Yukarıda belirtilen tüm yöntemleri kullanan bir filtreleme modu konfigürasyonuna bir örnek verelim.
+Yukarıda bahsedilen tüm yöntemlerin kullanıldığı bir filtreleme modu yapılandırması örneğini ele alalım.
 
-### Filtreleme düğümü konfigürasyon dosyasında filtrasyon modunu ayarlama
+### Düğüm yapılandırma dosyası
 
 ```bash
 http {
@@ -200,56 +214,65 @@ http {
             wallarm_mode block;
             wallarm_mode_allow_override on;
         }
+        
+        location /main/feedback {
+            wallarm_mode safe_blocking;
+            wallarm_mode_allow_override off;
+        }
     }
 }
 ```
 
-### Wallarm Konsolu'nda filtreleme modunu ayarlama
+### Wallarm Console'daki Kurallar
 
-* [Genel filtrasyon kuralı](#setting-up-the-general-filtration-rule-in-wallarm-console): **İzleme**.
-* [Filtrasyon kuralları](#setting-up-the-filtration-rules-on-the-rules-tab):
-    * İsteğin aşağıdaki koşulları karşılaması durumunda:
+* [Genel filtreleme kuralı](#general-filtration-rule-in-wallarm-console): **Monitoring**.
+* [Filtreleme kuralları](#endpoint-targeted-filtration-rules-in-wallarm-console):
+    * Eğer istek aşağıdaki koşulları sağlıyorsa:
         * Yöntem: `POST`
-        * Yolun ilk kısmı: `main`
-        * Yolun ikinci kısmı: `apply`,
+        * Yolun ilk bölümü: `main`
+        * Yolun ikinci bölümü: `apply`,
         
-        o zaman **Varsayılan** filtreleme modu uygulanır.
+        o zaman **Default** filtreleme modu uygulanır.
         
-    * İsteğin aşağıdaki koşulu karşılaması durumunda:
-        * Yolun ilk kısmı: `main`,
+    * Eğer istek aşağıdaki koşulu sağlıyorsa:
+        * Yolun ilk bölümü: `main`,
         
-        o zaman **Engelleme** filtreleme modu uygulanır.
+        o zaman **Blocking** filtreleme modu uygulanır.
         
-    * İsteğin aşağıdaki koşulları karşılaması durumunda:
-        * Yolun ilk kısmı: `main`
-        * Yolun ikinci kısmı: `login`,
+    * Eğer istek aşağıdaki koşulları sağlıyorsa:
+        * Yolun ilk bölümü: `main`
+        * Yolun ikinci bölümü: `login`,
         
-        o zaman **İzleme** filtreleme modu uygulanır.
+        o zaman **Monitoring** filtreleme modu uygulanır.
 
-### `SERVER_A` sunucusuna gönderilen isteklerin örnekleri
+### İstek örnekleri
 
-Yapılandırılmış `SERVER_A` sunucusuna gönderilen isteklerin örnekleri ve Wallarm filtreleme düğümünün bunlara hangi eylemleri uyguladığı aşağıdaki gibidir:
+`SERVER_A` yapılandırılmış sunucusuna gönderilen istek örnekleri ve Wallarm filtreleme düğümünün bu isteklere uyguladığı işlemler aşağıdaki gibidir:
 
-* `/news` yoluna sahip zararlı istek, `SERVER_A` sunucusu için `wallarm_mode monitoring;` ayarı nedeniyle işlenir ancak engellenmez.
+* `/news` yoluna sahip kötü niyetli istek, `SERVER_A` sunucusu için ayarlanan `wallarm_mode monitoring;` nedeniyle işlenir ancak engellenmez.
 
-* `/main` yoluna sahip zararlı istek, `SERVER_A` sunucusu için `wallarm_mode monitoring;` ayarı nedeniyle işlenir ancak engellenmez.
+* `/main` yoluna sahip kötü niyetli istek, `SERVER_A` sunucusu için ayarlanan `wallarm_mode monitoring;` nedeniyle işlenir ancak engellenmez.
 
-    Wallarm Konsolu'nda belirlenen **Engelleme** kuralı, `SERVER_A` sunucusu için `wallarm_mode_allow_override off;` ayarı nedeniyle uygulanmaz.
+    Wallarm Console'da tanımlanan **Blocking** kuralı, `SERVER_A` sunucusu için ayarlanan `wallarm_mode_allow_override off;` nedeniyle uygulanmaz.
 
-* `/main/login` yolu olan zararlı istek, `/main/login` yolundaki istekler için `wallarm_mode block;` ayarı nedeniyle engellenir.
+* `/main/login` yoluna sahip kötü niyetli istek, `/main/login` yoluna özel `wallarm_mode block;` nedeniyle engellenir.
 
-    Wallarm Konsolu'nda belirlenen **İzleme** kuralı, filtreleme düğümü konfigürasyon dosyasında `wallarm_mode_allow_override strict;` ayarı nedeniyle uygulanmaz.
+    Filtreleme düğümü yapılandırma dosyasında belirtilen `wallarm_mode_allow_override strict;` nedeniyle Wallarm Console'da tanımlanan **Monitoring** kuralı uygulanmaz.
 
-* `/main/signup` yoluna sahip zararlı istek, `wallarm_mode_allow_override strict;` set for the requests with the `/main/signup` path and the **Blocking** rule defined in Wallarm Console for the requests with the `/main` path.
-* `/main/apply` yoluna ve `GET` yöntemine sahip zararlı istek, `wallarm_mode_allow_override on;` set for the requests with the `/main/apply` path and the **Blocking** rule defined in Wallarm Console for the requests with the `/main` path.
-* `/main/apply` yoluna ve `POST` yöntemine sahip zararlı istek, `/main/apply` yoluna sahip istekler için `wallarm_mode_allow_override on;` ayarı, Wallarm Konsolu'nda belirlenen **Varsayılan** kuralı ve filtreleme düğümü konfigürasyon dosyasındaki `/main/apply` yolundaki istekler için `wallarm_mode block;` ayarını nedeniyle engellenir.
+* `/main/signup` yoluna sahip kötü niyetli istek, `/main/signup` yolundaki `wallarm_mode_allow_override strict;` ayarı ve `/main` yolu için Wallarm Console'da tanımlanan **Blocking** kuralı nedeniyle engellenir.
+* `/main/apply` yoluna sahip ve `GET` yöntemiyle gelen kötü niyetli istek, `/main/apply` yolundaki `wallarm_mode_allow_override on;` ayarı ve `/main` yolu için Wallarm Console'da tanımlanan **Blocking** kuralı nedeniyle engellenir.
+* `/main/apply` yoluna sahip ve `POST` yöntemiyle gelen kötü niyetli istek, `/main/apply` yolundaki `wallarm_mode_allow_override on;` ayarı, Wallarm Console'da tanımlanan **Default** kuralı ve `/main/apply` yolu için yapılandırma dosyasında belirtilen `wallarm_mode block;` nedeniyle engellenir.
+* `/main/feedback` yoluna sahip kötü niyetli istek, sadece [graylisted IP](../user-guides/ip-lists/overview.md) kaynaklıysa, `/main/feedback` yoluna özel `wallarm_mode safe_blocking;` nedeniyle engellenir.
 
-## Kademeli filtrasyon modu uygulaması üzerine en iyi uygulamalar
+    Filtreleme düğümü yapılandırma dosyasında belirtilen `wallarm_mode_allow_override off;` nedeniyle Wallarm Console'da tanımlanan **Monitoring** kuralı uygulanmaz.
 
-Yeni bir Wallarm düğümünü başarıyla devreye almak için, bu adım adım önerilere filtreleme modlarını değiştirme konusunda uyun:
+## Kademeli Filtreleme Modu Uygulaması için En İyi Uygulamalar
 
-1. İşlem modunu `monitoring` olarak ayarlayarak Wallarm filtreleme düğümlerini üretim dışı ortamlarınızda yerleştirin.
-1. İşlem modunu `monitoring` olarak ayarlayarak Wallarm filtreleme düğümlerini üretim ortamınızda yerleştirin.
-1. Wallarm bulut tabanlı uygulamanız hakkında biraz bilgi edinmesi için arka uçta biraz zaman tanımak üzere, tüm ortamlarınızdaki (test ve üretim dahil) filtreleme düğümleri aracılığıyla trafiği 7-14 gün boyunca akıtın.
-1. Korumalı uygulamanın beklendiği gibi çalıştığını otomatik veya manuel testler ile doğrulayarak Wallarm'ın `block` modunu tüm üretim dışı ortamlarınızda etkinleştirin.
-1. Uygulamanın beklendiği gibi çalıştığını doğrulayacak mevcut yöntemleri kullanarak Wallarm'ın `block` modunu üretim ortamında etkinleştirin.
+Yeni bir Wallarm düğümünün başarılı bir şekilde devreye alınması için, filtreleme modlarını değiştirmek adına şu adım adım önerileri izleyin:
+
+1. Test dışı (non-production) ortamlarda çalışacak şekilde Wallarm filtreleme düğümlerini `monitoring` modunda dağıtın.
+2. Üretim ortamınızda çalışan Wallarm filtreleme düğümlerini `monitoring` modunda dağıtın.
+3. Wallarm cloud tabanlı backend'in uygulamanız hakkında bilgi sahibi olabilmesi için, tüm ortamlarınızda (test ve üretim dahil) filtreleme düğümleri üzerinden geçen trafiği 7‑14 gün boyunca akışta tutun.
+4. Tüm test dışı (non-production) ortamlarda Wallarm `block` modunu etkinleştirin ve korunan uygulamanın beklendiği gibi çalıştığını otomatik veya manuel testlerle doğrulayın.
+5. Üretim ortamınızda Wallarm `block` modunu etkinleştirin ve mevcut yöntemleri kullanarak uygulamanın beklendiği gibi çalıştığını doğrulayın.
+```

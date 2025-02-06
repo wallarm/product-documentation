@@ -1,4 +1,4 @@
-#   Okta ile SSO'ya Bağlanma
+# Okta ile SSO Bağlantısı
 
 [doc-setup-sp]:                     setup-sp.md
 [doc-setup-idp]:                    setup-idp.md    
@@ -12,23 +12,23 @@
 
 [link-okta]:                        https://www.okta.com/
 
-Bu kılavuz, hizmet sağlayıcı olarak Wallarm'ın kimlik sağlayıcı hizmeti [Okta][link-okta] ile nasıl bağlantı kurulacağına dair süreci kapsar.
+Bu rehber, kimlik sağlayıcı olarak [Okta][link-okta] servisini, hizmet sağlayıcı olarak görev yapan Wallarm ile bağlama işlemini kapsayacaktır.
 
-!!! not
+!!! note
 
-    Varsayılan olarak, Wallarm'da SSO bağlantısı, uygun hizmeti etkinleştirmediğiniz sürece mevcut değildir. SSO hizmetini etkinleştirmek için lütfen hesap yöneticinize veya [Wallarm destek ekibine](mailto:support@wallarm.com) başvurun.
+    Varsayılan olarak, Wallarm üzerinde SSO bağlantısı uygun hizmet etkinleştirilmeden kullanılamaz. SSO hizmetini etkinleştirmek için lütfen hesap yöneticiniz veya [Wallarm support team](mailto:support@wallarm.com) ile iletişime geçin.
     
-    Hizmeti etkinleştirdikten sonra
+    Hizmet etkinleştirildikten sonra,
     
-    *   aşağıdaki SSO bağlantı prosedürünü gerçekleştirebilirsiniz, ve
-    *   "Entegrasyonlar" sekmesinde SSO ile ilgili bloklar görünecektir.
+    *   aşağıdaki SSO bağlantı prosedürünü gerçekleştirebileceksiniz ve
+    *   SSO ile ilgili bloklar “Integrations” sekmesinde görünecektir.
     
-    Ayrıca, hem Wallarm hem de Okta için yönetim haklarına sahip hesaplara ihtiyacınız var.
+    Ayrıca, Wallarm ve Okta için yönetici haklarına sahip hesaplara sahip olmanız gerekmektedir.
 
-Okta ile SSO'ya bağlanma süreci aşağıdaki adımları içerir:
+SSO'nun Okta ile bağlanma süreci aşağıdaki adımlardan oluşmaktadır:
 1.  [Wallarm Tarafında Parametrelerin Oluşturulması.][doc-setup-sp]
 2.  [Okta'da Bir Uygulamanın Oluşturulması ve Yapılandırılması.][doc-setup-idp]
-3.  [Okta Metaverisi'nin Wallarm Kurulum Sihirbazına Aktarılması.][doc-metadata-transfer]
-4.  [Okta Tarafından Wallarm Uygulamasına Erişimin Sağlanması][doc-allow-access-to-wl]
+3.  [Okta Metadata'sının Wallarm Kurulum Sihirbazına Aktarılması.][doc-metadata-transfer]
+4.  [Okta Tarafında Wallarm Uygulamasına Erişime İzin Verme][doc-allow-access-to-wl]
 
-Bundan sonra, Wallarm kullanıcıları için [SSO kimlik doğrulamasını yapılandırın.][doc-employ-sso]
+Bunun ardından, Wallarm kullanıcıları için [SSO kimlik doğrulamasını yapılandırın][doc-employ-sso].

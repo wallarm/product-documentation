@@ -1,51 +1,54 @@
+```markdown
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                     ../../user-guides/ip-lists/graylist.md
+[graylist-docs]:                     ../../user-guides/ip-lists/overview.md
 [ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
+[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
+[api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
 
-# EOL NGINX Ingress controller'ını Wallarm modülleriyle güncelleme
+# Entegre Wallarm modülleriyle EOL NGINX Ingress denetleyicisinin yükseltilmesi
 
-Bu talimatlar, dağıtılmış son ömür Wallarm Ingress Denetleyicisi'nin (versiyon 3.6 ve altı) yeni versiyonuna Wallarm düğümü 4.8 ile yükseltme adımlarını açıklar.
+Bu talimatlar, dağıtılmış kullanım ömrünü tamamlamış Wallarm Ingress Denetleyici (sürüm 3.6 ve altı) 'yu Wallarm node 5.0 içeren yeni sürüme yükseltme adımlarını tanımlar.
 
---8<-- "../include-tr/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
-!!! warning "Community Ingress NGINX Controller'ın yükseltilmiş versiyonu"
-    Eğer düğümü 3.4 veya altı bir versiyondan yükseltiyorsanız, lütfen not alın ki Wallarm Ingress denetleyicisinin üzerine kurulduğu Community Ingress NGINX Controller'ın versiyonu 0.26.2'den 1.9.5'e yükseltilmiştir.
+!!! warning "Yükseltilmiş Community Ingress NGINX Controller Sürümü"
+    Eğer node sürümünüz 3.4 veya altından yükseltiyorsanız, lütfen unutmayın ki, Wallarm Ingress denetleyicisinin dayandığı Community Ingress NGINX Controller sürümü 0.26.2'den 1.11.3'e yükseltilmiştir.
     
-    Community Ingress NGINX Controller 1.9.5 işleminin çokça değiştiğinden dolayı, yapılandırması bu değişikliklere uygulanmalıdır Wallarm Ingress denetleyicisi yükseltme süresince.
+    Community Ingress NGINX Controller 1.11.3'ün işleyişinde önemli değişiklikler yapıldığından, Wallarm Ingress denetleyicisinin yükseltilmesi sırasında bu değişikliklere uygun olarak yapılandırmasının ayarlanması gerekmektedir.
 
-    Bu talimatlarda Community Ingress NGINX Controller'ın ayarlarının listesi bulunur ki muhtemelen değişmesi gerekebilir. Yine de, lütfen [Community Ingress NGINX Controller yayın notlarına](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md) dayanan bir yapılandırma göç planını çıkarın.
+    Bu talimatlar, muhtemelen değiştirmeniz gereken Community Ingress NGINX Controller ayarlarının listesini içermektedir. Yine de, lütfen [Community Ingress NGINX Controller sürüm notlarına](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md) dayanarak, yapılandırma geçişi için bireysel bir plan hazırlayın.
 
-## Gereklilikler
+## Gereksinimler
 
---8<-- "../include-tr/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
 
-## Adım 1: Wallarm teknik destek ekibine filtreleme düğümü modüllerini yükselttiğinizi bildirin (yalnızca düğüm 2.18 veya altı yükseltiliyorsa)
+## Adım 1: Wallarm teknik desteğine, filtreleme node modüllerini yükselttiğinizi bildirin (sadece node 2.18 veya altını yükseltiyorsanız)
 
-Eğer düğüm 2.18 veya altı bir versiyon yükseltiliyorsa, Wallarm teknik destek ekibine 4.8'deki filtreleme düğümü modüllerini güncellediğinizi bildirin ve Wallarm hesabınızdaki yeni IP listeleri mantığını etkinleştirmelerini isteyin.
+Eğer node 2.18 veya altında yükseltiyorsanız, [Wallarm teknik desteğini](mailto:support@wallarm.com) Wallarm hesabınız için yeni IP listeleri mantığının etkinleştirilmesiyle birlikte filtreleme node modüllerini 5.0'a kadar güncellediğinizi bildirin.
 
-Yeni IP listeleri mantığı etkinleştirildiğinde, lütfen Wallarm Console'u açın ve [**IP listeleri**](../../user-guides/ip-lists/overview.md) bölümünün ulaşılabilir olduğundan emin olun.
+Yeni IP listeleri mantığı etkinleştirildiğinde, lütfen Wallarm Console'u açın ve [**IP lists**](../../user-guides/ip-lists/overview.md) bölümünün mevcut olduğunu doğrulayın.
 
-## Adım 2: Etkin tehdit teyit etme modülünü devre dışı bırakın (yalnızca düğüm 2.16 veya daha alt bir versiyon yükseltiliyorsa)
+## Adım 2: Threat Replay Testing modülünü devre dışı bırakın (sadece node 2.16 veya altını yükseltiyorsanız)
 
-Eğer Wallarm düğüm 2.16 veya daha düşük bir versiyon yükseltiliyorsa, lütfen Wallarm Console → **Zafiyetler** → **Configure**'da [Etkin tehdit teyit etme](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) modülünü devre dışı bırakın.
+Eğer Wallarm node 2.16 veya altını yükseltiyorsanız, lütfen Wallarm Console → **Vulnerabilities** → **Configure** üzerinden [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) modülünü devre dışı bırakın.
 
-Bu modülün çalışması, yükseltme süreci sırasında [yanlış pozitiflere](../../about-wallarm/protecting-against-attacks.md#false-positives) sebep olabilir. Modülü devre dışı bırakma, bu riski en aza indirir.
+Modülün çalışması, yükseltme işlemi sırasında [yanlış pozitiflere](../../about-wallarm/protecting-against-attacks.md#false-positives) neden olabilir. Modülü devre dışı bırakmak bu riski azaltır.
 
 ## Adım 3: API portunu güncelleyin
 
---8<-- "../include-tr/waf/upgrade/api-port-443.md"
+--8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Adım 4: Wallarm Helm tablosu deposunu güncelleyin
+## Adım 4: Wallarm Helm chart deposunu güncelleyin
 
-=== "Helm deposunu kullanıyorsanız"
+=== "Helm deposu kullanılıyorsa"
     ```bash
     helm repo update wallarm
     ```
-=== "GitHub deposunu kullanıyorsanız"
-    Tüm tablo sürümlerini içeren [Wallarm Helm deposunu](https://charts.wallarm.com/) aşağıdaki komutu kullanarak ekleyin. Lütfen Wallarm Ingress denetleyicisi ile daha fazla çalışmak için Helm deposunu kullanın.
+=== "Çoğaltılmış GitHub deposu kullanılıyorsa"
+    Aşağıdaki komutu kullanarak, tüm chart sürümlerini içeren [Wallarm Helm repository](https://charts.wallarm.com/) ekleyin. Wallarm Ingress Controller ile sonraki işlemler için lütfen Helm deposunu kullanın.
 
     ```bash
     helm repo add wallarm https://charts.wallarm.com
@@ -54,19 +57,19 @@ Bu modülün çalışması, yükseltme süreci sırasında [yanlış pozitiflere
 
 ## Adım 5: `values.yaml` yapılandırmasını güncelleyin
 
-Wallarm Ingress denetleyicisi 4.8'e geçiş yapmak için, `values.yaml` dosyasında belirtilen aşağıdaki yapılandırmayı güncelleyin:
+Wallarm Ingress denetleyicisini 5.0 sürümüne geçirmek için, `values.yaml` dosyasında belirtilen aşağıdaki yapılandırmaları güncelleyin:
 
 * Community Ingress NGINX Controller'ın standart yapılandırması
-* Wallarm modülü yapılandırması
+* Wallarm modül yapılandırması
 
 ### Community Ingress NGINX Controller'ın standart yapılandırması
 
-1. Community Ingress NGINX Controller'ın [yayın notlarına](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md) hızlıca göz atın ve `values.yaml` dosyasında değiştirilecek ayarları belirleyin.
+1. [Community Ingress NGINX Controller sürüm notlarını](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md) (0.27.0 ve sonrası) kontrol edin ve `values.yaml` dosyasında değiştirilmesi gereken ayarları belirleyin.
 2. `values.yaml` dosyasındaki belirlenen ayarları güncelleyin.
 
-Aşağıdakiler muhtemelen değiştirilmesi gereken ayarlardır:
+Muhtemelen değiştirmeniz gereken ayarlar şunlardır:
 
-* Wallarm Ingress denetleyicisine gönderilmeden önce bir yük dengeleyicisi tarafından geçirilen isteklerde [son kullanıcının kamu IP adresinin doğru raporlanması](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md).
+* Eğer istekler Wallarm Ingress Controller'a gönderilmeden önce bir yük dengeleyici tarafından geçiriliyorsa, [son kullanıcı genel IP adresinin doğru raporlanması](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md).
 
     ```diff
     controller:
@@ -75,7 +78,7 @@ Aşağıdakiler muhtemelen değiştirilmesi gereken ayarlardır:
     +    enable-real-ip: "true"
     +    forwarded-for-header: "X-Forwarded-For"
     ```
-* [IngressClasses yapılandırması](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/). Kullanılan Kubernetes API'sinin sürümü yeni Ingress denetleyicisinde yükseltildi ki bu, IngressClasses'ın `.controller.ingressClass`, `.controller.ingressClassResource` ve `.controller.watchIngressWithoutClass` parametreleri ile yapılandırılmasını gerektirir.
+* [IngressClasses yapılandırması](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/). Kullanılan Kubernetes API sürümü, yeni Ingress denetleyicisinde IngressClasses'in `.controller.ingressClass`, `.controller.ingressClassResource` ve `.controller.watchIngressWithoutClass` parametreleri ile yapılandırılmasını gerektirecek şekilde yükseltilmiştir.
 
     ```diff
     controller:
@@ -98,7 +101,7 @@ Aşağıdakiler muhtemelen değiştirilmesi gereken ayarlardır:
         proxy_request_buffering on;
         wallarm_enable_libdetection on;
     ```
-* ["admission webhook" ile Ingress sözdiziminin doğrulanması](https://kubernetes.github.io/ingress-nginx/how-it-works/#avoiding-outage-from-wrong-configuration) artık varsayılan olarak etkinleştirilmiştir.
+* Artık varsayılan olarak etkin olan "admission webhook" üzerinden Ingress sözdiziminin doğrulanması.
 
     ```diff
     controller:
@@ -106,9 +109,9 @@ Aşağıdakiler muhtemelen değiştirilmesi gereken ayarlardır:
     +    enabled: true
     ```
 
-    !!! warning "Ingress sözdiziminin doğrulamasının devre dışı bırakılması"
-        Yalnızca Ingress nesnelerinin işleyişini istikrarsızlaştırıyorsa Ingress sözdiziminin doğrulamasını devre dışı bırakmanız önerilir. 
-* [Etiket](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) formatı. Eğer `values.yaml` dosyası pod afinite kurallarını belirliyorsa, bu kurallardaki etiket formatını değiştirin, örneğin:
+    !!! warning "Ingress sözdizimi doğrulamasını devre dışı bırakma"
+        Ingress sözdizimi doğrulamasının, Ingress nesnelerinin işleyişini istikrarsızlaştırması durumunda devre dışı bırakılması önerilir.
+* [Label](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) formatı. Eğer `values.yaml` dosyası pod affinity kuralları belirliyorsa, bu kurallardaki etiket formatını şu şekilde değiştirin, örneğin:
 
     ```diff
     controller:
@@ -138,11 +141,11 @@ Aşağıdakiler muhtemelen değiştirilmesi gereken ayarlardır:
             weight: 100
     ```
 
-### Wallarm modülü yapılandırması
+### Wallarm modül yapılandırması
 
-`values.yaml` dosyasında belirtilen Wallarm modülü yapılandırmasını aşağıdaki şekilde değiştirin:
+`values.yaml` dosyasında yer alan Wallarm modül yapılandırmasını aşağıdaki şekilde değiştirin:
 
-* Eğer 2.18 veya daha düşük bir versiyondan yükseltiliyorsa, IP listesi yapılandırmasını [taşıyın](../migrate-ip-lists-to-node-3.md). Aşağıdaki parametreler `values.yaml` dosyasından muhtemelen silinmelidir:
+* Eğer sürüm 2.18 veya altından yükseltiyorsanız, IP listesi yapılandırmasını [taşıyın](../migrate-ip-lists-to-node-3.md). `values.yaml` dosyasından potansiyel olarak kaldırılması gereken aşağıdaki parametreler mevcuttur:
 
     ```diff
     controller:
@@ -153,15 +156,16 @@ Aşağıdakiler muhtemelen değiştirilmesi gereken ayarlardır:
         resources: {}
     ```
 
-    Wallarm düğüm 3.x'teki IP listesi çekirdek mantığı önemli ölçüde değiştiği için, IP listesi yapılandırmasının uygun biçimde ayarlanması gerekmektedir.
-* Listelenen ayarların beklenen davranışının [değiştirilmiş `off` ve `monitoring` filtrasyon modları mantığına](what-is-new.md#filtration-modes) uygun olduğundan emin olun:
+    Çünkü Wallarm node 3.x'te IP listelerinin çekirdek mantığı önemli ölçüde değiştirildiğinden, IP listesi yapılandırmasının buna uygun olarak ayarlanması gerekmektedir.
+* **Deploy** rolü için [API token'ı oluşturun](../../user-guides/settings/api-tokens.md) ve değerini `controller.wallarm.token` parametresine iletin.
+* Aşağıda listelenen ayarların beklenen davranışının, [kapalı ("off") ve "monitoring" filtrasyon modlarının değişen mantığına](what-is-new.md#filtration-modes) uygun olduğundan emin olun:
       
       * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [Wallarm Console'da yapılandırılan genel filtrasyon kuralı](../../user-guides/settings/general.md)
-      * [Wallarm Console'da yapılandırılan düşük seviyeli filtrasyon kuralları](../../user-guides/rules/wallarm-mode-rule.md)
+      * [Wallarm Console üzerinden yapılandırılan genel filtrasyon kuralı](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)
+      * [Wallarm Console üzerinden yapılandırılan endpoint’e yönelik filtrasyon kuralları](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
 
-      Eğer beklenen davranış, değiştirilen filtrasyon modu mantığına uymuyorsa, lütfen [Ingress notlarını](../../admin-en/configure-kubernetes-en.md#ingress-annotations) ve [diğer ayarları](../../admin-en/configure-wallarm-mode.md) yayımlanan değişikliklere ayarlayın.
-* Açık bir şekilde [monitoring servis yapılandırması](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md) yaptıysanız, bundan kurtulun. Yeni Wallarm Ingress denetleyicisi versiyonunda, monitoring servisi varsayılan olarak etkinleştirilmiştir ve herhangi bir ek yapılandırmayı gerektirmez.
+      Beklenen davranış, değişen filtrasyon modu mantığı ile uyuşmuyorsa, lütfen [Ingress annotations](../../admin-en/configure-kubernetes-en.md#ingress-annotations) ve [diğer ayarları](../../admin-en/configure-wallarm-mode.md) değişikliklere göre ayarlayın.
+* Açıkça belirtilmiş [monitoring service yapılandırmasını](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md) ortadan kaldırın. Yeni Wallarm Ingress denetleyici sürümünde monitoring service varsayılan olarak etkinleştirilmiştir ve ek bir yapılandırma gerektirmez.
 
     ```diff
     controller:
@@ -174,18 +178,18 @@ Aşağıdakiler muhtemelen değiştirilmesi gereken ayarlardır:
     -    service:
     -      annotations: {}
     ```
-* Bloke olan isteklere ConfigMap üzerinden yapılandırılan `&/usr/share/nginx/html/wallarm_blocked.html` sayfası dönüyorsa, [yapılandırmasını](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) yayımlanan değişikliklere ayarlayın.
+* Eğer ConfigMap aracılığıyla yapılandırılmış `&/usr/share/nginx/html/wallarm_blocked.html` sayfası, engellenmiş isteklere döndürülüyorsa, lütfen yayımlanan değişikliklere göre [yapılandırmasını ayarlayın](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page).
 
-    Yeni düğüm versiyonunda, Wallarm'ın örnek bloklama sayfası [güncellenmiş](what-is-new.md#new-blocking-page) bir kullanıcı arayüzüne sahiptir ve varsayılan olarak logosu ve destek e-postası belirtilmemiştir.
-* Eğer [`wallarm_process_time_limit`][nginx-process-time-limit-docs] ve [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINX direktifleri üzerinden özelleştirilmiş `overlimit_res` saldırı tespiti yapıldıysa, lütfen bu ayarları kurala [taşıyın](#step-6-transfer-the-overlimit_res-attack-detection-configuration-from-directives-to-the-rule) ve `values.yaml` dosyasından silin.
+    Yeni node sürümünde Wallarm örnek engelleme sayfası, varsayılan olarak logolu olmayan ve destek e-postası belirtilmeyen güncellenmiş bir kullanıcı arayüzüne [sahiptir](what-is-new.md#new-blocking-page).
+* Eğer [`wallarm_process_time_limit`][nginx-process-time-limit-docs] ve [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINX direktifleri ile özelleştirilmiş `overlimit_res` saldırı tespiti yaptıysanız, lütfen bu ayarları [kural üzerine taşıyın](#step-6-transfer-the-overlimit_res-attack-detection-configuration-from-directives-to-the-rule) ve `values.yaml` dosyasından silin.
 
-## Adım 6: `overlimit_res` saldırı tespiti yapılandırmasını direktiflerden kurallara taşıma
+## Adım 6: `overlimit_res` saldırı tespit yapılandırmasını direktiflerden kurala taşıyın
 
---8<-- "../include-tr/waf/upgrade/migrate-to-overlimit-rule-ingress-controller.md"
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-ingress-controller.md"
 
-## Adım 7: Tüm gelen K8s manifost değişikliklerini kontrol edin
+## Adım 7: Tüm gelecek K8s manifest değişikliklerini kontrol edin
 
-Beklenmeyen şekilde değişen Ingress denetleyici davranışını önlemek için, dağıtılmış Ingress denetleyici versiyonunun ve yeni olanın K8s manifostları arasındaki farkı [Helm Diff Plugin](https://github.com/databus23/helm-diff) ile kontrol edin. Bu eklenti, Ingress denetleyici versiyonunun ve yeni birinin K8s manifostları arasındaki farkı çıkarır.
+Beklenmedik Ingress denetleyici davranışları yaşamamak için, dağıtılmış Ingress denetleyici sürümü ile yeni sürüm arasındaki K8s manifest değişikliklerini [Helm Diff Plugin](https://github.com/databus23/helm-diff) kullanarak kontrol edin. Bu eklenti, dağıtılmış Ingress denetleyici sürümü ile yeni sürüm arasındaki K8s manifestleri arasındaki farkı gösterir.
 
 Eklentiyi kurmak ve çalıştırmak için:
 
@@ -197,20 +201,20 @@ Eklentiyi kurmak ve çalıştırmak için:
 2. Eklentiyi çalıştırın:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.8.2 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: Ingress denetleyici tablosu ile Helm sürümünün adı
-    * `<NAMESPACE>`: Ingress denetleyicisinin dağıtılı olduğu ad alanı
-    * `<PATH_TO_VALUES>`: [Ingress denetleyici 4.8 ayarlarını](#step-5-update-the-valuesyaml-configuration) tanımlayan `values.yaml` dosyasının yolu
-3. Hiçbir değişikliğin hizmetlerin istikrarını etkileyemeyeceğinden ve stdout hatalarını dikkatlice inceleyin.
+    * `<RELEASE_NAME>`: Ingress denetleyici chart'ının Helm release adı
+    * `<NAMESPACE>`: Ingress denetleyicisinin dağıtıldığı namespace
+    * `<PATH_TO_VALUES>`: [Ingress denetleyici 5.0 ayarlarını](#step-5-update-the-valuesyaml-configuration) tanımlayan `values.yaml` dosyasının yolu
+3. Hiçbir değişikliğin çalışan servislerin istikrarını etkilemediğinden emin olun ve stdout üzerinden gelen hataları dikkatlice inceleyin.
 
-    Eğer stdout boşsa, `values.yaml` dosyasının geçerli olduğundan emin olun.
+    Eğer stdout boş ise, `values.yaml` dosyasının geçerli olduğundan emin olun.
 
-Lütfen aşağıdaki yapılandırmanın değişikliklerine dikkat edin:
+Lütfen aşağıdaki yapılandırma değişikliklerini not edin:
 
-* Değişmez alan, örneğin dağıtım ve/veya StatefulSet seçicileri.
-* Pod etiketleri. Bu değişiklikler, NetworkPolicy işleminin durmasına yol açabilir, örneğin:
+* Değiştirilemeyen (immutable) alanlar, örn. Deployment ve/veya StatefulSet seçicileri.
+* Pod etiketleri. Bu değişiklikler, NetworkPolicy işleyişinin sonlanmasına yol açabilir, örn.:
 
     ```diff
     apiVersion: networking.k8s.io/v1
@@ -232,7 +236,7 @@ Lütfen aşağıdaki yapılandırmanın değişikliklerine dikkat edin:
     +         app.kubernetes.io/name: "waf-ingress"
     -         component: waf-ingress
     ```
-* Yeni etiketlerle yeni Prometheus yapılandırması, örneğin:
+* Yeni etiketlerle yapılandırılan Prometheus, örn.:
 
     ```diff
      - job_name: 'kubernetes-ingress'
@@ -277,79 +281,77 @@ Lütfen aşağıdaki yapılandırmanın değişikliklerine dikkat edin:
            target_label: instance
            replacement: "$1"
     ```
-* Tüm diğer değişiklikleri analiz edin.
+* Diğer tüm değişiklikleri analiz edin.
 
 ## Adım 8: Ingress denetleyicisini yükseltin
 
-Wallarm Ingress denetleyicisini yükseltmenin üç yolu vardır. Ortamınıza bir yük dengeleyicisi dağıtılıp dağıtılmadığına bağlı olarak, yükseltme yöntemini seçin:
+Wallarm Ingress denetleyicisini yükseltmenin üç farklı yolu vardır. Ortamınızda bir yük dengeleyici dağıtılmış olup olmamasına bağlı olarak, yükseltme yöntemi seçin:
 
-* Geçici Ingress denetleyicisinin dağıtımı
-* Ingress denetleyicisi sürümünün düzenli yeniden oluşturulması
-* Yük dengeleyicisini etkilemeden Ingress denetleyicisi sürümünün yeniden oluşturulması
+* Geçici Ingress denetleyicisinin dağıtılması
+* Ingress denetleyici release'inin düzenli yeniden oluşturulması
+* Yük dengeleyiciyi etkilemeden Ingress denetleyici release'inin yeniden oluşturulması
 
-!!! warning "Staging ortamını kullanma veya minikube"
-    Eğer Wallarm Ingress denetleyicisi sizin staging ortamınıza dağıtılmışsa, öncelikle onu yükseltmeniz önerilir. Staging ortamındaki tüm hizmetler doğru bir şekilde çalıştığından emin olduktan sonra, üretim ortamındaki yükseltme prosedürüne devam edebilirsiniz.
+!!! warning "Staging ortamı veya minikube kullanılması durumunda"
+    Eğer Wallarm Ingress denetleyicisi staging ortamınıza dağıtıldıysa, önce onu yükseltmeniz önerilir. Tüm servisler staging ortamında sorunsuz çalıştığında, üretim ortamında yükseltme işlemine geçebilirsiniz.
 
-    Aksi takdirde önce minikube veya başka bir hizmet kullanarak [güncellenmiş yapılandırma ile Wallarm Ingress denetleyicisi 4.8'i](../../admin-en/installation-kubernetes-en.md) dağıtmanız önerilir. Tüm hizmetlerin beklendiği gibi çalıştığından emin olduktan sonra üretim ortamında Ingress denetleycisini yükseltin.
+    Minikube veya başka bir servis kullanılarak güncellenmiş yapılandırma ile [Wallarm Ingress denetleyicisinin 5.0 sürümünün dağıtılması](../../admin-en/installation-kubernetes-en.md) önerilse bile, önce tüm servislerin beklendiği gibi çalıştığından emin olun ve ardından üretim ortamında Ingress denetleyicisini yükseltin.
 
-    Bu yaklaşım, üretim ortamındaki hizmetlerin çalışmamasını önlemeye yardımcı olur.
+    Bu yaklaşım, üretim ortamındaki servislerin kesintiye uğrama riskini önlemeye yardımcı olur.
 
-### Yöntem 1: Geçici Ingress denetleyicisinin dağıtımı
+### Yöntem 1: Geçici Ingress denetleyicisinin dağıtılması
 
-Bu yöntemi kullanarak, Ingress Denetleyicisi 4.8'i ortamınıza ek bir varlık olarak dağıtabilir ve trafiği yavaş yavaş ona geçirebilirsiniz. Hizmetlerin hatta geçici olarak bile çökmesini önler ve güvenli bir geçiş sağlar.
+Bu yöntemi kullanarak, Ingress Controller 5.0'ı ortamınızda ek bir varlık olarak dağıtabilir ve trafiği kademeli olarak ona yönlendirebilirsiniz. Bu yöntem, servislerde geçici kesinti yaşanmasını bile önlemeye yardımcı olur ve güvenli geçişi sağlar.
 
-1. Önceki versiyonun `values.yaml` dosyasından IngressClass yapılandırmasını Ingress denetleyicisi 4.8 için `values.yaml` dosyasına kopyalayın.
+1. Önceki sürüme ait `values.yaml` dosyasındaki IngressClass yapılandırmasını, Ingress denetleyicisi 5.0 için kullanılacak `values.yaml` dosyasına kopyalayın.
 
-    Bu yapılandırmayla, Ingress denetleyicisi Ingress nesnelerini tanımlayacaktır fakat onların trafiğini işlemez.
-2. Ingress denetleyicisi 4.8'i dağıtın:
+    Bu yapılandırma ile Ingress denetleyicisi Ingress nesnelerini tanımlar fakat trafiklerini işlemez.
+2. Ingress denetleyicisini 5.0 olarak dağıtın:
 
     ```bash
-    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.8.2 -f <PATH_TO_VALUES>
+    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: Ingress denetleyici tablosunun Helm sürümü için ad
-    * `<NAMESPACE>`: Ingress denetleyicisinin dağıtılacağı ad alanı
-    * `<PATH_TO_VALUES>`: [Ingress denetleyici 4.8 ayarlarını](#step-5-update-the-valuesyaml-configuration) tanımlayan `values.yaml` dosyasının yolu
-3. Tüm hizmetlerin doğru bir şekilde çalıştığından emin olun.
-4. Yükü yeni Ingress denetleyicisine yavaşça geçirin.
+    * `<RELEASE_NAME>`: Ingress denetleyici chart'ının Helm release'ı için belirlenen isim
+    * `<NAMESPACE>`: Ingress denetleyicisinin dağıtılacağı namespace
+    * `<PATH_TO_VALUES>`: [Ingress denetleyici 5.0 ayarlarını](#step-5-update-the-valuesyaml-configuration) tanımlayan `values.yaml` dosyasının yolu
+3. Tüm servislerin doğru çalıştığından emin olun.
+4. Trafiği yeni Ingress denetleyicisine kademeli olarak yönlendirin.
 
-### Yöntem 2: Ingress denetleyicisi sürümünün düzenli yeniden oluşturulması
+### Yöntem 2: Ingress denetleyicisi release'inin düzenli yeniden oluşturulması
 
-**Eğer yük dengeleyicisi ve Ingress denetleyici AYNI Helm tablosunda tanımlanmamışsa**, yalnızca Helm sürümünü yeniden oluşturabilirsiniz. Bu birkaç dakika sürecek ve Ingress denetleyicisi bu süre zarfında kullanılamaz olacaktır.
+**Eğer yük dengeleyici ve Ingress denetleyicisi aynı Helm chart içinde tanımlı DEĞİLSE**, sadece Helm release'ini yeniden oluşturabilirsiniz. Bu işlem birkaç dakika sürecek ve Ingress denetleyicisi bu süre zarfında kullanılamaz olacaktır.
 
-!!! warning "Eğer Helm tablosu yük dengeleyicisinin yapılandırmasını belirtiyor"
-    Eğer Helm tablosu yük dengeleyicisinin yapılandırmasını, Ingress denetleyicisiyle birlikte belirtiyorsa, sürüm yeniden oluşturulduğunda uzun bir yük dengeleyicisii çöküşüne (bulut sağlayıcısına bağlıdır) yol açabilir. Yükseltmeden sonra sabit bir adres atanmadıysa, yük dengeleyicisi IP adresi değişebilir.
+!!! warning "Eğer Helm chart, yük dengeleyici yapılandırmasını da ayarlıyorsa"
+    Eğer Helm chart, Ingress denetleyicisi ile birlikte yük dengeleyici yapılandırmasını ayarlıyorsa, release'in yeniden oluşturulması uzun süreli bir yük dengeleyici kesintisine yol açabilir (cloud provider'a bağlıdır). Sabit bir adres atanmadıysa, yükseltme sonrası yük dengeleyici IP adresi değişebilir.
 
-    Bu yöntemi kullanırken lütfen tüm olası riskleri analiz edin.
+    Bu yöntemi kullanırken tüm olası riskleri analiz ediniz.
 
-Ingress denetleyicisi sürümünü yeniden oluşturmak için:
+Ingress denetleyici release'ini yeniden oluşturmak için:
 
 === "Helm CLI"
-    1. Önceki sürümü silin:
+    1. Önceki release'i silin:
 
         ```bash
         helm delete <RELEASE_NAME> -n <NAMESPACE>
         ```
 
-        * `<RELEASE_NAME>`: Ingress denetleyici tablosu ile Helm sürümünün adı
+        * `<RELEASE_NAME>`: Ingress denetleyici chart'ının Helm release'ının adı
 
-        * `<NAMESPACE>`: Ingress denetleyicisinin dağıtıldığı ad alanı
+        * `<NAMESPACE>`: Ingress denetleyicisinin dağıtıldığı namespace
 
-        Bu komutu çalıştırırken `--wait` seçeneğini kullanmayın çünkü bu, yükseltme süresini artırabilir.
+        Komutu yürütürken `--wait` seçeneğini kullanmayın çünkü bu yükseltme süresini artırabilir.
 
-    2. Ingress denetleyicisi 4.8 ile yeni bir sürüm oluşturun:
+    2. Ingress denetleyici 5.0 ile yeni release'i oluşturun:
 
         ```bash
-        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.8.2 -f `<PATH_TO_VALUES>`
+        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f <PATH_TO_VALUES>
         ```
 
-        * `<RELEASE_NAME>`: Ingress denetleyici tablosunun Helm sürümü için ad
-
-        * `<NAMESPACE>`: Ingress denetleyicisinin dağıtıldığı ad alanı
-
-        * `<PATH_TO_VALUES>`: [Ingress denetleyici 4.8 ayarlarını](#step-5-update-the-valuesyaml-configuration) tanımlayan `values.yaml` dosyasının yolu
+        * `<RELEASE_NAME>`: Ingress denetleyici chart'ının Helm release'ı için belirlenen isim
+        * `<NAMESPACE>`: Ingress denetleyicisinin dağıtılacağı namespace
+        * `<PATH_TO_VALUES>`: [Ingress denetleyici 5.0 ayarlarını](#step-5-update-the-valuesyaml-configuration) tanımlayan `values.yaml` dosyasının yolu
 === "Terraform CLI"
-    1. Güncelleme süresini azaltmak için Terraform yapılandırmasında `wait = false` seçeneğini ayarlayın:
+    1. Yükseltme süresini kısaltmak için Terraform yapılandırmasında `wait = false` seçeneğini ayarlayın:
         
         ```diff
         resource "helm_release" "release" {
@@ -361,71 +363,71 @@ Ingress denetleyicisi sürümünü yeniden oluşturmak için:
         }
         ```
     
-    2. Önceki sürümü silin:
+    2. Önceki release'i silin:
 
         ```bash
         terraform taint helm_release.release
         ```
     
-    3. Ingress denetleyicisi 4.8 ile yeni sürümü oluşturun:
+    3. Ingress denetleyicisi 5.0 ile yeni release'i oluşturun:
 
         ```bash
         terraform apply -target=helm_release.release
         ```
 
-### Yöntem 3: Yük dengeleyicisini etkilemeden Ingress denetleyicisi sürümünün yeniden oluşturulması
+### Yöntem 3: Yük dengeleyiciyi etkilemeden Ingress denetleyici release'inin yeniden oluşturulması
 
-Bulut sağlayıcısı tarafından yapılandırılan bir yük dengeleyici kullanılıyorsa, Ingress denetleyicisini yükseltmek için bu yöntemi kullanmanız önerilir çünkü bu, yük dengeleyiciyi etkilemez.
+Cloud provider tarafından yapılandırılmış yük dengeleyici kullanılıyorsa, bu yöntem Ingress denetleyicisini yükseltirken yük dengeleyiciyi etkilemediği için önerilir.
 
-Sürüm yeniden oluşturulduğunda birkaç dakika sürecek ve Ingress denetleyicisi bu süre boyunca kullanılamaz olacaktır.
+Release'in yeniden oluşturulması birkaç dakika sürecek ve bu süre zarfında Ingress denetleyicisi kullanılamayacaktır.
 
-1. Silinecek olan nesneleri alın (yük dengeleyicisi hariç):
+1. Silinecek objeleri edinin (yük dengeleyici hariç):
 
     ```bash
     helm get manifest <RELEASE_NAME> -n <NAMESPACE> | yq -r '. | select(.spec.type != "LoadBalancer") | .kind + "/" + .metadata.name' | tr 'A-Z' 'a-z' > objects-to-remove.txt
     ```
 
-    Utility `yq` kurmak için [talimatlara]((https://pypi.org/project/yq/) göz atın.
+    `yq` aracını yüklemek için lütfen [aşağıdaki talimatları](https://pypi.org/project/yq/) kullanın.
 
-    `objects-to-remove.txt` dosyasına silinecek olan nesneler çıktı olarak yazdırılacaktır.
-2. Listelenen nesneleri silin ve sürümü yeniden oluşturun:
+    Silinecek objeler `objects-to-remove.txt` dosyasına yazdırılacaktır.
+2. Listelenen objeleri silin ve release'i yeniden oluşturun:
 
     ```bash
     cat objects-to-remove.txt | xargs kubectl delete --wait=false -n <NAMESPACE>    && \
-    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.8.2 -f `<PATH_TO_VALUES>`
+    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f `<PATH_TO_VALUES>`
     ```
 
-    Hizmetin çökme süresini azaltmak için, komutları ayrı ayrı çalıştırmamanız önerilir.
-3. Tüm nesnelerin oluşturulduğundan emin olun:
+    Servis kesintisini azaltmak için komutların ayrı ayrı yürütülmesi önerilmez.
+3. Tüm objelerin oluşturulduğundan emin olun:
 
     ```bash
     helm get manifest <RELEASE_NAME> -n <NAMESPACE> | kubectl create -f -
     ```
 
-    Çıktı, tüm nesnelerin zaten var olduğunu söylemelidir.
+    Çıktı, tüm objelerin zaten var olduğunu belirtmelidir.
 
-Aşağıdaki parametreler komutlarda geçer:
+Komutlarda geçen parametreler:
 
-* `<RELEASE_NAME>`: Ingress denetleyici tablosu ile Helm sürümünün adı
-* `<NAMESPACE>`: Ingress denetleyicisinin dağıtıldığı ad alanı
-* `<PATH_TO_VALUES>`: [Ingress denetleyici 4.8 ayarlarını](#step-5-update-the-valuesyaml-configuration) tanımlayan `values.yaml` dosyasının yolu
+* `<RELEASE_NAME>`: Ingress denetleyici chart'ının Helm release'ının adı
+* `<NAMESPACE>`: Ingress denetleyicisinin dağıtıldığı namespace
+* `<PATH_TO_VALUES>`: [Ingress denetleyici 5.0 ayarlarını](#step-5-update-the-valuesyaml-configuration) tanımlayan `values.yaml` dosyasının yolu
 
-## Adım 9: Yükseltilmiş Ingress Denetleyicisini test edin
+## Adım 9: Yükseltilmiş Ingress denetleyicisini test edin
 
-1. Helm tablosunun sürümünün güncellendiğinden emin olun:
+1. Helm chart sürümünün güncellendiğini kontrol edin:
 
     ```bash
     helm ls
     ```
 
-    Tablo sürümü, `wallarm-ingress-4.8.2'ye karşılık gelmelidir.
-2. Aşağıdaki komutu kullanarak, Wallarm Ingress denetleyicisinin adı olan `<INGRESS_CONTROLLER_NAME>` belirleyin ve podların listesini alın:
+    Chart sürümü `wallarm-ingress-5.3.0` ile uyumlu olmalıdır.
+2. `<INGRESS_CONTROLLER_NAME>` ismi ile Wallarm Ingress denetleyicisine ait pod listesini alın:
     
     ``` bash
     kubectl get pods -l release=<INGRESS_CONTROLLER_NAME>
     ```
 
-    Her pod durumunun **STATUS: Running** veya **READY: N/N** olması gerekir. Örneğin:
+    Her podun durumu **STATUS: Running** veya **READY: N/N** olmalıdır. Örneğin:
 
     ```
     NAME                                                              READY     STATUS    RESTARTS   AGE
@@ -433,35 +435,36 @@ Aşağıdaki parametreler komutlarda geçer:
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
 
-3. Wallarm Ingress denetleyici adresine test [Path Traversal](../../attacks-vulns-list.md#path-traversal) saldırısı ile bir istek gönderin:
+3. Wallarm Ingress denetleyici adresine, test [Path Traversal](../../attacks-vulns-list.md#path-traversal) saldırısını içeren isteği gönderin:
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    Eğer filtreleme düğümü `block` modunda çalışıyorsa, isteğe yanıt olarak `403 Forbidden` kodu dönecektir ve saldırı Wallarm Console → **Events**'de görüntülenecektir.
+    Eğer filtreleme node, `block` modunda çalışıyorsa, isteğe cevaben `403 Forbidden` kodu dönecektir ve saldırı Wallarm Console → **Attacks** bölümünde görüntülenecektir.
 
-## Adım 10: Ingress notlarını yayımlanan değişikliklere ayarlayın
+## Adım 10: Yayınlanan değişikliklere göre Ingress annotations ayarlarını düzenleyin
 
-Ingress notlarını Ingress denetleyicisi 4.8'de yayımlanan değişikliklere ayarlayın:
+Aşağıdaki Ingress annotations ayarlarını Ingress denetleyicinin 5.0 sürümünde yayınlanan değişikliklere göre ayarlayın:
 
-1. Eğer 2.18 veya daha düşük bir versiyondan yükseltiliyorsa, IP listesi yapılandırmasını [taşıyın](../migrate-ip-lists-to-node-3.md). Wallarm düğüm 3.x'teki IP listesi çekirdek mantığı önemli ölçüde değiştiği için, uygun biçimde IP listesi yapılandırmasını ayarlamak gerekmektedir. Bunun için, Ingress notları (uygulanmışsa) değiştirilerek IP listesi yapılandırması ayarlanmalıdır.
-1. Listelenen ayarların beklenen davranışının [değiştirilmiş `off` ve `monitoring` filtrasyon modları mantığına](what-is-new.md#filtration-modes) uygun olduğundan emin olun:
+1. Eğer sürüm 2.18 veya altından yükseltiyorsanız, IP listesi yapılandırmasını [taşıyın](../migrate-ip-lists-to-node-3.md). Wallarm node 3.x’te IP listeleri çekirdek mantığı önemli ölçüde değiştirildiğinden, uygulanmış ise Ingress annotations üzerinden IP listesi yapılandırmasının buna uygun olarak değiştirilmesi gerekir.
+2. Aşağıda listelenen ayarların beklenen davranışının, [kapalı ("off") ve "monitoring" filtrasyon modlarının değişen mantığına](what-is-new.md#filtration-modes) uygun olduğundan emin olun:
       
       * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [Wallarm Console'da yapılandırılan genel filtrasyon kuralı](../../user-guides/settings/general.md)
-      * [Wallarm Console'da yapılandırılan düşük seviyeli filtrasyon kuralları](../../user-guides/rules/wallarm-mode-rule.md)
+      * [Wallarm Console üzerinden yapılandırılan genel filtrasyon kuralı](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)
+      * [Wallarm Console üzerinden yapılandırılan endpoint’e yönelik filtrasyon kuralları](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
 
-      Eğer beklenen davranış, değiştirilen filtrasyon modu mantığına uymuyorsa, lütfen [Ingress notlarını](../../admin-en/configure-kubernetes-en.md#ingress-annotations) ve [diğer ayarları](../../admin-en/configure-wallarm-mode.md) yayımlanan değişikliklere ayarlayın.
-1. Eğer Ingress, `nginx.ingress.kubernetes.io/wallarm-instance` ile not edilmişse, bu notu `nginx.ingress.kubernetes.io/wallarm-application` olarak yeniden adlandırın.
+      Beklenen davranış, değişen filtrasyon modu mantığı ile uyuşmuyorsa, lütfen [Ingress annotations](../../admin-en/configure-kubernetes-en.md#ingress-annotations) 'ı değişikliklere göre ayarlayın.
+3. Eğer Ingress, `nginx.ingress.kubernetes.io/wallarm-instance` ile etiketlenmişse, bu annotation'ı `nginx.ingress.kubernetes.io/wallarm-application` olarak yeniden adlandırın.
 
-    Yalnızca notun adı değişmiştir, mantığı aynı kalmıştır. Önceki adlı not yakında kullanımdan kalkacaktır, bu yüzden bu notu önceden yeniden adlandırmanız önerilir.
-1. Eğer Ingress notları üzerinden yapılandırılan `&/usr/share/nginx/html/wallarm_blocked.html` sayfası bloke olan isteklere dönüyorsa, [yapılandırmasını](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) yayımlanan değişikliklere ayarlayın.
+    Yalnızca annotation ismi değişmiştir, mantığı aynı kalmaktadır. Eski isimdeki annotation yakın zamanda kullanımdan kaldırılacaktır, bu nedenle yeniden adlandırmanız önerilir.
+4. Eğer Ingress annotations üzerinden yapılandırılmış `&/usr/share/nginx/html/wallarm_blocked.html` sayfası engellenmiş isteklerde döndürülüyorsa, lütfen yayımlanan değişikliklere göre [yapılandırmasını ayarlayın](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page).
 
-    Yeni düğüm versiyonlarında, Wallarm'ın bloklama sayfası [güncellenmiş](what-is-new.md#new-blocking-page) bir kullanıcı arayüzüne sahiptir ve varsayılan olarak logosu ve destek e-postası belirtilmemiştir.
+    Yeni node sürümlerinde Wallarm engelleme sayfası, varsayılan olarak logolu olmayan ve destek e-postası belirtilmeyen güncellenmiş bir kullanıcı arayüzüne [sahiptir](what-is-new.md#new-blocking-page).
 
-## Adım 11: Etkin tehdit teyit etme modülünü yeniden etkinleştirin (yalnızca düğüm 2.16 veya daha alt bir versiyon yükseltiliyorsa)
+## Adım 11: Threat Replay Testing modülünü yeniden etkinleştirin (sadece node 2.16 veya altını yükseltiyorsanız)
 
-[Etkin tehdit teyit etme modülü kurulumu hakkında öneriyi](../../vulnerability-detection/threat-replay-testing/setup.md) öğrenin ve gerekiyorsa modülü yeniden etkinleştirin.
+[Threat Replay Testing modülü kurulumu ile ilgili önerileri](../../vulnerability-detection/threat-replay-testing/setup.md) inceleyin ve gerekiyorsa yeniden etkinleştirin.
 
-Bir süre sonra, modülün işleminin yanlış pozitiflere sebep olmadığından emin olun. Eğer yanlış pozitifler bulunursa, lütfen [Wallarm teknik destek)](mailto:support@wallarm.com) ile iletişime geçin.
+Bir süre sonra, modülün çalışmasının yanlış pozitiflere neden olmadığından emin olun. Yanlış pozitifler tespit ederseniz, lütfen [Wallarm teknik desteği](mailto:support@wallarm.com) ile iletişime geçin.
+```

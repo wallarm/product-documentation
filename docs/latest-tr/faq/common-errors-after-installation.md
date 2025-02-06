@@ -1,17 +1,17 @@
-# Wallarm düğümünün kurulumu sonrası hatalar
+# NGINX Wallarm node kurulumu sonrasında hatalar
 
-Eğer Wallarm düğümünün kurulumu sonrası bazı hatalar meydana gelirse, bunları çözümlemek için bu sorun giderme kılavuzunu kontrol edin. Eğer burada ilgili detayları bulamadıysanız, lütfen [Wallarm teknik destek](mailto:support@wallarm.com) ile iletişime geçin.
+NGINX Wallarm node kurulumu sonrasında bazı hatalar meydana gelirse, bunları gidermek için bu sorun giderme kılavuzunu inceleyin. Eğer burada ilgili detayları bulamazsanız, lütfen [Wallarm technical support](mailto:support@wallarm.com) ile iletişime geçin.
 
-## Dosya İndirme Senaryoları Başarısız Oluyor
+## Dosya İndirme Senaryoları Başarısız
 
-Eğer bir filtre düğümünün kurulumundan sonra dosya indirme senaryolarınız başarısız olursa, sorun, Wallarm yapılandırma dosyasındaki `client_max_body_size` yönergesinde belirlenen limiti aşan istek boyutundadır.
+Filtre node kurulumu sonrasında dosya indirme senaryolarınız başarısız oluyorsa, sorun, dosya isteğinin Wallarm yapılandırma dosyasındaki `client_max_body_size` yönergesinde belirlenen limiti aşmasından kaynaklanmaktadır.
 
-Dosya yüklemelerini kabul eden adres için `location` yönergesindeki `client_max_body_size` değerini değiştirin. Sadece `location` değerini değiştirmek, ana sayfanın büyük istekler almasını engeller.
+Yükleme taleplerini kabul eden adres için `location` yönergesinde `client_max_body_size` değerini değiştirin. Sadece `location` değerini değiştirmek, ana sayfanın büyük isteklerden korunmasını sağlar.
 
 `client_max_body_size` değerini değiştirin:
 
-1. `/etc/nginx-wallarm` dizinindeki yapılandırma dosyasını düzenlemek üzere açın.
-2. Yeni değeri girin:
+1. `/etc/nginx/sites-enabled/default` dosyasını düzenleme için açın.
+2. Yeni değeri ekleyin:
 
 	```
 	location /file/upload {
@@ -19,89 +19,17 @@ Dosya yüklemelerini kabul eden adres için `location` yönergesindeki `client_m
 	}
 	```
 
-	* `/file/upload` dosya yüklemelerini kabul eden adrestir.
+	`/file/upload` dosya yüklemelerini kabul eden adrestir.
 
-Yönerge hakkında detaylı açıklama, [resmi NGINX belgelerinde](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) mevcuttur.
+Detaylı yönerge açıklaması [official NGINX documentation](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) sayfasında mevcuttur.
 
-## "wallarm-node için imzalar doğrulanamadı", "yum devam etmek için yeterli önbelleğe sahip değil", "imzalar doğrulanamadı" hatalarını nasıl düzeltebilirim?
+## Neden filtering node, blocking mode'da çalışırken (`wallarm_mode block`) saldırıları engellemiyor?
 
-Eğer Wallarm RPM veya DEB paketleri için GPG anahtarları süresi dolmuşsa, aşağıdaki hata mesajlarını alabilirsiniz:
+`wallarm_mode` yönergesinin kullanılması, trafik filtrasyonu modunun yapılandırılmasının birkaç yönteminden sadece biridir. Bu yapılandırma yöntemlerinden bazıları, `wallarm_mode` yönergesindeki değerden daha yüksek önceliğe sahiptir.
 
-```
-https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/repodata/repomd.xml:
-[Errno -1] repomd.xml imzası wallarm-node_3.6 için doğrulanamadı
+`wallarm_mode block` ile engelleme modu yapılandırılmış olmasına rağmen Wallarm filtering node saldırıları engellemiyorsa, lütfen filtrasyon modunun diğer yapılandırma yöntemleriyle geçersiz kılınmadığından emin olun:
 
-Yapılandırılmış depolardan biri başarısız oldu (Wallarm Node for CentOS 7 - 3.6),
-ve yum devam etmek için yeterli önbelleğe sahip değil.
-
-W: GPG error: https://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/ Release: The following signatures
-couldn't be verified because the public key is not available: NO_PUBKEY 1111FQQW999
-E: The repository 'https://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/ Release' is not signed.
-N: Updating from such a repository can't be done securely, and is therefore disabled by default.
-N: See apt-secure(8) manpage for repository creation and user configuration details.
-```
-
-Problemi **Debian veya Ubuntu** üzerinde düzeltmek için lütfen adımları takip edin:
-
-1. Wallarm paketleri için yeni GPG anahtarlarını içe aktarın:
-
-	```bash
-	curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-	```
-2. Wallarm paketlerini güncelleyin:
-
-	```bash
-	sudo apt update
-	```
-
-Problemi **CentOS** üzerinde düzeltmek için lütfen adımları takip edin:
-
-1. Daha önce eklenmiş olan depoyu kaldırın:
-
-	```bash
-	sudo yum remove wallarm-node-repo
-	```
-2. Önbelleği temizleyin:
-
-	```bash
-	sudo yum clean all
-	```
-3. Uygun CentOS ve Wallarm düğüm sürümleri için komutu kullanarak yeni bir depo ekleyin:
-
-	=== "CentOS 7.x veya Amazon Linux 2.0.2021x ve altı"
-		```bash
-		# Filtreleme düğümü ve postanalytics modülü 4.4 sürümü
-		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.4/x86_64/wallarm-node-repo-4.4-0.el7.noarch.rpm
-
-		# Filtreleme düğümü ve postanalytics modülü 4.6 sürümü
-		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.6/x86_64/wallarm-node-repo-4.6-0.el7.noarch.rpm
-
-		# Filtreleme düğümü ve postanalytics modülü 4.8 sürümü
-		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
-		```
-	=== "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
-		```bash
-		# Filtreleme düğümü ve postanalytics modülü 4.4 sürümü
-		
-		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
-
-		# Filtreleme düğümü ve postanalytics modülü 4.6 sürümü
-		
-		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
-
-		# Filtreleme düğümü ve postanalytics modülü 4.8 sürümü
-		
-		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
-		```		
-4. Gerektiğinde işlemi onaylayın.
-
-## Filtreleme düğümü engelleme modunda (`wallarm_mode block`) çalışırken neden saldırıları engellemiyor?
-
-`wallarm_mode` yönergesini kullanmak, trafik filtrasyon modu yapılandırmasının sadece birkaç yönteminden biridir. Bu yapılandırma yöntemlerinden bazıları, `wallarm_mode` yönergesinin değerinden daha yüksek bir önceliğe sahiptir.
-
-Eğer `wallarm_mode block` üzerinden engelleme modunu yapılandırdıysanız ancak Wallarm filtreleme düğümü saldırıları engellemiyorsa, lütfen filtrasyon modunun diğer yapılandırma yöntemleri kullanılarak geçersiz kılınmadığından emin olun:
-
-* [**Filtrasyon modunu ayarla** kurallarını](../user-guides/rules/wallarm-mode-rule.md) kullanarak
-* Wallarm Console'un [**Genel** bölümünde](../user-guides/settings/general.md)
+* [Wallarm Console'da **Set filtration mode** kuralını](../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
+* [Wallarm Console’un **General** bölümünde](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)
 
 [Filtrasyon modu yapılandırma yöntemleri hakkında daha fazla detay →](../admin-en/configure-parameters-en.md)

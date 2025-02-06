@@ -7,51 +7,51 @@
 [link-stop-fuzzing-section]:        fuzzer-configuration.md#the-stop-fuzzing-if-response-section
 
 
-# Fuzzer İşleminin İlkeleri
+# Fuzzer İşlem Prensipleri
 
-Fuzzer, 255 *anomali baytını* kontrol eder: `0x01` ile `0xFF` arasında. Biri veya daha fazla böyle byte, hedef uygulamanın anomali davranışına yol açabilecek istek noktalarına eklenir.
+Fuzzer, `0x01`'den `0xFF`'e kadar 255 *anormal bayt* kontrol eder. İstek noktalarına eklenen bir veya daha fazla bu bayt, hedef uygulamada anormal davranışa yol açabilir.
 
-Her byte'ı tek tek kontrol etmek yerine, fuzzer, sabit uzunlukta bir veya daha fazla anomali bayt dizilerini (*payloads*) noktaya ekler ve bu isteği uygulamaya gönderir.
+Her baytı ayrı ayrı kontrol etmek yerine, fuzzer sabit uzunlukta bir veya daha fazla anormal bayt dizisini (*payloads*) ilgili noktaya ekler ve bu isteği uygulamaya gönderir.
 
 İzin verilen noktaları değiştirmek için fuzzer:
 
-* Başlangıç değerine
-* Değerin rastgele bir pozisyonuna
-* Değerin sonuna payloads ekler
-* Aşağıdaki payload değerini değiştirir:
-
+* Payload'ları ekler:
+    * değerin başına
+    * değerin rastgele bir yerine
+    * değerin sonuna
+* Aşağıdaki payload değerlerini değiştirir:
     * rastgele segmentler
-    * ilk `M` baytlar
-    * son `M` baytlar
-    * tüm string
+    * ilk `M` bayt
+    * son `M` bayt
+    * tüm dize
 
-[fuzzer konfigürasyonu][doc-fuzzer-configuration] ile, FAST'tan uygulamaya gelen istekte bulunan payload'un `M` boyutu bayt olarak ayarlanır. Bu şu noktaları etkiler:
+[fuzzer configuration][doc-fuzzer-configuration] ile FAST'tan uygulamaya gönderilen istekte yer alan payload'un `M` bayt olarak boyutu ayarlanır. Bu, aşağıdaki noktaları etkiler:
 
-* payload eklemesi kullanılıyorsa, nokta değerine eklenecek bayt sayısı
-* payload değiştirmesi kullanılıyorsa, nokta değerinde değiştirilecek bayt sayısı
-* uygulamaya gönderilecek isteklerin sayısı
+* Payload ekleme kullanıldığında nokta değerine eklenecek bayt sayısı
+* Payload değiştirme kullanıldığında nokta değerinde değiştirilecek bayt sayısı
+* Uygulamaya gönderilen istek sayısı
 
-Eğer payload ile yapılan bir isteğin yanıtında anomali davranış tespit edilirse, o zaman fuzzer, uygulamaya her payload byte için özellikle istekte bulunur. Bu sayede, fuzzer, anomali davranışa neden olan belirli baytları tespit eder.
+Payload içeren isteğe verilen yanıtta anormal davranış tespit edilirse, fuzzer her payload baytı için ayrı istekler gönderir. Böylece, fuzzer anormal davranışa neden olan belirli baytları tespit eder.
 
-![Anomali baytları kontrol etme şeması][img-search-for-anomalies]
+![Scheme of checking for anomalous bytes][img-search-for-anomalies]
 
-Tespit edilen tüm baytlar, anomali açıklamasında sunulur:
+Tespit edilen tüm baytlar anomali açıklamasında sunulur:
 
-![Anomali açıklaması][img-anomaly-description]
+![Anomaly description][img-anomaly-description]
 
-??? info "Fuzzer işlem örneği"
-    Diyelim ki, 250 byte payload'ın boyutu, bazı nokta değerinin ilk 250 byte'ını [değiştirir](fuzzer-configuration.md#payloads-section).
+??? info "Fuzzer İşleyişi Örneği"
+    Diyelim ki, 250 baytlık payload [replace](fuzzer-configuration.md) işlemi, belirli bir nokta değerinin ilk 250 baytını değiştiriyor.
 
-    Bu koşullar altında, fuzzer tüm bilinen anomali baytlarını göndermek üzere iki istek oluşturur: biri 250 byte payload'lu ve diğeri 5 byte payload'lu.
+    Bu koşullar altında, fuzzer bilinen tüm anormal baytları göndermek için iki istek oluşturur: biri 250 baytlık payload ile, diğeri 5 baytlık payload ile.
 
-    Üssündeki istekte başlangıç nokta değeri şu şekilde değiştirilir:
+    Temel (baseline) isteğindeki başlangıç nokta değeri şu şekilde değiştirilecektir:
 
-    * Değer 250 byte'dan uzunsa: ilk olarak değerin ilk 250 byte'ı 250 byte payload ile değiştirilir, sonra ilk 250 byte'ı 5 byte payload ile değiştirilir.
-    * Değer 250 byte'dan kısaysa: ilk olarak değer, 250 byte payload ile tamamen değiştirilir, sonra değer tamamen 5 byte payload ile değiştirilir.
+    * Eğer değer 250 bayttan uzunsa: ilk olarak değerin ilk 250 baytı 250 baytlık payload ile değiştirilecek, ardından ilk 250 bayt 5 baytlık payload ile değiştirilecektir.
+    * Eğer değer 250 bayttan kısaysa: ilk olarak değer tamamen 250 baytlık payload ile değiştirilecek, ardından değer tamamen 5 baytlık payload ile değiştirilecektir.
 
-    Diyelim ki, 5 byte `ABCDE` payload, `_250-byte-uzun-bas_qwerty` değerinin uzun noktasının ilk 250 baytını değiştirdi ve bir anomaliye neden oldu. Yani, `ABCDEqwerty` noktası değerli test isteği bir anomaliye neden oldu.
+    Diyelim ki, 5 baytlık `ABCDE` payload, uzun nokta değerinin `_250-bytes-long-head_qwerty` kısmının ilk 250 baytını değiştirip anomaliye sebep oldu. Başka bir deyişle, `ABCDEqwerty` nokta değerine sahip test isteği anomaliye yol açtı.
 
-    Bu durumda fuzzer, her byte'ı kontrol etmek için 5 ek istek oluşturur ve aşağıdaki nokta değerlerine sahip olur:
+    Bu durumda, fuzzer her baytı kontrol etmek için aşağıdaki nokta değerleriyle 5 ek istek oluşturur:
 
     * `Aqwerty`
     * `Bqwerty`
@@ -59,8 +59,8 @@ Tespit edilen tüm baytlar, anomali açıklamasında sunulur:
     * `Dqwerty`
     * `Eqwerty`
 
-    Bu tür bir veya daha fazla istek tekrar bir anomaliye neden olacak ve fuzzer, tespit edilen anomali baytların listesini oluşturur, örneğin: `A`, `C`.
+    Bu isteklik veya daha fazlası tekrar anomali oluşturacak ve fuzzer, tespit edilen anormal baytların listesini, örneğin: `A`, `C` olarak oluşturacaktır.
 
-Sonraki aşamada, [fuzzing konfigürasyonu][doc-fuzzer-configuration] ve anomali tespit edilip edilmediğini belirleyen kuralların açıklaması hakkında bilgi edinebilirsiniz.
+Sonrasında, [fuzzing configuration][doc-fuzzer-configuration] hakkında bilgi alabilir ve anomali tespit edilip edilmediğini belirleyen kuralların açıklamasını inceleyebilirsiniz.
 
-FAST fuzzer, bir izin verilmiş noktayı bir iterasyon (*fuzzing*) boyunca işler. [Fuzzing durdurma kurallarına][link-stop-fuzzing-section] bağlı olarak, bir veya daha fazla nokta tutarlı bir şekilde işlenir.
+FAST fuzzer, her iterasyonda bir izin verilen noktayı (*fuzzing*) işler. [Fuzzing stopping rules][link-stop-fuzzing-section]'a bağlı olarak, bir veya daha fazla nokta tutarlı bir şekilde işlenecektir.

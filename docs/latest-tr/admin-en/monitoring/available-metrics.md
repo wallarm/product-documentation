@@ -1,3 +1,4 @@
+```markdown
 [doc-nagios-details]:       fetching-metrics.md#exporting-metrics-using-the-collectd-nagios-utility
 
 [doc-lom]:                  ../../glossary-en.md#custom-ruleset-the-former-term-is-lom
@@ -6,274 +7,256 @@
 [anchor-api]:               #number-of-requests-not-passed-to-the-wallarm-api
 [anchor-metric-1]:          #indication-that-the-postanalytics-module-drops-requests
 
-#   Kullanılabilir Metrikler
+#   Mevcut Metrikler
 
 * [Metrik Formatı](#metric-format)
 * [Wallarm Metrik Türleri](#types-of-wallarm-metrics)
-* [NGINX Metrikleri ve NGINX Wallarm Modül Metrikleri](#nginx-metrics-and-nginx-wallarm-module-metrics)
+* [NGINX Metrikleri ve NGINX Wallarm Module Metrikleri](#nginx-metrics-and-nginx-wallarm-module-metrics)
 * [Postanalytics Modül Metrikleri](#postanalytics-module-metrics)
-
-!!! warning "Silinen metrikler nedeniyle kırılma değişiklikleri"
-    Sürüm 4.0'dan itibaren, Wallarm düğümü aşağıdaki metrikleri toplamaz:
-    
-    * `curl_json-wallarm_nginx/gauge-requests` - bunun yerine [`curl_json-wallarm_nginx/gauge-abnormal`](#number-of-requests) metriğini kullanabilirsiniz
-    * `curl_json-wallarm_nginx/gauge-attacks`
-    * `curl_json-wallarm_nginx/gauge-blocked`
-    * `curl_json-wallarm_nginx/gauge-time_detect`
-    * `curl_json-wallarm_nginx/derive-requests`
-    * `curl_json-wallarm_nginx/derive-attacks`
-    * `curl_json-wallarm_nginx/derive-blocked`
-    * `curl_json-wallarm_nginx/derive-abnormal`
-    * `curl_json-wallarm_nginx/derive-requests_lost`
-    * `curl_json-wallarm_nginx/derive-tnt_errors`
-    * `curl_json-wallarm_nginx/derive-api_errors`
-    * `curl_json-wallarm_nginx/derive-segfaults`
-    * `curl_json-wallarm_nginx/derive-memfaults`
-    * `curl_json-wallarm_nginx/derive-softmemfaults`
-    * `curl_json-wallarm_nginx/derive-time_detect`
 
 ## Metrik Formatı
 
-`collectd` metriklerinin görünümü aşağıdaki gibidir:
+`collectd` metrikleri aşağıdaki biçime sahiptir:
 
 ```
 host/plugin[-plugin_instance]/type[-type_instance]
 ```
 
-Metrik formatının ayrıntılı açıklaması bu [bağlantı](../monitoring/intro.md#how-metrics-look) mevcuttur.
+Metrik formatının ayrıntılı açıklamasına bu [link](../monitoring/intro.md#metrics-format) üzerinden ulaşabilirsiniz.
 
 !!! note
-    * Aşağıda yer alan kullanılabilir metrikler listesinde, ana bilgisayar adı (the `host/` parçası) yoktur.
-    * `collectd_nagios` yardımcı programını kullanırken, ana bilgisayar adının çıkarılması gerekir. Bu,  `-H` parametresini kullanarak ayrı olarak ayarlanır ([bu yardımcı programın kullanımına dair daha fazla bilgi][doc-nagios-details]).
+    * Aşağıdaki mevcut metrikler listesinden, host adı (yani `host/` kısmı) atlanmıştır.
+    * `collectd_nagios` yardımcı programı kullanılırken host adı atlanmalıdır. Host adı, `-H` parametresi kullanılarak ayrı olarak ayarlanır ([bu yardımcı programı kullanmaya dair detaylar][doc-nagios-details]).
 
 ## Wallarm Metrik Türleri
 
 İzin verilen Wallarm metrik türleri aşağıda açıklanmıştır. Tür, `type` metrik parametresinde saklanır.
 
-* `gauge` ölçülen değerin sayısal temsilidir. Değer hem artabilir hem de azalabilir.
+* `gauge`: Ölçülen değerin sayısal temsili. Değer artabilir veya azalabilir.
 
-* `derive` önceki ölçüme göre ölçülen değerin değişim hızıdır (türetilmiş değer). Değer hem artabilir hem de azalabilir.
+* `derive`: Önceki ölçümden bu yana ölçülen değerdeki değişim hızı (türetilmiş değer). Değer artabilir veya azalabilir.
 
-* `counter` `gauge` metriğine benzer. Değer yalnızca artabilir.
+* `counter`: `gauge` metriğine benzer. Değer yalnızca artabilir.
 
-##  NGINX Metrikleri ve NGINX Wallarm Modül Metrikleri 
+##  NGINX Metrikleri ve NGINX Wallarm Module Metrikleri 
 
-### Talep Sayısı
+### İstek Sayısı
 
-Filtre düğümünün yüklemesinden bu yana işlenen tüm taleplerin sayısı.
+Filtre düğümü kurulumundan bu yana işlenen tüm isteklerin sayısı.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-abnormal`
 * **Metrik değeri:**
-    * `0` `off` [modu](../configure-wallarm-mode.md#available-filtration-modes) için
-    * `>0`  `monitoring`/`safe_blocking`/`block` [modu](../configure-wallarm-mode.md#available-filtration-modes) için
-* **Hata Ayıklama Önerileri:**
-    1. Filtre düğümü ayarlarının doğru olduğunu kontrol edin.
-    2. Filtre düğümünün işlemesini [talimatlara](../installation-check-operation-en.md) göre kontrol edin. Bir test saldırısı gönderildikten sonra değerin `1` artması gerekir.
+    * `off` [modu](../configure-wallarm-mode.md#available-filtration-modes) için `0`
+    * `monitoring`/`safe_blocking`/`block` [modu](../configure-wallarm-mode.md#available-filtration-modes) için `>0`
+* **Sorun Giderme Önerileri:**
+    1. Filtre düğümü ayarlarının doğru olup olmadığını kontrol edin.
+    2. [Kurulum kontrol talimatlarında](../installation-check-operation-en.md) belirtildiği üzere filtre düğümünün çalışmasını kontrol edin. Bir test saldırısı gönderildikten sonra değer `1` artmalıdır.
 
-### Kaybolan Taleplerin Sayısı
+### Kayıp İstek Sayısı
 
-Postanalytics modülü tarafından analiz edilmeyen ve Wallarm API'ye geçmeyen taleplerin sayısı. Bu taleplere engelleme kuralları uygulanır, ancak talepler Wallarm hesabınızda görünmez ve sonraki talepleri analiz ederken dikkate alınmaz. Sayı, [`tnt_errors`][anchor-tnt] ve [`api_errors`][anchor-api] toplamıdır.
+Postanalytics modülü tarafından analiz edilmeyen ve Wallarm API'ye iletilmeyen istek sayısı. Bu isteklere bloklama kuralları uygulanır, ancak Wallarm hesabınızda görünmez ve sonraki isteklerin analizinde dikkate alınmaz. Bu sayı, [`tnt_errors`][anchor-tnt] ve [`api_errors`][anchor-api] toplamıdır.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-requests_lost`
-* **Metrik değeri:** `0`, [`tnt_errors`][anchor-tnt] ve [`api_errors`][anchor-api] toplamı
-* **Hata Ayıklama Önerileri:** [`tnt_errors`][anchor-tnt] ve [`api_errors`][anchor-api] için talimatları uygulayın
+* **Metrik değeri:** [`tnt_errors`][anchor-tnt] ve [`api_errors`][anchor-api] toplamı olan `0`
+* **Sorun Giderme Önerileri:** [`tnt_errors`][anchor-tnt] ve [`api_errors`][anchor-api] için verilen talimatları izleyin.
 
-#### Postanalytics Modülü Tarafından Analiz Edilmeyen Taleplerin Sayısı
+#### Postanalytics Modülü Tarafından Analiz Edilmeyen İstek Sayısı
 
-Postanalytics modülü tarafından analiz edilmeyen taleplerin sayısı. Bu metrik, taleplerin postanalytics modülüne gönderilmesi yapılandırıldığında ([`wallarm_upstream_backend tarantool`](../configure-parameters-en.md#wallarm_upstream_backend)) toplanır. Bu taleplere engelleme kuralları uygulanır, ancak talepler Wallarm hesabınızda görünmez ve sonraki talepleri analiz ederken dikkate alınmaz.
+Postanalytics modülü tarafından analiz edilmeyen istek sayısı. Bu metrik, isteklerin postanalytics modülüne gönderilmesi yapılandırılmışsa toplanır ([`wallarm_upstream_backend tarantool`](../configure-parameters-en.md#wallarm_upstream_backend)). Bu isteklere bloklama kuralları uygulanır, ancak Wallarm hesabınızda görünmez ve sonraki isteklerin analizinde dikkate alınmaz.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-tnt_errors`
 * **Metrik değeri:** `0`
-* **Hata Ayıklama Önerileri:**
-    * NGINX ve Tarantool günlüklerini alın ve hataları analiz edin.
-    * Tarantool sunucu adresinin ([`wallarm_tarantool_upstream`](../configure-parameters-en.md#wallarm_tarantool_upstream)) doğru olup olmadığını kontrol edin.
-    * Tarantool için yeterli belleğin [atandığından](../configuration-guides/allocate-resources-for-node.md#tarantool) emin olun.
-    * Sorun çözülmezse, yukarıdaki verileri [Wallarm destek ekibine](mailto:support@wallarm.com) sağlayın.
+* **Sorun Giderme Önerileri:**
+    * NGINX ve Tarantool loglarını alıp varsa hataları analiz edin.
+    * Tarantool sunucu adresinin ([`wallarm_tarantool_upstream`](../configure-parameters-en.md#wallarm_tarantool_upstream)) doğru ayarlandığını kontrol edin.
+    * Tarantool için yeterli belleğin [ayrıldığını](../configuration-guides/allocate-resources-for-node.md#tarantool) doğrulayın.
+    * Sorun çözülmezse [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişime geçip yukarıdaki verileri sağlayın.
 
-#### Wallarm API'sine Geçmeyen Taleplerin Sayısı
+#### Wallarm API'ye İletilmeyen İstek Sayısı
 
-Wallarm API'ye geçmeyen taleplerin sayısı. Bu metrik, Wallarm API'ye taleplerin geçmesi yapılandırıldığında ([`wallarm_upstream_backend api`](../configure-parameters-en.md#wallarm_upstream_backend)) toplanır. Bu taleplere engelleme kuralları uygulanır, ancak talepler Wallarm hesabınızda görünmez ve sonraki talepleri analiz ederken dikkate alınmaz.
+Wallarm API'ye iletilmeyen istek sayısı. Bu metrik, isteklerin Wallarm API'ye gönderilmesi yapılandırılmışsa toplanır ([`wallarm_upstream_backend api`](../configure-parameters-en.md#wallarm_upstream_backend)). Bu isteklere bloklama kuralları uygulanır, ancak Wallarm hesabınızda görünmez ve sonraki isteklerin analizinde dikkate alınmaz.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-api_errors`
 * **Metrik değeri:** `0`
-* **Hata Ayıklama Önerileri:**
-    * NGINX ve Tarantool günlüklerini alın ve hataları analiz edin.
+* **Sorun Giderme Önerileri:**
+    * NGINX ve Tarantool loglarını alıp varsa hataları analiz edin.
     * Wallarm API ayarlarının ([`wallarm_api_conf`](../configure-parameters-en.md#wallarm_api_conf)) doğru olup olmadığını kontrol edin.
-    * Tarantool için yeterli belleğin [atandığından](../configuration-guides/allocate-resources-for-node.md#tarantool) emin olun.
-    * Sorun çözülmezse, yukarıdaki verileri [Wallarm destek ekibine](mailto:support@wallarm.com) sağlayın.
+    * Tarantool için yeterli belleğin [ayrıldığını](../configuration-guides/allocate-resources-for-node.md#tarantool) doğrulayın.
+    * Sorun çözülmezse [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişime geçip yukarıdaki verileri sağlayın.
 
-### Anormal Tamamlanan NGINX İşleyici Süreci Sorunlarının Sayısı 
+### NGINX Worker Sürecinin Anormal Şekilde Sonlanmasına Yol Açan Sorun Sayısı
 
-Anormal tamamlamanın en yaygın nedeni NGINX'teki kritik bir hatadır.
+NGINX worker sürecinin anormal sonlanmasına neden olan sorun sayısı. Anormal sonlanmanın en yaygın nedeni NGINX’de kritik bir hatadır.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-segfaults`
 * **Metrik değeri:** `0`
-* **Hata Ayıklama Önerileri:**
-    1. Mevcut durum hakkında veri toplamak için `/usr/share/wallarm-common/collect-info.sh` scriptini kullanın.
-    2. Oluşturulan dosyayı [Wallarm destek ekibi](mailto:support@wallarm.com)'ne inceleme için sağlayın.
+* **Sorun Giderme Önerileri:**
+    1. `/opt/wallarm/collect-info.sh` betiğini kullanarak mevcut durum ile ilgili veri toplayın.
+    2. Soruşturma için oluşturulan dosyayı [Wallarm destek ekibine](mailto:support@wallarm.com) gönderin.
 
-### Sanal Bellek Sınırının Aşıldığı Durumların Sayısı
+### Sanal Bellek Limitinin Aşıldığı Durum Sayısı
 
-Sanal bellek sınırının aşıldığı durumların sayısı.
+Sanal bellek limitinin aşıldığı durum sayısı.
 
 * **Metrik:**
-    * `curl_json-wallarm_nginx/gauge-memfaults` eğer sistem sınırlarını aştıysa
-    * `curl_json-wallarm_nginx/gauge-softmemfaults` eğer proton.db +lom limiti aşıldıysa ([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit)) 
+    * Sisteminizde limit aşıldığında `curl_json-wallarm_nginx/gauge-memfaults`
+    * Proton.db +lom limiti aşıldığında `curl_json-wallarm_nginx/gauge-softmemfaults` ([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit)) 
 * **Metrik değeri:** `0`
-* **Hata Ayıklama Önerileri:**
-    1. Mevcut durum hakkında veri toplamak için `/usr/share/wallarm-common/collect-info.sh` scriptini kullanın.
-    2. Oluşturulan dosyayı [Wallarm destek ekibine](mailto:support@wallarm.com) iletilmesi için sağlayın.
+* **Sorun Giderme Önerileri:**
+    1. `/opt/wallarm/collect-info.sh` betiğini kullanarak mevcut durum ile ilgili veri toplayın.
+    2. Oluşturulan dosyayı [Wallarm destek ekibine](mailto:support@wallarm.com) gönderin.
 
 ### proton.db Hatalarının Sayısı
 
-[Sanal bellek limitinin aşıldığı](#number-of-situations-exceeding-the-virtual-memory-limit) durumlar dışında ortaya çıkan proton.db hatalarının sayısı.
+[Virtual memory limit was exceeded](#number-of-situations-exceeding-the-virtual-memory-limit) durumları dışında oluşan proton.db hatalarının sayısı.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-proton_errors`
 * **Metrik değeri:** `0`
-* **Hata Ayıklama Önerileri:**
-    1. NGINX günlüklerinden hata kodunu kopyalayın (`wallarm: proton error: <HATA_NUMARASI>`).
-    1. Mevcut durum hakkında veri toplamak için `/usr/share/wallarm-common/collect-info.sh` scriptini kullanın.
-    1. Topladığınız verileri [Wallarm destek ekibine](mailto:support@wallarm.com) iletilmesi için sağlayın.
+* **Sorun Giderme Önerileri:**
+    1. NGINX loglarından hata kodunu kopyalayın (`wallarm: proton error: <ERROR_NUMBER>`).
+    2. `/opt/wallarm/collect-info.sh` betiğini kullanarak mevcut durum ile ilgili veri toplayın.
+    3. Toplanan verileri [Wallarm destek ekibine](mailto:support@wallarm.com) gönderin.
 
-### proton.db Versiyonu
+### proton.db Sürümü
 
-Kullanılan proton.db versiyonu.
+Kullanılan proton.db sürümü.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-db_id`
-* **Metrik değeri:** sınırlama yok
+* **Metrik değeri:** herhangi bir limit yok
 
-### son güncelleme zamanı proton.db dosyasının
+### proton.db Dosyasının Son Güncellenme Zamanı
 
-proton.db dosyasının son güncelleme Unix zamanı.
+Proton.db dosyasının son güncellenme Unix zamanı.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-db_apply_time`
-* **Metrik değeri:** sınırlama yok 
+* **Metrik değeri:** herhangi bir limit yok
 
-### Özel Kural Seti Versiyonu (eski adı LOM)
+### Custom Ruleset Sürümü (eski terimi LOM)
 
-Kullanılan [özel kural seti][doc-lom] versiyonu
+Kullanılan [custom ruleset'in][doc-lom] sürümü.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-custom_ruleset_id`
 
-    (Wallarm düğümü 3.4 ve altında, `curl_json-wallarm_nginx/gauge-lom_id`. Eski adıyla metrik hala toplanıyor ancak yakında kullanımdan kalkacak.)
-* **Metrik değeri:** sınırlama yok
+    (Wallarm node 3.4 ve öncesinde, `curl_json-wallarm_nginx/gauge-lom_id`. Eski isimli metrik hâlâ toplanıyor ancak yakın gelecekte kullanımdan kaldırılacak.)
+* **Metrik değeri:** herhangi bir limit yok
 
-### Özel Kural Setinin Son Güncellenme Zamanı (eski adı LOM)
+### Custom Ruleset'in (eski terimi LOM) Son Güncellenme Zamanı
 
-[Özel kural seti][doc-lom] son güncelleme Unix zamanı 
+[Custom ruleset'in][doc-lom] son güncellenme Unix zamanı.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-custom_ruleset_apply_time`
 
-    (Wallarm düğümü 3.4 ve altında, `curl_json-wallarm_nginx/gauge-lom_apply_time`. Eski adıyla metrik hala toplanıyor ancak yakında kullanımdan kalkacak.)
-* **Metrik değeri:** sınırlama yok
+    (Wallarm node 3.4 ve öncesinde, `curl_json-wallarm_nginx/gauge-lom_apply_time`. Eski isimli metrik hâlâ toplanıyor ancak yakın gelecekte kullanımdan kaldırılacak.)
+* **Metrik değeri:** herhangi bir limit yok
 
 ### proton.db ve LOM Çiftleri
 
-#### proton.db ve LOM çiftlerinin Sayısı
+#### Toplam proton.db ve LOM Çifti Sayısı
 
 Kullanılan proton.db ve [LOM][doc-lom] çiftlerinin sayısı.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-proton_instances-total`
 * **Metrik değeri:** `>0`
-* **Hata Ayıklama Önerileri:**
-    1. Filtre düğümü ayarlarının doğru olduğunu kontrol edin.
-    2. proton.db dosyasına giden yolun doğru belirtildiğinden emin olun ([`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)).
-    3. LOM dosyasına giden yolun doğru belirtildiğinden emin olun ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
+* **Sorun Giderme Önerileri:**
+    1. Filtre düğümü ayarlarının doğru olup olmadığını kontrol edin.
+    2. proton.db dosyasının yolunun doğru belirtildiğini kontrol edin ([`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)).
+    3. LOM dosyasının yolunun doğru belirtildiğini kontrol edin ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
 
-#### Başarıyla İndirilen proton.db ve LOM Çiftlerinin Sayısı
+#### Başarıyla İndirilen proton.db ve LOM Çiftleri Sayısı
 
-Başarıyla indirilen ve okunan proton.db ve [LOM][doc-lom] çiftlerinin sayısı
+Başarıyla indirilip okunan proton.db ve [LOM][doc-lom] çiftlerinin sayısı.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-proton_instances-success`
-* **Metrik değeri:** [`proton_instances-total`](#number-of-protondb-and-lom-pairs) ile eşit
-* **Hata Ayıklama Önerileri:**
-    1. Filtre düğümü ayarlarının doğru olduğunu kontrol edin.
-    2. proton.db dosyasına giden yolun doğru belirtildiğinden emin olun ([`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)).
-    3. LOM dosyasına giden yolun doğru belirtildiğinden emin olun ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
+* **Metrik değeri:** [`proton_instances-total`](#number-of-protondb-and-lom-pairs) ile aynıdır
+* **Sorun Giderme Önerileri:**
+    1. Filtre düğümü ayarlarının doğru olup olmadığını kontrol edin.
+    2. proton.db dosyasının yolunun doğru belirtildiğini kontrol edin ([`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)).
+    3. LOM dosyasının yolunun doğru belirtildiğini kontrol edin ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
 
-#### Son Kaydedilen Dosyalardan İndirilen proton.db ve LOM Çiftlerinin Sayısı
+#### Son Kaydedilen Dosyalardan İndirilen proton.db ve LOM Çiftleri Sayısı
 
-Son kaydedilen dosyalardan indirilen proton.db ve [LOM][doc-lom] çiftlerinin sayısı. Bu dosyalar son başarıyla indirilen çiftleri saklar. Çiftler güncellendi ancak indirilmediyse, son kaydedilen dosyaların verileri kullanılır.
+Son başarıyla indirilen çiftlerin saklandığı dosyalardan indirilen proton.db ve [LOM][doc-lom] çiftlerinin sayısı. Çiftler güncellendiyse fakat indirilmediyse, son kaydedilen dosyalardan alınan veri kullanılır.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-proton_instances-fallback`
 * **Metrik değeri:** `>0`
-* **Hata Ayıklama Önerileri:**
-    1. Filtre düğümü ayarlarının doğru olduğunu kontrol edin.
-    2. proton.db dosyasına giden yolun doğru belirtildiğinden emin olun ([`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)).
-    3. LOM dosyasına giden yolun doğru belirtildiğinden emin olun ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
+* **Sorun Giderme Önerileri:**
+    1. Filtre düğümü ayarlarının doğru olup olmadığını kontrol edin.
+    2. proton.db dosyasının yolunun doğru belirtildiğini kontrol edin ([`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)).
+    3. LOM dosyasının yolunun doğru belirtildiğini kontrol edin ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
 
-#### Aktif Olmayan proton.db ve LOM Çiftlerinin Sayısı
+#### Okunamayan proton.db ve LOM Çiftleri Sayısı
 
-Okunamayan yönlendirilmemiş proton.db ve [LOM][doc-lom] çiftlerinin sayısı.
+Okunamayan, bağlantısı kurulmuş proton.db ve [LOM][doc-lom] çiftlerinin sayısı.
 
 * **Metrik:** `curl_json-wallarm_nginx/gauge-proton_instances-failed`
 * **Metrik değeri:** `0`
-* **Hata Ayıklama Önerileri:**
-    1. Filtre düğümü ayarlarının doğru olduğunu kontrol edin.
-    2. proton.db dosyasına giden yolun doğru belirtildiğinden emin olun ([`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)).
-    3. LOM dosyasına giden yolun doğru belirtildiğinden emin olun ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
+* **Sorun Giderme Önerileri:**
+    1. Filtre düğümü ayarlarının doğru olup olmadığını kontrol edin.
+    2. proton.db dosyasının yolunun doğru belirtildiğini kontrol edin ([`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)).
+    3. LOM dosyasının yolunun doğru belirtildiğini kontrol edin ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
 
 ##  Postanalytics Modül Metrikleri
 
-### Son İşlenen İsteğin Kimliği
+### Son İşlenen İsteğin Tanımlayıcısı
 
-Son işlenen talebin kimliği. Değer artabilir ve azalabilir.
+Son işlenen isteğin ID'si. Değer artabilir veya azalabilir.
 
 * **Metrik:**
-    * `wallarm-tarantool/counter-last_request_id` eğer değer artıyorsa
-    * `wallarm-tarantool/gauge-last_request_id` eğer değer artıyor veya azalıyorsa
-* **Metrik değeri:** sınırlama yok
-* **Hata Ayıklama Önerileri:** gelen talepler varsa ancak değer değişmiyorsa, filtre düğümü ayarlarının doğru olduğundan emin olun
+    * Değer arttığında `wallarm-tarantool/counter-last_request_id`
+    * Değer artıp azalabilirse `wallarm-tarantool/gauge-last_request_id`
+* **Metrik değeri:** herhangi bir limit yok
+* **Sorun Giderme Önerileri:** Gelen istekler olmasına rağmen değer değişmiyorsa, filtre düğümü ayarlarının doğru olup olmadığını kontrol edin.
 
-### Silinen Talepler
+### Silinen İstekler
 
-#### Silinen Taleplerin Göstergesi
+#### Silinen İsteklerin Göstergesi
 
-Saldırılarla ilgili taleplerin postanalytics modülünden silindiğine, ancak [buluta](../../about-wallarm/overview.md#cloud) gönderilmediğine dair bayrak.
+Postanalytics modülünden saldırı içeren isteklerin silindiğine ama [cloud](../../about-wallarm/overview.md#cloud) gönderilmediğine dair bayrak.
 
 * **Metrik:** `wallarm-tarantool/gauge-export_drops_flag`
 * **Metrik değeri:**
-    * `0` eğer talepler silinmediyse
-    * `1` eğer talepler silindi (yetersiz bellek, lütfen aşağıdaki talimatları izleyin)
-* **Hata Ayıklama Önerileri:**
-    * [Tarantool için daha fazla bellek tahsis edin](../configuration-guides/allocate-resources-for-node.md#tarantool).
-    * Postanalytics modülünü aşağıdaki [talimatlara](../installation-postanalytics-en.md) göre ayrı bir sunucu havuzunda yükleyin.
+    * İstekler silinmediyse `0`
+    * İstekler silindiyse (yetersiz bellek, lütfen aşağıdaki talimatları izleyin) `1`
+* **Sorun Giderme Önerileri:**
+    * [Tarantool için daha fazla bellek ayırın](../configuration-guides/allocate-resources-for-node.md#tarantool).
+    * Postanalytics modülünü ayrı bir sunucu havuzuna kurun; ayrıntılar için [talimatlara](../installation-postanalytics-en.md) bakın.
 
-#### Silinen Taleplerin Sayısı
+#### Silinen İstek Sayısı
 
-Saldırılarla ilgili taleplerin postanalytics modülünden silindiği, ancak [buluta](../../about-wallarm/overview.md#cloud) gönderilmediği sayısı. Talepteki saldırıların sayısı değeri etkilemez. Metrik, [`wallarm-tarantool/gauge-export_drops_flag: 1`](#indication-of-deleted-requests) olduğunda toplanır.
+Postanalytics modülünden silinip [cloud](../../about-wallarm/overview.md#cloud) gönderilmeyen saldırı içeren isteklerin sayısı. İstek içindeki saldırı sayısı değeri etkilemez. Bu metrik, [`wallarm-tarantool/gauge-export_drops_flag: 1`](#indication-of-deleted-requests) olduğunda toplanır.
 
-Monitoring bildirimlerini yapılandırırken [`wallarm-tarantool/gauge-export_drops_flag`](#indication-of-deleted-requests) metriğini kullanmanız önerilir.
+İzleme bildirimi yapılandırılırken [`wallarm-tarantool/gauge-export_drops_flag`](#indication-of-deleted-requests) metriğinin kullanılması önerilir.
 
 * **Metrik:** `wallarm-tarantool/gauge-export_drops`
 * **Metrik değeri:** `0`
-* **Değişim oranı:** `wallarm-tarantool/derive-export_drops`
-* **Hata Ayıklama Önerileri:**
-    * [Tarantool için daha fazla bellek tahsis edin](../configuration-guides/allocate-resources-for-node.md#tarantool).
-    * Postanalytics modülünü aşağıdaki [talimatlara](../installation-postanalytics-en.md) göre ayrı bir sunucu havuzunda yükleyin.
+* **Değişim Hızı:** `wallarm-tarantool/derive-export_drops`
+* **Sorun Giderme Önerileri:**
+    * [Tarantool için daha fazla bellek ayırın](../configuration-guides/allocate-resources-for-node.md#tarantool).
+    * Postanalytics modülünü ayrı bir sunucu havuzuna kurun; ayrıntılar için [talimatlara](../installation-postanalytics-en.md) bakın.
 
-### Talep Aktarım Gecikmesi (saniye cinsinden)
+### İstek Dışa Aktarma Gecikmesi (Saniye)
 
-Postanalytics modülü tarafından bir talebin kaydedilmesi ve saldırı bilgilerinin Wallarm bulutuna indirilmesi arasındaki gecikme.
+Postanalytics modülü tarafından bir isteğin kaydedilmesi ile Wallarm cloud’a tespit edilen saldırılara ilişkin bilgilerin indirilmesi arasındaki gecikme.
 
 * **Metrik:** `wallarm-tarantool/gauge-export_delay`
 * **Metrik değeri:**
-    * optimal eğer `<60`
-    * uyarı eğer `>60`
-    * kritik eğer `>300`
-* **Hata Ayıklama Önerileri:**
-    * `/var/log/wallarm/export-attacks.log` dosyasından günlükleri okuyun ve hataları analiz edin. Artan bir değer, filtre düğümünden Wallarm’ın API servisine düşük ağ veriminden kaynaklanabilir.
-    * Tarantool için yeterli belleğin [atandığından](../configuration-guides/allocate-resources-for-node.md#tarantool) emin olun. Ayrılan bellek aşıldığında [`tnt_errors`][anchor-tnt] metriği de artar.
+    * `<60` ise optimal
+    * `>60` ise uyarı
+    * `>300` ise kritik
+* **Sorun Giderme Önerileri:**
+    * `/opt/wallarm/var/log/wallarm/wcli-out.log` dosyasındaki logları inceleyin. Artan değer, filtre düğümünden Wallarm'ın API servisine düşük ağ aktarım hızı nedeniyle oluşabilir.
+    * Tarantool için yeterli belleğin [ayrıldığını](../configuration-guides/allocate-resources-for-node.md#tarantool) kontrol edin. [`tnt_errors`][anchor-tnt] metriği, ayrılan bellek aşıldığında da artar.
 
-### Postanalytics Modülünde Taleplerin Saklanma Süresi (saniye cinsinden)
+### Postanalytics Modülünde İsteklerin Saklanma Süresi (Saniye)
 
-Postanalytics modülünün talepleri saklama süresi. Değer, postanalytics modülüne tahsis edilen bellek miktarına ve işlenen HTTP taleplerinin boyutuna ve özelliklerine bağlıdır. İnterval ne kadar kısa olursa, algılama algoritmaları o kadar kötü çalışır; çünkü tarihsel verilere dayanır. Sonuç olarak, aralıklar çok kısa olursa, saldırgan fark edilmeden daha hızlı kaba kuvvet saldırıları gerçekleştirebilir. Bu durumda, saldırganın davranış geçmişi hakkında daha az veri elde edilir.
+Postanalytics modülünde isteklerin saklandığı süre. Değer, postanalytics modülüne ayrılan bellek miktarına ve işlenen HTTP isteklerinin boyut ve özelliklerine bağlıdır. Aralık ne kadar kısa olursa, geçmiş verilere dayanan tespit algoritmaları o kadar kötü çalışır. Sonuç olarak, aralıklar çok kısa olursa saldırgan, kaba kuvvet saldırılarını daha hızlı ve fark edilmeden gerçekleştirebilir. Bu durumda, saldırganın geçmiş davranışlarına ilişkin daha az veri elde edilir.
 
 * **Metrik:** `wallarm-tarantool/gauge-timeframe_size`
 * **Metrik değeri:**
-    * optimal eğer `>900`
-    * uyarı eğer `<900`
-    * kritik eğer `<300`
-* **Hata Ayıklama Önerileri:**
-    * [Tarantool için daha fazla bellek tahsis edin](../configuration-guides/allocate-resources-for-node.md#tarantool).
-    * Postanalytics modülünü aşağıdaki [talimatlara](../installation-postanalytics-en.md) göre ayrı bir sunucu havuzunda yükleyin.
+    * `>900` ise optimal
+    * `<900` ise uyarı
+    * `<300` ise kritik
+* **Sorun Giderme Önerileri:**
+    * [Tarantool için daha fazla bellek ayırın](../configuration-guides/allocate-resources-for-node.md#tarantool).
+    * Postanalytics modülünü ayrı bir sunucu havuzuna kurun; ayrıntılar için [talimatlara](../installation-postanalytics-en.md) bakın.
+```

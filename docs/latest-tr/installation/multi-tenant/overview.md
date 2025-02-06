@@ -1,72 +1,72 @@
-# Çoklu Kiracılığa Genel Bakış
+# Çok Kiracılılık Genel Bakış
 
-**Çoklu kiracılık** özelliği, Wallarm'ı birkaç bağımsız şirket altyapısını veya izole ortamları aynı anda korumak için kullanma imkanı sunar.
+**Çok kiracılılık** özelliği, Wallarm kullanılarak birkaç bağımsız şirket altyapısının veya izole edilmiş ortamların aynı anda korunmasına olanak tanır.
 
-Bir **Kiracı** ([**kiracı hesabı**](#tenant-accounts)), aşağıdaki unsurları temsil eder:
+**Kiracı** ([**kiracı hesabı**](#tenant-accounts)) aşağıdaki varlıkları temsil eder:
 
-* Bağımsız bir şirket (**müşteri**) eğer Wallarm bir ortak olarak entegre edilirse.
-* Izole bir ortam eğer Wallarm bir müşteri olarak entegre edilirse.
+* Wallarm'u partner olarak entegre ederken bağımsız bir şirket (**müşteri**).
+* Wallarm'u müşteri olarak entegre ederken izole edilmiş bir ortam.
 
---8<-- "../include-tr/waf/features/multi-tenancy/partner-client-term.md"
+--8<-- "../include/waf/features/multi-tenancy/partner-client-term.md"
 
-## Çoklu Kiracılık ile Ele Alınan Sorunlar
+## Çok kiracılılık ile ele alınan sorunlar
 
-Çoklu kiracılık özelliği, aşağıdaki konuları ele alır:
+Çok kiracılılık özelliği aşağıdaki sorunları ele almaktadır:
 
-* **Wallarm ortağı olun**. Ortak, sistem altyapısı içerisinde bir filtreleme düğümü kuran ve müşterilerine saldırı hafifletme hizmeti sağlayan bir organizasyondur.
+* **Wallarm Partneri Olun**. Partner, müşterilerine saldırı azaltma sağlamak amacıyla kendi sistem altyapısına bir filtreleme düğümü kuran bir organizasyondur.
 
-    Her müşteriye, tüm hesap verilerinin izole edildiği ve sadece belirli kullanıcılar tarafından erişilebilen ayrı bir Wallarm Console hesabı tahsis edilir.
+    Her müşteriye Wallarm Console'da ayrı bir hesap tahsis edilir; böylece hesap verileri izole edilir ve yalnızca seçilen kullanıcılar tarafından erişilebilir.
 * **Korunan ortamlardaki verileri birbirinden izole edin**. Bir ortam, ayrı bir uygulama, veri merkezi, API, üretim veya staging ortamı vb. olabilir.
-    
+
     İlgili sorun örnekleri:
 
-    * Wallarm düğümü, izole ekipler tarafından yönetilen üretim ve sahne ortamlarına gönderilen istekleri filtreler. Gereklilik, sadece belirli bir ortamı yöneten ekiplerin verilerine erişim sağlamaktır.
-    * Wallarm düğümleri, izole ekipler tarafından yönetilen ve farklı bölgelerde bulunan birkaç veri merkezine konuşlandırılır, biri Avrupa'da, diğeri Asya'da. Gereklilik, yalnızca belirli bir veri merkezini yöneten kullanıcıların verilerine erişim sağlamaktır.
+    * Wallarm node, izole ekipler tarafından yönetilen üretim ve staging ortamlarına gönderilen istekleri filtreler. Gerek olan şey, yalnızca belirli bir ortamı yöneten ekiplerin o ortama ait verilere erişebilmesini sağlamaktır.
+    * Wallarm node'ları, izole ekipler tarafından yönetilen ve farklı bölgelerde bulunan – biri Avrupa'da, diğeri Asya'da – birkaç veri merkezine dağıtılmıştır. Gerek olan şey, yalnızca belirli bir veri merkezini yöneten kullanıcıların o merkeze ait verilere erişebilmesini sağlamaktır.
 
-    Her müşteriye, tüm hesap verilerinin izole edildiği ve sadece belirli kullanıcılar tarafından erişilebilen ayrı bir Wallarm Console hesabı tahsis edilir.
+    Her müşteriye Wallarm Console'da ayrı bir hesap tahsis edilir; böylece hesap verileri izole edilir ve yalnızca seçilen kullanıcılar tarafından erişilebilir.
 
-## Wallarm bileşenlerinin özelleştirilmesi
+## Wallarm Bileşenlerinin Özelleştirilmesi
 
-Wallarm, Wallarm Konsolu ve bazı diğer bileşenlerin özelleştirilmesine izin verir. Çoklu kiracılık kullanılıyorsa, aşağıdaki özelleştirme seçenekleri kullanışlı olabilir:
+Wallarm, Wallarm Console ve diğer bazı bileşenlerin özelleştirilmesine olanak tanır. Çok kiracılılık kullanılıyorsa, aşağıdaki özelleştirme seçenekleri faydalı olabilir:
 
-* Wallarm Konsolu'na marka ekleyin
-* Wallarm Konsolu'nu özel bir alan adında barındırın
-* Müşterilerden veya meslektaşlardan mesajlar alacak teknik destek e-posta adresinizi ayarlayın
+* Wallarm Console'un markalaştırılması
+* Wallarm Console'un özel bir domain üzerinde barındırılması
+* Teknik destek ekibinizin, müşterilerden veya çalışma arkadaşlarından gelen mesajları alabilmesi için e-posta adresinin ayarlanması
 
 ## Kiracı Hesapları
 
-Kiracı hesapları aşağıdaki özelliklerle karakterizedir:
+Kiracı hesapları aşağıdaki özelliklerle tanımlanır:
 
-* Kiracı hesaplarını Wallarm Konsolu'nda doğru bir şekilde gruplandırmak için, her kiracı hesabı, izole ortamlara sahip bir ortak veya müşteriyi belirten global bir hesaba bağlanır.
+* Wallarm Console'da kiracı hesaplarını doğru şekilde gruplamak için, her kiracı hesabı, partner veya izole edilmiş ortamları olan bir müşteriyi işaret eden global hesaba bağlanır.
 * Kullanıcılara her kiracı hesabına ayrı ayrı erişim sağlanır.
-* Her kiracı hesabının verileri izole edilir ve yalnızca hesaba eklenen kullanıcılar tarafından erişilebilir.
-* **Global** [rollere](../../user-guides/settings/users.md#user-roles) sahip kullanıcılar yeni kiracı hesapları oluşturabilir ve tüm kiracı hesaplarının verilerini görüntüleyebilir ve düzenleyebilir.
+* Her kiracı hesabının verileri izole edilir ve yalnızca hesaba eklenen kullanıcıların erişimine açıktır.
+* **Global** [rolleri](../../user-guides/settings/users.md#user-roles) olan kullanıcılar, yeni kiracı hesapları oluşturabilir ve tüm kiracı hesaplarının verilerini görüntüleyip düzenleyebilir.
 
-Kiracı hesapları, aşağıdaki yapıya göre oluşturulur:
+Kiracı hesapları aşağıdaki yapıya göre oluşturulur:
 
-![!Kiracı hesap yapısı](../../images/partner-waf-node/accounts-scheme.png)
+![!Tenant account structure](../../images/partner-waf-node/accounts-scheme.png)
 
-* **Global hesap**, yalnızca bir ortak veya bir müşteri tarafından kiracı hesapları gruplandırmak için kullanılır.
-* **Teknik kiracı hesabı**, kiracı hesaplarına erişim sağlamaları için [global kullanıcıları](../../user-guides/settings/users.md#user-roles) eklemek için kullanılır. Global kullanıcılar genellikle Wallarm ortak şirketlerin çalışanları veya izole ortamlar için çoklu kiracılık kullanan Wallarm müşterileridir.
-* **Kiracı hesapları**, aşağıdakileri yapmak için kullanılır:
+* **Global account** yalnızca partner veya müşteri tarafından kiracı hesaplarını gruplamak için kullanılır.
+* **Technical tenant account**; kiracı hesaplarına erişim sağlamak amacıyla [global users](../../user-guides/settings/users.md#user-roles) eklemek için kullanılır. Global users genellikle Wallarm partner şirketlerinin veya izole edilmiş ortamlar için çok kiracılılık kullanan Wallarm müşterilerinin çalışanlarıdır.
+* **Tenant accounts** şu amaçlarla kullanılır:
 
-    * Kiracılara, tespit edilen saldırıların verilerine ve trafik filtrasyon ayarlarına erişim sağlamak.
-    * Kullanıcılara belirli bir kiracı hesabının verilerine erişim sağlamak.
+    * Kiracılara, tespit edilen saldırılara ilişkin verilere ve trafik filtreleme ayarlarına erişim sağlamak.
+    * Kullanıcılara belirli kiracı hesabının verilerine erişim sağlamak.
 
-[Global kullanıcılar](../../user-guides/settings/users.md#user-roles) şunları yapabilir:
+[Global users](../../user-guides/settings/users.md#user-roles) şu işlemleri yapabilir: 
 
-* Wallarm Konsolu'ndaki hesaplar arasında geçiş yapabilir.
-* Kiracıların [aboneliklerini ve kotalarını](../../about-wallarm/subscription-plans.md) izleyebilir.
+* Wallarm Console'da hesaplar arasında geçiş yapmak.
+* Kiracıların [aboneliklerini ve kotalarını](../../about-wallarm/subscription-plans.md) izlemek.
 
-![!Wallarm Konsolu'nda Kiracı Seçici](../../images/partner-waf-node/clients-selector-in-console.png)
+![!Tenant selector in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
 
-* `Teknik kiracı`, bir teknik kiracı hesabıdır
-* `Kiracı 1` ve `Kiracı 2`, kiracı hesaplarıdır
+* `Technical tenant` teknik tenant hesabıdır
+* `Tenant 1` ve `Tenant 2` kiracı hesaplarıdır
 
-## Çoklu Kiracılık Ayarları
+## Çok Kiracılılık Yapılandırması
 
-Çoklu kiracılık özelliği varsayılan olarak etkin değildir. Bu özelliği etkinleştirmek ve ayarlamak için:
+Çok kiracılılık özelliği varsayılan olarak etkin değildir. Özelliği etkinleştirmek ve yapılandırmak için:
 
-1. Abonelik planınıza **Çoklu Kiracı Sistemi** özelliğini eklemek için [sales@wallarm.com](mailto:sales@wallarm.com) adresine talepte bulunun.
-2. Wallarm Konsolu'nda kiracı hesaplarını [ayarlayın](configure-accounts.md).
-3. Çoklu kiracı Wallarm düğümünü [konuşlandırın ve ayarlayın](deploy-multi-tenant-node.md).
+1. Abonelik planınıza **Multi-tenant system** özelliğinin eklenmesi için [sales@wallarm.com](mailto:sales@wallarm.com) adresine talep gönderin.
+2. Wallarm Console'da kiracı hesaplarını [yapılandırın](configure-accounts.md).
+3. Çok tenant Wallarm node'unu [dağıtın ve yapılandırın](deploy-multi-tenant-node.md).

@@ -3,23 +3,23 @@
 
 [doc-setup-idp]:                setup-idp.md
 
-# Adım 1: Wallarm Tarafında Parametrelerin Oluşturulması (G Suite)
+#   Adım 1: Wallarm Tarafında Parametre Oluşturma (G Suite)
 
-SSO'yu G Suite ile bağlamak için öncelikle Wallarm tarafında bazı parametreler oluşturmanız gerekecektir.
+G Suite ile SSO'yu bağlamak için, önce Wallarm tarafında bazı parametreler oluşturmanız gerekecektir.
 
-!!! uyarı "Önce Wallarm tarafında SSO hizmetini aktifleştirin"
-    Varsayılan olarak, Wallarm'da SSO bağlantısı uygun hizmeti aktifleştirmeden kullanılamaz. SSO hizmetini aktifleştirmek için, lütfen hesap yöneticinizle ya da [Wallarm destek ekibiyle](mailto:support@wallarm.com) iletişime geçin.
+!!! warning "Önce Wallarm tarafında SSO hizmetini etkinleştirin"
+    Varsayılan olarak, ilgili hizmet etkinleştirilmeden Wallarm'da SSO bağlantısı kullanılamaz. SSO hizmetini etkinleştirmek için, lütfen hesap yöneticiniz veya [Wallarm support team](mailto:support@wallarm.com) ile iletişime geçin.
 
-    Hizmeti aktifleştirdikten sonra aşağıdaki SSO bağlantı işlemini gerçekleştirebileceksiniz.
+    Hizmeti etkinleştirdikten sonra aşağıdaki SSO bağlantı prosedürünü gerçekleştirebileceksiniz.
 
-Yönetici hesabınızı kullanarak Wallarm Console'a giriş yapın ve **Ayarlar → Entegrasyon → Google SSO** yolunu izleyerek G Suite entegrasyon ayarlarına devam edin.
+Yönetici hesabınızı kullanarak Wallarm Console'a giriş yapın ve **Settings → Integration → Google SSO** yolunu izleyerek G Suite entegrasyon ayarlarına geçin.
 
 ![“Google SSO” bloğu][img-gsuite-sso-provider-wl]
 
-Bu, SSO yapılandırma sihirbazını açacaktır. Sihirbazın ilk adımında, G Suite hizmetine yönlendirilmesi gereken parametreler (hizmet sağlayıcının metadatası) ile bir form ile karşılaşacaksınız:
-*   **Wallarm Entity ID** , kimlik sağlayıcı için Wallarm uygulaması tarafından oluşturulan benzersiz bir uygulama tanımlayıcısıdır.
-*   **Assertion Consumer Service URL (ACS URL)**, kimlik sağlayıcının SamlResponse parametreli talepleri gönderdiği uygulamanın Wallarm tarafındaki adresidir.
+Bu işlem, SSO yapılandırma sihirbazını açacaktır. Sihirbazın ilk adımında, G Suite servisine iletilmesi gereken parametreler (hizmet sağlayıcısının metadata'sı) içeren bir form sunulacaktır:
+*   **Wallarm Entity ID**, kimlik sağlayıcısı için Wallarm uygulaması tarafından oluşturulan benzersiz uygulama tanımlayıcısıdır.
+*   **Assertion Consumer Service URL (ACS URL)**, kimlik sağlayıcısının SamlResponse parametresiyle birlikte istek gönderdiği Wallarm tarafındaki uygulama adresidir.
 
-![Hizmet sağlayıcının metadatası][img-sp-metadata]
+![Hizmet sağlayıcısının metadata'sı][img-sp-metadata]
 
-Oluşturulan parametreler, G Suite hizmetinin ilgili alanlarına girilmesi gerekecektir (bkz. [Adım 2][doc-setup-idp]).
+Oluşturulan parametrelerin, G Suite hizmeti tarafındaki ilgili alanlara girilmesi gerekecektir (bkz. [Adım 2][doc-setup-idp]).

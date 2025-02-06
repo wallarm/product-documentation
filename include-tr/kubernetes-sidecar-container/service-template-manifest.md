@@ -1,17 +1,17 @@
-```
+```yaml
 apiVersion: v1
-tür: Servis
+kind: Service
 metadata:
-  ad: myapp
-  etiketler:
-    çalıştır: myapp
+  name: myapp
+  labels:
+    run: myapp
 spec:
-  tür: NodePort
-  bağlantı noktaları:
+  type: NodePort
+  ports:
   - port: 80
-    hedefPort: 8080
-    protokol: TCP
-    ad: http
-  seçici:
-    çalıştır: myapp
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    run: myapp
 ```

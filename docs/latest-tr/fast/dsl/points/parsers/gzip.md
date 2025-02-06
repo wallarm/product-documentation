@@ -1,10 +1,10 @@
-# GZIP Parser
+# GZIP Ayrıştırıcı
 
-**GZIP** parser, istek öğesi değerini GZIP kodlamasında kodlar ve kod çözer. Bu parser, herhangi bir dizeye uygulanabilir.
+**GZIP** ayrıştırıcı, GZIP kodlamasındaki istek öğesi değerini kodlar ve çözer. Bu ayrıştırıcı herhangi bir string üzerinde uygulanabilir.
 
 **Örnek:** 
 
-Aşağıdaki durum için
+Aşağıdaki
 
 ```
 POST http://example.com/login/index.php HTTP/1.1
@@ -20,4 +20,4 @@ Content-Disposition: form-data; name="passwd"
 1f8b 0808 e25b 765c 0003 7465 7374 2e74 7874 0033 3034 3236 0100 2470 a4dd 0500 0000
 ```
 
-istekte, `POST_MULTIPART_passwd_GZIP_value` noktası, çok parçalı formatdaki istek gövdesinin `passwd` parametresine geçirilen GZIP'ten çözülen `01234` değerine işaret eder.
+isteği için, `POST_MULTIPART_passwd_GZIP_value` noktası, multipart formatındaki istek gövdesinde `passwd` parametresiyle gönderilen GZIP'ten çözülen `01234` değerine işaret eder.

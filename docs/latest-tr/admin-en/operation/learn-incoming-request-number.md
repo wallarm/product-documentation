@@ -1,35 +1,35 @@
-# Uygulamanın ayda kaç istekle başa çıktığını öğrenme
+# Uygulamanın Ayda İşlenen İstek Sayısını Öğrenme
 
-Wallarm'ın temel lisanslama/faturalandırma yöntemleri, ortamınızda konuşlandırılan Wallarm filtreleme düğümlerinin hizmet verdiği istek seviyesine dayanır. Bu belge, uygulamanın ele aldığı talep sayısını kolayca öğrenme yöntemini açıklar.
+Wallarm'ın ana lisanslama/faturalandırma yöntemleri, ortamınıza dağıtılan Wallarm filtreleme düğümleri tarafından işlenen istek seviyesine dayanmaktadır. Bu doküman, uygulama tarafından işlenen istek sayısını nasıl kolayca öğrenebileceğinizi açıklar.
 
-## Bilgiye erişebilen ekipler
+## Bilgilere Erişim Hakkına Sahip Takımlar
 
-Normalde, bir şirkette aşağıdaki ekipler bilgiye kolayca erişebilir:
+Normalde, bir şirkette aşağıdaki takımlar bu bilgilere kolayca erişebilir:
 
 * DevOps
-* Teknik Operasyonlar
-* Bulut Operasyonları
-* Platform Operasyonları
+* Technical Operations
+* Cloud Operations
+* Platform Operations
 * DevSecOps
-* Sistem Yöneticileri
-* Uygulamaları Yönetenler
+* System Administrators
+* Application Administrators
 * NOC
 
-## İstek sayısını öğrenme yöntemleri
+## İstek Sayısını Öğrenme Yöntemleri
 
-Uygulamanın ele aldığı talep sayısını bulmak için birkaç yöntem vardır:
+Uygulama tarafından işlenen istek sayısını öğrenmenin birkaç yöntemi bulunmaktadır:
 
-* AWS müşterileri ELB veya ALB yük dengeleyicilerini kullananlar, yük dengeleyicileri tarafından hizmet verilen uygulamalar için günlük ve haftalık istek seviyesini tahmin etmek için AWS izleme metriklerini kullanabilir:
+* ELB veya ALB yük dengeleyicilerini kullanan AWS müşterileri, yük dengeleyicileri tarafından sunulan uygulamalara ait günlük ve haftalık istek seviyelerini tahmin etmek için AWS'nın yük dengeleyici izleme metriklerini kullanabilir:
 
-    ![AWS izleme örneği](../../images/operation/aws-requests-example.png)
+    ![AWS monitoring example](../../images/operation/aws-requests-example.png)
 
-    Örneğin, bir grafik dakikada ortalama talep seviyesinin 350 olduğunu gösteriyorsa ve ayda ortalama olarak 730 saat olduğunu varsayarsak, aylık talep sayısı `350 * 60 * 730 = 15,330,000`.
+    Örneğin, bir grafik ortalama dakikada 350 istek olduğunu gösteriyorsa ve bir ayda ortalama 730 saat olduğu varsayılırsa, aylık istek sayısı `350 * 60 * 730 = 15,330,000` olacaktır.
 
-* HTTP yük dengeleyicilerini kullanan GCP kullanıcıları, **https/request_count** izleme metriğini kullanabilir. Bu metrik, Ağ Yük Dengeleyicileri için kullanılabilir değildir.
-* Microsoft IIS kullanıcıları, saniyedeki istek sayısının ortalamasını ve tek bir IIS sunucusunun bir ayda hizmet verdiği istek sayısını hesaplamak için **Requests Per Sec** metriğine güvenebilir. Hesaplamada, bir ayda ortalama olarak `730 * 3,600` saniye olduğunu varsayın.
-* New Relic, Datadog, AppDynamics, SignalFX gibi Uygulama Performans İzleme hizmetlerini kullananlar, bilgiyi APM konsollarından alabilir. (Sadece kenar katmandaki tüm sunucular için birleştirilmiş değeri elde ettiğinizden emin olun, yani sadece bir sunucuyu değil).
-* Datadog, AWS CloudWatch (ve birçok başka) gibi bulut tabanlı altyapı izleme sistemlerini kullanan kullanıcılar veya Prometheus veya Nagios gibi dahili izleme sistemlerini kullanan kullanıcılar, muhtemelen kenar konumlarındaki (yük dengeleyiciler, web sunucuları, uygulama sunucuları) hizmet verilen istek seviyesini zaten izliyorlar ve bu bilgiyi kolayca ortalama aylık işlenen istek sayısını tahmin etmek için kullanabilirler.
-* Başka bir yaklaşım, bir süre boyunca (ideali - 24 saat) log kayıtlarının sayısını hesaplamak için kenar yük dengeleyicilerinin veya web sunucularının günlüklerini kullanmaktır, burada bir log kaydının bir isteğe karşılık geldiği varsayılır. Örneğin, bu web sunucusu NGINX erişim günlük dosyasını günde bir kez döndürür ve günlük dosyada 653.525 istek kaydedilmiştir:
+* HTTP yük dengeleyicilerini kullanan GCP kullanıcıları **https/request_count** izleme metriğini kullanabilir. Bu metrik, Network Load Balancers için mevcut değildir.
+* Microsoft IIS kullanıcıları, saniyede ortalama istek sayısını elde etmek ve tek bir IIS sunucusu tarafından aylık işlenen istek sayısını hesaplamak için **Requests Per Sec** metriğine başvurabilir. Hesaplamada, bir ayda ortalama `730 * 3,600` saniye olduğu varsayılmaktadır.
+* New Relic, Datadog, AppDynamics, SignalFX ve benzeri Application Performance Monitoring hizmetlerini kullanan kullanıcılar, APM konsollarından bu bilgiyi edinebilir (katman kenarındaki tüm sunucular için toplu bir değer aldığınızdan emin olun, sadece bir sunucu için değil).
+* Datadog, AWS CloudWatch (ve diğer birçok) gibi bulut tabanlı altyapı izleme sistemlerini veya Prometheus ya da Nagios gibi dahili izleme sistemlerini kullanan kullanıcılar, muhtemelen kenar konumlarındaki (yük dengeleyiciler, web sunucuları, uygulama sunucuları) işlenen istek seviyelerini zaten izlemekte ve bu bilgiyi kullanarak aylık ortalama işlenen istek sayısını kolayca tahmin edebilmektedir.
+* Başka bir yöntem ise, kenar yük dengeleyicilerin veya web sunucularının günlüklerini kullanarak, bir süre içerisindeki (ideal olarak 24 saat) günlük kayıtlarının sayısını saymaktır; burada her işlenen istek için bir günlük kaydı olduğu varsayılmaktadır. Örneğin, bu web sunucusu NGINX erişim günlük dosyasını günde bir kez döndürüyor ve günlük dosyasında 653,525 istek kaydediliyor:
 
     ```bash
     cd /var/log/nginx/
@@ -37,7 +37,7 @@ Uygulamanın ele aldığı talep sayısını bulmak için birkaç yöntem vardı
     # 653525
     ```
 
-    * Sunucunun bir ayda hizmet verdiği talep miktarının tahmini, `653,525 * 30 = 19,605,750`.
-    * Kullanılan web sunucularının toplam sayısını bilerek, tüm uygulamaların ele aldığı talep sayısını tahmin etmek mümkündür.
+    * Sunucu tarafından aylık işlenen istek sayısının tahmini `653,525 * 30 = 19,605,750`'dir.
+    * Kullanılan toplam web sunucusu sayısını bilmek, tüm uygulamanın işlediği istek sayısını tahmin etmeyi mümkün kılar.
 
-* Google Analytics veya benzeri kullanıcı deneyimi izleme ve izleme hizmetlerini kullanan saf web uygulamaları için, hizmet verilen sayılar ve tüm gömülü nesneler hakkındaki bilgiler hizmetlerden çıkarılabilir.
+* Google Analytics veya benzeri kullanıcı deneyimi izleme hizmetlerini kullanan saf web uygulamaları için, sunulan sayfa sayısı ve tüm gömülü nesneler hakkındaki bilgiler hizmetlerden çıkarılabilir.

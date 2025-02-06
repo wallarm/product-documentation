@@ -3,32 +3,32 @@
 [img-https-ok]:         ../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-https-ok.png
     
     
-#   Mozilla Firefox İçin FAST Node Kendinden İmzalı SSL Sertifikası Kurulumu
+#   Mozilla Firefox için FAST Node Kendi İmzalı SSL Sertifikası Kurulumu
 
-Mozilla Firefox tarayıcısı için sertifikayı kurmak için aşağıdaki adımları izleyin:
+Mozilla Firefox tarayıcısı için sertifikayı yüklemek amacıyla şu adımları izleyin:
 
-1.  Tarayıcınızın HTTP ve HTTPS proxy'si olarak FAST düğümünü kullanacak şekilde ayarladığınızdan emin olun.
+1.  Tarayıcınızın FAST node'u HTTP ve HTTPS proxy olarak kullanacak şekilde yapılandırıldığından emin olun.
 
-2.  Tarayıcıyı kullanarak HTTP üzerinden herhangi bir alan adından `cert.der` dosyasını isteyin.
+2.  Tarayıcınızla HTTP üzerinden herhangi bir alandan `cert.der` dosyasını isteyin.
 
-    Örneğin, aşağıdaki bağlantıları kullanabilirsiniz:
+    Örneğin, aşağıdaki bağlantılardan birini kullanabilirsiniz:
     
     * <http://wallarm.get/cert.der>
     * <http://example.com/cert.der>
 
-    Tarayıcı, sertifika dosyasını indirecektir. Yapılandırmaya bağlı olarak, dosya ya varsayılan indirme dizinine veya seçtiğiniz dizine yerleştirilir.
+    Tarayıcı, sertifika dosyasını indirecektir. Yapılandırmaya bağlı olarak dosya, varsayılan indirme dizinine veya tercihinize bağlı olarak seçtiğiniz dizine kaydedilecektir.
     
-    ![Kendinden imzalı FAST düğüm sertifikasını istemek][img-cert-request]
+    ![Sertifika isteği][img-cert-request]
 
-3.  Bir iletişim kutusu açılacaktır. Sertifikayı yüklemeniz istenecektir. Sertifikanızın adı ve geçerlilik süresi, resimde gösterilenlerden farklı olacaktır.
+3.  Bir iletişim penceresi açılacaktır. Sertifikayı yüklemeniz istenecek. Sertifikanızın adı ve son kullanma tarihi, resimde gösterilenden farklı olabilir.    
     
-    “Bu CA'nın web sitelerini tanımlamasına güven” seçeneğini seçin ve **Tamam** düğmesini tıklayın.
+    “Web sitelerini tanımlamak için bu CA'ya güven” seçeneğini seçin ve **OK** düğmesine tıklayın.
 
-    ![Sertifikayı indirme][img-cert-download]
+    ![Sertifikanın indirilmesi][img-cert-download]
 
-4.  Sertifikanın doğru bir şekilde yüklendiğini kontrol edin. Bunu yapmak için, herhangi bir siteye HTTPS üzerinden gidin. Herhangi bir güvenilmeyen sertifika hakkında uyarı mesajı olmadan siteye HTTPS sürümüne yönlendirilmiş olmalısınız.
+4.  Sertifikanın doğru şekilde yüklendiğini kontrol edin. Bunu yapmak için, HTTPS üzerinden herhangi bir siteye gidin. Güvenilmeyen sertifikalarla ilgili uyarı mesajı almadan sitenin HTTPS sürümüne yönlendirilmiş olmalısınız.
 
-    Örneğin, Google Gruyere sitesinin HTTPS sürümüne göz atabilirsiniz:
+    Örneğin, Google Gruyere sitesinin HTTPS sürümünü ziyaret edebilirsiniz:
     <https://google-gruyere.appspot.com>
 
     ![HTTPS çalışıyor][img-https-ok]

@@ -1,1 +1,1 @@
-**Bu istek kısmında** ardışık (varsa çoklu) seçilmiş seçenekler, gereken istek öğesini okumak için [Wallarm'ın uygulayacağı](request-processing.md) ayrıştırıcıların bir sırasını yansıtmalıdır.
+Lütfen unutmayın ki, **In this part of request** kısmına eklediğiniz seçenekler, Wallarm'ın gerekli istek öğesini okumak için [apply parsers][request-processing] hangi sırayla uygulayacağını yansıtacak şekilde belirli bir sırada olmalıdır.

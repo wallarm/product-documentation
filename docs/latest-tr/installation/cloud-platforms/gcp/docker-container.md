@@ -1,38 +1,41 @@
-# GCP'ye Wallarm Docker İmajının Dağıtımı
+# GCP'ye Wallarm Docker Görüntüsünün Dağıtımı
 
-Bu hızlı kılavuz, [Google Compute Engine (GCE) bileşenini](https://cloud.google.com/compute) kullanarak [NGINX tabanlı Wallarm düğümünün Docker imajını](https://hub.docker.com/r/wallarm/node) Google Cloud Platform'a dağıtma adımlarını sağlar.
+Bu hızlı rehber, [NGINX tabanlı Wallarm node'un Docker görüntüsünü](https://hub.docker.com/r/wallarm/node) [Google Compute Engine (GCE)](https://cloud.google.com/compute) bileşeni kullanarak Google Cloud Platform'a dağıtmanın adımlarını sunar.
 
-!!! uyarı "Talimatların sınırlamaları"
-    Bu talimatlar, yük dengelemeyi ve düğüm ölçeklendirmeyi yapılandırmayı kapsamaz. Bu bileşenleri kendiniz ayarlıyorsanız, uygun [GCP belgelerini](https://cloud.google.com/compute/docs/load-balancing-and-autoscaling) okumanızı öneririz.
+!!! warning "Talimatların Sınırlamaları"
+    Bu talimatlar, yük dengeleme ve node otomatik ölçeklendirme yapılandırmasını kapsamamaktadır. Bu bileşenleri kendiniz yapılandırıyorsanız, lütfen uygun [GCP dokümantasyonunu](https://cloud.google.com/compute/docs/load-balancing-and-autoscaling) okuyunuz.
 
 ## Kullanım Durumları
 
---8<-- "../include-tr/waf/installation/cloud-platforms/google-gce-use-cases.md"
+--8<-- "../include/waf/installation/cloud-platforms/google-gce-use-cases.md"
 
 ## Gereksinimler
 
 * Aktif GCP hesabı
-* [GCP projesi oluşturulmuş](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
-* [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com?q=compute%20eng&id=a08439d8-80d6-43f1-af2e-6878251f018d) etkinleştirilmiş
-* [Google Cloud SDK (gcloud CLI) kurulmuş ve yapılandırılmış](https://cloud.google.com/sdk/docs/quickstart)
-* Çift faktörlü kimlik doğrulama özelliği Wallarm Konsolu'nda **Yönetici** rolüyle hesaba erişim [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/)
+* [Oluşturulmuş bir GCP projesi](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
+* Etkinleştirilmiş [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com?q=compute%20eng&id=a08439d8-80d6-43f1-af2e-6878251f018d)
+* Kurulmuş ve yapılandırılmış [Google Cloud SDK (gcloud CLI)](https://cloud.google.com/sdk/docs/quickstart)
+* Wallarm Console'da iki faktörlü doğrulama devre dışı bırakılmış **Administrator** rolüne sahip hesaba erişim ([US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/))
+* Saldırı tespit kuralları güncellemelerinin indirilmesi, [API specifications][api-policy-enf-docs] alınması ve [allowlisted, denylisted, or graylisted][graylist-docs] ülkeler, bölgeler veya veri merkezleri için doğru IP'lerin elde edilebilmesi amacıyla aşağıdaki IP adreslerine erişim
 
-## Wallarm düğüm Docker konteynerinin yapılandırma seçenekleri
+    --8<-- "../include/wallarm-cloud-ips.md"
 
---8<-- "../include-tr/waf/installation/docker-running-options.md"
+## Wallarm node Docker konteyner yapılandırması için Seçenekler
 
-## Çevre değişkenleri üzerinden yapılandırılmış Wallarm düğüm Docker konteynerinin dağıtımı
+--8<-- "../include/waf/installation/docker-running-options.md"
 
-Sadece çevre değişkenleri üzerinden yapılandırılmış konteynerleştirilmiş Wallarm filtreleme düğümünü dağıtmak için, [GCP Konsolu veya gcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers) kullanabilirsiniz. Bu talimatlarda, gcloud CLI kullanılır.
+## Ortam Değişkenleri ile Yapılandırılmış Wallarm Node Docker Konteynerinin Dağıtılması
 
---8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
+Sadece ortam değişkenleri ile yapılandırılmış konteynerleştirilmiş Wallarm filtreleme node'unu dağıtmak için [GCP Console veya gcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers) kullanabilirsiniz. Bu talimatlarda gcloud CLI tercih edilmiştir.
 
-1. Örneği Wallarm Bulutu'na bağlamak için kullanılacak Wallarm düğümü tokeni ile yerel çevre değişkenini ayarlayın:
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
+
+1. Instance'ı Wallarm Cloud'a bağlamak için kullanılacak Wallarm node token'ı ile yerel ortam değişkenini ayarlayın:
 
     ```bash
     export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'
     ```
-1. Çalışan Docker konteyneri bulunan örneği [`gcloud compute instances create-with-container`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container) komutunu kullanarak oluşturun:
+1. [`gcloud compute instances create-with-container`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container) komutunu kullanarak Docker konteynerinin çalıştığı instance'ı oluşturun:
 
     === "Wallarm US Cloud için Komut"
         ```bash
@@ -42,7 +45,7 @@ Sadece çevre değişkenleri üzerinden yapılandırılmış konteynerleştirilm
             --container-env WALLARM_API_TOKEN=${WALLARM_API_TOKEN} \
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
             --container-env WALLARM_API_HOST=us1.api.wallarm.com \
-            --container-image registry-1.docker.io/wallarm/node:4.8.1-1
+            --container-image registry-1.docker.io/wallarm/node:5.3.0
         ```
     === "Wallarm EU Cloud için Komut"
         ```bash
@@ -51,28 +54,28 @@ Sadece çevre değişkenleri üzerinden yapılandırılmış konteynerleştirilm
             --tags http-server \
             --container-env WALLARM_API_TOKEN=${WALLARM_API_TOKEN} \
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
-            --container-image registry-1.docker.io/wallarm/node:4.8.1-1
+            --container-image registry-1.docker.io/wallarm/node:5.3.0
         ```
 
-    * `<INSTANCE_NAME>`: örneğin adı, örneğin: `wallarm-node`.
-    * `--zone`: örneğin barındırılacağı [bölge](https://cloud.google.com/compute/docs/regions-zones).
-    * `--tags`: örnek etiketleri. Etiketler, örneği diğer kaynaklar için uygunluğu yapılandırmak için kullanılır. Bu durumda, örneğe port 80'i açan `http-server` etiketi atanır.
-    * `--container-image`: filtreleme düğümünün Docker imajına bağlantı.
-    * `--container-env`: filtreleme düğümü yapılandırması ile çevre değişkenleri (mevcut değişkenler aşağıdaki tabloda listelenmiştir). Lütfen dikkat edin, `WALLARM_API_TOKEN` değerini açıkça geçirmenin önerilmediğini unutmayın.
+    * `<INSTANCE_NAME>`: instance'ın adı, örneğin: `wallarm-node`.
+    * `--zone`: instance'ı barındıracak [zone](https://cloud.google.com/compute/docs/regions-zones).
+    * `--tags`: instance etiketleri. Etiketler, instance'ın diğer kaynaklarla uyumluluğunu yapılandırmak için kullanılır. Bu örnekte, 80 nolu portu açmak üzere `http-server` etiketi instance'a atanır.
+    * `--container-image`: Filtreleme düğümünün Docker görüntüsüne bağlantı.
+    * `--container-env`: Filtreleme düğümü yapılandırması için ortam değişkenleri (kullanılabilir değişkenler aşağıdaki tabloda listelenmiştir). Lütfen `WALLARM_API_TOKEN` değerinin açıkça geçirilmesinin önerilmediğini unutmayın.
 
-        --8<-- "../include-tr/waf/installation/nginx-docker-all-env-vars-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
     
-    * `gcloud compute instances create-with-container` komutundaki tüm parametreler [GCP belgelerinde](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container) tanımlanmıştır.
-1. [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances)'ı açın ve örneğin listede görüntülendiğinden emin olun.
-1. [Filtreleme düğümü işlemini test edin](#testing-the-filtering-node-operation).
+    * `gcloud compute instances create-with-container` komutunun tüm parametreleri [GCP dokümantasyonunda](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container) açıklanmıştır.
+1. [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) açarak instance'ın listede göründüğünden emin olun.
+1. [Filtreleme düğümünün çalışmasını test edin](#testing-the-filtering-node-operation).
 
-## Monteli dosya üzerinden yapılandırılmış Wallarm düğüm Docker konteyneri dağınımı
+## Bağlanmış Dosya Üzerinden Yapılandırılmış Wallarm Node Docker Konteynerinin Dağıtılması
 
-Çevre değişkenleri ve monteli dosya üzerinden yapılandırılmış konteynerleştirilmiş Wallarm filtreleme düğümünü dağıtmak için, örneği oluşturmalı, bu örneğin dosya sistemi içine filtreleme düğümü yapılandırma dosyasını yerleştirmeli ve bu örnekte Docker konteynerini çalıştırmalısınız. Bu adımları [GCP Konsol veya gcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers) üzerinde gerçekleştirebilirsiniz. Bu talimatlarda, gcloud CLI kullanılır.
+Ortam değişkenleri ile ve bağlanmış dosya üzerinden yapılandırılmış konteynerleştirilmiş Wallarm filtreleme node'unu dağıtmak için, instance'ı oluşturmalı, bu instance dosya sisteminde filtreleme düğümü yapılandırma dosyasını bulmalı ve Docker konteynerini çalıştırmalısınız. Bu adımları [GCP Console veya gcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers) ile gerçekleştirebilirsiniz. Bu talimatlarda gcloud CLI kullanılmaktadır.
 
---8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-1. Compute Engine kaydındaki herhangi bir işletim sistemi imajına dayanan örneği oluşturun [`gcloud compute instances create`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create) komutunu kullanarak:
+1. Compute Engine kayıt defterindeki herhangi bir işletim sistemi görüntüsünü temel alarak, [`gcloud compute instances create`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create) komutunu kullanarak instance'ı oluşturun:
 
     ```bash
     gcloud compute instances create <INSTANCE_NAME> \
@@ -81,20 +84,20 @@ Sadece çevre değişkenleri üzerinden yapılandırılmış konteynerleştirilm
         --tags http-server
     ```
 
-    * `<INSTANCE_NAME>`: örneğin adı.
-    * `--image`: Compute Engine kaydından işletim sistemi imajının adı. Oluşturulan örnek, bu imaja dayanacaktır ve daha sonra Docker konteynerini çalışırmak için kullanılacaktır. Bu parametre atlanırsa, örnek Debian 10 imajında temel alınır.
-    * `--zone`: örneğin barındırılacağı [bölge](https://cloud.google.com/compute/docs/regions-zones).
-    * `--tags`: örnek etiketleri. Etiketlerö, örneğin diğer kaynaklarla uyumlu olup olmayacağını yapılandırmak için kullanılır. Bu durumda, port 80'i açan `http-server` etiketi örneğe atanmıştır.
-    * `gcloud compute instances create` komutunun tüm parametreleri [GCP documentation](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create)'da tarif edilmiştir.
-1. [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) açın ve örneğin listede görüntülendiğinden ve **RUNNING** durumunda olduğundan emin olun.
-1. Örneğe SSH üzerinden bağlanmak için [GCP talimatlarını](https://cloud.google.com/compute/docs/instances/ssh) izleyin.
-1. Docker paketlerini uygun işletim sistemine göre [talimatlara göre](https://docs.docker.com/engine/install/#server) örnekte yükleyin.
-1. Örneği Wallarm Bulutu'na bağlamak için kullanılacak Wallarm düğümü tokeni ile yerel çevre değişkenini ayarlayın:
+    * `<INSTANCE_NAME>`: instance'ın adı.
+    * `--image`: Compute Engine kayıt defterindeki işletim sistemi görüntüsünün adı. Oluşturulan instance bu görüntüye dayalı olacak ve daha sonra Docker konteynerini çalıştırmak için kullanılacaktır. Bu parametre atlanırsa, instance Debian 10 görüntüsüne dayalı oluşturulacaktır.
+    * `--zone`: instance'ı barındıracak [zone](https://cloud.google.com/compute/docs/regions-zones).
+    * `--tags`: Instance etiketleri. Bu etiketler, instance'ın diğer kaynaklarla uyum içinde kullanılmasını sağlamak içindir. Bu örnekte, 80 nolu portu açmak üzere `http-server` etiketi instance'a atanır.
+    * `gcloud compute instances create` komutunun tüm parametreleri [GCP dokümantasyonunda](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create) açıklanmıştır.
+1. [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) açarak instance'ın listede göründüğünden ve **RUNNING** durumunda olduğundan emin olun.
+1. [GCP dokümantasyonundaki SSH bağlantısı talimatlarını](https://cloud.google.com/compute/docs/instances/ssh) izleyerek instance'a SSH ile bağlanın.
+1. [Uygun işletim sistemi için talimatları](https://docs.docker.com/engine/install/#server) izleyerek instance üzerinde Docker paketlerini kurun.
+1. Instance'ı Wallarm Cloud'a bağlamak için kullanılacak Wallarm node token'ı ile yerel ortam değişkenini ayarlayın:
 
     ```bash
     export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'
     ```
-1. Örnekte, filtreleme düğümü yapılandırmasını içeren `default` isimli dosyanın bulunduğu bir dizin oluşturun (örneğin, dizin adı `configs` olarak adlandırılabilir). Minimum ayarların olduğu dosyanın bir örneği:
+1. Instance içinde, filtreleme düğümü yapılandırmasını içeren `default` dosyasını barındıracak bir dizin oluşturun (örneğin, dizin adı `configs` olabilir). Minimal ayarları içeren dosya örneği:
 
     ```bash
     server {
@@ -121,47 +124,47 @@ Sadece çevre değişkenleri üzerinden yapılandırılmış konteynerleştirilm
     }
     ```
 
-    [Yapılandırma dosyasında belirlenebilecek filtreleme düğümü direktiflerinin kümesi →][nginx-waf-directives]
-1. Wallarm düğüm Docker konteynerini, geçirilen çevre değişkenleri ve monte edilmiş yapılandırma dosyası ile birlikte `docker run` komutunu kullanarak çalıştırın:
+    [Yapılandırma dosyasında belirtilmesi mümkün filtreleme düğümü yönergeleri seti →][nginx-waf-directives]
+1. Geçilen ortam değişkenleri ve bağlanmış yapılandırma dosyası ile `docker run` komutunu kullanarak Wallarm node Docker konteynerini çalıştırın:
 
     === "Wallarm US Cloud için Komut"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:4.8.1-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:5.3.0
         ```
     === "Wallarm EU Cloud için Komut"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:4.8.1-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:5.3.0
         ```
 
-    * `<INSTANCE_PATH_TO_CONFIG>`: Önceki adımda oluşturulan yapılandırma dosyasının yolu. Örneğin, `configs`.
-    * `<DIRECTORY_FOR_MOUNTING>`: Yapılandırma dosyasını monte edileceği konteyner dizini. Yapılandırma dosyaları NGINX tarafından kullanılan aşağıdaki konteyner dizinlerine monte edilebilir:
+    * `<INSTANCE_PATH_TO_CONFIG>`: Bir önceki adımda oluşturulan yapılandırma dosyasının yolu. Örneğin, `configs`.
+    * `<DIRECTORY_FOR_MOUNTING>`: Yapılandırma dosyasının konteyner içine monte edileceği dizin. Yapılandırma dosyaları, NGINX tarafından kullanılan aşağıdaki konteyner dizinlerine monte edilebilir:
 
-        * `/etc/nginx/conf.d` — şekil ayarları
-        * `/etc/nginx/sites-enabled` —sanal ev sahibi ayarları
-        * `/var/www/html` — statik dosyalar
+        * `/etc/nginx/conf.d` — Ortak ayarlar
+        * `/etc/nginx/sites-enabled` — Sanal host ayarları
+        * `/var/www/html` — Statik dosyalar
 
-        Filtreleme düğümü direktiflerinin `/etc/nginx/sites-enabled/default` dosyasında açıklanması gerekir.
+        Filtreleme düğümü yönergeleri, `/etc/nginx/sites-enabled/default` dosyasında belirtilmelidir.
     
-    * `-p`: filtreleme düğümünün dinlediği port. Değer, örneğin portuyla aynı olmalıdır.
-    * `-e`: filtreleme düğümü yapılandırması ile çevre değişkenleri (mevcut değişkenler aşağıdaki tabloda listelenmiştir). Lütfen dikkat edin, `WALLARM_API_TOKEN` değerini açıkça geçirmenin önerilmediğini unutmayın.
+    * `-p`: Filtreleme düğümünün dinlediği port. Değer, instance portu ile aynı olmalıdır.
+    * `-e`: Filtreleme düğümü yapılandırması için ortam değişkenleri (kullanılabilir değişkenler aşağıdaki tabloda listelenmiştir). Lütfen `WALLARM_API_TOKEN` değerinin açıkça geçirilmesinin önerilmediğini unutmayın.
 
-        --8<-- "../include-tr/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
-1. [Filtreleme düğümü işlemini test edin](#testing-the-filtering-node-operation).
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+1. [Filtreleme düğümünün çalışmasını test edin](#testing-the-filtering-node-operation).
 
-## Filtreleme Düğümü İşleminin Test Edilmesi
+## Filtreleme Düğümünün Çalışmasını Test Etme
 
-1. [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) açın ve **Dış IP** sütunundan örneğin IP adresini kopyalayın.
+1. [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) açın ve **External IP** sütunundan instance IP adresini kopyalayın.
 
-    ![Konteyner Serisi Ayarı][copy-container-ip-gcp-img]
+    ![Settig up container instance][copy-container-ip-gcp-img]
 
-    IP adresi boşsa, lütfen örneğin **RUNNING** durumunda olduğundan emin olun.
+    Eğer IP adresi boşsa, lütfen instance'ın **RUNNING** durumunda olduğundan emin olun.
 
-2. Kopyalanan adrese test [Path Traversal][ptrav-attack-docs] saldırısını içeren bir istek gönderin:
+2. Kopyaladığınız adrese test [Path Traversal][ptrav-attack-docs] saldırısı içeren isteği gönderin:
 
     ```
     curl http://<COPIED_IP>/etc/passwd
     ```
-3. [US Cloud'daki](https://us1.my.wallarm.com/search) veya [EU Cloud'daki](https://my.wallarm.com/search) Wallarm Konsolu → **Events**'ı açın ve saldırının listede göründüğünden emin olun.
+3. Wallarm Console → **Attacks** bölümünü, [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) üzerinden açın ve saldırının listede göründüğünden emin olun.
     ![Attacks in UI][attacks-in-ui-image]
 
-Konteyner dağıtımı sırasında oluşan hataların ayrıntıları **View logs** örnek menüsünde görüntülenir. Eğer örnek erişilemezse, lütfen gereken filtreleme düğümü parametrelerinin doğru değerlere sahip olduğunu kontrol edin.
+Konteyner dağıtımı sırasında oluşan hataların detayları, instance menüsündeki **View logs** bölümünde görüntülenir. Instance erişilemezse, lütfen konteynere doğru değerlerle gerekli filtreleme düğümü parametrelerinin geçirildiğinden emin olun.

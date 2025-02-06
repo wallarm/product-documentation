@@ -1,2 +1,4 @@
-!!! uyarı "Desteklenen Kubernetes Platformu"
-    Lütfen dikkat edin, Wallarm NGINX veya NGINX Plus Ingress denetleyicileri yalnızca 1.15 ve altı versiyonundaki Kubernetes platformunda çalışır.
+```markdown
+!!! warning "Supported Kubernetes Platform"
+    Lütfen unutmayın, Wallarm NGINX veya NGINX Plus Ingress denetleyicileri yalnızca Kubernetes platformunun 1.15 ve daha düşük sürümlerinde çalışmaktadır.
+```

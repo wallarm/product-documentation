@@ -1,40 +1,45 @@
-NGINX‑Wallarm ve ayrı postanalytics modüllerinin etkileşimini kontrol etmek için, test saldırısı ile bir istekte bulunabilirsiniz. Bunun için korunan uygulamanın adresine gönderim yapmanız gerekmektedir:
+To check the NGINX‑Wallarm and separate postanalytics modules interaction, you can send the request with test attack to the address of the protected application:
+
+NGINX‑Wallarm ve ayrı postanalytics modüllerinin etkileşimini kontrol etmek için, korunan uygulamanın adresine test saldırısı içeren isteği gönderebilirsiniz:
 
 ```bash
 curl http://localhost/etc/passwd
 ```
 
-Eğer NGINX‑Wallarm ve ayrı postanalytics modülleri doğru bir şekilde yapılandırıldıysa, saldırı Wallarm Cloud'a yüklenecek ve Wallarm Konsolu'nun **Etkinlikler** bölümünde görüntülenecektir:
+If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Attacks** section of Wallarm Console:
 
-![Arayüzdeki saldırılar][img-attacks-in-interface]
+Eğer NGINX‑Wallarm ve ayrı postanalytics modülleri doğru şekilde yapılandırıldıysa, saldırı Wallarm Cloud'a yüklenecek ve Wallarm Console'un **Attacks** bölümünde gösterilecektir:
 
-Eğer saldırı Cloud'a yüklenmediyse, lütfen hizmetlerin çalışmasında herhangi bir hata olup olmadığını kontrol edin:
+![Attacks in the interface][img-attacks-in-interface]
 
-* postanalytics servisinin `wallarm-tarantool` durumunun `aktif` olduğundan emin olun
+If the attack was not uploaded to the Cloud, please check that there are no errors in the services operation:
 
-    ```bash
-    sudo systemctl status wallarm-tarantool
-    ```
+Saldırı Cloud'a yüklenmediyse, lütfen servislerin çalışmasında herhangi bir hata olmadığını kontrol edin:
 
-    ![wallarm-tarantool durumu][tarantool-status]
-* postanalytics modül loğlarını inceleyin
+* Analyze the postanalytics module logs
 
     ```bash
-    sudo cat /var/log/wallarm/tarantool.log
+    sudo cat /opt/wallarm/var/log/wallarm/tarantool-out.log
     ```
 
-    Eğer `SystemError binary: failed to bind: Cannot assign requested address` gibi bir kayıt varsa, belirtilen adres ve portta bağlantıyı kabul edip etmediğini kontrol edin.
-* NGINX‑Wallarm modülü olan sunucuda, NGINX loğlarını inceleyin:
+    If there is the record like `SystemError binary: failed to bind: Cannot assign requested address`, make sure that the server accepts connection on specified address and port.
+    
+    `SystemError binary: failed to bind: Cannot assign requested address` gibi bir kayıt varsa, lütfen sunucunun belirtilen adres ve port üzerinden bağlantıyı kabul ettiğinden emin olun.
+* On the server with the NGINX‑Wallarm module, analyze the NGINX logs:
 
     ```bash
     sudo cat /var/log/nginx/error.log
     ```
 
-    Eğer `[hata] wallarm: <adres> connect() başarısız oldu` gibi bir kayıt varsa, NGINX‑Wallarm modülü yapılandırma dosyalarında ayrı postanalytics modülünün adresinin doğru belirtildiğinden ve ayrı postanalytics sunucusunun belirtilen adres ve portta bağlantıyı kabul ettiğinden emin olun.
-* NGINX‑Wallarm modülü olan sunucuda, aşağıdaki komutu kullanarak işlenmiş istekler hakkında istatistikleri alın ve `tnt_errors` değerinin 0 olduğundan emin olun
+    If there is the record like `[error] wallarm: <address> connect() failed`, make sure that the address of separate postanalytics module is specified correctly in the NGINX‑Wallarm module configuration files and separate postanalytics server accepts connection on specified address and port.
+    
+    `[error] wallarm: <address> connect() failed` gibi bir kayıt varsa, lütfen ayrı postanalytics modülünün adresinin NGINX‑Wallarm modül yapılandırma dosyalarında doğru belirtildiğinden ve ayrı postanalytics sunucusunun belirtilen adres ve port üzerinden bağlantıyı kabul ettiğinden emin olun.
+* On the server with the NGINX‑Wallarm module, get the statistics on processed requests using the command below and make sure that the value of `tnt_errors` is 0
 
     ```bash
     curl http://127.0.0.8/wallarm-status
     ```
 
-    [İstatistik servisi tarafından döndürülen tüm parametrelerin açıklaması →][statistics-service-all-parameters]
+    [Description of all parameters returned by the statistics service →][statistics-service-all-parameters] 
+
+NGINX‑Wallarm modülünün bulunduğu sunucuda, aşağıdaki komutu kullanarak işlenen isteklerle ilgili istatistikleri alın ve `tnt_errors` değerinin 0 olduğundan emin olun.

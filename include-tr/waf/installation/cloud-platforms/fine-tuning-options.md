@@ -1,23 +1,30 @@
-Dağıtım artık tamamlandı. Filtreleme düğümü, dağıtımdan sonra ek bir yapılandırmayı gerektirebilir.
+The deployment is now complete. The filtering node may require some additional configuration after deployment.
+Dağıtım artık tamamlandı. Filtreleme düğümünün dağıtımdan sonra ek yapılandırmaya ihtiyaç duyması mümkündür.
 
-Wallarm ayarları, [NGINX yönergeleri][wallarm-nginx-directives] veya Wallarm Konsol UI aracılığıyla belirlenir. Yönergeler, Wallarm örneğindeki aşağıdaki dosyalara ayarlanmalıdır:
+Wallarm settings are defined using the [NGINX directives][wallarm-nginx-directives] or the Wallarm Console UI. Directives should be set in the following files on the Wallarm instance:
+Wallarm ayarları, [NGINX directives][wallarm-nginx-directives] veya Wallarm Console UI kullanılarak tanımlanır. Yönergeler, Wallarm örneği üzerindeki aşağıdaki dosyalarda ayarlanmalıdır:
 
-* `/etc/nginx/sites-enabled/default` NGINX yapılandırmasını belirtir.
-* `/etc/nginx/conf.d/wallarm.conf` Wallarm filtreleme düğümünün genel yapılandırmasını belirtir.
-* `/etc/nginx/conf.d/wallarm-status.conf` filtreleme düğümü izleme hizmeti yapılandırmasını belirtir.
-* `/etc/default/wallarm-tarantool` veya `/etc/sysconfig/wallarm-tarantool` Tarantool veritabanı ayarlarıyla birlikte gelir.
+* `/etc/nginx/sites-enabled/default` NGINX yapılandırmasını tanımlar
+* `/etc/nginx/conf.d/wallarm.conf` Wallarm filtreleme düğümünün genel yapılandırmasını tanımlar
+* `/etc/nginx/conf.d/wallarm-status.conf` Filtreleme düğümü izleme servisi yapılandırmasını tanımlar
+* `/etc/default/wallarm-tarantool` veya `/etc/sysconfig/wallarm-tarantool` Tarantool veritabanı ayarlarını içerir
 
-Yukarıda listelenen dosyaları değiştirebilir veya NGINX ve Wallarm'ın işleyişini belirlemek için kendi yapılandırma dosyalarınızı oluşturabilirsiniz. Aynı şekilde işlenmesi gereken alan adları grubu için her biri `server` bloğuyla ayrı bir yapılandırma dosyası oluşturmanız önerilir (örneğin `example.com.conf`). NGINX yapılandırma dosyalarıyla çalışma hakkında detaylı bilgi için, [resmi NGINX belgelerine](https://nginx.org/en/docs/beginners_guide.html) başvurun.
+You can modify the listed files or create your own configuration files to define the operation of NGINX and Wallarm. It is recommended to create a separate configuration file with the `server` block for each group of the domains that should be processed in the same way (e.g. `example.com.conf`). To see detailed information about working with NGINX configuration files, proceed to the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
+NGINX ve Wallarm’ın çalışma şeklini tanımlamak için listelenen dosyaları değiştirebilir veya kendi yapılandırma dosyalarınızı oluşturabilirsiniz. Aynı şekilde işlenmesi gereken her domain grubu için `server` bloğu içeren ayrı bir yapılandırma dosyası oluşturmanız önerilir (örneğin, `example.com.conf`). NGINX yapılandırma dosyalarıyla çalışma hakkında daha ayrıntılı bilgi için [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html)’a göz atın.
 
-!!! bilgi "Yapılandırma dosyası oluşturma"
-    Özel bir yapılandırma dosyası oluştururken, NGINX'in boşta olan portta gelen bağlantıları dinlediğinden emin olun.
+!!! info "Creating a configuration file"
+    When creating a custom configuration file, make sure that NGINX listens to the incoming connections on the free port.
+    
+!!! info "Bir yapılandırma dosyası oluşturma"
+    Özel bir yapılandırma dosyası oluştururken, NGINX'in gelen bağlantıları boşta olan port üzerinden dinlediğinden emin olun.
 
-Aşağıda, gerektiğinde uygulayabileceğiniz tipik ayarların birkaçı bulunmaktadır:
+Below there are a few of the typical settings that you can apply if needed:
+Aşağıda, gerekirse uygulayabileceğiniz bazı tipik ayarlar bulunmaktadır:
 
-* [Wallarm düğümünün otomatik ölçeklendirme][autoscaling-docs]
-* [İstemcinin gerçek IP'sini gösterme][real-ip-docs]
-* [Wallarm düğümleri için kaynak tahsis etme][allocate-memory-docs]
-* [Tek istek işleme süresini sınırlama][limiting-request-processing]
-* [Sunucu yanıt bekleme süresini sınırlama](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
-* [Maksimum istek boyutunu sınırlama](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
-* [Wallarm düğüm seviyesinde günlük tutma][logs-docs]
+* [Wallarm node auto-scaling][autoscaling-docs]
+* [Displaying the client's real IP][real-ip-docs]
+* [Allocating resources for Wallarm nodes][allocate-memory-docs]
+* [Limiting the single request processing time][limiting-request-processing]
+* [Limiting the server reply waiting time](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
+* [Limiting the maximum request size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
+* [Wallarm node logging][logs-docs]

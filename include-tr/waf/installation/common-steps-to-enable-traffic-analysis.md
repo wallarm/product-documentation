@@ -1,13 +1,13 @@
-Varsayılan olarak, dağıtılmış Wallarm düğümü gelen trafiği analiz etmez.
+Varsayılan olarak, dağıtılan Wallarm node'u gelen trafiği analiz etmez.
 
-Seçilen Wallarm dağıtım yaklaşımına göre ([in-line][inline-docs] veya [Out-of-Band][oob-docs]), Wallarm'ı ya trafiği proxy olarak ayarlamak için veya trafik aynasını işlemek için yapılandırın.
+Seçilen Wallarm dağıtım yaklaşımına ([in-line][inline-docs] ya da [Out-of-Band][oob-docs]) bağlı olarak, Wallarm'ı trafiği proxylemek veya trafik aynasını işlemek üzere yapılandırın.
 
-Aşağıdaki yapılandırmayı yüklenmiş düğümle birlikte olan `/etc/nginx/conf.d/default.conf` dosyasında gerçekleştirin:
+Aşağıdaki yapılandırmayı, node'un yüklü olduğu makinedeki `/etc/nginx/conf.d/default.conf` dosyasında uygulayın:
 
 === "In-line"
-    1. Wallarm'ın meşru trafiği proxy olarak neye iletmesi gerektiği için bir IP adresi ayarlayın. Bu, bir uygulama örneğinin IP'si, yük dengeleyici veya DNS adı vb. olabilir, mimarinize bağlı olarak.
+    1. Wallarm'ın meşru trafiği proxyleyeceği bir IP adresi belirleyin. Bu, mimarinize bağlı olarak bir uygulama örneğinin, yük dengeleyicisinin IP'si ya da DNS adı vb. olabilir.
     
-        Bunu yapmak için, `proxy_pass` değerini düzenleyin, ör. Wallarm, meşru istekleri `http://10.80.0.5` adresine göndermelidir:
+        Bunu yapmak için, `proxy_pass` değerini düzenleyin, örneğin Wallarm meşru istekleri `http://10.80.0.5` adresine göndermelidir:
 
         ```
         server {
@@ -22,7 +22,7 @@ Aşağıdaki yapılandırmayı yüklenmiş düğümle birlikte olan `/etc/nginx/
             }
         }
         ```
-    1. Wallarm düğümünün gelen trafiği analiz etmesi için, `wallarm_mode` talimatını `monitoring` olarak ayarlayın:
+    1. Wallarm node'un gelen trafiği analiz edebilmesi için, `wallarm_mode` yönergesini `monitoring` olarak ayarlayın:
 
         ```
         server {
@@ -34,15 +34,14 @@ Aşağıdaki yapılandırmayı yüklenmiş düğümle birlikte olan `/etc/nginx/
         }
         ```
     
-        İzleme modu, ilk dağıtım ve çözüm testi için önerilen moddur. Wallarm ayrıca güvenli engelleme ve engelleme modlarını da sağlar, [daha fazla bilgi][waf-mode-instr].
-        
+        Monitoring modu, ilk dağıtım ve çözüm testleri için önerilen moddur. Wallarm ayrıca safe blocking ve blocking modlarını da sunar, [read more][waf-mode-instr].
 === "Out-of-Band"
-    1. Wallarm düğümünün aynalanan trafiği kabul etmesi için, şu yapılandırmayı `server` NGINX bloğunda ayarlayın:
+    1. Wallarm node'un aynalanan trafiği kabul etmesi için, `server` NGINX bloğunda aşağıdaki yapılandırmayı ayarlayın:
 
         ```
         wallarm_force server_addr $http_x_server_addr;
         wallarm_force server_port $http_x_server_port;
-        # Aynalanma sunucusunun adresini 222.222.222.22 ile değiştirin
+        # Change 222.222.222.22 to the address of the mirroring server
         set_real_ip_from  222.222.222.22;
         real_ip_header    X-Forwarded-For;
         real_ip_recursive on;
@@ -51,9 +50,9 @@ Aşağıdaki yapılandırmayı yüklenmiş düğümle birlikte olan `/etc/nginx/
         wallarm_force response_size 0;
         ```
 
-        * `set_real_ip_from` ve `real_ip_header` talimatları, Wallarm konsolunun saldırganların IP adreslerini [göstermesi][proxy-balancer-instr] için gereklidir.
-        * `wallarm_force_response_*` talimatları, aynalanan trafikten alınan kopyalar dışında tüm isteklerin analizi devre dışı bırakmak için gereklidir.
-    1. Wallarm düğümünün aynalanan trafiği analiz etmesi için, `wallarm_mode` talimatına `monitoring` değerini ayarlayın:
+        * `set_real_ip_from` ve `real_ip_header` yönergeleri, Wallarm Console'un [display the IP addresses of the attackers][proxy-balancer-instr] işlemini gerçekleştirebilmesi için gereklidir.
+        * `wallarm_force_response_*` yönergeleri, aynalanan trafikten alınan kopyalar dışındaki tüm isteklerin analizini devre dışı bırakmak için gereklidir.
+    1. Wallarm node'un aynalanan trafiği analiz edebilmesi için, `wallarm_mode` yönergesini `monitoring` olarak ayarlayın:
 
         ```
         server {
@@ -65,4 +64,4 @@ Aşağıdaki yapılandırmayı yüklenmiş düğümle birlikte olan `/etc/nginx/
         }
         ```
 
-        Kötü amaçlı istekler [engellenemez][oob-advantages-limitations] olduğundan, Wallarm'ın kabul ettiği tek [mod][waf-mode-instr] izlemedir. İç dağıtım için güvenli engelleme ve engelleme modları bulunmaktadır ancak `wallarm_mode` talimatını izleme dışında bir değere ayarlarsanız, düğüm trafiği izlemeye devam eder ve yalnızca kötü amaçlı trafiği kaydeder (modun kapalı olarak ayarlanmasının yanı sıra).
+        Kötü amaçlı istekler [bloklanamayacağı][oob-advantages-limitations] için, Wallarm'ın kabul ettiği tek [mod][waf-mode-instr] monitoring modudur. In-line dağıtım için ayrıca safe blocking ve blocking modları da bulunmaktadır, ancak `wallarm_mode` yönergesini monitoring dışında bir değere ayarlasanız bile, node trafiği izlemeye devam eder ve sadece kötü amaçlı trafiği kaydeder (off moda ayarlanmış olan hariç).

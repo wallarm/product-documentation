@@ -6,51 +6,51 @@
 
 # Profilinizi Kontrol Etme
 
-Profil verilerinizi ve ayarlarınızı görmek için **Ayarlar** → **Profil** sekmesine gidin.
+Profil verilerinizi ve ayarlarınızı görmek için **Settings** → **Profile** sekmesine gidin.
 
-Profilinizde hesap bilgilerinizi kontrol edebilirsiniz:
+Profilinizde, hesap bilgilerinizi kontrol edebilirsiniz:
 
 * E-posta
-* Atanmış [rol](users.md#user-roles) - **Yönetici**, **Analizci**, veya **Sadece okuma**
+* Atanmış [rol](users.md#user-roles) - **Admin**, **Analyst** veya **Read only**
 * İsim ve telefon
-* Wallarm sistemde kullanılacak tercih edilen tarih ve saat formatı
-* Güvenlik: Son şifre veri değişikliği ve iki faktörlü doğrulama durumu. Bazı unsurlar SSO kimlik doğrulaması kullanıyorsanız kullanılamayabilir.
-* Oturum açma geçmişi
+* Wallarm sisteminde kullanılacak tercih edilen tarih ve saat formatı
+* Güvenlik: son şifre değişikliği ve iki faktörlü kimlik doğrulama durumu. SSO kimlik doğrulaması kullanıyorsanız bazı öğeler mevcut olmayabilir.
+* Giriş geçmişi
 
-*Oturumu Kapat* düğmesine tıklayarak Wallarm hesabınızdan çıkış yapabilirsiniz.
+Wallarm hesabınızdan çıkış yapmak için *Sign out* düğmesine tıklayabilirsiniz.
 
-![Profil genel bakış][img-profile]
+![Profile overview][img-profile]
 
-Gerektiğinde, aynı sayfada hesap bilgilerini düzenleyebilirsiniz.
+Gerekirse, aynı sayfada hesap bilgilerinizi düzenleyebilirsiniz.
 
 ## Şifrenizi Değiştirme
 
-!!! info "SSO Kullanırken Kullanılamaz"
-    SSO kimlik doğrulamasını kullanıyorsanız, email/şifre kimlik doğrulaması kullanılamaz ve şifrenizi kullanamaz veya değiştiremezsiniz. Şifre değiştirme bölümü kullanılamaz olacaktır.
+!!! info "SSO kullanıyorsanız mevcut değil"
+    SSO kimlik doğrulaması kullanıyorsanız, e-posta/şifre ile kimlik doğrulaması mevcut değildir; şifrenizi kullanamaz veya değiştiremezsiniz. Şifre değiştirme bölümü mevcut olmayacaktır.
 
-1. *Değiştir* düğmesine tıklayın.
-1. Gelen formda, geçerli şifreniz, yeni şifreniz ve yeni şifre doğrulamanızı girin.
-1. *Şifreyi Değiştir* düğmesine tıklayın
+1. *Change* düğmesine tıklayın.
+1. Açılan formda mevcut şifrenizi, yeni şifrenizi ve yeni şifre teyidinizi girin.
+1. *Change password* düğmesine tıklayın.
 
 ## İki Faktörlü Kimlik Doğrulamayı Etkinleştirme
 
-Google Authenticator (ya da TOTP'yi destekleyen benzer uygulamalar) kullanarak iki faktörlü kimlik doğrulamayı etkinleştirebilirsiniz.
+İki faktörlü kimlik doğrulamayı etkinleştirmek için Google Authenticator (veya TOTP'yi destekleyen benzer uygulamaları) kullanabilirsiniz.
 
-!!! info "SSO Kullanırken Kullanılamaz"
-    SSO kimlik doğrulamasını kullanıyorsanız, iki faktörlü kimlik doğrulama etkinleştirilemez. **Two-factor authentication** bölümü kullanılamaz olacaktır.
+!!! info "SSO kullanıyorsanız mevcut değil"
+    SSO kimlik doğrulaması kullanıyorsanız, iki faktörlü kimlik doğrulama etkinleştirilemez. **Two-factor authentication** bölümü mevcut olmayacaktır.
 
-1. *Google Authenticator* uygulamasını ([Android][link-2fa-android-app], [iOS][link-2fa-ios-app]) veya uyumlu bir tane yükleyin.
-1. İki-Faktörlü Kimlik Doğrulama ayarında *Etkinleştir* seçeneğine tıklayın.
-1. Görünen QR kodunu tarayın (veya *manual entry* linkine tıklayın ve manuel giriş seçeneğini kullanın).
-1. Uygulamanız tarafından üretilen 6 haneli doğrulama kodunu girin.
+1. *Google Authenticator* uygulamasını ([Android][link-2fa-android-app], [iOS][link-2fa-ios-app]) veya uyumlu herhangi bir uygulamayı yükleyin.
+1. İki Faktörlü Kimlik Doğrulama ayarında *Enable* seçeneğine tıklayın.
+1. Görüntülenen QR kodunu tarayın (veya *manual entry* bağlantısına tıklayarak manuel giriş seçeneğini kullanın).
+1. Uygulamanız tarafından oluşturulan 6 haneli doğrulama kodunu girin.
 1. Şifrenizi girin.
-1. *Onayla* düğmesine tıklayın.
+1. *Confirm* düğmesine tıklayın.
 
-Oturum açtığınızda, şifre işleminden sonra ikinci faktör kodunuz için sorulacaktır. Bu kodu Google Authenticator uygulamanızdan alın.
+Her oturum açtığınızda, şifre isteminin ardından size ikinci faktör kodu sorulacaktır. Bu kodu Google Authenticator uygulamanızdan edinin.
 
-İki faktörlü kimlik doğrulamayı devre dışı bırakmak isterseniz şifre gereklidir.
+İki faktörlü kimlik doğrulamayı kapatmak isterseniz, şifre gereklidir.
 
-![Two-factor authentication page genel bakış][img-2fa-page]
+![Two-factor authentication page overview][img-2fa-page]
 
 !!! info "Uyumluluk"
-    Zaman Temelli Tek Kullanımlık Parola Algoritması (RFC6238)'ı destekleyen herhangi bir uygulama veya cihazı, tek-kullanımlık kodları oluşturmak için kullanabilirsiniz.
+    Zaman Tabanlı Tek Kullanımlık Şifre Algoritması (RFC6238) destekleyen herhangi bir uygulama veya cihazı tek kullanımlık kodlar oluşturmak için kullanabilirsiniz.

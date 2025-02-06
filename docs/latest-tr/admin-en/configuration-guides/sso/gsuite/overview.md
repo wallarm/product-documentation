@@ -1,4 +1,5 @@
-# G Suite ile SSO Bağlantısı Kurma
+```markdown
+#   G Suite ile SSO Bağlantısı
 
 [doc-setup-sp]:                     setup-sp.md
 [doc-setup-idp]:                    setup-idp.md    
@@ -12,22 +13,23 @@
 
 [link-gsuite]:                      https://gsuite.google.com/
 
-Bu rehber, [G Suite][link-gsuite] (Google) hizmetini bir kimlik sağlayıcı olarak Wallarm'a, servis sağlayıcı olarak hareket eden, bağlama sürecini kapsar.
+Bu kılavuz, Wallarm'ın servis sağlayıcı olarak hizmet verdiği duruma, [G Suite][link-gsuite] (Google) hizmetini kimlik sağlayıcı olarak bağlama sürecini kapsar.
 
 !!! not
-    Varsayılan olarak, Wallarm'da SSO bağlantısı, uygun hizmeti etkinleştirmeden kullanılamaz. SSO hizmetini etkinleştirmek için lütfen hesap yöneticinizle veya [Wallarm destek ekibiyle](mailto:support@wallarm.com) iletişime geçin.
+    Varsayılan olarak Wallarm'da, uygun servisi etkinleştirmeden SSO bağlantısı mevcut değildir. SSO servisini etkinleştirmek için lütfen hesap yöneticiniz veya [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişime geçin.
     
-    Hizmeti etkinleştirdikten sonra
+    Servis etkinleştirildikten sonra:
     
-    *   aşağıdaki SSO bağlantı prosedürünü gerçekleştirebilecek ve
-    *   SSO ile ilgili bloklar "Entegrasyonlar" sekmesinde görünür olacak.
+    *   aşağıdaki SSO bağlantı prosedürünü uygulayabilir ve
+    *   “Integrations” sekmesinde SSO ile ilgili blokları görebilirsiniz.
     
-   Bunun yanı sıra, Hem Wallarm hem de G Suite için yönetim haklarına sahip hesaplara ihtiyacınız var.
+    Ayrıca, Wallarm ve G Suite için yönetim yetkisine sahip hesaplara sahip olmanız gerekmektedir.
 
-G Suite ile SSO bağlantısını kurma süreci aşağıdaki adımlardan oluşur:
-1.  [Wallarm Tarafında Parametreleri Oluşturma.][doc-setup-sp]
+G Suite ile SSO bağlantısı süreci aşağıdaki adımları içerir:
+1.  [Wallarm Tarafında Parametre Oluşturma.][doc-setup-sp]
 2.  [G Suite'de Bir Uygulama Oluşturma ve Yapılandırma.][doc-setup-idp]
-3.  [G Suite Metaverilerini Wallarm Kurulum Sihirbazına Aktarma.][doc-metadata-transfer]
-4.  [G Suite Tarafındaki Wallarm Uygulamasına Erişime İzin Verme][doc-allow-access-to-wl]
+3.  [G Suite Metadata'sının Wallarm Kurulum Sihirbazına Aktarılması.][doc-metadata-transfer]
+4.  [G Suite Tarafında Wallarm Uygulamasına Erişime İzin Verme.][doc-allow-access-to-wl]
 
-Bundan sonra, Wallarm kullanıcıları için [SSO kimlik doğrulamasını yapılandırın][doc-employ-sso].
+Bunun ardından, Wallarm kullanıcıları için [SSO kimlik doğrulamasını yapılandırın][doc-employ-sso].
+```

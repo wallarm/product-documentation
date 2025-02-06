@@ -1,4 +1,4 @@
-!!! bilgi "Örnek"
+!!! info "Örnek"
     ``` bash
-    curl -I “http://node.example.local/?id='veya+1=1--a-<script>prompt(1)</script>'”
+    curl -I “http://node.example.local/?id='or+1=1--a-<script>prompt(1)</script>'”
     ```
