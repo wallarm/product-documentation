@@ -1,15 +1,15 @@
-Wallarmでは、以下のプロセッサー向けにオールインワンのインストールをお勧めします：
+Wallarmは以下のプロセッサ向けにオールインワンインストールを推奨します:
 
 * x86_64
-* ARM64（ベータ版）
+* ARM64(beta)
 
-オールインワンWallarmインストールスクリプトをダウンロードするには、次のコマンドを実行してください：
+オールインワンWallarmインストールスクリプトをダウンロードするには、以下のコマンドを実行してください:
 
 === "x86_64版"
     ```bash
     curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.x86_64-glibc.sh
     ```
-=== "ARM64版（ベータ版）"
+=== "ARM64版(beta)"
     ```bash
     curl -O https://meganode.wallarm.com/4.8/wallarm-4.8.10.aarch64-glibc.sh
     ```

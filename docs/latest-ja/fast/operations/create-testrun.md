@@ -10,69 +10,71 @@
 [link-create-policy]:               test-policy/general.md
 [link-create-node]:                 create-node.md
 [doc-inactivity-timeout]:           internals.md#test-run
+https://my.wallarm.com/testing/testruns
+https://us1.my.wallarm.com/testing/testruns
 
-#   テストランの作成
+# テストランの作成
 
 !!! info "必要なデータ"
-    APIメソッドでテストランを作成するには、トークンが必要です。
+    APIメソッドを使用してテストランを作成するにはtokenが必要です。
     
-    ウェブインターフェイスでテストランを作成するためには、Wallarmのアカウントが必要です。
-
-    トークンに関する詳細な情報は[こちら][doc-token-information]をご覧ください。
+    Webインターフェースを使用してテストランを作成するにはWallarmアカウントが必要です。
     
-    このドキュメントでは、例として `token_Qwe12345` の値を使用しています。
-
-テストランを作成している時、新しい[テストレコード][doc-testrecord]も同時に作成されます。
-
-このテストランの作り方は、目標となるアプリケーションのテストと共にベースラインリクエストの録音を必要とする場合に使われます。
-
-## APIによるテストランの作成
-
-テストランを作成するためには、URL `https://us1.api.wallarm.com/v1/test_run` へのPOSTリクエストを送信してください：
-
---8<-- "../include-ja/fast/operations/api-create-testrun.md"
-
-APIサーバへのリクエストが成功すると、サーバーのレスポンスが表示されます。レスポンスには有用な情報が含まれています：
-
-1.  `id`：新しく作成されたテストランの識別子（例： `tr_1234`）。
-
-    次のアクションに必要なidパラメータの値が必要になります。これらのアクションは、FASTをCI/CDに統合するために必要です：
-
-    1.  FASTノードが録音プロセスを開始するのを確認する。  
-    2.  ベースラインリクエストの録音プロセスを停止する。
-    3.  FASTセキュリティテストが終了するのを待つ。
+    tokenに関する詳細な情報は[こちら][doc-token-information]をご確認ください。
     
-2.  `state`：テストランの状態。
+    このドキュメントでは例として`token_Qwe12345`を使用しています。
+
+テストランが作成されると、新たに[test record][doc-testrecord]も作成されます。
+
+このテストラン作成方法は、対象アプリケーションのテストと同時にベースラインリクエストの記録が必要な場合に使用します。
+
+## APIを使用したテストランの作成
+
+テストランを作成するには、`https://us1.api.wallarm.com/v1/test_run`にPOSTリクエストを送信します:
+
+--8<-- "../include/fast/operations/api-create-testrun.md"
+
+APIサーバーへのリクエストが成功した場合、サーバーの応答が返されます。応答には以下の有用な情報が含まれます:
+
+1.  `id`: 新たに作成されたテストランの識別子（例：`tr_1234`）。
     
-    新しく作成されたテストランの状態は `running` です。
-    `state` パラメータのすべての値についての詳細な説明は[こちら][doc-state-description]で確認できます。
+    このidパラメータ値は、FASTをCI/CDに統合するために必要な以下のアクションを実行する際に使用します:
     
-3.  `test_record_id`：新しく作成されたテストレコードの識別子（例： `rec_0001`）。すべてのベースラインリクエストはこのテストレコードに格納されます。
+    1.  FASTノードが記録プロセスを開始するか確認します。  
+    2.  ベースラインリクエストの記録プロセスを停止します。
+    3.  FASTセキュリティテストが完了するまで待機します。
+    
+2.  `state`: テストランの状態。
+    
+    新たに作成されたテストランは`running`状態です。
+    `state`パラメータのすべての値の詳細な説明は[こちら][doc-state-description]に記載されています。
+    
+3.  `test_record_id`: 新たに作成されたテストレコードの識別子（例：`rec_0001`）。すべてのベースラインリクエストはこのテストレコードに配置されます。
 
-## ウェブインターフェイスを利用したテストランの作成
+## Webインターフェースを使用したテストランの作成
+      
+Wallarmアカウントのインターフェースを使用してテストランを作成するには、以下の手順に従ってください:
 
-Wallarmアカウントのインターフェイスを通じてテストランを作成するには、以下の手順をご確認ください：
+1. お使いのWallarmアカウントにログインし、EUクラウドの場合は[このリンク](https://my.wallarm.com/testing/testruns)へ、USクラウドの場合は[このリンク](https://us1.my.wallarm.com/testing/testruns)へ移動し、**Test runs**を選択します。
 
-1. お持ちのWallarmアカウントにアクセスし、[このリンク](https://my.wallarm.com/testing/testruns)をEUクラウド向けに、または[このリンク](https://us1.my.wallarm.com/testing/testruns)をUSクラウド向けにクリックして**テストラン**に入ります。
-
-2. **テストラン作成**ボタンを押します。
+2. **Create test run**ボタンをクリックします。
 
 3. テストランの名前を入力します。
 
-4. **テストポリシー**のドロップダウンリストからテストポリシーを選択します。新しいテストポリシーを作成するには、[この手順][link-create-policy]をご覧ください。また、デフォルトのポリシーを使用することも可能です。
+4. ドロップダウンリストの**Test policy**からテストポリシーを選択します。新しいテストポリシーを作成する場合は[こちらの手順][link-create-policy]に従ってください。また、デフォルトのポリシーを使用することも可能です。
 
-5. **ノード**のドロップダウンリストからFASTノードを選択します。FASTノードを作成するには、[この説明][link-create-node]をご覧ください。
+5. ドロップダウンリストの**Node**からFASTノードを選択します。FASTノードを作成する場合は[こちらの手順][link-create-node]に従ってください。
 
-    ![テストラン作成][img-test-run-creation]
+    ![テストランの作成][img-test-run-creation]
 
-6.必要に応じて**詳細設定**を追加します。この設定ブロックには、以下の点が含まれています：
+6. 必要に応じて**Advanced settings**を追加します。この設定ブロックには以下の項目が含まれます:
 
---8<-- "../include-ja/fast/test-run-adv-settings.md"
+--8<-- "../include/fast/test-run-adv-settings.md"
 
-    ![テストラン詳細設定][img-testrun-adv-settings]
+    ![テストランの詳細設定][img-testrun-adv-settings]
 
-7.**作成と実行**ボタンを押します。
+7. **Create and run**ボタンをクリックします。
 
 ## テストレコードの再利用
 
-リクエストソースからターゲットアプリケーションへのリクエストが送信され、[録画プロセスが停止][link-stopping-recording-chapter]した後、他のテストランで[テストレコードを再利用][doc-copying-testrun]することが可能です。
+リクエストがリクエストソースから対象アプリケーションへ送信され、[記録プロセスが停止した][link-stopping-recording-chapter]場合、他のテストランと[テストレコードを再利用する][doc-copying-testrun]ことが可能です。

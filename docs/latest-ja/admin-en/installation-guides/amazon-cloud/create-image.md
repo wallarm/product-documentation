@@ -1,9 +1,9 @@
 [link-docs-aws-autoscaling]:        autoscaling-group-guide.md
 [link-docs-aws-node-setup]:         ../../../installation/cloud-platforms/aws/ami.md
-[link-ssh-keys-guide]:              ../../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys
+[link-ssh-keys-guide]:              ../../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys-in-aws
 [link-security-group-guide]:        ../../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group
-[link-cloud-connect-guide]:         ../../../installation/cloud-platforms/aws/ami.md#5-connect-the-filtering-node-to-the-wallarm-cloud
-[link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/aws/ami.md#6-enable-wallarm-to-analyze-the-traffic
+[link-cloud-connect-guide]:         ../../../installation/cloud-platforms/aws/ami.md#6-connect-the-instance-to-the-wallarm-cloud
+[link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/aws/ami.md#7-configure-sending-traffic-to-the-wallarm-instance
 [link-docs-check-operation]:        ../../installation-check-operation-en.md
 
 [img-launch-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/launch-ami-wizard.png 
@@ -13,80 +13,79 @@
 [anchor-node]:  #1-creating-and-configuring-the-wallarm-filtering-node-instance-in-the-amazon-cloud
 [anchor-ami]:   #2-creating-an-amazon-machine-image
 
-# Wallarmフィルタリングノード付きのAMIを作成する
+# Wallarmフィルタリングノードを搭載したAMIの作成
 
-AmazonクラウドでデプロイしたWallarmフィルタリングノードのオートスケーリングを設定できます。この機能は、予め準備された仮想マシンのイメージが必要です。
+Amazonクラウド上にデプロイされたWallarmフィルタリングノードの自動スケールを設定できます。この機能を利用するには、事前に準備した仮想マシンイメージが必要です。
 
-この文書では、WallarmフィルタリングノードがインストールされたAmazonマシンイメージ (AMI) の準備手順を説明します。AMIはフィルタリングノードのオートスケーリング設定に必要です。オートスケーリングの設定について詳しく知るには、この [リンク][link-docs-aws-autoscaling]をご覧ください。
+本書では、WallarmフィルタリングノードがインストールされたAmazon Machine Image (AMI) を準備する手順を説明します。AMIはフィルタリングノードの自動スケール設定に必要です。自動スケールの詳細な設定方法については、この[リンク][link-docs-aws-autoscaling]に進んでください。
 
-Wallarmフィルタリングノード付きのAMIを作成するには、以下の手順を実行します：
+Wallarmフィルタリングノードを搭載したAMIを作成するには、以下の手順を実行します:
 
-1.  [Amazonクラウドでフィルタリングノードインスタンスを作成し、設定する][anchor-node]
-2.  [設定したフィルタリングノードインスタンスを基にAMIを作成する][anchor-ami]
+1.  [Amazonクラウド上でのフィルタリングノードインスタンスの作成と設定][anchor-node]
+2.  [設定済みのフィルタリングノードインスタンスを基にAMIを作成][anchor-ami]
 
+##  1.  Amazonクラウド上でのWallarmフィルタリングノードインスタンスの作成と設定
 
-##  1. AmazonクラウドでWallarmフィルタリングノードインスタンスを作成し設定する
+AMIを作成する前に、単一のWallarmフィルタリングノードの初期設定を行う必要があります。フィルタリングノードの設定手順は次の通りです:
 
-AMIを作成する前に、Wallarmフィルタリングノードの初期設定を行う必要があります。フィルタリングノードを設定するには、次の手順を行います：
-
-1.  [Amazonクラウドでフィルタリングノードインスタンスを作成します][link-docs-aws-node-setup]。
+1.  Amazonクラウド上でフィルタリングノードインスタンスを[作成][link-docs-aws-node-setup]してください。
     
-    !!! warning "プライベートSSHキー"
-        フィルタリングノードに接続するために以前に[作成した][link-ssh-keys-guide]プライベートSSHキー（PEM形式で保存）へのアクセスを持っていることを確認してください。
+    !!! warning "Private SSH key"
+        フィルタリングノードに接続するため、以前に[作成した][link-ssh-keys-guide]PEM形式のプライベートSSHキーにアクセスできることを確認してください。
 
-    !!! warning "フィルタリングノードにインターネット接続を提供する"
-        フィルタリングノードは、適切な動作のためにWallarm APIサーバーへのアクセスが必要です。Wallarm APIサーバーの選択は、使用しているWallarm Cloudに依存します：
+    !!! warning "Provide the filtering node with an internet connection"
+        フィルタリングノードが正常に動作するには、Wallarm APIサーバーへのアクセスが必要です。使用するWallarm Cloudに応じて、Wallarm APIサーバーは以下の通りに指定してください:
         
-        *   US Cloudを使用している場合、ノードは`https://us1.api.wallarm.com`へのアクセスを許可する必要があります。
-        *   EU Cloudを使用している場合、ノードは`https://api.wallarm.com`へのアクセスを許可する必要があります。
+        *   US Cloudをご利用の場合、ノードは`https://us1.api.wallarm.com`にアクセスできる必要があります。
+        *   EU Cloudをご利用の場合、ノードは`https://api.wallarm.com`にアクセスできる必要があります。
         
-    正しいVPCとサブネットを選択し、フィルタリングノードがWallarm APIサーバーにアクセスできないようにする[セキュリティグループを設定][link-security-group-guide]してください。
+        正しいVPCおよびサブネットを選択し、フィルタリングノードがWallarm APIサーバーにアクセスできるように[セキュリティグループを設定][link-security-group-guide]してください。
 
-2.  フィルタリングノードをWallarmクラウドに[接続します][link-cloud-connect-guide]。
+2.  フィルタリングノードを[Wallarm Cloudに接続][link-cloud-connect-guide]してください。
 
-    !!! warning "トークンを使用してWallarmクラウドに接続する"
-        フィルタリングノードをトークンを使用してWallarmクラウドに接続する必要があることに注意してください。複数のフィルタリングノードは同じトークンを使用してWallarmクラウドに接続できます。 
+    !!! warning "Use a token to connect to the Wallarm Cloud"
+        フィルタリングノードをWallarm Cloudに接続する際は、トークンを使用する必要があります。複数のフィルタリングノードが同一のトークンを使用してWallarm Cloudに接続可能です。
         
-        したがって、フィルタリングノードのオートスケーリング時に、各フィルタリングノードをWallarmクラウドに手動で接続する必要はありません。
+        そのため、自動スケール時に各フィルタリングノードを手動で接続する必要はありません。
 
-3.  あなたのウェブアプリケーションのリバースプロキシとしてフィルタリングノードを[設定します][link-docs-reverse-proxy-setup]。
+3.  フィルタリングノードがウェブアプリケーションのリバースプロキシとして動作するように、[リバースプロキシの設定][link-docs-reverse-proxy-setup]を行ってください。
 
-4.  フィルタリングノードが正しく設定され、あなたのウェブアプリケーションを悪意のあるリクエストから保護していることを[確認します][link-docs-check-operation]。
+4.  フィルタリングノードが正しく設定され、ウェブアプリケーションを悪意のあるリクエストから保護できていることを[確認][link-docs-check-operation]してください。
 
-フィルタリングノードの設定が完了したら、次の手順を完了して仮想マシンをオフにします：
+フィルタリングノードの設定が完了したら、以下の手順で仮想マシンを停止してください:
 
 1.  Amazon EC2ダッシュボードの**Instances**タブに移動します。
-2.  設定したフィルタリングノードインスタンスを選択します。
-3.  **Actions**ドロップダウンメニューの中から**Instance State**を選択し、次に**Stop**を選択します。
+2.  設定済みのフィルタリングノードインスタンスを選択します。
+3.  **Actions**ドロップダウンメニューから**Instance State**を選択し、さらに**Stop**を選択します。
 
-!!! info "`poweroff`コマンドでの電源オフ"
-    SSHプロトコルを使用して接続し、次のコマンドを実行することで仮想マシンの電源を切ることも可能です：
+!!! info "Turning off with the `poweroff` command"
+    SSHプロトコルでノードに接続し、以下のコマンドを実行することで仮想マシンを停止することも可能です:
     
     ``` bash
     poweroff
     ```
 
-##  2.  Amazonマシンイメージの作成
+##  2.  Amazon Machine Imageの作成
 
-設定したフィルタリングノードインスタンスを基に仮想マシンイメージを作成することができます。イメージを作成するには、以下の手順を実行します：
+設定済みのフィルタリングノードインスタンスを基に仮想マシンイメージを作成できます。イメージを作成するには、以下の手順を実行してください:
 
-1.  Amazon EC2ダッシュボードの**Instances**タブに移動します。
-2.  設定したフィルタリングノードインスタンスを選択します。
-3.  **Actions**ドロップダウンメニューから**Image**を選択し、次に**Create Image**を選択してイメージ作成ウィザードを起動します。
+1.  Amazon EC2ダッシュボードの**Instances**タブに進みます。
+2.  設定済みのフィルタリングノードインスタンスを選択します。
+3.  **Actions**ドロップダウンメニューから**Image**を選択し、さらに**Create Image**を選択してイメージ作成ウィザードを起動します.
 
-    ![AMI作成ウィザードの起動][img-launch-ami-wizard]
+    ![Launching the AMI creation wizard][img-launch-ami-wizard]
     
-4.  **Create Image**フォームが表示されます。**Image name**フィールドにイメージの名前を入力します。残りのフィールドはそのままにしておいても構いません。
+4.  「Create Image」フォームが表示されます。**Image name**フィールドにイメージ名を入力します。他のフィールドは変更せずにそのままにしておきます.
 
-    ![AMI作成ウィザードでのパラメータ設定][img-config-ami-wizard]
+    ![Configuring parameters in the AMI creation wizard][img-config-ami-wizard]
     
-5.  **Create Image**ボタンをクリックして仮想マシンイメージの作成プロセスを開始します。
+5.  **Create Image**ボタンをクリックして仮想マシンイメージの作成プロセスを開始してください.
     
-    イメージ作成プロセスが完了すると、対応するメッセージが表示されます。Amazon EC2ダッシュボードの**AMIs**タブに移動して、イメージが正常に作成され、**Available**ステータスになっていることを確認してください。
+    イメージ作成プロセスが完了すると、該当するメッセージが表示されます。Amazon EC2ダッシュボードの**AMIs**タブに移動し、イメージが正常に作成され**Available**状態にあることを確認してください.
     
-    ![作成したAMIの表示][img-explore-created-ami]
+    ![Exploring the created AMI][img-explore-created-ami]
 
-!!! info "イメージの可視性"
-    作成したイメージには、あなたのアプリケーションとWallarmトークンに特有の設定が含まれているため、イメージの可視性設定を変更し公開することは推奨されません（デフォルトでは、AMIは**Private**可視性設定で作成されます）。
+!!! info "Image visibility"
+    準備されたイメージにはご利用中のアプリケーションに特有の設定およびWallarmトークンが含まれているため、イメージの公開状態を変更してパブリックにすることは推奨しません（デフォルトでは、AMIは**Private**状態で作成されます）.
 
-現在、準備したイメージを使用して、AmazonクラウドでWallarmフィルタリングノードのオートスケーリングを[設定][link-docs-aws-autoscaling]することができます.
+これで、準備したイメージを用いてAmazonクラウド上でWallarmフィルタリングノードの自動スケールを[セットアップ][link-docs-aws-autoscaling]できます.

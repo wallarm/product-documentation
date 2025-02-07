@@ -1,4 +1,4 @@
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,36 +13,36 @@ spec:
         app: myapp
     spec:
       containers:
-        # Wallarmのエレメント：Wallarmサイドカーコンテナの定義
+        # Wallarm要素：Wallarmサイドカーコンテナの定義です
         - name: wallarm
           image: wallarm/node:3.2.1-1
           imagePullPolicy: Always
           env:
-          # Wallarm APIエンドポイント：
-          # "api.wallarm.com"はEUクラウドの場合
-          # "us1.api.wallarm.com"はUSクラウドの場合
+          # Wallarm APIエンドポイントです：
+          # EU Cloudの場合は"api.wallarm.com"
+          # US Cloudの場合は"us1.api.wallarm.com"
           - name: WALLARM_API_HOST
             value: "api.wallarm.com"
-          # デプロイロールを持つユーザーのユーザー名
+          # Deployロールを持つユーザーのユーザー名です
           - name: DEPLOY_USER
             value: "username"
-          # デプロイロールを持つユーザーのパスワード
+          # Deployロールを持つユーザーのパスワードです
           - name: DEPLOY_PASSWORD
             value: "password"
           - name: DEPLOY_FORCE
             value: "true"
-          # リクエスト分析データのためのメモリ量（GB）
+          # リクエスト解析データ用のメモリ容量（GB単位）です
           - name: TARANTOOL_MEMORY_GB
             value: "2"
           ports:
           - name: http
-            # Wallarmサイドカーコンテナがサービスオブジェクトからのリクエストを受け入れるポート
+            # ServiceオブジェクトからのリクエストをWallarmサイドカーコンテナが受け付けるポートです
             containerPort: 80
           volumeMounts:	
           - mountPath: /etc/nginx/sites-enabled	
             readOnly: true	
             name: wallarm-nginx-conf
-        # メインアプリコンテナの定義
+        # メインアプリコンテナの定義です
         - name: myapp
           image: <Image>
           resources:
@@ -50,10 +50,10 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-          # アプリケーションコンテナがインバウンドリクエストを受け入れるポート
+          # アプリケーションコンテナが着信リクエストを受け付けるポートです
           - containerPort: 8080
       volumes:
-      # Wallarmのエレメント：wallarm-nginx-confボリュームの定義
+      # Wallarm要素：wallarm-nginx-confボリュームの定義です
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

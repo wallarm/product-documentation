@@ -1,4 +1,4 @@
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -8,7 +8,8 @@ spec:
     app: myapp
   ports:
   - port: {{ .Values.service.port }}
-    # Wallarmのサイドカーコンテナポート
-    # この値はWallarmのサイドカーコンテナの定義内のports.containerPortと同一でなければなりません
+    # Wallarm sidecarコンテナのポートです;
+    # この値はports.containerPortと同一である必要があります
+    # Wallarm sidecarコンテナの定義内です
     targetPort: 8080
 ```

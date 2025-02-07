@@ -1,59 +1,55 @@
-# Wallarm ノードとクラウド間の同期設定
+# WallarmノードとCloud間の同期設定
 
-フィルタリングノードは定期的に Wallarm Cloud と同期して次のことを行います。
+フィルタリングノードは定期的にWallarm Cloudと同期し、以下の処理を行います:
 
-* [トラフィック処理ルール (LOM)](../about-wallarm/protecting-against-attacks.md#custom-rules-for-request-analysis) の更新を取得
-* [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton) の更新を取得
-* 検出された攻撃と脆弱性のデータを送信
-* 処理されたトラフィックのメトリクスを送信
+* [トラフィック処理ルール(LOM)](../user-guides/rules/rules.md)の更新を取得
+* [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton)の更新を取得
+* 検出した攻撃および脆弱性に関するデータを送信
+* 処理済みトラフィックのメトリクスを送信
 
-これらの指示は、フィルタリングノードと Wallarm Cloud の同期を設定するために使用されるパラメータと方法を説明しています。
+これらの手順では、フィルタリングノードとWallarm Cloud間の同期設定に使用するパラメータおよび方法について説明します。
 
 ## アクセスパラメータ
 
-`node.yaml` ファイルには、フィルタリングノードがクラウドにアクセスするためのパラメータが含まれています。
+フィルタリングノードがCloudにアクセスするために必要な、フィルタリングノード名、UUID、Wallarm API秘密鍵などのパラメータは`node.yaml`に明示的に設定されます。このファイルは`register-node`スクリプトで自動的に生成されます。
 
-このファイルは、`register-node` スクリプトを実行した後に自動的に作成され、フィルタリングノードの名前とUUID、および Wallarm API シークレットキーを含みます。ファイルへのデフォルトのパスは `/etc/wallarm/node.yaml` です。このパスは [`wallarm_api_conf`](configure-parameters-en.md#wallarm_api_conf) ディレクティブを通じて変更することができます。
+* Docker NGINXベースイメージ、Cloudイメージ、NGINX NodeオールインワンインストーラーおよびNative Nodeインストールの場合、[`wallarm_api_conf`](configure-parameters-en.md#wallarm_api_conf)ディレクティブで上書きされていなければ、`/opt/wallarm/etc/wallarm/node.yaml`にあるファイルを参照します。
+* その他のインストールの場合、`node.yaml`の場所は異なる場合、または[`wallarm_api_conf`](configure-parameters-en.md#wallarm_api_conf)ディレクティブで上書きされる場合があります。ファイルを探すか、`wallarm_api_conf`の値を確認してファイルの場所を特定してください。
 
-`node.yaml` ファイルには、次のアクセスパラメータが含まれる可能性があります。
+`node.yaml`ファイルには以下のアクセスパラメータが含まれる場合があります:
 
-| パラメータ | 説明 | デフォルト値 |
-| --------- | ----------- | ------------- |
-| `hostname`       | フィルタリングノードの名前。この変数は `node.yaml` ファイルに設定することが**必須**です。 | `register-node` により提供されます |
-| `regtoken`       | ノードが Wallarm API にアクセスできるようにするためのトークン。 | `register-node` により提供されます |
-| `uuid`           | フィルタリングノードの UUID。この変数は `node.yaml` ファイルに設定することが**必須**です。 | `regtoken` により提供されます |
-| `secret`         | Wallarm API にアクセスするためのシークレットキー。この変数は `node.yaml` ファイルに設定することが**必須**です。 | `regtoken` により提供されます |
-| `api.host`       | Wallarm API エンドポイント。以下の可能性があります。<ul><li>`us1.api.wallarm.com` は US クラウド用です</li><li>`api.wallarm.com` は EU クラウド用です</li></ul> | `api.wallarm.com` |
-| `api.port`       | Wallarm API のポート。 | `443` |
-| `api.use_ssl`  | Wallarm API に接続する際に SSL を使用するかどうか。 | `true` |
-| `api.ca_verify`  | Wallarm API サーバーの証明書検証を有効/無効にするかどうか。以下の可能性があります。<ul><li>`true` は検証を有効にする</li><li>`false` は検証を無効にする</li></ul>。 | `true` |
-| `api.ca_file`  | SSL 証明書ファイルへのパス。 | `/usr/share/wallarm-common/ca.pem` |
-| `api.localhost` | Wallarm API へのリクエストを送信するためのネットワークインターフェースのローカル IP アドレス。デフォルトで使用されるネットワークインターフェース（例えば、インターネットへのアクセスが閉じている場合など）が Wallarm API へのアクセスを制限している場合、このパラメータが必要です。 | - |
-| `api.localport` | Wallarm API へのリクエストを送信するためのネットワークインターフェースのポート。デフォルトで使用されるネットワークインターフェース（例えば、インターネットへのアクセスが閉じている場合など）が Wallarm API へのアクセスを制限している場合、このパラメータが必要です。 | - |
+| パラメータ         | 説明                                                                                 | デフォルト値                   |
+| ------------------ | ------------------------------------------------------------------------------------ | ------------------------------ |
+| `hostname`         | フィルタリングノード名。この変数は`node.yaml`ファイルに**必須**で設定する必要があります。             | `register-node`によって提供     |
+| `api.regtoken`     | フィルタリングノードがWallarm APIにアクセスできるためのトークン。                                  | `register-node`によって提供     |
+| `api.uuid`         | フィルタリングノードUUID。この変数は`node.yaml`ファイルに**必須**で設定する必要があります。             | `regtoken`によって提供         |
+| `api.secret`       | Wallarm APIにアクセスするための秘密鍵。この変数は`node.yaml`ファイルに**必須**で設定する必要があります。   | `regtoken`によって提供         |
+| `api.host`         | Wallarm APIエンドポイント。以下のいずれかです:<ul><li>US Cloudの場合は`us1.api.wallarm.com`</li><li>EU Cloudの場合は`api.wallarm.com`</li></ul> | `api.wallarm.com`              |
+| `api.port`         | Wallarm APIポート。                                                                        | `443`                          |
+| `api.use_ssl`      | Wallarm APIに接続する際にSSLを使用するかどうか。                                                  | `true`                         |
+| `api.ca_verify`    | Wallarm APIサーバの証明書検証を有効または無効にするかどうか。以下のいずれかです:<ul><li>`true`で検証を有効</li><li>`false`で検証を無効</li></ul>。 | `true`                         |
 
-同期パラメータを変更するには、以下のステップを実行します。
+同期パラメータを変更するには、以下の手順に従ってください:
 
-1. 必要なパラメータを追加し、それらに所望の値を割り当てることで、`node.yaml` ファイルを変更します。
-1. NGINX を再起動して、同期プロセスに更新設定を適用します。
+1. `node.yaml`ファイルに必要なパラメータを追加し、希望する値を設定します。
+1. 同期プロセスに更新された設定を適用するためにNGINXを再起動します:
 
-    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
+    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
 ## 同期間隔
 
-デフォルトでは、フィルタリングノードは Wallarm Cloud と120〜240秒（2〜4分）ごとに同期します。システム環境変数 `WALLARM_SYNCNODE_INTERVAL` を介して同期間隔を変更することができます。
+デフォルトでは、フィルタリングノードはWallarm Cloudと120～240秒(2～4分)ごとに同期します。同期待続間隔はシステム環境変数`WALLARM_SYNCNODE_INTERVAL`で変更できます。
 
-フィルタリングノードと Wallarm Cloud の同期間隔を変更するには:
+フィルタリングノードとWallarm Cloud間の同期間隔を変更するには、以下の手順に従ってください:
 
-1. ファイル `/etc/environment` を開きます。
-2. ファイルに `WALLARM_SYNCNODE_INTERVAL` 変数を追加し、その変数に希望の値（秒）を設定します。値はデフォルト値（`120秒`）より小さくすることはできません。例えば:
+1. `/etc/environment`ファイルを開きます。
+2. `WALLARM_SYNCNODE_INTERVAL`変数をファイルに追加し、秒単位で希望する値を設定します。値はデフォルト値(`120`秒)未満に設定できません。例えば:
 
     ```bash
     WALLARM_SYNCNODE_INTERVAL=800
     ```
-3. 変更を保存します。新しい間隔値は自動的に同期プロセスに適用されます。
+3. 変更した`/etc/environment`ファイルを保存します。新しい間隔の値は自動的に同期プロセスに適用されます。
 
 ## 設定例
 
-この記事で説明されている一般的な `api` セクションに加えて、フィルタリングノードがクラウドにアクセスするためのパラメータを提供する `node.yaml` ファイルは、異なるプロセスがノードの操作に必要なファイルへのアクセスを提供するパラメータ（`syncnode` セクション）も含めることができます。
-
---8<-- "../include-ja/node-cloud-sync-configuration-example.md"
+--8<-- "../include/node-cloud-sync-configuration-example-5.x.md"

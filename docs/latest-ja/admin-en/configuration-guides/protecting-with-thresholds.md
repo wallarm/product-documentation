@@ -1,65 +1,57 @@
-# 複数の攻撃を実行する攻撃者からの保護
+# マルチアタック加害者からの保護
 
-Wallarmが[ブロッキングモード](../../admin-en/configure-wallarm-mode.md)に設定されている場合、悪意のあるペイロードを持つすべてのリクエストが自動的にブロックされ、正当なリクエストのみが通過します。特定の閾値を超えた同一IPからの異なる悪意のあるペイロードの数（しばしば**複数の攻撃を実行する攻撃者**と呼ばれます）の場合にWallarmの反応を設定することにより、アプリケーションとAPIに対する追加の保護を構成できます。
+Wallarmが[blocking mode](../../admin-en/configure-wallarm-mode.md)の場合、悪意のあるペイロードを持つすべてのリクエストを自動的にブロックし、正当なリクエストのみを通過させます。同一IPからの異なる悪意のあるペイロード（一般に**multi-attack perpetrator**と呼ばれる）の数が指定した閾値を超えた場合のWallarmのリアクションを設定することで、アプリケーションやAPIに対する追加の保護を構成できます。
 
-そのような攻撃者は自動的に拒否リストに配置され、それらからの**すべてのリクエストをブロック**します。これらが過去に多くの悪意のあるリクエストを生成したという事実に基づいて、それらが悪意のあるかどうかを分析する時間を費やさずにブロックします。
+このような加害者は自動的に[denylist](../../user-guides/ip-lists/overview.md)に登録され、過去に大量の悪意のあるリクエストを送信していたという理由だけで、解析に時間をかけずに**彼らからのすべてのリクエスト**をブロックします。
 
-## 設定
+## 設定方法
 
-悪意のあるリクエストの源を保護するには：
+以下の例を参照し、マルチアタック加害者からの保護を設定する方法を確認します。
 
-1. Wallarmコンソール → **トリガー** を開き、トリガー作成ウィンドウを開きます。
-1. **悪意のあるペイロードの数** 条件を選択します。
-1. 時間間隔ごとの1つのIPからの異なる悪意のあるペイロードの数を設定します。この数を指定された時間内に超えると、トリガーがアクティブになります。
+例えば、1時間あたりに同一IPから3件以上の悪意のあるペイロードが送信された場合は、そのIPを完全にブロックする理由になると判断するとします。その場合、対応する閾値を設定し、システムに対して発信元IPを1時間ブロックするよう指示します。
+
+1. Wallarm Consoleを開き、**Triggers**を選択してトリガー作成ウィンドウを開きます。
+1. **Number of malicious payloads**条件を選択します。
+1. 閾値として `more than 3 malicious requests from the same IP per hour` を設定します。
 
     !!! info "カウントされないもの"
-        [カスタム正規表現](../../user-guides/rules/regex-rule.md)に基づいた実験的ペイロード。
+        実験的なペイロード（[custom regular expressions](../../user-guides/rules/regex-rule.md)に基づくもの）はカウントされません。
+        
+1. フィルターは設定しません。ただし、別々または組み合わせて使用できる以下の条件があることに留意します：
 
-1. 必要に応じて、1つまたは複数のフィルタを設定：
+    * **Type** はリクエストから検出された攻撃の[type](../../attacks-vulns-list.md)またはリクエストが対象とする脆弱性の種類です。
+    * **Application** はリクエストを受信する[application](../../user-guides/settings/applications.md)です。
+    * **IP** はリクエストが送信されるIPアドレスです。フィルターは単一のIPのみを想定しており、サブネット、ロケーション、及びソースタイプは許可されません。
+    * **Domain** はリクエストを受信するドメインです。
+    * **Response status** はリクエストに返されるレスポンスコードです。
 
-    * **タイプ** はリクエストで検出された攻撃の[タイプ](../../attacks-vulns-list.md)またはリクエストが向けられている脆弱性のタイプです。
-    * **アプリケーション** はリクエストを受信する[アプリケーション](../../user-guides/settings/applications.md)です。
-    * **IP** はリクエストが送信されたIPアドレスです。
+1. **Denylist IP address** - `Block for 1 hour` のトリガーリアクションを選択します。閾値を超えた後、Wallarmは発信元IPを[denylist](../../user-guides/ip-lists/overview.md)に登録し、そのIPからのすべてのリクエストをブロックします。
 
-        フィルタは単一のIPのみを期待し、サブネット、ロケーション、ソースタイプは許可しません。
+    なお、bot IPがmulti-attack保護によりdenylistに登録された場合でも、デフォルトではWallarmはそのIPからのブロックされたリクエストに関する統計情報を収集し、[表示](../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips)します。
 
-    * **ドメイン** はリクエストを受信するドメインです。
-    * **レスポンスステータス** はリクエストに返されたレスポンスコードです。
-    * **ターゲット** は攻撃が向けられているアプリケーションのアーキテクチャ部分またはインシデントが検出された部分です。以下の値を取ることができます：`サーバー`, `クライアント`, `データベース`。
-
-1. トリガーの反応を選択：
-
-    * 悪意のあるリクエストを発信する[**IPアドレスを拒否リストに追加**](../../user-guides/ip-lists/overview.md)し、ブロック期間を設定。
-    
-        Wallarmノードは、拒否リストに登録されたIPから発信された正当なリクエストと悪意のあるリクエストの両方をブロックします。
-    
-    * 悪意のあるリクエストを発信する[**IPアドレスをグレーリストに追加**](../../user-guides/ip-lists/overview.md)し、ブロック期間を設定。
-    
-        Wallarmノードは、[入力検証](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)、[`vpatch`](../../user-guides/rules/vpatch-rule.md) または [カスタム](../../user-guides/rules/regex-rule.md) 攻撃サインを含むリクエストのみをグレーリストのIPから送信された場合にブロックします。
-
-    ![デフォルトトリガー](../../images/user-guides/triggers/trigger-example-default.png)
-
-1. トリガーを保存し、[クラウドとノードの同期完了](../configure-cloud-node-synchronization-en.md)を待ちます（通常、2-4分かかります）。
+    ![Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
+        
+1. トリガーを保存し、[Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md)の完了を待ちます（通常は2～4分かかります）。
 
 ## 事前設定されたトリガー
 
-新しい企業アカウントは、1時間以内に3つ以上の異なる[悪意のあるペイロード](../../glossary-en.md#malicious-payload)を発信した場合にIPを1時間グレーリストに登録する事前設定（デフォルト）の**悪意のあるペイロードの数**トリガーを特徴としています。
+新規の会社アカウントには、1時間以内に3件以上の異なる[malicious payloads](../../glossary-en.md#malicious-payload)を生成した場合に、そのIPを1時間graylistする事前設定（デフォルト）の**Number of malicious payloads**トリガーが用意されています。
 
-[グレーリスト](../../user-guides/ip-lists/overview.md)は、ノードが次のように処理する疑わしいIPアドレスのリストです：グレーリストに登録されたIPが悪意のあるリクエストを発信した場合、ノードはそれらをブロックしながら正当なリクエストを許可します。グレーリストとは対照的に、[拒否リスト](../../user-guides/ip-lists/overview.md)は、あなたのアプリケーションに到達することが許されていないIPアドレスを指し示し、ノードは拒否リストに登録されたソースから発信された正当なトラフィックでさえブロックします。IPのグレーリスト登録は、[誤検知](../../about-wallarm/protecting-against-attacks.md#false-positives)の削減を目的としたオプションの一つです。
+[Graylist](../../user-guides/ip-lists/overview.md)は、ノードが処理する疑わしいIPアドレスのリストであり、graylistに登録されたIPから悪意のあるリクエストが発信された場合、ノードはそれらをブロックしつつ正当なリクエストは許可します。それに対して、[denylist](../../user-guides/ip-lists/overview.md)はアプリケーションへのアクセスが完全に禁止されるIPアドレスを示し、denylistに登録されたソースからの正当なトラフィックであってもノードはブロックします。IPのgraylistingは、[false positives](../../about-wallarm/protecting-against-attacks.md#false-positives)の削減を目的としたオプションの1つです。
 
-トリガーは任意のノードフィルタリングモードでリリースされるため、ノードモードに関係なくIPをグレーリストに登録します。
+このトリガーはすべてのノードフィルトレーションモードで有効なため、ノードモードに依存せずIPをgraylistします。
 
-ただし、ノードは**セーフブロッキング**モードでのみグレーリストを分析します。グレーリストに登録されたIPから発信された悪意のあるリクエストをブロックするには、ノードの[モード](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)をセーフブロッキングに切り替え、まずその特徴を学びます。
+ただし、ノードはgraylistの解析を**safe blocking**モードでのみ行います。graylistに登録されたIPからの悪意のあるリクエストをブロックするには、まずその機能を確認した上で、ノードの[モード](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)をsafe blockingに切り替えます。
 
-このトリガーでは、ブルートフォース、強制ブラウジング、リソースオーバーリミット、データボム、またはバーチャルパッチ攻撃タイプのヒットは考慮されません。
+Brute force、Forced browsing、Resource overlimit、Data bomb、Virtual patchの攻撃タイプによるヒットは、このトリガーでは考慮されません。
 
-デフォルトトリガーを一時的に無効にしたり、変更したり、削除したりすることができます。
+デフォルトのトリガーは一時的に無効化、変更、または削除できます。
 
 ## テスト
 
-以下は、[事前設定されたトリガー](#pre-configured-trigger)のテスト例です。あなたのトリガービューに合わせて調整することができます。
+以下は[事前設定されたトリガー](#pre-configured-trigger)のテスト例です。必要に応じて、トリガービューに合わせて調整できます。
 
-1. 次のリクエストを保護されたリソースに送信します：
+1. 保護されたリソースに対して以下のリクエストを送信します:
 
     ```bash
     curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
@@ -67,10 +59,10 @@ Wallarmが[ブロッキングモード](../../admin-en/configure-wallarm-mode.md
     curl http://localhost/instructions.php/etc/passwd
     ```
 
-    [SQLi](../../attacks-vulns-list.md#sql-injection)、[XSS](../../attacks-vulns-list.md#crosssite-scripting-xss)、および[パストラバーサル](../../attacks-vulns-list.md#path-traversal)タイプの4つの悪意のあるペイロードがあります。
-1. Wallarm コンソール → **IPリスト** → **グレーリスト** を開き、リクエストを発信したIPアドレスが1時間グレーリストに登録されていることを確認します。
-1. セクション **攻撃** を開き、攻撃がリストに表示されていることを確認します：
+    これらのリクエストには、[SQLi](../../attacks-vulns-list.md#sql-injection)、[XSS](../../attacks-vulns-list.md#crosssite-scripting-xss)、および[Path Traversal](../../attacks-vulns-list.md#path-traversal)タイプの悪意のあるペイロードが4件含まれています。
+1. Wallarm Consoleを開き、**IP lists** → **Graylist**を選択し、リクエストの発信元IPアドレスが1時間graylistされていることを確認します。
+1. **Attacks**セクションを開き、攻撃がリストに表示されていることを確認します:
 
-    ![UI内の3つの悪意のあるペイロード](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+    ![Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
-    攻撃を検索するには、`multiple_payloads` [検索タグ](../../user-guides/search-and-filters/use-search.md#search-by-attack-type)を使用できます。
+    攻撃を検索するには、`multiple_payloads` [search tag](../../user-guides/search-and-filters/use-search.md#search-by-attack-type)を使用できます。

@@ -1,18 +1,18 @@
-**API Discovery** Wallarmダッシュボードは、[**API Discovery**][apid-overview]モジュールによって収集されたAPIに関するデータをまとめたものです。次の指標に基づいたAPIインベントリの包括的な概要を提供します：
+Review data about your API collected by the Wallarmの[**API Discovery**][apid-overview]を**API Discovery**ダッシュボードで確認してください。
 
-* リスクレベル別のエンドポイント数
-* 全APIインベントリと過去7日間で新たに発見されたエンドポイントの中で[top risky][apid-risk-score]エンドポイント
+このダッシュボードでは、シャドウ、オーファン、およびゾンビAPIを含む、あなたのAPIエンドポイントの全体像が提供されます。また、最も脆弱または高リスクのAPIを特定することでセキュリティ対策の優先順位付けに役立つ**risk score assessment**の結果を可視化します。
 
-    top riskyなエンドポイントは、アクティブな脆弱性、エンドポイントが[new][apid-track-changes]または[shadow][apid-rogue]であるなど、他のリスク要因により攻撃対象になる可能性が最も高いです。各リスクエンドポイントには、ターゲティングヒットの数が提供されます。
+APIは時間とともに進化し、新しいエンドポイントが追加され、古いエンドポイントは非推奨となります。このダッシュボードはこれらの変更状況を把握できるようにし、非推奨のAPIが適切に廃止されるとともに、新規または変更されたAPIがセキュリティポリシーおよび標準に準拠していることを保証します。
 
-* [rogue][apid-rogue]（shadow、zombie、orphan）APIの特定数
-* 過去7日間におけるAPIの種類別（新規、変更された、未使用のAPI）変更
-* 発見されたエンドポイントの合計数と、その中で外部および内部の数
-* APIにおける機微データ（個人、財務などのグループ別、タイプ別）
-* APIインベントリ：APIホストとアプリケーション別のエンドポイント数
+<div>
+  <script src="https://js.storylane.io/js/v1/storylane.js"></script>
+  <div class="sl-embed" style="position:relative;padding-bottom:calc(54.13% + 25px);width:100%;height:0;transform:scale(1)">
+    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/e1bl1st5rxkv" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+  </div>
+</div>
 
-![API Discovery widget][img-api-discovery-widget]
+次の点にご留意ください:
 
-このダッシュボードは、リスクが高い頻繁に使用されるエンドポイントやAPIが転送する機微データの高い量など、異常を明らかにすることができます。さらに、セキュリティリスクを排除するために常にチェックする必要があるAPIの変更に注意を引きます。これにより、エンドポイントが攻撃の対象になるのを防ぐためのセキュリティコントロールを実装するのに役立ちます。
-
-ウィジェットの要素をクリックして**API Discovery**セクションに移動し、フィルタリングされたデータを表示します。ヒット数をクリックすると、過去7日間の攻撃データを含む[attack list][check-attack]にアドレスされます。
+* あなたのAPIエンドポイントのリスク度合いは[risk score][apid-risk-score]で示されています
+* あなたのAPIの[changes][apid-track-changes]にご留意ください（直近7日間で表示）
+* [Rogue API][apid-rogue]は重大なリスク要因です。仕様書をアップロードして実際のトラフィックと比較してください

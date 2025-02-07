@@ -1,4 +1,4 @@
-# ステップ3：OktaメタデータをWallarm設定ウィザードに転送する
+# ステップ 3：OktaメタデータをWallarmセットアップウィザードへ転送する
 
 [img-transfer-metadata-manually]:   ../../../../images/admin-guides/configuration-guides/sso/okta/transfer-metadata-manually.png
 [img-sp-wizard-finish]:             ../../../../images/admin-guides/configuration-guides/sso/okta/sp-wizard-finish.png
@@ -8,39 +8,41 @@
 
 [link-metadata]:                    setup-idp.md#downloading-metadata
 
-Wallarm ConsoleのOkta SSO設定ウィザードに戻り、*次へ*をクリックして次の設定ステップに進みます。
+Wallarm ConsoleのOkta SSOセットアップウィザードに戻り*Next*をクリックして次のセットアップステップに進んでください。
 
-このステップでは、Oktaサービスが[生成した][link-metadata]メタデータを提供する必要があります。
+このステップでは、Oktaサービスによって[生成された][link-metadata]メタデータを提供する必要があります。
 
-IDプロバイダのメタデータ（この場合はOkta）をWallarm設定ウィザードに渡す方法は2つあります：
-* メタデータのXMLファイルをアップロードする。
+IdPメタデータ（この場合はOkta）をWallarmセットアップウィザードに渡す方法は2種類あります：
+*   メタデータが含まれるXMLファイルをアップロードする方法
 
-    *アップロード*ボタンをクリックし、適切なファイルを選択してXMLファイルをアップロードします。または、ファイルマネージャから“XML”アイコンフィールドにファイルをドラッグすることもできます。
+    XMLファイルをアップロードするには*Upload*ボタンをクリックし、適切なファイルを選択してください。ファイルマネージャーからファイルを“XML”アイコンフィールドにドラッグすることも可能です。
 
-* メタデータを手動で入力する。
+*   メタデータを手動で入力する方法
 
-    *手動で入力*リンクをクリックし、次のようにOktaサービスのパラメータを設定ウィザードのフィールドにコピーします：
+    *Enter manually*リンクをクリックし、Oktaサービスのパラメータを以下のセットアップウィザードのフィールドにコピーしてください：
     
-    *   **Identity Provider Single Sign‑On URL**を**Identity provider SSO URL**フィールドに。
-    *   **Identity Provider Issuer**を**Identity provider issuer**フィールドに。
-    *   **X.509 Certificate**を**X.509 Certificate**フィールドに。
+    *   **Identity Provider Single Sign‑On URL**を**Identity provider SSO URL**フィールドに入力してください。
+    *   **Identity Provider Issuer**を**Identity provider issuer**フィールドに入力してください。
+    *   **X.509 Certificate**を**X.509 Certificate**フィールドに入力してください。
     
     ![メタデータを手動で入力する][img-transfer-metadata-manually]
     
-次のステップに進むには*次へ*をクリックします。前のステップに戻りたい場合は*戻る*をクリックします。
+*Next*をクリックして次のステップに進んでください。前のステップに戻るには*Back*をクリックしてください。
 
-##  SSOウィザードの完了
 
-Wallarm設定ウィザードの最終ステップでは、Oktaサービスへのテスト接続が自動的に行われ、SSOプロバイダが確認されます。
+## SSOウィザードの完了
 
-テストが成功した場合（必要なすべてのパラメータが正しく入力されている場合）、設定ウィザードはOktaサービスがIDプロバイダとして接続されたこと、そしてユーザーを認証するためのSSOメカニズムの接続を開始できることをお知らせします。
+Wallarmセットアップウィザードの最終ステップでは、自動的にOktaサービスへのテスト接続が実行され、SSOプロバイダーがチェックされます。
 
-*完了*ボタンをクリックするか、対応するボタンをクリックしてユーザーページに移動してSSOを設定します。
+必要なパラメータがすべて正しく入力された場合、テストが正常に完了するとセットアップウィザードはOktaサービスがIdPとして接続されていることを通知し、ユーザー認証のためにSSOメカニズムを接続することができます。
 
-![SSOウィザードを完了する][img-sp-wizard-finish]
+SSOの設定を完了するには*Finish*ボタンをクリックするか、ユーザーページに移動して対応するボタンをクリックしてください。
 
-SSO設定ウィザードを完了した後、*インテグレーション*タブにOktaサービスがIDプロバイダとして接続され、他のSSOプロバイダは利用できないことが表示されます。
+![SSOウィザードの完了][img-sp-wizard-finish]
 
-![SSOウィザード終了後の“インテグレーション”タブ][img-integration-tab]
+SSO構成ウィザードの完了後、*Integration*タブに移動すると、OktaサービスがIdPとして接続されており、他のSSOプロバイダーが利用できないことが表示されます。
 
-これで、SSO設定プロセスの[次のステップ][doc-allow-access-to-wl]に進みます。
+![「Integration」タブ（SSOウィザード完了後）][img-integration-tab]
+
+
+次のステップは[こちら][doc-allow-access-to-wl]からご確認ください。

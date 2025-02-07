@@ -1,6 +1,4 @@
-Among all supported [Wallarm deployment options][platform], DEB/RPM packages for distribution-provided NGINX is recommended for Wallarm deployment in these **use cases**:
+すべてのサポート対象の[Wallarm deployment options][platform]の中で、配布版NGINX向けのDEB/RPMパッケージが以下の**ユースケース**におけるWallarmの展開に推奨されます:
 
-1. Your infrastructure is on Debian or CentOS and you are familiar with the `apt` or `yum` package management systems. In this case, Wallarm packages will blend seamlessly into your current infrastructure.
-1. Your services are built around distribution-provided NGINX. Wallarm can extend its functionalities using these packages.
-1. If you prefer having control over deployment, configuration, and hosting locally for reasons such as security or latency, Wallarm packages offer flexibility.
-1. You aim to deploy a security solution as a virtual appliance either on the cloud or locally.
+* コンテナベースの手法を利用せず、物理サーバまたは仮想マシンに基づいたインフラをご利用の場合、通常、これらのセットアップはAnsibleやSaltStackなどのInfrastructure as Code (IaC)ツールによって管理されます。
+* お使いのサービスが配布版NGINXを中心に構築されている場合、Wallarmはこれらのパッケージを使用して機能を拡張できます。

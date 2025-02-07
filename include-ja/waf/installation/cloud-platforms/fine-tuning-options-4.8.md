@@ -1,23 +1,23 @@
-デプロイメントが完了しました。フィルタリングノードは、デプロイメント後に追加の設定が必要になる場合があります。
+デプロイメントが完了しました。デプロイ後、フィルタリングノードは追加の設定が必要な場合があります。
 
-Wallarmの設定は、[NGINX指示文][wallarm-nginx-directives]またはWallarmコンソールUIを使用して定義されます。指示文は、Wallarmインスタンス上の以下のファイルに設定されるべきです：
+Wallarmの設定は[NGINX directives][wallarm-nginx-directives]またはWallarm Console UIを使用して定義されます。Wallarmインスタンス上の次のファイルにディレクティブを設定してください:
 
-* `/etc/nginx/sites-enabled/default` はNGINXの設定を定義します
-* `/etc/nginx/conf.d/wallarm.conf` はWallarmフィルタリングノードのグローバル設定を定義します
-* `/etc/nginx/conf.d/wallarm-status.conf` はフィルタリングノードの監視サービス設定を定義します
-* `/etc/default/wallarm-tarantool` または `/etc/sysconfig/wallarm-tarantool` はTarantoolデータベースの設定を持ちます
+* `/etc/nginx/sites-enabled/default`はNGINXの設定を定義します。
+* `/etc/nginx/conf.d/wallarm.conf`はWallarmフィルタリングノードのグローバル設定を定義します。
+* `/etc/nginx/conf.d/wallarm-status.conf`はフィルタリングノードの監視サービスの設定を定義します。
+* Tarantoolデータベース設定を含む`/etc/default/wallarm-tarantool`または`/etc/sysconfig/wallarm-tarantool`
 
-NGINXとWallarmの動作を定義するために、上記のファイルを変更したり、独自の設定ファイルを作成することができます。同じ方法で処理すべきドメインのグループごとに `server` ブロックを含む別の設定ファイルを作成することをお勧めします（例：`example.com.conf`）。NGINX設定ファイルの詳細な情報については、[公式NGINXドキュメント](https://nginx.org/en/docs/beginners_guide.html)を参照してください。
+これらのファイルを変更するか独自の設定ファイルを作成してNGINXとWallarmの動作を定義することができます。同一の方法で処理すべき各グループのドメインごとに、`server`ブロックを含む別々の設定ファイルを作成することを推奨します（例：`example.com.conf`）。NGINX設定ファイルの取り扱いに関する詳細な情報については[公式NGINXドキュメント](https://nginx.org/en/docs/beginners_guide.html)をご参照ください。
 
 !!! info "設定ファイルの作成"
-    カスタム設定ファイルを作成する際は、NGINXが空いているポートでの受信接続をリッスンするようにしてください。
+    カスタム設定ファイルを作成する場合、NGINXが使用可能なポートで受信接続をリッスンすることを確認してください。
 
-以下に、必要に応じて適用可能な典型的な設定をいくつか示します：
+以下は必要に応じて適用できる典型的な設定例です:
 
 * [Wallarmノードの自動スケーリング][autoscaling-docs]
-* [クライアントのリアルIPの表示][real-ip-docs]
-* [Wallarmノード用のリソースの割り当て][allocate-memory-docs]
-* [単一リクエストの処理時間の制限][limiting-request-processing]
-* [サーバーの応答待ち時間の制限](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
+* [クライアントの実際のIPの表示][real-ip-docs]
+* [Wallarmノードへのリソース割り当て][allocate-memory-docs]
+* [単一リクエスト処理時間の制限][limiting-request-processing]
+* [サーバの応答待ち時間の制限](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
 * [最大リクエストサイズの制限](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
-* [Wallarmノードのログの記録][logs-docs]
+* [Wallarmノードのログ記録][logs-docs]

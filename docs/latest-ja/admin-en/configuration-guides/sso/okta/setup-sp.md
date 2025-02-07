@@ -3,23 +3,23 @@
 
 [doc-setup-idp]:                setup-idp.md
 
-#   ステップ1：Wallarm側でパラメータを生成する（Okta）
+# ステップ1: Wallarm側(Okta)のパラメーター生成
 
-OktaとSSOを接続するには、まずWallarm側でいくつかのパラメータを生成する必要があります。
+OktaとSSOを接続するには、まずWallarm側でいくつかのパラメーターを生成する必要があります。
 
-!!! warning "先にWallarm側でSSOサービスを活性化してください"
-    デフォルトでは、Wallarm上でSSO接続は適切なサービスを活性化しない限り利用できません。SSOサービスを活性化するには、アカウントマネージャーまたは[Wallarm サポートチーム](mailto:support@wallarm.com)にお問い合わせください。
+!!! warning "最初にWallarm側でSSOサービスを有効化してください"
+    デフォルトでは、WallarmでSSO接続は対応するサービスを有効化しないと利用できません。SSOサービスを有効化するには、お客様のアカウントマネージャーまたは[Wallarm support team](mailto:support@wallarm.com)にお問い合わせください。
 
-    サービスを活性化した後、次のSSO接続手順を行うことができます。
+    サービスを有効化すると、以下のSSO接続手順を実行することができます。
 
-あなたの管理者アカウントでWallarm Consoleにログインし、**設定 → インテグレーション → Okta SSO**の順に進んでOktaのインテグレーション設定を行います。
+Administratorアカウントを使用してWallarmコンソールにログインし、**Settings → Integration → Okta SSO**に従ってOkta統合のセットアップを進めてください。
 
-![“Okta SSO”ブロック][img-okta-sso-provider-wl]
+![「Okta SSO」ブロック][img-okta-sso-provider-wl]
 
-これにより、SSO設定ウィザードが表示されます。ウィザードの最初のステップでは、Oktaサービスに渡すべきパラメータ（サービスプロバイダのメタデータ）が記載されたフォームが表示されます。
-*   **Wallarm Entity ID**は、IdentityプロバイダーのためにWallarmアプリケーションが生成するユニークなアプリケーション識別子です。
-*   **Assertion Consumer Service URL (ACS URL)**は、IdentityプロバイダーがSamlResponseパラメータを持つリクエストを送信するアプリケーションのWallarm側のアドレスです。
+これによりSSO構成ウィザードが表示されます。ウィザードの最初のステップでは、Oktaサービスに渡す必要があるパラメーター（サービスプロバイダーのメタデータ）が含まれたフォームが表示されます:
+*   **Wallarm Entity ID**は、Wallarmアプリケーションがアイデンティティプロバイダー用に生成するユニークなアプリケーション識別子です。
+*   **Assertion Consumer Service URL (ACS URL)**は、アイデンティティプロバイダーがSamlResponseパラメーターを含むリクエストを送信するWallarm側のアプリケーションのアドレスです。
 
-![Service provider's metadata][img-sp-metadata]
+![サービスプロバイダーのメタデータ][img-sp-metadata]
 
-生成されたパラメータは、Oktaサービス側の対応するフィールドに入力する必要があります（[ステップ2][doc-setup-idp]を参照してください）。
+生成されたパラメーターは、Oktaサービス側の対応するフィールドに入力する必要があります（[Step 2][doc-setup-idp]を参照）。

@@ -1,22 +1,22 @@
 ## 概要
 
-[Broken Object Level Authorization (BOLA)](../../attacks-vulns-list.md#broken-object-level-authorization-bola)などの行動攻撃は、同名の脆弱性を悪用します。この脆弱性により、攻撃者はAPIリクエストを介してオブジェクトにその識別子でアクセスし、認証メカニズムを迂回してそのデータを読み取ったり、変更したりすることができます。この記事では、BOLA攻撃に対してアプリケーションを保護する方法について説明します。
+[Broken Object Level Authorization (BOLA)](../../attacks-vulns-list.md#broken-object-level-authorization-bola)などの挙動型攻撃は、同名の脆弱性を悪用します。この脆弱性により、攻撃者はAPIリクエストで識別子を用いてオブジェクトにアクセスし、認可メカニズムを回避してそのデータを読み取るまたは変更することが可能になります。本記事では、BOLA攻撃からアプリケーションを保護する方法について説明します。
 
-デフォルトでは、WallarmはBOLAタイプ（IDORとしても知られています）の脆弱性のみを自動的に発見しますが、その悪用の試みを検出しません。
+デフォルトでは、WallarmはBOLA型（IDORとも呼ばれる）の脆弱性のみを自動検出しますが、実際の悪用試行は検出しません。
 
 !!! warning "BOLA保護の制限"
-    BOLA攻撃の検出はWallarmノード4.2以上でのみサポートされています。
+    Wallarm node 4.2以上のみがBOLA攻撃検出に対応しています。
 
-    Wallarmノード4.2以上では、BOLA攻撃の兆候を分析するリクエストは次のとおりです：
+    Wallarm node 4.2以上はBOLA攻撃の兆候がある以下のリクエストのみを分析します：
 
-    * HTTPプロトコルを介して送信されるリクエスト。
-    * 他の攻撃タイプの兆候を含んでいないリクエスト。例えば、リクエストはBOLA攻撃とはみなされません：
+    * HTTPプロトコルを使用して送信されたリクエスト。
+    * 他の攻撃タイプの兆候を含まないリクエスト。例えば、以下の場合、これらのリクエストはBOLA攻撃とはみなされません：
 
-        * これらのリクエストが[入力検証攻撃](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)の兆候を含んでいる場合。
-        * これらのリクエストが[ルール **正規表現ベースの攻撃指標を作成する**](../../user-guides/rules/regex-rule.md#adding-a-new-detection-rule)で指定された正規表現と一致する場合。
+        * これらのリクエストに[入力検証攻撃](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)の兆候が含まれる場合。
+        * これらのリクエストが[ルール **Create regexp-based attack indicator**](../../user-guides/rules/regex-rule.md#creating-and-applying-rule)で指定された正規表現に一致する場合。
 
 ## 要件
 
-BOLA攻撃からリソースを保護するために、環境が次の要件を満たしていることを確認してください：
+BOLA攻撃からリソースを保護するために、環境が以下の要件を満たしているかを確認してください：
 
-* フィルタリングノードがプロキシサーバーまたはロードバランサーの背後に配置されている場合、[実際のクライアントのIPアドレスを表示するように設定](../using-proxy-or-balancer-en.md)します。
+* フィルタリングノードがプロキシサーバまたはロードバランサの背後に配置されている場合は、[実際のクライアントのIPアドレスを表示するように設定](../using-proxy-or-balancer-en.md)してください。

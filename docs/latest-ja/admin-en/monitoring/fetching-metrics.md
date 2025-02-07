@@ -14,68 +14,89 @@
 [doc-zabbix-example]:               collectd-zabbix.md
 [doc-nagios-example]:               collectd-nagios.md
 
-#   メトリクスの取得方法
+# メトリクスの取得方法
 
-これらの手順は、フィルターノードからメトリクスを収集する方法を説明します。
+本手順は、フィルターノードからメトリクスを収集する方法について説明いたします。
 
-##  `collectd`から直接メトリクスをエクスポートする
+##  `collectd` から直接メトリクスをエクスポートする
 
-`collectd`で収集したメトリクスを直接、`collectd`データストリームを扱うことができるツールにエクスポートできます。
+`collectd` により収集されたメトリクスを、`collectd` データストリームに対応したツールへ直接エクスポートするように設定できます。
 
 !!! warning "前提条件"
-    以降のすべての手順は、スーパーユーザー（例：`root`）として実行しなければなりません。
+    以降のすべての手順は、スーパーユーザー（例：`root`）として実行する必要があります。
 
-### `collectd`のネットワークプラグインを使用してメトリクスをエクスポートする
+###  `collectd` ネットワークプラグインを経由したメトリクスのエクスポート
 
-[ネットワークプラグイン][link-network-plugin]を`collectd`に設定および接続します：
-1.  `/etc/collectd/collectd.conf.d/`ディレクトリで、`.conf`拡張子を持つファイル（例：`export-via-network.conf`）を作成し、以下の内容を記入します：
+[network plugin][link-network-plugin] を `collectd` に設定して接続します。
 
-    ```
-    LoadPlugin network
+=== "Docker image, cloud image, all-in-one installer"
+    1.  `/opt/wallarm/etc/collectd/wallarm-collectd.conf` ファイルに以下の設定を追加します:
     
-    <Plugin "network">
-      Server "Server IPv4/v6 address or FQDN" "Server port"
-    </Plugin>
-    ```
-    このファイルに記載されている通り、プラグインは`collectd`が起動するとロードされ、クライアントモードで動作し、指定されたサーバーにフィルターノードのメトリクスデータを送信します。
-    
-2.  `collectd`クライアントからデータを受信するサーバーを設定します。必要な設定ステップは、選択されたサーバーによります（[`collectd`][link-collectd-networking]と[InfluxDB][link-influxdb-collectd]の例を参照してください）。
-    
-    
-    !!! info "ネットワークプラグインの使用"
-        ネットワークプラグインはUDP上で動作します（[プラグインのドキュメンテーション][link-network-plugin-docs]を参照）。メトリクスの収集が正常に動作するためには、サーバーがUDP通信を許可していることを確認してください。
-         
-3.  適切なコマンドを実行して`collectd`サービスを再起動します：
+        ```
+        LoadPlugin network
+        
+        <Plugin "network">
+          Server "Server IPv4/v6 address or FQDN" "Server port"
+        </Plugin>
+        ```
 
-    --8<-- "../include-ja/monitoring/collectd-restart-2.16.md"
+        この設定により、プラグインは `collectd` 起動時にロードされ、クライアントモードで動作し、フィルターノードのメトリクスデータを指定されたサーバへ送信します。
+    1.  `collectd` クライアントからデータを受け取るサーバを設定します。必要な設定手順は選択したサーバに依存します（[`collectd`][link-collectd-networking] および [InfluxDB][link-influxdb-collectd] の例をご参照ください）。
+    
+    
+        !!! info "ネットワークプラグインの利用"
+            ネットワークプラグインはUDP上で動作します（[プラグインのドキュメント][link-network-plugin-docs] をご参照ください）。メトリクス収集を正常に動作させるため、サーバがUDP通信を許可していることを確認してください。
+    1.  以下のコマンドを実行し、`wallarm` サービスを再起動します:
+
+        ```bash
+        sudo systemctl restart wallarm
+        ```
+=== "その他のインストール"
+    1.  `/etc/collectd/collectd.conf.d/` ディレクトリに、拡張子が `.conf` のファイル（例：`export-via-network.conf`）を作成し、以下の内容を記述します:
+
+        ```
+        LoadPlugin network
+        
+        <Plugin "network">
+          Server "Server IPv4/v6 address or FQDN" "Server port"
+        </Plugin>
+        ```
+
+        このファイルの記述により、プラグインは `collectd` 起動時にロードされ、クライアントモードで動作し、フィルターノードのメトリクスデータを指定されたサーバへ送信します。
+    1.  `collectd` クライアントからデータを受け取るサーバを設定します。必要な設定手順は選択したサーバに依存します（[`collectd`][link-collectd-networking] および [InfluxDB][link-influxdb-collectd] の例をご参照ください）。
+    
+    
+        !!! info "ネットワークプラグインの利用"
+            ネットワークプラグインはUDP上で動作します（[プラグインのドキュメント][link-network-plugin-docs] をご参照ください）。メトリクス収集を正常に動作させるため、サーバがUDP通信を許可していることを確認してください。
+    1.  適切なコマンドを実行し、`collectd` サービスを再起動します:
+
+        --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
 !!! info "例"
-    ネットワークプラグインを通じてInfluxDBへのメトリクスのエクスポートの[例][doc-network-plugin-example]を読み、Grafanaでのメトリクスの可視化を確認してください。
+    ネットワークプラグインを経由してInfluxDBへメトリクスをエクスポートし、その後Grafanaでメトリクスを可視化する[例][doc-network-plugin-example]をご参照ください。
 
-### `collectd`のWriteプラグインを使用してメトリクスをエクスポートする
+###  `collectd` 書き込みプラグインを経由したメトリクスのエクスポート
 
-`collectd`の[writeプラグイン][link-plugin-table]を通じてメトリクスのエクスポートを設定するには、対応するプラグインのドキュメントを参照してください。
+`collectd` の[書き込みプラグイン][link-plugin-table]を経由してメトリクスをエクスポートするには、該当プラグインのドキュメントを参照します。
 
 !!! info "例"
-    Writeプラグインの基本的な使用情報を得るために、Graphiteへのメトリクスのエクスポートの[例][doc-write-plugin-example]を読み、Grafanaでのメトリクスの可視化を確認してください。
+    書き込みプラグインを利用した基本的な使用方法については、Grafanaでメトリクスを可視化するためにGraphiteへメトリクスをエクスポートする[例][doc-write-plugin-example]をご参照ください。
 
-##  `collectd-nagios`ユーティリティを使用してメトリクスをエクスポートする
+##  `collectd-nagios` ユーティリティを利用したメトリクスのエクスポート
 
-この方法を使用してメトリクスをエクスポートするには：
+この方法でメトリクスをエクスポートするには、以下の手順を実施します：
 
-1.  フィルターノードがあるホストに`collectd-nagios`ユーティリティをインストールします。適切なコマンドを実行します（以下の例では、Linux上にインストールされたフィルターノード用になっています）：
+1.  フィルターノードがインストールされたホストにおいて、適切なコマンドを実行し、`collectd-nagios` ユーティリティをインストールします（Linuxにインストールされたフィルターノードの場合）:
 
-    --8<-- "../include-ja/monitoring/install-collectd-utils.md"
+    --8<-- "../include/monitoring/install-collectd-utils.md"
 
-    !!! info "Dockerイメージ"
-        フィルターノードのDockerイメージには、予め`collectd-nagios`ユーティリティがインストールされています。
+    !!! info "Docker image"
+        フィルターノードのDocker imageには、`collectd-nagios` ユーティリティがあらかじめインストールされています。
+2.  このユーティリティを昇格された権限で、スーパーユーザー（例：`root`）として、もしくは通常ユーザーとして実行できるようにしてください。後者の場合、ユーザーを `sudoers` ファイルに `NOPASSWD` 指令付きで追加し、`sudo` ユーティリティを利用します。
 
-2.  スーパーユーザー（例えば`root`）の権限でユーティリティを実行できることを確認します。通常のユーザーとして実行する場合は、ユーザーを`NOPASSWD`ディレクティブを持つ`sudoers`ファイルに追加し、`sudo`ユーティリティを使用します。
-
-    !!! info "Dockerコンテナとの連携"
-        フィルターノードがあるDockerコンテナで`collectd-nagios`ユーティリティを実行すると、特別な権限の昇格は必要ありません。
-
-3.  [`UnixSock`][link-unixsock]プラグインを接続および設定して、`collectd`メトリクスをUnixドメインソケット経由で転送します。これを行うには、以下の内容を持つファイル`/etc/collectd/collectd.conf.d/unixsock.conf`を作成します：
+    !!! info "Dockerコンテナでの利用"
+        フィルターノードのDockerコンテナ内で `collectd-nagios` ユーティリティを実行する際には、昇格された権限は必要ありません。
+3.  [`UnixSock`][link-unixsock] プラグインを接続し、Unixドメインソケット経由で `collectd` メトリクスを送信できるように設定します。そのため、以下の内容で `/etc/collectd/collectd.conf.d/unixsock.conf` ファイルを作成してください:
 
     ```
     LoadPlugin unixsock
@@ -88,53 +109,51 @@
     </Plugin>
     ```
 
-4.  適切なコマンドを実行して`collectd`サービスを再起動します：
+4.  適切なコマンドを実行し、`collectd` サービスを再起動します:
 
-    --8<-- "../include-ja/monitoring/collectd-restart-2.16.md"
+    --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
-5.  適切なコマンドを実行して、必要なメトリクスの値を取得します：
+5.  適切なコマンドを実行し、必要なメトリクスの値を取得します:
 
-    --8<-- "../include-ja/monitoring/collectd-nagios-fetch-metric.md"
+    --8<-- "../include/monitoring/collectd-nagios-fetch-metric.md"
 
     !!! info "DockerコンテナのIDの取得"
-        コンテナの識別子の値は`docker ps`コマンドを実行することで見つけることができます（“CONTAINER ID”カラムを参照）。
+        `docker ps` コマンドを実行することで、コンテナ識別子の値が確認できます（“CONTAINER ID” カラムを参照してください）。
 
-!!! info "`collectd-nagios`ユーティリティの閾値の設定"
-    必要に応じて、`collectd-nagios`ユーティリティが`WARNING`または`CRITICAL`のステータスを返す値の範囲を、対応する`-w`および`-c`オプションを使用して指定できます（詳細情報はユーティリティの[ドキュメンテーション][link-nagios-plugin-docs]でご覧いただけます）。
+!!! info " `collectd-nagios` ユーティリティの閾値設定"
+    必要に応じ、対応する `-w` および `-c` オプションを使用して、`collectd-nagios` ユーティリティが `WARNING` または `CRITICAL` ステータスを返す値の範囲を指定できます（詳細はユーティリティの[ドキュメント][link-nagios-plugin-docs]に記載されています）。
    
-**ユーティリティの使用例:**
-*   フィルターノードがあるLinuxホスト`node.example.local`上で、`collectd-nagios`が呼び出された時点での`curl_json-wallarm_nginx/gauge-abnormal`メトリクスの値を取得するには、次のコマンドを実行します：
+**ユーティリティ使用例:**
+*   フィルターノードが存在するLinuxホスト `node.example.local` 上で、`collectd-nagios` 呼び出し時の `curl_json-wallarm_nginx/gauge-abnormal` メトリクスの値を取得するには、以下のコマンドを実行します:
   
     ```
     /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
     ```
        
-*   `wallarm-node`名と`95d278317794`識別子を持つDockerコンテナで動作しているフィルターノードについて、`collectd-nagios`が呼び出された時点での`curl_json-wallarm_nginx/gauge-abnormal`メトリクスの値を取得するには、次のコマンドを実行します：
+*   Dockerコンテナ上で稼働するフィルターノード（名前：`wallarm-node`、識別子：`95d278317794`）の `collectd-nagios` 呼び出し時の `curl_json-wallarm_nginx/gauge-abnormal` メトリクスの値を取得するには、以下のコマンドを実行します:
   
     ```
     docker exec wallarm-node /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H 95d278317794
     ```
 
-
-!!! info "更なる例"
-    `collectd-nagios`ユーティリティの基本的な使用情報を得るために、メトリクスのエクスポート例を読んでください。
+!!! info "その他の例"
+    `collectd-nagios` ユーティリティの基本的な使用方法については、以下の例を参照してください。
     
-    *   [Nagiosモニタリングシステムへの例][doc-nagios-example]と
-    *   [Zabbixモニタリングシステムへの例][doc-zabbix-example]です。
+    *   [Nagios監視システムへのエクスポート][doc-nagios-example]および
+    *   [Zabbix監視システムへのエクスポート][doc-zabbix-example]。
 
+##  `collectd` からの通知送信
 
-##  `collectd`からの通知の送信
+通知は、以下のファイルで設定されます:
 
-通知は以下のファイルで設定されます：
+--8<-- "../include/monitoring/notification-config-location.md"
 
---8<-- "../include-ja/monitoring/notification-config-location.md"
+通知の仕組みの概要については、[こちら][link-notif-common]をご参照ください。
 
-通知の動作に関する一般的な説明は[こちら][link-notif-common]でご覧いただけます。
+通知設定の詳細な情報については、[こちら][link-notif-details]をご参照ください。
 
-通知の設定方法に関する詳細情報は[こちら][link-notif-details]でご覧いただけます。
-
-通知の送信方法の候補：
-*   NSCA および NSCA-ng
+通知を送信するための方法:
+*   NSCAおよびNSCA-ng
 *   SNMP TRAP
-*   Eメールメッセージ
+*   メールメッセージ
 *   カスタムスクリプト

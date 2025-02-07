@@ -6,17 +6,17 @@
 [link-saml]:                https://wiki.oasis-open.org/security/FrontPage
 [link-saml-sso-roles]:      https://www.oasis-open.org/committees/download.php/27819/sstc-saml-tech-overview-2.0-cd-02.pdf     
 
-あなたの会社が既に[SAML][link-saml] SSOソリューションを使用している場合、SSO（シングルサインオン）技術を使用して、あなたの会社のユーザーをWallarmポータルに認証することができます。
+会社がすでに[SAML][link-saml] SSOソリューションを使用している場合、Single Sign‑On (SSO) テクノロジーを使用してWallarmポータルに会社のユーザーを認証できます。
 
-Wallarmは、SAML規格をサポートする任意のソリューションと統合できます。SSOガイドでは、[Okta][doc-admin-sso-okta]または[Google Suite（G Suite）][doc-admin-sso-gsuite]を例に統合を説明しています。
+Wallarmは、SAML標準に対応したあらゆるソリューションと統合できます。SSOガイドでは例として[Okta][doc-admin-sso-okta]または[Google Suite(G Suite)][doc-admin-sso-gsuite]を使用した統合方法を説明します。
 
-SSOとWallarmの設定および運用に関連する文書は、以下を前提としています：
-*   Wallarmは**サービスプロバイダ**（SP）として動作します。
-*   GoogleまたはOktaは**アイデンティティプロバイダ**（IdP）として動作します。
+SSOを利用するためのWallarmの構成および運用に関するドキュメントでは、以下が前提になります:
+*　Wallarmは**サービスプロバイダー** (SP) として動作します。
+*　GoogleまたはOktaは**アイデンティティプロバイダー** (IdP) として動作します。
 
-SAML SSOの役割についての詳細情報はこちら（[PDF][link-saml-sso-roles]）で見つけることができます。
+SAML SSOにおける役割の詳細については、こちら ([PDF][link-saml-sso-roles]) を参照してください。
 
 !!! warning "SSOサービスの有効化"
-    デフォルトでは、Wallarm上のSSO接続は適切なサービスを有効化しないと利用できません。SSOサービスを有効化するには、アカウントマネージャーや[Wallarmサポートチーム](mailto:support@wallarm.com)に連絡してください。
+    デフォルトではWallarmでSSO接続は、該当するサービスを有効化しなければ利用できません。SSOサービスを有効化するには、アカウントマネージャーまたは[Wallarmサポートチーム](mailto:support@wallarm.com)にお問い合わせください。
     
-    SSOサービスが有効化されていない場合、Wallarmコンソールの**統合**セクションにSSO関連のブロックは表示されません。
+    SSOサービスが有効化されていない場合、Wallarm Consoleの**Integrations**セクションにSSO関連のブロックは表示されません。

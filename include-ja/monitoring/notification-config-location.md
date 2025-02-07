@@ -1,4 +1,4 @@
-					=== "DEBベースのディストリビューション"
+=== "DEBベースのディストリビューション"
     ```bash
     /etc/collectd/conf.d/traps.conf
     ```

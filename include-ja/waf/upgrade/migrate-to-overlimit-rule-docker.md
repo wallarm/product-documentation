@@ -1,33 +1,28 @@
-バージョン3.6から、`overlimit_res`攻撃検出の設定をWallarm Consoleでルールを使用して微調整することができます。
+Starting from the version 3.6, Wallarm Console のルールを使用して `overlimit_res` 攻撃検知を微調整できます。
 
 以前は、以下のオプションが使用されていました：
 
-* NGINXのディレクティブ [`wallarm_process_time_limit`][nginx-process-time-limit-docs] と [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] 
-* Envoyのパラメーター [`process_time_limit`][envoy-process-time-limit-docs] と [`process_time_limit_block`][envoy-process-time-limit-block-docs]
+* [`wallarm_process_time_limit`][nginx-process-time-limit-docs] および [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINXディレクティブ  
+<!-- * [`process_time_limit`][envoy-process-time-limit-docs] および [`process_time_limit_block`][envoy-process-time-limit-block-docs] Envoyパラメータ -->
 
-これらのディレクティブとパラメータは、新しいルールリリースで非推奨とされ、将来のリリースで削除される予定です。
+これらのディレクティブおよびパラメータは、新しいルールのリリースに伴い非推奨とされ、今後のリリースで削除されます。
 
-もし`overlimit_res`攻撃検出の設定が上記のパラメータでカスタマイズされている場合、以下のようにルールに移行することを推奨します：
+一覧のパラメータを用いて `overlimit_res` 攻撃検知設定をカスタマイズしている場合、以下の手順に従ってルールに移行することを推奨します：
 
-1. Wallarm Consoleを開き、**Rules**に進んで[**Fine-tune the overlimit_res attack detection**][overlimit-res-rule-docs] ルールの設定を行います。
-1. マウントされた設定ファイルで行われているようにルールを設定します：
+1. Wallarm Console → **Rules** にアクセスして、[**Limit request processing time**][overlimit-res-rule-docs] ルール設定に進みます。
+1. マウントされた設定ファイルで実施されたようにルールを設定します：
 
-    * ルール条件は、`wallarm_process_time_limit`と`wallarm_process_time_limit_block`のディレクティブまたは`process_time_limit`と`process_time_limit_block`のパラメーターが指定されているNGINXまたはEnvoyの設定ブロックと一致する必要があります。
-    * ノードが単一のリクエストを処理するための時間制限（ミリ秒）： `wallarm_process_time_limit`または`process_time_limit`の値。
-    * リクエスト処理 ：**Stop processing**オプションが推奨されます。
-    
-       !!! warning "後述システムメモリの枯渇リスク"
-            許容制限時間が長すぎるおよび/または制限を超えた後のリクエスト処理の継続は、メモリ枯渇やタイムアウトによるリクエスト処理のリスクを引き起こす可能性があります。
+    <!-- * ルール条件は、`wallarm_process_time_limit` および `wallarm_process_time_limit_block` ディレクティブまたは `process_time_limit` および `process_time_limit_block` パラメータが指定された NGINX または Envoy の設定ブロックと一致する必要があります。 -->
+    * ノードが単一リクエストを処理する時間制限（ミリ秒）：`wallarm_process_time_limit` または `process_time_limit` の値。
 
-    * overlimit_res攻撃登録：**Register and display in the events**オプションが推奨されます。
+        !!! warning "システムメモリ枯渇のリスク"
+            高い時間制限および/または制限超過後のリクエスト処理の継続は、メモリの枯渇や時間切れによるリクエスト処理を引き起こす可能性があります。
 
-      `wallarm_process_time_limit_block`または`process_time_limit_block`の値が`off`の場合、**攻撃イベントを作成しない**オプションを選択してください。
+    * ノードは [node filtration mode][waf-mode-instr] に基づいて `overlimit_res` 攻撃をブロックまたは通過させます：
 
-    * ルールには`wallarm_process_time_limit_block`(`process_time_limit_block` in Envoy)ディレクティブの明確な同等オプションはありません。ルールが**Register and display in the events**を設定すると、ノードは[node filtration mode][waf-mode-instr]に応じて`overlimit_res`攻撃をブロックまたは許可します：
+        * **monitoring** モードの場合、ノードは元のリクエストをアプリケーションアドレスに転送します。アプリケーションは、処理済みおよび未処理のリクエスト部分に含まれる攻撃によって悪用されるリスクがあります。
+        * **safe blocking** モードの場合、[graylisted][graylist-docs] IPアドレスから発生したリクエストはノードがブロックします。それ以外の場合、ノードは元のリクエストをアプリケーションアドレスに転送します。アプリケーションは、処理済みおよび未処理のリクエスト部分に含まれる攻撃によって悪用されるリスクがあります。
+        * **block** モードの場合、ノードはリクエストをブロックします。
+1. マウントされた設定ファイルから `wallarm_process_time_limit`、`wallarm_process_time_limit_block` NGINXディレクティブを削除します。
 
-        * **監視**モードでは、ノードはオリジナルのリクエストをアプリケーションのアドレスに転送します。 processed および unprocessed のリクエストパートの両方に含まれる攻撃によってアプリケーションが悪用されるリスクがあります。
-        * **safe blocking**モードでは、ノードはリクエストが[graylisted][graylist-docs] IPアドレスから生成された場合、リクエストをブロックします。それ以外の場合は、ノードが元のリクエストをアプリケーションのアドレスに転送します。 processed および unprocessed のリクエストパートの両方に含まれる攻撃によってアプリケーションが悪用されるリスクがあります。
-        * **ブロック**モードでは、ノードはリクエストをブロックします。
-1. `wallarm_process_time_limit`、`wallarm_process_time_limit_block`のNGINXディレクティブおよび`process_time_limit`、`process_time_limit_block`のEnvoyパラメータをマウントされた設定ファイルから削除します。
-
-    もし`overlimit_res`攻撃検出がパラメータとルールの両方を使用して詳細調整されている場合、ノードはルールの設定に従ってリクエストを行います。
+もし、パラメータとルールの両方で `overlimit_res` 攻撃検知の微調整が行われている場合、ノードはルールに従ってリクエストを処理します。

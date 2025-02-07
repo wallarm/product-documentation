@@ -1,25 +1,27 @@
-[doc-get-token]: prerequisites.md#anchor-token
-[doc-get-testrun-id]: node-deployment.md#録音プロセスの停止-テスト-実行の特定
-[doc-about-recording]: ../operations/internals.md#テスト-実行
-[doc-stop-recording]: ../operations/stop-recording.md#api経由での録音プロセスの停止
-[doc-waiting-for-tests]: waiting-for-tests.md
-[doc-integration-overview]: integration-overview.md
+[doc-get-token]:                    prerequisites.md#anchor-token
+[doc-get-testrun-id]:               node-deployment.md#obtaining-a-test-run
 
-# 録音プロセスの停止
+[doc-about-recording]:              ../operations/internals.md#test-run
+[doc-stop-recording]:               ../operations/stop-recording.md#stopping-the-recording-process-via-api
+[doc-waiting-for-tests]:            waiting-for-tests.md
+
+[doc-integration-overview]:         integration-overview.md
+
+# 記録プロセスの停止
 
 !!! info "章の前提条件"
-    この章で説明されている手順に従うためには、次のものを取得する必要があります:
+    この章に記載された手順に従うためには、以下を取得する必要があります：
         
-    * [トークン][doc-get-token]
-    * [識別子][doc-get-testrun-id]のテスト実行
+    * [Token][doc-get-token]
+    * テスト実行の[Identifier][doc-get-testrun-id]
     
-    以下の値は、章全体の例として使用されます：
+    以下の値は、本章全体で例として使用される値です：
 
-    * トークンとしての `token_Qwe12345`
-    * テストランの識別子としての `tr_1234`
+    * トークンとして `token_Qwe12345`
+    * テスト実行の識別子として `tr_1234`
 
-APIを使用してベースラインリクエストの録音プロセスを停止します。手順については[こちら][doc-stop-recording]を参照してください。
+APIを使用して、ベースラインリクエストの記録プロセスを[こちら][doc-stop-recording]の手順に従って停止します。
 
-録音プロセスが停止した後も、ターゲットアプリケーションの脆弱性に対するテストプロセスは長時間続く場合があります。FASTセキュリティテストが完了したかどうかを判断するためには、[このドキュメント][doc-waiting-for-tests]の情報を利用してください。
+記録プロセスが停止された後、脆弱性に対するターゲットアプリケーションのテストが長時間続く場合があります。[このドキュメント][doc-waiting-for-tests]の情報を使用して、FASTセキュリティテストが完了しているか確認してください。
 
-必要に応じて、[「CI/CDワークフローとFAST」][doc-integration-overview]ドキュメントを参照することができます。
+必要に応じて、[「FASTを使用したCI/CDワークフロー」][doc-integration-overview]ドキュメントを参照してください。

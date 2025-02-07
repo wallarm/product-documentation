@@ -3,23 +3,23 @@
 
 [doc-setup-idp]:                setup-idp.md
 
-# ステップ1：Wallarm側でのパラメータ生成（G Suite）
+# ステップ 1: Wallarm側でのパラメータ生成 (G Suite)
 
-SSOをG Suiteと連携するためには、まずWallarm側でいくつかのパラメータを生成する必要があります。
+G SuiteとのSSO接続には、まずWallarm側でいくつかのパラメータを生成する必要があります。
 
-!!! warning "先にWallarm側でSSOサービスをアクティブにしてください"
-    デフォルトでは、Wallarm上でのSSO接続は適切なサービスをアクティブにしないと利用できません。SSOサービスをアクティブにするためには、アカウントマネージャーまたは[Wallarmサポートチーム](mailto:support@wallarm.com)にご連絡ください。
+!!! 警告 "まずWallarm側でSSOサービスを有効にしてください"
+    デフォルトでは、適切なサービスを有効化しない限り、Wallarm側ではSSO接続を利用できません。SSOサービスを有効にするためには、アカウントマネージャーまたは[Wallarmサポートチーム](mailto:support@wallarm.com)へお問い合わせください。
 
-    サービスをアクティブにした後で、以下のSSO接続手順を実行できます。
+    サービス有効化後、以下のSSO接続手順を実行できるようになります。
 
-Wallarmコンソールへ管理者アカウントでログインし、**設定 → インテグレーション → Google SSO** の順に進み、G Suiteのインテグレーション設定に取り組んでください。
+管理者アカウントでWallarm Consoleにログインし、**Settings → Integration → Google SSO**に従ってG Suite統合のセットアップを進めてください。
 
-![“Google SSO”ブロック][img-gsuite-sso-provider-wl]
+![「Google SSO」ブロック][img-gsuite-sso-provider-wl]
 
-すると、SSO設定ウィザードが表示されます。ウィザードの最初のステップでは、G Suiteサービスに渡すべきパラメータ（サービスプロバイダのメタデータ）がフォームに表示されます：
-*   **Wallarm Entity ID** は、アイデンティティプロバイダ用にWallarmアプリケーションによって生成されたユニークなアプリケーション識別子です。
-*   **Assertion Consumer Service URL (ACS URL)** は、アイデンティティプロバイダがSamlResponseパラメータと共にリクエストを送信するWallarm側のアプリケーションのアドレスです。
+これにより、SSO設定ウィザードが表示されます。ウィザードの最初のステップでは、G Suiteサービスに送信すべきパラメータ（サービスプロバイダーのメタデータ）が記載されたフォームが表示されます：
+* **Wallarm Entity ID** は、アイデンティティプロバイダーのためにWallarmアプリケーションによって生成された一意のアプリケーション識別子です。
+* **Assertion Consumer Service URL (ACS URL)** は、アイデンティティプロバイダーがSamlResponseパラメータを付与してリクエストを送信するWallarm側のアプリケーションのアドレスです。
 
-![Service provider's metadata][img-sp-metadata]
+![サービスプロバイダーのメタデータ][img-sp-metadata]
 
-生成されたパラメータは、G Suiteサービス側の対応するフィールドに入力する必要があります（[ステップ2][doc-setup-idp]を参照してください）。
+生成されたパラメータは、G Suiteサービス側の対応するフィールドに入力する必要があります（[ステップ 2][doc-setup-idp]を参照）。

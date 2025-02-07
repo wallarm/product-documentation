@@ -11,19 +11,18 @@ data:
           server_name localhost;
           root /usr/share/nginx/html;
           index index.html index.htm;
-          # 下記の<WALLARM_MODE>をリクエストフィルタモードに置き換えてください:
-          # 処理の無効化のための off
-          # リクエストを処理するがブロックせずに監視
-          # グレーリストIPから発生した悪意のあるリクエストのみをブロックするsafe_blocking
-          # すべてのリクエストを処理し、悪意のあるものをブロックするブロック
+          # 以下の<WALLARM_MODE>をリクエストフィルトレーションモードに置き換えてください:
+          # offはリクエスト処理を無効にします
+          # monitoringはリクエストを処理しますがブロックしません
+          # safe_blockingはgraylisted IPからの悪意あるリクエストのみをブロックします
+          # blockはすべてのリクエストを処理し悪意のあるリクエストをブロックします
           wallarm_mode <WALLARM_MODE>;
           # wallarm_instance 1;
           set_real_ip_from 0.0.0.0/0;
           real_ip_header X-Forwarded-For;
           location / {
-                  # 下記の<APP_CONTAINER_PORT>を、
-                  # コンテナがインバウンドリクエストを受け入れるポート番号に置き換えてください。
-                  # この価値は、メインアプリのコンテナの定義であるports.containerPortと同一でなくてはなりません
+                  # 以下の<APP_CONTAINER_PORT>をコンテナが着信リクエストを受け付けるポート番号に置き換えてください,
+                  # 値はメインアプリコンテナ定義のports.containerPortと同一である必要があります
                   proxy_pass http://localhost:<APP_CONTAINER_PORT>;
                   include proxy_params;
           }

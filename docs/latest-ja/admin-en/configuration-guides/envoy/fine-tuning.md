@@ -1,13 +1,13 @@
-# EnvoyベースのWallarmノードの設定オプション
+# Envoy‑ベースWallarmノードの設定オプション
 
 [link-lom]:                     ../../../user-guides/rules/rules.md
 
-[anchor-process-time-limit]:    #processtimelimit
+[anchor-process-time-limit]:    #processtimelimit  
 [anchor-tsets]:                 #filtering-mode-settings
 
-Envoyは、Envoy設定ファイルで定義されたプラグインフィルターを使って、着信リクエストを処理します。これらのフィルターは、リクエストに対して実行するアクションを記述します。例えば、`envoy.http_connection_manager`フィルターはHTTPリクエストをプロキシするために使用されます。このフィルターには、リクエストに適用できる独自のHTTPフィルターセットがあります。
+Envoyは、Envoy設定ファイル内で定義されたプラガブルフィルターを使用して受信リクエストを処理します。これらのフィルターは、リクエストに対して実行される動作を記述します。たとえば、`envoy.http_connection_manager`フィルターはHTTPリクエストをプロキシするために使用されます。このフィルターにはリクエストに適用できるHTTPフィルターが設定されています。
 
-Wallarmモジュールは、Envoy HTTPフィルタとして設計されています。モジュールの一般的な設定は、`wallarm` HTTPフィルタに専用のセクションに配置されています：
+Wallarmモジュールは、Envoy HTTPフィルターとして設計されています。モジュールの一般設定は、`wallarm` HTTPフィルター専用のセクションに配置されます:
 
 ```
 listeners:
@@ -20,31 +20,31 @@ listeners:
            - name: wallarm
              typed_config:
               "@type": type.googleapis.com/wallarm.Wallarm
-              <Wallarmモジュール設定>
+              <the Wallarm module configuration>
               ...  
 ```
 
-!!! warning "リクエストボディの処理を有効にする"
-    WallarmモジュールがHTTPリクエストボディを処理できるようにするためには、Envoy HTTPフィルタチェーンでのフィルタリングノードの前にバッファフィルタが置かれている必要があります。例：
+!!! warning "リクエストボディ処理を有効化してください"
+    WallarmモジュールがHTTPリクエストボディを処理できるようにするためには、Envoy HTTPフィルターチェーン内でバッファーフィルターをWallarmモジュールの前に配置する必要があります。たとえば:
 
     ```
     http_filters:
     - name: envoy.buffer
       typed_config:
         "@type": type.googleapis.com/envoy.config.filter.http.buffer.v2.Buffer
-        max_request_bytes: <最大リクエストサイズ（バイト単位）>
+        max_request_bytes: <maximum request size (in bytes)>
     - name: wallarm
       typed_config:
         "@type": type.googleapis.com/wallarm.Wallarm
-        <Wallarmモジュール設定>
+        <the Wallarm module configuration>
         ...
     ```
-    
-    送信されるリクエストのサイズが `max_request_bytes` のパラメータの値を超えると、このリクエストはドロップされ、Envoyは `413` のレスポンスコード（「ペイロードが大きすぎます」）を返します。
+
+    もし受信リクエストのサイズが`max_request_bytes`パラメータの値を超える場合、このリクエストは破棄され、Envoyは`413`レスポンスコード（「Payload Too Large」）を返します。
 
 ## リクエストフィルタリング設定
 
-ファイルの `rulesets` セクションには、リクエストフィルタリング設定に関連するパラメータが含まれています：
+ファイルの`rulesets`セクションには、リクエストフィルタリング設定に関連するパラメータが含まれています:
 
 ```
 rulesets:
@@ -59,24 +59,24 @@ rulesets:
   ...
 ```
 
-`rs0` から `rsN` までのエントリは1つ以上のパラメータグループで、あとで [`ruleset`](#ruleset_param) パラメータを使って参照できる任意の名前を持つことができます（`conf`セクション内）。フィルタリングノードの設定には少なくとも1つのグループが存在する必要があります（例えば、`rs0`という名前で）。
+`rs0` ... `rsN`のエントリは1つ以上のパラメータグループです。グループは任意の名前を付けることができ（後に[`ruleset`](#ruleset_param)パラメータを介して参照されます）、フィルタリングノードの設定には少なくとも1つのグループ（たとえば`rs0`）が存在する必要があります。
 
-このセクションにはデフォルト値はありません。設定ファイルで明示的に値を指定する必要があります。
+このセクションにはデフォルト値はありません。コンフィグファイル内で明示的に値を指定する必要があります。
 
 !!! info "定義レベル"
-    このセクションは、フィルタリングノードレベルでのみ定義できます。
+    このセクションはフィルタリングノードレベルでのみ定義できます。
 
 パラメータ | 説明 | デフォルト値
 --- | ---- | -----
-`pdb` | `proton.db` ファイルへのパス。このファイルには、アプリケーション構造に依存しないリクエストフィルタリングのためのグローバル設定が含まれています。 | `/etc/wallarm/proton.db`
-`custom_ruleset` | 保護されたアプリケーションとフィルタリングノード設定についての情報を含む [カスタムルールセット][link-lom] ファイルへのパス。 | `/etc/wallarm/custom_ruleset`
-`key` | proton.dbファイルとカスタムルールセットファイルの暗号化/復号化に用いるWallarmプライベートキーを含むファイルへのパス。 | `/etc/wallarm/private.key`
-`general_ruleset_memory_limit` | proton.dbとカスタムルールセットの1インスタンスによって使用できるメモリの最大量の制限。メモリ制限を超えてリクエストを処理すると、ユーザーは500エラーを受け取ります。このパラメータには以下の接尾辞を使用できます：<ul><li>`k` または `K` はキロバイト</li><li>`m` または `M` はメガバイト</li><li>`g` または `G` はギガバイト</li></ul>値 `0` は制限をオフにします。 | `0`
-`enable_libdetection` | [**libdetection** ライブラリ](../../../about-wallarm/protecting-against-attacks.md#library-libdetection)によるSQLインジェクション攻撃の追加検証を有効/無効にします。ライブラリが悪意のあるペイロードを確認しなかった場合、リクエストは合法と見なされます。**libdetection** ライブラリの使用により、SQLインジェクション攻撃の偽陽性の数を減らすことができます。<br><br>デフォルトでは、**libdetection** ライブラリは有効になっています。最良の攻撃検出のために、ライブラリを有効にしておくことをお勧めします。<br><br>**libdetection** ライブラリを使用して攻撃を分析すると、NGINXとWallarmのプロセスによって消費されるメモリ量は約10％増加する可能性があります。 | `on`
+`pdb` | `proton.db`ファイルへのパス。 このファイルには、アプリケーション構成に依存しないグローバルなリクエストフィルタリング設定が含まれています。 | `/etc/wallarm/proton.db`
+`custom_ruleset` | 保護対象アプリケーションに関する情報とフィルタリングノード設定が記述された[custom ruleset][link-lom]ファイルへのパス。 | `/etc/wallarm/custom_ruleset`
+`key` | proton.dbおよびcustom rulesetファイルの暗号化/復号に使用されるWallarm秘密鍵が含まれるファイルへのパス。 | `/etc/wallarm/private.key`
+`general_ruleset_memory_limit` | proton.dbおよびcustom rulesetの1インスタンスで使用できる最大メモリ量の制限。リクエスト処理中にメモリ制限を超えた場合、ユーザーは500エラーを受け取ります。 このパラメータには以下のサフィックスを使用できます:<ul><li>`k`または`K`（キロバイト）</li><li>`m`または`M`（メガバイト）</li><li>`g`または`G`（ギガバイト）</li></ul>`0`の値は制限を無効にします。 | `0`
+`enable_libdetection` | SQL Injection攻撃に対する追加検証を[**libdetection**ライブラリ](../../../about-wallarm/protecting-against-attacks.md#library-libdetection)を使用して有効/無効にします。ライブラリが悪意のあるペイロードを確認しない場合、リクエストは正当なものと見なされます。**libdetection**ライブラリの使用により、SQL Injection攻撃の誤検知数が減少します。<br><br>デフォルトでは**libdetection**ライブラリは有効になっています。最適な攻撃検出のために、ライブラリは有効のままにすることを推奨します。<br><br>**libdetection**ライブラリによる攻撃解析時は、NGINXおよびWallarmプロセスによるメモリ消費量が約10%増加する場合があります。 | `on`
 
 ##  Postanalyticsモジュール設定
 
-フィルタリングノードの `tarantool` セクションには、postanalyticsモジュールに関連するパラメータが含まれています：
+フィルタリングノードの`tarantool`セクションには、Postanalyticsモジュールに関連するパラメータが含まれています:
 
 ```
 tarantool:
@@ -87,21 +87,21 @@ tarantool:
     reconnect_interval: 1
 ```
 
-`server` エントリは、Tarantoolサーバの設定を記述するパラメータグループです。
+`server`エントリは、Tarantoolサーバーの設定を記述したパラメータグループです。
 
 !!! info "定義レベル"
-    このセクションは、フィルタリングノードレベルでのみ定義できます。
+    このセクションはフィルタリングノードレベルでのみ定義できます。
 
 パラメータ | 説明 | デフォルト値
 --- | ---- | -----
-`uri` | Tarantoolサーバに接続するために使用される認証情報が含まれる文字列。文字列の形式は `IPアドレス` または `ドメイン名:ポート` です。 | `localhost:3313`
-`max_packets` | Tarantoolに送信するシリアライズされたリクエストの数の制限。制限を解除するには `0` をパラメータ値として設定します。 | `512`
-`max_packets_mem` | Tarantoolに送信するシリアライズされたリクエストの合計量（バイト単位）の制限。 | `0` (量は制限されません)
-`reconnect_interval` | Tarantoolへの再接続の試行間隔（秒）。 `0` の値は、サーバが利用できないときにフィルタリングノードができるだけ早くサーバに再接続しようとすることを意味します（非推奨）。 | `1`
+`uri` | Tarantoolサーバーに接続するための認証情報を含む文字列。 文字列の形式は`IP address`または`domain name:port`です。 | `localhost:3313`
+`max_packets` | Tarantoolに送信されるシリアライズされたリクエストの数の上限。制限を解除するには、パラメータ値を`0`に設定します。 | `512`
+`max_packets_mem` | Tarantoolに送信されるシリアライズされたリクエストの合計容量（バイト単位）の上限。 | `0`（容量に制限はありません）
+`reconnect_interval` | Tarantoolへの再接続試行間隔（秒単位）。 値が`0`の場合、サーバーが利用不可能になった場合にフィルタリングノードができるだけ速く再接続を試みます（推奨されません）。 | `1`
 
 ##  基本設定
 
-Wallarm設定の `conf` セクションには、フィルタリングノードの基本操作に影響するパラメータが含まれています：
+Wallarm設定の`conf`セクションには、フィルタリングノードの基本動作に影響を与えるパラメータが含まれます:
 
 ```
 conf:
@@ -120,7 +120,7 @@ conf:
 ```
 
 !!! info "定義レベル"
-    より柔軟な保護レベルのために、このセクションはルートまたは仮想ホストレベルで上書きすることができます：
+    より柔軟な保護レベルのため、以下のレベルでこのセクションを上書きできます:
 
     * ルートレベルで:
 
@@ -130,32 +130,32 @@ conf:
           typed_per_filter_config:
             wallarm:
               "@type": type.googleapis.com/wallarm.WallarmConf
-              <セクションのパラメータ>
+              <the section parameters>
         ```
         
-    * 仮想ホストレベルで:
+    * バーチャルホストレベルで:
         ```
         virtual_hosts:
-        - name: <仮想ホストの名前>
+        - name: <the name of the virtual host>
           typed_per_filter_config:
             wallarm:
               "@type": type.googleapis.com/wallarm.WallarmConf
-              <セクションのパラメータ>
+              <the section parameters>
         ```
-    ルートレベルで上書きされた`conf`セクションのパラメータは、仮想ホストレベルで定義されたセクションのパラメータより優先され、フィルタリングノードレベルでリストされているパラメータよりも優先されます。
+    ルートレベルで上書きされた`conf`セクションのパラメータは、バーチャルホストレベルで定義されたパラメータより優先され、これらはさらにフィルタリングノードレベルで定義されたパラメータよりも上位の優先順位を持ちます。
 
 パラメータ | 説明 | デフォルト値
 --- | ---- | -----
-<a name="ruleset_param"></a>`ruleset` | `rulesets`セクションで定義されたパラメータグループの一つ。このパラメータグループは、使用されるリクエストフィルタリングルールを設定します。<br>このパラメータがフィルタリングノードの `conf` セクションから省略された場合、それはルートまたは仮想ホストレベルで上書きされた `conf` セクションに存在しなければなりません。 | -
-`mode` | ノードモード：<ul><li>`block` - 悪意のあるリクエストをブロックします。</li><li>`monitoring` - リクエストを分析しますが、ブロックしません。</li><li>`safe_blocking` - [グレイリストのIPアドレス](../../../user-guides/ip-lists/graylist.md)から発生した悪意のあるリクエストのみをブロックします。</li><li>`monitoring` - リクエストを分析しますが、ブロックしません。</li><li>`off` - トラフィックの分析と処理を無効にします。</li></ul><br>[フィルタリングモードの詳細説明 →](../../configure-wallarm-mode.md) | `block`
-`mode_allow_override` | `mode`パラメータを使用して設定されたフィルタリングノードモードを、[カスタムルールセット][link-lom]で上書きすることを許可します：<ul><li>`off` - カスタムルールセットは無視されます。</li><li>`strict` - カスタムルールセットは操作モードを強化することしかできません。</li><li>`on` - 操作モードを強化あるいは緩和することが可能です。</li></ul>例えば、`mode` パラメータが `monitoring` の値に設定され、`mode_allow_override` パラメータが `strict` の値に設定されている場合、一部のリクエストをブロックする（`block`）ことは可能ですが、フィルタリングノードを完全に無効にする（`off`）ことはできません。 | `off`
-<a name="application_param"></a>`application` | Wallarm Cloudで使用する保護されたアプリケーションの一意の識別子。値は正の整数であり、 `0` を除きます。<br><br>[アプリケーションの設定についての詳細 →](../../../user-guides/settings/applications.md) | `-1`
-<a name="partner_client_id_param"></a>`partner_client_uuid` | [マルチテナント](../../../installation/multi-tenant/deploy-multi-tenant-node.md) Wallarmノードの[テナント](../../../installation/multi-tenant/overview.md)の一意の識別子。値は [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) 形式の文字列でなければならず、例えば：<ul><li>`11111111-1111-1111-1111-111111111111`</li><li>`123e4567-e89b-12d3-a456-426614174000`</li></ul><p>以下の方法を知る：</p><ul><li>[テナント作成中にテナントのUUIDを取得する方法 →](../../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)</li><li>[既存のテナントのUUIDのリストを取得する方法 →](../../../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)</li><ul>| -
-<a name="process_time_limit"></a>`process_time_limit` | <div class="admonition warning"> <p class="admonition-title">このパラメータは非推奨となりました</p> <p>バージョン3.6からは、<a href="../../../../user-guides/rules/configure-overlimit-res-detection/">規則「overlimit_res攻撃検出の微調整」</a>を使用して `overlimit_res` の攻撃検出を微調整することを推奨します。<br>`process_time_limit` パラメータは一時的にサポートされていますが、将来のリリースで削除されます。</p></div>単一のリクエストの処理時間（ミリ秒）の制限。特定の時間内にリクエストを処理できない場合、エラーメッセージがログファイルに記録され、リクエストは `overlimit_res` の攻撃としてマークされます。 | `1000`
-<a name="process_time_limit_block"></a>`process_time_limit_block` | <div class="admonition warning"> <p class="admonition-title">このパラメータは非推奨となりました</p> <p>バージョン3.6からは、<a href="../../../../user-guides/rules/configure-overlimit-res-detection/">規則「overlimit_res攻撃検出の微調整」</a>を使用して `overlimit_res` の攻撃検出を微調整することを推奨します。<br>`process_time_limit_block` パラメータは一時的にサポートされていますが、将来のリリースで削除されます。</p></div>`process_time_limit` パラメータで設定された制限を超えてリクエストの処理時間がかかったときにとる行動：<ul><li>`off` - リクエストは常に無視されます。</li><li>`on` - `mode: "off"` でなければ、リクエストは常にブロックされます。</li><li>`attack` - `mode` パラメータで設定された攻撃ブロックモードに依存します：<ul><li>`off` - リクエストは処理されません。</li><li>`monitoring` - リクエストは無視されます。</li><li>`block` - リクエストはブロックされます。</li></ul></li></ul> | `attack`
-`wallarm_status` | [フィルタリングノード統計サービス](../../configure-statistics-service.md)を有効にするかどうか。 | `false`
-`wallarm_status_format` | [フィルタリングノード統計](../../configure-statistics-service.md)の形式： `json` または `prometheus`。 | `json`
-`disable_acl` | リクエストの発信元の分析を無効にすることができます。無効にする（`on`）と、フィルタリングノードは [IPリスト](../../../user-guides/ip-lists/overview.md) をWallarm Cloudからダウンロードせず、リクエストソースIPの分析をスキップします。 | `off`
-`parse_response` | アプリケーションのレスポンスを分析するかどうか。レスポンス分析は、 [パッシブ検出](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection)および [アクティブな脅威検証](../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)中の脆弱性検出に必要です。<br><br>可能な値は `true` (レスポンス解析が有効)と `false` (レスポンス解析が無効)です。 | `true`
-`unpack_response` | アプリケーションのレスポンスで返される圧縮データを解凍するかどうか。可能な値は `true` (解凍が有効)と `false` (解凍が無効)です。<br><br>このパラメータは `parse_response true` の場合にのみ有効です。 | `true`
-`parse_html_response` | アプリケーションのレスポンスで受け取ったHTMLコードにHTMLパーサを適用するかどうか。可能な値は `true` (HTMLパーサが適用されます)と `false` (HTMLパーサが適用されません)です。<br><br>このパラメータは `parse_response true` の場合にのみ有効です。 | `true`
+<a name="ruleset_param"></a>`ruleset` | `rulesets`セクションで定義されたパラメータグループのひとつ。 このパラメータグループは、使用されるリクエストフィルタリングルールを設定します。<br>もしこのパラメータがフィルタリングノードの`conf`セクションから省略された場合、ルートまたはバーチャルホストレベルで上書きされた`conf`セクションに記載する必要があります。 | -
+`mode` | ノードモード:<ul><li>`block` - 悪意のあるリクエストをブロックします。</li><li>`monitoring` - リクエストの解析のみを行い、ブロックはしません。</li><li>`safe_blocking` - [graylisted IP addresses](../../../user-guides/ip-lists/overview.md)からの悪意のあるリクエストのみをブロックします。</li><li>`monitoring` - リクエストの解析のみを行い、ブロックはしません。</li><li>`off` - トラフィックの解析および処理を無効にします。</li></ul><br>[フィルトレーションモードの詳細 →](../../configure-wallarm-mode.md) | `block`
+`mode_allow_override` | `mode`パラメータで設定されたフィルタリングノードモードを[custom ruleset][link-lom]で上書きできるかどうかを設定します:<ul><li>`off` - custom rulesetは無視されます。</li><li>`strict` - custom rulesetは動作モードを強化することのみ可能です。</li><li>`on` - 動作モードを強化もしくは緩和することが可能です。</li></ul>たとえば、`mode`パラメータが`monitoring`に設定され、`mode_allow_override`パラメータが`strict`に設定されている場合、一部のリクエストをブロック（`block`）できますが、フィルタリングノードを完全に無効（`off`）にすることはできません。 | `off`
+<a name="application_param"></a>`application` | Wallarm Cloudで使用される保護対象アプリケーションの固有識別子。 値は`0`以外の正の整数でなければなりません。<br><br>[アプリケーション設定の詳細 →](../../../user-guides/settings/applications.md) | `-1`
+<a name="partner_client_id_param"></a>`partner_client_uuid` | [multi-tenant](../../../installation/multi-tenant/deploy-multi-tenant-node.md) Wallarmノードの[tenant](../../../installation/multi-tenant/overview.md)の固有識別子。 値は[UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format)形式の文字列である必要があり、たとえば:<ul><li>`11111111-1111-1111-1111-111111111111`</li><li>`123e4567-e89b-12d3-a456-426614174000`</li></ul><p>詳細は以下を参照してください:</p><ul><li>[テナント作成時にUUIDを取得する方法 →](../../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api)</li><li>[既存テナントのUUIDリストの取得方法 →](../../../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)</li><ul>| -
+<a name="process_time_limit"></a>`process_time_limit` | <div class="admonition warning"> <p class="admonition-title">このパラメータは非推奨です</p> <p>バージョン3.6からは、<a href="../../../../user-guides/rules/configure-overlimit-res-detection/">**Limit request processing time**</a>ルール（旧「overlimit_res攻撃検知の微調整」）を使用して`overlimit_res`攻撃検知を微調整することを推奨します。<br>`process_time_limit`パラメータは一時的にサポートされていますが、将来のリリースで削除される予定です。</p></div>1つのリクエストの処理時間の上限（ミリ秒単位）。 設定された時間内にリクエストを処理できない場合、エラーメッセージがログに記録され、リクエストは`overlimit_res`攻撃としてマークされます。 | `1000`
+<a name="process_time_limit_block"></a>`process_time_limit_block` | <div class="admonition warning"> <p class="admonition-title">このパラメータは非推奨です</p> <p>バージョン3.6からは、<a href="../../../../user-guides/rules/configure-overlimit-res-detection/">**Limit request processing time**</a>ルール（旧「overlimit_res攻撃検知の微調整」）を使用して`overlimit_res`攻撃検知を微調整することを推奨します。<br>`process_time_limit_block`パラメータは一時的にサポートされていますが、将来のリリースで削除される予定です。</p></div>リクエスト処理時間が`process_time_limit`パラメータで設定された上限を超えた場合の動作:<ul><li>`off` - リクエストは常に無視されます。</li><li>`on` - `mode: "off"`でない限り常にリクエストをブロックします。</li><li>`attack` - `mode`パラメータで設定された攻撃ブロックモードに依存します:<ul><li>`off` - リクエストは処理されません。</li><li>`monitoring` - リクエストは無視されます。</li><li>`block` - リクエストはブロックされます。</li></ul></li></ul> | `attack`
+`wallarm_status` | [フィルタリングノード統計サービス](../../configure-statistics-service.md)の有効/無効を設定します。 | `false`
+`wallarm_status_format` | [フィルタリングノード統計](../../configure-statistics-service.md)のフォーマット: `json`または`prometheus`。 | `json`
+`disable_acl` | リクエスト発信元の解析を無効にします。 無効（`on`）の場合、フィルタリングノードはWallarm Cloudから[IP lists](../../../user-guides/ip-lists/overview.md)をダウンロードせず、リクエスト元IPの解析をスキップします。 | `off`
+`parse_response` | アプリケーションのレスポンス解析を行うかどうか。 レスポンス解析は[passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection)および[threat replay testing](../../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing)による脆弱性検出に必要です。<br><br>可能な値は `true`（レスポンス解析を有効）と`false`（レスポンス解析を無効）です。 | `true`
+`unpack_response` | アプリケーションレスポンスで返される圧縮データを解凍するかどうか。可能な値は `true`（解凍有効）と`false`（解凍無効）です。<br><br>このパラメータは`parse_response true`の場合のみ有効です。 | `true`
+`parse_html_response` | アプリケーションレスポンスで受信したHTMLコードに対してHTMLパーサーを適用するかどうか。可能な値は `true`（HTMLパーサー適用）と`false`（HTMLパーサー非適用）です。<br><br>このパラメータは`parse_response true`の場合のみ有効です。 | `true`

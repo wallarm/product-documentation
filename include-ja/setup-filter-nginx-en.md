@@ -1,55 +1,52 @@
-次のファイルには、NGINXとフィルタリングノードの設定が含まれています：
+以下のファイルにはNGINXおよびフィルタリングノードの設定が含まれます:
 
-* `/etc/nginx/nginx.conf`は、NGINXの設定を定義します
-* `/etc/nginx/conf.d/wallarm.conf`は、Wallarmフィルタリングノードのグローバル設定を定義します
-* `/etc/nginx/conf.d/wallarm-status.conf`は、フィルタリングノード監視サービスの設定を定義します
+* `/etc/nginx/nginx.conf`はNGINXの設定を定義します
+* `/etc/nginx/conf.d/wallarm.conf`はWallarmフィルタリングノードのグローバル設定を定義します
+* `/etc/nginx/conf.d/wallarm-status.conf`はフィルタリングノードの監視サービスの設定を定義します
 
-NGINXとWallarmの操作を定義する独自の設定ファイルを作成することができます。同じ方法で処理するべきドメインの各グループに対して、`server`ブロックを持つ別の設定ファイルを作成することを推奨します。
+独自の設定ファイルを作成し、NGINXおよびWallarmの動作を定義できます。各ドメイングループごとに同じ方法で処理される場合は、それぞれの`server`ブロックを含む個別の設定ファイルを作成することが推奨されます。
 
-NGINX設定ファイルの操作に関する詳細情報を見るには、[公式NGINXドキュメンテーション](https://nginx.org/en/docs/beginners_guide.html)に進んでください。
+NGINX設定ファイルの詳細な取り扱いについては、[公式NGINXドキュメント](https://nginx.org/en/docs/beginners_guide.html)を参照してください。
 
-Wallarmのディレクティブは、Wallarmフィルタリングノードの動作論理を定義します。利用可能なWallarmディレクティブのリストを見るには、[Wallarm設定オプション](configure-parameters-en.md)ページに進んでください。
+Wallarmディレクティブは、Wallarmフィルタリングノードの動作ロジックを定義します。利用可能なWallarmディレクティブの一覧については、[Wallarmの構成オプション](configure-parameters-en.md)ページを参照してください。
 
 **設定ファイルの例**
 
-以下の条件でサーバーを設定する必要があると仮定しましょう：
-* HTTPトラフィックのみが処理されます。HTTPSリクエストは処理されません。
-* 次のドメインがリクエストを受信します：`example.com`および`www.example.com`。
-* すべてのリクエストはサーバー`10.80.0.5`に渡される必要があります。
-* すべての受信リクエストは1MB以下（デフォルト設定）と見なされます。
-* リクエストの処理には60秒以下（デフォルト設定）しかかかりません。
-* Wallarmはモニタモードで動作する必要があります。
-* クライアントはHTTPロードバランサーを介さずにフィルタリングノードに直接アクセスします。
+サーバーを以下の条件で動作させる必要があると仮定します:
+* HTTPトラフィックのみが処理され、HTTPSリクエストは処理されません。
+* リクエストを受信するドメインは、`example.com`および`www.example.com`です。
+* すべてのリクエストはサーバー`10.80.0.5`に転送されます。
+* すべての受信リクエストは、サイズが1MB未満とみなされます（デフォルト設定）。
+* リクエストの処理時間は60秒以内とみなされます（デフォルト設定）。
+* Wallarmはmonitorモードで動作します。
+* クライアントは中間にHTTPロードバランサーを挟まずに、直接フィルタリングノードにアクセスします。
 
 !!! info "設定ファイルの作成"
-    カスタムのNGINX設定ファイル（例：`example.com.conf`）を作成するか、デフォルトのNGINX設定ファイル（`default.conf`）を編集することができます。
+    カスタムNGINX設定ファイル（例：`example.com.conf`）を作成するか、デフォルトのNGINX設定ファイル（`default.conf`）を変更できます。
     
-    カスタム設定ファイルを作成する場合、NGINXが空きポートでの受信接続をリッスンしていることを確認してください。
+    カスタム設定ファイルを作成する際は、NGINXが空きポートでの受信接続をリッスンしていることを確認してください。
 
-
-リストされた条件を満たすために、設定ファイルの内容は次のようになります：
+上記の条件を満たすため、設定ファイルの内容は以下のようになります:
 
 ```
-
     server {
       listen 80;
       listen [::]:80 ipv6only=on;
 
-      # トラフィックが処理されるドメイン
+      # トラフィックを処理する対象のドメイン
       server_name example.com; 
       server_name www.example.com;
 
-      # トラフィック処理のモニタリングモードをオンにする
+      # トラフィック処理のmonitorモードを有効にします
       wallarm_mode monitoring; 
       # wallarm_instance 1;
 
       location / {
-        # リクエスト転送のためのアドレスを設定する
+        # リクエスト転送先のアドレス設定
         proxy_pass http://10.80.0.5; 
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       }
     }
-
 ```

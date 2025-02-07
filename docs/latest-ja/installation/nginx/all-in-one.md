@@ -20,123 +20,115 @@
 [img-node-with-several-instances]:  ../../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
 [nginx-custom]:                 ../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
-[node-token]:                       ../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
+[node-token]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [platform]:                         ../supported-deployment-options.md
 [inline-docs]:                      ../inline/overview.md
 [oob-docs]:                         ../oob/overview.md
-[oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
-[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[oob-advantages-limitations]:       ../oob/overview.md#limitations
+[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 [wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
+[download-aio-step]:                #step-3-download-all-in-one-wallarm-installer
+[enable-traffic-analysis-step]:     #step-5-enable-wallarm-node-to-analyze-traffic
+[restart-nginx-step]:               #step-6-restart-nginx
+[separate-postanalytics-installation-aio]:  ../../admin-en/installation-postanalytics-en.md
+[api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
 
-# 一括インストーラーを使用したデプロイ
+# オールインワンインストーラーによる展開
 
-**一括インストーラー**は、さまざまな環境でNGINXに対する動的モジュールとしてWallarmノードをインストールするプロセスを簡素化し、標準化するために設計されています。このインストーラは、自動的にオペレーティングシステムとNGINXのバージョンを識別し、必要なすべての依存関係をインストールします。
+**オールインワンインストーラー**は、さまざまな環境においてNGINXの動的モジュールとしてWallarmノードをインストールするプロセスを合理化および標準化するために設計されています。このインストーラーは、オペレーティングシステムおよびNGINXのバージョンを自動的に識別し、必要な依存関係をすべてインストールします。
 
-Wallarmが提供する個々のLinuxパッケージ([NGINX](dynamic-module.md)、[NGINX Plus](../nginx-plus.md)、[配布元提供のNGINX](dynamic-module-from-distr.md))と比較して、**一括インストーラー**は次のアクションを自動的に実行することでプロセスを簡素化します:
+**オールインワンインストーラー**は、以下のアクションを自動的に実行することにより、シンプルなノードインストールプロセスを提供します：
 
-1. OSとNGINXのバージョンを確認する
-1. 検出されたOSとNGINXバージョンのためのWallarmリポジトリーを追加する
-1. これらのリポジトリーからWallarmパッケージをインストールする
-1. インストールしたWallarmモジュールをNGINXに接続する
-1. 提供されたトークンを使用して、フィルタリングノードをWallarm Cloudに接続する
+1. OSとNGINXのバージョンを確認します。
+1. 検出されたOSとNGINXのバージョンに対するWallarmリポジトリを追加します。
+1. これらのリポジトリからWallarmパッケージをインストールします。
+1. インストールされたWallarmモジュールをNGINXに接続します。
+1. 提供されたトークンを使用してフィルタリングノードをWallarm Cloudに接続します。
 
-![All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+## 利用ケース
 
-## 要件
+--8<-- "../include/waf/installation/all-in-one/use-cases.md"
 
---8<-- "../include-ja/waf/installation/all-in-one-requirements.md"
+## 必要要件
 
-## ステップ1: NGINXと依存関係のインストール
+--8<-- "../include/waf/installation/all-in-one-requirements-latest.md"
 
---8<-- "../include-ja/waf/installation/all-in-one-nginx.md"
+## ステップ1：NGINXおよび依存関係のインストール
 
-## ステップ2: Wallarmトークンの準備
+--8<-- "../include/waf/installation/all-in-one-nginx.md"
 
---8<-- "../include-ja/waf/installation/all-in-one-token.md"
+## ステップ2：Wallarmトークンの準備
 
-## ステップ3: 一括Wallarmインストーラーのダウンロード
+--8<-- "../include/waf/installation/all-in-one-token.md"
 
---8<-- "../include-ja/waf/installation/all-in-one-installer-download.md"
+## ステップ3：オールインワンWallarmインストーラーのダウンロード
 
-## ステップ4: 一括Wallarmインストーラーの実行
+--8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
---8<-- "../include-ja/waf/installation/all-in-one-installer-run.md"
+## ステップ4：オールインワンWallarmインストーラーの実行
 
-これからのステップのコマンドは、x86_64とARM64のインストールに同じです。
+--8<-- "../include/waf/installation/all-in-one-installer-run.md"
 
-## ステップ5: Wallarmノードがトラフィックを分析するように設定する
+以降の手順におけるコマンドは、x86_64およびARM64インストールに対して同一です。
 
---8<-- "../include-ja/waf/installation/common-steps-to-enable-traffic-analysis.md"
+## ステップ5：Wallarmノードによるトラフィック解析の有効化
 
-## ステップ6: NGINXの再起動
+--8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis-all-in-one.md"
 
---8<-- "../include-ja/waf/installation/restart-nginx-systemctl.md"
+## ステップ6：NGINXの再起動
 
-## ステップ7: トラフィックの送信をWallarmノードに設定する
+--8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
---8<-- "../include-ja/waf/installation/sending-traffic-to-node-inline-oob.md"
+## ステップ7：Wallarmノードへのトラフィック送信の設定
 
-## ステップ8: Wallarmノードの操作をテストする
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+## ステップ8：Wallarmノードの動作テスト
 
-## ステップ9: 展開されたソリューションの調整
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-デフォルト設定で動的Wallarmモジュールがインストールされています。展開後にフィルタリングノードが追加の設定を必要とする場合があります。
+## ステップ9：展開済みソリューションの微調整
 
-Wallarmの設定は、[NGINXのディレクティブ](../../admin-en/configure-parameters-en.md)またはWallarm Console UIを使用して定義されます。次のファイルにディレクティブを設定する必要があります。
+デフォルト設定の動的Wallarmモジュールがインストールされています。デプロイ後、フィルタリングノードには追加の設定が必要な場合があります。
 
-* WallarmノードのマシンにあるNGINX設定の`/etc/nginx/nginx.conf`
-* Wallarmノードの監視設定の`/etc/nginx/wallarm-status.conf`。詳細な説明は [リンク][wallarm-status-instr]でご覧いただけます。
-* Tarantoolから統計を収集する`collectd`プラグインの設定の`/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf`
+Wallarmの設定は[NGINXディレクティブ](../../admin-en/configure-parameters-en.md)またはWallarm Console UIを使用して定義されます。ディレクティブは、Wallarmノードが実行されているマシンの以下のファイルに設定してください：
 
-以下に、必要に応じて適用できる典型的な設定のいくつかを示します:
+* サーバーおよびロケーションレベルの設定用：`/etc/nginx/sites-available/default`
+* httpレベルの設定用：`/etc/nginx/nginx.conf`
+* Wallarmノードの監視設定を含む：`/etc/nginx/wallarm-status.conf` 詳細な説明は[リンク][wallarm-status-instr]をご参照ください。
+* Tarantoolから統計情報を収集する`collectd`プラグインの設定を含む：`/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf`
 
-* [フィルタリングモードの設定][waf-mode-instr]
-* [Wallarmノードのためのリソースの割り当て][memory-instr]
-* [Wallarmノード変数のログ記録][logging-instr]
-* [フィルタリングノードの後背にプロキシサーバのバランサを使用][proxy-balancer-instr]
-* [ディレクティブ`wallarm_process_time_limit`での単一リクエスト処理時間の制限][process-time-limit-instr]
-* [NGINXディレクティブ`proxy_read_timeout`でのサーバ応答待ち時間の制限](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
-* [NGINXディレクティブ`client_max_body_size`での最大リクエストサイズの制限](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
-* [NGINXでの動的DNS解決の設定][dynamic-dns-resolution-nginx]
+以下に、必要に応じて適用できる一般的な設定例を示します：
+
+* [フィルトレーションモードの設定][waf-mode-instr]
+* [Wallarmノードのリソース割り当て][memory-instr]
+* [Wallarmノード変数のロギング][logging-instr]
+* [フィルタリングノード背後のプロキシサーバーのバランサー使用][proxy-balancer-instr]
+* [ディレクティブ`wallarm_process_time_limit`における単一リクエスト処理時間の制限][process-time-limit-instr]
+* [NGINXディレクティブ`proxy_read_timeout`におけるサーバーレスポンス待機時間の制限](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
+* [NGINXディレクティブ`client_max_body_size`における最大リクエストサイズの制限](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
+* [NGINXにおける動的DNS解決の設定][dynamic-dns-resolution-nginx]
 
 ## 起動オプション
 
-一括スクリプトをダウンロードしたら、次のコマンドでヘルプを表示できます:
+--8<-- "../include/waf/installation/all-in-one/launch-options.md"
 
-```
-sudo sh ./wallarm-4.6.12.x86_64-glibc.sh -- -h
-```
+## インストールの再実行
 
-これにより、以下が返されます:
+Wallarmノードのインストールを削除して再び開始する必要がある場合は、以下の手順に従ってください。
 
-```
-...
-Usage: setup.sh [options]... [arguments]... [filtering/postanalytics]
+!!! 警告 "インストールの再実行による影響"
+    インストールの再実行は、実行中のWallarmサービスの停止および削除を伴い、その結果、再インストールまでトラフィックフィルタリングが停止されます。これにより、トラフィックがフィルタリングされずリスクにさらされるため、本番環境や重要なトラフィック環境では十分に注意してください。
 
-OPTION                      DESCRIPTION
--b, --batch                 Batch mode, non-interactive installation.
--t, --token TOKEN           Node token, only used in a batch mode.
--c, --cloud CLOUD           Wallarm Cloud, one of US/EU, default is EU, only used in a batch mode.
--H, --host HOST             Wallarm API address, for example, api.wallarm.com or us1.api.wallarm.com, only used in a batch mode.
--P, --port PORT             Wallarm API pot, for example, 443.
-    --no-ssl                Disable SSL for Wallarm API access.
-    --no-verify             Disable SSL certificates verification.
--f, --force                 If there is a node with the same name, create a new instance.
--h, --help
-    --version
-```
+    既存のノードをアップグレードする場合（例：4.10から5.0へのアップグレード）、[アップグレード手順](../../updating-migrating/all-in-one.md)をご参照ください。
 
-注意点として: 
+1. Wallarmプロセスを終了し、設定ファイルを削除します：
 
-* `--batch` オプションは **バッチ（対話型でない）モード**を有効にします。 このモードでは、追加のパラメーターを使用しない場合、スクリプトの起動後すぐにノードがインストールされ、ユーザーからの追加の対話やデータ入力を必要としません。 バッチモードでは：
- 
-    * `--token`が必要
-    * デフォルトでEUクラウドにノードがインストールされます
-    * 追加のオプションでスクリプトの動作を変更できます
-
-* `filtering/postanalytics` スイッチャーを使用して、postanalyticsモジュールを[別々に](../../admin-en/installation-postanalytics-en.md#postanalytics-module-installation-via-all-in-one-installation-script)インストールできます。 スイッチャーが使用されない場合、フィルタリング部分とpostanalytics部分が一緒にインストールされます。
+    ```
+    sudo systemctl stop wallarm
+    sudo rm -rf /opt/wallarm
+    ```
+1. [ステップ2：Wallarmトークンの準備](#step-2-prepare-wallarm-token)からセットアップ手順に従って、再インストールプロセスを続行します。

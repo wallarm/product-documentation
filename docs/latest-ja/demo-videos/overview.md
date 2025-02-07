@@ -1,32 +1,28 @@
-# Wallarmプラットフォームの設定
+# Wallarmプラットフォーム設定
 
-<!-- ## OWASPトップ10に対するアプリケーションの保護
+<!-- ## Protecting applications against OWASP Top 10
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-**関連するドキュメンテーション記事**
+**Related documentation articles**
 
-* [Wallarmが検出する攻撃とうる脆弱性のリスト](../attacks-vulns-list.md)
-* [Wallarmがアプリケーションの脆弱性をどのように検出するか](../about-wallarm/detecting-vulnerabilities.md)
+* [The list of attacks and vulnerabilities detected by Wallarm](../attacks-vulns-list.md)
+* [How Wallarm detects vulnerabilities in applications](../about-wallarm/detecting-vulnerabilities.md)
 
-## Wallarmコンソールの機能概要
+## Wallarm Console features overview
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/R8v9npJAXSo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-**関連するドキュメンテーション記事**
+**Related documentation articles**
 
-* [Wallarm Consoleセクションのドキュメンテーション](../user-guides/user-intro.md) -->
+* [Documentation for Wallarm Console sections](../user-guides/user-intro.md) -->
 
-デモビデオをご覧いただき、Wallarmコンソールで利用可能な一般的なWallarm設定を探してみてください。例えば、[ユーザー管理](../user-guides/settings/users.md)、ノードの[フィルタリングモード](../admin-en/configure-wallarm-mode.md)の設定、[サブスクリプションプラン](../about-wallarm/subscription-plans.md)の管理、[アプリケーションの設定](../user-guides/settings/applications.md)、[アクティビティログ](../user-guides/settings/audit-log.md)などがあります。
+デモ動画をご覧いただき、Wallarm Console上で利用可能な一般的なWallarmの設定（[ユーザー管理](../user-guides/settings/users.md)、ノード[フィルトレーションモード](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)設定、[サブスクリプションプラン](../about-wallarm/subscription-plans.md)管理、[アプリケーション設定](../user-guides/settings/applications.md)、および[アクティビティログ](../user-guides/settings/audit-log.md)）をご確認いただけます。
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/8kPa1EsQFaQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-
-**関連するドキュメンテーション記事**
-
-* [一般設定](../admin-en/configure-wallarm-mode.md)

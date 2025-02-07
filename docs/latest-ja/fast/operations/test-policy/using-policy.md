@@ -14,25 +14,25 @@
 [link-pol-list-us]:         https://us1.my.wallarm.com/testing/policies/
 
 
-# テストポリシーの使用
+# テストポリシーの利用
 
-テストポリシーはセキュリティテストに[関連付けられ][doc-pol-tr-relations]ています。テストのイテレーションを作成する際、各テストポリシーはFASTノードの振る舞いを定義し指定します。
+テストポリシーはセキュリティテストと[関連][doc-pol-tr-relations]しており、テスト実行を作成する際に各テストポリシーがFASTノードの動作を定義および指定します。
 
-以下の方法でテストポリシーを指定できます。
+テストポリシーの指定方法は以下の通りです:
 
-* インターフェースを使用し、テストが[作成][doc-tr-creation-gui]または[コピー][doc-tr-copying-gui]された場合、**テストポリシー** ドロップダウンリストからポリシーを選択します。
+* インターフェースを使用する場合、テストが[作成][doc-tr-creation-gui]または[コピー][doc-tr-copying-gui]される際に、**Test policy**のドロップダウンリストからポリシーを選択します:
 
-    ![インターフェース経由でテスト送信を作成する際のテストポリシーの選択][img-set-policy-in-gui]
+    ![インターフェース経由でテスト実行作成時にテストポリシーを選択する様子][img-set-policy-in-gui]
 
-* テストポリシーIDを指定します：
-    * APIリクエスト内で、テストがAPIメソッド経由で[作成][doc-tr-creation-api]または[コピー][doc-tr-copying-api]された場合
-    * [`TEST_RUN_POLICY_ID`][doc-tr-pid-envvar] 環境変数内で、[FASTノード][doc-ci-mode]でのテスト管理を行っている場合
+* テストポリシーIDを指定します:
+    * APIメソッドを使用してテストが[作成][doc-tr-creation-api]または[コピー][doc-tr-copying-api]される場合は、APIリクエスト内に指定します
+    * テストを[FAST node][doc-ci-mode]で管理する場合は、[`TEST_RUN_POLICY_ID`][doc-tr-pid-envvar]環境変数に指定します
+        
+    Wallarmアカウントのポリシー一覧にて、[EU cloud][link-pol-list-eu]または[US cloud][link-pol-list-us]のテストポリシーIDを確認できます。
 
-    テストポリシーIDは、[EUクラウド][link-pol-list-eu]または[USクラウド][link-pol-list-us]のWallarmアカウントのポリシー一覧から見つけることができます。
+    ![ポリシーIDの確認][img-get-policy-id]
 
-    ![ポリシーIDの取得][img-get-policy-id]
+!!! info "デフォルトテストポリシー"
+    FASTは自動で**Default Policy**を作成および適用します。このポリシーは、最も一般的に使用されるリクエストポイントをチェックすることでアプリケーションの一般的な脆弱性をテストします。
 
-!!! info "デフォルトのテストポリシー"
-    FASTは自動的に**デフォルトポリシー**を作成し適用します。このポリシーは、最も一般的なリクエストポイントを確認することで、アプリケーションの典型的な脆弱性をテストします。
-
-    デフォルトのテストポリシーの設定は変更することはできないことにご注意ください。
+    なお、デフォルトテストポリシーの設定は変更できません。

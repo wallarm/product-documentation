@@ -1,71 +1,90 @@
-## 前提条件
+## 必要条件
 
 * GCPアカウント
-* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**管理者**ロールと二要素認証が無効になっているアカウントへのアクセス
-* US Wallarm Cloudでの作業の場合は`https://us1.api.wallarm.com:444`への、EU Wallarm Cloudでの作業の場合は`https://api.wallarm.com:444`へのアクセス。プロキシサーバー経由でのみアクセスが可能な場合は、[この手順][wallarm-api-via-proxy]を使用してください。
-* スーパーユーザー（例：`root`）としてWallarmインスタンス上で全てのコマンドを実行すること
+* Wallarm Consoleの[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)で、**Administrator**ロールを持ち二要素認証が無効化されたアカウントへのアクセス
+* US Wallarm Cloudを利用する場合は`https://us1.api.wallarm.com:444`、EU Wallarm Cloudを利用する場合は`https://api.wallarm.com:444`へのアクセス．プロキシサーバー経由のみでアクセスが設定可能な場合は、[instructions][wallarm-api-via-proxy]の指示を使用してください
+* 攻撃検出ルールの更新および[API仕様書][api-spec-enforcement-docs]のダウンロード、さらに[allowlisted, denylisted, or graylisted][ip-lists-docs]の国、地域、またはデータセンターの正確なIPを取得するため、以下のIPアドレスへのアクセス
 
-## 1. フィルタリングノードインスタンスを開始する
+    --8<-- "../include/wallarm-cloud-ips.md"
+* Wallarmインスタンス上で全てのコマンドをスーパーユーザー（例：`root`）として実行すること
 
-### Google Cloud UI経由でインスタンスを開始する
+## 1. フィルタリングノードインスタンスの起動
 
-Google Cloud UI 経由でフィルタリングノードインスタンスを開始するには、[Google Cloud MarketplaceのWallarmノードイメージ](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node)を開き、**LAUNCH**をクリックしてください。
+### Google Cloud UIを使用してインスタンスを起動
 
-事前にフィルタリングノードがインストールされたインスタンスが開始されます。Google Cloudでインスタンスを開始する詳細については、[公式Google Cloud Platformドキュメンテーション][link-launch-instance]をご覧ください。
+Google Cloud UIを使用してフィルタリングノードインスタンスを起動するには、[Google Cloud Marketplace上のWallarm nodeイメージ](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node)を開き、**GET STARTED**をクリックしてください．
 
-### Terraformなどのツールを使用してインスタンスを開始する
+インスタンスはあらかじめフィルタリングノードがインストールされた状態で起動します．Google Cloudにおけるインスタンスの起動方法の詳細については、[公式Google Cloud Platformのドキュメント][link-launch-instance]をご参照ください．
 
-Terraformのようなツールを使用して、Wallarm GCPイメージを使用してフィルタリングノードインスタンスを開始する場合、Terraformの設定にこのイメージの名前を提供する必要があるかもしれません。
+### Terraform等を使用してインスタンスを起動
 
-* イメージ名は以下の形式になります：
+Terraformなどのツールを使用してWallarm GCPイメージを利用しフィルタリングノードインスタンスを起動する場合、Terraform設定にこのイメージの名前を指定する必要があることがあります．
+
+* イメージ名は次のフォーマットです:
 
     ```bash
     wallarm-node-195710/wallarm-node-<IMAGE_VERSION>-build
     ```
-* フィルタリングノードのバージョン4.6でインスタンスを開始する場合は、以下のイメージ名を使用してください：
+* フィルタリングノードバージョン5.xでインスタンスを起動する場合、以下のイメージ名を使用してください:
 
     ```bash
-    wallarm-node-195710/wallarm-node-4-6-20230630-122224
+    wallarm-node-195710/wallarm-node-5-3-20250129-150255
     ```
 
-イメージ名を取得するには、以下の手順に従ってください：
+イメージ名を取得するには、次の手順に従うこともできます:
 
-1. [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)をインストールします。
-2. 以下のパラメータで[`gcloud compute images list`](https://cloud.google.com/sdk/gcloud/reference/compute/images/list)コマンドを実行します：
+1. [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)をインストールします．
+2. 次のパラメータと共に[`gcloud compute images list`](https://cloud.google.com/sdk/gcloud/reference/compute/images/list)コマンドを実行します:
 
     ```bash
-    gcloud compute images list --project wallarm-node-195710 --filter="name~'wallarm-node-4-6-*'" --no-standard-images
+    gcloud compute images list --project wallarm-node-195710 --filter="name~'wallarm-node-5-2-*'" --no-standard-images
     ```
-3. 利用可能な最新のイメージの名前からバージョン値をコピーし、提供されたイメージ名形式に貼り付けます。例えば、フィルタリングノードのバージョン4.6のイメージは以下の名前になります：
+3. 最新の利用可能なイメージの名前からバージョン値をコピーし、そのコピーした値を指定のイメージ名フォーマットに貼り付けます．例えば、フィルタリングノードバージョン4.10のイメージは、次の名前になります:
 
     ```bash
-    wallarm-node-195710/wallarm-node-4-6-20230630-122224
+    wallarm-node-195710/wallarm-node-5-3-20250129-150255
     ```
 
 ## 2. フィルタリングノードインスタンスの設定
 
-開始したフィルタリングノードインスタンスを設定するために、以下の操作を行います：
+起動したフィルタリングノードインスタンスを設定するには、次の手順に従ってください:
 
-1. メニューの**Compute Engine**セクションにある**VMインスタンス**ページに移動します。
-2. 開始したフィルタリングノードインスタンスを選択し、**Edit**ボタンをクリックします。
-3. **Firewalls**設定で対応するチェックボックスをチェックすることにより、必要なタイプの受信トラフィックを許可します。
-4. 必要に応じて、プロジェクトのSSHキーでインスタンスに接続することを制限し、このインスタンスに接続するためにカスタムSSHキーペアを使用することができます。これを行うには、以下の操作を実行します：
-   1. **SSH Keys**設定の**Block project-wide**チェックボックスをチェックします。
-   2. **SSH Keys**設定の**Show and edit**ボタンをクリックして、SSHキーを入力するフィールドを拡張します。
-   3. 公開キーと秘密キーのペアを生成します。例えば、`ssh-keygen`や`PuTTYgen`のようなユーティリティを使用することができます。
+1. メニューの**Compute Engine**セクションにある**VM instances**ページに移動します．
+2. 起動したフィルタリングノードインスタンスを選択し、**Edit**ボタンをクリックします．
+3. **Firewalls**設定内の該当するチェックボックスをオンにすることで、必要な受信トラフィックの種類を許可します．
+4. 必要に応じて、プロジェクトSSHキーを用いた接続を制限し、このインスタンスへの接続にはカスタムSSHキーペアを使用することができます．この操作を行うには、以下の手順に従ってください:
+    1. **SSH Keys**設定で**Block project-wide**チェックボックスにチェックを入れます．
+    2. **SSH Keys**設定内の**Show and edit**ボタンをクリックし、SSHキーを入力するフィールドを展開します．
+    3. 公開SSHキーと秘密SSHキーのペアを生成します．例えば、`ssh-keygen`や`PuTTYgen`ユーティリティを使用できます．
+       
+        ![PuTTYgenを使用したSSHキー生成][img-ssh-key-generation]
 
-        ![PuTTYgenを使用してSSHキーを生成する][img-ssh-key-generation]
+    4. 使用したキージェネレーターのインターフェイスからOpenSSHフォーマットの公開キーをコピーし（本例では、生成された公開キーはPuTTYgenインターフェイスの**Public key for pasting into OpenSSH authorized_keys file**領域からコピーします）、それを**Enter entire key data**ヒントが表示されるフィールドに貼り付けます．
+    5. 秘密キーを保存してください．今後、設定済みインスタンスへの接続に必要となります．
+5. ページ下部の**Save**ボタンをクリックして変更を適用します． 
 
-   4. 使用したキージェネレータのインターフェイスからOpenSSH形式の公開キーをコピー（この例では、生成した公開キーはPuTTYgenインターフェイスの**Public key for pasting into OpenSSH authorized_keys file**エリアからコピーする）し、**Enter entire key data**のヒントが表示されるフィールドに貼り付けます。
-   5. 秘密キーを保存します。これは将来、設定されたインスタンスに接続するために必要となります。
-5. ページの下部にある**Save**ボタンをクリックして変更を適用します。
+## 3. SSHを使用してフィルタリングノードインスタンスに接続
 
-## 3. SSH経由でフィルタリングノードインスタンスに接続する
+インスタンスへの接続方法の詳細情報については、こちらの[リンク](https://cloud.google.com/compute/docs/instances/connecting-to-instance)をご参照ください．
 
-インスタンスへの接続方法の詳細については、[このリンク](https://cloud.google.com/compute/docs/instances/connecting-to-instance)をご覧ください。
+--8<-- "../include/gcp-autoscaling-connect-ssh.md"
 
---8<-- "../include-ja/gcp-autoscaling-connect-ssh.md"
+## 4. インスタンスをWallarm Cloudに接続するためのトークンを生成
 
-## 4. フィルタリングノードをWallarm Cloudに接続する
+ローカルのWallarmフィルタリングノードは、[適切なタイプ][wallarm-token-types]のWallarmトークンを使用してWallarm Cloudに接続する必要があります．APIトークンを使用するとWallarm Console UI内でノードグループを作成でき、ノードインスタンスを効果的に整理するのに役立ちます．
 
---8<-- "../include-ja/waf/installation/connect-waf-and-cloud-4.6-only-with-postanalytics.md"
+![グループ化されたノード][img-grouped-nodes]
+
+以下の手順でトークンを生成してください:
+
+=== "APIトークン"
+
+    1. Wallarm Console → **Settings** → **API tokens**ページを[US Cloud](https://us1.my.wallarm.com/settings/api-tokens)または[EU Cloud](https://my.wallarm.com/settings/api-tokens)で開きます．
+    1. `Deploy`ソースロールを持つAPIトークンを探すか作成します．
+    1. このトークンをコピーします．
+=== "ノードトークン"
+
+    1. Wallarm Console → **Nodes**ページを[US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)で開きます．
+    1. 以下のいずれかの操作を行います: 
+        * **Wallarm node**タイプのノードを作成し、生成されたトークンをコピーします．
+        * 既存のノードグループを使用する場合は、ノードのメニューの**Copy token**からトークンをコピーします．

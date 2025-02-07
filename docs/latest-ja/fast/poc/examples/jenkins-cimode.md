@@ -1,28 +1,18 @@
-[jenkins-config-pipeline]:      https://jenkins.io/doc/book/pipeline
-[fast-node-token]:              ../../operations/create-node.md
-[jenkins-parameterized-build]:  https://wiki.jenkins.io/display/JENKINS/Parameterized+Build
-[jenkins-example-env-var]:     ../../../images/fast/poc/common/examples/jenkins-cimode/jenkins-add-token-example.png
-[fast-example-jenkins-result]:  ../../../images/fast/poc/common/examples/jenkins-cimode/jenkins-result-example.png
-[fast-ci-mode-record]:          ../ci-mode-recording.md#environment-variables-in-recording-mode
-[fast-ci-mode-test]:            ../ci-mode-testing.md#environment-variables-in-testing-mode
-[mail-to-us]:                   mailto:support@wallarm.com
-[fast-examples-github]:         https://github.com/wallarm/fast-examples 
+# JenkinsとのFAST統合
 
-# FASTとJenkinsの統合
+CIモードでのFASTのJenkinsワークフローへの統合は、`Jenkinsfile`ファイルを通じて設定されます。Jenkinsのワークフロー設定の詳細については、[Jenkins公式ドキュメント][jenkins-config-pipeline]をご参照ください。
 
-FASTのCIモードをJenkinsワークフローに統合する設定は `Jenkinsfile` ファイルで行います。 Jenkinsワークフロー設定の詳細については、[Jenkinsの公式ドキュメンテーション][jenkins-config-pipeline]を参照してください。
+## FASTノードトークンの引き渡し
 
-## FASTノードトークンの受け渡し
+安全に[FASTノードトークン][fast-node-token]を使用するため、プロジェクト設定内の[環境変数][jenkins-parameterized-build]でその値を渡してください。
 
-[FASTノードトークン][fast-node-token]を安全に使用するためには、[プロジェクト設定の環境変数][jenkins-parameterized-build]でその値を渡してください。
+![Jenkins環境変数の渡し方][jenkins-example-env-var]
 
-![Jenkins環境変数の受け渡し][jenkins-example-env-var]
+--8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/configured-workflow.md"
+## リクエスト記録ステップの追加
 
-## リクエスト録画のステップを追加する
-
---8<-- "../include-ja/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
 ??? info "記録モードでFASTノードを実行する自動テストステップの例"
     ```
@@ -39,18 +29,18 @@ FASTのCIモードをJenkinsワークフローに統合する設定は `Jenkinsf
        }
     ```
 
-    この例には以下のステップが含まれています：
+例として、以下のステップが含まれます:
 
-    1. Dockerネットワーク `my-network` を作成します。
-    2. ネットワーク `my-network` 上で記録モードのFASTノードを実行します。
-    3. ネットワーク `my-network` 上でFASTノードをプロキシとして使用する自動テストツールのSeleniumを実行します。
-    4. テストアプリケーションと自動テストを実行します。
-    5. SeleniumとFASTノードを停止します。
-    6. `my-network` ネットワークを削除します。
+1. Dockerネットワーク「my-network」を作成します.
+2. `my-network`ネットワーク上で記録モードのFASTノードを実行します.
+3. プロキシとしてFASTノードを利用する自動テスト用ツールSeleniumを`my-network`ネットワーク上で実行します.
+4. テストアプリケーションと自動テストを実行します.
+5. SeleniumとFASTノードを停止します.
+6. `my-network`ネットワークを削除します.
 
-## セキュリティテストのステップを追加する
+## セキュリティテストステップの追加
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/security-testing-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
 ??? info "セキュリティテストステップの例"
 
@@ -66,23 +56,23 @@ FASTのCIモードをJenkinsワークフローに統合する設定は `Jenkinsf
        }
     ```
 
-    この例には以下のステップが含まれています：
+例として、以下のステップが含まれます:
 
-    1. Dockerネットワーク `my-network` を作成します。
-    2. `my-network` ネットワーク上でテストアプリケーションを実行します。
-    3. ネットワーク `my-network` 上でテストモードのFASTノードを実行します。 `TEST_RECORD_ID` 変数は省略されています。というのも、基準リクエストのセットは現在のパイプラインで作成され、最後に記録されたものだからです。テストが終了したらFASTノードは自動的に停止します。
-    4. テストアプリケーションを停止します。
-    5. `my-network` ネットワークを削除します。
+1. Dockerネットワーク「my-network」を作成します.
+2. `my-network`ネットワーク上でテストアプリケーションを実行します.
+3. `my-network`ネットワーク上でテストモードのFASTノードを実行します。既知のリクエストセットは現在のパイプラインで作成された最新の記録であるため、`TEST_RECORD_ID`変数は省略されています。テストが完了すると、FASTノードは自動的に停止されます.
+4. テストアプリケーションを停止します.
+5. `my-network`ネットワークを削除します.
 
-## テストの結果を取得する
+## テスト結果の確認
 
-セキュリティテストの結果はJenkinsのインターフェースに表示されます。
+セキュリティテストの結果はJenkinsインターフェースに表示されます.
 
-![テストモードでFASTノードを実行する結果][fast-example-jenkins-result]
+![テストモードで実行したFASTノードの結果][fast-example-jenkins-result]
 
-## 他の例
+## その他の例
 
-FASTをJenkinsワークフローに統合する例は、私たちの [GitHub][fast-examples-github]で見つけることができます。
+我々の[GitHub][fast-examples-github]でJenkinsワークフローへのFAST統合の例を見つけることができます.
 
-!!! info "その他の質問"
-    FASTの統合に関する質問がある場合は、[こちらからお問い合わせください][mail-to-us]。
+!!! info "さらなる質問"
+    FAST統合に関してご質問がございましたら、ぜひ[お問い合わせください][mail-to-us].

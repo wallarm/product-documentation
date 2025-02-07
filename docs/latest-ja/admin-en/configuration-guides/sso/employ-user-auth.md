@@ -1,4 +1,4 @@
-#   ユーザーのためのSSO認証設定
+# ユーザー向けSSO認証の設定
 
 [img-enable-sso-for-user]:  ../../../images/admin-guides/configuration-guides/sso/enable-sso-for-user.png
 [img-disable-sso-for-user]: ../../../images/admin-guides/configuration-guides/sso/disable-sso-for-user.png
@@ -12,70 +12,70 @@
 [anchor-enable]:            #enabling-sso-authentication-for-users 
 [anchor-disable]:           #disabling-sso-authentication-for-users      
 
-Wallarmポータルのユーザーに対して、SSO認証を[有効化][anchor-enable]あるいは[無効化][anchor-disable]することができます。
+ユーザー向けWallarmポータルのSSO認証は、[有効にする][anchor-enable]または[無効にする][anchor-disable]ことができます。
 
-##   ユーザーのためのSSO認証を有効にする
+## ユーザー向けSSO認証の有効化
 
 !!! warning
-    *   ユーザーのためのSSO認証を有効にすると、ログイン/パスワードによるログイン方法や二要素認証が利用できなくなります。SSO認証が有効になると、ユーザーのパスワードが消去され、二要素認証が無効になります。
-    *   [Okta][doc-allow-access-okta]や[G Suite][doc-allow-access-gsuite]側にて設定したWallarmアプリケーションへのアクセスを、必要なユーザーグループに既に許可していることが前提となります。
+    *   ユーザー向けSSO認証を有効にすると、login/passwordログイン機構および二要素認証が使用できなくなります。SSO認証が有効な場合、ユーザーのパスワードは削除され、二要素認証は無効になります。
+    *   既に[Okta][doc-allow-access-okta]または[G Suite][doc-allow-access-gsuite]側で構成されたWallarmアプリケーションへのアクセス権を目的のユーザーグループに付与済みであるものとします。
 
-WallarmユーザーのためのSSO認証を有効にするには：
+Wallarmユーザー向けにSSO認証を有効にするには:
 
-1. **設定** → **ユーザー**へ移動します。
-1. ユーザーメニューから、**SSOログインを有効化**を選択します。
+1. **Settings** → **Users** に移動してください。
+1. ユーザーメニューから **Enable SSO login** を選択してください。
 
-![WallarmユーザーのためのSSOを有効にする][img-enable-sso-for-user]
+![Enabling SSO for Wallarm user][img-enable-sso-for-user]
 
-ポップアップウィンドウでは、ユーザーにSSO認証が有効になった旨の通知を送るよう求められます。必要であれば**通知を送る**ボタンをクリックします。通知が不要であれば、**キャンセル**をクリックします。
+ポップアップウィンドウが表示され、ユーザーにSSO認証が有効になった旨を通知するかどうかを確認します。**Send notification**ボタンをクリックしてください。通知が不要な場合は**Cancel**をクリックしてください。
 
-その後、ユーザーはIDプロバイダを通じて[認証する][doc-user-sso-guide]ことができます。
+その後、ユーザーはアイデンティティプロバイダーを通じて[認証を行えます][doc-user-sso-guide].
 
-[Strict SSO](#strict-sso-mode)モードを使用して、全ての企業アカウントユーザーに対してSSOを有効にすることも可能です。
+なお、[厳格SSOモード](#strict-sso-mode)を使用すると、企業アカウントのすべてのユーザーに対してSSOを有効にすることもできます。
 
-##  ユーザーのためのSSO認証を無効にする
+## ユーザー向けSSO認証の無効化
 
-WallarmユーザーのためのSSO認証を無効にするには：
+Wallarmユーザー向けにSSO認証を無効にするには:
 
-1. **設定** → **ユーザー**へ移動します。
-1. ユーザーメニューから、**SSOを無効化**を選択します。
+1. **Settings** → **Users** に移動してください。
+1. ユーザーメニューから **Disable SSO** を選択してください。
 
-![WallarmユーザーのためのSSOを無効にする][img-disable-sso-for-user]
+![Disabling SSO for Wallarm user][img-disable-sso-for-user]
 
-その後、ユーザーにはメールでSSOを使用したログインが無効化された旨が通知され、ログイン/パスワード組み合わせでのログインに復旧するためのリンクが案内されます。また、ユーザーは二要素認証を利用できるようになります。
+その後、ユーザーにはSSOを使用したログインが無効になった旨のメールが通知され、パスワードを復元してlogin/passwordペアでログインするための提案（リンク）が表示されます。さらに、二要素認証が再び利用可能となります。
 
 ## SSOとAPI認証
 
-ユーザーに対してSSOが有効化されると、そのユーザーは[Wallarm APIへのリクエスト](../../../api/overview.md#your-own-client)での認証が利用できなくなります。APIの認証情報を取得するためには、次の2つの選択肢があります：
+ユーザー向けにSSOが有効な場合、そのユーザーに対して[Wallarm APIへのリクエスト](../../../api/overview.md#your-own-api-client)の認証が使用できなくなります。API認証情報を取得するには、次の2つのオプションがあります: 
 
- * **strict SSO**モードが利用されていない場合、企業アカウント下にSSOのオプション無しでユーザーを作成し、[APIトークン](../../../api/overview.md#your-own-client)を生成してください。
- * **strict SSO**モードが利用されている場合、**管理者**ロールのSSOユーザーに対してAPI認証を有効にすることができます。これには、ユーザーメニューから**APIアクセスを有効にする**を選択します。`SSO+API`認証方法がユーザーに対して有効になり、APIトークンの生成が可能になります。
+* **厳格SSOモード**が使用されていない場合、企業アカウントの下でSSOオプションを使用しないユーザーを作成し、[APIトークン(s)](../../../api/overview.md#your-own-api-client)を作成してください。
+* **厳格SSOモード**が使用されている場合、**Administrator**ロールのSSOユーザーに対してAPI認証を有効にできます。これを行うには、該当ユーザーメニューから **Enable API access** を選択してください。これにより、`SSO+API`認証方式が有効になり、APIトークンの作成が可能となります。
 
-    その後、ユーザーメニューから**APIアクセスを無効にする**を選択し、API認証を無効にすることもできます。これを行うと、既に存在するすべてのAPIトークンが削除され、1週間後には全て削除されます。
+後で、**Disable API access** を選択することで当該ユーザーに対するAPI認証を無効にできます。これを行うと、すべての既存のAPIトークンが削除され、1週間後に完全に削除されます。
 
-## Strict SSOモード
+## 厳格SSOモード
 
-Wallarmは**Strict SSO**モードをサポートしており、これは通常のSSOとは異なり、全ての企業アカウントユーザーに対して一度にSSO認証を有効にします。Strict SSOモードの特徴は以下の通りです：
+Wallarmは、通常のSSOと異なり企業アカウントのすべてのユーザーに対して一括でSSO認証を有効にする**厳格SSOモード**をサポートしています。厳格SSOモードのその他の特徴は以下のとおりです:
 
-* アカウントの既存ユーザー全員の認証方法がSSOに切り替えられます。
-* 新たに作成される全てのユーザーデフォルトの認証方法としてSSOが割り当てられます。
-* どのユーザーに対しても認証方法をSSO以外に切り替えることはできません。
+* 既存のすべてのアカウントユーザーの認証方式がSSOに切り替わります。
+* 新規のすべてのユーザーはデフォルトでSSOを認証方式として使用します。
+* どのユーザーに対しても認証方式をSSO以外に切り替えることはできません。
 
-Strict SSOモードを有効化あるいは無効化するには、[Wallarmサポートチーム](mailto:support@wallarm.com)に問い合わせてください。
+厳格SSOモードの有効化または無効化については、[Wallarmサポートチーム](mailto:support@wallarm.com)にご連絡ください。
 
-!!! info "strict SSOを有効にする際のアクティブセッションの扱い"
-    Strict SSOモードに切り替える際に企業アカウントにサインインしているユーザーがいる場合、これらのセッションはアクティブなままドラドラします。サインアウト後、ユーザーはSSOを使用するように求められます。
+!!! info "厳格SSO有効化時のアクティブセッションの取り扱い"
+    企業アカウントが厳格SSOモードに切り替えられた時点でサインイン中のユーザーがいる場合、そのセッションは引き続き有効です。サインアウト後、ユーザーにはSSOの使用が求められます.
 
 ## SSO認証のトラブルシューティング
 
-ユーザーがSSOを通じてサインインできない場合、エラーメッセージが表示され、それには下表に説明されている各エラーコードのいずれかが表示されます。ほとんどの場合、企業アカウントの管理者がこれらのエラーを修復することができます：
+ユーザーがSSO経由でサインインできない場合、以下の表に記載のエラーコードのいずれかと共にエラーメッセージが表示されます。ほとんどのケースでは、企業アカウントの管理者がこれらのエラーを修正できます:
 
 | エラーコード | 説明 | 修正方法 |
 |--|--|--|
-| `saml_auth_not_found + userid` | SSOがユーザーに対して有効化されていません。 |  上記のセクションで説明したように、SSOを有効にします。 |
-| `saml_auth_not_found + clientid` | クライアントは**インテグレーション**セクションにSSO連携を持っていません。 | [SAML SSOとの連携](intro.md)のドキュメント内説明に従って操作してください。 |
-| `invalid_saml_response` または `no_mail_in_saml_response` | SSOプロバイダから予期しない応答がありました。SSO連携の設定に誤りがある可能性があります。 | 下記のいずれかを行ってください：<br><ul><li>Wallarmコンソールの**インテグレーション**セクションで設定されたSSO連携に誤りがないことを確認します。</li><li>SSOプロバイダーサイドでの設定に誤りがないことを確認します。</li></ul> |
-| `user_not_found` | Wallarmは指定されたメールアドレスのユーザーを見つけることができませんでした。 | このメールアドレスのユーザーをWallarm Consoleにて作成します。 |
-| `client_not_found` | Wallarmは企業アカウントを見つけることができませんでした。 | 適切なメールドメインを持つユーザーアカウントを作成します。これにより、企業アカウントが同時に作成されます。 |
+| `saml_auth_not_found + userid` | ユーザーはSSOが有効になっていません。 | 上記の[ユーザー向けSSO認証の有効化](#enabling-sso-authentication-for-users)に記載の手順でSSOを有効にしてください。 |
+| `saml_auth_not_found + clientid` | クライアントは**Integrations**セクションにSSO統合が存在しません。 | [SAML SSOとの統合](intro.md)のドキュメントの指示に従って、Wallarm Consoleの**Integrations**セクションでSSO統合を構成してください。 |
+| `invalid_saml_response` または `no_mail_in_saml_response` | SSOプロバイダーから予期しないレスポンスが返されました。これはSSO統合の設定ミスの兆候である可能性があります。 | 次のいずれかを実施してください:<br><ul><li>Wallarm Consoleの**Integrations**セクションで構成されたSSO統合に誤りがないことを確認してください。</li><li>SSOプロバイダー側の設定に誤りがないことを確認してください。</li></ul> |
+| `user_not_found` | Wallarmは指定されたメールアドレスのユーザーを見つけられませんでした。 | このメールアドレスのユーザーをWallarm Consoleで作成してください。 |
+| `client_not_found` | 企業アカウントがWallarmに見つかりませんでした。 | 適切なメールドメインを持つユーザーアカウントを作成すると、企業アカウントが直ちに作成されます。 |
 
- 必要に応じて、管理者はこれらのエラーの修正を手伝ってもらうために、[Wallarmサポートチーム](mailto:support@wallarm.com)に問い合わせることができます。
+必要に応じて、管理者はこれらのエラーの修正について[Wallarmサポートチーム](mailto:support@wallarm.com)に問い合わせることができます。

@@ -1,4 +1,4 @@
-					=== "DEBベースのディストリビューション"
+=== "DEBベースのディストリビューション"
     ```bash
     /etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
     ```
