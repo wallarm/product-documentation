@@ -1,8 +1,8 @@
-					=== "Ubuntu 14.04"
+=== "Ubuntu 14.04"
     ```bash
     sudo service zabbix-agent restart
     ```
-=== "その他のサポート対象ディストリビューション"
+=== "その他のサポートされているディストリビューション"
     ```bash
     sudo systemctl restart zabbix-agent
     ```

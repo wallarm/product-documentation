@@ -1,3 +1,4 @@
+```markdown
 [wallarm-status-instr]:             ../admin-en/configure-statistics-service.md
 [memory-instr]:                     ../admin-en/configuration-guides/allocate-memory-for-waf-node.md
 [waf-directives-instr]:             ../admin-en/configure-parameters-en.md
@@ -6,75 +7,72 @@
 [nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                     ../user-guides/ip-lists/graylist.md
+[graylist-docs]:                     ../user-guides/ip-lists/overview.md
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
+[ip-lists-docs]:                     ../user-guides/ip-lists/overview.md
 
 # クラウドノードイメージのアップグレード
 
-この手順はAWSまたはGCPでデプロイされたクラウドノードイメージ4.xを4.6までアップグレードする手順を説明します。
+以下の手順は、AWSまたはGCPに展開された4.xのクラウドノードイメージを5.0までアップグレードする手順を説明しています。
 
-エンド・オブ・ライフノード（3.6以下）をアップグレードする場合は、[別の手順](older-versions/cloud-image.md)を使用してください。
+エンドオブライフノード（3.6以下）のアップグレードについては、[こちらの手順](older-versions/cloud-image.md)をご参照ください。
 
-## 要件
+## 必要条件
 
---8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
-## ステップ1：フィルタリングノード4.6を含む新しいインスタンスを起動する
+## 手順1: フィルタリングノード5.0で新しいインスタンスを起動する
 
-1. クラウドプラットフォームマーケットプレイスでWallarmフィルタリングノードイメージを開き、イメージの起動に進みます：
-    * [Amazon Marketplace](https://aws.amazon.com/marketplace/pp/B073VRFXSD)
-    * [GCP Marketplace](https://console.cloud.google.com/marketplace/details/wallarm-node-195710/wallarm-node)
-2. ランチステップで、以下の設定を行います：
+1. クラウドプラットフォームのマーケットプレイスでWallarmフィルタリングノードイメージを開き、イメージの起動を進めます:
+      * [Amazon Marketplace](https://aws.amazon.com/marketplace/pp/B073VRFXSD)
+      * [GCP Marketplace](https://console.cloud.google.com/marketplace/details/wallarm-node-195710/wallarm-node)
+2. 起動手順では、次の設定を行います:
 
-    * イメージバージョン `4.6.x`を選択します
-    * AWSの場合は、フィールド **セキュリティグループ設定**で[作成したセキュリティグループ](../installation/cloud-platforms/aws/ami.md#2-create-a-security-group)を選択します
-    * AWSの場合は、フィールド **キーペア設定**で[作成したキーペアの名前](../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys)を選択します
+      * イメージバージョンとして `5.x.x` を選択します
+      * AWSの場合、**Security Group Settings**欄に[作成済みのセキュリティグループ](../installation/cloud-platforms/aws/ami.md#2-create-a-security-group)を選択します
+      * AWSの場合、**Key Pair Settings**欄に[作成済みのキーペア](../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys-in-aws)の名前を選択します
 3. インスタンスの起動を確認します。
-4. GCPの場合は、[指示](../installation/cloud-platforms/gcp/machine-image.md#2-configure-the-filtering-node-instance)に従ってインスタンスを設定します。
+4. GCPの場合、[こちらの手順](../installation/cloud-platforms/gcp/machine-image.md#2-configure-the-filtering-node-instance)に従いインスタンスを構成します。
 
-## ステップ2：フィルタリングノードをWallarm Cloudに接続する
+## 手順2: Wallarm Cloudにフィルタリングノードを接続する
 
-1. SSHを通じてフィルタリングノードインスタンスに接続します。インスタンスへの接続に関する詳細な手順は、クラウドプラットフォームのドキュメンテーションで利用できます：
-    * [AWSドキュメンテーション](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
-    * [GCPドキュメンテーション](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
-2. 新たにWallarmノードを作成し、生成されたトークンを使用してそのノードをWallarm Cloudに接続します。詳細な手順はクラウドプラットフォームの指示にあります：
-    * [AWS](../installation/cloud-platforms/aws/ami.md#5-connect-the-filtering-node-to-the-wallarm-cloud)
-    * [GCP](../installation/cloud-platforms/gcp/machine-image.md#4-connect-the-filtering-node-to-the-wallarm-cloud)
+1. SSHを使用してフィルタリングノードインスタンスに接続します。インスタンスへの接続に関する詳細な手順は、各クラウドプラットフォームのドキュメントに記載されています:
+      * [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
+      * [GCP documentation](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
+2. 新しいWallarmノードを作成し、生成されたトークンを使用してWallarm Cloudに接続します。各クラウドプラットフォームの指示に従ってください:
+      * [AWS](../installation/cloud-platforms/aws/ami.md#6-connect-the-instance-to-the-wallarm-cloud)
+      * [GCP](../installation/cloud-platforms/gcp/machine-image.md#5-connect-the-instance-to-the-wallarm-cloud)
 
-## ステップ3：フィルタリングノードの設定を前のバージョンから新しいバージョンにコピーする
+## 手順3: 既存バージョンから新バージョンへフィルタリングノードの設定をコピーする
 
-1. 以下の前のWallarmノードバージョンの設定ファイルからフィルタリングノード4.6のファイルへ、処理とプロキシリクエストの設定をコピーします：
+前のWallarmノードバージョンの以下の設定ファイルから、フィルタリングノード5.0のファイルへリクエストの処理およびプロキシ設定をコピーしてください:
 
-     * `/etc/nginx/nginx.conf`およびその他のNGINX設定ファイル
-     * `/etc/nginx/conf.d/wallarm.conf`フィルタリングノードのグローバル設定
-     * `/etc/nginx/conf.d/wallarm-status.conf`フィルタリングノード監視サービスの設定
-     * `/etc/environment`環境変数
-     * `/etc/default/wallarm-tarantool` Tarantool設定
-     * 処理とプロキシリクエストのカスタム設定が含まれるその他のファイル
-1. `&/usr/share/nginx/html/wallarm_blocked.html`ページがブロックされたリクエストに返される場合は、その[新しいバージョンをコピーし、カスタマイズ](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)します。
+* `/etc/nginx/nginx.conf` およびその他のNGINX設定ファイル
+* フィルタリングノードの監視サービス設定が記載された `/etc/nginx/conf.d/wallarm-status.conf`
+* 環境変数が記載された `/etc/environment`
+* リクエスト処理およびプロキシに関するその他のカスタム設定ファイル
 
-    新しいノードバージョンでは、Wallarmのサンプルブロッキングページが[変更](what-is-new.md#new-blocking-page)されました。ページ上のロゴとサポートメールはデフォルトで空になっています。
+NGINX設定ファイルの取り扱いに関する詳細は、[公式NGINXドキュメント](https://nginx.org/docs/beginners_guide.html)をご確認ください。
 
-NGINX設定ファイルの取り扱いに関する詳細な情報は、[公式NGINXドキュメンテーション](https://nginx.org/docs/beginners_guide.html)で利用できます。
+フィルタリングノードディレクティブの一覧は[こちら](../admin-en/configure-parameters-en.md)からご確認いただけます。
 
-フィルタリングノードディレクティブのリストは[こちら](../admin-en/configure-parameters-en.md)で確認できます。
+## 手順4: NGINXを再起動する
 
-## ステップ4：NGINXを再起動する
-
-設定を適用するために、NGINXを再起動します：
+設定を反映するためにNGINXを再起動します:
 
 ```bash
 sudo systemctl restart nginx
 ```
 
-## ステップ5：Wallarmノードの動作をテストする
+## 手順5: Wallarmノードの動作をテストする
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## ステップ6：AWSまたはGCPでフィルタリングノード4.6に基づく仮想マシンイメージを作成する
+## 手順6: AWSまたはGCPでフィルタリングノード5.0を基に仮想マシンイメージを作成する
 
-フィルタリングノード4.6に基づく仮想マシンイメージを作成するには、[AWS](../admin-en/installation-guides/amazon-cloud/create-image.md)または[GCP](../admin-en/installation-guides/google-cloud/create-image.md)の指示に従ってください。
+フィルタリングノード5.0を基に仮想マシンイメージを作成するには、[AWS](../admin-en/installation-guides/amazon-cloud/create-image.md)または[GCP](../admin-en/installation-guides/google-cloud/create-image.md)の手順に従ってください。
 
-## ステップ7：前のWallarmノードインスタンスを削除する
+## 手順7: 以前のWallarmノードインスタンスを削除する
 
-新しいフィルタリングノードのバージョンが正常に設定され、テストされている場合、AWSまたはGCP管理コンソールを使用して、前のフィルタリングノードバージョンのインスタンスおよび仮想マシンイメージを削除します。
+新しいバージョンのフィルタリングノードが正常に構成およびテストされた場合、AWSまたはGCPの管理コンソールを使用して、以前のバージョンのフィルタリングノードを搭載したインスタンスおよび仮想マシンイメージを削除してください。
+```

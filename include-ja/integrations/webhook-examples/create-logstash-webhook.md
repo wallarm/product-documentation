@@ -1,4 +1,4 @@
-* Webフックは `https://logstash.example.domain.com` へ送信されます
-* WebフックはPOSTリクエストを介して送信されます
-* Webhookの統合は、デフォルトの高度な設定を持っています
-* Webhook URLsへ送信されるWebフックには、すべての利用可能なイベントが含まれます: ヒット、システムイベント、脆弱性、スコープの変更
+* Webhookは`https://logstash.example.domain.com`へ送信されます  
+* WebhookはPOSTリクエストで送信されます  
+* Webhook統合はデフォルトの高度な設定を持っています  
+* Webhook URLへ送信されるWebhookは利用可能なすべてのイベントです: hits, system events, vulnerabilities, scope changes

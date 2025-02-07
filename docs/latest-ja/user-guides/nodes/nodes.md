@@ -1,118 +1,117 @@
-# Wallarm ノード
+# Wallarmノード
 
-Wallarm Console UIの**ノード**セクションでは、**Wallarm ノード**と[**CDN ノード**](cdn-node.md)タイプのノードを管理することができます。この記事では、Wallarm ノードについて説明します。
+Wallarm Console UIの**Nodes**セクションでは、セルフホスト型ノードインスタンスを管理できます。
 
-Wallarm ノードモジュールは、Wallarmが悪意のあるトラフィックを軽減するために、顧客の環境にデプロイされるべきです。Wallarm ノードは、悪意のあるリクエストを軽減し、正当なリクエストを保護されたリソースに転送するプロキシとして動作します。
+Wallarmノードモジュールは、悪意あるトラフィックを軽減するために顧客環境に展開する必要があります。Wallarmノードは、悪意あるリクエストを軽減し、正当なリクエストを保護対象リソースへ転送するプロキシとして動作します。
 
-Wallarm ノードUI管理オプション：
+WallarmノードUIの管理オプション:
 
 * 新しいノードの作成
 * インストール済みノードのプロパティとメトリクスの表示
 * ノードトークンの再生成
 * ノードの名前変更
 * ノードの削除
-<!--* 選択したノードによって検出された攻撃の表示 (**イベント**セクションにて）-->
 
-![ノード](../../images/user-guides/nodes/table-nodes.png)
+![Nodes](../../images/user-guides/nodes/table-nodes.png)
 
 !!! info "管理者アクセス"
-    Wallarmノード/トークンの作成、削除、再生成は、**管理者**または**グローバル管理者**ロールを持つユーザーだけが使用できます。インストール済みノードの詳細は全てのユーザーが閲覧可能です。
+    Wallarmノード/トークンの作成、削除、再生成は**Administrator**または**Global Administrator**ロールを持つユーザーのみが利用できます。インストール済みノードの詳細表示は、全てのユーザーが利用可能です。
 
-!!! warning "定期的およびクラウドタイプのノードの削除"
-    リリース4.6から、[**Wallarm ノード** タイプだけが利用可能](../../updating-migrating/what-is-new.md#removal-of-the-email-password-based-node-registration)となります。
-
-    **Wallarm ノード**は、[任意のサポートされる環境](../../installation/supported-deployment-options.md)の登録と設定に統一的なアプローチを利用します。
+!!! warning "通常型およびクラウド型ノードの削除"
+    リリース4.6以降、[**Wallarm node**タイプのみが利用可能です](../../updating-migrating/older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-api-tokens)。
+    
+    **Wallarm node**は[任意の対応環境](../../installation/supported-deployment-options.md)での登録および構成について統一的なアプローチを採用します。
 
 ## ノードの作成
 
-[適切なトークン](#api-and-node-tokens-for-node-creation)を使用して Wallarm ノードを作成する：
+[適切なトークン](#api-and-node-tokens-for-node-creation)を使用してWallarmノードを作成するには:
 
-=== "APIトークンを使用する場合"
+=== "With API token"
 
-    1. Wallarmコンソール → **設定** → **APIトークン** を[US Cloud](https://us1.my.wallarm.com/settings/api-tokens)または[EU Cloud](https://my.wallarm.com/settings/api-tokens)で開く。
-    1. `Deploy` ソースロールを持つAPIトークンを探すか作成する。
-    1. このトークンをコピーする。
-    1. APIトークンを使用して、新しいノードを[利便性のある環境](../../installation/supported-deployment-options.md)にデプロイします。ノードを登録すると、自動的にWallarmコンソールの **ノード** セクションに表示されます。
+    1. [US Cloud](https://us1.my.wallarm.com/settings/api-tokens)または[EU Cloud](https://my.wallarm.com/settings/api-tokens)でWallarm Console → **Settings** → **API tokens**を開きます。
+    1. `Deploy`ソースロールを持つAPIトークンを探すか作成します。
+    1. 該当トークンをコピーします。
+    1. あなたのAPIトークンを使用して[対応環境](../../installation/supported-deployment-options.md)に新しいノードを展開します。ノードの登録後、Wallarm Consoleの**Nodes**セクションに自動的に表示されます。
 
-=== "ノードトークンを使用する場合"
+=== "With node token"
 
-    1. Wallarmコンソール → **ノード** を[US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)で開き、**Wallarm ノード**タイプのノードを作成します。
-   
-        ![Wallarm ノード作成](../../images/user-guides/nodes/create-cloud-node.png)
+    1. [US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)でWallarm Console → **Nodes**を開き、**Wallarm node**タイプのノードを作成します。
+
+        ![Wallarm node作成](../../images/user-guides/nodes/create-cloud-node.png)
     
     1. 生成されたトークンをコピーします。
-    1. ノードトークンを使用して、新しいノードを[利便性のある環境](../../installation/supported-deployment-options.md)にデプロイします。
+    1. あなたのノードトークンを使用して[対応環境](../../installation/supported-deployment-options.md)に新しいノードを展開します。
 
 !!! info "マルチテナントオプション"
-    **マルチテナント**オプションでは、Wallarmを使用して、複数の独立した企業インフラストラクチャや孤立した環境を同時に保護することが可能です。[詳しくはこちら](../../installation/multi-tenant/overview.md)
+    **multi-tenant**オプションを利用すると、Wallarmを使用して複数の独立した企業インフラまたは隔離された環境を同時に保護できます。[詳細はこちら](../../installation/multi-tenant/overview.md)
 
-    === "APIトークンインストール"
+    === "API token installation"
 
-        既存のノードのメニューから、ノードをマルチテナントモードに切り替えることができます。
+        インストール後、既存ノードのメニューからノードをマルチテナントモードに切り替えることができます。
 
-    === "ノードトークンインストール"
+    === "Node token installation"
     
-        作成中または既存のノードのメニューから、ノードをマルチテナントモードに切り替えることができます。
+        ノード作成時または既存ノードのメニューからノードをマルチテナントモードに切り替えることができます。
 
-## ノードの詳細の表示
+## ノードの詳細表示
 
-インストールされたフィルタリングノードの詳細は、各フィルタリングノードのテーブルとカードに表示されます。カードを開くには、適当なテーブルのレコードをクリックします。
+インストール済みフィルタリングノードの詳細は、各フィルタリングノードのテーブルおよびカードに表示されます。カードを開くには、該当するテーブルのレコードをクリックします。
 
-以下のノードのプロパティとメトリクスが利用可能です：
+利用可能なノードプロパティとメトリクスは次の通りです:
 
-* ノードの作成時にノードに与えられた名前
-* 秒あたりのリクエストの平均数（RPS）
+* ノード作成時に付与されたノード名
+* 1秒あたりの平均リクエスト数(RPS)
 * ノードのIPアドレス
-* ユニークなノード識別子（UUID）
-* Wallarmノードのトークン（**管理者**または**グローバル管理者**の[ロール](../settings/users.md)を持つユーザーだけに可視）
-* フィルタリングノードとWallarmクラウドの最後の同期時間
-* フィルタリングノードの作成日
-* ノードが現在の月に処理したリクエストの数
-* 利用されているLOMとproton.dbのバージョン
-* インストールされたWallarmのパッケージ、NGINX、及びEnvoy（実在する場合）のバージョン
+* ユニークなノード識別子(UUID)
+* Wallarmノードのトークン（**Administrator**または**Global Administrator**[role](../settings/users.md)を持つユーザーにのみ表示）
+* フィルタリングノードとWallarm Cloudの最終同期時刻
+* フィルタリングノード作成日
+* ノードが今月処理したリクエスト数（**このノードの当日のイベントを表示**をクリックすると**Attacks**セクションに切り替わります）
+* 使用されているLOMとproton.dbのバージョン
+* インストール済みのWallarmパッケージ、NGINX、およびEnvoy（該当する場合）のバージョン
 
-![ノードのカード](../../images/user-guides/nodes/view-wallarm-node.png)
+![ノードカード](../../images/user-guides/nodes/view-wallarm-node.png)
 
-複数のインスタンスに対して一つのWallarmノードがインストールされている場合（例えば、初期トラフィック処理と要求ポストアナリティクスが異なるサーバーインスタンスによって実行される場合）、それに対応するフィルタリングノードの数はテーブルの一つのレコードにグループ化されます。各インスタンスにはプロパティとメトリクスが利用可能です。
+1つのWallarmノードが複数のインスタンスにインストールされている場合（例：初期トラフィック処理とサーバーインスタンスが実行するリクエストのポスト分析など）、対応するフィルタリングノードの数が1つのテーブルレコードにまとめられます。各インスタンスごとにプロパティとメトリクスが利用可能です。
 
-Wallarmでは、ノードインスタンスは `hostname_NodeUUID`として命名されます。ここで、
+Wallarmでは、ノードインスタンスは`hostname_NodeUUID`の形式で命名されます。ここで、
 
-* `hostname`は、ノードインスタンスが起動される作業マシンの名前
-* `NodeUUID`は、ユニークなノード識別子（UUID）
+* `hostname`はノードインスタンスが起動している作業マシンの名前です
+* `NodeUUID`はユニークなノード識別子（UUID）です
 
-ノードインストール時に`register-node`スクリプトの `-n`パラメータを使って`hostname`を手動で設定できます。
+`register-node`スクリプト内の`-n`パラメーターを使用して、ノードインストール時に`hostname`を手動で設定できます。
 
 ## ノードトークンの再生成
 
-トークンの再生成は、ノードの新しいトークンを作成します。
+トークンの再生成により、ノードに対して新しいトークンが作成されます。
 
-1. Wallarm コンソール → **ノード**を開く。
-2. ノードのメニューやカード内の**トークン再生成**をクリックします。
-3. ノードが既にインフラストラクチャにインストールされている場合は、新しいトークン値をコピーし、それをインストールされているノードの設定内で指定します。
+1. Wallarm Console → **Nodes**を開きます。
+2. ノードメニューまたはカードの**Regenerate token**をクリックします。
+3. ノードが既にインフラにインストールされている場合は、新しいトークンの値をコピーし、インストール済みノード設定に指定します。
 
 ![ノードトークンの再生成](../../images/user-guides/nodes/generate-new-token.png)
 
 ## ノードの削除
 
-ノードが削除されると、あなたのアプリケーションへのリクエストのフィルタリングが停止します。フィルタリングノードの削除は元に戻すことができません。ノードはノードリストから完全に削除されます。
+ノードが削除されると、アプリケーションへのリクエストフィルタリングが停止されます。フィルタリングノードの削除は元に戻せません。ノードはノードリストから完全に削除されます。
 
-1. Wallarm コンソール → **ノード**を開く。
-1. 一つまたは複数のノードを選択し、**削除**をクリックします。また、ノードのメニューやノードのカードのボタンを選択してフィルタリングノードを削除することも可能です。
-1. アクションを確認します。
+1. Wallarm Console → **Nodes**を開きます。
+2. ノードを1つまたは複数選択し、**Delete**をクリックします。ノードメニューまたはノードカードのボタンを選択することでフィルタリングノードを削除することもできます。
+3. 操作を確認します。
 
-## ノード作成のためのAPIとノードトークン
+## ノード作成用のAPIおよびノードトークン
 
-WallarmフィルタリングノードはWallarmクラウドと対話します。ノードにクラウドAPIへのアクセスを提供するために、クラウド側でトークンを生成し、ノードが存在するマシン上でそれを使用する必要があります。この目的のために**APIトークン**（推奨）または**ノードトークン**を使用します。
+WallarmフィルタリングノードはWallarm Cloudと連携します。ノードにWallarm Cloud APIへのアクセスを提供するため、Cloud側でトークンを生成し、ノードが稼働するマシンで使用する必要があります。この目的のために、**API tokens**（推奨）または**node tokens**を使用します:
 
-* [**APIトークン**](../settings/api-tokens.md)は`Deploy`ロールで、
+* [**API tokens**](../settings/api-tokens.md)（`Deploy`ロールを割り当てる）を使用する場合:
 
-    * UI内でノードを論理的に整理するために使用するノードグループの数が事前には不明です（ノードグループが頻繁に追加/削除される場合 - APIトークンでは`WALLARM_LABELS`変数を設定して`group`ラベルの値を容易に管理できます）。
-    * トークンのライフサイクルを制御する必要があります（有効期限を設定するか、APIトークンを無効にすることができます。これにより、それらをより安全にすることができます）。
+    * UI上でノードを論理的に整理するために使用するノードグループ数が事前に不明の場合（ノードグループは常に追加/削除されます。API tokensを使用することで、`WALLARM_LABELS`変数で`group`ラベルの値を設定して、これらのグループを容易に管理できます）。
+    * トークンのライフサイクルを管理する必要がある場合（有効期限を指定するか、API tokensを無効化することで、セキュリティを向上させられます）。
 
-        !!! info "APIトークンは一部の展開オプションではサポートされていません"
-            APIトークンは現在、[NGINX](../../admin-en/installation-kubernetes-en.md)や[Kong](../../installation/kubernetes/kong-ingress-controller/deployment.md) Ingressコントローラー、[Sidecarプロキシ](../../installation/kubernetes/sidecar-proxy/deployment.md)デプロイメント、ならびに[Terraform モジュール](../../installation/cloud-platforms/aws/terraform-module/overview.md)に基づくAWSデプロイメントには使用できません。その代わりにノードトークンを使用してください。
+        !!! info "一部の展開オプションではAPI tokensはサポートされません"
+            API tokensは現在、[Kong Ingress controllers](../../installation/kubernetes/kong-ingress-controller/deployment.md)や[Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md)に基づくAWS展開では使用できません。代わりにnode tokensを使用してください。
 
-* **ノードトークン**は、何が提示されるかを事前に知っている場合に使用します。**ノード** → **ノードの作成**でノードグループを作成して命名します。ノードのデプロイメントを行う際には、グループのトークンを使用してグループに含めたい各ノードに対して使用します。
+* ノードグループが事前に判明している場合は**node tokens**を使用してください。**Nodes** → **Create node**を使用してノードグループを作成し、名前を付けます。ノードの展開時に、グループに含める各ノードに対してグループのトークンを使用します。
 
-!!! info "オートスケーリングサポート"
-    両方のトークンタイプは、一部のクラウド/インストール変数で利用可能なノードのオートスケール機能をサポートしています。
+!!! info "オートスケーリング対応"
+    両方のトークンタイプは、一部のクラウド/展開バリアントで利用可能なノードオートスケーリング機能をサポートします。

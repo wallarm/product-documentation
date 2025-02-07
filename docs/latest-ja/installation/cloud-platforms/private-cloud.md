@@ -1,54 +1,50 @@
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
+[api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
 
-# プライベートクラウドでのWallarmの展開方法
+# プライベートクラウドにWallarmを展開する
 
-プライベートクラウドは、特定の組織またはエンティティだけに展開されるクラウド環境であり、リソースに対する独占的な利用と管理が可能です。この記事では、プライベートクラウドにWallarmノードを展開する手法の概要を説明します。
+プライベートクラウドとは、単一の組織またはエンティティ専用に展開されるクラウド環境であり、リソースの専用利用と制御が可能です。本記事では、プライベートクラウドへのWallarmノードの展開原則について概説します。
 
-## Step 1: Wallarmの展開に対する認識と取り組み方を理解する
+## ステップ1: Wallarm展開における範囲とアプローチの理解
 
-プライベートクラウドでWallarmを展開する前に、アプリケーション環境の範囲を理解し、Wallarmの展開に最適なアプローチを決定することが重要です。次の特性を評価中に考慮してください：
+プライベートクラウドにWallarmを展開する前に、アプリケーション全体の範囲を把握し、Wallarm展開に最も適したアプローチを決定することが重要です。この評価の際、以下の特徴を考慮してください。
 
-* セキュリティを確保するための範囲の評価: アプリケーションの状況を評価し、保護が必要な重要なアプリケーションを特定します。データの感度、侵害の影響、準拠要件などの要素を考慮しましょう。この評価は、プライベートクラウド内の最も重要な資産を保護するための取り組みを優先し、焦点を絞るのに役立ちます。
-* [インライン](../inline/overview.md) vs. [アウトオブバンド (OOB)](../oob/overview.md) 解析: Wallarmをインライン解析またはアウトオブバンドトラフィック解析のために展開したいかどうかを決定します。インライン解析では、Wallarmノードをアプリケーションのトラフィックパスに展開することが含まれます。一方、OOB解析では、ミラーリングされたトラフィックをキャプチャして解析します。
-* Wallarmノードの配置: 選択した方法（インラインまたはOOB解析）に基づき、プライベートクラウドインフラストラクチャ内でのWallarmノードの適切な配置を決定します。 インライン解析の場合、アプリケーションの近く、例えば同じVLANやサブネット内にWallarmノードを配置することを考慮してください。OOB解析の場合、ミラーリングされたトラフィックが正しくWallarmノードにルーティングされ、解析されるようにします。
+* 保護すべき範囲の評価: アプリケーション全体を評価し、保護が必要な重要なアプリケーションを特定します。データの機密性、違反がもたらす潜在的な影響、コンプライアンス要件などの要因を考慮してください。この評価により、プライベートクラウド内で最も重要な資産の保護に対して優先順位を付け、取り組みを集中できます。
+* [In-line](../inline/overview.md)対[Out-of-band(OOB)](../oob/overview.md)分析: インライン分析かアウトオブバンド分析かを検討し、どちらの方法でWallarmを展開するか決定してください。インライン分析は、Wallarmノードをアプリケーションのトラフィックパス上に配置することを意味し、OOB分析はミラーされたトラフィックをキャプチャして分析することを指します。
+* Wallarmノードの配置: 選択したアプローチ（インラインまたはOOB分析）に基づき、プライベートクラウドインフラ内でのWallarmノードの適切な配置を決定してください。インライン分析の場合、同一VLANまたはサブネット内など、アプリケーションに近い場所にWallarmノードを配置することを検討してください。OOB分析の場合、ミラーリングされたトラフィックが適切にWallarmノードへルーティングされ、分析されることを確認してください。
 
-## Step 2: Wallarm用に外部接続を許可する
+## ステップ2: Wallarmのアウトゴーイング接続を許可する
 
-プライベートクラウドでは、外部への接続に制限があることが多いです。Wallarmが正しく動作するためには、インストール中にパッケージをダウンロードしたり、ローカルのノードインスタンスとWallarm Cloud間でネットワーク接続を確立したり、Wallarmの機能を完全に稼働させたりするために、外部接続を有効にする必要があります。
+プライベートクラウドでは、アウトゴーイング接続に制限がある場合があります。Wallarmが正しく機能するためには、インストール時のパッケージダウンロード、ローカルノードインスタンスとWallarm Cloud間のネットワーク接続の確立、およびWallarm機能の全面的な運用化を可能にするため、アウトゴーイング接続を有効にする必要があります。
 
-通常、プライベートクラウドへのアクセスはIPアドレスに基づいて許可されます。Wallarmは以下のDNSレコードへのアクセスが必要です：
+プライベートクラウドではアクセスは通常IPアドレスに基づいて許可されます。Wallarmは以下のDNSレコードへのアクセスを必要とします:
 
-* The following addresses to have access to the Wallarm Cloud to get security rules, upload attack data, etc.
-
-    --8<-- "../include/wallarm-cloud-ips.md"
-* DockerイメージからWallarmを実行する場合には、Docker Hubを使用するIPアドレス。
-* `34.111.12.147` (`repo.wallarm.com`): [NGINX stable](../nginx/dynamic-module.md)/[NGINX Plus](../nginx-plus.md)/[ディストリビューション供給のNGINX](../nginx/dynamic-module-from-distr.md) に対する個別のLinuxパッケージからWallarmノードをインストールする場合。ノードのインストール用のパッケージは、このアドレスからダウンロードされます。
-* `35.244.197.238` (`https://meganode.wallarm.com`): [オールインワンインストーラ](../nginx/all-in-one.md) からWallarmをインストールする場合。インストーラーは、このアドレスからダウンロードされます。
-* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+* Wallarm Cloudへアクセスし、セキュリティルールの取得、攻撃データのアップロードなどを行うために、以下のアドレスへのアクセスが必要です。
 
     --8<-- "../include/wallarm-cloud-ips.md"
+* DockerイメージからWallarmを実行する場合、Docker Hubで使用されるIPアドレス。
+* `35.244.197.238` (`https://meganode.wallarm.com`)は、[all‑in‑one installer](../nginx/all-in-one.md)からWallarmをインストールするために使用されます。インストーラーはこのアドレスからダウンロードされます。
+* 以下のIPアドレスは、攻撃検出ルールおよび[API仕様][api-spec-enforcement-docs]のアップデートをダウンロードし、さらに[許可リスト、拒否リスト、またはグレイリスト][ip-lists-docs]された国、地域、またはデータセンターの正確なIPを取得するために使用されます。
 
-## Step 3: 展開モデルとWallarmアーティファクトを選択する
+    --8<-- "../include/wallarm-cloud-ips.md"
 
-Wallarmは柔軟な展開モデルを提供しており、組織はプライベートクラウド環境に最も適したオプションを選択することができます。一般的な展開モデルとしては、**仮想アプライアンスの展開**と**Kubernetesの展開**があります。
+## ステップ3: 展開モデルおよびWallarmアーティファクトの選択
 
-### 仮想アプライアンスの展開
+Wallarmは柔軟な展開モデルを提供し、組織がプライベートクラウド環境に最適なオプションを選択できるようにします。一般的な展開モデルとして、**仮想アプライアンス展開**と**Kubernetes展開**の2種類があります。
 
-このモデルでは、プライベートクラウドインフラストラクチャ内でWallarmを仮想アプライアンスとして展開します。仮想アプライアンスはVMまたはコンテナとしてインストールできます。次のアーティファクトのいずれかを使用してWallarmノードを展開することができます：
+### 仮想アプライアンス展開
 
-* Dockerイメージ：
+このモデルでは、プライベートクラウドインフラ内に仮想アプライアンスとしてWallarmを展開します。仮想アプライアンスはVMまたはコンテナとしてインストールできます。Wallarmノードの展開には、以下のアーティファクトのいずれかを選択できます:
+
+* Dockerイメージ:
     * [NGINXベースのDockerイメージ](../../admin-en/installation-docker-en.md)
     * [EnvoyベースのDockerイメージ](../../admin-en/installation-guides/envoy/envoy-docker.md)
-* Linuxパッケージ：
-    * [NGINX stableベースの個別Linuxパッケージ](../nginx/dynamic-module.md)
-    * [NGINX Plusベースの個別Linuxパッケージ](../nginx-plus.md)
-    * [ディストリビューション供給のNGINXベースの個別Linuxパッケージ](../nginx/dynamic-module-from-distr.md)
-    * [Linux用のオール―イン―ワン インストーラ  ](../nginx/all-in-one.md)
+* [Linux向けAll‑in‑Oneインストーラー](../nginx/all-in-one.md)
 
-### Kubernetesの展開
+### Kubernetes展開
 
-プライベートクラウドがコンテナオーケストレーションのためにKubernetesを利用している場合、WallarmはKubernetesネイティブなソリューションとして展開することができます。これは、他のIngressコントローラーやサイドカープロキシ、或いはカスタムKubernetesリソースを活用し、Kubernetesクラスターと継ぎ目なく統合することができます。以下のソリューションのいずれかを使用してWallarmを展開することができます：
+プライベートクラウドでコンテナオーケストレーションにKubernetesを利用している場合、WallarmはKubernetesネイティブなソリューションとして展開できます。Kubernetesクラスターとシームレスに統合し、Ingressコントローラー、サイドカーコンテナ、またはカスタムKubernetesリソースなどの機能を活用します。Wallarmの展開には、以下のソリューションのいずれかを選択できます:
 
-* [NGINX ベースのIngress コントローラ  ](../../admin-en/installation-kubernetes-en.md)
-* [Kong ベースのIngressコントローラ](../kubernetes/kong-ingress-controller/deployment.md)
-* [Sidecar コントローラ](../kubernetes/sidecar-proxy/deployment.md)
+* [NGINXベースのIngressコントローラー](../../admin-en/installation-kubernetes-en.md)
+* [KongベースのIngressコントローラー](../kubernetes/kong-ingress-controller/deployment.md)
+* [サイドカーコントローラー](../kubernetes/sidecar-proxy/deployment.md)

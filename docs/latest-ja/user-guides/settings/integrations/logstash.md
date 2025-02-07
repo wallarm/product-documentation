@@ -1,21 +1,17 @@
 # Logstash
 
-Wallarm Consoleで適切な統合を作成することにより、Wallarmが検出したイベントの通知をLogstashに送信するように設定できます。
+[Logstash](https://www.elastic.co/logstash) はElasticが開発したオープンソースのデータ処理およびログ管理ツールです。Wallarmを設定して、検出されたイベントの通知をLogstashに送信できます。
 
-次のイベントをLogstashに送信するように選択できます：
+## 通知フォーマット
 
---8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
+WallarmはJSON形式の**webhooks**を介してLogstashに通知を送信します。JSONオブジェクトのセットは、Wallarmが通知するイベントによって異なります。
 
-## 通知の形式
-
-Wallarmは、**ウェブフック**を通じてJSON形式でLogstashに通知を送信します。JSONオブジェクトのセットは、Wallarmが通知するイベントに依存します。
-
-新たに検出されたヒットの通知の例：
+新たに検出されたヒットの通知例:
 
 ```json
 [
     {
-        "summary": "[Wallarm] 新しいヒットが検出されました",
+        "summary": "[Wallarm] New hit detected",
         "details": {
         "client_name": "TestCompany",
         "cloud": "EU",
@@ -65,133 +61,133 @@ Wallarmは、**ウェブフック**を通じてJSON形式でLogstashに通知を
 
 ## 要件
 
-Logstashの設定は次の要件を満たすべきです：
+Logstashの設定は以下の要件を満たす必要があります:
 
-* POSTまたはPUTのリクエストを受け入れる
-* HTTPSのリクエストを受け入れる
-* 公開URLを持つ
+* POSTおよびPUTリクエストを受け付けます
+* HTTPSリクエストを受け付けます
+* パブリックURLを持ちます
 
-Logstashの設定例：
+Logstashの設定例:
 
 ```bash linenums="1"
 input {
-  http { # HTTPおよびHTTPSトラフィックの入力プラグイン
-    port => 5044 # 入力リクエスト用のポート
+  http { # HTTPとHTTPSトラフィック用のinputプラグイン
+    port => 5044 # 受信リクエスト用のポート
     ssl => true # HTTPSトラフィックの処理
     ssl_certificate => "/etc/server.crt" # LogstashのTLS証明書
     ssl_key => "/etc/server.key" # TLS証明書の秘密鍵
   }
 }
 output {
-  stdout {} # コマンドラインにLogstashのログを表示する出力プラグイン
+  stdout {} # コマンドライン上にLogstashログを出力するoutputプラグイン
   ...
 }
 ```
 
-詳細は[公式Logstashドキュメンテーション](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html)を参照してください。
+詳細は[公式Logstashドキュメント](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html)をご覧ください。
 
 ## 統合の設定
 
-1. Wallarm Console → **統合** → **Logstash**へ進み、Logstash統合の設定を行います。
-1. インテグレーションの名前を入力します。
-1. ターゲットのLogstash URL（Webhook URL）を指定します。
-1. 必要に応じて、詳細設定を行います：
+1. Wallarm Console → **Integrations** → **Logstash**でLogstash統合の設定に進みます。
+2. 統合名を入力します。
+3. 対象のLogstash URL (Webhook URL)を指定します。
+4. 必要に応じて詳細設定を行います:
 
-    --8<-- "../include-ja/integrations/webhook-advanced-settings.md"
-1. 指定したURLに通知を送信するためのイベントの種類を選択します。イベントが選択されていない場合、通知は送信されません。
-1. [統合をテスト](#testing-integration)し、設定が正しいことを確認します。
-1. **統合を追加**をクリックします。
+    --8<-- "../include/integrations/webhook-advanced-settings.md"
+5. 通知をトリガーするイベントタイプを選択します。
 
-![Logstash integration](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+    ![Logstash統合](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-## 統合のテスト
+    利用可能なイベントの詳細:
 
---8<-- "../include-ja/integrations/test-integration-advanced-data.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-テストLogstashログ：
+6. **Test integration**をクリックして、設定の正確性、Wallarm Cloudの到達性、および通知フォーマットをご確認ください。
 
-```json
-[
-    {
-        summary:"[テストメッセージ] [テストパートナー（US）] 新たな脆弱性が検出されました",
-        description:"通知の種類：脆弱性
+    テスト用のLogstashログ:
 
-                    あなたのシステムで新たな脆弱性が検出されました。
+    ```json
+    [
+        {
+            summary:"[Test message] [Test partner(US)] New vulnerability detected",
+            description:"Notification type: vuln
 
-                    ID: 
-                    タイトル：テスト
-                    ドメイン：example.com
-                    パス： 
-                    メソッド： 
-                    発見者： 
-                    パラメータ： 
-                    タイプ：情報
-                    脅威：中
+                        New vulnerability was detected in your system.
 
-                    詳細：https://us1.my.wallarm.com/object/555
+                        ID: 
+                        Title: Test
+                        Domain: example.com
+                        Path: 
+                        Method: 
+                        Discovered by: 
+                        Parameter: 
+                        Type: Info
+                        Threat: Medium
+
+                        More details: https://us1.my.wallarm.com/object/555
 
 
-                    クライアント：TestCompany
-                    クラウド：US
-                    ",
-        details:{
-            client_name:"TestCompany",
-            cloud:"US",
-            notification_type:"vuln",
-            vuln_link:"https://us1.my.wallarm.com/object/555",
-            vuln:{
-                domain:"example.com",
-                id:null,
-                method:null,
-                parameter:null,
-                path:null,
-                title:"Test",
-                discovered_by:null,
-                threat:"Medium",
-                type:"Info"
+                        Client: TestCompany
+                        Cloud: US
+                        ",
+            details:{
+                client_name:"TestCompany",
+                cloud:"US",
+                notification_type:"vuln",
+                vuln_link:"https://us1.my.wallarm.com/object/555",
+                vuln:{
+                    domain:"example.com",
+                    id:null,
+                    method:null,
+                    parameter:null,
+                    path:null,
+                    title:"Test",
+                    discovered_by:null,
+                    threat:"Medium",
+                    type:"Info"
+                }
             }
         }
-    }
-]
-```
+    ]
+    ```
 
-## 統合の更新
+7. **Add integration**をクリックします。
 
---8<-- "../include-ja/integrations/update-integration.md"
+--8<-- "../include/cloud-ip-by-request.md"
 
-## 統合の無効化
+## 追加アラートの設定
 
---8<-- "../include-ja/integrations/disable-integration.md"
+--8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## 統合の削除
+## 中間データ収集ツールとしてのLogstashの利用
 
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/webhook-examples/overview.md"
 
-## Logstashを中間的なデータ収集器として使う
+例えば:
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+![Webhookのフロー](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
-例えば：
+このスキームを使用してWallarmイベントをログに記録するには:
 
-![Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+1. データ収集ツールを構成して、受信したwebhooksを読み取り、ログを次のシステムに転送します。Wallarmはwebhooksを介してイベントをデータ収集ツールに送信します。
+2. SIEMシステムを構成して、データ収集ツールからログを取得し読み取ります。
+3. Wallarmを構成して、データ収集ツールにログを送信します。
 
-このスキームを使用してWallarmイベントをログに記録するには：
+Wallarmはwebhooksを介して任意のデータ収集ツールにログを送信できます。
 
-1. データ収集器を設定して、受信webhookを読み、ログを次のシステムに転送します。Wallarmはイベントをウェブフック経由でデータ収集器に送信します。
-1. SIEMシステムを設定して、データ収集器からログを取得し、読みます。
-1. Wallarmを設定して、ログをデータ収集器に送信します。
+WallarmをFluentdまたはLogstashと統合するには、Wallarm Console UIの該当する統合カードを使用できます。
 
-    Wallarmはログを任意のデータ収集器にウェブフック経由で送信できます。
+Wallarmをその他のデータ収集ツールと統合するには、Wallarm Console UIの[webhook統合カード](webhook.md)を使用できます。
 
-    WallarmとFluentdまたはLogstashを統合するには、Wallarm Console UIの対応する統合カードを使用できます。
-
-    Wallarmと他のデータ収集器を統合するには、Wallarm Console UIの[webhook統合カード](webhook.md)を使用できます。
-
-私たちは、人気のあるデータ収集器との統合を設定し、SIEMシステムにログを転送する方法のいくつかの例を記述しました：
+ログをSIEMシステムに転送する人気のデータ収集ツールとの統合の設定例をいくつか説明します:
 
 * [Wallarm → Logstash → IBM QRadar](webhook-examples/logstash-qradar.md)
 * [Wallarm → Logstash → Splunk Enterprise](webhook-examples/logstash-splunk.md)
 * [Wallarm → Logstash → Micro Focus ArcSight Logger](webhook-examples/logstash-arcsight-logger.md)
 * [Wallarm → Logstash → Datadog](webhook-examples/fluentd-logstash-datadog.md)
 
-    また、Wallarmは中間的なデータ収集器を必要とせずに、Datadog APIを通じた[native integration with Datadog](datadog.md)もサポートしています。
+Wallarmは[Datadog API経由のDatadogとのネイティブ統合](datadog.md)もサポートします。ネイティブ統合では中間データ収集ツールは不要です。
+
+## 統合の無効化および削除
+
+--8<-- "../include/integrations/integrations-disable-delete.md"

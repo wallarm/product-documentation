@@ -1,11 +1,13 @@
-環境変数 | 説明 | 必要性
+```markdown
+環境変数 | 説明 | 必須
 --- | ---- | ----
-`DEPLOY_USER` | Wallarm Consoleの**Deploy**または**Administrator**ユーザーアカウントへのメール。| はい
-`DEPLOY_PASSWORD` | Wallarm Consoleの**Deploy**または**Administrator**ユーザーアカウントへのパスワード。 | はい
-`NGINX_BACKEND` | Wallarmソリューションで保護するリソースのドメインまたはIPアドレス。 | はい
-`WALLARM_API_HOST` | Wallarm APIサーバー：<ul><li>`us1.api.wallarm.com` は米国クラウド用</li><li>`api.wallarm.com` はEUクラウド用</li></ul>デフォルトは `api.wallarm.com`。 | いいえ
-`WALLARM_MODE` | ノードモード：<ul><li>`block` で悪意のあるリクエストをブロック</li><li>`safe_blocking` で[グレーリストのIPアドレス][graylist-docs]から発せられた悪意のあるリクエストのみをブロック</li><li>`monitoring` でリクエストを解析するがブロックしない</li><li>`off`でトラフィックの分析と処理を無効化</li></ul>デフォルトは `monitoring`。<br>[詳細なフィルタリングモードの説明 →][filtration-modes-docs] | いいえ
-`WALLARM_APPLICATION` | Wallarm Cloudで使用される保護対象のアプリケーションの一意の識別子。値は`0`を除く正の整数であることができます。<br><br>デフォルト値（コンテナに変数が渡されない場合）は `-1`で、Wallarm Console → **設定** → **アプリケーション**で表示される**デフォルト**アプリケーションを指します。<br><br>[アプリケーションの設定についての詳細 →][application-configuration]<div class="admonition info"> <p class="admonition-title">変数`WALLARM_APPLICATION`のサポート</p> <p>変数`WALLARM_APPLICATION`のサポートは、Dockerイメージのバージョン `3.4.1-1`以降で利用可能です。</div> | いいえ
-`TARANTOOL_MEMORY_GB` | Tarantoolに割り当てる[メモリの量][allocating-memory-guide]。値は整数または小数（小数点は<code>.</code>で区切られます）にすることができます。デフォルトは0.2ギガバイト。 | いいえ
-`DEPLOY_FORCE` | 実行中のコンテナの識別子と名前が一致する既存のWallarmノードがある場合、新しいノードで置き換えます。変数には以下の値を割り当てることができます：<ul><li>`true` でフィルタリングノードを置き換える</li><li>`false` でフィルタリングノードの置き換えを無効にする</li></ul>デフォルト値（変数がコンテナに渡されない場合）は`false`です。<br>Wallarmノードの名前は常に実行中のコンテナの識別子と一致します。フィルタリングノードの置き換えは、Dockerコンテナの識別子が静的であり、フィルタリングノード（例えば、新しいバージョンのイメージがあるコンテナ）を含む別のDockerコンテナを実行しようとしている場合に便利です。この場合、変数の値が`false`であると、フィルタリングノードの作成プロセスが失敗します。 | いいえ
-`NGINX_PORT` | <p>Dockerコンテナ内でNGINXが使用するポートを設定します。これにより、Kubernetesクラスタのポッド内でこのDockerコンテナを[サイドカー・コンテナ][about-sidecar-container]として使用する際のポート衝突を避けることができます。</p><p>デフォルト値（変数がコンテナに渡されない場合）は `80`。</p><p>記法は`NGINX_PORT='443'`です。</p> | いいえ
+`DEPLOY_USER` | Wallarm Consoleの**Deploy**または**Administrator**ユーザーアカウントに使用するメールアドレスです。 | Yes
+`DEPLOY_PASSWORD` | Wallarm Consoleの**Deploy**または**Administrator**ユーザーアカウントに使用するパスワードです。 | Yes
+`NGINX_BACKEND` | Wallarmソリューションで保護するリソースのドメインまたはIPアドレスです。 | Yes
+`WALLARM_API_HOST` | Wallarm APIサーバー:<ul><li>`us1.api.wallarm.com`はUS Cloud向けです</li><li>`api.wallarm.com`はEU Cloud向けです</li></ul>既定値: `api.wallarm.com`。 | No
+`WALLARM_MODE` | ノードモード:<ul><li>`block` は悪意のあるリクエストをブロックします</li><li>`safe_blocking` は[graylisted IP addresses][graylist-docs]から発生した悪意のあるリクエストのみをブロックします</li><li>`monitoring` はリクエストを解析するだけでブロックしません</li><li>`off` はトラフィックの解析および処理を無効にします</li></ul>既定値: `monitoring`。<br>[詳細なフィルトレーションモードの説明→][filtration-modes-docs] | No
+`WALLARM_APPLICATION` | Wallarm Cloudで利用する保護対象アプリケーションの一意識別子です。値は`0`以外の正の整数でなければなりません。<br><br>コンテナに変数が渡されなかった場合の既定値は`-1`で、これはWallarm Console → **Settings** → **Application**に表示される**default**アプリケーションを示します。<br><br>[アプリケーション設定の詳細→][application-configuration]<div class="admonition info"> <p class="admonition-title">変数`WALLARM_APPLICATION`のサポート</p> <p>変数`WALLARM_APPLICATION`はDockerイメージのバージョン`3.4.1-1`からサポートします。</p></div> | No
+`TARANTOOL_MEMORY_GB` | Tarantoolに割り当てる[メモリサイズ][allocating-memory-guide]です。値は整数または浮動小数点数（小数点はドット<code>.</code>です）で指定できます。既定値: 0.2ギガバイトです。 | No
+`DEPLOY_FORCE` | 現在実行中のコンテナの識別子と一致するWallarmノード名が存在する場合、その既存のWallarmノードを新しいものに置き換えます。変数には次の値を設定できます：<ul><li>`true` … フィルタリングノードを置き換えます</li><li>`false` … フィルタリングノードの置き換えを無効にします</li></ul>コンテナに変数が渡されなかった場合の既定値は`false`です。<br>Wallarmノード名は常に実行中のコンテナの識別子と一致します。Dockerコンテナ識別子が固定されており、新しいバージョンのDockerイメージを使用して別のDockerコンテナでフィルタリングノードを実行しようとする場合、変数の値が`false`だとフィルタリングノードの作成が失敗します。 | No
+`NGINX_PORT` | <p>Dockerコンテナ内でNGINXが使用するポートを設定します。これにより、Kubernetesクラスタのポッド内でこのDockerコンテナを[sidecar container][about-sidecar-container]として使用する際にポートの競合を回避できます。</p><p>コンテナに変数が渡されなかった場合の既定値は`80`です。</p><p>構文は`NGINX_PORT='443'`です。</p> | No
+```

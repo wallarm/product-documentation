@@ -1,71 +1,73 @@
-## 必要条件
+```markdown
+## 要件
 
 * GCPアカウント
-* [USクラウド](https://us1.my.wallarm.com/)または[EUクラウド](https://my.wallarm.com/)で**管理者**ロールへのアクセスとWallarmコンソールでの二要素認証が無効になっていること
-* US Wallarmクラウドとの作業では `https://us1.api.wallarm.com:444` へのアクセス、EU Wallarmクラウドとの作業では `https://api.wallarm.com:444` へのアクセスが可能であること。アクセスがプロキシサーバ経由でのみ設定できる場合は、[instructions][wallarm-api-via-proxy]をお使いください
-* Wallarmインスタンス上でのすべてのコマンドをスーパーユーザー（例：`root`）として実行
+* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleにおいて**Administrator**ロールでのアクセスが可能であり、2段階認証が無効になっているアカウントへのアクセス
+* US Wallarm Cloudを使用する場合は`https://us1.api.wallarm.com:444`に、EU Wallarm Cloudを使用する場合は`https://api.wallarm.com:444`にアクセスできること。もしアクセスがプロキシサーバー経由でのみ構成できる場合は、[instructions][wallarm-api-via-proxy]を使用してください
+* Wallarmインスタンスで全てのコマンドをスーパーユーザー（例: `root`）として実行すること
 
 ## 1. フィルタリングノードインスタンスの起動
 
-### Google Cloud UIを通じてインスタンスを起動する
+### Google Cloud UI経由でインスタンスを起動する
 
-Google Cloud UIを通じてフィルタリングノードインスタンスを起動するには、[Google Cloud Marketplace上のWallarmノードのイメージ](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node)を開き、**GET STARTED**をクリックしてください。
+Google Cloud UI経由でフィルタリングノードインスタンスを起動するには、[Google Cloud Marketplace上のWallarmノードイメージ](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node)を開き、**GET STARTED**をクリックしてください。
 
-インスタンスは、プリインストールされたフィルタリングノードで起動します。Google Cloudでのインスタンスの詳細な起動方法については、[公式Google Cloud Platformのドキュメント][link-launch-instance]をご覧ください。
+インスタンスは、あらかじめインストールされたフィルタリングノードと共に起動します。Google Cloudでのインスタンス起動の詳細情報については、[公式Google Cloud Platformドキュメント][link-launch-instance]をご参照ください。
 
-### Terraformやその他のツールを通じてインスタンスを起動する
+### Terraform等のツールを使用してインスタンスを起動する
 
-Terraformのようなツールを使用してWallarm GCPイメージを利用してフィルタリングノードインスタンスを起動する際、Terraformの設定でこのイメージの名前を提供する必要があります。
+Wallarm GCPイメージを使用してTerraform等のツール経由でフィルタリングノードインスタンスを起動する際は、Terraformの構成内にこのイメージ名を指定する必要があります。
 
-* イメージ名には次のフォーマットが使用されます：
+* イメージ名は以下の形式です:
 
     ```bash
     wallarm-node-195710/wallarm-node-<IMAGE_VERSION>-build
     ```
-* フィルタリングノードバージョン4.8でインスタンスを起動する場合は、次のイメージ名を使用してください：
+* フィルタリングノードバージョン4.8でインスタンスを起動するには、以下のイメージ名を使用してください:
 
     ```bash
     wallarm-node-195710/wallarm-node-4-8-20231019-221905
     ```
 
-イメージ名を取得するには、以下の手順に従ってください：
+イメージ名を取得するには、以下の手順も実行できます:
 
 1. [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)をインストールします。
-2. 以下のパラメータを使用してコマンド[`gcloud compute images list`](https://cloud.google.com/sdk/gcloud/reference/compute/images/list)を実行します：
+2. 以下のパラメータを指定してコマンド[`gcloud compute images list`](https://cloud.google.com/sdk/gcloud/reference/compute/images/list)を実行します:
 
     ```bash
     gcloud compute images list --project wallarm-node-195710 --filter="name~'wallarm-node-4-8-*'" --no-standard-images
     ```
-3. 最新の利用可能なイメージの名前からバージョン値をコピーし、提供されたイメージ名のフォーマットにコピーした値を貼り付けます。例えば、フィルタリングノードバージョン4.8のイメージは次の名前になります：
+3. 利用可能な最新イメージの名前からバージョン値をコピーし、提供されたイメージ名の形式に貼り付けます。例えば、フィルタリングノードバージョン4.8のイメージは以下の名前になります:
 
     ```bash
     wallarm-node-195710/wallarm-node-4-8-20231019-221905
     ```
 
-## 2. フィルタリングノードインスタンスの構成
+## 2. フィルタリングノードインスタンスの設定
 
-起動したフィルタリングノードインスタンスを構成するには、次の操作を行ってください：
+起動したフィルタリングノードインスタンスを設定するために、次の操作を実行してください:
 
-1. メニューの**Compute Engine**セクションにある**VMインスタンス**ページに移動します。
-2. 起動したフィルタリングノードインスタンスを選択し、**編集**ボタンをクリックします。
-3. **Firewalls**設定で対応するチェックボックスにチェックを入れ、必要なタイプの受信トラフィックを許可します。
-4. 必要に応じて、プロジェクトのSSHキーを使ってインスタンスへの接続を制限し、カスタムSSHキーペアを使用してこのインスタンスに接続することができます。これを行うには、次の操作を行います：
-    1. **SSH Keys**設定で**Block project-wide**チェックボックスにチェックを入れます。
-    2. **SSH Keys**設定で**表示および編集**ボタンをクリックし、SSHキーを入力するためのフィールドを展開します。
-    3. 例えば`ssh-keygen`や`PuTTYgen`ユーティリティを使って、SSHキーの公開キーと秘密キーのペアを生成します。
+1. メニューのCompute Engineセクション内の**VMインスタンス**ページに移動します。
+2. 起動したフィルタリングノードインスタンスを選択し、**Edit**ボタンをクリックします。
+3. **Firewalls**設定内の該当するチェックボックスをオンにして、必要な着信トラフィックのタイプを許可します。
+4. 必要に応じて、プロジェクトSSHキーでの接続を制限し、このインスタンスへの接続にカスタムSSHキーのペアを使用することができます。これを実行するには、次の操作を行ってください:
+    1. **SSH Keys**設定内の**Block project-wide**チェックボックスをオンにします。
+    2. **SSH Keys**設定内の**Show and edit**ボタンをクリックして、SSHキー入力用フィールドを展開します。
+    3. 公開鍵と秘密鍵のSSHキーのペアを生成します。例えば、`ssh-keygen`や`PuTTYgen`ユーティリティを使用できます。
        
-        ![PuTTYgenを使ったSSHキーの生成][img-ssh-key-generation]
+        ![Generating SSH keys using PuTTYgen][img-ssh-key-generation]
 
-    4. 使用したキージェネレータのインターフェースからOpenSSHフォーマットの公開キーをコピーします（この例では、PuTTYgenインターフェースの**OpenSSH認可キーファイルに貼り付けるための公開キー**エリアから生成された公開キーをコピーします）そして、**キーデータ全体を入力**というヒントが含まれているフィールドに貼り付けます。
-    5. 私的キーを保存します。これは、将来、構成されたインスタンスに接続するために必要になります。
-5. ページの下部にある**保存**ボタンをクリックして変更を適用します。
+    4. 使用したキー生成ツールのインターフェースからOpenSSH形式の公開鍵をコピーし、**Enter entire key data**ヒントが表示されているフィールドに貼り付けます（この例では、生成された公開鍵をPuTTYgenインターフェースの**Public key for pasting into OpenSSH authorized_keys file**領域からコピーしてください）。
+    5. 秘密鍵を保存します。将来、設定したインスタンスへの接続に必要となります。
+5. ページ下部にある**Save**ボタンをクリックして変更を適用します。
 
-## 3. SSHを介してフィルタリングノードインスタンスに接続する
+## 3. SSH経由でフィルタリングノードインスタンスに接続する
 
-インスタンスに接続する方法に関する詳細情報については、この[リンク](https://cloud.google.com/compute/docs/instances/connecting-to-instance)をご覧ください。
+インスタンスへの接続方法の詳細情報については、[こちらのリンク](https://cloud.google.com/compute/docs/instances/connecting-to-instance)をご参照ください.
 
 --8<-- "../include/gcp-autoscaling-connect-ssh.md"
 
 ## 4. フィルタリングノードをWallarm Cloudに接続する
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6-only-with-postanalytics.md"
+```

@@ -1,53 +1,65 @@
-# Exploring Bot Activity
+[link-attacks]:                 ../user-guides/events/check-attack.md
+[link-sessions]:                ../api-sessions/overview.md
+[link-api-abuse-prevention]:    ../api-abuse-prevention/overview.md
+[img-api-sessions-api-abuse]:   ../images/api-sessions/api-sessions-api-abuse.png
 
-## ブロックされた悪意のあるボットとその攻撃の調査
+# ボット活動の解析 <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-**API Abuse Prevention**モジュールは、[denylist](../user-guides/ip-lists/denylist.md)または[graylist](../user-guides/ip-lists/graylist.md)にボットを追加することで、ボットを1時間ブロックします。
+API Abuse Prevention はMLアルゴリズムに基づいて悪意のあるボット活動を識別します。このような攻撃は、単一のブロックされたリクエストだけでは解析できません。したがって、Wallarmプラットフォームがボット活動を様々な角度から調査するための幅広いツールを提供することが不可欠です。
 
-Wallarm Console → **IPリスト** → **Denylist** または **Graylist** でブロックされたボットのIPを調査することができます。`Bot` という**原因**で追加されたIPを調査します。
+## API不正利用ダッシュボード
 
-![Denylisted bot IPs](../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
+API Abuse Prevention は直感的に、直近30日間のボット活動データを **API Abuse Prevention** セクション → **Statistics** タブで視覚化します。タイムライン図を使用すれば、ボット活動の急増を容易に特定できます。さらに、**Top Attackers** と **Top Targets** ウィジェットにより、最も活発なボットや最も攻撃されたAPIおよびアプリケーションを判断できます。ダッシュボード上の要素を1クリックするだけで、**Attacks** タブに詳細調査へ進むことが可能です。
 
-!!! info "確信度"
-    [ディテクターの作業](../api-abuse-prevention/overview.md#how-api-abuse-prevention-works)結果、検出された全てのボットには**確信度のパーセンテージ**が与えられます。つまり、これがボットであると私たちはどの程度確信しているかということです。ボットタイプごとにディテクターには異なる相対的重要性/投票数があります。そのため、確信度のパーセンテージは、このボットタイプで可能な全投票数の中で獲得した投票数です（作業したディテクターから提供されます）。
+また、下部の **Behavioral patterns** ではボットの挙動を分析できます。各検知器の詳細情報や、ボットの挙動判定においてどのように連携したかを確認できます。このウィジェットと右上の[deny- or graylisted](setup.md#creating-profiles) IPのカウンターは、**IP Lists** [history](../user-guides/ip-lists/overview.md#ip-list-history) へリンクしており、ボットのIPがブロックリストに登録された日時や期間を確認できます。
 
-ボット保護プロセスに介入することができます。denylistまたはgraylistに追加されているIPが実際には悪意のあるボットに使用されていない場合、リストからIPを削除するか、[allowlist](../user-guides/ip-lists/allowlist.md)に追加することができます。Wallarmは、allowlistに追加されたIPからのすべてのリクエスト、悪意のあるものも含めてブロックすることはありません。
+![API不正利用防止の統計](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
-また、ボットによるAPI abuse攻撃を調査することもできます。これは、Wallarm Console → **イベント**セクションで行うことができます。`api_abuse`検索キーを使用するか、**タイプ**フィルターから`API Abuse`を選択します。
+ボット活動が検出されなかった場合、**Legitimate traffic** 状態が表示されます:
 
-![API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
+![API不正利用防止の統計 - ボット検出なし](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-nobots.png)
 
-ボット情報は3つのヒートマップで視覚化されます。全てのヒートマップでは、バブルが大きくなり、色が赤くなり、右上角に近づくほど、そのIPをボットと見なす理由が増えます。
+ボット検出はトラフィックに依存しているため、十分な量のトラフィックがない場合、API Abuse Prevention は **Insufficient data to build statistics** というメッセージで通知します。各プロファイルのトラフィックは **Profiles** タブで[確認](setup.md#per-profile-traffic)できます。
 
-ヒートマップでは、現在のボット（**this bot**）を過去24時間以内に同一のアプリケーションを攻撃した他のボットと比較することもできます。攻撃したボットが多すぎる場合、もっとも疑わしい30個だけが表示されます。
+## Attacks
 
-ヒートマップは以下のとおりです：
+Wallarm Console の **Attacks** セクションで、ボットによって実行された攻撃を調査できます。`api_abuse`、`account_takeover`、`scraping`、`security_crawlers` の検索キーを使用するか、**Type** フィルターから適切なオプションを選択してください。
 
-* **パフォーマンス**は、現在と他の検出されたボットのパフォーマンスを視覚化します。これには、リクエストの非一意性、スケジュールされたリクエスト、RPS、リクエスト間隔が含まれます。
-* **行動**は、現在と他の検出されたボットの疑わしい行動のスコアを視覚化します。これには、疑わしい行動の度合い、重要または敏感なエンドポイントへのリクエストの量、RPS、ボットとして彼らを検出したボットディテクターの数が含まれます。
-* **HTTPエラー**は、ボットの活動によって引き起こされたAPIエラーを視覚化します。これには、彼らがターゲットする異なるエンドポイントの数、彼らが行う安全でないリクエストの数、彼らのRPS、彼らが受け取るエラーレスポンスコードの数が含まれます。
+![API不正利用イベント](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
-各ヒートマップには、バブルのサイズ、色、位置の詳細な説明が含まれています（**詳細表示**を使用）。必要な領域を矩形で囲んでヒートマップをズームインすることができます。
+API Abuse Prevention によりボットIPがdenylistに登録された場合でも、デフォルトではWallarmはそのIPから発信されたブロックされたリクエストの統計を[表示](../user-guides/ip-lists/overview.md#requests-from-denylisted-ips)します。
 
-**API Abuse Prevention**モジュールは、クライアントのトラフィックをURLパターンにまとめます。URLパターンには以下のセグメントがあります：
+**Detector値**
 
-| セグメント | 含む内容 | 例 |
+トリガーされた[detectors](overview.md#how-api-abuse-prevention-works)と、それらの値が示す通常の挙動からの逸脱度にご留意ください。上記の図では、例えば通常が `< 10` であるところに**Query abuse**が `326`、通常が `> 1` であるところに**Request interval**が `0.05` と表示されております。
+
+**Heatmaps**
+
+ボット情報は3種類のヒートマップで視覚化されます。すべてのヒートマップにおいて、バブルが大きいほど赤に近く、右上隅に位置するほど、そのIPをボットと判断すべき理由が多いことを示しています。
+
+ヒートマップ上では、現在のボット（**this bot**）と過去24時間以内に同じアプリケーションを攻撃した他のボットとも比較できます。ボット数が多い場合は、最も疑わしい30件のみが表示されます。
+
+ヒートマップ:
+* **Performance** は、現在およびその他の検出されたボットのパフォーマンスを、リクエストの非一意性、スケジュールされたリクエスト、RPS、リクエスト間隔などとともに視覚化します。
+* **Behavior** は、現在およびその他の検出されたボットの疑わしい行動スコアを、疑わしさの度合い、重要または敏感なエンドポイントへのリクエスト数、RPS、ボット検知器の検出数などとともに視覚化します。
+* **HTTP errors** は、ボット活動によって引き起こされたAPIエラーを、対象エンドポイント数、不安全なリクエスト数、RPS、受信エラー応答コード数とともに視覚化します.
+
+<!--Each heatmap includes detailed description of its bubble size, color and position meaning (use **Show more**). You can zoom in heatmap by drawing rectangular around required area.
+
+The **API Abuse Prevention** module compiles client traffic into URL patterns. The URL pattern may have the following segments:
+
+| Segment | Contains | Example |
 |---|---|---|
-| SENSITIVE | 例えば管理パネルなど、アプリケーションの重要な機能やリソースへのアクセスを提供するURL部分。これらは潜在的なセキュリティ侵害を防ぐため、機密情報として保持され、承認された担当者のみが利用できるように制限すべきです。 | `wp-admin` |
-| IDENTIFIER | 例えば数値識別子、UUIDなどのさまざまな識別子。 | - |
-| STATIC | 様々な種類の静的ファイルを含むフォルダ。 | `images`, `js`, `css` |
-| FILE | 静的ファイル名。 | `image.png` |
-| QUERY | クエリパラメータ。 | - |
-| AUTH | 認証/認可エンドポイントに関連するコンテンツ。 | - |
-| LANGUAGE | 言語関連部分。 | `en`, `fr` |
-| HEALTHCHECK | ヘルスチェックエンドポイントに関連するコンテンツ。 | - |
-| VARY | その他のカテゴリに分類することができない場合、そのセグメントはVARYとマークされます。URLパスの可変部分。 | - |
+| SENSITIVE | URL parts that provide access to the application's critical functions or resources, such as the admin panel. They should be kept confidential and restricted to authorized personnel to prevent potential security breaches. | `wp-admin` |
+| IDENTIFIER | Various identifiers like numeric identifiers, UUIDs, etc. | - |
+| STATIC | The folders that contain static files of different kinds. | `images`, `js`, `css` |
+| FILE | Static file names. | `image.png` |
+| QUERY | Query parameters. | - |
+| AUTH | Content related to the authentication/authorization endpoints. | - |
+| LANGUAGE | Language-related parts. | `en`, `fr` |
+| HEALTHCHECK | Content related to the health check endpoints. | - |
+| VARY | The segment is marked as VARY if it is impossible to attribute it to other categories. A variable part of the URL path. | - | -->
 
-## 悪意のあるボットとその攻撃の探求
+## API Sessionsを使用したAPI不正利用検出の精度検証
 
-あなたはWallarm Console UIでボットの活動を以下のように調査することができます：
-
-* **IP lists**セクションで悪意のあるボットを探索します
-* **Events**セクションでボットが行ったAPIの乱用を表示します
-
-[Learn how to explore the bots' activity →](../api-abuse-prevention/setup.md#exploring-blocked-malicious-bots-and-their-attacks)
+--8<-- "../include/bot-attack-full-context.md"

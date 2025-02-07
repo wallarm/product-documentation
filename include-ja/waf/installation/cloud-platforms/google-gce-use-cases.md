@@ -1,5 +1,4 @@
-Among all supported [Wallarm deployment options][platform], Wallarm deployment on Google Compute Engine (GCE) using the Docker image is recommended in these **use cases**:
+Among all supported [Wallarm deployment options][platform]の中で、Google Compute Engine(GCE)上でDockerイメージを使用したWallarmのデプロイは次の**ユースケース**で推奨します:
 
-1. If your applications are already containerized and running on Google Compute Engine and your team follows DevOps practices, using Wallarm Docker image and ECS could fit better into your CI/CD pipelines.
-1. Your application follows a microservices architecture. With Wallarm's NGINX-based Docker image you can get granular security at the level of individual services.
-1. Resource optimization is essential. The lightweight nature of Docker containers, including the NGINX-based Docker image, uses fewer resources than traditional VM-based deployments, allowing for more efficient use of system resources.
+* アプリケーションがマイクロサービスアーキテクチャを採用しており、すでにGCE上でコンテナ化され運用されている場合。
+* 各コンテナを細かく管理する必要がある場合、Dockerイメージが優れています。従来のVMベースのデプロイで通常可能な場合よりも高いレベルのリソース分離を提供します。

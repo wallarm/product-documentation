@@ -1,5 +1,4 @@
 Among all supported [Wallarm deployment options][platform], this solution is the recommended one for the following **use cases**:
-
-1. If your system is built on Debian or RHEL, and you are seeking to minimize manual steps in installing and managing a packaged security solution, the all-in-one installer offers an ideal choice.
-1. Your services are built around NGINX Stable. Wallarm can extend its functionalities using these packages.
-1. You aim to deploy a security solution as a virtual appliance either on the cloud or locally.
+  
+* インフラはコンテナベース手法を使用せず、ベアメタルまたは仮想マシンで構成されています。一般的には、これらのセットアップはInfrastructure as Codeツール（例：AnsibleやSaltStack）で管理されます。
+* サービスはNGINXを中心に構築されています。Wallarmはオールインワンインストーラーを使用して機能を拡張できます。

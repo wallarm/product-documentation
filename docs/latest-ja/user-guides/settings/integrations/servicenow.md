@@ -1,46 +1,46 @@
 # ServiceNow
 
-以下のイベントがトリガーされたときに、Wallarmで[ServiceNow](https://www.servicenow.com/)に問題チケットを作成するよう設定できます：
+[ServiceNow](https://www.servicenow.com/)は企業向けのITサービス管理（ITSM）およびビジネスプロセス自動化ソリューションを提供するクラウドベースのプラットフォームです。Wallarmと統合してServiceNowでトラブルチケットを生成できるように設定できます。
 
---8<-- "../include-ja/integrations/events-for-integrations-mail.md"
+## 要件
 
-## 前提条件
-
-ServiceNowは、企業の業務のデジタルワークフローを管理するためのプラットフォームです。Wallarmとアプリケーションを統合するには、自社が所有するServiceNow [インスタンスと、その中に構築されたワークフローアプリケーション](https://www.servicenow.com/lpdem/demonow-cloud-platform-app-dev.html)が必要です。
+ServiceNowは企業のオペレーションのためのデジタルワークフロー管理を支援するプラットフォームです。Wallarmとこれらのアプリを統合するためには、自社所有のServiceNowの[インスタンスおよびその中で構築されたワークフローアプリ](https://www.servicenow.com/lpdem/demonow-cloud-platform-app-dev.html)が必要です。
 
 ## 統合の設定
 
-ServiceNowのUI内で：
+ServiceNow UIにて:
 
-1. [ServiceNowのインスタンス名](https://docs.servicenow.com/bundle/tokyo-application-development/page/build/team-development/concept/c_InstanceHierarchies.html)を取得します。
-1. インスタンスへのアクセス用のユーザー名とパスワードを取得します。
-1. OAuth認証を有効にし、[ここ](https://docs.servicenow.com/bundle/tokyo-application-development/page/integrate/inbound-rest/task/t_EnableOAuthWithREST.html)で説明されているようにクライアントIDとシークレットを取得します。
+1. [ServiceNowインスタンス](https://docs.servicenow.com/bundle/tokyo-application-development/page/build/team-development/concept/c_InstanceHierarchies.html)の名前を取得します。
+1. インスタンスにアクセスするためのユーザー名およびパスワードを取得します。
+1. OAuth認証を有効にして、[こちら](https://docs.servicenow.com/bundle/tokyo-application-development/page/integrate/inbound-rest/task/t_EnableOAuthWithREST.html)に記載のとおり、クライアントIDおよびシークレットを取得します。
 
-WallarmのUI内で：
+Wallarm UIにて:
 
-1. Wallarmコンソール → **インテグレーション** → **ServiceNow**を開きます。
-1. 統合の名前を入力します。
-1. ServiceNowのインスタンス名を入力します。
-1. 指定したインスタンスにアクセスするためのユーザー名とパスワードを入力します。
-1. OAuth認証データ（クライアントIDとシークレット）を入力します。
-1. 通知をトリガーするイベントの種類を選択します。何も選択しない場合、ServiceNowの問題チケットは作成されません。
-1. [統合をテスト](#統合のテスト)し、設定が正しいことを確認します。
-1. **統合を追加**をクリックします。
+1. Wallarm Consoleを開いて → **Integrations** → **ServiceNow**を選択します。
+1. 統合名を入力します。
+1. ServiceNowインスタンス名を入力します。
+1. 指定されたインスタンスにアクセスするためのユーザー名およびパスワードを入力します。
+1. OAuth認証情報（クライアントIDおよびシークレット）を入力します。
+1. 通知をトリガーするイベントタイプを選択します。
 
-![ServiceNow integration](../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
+    ![ServiceNow統合](../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
 
-## 統合のテスト
+    利用可能なイベントの詳細:
+      
+    --8<-- "../include/integrations/events-for-integrations.md"
 
---8<-- "../include-ja/integrations/test-integration-basic-data.md"
+1. **Test integration**をクリックして、設定の正確性、Wallarm Cloudの利用可能性、通知形式を確認します。
 
-## 統合の更新
+    これにより、プレフィックス `[Test message]` を付与したテスト通知が送信されます。
 
---8<-- "../include-ja/integrations/update-integration.md"
+1. **Add integration**をクリックします。
 
-## 統合の無効化
+--8<-- "../include/cloud-ip-by-request.md"
 
---8<-- "../include-ja/integrations/disable-integration.md"
+## 統合の無効化および削除
 
-## 統合の削除
+--8<-- "../include/integrations/integrations-disable-delete.md"
 
---8<-- "../include-ja/integrations/remove-integration.md"
+## システムの利用不可および統合パラメータの誤り
+
+--8<-- "../include/integrations/integration-not-working.md"

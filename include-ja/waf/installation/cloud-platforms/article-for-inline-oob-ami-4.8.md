@@ -1,14 +1,14 @@
-# Amazon Machine ImageからWallarmをデプロイする
+# Amazon Machine ImageからWallarmを展開する
 
-この記事では、[公式のAmazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD)を使用してAWS上にWallarmをデプロイするための指示を提供します。このソリューションは、[インライン][inline-docs]または[アウト・オブ・バンド][oob-docs]でデプロイできます。
+本記事では[公式Amazon Machine Image（AMI）](https://aws.amazon.com/marketplace/pp/B073VRFXSD)を使用してAWS上にWallarmを展開する手順を説明します。ソリューションはインライン[inline-docs]またはアウトオブバンド[oob-docs]として展開できます。
 
-## 使用例
+## ユースケース
 
 --8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
 
-## 6. トラフィックを分析するためにWallarmを有効にする
+## 6. Wallarmがトラフィックを解析できるようにする
 
 --8<-- "../include/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis.md"
 
@@ -20,10 +20,10 @@
 
 --8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
 
-## 9. Wallarmの動作をテストする
+## 9. Wallarm動作をテストする
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
 
-## 10. デプロイされたソリューションを微調整する
+## 10. 展開済みソリューションを微調整する
 
 --8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options-4.8.md"

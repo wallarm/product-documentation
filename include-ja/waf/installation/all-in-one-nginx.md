@@ -1,25 +1,31 @@
-以下の最新のNGINXバージョンをインストールします:
+最新のNGINXバージョンをインストールしてください:
 
-* **NGINX `stable`** - そのインストール方法はNGINXの[ドキュメンテーション](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/)をご覧ください。
-* **NGINX Plus** - そのインストール方法はNGINXの[ドキュメンテーション](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)をご覧ください。
-* **Distribution-Provided NGINX** - インストールするには、次のコマンドを使用します:
+* **NGINX `stable`** - インストール方法についてはNGINX[ドキュメント](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/)を参照してください。
+* **NGINX Mainline** (最新のサポートバージョンはv1.27.3です) - インストール方法についてはNGINX[ドキュメント](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/)を参照してください。
+* **NGINX Plus** (最新のサポートバージョンはNGINX Plus R33です) - インストール方法についてはNGINX[ドキュメント](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)を参照してください。
+* **Distribution-Provided NGINX** - インストールする場合は、次のコマンドを使用してください:
 
-    === "Debian 10.x (buster)"
-        ```bash
-        sudo apt-get update 
-        sudo apt -y install --no-install-recommends nginx
-        ```
-    === "Debian 11.x (bullseye)"
+    === "Debian"
         ```bash
         sudo apt update 
         sudo apt -y install --no-install-recommends nginx
         ```
-    === "CentOS 7.x"
+    === "Ubuntu"
+        ```bash
+        sudo apt-get update
+        sudo apt-get install nginx
+        ```
+    === "CentOS"
         ```bash
         sudo yum -y update 
         sudo yum install -y nginx
         ```
-    === "AlmaLinux、Rocky LinuxもしくはOracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo yum -y update 
+        sudo yum install -y nginx
+        ```
+    === "RHEL 8.x"
         ```bash
         sudo yum -y update 
         sudo yum install -y nginx

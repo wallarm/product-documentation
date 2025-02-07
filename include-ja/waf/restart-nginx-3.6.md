@@ -1,16 +1,16 @@
-					=== "Debian"
+=== "Debian"
     ```bash
-    sudo systemctl nginxを再起動します
+    sudo systemctl restart nginx
     ```
 === "Ubuntu"
     ```bash
-    sudo service nginxを再起動します
+    sudo service nginx restart
     ```
 === "CentOSまたはAmazon Linux 2.0.2021x以下"
     ```bash
-    sudo systemctl nginxを再起動します
+    sudo systemctl restart nginx
     ```
-=== "AlmaLinux、Rocky Linux、またはOracle Linux 8.x"
+=== "AlmaLinux, Rocky LinuxまたはOracle Linux 8.x"
     ```bash
-    sudo systemctl nginxを再起動します
+    sudo systemctl restart nginx
     ```

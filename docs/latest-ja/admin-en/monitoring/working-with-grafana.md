@@ -14,142 +14,140 @@
 [anchor-query]:                     #fetching-the-required-metrics-from-the-data-source
 [anchor-verify-monitoring]:         #verifying-monitoring
 
-#   Grafanaでフィルターノードメトリクスを操作する
+# Grafanaにおけるフィルターノードメトリクスの操作
 
-InfluxDBまたはGraphiteにメトリクスのエクスポートを設定した場合、[Grafana][link-grafana]を使用してメトリクスを可視化できます。
+InfluxDBまたはGraphiteでメトリクスのエクスポートを設定している場合、[Grafana][link-grafana]でメトリクスを可視化できます。
 
-!!! info "いくつかの前提条件"
-    この文書では、Grafanaを[InfluxDB][doc-network-plugin-influxdb]または[Graphite][doc-network-plugin-graphite]と一緒にデプロイしたことを前提としています。
+!!! info "いくつかの前提"
+    本ドキュメントは、[InfluxDB][doc-network-plugin-influxdb]または[Graphite][doc-network-plugin-graphite]と併設してGrafanaをデプロイしていることを前提としています。
     
-    この文書では、`node.example.local`フィルターノードが処理するリクエストの数を示す[`wallarm_nginx/gauge-abnormal`][doc-gauge-abnormal]メトリクスを例にしています。
+    `node.example.local`フィルターノードで処理されたリクエスト数を示す[`wallarm_nginx/gauge-abnormal`][doc-gauge-abnormal]メトリクスを例として使用しています。
     
-    しかし、どの[サポートされているメトリクス][doc-available-metrics]でもモニタリングすることができます。
+    ただし、任意の[対応メトリクス][doc-available-metrics]を監視することも可能です。
 
-ブラウザで`http://10.0.30.30:3000`にアクセスしてGrafanaのWebコンソールを開き、標準のユーザー名（`admin`）とパスワード（`admin`）を使用してコンソールにログインします。
+ブラウザで`http://10.0.30.30:3000`にアクセスしてGrafanaのWebコンソールを開き、標準のユーザー名（`admin`）およびパスワード（`admin`）でログインしてください。
 
-Grafanaを使ってフィルターノードをモニタリングするには、以下の作業が必要です。
-1.  データソースを接続します。
+Grafanaでフィルターノードを監視するためには、以下の手順を実施する必要があります。
+1.  データソースに接続します。
 2.  データソースから必要なメトリクスを取得します。
-3.  メトリックの視覚化を設定します。
+3.  メトリクスの可視化を設定します。
 
-以下のデータソースのいずれかを使用していると想定しています。
+以下のいずれかのデータソースを使用しているものとします:
 *   InfluxDB
 *   Graphite
 
-##  データソースの接続
+## データソースへの接続
 
 ### InfluxDB
 
-データソースとしてInfluxDBサーバーを接続するには、以下の手順を行います：
-1.  Grafanaコンソールのメインページから*データソースを追加*ボタンをクリックします。
-2.  データソースタイプとして“InfluxDB”を選択します。
-3.  必要なパラメータを入力します：
-    *   名前：InfluxDB
-    *   URL：`http://influxdb:8086`
-    *   データベース：`collectd`
-    *   ユーザー：`root`
-    *   パスワード：`root`
-4.  *保存 & テスト*ボタンをクリックします。
+InfluxDBサーバーをデータソースとして接続するには、以下の手順に従ってください:
+1.  Grafanaコンソールのメインページで、*Add data source*ボタンをクリックします。
+2.  データソースタイプとして「InfluxDB」を選択します。
+3.  必要なパラメーターを入力します:
+    *   Name: InfluxDB
+    *   URL: `http://influxdb:8086`
+    *   Database: `collectd`
+    *   User: `root`
+    *   Password: `root`
+4.  *Save & Test*ボタンをクリックします。
 
 ### Graphite
 
-データソースとしてGraphiteサーバーを接続するには、以下の手順を行います：
-1.  Grafanaコンソールのメインページから*データソースを追加*ボタンをクリックします。
-2.  データソースタイプとして“Graphite”を選択します。
-3.  必要なパラメータを入力します：
-    *   名前：Graphite
-    *   URL：`http://graphite:8080`.
-    *   バージョン：ドロップダウンリストから利用可能な最新のバージョンを選択します。
-4.  *保存 & テスト*ボタンをクリックします。
+Graphiteサーバーをデータソースとして接続するには、以下の手順に従ってください:
+1.  Grafanaコンソールのメインページで、*Add data source*ボタンをクリックします。
+2.  データソースタイプとして「Graphite」を選択します。
+3.  必要なパラメーターを入力します:
+    *   Name: Graphite
+    *   URL: `http://graphite:8080`
+    *   Version: ドロップダウンリストから最新のバージョンを選択します。
+4.  *Save & Test*ボタンをクリックします。
 
 !!! info "データソースのステータス確認"
-    データソースが正常に接続された場合、"データソースが作動しています"というメッセージが表示されるはずです。
+    データソースが正常に接続されている場合、”Data source is working”のメッセージが表示されます。
 
-### その後の操作
+### さらなる操作
 
-Grafanaがメトリクスをモニタリングできるようにするために、以下の操作を行います：
-1.  コンソールの左上隅にある*Grafana*アイコンをクリックしてメインページに戻ります。
-2.  *新しいダッシュボード*ボタンをクリックして新しいダッシュボードを作成します。次に、*クエリを追加*ボタンをクリックして、ダッシュボードにメトリクスをフェッチする[クエリを追加][anchor-query]します。
+Grafanaでメトリクスの監視を有効にするため、以下の操作を実施してください:
+1.  コンソール左上の*Grafana*アイコンをクリックしてメインページに戻ります。
+2.  *New Dashboard*ボタンをクリックして新しいダッシュボードを作成します。続いて、*Add Query*ボタンをクリックし、[クエリの追加][anchor-query]によりダッシュボードにメトリクスを取得するクエリを追加します。
 
-##  データソースから必要なメトリクスの取得
+## データソースから必要なメトリクスの取得
 
 ### InfluxDB
 
-InfluxDBデータソースからメトリクスを取得するには、以下の手順を行います：
-1.  *クエリ*ドロップダウンリストから新しく作成した“InfluxDB”データソースを選択します。
-2.  InfluxDBへのクエリを設計します
-    *   グラフィカルなクエリ設計ツールを使用するか、
+InfluxDBデータソースからメトリクスを取得するには、以下の手順に従ってください:
+1.  *Query*ドロップダウンリストから新たに作成した「InfluxDB」データソースを選択します。
+2.  InfluxDBへのクエリを設計します。
+    *   グラフィカルクエリデザインツールを使用する方法
 
         ![Graphical query design tool][img-influxdb-query-graphical]
 
-    *   平文のクエリを手動で入力します（これを行うには、下のスクリーンショットでハイライト表示されている*テキスト編集を切り替え*ボタンをクリックします）。
+    *   または、プレーンテキストでクエリを手動で入力する方法（下記のスクリーンショットでハイライトされた*Toggle text edit*ボタンをクリックします）。
 
         ![Plaintext query design tool][img-influxdb-query-plaintext]
 
-
-
-`wallarm_nginx/gauge-abnormal`メトリクスを取得するためのクエリは以下の通りです：
+`wallarm_nginx/gauge-abnormal`メトリクスを取得するためのクエリは以下の通りです:
 ```
-SELECT value FROM curl_json_value WHERE (host = 'node.example.local' AND instance = 'wallarm_nginx' AND type = 'gauge' AND type_instance = 'abnormal')
+SELECT value FROM curl_json_value WHERE (host = 'node.example.local' AND instance = 'wallarm_nginx' AND type = 'gauge' AND type_instance = 'abnormal')    
 ```
 
 ### Graphite
 
-Graphiteデータソースからメトリクスを取得するには、以下の手順を行います：
+Graphiteデータソースからメトリクスを取得するには、以下の手順に従ってください:
 
-1.  *クエリ*ドロップダウンリストから新しく作成した“Graphite”データソースを選択します。
-2.  *シリーズ*行の該当メトリックの要素に対して*メトリックを選択*ボタンをクリックして、必要なメトリックの要素を順番に選択します。
+1.  *Query*ドロップダウンリストから新たに作成した「Graphite」データソースを選択します。
+2.  *Series*行で対象のメトリクス要素に対応する*select metric*ボタンをクリックし、必要なメトリクスの要素を順次選択します。
 
-    `wallarm_nginx/gauge-abnormal` メトリックの要素は以下の通りです：
+    `wallarm_nginx/gauge-abnormal`メトリクスの要素は以下の通りです:
 
-    1.  ホスト名、`write_graphite` プラグイン設定ファイルに設定されたもの。
+    1.  ホスト名。これは`write_graphite`プラグイン設定ファイルで設定されたものです。
    
-        このプラグインでは、デフォルトで `_` 文字がデリミタとして機能するため、`node.example.local` ドメイン名はクエリ中で `node_example_local` と表現されます。
+        このプラグインでは`_`文字がデリミタとして機能するため、`node.example.local`のドメイン名はクエリ内で`node_example_local`として表されます。
    
-    2.  特定の値を提供する `collectd` プラグインの名前。このメトリックに対しては、プラグインは `curl_json` です。
-    3.  プラグイン・インスタンスの名前。このメトリックに対しては、名前は `wallarm_nginx`です。
-    4.  値のタイプ。このメトリックに対しては、タイプは `gauge` です。
-    5.  値の名前。このメトリックに関しては、名前は `abnormal` です。
+    2.  特定の値を提供する`collectd`プラグインの名称。このメトリクスではプラグインは`curl_json`です。
+    3.  プラグインインスタンスの名称。このメトリクスでは名称は`wallarm_nginx`です。
+    4.  値のタイプ。このメトリクスではタイプは`gauge`です。
+    5.  値の名称。このメトリクスでは名称は`abnormal`です。
 
-### その後の操作
+### さらなる操作
 
-クエリを作成した後、対応するメトリックの視覚化を設定します。
+クエリ作成後、該当メトリクスの可視化を設定してください。
 
-##  メトリクス視覚化の設定
+## メトリクスの可視化設定
 
-*クエリ*タブから*視覚化*タブに切り替え、メトリックに対して望む視覚化を選択します。
+*Query*タブから*Visualization*タブに切り替え、目的のメトリクスに適した可視化を選択します。
 
-`wallarm_nginx/gauge-abnormal`メトリックに対しては、“Gauge”視覚化を推奨します：
-*   現在のメトリクス値を表示するには、*Calc: Last*オプションを選択します。
-*   必要に応じて、しきい値やその他のパラメータを設定できます。
+`wallarm_nginx/gauge-abnormal`メトリクスについては、「Gauge」可視化の使用を推奨します:
+*   現在のメトリクス値を表示するために*Calc: Last*オプションを選択してください。
+*   必要に応じ、しきい値その他のパラメーターを設定することが可能です。
 
 ![Configure visualization][img-query-visualization]
 
-### その後の操作
+### さらなる操作
 
-視覚化を設定した後、以下の手順を行います：
-*   コンソールの左上隅にある*“←”*ボタンをクリックしてクエリの設定を完了します。
-*   ダッシュボードに行われた変更を保存します。
-*   Grafanaがメトリックのモニタリングに成功したことを確認し、確認します。
+可視化の設定完了後、以下の操作を実施してください:
+*   コンソール左上の*“←”*ボタンをクリックしてクエリの設定を完了します。  
+*   ダッシュボードに対して行った変更を保存します。
+*   Grafanaが該当メトリクスを正常に監視していることを確認してください。
 
-##  モニタリングの確認
+## 監視の検証
 
-データソースの1つを接続し、`wallarm_nginx/gauge-abnormal`メトリックのクエリと視覚化を設定した後、モニタリングの動作を確認します。
-1.  自動的なメトリクス更新を5秒間隔で有効にします（Grafanaコンソールの右上隅のドロップダウンリストから値を選択します）。
-2.  Grafanaダッシュボード上の現在のリクエスト数がフィルターノードの`wallarm-status`の出力と一致することを確認します：
+データソースの接続、`wallarm_nginx/gauge-abnormal`メトリクスのクエリおよび可視化の設定が完了したら、監視動作を確認してください:
+1.  Grafanaコンソール右上のドロップダウンリストから5秒間隔の自動メトリクス更新を有効にします。
+2.  Grafanaダッシュボード上の現在のリクエスト数がフィルターノード上での`wallarm-status`出力と一致していることを確認します:
 
-    --8<-- "../include-ja/monitoring/wallarm-status-check-latest.md"
+    --8<-- "../include/monitoring/wallarm-status-check-latest.md"
     
     ![Checking the attack counter][img-grafana-0-attacks]
     
-3.  フィルターノードで保護されたアプリケーションに対してテスト攻撃を行います。これには、`curl`ユーティリティまたはブラウザでアプリケーションに悪意のあるリクエストを送信できます。
+3.  フィルターノードで保護されたアプリケーションに対してテスト攻撃を実施します。これを行うには、`curl`ユーティリティまたはブラウザを使用してアプリケーションに悪意あるリクエストを送信してください。
 
-    --8<-- "../include-ja/monitoring/sample-malicious-request.md"
+    --8<-- "../include/monitoring/sample-malicious-request.md"
     
-4.  リクエストカウンターが`wallarm-status`の出力とGrafanaダッシュボードの両方で増加したことを確認します：
+4.  `wallarm-status`の出力とGrafanaダッシュボードの双方でリクエストカウンターが増加していることを確認してください:
 
-    --8<-- "../include-ja/monitoring/wallarm-status-output-padded-latest.md"
+    --8<-- "../include/monitoring/wallarm-status-output-padded-latest.md"
 
     ![Checking the attack counter][img-grafana-16-attacks]
 
-Grafanaダッシュボードは現在、`node.example.local`フィルターノードの`wallarm_nginx/gauge-abnormal`メトリックの値を表示しています。
+Grafanaダッシュボードには、`node.example.local`フィルターノードの`wallarm_nginx/gauge-abnormal`メトリクスの値が表示されます。

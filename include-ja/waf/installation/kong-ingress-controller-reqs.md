@@ -1,11 +1,11 @@
 * Kubernetesプラットフォームバージョン1.22-1.26
-* 保護したいマイクロサービスにAPI呼び出しをルーティングするためのKongを設定するK8s Ingressリソース
-* Kong 3.1.xとのK8s Ingressリソースの互換性
-* [Helm v3](https://helm.sh/)パッケージマネージャー
-* US Wallarm Cloudと連携するための`https://us1.api.wallarm.com`へのアクセスまたはEU Wallarm Cloudと連携するための`https://api.wallarm.com`へのアクセス
-* WallarmのHelmチャートを追加するための`https://charts.wallarm.com`へのアクセス
-* Docker Hub上のWallarmリポジトリへのアクセス `https://hub.docker.com/r/wallarm`
-* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+* KongがAPI呼び出しを保護対象のマイクロサービスにルーティングできるように構成するK8s Ingressリソース
+* Kong 3.1.xとの互換性を持つK8s Ingressリソース
+* [Helm v3](https://helm.sh/)パッケージマネージャ
+* US Wallarm Cloudを使用して作業するために`https://us1.api.wallarm.com`へのアクセス、またはEU Wallarm Cloudを使用して作業するために`https://api.wallarm.com`へのアクセス
+* Wallarm Helmチャートを追加するために`https://charts.wallarm.com`へのアクセス
+* Docker Hub上のWallarmリポジトリ`https://hub.docker.com/r/wallarm`へのアクセス
+* 攻撃検出ルールの更新をダウンロードするためや、[ホワイトリスト、ブラックリスト、またはグレイリストに登録された][ip-lists-docs]国、地域、データセンター用の正確なIPを取得するために、以下のIPアドレスへのアクセス
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarmコンソールで**管理者**ロールのアカウントへのアクセス
+* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**Administrator**ロールのアカウントへのアクセス

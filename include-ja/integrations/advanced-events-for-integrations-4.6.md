@@ -1,13 +1,11 @@
-* [ヒット](../../../glossary-en.md#hit) 検出されたものは以下を除く：
-
-    * [カスタム正規表現](../../rules/regex-rule.md)に基づいて検出された実験的なヒット。非実験的なヒットは通知を引き起こします。
-    * [サンプル](../../events/analyze-attack.md#sampling-of-hits)に保存されていないヒット。
-
-* システム関連：
-    * [ユーザー](../../../user-guides/settings/users.md)の変更（新規作成、削除、役割の変更）
-    * [インテグレーション](integrations-intro.md)の変更（無効、削除）
-    * [アプリケーション](../../../user-guides/settings/applications.md)の変更（新規作成、削除、名称の変更）
-* 検出された[脆弱性](../../../glossary-en.md#vulnerability)、デフォルトでは全て、または選択したリスクレベル（高、中、低）についてのみ。
-* [ルール](../../../user-guides/rules/rules.md)と[トリガー](../../../user-guides/triggers/triggers.md)の変更（ルールまたはトリガーの作成、更新、または削除）
-* [スコープ（露出したアセット）](../../scanner.md)の変更：ホスト、サービス、ドメインの更新
-* 時間単位で、前の時間に処理されたリクエストの数に関する通知を受け取ることができます。
+* [Hits](../../../glossary-en.md#hit)が検出されました。ただし、以下の場合は除外されます:
+    * 実験的なHitsが[カスタム正規表現](../../rules/regex-rule.md)に基づいて検出されます。実験的でないHitsは通知を発します.
+    * [サンプル](../../../user-guides/events/analyze-attack.md#sampling-of-hits)に保存されなかったHits.
+* システム関連:
+    * [User](../../../user-guides/settings/users.md)の変更（新規作成、削除、役割変更）
+    * [Integration](integrations-intro.md)の変更（無効、削除）
+    * [Application](../../../user-guides/settings/applications.md)の変更（新規作成、削除、名前変更）
+* [脆弱性](../../../glossary-en.md#vulnerability)が検出されました（デフォルトではすべて、または選択したリスクレベル―高、中、低―のみ）.
+* [Rules](../../../user-guides/rules/intro.md)および[triggers](../../../user-guides/triggers/triggers.md)が変更されました（ルールまたはトリガーの作成、更新、削除）.
+* [Scope (exposed assets)](../../scanner.md)が変更されました：ホスト、サービス、ドメインの更新
+* 毎時、前の1時間に処理されたリクエスト数を含む通知を受け取ることができます

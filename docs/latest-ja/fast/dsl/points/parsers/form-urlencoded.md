@@ -1,40 +1,40 @@
 [link-ruby]:                        http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
-[link-formurlencoded-array]:        array.md#formurlencoded-パーサーアンド-アレイ-フィルター-使う-例
-[link-formurlencoded-hash]:         hash.md#formurlencoded-パーサーと-ハッシュ-フィルター-使う-例
+[link-formurlencoded-array]:        array.md#the-example-of-using-the-form_urlencoded-parser-and-the-array-filter
+[link-formurlencoded-hash]:         hash.md#the-example-of-using-the-form_urlencoded-parser-with-the-hash-filter
 
 # Form_urlencoded パーサー
 
-**Form_urlencoded** パーサーは、form-urlencoded 形式でリクエストボディを操作するために使用します。このパーサーは、リクエストボディパラメーターの名前がキーで、対応するパラメーターの値がハッシュテーブルの値になるハッシュテーブルを作成します。このハッシュテーブルの要素は、パラメーターの名前を使用して参照する必要があります。
+**Form_urlencoded**パーサーは、form-urlencoded形式のリクエストボディを処理するために使用されます。このパーサーは、リクエストボディパラメータの名前をキーとし、対応するパラメータの値をハッシュテーブルの値として作成します。このハッシュテーブルの要素には、パラメータの名前を使用して参照する必要があります。
 
-!!! info "ポイントの正規表現"
-    ポイントのパラメーター名は、[Rubyプログラミング言語][link-ruby]の正規表現であることができます。
+!!! info "ポイントにおける正規表現"
+    ポイント内のパラメータ名は、[Rubyプログラミング言語][link-ruby]の正規表現にすることができます。
 
 !!! warning "ポイントでのForm_urlencodedパーサーの使用"
-    Form_urlencodedパーサーは、基線のリクエストボディを参考にしたPostフィルターと共に、ポイントでのみ使用できます。
+    Form_urlencodedパーサーは、ベースラインリクエストボディを参照するPostフィルターと併用する場合に限り、ポイントで使用できます。
 
-form-urlencoded形式のリクエストボディには、次の複雑なデータ構造も含まれることがあります：配列とハッシュテーブル。これらの構造の要素にアクセスするためには、それぞれに対応する[配列][link-formurlencoded-array]と[ハッシュ][link-formurlencoded-hash]フィルターを使用してください。
+form-urlencoded形式のリクエストボディには、配列やハッシュテーブルなどの以下の複雑なデータ構造が含まれる場合もあります。これらの構造内の要素にアクセスするには、[Array][link-formurlencoded-array]および[Hash][link-formurlencoded-hash]フィルターをそれぞれ使用してください。
 
-**例：** 
+**例:**
 
-以下の
+下記の
 
 ```
 POST http://example.com/login/index.php HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 ```
 
-というリクエストに対して
+リクエストに
 
 ```
 id=01234&username=John
 ```
 
-というボディがある場合、リクエストボディに適用されたForm_urlencodedパーサーによって次のハッシュテーブルが作成されます：
+ボディが付随している場合、リクエストボディに適用されたForm_urlencodedパーサーは、以下のハッシュテーブルを作成します:
 
-| キー     | 値      |
-|----------|---------|
-| id       | 01234   |
-| username | John    |
+| Key      | Value    |
+|----------|----------|
+| id       | 01234    |
+| username | John     |
 
-* `POST_FORM_URLENCODED_id_value` ポイントは、Form_urlencodedパーサーによって作成されたハッシュテーブル内の `id` キーに対応する `01234` の値を指します。
-* `POST_FORM_URLENCODED_username_value` ポイントは、Form_urlencodedパーサーによって作成されたハッシュテーブル内の `username` キーに対応する `John` の値を指します。
+* `POST_FORM_URLENCODED_id_value`ポイントは、Form_urlencodedパーサーによって作成されたハッシュテーブルの`id`キーに対応する`01234`の値を指します。
+* `POST_FORM_URLENCODED_username_value`ポイントは、Form_urlencodedパーサーによって作成されたハッシュテーブルの`username`キーに対応する`John`の値を指します。

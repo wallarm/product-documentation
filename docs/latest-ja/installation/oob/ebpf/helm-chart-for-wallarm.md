@@ -1,8 +1,8 @@
 # Wallarm固有のWallarm eBPF Helmチャートの値
 
-このドキュメントでは、eBPFソリューションの[デプロイメント](deployment.md)やアップグレード中に変更できるWallarm固有のHelmチャートの値に関する情報を提供します。これらの値は、Wallarm eBPF Helmチャートのグローバル設定を制御します。
+本書は、[deployment.md](deployment.md) または eBPF ソリューションのアップグレード時に変更可能な Wallarm 固有の Helm チャート値について説明します。これらの値は、Wallarm eBPF Helm チャートのグローバル構成を制御します。
 
-変更が必要かもしれない既定の`values.yaml`のWallarm固有部分は、以下のようになります：
+デフォルトの `values.yaml` 内で変更が必要な Wallarm 固有の部分は、以下のとおりです:
 
 ```yaml
 config:
@@ -11,16 +11,17 @@ config:
     host: api.wallarm.com
     port: 443
     useSSL: true
+  mutualTLS: false
   agent:
     mirror:
       allNamespaces: false
       filters: []
-      # - namespace: "default"
-      # - namespace: 'my-namespace'
-      #   pod_labels:
+      # - namespace: "default"  # 「default」
+      # - namespace: 'my-namespace'  # 「my-namespace」を指定
+      #   pod_labels:  # Podラベル
       #     label_name1: 'label_value_1'
       #     label_name2: 'label_value_2,label_value_3'
-      #   pod_annotations:
+      #   pod_annotations:  # Pod注釈
       #      annotation_name1: 'annotation_value_1'
       #      annotation_name2: 'annotation_value_2,annotation_value_4'
     loadBalancerRealIPHeader: 'X-Real-IP'
@@ -59,33 +60,39 @@ processing:
 
 ## config.api.token
 
-Wallarm Consoleで[US](https://us1.my.wallarm.com/nodes)または[EU](https://my.wallarm.com/nodes) Cloudで作成されたWallarmノードトークン。Wallarm APIにアクセスするために必要です。
+これは、[US](https://us1.my.wallarm.com/nodes) または [EU](https://my.wallarm.com/nodes) Cloud の Wallarm Console で作成された Wallarm ノードトークンです。Wallarm API にアクセスするために必要です。
 
 ## config.api.host
 
-Wallarm APIエンドポイント。次のようになります：
+Wallarm API のエンドポイントです。次のいずれかになります:
 
-* `us1.api.wallarm.com` は、[USクラウド](../../../about-wallarm/overview.md#us-cloud) に対応
-* `api.wallarm.com` は、[EUクラウド](../../../about-wallarm/overview.md#eu-cloud) に対応（デフォルト）
+* `us1.api.wallarm.com` は [US cloud](../../../about-wallarm/overview.md#cloud) 向けです
+* `api.wallarm.com` は [EU cloud](../../../about-wallarm/overview.md#cloud) 向けです（デフォルト）
 
 ## config.api.port
 
-Wallarm APIエンドポイントのポート。デフォルトでは、`443`です。
+Wallarm API のエンドポイントポートです。デフォルトは `443` です。
 
 ## config.api.useSSL
 
-SSLを使用してWallarm APIにアクセスするかどうかを指定します。デフォルトでは、`true`です。
+Wallarm API にアクセスする際に SSL を使用するかどうかを指定します。デフォルトは `true` です。
+
+## config.mutualTLS
+
+mTLS サポートを有効にし、[Wallarm processing node](deployment.md#how-it-works) が eBPF エージェントからのトラフィックの安全性を認証できるようにします。デフォルトは `false`（無効）です。
+
+このパラメータは Helm チャート バージョン 0.10.26 以降でサポートされています。
 
 ## config.agent.mirror.allNamespaces
 
-すべての名前空間でのトラフィックミラーリングを有効にします。デフォルト値は`false`です。
+すべての namespace に対してトラフィックミラーリングを有効にします。デフォルト値は `false` です。
 
-!!! warning " `true`に設定することは推奨されません"
-    これを`true`に設定すると、データの重複とリソースの増加が発生する可能性があります。名前空間のラベル、ポッドの注釈、または`values.yaml`の`config.agent.mirror.filters`を使用した[選択的なミラーリング](selecting-packets.md)を優先してください。
+!!! warning "「true」に設定することはお勧めしません"
+    これを「true」に設定すると、データの重複やリソース使用量の増加を招く可能性があります。namespaceラベル、pod注釈、または `values.yaml` の `config.agent.mirror.filters` を使用した selective mirroring を推奨します。
 
 ## config.agent.mirror.filters
 
-トラフィックミラーリングのレベルを制御します。`filters`パラメータの例は、以下の通りです：
+トラフィックミラーリングのレベルを制御します。以下は `filters` パラメータの例です:
 
 ```yaml
 ...
@@ -103,17 +110,17 @@ SSLを使用してWallarm APIにアクセスするかどうかを指定します
             annotation_name2: 'annotation_value_2,annotation_value_4'
 ```
 
-[詳細](selecting-packets.md)
+[詳細はこちら](selecting-packets.md)
 
 ## config.agent.loadBalancerRealIPHeader
 
-ロードバランサーが元のクライアントIPアドレスを伝えるために使用するヘッダー名を指定します。正しいヘッダー名を識別するために、ロードバランサーのドキュメントを参照してください。デフォルトでは、`X-Real-IP`です。
+ロードバランサーが元のクライアントIPアドレスを伝達するために使用するヘッダー名を指定します。正しいヘッダー名を確認するには、お使いのロードバランサーのドキュメントを参照してください。デフォルトは `X-Real-IP` です。
 
-`loadBalancerRealIPHeader`および`loadBalancerTrustedCIDRs`パラメーターは、Kubernetesクラスター外部のL7ロードバランサー（例、AWS ALB）を介してルーティングされるときに、Wallarm eBPFがソースIPを正確に特定するのを有効にします。
+`loadBalancerRealIPHeader` および `loadBalancerTrustedCIDRs` パラメータにより、Wallarm eBPF は Kubernetes クラスター外部の L7 ロードバランサー（例：AWS ALB）を通じたトラフィックの送信元IPアドレスを正確に判別できます。
 
 ## config.agent.loadBalancerTrustedCIDRs
 
-信頼できるL7ロードバランサーのCIDR範囲のホワイトリストを定義します。例：
+信頼できる L7 ロードバランサーの CIDR 範囲のホワイトリストを定義します。例:
 
 ```yaml
 config:
@@ -123,21 +130,21 @@ config:
       - 192.168.0.0/16
 ```
 
-これらの値をHelmで更新するには：
+これらの値を Helm を使用して更新するには:
 
 ```
-# リストに単一のアイテムを追加する場合：
+# リストに項目を追加する場合:
 helm upgrade <RELEASE_NAME> <CHART> --set 'config.agent.loadBalancerTrustedCIDRs[0]=10.10.0.0/24'
 
-# リストに複数のアイテムを追加する場合：
+# 複数の項目をリストに追加する場合:
 helm upgrade <RELEASE_NAME> <CHART> --set 'config.agent.loadBalancerTrustedCIDRs[0]=10.10.0.0/24,config.agent.loadBalancerTrustedCIDRs[1]=192.168.0.0/16'
 ```
 
 ## processing.metrics
 
-Wallarmノード[メトリクスサービス](../../../admin-en/configure-statistics-service.md)の設定を制御します。デフォルトでは、サービスは無効です。
+Wallarm ノードの [metrics service](../../../admin-en/configure-statistics-service.md) の構成を制御します。デフォルトでは、このサービスは無効です。
 
-サービスを有効にする場合、`port`、`path`、`scrapeInterval`のデフォルト値を保持することをお勧めします：
+サービスを有効にする場合、`port`、`path`、および `scrapeInterval` のデフォルト値を保持することを推奨します:
 
 ```yaml
 processing:
@@ -151,11 +158,11 @@ processing:
 
 ## processing.affinity および processing.nodeSelector
 
-Wallarm eBPFデーモンセットがデプロイされるKubernetesノードを制御します。デフォルトでは、それぞれのノードにデプロイされます。
+Wallarm eBPF daemonSet がデプロイされる Kubernetes ノードを制御します。デフォルトでは、各ノードにデプロイされます。
 
-## 変更の適用
+## 変更の適用方法
 
-`values.yaml`ファイルを変更してデプロイされたチャートをアップグレードしたい場合、次のコマンドを使用します：
+もし `values.yaml` ファイルを変更し、デプロイ済みのチャートをアップグレードしたい場合は、以下のコマンドを使用してください:
 
 ```
 helm upgrade <RELEASE_NAME> wallarm/wallarm-oob -n wallarm-ebpf -f <PATH_TO_VALUES>

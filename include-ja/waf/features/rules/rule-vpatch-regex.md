@@ -1,8 +1,8 @@
-アプリケーションが`example.com`ドメインでアクセス可能であり、ユーザ認証に32桁の16進数形式の`X-AUTHENTICATION`ヘッダーを使用しており、不正な形式のトークンを拒否したいとしましょう。
+たとえば、`example.com`ドメイン上でアクセス可能なアプリケーションが、ユーザー認証に32桁の十六進数字形式の`X-AUTHENTICATION`ヘッダーを使用し、誤った形式のトークンを拒否したいとします。
 
-そのためには、**正規表現に基づく攻撃指標の作成**ルールを設定し、スクリーンショットに表示されているように**バーチャルパッチ**に設定します。これには以下が含まれます：
+そのためには、スクリーンショットに表示されているように、**Create regexp-based attack indicator**ルールを設定し、**Virtual patch**に設定します。以下の内容を含めます:
 
-* 正規表現：`[^0-9a-f]|^.{33,}$|^.{0,31}$`
-* リクエスト部分：`header` - `X-AUTHENTICATION`
+* Regular expression: `^(.{0,31}|.{33,}|[^0-9a-fA-F]+)$`
+* Request part: `header` - `X-AUTHENTICATION`
 
 ![Regex rule first example][img-regex-example1]

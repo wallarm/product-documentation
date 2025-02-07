@@ -1,4 +1,4 @@
-postanalyticsのサーバーアドレスを `/etc/nginx-wallarm/conf.d/wallarm.conf`に追加します：
+postanalyticsのサーバーアドレスを`/etc/nginx-wallarm/conf.d/wallarm.conf`に追加します:
 
 ```bash
 upstream wallarm_tarantool {
@@ -8,15 +8,15 @@ upstream wallarm_tarantool {
     keepalive 2;
 }
 
-#省略
+# 省略
 
 wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
 !!! warning "必要な条件"
-    `max_conns` と `keepalive` パラメータについて、以下の条件が必要です：
-
-    * `keepalive` パラメータの値は、Tarantoolサーバーの数より少なくてはなりません。
-    * 上流のTarantoolサーバーそれぞれに対して、`max_conns` パラメータの値を指定して、接続数が過剰にならないようにする必要があります。
-
-    `# wallarm_tarantool_upstream wallarm_tarantool;` 行はデフォルトでコメントアウトされています - `#` を削除してください。
+    以下の条件が`max_conns`および`keepalive`パラメータに対して満たされる必要があります:
+    
+    * `keepalive`パラメータの値はTarantoolサーバの数より低くしてはなりません。
+    * 過剰な接続の作成を防ぐため、upstreamの各Tarantoolサーバに対して`max_conns`パラメータの値が指定されている必要があります。
+    
+    デフォルトでは`# wallarm_tarantool_upstream wallarm_tarantool;`の文字列はコメントアウトされているので、`#`を削除してください。

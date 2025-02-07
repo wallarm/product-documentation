@@ -1,71 +1,72 @@
 [img-sample-job-ci-mode]:       ../../images/fast/poc/en/integration-overview/sample-job-ci-mode.png
 
-[doc-recording-mode]:           ci-mode-recording.md#recording-modeでのfast-nodeの実行
-[doc-testing-mode]:             ci-mode-testing.md#testing-modeでのfast-nodeの実行
+[doc-recording-mode]:           ci-mode-recording.md#running-a-fast-node-in-recording-mode
+[doc-testing-mode]:             ci-mode-testing.md#running-a-fast-node-in-testing-mode
 [doc-proxy-configuration]:      proxy-configuration.md
-[doc-fast-container-stopping]:  ci-mode-recording.md#recording-modeでのdockerコンテナーを停止させ、削除する方法
-[doc-recording-variables]:      ci-mode-recording.md#recording-modeでの環境変数
+[doc-fast-container-stopping]:  ci-mode-recording.md#stopping-and-removing-the-docker-container-with-the-fast-node-in-recording-mode
+[doc-recording-variables]:      ci-mode-recording.md#environment-variables-in-recording-mode
 [doc-integration-overview]:     integration-overview.md
 
-#   FAST Nodeを用いた統合：原理と手順
 
-CIモードによるセキュリティテストを行うためには、FASTノードを次の2つのモードで順番に実行する必要があります：
-1.  [記録モード（Recording mode）][doc-recording-mode]
-2.  [テストモード（Testing mode）][doc-testing-mode]
+# FAST Nodeを介した統合: 原則と手順
 
-`CI_MODE`環境変数はFASTノードの動作モードを決定します。この変数は以下の値を取ることができます：
-* `記録モード（recording）`
-* `テストモード（testing）`
+CIモードでのセキュリティテストを実施するには、FAST nodeを順次2つのモードで実行する必要があります:
+1.  [Recording mode][doc-recording-mode]
+2.  [Testing mode][doc-testing-mode]
 
-このシナリオでは、まず、FASTノードがテストレコードを作成し、ベースラインリクエストを記録します。記録が完了したら、ノードは事前に記録されたベースラインリクエストをベースにセキュリティテストを行うテストランを作成します。
+FAST nodeの動作モードは環境変数`CI_MODE`で定義されます。この変数は以下の値を取ります:
+* `recording`
+* `testing`
 
-このシナリオは以下の画像で表示されています：
+このシナリオでは、まずFAST nodeがテストレコードを作成し、ベースラインリクエストを書き込みます。記録が終了すると、nodeは事前に記録されたベースラインリクエストを元にセキュリティテストを実行するテストランを作成します。  
 
-![CIモードのFASTノードを持つCI/CDジョブの例][img-sample-job-ci-mode]
+下図はこのシナリオを示しています:
 
-対応するワークフローステップは次の通りです：
+![CIモードでFAST nodeを使用したCI/CDジョブの例][img-sample-job-ci-mode]
 
-1.  ターゲットアプリケーションのビルドとデプロイ。   
+対応するワークフローステップは以下の通りです:
 
-2. [FASTノードを記録モードで実行する][doc-recording-mode]。
+1.  対象アプリケーションのビルドおよびデプロイ。
 
-    記録モードでは、FASTノードが次のアクションを行います：
+2.  [Recording modeでFAST nodeを実行][doc-recording-mode].
+
+    Recording modeでは、FAST nodeは以下の動作を行います:
     
-    * ターゲットアプリケーションへのリクエストソースからのベースラインリクエストをプロキシします。
-    * これらのベースラインリクエストをテストレコードに記録し、それらを元にセキュリティーテストセットを作成します。
+    * リクエスト元から対象アプリケーションへのベースラインリクエストをプロキシします。
+    * 後でこれらのベースラインリクエストを元にセキュリティテストセットを作成するため、テストレコードに記録します。
     
-    !!! info "テストランについての注釈"
-        記録モードでは、テストランは作成されません。
+    !!! info "テストランに関する注意"
+        Recording modeではテストランは作成されません。
 
-3. テストツールの準備と設定：
+3.  テストツールの準備および設定:
     
-    1. テストツールをデプロイし、基本的な設定を行います。
+    1.  テストツールのデプロイと基本設定を行います。
     
-    2. [FASTノードをプロキシサーバーとして設定します][doc-proxy-configuration]。
+    2.  [FAST nodeをプロキシサーバとして設定][doc-proxy-configuration].
         
-4. 既存のテストを実行する。
+4.  既存のテストを実行します.
     
-    FASTノードは、ターゲットアプリケーションへのベースラインリクエストをプロキシして記録します。
+    FAST nodeは対象アプリケーションへのベースラインリクエストをプロキシし、記録します。
     
-5. FASTノードコンテナを停止し、削除します。
+5.  FAST nodeコンテナの停止と削除.
 
-    FASTノードが運用中にクリティカルなエラーに遭遇しなかった場合、[`INACTIVITY_TIMEOUT`][doc-recording-variables]タイマーが切れるか、CI/CDツールが明示的にコンテナを停止してくれるまで稼働します。
+    FAST nodeが運用中に重大なエラーに遭遇しなければ、[`INACTIVITY_TIMEOUT`][doc-recording-variables]タイマーが切れるか、CI/CDツールが明示的にコンテナを停止するまで実行されます。
     
-    既存のテストが完了した後、FASTノードを[停止させる必要があります][doc-fast-container-stopping]。これにより、ベースラインリクエストの記録プロセスが停止します。その後、ノードコンテナは廃棄することができます。          
+    既存のテストが完了した後、FAST nodeを[停止する必要があります][doc-fast-container-stopping]。これにより、ベースラインリクエストの記録プロセスが停止されます。その後、nodeコンテナは廃棄されます。
 
-6. [FASTノードをテスティングモードで実行します][doc-testing-mode]。
+6.  [Testing modeでFAST nodeを実行][doc-testing-mode].
 
-    テストモードでは、FASTノードが次のアクションを行います：
+    Testing modeでは、FAST nodeは以下の動作を行います:
     
-    * ステップ4で記録されたベースラインリクエストに基づいてテストランを作成します。
+    * ステップ4で記録されたベースラインリクエストを基にテストランを作成します。
     * セキュリティテストセットの作成と実行を開始します。
     
-7. テストの結果を取得し、FASTノードコンテナを停止します。   
+7.  テスト結果を取得し、FAST nodeコンテナを停止します.    
     
-    FASTノードが運用中にクリティカルなエラーに遭遇しなかった場合、セキュリティテストが完了するまで稼働します。ノードは自動的にシャットダウンします。その後、ノードコンテナは廃棄することができます。
+    FAST nodeが運用中に重大なエラーに遭遇しなければ、セキュリティテストが完了するまで実行されます。nodeは自動的にシャットダウンされ、その後、nodeコンテナは廃棄できます。
 
-##  FASTノードコンテナのライフサイクル（CIモードでのデプロイ）
+## FAST Nodeコンテナのライフサイクル (CIモードによるデプロイ)
    
-このシナリオでは、まず記録モードで動作し、次にテストモードで動作するアプリケーションをFASTノードが実行すると想定しています。
+このシナリオでは、FAST nodeコンテナがまずRecording modeで実行され、その後Testing modeで実行されることを前提としています。 
  
-どちらのモードでも、FASTノードの実行が終了した後は、ノードコンテナを削除します。つまり、操作モードが変わるたびにFASTノードコンテナが再作成されます。
+FAST nodeの実行がいずれかのモードで終了すると、nodeコンテナは削除されます。つまり、動作モードが変更されるたびにFAST nodeコンテナが再作成されます。

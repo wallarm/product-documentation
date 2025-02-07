@@ -1,135 +1,168 @@
-# クレデンシャルスタッフィング検出 <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# クレデンシャルスタッフィング検出 <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-[クレデンシャルスタッフィング](../attacks-vulns-list.md#credential-stuffing)は、ハッカーが侵害されたユーザー資格情報のリストを使用して、複数のウェブサイトのユーザーアカウントに不正アクセスを試みるサイバー攻撃です。この記事では、Wallarmの**クレデンシャルスタッフィング検出**を使用して、この種の脅威を検出する方法について説明します。
+[クレデンシャルスタッフィング](../attacks-vulns-list.md#credential-stuffing)は、ハッカーが漏洩したユーザー認証情報のリストを使用して複数のウェブサイト上のユーザーアカウントに不正にアクセスするサイバー攻撃です。本記事では、Wallarmの**クレデンシャルスタッフィング検出**を使用してこの種の脅威を検出する方法について説明します。
 
-クレデンシャルスタッフィング攻撃は、異なるサービス間で同一のユーザー名やパスワードを再利用する一般的な慣行と、容易に推測可能な（弱い）パスワードを選ぶ傾向のために危険です。成功したクレデンシャルスタッフィング攻撃では、より少ない試行で済むため、攻撃者は頻繁にリクエストを送る必要がなくなり、ブルートフォース保護などの標準的な対策が効果を発揮しなくなります。
+<div>
+        <script src="https://js.storylane.io/js/v1/storylane.js"></script>
+        <div class="sl-embed" style="position:relative;padding-bottom:calc(51.72% + 27px);width:100%;height:0;transform:scale(1)">
+          <iframe class="sl-demo" src="https://wallarm.storylane.io/demo/sz9nukwy2hx4" name="sl-embed" allow="fullscreen" style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+        </div>
+      </div>
 
-## Wallarmがクレデンシャルスタッフィングに対処する方法
+クレデンシャルスタッフィング攻撃は、複数のサービスで同じユーザー名とパスワードを再利用する一般的な慣行や、容易に推測可能な（弱い）パスワードを採用する傾向のため、非常に危険です。成功するクレデンシャルスタッフィング攻撃は試行回数が少なく済むため、攻撃者はリクエストを非常に低頻度で送信でき、ブルートフォース保護などの標準的な対策が効果を発揮しにくくなります。
 
-Wallarmの**クレデンシャルスタッフィング検出**は、侵害されたまたは弱い資格情報を使用してアプリケーションにアクセスしようとする試みについてのリアルタイム情報を収集・表示します。また、このような試みについての即時通知と、アプリケーションにアクセスするためのすべての侵害または弱い資格情報のダウンロード可能なリストを提供します。
+## Wallarmによるクレデンシャルスタッフィングへの対応
 
-侵害されたおよび弱いパスワードを特定するために、Wallarmは[HIBP](https://haveibeenpwned.com/)の公開資格情報データベースから収集された850万以上のレコードの包括的なデータベースを使用します。
+Wallarmの**クレデンシャルスタッフィング検出**は、漏洩または弱い認証情報を使用してアプリケーションへアクセスしようとする試行に関するリアルタイム情報を収集・表示します。また、そのような試行に関する即時通知を可能にし、アプリケーションへアクセスするために使用された全ての漏洩または弱い認証情報のリストをダウンロード可能な形式で作成します。
+
+Wallarmは、漏洩および弱いパスワードの特定のため、公開されている[HIBP](https://haveibeenpwned.com/)の漏洩認証情報データベースから収集された**8億5,000万件**以上のレコードを含む包括的なデータベースを使用します。
 
 ![クレデンシャルスタッフィング - スキーマ](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-schema.png)
 
-Wallarmのクレデンシャルスタッフィング検出は、以下の一連のアクションを適用することで、資格情報データを安全に保持します：
+Wallarmのクレデンシャルスタッフィング検出は、以下の手順により認証情報の安全性を確保します。
 
-1. リクエストがノードに到着すると、パスワードから[SHA-1](https://en.wikipedia.org/wiki/SHA-1)を生成し、数文字をクラウドに送信します。
-1. クラウドは、受け取った文字で始まる既知の侵害パスワードのデータベースを確認します。見つかった場合、SHA-1暗号化形式でノードに送られ、ノードはそれをリクエストからのパスワードと比較します。
-1. 一致する場合、ノードはこの攻撃情報とともにリクエストから取得したログインを含め、クレデンシャルスタッフィング攻撃をクラウドに報告します。
+1. リクエストがノードに到達すると、パスワードから[SHA-1](https://en.wikipedia.org/wiki/SHA-1)が生成され、いくつかの文字がCloudに送信されます。
+1. Cloudは受信した文字列で始まる既知の漏洩パスワードのデータベースをチェックします。発見された場合、SHA-1暗号化形式のデータがノードに送信され、ノードはリクエスト内のパスワードと比較します。
+1. 一致した場合、ノードはリクエストから取得したログイン情報を含め、この攻撃がクレデンシャルスタッフィング攻撃であることをCloudに通知します。
 1. ノードはリクエストをアプリケーションに渡します。
 
-このように、Wallarmノードを備えたマシンのパスワードは、Wallarmクラウドに暗号化されていない状態で送信されることはありません。認証データは同時に送信されず、クライアントの認証データがネットワーク内で安全に保持されていることを確保します。
+このため、Wallarmノードを搭載したマシンからのパスワードがWallarm Cloudに暗号化されずに送信されることはありません。認証情報は同時に送信されないため、クライアントの認証データはネットワーク内で安全に管理されます。
 
-**大量および個別の試行**
+**大量および単一の試行**
 
-クレデンシャルスタッフィング検出は、ボットによる大量の侵害資格情報の使用試行と、他の方法では検出できない単一の試行の両方を登録することが可能です。
+クレデンシャルスタッフィング検出は、ボットによる大量の漏洩認証情報の使用試行と、その他の手法では検出不可能な単一の試行の両方を登録することが可能です。
 
-**緩和策**
+**軽減策**
 
-盗まれたまたは弱いパスワードを持つアカウントを知ることで、アカウント所有者とのコミュニケーション、アカウントへのアクセスを一時的に停止するなど、これらのアカウントのデータを保護するための対策を開始できます。
+漏洩または弱いパスワードを持つアカウントの情報を把握することで、アカウント所有者への連絡や、一時的なアクセス停止など、これらのアカウントのデータ保護のための対策を講じることができます。
 
-Wallarmは、正当なユーザーもブロックすることを避けるため、侵害された資格情報を持つリクエストをブロックしません。ただし、以下の場合はクレデンシャルスタッフィング試行がブロックされることに注意してください：
+Wallarmは、パスワードが弱い、もしくは漏洩している場合でも正当なユーザーのアクセスをブロックしないため、漏洩認証情報を使用したリクエストをブロックしません。しかし、以下の場合はクレデンシャルスタッフィングの試行がブロックされる可能性があります。
 
-* 検出された悪意のあるボット活動の一部であり、[API Abuse Prevention](../api-abuse-prevention/overview.md)モジュールを有効にした場合。
-* 他の[攻撃の兆候](../attacks-vulns-list.md)の一部であるリクエストです。
+* 悪意のあるボット活動の一環として検出され、[API Abuse Prevention](../api-abuse-prevention/overview.md)モジュールが有効になっている場合。
+* その他の[攻撃の兆候](../attacks-vulns-list.md)を伴うリクエストである場合。
 
 ## 有効化
 
-Wallarmの**クレデンシャルスタッフィング検出**を有効にするには：
+Wallarmの**クレデンシャルスタッフィング検出**を有効化するには、以下の手順を実施してください。
 
-1. お使いの[サブスクリプションプラン](../about-wallarm/subscription-plans.md#subscription-plans)が**クレデンシャルスタッフィング検出**を含んでいることを確認してください。サブスクリプションプランを変更するには、[sales@wallarm.com](mailto:sales@wallarm.com?subject=Change%20Wallarm%20subscription%20plan%20to%20include%20Credential%20Stuffing%20Detection&body=Hello%20Wallarm%20Sales%20Team%2C%0AI%27m%20writing%20to%20request%20the%20change%20of%20Wallarm%20subscription%20plan%20to%20the%20one%20that%20includes%20the%20Credential%20Stuffing%20Detection.%0AThank%20you%20for%20your%20time%20and%20assistance.)へのリクエストを送ってください。
-1. Wallarmノードが[バージョン4.10](../updating-migrating/what-is-new.md)以上であり、以下のアーティファクトのいずれかを使用してデプロイされていることを確認してください：
+1. お使いの[サブスクリプションプラン](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security)に**クレデンシャルスタッフィング検出**が含まれていることを確認します。サブスクリプションプランの変更をご希望の場合は、[sales@wallarm.com](mailto:sales@wallarm.com?subject=Change%20Wallarm%20subscription%20plan%20to%20include%20Credential%20Stuffing%20Detection&body=Hello%20Wallarm%20Sales%20Team%2C%0AI%27m%20writing%20to%20request%20the%20change%20of%20Wallarm%20subscription%20plan%20to%20the%20one%20that%20includes%20the%20Credential%20Stuffing%20Detection.%0AThank%20you%20for%20your%20time%20and%20assistance.)までリクエストを送信してください。
+1. Wallarmノードが[バージョン4.10](../updating-migrating/what-is-new.md)以降であり、以下のいずれかのアーティファクトを使用してデプロイされていることを確認してください。
 
-    * [オールインワンインストーラー](../installation/nginx/all-in-one.md)
-    * [NGINXベースのIngressコントローラー用Helmチャート](../admin-en/installation-kubernetes-en.md)
-    * [NGINXベースのDockerイメージ](../admin-en/installation-docker-en.md)
+    * [All-in-one installer](../installation/nginx/all-in-one.md)
+    * [Helm chart for NGINX-based Ingress controller](../admin-en/installation-kubernetes-en.md)
+    * [NGINX-based Docker image](../admin-en/installation-docker-en.md)
     * [Amazon Machine Image (AMI)](../installation/cloud-platforms/aws/ami.md)
     * [Google Cloud Machine Image](../installation/cloud-platforms/gcp/machine-image.md)
-1. ユーザーの[役割](../user-guides/settings/users.md#user-roles)が**クレデンシャルスタッフィング検出**の設定を許可していることを確認してください。
-1. Wallarmコンソール → **クレデンシャルスタッフィング**で、機能性を有効にします（デフォルトでは無効）。
+1. お使いのユーザーの[ロール](../user-guides/settings/users.md#user-roles)が**クレデンシャルスタッフィング検出**の設定を許可していることを確認してください。
+1. Wallarm Console→**Credential Stuffing**に移動し、機能を有効化します（初期状態では無効です）。
 
-**クレデンシャルスタッフィング検出**が有効になると、動作を開始するために[設定](#configuring)が必要です。
+**クレデンシャルスタッフィング検出**が有効化されると、動作開始のための[設定](#configuring)が必要となります。
 
 ## 設定
 
-侵害された資格情報の使用試みをチェックする認証エンドポイントのリストを作成する必要があります。リストを作成するには、Wallarmコンソール → **クレデンシャルスタッフィング**に移動します。
+認証情報の使用試行を確認するためにチェックする認証エンドポイントのリストを作成する必要があります。リスト作成には、Wallarm Console→**Credential Stuffing**に移動してください。
 
-![Wallarmコンソール - クレデンシャルスタッフィング](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
+![Wallarm Console - Credential Stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing.png)
 
-エンドポイントをリストに追加する方法は2つあります：
+エンドポイントをリストに追加する方法は2通りあります。
 
-* **推奨されるエンドポイント**のリストから、2種類のエレメントが含まれます：
+* **Recommended endpoints**リストから追加する方法  
+  このリストには以下の2種類の要素が含まれています:
 
-    * パスワードとログインを格納するパラメーターを指定するために正規表現を利用するWallarmの事前定義ルール。
+    * Wallarmが定義したルール（正規表現を活用）により、一般的に使用される認証エンドポイントと、パラメータとしてパスワードとログインが格納されるものが指定されています。
     <!--
-        ![クレデンシャルスタッフィング - 推奨されるエンドポイント - 事前定義ルール](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-predefined-rules.png)
+        ![クレデンシャルスタッフィング - Recommended Endpoints - Predefined rules](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-predefined-rules.png)
     -->
-    * [API Discovery](../api-discovery/overview.md)モジュールによって見つかった認証に使用されるエンドポイントで、実際にトラフィックを受信したと記録されています。
+    * [API Discovery](../api-discovery/overview.md)モジュールによって検出され、実際にトラフィックを受信した認証エンドポイント。
+  
+* 手動で追加する方法  
+  ご自身のユニークな認証エンドポイントを追加して、完全な保護を実現することも可能です。手動で追加する場合、[URI](../user-guides/rules/rules.md#uri-constructor)および認証パラメータの検索方法を設定してください:
 
-* 手動 - 独自の認証エンドポイントも含めることができ、完全な保護が確保されます。手動で追加する場合、[URI](../user-guides/rules/rules.md#uri-constructor)とパスワードおよびログインの認証パラメーターを検索する方法を設定します。
-
-    * **パラメーターの正確な位置** - パスワードとログインの場所を正確に指定する必要があります。
+    * **Exact location of parameters** ― パスワードおよびログインが配置されている具体的なエンドポイント[リクエストポイント](../user-guides/rules/rules.md#configuring)を指定する必要があります。
     <!--
-        ![クレデンシャルスタッフィング - 認証エンドポイントの追加 - 正確な位置](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-exact-location.png)
+        ![クレデンシャルスタッフィング - 認証エンドポイント追加 - 正確な位置](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-exact-location.png)
     -->
-    * **正規表現** - [正規表現](../user-guides/rules/rules.md#condition-type-regex)を使用して、パスワードおよびログインのエンドポイントパラメーターを検索します。
+    * **Regular expression** ― パスワードおよびログインが含まれるエンドポイントパラメータを[正規表現](../user-guides/rules/rules.md#condition-type-regex)を使用して検索します。
     
-        ![クレデンシャルスタッフィング - 認証エンドポイントの追加 - 正規表現](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-regexp.png)
+        ![クレデンシャルスタッフィング - 認証エンドポイント追加 - 正規表現](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-add-endpoint-regexp.png)
 
-## 侵害された資格情報の使用試みの表示
+## 漏洩認証情報使用試行の確認方法
 
-過去7日間に侵害された資格情報を使用した試みの回数が**クレデンシャルスタッフィング**セクションに表示されます。カウンターをクリックすると、過去7日間のすべての[`credential_stuffing`](../user-guides/search-and-filters/use-search.md#search-by-attack-type)攻撃を表示する**攻撃**セクションにリダイレクトされます。
+過去7日間における漏洩認証情報の使用試行回数は、**Credential Stuffing**セクションに表示されます。カウンターをクリックすると、過去7日間のすべての[`credential_stuffing`](../user-guides/search-and-filters/use-search.md#search-by-attack-type)攻撃が表示される**Attacks**セクションにリダイレクトされます。
 
-攻撃のいずれかを展開して、パスワードが侵害されたログインのリストを表示します。
+攻撃を展開すると、漏洩したパスワードを持つログイン情報のリストを確認できます。
 
-![攻撃 - クレデンシャルスタッフィング](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
+![Attacks - credential stuffing](../images/about-wallarm-waf/credential-stuffing/credential-stuffing-attacks.png)
 
-## 侵害された資格情報のCSVリストの取得
+## 漏洩認証情報のCSVリストの取得
 
-侵害された資格情報の総数が**クレデンシャルスタッフィング**セクションに表示されます。カウンターをクリックすると、侵害された資格情報のリストが含まれたCSVファイルがブラウザによってダウンロードされます。
+全体の漏洩認証情報の数は、**Credential Stuffing**セクションに表示されます。カウンターをクリックすると、CSVファイルが自動的にダウンロードされ、漏洩認証情報のリストが取得されます。
 
-## 通知の取得
+## 通知の受信
 
-侵害された資格情報を使用した試みについて、メール、メッセンジャー、または[統合システム](../user-guides/settings/integrations/integrations-intro.md)のいずれかに即時通知を受け取ることができます。このような通知を有効にするには、Wallarmコンソールの**トリガー**セクションで、**Compromised user account**条件を持つ1つ以上のトリガーを設定します。
+漏洩認証情報の使用試行に関する即時通知を、メール、メッセンジャー、または[統合済みシステム](../user-guides/settings/integrations/integrations-intro.md)に受信することができます。そのような通知を有効化するには、Wallarm Consoleの**Triggers**セクションで、**Compromised user account**条件を設定したトリガーを1つ以上構成してください。
 
-監視したいアプリケーションやホスト、およびレスポンスタイプによって通知を絞り込むことができます。
+通知は、監視したいアプリケーションやホスト、及びレスポンスタイプによって絞り込むことができます。
 
-**トリガーの例：Slackで侵害された資格情報を使用した試みの通知**
+**トリガー例: Slackへ漏洩認証情報使用試行の通知**
 
-この例では、侵害された資格情報を使用した新しい試みが検出された場合、設定したSlackチャンネルに通知が送信されます。
+この例では、新たに漏洩認証情報使用試行が検出された場合、設定済みのSlackチャンネルへその旨の通知が送信されます。
 
 ![クレデンシャルスタッフィングトリガー](../images/user-guides/triggers/trigger-example-credentials-stuffing.png)
 
-**トリガーのテスト：**
+**トリガーのテスト方法:**
 
-1. Wallarmコンソール → **Integrations**に移動し、[US](https://us1.my.wallarm.com/integrations/)または[EU](https://my.wallarm.com/integrations/)クラウドで、[Slackとの統合](../user-guides/settings/integrations/slack.md)を設定します。
-1. **クレデンシャルスタッフィング**セクションで、クレデンシャルスタッフィングが有効になっていること、および次のWallarmの事前定義ルールが**推奨されるエンドポイント**からアクティブな**認証エンドポイント**に追加されていることを確認します：
+1. Wallarm Console→**Integrations**にアクセスし、[US](https://us1.my.wallarm.com/integrations/)または[EU](https://my.wallarm.com/integrations/)クラウド上で[Slackとの統合](../user-guides/settings/integrations/slack.md)を設定します。
+1. **Credential Stuffing**セクションでクレデンシャルスタッフィングが有効化され、**Recommended endpoints**からWallarmが定義した以下のルールがアクティブな**Authentication endpoints**に追加されていることを確認します:
 
-    リクエストは：
+    リクエストは以下の通りです:
 
     ```
     /**/{{login|auth}}.*
     ```
 
-    パスワードはこちらに位置しています：
+    パスワードは以下の場所にあります:
 
     ```
     ([^/](|((api|current|new|old|plain)(|\.|-|_)))(pass(|word|wd))|^pass(|wd|word))$
     ```
 
-    ログインはこちらに位置しています：
+    ログインは以下の場所にあります:
 
     ```
     ^((w+.)|_|.|)(login|user|auth)(|_|-.)(user|client|auth|id|name|)(|[\d])$
     ```
 
-1. トリガーの作成し上記のような図に示されているように、それを自分のSlack統合にマップします。
-1. 侵害された資格情報が含まれるリクエストをノードの`localhost/login`エンドポイントに送信します：
+1. **Triggers**セクションで、上記のようにトリガーを作成し、ご自身のSlack統合にマッピングしてください。
+1. ノードの`localhost/login`エンドポイントに、漏洩認証情報を含むリクエストを送信します:
 
     ```
     curl -X POST http://localhost/login -d '{"password": "123456", "user": "user-01@company.com"}'
     ```
 
-1. **攻撃**セクションで、リクエストが`credential_stuffing`タイプのイベントとして登録されていることを確認します：侵害された資格情報を使用した試み。
-1. 攻撃を
+1. **Attacks**セクションで、リクエストが`credential_stuffing`タイプのイベントとして登録されていることを確認してください。
+1. 攻撃を展開し、漏洩したログイン情報が含まれていることを確認してください。
+1. Slackチャンネルのメッセージを確認します。新規メッセージは以下のようになります:
+    ```
+    [wallarm] Stolen credentials detected
+    
+    Notification type: compromised_logins
+
+    Stolen credentials have been detected in your incoming traffic:
+
+    Compromised accounts: user-01@company.com
+    Associated URL: localhost/login
+    Link: https://my.wallarm.com/attacks/?q=attacks+d%3Alocalhost+u%3A%2Flogin+statuscode%3A404+application%3Adefault+credential_stuffing+2024%2F01%2F22
+
+    Client: YourCompany
+    Cloud: EU
+    ```
+
+## 制限事項
+
+現時点では、以下の方法でデプロイされたWallarmノードではクレデンシャルスタッフィング検出モジュールはサポートされていません:
+
+* [Sidecar controller](../installation/kubernetes/sidecar-proxy/deployment.md)
+* [Kong Ingress controller](../installation/kubernetes/kong-ingress-controller/deployment.md)
+* [Terraform module for AWS](../installation/cloud-platforms/aws/terraform-module/overview.md)
+* [Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md)

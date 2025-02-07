@@ -1,5 +1,5 @@
-# 管理者ガイドへの導入
+# 管理者ガイドの入門
 
-このガイドでは、Wallarmの設定オプションとインフラストラクチャー統合に関する情報を提供しています。
+本ガイドでは、Wallarmの構成オプションおよびインフラストラクチャ統合に関する情報を提供します。
 
-このガイドで説明されている操作のほとんどを実行するためには、管理者アクセスが必要です。管理者アクセスは、[US](https://us1.my.wallarm.com) または [EU](https://my.wallarm.com) CloudのWallarm Consoleで **設定** → **ユーザー** タブで設定することができます。
+本ガイドに記載されたほとんどの操作を実施するには、管理者アクセス権が必要です。管理者アクセス権は**Settings** → **Users**タブで設定できます。Wallarm Consoleは[US](https://us1.my.wallarm.com)または[EU](https://my.wallarm.com) Cloudでご利用いただけます。

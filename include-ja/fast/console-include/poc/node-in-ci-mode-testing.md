@@ -10,8 +10,8 @@
 
 読み込み中...
 INFO synccloud[13]: 新しいインスタンス16dd487f-3d40-4834-xxxx-8ff17842d60bを登録しました
-INFO [1]: 高速スキャナーのための0回のカスタム拡張機能を読み込みました
-INFO [1]: 高速スキャナーのための44回のデフォルト拡張機能を読み込みました
-INFO [1]: TestRunの作成にはTestRecord#rec_0001を使用します
-INFO [1]: TestRun#tr_1234が作成されました
+INFO [1]: fast scanner用のカスタム拡張機能0個を読み込みました
+INFO [1]: fast scanner用のデフォルト拡張機能44個を読み込みました
+INFO [1]: TestRun作成のためにTestRecord#rec_0001を使用しました
+INFO [1]: TestRun#tr_1234を作成しました
 ```

@@ -1,17 +1,17 @@
-# トラフィックミラーリング用の Istio 設定の例
+# トラフィックミラーリングにおけるIstio設定の例
 
-この記事では、Istio が[トラフィックをミラーリングし、それを Wallarm ノードにルーティングする](overview.md)ために必要な設定の例を提供しています。
+この記事は、Istioがトラフィックをミラーリングして[Wallarmノードにルートする](overview.md)ために必要な設定例を提供します。
 
-## ステップ 1：トラフィックミラーリングを可能にする Istio の設定
+## ステップ1: Istioを使用したトラフィックのミラーリング設定
 
-Istio がトラフィックをミラーリングするためには、内部エンドポイント（Istioの内部、つまり Kubernetes でホストされているなど）または `ServiceEntry` とともに外部エンドポイントにミラーリング・ルートを設定するための `VirtualService` を設定することができます：
+Istioがトラフィックをミラーリングするには、内部エンドポイント（Istio内部、例えばKubernetesにホスト）または`ServiceEntry`を使用した外部エンドポイントへのミラーリングルートを構成するために`VirtualService`を設定できます。
 
-* クラスタ内のリクエスト（例えばポッド間）のミラーリングを可能にするには、`mesh` を `.spec.gateways` に追加します。
-* 外部リクエストのミラーリングを可能にするには（例えばLoadBalancerやNodePortサービスを通じて）、Istioの `Gateway` コンポーネントを設定し、そのコンポーネントの名前を `VirtualService` の `.spec.gateways` に追加します。このオプションは下の例で示されています。
+* クラスター内リクエスト（例：ポッド間）のミラーリングを有効にするには、`.spec.gateways`に`mesh`を追加してください。
+* 外部リクエスト（例：LoadBalancerやNodePortサービス経由）のミラーリングを有効にするには、Istioの`Gateway`コンポーネントを構成し、VirtualServiceの`.spec.gateways`にそのコンポーネント名を追加してください。このオプションは下記の例で示されています。
 
 ```yaml
 ---
-### ミラーリングされたトラフィックの送信先設定
+### ミラーリングされたトラフィックの宛先設定
 ###
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
@@ -19,10 +19,10 @@ metadata:
   name: wallarm-external-svc
 spec:
   hosts:
-    - some.external.service.tld # ミラーリング先のアドレス
+    - some.external.service.tld # ミラーリング先アドレス
   location: MESH_EXTERNAL
   ports:
-    - number: 8445 # ミラーリング先のポート
+    - number: 8445 # ミラーリング先ポート
       name: http
       protocol: HTTP
   resolution: DNS
@@ -35,10 +35,10 @@ spec:
   hosts:
     - ...
   gateways:
-    ### Istio `Gateway` コンポーネントの名前。外部からのトラフィックを取り扱うために必要です。
+    ### Istioの`Gateway`コンポーネントの名前。外部ソースからのトラフィック処理に必要です
     ###
     - httpbin-gateway
-    ### 特定のラベル、この仮想サービスのルートがKubernetesのポッドからのリクエスト（ゲートウェイを経由しないクラスタ内通信）を取り扱うことを可能にする
+    ### 特殊なラベルであり、Kubernetesポッドからのリクエスト（ゲートウェイを経由しないクラスター内通信）に対してこのVirtualServiceルートの動作を有効にします
     ###
     - mesh
   http:
@@ -49,11 +49,11 @@ spec:
               number: 80
           weight: 100
       mirror:
-        host: some.external.service.tld # ミラーリング先のアドレス
+        host: some.external.service.tld # ミラーリング先アドレス
         port:
-          number: 8445 # ミラーリング先のポート
+          number: 8445 # ミラーリング先ポート
 ---
-### 外部リクエストの取り扱い用
+### 外部リクエストの処理用
 ###
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
@@ -72,8 +72,8 @@ spec:
     - "httpbin.local"
 ```
 
-[Istio のドキュメンテーションを確認する](https://istio.io/latest/docs/tasks/traffic-management/mirroring/)
+[Istioドキュメントを確認してください](https://istio.io/latest/docs/tasks/traffic-management/mirroring/)
 
-## ステップ 2：ミラーリングされたトラフィックをフィルタするための Wallarm ノードの設定
+## ステップ2: ミラーリングされたトラフィックをフィルタリングするためのWallarmノードの設定
 
---8<-- "../include-ja/wallarm-node-configuration-for-mirrored-traffic.md"
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"

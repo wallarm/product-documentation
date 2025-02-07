@@ -1,148 +1,160 @@
-[acl-access-phase]:     ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
+[api-discovery-enable-link]:        ../api-discovery/setup.md#enable
+[link-wallarm-mode-override]:       ../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
+[rule-creation-options]:            ../user-guides/events/check-attack.md#attack-analysis_1
+[acl-access-phase]:                 ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
+[img-mode-rule]:                    ../images/user-guides/rules/wallarm-mode-rule.png
 
-# フィルタリングモードの設定
+# フィルトレーションモード
 
-フィルタリングモードは、着信リクエストの処理時のフィルタリングノードの動作を定義します。これらの指示は、利用可能なフィルタリングモードとその設定方法を説明します。
+フィルトレーションモードは、受信リクエストを処理する際のフィルタリングノードの動作を定義します。本ドキュメントでは、利用可能なフィルトレーションモードおよびその設定方法について説明します。
 
-## 利用可能なフィルタリングモード
+## 利用可能なフィルトレーションモード
 
-Wallarmのフィルタリングノードは、次のモード（最も軽度から最も厳格まで）で着信要求を処理できます：
+Wallarmフィルタリングノードは、受信リクエストを以下のモード（穏やかなものから厳格なものへ順に）で処理できます：
 
-* **無効化** (`off`)
-* **監視** (`monitoring`)
-* **安全ブロック** (`safe_blocking`)
-* **ブロック** (`block`)
+* **無効** (`off`)
+* **モニタリング** (`monitoring`)
+* **セーフブロッキング** (`safe_blocking`)
+* **ブロッキング** (`block`)
 
---8<-- "../include-ja/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-latest.md"
 
-## フィルタリングモード設定の方法
+## 設定方法
 
-フィルタリングモードは以下の方法で設定できます：
+フィルトレーションモードは、以下の方法で設定できます。
 
-* フィルタリングノードの設定ファイルの`wallarm_mode`ディレクティブに値を割り当てる
+* [ノード側で`wallarm_mode`ディレクティブを設定する](#setting-wallarm_mode-directive)
+* [Wallarm Consoleにおける一般的なフィルトレーションルールを定義する](#general-filtration-rule-in-wallarm-console)
+* [Wallarm Consoleにおけるエンドポイント対象のフィルトレーションルールを定義する](#endpoint-targeted-filtration-rules-in-wallarm-console)
 
-    !!! warning "CDNノードの`wallarm_mode`ディレクティブのサポート"
-        ご了承ください、`wallarm_mode`ディレクティブは[Wallarm CDNノード](../installation/cdn-node.md)で設定できません。CDNノードのフィルタリングモードを設定するには、他の利用可能な方法を使用してください。
-* Wallarmコンソールで一般的なフィルタリングルールを定義する
-* Wallarmコンソールの**Rules**セクションでフィルタリングモードルールを作成する
+フィルトレーションモード設定方法の優先順位は、[`wallarm_mode_allow_override`ディレクティブ](#prioritization-of-methods)によって決定されます。デフォルトでは、Wallarm Consoleで指定された設定は、その値の厳格度に関係なく、`wallarm_mode`ディレクティブによる設定よりも優先されます。
 
-フィルタリングモード設定方法の優先度は、[`wallarm_mode_allow_override`ディレクティブ](#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override)で決定されます。デフォルトでは、Wallarmコンソールで指定された設定は、その値の深刻度に関係なく`wallarm_mode`ディレクティブよりも優先度が高いです。
+### `wallarm_mode`ディレクティブの設定
 
-### `wallarm_mode`ディレクティブでフィルタリングモードを指定する
+ノード側で`wallarm_mode`ディレクティブを使用してフィルトレーションモードを設定できます。異なるデプロイメントにおける`wallarm_mode`ディレクティブの設定上の特徴を以下に説明します。
 
-!!! warning "CDNノードの`wallarm_mode`ディレクティブのサポート"
-    ご了承ください、`wallarm_mode`ディレクティブは[Wallarm CDNノード](../installation/cdn-node.md)で設定できません。CDNノードのフィルタリングモードを設定するには、他の利用可能な方法を使用してください。
+なお、本設定は[in-line](../installation/inline/overview.md)デプロイメントにのみ適用されます。[out-of-band (OOB)](../installation/oob/overview.md)ソリューションでは`monitoring`モードのみが有効です。
 
-フィルタリングノードの設定ファイルの`wallarm_mode`ディレクティブを使用して、さまざまなコンテキストのフィルタリングモードを定義できます。これらのコンテキストは以下のリストで最もグローバルから最もローカルに順序付けされています：
+=== "All-in-oneインストーラー"
 
-* `http`: `http`ブロック内のディレクティブはHTTPサーバへ送信されたリクエストに適用されます。
-* `server`: `server`ブロック内のディレクティブは、バーチャルサーバへ送信されたリクエストに適用されます。
-* `location`: `location`ブロック内のディレクティブは、その特定のパスを含むリクエストにのみ適用されます。
+    Linux上に[all-in-one installer](../installation/nginx/all-in-one.md)を使用してインストールされたNGINXベースのノードでは、フィルタリングノードの設定ファイルに`wallarm_mode`ディレクティブを設定できます。異なるコンテキストに対してフィルトレーションモードを定義できます。これらのコンテキストは、以下のリストのように、最もグローバルなものから最もローカルなものへと順に並びます：
 
-`http`、`server`、`location`ブロックで異なる`wallarm_mode`ディレクティブの値が定義されている場合、最もローカルの設定が最優先となります。
+    * `http`: HTTPサーバーに送信されるリクエストにディレクティブが適用されます。
+    * `server`: 仮想サーバーに送信されるリクエストにディレクティブが適用されます。
+    * `location`: 該当のパスを含むリクエストにのみディレクティブが適用されます。
 
-**`wallarm_mode`ディレクティブ使用例：**
+    もし`http`、`server`、`location`ブロックで異なる`wallarm_mode`ディレクティブの値が定義されている場合、最もローカルな設定が最も高い優先順位を持ちます。
 
-```bash
-http {
+    以下の[設定例](#configuration-example)を参照してください。
+
+=== "Docker NGINXベースイメージ"
+
+    Dockerコンテナを使用してNGINXベースのWallarmノードをデプロイする場合、`WALLARM_MODE`環境変数を[渡してください](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)：
+
+    ```
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/node:5.3.0
+    ```
+
+=== "Docker Envoyベースイメージ"
+
+    Dockerコンテナを使用してEnvoyベースのWallarmノードをデプロイする場合、`WALLARM_MODE`環境変数を[渡してください](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)：
+
+    ```
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/envoy:4.8.0-1
+    ```
+
+    または、設定ファイルに対応するパラメータを[含め](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)て、当該ファイルをマウントしてコンテナを実行してください。
+
+=== "NGINX Ingressコントローラー"
+
+    NGINX Ingressコントローラーの場合、`wallarm-mode`アノテーションを使用してください：
+
+    ```
+    kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-mode=monitoring
+    ```
+
+    フィルトレーションモードを`monitoring`に設定して、NGINXベースのIngressコントローラーでのトラフィック分析が[どのように有効になるか](../admin-en/installation-kubernetes-en.md#step-2-enabling-traffic-analysis-for-your-ingress)の例を参照してください。
+
+=== "Kong Ingressコントローラー"
+
+    Kong Ingressコントローラーの場合、`wallarm-mode`アノテーションを使用してください：
+
+    ```
+    kubectl annotate ingress <KONG_INGRESS_NAME> -n <KONG_INGRESS_NAMESPACE> wallarm.com/wallarm-mode=monitoring
+    ```
+
+    フィルトレーションモードを`monitoring`に設定して、KongベースのIngressコントローラーでのトラフィック分析が[どのように有効になるか](../installation/kubernetes/kong-ingress-controller/deployment.md#step-3-enable-traffic-analysis-for-your-ingress)の例を参照してください。
+
+=== "サイドカー"
+
+    Wallarm Sidecarソリューションの場合、デフォルトの`values.yaml`のWallarm固有部分で`mode`パラメータを設定してください：
+
+    ```
+    config:
+    wallarm:
+        ...
+        mode: monitoring
+        modeAllowOverride: "on"
+    ```
+
+    サイドカー用のフィルトレーションモードの指定方法については、[こちら](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md)を参照してください。
+
+=== "Edgeコネクター"
+
+    [Security Edge connectors](../installation/se-connector.md)の場合、コネクターのデプロイ時に**Filtration mode**セレクターで`wallarm_mode`の値を指定してください。
+
+=== "Native Node"
+    * Native Node all-in-one installerおよびDockerイメージの場合、[`route_config.wallarm_mode`](../installation/native-node/all-in-one-conf.md#route_configwallarm_mode)パラメータを使用してください。
+    * Native Node Helmチャートの場合、[`config.connector.mode`](../installation/native-node/helm-chart-conf.md#configconnectormode)パラメータを使用してください。
+
+### Wallarm Consoleにおける一般的なフィルトレーションルール
+
+[US](https://us1.my.wallarm.com/settings/general)または[EU](https://my.wallarm.com/settings/general) Cloudの**Settings**→**General**で、すべての受信リクエストに対する一般的なフィルトレーションモードを定義できます。
     
-    wallarm_mode monitoring;
-    
-    server {
-        server_name SERVER_A;
-    }
-    
-    server {
-        server_name SERVER_B;
-        wallarm_mode off;
-    }
-    
-    server {
-        server_name SERVER_C;
-        wallarm_mode off;
-        
-        location /main/content {
-            wallarm_mode monitoring;
-        }
-        
-        location /main/login {
-            wallarm_mode block;
-        }
+![一般設定タブ](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
-        location /main/reset-password {
-            wallarm_mode safe_blocking;
-        }
-    }
-}
-```
+一般的なフィルトレーションモードの設定は、**Rules**セクションにおける**Set filtration mode**[default](../user-guides/rules/rules.md#default-rules)ルールとして表されます。なお、このセクションのエンドポイント対象のフィルトレーションルールは、より高い優先順位を持ちます。
 
-この例では、リソースのフィルタリングモードは次のように定義されています：
+### Wallarm Consoleにおけるエンドポイント対象のフィルトレーションルール
 
-1. `monitoring`モードは、HTTPサーバへ送信されたリクエストに適用されます。
-2. `monitoring`モードは、バーチャルサーバ`SERVER_A`へ送信されたリクエストに適用されます。
-3. `off`モードは、バーチャルサーバ`SERVER_B`へ送信されたリクエストに適用されます。
-4. `off`モードは、`/main/content`、`/main/login`、または`/main/reset-password`パスを含むリクエストを除く、バーチャルサーバ`SERVER_C`へ送信されたリクエストに適用されます。
-      1. `monitoring`モードは、`/main/content`パスを含むバーチャルサーバ`SERVER_C`へ送信されたリクエストに適用されます。
-      2. `block`モードは、`/main/login`パスを含むバーチャルサーバ`SERVER_C`へ送信されたリクエストに適用されます。
-      3. `safe_blocking`モードは、`/main/reset-password`パスを含むバーチャルサーバ`SERVER_C`へ送信されたリクエストに適用されます。
+特定のブランチ、エンドポイント、およびその他の条件に基づいてフィルトレーションモードを設定できます。Wallarmはこの目的のために**Set filtration mode**[ルール](../user-guides/rules/rules.md)を提供しています。これらのルールは、[Wallarm Consoleで設定された一般的なフィルトレーションルール](#general-filtration-rule-in-wallarm-console)よりも高い優先順位を持ちます。
 
-### Wallarmコンソールで一般的なフィルタリングルールを設定する
+新たなフィルトレーションモードルールを作成するには：
 
-[US Wallarm Cloud](https://us1.my.wallarm.com/settings/general)または[EU Wallarm Cloud](https://my.wallarm.com/settings/general)のWallarmコンソール設定の**General**タブのラジオボタンは、すべての入力リクエストに対する一般的なフィルタリングモードを定義します。`http`ブロックの設定ファイルに定義された`wallarm_mode`ディレクティブの値とこれらのボタンは同じアクション範囲を持ちます。
+--8<-- "../include/rule-creation-initial-step.md"
 
-Wallarmコンソールの**Rules**タブのローカルフィルタリングモード設定は、**Global**タブのグローバル設定よりも優先度が高いです。
+1. **Fine-tuning attack detection**→**Override filtration mode**を選択します。 
+1. **If request is**において、ルールを適用する対象範囲を[記述](../user-guides/rules/rules.md#configuring)します。特定のブランチ、ヒット、エンドポイントに対してルールを作成した場合、それらが対象範囲を定義します。必要に応じて、条件を追加できます。
+1. 目的のモードを選択します。
+1. 変更を保存し、[ルールのコンパイル完了](../user-guides/rules/rules.md#ruleset-lifecycle)を待ちます。
 
-**General**タブでは、次のいずれかのフィルタリングモードを指定できます：
+フィルトレーションモードルールを作成するには、[Wallarm APIを直接呼び出す](../api/request-examples.md#create-the-rule-setting-filtration-mode-to-monitoring-for-the-specific-application)こともできますのでご注意ください。
 
-* **ローカル設定（デフォルト）**：[`wallarm_mode`ディレクティブ](#specifying-the-filtering-mode-in-the-wallarm_mode-directive)を使用して定義されたフィルタリングモードが適用されます
-* [**監視**](#available-filtration-modes)
-* [**安全ブロック**](#available-filtration-modes)
-* [**ブロック**](#available-filtration-modes)
-    
-![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
+### 設定方法の優先順位
 
-!!! info "Wallarm Cloudとフィルタリングノードの同期"
-    Wallarmコンソールで定義されたルールは、Wallarm Cloudとフィルタリングノードの同期プロセス中に適用されます。このプロセスは、2～4分ごとに行われます。
+!!! warning "Edgeノードにおける`wallarm_mode_allow_override`ディレクティブのサポート"
+    Wallarm Edgeの[inline](../installation/security-edge/deployment.md)および[connector](../installation/se-connector.md)ノードでは、`wallarm_mode_allow_override`ディレクティブをカスタマイズできない点にご留意ください。
 
-    [フィルタリングノードとWallarm Cloudの同期設定の詳細 →](configure-cloud-node-synchronization-en.md)
+`wallarm_mode_allow_override`ディレクティブは、フィルタリングノードの設定ファイルに記載された`wallarm_mode`ディレクティブの値ではなく、Wallarm Consoleで定義されたルールを適用する機能を管理します。
 
-### "Rules"タブでフィルタリングルールを設定する
+`wallarm_mode_allow_override`ディレクティブには、以下の値が有効です：
 
-Wallarmコンソールの**Rules**タブで、カスタム条件に一致するリクエストの処理に対するフィルタリングモードを微調整できます。これらのルールは、[Wallarmコンソールで設定された一般的なフィルタリングルール](#setting-up-the-general-filtration-rule-in-wallarm-console)よりも優先度が高いです。
+* `off`: Wallarm Consoleで指定されたルールは無視され、設定ファイルに記載された`wallarm_mode`ディレクティブによるルールが適用されます。
+* `strict`: 設定ファイルに記載された`wallarm_mode`ディレクティブの値よりも厳しいフィルトレーションモードを定義するWallarm Cloudで指定されたルールのみが適用されます。
 
-* [**Rules**タブでのルール作業の詳細 →](../user-guides/rules/rules.md)
-* [フィルタリングモードを管理するルールの作成ガイド →](../admin-en/configure-wallarm-mode.md)
+    利用可能なフィルトレーションモードは、最も穏やかなものから最も厳格なものまで、[上記](#available-filtration-modes)に記載されています。
 
-!!! info "Wallarm Cloudとフィルタリングノードの同期"
-    Wallarmコンソールで定義されたルールは、Wallarm Cloudとフィルタリングノードの同期プロセス中に適用されます。このプロセスは、2～4分ごとに行われます。
+* `on` (デフォルト): Wallarm Consoleで指定されたルールが適用され、設定ファイルに記載された`wallarm_mode`ディレクティブの値は無視されます。
 
-    [フィルタリングノードとWallarm Cloudの同期設定の詳細 →](configure-cloud-node-synchronization-en.md)
+`wallarm_mode_allow_override`ディレクティブの値を定義できるコンテキストは、最もグローバルなものから最もローカルなものまで、以下のリストに示されています：
 
-### `wallarm_mode_allow_override`を使用したフィルタリングモード設定方法の優先度設定
+* `http`: `http`ブロック内のディレクティブは、HTTPサーバーに送信されるリクエストに適用されます。
+* `server`: `server`ブロック内のディレクティブは、仮想サーバーに送信されるリクエストに適用されます。
+* `location`: `location`ブロック内のディレクティブは、該当のパスを含むリクエストにのみ適用されます。
 
-!!! warning "CDNノードの`wallarm_mode_allow_override`ディレクティブのサポート"
-    ご了承ください、`wallarm_mode_allow_override`ディレクティブは[Wallarm CDNノード](../installation/cdn-node.md)で設定できません。
+もし`http`、`server`、`location`ブロックで異なる`wallarm_mode_allow_override`ディレクティブの値が定義されている場合、最もローカルな設定が最も高い優先順位を持ちます。
 
-`wallarm_mode_allow_override`ディレクティブは、Wallarmコンソール上で定義されたルールを`wallarm_mode`ディレクティブの値を使用してフィルタリングノードの設定ファイルから適用する能力を管理します。
-
-`wallarm_mode_allow_override`ディレクティブには以下の値が有効です：
-
-* `off`: Wallarmコンソールで指定されたルールは無視されます。設定ファイルの`wallarm_mode`ディレクティブで指定されたルールが適用されます。
-* `strict`: 設定ファイルの`wallarm_mode`ディレクティブで定義されたものよりも厳格なフィルタリングモードを定義するWallarm Cloudで指定されたルールのみが適用されます。
-
-    利用可能なフィルタリングモードを最も軽度から最も厳格に順序付けたものが[上記](#available-filtration-modes)に記載されています。
-
-* `on`（デフォルト）：Wallarmコンソールで指定されたルールが適用されます。設定ファイルの`wallarm_mode`ディレクティブで指定されたルールは無視されます。
-
-`wallarm_mode_allow_override`ディレクティブの値が定義できるコンテキストは、最もグローバルから最もローカルの順で、次のリストに示されています：
-
-* `http`: `http`ブロック内のディレクティブはHTTPサーバへ送信されたリクエストに適用されます。
-* `server`: `server`ブロック内のディレクティブは、バーチャルサーバへ送信されたリクエストに適用されます。
-* `location`: `location`ブロック内のディレクティブは、その特定のパスを含むリクエストにのみ適用されます。
-
-`http`、`server`、`location`ブロックで異なる`wallarm_mode_allow_override`ディレクティブの値が定義されている場合、最もローカルの設定が最高の優先度となります。
-
-**`wallarm_mode_allow_override`ディレクティブ使用例：**
+**`wallarm_mode_allow_override`ディレクティブの使用例：**
 
 ```bash
 http {
@@ -165,17 +177,17 @@ http {
 }
 ```
 
-この設定例は、次のとおりWallarmコンソールからのフィルタリングモードルール適用を結果とします：
+この設定例では、Wallarm Consoleからのフィルトレーションモードルールの適用が以下のようになります：
 
-1. バーチャルサーバ`SERVER_A`へ送信されたリクエストに対してWallarmコンソールで定義されたフィルタリングモードルールは無視されます。`SERVER_A`サーバに対応する`server`ブロックで`wallarm_mode`ディレクティブが指定されていないため、そのようなリクエストに対しては`http`ブロックで指定された`monitoring`フィルタリングモードが適用されます。
-2. `/main/login`パスを含まないバーチャルサーバ`SERVER_B`へ送信されたリクエストに対してWallarmコンソールで定義されたフィルタリングモードルールが適用されます。
-3. `/main/login`パスを含むバーチャルサーバ`SERVER_B`へ送信されたリクエストは、Wallarmコンソールで定義されたルールが`monitoring`モードよりも厳格なフィルタリングモードを定義する場合にのみ適用されます。
+1. 仮想サーバー`SERVER_A`に送信されるリクエストについては、Wallarm Consoleで定義されたフィルトレーションモードルールは無視されます。`SERVER_A`に対応する`server`ブロックに`wallarm_mode`ディレクティブが指定されていないため、`http`ブロックで指定された`monitoring`フィルトレーションモードが適用されます。
+2. 仮想サーバー`SERVER_B`に送信されるリクエストについては、`/main/login`パスを含むリクエストを除き、Wallarm Consoleで定義されたフィルトレーションモードルールが適用されます。
+3. 仮想サーバー`SERVER_B`に送信され、`/main/login`パスを含むリクエストについては、設定ファイルで指定された`monitoring`モードよりも厳しいフィルトレーションモードを定義する場合に限り、Wallarm Consoleで定義されたフィルトレーションモードルールが適用されます。
 
-## フィルタリングモードの設定例
+## 設定例
 
-上記で述べたすべての方法を使用したフィルタリングモード設定の例を考えてみましょう。
+ここでは、これまでに述べたすべての方法を使用したフィルトレーションモード設定の例を考えます。
 
-### フィルタリングノードの設定ファイルでのフィルタリングモード設定
+### ノード設定ファイル
 
 ```bash
 http {
@@ -200,46 +212,59 @@ http {
             wallarm_mode block;
             wallarm_mode_allow_override on;
         }
+        
+        location /main/feedback {
+            wallarm_mode safe_blocking;
+            wallarm_mode_allow_override off;
+        }
     }
 }
 ```
 
-### Wallarmコンソールでのフィルタリングモード設定
+### Wallarm Consoleのルール
 
-* [一般的なフィルタリングルール](#setting-up-the-general-filtration-rule-in-wallarm-console)：**監視**。
-* [フィルタリングルール](#setting-up-the-filtration-rules-on-the-rules-tab)：
-    * リクエストが以下の条件を満たしている場合：
+* [Wallarm Consoleにおける一般的なフィルトレーションルール](#general-filtration-rule-in-wallarm-console)：**モニタリング**。
+* [エンドポイント対象のフィルトレーションルール](#endpoint-targeted-filtration-rules-in-wallarm-console):
+    * リクエストが以下の条件を満たす場合：
         * メソッド：`POST`
         * パスの第1部分：`main`
-        * パスの第2部分：`apply`,
+        * パスの第2部分：`apply`、
         
-        その後は**デフォルト**のフィルタリングモードを適用します。
+        その場合、**Default**フィルトレーションモードを適用します。
         
     * リクエストが以下の条件を満たす場合：
-        * パスの第1部分：`main`,
+        * パスの第1部分：`main`、
         
-        その後は**ブロック**のフィルタリングモードを適用します。
+        その場合、**Blocking**フィルトレーションモードを適用します。
         
     * リクエストが以下の条件を満たす場合：
         * パスの第1部分：`main`
-        * パスの第2部分：`login`,
+        * パスの第2部分：`login`、
         
-        その後は**監視**のフィルタリングモードを適用します。
+        その場合、**Monitoring**フィルトレーションモードを適用します。
 
-### `SERVER_A`サーバへ送信されるリクエスト例
+### リクエスト例
 
-設定されたサーバー`SERVER_A`へ送信されるリクエストの例と、Wallarmフィルタリングノードが適用するアクションは以下の通りです：
+設定されたサーバー`SERVER_A`に送信されたリクエストと、それに対してWallarmフィルタリングノードが適用する動作の例は以下の通りです：
 
-* `/news`パスを持つ悪意のあるリクエストは処理されますが、サーバー`SERVER_A`の`wallarm_mode monitoring;`設定のためブロックされません。
+* `SERVER_A`サーバーに対する`wallarm_mode monitoring;`設定により、`/news`パスの悪意のあるリクエストは処理されますがブロックされません。
 
-* `/main`パスを持つ悪意のあるリクエストは処理されますが、サーバー`SERVER_A`の`wallarm_mode monitoring;`設定のためブロックされません。
+* `SERVER_A`サーバーに対する`wallarm_mode monitoring;`設定により、`/main`パスの悪意のあるリクエストは処理されますがブロックされません。サーバー`SERVER_A`の`wallarm_mode_allow_override off;`設定のため、Wallarm Consoleで定義された**Blocking**ルールは適用されません。
 
-    Wallarmコンソールで定義された**Blocking**ルールは、サーバー`SERVER_A`の`wallarm_mode_allow_override off;`設定のため適用されません。
+* `/main/login`パスのリクエストに対する`wallarm_mode block;`設定により、`/main/login`パスの悪意のあるリクエストはブロックされます。フィルタリングノード設定ファイルの`wallarm_mode_allow_override strict;`設定により、Wallarm Consoleで定義された**Monitoring**ルールは適用されません。
 
-* `/main/login`パスを持つ悪意のあるリクエストは、`wallarm_mode block;`設定が`/main/login`パスを持つリクエストに適用されるためブロックされます。
+* `/main/signup`パスのリクエストは、`wallarm_mode_allow_override strict;`設定および`/main`パスに対してWallarm Consoleで定義された**Blocking**ルールによりブロックされます。
 
-    フィルタリングノードの設定ファイルの`wallarm_mode_allow_override strict;`設定のため、Wallarmコンソールで定義された**Monitoring**ルールは適用されません。
+* `/main/apply`パスかつ`GET`メソッドの悪意のあるリクエストは、`/main/apply`パスのリクエストに対する`wallarm_mode_allow_override on;`設定および`/main`パスに対してWallarm Consoleで定義された**Blocking**ルールによりブロックされます。
+* `/main/apply`パスかつ`POST`メソッドの悪意のあるリクエストは、`/main/apply`パスのリクエストに対する`wallarm_mode_allow_override on;`設定、Wallarm Consoleで定義された**Default**ルール、およびフィルタリングノード設定ファイル内の`/main/apply`パスに対する`wallarm_mode block;`設定によりブロックされます。
+* `/main/feedback`パスの悪意のあるリクエストは、フィルタリングノード設定ファイルにおける`wallarm_mode safe_blocking;`設定により、[graylisted IP](../user-guides/ip-lists/overview.md)からのものである場合にのみブロックされます。フィルタリングノード設定ファイルの`wallarm_mode_allow_override off;`設定により、Wallarm Consoleで定義された**Monitoring**ルールは適用されません。
 
-* `/main/signup`パスを持つ悪意のあるリクエストは、`/main/signup`パスを持つリクエストに対する`wallarm_mode_allow_override strict;`設定と、`/main`パスを持つリクエストに対するWallarmコンソールで定義された**Blocking**ルールのため、ブロックされます。
-* `GET`方法で`/main/apply`パスを持つ悪意のあるリクエストは、`/main/apply`パスを持つリクエストに対する`wallarm_mode_allow_override on;`設定と、`/main`パスを持つリクエストに対するWallarmコンソールで定義された**Blocking**ルールのため、ブロックされます。
-* `POST`方法で`/main/apply`パスを持つ悪意のあるリクエストは、`/main/apply`パスを持つリクエストに対する`wallarm_mode_allow_override on;`設定と、Wallarmコンソールで定義された**Default**ルールと、フィルタリングノードの設定ファイルの`/main/apply`パスを持つリクエストに対する`wallarm_mode block;`設定のため、ブロックされます。
+## フィルトレーションモードの段階的適用に関するベストプラクティス
+
+新規Wallarmノードの導入を成功させるため、フィルトレーションモードを切り替える以下のステップバイステップの推奨事項に従ってください：
+
+1. ノンプロダクション環境にWallarmフィルタリングノードを`monitoring`オペレーションモードでデプロイします。
+2. プロダクション環境にWallarmフィルタリングノードを`monitoring`オペレーションモードでデプロイします。
+3. テスト環境やプロダクション環境を含めた全ての環境で、7～14日間フィルタリングノード経由のトラフィックを継続させ、Wallarm Cloudベースのバックエンドがアプリケーションを学習するための時間を確保します。
+4. ノンプロダクション環境ですべて、Wallarmの`block`モードを有効にし、自動もしくは手動のテストを用いて保護対象アプリケーションが期待通りに動作していることを確認します。
+5. プロダクション環境でもWallarmの`block`モードを有効にし、利用可能な方法を用いてアプリケーションが期待通りに動作していることを確認します。

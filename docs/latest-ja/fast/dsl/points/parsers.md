@@ -18,41 +18,41 @@
 [link-xmltagarray]:             parsers/xml.md#xml_tag_array-filter
 [link-xmlattr]:                 parsers/xml.md#xml_attr-filter
 [link-jsondoc]:                 parsers/json.md
-[link-jsonobj]:                 parsers/json.md#jsonobj-filter
-[link-jsonarray]:               parsers/json.md#jsonarray-filter
+[link-jsonobj]:                 parsers/json.md#json_obj-filter
+[link-jsonarray]:               parsers/json.md#json_array-filter
 [link-array]:                   parsers/array.md
 [link-hash]:                    parsers/hash.md
 [link-gzip]:                    parsers/gzip.md
 [link-base64]:                  parsers/base64.md
 
-# パーサとフィルタ
+# パーサーとフィルター
 
-このセクションでは、FAST DSL拡張ポイントで使用できるパーサとフィルタについて説明します。
+このセクションでは、FAST DSLエクステンションポイントで使用できるパーサーとフィルターについて説明します。
 
-次は、パーサとそれらが提供するフィルタのリストです：
-* [HTTPパーサ][link-http]:
-    * [URIフィルタ][link-uri];
-    * [パスフィルタ][link-path];
-    * [アクション名フィルタ][link-actionname];
-    * [アクション拡張子フィルタ][link-actionext];
-    * [Getフィルタ][link-get];
-    * [ヘッダーフィルタ][link-header];
-    * [Postフィルタ][link-post];
-* [Form_urlencodedパーサ][link-formurlencoded];
-* [Multipartパーサ][link-multipart];
-* [Cookieパーサ][link-cookie];
-* [XMLパーサ][link-xml]:
-    * [Xml_commentフィルタ][link-xmlcomment];
-    * [Xml_dtdフィルタ][link-xmldtd];
-    * [Xml_dtdエンティティフィルタ][link-xmldtdentity];
-    * [Xml_piフィルタ][link-xmlpi];
-    * [Xml_tagフィルタ][link-xmltag];
-    * [Xml_tag配列フィルタ][link-xmltagarray];
-    * [Xml_attrフィルタ][link-xmlattr];
-* [Json_docパーサ][link-jsondoc]:
-    * [Json_objフィルタ][link-jsonobj];
-    * [Json_arrayフィルタ][link-jsonarray];
-* [GZIPパーサ][link-gzip];
-* [Base64パーサ][link-base64];
-* [Arrayフィルタ][link-array];
-* [Hashフィルタ][link-hash].
+以下は、パーサーとそれらが提供するフィルターの一覧です:
+* [HTTPパーサー][link-http]:
+    * [URIフィルター][link-uri];
+    * [Pathフィルター][link-path];
+    * [Action_nameフィルター][link-actionname];
+    * [Action_extフィルター][link-actionext];
+    * [Getフィルター][link-get];
+    * [Headerフィルター][link-header];
+    * [Postフィルター][link-post];
+* [Form_urlencodedパーサー][link-formurlencoded];
+* [Multipartパーサー][link-multipart];
+* [Cookieパーサー][link-cookie];
+* [XMLパーサー][link-xml]:
+    * [Xml_commentフィルター][link-xmlcomment];
+    * [Xml_dtdフィルター][link-xmldtd];
+    * [Xml_dtd_entityフィルター][link-xmldtdentity];
+    * [Xml_piフィルター][link-xmlpi];
+    * [Xml_tagフィルター][link-xmltag];
+    * [Xml_tag_arrayフィルター][link-xmltagarray];
+    * [Xml_attrフィルター][link-xmlattr];
+* [Json_docパーサー][link-jsondoc]:
+    * [Json_objフィルター][link-jsonobj];
+    * [Json_arrayフィルター][link-jsonarray];
+* [GZIPパーサー][link-gzip];
+* [Base64パーサー][link-base64];
+* [Arrayフィルター][link-array];
+* [Hashフィルター][link-hash].

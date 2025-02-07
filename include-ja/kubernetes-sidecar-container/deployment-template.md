@@ -1,26 +1,26 @@
 ```
-apiVersion：apps/v1
-種類：Deployment
-メタデータ：
-  名前：myapp
-仕様：
-  選択：
-    ラベル一致：
-      アプリ：myapp
-  テンプレート：
-    メタデータ：
-      ラベル：
-        アプリ：myapp
-    仕様：
-      コンテナ：
-      # あなたのメインアプリコンテナの定義
-      - 名前：myapp 
-        イメージ：<イメージ>
-        リソース：
-          制限：
-            メモリ："128Mi"
-            cpu："500m"
-        ポート：
-        # アプリケーションコンテナが着信要求を受け入れるポート
-        - コンテナポート：8080
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers: 
+      # メインアプリコンテナの定義
+      - name: myapp 
+        image: <Image>
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        # アプリケーションコンテナが受信リクエストを受け入れるポート
+        - containerPort: 8080 
 ```

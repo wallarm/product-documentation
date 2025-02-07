@@ -7,47 +7,47 @@
 [link-collectd-naming]:         https://collectd.org/wiki/index.php/Naming_schema
 [link-write-plugin]:            https://www.collectd.org/documentation/manpages/collectd.conf.html#plugin_write_graphite
 
-#   `collectd` Write Pluginを経由してGraphiteにメトリクスをエクスポートする
+#　`collectd` Write Pluginを利用したGraphiteへのメトリクスエクスポート
 
-このドキュメントは、`write_graphite`ライトプラグインを使用してGraphiteにメトリクスをエクスポートする例を提供します。
+本ドキュメントでは、`write_graphite`プラグインを使用してメトリクスをGraphiteへエクスポートする例を示します。
 
-##  サンプルワークフロー
+## 　例のワークフロー
 
---8<-- "../include-ja/monitoring/metric-example.md"
+--8<-- "../include/monitoring/metric-example.md"
 
-![サンプルワークフロー][img-write-plugin-graphite]
+![例のワークフロー][img-write-plugin-graphite]
 
-このドキュメントでは、以下のデプロイメントスキームが使用されます:
-*   Wallarmフィルターノードは、`10.0.30.5` IPアドレスと`node.example.local`完全修飾ドメイン名を介してアクセス可能なホストにデプロイされています。
+本ドキュメントで使用するデプロイメントスキームは以下の通りです:
+*　Wallarmフィルタノードは、`10.0.30.5`のIPアドレスおよび`node.example.local`のFQDNでアクセス可能なホスト上にデプロイされます。
 
-    フィルターノードの`collectd`に対する`write_graphite`プラグインは次のように設定されています：
+　フィルタノード上の`collectd`用`write_graphite`プラグインは、以下のように設定されています:
 
-      *   すべてのメトリクスは、`2003/TCP`ポートでリッスンしている`10.0.30.30`サーバーに送信されます。
-      *   特定のWallarm固有の`collectd`プラグインは複数の[インスタンス][link-collectd-naming]をサポートしているため、`write_graphite`プラグインには`SeparateInstances`パラメーターが`true`に設定されています。`true`値は、プラグインが複数のインスタンスで動作できることを意味します。
+      *　すべてのメトリクスは、`10.0.30.30`のサーバ上の`2003/TCP`ポートでリスニングしている先へ送信されます。
+      *　一部のWallarm固有`collectd`プラグインは複数の[インスタンス][link-collectd-naming]をサポートしますので、`write_graphite`プラグインには`SeparateInstances`パラメータが`true`に設定されています。`true`は、プラグインが複数のインスタンスと連携できることを意味します。
     
-    プラグインのオプションの完全なリストは[こちら][link-write-plugin]で利用できます。
+　プラグインオプションの完全なリストは[こちら][link-write-plugin]をご参照ください。
     
-*   `graphite`サービスと`grafana`サービスは、`10.0.30.30` IPアドレスの別のホスト上でDockerコンテナとしてデプロイされています。
+*　`graphite`および`grafana`サービスは、`10.0.30.30`のIPアドレスを持つ別ホスト上でDockerコンテナとしてデプロイされます。
     
-    Graphite付きの`graphite`サービスは次のように構成されています：
+　Graphiteを含む`graphite`サービスは、以下のように設定されています:
+  
+      *　`collectd`がフィルタノードのメトリクスを送信するため、`2003/TCP`ポートで接続要求を受信します。
+      *　Grafanaとの通信は`8080/TCP`ポートで行われます。
+      *　このサービスは、`grafana`サービスと`sample-net` Dockerネットワークを共有します。
+    
+　Grafanaを含む`grafana`サービスは、以下のように設定されています:
+  
+      *　GrafanaのWebコンソールは`http://10.0.30.30:3000`で利用可能です。
+      *　このサービスは、`graphite`サービスと`sample-net` Dockerネットワークを共有します。
 
-      *   `collectd`がフィルターノードのメトリクスを送信する`2003/TCP`ポートへの接続をリッスンします。
-      *   Grafanaとの通信が行われる`8080/TCP`ポートで接続をリッスンします。
-      *   このサービスは`grafana`サービスと`sample-net` Dockerネットワークを共有しています。
+## 　Graphiteへのメトリクスエクスポートの設定
 
-    Grafana付きの`grafana`サービスは次のように構成されています：
+--8<-- "../include/monitoring/docker-prerequisites.md"
 
-      *   Grafanaウェブコンソールは`http://10.0.30.30:3000`で利用できます。
-      *   このサービスは`graphite`サービスと`sample-net` Dockerネットワークを共有しています。
+### 　GraphiteとGrafanaのデプロイ
 
-##  Graphiteへのメトリクスエクスポートの設定
-
---8<-- "../include-ja/monitoring/docker-prerequisites.md"
-
-### GraphiteとGrafanaのデプロイ
-
-DockerホストにGraphiteとGrafanaをデプロイします：
-1.  次の内容を持つ`docker-compose.yaml`ファイルを作成します：
+DockerホストにGraphiteとGrafanaをデプロイします:
+1.　以下の内容で`docker-compose.yaml`ファイルを作成します:
     
     ```
     version: "3"
@@ -76,40 +76,69 @@ DockerホストにGraphiteとGrafanaをデプロイします：
       sample-net:
     ```
     
-2.  `docker-compose build`コマンドを実行してサービスを構築します。
+2.　`docker-compose build`コマンドを実行してサービスをビルドします。
     
-3.  `docker-compose up -d graphite grafana`コマンドを実行してサービスを起動します。
+3.　`docker-compose up -d graphite grafana`コマンドを実行してサービスを起動します。
     
-この時点で、Graphiteは実行中であり、`collectd`からのメトリクスを受け取る準備ができているはずです。また、GrafanaもGraphiteに保存されているデータを監視し、可視化する準備ができています。
+この時点で、Graphiteは`collectd`からのメトリクス受信の準備が整い、GrafanaはGraphiteに保存されたデータの監視および可視化が可能です。
 
-### `collectd`の設定
+### 　`collectd`の設定
 
-Graphiteにメトリクスをダウンロードするために`collectd`を設定します：
-1.  フィルターノードに接続します（たとえば、SSHプロトコルを使用して）。`root`または他のスーパーユーザー権限を持つアカウントとしてログインしていることを確認します。
-2.  次の内容を持つ名前`/etc/collectd/collectd.conf.d/export-to-graphite.conf`のファイルを作成します：
-    
-    ```
-    LoadPlugin write_graphite
-    
-    <Plugin write_graphite>
-     <Node "node.example.local">
-       Host "10.0.30.30"
-       Port "2003"
-       Protocol "tcp"
-       SeparateInstances true
-     </Node>
-    </Plugin>
-    ```
-    
-    以下のエンティティがここで構成されています：
-    
-    1.  メトリクスが収集されるホスト名（`node.example.local`）。
-    2.  メトリクスを送信するべきサーバー（`10.0.30.30`）。
-    3.  サーバーポート（`2003`）及びプロトコル（`tcp`）。
-    4.  データ転送のロジック：プラグインのインスタンスのデータが別のインスタンスのデータから分離されます（`SeparateInstances true`）。
-    
-3.  適切なコマンドを実行して`collectd`サービスを再起動します：
+`collectd`を設定してメトリクスをGraphiteへ送信します:
 
-    --8<-- "../include-ja/monitoring/collectd-restart-2.16.md"
+=== "Docker image, cloud image, all-in-one installer"
+    1.　SSHプロトコル等を用いてフィルタノードに接続します。`root`または他のスーパーユーザ権限を持つアカウントでログインしていることをご確認ください。
+    1.　`/opt/wallarm/etc/collectd/wallarm-collectd.conf`ファイルに以下の設定を追加します:
 
-これで、Graphiteはフィルターノードのすべてのメトリクスを受け取るようになりました。興味のあるメトリクスを視覚化し、[Grafanaでモニタリングする][doc-grafana]ことができます。
+        ```
+        LoadPlugin write_graphite
+        
+        <Plugin write_graphite>
+          <Node "node.example.local">
+            Host "10.0.30.30"
+            Port "2003"
+            Protocol "tcp"
+            SeparateInstances true
+          </Node>
+        </Plugin>
+        ```
+      
+        以下の設定項目が構成されています:
+        
+        1.　メトリクスを収集するホスト名(`node.example.local`)。
+        2.　メトリクス送信先のサーバ(`10.0.30.30`)。
+        3.　サーバポート(`2003`)およびプロトコル(`tcp`)。
+        4.　データ転送のロジック：プラグインの各インスタンスのデータを分離(`SeparateInstances true`)します。
+    1.　次のコマンドを実行して`wallarm`サービスを再起動します:
+
+        ```bash
+        sudo systemctl restart wallarm
+        ```
+=== "Other installations"
+    1.　SSHプロトコル等を用いてフィルタノードに接続します。`root`または他のスーパーユーザ権限を持つアカウントでログインしていることをご確認ください。
+    1.　`/etc/collectd/collectd.conf.d/export-to-graphite.conf`というファイルを、以下の内容で作成します:
+
+        ```
+        LoadPlugin write_graphite
+        
+        <Plugin write_graphite>
+          <Node "node.example.local">
+            Host "10.0.30.30"
+            Port "2003"
+            Protocol "tcp"
+            SeparateInstances true
+          </Node>
+        </Plugin>
+        ```
+      
+        以下の設定項目が構成されています:
+        
+        1.　メトリクスを収集するホスト名(`node.example.local`)。
+        2.　メトリクス送信先のサーバ(`10.0.30.30`)。
+        3.　サーバポート(`2003`)およびプロトコル(`tcp`)。
+        4.　データ転送のロジック：プラグインの各インスタンスのデータを分離(`SeparateInstances true`)します。
+    1.　適切なコマンドを実行して`collectd`サービスを再起動します:
+
+        --8<-- "../include/monitoring/collectd-restart-2.16.md"
+
+これで、Graphiteはフィルタノードのすべてのメトリクスを受信します。関心のあるメトリクスを可視化し、[with Grafana][doc-grafana]で監視してください。

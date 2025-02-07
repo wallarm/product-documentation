@@ -1,34 +1,33 @@
 [img-cert-request]:     ../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-certificate-request.png
 [img-cert-download]:    ../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-certificate-download.png
 [img-https-ok]:         ../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-https-ok.png
-    
 
-#   Mozilla Firefox向けのFASTノード自己署名SSL証明書のインストール
+# Mozilla Firefox向けFASTノード自己署名SSL証明書のインストール
 
-Mozilla Firefoxブラウザに証明書をインストールするには、以下の手順を実行します：
+Mozilla Firefoxブラウザ用に証明書をインストールするには、次の手順に従います:
 
-1.  FASTノードをHTTPおよびHTTPSプロキシとして使用するようにブラウザを設定していることを確認します。
+1. ブラウザがFASTノードをHTTPおよびHTTPSプロキシとして設定していることを確認します。
 
-2.  ブラウザを使用してHTTP経由で任意のドメインからファイル`cert.der`を要求します。
+2. ブラウザを使用して、任意のドメインからHTTP経由で`cert.der`ファイルをリクエストします。
 
-    例えば、以下のリンクのいずれかを使用できます：
-    
-    * <http://wallarm.get/cert.der>
-    * <http://example.com/cert.der>
+   例えば、次のリンクのいずれかを使用できます:
+   
+   * <http://wallarm.get/cert.der>
+   * <http://example.com/cert.der>
 
-    ブラウザは証明書ファイルをダウンロードします。設定により、ファイルはデフォルトのダウンロードディレクトリまたは選択したディレクトリに配置されます。
-    
-    ![自己署名FASTノード証明書の要求][img-cert-request]
+   ブラウザは証明書ファイルをダウンロードします。設定に応じて、ファイルはデフォルトのダウンロードディレクトリまたは指定したディレクトリに保存されます。
+   
+   ![自己署名FASTノード証明書のリクエスト][img-cert-request]
 
-3.  ダイアログウィンドウが開き、証明書のインストールを求められます。画像に表示されているものとは異なり、証明書の名前と有効期限が表示されます。    
+3. ダイアログウィンドウが表示され、証明書のインストールを求められます。証明書の名称および有効期限は画像に表示されているものと異なる場合がありますのでご注意ください。    
+   
+   「Trust this CA to identify websites」オプションを選択し、**OK**ボタンを押します。
 
-    「このCAをウェブサイトを識別するために信頼する」というオプションを選択し、**OK**ボタンをクリックします。
+   ![証明書のダウンロード][img-cert-download]
 
-    ![証明書のダウンロード][img-cert-download]
+4. 証明書が正しくインストールされたことを確認します。そのためには、HTTPS経由で任意のサイトにアクセスします。不正な証明書に関する警告メッセージなしに、サイトのHTTPSバージョンにリダイレクトされるはずです。
 
-4.  証明書が正しくインストールされたことを確認します。そのためには、HTTPS経由で任意のサイトにアクセスします。信頼できない証明書に関する警告メッセージなしに、サイトのHTTPSバージョンにリダイレクトされるはずです。
+   例えば、Google GruyereサイトのHTTPSバージョンにアクセスできます:
+   <https://google-gruyere.appspot.com>
 
-    例えば、Google GruyereサイトのHTTPSバージョンにアクセスすることができます：
-    <https://google-gruyere.appspot.com>
-
-    ![HTTPSが機能しています][img-https-ok]
+   ![HTTPSが正常に動作しています][img-https-ok]

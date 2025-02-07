@@ -1,5 +1,4 @@
-Among all supported [Wallarm deployment options][platform], Wallarm deployment on Alibaba Cloud ECS using the Docker image is recommended in these **use cases**:
+Among all supported [Wallarm deployment options][platform]の中で、Dockerイメージを使用したAlibaba Cloud ECS上でのWallarm展開は、これらの**ユースケース**で推奨します:
 
-1. If your applications are already containerized and running on Alibaba Cloud ECS and your team follows DevOps practices, using Wallarm Docker image and ECS could fit better into your CI/CD pipelines.
-1. Your application follows a microservices architecture. With Wallarm's NGINX-based Docker image you can get granular security at the level of individual services.
-1. Resource optimization is essential. The lightweight nature of Docker containers, including the NGINX-based Docker image, uses fewer resources than traditional VM-based deployments, allowing for more efficient use of system resources.
+* アプリケーションがマイクロサービスアーキテクチャを採用しており、既にコンテナ化されAlibaba Cloud ECS上で稼働している場合。
+* 各コンテナに対して細かな制御が必要な場合、Dockerイメージは優れています。従来のVMベースの展開で通常可能なよりも高いレベルのリソース隔離を提供します。

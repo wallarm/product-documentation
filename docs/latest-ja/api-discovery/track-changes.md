@@ -1,93 +1,90 @@
-# APIの変更を追跡 <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# APIの変更追跡 <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-APIに変更が発生した場合、[API Discovery](overview.md)は構築されたAPIインベントリを更新し、変更をハイライトし、いつ何が変更されたかについての情報を提供します。さらに、すべてまたは一部の変更について通知を設定することができます。
+もしAPIに変更が発生した場合、[API Discovery](overview.md)はビルトインのAPIインベントリを更新し、変更箇所を強調表示し、いつ何が変更されたのかの情報を提供します。また、すべてもしくは一部の変更に対する通知を設定することができます。
 
-![API Discovery - 変更を追跡](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
+![API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
-会社には複数のチーム、異なるプログラミング言語、さまざまな言語フレームワークが存在する場合があります。そのため、APIに対する変更は、さまざまなソースからいつでも発生する可能性があり、管理が困難になることがあります。セキュリティ担当者にとっては、変更をできるだけ早く検出し分析することが重要です。見逃された場合、たとえば以下のようなリスクを抱えることになります：
+企業では複数のチームや異なるプログラミング言語、さまざまな言語フレームワークが存在する場合があります。したがって、APIへの変更は異なるソースからいつでも発生する可能性があり、管理が困難となります。セキュリティ担当者にとって、変更をできるだけ早く検出し、分析することが重要です。見逃すと、以下のようなリスクが生じる可能性があります:
 
-* 開発チームがサードパーティのライブラリを使用し始め、セキュリティ専門家に通知せずに別のAPIを使用する場合、会社は監視されておらず脆弱性のチェックが行われていないエンドポイントを取得します。これらは潜在的な攻撃方向となり得ます。
-* PIIデータがエンドポイントに転送され始める。計画外のPIIの転送は、規制当局の要件とのコンプライアンス違反につながるだけでなく、評判リスクにつながる可能性があります。
-* ビジネスロジックに重要なエンドポイント（例：`/login`、`/order/{order_id}/payment/`）がもはや呼び出されない。
-* エンドポイントに転送されるべきではない他のパラメーター（例：`is_admin`（誰かがエンドポイントにアクセスし、管理者権限で行おうとする））が転送され始める。
+* 開発チームが別のAPIを持つサードパーティライブラリを使用し始め、セキュリティ専門家に通知しない場合があります。この結果、企業は監視されず脆弱性検査されないエンドポイントを持つことになり、潜在的な攻撃経路となる可能性があります。
+* 個人識別情報（PII）がエンドポイントに転送され始める場合があります。計画外のPII転送は、規制当局の要求事項への準拠違反および信用リスクにつながる可能性があります。
+* ビジネスロジック上重要なエンドポイント（例：`/login`、`/order/{order_id}/payment/`）が呼び出されなくなる場合があります。
+* 転送すべきでないその他のパラメータ（例：`is_admin`―エンドポイントにアクセスして管理者権限で操作を試みる際のもの）が転送され始める場合があります。
 
-## APIの変更をハイライト表示
+## APIの変更点の強調表示
 
-**API Discovery**セクションを開くたびに、**Since**フィルターは`Last week`状態になり、これは最後の週に発生した変更がハイライト表示されることを意味します。期間を変更するには、**Changes since**フィルターで日付を再定義します。
+API Discoveryセクションを開くたびに、**Changes since**フィルターは`Last week`状態となり、直近1週間以内の変更が強調表示されます。表示期間を変更するには、**Changes since**フィルターで日付を再設定してください。
 
-エンドポイントリストでは、APIの変更を以下のマークでハイライト表示します：
+エンドポイント一覧では、次のマークでAPIの変更が強調表示されます:
 
-* **New**は、期間内にリストに追加されたエンドポイントのためのものです。
-* **Changed**は、期間内に新たに発見されたパラメーター、または`Unused`ステータスを取得したパラメーターを持つエンドポイントのためのものです。エンドポイントの詳細では、このようなパラメーターに対応するマークがあります。
+* **New** ― 期間内に一覧に追加されたエンドポイント
+* **Changed** ― 期間内に新たに発見されたパラメータまたは`Unused`ステータスが付与されたパラメータを持つエンドポイント  
+    * 期間内に発見されたパラメータは`New`ステータスとなります。
+    * 7日間データが送信されないパラメータは`Unused`ステータスとなります。
+    * その後、`Unused`ステータスのパラメータが再びデータを送信すると、`Unused`ステータスは解除されます。
+* **Unused** ― 期間内に`Unused`ステータスが付与されたエンドポイント  
+    * 7日間（200のレスポンスコード）リクエストされなかったエンドポイントは`Unused`ステータスとなります。
+    * その後、`Unused`ステータスのエンドポイントが再びリクエストされる（200のレスポンスコードを受け取る）と、`Unused`ステータスは解除されます。
 
-    * パラメーターは、期間内に発見された場合`New`ステータスを取得します。
-    * パラメーターが7日間データを渡さない場合、`Unused`ステータスを取得します。
-    * 後に`Unused`ステータスのパラメーターが再びデータを渡すと、`Unused`ステータスを失います。
+どの期間を選択しても、**New**、**Changed**、**Unused**のマークが一切表示されない場合、その期間中にAPIの変更がなかったことを意味します。
 
-* **Unused**は、期間内に`Unused`ステータスを取得したエンドポイントのためのものです。
+![API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
-    * エンドポイントは、7日間リクエストされない（レスポンスでコード200）場合、`Unused`ステータスを取得します。
-    * 後に`Unused`ステータスのエンドポイントが再びリクエストされる（レスポンスでコード200）と、`Unused`ステータスを失います。
+エンドポイントに表示されるクイックヒント:
 
-選択された期間に関係なく、**New**、**Changed**、または**Unused**マークで何もハイライト表示されていない場合、それはその期間にAPIの変更がないことを意味します。
+* **New**、**Changed**または**Unused**ラベルにマウスオーバーして、変更が発生した日時を確認してください。
+* **Changed**エンドポイントの詳細に移動して、このステータスの理由を確認してください。新規のパラメータおよび`Unused`ステータスになったパラメータについては、ラベルにマウスオーバーすると、パラメータ変更の日時が表示されます。
+* 直近7日間のすべての変更のカウントは[API Discovery Dashboard](dashboard.md)に表示されます。
 
-![API Discovery - 変更を追跡](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
+## APIの変更のフィルタリング
 
-悪質とマークされたエンドポイントのための迅速なヒント：
+**API Discovery**セクションでは、**Changes since**フィルターを使用することで、選択した期間内に変更があったエンドポイントのみを強調表示しますが、変更のないエンドポイントはフィルタリングされません。
 
-* **New**、**Changed**、または**Unused**ラベルにマウスを合わせると、変更がいつ発生したかが表示されます
-* **Changed**エンドポイントの詳細に移動して、このステータスの理由を確認します：**New**パラメーターと**Unused**ステータスを得たパラメーター - ラベルにマウスを合わせると、パラメーター変更が発生した時刻が表示されます
-* 最後の7日間のすべてのタイプの変更のカウンターは、[API Discovery Dashboard](dashboard.md)に表示されます。
+**Changes in API**フィルターは挙動が異なり、選択した期間内に変更があったエンドポイントのみを表示し、その他のエンドポイントはすべてフィルタリングします。
 
-## APIの変更をフィルタリング
+<a name="example"></a>例を考えます: 例えば、今日あなたのAPIには10個のエンドポイントが存在します（以前は12個ありましたが、10日前に3個がUnusedとしてマークされました）。この10個のうち1個は昨日追加され、2個はそれぞれ5日前と10日前にパラメータの変更が発生しているとします:
 
-**API Discovery**セクションでは、**Changes since**フィルターを使用すると、選択した期間内に変更されたエンドポイントのみがハイライト表示されますが、変更されていないエンドポイントはフィルターされません。
+* 今日、**API Discovery**セクションを開くたびに、**Changes since**フィルターは`Last week`状態となり、ページには10個のエンドポイントが表示され、**Changes**列には、そのうち1個に**New**マーク、1個に**Changed**マークが表示されます。
+* **Changes since**を`Last 2 weeks`に切り替えると、13個のエンドポイントが表示され、**Changes**列には、1個に**New**マーク、2個に**Changed**マーク、3個に**Unused**マークが表示されます。
+* **Changes in API**を`Unused endpoints`に設定すると、3個のエンドポイントが表示され、すべてに**Unused**マークが付きます。
+* **Changes in API**を`New endpoints + Unused endpoints`に変更すると、4個のエンドポイントが表示され、うち3個に**Unused**マーク、1個に**New**マークが付きます。
+* **Changes since**を再び`Last week`に切り替えると、1個のエンドポイントが表示され、**New**マークが付きます。
 
-**Changes in API**フィルターは異なって動作し、選択された期間内に変更されたエンドポイント**のみ**を表示し、他のすべてをフィルタリングします。
+## 通知の受信方法
 
-<a name="example"></a>例を考えてみましょう：あなたのAPIには今日10個のエンドポイントがあります（12個ありましたが、そのうち3つは10日前にUnusedとマークされました）。この10個の中で1つは昨日追加され、2つはそのパラメーターに5日前と10日前に変更があった：
+APIの変更に関する即時通知をメールまたはメッセンジャーで受け取るには、**Changes in API**条件を設定した[triggers](../user-guides/triggers/triggers.md)を構成してください。
 
-* 今日**API Discovery**セクションを開くたびに、**Changes since**フィルターは`Last week`状態になります。ページは10個のエンドポイントを表示し、**Changes**列の中で1個が**New**マークを、1個が**Changed**マークを持ちます。
-* **Changes since**を`Last 2 weeks`に切り替えると - 13個のエンドポイントが表示され、**Changes**列の中で1個が**New**マークを、2個が**Changed**マークを、3個が**Unused**マークを持ちます。
-* **Changes in API**を`Unused endpoints`に設定すると - 3個のエンドポイントが表示され、すべてが**Unused**マークを持ちます。
-* **Changes in API**を`New endpoints + Unused endpoints`に変更すると - 4個のエンドポイントが表示され、3個が**Unused**マークを、1個が**New**マークを持ちます。
-* **Changes since**を`Last week`に戻すと - 1個のエンドポイントが表示され、**New**マークを持ちます。
+新しい、変更された、またはUnusedになったエンドポイントについて、あるいはこれらすべての変更についてのメッセージを受け取ることができます。また、監視したいアプリケーションやホスト、表示されるセンシティブデータの種類によって通知を絞り込むことも可能です。
 
-## 通知を受け取る
+**トリガー例: Slackにおける新規エンドポイント通知**
 
-APIの変更について、メールやメッセンジャーに即時通知を受け取るには、**APIの変更**条件を持つ[トリガー](../user-guides/triggers/triggers.md)を設定します。
+この例では、API Discoveryモジュールによって`example.com` APIホストの新規エンドポイントが検出された場合、その通知があなたが設定したSlackチャンネルに送信されます。
 
-新規、変更された、または使用されなくなったエンドポイントについてのメッセージを受け取ることができます。また、監視したいアプリケーションやホスト、提示された機密データの種類によって通知を絞り込むこともできます。
+![Changes in API trigger](../images/user-guides/triggers/trigger-example-changes-in-api.png)
 
-**トリガー例：Slackでの新規エンドポイントに関する通知**
+**トリガーのテスト方法:**
 
-この例では、API Discoveryモジュールによって`example.com`APIホストの新規エンドポイントが発見されると、設定済みのSlackチャンネルに通知が送信されます。
-
-![APIの変更トリガー](../images/user-guides/triggers/trigger-example-changes-in-api.png)
-
-**トリガーをテストするには：**
-
-1. Wallarmコンソール → [US](https://us1.my.wallarm.com/integrations/)または[EU](https://my.wallarm.com/integrations/)クラウドの**インテグレーション**にアクセスし、[Slackとの連携を設定](../user-guides/settings/integrations/slack.md)します。
-1. **トリガー**セクションで、上記のようなトリガーを作成します。
-1. `example.com/users`エンドポイントに複数のリクエストを送信して`200`（`OK`）のレスポンスを得ます。
-1. **API Discovery**セクションで、エンドポイントが**New**マークで追加されたことを確認します。
-1. Slackチャンネルのメッセージを確認します：
+1. Wallarm Console → **Integrations**に移動し、[US](https://us1.my.wallarm.com/integrations/)または[EU](https://my.wallarm.com/integrations/)クラウドで[Slackとの連携](../user-guides/settings/integrations/slack.md)を設定してください。
+2. **Triggers**セクションで、上記のようにトリガーを作成してください。
+3. `example.com/users`エンドポイントに対して複数のリクエストを送信し、`200`（`OK`）レスポンスを受け取ってください。
+4. **API Discovery**セクションで、エンドポイントが**New**マーク付きで追加されたことを確認してください。
+5. Slackチャンネル内のメッセージを以下のように確認してください:
     ```
-    [wallarm] APIで新しいエンドポイントが発見されました
+    [wallarm] API内で新しいエンドポイントが検出されました
 
     通知タイプ: api_structure_changed
 
-    新しいGET example.com/usersエンドポイントがAPIで発見されました。
+    API内で新規のGET example.com/usersエンドポイントが検出されました。
 
-        クライアント: Client 001
-        クラウド: US
+        Client: Client 001
+        Cloud: US
 
         詳細:
 
-          アプリケーション: Application 1802
-          ドメイン: example.com
-          エンドポイントパス: /users
-          HTTPメソッド: GET
-          変更タイプ: added
-          リンク: https://my.wallarm.com/api-discovery?instance=1802&method=GET&q=example.com%2Fusers
+          application: Application 1802
+          domain: example.com
+          endpoint_path: /users
+          http_method: GET
+          change_type: added
+          link: https://my.wallarm.com/api-discovery?instance=1802&method=GET&q=example.com%2Fusers
     ```

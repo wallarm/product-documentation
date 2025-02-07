@@ -1,3 +1,4 @@
+```markdown
 [img-demo-app]:                 ../../../images/fast/poc/common/examples/demo-app.png
 [img-testing-flow]:             ../../../images/fast/poc/en/examples/testing-flow.png
 [img-testing-flow-fast]:        ../../../images/fast/poc/en/examples/testing-flow-fast.png
@@ -34,192 +35,194 @@
 [link-wl-portal]:               https://us1.my.wallarm.com
 [link-wl-portal-testrun-tab]:   https://us1.my.wallarm.com/testing/?status=running
 
-[anchor-project-description]:           #sample-application-description
-[anchor-cci-integration-description]:   #how-fast-integrates-with-RSpec-and-circleci
-[anchor-cci-integration-demo]:          #fast-integration-demo
+[anchor-project-description]:           #how-the-sample-application-works
+[anchor-cci-integration-description]:   #how-fast-integrates-with-rspec-and-circleci
+[anchor-cci-integration-demo]:          #demo-of-the-fast-integration
 
-#   CI/CDへのFAST統合の例
+# CI/CDへのFAST統合の例
 
 !!! info "章の規約"
-    本章全体にわたり、次のトークン値が例示の値として使用されています:`token_Qwe12345`。
+    本章では例示として `token_Qwe12345` というトークン値が使用されます。
 
-WallarmのGitHubにて利用可能なサンプルプロジェクト[fast-example-api-circleci-rails-integration][link-example-project]。その目的は、既存のCI/CDプロセスにFASTを統合する方法を示すことです。この例は、[“API経由のデプロイメント時にベースラインリクエストの記録が行われる”][link-api-recoding-mode] シナリオに従っています。
+WallarmのGitHub上には[fast-example-api-circleci-rails-integration][link-example-project]のサンプルプロジェクトが用意されています。本プロジェクトは、既存のCI/CDプロセスへのFAST統合の方法を実演することを目的としています。本例は、[“Deployment via the API when Baseline Requests Recording Takes Place”][link-api-recoding-mode] シナリオに従っています。
 
-このドキュメントには、以下の情報が含まれています：
-1.  [サンプルアプリケーションの動作方法についての説明。][anchor-project-description]
-2.  [FAST統合の詳細なステップバイステップの説明。][anchor-cci-integration-description]
-3.  [FAST統合のアクションのデモ。][anchor-cci-integration-demo]
+本ドキュメントには、以下の情報が含まれます：
+1.  [サンプルアプリケーションの動作の説明][anchor-project-description]
+2.  [FAST統合についての詳細なステップバイステップの説明][anchor-cci-integration-description]
+3.  [実際にFAST統合が動作するデモ][anchor-cci-integration-demo]
 
-##  サンプルアプリケーションの動作の仕方
+## サンプルアプリケーションの動作の仕組み
 
-サンプルアプリケーションは、ブログに投稿を公開することと、ブログの投稿を管理する機能を持つウェブアプリケーションです。
+サンプルアプリケーションはブログに投稿を公開する機能と、ブログ投稿を管理する機能を備えたウェブアプリケーションです。
 
 ![サンプルアプリケーション][img-demo-app]
 
-このアプリケーションはRuby on Railsで記述され、Dockerコンテナとして出荷されています。
+このアプリケーションはRuby on Railsで作成され、Dockerコンテナとして提供されます。
 
-また、アプリケーションのための[RSpec][link-rspec]統合テストが作成されています。RSpecは、ウェブアプリケーションと対話するために[Capybara][link-capybara]を利用し、CapybaraはアプリケーションへのHTTPリクエストを送信するために[Selenium][link-selenium]を使用します：
+また、アプリケーションのために[RSpec][link-rspec]の統合テストが作成されています。RSpecは[Capybara][link-capybara]を用いてウェブアプリケーションと対話し、Capybaraは[Selenium][link-selenium]を使用してアプリケーションへHTTPリクエストを送信します：
 
 ![テストフロー][img-testing-flow]
 
-RSpecは以下のシナリオをテストするためのいくつかの統合テストを実行します：
-* 投稿のページに移動する
-* 新しい投稿を作成する
-* 既存の投稿を更新する
-* 既存の投稿を削除する
+RSpecは以下のシナリオをテストするためにいくつかの統合テストを実行します：
+* 投稿一覧ページへの移動
+* 新規投稿の作成
+* 既存投稿の更新
+* 既存投稿の削除
 
-CapybaraとSeleniumは、これらのテストをアプリケーションへのHTTPリクエストのセットに変換するのに役立ちます。
+CapybaraとSeleniumは、これらのテストをアプリケーションへの一連のHTTPリクエストに変換するのに役立ちます。
 
-!!! info "テストのロケーション"
-    上記の統合テストは、 `spec/features/posts_spec.rb` ファイルで記述されています。
+!!! info "テストの場所"
+    上記の統合テストは `spec/features/posts_spec.rb` ファイルに記述されています。
 
-##  FASTがRSpecとCircleCIとどのように統合するか
+## FASTがRSpecおよびCircleCIと統合される方法
 
-ここでは、サンプルプロジェクトでのRSpecとCircleCIとのFAST統合の概要をご紹介します。
+ここではサンプルプロジェクトにおけるFASTのRSpecおよびCircleCIとの統合の概要を示します。
 
-RSpecは前テストと後テストのフックをサポートしています：
+RSpecはテスト実行前後にフックをサポートしています：
 
 ```
 config.before :context, type: :feature do
-    # RSpecテストの実行前に行うアクション
+    # RSpecテスト実行前に実行する処理
   end
-    # RSpecテストの実行
+    # RSpecテスト実行
   config.after :context, type: :feature do
-    # RSpecテストの実行後に行うアクション
+    # RSpecテスト実行後に実行する処理
   end
 ```
 
-これは基本的に、アプリケーションのテストにRSpecが踏むステップをFASTセキュリティテストを含むステップで補強することが可能であることを意味します。
+これは、FASTセキュリティテストを含む手順で、RSpecがアプリケーションのテストを行う際の処理を拡張できることを意味します。
 
-私たちは、`HTTP_PROXY` 環境変数を使用してSeleniumサーバーをプロキシサーバーにポイントすることができます。したがって、アプリケーションへのHTTPリクエストがプロキシされます。プロキシングメカニズムの利用は、既存のテストフローへの最小限の介入で統合テストによって発行されたリクエストをFASTノードを通じて渡すことを可能にします：
+`HTTP_PROXY`環境変数を使用して、Seleniumサーバーをプロキシサーバーに向けることができます。そのため、アプリケーションへのHTTPリクエストはプロキシされます。プロキシ機能の利用により、統合テストで発行されたリクエストを既存のテストフローに最小限の介入でFASTノードを通して渡すことが可能です：
 
-![FASTでのテストフロー][img-testing-flow-fast]
+![FASTを組み込んだテストフロー][img-testing-flow-fast]
 
-上記の事実を考慮に入れてCircleCIジョブが構築されます。このジョブは、以下のステップを含む(`.circleci/config.yml` ファイルを参照) ：
+上述の事実をすべて踏まえ、CircleCIジョブは構築されます。このジョブは以下のステップで構成されます（`.circleci/config.yml`ファイルを参照ください）：
 
 1.  必要な準備：
     
-    [トークンを取得][doc-get-token]する必要があり、その値を `TOKEN` 環境変数を介してCircleCIプロジェクトに渡します。新しいCIジョブが設置されると、その変数の値はジョブが実行されるDockerコンテナに渡されます。
+    [トークンを取得][doc-get-token]し、その値を`TOKEN`環境変数を通じてCircleCIプロジェクトに渡す必要があります。
+    新しいCIジョブが設定されると、変数の値はジョブが実行されるDockerコンテナに渡されます。
     
     ![CircleCIにトークンを渡す][img-cci-pass-token]
     
 2.  サービスの構築
     
-    この段階では、セットのサービス用にいくつかのDockerコンテナを構築する必要があります。コンテナは共有Dockerネットワークに配置されているため、IPアドレスだけでなくコンテナの名前を使用して相互に通信できます。
+    この段階では、複数のサービスのためにいくつかのDockerコンテナを構築します。コンテナは共通のDockerネットワークに配置されるため、IPアドレスまたはコンテナ名を用いて相互に通信可能です。
     
-    以下のサービスが構築されます(`docker-compose.yaml` ファイルを参照)：
+    以下のサービスが構築されます（`docker-compose.yaml`ファイルを参照ください）：
     
-    * `app-test`: ターゲットアプリケーションとテストツールのサービス。
+    * `app-test`: 対象アプリケーションおよびテストツール用のサービスです。
         
-        このサービスのDockerイメージは以下のコンポーネントを含みます：
+        サービスのDockerイメージは以下のコンポーネントから構成されます：
         
-        * ターゲットアプリケーション（デプロイ後は `http://app-test:3000` でHTTP経由でアクセス可能）。
+        * 対象アプリケーション（デプロイ後、`app-test:3000`でHTTPアクセス可能です）。
         
-        * RSpecテストツールに組み入れたCapybara；ツールにはFASTセキュリティテストを実行するために必要なすべての関数が含まれています。
+        * Capybaraを組み合わせたRSpecテストツール；このツールにはFASTセキュリティテストを実行するために必要なすべての機能が含まれています。
         
-        * Capybara: Seleniumサーバー `selenium:4444` を使用してターゲットアプリケーション `app-test:3000` へのHTTPリクエストを送信するように設定されています（ `spec/support/capybara_settings.rb` ファイルを参照）。
+        * Capybara：Seleniumサーバー`selenium:4444`を使用して対象アプリケーション`app-test:3000`へHTTPリクエストを送信するように設定されています（`spec/support/capybara_settings.rb`ファイルを参照ください）。
         
-        トークンは、 `WALLARM_API_TOKEN=$TOKEN` 環境変数を介してサービスのコンテナに渡されます。トークンは `config.before` と `config.after` セクションで説明されている関数がテストランを操作するために使用する（ `spec/support/fast-helper.rb` ファイルを参照）。
+        トークンは`WALLARM_API_TOKEN=$TOKEN`環境変数によってサービスのコンテナに渡されます。このトークンは、`config.before`および`config.after`セクション（`spec/support/fast-helper.rb`ファイルを参照ください）に記述された関数によりテストラン操作に使用されます。
     
-    * `fast`: FASTノードのサービス。
+    * `fast`: FASTノード用のサービスです。
         
-        ノードはデプロイ後 `fast:8080` でHTTP経由でアクセス可能です。
+        デプロイ後、ノードは`fast:8080`でHTTPアクセス可能です。
         
-        トークンは `WALLARM_API_TOKEN=$TOKEN` 環境変数を介してサービスのコンテナに渡されます。トークンは適切なFASTの操作に必要です。
+        トークンは`WALLARM_API_TOKEN=$TOKEN`環境変数によってサービスのコンテナに渡されます。このトークンはFASTが正しく動作するために必要です。
         
-        !!! info "ベースラインリクエストに関する注釈"
-            提供された例では `ALLOWED_HOSTS` [環境変数][doc-env-variables]を使用していません。したがって、FASTノードはすべての着信リクエストをベースラインのものとして認識します。
+        !!! info "ベースラインリクエストに関する注意"
+            本例では`ALLOWED_HOSTS` [環境変数][doc-env-variables]は使用されておらず、したがってすべての受信リクエストをベースラインリクエストとしてFASTノードが認識します。
     
-    * `selenium`: Seleniumサービスのサーバー。 `app-test` コンテナのCapybaraはその操作にサーバーを使用します。
+    * `selenium`: Seleniumサーバー用のサービスです。`app-test`コンテナ内のCapybaraはこのサーバーを利用して動作します。
         
-        サービスのコンテナに `HTTP_PROXY=http://fast:8080` 環境変数が渡され、FASTノードを通じてリクエストのプロキシを可能にします。
+        `HTTP_PROXY=http://fast:8080`環境変数がサービスのコンテナに渡され、FASTノードを通じたリクエストのプロキシが有効になります。
         
-        サービスはデプロイ後 `selenium:4444` でHTTP経由でアクセス可能です。
+        デプロイ後、サービスは`selenium:4444`でHTTPアクセス可能です。
         
-    すべてのサービスはそれらの間に以下の関係を形成します：
+    すべてのサービスは以下のような関係性を形成します：
     
-    ![サービス間の関係][img-services-relations]
+    ![サービス間の関係性][img-services-relations]
     
-3.  上記の関係性のため、サービスは以下の厳密な順序でデプロイする必要があります：
-    1.  `fast`.
-    2.  `selenium`.
-    3.  `app-test`.
+3.  上記の関係性により、サービスは以下の厳格な順序でデプロイする必要があります：
+    1.  `fast`
+    2.  `selenium`
+    3.  `app-test`
     
-    `fast` と `selenium` サービスは `docker-compose up -d fast selenium` コマンドを発行することにより順次デプロイされます。
+    `docker-compose up -d fast selenium`コマンドを発行することで、`fast`および`selenium`サービスは順次デプロイされます。
     
-4.  SeleniumサーバーとFASTノードのデプロイが成功したら、 `app-test` サービスをデプロイし、RSpecテストを実行する時が来ます。
+4.  SeleniumサーバーとFASTノードが正常にデプロイされたら、`app-test`サービスのデプロイおよびRSpecテストの実行を行います。
     
-    これを行うために、次のコマンドが発行されます：
+    そのために、以下のコマンドを実行します：
     
-    `docker-compose run --name app-test --service-ports app-test bundle exec rspec spec/features/posts_spec.rb`.
+    `docker-compose run --name app-test --service-ports app-test bundle exec rspec spec/features/posts_spec.rb`
     
-    テストとHTTPのトラフィックフローは画像の中に表示されます：
+    テストおよびHTTPトラフィックのフローは次の画像に示されています：
     
-    ![テストとHTTPトラフィックフロー][img-test-traffic-flow]
+    ![テストおよびHTTPトラフィックのフロー][img-test-traffic-flow]
     
-    [シナリオ][link-api-recoding-mode]に従って、RSpecテストはFASTセキュリティテストを実行するために必要なすべてのステップを含みます(`spec/support/fast_hooks.rb` ファイルを参照)：
+    [シナリオ][link-api-recoding-mode]に従い、RSpecテストにはFASTセキュリティテストを実行するために必要なすべてのステップが含まれています（`spec/support/fast_hooks.rb`ファイルを参照ください）：
     
-    1.  RSpecテストの実行前にテストランが[作成されます][doc-testrun-creation]。
+    1.  RSpecテスト実行前にテストランが[作成されます][doc-testrun-creation]。
         
-        次に、FASTノードがベースラインリクエストの記録を準備できているかどうかを確認するためのAPI呼び出しが[発行されます][doc-node-ready-for-recording]。ノードが準備できているまで既存のテストの実行プロセスは開始されません。
+        次に、FASTノードがベースラインリクエストを記録する準備ができているか確認するためにAPIコールが[実行されます][doc-node-ready-for-recording]。ノードが準備完了になるまで、既存のテスト実行プロセスは開始されません。
         
         !!! info "使用中のテストポリシー"
-            この例ではデフォルトのテストポリシーを使用しています。
+            本例ではデフォルトのテストポリシーが使用されます。
         
     2.  RSpecテストが実行されます。
-    3.  RSpecテストが終了した後、次のアクションが実行されます：
-        1.  ベースラインリクエストの記録プロセスが[停止します][doc-stopping-recording]；
-        2.  テストランの状態が周期的に[監視されます][doc-waiting-for-tests]：
-            * FASTセキュリティテストが成功裏に完了した場合（テストランの状態が `state: passed`）、RSpecに終了コード `0` が返されます。
-            * FASTセキュリティテストが不成功に終了した場合（いくつかの脆弱性が検出され、テストランの状態が `state: failed`）、RSpecに終了コード `1` が返されます。
+    3.  RSpecテスト完了後、以下の処理が行われます：
+        1.  ベースラインリクエスト記録プロセスが[停止されます][doc-stopping-recording]；
+        2.  テストランの状態が定期的に[監視されます][doc-waiting-for-tests]：
+            * FASTセキュリティテストが正常に完了した場合（テストランの状態が `state: passed` 、）exitコード`0`がRSpecに返されます。
+            * FASTセキュリティテストが異常終了した場合（いくつかの脆弱性が検出され、テストランの状態が `state: failed` 、）exitコード`1`がRSpecに返されます。
     
-5.  テスティング結果が得られます：
+5.  テスト結果の取得：
     
-    RSpecプロセスの終了コードが `docker-compose run` プロセスに渡され、その後CircleCIに渡されます。     
+    RSpecプロセスのexitコードは`docker-compose run`プロセスに渡され、その後CircleCIに渡されます。     
     
-    ![CircleCIジョブの結果][img-cci-pass-results]
+    ![CircleCIにおけるジョブ結果][img-cci-pass-results]
 
-説明されたCircleCIジョブは、先にリスト化されたステップに密接に従います：
+記述されたCircleCIジョブは、先に示した[シナリオ][link-api-recoding-mode]のステップに厳密に従っています：
 
-![CircleCIジョブの詳細][img-cci-workflow]
+![詳細なCircleCIジョブ][img-cci-workflow]
 
-##  FAST統合のデモ
+## FAST統合のデモ
 
-1.  Wallarmクラウドで[FASTノードを作成][doc-get-token]し、提供されたトークンをコピーします。
-2.  ご自身のGitHubリポジトリに[サンプルプロジェクトファイル][link-example-project]をコピーします。
-3.  GitHubリポジトリを[CircleCI][link-circleci]に追加します（CircleCIで「フォロープロジェクト」ボタンを押す）。これにより、リポジトリの内容が変更されるたびにCIジョブが発火します。リポジトリはCircleCIの用語では「プロジェクト」と呼ばれます。
-4.  自身のCircleCIプロジェクトに `TOKEN` 環境変数を追加します。これはプロジェクトの設定で行うことができます。この変数の値としてFASTトークンを渡します：
+1.  Wallarmクラウドで[FASTノードを作成][doc-get-token]し、表示されたトークンをコピーします。
+2.  [サンプルプロジェクトファイル][link-example-project]を自分のGitHubリポジトリにコピーします。
+3.  [CircleCI][link-circleci]にGitHubリポジトリを追加します（CircleCIで「Follow Project」ボタンを押してください）。これにより、リポジトリの内容が変更されるたびにCIジョブが起動されます。CircleCIの用語では、リポジトリは「プロジェクト」と呼ばれます。
+4.  CircleCIプロジェクトに`TOKEN`環境変数を追加します。プロジェクトの設定から追加可能です。この変数の値としてFASTトークンを渡します：
     
     ![プロジェクトにトークンを渡す][img-cci-demo-pass-token]
     
-5.  CIジョブを開始するためにリポジトリに何かをプッシュします。RSpec統合テストが成功裏に終了したことを確認してください（ジョブのコンソール出力を参照）：
+5.  何かしらをリポジトリにプッシュしてCIジョブを開始します。RSpecの統合テストが成功裏に終了することを確認してください（ジョブのコンソール出力を参照ください）：
     
-    ![RSpecテストが合格][img-cci-demo-rspec-tests]
+    ![RSpecテストがパスしました][img-cci-demo-rspec-tests]
     
 6.  テストランが実行中であることを確認します。
     
-    Wallarmアカウント情報を使用して[Wallarmポータル][link-wl-portal]にログインし、アプリケーションの脆弱性に対するテストプロセスをリアルタイムで観察するために[“Testruns”タブ][link-wl-portal-testrun-tab]に移動します：
+    WallarmポータルにWallarmアカウント情報でログインし、[“Testruns” tab][link-wl-portal-testrun-tab]に移動して、リアルタイムでアプリケーションの脆弱性テストの進行状況を確認できます：
     
-    ![テストランの実行][img-cci-demo-testrun]
+    ![テストラン実行][img-cci-demo-testrun]
     
-7.  テストプロセスが終了した後、CIジョブのステータスが「Failed」であることが報告されます：
+7.  テストプロセスが終了した後、CIジョブのステータスが「Failed」と表示されることを確認できます：
     
     ![CIジョブの完了][img-cci-demo-tests-failed]
     
-    テスト中のものがWallarmのデモアプリケーションであることを考慮に入れると、失敗したCIジョブはFASTがアプリケーションで検出した脆弱性を表しています（ビルドログファイルに「FASTテストが失敗しました」のメッセージが表示されるはずです）。この場合、失敗はビルド関連の技術的な問題によって引き起こされてはいません。
+    Wallarmデモアプリケーションをテストしているため、CIジョブの失敗はFASTがアプリケーションで検出した脆弱性を示します（ビルドログに「FAST tests have failed」というメッセージが表示されます）。この失敗は、ビルドに関する技術的な問題によるものではありません。
     
     !!! info "エラーメッセージ"
-        「FASTテストが失敗しました」というエラーメッセージは、 `wait_test_run_finish` 方法によって生成され、それは `spec/support/fast_helper.rb` ファイルにあり、終了コード `1` で終了する前にそれです。
+        「FAST tests have failed」というエラーメッセージは、`spec/support/fast_helper.rb`ファイルに記述された`wait_test_run_finish`メソッドにより出力され、exitコード`1`で終了する前に生成されます。
+    
+8.  テスト実行中、CircleCIのコンソールには検出された脆弱性の情報は表示されません。
+    
+    Wallarmポータル上で脆弱性の詳細を確認できます。そのためには、テストランのリンクに移動してください。このリンクはCircleCIコンソールのFAST情報メッセージの一部として表示されます。
+    
+    このリンクは次のようになります：
+    `https://us1.my.wallarm.com/testing/testruns/test_run_id`
+    
+    例えば、完了したテストランを確認することで、サンプルアプリケーションにいくつかのXSS脆弱性が検出されたことが分かります：
+    
+     ![脆弱性の詳細情報][img-cci-demo-vuln-details]
 
-8.  テストプロセス中にCircleCIコンソールに表示される検出された脆弱性の情報はありません。
-
-    Wallarmポータルで詳細に脆弱性を探査することができます。これを行うには、テストランリンクに移動します。このリンクは、CircleCIコンソールでFAST情報メッセージの一部として表示されます。
-    
-    このリンクは次のようになるはずです：
-    `https://us1.my.wallarm.com/testing/testruns/test_run_id`    
-    
-    たとえば、完了したテストランを見て、サンプルアプリケーションでいくつかのXSS脆弱性が見つかったことが分かります：
-    
-     ![脆弱性に関する詳細情報][img-cci-demo-vuln-details]
-    
-結論として、統合テストがエラーなしで通過してもアプリケーションの脆弱性を見つけるために、FASTが既存のCI/CDプロセスへの統合に強力な機能を持っていることが実証されました。
+結論として、統合テストがエラーなくパスしても、FASTが既存のCI/CDプロセスに強力に統合できるだけでなく、アプリケーション内の脆弱性を発見する能力があることが実証されました。
+```

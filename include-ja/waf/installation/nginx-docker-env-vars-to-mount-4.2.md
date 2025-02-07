@@ -1,4 +1,6 @@
-環境変数 | 説明 | 必要
+```markdown
+環境変数 | 説明 | 必須
 --- | ---- | ----
-`WALLARM_API_TOKEN` | Wallarmノードのトークン。<br><div class="admonition info"> <p class="admonition-title">Wallarm Cloudへのアクセスを設定する以前の変数</p> <p>バージョン4.0のリリース前までは、`WALLARM_API_TOKEN`を前にして`DEPLOY_USERNAME`と`DEPLOY_PASSWORD`という変数がありました。新たなリリース以降は、Wallarm Cloudにアクセスするためには新たなトークンベースの方法の使用が推奨されます。[新しいノードバージョンへの移行についての詳細](/updating-migrating/docker-container/)</p></div> | はい
-`WALLARM_API_HOST` | Wallarm APIサーバ：<ul><li>`us1.api.wallarm.com`はUS Cloudのため</li><li>`api.wallarm.com`はEU Cloudのため</li></ul>デフォルトでは：`api.wallarm.com` | いいえ
+`WALLARM_API_TOKEN` | Wallarmノードトークンです。<br><div class="admonition info"> <p class="admonition-title">Wallarm Cloudへのアクセス設定に使用していた従来の変数</p> <p>バージョン4.0のリリース以前は、`WALLARM_API_TOKEN`より前に設定されていた変数は`DEPLOY_USERNAME`および`DEPLOY_PASSWORD`でした。新しいリリース以降は、Wallarm Cloudへのアクセスに新しいトークンベースのアプローチの使用が推奨です。[新しいノードバージョンへの移行に関する詳細](/updating-migrating/docker-container/)</p></div> | はい
+`WALLARM_API_HOST` | Wallarm APIサーバー：<ul><li>`us1.api.wallarm.com` (US Cloud向け)</li><li>`api.wallarm.com` (EU Cloud向け)</li></ul>デフォルトでは`api.wallarm.com`です。 | いいえ
+```
