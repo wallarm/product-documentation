@@ -1,50 +1,50 @@
 [anchor-report-mode]:              #running-fast-node-in-report-mode
 
-[doc-ci-mode-testing-report]:      ../poc/ci-mode-testing.md#getting-the-report-about-the-test
+[doc-ci-mode-testing-report]:      ../poc/ci-mode-testing.md#deployment-of-a-fast-node-in-the-testing-mode
 [doc-ci-mode-testing]:             ../poc/ci-mode-testing.md
 [doc-get-token]:                   create-node.md
 [deploy-docker-with-fast-node]:    ../qsg/deployment.md#4-deploy-the-fast-node-docker-container
 
-# Test Sonuçları ile Raporu Alma
+# Test Sonuçlarıyla Raporu Alma
 
-FAST düğümü, test sonuçlarınızı TXT ve JSON formatlarında almanıza olanak sağlar:
+FAST node, test sonuçlarını TXT ve JSON formatlarında almanızı sağlar:
 
-* TXT dosyası, temel istatistikleri ve algılanan güvenlik açıklığı listesini içeren kısa test sonuçlarını içerir.
-* JSON dosyası, ayrıntılı test sonuçlarını — güvenlik testi ve temel istekler hakkında ayrıntılar ile algılanan güvenlik açıklığı listesini içerir. JSON dosyasının içeriği, Wallarm hesabınızdaki **Test çalışmaları**ndaki verilere karşılık gelir.
+* TXT dosyası, temel istatistikler ile tespit edilen güvenlik açıklarının listesinden oluşan özet test sonuçlarını içerir.
+* JSON dosyası, güvenlik testine ilişkin detaylar, temel istekler ve tespit edilen güvenlik açıklarının listesini içeren ayrıntılı test sonuçlarını sunar. JSON dosyasının içeriği, Wallarm hesabınızdaki > **Test runs** bölümünde sunulan verilerle uyumludur.
 
-Rapor almak için, rapor oluşturma yöntemini seçin ve aşağıdaki talimatlara uyun:
+Raporu almak için, rapor oluşturma yöntemini seçin ve aşağıdaki talimatları uygulayın:
 
-* [Rapor modunda FAST düğümü çalıştırma][anchor-report-mode]
-* [Rapor indirme seçeneğiyle test modunda FAST düğümü çalıştırma][doc-ci-mode-testing-report]
+* [Report modunda FAST node çalıştırma][anchor-report-mode]
+* [Test modunda FAST node çalıştırma ve raporu indirme seçeneği ile][doc-ci-mode-testing-report]
 
-## Rapor Modunda FAST Düğümü Çalıştırma
+## Report Modunda FAST Node Çalıştırma
 
-FAST düğümünü rapor modunda çalıştırmak için, [Docker konteynerini dağıtırken][deploy-docker-with-fast-node] aşağıdaki adımları gerçekleştirin:
+FAST node'u report modunda çalıştırmak için, [Docker konteynerini dağıtırken][deploy-docker-with-fast-node] aşağıdaki adımları izleyin:
 
 <ol start="1"><li>Ortam değişkenlerini ayarlayın:</li></ol>
 
-| Değişken           	| İçerik 	| Gereklilik 	|
-|--------------------	| --------	| -----------	|
-| `WALLARM_API_TOKEN`  	| Wallarm bulutundan bir [token][doc-get-token]. | Evet |
-| `WALLARM_API_HOST`   	| Wallarm API sunucusunun adresi. <br>İzin verilen değerler: <br>`us1.api.wallarm.com` Wallarm ABD bulutundaki sunucu için ve <br>`api.wallarm.com` Wallarm AB bulutundaki sunucu için.| Evet |
-| `CI_MODE`               	| FAST düğümünün işletim modu.<br>`report` olmalıdır. | Evet |
-| `TEST_RUN_ID`        	| Rapor almak için gereken test yürütme ID'si.<br>ID, Wallarm hesabınızdaki **Test çalışmaları**nda ve test modunda FAST düğümü çalıştırma günlüklerinde görüntülenir.<br>Varsayılan olarak, son test çalışmasının ID'si kullanılır. | Hayır |
+| Değişken                | Açıklama  | Gereklilik  |
+|-------------------------|-----------|-------------|
+| `WALLARM_API_TOKEN`     | Wallarm Cloud üzerinden alınan bir [token][doc-get-token]. | Evet |
+| `WALLARM_API_HOST`      | Wallarm API sunucusunun adresi. <br>Kabul edilen değerler: <br>`us1.api.wallarm.com` Wallarm US cloud sunucusu için ve <br>`api.wallarm.com` Wallarm EU cloud sunucusu için. | Evet |
+| `CI_MODE`               | FAST node'un çalışma modu.<br>`report` olmalıdır. | Evet |
+| `TEST_RUN_ID`           | Raporu almak için gerekli test çalıştırma kimliği.<br>Kimlik, Wallarm hesabınızdaki > **Test runs** bölümünde ve FAST node'un test modunda çalıştırılmasının loglarında görüntülenir.<br>Varsayılan olarak, son test çalıştırmasının kimliği kullanılır. | Hayır |
 
-<ol start="2"><li>Raporlar için klasörün yolunu <code>-v {DIRECTORY_FOR_REPORTS}:/opt/reports/</code> seçeneğiyle iletin.</li></ol>
+<ol start="2"><li>Rapor klasörünün yolunu <code>-v {DIRECTORY_FOR_REPORTS}:/opt/reports/</code> seçeneği ile geçirin.</li></ol>
 
-**Rapor modunda FAST düğümü Docker konteynerini çalıştırmak için komut örneği:**
+**Report modunda FAST node Docker konteynerini çalıştırmak için örnek komut:**
 
 ```
-docker run  --rm -e WALLARM_API_HOST=us1.api.wallarm.com -e WALLARM_API_TOKEN=qwe53UTb2 -e CI_MODE=report -e TEST_RUN_ID=9012 -v belgeler/raporlar:/opt/raporlar/ wallarm/fast
+docker run  --rm -e WALLARM_API_HOST=us1.api.wallarm.com -e WALLARM_API_TOKEN=qwe53UTb2 -e CI_MODE=report -e TEST_RUN_ID=9012 -v documents/reports:/opt/reports/ wallarm/fast
 ```
 
 ## Raporu Alma
 
-Komut başarıyla çalıştırılırsa, terminalde test çalışması hakkında kısa veriler alırsınız:
+Komut başarıyla yürütüldüğünde, terminalde test çalıştırmasına ait özet veriler görüntülenecektir:
 
---8<-- "../include-tr/fast/console-include/operations/node-in-ci-mode-report.md"
+--8<-- "../include/fast/console-include/operations/node-in-ci-mode-report.md"
 
-Rapor oluşturma tamamlandığında, `DIRECTORY_FOR_REPORTS` klasöründe aşağıdaki rapor dosyalarını bulabilirsiniz:
+Rapor oluşturma tamamlandığında, `DIRECTORY_FOR_REPORTS` klasöründe aşağıdaki rapor dosyalarını bulacaksınız:
 
 * `<TEST RUN NAME>.<UNIX TIME>.txt`
 * `<TEST RUN NAME>.<UNIX TIME>.json`

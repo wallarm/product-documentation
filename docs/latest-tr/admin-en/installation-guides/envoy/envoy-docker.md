@@ -1,112 +1,112 @@
-# Docker Tabanlı Envoy Görselini Çalıştırma
+# Docker Envoy‑tabanlı Görüntünün Çalıştırılması
 
-Bu talimatlar, [Envoy 1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4) tabanlı Wallarm Docker görüntüsünü çalıştırmak için gerekli adımları anlatmaktadır. Görsel, doğru bir Wallarm düğümü operasyonu için gerekli tüm sistemleri içerir:
+Bu talimatlar, [Envoy 1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4) temel alınarak oluşturulan Wallarm Docker görüntüsünü çalıştırma adımlarını anlatır. Görüntü, doğru Wallarm node çalışması için gerekli tüm sistemleri içerir:
 
-* Gömülü Wallarm modülü bulunan Envoy proxy hizmetleri
+* Wallarm module'lü Envoy proxy hizmetleri
 * Postanalytics için Tarantool modülleri
-* Diğer hizmetler ve scriptler
+* Diğer hizmetler ve script'ler
 
-Wallarm modülü, taleplerin proxy'ini gerçekleştirmek için bir Envoy HTTP filtresi olarak tasarlanmıştır.
+Wallarm module, istek yönlendirme için bir Envoy HTTP filtresi olarak tasarlanmıştır.
 
-!!! uyarı "Desteklenen yapılandırma parametreleri"
-    NGINX tabanlı filtreleme düğümü yapılandırmasına yönelik çoğu [yönerge][nginx-directives-docs]nın, Envoy tabanlı filtre düğümü yapılandırması için desteklenmediğini lütfen not edin. Sonuç olarak, [hız limiti][rate-limit-docs] yapılandırması bu dağıtım yönteminde mevcut değildir.
+!!! warning "Desteklenen yapılandırma parametreleri"
+    Lütfen unutmayın ki NGINX‑tabanlı filtering node yapılandırması için geçerli olan çoğu [directives][nginx-directives-docs] Envoy‑tabanlı filtering node yapılandırması için desteklenmemektedir. Sonuç olarak, [rate limiting][rate-limit-docs] ve [credential stuffing detection][cred-stuffing-docs] bu dağıtım yöntemiyle kullanılamaz.
+    
+    [Envoy‑tabanlı filtering node yapılandırması için mevcut parametrelerin →][docker-envoy-configuration-docs] listesini inceleyin.
 
-    [Envoy tabanlı filtreleme düğümü yapılandırması →][docker-envoy-configuration-docs] için mevcut parametrelerin listesini görün.
+## Kullanım Senaryoları
 
-## Kullanım senaryoları
-
---8<-- "../include-tr/waf/installation/docker-images/envoy-based-use-cases.md"
+--8<-- "../include/waf/installation/docker-images/envoy-based-use-cases.md"
 
 ## Gereksinimler
 
---8<-- "../include-tr/waf/installation/docker-images/envoy-requirements.md"
+--8<-- "../include/waf/installation/docker-images/envoy-requirements.md"
 
-## Konteynırı çalıştırma seçenekleri
+## Konteyneri Çalıştırma Seçenekleri
 
-Filtreleme düğümü yapılandırma parametreleri, aşağıdaki yollarla `docker run` komutuna iletebilir:
+Filtering node yapılandırma parametreleri, `docker run` komutuna aşağıdaki yollarla geçirilebilir:
 
-* **Çevre değişkenlerine**. Bu seçenek, yalnızca temel filtreleme düğümü parametrelerinin yapılandırılmasını sağlar, çoğu [parametre][docker-envoy-configuration-docs] çevre değişkenleri aracılığıyla değiştirilemez.
-* **Monte edilen yapılandırma dosyasına**. Bu seçenek, filtreleme düğümünün tüm [parametrelerinin][docker-envoy-configuration-docs] yapılandırılmasını sağlar.
+* **Ortam değişkenleri aracılığıyla**. Bu seçenek yalnızca temel filtering node parametrelerinin yapılandırılmasına olanak sağlar; [parameters][docker-envoy-configuration-docs] listesindeki çoğu parametre ortam değişkenleri aracılığıyla değiştirilemez.
+* **Mount edilmiş yapılandırma dosyası aracılığıyla**. Bu seçenek, filtering node [parametrelerinin][docker-envoy-configuration-docs] tamamının yapılandırılmasına olanak tanır.
 
-## Konteynırı çevre değişkenlerini ileterek çalıştırın
+## Ortam Değişkenleri Kullanarak Konteyneri Çalıştırma
 
-Konteynırı çalıştırmak için:
+Konteyneri çalıştırmak için:
 
---8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-1. Düğümle birlikte konteynırı çalıştırmak için:
+1. Node ile konteyneri çalıştırın:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/envoy:4.8.0-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/envoy:4.8.0-1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e ENVOY_BACKEND='example.com' -p 80:80 wallarm/envoy:4.8.0-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e ENVOY_BACKEND='example.com' -p 80:80 wallarm/envoy:4.8.0-1
         ```
 
-Aşağıdaki temel filtreleme düğümü ayarları, `-e` seçeneği aracılığıyla konteynıra iletilir:
+Konteyner, aşağıdaki temel filtering node ayarlarını `-e` seçeneği ile alabilir:
 
-Çevre değişkeni | Açıklama | Gereklilik
+Environment variable | Açıklama | Gereklilik
 --- | ---- | ----
-`WALLARM_API_TOKEN` | Wallarm düğümü veya API tokeni. | Evet
-`ENVOY_BACKEND` | Wallarm çözümü ile korunacak kaynağın alan adı veya IP adresi. | Evet
-`WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>`us1.api.wallarm.com` US Cloud için</li><li>`api.wallarm.com` EU Cloud için</li></ul>Varsayılan: `api.wallarm.com`. | Hayır
-`WALLARM_MODE` | Düğüm modu:<ul><li>`block` zararlı istekleri engeller</li><li>`safe_blocking` [gri listeli IP adreslerinden][graylist-docs] çıkan sadece zararlı istekleri engeller</li><li>`monitoring` istekleri analiz eder ama engellemez</li><li>`off` trafik analizini ve işlemeyi devre dışı bırakır</li></ul>Varsayılan: `monitoring`.<br>Filtrasyon modlarının ayrıntılı açıklaması için [tıklayın →][wallarm-mode-docs] | Hayır
-`WALLARM_LABELS` | <p>Düğüm 4.6’dan itibaren kullanılabilir. `WALLARM_API_TOKEN` ‘Deploy’ rolündeki [API tokeni][api-tokens-docs] olarak ayarlandığında çalışır. Düğüm örneğinin gruplaması için `group` etiketini ayarlar, örneğin:</p> <p>`WALLARM_LABELS="group=<GROUP>"`</p> <p>...düğüm örneğini `<GROUP>` örneği grubuna yerleştirir (varolan ya da eğer mevcut değilse, oluşturulmuştur).</p> | Evet (API tokenları için)
-`TARANTOOL_MEMORY_GB` | Tarantool'a ayrılan [bellek miktarı][allocate-resources-for-wallarm-docs]. Değer, bir tam sayı veya bir ondalık sayı (ondalık ayırıcı biru nokta <code>.</code>) olabilir. Varsayılan: 0.2 gigabyte. | Hayır
+`WALLARM_API_TOKEN` | Wallarm node veya API token. | Evet
+`ENVOY_BACKEND` | Wallarm çözümü ile korunacak kaynağın domain veya IP adresi. | Evet
+`WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>US Cloud için: `us1.api.wallarm.com`</li><li>EU Cloud için: `api.wallarm.com`</li></ul>Varsayılan: `api.wallarm.com`. | Hayır
+`WALLARM_MODE` | Node modu:<ul><li>`block` – kötü niyetli istekleri engellemek için</li><li>`safe_blocking` – yalnızca [graylisted IP addresses][graylist-docs] kaynaklı kötü niyetli istekleri engellemek için</li><li>`monitoring` – istekleri analiz eder fakat engellemez</li><li>`off` – trafik analizi ve işleme devre dışı bırakılır</li></ul>Varsayılan: `monitoring`.<br>[Filtrasyon modlarının detaylı açıklaması →][wallarm-mode-docs] | Hayır
+`WALLARM_LABELS` | <p>Node 4.6'dan itibaren kullanılabilir. Sadece `WALLARM_API_TOKEN`'in [API token][api-tokens-docs] ile `Deploy` rolünde ayarlanmış olması durumunda çalışır. Node örneklerinin gruplandırılması için `group` etiketini belirler, örneğin:</p> <p>`WALLARM_LABELS="group=<GROUP>"`</p> <p>...node örneğini `<GROUP>` grubuna yerleştirir (varsa mevcut olan, yoksa oluşturulur).</p> | API token'ler için Evet
+`TARANTOOL_MEMORY_GB` | Tarantool için ayrılan [bellek miktarı][allocate-resources-for-wallarm-docs]. Değer tamsayı veya ondalık sayı (ondalık ayırıcı olarak nokta <code>.</code> kullanılır). Varsayılan: 0.2 gigabayt. | Hayır
 
-Komut aşağıdakileri yapar:
+Komut aşağıdaki işlemleri gerçekleştirir:
 
-* Konteynır /etc/envoy dizininde minimal Envoy yapılandırması ile `envoy.yaml` dosyasını oluşturur.
-* Konteynır /etc/wallarm dizininde Wallarm Cloud'a erişim için filtreleme düğümü kimlik bilgileri ile dosyalar oluşturur:
-    * Filtreleme düğümü UUID ve gizli anahtarı ile `node.yaml`
-    * Wallarm özel anahtarı ile `private.key`
+* Konteynerin `/etc/envoy` dizininde minimum Envoy yapılandırması içeren `envoy.yaml` dosyasını oluşturur.
+* Konteynerin `/etc/wallarm` dizininde Wallarm Cloud'a erişim için filtering node kimlik bilgilerini içeren dosyaları oluşturur:
+    * Filtering node UUID ve gizli anahtarı içeren `node.yaml`
+    * Wallarm private key içeren `private.key`
 * `http://ENVOY_BACKEND:80` kaynağını korur.
 
-## Konteynırı envoy.yaml'i monte ederek çalıştırın
+## envoy.yaml Dosyası Mount Edilerek Konteyneri Çalıştırma
 
-Hazırlanan `envoy.yaml` dosyasını `-v` seçeneği aracılığıyla Docker konteynırına monte edebilirsiniz. Dosyanın aşağıdaki ayarları içermesi gerekmektedir:
+Hazırlanmış `envoy.yaml` dosyasını `-v` seçeneği ile Docker konteynerine mount edebilirsiniz. Dosya aşağıdaki ayarları içermelidir:
 
-* [Talimatlarda][docker-envoy-configuration-docs] belirtildiği gibi filtreleme düğümü ayarları
-* [Envoy talimatlarında](https://www.envoyproxy.io/docs/envoy/v1.15.0/configuration/overview/overview) belirtildiği gibi Envoy ayarları
+* [Talimatlarda][docker-envoy-configuration-docs] tarif edildiği üzere filtering node ayarları
+* [Envoy talimatlarında](https://www.envoyproxy.io/docs/envoy/v1.15.0/configuration/overview/overview) belirtildiği şekilde Envoy ayarları
 
-Konteynırı çalıştırmak için:
+Konteyneri çalıştırmak için:
 
---8<-- "../include-tr/waf/installation/get-api-or-node-token.md"
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-1. Düğümle birlikte konteynırı çalıştırmak için:
+1. Node ile konteyneri çalıştırın:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:4.8.0-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:4.8.0-1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:4.8.0-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:4.8.0-1
         ```
 
-    * `-e` seçeneği, aşağıdaki zorunlu çevre değişkenlerini konteynıra ileterek:
+    * `-e` seçeneği, konteynere aşağıdaki zorunlu ortam değişkenlerini aktarır:
 
-    Çevre değişkeni | Açıklama | Gereklilik
+    Environment variable | Açıklama | Gereklilik
     --- | ---- | ----
-    `WALLARM_API_TOKEN` | Wallarm düğüm tokeni.<br><div class="admonition info"> <p class="admonition-title">Bir kaç yükleme için tek token kullanımı</p> <p>Seçtiğiniz [platforma][supported-deployments] bakılmaksızın birkaç yüklemede tek bir token kullanabilirsiniz. Bu, Wallarm Konsol Arayüzünde düğüm örneklerinin mantıksal gruplandırılmasına olanak sağlar. Örnek: bir geliştirme ortamına birkaç Wallarm düğümü yerleştirirsiniz, her düğüm belirli bir geliştiriciye ait olan kendi makinesi üzerinde bulunur.</p></div> | Evet
-    `WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>`us1.api.wallarm.com` US Cloud için</li><li>`api.wallarm.com` EU Cloud için</li></ul> Varsayılan: `api.wallarm.com`. | Hayır
+    `WALLARM_API_TOKEN` | Wallarm node token.<br><div class="admonition info"> <p class="admonition-title">Birden Fazla Kurulumda Tek Token Kullanımı</p> <p>Seçilen [platform][supported-deployments] ne olursa olsun, aynı token'ı birden fazla kurulumda kullanabilirsiniz. Bu, Wallarm Console arayüzünde node örneklerinin mantıksal olarak gruplandırılmasını sağlar. Örnek: Bir geliştirme ortamına birden fazla Wallarm node dağıtırsınız; her node, ilgili bir geliştiriciye ait ayrı bir makinededir.</p></div> | Evet
+    `WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>US Cloud için: `us1.api.wallarm.com`</li><li>EU Cloud için: `api.wallarm.com`</li></ul>Varsayılan: `api.wallarm.com`. | Hayır
 
-    * `-v` seçeneği, `/etc/envoy` konteynır dizinine `envoy.yaml` yapılandırma dosyasıyla dizini monte eder.
+    * `-v` seçeneği, `envoy.yaml` yapılandırma dosyasını içeren dizini konteynerin `/etc/envoy` dizinine mount eder.
 
-Komut aşağıdakileri yapar:
+Komut aşağıdaki işlemleri gerçekleştirir:
 
-* `/etc/envoy` konteynır dizinine `envoy.yaml` dosyasını monte eder.
-* Konteynır /etc/wallarm dizininde Wallarm Cloud'a erişim için filtreleme düğümü kimlik bilgileri ile dosyalar oluşturur:
-    * Filtreleme düğümü UUID ve gizli anahtarı ile `node.yaml`
-    * Wallarm özel anahtarı ile `private.key`
-* Monte edilen yapılandırma dosyasında belirtilen kaynağı korur.
+* `envoy.yaml` dosyasını konteynerin `/etc/envoy` dizinine mount eder.
+* Konteynerin `/etc/wallarm` dizininde Wallarm Cloud'a erişim için filtering node kimlik bilgilerini içeren dosyaları oluşturur:
+    * Filtering node UUID ve gizli anahtarı içeren `node.yaml`
+    * Wallarm private key içeren `private.key`
+* Mount edilmiş yapılandırma dosyasında belirtilen kaynağı korur.
 
-## Log döndürme yapılandırması (isteğe bağlı)
+## Log Döndürme Yapılandırması (İsteğe Bağlı)
 
-Log dosyasının döndürülmesi önceden yapılandırılmış ve varsayılan olarak etkindir. Gerekirse döndürme ayarlarını ayarlayabilirsiniz. Bu ayarlar konteynırın `/etc/logrotate.d` dizininde bulunmaktadır.
+Log dosyası döndürme, önceden yapılandırılmış olup varsayılan olarak etkindir. Gerekirse döndürme ayarlarını değiştirebilirsiniz. Bu ayarlar konteynerin `/etc/logrotate.d` dizininde yer alır.
 
-## Wallarm düğüm operasyonunun test edilmesi
+## Wallarm Node Çalışmasını Test Etme
 
---8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"

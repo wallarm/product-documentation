@@ -1,29 +1,27 @@
-# GCP Makina İmajı'ndan Wallarm'ı Yüklemek
+# GCP Makine Görüntüsünden Wallarm Dağıtımı
 
-Bu makale, Wallarm'ı [resmi Makina İmajı](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node) kullanarak GCP'ye yükleme talimatlarını sağlar. Çözüm, ya [hat içi][inline-docs] ya da [Bant Dışı][oob-docs] olarak konuşlandırılabilir. 
+Bu makale, [official Machine Image](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node) kullanılarak GCP üzerinde Wallarm'ın dağıtımı için talimatları sunmaktadır. Çözüm, [in-line][inline-docs] veya [Out-of-Band][oob-docs] olarak dağıtılabilir.
 
-## Kullanım durumları
+## Kullanım Durumları
 
 --8<-- "../include/waf/installation/cloud-platforms/gcp-machine-image-use-cases.md"
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
 
-## 5. Wallarm'ın trafiği analiz etmesini etkinleştirin
+## 5. Örneği Wallarm Cloud ile Bağlayın
 
---8<-- "../include/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-for-cloud-images.md"
 
-## 6. NGINX'i Yeniden Başlat
+## 6. Trafiğin Wallarm Örneğine Gönderilmesini Yapılandırın
 
---8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob-latest.md"
 
-## 7. Trafiği Wallarm örneğine göndermeyi yapılandırın
-
---8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
-
-## 8. Wallarm operasyonunu test edin
+## 7. Wallarm Operasyonunu Test Edin
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
 
-## 9. Konuşlandırılan çözümü ince ayar yapın
+## 8. Dağıtılan Çözümü İnce Ayar Yapın
 
 --8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+
+--8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"

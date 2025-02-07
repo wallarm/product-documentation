@@ -1,6 +1,8 @@
-!!! bilgi "Diğer öneriler"
-    Wallarm'ın Kubernetes Ingress denetleyicisi versiyonu, [topluluk tarafından desteklenen Kubernetes için NGINX Ingress denetleyicisi](https://github.com/kubernetes/ingress-nginx) üzerine kuruludur, dolayısıyla resmi Ingress denetleyicisi belgelerinde ve kamuya açık İnternet'te bulunan önerilerin çoğu da Wallarm'ın Ingress denetleyicisi için geçerlidir.
-
+```markdown
+!!! info "Diğer öneriler"
+    Wallarm’un Kubernetes Ingress denetleyicisinin versiyonu, [topluluk destekli Kubernetes için NGINX Ingress denetleyicisi](https://github.com/kubernetes/ingress-nginx) üzerine kuruludur, bu yüzden resmi Ingress denetleyici belgelerinde ve genel İnternet üzerinde bulunan önerilerin çoğu Wallarm’un Ingress denetleyicisi için de geçerlidir.
+    
     Önerilen okuma:
     
-    * [Resmi NGINX Ingress Denetleyicisi Kılavuzu](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
+    * [Resmi NGINX Ingress Controller Kılavuzu](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
+```

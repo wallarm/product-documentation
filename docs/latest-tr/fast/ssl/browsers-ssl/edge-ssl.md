@@ -6,50 +6,51 @@
 [img-fingerprint-warning]:  ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-fingerprint-warning.png
 [img-import-ok]:            ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-import-success.png
 [img-https-ok]:             ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-https-ok.png
+    
+    
+#   Microsoft Edge için FAST Node Self-signed SSL-certificate Kurulumu
 
-#   Microsoft Edge için FAST Node Öz-İmzalanmış SSL-Sertifikası Kurulumu
+Microsoft Edge tarayıcısı için sertifikayı yüklemek amacıyla aşağıdaki adımları izleyin:
 
-Microsoft Edge tarayıcısı için sertifikayı kurmak için aşağıdakileri yapın:
+1.  Tarayıcınızın FAST node'u HTTP ve HTTPS proxy olarak kullanacak şekilde yapılandırıldığından emin olun.
 
-1.  HTTP ve HTTPS proxy'si olarak FAST node'u kullanacak şekilde tarayıcınızı ayarladığınızdan emin olun.
-
-2.  Tarayıcıyı kullanarak `cert.der` dosyasını herhangi bir alan adından HTTP üzerinden isteyin.
+2.  Tarayıcınızı kullanarak herhangi bir alandan HTTP üzerinden `cert.der` dosyasını isteyin.
 
     Örneğin, aşağıdaki bağlantılardan birini kullanabilirsiniz:
     
     * <http://wallarm.get/cert.der>
-    * <http://example.com/cert.der>
+    * <http://example.com/cert.der> 
 
-    Tarayıcı, sertifika dosyasını açmayı veya kaydetmeyi seçme seçeneği sunar. **Aç** düğmesini seçin.
+    Tarayıcı, sertifika dosyasını açma veya kaydetme seçeneği sunacaktır. **Open** düğmesini seçin.
 
-    ![Öz imzalı FAST node sertifikasının istenmesi][img-cert-request]
+    ![Requesting the self-signed FAST node certificate][img-cert-request]
 
-3.  Sertifika hakkında bilgi içeren bir pencere açılır. Sertifikanızın adı ve son kullanma tarihi, resimde gösterilenlerden farklı olacaktır. **Sertifikayı Yükle** düğmesini seçin.
+3.  Sertifika bilgilerini içeren bir pencere açılacaktır. Sertifikanızın adı ve son kullanma tarihinin resimde gösterilenden farklı olabileceğini unutmayın. **Install Certificate** düğmesini seçin.
 
-    ![Sertifika penceresi][img-cert-window]
+    ![“Certificate” window][img-cert-window]
 
-4.  Açılan pencerede uygun sertifika kurulum seçeneğini seçin. Sertifikayı şu anki kullanıcı için veya tüm kullanıcılar için yükleyebilirsiniz. Uygun seçeneği seçin ve **İleri** düğmesini seçin.
+4.  Açılan pencerede uygun sertifika kurulum seçeneğini belirleyin. Sertifikayı mevcut kullanıcı için veya tüm kullanıcılar için yükleyebilirsiniz. Uygun seçeneği belirleyip **Next** düğmesini seçin.
 
-    ![Sertifika mağaza konumunu seçin][img-store-location]
+    ![Select certificate store location][img-store-location]
 
-5.  Bir sertifika mağazası seçmeniz istenecektir. “Tüm sertifikaları aşağıdaki mağazaya yerleştir” seçeneğini seçin ve “Güvenilir Kök Sertifika Otoriteleri”ni mağaza olarak belirleyin. **İleri** düğmesini seçin.
-    ![Sertifika mağazasını seçin][img-store]
+5.  Bir sertifika deposu seçmeniz istenecektir. “Place all certificates in the following store” seçeneğini seçin ve depo olarak “Trusted Root Certification Authorities” ayarlayın. **Next** düğmesini seçin.    
+    ![Select certificate store][img-store]
 
-    Sertifika için uygun mağazayı seçtiğinizden emin olun ve **Bitir** düğmesini seçerek içe aktarma sürecini başlatın.
-
-    ![Sertifika içe aktarma sihirbazı özeti][img-wizard-resume]
-
-6.  İçe aktarılan sertifikanın parmak izinin doğrulanamaması hakkında bir uyarı mesajı alacaksınız. İçe aktarma sürecini tamamlamak için **Evet** düğmesini seçin.
+    Sertifika için uygun deponun seçildiğinden emin olun ve içe aktarma işlemini başlatmak için **Finish** düğmesini tıklayın.
     
-    ![Parmak izi doğrulama uyarısı][img-fingerprint-warning]
+    ![Certificate import wizard resume][img-wizard-resume]
 
-    İçe aktarma başarılı olduğunda, “İçe aktarma başarılı oldu” bilgilendirme mesajı görünecektir.
+6.  İçe aktarılan sertifikanın parmak izini doğrulamada başarısız olunduğuna dair bir uyarı mesajı görünecektir. İçe aktarma işlemini tamamlamak için **Yes** düğmesini seçin.
 
-    ![Sertifikanın başarılı bir şekilde içe aktarılması][img-import-ok]
+    ![Fingerprint validation warning][img-fingerprint-warning]
 
-7.  Sertifikanın doğru bir şekilde yüklendiğini kontrol edin. Bunu yapmak için, herhangi bir siteye HTTPS üzerinden gidin. Herhangi bir güvenilmez sertifikalar hakkında uyarı mesajı olmadan siteye yönlendirilmelisiniz.
+    İçe aktarma başarılı olduğunda “The import was successful” bilgi mesajı görüntülenecektir.
 
-    Örneğin, Google Gruyere sitesinin HTTPS versiyonuna göz atabilirsiniz:
+    ![Successful import of the certificate][img-import-ok]
+
+7.  Sertifikanın doğru şekilde yüklendiğini kontrol edin. Bunun için herhangi bir siteye HTTPS üzerinden gidin. Güvenilmeyen sertifikalara dair uyarı mesajı olmaksızın sitenin HTTPS sürümüne yönlendirilebilmelisiniz.
+
+    Örneğin, Google Gruyere sitesinin HTTPS sürümüne gidebilirsiniz:
     <https://google-gruyere.appspot.com>
 
-    ![HTTPS çalışıyor][img-https-ok]
+    ![HTTPS is working][img-https-ok]

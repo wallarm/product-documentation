@@ -1,29 +1,29 @@
-[link-points]: ../points/intro.md
-[link-ext-logic]: ../logic.md
+```markdown
+[link-points]:      ../points/intro.md
+[link-ext-logic]:   ../logic.md
 
-[anchor1]: parameters.md#oob
-[anchor2]: parameters.md#response
-[anchor3]: parameters.md#checking-the-http-statuses
-[anchor4]: parameters.md#checking-the-http-headers
-[anchor5]: parameters.md#checking-the-body-of-the-http-response
-[anchor6]: parameters.md#checking-the-html-markup
-
+[anchor1]:      parameters.md#oob
+[anchor2]:      parameters.md#response
+[anchor3]:      parameters.md#checking-the-http-statuses
+[anchor4]:      parameters.md#checking-the-http-headers
+[anchor5]:      parameters.md#checking-the-body-of-the-http-response
+[anchor6]:      parameters.md#checking-the-html-markup
 
 # Algılama Aşaması
 
-!!! info "Aşamanın kapsamı"
-    Bu aşama, herhangi bir FAST eklenti türünün çalışması için zorunludur (YAML dosyası `detect` bölümünü içermelidir).
+!!! info "Aşamanın Kapsamı"
+    Bu aşama, FAST uzantı türlerinin çalışabilmesi için zorunludur (YAML dosyasında `detect` bölümü bulunmalıdır).
   
-    Eklenti türleri hakkında ayrıntılı bilgi [burada][link-ext-logic].
+    Uzantı türleri hakkında detaylı bilgiyi [buradan][link-ext-logic] okuyabilirsiniz.
 
-!!! info "İstek öğeleri tanım sözdizimi"
-    Bir FAST eklentisi oluştururken, uygulamaya gönderilen HTTP isteğinin ve uygulamadan alınan HTTP yanıtının yapısını doğru bir şekilde helifleriyle anlamalısınız.
+!!! info "İstek öğeleri açıklama sözdizimi"
+    Bir FAST uzantısı oluştururken, uygulamaya gönderilen HTTP isteğinin yapısını ve uygulamadan alınan HTTP yanıtının yapısını anlamanız gerekir. Böylece, çalışmanız gereken istek öğelerini noktalar kullanarak doğru bir biçimde tanımlayabilirsiniz. 
 
-    Ayrıntılı bilgiyi görmek için bu [bağlantıya][link-points] gidin.
+    Daha ayrıntılı bilgi için, lütfen [buraya][link-points] tıklayın.
 
-Bu aşama, test isteğin bir güvenlik açığını başarıyla sömürüp sömürmediği hakkında bir sonuca varmak için sunucu yanıtı arasında aranacak parametreleri belirtir.
+Bu aşama, test isteği ile bir açığın başarıyla sömürüldüğüne dair bir sonuç çıkarabilmek için sunucu yanıtında aranacak parametreleri belirler.
 
-`detect` bölümü şu yap'étta:
+`detect` bölümü aşağıdaki yapıya sahiptir:
 
 ```
 detect:
@@ -31,67 +31,67 @@ detect:
     - dns
   - response:
     - status:
-      - değer 1
+      - value 1
       - …
-      - değer S
+      - value S
     - headers:
       - header 1: 
-        - değer 1
+        - value 1
         - …
-        - değer T
+        - value T
       - header …
       - header N:
-        - değer 1
+        - value 1
         - …
-        - değer U
+        - value U
     - body:
       - html:
         - tag:
-          - değer 1
+          - value 1
           - …
-          - değer V
+          - value V
         - attr:
-          - değer 1
+          - value 1
           - …
-          - değer W
+          - value W
         - attribute:
-          - değer 1
+          - value 1
           - …
-          - değer X
+          - value X
         - js:
-          - değer 1
+          - value 1
           - …
-          - değer Y
+          - value Y
         - href:
-          - değer 1
+          - value 1
           - …
-          - değer Z
+          - value Z
 ```
 
-Bu bölüm, parametrelerin setini içerir. Parametreler, yanıtın tek bir öğesini tanımlar. Parametrelerin bazıları değer olarak diğer parametrelerin bir dizisini içerebilir, bir hiyerarşi yaratır.
+Bu bölüm, parametre setini içerir. Parametrelerin her biri, yanıtın tek bir öğesini tanımlar. Bazı parametreler, değer olarak diğer parametrelerden oluşan bir diziyi içerebilir ve böylece bir hiyerarşi oluşturur.
 
 Parametrenin aşağıdaki özellikleri olabilir:
-* İsteğe bağlı olabilir (parametre istekte bulunabilir veya eksik olabilir). `detect` bölümündeki tüm parametreler bu özelliği karşılar.
+* Opsiyonel olabilir (parametre, istekten mevcut veya mevcut olmayabilir). `detect` bölümündeki tüm parametreler bu özelliğe sahiptir.
  
-    !!! warning "`detect` bölümünde gerekli olan parametreler hakkında bir not"
-        Hem `oob` hem de `response` parametreleri isteğe bağlı olmasına rağmen, bunlardan biri `detect` bölümünde bulunmalıdır. Aksi takdirde, Algılama aşaması çalışamaz. `detect` bölümü ayrıca bu iki parametreyi de içerebilir.
+    !!! warning "`detect` bölümünde gerekli olan parametrelerle ilgili bir not"
+        Hem `oob` hem de `response` parametrelerinin opsiyonel olmasına rağmen, `detect` bölümünde bunlardan biri bulunmalıdır. Aksi takdirde, Algılama aşaması çalışamaz. `detect` bölümü her iki parametreyi de içerebilir.
 
-* Atanan bir değeri olmayabilir.  
+* Atanmış bir değeri olmayabilir.  
     
     ??? info "Örnek"
         ```
         - response
-        ```
+        ```    
 
-* Tek bir değeri, bir dizi veya numara olarak belirtilmiş olabilir.
+* Tek bir değeri dize veya sayı olarak belirtebilir.
     
     ??? info "Örnek"
         ```
         - status: 500
         ```
 
-* Bir dizi veya numara dizisi olarak belirtilen birçok atanan değerden birine sahip 
- 
+* Dize veya sayı dizisi olarak belirtilen birden fazla değerden birine sahip olabilir. 
+    
     ??? info "Örnek"
         ```
             - status: 
@@ -99,18 +99,18 @@ Parametrenin aşağıdaki özellikleri olabilir:
                 - 500
         ```
 
-* Diğer parametreleri değer olarak içerebilir (parametreler bir dizi olarak belirtilir).
+* Değer olarak başka parametreleri içerebilir (parametreler dizi olarak belirtilir).
     
     ??? info "Örnek"
         ```
             - headers: 
-                - "Cookie": "örnek"
+                - "Cookie": "example"
                 - "User-Agent":
                     - "Mozilla"
                     - "Chrome"
         ```
 
-Algılama bölümünün parametrelerinin kabul edilebilir değerleri aşağıdaki bölümlerde açıklanmıştır:
+detect bölümündeki parametreler için kabul edilebilir değerler aşağıdaki bölümlerde açıklanmıştır:
 * [oob][anchor1],
 * [response][anchor2],
     * [status][anchor3],
@@ -122,3 +122,4 @@ Algılama bölümünün parametrelerinin kabul edilebilir değerleri aşağıdak
             * href,
             * js,
             * tag.
+```

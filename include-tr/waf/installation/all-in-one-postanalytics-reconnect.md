@@ -1,4 +1,4 @@
-NGINX-Wallarm modülüne sahip makinede, NGINX [yapılandırma dosyasında](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/), postanalytics modülü sunucu adresini belirtin:
+NGINX-Wallarm modülünün bulunduğu makinede, NGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) içerisinde, postanalytics modül sunucu adresini belirtin:
 
 ```
 upstream wallarm_tarantool {
@@ -8,16 +8,16 @@ upstream wallarm_tarantool {
     keepalive 2;
     }
 
-    # çıkarıldı
+    # omitted
 
 wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
-* `max_conns` değeri, gereğinden fazla bağlantı oluşumunu önlemek için her bir upstream Tarantool sunucusu için belirtilmelidir.
-* `keepalive` değeri, Tarantool sunucularının sayısından daha düşük olmamalıdır.
-* `# wallarm_tarantool_upstream wallarm_tarantool;` satırı varsayılan olarak yorumlanmıştır - lütfen `#` işaretini silin.
+* `max_conns` değeri, gereksiz bağlantı oluşumunu önlemek için her bir upstream Tarantool sunucusu için belirtilmelidir.
+* `keepalive` değeri, Tarantool sunucularının sayısından düşük olmamalıdır.
+* `# wallarm_tarantool_upstream wallarm_tarantool;` dizesi varsayılan olarak yorumlanmıştır - lütfen `#` karakterini silin.
 
-Yapılandırma dosyası değiştirildiğinde, NGINX-Wallarm modülü sunucusundaki NGINX/NGINX Plus'ı yeniden başlatın:
+Yapılandırma dosyası değiştirildikten sonra, NGINX-Wallarm modül sunucusundaki NGINX/NGINX Plus'ı yeniden başlatın:
 
 === "Debian"
     ```bash
@@ -31,7 +31,7 @@ Yapılandırma dosyası değiştirildiğinde, NGINX-Wallarm modülü sunucusunda
     ```bash
     sudo systemctl restart nginx
     ```
-=== "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo systemctl restart nginx
     ```

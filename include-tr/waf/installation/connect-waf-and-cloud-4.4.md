@@ -1,33 +1,33 @@
-Wallarm düğümü, Wallarm Bulutu ile etkileşim kurar. Filtreleme düğümünü Buluta bağlamak için:
+The Wallarm node, Wallarm Cloud ile etkileşime girer. Filtreleme düğümünü Cloud'a bağlamak için:
 
-1. Ayrı ayrı [postanalytics modülü yüklü][install-postanalytics-instr] ise:
+1. Eğer [postanalytics module ayrı olarak kurulmuşsa][install-postanalytics-instr]:
 
-    1. Ayrı postanalytics modül yüklemesi sırasında oluşturulan düğüm belirtecini kopyalayın.
-    1. Aşağıdaki listeyle 5. adıma geçin. İlk trafiği işleyen düğüm ve sonrasında analiz yapan düğüm için bir belirteç kullanmanız **tavsiye edilir**.
-1. Wallarm Konsolunu açın → [ABD Bulutu](https://us1.my.wallarm.com/nodes) veya [AB Bulutu](https://my.wallarm.com/nodes) 'ndaki **Düğümler** seçeneğine gidin ve **Wallarm düğümü** tipinde bir düğüm oluşturun.
+    1. Ayrı postanalytics module kurulumu sırasında oluşturulan düğüm token'ını kopyalayın.
+    1. Aşağıdaki listedeki 5. adıma geçin. İlk trafik işleme ve postanaliz gerçekleştiren düğüm için aynı token'ın kullanılması **tavsiye edilir**.
+1. Wallarm Console → **Nodes** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinde açın ve **Wallarm node** tipi düğümü oluşturun.
 
-    ![Wallarm düğümü oluşturma][img-create-wallarm-node]
-1. Oluşturulan belirteci kopyalayın.
-1. Filtreleme düğümünü yüklediğiniz makinede `register-node` komut dosyasını çalıştırın:
-
-    === "ABD Bulutu"
+    ![Wallarm node creation][img-create-wallarm-node]
+1. Oluşturulan token'ı kopyalayın.
+1. Filtreleme düğümünü kurduğunuz makinede `register-node` script'ini çalıştırın:
+    
+    === "US Cloud"
         ``` bash
         sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com
         ```
-    === "AB Bulutu"
+    === "EU Cloud"
         ``` bash
         sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN>
         ```
     
-    * `<NODE_TOKEN>` kopyalanan belirteç değeridir.
-    * Düğüm örneğiniz için özel bir isim belirlemek için `-n <HOST_NAME>` parametresini ekleyebilirsiniz. Son örnekleme ismi şöyle olacak: `HOST_NAME_NodeUUID`.
+    * `<NODE_TOKEN>` kopyalanan token değeridir.
+    * Düğüm örneğiniz için özel bir isim belirlemek adına `-n <HOST_NAME>` parametresi ekleyebilirsiniz. Oluşacak nihai örnek ismi: `HOST_NAME_NodeUUID`.
 
-!!! info "Birkaç kurulum için tek belirteç kullanma"
-    Seçilen dağıtım seçeneğinden bağımsız olarak, bir belirteci kullanarak birkaç Wallarm düğümünü Buluta bağlayabilirsiniz. Bu seçenek, Wallarm Konsolu kullanıcı arayüzünde düğüm örneklerinin mantıksal gruplanmasına izin verir:
+!!! info "Birden fazla kurulum için tek token kullanımı"
+    Seçilen dağıtım seçeneğine bakılmaksızın, tek bir token kullanarak birden fazla Wallarm node'u Cloud'a bağlayabilirsiniz. Bu seçenek, Wallarm Console kullanıcı arayüzünde düğüm örneklerinin mantıksal olarak gruplandırılmasını sağlar:
 
-    ![Birkaç örnekleme sahip düğüm][img-node-with-several-instances]
+    ![Node with several instances][img-node-with-several-instances]
     
-    Aşağıda, birkaç kurulum için tek bir belirteç kullanmayı seçebileceğiniz bazı örnekler bulunmaktadır:
+    Aşağıda, birden fazla kurulum için tek token kullanmayı tercih edebileceğiniz bazı örnekler verilmiştir:
 
-    * Birkaç Wallarm düğümünü bir geliştirme ortamına yerleştirirsiniz, her düğüm belirli bir geliştiriciye ait kendi makinesindedir
-    * Başlangıç trafiği işleme düğümleri ve postanalytics modülleri ayrı sunuculara yüklenir - bu modülleri Wallarm Buluta aynı düğüm belirteci kullanarak bağlamak **tavsiye edilir**
+    * Geliştirme ortamına birden fazla Wallarm node'u kuruyorsunuz, her düğüm belirli bir geliştiriciye ait kendi makinesinde.
+    * İlk trafik işleme ve postanalytics module için düğümler ayrı sunucularda kuruluysa - bu modülleri Wallarm Cloud'a aynı düğüm token'ını kullanarak bağlamak **tavsiye edilir**.

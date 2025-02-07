@@ -1,4 +1,4 @@
-Tüm desteklenen [Wallarm dağıtım seçenekleri][platform] arasında, Docker görüntüsünü kullanarak Alibaba Cloud ECS'de Wallarm dağıtımı, bu **kullanım durumları**nda önerilir:
+Among all supported [Wallarm deployment options][platform], Alibaba Cloud ECS üzerinde Docker image kullanılarak Wallarm dağıtımı bu **use cases** için önerilir:
 
-* Uygulamalarınız bir mikro hizmetler mimarisinden yararlanıyorsa ve zaten Alibaba Cloud ECS'de konteynırlaştırılmış ve işler durumdaysa.
-* Her bir konteynır üzerinde ince ayarlı kontrol gerekiyorsa, Docker görüntüsü mükemmeldir. Geleneksel VM tabanlı dağıtımlarla genellikle mümkün olanın üzerinde bir kaynak izolasyonu sağlar.
+* Eğer uygulamalarınız mikroservis mimarisinden faydalanıyor ve halihazırda konteynerleştirilmiş olarak Alibaba Cloud ECS üzerinde çalışıyorsa.
+* Eğer her konteyner üzerinde ayrıntılı kontrol gerektiriyorsa, Docker image bu konuda öne çıkar. Geleneksel VM tabanlı dağıtımlarda tipik olarak mümkün olanın ötesinde kaynak izolasyonu sağlar.

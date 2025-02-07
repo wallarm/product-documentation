@@ -1,26 +1,27 @@
-# Filtreleme düğümünün çalışmasını kontrol etme
+# Filtreleme Düğümü İşleyişini Kontrol Etme
 
 [doc-configure-parameters]:     ../admin-en/configure-parameters-en.md
 [doc-stat-service]:    ../admin-en/configure-statistics-service.md
 
-Her şey doğru bir şekilde yapılandırıldıysa, Wallarm istekleri filtreler ve filtrelenmiş istekleri yapılandırma dosyası ayarlarına uygun olarak proxyler.
+Her şey doğru yapılandırılmışsa, Wallarm istekleri filtreler ve yapılandırma dosyası ayarlarına uygun olarak filtrelenen istekleri proxy'ler.
 
-Doğru çalışmayı kontrol etmek için:
+Doğru işleyişi kontrol etmek için şunları yapmalısınız:
 
 1. `wallarm-status` isteğini çalıştırın.
-2. Bir test saldırısı başlatın.
+2. Test saldırısı gerçekleştirin.
 
+    
 ## 1. `wallarm-status` isteğini çalıştırın
 
-`/wallarm-status` URL'sini isteyerek filtreleme düğümü işlem istatistiklerini alabilirsiniz.
+`/wallarm-status` URL'sine istek göndererek filtreleme düğümü istatistiklerine ulaşabilirsiniz.
 
-Komutu çalıştırın:
+Aşağıdaki komutu çalıştırın:
 
 ```
 curl http://127.0.0.8/wallarm-status
 ```
 
-Çıktı aşağıdaki gibi olacaktır:
+Çıktı şu şekilde olacaktır:
 
 ```
 { "requests":0,"attacks":0,"blocked":0,"abnormal":0,"tnt_errors":0,"api_errors":0,
@@ -29,23 +30,23 @@ curl http://127.0.0.8/wallarm-status
 "stalled_workers_count":0,"stalled_workers":[] }
 ```
 
-Bu, filtreleme düğümü istatistik servisinin çalıştığını ve düzgün bir şekilde çalıştığını göstermektedir.
+Bu, filtreleme düğümü istatistik servisinin çalıştığı ve düzgün şekilde işlediği anlamına gelir.
 
-!!! Bilgi "The statistics service"
-    İstatistik servisi hakkında ve nasıl yapılandırılacağı hakkında daha fazla bilgiyi [burada][doc-stat-service] bulabilirsiniz.
+!!! info "İstatistik Servisi"
+    İstatistik servisi ve nasıl yapılandırılacağı hakkında daha fazla bilgiyi [buradan][doc-stat-service] okuyabilirsiniz.
 
-## 2. Bir Test Saldırısı Başlatın
+## 2. Test saldırısı gerçekleştirin
 
-Wallarm'ın saldırıları doğru bir şekilde tespit edip edemediğini kontrol etmek için, korunan kaynağa kötü amaçlı bir istekte bulunun.
+Wallarm'ın saldırıları doğru şekilde tespit edip etmediğini kontrol etmek için, korunmakta olan kaynağa kötü niyetli bir istek gönderin.
 
 Örneğin:
 
 ```
-http://<kaynak_URL>/etc/passwd
+http://<resource_URL>/etc/passwd
 ```
 
 Wallarm, istekte [Path Traversal](../attacks-vulns-list.md#path-traversal) tespit etmelidir.
 
-Şimdi `wallarm-status` isteği gerçekleştirildiğinde saldırı sayısının sayacı artacak, bu da filtreleme düğümünün normal şekilde çalıştığını göstermektedir.
+Artık `wallarm-status` isteği çalıştırıldığında saldırı sayacı artacak, bu da filtreleme düğümünün normal çalıştığını gösterir.
 
-Wallarm filtreleme düğümü ayarları hakkında daha fazla bilgi edinmek için, [Yapılandırma seçenekleri][doc-configure-parameters] bölümüne bakın.
+Wallarm filtreleme düğümü ayarları hakkında daha fazla bilgi edinmek için [Configuration options][doc-configure-parameters] bölümüne bakın.

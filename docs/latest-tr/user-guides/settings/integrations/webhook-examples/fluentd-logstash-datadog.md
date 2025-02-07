@@ -1,91 +1,91 @@
-# Fluentd/Logstash Aracılığıyla Datadog
+# Datadog via Fluentd/Logstash
 
-Wallarm, Fluentd veya Logstash ara veri toplayıcısı aracılığıyla Datadog'a algılanan olayların bildirimlerini göndermek için kurulabilir.
+Wallarm'ı, Fluentd veya Logstash ara veri toplayıcısı aracılığıyla tespit edilen olayların bildirimlerini Datadog'a gönderecek şekilde yapılandırabilirsiniz.
 
---8<-- "../include-tr/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Wallarm'dan Datadog'a veri toplayıcı aracılığıyla bildirim gönderme](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
+![Wallarm'dan veri toplayıcı aracılığıyla Datadog'a bildirim gönderme](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
 
-!!! info "Datadog ile Yerel Entegrasyon"
-    Wallarm, ayrıca [Datadog API aracılığıyla yerel Datadog entegrasyonunu](../datadog.md) destekler. Yerel entegrasyonun ara veri toplayıcısının kullanılmasını gerektirmez.
+!!! info "Native integration with Datadog"
+    Wallarm ayrıca, Datadog API aracılığıyla [native integration with Datadog](../datadog.md) desteği sunmaktadır. Yerel entegrasyon, ara veri toplayıcısının kullanılmasını gerektirmez.
 
-## Kullanılan Kaynaklar
+## Used resources
 
-* Halka açık URL üzerinde mevcut olan Fluentd veya Logstash hizmeti
-* Halka açık URL üzerinde mevcut olan Datadog hizmeti
-* [Fluentd/Logstash entegrasyonunu ayarlamak](#setting-up-integration-with-fluentd-or-logstash) için [AV bulutundaki](https://my.wallarm.com) Wallarm Konsoluna yönetici erişimi
+* Genel URL'de bulunan Fluentd veya Logstash servisi
+* Genel URL'de bulunan Datadog servisi
+* Wallarm Console'da [EU cloud](https://my.wallarm.com) üzerinde yönetici erişimi ile [Fluentd/Logstash integration](#setting-up-integration-with-fluentd-or-logstash) yapılandırması
 
---8<-- "../include-tr/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.md"
 
-## Gereklilikler
+## Requirements
 
-Wallarm, Fluentd veya Logstash'ın konfigürasyonu aşağıdaki gereklilikleri karşılamalıdır çünkü Wallarm, web kancaları aracılığıyla ara veri toplayıcısına günlükleri gönderir:
+Wallarm, webhooks aracılığıyla ara veri toplayıcısına günlük gönderdiğinden, Fluentd veya Logstash yapılandırmasının aşağıdaki gereksinimleri karşılaması gerekir:
 
-* POST veya PUT isteklerini kabul eder
-* HTTPS isteklerini kabul eder
-* Halka açık bir URL'ye sahiptir
-* Günlükleri `datadog_logs` Logstash eklentisi veya `fluent-plugin-datadog` Fluentd eklentisi aracılığıyla Datadog'a iletir
+* POST veya PUT isteklerini kabul etmek
+* HTTPS isteklerini kabul etmek
+* Genel bir URL'ye sahip olmak
+* Günlükleri Datadog'a `datadog_logs` Logstash eklentisi veya `fluent-plugin-datadog` Fluentd eklentisi aracılığıyla iletmek
 
-=== "Logstash yapılandırma örneği"
-    1. Günlükleri Datadog'a iletmek için [`datadog_logs` eklentisini kurun](https://github.com/DataDog/logstash-output-datadog_logs#how-to-install-it). 
-    1. Logstash'ı, gelen istekleri okuması ve günlükleri Datadog'a iletmesi için yapılandırın.
+=== "Logstash configuration example"
+    1. Datadog'a günlük iletmek için [datadog_logs eklentisini](https://github.com/DataDog/logstash-output-datadog_logs#how-to-install-it) yükleyin.
+    1. Gelen istekleri okuyacak ve günlükleri Datadog'a yönlendirecek şekilde Logstash'ı yapılandırın.
 
-    `logstash-sample.conf` yapılandırma dosyası örneği:
+    The `logstash-sample.conf` configuration file example:
 
     ```bash linenums="1"
     input {
-      http { # HTTP ve HTTPS trafiği için giriş eklentisi
-        port => 5044 # gelen istekler için port
-        ssl => true # HTTPS trafiği işleme
-        ssl_certificate => "/etc/server.crt" # Logstash TLS sertifikası
-        ssl_key => "/etc/server.key" # TLS sertifikası için özel anahtar
+      http { # input plugin for HTTP and HTTPS traffic
+        port => 5044 # port for incoming requests
+        ssl => true # HTTPS traffic processing
+        ssl_certificate => "/etc/server.crt" # Logstash TLS certificate
+        ssl_key => "/etc/server.key" # private key for TLS certificate
       }
     }
     filter {
       mutate {
         add_field => {
-            "ddsource" => "wallarm" # Wallarm günlüklerinin ileride filtrelenmesi için Datadog günlük kaydına kaynak alanı ekleyen mutate filtresi
+            "ddsource" => "wallarm" # mutate filter adding the source field to the Datadog log record for further filtration of Wallarm logs
         }
       }
     }
     output {
-      stdout {} # Logstash günlüklerini komut satırında yazdırmak için çıktı eklentisi
-      datadog_logs { # Logstash günlüklerini Datadog'a iletmek için çıktı eklentisi
-          api_key => "XXXX" # Datadog'daki kuruluş için üretilen API anahtarı
-          host => "http-intake.logs.datadoghq.eu" # Datadog endpoints (kayıt bölgesine bağlıdır)
+      stdout {} # output plugin to print Logstash logs on the command line
+      datadog_logs { # output plugin to forward the Logstash logs to Datadog
+          api_key => "XXXX" # API key generated for the organization in Datadog
+          host => "http-intake.logs.datadoghq.eu" # Datadog endpoint (depends on the registration region)
       }
     }
     ```
 
-    * [Logstash yapılandırma dosyası yapısı üzerine belgeler](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html)
-    * [`datadog_logs` eklentisi üzerine belgeler](https://docs.datadoghq.com/integrations/logstash/)
-=== "Fluentd yapılandırma örneği"
-    1. Günlükleri Datadog'a iletmek için [`fluent-plugin-datadog` eklentisini yükleyin](https://github.com/DataDog/fluent-plugin-datadog#pre-requirements).
-    1. Fluentd'yi, gelen istekleri okumasını ve günlükleri Datadog'a iletmesini sağlayacak şekilde yapılandırın.
+    * [Documentation on the Logstash configuration file structure](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html)
+    * [Documentation on the `datadog_logs` plugin](https://docs.datadoghq.com/integrations/logstash/)
+=== "Fluentd configuration example"
+    1. Datadog'a günlük iletmek için [fluent-plugin-datadog eklentisini](https://github.com/DataDog/fluent-plugin-datadog#pre-requirements) yükleyin.
+    1. Gelen istekleri okuyacak ve günlükleri Datadog'a yönlendirecek şekilde Fluentd'i yapılandırın.
 
-    `td-agent.conf` yapılandırma dosyası örneği:
+    The `td-agent.conf` configuration file example:
 
     ```bash linenums="1"
     <source>
-      @type http # HTTP ve HTTPS trafiği için giriş eklentisi
-      port 9880 # gelen istekler için port
-      <transport tls> # bağlantıları işleme konfigürasyonu
+      @type http # input plugin for HTTP and HTTPS traffic
+      port 9880 # port for incoming requests
+      <transport tls> # configuration for connections handling
         cert_path /etc/ssl/certs/fluentd.crt
         private_key_path /etc/ssl/private/fluentd.key
       </transport>
     </source>
     <match datadog.**>
-      @type datadog # Fluentd'den Datadog'a günlükleri iletmek için çıktı eklentisi
+      @type datadog # output plugin to forward logs from Fluentd to Datadog
       @id awesome_agent
-      api_key XXXX # Datadog'daki kuruluş için üretilen API anahtarı
-      host 'http-intake.logs.datadoghq.eu' # Datadog endpoint (kayıt bölgesine bağlıdır)
+      api_key XXXX # API key generated for the organization in Datadog
+      host 'http-intake.logs.datadoghq.eu' # Datadog endpoint (depends on the registration region)
     
-      # İsteğe Bağlı
+      # Optional
       include_tag_key true
       tag_key 'tag'
     
-      # İsteğe Bağlı etiketler
-      dd_source 'wallarm' # Wallarm günlüklerinin ileride filtrelenmesi için Datadog günlük kaydına kaynak alanı eklemek*
+      # Optional tags
+      dd_source 'wallarm' # adding the source field to the Datadog log record for further filtration of Wallarm logs
       dd_tags 'integration:fluentd'
     
       <buffer>
@@ -98,58 +98,58 @@ Wallarm, Fluentd veya Logstash'ın konfigürasyonu aşağıdaki gereklilikleri k
     </match>
     ```
 
-    * [Fluentd yapılandırma dosyası yapısı üzerine belgeler](https://docs.fluentd.org/configuration/config-file)
-    * [`fluent-plugin-datadog` eklentisi üzerine belgeler](https://docs.datadoghq.com/integrations/fluentd)
+    * [Documentation on the Fluentd configuration file structure](https://docs.fluentd.org/configuration/config-file)
+    * [Documentation on the `fluent-plugin-datadog` plugin](https://docs.datadoghq.com/integrations/fluentd)
 
-## Fluentd veya Logstash ile Entegrasyon Kurma
+## Setting up integration with Fluentd or Logstash
 
-1. Wallarm Konsolunda Datadog entegrasyon kurulumuna gidin → **Entegrasyonlar** → **Fluentd**/**Logstash**.
+1. Wallarm Console'da **Integrations** → **Fluentd**/**Logstash** bölümüne giderek Datadog entegrasyon kurulumuna devam edin.
 1. Entegrasyon adını girin.
 1. Hedef Fluentd veya Logstash URL'sini (Webhook URL) belirtin.
 1. Gerekirse, gelişmiş ayarları yapılandırın:
 
-    --8<-- "../include-tr/integrations/webhook-advanced-settings.md"
-1. Belirtilen URL'ye bildirim göndermeyi tetikleyecek olay türlerini seçin. Olaylar seçilmezse, bildirimler gönderilmez.
+    --8<-- "../include/integrations/webhook-advanced-settings.md"
+1. Belirtilen URL'ye bildirim gönderimini tetikleyecek olay türlerini seçin. Olaylar seçilmezse bildirim gönderilmeyecektir.
 1. [Entegrasyonu test edin](#testing-integration) ve ayarların doğru olduğundan emin olun.
-1. **Entegrasyon ekle**'ye tıklayın. 
+1. **Add integration** butonuna tıklayın.
 
-Fluentd entegrasyon örneği:
+Fluentd integration example:
 
 ![Fluentd ile entegrasyon ekleme](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-## Entegrasyonu Test Etme
+## Testing integration
 
---8<-- "../include-tr/integrations/test-integration-advanced-data.md"
+--8<-- "../include/integrations/test-integration-advanced-data.md"
 
 Fluentd veya Logstash ara veri toplayıcısındaki test günlüğü:
 
 ```json
 [
     {
-        summary:"[Test mesajı] [Test iş ortağı(ABD)] Yeni zafiyet tespit edildi",
-        description:"Bildirim türü: vuln
+        summary:"[Test message] [Test partner(US)] New vulnerability detected",
+        description:"Notification type: vuln
 
-                    Sisteminizde yeni bir zafiyet tespit edildi.
+                    New vulnerability was detected in your system.
 
                     ID: 
-                    Başlık: Test
+                    Title: Test
                     Domain: example.com
-                    Yol: 
-                    Yöntem: 
-                    Tespit Eden: 
-                    Parametre: 
-                    Tür: Bilgi
-                    Tehlike: Orta
+                    Path: 
+                    Method: 
+                    Discovered by: 
+                    Parameter: 
+                    Type: Info
+                    Threat: Medium
 
-                    Daha fazla detay: https://us1.my.wallarm.com/object/555
+                    More details: https://us1.my.wallarm.com/object/555
 
 
-                    Müşteri: TestŞirketi
-                    Bulut: ABD
+                    Client: TestCompany
+                    Cloud: US
                     ",
         details:{
-            client_name:"TestŞirketi",
-            cloud:"ABD",
+            client_name:"TestCompany",
+            cloud:"US",
             notification_type:"vuln",
             vuln_link:"https://us1.my.wallarm.com/object/555",
             vuln:{
@@ -160,16 +160,16 @@ Fluentd veya Logstash ara veri toplayıcısındaki test günlüğü:
                 path:null,
                 title:"Test",
                 discovered_by:null,
-                threat:"Orta",
-                type:"Bilgi"
+                threat:"Medium",
+                type:"Info"
             }
         }
     }
 ]
 ```
 
-Test Datadog günlüğü:
+Test Datadog log:
 
-![Test Datadog günlüğü](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+![Test Datadog log](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
-Diğer kayıtlar arasında Wallarm günlüklerini bulmak için, Datadog Logs hizmetinde `source:wallarm_cloud` arama etiketini kullanabilirsiniz.
+Diğer kayıtlar arasında Wallarm günlüklerini bulmak için Datadog Logs hizmetinde `source:wallarm_cloud` arama etiketini kullanabilirsiniz.

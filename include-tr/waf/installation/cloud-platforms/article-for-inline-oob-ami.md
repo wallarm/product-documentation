@@ -1,29 +1,29 @@
-# Amazon Machine İmajı'ndan Wallarm’ı Dağıtmak
+# Amazon Machine Image'den Wallarm Dağıtımı
 
-Bu makale, [resmi Amazon Machine İmajı (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD) kullanarak AWS üzerinde Wallarm’ı dağıtma talimatlarını sağlar. Çözüm, [hat içi][inline-docs] veya [Bandın-dışında][oob-docs] olmak üzere dağıtılabilir.
+Bu makale, AWS üzerinde [resmi Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD) kullanılarak Wallarm'ın dağıtımı için talimatlar sunmaktadır. Çözüm, [satır içi][inline-docs] veya [Bant Dışı][oob-docs] olarak dağıtılabilir.
 
-## Kullanım durumları
+En son Wallarm AMI, Debian 12 tabanlıdır ve Debian deposundan NGINX 1.22.1 kullanır.
+
+## Kullanım Durumları
 
 --8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
 
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami-latest.md"
 
-## 6. Wallarm’ın trafiği analiz etmesini etkinleştirin
+## 6. Örneği Wallarm Cloud'a Bağlayın
 
---8<-- "../include/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-for-cloud-images.md"
 
-## 7. NGINX'i yeniden başlatın
+## 7. Wallarm Örneğine Trafik Gönderimini Yapılandırın
 
---8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob-latest.md"
 
-## 8. Trafiği Wallarm örneğine göndermeyi yapılandırın
-
---8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
-
-## 9. Wallarm işlemi test edin
+## 8. Wallarm İşlemini Test Edin
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
 
-## 10. Dağıtılan çözümü ince ayar yapın
+## 9. Dağıtılan Çözümü İnce Ayarlayın
 
 --8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+
+--8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"

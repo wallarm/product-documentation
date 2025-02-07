@@ -1,33 +1,33 @@
 # Wallarm hizmet durumu sayfası
 
-Bu kılavuz, Wallarm hizmet durumu sayfası hakkında ayrıntılar içerir.
+Bu rehber, Wallarm hizmet durumu sayfasıyla ilgili ayrıntıları içermektedir.
 
-## Wallarm'ın hizmet durumunu gösteren bir sayfası var mı?
+## Wallarm hizmet kullanılabilirliğini gösteren bir sayfaya sahip mi?
 
-Evet, Wallarm durum sayfası https://status.wallarm.com adresinde mevcuttur. Bu sayfa, her bir Wallarm Bulutu için Wallarm Konsolu ve Wallarm API hizmetlerinin erişilebilirliği hakkında canlı ve tarihsel verileri görüntüler:
+Evet, Wallarm durum sayfasına https://status.wallarm.com adresinden erişebilirsiniz. Sayfa, her bir Wallarm Cloud için Wallarm Console ve Wallarm API hizmetlerinin kullanılabilirliğine dair canlı ve geçmiş verileri göstermektedir:
 
 * **Wallarm US Cloud**
 * **Wallarm EU Cloud**
 
 ![Wallarm durum sayfası](../images/status-page.png)
 
-## Hizmet durumu değiştiğinde bir bildirim alacak mıyım?
+## Bir hizmet durumu değiştiğinde bildirim alacak mıyım?
 
-Evet, güncellemelere aboneyseniz alırsınız. Abone olmak için, lütfen **GÜNCELLEMELERE ABONE OL**'u tıklayın ve abonelik kanalını seçin:
+Evet, eğer güncellemeleri abone olduysanız bildirim alacaksınız. Abone olmak için lütfen **GÜNCELLEMELERE ABONE OL** butonuna tıklayın ve abonelik kanalını seçin:
 
-* **Email** Wallarm'ın bir olay oluşturduğunda, güncellediğinde veya bir olayı çözdüğünde bildirim almak için.
-* **SMS** Wallarm'ın bir olay oluşturduğunda veya çözdüğünde bildirim almak için.
-* **Slack** olay güncellemeleri ve bakım durumu mesajları almak için.
-* **Webhook** Wallarm'ın bir olay oluşturduğunda, bir olayı güncellediğinde, bir olayı çözdüğünde veya bir hizmet durumunu değiştirdiğinde bildirim almak için.
+* **Email**: Wallarm bir arıza oluşturduğunda, güncellediğinde veya çözdüğünde bildirim alacaksınız.
+* **SMS**: Wallarm bir arıza oluşturduğunda veya çözdüğünde bildirim alacaksınız.
+* **Slack**: Arıza güncellemeleri ve bakım durum mesajları alacaksınız.
+* **Webhook**: Wallarm bir arıza oluşturduğunda, güncellediğinde, çözdüğünde veya bir hizmet durumunu değiştirdiğinde bildirim alacaksınız.
 
-## Hizmet durumları ne anlama gelir?
+## Hizmet durumları ne anlama gelmektedir?
 
-* **Performans düşüklüğü** hizmetin çalıştığı ancak yavaş olduğu veya başka bir şekilde hafifçe etkilendiği anlamına gelir.
-* **Kısmi kesinti** hizmetlerin bir alt küme için tamamen arızalı olduğu anlamına gelir.
-* **Büyük kesinti** hizmetlerin tamamen kullanılamaz olduğu anlamına gelir.
+* **Düşük performans**: Hizmet çalışıyor ancak yavaş veya başka şekillerde hafifçe etkilenmiş demektir.
+* **Kısmi kesinti**: Hizmetler, belirli bir müşteri grubunda tamamen çalışmıyor demektir.
+* **Büyük kesinti**: Hizmetler tamamen kullanılamaz demektir.
 
-## Bir olay ne zaman oluşturulur?
+## Bir arıza ne zaman oluşturulur?
 
-Hizmetlerin çalışmadığı durumlarda olaylar oluşturulur. Çalışmama durumu ile ilgili bir etkinlik sırasında, sorunu, bunun hakkında ne yaptığımızı ve sorunun ne zaman çözüleceğini beklediğimizi anlatan bir sayfa ekliyoruz.
+Hizmetlerde kesinti yaşandığında arıza oluşturulur. Kesintiyle ilgili bir olay sırasında, yaşanan sorunun ne olduğu, bu durumla ilgili olarak ne yapıldığı ve sorunun ne zaman çözüleceğine dair açıklamalar içeren bir sayfa ekliyoruz.
 
-Zaman geçtikçe, olayın nedeni belirlenir, belirlenen olay onarılır ve olay durumu, mevcut durumu yansıtacak şekilde güncellenir.
+Zaman ilerledikçe, arızanın nedeni tespit edilir, tespit edilen arıza giderilir ve arıza durumu güncel durumu yansıtacak şekilde güncellenir.

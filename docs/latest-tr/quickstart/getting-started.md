@@ -1,105 +1,63 @@
-[operation-mode-rule-docs]:         ../user-guides/rules/wallarm-mode-rule.md
-[filtration-modes-docs]:            ../admin-en/configure-wallarm-mode.md
-[graylist-docs]:                    ../user-guides/ip-lists/graylist.md
-[wallarm-cloud-docs]:               ../about-wallarm/overview.md#cloud
-[user-roles-docs]:                  ../user-guides/settings/users.md
-[rules-docs]:                       ../user-guides/rules/rules.md
-[ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
-[integration-docs]:                 ../user-guides/settings/integrations/integrations-intro.md
-[trigger-docs]:                     ../user-guides/triggers/triggers.md
-[application-docs]:                 ../user-guides/settings/applications.md
-[events-docs]:                      ../user-guides/events/check-attack.md
-[sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
+# Wallarm Platformuyla Başlangıç
 
-# Wallarm platform ile hızlı başlangıç
-
-Wallarm platformu, ultra-düşük yanlış pozitiflerle web uygulamalarını, API'leri ve mikroservisleri OWASP ve OWASP Top 10 saldırılara, botlara ve uygulama kötüye kullanımına karşı korur. Bu kılavuzu takip ederek platformu tamamen ücretsiz olarak ve aylık 500K API talebinde sınırlama ile kullanmaya başlayabilirsiniz.
-
-Hızlı bir başlangıç kapsamında, Wallarm hesabınızı kaydedecek ve birkaç dakika içinde ilk Wallarm filtreleme düğümünü çalıştıracaksınız. Ücretsiz bir kotanız olduğunda, gerçek trafik üzerinde ürünün gücünü deneyebilirsiniz.
+Wallarm, API'lerinizi güvenlik açıkları ve kötü niyetli aktivitelerden koruyan kapsamlı bir API güvenliği sunar. Platformu kullanmaya başlamanıza yardımcı olmak için, kayıt olmadan önce keşif yapabileceğiniz bir Playground, kayıt sırasında **Free tier** ve sorunsuz bir deneyim için uzman desteği sunuyoruz.
 
 ## Playground'da Wallarm'ı Öğrenin
 
-Wallarm'ı, herhangi bir bileşeni ortamınıza dağıtmadan ve hatta kaydolmadan önce keşfetmek için [Wallarm Playground](https://playground.wallarm.com/?utm_source=wallarm_docs_quickstarttr) kullanın.
+Kayıt olmadan ve bileşenleri ortamınıza dağıtmadan önce Wallarm'ı keşfetmek için, [Wallarm Playground](https://playground.wallarm.com/?utm_source=wallarm_docs_quickstart)'u kullanın.
 
-Playground'da, Wallarm Console görünümüne gerçek verilerle dolmuş gibi erişebilirsiniz. Wallarm Console, işlenen trafikle ilgili verileri görüntüleyen ve platformun ince ayarını sağlayan önemli bir Wallarm platform bileşenidir. Bu nedenle, Playground ile ürünün nasıl çalıştığını öğrenebilir ve öğrenebilir, sadece okuma modunda kullanışlı kullanım örnekleri alabilirsiniz.
+Playground'da, sanki gerçek verilerle doluymuş gibi Wallarm Console görünümüne erişebilirsiniz. Wallarm Console, işlenen trafiğe ait verileri gösteren ve platformun ince ayarlarını yapmanıza olanak tanıyan ana Wallarm platform bileşenidir. Dolayısıyla, Playground ile ürünün nasıl çalıştığını öğrenebilir, deneyebilir ve salt-okunur modda kullanımına dair faydalı örnekler görebilirsiniz.
 
-![Hesap oluşturmak için UI](../images/playground.png)
+![Playground](../images/playground.png)
 
-Wallarm çözümünün yeteneklerini trafiğinizde denemek için [ücretsiz bir hesap oluşturun](#create-wallarm-account-and-get-free-tier).
+Wallarm çözümünün trafiğiniz üzerindeki yeteneklerini denemek için, [Free tier hesabı oluşturun](#self-signup-and-free-tier).
 
-## Wallarm hesabı oluşturun ve Ücretsiz katmanı alın
+## Self-signup ve Free tier
 
-Bir Wallarm hesabı oluşturmak için:
+Wallarm'a kayıt olduğunuzda, Wallarm Console'da bir hesap oluşturursunuz; bu hesap, Wallarm platformunda gezinme ve yapılandırma işlemleri için merkezi bir merkez görevi görür. Console arayüzü [Wallarm Cloud](../about-wallarm/overview.md#cloud) üzerinde barındırılmaktadır.
 
-1. Kişisel verilerinizi gireceğiniz Wallarm Bulutu'ndaki [ABD](https://us1.my.wallarm.com/signup) veya [AB](https://my.wallarm.com/signup) kayıt bağlantısını takip edin.
+Wallarm, veritabanları, API uç noktaları, müşteri hesapları ve daha fazlası açısından farklılık gösteren ayrı Amerikan ve Avrupa bulut örneklerini yönetir. Bu nedenle, ilk adım olarak kullanmak istediğiniz Cloud'u seçmelisiniz.
 
-    [Wallarm Bulutları hakkında daha fazla bilgi →](../about-wallarm/overview.md#cloud)
-1. Hesabınızı, e-postanıza gönderilen onay mesajındaki bağlantıyı takip ederek onaylayın.
+1. Wallarm Cloud'unuzu seçin:
 
-Bir hesap kaydedildikten ve onaylandıktan sonra, otomatik olarak **Ücretsiz katman** veya **Ücretsiz deneme** alır, bu da kullanılan Wallarm Cloud'a bağlıdır:
+    || US Cloud | EU Cloud |
+    | -- | -------- | -------- |
+    | **Signup link** | https://us1.my.wallarm.com/signup | https://my.wallarm.com/signup |
+    | **Fiziksel konum** | USA | Netherlands |
+    | **Wallarm Console URL** | https://us1.my.wallarm.com/ | https://my.wallarm.com/ |
+    | **Wallarm API Endpoint** | `https://us1.api.wallarm.com/` | `https://api.wallarm.com/` |
+1. [US](https://us1.my.wallarm.com/signup) veya [EU](https://my.wallarm.com/signup) Wallarm Cloud'undaki kayıt bağlantısını takip edin ve kişisel bilgilerinizi girin.
+1. E-postanıza gönderilen onay mesajındaki bağlantıyı takip ederek hesabınızı doğrulayın.
 
-* ABD Cloud'da, Ücretsiz katman, Wallarm çözümünün gücünü aylık 500 bin talepte ücretsiz olarak keşfetmenize olanak sağlar.
-* AB Cloud'da, 14 gün boyunca Wallarm çözümünü ücretsiz olarak keşfetmenizi sağlayan bir deneme süresi bulunmaktadır.
+Bir hesap kaydedilip doğrulandıktan sonra, ayda 500 bin istek üzerinde Wallarm çözümünün gücünü ücretsiz olarak keşfetmenizi sağlayan **Free tier** otomatik olarak tanımlanır.
 
-[İlk Wallarm filtreleme düğümünü](#deploy-the-wallarm-filtering-node) dağıtarak devam edin.
+Devam etmek için, [ilk Wallarm filtering node'unuzu](#start-securing-your-traffic) dağıtın.
 
-## Wallarm filtreleme düğümünü dağıtın
+## Dağıtım Gerektirmeden API'nizi Tanıyın
 
-Wallarm, filtreleme düğümü dağıtımında [birçok seçenek sunar](../installation/supported-deployment-options.md). Bu seçenekleri öğrenip en uygun olanını seçebilir veya aşağıda anlatıldığı gibi Wallarm ile hızlı başlamak için en hızlı yolu takip edebilirsiniz.
+Kurumunuzun dış API'lerinin tam listesini bilmek, izlenmeyen veya belgelenmemiş API'lerin kötü niyetli saldırılar için potansiyel giriş noktalarına dönüşebileceği göz önüne alındığında, potansiyel güvenlik risklerini azaltmada ilk adımdır.
 
-Düğümü altyapınızın bir bileşeni olarak hızlı bir şekilde dağıtmak için önce şunlara sahip olduğunuzdan emin olun:
+Wallarm'ın [API Attack Surface Management (AASM)](../api-attack-surface/overview.md)'e abone olarak, tüm dış hostlarınızı ve API'lerini hemen keşfedin ve şunları elde edin:
 
-* [Docker yüklü](https://docs.docker.com/engine/install/)
-* **Yönetici** [rolü][user-roles-docs] Wallarm hesabında
+* Dış hostlarınızın listesi.
+* Hostlarınızın koruma puanı - Wallarm, bulunan alt domain/host'ları web ve API hizmetlerine yönelik saldırılara karşı otomatik olarak test eder ve koruma seviyelerini değerlendirir.
+* Hostlarınız için sızmış kimlik bilgileri - Wallarm, seçtiğiniz domain'leri ve kamuya açık kaynakları aktif olarak tarayarak kimlik bilgisi sızıntılarını (API tokenları ve anahtarları, şifreler, client secret'lar, kullanıcı adları, e-postalar ve diğerleri) tespit eder.
 
-Docker görüntüsünden Wallarm filtreleme düğümünü dağıtın:
+Tüm bunları, Wallarm içerisindeki bileşene abone olarak kolayca elde edersiniz – bilginizi almak için hiçbir dağıtım yapmanız gerekmez.
 
-1. [ABD Bulutu'nda](https://us1.my.wallarm.com/nodes) veya [AB Bulutu'nda](https://my.wallarm.com/nodes) Wallarm Console → **Düğümler**'i açın ve **Wallarm düğümü** tipinde bir düğüm oluşturun.
+Başlamak için aşağıdakilerden birini yapın:
 
-    ![Düğüm oluşturulan Wallarm](../images/create-wallarm-node-empty-list.png)
+* [sales@wallarm.com](mailto:sales@wallarm.com) adresiyle iletişime geçin veya 
+* Fiyat bilgilerini alın ve AASM'yi Wallarm'ın resmi sitesinde [buradan](https://www.wallarm.com/product/aasm) etkinleştirin.
 
-    **Çok kiracılı düğüm** kutucuğu için, işaretlemeyin. Bu kutu, hızlı başlangıcın bir parçası olmayan ilgili özellik kurulumuyla ilişkilidir.
-1. Oluşturulan jetonu kopyalayın.
-1. Düğümle birlikte konteyneri çalıştırın:
+## Rehberli Deneme
 
-=== "ABD Bulutu"
-    ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.8.1-1
-    ```
-=== "AB Bulutu"
-    ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:4.8.1-1
-    ```
+Rehberli bir deneme seçeneğini tercih edebilirsiniz; bu süreçte Sales Engineer ekibimiz, tüm onboarding süreciniz boyunca size yardımcı olacaktır. Ürünün değerini 2 haftalık süre zarfında gösterecek ve Wallarm filtering instance'larını trafiğinizi filtrelemeniz için dağıtmanızda destek sağlayacaktır.
 
-Ortam değişkeni | Açıklama| Gerekli
---- | ---- | ----
-`WALLARM_API_TOKEN` | Wallarm Console kullanıcı arayüzünden kopyalanan Wallarm düğüm jetonu. | Evet
-`NGINX_BACKEND` | Wallarm çözümü ile korunacak olan kaynakların alan adı veya IP adresi. | Evet
-`WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>`us1.api.wallarm.com` ABD Bulutu için</li><li>`api.wallarm.com` AB Bulutu için</li></ul>Varsayılan: `api.wallarm.com`. | Hayır
-`WALLARM_MODE` | Düğüm modu:<ul><li>`block` kötü niyetli talepleri engellemek için</li><li>`safe_blocking` yalnızca [gri listeye alınmış IP adreslerinden][graylist-docs] gelen kötü niyetli talepleri engellemek için</li><li>`monitoring` talepleri analiz etmek ama engellememek için</li><li>`off` trafik analizini ve işlemeyi devre dışı bırakmak için</li></ul>Varsayılan: `monitoring`.<br>[Filtrasyon modları hakkında ayrıntılı açıklama →][filtration-modes-docs] | Hayır
+Bu denemeyi talep etmek için lütfen [sales@wallarm.com](mailto:sales@wallarm.com?subject=Request%20for%20a%20Guided%20Wallarm%20Trial&body=Hello%20Wallarm%20Sales%20Engineer%20Team%2C%0A%0AI'm%20writing%20to%20request%20a%20guided%20Wallarm%20trial.%20I%20would%20be%20happy%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20my%20requirements%20in%20detail.%0A%0AThank%20you%20for%20your%20time%20and%20assistance.) adresine e-posta gönderin.
 
-Dağıtımı test etmek için, [Path Traversal](../attacks-vulns-list.md#path-traversal) kötü niyetli yükü ile ilk saldırıyı çalıştırın:
+## Trafiğinizi Güvence Altına Almaya Başlayın
 
-```
-curl http://localhost/etc/passwd
-```
+Wallarm hesabınızı oluşturduktan sonra, sonraki adım [Wallarm filtering node'unuzun](../about-wallarm/overview.md#filtering-node) dağıtımını başlatmaktır. Bu temel bileşen, gelen trafiğinizi işler ve filtreler; böylece Wallarm'ın trafik analizi, saldırı önleme ve zafiyet tespiti yeteneklerini mümkün kılar.
 
-`NGINX_BACKEND` `example.com` ise, curl komutunda ek olarak `-H 'Host: example.com'` seçeneğini geçin.
-
-Düğüm varsayılan olarak **gözetim** [filtrasyon modunda](../admin-en/configure-wallarm-mode.md#available-filtration-modes) çalışırken, Wallarm düğümü saldırıyı engellemeyecek ancak onu kaydedecektir. Saldırının kaydedildiğini kontrol etmek için Wallarm Console → **Etkinlikler**'e gidin:
-
-![Arayüzdeki saldırılar](../images/admin-guides/test-attacks-quickstart.png)
-
-## Sonraki adımlar
-
-Wallarm düğümünün hızlı dağıtımı başarıyla tamamlandı!
-
-Dağıtım aşamasından daha fazlasını almak için:
-
-* [Docker ile NGINX tabanlı Wallarm düğümünün tam dağıtım rehberini öğrenin](../admin-en/installation-docker-en.md)
-* [Wallarm tarafından desteklenen tüm dağıtım seçeneklerini öğrenin](../installation/supported-deployment-options.md)
-
-Dağıtılmış düğümü daha fazla ince ayarlamak için özellikleri öğrenin:
-
---8<-- "../include-tr/waf/installation/quick-start-configuration-options-4.4.md"
+[Bir Wallarm node dağıtım seçeneği seçin](../installation/supported-deployment-options.md)

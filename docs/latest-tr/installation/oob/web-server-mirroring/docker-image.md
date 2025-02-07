@@ -1,3 +1,4 @@
+```markdown
 [doc-wallarm-mode]:           ../../../admin-en/configure-parameters-en.md#wallarm_mode
 [doc-config-params]:          ../../../admin-en/configure-parameters-en.md
 [doc-monitoring]:             ../../../admin-en/monitoring/intro.md
@@ -7,50 +8,50 @@
 [process-time-limit-instr]:         ../../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
-[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.md
+[graylist-docs]:                    ../../../user-guides/ip-lists/overview.md
 [filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
 [application-configuration]:        ../../../user-guides/settings/applications.md
 [ptrav-attack-docs]:                ../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [versioning-policy]:                ../../../updating-migrating/versioning-policy.md#version-list
 [node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
-[node-token]:                       ../../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
+[node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../supported-deployment-options.md
-[oob-advantages-limitations]:       ../overview.md#advantages-and-limitations
-[web-server-mirroring-examples]:    overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[oob-advantages-limitations]:       ../overview.md#limitations
+[web-server-mirroring-examples]:    overview.md#configuration-examples-for-traffic-mirroring
 [memory-instr]:                     ../../../admin-en/configuration-guides/allocate-resources-for-node.md
+[ip-lists-docs]:                    ../../../user-guides/ip-lists/overview.md
 [aws-ecs-docs]:                     ../../cloud-platforms/aws/docker-container.md
 [gcp-gce-docs]:                     ../../cloud-platforms/gcp/docker-container.md
 [azure-container-docs]:             ../../cloud-platforms/azure/docker-container.md
 [alibaba-ecs-docs]:                 ../../cloud-platforms/alibaba-cloud/docker-container.md
+[api-policy-enf-docs]:              ../../../api-specification-enforcement/overview.md
 
-# Docker Image'den Wallarm OOB'un Yayınlanması
+# Docker Görüntüsünden Wallarm OOB Dağıtımı
 
-Bu makale, [NGINX tabanlı Docker görüntüsünü](https://hub.docker.com/r/wallarm/node) kullanarak [Wallarm OOB](overview.md)'nun yayınlanması için talimatları sunar. Burada açıklanan çözüm, bir web veya proxy sunucusu tarafından aynalanan trafiği analiz etmek için tasarlanmıştır.
+Bu makale, [NGINX tabanlı Docker image](https://hub.docker.com/r/wallarm/node) kullanılarak [Wallarm OOB](overview.md) dağıtımı için talimatlar sağlar. Burada tanımlanan çözüm, bir web veya proxy sunucu tarafından aynalanan trafiği analiz etmek üzere tasarlanmıştır.
 
---8<-- "../include-tr/waf/installation/info-about-nginx-version-in-docker-container.md"
+## Kullanım Senaryoları
 
-## Kullanım Durumları
-
---8<-- "../include-tr/waf/installation/docker-images/nginx-based-use-cases.md"
+--8<-- "../include/waf/installation/docker-images/nginx-based-use-cases.md"
 
 ## Gereksinimler
 
---8<-- "../include-tr/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-latest.md"
 
-## 1. Trafik Aynalığını Yapılandırma
+## 1. Trafik Aynalamasını Yapılandırın
 
---8<-- "../include-tr/waf/installation/sending-traffic-to-node-oob.md"
+--8<-- "../include/waf/installation/sending-traffic-to-node-oob.md"
 
-## 2. Aynalanan Trafik Analizi ve Daha Fazlası İçin Bir Yapılandırma Dosyası Hazırlayın
+## 2. Aynalanan Trafik Analizi ve Diğer İşlemler için Bir Yapılandırma Dosyası Hazırlayın
 
-Aynalanan trafiği analiz etmek için Wallarm düğümlerini etkinleştirmeniz, ayrı bir dosyada ek ayarları yapılandırmanız ve Docker konteynırına monte etmeniz gerekir. Modifikasyon yapılacak varsayılan yapılandırma dosyası, Docker imajı içinde `/etc/nginx/sites-enabled/default` konumundadır.
+Wallarm düğümlerinin aynalanan trafiği analiz etmesi için, ayrı bir dosyada ek ayarlar yapılandırmanız ve bunu Docker konteynerine monte etmeniz gerekmektedir. Değiştirilmesi gereken varsayılan yapılandırma dosyası, Docker image içinde `/etc/nginx/sites-enabled/default` konumunda bulunmaktadır.
 
-Bu dosyada, aynalanan trafiği işlemek için Wallarm düğüm yapılandırmasını ve diğer gerekli tüm ayarları belirtmeniz gerekir. Bunu yapmak için aşağıdaki talimatları izleyin:
+Bu dosyada, aynalanan trafiği işlemek için Wallarm düğüm yapılandırmasını ve diğer gerekli ayarları belirtmeniz gerekmektedir. Bunu yapmak için şu talimatları izleyin:
 
-1. Aşağıdaki içeriklere sahip `default` adlı yerel NGINX yapılandırma dosyasını oluşturun:
+1. Aşağıdaki içerikle `default` adında yerel bir NGINX yapılandırma dosyası oluşturun:
 
     ```
     server {
@@ -78,81 +79,77 @@ Bu dosyada, aynalanan trafiği işlemek için Wallarm düğüm yapılandırması
             wallarm_force response_size 0;
 
             wallarm_mode monitoring;
-            # wallarm_application 1;
 
             location / {
-                    proxy_pass http://127.0.0.1:8080;
+                    
+                    proxy_pass http://example.com;
                     include proxy_params;
             }
     }
     ```
 
-    * `set_real_ip_from` ve `real_ip_header` yönergeleri, Wallarm Console'un saldırganların IP adreslerini [göstermesi için][proxy-balancer-instr] gerekli.
-    * `wallarm_force_response_*` yönergeleri, aynalanan trafikten alınan kopyalar dışındaki tüm isteklerin analizini devre dışı bırakmak için gereklidir.
-    * `wallarm_mode` yönergesi, trafiği analiz [modudur][waf-mode-instr]. Zararlı istekler [engellenemediği][oob-advantages-limitations] için, tek kabul edilen mod izlemedir. Satırlı dağıtım için güvenli engelleme ve engelleme modları da mevcuttur, ancak `wallarm_mode` yönergesini izlemeden farklı bir değere ayarlarsanız, düğüm trafiği izlemeye devam eder ve sadece zararlı trafiği kaydeder (modun devre dışı bırakılması dışında).
-1. Diğer gerekli Wallarm yönergelerini belirtin. Hangi ayarların sizin için yararlı olacağını anlamak için [Wallarm yapılandırma parametreleri](../../../admin-en/configure-parameters-en.md) belgelerine ve [yapılandırma kullanım durumlarına](#configuring-the-use-cases) başvurabilirsiniz.
-1. Gerekirse, davranışını özelleştirmek için diğer NGINX ayarlarını değiştirin. Yardım almak için [NGINX belgelerine](https://nginx.org/en/docs/beginners_guide.html) başvurun.
+    * `set_real_ip_from` ve `real_ip_header` yönergeleri, Wallarm Console'un [saldırganların IP adreslerini görüntülemesi][proxy-balancer-instr] için gereklidir.
+    * `wallarm_force response_status`, `wallarm_force response_time` ve `wallarm_force response_size` yönergeleri, aynalanan trafikten alınan kopyalar hariç tüm isteklerin analizini devre dışı bırakmak için gereklidir.
+    * `wallarm_mode` yönergesi, trafik analiz [modu][waf-mode-instr]'dur. Kötü niyetli istekler [engellenemez][oob-advantages-limitations] olduğundan, Wallarm'ın kabul ettiği tek mod monitoring’dir. In-line dağıtımda, ayrıca safe blocking ve blocking modları da mevcuttur; ancak `wallarm_mode` yönergesini monitoring dışında bir değere ayarlasanız bile, düğüm yalnızca trafiği izlemeye ve kötü niyetli trafiği kaydetmeye devam eder (kapalı moda ayarlanmış olan durum dışında).
+1. Diğer gerekli Wallarm yönergelerini belirtin. Sizin için hangi ayarların faydalı olacağını anlamak üzere [Wallarm configuration parameters](../../../admin-en/configure-parameters-en.md) dokümantasyonuna ve [configuration use cases](#configuring-the-use-cases) bölümüne bakabilirsiniz.
+1. Gerekirse, NGINX'in davranışını özelleştirmek için diğer NGINX ayarlarını değiştirin. Yardım için [NGINX documentation](https://nginx.org/en/docs/beginners_guide.html)'a bakın.
 
-Gerekirse, aşağıdaki konteynır dizinlerine diğer dosyaları monte edebilirsiniz:
+Ayrıca, gerekirse aşağıdaki konteyner dizinlerine diğer dosyaları monte edebilirsiniz:
 
-* `/etc/nginx/conf.d` — genel ayarlar
+* `/etc/nginx/conf.d` — ortak ayarlar
 * `/etc/nginx/sites-enabled` — sanal ana bilgisayar ayarları
-* `/var/www/html` — statik dosyalar
+* `/opt/wallarm/usr/share/nginx/html` — statik dosyalar
 
-## 3. Düğümü Buluta Bağlamak için Bir Belirteç Alın
+## 3. Düğümü Cloud'a Bağlamak için Bir Token Edinin
 
-[Uygun türde][wallarm-token-types] bir Wallarm belirteci alın:
+İlgili türde bir Wallarm token'ı edinin [wallarm-token-types]:
 
-=== "API Belirteci"
+=== "API token"
 
-    1. Wallarm Konsolunu açın → **Ayarlar** → **API belirteçleri** [ABD Bulutu](https://us1.my.wallarm.com/settings/api-tokens) veya [AB Bulutu](https://my.wallarm.com/settings/api-tokens).
-    1. `Dağıtım` kaynak rolüne sahip API belirtecini bulun veya oluşturun.
-    1. Bu belirteci kopyalayın.
+    1. Wallarm Console'a gidin → **Settings** → **API tokens** [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinden.
+    1. `Deploy` kaynak rolüne sahip bir API token'ı bulun veya oluşturun.
+    1. Bu token'ı kopyalayın.
 
-=== "Düğüm Belirteci"
+=== "Node token"
 
-    1. Wallarm Konsolunu açın → **Düğümler** [ABD Bulutu](https://us1.my.wallarm.com/nodes) veya [AB Bulutu](https://my.wallarm.com/nodes).
-    1. Aşağıdakilerden birini yapın:
-        * **Wallarm düğümü** türünde bir düğüm oluşturun ve oluşturulan belirteci kopyalayın.
-        * Mevcut düğüm grubunu kullanın - düğümün menüsü → **Belirteci Kopyala** aracılığıyla belirteci kopyalayın.
+    1. Wallarm Console'a gidin → **Nodes** [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinden.
+    1. Aşağıdakilerden birini yapın: 
+        * **Wallarm node** türünde bir düğüm oluşturun ve oluşturulan token'ı kopyalayın.
+        * Mevcut düğüm grubunu kullanın - düğüm menüsünden → **Copy token** seçeneğiyle token'ı kopyalayın.
 
-## 4. Düğümlü Docker Konteynırını Çalıştırın
+## 4. Düğüm ile Docker Konteynerini Çalıştırın
 
-Az önce oluşturduğunuz yapılandırma dosyasını [bağlar](https://docs.docker.com/storage/volumes/) şekilde düğümlü Docker konteynırını çalıştırın.
+Az önce oluşturduğunuz yapılandırma dosyasını [mounting](https://docs.docker.com/storage/volumes/) ederek düğüm ile Docker konteynerini çalıştırın.
 
-=== "ABD Bulutu"
+=== "US Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.8.1-1
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.3.0
     ```
-=== "AB Bulutu"
+=== "EU Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.8.1-1
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:5.3.0
     ```
 
-Aşağıdaki ortam değişkenleri konteynıra geçirilmelidir:
+Konteynere aşağıdaki ortam değişkenleri geçirilmelidir:
 
---8<-- "../include-tr/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+--8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
 
-## 5. Wallarm Düğüm İşlemlerini Test Etme
+## 5. Wallarm Düğüm Çalışmasını Test Etme
 
---8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## Günlük Yapılandırması
+## Günlük Kaydı Yapılandırması
 
-Günlük kaydı varsayılan olarak etkindir. Günlük dizinleri:
+Günlük kaydı varsayılan olarak etkinleştirilmiştir. Günlük dizinleri şunlardır:
 
 * `/var/log/nginx` — NGINX günlükleri
-* `/var/log/wallarm` — Wallarm düğüm günlükleri
-
-Filtering node değişkenlerinin genişletilmiş günlüğünü yapılandırmak için lütfen bu [talimatları](../../../admin-en/configure-logging.md) kullanın.
-
-Varsayılan olarak, günlükler her 24 saatte bir döner. Günlük dönüşümünü ayarlamak için, `/etc/logrotate.d/`'deki yapılandırma dosyalarını değiştirin. Çevre değişkenleri aracılığıyla dönüşüm parametrelerini değiştirmek mümkün değildir. 
+* `/opt/wallarm/var/log/wallarm` — [Wallarm node logs][logging-instr]
 
 ## İzleme Yapılandırması
 
-Filtering node'u izlemek için, konteyner içinde Nagios uyumlu script'ler bulunmaktadır. [Filtering node'un izlenmesi][doc-monitoring] hakkında detayları görün.
+Filtreleme düğümünü izlemek için, konteyner içinde Nagios uyumlu betikler bulunmaktadır. Ayrıntılar için [Monitoring the filtering node][doc-monitoring]'ye bakın.
 
-Script'leri çalıştırmanın bir örneği:
+Betiklerin çalıştırılmasına ilişkin örnek:
 
 ``` bash
 docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_tarantool_timeframe -w 1800 -c 900
@@ -162,10 +159,11 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_export_delay -w 120 -c 300
 ```
 
-* `<WALLARM_NODE_CONTAINER_ID>` çalışan Wallarm Docker konteynırının kimliğidir. Kimliği almak için `docker ps` komutunu çalıştırın ve uygun kimliği kopyalayın.
+* `<WALLARM_NODE_CONTAINER_ID>`, çalışan Wallarm Docker konteynerinin ID'sidir. ID'yi almak için `docker ps` komutunu çalıştırın ve uygun ID'yi kopyalayın.
 
-## Kullanım Durumlarının Yapılandırılması
+## Kullanım Senaryolarının Yapılandırılması
 
-Docker konteynırına monte edilen yapılandırma dosyası, filtering node yapılandırmasını [mümkün olan yönergelerle](../../../admin-en/configure-parameters-en.md) açıklamalıdır. Aşağıda, sık kullanılan filtering node yapılandırma seçenekleri bulunmaktadır:
+Docker konteynerine monte edilen yapılandırma dosyası, [kullanılabilir yönergeler](../../../admin-en/configure-parameters-en.md) arasında filtreleme düğümü yapılandırmasını tanımlamalıdır. Aşağıda, yaygın olarak kullanılan bazı filtreleme düğümü yapılandırma seçenekleri verilmiştir:
 
---8<-- "../include-tr/waf/installation/linux-packages/common-customization-options.md"
+--8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+```

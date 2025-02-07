@@ -1,10 +1,10 @@
-# NGINX Tabanlı Ingress Controller İzlemesi
+# NGINX Tabanlı Ingress Denetleyici İzleme
 
---8<-- "../include-tr/ingress-controller-best-practices-intro.md"
+--8<-- "../include/ingress-controller-best-practices-intro.md"
 
-NGINX Ingress controller izlemenin genel yönleri internet üzerinde zaten iyi bir şekilde ele alınmıştır. Wallarm, iş kritik bir ortamda izlenmesi gereken ek bir metrik seti sunar. `/wallarm-metrics` metrik hizmeti varsayılan olarak devre dışı bırakılmıştır.
+NGINX Ingress denetleyici izlemenin genel yönleri İnternet'te zaten oldukça iyi ele alınmıştır. Wallarm, görev açısından kritik ortamlarda izlenmesi gereken ek bir izleme metrikleri seti sunar. `/wallarm-metrics` metrik servisi varsayılan olarak devre dışıdır.
 
-Hizmeti etkinleştirmek için, `controller.wallarm.metrics.enabled`'ı `true` olarak ayarlayın:
+Servisi etkinleştirmek için, `controller.wallarm.metrics.enabled` değerini `true` olarak ayarlayın:
 
 ```
 controller:
@@ -13,81 +13,81 @@ controller:
       enabled: true
 ```
 
-Aşağıdaki, yeni açığa çıkan uç nokta üzerinden uygun olan Wallarm'a özgü Prometheus formatında metriklerin listesidir:
+Aşağıda, yeni açığa çıkarılan uç nokta üzerinden erişilebilen Prometheus formatındaki Wallarm'a özgü metriklerin bir listesi bulunmaktadır:
 
 ```
-# HELP wallarm_requests isteklerin sayısı
+# HELP wallarm_requests requests count
 # TYPE wallarm_requests gauge
 wallarm_requests 2
-# HELP wallarm_attacks saldırı isteklerinin sayısı
+# HELP wallarm_attacks attack requests count
 # TYPE wallarm_attacks gauge
 wallarm_attacks 0
-# HELP wallarm_blocked engellenen isteklerin sayısı
+# HELP wallarm_blocked blocked requests count
 # TYPE wallarm_blocked gauge
 wallarm_blocked 0
-# HELP wallarm_blocked_by_acl ACL tarafından engellenen isteklerin sayısı
+# HELP wallarm_blocked_by_acl blocked by acl requests count
 # TYPE wallarm_blocked_by_acl gauge
 wallarm_blocked_by_acl 0
-# HELP wallarm_acl_allow_list izin listesi tarafından geçirilen istekler
+# HELP wallarm_acl_allow_list requests passed by allow list
 # TYPE wallarm_acl_allow_list gauge
 wallarm_acl_allow_list 0
-# HELP wallarm_abnormal anormal isteklerin sayısı
+# HELP wallarm_abnormal abnormal requests count
 # TYPE wallarm_abnormal gauge
 wallarm_abnormal 2
-# HELP wallarm_tnt_errors tarantool yazma hatalarının sayısı
+# HELP wallarm_tnt_errors tarantool write errors count
 # TYPE wallarm_tnt_errors gauge
 wallarm_tnt_errors 0
-# HELP wallarm_api_errors API yazma hatalarının sayısı
+# HELP wallarm_api_errors API write errors count
 # TYPE wallarm_api_errors gauge
 wallarm_api_errors 0
-# HELP wallarm_requests_lost kaybolan isteklerin sayısı
+# HELP wallarm_requests_lost lost requests count
 # TYPE wallarm_requests_lost gauge
 wallarm_requests_lost 0
-# HELP wallarm_overlimits_time aşırı sınırların zaman sayısı
+# HELP wallarm_overlimits_time overlimits_time count
 # TYPE wallarm_overlimits_time gauge
 wallarm_overlimits_time 0
-# HELP wallarm_segfaults bölüm hatalarının sayısı
+# HELP wallarm_segfaults segmentation faults count
 # TYPE wallarm_segfaults gauge
 wallarm_segfaults 0
-# HELP wallarm_memfaults vmem limit olayları sayısı
+# HELP wallarm_memfaults vmem limit reached events count
 # TYPE wallarm_memfaults gauge
 wallarm_memfaults 0
-# HELP wallarm_softmemfaults istek bellek limiti olayları sayısı
+# HELP wallarm_softmemfaults request memory limit reached events count
 # TYPE wallarm_softmemfaults gauge
 wallarm_softmemfaults 0
-# HELP wallarm_proton_errors bellek ile ilgili olmayan libproton hataları olayları sayısı
+# HELP wallarm_proton_errors libproton non-memory related libproton faults events count
 # TYPE wallarm_proton_errors gauge
 wallarm_proton_errors 0
-# HELP wallarm_time_detect_seconds tespit etmek için harcanan zaman
+# HELP wallarm_time_detect_seconds time spent for detection
 # TYPE wallarm_time_detect_seconds gauge
 wallarm_time_detect_seconds 0
-# HELP wallarm_db_id proton.db dosya kimliği
+# HELP wallarm_db_id proton.db file id
 # TYPE wallarm_db_id gauge
 wallarm_db_id 71
-# HELP wallarm_lom_id LOM dosya kimliği
+# HELP wallarm_lom_id LOM file id
 # TYPE wallarm_lom_id gauge
 wallarm_lom_id 386
-# HELP wallarm_custom_ruleset_id Özel Kural Kümesi dosya kimliği
+# HELP wallarm_custom_ruleset_id Custom Ruleset file id
 # TYPE wallarm_custom_ruleset_id gauge
 wallarm_custom_ruleset_id{format="51"} 386
-# HELP wallarm_custom_ruleset_ver özel kural kümesi dosya biçim versiyonu
+# HELP wallarm_custom_ruleset_ver custom ruleset file format version
 # TYPE wallarm_custom_ruleset_ver gauge
 wallarm_custom_ruleset_ver 51
-# HELP wallarm_db_apply_time proton.db dosya uygulama zamanı kimliği
+# HELP wallarm_db_apply_time proton.db file apply time id
 # TYPE wallarm_db_apply_time gauge
 wallarm_db_apply_time 1674548649
-# HELP wallarm_lom_apply_time LOM dosya uygulama zamanı
+# HELP wallarm_lom_apply_time LOM file apply time
 # TYPE wallarm_lom_apply_time gauge
 wallarm_lom_apply_time 1674153198
-# HELP wallarm_custom_ruleset_apply_time Özel Kural Kümesi dosya uygulama zamanı
+# HELP wallarm_custom_ruleset_apply_time Custom Ruleset file apply time
 # TYPE wallarm_custom_ruleset_apply_time gauge
 wallarm_custom_ruleset_apply_time 1674153198
-# HELP wallarm_proton_instances proton örneklerinin sayısı
+# HELP wallarm_proton_instances proton instances count
 # TYPE wallarm_proton_instances gauge
 wallarm_proton_instances{status="success"} 5
 wallarm_proton_instances{status="fallback"} 0
 wallarm_proton_instances{status="failed"} 0
-# HELP wallarm_stalled_worker_time_seconds libproton'da duraklatılan işçinin zamanı
+# HELP wallarm_stalled_worker_time_seconds time a worker stalled in libproton
 # TYPE wallarm_stalled_worker_time_seconds gauge
 wallarm_stalled_worker_time_seconds{pid="3169104"} 25
 
@@ -96,4 +96,4 @@ wallarm_stalled_worker_time_seconds{pid="3169104"} 25
 wallarm_startid 3226376659815907920
 ```
 
-İzleme kurulumu ve mevcut metriklerin listesi hakkında ayrıntılı bilgiler bu [dokümantasyon](../../../monitoring/intro.md)da sağlanmaktadır.
+İzleme kurulumu hakkında detaylı bilgi ve mevcut metriklerin listesi, bu [documentation](../../../monitoring/intro.md) içinde sağlanmıştır.

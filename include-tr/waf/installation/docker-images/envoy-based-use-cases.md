@@ -1,4 +1,4 @@
-Tüm desteklenen [Wallarm dağıtım seçenekleri][desteklenen-dağıtımlar] arasında, Envoy tabanlı Docker imajı bu **kullanım durumları** için Wallarm dağıtımı önerilmektedir:
+Among all supported [Wallarm deployment options][supported-deployments], Envoy tabanlı Docker imajı, bu **use cases** için Wallarm dağıtımı kapsamında önerilmektedir:
 
-* Eğer organizasyonunuz Docker tabanlı altyapıyı kullanıyorsa, Wallarm Docker imajı ideal bir seçimdir. AWS ECS, Alibaba ECS veya benzeri hizmetlerde çalışan mikroservis mimarisini kullanan mevcut kurulumunuza sorunsuzca entegre olur. Bu çözüm, Docker konteynerleri aracılığıyla daha akıcı bir yönetim arayan sanal makineleri kullananlara da uygulanır.
-* Her konteynerden narin bir kontrol gerektiriyorsanız, Docker imajı öne çıkar. Geleneksel VM tabanlı dağıtımlarla genellikle mümkün olanın üzerinde bir kaynak izolasyonu sağlar.
+* Kuruluşunuz Docker tabanlı altyapıyı kullanıyorsa, Wallarm Docker imajı ideal bir seçimdir. AWS ECS, Alibaba ECS veya benzer hizmetler üzerinde çalışan bir mikroservis mimarisi kullanıyor olsanız da, mevcut yapınıza sorunsuz bir şekilde entegre olur. Bu çözüm, yönetim süreçlerini Docker konteynerleri aracılığıyla daha da basitleştirmek isteyen, sanal makineleri kullananlar için de geçerlidir.
+* Her konteyner üzerinde ayrıntılı kontrole ihtiyaç duyuyorsanız, Docker imajı bu konuda üstündür. Geleneksel VM tabanlı dağıtımlarda genellikle mümkün olanın ötesinde bir kaynak izolasyonu düzeyi sunar.

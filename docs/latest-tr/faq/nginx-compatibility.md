@@ -1,29 +1,29 @@
-# Wallarm filtreleme düğümünün NGINX sürümleri ile uyumluluğu
+# Wallarm filtreleme nodunun NGINX sürümleriyle uyumluluğu
 
-Eğer ortamınızda kurulu olan NGINX sürümü, stable, Plus veya Debian/CentOS deposundan kurulan sürümle farklıysa, bu belgeden Wallarm nasıl kurulacağını öğrenin.
+Ortamınızda kurulu olan NGINX sürümü stable, Plus veya Debian/CentOS deposundan yüklenen sürüm dışında ise, Wallarm kurulumu için bu belgede anlatılan adımları izleyin.
 
-## Wallarm filtreleme düğümü NGINX mainline ile uyumlu mu?
+## Wallarm filtreleme nodu, NGINX mainline ile uyumlu mu?
 
-Hayır, Wallarm filtreleme düğümü NGINX `mainline` ile uyumsuzdur. Wallarm düğümünü aşağıdaki yollarla kurabilirsiniz:
+Hayır, Wallarm filtreleme nodu NGINX `mainline` ile uyumlu değildir. Wallarm nodunu aşağıdaki yöntemlerle kurabilirsiniz:
 
-* Bu [talimatları](../installation/nginx/dynamic-module.md) takip ederek resmi açık kaynaklı NGINX `stable`'a bağlanın
-* Bu [talimatları](../installation/nginx/dynamic-module-from-distr.md) izleyerek Debian/CentOS depolarından kurulan NGINX'e bağlanın
-* Bu [talimatları](../installation/nginx-plus.md) takip ederek resmi ticari NGINX Plus'a bağlanın
+* Aşağıdaki [talimatları](../installation/nginx/dynamic-module.md) izleyerek resmi açık kaynak NGINX `stable` versiyonuna bağlanın
+* Debian/CentOS depolarından kurulu NGINX'e [bu talimatları](../installation/nginx/dynamic-module-from-distr.md) izleyerek bağlanın
+* Aşağıdaki [talimatları](../installation/nginx-plus.md) izleyerek resmi ticari NGINX Plus'a bağlanın
 
-## Wallarm filtreleme düğümü, özel olarak oluşturulan NGINX ile uyumlu mu?
+## Wallarm filtreleme nodu, NGINX'in özel derlemesiyle uyumlu mu?
 
-Evet, Wallarm modülü, Wallarm paketlerini yeniden oluşturduktan sonra özel olarak inşa edilmiş NGINX'e bağlanabilir. Paketleri yeniden oluşturmak için lütfen [Wallarm teknik destek ekibi](mailto:support@wallarm.com) ile iletişime geçin ve aşağıdaki verileri gönderin:
+Evet, Wallarm modülü, Wallarm paketleri yeniden derlendikten sonra NGINX'in özel derlemesine entegre edilebilir. Paketlerin yeniden derlenmesi için lütfen [Wallarm technical support team](mailto:support@wallarm.com) ile iletişime geçin ve aşağıdaki verileri gönderin:
 
-* Linux kernel sürümü: `uname -a`
+* Linux çekirdek sürümü: `uname -a`
 * Linux dağıtımı: `cat /etc/*release`
 * NGINX sürümü:
 
-    * [NGINX resmi inşa](https://nginx.org/en/linux_packages.html): `/usr/sbin/nginx -V`
-    * NGINX özel inşa: `<nginx path>/nginx -V`
+    * [NGINX official build](https://nginx.org/en/linux_packages.html): `/usr/sbin/nginx -V`
+    * NGINX custom build: `<path to nginx>/nginx -V`
 
 * Uyumluluk imzası:
   
-    * [NGINX resmi inşa](https://nginx.org/en/linux_packages.html): `egrep -ao '.,.,.,[01]{33}' /usr/sbin/nginx`
-    * NGINX özel inşa: `egrep -ao '.,.,.,[01]{33}' <nginx path>/nginx`
+      * [NGINX official build](https://nginx.org/en/linux_packages.html): `egrep -ao '.,.,.,[01]{33}' /usr/sbin/nginx`
+      * NGINX custom build: `egrep -ao '.,.,.,[01]{33}' <path to nginx>/nginx`
 
 * NGINX worker süreçlerini çalıştıran kullanıcı (ve kullanıcının grubu): `grep -w 'user' <path-to-the-NGINX-configuration-files/nginx.conf>`

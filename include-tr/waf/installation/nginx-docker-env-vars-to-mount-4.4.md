@@ -1,4 +1,4 @@
-Ortam değişkeni | Açıklama | Gerekli
+Environment variable | Description | Required
 --- | ---- | ----
-`WALLARM_API_TOKEN` | Wallarm node tokeni.<br><div class="admonition info"> <p class="admonition-title">Birkaç kurulum için tek token kullanma</p> <p>Seçilen platformdan bağımsız olarak bir tokeni birkaç kurulumda kullanabilirsiniz. Bu, Wallarm Konsol UI'daki düğüm örneklerinin mantıksal gruplandırılmasına olanak sağlar. Örneğin; belirli bir geliştiriciye ait olan kendi makinesi üzerinde birkaç Wallarm düğümü dağıtırsınız.</p></div> | Evet
-`WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>`us1.api.wallarm.com` ABD Bulutu için</li><li>`api.wallarm.com` AB Bulutu için</li></ul>Varsayılan: `api.wallarm.com`. | Hayır
+`WALLARM_API_TOKEN` | Wallarm node token.<br><div class="admonition info"> <p class="admonition-title">Birden Fazla Kurulumda Tek Bir Token Kullanımı</p> <p>Seçilen platforma bakılmaksızın bir token’ı birden fazla kurulumda kullanabilirsiniz. Bu, Wallarm Console UI'da düğüm örneklerinin mantıksal gruplanmasını sağlar. Örnek: Geliştirme ortamına birden fazla Wallarm node'u dağıtırsınız; her node, belirli bir geliştiricinin sahip olduğu kendi makinesinde bulunur.</p></div> | Evet
+`WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>US Cloud için `us1.api.wallarm.com`</li><li>EU Cloud için `api.wallarm.com`</li></ul>Varsayılan: `api.wallarm.com`. | Hayır

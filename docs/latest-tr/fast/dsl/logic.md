@@ -27,8 +27,7 @@
 
 # Uzantıların Mantığı
 
-Uzantıların mantığı, birkaç aşama kullanılarak tanımlanabilir:
-
+Uzantının mantığı, birkaç aşama kullanılarak tanımlanabilir:
 1.  [Topla][link-phase-collect]
 2.  [Eşleştir][link-phase-match]
 3.  [Değiştir][link-phase-modify]
@@ -36,70 +35,69 @@ Uzantıların mantığı, birkaç aşama kullanılarak tanımlanabilir:
 5.  [Gönder][link-phase-send]
 6.  [Tespit Et][link-phase-detect]
 
-Bu aşamaları birleştirerek, FAST DSL iki tür uzantıyı tarif etmenize olanak sağlar:
+Bu aşamaların birleştirilmesiyle, FAST DSL iki uzantı türünü tanımlamanıza olanak tanır:
+* İlki, gelen temel isteğin parametrelerini değiştirerek bir veya daha fazla test isteği oluşturur.
 
-* İlki, gelen temel bir isteğin parametrelerini değiştirerek bir veya daha fazla test isteği oluşturur.
+    Bu uzantı, bu kılavuzda “değiştiren uzantı” olarak anılacaktır.
 
-    Bu uzantı, bu kılavuz boyunca “değiştirici uzantı” olarak anılacaktır.
+* İkincisi, önceden tanımlanmış test isteklerini kullanır ve gelen temel isteğin parametrelerini değiştirmez.
 
-* İkincisi, önceden tanımlanmış test isteklerini kullanır ve gelen temel bir isteğin parametrelerini değiştirmez.
+    Bu uzantı, bu kılavuzda “değiştirmeyen uzantı” olarak anılacaktır.
 
-    Bu uzantı, bu kılavuz boyunca “değiştirilmeyen uzantı” olarak anılacaktır.
+Her uzantı türü, farklı aşamalar kümesini kullanır. Bu aşamalardan bazıları zorunludur, bazıları ise değildir.
 
-Her uzantı türü, belirli bir aşama setini kullanır. Bu aşamaların bazıları zorunlu, diğerleri ise değildir.
+Tespit Et aşamasının kullanımı, her uzantı türü için zorunludur. Bu aşama, test isteklerine verilen hedef uygulamanın yanıtlarını alır. Uzantı, bu yanıtlardan uygulamada belirli açıklar olup olmadığını tespit eder. Tespit Et aşamasındaki bilgiler, Wallarm Cloud'a gönderilir.
 
-Detect aşamasının kullanılması, her uzantı türü için zorunludur. Bu aşama, hedef uygulamanın test isteklerine verdiği yanıtları alır. Uzantı, bu yanıtları kullanarak uygulamanın belirli zafiyetlere sahip olup olmadığını belirler. Detect aşamasından gelen bilgiler Wallarm buluta gönderilir.
-
-!!! info "İstek elementlerini tarif etme sözdizimi"
-    Bir FAST uzantısı oluştururken, uygulamaya gönderilen HTTP isteğinin ve uygulamadan alınan HTTP yanıtının yapısını anlamanız ve çalışmanız gereken istek elementlerini doğru bir şekilde tarif etmeniz gerekiyor.
-
-    Detaylı bilgi için ilerleyin [bağlantı][link-points].
+!!! info "İstek öğelerinin açıklama sözdizimi"
+    FAST uzantısı oluştururken, uygulamaya gönderilen HTTP isteğinin ve uygulamadan alınan HTTP yanıtının yapısını anlamanız gerekir; bu sayede çalışmanız gereken istek öğelerini noktalarla doğru şekilde tanımlayabilirsiniz.
     
-##  Bir Değiştirici Uzantının Nasıl Çalıştığı
+    Ayrıntılı bilgi için, bu [link][link-points]'e gidiniz.
+ 
+##  Değiştiren Uzantı Nasıl Çalışır
 
-Bir değiştirici uzantının işlemi sırasında, temel bir istek sırasıyla Topla, Eşleştir, Değiştir ve Oluştur aşamalarından geçer, bunların hepsi seçimli ve uzantıya dahil edilmeyebilir. Bu aşamalardan geçildikten sonra tek bir test isteği veya çoklu test istekleri oluşturulacak. Bu istekler, hedef uygulamayı zafiyetler için kontrol etmek üzere gönderilecektir.
+Değiştiren bir uzantı çalışması sırasında, temel istek sırasıyla Topla, Eşleştir, Değiştir ve Oluştur aşamalarından geçer; bu aşamaların tümü isteğe bağlıdır ve uzantıya dahil edilmeyebilir. Bu aşamalardan geçilmesi sonucunda tek bir test isteği veya birden fazla test isteği oluşturulur. Bu istekler, hedef uygulamadaki açıkları kontrol etmek için gönderilir.
 
-!!! info "Seçimli aşamaları olmayan bir uzantı"
-    Eğer temel isteğe hiçbir seçimli aşama uygulanmazsa, test isteği temel isteği eşler.
+!!! info "İsteğe bağlı aşamalar olmadan bir uzantı"
+    Eğer temel isteğe isteğe bağlı aşamalar uygulanmazsa, test isteği temel istek ile eşleşir. 
 
-![Değiştirici uzantı aşamaları genel bakış][img-phases-mod-overview]
+![Değiştiren uzantı aşamaları görünümü][img-phases-mod-overview]
 
-Eğer bir temel istek belirlenmiş bir FAST [test politikası][doc-policy-in-detail]'nı karşılıyorsa, o zaman istek işlenebilmesine izin verilen bir veya daha fazla parametre içerir. Değiştirici uzantı bu parametreler üzerinde işlem yapar:
+Eğer temel istek, tanımlı bir FAST [test politikası][doc-policy-in-detail] koşulunu sağlıyorsa, istekte işleme alınmasına izin verilen bir veya daha fazla parametre bulunur. Değiştiren uzantı bu parametreler arasında döner:
 
- 1. Her parametre, uzantı aşamalarından geçer ve ilgili test istekleri oluşturulur ve yürütülür.
- 2. Uzantı, politikayla uyumlu tüm parametreler işlenene kadar sonraki parametre ile devam eder.    
+ 1. Her parametre, uzantı aşamalarından geçer ve ilgili test istekleri oluşturulup çalıştırılır.
+ 2. Uzantı, politikaya uygun tüm parametreler işlenene kadar sonraki parametreye geçer.  
 
-Aşağıdaki resim, bazı POST parametreleri olan bir POST isteği örneği olarak gösterilmiştir.
+Aşağıdaki görüntü, örnek olarak bazı POST parametreleri içeren bir POST isteğini göstermektedir.
 
-![Değiştirici uzantı iş akışı genel bakış][img-mod-workflow]
+![Değiştiren uzantı iş akışı görünümü][img-mod-workflow]
 
-##  Bir Değiştirilmeyen Uzantının Nasıl Çalıştığı
+##  Değiştirmeyen Uzantı Nasıl Çalışır
 
-Bir değiştirilmeyen uzantının işlemi sırasında, temel bir istek tek bir Gönder aşamasından geçer.
+Değiştirmeyen bir uzantı çalışması sırasında, temel istek tek bir Gönder aşamasından geçer.
 
-Bu aşama sırasında, sadece ana bilgisayar adı veya IP adresi temel isteğin `Host` başlık değerinden türetilir. Sonra, önceden tanımlanmış test istekleri bu hosta gönderilir.
+Bu aşama sırasında, temel isteğin `Host` başlık değerinden yalnızca ana makine adı türetilir. Ardından, önceden tanımlanmış test istekleri bu ana makineye gönderilir. 
 
-FAST düğümünün aynı `Host` başlık değeri olan birkaç gelen temel istekle karşılaşma olasılığı nedeniyle, bu istekler sadece benzersiz `Host` başlık değerine sahip olan istekleri toplamak üzere implicit Topla aşamasından geçer (bkz. [“Benzersizlik Durumu”][doc-collect-uniq]).
+FAST düğümünün, aynı `Host` başlık değerine sahip birkaç gelen temel istekle karşılaşma ihtimali nedeniyle, bu istekler yalnızca benzersiz `Host` başlık değeri içerenleri toplamak için örtük Topla aşamasından geçer (bkz. [“Benzersizlik Koşulu”][doc-collect-uniq]).
 
-![Değiştirilmeyen uzantı aşamaları genel bakış][img-phases-non-mod-overview]
+![Değiştirmeyen uzantı aşamaları görünümü][img-phases-non-mod-overview]
 
-Bir değiştirilmeyen uzantı çalıştığında, bir veya daha fazla önceden tanımlanmış test isteği, Gönder aşamasında işlemden geçirilen her temel istekte `Host` başlığında belirtilen ana bilgisayara gönderilir:
+Değiştirmeyen bir uzantı çalıştığında, Gönder aşamasında işlenen her temel isteğin `Host` başlığında belirtilen ana makineye, bir veya daha fazla önceden tanımlanmış test isteği gönderilir:
 
-![Değiştirilmeyen uzantı iş akışı genel bakış][img-non-mod-workflow]
+![Değiştirmeyen uzantı iş akışı görünümü][img-non-mod-workflow]
 
 
-## Uzantıların İstekleri Nasıl İşlediği
+##  Uzantılar İstekleri Nasıl İşler
 
-### Birden Fazla Uzantı ile Bir İsteği İşleme
+### Birden Fazla Uzantı ile Bir İsteğin İşlenmesi
 
-Bir FAST düğümü için aynı anda kullanılmak üzere tanımlanmış birkaç uzantı olabilir.
-Her gelen temel istek tüm takılı uzantılardan geçecektir.
+FAST düğümünde aynı anda kullanılmak üzere birden fazla uzantı tanımlanabilir.
+Her gelen temel istek, bağlı olan tüm uzantılardan geçecektir.
 
-![Çalışanlar tarafından kullanılan uzantılar][img-workers]
+![İşçiler tarafından kullanılan uzantılar][img-workers]
 
-Her zaman için, uzantı tek bir temel isteği işler. FAST, paralel temel istek işlemeyi destekler; alınan her temel istek, işlemeyi hızlandırmak için boş bir işçiye gönderilir. Farklı işçiler, aynı uzantıları farklı temel istekler için aynı anda çalıştırabilir. Uzantı, temel istek temelinde test isteklerinin oluşturulup oluşturulmayacağını belirler.
+Her an, uzantı yalnızca tek bir temel isteği işler. FAST, paralel temel istek işlemesini destekler; alınan her temel istek, işlemin hızlandırılması için boş bir işçiye gönderilir. Farklı işçiler, farklı temel istekler için aynı uzantıları aynı anda çalıştırabilir. Uzantı, test isteklerinin temel istek bazında oluşturulup oluşturulmayacağını belirler.
 
-FAST düğümünün paralel olarak işleyebileceği isteklerin sayısı, işçi sayısına bağlıdır. İşçi sayısı, FAST düğüm Docker konteynerini çalıştırırken `WORKERS` ortam değişkenine atanan değerle belirlenir (varsayılan değişken değeri 10'dur).
+FAST düğümünün paralel işleyebileceği istek sayısı, işçi (worker) sayısına bağlıdır. İşçi sayısı, FAST düğümünün Docker konteyneri çalıştırılırken `WORKERS` çevresel değişkenine atanan değerle belirlenir (varsayılan değer 10'dur).
 
-!!! info "Test politikası detayları"
-    Test politikaları ile çalışmanın daha ayrıntılı bir açıklaması [bağlantı][doc-policy-in-detail]'da bulunabilir.
+!!! info "Test politikası ayrıntıları"
+    Test politikaları ile çalışma hakkında daha detaylı açıklama, [link][doc-policy-in-detail] üzerinden mevcuttur.

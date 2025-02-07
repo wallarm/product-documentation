@@ -10,7 +10,7 @@
 [img-wl-console-users]:         ../../../../images/check-user-no-2fa.png
 [img-create-wallarm-node]:      ../../../../images/user-guides/nodes/create-cloud-node.png
 [deployment-platform-docs]:     ../../../../installation/supported-deployment-options.md
-[node-token]:                       ../../../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
+[node-token]:                       ../../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../../installation/supported-deployment-options.md
@@ -25,33 +25,50 @@
 [wallarm-mode]:                     ../../../../admin-en/configure-wallarm-mode.md
 [wallarm-api-via-proxy]:            ../../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
+[cloud-init-spec]:                  ../../../cloud-platforms/cloud-init.md
+[wallarm_force_directive]:          ../../../../admin-en/configure-parameters-en.md#wallarm_force
+[ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
+[api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
 
-# Amazon Machine Image'den Wallarm'ın Dağıtımı
+# Amazon Machine Image'den Wallarm Dağıtma
 
-Bu makale, [resmi Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD) kullanarak AWS üzerinde Wallarm'ı çizgi içinde dağıtma talimatları sağlar.
+Bu makale, Wallarm'u AWS üzerinde satır içi (in-line) resmi Amazon Machine Image (AMI) kullanarak dağıtmak için yönergeler sunmaktadır.
 
 ## Kullanım Durumları
 
---8<-- "../include-tr/waf/installation/cloud-platforms/ami-use-cases.md"
+--8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
 
---8<-- "../include-tr/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami-latest.md"
 
-## 6. Wallarm'ın trafiği analiz etmesini sağlayın
+## 6. Örneği Wallarm Cloud'a Bağlama
 
---8<-- "../include-tr/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis-inline.md"
+Bulut örneğinin düğümü, [cloud-init.py][cloud-init-spec] betiği aracılığıyla Cloud'a bağlanır. Bu betik, sağlanan bir token kullanarak düğümü Wallarm Cloud'a kaydeder, küresel olarak izleme [moduna][wallarm-mode] ayarlar ve düğümü, `--proxy-pass` bayrağı temelinde yasal trafiği iletecek şekilde yapılandırır. NGINX'in yeniden başlatılması, kurulumu tamamlar.
 
-## 7. NGINX'i Yeniden Başlatın
+Cloud imajından oluşturulan örnekte `cloud-init.py` betiğini aşağıdaki şekilde çalıştırın:
 
---8<-- "../include-tr/waf/installation/cloud-platforms/restart-nginx.md"
+=== "US Cloud"
+    ``` bash
+    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS> -H us1.api.wallarm.com
+    ```
+=== "EU Cloud"
+    ``` bash
+    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring --proxy-pass <PROXY_ADDRESS>
+    ```
 
-## 8. Trafik göndermeyi Wallarm örneğine yapılandırın
+* `WALLARM_LABELS='group=<GROUP>'` ifadesi, mevcutsa var olan ya da mevcut değilse oluşturulacak bir düğüm grubu adı belirler. Bu, yalnızca bir API token kullanıldığında uygulanır.
+* `<TOKEN>`, kopyalanan token değeridir.
+* `<PROXY_ADDRESS>`, Wallarm düğümünün yasal trafiği iletmek üzere proxy yapacağı adrestir. Bu, mimarinize bağlı olarak bir uygulama örneğinin IP'si, yük dengeleyici veya DNS adı gibi bir değer olabilir.
 
---8<-- "../include-tr/waf/installation/sending-traffic-to-node-inline.md"
+## 7. Wallarm Örneğine Trafik Gönderimini Yapılandırma
 
-## 9. Wallarm operasyonunu test edin
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline.md"
 
---8<-- "../include-tr/waf/installation/cloud-platforms/test-operation-inline.md"
+## 8. Wallarm'un Çalışmasını Test Etme
 
-## 10. Dağıtılan çözümü ince ayarlayın
+--8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
 
---8<-- "../include-tr/waf/installation/cloud-platforms/fine-tuning-options.md"
+## 9. Dağıtılan Çözümü İnce Ayar Yapma
+
+--8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+
+--8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"

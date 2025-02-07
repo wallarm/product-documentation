@@ -1,24 +1,24 @@
-```
+```yaml
 wallarm:
   image:
      repository: wallarm/node
      tag: 4.0.2-1
-     pullPolicy: Her zaman
-  # Wallarm API endpoint: 
-  # "api.wallarm.com" Avrupa Bulutu için
-  # "us1.api.wallarm.com" ABD Bulutu için
+     pullPolicy: Always
+  # Wallarm API noktası:
+  # EU Cloud için "api.wallarm.com"
+  # US Cloud için "us1.api.wallarm.com"
   wallarm_host_api: "api.wallarm.com"
-  # Wallarm düğümü tokeni
+  # Wallarm düğüm tokeni
   wallarm_api_token: "token"
   # Konteynerin gelen istekleri kabul ettiği port,
-  # değeri ports.containerPort ile aynı olmalıdır
-  # ana uygulama konteynerinizin tanımında
+  # değerin ana uygulama konteyner tanımındaki
+  # ports.containerPort ile aynı olması gerekir
   app_container_port: 80
   # İstek filtreleme modu:
-  # İstek işlemeyi devre dışı bırakmak için "off"
-  # Istekleri işleyip bloklamamak için "monitoring"
-  # Gri listelenmiş IP'lerden kaynaklanan zararlı istekleri engellemek için "safe_blocking"
-  # Tüm istekleri işlemek ve zararlı olanları engellemek için "block"
+  # İşlemeyi devre dışı bırakmak için "off"
+  # İstekleri işleyip engellemeden "monitoring"
+  # Graylisted IP'lerden kaynaklanan kötü niyetli istekleri engellemek için "safe_blocking"
+  # Tüm istekleri işleyip kötü niyetlileri engellemek için "block"
   mode: "block"
   # İstek analiz verileri için GB cinsinden bellek miktarı
   tarantool_memory_gb: 2

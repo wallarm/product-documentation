@@ -1,65 +1,65 @@
-[doc-allowed-host]:     operations/env-variables.md#limiting-the-number-of-requests-to-be-recorded
-[doc-ssl]:              ssl/intro.md
-[link-token]:           operations/internals.md#token
+# Sorun Giderme
 
-#   Sorun Giderme
+## Yaygın Sorunlar ve Çözüm Yolları
 
-##  Ortak Sorunlar ve Nasıl Çözüleceği
+**Ne Yapılmalı...**
 
-**Eğer...**
+* **...FAST node aşağıdaki mesajlardan birini konsol çıktısında gösteriyorsa?**
 
-* **... FAST düğümü, konsol çıktısında aşağıdaki mesajlardan birini görüntülüyorsa ne yapmalıyım?**
-
---8<-- "../include-tr/fast/console-include/tshoot/request-timeout.md"
+--8<-- "../include/fast/console-include/tshoot/request-timeout.md"
     
     veya
 
---8<-- "../include-tr/fast/console-include/tshoot/access-denied.md"
+--8<-- "../include/fast/console-include/tshoot/access-denied.md"
     
-    **Çözüm:** Şunu kontrol ettiğinizden emin olun:
+    **Çözüm:** şunlardan emin olun:
 
-    * FAST düğümünün ve ilgili Docker ana bilgisayarının internet erişimi vardır (özellikle, Wallarm `api.wallarm.com` ve `us1.api.wallarm.com` API sunucuları `TCP/443` üzerinden erişilebilir olmalıdır), ve
-    * Doğru [token][link-token] değerini kullanıyorsunuz ve uygun Wallarm API sunucusuyla iletişim kuruyorsunuz. FAST'in, Avrupa veya Amerikan bulutlarında bulunduklarına bağlı olarak API sunucularına bağlanmak için *farklı* tokenler kullandığını unutmayın.
+    * FAST node ve ilgili Docker host internet erişimine sahip olmalı (özellikle, Wallarm `api.wallarm.com` ve `us1.api.wallarm.com` API sunucuları `TCP/443` üzerinden erişilebilir olmalıdır), ve
+    * doğru [token][link-token] değeri kullanılıyor olmalı ve ilgili Wallarm API sunucusu ile iletişim kurulmalıdır. FAST'in, API sunucularına Avrupa ya da Amerika bulutlarında yer aldığına bağlı olarak *farklı* tokenlar kullandığını unutmayın.
     
-* **...bir istek kaynağı, FAST düğümünün kendisinden imzalı SSL sertifikasını güvenmiyor mu?**
+* **...bir istek kaynağı FAST node'un imzasız SSL sertifikasına güvenmiyorsa?**
 
-    **Çözüm:** [Bu talimatlarda][doc-ssl] listelenen herhangi bir yöntemi kullanarak güvenilir bir SSL sertifikası kurun.
+    **Çözüm:** [bu talimatlarda][doc-ssl] listelenen herhangi bir yöntem kullanılarak güvenilir bir SSL sertifikası kurun.
     
-* **...FAST düğümü çalışıyor ancak hiçbir temel istek kaydedilmiyor mu?**
+* **...FAST node çalışıyor ancak temel istekler kaydedilmiyorsa?**
 
-    **Çözüm:** Aşağıdaki durumları kontrol edin:
+    **Çözüm:** şunları kontrol edin:
 
-    * İstek kaynağı, FAST düğümünü bir proxy sunucusu olarak kullanmak üzere yapılandırılmış ve düğüme bağlanmak için doğru port, alan adı veya IP adresi ile sağlanmıştır.
-    * İstek kaynağı, kaynak tarafından kullanılan her protokol için FAST düğümünü bir proxy sunucusu olarak kullanıyordur (sıkça karşılaşılan bir durum, FAST düğümünün bir HTTP proxy'i olarak kullanılması, istek kaynağının HTTPS istekleri göndermeye çalışmasıdır).
-    * [`ALLOWED_HOST`][doc-allowed-host] ortam değişkeni doğru şekilde yapılandırılmıştır.
+    * İstek kaynağı, FAST node'u bir proxy sunucusu olarak kullanacak şekilde yapılandırılmış olmalı ve bağlantı kurulacak node'un doğru port, alan adı veya IP adresi sağlanmış olmalıdır.
+    * İstek kaynağı, kullanılan tüm protokoller için FAST node'u bir proxy sunucusu olarak kullanmalıdır (yaygın bir durum, FAST node'un HTTP proxy olarak kullanılması, fakat istek kaynağının HTTPS istekleri göndermeye çalışmasıdır).
+    * [`ALLOWED_HOST`][doc-allowed-host] ortam değişkeni doğru şekilde yapılandırılmış olmalıdır.
     
-* **...FAST düğümünde hiçbir FAST testi veya özel genişletmeler çalışmıyor mu?**
+* **...FAST node üzerinde FAST testleri veya özel eklentiler çalışmıyorsa?**
 
-    **Çözüm:** FAST düğümünün temel talepleri kaydettiğini ve bu temel taleplerin düğüm tarafından kullanılan test politikasına uyduğunu kontrol edin.
+    **Çözüm:** FAST node'un temel istekleri kaydettiğinden ve bu temel isteklerin node tarafından kullanılan test politikasına uygun olduğundan emin olun.
 
-##  Destek Ekibiyle İletişim Kurma
+## Destek Ekibiyle İletişim
 
-Eğer sorununuzu yukarıdaki listede bulamıyorsanız veya çözümün yardımcı olmadığını düşünüyorsanız, Wallarm destek ekibiyle iletişime geçin.
+Eğer yukarıdaki listede sorununuzu bulamıyorsanız veya çözümü yetersiz buluyorsanız, Wallarm destek ekibiyle iletişime geçin.
 
-Ya [bir e-posta yazabilir](mailto:support@wallarm.com) ya da Wallarm portalındaki formu doldurabilirsiniz. Portal üzerinden bir geri bildirim göndermek için aşağıdakileri yapın:
+E-posta [yazabilir](mailto:support@wallarm.com) veya Wallarm portalındaki formu doldurabilirsiniz. Portal üzerinden geri bildirim göndermek için şu adımları izleyin:
 
-* Portalın sağ üst köşesindeki soru işaretine tıklayın.
-* Açılan yan çubukta, "Wallarm Destek" girişini seçin.
-* E-posta yazın ve gönderin.
+* Portalın sağ üst köşesinde bulunan soru işaretine tıklayın.
+* Açılan kenar çubuğunda “Wallarm Support” öğesini seçin.
+* Bir e-posta yazın ve gönderin.
 
-##  Teşhis Verilerini Toplama
+## Tanılama Verisi Toplama
 
-Wallarm destek ekibinden bir üye, FAST düğümü hakkındaki bir parça teşhis verisini toplamanızı isteyebilir.
+Wallarm destek ekibinden bir üye, FAST node ile ilgili bir tanılama verisi toplamanızı isteyebilir.
 
-Birkaç ortam değişkenini ayarlayın, ardından teşhis verilerini toplamak için aşağıdaki komutları yürütün ( `<FAST düğümü konteynerinin adı>` yerine teşhis verilerini almak istediğiniz FAST düğümü konteynerinin gerçek adını yazın):
+Birkaç ortam değişkeni ayarlayın, ardından aşağıdaki komutları çalıştırarak veriyi toplayın ( `<FAST node container's name>` kısmını, tanılama verisini almak istediğiniz FAST node container'ının gerçek adı ile değiştirin):
 
 ```
 FAST_IMAGE_VERSION=`docker image inspect wallarm/fast | grep version | tail -n1 | awk '{print $2}' | sed 's/"//g'`
 TIMESTAMP=`/bin/date +%d.%m.%y_%H-%M-%S`
 
-docker exec -e IMAGE_VERSION=$FAST_IMAGE_VERSION <FAST düğümü konteynerinin adı> /usr/local/bin/collect_info_fast.sh
+docker exec -e IMAGE_VERSION=$FAST_IMAGE_VERSION <FAST node container's name> /usr/local/bin/collect_info_fast.sh
 
-docker cp <FAST düğümü konteynerinin adı>:/opt/diag/fast_supout.tar.gz fast_supout-$TIMESTAMP.tar.gz
+docker cp <FAST node container's name>:/opt/diag/fast_supout.tar.gz fast_supout-$TIMESTAMP.tar.gz
 ```
 
-Bu komutların başarılı bir şekilde yürütülmesinin ardından, teşhis verileri Docker ana bilgisayarındaki `fast_supout-$TIMESTAMP.tar.gz` arşivinde yer alacaktır. Arşiv adındaki `$TIMESTAMP`, toplama zamanını temsil edecektir.
+Bu komutların başarılı şekilde çalıştırılmasından sonra tanılama verisi Docker host üzerinde `fast_supout-$TIMESTAMP.tar.gz` arşivine koyulacaktır. Arşiv adındaki `$TIMESTAMP` toplama zamanını temsil edecektir.
+
+[doc-allowed-host]:     operations/env-variables.md#limiting-the-number-of-requests-to-be-recorded
+[doc-ssl]:              ssl/intro.md
+[link-token]:           operations/internals.md#token

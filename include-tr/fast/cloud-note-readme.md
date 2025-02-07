@@ -1,6 +1,6 @@
-!!! uyarı "Wallarm bulutları hakkında bir not"
-    FAST, mevcut Wallarm bulutlarından biriyle et interact ediyor.
+!!! warning "Wallarm bulutlarıyla ilgili bir not"
+    FAST, mevcut Wallarm bulutlarından biriyle etkileşimde bulunur.
     
-    Dokümantasyondan gelen tüm bilgiler, aksi belirtilmedikçe, tüm bulutlar için aynı şekilde geçerlidir.
+    Belgede yer alan tüm bilgiler, aksi belirtilmedikçe tüm bulutlar için eşit şekilde geçerlidir.
     
-    Basitlik adına, dokümantasyon boyunca FAST'ın Amerikan Wallarm bulutuyla et interact ettiği varsayılır. Başka bir bulutla et interact  etmeniz gerekiyorsa, [Wallarm portalının ve API sunucusunun ilgili adreslerini](cloud-list.md) kullanın.
+    Basitlik sağlamak amacıyla, belge boyunca FAST'in American Wallarm cloud ile etkileşimde bulunduğu varsayılmaktadır. Başka bir bulutla etkileşimde bulunmanız gerekiyorsa, [Wallarm portalı ve API sunucusunun ilgili adreslerini](cloud-list.md) kullanın.

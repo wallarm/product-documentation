@@ -9,8 +9,8 @@
             |_/_/ \_\___/ |_|
  
  Yükleniyor...
- [bilgi] Düğüm Wallarm Cloud'a bağlandı
- [bilgi] Hızlı tarayıcı için 0 özel eklenti yüklendi
- [bilgi] Hızlı tarayıcı için 44 varsayılan eklenti yüklendi
- [bilgi] TestRecord#rec_0001 TestRecord 01 Ekim 01:01 UTC kaydedilmeye başlandı
+ [bilgi] Node connected to Wallarm Cloud
+ [bilgi] Hızlı tarayıcı için 0 özel uzantı yüklendi
+ [bilgi] Hızlı tarayıcı için 44 varsayılan uzantı yüklendi
+ [bilgi] TestRecord#rec_0001 TestRecord Oct 01 01:01 UTC kaydetmeye başladı
 ```

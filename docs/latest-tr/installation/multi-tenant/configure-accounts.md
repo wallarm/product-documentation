@@ -1,86 +1,86 @@
-# Wallarm Konsolunda Kiracı Hesapları Oluşturma
+# Wallarm Console'da Kiracı Hesapları Oluşturma
 
-Bu talimatlar, [kiracı hesaplarının](overview.md) doğru yapılandırması için adımları size sunar.
+Bu talimatlar, [kiracı hesaplarının](overview.md) doğru yapılandırılması için gereken adımları size sunar.
 
---8<-- "../include-tr/waf/features/multi-tenancy/partner-client-term.md"
+--8<-- "../include/waf/features/multi-tenancy/partner-client-term.md"
 
-## Kiracı hesaplarının yapılandırılması
+## Kiracı Hesaplarının Yapılandırılması
 
 Kiracı hesaplarını yapılandırmak için:
 
-1. Wallarm Konsolu'na kaydolun ve hesabınız için çoklu kiracılık özelliğinin aktif hale getirilmesi talebinizi Wallarm teknik destek ekibine gönderin.
-1. Bir kiracı hesabı oluşturun.
-1. Belirli bir trafiği kiracı ve uygulamalarıyla ilişkilendirin.
+1. Wallarm Console için kayıt olun ve hesabınız için çok kiracılılık özelliğini etkinleştirme talebinizi Wallarm teknik destek ekibine gönderin.
+2. Bir kiracı hesabı oluşturun.
+3. Belirli trafiği kiracı ve uygulamalarıyla ilişkilendirin.
 
-### Adım 1: Kaydolun ve çoklu kiracılık özelliğini aktif hale getirme talebini gönderin
+### Adım 1: Kayıt Olun ve Çok Kiracılılık Özelliğini Etkinleştirme Talebinizi Gönderin
 
-1. [ABD Bulutu'ndaki](https://us1.my.wallarm.com/signup) veya [AB Bulutu'ndaki](https://my.wallarm.com/signup) Wallarm Konsolu'nda kayıt formunu doldurun ve onaylayın.
+1. Wallarm Console'da kayıt formunu doldurun ve onaylayın. [US Cloud](https://us1.my.wallarm.com/signup) veya [EU Cloud](https://my.wallarm.com/signup) üzerinden kayıt olabilirsiniz.
 
-    ![Kayıt formu](../../images/signup-en.png)
+    ![Kayıt Formu](../../images/signup-en.png)
 
-    !!! bilgi "Kurumsal e-posta"
-        Lütfen bir kurumsal e-posta adresi kullanarak kaydolun.
-2. E-posta gelen kutunuzu açın ve gelen mesajdaki linkle hesabı aktifleştirin.
-3. Çoklu kiracılık özelliğinin hesabınız için aktifleştirilmesi talebini [Wallarm teknik desteğine](mailto:support@wallarm.com) gönderin. Talebyle birlikte aşağıdaki bilgileri gönderin:
-   * Kullanılan Wallarm Bulutu'nun adı (ABD Bulutu veya AB Bulutu)
-   * Global hesap ve teknik kiracı hesabı için adlar
-   * Kiracı hesaplarına erişim sağlanacak çalışanların e-posta adresleri (çoklu kiracılık özelliği aktif olduktan sonra çalışanları kendiniz ekleyebileceksiniz)
-   * Markalı Wallarm Konsolu için logo
-   * Wallarm Konsolu için özel etki alanı, sertifika ve etki alanı için şifreleme anahtarı
-   * Teknik destek e-posta adresiniz
-   
-Talebinizi aldıktan sonra Wallarm teknik destek ekibi:
+    !!! info "Kurumsal e-posta"
+        Lütfen kurumsal bir e-posta adresi kullanarak kayıt olun.
+2. E-posta gelen kutunuzu açın ve gelen mesajdaki bağlantı aracılığıyla hesabınızı etkinleştirin.
+3. Çok kiracılılık özelliğini etkinleştirmek için hesabınızla birlikte aşağıdaki bilgileri içeren bir talebi [Wallarm teknik destek](mailto:support@wallarm.com) ekibine gönderin:
+    * Kullanılan Wallarm Cloud'un adı (US Cloud veya EU Cloud)
+    * Global hesap ve teknik kiracı hesabı için adlar
+    * Kiracı hesaplarına erişim sağlanacak çalışanların e-posta adresleri (çok kiracılılık özelliği etkinleştirildikten sonra çalışanları kendiniz ekleyebileceksiniz)
+    * Markalı Wallarm Console için logo
+    * Wallarm Console için özel alan adı, alan adı için sertifika ve şifreleme anahtarı
+    * Teknik destek e-posta adresiniz
 
-1. Wallarm Bulutu'nda global bir hesap ve teknik kiracı hesabı oluşturacaktır.
-2. Sizi, teknik istemci hesabının kullanıcı listesine **Global yönetici** [rolüyle](../../user-guides/settings/users.md) ekleyecektir.
-3. Çalışanlarınızın e-posta adresleri verilmişse, Wallarm teknik destek ekibi, çalışanları teknik kiracı hesabının kullanıcı listesine, **Global salt okunur** [rolüyle](../../user-guides/settings/users.md) ekleyecektir.
+Talebiniz alındıktan sonra, Wallarm teknik destek:
 
-    Kayıtlı olmayan çalışanlar, teknik kiracı hesabına erişmek için yeni bir parola belirlemek üzere bir bağlantı içeren e-postalar alacaklar.
-4. UUID'nizi gönderecektir (ana kiracı UUID'si, izole ortamlar için çoklu kiracılık kullanan Wallarm ortak şirketi veya Wallarm müşterisini gösterir).
+1. Wallarm Cloud'da bir global hesap ve teknik kiracı hesabı oluşturur.
+2. Sizi, [rol](../../user-guides/settings/users.md) olarak **Global administrator** bulunan teknik müşteri hesabı kullanıcıları listesine ekler.
+3. Çalışanlarınızın e-posta adresleri sağlanırsa, Wallarm teknik destek, çalışanları [rol](../../user-guides/settings/users.md) olarak **Global read only** atanan teknik kiracı hesabı kullanıcıları listesine ekler.
 
-    Alınan UUID, ilerleyen adımlarda gereklidir.
+    Kayıtlı olmayan çalışanlar, teknik kiracı hesabına erişim için yeni bir şifre belirlemeleri adına bağlantılı e-postalar alacaktır.
+4. Size UUID'nizi gönderir (izole ortamlar için çok kiracılılığı kullanan Wallarm partner şirketi veya Wallarm müşteri belirtisi olan ana kiracı UUID'si).
+
+    Alınan UUID daha sonraki adımlarda gerekecektir.
 
 ### Adım 2: Kiracıyı Oluşturma
 
-#### Wallarm Konsolu Üzerinden
+#### Wallarm Console Üzerinden
 
-**Global Yönetici** hesabı altında, Wallarm Konsolu → kiracı seçici → **Kiracı Oluştur** üzerinden kiracılar oluşturabilirsiniz.
+**Global administrator** hesabı altında, Wallarm Console → kiracı seçici → **Create tenant** seçeneğini kullanarak kiracılar oluşturabilirsiniz.
 
-![!Wallarm Konsolu aracılığıyla kiracının oluşturulması](../../images/partner-waf-node/tenant-create-via-ui.png)
+![Wallarm Console üzerinden kiracı oluşturma](../../images/partner-waf-node/tenant-create-via-ui.png)
 
-Yeni kiracınız için yeni bir **Yönetici** [kullanıcı](../../user-guides/settings/users.md#user-roles) oluşturabilirsiniz. Davet e-postası belirttiğiniz adrese gönderilecektir.
+Yeni oluşan kiracı için bir **Administrator** [kullanıcı](../../user-guides/settings/users.md#user-roles) oluşturabilirsiniz. Davet e-postası belirtilen adrese gönderilecektir.
 
 #### Wallarm API Üzerinden
 
-Kiracıyı oluşturmak için, Wallarm API'ye kimlik doğrulamalı istekler gönderebilirsiniz. Kimlik doğrulamalı istekler, kendi API istemcinizden veya kimlik doğrulama yöntemini belirleyen [Wallarm API Konsolu](../../api/overview.md)'ndan Wallarm API'ye gönderilebilir:
+Kiracıyı oluşturmak için, kimlik doğrulamalı istekleri Wallarm API'ye gönderebilirsiniz. Wallarm API'ye kimlik doğrulamalı istekler, kendi API istemcinizden veya kimlik doğrulama yöntemini tanımlayan [Wallarm API Console](../../api/overview.md)'dan gönderilebilir:
 
-* **Wallarm API Konsolu**'ndan gönderilecek istekler için, Wallarm Konsolu'na **Global Yönetici** kullanıcı rolüyle oturum açmak ve aşağıdaki adreslerde bulunan Wallarm API Konsolu sayfasını güncellemek gereklidir:
-    * ABD Bulutu için https://apiconsole.us1.wallarm.com/
-    * AB Bulutu için https://apiconsole.eu1.wallarm.com/.
-* **Kendi API istemcinizden** gönderilecek istekler için, istekte **Global Yönetici** izinlerine sahip [API belirteci](../../user-guides/settings/api-tokens.md#creating-tokens-with-global-role-permissions) iletmek gereklidir.
+* **Wallarm API Console** üzerinden gönderilecek istekler için, **Global administrator** kullanıcı rolüyle Wallarm Console'a giriş yapmanız ve aşağıdaki URL'lerde bulunan Wallarm API Console sayfasını güncellemeniz gerekir:
+    * US Cloud için: https://apiconsole.us1.wallarm.com/
+    * EU Cloud için: https://apiconsole.eu1.wallarm.com/
+* **Kendi API istemcinizden** gönderilecek istekler için, isteğe [Global Administrator izinlerine sahip API token](../../user-guides/settings/api-tokens.md) eklemeniz gerekir.
 
-Bu adımda, global bir hesapla bağlantılı bir kiracı hesabı oluşturulacak.
+Bu adımda, global hesapla bağlantılı bir kiracı hesabı oluşturulacaktır.
 
 1. Aşağıdaki parametrelerle `/v1/objects/client/create` rotasına POST isteği gönderin:
 
-    Parametre | Açıklama | İstek Parçası | Zorunlu Ayar
+    Parametre | Açıklama | İstek bölümü | Gerekli
     --------- | -------- | ------------- | ---------
-    `X-WallarmApi-Token` | **Global Yönetici**'nin izinleriyle [API belirteci](../../user-guides/settings/api-tokens.md#configuring-tokens). | Başlık | Evet, isteği kendi API istemciniz üzerinden gönderirken
-    `name` | Kiracının adı. | Gövde | Evet
-    `vuln_prefix` | Wallarm'ın kiracı ile ilişkilendirme ve açıklık izleme için kullanacağı açıklık öneki. Önek, dört büyük harf veya sayı içermeli ve kiracının adına bağlantılı olmalıdır, örn.: `TNNT` kiracısı için `Kiracı`. | Gövde | Evet
-    `partner_uuid` | Global hesap oluşturulurken alınan [ana kiracı UUID](#step-2-get-access-to-the-tenant-account-creation) | Gövde | Evet
+    `X-WallarmApi-Token` | **Global Administrator** izinlerine sahip [API token](../../user-guides/settings/api-tokens.md). | Header | Kendi API istemcinizden istek gönderilmesi durumunda Evet
+    `name` | Kiracının adı. | Body | Evet
+    `vuln_prefix` | Wallarm'ın zafiyet takibi ve kiracı ile ilişkilendirme için kullanacağı zafiyet ön eki. Önek, dört büyük harf veya rakam içermeli ve kiracının adıyla ilişkili olmalıdır, örn: `TNNT` kiracı `Tenant` için. | Body | Evet
+    `partner_uuid` | Global hesap oluşturulurken alınan [ana kiracı UUID'si](#step-1-sign-up-and-send-a-request-to-activate-the-multitenancy-feature). | Body | Evet
 
-    ??? info "Kendi API istemcinizden gönderilen isteğin bir örneğini göster"
-        === "ABD Bulutu"
+    ??? info "Kendi API istemcinizden gönderilen isteğin örneğini göster"
+        === "US Cloud"
             ```bash
             curl -v -X POST "https://us1.api.wallarm.com/v1/objects/client/create" -H "X-WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
-        === "AB Bulutu"
+        === "EU Cloud"
             ``` bash
             curl -v -X POST "https://api.wallarm.com/v1/objects/client/create" -H "X-WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
 
-    ??? info "Yanıtın bir örneğini göster"
+    ??? info "İstek yanıtının örneğini göster"
         ``` bash
         {
         "status":200,
@@ -96,20 +96,20 @@ Bu adımda, global bir hesapla bağlantılı bir kiracı hesabı oluşturulacak.
         }
         ```
 
-2. İsteğin yanıtından `uuid` parametresinin değerini kopyalayın. Parametre, kiracı trafiğinin kiracı hesabına bağlanması işleminde kullanılacak.
+2. Yanıt içerisindeki `uuid` değerini kopyalayın. Bu parametre, kiracıya ait trafiğin kiracı hesabıyla ilişkilendirilmesinde kullanılacaktır.
 
-Oluşturulan kiracılar, Wallarm Konsolu'nda [global kullanıcılar](../../user-guides/settings/users.md#user-roles) için görüntülenecektir. Örneğin `Kiracı 1` ve `Kiracı 2`:
+Oluşturulan kiracılar, [global kullanıcılar](../../user-guides/settings/users.md#user-roles) için Wallarm Console'da görüntülenecektir. Örneğin, `Tenant 1` ve `Tenant 2`:
 
-![Wallarm Konsolu'ndaki kiracı seçicisi](../../images/partner-waf-node/clients-selector-in-console.png)
+![Wallarm Console'da kiracı seçici](../../images/partner-waf-node/clients-selector-in-console.png)
 
-### Adım 3: Belirli bir trafiği kiracınız ile ilişkilendirin
+### Adım 3: Belirli Trafiği Kiracınızla İlişkilendirin
 
-!!! bilgi "Ne zaman yapılandırılmalı?"
-    Bu yapılandırma, düğüm dağıtımı sırasında ve tüm kiracıların trafiği [işleniyor veya işlenmesi](deploy-multi-tenant-node.md) planlanıyorsa yalnızca bir Wallarm düğümü tarafından gerçekleştirilir.
+!!! info "Ne zaman yapılandırmalı?"
+    Bu yapılandırma, yalnızca tüm kiracıların trafiğinin tek bir Wallarm düğümü tarafından [işlenmekte veya işlenecek](deploy-multi-tenant-node.md) olması durumunda, düğüm dağıtımı sırasında gerçekleştirilir.
 
-    Her kiracının trafiğini ayrı bir düğüm işlerse, lütfen bu adımı atlayın ve [düğümün dağıtımına ve yapılandırılmasına](deploy-multi-tenant-node.md) devam edin.
+    Her kiracının trafiğini ayrı ayrı bir düğüm işliyorsa, lütfen bu adımı atlayın ve [düğüm dağıtımı ve yapılandırmasına](deploy-multi-tenant-node.md) geçin.
 
-Hangi trafiğin hangi kiracı hesabı altında görüntüleneceği bilgisini Wallarm Bulutu'na sağlamak için, belirli bir trafiği oluşturulan kiracı ile ilişkilendirmemiz gerekiyor. Bunu yapmak için, NGINX yapılandırma dosyasına kiracıyı dahil edin ve [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) yönergesi için değer olarak UUID'sini (**Adım 3**'te elde edilmiştir) kullanın. Örneğin:
+Wallarm Cloud'a hangi trafiğin hangi kiracı hesabı altında görüntüleneceği bilgisini sağlamak için, belirli trafiği oluşturulan kiracı ile ilişkilendirmemiz gerekmektedir. Bunu yapmak için, NGINX yapılandırma dosyasında kiracıyı, [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) yönergesine **(Adım 3'te elde edilen)** `uuid` değerini atayarak dahil edin. Örneğin:
 
 ```
 server {
@@ -119,33 +119,32 @@ server {
 }
 ```
 
-Yukarıdaki yapılandırmada, `tenant1.com` hedefli trafik, `11111111-1111-1111-1111-111111111111` istemcisi ile ilişkilendirilmiş olacaktır.
+Yukarıdaki yapılandırmada, `tenant1.com` hedefine yönelen trafik, `11111111-1111-1111-1111-111111111111` numaralı müşteri ile ilişkilendirilecektir.
 
-## Kullanıcıların Hesaplara Erişimini Sağlamak
+## Kullanıcılara Hesap Erişimi Sağlama
 
-* Teknik kiracı hesabında, kullanıcılara sunulacak olan **global** ve **standart** [roller](../../user-guides/settings/users.md) bulunmaktadır.
+* Teknik kiracı hesabında, kullanıcılara **global** ve **normal** [roller](../../user-guides/settings/users.md) sağlanmaktadır.
 
-    Global kullanıcılar tüm bağlı kiracı hesaplarına erişim hakkına sahip olacaklardır.
+    Global kullanıcılar, tüm bağlantılı kiracı hesaplarına erişebilecektir.
 
-    Standart kullanıcılar yalnızca teknik kiracı hesabına erişim hakkına sahip olacaklardır.
-* Belirli kiracı hesaplarında, kullanıcılara sunulacak olan yalnızca **standart** [roller](../../user-guides/settings/users.md) bulunmaktadır.
+    Normal kullanıcılar, yalnızca teknik kiracı hesabına erişebilecektir.
+* Belirli kiracı hesaplarında ise yalnızca kullanıcılara **normal** [roller](../../user-guides/settings/users.md) sağlanmaktadır.
 
-    Kullanıcılar, belirli bir kiracı hesabı içerisinde engellenen istekleri izleyebilir, bulunan güvenlik açıklıklarını analiz edebilir ve filtreleme düğümünün ek konfigürasyonlarını gerçekleştirebilirler. Rolleri bu işlemi yapmaya izin veriyorsa, kullanıcılar birbirlerini ekleyebileceklerdir.
+    Kullanıcılar, engellenen istekleri takip edebilecek, keşfedilen zafiyetleri analiz edebilecek ve belirli bir kiracı hesabı kapsamında filtreleme düğümüne yönelik ek yapılandırmalar yapabilecektir. Rollerin buna izin vermesi durumunda, kullanıcılar birbirlerini kendileri ekleyebilecektir.
 
-[Çoklu kiracı düğümünün dağıtımına ve yapılandırılmasına ilerleyin →](deploy-multi-tenant-node.md)
+[Çok kiracılı düğüm dağıtımına ve yapılandırmasına devam etmek için →](deploy-multi-tenant-node.md)
 
+## Wallarm Console'da Kiracı Hesaplarının Devre Dışı Bırakılması ve Etkinleştirilmesi
 
-## Wallarm Konsolu'nda Kiracı Hesaplarını Deaktifleştirme ve Aktifleştirme 
+Wallarm Console'da, **Global administrator** rolündeki kullanıcı, kendisinin hizmet verdiği global hesaba bağlı kiracı hesaplarını devre dışı bırakabilir. Kiracı hesabı devre dışı bırakıldığında:
 
-Wallarm Konsolu'nda, **Global Yönetici** rolündeki kullanıcı, bu yöneticinin hizmet verdiği global hesaba bağlı kiracı hesapları deaktifleştirebilir. Kiracı hesabı deaktifleştirildiğinde:
+* Bu kiracı hesabının kullanıcıları Wallarm Console'a erişim sağlayamaz.
+* Bu [kiracı seviyesi](deploy-multi-tenant-node.md#multi-tenant-node-characteristics) üzerinde yüklü olan filtreleme düğümü(leri) trafik işlemeyi durdurur.
 
-* Bu kiracı hesabının kullanıcılarının Wallarm Konsolu'na erişimi yoktur.
-* Bu [kiracı seviyesine](deploy-multi-tenant-node.md#multi-tenant-node-characteristics) yüklenmiş filtreleme düğüm(leri) trafik işlemeyi durdurur.
+Devre dışı bırakılan hesaplar silinmez ve tekrar etkinleştirilebilir.
 
-Deaktifleştirilen hesaplar silinmez ve yeniden aktifleştirilebilirler.
+Bir kiracı hesabını devre dışı bırakmak için, kiracı seçicide, kiracı menüsünden **Deactivate** seçeneğini seçin ve ardından onaylayın. Kiracı hesabı devre dışı bırakılarak, kiracı listesinden gizlenecektir.
 
-Bir kiracı hesabını deaktifleştirmek için, kiracı seçicide, kiracı menüsünden **Deaktif** seçeneğini seçin, ardından onaylayın. Kiracı hesabı deaktifleştirilecek ve kiracı listesinden gizlenecektir.
+![Kiracı - Devre Dışı Bırakma](../../images/partner-waf-node/tenant-deactivate.png)
 
-![Kiracı - Deaktif](../../images/partner-waf-node/tenant-deactivate.png)
-
-Daha önce deaktifleştirilmiş kiracı hesabını aktifleştirmek için, kiracı seçicide, **Deaktif Kiracıları Göster** düğmesine tıklayın, ardından kiracınız için **Aktif** seçeneğini seçin.
+Daha önce devre dışı bırakılmış bir kiracı hesabını etkinleştirmek için, kiracı seçicide **Show deactivated tenants** seçeneğine tıklayın, ardından kiracınız için **Activate** seçeneğini seçin.

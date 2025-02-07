@@ -1,8 +1,8 @@
-Varsayılan olarak, dağıtılan Wallarm düğümü gelen trafiği analiz etmez. Trafik analizini başlatmak için, Wallarm'ı `/etc/nginx/sites-enabled/default` dosyası aracılığıyla trafiği proxy olarak yapılandırın:
+Varsayılan olarak, dağıtılmış Wallarm düğümü gelen trafiği analiz etmez. Trafik analizini başlatmak için, Wallarm örneğinde bulunan `/etc/nginx/sites-enabled/default` dosyası üzerinden trafği proxy yapmak üzere Wallarm'ı yapılandırın:
 
-1. Wallarm'ın yasal trafik için proxy olarak kullanılacak bir IP adresini ayarlayın. Mimarinize bağlı olarak bir uygulama örneği, yük dengeleyici veya DNS adı gibi bir IP olabilir.
+1. Wallarm'ın geçerli trafiği proxy yapması için bir IP adresi ayarlayın. Bu, mimarinize bağlı olarak bir uygulama örneğinin IP'si, yük dengeleyici veya DNS adı olabilir.
 
-   Bunu yapmak için, `proxy_pass` değerini düzenleyin, örneğin Wallarm'ın yasal istekleri `http://10.80.0.5` adresine göndermesi gerekir:
+    Bunu yapmak için, `proxy_pass` değerini düzenleyin, örneğin Wallarm geçerli istekleri `http://10.80.0.5` adresine göndermelidir:
 
     ```
     server {
@@ -17,8 +17,7 @@ Varsayılan olarak, dağıtılan Wallarm düğümü gelen trafiği analiz etmez.
         }
     }
     ```
-
-1. Wallarm düğümünün gelen trafiği analiz etmesi için, `wallarm_mode` direktifini `monitoring` olarak ayarlayın:
+1. Wallarm düğümünün gelen trafiği analiz etmesi için, `wallarm_mode` yönergesini `monitoring` olarak ayarlayın:
 
     ```
     server {
@@ -30,4 +29,4 @@ Varsayılan olarak, dağıtılan Wallarm düğümü gelen trafiği analiz etmez.
     }
     ```
 
-    İzleme modu, ilk dağıtım ve çözüm testi için önerilen moddur. Wallarm ayrıca güvenli blokaj ve blokaj modlarını da sağlar, daha fazlasını okuyun [wallarm-mode].
+    İzleme modu, ilk dağıtım ve çözüm testleri için önerilen moddur. Wallarm, güvenli engelleme ve engelleme modlarını da sağlar, [read more][wallarm-mode].

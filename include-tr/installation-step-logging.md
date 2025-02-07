@@ -1,1 +1,1 @@
-NGINX'i kullanarak [filtreleme düğümü değişkenlerinin günlüğünü](../admin-en/configure-logging.md) yapılandırın. Bu, NGINX günlük dosyasının yardımıyla hızlı bir filtreleme düğümü teşhisi yapmanıza izin verecektir.
+NGINX kullanarak [filtreleme düğümü değişkenleri kaydını yapılandırın](../admin-en/configure-logging.md). Bu, NGINX günlük dosyası yardımıyla hızlı bir filtreleme düğümü tanılama işlemi gerçekleştirmeyi sağlar.

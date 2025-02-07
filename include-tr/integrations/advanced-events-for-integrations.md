@@ -1,13 +1,13 @@
-* [Vuruşlar](../../../glossary-en.md#hit) hariç tutulanlar:
+* [Hits](../../../glossary-en.md#hit) tespit edilenler, aşağıdakiler hariç:
 
-    * [Özel düzenli ifadeye](../../rules/regex-rule.md) dayalı olarak algılanan deneysel vuruşlar. Deneysel olmayan vuruşlar bildirimlere tetikler.
-    * [Örnekte](../../events/analyze-attack.md#sampling-of-hits) kaydedilmeyen vuruşlar.
+    * [custom regular expression](../../rules/regex-rule.md) temelinde tespit edilen deneysel hits. Deneysel olmayan hits bildirimleri tetikler.
+    * [sample](../../events/grouping-sampling.md#sampling-of-hits) içerisine kaydedilmeyen hits.
 
 * Sistemle ilgili:
-    * [Kullanıcı](../../../user-guides/settings/users.md) değişiklikleri (yeni oluşturulan, silinen, rol değişikliği)
-    * [Entegrasyon](integrations-intro.md) değişiklikleri (devre dışı bırakıldı, silindi)
-    * [Uygulama](../../../user-guides/settings/applications.md) değişiklikleri (yeni oluşturulan, silinen, isim değişikliği)
-* Algılanan [kırılganlıklar](../../../glossary-en.md#vulnerability), tümü varsayılan olarak veya sadece seçilen risk düzey(ler)i için - yüksek, orta veya düşük.
-* [Kurallar](../../../user-guides/rules/rules.md) ve [tetikleyiciler](../../../user-guides/triggers/triggers.md) değişti (kural veya tetikleyici oluşturma, güncelleme veya silme)
-* [Kapsam (maruz kalan varlıklar)](../../scanner.md) değişti: hostlar, hizmetler ve alanlarla ilgisi güncellemeler
-* Saatlik olarak, bir önceki saatinde işlenen isteklerin sayısıyla bir bildirim alabilirsiniz.
+    * [User](../../../user-guides/settings/users.md) değişiklikleri (yeni oluşturulan, silinen, rol değişikliği)
+    * [Integration](integrations-intro.md) değişiklikleri (devre dışı bırakılan, silinen)
+    * [Application](../../../user-guides/settings/applications.md) değişiklikleri (yeni oluşturulan, silinen, isim değişikliği)
+* Varsayılan olarak veya yalnızca seçilen risk seviyesi(ler) - yüksek, orta veya düşük - için tespit edilen [Vulnerabilities](../../../glossary-en.md#vulnerability).
+* [Rules](../../../user-guides/rules/rules.md) ve [triggers](../../../user-guides/triggers/triggers.md) değişiklikleri (kural veya trigger oluşturma, güncelleme veya silme)
+* [Scope (exposed assets)](../../scanner.md) değişikliği: host, servis ve domain güncellemeleri
+* Saatlik olarak, önceki saatte işlenen istek sayısını içeren bir bildirim alabilirsiniz

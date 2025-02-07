@@ -9,76 +9,76 @@
 
 [anchor1]:      #oob
 
-# Detect Fazı Parametreler açıklaması
+#   Algılama Aşaması Parametre Açıklaması
 
-!!! warning "Detect fazında bir açığın tespiti"
-    Sunucunun yanıtını kullanarak detect fazında bir açığı tespit etmek için, ya yanıtın `response` parametresinde açıklanan yanıt unsurlarından birini içermesi veya `oob` parametresinde açıklanan Bant Dışı DNS markerlarından birinin tetiklenmesi (bant dışı markerlar hakkındaki detaylı bilgiye [aşağıdan][anchor1] bakınız) gereklidir. Aksi takdirde, hiçbir açık bulunmamış kabul edilir.
+!!! warning "Algılama Aşaması'nda Bir Güvenlik Açığı Tespiti"
+    Bir sunucunun yanıtını kullanarak Algılama Aşaması'nda güvenlik açığı tespiti yapabilmek için, ya yanıtın `response` parametresinde tanımlanan yanıt öğelerinden birini içermesi ya da `oob` parametresinde tanımlanan Out-of-Band DNS işaretçilerinden birinin tetiklenmesi gerekmektedir (ayrıntılı bilgi için aşağıdaki [anchor1] bağlantısına bakınız). Aksi takdirde, hiçbir güvenlik açığı bulunmamış sayılacaktır.
 
-!!! info "Markerların işlem mantığı"
-    Eğer Detect fazı sunucunun yanıtında herhangi bir yükten bir işaret bulursa, saldırı başarılı kabul edilir, yani açık başarıyla istismar edilmiştir. Markerlarınyla birlikte Detect fazının işleyiş hakkında ayrıntılı bilgiye bakmak için bu [linke][link-markers] tıklayınız.
+!!! info "İşaretçi İşlem Mantığı"
+    Algılama Aşaması, sunucunun yanıtında herhangi bir payload'dan işaretçi tespit ederse, saldırı başarılı sayılır; yani güvenlik açığı başarılı bir şekilde istismar edilmiştir. İşaretçilerle çalışan Algılama Aşaması hakkında ayrıntılı bilgi için bu [link][link-markers] bağlantısına bakınız.
 
 ##  OOB
 
-`oob` parametresi, test isteğinin Bant Dışı Markerları tetiklemesini kontrol eder.
+`oob` parametresi, test isteği tarafından Out-Of-Band işaretçilerinin tetiklenmesini kontrol eder.
 
-![`oob` parametre yapısı][img-oob]
+![`oob` parameter structure][img-oob]
 
-!!! info "Sunucu yanıtında OOB marker'ının algılanması"
-    Eğer OOB marker sunucunun yanıtında algılanırsa, hedef uygulamada bir açığın bulunduğu varsayılır. 
+!!! info "Sunucu Yanıtında OOB İşaretçisi Tespiti"
+    Eğer sunucunun yanıtında OOB işaretçisi tespit edilirse, hedef uygulamada güvenlik açığının bulunduğu varsayılır.
 
-* Eğer sadece `oob` belirtilmişse, Bant Dışı Markerların en az birinin tetiklenmesi beklenir.
+* Eğer yalnızca `oob` belirtilmişse, en az bir Out-of-Band işaretçisinin tetiklenmesi beklenir.
     
     ```
     - oob 
     ```
 
-* Ayrıca, tetiklenmesi için kontrol edilecek Bant Dışı Marker'ın belirli bir türünü belirtebilirsiniz.
+* Tetiklenmesini kontrol etmek için Out-of-Band işaretçisinin tam türünü de belirtebilirsiniz.
     
-    En az bir `DNS_MARKER` markerının tetiklenmesi beklenir:
+    En az bir `DNS_MARKER` işaretçisinin tetiklenmesi beklenir:
     
     ```
     - oob:
       - dns
     ```
 
-    !!! info "Mevcut OOB marker'ları"
-        Şu anda sadece bir Bant Dışı marker mevcut: `DNS_MARKER`.
+    !!! info "Mevcut OOB İşaretçileri"
+        Şu anda, kullanılabilir tek Out-of-Band işaretçisi bulunmaktadır: `DNS_MARKER`.
 
-!!! info "Bant Dışı saldırı mekanizması"
-    Bant Dışı (kaynak yükü) saldırı mekanizması adını tam olarak karşılar. Saldırıyı gerçekleştirirken, suçlu sunucunun dış kaynaktan zararlı içeriği indirmesini zorlar.
+!!! info "Out-of-Band Saldırı Mekanizması"
+    Out-of-Band (kaynak yükleme) saldırı mekanizması, adının hakkını verir. Saldırıyı gerçekleştirirken, kötü niyetli kişi sunucuyu dış kaynaktan zararlı içerik indirmeye zorlar.
     
-    Örneğin, bir OOB DNS saldırısı gerçekleştirirken, suçlu domain adını aşağıdaki gibi `<img>` etiketine gömebilir: `<img src=http://vulnerable.example.com>`.
+    Örneğin, bir OOB DNS saldırısı gerçekleştirirken, kötü niyetli kişi alan adını `<img>` etiketi içerisine şu şekilde yerleştirebilir: `<img src=http://vulnerable.example.com>`.
     
-    Zararlı isteği aldığı zaman, sunucu domain adını DNS kullanarak çözer ve suçlunun kontrolünde olan kaynağa ulaşır.
+    Zararlı istek alındığında, sunucu DNS kullanarak alan adını çözer ve kötü niyetlisinin kontrolündeki kaynağa yönlendirir.
 
 ##  Yanıt
 
-Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulunup bulunmadığını kontrol eder. Eğer bu öğelerden en az biri bulunursa, bir açığın tespit edildiği varsayılır.
+Bu parametre, test isteğine verilen sunucu yanıtında gerekli öğelerin bulunup bulunmadığını kontrol eder. Eğer bu öğelerden en az biri bulunursa, güvenlik açığının tespit edildiği varsayılır.
 
-![`yanıt` parametre yapısı][img-response]
+![`response` parameter structure][img-response]
 
-* Yanıt herhangi bir marker içermelidir.
+* Yanıt, herhangi bir işaretçi içermelidir.
     
     ```
     - response
     ```
 
-### HTTP Durumlarını Kontrol Etme
+### HTTP Durum Kodlarının Kontrolü
 
-![`HTTP Durum` parametre yapısı][img-http-status]
+![`HTTP Status` parameter structure][img-http-status]
 
-* Yanıt belirli bir HTTP durumu içermelidir.
+* Yanıt, belirli bir HTTP durum kodunu içermelidir.
     ```
     - response:
       - status: value
     ```
     
     ??? info "Örnek"
-        `- status: 500` — durum `500` değerine sahip olmalı.
+        `- status: 500` — durum kodu `500` değerini almalıdır.
             
-        `- status: '5\d\d'` — bu düzenli ifade tüm `5xx` durumlarını kapsar.
+        `- status: '5\d\d'` — bu düzenli ifade tüm `5xx` durum kodlarını kapsar.
 
-* Yanıt listedeki herhangi bir HTTP durumunu içermelidir.
+* Yanıt, listeden herhangi bir HTTP durum kodunu içermelidir.
     
     ```
     - response:
@@ -89,7 +89,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
     ```
     
     ??? info "Örnek"
-        HTTP durumu aşağıdaki değerlerden birini içermelidir: `500`, `404`, herhangi bir `2xx` durumu.
+        HTTP durum kodu, aşağıdaki değerlerden birini içermelidir: `500`, `404`, herhangi bir `2xx` durumu.
             
         ```
             - response:
@@ -99,18 +99,18 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
                 - '2\d\d'
         ```    
 
-### HTTP başlıklarının kontrolü
+### HTTP Başlıklarının Kontrolü
 
-![`headers` parametre yapısı][img-headers]
+![`headers` parameter structure][img-headers]
 
-* Yanıt başlıkları herhangi bir marker içermelidir.
+* Yanıt başlıkları, herhangi bir işaretçi içermelidir.
     
     ```
     - response:
       - headers
     ```
 
-* Yanıt başlıkları belirli bir veri içermelidir ( `value` bir düzenli ifade olabilir).
+* Yanıt başlıkları, belirli verileri içermelidir (burada `value` bir düzenli ifade olabilir).
     
     ```
     - response:
@@ -118,21 +118,21 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
     ```
     
     ??? info "Örnek"
-        * HTTP başlıklarından en az biri `qwerty` alt dizesini içermeli.
+        * HTTP başlıklarının en az biri, bir alt dizi olarak `qwerty` içermelidir.
                 
             ```
                 - response:
                   - headers: "qwerty"
             ```
             
-        * Bu düzenli ifade, sayısal değeri olan herhangi bir başlığı kapsar.
+        * Bu düzenli ifade, sayısal bir değere sahip herhangi bir başlığı kapsar.
                 
             ```
                 - response:
                   - headers: '\d+'
             ```    
-    
-* Belirli bir yanıt başlığı belirli bir veriyi içermelidir ( `header_#` ve `header_#_value` düzenli ifadeler olabilir).
+
+* Belirli bir yanıt başlığı, belirli verileri içermelidir (burada `header_#` ve `header_#_value` düzenli ifadeler olabilir).
     
     ```
     - response:
@@ -143,7 +143,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
     ```
     
     ??? info "Örnek"
-        `Cookie` başlığı `uid=123` verisini içermeli. `X-` ile başlayan tüm başlıklar hiçbir veri içermemeli.
+        `Cookie` başlığı, `uid=123` bilgisini içermelidir. `X-` ile başlayan tüm başlıklar herhangi bir veri içermemelidir.
           
         ```
             - response:
@@ -151,8 +151,8 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
                 - "Cookie": "uid=123"
                 - 'X-': ""
         ```    
-    
-* Belirli yanıt başlıkları belirtilen listenin verilerini içermelidir ( `header_#` ve `header_#_value_#` düzenli ifadeler olabilir).
+
+* Belirli yanıt başlıkları, belirtilen listedeki verilerden birini içermelidir (burada `header_#` ve `header_#_value_#` düzenli ifadeler olabilir).
 
     ```
     - response:
@@ -169,7 +169,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
     ```
     
     ??? info "Örnek"
-        `Cookie` başlığı aşağıdaki veri seçeneklerinden birini içermelidir: `"test=qwerty"`, `"uid=123"`. `X-` ile başlayan tüm başlıklar hiçbir veri içermemeli.
+        `Cookie` başlığı, aşağıdaki veri seçeneklerinden birini içermelidir: `"test=qwerty"`, `"uid=123"`. `X-` ile başlayan tüm başlıklar herhangi bir veri içermemelidir.
             
         ```
             - response:
@@ -180,7 +180,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
                 - 'X-': "" 
         ```
     
-* Detect fazı ayrıca sunucunun yanıtından belirli bir başlığın eksik olup olmadığını da kontrol edebilir. Bunu yapmak için, belirli bir başlık değerine `null` atanır.
+* Algılama aşaması, belirli bir başlığın sunucu yanıtında bulunmadığını da kontrol edebilir. Bunun için, ilgili başlığın değerine `null` atanır.
     
     ```
     - response:
@@ -188,18 +188,18 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
         - header_X: null
     ```
 
-### HTTP Yanıtının Gövdesini Kontrol Etme
+### HTTP Yanıt Gövdesinin Kontrolü
 
-![`body` parametre yapısı][img-body]
+![`body` parameter structure][img-body]
 
-* Yanıtın gövdesi herhangi bir marker içermelidir.
+* Yanıt gövdesi, herhangi bir işaretçi içermelidir.
     
     ```
     - response:
       - body
     ```
 
-* Yanıtın gövdesi belirli bir veri içermelidir ( `value` bir düzenli ifade olabilir).
+* Yanıt gövdesi, belirli verileri içermelidir (burada `value` bir düzenli ifade olabilir).
     
     ```
     - response:
@@ -207,7 +207,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
     ```
     
     ??? info "Örnek"
-        Yanıtın gövdesi `STR_MARKER` veya `demo_string` alt dizesini içermeli.
+        Yanıt gövdesi, `STR_MARKER` veya `demo_string` alt dizgilerinden birini içermelidir.
             
         ```
             - response:
@@ -215,11 +215,11 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
               - body: 'demo_string'
         ```
 
-### HTML İşaretleme Kontrolü
+### HTML İşaretlemesinin Kontrolü
 
-![`html` parametre yapısı][img-html]
+![`html` parameter structure][img-html]
 
-* HTML işaretleme `STR_MARKER` içermelidir.
+* HTML işaretlemesi, `STR_MARKER` içermelidir.
     
     ```
     - response:
@@ -227,7 +227,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
         - html
     ```
 
-* Yanıttaki HTML etiketi `STR_MARKER` içermelidir.
+* Yanıt içindeki HTML etiketi, `STR_MARKER` içermelidir.
     
     ```
     - response:
@@ -236,7 +236,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
           - tag
     ```
 
-* Yanıttaki HTML etiketi belirli bir veri içermelidir ( `value` bir düzenli ifade olabilir).
+* Yanıt içindeki HTML etiketi, belirli verileri içermelidir (burada `value` bir düzenli ifade olabilir).
     
     ```
     - response:
@@ -246,7 +246,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
     ```
     
     ??? info "Örnek"
-        Yanıtın HTML işaretleme kısmı `а` etiketini içermelidir.
+        Yanıtın HTML işaretlemesi, `a` etiketini içermelidir.
             
         ```
             - response:
@@ -255,7 +255,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
                   - tag: 'a'
         ```
 
-* Yanıttaki HTML etiketi belirtilen listeden herhangi bir veri içermelidir ( `value_#` bir düzenli ifade olabilir).
+* Yanıt içindeki HTML etiketi, belirtilen listedeki verilerden herhangi birini içermelidir (burada `value_#` düzenli ifade olabilir).
     
     ```
     - response:
@@ -268,7 +268,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
     ```
     
     ??? info "Örnek"
-        Yanıtın HTML işaretleme kısmı aşağıdaki etiketlerden birini içermelidir: `а`, `img`, ya da `tr`.
+        Yanıtın HTML işaretlemesi, aşağıdaki etiketlerden birini içermelidir: `a`, `img` veya `tr`.
             
         ```
             - response:
@@ -280,7 +280,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
                     - 'tr'
         ```    
     
-* Yanıttaki HTML özelliği `STR_MARKER` içermelidir.
+* Yanıtın HTML özniteliği, `STR_MARKER` içermelidir.
     
     ```
     - response:
@@ -289,7 +289,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
           - attribute
     ```
 
-* HTML özelliği belirli bir veri içermelidir ( `value` bir düzenli ifade olabilir).
+* HTML özniteliği, belirli verileri içermelidir (burada `value` bir düzenli ifade olabilir).
     
     ```
     - response:
@@ -299,7 +299,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
     ```
     
     ??? info "Örnek"
-        HTML özelliği ya `abc` alt dizesini içermeli ya da hesaplama işaretçisi.
+        Yanıtın HTML özniteliği, ya alt dizi olarak `abc` içermeli ya da hesaplama işaretçisini bulundurmalıdır.
             
         ```
             - response:
@@ -308,7 +308,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
                   - attribute: '(abc|CALC_MARKER)'
         ```    
 
-* Yanıttaki HTML özelliği belirtilen listeden herhangi bir veriyi içermelidir ( `value_#` bir düzenli ifade olabilir):
+* Yanıtın HTML özniteliği, belirtilen listedeki verilerden herhangi birini içermelidir (burada `value_#` düzenli ifade olabilir):
     
     ```
     - response:
@@ -321,7 +321,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
     ```
     
     ??? info "Örnek"
-        HTML biçimlendirmesi aşağıdaki özniteliklerden birini içermelidir: `src`, `id`, ya da `style`.
+        HTML işaretlemesi, aşağıdaki özniteliklerden birini içermelidir: `src`, `id` veya `style`.
             
         ```
             - response:
@@ -333,10 +333,10 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
                     - 'style'
         ```    
 
-!!! info "`attribute` parametresinin kısaltılmış versiyonu"
-    `attribute` parametresini kullanmak yerine, kısaltılmış versiyonu — `attr` kullanabilirsiniz.
+!!! info "Kısaltılmış `attribute` Parametresi"
+    `attribute` parametresi yerine, kısaltılmış sürümü — `attr` — kullanabilirsiniz.
 
-* Yanıttaki HREF bağlantısı `STR_MARKER` içermelidir.
+* Yanıtın HREF bağlantısı, `STR_MARKER` içermelidir.
     
     ```
     - response:
@@ -345,7 +345,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
           - href
     ```
 
-* Yanıttaki HREF bağlantısı belirli bir veri içermelidir ( `value` bir düzenli ifade olabilir).
+* Yanıtın HREF bağlantısı, belirli verileri içermelidir (burada `value` bir düzenli ifade olabilir).
     
     ```
     - response:
@@ -355,7 +355,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
     ```
     
     ??? info "Örnek"
-        HREF bağlantısı DNS markerı içermelidir.
+        HREF bağlantısı, DNS işaretçisini içermelidir.
             
         ```
             - response:
@@ -363,8 +363,8 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
                 - html:
                   - href: 'DNS_MARKER'
         ```    
-    
-* Yanıttaki HREF bağlantısı belirtilen listeden herhangi bir veriyi içermelidir ( `value_#` bir düzenli ifade olabilir).
+
+* Yanıtın HREF bağlantısı, belirtilen listedeki verilerden herhangi birini içermelidir (burada `value_#` düzenli ifade olabilir).
     
     ```
     - response:
@@ -377,7 +377,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
     ```
     
     ??? info "Örnek"
-        HREF bağlantısı yanıtı ya `google` ya da `cloudflare` alt dizesini içermelidir.
+        Yanıtın HREF bağlantısı, alt dizi olarak ya `google` ya da `cloudflare` içermelidir.
             
         ```
             - response:
@@ -388,7 +388,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
                     - 'cloudflare'
         ```
 
-* Yanıttaki JavaScript belirteçleri `STR_MARKER` içermelidir.
+* Yanıtın JavaScript token'ları, `STR_MARKER` içermelidir.
     
     ```
     - response:
@@ -397,10 +397,10 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
           - js
     ```
     
-    !!! info "JavaScript belirteçleri"
-        JavaScript belirteci, `<script>` ve `</script>` etiketleri arasında yatan herhangi bir JavaScript kodudur.
+    !!! info "JavaScript Tokenları"
+        JavaScript token, `<script>` ve `</script>` etiketleri arasındaki herhangi bir JavaScript kodu parçasıdır.
         
-        Örneğin, aşağıdaki betik, `wlrm` değerine sahip bir belirteç içerir:
+        Örneğin, aşağıdaki betik `wlrm` değerine sahip bir token içerir:
         
         ```
         <body>
@@ -411,7 +411,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
         </body>
         ```
 
-* Yanıttaki JavaScript belirteçleri belirli bir veri içermelidir (değer düzenli bir ifade olabilir).
+* Yanıtın JavaScript token'ları, belirli verileri içermelidir (burada value bir düzenli ifade olabilir).
     
     ```
     - response:
@@ -421,7 +421,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
     ```
     
     ??? info "Örnek"
-        JavaScript belirteci `wlrm` değerini içermelidir.
+        JavaScript token, `wlrm` değerini içermelidir.
             
         ```
             - response:
@@ -430,7 +430,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
                   - js: 'wlrm'
         ```
 
-* Yanıttaki JavaScript belirteçleri belirtilen listeden herhangi bir veriyi içermelidir ( `value_#` düzenli bir ifade olabilir).
+* Yanıtın JavaScript token'ları, belirtilen listedeki verilerden herhangi birini içermelidir (burada `value_#` düzenli ifade olabilir).
     
     ```
     - response:
@@ -443,7 +443,7 @@ Bu parametre sunucunun bir test isteği ile yanıtında gerekli öğelerin bulun
     ```
     
     ??? info "Örnek"
-        JavaScript belirteci ya `wlrm` ya da `test` değerini içermelidir.
+        JavaScript token, ya `wlrm` ya da `test` değerini içermelidir.
             
         ```
             - response:

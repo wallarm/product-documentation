@@ -1,58 +1,58 @@
 [splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
-# Fluentd Aracılığıyla Splunk Enterprise
+# Splunk Enterprise üzerinden Fluentd
 
-Bu talimatlar, olayları Splunk SIEM sistemine aktarmak üzere Fluentd veri toplayıcısı ile Wallarm'ın örnek entegrasyonunu sağlar.
+Bu talimatlar, Wallarm ile Fluentd veri toplayıcısının örnek entegrasyonu aracılığıyla olayların Splunk SIEM sistemine iletilmesini sağlamaktadır.
 
---8<-- "../include-tr/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.md"
 
 ![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
 
 ## Kullanılan kaynaklar
 
-* WEB URL `https://109.111.35.11:8000` ve API URL `https://109.111.35.11:8088` olan [Splunk Enterprise](#splunk-enterprise-konfigürasyonu)
-* Debian 11.x (bullseye) üzerinde kurulu [Fluentd](#fluentd-konfigürasyonu) ve `https://fluentd-example-domain.com` adresinde mevcut
-* Wallarm Konsolunda yönetici erişimi [Avrupa bulutu içinde](https://my.wallarm.com) [Fluentd entegrasyonunu yapılandırmak](#fluentd-entegrasyonunun-yapılandırılması) için
+* WEB URL'si `https://109.111.35.11:8000` ve API URL'si `https://109.111.35.11:8088` ile [Splunk Enterprise](#splunk-enterprise-configuration)
+* Debian 11.x (bullseye) üzerinde kurulu ve `https://fluentd-example-domain.com` adresinde ulaşılabilen [Fluentd](#fluentd-configuration)
+* [EU cloud](https://my.wallarm.com) üzerindeki Wallarm Console'a yönetici erişimi ile [Fluentd entegrasyonunu yapılandırmak](#configuration-of-fluentd-integration)
 
---8<-- "../include-tr/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.md"
 
-Splunk Enterprise ve Fluentd hizmetlerine yönlendiren bağlantılar örnek olarak aktarıldığından, herhangi bir yanıt vermezler.
+Splunk Enterprise ve Fluentd servislerine örnek olarak verilen bağlantılar, gerçek yanıt vermemektedir.
 
-### Splunk Enterprise Konfigürasyonu
+### Splunk Enterprise yapılandırması
 
-Fluentd günlükleri diğer varsayılan ayarlarla birlikte `Wallarm Fluentd günlükleri` adı ile Splunk HTTP Olay Denetleyicisine gönderilir:
+Fluentd logları, `Wallarm Fluentd logs` adıyla ve diğer varsayılan ayarlarla Splunk HTTP Event Controller’a gönderilir:
 
-![HTTP Olay Toplayıcı Yapılandırması](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
+![HTTP Event Collector Yapılandırması](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
 
-HTTP Olay Denetleyicisine erişmek için üretilen `f44b3179-91aa-44f5-a6f7-202265e10475` belirteci kullanılacaktır.
+HTTP Event Controller’a erişmek için oluşturulan `f44b3179-91aa-44f5-a6f7-202265e10475` token'ı kullanılacaktır.
 
-Splunk HTTP Olay Denetleyicisi kurulumunun daha ayrıntılı bir açıklaması [resmi Splunk belgelerinde](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector) mevcuttur.
+Splunk HTTP Event Controller kurulumu hakkında daha detaylı bilgi [resmi Splunk dokümantasyonunda](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector) mevcuttur.
 
-### Fluentd Konfigürasyonu
+### Fluentd yapılandırması
 
-Wallarm, günlükleri Fluentd ara veri toplayıcısına web kancaları aracılığıyla gönderdikçe, Fluentd konfigürasyonu aşağıdaki gereksinimleri karşılamalıdır:
+Wallarm, webhooks aracılığıyla logları Fluentd ara veri toplayıcısına gönderdiğinden, Fluentd yapılandırması aşağıdaki gereksinimleri karşılamalıdır:
 
-* POST veya PUT isteklerini kabul eder
-* HTTPS isteklerini kabul eder
-* Kamuya açık URL'ye sahip olması
-* Günlükleri Splunk Enterprise'a yönlendirebilir, bu örnekte günlükleri yönlendirmek için `splunk_hec` eklentisi kullanır
+* POST veya PUT isteklerini kabul etmek
+* HTTPS isteklerini kabul etmek
+* Genel URL’ye sahip olmak
+* Logları Splunk Enterprise’a iletmek; bu örnekte logları iletmek için `splunk_hec` eklentisi kullanılmaktadır
 
-Fluentd, `td-agent.conf` dosyasında yapılandırılmıştır:
+Fluentd, `td-agent.conf` dosyasında yapılandırılır:
 
-* Gelen web kancası işleme, `source` yönergesinde yapılandırılmıştır:
-    * Trafik, 9880 portuna gönderilir
-    * Fluentd yalnızca HTTPS bağlantılarını kabul etmek üzere yapılandırılmıştır
-    * Fluentd TLS sertifikası, kamuoyu tarafından güvenilen bir CA tarafından imzalanmış olup `/etc/ssl/certs/fluentd.crt` dosyasında bulunur
-    * TLS sertifikasının özel anahtarı `/etc/ssl/private/fluentd.key` dosyasında bulunur
-* Splunk'a günlüğü yönlendirme ve günlük çıktısı, `match` yönergesinde yapılandırılmıştır:
-    * Tüm olay günlükleri Fluentd'den kopyalanır ve çıktı eklentisi [fluent-plugin-splunk-hec](https://github.com/splunk/fluent-plugin-splunk-hec) aracılığıyla Splunk HTTP Olay Denetleyicisine yönlendirilir
-    * Fluentd günlükleri ek olarak JSON formatında komut satırına yazdırılır (19-22 kod satırları). Ayar, olayların Fluentd aracılığıyla günlüğe kaydedildiğini doğrulamak için kullanılır
+* Gelen webhook işleme, `source` yönergesinde yapılandırılmıştır:
+    * Trafik 9880 portuna yönlendirilir
+    * Fluentd, yalnızca HTTPS bağlantılarını kabul edecek şekilde yapılandırılmıştır
+    * Genel olarak güvenilen bir CA tarafından imzalanmış Fluentd TLS sertifikası `/etc/ssl/certs/fluentd.crt` dosyasında bulunur
+    * TLS sertifikası için özel anahtar `/etc/ssl/private/fluentd.key` dosyasında bulunur
+* Logların Splunk’a iletilmesi ve log çıktısının alınması `match` yönergesinde yapılandırılmıştır:
+    * Tüm olay logları Fluentd tarafından kopyalanır ve Splunk HTTP Event Controller üzerinden [fluent-plugin-splunk-hec](https://github.com/splunk/fluent-plugin-splunk-hec) çıktı eklentisi ile iletilir
+    * Fluentd logları, ayrıca komut satırında JSON formatında yazdırılır (19-22 kod satırı). Bu ayar, olayların Fluentd aracılığıyla loglandığını doğrulamak içindir
 
 ```bash linenums="1"
 <source>
-  @type http # HTTP ve HTTPS trafiği için giriş eklentisi
+  @type http # HTTP ve HTTPS trafiği için input eklentisi
   port 9880 # gelen istekler için port
-  <transport tls> # bağlantı işleme yapılandırması
+  <transport tls> # bağlantı işlemleri için yapılandırma
     cert_path /etc/ssl/certs/fluentd.crt
     private_key_path /etc/ssl/private/fluentd.key
   </transport>
@@ -60,57 +60,57 @@ Fluentd, `td-agent.conf` dosyasında yapılandırılmıştır:
 <match **>
   @type copy
   <store>
-      @type splunk_hec # günlükleri Splunk API'ye HTTP Olay denetleyicisi üzerinden iletmek için çıkış eklentisi fluent-plugin-splunk-hec
-      hec_host 109.111.35.11 # Splunk sunucusu
+      @type splunk_hec # logları Splunk API'sine HTTP Event Controller aracılığıyla iletmek için fluent-plugin-splunk-hec çıktı eklentisi
+      hec_host 109.111.35.11 # Splunk ana makinesi
       hec_port 8088 # Splunk API portu
-      hec_token f44b3179-91aa-44f5-a6f7-202265e10475 # HTTP Olay Denetleyicisi belirteci
+      hec_token f44b3179-91aa-44f5-a6f7-202265e10475 # HTTP Event Controller token'ı
     <format>
-      @type json # yönlendirilen günlüklerin formatı
+      @type json # iletilen logların formatı
     </format>
   </store>
   <store>
-     @type stdout # Fluentd günlüklerini komut satırına yazdırmak için çıkış eklentisi
-     output_type json # komut satırına yazdırılan günlüklerin formatı
+     @type stdout # komut satırında Fluentd loglarını yazdırmak için çıktı eklentisi
+     output_type json # komut satırında yazdırılan logların formatı
   </store>
 </match>
 ```
 
-Yapılandırma dosyalarının daha ayrıntılı bir açıklaması [resmi Fluentd belgelerinde](https://docs.fluentd.org/configuration/config-file) mevcuttur.
+Yapılandırma dosyaları hakkında daha detaylı bilgi [resmi Fluentd dokümantasyonunda](https://docs.fluentd.org/configuration/config-file) mevcuttur.
 
-!!! info "Fluentd konfigürasyonunu test etme"
-    Fluentd günlüklerinin oluşturulduğunu ve Splunk'a yönlendirildiğini kontrol etmek için, Fluentd'ye bir PUT veya POST isteği gönderilebilir.
+!!! info "Fluentd yapılandırmasını test etme"
+    Fluentd loglarının oluşturulduğunu ve Splunk’a iletildiğini doğrulamak için, PUT veya POST isteği Fluentd’e gönderilebilir.
 
     **İstek örneği:**
     ```curl
     curl -X POST 'https://fluentd-example-domain.com' -H "Content-Type: application/json" -H "Authorization: Splunk f44b3179-91aa-44f5-a6f7-202265e10475" -d '{"key1":"value1", "key2":"value2"}'
     ```
 
-    **Fluentd günlükleri:**
-    ![Fluentd'deki Günlükler](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-curl-log.png)
+    **Fluentd logları:**
+    ![Fluentd Logları](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-curl-log.png)
 
-    **Splunk günlükleri:**
-    ![Splunk'taki Günlükler](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
+    **Splunk logları:**
+    ![Splunk Logları](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
 
-### Fluentd Entegrasyonunun Yapılandırılması
+### Fluentd entegrasyonunun yapılandırılması
 
---8<-- "../include-tr/integrations/webhook-examples/create-fluentd-webhook.md"
+--8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![Fluentd ile Webhook Entegrasyonu](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Fluentd entegrasyonu ile webhook](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-[Fluentd entegrasyon konfigürasyonu hakkında daha fazla bilgi](../fluentd.md)
+[Fluentd entegrasyonunun yapılandırılması hakkında daha detaylı bilgi](../fluentd.md)
 
-## Örnek Testleri
+## Örnek test etme
 
---8<-- "../include-tr/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
 
-Fluentd, olayı aşağıdaki gibi kaydeder:
+Fluentd, olayı aşağıdaki gibi loglayacaktır:
 
-![Fluentd'den Splunk'a yeni kullanıcı hakkındaki günlük](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
+![Splunk’te Fluentd’den yeni kullanıcı logu](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
 
-Splunk olaylarında aşağıdaki giriş görüntülenir:
+Aşağıdaki giriş, Splunk olayları arasında görüntülenecektir:
 
-![Fluentd'den Splunk'a yeni kullanıcı kartı](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
+![Splunk’te Fluentd’den yeni kullanıcı kartı](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
 
-## Splunk Enterprise'daki Olayları Bir Gösterge Tablosu Olarak Düzenleme
+## Splunk Enterprise’da olayların panoda düzenli şekilde görüntülenmesi
 
---8<-- "../include-tr/integrations/application-for-splunk.md"
+--8<-- "../include/integrations/application-for-splunk.md"

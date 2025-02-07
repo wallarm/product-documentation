@@ -1,15 +1,15 @@
-# Trafik aynalama için NGINX yapılandırma örneği
+# Trafik Aynalaması için NGINX Yapılandırma Örneği
 
-NGINX 1.13 sürümünden başlayarak, trafiği ek bir arka uca aynalayabilirsiniz. Bu makale, NGINX'in [trafiği aynalaması](overview.md) ve düğümün aynalanmış trafiği işlemesi için gerekli örnek yapılandırmayı sağlar.
+NGINX 1.13'ten itibaren, trafiği ek bir arka uca aynalayabilirsiniz. Bu makale, NGINX'in trafiği [aynalanması](overview.md) ve düğümün aynalanan trafiği işlemesi için gerekli örnek yapılandırmayı sunar.
 
-## Adım 1: Trafiği aynalamak için NGINX'i yapılandırın
+## Adım 1: NGINX'i Trafiği Aynalamak için Yapılandırın
 
 NGINX'in trafiği aynalaması için:
 
-1. `location` veya `server` bloğunda `mirror` yönergesini ayarlayarak [`ngx_http_mirror_module`](http://nginx.org/en/docs/http/ngx_http_mirror_module.html) modülünü yapılandırın.
+1. `location` veya `server` bloğunda `mirror` direktifini ayarlayarak [`ngx_http_mirror_module`](http://nginx.org/en/docs/http/ngx_http_mirror_module.html) modülünü yapılandırın.
 
-    Aşağıdaki örnekte `location /` lokasyonuna alınan istekler `location /mirror-test` lokasyonuna aynalayacaktır.
-1. Aynalanan trafiği Wallarm düğümüne göndermek için, aynalanacak başlıkları listeliyorsunuz ve `mirror` yönergenin işaret ettiği `location` 'da düğümle aynı makinenin IP adresini belirtin.
+    Aşağıdaki örnek, `location /` üzerinde alınan istekleri `location /mirror-test`e aynalayacaktır.
+1. Aynalanan trafiği Wallarm node’una göndermek için, aynalanacak başlıkları listeleyin ve `mirror` direktifinin işaret ettiği `location` içerisinde node’un bulunduğu makinenin IP adresini belirtin.
 
 ```
 location / {
@@ -34,6 +34,6 @@ location /mirror-test {
     }
 ```
 
-## Adım 2: Aynalanan trafiği filtrelemek için Wallarm düğümünü yapılandırın
+## Adım 2: Wallarm Node’unu Aynalanan Trafiği Filtreleyecek Şekilde Yapılandırın
 
---8<-- "../include-tr/wallarm-node-configuration-for-mirrored-traffic.md"
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"

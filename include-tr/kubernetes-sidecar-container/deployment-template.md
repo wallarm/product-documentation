@@ -1,4 +1,4 @@
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,8 +13,8 @@ spec:
         app: myapp
     spec:
       containers: 
-      # Ana uygulama konteynırınızın tanımı
-      - name: myapp
+      # Ana uygulama konteynerinizin tanımı
+      - name: myapp 
         image: <Image>
         resources:
           limits:

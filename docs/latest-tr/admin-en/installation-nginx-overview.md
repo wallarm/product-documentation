@@ -1,4 +1,4 @@
-#   Kurulum seçenekleri genel bakış
+# Kurulum Seçenekleri Genel Bakış
 
 [img-postanalytics-options]:    ../images/installation-nginx-overview/postanalytics-options.png
 [img-nginx-options]:            ../images/installation-nginx-overview/nginx-options.png
@@ -15,48 +15,48 @@
 
 <!-- !!!!! TO MOVE -->
 
-NGINX veya NGINX Plus ile kullanılan Wallarm filtreleme düğümü aşağıdaki modülleri içerir:
-*   NGINX'e (NGINX Plus) bağlanan modül
-*   Postanalytics modülü
+NGINX veya NGINX Plus ile kullanılan Wallarm filtreleme düğümü, aşağıdaki modüllerden oluşur:
+*   NGINX (NGINX Plus) ile bağlantıyı sağlayan modül
+*   postanalytics modülü
 
-Modüllerin kurulum ve yapılandırma sırası, NGINX veya NGINX Plus'ı nasıl kurduğunuza bağlıdır.
+Modüllerin kurulumu ve yapılandırma sırası, NGINX veya NGINX Plus kurulum yöntemine bağlıdır.
 
-Bu belge aşağıdaki bölümleri içerir:
+Bu doküman aşağıdaki bölümleri içerir:
 
-*   [Modül genel bakışı][anchor-mod-overview]
-*   [Linkler][anchor-mod-installation] belirli modül kurulumu ve yapılandırma talimatlarına
+*   [Modüllerin Genel Bakışı][anchor-mod-overview]
+*   [Kurulum ve Yapılandırma Talimatlarına Bağlantılar][anchor-mod-installation]
 
-##  Modüllerin genel bakışı
+## Modüllerin Genel Bakışı
 
-Filtreleme düğümü isteklerin işlenmesi için kullanıldığında, gelen trafiği önce başlangıç işlemi ve ardından Wallarm modülleri tarafından işlem görür.
+Filtreleme düğümü istekleri işlemek için kullanıldığında, gelen trafik sırasıyla ilk işleme tabi tutulur ve ardından Wallarm modülleri tarafından işlenir.
 
-1.  Başlangıç trafik işlemesi, sistemde zaten kurulu olan [NGINX][anchor-mod-inst-nginx] veya [NGINX Plus][anchor-mod-inst-nginxplus] 'a bağlanan modül tarafından gerçekleştirilir.
-2.  Daha fazla trafik işlemesi, [postanalytics modülü][anchor-mod-inst-postanalytics] tarafından yürütülür, bu, düzgün çalışması için önemli miktarda bellek gerektirir. Bu nedenle, aşağıdaki kurulum seçeneklerinden birini seçebilirsiniz:
-    *   NGINX/NGINX Plus ile aynı sunuculara yüklenmiş
-    *   NGINX/NGINX Plus'tan ayrı bir grup sunucuya yüklendi
+1.  İlk trafik işleme, sistemde halihazırda kurulu olan [NGINX][anchor-mod-inst-nginx] veya [NGINX Plus][anchor-mod-inst-nginxplus] ile bağlantı sağlayan modül tarafından gerçekleştirilir.
+2.  Daha sonraki trafik işleme, düzgün çalışması için önemli miktarda bellek gerektiren [postanalytics modülü][anchor-mod-inst-postanalytics] tarafından yapılır. Bu nedenle, aşağıdaki kurulum seçeneklerinden birini tercih edebilirsiniz:
+    *   NGINX/NGINX Plus ile aynı sunucularda kurulum (sunucu yapılandırmaları buna izin veriyorsa)
+    *   NGINX/NGINX Plus'dan ayrı bir sunucu grubuna kurulum
 
-![Postanalytics Modülü Kurulum Seçenekleri][img-postanalytics-options]
+![Postanalytics Module Installation Options][img-postanalytics-options]
 
-##  Modüllerin kurulması ve yapılandırılması
+## Modüllerin Kurulumu ve Yapılandırılması
 
 ### NGINX için Modül
 
-!!! warning "Kurulacak modülün seçimi"
-    Wallarm modülünün kurulum ve bağlantı prosedürleri, kullandığınız NGINX kurulum yöntemine bağlıdır.
+!!! warning "Yüklenecek modülü seçme"
+    Wallarm modülünün kurulumu ve bağlantı prosedürleri, kullandığınız NGINX kurulum yöntemine bağlıdır.
 
-NGINX için Wallarm modülü, aşağıdaki kurulum yöntemlerinden biriyle bağlanabilir (her kurulum seçeneği için talimatların bağlantıları parantez içinde listelenmiştir):
+NGINX için Wallarm modülü, aşağıdaki kurulum yöntemlerinden biriyle bağlanabilir (her kurulum seçeneği için talimatlara bağlantılar parantez içinde listelenmiştir):
 
-![NGINX Kurulum Seçenekleri için Modül][img-nginx-options]
+![Module for NGINX Installation Options][img-nginx-options]
 
-*   Kaynak dosyalardan NGINX'in oluşturulması ([talimat][link-ig-nginx])
-*   NGINX depo havuzuundan NGINX paketlerinin kurulması ([talimat][link-ig-nginx])
-*   Debian depo havuzuundan NGINX paketlerinin kurulması ([talimat][link-ig-nginx-distr])
-*   CentOS depo havuzuundan NGINX paketlerinin kurulması ([talimat][link-ig-nginx-distr])
+*   Kaynak dosyalardan NGINX derlemek ([instruction][link-ig-nginx])
+*   NGINX deposundan NGINX paketlerini yüklemek ([instruction][link-ig-nginx])
+*   Debian deposundan NGINX paketlerini yüklemek ([instruction][link-ig-nginx-distr])
+*   CentOS deposundan NGINX paketlerini yüklemek ([instruction][link-ig-nginx-distr])
 
 ### NGINX Plus için Modül
 
-[Şu][link-ig-nginxplus] talimatlar, Wallarm'ın bir NGINX Plus modülüne nasıl bağlanacağını anlatır.
+[Bunlar][link-ig-nginxplus] Wallarm'ın NGINX Plus modülüne nasıl bağlanacağını açıklayan talimatlardır.
 
-### Postanalytics modülü
+### postanalytics modülü
 
-Postanalytics modülünün kurulumu ve yapılandırılması (hem NGINX/NGINX Plus ile aynı sunucuda hem de ayrı bir sunucuda) hakkında talimatlar, [NGINX][anchor-mod-inst-nginx] modül kurulumu ve [NGINX Plus][anchor-mod-inst-nginxplus] modül kurulumu bölümlerinde bulunur.
+postanalytics modülünün kurulumu ve yapılandırmasıyla ilgili talimatlar (NGINX/NGINX Plus ile aynı sunucuda veya ayrı bir sunucuda) [NGINX][anchor-mod-inst-nginx] modül kurulumu ve [NGINX Plus][anchor-mod-inst-nginxplus] modül kurulumu bölümlerinde yer almaktadır.

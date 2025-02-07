@@ -1,89 +1,89 @@
 [link-ruby]:        http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
 [link-yaml]:        https://yaml.org/spec/1.2/spec.html
 
-# Nokta Oluşturma İlkeleri
+# Noktalar Oluşturma İlkeleri
 
-!!! warning "Ayrılmış kelimeler"
-    Çakışmaları önlemek için baz referans talep ögeleri için aşağıdaki isim ve anahtarları kullanmayın:
+!!! warning "Rezerve Kelimeler"
+    Çakışmaları önlemek için temel istek öğeleri için aşağıdaki isimlerin ve anahtarların kullanılmaması gerekmektedir:
+        
+    * Çözücü isimleri ile uyuşan isimler ve anahtarlar
+    * Filtre isimleri ile uyuşan isimler ve anahtarlar
+    * `name` ve `value` hizmet kelimeleri ile uyuşan isimler ve anahtarlar 
 
-    * Ayrıştırıcıların isimleriyle eşleşen isimler ve anahtarlar
-    * Filtrelerin isimleriyle eşleşen isimler ve anahtarlar
-    * `name` ve `value` hizmet kelimeleriyle eşleşen isimler ve anahtarlar
+Özel bir eklenti geliştirirken göz önünde bulundurulması gereken birkaç evrensel nokta oluşturma ilkesi vardır.
 
-Özelleştirilmiş bir eklenti geliştirirken dikkate alınması gereken birkaç genel nokta oluşturma ilkesi vardır.
-
-* Tüm Noktalar düzenli ifadeler olarak işleme alınır.
+* Tüm Noktalar düzenli ifadeler (regular expressions) olarak değerlendirilir.
     
     **Örnek:**
 
-    * `HEADER_A.*_value` noktası, böyle bir başlık talepte mevcutsa `A` ile başlayan isme sahip başlığı ifade eder.
-    * `PATH_\d_value` noktası, talebin URI yolunun ilk 10 parçasını ifade eder.
+    * `HEADER_A.*_value` noktası, istek içinde varsa `A` ile başlayan isme sahip başlığı ifade eder.
+    * `PATH_\d_value` noktası, isteğin URI yolunun ilk 10 bölümüne işaret eder.
 
-* Noktanın parçaları `_` sembolü kullanılarak bölünmelidir.
+* Nokta parçaları `_` sembolü kullanılarak bölünmelidir.
     
     **Örnek:** 
     
     `URI_value`.
 
-* Ayrıştırıcıların ve filtrelerin isimleri, noktaya büyük harf olarak eklenmelidir.
+* Çözücü ve filtre isimleri, noktanın içerisine büyük harflerle eklenmelidir.
     
     **Örnek:** 
     
     `ACTION_EXT_value`.
 
-* Talep ögelerinin isimleri, baz referans taleplerinde göründüğü gibi tam aynı şekilde noktaya eklenmelidir.
+* İstek öğelerinin isimleri, temel istek içinde göründükleri şekilde tam olarak eklenmelidir.
     
     **Örnek:** 
     
-    `GET http://example.com/login/?Uid=01234` isteği için, `GET_Uid_value` noktası `Uid` sorgu dizesi parametresini ifade eder.
+    `GET http://example.com/login/?Uid=01234` isteği için, `GET_Uid_value` noktası `Uid` sorgu dizesi parametresine işaret eder.
     
-    !!! info "Özellikli simgeleri kaçış işlemi yaparak kullanma"
-        Noktalarda kullanılan bazı hizmet simgeleri kaçış işlemi gerektirebilir. Ayrıntılı bilgi için, [Ruby programlama dilinde düzenli ifadeler][link-ruby] hakkındaki belgelere bakın.
+    !!! info "Özel Sembollerin Kaçırılması"
+        Bazı hizmet sembolleri, noktalar içinde kullanıldığında kaçırma gerektirebilir. Ayrıntılı bilgi almak için [Ruby programlama dili düzenli ifadeler][link-ruby] dokümantasyonuna göz atın.
 
-* Bir nokta eklentiye aşağıdaki yollarla yerleştirilebilir:
-    * `"` sembolleri ile çevrili 
+* Bir nokta eklentiye aşağıdaki şekillerde eklenebilir:
+    * `"` sembolleri ile çevrelenmiş.
         
         **Örnek:** 
         
         `"PATH_.*_value"`.
     
-    * `'` sembolleri ile çevrili 
+    * `'` sembolleri ile çevrelenmiş.
         
         **Örnek:** 
         
         `'GET_.*_value'`.
     
-    * Herhangi bir sembol olmadan 
+    * Hiçbir sembol ile çevrelenmemiş.
         
         **Örnek:** 
         
         `HEADER_.*_value`.
     
-    !!! info "Noktaları semboller ile çevreleme"
-        YAML sözdizimi, noktaları çevrelemek için çeşitli sembollerin kullanılmasındaki farkı tanımlar. Ayrıntılı bilgi için, bu [bağlantıya][link-yaml] gidin.
+    !!! info "Noktaların Sembollerle Çevrelenmesi"
+        YAML sözdizimi, noktaları çevrelemek için kullanılan çeşitli semboller arasındaki farkı tanımlar. Ayrıntılı bilgi almak için [bu link][link-yaml]e göz atın.
 
-* `[` ve `]` sembolleri ile çevrili ve `,` simgesi ile ayrılan Noktalar, nokta dizisi olarak işleme alınır. 
+* `,` sembolü ile bölünmüş ve `[` ile `]` sembolleri arasında çevrelenmiş noktalar, noktaların bir dizisi olarak değerlendirilir. 
     
     **Örnek:** 
     
     `[GET_uid_value, GET_passwd_value]`.
 
-* Hizmet kelimesi, eklentinin talep ögesinin adıyla mı yoksa değeriyle mi çalışacağını belirtmek için noktanın sonunda her zaman bulunmalıdır. 
-    * Talep ögesinin adıyla çalışmak için `name` hizmet kelimesi belirtilmelidir. 
+* Hizmet kelimesi, istek öğesinin adı veya değeri ile çalışılması gerektiğini belirtmek için her zaman noktanın sonunda bulunmalıdır. 
+    * İstek öğesinin adıyla çalışmak için `name` hizmet kelimesi belirtilmelidir. 
         
-        `name` hizmet kelimesi, aşağıdaki filtreler ile birlikte kullanılabilir:
+        `name` hizmet kelimesi aşağıdaki filtrelerle birlikte kullanılabilir:
         
         * Xml_pi;
         * Xml_dtd_entity.
         
         **Örnek:** 
         
-        `POST_XML_XML_DTD_ENTITY_0_name` noktası, istek gövdesindeki XML verilerinde belirtilen ilk DTD şema yönergesinin adını ifade eder.
+        `POST_XML_XML_DTD_ENTITY_0_name` noktası, isteğin gövdesindeki XML verisinde belirtilen ilk DTD şema yönergesinin adına işaret eder.
     
-    * Talep ögesinin değeriyle çalışmak için `value` hizmet kelimesi belirtilmelidir.
+    * İstek öğesinin değeriyle çalışmak için `value` hizmet kelimesi belirtilmelidir.
         
-        `value` hizmet kelimesi, mevcut tüm hızlı DSL filtreleri ve ayrıştırıcılarla birlikte kullanılabilir.
+        `value` hizmet kelimesi, kullanılabilir FAST DSL filtreleri ve çözücülerden herhangi biriyle birlikte kullanılabilir.
         
         **Örnek:** 
         
-        `PATH_0_value` noktası, ilk talep URI yol parçasının değerini ifade eder.
+        `PATH_0_value` noktası, isteğin URI yolunun ilk bölümünün değerine işaret eder.

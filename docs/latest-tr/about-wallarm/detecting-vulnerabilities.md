@@ -1,127 +1,120 @@
-[allowlist-scanner-addresses]: ../user-guides/ip-lists/allowlist.md
+[allowlist-scanner-addresses]: ../user-guides/ip-lists/overview.md
 
-# Zafiyetleri Tespit Etmek
+# Güvenlik Açıklarının Tespiti
 
-Bir uygulamanın oluşturulması veya implemente edilmesi sırasında ihmal veya yetersiz bilgi nedeniyle, saldırılara karşı savunmasız olabilir. Bu makaleden, Wallarm platformunun sistem güvenliğini artırmanızı sağlayacak şekilde uygulama zafiyetlerini nasıl tespit ettiğini öğreneceksiniz.
+Uygulama geliştirilirken veya uygulanırken yapılan ihmal ya da yetersiz bilgi nedeniyle, uygulama saldırılara karşı savunmasız hale gelebilir. Bu makalede, Wallarm platformunun uygulama güvenlik açıklarını nasıl tespit ettiğini öğrenecek ve sistem güvenliğinizi artırma şansı yakalayacaksınız.
 
-## Zafiyet nedir?
+## Güvenlik açığı nedir?
 
-Bir zafiyet, bir uygulamanın oluşturulması veya implemente edilmesi sırasında ihmal veya yetersiz bilgi nedeniyle yapılan bir hatadır. Bir zafiyet, bir saldırganın bir uygulama içinde ayrıcalık sınırlarını aşmasını (yani yetkisiz eylemler gerçekleştirmesini) sağlayabilir.
+Güvenlik açığı, bir uygulama geliştirilirken veya uygulanırken ihmal veya yetersiz bilgi nedeniyle yapılan hatadır. Bu açıktan faydalanan bir saldırgan, uygulama içinde ayrıcalık sınırlarını aşarak (yani yetkisiz işlemler gerçekleştirerek) sisteme zarar verebilir.
 
-## Zafiyet tespit yöntemleri
+## Güvenlik açıklarının tespit yöntemleri
 
-Uygulamada aktif zafiyetleri tararken, Wallarm saldırı belirtileriyle korunan uygulama adresine istekler gönderir ve uygulama yanıtlarını analiz eder. Yanıt, bir veya daha fazla önceden belirlenmiş zafiyet belirtisiyle eşleşirse, Wallarm aktif bir zafiyet kaydeder.
+Uygulamadaki aktif güvenlik açıklarını tararken, Wallarm saldırı belirtileri içeren istekleri korunan uygulama adresine gönderir ve gelen yanıtları analiz eder. Yanıt, bir veya birden fazla önceden tanımlanmış güvenlik açığı belirtisi ile eşleşiyorsa, Wallarm aktif güvenlik açığını kaydeder.
 
-Örneğin: `/etc/passwd` içeriğini okumak için gönderilen isteğe yanıt, `/etc/passwd` içeriğini döndürürse, korunan uygulama Yol Geçiş saldırılarına karşı savunmasızdır. Wallarm, uygun bir türle zafiyeti kaydeder.
+Örneğin: `/etc/passwd` içeriğini okumak için gönderilen isteğe yanıt olarak `/etc/passwd` içeriği dönerse, korunan uygulama Path Traversal saldırılarına karşı savunmasız sayılır. Wallarm, bu güvenlik açığını uygun tipte kaydedecektir.
 
-Uygulamadaki zafiyetleri tespit etmek için Wallarm, aşağıdaki yöntemleri kullanarak saldırı belirtileriyle istekler gönderir:
+Uygulamadaki güvenlik açıklarını tespit etmek için Wallarm aşağıdaki yöntemlerle saldırı belirtileri içeren istekler gönderir:
 
-* **Pasif tespit**: güvenlik olayı nedeniyle zafiyet bulundu.
-* **Aktif tehdit doğrulama**: saldırganları penetre testçilerinize dönüştürmenize ve uygulamalarınızı / API'lerinizi zafiyetler için test ettikleri faaliyetlerinden olası güvenlik sorunlarını keşfetmenizi sağlar. Bu modül, gerçek saldırı verileri kullanarak uygulama uç noktalarını deneyerek olası zafiyetleri bulur. Varsayılan olarak bu yöntem devre dışıdır.
-* **Zafiyet Tarayıcısı**: şirketin açık varlıkları tipik zafiyetler için taranır.
+* **Pasif tespit**: Gerçek trafik (hem istekler hem de yanıtlar) analiz edilerek güvenlik açıkları belirlenir. Bu, gerçek bir açığın kullanıldığı bir güvenlik olayı sırasında ya da isteklerin, doğrudan açığın kullanılmadığı halde, örneğin ele geçirilmiş JWT’ler gibi güvenlik açığı belirtileri göstermesi durumunda gerçekleşebilir.
+* **Threat Replay Testing**: Saldırganları penetrasyon test uzmanlarına dönüştürmenizi, uygulamalarınız/API’lerinizdeki potansiyel güvenlik açıklarını tespit etmenizi sağlar. Bu modül, gerçek trafik verilerinden alınan saldırı verilerini kullanarak uygulama uç noktalarını test eder. Varsayılan olarak bu yöntem devre dışıdır.
+* **Vulnerability Scanner**: Şirketin dışa açık varlıkları, tipik güvenlik açıkları açısından taranır.
+* **API Discovery insights**: GET isteklerinin sorgu parametreleri arasında PII aktarımı tespit edildiğinde, [API Discovery](../api-discovery/overview.md) modülü açığı belirler.
 
 ### Pasif tespit
 
-Pasif tespitle, Wallarm bir güvenlik olayı olduğunda bir zafiyet tespit eder. Eğer bir uygulama zafiyeti bir saldırı sırasında sömürüldüyse, Wallarm güvenlik olayını ve sömürülen zafiyeti kaydeder.
+Pasif tespit, gerçek trafik (hem istekler hem de yanıtlar) analiz edilerek güvenlik açıklarının tespit edilmesidir. Güvenlik açıkları, kötü niyetli bir isteğin hatayı kullanması yoluyla ortaya çıkan güvenlik olayları sırasında veya isteklerin, doğrudan açığın kullanılmaması halinde fakat örneğin ele geçirilmiş JWT’ler gibi güvenlik açığı belirtileri göstermesi sırasında tespit edilebilir.
 
-Pasif zafiyet tespiti varsayılan olarak etkindir.
+Pasif güvenlik açığı tespiti varsayılan olarak aktiftir.
 
-### Aktif tehdit doğrulaması <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### Threat Replay Testing <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
-Wallarm'ın Aktif Tehdit Doğrulaması, saldırganları kendi penetre testçilerinize dönüştürür. İlk saldırı girişimlerini analiz eder, ardından aynı saldırının başka yollarla nasıl sömürülebileceğine dair diğer yolları araştırır. Bu, orijinal saldırganların bile bulamadığı ortamınızdaki zayıf noktaları ortaya çıkarır. [Daha fazla bilgi](../vulnerability-detection/threat-replay-testing/overview.md)
+Wallarm'un Threat Replay Testing özelliği, saldırganları kendi penetrasyon test uzmanlarınıza dönüştürür. İlk saldırı girişimlerini analiz eder ve aynı saldırının başka hangi yollarla kullanılabileceğini araştırır. Bu sayede, orijinal saldırganların dahi fark etmediği zayıf noktalar ortaya çıkar. [Read more](../vulnerability-detection/threat-replay-testing/overview.md)
 
-Aktif Tehdit Doğrulama yetenekleri:
+Threat Replay Testing özellikleri:
 
-* **Gerçek zamanlı test**: Canlı saldırı verilerini kullanarak mevcut ve potansiyel gelecek zayıf noktaları bulur, sizi hackerların bir adım önünde tutar.
-* **Güvenli & akıllı simülasyon**: Hassas kimlik doğrulama detaylarını atlar ve testlerde zararlı kodu kaldırır. Maksimum güvenlik için saldırı tekniklerini simüle eder, gerçek zarar riskini yoktur.
-* **Güvenli olmayan üretim testleri**: Gerçek üretim verilerini kullanarak bir sahneleme veya geliştirme kurulumunda [zafiyet kontrollerini çalıştırmanızı](../vulnerability-detection/threat-replay-testing/setup.md) sağlar, ancak sistem aşırı yüklenme veya veri ifşası riskleri gibi riskler olmaz.
+* **Gerçek zamanlı test**: Canlı saldırı verilerini kullanarak mevcut ve gelecekteki potansiyel zayıf noktaları belirler, sizi hackerlardan bir adım önde tutar.
+* **Güvenli & akıllı simülasyon**: Testlerde hassas kimlik doğrulama detaylarını atlar, zararlı kodları temizler. Maksimum güvenlik için saldırı tekniklerini simüle eder, gerçek zarara yol açmaz.
+* **Güvenli üretim dışı testler**: Gerçek üretim verilerini kullanarak, fakat sistem aşırı yüklemesi veya veri sızması gibi riskler olmadan [staging ya da geliştirme ortamında güvenlik açığı kontrolleri yapmanızı](../vulnerability-detection/threat-replay-testing/setup.md) sağlar.
 
-Modül varsayılan olarak devre dışıdır. Aktive etmek için:
+### Vulnerability Scanner <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
-1. Aktif bir **Gelişmiş API Güvenliği** [abonelik planınızın](subscription-plans.md#subscription-plans) olduğundan emin olun. Bu modül yalnızca bu plan altında mevcuttur.
+#### Çalışma Prensibi
 
-    Eğer başka bir planda bulunuyorsanız, lütfen gerekli olan plana geçmek için bizimle [satış ekibimizle](mailto:sales@wallarm.com) irtibata geçin.
-1.  Wallarm Konsolu → **Zafiyetler** → **Yapılandır** bölümüne gidin ve [US Cloud](https://us1.my.wallarm.com/vulnerabilities/active?configure=true) veya [EU Cloud](https://my.wallarm.com/vulnerabilities/active?configure=true) için olan linki takip etmekle, **Aktif tehdit doğrulaması** anahtarını açın.
+Vulnerability Scanner, şirketin dışa açık tüm varlıklarını tipik güvenlik açıkları açısından tarar. Scanner, sabit IP adreslerinden uygulama adreslerine istek gönderir ve bu isteklere `X-Wallarm-Scanner-Info` başlığını ekler.
 
-Ayrıca, belirli uç noktalar için [modülün davranışını ayarlama veya özelleştirme](../vulnerability-detection/threat-replay-testing/setup.md#enable) yeteneğine sahip olacaksınız.
+#### Konfigürasyon
 
-### Zafiyet Tarayıcısı <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+* Scanner, Wallarm Console → **Vulnerabilities** → **Configure** üzerinden [etkinleştirilebilir veya devre dışı bırakılabilir](../user-guides/vulnerabilities.md#configuring-vulnerability-detection). Varsayılan olarak Scanner aktiftir.
+* Scanner’ın tespit edebileceği [güvenlik açıkları listesi](../user-guides/vulnerabilities.md#configuring-vulnerability-detection), Wallarm Console → **Vulnerabilities** → **Configure** bölümünden yapılandırılabilir. Varsayılan durumda, Vulnerability Scanner mevcut tüm güvenlik açıklarını tespit eder.
+* Her varlık için [Scanner tarafından gönderilen istek limiti](../user-guides/scanner.md#limiting-vulnerability-scanning), Wallarm Console → **Scanner** → **Configure** kısmından ayarlanabilir.
+* Eğer trafiği otomatik olarak filtreleyip engelleyen ek tesisatlar (yazılım veya donanım) kullanıyorsanız, Wallarm Scanner için [IP adreslerinin](../admin-en/scanner-addresses.md) allowlist’e eklenmesi önerilir. Bu, Wallarm bileşenlerinin kaynaklarınızı kesintisiz bir şekilde güvenlik açıkları açısından taramasını sağlar.
 
-#### Nasıl çalışır
+    Wallarm, Scanner IP adreslerini manuel olarak allowlist’e eklemenizi gerektirmez – Wallarm node 3.0’dan itibaren Scanner IP adresleri otomatik olarak allowlist’e eklenir.
 
-Zafiyet Tarayıcı, şirketin tüm açık varlıklarını tipik zafiyetler için kontrol eder. Tarayıcı, sabit IP adreslerinden uygulama adreslerine istekler gönderir ve isteklere `X-Wallarm-Scanner-Info` başlığını ekler.
+### API Discovery insights
 
-#### Yapılandırma
+[API Discovery](../api-discovery/overview.md) modülü tarafından tespit edilen uç noktalar, GET isteklerinin sorgu parametrelerinde Kişisel Tanımlanabilir Bilgileri (PII) aktardığında (bkz. [CWE-598](https://cwe.mitre.org/data/definitions/598.html)), Wallarm bu uç noktaları [information exposure](../attacks-vulns-list.md#information-exposure) açığına sahip olarak tanır.
 
-* Tarayıcı, Wallarm Konsolu → **Zafiyetler** → **Yapılandır** bölümünden [etkinleştirilebilir veya devre dışı bırakılabilir](../user-guides/vulnerabilities.md#configuring-vulnerability-detection). Varsayılan olarak, Tarayıcı etkindir.
-* Tarayıcının [tespit edebileceği zafiyetlerin listesi](../user-guides/vulnerabilities.md#configuring-vulnerability-detection), Wallarm Konsolu → **Zafiyetler** → **Yapılandır**da yapılandırılabilir. Varsayılan olarak, Zafiyet Tarayıcısı tüm mevcut zafiyetleri tespit eder.
-* Her bir varlık için [Tarayıcıdan gönderilen isteklerin limiti](../user-guides/scanner.md#limiting-vulnerability-scanning), Wallarm Konsolu → **Tarayıcı** → **Yapılandır**da yapılandırılabilir.
-* Trafik otomatik filtreleme ve bloklama için ek tesislere (yazılım veya donanım) ihtiyaç duyuyorsanız, Wallarm Tarayıcının IP adreslerini kapsayan bir izin listesi oluşturmanız önerilir. Bu, Wallarm bileşenlerinin kaynaklarınızı zafiyetler için sorunsuzca tarayabilmesini sağlar.
+## Yanlış Pozitifler
 
-    * [Wallarm US Cloud'a kayıtlı Tarayıcı IP adresi](../admin-en/scanner-addresses.md)
-    * [Wallarm EU Cloud'a kayıtlı Tarayıcı IP adresi](../admin-en/scanner-addresses.md)
+**Yanlış pozitif**, saldırı belirtileri meşru bir istekte tespit edildiğinde veya meşru bir unsur güvenlik açığı olarak değerlendirildiğinde ortaya çıkar. [Saldırı tespitinde yanlış pozitifler hakkında daha fazla bilgi →](protecting-against-attacks.md#false-positives)
 
-    Ek tesisler kullanmıyorsanız ama Wallarm Tarayıcısını kullanıyorsanız, Tarayıcı IP adreslerini manuel olarak izin vermeye gerek yoktur. Wallarm node 3.0 ile birlikte, Tarayıcı IP adresleri otomatik olarak izin listesine alınmıştır.
+Güvenlik açığı taramalarında, korunan uygulamanın özelliklerinden ötürü yanlış pozitifler meydana gelebilir. Benzer isteklere verilen benzer yanıtlar, bir korunan uygulamada aktif bir güvenlik açığının varlığını işaret edebilirken, başka bir korunan uygulamada beklenen bir davranış olabilir.
 
-## Yanlış pozitifler
+Bir güvenlik açığı için yanlış pozitif tespit edilirse, Wallarm Console üzerinden açığa uygun bir işaret ekleyebilirsiniz. Yanlış pozitif olarak işaretlenen güvenlik açığı kapatılır ve tekrar kontrol edilmez.
 
-**Yanlış pozitif**, meşru bir istekte saldırı belirtilerinin tespit edilmesi veya meşru bir varlığın bir zafiyet olarak nitelendirilmesi durumunda meydana gelir. [Saldırı tespitindeki yanlış pozitifler hakkında daha fazla bilgi →](protecting-against-attacks.md#false-positives)
+Tespit edilen güvenlik açığı, korunan uygulamada mevcut olup düzeltilemiyorsa, [**Create a virtual patch**](../user-guides/rules/vpatch-rule.md) kuralını uygulamanızı öneririz. Bu kural, tespit edilen güvenlik açığı tipini kullanan saldırıları engelleyerek güvenlik olaylarını önler.
 
-Zafiyet taraması sırasında yanlış pozitifler, korunan uygulamanın özelliklerinden dolayı meydana gelebilir. Benzer yanıtlar, bir korunan uygulamada bir zafiyeti ve başka bir korunan uygulamanın beklenen davranışını gösterebilir.
+## Tespit Edilen Güvenlik Açıklarının Yönetimi
 
-Bir zafiyet için yanlış pozitif tespit edildiyse, zafiyete uygun bir işaret ekleyebilirsiniz. Yanlış pozitif olarak işaretlenen bir zafiyet kapatılır ve tekrar kontrol edilmez.
+Tespit edilen tüm güvenlik açıkları, Wallarm Console → **Vulnerabilities** bölümünde görüntülenir. Güvenlik açıklarını arayüz üzerinden şu şekilde yönetebilirsiniz:
 
-Tespit edilen zafiyetin korunan uygulamada bulunduğunu, ancak düzeltilemediğini belirliyorsanız, [**Sanal bir düzeltme oluştur**](../user-guides/rules/vpatch-rule.md) kuralını ayarlamanızı öneririz.  Bu kural, tespit edilen zafiyet türünü sömüren saldırıları engelleme ve olay riskini ortadan kaldırma yeteneğine sahip olmanızı sağlar.
+* Güvenlik açıklarını görüntüleme ve analiz etme
+* Güvenlik açığının durumunu doğrulamak için kontroller yapma: hâlâ aktif mi yoksa uygulama tarafından düzeltilmiş mi
+* Güvenlik açıklarını kapatma veya yanlış pozitif olarak işaretleme
 
-## Bulunan zafiyetleri yönetmek
+![Güvenlik Açıkları bölümü](../images/user-guides/vulnerabilities/check-vuln.png)
 
-Tespit edilen tüm zafiyetler Wallarm Konsolu → **Zafiyetler** bölümünde görüntülenir. Arayüz üzerinden zafiyetleri aşağıdaki şekillerde yönetebilirsiniz:
+Wallarm platformunun [**API Discovery**](../api-discovery/overview.md) modülünü kullanıyorsanız, güvenlik açıkları tespit edilen API uç noktalarıyla ilişkilendirilir, örn.:
 
-* Zafiyetleri görüntüleyin ve analiz edin
-* Zafiyet durumu doğrulamasını çalıştırın: uygulama tarafında hala aktif mi veya düzeltilmiş mi
-* Zafiyetleri kapatın veya onları yanlış pozitif olarak işaretleyin
- 
-![Zafiyetler bölümü](../images/user-guides/vulnerabilities/check-vuln.png)   
- 
-Eğer Wallarm platformunun [**API Keşif** modülünü](../api-discovery/overview.md) kullanıyorsanız, zafiyetler keşfedilen API uç noktalarıyla bağlantılıdır, örneğin:
+![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
-![API Keşfi - Risk skoru](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+Güvenlik açıklarını yönetme hakkında daha fazla bilgi için, [güvenlik açıklarıyla çalışma](../user-guides/vulnerabilities.md) talimatlarına bakınız.
 
-Zafiyetleri yönetme hakkında daha fazla bilgi için, [zafiyetlerle çalışma](../user-guides/vulnerabilities.md) talimatlarına bakın.
+## Tespit Edilen Güvenlik Açıkları Hakkında Bildirimler
 
-## Bulunan zafiyetler hakkında bildirimler
-
-Wallarm size bulunan zafiyetler hakkında bildirimler gönderebilir. Bu, uygulamalarınızdaki yeni keşfedilen zafiyetlerin farkında olmanızı ve onlara hızlı bir şekilde yanıt vermenizi sağlar. Zafiyetlere yanıt verme, onları uygulama tarafında düzeltme, yanlış pozitifleri bildirme ve sanal yamalar uygulama içerir.
+Wallarm, tespit edilen güvenlik açıkları hakkında size bildirim gönderebilir. Bu, uygulamalarınızdaki yeni keşfedilen güvenlik açıklarından haberdar olmanızı ve bunlara hızlıca müdahale etmenizi sağlar. Güvenlik açıklarına müdahale, uygulama tarafında düzeltme yapmayı, yanlış pozitifleri raporlamayı ve sanal yama uygulamayı içerir.
 
 Bildirimleri yapılandırmak için:
 
-1. Bildirim gönderme sistemine [yerel integrasyon](../user-guides/settings/integrations/integrations-intro.md) oluşturun (ör. PagerDuty, Opsgenie, Splunk, Slack, Telegram).
-2. Integrasyon kartında, **Zafiyetlerin tespit edildiği** listedeki seçimi seçin.
+1. Bildirim göndermek amacıyla sistemle [native integration](../user-guides/settings/integrations/integrations-intro.md) oluşturun (örn. PagerDuty, Opsgenie, Splunk, Slack, Telegram).
+2. Entegrasyon kartında, mevcut olaylar listesinden **Vulnerabilities detected** seçeneğini işaretleyin.
 
-Tespit edilen bir zafiyet hakkındaki Splunk bildiriminin örneği:
+Tespit edilen güvenlik açığı ile ilgili Splunk bildirimine bir örnek:
 
 ```json
 {
-    summary:"[Test mesajı] [Test partner(US)] Yeni zafiyet tespit edildi",
-    description:"Bildirim türü: vuln
+    summary:"[Test message] [Test partner(US)] New vulnerability detected",
+    description:"Notification type: vuln
 
-                Sisteminizde yeni bir zafiyet tespit edildi.
+                New vulnerability was detected in your system.
 
                 ID: 
-                Başlık: Test
-                Alan Adı: example.com
-                Yol: 
-                Yöntem: 
-                Keşfeden: 
-                Parametre: 
-                Tür: Bilgi
-                Tehdidi: Orta
+                Title: Test
+                Domain: example.com,
+                Path: 
+                Method: 
+                Discovered by: 
+                Parameter: 
+                Type: Info
+                Threat: Medium
 
-                Daha fazla detay: https://us1.my.wallarm.com/object/555
+                More details: https://us1.my.wallarm.com/object/555
 
 
-                Müşteri: TestCompany
-                Bulut: US
+                Client: TestCompany
+                Cloud: US
                 ",
     details:{
         client_name:"TestCompany",
@@ -136,8 +129,8 @@ Tespit edilen bir zafiyet hakkındaki Splunk bildiriminin örneği:
             path:null,
             title:"Test",
             discovered_by:null,
-            threat:"Orta",
-            type:"Bilgi"
+            threat:"Medium",
+            type:"Info"
         }
     }
 }

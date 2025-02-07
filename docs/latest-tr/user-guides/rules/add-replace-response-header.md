@@ -1,38 +1,38 @@
-# Yanıt başlıklarını ayarlama
+[api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 
-**Sunucu yanıt başlıklarını değiştirme** kuralı, sunucu yanıt başlıklarını eklemeyi, silmeyi ve değerlerini değiştirmeyi sağlar.
+# Sunucu Yanıt Başlıklarının Değiştirilmesi
 
-Bu kural tipi genellikle uygulama güvenliğinin ek katmanını yapılandırmak için kullanılır, örneğin:
+**Change server response headers** [kuralı](../../user-guides/rules/rules.md), sunucu yanıt başlıklarının eklenmesine, silinmesine ve değerlerinin değiştirilmesine olanak tanır.
 
-* Bir sayfa için istemcinin yüklemeye izin verdiği kaynakları kontrol eden yanıt başlığı [`Content-Security-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) eklemek için. Bu, [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) saldırılarına karşı korumaya yardımcı olur.
+Bu kural türü, genellikle uygulama güvenliğinin ek katmanını yapılandırmak için kullanılır, örneğin:
 
-    Eğer sunucunuz varsayılan olarak bu başlığı döndürmüyor ise, bunu **Sunucu yanıt başlıklarını değiştirme** kuralını kullanarak eklemeniz önerilir. MDN Web Docs'ta, [olası başlık değerlerinin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives) ve [başlık kullanım örneklerinin](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#examples_common_use_cases) tanımlarını bulabilirsiniz.
+* Belirli bir sayfa için istemcinin yükleyebileceği kaynakları kontrol eden ve bu kaynak yüklemesini sağlayan yanıt başlığı olarak [`Content-Security-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) eklemek. Bu, [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) saldırılarına karşı koruma sağlar.
 
-    Benzer şekilde, bu kural yanıt başlıklarını eklemek için kullanılabilir [`X-XSS-Protection`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection), [`X-Frame-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options), [`X-Content-Type-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options).
-* NGINX başlığı `Server` veya yüklenmiş modül sürümlerinin verilerini içeren herhangi bir başka başlığı değiştirmek için. Bu veriler, saldırganın yüklenmiş modül sürümlerinin zayıflıklarını keşfetmek ve sonuç olarak, keşfedilen zayıflıkları kullanmak için potansiyel olarak kullanılabilir.
+    Eğer sunucunuz varsayılan olarak bu başlığı döndürmüyorsa, **Change server response headers** kuralını kullanarak eklemeniz önerilir. MDN Web Docs'ta, [muhtemel başlık değerlerinin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives) açıklamalarını ve [başlık kullanım örneklerini](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#examples_common_use_cases) bulabilirsiniz.
 
-    NGINX başlığı `Server` Wallarm node 2.16 ile başlayarak değiştirilebilir.
+    Benzer şekilde, bu kural [`X-XSS-Protection`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection), [`X-Frame-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options) ve [`X-Content-Type-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options) yanıt başlıklarını eklemek için de kullanılabilir.
+* NGINX `Server` başlığı ya da yüklü modül sürümlerine ait verileri içeren diğer başlıkları değiştirmek. Bu veriler, saldırganın yüklü modül sürümlerindeki güvenlik açıklarını tespit edip, bu açıkları kullanması için potansiyel bir kaynak oluşturabilir.
 
-**Sunucu yanıt başlıklarını değiştirme** kuralı ayrıca iş ve teknik konularınıza yönelik herhangi bir durumu çözmek için de kullanılabilir.
+    NGINX `Server` başlığı, Wallarm node 2.16'dan itibaren değiştirilebilir hale gelmiştir.
 
-## Kural oluşturma ve uygulama
+**Change server response headers** kuralı, iş ve teknik sorunlarınızın herhangi birini çözmek için de kullanılabilir.
 
---8<-- "../include-tr/waf/features/rules/rule-creation-options.md"
+## Kuralın Oluşturulması ve Uygulanması
 
-**Kurallar** bölümünde kuralı oluşturmak ve uygulamak için:
+Kuralı oluşturmak ve uygulamak için:
 
-1. Wallarm Konsolu'nun **Kurallar** bölümünde **Sunucu yanıt başlıklarını değiştirme** kuralını oluşturun. Kural, aşağıdaki bileşenlerden oluşur:
+--8<-- "../include/rule-creation-initial-step.md"
+1. **If request is** bölümünde, kuralın uygulanacağı kapsamı [tanımlayın](rules.md#configuring).
+1. **Then** bölümünde, **Change server response headers** seçeneğini seçin ve şunları ayarlayın:
 
-      * **Koşul**[kuralın uygulanacağı](rules.md#branch-description) uç noktaları tanımlar.
-      * Eklenmesi ya da değerinin değiştirilmesi gereken başlığın adı.
-      * Belirtilen başlığın yeni değeri.
+    * Eklenmek istenen veya değeri değiştirilecek başlık adı.
+    * Belirtilen başlık için yeni değer(ler).
+    * Mevcut bir yanıt başlığını silmek için, **Replace** sekmesinde değeri boş bırakın.
 
-        Var olan bir yanıt başlığını silmek için, lütfen **Değiştir** sekmesinde bu başlığın değerini boş bırakın.
+1. [Kural derlemesinin tamamlanmasını](rules.md#ruleset-lifecycle) bekleyin.
 
-2. [Kuralın derlenmesinin tamamlanmasını](rules.md) bekleyin.
+## Örnek: Güvenlik Politikası Başlığının ve Değerinin Eklenmesi
 
-## Kural örneği
+`https://example.com/*` adresindeki içeriğin yalnızca sitenin kökeninden gelmesine izin vermek için, **Change server response headers** kuralını kullanarak [`Content-Security-Policy: default-src 'self'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#example_1) yanıt başlığını aşağıdaki gibi ekleyebilirsiniz:
 
-`https://example.com/*` 'nın tüm içeriğinin sadece site kökeninden gelmesine izin vermek için, **Sunucu yanıt başlıklarını değiştirme** kuralını kullanarak yanıt başlığı eklenebilir [`Content-Security-Policy: default-src 'self'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#example_1) aşağıdaki gibi:
-
-![ "Sunucu yanıt başlıklarını değiştirme" kuralının örneği](../../images/user-guides/rules/add-replace-response-header.png)
+![Example of the rule "Change server response headers"](../../images/user-guides/rules/add-replace-response-header.png)

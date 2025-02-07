@@ -1,1 +1,1 @@
-Filtreleme düğümünün çalıştığından ve trafiği filtrelediğinden emin olun. Bkz. [Filtreleme düğümünün işleyişini kontrol et](installation-check-operation-en.md).
+Filtreleme düğümünün çalıştığını ve trafiği filtrelediğini kontrol edin. [Filtreleme düğümünün çalışmasını kontrol edin](installation-check-operation-en.md).

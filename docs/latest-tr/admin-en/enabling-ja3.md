@@ -1,23 +1,23 @@
-# Enabling JA3 Fingerprinting
+# JA3 Parmak İzi Etkinleştirme
 
-This article describes how to enable JA3 fingerprinting for the most popular software such as NGINX and infrastructure such as AWS, Google Cloud, and Azure.
+Bu makale, NGINX gibi popüler yazılımlar ve AWS, Google Cloud ve Azure gibi altyapılar için JA3 parmak izi etkinleştirme yöntemini açıklamaktadır.
 
-## Overview
+## Genel Bakış
 
-Attackers frequently employ various techniques to bypass security measures, such as user agent (UA) spoofing and IP rotation. These methods make it challenging to detect behavioral attacks in the unauthenticated traffic. [JA3 fingerprinting](https://www.peakhour.io/learning/fingerprinting/what-is-ja3-fingerprinting/) generates an MD5 hash for specific parameters defined during the TLS negotiation between client and server. This fingerprinting method can contribute to building a behavioral profile for [API abuse prevention](../api-abuse-prevention/overview.md).
+Saldırganlar, kullanıcı aracısı (UA) sahteciliği ve IP döndürme gibi çeşitli teknikler kullanarak güvenlik önlemlerini aşmaya çalışırlar. Bu yöntemler, doğrulanmamış trafiğe yönelik davranışsal saldırıları tespit etmeyi zorlaştırır. [JA3 fingerprinting](https://www.peakhour.io/learning/fingerprinting/what-is-ja3-fingerprinting/) yöntemi, istemci ile sunucu arasındaki TLS müzakeresi sırasında tanımlanan belirli parametreler için bir MD5 karması üretir. Bu parmak izi yöntemi, [API session](../api-sessions/overview.md) işleme sürecinin bir parçası olarak tehdit aktörlerinin tanımlanmasını güçlendirebilir ve [API abuse prevention](../api-abuse-prevention/overview.md) kapsamında davranışsal bir profil oluşturulmasına katkıda bulunabilir.
 
 ## NGINX
 
-An ability to get a JA3 fingerprint from NGINX makes this identification method available in all NGINX-based Wallarm [deployment options](../installation/supported-deployment-options.md). There are two NGINX modules for JA3:
+NGINX üzerinden JA3 parmak izi elde edilebilmesi, bu tanımlama yönteminin tüm NGINX tabanlı Wallarm [dağıtım seçenekleri](..//installation/nginx-native-node-internals.md#nginx-node) içinde kullanılabilir olmasını sağlar. JA3 için iki NGINX modülü bulunmaktadır:
 
 | Module | Description | Installation |
 | - | - | - |
-| [nginx-ssl-ja3](https://github.com/fooinha/nginx-ssl-ja3) | Main nginx module for JA3. Has the `THIS IS NOT PRODUCTION` mark. So there is no guarantee of success. | [Instructions](https://github.com/fooinha/nginx-ssl-ja3#compilation-and-installation) |
-| [nginx-ssl-fingerprint](https://github.com/phuslu/nginx-ssl-fingerprint) | Second nginx module for JA3. It has the `high performance` label and also has likes and forks. | [Instructions](https://github.com/phuslu/nginx-ssl-fingerprint#quick-start) |
+| [nginx-ssl-ja3](https://github.com/fooinha/nginx-ssl-ja3) | JA3 için ana nginx modülü. `THIS IS NOT PRODUCTION` işareti taşıyor. Bu nedenle başarı garantisi yoktur. | [Instructions](https://github.com/fooinha/nginx-ssl-ja3#compilation-and-installation) |
+| [nginx-ssl-fingerprint](https://github.com/phuslu/nginx-ssl-fingerprint) | JA3 için ikinci nginx modülü. `high performance` etiketini taşır ve ayrıca beğeni ve fork'ları bulunmaktadır. | [Instructions](https://github.com/phuslu/nginx-ssl-fingerprint#quick-start) |
 
-In both modules, we need to patch OpenSSL and NGINX.
+Her iki modülde de OpenSSL ve NGINX yamalanmalıdır.
 
-An example of module installation (from the `nginx-ssl-fingerprint` module):
+`nginx-ssl-fingerprint` modülünden bir modül kurulumu örneği:
 
 ```
 # Clone
@@ -43,63 +43,63 @@ $ objs/nginx -p . -c $(pwd)/../nginx-ssl-fingerprint/nginx.conf
 $ curl -k https://127.0.0.1:8444
 ```
 
-Example NGINX configuration:
+NGINX yapılandırma örneği:
 
 ```
 server {
   listen 80;
   server_name example.com;
   …
-  # Proxy pass the JA3 fingerprint header to another app.
+  # JA3 parmak izi başlığını başka bir uygulamaya proxy ile ilet.
   proxy_set_header X-Client-TLS-FP-Value $http_ssl_ja3_hash;
   proxy_set_header X-Client-TLS-FP–Raw-Value $http_ssl_ja3;
 
-  # Proxy the request to the proxied app.
+  # İsteği proxy uygulamaya ilet.
   proxy_pass http://app:8080;
 }
 ```
 
 ## AWS
 
-You can configure getting [JA3 fingerprints from AWS CloudFront](https://aws.amazon.com/about-aws/whats-new/2022/11/amazon-cloudfront-supports-ja3-fingerprint-headers/).
+[AWS CloudFront üzerinden JA3 parmak izlerini alma](https://aws.amazon.com/about-aws/whats-new/2022/11/amazon-cloudfront-supports-ja3-fingerprint-headers/) yapılandırmasını gerçekleştirebilirsiniz.
 
-Wallarm can integrate with CloudFront to get the `CloudFront-Viewer-JA3-Fingerprint` and `CloudFront-Viewer-TLS` JA3 headers:
+Wallarm, CloudFront ile entegre olarak `CloudFront-Viewer-JA3-Fingerprint` ve `CloudFront-Viewer-TLS` JA3 başlıklarını alabilir:
 
-1. Go to the CloudFront console and select the **Origin Request Policies** tab.
-1. Click **Create Origin Request Policy** and set the policy details.
+1. CloudFront konsoluna gidin ve **Origin Request Policies** sekmesini seçin.
+1. **Create Origin Request Policy** seçeneğine tıklayın ve politika detaylarını belirleyin.
 
     ![CloudFront - creating origin request policy](../images/configuration-guides/ja3/aws-cloudfront-create-origin-request-policy.png)
 
-1. In the **Actions** section, select **Add Header**.
-1. In the **Header Name** field, enter `CloudFront-Viewer-JA3-Fingerprint`.
+1. **Actions** bölümünde, **Add Header** seçeneğini seçin.
+1. **Header Name** alanına `CloudFront-Viewer-JA3-Fingerprint` değerini girin.
 
     ![CloudFront - adding header to origin request policy](../images/configuration-guides/ja3/aws-cloudfront-origin-request-policy-add-header.png)
 
-1. Click **Create**. Your origin request policy is now created.
-1. To attach the created request policy to your CloudFront distribution, follow the steps below.
-1. In CloudFront console, select the distribution to which you want to attach the policy.
-1. Click the **Edit** button next to **Origin Request Policies**.
-1. Select the checkbox next to the policy you created and save the changes.
+1. **Create** butonuna tıklayın. Böylece, orijin istek politikanız oluşturulmuş olur.
+1. Oluşturulan istek politikasını CloudFront dağıtımınıza eklemek için aşağıdaki adımları izleyin.
+1. CloudFront konsolunda, politikayı eklemek istediğiniz dağıtımı seçin.
+1. **Origin Request Policies** yanındaki **Edit** butonuna tıklayın.
+1. Oluşturduğunuz politikanın yanındaki onay kutusunu işaretleyin ve değişiklikleri kaydedin.
 
     ![CloudFront - attach policy to distribution](../images/configuration-guides/ja3/aws-cloudfront-attach-policy-to-distribution.png)
 
-    Your origin request policy is now attached to your CloudFront distribution. Clients that make requests to your distribution will now have the `CloudFront-Viewer-JA3-Fingerprint` header added to their requests.
+    Artık orijin istek politikanız CloudFront dağıtımınıza eklenmiş durumda. Dağıtımınıza istek yapan istemcilere artık `CloudFront-Viewer-JA3-Fingerprint` başlığı eklenmiş olacaktır.
 
 ## Google Cloud
 
-You can configure getting JA3 fingerprints from the classic Google Cloud Application Load Balancer by configuring custom header and getting its value via the `tls_ja3_fingerprint` variable:
+Klasik Google Cloud Application Load Balancer'dan JA3 parmak izi alabilmek için özelleştirilmiş başlık yapılandırması yaparak değeri `tls_ja3_fingerprint` değişkeni aracılığıyla elde edebilirsiniz:
 
-1. Go to the Google Cloud console → **Load balancing**.
-1. Click **Backends**.
-1. Click the name of a backend service and then **Edit**.
-1. Click **Advanced configurations**.
-1. Under **Custom request headers**, click **Add header**.
-1. Enter the **Header name** and set the **Header value** to `tls_ja3_fingerprint`.
-1. Save changes.
+1. Google Cloud konsoluna gidin → **Load balancing**.
+1. **Backends** sekmesine tıklayın.
+1. Bir backend servisi ismine tıklayın ve ardından **Edit** seçeneğini seçin.
+1. **Advanced configurations** bölümüne tıklayın.
+1. **Custom request headers** altında, **Add header** butonuna tıklayın.
+1. **Header name** alanına bir başlık ismi girin ve **Header value** alanına `tls_ja3_fingerprint` değerini atayın.
+1. Değişiklikleri kaydedin.
 
-See detailed instructions [here](https://cloud.google.com/load-balancing/docs/https/custom-headers).
+Detaylı talimatlar için bakınız [buraya](https://cloud.google.com/load-balancing/docs/https/custom-headers).
 
-Example configuration request:
+Örnek yapılandırma isteği:
 
 ```
 PATCH https://compute.googleapis.com/compute/v1/projects/PROJECT_ID/global/backendServices/BACKEND_SERVICE_NAME
@@ -110,4 +110,4 @@ PATCH https://compute.googleapis.com/compute/v1/projects/PROJECT_ID/global/backe
 
 ## Azure
 
-For [Azure Wallarm deployment](../installation/cloud-platforms/azure/docker-container.md), use getting a JA3 fingerprint from NGINX method described [above](#nginx).
+[Azure Wallarm dağıtımı](../installation/cloud-platforms/azure/docker-container.md) için, yukarıda [NGINX](#nginx) bölümünde açıklanan NGINX üzerinden JA3 parmak izi elde etme yöntemini kullanın.

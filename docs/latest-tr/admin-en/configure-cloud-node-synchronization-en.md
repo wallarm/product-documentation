@@ -1,59 +1,57 @@
-# Wallarm düğümü ve Cloud arasında senkronizasyonun yapılandırılması
+# Wallarm düğümü ile Cloud arasındaki senkronizasyonun yapılandırılması
 
-Filtreleme düğümü düzenli olarak Wallarm Cloud ile senkronize olarak:
+Filtreleme düğümü, Wallarm Cloud ile düzenli olarak senkronize olarak:
 
-* [Trafik işleme kuralları (LOM)](../about-wallarm/protecting-against-attacks.md#custom-rules-for-request-analysis) için güncellemeler alır
-* [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton) güncellemelerini alır
-* Algılanan saldırılar ve zafiyetler hakkında veri gönderir
-* İşlenmiş trafik için metrikler gönderir
+* [traffic processing rules (LOM)](../user-guides/rules/rules.md) güncellemelerini almak,
+* [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton) güncellemelerini almak,
+* Algılanan saldırılar ve açıklarla ilgili verileri göndermek,
+* İşlenen trafik için metrikleri göndermek
 
-Bu talimatlar, filtreleme düğümününde ve Wallarm Cloud'da senkronizasyonu yapılandırmak için kullanılan parametreleri ve yöntemleri anlatır.
+amacına hizmet eder.
 
-## Erişim parametreleri
+Bu talimatlar, filtreleme düğümü ile Wallarm Cloud arasındaki senkronizasyonu yapılandırmak için kullanılan parametreleri ve yöntemleri açıklar.
 
-`node.yaml` dosyası, filtreleme düğümünün Cloud'ye erişimini sağlayan parametreleri içerir.
+## Erişim Parametreleri
 
-Bu dosya, `register-node` betiğini çalıştırdıktan sonra otomatik olarak oluşturulur. Filtreleme düğümü adı ve UUID, ve Wallarm API gizli anahtarını içerir. Dosyanın varsayılan yolu `/etc/wallarm/node.yaml`'dır. Bu yol, [`wallarm_api_conf`](configure-parameters-en.md#wallarm_api_conf) yönergesi ile değiştirilebilir.
+Filtreleme düğümünün adı, UUID'si ve Wallarm API gizli anahtarı gibi, Cloud'a erişimi sağlayan parametreler, `node.yaml` dosyasında açıkça belirlenmiştir. Bu dosya, `register-node` betiği tarafından otomatik olarak oluşturulur.
 
-`node.yaml` dosyası, aşağıdaki erişim parametrelerini içerebilir:
+* Docker NGINX-temelli imaj, cloud imajları, NGINX Node all-in-one yükleyici ve Native Node kurulumları için, dosya [`wallarm_api_conf`](configure-parameters-en.md#wallarm_api_conf) yönergesi ile geçersiz kılınmadıkça `/opt/wallarm/etc/wallarm/node.yaml` yolunda bulunur.
+* Diğer kurulumlar için, `node.yaml` konumu farklılık gösterebilir veya [`wallarm_api_conf`](configure-parameters-en.md#wallarm_api_conf) yönergesi ile geçersiz kılınabilir. Dosyayı bulmak için arama yapın veya `wallarm_api_conf` değerini kontrol edin.
 
-| Parametre | Açıklama | Varsayılan değer |
-| --------- | ----------- | ------------- |
-| `hostname`       | Filtreleme düğümü adı. Bu değişkenin `node.yaml` dosyasında **ayarlanması gereklidir**. | `register-node` tarafından sağlanır |
-| `regtoken`       | Düğümün Wallarm API'ye erişebilmesi için token. | `register-node` tarafından sağlanır |
-| `uuid`           | Filtreleme düğümü UUID. Bu değişkenin `node.yaml` dosyasında **ayarlanması gereklidir**. | `regtoken` tarafından sağlanır |
-| `secret`         | Wallarm API'ye erişim için gizli anahtar. Bu değişkenin `node.yaml` dosyasında **ayarlanması gereklidir**. | `regtoken` tarafından sağlanır |
-| `api.host`       | Wallarm API end noktası. Şu şekilde olabilir:<ul><li>`us1.api.wallarm.com` için ABD Cloud</li><li>`api.wallarm.com` için AB Cloud</li></ul> | `api.wallarm.com` |
-| `api.port`       | Wallarm API portu. | `443` |
-| `api.use_ssl`  | Wallarm API'ye bağlanırken SSL'in kullanılıp kullanılmadığı. | `true` |
-| `api.ca_verify`  | Wallarm API sunucu sertifikasının doğrulamasının etkinleştirilip etkinleştirilmeyeceği. Şu şekilde olabilir:<ul><li>`true` doğrulamayı etkinleştirir</li><li>`false` doğrulamayı devre dışı bırakır</li></ul>. | `true` |
-| `api.ca_file`  | SSL sertifikası dosyasının yolu. | `/usr/share/wallarm-common/ca.pem` |
-| `api.localhost` | Wallarm API'ye yapılan isteklerin gönderildiği ağ arayüzünün yerel IP adresi. Bu parametre, varsayılan olarak kullanılan ağ arayüzünün Wallarm API'ye erişimi kısıtlaması durumunda gereklidir (örneğin, İnternete erişim kapalı olabilir). | - |
-| `api.localport` | Wallarm API'ye yapılan isteklerin gönderildiği ağ arayüzünün portu. Bu parametre, varsayılan olarak kullanılan ağ arayüzünün Wallarm API'ye erişimi kısıtlaması durumunda gereklidir (örneğin, İnternete erişim kapalı olabilir). | - |
+`node.yaml` dosyası aşağıdaki erişim parametrelerini içerebilir:
+
+| Parametre          | Açıklama                                                                                                                              | Varsayılan Değer                |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| `hostname`         | Filtreleme düğümünün adı. Bu değişkenin `node.yaml` dosyasında **zorunlu** olarak belirlenmesi gerekmektedir.                         | `register-node` tarafından sağlanır |
+| `api.regtoken`     | Düğümün Wallarm API’ye erişebilmesi için gerekli token.                                                                              | `register-node` tarafından sağlanır |
+| `api.uuid`         | Filtreleme düğümünün UUID'si. Bu değişkenin `node.yaml` dosyasında **zorunlu** olarak belirlenmesi gerekmektedir.                        | `regtoken` tarafından sağlanır  |
+| `api.secret`       | Wallarm API’ye erişim için gizli anahtar. Bu değişkenin `node.yaml` dosyasında **zorunlu** olarak belirlenmesi gerekmektedir.             | `regtoken` tarafından sağlanır  |
+| `api.host`         | Wallarm API uç noktası. Aşağıdakilerden biri olabilir:<ul><li>ABD Cloud için: `us1.api.wallarm.com`</li><li>AB Cloud için: `api.wallarm.com`</li></ul> | `api.wallarm.com`               |
+| `api.port`         | Wallarm API portu.                                                                                                                     | `443`                           |
+| `api.use_ssl`      | Wallarm API’ye bağlanırken SSL kullanılıp kullanılmayacağını belirtir.                                                                  | `true`                          |
+| `api.ca_verify`    | Wallarm API sunucu sertifika doğrulamasının etkinleştirilip devre dışı bırakılacağını belirtir. Şu seçeneklerden biri olabilir:<ul><li>Doğrulama için `true`</li><li>Doğrulamayı devre dışı bırakmak için `false`</li></ul> | `true`                          |
 
 Senkronizasyon parametrelerini değiştirmek için aşağıdaki adımları izleyin:
 
-1. Gerekli parametreleri ekleyerek ve onlara istediğiniz değerleri atayarak `node.yaml` dosyasında değişiklikler yapın.
-1. Güncellenmiş ayarların senkronizasyon sürecine uygulanabilmesi için NGINX'i yeniden başlatın:
+1. Gerekli parametreleri ekleyip istenen değerleri atayarak `node.yaml` dosyasında değişiklik yapın.
+2. Güncellenen ayarların senkronizasyon sürecine uygulanabilmesi için NGINX’i yeniden başlatın:
 
-    --8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
+    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
-## Senkronizasyon aralığı
+## Senkronizasyon Aralığı
 
-Varsayılan olarak, filtreleme düğümü her 120‑240 saniyede bir (2‑4 dakika) Wallarm Cloud ile senkronize edilir. Senkronizasyon aralığını `WALLARM_SYNCNODE_INTERVAL` sistem ortam değişkeni üzerinden değiştirebilirsiniz.
+Varsayılan olarak, filtreleme düğümü Wallarm Cloud ile her 120‑240 saniyede (2‑4 dakikada) bir senkronize olur. Filtreleme düğümü ile Wallarm Cloud arasındaki senkronizasyon aralığını, sistem ortam değişkeni `WALLARM_SYNCNODE_INTERVAL` aracılığıyla değiştirebilirsiniz.
 
-Filtreleme düğümü ve Wallarm Cloud arasındaki senkronizasyon aralığını değiştirmek için:
+Filtreleme düğümü ile Wallarm Cloud senkronizasyon aralığını değiştirmek için:
 
 1. `/etc/environment` dosyasını açın.
-2. Dosyaya `WALLARM_SYNCNODE_INTERVAL` değişkenini ekleyin ve değişkenin değeri olarak istenen değeri saniye olarak belirleyin. Değer, varsayılan değerden (`120` saniye) düşük olamaz. Örneğin:
+2. Dosyaya `WALLARM_SYNCNODE_INTERVAL` değişkenini ekleyin ve değeri saniye cinsinden istenen değere ayarlayın. Değer, varsayılan değer olan (`120` saniye) değerden düşük olmamalıdır. Örneğin:
 
     ```bash
     WALLARM_SYNCNODE_INTERVAL=800
     ```
-3. Değiştirilmiş `/etc/environment` dosyasını kaydedin. Yeni aralık değeri senkronizasyon sürecine otomatik olarak uygulanacaktır.
+3. `/etc/environment` dosyasında yapılan değişiklikleri kaydedin. Yeni aralık değeri senkronizasyon sürecine otomatik olarak uygulanacaktır.
 
-## Yapılandırma örneği
+## Yapılandırma Örneği
 
-`node.yaml` dosyasının, filtreleme düğümüne Cloud'a erişim sağlayan parametrelerin (genel ve `api` bölümleri, bu makalede anlatıldığı gibi) yanı sıra, düğümün işlemi için gerekli olan dosyalara erişimi sağlayan parametreler (`syncnode` bölümü) olabileceğini unutmayın. 
-
---8<-- "../include-tr/node-cloud-sync-configuration-example.md"
+--8<-- "../include/node-cloud-sync-configuration-example-5.x.md"

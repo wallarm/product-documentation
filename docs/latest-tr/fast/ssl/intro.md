@@ -7,19 +7,20 @@
 
 [img-insecure-connection]:      ../../images/fast/qsg/common/deployment/11-qsg-fast-inst-untrusted-cert.png
 
+
 # Giriş
 
-HTTPS kullanarak bir web uygulamasıyla bir tarayıcı aracılığıyla çalışırken, güvenilmeyen bir sertifika hakkında bu veya benzer bir mesaj görebilirsiniz:
+HTTPS kullanarak bir tarayıcı üzerinden web uygulaması ile çalışırken, güvenilmeyen bir sertifika hakkında bu veya benzeri bir mesaj görebilirsiniz:
 
-![Mozilla Firefox'ın güvenilmez sertifika mesajı][img-insecure-connection]
+![Mozilla Firefox'un güvenilmeyen sertifika mesajı][img-insecure-connection]
 
-FAST düğümü, bir istemciden HTTPS isteklerini kesintiye uğratır ve uzak sunucuya kendisi bağlantı başlatır. Tarayıcınızın, FAST düğümü sertifikasını güvendik bir şekilde sertifika olarak kabul etmesi gerekir, aksi takdirde tarayıcı bu durumu bir adam-orta saldırısı olarak değerlendirir.  
+FAST node, bir istemciden gelen HTTPS isteklerini keser ve kendisi uzak sunucuya bağlantı başlatır. Tarayıcınızın FAST node sertifikasına güvenmesi gerekir, aksi halde tarayıcı bu durumu ortadaki adam saldırısı olarak değerlendirir.
 
-FAST düğümünün tarayıcınızın güvendik bir sertifikası yoksa, bu tarayıcıdan sunucuya HTTPS istekleri göndermeye çalışmak, güvende olmayan bir bağlantı uyarısı sonucunu verir.
+Eğer FAST node, kullandığınız tarayıcı tarafından güvenilmeyen bir sertifikaya sahipse, o tarayıcıdan sunucuya HTTPS istekleri göndermeye çalıştığınızda güvensiz bağlantı uyarısı alırsınız.
 
-HTTPS aracılığıyla web uygulamalarıyla başarılı bir şekilde çalışabilmek için aşağıdaki çözümlerden birini kullanabilirsiniz:
-* Tarayıcınızın zaten güvendiği kendi SSL sertifikanız varsa, [bunu FAST düğümüne ekleyebilirsiniz][link-node-installation].
-* Kendi SSL sertifikanız yoksa, FAST düğümünün kendiliğinden imzalı kök sertifikasını tarayıcınıza ekleyebilirsiniz. Bunu yapmak için tarayıcınıza yönelik talimatlara bakın:
+HTTPS üzerinden web uygulamaları ile başarılı bir şekilde çalışmak için aşağıdaki çözümlerden birini kullanabilirsiniz:
+* Tarayıcınızın zaten güvendiği kendi SSL sertifikanız varsa, bunu [FAST node'a ekleyebilirsiniz][link-node-installation].
+* Kendi SSL sertifikanız yoksa, FAST node'un imzasız kök sertifikasını tarayıcınıza ekleyebilirsiniz. Bunu yapmak için tarayıcınız için aşağıdaki talimatları izleyin:
     * [Apple Safari][link-safari-ssl]
     * [Google Chrome][link-chrome-ssl]
     * [Microsoft Edge][link-edge-ssl]

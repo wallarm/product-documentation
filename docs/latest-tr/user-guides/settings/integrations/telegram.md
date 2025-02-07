@@ -1,57 +1,55 @@
 # Telegram
 
-Wallarm'ı planlanmış raporlar ve anlık bildirimler göndermek üzere Telegram'a ayarlayabilirsiniz.
+[Telegram](https://telegram.org/) bulut tabanlı anlık mesajlaşma platformu ve sosyal medya uygulamasıdır. Wallarm'u, Telegram'a planlı raporlar ve anlık bildirimler gönderecek şekilde yapılandırabilirsiniz.
 
-Planlanmış raporlar günlük, haftalık veya aylık olarak gönderilebilir. Raporlar, seçilen dönem boyunca sisteminizde tespit edilen güvenlik açıkları, saldırılar ve olaylar hakkında ayrıntılı bilgi içerir.
+Planlı raporlar günlük, haftalık veya aylık olarak gönderilebilir. Raporlar, seçilen dönem boyunca sisteminizde tespit edilen güvenlik açıkları, saldırılar ve olaylar hakkında ayrıntılı bilgiler içerir. Bildirimler ise tetiklenen olayların kısa detaylarını sunar.
 
-Bildirimler, tetiklenen olayların kısa detaylarını içerir.
-
-## Entegrasyonu Ayarlama
+## Entegrasyonu yapılandırma
 
 1. **Entegrasyonlar** bölümünü açın.
-1. **Telegram** bloğuna tıklayın veya **Entegrasyon ekle** düğmesine tıklayın ve **Telegram** seçin.
-1. Wallarm bildirimlerini alan Telegram grubuna [@WallarmUSBot](https://t.me/WallarmUSBot) ekleyin (Wallarm US Cloud kullanıyorsanız) veya [@WallarmBot](https://t.me/WallarmBot) ekleyin (Wallarm EU Cloud kullanıyorsanız) ve kimlik doğrulama bağlantısını izleyin.
+1. **Telegram** bloğuna tıklayın veya **Entegrasyon ekle** düğmesine basıp **Telegram** seçeneğini seçin.
+1. Wallarm bildirimlerini alacak Telegram grubuna [@WallarmUSBot](https://t.me/WallarmUSBot) (Wallarm US Cloud kullanıyorsanız) veya [@WallarmBot](https://t.me/WallarmBot) (Wallarm EU Cloud kullanıyorsanız) ekleyin ve kimlik doğrulama bağlantısını takip edin.
 1. Wallarm UI'ya yönlendirildikten sonra botu kimlik doğrulayın.
 1. Bir entegrasyon adı girin.
-1. Güvenlik raporlarının gönderilme sıklığını seçin. Sıklık seçilmezse, raporlar gönderilmez.
-1. Bildirimleri tetiklemek üzere olay türlerini seçin.
+1. Güvenlik raporlarının gönderilme sıklığını belirleyin. Sıklık seçilmezse raporlar gönderilmeyecektir.
+1. Bildirimleri tetiklemek için olay türlerini seçin.
 
     ![Telegram entegrasyonu](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
 
-    Mevcut olaylarla ilgili detaylar:
+    Kullanılabilir olaylara ilişkin detaylar:
 
-    --8<-- "../include-tr/integrations/events-for-integrations.md"
+    --8<-- "../include/integrations/events-for-integrations.md"
 
-    Telegram ile entegrasyon yalnızca bu entegrasyon zaten oluşturulmuşsa test edilebilir.
+    Telegram entegrasyonu, ancak bu entegrasyonun önceden oluşturulmuş olması halinde test edilebilir.
 
-1. **Entegrasyon ekle** bölümüne tıklayın.
+1. **Entegrasyon ekle**'ye tıklayın.
 1. Oluşturulan entegrasyon kartını tekrar açın.
-1. **Entegrasyonu test et** bölümüne tıklayarak yapılandırma doğruluğunu, Wallarm Cloud'un kullanılabilirliğini ve bildirim formatını kontrol edin.
+1. Konfigürasyon doğruluğunu, Wallarm Cloud'un erişilebilirliğini ve bildirim formatını kontrol etmek için **Entegrasyonu test et** düğmesine tıklayın.
 
-    Bu, `[Test mesajı]` önekli test bildirimlerini gönderecektir:
+    Bu, `[Test message]` öneki ile test bildirimlerini gönderecektir:
 
     ```
-    [Test mesajı] [Test partner] Ağ sınırları değiştirildi
+    [Test message] [Test partner] Ağ çevresi değişti
 
-    Bildirim türü: new_scope_object_ips
+    Bildirim tipi: new_scope_object_ips
 
-    Ağ çevresinde yeni IP adresleri tespit edildi:
+    Ağ çevresinde yeni IP adresleri keşfedildi:
     8.8.8.8
 
-    Müşteri: TestŞirketi
-    Bulut: EU
+    Müşteri: TestCompany
+    Cloud: EU
     ```
 
-Ayrıca, [@WallarmUSBot](https://t.me/WallarmUSBot) ile veya [@WallarmBot](https://t.me/WallarmBot) ile doğrudan sohbete de başlayabilirsiniz. Bot da raporlar ve bildirimler gönderecektir.
+[@WallarmUSBot](https://t.me/WallarmUSBot) veya [@WallarmBot](https://t.me/WallarmBot) ile sohbeti doğrudan başlatabilirsiniz. Bot raporlar ve bildirimler de gönderecektir.
 
-## Ek Uyarıları Ayarlama
+## Ek uyarıları yapılandırma
 
---8<-- "../include-tr/integrations/integrations-trigger-setup-limited.md"
+--8<-- "../include/integrations/integrations-trigger-setup-limited.md"
 
-## Entegrasyonun Devre Dışı Bırakılması ve Silinmesi
+## Bir entegrasyonu devre dışı bırakma ve silme
 
---8<-- "../include-tr/integrations/integrations-disable-delete.md"
+--8<-- "../include/integrations/integrations-disable-delete.md"
 
-## Sistem Erişilemezliği ve Yanlış Entegrasyon Parametreleri
+## Sistem kullanılamazlığı ve yanlış entegrasyon parametreleri
 
---8<-- "../include-tr/integrations/integration-not-working.md"
+--8<-- "../include/integrations/integration-not-working.md"

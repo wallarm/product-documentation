@@ -1,26 +1,21 @@
-[link-doc-image-creation]:              create-image.md
-[link-doc-template-creation]:           creating-instance-template.md
-[link-doc-managed-autoscaling-group]:   creating-autoscaling-group.md
-[link-doc-lb-guide]:                    load-balancing-guide.md
+# Google Cloud Platform'da Filtreleme Düğümü Otomatik Ölçeklendirmesini Kurma: Genel Bakış
 
-# Google Cloud Platform'da filtreleme düğümünün otomatik ölçeklendirilmesini ayarlama: Genel Bakış
+Google Cloud Platform (GCP) üzerinde Wallarm filtreleme düğümü otomatik ölçeklendirmesini kurarak, filtreleme düğümlerinin herhangi bir trafik dalgalanmasını (varsa) karşılayacak kapasitede olmasını sağlayabilirsiniz. Otomatik ölçeklendirmeyi etkinleştirmek, trafik önemli ölçüde arttığında bile, uygulamaya gelen isteklerin filtreleme düğümleri aracılığıyla işlenmesini mümkün kılar.
 
-Google Cloud Platform (GCP) üzerinde Wallarm filtering node otomatik ölçeklendirme ayarlayabilir ve bu sayede filtreleme düğümleri trafik dalgalanmalarını (eğer varsa) işlemeye uygun hale getirebilirsiniz. Otomatik ölçeklendirme işlemi, filtreleme düğümlerini kullanarak uygulamaya gelen isteklerin işlenmesine olanak sağlar, hatta trafik önemli ölçüde arttığında bile.
-
-!!! uyarı "Önkoşullar"
-    Otomatik ölçeklendirmeyi ayarlamak, sanal makinenin resmini Wallarm filtering node ile gerektirir.
+!!! warning "Ön Koşullar"
+    Otomatik ölçeklendirmeyi kurabilmek için Wallarm filtreleme düğümüne sahip sanal makinenin imajının oluşturulması gerekmektedir.
     
-    GCP'de sanal makinenin Wallarm filtering node ile bir resmini oluşturma hakkında ayrıntılı bilgi için, bu [bağlantıya][link-doc-image-creation] gidiniz.
+    GCP üzerinde Wallarm filtreleme düğümüne sahip sanal makinenin imajının oluşturulmasıyla ilgili detaylı bilgi için bu [link][link-doc-image-creation]'a bakınız.
 
---8<-- "../include-tr/gcp-autoscaling-connect-ssh.md"
+--8<-- "../include/gcp-autoscaling-connect-ssh.md"
 
-Google Cloud Platform'da filtreleme düğümlerini otomatik olarak ölçeklendirmek için aşağıdaki adımları uygulayın:
+Google Cloud Platform üzerinde filtreleme düğümlerini otomatik ölçeklendirmek için aşağıdaki adımları izleyin:
 
-1.  [Bir Makine Görüntüsü Oluşturun](create-image.md)
-1.  Filtreleme düğümünün otomatik ölçeklendirmesini ayarlayın:
-    1.  [Bir filtreleme düğümü örneği şablonu oluşturun][link-doc-template-creation];
-    2.  [Otomatik ölçeklendirme etkin bir yönetilen örnek grubu oluşturun][link-doc-managed-autoscaling-group];
-1.  [Gelen isteklerin dengelenmesini ayarlayın][link-doc-lb-guide].
+1.  [Create a Machine Image](create-image.md)
+1.  Filtreleme düğümü otomatik ölçeklendirmesini yapılandırın:
+    1.  [Create a filtering node instance template][link-doc-template-creation];
+    2.  [Create a managed instance group with auto scaling enabled][link-doc-managed-autoscaling-group];
+1.  [Set up incoming requests balancing][link-doc-lb-guide].
 
-!!! bilgi "Gerekli yetkiler"
-    Otomatik ölçeklendirme ayarlamadan önce, GCP hesabınızın `Compute Admin` rolüne sahip olduğundan emin olun.
+!!! info "Gerekli Yetkiler"
+    Otomatik ölçeklendirmeyi yapılandırmadan önce, GCP hesabınızın `Compute Admin` rolüne sahip olduğundan emin olun.

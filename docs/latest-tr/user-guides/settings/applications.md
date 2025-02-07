@@ -1,61 +1,59 @@
-# Uygulamaları Ayarlama
+# Uygulamaların Yapılandırılması
 
-Eğer şirketinizde birden fazla uygulamanız varsa, tüm şirketin trafiğinin istatistiklerini görmekten öte, her bir uygulama için istatistikleri ayrı ayrı görmenin çok kullanışlı olabileceğini fark edebilirsiniz. Trafikleri uygulamalar arasında ayırmak için Wallarm sistemindeki "uygulama" varlığını kullanabilirsiniz.
+Şirketinizde birden fazla uygulama bulunuyorsa, tüm şirket trafiğinin istatistiklerini görüntülemenin yanı sıra her bir uygulamanın istatistiklerini ayrı ayrı görüntülemek uygun olabilir. Trafiği uygulamalara göre ayırmak için Wallarm sistemindeki "application" varlığını kullanabilirsiniz.
 
-!!! uyarı "CDN düğümü için uygulama konfigürasyonunun desteklenmesi"
-    Uygulamaları [Wallarm CDN düğümleri](../../installation/cdn-node.md) için yapılandırmak üzere [Wallarm destek ekibi](mailto:support@wallarm.com)nden talepte bulunun.
+Uygulamaları kullanmanın avantajları:
 
-Uygulamaları kullanmak sizin:
-  
-* Her bir uygulama için etkinlikleri ve istatistikleri ayrı ayrı görmeyi
-* Belirli uygulamalar için [tetikleyicileri](../triggers/triggers.md), [kuralları](../rules/rules.md) ve diğer Wallarm özelliklerini yapılandırmayı
-* [Wallarm'ı ayrı ortamlarda](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md) yapılandırmayı
+* Her bir uygulama için olayları ve istatistikleri ayrı ayrı görüntüleme
+* Belirli uygulamalar için [triggers](../triggers/triggers.md), [rules](../rules/rules.md) ve diğer Wallarm özelliklerini yapılandırma
+* [Configure Wallarm in separated environments](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)
 
-sağlar.
+Wallarm'ın uygulamalarınızı tanımlayabilmesi için, ilgili direktif aracılığıyla node yapılandırmasında onlara benzersiz tanımlayıcılar atamanız gerekmektedir. Tanımlayıcılar, uygulama domain’leri ve domain yolları için ayarlanabilir.
 
-Wallarm'ın uygulamalarınızı tanıması için, onlara düğüm konfigürasyonundaki uygun direktif aracılığıyla benzersiz tanımlayıcılar atamanız gereklidir. Tanımlayıcılar, hem uygulama alanlarına hem de alan yollarına ayarlanabilir.
+Varsayılan olarak, Wallarm her uygulamayı tanımlayıcı (ID) `-1` olan `default` uygulama olarak kabul eder.
 
-Varsayılan olarak, Wallarm her uygulamanın `-1` kimliği (ID) olan `default` uygulama olduğunu kabul eder.
+## Uygulama Ekleme
 
-## Bir uygulama eklemek
+1. (Opsiyonel) Wallarm Console → **Settings** → **Applications** bölümünden bir uygulama ekleyin.
 
-1. (İsteğe Bağlı) Bir uygulamayı Wallarm Console → **Settings** → **Applications**'a ekleyin.
+    ![Uygulama ekleme](../../images/user-guides/settings/configure-app.png)
 
-    ![Bir uygulama eklemek](../../images/user-guides/settings/configure-app.png)
+    !!! warning "Yönetici erişimi"
+        **Settings** → **Applications** bölümüne sadece **Administrator** rolüne sahip kullanıcılar erişebilir.
+2. Node yapılandırmasında uygulamaya benzersiz bir ID atayın:
 
-    !!! uyarı "Yönetici erişimi"
-        Yalnızca **Administrator** rolüne sahip kullanıcılar **Settings** → **Applications** bölümüne erişebilir.
-2. Bir uygulamaya düğüm konfigürasyonu üzerinden benzersiz bir kimlik atayın:
+    * Wallarm NGINX modülü, cloud marketplace görüntüsü, yapılandırma dosyası monte edilmiş NGINX tabanlı Docker konteyneri veya sidecar konteyner olarak kurulduysa, [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) direktifini kullanın.
+    * Wallarm NGINX tabanlı Docker konteyneri olarak kurulduysa, [environment variable](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) `WALLARM_APPLICATION`'ı kullanın.
+    * Wallarm Ingress controller olarak kurulduysa, [Ingress annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `wallarm-application`'ı kullanın.
+    * Wallarm, yapılandırma dosyası monte edilmiş Envoy tabanlı Docker konteyneri olarak kurulduysa, [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) parametresini kullanın.
+    * Native Node all-in-one kurulumunda ve Docker görüntüsü için [`route_config.wallarm_application`](../../installation/native-node/all-in-one-conf.md#route_configwallarm_application) parametresini kullanın.
+    * Native Node Helm chart için [`config.connector.route_config.wallarm_application`](../../installation/native-node/helm-chart-conf.md#configconnectorroute_configwallarm_application) parametresini kullanın.
+    * Edge inline veya connector kurulum penceresindeki uygulama yapılandırmasını kullanın.
 
-    * Wallarm, NGINX module, cloud marketplace image, NGINX-based Docker container where the configuration file is mounted, or a sidecar container olarak kurulduysa [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) direktifi.
-    * Wallarm kurulumu, NGINX tabanlı bir Docker konteyneri olarak yapıldıysa [çevre değişkeni](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) `WALLARM_APPLICATION`.
-    * Wallarm, Ingress controller olarak kurulmuşsa [Ingress annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `wallarm-application`.
-    * Wallarm, configuration file mounted olan bir Envoy tabanlı Docker konteyneri olarak kurulmuşsa [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) parametresi.
+    Değer, `0` hariç pozitif bir tamsayı olabilir.
 
-    Değer, `0` hariç olumlu bir tam sayı olabilir.
+    Belirtilen ID'ye sahip bir uygulama Wallarm Console → **Settings** → **Applications** bölümüne eklenmemişse, listeye otomatik olarak eklenecektir. Uygulama adı, belirtilen tanımlayıcıya göre otomatik olarak oluşturulacaktır (örneğin, ID `-1` olan uygulama için `Application #1`). Daha sonra Wallarm Console üzerinden ad değiştirilebilir.
 
-    Belirtilen kimlikle bir uygulama Wallarm Console → **Settings** → **Applications**'a eklenmemişse, otomatik olarak listeye eklenecektir. Uygulama adı, belirtilen tanımlayıcıya dayanarak otomatik olarak oluşturulacaktır (örneğin, ID'si `-1` olan uygulama için `Application #1`). Ad, daha sonra Wallarm Console üzerinden değiştirilebilir.
+Uygulama doğru bir şekilde yapılandırılmışsa, adı bu uygulamaya yönelik saldırıların ayrıntılarında görüntülenecektir. Uygulama yapılandırmasını test etmek için, uygulama adresine [test saldırısı](../../admin-en/installation-check-operation-en.md#2-run-a-test-attack) gönderebilirsiniz.
 
-Uygulama doğru şekilde yapılandırılmışsa, bu uygulamaya yönelik saldırıların ayrıntılarında adı görüntülenir. Uygulama konfigürasyonunuzu test etmek için, uygulama adresine [test saldırısı](../../admin-en/installation-check-operation-en.md#2-run-a-test-attack) gönderebilirsiniz.
+## Otomatik Uygulama Tanımlaması
 
-## Otomatik uygulama tanımlama
-
-Şunun temelinde otomatik bir uygulama tanımlama ayarlayabilirsiniz:
+Otomatik uygulama tanımlamasını aşağıdaki temeller üzerine yapılandırabilirsiniz:
 
 * Belirli istek başlıkları
-* `map` NGINX directive kullanarak belirli bir istek başlığı veya URL'lerin parçası
+* `map` NGINX direktifi kullanarak belirli istek başlığı veya URL parçaları
 
-!!! bilgi "Sadece NGINX"
-    Listelenen yaklaşımlar sadece NGINX tabanlı düğüm dağıtımları için geçerlidir.
+!!! info "Sadece NGINX"
+    Liste edilen yaklaşımlar yalnızca NGINX tabanlı self-hosted node dağıtımları için geçerlidir.
 
-### Belirli istek başlıklarına dayalı uygulama tanımlama
+### Belirli İstek Başlıkları Temelinde Uygulama Tanımlaması
 
 Bu yaklaşım iki adımdan oluşur:
 
-1. Ağı, her isteğe uygulama kimliği ile başlık ekleyecek şekilde yapılandırın.
-1. Bu başlığın değerini `wallarm_application` direktifi için değer olarak kullanın. Aşağıdaki örneğe bakın.
+1. Ağınızı, uygulama ID'sine sahip başlığın her isteğe eklenmesini sağlayacak şekilde yapılandırın.
+2. Bu başlığın değerini `wallarm_application` direktifi için değer olarak kullanın. Aşağıdaki örneğe bakınız.
 
-NGINX configuration file (`/etc/nginx/default.conf`) örneği:
+NGINX yapılandırma dosyası örneği:
 
 ```
 server {
@@ -76,18 +74,18 @@ Saldırı isteği örneği:
 curl -H "Cookie: SESSID='UNION SELECT SLEEP(5)-- -" -H "CUSTOM-ID: 222" http://example.com
 ```
 
-Bu istek, şunları yapar:
+Bu istek:
 
-* Bir saldırı olarak kabul edilir ve **Events** bölümüne eklenir.
-* Kimliği `222` olan uygulama ile ilişkilendirilir.
-* Eşleşen bir uygulama yoksa, **Settings** → **Applications**'a eklenir ve otomatik olarak `Application #222` olarak adlandırılır.
+* Bir saldırı olarak kabul edilecek ve **Attacks** bölümüne eklenecektir.
+* `222` ID'li uygulamayla ilişkilendirilecektir.
+* Eğer ilgili uygulama mevcut değilse, **Settings** → **Applications** bölümüne eklenecek ve otomatik olarak `Application #222` olarak adlandırılacaktır.
 
-![Başlık isteğinin temelinde bir uygulama eklemek](../../images/user-guides/settings/configure-app-auto-header.png)
+![Başlık isteği temelinde uygulama ekleme](../../images/user-guides/settings/configure-app-auto-header.png)
 
-### `map` NGINX directive'ini kullanarak belirli bir istek başlığı veya URL'lerin parçasına dayalı uygulama tanımlama 
+### `map` NGINX Direktifi Kullanılarak Belirli İstek Başlığı veya URL Parçası Temelinde Uygulama Tanımlaması
 
-Belirli bir istek başlığı veya bitiş noktası URL'lerinin parçasına dayalı uygulamalar ekleyebilir ve bunun için `map` NGINX directive'ini kullanabilirsiniz. Directive'ın ayrıntılı açıklamasını NGINX [belgelerinde](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) bulabilirsiniz.
+Belirli istek başlığı veya uç noktası URL parçalarına dayanarak, `map` NGINX direktifini kullanarak uygulamaları ekleyebilirsiniz. Direktifin detaylı açıklaması NGINX [dökümantasyonunda](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) yer almaktadır.
 
-## Bir uygulamayı silme
+## Uygulamayı Silme
 
-Uygulamayı Wallarm sisteminden silmek için, uygun directive'ı düğüm konfigürasyon dosyasından silin. Eğer uygulama yalnızca **Settings** → **Applications** bölümünden silinirse, listeye geri yüklenir.
+Wallarm sisteminden bir uygulamayı silmek için, ilgili direktifi node yapılandırma dosyasından kaldırın. Uygulama sadece **Settings** → **Applications** bölümünden silinirse, listeye yeniden eklenecektir.

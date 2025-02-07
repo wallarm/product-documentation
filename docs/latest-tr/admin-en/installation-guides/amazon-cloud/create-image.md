@@ -1,92 +1,91 @@
-[link-docs-aws-autoscaling]: autoscaling-group-guide.md
-[link-docs-aws-node-setup]: ../../../installation/cloud-platforms/aws/ami.md
-[link-ssh-keys-guide]: ../../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys
-[link-security-group-guide]: ../../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group
-[link-cloud-connect-guide]: ../../../installation/cloud-platforms/aws/ami.md#5-connect-the-filtering-node-to-the-wallarm-cloud
-[link-docs-reverse-proxy-setup]: ../../../installation/cloud-platforms/aws/ami.md#6-enable-wallarm-to-analyze-the-traffic
-[link-docs-check-operation]: ../../installation-check-operation-en.md
+[link-docs-aws-autoscaling]:        autoscaling-group-guide.md
+[link-docs-aws-node-setup]:         ../../../installation/cloud-platforms/aws/ami.md
+[link-ssh-keys-guide]:              ../../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys-in-aws
+[link-security-group-guide]:        ../../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group
+[link-cloud-connect-guide]:         ../../../installation/cloud-platforms/aws/ami.md#6-connect-the-instance-to-the-wallarm-cloud
+[link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/aws/ami.md#7-configure-sending-traffic-to-the-wallarm-instance
+[link-docs-check-operation]:        ../../installation-check-operation-en.md
 
-[img-launch-ami-wizard]: ../../../images/installation-ami/auto-scaling/common/create-image/launch-ami-wizard.png 
-[img-config-ami-wizard]: ../../../images/installation-ami/auto-scaling/common/create-image/config-ami-wizard.png  
-[img-explore-created-ami]: ../../../images/installation-ami/auto-scaling/common/create-image/explore-ami.png
+[img-launch-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/launch-ami-wizard.png 
+[img-config-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/config-ami-wizard.png  
+[img-explore-created-ami]:      ../../../images/installation-ami/auto-scaling/common/create-image/explore-ami.png
 
-[anchor-node]: #1-creating-and-configuring-the-wallarm-filtering-node-instance-in-the-amazon-cloud
-[anchor-ami]: #2-creating-an-amazon-machine-image
+[anchor-node]:  #1-creating-and-configuring-the-wallarm-filtering-node-instance-in-the-amazon-cloud
+[anchor-ami]:   #2-creating-an-amazon-machine-image
 
-# Wallarm filtreleme nodu ile AMI oluşturma
+#   Wallarm filtering node ile AMI Oluşturma
 
-Amazon bulutunda konuşlandırılan Wallarm filtreleme düğümleri için otomatik ölçeklendirme ayarlayabilirsiniz. Bu işlev, önceden hazırlanmış sanal makine görüntülerini gerektirir.
+Amazon cloud üzerinde dağıtılan Wallarm filtering node'lar için otomatik ölçeklendirme (auto scaling) kurabilirsiniz. Bu işlev, önceden hazırlanmış sanal makine görüntülerini gerektirir.
 
-Bu belge, Wallarm filtreleme düğümünün yüklendiği bir Amazon Makine Görüntüsü (AMI) hazırlama prosedürünü anlatmaktadır. Filtreleme düğümünün otomatik ölçeklendirme ayarını yapmak için AMI gereklidir. Otomatik ölçeklendirmeyi ayarlama hakkında ayrıntılı bilgi için, bu [bağlantıya][link-docs-aws-autoscaling] ilerleyin.
+Bu doküman, Wallarm filtering node'un yüklü olduğu bir Amazon Machine Image (AMI) hazırlanma prosedürünü açıklamaktadır. AMI, filtering node otomatik ölçeklendirme kurulumu için gereklidir. Otomatik ölçeklendirme kurulumu hakkında detaylı bilgi için bu [link][link-docs-aws-autoscaling]'e geçin.
 
-Wallarm filtreleme düğümü ile bir AMI oluşturmak için aşağıdaki prosedürleri gerçekleştirin:
+Wallarm filtering node ile bir AMI oluşturmak için şu işlemleri gerçekleştirin:
 
-1.  [Amazon bulutunda filtreleme düğümü örneğini oluşturma ve yapılandırma][anchor-node]
-2.  [Yapılandırılmış filtreleme düğümü örneği temelinde bir AMI oluşturma][anchor-ami]
+1.  [Amazon cloud üzerinde filtering node örneğinin oluşturulması ve yapılandırılması][anchor-node]
+2.  [Yapılandırılmış filtering node örneğine dayalı olarak bir AMI oluşturulması][anchor-ami]
 
+##  1.  Amazon Cloud Üzerinde Wallarm filtering node Örneğinin Oluşturulması ve Yapılandırılması
 
-##  1.  Amazon Bulutta Wallarm Filtreleme Düğümü Örneğinin Oluşturulması ve Yapılandırılması
+Bir AMI oluşturmadan önce, tek bir Wallarm filtering node'un başlangıç yapılandırmasını yapmanız gerekmektedir. Filtering node'u yapılandırmak için şunları yapın:
 
-Bir AMI oluşturmadan önce, tek bir Wallarm filtreleme düğümünün başlangıç ​​yapılandırmasını yapmanız gerekir. Bir filtreleme düğümünü yapılandırmak için aşağıdakileri yapın:
-
-1.  Amazon bulutunda bir filtreleme düğümü örneği [oluşturun][link-docs-aws-node-setup]. 
+1.  [Amazon Cloud'da filtering node örneği oluşturun][link-docs-aws-node-setup].
     
-    !!! warning "Özel SSH anahtarı"
-        Filtreleme düğümüne bağlanmak için daha önce [oluşturduğunuz][link-ssh-keys-guide] (PEM formatında saklanan) özel SSH anahtarına sahip olduğunuzdan emin olun.
+    !!! warning "Private SSH key"
+        Filtering node'a bağlanmak için daha önce [oluşturduğunuz][link-ssh-keys-guide] ve PEM formatında saklanan özel SSH anahtarına erişiminiz olduğundan emin olun.
 
-    !!! warning "Filtre düğümüne internet bağlantısı sağlayın"
-        Filtreleme düğümü, uygun bir işlem için Wallarm API sunucusuna erişim gerektirir. Wallarm API sunucusunun seçimi, kullandığınız Wallarm Buluta bağlıdır:
+    !!! warning "Provide the filtering node with an internet connection"
+        Filtering node'un doğru çalışması için Wallarm API sunucusuna erişim gerekmektedir. Kullanmakta olduğunuz Wallarm Cloud'a bağlı olarak Wallarm API sunucusunun seçimi değişir:
         
-        *   ABD Bulutunu kullanıyorsanız, düğümünüze `https://us1.api.wallarm.com` adresine erişim izni verilmesi gerekir.
-        *   EU Bulutunu kullanıyorsanız, düğümünüze `https://api.wallarm.com` adresine erişim izni verilmesi gerekmektedir.
+        *   US Cloud kullanıyorsanız, node'unuza `https://us1.api.wallarm.com` adresine erişim yetkisi verilmelidir.
+        *   EU Cloud kullanıyorsanız, node'unuza `https://api.wallarm.com` adresine erişim yetkisi verilmelidir.
         
-    Filtreleme düğümünün Wallarm API sunucularına erişimini engelleme olasılığına karşı doğru VPC ve alt ağları seçtiğinizden ve bir güvenlik grubunu [yapılandırdığınız][link-security-group-guide]dan emin olun.
+    Doğru VPC ve alt ağları seçtiğinizden ve filtering node'un Wallarm API sunucularına erişimini engellemeyecek şekilde [güvenlik grubu yapılandırmanızı][link-security-group-guide] sağladığınızdan emin olun.
 
-2.  Filtreleme düğümünü Wallarm Buluta [bağlayın][link-cloud-connect-guide].
+2.  Filtering node'u [Wallarm Cloud'a bağlayın][link-cloud-connect-guide].
 
-    !!! warning "Wallarm Buluta bağlanmak için bir token kullanın"
-        Filtreleme düğümünü Wallarm Buluta bir token kullanarak bağlamanız gerektiğini unutmayın. Birden çok filtreleme düğümünün aynı tokenı kullanarak Wallarm Buluta bağlanmasına izin verilir.
+    !!! warning "Use a token to connect to the Wallarm Cloud"
+        Lütfen filtering node'un Wallarm Cloud'a bir token kullanılarak bağlanması gerektiğini unutmayın. Aynı token ile birden fazla filtering node'un Wallarm Cloud'a bağlanmasına izin verilmektedir.
         
-        Böylece, filtreleme düğümlerinin otomatik ölçeklendirmesi durumunda, her bir filtreleme düğümünü Wallarm Buluta manuel olarak bağlama ihtiyacınız olmayacak.
+        Böylece, filtering nodes otomatik ölçeklendirme sırasında her bir filtering node'u manuel olarak Wallarm Cloud'a bağlamanız gerekmeyecektir.
 
-3.  Filtreleme düğümünü web uygulamanız için bir ters proxy olarak [yapılandırın][link-docs-reverse-proxy-setup].
+3.  Filtering node'u web uygulamanız için bir ters proxy olarak [yapılandırın][link-docs-reverse-proxy-setup].
 
-4.  Filtreleme düğümünün doğru bir şekilde yapılandırıldığını ve web uygulamanızı kötü amaçlı isteklere karşı [koruduğundan][link-docs-check-operation] emin olun.
+4.  Filtering node'un doğru yapılandırıldığından ve web uygulamanızı kötü niyetli isteklere karşı koruduğundan [emin olun][link-docs-check-operation].
 
-Filtre düğümünü yapılandırmayı bitirdikten sonra, aşağıdaki etkinliklerle sanal makineyi kapatın:
+Filtering node yapılandırmasını tamamladıktan sonra, sanal makineyi kapatmak için aşağıdaki adımları izleyin:
 
-1.  Amazon EC2 kontrol panelindeki **Örnekler** sekmesine gidin.
-2.  Yapılandırmış olduğunuz filtreleme düğümü örneğinizi seçin.
-3.  **Eylemler** açılır menüsünde **Durum Örneği** ve ardından **Durdur** seçeneğini seçin.
+1.  Amazon EC2 kontrol panelindeki **Instances** sekmesine gidin.
+2.  Yapılandırılmış filtering node örneğinizi seçin.
+3.  **Actions** açılır menüsünden **Instance State**'e ve ardından **Stop**'a tıklayın.
 
-!!! info "`poweroff` komutu ile kapatma"
-    SSH protokolü aracılığıyla buna bağlanarak sanal makineyi de kapatabilirsiniz ve aşağıdaki komutu çalıştırınız:
+!!! info "Turning off with the `poweroff` command"
+    Sanal makineyi SSH protokolü üzerinden bağlanarak ve aşağıdaki komutu çalıştırarak da kapatabilirsiniz:
     
     ``` bash
     poweroff
     ```
 
-##  2.  Amazon Makine Görüntüsü Oluşturma
+##  2.  Bir Amazon Machine Image Oluşturma
 
-Şimdi, yapılandırılmış filtreleme düğümü örneği temelinde bir sanal makine görüntüsü oluşturabilirsiniz. Bir görüntü oluşturmak için aşağıdaki adımları gerçekleştirin:
+Artık yapılandırılmış filtering node örneğine dayalı bir sanal makine görüntüsü oluşturabilirsiniz. Bir görüntü oluşturmak için aşağıdaki adımları izleyin:
 
-1.  Amazon EC2 kontrol panelindeki **Örnekler** sekmesine gidin.
-2.  Yapılandırmış olduğunuz filtreleme düğümü örneğinizi seçin.
-3.  **Eylemler** açılır menüsünde **Görüntü** ve ardından **Görüntü Oluştur** seçeneğini seçerek görüntü oluşturma sihirbazını başlatın.
+1.  Amazon EC2 kontrol panelindeki **Instances** sekmesine gidin.
+2.  Yapılandırılmış filtering node örneğinizi seçin.
+3.  **Actions** açılır menüsünden **Image** seçeneğini ve ardından **Create Image**'i seçerek görüntü oluşturma sihirbazını başlatın.
 
-    ![AMI oluşturma sihirbazının başlatılması][img-launch-ami-wizard]
+    ![Launching the AMI creation wizard][img-launch-ami-wizard]
     
-4.  **Görüntü Oluştur** formu belirecektir. **Görüntü adı** alanına görüntü adını girin. Diğer alanları olduğu gibi bırakabilirsiniz.
+4.  **Create Image** formu görünecektir. **Image name** alanına görüntü adını girin. Kalan alanları değiştirmeden bırakabilirsiniz.
 
-    ![AMI oluşturma sihirbazında parametrelerin yapılandırılması][img-config-ami-wizard]
+    ![Configuring parameters in the AMI creation wizard][img-config-ami-wizard]
     
-5.  Sanal makine görüntüsü oluşturma işlemini başlatmak için **Görüntü Oluştur** düğmesine tıklayın.
+5.  Sanal makine görüntüsü oluşturma işlemini başlatmak için **Create Image** butonuna tıklayın.
     
-    Görüntü oluşturma işlemi bittiğinde, ilgili mesaj görüntülenir. Görüntünün başarıyla oluşturulduğundan ve **Kullanılabilir** durumda olduğundan emin olmak için Amazon EC2 kontrol panelindeki **AMIs** sekmesine gidin.
+    Görüntü oluşturma işlemi tamamlandığında ilgili mesaj görüntülenecektir. Görüntünün başarılı bir şekilde oluşturulduğundan ve **Available** durumunda olduğundan emin olmak için Amazon EC2 kontrol panelindeki **AMIs** sekmesine gidin.
     
-    ![Oluşturulan AMI'nın incelenmesi][img-explore-created-ami]
+    ![Exploring the created AMI][img-explore-created-ami]
 
-!!! info "Görüntü görünürlüğü"
-    Hazırlanan görüntü, uygulamanıza özgü ayarları ve Wallarm tokenini içerdiğinden, görüntü görünürlüğü ayarını değiştirmeniz ve onu halka açık yapmanız önerilmez (varsayılan olarak, AMI'ler **Özel** görünürlük ayarıyla oluşturulur).
+!!! info "Image visibility"
+    Hazırlanan görüntü, uygulamanıza ve Wallarm token'a özgü ayarlar içerdiğinden, görüntü görünürlüğü ayarını değiştirip herkese açık hale getirmeniz önerilmez (varsayılan olarak, AMI'ler **Private** görünürlük ayarı ile oluşturulur).
 
-Şimdi, hazırlanan görüntüyü kullanarak Amazon bulutta Wallarm filtreleme düğümlerinin otomatik ölçeklendirmesini [kurabilirsiniz][link-docs-aws-autoscaling].
+Artık hazırlanan görüntüyü kullanarak Amazon cloud üzerinde Wallarm filtering node'larının otomatik ölçeklendirmesini [kurabilirsiniz][link-docs-aws-autoscaling].

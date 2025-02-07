@@ -1,85 +1,92 @@
-[link-network-plugin]:              https://collectd.org/wiki/index.php/Plugin:Network
-[link-network-plugin-docs]:         https://www.collectd.org/documentation/manpages/collectd.conf.html
-[link-collectd-networking]:         https://collectd.org/wiki/index.php/Networking_introduction
-[link-influx-collectd-support]:     https://docs.influxdata.com/influxdb/v1.7/supported_protocols/collectd/
-[link-plugin-table]:                https://collectd.org/wiki/index.php/Table_of_Plugins
-[link-nagios-plugin-docs]:          https://www.collectd.org/documentation/manpages/collectd-nagios.html
-[link-notif-common]:                https://collectd.org/wiki/index.php/Notifications_and_thresholds
-[link-notif-details]:               https://www.collectd.org/documentation/manpages/collectd-threshold.html
-[link-influxdb-collectd]:           https://docs.influxdata.com/influxdb/v1.7/supported_protocols/collectd/
-[link-unixsock]:                    https://collectd.org/wiki/index.php/Plugin:UnixSock
+```markdown
+#   Metriklerin Alınması
 
-[doc-network-plugin-example]:       network-plugin-influxdb.md
-[doc-write-plugin-example]:         write-plugin-graphite.md
-[doc-zabbix-example]:               collectd-zabbix.md
-[doc-nagios-example]:               collectd-nagios.md
+Bu talimatlar, bir filtre düğümünden metrik toplamanın yollarını açıklar.
 
-#	Göstergeleri Nasıl Getiririz
+##  `collectd`'den Doğrudan Metrik Aktarımı
 
-Bu talimatlar, bir filtreleme düğümünden göstergeleri toplama yollarını açıklamaktadır.
-
-##	`collectd`'den Doğrudan Göstergeleri Aktarmak
-
-`collectd` tarafından toplanan göstergeleri, `collectd` veri akışları ile çalışmayı destekleyen araçlara doğrudan aktarabilirsiniz.
+`collectd` tarafından toplanan metrikleri, `collectd` veri akışlarıyla çalışmayı destekleyen araçlara doğrudan aktarabilirsiniz.
 
 
-!!! warning "Ön Şartlar"
-    Tüm sonraki adımlar bir süper kullanıcı (örneğin, `root`) olarak gerçekleştirilmelidir.
+!!! warning "Ön Koşullar"
+    Tüm sonraki adımlar süper kullanıcı (örneğin, `root`) olarak gerçekleştirilmelidir.
 
 
-###	`collectd` Ağ Eklentisi ile Göstergeleri Aktarmak
+### `collectd` Ağ Eklentisi Üzerinden Metrik Aktarımı
 
-[Network plugin][link-network-plugin]'i `collectd`'e bağlayın ve yapılandırın:
-1.	`/etc/collectd/collectd.conf.d/` dizininde, `.conf` uzantılı bir dosya (örn., `export-via-network.conf`) aşağıdaki içerikle oluşturun:
+[network plugin][link-network-plugin]'ü `collectd` ile yapılandırın ve bağlayın:
 
-    ```
-    LoadPlugin network
+=== "Docker imajı, cloud imajı, tek parça yükleyici"
+    1.  Aşağıdaki yapılandırmayı `/opt/wallarm/etc/collectd/wallarm-collectd.conf` dosyasına ekleyin:
     
-    <Plugin "network">
-      Server "Sunucu IPv4/v6 adresi veya FQDN" "Sunucu portu"
-    </Plugin>
-    ```
+        ```
+        LoadPlugin network
+        
+        <Plugin "network">
+          Server "Server IPv4/v6 address or FQDN" "Server port"
+        </Plugin>
+        ```
 
-    Bu dosyada belirtildiği gibi, eklenti `collectd` başlatıldığında yüklenecek, istemci modunda çalışacak ve filtre düğümünün gösterge verilerini belirtilen sunucuya gönderecektir.
-    
-2.	`collectd` istemcisinden veri alacak bir sunucu yapılandırın. Gerekli yapılandırma adımları, seçilen sunucuya bağlıdır ([`collectd`][link-collectd-networking] ve [InfluxDB][link-influxdb-collectd] için örnekler gözden geçirin).
+        Bu yapılandırmada belirtildiği gibi, eklenti `collectd` başlatıldığında yüklenecek, istemci modunda çalışacak ve filtre düğümünün metrik verilerini belirtilen sunucuya gönderecektir.
+    1.  `collectd` istemcisinden veri alacak bir sunucuyu yapılandırın. Gerekli yapılandırma adımları seçilen sunucuya bağlıdır (örnekler için [`collectd`][link-collectd-networking] ve [InfluxDB][link-influxdb-collectd]'a bakın).
     
     
-    !!! info "Network Plugin ile Çalışma"
-        Ağ eklentisi UDP üzerinden çalışır ([eklenti belgesi][link-network-plugin-docs] bakın). Gösterge toplamanın işlevsel olması için sunucunun UDP üzerinden iletişime izin verdiğinden emin olun.
-         
-3.	`collectd` hizmetini, uygun komutu çalıştırarak yeniden başlatın:
+        !!! info "Ağ Eklentisi ile Çalışma"
+            Ağ eklentisi UDP üzerinden çalışır (bkz. [eklenti belgeleri][link-network-plugin-docs]). Metrik toplamanın çalışabilmesi için sunucunun UDP üzerinden iletişime izin verdiğinden emin olun.
+    1.  Aşağıdaki komutu çalıştırarak `wallarm` servisini yeniden başlatın:
 
-    --8<-- "../include-tr/monitoring/collectd-restart-2.16.md"
+        ```bash
+        sudo systemctl restart wallarm
+        ```
+=== "Diğer kurulumlar"
+    1.  `/etc/collectd/collectd.conf.d/` dizininde, `.conf` uzantılı (örn., `export-via-network.conf`) bir dosya oluşturun ve aşağıdaki içeriği ekleyin:
+
+        ```
+        LoadPlugin network
+        
+        <Plugin "network">
+          Server "Server IPv4/v6 address or FQDN" "Server port"
+        </Plugin>
+        ```
+
+        Bu dosyada belirtildiği gibi, eklenti `collectd` başlatıldığında yüklenecek, istemci modunda çalışacak ve filtre düğümünün metrik verilerini belirtilen sunucuya gönderecektir.
+    1.  `collectd` istemcisinden veri alacak bir sunucuyu yapılandırın. Gerekli yapılandırma adımları seçilen sunucuya bağlıdır (örnekler için [`collectd`][link-collectd-networking] ve [InfluxDB][link-influxdb-collectd]'a bakın).
+    
+    
+        !!! info "Ağ Eklentisi ile Çalışma"
+            Ağ eklentisi UDP üzerinden çalışır (bkz. [eklenti belgeleri][link-network-plugin-docs]). Metrik toplamanın çalışabilmesi için sunucunun UDP üzerinden iletişime izin verdiğinden emin olun.
+    1.  Uygun komutu çalıştırarak `collectd` servisini yeniden başlatın:
+
+        --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
 !!! info "Örnek"
-    Göstergeleri Network plugin aracılığıyla InfluxDB'ye aktarma ve ardından Grafana'da göstergelerin görselleştirilmesine yönelik bir örneği [okuyun][doc-network-plugin-example].
+    Ağ eklentisi kullanılarak InfluxDB'ye metrik aktarımını ve metriklerin Grafana ile görselleştirilmesini anlatan bir [örneğe][doc-network-plugin-example] bakın.
 
-###	`collectd` Yazma Eklentileri ile Göstergeleri Aktarmak
+### `collectd` Yazma Eklentileri ile Metrik Aktarımı
 
-Göstergeleri `collectd` [yazma eklentileri][link-plugin-table] üzerinden aktarmayı yapılandırmak için denk gelen eklentinin belgelerine başvurun.
+`collectd` [yazma eklentileri][link-plugin-table] aracılığıyla metrik aktarımını yapılandırmak için ilgili eklentinin belgelerine bakın.
 
 
 !!! info "Örnek"
-    Yazma eklentileri kullanmayı hakkında temel bilgi sahibi olmak için, Grafana'da göstergelerin görselleştirilmesiyle birlikte göstergeleri Graphite'a aktarma [örneğini okuyun][doc-write-plugin-example].
+    Yazma eklentilerini kullanarak metrik aktarımı hakkında temel bilgi almak için Grafana ile metriklerin görselleştirilmesini içeren [Graphite üzerinden metrik aktarım örneğine][doc-write-plugin-example] bakın.
 
-##  `collectd-nagios` Yardımcı Programını Kullanarak Göstergeleri Aktarmak
+##  `collectd-nagios` Aracı Kullanılarak Metrik Aktarımı
 
-Bu yöntemi kullanarak göstergeleri aktarmak için:
+Bu yöntemi kullanarak metrik aktarımı yapmak için:
 
-1.  Bir filtre düğümüne sahip bir hostta `collectd-nagios` yardımcı programını kurun. Linux'ta kurulu bir filtre düğümü için uygun komutu çalıştırarak bunu yapın:
+1.  Linux üzerinde bir filtre düğümüne sahip bir ana bilgisayarda aşağıdaki uygun komutu çalıştırarak `collectd-nagios` aracını yükleyin (Linux üzerinde kurulu bir filtre düğümü için):
 
-    --8<-- "../include-tr/monitoring/install-collectd-utils.md"
+    --8<-- "../include/monitoring/install-collectd-utils.md"
 
-    !!! info "Docker image"
-        Filtre düğümü Docker imajı, önceden kurulu `collectd-nagios` yardımcı programıyla birlikte gelir.
+    !!! info "Docker imajı"
+        Filtre düğümü Docker imajı, önceden yüklü `collectd-nagios` aracını içerir.
 
-2.  Bu yardımcı programı gerekli ayrıcalıklarla, bir süper kullanıcı adına (örneğin, `root`) veya normal bir kullanıcı olarak çalıştırabileceğinizi doğrulayın. İkinci durumda, kullanıcıyı `NOPASSWD` yönergesi ile `sudoers` dosyasına ekleyin ve `sudo` yardımcı programını kullanın.
+2.  Bu aracı, süper kullanıcı (örneğin, `root`) adına ya da normal kullanıcı olarak yükseltilmiş yetkilerle çalıştırabileceğinizden emin olun. İkinci durumda, kullanıcıyı `sudoers` dosyasına `NOPASSWD` yönergesi ile ekleyin ve `sudo` aracını kullanın.
 
-    !!! info "Docker container ile çalışma"
-        Filtre düğümü içeren bir Docker container'da `collectd-nagios` yardımcı programını çalıştırırken, ayrıcalıkların yükseltilmesi gerekli değildir.
+    !!! info "Docker konteyneri ile Çalışma"
+        Filtre düğümünün bulunduğu Docker konteynerinde `collectd-nagios` aracını çalıştırırken yükseltilmiş yetkilere gerek yoktur.
 
-3.  `collectd` göstergelerini Unix domain socket üzerinden aktarmak için [`UnixSock`][link-unixsock] eklentisini bağlayın ve yapılandırın. Bunu yapmak için, `/etc/collectd/collectd.conf.d/unixsock.conf` dosyasını aşağıdaki içerikle oluşturun:
+3.  [`UnixSock`][link-unixsock] eklentisini, `collectd` metriklerini Unix domain socket üzerinden iletmesi için bağlayın ve yapılandırın. Bunu yapmak için, aşağıdaki içeriğe sahip `/etc/collectd/collectd.conf.d/unixsock.conf` dosyasını oluşturun:
 
     ```
     LoadPlugin unixsock
@@ -92,52 +99,54 @@ Bu yöntemi kullanarak göstergeleri aktarmak için:
     </Plugin>
     ```
 
-4.  `collectd` hizmetini, uygun komutu çalıştırarak yeniden başlatın:
+4.  Uygun komutu çalıştırarak `collectd` servisini yeniden başlatın:
 
-    --8<-- "../include-tr/monitoring/collectd-restart-2.16.md"
+    --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
-5.  Uygun komutu çalıştırarak gerekli ölçeği alın:
+5.  Uygun komutu çalıştırarak gerekli metrik değerini alın:
 
-    --8<-- "../include-tr/monitoring/collectd-nagios-fetch-metric.md"
+    --8<-- "../include/monitoring/collectd-nagios-fetch-metric.md"
 
-    !!! info "Docker container kimliğini alma"
-        Container tanımlayıcısının değerini `docker ps` komutunu çalıştırarak bulabilirsiniz ( "CONTAINER ID" sütununa bakın).
+    !!! info "Docker konteynerinin ID'sini Alma"
+        Konteyner tanımlayıcısının değerini `docker ps` komutunu çalıştırarak (bkz. “CONTAINER ID” sütunu) bulabilirsiniz.
 
-!!! info "`collectd-nagios` Yardımcı Programı için Eşikleri Ayarlama"
-    Gerekirse, `collectd-nagios` yardımcı programının `WARNING` veya `CRITICAL` durumunu döndüreceği değer aralığını belirleyebilirsiniz. Bunun için ilgili `-w` ve `-c` seçeneklerini kullanın (ayrıntılı bilgi yardımcı programın [belgelerinde][link-nagios-plugin-docs] mevcuttur).
-
-**Yardımcı programı kullanma örnekleri:**
-*   Filtre düğümü bulunan Linux host `node.example.local` da `collectd-nagios` arandığında `curl_json-wallarm_nginx/gauge-abnormal` metrik değerini almak için aşağıdaki komutu çalıştırın:
+!!! info "collectd-nagios Aracı için Eşik Değerlerinin Ayarlanması"
+    Gerekirse, `collectd-nagios` aracının `WARNING` veya `CRITICAL` durumunu döndüreceği değer aralığını, ilgili `-w` ve `-c` seçeneklerini kullanarak belirtebilirsiniz (ayrıntılı bilgi araç [belgesinde][link-nagios-plugin-docs] mevcuttur).
+   
+**Aracın kullanımı için örnekler:**
+*   Linux ana bilgisayar olan `node.example.local` üzerinde filtre düğümü ile `collectd-nagios` çağrıldığı andaki `curl_json-wallarm_nginx/gauge-abnormal` metrik değerini almak için aşağıdaki komutu çalıştırın:
   
     ```
     /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
     ```
        
-*   `collectd-nagios` arandığında Docker container'da çalışan `curl_json-wallarm_nginx/gauge-abnormal` metrik değerini `wallarm-node` adı ve `95d278317794` tanımlayıcısı olan filtre düğümü için almak için, aşağıdaki komutu çalıştırın:
+*   `wallarm-node` adı ve `95d278317794` tanımlayıcısına sahip Docker konteynerinde çalışan filtre düğümü için `collectd-nagios` çağrıldığı andaki `curl_json-wallarm_nginx/gauge-abnormal` metrik değerini almak için aşağıdaki komutu çalıştırın:
   
     ```
     docker exec wallarm-node /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H 95d278317794
     ```
 
 
-!!! info "Daha fazla örnekler"
-    `collectd-nagios` yardımcı programını kullanmayla ilgili temel bilgileri almak için göstergeleri
+!!! info "Daha Fazla Örnek"
+    `collectd-nagios` aracını kullanarak metrik aktarımına dair temel bilgileri aşağıdaki örneklerde bulabilirsiniz:
     
-    *   [Nagios izleme sistemi][doc-nagios-example] ve
-    *   [Zabbix izleme sistemi][doc-zabbix-example]na aktarma örneklerini okuyun.
+    *   [Nagios izleme sistemi için örnek][doc-nagios-example] ve
+    *   [Zabbix izleme sistemi için örnek][doc-zabbix-example].
 
-##  `collectd` Bildirimlerini Gönderme
 
-Bildirimler aşağıdaki dosyada yapılandırılır:
+##  `collectd`'den Bildirim Gönderme
 
---8<-- "../include-tr/monitoring/notification-config-location.md"
+Bildirimler aşağıdaki dosyada yapılandırılmıştır:
 
-Bildirimlerin nasıl çalıştığına dair genel bir açıklama [burada][link-notif-common] mevcuttur.
+--8<-- "../include/monitoring/notification-config-location.md"
 
-Bildirimlerin nasıl ayarlanacağına dair daha ayrıntılı bilgi [burada][link-notif-details] mevcuttur.
+Bildirimlerin nasıl çalıştığına dair genel açıklamayı [burada][link-notif-common] bulabilirsiniz.
 
-Olası bildirim gönderme yöntemleri:
+Bildirimlerin nasıl ayarlanacağına dair daha ayrıntılı bilgiyi [burada][link-notif-details] edinebilirsiniz.
+
+Bildirim göndermenin olası yöntemleri:
 *   NSCA ve NSCA-ng
 *   SNMP TRAP
 *   e-posta mesajları
-*   özel komut dosyaları
+*   özel betikler
+```

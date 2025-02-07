@@ -1,25 +1,19 @@
 # Özel NGINX Paketleri
 
-Stabil versiyondan farklı bir NGINX versiyonu için Wallarm DEB/RPM paketlerine ihtiyacınız varsa, NGINX Plus veya dağıtım versiyonu, bu talimatları izleyerek özel bir Wallarm derlemesi talep edebilirsiniz.
+[all-in-one installation](../../installation/nginx/all-in-one.md) tarafından desteklenen sürümlerden farklı, örneğin stabil sürüm, mainline NGINX Plus veya dağıtım sürümü gibi bir NGINX sürümü için Wallarm'a ihtiyacınız varsa, aşağıdaki talimatları izleyerek özel bir Wallarm derlemesi talep edebilirsiniz.
 
-Varsayılan olarak, Wallarm DEB/RPM paketleri aşağıdaki NGINX versiyonları için kullanılabilir:
+Wallarm modülü, NGINX `mainline` dahil olmak üzere, özel bir NGINX derlemesine Wallarm paketlerini yeniden derleyerek entegre edilebilir. Paketleri yeniden derlemek için, lütfen [Wallarm technical support](mailto:support@wallarm.com) ekibi ile iletişime geçin ve aşağıdaki bilgileri sağlayın:
 
-* Resmi açık kaynaklı NGINX `stabil` - [kurulum talimatlarına](../nginx/dynamic-module.md) bakın
-* Dağıtım sağlanan NGINX - [kurulum talimatlarına](../nginx/dynamic-module-from-distr.md) bakın
-* Resmi ticari NGINX Plus - [kurulum talimatlarına](../nginx-plus.md) bakın
-
-Wallarm modülü, NGINX `mainline` dahil olmak üzere özel bir NGINX derlemesiyle entegre edilebilir. Wallarm paketlerini yeniden derlemek için lütfen [Wallarm teknik destek](mailto:support@wallarm.com) ekibi ile iletişime geçin ve aşağıdaki bilgileri sağlayın:
-
-* Linux çekirdek versiyonu: `uname -a`
+* Linux çekirdek sürümü: `uname -a`
 * Linux dağıtımı: `cat /etc/*release`
-* NGINX versiyonu:
+* NGINX sürümü:
 
-    * [NGINX resmi derlemesi](https://nginx.org/en/linux_packages.html): `/usr/sbin/nginx -V`
-    * NGINX özel derleme: `<nginx'in_yolu>/nginx -V`
+    * [NGINX official build](https://nginx.org/en/linux_packages.html): `/usr/sbin/nginx -V`
+    * NGINX custom build: `<path to nginx>/nginx -V`
 
 * Uyumluluk imzası:
   
-      * [NGINX resmi derlemesi](https://nginx.org/en/linux_packages.html): `egrep -ao '.,.,.,[01]{33}' /usr/sbin/nginx`
-      * NGINX özel derlemesi: `egrep -ao '.,.,.,[01]{33}' <nginx'in_yolu>/nginx`
+      * [NGINX official build](https://nginx.org/en/linux_packages.html): `egrep -ao '.,.,.,[01]{33}' /usr/sbin/nginx`
+      * NGINX custom build: `egrep -ao '.,.,.,[01]{33}' <path to nginx>/nginx`
 
-* NGINX işçi süreçlerini çalıştıran kullanıcı (ve kullanıcının grubu): `grep -w 'user' <NGINX-konfigürasyon-dosyalarının-yolu/nginx.conf>`
+* NGINX worker süreçlerini çalıştıran kullanıcı (ve kullanıcının grubu): `grep -w 'user' <path-to-the-NGINX-configuration-files/nginx.conf>`

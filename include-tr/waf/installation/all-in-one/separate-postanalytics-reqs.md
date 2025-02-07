@@ -1,5 +1,5 @@
-* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) için Wallarm Konsolu'nda iki faktörlü kimlik doğrulaması devre dışı bırakılmış **Yönetici** rolüne sahip hesap erişimi
-* Tüm komutların süper kullanıcı olarak (ör. `root`) çalıştırılması
-* Tümleşik Wallarm yükleyiciyi indirmek için `https://meganode.wallarm.com` adresine erişim. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
-* US Wallarm Cloud ile çalışırken `https://us1.api.wallarm.com` adresine veya EU Wallarm Cloud ile çalışırken `https://api.wallarm.com` adresine erişim. Erişim sadece proxy sunucusu üzerinden yapılandırılabilirse, o zaman [talimatlarda][configure-proxy-balancer-instr] kullanın
-* Yüklenmiş metin düzenleyici **vim**, **nano** veya başka bir tür. Bu makaledeki komutlarda **vim** kullanılır
+* Wallarm Console için [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) üzerinde, iki faktörlü kimlik doğrulaması kapalı olan **Administrator** rolüne sahip hesaba erişim
+* Tüm komutları süper kullanıcı (ör. `root`) olarak çalıştırma
+* Tüm bir arada Wallarm yükleyicisini indirmek için `https://meganode.wallarm.com` erişimi. Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
+* US Wallarm Cloud ile çalışıyorsanız `https://us1.api.wallarm.com` erişimi veya EU Wallarm Cloud ile çalışıyorsanız `https://api.wallarm.com` erişimi. Erişim yalnızca proxy sunucusu üzerinden yapılandırılabiliyorsa, [instructions][configure-proxy-balancer-instr] kullanın
+* Kurulu metin düzenleyicilerinden **vim**, **nano** veya diğer herhangi biri. Bu makaledeki komutlarda **vim** kullanılmıştır

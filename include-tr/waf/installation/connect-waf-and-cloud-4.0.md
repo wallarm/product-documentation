@@ -1,31 +1,31 @@
-!!! bilgi "Eğer postanalytics modülü ayrı bir sunucuya kurulmuşsa"
-    İlk trafik işleme ve postanalytics modülleri aynı sunucuya kurulmuşsa, bu modülleri aynı düğüm belirtecini kullanarak Wallarm Bulutu'na bağlamak önerilir. Wallarm Konsol UI, her modülü ayrı bir düğüm örneği olarak gösterecektir, örneğin:
+!!! info "postanalytics modülü ayrı bir sunucuda yüklüyse"
+    İlk trafik işleme ve postanalytics modülleri ayrı sunucularda yüklü ise, bu modüllerin Wallarm Cloud'a aynı node token'ı kullanarak bağlanması önerilir. Wallarm Console UI, her modülü ayrı bir node örneği olarak gösterecektir, örneğin:
 
-    ![Çoklu örneği bulunan bir düğüm][img-node-with-several-instances]
+    ![Node with several instances][img-node-with-several-instances]
 
-    Wallarm düğümü zaten [ayrı postanalytics modülü kurulumu][install-postanalytics-instr] sırasında oluşturulmuştur. Aynı düğüm kimlik bilgilerini kullanarak ilk trafik işlemesi modülünü Bulut'a bağlamak için:
+    Wallarm node, [ayrı bir postanalytics modülü kurulumu sırasında][install-postanalytics-instr] zaten oluşturulmuştur. İlk trafik işleme modülünü aynı node kimlik bilgilerini kullanarak Cloud'a bağlamak için:
 
-    1. Ayrı postanalytics modülü kurulumu sırasında oluşturulan düğüm belirtecini kopyalayın.
-    1. Aşağıdaki listenin 4. adımına geçin.
+    1. Ayrı postanalytics modülü kurulumu sırasında oluşturulan node token'ı kopyalayın.
+    1. Aşağıdaki listede 4. adıma geçin.
 
-Wallarm düğümü, Wallarm Bulutu ile etkileşimdedir. Filtreleme düğümünü Bulut'a bağlamak için:
+Wallarm node, Wallarm Cloud ile etkileşime girer. Filtering node'u Cloud'a bağlamak için:
 
-1. Wallarm Konsolu'nu açın → [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) 'taki **Nodes** ve **Wallarm düğümü** tipinde bir düğüm oluşturun.
+1. Wallarm Console → **Nodes** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinde açın ve **Wallarm node** tipi bir node oluşturun.
 
-    ![Wallarm düğümü oluşturma][img-create-wallarm-node]
-1. Oluşturulan belirteci kopyalayın.
-1. Filtreleme düğümünü kurduğunuz bir makinede `register-node` betiğini çalıştırın:
+    ![Wallarm node creation][img-create-wallarm-node]
+1. Oluşturulan token'ı kopyalayın.
+1. Filtering node'un kurulacağı makinede `register-node` betiğini çalıştırın:
     
     === "US Cloud"
         ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <DÜĞÜM_BELİRTEÇ> -H us1.api.wallarm.com
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com
         ```
     === "EU Cloud"
         ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <DÜĞÜM_BELİRTEÇ>
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN>
         ```
     
-    `<DÜĞÜM_BELİRTEÇ>` kopyalanan belirteç değeridir.
+    `<NODE_TOKEN>`, kopyalanan token değeridir.
 
-    !!! bilgi "Eğer postanalytics modülü ayrı bir sunucuya kurulmuşsa"
-        Eğer postanalytics modülü ayrı bir sunucuya kurulmuşsa, [ayrı postanalytics modülü kurulumu][install-postanalytics-instr] sırasında oluşturulan düğüm belirtecini kullanmanız önerilir.
+    !!! info "postanalytics modülü ayrı bir sunucuda yüklüyse"
+        Postanalytics modülü ayrı bir sunucuda yüklüyse, [ayrı postanalytics modülü kurulumu sırasında][install-postanalytics-instr] oluşturulan node token'ının kullanılması önerilir.

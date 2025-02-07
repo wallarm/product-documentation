@@ -1,42 +1,52 @@
 # Proxy Üzerinden Wallarm API'ye Erişim
 
-Bu talimatlar, proxy sunucusu üzerinden Wallarm API'ye erişimi yapılandırma adımlarını anlatmaktadır.
+Bu talimatlar, proxy sunucusu aracılığıyla Wallarm API'ye erişim yapılandırmasını gerçekleştirmek için gereken adımları açıklamaktadır.
 
-* `https://api.wallarm.com/` AB Bulutu için
-* `https://us1.api.wallarm.com/` ABD Bulutu için
+* EU Cloud için: `https://api.wallarm.com/`
+* US Cloud için: `https://us1.api.wallarm.com/`
 
-Erişimi yapılandırmak için, proxy sunucusunu belirleyen ortam değişkenlerine yeni değerler atayın. Bu değerleri "/etc/environment" dosyasında tanımlarız:
+Erişim yapılandırması için, `/etc/environment` dosyasında kullanılan proxy sunucusunu tanımlayan ortam değişkenlerine yeni değerler atayın:
 
-* `https_proxy` HTTPS protokolü için bir proxy belirtmek için
-* `http_proxy` HTTP protokolü için bir proxy belirtmek için
-* `no_proxy` proxy'nin kullanılmaması gereken kaynakların listesini tanımlamak için
+* `https_proxy` – HTTPS protokolü için bir proxy tanımlar
+* `http_proxy` – HTTP protokolü için bir proxy tanımlar
+* `no_proxy` – Proxy'nin kullanılmaması gereken kaynakların listesini tanımlar
 
-## https_proxy ve http_proxy değerleri
+## https_proxy ve http_proxy Değerleri
 
-`https_proxy` ve `http_proxy` değişkenlerine `<scheme>://<proxy_user>:<proxy_pass>@<host>:<port>` dize değerleri atayın:
+`https_proxy` ve `http_proxy` değişkenlerine `<scheme>://<proxy_user>:<proxy_pass>@<host>:<port>` biçimindeki string değerlerini atayın:
 
-* `<scheme>` kullanılan protokolü tanımlar. Mevcut ortam değişkeninin proxy'si için kurduğu protokolle eşleşmelidir
+* `<scheme>` kullanılan protokolü tanımlar. Geçerli ortam değişkeni için kurulan proxy protokolü ile eşleşmelidir
 * `<proxy_user>` proxy yetkilendirmesi için kullanıcı adını tanımlar
 * `<proxy_pass>` proxy yetkilendirmesi için şifreyi tanımlar
-* `<host>` proxy sunucusunun konak bilgisini tanımlar
-* `<port>` proxy sunucusunun port bilgisini tanımlar
+* `<host>` proxy sunucusunun ana bilgisayarını tanımlar
+* `<port>` proxy sunucusunun portunu tanımlar
 
-## no_proxy değeri
+## no_proxy Değeri
 
-`no_proxy` değişkenine, proxy'nin kullanılmaması gereken kaynakların IP adreslerini ve/veya alan adlarını içeren bir dizi atayın:
+`no_proxy` değişkenine, proxy'nin kullanılmaması gereken kaynakların IP adresleri ve/veya alan adlarının listesini atayın:
 
-* `127.0.0.1`, `127.0.0.8`, `127.0.0.9` ve `localhost` düzgün bir Wallarm düğüm operasyonu için
-* Ek adresler bu şekildedir: `"<res_1>, <res_2>, <res_3>, <res_4>, ..."` burada `<res_1>`, `<res_2>`, `<res_3>`, ve `<res_4>` IP adreslerini ve/veya alan adlarını temsil eder
+* Wallarm node'un doğru çalışması için `127.0.0.1`, `127.0.0.8`, `127.0.0.9` ve `localhost`
+* Ek biçimde, `<res_1>`, `<res_2>`, `<res_3>`, `<res_4>` gibi IP adresleri ve/veya alan adlarını `" <res_1>, <res_2>, <res_3>, <res_4>, ..."` formatında ekleyebilirsiniz
 
-## /etc/environment dosyasının örneği
+## /etc/environment Dosyası Örneği
 
-Aşağıdaki `/etc/environment` dosyasının örneği, aşağıdaki yapılandırmayı gösterir:
+Aşağıdaki `/etc/environment` dosyası örneği, şu yapılandırmayı göstermektedir:
 
-* HTTPS ve HTTP istekleri, `admin` kullanıcı adı ve `01234` şifresi kullanılarak proxy sunucusunda yetki veriliyor ve `1.2.3.4` ana bilgisayara `1234` portuyla birlikte yönlendirilir.
-* `127.0.0.1`, `127.0.0.8`, `127.0.0.9` ve `localhost` adreslerine gönderilen istekler için proxy'leme devre dışı bırakılmıştır.
+* HTTPS ve HTTP istekleri, proxy sunucusunda yetkilendirme için `admin` kullanıcı adı ile `01234` şifresini kullanarak `1.2.3.4` ana bilgisayarına ve `1234` portuna yönlendirilir.
+* `127.0.0.1`, `127.0.0.8`, `127.0.0.9` ve `localhost` adreslerine gönderilen istekler için proxy devre dışı bırakılmıştır.
 
 ```bash
 https_proxy=http://admin:01234@1.2.3.4:1234
 http_proxy=http://admin:01234@1.2.3.4:1234
 no_proxy="127.0.0.1, 127.0.0.8, 127.0.0.9, localhost"
 ```
+
+## all-in-one Betiğinin Çalıştırılması
+
+[all-in-one](../../installation/nginx/all-in-one.md) yükleyicisi ile filtering node kurulurken, betiği çalıştıran komuta `--preserve-env=https_proxy,no_proxy` bayrağını eklediğinizden emin olun, örneğin:
+
+```
+sudo --preserve-env=https_proxy,no_proxy env WALLARM_LABELS='group=<GROUP>' sh wallarm-<VERSION>.<ARCH>-glibc.sh
+```
+
+Bu, kurulum işlemi sırasında proxy ayarlarının (`https_proxy`, `no_proxy`) doğru şekilde uygulanmasını garanti eder.

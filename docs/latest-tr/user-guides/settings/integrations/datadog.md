@@ -1,40 +1,42 @@
 # Datadog
 
-Wallarm'ı, uygun bir entegrasyon oluşturarak Datadog Günlükleri servisine direkt olarak tespit edilen olayların bildirimlerini göndermek üzere ayarlayabilirsiniz. Bu entegrasyon, Wallarm Konsolunda [Datadog API Anahtarı](https://docs.datadoghq.com/account_management/api-app-keys/) üzerinden gerçekleştirilir.
+[Datadog](https://www.datadoghq.com/) modern uygulamaların performansı, kullanılabilirliği ve güvenliği hakkında kapsamlı görünürlük sağlayan popüler bir bulut tabanlı izleme ve analiz platformudur. Wallarm Console üzerinden [Datadog API key](https://docs.datadoghq.com/account_management/api-app-keys/) kullanılarak uygun bir entegrasyon oluşturarak, algılanan olay bildirimlerini doğrudan Datadog Logs servisine gönderecek şekilde Wallarm'ı yapılandırabilirsiniz.
 
-## Entegrasyon kurma
+## Entegrasyonu Ayarlama
 
-1. Datadog UI'ı açınız → **Kuruluş Ayarları** → **API Anahtarları** ve Wallarm ile entegrasyon için API anahtarını oluşturun.
-1. Wallarm Konsolunu açınız → **Entegrasyonlar** ve **Datadog** entegrasyon kurulumuna devam edin.
+1. Datadog UI'yi açın → **Organization Settings** → **API Keys** ve Wallarm ile entegrasyon için API anahtarını oluşturun.
+1. Wallarm Console'u açın → **Integrations** ve **Datadog** entegrasyon ayarlarına geçin.
 1. Bir entegrasyon adı girin.
-1. **API Anahtarı** alanına Datadog API anahtarını yapıştırın.
-1. [Datadog bölgesini](https://docs.datadoghq.com/getting_started/site/) seçin. 
-1. Bildirimlere tetikleme yapacak olay türlerini seçin.
+1. Datadog API anahtarını **API key** alanına yapıştırın.
+1. [Datadog bölgesini](https://docs.datadoghq.com/getting_started/site/) seçin.
+1. Bildirimleri tetiklemek için olay türlerini seçin.
 
-    ![Datadog entegrasyonu](../../../images/user-guides/settings/integrations/add-datadog-integration.png)
+    ![Datadog integration](../../../images/user-guides/settings/integrations/add-datadog-integration.png)
 
-    Kullanılabilir olaylar hakkında ayrıntılar:
+    Kullanılabilir olaylarla ilgili ayrıntılar:
 
-    --8<-- "../include-tr/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-1. **Entegrasyonu Test Et** düğmesine tıklayarak yapılandırma doğruluğunu, Wallarm Bulut'unun kullanılabilirliğini ve bildirim formatını kontrol edin.
+1. Yapılandırmanın doğruluğunu, Wallarm Cloud'un kullanılabilirliğini ve bildirim formatını kontrol etmek için **Test integration** düğmesine tıklayın.
 
     Test Datadog günlüğü:
 
-    ![Test Datadog Günlüğü](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+    ![The test Datadog log](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
-    Wallarm günlüklerini diğer kayıtlar arasında bulmak için, Datadog Günlükleri servisinde `source:wallarm_cloud` arama etiketini kullanabilirsiniz.
+    Diğer kayıtlar arasında Wallarm loglarını bulmak için Datadog Logs servisi içerisinde `source:wallarm_cloud` arama etiketini kullanabilirsiniz.
 
-1. **Entegrasyon Ekle** düğmesine tıklayın.
+1. **Add integration** düğmesine tıklayın.
 
-## Ek uyarılar kurulumu
+--8<-- "../include/cloud-ip-by-request.md"
 
---8<-- "../include-tr/integrations/integrations-trigger-setup.md"
+## Ek Uyarıları Ayarlama
 
-## Entegrasyonu devre dışı bırakma ve silme
+--8<-- "../include/integrations/integrations-trigger-setup.md"
 
---8<-- "../include-tr/integrations/integrations-disable-delete.md"
+## Bir Entegrasyonu Devre Dışı Bırakma ve Silme
 
-## Sistem erişilemezliği ve hatalı entegrasyon parametreleri
+--8<-- "../include/integrations/integrations-disable-delete.md"
 
---8<-- "../include-tr/integrations/integration-not-working.md"
+## Sistem Kullanılamazlığı ve Yanlış Entegrasyon Parametreleri
+
+--8<-- "../include/integrations/integration-not-working.md"

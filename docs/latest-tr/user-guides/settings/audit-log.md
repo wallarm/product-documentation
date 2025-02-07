@@ -1,35 +1,34 @@
-# Kullanıcı aktivite kaydı
+# Kullanıcı etkinlik günlüğü
 
-Wallarm Console'daki **Ayarlar** → **Etkinlik Kaydı** sekmesinde, Wallarm sistemdeki kullanıcı eylemlerinin geçmişini kontrol edebilirsiniz. Loglar, aşağıdaki nesnelerin oluşturulması, güncellenmesi ve silinmesi hakkında bilgi içerir:
+Wallarm Console'un **Ayarlar** → **Etkinlik günlüğü** sekmesinde, Wallarm sistemindeki kullanıcı işlemlerinin geçmişini kontrol edebilirsiniz. Günlükler, aşağıdaki nesnelerin oluşturulması, güncellenmesi ve silinmesiyle ilgili bilgileri içerir:
 
-* [Açığa çıkan varlıklardan](../scanner.md) IP adresi veya alt ağ
-* Ağ çevresinden alan adları
-* Ağ çevresinden hizmetler (portlar)
-* Ağ çevresinden alan adları ve ilişkili IP adresleri
-* [İki faktörlü doğrulama](account.md#enabling-two-factor-authentication)
-* [API tokenları](api-tokens.md)
-* [Kullanıcılar](users.md)
+* [exposed assets](../scanner.md)'da yer alan IP adresi veya alt ağ
+* Ağ çevresindeki alan adları
+* Ağ çevresindeki servisler (portlar)
+* Ağ çevresindeki alan adları ve ilişkili IP adresleri
+* [İki‑faktörlü kimlik doğrulama](account.md#enabling-two-factor-authentication)
+* [API tokens](api-tokens.md)
+* [Users](users.md)
 * Trafik işleme [kuralları](../rules/rules.md)
-* [Özel kurallar yedekleme](../rules/rules.md)
-* [Wallarm düğümleri](../nodes/nodes.md)
-* [CDN düğümleri](../nodes/cdn-node.md)
-* [Tetikleyiciler](../triggers/triggers.md)
-* [Entegrasyonlar](integrations/integrations-intro.md)
-* [Engellenen IP adresi](../ip-lists/denylist.md)
-* [Vuruş örnekleme](../events/analyze-attack.md#sampling-of-hits)
+* [Özel kurallar seti yedeklemeleri](../rules/rules.md#backup-and-restore)
+* [Wallarm nodes](../nodes/nodes.md)
+* [Triggers](../triggers/triggers.md)
+* [Integrations](integrations/integrations-intro.md)
+* [Engellenen IP adresi](../ip-lists/overview.md)
+* [Hit örneklemesi](../events/grouping-sampling.md#sampling-of-hits)
 
-Loglar ayrıca aşağıdaki eylem ve nesnelerle ilgili bilgileri de içerir:
+Günlükler ayrıca aşağıdaki işlemler ve nesneler hakkında bilgileri de içerir:
 
-* [Yanlış pozitif olarak işaretlenen güvenlik açığı](../vulnerabilities.md#marking-vulnerabilities-as-false-positives)
-* [Tekrar kontrol edilen saldırı](../events/verify-attack.md)
+* [Yanlış pozitif olarak işaretlenmiş güvenlik açığı](../vulnerabilities.md#vulnerability-lifecycle)
+* [Yeniden kontrol edilen saldırı](../../vulnerability-detection/threat-replay-testing/overview.md)
 
-![Etkinlik Kaydı](../../images/user-guides/settings/audit-log.png)
+![Etkinlik günlüğü](../../images/user-guides/settings/audit-log.png)
 
-**Etkinlik günlüğü kayıtlarını filtrelemek için**, aşağıdaki parametreleri kullanabilirsiniz:
+**Etkinlik günlüğü kayıtlarını filtrelemek için** aşağıdaki parametreleri kullanabilirsiniz:
 
-* Eylemi gerçekleştiren kullanıcı üzerine büyük/küçük harfe duyarlı veriler
+* İşlemi gerçekleştiren kullanıcıdaki büyük/küçük harf duyarlı veri
 
-      Eylem Wallarm teknik destek ekibi tarafından gerçekleştirildiyse, kullanıcı adı `Teknik destek`tir. Bu değer etkinlik log kayıtlarını sıralamak için kullanılamaz.
-* Eylem türü
-* Eylemin gerçekleştirildiği nesnenin adı
-* Eylemin gerçekleştirildiği tarih
+      Eğer işlem Wallarm teknik destek ekibi tarafından gerçekleştirildiyse, kullanıcı adı `Technical support` olarak gelir. Bu değer, etkinlik günlüğü kayıtlarını sıralamak için kullanılamaz.
+* İşlem türü
+* İşlemin gerçekleştirildiği nesnenin adı
+* İşlemin gerçekleştirildiği tarih

@@ -1,5 +1,4 @@
-[img-write-plugin-graphite]: ../../images/monitoring/write-plugin-graphite.png
-
+[img-write-plugin-graphite]:    ../../images/monitoring/write-plugin-graphite.png
 [doc-grafana]:                  working-with-grafana.md
 
 [link-docker-ce]:               https://docs.docker.com/install/
@@ -7,47 +6,47 @@
 [link-collectd-naming]:         https://collectd.org/wiki/index.php/Naming_schema
 [link-write-plugin]:            https://www.collectd.org/documentation/manpages/collectd.conf.html#plugin_write_graphite
 
-#   `collectd` Yazma Eklentisi Üzerinden Graphite'a Metric Gönderme
+# collectd Yazma Eklentisi ile Metriğin Graphite'a Aktarılması
 
-Bu belge, metriclerin Graphite'a dışa aktarılması için `write_graphite` yazma eklentisinin kullanımına dair bir örneği gözler önüne serer.
+Bu doküman, metriklerin Graphite'a aktarılması için `write_graphite` yazma eklentisinin kullanılmasına dair bir örnek sunar.
 
-##  Örnek İş Akışı
+## Örnek İş Akışı
 
---8<-- "../include-tr/monitoring/metric-example.md"
+--8<-- "../include/monitoring/metric-example.md"
 
 ![Örnek iş akışı][img-write-plugin-graphite]
 
-Bu belgedeki dağıtım şeması aşağıdaki gibidir:
-*   Wallarm filtre düğümü, `10.0.30.5` IP adresi ve `node.example.local` tam adı (FQDN) üzerinden erişilebilir bir konakta dağıtılmaktadır.
+Bu dokümanda aşağıdaki dağıtım şeması kullanılmaktadır:
+*   Wallarm filtre düğümü, `10.0.30.5` IP adresi ve `node.example.local` tam nitelikli alan adı üzerinden erişilebilen bir host üzerinde dağıtılmıştır.
 
-    Filtre düğümündeki `collectd` için `write_graphite` eklentisi şu şekilde yapılandırılmıştır:
+    Filtre düğümündeki `collectd` için `write_graphite` eklentisi aşağıdaki şekilde yapılandırılmıştır:
 
-      *   Tüm metrikler, `2003/TCP` portu üzerinden dinleyen `10.0.30.30` sunucusuna gönderilir.
-      *   Bazı Wallarm-özel `collectd` eklentileri birden fazla [örneği][link-collectd-naming] destekler, bu yüzden `write_graphite` eklentisi `SeparateInstances` parametresini `true` olarak içerir. `true` değeri, eklentinin birden fazla örnekle çalışabileceği anlamına gelir.
+      *   Tüm metrikler, `2003/TCP` portunu dinleyen `10.0.30.30` sunucusuna gönderilir.
+      *   Bazı Wallarm'a özgü `collectd` eklentileri birden fazla [örneği][link-collectd-naming] desteklediğinden, `write_graphite` eklentisi `SeparateInstances` parametresi `true` olarak ayarlanmıştır. `true` değeri, eklentinin birden fazla örnekle çalışabileceği anlamına gelir.
     
-    Eklenti seçeneklerinin tam listesi [burada][link-write-plugin]dır.
+    Eklenti seçeneklerinin tam listesine [buradan][link-write-plugin] ulaşabilirsiniz.
     
-*   Hem `graphite`, hem de `grafana` servisleri `10.0.30.30` IP adresine sahip ayrı bir konakta Docker konteynerları olarak dağıtılır.
+*   Hem `graphite` hem de `grafana` servisleri, `10.0.30.30` IP adresine sahip ayrı bir host üzerinde Docker konteynerleri olarak dağıtılmıştır.
     
-    Graphite ile `graphite` servisi şu şekilde yapılandırılmıştır:
+    Graphite ile yapılandırılmış `graphite` servisi aşağıdaki şekilde ayarlanmıştır:
 
-      *   `collectd`'nin filtre düğümü metriklerini göndereceği `2003/TCP` portu üzerinden gelen bağlantıları dinler.
-      *   Grafana ile iletişimin gerçekleşeceği `8080/TCP` portu üzerinden gelen bağlantıları dinler.
-      *   Servis, `grafana` servisi ile `sample-net` Docker ağını paylaşır.
+      *   `collectd`'nin filtre düğümü metriklerini göndereceği `2003/TCP` portunda gelen bağlantıları dinler.
+      *   Grafana ile iletişimin kurulacağı `8080/TCP` portunda gelen bağlantıları dinler.
+      *   Servis, `grafana` servisi ile aynı `sample-net` Docker ağını paylaşır.
 
-    Grafana ile `grafana` servisi şu şekilde yapılandırılmıştır:
+    Grafana ile yapılandırılmış `grafana` servisi ise aşağıdaki şekilde ayarlanmıştır:
 
-      *   Grafana web konsolu `http://10.0.30.30:3000` adresinde bulunur.
-      *   Servis, `graphite` servisi ile `sample-net` Docker ağını paylaşır.
+      *   Grafana web konsoluna `http://10.0.30.30:3000` adresinden ulaşılabilir.
+      *   Servis, `graphite` servisi ile aynı `sample-net` Docker ağını paylaşır.
 
-##  Metriclerin Graphite'a Aktarılmasının Yapılandırılması
+## Metriklerin Graphite'a Aktarımının Yapılandırılması
 
---8<-- "../include-tr/monitoring/docker-prerequisites.md"
+--8<-- "../include/monitoring/docker-prerequisites.md"
 
-### Graphite ve Grafana'nın Yerleştirilmesi
+### Graphite ve Grafana'nın Dağıtımı
 
-Graphite ve Grafana'yı Docker konuğunda yerleştirin:
-1.  İçeriği aşağıdaki gibi olan bir `docker-compose.yaml` dosyası oluşturun:
+Docker host'u üzerinde Graphite ve Grafana'yı dağıtın:
+1.  Aşağıdaki içeriğe sahip bir `docker-compose.yaml` dosyası oluşturun:
     
     ```
     version: "3"
@@ -76,40 +75,69 @@ Graphite ve Grafana'yı Docker konuğunda yerleştirin:
       sample-net:
     ```
     
-2.  Servisleri oluşturmak için `docker-compose build` komutunu çalıştırın.
+2.  `docker-compose build` komutunu çalıştırarak servisleri derleyin.
     
-3.  `docker-compose up -d graphite grafana` komutunu çalıştırarak servisleri çalıştırın.
+3.  `docker-compose up -d graphite grafana` komutunu çalıştırarak servisleri başlatın.
     
-Bu noktada, Graphite çalışıyor ve `collectd` tarafından gönderilen metricleri alma konumunda ve Grafana da, Graphite'da saklanan verileri izlemeye ve görselleştirmeye hazır olmalıdır.
+Bu noktada, Graphite çalışmakta olup `collectd`'den metrik almaya hazır, Grafana ise Graphite'da depolanan verileri izleyip görselleştirmeye hazır durumdadır.
 
 ### `collectd`'nin Yapılandırılması
 
-`collectd`'yi metricleri Graphite'a indirmek üzere yapılandırın:
-1.  Filtre düğümüne bağlanın (örneğin, SSH protokolünü kullanarak). `root` veya başka bir süper kullanıcı ayrıcalıklarına sahip hesapta oturum açtığınızdan emin olun.
-2.  İçeriği aşağıdaki gibi olan `/etc/collectd/collectd.conf.d/export-to-graphite.conf` adlı bir dosya oluşturun:
-    
-    ```
-    LoadPlugin write_graphite
-    
-    <Plugin write_graphite>
-     <Node "node.example.local">
-       Host "10.0.30.30"
-       Port "2003"
-       Protocol "tcp"
-       SeparateInstances true
-     </Node>
-    </Plugin>
-    ```
-    
-    Aşağıdaki unsurlar burada yapılandırılır:
-    
-    1.  Metriclerin toplandığı konak adı (`node.example.local`).
-    2.  Metriclerin gönderilmesi gereken sunucu (`10.0.30.30`).
-    3.  Sunucu portu (`2003`) ve protokol (`tcp`).
-    4.  Veri aktarım mantığı: bir eklenti örneğinin verileri, başka bir örneğin verilerinden ayrılır (`SeparateInstances true`).
-    
-3.  İlgili komutu çalıştırarak `collectd` servisini yeniden başlatın:
+Metriklerin Graphite'a aktarılması için `collectd`'yi yapılandırın:
 
-    --8<-- "../include-tr/monitoring/collectd-restart-2.16.md"
+=== "Docker image, cloud image, all-in-one installer"
+    1. SSH protokolü gibi bir yöntem kullanarak filtre düğümüne bağlanın. `root` veya süper kullanıcı haklarına sahip başka bir hesap ile oturum açtığınızdan emin olun.
+    1. `/opt/wallarm/etc/collectd/wallarm-collectd.conf` dosyasına aşağıdaki yapılandırmayı ekleyin:
 
-Şimdi Graphite filtre düğümünün tüm metriklerini alacak. İlgilendiğiniz metrikleri görselleştirebilir ve onları [Grafana ile][doc-grafana] izleyebilirsiniz.
+        ```
+        LoadPlugin write_graphite
+        
+        <Plugin write_graphite>
+          <Node "node.example.local">
+            Host "10.0.30.30"
+            Port "2003"
+            Protocol "tcp"
+            SeparateInstances true
+          </Node>
+        </Plugin>
+        ```
+      
+        Burada aşağıdaki öğeler yapılandırılmıştır:
+        
+        1.  Metriklerin alındığı ana bilgisayar adı (`node.example.local`).
+        2.  Metriklerin gönderileceği sunucu (`10.0.30.30`).
+        3.  Sunucu portu (`2003`) ve protokol (`tcp`).
+        4.  Veri aktarım mantığı: bir eklenti örneğinin verileri, diğer eklenti örneğinin verilerinden ayrılır (`SeparateInstances true`).
+    1. Aşağıdaki komutu çalıştırarak `wallarm` servisini yeniden başlatın:
+
+        ```bash
+        sudo systemctl restart wallarm
+        ```
+=== "Other installations"
+    1. SSH protokolü gibi bir yöntem kullanarak filtre düğümüne bağlanın. `root` veya süper kullanıcı haklarına sahip başka bir hesap ile oturum açtığınızdan emin olun.
+    1. `/etc/collectd/collectd.conf.d/export-to-graphite.conf` adlı bir dosya oluşturun ve aşağıdaki içeriği ekleyin:
+
+        ```
+        LoadPlugin write_graphite
+        
+        <Plugin write_graphite>
+          <Node "node.example.local">
+            Host "10.0.30.30"
+            Port "2003"
+            Protocol "tcp"
+            SeparateInstances true
+          </Node>
+        </Plugin>
+        ```
+      
+        Burada aşağıdaki öğeler yapılandırılmıştır:
+        
+        1.  Metriklerin alındığı ana bilgisayar adı (`node.example.local`).
+        2.  Metriklerin gönderileceği sunucu (`10.0.30.30`).
+        3.  Sunucu portu (`2003`) ve protokol (`tcp`).
+        4.  Veri aktarım mantığı: bir eklenti örneğinin verileri, diğer eklenti örneğinin verilerinden ayrılır (`SeparateInstances true`).
+    1. Uygun komutu çalıştırarak `collectd` servisini yeniden başlatın:
+
+        --8<-- "../include/monitoring/collectd-restart-2.16.md"
+
+Artık Graphite, filtre düğümüne ait tüm metrikleri alacaktır. İlgilendiğiniz metrikleri görselleştirebilir ve onları [Grafana ile][doc-grafana] izleyebilirsiniz.

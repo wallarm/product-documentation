@@ -1,4 +1,4 @@
-#   Kullanıcılar İçin SSO Kimlik Doğrulamasının Ayarlanması
+# Kullanıcılar İçin SSO Kimlik Doğrulamasını Yapılandırma
 
 [img-enable-sso-for-user]:  ../../../images/admin-guides/configuration-guides/sso/enable-sso-for-user.png
 [img-disable-sso-for-user]: ../../../images/admin-guides/configuration-guides/sso/disable-sso-for-user.png
@@ -12,72 +12,71 @@
 [anchor-enable]:            #enabling-sso-authentication-for-users 
 [anchor-disable]:           #disabling-sso-authentication-for-users      
 
-Wallarm portal kullanıcılarına SSO kimlik doğrulamasını [etkinleştirebilir][anchor-enable] ya da [devre dışı bırakabilirsiniz][anchor-disable].
+Wallarm portal kullanıcıları için SSO kimlik doğrulamasını [etkinleştirebilir][anchor-enable] veya [devre dışı bırakabilirsiniz][anchor-disable].
 
 
-##   Kullanıcılar için SSO Kimlik Doğrulamasının Etkinleştirilmesi
+## Kullanıcılar İçin SSO Kimlik Doğrulamasını Etkinleştirme
 
 !!! warning
-    *   Kullanıcılar için SSO kimlik doğrulaması etkinleştirildiğinde, giriş/şifre ile giriş mekanizması ve iki faktörlü kimlik doğrulama kullanılabilir olmaz. SSO kimlik doğrulaması etkin olduğunda, kullanıcının şifresi silinir ve iki faktörlü kimlik doğrulama devre dışı bırakılır.
-    *   Zaten gereken kullanıcılar grubuna, yapılandırılan Wallarm uygulamasına [Okta][doc-allow-access-okta] veya [G Suite][doc-allow-access-gsuite] üzerinden erişim verdiğinizi varsayılır.
-
+    *   Kullanıcılar için SSO kimlik doğrulaması etkinleştirildiğinde, giriş/parola ile oturum açma mekanizması ve iki faktörlü kimlik doğrulaması kullanılamaz. SSO kimlik doğrulaması etkinleştirildiğinde, kullanıcının parolası silinir ve iki faktörlü kimlik doğrulaması devre dışı bırakılır.
+    *   Gerekli kullanıcı grubuna, [Okta][doc-allow-access-okta] veya [G Suite][doc-allow-access-gsuite] tarafında yapılandırılmış Wallarm uygulamasına erişim izni verildiği varsayılmaktadır.
 
 Wallarm kullanıcıları için SSO kimlik doğrulamasını etkinleştirmek için:
 
-1. **Ayarlar** → **Kullanıcılar**'a gidin.
-1. Kullanıcı menüsünden **SSO Oturumunu Aktif Et**'i seçin.
+1. **Ayarlar** → **Kullanıcılar** bölümüne gidin.
+2. Kullanıcı menüsünden **SSO girişi etkinleştir** seçeneğini seçin.
 
-![Wallarm kullanıcısı için SSO'nun etkinleştirilmesi][img-enable-sso-for-user]
+![Wallarm kullanıcısı için SSO'yu etkinleştirme][img-enable-sso-for-user]
 
-Açılan pencerede, SSO kimlik doğrulamasının etkinleştirildiğine dair kullanıcıya bir bildirim gönderilmesi istenecektir. **Bildirim gönder** düğmesine tıklayın. Bildirime gerek yoksa, **İptal**'e tıklayın.
+Açılan pencerede, kullanıcıya SSO kimlik doğrulamasının etkinleştirildiğine dair bildirim gönderilmesi istenecektir. **Bildirim gönder** düğmesine tıklayın. Eğer bildirim gönderilmesine gerek yoksa, **İptal** düğmesine tıklayın.
 
-Bundan sonra, kullanıcı kimlik sağlayıcısından [kimlik doğrulayabilir][doc-user-sso-guide].
+Bundan sonra, kullanıcı [kimlik sağlayıcısı][doc-user-sso-guide] üzerinden kimlik doğrulaması yapabilir.
 
-[Strict SSO](#strict-sso-mode) modu kullanarak tüm şirket hesabı kullanıcıları için SSO'yu da etkinleştirebileceğinizi unutmayınız.
+Not: Şirket hesabındaki tüm kullanıcılar için [Strict SSO](#strict-sso-mode) modu kullanılarak da SSO etkinleştirilebilir.
 
-##  Kullanıcılar için SSO Kimlik Doğrulamasının Devre Dışı Bırakılması
+## Kullanıcılar İçin SSO Kimlik Doğrulamasını Devre Dışı Bırakma
 
 Wallarm kullanıcıları için SSO kimlik doğrulamasını devre dışı bırakmak için:
 
-1. **Ayarlar** → **Kullanıcılar**'a gidin.
-1. Kullanıcı menüsünden **SSO'yu Devre Dışı Bırak**'ı seçin.
+1. **Ayarlar** → **Kullanıcılar** bölümüne gidin.
+2. Kullanıcı menüsünden **SSO'yu devre dışı bırak** seçeneğini seçin.
 
-![Wallarm kullanıcısı için SSO'nun devre dışı bırakılması][img-disable-sso-for-user]
+![Wallarm kullanıcısı için SSO'yu devre dışı bırakma][img-disable-sso-for-user]
 
-Bundan sonra, kullanıcıya SSO ile oturum açmanın devre dışı bırakıldığına dair bir e-posta ile bildirilelik ve giriş/şifre çifti ile oturum açmak için şifresini geri yüklemesi önerilir. Ayrıca, kullanıcıya iki faktörlü kimlik doğrulama sunulur.
+Bundan sonra, kullanıcıya SSO ile girişin devre dışı bırakıldığı ve giriş/parola yöntemiyle oturum açabilmesi için parolasını geri yüklemesine yönelik (bağlantı içeren) bir e-posta bildirimi gönderilir. Ayrıca, kullanıcı için iki faktörlü kimlik doğrulaması yeniden aktif hale gelir.
 
 ## SSO ve API Kimlik Doğrulaması
 
-Kullanıcı için SSO etkinleştirildiğinde, bu kullanıcı için [Wallarm API'ye istekler](../../../api/overview.md#your-own-client) için kimlik doğrulaması kullanılamaz. Çalışan API kimlik bilgilerini almak için iki seçeneğiniz vardır: 
+Kullanıcı için SSO etkinleştirildiğinde, bu kullanıcıya [Wallarm API’ye yapılan istekler](../../../api/overview.md#your-own-api-client) için kimlik doğrulaması sağlanamaz. Çalışan API kimlik bilgilerini almak için iki seçeneğiniz bulunmaktadır:
 
-* Eğer **strict SSO** modu kullanılmazsa, şirket hesabınız altında SSO seçeneği olmayan bir kullanıcı yaratın ve [API token(lar)](../../../api/overview.md#your-own-client) yaratın.
-* Eğer **strict SSO** modu kullanılıyorsa, **Yönetici** rolündeki SSO kullanıcıları için API kimlik doğrulamasını etkinleştirebilirsiniz. Bunu yapmak için, bu kullanıcı menüsünden **API erişimini etkinleştir**'i seçin. Kullanıcı için `SSO+API` kimlik doğrulama yöntemi etkinleştirilir ki bu API tokenleri oluşturmayı sağlar.
+* Eğer **strict SSO** modu kullanılmıyorsa, şirket hesabınız altında SSO seçeneği olmadan bir kullanıcı oluşturun ve [API token(ler)ini](../../../api/overview.md#your-own-api-client) oluşturun.
+* Eğer **strict SSO** modu kullanılıyorsa, **Yönetici** rolüne sahip SSO kullanıcıları için API kimlik doğrulamasını etkinleştirebilirsiniz. Bunu yapmak için, kullanıcı menüsünden **API erişimini etkinleştir** seçeneğini seçin. Böylece, kullanıcı için `SSO+API` kimlik doğrulama yöntemi etkinleştirilir ve bu, API tokenlarının oluşturulmasına olanak tanır.
 
-    Daha sonra bu kullanıcı için API kimlik doğrulamasını devre dışı bırakabilirsiniz **API erişimini devre dışı bırak**'ı seçerek. Eğer bu yapılırsa, mevcut tüm API tokenleri silinir ve bir hafta sonra - kaldırılır.
+    Daha sonra, bu kullanıcı için API kimlik doğrulamasını **API erişimini devre dışı bırak** seçeneğini seçerek kapatabilirsiniz. Bu durumda, mevcut tüm API tokenleri silinecek ve bir hafta içerisinde kaldırılacaktır.
 
 ## Strict SSO Modu
 
-Wallarm, tüm şirket hesabı kullanıcıları için birden SSO kimlik doğrulamasını etkinleştiren **strict SSO** modunu destekler. Strict SSO modunun diğer özellikleri:
+Wallarm, normal SSO’dan farklı olarak tüm şirket hesabı kullanıcıları için aynı anda SSO kimlik doğrulamasını etkinleştiren **strict SSO** modunu desteklemektedir. Strict SSO modunun diğer özellikleri şunlardır:
 
-* Hesabın tüm mevcut kullanıcıları için kimlik doğrulama yöntemi SSO'ya geçer.
-* Tüm yeni kullanıcılar varsayılan olarak SSO kimlik doğrulama yöntemini alır.
-* Hiçbir kullanıcı için kimlik doğrulama yöntemi SSO'dan farklı bir yönteme geçirilemez.
+* Hesaptaki mevcut tüm kullanıcılar için kimlik doğrulama yöntemi SSO olarak değiştirilir.
+* Yeni eklenen tüm kullanıcılar varsayılan olarak kimlik doğrulama yöntemi olarak SSO’yu alır.
+* Hiçbir kullanıcı için kimlik doğrulama yöntemi SSO dışındaki bir yöntemle değiştirilemez.
 
-Strict SSO modunu etkinleştirmek veya devre dışı bırakmak için [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişim kurun.
+Strict SSO modunu etkinleştirmek veya devre dışı bırakmak için [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişime geçin.
 
-!!! info "Strict SSO'nun etkinleştirildiğinde aktif oturumların durumu"
-    Eğer şirket hesabına giriş yapmış herhangi bir kullanıcı varsa ve strict SSO moduna geçildiğinde, bu oturumlar aktif kalır. Çıkış yaptıktan sonra, kullanıcılardan SSO'yu kullanmaları istenir.
+!!! info "Strict SSO etkinleştirildiğinde aktif oturumların durumu"
+    Şirket hesabına giriş yapmış kullanıcılar, strict SSO moduna geçildiğinde mevcut oturumlarına devam eder. Oturumu kapattıktan sonra, kullanıcılara SSO kullanmaları istenecektir.
 
-## SSO Kimlik Doğrulaması Sorun Giderme
+## SSO Kimlik Doğrulama Sorun Giderme
 
-Eğer kullanıcı SSO üzerinden oturum açamıyorsa, aşağıdaki tabloda açıklanan bir hata kodlarından biri ile bir hata mesajı görüntülenir. Çoğu durumda, şirket hesabının yöneticisi bu hataları düzeltebilir:
+Kullanıcı SSO üzerinden oturum açamıyorsa, hata mesajı ile birlikte aşağıdaki tabloda açıklanan hata kodlarından biri gösterilir. Çoğu durumda, şirket hesabı yöneticisi bu hataları düzeltebilir:
 
 | Hata kodu | Açıklama | Nasıl düzeltilir |
 |--|--|--|
-| `saml_auth_not_found + userid` | Kullanıcı SSO'yu etkinleştirmedin. | Yukarıdaki bölümde açıklandığı gibi SSO'yu etkinleştirin. |
-| `saml_auth_not_found + clientid` | İstemci, **Entegrasyonlar** bölümünde bir SSO entegrasyonuna sahip değil. | [SAML SSO ile entegrasyon](intro.md) belgelerindeki talimatları uygulayın. |
-| `invalid_saml_response` or `no_mail_in_saml_response` | SSO sağlayıcı beklenmedik bir yanıt verdi. Bu, yanlış yapılandırılmış bir SSO entegrasyonunun işareti olabilir. | Aşağıdakilerden birini yapın:<br><ul><li>Wallarm Console'un **Entegrasyonlar** bölümünde yapılandırılan SSO entegrasyonunda hata olmadığından emin olun.</li><li>SSO sağlayıcısı tarafındaki yapılandırmada bir hata olmadığından emin olun.</li></ul> |
-| `user_not_found` | Wallarm belirtilen e-posta ile bir kullanıcı bulamadı. | Wallarm Console'da bu e-posta ile bir kullanıcı oluşturun. |
-| `client_not_found` | Wallarm'da şirket hesabı bulunamadı. | Uygun bir e-posta alanı olan bir kullanıcı hesabı oluşturun, bu anında şirket hesabını da oluşturacaktır. |
+| `saml_auth_not_found + userid` | Kullanıcıda SSO etkin değil. | [Yukarıdaki bölümde](#enabling-sso-authentication-for-users) belirtildiği şekilde SSO'yu etkinleştirin. |
+| `saml_auth_not_found + clientid` | İstemcide **Integrations** bölümünde SSO entegrasyonu bulunmuyor. | [SAML SSO entegrasyonu](intro.md) dokümantasyonundaki talimatları izleyin. |
+| `invalid_saml_response` veya `no_mail_in_saml_response` | SSO sağlayıcısı beklenmeyen bir yanıt verdi. Bu, yanlış yapılandırılmış bir SSO entegrasyonunun işareti olabilir. | Aşağıdakilerden birini yapın:<br><ul><li>Wallarm Console’un **Integrations** bölümünde yapılandırılan SSO entegrasyonunda hata olmadığından emin olun.</li><li>SSO sağlayıcısı tarafındaki yapılandırmada hata olmadığından emin olun.</li></ul> |
+| `user_not_found` | Belirtilen e-posta ile Wallarm’da kullanıcı bulunamadı. | Wallarm Console’da bu e-posta ile bir kullanıcı oluşturun. |
+| `client_not_found` | Wallarm’da şirket hesabı bulunamadı. | Uygun bir e-posta alanına sahip bir kullanıcı hesabı oluşturun; bu işlem şirket hesabının hemen oluşturulmasını sağlar. |
 
- İhtiyaç halinde, yönetici bu hataların herhangi birini düzeltmek için [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişim kurabilir.
+Gerekirse, yöneticiler bu hatalardan herhangi birini düzeltmek için [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişime geçebilir.

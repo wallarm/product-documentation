@@ -1,55 +1,46 @@
-[link-regex]:       https://github.com/yandex/pire
-
+[link-regex]:               https://github.com/yandex/pire
 [img-regex-example1]:       ../../images/user-guides/rules/regex-rule-1.png
 [img-regex-example2]:       ../../images/user-guides/rules/regex-rule-2.png
 [img-regex-id]:             ../../images/user-guides/rules/regex-id.png
+[request-processing]:       ../../user-guides/rules/request-processing.md
+[api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 
-# Kullanıcı Tanımlı Algılama Kuralları
+# Özel Saldırı Tespit Cihazları
 
-Bazı durumlarda, saldırıları manuel olarak algılamak için bir imza eklemek veya *sanal bir yama* yaratmak faydalı olabilir. Dolayısıyla, Wallarm saldırıları algılamak için düzenli ifadeler kullanmaz, fakat kullanıcıların düzenli ifadelere dayalı ek imzalar eklemesine izin verir.
+Wallarm, normal ifadelerle tanımlanan kendi saldırı işaretlerinizi belirlemeniz için **Create regexp-based attack indicator** [kuralını](../../user-guides/rules/rules.md) sağlar.
 
-## Yeni Bir Algılama Kuralı Ekleme
+## Kural Oluşturma ve Uygulama
 
-Bunu yapmak için, *Regexp ile saldırı belirteci oluştur* kuralını oluşturmanız ve alanları doldurmanız gerekiyor:
+Kendi saldırı tespit cihazınızı ayarlamak ve uygulamak için:
 
-* *Düzenli İfade*: Düzenli ifade (imza). İfadenin takibenki parametrenin değeriyle eşleşirse, bu talep bir saldırı olarak algılanır. Düzenli ifadelerin sözdizimi ve özellikleri, [kuralların eklenmesi talimatlarında](rules.md#condition-type-regex) ayrıntılı olarak açıklanmıştır.
+--8<-- "../include/rule-creation-initial-step.md"
+1. **Mitigation controls** → **Custom attack detector** seçin.
+1. **If request is** bölümünde, kuralın uygulanacağı kapsamı [tanımlayın](rules.md#configuring).
+1. Saldırı göstergesi parametrelerinizi ayarlayın:
 
-    !!! warning "Kuraldaki belirtilen düzenli ifadenin değiştirilmesi"
-        **Regexp ile saldırı belirteci oluştur** tipindeki mevcut bir kuralın düzenli ifadesini değiştirmek, önceki ifadeyi kullanan [**Regexp tabanlı saldırı tespitini devre dışı bırak**](#partial-disabling-of-a-new-detection-rule) kurallarının otomatik olarak silinmesine neden olur.
+    * **Regular expression** - düzenli ifade (imza). Aşağıdaki parametrenin değeri ifadeyle eşleşiyorsa, o istek saldırı olarak tespit edilir. Düzenli ifadelerin sözdizimi ve özellikleri [rules ekleme talimatlarında](rules.md#condition-type-regex) açıklanmıştır.
 
-        Yeni bir düzenli ifadeyle saldırı tespitini devre dışı bırakmak için, lütfen yeni düzenli ifade belirtilen yeni bir **Regexp tabanlı saldırı tespitini devre dışı bırak** kuralı oluşturun.
+        !!! warning "Kurala belirtilen düzenli ifadeyi değiştirme"
+            Mevcut **Create regexp-based attack indicator** tipindeki kuralda belirtilen düzenli ifadeyi değiştirmek, önceki ifadeyi kullanan [**Disable regexp-based attack detection**](#partial-disabling) kurallarının otomatik olarak silinmesine neden olur.
 
-* *Deneysel*: Bu bayrak, düzenli bir ifadenin tetiklenmesini bloklamadan güvenli bir şekilde kontrol etmenizi sağlar. İstekler, filtre düğümü engelleme moduna ayarlandığında bile engellenmez. Bu istekler, deneysel yöntemle algılanan saldırılar olarak kabul edilir ve varsayılan olarak olay listesinden gizlenir. Bunlara `deneysel saldırılar` arama sorgusu kullanılarak erişilebilir.
+            Yeni düzenli ifade ile saldırı tespitini devre dışı bırakmak için, belirtilen yeni düzenli ifadeye sahip yeni bir **Disable regexp-based attack detection** kuralı oluşturun.
 
-* *Saldırı*: İsteğin parametre değeri düzenli ifadeyle eşleştiğinde algılanacak olan saldırı türü.
+    * **Experimental** - bu bayrak, istekleri engellemeden düzenli ifadenin tetiklenmesini güvenli bir şekilde kontrol etmenizi sağlar. Filtre düğümü blocking modunda olsa dahi istekler engellenmeyecektir. Bu istekler, deneysel yöntemle tespit edilmiş saldırılar olarak kabul edilir ve varsayılan olarak olay listesinden gizlenir. 'experimental attacks' arama sorgusuyla erişilebilirler.
+    
+    * **Attack** - istekteki parametre değeri düzenli ifadeyle eşleştiğinde tespit edilecek saldırı tipi.
 
-* *bu isteğin bu bölümünde*: Sistemin ilgili saldırıları algılaması gereken isteğin neresini belirler.
+1. **In this part of request** bölümünde, saldırı işaretlerini aramak istediğiniz [istek bölümlerini](request-processing.md) belirtin.
+1. [Kuralın derlenip filtreleme düğümüne yüklenmesinin tamamlanmasını](rules.md#ruleset-lifecycle) bekleyin.
 
-    --8<-- "../include-tr/waf/features/rules/request-part-reference.md"
+## Kural Örnekleri
 
-### Örnek: Yanlış X-Authentication Başlığına Sahip Tüm İstekleri Engelleme
+### Yanlış `X-AUTHENTICATION` Başlığına Sahip Tüm İstekleri Engelleme
 
-**Eğer** aşağıdaki şartlar yerine getirilirse:
+--8<-- "../include/waf/features/rules/rule-vpatch-regex.md"
 
-* uygulama *example.com* domaininde erişilebilir
-* uygulama kullanıcı kimlik doğrulaması için *X-Authentication* başlığını kullanır
-* başlık formatı, 32 hex semboldür
+### `class.module.classLoader.*` Gövde Parametrelerine Sahip Tüm İstekleri Engelleme
 
-**O zaman**, yanlış format belirteçleri reddetmek için bir kural oluşturmak:
-
-1. *Kurallar* sekmesine gidin
-2. `example.com/**/*.*` için dalını bulun ve *Kural ekle* tıklayın
-3. *Düzenli bir ifade temelinde bir saldırı olarak tanımla* seçin
-4. *Regex* değerini `^(.{0,31}|.{33,}|[^0-9a-fA-F]+)$` olarak ayarlayın
-5. *Saldırı* türü olarak `Sanal yama` seçin
-6. Noktayı `Header X-AUTHENTICATION` olarak ayarlayın
-7. *Oluştur* tıklayın
-
-![Regex rule first example][img-regex-example1]
-
-### Örnek: `class.module.classLoader.*` gövde parametrelerine sahip tüm istekleri engelle
-
-[Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html) (Spring4Shell) 'deki 0-day zafiyeti, aşağıdaki gövde parametrelerine belirli zararlı yüklerin enjekte edildiği POST isteğini gönderme yoluyla sömürülebilir:
+[Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html) (Spring4Shell) içindeki 0-day açığından yararlanmanın yollarından biri, aşağıdaki gövde parametrelerine belirli kötü amaçlı yükler enjekte edilmiş POST isteği göndermektir:
 
 * `class.module.classLoader.resources.context.parent.pipeline.first.pattern`
 * `class.module.classLoader.resources.context.parent.pipeline.first.suffix`
@@ -57,69 +48,63 @@ Bunu yapmak için, *Regexp ile saldırı belirteci oluştur* kuralını oluştur
 * `class.module.classLoader.resources.context.parent.pipeline.first.prefix`
 * `class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat`
 
-Zafiyetli Spring Core Framework'ü kullanıyorsanız ve Wallarm düğüm [modu](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) engelleme modundan farklıysa, zafiyetin sömürülmesini sanal bir yama kullanarak önleyebilirsiniz. Aşağıdaki kural, listelenen gövde parametreleri olan tüm istekleri, izleme ve güvenli engelleme modlarında bile engelleyecektir:
+Savunmasız Spring Core Framework kullanıyorsanız ve Wallarm düğümünün [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) blocking dışında ise, sanal yama kullanarak açığın istismarını önleyebilirsiniz. Aşağıdaki kural, izleme ve güvenli blocking modlarında bile listelenen gövde parametrelerine sahip tüm istekleri engelleyecektir:
 
-![Spesifik post parametreleri için sanal yama](../../images/user-guides/rules/regexp-rule-post-params-spring.png)
+![Belirli post parametreleri için sanal yama](../../images/user-guides/rules/regexp-rule-post-params-spring.png)
 
-Düzenli ifade alanı değeri:
+Düzenli ifade alan değeri şudur:
 
 ```bash
 (class[.]module[.]classLoader[.]resources[.]context[.]parent[.]pipeline[.]first[.])(pattern|suffix|directory|prefix|fileDateFormat)
 ```
 
-Engelleme [modunda](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) çalışan Wallarm düğümü, bu tür zafiyet sömürme girişimlerini varsayılan olarak engeller.
+Blocking [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) de çalışan Wallarm düğümü, bu tür açığın istismar girişimlerini varsayılan olarak engeller.
 
-Spring Cloud Function bileşeni de aktif bir zafiyete (CVE-2022-22963) sahip. Bu bileşeni kullanıyorsanız ve Wallarm düğüm modu engelleme modundan farklıysa, aşağıda tarif edildiği gibi sanal bir yama oluşturun.
+Spring Cloud Function bileşeninde de (CVE-2022-22963) aktif bir açık bulunmaktadır. Bu bileşeni kullanıyorsanız ve Wallarm düğümünün [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) blocking dışında ise, aşağıda [açıklanan](#block-all-requests-with-class-cloud-function-routing-expression-header) gibi sanal yama oluşturun.
 
-### Örnek: `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` başlığı olan tüm istekleri engelle
+### `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` Başlığına Sahip Tüm İstekleri Engelleme
 
-Spring Cloud Function bileşeninde aktif bir zafiyet (CVE-2022-22963) bulunuyor ve `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` veya `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` başlığına zararlı yükler enjekte edilerek sömürülebiliyor.
+Spring Cloud Function bileşeninde, `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` veya `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` başlığına kötü amaçlı yükler enjekte edilerek istismar edilebilen aktif bir açık (CVE-2022-22963) bulunmaktadır.
 
-Bu bileşeni kullanıyorsanız ve Wallarm düğüm [modu](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) engelleme modundan farklıysa, zafiyetin sömürülmesini sanal bir yama kullanarak önleyebilirsiniz. Aşağıdaki kural, `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` başlığı içeren tüm istekleri engelleyecektir:
+Bu bileşeni kullanıyorsanız ve Wallarm düğümünün [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) blocking dışında ise, sanal yama kullanarak açığın istismarını önleyebilirsiniz. Aşağıdaki kural, `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` başlığını içeren tüm istekleri engelleyecektir:
 
-![Belirli bir başlık için sanal yama](../../images/user-guides/rules/regexp-rule-header-spring.png)
+![Belirli başlık için sanal yama](../../images/user-guides/rules/regexp-rule-header-spring.png)
 
-!!! info "`CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` başlığı olan istekleri engelleme"
-    Bu kural, `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` başlığı olan istekleri engellemez, ancak NGINX varsayılan olarak bu başlık olan istekleri geçersiz olanlar olarak atar.
+!!! info "Blocking requests with the `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` header"
+    Bu kural, `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` başlığına sahip istekleri engellemez; bunun yerine NGINX, bu başlığa sahip istekleri varsayılan olarak geçersiz sayarak düşürür.
 
-Engelleme [modunda](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) çalışan Wallarm düğümü, bu tür zafiyet sömürme girişimlerini varsayılan olarak engeller.
+Blocking [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) de çalışan Wallarm düğümü, bu tür açığın istismar girişimlerini varsayılan olarak engeller.
 
-[Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html) (Spring4Shell) içinde de bir 0-day zafiyet mevcuttur. Sömürülme girişimlerini nasıl engelleyeceğinizi [düzenli ifadelere dayalı sanal yama](#example-block-all-requests-with-the-classmoduleclassloader-body-parameters) ile öğrenin.
+Ayrıca, [Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html) (Spring4Shell) içinde 0-day açığı da mevcuttur. Açığın istismar girişimlerini [reqexp tabanlı sanal yama](#block-all-requests-with-classmoduleclassloader-body-parameters) ile nasıl engelleyeceğinizi öğrenin.
 
-## Yeni Bir Algılama Kuralını Kısmen Devre Dışı Bırakma
+## Kısmi Devre Dışı Bırakma
 
-Oluşturulan kural, belirli bir dal için kısmen devre dışı bırakılmalıysa, bunu *Regexp tabanlı saldırı tespitini devre dışı bırak* kuralını oluşturarak kolayca yapabiliriz:
+Oluşturulan kural, belirli bir dal için kısmen devre dışı bırakılacaksa, aşağıdaki alanlarla **Disable regexp-based attack detection** kuralı oluşturarak bu kolayca yapılabilir:
 
-- *Düzenli ifade*: Daha önce oluşturulan ve görmezden gelinmesi gereken düzenli ifadeler.
+- **Regular expression**: göz ardı edilmesi gereken, daha önce oluşturulmuş düzenli ifadeler.
 
-    !!! info "Regular expression değiştirildiğinde kuralın davranışı"
-        **Regexp tabanlı saldırı belirteci oluştur** tipindeki mevcut bir kuralın düzenli ifadesini değiştirmek, önceki ifadeyi kullanan **Regexp tabanlı saldırı tespitini devre dışı bırak** kurallarının otomatik olarak silinmesine neden olur.
+    !!! warning "Düzenli ifade değiştirildiğinde kuralın davranışı"
+        Mevcut [**Create regexp-based attack indicator**](#creating-and-applying-rule) tipindeki kuralda belirtilen düzenli ifadeyi değiştirmek, önceki ifadeyi kullanan **Disable regexp-based attack detection** kurallarının otomatik olarak silinmesine neden olur.
 
-        Yeni bir düzenli ifadeyle saldırı tespitini devre dışı bırakmak için, lütfen yeni düzenli ifade belirtilen yeni bir **Regexp tabanlı saldırı tespitini devre dışı bırak** kuralı oluşturun.
+        Yeni düzenli ifade ile saldırı tespitini devre dışı bırakmak için, belirtilen yeni düzenli ifadeye sahip yeni bir **Disable regexp-based attack detection** kuralı oluşturun.
 
-- *bu isteğin bu bölümünde*: Bir istisna ayarı gerektiren parametreyi gösterir.
+- **in this part of request**: bir istisna ayarlanması gereken parametreyi belirtir.
 
-**Örnek: Belirli URL için Yanlış X-Authentication Başlığınına İzin Ver**
+**Örnek: Belirli bir URL için Yanlış X-Authentication Başlığına İzin Verme**
 
-Diyelim ki, `example.com/test.php` adresinde bir scriptiniz var ve onun için belirteçlerin biçimini değiştirmek istiyorsunuz.
+Diyelim ki `example.com/test.php` adresinde bir betiğiniz var ve token formatını değiştirmek istiyorsunuz.
 
 İlgili kuralı oluşturmak için:
 
-1. *Kurallar* sekmesine gidin
-1. `example.com/test.php` için dalını bulun veya oluşturun ve *Kural ekle* tıklayın
-1. *Regexp tabanlı saldırı tespitini devre dışı bırak* seçin
-1. Devre dışı bırakmak istediğiniz düzenli ifadeyi seçin
-1. Noktayı `Header X-AUTHENTICATION` olarak ayarlayın
-1. *Oluştur* tıklayın
+1. **Rules** sekmesine gidin
+1. `example.com/test.php` için ilgili dalı bulun veya oluşturun ve **Add rule**'e tıklayın.
+1. **Fine-tuning attack detection** → **Disable custom attack detector** seçin.
+1. Devre dışı bırakmak istediğiniz düzenli ifadeyi seçin.
+1. `Header X-AUTHENTICATION` noktasını ayarlayın.
+1. **Create**'e tıklayın.
 
 ![Regex rule second example][img-regex-example2]
 
-## Kuralı Oluşturmak için API Çağrısı
+## Kuralı Oluşturmak İçin API Çağrısı
 
-Regexp tabanlı bir saldırı belirteci oluşturmak için, Wallarm Konsol UI'sını kullanmanın yanı sıra, Wallarm API'sini doğrudan [çağırabilirsiniz](../../api/overview.md). Aşağıda ilgili API çağrısının örneklerini bulabilirsiniz.
-
-Aşağıdaki istek, `^(~(44[.]33[.]22[.]11))$` regexp'ine dayalı özel saldırı belirteci oluşturacak.
-
-Eğer `MY.DOMAIN.COM` alanından gelen isteklere `X-FORWARDED-FOR: 44.33.22.11` HTTP başlığı varsa, Wallarm düğümü bunları tarayıcı saldırıları olarak kabul edecek ve eğer ilgili [filtreleme modu](../../admin-en/configure-wallarm-mode.md) ayarlanmışsa, saldırıları engelleyecektir.
-
---8<-- "../include-tr/api-request-examples/create-rule-scanner.md"
+Regexp tabanlı saldırı göstergesini oluşturmak için, [Wallarm API'sine doğrudan çağrı yapabilirsiniz](../../api/request-examples.md#create-a-rule-to-consider-the-requests-with-specific-value-of-the-x-forwarded-for-header-as-attacks).

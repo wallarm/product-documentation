@@ -9,72 +9,53 @@
 [nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                     ../user-guides/ip-lists/graylist.md
+[graylist-docs]:                     ../user-guides/ip-lists/overview.md
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [envoy-process-time-limit-docs]:    ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
 [envoy-process-time-limit-block-docs]: ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
+[api-policy-enf-docs]:              ../api-specification-enforcement/overview.md
 
-# Docker NGINX- veya Envoy-tabanlı görüntüyü yükseltme
+# Docker NGINX Tabanlı İmajı Yükseltme
 
-Bu talimatlar, çalışan Docker NGINX- veya Envoy-tabanlı 4.x görüntüsünün 4.8 sürümüne yükseltme adımlarını açıklar.
+Bu talimatlar, çalışan Docker NGINX tabanlı imajı 4.x sürümünden 5.0 sürümüne yükseltmek için yapılması gereken adımları açıklamaktadır.
 
-!!! warning "Zaten var olan Wallarm düğümünün kimlik bilgilerini kullanma"
-    Önceki sürümün zaten var olan Wallarm düğümünü kullanmanızı önermiyoruz. Lütfen 4.8 sürümündeki yeni bir filtreleme düğümü oluşturmak ve Docker konteynırı olarak dağıtmak için bu talimatları izleyin.
+!!! warning "Önceden Mevcut Wallarm Düğümü Kimlik Bilgilerini Kullanma"
+    Önceki sürüme ait mevcut Wallarm düğümünü kullanmanızı önermeyiz. Lütfen, 5.0 sürümüne ait yeni bir filtreleme düğümü oluşturmak ve bunu Docker konteyneri olarak dağıtmak için bu talimatları izleyin.
 
-Son kullanma tarihli düğümü (3.6 veya daha düşük) yükseltmek için lütfen [farklı talimatları](older-versions/docker-container.md) kullanın.
+Ömrünü tamamlamış düğümü (3.6 veya daha düşük) yükseltmek için lütfen [farklı talimatları](older-versions/docker-container.md) kullanın.
 
-## Gereksinimler
+## Requirements
 
---8<-- "../include-tr/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-latest.md"
 
-## Adım 1: Güncellenmiş filtreleme düğümü görüntüsünü indirin
+## Adım 1: Güncellenmiş Filtreleme Düğümü İmajını İndirin
 
-=== "NGINX-tabanlı görüntü"
-    ``` bash
-    docker pull wallarm/node:4.8.1-1
-    ```
-=== "Envoy-tabanlı görüntü"
-    ``` bash
-    docker pull wallarm/envoy:4.8.0-1
-    ```
-
-## Adım 2: Wallarm engelleme sayfasını güncelleyin (NGINX-tabanlı görüntüyü yükseltiyorsanız)
-
-Yeni düğüm sürümünde, Wallarm örnek engelleme sayfası [değiştirildi](what-is-new.md#new-blocking-page). Sayfadaki logo ve destek e-postası artık varsayılan olarak boştur.
-
-Docker konteynırı, engellenen isteklere `&/usr/share/nginx/html/wallarm_blocked.html` sayfasını döndürmek üzere yapılandırıldıysa, bu yapılandırmayı şu şekilde değiştirin:
-
-1. Yeni sürümde bir örnek sayfayı [kopyalayın ve özelleştirin](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page).
-1. Özelleştirilmiş sayfayı ve NGINX konfigürasyon dosyasını bir sonraki adımdaki yeni Docker konteynırına [monte edin](../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code).
-
-## Adım 3: Çalışan konteynırı durdurun
-
-```bash
-docker stop <ÇALIŞAN_KONTEYNER_ADı>
+``` bash
+docker pull wallarm/node:5.3.0
 ```
 
-## Adım 4: Yeni görüntüyü kullanarak konteynırı çalıştırın
+## Adım 2: Çalışan Konteyneri Durdurun
 
-1. Wallarm Console → **Düğümler**'e gidin ve **Wallarm düğümü** oluşturun.
+```bash
+docker stop <RUNNING_CONTAINER_NAME>
+```
 
-    ![Bir Wallarm düğümü oluşturma](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
-1. Üretilen belirteci kopyalayın.
-1. Kopyalanan belirteci kullanarak güncellenmiş görüntüyü çalıştırın. Önceki görüntü sürümünü çalıştırırken geçirilen aynı yapılandırma parametrelerini geçirebilirsiniz (düğüm belirteci dışında).
+## Adım 3: Yeni İmajı Kullanarak Konteyneri Çalıştırın
+
+1. Wallarm Console → **Settings** → **API Tokens** bölümüne gidin ve **Deploy** rolüne sahip bir token oluşturun.
+1. Oluşturulan tokenı kopyalayın.
+1. Kopyalanan tokenı kullanarak güncellenmiş imajı çalıştırın.
     
-    Güncellenmiş görüntüyü kullanarak konteynırı çalıştırmanın iki seçeneği bulunmaktadır:
+    Güncellenmiş imajı kullanarak konteyneri çalıştırmanın iki seçeneği vardır:
+    
+    * [Ortam değişkenleri ile](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
+    * [Mount edilmiş yapılandırma dosyası ile](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
-    * **Ortam değişkenleri ile** temel filtreleme düğümü yapılandırmasını belirtir
-        * [NGINX-tabanlı Docker konteynırı için talimatlar →](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
-        * [Envoy-tabanlı Docker konteynırı için talimatlar →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)
-    * **Monte edilen yapılandırma dosyasında** gelişmiş filtreleme düğümü yapılandırmasını belirtir
-        * [NGINX-tabanlı Docker konteynırı için talimatlar →](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
-        * [Envoy-tabanlı Docker konteynırı için talimatlar →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
+## Adım 4: Filtreleme Düğümü İşlemini Test Edin
 
-## Adım 5: Filtreleme düğümü işlemini test edin
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
---8<-- "../include-tr/waf/installation/test-waf-operation-no-stats.md"
+## Adım 5: Önceki Sürüm Filtreleme Düğümünü Silin
 
-## Adım 6: Önceki sürümün filtreleme düğümünü silin
-
-4.8 sürümü görüntü doğru bir şekilde çalışıyorsa, Wallarm Console → **Düğümler**'deki önceki sürümün filtreleme düğümünü silebilirsiniz.
+Eğer 5.0 sürümündeki dağıtılmış imaj doğru çalışıyorsa, Wallarm Console → **Nodes** bölümünden önceki sürüm filtreleme düğümünü silebilirsiniz.

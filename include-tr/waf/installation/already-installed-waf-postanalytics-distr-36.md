@@ -1,9 +1,10 @@
-!!! info "Eğer birden fazla Wallarm düğümü kullanıyorsanız"
-    Ortamınıza dağıtılan tüm Wallarm düğümlerinin **aynı sürümlerde** olması gerekmektedir. Ayrı sunuculara kurulu postanalytics modüllerinin de **aynı sürümlerde** olması gerekmektedir.
+```markdown
+!!! info "Birden fazla Wallarm düğümü dağıtırsanız"
+    Ortamınıza dağıtılan tüm Wallarm düğümleri aynı sürümlerde olmalıdır. Ayrı sunuculara kurulmuş olan postanalytics modülleri de aynı sürümlerde olmalıdır.
 
-    Ek bir düğümün kurulumu öncesi, lütfen sürümünün zaten dağıtılan modüllerin sürümüyle eşleştiğinden emin olun. Eğer dağıtılan modül sürümü [eski sürüm veya yakında eski sürüm olacak (`4.0` veya daha düşük)][versioning-policy] ise, tüm modülleri en son sürüme yükseltin.
+    Ek düğüm kurulmadan önce, lütfen sürümünün zaten dağıtılmış modüllerin sürümü ile uyumlu olduğundan emin olun. Eğer dağıtılan modül sürümü [deprecated or will be deprecated soon (`4.0` or lower)][versioning-policy] ise, tüm modülleri en son sürüme yükseltin.
 
-    Aynı sunucu üzerinde dağıtılan filtreleme düğümünün ve postanalytics modülünün sürümünü kontrol etmek için:
+    Aynı sunucuda dağıtılan filtering node ve postanalytics modülünün sürümünü kontrol etmek için:
 
     === "Debian"
         ```bash
@@ -13,31 +14,32 @@
         ```bash
         yum list wallarm-node
         ```
-    === "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
         yum list wallarm-node
         ```
 
-    Farklı sunucularına dağıtılan filtreleme düğümünün ve postanalytics modülünün sürümünü kontrol etmek için:
+    Farklı sunucularda dağıtılan filtering node ve postanalytics modülünün sürümünü kontrol etmek için:
 
     === "Debian"
         ```bash
-        # Wallarm filtreleme düğümünün kurulu olduğu sunucudan çalıştırın
+        # Wallarm filtering node yüklü sunucudan çalıştırın
         apt list wallarm-node-nginx
-        # postanalytics kurulumunun yapıldığı sunucudan çalıştırın
+        # postanalytics yüklü sunucudan çalıştırın
         apt list wallarm-node-tarantool
         ```
     === "CentOS"
         ```bash
-        # Wallarm filtreleme düğümünün kurulu olduğu sunucudan çalıştırın
+        # Wallarm filtering node yüklü sunucudan çalıştırın
         yum list wallarm-node-nginx
-        # postanalytics kurulumunun yapıldığı sunucudan çalıştırın
+        # postanalytics yüklü sunucudan çalıştırın
         yum list wallarm-node-tarantool
         ```
-    === "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
-        # Wallarm filtreleme düğümünün kurulu olduğu sunucudan çalıştırın
+        # Wallarm filtering node yüklü sunucudan çalıştırın
         yum list wallarm-node-nginx
-        # postanalytics kurulumunun yapıldığı sunucudan çalıştırın
+        # postanalytics yüklü sunucudan çalıştırın
         yum list wallarm-node-tarantool
         ```
+```

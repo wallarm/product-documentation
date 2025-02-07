@@ -1,31 +1,32 @@
-Aşağıdaki en son NGINX sürümünü yükleyin:
+Install the latest NGINX version of:
 
-* **NGINX `stable`** - Nasıl yükleneceğini NGINX [dokümantasyonunda](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/) görebilirsiniz.
-* **NGINX Plus** - Nasıl yükleneceğini NGINX [dokümantasyonunda](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/) görebilirsiniz.
-* **Dağıtım Sağlanan NGINX** - Yüklemek için, aşağıdaki komutları kullanın:
+* **NGINX `stable`** - NGINX [belgelendirmesinde](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/) nasıl kurulacağını görün.
+* **NGINX Mainline** (en son desteklenen sürüm v1.27.3'tür) - NGINX [belgelendirmesinde](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/) nasıl kurulacağını görün.
+* **NGINX Plus** (en son desteklenen sürüm NGINX Plus R33'dur) - NGINX [belgelendirmesinde](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/) nasıl kurulacağını görün.
+* **Distribution-Provided NGINX** - Kurulum yapmak için aşağıdaki komutları kullanın:
 
-    === "Debian 10.x (buster)"
+    === "Debian"
         ```bash
-        sudo apt-get Güncelle
-        sudo apt -y yükleyin --ek önerilmez nginx
+        sudo apt update 
+        sudo apt -y install --no-install-recommends nginx
         ```
-    === "Debian 11.x (bullseye)"
+    === "Ubuntu"
         ```bash
-        sudo apt güncelle
-        sudo apt -y yükleyin --ek önerilmez nginx
+        sudo apt-get update
+        sudo apt-get install nginx
         ```
-    === "CentOS 7.x"
+    === "CentOS"
         ```bash
-        sudo yum -y güncelle
-        sudo yum yükleyin -y nginx
+        sudo yum -y update 
+        sudo yum install -y nginx
         ```
-    === "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
-        sudo yum -y güncelle
-        sudo yum yükleyin -y nginx
+        sudo yum -y update 
+        sudo yum install -y nginx
         ```
     === "RHEL 8.x"
         ```bash
-        sudo yum -y güncelle
-        sudo yum yükleyin -y nginx
+        sudo yum -y update 
+        sudo yum install -y nginx
         ```

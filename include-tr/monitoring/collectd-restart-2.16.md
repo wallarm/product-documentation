@@ -1,8 +1,8 @@
 === "Ubuntu 14.04 LTS"
     ```bash
-    sudo service collectd yeniden başlat
+    sudo service collectd restart
     ```
-=== "Diğer desteklenen dağıtımlar"
+=== "Diğer Desteklenen Dağıtımlar"
     ```bash
     sudo systemctl restart collectd
     ```

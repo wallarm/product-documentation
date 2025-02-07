@@ -1,4 +1,11 @@
-Tüm desteklenen [Wallarm dağıtım seçenekleri][platform] arasında, dağıtım tarafından sağlanan NGINX için DEB/RPM paketlerinin kullanılması, aşağıdaki **kullanım durumları** için Wallarm'ın kullanılmasını öneririz:
+Among all supported [Wallarm deployment options][platform], DEB/RPM packages for distribution-provided NGINX is recommended for Wallarm deployment in these **use cases**:
 
-* Altyapınız, konteyner tabanlı yöntemler kullanmadan çıplak metal veya sanal makineler üzerine kuruludur. Tipik olarak, bu kurulumlar Infrastructure as Code (IaC) araçları olan Ansible veya SaltStack ile yönetilir.
-* Hizmetleriniz dağıtım tarafından sağlanan NGINX etrafında oluşturulmuştur. Wallarm, bu paketleri kullanarak işlevlerini genişletebilir.
+Tüm desteklenen [Wallarm deployment options][platform] arasında, dağıtım tarafından sağlanan NGINX için DEB/RPM paketleri, Wallarm dağıtımı için bu **use cases** kapsamında önerilmektedir:
+
+* Your infrastructure is based on bare metal or virtual machines without using container-based methods. Typically, these setups are managed with Infrastructure as Code (IaC) tools like Ansible or SaltStack.
+
+* İç altyapınız, konteyner tabanlı yöntemler kullanılmadan bare metal veya sanal makineler üzerine kuruludur. Genellikle bu yapılar, Ansible veya SaltStack gibi Infrastructure as Code (IaC) araçları ile yönetilmektedir.
+
+* Your services are built around distribution-provided NGINX. Wallarm can extend its functionalities using these packages.
+
+* Hizmetleriniz, dağıtım tarafından sağlanan NGINX etrafında inşa edilmiştir. Wallarm, bu paketleri kullanarak işlevselliğini artırabilir.
