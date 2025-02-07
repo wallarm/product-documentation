@@ -18,7 +18,7 @@ The Wallarm connector for MuleSoft supports only [in-line](../inline/overview.md
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for securing APIs deployed on the MuleSoft Anypoint platform (including Enterprise Edition) with only one policy.
+Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for securing APIs deployed on the MuleSoft Enterprise Edition platform with only one policy.
 
 ## Limitations
 

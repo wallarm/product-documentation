@@ -32,9 +32,9 @@ The current version can be found in the `pom.xml` file of the downloaded Wallarm
 
 Requires Native Node version 0.10.1 or higher.
 
-* Added support for Mulesoft Enterprise Edition
+* The response code to blocked malicious requests is now set to 403 using the `http-transform` plugin from the MuleSoft Enterprise Edition repository
 
-    The new version now requires authentication for two repositories. In addition to the standard `anypoint-exchange-v3` repository, you must also [configure the `mulesoft-releases-ee` repository](../../installation/connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange) in your Maven `settings.xml`. This change ensures proper access to artifacts available exclusively for Mulesoft Enterprise Edition users.
+    Previously, a 200 status code was returned with a message indicating the request was blocked in the response body. Authentication for the `mulesoft-releases-ee` repository in your [Maven `settings.xml`](../../installation/connectors/mulesoft.md#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange) is now required in addition to the standard `anypoint-exchange-v3` repository to use the new connector version.
 * Bugfix: ensure the uniqueness of the request identifiers
 * Optimized memory consumption
 
