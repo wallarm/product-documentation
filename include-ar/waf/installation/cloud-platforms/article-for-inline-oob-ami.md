@@ -16,6 +16,8 @@
 
 --8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob-latest.md"
 
+        If your setup connects the mirroring server to the Wallarm filtering node via public subnets, you need to also specify the appropriate subnet settings in the `set_real_ip_from` and `real_ip_header` directives. If the subnet is internal, this is not needed.
+
 ## 8. اختبار تشغيل Wallarm
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"

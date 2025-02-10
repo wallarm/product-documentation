@@ -65,7 +65,7 @@ Run the `cloud-init.py` script on the instance created from the cloud image as f
 1. Configure your web or proxy server (e.g. NGINX, Envoy) to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web or proxy server documentation.
 
     Inside the [link][web-server-mirroring-examples], you will find the example configuration for the most popular of web and proxy servers (NGINX, Traefik, Envoy).
-1. Set the following configuration in the `/etc/nginx/sites-enabled/default` file on the instance with the node:
+1. Set the following configuration in the `/etc/nginx/sites-enabled/default` file on the [machine running the Wallarm filtering node](#3-launch-a-wallarm-node-instance):
 
     ```
     location / {
@@ -78,6 +78,8 @@ Run the `cloud-init.py` script on the instance created from the cloud image as f
     ```
 
     The `set_real_ip_from` and `real_ip_header` directives are required to have Wallarm Console [display the IP addresses of the attackers][real-ip-docs].
+
+    If your setup connects the mirroring server to the Wallarm filtering node via public subnets, you need to also specify the appropriate subnet settings in the `set_real_ip_from` and `real_ip_header` directives. If the subnet is internal, this is not needed.
 
 ## 8. Test the Wallarm operation
 
