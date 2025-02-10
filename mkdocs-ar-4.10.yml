@@ -327,24 +327,13 @@ nav:
     - نظرة عامة: user-guides/settings/users.md
     - ملف المستخدم: user-guides/settings/account.md
     - الرموز المميزة لواجهة برمجة التطبيقات: user-guides/settings/api-tokens.md
-    - استخدام Single Sign‑On (SSO):
-      - نظرة عامة على التكامل مع الحل SSO SAML: admin-en/configuration-guides/sso/intro.md
-      - ربط SSO بـ G Suite:
-        - نظرة عامة على الخطوات لربط SSO بـ G Suite: admin-en/configuration-guides/sso/gsuite/overview.md
-        - "الخطوة 1: إنشاء المعلمات على جانب Wallarm (G Suite)": admin-en/configuration-guides/sso/gsuite/setup-sp.md
-        - "الخطوة 2: إنشاء وتكوين التطبيق في G Suite": admin-en/configuration-guides/sso/gsuite/setup-idp.md
-        - "الخطوة 3: نقل البيانات الواصفة لـ G Suite إلى معالج التحضير Wallarm": admin-en/configuration-guides/sso/gsuite/metadata-transfer.md
-        - "الخطوة 4: السماح بالوصول إلى التطبيق Wallarm على جانب G Suite": admin-en/configuration-guides/sso/gsuite/allow-access-to-wl.md
-      - ربط SSO بـ Okta:
-        - نظرة عامة على الخطوات لربط SSO بـ Okta: admin-en/configuration-guides/sso/okta/overview.md
-        - "الخطوة 1: إنشاء المعلمات على جانب Wallarm (Okta)": admin-en/configuration-guides/sso/okta/setup-sp.md
-        - "الخطوة 2: إنشاء وتكوين التطبيق في Okta": admin-en/configuration-guides/sso/okta/setup-idp.md
-        - "الخطوة 3: نقل البيانات الواصفة لـ Okta إلى معالج التحضير Wallarm": admin-en/configuration-guides/sso/okta/metadata-transfer.md
-        - "الخطوة 4: السماح بالوصول إلى التطبيق Wallarm على جانب Okta": admin-en/configuration-guides/sso/okta/allow-access-to-wl.md
-      - تكوين التوثيق SSO للأعضاء: admin-en/configuration-guides/sso/employ-user-auth.md
-      - تغيير التوثيق SSO المحدد: admin-en/configuration-guides/sso/change-sso-provider.md
-      - استخدام توثيق SSO على حساب Wallarm: user-guides/use-sso.md
-      - باستخدام LDAP: admin-en/configuration-guides/ldap/ldap.md
+    - Using SSO:
+      - Overview: admin-en/configuration-guides/sso/intro.md
+      - Setup: admin-en/configuration-guides/sso/setup.md
+      - G Suite Example: admin-en/configuration-guides/sso/sso-gsuite.md
+      - Okta Example: admin-en/configuration-guides/sso/sso-okta.md
+      - Troubleshooting: admin-en/configuration-guides/sso/troubleshooting.md
+    - باستخدام LDAP: admin-en/configuration-guides/ldap/ldap.md
   - العمليات:
     # - Autoscaling: ...
     - نظرة عامة:

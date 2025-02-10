@@ -1,1 +1,0 @@
---8<-- "latest-ar/admin-en/configuration-guides/sso/okta/setup-idp.md"

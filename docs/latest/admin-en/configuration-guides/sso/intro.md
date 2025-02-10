@@ -1,22 +1,28 @@
-# Overview of integration with the SAML SSO solution
+# SAML SSO Authentication Overview
 
-[doc-admin-sso-gsuite]:     gsuite/overview.md
-[doc-admin-sso-okta]:       okta/overview.md
+You can use single sign‑on (SSO) technology to authenticate your company's users to the Wallarm Console. Wallarm seamlessly integrates with any identity provider (IdP) that supports the SAML standard, such as Google or Okta, while acting as the service provider (SP).
 
-[link-saml]:                https://wiki.oasis-open.org/security/FrontPage
-[link-saml-sso-roles]:      https://www.oasis-open.org/committees/download.php/27819/sstc-saml-tech-overview-2.0-cd-02.pdf     
+![Integrations - SSO](../../../images/admin-guides/configuration-guides/sso/sso-integration-add.png)
 
-You can use Single Sign‑On (SSO) technology to authenticate your company's users to the Wallarm portal if your company already uses a [SAML][link-saml] SSO solution.
+## Available options
 
-Wallarm can be integrated with any solution that supports the SAML standard. The SSO guides describe integration using [Okta][doc-admin-sso-okta] or [Google Suite (G Suite)][doc-admin-sso-gsuite] as an example.
+You can set up Wallarm SSO integration with or without **provisioning**. Provisioning is an automatic transfer of data from SAML SSO solution to Wallarm: your SAML SSO solution users and their group membership define access to Wallarm and permissions there; all user management is performed on SAML SSO solution side.
 
-The documents related to the configuration and operation of Wallarm with SSO assume the following:
-*   Wallarm acts as a **service provider** (SP).
-*   Google or Okta acts as an **identity provider** (IdP).
+With **provisioning off**, for users that you have in your SAML SSO solution, you need to create corresponding users in Wallarm. User roles are also defined in Wallarm and you are able to select users that should login via SSO - the remaining will use login/password. You can also enable **Strict SSO** option which enables SSO authentication for all company account users at once.
 
-More information about roles in SAML SSO can be found here ([PDF][link-saml-sso-roles]).
+Users using SSO:
 
-!!! warning "Enabling the SSO service"
-    By default, SSO connection on Wallarm is not available without activating the appropriate service. To activate the SSO service, please contact your account manager or the [Wallarm support team](mailto:support@wallarm.com).
-    
-    If no SSO service is activated, then SSO-related blocks will not be visible in the **Integrations** section in Wallarm Console.
+* Cannot authenticate with login and password and cannot have two-factor authentication (2FA) enabled.
+* With provisioning, cannot be disabled or deleted from Wallarm side.
+
+See details on provisioning and options available when you do not use it [here](setup.md#step-4-saml-sso-solution-configure-provisioning).
+
+## Enabling and setup
+
+By default, SSO service for authentication in Wallarm is not active, corresponding blocks are not visible in the **Integrations** section in Wallarm Console.
+
+To activate the SSO service, contact the [Wallarm support team](https://support.wallarm.com/).
+
+Once service activated, you can set it up, providing necessary configuration both on Wallarm side and on the side of your SAML SSO solution. See details [here](setup.md).
+
+Note that although Wallarm can be integrated with any solution that supports the SAML standard, there can be only one active SSO integration at a time.

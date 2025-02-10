@@ -63,7 +63,7 @@ More detailed information about access of different user roles to the Wallarm en
 | **API tokens**           | Manage personal and shared tokens | Manage personal tokens | - | - |
 | **Activity log**    | View                                 | -                        | View                         | - |
 
-## Inviting a user
+## Inviting users
 
 You can add a user to your account in two ways, both involving the creation and sharing of an invitation link. You can either have Wallarm automatically send the invitation link to the user's specified email or share the link directly with the user.
 
@@ -86,6 +86,16 @@ Generate an invitation link by selecting your team member's email, their role, a
 This link leads them to the Wallarm signup page to create their account by choosing a password and entering their name.
 
 After signup, they will be added to your user list and will receive a confirmation email.
+
+## Automatic creation with SSO
+
+You can manage Wallarm Console users and their permissions directly from your SAML SSO solution. In this case, in your SAML SSO solution, you have groups mapped to Wallarm roles - when you create new users inside these groups, they are automatically created in Wallarm and get: 
+
+* Corresponding Wallarm role.
+* Immediate access to Wallarm Console under SSO credentials.
+* Permissions specified by the role.
+
+For this to work, you need to configure integration between Wallarm and your SAML SSO solution with **provisioning** option enabled as described [here](../../admin-en/configuration-guides/sso/setup.md#step-4-saml-sso-solution-configure-provisioning).
 
 ## Changing user settings
 

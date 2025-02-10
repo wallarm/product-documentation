@@ -285,23 +285,12 @@ nav:
     - Overview: user-guides/settings/users.md
     - User Profile: user-guides/settings/account.md
     - API Tokens: user-guides/settings/api-tokens.md
-    - Using Single Sign‑On (SSO):
-      - Overview of integration with the SAML SSO solution: admin-en/configuration-guides/sso/intro.md
-      - Connecting SSO with G Suite:
-        - Overview of Steps for Connecting SSO with G Suite: admin-en/configuration-guides/sso/gsuite/overview.md
-        - "Step 1: Generating Parameters on the Wallarm Side (G Suite)": admin-en/configuration-guides/sso/gsuite/setup-sp.md
-        - "Step 2: Creating and Configuring an Application in G Suite": admin-en/configuration-guides/sso/gsuite/setup-idp.md
-        - "Step 3: Transferring G Suite Metadata to the Wallarm Setup Wizard": admin-en/configuration-guides/sso/gsuite/metadata-transfer.md
-        - "Step 4: Allowing Access to the Wallarm Application on the G Suite Side": admin-en/configuration-guides/sso/gsuite/allow-access-to-wl.md
-      - Connecting SSO with Okta:
-        - Overview of Steps for Connecting SSO with Okta: admin-en/configuration-guides/sso/okta/overview.md
-        - "Step 1: Generating Parameters on the Wallarm Side (Okta)": admin-en/configuration-guides/sso/okta/setup-sp.md
-        - "Step 2: Creating and Configuring an Application in Okta": admin-en/configuration-guides/sso/okta/setup-idp.md
-        - "Step 3: Transferring Okta Metadata to the Wallarm Setup Wizard": admin-en/configuration-guides/sso/okta/metadata-transfer.md
-        - "Step 4: Allowing Access to the Wallarm Application on the Okta Side": admin-en/configuration-guides/sso/okta/allow-access-to-wl.md
-      - Configuring SSO Authentication for Users: admin-en/configuration-guides/sso/employ-user-auth.md
-      - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md
-      - Using single sign‑on to Wallarm account: user-guides/use-sso.md
+    - Using SSO:
+      - Overview: admin-en/configuration-guides/sso/intro.md
+      - Setup: admin-en/configuration-guides/sso/setup.md
+      - G Suite Example: admin-en/configuration-guides/sso/sso-gsuite.md
+      - Okta Example: admin-en/configuration-guides/sso/sso-okta.md
+      - Troubleshooting: admin-en/configuration-guides/sso/troubleshooting.md
     - Using LDAP: admin-en/configuration-guides/ldap/ldap.md
     - Activity Log: user-guides/settings/audit-log.md
   - Operations:

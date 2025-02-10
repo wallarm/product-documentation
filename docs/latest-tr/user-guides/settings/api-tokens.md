@@ -102,7 +102,7 @@ Global Yönetici, Global Analist veya Global Salt Okunur gibi global [rollerin](
 Daha önce istek doğrulama için UUID ve gizli anahtar kullanılıyordu, bu artık anahtarlarla değiştirildi. Kullandığınız UUID ve gizli anahtar otomatik olarak **geriye dönük uyumlu** anahtara dönüştürülür. Bu token ile UUID ve gizli anahtar ile doğrulanan istekler çalışmaya devam eder.
 
 !!! warning "Tokeni yenileyin veya SSO'yu etkinleştirin"
-    Geriye dönük uyumlu tokenin değerini yenilerseniz veya bu token’in sahibi için [SSO/strict SSO](../../admin-en/configuration-guides/sso/employ-user-auth.md) özelliğini etkinleştirirseniz, geriye dönük uyumluluk sona erer - eski UUID ve gizli anahtar ile doğrulanan tüm istekler çalışmayı durdurur.
+    Geriye dönük uyumlu tokenin değerini yenilerseniz veya bu token’in sahibi için [SSO/strict SSO](../../admin-en/configuration-guides/sso/setup.md) özelliğini etkinleştirirseniz, geriye dönük uyumluluk sona erer - eski UUID ve gizli anahtar ile doğrulanan tüm istekler çalışmayı durdurur.
 
  Taleplerin `X-WallarmApi-Token` başlık parametresinde geriye dönük uyumlu tokenin oluşturulan değerini de geçirebilirsiniz.
 
