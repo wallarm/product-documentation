@@ -84,6 +84,8 @@ Run the `cloud-init.py` script on the instance created from the cloud image as f
 
     The `set_real_ip_from` and `real_ip_header` directives are required to have Wallarm Console [display the IP addresses of the attackers][real-ip-docs].
 
+    If your setup connects the mirroring server to the Wallarm filtering node via public subnets, you need to also specify the appropriate subnet settings in the `set_real_ip_from` and `real_ip_header` directives. If the subnet is internal, this is not needed.
+
 ## 8. Test the Wallarm operation
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
