@@ -76,6 +76,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 5.3.7 (2025-02-10)
+
+* Fix for the `invalid_xml` attack detection in responses
+* Minor GraphQL parser fixes
+
 ### 5.3.0 (2025-01-29)
 
 * Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
@@ -159,6 +164,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Sidecar
 
 [How to upgrade](sidecar-proxy.md)
+
+### 5.3.7 (2025-02-10)
+
+* Fix for the `invalid_xml` attack detection in responses
+* Minor GraphQL parser fixes
 
 ### 5.3.0 (2025-01-29)
 
