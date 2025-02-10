@@ -21,6 +21,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Fixed invalid time value in serialized requests to properly display the [resource overlimit](../../user-guides/rules/configure-overlimit-res-detection.md) attacks
 * Fixed problem for the `invalid_xml` attack detection in responses
+* Fixed an issue where user-overridden headers were being dropped
 
 ### 0.11.0 (2025-01-31)
 
@@ -157,6 +158,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 * Fixed invalid time value in serialized requests to properly display the [resource overlimit](../../user-guides/rules/configure-overlimit-res-detection.md) attacks
 * Fixed problem for the `invalid_xml` attack detection in responses
+* Fixed an issue where user-overridden headers were being dropped
 
 ### 0.11.0 (2025-01-31)
 
@@ -236,6 +238,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 * Fixed invalid time value in serialized requests to properly display the [resource overlimit](../../user-guides/rules/configure-overlimit-res-detection.md) attacks
 * Fixed problem for the `invalid_xml` attack detection in responses
+* Fixed an issue where user-overridden headers were being dropped
 
 ### 0.11.0 (2025-01-31)
 
