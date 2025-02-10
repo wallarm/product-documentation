@@ -8,6 +8,7 @@
     * RHEL 8.x
     * RHEL 9.x
     * Oracle Linux 8.x
+    * Oracle Linux 9.x
     * Redox
     * SuSe Linux
     * その他（リストは常に広がっています、あなたのOSがリストにあるかどうかを確認するために[Wallarmサポートチーム](mailto:support@wallarm.com)に連絡してください）

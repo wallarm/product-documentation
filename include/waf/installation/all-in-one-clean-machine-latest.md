@@ -7,6 +7,7 @@ When upgrading modules with all-in-one installer, you cannot upgrade an old pack
 * RHEL 8.x
 * RHEL 9.x
 * Oracle Linux 8.x
+* Oracle Linux 9.x
 * Redox
 * SuSe Linux
 * Others (the list is constantly widening, contact [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)

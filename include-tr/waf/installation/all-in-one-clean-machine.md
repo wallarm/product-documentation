@@ -7,6 +7,7 @@ Tüm birlikte yükleyiciyle 4.x modüllerini yükseltirken, eski bir paket yükl
 * RHEL 8.x
 * RHEL 9.x
 * Oracle Linux 8.x
+* Oracle Linux 9.x
 * Redox
 * SuSe Linux
 * Diğerleri (liste sürekli genişliyor, işletim sisteminizin listede olup olmadığını kontrol etmek için [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişime geçin)

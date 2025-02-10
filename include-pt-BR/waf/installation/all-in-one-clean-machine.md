@@ -7,6 +7,7 @@ Ao atualizar os módulos 4.x com o instalador all-in-one, você não pode atuali
 * RHEL 8.x
 * RHEL 9.x
 * Oracle Linux 8.x
+* Oracle Linux 9.x
 * Redox
 * SuSe Linux
 * Outros (a lista está constantemente se expandindo, entre em contato com a [equipe de suporte da Wallarm](mailto:support@wallarm.com) para verificar se seu sistema operacional está na lista)

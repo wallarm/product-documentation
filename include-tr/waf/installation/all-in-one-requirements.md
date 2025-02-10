@@ -8,6 +8,7 @@
     * RHEL 8.x
     * RHEL 9.x
     * Oracle Linux 8.x
+    * Oracle Linux 9.x
     * Redox
     * SuSe Linux
     * Diğerleri (liste sürekli genişliyor, İS'nizin listeye dahil olup olmadığını kontrol etmek için [Wallarm destek ekibi](mailto:support@wallarm.com) ile iletişime geçin)
