@@ -34,7 +34,7 @@ Wallarm provides the following [rules](../../user-guides/rules/rules.md) to crea
 
 ### Blocking specific requests for selected endpoint
 
-Let us say your application online purchase section accessible at the `example.com/purchase` endpoint crashes upon processing the `refresh` query string parameter. Before the bug is fixed, you need to block requests leading to the crush.
+Let us say your application online purchase section accessible at the `example.com/purchase` endpoint crashes upon processing the `refresh` query string parameter. Before the bug is fixed, you need to block requests leading to the crash.
 
 To do so, set the **Create a virtual patch** rule as displayed on the screenshot:
 
