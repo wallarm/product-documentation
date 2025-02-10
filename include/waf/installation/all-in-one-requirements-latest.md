@@ -5,6 +5,7 @@
     * Ubuntu LTS 18.04, 20.04, 22.04
     * CentOS 7, 8 Stream, 9 Stream
     * Alma/Rocky Linux 9
+    * Oracle Linux 9.x
     * RHEL 8.x
     * RHEL 9.x
     * Oracle Linux 8.x
