@@ -65,7 +65,7 @@ Run the `cloud-init.py` script on the instance created from the cloud image as f
 1. Configure your web or proxy server (e.g. NGINX, Envoy) to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web or proxy server documentation.
 
     Inside the [link][web-server-mirroring-examples], you will find the example configuration for the most popular of web and proxy servers (NGINX, Traefik, Envoy).
-1. Set the following configuration in the `/etc/nginx/sites-enabled/default` file on the instance with the node:
+1. Set the following configuration in the `/etc/nginx/sites-enabled/default` file on the [machine running the Wallarm filtering node](#3-launch-a-wallarm-node-instance):
 
     ```
     location / {
