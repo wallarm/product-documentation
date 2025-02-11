@@ -94,7 +94,7 @@ In the **Certificates** section, you can obtain certificates for your domains:
 
 In the **Hosts** section:
 
-1. Specify the domains and ports or optional subdomains that will direct traffic to the Wallarm node for analysis. Each host entry must match a DNS zone previously defined in **Certificates** (if applicable).
+1. Specify the domains, ports and subdomains that will direct traffic to the Wallarm node for analysis. Each host entry must match a DNS zone previously defined in **Certificates** (if applicable).
 
     ??? info "Allowed ports"
         Directing traffic from HTTP ports to the Edge node is not allowed. The following ports are supported:
