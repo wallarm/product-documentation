@@ -33,6 +33,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * Fine-tuning attack detection for specific GraphQL points (e.g. disable detection of specific attack types in specific points)
     * Analyzing specific parts of GraphQL requests in API sessions
 
+* Return RPS and request amount per hosts and origins for Security Edge Inline
 * Fixed invalid time value in serialized requests to properly display the [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) attacks
 
 ### 5.2.11 (2024-12-25)

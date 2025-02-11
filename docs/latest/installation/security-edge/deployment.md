@@ -201,3 +201,5 @@ The Edge node section provides real-time statuses of the deployment and configur
 * **Cert CNAME error**: There was an issue verifying the certificate CNAME in DNS. Please check that the CNAME is correctly configured (if applicable).
 * **Deployment failed**: The Edge node deployment did not succeed, e.g. due to the certificate CNAME not added within 14 days. Check configuration settings and try to redeploy or contact the [Wallarm Support team](https://support.wallarm.com) to get help.
 * **Degraded**: The Edge node is active in the region but may have limited functionality or be experiencing minor issues. Please contact the [Wallarm Support team](https://support.wallarm.com) to get help.
+
+RPS and request amount per hosts and origins are returned starting from the [version](../../updating-migrating/node-artifact-versions.md#all-in-one-installer) 5.3.0.
