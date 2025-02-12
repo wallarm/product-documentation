@@ -10,9 +10,11 @@ To explore the security issues found for your external hosts, in Wallarm Console
 
 Here, the detailed information on found issues is presented, including:
 
-* Brief and detailed issue description
-* Risk level evaluation and distribution of security issues by these levels
+* Full filterable list of issues with brief and detailed description of each
 * Top vulnerable hosts list
+* Distribution of security issues by type
+* Risk level evaluation and distribution of security issues by these levels
+* Monthly historical information on detected and resolved issues for the last 6 month
 
 ## List of detected issues
 
@@ -49,6 +51,12 @@ Once a security issue is detected, it obtains the **Open** status meaning some m
 ![Security issues details - Lifecycle controls](../images/api-attack-surface/security-issue-details-lifecycle.png)
 
 You can also re-evaluate and adjust the risk level of the issue.
+
+## Getting report
+
+You can get report on all or filtered security issues in CSV or JSON format using the **Download report** button.
+
+![Security issues details - Lifecycle controls](../images/api-attack-surface/security-issues-report.png)
 
 ## API leaks
 
