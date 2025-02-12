@@ -35,7 +35,7 @@ Wallarm is the only solution that unifies best-in-class API Security and WAAP ca
 | **Additional options** | | |
 | [Deployment options](../installation/supported-deployment-options.md) | All | All |
 | [Integrations](../user-guides/settings/integrations/integrations-intro.md) | All | All |
-| [Number of users](../user-guides/settings/users.md#inviting-a-user) | Unlimited | Unlimited |
+| [Number of users](../user-guides/settings/users.md) | Unlimited | Unlimited |
 | [SSO authentication](../admin-en/configuration-guides/sso/intro.md) | Yes | Yes |
 | [Role-based access control (RBAC)](../user-guides/settings/users.md#user-roles) | Yes | Yes |
 | [Multi-tenant](../installation/multi-tenant/overview.md) | Yes (by request) | Yes (by request) |

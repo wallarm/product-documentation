@@ -95,7 +95,7 @@ For this to work, provide the attribute mapping:
 
 1. Save the changes.
 
-    Configuring provisioning will continue in [step 6](#step-6-wallarm-configure-provisioning---part-2) on Wallarm side.
+    Configuring provisioning will continue in [step 6](#step-6-wallarm-configure-provisioning-part-2) on Wallarm side.
 
 ## Step 5 (Wallarm): Enter G Suite metadata
 
