@@ -305,6 +305,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
+### 5.3.7 (2025-02-13)
+
+* Fix for the `invalid_xml` attack detection in responses
+* Minor GraphQL parser fixes
+
 ### 5.3.0 (2025-01-30)
 
 * Added support for response parameters in [API Sessions](../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../api-sessions/setup.md#session-grouping) (see detailed [change description](../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
@@ -353,6 +358,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-5-3-20250213-053413 (2025-02-13)
+
+* Fix for the `invalid_xml` attack detection in responses
+* Minor GraphQL parser fixes
 
 ### wallarm-node-5-3-20250129-150255 (2025-01-30)
 
