@@ -12,10 +12,10 @@ Set session context by adding extra request and response parameters, associating
 
 In **API Sessions**, within session, the request details by default include: 
 
-* Parameter of request or response that worked for [session grouping](#session-grouping) - yours or the one from the built-in set.
+* Parameter of request or response that worked for [session grouping](#session-grouping) - yours or the one from the built-in set (highlighted in the **API session ID parameters** group).
 * For malicious requests - full request content.
 
-You can add any additional (context) [parameters](../user-guides/rules/request-processing.md) both for requests and for their related responses, that you need to understand the session content: what and in what order the actor did and what the response was. To do so, add these parameters in Wallarm Console → **API Sessions** → **Session context parameters**. Once added, Wallarm will export them to the Wallarm Cloud and [display](#data-protection) in Wallarm Console, in details of your session requests.
+You can add any additional (context) [parameters](../user-guides/rules/request-processing.md) both for requests and for their related responses, that you need to understand the session content: what and in what order the actor did and what the response was. To do so, add these parameters in Wallarm Console → **API Sessions** → **Session context parameters**. Once added, Wallarm will export them to the Wallarm Cloud and [display](#data-protection) in Wallarm Console, in details of your session requests (in the **API session parameters** group).
 
 ![!API Sessions - context parameters](../images/api-sessions/api-sessions-context-parameters.png)
 
