@@ -43,7 +43,7 @@ The allowed types of Wallarm metrics are described below. The type is stored in 
 
 The number of all requests processed by the filter node since its installation.
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-abnormal`
+* **Metric:** `wallarm_nginx/gauge-abnormal`
 * **Metric value:**
     * `0` for the `off` [mode](../configure-wallarm-mode.md#available-filtration-modes)
     * `>0` for the `monitoring`/`safe_blocking`/`block` [mode](../configure-wallarm-mode.md#available-filtration-modes)
@@ -55,7 +55,7 @@ The number of all requests processed by the filter node since its installation.
 
 The number of requests not analyzed by the postanalytics module and not passed to Wallarm API. Blocking rules are applied to these requests, but requests are not visible in your Wallarm account and are not taken into account when analyzing next requests. The number is the sum of [`tnt_errors`][anchor-tnt] and [`api_errors`][anchor-api].
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-requests_lost`
+* **Metric:** `wallarm_nginx/gauge-requests_lost`
 * **Metric value:** `0`, the sum of [`tnt_errors`][anchor-tnt] and [`api_errors`][anchor-api]
 * **Troubleshooting recommendations:** follow the instructions for [`tnt_errors`][anchor-tnt] and [`api_errors`][anchor-api]
 
@@ -63,7 +63,7 @@ The number of requests not analyzed by the postanalytics module and not passed t
 
 The number of requests not analyzed by the postanalytics module. This metric is collected if sending requests to the postanalytics module is configured ([`wallarm_upstream_backend tarantool`](../configure-parameters-en.md#wallarm_upstream_backend)). Blocking rules are applied to these requests, but requests are not visible in your Wallarm account and are not taken into account when analyzing next requests.
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-tnt_errors`
+* **Metric:** `wallarm_nginx/gauge-tnt_errors`
 * **Metric value:** `0`
 * **Troubleshooting recommendations:**
     * Get the NGINX and Tarantool logs and analyze errors if any.
@@ -75,7 +75,7 @@ The number of requests not analyzed by the postanalytics module. This metric is 
 
 The number of requests not passed to Wallarm API. This metric is collected if passing requests to Wallarm API is configured ([`wallarm_upstream_backend api`](../configure-parameters-en.md#wallarm_upstream_backend)). Blocking rules are applied to these requests, but requests are not visible in your Wallarm account and not taken into account when analyzing next requests.
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-api_errors`
+* **Metric:** `wallarm_nginx/gauge-api_errors`
 * **Metric value:** `0`
 * **Troubleshooting recommendations:**
     * Get the NGINX and Tarantool logs and analyze errors if any.
@@ -87,7 +87,7 @@ The number of requests not passed to Wallarm API. This metric is collected if pa
 
 A number of issues have led to abnormal completion of the NGINX worker process. The most common reason for abnormal completion is a critical error in NGINX.
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-segfaults`
+* **Metric:** `wallarm_nginx/gauge-segfaults`
 * **Metric value:** `0`
 * **Troubleshooting recommendations:**
     1. Collect data about the current state using the `/opt/wallarm/collect-info.sh` script.
@@ -98,8 +98,8 @@ A number of issues have led to abnormal completion of the NGINX worker process. 
 The number of situations when the virtual memory limit was exceeded.
 
 * **Metric:**
-    * `curl_json-wallarm_nginx/gauge-memfaults` if the limit in your system was exceeded
-    * `curl_json-wallarm_nginx/gauge-softmemfaults` if the limit for proton.db +lom was exceeded ([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit)) 
+    * `wallarm_nginx/gauge-memfaults` if the limit in your system was exceeded
+    * `wallarm_nginx/gauge-softmemfaults` if the limit for proton.db +lom was exceeded ([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit)) 
 * **Metric value:** `0`
 * **Troubleshooting recommendations:**
     1. Collect data about the current state using the `/opt/wallarm/collect-info.sh` script.
@@ -109,7 +109,7 @@ The number of situations when the virtual memory limit was exceeded.
 
 The number of the proton.db errors except for those occurred due to the situations when the [virtual memory limit was exceeded](#number-of-situations-exceeding-the-virtual-memory-limit).
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-proton_errors`
+* **Metric:** `wallarm_nginx/gauge-proton_errors`
 * **Metric value:** `0`
 * **Troubleshooting recommendations:**
     1. Copy the error code from the NGINX logs (`wallarm: proton error: <ERROR_NUMBER>`).
@@ -120,32 +120,32 @@ The number of the proton.db errors except for those occurred due to the situatio
 
 The version of proton.db in use.
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-db_id`
+* **Metric:** `wallarm_nginx/gauge-db_id`
 * **Metric value:** no limits
 
 ### Time of the last update of the proton.db file
 
 Unix time of the last update of the proton.db file.
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-db_apply_time`
+* **Metric:** `wallarm_nginx/gauge-db_apply_time`
 * **Metric value:** no limits
 
 ### Version of custom ruleset (the former term is LOM)
 
 The version of [custom ruleset][doc-lom] in use.
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-custom_ruleset_id`
+* **Metric:** `wallarm_nginx/gauge-custom_ruleset_id`
 
-    (In Wallarm node 3.4 and lower, `curl_json-wallarm_nginx/gauge-lom_id`. The metric with the former name is still collected but will be deprecated soon.)
+    (In Wallarm node 3.4 and lower, `wallarm_nginx/gauge-lom_id`. The metric with the former name is still collected but will be deprecated soon.)
 * **Metric value:** no limits
 
 ### Time of the last update of custom ruleset (the former term is LOM)
 
 Unix time of the last update of [custom ruleset][doc-lom].
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-custom_ruleset_apply_time`
+* **Metric:** `wallarm_nginx/gauge-custom_ruleset_apply_time`
 
-    (In Wallarm node 3.4 and lower, `curl_json-wallarm_nginx/gauge-lom_apply_time`. The metric with the former name is still collected but will be deprecated soon.)
+    (In Wallarm node 3.4 and lower, `wallarm_nginx/gauge-lom_apply_time`. The metric with the former name is still collected but will be deprecated soon.)
 * **Metric value:** no limits
 
 ### proton.db and LOM Pairs
@@ -154,7 +154,7 @@ Unix time of the last update of [custom ruleset][doc-lom].
 
 The number of proton.db and [LOM][doc-lom] pairs in use.
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-proton_instances-total`
+* **Metric:** `wallarm_nginx/gauge-proton_instances-total`
 * **Metric value:** `>0`
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
@@ -165,7 +165,7 @@ The number of proton.db and [LOM][doc-lom] pairs in use.
 
 The number of proton.db and [LOM][doc-lom] pairs that were successfully downloaded and read.
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-proton_instances-success`
+* **Metric:** `wallarm_nginx/gauge-proton_instances-success`
 * **Metric value:** is equal to [`proton_instances-total`](#number-of-protondb-and-lom-pairs)
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
@@ -176,7 +176,7 @@ The number of proton.db and [LOM][doc-lom] pairs that were successfully download
 
 The number of proton.db and [LOM][doc-lom] pairs downloaded from the last saved files. These files store the last successfully downloaded pairs. If pairs were updated but not downloaded, the data from the last saved files is used.
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-proton_instances-fallback`
+* **Metric:** `wallarm_nginx/gauge-proton_instances-fallback`
 * **Metric value:** `>0`
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
@@ -187,7 +187,7 @@ The number of proton.db and [LOM][doc-lom] pairs downloaded from the last saved 
 
 The number of connected proton.db and [LOM][doc-lom] pairs that could not be read.
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-proton_instances-failed`
+* **Metric:** `wallarm_nginx/gauge-proton_instances-failed`
 * **Metric value:** `0`
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.

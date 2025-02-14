@@ -16,21 +16,21 @@
 !!! warning "Silinen metrikler nedeniyle kırılma değişiklikleri"
     Sürüm 4.0'dan itibaren, Wallarm düğümü aşağıdaki metrikleri toplamaz:
     
-    * `curl_json-wallarm_nginx/gauge-requests` - bunun yerine [`curl_json-wallarm_nginx/gauge-abnormal`](#number-of-requests) metriğini kullanabilirsiniz
-    * `curl_json-wallarm_nginx/gauge-attacks`
-    * `curl_json-wallarm_nginx/gauge-blocked`
-    * `curl_json-wallarm_nginx/gauge-time_detect`
-    * `curl_json-wallarm_nginx/derive-requests`
-    * `curl_json-wallarm_nginx/derive-attacks`
-    * `curl_json-wallarm_nginx/derive-blocked`
-    * `curl_json-wallarm_nginx/derive-abnormal`
-    * `curl_json-wallarm_nginx/derive-requests_lost`
-    * `curl_json-wallarm_nginx/derive-tnt_errors`
-    * `curl_json-wallarm_nginx/derive-api_errors`
-    * `curl_json-wallarm_nginx/derive-segfaults`
-    * `curl_json-wallarm_nginx/derive-memfaults`
-    * `curl_json-wallarm_nginx/derive-softmemfaults`
-    * `curl_json-wallarm_nginx/derive-time_detect`
+    * `wallarm_nginx/gauge-requests` - bunun yerine [`wallarm_nginx/gauge-abnormal`](#number-of-requests) metriğini kullanabilirsiniz
+    * `wallarm_nginx/gauge-attacks`
+    * `wallarm_nginx/gauge-blocked`
+    * `wallarm_nginx/gauge-time_detect`
+    * `wallarm_nginx/derive-requests`
+    * `wallarm_nginx/derive-attacks`
+    * `wallarm_nginx/derive-blocked`
+    * `wallarm_nginx/derive-abnormal`
+    * `wallarm_nginx/derive-requests_lost`
+    * `wallarm_nginx/derive-tnt_errors`
+    * `wallarm_nginx/derive-api_errors`
+    * `wallarm_nginx/derive-segfaults`
+    * `wallarm_nginx/derive-memfaults`
+    * `wallarm_nginx/derive-softmemfaults`
+    * `wallarm_nginx/derive-time_detect`
 
 ## Metrik Formatı
 
@@ -62,7 +62,7 @@ Metrik formatının ayrıntılı açıklaması bu [bağlantı](../monitoring/int
 
 Filtre düğümünün yüklemesinden bu yana işlenen tüm taleplerin sayısı.
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-abnormal`
+* **Metrik:** `wallarm_nginx/gauge-abnormal`
 * **Metrik değeri:**
     * `0` `off` [modu](../configure-wallarm-mode.md#available-filtration-modes) için
     * `>0`  `monitoring`/`safe_blocking`/`block` [modu](../configure-wallarm-mode.md#available-filtration-modes) için
@@ -74,7 +74,7 @@ Filtre düğümünün yüklemesinden bu yana işlenen tüm taleplerin sayısı.
 
 Postanalytics modülü tarafından analiz edilmeyen ve Wallarm API'ye geçmeyen taleplerin sayısı. Bu taleplere engelleme kuralları uygulanır, ancak talepler Wallarm hesabınızda görünmez ve sonraki talepleri analiz ederken dikkate alınmaz. Sayı, [`tnt_errors`][anchor-tnt] ve [`api_errors`][anchor-api] toplamıdır.
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-requests_lost`
+* **Metrik:** `wallarm_nginx/gauge-requests_lost`
 * **Metrik değeri:** `0`, [`tnt_errors`][anchor-tnt] ve [`api_errors`][anchor-api] toplamı
 * **Hata Ayıklama Önerileri:** [`tnt_errors`][anchor-tnt] ve [`api_errors`][anchor-api] için talimatları uygulayın
 
@@ -82,7 +82,7 @@ Postanalytics modülü tarafından analiz edilmeyen ve Wallarm API'ye geçmeyen 
 
 Postanalytics modülü tarafından analiz edilmeyen taleplerin sayısı. Bu metrik, taleplerin postanalytics modülüne gönderilmesi yapılandırıldığında ([`wallarm_upstream_backend tarantool`](../configure-parameters-en.md#wallarm_upstream_backend)) toplanır. Bu taleplere engelleme kuralları uygulanır, ancak talepler Wallarm hesabınızda görünmez ve sonraki talepleri analiz ederken dikkate alınmaz.
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-tnt_errors`
+* **Metrik:** `wallarm_nginx/gauge-tnt_errors`
 * **Metrik değeri:** `0`
 * **Hata Ayıklama Önerileri:**
     * NGINX ve Tarantool günlüklerini alın ve hataları analiz edin.
@@ -94,7 +94,7 @@ Postanalytics modülü tarafından analiz edilmeyen taleplerin sayısı. Bu metr
 
 Wallarm API'ye geçmeyen taleplerin sayısı. Bu metrik, Wallarm API'ye taleplerin geçmesi yapılandırıldığında ([`wallarm_upstream_backend api`](../configure-parameters-en.md#wallarm_upstream_backend)) toplanır. Bu taleplere engelleme kuralları uygulanır, ancak talepler Wallarm hesabınızda görünmez ve sonraki talepleri analiz ederken dikkate alınmaz.
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-api_errors`
+* **Metrik:** `wallarm_nginx/gauge-api_errors`
 * **Metrik değeri:** `0`
 * **Hata Ayıklama Önerileri:**
     * NGINX ve Tarantool günlüklerini alın ve hataları analiz edin.
@@ -106,7 +106,7 @@ Wallarm API'ye geçmeyen taleplerin sayısı. Bu metrik, Wallarm API'ye talepler
 
 Anormal tamamlamanın en yaygın nedeni NGINX'teki kritik bir hatadır.
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-segfaults`
+* **Metrik:** `wallarm_nginx/gauge-segfaults`
 * **Metrik değeri:** `0`
 * **Hata Ayıklama Önerileri:**
     1. Mevcut durum hakkında veri toplamak için `/usr/share/wallarm-common/collect-info.sh` scriptini kullanın.
@@ -117,8 +117,8 @@ Anormal tamamlamanın en yaygın nedeni NGINX'teki kritik bir hatadır.
 Sanal bellek sınırının aşıldığı durumların sayısı.
 
 * **Metrik:**
-    * `curl_json-wallarm_nginx/gauge-memfaults` eğer sistem sınırlarını aştıysa
-    * `curl_json-wallarm_nginx/gauge-softmemfaults` eğer proton.db +lom limiti aşıldıysa ([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit)) 
+    * `wallarm_nginx/gauge-memfaults` eğer sistem sınırlarını aştıysa
+    * `wallarm_nginx/gauge-softmemfaults` eğer proton.db +lom limiti aşıldıysa ([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit)) 
 * **Metrik değeri:** `0`
 * **Hata Ayıklama Önerileri:**
     1. Mevcut durum hakkında veri toplamak için `/usr/share/wallarm-common/collect-info.sh` scriptini kullanın.
@@ -128,7 +128,7 @@ Sanal bellek sınırının aşıldığı durumların sayısı.
 
 [Sanal bellek limitinin aşıldığı](#number-of-situations-exceeding-the-virtual-memory-limit) durumlar dışında ortaya çıkan proton.db hatalarının sayısı.
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-proton_errors`
+* **Metrik:** `wallarm_nginx/gauge-proton_errors`
 * **Metrik değeri:** `0`
 * **Hata Ayıklama Önerileri:**
     1. NGINX günlüklerinden hata kodunu kopyalayın (`wallarm: proton error: <HATA_NUMARASI>`).
@@ -139,32 +139,32 @@ Sanal bellek sınırının aşıldığı durumların sayısı.
 
 Kullanılan proton.db versiyonu.
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-db_id`
+* **Metrik:** `wallarm_nginx/gauge-db_id`
 * **Metrik değeri:** sınırlama yok
 
 ### son güncelleme zamanı proton.db dosyasının
 
 proton.db dosyasının son güncelleme Unix zamanı.
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-db_apply_time`
+* **Metrik:** `wallarm_nginx/gauge-db_apply_time`
 * **Metrik değeri:** sınırlama yok 
 
 ### Özel Kural Seti Versiyonu (eski adı LOM)
 
 Kullanılan [özel kural seti][doc-lom] versiyonu
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-custom_ruleset_id`
+* **Metrik:** `wallarm_nginx/gauge-custom_ruleset_id`
 
-    (Wallarm düğümü 3.4 ve altında, `curl_json-wallarm_nginx/gauge-lom_id`. Eski adıyla metrik hala toplanıyor ancak yakında kullanımdan kalkacak.)
+    (Wallarm düğümü 3.4 ve altında, `wallarm_nginx/gauge-lom_id`. Eski adıyla metrik hala toplanıyor ancak yakında kullanımdan kalkacak.)
 * **Metrik değeri:** sınırlama yok
 
 ### Özel Kural Setinin Son Güncellenme Zamanı (eski adı LOM)
 
 [Özel kural seti][doc-lom] son güncelleme Unix zamanı 
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-custom_ruleset_apply_time`
+* **Metrik:** `wallarm_nginx/gauge-custom_ruleset_apply_time`
 
-    (Wallarm düğümü 3.4 ve altında, `curl_json-wallarm_nginx/gauge-lom_apply_time`. Eski adıyla metrik hala toplanıyor ancak yakında kullanımdan kalkacak.)
+    (Wallarm düğümü 3.4 ve altında, `wallarm_nginx/gauge-lom_apply_time`. Eski adıyla metrik hala toplanıyor ancak yakında kullanımdan kalkacak.)
 * **Metrik değeri:** sınırlama yok
 
 ### proton.db ve LOM Çiftleri
@@ -173,7 +173,7 @@ Kullanılan [özel kural seti][doc-lom] versiyonu
 
 Kullanılan proton.db ve [LOM][doc-lom] çiftlerinin sayısı.
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-proton_instances-total`
+* **Metrik:** `wallarm_nginx/gauge-proton_instances-total`
 * **Metrik değeri:** `>0`
 * **Hata Ayıklama Önerileri:**
     1. Filtre düğümü ayarlarının doğru olduğunu kontrol edin.
@@ -184,7 +184,7 @@ Kullanılan proton.db ve [LOM][doc-lom] çiftlerinin sayısı.
 
 Başarıyla indirilen ve okunan proton.db ve [LOM][doc-lom] çiftlerinin sayısı
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-proton_instances-success`
+* **Metrik:** `wallarm_nginx/gauge-proton_instances-success`
 * **Metrik değeri:** [`proton_instances-total`](#number-of-protondb-and-lom-pairs) ile eşit
 * **Hata Ayıklama Önerileri:**
     1. Filtre düğümü ayarlarının doğru olduğunu kontrol edin.
@@ -195,7 +195,7 @@ Başarıyla indirilen ve okunan proton.db ve [LOM][doc-lom] çiftlerinin sayıs�
 
 Son kaydedilen dosyalardan indirilen proton.db ve [LOM][doc-lom] çiftlerinin sayısı. Bu dosyalar son başarıyla indirilen çiftleri saklar. Çiftler güncellendi ancak indirilmediyse, son kaydedilen dosyaların verileri kullanılır.
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-proton_instances-fallback`
+* **Metrik:** `wallarm_nginx/gauge-proton_instances-fallback`
 * **Metrik değeri:** `>0`
 * **Hata Ayıklama Önerileri:**
     1. Filtre düğümü ayarlarının doğru olduğunu kontrol edin.
@@ -206,7 +206,7 @@ Son kaydedilen dosyalardan indirilen proton.db ve [LOM][doc-lom] çiftlerinin sa
 
 Okunamayan yönlendirilmemiş proton.db ve [LOM][doc-lom] çiftlerinin sayısı.
 
-* **Metrik:** `curl_json-wallarm_nginx/gauge-proton_instances-failed`
+* **Metrik:** `wallarm_nginx/gauge-proton_instances-failed`
 * **Metrik değeri:** `0`
 * **Hata Ayıklama Önerileri:**
     1. Filtre düğümü ayarlarının doğru olduğunu kontrol edin.

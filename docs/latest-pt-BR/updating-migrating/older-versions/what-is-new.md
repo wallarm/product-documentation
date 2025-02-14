@@ -25,21 +25,21 @@ O instalador simplifica o processo executando automaticamente as seguintes açõ
 
 A partir da versão 4.0, o node Wallarm não coleta as seguintes métricas collectd:
 
-* `curl_json-wallarm_nginx/gauge-requests` - você pode usar a métrica [`curl_json-wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests) como alternativa
-* `curl_json-wallarm_nginx/gauge-attacks`
-* `curl_json-wallarm_nginx/gauge-blocked`
-* `curl_json-wallarm_nginx/gauge-time_detect`
-* `curl_json-wallarm_nginx/derive-requests`
-* `curl_json-wallarm_nginx/derive-attacks`
-* `curl_json-wallarm_nginx/derive-blocked`
-* `curl_json-wallarm_nginx/derive-abnormal`
-* `curl_json-wallarm_nginx/derive-requests_lost`
-* `curl_json-wallarm_nginx/derive-tnt_errors`
-* `curl_json-wallarm_nginx/derive-api_errors`
-* `curl_json-wallarm_nginx/derive-segfaults`
-* `curl_json-wallarm_nginx/derive-memfaults`
-* `curl_json-wallarm_nginx/derive-softmemfaults`
-* `curl_json-wallarm_nginx/derive-time_detect`
+* `wallarm_nginx/gauge-requests` - você pode usar a métrica [`wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests) como alternativa
+* `wallarm_nginx/gauge-attacks`
+* `wallarm_nginx/gauge-blocked`
+* `wallarm_nginx/gauge-time_detect`
+* `wallarm_nginx/derive-requests`
+* `wallarm_nginx/derive-attacks`
+* `wallarm_nginx/derive-blocked`
+* `wallarm_nginx/derive-abnormal`
+* `wallarm_nginx/derive-requests_lost`
+* `wallarm_nginx/derive-tnt_errors`
+* `wallarm_nginx/derive-api_errors`
+* `wallarm_nginx/derive-segfaults`
+* `wallarm_nginx/derive-memfaults`
+* `wallarm_nginx/derive-softmemfaults`
+* `wallarm_nginx/derive-time_detect`
 
 ## Limites de taxa
 

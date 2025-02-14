@@ -88,16 +88,16 @@
     إذا لزم الأمر، يمكنك تحديد نطاق قيم لتعود الأداة `collectd-nagios` بحالة `WARNING` أو `CRITICAL` باستخدام الخيارات `-w` و`-c` المناسبة (المعلومات التفصيلية متوفرة في [وثائق الأداة][link-nagios-plugin-docs]).
    
 **أمثلة على استخدام الأداة:**
-*   للحصول على قيمة قياس `curl_json-wallarm_nginx/gauge-abnormal` (في وقت تشغيل `collectd-nagios`) على مضيف Linux `node.example.local` به عقدة التصفية، قم بتشغيل الأمر التالي:
+*   للحصول على قيمة قياس `wallarm_nginx/gauge-abnormal` (في وقت تشغيل `collectd-nagios`) على مضيف Linux `node.example.local` به عقدة التصفية، قم بتشغيل الأمر التالي:
   
     ```
-    /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+    /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
     ```
        
-*   للحصول على قيمة قياس `curl_json-wallarm_nginx/gauge-abnormal` (في وقت تشغيل `collectd-nagios`) لعقدة التصفية العاملة في حاوية Docker بالاسم `wallarm-node` والمعرف `95d278317794`، قم بتشغيل الأمر التالي:
+*   للحصول على قيمة قياس `wallarm_nginx/gauge-abnormal` (في وقت تشغيل `collectd-nagios`) لعقدة التصفية العاملة في حاوية Docker بالاسم `wallarm-node` والمعرف `95d278317794`، قم بتشغيل الأمر التالي:
   
     ```
-    docker exec wallarm-node /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H 95d278317794
+    docker exec wallarm-node /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H 95d278317794
     ```
 
 

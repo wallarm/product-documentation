@@ -21,7 +21,7 @@ InfluxDBまたはGraphiteにメトリクスのエクスポートを設定した�
 !!! info "いくつかの前提条件"
     この文書では、Grafanaを[InfluxDB][doc-network-plugin-influxdb]または[Graphite][doc-network-plugin-graphite]と一緒にデプロイしたことを前提としています。
     
-    この文書では、`node.example.local`フィルターノードが処理するリクエストの数を示す[`curl_json-wallarm_nginx/gauge-abnormal`][doc-gauge-abnormal]メトリクスを例にしています。
+    この文書では、`node.example.local`フィルターノードが処理するリクエストの数を示す[`wallarm_nginx/gauge-abnormal`][doc-gauge-abnormal]メトリクスを例にしています。
     
     しかし、どの[サポートされているメトリクス][doc-available-metrics]でもモニタリングすることができます。
 
@@ -88,7 +88,7 @@ InfluxDBデータソースからメトリクスを取得するには、以下の
 
 
 
-`curl_json-wallarm_nginx/gauge-abnormal`メトリクスを取得するためのクエリは以下の通りです：
+`wallarm_nginx/gauge-abnormal`メトリクスを取得するためのクエリは以下の通りです：
 ```
 SELECT value FROM curl_json_value WHERE (host = 'node.example.local' AND instance = 'wallarm_nginx' AND type = 'gauge' AND type_instance = 'abnormal')
 ```
@@ -100,7 +100,7 @@ Graphiteデータソースからメトリクスを取得するには、以下の
 1.  *クエリ*ドロップダウンリストから新しく作成した“Graphite”データソースを選択します。
 2.  *シリーズ*行の該当メトリックの要素に対して*メトリックを選択*ボタンをクリックして、必要なメトリックの要素を順番に選択します。
 
-    `curl_json-wallarm_nginx/gauge-abnormal` メトリックの要素は以下の通りです：
+    `wallarm_nginx/gauge-abnormal` メトリックの要素は以下の通りです：
 
     1.  ホスト名、`write_graphite` プラグイン設定ファイルに設定されたもの。
    
@@ -119,7 +119,7 @@ Graphiteデータソースからメトリクスを取得するには、以下の
 
 *クエリ*タブから*視覚化*タブに切り替え、メトリックに対して望む視覚化を選択します。
 
-`curl_json-wallarm_nginx/gauge-abnormal`メトリックに対しては、“Gauge”視覚化を推奨します：
+`wallarm_nginx/gauge-abnormal`メトリックに対しては、“Gauge”視覚化を推奨します：
 *   現在のメトリクス値を表示するには、*Calc: Last*オプションを選択します。
 *   必要に応じて、しきい値やその他のパラメータを設定できます。
 
@@ -134,7 +134,7 @@ Graphiteデータソースからメトリクスを取得するには、以下の
 
 ##  モニタリングの確認
 
-データソースの1つを接続し、`curl_json-wallarm_nginx/gauge-abnormal`メトリックのクエリと視覚化を設定した後、モニタリングの動作を確認します。
+データソースの1つを接続し、`wallarm_nginx/gauge-abnormal`メトリックのクエリと視覚化を設定した後、モニタリングの動作を確認します。
 1.  自動的なメトリクス更新を5秒間隔で有効にします（Grafanaコンソールの右上隅のドロップダウンリストから値を選択します）。
 2.  Grafanaダッシュボード上の現在のリクエスト数がフィルターノードの`wallarm-status`の出力と一致することを確認します：
 
@@ -152,4 +152,4 @@ Graphiteデータソースからメトリクスを取得するには、以下の
 
     ![Checking the attack counter][img-grafana-16-attacks]
 
-Grafanaダッシュボードは現在、`node.example.local`フィルターノードの`curl_json-wallarm_nginx/gauge-abnormal`メトリックの値を表示しています。
+Grafanaダッシュボードは現在、`node.example.local`フィルターノードの`wallarm_nginx/gauge-abnormal`メトリックの値を表示しています。

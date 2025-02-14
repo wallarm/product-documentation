@@ -106,10 +106,10 @@ zabbix ALL=(ALL:ALL) NOPASSWD:/usr/bin/collectd-nagios
 フィルターノード上で以下のテストコマンドを実行します：
     
 ``` bash
-sudo -u zabbix sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+sudo -u zabbix sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
 ```
 
-このコマンドは、フィルターノードを持つホスト `node.example.local` の [`curl_json-wallarm_nginx/gauge-abnormal`][link-metric] メトリックの値を取得するために `zabbix` ユーザを呼び出します。
+このコマンドは、フィルターノードを持つホスト `node.example.local` の [`wallarm_nginx/gauge-abnormal`][link-metric] メトリックの値を取得するために `zabbix` ユーザを呼び出します。
     
 **コマンド出力の例：**
 
@@ -119,10 +119,10 @@ OKAY: 0 critical, 0 warning, 1 okay | value=0.000000;;;;
     
 ####    4.  必要なメトリクスを取得するために、フィルターノードのホスト上の Zabbix エージェントの設定ファイルにカスタムパラメータを追加します。
     
-例えば、フルクオリファイドドメイン名 `node.example.local` のフィルターノードのメトリック `curl_json-wallarm_nginx/gauge-abnormal` に対応するカスタムパラメータ `wallarm_nginx-gauge-abnormal` を作成するには、設定ファイルに以下の行を追加します：
+例えば、フルクオリファイドドメイン名 `node.example.local` のフィルターノードのメトリック `wallarm_nginx/gauge-abnormal` に対応するカスタムパラメータ `wallarm_nginx-gauge-abnormal` を作成するには、設定ファイルに以下の行を追加します：
    
 ```
-UserParameter=wallarm_nginx-gauge-abnormal, sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local | sed -n "s/.*value\=\(.*\);;;;.*/\1/p"
+UserParameter=wallarm_nginx-gauge-abnormal, sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local | sed -n "s/.*value\=\(.*\);;;;.*/\1/p"
 ```
 
 !!! info "メトリック値の抽出"

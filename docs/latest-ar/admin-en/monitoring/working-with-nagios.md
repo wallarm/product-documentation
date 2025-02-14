@@ -38,7 +38,7 @@
 
     ![قيمة بيانات الأداء المحدثة][img-nagios-service-perfdata-updated]
 
-الآن، يتم عرض قيم المقياس `curl_json-wallarm_nginx/gauge-abnormal` لعقدة الفلتر في معلومات حالة الخدمة في Nagios.
+الآن، يتم عرض قيم المقياس `wallarm_nginx/gauge-abnormal` لعقدة الفلتر في معلومات حالة الخدمة في Nagios.
 
 !!! info "تصور البيانات في Nagios"
     بشكل افتراضي، يدعم Nagios Core فقط تتبع حالة الخدمة (`OK`, `WARNING`, `CRITICAL`). لتخزين وتصوير قيم المقاييس المحتواة في "بيانات الأداء"، يمكنك استخدام أدوات خارجية، مثل [PNP4Nagios][link-PNP4Nagios].

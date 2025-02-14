@@ -106,10 +106,10 @@ Bu, `zabbix` kullanıcısının `sudo` yardımını kullanarak ve bir şifreyi s
 Filtre düğümünde aşağıdaki test komutunu çalıştırın:
     
 ``` bash
-sudo -u zabbix sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+sudo -u zabbix sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
 ```
 
-Bu komut, `zabbix` kullanıcısını `node.example.local` hostuna filtre düğümünün bulunduğu yerde [`curl_json-wallarm_nginx/gauge-abnormal`][link-metric] metriğinin değerini almak için çağırır.
+Bu komut, `zabbix` kullanıcısını `node.example.local` hostuna filtre düğümünün bulunduğu yerde [`wallarm_nginx/gauge-abnormal`][link-metric] metriğinin değerini almak için çağırır.
     
 **Komut çıktısının örneği:**
 
@@ -119,10 +119,10 @@ TAMAM: 0 kritik, 0 uyarı, 1 tamam | değer=0.000000;;;;
     
 ####    4.  İhtiyacınız olan metrikleri almak için filtre düğümü hostu üzerindeki Zabbix ajanı yapılandırma dosyasına özel parametreler ekleyin
     
-Örneğin, `node.example.local` tam nitelikli alan adı ile filtre düğümü için `curl_json-wallarm_nginx/gauge-abnormal` metriğine karşılık gelen özel bir `wallarm_nginx-gauge-abnormal` parametresi oluşturmak için yapılandırma dosyasına aşağıdaki satırı ekleyin:
+Örneğin, `node.example.local` tam nitelikli alan adı ile filtre düğümü için `wallarm_nginx/gauge-abnormal` metriğine karşılık gelen özel bir `wallarm_nginx-gauge-abnormal` parametresi oluşturmak için yapılandırma dosyasına aşağıdaki satırı ekleyin:
    
 ```
-UserParameter=wallarm_nginx-gauge-abnormal, sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local | sed -n "s/.*value\=\(.*\);;;;.*/\1/p"
+UserParameter=wallarm_nginx-gauge-abnormal, sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local | sed -n "s/.*value\=\(.*\);;;;.*/\1/p"
 ```
 !!! info "Metrik değerinin ayrıştırılması"
     `collectd-nagios` yardımına ve `OKAY: 0 kritik, 0 uyarı, 1 tamam | value=0.000000;;;;`, gibi bir çıktıya karşılık gelen bir metrik değerini çıkarırken, bu çıktı `sed` yardımına gereksiz karakterleri silmek için `sed` script'i oluşturarak borulanır.

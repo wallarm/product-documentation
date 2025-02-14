@@ -128,10 +128,10 @@ define command{
 2.   次のテストコマンドを実行して、`nagios`ユーザが`collectd`からメトリクス値を取得できることを確認します：
 
     ```
-    sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+    sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
     ```
     
-    このコマンドにより、`nagios`ユーザは`node.example.local`ホストの[`curl_json-wallarm_nginx/gauge-abnormal`][link-metric]メトリクス（処理済みのリクエスト数）の値を取得できます。
+    このコマンドにより、`nagios`ユーザは`node.example.local`ホストの[`wallarm_nginx/gauge-abnormal`][link-metric]メトリクス（処理済みのリクエスト数）の値を取得できます。
 
     **コマンドの出力例：**
 
@@ -147,10 +147,10 @@ define command{
 
 ### 7. 必要なメトリクスを取得するために、フィルタノードのNRPEサービス設定ファイルにコマンドを追加します
 
-例えば、フィルタノード（`node.example.local`完全修飾ドメイン名）の最初のメトリクス`curl_json-wallarm_nginx/gauge-abnormal`を受信するためのコマンド`check_wallarm_nginx_abnormal` を作成するには、次の行をNRPEサービスの設定ファイルに追加します：
+例えば、フィルタノード（`node.example.local`完全修飾ドメイン名）の最初のメトリクス`wallarm_nginx/gauge-abnormal`を受信するためのコマンド`check_wallarm_nginx_abnormal` を作成するには、次の行をNRPEサービスの設定ファイルに追加します：
 
 ```
-command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
 ```
 
 
@@ -185,7 +185,7 @@ NRPEサービス設定のファイルに必要なすべてのコマンドを追�
     }
     ```
 
-    このファイルでは、`10.0.30.5` IPアドレスを持つ`node.example.local`ホストと、`wallarm_nginx_abnormal`サービスのステータスをチェックするコマンドを定義しています。これは、フィルタノードから`curl_json-wallarm_nginx/gauge-abnormal`メトリクスを取得することを意味します（[`check_wallarm_nginx_abnormal`][anchor-header-7]コマンドの説明を参照）。
+    このファイルでは、`10.0.30.5` IPアドレスを持つ`node.example.local`ホストと、`wallarm_nginx_abnormal`サービスのステータスをチェックするコマンドを定義しています。これは、フィルタノードから`wallarm_nginx/gauge-abnormal`メトリクスを取得することを意味します（[`check_wallarm_nginx_abnormal`][anchor-header-7]コマンドの説明を参照）。
 
 2.  Nagiosの設定ファイル（デフォルトでは`/usr/local/nagios/etc/nagios.cfg`）に以下の行を追加します：
     

@@ -103,16 +103,16 @@
     必要に応じて、`collectd-nagios`ユーティリティが`WARNING`または`CRITICAL`のステータスを返す値の範囲を、対応する`-w`および`-c`オプションを使用して指定できます（詳細情報はユーティリティの[ドキュメンテーション][link-nagios-plugin-docs]でご覧いただけます）。
    
 **ユーティリティの使用例:**
-*   フィルターノードがあるLinuxホスト`node.example.local`上で、`collectd-nagios`が呼び出された時点での`curl_json-wallarm_nginx/gauge-abnormal`メトリクスの値を取得するには、次のコマンドを実行します：
+*   フィルターノードがあるLinuxホスト`node.example.local`上で、`collectd-nagios`が呼び出された時点での`wallarm_nginx/gauge-abnormal`メトリクスの値を取得するには、次のコマンドを実行します：
   
     ```
-    /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+    /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
     ```
        
-*   `wallarm-node`名と`95d278317794`識別子を持つDockerコンテナで動作しているフィルターノードについて、`collectd-nagios`が呼び出された時点での`curl_json-wallarm_nginx/gauge-abnormal`メトリクスの値を取得するには、次のコマンドを実行します：
+*   `wallarm-node`名と`95d278317794`識別子を持つDockerコンテナで動作しているフィルターノードについて、`collectd-nagios`が呼び出された時点での`wallarm_nginx/gauge-abnormal`メトリクスの値を取得するには、次のコマンドを実行します：
   
     ```
-    docker exec wallarm-node /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H 95d278317794
+    docker exec wallarm-node /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H 95d278317794
     ```
 
 

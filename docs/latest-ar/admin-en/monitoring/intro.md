@@ -70,7 +70,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 مقاييس NGINX مع وحدة Wallarm لها الصيغة التالية:
 
 ```
-host/curl_json-wallarm_nginx/type-type_instance
+host/wallarm_nginx/type-type_instance
 ```
 
 مقاييس وحدة التحليلات اللاحقة لها الصيغة التالية:
@@ -83,7 +83,7 @@ host/wallarm-tarantool/type-type_instance
 !!! معلومات "أمثلة على المقاييس"
     بالنسبة لعقدة التصفية على المضيف `node.example.local`:
 
-    * `node.example.local/curl_json-wallarm_nginx/gauge-abnormal` هو مقياس عدد الطلبات المعالجة؛
+    * `node.example.local/wallarm_nginx/gauge-abnormal` هو مقياس عدد الطلبات المعالجة؛
     * `node.example.local/wallarm-tarantool/gauge-export_delay` هو مقياس تأخير تصدير Tarantool بالثواني.
     
     قائمة كاملة بالمقاييس التي يمكن مراقبتها متاحة [هنا][doc-available-metrics].

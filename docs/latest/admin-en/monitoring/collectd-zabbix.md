@@ -112,10 +112,10 @@ This allows the `zabbix` user to run the `collectd-nagios` utility with superuse
 Run the following test command on the filter node:
     
 ``` bash
-sudo -u zabbix sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+sudo -u zabbix sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
 ```
 
-This command invokes the `zabbix` user to get the value of the [`curl_json-wallarm_nginx/gauge-abnormal`][link-metric] metric for the `node.example.local` host with the filter node.
+This command invokes the `zabbix` user to get the value of the [`wallarm_nginx/gauge-abnormal`][link-metric] metric for the `node.example.local` host with the filter node.
     
 **Example of the command output:**
 
@@ -125,10 +125,10 @@ OKAY: 0 critical, 0 warning, 1 okay | value=0.000000;;;;
     
 ####    4.  Add custom parameters to the Zabbix agent configuration file on the filter node host to get the metrics you need
     
-For example, to create a custom parameter `wallarm_nginx-gauge-abnormal` that corresponds to the `curl_json-wallarm_nginx/gauge-abnormal` metric for a filter node with the fully qualified domain name `node.example.local`, add the following line to the configuration file:
+For example, to create a custom parameter `wallarm_nginx-gauge-abnormal` that corresponds to the `wallarm_nginx/gauge-abnormal` metric for a filter node with the fully qualified domain name `node.example.local`, add the following line to the configuration file:
    
 ```
-UserParameter=wallarm_nginx-gauge-abnormal, sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local | sed -n "s/.*value\=\(.*\);;;;.*/\1/p"
+UserParameter=wallarm_nginx-gauge-abnormal, sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local | sed -n "s/.*value\=\(.*\);;;;.*/\1/p"
 ```
 !!! info "Extracting a metric value"
     To extract the value of a metric that goes after `value=` in the output of the `collectd-nagios` utility (e.g., `OKAY: 0 critical, 0 warning, 1 okay | value=0.000000;;;;`), this output is piped to the `sed` utility that executes the `sed` script to strip off unnecessary characters.

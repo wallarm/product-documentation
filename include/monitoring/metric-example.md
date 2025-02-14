@@ -1,2 +1,2 @@
 !!! info "Example of metric"
-    This example shows how to work with the single [`curl_json-wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests) metric, which shows the number of requests processed by the filter node.
+    This example shows how to work with the single [`wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests) metric, which shows the number of requests processed by the filter node.

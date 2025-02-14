@@ -70,4 +70,4 @@ ZabbixのWebインターフェイスログインページにアクセスする�
 
         ![Viewing the changed metric value][img-global-view-16]
 
-Zabbixダッシュボードでは、`node.example.local`フィルターノードの`curl_json-wallarm_nginx/gauge-abnormal`メトリクスが表示されています。
+Zabbixダッシュボードでは、`node.example.local`フィルターノードの`wallarm_nginx/gauge-abnormal`メトリクスが表示されています。

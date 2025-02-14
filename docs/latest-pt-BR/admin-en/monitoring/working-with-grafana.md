@@ -22,7 +22,7 @@ Se você configurou a exportação de métricas no InfluxDB ou Graphite, você p
 !!! info "Algumas suposições"
     Este documento pressupõe que você tenha implementado o Grafana junto ao [InfluxDB][doc-network-plugin-influxdb] ou [Graphite][doc-network-plugin-graphite].
     
-    A métrica [`curl_json-wallarm_nginx/gauge-abnormal`][doc-gauge-abnormal], que mostra o número de solicitações processadas pelo nó de filtro `node.example.local`, é usada como exemplo.
+    A métrica [`wallarm_nginx/gauge-abnormal`][doc-gauge-abnormal], que mostra o número de solicitações processadas pelo nó de filtro `node.example.local`, é usada como exemplo.
     
     No entanto, você pode monitorar qualquer [métrica suportada][doc-available-metrics]. 
 
@@ -93,7 +93,7 @@ Para buscar uma métrica da fonte de dados InfluxDB, faça o seguinte:
 
 
 
-A consulta para buscar a métrica `curl_json-wallarm_nginx/gauge-abnormal` é:
+A consulta para buscar a métrica `wallarm_nginx/gauge-abnormal` é:
 ```
 SELECT value FROM curl_json_value WHERE (host = 'node.example.local' AND instance = 'wallarm_nginx' AND type = 'gauge' AND type_instance = 'abnormal')    
 ```
@@ -107,7 +107,7 @@ Para buscar uma métrica da fonte de dados Graphite, faça o seguinte:
 1.  Selecione a recém-criada fonte de dados "Graphite" a partir da lista suspensa de *Consulta*.
 2.  Selecione os elementos da métrica necessária de maneira sequencial ao clicar no botão *selecionar métrica* para o elemento métrica na linha *Séries*.
 
-    Os elementos da métrica `curl_json-wallarm_nginx/gauge-abnormal` são os seguintes:
+    Os elementos da métrica `wallarm_nginx/gauge-abnormal` são os seguintes:
 
     1.  O nome do host, conforme definido no arquivo de configuração do plugin `write_graphite`.
    
@@ -126,7 +126,7 @@ Após a criação da consulta, configure uma visualização para a métrica corr
 
 Mude da guia *Consulta* para a guia *Visualização*, e selecione a visualização desejada para a métrica.
 
-Para a métrica `curl_json-wallarm_nginx/gauge-abnormal`, recomendamos o uso da visualização "Medidor":
+Para a métrica `wallarm_nginx/gauge-abnormal`, recomendamos o uso da visualização "Medidor":
 *   Selecione a opção *Calc: Último* para exibir o valor atual da métrica.
 *   Se necessário, você pode configurar limites e outros parâmetros. 
 
@@ -141,7 +141,7 @@ Após configurar a visualização, siga as etapas a seguir:
 
 ##  Verificando o Monitoramento
 
-Depois de ter conectado uma das fontes de dados e configurado a consulta e a visualização para a métrica `curl_json-wallarm_nginx/gauge-abnormal`, verifique a operação de monitoramento:
+Depois de ter conectado uma das fontes de dados e configurado a consulta e a visualização para a métrica `wallarm_nginx/gauge-abnormal`, verifique a operação de monitoramento:
 1.  Ative atualizações automáticas de métricas a intervalos de cinco segundos (selecione um valor da lista suspensa no canto superior direito do console Grafana).
 2.  Certifique-se de que o número atual de solicitações no painel do Grafana corresponde à saída de `wallarm-status` no nó de filtro:
 
@@ -159,4 +159,4 @@ Depois de ter conectado uma das fontes de dados e configurado a consulta e a vis
 
     ![Verificando o contador de ataques][img-grafana-16-attacks]
 
-O painel do Grafana agora exibe os valores da métrica `curl_json-wallarm_nginx/gauge-abnormal` para o nó de filtro `node.example.local`.
+O painel do Grafana agora exibe os valores da métrica `wallarm_nginx/gauge-abnormal` para o nó de filtro `node.example.local`.

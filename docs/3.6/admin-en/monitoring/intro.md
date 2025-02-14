@@ -107,7 +107,7 @@ The filter node uses `collectd` to collect Wallarm-specific metrics.
 Metrics of NGINX with the Wallarm module have the following format:
 
 ```
-host/curl_json-wallarm_nginx/type-type_instance
+host/wallarm_nginx/type-type_instance
 ```
 
 Metrics of the postanalytics module have the following format:
@@ -120,7 +120,7 @@ host/wallarm-tarantool/type-type_instance
 !!! info "Metric Examples"
     For a filter node on the `node.example.local` host:
 
-    * `node.example.local/curl_json-wallarm_nginx/gauge-attacks` is the metric of the number of recorded attacks;
+    * `node.example.local/wallarm_nginx/gauge-attacks` is the metric of the number of recorded attacks;
     * `node.example.local/wallarm-tarantool/gauge-export_delay` is the metric of the Tarantool export delay in seconds.
     
     A complete list of metrics that can be monitored is available [here][doc-available-metrics].

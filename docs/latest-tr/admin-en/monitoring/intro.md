@@ -118,7 +118,7 @@ Filtre düğümü, Wallarm-özel metrikleri toplamak için `collectd` kullanır.
 Wallarm modülü ile NGINX metrikleri aşağıdaki formatı içerir:
 
 ```
-host/curl_json-wallarm_nginx/type-type_instance
+host/wallarm_nginx/type-type_instance
 ```
 
 Postanalytics modülünün metrikleri aşağıdaki formatı içerir:
@@ -131,7 +131,7 @@ host/wallarm-tarantool/type-type_instance
 !!! bilgi "Metrik Örnekleri"
     `node.example.local` konaklı bir filtre düğümü için:
 
-    * `node.example.local/curl_json-wallarm_nginx/gauge-abnormal` işlenmiş taleplerin metriği;
+    * `node.example.local/wallarm_nginx/gauge-abnormal` işlenmiş taleplerin metriği;
     * `node.example.local/wallarm-tarantool/gauge-export_delay` Tarantool ihracat gecikmesinin saniye cinsinden metriği.
     
     İzlenebilecek metriklerin tam listesi, [burada][doc-available-metrics] bulunabilir.

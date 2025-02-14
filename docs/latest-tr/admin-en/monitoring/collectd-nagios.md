@@ -128,10 +128,10 @@ Bunu yapmak için, filtre düğümü ana makinesinde aşağıdaki adımları uyg
 2.  `nagios` kullanıcısının `collectd` tarafından `nagios` kullanıcıına ölçüm değerlerini alabildiğini kontrol edin, aşağıdaki test komutunu yürütün:
    
     ```
-    sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+    sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
     ```
     
-    Bu komut, `nagios` kullanıcısının [`curl_json-wallarm_nginx/gauge-abnormal`][link-metric] ölçümünün değerini (`node.example.local` ana makinesi için işlenen isteklerin sayısı) almasını sağlar.
+    Bu komut, `nagios` kullanıcısının [`wallarm_nginx/gauge-abnormal`][link-metric] ölçümünün değerini (`node.example.local` ana makinesi için işlenen isteklerin sayısı) almasını sağlar.
     
     **Komut çıktısının örneği:**
     
@@ -147,10 +147,10 @@ Bunu yapmak için, filtre düğümü ana makinesinde aşağıdaki adımları uyg
 
 ### 7.  Gerekli Ölçümleri Almak İçin NRPE Hizmeti Yapılandırma Dosyasına Komutlar Ekleyin
 
-Örneğin, filtre düğümü için `node.example.local` tam etki alanı adı olan `curl_json-wallarm_nginx/gauge-abnormal` ölçümünü alacak bir `check_wallarm_nginx_abnormal` adlı komut oluşturmak için, NRPE hizmetinin yapılandırma dosyasına aşağıdaki satırı ekleyin:
+Örneğin, filtre düğümü için `node.example.local` tam etki alanı adı olan `wallarm_nginx/gauge-abnormal` ölçümünü alacak bir `check_wallarm_nginx_abnormal` adlı komut oluşturmak için, NRPE hizmetinin yapılandırma dosyasına aşağıdaki satırı ekleyin:
 
 ```
-command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
 ```
 
 !!! info "Bir ölçü için eşik değerlerini nasıl ayarlanır"
@@ -186,7 +186,7 @@ NRPE hizmeti yapılandırma dosyasına tüm gerekli komutları ekledikten sonra,
     }
     ```
 
-    Bu dosya, `10.0.30.5` IP adresine ve `node.example.local` hostuna ait `check_wallarm_nginx_abnormal` hizmetin durumunu kontrol etmek için komutu tanımlar, bu da filtre düğümünden `curl_json-wallarm_nginx/gauge-abnormal` ölçümünü almayı ifade eder (bkz. [`check_wallarm_nginx_abnormal`][anchor-header-7] komutunun açıklaması).
+    Bu dosya, `10.0.30.5` IP adresine ve `node.example.local` hostuna ait `check_wallarm_nginx_abnormal` hizmetin durumunu kontrol etmek için komutu tanımlar, bu da filtre düğümünden `wallarm_nginx/gauge-abnormal` ölçümünü almayı ifade eder (bkz. [`check_wallarm_nginx_abnormal`][anchor-header-7] komutunun açıklaması).
 
 2.  Nagios yapılandırma dosyasına (varsayılan `/usr/local/nagios/etc/nagios.cfg`) aşağıdaki satırı ekleyin:
     

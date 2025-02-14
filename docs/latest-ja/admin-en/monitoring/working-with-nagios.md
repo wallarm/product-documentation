@@ -38,7 +38,7 @@
 
     ![Updated Performance Data value][img-nagios-service-perfdata-updated]
 
-これで、フィルタノードの`curl_json-wallarm_nginx/gauge-abnormal`メトリックの値がNagiosのサービスの状態情報に表示されるようになります。
+これで、フィルタノードの`wallarm_nginx/gauge-abnormal`メトリックの値がNagiosのサービスの状態情報に表示されるようになります。
 
 !!! info "Nagiosのデータ可視化"
     デフォルトでは、Nagios Coreはサービスステータス(`OK`、`WARNING`、`CRITICAL`)のみを追跡ます。「Performance Data」に含まれるメトリック値を保存および可視化するためには、例えば[PNP4Nagios][link-PNP4Nagios]のようなサードパーティのユーティリティを使用することができます。

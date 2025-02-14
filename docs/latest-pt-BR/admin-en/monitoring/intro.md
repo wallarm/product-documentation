@@ -116,7 +116,7 @@ O nó de filtro usa `collectd` para coletar métricas específicas da Wallarm.
 Métricas do NGINX com o módulo Wallarm têm o seguinte formato:
 
 ```
-host/curl_json-wallarm_nginx/type-type_instance
+host/wallarm_nginx/type-type_instance
 ```
 
 Métricas do módulo de pós-análise têm o seguinte formato:
@@ -129,7 +129,7 @@ host/wallarm-tarantool/type-type_instance
 !!! info "Exemplos de Métricas"
     Para um nó de filtro no host `node.example.local`:
 
-    * `node.example.local/curl_json-wallarm_nginx/gauge-abnormal` é a métrica do número de solicitações processadas;
+    * `node.example.local/wallarm_nginx/gauge-abnormal` é a métrica do número de solicitações processadas;
     * `node.example.local/wallarm-tarantool/gauge-export_delay` é a métrica do atraso de exportação do Tarantool em segundos.
     
     Uma lista completa de métricas que podem ser monitoradas está disponível [aqui][doc-available-metrics].

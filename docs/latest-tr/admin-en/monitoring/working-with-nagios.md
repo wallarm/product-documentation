@@ -38,7 +38,7 @@ Nagios'un daha önce oluşturulan hizmetin durumunu başarıyla izlediğini doğ
 
     ![Güncellenen Performans Verisi değeri][img-nagios-service-perfdata-updated]
 
-Şimdi, filtre düğümünün `curl_json-wallarm_nginx/gauge-abnormal` metriğinin değerleri, Nagios'daki hizmet durumu bilgisinde görüntüleniyor.
+Şimdi, filtre düğümünün `wallarm_nginx/gauge-abnormal` metriğinin değerleri, Nagios'daki hizmet durumu bilgisinde görüntüleniyor.
 
 !!! info "Nagios veri görselleştirme"
     Varsayılan olarak, Nagios Core yalnızca hizmet durumunu izlemeyi destekler (`OK`, `UYARI`, `KRİTİK`). "Performans Verisi"nde yer alan metrik değerleri saklamak ve görselleştirmek için üçüncü taraf yardımcı programlarını kullanabilirsiniz, örneğin, [PNP4Nagios][link-PNP4Nagios].

@@ -70,4 +70,4 @@ Para monitorar as métricas do nó de filtro `node.example.local`, execute as se
 
         ![Vendo o valor da métrica alterada][img-global-view-16]
 
-O painel do Zabbix agora exibe a métrica `curl_json-wallarm_nginx/gauge-abnormal` do nó de filtro `node.example.local`.
+O painel do Zabbix agora exibe a métrica `wallarm_nginx/gauge-abnormal` do nó de filtro `node.example.local`.

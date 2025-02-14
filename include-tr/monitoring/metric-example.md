@@ -1,2 +1,2 @@
 !!! info "Metrik Örneği"
-    Bu örnekte, ölçüm düğümünde işlenen isteklerin sayısını gösteren tek bir [`curl_json-wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests) metriği ile nasıl çalışılacağı gösterilmiştir.
+    Bu örnekte, ölçüm düğümünde işlenen isteklerin sayısını gösteren tek bir [`wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests) metriği ile nasıl çalışılacağı gösterilmiştir.
