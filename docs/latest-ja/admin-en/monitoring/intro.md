@@ -115,7 +115,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 Wallarmモジュール付きのNGINXのメトリクスは次の形式を持ちます：
 
 ```
-host/curl_json-wallarm_nginx/type-type_instance
+host/wallarm_nginx/type-type_instance
 ```
 
 postanalyticsモジュールのメトリクスは次の形式を持ちます：
@@ -128,7 +128,7 @@ host/wallarm-tarantool/type-type_instance
 !!! info "メトリック例"
     ホスト `node.example.local` 上のフィルタノードについて：
 
-    * `node.example.local/curl_json-wallarm_nginx/gauge-abnormal` は、処理されたリクエストの数のメトリクです；
+    * `node.example.local/wallarm_nginx/gauge-abnormal` は、処理されたリクエストの数のメトリクです；
     * `node.example.local/wallarm-tarantool/gauge-export_delay` は、Tarantoolのエクスポート遅延（秒）のメトリクスです。
 
     監視可能なメトリクスの完全なリストは[こちら][doc-available-metrics]で利用可能です。

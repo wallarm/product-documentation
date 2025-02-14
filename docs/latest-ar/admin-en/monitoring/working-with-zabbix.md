@@ -76,4 +76,4 @@
 
         ![عرض تغير قيمة المقياس][img-global-view-16]
 
-لوحة زابيكس تعرض الآن المقياس `curl_json-wallarm_nginx/gauge-abnormal` لعقدة الفلترة `node.example.local`.
+لوحة زابيكس تعرض الآن المقياس `wallarm_nginx/gauge-abnormal` لعقدة الفلترة `node.example.local`.

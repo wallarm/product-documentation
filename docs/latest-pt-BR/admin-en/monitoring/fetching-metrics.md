@@ -104,16 +104,16 @@ Para exportar métricas usando esse método:
     Se necessário, você pode especificar um intervalo de valores para o qual a utilidade `collectd-nagios` retornará o status `WARNING` ou `CRITICAL` usando as opções `-w` e `-c` correspondentes (informações detalhadas estão disponíveis na [documentação do utilitário][link-nagios-plugin-docs]).
 
 **Exemplos de uso da utilidade:**
-*   Para obter o valor da métrica `curl_json-wallarm_nginx/gauge-abnormal` (no momento em que o `collectd-nagios` foi chamado) no host Linux `node.example.local` com o nó de filtro, execute o seguinte comando:
+*   Para obter o valor da métrica `wallarm_nginx/gauge-abnormal` (no momento em que o `collectd-nagios` foi chamado) no host Linux `node.example.local` com o nó de filtro, execute o seguinte comando:
 
     ```
-    /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+    /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
     ```
 
-*   Para obter o valor da métrica `curl_json-wallarm_nginx/gauge-abnormal` (na hora em que `collectd-nagios` foi chamado) para o nó de filtro rodando no contêiner Docker com o nome `wallarm-node` e o identificador `95d278317794`, execute o seguinte comando:
+*   Para obter o valor da métrica `wallarm_nginx/gauge-abnormal` (na hora em que `collectd-nagios` foi chamado) para o nó de filtro rodando no contêiner Docker com o nome `wallarm-node` e o identificador `95d278317794`, execute o seguinte comando:
 
     ```
-    docker exec wallarm-node /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H 95d278317794
+    docker exec wallarm-node /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H 95d278317794
     ```
 
 !!! info "Mais exemplos"

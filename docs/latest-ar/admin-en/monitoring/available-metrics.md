@@ -14,21 +14,21 @@
 !!! warning "التغييرات المكسرة بسبب حذف المقاييس"
     بدءًا من الإصدار 4.0، لا يقوم العقدة Wallarm بجمع المقاييس التالية:
     
-    * `curl_json-wallarm_nginx/gauge-requests` - يمكنك استخدام المقياس [`curl_json-wallarm_nginx/gauge-abnormal`](#number-of-requests) بدلاً من ذلك
-    * `curl_json-wallarm_nginx/gauge-attacks`
-    * `curl_json-wallarm_nginx/gauge-blocked`
-    * `curl_json-wallarm_nginx/gauge-time_detect`
-    * `curl_json-wallarm_nginx/derive-requests`
-    * `curl_json-wallarm_nginx/derive-attacks`
-    * `curl_json-wallarm_nginx/derive-blocked`
-    * `curl_json-wallarm_nginx/derive-abnormal`
-    * `curl_json-wallarm_nginx/derive-requests_lost`
-    * `curl_json-wallarm_nginx/derive-tnt_errors`
-    * `curl_json-wallarm_nginx/derive-api_errors`
-    * `curl_json-wallarm_nginx/derive-segfaults`
-    * `curl_json-wallarm_nginx/derive-memfaults`
-    * `curl_json-wallarm_nginx/derive-softmemfaults`
-    * `curl_json-wallarm_nginx/derive-time_detect`
+    * `wallarm_nginx/gauge-requests` - يمكنك استخدام المقياس [`wallarm_nginx/gauge-abnormal`](#number-of-requests) بدلاً من ذلك
+    * `wallarm_nginx/gauge-attacks`
+    * `wallarm_nginx/gauge-blocked`
+    * `wallarm_nginx/gauge-time_detect`
+    * `wallarm_nginx/derive-requests`
+    * `wallarm_nginx/derive-attacks`
+    * `wallarm_nginx/derive-blocked`
+    * `wallarm_nginx/derive-abnormal`
+    * `wallarm_nginx/derive-requests_lost`
+    * `wallarm_nginx/derive-tnt_errors`
+    * `wallarm_nginx/derive-api_errors`
+    * `wallarm_nginx/derive-segfaults`
+    * `wallarm_nginx/derive-memfaults`
+    * `wallarm_nginx/derive-softmemfaults`
+    * `wallarm_nginx/derive-time_detect`
 
 ## تنسيق المقياس
 
@@ -60,7 +60,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 عدد كل الطلبات التي تمت معالجتها بواسطة العقدة المرشحة منذ تثبيتها.
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-abnormal`
+* **المقياس:** `wallarm_nginx/gauge-abnormal`
 * **قيمة المقياس:**
     * `0` للنمط `off` [mode](../configure-wallarm-mode.md#available-filtration-modes)
     * `>0` للنمط `monitoring`/`safe_blocking`/`block` [mode](../configure-wallarm-mode.md#available-filtration-modes)
@@ -72,7 +72,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 عدد الطلبات التي لم يتم تحليلها بواسطة وحدة البوستاناليتيكس ولم يتم تمريرها إلى Wallarm API. يتم تطبيق قواعد الحجب على هذه الطلبات، لكن الطلبات لن تظهر في حساب Wallarm الخاص بك ولن يتم أخذها في الاعتبار عند تحليل الطلبات اللاحقة. العدد هو مجموع [`tnt_errors`][anchor-tnt] و [`api_errors`][anchor-api].
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-requests_lost`
+* **المقياس:** `wallarm_nginx/gauge-requests_lost`
 * **قيمة المقياس:** `0`، مجموع [`tnt_errors`][anchor-tnt] و [`api_errors`][anchor-api]
 * **توصيات الاستكشاف والحل:** اتبع التعليمات ل [`tnt_errors`][anchor-tnt] و [`api_errors`][anchor-api]
 
@@ -80,7 +80,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 عدد الطلبات التي لم يتم تحليلها بواسطة وحدة البوستاناليتيكس. يتم جمع هذا المقياس إذا كانت إرسال الطلبات إلى وحدة البوستاناليتيكس مكونة ([`wallarm_upstream_backend tarantool`](../configure-parameters-en.md#wallarm_upstream_backend)). يتم تطبيق قواعد الحجب على هذه الطلبات، لكن الطلبات لن تظهر في حساب Wallarm الخاص بك ولن يتم أخذها في الاعتبار عند تحليل الطلبات اللاحقة.
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-tnt_errors`
+* **المقياس:** `wallarm_nginx/gauge-tnt_errors`
 * **قيمة المقياس:** `0`
 * **توصيات الاستكشاف والحل:**
     * احصل على سجلات NGINX و Tarantool وتحليل الأخطاء إذا وجدت.
@@ -92,7 +92,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 عدد الطلبات التي لم يتم تمريرها إلى Wallarm API. يتم جمع هذا المقياس إذا كان تمرير الطلبات إلى Wallarm API مكونًا ([`wallarm_upstream_backend api`](../configure-parameters-en.md#wallarm_upstream_backend)). يتم تطبيق قواعد الحجب على هذه الطلبات، لكن الطلبات لن تظهر في حساب Wallarm الخاص بك ولن يتم أخذها في الاعتبار عند تحليل الطلبات اللاحقة.
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-api_errors`
+* **المقياس:** `wallarm_nginx/gauge-api_errors`
 * **قيمة المقياس:** `0`
 * **توصيات الاستكشاف والحل:**
     * احصل على سجلات NGINX و Tarantool وتحليل الأخطاء إذا وجدت.
@@ -104,7 +104,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 عدد المشكلات التي أدت إلى إنهاء عملية العامل NGINX بشكل غير طبيعي. السبب الأكثر شيوعًا للإنهاء غير الطبيعي هو خطأ خطير في NGINX.
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-segfaults`
+* **المقياس:** `wallarm_nginx/gauge-segfaults`
 * **قيمة المقياس:** `0`
 * **توصيات الاستكشاف والحل:**
     1. جمع بيانات حول الحالة الحالية باستخدام أحد السكربتات التالية:
@@ -119,8 +119,8 @@ host/plugin[-plugin_instance]/type[-type_instance]
 عدد الحالات عندما تجاوزت الحد من الذاكرة الافتراضية.
 
 * **المقياس:**
-    * `curl_json-wallarm_nginx/gauge-memfaults` إذا تجاوز الحد في نظامك
-    * `curl_json-wallarm_nginx/gauge-softmemfaults` إذا تجاوز الحد ل proton.db +lom ([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit)) 
+    * `wallarm_nginx/gauge-memfaults` إذا تجاوز الحد في نظامك
+    * `wallarm_nginx/gauge-softmemfaults` إذا تجاوز الحد ل proton.db +lom ([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit)) 
 * **قيمة المقياس:** `0`
 * **توصيات الاستكشاف والحل:**
     1. جمع بيانات حول الحالة الحالية باستخدام أحد السكربتات التالية:
@@ -134,7 +134,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 عدد أخطاء proton.db باستثناء تلك التي حدثت بسبب الحالات التي [تجاوزت الحد من الذاكرة الافتراضية](#number-of-situations-exceeding-the-virtual-memory-limit).
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-proton_errors`
+* **المقياس:** `wallarm_nginx/gauge-proton_errors`
 * **قيمة المقياس:** `0`
 * **توصيات الاستكشاف والحل:**
     1. نسخ رمز الخطأ من سجلات NGINX (`wallarm: proton error: <ERROR_NUMBER>`).
@@ -149,32 +149,32 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 هي النسخة من proton.db في الاستخدام.
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-db_id`
+* **المقياس:** `wallarm_nginx/gauge-db_id`
 * **قيمة المقياس:** لا حدود
 
 ### وقت آخر تحديث لملف proton.db
 
 وقت Unix للتحديث الأخير لملف proton.db.
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-db_apply_time`
+* **المقياس:** `wallarm_nginx/gauge-db_apply_time`
 * **قيمة المقياس:** لا حدود
 
 ### نسخة من مجموعة القواعد المخصصة (الاسم السابق هو LOM)
 
 هي نسخة من مجموعة القواعد المخصصة[custom ruleset][doc-lom] في الاستخدام.
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-custom_ruleset_id`
+* **المقياس:** `wallarm_nginx/gauge-custom_ruleset_id`
 
-    (في العقدة Wallarm 3.4 وما دونها, `curl_json-wallarm_nginx/gauge-lom_id`. لا يزال المقياس بالاسم السابق مجمعاً ولكنه سيتم إهماله قريباً.)
+    (في العقدة Wallarm 3.4 وما دونها, `wallarm_nginx/gauge-lom_id`. لا يزال المقياس بالاسم السابق مجمعاً ولكنه سيتم إهماله قريباً.)
 * **قيمة المقياس:** لا حدود
 
 ### وقت آخر تحديث لمجموعة القواعد المخصصة (الاسم السابق هو LOM)
 
 وقت Unix للتحديث الأخير لمجموعة القواعد المخصصة [custom ruleset][doc-lom].
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-custom_ruleset_apply_time`
+* **المقياس:** `wallarm_nginx/gauge-custom_ruleset_apply_time`
 
-    (في العقدة Wallarm 3.4 وما دونها, `curl_json-wallarm_nginx/gauge-lom_apply_time`. لا يزال المقياس بالاسم السابق مجمعاً ولكنه سيتم إهماله قريباً.)
+    (في العقدة Wallarm 3.4 وما دونها, `wallarm_nginx/gauge-lom_apply_time`. لا يزال المقياس بالاسم السابق مجمعاً ولكنه سيتم إهماله قريباً.)
 * **قيمة المقياس:** لا حدود
 
 ### أزواج من proton.db و LOM
@@ -183,7 +183,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 عدد من أزواج proton.db و [LOM][doc-lom] في الاستخدام.
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-proton_instances-total`
+* **المقياس:** `wallarm_nginx/gauge-proton_instances-total`
 * **قيمة المقياس:** `>0`
 * **توصيات الاستكشاف والحل:**
     1. تحقق مما إذا كانت إعدادات العقدة المرشحة صحيحة.
@@ -194,7 +194,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 عدد من أزواج proton.db و [LOM][doc-lom] التي تم تنزيلها وقراءتها بنجاح.
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-proton_instances-success`
+* **المقياس:** `wallarm_nginx/gauge-proton_instances-success`
 * **قيمة المقياس:** تساوي [`proton_instances-total`](#number-of-protondb-and-lom-pairs)
 * **توصيات الاستكشاف والحل:**
     1. تحقق مما إذا كانت إعدادات العقدة المرشحة صحيحة.
@@ -205,7 +205,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 عدد من أزواج proton.db و [LOM][doc-lom] تم تنزيلها من الملفات المحفوظة الأخيرة. تحتفظ هذه الملفات بالأزواج المحملة بنجاح الأخيرة. إذا تم تحديث الأزواج ولكن لم يتم تنزيلها، يتم استخدام البيانات من الملفات المحفوظة الأخيرة.
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-proton_instances-fallback`
+* **المقياس:** `wallarm_nginx/gauge-proton_instances-fallback`
 * **قيمة المقياس:** `>0`
 * **توصيات الاستكشاف والحل:**
     1. تحقق مما إذا كانت إعدادات العقدة المرشحة صحيحة.
@@ -216,7 +216,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 عدد من الأزواج المتصلة من proton.db و [LOM][doc-lom] التي لا يمكن قراءتها.
 
-* **المقياس:** `curl_json-wallarm_nginx/gauge-proton_instances-failed`
+* **المقياس:** `wallarm_nginx/gauge-proton_instances-failed`
 * **قيمة المقياس:** `0`
 * **توصيات الاستكشاف والحل:**
     1. تحقق مما إذا كانت إعدادات العقدة المرشحة صحيحة.

@@ -21,7 +21,7 @@
 !!! info "بعض الافتراضات"
     يفترض هذا المستند أنك قمت بنشر Grafana بجانب [InfluxDB][doc-network-plugin-influxdb] أو [Graphite][doc-network-plugin-graphite].
     
-    يُستخدم مقياس [`curl_json-wallarm_nginx/gauge-abnormal`][doc-gauge-abnormal]، الذي يُظهر عدد الطلبات التي تمت معالجتها بواسطة عقدة الفلتر `node.example.local`، كمثال.
+    يُستخدم مقياس [`wallarm_nginx/gauge-abnormal`][doc-gauge-abnormal]، الذي يُظهر عدد الطلبات التي تمت معالجتها بواسطة عقدة الفلتر `node.example.local`، كمثال.
     
     ومع ذلك، يمكنك مراقبة أي [مقياس مدعوم][doc-available-metrics]. 
 
@@ -86,7 +86,7 @@
 
         ![أداة تصميم الاستعلام بالنص العادي][img-influxdb-query-plaintext]
 
-استعلام لجلب مقياس `curl_json-wallarm_nginx/gauge-abnormal` هو:
+استعلام لجلب مقياس `wallarm_nginx/gauge-abnormal` هو:
 ```
 SELECT value FROM curl_json_value WHERE (host = 'node.example.local' AND instance = 'wallarm_nginx' AND type = 'gauge' AND type_instance = 'abnormal')    
 ```
@@ -98,7 +98,7 @@ SELECT value FROM curl_json_value WHERE (host = 'node.example.local' AND instanc
 1.  اختر مصدر البيانات "Graphite" الذي تم إنشاؤه حديثًا من القائمة المنسدلة *Query*.
 2.  اختر عناصر المقياس المطلوب تسلسليًا بالنقر على زر *اختيار المقياس* لعنصر المقياس في خط *Series*.
 
-    تتمثل عناصر مقياس `curl_json-wallarm_nginx/gauge-abnormal` فيما يلي:
+    تتمثل عناصر مقياس `wallarm_nginx/gauge-abnormal` فيما يلي:
 
     1.  اسم المضيف، كما تم تعيينه في ملف تكوين الإضافة `write_graphite`.
    
@@ -117,7 +117,7 @@ SELECT value FROM curl_json_value WHERE (host = 'node.example.local' AND instanc
 
 انتقل من علامة التبويب *Query* إلى علامة التبويب *Visualization*، واختر التصور المطلوب للمقياس.
 
-لمقياس `curl_json-wallarm_nginx/gauge-abnormal`، نوصي باستخدام تصور "Gauge":
+لمقياس `wallarm_nginx/gauge-abnormal`، نوصي باستخدام تصور "Gauge":
 *   اختر خيار *Calc: Last* لعرض القيمة الحالية للمقياس.
 *   إذا لزم الأمر، يمكنك تكوين العتبات والمعايير الأخرى.
 
@@ -132,7 +132,7 @@ SELECT value FROM curl_json_value WHERE (host = 'node.example.local' AND instanc
 
 ##  التحقق من المراقبة
 
-بعد أن قمت بتوصيل أحد مصادر البيانات وقمت بتكوين الاستعلام والتصور لمقياس `curl_json-wallarm_nginx/gauge-abnormal`، تحقق من عملية المراقبة:
+بعد أن قمت بتوصيل أحد مصادر البيانات وقمت بتكوين الاستعلام والتصور لمقياس `wallarm_nginx/gauge-abnormal`، تحقق من عملية المراقبة:
 1.  قم بتمكين تحديثات المقاييس تلقائيًا كل خمس ثوانٍ (اختر قيمة من القائمة المنسدلة في الزاوية العلوية اليمنى من وحدة التحكم Grafana).
 2.  تأكد من أن عدد الطلبات الحالي على لوحة تحكم Grafana يتطابق مع الإخراج من `wallarm-status` على عقدة الفلتر:
 
@@ -150,4 +150,4 @@ SELECT value FROM curl_json_value WHERE (host = 'node.example.local' AND instanc
 
     ![التحقق من عداد الهجمات][img-grafana-16-attacks]
 
-تعرض لوحة تحكم Grafana الآن قيم مقياس `curl_json-wallarm_nginx/gauge-abnormal` لعقدة الفلتر `node.example.local`.
+تعرض لوحة تحكم Grafana الآن قيم مقياس `wallarm_nginx/gauge-abnormal` لعقدة الفلتر `node.example.local`.

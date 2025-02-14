@@ -112,10 +112,10 @@ zabbix ALL=(ALL:ALL) NOPASSWD:/usr/bin/collectd-nagios
 قم بتشغيل الأمر التالي للاختبار على عقدة الفلتر:
     
 ``` bash
-sudo -u zabbix sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+sudo -u zabbix sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
 ```
 
-هذا الأمر يدعو مستخدم `zabbix` للحصول على قيمة القياس [`curl_json-wallarm_nginx/gauge-abnormal`][link-metric] للمضيف `node.example.local` مع عقدة الفلتر.
+هذا الأمر يدعو مستخدم `zabbix` للحصول على قيمة القياس [`wallarm_nginx/gauge-abnormal`][link-metric] للمضيف `node.example.local` مع عقدة الفلتر.
     
 **مثال على إخراج الأمر:**
 
@@ -125,10 +125,10 @@ OKAY: 0 critical, 0 warning, 1 okay \|\| value=0.000000\;\;\;\;
     
 ####    4.  إضافة معلمات مخصصة إلى ملف تكوين عميل Zabbix على مضيف عقدة الفلتر للحصول على القياسات اللازمة
     
-على سبيل المثال، لإنشاء معلمة مخصصة `wallarm_nginx-gauge-abnormal` التي تتوافق مع القياس `curl_json-wallarm_nginx/gauge-abnormal` لعقدة فلترة بالاسم الكامل `node.example.local`، أضف السطر التالي إلى ملف التكوين:
+على سبيل المثال، لإنشاء معلمة مخصصة `wallarm_nginx-gauge-abnormal` التي تتوافق مع القياس `wallarm_nginx/gauge-abnormal` لعقدة فلترة بالاسم الكامل `node.example.local`، أضف السطر التالي إلى ملف التكوين:
    
 ```
-UserParameter=wallarm_nginx-gauge-abnormal, sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local \|\| sed -n "s/.*value\=\(.*\)\;\;\;\;.*/\1/p"
+UserParameter=wallarm_nginx-gauge-abnormal, sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local \|\| sed -n "s/.*value\=\(.*\)\;\;\;\;.*/\1/p"
 ```
 !!! info "استخراج قيمة قياس"
     لاستخراج قيمة قياس تأتي بعد `value=` في إخراج أداة `collectd-nagios` (مثلاً، `OKAY: 0 critical, 0 warning, 1 okay \|\| value=0.000000\;\;\;\;`)، يتم إرسال هذا الإخراج إلى أداة `sed` التي تنفذ نص `sed` لإزالة الأحرف غير الضرورية.

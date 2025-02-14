@@ -38,7 +38,7 @@ Verifique se o Nagios está monitorando com sucesso o status do serviço criado 
 
    ![Valor atualizado do Performance Data][img-nagios-service-perfdata-updated]
 
-Agora os valores da métrica `curl_json-wallarm_nginx/gauge-abnormal` do nó de filtro são exibidos nas informações do estado do serviço no Nagios.
+Agora os valores da métrica `wallarm_nginx/gauge-abnormal` do nó de filtro são exibidos nas informações do estado do serviço no Nagios.
 
 !!! info "Visualização de dados do Nagios"
     Por padrão, o Nagios Core apenas suporta o rastreamento do status do serviço (`OK`, `WARNING`, `CRITICAL`). Para armazenar e visualizar valores de métricas contidos em "Performance Data", você pode usar utilitários de terceiros, por exemplo, o [PNP4Nagios][link-PNP4Nagios].

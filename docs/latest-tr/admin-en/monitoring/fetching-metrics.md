@@ -107,16 +107,16 @@ Bu yöntemi kullanarak göstergeleri aktarmak için:
     Gerekirse, `collectd-nagios` yardımcı programının `WARNING` veya `CRITICAL` durumunu döndüreceği değer aralığını belirleyebilirsiniz. Bunun için ilgili `-w` ve `-c` seçeneklerini kullanın (ayrıntılı bilgi yardımcı programın [belgelerinde][link-nagios-plugin-docs] mevcuttur).
 
 **Yardımcı programı kullanma örnekleri:**
-*   Filtre düğümü bulunan Linux host `node.example.local` da `collectd-nagios` arandığında `curl_json-wallarm_nginx/gauge-abnormal` metrik değerini almak için aşağıdaki komutu çalıştırın:
+*   Filtre düğümü bulunan Linux host `node.example.local` da `collectd-nagios` arandığında `wallarm_nginx/gauge-abnormal` metrik değerini almak için aşağıdaki komutu çalıştırın:
   
     ```
-    /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+    /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
     ```
        
-*   `collectd-nagios` arandığında Docker container'da çalışan `curl_json-wallarm_nginx/gauge-abnormal` metrik değerini `wallarm-node` adı ve `95d278317794` tanımlayıcısı olan filtre düğümü için almak için, aşağıdaki komutu çalıştırın:
+*   `collectd-nagios` arandığında Docker container'da çalışan `wallarm_nginx/gauge-abnormal` metrik değerini `wallarm-node` adı ve `95d278317794` tanımlayıcısı olan filtre düğümü için almak için, aşağıdaki komutu çalıştırın:
   
     ```
-    docker exec wallarm-node /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H 95d278317794
+    docker exec wallarm-node /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H 95d278317794
     ```
 
 

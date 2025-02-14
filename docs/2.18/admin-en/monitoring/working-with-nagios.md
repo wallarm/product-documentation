@@ -38,7 +38,7 @@ Verify that Nagios is successfully monitoring the status of the previously creat
 
     ![Updated Performance Data value][img-nagios-service-perfdata-updated]
 
-Now the values of the `curl_json-wallarm_nginx/gauge-attacks` metric of the filter node are displayed in the service state information in Nagios.
+Now the values of the `wallarm_nginx/gauge-attacks` metric of the filter node are displayed in the service state information in Nagios.
 
 !!! info "Nagios data visualization"
     By default, Nagios Core only supports tracking service status (`OK`, `WARNING`, `CRITICAL`). To store and visualize metric values contained in “Performance Data,” you can use third-party utilities, for example, [PNP4Nagios][link-PNP4Nagios].

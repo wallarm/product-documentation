@@ -72,4 +72,4 @@ Zabbix web arayüzüne erişmek için `http://10.0.30.30` adresine gidin. Standa
 
         ![Değişen metrik değerini görüntüleme][img-global-view-16]
 
-Zabbix paneli şimdi `curl_json-wallarm_nginx/gauge-abnormal` metriğini `node.example.local` filtrel düğümünde görüntülüyor.
+Zabbix paneli şimdi `wallarm_nginx/gauge-abnormal` metriğini `node.example.local` filtrel düğümünde görüntülüyor.

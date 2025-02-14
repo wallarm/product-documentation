@@ -76,4 +76,4 @@ To monitor the metrics of the `node.example.local` filter node, perform the foll
 
         ![Viewing the changed metric value][img-global-view-16]
 
-The Zabbix dashboard now displays the `curl_json-wallarm_nginx/gauge-abnormal` metric of the `node.example.local` filter node. 
+The Zabbix dashboard now displays the `wallarm_nginx/gauge-abnormal` metric of the `node.example.local` filter node. 

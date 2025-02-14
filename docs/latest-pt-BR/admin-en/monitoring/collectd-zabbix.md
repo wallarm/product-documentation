@@ -110,10 +110,10 @@ Isso permite que o usuário `zabbix` execute a utilidade `collectd-nagios` com p
 No nó do filtro, execute o seguinte comando de teste:
     
 ``` bash
-sudo -u zabbix sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+sudo -u zabbix sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
 ```
 
-Este comando chama o usuário `zabbix` para obter o valor da métrica [`curl_json-wallarm_nginx/gauge-abnormal`][link-metric] para o host `node.example.local` com o nó do filtro.
+Este comando chama o usuário `zabbix` para obter o valor da métrica [`wallarm_nginx/gauge-abnormal`][link-metric] para o host `node.example.local` com o nó do filtro.
     
 **Exemplo de saída do comando:**
 
@@ -123,10 +123,10 @@ OKAY: 0 critical, 0 warning, 1 okay | value=0.000000;;;;
     
 ####    4.  Adicione parâmetros personalizados ao arquivo de configuração do agente Zabbix no host do nó do filtro para obter as métricas necessárias
     
-Por exemplo, para criar um parâmetro personalizado `wallarm_nginx-gauge-abnormal` que corresponde à métrica `curl_json-wallarm_nginx/gauge-abnormal` para um nó do filtro com o nome de domínio totalmente qualificado `node.example.local`, adicione a seguinte linha ao arquivo de configuração:
+Por exemplo, para criar um parâmetro personalizado `wallarm_nginx-gauge-abnormal` que corresponde à métrica `wallarm_nginx/gauge-abnormal` para um nó do filtro com o nome de domínio totalmente qualificado `node.example.local`, adicione a seguinte linha ao arquivo de configuração:
    
 ```
-UserParameter=wallarm_nginx-gauge-abnormal, sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local | sed -n "s/.*value\=\(.*\);;;;.*/\1/p"
+UserParameter=wallarm_nginx-gauge-abnormal, sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local | sed -n "s/.*value\=\(.*\);;;;.*/\1/p"
 ```
 !!! info "Extraindo um valor de métrica"
     Para extrair o valor de uma métrica que vem após `value=` na saída da utilidade `collectd-nagios` (por exemplo, `OKAY: 0 critical, 0 warning, 1 okay | value=0.000000;;;;), essa saída é canalizada para a utilidade `sed` que executa o script `sed` para remover caracteres desnecessários.

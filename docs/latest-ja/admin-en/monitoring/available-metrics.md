@@ -16,21 +16,21 @@
 !!! warning "削除されたメトリクスによる破壊的な変更"
     バージョン4.0から、Wallarmノードは以下のメトリクスを収集しません。：
     
-    * `curl_json-wallarm_nginx/gauge-requests` - 代わりに[`curl_json-wallarm_nginx/gauge-abnormal`](#number-of-requests)メトリクスを使用できます
-    * `curl_json-wallarm_nginx/gauge-attacks`
-    * `curl_json-wallarm_nginx/gauge-blocked`
-    * `curl_json-wallarm_nginx/gauge-time_detect`
-    * `curl_json-wallarm_nginx/derive-requests`
-    * `curl_json-wallarm_nginx/derive-attacks`
-    * `curl_json-wallarm_nginx/derive-blocked`
-    * `curl_json-wallarm_nginx/derive-abnormal`
-    * `curl_json-wallarm_nginx/derive-requests_lost`
-    * `curl_json-wallarm_nginx/derive-tnt_errors`
-    * `curl_json-wallarm_nginx/derive-api_errors`
-    * `curl_json-wallarm_nginx/derive-segfaults`
-    * `curl_json-wallarm_nginx/derive-memfaults`
-    * `curl_json-wallarm_nginx/derive-softmemfaults`
-    * `curl_json-wallarm_nginx/derive-time_detect`
+    * `wallarm_nginx/gauge-requests` - 代わりに[`wallarm_nginx/gauge-abnormal`](#number-of-requests)メトリクスを使用できます
+    * `wallarm_nginx/gauge-attacks`
+    * `wallarm_nginx/gauge-blocked`
+    * `wallarm_nginx/gauge-time_detect`
+    * `wallarm_nginx/derive-requests`
+    * `wallarm_nginx/derive-attacks`
+    * `wallarm_nginx/derive-blocked`
+    * `wallarm_nginx/derive-abnormal`
+    * `wallarm_nginx/derive-requests_lost`
+    * `wallarm_nginx/derive-tnt_errors`
+    * `wallarm_nginx/derive-api_errors`
+    * `wallarm_nginx/derive-segfaults`
+    * `wallarm_nginx/derive-memfaults`
+    * `wallarm_nginx/derive-softmemfaults`
+    * `wallarm_nginx/derive-time_detect`
 
 ## メトリクスフォーマット
 
@@ -62,7 +62,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 フィルタノードがそのインストール以降に処理したすべてのリクエストの数。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-abnormal`
+* **メトリクス:** `wallarm_nginx/gauge-abnormal`
 * **メトリクス値:**
     * `0`は`off` [モード](../configure-wallarm-mode.md#available-filtration-modes)の場合
     * `>0`は`monitoring`/`safe_blocking`/`block` [モード](../configure-wallarm-mode.md#available-filtration-modes)の場合
@@ -74,7 +74,7 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 Postanalyticsモジュールによって分析されず、Wallarm APIに渡されなかったリクエストの数。これらのリクエストに対してはブロックルールが適用されますが、リクエストはWallarmアカウントに表示されず、次のリクエストの分析には考慮されません。値は[`tnt_errors`][anchor-tnt]および[`api_errors`][anchor-api]の合計です。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-requests_lost`
+* **メトリクス:** `wallarm_nginx/gauge-requests_lost`
 * **メトリクス値:** `0`、[`tnt_errors`][anchor-tnt]および[`api_errors`][anchor-api]の合計
 * **トラブルシューティングの推奨事項:** [`tnt_errors`][anchor-tnt]と[`api_errors`][anchor-api]の手順に従ってください。
 
@@ -82,7 +82,7 @@ Postanalyticsモジュールによって分析されず、Wallarm APIに渡さ�
 
 Postanalyticsモジュールによって解析されなかったリクエストの数。このメトリクスは、Postanalyticsモジュールへのリクエスト送信が設定されている場合に収集されます（[`wallarm_upstream_backend tarantool`](../configure-parameters-en.md#wallarm_upstream_backend)）。これらのリクエストに対してはブロックルールが適用されますが、リクエストはWallarmアカウントに表示されず、次のリクエストの分析には考慮されません。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-tnt_errors`
+* **メトリクス:** `wallarm_nginx/gauge-tnt_errors`
 * **メトリクス値:** `0`
 * **トラブルシューティングの推奨事項：**
     * NGINXとTarantoolのログを取得し、エラーがあれば分析します。
@@ -94,7 +94,7 @@ Postanalyticsモジュールによって解析されなかったリクエスト�
 
 Wallarm APIに渡されなかったリクエストの数。このメトリクスは、Wallarm APIへのリクエストの通過が設定されている場合に収集されます（[`wallarm_upstream_backend api`](../configure-parameters-en.md#wallarm_upstream_backend)）。これらのリクエストに対してはブロックルールが適用されますが、リクエストはWallarmアカウントに表示されず、次のリクエストの分析には考慮されません。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-api_errors`
+* **メトリクス:** `wallarm_nginx/gauge-api_errors`
 * **メトリクス値:** `0`
 * **トラブルシューティングの推奨事項：**
     * NGINXとTarantoolのログを取得し、エラーがあれば分析します。
@@ -106,7 +106,7 @@ Wallarm APIに渡されなかったリクエストの数。このメトリクス
 
 問題が発生し、それがNGINXワーカープロセスの異常終了につながった回数。異常終了の最も一般的な理由はNGINXの重大なエラーです。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-segfaults`
+* **メトリクス:** `wallarm_nginx/gauge-segfaults`
 * **メトリクス値:** `0`
 * **トラブルシューティングの推奨事項：**
     1. `/usr/share/wallarm-common/collect-info.sh`スクリプトを使用して現在の状態についてのデータを収集します。
@@ -117,8 +117,8 @@ Wallarm APIに渡されなかったリクエストの数。このメトリクス
 仮想メモリ制限を超えた状況の数。
 
 * **メトリクス：**
-    * `curl_json-wallarm_nginx/gauge-memfaults`あなたのシステムの制限が超えた場合
-    * `curl_json-wallarm_nginx/gauge-softmemfaults`プロトン.db + lomの制限が超えた場合([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit))
+    * `wallarm_nginx/gauge-memfaults`あなたのシステムの制限が超えた場合
+    * `wallarm_nginx/gauge-softmemfaults`プロトン.db + lomの制限が超えた場合([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit))
 * **メトリクス値:** `0`
 * **トラブルシューティングの推奨事項：**
     1. `/usr/share/wallarm-common/collect-info.sh`スクリプトを使用して現在の状態についてのデータを収集します。
@@ -128,7 +128,7 @@ Wallarm APIに渡されなかったリクエストの数。このメトリクス
 
 仮想メモリの制限を超えた状況が原因となった以外のproton.dbのエラーの数。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-proton_errors`
+* **メトリクス:** `wallarm_nginx/gauge-proton_errors`
 * **メトリクス値:** `0`
 * **トラブルシューティングの推奨事項：**
     1. NGINXログからエラーコードをコピーします（`wallarm: proton error: <ERROR_NUMBER>`）。
@@ -139,32 +139,32 @@ Wallarm APIに渡されなかったリクエストの数。このメトリクス
 
 使用中のproton.dbのバージョン。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-db_id`
+* **メトリクス:** `wallarm_nginx/gauge-db_id`
 * **メトリクス値:** 制限無し
 
 ### proton.dbファイルの最終更新時間
 
 proton.dbファイルの最終更新のUnix時間。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-db_apply_time`
+* **メトリクス:** `wallarm_nginx/gauge-db_apply_time`
 * **メトリクス値:** 制限無し
 
 ### カスタムルールセットのバージョン（旧用語はLOM）
 
 使用中の[custumルールセット][doc-lom]のバージョン。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-custom_ruleset_id`
+* **メトリクス:** `wallarm_nginx/gauge-custom_ruleset_id`
 
-    (Wallarmノード3.4およびそれ以下では、`curl_json-wallarm_nginx/gauge-lom_id`。元の名前のメトリクスはまだ収集されていますが、まもなく非推奨となります。)
+    (Wallarmノード3.4およびそれ以下では、`wallarm_nginx/gauge-lom_id`。元の名前のメトリクスはまだ収集されていますが、まもなく非推奨となります。)
 * **メトリクス値:** 制限無し
 
 ### カスタムルールセットの最終更新時間（旧用語はLOM）
 
 [custumルールセット][doc-lom]の最終更新のUnix時間。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-custom_ruleset_apply_time`
+* **メトリクス:** `wallarm_nginx/gauge-custom_ruleset_apply_time`
 
-    (Wallarmノード3.4およびそれ以下では、`curl_json-wallarm_nginx/gauge-lom_apply_time`。元の名前のメトリクスはまだ収集されていますが、まもなく非推奨となります。)
+    (Wallarmノード3.4およびそれ以下では、`wallarm_nginx/gauge-lom_apply_time`。元の名前のメトリクスはまだ収集されていますが、まもなく非推奨となります。)
 * **メトリクス値:** 制限無し
 
 ### proton.dbとLOMのペア
@@ -173,7 +173,7 @@ proton.dbファイルの最終更新のUnix時間。
 
 使用中のproton.dbと[LOM][doc-lom]ペアの数。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-proton_instances-total`
+* **メトリクス:** `wallarm_nginx/gauge-proton_instances-total`
 * **メトリクス値:** `>0`
 * **トラブルシューティングの推奨事項：**
     1. フィルターノードの設定が正しいか確認します。
@@ -184,7 +184,7 @@ proton.dbファイルの最終更新のUnix時間。
 
 正常にダウンロードされ、読み込まれたproton.dbと[LOM][doc-lom]ペアの数。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-proton_instances-success`
+* **メトリクス:** `wallarm_nginx/gauge-proton_instances-success`
 * **メトリクス値:** [`proton_instances-total`](#number-of-protondb-and-lom-pairs)と等しい
 * **トラブルシューティングの推奨事項：**
     1. フィルターノードの設定が正しいか確認します。
@@ -195,7 +195,7 @@ proton.dbファイルの最終更新のUnix時間。
 
 最後に保存されたファイルからダウンロードされたproton.dbと[LOM][doc-lom]ペアの数。これらのファイルは、最後に正常にダウンロードされたペアを保存しています。ペアが更新されてダウンロードされなかった場合、最後に保存されたファイルのデータが使用されます。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-proton_instances-fallback`
+* **メトリクス:** `wallarm_nginx/gauge-proton_instances-fallback`
 * **メトリクス値:** `>0`
 * **トラブルシューティングの推奨事項：**
     1. フィルターノードの設定が正しいか確認します。
@@ -206,7 +206,7 @@ proton.dbファイルの最終更新のUnix時間。
 
 読み取れなかった接続されたproton.dbと[LOM][doc-lom]ペアの数。
 
-* **メトリクス:** `curl_json-wallarm_nginx/gauge-proton_instances-failed`
+* **メトリクス:** `wallarm_nginx/gauge-proton_instances-failed`
 * **メトリクス値:** `0`
 * **トラブルシューティングの推奨事項：**
     1. フィルターノードの設定が正しいか確認します。

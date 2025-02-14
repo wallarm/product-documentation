@@ -21,7 +21,7 @@ Eğer InfluxDB veya Graphite'da metrikleri dışa aktarmayı yapılandırdıysan
 !!! info "Birkaç varsayım"
     Bu belge, Grafana'yı [InfluxDB][doc-network-plugin-influxdb] veya [Graphite][doc-network-plugin-graphite] ile birlikte dağıtmanızı varsayar.
     
-    Örnekte, `node.example.local` filtre düğümü tarafından işlenen isteklerin sayısını gösteren [`curl_json-wallarm_nginx/gauge-abnormal`][doc-gauge-abnormal] metriği kullanılır.
+    Örnekte, `node.example.local` filtre düğümü tarafından işlenen isteklerin sayısını gösteren [`wallarm_nginx/gauge-abnormal`][doc-gauge-abnormal] metriği kullanılır.
     
     Ancak, herhangi bir [desteklenen metriği][doc-available-metrics] izleyebilirsiniz.
 
@@ -87,7 +87,7 @@ Bir metriği InfluxDB veri kaynağından almak için aşağıdakileri yapın:
         ![Yazılı sorgu tasarım aracı][img-influxdb-query-plaintext]
 
 
-`curl_json-wallarm_nginx/gauge-abnormal` metriği almak için sorgu:
+`wallarm_nginx/gauge-abnormal` metriği almak için sorgu:
 ```
 SELECT value FROM curl_json_value WHERE (host = 'node.example.local' AND instance = 'wallarm_nginx' AND type = 'gauge' AND type_instance = 'abnormal')    
 ```
@@ -99,7 +99,7 @@ Bir metriği Graphite veri kaynağından almak için aşağıdakileri yapın:
 1.  *Sorgu* açılır menüsünden yeni yaratılan “Graphite” veri kaynağını seçin.
 2.  *Seri* hattındaki metriğin öğe için *metriği seç* düğmesine tıklayarak gereken metrik öğelerini sırayla seçin. 
 
-    `curl_json-wallarm_nginx/gauge-abnormal` metriği öğeleri şu şekildedir:
+    `wallarm_nginx/gauge-abnormal` metriği öğeleri şu şekildedir:
 
     1.  `write_graphite` eklenti yapılandırma dosyasında ayarlanan ev sahibi adı.
 
@@ -119,7 +119,7 @@ Sorgunun oluşturulmasının ardından, ilgili metrik için bir görselleştirme
 
 *Sorgu* sekmesinden *Görselleştirme* sekmesine geçin ve metrik için istediğiniz görselleştirmeyi seçin.
 
-`curl_json-wallarm_nginx/gauge-abnormal` metriği için "Ölçüm" görselleştirmesi önerilir:
+`wallarm_nginx/gauge-abnormal` metriği için "Ölçüm" görselleştirmesi önerilir:
 *   Mevcut metrik değerini görüntülemek için *Hesaplama: Son* seçeneğini seçin.
 *   Gerekirse, eşikleri ve diğer parametreleri yapılandırabilirsiniz.
 
@@ -134,7 +134,7 @@ Görselleştirme ayarlandıktan sonra aşağıdaki adımları uygulayın:
 
 ##  İzlemeyi Doğrulama
 
-`curl_json-wallarm_nginx/gauge-abnormal` metriği için veri kaynaklarından birini bağladıktan ve sorguyu ve görselleştirmeyi yapılandırdıktan sonra, izleme işlemini kontrol edin: 
+`wallarm_nginx/gauge-abnormal` metriği için veri kaynaklarından birini bağladıktan ve sorguyu ve görselleştirmeyi yapılandırdıktan sonra, izleme işlemini kontrol edin: 
 1.  Otomatik metrik güncellemelerini beş saniye aralıklı olacak şekilde etkinleştirin (Grafana konsolunun sağ üst köşesindeki açılır listeden bir değer seçin).
 2.  Grafana gösterge tablosundaki güncel istek sayısının, filtre düğümündeki `wallarm-status` çıktısı ile eşleştiğinden emin olun:
 
@@ -152,4 +152,4 @@ Görselleştirme ayarlandıktan sonra aşağıdaki adımları uygulayın:
 
     ![Saldırı sayaçını kontrol et][img-grafana-16-attacks]
 
-Grafana gösterge tablosu şimdi `node.example.local` filtre düğümü için `curl_json-wallarm_nginx/gauge-abnormal` metriğinin değerlerini göstermektedir.
+Grafana gösterge tablosu şimdi `node.example.local` filtre düğümü için `wallarm_nginx/gauge-abnormal` metriğinin değerlerini göstermektedir.

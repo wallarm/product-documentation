@@ -130,10 +130,10 @@ To do this, perform the following steps on the filter node host:
 2.  Make sure that the `nagios` user can receive metric values from `collectd` by executing the following test command:
     
     ```
-    sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+    sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
     ```
     
-    This command allows the `nagios` user to get the value of the [`curl_json-wallarm_nginx/gauge-abnormal`][link-metric] metric (the number of processed requests) for the `node.example.local` host.
+    This command allows the `nagios` user to get the value of the [`wallarm_nginx/gauge-abnormal`][link-metric] metric (the number of processed requests) for the `node.example.local` host.
     
     **Example of command output:**
     
@@ -149,10 +149,10 @@ To do this, perform the following steps on the filter node host:
 
 ### 7.  Add Commands to the NRPE Service Configuration File on the Filter Node to Get the Required Metrics
 
-For example, to create a command named `check_wallarm_nginx_abnormal` that will receive the `curl_json-wallarm_nginx/gauge-abnormal` metric for the filter node with the `node.example.local` fully qualified domain name, add the following line to the NRPE service’s configuration file:
+For example, to create a command named `check_wallarm_nginx_abnormal` that will receive the `wallarm_nginx/gauge-abnormal` metric for the filter node with the `node.example.local` fully qualified domain name, add the following line to the NRPE service’s configuration file:
 
 ```
-command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
 ```
 
 
@@ -190,7 +190,7 @@ For example, this can be done as follows:
     }
     ```
 
-    This file defines the `node.example.local` host with the `10.0.30.5` IP address and the command to check the status of the `wallarm_nginx_abnormal` service, which means receiving the `curl_json-wallarm_nginx/gauge-abnormal` metric from the filter node (see the description of the [`check_wallarm_nginx_abnormal`][anchor-header-7] command).
+    This file defines the `node.example.local` host with the `10.0.30.5` IP address and the command to check the status of the `wallarm_nginx_abnormal` service, which means receiving the `wallarm_nginx/gauge-abnormal` metric from the filter node (see the description of the [`check_wallarm_nginx_abnormal`][anchor-header-7] command).
 
 2.  Add the following line to the Nagios configuration file (by default, `/usr/local/nagios/etc/nagios.cfg`):
     

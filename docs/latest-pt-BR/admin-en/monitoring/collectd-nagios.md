@@ -130,10 +130,10 @@ Para fazer isso, realize as seguintes etapas no host do nó de filtro:
 2.  Certifique-se de que o usuário `nagios` pode receber valores de métricas do `collectd` executando o seguinte comando de teste:
     
     ```
-    sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+    sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
     ```
     
-    Este comando permite que o usuário `nagios` obtenha o valor da métrica [`curl_json-wallarm_nginx/gauge-abnormal`][link-metric] (o número de solicitações processadas) para o host `node.example.local`.
+    Este comando permite que o usuário `nagios` obtenha o valor da métrica [`wallarm_nginx/gauge-abnormal`][link-metric] (o número de solicitações processadas) para o host `node.example.local`.
     
     **Exemplo de saída de comando:**
     
@@ -149,10 +149,10 @@ Para fazer isso, realize as seguintes etapas no host do nó de filtro:
 
 ### 7.  Adicione Comandos ao Arquivo de Configuração do Serviço NRPE no Nó de Filtro para Obter as Métricas Necessárias
 
-Por exemplo, para criar um comando chamado `check_wallarm_nginx_abnormal` que receberá a métrica `curl_json-wallarm_nginx/gauge-abnormal` para o nó de filtro com o nome de domínio totalmente qualificado `node.example.local`, adicione a seguinte linha ao arquivo de configuração do serviço NRPE:
+Por exemplo, para criar um comando chamado `check_wallarm_nginx_abnormal` que receberá a métrica `wallarm_nginx/gauge-abnormal` para o nó de filtro com o nome de domínio totalmente qualificado `node.example.local`, adicione a seguinte linha ao arquivo de configuração do serviço NRPE:
 
 ```
-command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
+command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
 ```
 
 
@@ -190,7 +190,7 @@ Por exemplo, isso pode ser feito da seguinte forma:
     }
     ```
 
-    Este arquivo define o host `node.example.local` com o endereço IP `10.0.30.5` e o comando para verificar o status do serviço `wallarm_nginx_abnormal`, que significa receber a métrica `curl_json-wallarm_nginx/gauge-abnormal` do nó de filtro (veja a descrição do comando [`check_wallarm_nginx_abnormal`][anchor-header-7]).
+    Este arquivo define o host `node.example.local` com o endereço IP `10.0.30.5` e o comando para verificar o status do serviço `wallarm_nginx_abnormal`, que significa receber a métrica `wallarm_nginx/gauge-abnormal` do nó de filtro (veja a descrição do comando [`check_wallarm_nginx_abnormal`][anchor-header-7]).
 
 2.  Adicione a seguinte linha ao arquivo de configuração do Nagios (por padrão, `/usr/local/nagios/etc/nagios.cfg`):
     
