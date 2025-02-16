@@ -317,9 +317,6 @@ nav:
             - Exporting Metrics to Zabbix via the `collectd-nagios` Utility: admin-en/monitoring/collectd-zabbix.md
             - Working with the Filter Node in Zabbix: admin-en/monitoring/working-with-zabbix.md
     - Wallarm Node and Cloud Synchronization: admin-en/configure-cloud-node-synchronization-en.md
-    - Separated Customer Environments:
-      - How Filtering Node Works in Separated Environments: admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md
-      - Configuration Recommendations: admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md
     - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
     - Dynamic DNS Resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
     - Enabling JA3 fingerprinting: admin-en/enabling-ja3.md
