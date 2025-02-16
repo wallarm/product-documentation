@@ -291,7 +291,7 @@ nav:
     - Proper Reporting of End‑User IP: admin-en/using-proxy-or-balancer-en.md
     - Resource Allocation: admin-en/configuration-guides/allocate-resources-for-node.md
     - Limiting Request Processing Time: user-guides/rules/configure-overlimit-res-detection.md
-    - Splitting Traffic and Settings by Applications: user-guides/settings/applications.md
+    - Splitting Data and Settings by Applications: user-guides/settings/applications.md
     - Blocking Page and Error Code: admin-en/configuration-guides/configure-block-page-and-code.md
     - Monitoring & Failover:
       - Checking Node Operation: admin-en/installation-check-operation-en.md

@@ -15,7 +15,8 @@ The multitenancy feature is addressing the following issues:
 
 * **Become a partner of Wallarm**. The partner is an organization that installs a filtering node within their system infrastructure to provide their clients with attack mitigation.
 
-    Each client will be allocated a separate account in Wallarm Console so that all account data will be isolated and accessible only for selected users.
+    Each client will be allocated a separate account in Wallarm Console so that all it's data will be isolated and accessible only for this client's users.
+
 * **Isolate the data on protected environments from each other**. An environment can be a separate application, data center, API, production or staging environment, etc.
 
     Related issue examples:
@@ -23,7 +24,10 @@ The multitenancy feature is addressing the following issues:
     * Wallarm node filters requests sent to production and staging environments managed by isolated teams. The requirement is to ensure that only the teams managing a particular environment have access to its data.
     * Wallarm nodes are deployed to several data centers managed by isolated teams and located in different regions, one is in Europe and another is in Asia. The requirement is to ensure that only the users managing a particular data center have access to its data.
 
-    Each client will be allocated a separate account in Wallarm Console so that all account data will be isolated and accessible only for selected users.
+    Each environment will be allocated a separate account in Wallarm Console so that all its data will be isolated and accessible only for selected users.
+
+    !!! info "Non-isolated environments"
+        If you do not need to isolate environments, instead of multitenancy, you can use [applications](../../user-guides/settings/applications.md) to separate settings and viewing capabilities for these environments. This will organize environments within one account accessible to all its users.
 
 ## Customization of Wallarm components
 
