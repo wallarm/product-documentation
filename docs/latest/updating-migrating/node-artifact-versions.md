@@ -76,6 +76,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 5.3.8 (2025-02-17)
+
+* Fixed the [CVE-2025-26519](https://nvd.nist.gov/vuln/detail/CVE-2025-26519) and [CVE-2024-12797](https://nvd.nist.gov/vuln/detail/CVE-2024-12797) vulnerabilities
+
 ### 5.3.7 (2025-02-10)
 
 * Fix for the `invalid_xml` attack detection in responses
@@ -164,6 +168,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Sidecar
 
 [How to upgrade](sidecar-proxy.md)
+
+### 5.3.8 (2025-02-17)
+
+* Fixed the [CVE-2025-26519](https://nvd.nist.gov/vuln/detail/CVE-2025-26519) and [CVE-2024-12797](https://nvd.nist.gov/vuln/detail/CVE-2024-12797) vulnerabilities
 
 ### 5.3.7 (2025-02-10)
 
