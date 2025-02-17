@@ -39,7 +39,6 @@ search:
 [separate-postanalytics-installation-aio]:  ../../../../admin-en/installation-postanalytics-en.md#all-in-one-automatic-installation
 [threat-replay-testing-docs]:       ../../../../vulnerability-detection/threat-replay-testing/overview.md
 [api-discovery-docs]:               ../../../../api-discovery/overview.md
-[api-sessions-docs]:                ../../../../api-sessions/overview.md
 [vuln-detection-docs]:              ../../../../about-wallarm/detecting-vulnerabilities.md
 [masking-sensitive-data-rule]:      ../../../../user-guides/rules/sensitive-data-rule.md
 
