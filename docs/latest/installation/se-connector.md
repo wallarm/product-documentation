@@ -69,6 +69,20 @@ After deploying the Edge node, you will need to inject Wallarm code into your pl
     * [Cloudflare](connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
     * [Fastly](connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
 
+## Telemetry portal
+
+The telemetry portal for Security Edge Connectors provides a Grafana dashboard with real-time insights into metrics on traffic processed by Wallarm.
+
+The dashboard displays key metrics such as total processed requests, RPS, detected and blocked attacks, deployed Edge node number, resource consumption, number of 5xx responses, etc.
+
+![!](../images/waf-installation/security-edge/connectors/telemetry-portal.png)
+
+**Run telemetry portal** once the Node reaches the **Active** status. It becomes accessible via a direct link from the Security Edge section ~5 minutes after initiation.
+
+![!](../images/waf-installation/security-edge/connectors/run-telemetry-portal.png)
+
+From the Grafana home page, to reach the dashboard, navigate to **Dashboards** → **Wallarm** → **Portal Connector Overview**. For multiple nodes, switch the **Tenant ID** corresponding to the connector endpoint to view each dashboard.
+
 ## Deleting the Edge node
 
 If you delete the Edge node, its endpoint becomes unavailable, and you will no longer be able to redirect traffic through it for security analysis.
