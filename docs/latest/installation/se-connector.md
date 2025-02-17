@@ -43,7 +43,7 @@ One endpoint can handle multiple connections from different hosts.
 
         If a specified host does not exist or is unreachable, the 415 error will be returned, and the traffic will not be processed.
     
-    * **Location configuration**: assign unique application IDs to specific hosts and locations, if needed.
+    * **Location configuration**: assign unique application IDs and traffic analysis mode to specific hosts and locations, if needed.
 
         ![!][se-connector-hosts-locations-img]
 1. Once saved, it will take 3-5 minutes for Wallarm to deploy and configure the node for the connector.
