@@ -172,7 +172,7 @@ For the changelog of versions, refer to the [article](../../updating-migrating/n
 
 ## Deleting the Edge Inline
 
-To delete your Edge deployment, click **Configure** → **Admin settings** → **Delete**.
+To delete your Edge deployment, click **Configure** → **Admin settings** → **Delete inline**.
 
 If you intend to delete and re-create the nodes, you can adjust the settings of the existing deployment, and the nodes will be re-deployed with the updated configuration.
 

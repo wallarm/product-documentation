@@ -71,7 +71,7 @@ You can add a user to your account in two ways, both involving the creation and 
 
 For this method, set up the user's role, email, and names in advance, and Wallarm will automatically send an invitation email with a link to log in and set a password to the specified user's email. The user should then follow the link to complete the signup process.
 
-To send an invitation link automatically, click the **Add new user** button and complete the form:
+To send an invitation link automatically, click the **Add user** button and complete the form:
 
 ![New user form][img-add-user]
 
