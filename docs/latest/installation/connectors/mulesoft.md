@@ -226,7 +226,7 @@ To upgrade the deployed Wallarm policy to a [newer version](code-bundle-inventor
 
 If the Wallarm policy is applied as an automated policy, direct upgrades may not be possible. In such cases, remove the current policy and reapply the new version manually.
 
-Policy upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
+Policy upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.
 
 ## Uninstalling the policy
 

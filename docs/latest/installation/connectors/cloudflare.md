@@ -120,4 +120,4 @@ To upgrade the deployed Cloudflare worker to a [newer version](code-bundle-inven
     Preserve the existing values for parameters like `wallarm_node`, `wallarm_mode`, and others.
 1. **Deploy** the updated functions.
 
-Worker upgrades may require a Wallarm Node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
+Worker upgrades may require a Wallarm Node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.
