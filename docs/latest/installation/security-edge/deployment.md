@@ -122,9 +122,12 @@ The below example configuration customizes settings per path to meet specific ne
 
 ### 4. (Optional) Admin settings
 
-In the **Admin settings** section, you can select the Edge node version to deploy. If not selected explicitly, the latest available version is deployed automatically.
+In the **Admin settings** section, you can:
 
-For the changelog of versions, refer to the [article](../../updating-migrating/node-artifact-versions.md#all-in-one-installer). The Edge node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge node version indicates minor changes.
+* Select the Edge node version to deploy. If not selected explicitly, the latest available version is deployed automatically.
+
+    For the changelog of versions, refer to the [article](../../updating-migrating/node-artifact-versions.md#all-in-one-installer). The Edge node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge node version indicates minor changes.
+* Enable [Auto update](#upgrading-the-edge-inline) if needed.
 
 ![!](../../images/waf-installation/security-edge/inline/admin-settings.png)
 
@@ -166,7 +169,9 @@ From the Grafana home page, to reach the dashboard, navigate to **Dashboards** �
 
 ## Upgrading the Edge Inline
 
-To upgrade the Edge node with the latest changes, go to **Configure** → **Admin settings** and select a version from the list. Using the latest version is recommended for optimal performance and security.
+When **Auto update** is enabled in **Admin settings**, the Edge node is automatically upgraded as soon as a new version is released. All your initial settings are preserved. Auto update is off by default.
+
+To manually upgrade the Edge node, go to **Configure** → **Admin settings** and select a version from the list. Using the latest version is recommended for optimal performance and security.
 
 For the changelog of versions, refer to the [article](../../updating-migrating/node-artifact-versions.md#all-in-one-installer). The Edge node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge node version indicates minor changes.
 
