@@ -162,6 +162,8 @@ The dashboard displays key metrics such as total processed requests, RPS, detect
 
 ![!](../../images/waf-installation/security-edge/inline/run-telemetry-portal.png)
 
+From the Grafana home page, to reach the dashboard, navigate to **Dashboards** → **Wallarm** → **Portal Inline Overview**.
+
 ## Upgrading the Edge Inline
 
 To upgrade the Edge node with the latest changes, go to **Configure** → **Admin settings** and select a version from the list. Using the latest version is recommended for optimal performance and security.
