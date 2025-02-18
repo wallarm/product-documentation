@@ -1,1 +1,1 @@
---8<-- "latest/about-wallarm/api-protection-overview.md"
+--8<-- "latest-tr/about-wallarm/api-protection-overview.md"

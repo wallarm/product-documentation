@@ -1,1 +1,0 @@
---8<-- "latest-tr/installation/nginx/dynamic-module.md"

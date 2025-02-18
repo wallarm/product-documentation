@@ -1,0 +1,1 @@
+--8<-- "latest-tr/fast/dsl/extensions-examples/mod-extension.md"

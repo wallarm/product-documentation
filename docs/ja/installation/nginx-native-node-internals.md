@@ -1,1 +1,1 @@
---8<-- "latest/installation/nginx-native-node-internals.md"
+--8<-- "latest-ja/installation/nginx-native-node-internals.md"

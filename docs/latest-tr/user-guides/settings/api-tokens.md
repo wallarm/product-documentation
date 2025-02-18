@@ -57,7 +57,7 @@ Eğer bir jeton sahibi [devre dışı bırakılırsa](../../user-guides/settings
 Önceden API istek doğrulaması için UUID ve gizli anahtar kullanılıyordu; bu yöntem artık jetonlarla değiştirilmiştir. Kullandığınız UUID ve gizli anahtar, otomatik olarak **geriye dönük uyumlu** jetona dönüştürülür. Bu jetonla, UUID ve gizli anahtar ile doğrulanan istekler çalışmaya devam eder.
 
 !!! warning "Jetonu Yenileyin veya SSO'yu Etkinleştirin"
-    Geriye dönük uyumlu jetonun değerini yenilerseniz veya bu jetonun sahibi için [SSO/strict SSO](../../admin-en/configuration-guides/sso/employ-user-auth.md) etkinleştirilirse, geriye dönük uyumluluk sona erer - eski UUID ve gizli anahtar ile doğrulanan tüm istekler çalışmayı durdurur.
+    Geriye dönük uyumlu jetonun değerini yenilerseniz veya bu jetonun sahibi için [SSO/strict SSO](../../admin-en/configuration-guides/sso/intro.md) etkinleştirilirse, geriye dönük uyumluluk sona erer - eski UUID ve gizli anahtar ile doğrulanan tüm istekler çalışmayı durdurur.
 
 Oluşturulan geriye dönük uyumlu jeton değerini, isteklerinizin `X-WallarmApi-Token` başlık parametresi ile de kullanabilirsiniz.
 

@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/dashboards/nist-csf-2.md"
+--8<-- "latest-tr/user-guides/dashboards/nist-csf-2.md"

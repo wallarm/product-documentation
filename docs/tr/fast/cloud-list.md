@@ -1,0 +1,1 @@
+--8<-- "latest-tr/fast/cloud-list.md"

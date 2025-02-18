@@ -396,7 +396,7 @@ NGINXおよびEnvoyの設定ファイルを通じた`overlimit_res`攻撃検知�
       * WallarmノードがCloudに接続するための認証情報ファイル群のディレクトリ：`/etc/wallarm` → `/opt/wallarm/etc/wallarm`
       * `/usr/share`ディレクトリのパス：`/opt/wallarm/usr/share`
       
-          これにより、[sample blocking page](../../admin-en/configure-block-page-and-code.md#customizing-sample-blocking-page)の新パスが`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`となります。
+          これにより、[sample blocking page](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)の新パスが`/opt/wallarm/usr/share/nginx/html/wallarm_blocked.html`となります。
       
       * グローバルなWallarmフィルタリングノード設定が記載された`/etc/nginx/conf.d/wallarm.conf`ファイルは削除されました。
 

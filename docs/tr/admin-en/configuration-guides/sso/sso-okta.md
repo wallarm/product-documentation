@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/sso/sso-okta.md"
+--8<-- "latest-tr/admin-en/configuration-guides/sso/sso-okta.md"

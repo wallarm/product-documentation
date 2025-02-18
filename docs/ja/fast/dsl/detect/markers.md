@@ -1,0 +1,1 @@
+--8<-- "latest-ja/fast/dsl/detect/markers.md"

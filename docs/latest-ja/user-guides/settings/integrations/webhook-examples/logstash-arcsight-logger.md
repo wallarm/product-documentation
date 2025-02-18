@@ -88,7 +88,7 @@ output {
     ![Logstashログ](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
 
     **ArcSight Loggerのイベント:**
-    ![ArcSight Loggerのイベント](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger/logstash-curl-log.png)
+    ![ArcSight Loggerのイベント](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
 
 ### Logstash統合の構成
 

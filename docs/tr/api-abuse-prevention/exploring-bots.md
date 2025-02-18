@@ -1,1 +1,1 @@
---8<-- "4.10/api-abuse-prevention/exploring-bots.md"
+--8<-- "latest-tr/api-abuse-prevention/exploring-bots.md"

@@ -95,7 +95,7 @@ Fluentdは`td-agent.conf`ファイルで構成されています：
     ![Fluentdのログ](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-curl-log.png)
 
     **ArcSight Loggerのイベント：**
-    ![ArcSight Loggerのログ](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger/fluentd-curl-log.png)
+    ![ArcSight Loggerのログ](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-curl-log.png)
 
 ### Fluentd統合の設定
 

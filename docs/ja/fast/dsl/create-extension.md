@@ -1,0 +1,1 @@
+--8<-- "latest-ja/fast/dsl/create-extension.md"

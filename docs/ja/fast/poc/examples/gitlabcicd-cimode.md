@@ -1,0 +1,1 @@
+--8<-- "latest-ja/fast/poc/examples/gitlabcicd-cimode.md"

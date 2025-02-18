@@ -3,7 +3,7 @@ search:
   exclude: true
 ---
 
-[filtration-mode-priorities-docs]:  ../../../../admin-en/configure-wallarm-mode.md#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override
+[filtration-mode-priorities-docs]:  ../../../../admin-en/configure-wallarm-mode.md#prioritization-of-methods
 [applications-docs]:                ../../../../user-guides/settings/applications.md
 [custom-blocking-page-docs]:        ../../../../admin-en/configuration-guides/configure-block-page-and-code.md
 [nginx-directives-docs]:            ../../../../admin-en/configure-parameters-en.md
@@ -12,7 +12,9 @@ search:
 [libdetection-docs]:                ../../../../about-wallarm/protecting-against-attacks.md#libdetection-overview
 [wallarm-modes-docs]:               ../../../../admin-en/configure-wallarm-mode.md
 [passive-detection-docs]:           ../../../../about-wallarm/detecting-vulnerabilities.md#passive-detection
-[active-threat-verification-docs]:  ../../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification
-[subscriptions-docs]:               ../../../../about-wallarm/subscription-plans.md#subscription-plans
+[active-threat-verification-docs]:  ../../../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing
+[subscriptions-docs]:               ../../../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security
+[denylist-docs]:                    ../../../../user-guides/ip-lists/overview.md
+[denylist-view-events-docs]:        ../../../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips
 
 --8<-- "latest-tr/installation/kubernetes/sidecar-proxy/pod-annotations.md"
