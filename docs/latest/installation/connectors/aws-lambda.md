@@ -189,4 +189,4 @@ To upgrade the deployed Lambda@Edge function to a [newer version](code-bundle-in
     1. Repeat the steps outlined in the [2nd step](#2-obtain-and-deploy-the-wallarm-lambdaedge-functions) using the new version of the functions.
     1. After linking the updated functions to your distributions, remove the previous versions of the functions from the CloudFront triggers to avoid conflicts.
 
-Function upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
+Function upgrades may require a Wallarm node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.

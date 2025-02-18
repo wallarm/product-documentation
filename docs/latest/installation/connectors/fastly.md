@@ -392,4 +392,4 @@ To upgrade the deployed Fastly Compute service to a [newer version](code-bundle-
     * `<FASTLY_TOKEN>` with the Fastly API token used for deployment.
 1. **Activate** the new service version in the Fastly UI.
 
-Compute service upgrades may require a Wallarm Node upgrade, especially for major version updates. See the [Wallarm Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for release updates and upgrade instructions. Regular node updates are recommended to avoid deprecation and simplify future upgrades.
+Compute service upgrades may require a Wallarm Node upgrade, especially for major version updates. See the [Native Node changelog](../../updating-migrating/native-node/node-artifact-versions.md) for the self-hosted Node release notes and upgrade instructions or the [Edge connector upgrade procedure](../se-connector.md#upgrading-the-edge-node). Regular node updates are recommended to avoid deprecation and simplify future upgrades.
