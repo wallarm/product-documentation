@@ -12,6 +12,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.3.8 (2025-02-18)
+
+* Fixed the [CVE-2025-26519](https://nvd.nist.gov/vuln/detail/CVE-2025-26519) and [CVE-2024-12797](https://nvd.nist.gov/vuln/detail/CVE-2024-12797) vulnerabilities
+
 ### 5.3.7 (2025-02-04)
 
 * Added support for the [`WALLARM_APID_ONLY` environment variable](../installation/nginx/all-in-one.md#api-discovery-only-mode) which enables API Discovery-only mode
@@ -169,6 +173,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+### 5.3.9 (2025-02-18)
+
+* Upgraded to Sidecar controller 1.6.1
+* Fixed the [CVE-2025-26519](https://nvd.nist.gov/vuln/detail/CVE-2025-26519), [CVE-2024-12797](https://nvd.nist.gov/vuln/detail/CVE-2024-12797) and [CVE-2024-13176](https://nvd.nist.gov/vuln/detail/CVE-2024-13176) controller vulnerabilities
+
 ### 5.3.8 (2025-02-17)
 
 * Fixed the [CVE-2025-26519](https://nvd.nist.gov/vuln/detail/CVE-2025-26519) and [CVE-2024-12797](https://nvd.nist.gov/vuln/detail/CVE-2024-12797) vulnerabilities
@@ -243,6 +252,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 5.3.8 (2025-02-18)
+
+* Fixed the [CVE-2025-26519](https://nvd.nist.gov/vuln/detail/CVE-2025-26519) and [CVE-2024-12797](https://nvd.nist.gov/vuln/detail/CVE-2024-12797) vulnerabilities
 
 ### 5.3.7 (2025-02-04)
 
