@@ -48,6 +48,9 @@ nav:
     - Shadow, Orphan, Zombie API: api-discovery/rogue-api.md
     - BOLA Autoprotection: api-discovery/bola-protection.md
     - Dashboard: api-discovery/dashboard.md
+  - GraphQL Discovery:
+    - Overview: graphql-discovery/overview.md
+    - Exploring API Inventory: graphql-discovery/exploring.md
   - API Protection:
     - Overview: about-wallarm/api-protection-overview.md
     # - OWASP Top 10: ...
