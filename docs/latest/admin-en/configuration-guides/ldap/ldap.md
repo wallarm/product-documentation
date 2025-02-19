@@ -14,6 +14,10 @@ To provide seamless integration with your company's existing user management sys
 
 * LDAP configuration is not available until activated, for activation, contact the [Wallarm support team](mailto:support@wallarm.com).
 * You can only use authentication via either LDAP or SSO but not both of them. To configure LDAP, first remove SSO, if you have it.
+* Your firewall should be configured to allow incoming requests from Wallarm IPs:
+
+    --8<-- "../include/wallarm-cloud-ips.md"
+
 * In your LDAP, the users must have the following attributes: 
 
     * `displayName`
