@@ -1,1 +1,1 @@
---8<-- "latest/installation/se-connector.md"
+--8<-- "latest-ja/installation/se-connector.md"

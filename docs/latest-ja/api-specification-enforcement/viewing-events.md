@@ -1,21 +1,23 @@
-# APIポリシー適用によって引き起こされるイベントの表示
+# API仕様適用が原因となるイベントの表示 <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-API仕様書をアップロードし、仕様ベースのポリシー適用のために設定を完了したら、リクエストに対してポリシーが適用され始めます。本記事では、Wallarmコンソールでポリシーに違反するリクエストを表示し分析する方法について説明します。
+API仕様を[アップロード](setup.md)し、仕様に基づくセキュリティポリシーの適用の設定を行った直後から、これらのポリシーがリクエストに適用され始めます。本記事ではWallarm Consoleでポリシー違反となるリクエストの確認および解析方法について説明します。
 
-## ポリシーに違反するリクエストの統計
+## ポリシー違反リクエストの統計情報
 
-ポリシー違反の傾向を監視するためには、Wallarmコンソールの **API仕様書** → ご利用の仕様書 → **ポリシー違反** の列で、過去7日間の仕様書違反の数を確認してください。このデータは、洞察を提供します。
+ポリシー違反の傾向を把握するため、Wallarm Consoleの**API Specifications**→your specification→**Policy violations**列に表示される仕様違反数をご確認ください。このデータは過去7日間の動向を示します。
 
-この数をクリックすると、**攻撃**セクションで詳細を見ることができます。
+この数値をクリックすると、**Attacks**セクションで詳細が確認できます。
 
-## ポリシーに違反するリクエストの分析
+## ポリシー違反リクエストの分析
 
-**攻撃**セクションでは、**比較対象...** フィルターまたは`spec:'<SPECIFICATION-ID>'` [検索タグ](../user-guides/search-and-filters/use-search.md#search-by-specification)を使用して、選択した仕様書のポリシー違反に関連するすべてのイベントを見つけます。`<SPECIFICATION-ID>`を取得するには、**API仕様書**であなたの仕様書を編集用に開きます - `specid`はブラウザのアドレス欄に表示されます。
+**Attacks**セクションでは、仕様に基づくポリシー違反に関連するイベントを見つけるため、[適切な検索キー](../user-guides/search-and-filters/use-search.md#spec-violation-tags)または該当するフィルターを使用してください。
 
-![仕様書 - APIポリシー適用のために使用](../images/api-specification-enforcement/api-specification-enforcement-events.png)
+ブロックされたイベントおよびモニタリングされたイベントが、設定されたポリシー違反アクションに応じて表示される場合があります。イベント詳細には、違反の種類と原因となった仕様へのリンクが表示されます。
 
-設定されたポリシー違反アクションによっては、ブロックされたイベントとモニタリングされたイベントが表示される場合があります。イベントの詳細には、違反タイプと原因となる仕様書へのリンクが表示されます。特定の違反を探すには**タイプ**フィルターを使用してください。
+![仕様―セキュリティポリシーの適用に使用](../images/api-specification-enforcement/api-specification-enforcement-events.png)
 
-## 制限超過イベント
+## 上限超過イベント
 
-仕様書のポリシーに関連するイベントを表示する際には、**仕様書処理制限超過**タイプのイベントを見かけることがあります。これは、APIポリシー適用がリクエストを処理する際に適用される制限に関連しています。対処可能なアクションの詳細と説明は[こちら](overview.md#how-it-works)でご覧ください。
+ご自身の仕様ポリシーに関連するイベントを表示する際、リクエスト処理中にAPI Specification Enforcementに適用される制限に関連する**Specification processing overlimit**タイプのイベントが発生する場合があります。詳細および実施可能なアクションの説明については[こちら](overview.md#how-it-works)をご参照ください。
+
+**Attacks**セクションでは、上限超過イベントは`processing_overlimit`検索キーまたは**Processing overlimit**フィルターを使用して見つけることができます。

@@ -1,6 +1,6 @@
-# NGINX'de dinamik DNS çözümlemesinin yapılandırılması
+# NGINX'de Dinamik DNS Çözümlemesi Yapılandırması
 
-Alan adı NGINX yapılandırma dosyasındaki `proxy_pass` yönergesine iletilirse, NGINX, başlangıçtan sonra yalnızca bir kez ana bilgisayarın IP adresini çözümler. DNS sunucusu ana bilgisayarın IP adresini değiştirirse, NGINX yüklenene veya yeniden başlatılıncaya kadar eski IP adresini kullanmaya devam eder. Bundan önce, NGINX istekleri yanlış IP adresine gönderir.
+Eğer etki alanı adı NGINX yapılandırma dosyasındaki `proxy_pass` yönergesinde iletiliyorsa, NGINX ana bilgisayarın IP adresini yalnızca başlangıçta bir kez çözer. DNS sunucusu ana bilgisayarın IP adresini değiştirirse, NGINX yeniden yüklenip yeniden başlatılana kadar eski IP adresini kullanmaya devam eder. Bu süre zarfında NGINX istekleri yanlış IP adresine gönderir.
 
 Örneğin:
 
@@ -11,12 +11,12 @@ location / {
     }
 ```
 
-Dinamik DNS çözümlemesi için, `proxy_pass` yönergesini değişken olarak ayarlayabilirsiniz. Bu durumda, NGINX, değişkeni hesaplarken [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) yönergesinde ayarlanmış olan DNS adresini kullanır.
+Dinamik DNS çözümlemesi için, `proxy_pass` yönergesini değişken olarak ayarlayabilirsiniz. Bu durumda, NGINX değişkeni hesaplarken [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) yönergesinde ayarlanan DNS adresini kullanır.
 
-!!! warning "Dinamik DNS çözümlemesinin trafik işlemeye etkisi"
-    * `Resolver` yönergesi ve `proxy_pass` yönergesindeki değişkenle yapılandırılan NGINX, istek işlemesini yavaşlatır çünkü dinamik DNS çözümlemesi istek işleme aşamasında ek bir adım olacaktır.
-    * NGINX, zaman-yaşamına (TTL) süresi sona erdiğinde alan adını yeniden çözümler. 'Valid' parametresini `resolver` yönergesine ekleyerek, TTL'yi yoksaymasını ve belirli bir sıklıkta isimleri yeniden çözümlemesini söyleyebilirsiniz.
-    * Eğer DNS sunucusu kapalıysa, NGINX trafiği işlemez.
+!!! warning "Dinamik DNS çözümlemesinin trafik işleme üzerindeki etkisi"
+    * `resolver` yönergesi ve `proxy_pass` yönergesindeki değişken ile yapılan NGINX yapılandırması, istek işleme sırasında dinamik DNS çözümlemesi adımının eklenmesi nedeniyle istek işlemesini yavaşlatır.
+    * NGINX, zaman-aşımı (TTL) sona erdiğinde etki alanı adını yeniden çözer. `resolver` yönergesine `valid` parametresini ekleyerek, NGINX'e TTL'yi göz ardı etmesini ve bunun yerine belirtilen bir sıklıkta adları yeniden çözmesini söyleyebilirsiniz.
+    * DNS sunucusu kapalıysa, NGINX trafiği işlemez.
 
 Örneğin:
 
@@ -29,5 +29,5 @@ location / {
     }
 ```
 
-!!! info "NGINX Plus'ta Dinamik DNS Çözümlemesi"
-    NGINX Plus, varsayılan olarak alan adlarının dinamik çözümlemesini destekler.
+!!! info "NGINX Plus'da Dinamik DNS Çözümlemesi"
+    NGINX Plus, etki alanı adlarının dinamik çözümlemesini varsayılan olarak destekler.

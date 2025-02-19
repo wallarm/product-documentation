@@ -7,36 +7,36 @@
 [doc-integration-overview]: integration-overview.md
 
 
-#   Entegrasyon Önkoşulları
+# Entegrasyon Gereksinimleri
 
-FAST'ı bir CI/CD iş akışına entegre etmek için ihtiyacınız olanlar:
+FAST'ı bir CI/CD iş akışına entegre edebilmek için şunlara ihtiyacınız olacak:
 
-* Contact the [Wallarm Sales Team](mailto:sales@wallarm.com) to get access to the Wallarm account and FAST node management.
-* FAST düğümünün Docker konteyneri, `us1.api.wallarm.com` Wallarm API sunucusuna HTTPS protokolü (`TCP/443`) üzerinden erişim sağlamalıdır
---8<-- "../include-tr/fast/cloud-note.md"
+* Wallarm hesabına ve FAST node yönetimine erişim sağlamak için [Wallarm Sales Team](mailto:sales@wallarm.com) ile iletişime geçin.
+* FAST node'un Docker konteynerinin, HTTPS protokolü (`TCP/443`) üzerinden `us1.api.wallarm.com` Wallarm API sunucusuna erişimi olmalıdır.
+--8<-- "../include/fast/cloud-note.md"
 
- * Docker konteynerlerini oluşturma ve CI/CD iş akışınız için çalıştırma yetkisi
+ * CI/CD iş akışınız için Docker konteynerleri oluşturma ve çalıştırma izinlerine sahip olun.
     
-* Zafiyetler için test edilecek bir web uygulaması veya API (bir *hedef uygulama*)
+* Güvenlik açıklarını test etmek için kullanılacak bir web uygulaması veya API (bir *hedef uygulama*)
     
     Bu uygulamanın iletişim için HTTP veya HTTPS protokolünü kullanması zorunludur.
     
-    Hedef uygulama, FAST güvenlik testi tamamlanana kadar erişilebilir olmalıdır.
+    Hedef uygulama, FAST güvenlik testi tamamlanana kadar erişilebilir durumda kalmalıdır.
     
 * Hedef uygulamayı HTTP ve HTTPS istekleri kullanarak test edecek bir test aracı (bir *istek kaynağı*).
     
-    Bir istek kaynağı, bir HTTP veya HTTPS vekil sunucusuyla çalışabilmelidir.
+    Bir istek kaynağının, HTTP veya HTTPS proxy sunucusu ile çalışabiliyor olması gerekmektedir.
     
-    [Selenium][link-selenium], belirtilen gereksinimleri karşılayan bir test aracına örnektir.
+    [Selenium][link-selenium], belirtilen gereksinimleri karşılayan bir test aracı örneğidir.
     
 * Bir veya daha fazla [token][doc-about-token].
     <p id="anchor-token"></p>
 
-    Wallarm bulutunda bir [FAST düğümü][doc-create-node] oluşturun ve CI/CD görevi gerçekleştirirken Docker konteynırında ilgili tokeni kullanın.  
+    Wallarm Cloud'da [bir FAST node oluşturun][doc-create-node] ve CI/CD görevi sırasında Docker konteynerinde ilgili tokeni kullanın.  
     
-    Token, CI/CD işi yürütülürken Docker konteyneri içindeki FAST düğümü tarafından kullanılacak.
+    Token, CI/CD iş yürütmesi sırasında Docker konteyneri tarafından FAST node ile birlikte kullanılacaktır.
 
-    Eğer aynı anda çalışan birden çok CI/CD işiniz varsa, Wallarm bulutunda uygun sayıda FAST düğümü oluşturun.
+    Aynı anda birden fazla CI/CD işi çalışıyorsa, Wallarm Cloud'da yeterli sayıda FAST node oluşturun.
 
-    !!! info "Bir token örneği"
-        Bu kılavuz boyunca bir token örneği olarak `token_Qwe12345` değeri kullanılmaktadır.
+    !!! info "Bir örnek token"
+        Bu kılavuzda, token örneği olarak `token_Qwe12345` değeri kullanılmıştır.

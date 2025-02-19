@@ -1,1 +1,1 @@
---8<-- "latest/installation/connectors/fastly.md"
+--8<-- "latest-tr/installation/connectors/fastly.md"

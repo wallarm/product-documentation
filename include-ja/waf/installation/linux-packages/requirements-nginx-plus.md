@@ -1,13 +1,13 @@
-* [US Cloud](https://us1.my.wallarm.com/) または [EU Cloud](https://my.wallarm.com/) にてWallarm Consoleで**管理者**ロールを持つアカウントへのアクセス
-* SELinuxが無効化されているか、[指示][configure-selinux-instr]に従って設定されている
-* NGINX Plusリリース28（R28）
+* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarmコンソールで、**Administrator**ロールを持つアカウントに2要素認証が無効な状態でアクセスできること  
+* [instructions][configure-selinux-instr]の指示に従い、SELinuxが無効化されている、または設定されていること  
+* リリース29または30（R29またはR30）のNGINX Plus
 
     !!! info "カスタムNGINX Plusバージョン"
-        そちらが異なるバージョンをお持ちの場合は、[NGINXのカスタムビルドにWallarmモジュールを接続する方法][nginx-custom]に関する指示をご参照ください
-* 全てのコマンドをスーパーユーザー（例えば `root`）として実行
-* パッケージをダウンロードするための `https://repo.wallarm.com` へのアクセス。ファイアウォールによってアクセスがブロックされていないことを確認してください
-* US Wallarm Cloudを使用するための `https://us1.api.wallarm.com` またはEU Wallarm Cloudを使用するための `https://api.wallarm.com` へのアクセス。アクセスがプロキシサーバー経由でのみ設定可能な場合は、[指示][configure-proxy-balancer-instr]を使用してください
-* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+        別のバージョンをご利用の場合は、[nginx-custom][nginx-custom]の指示をご参照ください  
+* すべてのコマンドをスーパーユーザー（例：`root`）として実行できること  
+* パッケージをダウンロードするために`https://repo.wallarm.com`にアクセスできること。ファイアウォールによってアクセスがブロックされていないことを確認してください  
+* US Wallarm Cloudで作業するために`https://us1.api.wallarm.com`、またはEU Wallarm Cloudで作業するために`https://api.wallarm.com`にアクセスできること。アクセスがプロキシサーバー経由でのみ設定できる場合は、[configure-proxy-balancer-instr][configure-proxy-balancer-instr]の指示をご利用ください  
+* 攻撃検出ルールの更新をダウンロードするため、および[allowlisted, denylisted, or graylisted][ip-lists-docs]された国、地域、またはデータセンターの正確なIPを取得するために、以下のIPアドレスにアクセスできること
 
-    --8<-- "../include/wallarm-cloud-ips.md"
-* **vim**、 **nano** 、またはその他のテキストエディタをインストールしている。この指示では、**vim**が使用されます
+    --8<-- "../include/wallarm-cloud-ips.md"  
+* インストールされているテキストエディターとして**vim**、**nano**、またはその他のエディターを利用できること。本ドキュメントでは**vim**が使用されています

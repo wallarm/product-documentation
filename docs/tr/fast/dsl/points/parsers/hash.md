@@ -1,0 +1,1 @@
+--8<-- "latest-tr/fast/dsl/points/parsers/hash.md"

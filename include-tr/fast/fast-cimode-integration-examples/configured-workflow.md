@@ -1,5 +1,5 @@
-!!! bilgi "Yapılandırılmış iş akışı"
-    Daha sonraki talimatlar, aşağıdaki noktalardan birine karşılık gelen zaten yapılandırılmış bir iş akışını gerektirir:
+!!! info "Yapılandırılmış iş akışı"
+    Daha fazla talimat, aşağıdaki noktalardan birine karşılık gelen önceden yapılandırılmış iş akışını gerektirir:
 
-    * Test otomasyonu uygulanmıştır. Bu durumda, [istek kaydı](#istek-kaydı-adımının-eklenmesi) ve [güvenlik testi](#güvenlik-testi-adımının-eklenmesi) adımları eklenmiştir.
-    * Temel istek seti zaten kaydedilmiştir. Bu durumda, [güvenlik testi](#güvenlik-testi-adımının-eklenmesi) adımı eklenmiştir.
+    * Test otomasyonu uygulanmıştır. Bu durumda, [request recording](#adding-the-step-of-request-recording) ve [security testing](#adding-the-step-of-security-testing) adımları eklenecektir.
+    * Temel istekler seti zaten kaydedilmiştir. Bu durumda, [security testing](#adding-the-step-of-security-testing) adımı eklenecektir.

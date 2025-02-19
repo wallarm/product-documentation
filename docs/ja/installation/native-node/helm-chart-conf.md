@@ -1,1 +1,1 @@
---8<-- "latest/installation/native-node/helm-chart-conf.md"
+--8<-- "latest-ja/installation/native-node/helm-chart-conf.md"

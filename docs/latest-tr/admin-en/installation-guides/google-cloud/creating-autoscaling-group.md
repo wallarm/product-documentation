@@ -1,63 +1,53 @@
-[img-creating-instance-group]: ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-instance-group.png
-[img-create-instance-group-example]: ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-scalable-instance-group.png
-[img-checking-nodes-operation]: ../../../images/cloud-node-status.png
+# Otomatik Ölçeklendirme Etkinleştirilmiş Yönetilen Örnek Grubunun Oluşturulması
 
-[link-cpu-usage-policy]: https://cloud.google.com/compute/docs/autoscaler/scaling-cpu-load-balancing
-[link-http-load-balancing-policy]: https://cloud.google.com/compute/docs/autoscaler/scaling-cpu-load-balancing#scaling_based_on_https_load_balancing_serving_capacity
-[link-stackdriver-monitoring-metric-policy]: https://cloud.google.com/compute/docs/autoscaler/scaling-stackdriver-monitoring-metrics
-[link-multiple-metrics-policy]: https://cloud.google.com/compute/docs/autoscaler/multiple-policies
-[link-creating-load-balancer]: load-balancing-guide.md
+Yönetilen bir örnek grubu oluşturmak ve otomatik ölçeklendirmeyi yapılandırmak için aşağıdaki adımları izleyin:
 
-# Otomatik ölçeklendirme ile yönetilen bir örnek grubu oluşturma
+1.  Menünün **Compute Engine** bölümündeki **Instance groups** sayfasına gidin ve **Create instance group** butonuna tıklayın.
 
-Yönetilen bir örnek grubu oluşturmak ve otomatik ölçeklendirmesini yapılandırmak için aşağıdaki adımları uygulayın:
+    ![Creating an instance group][img-creating-instance-group]
 
-1. Menünün **Compute Engine** bölümündeki **Örnek grupları** sayfasına gidin ve **Örnek grubu oluştur** düğmesini tıklayın.
+2.  **Name** alanına örnek grubunun adını girin.
 
-    ![Örnek grubu oluşturma][img-creating-instance-group]
+3.  **Group type** ayarında **Managed instance group** seçeneğini belirleyin.
 
-2. **İsim** alanına örnek grubu adını girin.
+4.  **Autoscaling** açılır listesinden **On** seçeneğini seçerek örnek grubu için otomatik ölçeklendirmeyi etkinleştirin.
 
-3. **Grup türü** ayarında **Yönetilen örnek grubu** seçin.
-
-4. **Autoscaling** açılır listesinden **Açık** seçeneğini seçerek örnek grubun otomatik ölçeklendirmesini etkinleştirin.
-
-5. Gereken ölçeklendirme politikasını **Autoscaling politikası** açılır listesinden seçin.
-
-    Ölçeklendirme politikaları, örnek grubun boyutunun artırılması ve azaltılması için kurallar içerir. Sistem, politikanın temelinde olan metriğin kullanıcının tanımladığı hedef seviyede tutulması için grup bir örneği ne zaman ekleyip çıkaracağını belirler.
-
-    Aşağıdaki politikaları seçebilirsiniz:
-
-    1.  CPU Kullanımı: Grubun boyutu, grubun sanal makinelerinin ortalama işlemci yükünün gereken düzeyde tutulmasını kontrol eder ([CPU kullanımı politika belgeleri][link-cpu-usage-policy]).
-    2.  HTTP Yük Dengeleme Kullanımı: Grubun boyutu, HTTP trafik dengeleyicinin yükünün gereken düzeyde tutulmasını kontrol eder ([HTTP yük dengeleme kullanımı politika belgeleri][link-http-load-balancing-policy]).
-    3.  Stackdriver İzleme Metriği: Grubun boyutu, Stackdriver İzleme aracından seçilen metriğin gereken düzeyde tutulmasını kontrol eder ([Stackdriver İzleme Metrik politika belgeleri][link-stackdriver-monitoring-metric-policy]).
-    4.  Çoklu Metrikler: Grubun boyutunun değiştirilmesi kararı, birkaç metriğin temelinde yapılır ([çoklu metrikler politika belgeleri][link-multiple-metrics-policy]).
-
-    Bu rehber, otomatik ölçeklendirme mekanizması ile çalışma prensiplerini göstermek için **CPU kullanımı** politikasını kullanır.
-
-    Bu politikayı uygulamak için, **Hedef CPU kullanımı** alanında gereken ortalama işlemci yük seviyesini belirtin (yüzde olarak).
-
+5.  **Autoscaling policy** açılır listesinden gerekli ölçeklendirme politikasını seçin. 
+   
+    Ölçeklendirme politikaları, örnek grubunun boyutunun artırılması veya azaltılmasıyla ilgili kuralları içerir. Sistem, politikanın esas alındığı metrik, kullanıcının tanımladığı hedef seviyede tutulabilsin diye gruba ne zaman bir örnek ekleyeceğini ya da çıkaracağını belirler.
+    
+    Aşağıdaki politikalardan birini seçebilirsiniz:
+    
+    1.  CPU Usage: Grup boyutu, gruptaki sanal makinelerin ortalama işlemci yükünü gerekli seviyede tutmak için kontrol edilir ([CPU usage policy documentation][link-cpu-usage-policy]).
+    2.  HTTP Load Balancing Usage: Grup boyutu, HTTP trafik dengeleyicisinin yükünü gerekli seviyede tutmak için kontrol edilir ([HTTP load balancing usage policy documentation][link-http-load-balancing-policy]).
+    3.  Stackdriver Monitoring Metric: Grup boyutu, Stackdriver Monitoring aracından seçilen metrik belirlenen seviyede tutmak için kontrol edilir ([Stackdriver Monitoring Metric policy documentation][link-stackdriver-monitoring-metric-policy]).
+    4.  Multiple Metrics: Grup boyutunun değiştirilmesi kararı, birden fazla metrik baz alınarak verilir ([multiple metrics policy documentation][link-multiple-metrics-policy]). 
+    
+    Bu kılavuz, otomatik ölçeklendirme mekanizmasıyla çalışma prensiplerini göstermek amacıyla **CPU usage** politikasını kullanır.
+    
+    Bu politikayı uygulamak için **Target CPU usage** alanına gerekli ortalama işlemci yükü seviyesini (yüzde olarak) belirtin.
+    
     !!! info "Örnek"
-        Aşağıdaki yapılandırma, ortalama sanal makine işlemcilerinin yükünün yüzde 60 düzeyinde tutulması için örnek grubunun boyutunun kontrolünü tanımlar.
-        ![Örnek: bir örnek grubu oluşturma][img-create-instance-group-example]
+        Aşağıdaki yapılandırma, gruptaki sanal makinelerin ortalama işlemci yükünü yüzde 60 seviyesinde tutmak için örnek grubu boyutunun kontrolünü betimler.
+        ![Example: creating an instance group][img-create-instance-group-example]
 
-6. **Minimum örnek sayısı** alanında minimum örnek grubu boyutunu belirtin (örneğin, iki örnek).
+6.  **Minimum number of instances** alanına minimum örnek grubu boyutunu (örneğin, iki örnek) belirtin.
 
-7. **Maksimum örnek sayısı** alanında maksimum örnek grubu boyutunu belirtin (örneğin, 10 örnek).
+7.  **Maximum number of instances** alanına maksimum örnek grubu boyutunu (örneğin, 10 örnek) belirtin.
 
-8. **Soğuma dönemi** alanında, yeni eklenen örneğin metrik değerlerinin kaydedilmemesi gereken süreyi belirtin (örneğin, 60 saniye). Bu, yeni bir örnek ekledikten sonra kaynak tüketiminde artışlar gördüyseniz gerekli olabilir.
+8.  Yeni eklenen örnekten metrik değerlerinin kaydedilmemesi gereken süreyi **Cool down period** alanına (örneğin, 60 saniye) girin. Bu, yeni bir örnek eklendikten sonra kaynak tüketiminde ani artışlar görmeniz durumunda gerekli olabilir.
 
-    !!! info "Soğuma dönemi şartları"
-        Soğuma süresi, örneğin başlatılması için gerekli süreden daha uzun olmalıdır.
+    !!! info "Cool down dönemi gereksinimleri"
+        Cool down dönemi, örneğin başlatılması için gereken süreden daha uzun olmalıdır.
 
-9. Örnek grubunun tüm parametrelerinin doğru bir şekilde yapılandırıldığından emin olduktan sonra **Oluştur** düğmesini tıklayın.
+9.  Örnek grubunun tüm parametrelerinin doğru yapılandırıldığından emin olduktan sonra **Create** butonuna tıklayın.
 
-Otomatik ölçeklendirme grubunun başarılı bir şekilde oluşturulmasının ardından belirtilen sayıda örnek otomatik olarak başlatılır.
+Otomatik ölçeklendirme grubunun başarılı bir şekilde oluşturulmasının ardından belirtilen sayıda örnek otomatik olarak başlatılacaktır.
 
-Otomatik ölçeklendirme grubunun doğru bir şekilde oluşturulduğunu kontrol etmek için, grubun başlatılan örneklerinin sayısını ve bu veri noktasını Wallarm Cloud'a bağlanan filtreleme düğümlerinin sayısıyla karşılaştırabilirsiniz.
+Otomatik ölçeklendirme grubunun doğru oluşturulduğunu, grupta başlatılan örnek sayısını görüntüleyip bu değeri Wallarm Cloud'a bağlı filtreleme düğümlerinin sayısıyla karşılaştırarak kontrol edebilirsiniz.
 
-Bunu Wallarm Konsolunu kullanarak yapabilirsiniz. Örneğin, iki örneğin filtreleme düğümleri ile birlikte çalışıyorsa, Wallarm Konsolu bu sayıyı ilgili Wallarm düğümünün **Düğümler** bölümünde görüntüler.
+Bunu, Wallarm Console'u kullanarak yapabilirsiniz. Örneğin, aynı anda iki örnek filtreleme düğümüne sahipse, Wallarm Console ilgili Wallarm düğümünün **Nodes** bölümünde bu sayıyı gösterecektir.
 
-![Wallarm web arabiriminde **Düğümler** düğümü sekmesi][img-checking-nodes-operation]
+![The **Nodes** nodes tab on the Wallarm web interface][img-checking-nodes-operation]
 
-Artık [bir yük dengeleyicisinin oluşturulması ve yapılandırılması][link-creating-load-balancer] ile devam edebilirsiniz.
+Artık [load balancer oluşturma ve yapılandırma][link-creating-load-balancer] işlemine geçebilirsiniz.

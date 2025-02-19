@@ -1,5 +1,5 @@
 ```
-[bilgi] Düğüm Wallarm Buluta bağlandı
-[hata] Geçersiz özel genişletme 'my-extension.yaml': (<bilinmeyen>): bir blok eşlemesini ayrıştırırken beklenen anahtarı bulamadı, satır 2 sütun 3'te
-[bilgi] Hızlı tarama için 0 özel genişletme yüklendi
+[info] Wallarm Cloud'a bağlanan düğüm
+[error] Geçersiz özel eklenti 'my-extension.yaml': (<unknown>): blok eşleştirmesi ayrıştırılırken 2. satır 3. sütunda beklenen anahtar bulunamadı
+[info] hızlı tarayıcı için 0 özel eklenti yüklendi
 ```

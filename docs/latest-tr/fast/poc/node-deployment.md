@@ -1,59 +1,31 @@
-[anchor-node]:                      #docker-container-ile-fast-node-un-yerlestirilmesi
-[anchor-testrun]:                   #test-calistirmanin-elde-edilmesi
-[anchor-testrun-creation]:          #test-calistirmanin-olusturulmasi
-[anchor-testrun-copying]:           #test-calistirmanin-kopyalanması
+```markdown
+# Wallarm API aracılığıyla FAST Node Çalıştırma
 
-[doc-limit-requests]:               ../operations/env-variables.md#kaydedilecek-isteklerin-sayisini-sinirlama
-[doc-get-token]:                    prerequisites.md#anchor-token
-[doc-testpolicy]:                   ../operations/internals.md#fast-test-politikasi
-[doc-inactivity-timeout]:           ../operations/internals.md#test-calistirma
-[doc-allowed-hosts-example]:        ../qsg/deployment.md#3-gerekli-cevre-degiskenlerini-iceren-bir-dosya-hazirlama
-[doc-testpolicy-creation-example]:  ../qsg/test-preparation.md#2-xss-acikliklarina-yonelik-bir-test-politikasi-olusturma
-[doc-docker-run-fast]:              ../qsg/deployment.md#4-fast-node-docker-container-inin-yerlestirilmesi
-[doc-state-description]:            ../operations/check-testrun-status.md
-[doc-testing-scenarios]:            ../operations/internals.md#test-calistirma
-[doc-testrecord]:                   ../operations/internals.md#test-kaydi
-[doc-create-testrun]:               ../operations/create-testrun.md
-[doc-copy-testrun]:                 ../operations/copy-testrun.md
-[doc-waiting-for-tests]:            waiting-for-tests.md
-
-[link-wl-portal-new-policy]:        https://us1.my.wallarm.com/testing/policies/new#genel
-
-[link-docker-envfile]:              https://docs.docker.com/engine/reference/commandline/run/#set-environment-variables--e---env---env-file
-[link-docker-run]:                  https://docs.docker.com/engine/reference/commandline/run/
-[link-docker-rm]:                   https://docs.docker.com/engine/reference/run/#temizle---rm
-
-[doc-integration-overview]:         integration-overview.md
-[doc-integration-overview-api]:     integration-overview-api.md
-
-
-#   Wallarm API ile FAST Node Çalıştırma
-
-!!! info "Bölüm Önkoşulları"
-    Bu bölümde tarif edilen adımları takip etmek için bir [token][doc-get-token] elde etmeniz gerekmektedir.
+!!! info "Bölüm Gereksinimleri"
+    Bu bölümde açıklanan adımları takip edebilmek için bir [token][doc-get-token] elde etmeniz gerekmektedir.
     
-    Bu bölüm boyunca örnek olarak şu değerler kullanılmaktadır:
+    Bu bölümde örnek olarak kullanılan değerler:
     
-    * `token_Qwe12345` bir token olarak.
-    * `tr_1234` bir test çalıştırma belirleyicisi olarak.
-    * `rec_0001` bir test kaydi belirleyicisi olarak.
+    * Token olarak `token_Qwe12345`.
+    * Bir test çalıştırmasının tanımlayıcısı olarak `tr_1234`.
+    * Bir test kaydının tanımlayıcısı olarak `rec_0001`.
 
-FAST düğümün çalıştırılması ve yapılandırılması şu adımları içerir:
-1. [Docker Konteynırı ile FAST Node’un Yerleştirilmesi.][anchor-node]
-2. [Bir Test Çalıştırmanın Elde Edilmesi.][anchor-testrun]
+FAST node'un çalıştırılması ve yapılandırılması aşağıdaki adımları içerir:
+1.  [FAST Node ile Docker Konteynerinin Dağıtımı.][anchor-node]
+2.  [Test Çalıştırması Alınması.][anchor-testrun]
 
-## Docker Konteynırı ile FAST Node’un Yerleştirilmesi
+## FAST Node ile Docker Konteynerinin Dağıtımı
 
-!!! warning "Wallarm API Sunucularına Erişim Sağlama"
-    Fasting düğümünün doğru çalışması için, `us1.api.wallarm.com` ya da `api.wallarm.com` Wallarm API sunucularına HTTPS protokolü (`TCP/443`) üzerinden erişim sağlaması hayati öneme sahiptir.
+!!! warning "Wallarm API Sunucularına Erişim İzni Verin"
+    FAST node'un düzgün çalışabilmesi için HTTPS protokolü (`TCP/443`) üzerinden `us1.api.wallarm.com` veya `api.wallarm.com` Wallarm API sunucularına erişimin olması kritik öneme sahiptir.
     
-    Güvenlik duvarınızın Docker ana makinesinin Wallarm API sunucularına erişimini kısıtlamadığından emin olun.
+    Docker host'un Wallarm API sunucularına erişimini engelleyecek bir güvenlik duvarı kısıtlaması olmadığından emin olun.
 
-FAST node ile olan Docker konteynırının çalıştırılmasından önce bazı yapılandırmalar gereklidir. Node'u yapılandırmak için, konteynır içerisine token'ı, `WALLARM_API_TOKEN` çevre değişkeni kullanılarak yerleştirin. Ek olarak, eğer [kaydedilecek isteklerin sayısını sınırlandırma][doc-limit-requests] ihtiyacınız var ise, `ALLOWED_HOSTS` değişkenini kullanabilirsiniz.
+Docker konteyneri FAST node ile çalıştırılmadan önce bazı yapılandırmalar gereklidir. Node'u yapılandırmak için, token'ı `WALLARM_API_TOKEN` ortam değişkeni aracılığıyla konteynere aktarın. Ek olarak, eğer [kayıt altına alınacak istek sayısını sınırlandırmanız gerekiyorsa][doc-limit-requests] `ALLOWED_HOSTS` değişkenini kullanabilirsiniz.
 
-Çevre değişkenlerini konteynıra iletmek için, değişkenleri bir metin dosyasına yerleştirin ve dosyanın yolunu, [`docker run`][link-docker-run] komutunun [`--env-file`][link-docker-envfile] parametresi kullanılarak belirtin (hızlı başlangıç kılavuzunda bulunan [talimatlara] bakınız[doc-docker-run-fast]).
+Ortam değişkenlerini konteynere geçirmek için, değişkenleri bir metin dosyasına yerleştirin ve dosyanın yolunu [`--env-file`][link-docker-envfile] parametresi üzerinden,  [`docker run`][link-docker-run] komutuna ekleyin (ayrıntılı bilgi için “Quick Start” kılavuzundaki [talimatlara][doc-docker-run-fast] bakın).
 
-Aşağıdaki komutu uygulayarak FAST node ile bir konteynır çalıştırın:
+Aşağıdaki komutu çalıştırarak FAST node içeren bir konteyner başlatın:
 
 ```
 docker run \ 
@@ -64,87 +36,88 @@ docker run \
 wallarm/fast 
 ```
 
-Bu kılavuz, konteynırın belirtilen CI/CD işi için yalnızca bir kere çalıştırılacağını ve iş sona erdiğinde kaldırılacağını varsayar. Bu yüzden, yukarıda listelenen komuta [`--rm`][link-docker-rm] parametresi eklenmiştir.
+Bu kılavuz, konteynerin yalnızca belirli bir CI/CD işi için bir kez çalıştırıldığını ve iş bittiğinde kaldırıldığını varsayar. Bu nedenle, yukarıda listelenen komuta [`--rm`][link-docker-rm] parametresi eklenmiştir.
 
-Komutun parametrelerinin ayrıntılı bir açıklaması için “Hızlı Başlangıç” kılavuzuna bakınız[doc-docker-run-fast].
+Komut parametrelerinin [ayrıntılı açıklaması][doc-docker-run-fast] için “Quick Start” kılavuzuna bakınız.
 
 ??? info "Örnek"
-    Bu örnek, FAST düğümünün `token_Qwe12345` tokenini kullandığını ve gelen tüm temel istekleri kaydetmek üzere ayarlandığını varsayar. Bu isteklerin ‘Host’ başlık değerinin bir alt dizesi olarak `example.local` ihtiva etmektedir.  
+    Bu örnek, FAST node'un `token_Qwe12345` token'ını kullandığını ve gelen temel isteklerin kaydedilmesi için `Host` başlık değerinde `example.local` içeren tüm istekleri kayda aldığını varsayar.  
 
-    Çevre değişkenleri ile bir dosyanın içeriği, aşağıdaki örnekte gösterilmiştir:
+    Ortam değişkenlerinin bulunduğu dosyanın içeriği aşağıdaki örnekte gösterilmiştir:
 
     | fast.cfg |
     | -------- |
     | `WALLARM_API_TOKEN=token_Qwe12345`<br>`ALLOWED_HOSTS=example.local` |
 
-    Aşağıdaki komut,  `fast-poc-demo` adında bir Docker konteynırını çalıştırır ve bu konteynır şu davranışları sergiler:
+    Aşağıdaki komut, `fast-poc-demo` adlı konteyneri aşağıdaki özelliklerle çalıştırır:
     
-    * Konteynır işi bittiğinde kaldırılır.
-    * Çevre değişkenleri ‘fast.cfg’ dosyası kullanılarak konteynıra iletilir. 
-    * Konteynırın `8080` portu Docker ana makinesinin `9090` portuna yayınlanır.
+    * İşi bittikten sonra konteyner kaldırılır.
+    * Ortam değişkenleri `fast.cfg` dosyası kullanılarak konteynere aktarılır.
+    * Konteynerin `8080` portu, Docker host'unun `9090` portuna yönlendirilir.
 
     ```
     docker run --rm --name fast-poc-demo --env-file=fast.cfg -p 9090:8080  wallarm/fast
     ```
 
-FAST düğümünün yerleştirilmesi başarılıysa, konteynırın konsolu ve günlük dosyası aşağıdaki bilgilendirme mesajlarını içerir:
+FAST node dağıtımı başarılı olursa, konteynerin konsolu ve log dosyası aşağıdaki bilgi mesajlarını içerir:
 
 ```
-[info] Node Wallarm Cloud ile bağlantı kurdu
-[info] Test Çalıştırma kontrolü için bekleniyor…
+[info] Node connected to Wallarm Cloud
+[info] Waiting for TestRun to check…
 ```
 
-Şimdi FAST düğümü, daha önce `docker run` komutunun `-p` parametresi ile belirttiğiniz portta, Docker ana makinisinin IP adresini dinlemektedir.
+Artık FAST node, Docker host'unun IP adresinde ve daha önce `docker run` komutundaki `-p` parametresi ile belirttiğiniz portta dinlemektedir.
 
-##  Bir Test Çalıştırmanın Elde Edilmesi
+## Test Çalıştırması Alınması
 
-Bir test çalıştırması [oluşturmanız][anchor-testrun-creation] ya da [kopyalamanız][anchor-testrun-copying] gerekmektedir. Seçiminiz, sizin için uygun olan [test çalıştırma oluşturma hikayesi][doc-testing-scenarios]ne bağlıdır.
+Ya bir [test çalıştırması oluşturmanız][anchor-testrun-creation] ya da bir tanesini [kopyalamanız][anchor-testrun-copying] gerekmektedir. Seçim, sizin için uygun olan [test çalıştırması oluşturma senaryosuna][doc-testing-scenarios] bağlıdır.
 
-### Bir Test Politikası Belirleyicisinin Edinilmesi
+### Test Politika Tanımlayıcısının Edinilmesi
 
-Kendi [test politikanızı][doc-testpolicy] uygulamayı planlıyorsanız, [bir tane oluşturun][link-wl-portal-new-policy] ve politikanın belirleyicisini alın. Daha sonra, belirleyiciyi bir test çalıştırması oluşturmak ya da kopyalamak için bir API çağrısını yaparken `policy_id` parametresine iletin. 
+Kendi [test politikanızı][doc-testpolicy] kullanmayı planlıyorsanız, [yeni bir tane oluşturun][link-wl-portal-new-policy] ve politikanın tanımlayıcısını edinin. Daha sonra, test çalıştırması oluşturma veya kopyalama sırasında API çağrısında `policy_id` parametresine bu tanımlayıcıyı iletin.
 
-Aksi halde, eğer varsayılan test politikasını kullanmayı seçerseniz, API çağrısından `policy_id` parametresi çıkarılmalıdır.
+Aksi halde, varsayılan test politikasını kullanmayı seçerseniz, API çağrısında `policy_id` parametresini atlamanız gerekir.
 
 !!! info "Test Politikası Örneği"
-    “Hızlı Başlangıç” kılavuzu, bir örnek test politikası oluşturma üzerine [adım adım talimatlar][doc-testpolicy-creation-example] içerir.
+    “Quick Start” kılavuzu, örnek bir test politikasının nasıl oluşturulacağına dair [adım adım talimatlar][doc-testpolicy-creation-example] içermektedir.
 
-###  Test Çalıştırmanın Oluşturulması
+### Test Çalıştırması Oluşturma
 
-Bir test çalıştırması oluşturulduğunda, yeni bir [test kaydı][doc-testrecord] oluşturulur.
+Bir test çalıştırması oluşturulduğunda, yeni bir [test kaydı][doc-testrecord] da oluşturulur.
 
-Bu test çalıştırma oluşturma yöntemi, hedef uygulamanın test edilmesi yanında temel isteklerin kaydedilmesi gerektiği durumlarda kullanılmalıdır.
+Bu test çalıştırması oluşturma yöntemi, hedef uygulamanın test edilmesi ve temel isteklerin kaydedilmesi gerekiyorsa tercih edilmelidir.
 
-!!! info "Nasıl Test Çalıştırması Oluşturulur"
-    Bu süreç [burada][doc-create-testrun] ayrıntılı olarak tanımlanmıştır.
+!!! info "Test Çalıştırması Nasıl Oluşturulur?"
+    Bu süreç detaylı olarak [burada][doc-create-testrun] açıklanmıştır.
 
-Test çalıştırmasının oluşturulmasından sonra FAST düğümünün istekleri kaydetmek için belirli bir süre geçmesi gereklidir.
+FAST node, test çalıştırması oluşturulduktan sonra istekleri kaydetmek için belirli bir süreye ihtiyaç duyar.
 
-Herhangi bir istek göndermeden önce FAST düğümünün istekleri kaydetmeye hazır olduğundan emin olun. Bu, test aracını kullanarak hedef uygulamaya istek göndermeniz anlamına gelir.
+Test aracınız ile hedef uygulamaya istek göndermeden önce, FAST node'un istekleri kayda alacak şekilde hazır olduğundan emin olun.
 
-Bunu yapmak için, test çalıştırma durumunu kontrol etmek amacıyla düzenli aralıklarla `https://us1.api.wallarm.com/v1/test_run/test_run_id` URL'sine GET isteği gönderin:
+Bunu yapmak için, test çalıştırması durumunu periyodik olarak kontrol etmek amacıyla `https://us1.api.wallarm.com/v1/test_run/test_run_id` URL'sine GET isteği gönderin:
 
---8<-- "../include-tr/fast/poc/api-check-testrun-status-recording.md"
+--8<-- "../include/fast/poc/api-check-testrun-status-recording.md"
 
-API sunucusuna başarılı bir istek gönderdiyseniz, sunucunun yanıtı ile karşılaşılacaktır. Bu yanıt, kayıt sürecinin durumunu da içeren (yani, `ready_for_recording` parametresinin değeri) faydalı bilgiler sunar.
+API sunucusuna yapılan istek başarılı olursa, sunucunun yanıtı görüntülenecektir. Bu yanıt, kayıt sürecinin durumu (örneğin `ready_for_recording` parametresinin değeri) gibi yararlı bilgileri içerir.
 
-Eğer parametrenin değeri `true` ise, o zaman FAST düğüm istekleri kaydetmeye hazırdır ve hedef uygulamaya istek göndermeye başlamak için test aracınızı ateşleyebilirsiniz.
+Eğer parametrenin değeri `true` ise, FAST node kayda hazırdır ve test aracınızı çalıştırarak hedef uygulamaya istek gönderebilirsiniz.
 
-Aksi taktirde, düğüm hazır olana kadar aynı API çağrısını tekrar yapın.
+Aksi halde, node kayda hazır olana kadar aynı API çağrısını tekrar edin.
 
-### Test Çalıştırmanın Kopyalanması
+### Test Çalıştırmasının Kopyalanması
 
-Bir test çalıştırması kopyalandığında, mevcut bir [test kaydı][doc-testrecord] yeniden kullanılır.
+Bir test çalıştırması kopyalanırken, mevcut bir [test kaydı][doc-testrecord] tekrar kullanılır.
 
-Bu test çalıştırma oluşturma metodu, hedef uygulamanın zaten kaydedilmiş temel istekler kullanılarak test edilmesi gerektiği durumlarda kullanılmalıdır.
+Bu test çalıştırması oluşturma yöntemi, zaten kayıt altına alınmış temel isteklerle hedef uygulamanın test edilmesi gerektiğinde kullanılmalıdır.
 
-!!! info "Nasıl Test Çalıştırması Kopyalanır"
-    Bu süreç [burada][doc-copy-testrun] ayrıntılı olarak tanımlanmıştır.
+!!! info "Test Çalıştırması Nasıl Kopyalanır?"
+    Bu süreç detaylı olarak [burada][doc-copy-testrun] açıklanmıştır.
 
-Bir test çalıştırmasının başarılı bir şekilde oluşturulduğunun varsayılması durumunda, FAST düğüm hemen test yapmaya başlar. Herhangi bir ek aksiyon almanıza gerek yok.
+Bir test çalıştırmasının başarıyla oluşturulmasının ardından, FAST node hemen testi başlatır. Ekstra bir işlem yapmanıza gerek yoktur.
 
 ## Sonraki Adımlar
 
-Test süreci tamamlanması için çok fazla zaman alabilir. FAST ile güvenlik testinin tamamlanıp tamamlanmadığını belirlemek için [bu belgedeki][doc-waiting-for-tests] bilgileri kullanın.
+Güvenlik testlerinin tamamlanması uzun sürebilir. FAST ile güvenlik testlerinin bitip bitmediğini anlamak için [bu belgeye][doc-waiting-for-tests] bakabilirsiniz.
 
-Gerektiği taktirde [“API ile Yerleştirme”][doc-integration-overview-api] veya [“FAST ile CI/CD İş Akışı”][doc-integration-overview] belgelerine geri dönebilirsiniz. 
+Gerekirse [“Deployment via API”][doc-integration-overview-api] veya [“CI/CD Workflow with FAST”][doc-integration-overview] belgelerine geri dönebilirsiniz.
+```

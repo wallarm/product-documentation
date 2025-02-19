@@ -1,9 +1,10 @@
-!!! info "Eğer birden çok Wallarm düğümü yerleştiriyorsanız"
-    Ortamınıza yerleştirilen tüm Wallarm düğümlerinin **aynı versiyonlarda** olması gerekmektedir. Ayrı sunucularda kurulu olan postanalytics modülleri de **aynı versiyonlarda** olmalıdır.
+```markdown
+!!! info "Eğer birden fazla Wallarm düğümü dağıtırsanız"
+    Ortamınıza dağıtılan tüm Wallarm düğümleri **aynı sürümlerde** olmalıdır. Ayrı sunuculara kurulan postanalytics modülleri de **aynı sürümlerde** olmalıdır.
 
-    Ek bir düğümün yüklemesinden önce, versiyonunun zaten yerleştirilmiş modüllerin versiyonuyla eşleştiğinden emin olun. Eğer yerleştirilmiş modül versiyonu [yakında kullanım dışı bırakılacak veya kullanım dışı (`4.0` veya daha düşük)][versioning-policy] ise, tüm modülleri en son versiyona yükseltin.
+    Ek düğüm kurulmadan önce, lütfen sürümünün zaten dağıtılmış modüllerin sürümüyle eşleştiğinden emin olun. Eğer dağıtılmış modül sürümü [deprecated or will be deprecated soon (`4.0` or lower)][versioning-policy] ise, tüm modülleri en son sürüme yükseltin.
 
-    Aynı sunucuya yerleştirilen filtreleme düğümünün ve postanalytics modülünün versiyonunu kontrol etmek için:
+    Aynı sunucuya dağıtılan filtreleme düğümü ve postanalytics modülünün sürümünü kontrol etmek için:
 
     === "Debian"
         ```bash
@@ -14,19 +15,20 @@
         yum list wallarm-node
         ```
 
-    Farklı sunuculara yerleştirilen filtreleme düğümünün ve postanalytics modülünün versiyonunu kontrol etmek için:
+    Farklı sunuculara dağıtılan filtreleme düğümü ve postanalytics modülünün sürümünü kontrol etmek için:
 
     === "Debian"
         ```bash
         # Wallarm filtreleme düğümünün kurulu olduğu sunucudan çalıştırın
         apt list wallarm-node-nginx
-        # postanalytics'in kurulu olduğu sunucudan çalıştırın
+        # postanalytics’in kurulu olduğu sunucudan çalıştırın
         apt list wallarm-node-tarantool
         ```
     === "CentOS"
         ```bash
         # Wallarm filtreleme düğümünün kurulu olduğu sunucudan çalıştırın
         yum list wallarm-node-nginx
-        # postanalytics'in kurulu olduğu sunucudan çalıştırın
+        # postanalytics’in kurulu olduğu sunucudan çalıştırın
         yum list wallarm-node-tarantool
         ```
+```

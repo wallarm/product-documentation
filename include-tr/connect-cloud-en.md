@@ -7,33 +7,33 @@
 
 
 !!! info "API Erişimi"
-    Filtreleme düğümünüz için API seçimi, kullandığınız Buluta bağlıdır. Lütfen API'yi buna göre seçin:
+    Filtering node'unuz için kullanılacak API seçimi, kullandığınız Cloud'a bağlıdır. Lütfen API'yi buna göre seçin:
     
-    * Eğer <https://my.wallarm.com/> kullanıyorsanız, düğümünüzün `https://api.wallarm.com:444`e erişimine ihtiyaç duyar.
-    * Eğer <https://us1.my.wallarm.com/> kullanıyorsanız, düğümünüzün `https://us1.api.wallarm.com:444`e erişimine ihtiyaç duyar.
+    * Eğer <https://my.wallarm.com/> kullanıyorsanız, node'unuzun `https://api.wallarm.com:444` adresine erişimi gerekir.
+    * Eğer <https://us1.my.wallarm.com/> kullanıyorsanız, node'unuzun `https://us1.api.wallarm.com:444` adresine erişimi gerekir.
     
-    Erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun.
+    Erişimin bir firewall tarafından engellenmediğinden emin olun.
 
-Filtreleme düğümü, Wallarm Bulutu ile etkileşim kurar. 
+Filtering node, Wallarm Cloud ile etkileşime geçer. 
 
-Düğümü bulut hesap bilgileriniz ile buluta bağlamak için aşağıdaki adımları izleyin:
+Cloud hesabınızın gereksinimlerini kullanarak node'u Cloud'a bağlamak için aşağıdaki adımları izleyin:
 
-1.  Wallarm hesabınızın **Yönetici** veya **Yayın** rolüne sahip olduğunu ve iki faktörlü kimlik doğrulamanın devre dışı olduğunu, böylece bir filtreleme düğümünü Buluta bağlamanıza izin verdiğini kontrol edin. 
+1.  Wallarm hesabınızın **Administrator** veya **Deploy** rolüne sahip olduğundan ve iki faktörlü doğrulamanın devre dışı bırakıldığından emin olun, böylece Filtering node'u Cloud'a bağlayabilirsiniz. 
      
-    Yukarıda belirtilen parametreleri Wallarm Konsolunda kullanıcı hesabı listesine giderek kontrol edebilirsiniz.
+    Yukarıda belirtilen parametreleri Wallarm Console'daki kullanıcı hesap listesine giderek kontrol edebilirsiniz.
     
-    * Eğer <https://my.wallarm.com/> kullanıyorsanız, kullanıcı ayarlarınızı kontrol etmek için [ilgili linke][link-wl-console-users-eu] gidin.
-    * Eğer <https://us1.my.wallarm.com/> kullanıyorsanız, kullanıcı ayarlarınızı kontrol etmek için [ilgili linke][link-wl-console-users-us] gidin.
+    * Eğer <https://my.wallarm.com/> kullanıyorsanız, kullanıcı ayarlarınızı kontrol etmek için [aşağıdaki linke][link-wl-console-users-eu] gidin.
+    * Eğer <https://us1.my.wallarm.com/> kullanıyorsanız, kullanıcı ayarlarınızı kontrol etmek için [aşağıdaki linke][link-wl-console-users-us] gidin.
 
-    ![Wallarm konsolundaki kullanıcı listesi][img-wl-console-users]
+    ![Wallarm console'da kullanıcı listesi][img-wl-console-users]
 
-2.  Filtreleme düğümünü kurduğunuz makinede `addnode` betiğini çalıştırın:
+2.  Filtering node'u kurduğunuz makinede `addnode` script'ini çalıştırın:
     
     !!! info
-        Hangi bulutu kullandığınıza bağlı olarak hangi betiği çalıştıracağınızı seçmelisiniz.
+        Çalıştırılacak script'i, kullandığınız Cloud'a bağlı olarak seçmeniz gerekmektedir.
     
-        * Eğer <https://us1.my.wallarm.com/> kullanıyorsanız, aşağıdaki **US Cloud** sekmesinden betiği çalıştırın.
-        * Eğer <https://my.wallarm.com/> kullanıyorsanız, aşağıdaki **EU Cloud** sekmesinden betiği çalıştırın.
+        * Eğer <https://us1.my.wallarm.com/> kullanıyorsanız, aşağıdaki **US Cloud** sekmesinden script'i çalıştırın.
+        * Eğer <https://my.wallarm.com/> kullanıyorsanız, aşağıdaki **EU Cloud** sekmesinden script'i çalıştırın.
     
     === "US Cloud"
         ``` bash
@@ -44,6 +44,6 @@ Düğümü bulut hesap bilgileriniz ile buluta bağlamak için aşağıdaki adı
         sudo /usr/share/wallarm-common/addnode
         ```
     
-    Oluşturulan düğümün adını belirtmek için `-n <düğüm adı>` seçeneğini kullanın. Ayrıca, düğüm adı Wallarm Konsolu → **Düğümler**'de de değiştirilebilir.
+    Oluşturulan node'un adını belirtmek için `-n <node name>` seçeneğini kullanın. Ayrıca, node adı Wallarm Console → **Nodes** üzerinden değiştirilebilir.
 
-3.  İstenildiğinde Wallarm hesabınızın e-postasını ve şifresini sağlayın.
+3.  İstendiğinde Wallarm hesabınızın e-posta adresini ve şifresini girin.

@@ -1,3 +1,4 @@
+```markdown
 [link-ssh-keys]:            https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair
 [link-sg]:                  https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-a-base-security-group
 [link-launch-instance]:     https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-launch-instance
@@ -10,7 +11,7 @@
 [img-wl-console-users]:         ../../../images/check-user-no-2fa.png
 [img-create-wallarm-node]:      ../../../images/user-guides/nodes/create-cloud-node.png
 [deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
-[node-token]:                       ../../../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
+[node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../installation/supported-deployment-options.md
@@ -22,38 +23,70 @@
 [allocate-memory-docs]:             ../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [limiting-request-processing]:      ../../../user-guides/rules/configure-overlimit-res-detection.md
 [logs-docs]:                        ../../../admin-en/configure-logging.md
-[oob-advantages-limitations]:       ../overview.md#advantages-and-limitations
+[oob-advantages-limitations]:       ../overview.md#limitations
 [wallarm-mode]:                     ../../../admin-en/configure-wallarm-mode.md
 [wallarm-api-via-proxy]:            ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-grouped-nodes]:                ../../../images/user-guides/nodes/grouped-nodes.png
+[cloud-init-spec]:                  ../../cloud-platforms/cloud-init.md
+[wallarm_force_directive]:          ../../../admin-en/configure-parameters-en.md#wallarm_force
+[web-server-mirroring-examples]:    overview.md#configuration-examples-for-traffic-mirroring
+[ip-lists-docs]:                    ../../../user-guides/ip-lists/overview.md
+[api-spec-enforcement-docs]:        ../../../api-specification-enforcement/overview.md
 
-# AmazonイメージからWallarm OOBをデプロイ
+# AmazonイメージからWallarm OOBをデプロイする
 
-この記事では、[Wallarm OOB](overview.md)を[AWS公式のAmazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD)を利用してAWSにデプロイする方法を提供します。 ここで説明されているソリューションは、ウェブサーバーやプロキシサーバーによってミラーリングされたトラフィックの分析を目指して設計されています。
+本記事では、[公式Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD)を使用してAWS上に[Wallarm OOB](overview.md)をデプロイする手順について説明します。本ソリューションは、Webサーバまたはプロキシサーバによってミラーリングされたトラフィックを解析するために設計されています。
 
-<!-- ???
-すべての地域がサポートされています -->
+## 利用ケース
 
---8<-- "../include-ja/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
+--8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
 
-## 6. Wallarmにミラーリングトラフィックの分析を許可
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami-latest.md"
 
---8<-- "../include-ja/waf/installation/oob/steps-for-mirroring-cloud.md"
+## 6. インスタンスをWallarm Cloudに接続する
 
-## 7. NGINXを再起動
+クラウドインスタンスのノードは、[cloud-init.py][cloud-init-spec]スクリプトを使用してCloudに接続します。このスクリプトは、指定されたトークンを用いてノードをWallarm Cloudに登録し、監視[mode][wallarm-mode]にグローバル設定し、 NGINGX の`location /`ブロック内に[`wallarm_force`][wallarm_force_directive]ディレクティブを設定してミラーリングされたトラフィックのコピーのみを解析するようにします。NGINXの再起動により、セットアップが完了します。
 
---8<-- "../include-ja/waf/installation/cloud-platforms/restart-nginx.md"
+クラウドイメージから作成したインスタンス上で`cloud-init.py`スクリプトを以下のように実行します:
 
-## 8. Wおためのェブサーバーまたはプロキシサーバーを設定して、Wallarmノードにトラフィックをミラーリング
+=== "US Cloud"
+    ``` bash
+    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring -p mirror -H us1.api.wallarm.com
+    ```
+=== "EU Cloud"
+    ``` bash
+    sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/usr/share/wallarm-common/cloud-init.py -t <TOKEN> -m monitoring -p mirror
+    ```
 
-ウェブまたはプロキシサーバー（例：NGINX、Envoy）を設定して、インカムトラフィックをWallarmノードにミラーリングします。設定の詳細については、ウェブまたはプロキシサーバーのマニュアルを参照することを推奨します。
+* `WALLARM_LABELS='group=<GROUP>'`は、ノードグループ名を設定します（既存の場合はそのまま、存在しなければ作成されます）。APIトークンを使用している場合にのみ適用されます。
+* `<TOKEN>`はコピーしたトークンの値です。
 
-[link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring)の中には、最も一般的なウェブとプロキシサーバー（NGINX、Traefik、Envoy）のサンプル設定が見つかります。
+## 7. WebサーバまたはプロキシサーバでWallarmノードへのトラフィックミラーリングを設定する
 
-## 9. Wallarmの動作をテスト
+1. Webサーバまたはプロキシサーバ（例: NGINX、Envoy）に対して、受信トラフィックをWallarmノードにミラーリングするよう設定します。設定の詳細については、それぞれのWebサーバまたはプロキシサーバのドキュメントを参照することを推奨します。
 
---8<-- "../include-ja/waf/installation/cloud-platforms/test-operation-oob.md"
+    [link][web-server-mirroring-examples]内に、最も一般的なWebサーバおよびプロキシサーバ（NGINX、Traefik、Envoy）の設定例が記載されています。
+1. ノードを持つインスタンスの`/etc/nginx/sites-enabled/default`ファイル内に、次の設定を記述します:
 
-## 10. デプロイしたソリューションの微調整
+    ```
+    location / {
+        include /etc/nginx/presets.d/mirror.conf;
+        
+        # 222.222.222.22をミラーリングサーバのアドレスに変更してください
+        set_real_ip_from  222.222.222.22;
+        real_ip_header    X-Forwarded-For;
+    }
+    ```
 
---8<-- "../include-ja/waf/installation/cloud-platforms/fine-tuning-options.md"
+    `set_real_ip_from`および`real_ip_header`ディレクティブは、Wallarm Consoleが攻撃者のIPアドレスを[表示する][real-ip-docs]ために必要です。
+
+## 8. Wallarmの動作をテストする
+
+--8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
+
+## 9. デプロイしたソリューションの微調整
+
+--8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+
+--8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+```

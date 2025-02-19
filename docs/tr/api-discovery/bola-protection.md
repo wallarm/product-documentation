@@ -1,1 +1,1 @@
---8<-- "latest/api-discovery/bola-protection.md"
+--8<-- "latest-tr/api-discovery/bola-protection.md"

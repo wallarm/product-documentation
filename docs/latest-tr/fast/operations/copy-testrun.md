@@ -7,37 +7,36 @@
 [img-similar-tr-item]:              ../../images/fast/operations/common/copy-testrun/create-similar-testrun-item.png
 [img-similar-tr-sidebar]:           ../../images/fast/operations/common/copy-testrun/create-similar-testrun-sidebar.png
 
-#   Bir Test Çalışmasının Kopyalanması
+# Test Çalıştırmasının Kopyalanması
 
 !!! info "Gerekli Veriler"
-    Bir API çağrısıyla bir test çalışmasını kopyalamak için aşağıdaki veri parçaları gereklidir:
+    Bir API çağrısı yoluyla bir test çalıştırmasını kopyalamak için aşağıdaki veriler gereklidir:
     
     * bir token
-    * mevcut bir test kayıt kimliği
+    * mevcut bir test kayıt tanımlayıcısı
 
-    Bir web arayüzü üzerinden bir test çalışmasını kopyalamak için bir Wallarm hesabı gerekir.
+    Web arayüzü üzerinden bir test çalıştırmasını kopyalamak için bir Wallarm hesabı gereklidir.
 
-    Token ve test kayıtları hakkında ayrıntılı bilgiyi [burada][doc-tr-information] bulabilirsiniz.
+    Token ve test kayıtları hakkında detaylı bilgiyi [buradan][doc-tr-information] edinebilirsiniz.
     
     Bu belgede örnek olarak kullanılan değerler:
+    
+    * Token olarak `token_Qwe12345`
+    * Test kayıtı olarak `rec_0001`
 
-    * `token_Qwe12345` bir token olarak.
-    * `rec_0001` bir test kaydı olarak.
+Bir test çalıştırması kopyalanırken mevcut bir [test kaydı][doc-testrecord] yeniden kullanılır.
 
-Bir test çalışması kopyalandığında, mevcut bir [test kaydı][doc-testrecord] yeniden kullanılır.
+Kayıt edilmiş temel istekler kullanılarak hedef uygulamanın test edilmesi gerektiğinde bu test çalıştırması oluşturma yöntemi kullanılmalıdır.
 
-Bu test çalışması oluşturma yöntemi, zaten kaydedilmiş temel istekleri kullanarak bir hedef uygulamayı test etmek gerektiğinde kullanılmalıdır.
+## Test Çalıştırması Kopyalama Kuralları
 
-
-##  Test Çalışmasının Kopyalanması Kuralları
-
-Bir test çalışması kopyalanırken dikkate alınması gereken şeyler:
-* Kopyalanan bir test çalışması tarafından kullanılacak herhangi bir test politikasını belirleyebilirsiniz. Bu politika, orijinal test çalışmasında kullanılan politikadan farklı olabilir.
-* `failed`, `interrupted`, `passed`, `paused`, `running` durumundaki test çalışmalarını kopyalayabilirsiniz. Bu test çalışma durumlarının açıklamaları [burada][doc-state-description] verilmiştir.
-* İçinde hiç temel talep olmayan boş bir test kaydını kullanarak bir test çalışması kopyalamak mümkün değildir.
-* Bazı temel talepler bir test kaydına kaydediliyorsa, bu kayıt bir test çalışmasını kopyalamak için kullanılamaz. 
-
-    Eğer bitmemiş bir test kaydına dayalı bir test çalışması kopyalamaya çalışırsanız, API sunucusundan `400` hata kodu (`Bad Request`) ve aşağıdakine benzer bir hata mesajı alırsınız:
+Bir test çalıştırması kopyalanırken göz önünde bulundurulması gerekenler:
+* Kopyalanan test çalıştırmasında kullanılacak herhangi bir test politikasını belirtebilirsiniz. Bu politika, orijinal test çalıştırmasında kullanılan politikadan farklı olabilir.
+* Test çalıştırmaları `failed`, `interrupted`, `passed`, `paused`, `running` durumlarında kopyalanabilir. Bu test çalıştırması durumlarının açıklamalarını [burada][doc-state-description] bulabilirsiniz.
+* Üzerinde temel istek bulunmayan boş bir test kaydı kullanılarak test çalıştırması kopyalanamaz.
+* Eğer bir test kaydında bazı temel istekler kaydediliyorsa, bu kayıt kullanılarak test çalıştırması kopyalanamaz.
+ 
+    Bitmemiş bir test kaydına dayalı olarak test çalıştırması kopyalamaya çalışırsanız, API sunucusundan `400` hata kodu (`Bad Request`) alırsınız ve hata mesajı aşağıdakine benzer olacaktır:
 
     ```
     {
@@ -49,56 +48,55 @@ Bir test çalışması kopyalanırken dikkate alınması gereken şeyler:
             }
         }
     }
-    ``` 
+    ```
     
-    Kayıt süreci durdurulmadıkça web arayüzünden bir test çalışmasını kopyalamak mümkün değildir.
+    Kayıt işlemi durdurulmadıkça web arayüzünden test çalıştırması kopyalamak mümkün değildir.
 
-##  Bir API Üzerinden Test Çalışmasının Kopyalanması
+## API Üzerinden Test Çalıştırmasının Kopyalanması
 
-Bir test çalışmasını kopyalamak ve çalıştırmak için `https://us1.api.wallarm.com/v1/test_run` URL'sine POST isteği gönderin:
+Test çalıştırmasını kopyalayıp çalıştırmak için, POST isteğini şu URL'ye gönderin: `https://us1.api.wallarm.com/v1/test_run`:
 
---8<-- "../include-tr/fast/operations/api-copy-testrun.md"
+--8<-- "../include/fast/operations/api-copy-testrun.md"
 
-API sunucusuna istek başarılı bir şekilde ulaşırsa, sunucunun yanıtıyla karşılaşacaksınız. Yanıt, yararlı bilgiler sağlar, bunlar arasında:
+API sunucusuna yapılan istek başarılı olursa, sunucudan gelen yanıt size gösterilecektir. Bu yanıt, aşağıdakiler de dahil olmak üzere faydalı bilgiler sağlar:
 
-1.  `id`: bir test çalışmasının kopyasının kimliği (ör. `tr_1234`).
+1.  `id`: Test çalıştırması kopyasının tanımlayıcısı (örneğin, `tr_1234`).
     
-    Test çalışma durumunu kontrol etmek için `id` parametre değerine ihtiyacınız olacak.
+    Test çalıştırması yürütme durumunu kontrol etmek için `id` parametresine ihtiyaç duyacaksınız.
     
-2.  `state`: test çalışmasının durumu.
+2.  `state`: Test çalıştırmasının durumu.
     
-    Yeni kopyalanan bir test çalışması `running` durumundadır.
+    Yeni kopyalanmış test çalıştırması `running` durumundadır.
     
-    `state` parametresinin tüm değerlerinin kapsamlı bir açıklamasını [burada][doc-state-description] bulabilirsiniz.
+    `state` parametresinin tüm değerlerinin kapsamlı açıklamasını [burada][doc-state-description] bulabilirsiniz.
 
-    
-##  Web Arayüzü Üzerinden Test Çalışmasının Kopyalanması  
+## Web Arayüzü Üzerinden Test Çalıştırmasının Kopyalanması    
 
-Wallarm portalının web arayüzü üzerinden bir test çalışmasını kopyalamak ve çalıştırmak için:
-1.  Wallarm hesabınızla portalına giriş yapın, ardından “Test runs” sekmesine gidin.
-2.  Kopyalamak istediğiniz test çalışmasını seçin, ardından test çalışmasının sağındaki eylem menüsünü açın.
-3.  “Create similar testrun” menü girişini seçin. 
+Wallarm portalının web arayüzü üzerinden bir test çalıştırmasını kopyalayıp çalıştırmak için:
+1.  Wallarm hesabınızla portala giriş yapın, ardından “Test runs” sekmesine gidin.
+2.  Kopyalamak istediğiniz test çalıştırmasını seçin, ardından test çalıştırmasının sağındaki işlem menüsünü açın.
+3.  “Create similar testrun” menü seçeneğini seçin. 
 
-    ![“Create similar test run” menü girişi][img-similar-tr-item]
+    ![The “Create similar test run” menu entry][img-similar-tr-item]
 
-4.  Açılan kenar çubuğundaki aşağıda yer alacak olanları seçin:
-    * test çalışmasının kopyasının adı
-    * test çalışmasının kopyasıyla kullanılacak politika
-    * test çalışmasının kopyasının çalışacağı düğüm
+4.  Açılan yan menüde aşağıdaki öğeleri seçin:
+    * Test çalıştırması kopyasının adı
+    * Test çalıştırması kopyasıyla kullanılacak politika
+    * Test çalıştırması kopyasının çalıştırılacağı node
     
-    ![“Test run” sidebar][img-similar-tr-sidebar]
+    ![The “Test run” sidebar][img-similar-tr-sidebar]
     
-    Gerekirse “Advanced settings” seçerek ek ayarlar yapabilirsiniz:
+    Gerekirse “Advanced settings” seçeneğini seçerek ek ayarları yapılandırabilirsiniz:
     
---8<-- "../include-tr/fast/test-run-adv-settings.md"
+--8<-- "../include/fast/test-run-adv-settings.md"
     
-5.  “Use baselines from `<reuse edilecek test kaydının adı>`” seçeneğinin işaretli olduğundan emin olun.
+5.  “Use baselines from `<the name of the test record to reuse>`” seçeneğinin işaretli olduğundan emin olun.
 
-    !!! info "Bir Test Kaydını Yeniden Kullanma"
-        Bu seçenekte test çalışması adı değil, test kaydı adı göründüğüne dikkat edin.
+    !!! info "Test Kaydının Yeniden Kullanılması"
+        Seçenekte belirtilen adın test çalıştırması adı değil, test kaydı adı olduğunu unutmayın.
         
-        Bir test kayıt adı genellikle atlanır: örneğin, [bir test çalışması oluşturulurken][doc-create-testrun] `test_record_name` parametresi belirtilmemişse, test kaydının adı test çalışmasının adıyla aynıdır.
+        Test kaydı adı genellikle atlanır: örneğin, [bir test çalıştırması oluşturulursa][doc-create-testrun] `test_record_name` parametresi belirtilmeden, test kaydı adı test çalıştırması ile aynı olur.
         
-        Yukarıdaki şekilde, geçmişte bu test kaydını kullanan test çalışmanın adının test kaydının adına eşit olmadığı bir test kaydını belirten bir kopya diyalogu görülmektedir (DEMO TEST RUN test çalışması tarafından kullanılan MY TEST RECORD test kaydı). 
+        Yukarıdaki görsel, geçmişte `DEMO TEST RUN` test çalıştırması tarafından kullanılan `MY TEST RECORD` test kaydını belirten kopyalama iletişim kutusunu göstermektedir.
 
-6.  “Create and run” düğmesine tıklayarak test çalışmasını çalıştırın.    
+6.  “Create and run” butonuna tıklayarak test çalıştırmasını başlatın.

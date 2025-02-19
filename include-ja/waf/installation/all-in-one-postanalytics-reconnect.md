@@ -1,4 +1,4 @@
-NGINX-Wallarmモジュールを搭載したマシンでは、NGINXの設定ファイル内でpostanalyticsモジュールのサーバーアドレスを指定します：
+NGINX-Wallarmモジュールを搭載したマシンのNGINX[configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/)に、postanalyticsモジュールのサーバーアドレスを指定します:
 
 ```
 upstream wallarm_tarantool {
@@ -13,11 +13,11 @@ upstream wallarm_tarantool {
 wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
-* `max_conns`の値は、各アップストリームTarantoolサーバーに対して過剰な接続の作成を防ぐために指定する必要があります。
-* `keepalive`の値は、Tarantoolサーバーの数より小さくてはなりません。
-* `# wallarm_tarantool_upstream wallarm_tarantool;`の文字列はデフォルトでコメント化されています - `#`を削除してください。
+* 各upstream Tarantoolサーバーに対して`max_conns`の値を指定し、過剰な接続が作成されるのを防ぎます。
+* `keepalive`の値はTarantoolサーバーの数未満にしてはいけません。
+* `# wallarm_tarantool_upstream wallarm_tarantool;`という文字列はデフォルトでコメントアウトされていますので、`#`を削除してください。
 
-設定ファイルが変更されたら、NGINX-Wallarmモジュールサーバー上のNGINX/NGINX Plusを再起動します：
+設定ファイルを変更した後、NGINX-WallarmモジュールサーバーでNGINX/NGINX Plusを再起動します:
 
 === "Debian"
     ```bash
@@ -31,7 +31,11 @@ wallarm_tarantool_upstream wallarm_tarantool;
     ```bash
     sudo systemctl restart nginx
     ```
-=== "AlmaLinux, Rocky LinuxまたはOracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo systemctl restart nginx
+    ```
+=== "RHEL 8.x"
     ```bash
     sudo systemctl restart nginx
     ```

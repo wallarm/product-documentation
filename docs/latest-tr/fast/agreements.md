@@ -1,12 +1,12 @@
-# Metin Biçimlendirme Kuralları
+#   Metin biçimlendirme kuralları
 
-Rehberler boyunca size belirli sayıda metin dizesi ve girilmesi veya çalıştırılması gereken komutlar sunulacaktır. Gerekli olduğunda bazı dize ve komut anahtar sözcüklerinin farklı biçimlendirmeleri ile karşılaşacaksınız. Aşağıdaki kurallar tüm rehberler boyunca geçerlidir:
+Rehberler boyunca, girilmesi veya çalıştırılması gereken belirli metin dizeleri ve komutlar sunulacaktır. Gerekirse, bazı dizelerin ve komut anahtar kelimelerinin çeşitli biçimlendirmeleri sağlanacaktır. Aşağıdaki kurallar, rehberler genelinde geçerlidir:
 
-| Biçimlendirme Kuralı             | Açıklama |
-| -----------------------------  | ------------------------------------------------------------ |
-|`düz yazı` | Düz yazı yazılmış yazı tipi diziler, bilgilendirme amaçlıdır ve okuyucu tarafından girilmesi beklenmez.<br>Bu tür dizeler bir komut çıktısını veya başka bir bilgi parçasını temsil edebilir. |
-|Örnek: | Bir Bash kabuğunun daveti:<br>`$`                     |
-|**`kalın`**  | Kalın tip yazılmış dizeler, okuyucu tarafından “olduğu gibi” girilmelidir. |
-|Örnek: | Linux'ta sistem bilgisini görüntülemek için aşağıdaki komutu girin:<br>`$` **`uname -a`** |
-|*`italik`* veya  *`<italik>`* | İtalik yazı tipi yazılmış dizeler, okuyucunun sağlaması gereken değerleri temsil eder. Örneğin, bir komut argümanı *`<isim>`* olarak biçimlendirilmişse, bu isim olarak bazı değerler sağlamalısınız, *`<isim>*` yerine.<br>Tek bir kelimeyle tanımlanamayan bir giriş varsa, dizi <...> parantezi içine yerleştirilir. Bir değer girerken parantezleri çıkarmanız gerekir. Örneğin, bir komut argümanı *`<kullanıcı şifresi>`* olarak biçimlendirilmişse, < ve > sembollerini çıkararak şifreyi girmelisiniz. |
-|Örnek: | `cat` komutu, Linux’ta bir dosyanın içeriğini görüntülemek için aşağıdaki şekilde kullanılabilir:<br>`$` **`cat`** *`dosyaadı`*<br>`$` **`cat`** *`<dosya adı>`*<br><br> Eğer MyFile.txt adlı bir dosyanın içeriğini görüntülemeniz gerekiyorsa, aşağıdaki komutu çalıştırın:<br>`cat MyFile.txt` |
+| Biçimlendirme kuralı                 | Açıklama |
+| -----------------------------  | ------------------------------------------------------------    |
+|`regular` | Düzenli monospaced yazı tipiyle yazılmış dizeler bilgilendiricidir ve okuyucu tarafından girilmesi beklenmez.<br>Böyle dizeler bir komut çıktısını veya başka bir bilgi parçasını temsil edebilir.|
+|Example: | Bir Bash kabuğunun daveti:<br>`$`                     |
+|**`boldface`**  | Kalın monospaced yazı tipiyle yazılmış dizeler, okuyucu tarafından aynen girilmelidir. |
+|Example: | Linux'ta sistem bilgilerini görüntülemek için aşağıdaki komutu girin:<br>`$` **`uname -a`** |
+|*`italics`* veya  *`<italics>`* | İtalik, monospaced yazı tipiyle yazılmış dizeler, okuyucu tarafından sağlanması gereken değerleri temsil eder. Örneğin, eğer bir komut argümanı *`<name>`* olarak biçimlendirilmişse, o isimle bir değer sağlamalısınız, *`<name>`* değil.<br>Eğer bir girdi tek kelimeyle ifade edilemiyorsa, dize <...> şeklinde parantez içine alınır. Bir değeri girerken parantezleri kaldırmalısınız. Örneğin, bir komut argümanı *`<user password>`* olarak biçimlendirilmişse, parolayı < ve > sembolleri olmadan girmelisiniz. |
+|Example: | Linux'ta bir dosyanın içeriğini görüntülemek için `cat` komutu aşağıdaki şekilde kullanılabilir:<br>`$` **`cat`** *`filename`*<br>`$` **`cat`** *`<file name>`*<br><br>Eğer MyFile.txt adlı dosyanın içeriğini görüntülemeniz gerekiyorsa, aşağıdaki komutu çalıştırın:<br>`cat MyFile.txt` |

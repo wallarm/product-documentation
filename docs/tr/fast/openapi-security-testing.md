@@ -1,0 +1,1 @@
+--8<-- "latest-tr/fast/openapi-security-testing.md"

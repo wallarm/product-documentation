@@ -1,49 +1,38 @@
 [link-selinux]:     https://www.redhat.com/en/topics/linux/what-is-selinux
 [doc-monitoring]:   monitoring/intro.md
 
-# SELinux'i Yapılandırma
+# SELinux Sorun Giderme
 
-[Filtre düğümüyle birlikte SELinux][link-selinux] mekanizması etkinleştirilmiş bir ana bilgisayarda bulunuyorsa, filtre düğümüne müdahale edebilir ve işlevsiz hâle getirebilir:
-* Filtre düğümünün RPS (saniyedeki istekler) ve APS (saniyedeki saldırılar) değerleri Wallarm buluta aktarılamaz.
-* Filtre düğümü ölçüm değerlerini TCP protokolü aracılığıyla izleme sistemlerine aktarmak mümkün olmayacaktır ([ “Filtre Düğümünü İzleme”][doc-monitoring] konusuna bakınız).
+[SELinux][link-selinux], RedHat tabanlı Linux dağıtımlarında (ör., CentOS veya Amazon Linux 2.0.2021x ve daha düşük) varsayılan olarak kurulu ve etkindir. SELinux, Debian veya Ubuntu gibi diğer Linux dağıtımlarında da kurulabilir.
 
-SELinux, RedHat tabanlı Linux dağıtımlarında (örneğin, CentOS veya Amazon Linux 2.0.2021x ve daha düşük) varsayılan olarak yüklüdür ve etkindir. SELinux ayrıca Debian veya Ubuntu gibi diğer Linux dağıtımlarında da yüklü olabilir.  
-
-SELinux'un ya devre dışı bırakılması ya da filtre düğümünün işleyişine müdahale etmemesi için yapılandırılması zorunludur.
-
-## SELinux Durumunu Kontrol Etme
-
-Aşağıdaki komutu çalıştırın:
+SELinux'un varlığını ve durumunu kontrol etmek için aşağıdaki komutu çalıştırın:
 
 ``` bash
 sestatus
 ```
 
-Çıktıyı inceleyin:
-* `SELinux durumu: etkin`
-* `SELinux durumu: devre dışı`
+## Otomatik Yapılandırma
 
-## SELinux'i Yapılandırma
+Bir filtreleme düğümüne sahip bir ana makinada SELinux mekanizması etkinse, düğüm kurulumu veya yükseltme sırasında, [all-in-one installer](../installation/inline/compute-instances/linux/all-in-one.md) düğümün müdahale etmemesi için otomatik yapılandırmasını gerçekleştirir.
 
-SELinux etkin durumdayken filtre düğümünün işlevselliğini sürdürebilmesi için `collectd` aracının TCP soketi kullanmasına izin verin. Bunu yapmak için aşağıdaki komutu çalıştırın:
+Bu, çoğu durumda SELinux'tan kaynaklanan sorunların olmayacağı anlamına gelir.
 
-``` bash
-setsebool -P collectd_tcp_network_connect 1
-```
+## Sorun Giderme
 
-Yukarıda belirtilen komutun başarıyla çalıştırılıp çalıştırılmadığını kontrol etmek için aşağıdaki komutu çalıştırın:
+[Eğer otomatik yapılandırma](#automatic-configuration) sonrasında hâlâ SELinux'tan kaynaklanabilecek sorunlar yaşıyorsanız:
 
-``` bash
-semanage export | grep collectd_tcp_network_connect
-```
+* Filtre düğümünün RPS (saniyedeki istek) ve APS (saniyedeki saldırı) değerleri Wallarm Cloud'a aktarılmayacaktır.
+* Filtre düğüm metriklerini TCP protokolü aracılığıyla izleme sistemlerine aktarmak mümkün olmayacaktır (bkz. [“Monitoring the Filter Node”][doc-monitoring]).
+* Diğer olası problemler.
 
-Çıktı bu dizeyi içermelidir:
-```
-boolean -m -1 collectd_tcp_network_connect
-```
+Aşağıdakileri yapın:
 
-## SELinux'i Devre Dışı Bırakma
+1. Geçici olarak SELinux'u devre dışı bırakmak için `setenforce 0` komutunu çalıştırın.
 
-SELinux'u devre dışı duruma getirmek için
-*   ya  `setenforce 0` komutunu çalıştırın (SELinux, bir sonraki yeniden başlatmaya kadar devre dışı kalır) veya
-*   `/etc/selinux/config` dosyasında `SELINUX` değişkeninin değerini `disabled` olarak ayarlayın, ardından yeniden başlatın (SELinux, kalıcı olarak devre dışı kalır).
+    SELinux, bir sonraki yeniden başlatmaya kadar devre dışı kalacaktır.
+
+1. Sorun(lar)ın ortadan kalkıp kalkmadığını kontrol edin.
+1. Yardım için [Wallarm](mailto:support@wallarm.com) teknik desteği ile iletişime geçin.
+
+    !!! warning "SELinux’un kalıcı olarak devre dışı bırakılması önerilmez"
+        Güvenlik sorunları nedeniyle SELinux'un kalıcı olarak devre dışı bırakılması önerilmez.

@@ -7,53 +7,53 @@
 [link-stop-explained]:      internals.md#test-run-execution-flow-baseline-requests-recording-takes-place
 
 
-#   Kayıt Sürecini Durdurma
+#   Kaydetme İşlemini Durdurmak
 
-!!! bilgi "Gerekli veriler"
-    API üzerinden kayıt durdurulurken aşağıdaki verilere ihtiyaç duyulmaktadır:
-
-    * bir token
-    * bir test çalışması tanımlayıcısı
-
-    Web arayüzü üzerinden kayıtı durdurmak için bir Wallarrm hesabınıza ihtiyacınız vardır.
-
-    Test çalışması ve token hakkında ayrıntılı bilgiyi [burada][doc-about-tr-token] alabilirsiniz.
+!!! info "Gerekli veriler"
+    API aracılığıyla kaydetmeyi durdurmak için aşağıdaki veriler gereklidir:
     
-    Bu belgede örnek olarak kullanılan değerler:
+    * bir token
+    * bir test run tanımlayıcısı
+
+    Web arayüzü üzerinden kaydetmeyi durdurmak için bir Wallarm hesabına sahip olmanız gerekir.
+    
+    Test run ve token hakkında detaylı bilgiyi [buradan][doc-about-tr-token] edinebilirsiniz.
+    
+    Bu belgede örnek değerler olarak aşağıdakiler kullanılmaktadır:
         
-    * `token_Qwe12345` bir token olarak.
-    * `tr_1234` bir test çalışmasının tanımlayıcısı olarak.
+    * `token_Qwe12345` token olarak.
+    * `tr_1234` test run tanımlayıcısı olarak.
 
-Temel isteklerin kaydını durdurma ihtiyacı [link][link-stop-explained] tarafından açıklanmıştır. 
+Temel istek kaydının durdurulma gereksinimi [bu bağlantıda][link-stop-explained] açıklanmaktadır.
 
-## API Üzerinden Kayıt Sürecini Durdurma
+## API Aracılığıyla Kaydetme İşlemini Durdurmak
 
-Kayıt sürecini durdurmak için, `https://us1.api.wallarm.com/v1/test_run/test_run_id/action/stop` URL'sine POST isteği gönderin:
+Kaydetme işlemini durdurmak için, `https://us1.api.wallarm.com/v1/test_run/test_run_id/action/stop` URL'sine bir POST isteği gönderin:
 
---8<-- "../include-tr/fast/operations/api-stop-recording.md"
+--8<-- "../include/fast/operations/api-stop-recording.md"
 
-API sunucusuna istek başarılı olduğunda, size sunucunun yanıtı sunulur. Yanıt, yararlı bilgiler sağlar, dahil:
-* kayıt sürecinin durumu (`recording` parametresinin değeri).
-* ilgili test kaydının tanımlayıcısı (`test_record_id` parametresi).
+API sunucusuna yapılan istek başarılı olursa, sunucunun yanıtı görüntülenecektir. Yanıt, şunlar dahil olmak üzere yararlı bilgiler sağlar:
+* kaydetme işleminin durumu ( `recording` parametresinin değeri ).
+* ilgili test kaydının tanımlayıcısı ( `test_record_id` parametresi ).
 
-Parametrenin değeri `false` ise, durdurma başarılıdır.
+Eğer parametrenin değeri `false` ise, durdurma işlemi başarılı olmuştur.
 
-Durdurma başarılı olursa, `test_record_id` tanımlayıcısına sahip test kaydını [test çalışmalarını kopyalamak][doc-testrun-copying-api] için kullanabilirsiniz.
+Durdurma işlemi başarılıysa, `test_record_id` tanımlayıcısına sahip test kaydını [test run kopyalamak][doc-testrun-copying-api] için kullanabilirsiniz.
 
-## Web Arayüzü Üzerinden Kayıt Sürecini Durdurma
+## Web Arayüzü İle Kaydetme İşlemini Durdurmak
 
-Web arayüzü üzerinden kayıt sürecini durdurmak için aşağıdaki adımları takip edin:
+Web arayüzü üzerinden kaydetme işlemini durdurmak için aşağıdaki adımları izleyin:
 
-1. [Bu link](https://my.wallarm.com/testing/testruns) üzerinden EU bulutu için veya [bu link](https://us1.my.wallarm.com/testing/testruns) üzerinden US bulutu için Wallarm hesabınıza gidin > **Test çalışmaları**.
+1. Wallarm hesabınıza gidin > **Test runs**. AB (EU) bulutu için [bu bağlantıya](https://my.wallarm.com/testing/testruns) veya ABD (US) bulutu için [bu bağlantıya](https://us1.my.wallarm.com/testing/testruns) tıklayın.
 
-2. Kayıtını durdurmak istediğiniz test çalışmasını seçin ve aksiyon menüsünü açın.
+2. Kaydı durdurmak istediğiniz test run'ı seçin ve aksiyon menüsünü açın.
 
-3. **Kaydı durdur** seçeneğini seçin.
+3. **Stop recording** seçeneğini belirleyin.
 
-    ![Web arayüzü üzerinden kaydı durdurma][img-stop-recording-item]
+    ![Web arayüzü ile kaydetmeyi durdurma][img-stop-recording-item]
 
-Kayıt durdurulduğunda, **Temel isteklerin req.** sütununun solundaki REQ göstergesi kapalı olacaktır.
+**Baseline req.** sütununun solundaki REQ göstergesi, kaydetme durdurulduğunda kapatılacaktır.
 
-Test kaydının ID'si **Test kayıt adı/Test kayıt ID** sütununda görüntülenir.
+Test kaydının tanımlayıcısı **Test record name/Test record ID** sütununda görüntülenir.
 
-Gerektiğinde, web arayüzünü kullanarak [bu test çalışmasını kopyalayabilir][doc-testrun-copying-gui] ve yeni test, belirtilen test kaydını tekrar kullanabilir.
+Gerekirse, web arayüzünü kullanarak bu test run'ı [kopyalayabilir][doc-testrun-copying-gui] ve yeni test, belirtilen test kaydını yeniden kullanır.

@@ -1,4 +1,4 @@
-次のコマンドを使用してNGINXを再起動します：
+以下のコマンドでNGINXを再起動します:
 
 ```bash
 sudo systemctl restart nginx

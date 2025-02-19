@@ -1,31 +1,31 @@
-## Ek Ayarlar
+##   Ek ayarlar
 
-Filtreleme düğümü, kurulumdan sonra ek bir konfigürasyon gerektirebilir.
+Filtreleme düğümü, kurulumdan sonra ek yapılandırma gerektirebilir.
 
-Aşağıdaki belge, gerektiğinde uygulayabileceğiniz tipik ayarların birkaçını listeler.
+Aşağıdaki belge, gerektiğinde uygulayabileceğiniz tipik yapılandırmalardan birkaçını listeler.
 
-Diğer kullanılabilir ayarlar hakkında daha fazla bilgi almak için, Yönetici kılavuzunun **Konfigürasyon** bölümüne devam edin.
+Diğer mevcut ayarlar hakkında daha fazla bilgi edinmek için Yönetici kılavuzunun **Yapılandırma** bölümüne geçin.
 
-### Müşterinin gerçek IP'sinin gösterilmesinin yapılandırılması
+### İstemcinin gerçek IP adresinin gösterimini yapılandırma
 
-Filtreleme düğümü ek bir konfigürasyon olmaksızın bir proxy sunucusu veya yük dengeleyicinin arkasında konuşlandırılırsa, isteğin kaynak adresi müşterinin gerçek IP adresine eşit olmayabilir. Bunun yerine, proxy sunucusunun veya yük dengeleyicinin IP adreslerinden birine eşit olabilir.
+Filtreleme düğümü, ek yapılandırma yapılmadan bir proxy sunucusu veya yük dengeleyici arkasında konuşlandırılmışsa, istek kaynağı adresi, istemcinin gerçek IP adresine eşit olmayabilir. Bunun yerine, proxy sunucusunun veya yük dengeleyicinin IP adreslerinden biriyle eşleşebilir.
 
-Bu durumda, filtreleme düğümünün bir istek kaynak adresi olarak müşterinin IP adresini almasını istiyorsanız, proxy sunucusunun veya yük dengeleyicinin [ek bir konfigürasyonunu](using-proxy-or-balancer-en.md) gerçekleştirmeniz gerekmektedir.
+Bu durumda, filtreleme düğümünün istek kaynağı adresi olarak istemcinin IP adresini almasını istiyorsanız, proxy sunucusu veya yük dengeleyici için [ek yapılandırma](using-proxy-or-balancer-en.md) gerçekleştirmeniz gerekir.
 
-### Tek istek işleme süresini sınırlama
+### Tek isteğin işlenme süresini sınırlama
 
-Filtreleme düğümü tarafından tek bir isteğin işlenme süresinin sınırını belirtmek için [`wallarm_process_time_limit`](configure-parameters-en.md#wallarm_process_time_limit) Wallarm yönergesini kullanın.
+Filtreleme düğümünün tek bir isteği işleme süresini sınırlamak için [`wallarm_process_time_limit`](configure-parameters-en.md#wallarm_process_time_limit) Wallarm yönergesini kullanın.
 
-İsteğin işlenmesi, yönergede belirtilenden daha fazla zaman alırsa, hata bilgileri günlük dosyasına girilir ve istek `overlimit_res` saldırısı olarak işaretlenir.
+Eğer isteğin işlenmesi, yönergede belirtilen süreden daha fazla zaman alırsa, hata bilgisi günlük dosyasına kaydedilir ve istek `overlimit_res` saldırısı olarak işaretlenir.
 
 ### Sunucu yanıt bekleme süresini sınırlama
 
-Proxy sunucusunun yanıtını okuma için zamanaşımını belirtmek için [`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) NGINX yönergesini kullanın.
+Proxy sunucusu yanıtını okuma zaman aşımını belirtmek için [`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) NGINX yönergesini kullanın.
 
-Eğer sunucu bu süre zarfında hiçbir şey göndermezse, bağlantı kapanır.
+Bu süre zarfında sunucu hiçbir şey göndermezse, bağlantı kapatılır.
 
 ### Maksimum istek boyutunu sınırlama
 
-Müşterinin isteğinin gövdesinin maksimum boyutu için sınırı belirtmek için [`client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) NGINX yönergesini kullanın.
+İstemcinin isteğinin gövdesinin maksimum boyutu sınırını belirtmek için [`client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) NGINX yönergesini kullanın.
 
-Bu sınır aşıldığında, NGINX müşteriye `413` (`Yük Çok Büyük`) koduyla yanıt verir, ayrıca `İstek Varlığı Çok Büyük` mesajı olarak da bilinir.
+Bu sınır aşıldığında, NGINX istemciye `413` (`Payload Too Large`) koduyla yanıt verir, ki bu durum `Request Entity Too Large` mesajı olarak da bilinir.

@@ -1,64 +1,68 @@
 [user-roles-article]:    ../user-guides/settings/users.md#user-roles
 [img-api-tokens-edit]:   ../images/api-tokens-edit.png
 
-# Wallarm API Genel Bakışı
+# Wallarm API genel bakış
 
-Wallarm API, Wallarm sistemlerinin bileşenleri arasındaki etkileşimi sağlar. Wallarm API metotlarını şu durumları oluşturmak, almak veya güncellemek için kullanabilirsiniz:
+Wallarm API, Wallarm sistem bileşenleri arasında etkileşim sağlar. Wallarm API yöntemlerini aşağıdaki örnekleri oluşturmak, almak veya güncellemek için kullanabilirsiniz:
 
-* zafiyetler
+* güvenlik açıkları
 * saldırılar
 * olaylar
 * kullanıcılar
-* müşteriler
+* istemciler
 * filtre düğümleri
 * vb.
 
-API metotlarının açıklaması, Wallarm Konsol→ sağ üst→ `?` → **Wallarm API Konsolu** yolunu izleyerek veya aşağıdaki linklerden doğrudan erişilebilir:
+API yöntemlerinin açıklamaları, Wallarm Console → sağ üst → `?` → **Wallarm API Console** aracılığıyla veya doğrudan aşağıdaki bağlantılar üzerinden verilmektedir:
 
-* Amerikan bulutu için https://apiconsole.us1.wallarm.com/
-* Avrupa bulutu için https://apiconsole.eu1.wallarm.com/
+* https://apiconsole.us1.wallarm.com/ for the [US cloud](../about-wallarm/overview.md#cloud)
+* https://apiconsole.eu1.wallarm.com/ for the [EU cloud](../about-wallarm/overview.md#cloud)
 
-![Wallarm API Konsolu](../images/wallarm-api-reference.png)
+![Wallarm API Console](../images/wallarm-api-reference.png)
 
-## API bağlantı noktası
+## API uç noktası
 
-API istekleri aşağıdaki URL'ye gönderilir:
+API istekleri aşağıdaki URL'lere gönderilir:
 
-* Amerikan bulutu için `https://us1.api.wallarm.com/`
-* Avrupa bulutu için `https://api.wallarm.com/`
+* `https://us1.api.wallarm.com/` for the [US cloud](../about-wallarm/overview.md#cloud)
+* `https://api.wallarm.com/` for the [EU cloud](../about-wallarm/overview.md#cloud)
 
-## API isteklerinin doğrulanması
+## API isteklerinin kimlik doğrulaması
 
-Wallarm API isteklerini yapabilmek için doğrulanmış bir kullanıcı olmalısınız. API isteklerinin doğrulanma metodu, isteği gönderen istemciye bağlıdır:
+Wallarm API isteklerini gerçekleştirmek için doğrulanmış bir kullanıcı olmalısınız. API isteklerinin kimlik doğrulama yöntemi, isteği gönderen istemciye bağlı olarak değişir:
 
-* [API Referans UI](#api-reference-ui)
-* [Kendi API İstemciniz](#your-own-api-client)
+* [API Reference UI](#wallarm-api-console)
+* [Your own API client](#your-own-api-client)
 
-### Wallarm API Konsolu
+### Wallarm API Console
 
-İstek doğrulaması için token kullanılır. Token, Wallarm hesabınızda başarılı bir doğrulama sonrası oluşturulur.
+İsteklerin kimlik doğrulaması için bir token kullanılır. Bu token, Wallarm hesabınızda başarılı oturum açma işleminden sonra oluşturulur.
 
-1. Aşağıdaki linklerden birini kullanarak Wallarm Konsolunuzda oturum açın:
-    * Amerikan bulutu için https://us1.my.wallarm.com/
-    * Avrupa bulutu için https://my.wallarm.com/
-2. Aşağıdaki linklere tıklayarak Wallarm API Konsolu sayfasını yenileyin: 
-    * Amerikan bulutu için https://apiconsole.us1.wallarm.com/
-    * Avrupa bulutu için https://apiconsole.eu1.wallarm.com/
-3. Gerekli API metoduna gidin → **Deneyin** bölümü, parametre değerlerini girin ve isteği **Çalıştırın**.
+1. Aşağıdaki bağlantıları kullanarak Wallarm Console'a giriş yapın:
+    * https://us1.my.wallarm.com/ for the US cloud
+    * https://my.wallarm.com/ for the EU cloud
+2. Aşağıdaki bağlantıları kullanarak Wallarm API Console sayfasını yenileyin:
+    * https://apiconsole.us1.wallarm.com/ for the US cloud
+    * https://apiconsole.eu1.wallarm.com/ for the EU cloud
+3. İstediğiniz API yöntemine gidin → **Try it out** bölümünde parametre değerlerini girin ve isteği **Execute** edin.
 
-### Kendi API İstemciniz
+### Your own API client
 
-Kendi API istemcinizden Wallarm API'ye istekleri doğrulamak için:
+Kendi API istemciniz üzerinden Wallarm API'ye istek gönderirken kimlik doğrulaması yapmak için:
 
-1. Wallarm hesabınıza [Amerikan Bulutu](https://us1.my.wallarm.com/) veya [Avrupa Bulutu](https://my.wallarm.com/) 'nda oturum açın → **Ayarlar** → **API tokenları**.
-2. Wallarm API'ye erişim için [token oluşturun](../user-guides/settings/api-tokens.md#configuring-tokens).
-3. Token'ınızı açın ve **Token** kısmından değeri kopyalayın.
-4. Gerekli API isteğini, `X-WallarmApi-Token` başlık parametresinde **Token** değerini geçirerek gönderin.
+1. [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) üzerinden Wallarm hesabınıza giriş yapın → **Settings** → **API tokens**.
+2. Wallarm API'ye erişim için [Create token](../user-guides/settings/api-tokens.md) oluşturun.
+3. Token'ınızı açın ve **Token** bölümündeki değeri kopyalayın.
+4. Gerekli API isteğini, `X-WallarmApi-Token` header parametresinde **Token** değerini göndererek yapın.
 
-[API tokenları hakkında daha fazla bilgi →](../user-guides/settings/api-tokens.md)
+[More details on API tokens →](../user-guides/settings/api-tokens.md)
 
-## Wallarm'ın API geliştirme ve belgelendirme yaklaşımı
+<!-- ## API restrictions
 
-Allarm API Referansı, tek sayfalı bir uygulama (SPA) olup tüm gösterilen veriler API'den dinamik olarak alınır. Bu tasarım, Wallarm'ın [API-öncelikli](https://swagger.io/resources/articles/adopting-an-api-first-approach/) yaklaşımını benimsemesini sağlar; yeni veri ve işlevsellik ilk olarak kamuya açık API'de sunulur ve ardından API Referansı'nda açıklanır. Genellikle tüm yeni işlevsellikler, kamuya açık API ve API Referansı'nda eş zamanlı olarak yayınlanır, ancak bazen API Referansı değişikliklerinden önce yeni API değişiklikleri yayınlanır ve bazı işlevler yalnızca kamu API'si aracılığıyla kullanılabilir hale gelir.
+Wallarm limits the rate of API calls to 500 requests per second. -->
 
-Wallarm API Referansı, [Swagger UI](https://swagger.io/tools/swagger-ui/) aracı kullanılarak Swagger dosyasından oluşturulmuştur. API Referansı, kullanılabilir API uç noktaları, metotları ve veri yapıları hakkında bilgi edinmenin kolay bir yolunu sağlar. Ayrıca, kullanılabilir tüm uç noktaları denemek için basit bir yol sunar.
+## Wallarm'un API geliştirme ve dokümantasyon yaklaşımı
+
+Wallarm API Reference, tüm gösterilen verilerin API'den dinamik olarak alındığı tek sayfalı bir uygulamadır (SPA). Bu tasarım, yeni veri ve işlevsellik ilk olarak halka açık API'de sunulduğunda ve bir sonraki adım olarak API Reference’ta tanımlandığında [API-first](https://swagger.io/resources/articles/adopting-an-api-first-approach/) yaklaşımını kullanmaya yöneltir. Normalde tüm yeni işlevsellik hem halka açık API hem de API Reference’ta paralel olarak yayınlanır, ancak bazen yeni API değişiklikleri API Reference değişikliklerinden önce yayınlanır ve bazı işlevsellik yalnızca halka açık API üzerinden sunulur.
+    
+Wallarm API Reference, [Swagger UI](https://swagger.io/tools/swagger-ui/) aracı kullanılarak Swagger dosyasından oluşturulmaktadır. API Reference, mevcut API uç noktaları, yöntemler ve veri yapıları hakkında bilgi edinmenin kolay bir yolunu sunar. Ayrıca, mevcut tüm uç noktaları denemenin basit bir yolunu sağlar.

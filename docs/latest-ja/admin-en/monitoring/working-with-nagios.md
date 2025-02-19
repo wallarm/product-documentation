@@ -4,41 +4,41 @@
 
 [link-PNP4Nagios]:                      http://www.pnp4nagios.org/doku.php?id=pnp-0.4:start
 
-#   Nagiosでフィルタノードのメトリクスを操作する
+# Nagiosにおけるフィルタノードメトリクスの取り扱い
 
-あらかじめ作成されたサービスのステータスがNagiosによって正常に監視されていることを確認します：
+Nagiosが前に作成したサービスの状態を正常に監視していることを確認します:
 1.  NagiosのWebインターフェースにログインします。
-2.  「サービス(Services)」リンクをクリックしてサービスページに移動します。
-3.  `wallarm_nginx_abnormal`サービスが表示され、「OK」ステータスであることを確認します：
+2.  「Services」リンクをクリックして、サービスのページに移動します。
+3.  wallarm_nginx_abnormalサービスが表示され、「OK」ステータスであることを確認します:
 
     ![Service status][img-nagios-service-status]
 
     
-    !!! info "サービスチェックの強制"
-        サービスのステータスが「OK」でない場合、そのステータスを確認するためにサービスのチェックを強制することができます。
+    !!! info "サービスチェックの強制実行"
+        サービスが「OK」ステータスでない場合、サービスの状態を確認するためにチェックを強制実行できます。
         
-        これを行うには、「サービス(Service)」列のサービス名をクリックし、「サービスコマンド(Service Commands)」リストから「次のこのサービスのチェックを再スケジュールする(Reschedule the next check of this service)」を選択し、必要なパラメータを入力します。
+        この操作では、「Service」列のサービス名をクリックし、「Service Commands」リストから「Reschedule the next check of this service」を選択して、必要なパラメータを入力しチェックを実行します。    
     
 
-4.  「ステータス(Status)」列のサービス名のリンクをクリックしてサービスの詳細情報を表示します：
+4.  「Status」列にあるリンク（サービス名）をクリックして、サービスの詳細情報を表示します:
 
     ![Detailed information about service][img-nagios-service-details]
 
-    Nagiosに表示されているメトリック値（「Performance Data」行）がフィルタノードの`wallarm-status`出力と一致していることを確認します：
+    Nagiosに表示されるメトリクス値（「Performance Data」行）がフィルタノード上のwallarm-status出力と一致していることを確認します:
 
-    --8<-- "../include-ja/monitoring/wallarm-status-check-latest.md"
+    --8<-- "../include/monitoring/wallarm-status-check-latest.md"
  
-5.  フィルタノードで保護されたアプリケーションにテスト攻撃を行います。これを行うために、curlユーティリティまたはブラウザを使用してアプリケーションに悪意のあるリクエストを送信することができます。
+5.  フィルタノードで保護されたアプリケーションに対してテスト攻撃を実施します。この操作では、curlユーティリティまたはブラウザを使用してアプリケーションに悪意のあるリクエストを送信できます。
 
-    --8<-- "../include-ja/monitoring/sample-malicious-request.md"
+    --8<-- "../include/monitoring/sample-malicious-request.md"
     
-6.  Nagiosの「Performance Data」値が増加し、フィルタノードの`wallarm-status`に表示された値と一致していることを確認します：
+6.  Nagiosの「Performance Data」値が増加し、フィルタノード上のwallarm-statusに表示された値と一致していることを確認します:
 
-    --8<-- "../include-ja/monitoring/wallarm-status-output-latest.md"
+    --8<-- "../include/monitoring/wallarm-status-output-latest.md"
 
     ![Updated Performance Data value][img-nagios-service-perfdata-updated]
 
-これで、フィルタノードの`wallarm_nginx/gauge-abnormal`メトリックの値がNagiosのサービスの状態情報に表示されるようになります。
+これで、フィルタノードのwallarm_nginx/gauge-abnormalメトリクスの値がNagiosのサービス状態情報に表示されます。
 
-!!! info "Nagiosのデータ可視化"
-    デフォルトでは、Nagios Coreはサービスステータス(`OK`、`WARNING`、`CRITICAL`)のみを追跡ます。「Performance Data」に含まれるメトリック値を保存および可視化するためには、例えば[PNP4Nagios][link-PNP4Nagios]のようなサードパーティのユーティリティを使用することができます。
+!!! info "Nagiosデータ可視化"
+    デフォルトでは、Nagios Coreはサービスステータス（OK、WARNING、CRITICAL）の追跡のみをサポートします。「Performance Data」に含まれるメトリクス値を保存および可視化するために、[PNP4Nagios][link-PNP4Nagios]などのサードパーティ製ユーティリティを利用できます。

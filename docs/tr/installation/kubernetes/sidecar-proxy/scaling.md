@@ -4,4 +4,4 @@
 [tarantool-memory-recommendations]: ../../../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool
 [single-split-deployment]: customization.md#single-and-split-deployment-of-containers
 
---8<-- "latest/installation/kubernetes/sidecar-proxy/scaling.md"
+--8<-- "latest-tr/installation/kubernetes/sidecar-proxy/scaling.md"

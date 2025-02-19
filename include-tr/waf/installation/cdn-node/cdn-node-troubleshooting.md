@@ -1,69 +1,69 @@
-### CDN düğüm durumları ne anlama gelir?
+### CDN düğüm durumları ne anlama geliyor?
 
-Aşağıdaki durumlar Wallarm Konsolu → **Düğümler** altında CDN düğümleri için görünebilir:
+Wallarm Console → **Nodes** üzerinde CDN düğümleri için aşağıdaki durumlar görünebilir:
 
-* **Kayıt Oluyor**: Wallarm, CDN düğümünü bulut sağlayıcısında kaydeder.
+* **Registering**: Wallarm, CDN düğümünü bulut sağlayıcısında kaydediyor.
 
-    Gereken Aksiyon: Korunan alan adının DNS kayıtlarına Wallarm CNAME kaydını eklemek için **CNAME Gerekiyor** durumunu bekleyin.
-* **CNAME Gerekiyor**: Wallarm CNAME kaydı, korunan alan adının DNS kayıtlarına eklenmemiş veya eklenmiş ancak henüz yayılmamış.
+    Gerekli işlem: Wallarm CNAME kaydını korunan domainin DNS kayıtlarına eklemek için **Requires CNAME** durumunun gelmesini bekleyin.
+* **Requires CNAME**: Wallarm CNAME kaydı korunan domainin DNS kayıtlarına eklenmemiş ya da eklenmiş ancak henüz yayılmamış.
 
-    Gerekli Aksiyon: Wallarm tarafından sağlanan CNAME kaydını korunan alan adının DNS kayıtlarına ekleyin veya değişikliklerin İnternet'te etkili olmasını bekleyin.
+    Gerekli işlem: Wallarm tarafından sağlanan CNAME kaydını korunan domainin DNS kayıtlarına ekleyin veya değişikliklerin İnternet üzerinde etkili olması için bekleyin.
+    
+    Eğer değişiklikler 24 saatten fazla bir süre etkili olmazsa, domain sağlayıcınızın DNS kayıtlarını başarıyla güncellediğini kontrol edin. Eğer öyleyse fakat Wallarm Console üzerinde hala **Not propagated yet** durumu görünüyor ise, lütfen [Wallarm technical support](mailto:support@wallarm.com) ile iletişime geçin.
 
-    Eğer değişiklikler 24 saatten fazla süre içinde etkili olmazsa, alan adı sağlayıcınızın DNS kayıtlarını başarıyla güncellediğinden emin olun. Eğer öyleyse, ancak **Henüz Yayılmadı** durumu hala Wallarm Konsolunda görüntüleniyorsa, lütfen [Wallarm teknik desteği](mailto:support@wallarm.com) ile iletişime geçin.
+    Beklenen bir sonraki durum **Active**'dir.
+* **Configuring**: Wallarm, değiştirilmiş origin adresi veya SSL/TLS sertifikasını işliyor.
 
-    Bir sonraki beklenen durum **Aktif**.
-* **Yapılandırılıyor**: Wallarm, değiştirilmiş köken adresi veya SSL / TLS sertifikasını işler.
+    Gerekli işlem: **Active** durumunun gelmesini bekleyin.
+* **Active**: Wallarm CDN düğümü, kötü niyetli trafiği engelliyor.
 
-    Gerekli Aksiyon: **Aktif** durumunu bekleyin.
-* **Aktif**: Wallarm CDN düğümü kötü niyetli trafiği hafifletir.
+    Gerekli işlem: herhangi bir işlem yapmanıza gerek yok. CDN düğümünün algıladığı [events][events-docs] olayları izleyebilirsiniz.
+* **Deleting**: Wallarm, CDN düğümünü siliyor.
 
-    Gerekli Aksiyon: Hiçbiri. CDN düğümünün tespit ettiği [olayları][events-docs] izleyebilirsiniz.
-* **Silineyor**: Wallarm, CDN düğümünü siliyor.
+    Gerekli işlem: herhangi bir işlem yapmanıza gerek yok, silmenin tamamlanmasını bekleyin.
 
-    Gereken Aksiyon: Hiçbiri, lütfen silmenin tamamlanmasını bekleyin.
+### Yaygınlaşan CNAME kaydı nasıl tespit edilir?
 
-### CNAME kaydının yayıldığını nasıl anlarsınız?
+Wallarm Console'un **Nodes** bölümü, Wallarm CNAME kaydının İnternet üzerinde etkili olup olmadığının gerçek durumunu gösterir. Eğer CNAME kaydı yayılmışsa, CDN düğüm durumu **Active** olur.
 
-Wallarm Konsolu'nun **Düğümler** bölümü, Wallarm CNAME kaydının İnternet'teki gerçek durumunu gösterir. Eğer CNAME kaydı yayıldıysa, CDN düğüm durumu **Aktif** olur.
-
-Ek olarak, aşağıdaki isteği kullanarak HTTP yanıt başlıklarını kontrol edebilirsiniz:
+Ayrıca, aşağıdaki istek ile HTTP yanıt başlıklarını kontrol edebilirsiniz:
 
 ```bash
-curl -v <KORUNAN_ALAN_AD>
+curl -v <PROTECTED_DOMAIN>
 ```
 
-Eğer Wallarm CNAME kaydı yayıldıysa, yanıt `section-io-*` başlıklarını içerecektir.
+Eğer Wallarm CNAME kaydı yayılmışsa, yanıt `section-io-*` başlıklarını içerecektir.
 
-Eğer CNAME kaydı 24 saatten fazla bir süre boyunca yayılmadıysa, lütfen alan adı sağlayıcınızın DNS kayıtlarını başarıyla güncellediğinden emin olun. Eğer öyleyse, ancak **Henüz Yayılmadı** durumu hala Wallarm Konsolunda görüntüleniyorsa, lütfen [Wallarm teknik desteği](mailto:support@wallarm.com) ile iletişime geçin.
+CNAME kaydı 24 saatten fazla süre yayılmamışsa, domain sağlayıcınızın DNS kayıtlarını başarıyla güncellediğini kontrol edin. Eğer öyleyse fakat Wallarm Console üzerinde hala **Not propagated yet** durumu görünüyor ise, lütfen [Wallarm technical support](mailto:support@wallarm.com) ile iletişime geçin.
 
-### CDN düğümü **Düğümler** bölümünde kırmızıyla vurgulanmış. Bu ne anlama gelir?
+### CDN düğümü **Nodes** bölümünde kırmızıyla vurgulanıyor. Bu ne anlama geliyor?
 
-Eğer CDN düğümü **Düğümler** bölümünde kırmızıyla vurgulanmışsa, kayıt sırasında veya yapılandırma sırasında aşağıdaki olası nedenlerden dolayı bir hata oluşmuştur:
+Eğer CDN düğümü **Nodes** bölümünde kırmızıyla vurgulanıyorsa, aşağıdaki olası nedenlerden dolayı kayıt veya yapılandırma sırasında bir hata meydana gelmiştir:
 
-* Üçüncü taraf bulut sağlayıcısında düğümün kaydı sırasında bilinmeyen bir hata
+* Üçüncü taraf bulut sağlayıcısında düğüm kaydı yapılırken bilinmeyen bir hata oluştu
 
-    Gerekli Aksiyon: [Wallarm teknik desteği](mailto:support@wallarm.com) ile iletişime geçin.
-* Geçersiz özel SSL / TLS sertifikası
+    Gerekli işlem: [Wallarm technical support](mailto:support@wallarm.com) ile iletişime geçin.
+* Geçersiz özel SSL/TLS sertifikası
 
-    Gerekli Aksiyon: Yüklenen sertifikanın geçerli olduğundan emin olun. Eğer değilse, geçerli olanı yükleyin.
+    Gerekli işlem: Yüklediğiniz sertifikanın geçerli olduğundan emin olun. Geçerli değilse, geçerli olanı yükleyin.
 
-Kırmızıyla vurgulanan CDN düğümü istekleri proxy olarak kullanmaz ve sonuç olarak kötü niyetli trafiği hafifletmez.
+Kırmızıyla vurgulanan CDN düğümü istekleri proxylemez ve sonuç olarak kötü niyetli trafiği engellemez.
 
-### CDN düğümü Wallarm Konsolu'ndaki düğüm listesinden neden kaybolabilir?
+### Wallarm Console'da node listesinden CDN düğümü neden kaybolabilir?
 
-Wallarm, CNAME kayıtları 10 veya daha fazla gün boyunca değiştirilmemiş CDN düğümlerini siler. 
+Wallarm, node oluşturulduğu andan itibaren 10 veya daha fazla gün boyunca değiştirilmemiş CNAME kayıtlarına sahip CDN düğümlerini siler.
 
-CDN düğümünü kaybolmuş bulursanız, yeni bir düğüm oluşturun.
+CDN düğümünün kaybolduğunu fark ederseniz, yeni bir düğüm oluşturun.
 
-### CDN düğümü tarafından korunan içeriğin güncellenmesinde neden bir gecikme var?
+### CDN düğümü tarafından korunan içeriğin güncellenmesinde neden gecikme oluyor?
 
-Eğer siteniz bir CDN düğümü tarafından korunuyorsa ve verilerinizi değiştirdiğinizde sitenin makul bir gecikmeyle güncellendiğini fark ederseniz, muhtemel neden [Varnish Cache][using-varnish-cache] olabilir. Varnish Cache içeriğinizin teslimatını hızlandırır, ancak CDN'deki önbelleğin kopyası gecikmeyle güncellenebilir.
+Eğer siteniz CDN düğümü ile korunuyorsa ve verilerinizi değiştirdiğinizde sitenin makul bir gecikmeyle güncellendiğini fark ediyorsanız, muhtemel neden içeriğinizin teslim hızını artıran ancak CDN üzerindeki önbelleğin gecikmeli güncellendiği [Varnish Cache][using-varnish-cache] olabilir.
 
 Örnek:
 
-1. CDN düğümünüz için Varnish Cache'i etkinleştirdiniz.
-1. Sitenizdeki fiyatları güncellediniz.
-1. Tüm istekler CDN aracılığıyla yönlendirilir ve önbellek hemen güncellenmez.
-1. Site kullanıcıları bir süreliğine eski fiyatları görür.
+1. CDN düğümünüz için Varnish Cache etkinleştirilmiş.
+1. Sitenizde fiyatları güncellediniz.
+1. Tüm istekler CDN üzerinden proxyleniyor ve önbellek hemen güncellenmiyor.
+1. Sitenin kullanıcıları bir süre eski fiyatları görmeye devam ediyor.
 
-Problem çözmek için, Varnish Cache'i devre dışı bırakabilirsiniz. Bunu yapmak için, **Düğümler** → CDN düğüm menüsü → **Varnish Cache'i devre dışı bırak** seçeneğinden ilerleyin.
+Sorunu çözmek için Varnish Cache'i devre dışı bırakabilirsiniz. Bunu yapmak için **Nodes** → CDN düğüm menüsü → **Disable Varnish Cache** yolunu izleyin.

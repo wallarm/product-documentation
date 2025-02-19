@@ -1,8 +1,8 @@
-!!! bilgi "Kullanıcıya `root` izni verme"
+!!! info "Kullanıcıya `root` İzni Sağlama"
     Eğer NGINX'i `root` izni olmayan bir kullanıcı olarak çalıştırıyorsanız, bu kullanıcıyı aşağıdaki komutu kullanarak `wallarm` grubuna ekleyin:
     
     ```
-    usermod -aG wallarm <kullanıcı_adı>;
+    usermod -aG wallarm <user_name>;
     ```
     
-    burada `<kullanıcı_adı>`, `root` izni olmayan kullanıcının adıdır.
+    burada `<user_name>`, `root` iznine sahip olmayan kullanıcının adıdır.

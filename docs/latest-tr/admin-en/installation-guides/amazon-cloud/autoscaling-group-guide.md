@@ -1,171 +1,148 @@
-[link-doc-ami-creation]:        create-image.md
-[link-doc-lb-guide]:            load-balancing-guide.md
+# Filtreleme Düğümü Otomatik Ölçeklendirme Ayarlama
 
-[link-ssh-keys-guide]:          ../../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys
-[link-security-group-guide]:    ../../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group
-
-[link-doc-as-faq]:              https://aws.amazon.com/autoscaling/faqs/
-
-[img-create-lt-wizard]:         ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/create-launch-template.png
-[img-create-asg-wizard]:        ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/create-asg-with-template.png
-[img-asg-wizard-1]:             ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/asg-wizard-1.png
-[img-asg-increase-policy]:      ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/group-size-increase.png
-[img-asg-decrease-policy]:      ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/group-size-decrease.png
-[img-alarm-example]:            ../../../images/installation-ami/auto-scaling/common/autoscaling-group-guide/alarm-example.png
-[img-check-asg-in-cloud]:       ../../../images/cloud-node-status.png
-
-[anchor-lt]:    #1-creating-a-launch-template
-[anchor-asg]:   #2-creating-an-auto-scaling-group
-
-#   Filtreleme düğümü otomatik ölçeklendirmesini ayarlama
-
-!!! info "Gerekli haklar"
-    Otomatik ölçeklendirmeyi ayarlamadan önce, Amazon AWS hesabınızın aşağıdaki haklardan birine sahip olduğunu kontrol edin:
+!!! info "Gerekli Yetkiler"
+    Otomatik ölçeklendirmeyi ayarlamadan önce, Amazon AWS hesabınızın aşağıdaki yetkilerden birine sahip olduğundan emin olun:
     
     *   `AutoScalingFullAccess`
     *   `AutoScalingConsoleFullAccess`
 
 Filtreleme düğümü otomatik ölçeklendirmesini ayarlamak için aşağıdaki adımları izleyin:
-1.  [Bir Başlangıç Şablonu Oluşturma][anchor-lt]
-2.  [Bir Otomatik Ölçeklendirme Grubu Oluşturma][anchor-asg]
+1.  [Başlatma Şablonu Oluşturma][anchor-lt]
+2.  [Otomatik Ölçeklendirme Grubu Oluşturma][anchor-asg]
 
-##  1.  Bir Başlangıç Şablonu Oluşturma
+## 1. Başlatma Şablonu Oluşturma
 
-Bir Başlangıç Şablonu, bir Amazon Makine İmajı (AMI) dağıtımı sırasında kullanılacak örneğin türünü tanımlar ve genel sanal makine parametrelerinin bazılarını ayarlar.
+Bir Başlatma Şablonu, bir Amazon Machine Image (AMI) dağıtımı sırasında kullanılacak örnek tipini tanımlar ve bazı genel sanal makine parametrelerini ayarlar.
 
-Aşağıdaki adımları izleyerek bir Başlangıç Şablonu oluşturun:
+Bir Başlatma Şablonu oluşturmak için aşağıdaki adımları izleyin:
 
-1.  Amazon EC2 kontrol panelinde **Başlangıç Şablonları** sekmesine gidin ve **Başlangıç şablonu oluştur** düğmesine tıklayın.
+1.  Amazon EC2 kontrol panelindeki **Launch Templates** sekmesine gidin ve **Create launch template** butonuna tıklayın.
 
-2.  Şablon adını **Başlangıç şablonu adı** alanına girin.
+2.  **Launch template name** alanına şablon adını girin.
 
-3.  [Daha önce oluşturulmuş][link-doc-ami-creation] Amazon Machine Image'ı seçin. Bunu yapmak için **AMI için ara** bağlantısını tıklayın ve **Benim AMI'larım** kataloğundan gereken imajı seçin.
+3.  [Önceden oluşturulmuş][link-doc-ami-creation] Amazon Machine Image’i seçin. Bunu yapmak için **Search for AMI** bağlantısına tıklayın ve **My AMIs** kataloğundan gerekli resmi seçin.
 
-4.  **Örnek türü** listesinden bir filtreleme düğümü sanal makinesini başlatmak için kullanılacak örneğin türünü seçin.
+4.  **Instance type** listesinden, filtreleme düğümü sanal makinesini başlatmak için kullanılacak örnek tipini seçin.
 
-    !!! warning "Doğru örnek türünü seçin"
-        İlk olarak filtre düğümünü yapılandırırken kullandığınız örnek türünü veya daha güçlü bir türü seçin.
+    !!! warning "Uygun Örnek Tipini Seçin"
+        Filtreleme düğümünü ilk yapılandırdığınızda kullandığınız veya daha güçlü bir örnek tipini seçin.
         
-        Daha az güçlü bir örnek türünün kullanılması filtreleme düğümünün çalışmasında sorunlara yol açabilir.
+        Daha az güçlü bir örnek tipi, filtreleme düğümü çalışmasında sorunlara yol açabilir. 
 
-5.  Filtreleme düğümüne erişmek için [daha önce oluşturulmuş][link-ssh-keys-guide] SSH anahtarları çiftinin adını **Anahtar çifti adı** listesinden seçin.
+5.  **Key pair name** listesinden, filtreleme düğümüne erişim için [önceden oluşturulmuş][link-ssh-keys-guide] SSH anahtar çifti adını seçin.
 
-6.  **Güvenlik Grupları** listesinden [daha önce oluşturulmuş][link-security-group-guide] Güvenlik Grubunu seçin.
+6.  **Security Groups** listesinden [önceden oluşturulmuş][link-security-group-guide] Güvenlik Grubunu seçin.
 
-7.  **Başlangıç şablonu oluştur** düğmesine tıklayın.
+7.  **Create launch template** butonuna tıklayın.
 
-    ![Bir Başlangıç Şablonu Oluşturma][img-create-lt-wizard]
+    ![Creating a Launch Template][img-create-lt-wizard]
     
 Şablon oluşturma işlemi tamamlanana kadar bekleyin.
 
-Başlangıç Şablonunu oluşturduktan sonra, bir Otomatik Ölçeklendirme Grubunun oluşturulmasıyla devam edebilirsiniz.
+Başlatma Şablonunu oluşturduktan sonra, Otomatik Ölçeklendirme Grubu oluşturma işlemine devam edebilirsiniz.
 
-##  2.  Bir Otomatik Ölçeklendirme Grubu Oluşturma
+## 2. Otomatik Ölçeklendirme Grubu Oluşturma
 
-!!! info "Otomatik ölçeklendirme yöntemini seçme"
-    Bu bölüm, EC2 Otomatik Ölçeklendirme yöntemini kullanarak bir Otomatik Ölçeklendirme Grubu oluşturma sürecini açıklar. 
+!!! info "Otomatik Ölçeklendirme Yöntemi Seçimi"
+    Bu bölüm, EC2 Otomatik Ölçeklendirme yöntemi kullanılarak bir Otomatik Ölçeklendirme Grubunun oluşturulma sürecini açıklamaktadır. 
 
-    Ayrıca AWS Otomatik Ölçeklendirme yöntemini de kullanabilirsiniz. 
+    AWS Otomatik Ölçeklendirme yöntemini de kullanabilirsiniz. 
 
-    Amazon'dan otomatik ölçeklendirme yöntemleri hakkında ayrıntılı bir SSS'yi görmek için bu [bağlantıya][link-doc-as-faq] gidin.
+    Amazon’un otomatik ölçeklendirme yöntemleri ile ilgili detaylı SSS’ye bakmak için bu [bağlantıya][link-doc-as-faq] gidin.
 
 Bir Otomatik Ölçeklendirme Grubu oluşturmak için aşağıdaki adımları izleyin:
 
-1.  Amazon EC2 kontrol panelinde **Otomatik Ölçeklendirme Grupları** sekmesine gidin ve **Otomatik Ölçeklendirme Grubu Oluştur** düğmesine tıklayın.
+1.  Amazon EC2 kontrol panelindeki **Auto Scaling Groups** sekmesine gidin ve **Create Auto Scaling Group** butonuna tıklayın.
 
-2.  **Başlangıç Şablonu** seçeneğini seçin, ardından listeden [daha önce oluşturulmuş][anchor-lt] Başlangıç Şablonunu seçin ve **Sonraki Adım** düğmesine tıklayın. 
+2.  **Launch Template** seçeneğini seçin, ardından listeden [önceden oluşturulmuş][anchor-lt] Başlatma Şablonunu seçin ve **Next Step** butonuna tıklayın. 
 
-    ![Bir Otomatik Ölçeklendirme Grubu Oluşturma][img-create-asg-wizard]
+    ![Creating an Auto Scaling Group][img-create-asg-wizard]
     
-3.  **Grup adı** alanına istenen Otomatik Ölçeklendirme Grubunun adını girin.
+3.  İstediğiniz Otomatik Ölçeklendirme Grubu adını **Group name** alanına girin.
 
-4.  **Başlangıç Şablonu Sürümü** listesinden **En son** Başlangıç Şablonu sürümünü seçin.
+4.  **Launch Template Version** listesinden Başlatma Şablonunun **Latest** sürümünü seçin.
 
-5.  Otomatik Ölçeklendirme Grubu için gereken örnek türünü seçin, bir **Fleet Oluşumu** seçeneklerinden birini seçin.
+5.  **Fleet Composition** seçeneklerinden birini seçerek Otomatik Ölçeklendirme Grubu için gerekli örnek tipini belirleyin.
 
-    Başlangıç Şablonu oluştururken bu kılavuzu izlediyseniz ve sanal makinelerin lansmanı için belirli bir örnek türü belirttiyseniz, **Başlangıç şablonunu takip et** seçeneğini kullanabilirsiniz.
+    Eğer bu kılavuzu izleyerek bir Başlatma Şablonu oluşturduysanız ve sanal makineleri başlatmak için bir örnek tipi belirtildiyse, **Adhere to the launch template** seçeneğini kullanabilirsiniz.
     
-    !!! info "Doğru örnek türünü seçin"
-        Başlangıç Şablonunuzda örnek türü belirtilmemişse veya otomatik ölçeklendirme için çok sayıda farklı örnek türü seçmek isterseniz, **Satın alma seçeneklerini ve örneklere ayarla** seçeneğini de seçebilirsiniz.
+    !!! info "Uygun Örnek Tipini Seçin"
+        İlk yapılandırmada kullandığınız veya daha güçlü bir örnek tipini seçin. Daha az güçlü bir örnek tipi, filtreleme düğümü çalışmasında sorunlara neden olabilir.
+
+6.  **Group size** alanına başlangıç Otomatik Ölçeklendirme Grubu boyutunu (örneğin, iki örnek) girin.
+
+7.  **Network** açılır listesinden doğru VPC’yi seçin.
+
+8.  **Subnets** açılır listesinden doğru alt ağları seçin.
+
+    !!! warning "Filtreleme Düğümüne İnternet Bağlantısı Sağlayın"
+        Filtreleme düğümünün düzgün çalışabilmesi için Wallarm API sunucusuna erişim gereklidir. Wallarm API sunucu seçimi, kullandığınız Wallarm Cloud’a bağlıdır:
         
-        İlk olarak filtre düğümünü yapılandırırken kullandığınız aynı örnek türünü veya daha güçlü bir türü seçin. Daha az güçlü bir örnek türünün kullanılması filtreleme düğümünün işleminde sorunlara yol açabilir.
+        * US Cloud kullanıyorsanız, düğümünüzün `https://us1.api.wallarm.com` adresine erişim izni olması gerekir.
+        * EU Cloud kullanıyorsanız, düğümünüzün `https://api.wallarm.com` adresine erişim izni olması gerekir.
 
-6.  İlk Otomatik Ölçeklendirme Grubu boyutunu **Grup boyutu** alanına girin (örneğin, iki örnek).
+        Doğru VPC ve alt ağları seçtiğinizden ve filtreleme düğümünün Wallarm API sunucularına erişimini engellemeyecek şekilde [bir güvenlik grubu yapılandırdığınızdan][link-security-group-guide] emin olun.
 
-7.  **Ağ** açılır listesinden doğru VPC'yi seçin.
-
-8.  **Subnets** açılır listesinden doğru subnetleri seçin.
-
-    !!! warning "Filtreleme düğümüne internet bağlantısı sağlama"
-        Filtreleme düğümü, düzgün bir operasyon için Wallarm API sunucusuna erişim gerektirir. Wallarm Bulutunu hangi parça kullandığınıza bağlı olarak Wallarm API sunucusu seçilir:
-        
-        *  US Cloud'u kullanıyorsanız, düğümünüzün `https://us1.api.wallarm.com` adresine erişim izni olmalıdır.
-        *  EU Cloud'u kullanıyorsanız, düğümünüzün `https://api.wallarm.com` adresine erişim izni olmalıdır.
-
-        Doğru VPC ve subnetlerinizi seçtiğinizi ve Filtreleme düğümünün Wallarm API sunucularına erişimini engellemeyecek şekilde bir güvenlik grubunu [yapılandırdığınızdan][link-security-group-guide] emin olun.
-
-    ![Genel Otomatik Ölçeklendirme Grubu ayarları][img-asg-wizard-1]
+    ![General Auto Scaling Group settings][img-asg-wizard-1]
     
-9.  **Ölçekleme politikalarını yapılandır** sayfasına gidin, **Sonraki: Ölçekleme politikalarını yapılandır** düğmesine tıklayın.
+9.  **Next: Configure scaling policies** butonuna tıklayarak **Configure scaling policies** sayfasına gidin.
 
-10. Otomatik ölçeklendirmeyi etkinleştirmek için **Bu grubun kapasitesini ayarlamak için ölçeklendirme politikalarını kullanın** seçeneğini seçin.
+10. Otomatik ölçeklendirmeyi etkinleştirmek için **Use scaling policies to adjust the capacity of this group** seçeneğini işaretleyin.
 
 11. Minimum ve maksimum Otomatik Ölçeklendirme Grubu boyutunu girin.
 
-    !!! info "Otomatik Ölçeklendirme Grubu boyutu"
-        Minimum Otomatik Ölçeklendirme Grubu boyutu, altıncı adımda belirtilen ilk grup boyutundan daha az olabilir.
+    !!! info "Otomatik Ölçeklendirme Grubu Boyutu"
+        Altıncı adımda belirtilen başlangıç grup boyutundan daha düşük bir minimum Otomatik Ölçeklendirme Grubu boyutu belirtebilirsiniz.
     
-12. Adım-adım politika yapılandırma modunu etkinleştir, **Ölçeklendirme Otomatik Ölçeklendirme grubunu adım veya basit ölçeklendirme politikalarını kullanarak ölçeklendirme** seçeneğini seçin.
+12. **Scale the Auto Scaling group using step or simple scaling policies** seçeneğini işaretleyerek adım adım politika yapılandırma modunu etkinleştirin.
 
-13. **Grup Boyutunu Artırma** parametre grubunu kullanarak grup boyutu artış politikasını yapılandırın.
+13. **Increase Group Size** parametre grubunu kullanarak grup boyutu artırma politikasını yapılandırın.
 
-    ![Otomatik Ölçeklendirme Grubu boyutu artırma politikası][img-asg-increase-policy]
+    ![Auto Scaling Group size increase policy][img-asg-increase-policy]
     
-    1.  Gerekirse, **Ad** parametresini kullanarak grup boyutu artış politikası adını belirtin.
+    1.  Gerekirse, **Name** parametresini kullanarak grup boyutu artırma politikası adını belirtin.
 
-    2.  Grup boyutunun artmasını tetikleyecek olayı **Şu olayda politika uygula**'dan seçin. Daha önce herhangi bir olay oluşturmadıysanız, bir olay oluşturmak için **Alarm Ekle** düğmesine tıklayın.
+    2.  **Execute policy when** içerisinden, grup boyutunun artırılmasını tetikleyecek olayı seçin. Daha önce hiçbir olay oluşturmadıysanız, bir olay oluşturmak için **Add Alarm** butonuna tıklayın.
 
-    3.  Bir olay adı, izlenecek bir metrik ve olay oluşumları hakkında bildirimler ayarlayabilirsiniz.
+    3.  Bir olay adı, izlenecek metrik ve olay gerçekleştiğinde bildirimin ayarlanması gibi seçenekleri belirleyebilirsiniz.
     
-        !!! info "Bildirimleri yapılandırma için gerekli roller"
-            Bildirimleri yapılandırmak için Amazon AWS hesabınızın **AutoScalingNotificationAccessRole**'a ihtiyacı vardır.
+        !!! info "Bildirimleri Yapılandırmak için Gerekli Roller"
+            Bildirim yapılandırması için Amazon AWS hesabınızın **AutoScalingNotificationAccessRole** rolüne sahip olması gerekir.
         
         !!! info "Örnek"
-            Örneğin **Yüksek CPU Kullanımı** adlı bir olayın, ortalama işlemci yükünün% 60'a ulaştığı durumda tetiklenmesini ayarlayabilirsiniz:
+            Beş dakika içerisinde %60 ortalama işlemci yüküne ulaşıldığında **High CPU utilization** adlı bir olayın tetiklenmesini ayarlayabilirsiniz:
             
-            ![Bir alarm örneği][img-alarm-example]
+            ![An alarm example][img-alarm-example]
         
-        
-        
-        !!! info "Amazon bulutunun mevcut standart metrikleri"
-            *   CPU Kullanımı (yüzde olarak)
-            *   Disk Okuma (bayt olarak)
-            *   Disk Yazma (bayt olarak)
-            *   Disk Okuma İşlemleri sayısı  
-            *   Disk Yazma İşlemleri sayısı 
-            *   Network Girişi (bayt olarak) 
-            *   Network Çıkışı (bayt olarak)
+        !!! info "Amazon Bulutunun Mevcut Standart Metrikleri"
+            *   CPU Utilization (yüzde olarak)
+            *   Disk Reads (bayt cinsinden)
+            *   Disk Writes (bayt cinsinden)
+            *   Disk Read Operations sayısı  
+            *   Disk Write Operations sayısı 
+            *   Network In (bayt cinsinden) 
+            *   Network Out (bayt cinsinden)
 
-    4.  Bir olay oluşturmak için **Alarm Oluştur** düğmesine tıklayın.
+    4.  Bir olay oluşturmak için **Create Alarm** butonuna tıklayın.
     
-    5.  **Yüksek CPU Kullanımı** olayı tetiklendiğinde alınacak eylemi seçin. Örneğin, bir olay tetiklendiğinde otomatik ölçekleme politikasının (kullanarak **Ekle** eylemi) bir örnek eklemesini yapılandırabilirsiniz.
+    5.  **High CPU Utilization** olayı tetiklendiğinde alınacak aksiyonu seçin. Örneğin, olay tetiklendiğinde **Add** aksiyonunu kullanarak bir örnek eklemek üzere bir otomatik ölçeklendirme politikası yapılandırabilirsiniz.
     
-    6.  Yeni bir örneğin eklenmesinden sonra kaynak tüketimi atlamaları erken tetiklenirse, bu durumdan kaçınmak için **Örneklere `X` saniye ısınma süresi ihtiyacı vardır** parametresini kullanarak saniye cinsinden bir ısınma süresi ayarlayabilirsiniz. Bu süre zarfında hiçbir olay tetiklenmez.
+    6.  Yeni bir örnek eklendikten sonra kaynak tüketiminde ani artışlar olursa, olay erken tetiklenebilir. Bunu önlemek için, **Instances need `X` seconds to warm up** parametresini kullanarak saniye cinsinden bir ısınma süresi ayarlayabilirsiniz. Bu süre zarfında hiçbir olay tetiklenmeyecektir.
     
-14. Aynı şekilde, grup boyutu azalma politikasını **Grup Boyutunu Azalt** parametre grubunu kullanarak yapılandırın.
+14. Benzer şekilde, **Decrease Group Size** parametre grubunu kullanarak grup boyutu azaltma politikasını yapılandırın.
 
-    ![Grup boyutu azalma politikası][img-asg-decrease-policy]
+    ![Group size decrease policy][img-asg-decrease-policy]
     
-15. Gerekirse Otomatik Ölçeklendirme Grubu için bildirimleri ve etiketleri yapılandırın veya değişikliklerin incelemesine geçin, **Review** düğmesine tıklayın.
+15. Gerekirse, Otomatik Ölçeklendirme Grubu için bildirimleri ve etiketleri yapılandırın veya **Review** butonuna tıklayarak değişiklikleri gözden geçirin.
 
-16. Tüm parametrelerin doğru bir şekilde belirtildiğinden emin olun, ardından Otomatik Ölçeklendirme Grubu oluşturma sürecini, **Otomatik Ölçeklendirme grubu oluştur** düğmesine tıklayarak başlatın.
+16. Tüm parametrelerin doğru belirtildiğinden emin olduktan sonra, **Create Auto Scaling group** butonuna tıklayarak Otomatik Ölçeklendirme Grubu oluşturma işlemini başlatın.
 
-Belirtilen sayıda örnek, Otomatik Ölçeklendirme Grubunun başarılı bir şekilde oluşturulmasının ardından otomatik olarak başlatılır.
+Belirtilen sayıda örnek, Otomatik Ölçeklendirme Grubu başarıyla oluşturulduktan sonra otomatik olarak başlatılacaktır.
 
-Otomatik Ölçeklendirme Grubunun düzgün bir şekilde oluşturulduğunu, grubun başlatılan örneklere sayısına bakarak ve bu verileri Wallarm Bulutuna bağlı filtreleme düğümleri sayısıyla karşılaştırarak kontrol edebilirsiniz.
+Otomatik Ölçeklendirme Grubunun doğru oluşturulduğunu, gruptaki başlatılan örnek sayısını görüntüleyip bu veriyi Wallarm Cloud’a bağlı filtreleme düğümleri sayısıyla karşılaştırarak kontrol edebilirsiniz.
 
-Bunu Wallarm Konsolu kullanarak yapabilirsiniz. Örneğin, eş zamanlı olarak çalışan iki örneğiniz varsa, Wallarm Konsolu bu numarayı ilgili Wallarm düğümü için **Düğümler** bölümünde gösterir.
+Bunu Wallarm Console kullanarak yapabilirsiniz. Örneğin, iki filtreleme düğümüne sahip örnek eşzamanlı çalışıyorsa, Wallarm Console ilgili Wallarm düğümü için **Nodes** bölümünde bu sayıyı gösterecektir.
 
-![Otomatik Ölçeklendirme Grubu durumunun kontrol edilmesi][img-check-asg-in-cloud]
+![Checking the Auto Scaling Group status][img-check-asg-in-cloud]
 
-Artık [yükleme paylaştırıcısının yaratılması ve yapılandırılması][link-doc-lb-guide] ile ilerleyebilirsiniz.
+Artık bir yük dengeleyicinin [oluşturulması ve yapılandırılması][link-doc-lb-guide] işlemine geçebilirsiniz.

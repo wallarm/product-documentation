@@ -1,30 +1,28 @@
-# Wallarm düğümü 2.18 ve daha alt sürümlerinden 4.8'e izin listeleri ve yasak listeleri taşıma
+# Wallarm node 2.18 ve daha eski sürümlerden 5.0'a Allowlist ve Denylist Geçişi
 
-Wallarm düğümü 3.x ile birlikte, IP adresi izin listesi ve yasak listesi yapılandırmasının yöntemi değiştirilmiştir. Bu belge, Wallarm düğümü 2.18 veya daha alt sürümünde yapılandırılmış izin listelerini ve yasak listeleri en son Wallarm düğümüne nasıl taşıyacağınızı anlatır.
+Wallarm node 3.x ile birlikte IP adresi allowlist ve denylist yapılandırma yöntemi değiştirildi. Bu belge, Wallarm node 2.18 veya daha eski sürümlerde yapılandırılmış allowlist ve denylist'lerin en son Wallarm node sürümüne nasıl taşınacağını anlatır.
 
-## Ne değişti?
+## Ne Değişti?
 
-IP adresi izin listesi ve yasak listesi yapılandırması aşağıdaki şekilde değiştirilmiştir:
+IP adresi allowlist ve denylist yapılandırması aşağıdaki gibi değiştirildi:
 
-* [`wallarm_acl_*`](/2.18/admin-en/configure-parameters-en/#wallarm_acl) NGINX direktifleri, [`acl`](/2.18/admin-en/configuration-guides/envoy/fine-tuning/#ip-denylisting-settings) Envoy parametreleri ve `WALLARM_ACL_*` çevre değişkenleri kullanımdan kaldırılmıştır. Artık, IP listeleri aşağıdaki şekilde yapılandırılmaktadır:
+* [`wallarm_acl_*`](/2.18/admin-en/configure-parameters-en/#wallarm_acl) NGINX direktifleri, [`acl`](/2.18/admin-en/configuration-guides/envoy/fine-tuning/#ip-denylisting-settings) Envoy parametreleri ve `WALLARM_ACL_*` ortam değişkenleri kullanımdan kaldırılmıştır. Artık IP listeleri aşağıdaki şekilde yapılandırılmaktadır:
+  
+  * IP allowlisting veya denylisting işlevselliğini etkinleştirmek için ek adımlar gerekmez. Wallarm node varsayılan olarak IP adresi listelerini Wallarm Cloud'dan indirir ve gelen istekleri işlerken indirilen verileri uygular.
+  * Engelleme sayfası ve engellenen isteğe döndürülen hata kodu, `wallarm_acl_block_page` yerine [`wallarm_block_page`](../admin-en/configure-parameters-en.md#wallarm_block_page) direktifi kullanılarak yapılandırılır.
+* Allowlist'e ve denylist'e eklenmiş IP adresleri Wallarm Console üzerinden yönetilir.
+* [Wallarm Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) IP adresleri varsayılan olarak allowlist'e eklenir. Scanner IP adreslerinin manuel olarak allowlist'e eklenmesi artık gerekmemektedir.
 
-    * IP izin listeleme veya yasak listeleme işlevselliğini etkinleştirmek için ek adımlar gerekmez. Wallarm düğümü, gelen istekleri işlerken indirilen verileri uygular hale getirerek varsayılan olarak Wallarm Bulutu'ndan IP adresleri listeleri indirir.
-    * Engellenen talebe yanıt olarak döndürülen hata kodu ve engelleme sayfası, `wallarm_acl_block_page` yerine [`wallarm_block_page`](../admin-en/configure-parameters-en.md#wallarm_block_page) direktifi kullanılarak yapılandırılır. 
-* İzin verilen ve yasaklanan IP adresleri Wallarm Konsol üzerinden yönetilir.
-* [Wallarm Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)ın IP adresleri varsayılan olarak izin listesine alınır. Tarayıcı IP adreslerinin manuel olarak izin listesine alınması artık gerekmemektedir.
+## Allowlist ve Denylist Yapılandırmasının Geçiş Prosedürü
 
-## İzin listesi ve yasak listesi yapılandırma taşıma prosedürü
-
-1. Filtreleme düğümü modüllerinizi en son versiyona kadar güncellediğinizi ve Wallarm hesabınız için yeni IP listeleri mantığını etkinleştirmelerini istemek amacıyla [Wallarm teknik desteğine](mailto:support@wallarm.com) bilgi verin.
-
-    Yeni IP listeleri mantığı etkinleştirildiğinde, lütfen Wallarm Konsolu'nu açın ve [**IP listeleri**](../user-guides/ip-lists/overview.md) bölümünün mevcut olduğunu doğrulayın. 
-2. Eğer çok kiracılı Wallarm düğümünü güncelliyorsanız, lütfen IP adresi yasak listesini ve çok kiracılı düğümü 2.18 veya daha alt sürümü senkronize etmek için kullanılan scriptleri silin. 3.2 sürümünden itibaren, [IP listelerinin](../user-guides/ip-lists/overview.md) manuel entegrasyonu artık gerekmemektedir.
-3. Filtreleme düğümü modüllerinizi, [uygun talimatlara](general-recommendations.md#update-process) uygun olarak, versiyon 4.8'e kadar güncelleyin.
-4. Wallarm Tarayıcısının IP adreslerinin izin listesini filtreleme düğümü yapılandırma dosyalarından kaldırın. Filtreleme düğümü 3.x ile birlikte, Tarayıcı IP adresleri varsayılan olarak izin listesine alınır. Önceki Wallarm düğüm sürümlerinde, izin listesi aşağıdaki yöntemlerle yapılandırılabilir:
-
-    * Tarayıcı IP adresleri için devre dışı bırakılmış filtrasyon modu (örneğin: [NGINX yapılandırması](/2.18/admin-en/scanner-ips-allowlisting/), [K8s sidecar contianer](/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/#step-1-creating-wallarm-configmap), [K8s Ingress controller](/2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses/)).
+1. [Wallarm technical support](mailto:support@wallarm.com)’a, filtreleme node modüllerini en son sürüme güncellediğinizi ve Wallarm hesabınız için yeni IP listeleri mantığının etkinleştirilmesini talep ettiğinizi bildirin.  
+   Yeni IP listeleri mantığı etkinleştirildiğinde, lütfen Wallarm Console’u açın ve [**IP lists**](../user-guides/ip-lists/overview.md) bölümünün mevcut olduğunu kontrol edin.
+2. Çok kiracılı (multi-tenant) Wallarm node güncelliyorsanız, IP adresi denylist senkronizasyonu için kullanılan scriptleri ve 2.18 veya daha eski sürümlerdeki multi-tenant node’ları silin. 3.2 sürümünden itibaren, [IP lists](../user-guides/ip-lists/overview.md) 'in manuel entegrasyonu artık gerekmemektedir. 
+3. Filtreleme node modüllerini [uygun talimatları](general-recommendations.md#update-process) izleyerek 5.0 sürümüne güncelleyin.
+4. Wallarm Scanner IP adreslerinin allowlist girişini filtreleme node yapılandırma dosyalarından kaldırın. Filtreleme node 3.x'ten itibaren, Scanner IP adresleri varsayılan olarak allowlist'e eklenmektedir. Önceki Wallarm node sürümlerinde, allowlist aşağıdaki yöntemlerle yapılandırılabiliyordu:
+    * Scanner IP adresleri için filtreleme modu devre dışı bırakılmıştır (örneğin: [NGINX configuration](/2.18/admin-en/scanner-ips-allowlisting/), [K8s sidecar container](/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/#step-1-creating-wallarm-configmap), [K8s Ingress controller](/2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses/)).
     * NGINX direktifi [`allow`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow).
-5. Filtreleme düğümü tarafından engellenmemesi gereken diğer IP adreslerini izin listesine almak için listelenen yöntemler kullanılıyorsa, lütfen bunları [Wallarm Konsolu'ndaki izin listesine](../user-guides/ip-lists/allowlist.md) taşıyın.
-6. Yasaklı IP'nin talepte bulunduğunda döndürülen engelleme sayfasını ve hata kodunu yapılandırmak için `wallarm_acl_block_page` direktifini kullanıyorsanız, lütfen direktif ismini `wallarm_block_page` olarak değiştirin ve değerini [talimatlara](../admin-en/configuration-guides/configure-block-page-and-code.md) uygun olarak güncelleyin.
-7. `docker run` komutlarından [NGINX](../admin-en/installation-docker-en.md) ve [Envoy](../admin-en/installation-guides/envoy/envoy-docker.md) çevre değişkenleri `WALLARM_ACL_*` silin.
-8. (Opsiyonel) Filtreleme düğümü yapılandırma dosyalarından NGINX direktiflerini [`wallarm_acl_*`](/2.18/admin-en/configure-parameters-en/#wallarm_acl) ve [`acl`](/2.18/admin-en/configuration-guides/envoy/fine-tuning/#ip-denylisting-settings) Envoy parametrelerini kaldırın.
+5. Eğer listelenen yöntemler filtreleme node tarafından engellenmemesi gereken diğer IP adreslerini allowlist'e eklemek için kullanılıyorsa, lütfen bu adresleri [Wallarm Console’daki allowlist](../user-guides/ip-lists/overview.md) bölümüne taşıyın.
+6. Eğer denylist'e eklenen IP'nin isteği başlatması durumunda döndürülen engelleme sayfası ve hata kodunu yapılandırmak için `wallarm_acl_block_page` direktifini kullandıysanız, lütfen bu direktif adını `wallarm_block_page` ile değiştirin ve [talimatları](../admin-en/configuration-guides/configure-block-page-and-code.md) izleyerek değerini güncelleyin.
+7. [NGINX](../admin-en/installation-docker-en.md) ve [Envoy](../admin-en/installation-guides/envoy/envoy-docker.md) ortam değişkenleri `WALLARM_ACL_*`'i `docker run` komutlarından kaldırın.
+8. (İsteğe Bağlı) Filtreleme node yapılandırma dosyalarından NGINX direktifleri [`wallarm_acl_*`](/2.18/admin-en/configure-parameters-en/#wallarm_acl) ve Envoy parametreleri [`acl`](/2.18/admin-en/configuration-guides/envoy/fine-tuning/#ip-denylisting-settings) kaldırın.

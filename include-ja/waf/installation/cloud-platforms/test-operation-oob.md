@@ -1,9 +1,9 @@
-1. Webサーバーやトラフィックをミラーリングするプロキシサーバーのアドレス、もしくはWallarmノードのマシンへのテスト[Path Traversal][ptrav-attack-docs]攻撃を含むリクエスト：
+1. 以下は、Webサーバまたはプロキシサーバ（トラフィックをミラーリングするもの）あるいはWallarmノードが配置されるマシンのいずれかのアドレスに対し、テスト[パストラバーサル][ptrav-attack-docs]攻撃を送信するリクエストです:
 
     ```
-    curl http://<アドレス>/etc/passwd
+    curl http://<ADDRESS>/etc/passwd
     ```
-2. [US Cloud](https://us1.my.wallarm.com/search) または [EU Cloud](https://my.wallarm.com/search)のWallarmコンソールを開き、**イベント**セクションで攻撃がリストに表示されていることを確認します。
-   ![インタフェースの攻撃][attacks-in-ui-image]
+2. Wallarm Console→**Attacks**セクションを[US Cloud](https://us1.my.wallarm.com/search)または[EU Cloud](https://my.wallarm.com/search)で開き、攻撃がリストに表示されることを確認します。
+    ![インターフェース内の攻撃][attacks-in-ui-image]
 
- Wallarm OOBはモニタリングモードで動作するため、Wallarmノードは攻撃をブロックせず、登録します。
+Wallarm OOBはモニタリングモードで動作するため、Wallarmノードは攻撃をブロックせず、記録します。

@@ -1,5 +1,4 @@
-Among all supported [Wallarm deployment options][platform], Wallarm deployment on Azure Container Instances using the Docker image is recommended in these **use cases**:
+すべてのサポートされた[Wallarm展開オプション][platform]の中で、Dockerイメージを使用したAzureContainerInstances上のWallarm展開は、次の**ユースケース**で推奨されます:
 
-1. If your applications are already containerized and running on Azure Container Instances and your team follows DevOps practices, using Wallarm Docker image and ECS could fit better into your CI/CD pipelines.
-1. Your application follows a microservices architecture. With Wallarm's NGINX-based Docker image you can get granular security at the level of individual services.
-1. Resource optimization is essential. The lightweight nature of Docker containers, including the NGINX-based Docker image, uses fewer resources than traditional VM-based deployments, allowing for more efficient use of system resources.
+* アプリケーションがマイクロサービスアーキテクチャを活用し、すでにコンテナ化されAzureContainerInstances上で稼働している場合。
+* 各コンテナに対して詳細な制御が必要な場合、Dockerイメージは最適です。従来のVMベースの展開で一般的に可能なものよりも高いレベルのリソース分離を実現します。

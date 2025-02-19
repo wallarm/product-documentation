@@ -1,0 +1,1 @@
+--8<-- "latest-ja/fast/poc/ci-mode-recording.md"

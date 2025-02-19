@@ -1,19 +1,19 @@
-# Yüksek Kullanılabilirlik Hususları (NGINX tabanlı Ingress denetleyicisi)
+# Yüksek Erişilebilirlik Hususları (NGINX tabanlı Ingress controller)
 
-Bu makale, Wallarm Ingress denetleyicisinin yüksek kullanılabilir olmasını ve arızaların önlenmesini sağlamak için yapılandırma önerileri sunmaktadır.
+Bu makale, Wallarm Ingress controller'ın yüksek erişilebilirlik sağlanması ve kesinti sürelerinden kaçınılması için yapılandırma önerilerini içerir.
 
---8<-- "../include-tr/ingress-controller-best-practices-intro.md"
+--8<-- "../include/ingress-controller-best-practices-intro.md"
 
-## Yapılandırma önerileri
+## Yapılandırma Önerileri
 
-Aşağıdaki öneriler eksik-kritik (üretim) ortamlar için geçerlidir.
+Aşağıdaki öneriler, kritik (üretim) ortamlar için geçerlidir.
 
-* Birden fazla Ingress denetleyici pod örneği kullanın. Bu davranış, `values.yaml` dosyasındaki `controller.replicaCount` özelliği kullanılarak kontrol edilir. Örneğin:
+* Birden fazla Ingress controller pod örneği kullanın. Bu davranış, `values.yaml` dosyasındaki `controller.replicaCount` özniteliği kullanılarak kontrol edilir. Örneğin:
     ```
     controller:
       replicaCount: 2
     ```
-* Kubernetes kümesini, Ingress denetleyici podları farklı düğümlere yerleştirmeye zorlayın: Bu, bir düğme arızası durumunda Ingress hizmetinin direncini artırır. Bu davranış, `values.yaml` dosyasında yapılandırılan Kubernetes pod anti-affinity özelliği kullanılarak kontrol edilir. Örneğin:
+* Kubernetes kümesinin Ingress controller pod'larını farklı düğümlere yerleştirmesini zorlayın: bu, bir düğüm arızası durumunda Ingress servisinin dayanıklılığını artıracaktır. Bu davranış, `values.yaml` dosyasında yapılandırılan Kubernetes pod anti-affinity özelliği kullanılarak kontrol edilir. Örneğin:
     ```
     controller:
       affinity:
@@ -27,7 +27,7 @@ Aşağıdaki öneriler eksik-kritik (üretim) ortamlar için geçerlidir.
                   - nginx-ingress
             topologyKey: "kubernetes.io/hostname"
     ```
-* Beklenmedik trafik dalgalanmalarına tabi olan veya [Kubernetes'in yatay pod otomatik ölçeklendirme (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) özelliğinin kullanımını haklı çıkaran diğer koşullar bulunan kümelerde, bu özellik `values.yaml` dosyasında aşağıdaki örneği kullanarak etkinleştirilebilir:
+* Beklenmeyen trafik artışlarına veya [Kubernetes's horizontal pod autoscaling (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) özelliğini kullanmayı gerektirebilecek diğer koşullara maruz kalan kümelerde, `values.yaml` dosyasında aşağıdaki örnek kullanılarak etkinleştirilebilir:
     ```
     controller:
       autoscaling:
@@ -37,7 +37,7 @@ Aşağıdaki öneriler eksik-kritik (üretim) ortamlar için geçerlidir.
         targetCPUUtilizationPercentage: 50
         targetMemoryUtilizationPercentage: 50
     ```
-* En az iki Wallarm'ın postanalytics hizmeti örneğini Tarantool veritabanı temelinde çalıştırın. Bu podlar isimlerinde `ingress-controller-wallarm-tarantool` içerir. Bu davranış, `values.yaml` dosyasındaki `controller.wallarm.tarantool.replicaCount` özelliği kullanılarak kontrol edilir. Örneğin: 
+* Tarantool veritabanına dayalı Wallarm'ın postanalytics servisi örneklerinden en az ikisini çalıştırın. Bu pod'lar isimlerinde `ingress-controller-wallarm-tarantool` içerir. Davranış, `values.yaml` dosyasında `controller.wallarm.tarantool.replicaCount` özniteliği kullanılarak kontrol edilir. Örneğin:
     ```
     controller:
       wallarm:
@@ -45,17 +45,17 @@ Aşağıdaki öneriler eksik-kritik (üretim) ortamlar için geçerlidir.
           replicaCount: 2
     ```
 
-## Yapılandırma işlemi
+## Yapılandırma Prosedürü
 
-Belirtilen yapılandırmaları ayarlamak için, `helm install` ve `helm upgrade` komutlarının `--set` seçeneğini kullanmanız önerilir. Örneğin:
+Liste halinde belirtilen yapılandırmaları ayarlamak için, `helm install` ve `helm upgrade` komutlarında `--set` seçeneğinin kullanılması önerilir. Örneğin:
 
-=== "Ingress denetleyici kurulumu"
+=== "Ingress controller kurulumu"
     ```bash
     helm install --set controller.replicaCount=2 <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
-    Doğru Ingress denetleyici kurulumu için [diğer parametrelere](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart) de ihtiyaç vardır. Lütfen onları da `--set` seçeneğinde geçirin.
-=== "Ingress denetleyici parametrelerinin güncellenmesi"
+    Doğru Ingress controller kurulumu için gerekli olan [diğer parametreler](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart) de mevcuttur. Lütfen bunları da `--set` seçeneğinde belirtin.
+=== "Ingress controller parametrelerinin güncellenmesi"
     ```bash
     helm upgrade --reuse-values --set controller.replicaCount=2 <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```

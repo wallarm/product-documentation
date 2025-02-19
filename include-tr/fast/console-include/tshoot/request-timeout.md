@@ -1,4 +1,4 @@
 ```
 Yükleniyor...
-[hata] Yeni örnek oluşturulamıyor - İstek Süresi Doldu
+[hata] Yeni örnek oluşturulamıyor - İstek Zaman Aşımı
 ```

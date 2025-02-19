@@ -1,3 +1,4 @@
+```markdown
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 [blocking-page-instr]:              ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [logging-instr]:                    ../../admin-en/configure-logging.md
@@ -9,147 +10,144 @@
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                     ../../user-guides/ip-lists/graylist.md
+[graylist-docs]:                     ../../user-guides/ip-lists/overview.md
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 [envoy-process-time-limit-docs]:    ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
 [envoy-process-time-limit-block-docs]: ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
+[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
+[api-policy-enf-docs]:              ../../api-specification-enforcement/overview.md
 
-# Docker NGINXもしくはEnvoyベースイメージのEOLアップグレード
+# 終了サポートのDocker NGINXベースイメージのアップグレード
 
-これらの指示事項は、動作している Docker NGINX もしくは Envoy ベースのイメージ (バージョン 3.6 と以前のもの) をバージョン 4.6 にアップグレードするための手順を説明しています。
+本手順では、稼働中の終了サポートとなったDocker NGINXベースイメージ（バージョン3.6以下）をバージョン5.0にアップグレードするための手順を説明します。
 
---8<-- "../include-ja/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-latest.md"
 
-## Step 1: Wallarm テクニカルサポートにフィルタリングノードモジュールをアップグレードすることを伝える (ノード2.18以下をアップグレードする場合のみ)
+## ステップ1: フィルタリングノードモジュールのアップグレードについてWallarm技術サポートに連絡する（ノード2.18以下の場合のみ）
 
-ノード2.18以下をアップグレードする場合は、[Wallarmテクニカルサポート](mailto:support@wallarm.com)にフィルタリングノードモジュールを4.6までアップグレードすると通知し、あなたの Wallarm アカウント用の新しい IP リストロジックを有効にするよう依頼してください。新しい IP リストロジックが有効になったら、Wallarm Console の [**IP lists**](../../user-guides/ip-lists/overview.md) セクションが利用可能であることを確認してください。
+ノード2.18以下をアップグレードする場合、[Wallarm技術サポート](mailto:support@wallarm.com)に対して、フィルタリングノードモジュールをバージョン5.0までアップグレードする旨と、Wallarmアカウントに新しいIPリストロジックを有効にするよう依頼してください。新しいIPリストロジックが有効になった場合、Wallarm Consoleの[**IP lists**](../../user-guides/ip-lists/overview.md)セクションが利用可能であることを確認してください。
 
-## Step 2: アクティブな脅威確認モジュールを無効化する (ノード2.16以下をアップグレードする場合のみ)
+## ステップ2: Threat Replay Testingモジュールの無効化（ノード2.16以下の場合のみ）
 
-Wallarm ノード 2.16 以下をアップグレードする場合、Wallarm Console → **Vulnerabilities** → **Configure** で [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) モジュールを無効にしてください。
+ノード2.16以下をアップグレードする場合、Wallarm Console → **Vulnerabilities** → **Configure**にて[Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing)モジュールを無効化してください。
 
-モジュールの動作は、アップグレードプロセス中に [False Positives](../../about-wallarm/protecting-against-attacks.md#false-positives) を引き起こす可能性があります。モジュールを無効にすることで、このリスクを最小限に抑えられます。
+モジュールの動作により、アップグレードプロセス中に[false positives](../../about-wallarm/protecting-against-attacks.md#false-positives)が発生する可能性があります。モジュールを無効化することで、このリスクを最小限に抑えます。
 
-## Step 3: API ポートをアップデートする
+## ステップ3: APIポートの更新
 
---8<-- "../include-ja/waf/upgrade/api-port-443.md"
+--8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Step 4: 更新されたフィルタリングノードイメージをダウンロードする
+## ステップ4: 更新されたフィルタリングノードイメージのダウンロード
 
-=== "NGINX-based image"
-    ``` bash
-    docker pull wallarm/node:4.6.2-1
-    ```
-=== "Envoy-based image"
-    ``` bash
-    docker pull wallarm/envoy:4.6.2-1
-    ```
+``` bash
+docker pull wallarm/node:5.3.0
+```
 
-## Step 5: Wallarm Cloudへのトークンベースの接続に切り替える
+## ステップ5: Wallarm Cloudへのトークンベース接続へ切り替える
 
-バージョン4.xのリリースに伴い、コンテナがWallarm Cloudに接続する手法が以下のようにアップグレードされました：
+コンテナをWallarm Cloudに接続する手法が以下のようにアップグレードされました。
 
-* [「メールアドレスとパスワード」を使用した手法は廃止されました](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens)。この手法では、コンテナは`DEPLOY_USER`と`DEPLOY_PASSWORD`の変数に正しい資格情報が渡された状態で起動すると自動的にWallarm Cloudに登録されました。
-* トークンベースのアプローチが導入されました。コンテナがクラウドに接続するには、Wallarm Console UIからコピーしたWallarmのノードトークンを含む`WALLARM_API_TOKEN`変数を使用してコンテナを実行します。
+* [「email and password」ベースの手法は廃止されました](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-api-tokens)。従来、この手法では、`DEPLOY_USER`および`DEPLOY_PASSWORD`変数に正しい認証情報を渡すことでコンテナ起動時に自動的にWallarm Cloudへノードが登録されました。
+* トークンベースの手法が導入されました。コンテナをCloudに接続するには、Wallarm Console UIからコピーしたWallarm APIトークンを含む`WALLARM_API_TOKEN`変数を使用してコンテナを起動してください。
 
-新しいアプローチを使用してイメージ4.6を実行することを推奨します。「メールアドレスとパスワード」を使用したアプローチは将来的なリリースで削除される予定であるため、それまでに移行してください。
+イメージ5.0の実行には新しい手法の使用を推奨します。「email and password」ベースの手法は今後のリリースで削除されるため、早めに移行してください。
 
-新しいWallarmノードを作成し、そのトークンを取得するには：
+新しいWallarmノードの作成とトークンの取得方法:
 
-1. [US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)のWallarm Console → **Nodes**を開き、**Wallarm node**タイプのノードを作成します。
-
-    ![Wallarm ノードの作成](../../images/user-guides/nodes/create-cloud-node.png)
+1. Wallarm Console → **Settings** → **API Tokens**を開き、**Deploy**ロールを持つトークンを生成します。
 1. 生成されたトークンをコピーします。
 
-## Step 6: 前のバージョンのWallarmノードから4.6への許可リストと拒否リストを移行する (ノード2.18以下をアップグレードする場合のみ)
+## ステップ6: 以前のWallarmノードバージョンからのallowlistおよびdenylistの移行（ノード2.18以下の場合のみ）
 
-ノード2.18以下をアップグレードする場合は、前のバージョンのWallarmノードから4.6までの許可リストと拒否リストの設定を [移行](../migrate-ip-lists-to-node-3.md) します。
+ノード2.18以下をアップグレードする場合、以前のWallarmノードバージョンからのallowlistおよびdenylistの設定をバージョン5.0へ[移行](../migrate-ip-lists-to-node-3.md)してください。
 
-## Step 7: 非推奨の設定オプションから切り替える
+## ステップ7: 非推奨の設定オプションからの切り替え
 
-以下の非推奨を設定オプションがあります：
+以下の非推奨の設定オプションがあります:
 
-* `WALLARM_ACL_ENABLE` 環境変数は非推奨となっています。IPリストを新しいノードバージョンに [移行](../migrate-ip-lists-to-node-3.md) した場合、この変数を `docker run` コマンドから削除してください。
-* 次の NGINX ディレクティブが変更されました：
+* `WALLARM_ACL_ENABLE`環境変数は非推奨です。IPリストが新しいノードバージョンに[移行](../migrate-ip-lists-to-node-3.md)された場合、この変数を`docker run`コマンドから削除してください。
+* 以下のNGINXディレクティブが名称変更されました:
 
     * `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
     * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
     * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
     * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
-    ディレクティブの名前だけを変更しました、そのロジックはそのままです。以前の名前のディレクティブはすぐに非推奨となる予定なので、それ以前に名前を変更することをお勧めします。
+    ディレクティブの名称のみ変更され、ロジックは同一です。旧名称のディレクティブはまもなく非推奨となりますので、早めに名称を変更することを推奨します。
     
-    マウントされた設定ファイルで以前の名前のディレクティブが明示的に指定されているかどうかを確認してください。指定されている場合は、それらをリネームしてください。
-* `wallarm_request_time` [ログ変数](../../admin-en/configure-logging.md#filter-node-variables) が `wallarm_request_cpu_time` にリネームされました。
+    マウントされた設定ファイルに旧名称のディレクティブが明示的に指定されている場合、名称を変更してください。
+* `wallarm_request_time`という[ログ変数](../../admin-en/configure-logging.md#filter-node-variables)が`wallarm_request_cpu_time`に変更されました。
 
-    変数名だけを変更しました、そのロジックはそのままです。しかし、以前の名前も一時的にサポートされていますが、それでも変数の名前を変更することを推奨します。
-* 次の Envoy パラメータがリネームされました：
+    変数名のみ変更され、ロジックは同一です。旧名称は一時的にサポートされていますが、名称変更を推奨します。
+
+<!-- * 以下のEnvoyパラメータが名称変更されました:
 
     * `lom` → [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
     * `instance` → [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
-    * `tsets` セクション → `rulesets`、そしてそれに対応する `tsN` エントリーはこのセクションで → `rsN`
+    * `tsets`セクション → `rulesets`、およびこのセクション内の`tsN`エントリ → `rsN`
     * `ts` → [`ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
     * `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
 
-    パラメータの名前だけを変更しました、そのロジックはそのままです。以前の名前のパラメータはすぐに非推奨となる予定なので、それ以前に名前を変更することをお勧めします。
+    パラメータ名のみ変更され、ロジックは同一です。旧名称のパラメータはまもなく非推奨となりますので、早めに名称を変更することを推奨します。
     
-    マウントされた設定ファイルで以前の名前のパラメータが明示的に指定されているかどうか確認してください。指定されている場合は、それらをリネームしてください。
+    マウントされた設定ファイルに旧名称のパラメータが明示的に指定されている場合、名称を変更してください。 -->
 
-## Step 8: Wallarmブロッキングページを更新する (NGINXベースイメージをアップグレードする場合)
+## ステップ8: Wallarmブロッキングページの更新（NGINXベースイメージの場合）
 
-新しいノードバージョンでは、Wallarmのサンプルブロッキングページが [変更されました](what-is-new.md#new-blocking-page)。ページ上のロゴとサポートメールはデフォルトで空になっています。
+新しいノードバージョンでは、Wallarmのサンプルブロッキングページが[変更](what-is-new.md#new-blocking-page)されました。ページ上のロゴおよびサポートメールアドレスはデフォルトで空になっています。
 
-Dockerコンテナが設定されていたブロックリクエストに対して`&/usr/share/nginx/html/wallarm_blocked.html`ページを返すように設定されていた場合は、次のように設定を変更します：
+Dockerコンテナがブロックされたリクエストに対して`&/usr/share/nginx/html/wallarm_blocked.html`ページを返すように設定されている場合、以下の手順で設定を変更してください:
 
-1. [サンプルページの新しいバージョンをコピーしてカスタマイズします](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)。
-1. 次のステップで新しいDockerコンテナに [カスタマイズされたページとNGINX設定ファイルをマウントします](../../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code)。
+1. 新しいサンプルページの[コピーとカスタマイズ](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)を行います。
+1. カスタマイズしたページおよびNGINX設定ファイルを、新しいDockerコンテナに[マウント](../../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code)してください。
 
-## Step 9: `overlimit_res` 攻撃検出設定をディレクティブからルールへ転送する
+## ステップ9: 最近のアーキテクチャ変更の確認（NGINXベースのDockerイメージの場合）
 
---8<-- "../include-ja/waf/upgrade/migrate-to-overlimit-rule-docker.md"
+最新のアップデートにより、特定のファイルのパス変更に起因して、特にコンテナ起動時にカスタム設定ファイルをマウントしているユーザーに影響を及ぼす[アーキテクチャの変更](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image)が導入されました。新しいイメージの正しい設定および使用方法を確保するため、これらの変更点に精通してください。
 
-## Step 10: 動作しているコンテナを停止する
+## ステップ10: `overlimit_res`攻撃検出設定をディレクティブからルールへ移行する
+
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-docker.md"
+
+## ステップ11: 稼働中のコンテナを停止する
 
 ```bash
 docker stop <RUNNING_CONTAINER_NAME>
 ```
 
-## Step 11: 更新されたイメージを使用してコンテナを実行する
+## ステップ12: 更新されたイメージを使用してコンテナを起動する
 
-更新されたイメージを使用してコンテナを実行します。 以前のイメージバージョンを実行するときに渡された同じ設定パラメータを渡すことができますが、前のステップでリストされたパラメータを除きます。
+必要に応じてマウントファイルのパスの調整を行い、更新されたイメージを使用してコンテナを起動してください。これは[最新のイメージに関する変更](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image)に基づくものです。
 
-更新されたイメージを使用してコンテナを実行するための２つのオプションがあります：
+更新されたイメージを使用してコンテナを起動する方法は2通りあります:
 
-* **環境変数を使用して**基本的なフィルタリングノード設定を指定する
-    * [NGINX ベースの Docker コンテナに対する指示事項 →](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
-    * [Envoy ベースの Docker コンテナに対する指示事項 →](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)
-* **マウンティドの設定ファイルに含まれる**詳細なフィルタリングノード設定を指定する
-    * [NGINX ベースの Docker コンテナに対する指示事項 →](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
-    * [Envoy ベースの Docker コンテナに対する指示事項 →](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
+* [環境変数を利用する場合](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
+* [マウントされた設定ファイルを利用する場合](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
-## Step 12: Wallarm ノードのフィルタリングモード設定を最新バージョンでリリースされた変更に合わせて調整する (ノード2.18以下をアップグレードする場合のみ)
+## ステップ13: 最新バージョンでリリースされた変更に合わせてWallarmノードのフィルトレーションモード設定を調整する（ノード2.18以下の場合のみ）
 
-1. 以下にリストされている設定の期待される動作が['off'と'monitoring'フィルタリングモードの変更したロジック](what-is-new.md#filtration-modes)に対応していることを確認します：
-      * 環境変数[`WALLARM_MODE`](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)またはNGINXベースのDockerコンテナのディレクティブ[`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * 環境変数[`WALLARM_MODE`](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)またはEnvoyベースのDockerコンテナのディレクティブ[`mode`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
-      * [Wallarm Consoleで設定された一般的なフィルタリングルール](../../admin-en/configure-wallarm-mode.md)
-      * [Wallarm Consoleで設定された低レベルのフィルタリングルール](../../admin-en/configure-wallarm-mode.md)
-2. 期待される動作が変更されたフィルタリングモードのロジックに対応していない場合は、以下の [指示事項](../../admin-en/configure-wallarm-mode.md) を使用して、フィルタリングモードの設定をリリースされた変更に合わせて調整してください。
+1. 以下の設定項目について、期待される動作が[offおよびmonitoringフィルトレーションモードの変更されたロジック](what-is-new.md#filtration-modes)に対応していることを確認してください:
+      * Dockerコンテナの環境変数[`WALLARM_MODE`](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)またはNGINXベースコンテナのディレクティブ[`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
+      <!-- * Envoyベースコンテナの環境変数[`WALLARM_MODE`](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)またはディレクティブ[`mode`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) -->
+      * Wallarm Consoleにて設定された[一般的なフィルトレーションルール](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)
+      * Wallarm Consoleにて設定された[エンドポイント対象フィルトレーションルール](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
+2. 期待される動作と変更後のフィルトレーションモードのロジックが一致しない場合、[手順](../../admin-en/configure-wallarm-mode.md)に従いフィルトレーションモード設定を調整してください。
 
-## Step 13: フィルタリングノードの動作をテストする
+## ステップ14: フィルタリングノードの動作をテストする
 
---8<-- "../include-ja/waf/installation/test-after-node-type-upgrade.md"
+--8<-- "../include/waf/installation/test-after-node-type-upgrade.md"
 
-## Step 14: 前のバージョンのフィルタリングノードを削除する
+## ステップ15: 以前バージョンのフィルタリングノードを削除する
 
-バージョン4.6のデプロイされたイメージが正常に動作することが確認できたら、Wallarm Console → **Nodes**セクションで前のバージョンのフィルタリングノードを削除できます。
+イメージ5.0が正しく動作していることを確認したら、Wallarm Console → **Nodes**セクションにて以前のフィルタリングノードを削除してください。
 
-## Step 15: アクティブな脅威確認モジュールを再度有効にする (ノード2.16以下をアップグレードする場合のみ)
+## ステップ16: Threat Replay Testingモジュールの再有効化（ノード2.16以下の場合のみ）
 
-[アクティブな脅威確認モジュールの設定に関する推奨事項](../../vulnerability-detection/threat-replay-testing/setup.md) を確認し、必要に応じて再度有効にしてください。
+[Threat Replay Testingモジュールの設定に関する推奨事項](../../vulnerability-detection/threat-replay-testing/setup.md)を確認し、必要に応じて再度有効化してください。
 
-しばらくしてから、モジュールの動作が偽陽性を引き起こさないことを確認してください。偽陽性が発見された場合は、[Wallarm テクニカルサポート](mailto:support@wallarm.com)にご連絡ください。
+しばらく運用し、モジュールの動作がfalse positivesを引き起こさないことを確認してください。false positivesが発生した場合は、[Wallarm技術サポート](mailto:support@wallarm.com)へご連絡ください。
+```

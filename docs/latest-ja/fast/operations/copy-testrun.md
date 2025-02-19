@@ -1,3 +1,4 @@
+```markdown
 [doc-tr-information]:   internals.md
 [doc-testrecord]:       internals.md#test-record
 [doc-state-description]:  check-testrun-status.md
@@ -7,38 +8,37 @@
 [img-similar-tr-item]:              ../../images/fast/operations/common/copy-testrun/create-similar-testrun-item.png
 [img-similar-tr-sidebar]:           ../../images/fast/operations/common/copy-testrun/create-similar-testrun-sidebar.png
 
-#   テストランのコピー
+# テストランのコピー
 
-!!! info "必要なデータ"
-    API呼び出しでテストランをコピーするためには、以下のデータが必要です:
+!!! info "必須データ"
+    APIコールでテストランをコピーする場合、以下の情報が必要です:
     
-    * トークン
-    * 既存のテストレコード識別子
+    * token
+    * 既存のtest record識別子
 
-    Webインターフェースでテストランをコピーするためには、Wallarmアカウントが必要です。
+    Webインターフェースでテストランをコピーする場合、Wallarmアカウントが必要です。
 
-    トークンとテストレコードに関する詳細な情報は、[こちら][doc-tr-information]から取得できます。
+    tokenやtest recordの詳細な情報については[こちら][doc-tr-information]を参照してください。
     
-    この文書では以下の値を例として使用します:
+    本ドキュメントでは以下の値を例として使用します:
 
-    * トークンとして `token_Qwe12345`
-    * テストレコードとして `rec_0001` 
+    * tokenとして`token_Qwe12345`
+    * test recordとして`rec_0001`
 
-テストランがコピーされる際、既存の[テストレコード][doc-testrecord]が再利用されます。
+テストランをコピーする際、既存の[test record][doc-testrecord]が再利用されます。
 
-このテストラン作成方法は、すでに記録されているベースラインリクエストを使用して対象アプリケーションをテストする必要がある場合に使用する必要があります。
+事前に記録されたベースラインリクエストを使用してターゲットアプリケーションをテストする必要がある場合、このテストラン作成方法を使用してください。
 
+## テストランコピーのルール
 
-##  テストランのコピーのルール
-
-テストランをコピーする際の考慮点は以下の通りです:
-* コピーされたテストランで使用される任意のテストポリシーを指定することができます。このポリシーは、オリジナルのテストランで使用されたポリシーと異なる場合があります。
-* 次の状態のテストランをコピーすることができます: `failed`, `interrupted`, `passed`, `paused`, `running`. これらのテストラン状態の詳細は[こちら][doc-state-description]で説明されています。
-* ベースラインリクエストがない空のテストレコードを使用してテストランをコピーすることはできません。
-* ベースラインリクエストがテストレコードに記録されている場合、このレコードはテストランのコピーには使用できません。
+テストランをコピーする際に留意すべき点は以下の通りです:
+* コピーされたテストランに対して任意のテストポリシーを指定できます。このポリシーは元のテストランで使用されたポリシーと異なる場合があります。
+* コピー可能なテストランの状態は`failed`、`interrupted`、`passed`、`paused`、`running`です。これらのテストラン状態の説明は[こちら][doc-state-description]に記載されています。
+* ベースラインリクエストが一切含まれていない空のtest recordを使用してテストランをコピーすることはできません。
+* test recordにベースラインリクエストが記録されている場合、そのrecordを使用してテストランをコピーすることはできません。
  
-    未完のテストレコードに基づいてテストランをコピーしようとすると、APIサーバから`400`のエラーコード(`Bad Request`)と下記のようなエラーメッセージが返されます:
-
+    未完了のtest recordに基づいてテストランをコピーしようとすると、APIサーバーから`400`エラーコード（Bad Request）と以下に類似したエラーメッセージが返されます:
+    
     ```
     {
         "status": 400,
@@ -51,54 +51,54 @@
     }
     ```
     
-    録画プロセスがストップされていない限り、Webインターフェースからテストランをコピーすることはできません。
+    記録プロセスが停止していない限り、Webインターフェースからテストランをコピーすることはできません。
 
-##  API経由でのテストランのコピー
+## APIによるテストランのコピー
 
-テストランをコピーし実行するには、URL `https://us1.api.wallarm.com/v1/test_run` にPOSTリクエストを送信します:
+テストランをコピーして実行するには、POSTリクエストをURL `https://us1.api.wallarm.com/v1/test_run` に送信してください:
 
---8<-- "../include-ja/fast/operations/api-copy-testrun.md"
+--8<-- "../include/fast/operations/api-copy-testrun.md"
 
-APIサーバへのリクエストが成功すると、サーバの応答が表示されます。応答には以下の有用な情報が含まれています:
+APIサーバーへのリクエストが成功すると、サーバーからの応答が返されます。応答には以下の有用な情報が含まれます:
 
-1.  `id`: テストランのコピーの識別子 (例えば、 `tr_1234`).
+1.  `id`: テストランコピーの識別子（例: `tr_1234`）。
     
-    テストラン実行状態を制御するためには`id`パラメータ値が必要となります。
+    テストランの実行状態を制御するには、`id`パラメータの値が必要です。
     
-2.  `state`: テストランの状態.
+2.  `state`: テストランの状態。
     
-    新しくコピーされたテストランは `running` 状態にあります。
+    新たにコピーされたテストランは`running`状態になります。
     
-    `state` パラメータの全ての値についての詳細な説明は[こちら][doc-state-description]で見つけることができます。
+    `state`パラメータの全ての値に関する詳細な説明は[こちら][doc-state-description]に記載されています。
 
-    
-##  Webインターフェース経由でのテストランのコピー    
+## Webインターフェースによるテストランのコピー    
 
-WallarmポータルのWebインターフェースを通してテストランをコピーし実行するには以下の手順を実行します:
-1.  Wallarmアカウントでポータルにログインし、”Test runs"タブに移動します。
-2.  コピーするテストランを選択し、テストランの右側にある操作メニューを開きます。
-3.  "Create similar testrun"メニューエントリを選択します。 
+WallarmポータルのWebインターフェースからテストランをコピーして実行するには、以下の手順を行ってください:
+1.  Wallarmアカウントでポータルにログインし、次に「Test runs」タブに移動してください。
+2.  コピーするテストランを選択し、そのテストランの右側にあるアクションメニューを開いてください。
+3.  「Create similar testrun」メニュー項目を選択してください。 
 
-    ![“Create similar test run” menu entry][img-similar-tr-item]
+    ![The “Create similar test run” menu entry][img-similar-tr-item]
 
-4.  開いたサイドバーで以下の項目を選択します:
-    * テストランのコピーの名前
-    * テストランのコピーで使用するポリシー
-    * テストランのコピーが実行されるノード
+4.  開いたサイドバーで以下の項目を選択してください:
+    * テストランコピーの名前
+    * テストランコピーに使用するポリシー
+    * テストランコピーを実行するノード
     
-    ![“Test run” sidebar][img-similar-tr-sidebar]
+    ![The “Test run” sidebar][img-similar-tr-sidebar]
     
-    必要に応じて"Advanced settings"を選択することで追加の設定を行うことができます:
+    必要に応じて、「Advanced settings」を選択することで追加の設定を行うことができます:
     
---8<-- "../include-ja/fast/test-run-adv-settings.md"
+--8<-- "../include/fast/test-run-adv-settings.md"
     
-5.  ”Use baselines from `<the name of the test record to reuse>`” オプションがチェックされていることを確認します。
+5.  「Use baselines from `<the name of the test record to reuse>`」オプションにチェックが入っていることを確認してください。
 
-    !!! info "テストレコードの再利用"
-        オプションに表示されるのはテストランの名前ではなく、テストレコードの名前であることに注意してください。
+    !!! info "Test Recordの再利用"
+        オプションに表示されるのはテストラン名ではなく、test recordの名前である点に注意してください。
         
-        テストレコードの名前はしばしば省略される: 例えば、[テストランが作成される][doc-create-testrun]際に`test_record_name` パラメータが指定されていない場合、テストレコードの名前はテストランの名前と同じです。
+        test record名が省略される場合もあります: 例えば、[テストランが作成される際][doc-create-testrun]に`test_record_name`パラメータが指定されなかった場合、test recordの名前はテストランの名前と同一になります。
         
-        上記の図は、過去のテストラン(`DEMO TEST RUN`)で使用されたテストレコード(`MY TEST RECORD`)の名前がテストランの名前と等しくないテストレコードを言及しているコピーのダイアログを示しています。 
+        上記の図は、過去にtest recordが使用されたテストラン（`DEMO TEST RUN`テストランが使用した`MY TEST RECORD`）とは異なる名前のtest recordが記載されているコピーのダイアログを示しています。
 
-6.  "Create and run"ボタンをクリックしてテストランを実行します。
+6.  「Create and run」ボタンをクリックしてテストランを実行してください。
+```

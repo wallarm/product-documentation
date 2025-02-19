@@ -5,67 +5,67 @@
 [link-wl-console-users-us]:        https://us1.my.wallarm.com/settings/users
 [link-wl-console-users-eu]:        https://my.wallarm.com/settings/users
 
-[anchor-token]:                      #フィルタリングノードのトークンを使用して接続します
-[anchor-credentials]:                      #あなたのメールとパスワードで接続します
+[anchor-token]:                      #connecting-using-the-filtering-node-token
+[anchor-credentials]:                      #connecting-using-your-email-and-password
 
-フィルタリングノードはWallarmクラウドと対話します。ノードをクラウドに接続する方法は2つあります：
-* [フィルタリングノードのトークンを使用して接続します][anchor-token]
-* [あなたのWallarmアカウントのメールとパスワードで接続します][anchor-credentials]
+フィルタリングノードはWallarm Cloudと連携します。ノードをCloudに接続する方法は二通りあります:
+* [フィルタリングノードトークンを使用した接続][anchor-token]
+* [Wallarmアカウントのメールアドレスとパスワードを使用した接続][anchor-credentials]
 
-!!! info "必要なアクセス権"
-    あなたのWallarmアカウントに**管理者**または**デプロイ**の役割が有効であり、二段階認証が無効になっていることを確認してください。これにより、フィルタリングノードをクラウドに接続することができます。
+!!! info "必要なアクセス権限"
+    Wallarmアカウントに**Administrator**または**Deploy**ロールが有効であり、二要素認証が無効になっていることを確認してください。これにより、フィルタリングノードをCloudに接続できるようになります。
 
-    Wallarmコンソールのユーザーアカウントリストを参照して上記のパラメータを確認することができます。
+    上記のパラメータは、Wallarm Consoleのユーザーアカウント一覧から確認できます。
+    
+    * <https://my.wallarm.com/>を利用している場合は、[こちらのリンク][link-wl-console-users-eu]に進み、ユーザー設定を確認してください。
+    * <https://us1.my.wallarm.com/>を利用している場合は、[こちらのリンク][link-wl-console-users-us]に進み、ユーザー設定を確認してください。
+    ![Wallarm Consoleのユーザー一覧][img-wl-console-users]
 
-    * <https://my.wallarm.com/>を使用している場合は、[こちらのリンク][link-wl-console-users-eu]に進んでユーザー設定を確認してください。
-    * <https://us1.my.wallarm.com/>を使用している場合は、[こちらのリンク][link-wl-console-users-us]に進んでユーザー設定を確認してください。
-    ![Wallarm consoleのユーザーリスト][img-wl-console-users]
+#### フィルタリングノードトークンを使用した接続
 
-#### フィルタリングノードのトークンを使用して接続します
+トークンを使用してノードをCloudに接続するには、以下の手順に従ってください:
 
-トークンを使用してノードをクラウドに接続するには、以下の手順を実行してください：
-
-1. Wallarmコンソールの**Nodes**セクションで新しいノードを作成します。
+1. Wallarm Consoleの**Nodes**セクションで新規ノードを作成します。
     1. **Create new node**ボタンをクリックします。
     2. **Wallarm node**を作成します。
 2. ノードトークンをコピーします。
-3. 仮想マシンで`addcloudnode`スクリプトを実行します：
-
+3. 仮想マシン上で`addcloudnode`スクリプトを実行します:
+    
     !!! info
-        使用しているクラウドに応じて実行するスクリプトを選択する必要があります。
+        利用中のCloudに応じて実行するスクリプトを選択してください。
         
-        * <https://us1.my.wallarm.com/>を使用している場合は、以下の**US Cloud**タブからスクリプトを実行します。
-        * <https://my.wallarm.com/>を使用している場合は、以下の**EU Cloud**タブからスクリプトを実行します。
+        * <https://us1.my.wallarm.com/>を利用している場合は、以下の**US Cloud**タブからスクリプトを実行してください。
+        * <https://my.wallarm.com/>を利用している場合は、以下の**EU Cloud**タブからスクリプトを実行してください。
     
     === "US Cloud"
-        ``` bash
+        ```bash
         sudo /usr/share/wallarm-common/addcloudnode -H us1.api.wallarm.com
         ```
     === "EU Cloud"
-        ``` bash
+        ```bash
         sudo /usr/share/wallarm-common/addcloudnode
         ```
         
-4. クリップボードからフィルタリングノードのトークンを貼り付けます。
+4. クリップボードからフィルタリングノードトークンを貼り付けます。
 
-あなたのノードは、デフォルトの同期設定に従って、クラウドとの同期を開始します。
+これ以降、デフォルトの同期設定に従い、ノードは2～4分ごとにCloudと同期します。
 
-!!! info "フィルタリングノードとクラウド同期設定"
-    `addcloudnode`スクリプトを実行すると、フィルタリングノードとクラウド同期設定を含む`/etc/wallarm/syncnode`ファイルが作成されます。フィルタリングノードとクラウド同期設定は`/etc/wallarm/syncnode`ファイルを通じて変更できます。
+!!! info "フィルタリングノードとCloudの同期設定"
+    `addcloudnode`スクリプトを実行すると、フィルタリングノードとCloudの同期設定を含む`/etc/wallarm/syncnode`ファイルが作成されます。フィルタリングノードおよびCloudの同期設定は、`/etc/wallarm/syncnode`ファイルを通じて変更できます。
     
-    [フィルタリングノードとWallarm Cloud同期設定の詳細→](configure-cloud-node-synchronization-en.md#cloud-node-and-wallarm-cloud-synchronization)
+    [フィルタリングノードとWallarm Cloudの同期設定の詳細→](configure-cloud-node-synchronization-en.md#cloud-node-and-wallarm-cloud-synchronization)
 
-#### あなたのメールとパスワードで接続します
+#### メールアドレスとパスワードを使用した接続
 
-アカウント要件を使用してノードをWallarm Cloudに接続するには、以下の手順を実行してください：
+アカウント情報を使用してノードをWallarm Cloudに接続するには、以下の手順に従ってください:
 
-1. 仮想マシンで`addnode`スクリプトを実行します：
-
+1. 仮想マシン上で`addnode`スクリプトを実行します:
+    
     !!! info
-        使用しているクラウドに応じて実行するスクリプトを選択する必要があります。
+        利用中のCloudに応じて実行するスクリプトを選択してください。
         
-        * <https://us1.my.wallarm.com/>を使用している場合は、以下の**US Cloud**タブからスクリプトを実行します。
-        * <https://my.wallarm.com/>を使用している場合は、以下の**EU Cloud**タブからスクリプトを実行します。
+        * <https://us1.my.wallarm.com/>を利用している場合は、以下の**US Cloud**タブからスクリプトを実行してください。
+        * <https://my.wallarm.com/>を利用している場合は、以下の**EU Cloud**タブからスクリプトを実行してください。
     
     === "US Cloud"
         ```bash
@@ -76,19 +76,19 @@
         sudo /usr/share/wallarm-common/addnode
         ```
     
-2.  プロンプトが表示されたら、あなたのWallarmアカウントのメールとパスワードを提供します。
+2. プロンプトに従い、Wallarmアカウントのメールアドレスとパスワードを入力します。
 
 !!! info "APIアクセス"
-    フィルタリングノードのAPIは使用しているクラウドによります。適切なAPIを選択してください：
+    フィルタリングノードが利用するAPIは、使用中のCloudに依存します。適切なAPIを選択してください:
     
-    * <https://my.wallarm.com/>を使用している場合、あなたのノードは`https://api.wallarm.com:444`へのアクセスが必要です。
-    * <https://us1.my.wallarm.com/>を使用している場合、あなたのノードは`https://us1.api.wallarm.com:444`へのアクセスが必要です。
+    * <https://my.wallarm.com/>を利用している場合、ノードは`https://api.wallarm.com:444`へのアクセスを必要とします。
+    * <https://us1.my.wallarm.com/>を利用している場合、ノードは`https://us1.api.wallarm.com:444`へのアクセスを必要とします。
     
-    ファイアウォールによってアクセスがブロックされていないことを確認してください。
+    ファイアウォールでアクセスがブロックされていないことを確認してください。
 
-あなたのノードは、デフォルトの同期設定に従って、クラウドとの同期を開始します。
+これ以降、デフォルトの同期設定に従い、ノードは2～4分ごとにCloudと同期します。
 
-!!! info "フィルタリングノードとクラウドの同期設定"
-    `addnode`スクリプトを実行すると、フィルタリングノードとクラウドの同期設定およびWallarmノードの正常な動作に必要なその他の設定が含まれている `/etc/wallarm/node.yaml` ファイルが作成されます。フィルタリングノードとクラウド同期設定は `/etc/wallarm/node.yaml` ファイルとシステム環境変数から変更できます。
+!!! info "フィルタリングノードとCloudの同期設定"
+    `addnode`スクリプトを実行すると、フィルタリングノードおよびCloudの同期設定、ならびにWallarmノードの正しい動作に必要なその他の設定を含む`/etc/wallarm/node.yaml`ファイルが作成されます。フィルタリングノードおよびCloudの同期設定は、`/etc/wallarm/node.yaml`ファイルおよびシステム環境変数を通じて変更できます。
     
     [フィルタリングノードとWallarm Cloudの同期設定の詳細→](configure-cloud-node-synchronization-en.md#regular-node-and-wallarm-cloud-synchronization)

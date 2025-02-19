@@ -5,6 +5,6 @@
 [check-attack]:                 ../user-guides/events/check-attack.md
 [img-api-discovery-widget]:     ../images/user-guides/dashboard/api-discovery-widget.png
 
-# API ディスカバリーダッシュボード <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+# APIディスカバリーダッシュボード <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
---8<-- "../include-ja/api-discovery/dashboard.md"
+--8<-- "../include/api-discovery/dashboard.md"

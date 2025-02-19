@@ -1,8 +1,8 @@
-| Wallarm düğüm davranışı | `kapalı` | `izleme` | `güvenli_blokaj` |`bloke` |
-| -------- | - | - | - | -|
-| Gelen isteklerin aşağıdaki tiplerde kötü amaçlı yükler içerip içermediğini analiz eder: [giriş doğrulama saldırıları](../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [vpatch saldırıları](../user-guides/rules/vpatch-rule.md), veya [düzenli ifadelere dayalı olarak tespit edilen saldırılar](../user-guides/rules/regex-rule.md) | - | + | + | + |
-| Kötü amaçlı istekleri Wallarm Bulut'a yükler, böylece olay listesinde görüntülenirler | - | + | + | + |
-| Kötü amaçlı istekleri engeller | - | - | Sadece [gri liste IP'lerinden](../user-guides/ip-lists/graylist.md) gelenler | + |
-| [Yasaklanmış IP'lerden](../user-guides/ip-lists/denylist.md) gelen istekleri engeller | Yasak listeyi analiz etmez | - | + | + |
-| [Gri liste IP'lerinden](../user-guides/ip-lists/graylist.md) başlayan istekleri engeller | Gri listeyi analiz etmez | - | Sadece kötü amaçlı yük içerenler | Gri listeyi analiz etmez |
-| [İzin verilen IP'lerden](../user-guides/ip-lists/allowlist.md) başlayan isteklere izin verir| İzin verilen listeyi analiz etmez | + | + | + |
+| Wallarm düğüm davranışı | off | monitoring | safe_blocking | block |
+| ------------------------ | --- | ---------- | ------------- | ----- |
+| Gelen isteklerin aşağıdaki türde kötü amaçlı yükler içerip içermediğini analiz eder: [girdi doğrulama saldırıları](../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [vpatch saldırıları](../user-guides/rules/vpatch-rule.md) veya [düzenli ifadeler temelinde tespit edilen saldırılar](../user-guides/rules/regex-rule.md) | - | + | + | + |
+| Wallarm Cloud'a kötü amaçlı istekleri olay listesinde görüntülenecek şekilde yükler | - | + | + | + |
+| Kötü amaçlı istekleri engeller | - | - | Yalnızca [gri listeye alınmış IP'lerden](../user-guides/ip-lists/overview.md) kaynaklananlar | + |
+| [Kara listeye alınmış IP'lerden](../user-guides/ip-lists/overview.md) kaynaklanan istekleri engeller | - | - | + | + |
+| [Gri listeye alınmış IP'lerden](../user-guides/ip-lists/overview.md) kaynaklanan istekleri engeller | - | - | Yalnızca kötü amaçlı yük içerenler | - |
+| [Beyaz listeye alınmış IP'lerden](../user-guides/ip-lists/overview.md) kaynaklanan isteklere izin verir | - | + | + | + |

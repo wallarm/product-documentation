@@ -1,49 +1,41 @@
 # Atlassian Jira
 
-Wallarmを設定して、[脆弱性](../../../glossary-en.md#vulnerability)が検出された時にJiraで問題を作成することができます。全てまたは選択したリスクレベルのみに対して設定可能です：
+[Jira](https://www.atlassian.com/software/jira) はAtlassianによって開発された広く利用されているプロジェクト管理および課題追跡ソフトウェアです．脆弱性が検出された際に，すべてまたは選択されたリスクレベル（高，中，低）の場合にのみ，Jiraで課題を作成するようにWallarmを設定できます．
 
-* 高リスク
-* 中リスク
-* 低リスク
+## 統合の設定
 
-## 統合の設定方法
+Jira UI:
 
-Jira UIにて：
+1. APIトークンを[こちら](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/#Create-an-API-token)の説明に従って生成してください．
+1. 生成されたAPIトークンをコピーしてください．
 
-1. [こちら](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/#Create-an-API-token)の説明に従いAPIトークンを生成します。
-1. 生成したAPIトークンをコピーします。
+Wallarm UI:
 
-Wallarm UIにて：
-
-1. Wallarmコンソールにて**統合** → **Jira**を選択します。
-1. 統合名を入력します。
-1. JiraホストのURLを入力（例 ：`https://company-x.atlassian.net/`）します。
-1. 作成する問題の報告者を特定するためにも使用される、認証のためのJiraユーザーのメールアドレスを入力します。
-1. 生成したAPIトークンを貼り付けます。メールアドレスとトークンは、指定のJiraホストでWallarmを認証するために確認されます。成功すると、このJiraユーザーが利用可能なスペースがリストされます。
-1. 作成する問題のJiraスペースを選択します。選択すると、そのスペースでサポートされている問題タイプがリスト表示されます。
-1. 作成する問題のタイプを選択します。
-1. 通知をトリガーするイベントタイプを選択します。すべての脆弱性または特定のリスクレベルのみ選択可能です。何も選択しない場合、Jiraの問題は作成されません。
-1. [統合テスト](#testing-integration)を行い設定が正しいことを確認します。
-1. **統合を追加**をクリックします。
+1. Wallarm Console → **Integrations** → **Jira**を開いてください．
+1. 統合名を入力してください．
+1. Jiraホストを入力してください（例:`https://company-x.atlassian.net/`）．
+1. Jira認証に必要なJiraユーザーのメールアドレスを入力してください．また，作成される課題のレポーターを識別するために使用されます．
+1. 生成されたAPIトークンを貼り付けてください．メールアドレスとトークンは，指定されたJiraホストにおけるWallarmの認証に使用されます．認証に成功すると，此Jiraユーザーが利用可能なスペースが一覧表示されます．
+1. 課題を作成するJiraスペースを選択してください．選択後，其スペースでサポートされる課題タイプの一覧が表示されます．
+1. 作成される課題が属するJiraの課題タイプを選択してください．
+1. 通知をトリガーするイベントタイプを選択してください．すべての脆弱性または特定のリスクレベルのみを選択できます．
 
     ![Jira統合](../../../images/user-guides/settings/integrations/add-jira-integration.png)
 
-## 統合テスト
+1. 構成の正確性，Wallarm Cloudの利用可能性および通知フォーマットを確認するために，**Test integration**をクリックしてください．
 
---8<-- "../include-ja/integrations/test-integration-basic-data.md"
+    Jira課題作成のテスト:
 
-Jiraの問題作成をテストします：
+    ![Jira課題作成のテスト](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
 
-![Jiraの問題作成のテスト](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
+1. **Add integration**をクリックしてください．
 
-## 統合更新
+--8<-- "../include/cloud-ip-by-request.md"
 
---8<-- "../include-ja/integrations/update-integration.md"
+## 統合の無効化と削除
 
-## 統合無効化
+--8<-- "../include/integrations/integrations-disable-delete.md"
 
---8<-- "../include-ja/integrations/disable-integration.md"
+## システムの利用不可および誤った統合パラメータ
 
-## 統合削除
-
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/integration-not-working.md"

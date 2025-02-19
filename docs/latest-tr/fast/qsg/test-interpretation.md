@@ -16,83 +16,87 @@
 [link-wl-console]:          https://us1.my.wallarm.com
 [link-how-to-search]:       https://docs.wallarm.com/en/user-en/use-search-en.html    
 
-
+    
 # Test Sonuçlarının Yorumlanması
 
-Bu bölüm, [My Wallarm portalı][link-wl-console]'nda test sonucu yorumlama araçlarına genel bir bakış sağlayacaktır. Bu bölümü tamamladığınızda, [önceki bölümde][link-previous-chapter] bulunan XSS zafiyeti hakkında ek bilgiler edineceksiniz.        
+Bu bölüm, [My Wallarm portal][link-wl-console] üzerindeki test sonucu yorumlama araçlarının genel bir görünümünü sunacaktır. Bu bölümü tamamladıktan sonra, [önceki bölüm][link-previous-chapter]'de tespit edilen XSS açığı hakkında ek bilgiler edinmiş olacaksınız.
 
-1. Her şeyin ne durumda olduğunu hızlıca görmek için "Dashboards → FAST" sekmesine tıklayın. Gösterge tablosu, tüm test çalışmalarını ve durumlarını, seçilen bir zaman dilimi için zafiyet sayılarının yanı sıra size bir özet sağlar.
+1.  Neler olup bittiğine hızlıca göz atmak için "Dashboards → FAST" sekmesine tıklayın. Gösterge paneli, belirli bir zaman dilimi için tüm test çalıştırmalarının durumu ve güvenlik açığı sayıları ile ilgili özet bilgileri sunar.
 
     ![Dashboard][img-dashboard]
 
-2. "Test çalışmaları" sekmesini seçerseniz, tüm test çalışmalarının listesini ve bunlar hakkında bazı kısa bilgileri görebilirsiniz:
+    <!-- Ayrıca bir olay arama aracını da kullanabilirsiniz. Bunu yapmak için “Events” sekmesini seçin ve gerekli sorguyu arama kutusuna girin. Arama kutusunun yakınlarında bulunan “How to search” bağlantısı aracılığıyla yardım alabilirsiniz. -->
 
-    * Test çalışması durumu (devam ediyor, başarılı veya başarısız)
-    * Temel bir istek kaydının devam edip etmediği
-    * Kaç temel istek kaydedildi
-    * Bulunan zafiyetler (varsa)
+    <!-- Arama aracının kullanımı hakkında daha fazla bilgi için [link][link-how-to-search] bağlantısına bakın. -->
+
+2.  “Test runs” sekmesini seçerseniz, her biri hakkında kısa bilgilerin yer aldığı tüm test çalıştırmalarının listesini görebilirsiniz; örneğin:
+
+    * Test çalıştırma durumu (devam ediyor, başarılı veya başarısız)
+    * Bir temel istek kaydının yapılıyor olup olmadığı
+    * Kayıt altına alınan temel istek sayısı
+    * Bulunan güvenlik açıkları (varsa)
     * Hedef uygulamanın alan adı
-    * Test oluşturma ve yürütme sürecinin nerede gerçekleştiği (düğüm veya bulut)
+    * Test oluşturma ve yürütme sürecinin gerçekleştirildiği yer (node veya cloud)
 
-    ![Testler][img-testrun]
+    ![Testruns][img-testrun]
 
-3. Bir test çalışmasını ayrıntılı olarak incelemek için üzerine tıklayın:
+3.  Bir test çalıştırmasını detaylı incelemek için üzerine tıklayın:
 
-    ![Test çalışması genişletildi][img-test-run-expanded]
+    ![Test run expanded][img-test-run-expanded]
 
-    Genişletilmiş bir test çalışmasından aşağıdaki bilgileri edinebilirsiniz:
+    Genişletilmiş bir test çalıştırmasından aşağıdaki bilgileri elde edebilirsiniz:
 
-    * İşlenen temel isteklerin sayısı
-    * Test çalışması oluşturma tarihi
-    * Test çalışmasının süresi
-    * Hedef uygulamaya gönderilen isteklerin sayısı
-    * Temel isteklerin test sürecinin durumu:
+    * İşlenen temel istek sayısı
+    * Test çalıştırma oluşturulma tarihi
+    * Test çalıştırma süresi
+    * Hedef uygulamaya gönderilen istek sayısı
+    * Temel isteklerin test edilme süreci durumu:
 
-        * **Passed** ![Durum: Geçti][img-status-passed]
+        * **Passed** ![Status: Passed][img-status-passed]
         
-            Verilen temel istek için zafiyet bulunmadı (bu, seçilen test politikasına bağlıdır - başka birini seçerseniz, bazı zafiyetler bulunabilir) veya test politikası isteğe uygulanamaz.
+            Verilen temel istek için herhangi bir güvenlik açığı tespit edilmedi (seçilen test politikasına bağlı olarak — farklı bir politika seçerseniz bazı güvenlik açıkları tespit edilebilir) veya test politikası isteğe uygulanamaz.
         
-        * **Failed** ![Durum: Başarısız][img-status-failed]  
+        * **Failed** ![Status: Failed][img-status-failed]  
         
-            Verilen temel istek için zafiyetler bulundu.
+            Verilen temel istek için güvenlik açıkları tespit edildi.
             
-        * **In progress** ![Durum: Devam Ediyor][img-status-inprogress]
+        * **In progress** ![Status: In progress][img-status-inprogress]
               
-            Temel istek, zafiyetler için test ediliyor.
+            Temel istek, güvenlik açıkları açısından test ediliyor.
             
-        * **Error** ![Durum: Hata][img-status-error]  
+        * **Error** ![Status: Error][img-status-error]  
             
-            Test süreci hatalar nedeniyle durduruldu.
+            Test süreci, hatalar nedeniyle durduruldu.
             
-        * **Waiting** ![Durum: Bekliyor][img-status-waiting]      
+        * **Waiting** ![Status: Waiting][img-status-waiting]      
         
-            Temel istek, test için sıraya alındı. Aynı anda sadece sınırlı sayıda istek test edilebilir.
+            Temel istek test için kuyruğa alındı. Aynı anda yalnızca sınırlı sayıda istek test edilebilir. 
             
-        * **Interrupted** ![Durum: Kesildi][img-status-interrupted]
+        * **Interrupted** ![Status: Interrupted][img-status-interrupted]
         
-            Test süreci ya manuel olarak durduruldu ("Actions" → "Interrupt") ya da aynı FAST düğümünde başka bir test çalışması yürütüldü.
+            Test süreci ya manuel olarak («Actions» → «Interrupt») kesildi ya da aynı FAST node üzerinde başka bir test çalıştırması gerçekleştirildi.
 
-4. Bir temel isteği ayrıntılı olarak incelemek için üzerine tıklayın:
+4.  Bir temel isteği detaylı incelemek için üzerine tıklayın:
 
-    ![Test çalışması genişletildi][img-testrun-expanded]
+    ![Test run expanded][img-testrun-expanded]
     
-    Her bir temel istek için aşağıdaki bilgiler sağlanır:
+    Her bir bireysel temel istek için aşağıdaki bilgiler sağlanır:
 
-    * Oluşturma zamanı
-    * Hedef uygulamaya gönderilen ve oluşturulan test isteklerinin sayısı
+    * Oluşturulma zamanı
+    * Hedef uygulamaya gönderilen test isteklerinin sayısı
     * Kullanılan test politikası
-    * İstek işleme durumu
+    * İsteğin işlenme durumu
 
-5. İsteğin tam günlüğünü görmek için çok sağdaki "Details" bağlantısını seçin:
+5.  İstek işleme sürecinin tam günlüğünü görüntülemek için, en sağdaki “Details” bağlantısını seçin:
 
-    ![İstek işleme günlüğü][img-log]
+    ![Request processing log][img-log]
 
-6. Bulunan zafiyetlere genel bir bakış elde etmek için "Issue" bağlantısını tıklayın:
+6.  Bulunan güvenlik açıklarının genel görünümünü elde etmek için “Issue” bağlantısına tıklayın:
 
-    ![Zafiyetlerin kısa açıklaması][img-vuln-description]
+    ![Vulnerabilities brief description][img-vuln-description]
 
-    Bir zafiyeti ayrıntılı olarak incelemek için zafiyet açıklamasına tıklayın:
+    Bir güvenlik açığını detaylı incelemek için, güvenlik açığı açıklamasına tıklayın:
 
-    ![Zafiyet detayları][img-vuln-details]
+    ![Vulnerability details][img-vuln-details]
             
-Şimdi, test sonuçlarını yorumlamaya yardımcı olacak araçlarla tanışmış olmalısınız.
+Artık, test sonuçlarını yorumlamanıza yardımcı olan araçlarla ilgili bilgi sahibi olmalısınız.

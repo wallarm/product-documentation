@@ -8,34 +8,16 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div class="do-section">
     <div class="do-main">
-        <div id="wallarm-se" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/wallarm-se.svg" />
-            <h3>Wallarm Security Edge</h3>
-            <p>Deploy Wallarm nodes in a Wallarm‑hosted environment</p>
-        </div>
-
-        <a class="do-card" href="../../installation/cdn-node/">
-            <img class="non-zoomable" src="../../images/platform-icons/section-io.svg" />
-            <h3>Section.io</h3>
-            <p>Deploy Wallarm node on Section.io without third-party components in your infrastructure</p>
-        </a>
-    </div>
-    
-    <div class="do-nested" data-for="wallarm-se">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/wallarm-se.svg" />
-            <h3>Wallarm Security Edge</h3>
-            <p>Deploy Wallarm nodes in a Wallarm‑hosted environment</p>
-        </div>
-
         <a class="do-card" href="../../installation/security-edge/deployment/">
+            <img class="non-zoomable" src="../../images/platform-icons/se-inline.svg" />
             <h3>Edge Inline</h3>
-            <p>Wallarm hosted node for real‑time, inline traffic analysis</p>
+            <p>Wallarm-hosted node for real‑time, inline traffic analysis</p>
         </a>
 
         <a class="do-card" href="../../installation/se-connector/">
+            <img class="non-zoomable" src="../../images/platform-icons/se-connectors.svg" />
             <h3>Edge Connector</h3>
-            <p>Wallarm-hosted node for MuleSoft, CloudFront, or Cloudflare</p>
+            <p>Wallarm-hosted node for MuleSoft, CloudFront, Cloudflare, or Fastly</p>
         </a>
     </div>
 </div>
@@ -259,6 +241,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Broadcom Layer7 API Gateways</h3>
             <p>Deploy Wallarm to secure APIs managed with Layer7 API Gateways</p>
         </a>
+
+        <a class="do-card" href="../../installation/connectors/fastly/">
+            <img class="non-zoomable" src="../../images/platform-icons/fastly.png" />
+            <h3>Fastly</h3>
+            <p>Deploy Wallarm to secure APIs running on Fastly</p>
+        </a>
     </div>
 </div>
 
@@ -266,6 +254,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div class="do-section">
     <div class="do-main">
+        <a class="do-card" href="../../installation/security-edge/deployment/">
+            <img class="non-zoomable" src="../../images/platform-icons/se-inline.svg" />
+            <h3>Edge Inline</h3>
+            <p>Wallarm-hosted node for real‑time, inline traffic analysis</p>
+        </a>
+
         <div id="inline-compute-instances" class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/compute-instance.svg" />
             <h3>Compute instances</h3>
@@ -565,10 +559,33 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 </div>
 
-## Packages
+## All deployment artifacts
 
 <div class="do-section">
     <div class="do-main">
+
+        <div id="packages-nginx-node" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/nginx.svg">
+            <h3>NGINX Node</h3>
+            <p>Node for infrastructures that rely on NGINX</p>
+        </div>
+
+        <div id="packages-native-node" class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/native-node.svg">
+            <h3>Native Node</h3>
+            <p>Self-hosted node for connectors or TCP traffic</p>
+        </div>
+
+    </div>
+
+    <div class="do-nested" data-for="packages-nginx-node">
+
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/nginx.svg">
+            <h3>NGINX Node</h3>
+            <p>Node for infrastructures that rely on NGINX</p>
+        </div>
+
         <a class="do-card" href="../../installation/nginx/all-in-one/">
             <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
             <h3>All-in-one installer</h3>
@@ -629,6 +646,34 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Use the official Machine Image to deploy Wallarm on Google Cloud</p>
         </a>
     </div>
+    
+    <div class="do-nested" data-for="packages-native-node">
+
+        <div class="do-card">
+            <img class="non-zoomable" src="../../images/platform-icons/native-node.svg">
+            <h3>Native Node</h3>
+            <p>Self-hosted node for connectors or TCP traffic</p>
+        </div>
+
+        <a class="do-card" href="../../installation/native-node/all-in-one/">
+            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
+            <h3>All-in-one installer</h3>
+            <p>Run the Native Node on a virtual machine on Linux</p>
+        </a>
+
+        <a class="do-card" href="../../installation/native-node/helm-chart/">
+            <img class="non-zoomable" src="../../images/platform-icons/helm.svg" />
+            <h3>Helm chart</h3>
+            <p>Run the Native Node in an infrastructure utilizing K8s</p>
+        </a>
+
+        <a class="do-card" href="../../installation/native-node/docker-image/">
+            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
+            <h3>Docker image</h3>
+            <p>Run the Native Node in a containerized environment using Docker</p>
+        </a>
+    </div>
+
 
 </div>
 

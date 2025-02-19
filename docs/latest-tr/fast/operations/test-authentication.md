@@ -1,18 +1,18 @@
-# Test Çalışmalarının Kimlik Doğrulamasının Yapılandırılması
+# Test Çalıştırmalarının Kimlik Doğrulamasının Yapılandırılması
 
-Uygulamanıza giden isteklerin kimlik doğrulaması gerekiyorsa, güvenlik testi de kimlik doğrulama gerektirir. Bu talimat, kimlik bilgilerini başarılı bir şekilde test çalışmalarını doğrulamak için geçirme yöntemini sağlar.
+Uygulamanıza yapılan isteklere kimlik doğrulaması gerekiyorsa, güvenlik testlerinde de kimlik doğrulaması gerekmektedir. Bu talimat, test çalıştırmalarının başarılı bir şekilde kimlik doğrulaması için kimlik bilgilerini geçme yöntemini sağlar.
 
-## Test Çalışması Kimlik Doğrulamasını Yapılandırma Yöntemi
+## Test Çalıştırması Kimlik Doğrulamasını Yapılandırma Yöntemi
 
-Test çalışması kimlik doğrulaması için kimlik bilgilerini aktarmak üzere, FAST node Docker konteynerini [dağıtmadan](../qsg/deployment.md#4-deploy-the-fast-node-docker-container) önce aşağıdaki adımları gerçekleştirin:
+Test çalıştırması kimlik doğrulaması için kimlik bilgilerini geçirmek amacıyla, FAST node Docker konteynerini [dağıtmadan](../qsg/deployment.md#4-deploy-the-fast-node-docker-container) önce aşağıdaki adımları izleyin:
 
-1. Yerel `.yml` veya `.yaml` uzantılı bir dosya oluşturun. Örneğin: `auth_dsl.yaml`.
-2. Aşağıdaki şekilde [FAST DSL](../dsl/intro.md) sözdizimini kullanarak oluşturulan dosyada kimlik doğrulama parametrelerini tanımlayın:
-    1. Dosyaya [`değiştir`](../dsl/phase-modify.md) bölümünü ekleyin.
-    2. `Değiştir` bölümünde, kimlik doğrulama parametrelerinin aktarıldığı isteğin bölümünü belirtin. İstek bölümü, [nokta](../dsl/points/basics.md) formatında belirtilmelidir.
+1. `.yml` veya `.yaml` uzantılı bir yerel dosya oluşturun. Örnek: `auth_dsl.yaml`.
+2. Oluşturulan dosyada, [FAST DSL](../dsl/intro.md) sözdizimi kullanılarak kimlik doğrulama parametrelerini tanımlayın:
+    1. Dosyaya [`modify`](../dsl/phase-modify.md) bölümünü ekleyin.
+    2. `modify` bölümünde, kimlik doğrulama parametrelerinin iletildiği istek bölümünü belirtin. İstek bölümü, [point](../dsl/points/basics.md) formatında belirtilmelidir.
 
-        !!! bilgi "Token parametresi için bir nokta örneği"
-           Token, istek kimlik doğrulaması için kullanılıyorsa ve değeri `Cookie` istek başlığındaki `token` parametresinde geçiriliyorsa, nokta `HEADER_COOKIE_COOKIE_token_value` gibi görünebilir.
+        !!! info "Token parametresi için point örneği"
+            Eğer istek kimlik doğrulaması için bir token kullanılıyorsa ve değeri `Cookie` istek başlığındaki `token` parametresinde geçiliyorsa, point `HEADER_COOKIE_COOKIE_token_value` şeklinde olabilir.
     
     3. Kimlik doğrulama parametrelerinin değerlerini aşağıdaki şekilde belirtin:
         
@@ -22,21 +22,21 @@ Test çalışması kimlik doğrulaması için kimlik bilgilerini aktarmak üzere
         ```
 
         Kullanılan kimlik doğrulama parametrelerinin sayısı sınırlı değildir.
-3.  `.yml`/`.yaml` dosyasına sahip dizini, konteyneri dağıtırken `-v {path_to_folder}:/opt/dsl_auths` seçeneğini kullanarak FAST node Docker konteynerine monte edin. Örneğin:
+3. `.yml`/`.yaml` dosyasının bulunduğu dizini, konteyneri dağıtırken `-v {path_to_folder}:/opt/dsl_auths` seçeneğini kullanarak FAST node Docker konteynerine monte edin. Örnek:
     ```
     docker run --name fast-proxy -e WALLARM_API_TOKEN='dfjyt8C79DxZptWwQS3/0RHiuJLNFrqTdgCIzPPZq' -v /home/username/dsl_auth:/opt/dsl_auths -p 8080:8080 wallarm/fast
     ```
 
-    !!! uyarı "Monte edilen dizindeki dosyalar"
-        Lütfen monte edilen dizinin yalnızca kimlik bilgilerine sahip dosyayı içermesi gerektiğini unutmayın.
+    !!! warning "Monte Edilen Dizindeki Dosyalar"
+        Lütfen monte edilen dizinin yalnızca kimlik bilgilerini içeren dosyayı barındırdığından emin olun.
 
-## Tanımlanmış Kimlik Doğrulama Parametreleri ile .yml/.yaml Dosyalarına Örnekler
+## Tanımlanmış Kimlik Doğrulama Parametrelerine Sahip .yml/.yaml Dosyalarına Örnekler
 
-`.yml`/`.yaml` dosyasında tanımlanan parametreler kitlesi, uygulamanızda kullanılan kimlik doğrulama yöntemine bağlıdır.
+`.yml`/`.yaml` dosyasında tanımlanan parametre seti, uygulamanızda kullanılan kimlik doğrulama yöntemine bağlıdır.
 
-Aşağıdakiler, API isteklerinin en yaygın kimlik doğrulama yöntemlerinin tanımlanmasına dair örneklerdir:
+Aşağıda API isteklerinin en yaygın kullanılan kimlik doğrulama yöntemlerini tanımlayan örnekler verilmiştir:
 
-* `username` ve `password` parametreleri `Cookie` istek başlığında iletilir
+* `username` ve `password` parametreleri, `Cookie` istek başlığında iletilir
 
     ```
     modify:
@@ -44,7 +44,7 @@ Aşağıdakiler, API isteklerinin en yaygın kimlik doğrulama yöntemlerinin ta
         - HEADER_Cookie_COOKIE_password_value: "Qww3okei"
     ```
 
-* `token` parametresi `Cookie` istek başlığında geçirilir
+* `token` parametresi, `Cookie` istek başlığında iletilir
 
     ```
     modify:

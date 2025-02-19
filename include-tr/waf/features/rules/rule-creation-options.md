@@ -1,6 +1,15 @@
-Wallarm Console'un **Events** ve **Rules** bölümünde kural oluşturabilir ve uygulayabilirsiniz.
+You can create and apply the rule both in the **Attacks** and **Rules** sections of Wallarm Console.
 
-* **Events** bölümünde, kurallar, kuralın uygulanacağı uç noktaların önceden doldurulmuş bir açıklamasıyla oluşturulur. Uç nokta açıklaması, [**Rule** düğmesine](../events/analyze-attack.md#analyze-requests-in-an-event) tıkladığınız isteğe karşılık gelir.
+Wallarm Console'un **Attacks** ve **Rules** bölümlerinde kural oluşturabilir ve uygulayabilirsiniz.
 
-    Kural kurulumunu tamamlamak için, sadece kural eylem türünü seçin ve tüm kural bileşenlerinin doğru bir şekilde yapılandırıldığından emin olun.
-* **Rules** bölümünde, tüm kural bileşenlerinin manuel olarak doldurulması gerekmektedir.
+* In the **Attacks** section, rules are created with a pre-filled description of endpoints to apply the rule to. The endpoint description corresponds to the request you clicked the **Rule** button for.
+
+  **Attacks** bölümünde, kurallar, kuralın uygulanacağı uç noktaların önceden doldurulmuş açıklamaları ile oluşturulur. Uç nokta açıklaması, **Rule** düğmesine tıkladığınız isteğe karşılık gelir.
+
+    To complete the rule setup, just select the rule action type and make sure all rule components are configured correctly.
+
+    Kural ayarını tamamlamak için yalnızca kural eylem türünü seçin ve tüm kural bileşenlerinin doğru şekilde yapılandırıldığından emin olun.
+
+* In the **Rules** section, all rule components must be filled in manually.
+
+  **Rules** bölümünde ise tüm kural bileşenlerinin manuel olarak doldurulması gerekir.

@@ -1,1 +1,0 @@
---8<-- "latest-ja/user-guides/triggers/trigger-examples.md"

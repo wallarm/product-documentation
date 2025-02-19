@@ -1,145 +1,95 @@
-# トリガーの利用方法
+# トリガーの操作
 
-トリガーは、カスタム通知とイベントへの反応を設定するために使用されるツールです。トリガーを使用することで、次のことが可能になります。
+トリガーはWallarmが各種イベントに対応するために用いるツールです。トリガーは、システムが反応できる多数のイベントと各種の反応を組み合わせることができます。このコンストラクター風のプロセスにより、企業独自のセキュリティ要件に合わせた複雑な動作を設定できます。
 
-* 企業のメッセンジャーやインシデント管理システムなど、日々の業務で使用するツールを通じて、重要なイベントに対する警告を受け取る。
-* 特定の数のリクエストや攻撃ベクトルが送信されたIPアドレスをブロックする。
-* [行動パターン攻撃](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)を特定のAPIエンドポイントへのリクエスト数によって識別する。
-* 同じIPアドレスから来る[hitsをグループ化](../../about-wallarm/protecting-against-attacks.md#attack)して一つの攻撃にすることで、イベントリストを最適化する。
+トリガーの設定は[US](https://us1.my.wallarm.com/triggers)または[EU](https://my.wallarm.com/triggers) Cloudの**Triggers**セクションで行います。
 
-全てのトリガーのコンポーネントは設定可能です。
+![トリガー設定セクション](../../images/user-guides/triggers/triggers-section.png)
 
-* **条件**：通知が必要なシステムイベント。例えば、特定の数の攻撃の発生、ブロックリストに登録されたIPアドレス、アカウントに新しいユーザーが追加された場合などがあります。
-* **フィルタ**：条件の詳細な情報。例えば、攻撃のタイプなどです。
-* **反応**：指定された条件とフィルタが満たされた場合に実行するべきアクション。例えば、通知をSlackや他の[統合](../settings/integrations/integrations-intro.md)されたシステムに送信したり、IPアドレスをブロックしたり、リクエストをブルートフォース攻撃としてマークすることが可能です。
+## 仕組み
 
-トリガーは、Wallarm Consoleの「トリガー」セクションで設定します。このセクションは、「**管理者**」 [ロール](../settings/users.md)を持つユーザーのみが利用可能です。
+各トリガーは以下の構成要素から構成され、それぞれ設定できます:
 
-![トリガーの設定箇所](../../images/user-guides/triggers/triggers-section.png)
+* **Condition**: Wallarmが反応すべきイベントです。例えば、一定数の攻撃が検出された場合、denylisted IPアドレス、アカウントに新たなユーザーが追加された場合などです。
+* [**Filters**](#understanding-filters): 条件の詳細です。例えば、条件が「1日あたり10,000件を超える攻撃」の場合、**Type**フィルターを「SQLi」に、**Response status**フィルターを「200」に設定すると、1日あたり10,000件以上のSQLi攻撃で200の応答を得た場合にアクションを実行するという意味になります。
+* **Reaction**: 指定された条件およびフィルターが満たされた場合に実行されるアクションです。例えば、Slackや別のシステムに通知を送信する[integration](../settings/integrations/integrations-intro.md)を利用したり、IPアドレスをブロックしたり、要求をブルートフォース攻撃として識別したりします。
 
-## トリガーの作成
+## トリガーでできること
 
-1. **トリガーを作成** ボタンをクリックします。
-2. 条件を[選択](#step-1-choosing-a-condition)します。
-3. [フィルタを追加](#step-2-adding-filters)します。
-4. [反応を追加](#step-3-adding-reactions)します。
-5. トリガーを[保存](#step-4-saving-the-trigger)します。
+トリガーを使用することで、以下が可能です:
 
-### ステップ1: 条件の選択
+* アプリケーションおよびAPIに対して、以下の保護措置を提供できます:
 
-条件とは、通知が必要なシステムイベントのことです。次のような通知可能な条件があります。
+    * [複数攻撃実行者からの保護](../../admin-en/configuration-guides/protecting-with-thresholds.md)
+    * [ブルートフォース攻撃からの保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+    * [Forced browsingからの保護](../../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
+    * [BOLA攻撃からの保護](../../admin-en/configuration-guides/protecting-against-bola-trigger.md)
 
-* [Brute force](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [Forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [BOLA](../../admin-en/configuration-guides/protecting-against-bola.md)
-* [Weak JWT](trigger-examples.md#detect-weak-jwts)
-* [攻撃ベクトル（悪意のあるペイロード）](../../glossary-en.md#malicious-payload)の数（[カスタム正規表現](../rules/regex-rule.md)ベースの実験ペイロードはカウントされません）
-* [攻撃](../../glossary-en.md#attack)の数（[カスタム正規表現](../rules/regex-rule.md)ベースの実験攻撃はカウントされません）
-* [ヒット](../../glossary-en.md#hit)の数を除く：
+* 各種[integrations](../../user-guides/settings/integrations/integrations-intro.md)に対して拡張アラートを設定できます。
+* [grouping hits](../../user-guides/events/grouping-sampling.md#grouping-of-hits)により、攻撃とインシデントの表示を最適化できます。
 
-    * [カスタム正規表現](../rules/regex-rule.md)に基づいて検出された実験的なヒット。非実験的なヒットは数えられます。
-    * [サンプル](../events/analyze-attack.md#sampling-of-hits)に保存されていないヒット。
-* インシデント数
-* ブロックリストIP
-* [APIインベントリの変更](../../api-discovery/track-changes.md)
-* 同じIPからのヒット、ただし、Brute force, Forced browsing, BOLA(IDOR), Resource overlimit, Data bomb、Virtual patchの攻撃タイプは除く
-* ユーザー追加された数
+## フィルターの理解
 
-![利用可能な条件](../../images/user-guides/triggers/trigger-conditions.png)
+フィルターは、[条件](#how-it-works)の詳細を設定するために使用します。例えば、ブルートフォース攻撃、SQLインジェクションなど、特定のタイプの攻撃に対する反応を設定できます。Wallarm Consoleインターフェースで1つ以上のフィルターを追加し、その値を設定できます。
 
-Wallarm Consoleインターフェースで条件を選択し、それに応じて反応の下限閾値を設定します（設定可能な場合）。
+![利用可能なフィルター](../../images/user-guides/triggers/trigger-filters.png)
 
-### ステップ2: フィルタの追加
+利用可能なフィルターは以下の通りです:
 
-フィルタは、条件を詳細化するために使用されます。たとえば、特定のタイプの攻撃（ブルートフォース攻撃やSQLインジェクションなど）に反応する設定を行うことができます。
+* **URI**（**ブルートフォース**、**Forced browsing**および**BOLA**条件のみ）: リクエストが送信された完全なURIです。URIは[URI constructor](../../user-guides/rules/rules.md#uri-constructor)または[advanced edit form](../../user-guides/rules/rules.md#advanced-edit-form)を通じて設定できます.
+* **Type**は、リクエストで検出された攻撃の[タイプ](../../attacks-vulns-list.md)またはリクエストが対象とする脆弱性のタイプです.
+* **Application**は、リクエストを受信する[アプリケーション](../settings/applications.md)です.
+* **IP**は、リクエストが送信されたIPアドレスです.
 
-次のフィルタが利用可能です：
+    このフィルターでは単一のIPのみを対象とし、サブネット、ロケーション、ソースタイプは許可されません.
+* **Domain**は、リクエストを受信するドメインです.
+* **Response status**は、リクエストに対して返された応答コードです.
+* **Target**は、攻撃の対象となるか、インシデントが検出されたアプリケーションアーキテクチャの部分です。値として`Server`、`Client`、`Database`が使用できます.
+* **User's role**は、追加されたユーザーの[ロール](../../user-guides/settings/users.md#user-roles)です。値として`Deploy`、`Analyst`、`Administrator`、`Read only`、`API developer`、および[multitenancy](../../installation/multi-tenant/overview.md)機能が有効な場合は`Global Administrator`、`Global Analyst`、`Global Read Only`が使用できます.
 
-* **URI**（条件が **Brute force**、**Forced browsing**、**BOLA**の場合のみ）:リクエストが送信された完全なURI。URIは、[URI constructor](../../user-guides/rules/rules.md#uri-constructor)や[advanced edit form](../../user-guides/rules/rules.md#advanced-edit-form)を通じて設定可能です。
-* **Type**：リクエストで検出された攻撃の[type](../../attacks-vulns-list.md)、またはリクエストが向けられた脆弱性のタイプ。
-* **Application**：リクエストを受け取る[application](../settings/applications.md)またはインシデントが検出される場所。
-* **IP**：リクエストが送信されたIPアドレス。
+## デフォルトトリガー
 
-    このフィルターは単一のIPを期待し、サブネットやロケーション、ソースタイプは許可されません。
-* **Domain**：リクエストを受け取るドメインまたはインシデントが検出されるドメイン。
-* **Response status**：リクエストに対して返されたレスポンスコード。
-* **Target**：攻撃が向けられたアプリケーションアーキテクチャの部分、またはインシデントが検出された箇所。次の値をとることができます： `Server`、 `Client`、 `Database`。
-* **User's role**：追加されたユーザーの役割。以下のいずれかの値を取ることができます： `Deploy`、 `Analyst`、 `Admin`。
+新しい企業アカウントには、以下のデフォルト（プリコンフィグ済み）のトリガーが備わっています:
 
-Wallarm Console インターフェースで1つ以上のフィルタを選択し、その値を設定します。
+* 同一IPからのヒットを1つの攻撃としてグループ化
 
-![利用可能なフィルタ](../../images/user-guides/triggers/trigger-filters.png)
+    このトリガーは、同一IPアドレスから送信されたすべての[ヒット](../../glossary-en.md#hit)を1つの攻撃としてイベントリストにグループ化します。これにより、イベントリストが最適化され、攻撃の分析が迅速になります.
 
-### ステップ3: 反応の追加
+    このトリガーは、単一IPアドレスから15分以内に50件以上のヒットが送信されたときに作動します。閾値を超えた後に送信されたヒットのみが攻撃としてグループ化されます.
 
-反応は、指定した条件とフィルタが満たされた場合に行うべきアクションです。利用可能な反応のセットは、選択された条件によります。反応には次のタイプがあります：
+    ヒットは、異なる攻撃タイプ、悪意あるペイロード、およびURLを持つ場合があります。これらの攻撃パラメーターは、イベントリスト内で`[multiple]`タグが付与されます.
 
-* [リクエストをブルートフォース攻撃または強制ブラウジング攻撃としてマークする](../../admin-en/configuration-guides/protecting-against-bruteforce.md)。リクエストはイベントリスト内で攻撃としてマークされますが、ブロックはされません。リクエストをブロックするには、追加の反応としてIPアドレスを[denylist](../ip-lists/denylist.md)に登録することができます。
-* [リクエストをBOLA攻撃としてマークします](../../admin-en/configuration-guides/protecting-against-bola.md)。リクエストはイベントリスト内で攻撃としてマークされますが、ブロックはされません。リクエストをブロックするには、追加の反応としてIPアドレスを[denylist](../ip-lists/denylist.md)に登録することができます。
-* [JWTの脆弱性を記録します](trigger-examples.md#detect-weak-jwts)。
-* IPを[denylist](../ip-lists/denylist.md)に追加します。
-* IPを[graylist](../ip-lists/graylist.md)に追加します。
-* [統合](../settings/integrations/integrations-intro.md)で設定されたSIEM システムまたはWebhook URLに通知を送ります。
-* [統合](../settings/integrations/integrations-intro.md)で設定されたメッセンジャーに通知を送ります。
+    グループ化されたヒットが異なるパラメータ値を持つため、攻撃全体に対して[Mark as false positive](../events/check-attack.md#false-positives)ボタンが使用できなくなりますが、特定のヒットについてはfalse positiveとしてマークできます。[Active verification of the attack](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing)も利用できなくなります.
+    
+    ブルートフォース、Forced browsing、Resource overlimit、Data bomb、またはVirtual patch攻撃タイプのヒットは、このトリガーの対象外です.
+* 1時間以内に3種類以上の異なる[malicious payloads](../../glossary-en.md#malicious-payload)を送信した場合、IPを1時間グレイリストに登録
 
-    !!! warning "メッセンジャー経由でのブロックリストIPの通知"
-        トリガーはブロックリストIPに関する通知をSIEMシステムまたはWebhook URLにのみ送信できます。**ブロックリストIP** トリガー条件に対するメッセンジャーは利用できません。
-* トリガー条件が **同じIPからのヒット** の場合、次の[ヒットを一つの攻撃にグループ化](trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack)します。
+    [Graylist](../ip-lists/overview.md)は、ノードが処理する疑わしいIPアドレスのリストです。グレイリストに登録されたIPが悪意あるリクエストを送信した場合、ノードは正当なリクエストを許可しつつ、それらをブロックします。一方、[denylist](../ip-lists/overview.md)は、アプリケーションへのアクセスが完全に制限されるIPアドレスを示し、denylistに登録されたソースからの正当なトラフィックもブロックします。IPのグレイリスト化は、[false positives](../../about-wallarm/protecting-against-attacks.md#false-positives)の削減を目的としたオプションの一つです.
 
-    これらの攻撃に対する[**false positiveとしてマークする**](../events/false-attack.md#mark-an-attack-as-a-false-positive)ボタンと [active verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)オプションは利用できません。
+    このトリガーは、いかなるノードフィルトレーションモードでも作動するため、ノードモードに関係なくIPをグレイリストに登録します.
 
-Wallarm Consoleインターフェースで1つ以上の反応を選択します。利用可能な反応は、条件によって位置が異なります。**攻撃の数**に存在します。
+    ただし、ノードは**safe blocking**モードのみでグレイリストを分析します。グレイリストに登録されたIPからの悪意あるリクエストをブロックするには、事前にその機能について学習した後、ノードの[mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)をsafe blockingに切り替える必要があります.
 
-![統合の選択](../../images/user-guides/triggers/select-integration.png)
+    ブルートフォース、Forced browsing、Resource overlimit、Data bomb、またはVirtual patch攻撃タイプのヒットは、このトリガーの対象外です.
 
-### ステップ4: トリガーの保存
+デフォルトトリガーは一時的に無効化できます。また、デフォルトトリガーの提供する動作を変更することも可能です。その場合、同じタイプのカスタムトリガーを作成します。カスタムトリガーを作成するとデフォルトトリガーは削除され、すべてのカスタムトリガーを削除するとデフォルトトリガーが復元されます.
 
-1. トリガー作成モーダルダイアログで **Create** ボタンをクリックします。
-2. 必要に応じてトリガーの名前と説明を指定し、 **完了** ボタンをクリックします。
+## トリガー処理の優先順位
 
-トリガーの名前と説明が指定されていない場合、トリガーの名前は「New trigger by <username>, <creation_date>」とし、説明は空にされます。
+同一の条件（例えば、**Brute force**、**Forced browsing**、**BOLA**）を持つトリガーが複数存在し、そのうちの一部にURIのネスティングレベルが設定されている場合、低いネスティングレベルのURIフィルターを持つトリガーでのみリクエストがカウントされます.
 
-## 事前設定されたトリガー（デフォルトトリガー）
+URIフィルターがないトリガーは、高いネスティングレベルとみなされます.
 
-新しい企業アカウントには、次の事前設定されたトリガー（デフォルトトリガー）が設定されています：
+**例:**
 
-* 同じIPから来るヒットを一つの攻撃にグループ化
+* 1つ目の同じ条件のトリガーにはURIフィルターがないため、あらゆるアプリケーションまたはその一部へのリクエストがこのトリガーでカウントされます.
+* 2つ目の同じ条件のトリガーにはURIフィルター`example.com/api`が設定されています.
 
-    このトリガーは、同じIPアドレスから送信された全ての[ヒット](../../glossary-en.md#hit)をイベントリスト内で一つの攻撃にグループ化します。これにより、イベントリストが最適化され、攻撃分析が迅速に行えるようになります。
-
-    このトリガーは、単一のIPアドレスが15分以内に50以上のヒットを発生させたときにリリースされます。閾値を超えた後に送信されたヒットのみが攻撃にグループ化されます。
-
-    ヒットは、異なる攻撃タイプ、悪意のあるペイロード、URLを持つことができます。これらの攻撃パラメータは、イベントリスト内で[複数選択]タグとしてマークされます。
-
-    グループ化されたヒットのパラメータの値が異なるため、全体の攻撃に対する[false positiveとしてマークする](../events/false-attack.md#mark-an-attack-as-a-false-positive)ボタンは利用できませんが、特定のヒットをfalse positiveとしてマークすることは依然として可能です。[攻撃のアクティブな検証](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)も利用できません。
-
-    このトリガーでは、Brute force, Forced browsing, Resource overlimit, Data bomb、Virtual patchの攻撃タイプを持つヒットは考慮されません。
-* 1時間以内に3つ以上の異なる[悪意のあるペイロード](../../glossary-en.md#malicious-payload)を生成した場合、そのIPを1時間[graylist](../ip-lists/graylist.md)に登録
-
-    [Graylist](../ip-lists/graylist.md)は、ノードが次のように処理する疑わしいIPアドレスのリストです： graylisted IPが悪意のあるリクエストを生成する場合、ノードはそれらをブロックしながら、正当なリクエストは許可します。graylistとは対照的に、[denylist](../ip-lists/denylist.md)は、ノードがdenylistedソースから生成されたさらに正当なトラフィックまでブロックする、全くアプリケーションに到達しないIPアドレスを指します。IPのgraylistingは、[false positive](../../about-wallarm/protecting-against-attacks.md#false-positives)の削減を目指したオプションの一つです
-
-    このトリガーは、任意のノードフィルタモードでリリースされるため、ノードモードに関係なくIPをgraylistに登録します。
-
-    しかし、ノードは**安全ブロッキング**モードでのみgraylistを分析します。graylisted IPからの悪意のあるリクエストをブロックするには、まずその特性を学び、ノードの[モード](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)を安全ブロッキングに切り替えます。
-
-    このトリガーでは、Brute force, Forced browsing, Resource overlimit, Data bomb、Virtual patchの攻撃タイプを持つヒットは考慮されません。
-* 弱いJWTの検出
-
-    [JSON Web Token (JWT)](https://jwt.io/)は、APIなどのリソース間でデータを安全に交換するために使用される一般的な認証標準です。JWTの妥協は、攻撃者の一般的な目標であり、これにより認証メカニズムを突破すると、攻撃者はWebアプリケーションやAPIへの完全なアクセス権を得ることができます。JWTが弱ければ、妥協する可能性が高まります。
-
-    このトリガーは、Wallarmが着信リクエスト内の弱いJWTを自動的に検出し、対応する[脆弱性](../vulnerabilities.md)を記録するようにします。
-
-トリガーはデフォルトでは会社アカウント内の全トラフィックで動作しますが、任意のトリガー設定を変更することができます。
+`example.com/api`へのリクエストは、URIフィルターが`example.com/api`に設定された2つ目のトリガーでのみカウントされます.
 
 ## トリガーの無効化と削除
 
-* 一時的にイベントへの通知や反応を停止するには、トリガーを無効にすることができます。無効化されたトリガーは、「全て」と「無効化」のトリガーリストに表示されます。イベントへの通知と反応を再開するには、「有効化」オプションを使用します。
-* 恒久的にイベントへの通知と反応を停止するには、トリガーを削除することができます。トリガーの削除は元に戻すことはできません。トリガーはトリガーリストから完全に削除されます。
+* イベントに対する通知および反応の送信を一時的に停止するには、トリガーを無効化できます。無効化されたトリガーは**All**および**Disabled**トリガーのリストに表示されます。通知および反応の送信を再度有効にするには、**Enable**オプションを使用します.
+* イベントへの通知および反応の送信を永続的に停止するには、トリガーを削除できます。トリガーの削除は取り消しできず、トリガーリストから完全に削除されます.
 
-トリガーを無効化または削除するには、トリガーメニューから適切なオプションを選択し、必要に応じてそのアクションを確認してください。
-
-<!-- ## デモビデオ
-
-<div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/ODHh-die9tY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div> -->
+トリガーを無効化または削除するには、トリガーメニューから該当するオプションを選択し、必要に応じて操作を確認してください.

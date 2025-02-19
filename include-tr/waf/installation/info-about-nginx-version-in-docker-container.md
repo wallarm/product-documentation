@@ -1,2 +1,2 @@
-!!! bilgi "Docker konteynerindeki NGINX sürümü"
-    Docker konteyner, `1.14.x` sürümünde NGINX kullanır. Bu NGINX sürümünde bazı güvenlik açıkları bulabilirsiniz, ancak aslında onların çoğu [Debian ekibi tarafından yama uygulanmıştır](https://security-tracker.debian.org/tracker/source-package/nginx). Docker konteyner, 10.x Debian'da hizmetleri çalıştırır, bu yüzden bulunan güvenlik açıklarının veri compromi sonucu olmaması gerekmektedir.
+!!! info "NGINX version in the Docker container"
+    Docker konteyneri, `1.14.x` versiyonundaki NGINX'i kullanmaktadır. Bu NGINX versiyonunda bazı güvenlik açıkları tespit edilebilir ancak aslında bunların çoğu [Debian ekibi tarafından yamalanmıştır](https://security-tracker.debian.org/tracker/source-package/nginx). Docker konteyneri, Debian 10.x üzerinde hizmet verdiğinden, tespit edilen güvenlik açıkları veri ihlali ile sonuçlanmamalıdır.

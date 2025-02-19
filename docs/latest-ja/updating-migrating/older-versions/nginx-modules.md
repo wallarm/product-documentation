@@ -1,330 +1,203 @@
-[wallarm-status-instr]: ../../admin-en/configure-statistics-service.md
-[ptrav-attack-docs]: ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]: ../../images/admin-guides/test-attacks-quickstart.png
-[waf-mode-instr]: ../../admin-en/configure-wallarm-mode.md
-[blocking-page-instr]: ../../admin-en/configuration-guides/configure-block-page-and-code.md
-[logging-instr]: ../../admin-en/configure-logging.md
-[proxy-balancer-instr]: ../../admin-en/using-proxy-or-balancer-en.md
-[process-time-limit-instr]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[configure-selinux-instr]: ../../admin-en/configure-selinux.md
-[configure-proxy-balancer-instr]: ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[install-postanalytics-instr]: ../../admin-en/installation-postanalytics-en.md
-[dynamic-dns-resolution-nginx]: ../../admin-en/configure-dynamic-dns-resolution-nginx.md
-[img-wl-console-users]: ../../images/check-users.png 
-[img-create-wallarm-node]: ../../images/user-guides/nodes/create-cloud-node.png
-[nginx-custom]: ../../installation/custom/custom-nginx-version.md
-[nginx-process-time-limit-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[nginx-process-time-limit-block-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
-[overlimit-res-rule-docs]: ../../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]: ../../user-guides/ip-lists/graylist.md
+```markdown
+[wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
+[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
+[blocking-page-instr]:              ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[logging-instr]:                    ../../admin-en/configure-logging.md
+[proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
+[process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[configure-selinux-instr]:          ../../admin-en/configure-selinux.md
+[configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+[install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
+[dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
+[img-wl-console-users]:             ../../images/check-users.png 
+[img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
+[nginx-custom]:                 ../../installation/custom/custom-nginx-version.md
+[nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]:          ../../user-guides/rules/configure-overlimit-res-detection.md
+[graylist-docs]:                    ../../user-guides/ip-lists/overview.md
+[wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[sqli-attack-docs]:                 ../../attacks-vulns-list.md#sql-injection
+[xss-attack-docs]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
+[web-server-mirroring-examples]:    ../../installation/oob/web-server-mirroring/overview.md#configuration-examples-for-traffic-mirroring
+[ip-lists-docs]:                     ../../user-guides/ip-lists/overview.md
 
 # EOL Wallarm NGINXモジュールのアップグレード
 
-これらの手順では、Wallarm NGINXモジュールのエンドオブライフ（バージョン3.6以下）をバージョン4.4にアップグレードする方法について説明しています。 Wallarm NGINXモジュールは、次の手順のいずれかに従ってインストールされたモジュールです。
+本書の手順は、廃止されたWallarm NGINXモジュール（バージョン3.6以下）をバージョン5.0にアップグレードする方法を説明します。Wallarm NGINXモジュールは、以下のいずれかの手順に従ってインストールしたモジュールです：
 
-* [NGINX `stable`モジュール](../../installation/nginx/dynamic-module.md)
-* [CentOS/DebianリポジトリからのNGINXモジュール](../../installation/nginx/dynamic-module-from-distr.md)
-* [NGINX Plusモジュール](../../installation/nginx-plus.md)
+* NGINX stable向けの個別パッケージ
+* NGINX Plus向けの個別パッケージ
+* ディストリビューション提供のNGINX向けの個別パッケージ
 
---8<-- "../include-ja/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
-## 要件
+!!! info "all-in-oneインストーラを使用したアップグレード"
+    個別のLinuxパッケージは廃止されたため、Wallarmの[all-in-oneインストーラ](../../installation/nginx/all-in-one.md)を使用してアップグレードを実施します。この方法は、以前の方法と比較してアップグレード作業および継続的な展開メンテナンスを簡素化します。
+    
+    インストーラは自動的に以下の処理を実行します：
 
---8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
+    1. OSとNGINXバージョンの確認。
+    1. 検出されたOSとNGINXバージョンに対してWallarmリポジトリを追加。
+    1. これらのリポジトリからWallarmパッケージのインストール。
+    1. インストールされたWallarmモジュールをNGINXに接続。
+    1. 提供されたトークンを使用してフィルタリングノードをWallarm Cloudに接続。
+
+        個別のLinuxパッケージによる手動アップグレードはこれ以上サポートされません。
+
+    ![All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+
+## EOLノードをアップグレードする旨をWallarmテクニカルサポートへ連絡
+
+もし廃止されたWallarm NGINXモジュール（バージョン3.6以下）をバージョン5.0にアップグレードする場合は、その旨を[Wallarmテクニカルサポート](mailto:support@wallarm.com)に連絡し、支援を依頼してください。
+
+その他の支援と合わせて、Wallarmアカウントに対して新しいIPリストロジックの有効化も依頼してください。新しいIPリストロジックが有効化された場合、Wallarm Consoleを開き、[**IP lists**](../../user-guides/ip-lists/overview.md)セクションが表示されることを確認してください。
+
+## 必要要件
+
+--8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
 
 ## アップグレード手順
 
-* フィルタリングノードとpostanalyticsモジュールが同じサーバにインストールされている場合、以下の手順に従ってすべてのパッケージをアップグレードしてください。
-* フィルタリングノードとpostanalyticsモジュールが異なるサーバにインストールされている場合、まずこれらの[手順](separate-postanalytics.md)に従ってpostanalyticsモジュールをアップグレードし、次に以下の手順をフィルタリングノードモジュールに実行してください。
+* フィルタリングノードとpostanalyticsモジュールが同一サーバーにインストールされている場合は、以下の手順に従って全てをアップグレードしてください。
 
-## ステップ1: フィルタリングノードモジュールをアップグレードしていることをWallarm技術サポートに通知する（ノード2.18以降をアップグレードする場合のみ）
+    クリーンなマシンでall-in-oneインストーラを使用して新しいバージョンのノードを実行し、正常に動作することを確認後、以前のノードを停止し、トラフィックを以前のノードの代わりに新しいマシンへ流れるように設定する必要があります。
 
-ノード2.18以前をアップグレードする場合は、フィルタリングノードモジュールを最新バージョンに更新していることを[Wallarm技術サポート](mailto:support@wallarm.com)に通知し、Wallarmアカウント用に新しいIPリストロジックを有効にしてもらいます。新しいIPリストロジックが有効になったら、Wallarmコンソールを開き、[**IPリスト**](../../user-guides/ip-lists/overview.md)セクションが利用できることを確認してください。
+* フィルタリングノードとpostanalyticsモジュールが別々のサーバーにインストールされている場合は、**最初**にpostanalyticsモジュールをアップグレードし、**次に**これら[手順](separate-postanalytics.md)に従ってフィルタリングモジュールをアップグレードしてください。
 
-## ステップ2: アクティブな脅威検証モジュールを無効にする（ノード2.16以前をアップグレードする場合のみ）
+## ステップ1：Threat Replay Testingモジュールの無効化（ノード2.16以下のアップグレードの場合）
 
-Wallarmノード2.16以前をアップグレードする場合は、Wallarmコンソール → **スキャナー** → **設定**で、 [アクティブな脅威検証](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)モジュールを無効にしてください。
+Wallarmノード2.16以下をアップグレードする場合、Wallarm Consoleの → **Vulnerabilities** → **Configure**で[Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing)モジュールを無効化してください。
 
-モジュールの動作は、アップグレードプロセス中に[誤検出](../../about-wallarm/protecting-against-attacks.md#false-positives)を引き起こす可能性があります。モジュールを無効にすることで、このリスクが最小限に抑えられます。
+アップグレードプロセス中にモジュールが動作すると[false positives](../../about-wallarm/protecting-against-attacks.md#false-positives)が発生する可能性があるため、モジュールを無効化することでリスクを最小限に抑えます。
 
-## ステップ3: APIポートを更新する
+## ステップ2：クリーンなマシンの準備
 
---8<-- "../include-ja/waf/upgrade/api-port-443.md"
+--8<-- "../include/waf/installation/all-in-one-clean-machine-latest.md"
 
-## ステップ4: NGINXを最新バージョンにアップグレードする
+## ステップ3：NGINXと依存関係のインストール
 
-適切な手順を使用して、NGINXを最新バージョンにアップグレードします。
+--8<-- "../include/waf/installation/all-in-one-nginx.md"
 
-=== "NGINX stable"
+## ステップ4：Wallarmトークンの準備
 
-    DEBベースのディストリビューション:
+--8<-- "../include/waf/installation/all-in-one-token.md"
 
-    ```bash
-    sudo apt update
-    sudo apt -y install nginx
-    ```
+## ステップ5：all-in-one Wallarmインストーラのダウンロード
 
-    RPMベースのディストリビューション:
+--8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-    ```bash
-    sudo yum update
-    sudo yum install -y nginx
-    ```
-=== "NGINX Plus"
-    NGINX Plusの場合は、[公式アップグレード手順](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#upgrading-nginx-plus)に従ってください。
-=== "NGINX from Debian/CentOS repository"
-    [CentOS/DebianリポジトリからインストールされたNGINX](../../installation/nginx/dynamic-module-from-distr.md)の場合は、この手順をスキップしてください。インストールされたNGINXのバージョンは、[後で](#step-7-upgrade-wallarm-packages) Wallarmモジュールと共にアップグレードされます。
+## ステップ6：all-in-one Wallarmインストーラの実行
 
-あなたのインフラがNGINXの特定のバージョンを使用する必要がある場合は、[Wallarm技術サポート](mailto:support@wallarm.com)にNGINXのカスタムバージョン用のWallarmモジュールを作成してもらってください。
+### フィルタリングノードとpostanalyticsが同一サーバーの場合
 
-## ステップ5: 新しいWallarmリポジトリの追加
+--8<-- "../include/waf/installation/all-in-one-installer-run.md"
 
-以前のWallarmリポジトリアドレスを削除し、新しいWallarmノードバージョンパッケージを含むリポジトリを追加します。適切なプラットフォームのコマンドを使用してください。
+### フィルタリングノードとpostanalyticsが別々のサーバーの場合
 
-**CentOSおよびAmazon Linux 2.0.2021xおよびそれ以前のバージョン**
+!!! warning "フィルタリングノードとpostanalyticsモジュールのアップグレード手順の順序"
+    フィルタリングノードとpostanalyticsモジュールが別々のサーバーにインストールされている場合、フィルタリングノードパッケージを更新する前にpostanalyticsパッケージをアップグレードする必要があります。
 
-=== "CentOS 7およびAmazon Linux 2.0.2021xおよびそれ以前のバージョン"
-    ```bash
-    sudo yum remove wallarm-node-repo
-    sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.4/x86_64/wallarm-node-repo-4.4-0.el7.noarch.rpm
-    ```
-=== "CentOS 8"
-    !!! warning "CentOS 8.xのサポートは非推奨です"
-        CentOS 8.xのサポートは[非推奨](https://www.centos.org/centos-linux-eol/)です。代わりにAlmaLinux、Rocky Linux、またはOracle Linux 8.xオペレーティングシステムにWallarmノードをインストールできます。
+1. これら[手順](separate-postanalytics.md)に従ってpostanalyticsモジュールをアップグレードしてください。
+1. フィルタリングノードをアップグレードしてください：
 
-        * [NGINX `stable`のインストール手順](../../installation/nginx/dynamic-module.md)
-        * [CentOS/DebianリポジトリからのNGINXのインストール手順](../../installation/nginx/dynamic-module-from-distr.md)
-        * [NGINX Plusのインストール手順](../../installation/nginx-plus.md)
-=== "AlmaLinux、Rocky Linux、またはOracle Linux 8.x"
-    ```bash
-    sudo yum remove wallarm-node-repo
-    sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
-    ```
-
-**DebianおよびUbuntu**
-
-1. インストールされたテキストエディターでWallarmリポジトリアドレスのファイルを開きます。これらの手順では**vim**が使用されています。
-
-    ```bash
-    sudo vim /etc/apt/sources.list.d/wallarm.list
-    ```
-2. 以前のリポジトリアドレスをコメントアウトまたは削除してください。
-3. 新しいリポジトリアドレスを追加します。
-
-    === "Debian 10.x (buster)"
-        !!! warning "NGINX安定版およびNGINX Plusではサポートされていません。"
-            公式のNGINXバージョン（安定版およびPlus）およびその結果としてのWallarmノード4.4以降は、Debian 10.x（buster）にインストールできません。[Debian/CentOSリポジトリからインストールされたNGINX](../../installation/nginx/dynamic-module-from-distr.md)を使用する場合のみ、このOSを使用してください。
-
+    === "APIトークン"
         ```bash
-        deb https://repo.wallarm.com/debian/wallarm-node buster/4.4/
-        ```
-    === "Debian 11.x (bullseye)"
+        # x86_64版を使用している場合:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.x86_64-glibc.sh filtering
+
+        # ARM64版を使用している場合:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.0.aarch64-glibc.sh filtering
+        ```        
+
+        `WALLARM_LABELS`変数は、ノードを追加するグループを設定します（Wallarm Console上でのノードの論理グループ化に使用されます）。
+
+    === "ノードトークン"
         ```bash
-        deb https://repo.wallarm.com/debian/wallarm-node bullseye/4.4/
-        ```
-    === "Ubuntu 18.04 LTS (bionic)"
-        ```bash
-        deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/4.4/
-        ```
-    === "Ubuntu 20.04 LTS (focal)"
-        ```bash
-        deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/
+        # x86_64版を使用している場合:
+        sudo sh wallarm-5.3.0.x86_64-glibc.sh filtering
+
+        # ARM64版を使用している場合:
+        sudo sh wallarm-5.3.0.aarch64-glibc.sh filtering
         ```
 
-## ステップ6: 以前のWallarmノードバージョンから4.4への許可リストと拒否リストを移行する（ノード2.18以りにアップグレードする場合のみ）
+## ステップ7：以前のWallarmノードバージョンから5.0へのallowlistおよびdenylistの移行（ノード2.18以下のアップグレードのみ）
 
-ノード2.18以前をアップグレードする場合は、以前のWallarmノードバージョンから最新バージョンへの許可リストと拒否リストの設定を[移行](../migrate-ip-lists-to-node-3.md)してください。
+ノード2.18以下をアップグレードする場合、[migrate](../migrate-ip-lists-to-node-3.md)を参照して以前のWallarmノードバージョンから新しいバージョンへのallowlistおよびdenylistの設定を移行してください。
 
-## ステップ7: Wallarmパッケージをアップグレードする### 同じサーバー上のフィルタリングノードとpostanalytics
+## ステップ8：古いノードマシンから新しいノードマシンへNGINXおよびpostanalyticsの設定を転送
 
-フィルタリングノードとpostanalyticsモジュールをアップグレードするには、次のコマンドを実行してください。
+古いマシン上の設定ファイルからノード関連のNGINX設定およびpostanalytics設定を新しいマシンのファイルへ転送してください。必要なディレクティブをコピーすることで実施できます。
 
-=== "Debian"
-    ```bash
-    sudo apt update
-    sudo apt dist-upgrade
-    ```
+**ソースファイル**
 
-    --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+古いマシンでは、OSおよびNGINXバージョンに応じてNGINX設定ファイルの配置ディレクトリや名称が異なる場合があります。主に以下のものです：
 
-    --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
-=== "Ubuntu"
-    ```bash
-    sudo apt update
-    sudo apt dist-upgrade
-    ```
+* `/etc/nginx/conf.d/default.conf`：NGINXの設定
+* `/etc/nginx/conf.d/wallarm-status.conf`：Wallarmノードの監視設定。詳細は[こちら][wallarm-status-instr]を参照してください。
 
-    --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+また、postanalyticsモジュール（Tarantoolデータベース設定）の設定は通常以下に配置されています：
 
-    --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
-=== "CentOS または Amazon Linux 2.0.2021x 以下"
-    ```bash
-    sudo yum update
-    ```
-=== "AlmaLinux, Rocky Linux または Oracle Linux 8.x"
-    ```bash
-    sudo yum update
-    ```
+* `/etc/default/wallarm-tarantool`または
+* `/etc/sysconfig/wallarm-tarantool`
 
-### 異なるサーバー上のフィルタリングノードとpostanalytics
+**ターゲットファイル**
 
-!!! warning "フィルタリングノードとpostanalyticsモジュールをアップグレードする手順の順序"
-    フィルタリングノードとpostanalyticsモジュールが別々のサーバーにインストールされている場合、フィルタリングノードのパッケージを更新する前にpostanalyticsのパッケージをアップグレードする必要があります。
+all-in-oneインストーラはOSとNGINXバージョンの組み合わせにより動作するため、新しいマシンの[ターゲットファイル](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/)は名称や配置ディレクトリが異なる場合があります。
 
-1. [指示](separate-postanalytics.md)に従ってpostanalyticsパッケージをアップグレードします。
-2. Wallarmノードパッケージをアップグレードします：
+設定を転送する際、以下の手順を実施してください。
 
-    === "Debian"
-        ```bash
-        sudo apt update
-        sudo apt dist-upgrade
-        ```
+### 非推奨のNGINXディレクティブの名称変更
 
-        --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
-
-        --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
-    === "Ubuntu"
-        ```bash
-        sudo apt update
-        sudo apt dist-upgrade
-        ```
-
-        --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
-
-        --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
-    === "CentOS または Amazon Linux 2.0.2021x 以下"
-        ```bash
-        sudo yum update
-        ```
-    === "AlmaLinux, Rocky Linux または Oracle Linux 8.x"
-        ```bash
-        sudo yum update
-        ```
-3. パッケージマネージャが設定ファイル `/etc/cron.d/wallarm-node-nginx` の内容を書き換えることについて確認を求める場合：
-
-    1. [IPリストの移行](#step-6-migrate-allowlists-and-denylists-from-previous-wallarm-node-version-to-42)が完了していることを確認します。
-    2. オプション `Y` を使用してファイルの書き換えを確認します。
-
-        パッケージマネージャは、ファイル `/etc/cron.d/wallarm-node-nginx` が前のWallarmノードバージョンで[変更されていた場合](/2.18/admin-en/configure-ip-blocking-nginx-en/)、書き換えの確認を求めます。Wallarmノード3.xでIPリストロジックが変更されたため、 `/etc/cron.d/wallarm-node-nginx` の内容もそれに応じて更新されました。IPアドレスのdenylistが正しく動作するためには、Wallarmノード3.xでは更新された設定ファイルを使用する必要があります。
-
-        パッケージマネージャはデフォルトでオプション `N` を使用しますが、Wallarmノード3.xでの正しいIPアドレスdenylistの動作にはオプション `Y` が必要です。
-
-## ステップ8：ノードタイプの更新
-
-デプロイされたノードは、廃止された **regular** タイプで、[新しい**Wallarmノード**タイプに置き換えられました](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens)。
-
-バージョン4.4への移行中に、廃止されたタイプの代わりに新しいノードタイプをインストールすることが推奨されます。通常のノードタイプは将来のリリースで削除されるため、前もって移行してください。
-
-!!! info "postanalyticsモジュールが別のサーバーにインストールされている場合"
-    トラフィック処理の初期段階とpostanalyticsモジュールが別のサーバーにインストールされている場合は、これらのモジュールを同じノードトークンを使用してWallarmクラウドに接続することを推奨します。WallarmコンソールUIは、各モジュールを別のノードインスタンスとして表示します。例えば：
-
-    ![ノードにいくつかのインスタンスがある](../../images/user-guides/nodes/wallarm-node-with-two-instances.png)
-
-    Wallarmノードは、[別のpostanalyticsモジュールのアップグレード](separate-postanalytics.md)中にすでに作成されています。初期のトラフィック処理モジュールを同じノード資格情報を使用してクラウドに接続するには：
-
-    1. 別のpostanalyticsモジュールのアップグレード中に生成されたノードトークンをコピーします。
-    1. 以下のリストの4番目の手順に進みます。
-
-通常のノードをWallarmノードに置き換えるには：
-
-1. WallarmアカウントにWallarmコンソールで **Administrator** 役割が有効になっていることを確認します。
-    
-    設定については、[USクラウド](https://us1.my.wallarm.com/settings/users)または[EUクラウド](https://my.wallarm.com/settings/users)でユーザーリストに移動してチェックできます。
-
-    ![Wallarmコンソールのユーザーリスト][img-wl-console-users]
-2. [USクラウド](https://us1.my.wallarm.com/nodes)または [EUクラウド](https://my.wallarm.com/nodes) の Wallarmコンソール → **ノード** を開き、**Wallarmノード**タイプのノードを作成します。
-
-    ![Wallarmノードの作成][img-create-wallarm-node]
-3. 生成されたトークンをコピーします。
-4. 古いバージョンのノードがあるサーバーでNGINXサービスを一時停止します：
-
-    === "Debian"
-        ```bash
-        sudo systemctl stop nginx
-        ```
-    === "Ubuntu"
-        ```bash
-        sudo service nginx stop
-        ```
-    === "CentOS または Amazon Linux 2.0.2021x 以下"
-        ```bash
-        sudo systemctl stop nginx
-        ```
-    === "AlmaLinux, Rocky Linux または Oracle Linux 8.x"
-        ```bash
-        sudo systemctl stop nginx
-        ```
-
-    RPSの計算が不正確になるリスクを軽減するために、NGINXサービスを一時停止しています。
-5. **Wallarmノード**を実行するために `register-node` スクリプトを実行します。
-
-    === "US Cloud"
-        ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com --force
-        ```
-    === "EU Cloud"
-        ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --force
-        ```
-    
-    * `<NODE_TOKEN>`はWallarmノードのトークンです。
-    * `--force`オプションは、`/etc/wallarm/node.yaml`ファイルに指定されたWallarmクラウドアクセス資格情報の書き換えを強制します。
-
-## ステップ9：Wallarmブロッキングページの更新
-
-新しいノードバージョンでは、Wallarmサンプルブロックページが[変更されました](what-is-new.md#new-blocking-page)。ページ上のロゴとサポートメールがデフォルトで空になりました。
-
-ページ `&/usr/share/nginx/html/wallarm_blocked.html` がブロックされたリクエストに対する応答として返されるように設定されていた場合、[新しいサンプルページのコピーとカスタマイズ](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)を行ってください。
-
-## ステップ10：非推奨のNGINXディレクティブの名称変更
-
-設定ファイルで明示的に指定されている場合、以下のNGINXディレクティブの名称を変更します：
+設定ファイルに明示的に指定されている場合、以下のNGINXディレクティブの名称を変更してください：
 
 * `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
 * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
 * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
 * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
-ディレクティブの名称だけを変更し、ロジックはそのままです。旧名のディレクティブは間もなく廃止されるため、事前に名称を変更することをお勧めします。
+ディレクティブの名称のみを変更しており、ロジックは同一です。旧名称のディレクティブは近く非推奨となるため、事前に名称変更を推奨します。
 
-## ステップ11：ノードのログ記録変数の更新
+### ノードのログ変数の更新
 
-新しいノードバージョンでは、[ノードのログ記録変数](../../admin-en/configure-logging.md#filter-node-variables)について以下の変更が実施されました：
+新しいノードバージョンでは、以下の[ノードログ変数](../../admin-en/configure-logging.md#filter-node-variables)の変更が実装されています：
 
-* `wallarm_request_time`変数は `wallarm_request_cpu_time` に名称変更されました。
+* `wallarm_request_time`変数が`wallarm_request_cpu_time`に名称変更されました。
 
-    変数名だけを変更し、ロジックはそのままです。古い名前も一時的にサポートされていますが、それでも変数の名前を変更することをお勧めします。
-* `wallarm_request_mono_time`変数が追加されました。構成のログ形式に配置し、以下の合計についてログ情報が必要な場合：
-
+    変数名のみを変更しており、ロジックは同一です。旧名称も一時的にサポートされていますが、名称変更を推奨します。
+* `wallarm_request_mono_time`変数が追加されました – 以下の合計値（
     * キュー内の時間
-    * CPUがリクエストの処理に費やした秒数## ステップ 12: 最新バージョンでリリースされた変更に対応してWallarmノードのフィルタリングモード設定を調整する
+    * リクエスト処理においてCPUが費やした秒数
+  ）のログ情報が必要な場合、ログ形式の設定に追加してください。
 
-1. 以下に記載された設定の予想される動作が、[`off` および `monitoring` フィルタリングモードの変更されたロジック](what-is-new.md#filtration-modes)に対応していることを確認してください:
+### 最新バージョンで変更されたWallarmノードのフィルトレーションモード設定の調整
+
+1. 以下に記載される設定の期待動作が[フィルトレーションモード `off` と `monitoring` の変更されたロジック](what-is-new.md#filtration-modes)に対応していることを確認してください：
       * [ディレクティブ `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [Wallarmコンソールで構成された一般的なフィルタリングルール](../../admin-en/configure-wallarm-mode.md)
-      * [Wallarmコンソールで構成された低レベルのフィルタリングルール](../../admin-en/configure-wallarm-mode.md)
-2. 予想される動作が変更されたフィルタリングモードのロジックに対応していない場合は、[手順](../../admin-en/configure-wallarm-mode.md)に従って、リリースされた変更にフィルタリングモード設定を調整してください。
+      * [Wallarm Consoleで設定される全般的なフィルトレーションルール](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)
+      * [Wallarm Consoleで設定されるエンドポイント対象のフィルトレーションルール](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
+2. 期待される動作が変更後のフィルトレーションモードのロジックと一致しない場合は、[手順](../../admin-en/configure-wallarm-mode.md)に従ってフィルトレーションモードの設定を調整してください。
 
-## ステップ 13: `overlimit_res` アタック検出設定をディレクティブからルールに転送する
+### `overlimit_res`攻撃検知設定のディレクティブからルールへの移行
 
---8<-- "../include-ja/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
 
-## ステップ 14: `wallarm-status.conf`ファイルの内容を更新する
+### `wallarm-status.conf`ファイルの内容の更新
 
-`/etc/nginx/conf.d/wallarm-status.conf`の内容を以下のように更新します:
+`/etc/nginx/conf.d/wallarm-status.conf`の内容を以下の通り更新してください：
 
 ```
 server {
   listen 127.0.0.8:80;
   server_name localhost;
 
-  allow 127.0.0.0/8;   # フィルター・ノード・サーバーのループバック・アドレスのみアクセス可能
+  allow 127.0.0.0/8;   # フィルターノードサーバーのループバックアドレスのみアクセス可能  
   deny all;
 
   wallarm_mode off;
-  disable_acl "on";   # リクエストソースのチェックが無効化され、ブラックリストに登録されたIPはwallarm-statusサービスをリクエストできます。https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
+  disable_acl "on";   # リクエスト元のチェックが無効になっており、denylistに登録されたIPもwallarm-statusサービスにアクセス可能です。 https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
   access_log off;
 
   location ~/wallarm-status$ {
@@ -333,30 +206,88 @@ server {
 }
 ```
 
-[統計サービス構成の詳細](../../admin-en/configure-statistics-service.md)
+[統計サービスの設定の詳細](../../admin-en/configure-statistics-service.md)
 
-## ステップ 15: NGINXを再起動する
+### Wallarmブロッキングページの更新
 
---8<-- "../include-ja/waf/restart-nginx-3.6.md"
+新しいノードバージョンでは、Wallarmのサンプルブロッキングページが[変更されました](what-is-new.md#new-blocking-page)。ページ上のロゴおよびサポート用メールアドレスは、デフォルトでは空になっています。
 
-## ステップ 16: Wallarmノード動作をテストする
+もしブロックされたリクエストに対して返すために`/usr/share/nginx/html/wallarm_blocked.html`ページが設定されている場合は、[こちら](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)から新しいサンプルページをコピーし、カスタマイズしてください。
 
---8<-- "../include-ja/waf/installation/test-after-node-type-upgrade.md"
+## ステップ9：APIポートの更新
 
-## ステップ 17: アクティブな脅威検証モジュールを再度有効化する（ノード 2.16 以下をアップグレードする場合のみ）
+--8<-- "../include/waf/upgrade/api-port-443.md"
 
-[アクティブな脅威検証モジュールのセットアップに関する推奨事項](../../vulnerability-detection/threat-replay-testing/setup.md) を学び、必要に応じて再度有効にしてください。
+## ステップ10：Threat Replay Testingモジュールの再有効化（ノード2.16以下のアップグレードの場合）
 
-しばらくして、モジュールの動作が誤検知を引き起こさないことを確認してください。誤検知がある場合は、[Wallarmの技術サポート](mailto:support@wallarm.com)に連絡してください。
+[Threat Replay Testingモジュール設定に関する推奨事項](../../vulnerability-detection/threat-replay-testing/setup.md)を確認し、必要に応じて再有効化してください。
 
-## ステップ 18: 前のバージョンのノードを削除する
+しばらく経った後、モジュールの動作がfalse positivesを引き起こさないことを確認してください。false positivesが発生した場合は、[Wallarmテクニカルサポート](mailto:support@wallarm.com)に連絡してください。
 
-新しいノードの動作が適切にテストされたら、Wallarmコンソールの **Nodes** セクションを開いて、前のバージョンの通常ノードをリストから削除してください。
+## ステップ11：NGINXの再起動
 
-postanalyticsモジュールが別のサーバーにインストールされている場合は、このモジュールに関連するノードインスタンスも削除してください。
+--8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+
+## ステップ12：Wallarmノードの動作テスト
+
+新しいノードの動作をテストするには：
+
+1. 保護対象のリソースアドレスに対して、テスト用の[SQLI][sqli-attack-docs]および[XSS][xss-attack-docs]攻撃リクエストを送信してください：
+
+    ```
+    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    ```
+
+1. Wallarm Consoleの→**Attacks**セクションを[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)で開き、攻撃がリストに表示されることを確認してください。
+1. Cloudに格納されたデータ（ルール、IPリスト）が新しいノードと同期されたら、設定したルールが期待通りに動作するかテスト攻撃を実施してください。
+
+## ステップ13：Wallarmノードへのトラフィック送信の設定
+
+利用しているデプロイメント方式に応じて、以下の設定を実施してください：
+
+=== "インライン"
+    ロードバランサーのターゲットを更新して、トラフィックをWallarmインスタンスへ送信するようにしてください。詳細はご利用のロードバランサーのドキュメントを参照してください。
+
+    トラフィックを新しいノードへ完全にリダイレクトする前に、まず部分的にリダイレクトし、新しいノードが期待通りに動作するか確認することを推奨します。
+
+=== "アウトオブバンド"
+    Webまたはプロキシサーバー（例：NGINX、Envoy）を設定し、着信トラフィックをWallarmノードにミラーリングするようにしてください。設定詳細については、ご利用のWebまたはプロキシサーバーのドキュメントを参照することを推奨します。
+
+    [こちら][web-server-mirroring-examples]に、最も一般的なWebおよびプロキシサーバー（NGINX、Traefik、Envoy）のサンプル設定例が記載されています。
+
+## ステップ14：古いノードの削除
+
+1. Wallarm Consoleの→**Nodes**で古いノードを選択し、**Delete**をクリックして削除してください。
+1. 操作を確認してください。
+    
+    Cloudからノードが削除されると、アプリケーションへのリクエストのフィルトレーションが停止します。フィルタリングノードの削除は元に戻せません。ノードはノードリストから永久に削除されます。
+
+1. 古いノードが稼働しているマシンを削除するか、もしくはWallarmノードコンポーネントのみを削除してください：
+
+    === "Debian"
+        ```bash
+        sudo apt remove wallarm-node nginx-module-wallarm
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo apt remove wallarm-node nginx-module-wallarm
+        ```
+    === "CentOSまたはAmazon Linux 2.0.2021x以下"
+        ```bash
+        sudo yum remove wallarm-node nginx-module-wallarm
+        ```
+    === "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
+        ```bash
+        sudo yum remove wallarm-node nginx-module-wallarm
+        ```
+    === "RHEL 8.x"
+        ```bash
+        sudo yum remove wallarm-node nginx-module-wallarm
+        ```
 
 ## 設定のカスタマイズ
 
-Wallarmモジュールはバージョン4.4に更新されます。以前のフィルタリングノード設定は新しいバージョンに自動的に適用されます。追加の設定を行うには、[使用可能なディレクティブ](../../admin-en/configure-parameters-en.md)を使用してください。
+Wallarmモジュールはバージョン5.0に更新されます。以前のフィルタリングノードの設定は自動的に新しいバージョンに適用されます。追加の設定を行うには、[利用可能なディレクティブ](../../admin-en/configure-parameters-en.md)を使用してください。
 
---8<-- "../include-ja/waf/installation/common-customization-options-nginx-4.4.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"
+```

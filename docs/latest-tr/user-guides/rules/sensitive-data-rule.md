@@ -1,42 +1,40 @@
-[img-masking]:      ../../images/user-guides/rules/sensitive-data-rule.png
+[img-masking]:              ../../images/user-guides/rules/sensitive-data-rule.png
+[rule-creation-options]:    ../../user-guides/events/check-attack.md#attack-analysis_1
+[request-processing]:       ../../user-guides/rules/request-processing.md
+[api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
 
-# Veri Gizleme Kuralları
+# Hassas Verilerin Maskelenmesi
 
-Wallarm düğümü, aşağıdaki verileri Wallarm Buluta gönderir:
+İsteklerinizdeki hassas verilerin, altyapınız içinde güvenli kalması ve [Wallarm Cloud](../../about-wallarm/overview.md#how-wallarm-works) dahil olmak üzere üçüncü taraf bir servise iletilmemesi çok önemlidir. Bu hedef, [shared responsibility model](../../about-wallarm/shared-responsibility.md) kullanılarak gerçekleştirilir: Wallarm, kendi tarafından kötü niyetli istekler hakkındaki veriler hariç hiçbir veri iletmez; bu da hassas verilerin sızdırılmasını son derece düşük bir olasılığa indirger - sizden beklenen ise hassas verilerin maskelenmesi olup, bu da korunan bilgi alanlarının güvenlik çevreniz dışına asla çıkmayacağının ek bir güvencesini sağlar.
 
-* Saldırılarla seri hale getirilmiş talepler
+Wallarm, veri maskeleme yapılandırması için **Mask sensitive data** [kuralını](../rules/rules.md) sunar. Wallarm düğümü, Wallarm Cloud'a aşağıdaki verileri gönderir:
+
+* Saldırı içeren serileştirilmiş istekler
 * Wallarm sistem sayaçları
 * Sistem istatistikleri: CPU yükü, RAM kullanımı, vb.
 * Wallarm sistem istatistikleri: işlenen NGINX isteklerinin sayısı, Tarantool istatistikleri, vb.
-* Wallarm'ın uygulama yapısını doğru bir şekilde algılaması için gereken trafik hakkındaki bilgiler
+* Wallarm'ın uygulama yapısını doğru tespit edebilmesi için gereken trafik doğasına ilişkin bilgiler
 
-Bazı verilerin, işlendiği sunucunun dışına transferi yapılmamalıdır. Bu kategori genellikle yetkilendirme (çerezler, tokenler, parolalar), kişisel bilgiler ve ödeme bilgilerini içerir.
+**Mask sensitive data** kuralı, istek post-analytics modülüne ve Wallarm Cloud'a gönderilmeden önce belirtilen istek noktasının orijinal değerini keser. Bu yöntem, hassas verilerin güvenilir ortamın dışına sızmasını engeller.
 
-Wallarm Node, taleplerde veri gizlemeyi destekler. Bu kural, talebi postanalytics modülüne ve Wallarm Buluta göndermeden önce belirtilen talep noktasının orijinal değerini keser. Bu yöntem, hassas verilerin güvenilir ortamın dışına sızmasını önler.
+Bu işlem, saldırıların görüntülenmesini, aktif saldırı (tehdit) doğrulamasını ve kaba kuvvet saldırılarının tespit edilmesini etkileyebilir.
 
-Bu, saldırıların görüntülenmesini, etkin saldırı (tehdit) doğrulamasını ve kaba kuvvet saldırılarının tespitini etkileyebilir.
+## Kural Oluşturma ve Uygulama
 
-## Kuralı oluşturma ve uygulama
+Veri maskesini ayarlamak ve uygulamak için:
 
---8<-- "../include-tr/waf/features/rules/rule-creation-options.md"
+--8<-- "../include/rule-creation-initial-step.md"
+1. **Change requests/responses** → **Mask sensitive data** seçeneğini tıklayın.
+1. **If request is** kısmında, kuralın uygulanacağı kapsamı [describe](rules.md#configuring) edin.
+1. **In this part of request** bölümünde, orijinal değerinin kesilmesi gereken [request points](request-processing.md) belirtin.
+1. [Kuralın derlenip filtreleme düğümüne yüklenmesini tamamlamasını](rules.md#ruleset-lifecycle) bekleyin.
 
-## Örnek: Çerez Değerinin Gizlenmesi
+## Örnek: Bir çerez değerinin maskelenmesi
 
-**Eğer** aşağıdaki koşullar gerçekleşirse:
+Diyelim ki, `example.com` alan adına erişilebilen uygulamanız, kullanıcı doğrulaması için `PHPSESSID` çerezini kullanıyor ve Wallarm kullanan çalışanların bu bilgilere erişimini engellemek istiyorsunuz.
 
-* uygulama *example.com* alan adında erişilebilir durumdaysa
-* uygulama kullanıcı kimlik doğrulaması için *PHPSESSID* çerezini kullanıyorsa
-* güvenlik politikaları, Wallarm'ı kullanan çalışanların bu bilgilere erişimini reddediyorsa
+Bunu yapmak için, ekrandaki görüntüde gösterildiği gibi **Mask sensitive data** kuralını ayarlayın.
 
-**O zaman**, bu çerez için bir veri gizleme kuralı oluşturmak için aşağıdaki işlemler yapılmalıdır:
+--8<-- "../include/waf/features/rules/request-part-reference.md"
 
-1. *Kurallar* sekmesine gidin
-1. `example.com/**/*.*` dalını bulun ve *Kural ekle*'yi tıklayın
-1. *Hassas veriyi gizle'*yi seçin
-1. *Başlık* parametresini seçin ve değerini `COOKIE` olarak girin; *çerez* parametresini seçin ve *bu istek bölümünde* kelimesinden sonra değerini `PHPSESSID` olarak girin
-
-    --8<-- "../include-tr/waf/features/rules/request-part-reference.md"
-
-1. *Oluştur*'a tıklayın
-
-![Hassas verilerin işaretlenmesi][img-masking]
+![Marking sensitive data][img-masking]

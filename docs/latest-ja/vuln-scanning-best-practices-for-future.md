@@ -1,15 +1,13 @@
-脆弱性の検出と軽減のベストプラクティス
+# 脆弱性検出と対策のベストプラクティス
 
-## アクティブ脅威検証のベストプラクティスに従う <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Threat Replay Testing のベストプラクティスに従う <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
-Wallarmが[脆弱性を検出する](../about-wallarm/detecting-vulnerabilities.md)方法の一つは、**アクティブ脅威検証**です。
+Wallarmが[脆弱性を検出する](../about-wallarm/detecting-vulnerabilities.md)一つの方法は**Threat Replay Testing**です。
 
-**アクティブ脅威検証**では、攻撃者をペネトレーションテスターに変え、アプリ/APIを脆弱性のために調べる彼らの活動から可能性あるセキュリティ問題を発見できます。このモジュールは、トラフィックからの実際の攻撃データを使用してアプリケーションエンドポイントを探ることにより、可能性のある脆弱性を見つけます。この方法はデフォルトで無効になっています。
+**Threat Replay Testing**は攻撃者をペネトレーションテスターに変換し、攻撃者がアプリ/APIの脆弱性を探索する際の活動から潜在的なセキュリティ問題を発見できる仕組みです。このモジュールは実際の攻撃データを用いてアプリケーションのエンドポイントを探索することで、脆弱性の可能性を見つけ出します。デフォルトではこの手法は無効です。
 
-[**アクティブ脅威検証**モジュールの構成のベストプラクティスを学ぶ →](../vulnerability-detection/threat-replay-testing/setup.md)
+[**Threat Replay Testing**モジュールの設定に関するベストプラクティスを確認する→](../vulnerability-detection/threat-replay-testing/setup.md)
 
+APIインベントリ
 
-
-API インベントリ
-
-OWASP カバレッジ
+OWASPカバレッジ

@@ -4,49 +4,49 @@
 [gl-point]:                 ../../terms-glossary.md#point
 [gl-anomaly]:               ../../terms-glossary.md#anomaly
 
-# FAST Test Politikaları: Genel Bakış
+# FAST Test Policies: Genel Bakış
 
-FAST, bir uygulamada [zaafiyetler][gl-vuln] test etmek için FAST düğüm davranışını kurmanıza izin veren test politikaları kullanır. Bu bölümdeki belgeler, test politikası yönetimi için talimatlar içerir.
+FAST, bir uygulamayı [güvenlik açıkları][gl-vuln] açısından test ederken FAST node davranışını yapılandırmanıza olanak tanıyan test politikalarını kullanır. Bu bölümdeki belgeler, test politikası yönetimi ile ilgili talimatları içerir.
 
-!!! bilgi "Terminoloji"
-    "FAST test politikası" terimi bu belge bölümünde "politika" olarak kısaltılabilir.
+!!! info "Terminoloji"
+    Bu belgede "FAST test politikası" terimi "politika" olarak kısaltılabilir.
 
-## Test Politikası Prensipleri
+## Test Politikası İlkeleri
 
-FAST, istek öğelerini [noktalar][gl-point] olarak temsil eder ve yalnızca işleme izin verilen bir veya daha fazla nokta içeren isteklerle çalışır. Bu tür noktaların listesi politika üzerinden tanımlanır. İstek, izin verilen noktaları içermezse, atılacak ve onun temelinde hiçbir test isteği oluşturulmayacaktır.
+FAST, istek unsurlarını [noktalar][gl-point] olarak temsil eder ve yalnızca işlenmesine izin verilen bir veya daha fazla nokta içeren isteklerle çalışır. Bu noktaların listesi politika tarafından tanımlanır. İstek izin verilen noktaları içermiyorsa, istek göz ardı edilir ve buna dayanarak test istekleri oluşturulmaz.
 
-Politika aşağıdaki noktaları düzenler:
+Politika, aşağıdaki noktaları düzenler:
 
-* Testlerin nasıl yürütüldüğü
+* Testlerin gerçekleştirilme yöntemi
     
-    Test sırasında, FAST aşağıda listelenen bir veya daha fazla yöntemi izler:
+    Test sırasında FAST, aşağıda listelenen bir veya daha fazla yöntemi izler:
     
-    * İçeriğindeki FAST genişlemelerini kullanarak *tespitler* olarak da bilinen zaafiyetlerin tespiti
-    * Özel genişlemeleri kullanarak zaafiyetlerin tespiti
-    * FAST fuzz testini kullanarak [anormallik][gl-anomaly] tespiti
+    * yerleşik FAST uzantıları kullanılarak güvenlik açıklarının tespiti, ayrıca *detects* olarak bilinir
+    * özel uzantılar kullanılarak güvenlik açıklarının tespiti
+    * FAST fuzz testi kullanılarak [anomaly][gl-anomaly] tespiti
 
-* Uygulamanın testi sırasında FAST düğümünün işlemekte olduğu temel istek öğeleri
+* Uygulama testi sırasında FAST node tarafından işlenen temel istek öğeleri
 
-    İşlenmesine izin verilen Noktalar, politika düzenleyicisinin **Ekleme noktaları** > **İsteğe nerede dahil edilir** bölümünde Wallarm hesabınızda yapılandırıldı. Ekleme noktaları hakkında daha fazla bilgi için bu [bağlantıya][doc-insertion-points] tıklayınız.
+    İşlenmesine izin verilen noktalar, Wallarm hesabınızdaki politika düzenleyicisinde **Insertion points** > **Where in the request to include** bölümünde yapılandırılır. Insertion points hakkında detaylar için bu [link][doc-insertion-points]'e bakın.
 
-* Uygulamanın testi sırasında FAST düğümünün işlemeyi reddettiği temel istek öğeleri
+* Uygulama testi sırasında FAST node tarafından işlenmeyen temel istek öğeleri
 
-    İşlenmesine izin verilmeyen Noktalar, politika ayarlarının **Ekleme noktaları** > **İsteğe nerede dahil edilmez** bölümünde Wallarm hesabınızda yapılandırıldı. Ekleme noktaları hakkında daha fazla bilgi için bu [bağlantıya][doc-insertion-points] tıklayınız.
+    İşlenmesine izin verilmeyen noktalar, Wallarm hesabınızdaki test politikası ayarlarının **Insertion points** > **Where in the request to exclude** bölümünde yapılandırılır. Insertion points ile ilgili daha fazla detayı bu [link][doc-insertion-points] üzerinden bulabilirsiniz.
 
-    İşlenmesine izin verilmeyen Noktalar, **İsteğe nerede dahil edilir** bölümünde çeşitli noktaların bulunduğu ve ayrı öğelerin işlemesinin gerekliliğinin dışlandığı durumlarda kullanılabilir. Örneğin, tüm GET parametrelerinin işlenmesine izin verilirse (`GET_.*`) ve `uuid` parametresinin işlemesinin dışlanması gerekiyorsa, `GET_uid_value` ifadesi **İsteğe nerede dahil edilmez** bölümüne eklenmelidir.
+    İşlenmesine izin verilmeyen noktalar, **Where in the request to include** bölümünde çok çeşitli noktaların bulunması ve belirli öğelerin işlenmesinin hariç tutulmasının gerektiği durumlarda kullanılabilir. Örneğin, tüm GET parametreleri işlenmesine izin veriliyorsa (`GET_.*`) ve `uuid` parametresinin işlenmesi hariç tutulmak isteniyorsa, **Where in the request to exclude** bölümüne `GET_uid_value` ifadesi eklenmelidir.
 
-!!! uyarı "Politika kapsamı"
-    Noktaların açıkça dışlandığı durumlarda, FAST düğüm işlemleri yalnızca politika tarafından izin verilen noktalardır.
+!!! warning "Politika Kapsamı"
+    Noktaların açıkça hariç tutulması durumunda, FAST node işlemleri politikanın izin verdiği tek noktalardır.
     
-    İsteğin herhangi başka noktasının işlenmesi gerçekleştirilmez.
+    İstek içindeki diğer herhangi bir noktanın işlenmesi gerçekleştirilmez.
 
-??? bilgi "Politika örneği"
+??? info "Politika Örneği"
     ![Politika örneği](../../../images/fast/operations/common/test-policy/overview/policy-flow-example.png)
 
-    Yukarıdaki resim, FAST düğümünüzün zaafiyet tespitinde kullandığı politikayı gösterir. Bu politika, temel istekteki tüm GET parametrelerinin işlemesine izin verir, ancak her zaman hedef uygulamaya dokunmadan geçirilen `token` GET parametresini hariç tutar.
+    Yukarıdaki görsel, FAST node tarafından güvenlik açıklarının tespitinde kullanılan politikayı göstermektedir. Bu politika, hedef uygulamaya hiçbir müdahale olmaksızın iletilen `token` GET parametresi hariç, temel istek içindeki tüm GET parametrelerinin işlenmesine izin verir.
 
-    Ayrıca, politika, fuzzer (şans eseri hatalı veri üretici) etkin olmadığı sürece, yerleşik FAST genişlemelerini ve özel genişlemeleri kullanmanıza izin verir.
+    Ayrıca, politika, fuzzer devre dışı iken yerleşik FAST uzantılarını ve özel uzantıları kullanmanıza olanak tanır.
 
-    Bu nedenle, tespitlerin ve genişlemelerin kullanılmasıyla zaafiyetlerin test edilmesi yalnızca temel istek **A** (`/app.php?uid=1234`) için gerçekleştirilecektir.
+    Bu nedenle, detects ve uzantılar kullanılarak güvenlik açıkları testi yalnızca temel istek **A** (`/app.php?uid=1234`) için gerçekleştirilecektir.
 
-    Temel istek **B** (`/app.php?token=qwe1234`) üzerindeki zaafiyetlerin test edilmesi, GET parametrelerinin işlenmesine izin vermediği için gerçekleştirilmeyecektir. Bunun yerine yasaklı `token` parametresini içerir.
+    Temel istek **B** (`/app.php?token=qwe1234`) için güvenlik açıkları testi gerçekleştirilmeyecektir, çünkü işlenmesine izin verilen GET parametrelerini içermemektedir. Bunun yerine, hariç tutulmuş `token` parametresini içermektedir.

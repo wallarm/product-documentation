@@ -1,5 +1,5 @@
 Aktif entegrasyon ayarlarını güncellemek için:
 
-1. Wallarm Konsolu'na gidin → [ABD](https://us1.my.wallarm.com/integrations/) veya [AB](https://my.wallarm.com/integrations/) Bulut'undaki **Entegrasyonlar**.
+1. [US](https://us1.my.wallarm.com/integrations/) veya [EU](https://my.wallarm.com/integrations/) Cloud üzerinden Wallarm Console → **Integrations** bölümüne gidin.
 2. Aktif bir entegrasyonu açın.
-3. Gerekli değişiklikleri yapın ve **Kaydet**'e tıklayın.
+3. Gerekli değişiklikleri yapın ve **Save**'e tıklayın.

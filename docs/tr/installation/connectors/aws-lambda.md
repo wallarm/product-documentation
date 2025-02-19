@@ -1,6 +1,1 @@
----
-search:
-  exclude: true
----
-
---8<-- "latest-tr/installation/cdn/aws-lambda.md"
+--8<-- "latest-tr/installation/connectors/aws-lambda.md"

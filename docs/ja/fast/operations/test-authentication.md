@@ -1,0 +1,1 @@
+--8<-- "latest-ja/fast/operations/test-authentication.md"

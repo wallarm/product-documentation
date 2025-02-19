@@ -8,14 +8,14 @@
 [allocating-memory-guide]:          configuration-guides/allocate-resources-for-node.md
 [nginx-waf-directives]:             configure-parameters-en.md
 [mount-config-instr]:               #run-the-container-mounting-the-configuration-file
-[graylist-docs]:                    ../user-guides/ip-lists/graylist.md
+[graylist-docs]:                    ../user-guides/ip-lists/overview.md
 [filtration-modes-docs]:            configure-wallarm-mode.md
 [application-configuration]:        ../user-guides/settings/applications.md
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
 [versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
 [node-status-docs]:                 configure-statistics-service.md
-[node-token]:                       ../quickstart/getting-started.md#deploy-the-wallarm-filtering-node
+[node-token]:                       ../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../installation/supported-deployment-options.md
@@ -26,5 +26,9 @@
 [azure-container-docs]:             ../installation/cloud-platforms/azure/docker-container.md
 [alibaba-ecs-docs]:                 ../installation/cloud-platforms/alibaba-cloud/docker-container.md
 [api-policy-enf-docs]:              ../api-specification-enforcement/overview.md
+[filtration-modes]:                 configure-wallarm-mode.md#available-filtration-modes
+[api-discovery-docs]:               ../api-discovery/overview.md
+[sensitive-data-rule]:              ../user-guides/rules/sensitive-data-rule.md
+[apid-only-mode-details]:           ../installation/nginx/all-in-one.md#api-discovery-only-mode
 
 --8<-- "latest-ja/admin-en/installation-docker-en.md"

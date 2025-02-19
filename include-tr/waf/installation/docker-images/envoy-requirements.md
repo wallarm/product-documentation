@@ -1,7 +1,7 @@
-* Ana sisteminizde [Docker](https://docs.docker.com/engine/install/) kurulu olması
-* Docker imajını indirmek için `https://hub.docker.com/r/wallarm/envoy` 'a erişim. Lütfen erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
-* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) 'daki Wallarm Console'da **Administratör** rolüne sahip bir hesaba erişim 
-* Eğer US Wallarm Cloud ile çalışılıyorsa `https://us1.api.wallarm.com`'a ya da EU Wallarm Cloud ile çalışılıyorsa `https://api.wallarm.com`'a erişim. Lütfen erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
-* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+* Ana bilgisayarınızda [Docker](https://docs.docker.com/engine/install/) yüklü olmalıdır
+* Docker imajını indirmek için `https://hub.docker.com/r/wallarm/envoy` adresine erişim. Lütfen erişimin güvenlik duvarı tarafından engellenmediğinden emin olun
+* Wallarm Console'da **Administrator** rolüne sahip hesaba, [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) üzerinden erişim
+* US Wallarm Cloud ile çalışıyorsanız `https://us1.api.wallarm.com` adresine, EU Wallarm Cloud ile çalışıyorsanız `https://api.wallarm.com` adresine erişim. Lütfen erişimin güvenlik duvarı tarafından engellenmediğinden emin olun
+* Saldırı tespit kuralları güncellemelerini indirmek ve [izin verilen, reddedilen veya gri listelenmiş][ip-lists-docs] ülkeler, bölgeler veya veri merkezleri için kesin IP adreslerini almak amacıyla aşağıdaki IP adreslerine erişim
 
     --8<-- "../include/wallarm-cloud-ips.md"

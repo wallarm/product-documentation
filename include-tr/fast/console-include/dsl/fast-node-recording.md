@@ -1,7 +1,7 @@
 ```
-[bilgi] Düğüm Wallarm Buluta bağlandı
-[bilgi] Hızlı tarayıcı için 2 özel eklenti yüklendi
-[bilgi] Hızlı tarayıcı için 30 varsayılan eklenti yüklendi
-[bilgi] Kontrol etmek için TestRun bekleniyor...
-[bilgi] TestRun#N 'DEMO TEST RUN' için temel ölçümler kaydediliyor
+[info] Node Wallarm Cloud'a bağlandı
+[info] Hızlı tarayıcı için 2 özel uzantı yüklendi
+[info] Hızlı tarayıcı için 30 varsayılan uzantı yüklendi
+[info] TestRun kontrolü bekleniyor...
+[info] TestRun#N 'DEMO TEST RUN' için temel hatlar kaydediliyor
 ```

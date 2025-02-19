@@ -1,6 +1,7 @@
-* **İstek metodu**: `POST` veya `PUT`. Varsayılan olarak, POST istekleri gönderilir.
-* **İstek başlığı** ve sunucunun isteği gerçekleştirmek için standart dışı bir başlığa ihtiyaç duyduğu durumlarda, başlığın değeri. Başlıkların sayısı sınırlı değildir.
-* **CA sertifikası**: Bir sunucu sertifikasını imzalayan CA'nın sertifikası. CA genel olarak güvenilirse, bu alan isteğe bağlıdır. Bir sunucu sertifikası kendiliğinden imzalandıysa, bu alan gereklidir ve kendi CA'nızın bir sertifikasını içermelidir ki bu, bir sunucu sertifikasını imzalamış olmalıdır.
-* **TLS sertifikasını doğrula**: Bu ayar, belirtilen sunucu sertifikasının doğrulanmasını devre dışı bırakmayı sağlar. Varsayılan olarak, Wallarm bir sunucu sertifikasının genel olarak güvenilen bir CA tarafından imzalanıp imzalanmadığını doğrular. Üretim sunucu sertifikalarının doğrulamasını devre dışı bırakmanızı önermiyoruz. Sunucunuz kendiliğinden imzalanmış bir TLS sertifikası kullanıyorsa, bu sunucuya istek göndermeye izin vermek için kendiliğinden imzalanmış bir CA sertifikası ekleyebilirsiniz.
-* **İstek zaman aşımı, saniye olarak**: Eğer sunucu belirtilen süre içinde isteğe yanıt vermezse, istek başarısız olur. Varsayılan: 15 saniye.
-* **Bağlantı zaman aşımı, saniye olarak**: Eğer belirtilen süre zarfında sunucuya bağlantı kurulamazsa, istek başarısız olur. Varsayılan: 20 saniye.
+* **İstek yöntemi**: `POST` veya `PUT`. Varsayılan olarak, POST istekleri gönderilir.
+* **İstek başlığı** ve değeri, eğer sunucu isteği çalıştırmak için standart dışı bir başlık gerektiriyorsa. Başlık sayısı sınırsızdır.
+* **CA sertifikası**: bir sunucu sertifikasını imzalayan CA'nın sertifikası. Eğer CA genel olarak güveniliyorsa, bu alan isteğe bağlıdır. Eğer sunucu sertifikası kendinden imzalıysa, bu alan zorunludur ve bir sunucu sertifikasını imzalayan kendi CA sertifikanızı içermelidir.
+* **TLS sertifikasını doğrula**: bu ayar, belirtilen sunucu sertifikasının doğrulanmasını devre dışı bırakmanıza izin verir. Varsayılan olarak, Wallarm bir sunucu sertifikasının genel olarak güvenilen bir CA tarafından imzalanıp imzalanmadığını doğrular. Üretim sunucu sertifikalarının doğrulanmasının devre dışı bırakılmasını önermiyoruz. Eğer sunucunuz kendinden imzalı bir TLS sertifikası kullanıyorsa, bu sunucuya istek göndermeye izin vermek için kendinden imzalı bir CA sertifikası ekleyebilirsiniz.
+* **İstek zaman aşımı, saniye cinsinden**: eğer sunucu belirtilen süre içerisinde isteğe yanıt vermezse, istek başarısız olur. Varsayılan: 15 saniye.
+* **Bağlantı zaman aşımı, saniye cinsinden**: eğer sunucuya bağlantı belirtilen süre içerisinde kurulamazsa, istek başarısız olur. Varsayılan: 20 saniye.
+* Wallarm veri formatı: ya bir JSON Dizisi (varsayılan) ya da Bir Satır Yeni Ayrılmış JSON (NDJSON).

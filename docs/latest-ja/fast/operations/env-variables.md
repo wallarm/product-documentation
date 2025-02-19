@@ -2,70 +2,70 @@
 [doc-record-mode]:          ../poc/ci-mode-recording.md
 [doc-test-mode]:            ../poc/ci-mode-testing.md
 
-[anchor-allowed-hosts]:     #要録画のリクエスト数を制限する
+[anchor-allowed-hosts]:     #limiting-the-number-of-requests-to-be-recorded
 
-#   FAST ノードに使用される環境変数の一覧
+# FAST nodeで使用される環境変数の一覧
 
-FAST ノードを設定するために多くのパラメータが使用されます。これらのパラメータの値は、対応する環境変数を介して変更することができます。
+FAST nodeの設定には多くのパラメータが使用されます。これらのパラメータの値は、対応する環境変数を介して変更できます。
 
-環境変数の値を設定し、それらの変数を FAST ノードに渡すことができます
-* `-e` 引数を通じて
+環境変数の値を設定し、それらの変数をFAST nodeに渡す方法は以下のとおりです。
+* `-e`引数を使用して
     
     ```
-    docker run --name <コンテナ名> \
-    -e <環境変数 1>=<値> \
+    docker run --name <container name> \
+    -e <environment variable 1>=<value> \
     ... 
-    -e <環境変数 N>=<値> \
-    -p <ターゲットポート>:8080 wallarm/fast
+    -e <environment variable N>=<value> \
+    -p <target port>:8080 wallarm/fast
     ```
     
-* または、環境変数を含むファイルへのパスを指定する `--env-file` 引数を通じて
+* 環境変数が含まれるファイルへのパスを指定する`--env-file`引数を使用して
 
     ```
-    docker run --name <コンテナ名> \
-    --env-file=<環境変数を含むファイル> \
-    -p <ターゲットポート>:8080 wallarm/fast
+    docker run --name <container name> \
+    --env-file=<file with environment variables> \
+    -p <target port>:8080 wallarm/fast
     ```
     
-    このファイルは、1行に1つの環境変数を含む環境変数の一覧を含む必要があります:
+    このファイルには環境変数の一覧を1行に1変数ずつ記述します:
 
     ```
     # 環境変数のサンプルファイル
 
-    WALLARM_API_TOKEN=token_Qwe12345            # これはサンプルの値です。代わりに実際のトークンの値を使用してください
-    ALLOWED_HOSTS=google-gruyere.appspot.com    # このドメインに向けた着信リクエストはテストレコードに書き込まれます
+    WALLARM_API_TOKEN=token_Qwe12345            # これはサンプルの値です―実際のトークン値をご使用ください
+    ALLOWED_HOSTS=google-gruyere.appspot.com    # このドメインをターゲットとするリクエストはテストレコードに記録されます
     ```
 
-以下の表に、すべての設定可能なパラメータがリストアップされています:
+すべての設定可能なパラメータは、以下の表に記載されています:
 
-| パラメータ             | 値     | 必須? |
+| パラメータ             | 値     | 必須？ |
 |--------------------	| --------	| -----------	|
-| `WALLARM_API_TOKEN`  	| Wallarm クラウドからのトークン | はい |
-| `WALLARM_API_HOST`   	| Wallarm API サーバーのアドレス。<br>許可される値: <br>`us1.api.wallarm.com` は Wallarm US クラウド内のサーバー用、<br>`api.wallarm.com` は Wallarm EU クラウド内のサーバー用。 | はい |
-| `ALLOWED_HOSTS`       | ターゲットアプリケーションのホストの一覧。これらのホストに対象とされた着信リクエストはテストレコードに書き込まれます。<br>すべての着信リクエストがデフォルトで記録されます。<br>詳細は[ここ][anchor-allowed-hosts]を参照してください。 | いいえ |
-| `WALLARM_API_USE_SSL` | Wallarm API サーバーのいずれかに接続する際にSSLを使用するかどうかを定義します。<br>許可される値: `true` および `false`。<br>デフォルト値: `true`。 | いいえ |
-| `WORKERS`             | ベースラインリクエストを処理し、セキュリティテストを行うスレッドの数。<br>デフォルト値: `10`. | いいえ |
-| `GIT_EXTENSIONS`      | [カスタムFAST DSL拡張][doc-dsl-ext]を含むGitリポジトリへのリンク（このリポジトリはFASTノードコンテナからアクセス可能であるべきです） | いいえ |
-| `CI_MODE`             | CI/CDに統合する際のFASTノードの動作モード。 <br>許可される値は次のとおりです: <br>`recording` は[記録モード][doc-record-mode]用、<br>`testing` は[テストモード][doc-test-mode]用です。 | いいえ |
-| `BACKEND_HTTPS_PORTS` | アプリケーションに非デフォルトのポートが設定されている場合、ターゲットアプリケーションが使用するHTTPSポート番号。<br>このパラメータの値には複数のポートがリストアップされることがあります。例: <br>`BACKEND_HTTPS_PORTS='443;3000;8091'`<br>デフォルト値: `443` | いいえ |
-| `WALLARM_API_CA_VERIFY` | Wallarm APIサーバーのCA証明書が有効であるべきかを定義します。<br>許可される値:`true` と`false`。<br>デフォルト値:`false`。 | いいえ |
-| `CA_CERT`             | FASTノードで使用するCA証明書へのパス。<br>デフォルト値: `/etc/nginx/ssl/nginx.crt`. | いいえ |
-| `CA_KEY`              | FASTノードで使用するCAプライベートキーへのパス。 <br>デフォルト値: `/etc/nginx/ssl/nginx.key`. | いいえ |
+| `WALLARM_API_TOKEN`  	| Wallarm Cloudからのトークンです。 | はい |
+| `WALLARM_API_HOST`   	| Wallarm APIサーバのアドレスです。 <br>許容値: <br>`us1.api.wallarm.com`はWallarm US Cloud内のサーバ用、<br>`api.wallarm.com`はWallarm EU Cloud内のサーバ用です。 | はい |
+| `ALLOWED_HOSTS`       | ターゲットアプリケーションのホスト一覧です。これらのホストをターゲットとするリクエストはテストレコードに記録されます。<br>デフォルトではすべてのリクエストが記録されます。<br>詳細は[こちら][anchor-allowed-hosts]を参照ください。 | いいえ |
+| `WALLARM_API_USE_SSL` | Wallarm APIサーバへ接続する際にSSLを使用するかどうかを定義します。<br>許容値: `true` および `false`。<br>デフォルト値: `true`。 | いいえ |
+| `WORKERS`             | ベースラインリクエストの処理およびセキュリティテストを行うスレッド数です。<br>デフォルト値: `10`。 | いいえ |
+| `GIT_EXTENSIONS`      | [custom FAST DSL extensions][doc-dsl-ext]を含むGitリポジトリへのリンクです（このリポジトリはFAST nodeコンテナからアクセス可能である必要があります）。 | いいえ |
+| `CI_MODE`             | CI/CDに統合する際のFAST nodeの動作モードです。<br>許容値:<br>`recording` は[レコーディングモード][doc-record-mode]、<br>`testing` は[テストモード][doc-test-mode]です。 | いいえ |
+| `BACKEND_HTTPS_PORTS` | ターゲットアプリケーションでデフォルト以外のポートが設定されている場合に使用されるHTTPSポート番号です。<br>このパラメータの値には複数のポートを列挙できます。例:<br>`BACKEND_HTTPS_PORTS='443;3000;8091'`<br>デフォルト値: `443` | いいえ |
+| `WALLARM_API_CA_VERIFY` | Wallarm APIサーバのCA証明書を検証するかどうかを定義します。<br>許容値: `true` および `false`。<br>デフォルト値: `false`。 | いいえ |
+| `CA_CERT`             | FAST nodeで使用するCA証明書のパスです。<br>デフォルト値: `/etc/nginx/ssl/nginx.crt`。 | いいえ |
+| `CA_KEY`              | FAST nodeで使用するCA秘密鍵のパスです。<br>デフォルト値: `/etc/nginx/ssl/nginx.key`。 | いいえ |
 
 
-## 要記録のリクエスト数を制限する
+## 記録されるリクエスト数の制限
 
-デフォルトでは、FAST ノードはすべての着信リクエストをベースラインとして扱います。したがって、ノードはそれらを記録し、その基盤となるセキュリティテストを作成および実行します。しかし、ベースラインのリクエストとして認識すべきでない余計なリクエストがFASTノードを通過してターゲットアプリケーションに届く可能性があります。
+デフォルトでは、FAST nodeはすべての受信リクエストをベースラインリクエストとみなします。そのため、リクエストは記録され、これに基づいてセキュリティテストが作成および実行されます。しかし、本来ベースラインリクエストとして認識すべきでない余分なリクエストが、FAST nodeを通過してターゲットアプリケーションに送られる可能性があります。
 
-FAST ノードによる要録画のリクエスト数を、アプリケーションを対象としないすべてのリクエストをフィルタリングして制限することができます（FAST ノードはフィルタリングされたリクエストをプロキシしますが、それらを記録しません）。この制限は、FAST ノードとターゲットアプリケーションに適用される負荷を軽減しながら、テストプロセスを迅速化します。この制限を適用するには、テスト中にリクエスト元がどのホストと対話するかを知る必要があります。
+アプリケーションをターゲットとしていないすべてのリクエストを除外することで、FAST nodeによって記録されるリクエスト数を制限できます（除外されたリクエストはFAST nodeによってプロキシされますが、記録はされません）。この制限により、FAST nodeおよびターゲットアプリケーションへの負荷が軽減され、テストプロセスが高速化されます。この制限を適用するためには、テスト中にリクエスト元がやり取りするホストを把握する必要があります。
 
-`ALLOWED_HOSTS` 環境変数を設定することで、すべてのベースラインでないリクエストをフィルタリングできます。
+環境変数`ALLOWED_HOSTS`を設定することで、ベースラインリクエスト以外のリクエストを除外できます。
 
---8<--  "../include-ja/fast/operations/env-vars-allowed-hosts.md"
+--8<--  "../include/fast/operations/env-vars-allowed-hosts.md"
 
-FAST ノードはこの環境変数を以下のように使用します:
-* 送信リクエストの `Host` ヘッダの値が `ALLOWED_HOSTS` 変数で指定した値と一致する場合、FAST ノードはそのリクエストがベースラインリクエストであると見なします。そのリクエストは記録され、プロキシ化されます。
-* その他のすべてのリクエストはFASTノードを通じてプロキシ化されますが、記録されません。
+FAST nodeはこの環境変数を以下の方法で利用します:
+* 受信リクエストの`Host`ヘッダーの値が`ALLOWED_HOSTS`変数に指定された値と一致する場合、FAST nodeはそのリクエストをベースラインリクエストとみなし、記録およびプロキシを行います。
+* その他のすべてのリクエストはFAST nodeを経由してプロキシされますが、記録はされません。
 
-!!! info "ALLOWED_HOSTS 環境変数の使用例"
-    変数が `ALLOWED_HOSTS=google-gruyere.appspot.com` として定義されている場合、`google-gruyere.appspot.com` ドメインに対象とされたリクエストはベースラインと見なされます。
+!!! info "ALLOWED_HOSTS環境変数の使用例"
+    もし変数が`ALLOWED_HOSTS=google-gruyere.appspot.com`と定義されている場合、`google-gruyere.appspot.com`ドメインをターゲットとするリクエストはベースラインリクエストとみなされます。

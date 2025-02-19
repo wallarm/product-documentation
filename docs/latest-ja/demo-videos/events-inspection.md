@@ -1,30 +1,30 @@
-# CVEの分析と関連する攻撃
+# CVEおよび関連攻撃の解析
 
-弊社のデモビデオをご覧頂き、Wallarmプラットフォームの [**CVEs**](../user-guides/dashboards/threat-prevention.md#cves) ダッシュボードと、特定のCVE関連イベントを分析するための [**イベント**](../user-guides/events/check-attack.md) セクションの使用方法をご理解ください。
+デモ動画をご覧いただき、Wallarmプラットフォームの[**CVEs**](../user-guides/dashboards/threat-prevention.md)ダッシュボードに慣れ、[**Attacks**](../user-guides/events/check-attack.md)セクションと併用して特定のCVE関連イベントを解析する方法を把握してください。
 
-<!-- ## ダッシュボードにおける検出イベントの統計情報の表示
+<!-- ## Viewing statistics on detected events on the dashboards
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/6KBn59aGFxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-**関連するドキュメンテーション記事**
+**Related documentation articles**
 
-* [脅威防止ダッシュボード](../user-guides/dashboards/threat-prevention.md)
+* [Threat Prevention Dashboard](../user-guides/dashboards/threat-prevention.md)
 
-## イベントタイプの概要
+## Event types overview
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/rhigX3DEoZ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-**関連するドキュメンテーション記事**
+**Related documentation articles**
 
-* [Wallarmコンソールでのイベント確認](../user-guides/events/check-attack.md)
-* [フィルタリングノードにより検出された攻撃の分析](../user-guides/events/analyze-attack.md)
-* [フィルタリングノードにより検出された脆弱性の分析](../user-guides/vulnerabilities.md)
+* [Checking events in Wallarm Console](../user-guides/events/check-attack.md)
+* [Analyzing attacks detected by the filtering node](../user-guides/events/check-attack.md)
+* [Analyzing vulnerabilities detected by the filtering node](../user-guides/vulnerabilities.md)
 
-## フィルタリングノードにより検出された攻撃の分析
+## Analyzing attacks detected by the filtering node
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/spD3BnI6fq4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -36,16 +36,16 @@
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/PWyDrQTfN0Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-**関連するドキュメンテーション記事**
+**Related documentation articles**
 
-* [Wallarmコンソールでのイベント確認](../user-guides/events/check-attack.md)
-* [フィルタリングノードにより検出された攻撃の分析](../user-guides/events/analyze-attack.md)
-* [フィルタリングノードにより検出された脆弱性の分析](../user-guides/vulnerabilities.md) -->
+* [Checking events in Wallarm Console](../user-guides/events/check-attack.md)
+* [Analyzing attacks detected by the filtering node](../user-guides/events/check-attack.md)
+* [Analyzing vulnerabilities detected by the filtering node](../user-guides/vulnerabilities.md) -->
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/74s1_X_rhp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-**関連するドキュメンテーション記事**
+**関連記事**
 
-* [CVEsウィジェット](../user-guides/dashboards/threat-prevention.md#cves)
+* [Threat Prevention dashboard](../user-guides/dashboards/threat-prevention.md)（CVE情報を示す）

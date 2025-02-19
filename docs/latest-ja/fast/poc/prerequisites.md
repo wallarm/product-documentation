@@ -1,42 +1,34 @@
-[link-wl-portal-us]:        https://us1.my.wallarm.com
-[link-wl-portal-eu]:        https://my.wallarm.com    
-[link-selenium]:            https://www.seleniumhq.org/
+```markdown
+# 統合前提条件
 
-[doc-create-node]:          ../operations/create-node.md
-[doc-about-token]:          ../operations/internals.md#token
-[doc-integration-overview]: integration-overview.md
+FASTをCI/CDワークフローに統合するためには、以下のものが必要です
 
+* WallarmのアカウントおよびFASTノード管理へアクセスするために[Wallarm Sales Team](mailto:sales@wallarm.com)に連絡してください。
+* FASTノードのDockerコンテナは、HTTPSプロトコル（`TCP/443`）を使用して`us1.api.wallarm.com` Wallarm APIサーバへアクセスできる必要があります。
+--8<-- "../include/fast/cloud-note.md"
 
-#   統合前提条件
-
-FASTをCI / CDワークフローに統合するには、次のものが必要です：
-
-* Contact the [Wallarm Sales Team](mailto:sales@wallarm.com) to get access to the Wallarm account and FAST node management.
-* FASTノードのDockerコンテナは、HTTPSプロトコル（`TCP/443`）を介して`us1.api.wallarm.com` Wallarm APIサーバーにアクセスできる必要があります。
---8<-- "../include-ja/fast/cloud-note.md"
-
- * CI / CDワークフローにDockerコンテナを作成および運用するための権限
+* CI/CDワークフロー用にDockerコンテナを作成・実行する権限
+* 脆弱性をテストするためのWebアプリケーションまたはAPI（*対象アプリケーション*）
     
-* 脆弱性をテストするウェブアプリケーションまたはAPI（*ターゲットアプリケーション*）
+    このアプリケーションは通信にHTTPまたはHTTPSプロトコルを使用する必要があります。
     
-    このアプリケーションはHTTPまたはHTTPSプロトコルを使用して通信しなければなりません。
+    FASTセキュリティテストが完了するまで、対象アプリケーションは利用可能な状態を維持する必要があります。
     
-    ターゲットアプリケーションは、FASTのセキュリティテストが終了するまで利用可能でなければなりません。
+* HTTPおよびHTTPSリクエストを使用して対象アプリケーションをテストするテストツール（*リクエストソース*）。
     
-* HTTPおよびHTTPSリクエストを使用してターゲットアプリケーションをテストするテストツール（*リクエストソース*）。
+    リクエストソースはHTTPまたはHTTPSプロキシサーバと連携できる必要があります。
     
-    リクエストソースはHTTPまたはHTTPSプロキシサーバーで動作できる必要があります。
+    [Selenium][link-selenium]は上記要件を満たすテストツールの例です。
     
-    [Selenium][link-selenium]は、以上の要件を満たすテストツールの一例です。
-    
-* 1つ以上の[トークン][doc-about-token]。
+* 1つ以上の[tokens][doc-about-token].
     <p id="anchor-token"></p>
 
-    Wallarmのクラウドで[FASTノードを作成][doc-create-node]し、CI/CDタスクを実行する際のDockerコンテナで対応するトークンを使用します。
+    Wallarm cloudで[FASTノードの作成][doc-create-node]を行い、CI/CDタスク実行時に該当するトークンをDockerコンテナで使用してください。
     
-    このトークンは、CI/CDジョブ実行中のFASTノードを持つDockerコンテナによって使用されます。
+    CI/CDジョブ実行中、DockerコンテナはFASTノードとともにこのトークンを使用します。
 
-    同時に実行されているいくつかのCI/CDジョブがある場合は、Wallarmのクラウドで適切な数のFASTノードを作成します。
+    複数のCI/CDジョブが同時に実行される場合、Wallarm cloudに適切な数のFASTノードを作成してください。
 
     !!! info "トークンの例"
-        このガイド全体で`token_Qwe12345` の値がトークンの例として使用されます。
+        このガイド全体では、`token_Qwe12345`という値がトークンの例として使用されます。
+```

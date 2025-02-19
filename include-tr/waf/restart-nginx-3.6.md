@@ -1,16 +1,16 @@
 === "Debian"
     ```bash
-    sudo systemctl nginx yeniden başlat
+    sudo systemctl restart nginx
     ```
 === "Ubuntu"
     ```bash
-    sudo service nginx yeniden başlat
+    sudo service nginx restart
     ```
-=== "CentOS veya Amazon Linux 2.0.2021x ve daha düşük"
+=== "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
-    sudo systemctl nginx yeniden başlat
+    sudo systemctl restart nginx
     ```
-=== "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
-    sudo systemctl nginx yeniden başlat
+    sudo systemctl restart nginx
     ```

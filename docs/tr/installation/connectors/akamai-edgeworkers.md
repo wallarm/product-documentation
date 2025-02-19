@@ -1,6 +1,1 @@
----
-search:
-  exclude: true
----
-
---8<-- "latest-tr/installation/cdn/akamai-edgeworkers.md"
+--8<-- "latest-tr/installation/connectors/akamai-edgeworkers.md"

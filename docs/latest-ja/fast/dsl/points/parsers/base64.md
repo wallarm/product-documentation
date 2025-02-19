@@ -1,20 +1,20 @@
 # Base64パーサー
 
-**Base64**パーサーは、リクエスト要素の値をBase64エンコーディングでエンコードおよびデコードします。このパーサーは任意の文字列に適用できます。
+**Base64**パーサーは、リクエスト要素の値をbase64エンコーディングでエンコードおよびデコードします。このパーサーは任意の文字列に適用できます。
 
 **例:**
 
-以下の
+例えば
 
 ```
 POST http://example.com/login/index.php HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 ```
 
-リクエストと
+というリクエストに、以下の
 
 ```
 username=admin&passwd=MDEyMzQ=
 ```
 
-本文に対して、`POST_FORM_URLENCODED_passwd_BASE64_value`ポイントは、フォームエンコード形式のリクエスト本文の`passwd`パラメータに渡されるBase64からデコードされた`01234`値を指します。
+ボディが含まれている場合、`POST_FORM_URLENCODED_passwd_BASE64_value`ポイントは、form-urlencoded形式のリクエストボディ内の`passwd`パラメータに渡されるbase64からデコードされた`01234`の値を示します。

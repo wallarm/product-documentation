@@ -1,108 +1,58 @@
-# Saldırıları Algılama
+```markdown
+[rule-creation-options]:    ../user-guides/events/check-attack.md#attack-analysis_1
+[request-processing]:       ../user-guides/rules/request-processing.md
+[api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-Wallarm platformu, uygulama trafiğini sürekli olarak analiz eder ve kötü niyetli talepleri gerçek zamanlı olarak hafifletir. Bu makaleden, Wallarm'ın saldırılardan koruduğu kaynak türlerini, trafikte saldırıları tespit etme yöntemlerini ve tespit edilen tehditleri nasıl izleyebileceğinizi ve yönetebileceğinizi öğreneceksiniz.
+# Saldırı Tespit Süreci
 
-## Saldırı nedir ve saldırı bileşenleri nelerdir?
+Wallarm platformu, uygulama trafiğini sürekli analiz eder ve kötü amaçlı istekleri gerçek zamanlı olarak önler. Bu makalede, Wallarm'ın saldırılardan koruduğu kaynak türlerini, trafikteki saldırı tespit yöntemlerini ve tespit edilen tehditlerin nasıl izlenip yönetilebileceğini öğreneceksiniz.
 
-<a name="attack"></a>**Saldırı**, aşağıdaki özelliklerle gruplandırılan tek bir hit veya birden fazla hit'tir:
+## Saldırı Nedir ve Saldırı Bileşenleri Nelerdir?
 
-* Aynı saldırı türü, kötü niyetli yük ile parametre ve hit'lerin gönderildiği adres. Hit'ler aynı veya farklı IP adreslerinden gelebilir ve bir saldırı türü içinde kötü niyetli yüklerin farklı değerlerine sahip olabilir.
+<div>
+  <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
+  <div class="sl-embed" style="position:relative;padding-bottom:calc(61.18% + 25px);width:100%;height:0;transform:scale(1)">
+    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/pmaofaxiwniz?embed=inline" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+  </div>
+</div>
 
-    Bu hit gruplama yöntemi temeldir ve tüm hit'lere uygulanır.
-* Etkinse aynı kaynak IP adresi, uygun [tetikleyici](../user-guides/triggers/trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack). Diğer hit parametre değerleri farklı olabilir.
+<a name="attack"></a>**Saldırı**, aşağıdaki özelliklere göre gruplanan tek bir hit ya da birden fazla hit'tir:
 
-    Bu hit gruplama yöntemi, Brüt güç, Zorla göz atma, BOLA (IDOR), Kaynak aşımı, Veri bombası ve Sanal yama saldırı türlerinin hariç olması koşuluyla tüm hit'ler için çalışır.
+* Aynı saldırı türü, kötü amaçlı yük içeren parametre ve hit'lerin gönderildiği adres. Hit'ler aynı ya da farklı IP adreslerinden gelebilir ve aynı saldırı türü içinde kötü amaçlı yüklerin farklı değerleri olabilir. Son hit'ten sonra bir saat içerisinde yeni bir hit gelmelidir; aksi halde ayrı bir saldırı olarak değerlendirilecektir.
 
-    Hit'ler bu yöntemle gruplandırıldığında, [**Yanıltıcı pozitif olarak işaretle**](../user-guides/events/false-attack.md#mark-an-attack-as-a-false-positive) düğmesi ve [aktif doğrulama](detecting-vulnerabilities.md#active-threat-verification) seçeneği saldırı için kullanılamaz.
+    Bu hit gruplama yöntemi temel olup tüm hit'lerde uygulanır.
 
-Belirtilen hit gruplama yöntemleri birbirini dışlamaz. Hit'ler her iki yöntemin özelliklerine sahipse, hepsi tek bir saldırıya gruplanır.
+* Eğer [kaynak IP’ye göre hit gruplama](../user-guides/events/grouping-sampling.md#grouping-of-hits) etkinleştirilmişse, aynı kaynak IP adresine sahip hit'ler. Diğer hit parametre değerleri farklı olabilir.
 
-<a name="hit"></a>**Hit**, Wallarm düğümü tarafından eklenen orijinal kötü niyetli istek ve metaveri olan seri hale getirilmiş kötü niyetli bir istektir. Wallarm, bir istekte farklı türlerde birkaç kötü niyetli yük algılarsa, her birinde bir tür yükle birkaç hit kaydeder.
+    Bu hit gruplama yöntemi, Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb ve Virtual patch saldırı türleri dışındaki tüm hit'ler için geçerlidir.
 
-<a name="malicious-payload"></a>**Kötü niyetli yük**, aşağıdaki öğeleri içeren bir orijinal isteğin bir parçasıdır:
+    Eğer hit'ler bu yöntemle gruplanırsa, ilgili saldırı için [**Yanlış pozitif olarak işaretle**](../user-guides/events/check-attack.md#false-positives) butonu kullanılamaz.
 
-* Bir istekte tespit edilen saldırı belirtileri. Eğer bir istekte aynı saldırı tipini karakterize eden birkaç saldırı belirtisi tespit edilirse, yüke yalnızca ilk belirti kaydedilir.
-* Saldırı belirtisinin bağlamı. Bağlam, tespit edilen saldırı belirtilerini önceden ve sonrayı kapatmak için bir dizi semboldür. Bir yük uzunluğu sınırlı olduğundan, bağlam, bir saldırı belirtisi yük tam uzunluğunda olduğunda atlanabilir.
+Listeye alınan hit gruplama yöntemleri birbirini dışlamaz. Eğer hit'ler her iki yöntemin özelliklerine sahipse, hepsi tek bir saldırıda gruplanır.
 
-    Saldırı işaretleri [davranışsal saldırıları](#behavioral-attacks) tespit etmek için kullanılmadığından, davranışsal saldırıların bir parçası olarak gönderilen isteklerin boş yükleri vardır.
+<a name="hit"></a>**Hit**, seri hale getirilmiş kötü amaçlı bir istektir (orijinal kötü amaçlı istek ve Wallarm düğümü tarafından eklenen meta veriler). Eğer Wallarm, tek bir istekte farklı türde birçok kötü amaçlı yük tespit ederse, her tür için ayrı hit'ler kaydeder.
 
-## Saldırı türleri
+<a name="malicious-payload"></a>**Kötü Amaçlı Yük**, aşağıdaki öğeleri içeren orijinal bir isteğin parçasıdır:
 
-Wallarm çözümü, OWASP API Top 10 tehditlerinden, API suiistimalinden ve diğer otomatik tehditlerden API'leri, mikro hizmetleri ve web uygulamalarını korur.
+* Bir istekte tespit edilen saldırı işaretleri. Eğer bir istekte aynı saldırı türünü karakterize eden birden fazla saldırı işareti tespit edilirse, yalnızca ilk işaret kötü amaçlı yüke kaydedilir.
+* Saldırı işaretinin bağlamı. Bağlam, tespit edilen saldırı işaretlerinin öncesinde ve sonrasında bulunan sembollerden oluşur. Kötü amaçlı yük uzunluğu sınırlı olduğundan, eğer saldırı işareti tüm yük uzunluğunu kapsıyorsa bağlam atlanabilir.
 
-Teknik olarak, Wallarm tarafından tespit edilebilen [tüm saldırılar](../attacks-vulns-list.md) gruplara ayrılır:
+Saldırı işaretleri [davranışsal saldırıları](#behavioral-attacks) tespit etmek için kullanılmadığından, davranışsal saldırıya ait isteklerin yükleri boştur.
 
-* Giriş doğrulama saldırıları
-* Davranışsal saldırılar
+[Learn how to analyze attacks in Wallarm →](../user-guides/events/check-attack.md)
 
-Saldırı tespit yöntemi saldırı grubuna bağlıdır. Davranışsal saldırıları tespit etmek için ek Wallarm düğümü yapılandırması gereklidir.
+## Korumalı Kaynak Türleri
 
-### Giriş doğrulama saldırıları
+Wallarm düğümleri, korumalı kaynaklara gönderilen HTTP ve WebSocket trafiğini analiz eder:
 
-Giriş doğrulama saldırıları, SQL enjeksiyonu, çapraz site yazılımı, uzaktan kod yürütme, Yol Gezintisi ve diğer saldırı türlerini içerir. Her saldırı tipi, isteklerde gönderilen belirli simgelerin kombinasyonları tarafından karakterize edilir. Giriş doğrulama saldırılarını tespit etmek için, isteklerin sözdizimi çözümlemesi yapmak gerekir - belirli sembol kombinasyonlarını tespit etmek için onları ayrıştırın.
+* HTTP trafik analizi varsayılan olarak etkinleştirilmiştir.
 
-Wallarm, JPEG, PNG, GIF, PDF, vb. SVG, dahil olmak üzere herhangi bir talep parçasındaki giriş doğrulama saldırılarını yukarıda listelenen [araçlarla](#tools-for-attack-detection) tespit eder.
+    Wallarm düğümleri, HTTP trafiğini [girdi doğrulama saldırılarına](#input-validation-attacks) ve [davranışsal saldırılara](#behavioral-attacks) karşı analiz eder.
+* WebSocket trafik analizi, [`wallarm_parse_websocket`](../admin-en/configure-parameters-en.md#wallarm_parse_websocket) direktifi aracılığıyla ayrıca etkinleştirilmelidir.
 
-Giriş doğrulama saldırılarının tespiti varsayılan olarak tüm müşteriler için etkindir.
+    Wallarm düğümleri, WebSocket trafiğini yalnızca [girdi doğrulama saldırılarına](#input-validation-attacks) karşı analiz eder.
 
-### Davranışsal saldırılar
-
-Davranışsal saldırılar aşağıdaki saldırı sınıflarını içerir:
-
-* Kaba kuvvet saldırıları: şifreler ve oturum tanımlayıcılarına kaba kuvvet, zorla dosya ve dizinlere göz atma, kimlik bilgileri. Davranışsal saldırılar, belirli bir URL'ye gönderilen farklı zorlanmış parametre değerlerinin büyük sayısı ile karakterize edilebilir.
-
-    Örneğin, bir saldırganın şifreyi zorlaması durumunda, kullanıcı kimlik doğrulama URL'sine farklı `şifre` değerlerine sahip birçok benzer istek gönderilebilir:
-
-    ```bash
-    https://example.com/login/?username=admin&password=123456
-    ```
-
-* Aynı adlı güvenlik açığını istismar eden BOLA (IDOR) saldırıları. Bu güvenlik açığı, bir saldırganın bir API isteği aracılığıyla bir nesneye erişmesine ve yetkilendirme mekanizmasını atlayarak veri almasına veya değiştirmesine izin verir.
-
-    Örneğin, bir saldırganın gerçek bir tanımlayıcıyı bulmak ve karşılık gelen mağaza finansal verilerini almak için dükkan tanımlayıcılarını zorlaması durumunda:
-
-    ```bash
-    https://example.com/shops/{shop_id}/financial_info
-    ```
-
-    Bu tür API istekleri için yetkilendirme gerekmese, bir saldırgan gerçek finansal verileri alabilir ve kendi amaçları için kullanabilir.
-
-#### Davranışsal saldırı tespiti
-
-Davranışsal saldırıları tespit etmek için, isteklerin sözdizimi analizini yapmalı ve istek sayısı ve istekler arasındaki zamanın korelasyon analizini yapmalıyız.
-
-Kullanıcı kimlik doğrulamasına veya kaynak dosya dizinine veya belirli bir nesne URL'sine gönderilen istek sayısı eşiğinin aşıldığında korelasyon analizi yapılır. İsteğin sayısının eşiğini, meşru bir isteğin engellenmesini azaltmak için (örneğin, kullanıcının hesabına birkaç kez yanlış parola girilirse) ayarlamalısınız.
-
-* Korelasyon analizi, Wallarm postanalitik modülü tarafından yürütülür.
-* Alınan istek sayısı ve istek sayısı için eşiği karşılaştırma ve isteklerin engellenmesi, Wallarm Bulut'ta gerçekleştirilir.
-
-Davranışsal saldırı tespit edildiğinde, istek kaynakları engellenir, yani isteklerin gönderildiği IP adresleri engelleme listesine eklenir.
-
-#### Davranışsal saldırı koruması yapılandırması
-
-Kaynağı davranışsal saldırılara karşı korumak için, korelasyon analizi için eşiği ve davranışsal saldırılara karşı savunmasız olan URL'leri belirlemek gerekir:
-
-* [Brüt güç koruması yapılandırma talimatları](../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [BOLA (IDOR) koruması yapılandırma talimatları](../admin-en/configuration-guides/protecting-against-bola.md)
-
-!!! warning "Davranışsal saldırı koruması kısıtlamaları"
-    Davranışsal saldırı belirtileri ararken, Wallarm düğümleri yalnızca diğer saldırı türlerinin belirtilerini içermeyen HTTP isteklerini analiz eder. Örneğin, aşağıdaki durumlarda istekler, davranışsal saldırının bir parçası olarak kabul edilmez:
-
-    * Bu istekler [giriş doğrulama saldırılarının](#input-validation-attacks) belirtilerini içerir.
-    * Bu istekler, [**Düzenli ifadeye dayalı saldırı göstergesi oluştur**](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule) kuralında belirtilen düzenli ifadeye uyar.
-
-## Korunan kaynak türleri
-
-Wallarm düğümleri korunan kaynaklara gönderilen HTTP ve WebSocket trafiğini analiz eder:
-
-* HTTP trafik analizi varsayılan olarak etkindir.
-
-    Wallarm düğümleri HTTP trafiği [giriş doğrulama saldırıları](#input-validation-attacks) ve [davranışsal saldırılar](#behavioral-attacks) için analiz eder.
-* WebSocket trafik analizi ek olarak [`wallarm_parse_websocket`](../admin-en/configure-parameters-en.md#wallarm_parse_websocket) direktifi üzerinden etkinleştirilmelidir.
-
-    Wallarm düğümleri WebSocket trafiğini sadece [giriş doğrulama saldırıları](#input-validation-attacks) için analiz eder.
-
-Korunan kaynak API'si aşağıdaki teknolojiler üzerine kurulduğunda tasarlanabilir (WAAP [abonelik planı](subscription-plans.md#subscription-plans) ile sınırlıdır):
+Korumalı kaynak API'si, aşağıdaki teknolojiler temel alınarak tasarlanabilir (WAAP [subscription plan](subscription-plans.md#waap-and-advanced-api-security) kapsamında sınırlıdır):
 
 * GraphQL
 * gRPC
@@ -113,155 +63,281 @@ Korunan kaynak API'si aşağıdaki teknolojiler üzerine kurulduğunda tasarlana
 * WebDAV
 * JSON-RPC
 
-## Saldırı tespit süreci
+## Saldırı Tespit Süreci
 
-Saldırıları tespit etmek için Wallarm aşağıdaki süreci kullanır:
+Saldırıları tespit etmek için Wallarm, aşağıdaki süreci kullanır:
 
-1. İstek formatını belirleyin ve [istek ayrıştırma belgesinde](../user-guides/rules/request-processing.md) açıklandığı gibi her istek parçasını ayrıştırın.
-2. İsteklerin hitap ettiği uç noktayı belirleyin.
-3. Wallarm Konsolunda yapılandırılan [özel istek analiz kurallarını](#custom-rules-for-request-analysis) uygulayın.
-4. [Varsayılan ve özel tespit kuralları](#tools-for-attack-detection)na dayanarak isteğin kötü niyetli olup olmadığına karar verin.
+1. İstek formatını belirleyin ve her istek parçasını [parse edin](../user-guides/rules/request-processing.md).
+2. İsteğin gönderildiği uç noktayı belirleyin.
+3. Wallarm Console'da yapılandırılmış [özel](../user-guides/rules/rules.md) istek analiz kurallarını uygulayın.
+4. [Varsayılan](#tools-for-attack-detection) ve özel kurallara dayanarak isteğin kötü amaçlı olup olmadığına karar verin.
 
-## Saldırı tespiti için araçlar
+## Saldırı Türleri
 
-Kötü niyetli talepleri tespit etmek için Wallarm düğümleri, korunan kaynağa gönderilen tüm talepleri aşağıdaki araçları kullanarak analiz eder:
+Wallarm çözümü, API'leri, mikroservisleri ve web uygulamalarını [OWASP Top 10](https://owasp.org/www-project-top-ten/) ve [OWASP API Top 10](https://owasp.org/www-project-api-security/) tehditlerine, API kötüye kullanımına ve diğer otomatik tehditlere karşı korur.
+
+Teknik olarak, Wallarm tarafından tespit edilebilen tüm saldırılar şu gruplara ayrılır:
+
+* Girdi doğrulama saldırıları
+* Davranışsal saldırılar
+
+Saldırı tespit yöntemi saldırı grubuna bağlıdır. Davranışsal saldırıları tespit etmek için ek Wallarm düğüm yapılandırması gereklidir.
+
+### Girdi Doğrulama Saldırıları
+
+Girdi doğrulama saldırıları, SQL enjeksiyonu, cross‑site scripting, uzaktan kod çalıştırma, Path Traversal ve diğer saldırı türlerini içerir. Her saldırı türü, isteklerde gönderilen belirli sembol kombinasyonları ile karakterize edilir. Girdi doğrulama saldırılarını tespit etmek için, isteklerin sözdizimsel analizinin yapılması – belirli sembol kombinasyonlarını tespit etmek amacıyla parse edilmesi – gereklidir.
+
+Wallarm, listelenen [araçlar](#tools-for-attack-detection) kullanılarak, SVG, JPEG, PNG, GIF, PDF vb. gibi ikili dosyalar dahil her istek parçasında girdi doğrulama saldırılarını tespit eder.
+
+Girdi doğrulama saldırılarının tespiti varsayılan olarak tüm müşteriler için etkinleştirilmiştir.
+
+### Davranışsal Saldırılar
+
+Davranışsal saldırılar, aşağıdaki saldırı sınıflarını içerir:
+
+* [Kaba kuvvet saldırıları](../admin-en/configuration-guides/protecting-against-bruteforce.md) şifre kaba kuvvet denemesi, oturum kimliği kaba kuvvet denemesi, credential stuffing gibi saldırıları içerir. Bu saldırılar, sınırlı bir zaman diliminde tipik bir URI'ye gönderilen, farklı zorlanmış parametre değerlerine sahip çok sayıda istek ile karakterize edilir.
+
+    Örneğin, bir saldırgan şifreyi zorladığında, kullanıcı kimlik doğrulama URL'sine farklı `password` değerlerine sahip birçok benzer istek gönderilebilir:
+
+    ```bash
+    https://example.com/login/?username=admin&password=123456
+    ```
+* [Zorunlu tarama saldırıları](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md), sınırlı bir zaman diliminde farklı URI'lere yapılan isteklere dönen çok sayıda 404 yanıt kodu ile karakterizedir.
+
+    Örneğin, bu saldırının amacı, gizli kaynakları (örneğin uygulama bileşenleri hakkında bilgi içeren dizinler ve dosyalar) numaralandırmak ve erişmek, böylece bu bilgileri diğer saldırı türlerini gerçekleştirmek için kullanmaktır.
+* [BOLA (IDOR) saldırıları](../admin-en/configuration-guides/protecting-against-bola-trigger.md), aynı adı taşıyan açığı kullanır. Bu açık, bir saldırgana API isteği yoluyla bir nesneye tanımlayıcısı üzerinden erişip, yetkilendirme mekanizmasını atlayarak verilerine ulaşma veya verilerini değiştirme imkânı sağlar.
+
+    Örneğin, bir saldırgan, gerçek bir mağaza tanımlayıcısını bulmak ve karşılık gelen mağaza finansal verilerini elde etmek için mağaza tanımlayıcılarını zorlayabilir:
+
+    ```bash
+    https://example.com/shops/{shop_id}/financial_info
+    ```
+
+    Eğer bu tür API istekleri için yetkilendirme gerekmiyorsa, saldırgan gerçek finansal verileri elde edebilir ve bunları kendi amaçları için kullanabilir.
+
+#### Tespit
+
+Davranışsal saldırıları tespit etmek için, isteklerin sözdizimsel analizinin yanı sıra, istek sayısı ve istekler arasındaki zamanın korelasyon analizi yapılmalıdır.
+
+Korelasyon analizi, kullanıcı kimlik doğrulama, kaynak dosya dizini veya belirli bir nesne URL'sine gönderilen istek sayısı eşiği aşıldığında gerçekleştirilir. İstek sayısı eşiği, meşru isteklerin engellenme riskini azaltacak şekilde ayarlanmalıdır (örneğin, kullanıcının hesabına birkaç kez yanlış şifre girdiği durumlarda).
+
+* Korelasyon analizi, Wallarm postanalytics modülü tarafından gerçekleştirilir.
+* Alınan istek sayısı ile eşik değerinin karşılaştırılması ve isteklerin engellenmesi Wallarm Cloud'da gerçekleştirilir.
+
+Davranışsal saldırı tespit edildiğinde, istek kaynakları engellenir; yani, isteklerin gönderildiği IP adresleri denylist'e eklenir.
+
+#### Koruma
+
+Kaynağı davranışsal saldırılara karşı korumak için, korelasyon analizi eşiğini ve davranışsal saldırılara karşı savunmasız URL'leri ayarlamak gereklidir:
+
+* [Kaba kuvvet koruması yapılandırma talimatları](../admin-en/configuration-guides/protecting-against-bruteforce.md)
+* [Zorunlu tarama koruması yapılandırma talimatları](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
+* [BOLA (IDOR) koruması yapılandırma talimatları](../admin-en/configuration-guides/protecting-against-bola-trigger.md)
+
+## Saldırı Tespit Araçları
+
+Kötü amaçlı istekleri tespit etmek için, Wallarm düğümleri korumalı kaynağa gönderilen tüm istekleri aşağıdaki araçları kullanarak [analiz eder](#attack-detection-process):
 
 * **libproton** Kütüphanesi
 * **libdetection** Kütüphanesi
-* Özel talep analizi kuralları
+* İstek analizi için özel kurallar
 
-### **libproton** Kütüphanesi
+### libproton Kütüphanesi
 
-**libproton** kütüphanesi, kötü niyetli talepleri tespit etme konusunda birincil araçtır. Kütüphane, farklı saldırı türlerinin belirtilerini belirleyen **proton.db** bileşenini kullanır, örneğin: `birlikte seç` [SQL enjeksiyon saldırı türü](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1) için. İstek, **proton.db**'den alınan sıra ile eşleşen bir belirteç sırasını içeriyorsa, bu istek ilgili türün saldırısı olarak kabul edilir.
+**libproton** kütüphanesi, kötü amaçlı istekleri tespit etmede birincil araçtır. Kütüphane, farklı saldırı türü işaretlerini belirlemek için token dizileri olarak işleyen **proton.db** bileşenini kullanır; örneğin, [SQL enjeksiyonu saldırı türü](../attacks-vulns-list.md#sql-injection) için `union select`. Eğer istek, **proton.db** dizisinden eşleşen bir token dizisi içeriyorsa, bu istek ilgili saldırı türü olarak değerlendirilir.
 
-Wallarm, yeni saldırı türleri ve zaten tanımlanan saldırı türleri için **proton.db**'yi belirteç sıralarıyla düzenli olarak günceller.
+Wallarm, yeni saldırı türleri ve halihazırda tanımlanmış saldırı türleri için **proton.db**'yi düzenli olarak token dizileriyle günceller.
 
-### **libdetection** Kütüphanesi
+### libdetection Kütüphanesi
 
-#### **libdetection** genel bakış
+#### libdetection Genel Bakış
 
-[**libdetection**](https://github.com/wallarm/libdetection) kütüphanesi, **libproton** kütüphanesi tarafından tespit edilen saldırıları şu şekilde ek olarak doğrular:
+[**libdetection**](https://github.com/wallarm/libdetection) kütüphanesi, **libproton** tarafından tespit edilen saldırıları ek olarak şu şekilde doğrular:
 
-* **libdetection** **libproton** tarafından tespit edilen saldırı belirtilerini onaylarsa, saldırı engellenir (eğer filtreleme düğümü `block` modunda çalışıyorsa) ve Wallarm Bulut'a yüklenir.
-* **libdetection** **libproton** tarafından tespit edilen saldırı belirtilerini onaylamazsa, istek meşru olarak kabul edilir, saldırı Wallarm Bulut'a yüklenmez ve engellenmez (eğer filtreleme düğümü `block` modunda çalışıyorsa).
+* Eğer **libdetection**, **libproton** tarafından tespit edilen saldırı işaretlerini onaylarsa, saldırı engellenir (filtreleme düğümü `block` modunda çalışıyorsa) ve Wallarm Cloud'a yüklenir.
+* Eğer **libdetection**, **libproton** tarafından tespit edilen saldırı işaretlerini onaylamazsa, istek meşru kabul edilir; saldırı Wallarm Cloud'a yüklenmez ve engellenmez (filtreleme düğümü `block` modunda çalışıyorsa).
 
-**libdetection** kullanarak, saldırıların çift tespitini sağlar ve yanlış pozitiflerin sayısını azaltır.
+**libdetection** kullanmak, saldırıların çift tespitini sağlar ve yanlış pozitif sayısını azaltır.
 
 !!! info "libdetection kütüphanesi tarafından doğrulanan saldırı türleri"
-    Şu anda, **libdetection** kütüphanesi sadece SQL Enjeksiyon saldırılarını doğrular.
+    Şu anda, **libdetection** kütüphanesi yalnızca SQL Enjeksiyonu saldırılarını doğrular.
 
-#### **libdetection** nasıl çalışır
+#### libdetection Nasıl Çalışır
 
-**libdetection**'un belirgin özelliği, istekleri saldırı türlerine özgü belirteç sıralarının yanı sıra, belirteç sırasının gönderildiği bağlam için de analiz etmesidir.
+**libdetection**'ın belirgin özelliği, istekleri yalnızca saldırı türlerine özgü token dizileri için değil, aynı zamanda token dizisinin gönderildiği bağlam için de analiz etmesidir.
 
-Kütüphane, farklı saldırı türlerinin sözdizimlerinin karakter dizilerini içerir (şimdilik SQL Enjeksiyonu). Dize bağlam olarak adlandırılır. SQL enjeksiyon saldırı türü için bağlam örneği:
+Kütüphane, farklı saldırı türü sözdizimlerinin karakter dizilerini içerir (şimdilik SQL Enjeksiyonu). Bu dizi bağlam olarak adlandırılır. SQL enjeksiyonu saldırı türü için bağlam örneği:
 
 ```curl
 SELECT example FROM table WHERE id=
 ```
 
-Kütüphane, saldırının sözdizimi analizini, bağlamlara eşleme için yapar. Saldırı bağlamlara uymuyorsa, istek bir kötü niyetli olan olarak tanımlanmayacak ve engellenmeyecek (eğer filtreleme düğümü `block` modunda çalışıyorsa).
+Kütüphane, bağlamlarla eşleşme için saldırı sözdizimi analizini gerçekleştirir. Eğer saldırı bağlamlarla eşleşmezse, istek kötü amaçlı olarak tanımlanmaz ve engellenmez (filtreleme düğümü `block` modunda çalışıyorsa).
 
-#### **libdetection** test etme
+#### libdetection Test Etme
 
-**libdetection**'ın çalışmasını kontrol etmek için, aşağıdaki meşru isteği korunan kaynağa gönderebilirsiniz:
+**libdetection**'ın çalışmasını kontrol etmek için, korumalı kaynağa aşağıdaki meşru isteği gönderebilirsiniz:
 
 ```bash
 curl "http://localhost/?id=1' UNION SELECT"
 ```
 
-* **libproton** kütüphanesi, `UNION SELECT`'i SQL Enjeksiyon saldırısının belirtisi olarak algılar. `UNION SELECT` diğer komutlar olmadan SQL enjeksiyon saldırısının bir belirtisi olmadığından, **libproton** bir yanlış pozitif algılar.
-* Eğer **libdetection** kütüphanesi kullanarak isteklerin analiz edilmesi etkinse, istekte SQL Enjeksiyon saldırısının belirtisi onaylanmayacaktır. İstek meşru olarak kabul edilir, saldırı Wallarm Bulut'a yüklenmez ve engellenmez (eğer filtreleme düğümü `block` modunda çalışıyorsa).
+* **libproton** kütüphanesi, `UNION SELECT` ifadesini SQL Enjeksiyonu saldırı işareti olarak tespit edecektir. Diğer komutlar olmadan `UNION SELECT` ifadesi SQL enjeksiyonu saldırısının işareti olmadığından, **libproton** yanlış pozitif tespit eder.
+* Eğer isteklerin **libdetection** kütüphanesi ile analizi etkinse, SQL Enjeksiyonu saldırı işareti istek içinde onaylanmayacaktır. İstek meşru kabul edilir, saldırı Wallarm Cloud'a yüklenmez ve engellenmez (filtreleme düğümü `block` modunda çalışıyorsa).
 
-#### **libdetection** modunu yönetme
+#### libdetection Modunun Yönetilmesi
 
 !!! info "**libdetection** varsayılan modu"
-    **libdetection** kütüphanesinin varsayılan modu `on/true` (etkin) durumda olan tüm [dağıtım seçenekleri](../installation/supported-deployment-options.md) için kullanılır.
+    **libdetection** kütüphanesinin varsayılan modu, tüm [deployment options](../installation/supported-deployment-options.md) için `on/true` (etkin) durumdadır.
 
-**libdetection** modunu şunları kullanarak kontrol edebilirsiniz:
+**libdetection** modunu şu yollarla kontrol edebilirsiniz:
 
 * NGINX için [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) direktifi.
 * Envoy için [`enable_libdetection`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) parametresi.
-* Wallarm NGINX Ingress denetleyicisi için [seçeneklerden biri](../admin-en/configure-kubernetes-en.md#managing-libdetection-mode):
+* Wallarm NGINX Ingress kontrolcüsü için [seçeneklerden](../admin-en/configure-kubernetes-en.md#managing-libdetection-mode) biri:
 
-    * Ingress kaynağına `nginx.ingress.kubernetes.io/server-snippet` eklemesi.
-    * Helm grafiğinin `controller.config.server-snippet` parametresi.
+    * Ingress kaynağına `nginx.ingress.kubernetes.io/server-snippet` etiketi.
+    * Helm chart'ının `controller.config.server-snippet` parametresi.
 
-* Wallarm Yan Araba çözümü için `wallarm-enable-libdetection` [pod eklemesi](../installation/kubernetes/sidecar-proxy/pod-annotations.md#annotation-list).
+* Wallarm Sidecar çözümü için `wallarm-enable-libdetection` [pod etiketi](../installation/kubernetes/sidecar-proxy/pod-annotations.md#annotation-list).
 * [AWS Terraform](../installation/cloud-platforms/aws/terraform-module/overview.md#how-to-use-the-wallarm-aws-terraform-module) dağıtımı için `libdetection` değişkeni.
 
-### Özel talep analizi kuralları
+## Belirli Saldırı Türlerini Yoksayma
 
-Wallarm'ın varsayılan talep analizini, korunan uygulamanın özelliklerine uyacak şekilde düzeltmek için, Wallarm müşterileri aşağıdaki türlerde özel kurallar kullanabilir:
+**Belirli saldırı türlerini yoksay** kuralı, belirli istek öğelerindeki belirli saldırı türlerinin tespitini devre dışı bırakmanıza olanak tanır.
 
-* [Sanal bir yama oluşturun](../user-guides/rules/vpatch-rule.md)
-* [RegEx tabanlı saldırı göstergesi oluşturun](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule)
-* [RegEx tabanlı saldırı tespitini devre dışı bırakın](../user-guides/rules/regex-rule.md#partial-disabling-of-a-new-detection-rule)
-* [Belirli saldırı türlerini yoksayın](../user-guides/rules/ignore-attack-types.md)
-* [İkili verileri ve dosya türlerini izin verin](../user-guides/rules/ignore-attacks-in-binary-data.md)
-* [Analizcileri devre dışı bırakın/etkinleştirin](../user-guides/rules/disable-request-parsers.md)
-* [Aşırı sınır_sal planlanan saldırı tespitini ince ayarlayın](../user-guides/rules/configure-overlimit-res-detection.md)
+Varsayılan olarak, Wallarm düğümü, herhangi bir istek öğesinde herhangi bir saldırı türü işareti tespit ederse isteği saldırı olarak işaretler. Ancak, saldırı işaretleri içeren bazı istekler aslında meşru olabilir (örneğin, Database Administrator Forum'da gönderi yayınlayan isteğin gövdesi, [kötü amaçlı SQL komutu](../attacks-vulns-list.md#sql-injection) açıklaması içerebilir).
 
-[Derlenmiş](../user-guides/rules/rules.md) özel kurallar seti, isteklerin analizi sırasında **proton.db**'den standart kurallarla birlikte uygulanır.
+Eğer Wallarm düğümü, isteğin standart yükünü kötü amaçlı olarak işaretlerse, [yanlış pozitif](#false-positives) durum ortaya çıkar. Yanlış pozitifleri önlemek için, korumalı uygulama özelliklerine uyum sağlamak amacıyla standart saldırı tespit kuralları, belirli türlerin özel kuralları kullanılarak ayarlanmalıdır. Wallarm, bunu yapmak için **Belirli saldırı türlerini yoksay** [kuralını](../user-guides/rules/rules.md) sunar.
+
+**Kural Oluşturma ve Uygulama**
+
+--8<-- "../include/rule-creation-initial-step.md"
+1. **Saldırı tespitinin ince ayarları** → **Belirli saldırıları yoksay** seçeneğini seçin.
+2. **If request is** alanında, kuralın uygulanacağı kapsamı [tanımlayın](../user-guides/rules/rules.md#configuring).
+3. Yalnızca belirli saldırıların işaretlerini (seçerek) mi yoksa tüm saldırıların işaretlerini mi yoksayacağını ayarlayın.
+4. **In this part of request** alanında, kuralı uygulamak istediğiniz istek noktalarını belirtin.
+
+    Tüm mevcut noktalar [burada](../user-guides/rules/request-processing.md) açıklanmıştır; kullanım durumunuza uygun olanları seçebilirsiniz.
+
+5. [Kural derlemesinin tamamlanmasını](../user-guides/rules/rules.md#ruleset-lifecycle) bekleyin.
+
+**Kural Örneği**
+
+Diyelim ki, kullanıcı database administrator forumunda gönderinin yayınlanmasını onayladığında, istemci `https://example.com/posts/` uç noktasına POST isteği gönderiyor. Bu isteğin aşağıdaki özellikleri vardır:
+
+* Gönderi içeriği, istek gövdesi parametresi `postBody` içinde iletilir. Gönderi içeriği, Wallarm tarafından kötü amaçlı olarak işaretlenebilecek SQL komutlarını içerebilir.
+* İstek gövdesi `application/json` tipindedir.
+
+[SQL injection](../attacks-vulns-list.md#sql-injection) içeren cURL isteği örneği:
+
+```bash
+curl -H "Content-Type: application/json" -X POST https://example.com/posts -d '{"emailAddress":"johnsmith@example.com", "postHeader":"SQL injections", "postBody":"My post describes the following SQL injection: ?id=1%20select%20version();"}'
+```
+
+Dolayısıyla, `https://example.com/posts/` adresine gönderilen isteklerin `postBody` parametresindeki SQL enjeksiyonlarını yoksaymanız gerekir.
+
+Bunu yapmak için, ekran görüntüsünde gösterildiği gibi **Belirli saldırı türlerini yoksay** kuralını ayarlayın:
+
+![Example of the rule "Ignore certain attack types"](../images/user-guides/rules/ignore-attack-types-rule-example.png)
+
+--8<-- "../include/waf/features/rules/request-part-reference.md"
+
+## İkili Verideki Belirli Saldırı İşaretlerini Yoksayma
+
+Varsayılan olarak, Wallarm düğümü gelen istekleri bilinen tüm saldırı işaretleri için analiz eder. Analiz sırasında, Wallarm düğümü saldırı işaretlerini normal ikili semboller olarak değerlendirmeyip, ikili veri içinde yanlışlıkla kötü amaçlı yükleri tespit edebilir.
+
+**Allow binary data** [kuralını](../user-guides/rules/rules.md) kullanarak, ikili veri içeren istek öğelerini açıkça belirtebilirsiniz. Belirtilen istek öğesi analizinde, Wallarm düğümü asla ikili veri içinde iletilemeyecek saldırı işaretlerini yoksayar.
+
+* **Allow binary data** kuralı, ikili veri içeren istek öğeleri (örneğin arşivlenmiş veya şifrelenmiş dosyalar) için saldırı tespitinin ince ayarını sağlar.
+
+**Kural Oluşturma ve Uygulama**
+
+--8<-- "../include/rule-creation-initial-step.md"
+1. **Saldırı tespitinin ince ayarları** → **Binary data processing** seçeneğini seçin.
+2. **If request is** alanında, kuralın uygulanacağı kapsamı [tanımlayın](../user-guides/rules/rules.md#configuring).
+3. **In this part of request** alanında, kuralı uygulamak istediğiniz istek noktalarını belirtin.
+
+    Tüm mevcut noktalar [burada](../user-guides/rules/request-processing.md) açıklanmıştır; kullanım durumunuza uygun olanları seçebilirsiniz.
+
+4. [Kural derlemesinin tamamlanmasını](../user-guides/rules/rules.md#ruleset-lifecycle) bekleyin.
+
+**Kural Örneği**
+
+Diyelim ki, kullanıcı site üzerindeki form aracılığıyla bir resim içeren ikili dosya yüklediğinde, istemci `multipart/form-data` tipinde bir POST isteğini `https://example.com/uploads/` adresine gönderiyor. İkili dosya, `fileContents` gövde parametresi içinde iletilir ve buna izin vermeniz gerekir.
+
+Bunu yapmak için, ekran görüntüsünde gösterildiği gibi **Allow binary data** kuralını ayarlayın:
+
+![Example of the rule "Allow binary data"](../images/user-guides/rules/ignore-binary-attacks-example.png)
+
+--8<-- "../include/waf/features/rules/request-part-reference.md"
 
 ## Saldırıları İzleme ve Engelleme
 
-Wallarm saldırıları aşağıdaki modlarda işleyebilir:
+**Girdi doğrulama saldırıları**
 
-* İzleme modu: saldırıları algılar ancak engellemez.
-* Güvenli engelleme modu: saldırıları algılar ancak yalnızca [gri listeye alınmış IP'lerden](../user-guides/ip-lists/graylist.md) kaynaklananları engeller. Gri listeye alınmış IP'lerden gelen meşru istekler engellenmez.
-* Engelleme modu: saldırıları algılar ve engeller.
+Wallarm, [girdi doğrulama saldırılarını](#input-validation-attacks) aşağıdaki modlarda işleyebilir:
 
-Wallarm kaliteli istek analizi ve düşük yanlış pozitif seviyesi sağlar. Ancak korunan her uygulamanın kendi özellikleri vardır, bu yüzden engelleme modunu etkinleştirmeden önce Wallarm'ın izleme modunda çalışmasını analiz etmenizi öneririz.
+* İzleme modu: saldırıları tespit eder ancak engellemez.
+* Güvenli engelleme modu: saldırıları tespit eder ancak sadece [graylisted IP'lerden](../user-guides/ip-lists/overview.md) kaynaklananları engeller. Graylisted IP'lerden gelen meşru istekler engellenmez.
+* Engelleme modu: saldırıları tespit eder ve engeller.
 
-Filtreleme modunu kontrol etmek için `wallarm_mode` direktifi kullanılır. Filtreleme modu yapılandırması hakkında daha ayrıntılı bilgi [bağlantıda](../admin-en/configure-wallarm-mode.md) mevcuttur.
+Farklı filtreleme modlarının nasıl çalıştığı ve genel veya belirli uygulamalar, alanlar ya da uç noktalar için filtreleme modunun nasıl yapılandırılacağı hakkında ayrıntılı bilgi [burada](../admin-en/configure-wallarm-mode.md) mevcuttur.
 
-Davranışsal saldırılar için filtreleme modu, belirli bir [tetikleyici](../admin-en/configuration-guides/protecting-against-bruteforce.md) aracılığıyla ayrı ayrı yapılandırılır.
+**Davranışsal saldırılar**
 
-## Yanlış pozitifler
+Wallarm'ın, [davranışsal saldırıları](#behavioral-attacks) nasıl tespit ettiği ve tespit durumunda nasıl davrandığı, filtreleme modundan ziyade bu saldırı türü korumasının [belirli yapılandırması](#protection) tarafından tanımlanır.
 
-**Yanlış pozitif**, meşru bir istekte saldırı belirtilerinin tespit edildiği veya meşru bir varlığın bir güvenlik açığı olarak nitelendirildiği durumda meydana gelir. [Daha ayrıntılı bilgi için güvenlik açığı taramasında yanlış pozitiflere bakınız →](detecting-vulnerabilities.md#false-positives)
+## Yanlış Pozitifler
 
-Saldırılar için isteklerin analiz edilmesi sırasında Wallarm, ultra düşük yanlış pozitiflerle optimal uygulama koruması sağlayan standart bir kural setini kullanır. Korunan uygulamanın özelliklerine bağlı olarak, standart kurallar meşru isteklerde yanıltıcı olarak saldırı belirtilerini tanıyabilir. Örneğin: Veritabanı Yöneticisi Forumu'na kötü niyetli SQL sorgusu açıklaması ekleyen bir istekle SQL enjeksiyonu saldırısı tespit edilebilir.
+**Yanlış pozitif**, meşru bir istekte saldırı işaretleri tespit edildiğinde veya meşru bir varlık güvenlik açığı olarak nitelendirildiğinde meydana gelir. [Güvenlik açığı taramasında yanlış pozitifler hakkında daha fazla bilgi →](detecting-vulnerabilities.md#false-positives)
 
-Bu gibi durumlarda, standart kuralların korunan uygulamanın özelliklerine uyması için aşağıdaki yöntemleri kullanarak ayarlanması gerekir:
+Saldırı isteklerini analiz ederken, Wallarm ultra-düşük yanlış pozitiflerle optimal uygulama koruması sağlayan standart kural setini kullanır. Korumalı uygulama özellikleri nedeniyle, standart kurallar meşru isteklere saldırı işaretlerini yanlışlıkla tanıyabilir. Örneğin, bir gönderi eklenirken kötü amaçlı SQL sorgu açıklaması içeren istek nedeniyle SQL enjeksiyonu saldırısı tespit edilebilir.
 
-* Potansiyel yanlış pozitifleri analiz edin (tüm saldırıları [etiket `!known`](../user-guides/search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits) ile filtreleyin) ve yanlış pozitifleri onaylarsanız, belirli saldırıları veya hit'leri uygun şekilde [işaretleyin](../user-guides/events/false-attack.md). Wallarm, aynı isteklerin analizini tespit edilen saldırı belirtileri için devre dışı bırakan kuralları otomatik olarak oluşturacaktır.
-* Belirli bir istekteki [belirli saldırı türlerinin tespitini devre dışı bırakın](../user-guides/rules/ignore-attack-types.md).
-* İkili verilerde ve dosya türlerinde [belirli saldırı belirtilerinin tespitini devre dışı bırakın](../user-guides/rules/ignore-attacks-in-binary-data.md).
-* [Hatalı bir şekilde uygulanan analizcileri devre dışı bırakın](../user-guides/rules/disable-request-parsers.md).
+Bu tür durumlarda, korumalı uygulama özelliklerine uyum sağlamak amacıyla standart kurallar, aşağıdaki yöntemler kullanılarak ayarlanmalıdır:
 
-Yanlış pozitifleri belirleme ve ele alma, uygulamalarınızı korumak için Wallarm'ın ince ayarlanmasıdır. Wallarm'ın ilk düğümünü izleme [modunda](#monitoring-and-blocking-attacks) yayınlamanızı ve algılanan saldırıları analiz etmenizi öneririz. Eğer bazı saldırılar hatalı bir şekilde saldırı olarak tanımlanırsa, onları yanlış pozitif olarak işaretleyin ve filtreleme düğümünü engelleme moduna geçirin.
+* Tüm saldırıları [etiket `!known`](../user-guides/search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits) ile filtreleyerek potansiyel yanlış pozitifleri analiz edin ve eğer yanlış pozitifler doğrulanırsa, ilgili saldırıları veya hit'leri uygun şekilde [işaretleyin](../user-guides/events/check-attack.md#false-positives). Wallarm, tespit edilen saldırı işaretlerine sahip aynı isteklerin analizini devre dışı bırakacak kuralları otomatik olarak oluşturur.
+* Belirli isteklere yönelik [belirli saldırı türlerinin tespitini devre dışı bırakın](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types).
+* İkili veride [belirli saldırı işaretlerinin tespitini devre dışı bırakın](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data).
+* İsteklere yanlışlıkla uygulanan [parçacıkları devre dışı bırakın](../user-guides/rules/request-processing.md#managing-parsers).
+
+Yanlış pozitiflerin belirlenmesi ve ele alınması, Wallarm'in uygulamalarınızı korumak için yaptığı ince ayarın bir parçasıdır. İlk Wallarm düğümünü izleme [modunda](#monitoring-and-blocking-attacks) dağıtmanızı, tespit edilen saldırıları analiz etmenizi ve eğer bazı saldırılar yanlışlıkla saldırı olarak tanımlanırsa, bunları yanlış pozitif olarak işaretleyerek filtreleme düğümünü engelleme moduna geçirmenizi öneririz.
 
 ## Tespit Edilen Saldırıları Yönetme
 
-Tüm tespit edilen saldırılar Wallarm Konsolu → **Etkinlikler** bölümünde `saldırılar` filtresi ile gösterilir. Arayüz üzerinden saldırıları aşağıdaki şekillerde yönetebilirsiniz:
+Tespit edilen tüm saldırılar, Wallarm Console → **Attacks** bölümünde `attacks` filtresi ile görüntülenir. Saldırıları arayüz üzerinden şu şekilde yönetebilirsiniz:
 
-* Saldırıları görüntüleyin ve analiz edin
-* Saldırının yeniden kontrol kuyruğundaki önceliğini artırın
-* Saldırıları veya ayrı hit'leri yanıltıcı pozitif olarak işaretleyin
+* Saldırıları görüntüleyip analiz edin
+* Yeniden kontrol kuyruğunda bir saldırının önceliğini artırın
+* Saldırıları veya ayrı hit'leri yanlış pozitif olarak işaretleyin
 * Ayrı hit'lerin özel işlenmesi için kurallar oluşturun
 
-Saldırıları yönetme ile ilgili daha fazla bilgi için, [saldırılarla çalışma talimatlarına](../user-guides/events/analyze-attack.md) bakın.
+![Attacks view](../images/user-guides/events/check-attack.png)
 
-![Saldırıları görüntüleme](../images/user-guides/events/check-attack.png)
+## Saldırı Panelleri
 
-Ayrıca, Wallarm, sisteminizin güvenlik duruşunun üstünde durmanıza yardımcı olacak kapsamlı panolar sağlar. Wallarm'ın [Tehdit Önleme](../user-guides/dashboards/threat-prevention.md) panelindeki genel ölçümleri, sisteminizin güvenlik duruşu hakkında bilgi verirken, [OWASP API Güvenlik İlk 10](../user-guides/dashboards/owasp-api-top-ten.md) panelindeki OWASP API İlk 10 tehditlerine karşı sisteminizin güvenlik duruşu hakkında detaylı görülebilir.
+Wallarm, sisteminizin güvenlik durumunu yakından takip etmenize yardımcı olmak için kapsamlı paneller sunar.
 
-![OWASP API İlk 10](../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
+Wallarm'ın [Threat Prevention](../user-guides/dashboards/threat-prevention.md) paneli, sisteminizin güvenlik durumu hakkında genel metrikler sağlar; bu metrikler saldırıların kaynakları, hedefleri, türleri ve protokolleri gibi çok yönlü bilgileri içerir.
 
-## Tespit edilen saldırılar, hit'ler ve kötü niyetli yükler hakkında bildirimler
+![Threat Prevention dashboard](../images/user-guides/dashboard/threat-prevention.png)
 
-Wallarm size tespit edilen saldırılar, hit'ler ve kötü niyetli yükler hakkında bildirimler gönderebilir. Sisteminize saldırı girişimlerinden haberdar olmanıza ve tespit edilen kötü niyetli trafiği hızlıca analiz etmenize izin verir. Kötü niyetli trafiğin analizi, yanlış pozitifleri bildirmeyi, meşru talepleri olan IP'leri izin vermeyi ve saldırı kaynaklarının IP'lerini engelleme listesine eklemeyi içerir.
+[OWASP API Security Top 10](../user-guides/dashboards/owasp-api-top-ten.md) paneli, OWASP API Top 10 tehditlerine karşı sisteminizin güvenlik durumu hakkında, saldırı bilgileri de dahil olmak üzere detaylı görünürlük sağlar.
+
+![OWASP API Top 10](../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
+
+## Tespit Edilen Saldırılar, Hit'ler ve Kötü Amaçlı Yükler Hakkında Bildirimler
+
+Wallarm, tespit edilen saldırılar, hit'ler ve kötü amaçlı yükler hakkında size bildirimler gönderebilir. Bu, sisteminizi hedef alan saldırı girişimlerinin farkında olmanızı ve tespit edilen kötü amaçlı trafiği hızlıca analiz etmenizi sağlar. Kötü amaçlı trafik analizi, yanlış pozitiflerin raporlanması, meşru isteklerin kaynağı olan IP'lerin allowlist'e eklenmesi ve saldırı kaynaklarına ait IP'lerin denylist'e eklenmesini içerir.
 
 Bildirimleri yapılandırmak için:
 
-1. Bildirimlerin gönderileceği sistemlerle [yerel entegrasyonları](../user-guides/settings/integrations/integrations-intro.md) yapılandırın (örneğin, PagerDuty, Opsgenie, Splunk, Slack, Telegram).
-2. Bildirimlerin gönderilmesi için koşulları belirleyin:
+1. Bildirim göndermek için sistemlerle [yerel entegrasyonları](../user-guides/settings/integrations/integrations-intro.md) yapılandırın (örneğin, PagerDuty, Opsgenie, Splunk, Slack, Telegram).
+2. Bildirim gönderme koşullarını ayarlayın:
 
-    * Her tespit edilen hit için bildirim almak istiyorsanız, entegrasyon ayarlarında uygun seçeneği belirtin.
+    * Her tespit edilen hit için bildirim almak adına, entegrasyon ayarlarında uygun seçeneği belirleyin.
 
-        ??? info "JSON formatında tespit edilen hit hakkında bildirimin örneğini görün"
+        ??? info "Tespit edilen hit hakkında JSON formatında bildirimin örneğine bakın"
             ```json
             [
                 {
@@ -313,12 +389,11 @@ Bildirimleri yapılandırmak için:
             ]
             ```
     
-    * Saldırı, hit veya kötü niyetli yük sayısı için eşiği ayarlayın ve eşiğin aşıldığında bildirim almak için uygun [tetikleyicileri](../user-guides/triggers/triggers.md) yapılandırın.
+    * Saldırı, hit veya kötü amaçlı yük sayısı için eşik değeri ayarlayıp, eşik aşıldığında bildirim almak için uygun [tetikleyicileri](../user-guides/triggers/triggers.md) yapılandırın.
 
-        [Yapılandırılmış tetiği ve bildirimi görün →](../user-guides/triggers/trigger-examples.md#slack-notification-if-2-or-more-sqli-hits-are-detected-in-one-minute)
-
-## Demo videoları
+<!-- ## Demo videos
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+</div> -->
+```

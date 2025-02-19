@@ -1,13 +1,13 @@
-デフォルトでは、デプロイされたWallarmノードは着信トラフィックを分析しません。
+デフォルトでは、展開されたWallarmノードは着信トラフィックを解析しません。
 
-選択したWallarmのデプロイメント手法（[インライン][inline-docs]または[Out-of-Band][oob-docs]）により、Wallarmをプロキシトラフィック、またはトラフィックミラーを処理するように設定します。
+選択したWallarmの展開方式（[in-line][inline-docs]または[Out-of-Band][oob-docs]）に応じて、Wallarmを設定し、トラフィックのプロキシまたはトラフィックミラーの処理を行います。
 
-インストールされたノードのマシン上の`/etc/nginx/conf.d/default.conf`ファイルで以下の設定を行います：
+ノードがインストールされたマシンの`/etc/nginx/conf.d/default.conf`ファイルで、以下の設定を実行します:
 
-=== "In-line"
-    1. Wallarmが正当なトラフィックをプロキシするIPアドレスを設定します。アプリケーションインスタンス、ロードバランサー、DNS名など、アーキテクチャに応じたIPが考えられます。
+=== "インライン"
+    1. Wallarmが正当なトラフィックのプロキシ先として使用するIPアドレスを設定します。アーキテクチャに応じて、アプリケーションインスタンス、ロードバランサ、DNS名などになる可能性があります。
     
-        それを行うには、`proxy_pass`の値を編集します。例えば、Wallarmは正当なリクエストを`http://10.80.0.5`に送るべきです：
+        そのために、`proxy_pass`の値を編集します。例えば、Wallarmは正当なリクエストを`http://10.80.0.5`に送信すべきです:
 
         ```
         server {
@@ -22,7 +22,7 @@
             }
         }
         ```
-    1. Wallarmノードが着信トラフィックを分析するように、`wallarm_mode`ディレクティブを`monitoring`に設定します：
+    1. Wallarmノードが着信トラフィックを解析できるように、`wallarm_mode`ディレクティブを`monitoring`に設定します:
 
         ```
         server {
@@ -34,9 +34,9 @@
         }
         ```
     
-        モニタリングモードは、初回のデプロイメントおよびソリューションテストに推奨されるものです。Wallarmは、安全なブロックモードとブロックモードも提供します。[詳細はこちら][waf-mode-instr]。
-=== "Out-of-Band"
-    1. Wallarmノードがミラーリングされたトラフィックを受け入れるように、`server` NGINXブロックに以下の設定を行います：
+        monitoringモードは、初回の展開とソリューションテストに推奨されます。Wallarmはsafe blockingおよびblockingモードも提供しています、[詳しくはこちら][waf-mode-instr].
+=== "アウトオブバンド"
+    1. Wallarmノードがミラーされたトラフィックを受け入れるために、`server` NGINXブロック内に以下の設定を行います:
 
         ```
         wallarm_force server_addr $http_x_server_addr;
@@ -50,9 +50,9 @@
         wallarm_force response_size 0;
         ```
 
-        * `set_real_ip_from`と`real_ip_header`ディレクティブは、Wallarmコンソールで[攻撃者のIPアドレスを表示するため][proxy-balancer-instr]に必要です。
-        * `wallarm_force_response_*`ディレクティブは、ミラーリングされたトラフィックから受け取ったコピーを除くすべてのリクエストの分析を無効化するために必要です。
-    1. Wallarmノードがミラーリングされたトラフィックを分析するように、`wallarm_mode`ディレクティブを`monitoring`に設定します：
+        * `set_real_ip_from`および`real_ip_header`ディレクティブは、Wallarm Consoleが[攻撃者のIPアドレスを表示する][proxy-balancer-instr]ために必要です。
+        * `wallarm_force_response_*`ディレクティブは、ミラーされたトラフィックから受信されたコピー以外のすべてのリクエストの解析を無効にするために必要です.
+    1. Wallarmノードがミラーされたトラフィックを解析できるように、`wallarm_mode`ディレクティブを`monitoring`に設定します:
 
         ```
         server {
@@ -64,4 +64,4 @@
         }
         ```
 
-        悪意のあるリクエストは[ブロックできないため][oob-advantages-limitations]、Wallarmが受け入れる唯一の[モード][waf-mode-instr]はモニタリングです。インラインデプロイメントの場合、安全なブロックモードおよびブロックモードがありますが、`wallarm_mode`ディレクティブをモニタリングと異なる値に設定したとしても、ノードは続けてトラフィックを監視し、悪意のあるトラフィックのみを記録します（モードをオフに設定している場合を除く）。
+        悪意のあるリクエストは[ブロックできない][oob-advantages-limitations]ため、Wallarmが受け入れる唯一の[モード][waf-mode-instr]はmonitoringです。インライン展開の場合はsafe blockingおよびblockingモードも存在しますが、`wallarm_mode`ディレクティブをmonitoring以外の値に設定しても、ノードはトラフィックを継続して監視し、悪意のあるトラフィックのみを記録します（offに設定された場合を除きます）.

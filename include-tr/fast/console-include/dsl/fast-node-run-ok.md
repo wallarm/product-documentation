@@ -1,6 +1,6 @@
 ```
-[bilgi] Düğüm Wallarm Buluta bağlandı
-[bilgi] Hızlı tarama için 1 özel genişletme yüklendi
-[bilgi] Hızlı tarama için 30 varsayılan genişletme yüklendi
-[bilgi] Kontrol etmek için TestRun bekleniyor...
+[info] Wallarm Cloud'a bağlı node
+[info] Hızlı tarayıcı için 1 özel uzantı yüklendi
+[info] Hızlı tarayıcı için 30 varsayılan uzantı yüklendi
+[info] TestRun kontrol edilmek üzere bekleniyor...
 ```

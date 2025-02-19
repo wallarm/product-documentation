@@ -1,32 +1,32 @@
-# Meşru bir istek engellendi
+# Meşru İstek Engellendi
 
-Kullanıcınız Wallarm önlemlerine rağmen meşru bir talebin engellendiğini bildiriyorsa, bu makalede anlatıldığı gibi taleplerini gözden geçirebilir ve değerlendirebilirsiniz.
+Kullanıcınız, Wallarm önlemlerine rağmen meşru bir isteğin engellendiğini bildiriyorsa, bu makalenin açıkladığı şekilde isteklerini gözden geçirip değerlendirebilirsiniz.
 
-Wallarm tarafından engellenen meşru bir talebin sorununu çözmek için aşağıdaki adımları izleyin:
+Wallarm tarafından meşru bir isteğin engellenmesi sorununun çözümü için aşağıdaki adımları izleyin:
 
-1. Kullanıcıdan, engellenen taleple ilgili bilgileri **metin olarak** (ekran görüntüsü değil) sunmasını isteyin, bu bilgilerden birisi aşağıdakiler olabilir:
+1. Kullanıcıdan **metin olarak** (ekran görüntüsü değil) engellenen istek ile ilgili bilgileri sağlamasını isteyin; bu, aşağıdakilerden biri olabilir:
 
-    * Eğer yapılandırılmış ise Wallarm [engelleme sayfası](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) tarafından sağlanan bilgiler (kullanıcının IP adresini, istek UUID'isini ve diğer önceden yapılandırılmış öğeleri içerebilir).
+    * Wallarm [blocking page](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) tarafından sağlanan bilgi (yapılandırılmışsa) (kullanıcının IP adresi, istek UUID'si ve önceden yapılandırılmış diğer öğeleri içerebilir).
 
-        ![Wallarm engelleme sayfası](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+        ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
-        !!! warning "Engelleme sayfası kullanımı"
-            Eğer varsayılan ya da özelleştirilmiş Wallarm engelleme sayfasını kullanmıyorsanız, kullanıcıdan uygun bilgileri almak için [yapılandırmanız](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) çok önemlidir. Unutmayın ki, hatta bir örnek sayfa bile engellenen taleple ilgili anlamlı bilgileri toplar ve kolayca kopyalanmasına olanak sağlar. Ayrıca, kullanıcılara bilgilendirici bir engelleme mesajı döndürmek için böyle bir sayfayı özelleştirebilir veya tamamen yeniden inşa edebilirsiniz.
+        !!! warning "Blocking page usage"
+            Eğer varsayılan veya özelleştirilmiş Wallarm blocking page'i kullanmıyorsanız, kullanıcıdan uygun bilgiyi alabilmek için bunun [yapılandırılmasını](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) şiddetle tavsiye ederiz. Unutmayın, örnek bir sayfa bile engellenen isteğe ilişkin anlamlı bilgilerin toplanmasını ve kolay kopyalanmasını sağlar. Ek olarak, kullanıcıya bilgilendirici bir engelleme mesajı döndürmek için bu sayfayı özelleştirebilir veya tamamen yeniden oluşturabilirsiniz.
     
-    * Kullanıcının istemci talebinin ve yanıtının kopyası. Tarayıcı sayfa kaynak kodu veya terminal istemcisi metin girişi ve çıkışı iyi uyar.
+    * Kullanıcının istemci isteğinin ve yanıtının kopyası. Tarayıcı sayfa kaynak kodu veya terminal istemci metin girişi ve çıkışı gayet uygundur.
 
-1. Wallarm Konsolu → [**Olaylar**](../user-guides/events/check-attack.md) bölümünde, engellenen taleple ilgili olayı [arama](../user-guides/search-and-filters/use-search.md) yapın. Örneğin, [talep ID'si ile arama yapın](../user-guides/search-and-filters/use-search.md#search-by-request-identifier):
+2. Wallarm Console → [**Attacks**](../user-guides/events/check-attack.md) veya [**Incidents**](../user-guides/events/check-incident.md) bölümünde, engellenen istekle ilgili olayı [arama](../user-guides/search-and-filters/use-search.md). Örneğin, [request ID'ye göre arama](../user-guides/search-and-filters/use-search.md#search-by-request-identifier):
 
     ```
     attacks incidents request_id:<requestId>
     ```
 
-1. Yanlış veya meşru engellemeyi belirlemek için olayı inceleyin.
-1. Eğer yanlış bir engelleme ise, problemi şu önlemlerden birini veya bir kombinasyonunu uygulayarak çözün: 
+3. Yanlış bir engelleme veya meşru engelleme olduğunu belirlemek üzere olayı inceleyin.
+4. Yanlış bir engelleme durumu varsa, şu önlemlerden birini veya birkaçını uygulayarak sorunu çözün:
 
-    * [Yanlış pozitiflere](../user-guides/events/false-attack.md) karşı önlemler
-    * [Kural](../user-guides/rules/rules.md)ları yeniden yapılandırma
-    * [Tetikleyicileri](../user-guides/triggers/triggers.md) yeniden yapılandırma
-    * [IP listelerini](../user-guides/ip-lists/overview.md) düzenleme
+    * [False positives](../user-guides/events/check-attack.md#false-positives) a karşı önlemler
+    * [Rules](../user-guides/rules/rules.md) yeniden yapılandırması
+    * [Triggers](../user-guides/triggers/triggers.md) yeniden yapılandırması
+    * [IP lists](../user-guides/ip-lists/overview.md) düzenlemesi
 
-1. Eğer kullanıcı tarafından başlangıçta sağlanan bilgi eksikse veya hangi önlemlerin güvenli bir şekilde uygulanabileceğinden emin değilseniz, detayları [Wallarm destek](mailto:support@wallarm.com) ile paylaşın ve daha fazla yardım ve inceleme için destek alın.
+5. Kullanıcı tarafından başta sağlanan bilgi eksikse veya güvenli bir şekilde uygulanabilecek önlemler konusunda emin değilseniz, daha fazla yardım ve araştırma için detayları [Wallarm support](mailto:support@wallarm.com)'a iletin.

@@ -1,0 +1,1 @@
+--8<-- "latest-ja/fast/operations/check-testrun-status.md"

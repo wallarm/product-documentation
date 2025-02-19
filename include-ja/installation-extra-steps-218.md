@@ -1,44 +1,44 @@
-## 追加の設定
+## 追加設定
 
-フィルタリングノードは、インストール後に追加の設定を必要とする場合があります。
+フィルタリングノードはインストール後に追加の設定が必要な場合があります。
 
-以下のドキュメントでは、必要に応じて適用できる典型的なセットアップのいくつかをリストしています。
+以下の文書は、必要に応じて適用できる典型的なセットアップのいくつかを示します。
 
-その他の利用可能な設定についての詳しい情報は、[管理者ガイド](admin-intro-en.md)の**設定**セクションを参照してください。
+他の利用可能な設定に関する詳細は、[Administrator’s guide](admin-intro-en.md)の**Configuration**セクションをご参照ください。
 
 ### クライアントの実際のIPの表示設定
 
-フィルタリングノードがプロキシサーバーやロードバランサの背後に展開され、それ以外の設定がない場合、リクエスト元アドレスがクライアントの実際のIPアドレスと等しくない可能性があります。代わりに、プロキシサーバーまたはロードバランサのIPアドレスのいずれかと等しくなる可能性があります。
+フィルタリングノードがプロキシサーバまたはロードバランサの背後に配置され、追加の設定を行わない場合、リクエストの送信元アドレスは実際のクライアントのIPアドレスと一致しない可能性があります。代わりに、プロキシサーバまたはロードバランサのIPアドレスの1つと一致する場合があります。
 
-この場合、フィルタリングノードがリクエスト元アドレスとしてクライアントのIPアドレスを受け取るようにしたい場合は、プロキシサーバーまたはロードバランサの[追加設定](using-proxy-or-balancer-en.md)を行う必要があります。
+この場合、フィルタリングノードがリクエストの送信元アドレスとしてクライアントのIPアドレスを受け取るようにするには、プロキシサーバまたはロードバランサの[追加設定](using-proxy-or-balancer-en.md)を行う必要があります。
 
-### Wallarmスキャナーのアドレスを許可リストに追加
+### Wallarm Scannerアドレスを許可リストに追加
 
-Wallarmスキャナーは、あなたの会社のリソースを脆弱性に対してチェックします。スキャンは次のリストのいずれかからのIPアドレスを使用して行われます（使用するWallarm Cloudの種類によります）：
+Wallarm Scannerは、貴社のリソースの脆弱性をチェックします。スキャンは、使用しているWallarm Cloudの種類に応じて、次のいずれかのリストのIPアドレスを使用して実行されます。
 
-* [US CloudユーザーのためのUSスキャナーアドレス](scanner-addresses.md)
-* [EU CloudユーザーのためのEUスキャナーアドレス](scanner-addresses.md)
+* [US Cloudユーザ向けのUS Scannerアドレス](scanner-address-us-cloud.md)
+* [EU Cloudユーザ向けのEU Scannerアドレス](scanner-address-eu-cloud.md)
 
-Wallarmスキャナーを使用している場合、ネットワークスコープセキュリティソフトウェア（ファイアウォール、侵入検知システムなど）の許可リストを設定して、WallarmスキャナーのIPアドレスを含める必要があります。
+Wallarm Scannerを使用する場合、ネットワークのセキュリティソフトウェア（ファイアウォール、侵入検知システムなど）にWallarm ScannerのIPアドレスを含むように許可リストの設定を行う必要があります。
 
-例えば、デフォルト設定のWallarmフィルタリングノードはブロックモードに設置され、その結果、Wallarmスキャナーはフィルタリングノードの背後のリソースをスキャンできなくなります。
+たとえば、デフォルト設定のWallarmフィルタリングノードはブロッキングモードに配置されるため、Wallarm Scannerはフィルタリングノードの背後にあるリソースをスキャンできなくなります。
 
-スキャナーの動作を再開させるためには、このフィルタリングノード上で[スキャナーのIPアドレスを許可リストに追加](scanner-ips-allowlisting.md)します。
+Scannerを再び動作させるには、このフィルタリングノードで[ScannerのIPアドレスを許可リストに追加](scanner-ips-allowlisting.md)してください。
 
-### 単一のリクエスト処理時間の制限
+### 単一リクエスト処理時間の制限
 
-[`wallarm_process_time_limit`](configure-parameters-en.md#wallarm_process_time_limit) Wallarmディレクティブを使用して、フィルタリングノードによる単一リクエストの処理期間の制限を指定します。
+[`wallarm_process_time_limit`](configure-parameters-en.md#wallarm_process_time_limit) Wallarmディレクティブを使用して、フィルタリングノードが単一のリクエストを処理する期間の上限を指定します。
 
-リクエストの処理にディレクティブで指定した時間以上かかった場合、エラー情報がログファイルに入力され、リクエストは`overlimit_res`攻撃としてマークされます。
+リクエストの処理にディレクティブで指定した時間を超える場合、エラーに関する情報がログファイルに記録され、リクエストは`overlimit_res`攻撃としてマークされます。
 
-### サーバー応答待ち時間の制限
+### サーバ応答待ち時間の制限
 
-[`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) NGINXディレクティブを使用して、プロキシサーバーの応答の読み取りタイムアウトを指定します。
+[`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) NGINXディレクティブを使用して、プロキシサーバの応答を読み取る際のタイムアウトを指定します。
 
-サーバーがこの時間何も送信しない場合、接続が閉じられます。
+この時間内にサーバから何も送信されない場合、接続は切断されます。
 
 ### 最大リクエストサイズの制限
 
-[`client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) NGINXディレクティブを使用して、クライアントリクエストのボディの最大サイズの制限を指定します。
+[`client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) NGINXディレクティブを使用して、クライアントのリクエストボディの最大サイズの上限を指定します。
 
-この制限を超えると、NGINXはクライアントに`413`（`Payload Too Large`）コードを返します。これは`Request Entity Too Large`メッセージとも呼ばれます。
+この上限を超えた場合、NGINXは`413`（Payload Too Large）のコードでクライアントに応答し、`Request Entity Too Large`メッセージとしても知られます。

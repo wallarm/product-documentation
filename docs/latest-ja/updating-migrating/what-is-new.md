@@ -1,101 +1,175 @@
-# Wallarmノード4.6での新機能
+# Wallarm Node 5.x と 0.x の新機能
 
-新しいWallarmノードのマイナーバージョンがリリースされました！これには、DoS攻撃、総当たり攻撃、APIの過度な使用を防ぐための重要なAPIレート制限機能が含まれています。この文書からリリースされたすべての変更を学びましょう。
+本ドキュメントはNGINX Node 5.xおよびNative Node 0.xのメジャーバージョン向けのチェンジログについて説明しています。古いメジャーバージョンからアップグレードされる場合、このドキュメントを参照ください。
 
-## オールインワンインストーラー
+Wallarm Nodeのマイナーバージョンに関する詳細なチェンジログについては、[NGINX Nodeアーティファクト一覧](node-artifact-versions.md)または[Native Nodeアーティファクト一覧](native-node/node-artifact-versions.md)を参照してください。
 
-さまざまな環境でNGINXの動的モジュールとしてWallarmノードをインストールおよびアップグレードする際には、インストールプロセスを合理化し、標準化するために設計された**オールインワンインストーラー**を使用できます。このインストーラーは、自動的にオペレーティングシステムとNGINXのバージョンを識別し、必要なすべての依存関係をインストールします。
+## APIセッション
 
-インストーラーは、以下の操作を自動的に実行することでプロセスを簡素化します：
+!!! tip ""
+    [NGINX Node 5.1.0以降](node-artifact-versions.md)および[Native Node 0.8.1以降](native-node/node-artifact-versions.md)
 
-1. あなたのOSとNGINXバージョンをチェックします。
-1. 検出されたOSとNGINXバージョンのためのWallarm リポジトリを追加します。
-1. これらのリポジトリからWallarm パッケージをインストールします。
-1. インストールされたWallarm モジュールをあなたのNGINXに接続します。
-1. 提供されたトークンを使用して、フィルタリングノードをWallarm Cloudに接続します。
+API経済に特化したユニークなセキュリティ機能、[APIセッション](../api-sessions/overview.md)を導入します。この機能により、攻撃、異常、及びAPI全体でのユーザー行動を可視化でき、ユーザーがAPIおよびアプリケーションとどのように連携しているかの透明性が向上します。
 
-[オールインワンインストーラーでノードをデプロイする方法の詳細を参照 →](../installation/nginx/all-in-one.md)
+![APIセッションセクション - 監視されるセッション](../images/api-sessions/api-sessions.png)
 
-## レート制限
+攻撃者は脆弱なエンドポイントを正当なユーザー行動に紛れ込ませることで悪用することが多く、そのセッション全体の文脈がなければパターンや脅威を特定することは、複数のツールやシステムを必要とする手間のかかる作業となります。組織はAPIレベルでの十分な可視性を持っていない場合があります。
 
-適切なレート制限の欠如は、APIのセキュリティにとって大きな問題であり、攻撃者が高ボリュームのリクエストを送信してサービスを拒否（DoS）させるか、システムをオーバーロードさせることができ、正当なユーザーに影響を与えます。
+APIセッションにより、セキュリティチームはユーザーセッションごとにグループ化されたすべての関連アクティビティを確認でき、攻撃シーケンス、ユーザーの異常、及び通常の動作を前例のない見通しで把握できます。従来、数時間または数日を要した調査を、Wallarm Console上で数分で実行できるようになりました。
 
-Wallarmノード4.6以降でサポートされるWallarmのレート制限機能を使用すると、セキュリティチームはサービスの負荷を効果的に管理し、サービスが正当なユーザーにとって利用可能で安全であることを確保できます。この機能は、リクエストとセッションのパラメータに基づいて各種の接続制限を提供し、従来のIPベースのレート制限、JSONフィールド、base64エンコードデータ、クッキー、XMLフィールドなどを含みます。
+主な特徴：
 
-たとえば、各ユーザーのAPI接続を制限して、1分あたり何千ものリクエストを送信することを防ぐことができます。これはサーバーに重大な負荷をかけ、サービスがクラッシュする可能性があります。レート制限を実装することにより、サーバーをオーバーロードから保護し、すべてのユーザーがAPIに公平にアクセスできることを保証することができます。
+* 攻撃、異常、及びユーザー行動の可視化：セッション内の各リクエストを閲覧・解析し、攻撃ベクターや疑わしいパターンを追跡します。
+* レガシーセッションと最新セッションの両方に対応：アプリケーションがクッキーセッションまたはJWT/OAuthに依存している場合でも、Wallarm APIセッションは完全な互換性と可視性を提供します。
+* 個別の攻撃とそれに対応するセッション間をシームレスに移動できます。
 
-Wallarm Console UI → **ルール** → **レート制限の設定**で、あなたの特定の使用ケース向けにレート制限範囲、レート、バースト、遅延、応答コードを指定することにより、レート制限を簡単に設定できます。
+APIセッションを用いることで、セキュリティチームは容易に以下を実行できます：
 
-[レート制限設定のガイド →](../user-guides/rules/rate-limiting.md)
+* 脅威アクターの全アクティビティを調査し、潜在的な攻撃経路や侵害されたリソースを理解します。
+* シャドウAPIやゾンビAPIへのアクセス状況を特定し、未文書化または旧式のAPIに起因するリスクを軽減します。
+* キーインサイトを同僚と共有し、セキュリティ調査時の協業を促進します。
 
-## メールとパスワードに基づくノードの登録の廃止
+[続きを読む](../api-sessions/overview.md)
 
-Wallarmノード4.6のリリースとともに、クラウドでのWallarmノードのメールとパスワードに基づく登録が廃止されました。このメソッドはバージョン4.0のリリース時に廃止され、ほとんどの顧客が新しい登録方法に移行しています。まだ行っていない場合は、Wallarmノード4.6以降を続行するために、必ずトークンベースのノード登録方法に切り替える必要があります。
+## APIセッションにおけるレスポンスパラメータ
 
-バージョン4.6以降のノードは、Wallarm Cloudへのより安全で迅速な接続を保証するトークンを使用した登録のみ可能です。各移行ガイドには、トークンベースのノード登録方法への移行を支援するための指示が提供されています。
+!!! tip ""
+    [NGINX Node 5.3.0以降](node-artifact-versions.md)、現在[Native Node](native-node/node-artifact-versions.md)ではサポートされていません
 
-ノード登録方法の変更は、ノードタイプの更新をもたらすときもあります。[続きを読む](older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens)
+Wallarmの[APIセッション](../api-sessions/overview.md)は、ユーザーアクティビティのシーケンスの可視化を提供します。この機能追加により、各セッション内でリクエストだけでなくレスポンス情報も利用可能になりました：
 
-## 新しいブロッキングページ
+* どのヘッダーやレスポンスのパラメータでも、対応するリクエスト内に表示するよう設定でき、ユーザーアクティビティの明確かつ完全な全体像を提供します。
+* レスポンスパラメータをセッションのグループキーとして利用でき（[例](../api-sessions/setup.md#grouping-keys-example)参照）、リクエストをセッションに正確にグループ化できます。
 
-サンプルブロッキングページ `/usr/share/nginx/html/wallarm_blocked.html` が更新されました。新しいノードバージョンでは、新しいレイアウトが適用され、ロゴとサポートメールのカスタマイズもサポートしています。
+![APIセッション - グルーピングキー動作例](../images/api-sessions/api-sessions-grouping-keys.png)
 
-新しいレイアウトを持つ新しいブロックページは、デフォルトでは以下のように見えます ：
+## リクエスト処理時間制限における新機能
 
-![Wallarm のブロックページ](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+!!! tip ""
+    [NGINX Node 5.1.0以降](node-artifact-versions.md)および[Native Node 0.8.1以降](native-node/node-artifact-versions.md)
 
-[ブロッキングページの設定に関する詳細 →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
+Wallarmは、システムメモリ不足に陥り、ノードが停止してアプリケーションが保護されなくなるのを防ぐために、リクエスト処理時間を[制限](../user-guides/rules/configure-overlimit-res-detection.md)します。今回、このメカニズムの透明性が向上しました：
 
-## 統計サービスのパラメーターの変更
+* 制限超過のすべてのケースが記録され、即座に**Attacks**に`overlimit_res`イベントとして表示され、容易に特定・解析できます。
+* 制限超過が発生した場合、すべてのリクエスト処理が停止します。
+* システム動作の設定が容易になりました。一般設定は**Settings**→**General**に表示され、そこで変更できます。
+* **Limit request processing time**（旧**Fine-tune the overlimit_res attack detection**）ルールは、特定のエンドポイント向けに異なる設定を適用できるよう簡略化されました。
 
-Wallarmの統計サービスは、新しい `rate_limit` パラメータを[Wallarmのレート制限](#rate-limits) モジュールのデータとともに返します。新しいパラメータは、拒否されたリクエストと遅延したリクエストをカバーし、モジュールの動作に問題があるかどうかを示します。
+## API Discoveryにおける機微なデータ検出のカスタマイズ
 
-[統計サービスの詳細 →](../admin-en/configure-statistics-service.md)
+!!! tip ""
+    [NGINX Node 5.0.3以降](node-artifact-versions.md)および[Native Node 0.7.0以降](native-node/node-artifact-versions.md)
 
-## 新しいNGINXディレクティブ
+API Discoveryは、APIで利用および転送される機微なデータを検出し強調表示します。既存の検出プロセスを[微調整](../api-discovery/sensitive-data.md#customizing-sensitive-data-detection)し、独自の機微なデータパターンを追加できます。
 
-[レート制限ルール](#rate-limits) が特性を設定するための推奨される方法であるにもかかわらず、新しいNGINXディレクティブを使ってレート制限を設定することもできます：
+パターンは、どの機微なデータがどのように検出されるかを定義するために使用されます。既定のパターンを変更し独自のものを追加するには、Wallarm Consoleで**API Discovery**→**Configure API Discovery**→**Sensitive data**に移動してください。
 
-* [`wallarm_rate_limit`](../admin-en/configure-parameters-en.md#wallarm_rate_limit)
-* [`wallarm_rate_limit_enabled`](../admin-en/configure-parameters-en.md#wallarm_rate_limit_enabled)
-* [`wallarm_rate_limit_log_level`](../admin-en/configure-parameters-en.md#wallarm_rate_limit_log_level)
-* [`wallarm_rate_limit_status_code`](../admin-en/configure-parameters-en.md#wallarm_rate_limit_status_code)
-* [`wallarm_rate_limit_shm_size`](../admin-en/configure-parameters-en.md#wallarm_rate_limit_shm_size)
+## API DiscoveryとAPIセッションにおける機微なビジネスフロー
 
-## ノードインスタンスの簡単なグルーピング
+!!! tip ""
+    [NGINX Node 5.2.11以降](node-artifact-versions.md)および[Native Node 0.10.1以降](native-node/node-artifact-versions.md)
 
-これで、 `Deploy` 役割を持つ[**APIトークン**](../user-guides/settings/api-tokens.md) と `WALLARM_LABELS` 変数とその `group` ラベルを使って、ノードインスタンスを簡単にグループ化できます。
+機微なビジネスフロー機能により、Wallarmの[API Discovery](../api-discovery/overview.md)は、認証、アカウント管理、請求など、特定のビジネスフローや機能に不可欠なエンドポイントを自動的に識別できます。
 
-例えば：
+これにより、機微なビジネスフローに関連するエンドポイントの脆弱性や侵害に対する定期的な監視・監査が可能になり、開発、保守、およびセキュリティ対策の優先順位付けが実現されます。
 
-```bash
-docker run -d -e WALLARM_API_TOKEN='<DEPLOY ROLEのAPI TOKEN>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:4.6.2-1
-```
-... このコマンドは、ノードインスタンスを `<GROUP>` インスタンスグループに配置します（既存の場合、または存在しない場合は作成されます）。
+![API Discovery - 機微なビジネスフロー](../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
 
-## ノード3.6以前からのアップグレード時
+識別された機微なビジネスフローはWallarmの[APIセッション](../api-sessions/overview.md)に連携されます。つまり、API Discoveryで重要とタグ付けされたエンドポイントに対するセッションのリクエストがある場合、そのセッションは自動的に[タグ付け](../api-sessions/exploring.md#sensitive-business-flows)され、該当ビジネスフローにも影響を及ぼすと判定されます。
 
-バージョン3.6以前からアップグレードする場合は、[別のリスト](older-versions/what-is-new.md)からすべての変更を確認してください。
+セッションに機微なビジネスフローのタグが割り当てられると、特定のビジネスフローでフィルタリングでき、解析する上で最も重要なセッションを簡単に選別できるようになります。
 
-## アップグレードが推奨されるWallarmノードは？
+![APIセッション - 機微なビジネスフロー](../images/api-sessions/api-sessions-sbf-no-select.png)
 
-* クライアントとマルチテナントのWallarmノードのバージョン4.xは、Wallarmのリリースに最新の状態を保つため、また[インストールされたモジュールが非推奨に](versioning-policy.md#version-support)なるのを防ぐため。
-* クライアントとマルチテナントのWallarmノードの[非サポート](versioning-policy.md#version-list)バージョン（3.6以前）。Wallarmノード4.6で利用可能な変更は、ノードの設定を簡略化し、トラフィックのフィルタリングを改善します。ただし、ノード4.6の一部の設定は、古いバージョンのノードと**互換性がありません**。
+## 本格的なGraphQLパーサー
 
-## アップグレードプロセス
+!!! tip ""
+    [NGINX Node 5.3.0以降](node-artifact-versions.md)、現在[Native Node](native-node/node-artifact-versions.md)ではサポートされていません
 
-1. [モジュールのアップグレードのための推奨事項](general-recommendations.md)を確認してください。
-2. Wallarmノードのデプロイオプションの手順に従って、インストールされたモジュールをアップグレードします：
+本格的な[GraphQLパーサー](../user-guides/rules/request-processing.md#gql)は、GraphQLリクエスト内の入力検証攻撃（例：SQLインジェクション）の検出を大幅に改善し、**より高い精度と最小限の誤検知**を実現する改善機能です。
 
-      * [NGINX, NGINX Plusのモジュール](nginx-modules.md)
-      * [NGINXまたはEnvoyのモジュールを持つDockerコンテナ](docker-container.md)
-      * [統合されたWallarmモジュールを持つNGINX Ingressコントローラ](ingress-controller.md)
-      * [統合されたWallarmモジュールを持つKong Ingressコントローラ](kong-ingress-controller.md)
-      * [サイドカープロキシ](sidecar-proxy.md)
-      * [クラウドノードイメージ](cloud-image.md)
-      * [CDNノード](cdn-node.md)
-      * [マルチテナントノード](multi-tenant.md)
+主な利点：
+
+* **向上した検出**：入力検証攻撃（例：SQLインジェクション）の検出能力
+* **詳細なパラメーターインサイト**：GraphQLリクエストパラメータの値をAPIセッション内で抽出・表示し、セッションコンテキストパラメータとして活用します。
+
+    ![APIセッション設定 - GraphQLリクエストパラメータ](../images/api-sessions/api-sessions-graphql.png)
+
+* **正確な攻撃検出**：引数、ディレクティブ、変数など、特定のGraphQLリクエストコンポーネント内で攻撃を正確に特定します。
+* **高度なルール適用**：特定のGraphQLリクエスト部分に対して細かい保護ルールを適用します。これにより、特定の攻撃タイプに対する除外設定の微調整と構成が可能になります。
+
+    ![GraphQLリクエスト箇所に適用されたルールの例](../images/user-guides/rules/rule-applied-to-graphql-point.png)
+
+## コネクタおよびTCPトラフィックミラー向けNative Node
+
+NGINXから独立して動作するWallarm Node向けの新たなデプロイメントオプション、Native Nodeを導入できることを嬉しく思います。本ソリューションは、NGINXが不要な環境やプラットフォームに依存しないアプローチが望まれる環境のために開発されました。
+
+現時点では、以下のデプロイメント向けに最適化されています：
+
+* MuleSoft、Cloudflare、CloudFront、Broadcom Layer7 API Gateway、Fastlyコネクタ（リクエストおよびレスポンス解析対応）
+* Kong API GatewayおよびIstio Ingressコネクタ
+* TCPトラフィックミラー解析
+
+[続きを読む](../installation/nginx-native-node-internals.md#native-node)
+
+## NGINX Nodeテクノロジースタックの変更
+
+[Wallarm NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 5.xは、**Rubyベース**の実装から**Go言語**ベースの実装へと再設計されました。本リリースでは、現在および将来の開発に向けて、ソリューションをより高速でスケーラブルかつリソース効率の高いものにすることに注力しています。
+
+### メトリクス
+
+具体的なメトリクスに関しては、Wallarmのpostanalyticsモジュールにおいて以下のパフォーマンス向上が実現されました：
+
+* CPU使用量は0.5コアから0.1コアに削減されました。
+* 秒間500リクエストのトラフィック時に、メモリ使用量が400MB削減されました。
+
+### ファイルシステムの変更
+
+テクノロジースタックの変更に伴い、NGINX Nodeアーティファクトのファイルシステムは以下のように変更されました：
+
+* ログファイルシステム：以前は、各専用スクリプトごとに複数のファイルにログが記録されていました。現在、ほぼすべてのサービスのログは単一の専用ファイル`wcli-out.log`に記録されます。過去のログファイルの一覧は[こちら](/4.10/admin-en/configure-logging/)、現在のログファイルは[こちら](../admin-en/configure-logging.md)で確認できます。
+* 診断スクリプトのパス変更：`/opt/wallarm/usr/share/wallarm-common/collect-info.sh`ファイルは`/opt/wallarm/collect-info.sh`に移動されました。
+
+### さらなる機能の導入
+
+NGINX Node 5.2リリース以降、新機能は新しいGoベースの実装を採用したノードでのみ導入され、以前のバージョン（4.10）にはバックポートされません。
+
+## バージョンポリシーの変更
+
+NGINX Nodeのテクノロジースタックの更新およびNative Nodeの導入に伴い、[Wallarm Nodeバージョンポリシー](versioning-policy.md)が更新されました：
+
+* Wallarmは、最新のマイナーバージョンを含む、直近2つのメジャーバージョンをサポートします。
+* 2リリース前のバージョン（例：6.xから4.x）のサポートは、新しいメジャーバージョンのリリースから3ヶ月後に終了します。
+* メジャーバージョンは6ヶ月ごと、または重要な新機能や破壊的変更がある場合にリリースされます。
+* マイナーバージョンは毎月リリースされ、既存機能の強化に注力（+1インクリメント）しています。
+* Native NodeもNGINX Nodeと同様のバージョン管理パターンに従い、同時リリースおよび機能のパリティを保っています。ただし、Native Nodeのメジャーバージョン番号は0から始まります。
+
+## アップグレードが推奨されるWallarmノードはどれですか？
+
+* クライアントおよびマルチテナントのWallarm NGINX Node 4.8および4.10は、Wallarmリリースに追随し、[インストール済みモジュールの非推奨化](versioning-policy.md#version-support-policy)を防ぐためにアップグレードが推奨されます。
+* [サポート外](versioning-policy.md#version-list)のバージョン（4.6以下）のクライアントおよびマルチテナントのWallarmノードです。
+
+もしバージョン3.6以下からアップグレードする場合は、[別途の一覧](older-versions/what-is-new.md)ですべての変更点を確認してください。
+
+## アップグレード手順
+
+1. [モジュールアップグレードに関する推奨事項](general-recommendations.md)を確認します。
+2. ご利用のWallarmノードデプロイメントオプションに応じた手順に従って、インストール済みモジュールをアップグレードします：
+
+    * NGINX Node:
+        * [DEB/RPMパッケージ](nginx-modules.md)
+        * [オールインワンインストーラー](all-in-one.md)
+        * [NGINX用モジュールを含むDockerコンテナ](docker-container.md)
+        * [Wallarmモジュールが統合されたNGINX Ingressコントローラー](ingress-controller.md)
+        * [サイドカーコントローラー](sidecar-proxy.md)
+        * [クラウドノードイメージ](cloud-image.md)
+        * [マルチテナントノード](multi-tenant.md)
+    
+    * Native Node:
+        * [オールインワンインストーラー](native-node/all-in-one.md)
+        * [Helmチャート](native-node/helm-chart.md)
+        * [Dockerイメージ](native-node/docker-image.md)
 
 ----------
 
-[その他のWallarm製品とコンポーネントの更新 →](https://changelog.wallarm.com/)
+[Wallarm製品およびコンポーネントのその他の更新情報 →](https://changelog.wallarm.com/)

@@ -13,5 +13,8 @@ search:
 [ptrav-attack-docs]:                          ../../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:                        ../../../../images/admin-guides/test-attacks-quickstart.png
 [filtration-mode-docs]:                       ../../../../admin-en/configure-wallarm-mode.md
+[node-token-types]:                           ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[cred-stuffing-docs]:                         ../../../../about-wallarm/credential-stuffing.md
+[api-spec-enforcement-docs]:                  ../../../../api-specification-enforcement/overview.md
 
 --8<-- "latest-tr/installation/kubernetes/sidecar-proxy/deployment.md"

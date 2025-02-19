@@ -1,38 +1,38 @@
 [anchor-report-mode]:              #running-fast-node-in-report-mode
 
-[doc-ci-mode-testing-report]:      ../poc/ci-mode-testing.md#getting-the-report-about-the-test
+[doc-ci-mode-testing-report]:      ../poc/ci-mode-testing.md#deployment-of-a-fast-node-in-the-testing-mode
 [doc-ci-mode-testing]:             ../poc/ci-mode-testing.md
 [doc-get-token]:                   create-node.md
 [deploy-docker-with-fast-node]:    ../qsg/deployment.md#4-deploy-the-fast-node-docker-container
 
-# テスト結果レポートの取得
+# テスト結果付きレポートの取得
 
-FASTノードは、テスト結果をTXTとJSONの形式で取得することができます。
+FASTノードでは、TXT形式およびJSON形式のテスト結果を取得できます:
 
-* TXTファイルには、基本的な統計と検出した脆弱性のリストが含まれます。
-* JSONファイルには、詳細なテスト結果が含まれます — セキュリティテストと基本リクエストの詳細、及び検出した脆弱性のリスト。JSONファイルの内容は、Wallarmアカウント > **Test runs**で提供されるデータに対応しています。
+* TXTファイルには、簡潔なテスト結果―ベースライン統計と検出された脆弱性の一覧―が含まれます。
+* JSONファイルには、詳細なテスト結果―セキュリティテストの詳細と基本リクエスト、ならびに検出された脆弱性の一覧―が含まれます。JSONファイルの内容は、Wallarmアカウント > **Test runs** に表示されるデータに対応します。
 
-レポートを取得するためには、レポート生成方法を選択し、以下の指示に従ってください。
+レポートを取得するには、レポート生成方法を選択し、以下の手順に従ってください:
 
-* [レポートモードでのFASTノードの実行][anchor-report-mode]
-* [レポートのダウンロードオプション付きのテストモードでのFASTノードの実行][doc-ci-mode-testing-report] 
+* [reportモードでのFASTノードの実行][anchor-report-mode]
+* [テストモードでのFASTノード実行（レポートダウンロードオプション付き）][doc-ci-mode-testing-report]
 
-## レポートモードでのFASTノードの実行
+## reportモードでのFASTノードの実行
 
-レポートモードでFASTノードを実行するためには、[Dockerコンテナのデプロイ][deploy-docker-with-fast-node]時に以下の手順を実行します。
+FASTノードをreportモードで実行するには、[Dockerコンテナのデプロイ][deploy-docker-with-fast-node]時に、以下の手順を行ってください。
 
-<ol start="1"><li>環境変数を設定します。</li></ol>
+<ol start="1"><li>環境変数を設定します:</li></ol>
 
-| 変数                   	| 説明 	| 必須 	|
-|------------------------	|--------	|-------	|
-| `WALLARM_API_TOKEN`     	| Wallarmクラウドからの[token][doc-get-token] | はい |
-| `WALLARM_API_HOST`      	| Wallarm APIサーバーのアドレス。<br>許可されている値：<br>`us1.api.wallarm.com` （Wallarm USクラウド内のサーバー用）<br>`api.wallarm.com` （Wallarm EUクラウド内のサーバー用）。 | はい |
-| `CI_MODE`               	| FASTノードの操作モード。<br>`report`である必要があります。 | はい |
-| `TEST_RUN_ID`         	| レポートを取得するために必要なテスト実行ID。<br>IDはWallarmアカウント > **Test runs**とFASTノードのテストモードでの実行ログで表示されます。<br>デフォルトでは、最後のテスト実行のIDが使用されます。 | いいえ |
+| Variable           	| Description 	| Required 	|
+|--------------------	| --------	| -----------	|
+| `WALLARM_API_TOKEN`  	| Wallarmクラウドからの[トークン][doc-get-token]です。 | Yes |
+| `WALLARM_API_HOST`   	| Wallarm APIサーバーのアドレスです。 <br>許可される値: <br>`us1.api.wallarm.com` はWallarm USクラウドのサーバー用、<br>`api.wallarm.com` はWallarm EUクラウドのサーバー用です。| Yes |
+| `CI_MODE`            	| FASTノードの動作モードです。<br>`report`に設定してください。 | Yes |
+| `TEST_RUN_ID`      	| レポート取得に必要なテスト実行IDです。<br>IDはWallarmアカウント > **Test runs** およびテストモードで実行中のFASTノードのログに表示されます。<br>デフォルトでは、最後に実行されたテストのIDが使用されます。 | No |
 
-<ol start="2"><li>オプション<code>-v {DIRECTORY_FOR_REPORTS}:/opt/reports/</code>を使って、レポートのフォルダへのパスを渡します。</li></ol>
+<ol start="2"><li><code>-v {DIRECTORY_FOR_REPORTS}:/opt/reports/</code> オプションを使用して、レポート用フォルダーへのパスを渡します。</li></ol>
 
-**レポートモードでFASTノードDockerコンテナを実行するコマンドの例：**
+**reportモードでFASTノードDockerコンテナを実行するコマンドの例:**
 
 ```
 docker run  --rm -e WALLARM_API_HOST=us1.api.wallarm.com -e WALLARM_API_TOKEN=qwe53UTb2 -e CI_MODE=report -e TEST_RUN_ID=9012 -v documents/reports:/opt/reports/ wallarm/fast
@@ -40,11 +40,11 @@ docker run  --rm -e WALLARM_API_HOST=us1.api.wallarm.com -e WALLARM_API_TOKEN=qw
 
 ## レポートの取得
 
-コマンドが正常に実行された場合、ターミナルにテスト実行の簡単なデータが表示されます。
+コマンドが正常に実行された場合、ターミナルにテスト実行の概要データが表示されます:
 
---8<-- "../include-ja/fast/console-include/operations/node-in-ci-mode-report.md"
+--8<-- "../include/fast/console-include/operations/node-in-ci-mode-report.md"
 
-レポート生成が完了したら、`DIRECTORY_FOR_REPORTS`フォルダに以下のレポートファイルが作成されます：
+レポート生成が完了すると、`DIRECTORY_FOR_REPORTS`フォルダーに以下のレポートファイルが作成されます:
 
 * `<TEST RUN NAME>.<UNIX TIME>.txt`
 * `<TEST RUN NAME>.<UNIX TIME>.json`

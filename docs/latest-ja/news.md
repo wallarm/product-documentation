@@ -1,4 +1,4 @@
-# 更新履歴とニュース
+# 変更履歴 & ニュース
 
 <div class="announcekit-widget"></div>
 

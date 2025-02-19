@@ -1,10 +1,10 @@
-!!! warning "CentOS GPG鍵に関する問題"
-    すでにWallarmリポジトリを追加して、無効なCentOS GPG鍵に関連するエラーが発生した場合は、以下の手順を実行してください：
+!!! warning "CentOS GPGキーに関する問題"
+    既にWallarmリポジトリを追加しており、無効なCentOS GPGキーに関するエラーが発生した場合は、以下の手順に従ってください：
 
-    1. `yum remove wallarm-node-repo`コマンドを使用して追加したリポジトリを削除します。
-    2. 上記の適切なタブからコマンドを使用してリポジトリを追加します。
+    1. 「yum remove wallarm-node-repo」コマンドを使用して、追加したリポジトリを削除します。
+    2. 上記の適切なタブからのコマンドを使用して、リポジトリを追加します。
 
-    可能なエラーメッセージ：
+    発生する可能性のあるエラーメッセージ：
 
-    * `https://repo.wallarm.com/centos/wallarm-node/7/2.14/x86_64/repodata/repomd.xml: [Errno -1] repomd.xml signature could not be verified for wallarm-node_2.14`
-    * `One of the configured repositories failed (Wallarm Node for CentOS 7 - 2.14), and yum doesn't have enough cached data to continue.`
+    * `https://repo.wallarm.com/centos/wallarm-node/7/2.14/x86_64/repodata/repomd.xml: [Errno -1] repomd.xmlの署名をwallarm-node_2.14用に検証できませんでした`
+    * `設定済みのリポジトリの1つが失敗しており (Wallarm Node for CentOS 7 - 2.14)、yumは継続するための十分なキャッシュデータを保持していません。`

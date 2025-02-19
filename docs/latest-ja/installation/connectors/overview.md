@@ -1,40 +1,39 @@
-# Deploying Wallarm with Connectors
+# コネクタとしてWallarmを展開する
 
-API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, Mulesoft, Apigee, and AWS Lambda. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of "connectors" specifically designed for such cases.
+APIの展開は、Azion Edge、Akamai Edge、Mulesoft、Apigee、CloudFrontなどの外部ツールを利用するなど、さまざまな方法で実施可能です。これらのAPIをWallarmで保護したい場合、特定のケース向けに設計された「コネクタ」形式のソリューションをご提供します。
 
-## How it works
+## 仕組み
 
-The solution involves deploying the Wallarm node externally and injecting custom code or policies into the specific platform. This enables traffic to be directed to the external Wallarm node for analysis and protection against potential threats. Referred to as Wallarm's connectors, they serve as the essential link between platforms and the external Wallarm node.
+Wallarmのコネクタソリューションは、APIゲートウェイやエッジプラットフォームなどのサードパーティプラットフォームと統合し、トラフィックのフィルタリングと解析を行います。このソリューションは主に2つのコンポーネントで構成されます。
 
-The following scheme demonstrates high-level traffic flow in the Wallarm blocking [mode](../../admin-en/configure-wallarm-mode.md):
+* **Wallarmノード**は、[Wallarm](../se-connector.md)またはクライアントによってホストされ、トラフィック解析とセキュリティチェックを実行します。
+* サードパーティプラットフォームにインジェクトされ、トラフィックをWallarmノードへ解析のためにルーティングする**Wallarmが提供したコードバンドルまたはポリシー**です。
 
-![image](../../images/waf-installation/general-traffic-flow-for-connectors.png)
+コネクタを使用することで、トラフィック解析は[in-line](../inline/overview.md)または[out-of-band](../oob/overview.md)で実施できます。
 
-Traffic is analyzed in-line, the injected Wallarm script captures requests and forwards them to the node for analysis. Depending on the response from the node, malicious activities are blocked, and only legitimate requests are allowed to access the APIs.
+=== "インライントラフィックフロー"
 
-Alternatively, the monitoring mode allows users to gain knowledge about potential threats web applications and APIs may encounter. In this mode, the logic of traffic flow remains the same, but the node does not block attacks, it only registers and records them in the Wallarm Cloud, accessible through the Wallarm Console.
+    Wallarmが悪意のあるアクティビティを[block](../../admin-en/configure-wallarm-mode.md)するように設定されている場合:
 
-## Use cases
+    ![image](../../images/waf-installation/general-traffic-flow-for-connectors-inline.png)
+=== "アウトオブバンドトラフィックフロー"
+    ![image](../../images/waf-installation/general-traffic-flow-for-connectors-oob.png)
 
-* Securing all APIs deployed with Azion Edge, Akamai Edge, Mulesoft, Apigee, AWS Lambda or similar tool by creating only one component in the current infrastrucure - the component like the Wallarm code/policy/proxy depending on the solution being used.
-* Requiring a security solution that offers comprehensive attack observation, reporting, and instant blocking of malicious requests.
+## 対応プラットフォーム
 
-## Limitations
+Wallarmは以下のプラットフォーム向けにコネクタを提供します:
 
-The solution has certain limitations as it only works with incoming requests:
+| コネクタ | 対応トラフィックフローモード | コネクタのホスティング |
+| --- | ---- | ---- |
+| [Mulesoft](mulesoft.md) | インライン | Security Edge, セルフホステッド |
+| [Apigee](apigee.md) | インライン | セルフホステッド |
+| [Akamai EdgeWorkers](akamai-edgeworkers.md) | インライン | セルフホステッド |
+| [Azion Edge](azion-edge.md) | インライン | セルフホステッド |
+| [Amazon CloudFront](aws-lambda.md) | インライン, アウトオブバンド | Security Edge, セルフホステッド |
+| [Cloudflare](cloudflare.md) | インライン, アウトオブバンド | Security Edge, セルフホステッド |
+| [Kong Ingress Controller](kong-api-gateway.md) | インライン | セルフホステッド |
+| [Istio Ingress](istio.md) | アウトオブバンド | セルフホステッド |
+| [Broadcom Layer7 API Gateways](layer7-api-gateway.md) | インライン | セルフホステッド |
+| [Fastly](fastly.md) | インライン, アウトオブバンド | Security Edge, セルフホステッド |
 
-* Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) method does not function properly. The solution determines if an API is vulnerable or not based on server responses to malicious requests that are typical for the vulnerabilities it tests.
-* The [Wallarm API Discovery](../../api-discovery/overview.md) cannot explore API inventory based on your traffic, as the solution relies on response analysis.
-* The [protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response code analysis.
-
-## Supported deployment options
-
-Currently, Wallarm offers connectors for the following platforms:
-
-* [Mulesoft](mulesoft.md)
-* [Apigee](apigee.md)
-* [Akamai EdgeWorkers](akamai-edgeworkers.md)
-* [Azion Edge](azion-edge.md)
-* [AWS Lamdba](aws-lambda.md)
-
-If you couldn't find the connector you are looking for, please feel free to contact our [Sales team](mailto:sales@wallarm.com) to discuss your requirements and explore potential solutions.
+ご希望のコネクタが見つからない場合は、どうぞお気軽に[Sales team](mailto:sales@wallarm.com)までお問い合わせいただき、ご要件のご相談および検討可能なソリューションについてご確認ください。

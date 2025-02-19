@@ -1,41 +1,42 @@
+```markdown
 # ミラーリングのソース選択
 
-[Wallarm eBPFソリューション](deployment.md)はトラフィックミラーを操作し、トラフィックミラーの範囲を制御できます。これにより、Kubernetesのネームスペース、ポッド、コンテナでパケットミラーを生成できます。このガイドでは、選択プロセスをどのように管理するかを説明します。
+[Wallarm eBPF solution](deployment.md)はトラフィックミラーを用いて動作し、トラフィックミラーのスコープを制御することを提供します。Kubernetesのnamespace、pod、およびコンテナごとにパケットミラーを生成できるようにします。このガイドでは、選択プロセスの管理方法について説明します。
 
-ミラーリングのためのパケットを選択するためのいくつかの方法があります：
+パケットをミラーリングするための選択方法はいくつかあります:
 
-* `wallarm-mirror`ラベルをネームスペースに適用して、そのネームスペース内のポッドのすべてのトラフィックをミラーリングします。
-* 特定のポッドに`mirror.wallarm.com/enabled`アノテーションを適用して、そのトラフィックをミラーリングします。
-* Wallarm Helmチャートの`values.yaml`ファイルの`config.agent.mirror.filters`設定を構成します。この設定により、ネームスペース、ポッド、コンテナ、ノードレベルでのミラーリングを有効にできます。
+* namespaceに`wallarm-mirror`ラベルを適用して、そのnamespace内のすべてのpodのトラフィックをミラーリングします。
+* 特定のpodに`mirror.wallarm.com/enabled`アノテーションを適用して、そのトラフィックをミラーリングします。
+* Wallarm Helmチャートの`values.yaml`ファイル内の`config.agent.mirror.filters`設定を構成します。この構成では、namespace、pod、コンテナ、またはノードレベルでミラーリングを有効にできます。
 
-## ラベルを使用したネームスペースのミラーリング
+## ラベルを使用したnamespaceのミラーリング
 
-ネームスペースレベルでのミラーリングを制御するには、`wallarm-mirror`ラベルを望ましいKubernetesネームスペースに適用し、その値を`enabled`または`disabled`に設定します、例えば：
+namespaceレベルでミラーリングを制御するには、対象のKubernetes namespaceに`wallarm-mirror`ラベルを適用し、その値を`enabled`または`disabled`に設定します。例:
 
 ```
 kubectl label ns <NAMESPACE> wallarm-mirror=enabled
 ```
 
-## アノテーションを使用したポッドのミラーリング
+## アノテーションを使用したpodのミラーリング
 
-ポッドレベルでのミラーリングを制御するには、`mirror.wallarm.com/enabled`アノテーションを使用して、その値を`true`または`false`に設定します、例えば：
+podレベルでミラーリングを制御するには、`mirror.wallarm.com/enabled`アノテーションを使用し、その値を`true`または`false`に設定します。例:
 
 ```bash
 kubectl patch deployment <DEPLOYMENT_NAME> -n <NAMESPACE> -p '{"spec": {"template":{"metadata":{"annotations":{"mirror.wallarm.com/enabled":"true"}}}} }'
 ```
 
-## `values.yaml`を使用したネームスペース、ポッド、コンテナ、ノードのミラーリング
+## `values.yaml`を使用したnamespace、pod、コンテナ、またはノードのミラーリング
 
-`values.yaml`ファイルの`config.agent.mirror.filters`ブロックにより、トラフィックミラーリングレベルの細かい制御が可能です。このアプローチにより、以下のエンティティのミラーリングを制御できます：
+`values.yaml`ファイル内の`config.agent.mirror.filters`ブロックにより、トラフィックミラーリングレベルを細かく制御できます。このアプローチでは、以下のエンティティのミラーリングを制御できます:
 
-* ネームスペース - `filters.namespace`パラメータを使用して
-* ポッド - ポッドのラベルで`filters.pod_labels`を使用するか、ポッドのアノテーションで`filters.pod_annotations`を使用
-* ノード - `filters.node_name`パラメータを使用して
-* コンテナ - `filters.container_name`パラメータを使用して
+* Namespace - `filters.namespace`パラメータを使用
+* Pod - podのラベルを使用する`filters.pod_labels`またはpodのアノテーションを使用する`filters.pod_annotations`
+* Node - `filters.node_name`パラメータを使用
+* Container - `filters.container_name`パラメータを使用
 
-### ネームスペースの選択
+### Namespaceの選択
 
-特定のネームスペースのトラフィックミラーリングを有効にするには、その名前を`filters.namespace`パラメータに指定します。例えば、`my-namespace` Kubernetesネームスペースのトラフィックミラーリングを有効にするには：
+特定のnamespaceのトラフィックミラーリングを有効にするには、`filters.namespace`パラメータにその名前を指定します。例えば、`my-namespace`というKubernetes namespaceのトラフィックミラーリングを有効にするには:
 
 ```yaml
 config:
@@ -45,14 +46,14 @@ config:
         - namespace: 'my-namespace'
 ```
 
-### ポッドの選択
+### Podの選択
 
-ポッドのラベルとアノテーションによって、トラフィックミラーリングするポッドを選択できます。方法は以下の通りです：
+podのラベルおよびアノテーションによってトラフィックミラーリング対象のpodを選択できます。以下はその方法です:
 
-=== "ラベルによるポッドの選択"
-    特定のラベルを持つポッドのトラフィックミラーリングを有効にするには、`pod_labels`パラメータを使用します。
+=== "ラベルによるpodの選択"
+    特定のラベルを持つpodのトラフィックミラーリングを有効にするには、`pod_labels`パラメータを使用します。
     
-    例えば、`environment: production`ラベルを持つポッドのトラフィックミラーリングを有効にするには：
+    例えば、`environment: production`ラベルを持つpodのトラフィックミラーリングを有効にするには:
 
     ```yaml
     config:
@@ -63,7 +64,7 @@ config:
                 environment: 'production'
     ```
 
-    ポッドを識別するために複数のラベルが必要な場合は、複数のラベルを指定できます。例えば、以下の設定により、`environment: production AND (team: backend OR team: ops)`ラベルを持つポッドのトラフィックがWallarm eBPFによってミラーリングされ、分析されます：
+    複数のラベルが必要な場合は、いくつかのラベルを指定できます。例えば、以下の構成では、`environment: production AND (team: backend OR team: ops)`のラベルを持つpodのトラフィックをWallarm eBPFがミラーリングおよび解析します:
 
     ```yaml
     config:
@@ -74,10 +75,10 @@ config:
                 environment: 'production'
                 team: 'backend,ops'
     ```
-=== "アノテーションによるポッドの選択"
-    特定のアノテーションを持つポッドのトラフィックミラーリングを有効にするには、`pod_annotations`パラメータを使用します。
+=== "アノテーションによるpodの選択"
+    特定のアノテーションを持つpodのトラフィックミラーリングを有効にするには、`pod_annotations`パラメータを使用します。
     
-    例えば、`app.kubernetes.io/name: myapp`アノテーションを持つポッドのトラフィックミラーリングを有効にするには：
+    例えば、`app.kubernetes.io/name: myapp`アノテーションを持つpodのトラフィックミラーリングを有効にするには:
 
     ```yaml
     config:
@@ -88,7 +89,7 @@ config:
                 app.kubernetes.io/name: 'myapp'
     ```
 
-    ポッドを識別するために複数のアノテーションが必要な場合は、複数のアノテーションを指定できます。例えば、以下の設定により、以下のアノテーションを持つポッドのトラフィックがWallarm eBPFによってミラーリングされ、分析されます：
+    複数のアノテーションが必要な場合は、いくつかのアノテーションを指定できます。例えば、以下の構成では、次のアノテーションを持つpodのトラフィックをWallarm eBPFがミラーリングおよび解析します:
     
     ```
     app.kubernetes.io/name: myapp AND (app.kubernetes.io/instance: myapp-instance-main OR
@@ -107,7 +108,7 @@ config:
 
 ### ノードの選択
 
-特定のKubernetesノードのトラフィックミラーリングを有効にするには、ノード名を`filters.node_name`パラメータに指定します。例えば、`my-node` Kubernetesノードのトラフィックミラーリングを有効にするには：
+特定のKubernetesノードのトラフィックミラーリングを有効にするには、`filters.node_name`パラメータにノード名を指定します。例えば、`my-node`というKubernetesノードのトラフィックミラーリングを有効にするには:
 
 ```yaml
 config:
@@ -119,7 +120,7 @@ config:
 
 ### コンテナの選択
 
-特定のKubernetesコンテナのトラフィックミラーリングを有効にするには、コンテナ名を`filters.container_name`パラメータに指定します。例えば、`my-container` Kubernetesコンテナのトラフィックミラーリングを有効にするには：
+特定のKubernetesコンテナのトラフィックミラーリングを有効にするには、`filters.container_name`パラメータにコンテナ名を指定します。例えば、`my-container`というKubernetesコンテナのトラフィックミラーリングを有効にするには:
 
 ```yaml
 config:
@@ -131,27 +132,27 @@ config:
 
 ### 変更の適用
 
-`values.yaml`ファイルを変更し、デプロイされたチャートをアップグレードしたい場合は、以下のコマンドを使用します：
+`values.yaml`ファイルを変更してデプロイ済みのチャートをアップグレードする場合は、以下のコマンドを使用します:
 
 ```
 helm upgrade <RELEASE_NAME> wallarm/wallarm-oob -n wallarm-ebpf -f <PATH_TO_VALUES>
 ```
 
-## ラベル、アノテーション、フィルター間の優先順位
+## ラベル、アノテーション、フィルターの優先順位
 
-複数の選択方法が使用され、より高いレベルでミラーリングが有効になっている場合、より低い構成レベルが優先されます。
+複数の選択方法が使用され、上位のレベルでミラーリングが有効になっている場合、下位の設定が優先されます。
 
-より高いレベルでミラーリングが無効にされている場合、より高いレベルが優先されるため、下位の設定はまったく適用されません。
+上位のレベルでミラーリングが無効化されている場合、下位の設定は一切適用されません。上位のレベルがトラフィックミラーリングの無効化において優先されるためです。
 
-同じオブジェクトが異なる手段（例えば、Wallarmポッドのアノテーションと`values.yaml`のフィルターブロックを使用して）でミラーリングのために選択された場合、Wallarmポッドのアノテーションが優先されます。
+同じ対象が異なる手段（例：Wallarm podのアノテーションおよび`values.yaml`フィルターブロック）を通じてミラーリング対象として選択された場合、Wallarm podのアノテーションが優先されます。
 
 ## 例
 
-ラベル、アノテーション、フィルターは、トラフィックミラーリングおよび分析のレベルを設定する上で高い柔軟性を提供しますが、これらは互いに重複する場合があります。以下の設定例は、それらがどのように協力するかを理解するのに役立ちます。
+ラベル、アノテーション、およびフィルターは、トラフィックミラーリングおよび解析のレベル設定において高い柔軟性を提供します。しかし、これらは互いに重複する可能性があります。以下はいくつかの構成例で、これらがどのように連携するかを説明します。
 
-### `values.yaml`の多層設定
+### `values.yaml`における多層構成
 
-以下の`values.yaml`設定を考えます：
+次の`values.yaml`構成を考えます:
 
 ```yaml
 config:
@@ -167,19 +168,20 @@ config:
             app.kubernetes.io/name: 'myapp'
 ```
 
-設定されたフィルターは以下のように適用されます：
+設定されたフィルターは次のように適用されます:
 
 ```
 namespace: default OR (namespace: my-namespace AND environment: production AND (team: backend
 OR team: ops) AND app.kubernetes.io/name: myapp)
 ```
 
-### ネームスペースラベル、ポッドアノテーションおよび`values.yaml`フィルターの組み合わせ
+### namespaceラベル、podアノテーション、および`values.yaml`フィルターの併用
 
-| 設定 | 結果 |
+| 構成 | 結果 |
 | ------------- | ------ |
-| <ul><li>`values.yaml`での値 → `config.agent.mirror.allNamespaces`が`true`に設定され</li><li>ネームスペースラベルが`wallarm-mirror=disabled`である</li></ul> | ネームスペースはミラーリングされません |
-| <ul><li>ネームスペースラベルが`wallarm-mirror=enabled`であり</li><li>ポッドアノテーションが`mirror.wallarm.com/enabled=false`である</li></ul> | ポッドはミラーリングされません |
-| <ul><li>ネームスペースラベルが`wallarm-mirror=disabled`であり</li><li>ポッドアノテーションが`mirror.wallarm.com/enabled=true`である、またはより低いレベルの設定でトラフィックミラーリングが選択されている</li></ul> | ポッドはミラーリングされません |
-| <ul><li>ネームスペースラベルが`wallarm-mirror=disabled`であり</li><li>`values.yaml` → `config.agent.mirror.filters`で同じネームスペースが選択されている</li></ul> | ネームスペースはミラーリングされません
-| <ul><li>ポッドアノテーションが`mirror.wallarm.com/enabled=false`であり</li><li>`values.yaml` → `config.agent.mirror.filters`で同じポッドが選択されている</li></ul> | ポッドはミラーリングされません
+| <ul><li>`values.yaml`の値→`config.agent.mirror.allNamespaces`が`true`に設定され、</li><li>namespaceラベルが`wallarm-mirror=disabled`</li></ul> | namespaceはミラーリングされません |
+| <ul><li>namespaceラベルが`wallarm-mirror=enabled`で、</li><li>podアノテーションが`mirror.wallarm.com/enabled=false`</li></ul> | podはミラーリングされません |
+| <ul><li>namespaceラベルが`wallarm-mirror=disabled`で、</li><li>podアノテーションが`mirror.wallarm.com/enabled=true`またはその他の下位設定が選択されていても</li></ul> | podはミラーリングされません |
+| <ul><li>namespaceラベルが`wallarm-mirror=disabled`で、</li><li>同じnamespaceが`values.yaml`→`config.agent.mirror.filters`で選択されている</li></ul> | namespaceはミラーリングされません |
+| <ul><li>podアノテーションが`mirror.wallarm.com/enabled=false`で、</li><li>同じpodが`values.yaml`→`config.agent.mirror.filters`で選択されている</li></ul> | podはミラーリングされません |
+```

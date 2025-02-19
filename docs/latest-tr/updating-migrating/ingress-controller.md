@@ -1,29 +1,31 @@
 [nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                     ../user-guides/ip-lists/graylist.md
+[graylist-docs]:                     ../user-guides/ip-lists/overview.md
 [ip-list-docs]:                     ../user-guides/ip-lists/overview.md
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
+[ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
+[api-spec-enforcement-docs]:        ../api-specification-enforcement/overview.md
 
-# Entegre Wallarm modülleri ile NGINX Ingress controller'ın yükseltme
+# Wallarm modülleri entegre edilmiş NGINX Ingress controller'ın yükseltilmesi
 
-Bu talimatlar, dağıtılmış Wallarm NGINX tabanlı Ingress Controller 4.x'ın Wallarm düğümü 4.8 ile yeni versiyona yükseltilmesi için adımları açıklar.
+Bu talimatlar, dağıtılmış Wallarm NGINX tabanlı Ingress Controller 4.x'in Wallarm node 5.0 içeren yeni sürüme nasıl yükseltileceğini açıklar.
 
-Son kullanma tarihi geçmiş düğümü (3.6 veya düşük) yükseltmek için, lütfen [farklı talimatları](older-versions/ingress-controller.md) kullanın.
+Ömrünü tamamlamış node'u (3.6 veya daha düşük) yükseltmek için lütfen [farklı talimatları](older-versions/ingress-controller.md) kullanın.
 
 ## Gereksinimler
 
---8<-- "../include-tr/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
 
-## Adım 1: Wallarm Helm chart deposunu güncelleyin
+## Adım 1: Wallarm Helm grafik deposunu güncelleyin
 
 ```bash
 helm repo update wallarm
 ```
 
-## Adım 2: Gelecek tüm K8s manifest değişikliklerini kontrol edin
+## Adım 2: Tüm gelecek K8s manifest değişikliklerini gözden geçirin
 
-Beklenmedik bir şekilde değişen Ingress controller davranışından kaçınmak için, gelecekteki tüm K8s manifest değişikliklerini [Helm Diff Plugin](https://github.com/databus23/helm-diff) kullanarak kontrol edin. Bu eklenti, dağıtılan Ingress controller versiyonu ve yeni olanın K8s manifestları arasındaki farkı çıktılar.
+Beklenmeyen Ingress controller davranışı değişikliklerini önlemek için, dağıtılmış Ingress controller sürümü ile yeni sürüm arasındaki farkları gösteren [Helm Diff Plugin](https://github.com/databus23/helm-diff) kullanılarak tüm gelecek K8s manifest değişikliklerini gözden geçirin.
 
 Eklentiyi yüklemek ve çalıştırmak için:
 
@@ -35,63 +37,56 @@ Eklentiyi yüklemek ve çalıştırmak için:
 2. Eklentiyi çalıştırın:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.8.2 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: Ingress controller tablosu ile Helm sürümünün adı
-    * `<NAMESPACE>`: Ingress controller'ın dağıtıldığı ad alanı
-    * `<PATH_TO_VALUES>`: Ingress controller 4.8 ayarlarını tanımlayan `values.yaml` dosyasının yolu - önceki Ingress controller versiyonunu çalıştırmak için oluşturduğunuz dosyayı kullanabilirsiniz
-3. Hiçbir değişikliğin çalışan hizmetlerin stabilitesini etkilemeyeceğinden emin olun ve stdout'dan gelen hataları dikkatle inceleyin.
+    * `<RELEASE_NAME>`: Ingress controller grafiğini içeren Helm sürümünün adı
+    * `<NAMESPACE>`: Ingress controller'ın dağıtıldığı namespace
+    * `<PATH_TO_VALUES>`: Ingress controller 5.0 ayarlarını tanımlayan `values.yaml` dosyasının yolu - önceki Ingress controller sürümünü çalıştırmak için oluşturulmuş olanı kullanabilirsiniz
+3. Çalışan servislerin kararlılığını etkileyecek hiçbir değişiklik olmadığından emin olun ve stdout'daki hataları dikkatle inceleyin.
 
     Eğer stdout boşsa, `values.yaml` dosyasının geçerli olduğundan emin olun.
 
-## Adım 3: Ingress controller'ı yükseltin
+## Adım 3: Ingress controller'ı güncelleyin
 
 Dağıtılmış NGINX Ingress controller'ı yükseltin:
 
-``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.8.2 -f <PATH_TO_VALUES>
+```bash
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.0 -f <PATH_TO_VALUES>
 ```
 
-* `<RELEASE_NAME>`: Ingress controller tablosu ile Helm sürümünün adı
-* `<NAMESPACE>`: Ingress controller'ın dağıtıldığı ad alanı
-* `<PATH_TO_VALUES>`: Ingress controller 4.8 ayarlarını tanımlayan `values.yaml` dosyasının yolu - önceki Ingress controller versiyonunu çalıştırmak için oluşturduğunuz dosyayı kullanabilirsiniz
+* `<RELEASE_NAME>`: Ingress controller grafiğini içeren Helm sürümünün adı
+* `<NAMESPACE>`: Ingress controller'ın dağıtıldığı namespace
+* `<PATH_TO_VALUES>`: Ingress controller 5.0 ayarlarını tanımlayan `values.yaml` dosyasının yolu - önceki Ingress controller sürümünü çalıştırmak için oluşturulmuş olanı kullanabilirsiniz
 
-## Adım 4: Yükseltilmiş Ingress controller'ı test edin
+## Adım 4: Güncellenmiş Ingress controller'ı test edin
 
-1. Helm tablosunun versiyonunun yükseltildiğinden emin olun:
+1. Helm grafiğinin sürümünün güncellendiğinden emin olun:
 
     ```bash
     helm list -n <NAMESPACE>
     ```
 
-    Burada `<NAMESPACE>`, Ingress controller ile Helm tablosunun dağıtıldığı ad alanıdır.
+    Burada `<NAMESPACE>`, Ingress controller grafiğinin dağıtıldığı namespace'tir.
 
-    Tablo versiyonu `wallarm-ingress-4.8.2` ile eşleşmelidir.
-1. Podların listesini alın:
+    Grafik sürümü `wallarm-ingress-5.3.0` ile eşleşmelidir.
+1. Pod listesini alın:
     
-    ``` bash
+    ```bash
     kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-ingress
     ```
 
-    Her pod durumunun **STATUS: Running** veya **READY: N/N** olması gerekir. Örneğin:
+    Her pod'un durumu **STATUS: Running** veya **READY: N/N** olmalıdır. Örneğin:
 
     ```
     NAME                                                              READY     STATUS    RESTARTS   AGE
     ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      3/3       Running   0          5m
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
-
-1. Test için [Path Traversal](../attacks-vulns-list.md#path-traversal) saldırısı olan isteği Wallarm Ingress controller adresine gönderin:
+1. Wallarm Ingress controller adresine test [Path Traversal](../attacks-vulns-list.md#path-traversal) saldırısı ile istek gönderin:
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    Yeni versiyondaki çözümün kötü niyetli isteği önceki versiyondaki gibi işlediğini kontrol edin.
-
-## Adım 5: Wallarm engelleme sayfasını güncelleyin
-
-Eğer Ingress annotations üzerinden tarafından yapılandırılmış `&/usr/share/nginx/html/wallarm_blocked.html` sayfası engellenen isteklere geri dönerse, [yapılandırmasını](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) yayınlanan değişikliklere göre ayarlayın.
-
-Yeni düğüm versiyonlarında, Wallarm engelleme sayfası [artık](what-is-new.md#new-blocking-page) güncellenmiş UI ile varsayılan olarak logo ve destek e-postası belirtmeksizin gelmektedir.
+    Yeni sürümün, kötü niyetli isteği önceki sürümde olduğu gibi işlediğini kontrol edin.

@@ -1,10 +1,10 @@
-Filtreleme düğümü Wallarm Bulutu ile etkileşim kurar. Düğümü Bulut'a bağlamak için:
+The filtering node, Wallarm Cloud ile etkileşim halindedir. Node'u Cloud'a bağlamak için:
 
-1. Wallarm Konsolu'nu açın → [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinde **Düğümler** ve **Wallarm düğümü** türünde bir düğüm oluşturun.
+1. Wallarm Console → **Nodes** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinden açın ve **Wallarm node** türünde bir node oluşturun.
 
-    ![Wallarm düğüm oluşturma][img-create-wallarm-node]
-1. Oluşturulan belirteci kopyalayın.
-1. Filtreleme düğümünü kurdugunuz makinede `register-node` komut dosyasını çalıştırın:
+    ![Wallarm node creation][img-create-wallarm-node]
+1. Oluşturulan token’ı kopyalayın.
+1. Filtering node’unu kurduğunuz makinede `register-node` betiğini çalıştırın:
     
     === "US Cloud"
         ``` bash
@@ -15,7 +15,7 @@ Filtreleme düğümü Wallarm Bulutu ile etkileşim kurar. Düğümü Bulut'a ba
         sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN>
         ```
     
-    `<NODE_TOKEN>` kopyalanan belirteç değeridir.
+    `<NODE_TOKEN>`, kopyalanan token değeridir.
 
-    !!! bilgi "Bir belirteci birden fazla yükleme için kullanma"
-        Seçilen [platforma][deployment-platform-docs] bakılmaksızın bir belirteci birden fazla yüklemelerde kullanabilirsiniz. Bu, Wallarm Konsolu kullanıcı arayüzünde düğüm örneklerinin mantıksal gruplandırılmasını sağlar. Örnek: bir geliştirme ortamına birden fazla Wallarm düğümü yerleştirirsiniz, her düğüm belirli bir geliştiriciye ait kendi makinesindedir.
+    !!! info "Birden Fazla Kurulumda Aynı Token'ın Kullanılması"
+        Seçtiğiniz [platforma][deployment-platform-docs] bakılmaksızın bir token'ı birden fazla kuruluma kullanabilirsiniz. Bu, Wallarm Console arayüzünde node örneklerini mantıksal olarak gruplandırmanıza olanak tanır. Örnek: Geliştirme ortamına birden fazla Wallarm node dağıtırsınız, her node belirli bir geliştiriciye ait ayrı bir makinede yer alır.

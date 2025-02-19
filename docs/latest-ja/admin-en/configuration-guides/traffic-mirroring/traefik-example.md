@@ -1,19 +1,19 @@
-# トラフィックミラーリングのためのTraefik設定例
+# Traefikの構成例: トラフィックミラーリング
 
-この記事では、トラフィックをミラーリングし、[Wallarmノードへルーティングするため](overview.md)に必要なTraefikの設定例を提供します。
+この記事はTraefikが[トラフィックをミラーリングし、Wallarmノードにルーティングする](overview.md)ために必要な設定例を提供します。
 
-## ステップ1：トラフィックをミラーリングするようにTraefikを設定します
+## ステップ1: Traefikを構成してトラフィックをミラーリングする
 
-次の設定例は、[`動的設定ファイル`](https://doc.traefik.io/traefik/reference/dynamic-configuration/file/)のアプローチに基づいています。Traefikウェブサーバーは他の設定モードもサポートしており、それらは似た構造を持っているため、提供されたものを簡単にそれらに合わせて調整することができます。
+以下の設定例は[`dynamic configuration file`](https://doc.traefik.io/traefik/reference/dynamic-configuration/file/)方式に基づいています。Traefikウェブサーバーは他の構成モードもサポートしていますので、各モードの構造が似ているため、ここで示した設定を簡単に調整することができます。
 
 ```yaml
-### 動的設定ファイル
-### 注：エントリーポイントは静的設定ファイルで説明されています
+### 動的構成ファイル
+### 注意: entrypointsは静的構成ファイルに記述されています
 http:
   services:
-    ### オリジナルとwallarm `services`をマッピングする方法です。
-    ### さらなる `routers`設定（下記参照）では、
-    ### このサービスの名前（`with_mirroring`）を使用してください。
+    ### これがオリジナルとWallarmの`services`をマッピングする方法です．
+    ### 以下の`routers`構成（下記参照）には必ず
+    ### このサービス名(`with_mirroring`)を使用してください．
     ###
     with_mirroring:
       mirroring:
@@ -22,17 +22,16 @@ http:
           - name: "wallarm"
             percent: 100
 
-    ### トラフィックをミラーリングする`service` - エンドポイント
-    ### オリジナルの`service`からミラーリング（コピー）
-    ### されたリクエストを受け取るべきです。
+    ### トラフィックをミラーリングする先の`service`、すなわち
+    ### オリジナルの`service`からミラーリングされたリクエストを受信すべき
+    ### エンドポイントです．
     ###
     wallarm:
       loadBalancer:
         servers:
           - url: "http://wallarm:8445"
 
-    ### オリジナルの`service`。このサービスは
-    ### オリジナルのトラフィックを受け取るべきです。
+    ### オリジナルの`service`．このサービスはオリジナルトラフィックを受信します．
     ###
     httpbin:
       loadBalancer:
@@ -40,8 +39,7 @@ http:
           - url: "http://httpbin:80/"
 
   routers:
-    ### ルーターの名前は、トラフィックミラーリングが
-    ### 機能するためには`service`の名前と同じである必要があります（with_mirroring）。
+    ### トラフィックミラーリングを機能させるため，ルーター名は`service`名と同一にしてください（with_mirroring）．
     ###
     with_mirroring:
       entryPoints:
@@ -49,7 +47,7 @@ http:
       rule: "Host(`mirrored.example.com`)"
       service: "with_mirroring"
 
-    ### オリジナルのトラフィック用のルーター。
+    ### オリジナルトラフィック用のルーターです．
     ###
     just_to_original:
       entryPoints:
@@ -58,8 +56,8 @@ http:
       service: "httpbin"
 ```
 
-[Traefikのドキュメンテーションを確認する](https://doc.traefik.io/traefik/routing/services/#mirroring-service)
+[Traefikドキュメントを確認する](https://doc.traefik.io/traefik/routing/services/#mirroring-service)
 
-## ステップ2：Wallarmノードをミラーリングされたトラフィックをフィルタリングするように設定します
+## ステップ2: ミラーリングされたトラフィックをフィルタリングするようにWallarmノードを構成する
 
---8<-- "../include-ja/wallarm-node-configuration-for-mirrored-traffic.md"
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"

@@ -1,8 +1,8 @@
-```
+```yaml
 apiVersion: v1
-tür: ConfigMap
+kind: ConfigMap
 metadata:
-  ad: wallarm-sidecar-nginx-conf
+  name: wallarm-sidecar-nginx-conf
 data:
   default: |
       server {
@@ -11,21 +11,20 @@ data:
           server_name localhost;
           root /usr/share/nginx/html;
           index index.html index.htm;
-          # Lütfen <WALLARM_MODE> değerini aşağıdaki talep filtreleme modu ile değiştirin: 
-          # İşlem yapmayı devre dışı bırakmak için off
-          # İstekleri işlemek ama engellememek için monitoring
-          # Sadece gri listeye alınan IP'lerden gelen kötü niyetli istekleri engellemek için safe_blocking
-          # Tüm istekleri işleyin ve kötü niyetli olanları engelleyin için block
+          # Lütfen aşağıdaki <WALLARM_MODE>'u istek filtreleme moduna göre değiştirin:
+          # off: istek işlemesini devre dışı bırakmak için
+          # monitoring: istekleri işleyip engellememek için
+          # safe_blocking: yalnızca graylisted IP'lerden kaynaklanan kötü niyetli istekleri engellemek için
+          # block: tüm istekleri işleyip kötü niyetlileri engellemek için
           wallarm_mode <WALLARM_MODE>;
           # wallarm_instance 1;
           set_real_ip_from 0.0.0.0/0;
           real_ip_header X-Forwarded-For;
           location / {
-                  # Lütfen <APP_CONTAINER_PORT> değerini aşağıdaki port numarası ile değiştirin
-                  # konteynerin gelen istekleri kabul ettiği port numarası,
+                  # Lütfen aşağıdaki <APP_CONTAINER_PORT>'u, konteynerin gelen istekleri kabul ettiği port numarası ile değiştirin,
                   # değer, ana uygulama konteynerinizin tanımındaki ports.containerPort ile aynı olmalıdır
                   proxy_pass http://localhost:<APP_CONTAINER_PORT>;
-                  proxy_params dahil eder;
+                  include proxy_params;
           }
       }
 ```

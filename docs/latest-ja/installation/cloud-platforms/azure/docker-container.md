@@ -1,102 +1,109 @@
 # AzureへのWallarm Dockerイメージのデプロイ
 
-このクイックガイドでは、[Azure **Container Instances** サービス](https://docs.microsoft.com/en-us/azure/container-instances/)を使用して、Microsoft Azureクラウドプラットフォームに[NGINXベースのWallarmノードのDockerイメージ](https://hub.docker.com/r/wallarm/node)をデプロイする手順を提供します。
+このクイックガイドでは、[NGINXベースのWallarmノードのDockerイメージ](https://hub.docker.com/r/wallarm/node)を[Azure **Container Instances** サービス](https://docs.microsoft.com/en-us/azure/container-instances/)を使用してMicrosoft Azureクラウドプラットフォームへデプロイする手順を示します。
 
-!!! warning "手順の制限"
-    これらの手順は、負荷分散とノードの自動スケーリングの設定をカバーしていません。これらのコンポーネントを自分で設定する場合は、[Azure Application Gateway](https://docs.microsoft.com/en-us/azure/application-gateway/overview)のドキュメンテーションをお読みください。
+!!! warning "手順の制限事項"
+    これらの手順では、ロードバランシングおよびノードの自動スケーリングの設定は対象外です。これらのコンポーネントを自分で設定する場合は、[Azure Application Gateway](https://docs.microsoft.com/en-us/azure/application-gateway/overview)のドキュメントをお読みになることを推奨します。
 
-## 必要条件
+## ユースケース
 
-* アクティブなAzureサブスクリプション
-* [Azure CLIがインストールされている](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-* Wallarm Consoleの[USクラウド](https://us1.my.wallarm.com/)または[EUクラウド](https://my.wallarm.com/)における**管理者**ロールのアカウントへのアクセス
+--8<-- "../include/waf/installation/cloud-platforms/azure-container-instances-use-cases.md"
 
-## WallarmノードのDockerコンテナ設定のオプション
+## 要件
 
---8<-- "../include-ja/waf/installation/docker-running-options.md"
+* 有効なAzureサブスクリプション
+* [Azure CLI installed](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+* Wallarm Consoleで二要素認証が無効化された[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)の**Administrator**ロールを持つアカウントへのアクセス
+* 以下のIPアドレスへのアクセス（攻撃検知ルールおよび[API仕様][api-policy-enf-docs]の更新ダウンロード、ならびに[allowlisted, denylisted, or graylisted][graylist-docs]された国、地域、またはデータセンターの正確なIP取得のため）
 
-## 環境変数を通じて設定したWallarmノードのDockerコンテナのデプロイ
+    --8<-- "../include/wallarm-cloud-ips.md"
 
-環境変数のみを通じて設定したコンテナ化されたWallarmフィルタリングノードをデプロイするには、以下のツールを使用することができます。
+## WallarmノードDockerコンテナの構成オプション
+
+--8<-- "../include/waf/installation/docker-running-options.md"
+
+## 環境変数によって構成されたWallarmノードDockerコンテナのデプロイ
+
+環境変数のみを使用して構成されたコンテナ化されたWallarmフィルタリングノードをデプロイするには、次のツールを使用できます。
 
 * [Azure CLI](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-quickstart)
 * [Azure portal](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-portal)
 * [Azure PowerShell](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-powershell)
-* [ARMテンプレート](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-template)
+* [ARM template](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-template)
 * [Docker CLI](https://docs.microsoft.com/en-us/azure/container-instances/quickstart-docker-cli)
 
-これらの手順では、Azure CLIを使用してコンテナをデプロイします。
+本手順では、Azure CLIを使用してコンテナをデプロイします。
 
---8<-- "../include-ja/waf/installation/get-api-or-node-token.md"
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-1. [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login)コマンドを使用してAzure CLIにサインインします：
+1. [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login)コマンドを使用してAzure CLIにサインインします。
 
     ```bash
     az login
     ```
-1. [`az group create`](https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az_group_create) コマンドを使ってリソースグループを作成します。たとえば、以下のコマンドで東部米国地域に`myResourceGroup`というグループを作成します：
+1. [`az group create`](https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az_group_create)コマンドを使用してリソースグループを作成します。例えば、East USリージョンに`myResourceGroup`グループを以下のコマンドで作成します。
 
     ```bash
     az group create --name myResourceGroup --location eastus
     ```
-1. Wallarm Cloudに接続するために使用するWallarmノードトークンでローカル環境変数を設定します：
+1. Wallarm Cloudへ接続するために使用するWallarmノードのトークンをローカル環境変数に設定します。
 
     ```bash
     export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'
     ```
-1. [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create) コマンドを使用して、WallarmノードのDockerコンテナからAzureリソースを作成します：
+1. [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create)コマンドを使用してWallarmノードDockerコンテナからAzureリソースを作成します。
 
-    === "Wallarm US Cloudを対象としたコマンド"
+    === "Wallarm US Cloud向けのコマンド"
          ```bash
          az container create \
             --resource-group myResourceGroup \
             --name wallarm-node \
             --dns-name-label wallarm \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:4.6.2-1 \
-            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com' WALLARM_API_HOST='us1.api.wallarm.com'
+            --image registry-1.docker.io/wallarm/node:5.3.0 \
+            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com' WALLARM_API_HOST='us1.api.wallarm.com' WALLARM_LABELS='group=<GROUP>'
          ```
-    === "Wallarm EU Cloudを対象としたコマンド"
+    === "Wallarm EU Cloud向けのコマンド"
          ```bash
          az container create \
             --resource-group myResourceGroup \
             --name wallarm-node \
             --dns-name-label wallarm \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:4.6.2-1 \
-            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com'
+            --image registry-1.docker.io/wallarm/node:5.3.0 \
+            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com' WALLARM_LABELS='group=<GROUP>'
          ```
         
-    * `--resource-group`: 2つ目のステップで作成したリソースグループの名前。
-    * `--name`: コンテナの名前。
-    * `--dns-name-label`: コンテナのDNS名ラベル。
-    * `--ports`: フィルタリングノードが待ち受けるポート。
-    * `--image`: WallarmノードDockerイメージの名前。
-    * `--environment-variables`: フィルタリングノードの設定およびWallarm Cloudへの接続を含む環境変数（利用可能な変数は以下のテーブルに記載されています）。なお、`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨されていません。
+    * `--resource-group`: 2番目の手順で作成したリソースグループの名前です。
+    * `--name`: コンテナの名前です。
+    * `--dns-name-label`: コンテナのDNSネームラベルです。
+    * `--ports`: フィルタリングノードが待ち受けるポートです。
+    * `--image`: WallarmノードDockerイメージの名前です。
+    * `--environment-variables`: フィルタリングノードの構成を含む環境変数です（使用可能な変数は下記表に記載されています）。なお、`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨されません。
 
-        --8<-- "../include-ja/waf/installation/nginx-docker-all-env-vars-latest.md"
-1. [Azureポータル](https://portal.azure.com/)を開き、作成したリソースがリソースの一覧に表示されていることを確認します。
-1. [フィルタリングノードの動作テスト](#testing-the-filtering-node-operation)を行います。
+        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+1. [Azure portal](https://portal.azure.com/)を開き、作成されたリソースがリソース一覧に表示されていることを確認します。
+1. [フィルタリングノードの動作テスト](#testing-the-filtering-node-operation)を実施します。
 
-## マウントファイルを通じて設定したWallarmノードのDockerコンテナのデプロイ
+## マウントされたファイルによって構成されたWallarmノードDockerコンテナのデプロイ
 
-環境変数とマウントファイルを通じて設定したコンテナ化されたWallarmフィルタリングノードをデプロイするには、[Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)のみを使用できます。
+環境変数とマウントされたファイルによって構成されたコンテナ化されたWallarmフィルタリングノードをデプロイするには、[Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)のみが使用可能です。
 
-環境変数とマウント設定ファイルでコンテナをデプロイするには：
+環境変数とマウントされた構成ファイルを使用してコンテナをデプロイするには:
 
---8<-- "../include-ja/waf/installation/get-api-or-node-token.md"
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-1. [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login)コマンドを使用してAzure CLIにサインインします：
-   
+1. [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login)コマンドを使用してAzure CLIにサインインします。
+
     ```bash
     az login
     ```
-1. [`az group create`](https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az_group_create) コマンドを使ってリソースグループを作成します。たとえば、以下のコマンドで東部米国地域に`myResourceGroup`というグループを作成します：
+1. [`az group create`](https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az_group_create)コマンドを使用してリソースグループを作成します。例えば、East USリージョンに`myResourceGroup`グループを以下のコマンドで作成します。
 
     ```bash
     az group create --name myResourceGroup --location eastus
     ```
-1. フィルタリングノードの設定を含む設定ファイルをローカルに作成します。最小限の設定を含むファイルの例：
+1. ローカルでフィルタリングノードの設定を記述した構成ファイルを作成します。最低限の設定例として、以下のようなファイルを作成します。
 
     ```bash
     server {
@@ -123,76 +130,76 @@
     }
     ```
 
-    [設定ファイル内で指定できるフィルタリングノードディレクティブのセット →][nginx-waf-directives]
-1. Azureでデータボリュームをマウントするために適した方法の一つで設定ファイルを配置します。すべての方法は[Azure documentationの**Mount data volumes**セクション](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files)に記述されています。
+    [構成ファイルに指定可能なフィルタリングノードディレクティブのセット →][nginx-waf-directives]
+1. Azureでのデータボリュームのマウントに適した方法のいずれかで構成ファイルを配置します。すべての方法は、[Azureドキュメントの**Mount data volumes**セクション](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files)に記載されています。
 
-    これらの手順では、設定ファイルはGitリポジトリからマウントされます。
-1. Wallarm Cloudに接続するために使用するWallarmノードトークンでローカル環境変数を設定します：
+    本手順では、Gitリポジトリから構成ファイルをマウントします。
+1. Wallarm Cloudへ接続するために使用するWallarmノードのトークンをローカル環境変数に設定します。
 
     ```bash
     export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'
     ```
-1. [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create) コマンドを使用して、WallarmノードのDockerコンテナからAzureリソースを作成します：
+1. [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create)コマンドを使用してWallarmノードDockerコンテナからAzureリソースを作成します。
 
-    === "Wallarm US Cloudを対象としたコマンド"
+    === "Wallarm US Cloud向けのコマンド"
          ```bash
          az container create \
             --resource-group myResourceGroup \
             --name wallarm-node \
             --dns-name-label wallarm \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:4.6.2-1 \
+            --image registry-1.docker.io/wallarm/node:5.3.0 \
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
-            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} WALLARM_API_HOST='us1.api.wallarm.com'
+            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} WALLARM_API_HOST='us1.api.wallarm.com' WALLARM_LABELS='group=<GROUP>'
          ```
-    === "Wallarm EU Cloudを対象としたコマンド"
+    === "Wallarm EU Cloud向けのコマンド"
          ```bash
          az container create \
             --resource-group myResourceGroup \
             --name wallarm-node \
             --dns-name-label wallarm \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:4.6.2-1 \
+            --image registry-1.docker.io/wallarm/node:5.3.0 \
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
-            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN}
+            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} WALLARM_LABELS='group=<GROUP>'
          ```
 
-    * `--resource-group`: 2つ目のステップで作成したリソースグループの名前。
-    * `--name`: コンテナの名前。
-    * `--dns-name-label`: コンテナのDNS名ラベル。
-    * `--ports`: フィルタリングノードが待ち受けるポート。
-    * `--image`: WallarmノードDockerイメージの名前。
-    * `--gitrepo-url`: 設定ファイルが含まれるGitリポジトリのURL。ファイルがリポジトリのルートにある場合は、このパラメーターのみを渡す必要があります。ファイルがGitリポジトリの別のディレクトリにある場合は、`--gitrepo-dir`パラメーターにディレクトリへのパスも渡してください（例：`--gitrepo-dir ./dir1`）。
-    * `--gitrepo-mount-path`: 設定ファイルをマウントするコンテナのディレクトリ。設定ファイルはNGINXが使用する次のコンテナディレクトリにマウントできます：
+    * `--resource-group`: 2番目の手順で作成したリソースグループの名前です。
+    * `--name`: コンテナの名前です。
+    * `--dns-name-label`: コンテナのDNSネームラベルです。
+    * `--ports`: フィルタリングノードが待ち受けるポートです。
+    * `--image`: WallarmノードDockerイメージの名前です。
+    * `--gitrepo-url`: 構成ファイルを含むGitリポジトリのURLです。ファイルがリポジトリのルートにある場合は、このパラメータのみを渡します。ファイルが別のディレクトリにある場合は、`--gitrepo-dir`パラメータにディレクトリパスも渡して下さい（例：<br>`--gitrepo-dir ./dir1`）。
+    * `--gitrepo-mount-path`: 構成ファイルをマウントするコンテナ内のディレクトリです。構成ファイルは、NGINXが使用する以下のディレクトリにマウントできます:
 
-        * `/etc/nginx/conf.d` — 一般的な設定
-        * `/etc/nginx/sites-enabled` — バーチャルホストの設定
+        * `/etc/nginx/conf.d` — 共通設定
+        * `/etc/nginx/sites-enabled` — 仮想ホスト設定
         * `/var/www/html` — 静的ファイル
 
-        フィルタリングノードのディレクティブは `/etc/nginx/sites-enabled/default` ファイルに記述するべきです。
+        フィルタリングノードディレクティブは、`/etc/nginx/sites-enabled/default`ファイルに記述してください。
     
-    * `--environment-variables`: フィルタリングノードとWallarm Cloud接続の設定を含む環境変数（利用可能な変数は以下のテーブルに記載されています）。なお、`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨されていません。
-    
-        --8<-- "../include-ja/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
-1. [Azureポータル](https://portal.azure.com/)を開き、作成したリソースがリソースの一覧に表示されていることを確認します。
-1. [フィルタリングノードの操作テスト](#testing-the-filtering-node-operation)を行います。
+    * `--environment-variables`: フィルタリングノードおよびWallarm Cloud接続の設定を含む環境変数です（使用可能な変数は下記表に記載されています）。なお、`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨されません。
 
-## フィルタリングノードの操作テスト
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+1. [Azure portal](https://portal.azure.com/)を開き、作成されたリソースがリソース一覧に表示されていることを確認します。
+1. [フィルタリングノードの動作テスト](#testing-the-filtering-node-operation)を実施します。
 
-1. Azureポータル上で作成したリソースを開き、**FQDN**の値をコピーします。
+## フィルタリングノードの動作テスト
+
+1. Azure portalで作成されたリソースを開き、**FQDN**の値をコピーします。
 
     ![Settig up container instance][copy-container-ip-azure-img]
 
-    **FQDN**フィールドが空の場合、コンテナが**Running**状態にあることを確認してください。
+    **FQDN**フィールドが空の場合は、コンテナが**Running**ステータスであることを確認して下さい。
 
-2. テスト用の[Path Traversal][ptrav-attack-docs]攻撃リクエストをコピーしたドメインに送信します：
+2. コピーしたドメインに対して、テスト[Path Traversal][ptrav-attack-docs]攻撃のリクエストを送信します:
 
     ```
     curl http://<COPIED_DOMAIN>/etc/passwd
     ```
-3. [US Cloud](https://us1.my.wallarm.com/search)または[EU Cloud](https://my.wallarm.com/search)のWallarm Console → **Events**を開き、攻撃がリストに表示されていることを確認します。
+3. Wallarm Consoleで、[US Cloud](https://us1.my.wallarm.com/attacks)または[EU Cloud](https://my.wallarm.com/attacks)の**Attacks**を開き、攻撃が一覧に表示されていることを確認します。
     ![Attacks in UI][attacks-in-ui-image]
 
-コンテナデプロイ中に発生したエラーの詳細は、Azureポータルのリソース詳細の**Containers** → **Logs**タブに表示されます。リソースが利用できない場合は、必要なフィルタリングノードのパラメーターとその正しい値がコンテナに渡されていることを確認してください。
+コンテナのデプロイ中に発生したエラーの詳細は、Azure portalのリソース詳細内の**Containers** → **Logs**タブに表示されます。リソースが利用できない場合は、必要なフィルタリングノードパラメータが正しい値でコンテナに渡されているか確認して下さい。

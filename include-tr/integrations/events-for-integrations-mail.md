@@ -1,9 +1,9 @@
-* Sistemle ilgili:
-    * [Kullanıcı](../../../user-guides/settings/users.md) değişiklikleri (yeni oluşturulmuş, silinmiş, rol değişikliği)
-    * [Entegrasyon](integrations-intro.md) değişiklikleri (devre dışı bırakıldı, silindi)
-    * [Uygulama](../../../user-guides/settings/applications.md) değişiklikleri (yeni oluşturulmuş, silinmiş, isim değişikliği)
-* Tespit edilen [Açıklıklar](../../../glossary-en.md#vulnerability), varsayılan olarak tümü veya sadece seçilen risk seviye(ler)i için:
+* Sisteme ilişkin:
+    * [User](../../../user-guides/settings/users.md) değişiklikleri (yeni oluşturulan, silinen, rol değişikliği)
+    * [Integration](integrations-intro.md) değişiklikleri (devre dışı bırakılan, silinen)
+    * [Application](../../../user-guides/settings/applications.md) değişiklikleri (yeni oluşturulan, silinen, ad değişikliği)
+* [Vulnerabilities](../../../glossary-en.md#vulnerability) tespit edildi, varsayılan olarak tümü veya sadece seçilen risk düzeyi(leri) için:
     * Yüksek risk
     * Orta risk
     * Düşük risk
-* Değiştirilen [Kapsam (maruz kalan varlıklar)](../../scanner.md): hostlar, hizmetler ve alan adlarındaki güncellemeler
+* [Scope (exposed assets)](../../scanner.md) değiştirildi: host, hizmet ve alan adı güncellemeleri

@@ -2,7 +2,7 @@
 [img-sample-job-no-recording]:  ../../images/fast/poc/en/integration-overview/sample-job-no-recording.png
 
 [doc-testrun]:                  ../operations/internals.md#test-run
-[doc-container-deployment]:     node-deployment.md#deployment-of-the-docker-container
+[doc-container-deployment]:     node-deployment.md#deployment-of-the-docker-container-with-the-fast-node
 [doc-testrun-creation]:         node-deployment.md#creating-a-test-run 
 [doc-testrun-copying]:          node-deployment.md#copying-a-test-run     
 [doc-proxy-configuration]:      proxy-configuration.md
@@ -15,90 +15,90 @@
 
 [doc-integration-overview]:     integration-overview.md
 
-#   Wallarm API İle Entegrasyon
+#   Wallarm API Üzerinden Entegrasyon
 
-Birkaç farklı dağıtım yöntemi bulunmaktadır:
-1.  [API üzerinden dağıtım sırasında temel isteklerin kaydedildiği durum.][anchor-recording]
-2.  [Önceden kaydedilmiş temel isteklerin kullanıldığı API üzerinden dağıtım.][anchor-no-recording]
+Dağıtımın birkaç yöntemi vardır:
+1.  [Temel isteklerin kaydı alınırken API üzerinden dağıtım.][anchor-recording]
+2.  [Önceden kaydedilmiş temel istekler kullanılırken API üzerinden dağıtım.][anchor-no-recording]
 
 
-##  API Üzerinden Dağıtım Sırasında Temel İsteklerin Kaydedilmesi
+##  Temel İsteklerin Kaydı Alınırken API Üzerinden Dağıtım
 
-Bu senaryoda bir [test çalıştırması][doc-testrun] yaratılır. Temel istekler, test çalıştırması ile ilgili test kaydına kaydedilir. 
+Bu senaryoda bir [test çalışması][doc-testrun] oluşturulur. Temel istekler, test çalışmasına karşılık gelen bir test kaydına kaydedilecektir.
 
-Söz konusu iş akış adımları şunları içerir:
+İlgili iş akışı adımları:
 
-1.  Hedef uygulamanın inşa edilip dağıtılması.
+1.  Hedef uygulamanın derlenmesi ve dağıtılması.
 
-2.  Hızlı bir düğüm kurma ve ayarlama:
-
-    1.  [Docker konteynerında hızlı düğümle dağıtım yapılması.][doc-container-deployment].
+2.  FAST node'unun dağıtılması ve kurulması:
     
-    2.  [Bir test çalıştırmasının oluşturulması.][doc-testrun-creation].
+    1.  [FAST node ile Docker konteynerinin dağıtılması][doc-container-deployment].
     
-        Bu eylemleri gerçekleştirdikten sonra, hızlı düğümün temel isteklerin kayıt sürecine başlamaya hazır olduğundan emin olun.
+    2.  [Bir test çalışması oluşturulması][doc-testrun-creation].
     
-3.  Bir test aracını hazırlama ve kurma:
-
-    1.  Test aracının dağıtılması ve temel bir yapılandırma gerçekleştirilmesi.
+        Bu işlemleri gerçekleştirdikten sonra, FAST node'unun temel isteklerin kayda alınması sürecine başlamak için hazır olduğundan emin olun.
     
-    2.  [Hızlı düğümün bir proxy sunucusu olarak yapılandırılması.][doc-proxy-configuration].
+3.  Bir test aracının hazırlanması ve kurulması:
+    
+    1.  Test aracının dağıtılması ve temel yapılandırmasının yapılması.
+    
+    2.  [FAST node'unun proxy sunucu olarak yapılandırılması][doc-proxy-configuration].
     
 4.  Mevcut testlerin çalıştırılması.
     
-    İlk temel isteği aldığında hızlı düğüm, güvenlik test setini oluşturup çalıştırmaya başlar.
+    FAST node, ilk temel isteği aldığında güvenlik test setini oluşturup çalıştırmaya başlayacaktır.
     
-5.  Temel isteklerin kayıt sürecinin durdurulması.
+5.  Temel isteklerin kaydının alınması sürecinin durdurulması.
     
-    Tüm mevcut testlerin yürütülmesinin ardından, kayıt süreci [durdurulmalıdır][doc-stopping-recording].
+    Kaydetme işlemi, tüm mevcut testler çalıştırıldıktan sonra [durdurulmalıdır][doc-stopping-recording].
     
-    Şimdi, kaydedilen temel istekleri içeren [test kaydı][doc-testrecord], zaten kaydedilmiş temel isteklerle çalışan CI/CD iş akışında yeniden kullanıma hazır.  
+    Artık, kaydedilen temel istekleri içeren [test kaydı][doc-testrecord], önceden kaydedilmiş temel isteklerle çalışan CI/CD iş akışında yeniden kullanılmaya hazırdır.  
     
-6.  Hızlı güvenlik testlerinin bitmesini beklemek.
+6.  FAST güvenlik testlerinin bitmesini beklemek.
     
-    Düzenli olarak test çalıştırmasının durumunu kontrol etmek için bir API isteği yapın. Bu, [güvenlik testlerinin tamamlanıp tamamlanmadığını belirlemeye][doc-waiting-for-tests] yardımcı olur.
+    Test çalışmasının durumunu periyodik olarak bir API isteği yaparak kontrol edin. Bu, [güvenlik testlerinin tamamlanıp tamamlanmadığını belirlemeye][doc-waiting-for-tests] yardımcı olur.
     
-7.  Test sonuçlarının elde edilmesi.
+7.  Test sonuçlarının alınması.
 
-Bu senaryo aşağıdaki resimde gösterilmektedir:
+Aşağıdaki resimde bu senaryo gösterilmiştir:
 
-![Örnek bir CI/CD işi ile isteklerin kaydedilmesi][img-sample-job-recording]
+![Temel isteklerin kaydının alındığı CI/CD işine bir örnek][img-sample-job-recording]
 
 
-##  Önceden Kaydedilmiş Temel İsteklerin Kullanıldığı API Üzerinden Dağıtım
+##  Önceden Kaydedilmiş Temel İstekler Kullanılırken API Üzerinden Dağıtım
 
-Bu senaryoda bir test çalıştırması kopyalanır. Kopyalarken, mevcut bir test kayıt belirleyici test çalıştırmasına iletilir. Test kaydı, temel isteklerin kayıt oldugu CI/CD iş akışından elde edilir.
+Bu senaryoda bir test çalışması kopyalanır. Kopyalama sırasında mevcut bir test kaydı tanımlayıcısı test çalışmasına aktarılır. Test kaydı, temel isteklerin kaydının alındığı CI/CD iş akışında edinilir.
 
-Söz konusu iş akış adımları şunları içerir:
+İlgili iş akışı adımları:
 
-1.  Hedef uygulamanın inşa edilip dağıtılması.
+1.  Hedef uygulamanın derlenmesi ve dağıtılması.
 
-2.  Hızlı düğüm kurma ve ayarlama:
-
-    1.  [Docker konteynerında hızlı düğümle dağıtım yapılması.][doc-container-deployment].
+2.  FAST node'unun dağıtılması ve kurulması:
     
-    2.  [Bir test çalıştırmasının kopyalanması.][doc-testrun-copying].    
-
-3.  Verilen test kaydından hızlı düğümle temel isteklerin çıkarılması. 
-
-4.  Hızlı düğümle hedef uygulamanın güvenlik testlerinin yürütülmesi.
-
-5.  Hızlı güvenlik testlerinin bitmesini beklemek.
-
-    Düzenli olarak test çalıştırmasının durumunu kontrol etmek için bir API isteği yapın. Bu, [güvenlik testlerinin tamamlanıp tamamlanmadığını belirlemeye][doc-waiting-for-tests] yardımcı olur.
+    1.  [FAST node içeren Docker konteynerinin dağıtılması][doc-container-deployment].
     
-6.  Test sonuçlarının elde edilmesi.
+    2.  [Bir test çalışmasının kopyalanması][doc-testrun-copying].    
 
-![Önceden kaydedilmiş isteklerin kullanıldığı bir CI/CD işi örneği][img-sample-job-no-recording]   
+3.  FAST node kullanılarak verilen test kaydından temel isteklerin çıkarılması. 
+
+4.  FAST node ile hedef uygulamanın güvenlik testlerinin yapılması.
+
+5.  FAST güvenlik testlerinin bitmesini beklemek.
+    
+    Test çalışmasının durumunu periyodik olarak bir API isteği yaparak kontrol edin. Bu, [güvenlik testlerinin tamamlanıp tamamlanmadığını belirlemeye][doc-waiting-for-tests] yardımcı olur.
+    
+6.  Test sonuçlarının alınması.
+
+![Önceden kaydedilmiş isteklerin kullanıldığı CI/CD işine bir örnek][img-sample-job-no-recording]   
 
 
-##  Bir Hızlı Düğüm Konteyner Yaşam Döngüsü (API Üzerinden Dağıtım)
+##  Bir FAST Node Konteynerinin Yaşam Döngüsü (API Üzerinden Dağıtım)
 
-Bu senaryo, Docker konteynerındaki hızlı düğümün, belirli bir CI/CD işi için yalnızca bir kez çalıştığını ve iş sona erdiğinde kaldırıldığını varsayar.
-
-Hızlı düğüm, operasyon sırasında kritik hatalarla karşılaşmazsa, yeni test çalıştırmalarını ve temel istekleri bekleyerek sürekli bir döngüde çalışır.
-
-CI/CD işi bittiğinde, düğümle gelen Docker konteyner, CI/CD aracı tarafından açıkça durdurulmalıdır.
+Bu senaryo, FAST node içeren Docker konteynerinin belirli bir CI/CD işi için yalnızca bir kez çalıştığını ve iş sona erdiğinde kaldırıldığını varsayar.
+ 
+FAST node, çalışma sırasında kritik hatalarla karşılaşmazsa, yeni test çalışmaları ve temel istekler için sonsuz döngüde çalışarak hedef uygulamayı tekrar test etmek üzere bekler.
+  
+Docker konteyneri, CI/CD işi tamamlandığında CI/CD aracı tarafından açıkça durdurulmalıdır. 
 
 <!-- -->
-Gerekirse, [“CI/CD İş Akışında HIZLI ile”][doc-integration-overview] belgesine geri dönebilirsiniz. 
+Gerekirse [“CI/CD Workflow with FAST”][doc-integration-overview] belgesine başvurabilirsiniz.

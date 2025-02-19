@@ -1,26 +1,26 @@
 [file-ips-list-us]: ../downloads/scanner-ip-addresses-us.txt
 [file-ips-list-eu]: ../downloads/scanner-ip-addresses-eu.txt
 
-# Wallarmスキャナーアドレス <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Wallarm Scanner アドレス <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-このドキュメントでは、USとEUのクラウド用の[Wallarmスキャナー](../user-guides/scanner.md)のIPアドレスリストを提供します。
+本書では、US CloudおよびEU Cloud用の[Wallarm Scanner](../user-guides/scanner.md)のIPアドレスリストを提供します。
 
-自動的にトラフィックをフィルタリングおよびブロックするために使用しているソフトウェアやハードウェア設備（Wallarmを除く）の**ホワイトリスト**に、対応するリストのアドレスを追加することをお勧めします。これにより、これらの設備によってWallarmスキャナーがブロックされることが[防がれ](../user-guides/scanner.md#preventing-scanner-from-being-blocking)ます。
+Wallarm以外の、トラフィックの自動フィルタリングとブロックに使用するソフトウェアまたはハードウェア機器の**ホワイトリスト**に該当リストのアドレスを追加することを推奨します。これにより、これらの機器でWallarm Scannerがブロックされるのを[防止](../user-guides/scanner.md#preventing-scanner-from-being-blocked)できます。
 
-## USクラウド
+## US Cloud
 
-USクラウド（https://us1.my.wallarm.com）から、Wallarmが企業のリソースをスキャンして[脆弱性](../glossary-en.md#vulnerability)を調べ、攻撃や脆弱性を再確認するためのIPアドレスリストです：
+US Cloud (https://us1.my.wallarm.com)用のIPアドレスリストで、Wallarmが企業リソースの[脆弱性](../glossary-en.md#vulnerability)をスキャンし、攻撃や脆弱性の再チェックを行います:
 
---8<-- "../include-ja/scanner-ip-request-us.md"
+--8<-- "../include/scanner-ip-request-us.md"
 
-!!! info "IPアドレスリストの取得"
-    [スキャナーのIPアドレスが記載されたプレーンテキストファイルをダウンロードしてください。][file-ips-list-us]
+!!! info "IPアドレスのリストを入手"
+    [スキャナーのIPアドレスリストが記載されたプレーンテキストファイルをダウンロードします。][file-ips-list-us]
 
-## EUクラウド
+## EU Cloud
 
-EUクラウド（https://my.wallarm.com）から、Wallarmが企業のリソースをスキャンして[脆弱性](../glossary-en.md#vulnerability)を調べ、攻撃や脆弱性を再確認するためのIPアドレスリストです：
+EU Cloud (https://my.wallarm.com)用のIPアドレスリストで、Wallarmが企業リソースの[脆弱性](../glossary-en.md#vulnerability)をスキャンし、攻撃や脆弱性の再チェックを行います:
 
---8<-- "../include-ja/scanner-ip-request.md"
+--8<-- "../include/scanner-ip-request.md"
 
-!!! info "IPアドレスリストの取得"
-    [スキャナーのIPアドレスが記載されたプレーンテキストファイルをダウンロードしてください。][file-ips-list-eu]
+!!! info "IPアドレスのリストを入手"
+    [スキャナーのIPアドレスリストが記載されたプレーンテキストファイルをダウンロードします。][file-ips-list-eu]

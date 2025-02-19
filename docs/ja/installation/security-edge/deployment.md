@@ -1,1 +1,1 @@
---8<-- "latest/installation/security-edge/deployment.md"
+--8<-- "latest-ja/installation/security-edge/deployment.md"

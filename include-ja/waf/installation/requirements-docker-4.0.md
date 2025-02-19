@@ -1,2 +1,0 @@
-* [US Cloud](https://us1.my.wallarm.com/) または [EU Cloud](https://my.wallarm.com/) のWallarmコンソールにおける **管理者** ロールでのアカウントへのアクセス 
-* US Wallarm Cloudを使用している場合は `https://us1.api.wallarm.com`、EU Wallarm Cloudを使用している場合は `https://api.wallarm.com` にアクセスしてください。アクセスがファイアウォールによってブロックされていないことを確認してください。

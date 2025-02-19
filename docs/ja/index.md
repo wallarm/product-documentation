@@ -5,142 +5,157 @@ hide:
 - feedback
 ---
 
-# Wallarm APIセキュリティ
+# Wallarm API Security
 
-Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱用、および他の自動化された脅威からAPI、マイクロサービス、およびWebアプリケーションを保護します。これは手動ルール設定不要で、超低誤検知率を実現します。
+The Wallarm solution protects APIs, microservices and web applications from OWASP API Top 10 threats,<br>API abuse and other automated threats with no manual rule configuration and ultra‑low false positives.
 
 <div class="navigation">
-
 <div class="navigation-card">
-    <h3 class="icon-homepage quick-start-title">クイックスタート</h3>
+    <h3 class="icon-homepage quick-start-title">Quick start</h3>
     <p><ul>
-    <li><a href="./about-wallarm/overview/">Wallarmの概要</a></li>
-    <li><a href="./quickstart/getting-started/">クイックスタートガイド</a></li>
-    <li><a href="./demo-videos/overview/">ビデオガイド</a></li>
-    <li><a href="./installation/supported-deployment-options/">デプロイガイド</a></li>
-    <li><a href="./about-wallarm/subscription-plans/">サブスクリプションプラン</a></li>
-    <li><a href="./quickstart/attack-prevention-best-practices/">攻撃予防のベストプラクティス</a></li>
+    <li><a href="./about-wallarm/overview/">Wallarm Overview</a></li>
+    <li><a href="./quickstart/getting-started/">Getting Started</a></li>
+    <li><a href="./about-wallarm/subscription-plans/">Subscription Plans</a></li>
+    <li><a href="./installation/supported-deployment-options/">Deployment Guides</a></li>
+    <li><a href="./quickstart/attack-prevention-best-practices/">Best Practices</a></li>
+    <li><a href="./demo-videos/overview/">Video Guides</a></li>
     </ul></p>
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage dashboard-title">ダッシュボードとレポート</h3>
+    <h3 class="icon-homepage dashboard-title">Threat Management</h3>
     <p><ul>
-    <li><a href="./user-guides/dashboards/threat-prevention/">脅威予防ダッシュボード</a></li>
-    <li><a href="./user-guides/dashboards/api-discovery/">API発見ダッシュボード</a></li>
-    <li><a href="./user-guides/dashboards/owasp-api-top-ten/">OWASP APIトップ10ダッシュボード</a></li>
-    <li><a href="./user-guides/search-and-filters/use-search/">イベント検索と分析</a></li>
-    <li><a href="./user-guides/search-and-filters/custom-report/">EメールPDFおよびCSVレポート</a></li>
-    <li><a href="./user-guides/settings/audit-log/">活動ログ</a></li>
+    <li><a href="./user-guides/dashboards/threat-prevention/">Dashboards</a></li>
+    <li><a href="./user-guides/events/check-attack/">Attack Analysis</a></li>
+    <li><a href="./user-guides/events/check-incident/">Incident Analysis</a></li>
+    <li><a href="./api-sessions/overview/">API Sessions</a></li>
+    <li><a href="./user-guides/search-and-filters/custom-report/">Reports</a></li>
     </ul></p>
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-discovery-title">APIディスカバリー</h3>
+    <h3 class="icon-homepage api-discovery-title">API Discovery</h3>
     <p><ul>
-    <li><a href="./api-discovery/overview/">API インベントリの探索</a></li>
-    <li><a href="./api-discovery/track-changes/">API の変更の追跡</a></li>
-    <li><a href="./api-discovery/risk-score/">エンドポイントのリスクスコア</a></li>
-    <li><a href="./api-discovery/rogue-api/">シャドウ、孤児、ゾンビ API</a></li>
+    <li><a href="./api-discovery/overview/">Exploring API Inventory</a></li>
+    <li><a href="./api-discovery/track-changes/">Tracking Changes in API</a></li>
+    <li><a href="./api-discovery/sensitive-data/">Sensitive Data Detection</a></li>
+    <li><a href="./api-discovery/sbf/">Sensitive Business Flows</a></li>
+    <li><a href="./api-discovery/risk-score/">Endpoint Risk Score</a></li>
+    <li><a href="./api-discovery/rogue-api/">Shadow, Orphan, Zombie API</a></li>
     </ul></p>
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-threat-prevent">API保護</h3>
+    <h3 class="icon-homepage api-threat-prevent">API Protection</h3>
     <p><ul>
-    <li><a href="./api-abuse-prevention/overview/">API 濫用防止</a></li>
-    <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA 保護</a></li>
-    <li><a href="./about-wallarm/credential-stuffing/">クレデンシャルスタッフィング検知</a></li>
+    <li><a href="./about-wallarm/api-protection-overview/">Overview</a></li>
+    <li><a href="./api-specification-enforcement/overview/">API Specification Enforcement</a></li>
+    <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA Protection</a></li>
+    <li><a href="./api-abuse-prevention/overview/">API Abuse Prevention</a></li>
+    <li><a href="./about-wallarm/credential-stuffing/">Credential Stuffing Detection</a></li>
+    <li><a href="./api-protection/graphql-rule/">GraphQL API Protection</a></li>
     </ul></p>
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage vuln-title">API攻撃面</h3>
+    <h3 class="icon-homepage vuln-title">API Attack Surface Management</h3>
     <p><ul>
-    <li><a href="./api-attack-surface/overview/">概要</a></li> 
-    <li><a href="./api-attack-surface/api-surface/">API サーフェス検出</a></li>   
-    <li><a href="./api-attack-surface/api-leaks/">APIリーク</a></li>
+    <li><a href="./api-attack-surface/overview/">Overview</a></li>
+    <li><a href="./api-attack-surface/api-surface/">API Attack Surface Discovery</a></li>
+    <li><a href="./api-attack-surface/security-issues/">Detecting Security Issues</a></li>
     </ul></p>
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage vuln-title">資産と脆弱性</h3>
+    <h3 class="icon-homepage vuln-title">Assets & Vulnerabilities</h3>
     <p><ul>
-    <li><a href="./user-guides/scanner/">公開されたアセット</a></li>
-    <li><a href="./about-wallarm/detecting-vulnerabilities/">脆弱性評価</a></li>
-    <li><a href="./vulnerability-detection/active-threat-verification/overview/">アクティブな脅威検証</a></li>
+    <li><a href="./user-guides/scanner/">Exposed Assets</a></li>
+    <li><a href="./about-wallarm/detecting-vulnerabilities/">Vulnerability Assessment</a></li>
+    <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
     </ul></p>
 </div>
+
+<!-- <div class="navigation-card">
+    <h3 class="icon-homepage api-security-testing">API Security Testing</h3>
+    <p><ul>
+    <li><a href="./fast/openapi-security-testing/">OpenAPI Security Testing</a></li>
+    <li><a href="./fast/">Framework for API Security Testing</a></li>
+    <li><a href="./fast/operations/test-policy/fuzzer-intro/">API Fuzzing</a></li>
+    <li><a href="./fast/dsl/intro/">DSL for Custom Detects</a></li>
+    <li><a href="./fast/poc/integration-overview/">Integration into CI/CD</a></li>
+    </ul></p>
+</div> -->
 
 <div class="navigation-card">
     <h3 class="icon-homepage waap-title">Cloud-Native WAAP</h3>
     <p><ul>
-    <li><a href="./about-wallarm/waap-overview/">概要</a></li>
-    <li><a href="./admin-en/configuration-guides/protecting-against-ddos/">DDoS 防御</a></li>
-    <li><a href="./admin-en/configuration-guides/protecting-against-bruteforce/">ブルートフォース攻撃防御</a></li>
-    <li><a href="./admin-en/configuration-guides/protecting-against-forcedbrowsing/">強制的な閲覧の防止</a></li>
-    <li><a href="./user-guides/rules/rate-limiting/">レート制限</a></li>
-    <li><a href="./user-guides/rules/vpatch-rule/">仮想パッチング</a></li>
-    <li><a href="./user-guides/rules/regex-rule/">ユーザー定義の検出器</a></li>
+    <li><a href="./about-wallarm/waap-overview/">Overview</a></li>
+    <li><a href="./admin-en/configuration-guides/protecting-against-ddos/">DDoS Protection</a></li>
+    <li><a href="./admin-en/configuration-guides/protecting-against-bruteforce/">Brute Force Protection</a></li>
+    <li><a href="./admin-en/configuration-guides/protecting-against-forcedbrowsing/">Forced Browsing Protection</a></li>
+    <li><a href="./user-guides/rules/rate-limiting/">Rate Limiting</a></li>    
+    <li><a href="./user-guides/rules/vpatch-rule/">Virtual Patching</a></li>
+    <li><a href="./user-guides/rules/regex-rule/">User-Defined Detectors</a></li>
     </ul></p>
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage deployment-title">展開</h3>
+    <h3 class="icon-homepage deployment-title">Deployment</h3>
     <p><ul>
-    <li><a href="./installation/supported-deployment-options/">すべてのデプロイメントオプション</a></li>
-    <li><a href="./installation/oob/overview/">アウトオブバンド</a></li>
-    <li><a href="./installation/supported-deployment-options/#public-clouds">パブリッククラウド</a></li>
+    <li><a href="./installation/supported-deployment-options/">All Deployment Options</a></li>
+    <li><a href="./installation/supported-deployment-options/#edge">Security Edge</a></li>
     <li><a href="./installation/supported-deployment-options/#kubernetes">Kubernetes</a></li>
-    <li><a href="./installation/inline/overview/">インライン</a></li>
-    <li><a href="./installation/connectors/overview/">コネクタ</a></li>
-    <li><a href="./installation/supported-deployment-options/#packages">パッケージ</a></li>
+    <li><a href="./installation/supported-deployment-options/#public-clouds">Public Clouds</a></li>
+    <li><a href="./installation/connectors/overview/">Connectors</a></li>
+    <li><a href="./installation/inline/overview/">In-Line</a></li>
+    <li><a href="./installation/oob/overview/">Out-of-Band</a></li>
+    <li><a href="./installation/nginx-native-node-internals/">All deployment artifacts</a></li>
     </ul></p>
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage integration-title">統合とアラート</h3>
+    <h3 class="icon-homepage integration-title">Integrations and Alerts</h3>
     <p><ul>
-    <li><a href="./user-guides/settings/integrations/integrations-intro/#email-and-messengers">メールおよびメッセンジャー</a></li>
-    <li><a href="./user-guides/settings/integrations/integrations-intro/#incident-and-task-management-systems">インシデントおよびタスク管理システム</a></li>
-    <li><a href="./user-guides/settings/integrations/integrations-intro/#siem-and-soar-systems">SIEM および SOAR システム</a></li>
-    <li><a href="./user-guides/settings/integrations/integrations-intro/#log-management-systems">ログ管理システム</a></li>
-    <li><a href="./user-guides/settings/integrations/integrations-intro/#data-collectors">データ収集システム</a></li>
+    <li><a href="./user-guides/settings/integrations/integrations-intro/#email-and-messengers">Email and Messengers</a></li>
+    <li><a href="./user-guides/settings/integrations/integrations-intro/#incident-and-task-management-systems">Incident and Task Management Systems</a></li>
+    <li><a href="./user-guides/settings/integrations/integrations-intro/#siem-and-soar-systems">SIEM and SOAR Systems</a></li>
+    <li><a href="./user-guides/settings/integrations/integrations-intro/#log-management-systems">Log Management Systems</a></li>
+    <li><a href="./user-guides/settings/integrations/integrations-intro/#data-collectors">Data Collectors</a></li>
     </ul></p>
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage user-management-title">ユーザー管理</h3>
+    <h3 class="icon-homepage user-management-title">User Management</h3>
     <p><ul>
-    <li><a href="./user-guides/settings/users/">概要</a></li>
-    <li><a href="./user-guides/settings/account/">ユーザープロファイル</a></li>
-    <li><a href="./user-guides/settings/api-tokens/">APIトークン</a></li>
+    <li><a href="./user-guides/settings/users/">Overview</a></li>
+    <li><a href="./user-guides/settings/account/">User Profile</a></li>
+    <li><a href="./user-guides/settings/api-tokens/">API Tokens</a></li>
     <li><a href="./admin-en/configuration-guides/sso/intro/">SAML SSO</a></li>
-    <li><a href="./admin-en/configuration-guides/ldap/ldap/">LDAPの使用</a></li>
+    <li><a href="./admin-en/configuration-guides/ldap/ldap/">Using LDAP</a></li>
+    <li><a href="./user-guides/settings/audit-log/">Activity Log</a></li>
     </ul></p>
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage operations-title">操作</h3>
+    <h3 class="icon-homepage operations-title">Operations</h3>
     <p><ul>
-    <li><a href="./admin-en/configure-parameters-en/">NGINXベースのノードの構成オプション</a></li>
-    <li><a href="./admin-en/configure-wallarm-mode/">フィルタリングモード</a></li>
-    <li><a href="./admin-en/using-proxy-or-balancer-en/">エンドユーザーIPの正確なレポート</a></li>
-    <li><a href="./admin-en/configuration-guides/allocate-resources-for-node/">リソース割り当て</a></li>
-    <li><a href="./user-guides/settings/applications/">アプリケーションごとのトラフィックと設定の分割</a></li>
-    <li><a href="./admin-en/configure-logging/">ノードログのフィルタリング</a></li>
-    <li><a href="./updating-migrating/what-is-new/">ノードアップグレード</a></li>
+    <li><a href="./user-guides/settings/applications/">Applications</a></li>
+    <li><a href="./admin-en/configure-parameters-en/">NGINX‑Based Nodes</a></li>
+    <li><a href="./admin-en/using-proxy-or-balancer-en/">Proper Reporting of End‑User IP</a></li>
+    <li><a href="./admin-en/configuration-guides/allocate-resources-for-node/">Resource Allocation</a></li>
+    <li><a href="./admin-en/configure-logging/">Filtering Node Logs</a></li>
+    <li><a href="./updating-migrating/what-is-new/">Self-Hosted Node Upgrade</a></li>
     </ul></p>
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage references-title">リファレンス</h3>
+    <h3 class="icon-homepage references-title">References</h3>
     <p><ul>
     <li><a href="./faq/ingress-installation/">FAQ</a></li>
-    <li><a href="./news/">変更ログ & ニュース</a></li>
-    <li><a href="./api/overview/">Wallarm API リファレンス</a></li>
-    <li><a href="./admin-en/managing/terraform-provider/">Wallarm Terraform プロバイダ</a></li>
-    <li><a href="./integrations-devsecops/verify-docker-image-signature/">Docker イメージ署名の確認</a></li>
+    <li><a href="./news/">Changelog & News</a></li>
+    <li><a href="./api/overview/">Wallarm API Reference</a></li>
+    <li><a href="./admin-en/managing/terraform-provider/">Wallarm Terraform Provider</a></li>
+    <li><a href="./integrations-devsecops/verify-docker-image-signature/">Verifying Docker Image Signatures</a></li>
     </ul></p>
 </div>
 

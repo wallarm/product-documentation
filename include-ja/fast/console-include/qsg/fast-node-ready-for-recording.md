@@ -1,7 +1,7 @@
 ```
-[情報] ノードはWallarm Cloudに接続しました
-[情報] 高速スキャナー用の0個のカスタム拡張機能をロードしました
-[情報] 高速スキャナー用の51個のデフォルト拡張機能をロードしました
-[情報] TestRunのチェックを待っています...
-[情報] 'DEMO TEST RUN'のTestRun#Nの基準を記録します
+[info] Wallarm Cloudにノードが接続されました
+[info] fast scanner用のカスタム拡張機能を0個読み込みました
+[info] fast scanner用のデフォルト拡張機能を51個読み込みました
+[info] TestRunのチェックを待っています...
+[info] TestRun#N 'DEMO TEST RUN'のためのベースラインを記録しています
 ```

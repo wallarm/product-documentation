@@ -1,51 +1,53 @@
 # InsightConnect
 
-以下のイベントがトリガーされたときに、WallarmからInsightConnectへ通知を送るように設定することができます:
+[InsightConnect](https://www.rapid7.com/products/insightconnect/) はサイバーセキュリティ運用の効率化と自動化を実現するセキュリティオーケストレーション、自動化、および対応 (SOAR) プラットフォームです。これにより、セキュリティインシデントや脅威の検知、調査、対応が容易になります。Wallarmを設定して、通知をInsightConnectに送信できるようにします。
 
---8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
+## 統合の設定
 
-## インテグレーションの設定
+まず、APIキーを生成してコピーします。以下の手順に従ってください：
 
-まず、以下の通りAPIキーを生成してコピーします:
-
-1. InsightConnectのUIを開きます → **設定** → [**APIキー** ページ](https://insight.rapid7.com/platform#/apiKeyManagement)を開き、**新規ユーザーキー** をクリックします。
-2. APIキーの名前を入力します（例：`Wallarm API`）し、**生成** をクリックします。
+1. InsightConnectのUIを開き、**Settings** → [**API Keys** page](https://insight.rapid7.com/platform#/apiKeyManagement) に進み、**New User Key**をクリックします。
+2. APIキーの名前（例：`Wallarm API`）を入力し、**Generate**をクリックします。
 3. 生成されたAPIキーをコピーします。
-4. WallarmのUIに移動し、 [US](https://us1.my.wallarm.com/integrations/) または [EU](https://my.wallarm.com/integrations/)クラウドで **インテグレーション** をクリックし、**InsightConnect** を選択します。
-5. 前にコピーしたAPIキーを **APIキー** フィールドに貼り付けます。
+4. Wallarm UIの**Integrations**に移動します。[US](https://us1.my.wallarm.com/integrations/)または[EU](https://my.wallarm.com/integrations/)クラウドで、**InsightConnect**をクリックします。
+4. 以前コピーしたAPIキーを**API key**フィールドに貼り付けます。
 
-次に、以下のようにAPI URLを生成してコピーします:
+次に、API URLを生成してコピーします。以下の手順に従ってください：
 
-1. InsightConnectのUIに戻り、**自動化** → **ワークフロー** ページを開き、Wallarmの通知用の新しいワークフローを作成します。
-2. トリガーを選択するよう求められた場合は、**APIトリガー**を選択します。
+1. InsightConnectのUIに戻り、**Automation** → **Workflows**ページを開いて、Wallarm通知用の新しいワークフローを作成します。
+2. トリガーを選択するよう求められたら、**API Trigger**を選択します。
 3. 生成されたURLをコピーします。
-4. WallarmのUIに戻り → **InsightConnect** 設定に移動して、先ほどコピーしたAPI URLを **API URL** フィールドに貼り付けます。
+4. Wallarm UIの**InsightConnect**設定に戻り、以前コピーしたAPI URLを**API URL**フィールドに貼り付けます。
 
-最後に、WallarmのUIで設定を完了します:
+最後に、Wallarm UIでのセットアップを完了します：
 
-1. インテグレーションの名前を入力します。
-2. 通知をトリガーするイベントタイプを選択します。イベントが選択されていない場合、通知は送信されません。
-3. [インテグレーションをテスト](#テスト-インテグレーション)し、設定が正しいことを確認します。
-4. **インテグレーションを追加** をクリックします。
+1. 統合の名前を入力します。
+1. 通知をトリガーするイベントタイプを選択します。
 
-![InsightConnectのインテグレーション](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
+    ![InsightConnect統合](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
 
-## インテグレーションのテスト
+    利用可能なイベントに関する詳細：
 
---8<-- "../include-ja/integrations/test-integration-advanced-data.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-InsightConnectメッセージのテスト:
+1. 設定の正確性、Wallarm Cloudの利用可能状況、および通知形式を確認するため、**Test integration**をクリックします。
 
-![InsightConnect通知のテスト](../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
+    これにより、接頭辞`[Test message]`を付けたテスト通知が送信されます：
 
-## インテグレーションの更新
+    ![Test InsightConnect通知](../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
 
---8<-- "../include-ja/integrations/update-integration.md"
+1. **Add integration**をクリックします。
 
-## インテグレーションの無効化
+--8<-- "../include/cloud-ip-by-request.md"
 
---8<-- "../include-ja/integrations/disable-integration.md"
+## 追加アラートの設定
 
-## インテグレーションの削除
+--8<-- "../include/integrations/integrations-trigger-setup.md"
 
---8<-- "../include-ja/integrations/remove-integration.md"
+## 統合の無効化および削除
+
+--8<-- "../include/integrations/integrations-disable-delete.md"
+
+## システムの利用不可および統合パラメータの不正な設定
+
+--8<-- "../include/integrations/integration-not-working.md"

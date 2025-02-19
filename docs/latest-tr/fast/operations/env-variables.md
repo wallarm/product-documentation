@@ -4,68 +4,68 @@
 
 [anchor-allowed-hosts]:     #limiting-the-number-of-requests-to-be-recorded
 
-#   FAST Node Tarafından Kullanılan Ortam Değişkenleri Listesi
+#   FAST Düğümü Tarafından Kullanılan Ortam Değişkenlerinin Listesi
 
-FAST node'u yapılandırmak için birçok parametre kullanılır. Bu parametrelerin değerleri, ilgili ortam değişkenleri aracılığıyla değiştirilebilir.
+FAST düğümünü yapılandırmak için birçok parametre kullanılmaktadır. Bu parametrelerin değerleri, karşılık gelen ortam değişkenleri aracılığıyla değiştirilebilir.
 
-Ortam değişkenlerinin değerlerini ayarlayabilir ve bu değişkenleri FAST node'ya şu şekilde iletebilirsiniz:
-* `-e` argümanı aracılığıyla
+Ortam değişkenlerinin değerlerini ayarlayabilir ve bu değişkenleri FAST düğümüne aşağıdaki yollarla aktarabilirsiniz:
+* `-e` argümanı ile
     
     ```
-    docker run --name <container adı> \
-    -e <ortam değişkeni 1>=<değer> \
+    docker run --name <container name> \
+    -e <environment variable 1>=<value> \
     ... 
-    -e <ortam değişkeni N>=<değer> \
-    -p <hedef port>:8080 wallarm/fast
+    -e <environment variable N>=<value> \
+    -p <target port>:8080 wallarm/fast
     ```
     
-* veya bir ortam değişkenlerini içeren dosyanın yolunu belirten `--env-file` argümanı aracılığıyla
+* veya ortam değişkenlerini içeren dosyanın yolunu belirten `--env-file` argümanı ile
 
     ```
-    docker run --name <container adı> \
-    --env-file=<ortam değişkenleri ile dosya> \
-    -p <hedef port>:8080 wallarm/fast
+    docker run --name <container name> \
+    --env-file=<file with environment variables> \
+    -p <target port>:8080 wallarm/fast
     ```
     
-    Bu dosya, satır başına bir ortam değişkeni olacak şekilde ortam değişkenlerinin listesini içermelidir:
+    Bu dosya, her satırda bir değişken olacak şekilde ortam değişkenleri listesini içermelidir:
 
     ```
-    # Ortam değişkenleri ile örnek dosya
+    # Ortam değişkenleri örnek dosyası
 
     WALLARM_API_TOKEN=token_Qwe12345            # Bu örnek bir değerdir—gerçek bir token değeri kullanın
-    ALLOWED_HOSTS=google-gruyere.appspot.com    # Bu domaine hedeflenen gelen istekler, bir test kaydına yazılacaktır
+    ALLOWED_HOSTS=google-gruyere.appspot.com    # Bu alana gönderen istekler, test kaydı olarak yazılacaktır
     ```
 
-Yapılandırılabilir tüm parametreler aşağıdaki tabloda listelenmiştir:
+Tüm yapılandırılabilir parametreler aşağıdaki tabloda listelenmiştir:
 
-| Parametre            | Değer     | Zorunlu mu? |
+| Parameter             | Value     | Required? |
 |--------------------	| --------	| -----------	|
-| `WALLARM_API_TOKEN`  | Wallarm bulutundan bir token. | Evet |
-| `WALLARM_API_HOST`   | Wallarm API sunucusunun adresi. <br>İzin verilen değerler: <br>`us1.api.wallarm.com` Wallarm US bulutundaki sunucu için ve <br>`api.wallarm.com` Wallarm EU bulutundaki sunucu için. | Evet |
-| `ALLOWED_HOSTS`      | Bir hedef uygulamanın hostlarının listesi. Bu hostlara yöneltilen gelen istekler bir test kaydına yazılır.<br>Gelen tüm istekler varsayılan olarak kaydedilir.<br>Daha fazla detayı [burada][anchor-allowed-hosts] görebilirsiniz.| Hayır |
-| `WALLARM_API_USE_SSL` | Wallarm API sunucularından birine bağlanırken SSL kullanılıp kullanılmayacağını belirler.<br>İzin verilen değerler: `true` ve `false`.<br>Varsayılan değer: `true`. | Hayır |
-| `WORKERS`            | Temel istekleri işleyen ve güvenlik testi yapan threadlerin sayısı.<br>Varsayılan değer: `10`. | Hayır |
-| `GIT_EXTENSIONS`     | [Özel FAST DSL uzantıları][doc-dsl-ext] içeren bir Git deposuna link (bu depo FAST node containerı tarafından erişilebilir olmalıdır) | Hayır |
-| `CI_MODE`            | CI/CD'ye entegre edilirken FAST node'un çalışma modu. <br>İzin verilen değerler: <br>`recording` [kayıt modu][doc-record-mode] ve <br>`testing` [test modu][doc-test-mode] için. | Hayır |
-| `BACKEND_HTTPS_PORTS` | Hedef uygulama tarafından kullanılan HTTPS port numarası (veya numaraları), eğer uygulama için varsayılan olmayan port(lar) yapılandırılmışsa.<br> Bu parametrenin değerinde birkaç port listelenebilir, örneğin: <br>`BACKEND_HTTPS_PORTS='443;3000;8091'`<br>Varsayılan değer: `443` | Hayır |
-| `WALLARM_API_CA_VERIFY` | Bir Wallarm API sunucusunun CA sertifikasının doğrulanması gerekip gerekmediğini belirtir.<br>İzin verilen değerler: `true` ve `false`.<br>Varsayılan değer: `false`. | Hayır |
-| `CA_CERT`            | FAST node tarafından kullanılacak bir CA sertifikasının yolunu gösterir.<br>Varsayılan değer: `/etc/nginx/ssl/nginx.crt`. | Hayır |
-| `CA_KEY`             | FAST node tarafından kullanılacak bir CA özel anahtarının yolunu gösterir. <br>Varsayılan değer: `/etc/nginx/ssl/nginx.key`. | Hayır |
+| `WALLARM_API_TOKEN`  	| Wallarm cloud'dan alınan bir token. | Yes |
+| `WALLARM_API_HOST`   	| Wallarm API sunucusunun adresi. <br>İzin verilen değerler: <br>`us1.api.wallarm.com` Wallarm US cloud'daki sunucu için ve <br>`api.wallarm.com` Wallarm EU cloud'daki sunucu için. | Yes |
+| `ALLOWED_HOSTS`       | Hedef uygulamanın hostlarının listesi. Bu hostlara gönderilen istekler test kaydı olarak yazılacaktır.<br>Tüm gelen istekler varsayılan olarak kaydedilir.<br>Daha fazla ayrıntı için bkz. [buradan][anchor-allowed-hosts].| No |
+| `WALLARM_API_USE_SSL` | Wallarm API sunucularından biriyle bağlantı kurulurken SSL kullanımını tanımlar.<br>İzin verilen değerler: `true` ve `false`.<br>Varsayılan değer: `true`. | No |
+| `WORKERS`             | Temel istekleri işleyen ve güvenlik testleri yapan iş parçacıklarının sayısı.<br>Varsayılan değer: `10`. | No |
+| `GIT_EXTENSIONS`      | FAST DSL uzantılarını içeren [custom FAST DSL extensions][doc-dsl-ext] barındıran Git deposuna bağlantı (bu deponun FAST düğüm konteyneri tarafından erişilebilir olması gerekmektedir) | No |
+| `CI_MODE`             | CI/CD entegrasyonu sırasında FAST düğümünün çalışma modu. <br>İzin verilen değerler: <br>[recording mode][doc-record-mode] için `recording` ve <br>[testing mode][doc-test-mode] için `testing`. | No |
+| `BACKEND_HTTPS_PORTS` | Hedef uygulama için varsayılan olmayan portlar yapılandırılmışsa, uygulama tarafından kullanılan HTTPS port numarası veya numaraları.<br>Bu parametrenin değerinde birkaç port listelenebilir, örneğin: <br>`BACKEND_HTTPS_PORTS='443;3000;8091'`<br>Varsayılan değer: `443` | No |
+| `WALLARM_API_CA_VERIFY` | Bir Wallarm API sunucusunun CA sertifikasının doğrulanıp doğrulanmayacağını belirler.<br>İzin verilen değerler: `true` ve `false`.<br>Varsayılan değer: `false`. | No |
+| `CA_CERT`             | FAST düğümü tarafından kullanılacak CA sertifikasının yolu.<br>Varsayılan değer: `/etc/nginx/ssl/nginx.crt`. | No |
+| `CA_KEY`              | FAST düğümü tarafından kullanılacak CA özel anahtarının yolu. <br>Varsayılan değer: `/etc/nginx/ssl/nginx.key`. | No |
 
 
 ## Kaydedilecek İstek Sayısının Sınırlandırılması
 
-Varsayılan olarak, FAST node tüm gelen istekleri temel istekler olarak ele alır. Bu yüzden, node bunları kaydeder ve bu isteklere dayalı olarak güvenlik testleri oluşturur ve uygular. Ancak, FAST node üzerinden hedef uygulamaya ulaşan ve temel istek olarak tanınmaması gereken gereksiz isteklerin geçmesi mümkündür.
+Varsayılan olarak, FAST düğümü tüm gelen istekleri temel istek olarak değerlendirir. Bu nedenle, düğüm bu istekleri kaydeder ve bunlara dayalı olarak güvenlik testleri oluşturup çalıştırır. Ancak, temel istek olarak algılanmaması gereken gereksiz isteklerin, hedef uygulamaya iletilebilmesi mümkündür.
 
-FAST node tarafından kaydedilecek istek sayısını, hedeflenen uygulamanın dışındaki tüm istekleri filtreleyerek sınırlayabilirsiniz (bu filtrelenen istekler FAST node tarafından proxylenir ama kaydedilmez). Bu sınırlama, FAST node ve hedef uygulamaya uygulanan yükü azaltırken test sürecini hızlandırır. Bu sınırlamayı uygulamak için, istek kaynağının test sırasında hangi hostlarla etkileşimde bulunduğunu bilmelisiniz.
+FAST düğümünün kaydedeceği istek sayısını, uygulamaya yönelik olmayan tüm istekleri filtreleyerek sınırlayabilirsiniz (unutmayın, FAST düğümü filtrelenen istekleri proxyler ancak kaydetmez). Bu sınırlama, FAST düğümüne ve hedef uygulamaya uygulanan yükü azaltırken, test sürecini hızlandırır. Bu sınırlamayı uygulayabilmek için, test sırasında istek kaynağının hangi hostlarla etkileşimde bulunduğunu bilmeniz gerekmektedir.
 
-`ALLOWED_HOSTS` ortam değişkenini yapılandırarak tüm temel olmayan istekleri filtreleyebilirsiniz.
+Temel istek dışındaki tüm istekleri, `ALLOWED_HOSTS` ortam değişkenini yapılandırarak filtreleyebilirsiniz.
 
---8<--  "../include-tr/fast/operations/env-vars-allowed-hosts.md"
+--8<--  "../include/fast/operations/env-vars-allowed-hosts.md"
 
-FAST node bu ortam değişkenini şu şekilde kullanır:
-* Gelen isteğin `Host` başlık değeri, `ALLOWED_HOSTS` değişkeninde belirtilen değere eşleşiyorsa, FAST node isteği temel olarak kabul eder. İstek daha sonra kaydedilir ve proxilenir.
-* Diğer tüm istekler FAST node üzerinden proxilenir ama kaydedilmez.
+FAST düğümü bu ortam değişkenini aşağıdaki şekilde kullanır:
+* Gelen isteğin `Host` başlığı değeri, `ALLOWED_HOSTS` değişkeninde belirtilen değere eşitse, FAST düğümü isteği temel istek olarak kabul eder. İstek hem kaydedilir hem de proxylenir.
+* Diğer tüm istekler FAST düğümü aracılığıyla proxylenir ancak kaydedilmez.
 
 !!! info "ALLOWED_HOSTS Ortam Değişkeni Kullanım Örneği"
-    Eğer değişken `ALLOWED_HOSTS=google-gruyere.appspot.com` olarak tanımlanırsa, `google-gruyere.appspot.com` domainine hedeflenen istekler temel olarak kabul edilir.
+    Değişken `ALLOWED_HOSTS=google-gruyere.appspot.com` olarak tanımlanmışsa, `google-gruyere.appspot.com` domainine gönderilen istekler temel istek olarak kabul edilir.

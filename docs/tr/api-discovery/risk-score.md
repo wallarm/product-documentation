@@ -1,1 +1,1 @@
---8<-- "latest/api-discovery/risk-score.md"
+--8<-- "latest-tr/api-discovery/risk-score.md"

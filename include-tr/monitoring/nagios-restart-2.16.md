@@ -1,10 +1,8 @@
-Aşağıdaki Wallarm.com belgeleme makalesini İngilizce'den Türkçe'ye çevirin:
-
 === "Ubuntu 14.04"
     ```bash
-    sudo service nagios yeniden başlat
+    sudo service nagios restart
     ```
-=== "Desteklenen diğer dağıtımlar"
+=== "Diğer desteklenen dağıtımlar"
     ```bash
     sudo systemctl restart nagios
     ```

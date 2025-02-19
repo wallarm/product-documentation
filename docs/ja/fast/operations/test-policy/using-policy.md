@@ -1,0 +1,1 @@
+--8<-- "latest-ja/fast/operations/test-policy/using-policy.md"

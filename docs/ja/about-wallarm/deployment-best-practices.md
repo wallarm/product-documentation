@@ -1,1 +1,0 @@
---8<-- "latest-ja/about-wallarm/deployment-best-practices.md"

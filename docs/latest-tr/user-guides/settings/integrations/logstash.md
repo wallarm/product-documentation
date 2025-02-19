@@ -1,26 +1,26 @@
 # Logstash
 
-Wallarm, tespit edilen olayların bildirimlerini Logstash'e göndermek üzere ayarlanabilir.
+[Logstash](https://www.elastic.co/logstash), Elastic tarafından geliştirilen açık kaynaklı bir veri işleme ve log yönetimi aracıdır. Wallarm'ı, tespit edilen olay bildirimlerini Logstash'e gönderecek şekilde yapılandırabilirsiniz.
 
-## Bildirim formatı
+## Bildirim Formatı
 
-Wallarm, JSON formatında **webhooks** aracılığıyla Logstash'e bildirimler gönderir. JSON nesnelerinin kümesi, Wallarm'ın bildirimde bulunduğu olaya bağlıdır.
+Wallarm, bildirimleri **webhook** aracılığıyla JSON formatında Logstash'e gönderir. JSON nesnelerinin kümesi, Wallarm'ın bildirim yaptığı olaya bağlıdır.
 
-Yeni tespit edilen bir vuruşun bildirimi örneği:
+Yeni tespit edilen hit bildirimine bir örnek:
 
 ```json
 [
     {
-        "summary": "[Wallarm] Yeni vuruş tespit edildi",
+        "summary": "[Wallarm] New hit detected",
         "details": {
-        "client_name": "TestŞirketi",
-        "cloud": "AB",
+        "client_name": "TestCompany",
+        "cloud": "EU",
         "notification_type": "new_hits",
         "hit": {
             "domain": "www.example.com",
             "heur_distance": 0.01111,
             "method": "POST",
-            "parameter": "BIR_DEGER",
+            "parameter": "SOME_value",
             "path": "/news/some_path",
             "payloads": [
                 "say ni"
@@ -61,78 +61,78 @@ Yeni tespit edilen bir vuruşun bildirimi örneği:
 
 ## Gereksinimler
 
-Logstash yapılandırmasının aşağıdaki gereksinimleri karşılaması gerekir:
+Logstash yapılandırması aşağıdaki gereksinimleri karşılamalıdır:
 
-* POST veya PUT isteklerini kabul etme
-* HTTPS isteklerini kabul etme
-* Açık URL'ye sahip olma
+* POST veya PUT isteklerini kabul etmek
+* HTTPS isteklerini kabul etmek
+* Genel bir URL’ye sahip olmak
 
 Logstash yapılandırma örneği:
 
 ```bash linenums="1"
 input {
-  http { # HTTP and HTTPS trafiği için giriş eklentisi
+  http { # HTTP ve HTTPS trafiği için input eklentisi
     port => 5044 # gelen istekler için port
-    ssl => true # HTTPS trafiği işleme
+    ssl => true # HTTPS trafiğinin işlenmesi
     ssl_certificate => "/etc/server.crt" # Logstash TLS sertifikası
     ssl_key => "/etc/server.key" # TLS sertifikası için özel anahtar
   }
 }
 output {
-  stdout {} # Logstash günlüklerini komut satırında yazdırmak için çıkış eklentisi
+  stdout {} # komut satırında Logstash loglarını yazdırmak için output eklentisi
   ...
 }
 ```
 
-Daha fazla ayrıntıyı [resmi Logstash belgelerinde](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html) bulabilirsiniz.
+Daha fazla detayı [resmi Logstash dokümantasyonunda](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html) bulabilirsiniz.
 
-## Entegrasyonun Ayarlanması
+## Entegrasyonu Ayarlama
 
-1. Wallarm Konsolu → **Entegrasyonlar** → **Logstash**'deki Logstash entegrasyonu kurulumuna ilerleyin.
+1. Wallarm Console → **Integrations** → **Logstash** bölümüne giderek Logstash entegrasyon ayarlarına devam edin.
 1. Entegrasyon adını girin.
 1. Hedef Logstash URL'sini (Webhook URL) belirtin.
-1. Gerekirse gelişmiş ayarları yapılandırın:
+1. Gerekirse, gelişmiş ayarları yapılandırın:
 
-    --8<-- "../include-tr/integrations/webhook-advanced-settings.md"
-1. Bildirimleri tetiklemek için olay türlerini seçin.
+    --8<-- "../include/integrations/webhook-advanced-settings.md"
+1. Bildirimleri tetikleyecek olay tiplerini seçin.
 
-    ![Logstash entegrasyonu](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+    ![Logstash integration](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-    Mevcut olaylar hakkında detaylar:
+    Kullanılabilir olaylar hakkında detaylar:
 
-    --8<-- "../include-tr/integrations/advanced-events-for-integrations.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-1. Yapılandırmanın doğruluğunu, Wallarm Bulut'unun erişilebilirliğini ve bildirim biçimini kontrol etmek için **Entegrasyonu Test Et**'e tıklayın.
+1. Yapılandırmanın doğruluğunu, Wallarm Cloud'un kullanılabilirliğini ve bildirim formatını kontrol etmek için **Test integration** butonuna tıklayın.
 
-    Test Logstash gümberti:
+    Test Logstash logu:
 
     ```json
     [
         {
-            summary:"[Test mesajı] [Test ortağı(ABD)] Yeni açıklık tespit edildi",
-            description:"Bildirim türü: vuln
+            summary:"[Test message] [Test partner(US)] New vulnerability detected",
+            description:"Notification type: vuln
 
-                        Sisteminizde yeni bir açıklık tespit edildi.
+                        New vulnerability was detected in your system.
 
                         ID: 
-                        Başlık: Test
-                        Alan adı: example.com
-                        Yol: 
-                        Metod: 
-                        Tespit eden: 
-                        Parametre: 
-                        Tür: Bilgi
-                        Tehdit: Orta
+                        Title: Test
+                        Domain: example.com
+                        Path: 
+                        Method: 
+                        Discovered by: 
+                        Parameter: 
+                        Type: Info
+                        Threat: Medium
 
-                        Daha fazla detay: https://us1.my.wallarm.com/object/555
+                        More details: https://us1.my.wallarm.com/object/555
 
 
-                        Müşteri: TestŞirketi
-                        Bulut: ABD
+                        Client: TestCompany
+                        Cloud: US
                         ",
             details:{
-                client_name:"TestŞirketi",
-                cloud:"ABD",
+                client_name:"TestCompany",
+                cloud:"US",
                 notification_type:"vuln",
                 vuln_link:"https://us1.my.wallarm.com/object/555",
                 vuln:{
@@ -143,49 +143,51 @@ Daha fazla ayrıntıyı [resmi Logstash belgelerinde](https://www.elastic.co/gui
                     path:null,
                     title:"Test",
                     discovered_by:null,
-                    threat:"Orta",
-                    type:"Bilgi"
+                    threat:"Medium",
+                    type:"Info"
                 }
             }
         }
     ]
     ```
 
-1. **Entegrasyon Ekle**'ye tıklayın.
+1. **Add integration** butonuna tıklayın.
 
-## Ek uyarıların ayarlanması
+--8<-- "../include/cloud-ip-by-request.md"
 
---8<-- "../include-tr/integrations/integrations-trigger-setup.md"
+## Ek Uyarıları Ayarlama
 
-## Logstash'ın ara veri toplayıcı olarak kullanılması
+--8<-- "../include/integrations/integrations-trigger-setup.md"
 
---8<-- "../include-tr/integrations/webhook-examples/overview.md"
+## Araca Ara Toplayıcı Olarak Logstash Kullanma
+
+--8<-- "../include/integrations/webhook-examples/overview.md"
 
 Örneğin:
 
-![Webhook akışı](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
-Bu şemayı kullanarak Wallarm olaylarını günlüğe almak için:
+Bu şemayı kullanarak Wallarm olaylarını loglamak için:
 
-1. Veri toplayıcısını, gelen webhooks'u okumak ve günlükleri bir sonraki sisteme yönlendirmek üzere yapılandırın. Wallarm, olayları webhooks aracılığıyla veri toplayıcılara gönderir.
-1. Veri toplayıcıdan günlükleri almak ve okumak üzere bir SIEM sistemini yapılandırın.
-1. Wallarm'ı, günlükleri veri toplayıcıya göndermek üzere yapılandırın.
+1. Gelen webhook'ları okuyup logları bir sonraki sisteme iletecek şekilde veri toplayıcıyı yapılandırın. Wallarm, olayları webhook'lar aracılığıyla veri toplayıcılara gönderir.
+1. Veri toplayıcıdan logları alıp okuyacak şekilde bir SIEM sistemini yapılandırın.
+1. Wallarm'ı, logları veri toplayıcıya gönderecek şekilde yapılandırın.
 
-    Wallarm, günlükleri webhooks aracılığıyla herhangi bir veri toplayıcıya gönderebilir.
+    Wallarm, logları webhook'lar aracılığıyla herhangi bir veri toplayıcıya gönderebilir.
 
-    Wallarm'ı Fluentd veya Logstash ile entegre etmek için, Wallarm Konsol UI'da ilgili entegrasyon kartlarını kullanabilirsiniz.
+    Wallarm'ı Fluentd veya Logstash ile entegre etmek için, Wallarm Console UI'da ilgili entegrasyon kartlarını kullanabilirsiniz.
 
-    Wallarm'ı diğer veri toplayıcılarla entegre etmek için, Wallarm Konsol UI'deki [webhook entegrasyon kartını](webhook.md) kullanabilirsiniz.
+    Wallarm'ı diğer veri toplayıcıları ile entegre etmek için, Wallarm Console UI'da bulunan [webhook integration card](webhook.md) kullanılabilir.
 
-SIEM sistemlerine günlükleri ileten popüler veri toplayıcılarla entegrasyonun nasıl yapılandırılacağına dair bazı örnekleri anlattık:
+Popüler veri toplayıcılara logları SIEM sistemlerine iletmek için entegrasyonun nasıl yapılandırılacağına dair bazı örnekleri açıkladık:
 
 * [Wallarm → Logstash → IBM QRadar](webhook-examples/logstash-qradar.md)
 * [Wallarm → Logstash → Splunk Enterprise](webhook-examples/logstash-splunk.md)
 * [Wallarm → Logstash → Micro Focus ArcSight Logger](webhook-examples/logstash-arcsight-logger.md)
 * [Wallarm → Logstash → Datadog](webhook-examples/fluentd-logstash-datadog.md)
 
-    Wallarm ayrıca [Datadog API aracılığıyla Datadog ile doğal entegrasyonu](datadog.md) da destekler. Doğal entegrasyon, ara veri toplayıcının kullanılmasını gerektirmez.
+    Wallarm ayrıca [Datadog API aracılığıyla Datadog ile yerel entegrasyonu](datadog.md) desteklemektedir. Yerel entegrasyon için ara veri toplayıcının kullanılmasına gerek yoktur.
 
-## Bir entegrasyonun devre dışı bırakılması ve silinmesi
+## Bir Entegrasyonun Devre Dışı Bırakılması ve Silinmesi
 
---8<-- "../include-tr/integrations/integrations-disable-delete.md"
+--8<-- "../include/integrations/integrations-disable-delete.md"

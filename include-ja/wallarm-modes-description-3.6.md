@@ -1,11 +1,11 @@
-| Wallarmノードの振る舞い | `off` | `monitoring` | `safe_blocking` |`block` |
-| -------- | - | - | - | -|
-| 次の種類の悪意のあるペイロードを伴う受信リクエストを分析します： [入力検証攻撃](../about-wallarm/protecting-against-attacks.md#input-validation-attacks)、 [vpatch攻撃](../user-guides/rules/vpatch-rule.md)、または[正規表現に基づいて検出された攻撃](../user-guides/rules/regex-rule.md) | - | + | + | + |
-| 悪意のあるリクエストをWallarmクラウドへアップロードし、イベントリストで表示されるようにします | - | + | + | + |
-| 悪意のあるリクエストをブロックします | - | - | [グレーリストに登録されたIP](../user-guides/ip-lists/graylist.md)から生じたものだけ | + |
-| [拒否リストに登録されたIP](../user-guides/ip-lists/denylist.md)<sup>例外あり</sup>から生じたリクエストをブロックします | 拒否リストを分析しません | - | + | + |
-| [グレーリストに登録されたIP](../user-guides/ip-lists/graylist.md)から生じたリクエストをブロックします | グレーリストを分析しません | - | 悪意のあるペイロードを含むものだけ | グレーリストを分析しません |
-| [許可リストに登録されたIP](../user-guides/ip-lists/allowlist.md)から生じたリクエストを許可します | 許可リストを分析しません | + | + | + |
+| Wallarmノードの動作 | `off` | `monitoring` | `safe_blocking` | `block` |
+| ---------------- | - | - | - | - |
+| 受信リクエストに以下の種類の悪意のあるペイロードが含まれるかどうか解析します: [input validation attacks](../about-wallarm/protecting-against-attacks.md#input-validation-attacks)、[vpatch attacks](../user-guides/rules/vpatch-rule.md)、または[attacks detected based on regular expressions](../user-guides/rules/regex-rule.md) | - | + | + | + |
+| 悪意のあるリクエストをWallarm Cloudにアップロードして、イベント一覧に表示させます | - | + | + | + |
+| 悪意のあるリクエストをブロックします | - | - | [graylist登録済みIPアドレス](../user-guides/ip-lists/graylist.md)から送信されたもののみ | + |
+| [denylist登録済みIPアドレス](../user-guides/ip-lists/denylist.md)<sup>例外を参照</sup>から送信されたリクエストをブロックします | denylistを解析しません | - | + | + |
+| [graylist登録済みIPアドレス](../user-guides/ip-lists/graylist.md)から送信されたリクエストをブロックします | graylistを解析しません | - | 悪意のあるペイロードを含むもののみ | graylistを解析しません |
+| [allowlist登録済みIPアドレス](../user-guides/ip-lists/allowlist.md)から送信されたリクエストを許可します | allowlistを解析しません | + | + | + |
 
 !!! warning "例外"
-    [`wallarm_acl_access_phase on`][acl-access-phase]の場合、拒否リストのIPからのリクエストは`off`および`monitoring`を含む任意のモードでもブロックされます
+    [`wallarm_acl_access_phase on`][acl-access-phase]の場合、denylist登録済みIPアドレスからのリクエストは`off`および`monitoring`を含むすべてのモードでブロックされます。

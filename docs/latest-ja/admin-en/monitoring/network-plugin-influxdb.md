@@ -7,73 +7,71 @@
 [link-typesdb]:                    https://www.collectd.org/documentation/manpages/types.db.html
 [link-typesdb-file]:               https://github.com/collectd/collectd/blob/master/src/types.db
 
-#   `collectd` ネットワークプラグインを経由してInfluxDBにメトリクスをエクスポートする
+# collectdのnetworkプラグインを介したInfluxDBへのメトリクスのエクスポート
 
-このドキュメントでは、ネットワークプラグインを使用してメトリクスをInfluxDB時系列データベースにエクスポートする例を提供します。また、Grafanaを使用してInfluxDBに収集されたメトリクスを視覚化する方法も示します。
+本書は、networkプラグインを使用してInfluxDB時系列データベースへメトリクスをエクスポートする例を示します。また、Grafanaを使用してInfluxDBに収集されたメトリクスを可視化する方法も示します。
 
-##  ワークフローの例
+## 例のワークフロー
 
---8<-- "../include-ja/monitoring/metric-example.md"
+--8<-- "../include/monitoring/metric-example.md"
 
-![ワークフローの例][img-network-plugin-influxdb]
+![Example Workflow][img-network-plugin-influxdb]
 
-このドキュメントでは次のデプロイメントスキームを使用します:
-*   Wallarmフィルタノードは`10.0.30.5` IPアドレスと `node.example.local`フル修飾ドメイン名を介してアクセス可能なホストにデプロイされています。
+本書では、次の展開スキームを使用します:
+* Wallarmフィルターノードは、IPアドレス`10.0.30.5`および完全修飾ドメイン名`node.example.local`でアクセス可能なホスト上に展開されます。
     
-    フィルタノード上の `collectd`の `network` プラグインは、全てのメトリクスが`10.0.30.30`のInfluxDBサーバーに`25826/UDP`ポートで送信されるように設定されています。
+    フィルターノード上の`collectd`の`network`プラグインは、すべてのメトリクスを`10.0.30.30`のInfluxDBサーバーのポート`25826/UDP`へ送信するように設定されています。
     
       
-    !!! info "ネットワークプラグインの特性"
-        プラグインがUDP経由で運用されることに注意してください（ `network`プラグインの[使用例][link-collectd-networking]と[ドキュメンテーション][link-network-plugin]を参照）。
+    !!! info "networkプラグインの機能"
+        プラグインはUDP上で動作します（`network`プラグインの[使用例][link-collectd-networking]および[ドキュメント][link-network-plugin]を参照ください）。
     
     
-*   `influxdb`とgrafanaの両サービスは別のホスト上で`10.0.30.30` IPアドレスのDockerコンテナとしてデプロイされています。
+* `influxdb`とgrafanaの各サービスは、IPアドレス`10.0.30.30`を持つ別のホスト上でDockerコンテナとして展開されます。
 
-    InfluxDBデータベースを持つ `influxdb` サービスは以下のように設定されています：
-
-      * `collectd` データソースが作成されました（InfluxDB用語では、 `collectd`入力）、これは `25826/UDP` ポートでリッスンしており、収入するメトリクスを `collectd`という名前のデータベースに書き込みます。
-      * InfluxDB APIとの通信は `8086/TCP` ポートを介して行われます。
-      * サービスは `grafana` サービスと `sample-net` Dockerネットワークを共有します。
+    InfluxDBデータベースを持つ`influxdb`サービスは、以下のように設定されています:
     
+      * InfluxDB用の`collectd`データソースが作成されており（InfluxDBの用語に従った`collectd`入力）、`25826/UDP`ポートでリッスンし、受信したメトリクスを`collectd`というデータベースに書き込みます。
+      * InfluxDB APIとの通信は`8086/TCP`ポートを介して行われます。
+      * サービスは`grafana`サービスと`sample-net` Dockerネットワークを共有します。
     
+    Grafanaを持つ`grafana`サービスは、以下のように設定されています:
     
-    Grafanaを持つ `grafana` サービスは以下のように設定されています:
+      * Grafanaウェブコンソールは`http://10.0.30.30:3000`で利用可能です。
+      * サービスは`influxdb`サービスと`sample-net` Dockerネットワークを共有します。
+
+## InfluxDBへのメトリクスエクスポートの設定
+
+--8<-- "../include/monitoring/docker-prerequisites.md"
+
+### InfluxDBとGrafanaの展開
+
+Dockerホスト上にInfluxDBとGrafanaを展開します:
+1. 作業ディレクトリ（例: `/tmp/influxdb-grafana`）を作成し、そこに移動します:
     
-      * GrafanaのWebコンソールは `http://10.0.30.30:3000` で利用可能です。
-      * サービスは `influxdb` サービスと `sample-net` Dockerネットワークを共有します。
-
-##  InfluxDBへのメトリクスのエクスポートの設定
-
---8<-- "../include-ja/monitoring/docker-prerequisites.md"
-
-### InfluxDBとGrafanaのデプロイ
-
-DockerホストにInfluxDBとGrafanaをデプロイします：
-1.  例えば、 `/tmp/influxdb-grafana`というワーキングディレクトリを作成し、それに移動します:
-
     ```
     mkdir /tmp/influxdb-grafana
     cd /tmp/influxdb-grafana
     ```
     
-2.  InfluxDBデータソースを稼働させるためには、`collectd`の値タイプを含む`types.db`というファイルが必要です。
+2. InfluxDBデータソースが動作するためには、`collectd`値タイプを含む`types.db`というファイルが必要です。
     
-    このファイルは `collectd`が使用するデータセットの仕様を記述しています。このようなデータセットには、測定可能なタイプの定義が含まれます。このファイルについての詳しい情報は[こちら][link-typesdb]で確認できます。
+    このファイルは、`collectd`が使用するデータセット仕様を記述しています。これらのデータセットには、測定可能なタイプの定義が含まれます。このファイルの詳細については[こちら][link-typesdb]を参照ください。
     
-    `collectd`プロジェクトのGitHubリポジトリから[ `types.db`ファイルをダウンロード][link-typesdb-file]して、それを作業ディレクトリに配置します。
+    GitHub上の`collectd`プロジェクトから[「types.db」ファイル][link-typesdb-file]をダウンロードし、作業ディレクトリに配置します。
     
-3.  次のコマンドを実行して基本的なInfluxDB設定ファイルを取得します:
-
+3. 次のコマンドを実行して、基本的なInfluxDB設定ファイルを取得します:
+    
     ```
     docker run --rm influxdb influxd config > influxdb.conf
     ```
     
-4.  `influxdb.conf`InfluxDB設定ファイル内の `[[collectd]]`セクションの `enabled`パラメータの値を `false`から `true`に変更して、`collectd` データソースを有効にします。
-
-    他のパラメーターはそのままにしておきます。
-
-    そのセクションは次のように表示されるはずです:
-
+4. `influxdb.conf` InfluxDB設定ファイルの`[[collectd]]`セクションにある`enabled`パラメーターの値を`false`から`true`に変更し、`collectd`データソースを有効にします。
+    
+    他のパラメーターは変更しません。
+   
+    セクションは以下のようになります:
+   
     ```
     [[collectd]]
       enabled = true
@@ -87,11 +85,11 @@ DockerホストにInfluxDBとGrafanaをデプロイします：
       typesdb = "/usr/share/collectd/types.db"
       security-level = "none"
       auth-file = "/etc/collectd/auth_file"
-      parse-multivalue-plugin = "split" 
+      parse-multivalue-plugin = "split"  
     ```
     
-5.  次の内容を持つ `docker-compose.yaml`ファイルを作業ディレクトリに作成します:
-
+5. 作業ディレクトリに次の内容の`docker-compose.yaml`ファイルを作成します:
+   
     ```
     version: "3"
     
@@ -122,23 +120,23 @@ DockerホストにInfluxDBとGrafanaをデプロイします：
       sample-net:
     ```
 
-    `volumes:`の設定に従って、InfluxDBは以下を使用します
-    1.  データベースのストレージとして作業ディレクトリを使用します。
-    2.  作業ディレクトリに位置する `influxdb.conf`設定ファイルを使用します。
-    3.  測定可能な値のタイプを含む作業ディレクトリに位置する `types.db`ファイルを使用します。
+    `volumes:`の設定により、InfluxDBは以下を使用します:
+    1. 作業ディレクトリをデータベースのストレージとして使用します。
+    2. 作業ディレクトリにある`influxdb.conf`設定ファイルを使用します。
+    3. 作業ディレクトリにある、測定可能な値のタイプを含む`types.db`ファイルを使用します。  
     
-6.  `docker-compose build`コマンドを実行してサービスをビルドします。
-
-7.  `docker-compose up -d influxdb grafana`コマンドを実行してサービスを実行します。
-
-8.  対応するInfluxDBデータソース用に`collectd`という名前のデータベースを作成します。次のコマンドを実行します:
-
+6. `docker-compose build`コマンドを実行して、サービスをビルドします。
+    
+7. `docker-compose up -d influxdb grafana`コマンドを実行して、サービスを起動します。
+    
+8. 次のコマンドを実行して、対応するInfluxDBデータソース用に`collectd`という名前のデータベースを作成します:
+    
     ```
     curl -i -X POST http://10.0.30.30:8086/query --data-urlencode "q=CREATE DATABASE collectd"
     ```
-
+    
     InfluxDBサーバーは次のような応答を返します:
-
+    
     ```
     HTTP/1.1 200 OK
     Content-Type: application/json
@@ -152,29 +150,53 @@ DockerホストにInfluxDBとGrafanaをデプロイします：
     {"results":[{"statement_id":0}]}
     ```
     
-この時点で、InfluxDBは`collectd`からのメトリクスを受け取るために稼働し、GrafanaはInfluxDBに格納されたデータを監視し視覚化する準備が整います。
+この時点で、InfluxDBは動作しており、`collectd`からのメトリクスを受信する準備が整いました。また、GrafanaはInfluxDBに保存されたデータを監視および可視化する準備が整いました。
 
 ### `collectd`の設定
 
-InfluxDBにメトリクスをエクスポートするために `collectd`を設定します：
-1. フィルタノードに接続します（例えば、SSHプロトコルを使用します）。あなたはrootまたは他のスーパーユーザー権限を持つアカウントとしてログインしていることを確認します。
-2. 次の内容を持つ `/etc/collectd/collectd.conf.d/export-to-influxdb.conf`というファイルを作成します：
+`collectd`を設定して、InfluxDBにメトリクスをエクスポートします:
 
-    ```
-    LoadPlugin network
+=== "Docker image, cloud image, all-in-one installer"
+    1. フィルターノードに接続します（例としてSSHプロトコルを使用します）。rootまたはスーパー権限のある別のアカウントでログインしていることを確認してください。
+    1. `/opt/wallarm/etc/collectd/wallarm-collectd.conf`ファイルに次の設定を追加します:
+      
+        ```
+        LoadPlugin network
+        
+        <Plugin "network">
+          Server "Server IPv4/v6 address or FQDN" "Server port"
+        </Plugin>
+        ```
+        
+        ここでは以下の項目が設定されています:
+        
+        1. メトリクス送信先のサーバー（`10.0.30.30`）
+        1. サーバーがリッスンするポート（`25826/UDP`）
+        
+    1. 次のコマンドを実行して`wallarm`サービスを再起動します:
     
-    <Plugin "network">
-        Server "10.0.30.30" "25826"
-    </Plugin>
-    ```
+        ```bash
+        sudo systemctl restart wallarm
+        ```
+=== "Other installations"
+    1. フィルターノードに接続します（例としてSSHプロトコルを使用します）。rootまたはスーパー権限のある別のアカウントでログインしていることを確認してください。
+    1. `/etc/collectd/collectd.conf.d/export-to-influxdb.conf`という名前のファイルを、次の内容で作成します:
+      
+        ```
+        LoadPlugin network
+        
+        <Plugin "network">
+            Server "10.0.30.30" "25826"
+        </Plugin>
+        ```
+        
+        ここでは以下の項目が設定されています:
+        
+        1. メトリクス送信先のサーバー（`10.0.30.30`）
+        1. サーバーがリッスンするポート（`25826/UDP`）
+        
+    1. 適切なコマンドを実行して`collectd`サービスを再起動します:
     
-    ここでは次のエンティティが設定されています:
+        --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
-    1.  メトリクスを送信するサーバー（`10.0.30.30`）
-    2.  サーバーがリッスンするポート（`25826/UDP`）
-    
-3. 適切なコマンドを実行して `collectd`サービスを再起動します：
-
-   --8<-- "../include-ja/monitoring/collectd-restart-2.16.md"
-
-今ではInfluxDBはフィルタノードのすべてのメトリックスを受け取ります。興味のあるメトリクスを視覚化し[Grafanaで監視できます][doc-grafana]。
+これで、InfluxDBはフィルターノードのすべてのメトリクスを受信します。[Grafana][doc-grafana]を使用して、関心のあるメトリクスを可視化および監視できます。

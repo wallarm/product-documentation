@@ -1,119 +1,119 @@
-# Wallarm Sidecar'ın Özelleştirilmesi
+# Wallarm Sidecar Özelleştirme
 
-Bu makale, ortak özelleştirme kullanım senaryoları için örnekler sağlayarak size [Wallarm Kubernetes Sidecar çözümü](deployment.md) 'nün güvenli ve etkili bir şekilde özelleştirilmesi hakkında talimatlar verir.
+Bu makale, bazı yaygın özelleştirme kullanım durumları için örnekler sunarak [Wallarm Kubernetes Sidecar solution](deployment.md) güvenli ve etkili bir şekilde nasıl özelleştirileceğini anlatmaktadır.
 
-## Yapılandırma alanı
+## Yapılandırma Alanı
 
-Wallarm Sidecar çözümü, standart Kubernetes bileşenlerine dayanır, bu nedenle çözüm yapılandırması büyük ölçüde Kubernetes yığını yapılandırmasına benzer. Wallarm Sidecar çözümünü global olarak `values.yaml` aracılığıyla ve bir uygulama kabuğu temelinde annotationlar aracılığıyla yapılandırabilirsiniz.
+Wallarm Sidecar çözümü, standart Kubernetes bileşenlerine dayandığından, çözüm yapılandırması büyük ölçüde Kubernetes yığını yapılandırmasına benzer. Wallarm Sidecar çözümünü, `values.yaml` dosyası üzerinden küresel olarak ve her uygulama pod'una özgü anotasyonlar aracılığıyla yapılandırabilirsiniz.
 
-### Global ayarlar
+### Küresel Ayarlar
 
-Global yapılandırma seçenekleri, Wallarm denetleyicisi tarafından oluşturulan tüm servis yanıtı kaynaklarına uygulanır ve [varsayılan Helm tablo değerlerinde](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml) ayarlanır. `helm install` veya `helm upgrade` yaparken özel `values.yaml` sağlayarak bunları geçebilirsiniz.
+Küresel yapılandırma seçenekleri, Wallarm kontrolörü tarafından oluşturulan tüm sidecar kaynakları için geçerlidir ve [default Helm chart values](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml) dosyasında ayarlanır. Özel `values.yaml` sağlayarak `helm install` veya `helm upgrade` sırasında bu ayarların üzerine yazabilirsiniz.
 
-Kullanılabilir global yapılandırma seçeneklerinin sayısı sınırsızdır. Çözümü özelleştirirken dikkatli olunmalıdır çünkü bu, sonuç kabuğunun tamamının değiştirilmesine ve sonuç olarak yanlış çözüm işlevine izin verir. Global ayarları değiştirirken Helm ve Kubernetes belgelerine başvurun.
+Küresel yapılandırma seçeneklerinin sayısı sınırsızdır. Çözüm tamamen değiştirilmiş bir Pod yapısına ve dolayısıyla hatalı çalışmaya yol açabileceğinden, çözümün özelleştirilmesinde dikkatli olunmalıdır. Küresel ayarları değiştirirken Helm ve Kubernetes dokümantasyonuna başvurun.
 
-[Wallarm'a özgü çizelgelerin listesi buradadır](helm-chart-for-wallarm.md)
+[Wallarm'a özgü chart değerlerinin listesine buradan ulaşabilirsiniz](helm-chart-for-wallarm.md)
 
-### Kabuk (Pod) başına ayarlar
+### Pod Bazında Ayarlar
 
-Kabuk başına ayarlar, belirli uygulamalar için çözüm davranışının özelleştirilmesine izin verir.
+Pod bazında ayarlar, belirli uygulamalar için çözüm davranışını özelleştirmenize olanak tanır.
 
-Uygulama kabuğu başına ayarlar, uygulama kabuğunun annotationları aracılığıyla ayarlanır. Annotationlar, global ayarlara üstünlük sağlar. Aynı seçenek global olarak ve annotation aracılığıyla belirtilmişse, annotationdan gelen değer uygulanacaktır.
+Uygulamaya özgü pod ayarları, uygulama Pod'unun anotasyonları aracılığıyla yapılır. Anotasyonlar, küresel ayarların önceliğini alır. Aynı seçenek hem küresel hem de anotasyon yoluyla belirtilmişse, anotasyondaki değer uygulanır.
 
-Desteklenen annotation seti sınırlıdır ama `nginx-*-include` ve `nginx-*-snippet` annotationları herhangi bir [özel NGINX yapılandırmasının çözüm tarafından kullanılmasına izin verir](#using-custom-nginx-configuration).
+Desteklenen anotasyon seti sınırlıdır ancak `nginx-*-include` ve `nginx-*-snippet` anotasyonları, çözüm tarafından kullanılacak herhangi bir [özel NGINX yapılandırmasını](#using-custom-nginx-configuration) eklemenize olanak tanır.
 
-[Desteklenen kabuk başına annotationların listesi buradadır](pod-annotations.md)
+[Desteklenen pod anotasyonlarının listesine buradan ulaşabilirsiniz](pod-annotations.md)
 
-## Yapılandırma kullanım senaryoları
+## Yapılandırma Kullanım Durumları
 
-Yukarıda belirtildiği gibi, çözümü altyapınıza ve güvenlik çözümüne gereksinimlerinize uyacak şekilde birçok yönden özelleştirebilirsiniz. En yaygın özelleştirme seçeneklerini uygulamanın daha kolay olması için, onları ilgili en iyi uygulamaları dikkate alarak açıkladık.
+Yukarıda da belirtildiği gibi, altyapınıza ve güvenlik çözümü gereksinimlerinize uyacak şekilde çözümü birçok farklı şekilde özelleştirebilirsiniz. En yaygın özelleştirme seçeneklerini uygulamayı kolaylaştırmak için, ilgili en iyi uygulamalar dikkate alınarak açıklamalar yapılmıştır.
 
-### Tek ve bölünmüş konteyner dağıtımı
+### Konteynerlerin Tek ve Ayrılmış Dağıtımı
 
-Wallarm, bir Kabuğa Wallarm konteynerlerinin dağıtılması için iki seçenek sunar:
+Wallarm, bir Pod'a Wallarm konteynerlerinin dağıtımı için iki seçenek sunmaktadır:
 
-* Tekil dağıtım (varsayılan olarak)
-* Bölünmüş dağıtım
+* Tek dağıtım (varsayılan)
+* Ayrılmış dağıtım
 
-![Tekil ve bölünmüş konteynerler][single-split-containers-img]
+![Single and split containers][single-split-containers-img]
 
-Konteyner dağıtım seçeneklerini hem global hem de kabuk başına ayarlayabilirsiniz:
+Konteyner dağıtım seçeneklerini küresel ve pod bazında ayarlayabilirsiniz:
 
-* Genel olarak, Helm tablo değerini `config.injectionStrategy.schema` için `single` (varsayılan) veya `split`'e ayarlama.
-* Kabuk başına, uygulamanın ilgili kabuğunun annotationını `sidecar.wallarm.io/sidecar-injection-schema` için `"single"` veya `"split"`'e ayarlama.
+* Helm chart değeri `config.injectionStrategy.schema`'yı `single` (varsayılan) veya `split` olarak ayarlayarak küresel olarak.
+* Uygulama Pod'unun anotasyonu `sidecar.wallarm.io/sidecar-injection-schema`'yı `"single"` veya `"split"` olarak ayarlayarak pod bazında.
 
-!!! bilgi "Postanalytics modulu"
-    Lütfen unutmayın ki, postanalytics modülü kabı [ayrı](deployment.md#solution-architecture) çalışır, açıklanan dağıtım seçenekleri yalnızca diğer kablarla ilgilidir.
+!!! info "Postanalytics modülü"
+    Lütfen postanalytics modülü konteynerinin [ayrı olarak çalıştığını](deployment.md#solution-architecture) unutmayın; bahsedilen dağıtım seçenekleri yalnızca diğer konteynerlerle ilgilidir.
 
-#### Tekil dağıtım (varsayılan olarak)
+#### Tek Dağıtım (Varsayılan)
 
-Tekil Wallarm konteynerlarının dağıtımıyla, bir Kabukta yalnızca bir konteyner çalışır, **iptables**'nın isteğe bağlı init kabı dışında.
+Wallarm konteynerlerinin tek dağıtımıyla, isteğe bağlı iptables içeren init konteyneri dışında yalnızca bir konteyner Pod'da çalışır.
 
-Sonuç olarak, iki çalışan konteyner vardır:
+Sonuç olarak, iki çalışma konteyneri bulunmaktadır:
 
-* `sidecar-init-iptables` iptables'ı çalıştıran init kabıdır. Varsayılan olarak, bu kabı başlatır ancak [devre dışı bırakabilirsiniz](#capturing-incoming-traffic-port-forwarding).
-* `sidecar-proxy`, Wallarm modülleri ve bazı yardımcı hizmetlerle NGINX proxy'yi çalıştırır. Tüm bu süreçler [supervisord](http://supervisord.org/) tarafından çalıştırılır ve yönetilir.
+* `sidecar-init-iptables`: Varsayılan olarak başlayan, iptables çalıştıran init konteyneri. Bu konteyneri [devre dışı bırakabilirsiniz](#capturing-incoming-traffic-port-forwarding).
+* `sidecar-proxy`: Wallarm modülleri ve bazı yardımcı servislerle NGINX proxy çalıştırır. Bu süreçlerin tamamı [supervisord](http://supervisord.org/) tarafından çalıştırılır ve yönetilir.
 
-#### Bölünmüş dağıtım
+#### Ayrılmış Dağıtım
 
-Bölünmüş Wallarm konteynerlarının dağıtımıyla, iki init kabı dışında bir Kabukta iki ek konteyner çalışır.
+Wallarm konteynerlerinin ayrılmış dağıtımıyla, iki init konteyneri dışında Pod'da iki ek konteyner daha çalışır.
 
-Bu seçenek tüm yardımcı hizmetleri `sidecar-proxy` kabından alır ve sadece NGINX hizmetlerinin konteyner tarafından başlatılmasını sağlar.
+Bu seçenek, tüm yardımcı servisleri `sidecar-proxy` konteynerinden ayırır ve konteyner tarafından yalnızca NGINX servislerinin başlatılmasını sağlar.
 
-Bölünmüş konteyner dağıtımı, NGINX hizmetlerinin ve yardımcı hizmetlerin tükettiği kaynaklar üzerinde daha ayrıntılı kontrol sağlar. CPU/Hafıza/Depolama alanları arasında Wallarm ve yardımcı kablar arasında bölme gerektiren, yoğun yük altındaki uygulamalar için önerilen seçenektir.
+Ayrılmış konteyner dağıtımı, NGINX ve yardımcı servisler tarafından tüketilen kaynaklar üzerinde daha ayrıntılı kontrol sağlar. CPU/Bellek/Depolama alanlarının Wallarm ve yardımcı konteynerler arasında bölünmesinin gerekli olduğu yüksek yükteki uygulamalar için önerilen seçenektir.
 
-Sonuç olarak, dört çalışan konteyner vardır:
+Sonuç olarak, dört çalışma konteyneri bulunmaktadır:
 
-* `sidecar-init-iptables` iptables'ı çalıştıran init kabıdır. Varsayılan olarak, bu kabı başlatır ancak [devre dışı bırakabilirsiniz](#capturing-incoming-traffic-port-forwarding).
-* `sidecar-init-helper`, Wallarm nodunu Wallarm Bulutuna bağlama göreviyle yardımcı hizmetlerle dolu olan init kabıdır.
-* `sidecar-proxy`, NGINX servisleri olan kab.
-* `sidecar-helper`, bir takım diğer yardımcı servislerle dolu kab.
+* `sidecar-init-iptables`: Varsayılan olarak başlayan, iptables çalıştıran init konteyneri. Bu konteyneri [devre dışı bırakabilirsiniz](#capturing-incoming-traffic-port-forwarding).
+* `sidecar-init-helper`: Wallarm düğümünü Wallarm Cloud'a bağlamaktan sorumlu, yardımcı servislerin bulunduğu init konteyneri.
+* `sidecar-proxy`: NGINX servislerini içeren konteyner.
+* `sidecar-helper`: Diğer bazı yardımcı servisleri içeren konteyner.
 
-### Uygulama kabı portunun otomatik keşfi
+### Uygulama Konteyneri Portunu Otomatik Algılama
 
-Korunan uygulama portu, birçok yoldan yapılandırılabilir. Gelen trafiği uygun bir şekilde yönetmek ve iletmek için, Wallarm yanıtının uygulama kabının gelen talepleri kabul eden TCP portunun bilincinde olması gerekmektedir.
+Korunan uygulama portu birçok şekilde yapılandırılabilir. Gelen trafiği doğru şekilde işleyip yönlendirmek için, Wallarm sidecar, uygulama konteynerinin gelen istekleri kabul ettiği TCP portunun farkında olmalıdır.
 
-Varsayılan olarak, yanıt denetleyicisi portu aşağıdaki öncelik sırasına göre otomatik olarak keşfeder:
+Varsayılan olarak, sidecar kontrolörü portu aşağıdaki öncelik sırasına göre otomatik olarak algılar:
 
-1. Port `sidecar.wallarm.io/application-port` kabı annotationı aracılığıyla tanımlanmışsa, Wallarm denetleyicisi bu değeri kullanır.
-1. `name: http` uygulama kabı ayarında tanımlanmış bir port varsa, Wallarm denetleyicisi bu değeri kullanır.
-1. `name: http` ayarında tanımlanmış bir port yoksa, Wallarm denetleyicisi, uygulama kabı ayarlarında bulunan ilk port değerini kullanır.
-1. Uygulama kabı ayarlarında hiç port tanımlanmamışsa, Wallarm denetleyicisi Wallarm Helm chart'tan `config.nginx.applicationPort` değerini kullanır.
+1. Port, pod anotasyonu `sidecar.wallarm.io/application-port` aracılığıyla tanımlandıysa, Wallarm kontrolörü bu değeri kullanır.
+2. Uygulama konteyner ayarları altında `name: http` ile tanımlı bir port varsa, Wallarm kontrolörü bu değeri kullanır.
+3. `name: http` ayarında port tanımlı değilse, Wallarm kontrolörü uygulama konteyner ayarlarında ilk bulunan port değerini kullanır.
+4. Uygulama konteyner ayarlarında hiç port tanımlı değilse, Wallarm kontrolörü Wallarm Helm chart'ından `config.nginx.applicationPort` değerini kullanır.
 
-Uygulama kabı portu otomatik keşfi beklenildiği gibi çalışmıyorsa, 1. veya 4. seçeneği kullanarak portu açıkça belirtin.
+Uygulama konteyneri portunun otomatik algılanması beklenildiği gibi çalışmıyorsa, portu açıkça 1. veya 4. seçenek kullanılarak belirtin.
 
-### Gelen trafiği yakalama (port yönlendirme)
+### Gelen Trafiğin Yakalanması (Port Yönlendirme)
 
-Varsayılan olarak, Wallarm yanıt denetleyicisi trafiği aşağıdaki gibi yönlendirir:
+Varsayılan olarak, Wallarm sidecar kontrolörü trafiği şu şekilde yönlendirir:
 
-1. Bağlı kabın IP'sine ve uygulama kabı portuna gelen trafiği yakalar.
-1. Bu trafiği dahili iptables özelliklerini kullanarak yanıt kabasına yönlendirir.
-1. Yanıt zararlı talepleri hafifletir ve meşru trafiği uygulama kabına yönlendirir.
+1. Bağlı Pod'un IP'sine ve uygulama konteyneri portuna gelen trafiği yakalar.
+2. Bu trafiği, yerleşik iptables özelliklerini kullanarak sidecar konteynerine yönlendirir.
+3. Sidecar, kötü niyetli istekleri engeller ve meşru trafiği uygulama konteynerine yönlendirir.
 
-Gelen trafiği yakalama, iptables çalıştıran init kabı kullanılarak uygulanır ki bu otomatik port yönlendirmenin en iyi uygulamasıdır. Bu kabı ayrıcalıklı olarak çalıştırılır ve `NET_ADMIN` yeteneği üzerinde çalışır.
+Gelen trafiğin yakalanması, otomatik port yönlendirme için en iyi uygulama olan iptables çalıştıran init konteyneri kullanılarak gerçekleştirilir. Bu konteyner, `NET_ADMIN` yeteneği ile ayrıcalıklı olarak çalıştırılır.
 
-![Varsayılan port yönlendirmesi iptables ile][port-forwarding-with-iptables-img]
+![Default port forwarding with iptables][port-forwarding-with-iptables-img]
 
-Ancak, bu yaklaşım, ağ hizmetlerinin önceden iptables tabanlı trafik yakalamayı uyguladığı servis ağı gibi İstio ile uyumsuz olabilir. Bu durumda, iptables'ı devre dışı bırakabilir ve port yönlendirme aşağıdaki şekilde çalışacaktır:
+Ancak, bu yaklaşım Istio gibi servis mesh ortamlarıyla uyumlu değildir çünkü Istio'nun zaten iptables tabanlı trafik yakalama mekanizması bulunmaktadır. Bu durumda, iptables devre dışı bırakılabilir ve port yönlendirme aşağıdaki şekilde çalışır:
 
-![iptables olmadan port yönlendirme][port-forwarding-without-iptables-img]
+![Port forwarding without iptables][port-forwarding-without-iptables-img]
 
-!!! info "Korunmayan uygulama kabı"
-    Iptables devre dışı bırakılırsa, bir uygulama kabı Wallarm tarafından korunmaz. Sonuç olarak, saldırganın IP adresini ve portunu bildiği takdirde, zararlı "doğu-batı" trafiği uygulama kabına ulaşabilir.
+!!! info "Korumasız Uygulama Konteyneri"
+    Eğer iptables devre dışı bırakılırsa, dışa açık uygulama konteyneri Wallarm tarafından korunmayacaktır. Sonuç olarak, saldırganın uygulama konteynerinin IP adresi ve portu hakkında bilgisi varsa, kötü niyetli "east-west" trafiği uygulama konteynerine ulaşabilir.
 
-    Doğu/batı trafiği, Kubernetes kümesinde etrafı dolaşan trafiğe denir (örneğin, servis-servis)
+    East/west trafiği, Kubernetes kümesi içinde (örneğin, servisler arası) akan trafiği ifade eder.
 
-Varsayılan davranışı aşağıdaki gibi değiştirebilirsiniz:
+Varsayılan davranışı aşağıdaki şekilde değiştirebilirsiniz:
 
-1. İptables'ı birkaç yol arasından birinde devre dışı bırakın:
+1. Aşağıdaki yöntemlerden biriyle iptables'ı devre dışı bırakın:
 
-    * Genel olarak, Helm chart değerini `config.injectionStrategy.iptablesEnable` için `"false"`'a ayarlama.
-    * Kabuk başına annotasyonu `sidecar.wallarm.io/sidecar-injection-iptables-enable` için `"false"`'a ayarlama.
-2. Hizmet manifesto'nuzdaki `spec.ports.targetPort` ayarını, `proxy` portuna işaret etmek üzere güncelleyin.
+    * Helm chart değeri `config.injectionStrategy.iptablesEnable`'yi `"false"` olarak ayarlayarak küresel olarak.
+    * Pod anotasyonu `sidecar.wallarm.io/sidecar-injection-iptables-enable`'yı `"false"` olarak ayarlayarak pod bazında.
+2. Servis manifestinizdeki `spec.ports.targetPort` ayarını `proxy` portuna işaret edecek şekilde güncelleyin.
 
-    İptables tabanlı trafik yakalama devre dışı bırakılırsa, Wallarm yanıt kabı `proxy` adında bir port yayınlayacaktır. Gelen trafiğin Kubernetes servisinden `proxy` portuna geçmesi için, Hizmet manifesto'nuzdaki `spec.ports.targetPort` seçeneği bu porta işaret etmelidir:
+    Eğer iptables tabanlı trafik yakalama devre dışı bırakıldıysa, Wallarm sidecar konteyneri `proxy` isimli bir port yayımlayacaktır. Kubernetes servisi üzerinden `proxy` portuna gelen trafiğin yönlendirilebilmesi için, Servis manifestinizdeki `spec.ports.targetPort` ayarı bu porta işaret etmelidir:
 
-```yaml hl_lines="16-17 34"
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -154,152 +154,51 @@ spec:
     app: myapp
 ```
 
-### Kablar için kaynak tahsisi
+### SSL/TLS Sonlandırması
 
-Wallarm yanıt kablarının için ayrılan bellek miktarı, talep işleme kalitesi ve hızını belirler. Bellek talepleri ve sınırları için yeterli kaynakları ayırmak için, [örneklerimizi öğrenin][allocate-resources-for-node-docs].
+Varsayılan olarak, Sidecar çözümü yalnızca HTTP trafiğini kabul eder ve uygulama pod'larına sade HTTP trafiği iletir. SSL/TLS sonlandırmasının, Sidecar çözümünden önce bulunan bir altyapı bileşeni (örn. Ingress/Uygulama Ağ Geçidi) tarafından gerçekleştirildiği varsayılır; bu sayede sidecar çözü, sade HTTP trafiğini işleyebilir.
 
-Kaynak tahsisi hem global hem de kabuk seviyesinde izin verilir.
+Ancak, mevcut altyapının SSL/TLS sonlandırmasını desteklemediği durumlar olabilir. Böyle durumlarda, Wallarm sidecar düzeyinde SSL/TLS sonlandırmasını etkinleştirebilirsiniz. Bu özellik Helm chart 4.6.1 sürümünden itibaren desteklenmektedir.
 
-#### Helm chart değerleri aracılığıyla global tahsis
-
-| Konteyner dağıtım deseni | Konteyner adı        | Chart değeri                                      |
-|--------------------------|----------------------|---------------------------------------------------|
-| [Bölünmüş, Tekil](#single-and-split-deployment-of-containers)     | sidecar-proxy         | config.sidecar.containers.proxy.resources        |
-| Bölünmüş                 | sidecar-helper        | config.sidecar.containers.helper.resources        |
-| Bölünmüş, Tekil     | sidecar-init-iptables | config.sidecar.initContainers.iptables.resources  |
-| Bölünmüş             | sidecar-init-helper   | config.sidecar.initContainers.helper.resources    |
-
-Kaynakları (talepler ve sınırlar) global düzeyde yönetmek için Helm chart değerleri:
-
-```yaml
-config:
-  sidecar:
-    containers:
-      proxy:
-        resources:
-          requests:
-            cpu: 200m
-            memory: 256Mi
-          limits:
-            cpu: 500m
-            memory: 512Mi
-      helper:
-        resources:
-          requests:
-              cpu: 100m
-              memory: 128Mi
-            limits:
-              cpu: 300m
-              memory: 256Mi
-    initContainers:
-      helper:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 64Mi
-          limits:
-            cpu: 300m
-            memory: 128Mi
-      iptables:
-        resources:
-          requests:
-            cpu: 50m
-            memory: 32Mi
-          limits:
-            cpu: 100m
-            memory: 64Mi
-```
-
-#### Kabuğun annotasyonları aracılığıyla kabuk başına tahsis
-
-| Konteyner dağıtım deseni | Konteyner adı        | Annotation                                                             |
-|--------------------------|----------------------|------------------------------------------------------------------------|
-| [Tekil, Bölünmüş](#single-and-split-deployment-of-containers)     | sidecar-proxy         | sidecar.wallarm.io/proxy-{cpu,memory,cpu-limit,memory-limit}         |
-| Bölünmüş                 | sidecar-helper        | sidecar.wallarm.io/helper-{cpu,memory,cpu-limit,memory-limit}        |
-| Tekil, Bölünmüş    | sidecar-init-iptables | sidecar.wallarm.io/init-iptables-{cpu,memory,cpu-limit,memory-limit} |
-| Bölünmüş                 | sidecar-init-helper   | sidecar.wallarm.io/init-helper-{cpu,memory,cpu-limit,memory-limit}   |
-
-Kaynakları (talepler ve sınırlar) kabuk (pod) başına yönetmek için annotationları (`single` konteyner deseni etkinleştirilmiş):
-
-```yaml hl_lines="16-24"
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: myapp
-  namespace: default
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: myapp
-  template:
-    metadata:
-      labels:
-        app: myapp
-        wallarm-sidecar: enabled
-      annotations:
-        sidecar.wallarm.io/proxy-cpu: 200m
-        sidecar.wallarm.io/proxy-cpu-limit: 500m
-        sidecar.wallarm.io/proxy-memory: 256Mi
-        sidecar.wallarm.io/proxy-memory-limit: 512Mi
-        sidecar.wallarm.io/init-iptables-cpu: 50m
-        sidecar.wallarm.io/init-iptables-cpu-limit: 100m
-        sidecar.wallarm.io/init-iptables-memory: 32Mi
-        sidecar.wallarm.io/init-iptables-memory-limit: 64Mi
-    spec:
-      containers:
-        - name: application
-          image: kennethreitz/httpbin
-          ports:
-            - name: http
-              containerPort: 80
-```
-
-### SSL/TLS sonlandırma
-
-Varsayılan olarak, Sidecar çözümü yalnızca HTTP trafiğini kabul eder ve düz HTTP trafiğini uygulama podlarına iletir. SSL/TLS sonlandırmanın, sidecar çözümünden önce bulunan bir altyapı bileşeni tarafından (örneğin, Giriş/Uygulama Geçidi) gerçekleştirildiği varsayılır ki bu da sidecar çözümünün düz HTTP'yi işlemesine olanak sağlar.
-
-Ancak, mevcut altyapının SSL/TLS sonlandırmayı desteklemediği durumlar olabilir. Böyle durumlarda, Wallarm sidecar seviyesinde SSL/TLS sonlandırmayı etkinleştirebilirsiniz. Bu özellik, Helm tablosunun 4.6.1 versiyonundan itibaren desteklenmektedir.
-
-!!! uyarı "Sidecar çözümü yalnızca SSL veya düz HTTP trafiğini işler"
-    Wallarm Sidecar çözümü, SSL/TLS ya da düz HTTP trafiğini işleyebilir. SSL/TLS sonlandırmanın etkinleştirilmesi, yanıt çözümünün düz HTTP trafiğini işlemeyeceği anlamına gelirken, SSL/TLS sonlandırmanın devre dışı bırakılması yalnızca HTTPS trafiğinin işleneceği sonucunu verecektir.
+!!! warning "Sidecar çözümü ya SSL ya da sade HTTP trafiği işlemesini destekler"
+    Wallarm Sidecar çözümü, ya SSL/TLS ya da sade HTTP trafiği işlemesini destekler. SSL/TLS sonlandırmasını etkinleştirmek, sidecar çözümünün sade HTTP trafiğini işlemeyeceği anlamına gelirken, SSL/TLS sonlandırmasının devre dışı bırakılması yalnızca HTTPS trafiğinin işleneceği anlamına gelir.
 
 SSL/TLS sonlandırmasını etkinleştirmek için:
 
-1. Sidecar'ın SSL/TLS sonlandıracağı sunucu için ilişkili olan sunucu sertifikasını (açık anahtar) ve özel anahtarı elde edin.
-1. Uygulama kabının ad alanında, sunucu sertifikasını ve özel anahtarı içeren bir [TLS sırı](https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets) oluşturun.
-1. `values.yaml` dosyasında, sırrın monte edilmesi için `config.profiles section` ekleyin. Aşağıdaki örnek, birden fazla sertifika monte yapılandırmalarını gösterir.
+1. Sidecar'ın SSL/TLS işleyeceği sunucuya ait sunucu sertifikasını (açık anahtar) ve özel anahtarı edinin.
+2. Uygulama pod'unun bulunduğu namespace içerisinde, sunucu sertifikasını ve özel anahtarı içeren bir [TLS secret](https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets) oluşturun.
+3. `values.yaml` dosyasında secret mount için `config.profiles` bölümünü ekleyin. Aşağıdaki örnek, birden fazla sertifika mount etme yapılandırmasını göstermektedir.
 
-    İhtiyaçlarınıza göre koda göre özelleştirin. Yalnızca bir sertifikaya ihtiyaç duyuyorsanız, gereksiz sertifika monte yapılandırmalarını kaldırın.
+    İhtiyaçlarınıza göre yorumları dikkate alarak kodu özelleştirin. Sadece bir sertifikaya ihtiyacınız varsa, gereksiz sertifika mount yapılandırmalarını kaldırın.
 
     ```yaml
     config:
       wallarm:
         api:
           token: "<NODE_TOKEN>"
-          host: "us1.api.wallarm.com" # ya da Avrupa Bulutu'nun kullanılması durumunda boş bir dize
-        # Diğer Wallarm ayarları https://docs.wallarm.com/installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm/
+          host: "us1.api.wallarm.com" # or empty string if using the EU Cloud
+        # Other Wallarm settings https://docs.wallarm.com/installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm/
       profiles:
-        tls-profile: # Burada herhangi bir istenen TLS profil adını ayarlayın
+        tls-profile: # Buraya istenilen herhangi bir TLS profil adını belirleyin
           sidecar:
             volumeMounts:
-              - name: nginx-certs-example-com # example.com anahtarlarını içeren birim'in adı
-                mountPath: /etc/nginx/certs/example.com # Kabın birim bağlama noktası içine example.com anahtarları
+              - name: nginx-certs-example-com # example.com anahtarlarını içeren volume adı
+                mountPath: /etc/nginx/certs/example.com # Container içerisinde example.com anahtarlarının mount edileceği yol
                 readOnly: true
-              - name: nginx-certs-example-io # example.io anahtarlarını içeren birim'in adı
-                mountPath: /etc/nginx/certs/example.io # Kabın birim bağlama noktası içine example.io anahtarları
+              - name: nginx-certs-example-io # example.io anahtarlarını içeren volume adı
+                mountPath: /etc/nginx/certs/example.io # Container içerisinde example.io anahtarlarının mount edileceği yol
                 readOnly: true
             volumes:
-              - name: nginx-certs-example-com # example.com anahtarlarını içeren birim'in adı
+              - name: nginx-certs-example-com # example.com anahtarlarını içeren volume adı
                 secret:
-                  secretName: example-com-certs # example.com sunucusu için oluşturulmuş sırın adı; herkese açık ve özel anahtarları içerir
-              - name: nginx-certs-example-io # example.io anahtarlarını içeren birim'in adı
+                  secretName: example-com-certs # example.com backend'i için oluşturulan, açık ve özel anahtarları içeren secret adı
+              - name: nginx-certs-example-io # example.io anahtarlarını içeren volume adı
                 secret:
-                  secretName: example-io-certs # example.io sunucusu için oluşturulmuş sırın adı; herkese açık ve özel anahtarları içerir
+                  secretName: example-io-certs # example.io backend'i için oluşturulan, açık ve özel anahtarları içeren secret adı
           nginx:
-            # Trafik sonlandırma işlemi için NGINX SSL modülü yapılandırması.
-            # https://nginx.org/en/docs/http/ngx_http_ssl_module.html dan tariflere bakınız.
-            # Sidecar'ın trafik sonlandırmasını gerçekleştirmesi için bu ayar gereklidir.
+            # TLS/SSL sonlandırma prosedürünüze özgü NGINX SSL modülü yapılandırması.
+            # Ayrıntılar için https://nginx.org/en/docs/http/ngx_http_ssl_module.html adresine bakınız.
+            # Bu yapılandırma, Sidecar'ın trafiği sonlandırabilmesi için gereklidir.
             servers:
               - listen: "ssl http2"
                 include:
@@ -316,33 +215,61 @@ SSL/TLS sonlandırmasını etkinleştirmek için:
                   - "ssl_certificate /etc/nginx/certs/example.io/tls.crt"
                   - "ssl_certificate_key /etc/nginx/certs/example.io/tls.key"
     ```
-1. Aşağıdaki komutu kullanarak `values.yaml` içindeki değişiklikleri Sidecar çözümüne uygulayın:
+4. `values.yaml` dosyasındaki değişiklikleri aşağıdaki komutla Sidecar çözümüne uygulayın:
 
     ```bash
-    helm upgrade <YAYIN_ADİ> wallarm/wallarm-sidecar --wait -n wallarm-sidecar -f values.yaml
+    helm upgrade <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar -f values.yaml
     ```
-1. Uygulama kabına `sidecar.wallarm.io/profile: tls-profile` annotationunu [uygulayın](pod-annotations.md#how-to-use-annotations).
-1. Yapılandırma uygulandıktan sonra, protokolü HTTPS ile değiştirerek [burada](deployment.md#step-4-test-the-wallarm-sidecar-proxy-operation) açıklanan adımlar izleyin ve çözümü test edin.
+5. Uygulama pod'una [buradaki](pod-annotations.md#how-to-use-annotations) gibi `sidecar.wallarm.io/profile: tls-profile` anotasyonunu uygulayın.
+6. Yapılandırma uygulandıktan sonra, HTTP yerine HTTPS protokolünü kullanarak [burada](deployment.md#step-4-test-the-wallarm-sidecar-operation) tarif edilen adımları izleyerek çözümü test edebilirsiniz.
 
-Yanıt çözümü, TLS/SSL trafiğini kabul eder, sonlandırır ve düz HTTP trafiğini uygulama podlarına iletir.
+Sidecar çözümü, TLS/SSL trafiğini kabul edecek, sonlandıracak ve sade HTTP trafiğini uygulama pod'una iletecektir.
 
-### Ek NGINX modüllerini etkinleştirme
+### Admission Webhook İçin Sertifikalar
 
-Wallarm yanıtının Docker imajı, aşağıdaki ek NGINX modülleri ile dağıtılmış ve varsayılan olarak devre dışı bırakılmıştır:
+Sürüm 4.10.7'ten itibaren, admission webhook için kendi sertifikalarınızı oluşturma ve kullanma seçeneğine sahip olursunuz.
 
-* [ngx_http_auth_digest_module.so](https://github.com/atomx/nginx-http-auth-digest)
+Varsayılan olarak, çözüm admission webhook sertifikalarını otomatik olarak, [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen) kullanarak oluşturur.
+
+Kendi sertifikalarınızı kullanmak için aşağıdaki seçenekler mevcuttur:
+
+* **cert-manager Kullanımı**: Kümenizde [`cert-manager`](https://cert-manager.io/) kullanıyor ve admission webhook sertifikasının oluşturulması için bunu tercih ediyorsanız, `values.yaml` dosyanızı aşağıdaki şekilde güncelleyin.
+
+    Bu, otomatik olarak `certgen`'i devre dışı bırakacaktır.
+
+    ```yaml
+    controller:
+      admissionWebhook:
+        certManager:
+          enabled: true
+    ```
+* **Manuel Sertifika Yükleme**: Aşağıdaki yapılandırmayı `values.yaml` dosyasına ekleyerek sertifikaları manuel olarak yükleyebilirsiniz. Bu, otomatik olarak `certgen`'i devre dışı bırakacaktır.
+
+    ```yaml
+    controller:
+      admissionWebhook:
+        secret:
+          enabled: true
+          ca: <base64-encoded-CA-certificate>
+          crt: <base64-encoded-certificate>
+          key: <base64-encoded-private-key>
+    ```
+
+Sürüm 4.10.6 veya daha eski bir sürümden yükseltiyorsanız, lütfen [özel yükseltme talimatlarını][sidecar-upgrade-docs] izleyin. Bu güncelleme, çözümün yeniden kurulmasını gerektiren bir geriye dönük uyumsuzluk getirir.
+
+### Ekstra NGINX Modüllerinin Etkinleştirilmesi
+
+Wallarm sidecar'in Docker görüntüsü, varsayılan olarak aşağıdaki ekstra NGINX modüllerini devre dışı bırakılmış şekilde dağıtılmaktadır:
+
 * [ngx_http_brotli_filter_module.so](https://github.com/google/ngx_brotli)
 * [ngx_http_brotli_static_module.so](https://github.com/google/ngx_brotli)
 * [ngx_http_geoip2_module.so](https://github.com/leev/ngx_http_geoip2_module)
-* [ngx_http_influxdb_module.so](https://github.com/influxdata/nginx-influxdb-module)
-* [ngx_http_modsecurity_module.so](https://github.com/SpiderLabs/ModSecurity)
-* [ngx_http_opentracing_module.so](https://github.com/opentracing-contrib/nginx-opentracing)
 
-Kabın annotation'ı `sidecar.wallarm.io/nginx-extra-modules`'nı ayarlayarak ek modülleri yalnızca belirli bir kabuk üzerinden etkinleştirebilirsiniz.
+Ekstra modülleri yalnızca pod bazında, Pod'un anotasyonu `sidecar.wallarm.io/nginx-extra-modules`'u ayarlayarak etkinleştirebilirsiniz.
 
-Annotation'ın değerinin biçimi bir arraydir. Ek modüllerin etkinleştirilmiş olduğu örnek aşağıda bulunabilir:
+Anotasyon değerinin formatı bir dizidir. Ekstra modüllerin etkinleştirildiği örnek:
 
-```yaml hl_lines="16-17"
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -369,25 +296,25 @@ spec:
               containerPort: 80
 ```
 
-### Özel NGINX yapılandırmasının kullanımı
+### Özel NGINX Yapılandırması Kullanma
 
-Özel NGINX ayarları için ayrılmış [kabuk annotionları](pod-annotations.md) yoksa, bunları kabuk başına **snippet** ve **include** aracılığıyla belirtebilirsiniz.
+Belirli NGINX ayarları için ayrılmış [pod anotasyonları](pod-annotations.md) bulunmuyorsa, bunları pod bazında **snippet** ve **include** olarak belirtebilirsiniz.
 
 #### Snippet
 
-Snippet'lar, NGINX yapılandırmasına tek satırlık değişiklikler eklemenin kullanışlı bir yoludur. Daha karmaşık değişiklikler için, [include](#include) önerilen seçenektir.
+Snippet, NGINX yapılandırmasına tek satırlık değişiklikler eklemenin pratik bir yoludur. Daha karmaşık değişiklikler için [include](#include) kullanımı tavsiye edilir.
 
-Özel ayarları snippet'lar aracılığıyla belirtmek için, aşağıdaki kabuk annotionlarını kullanın:
+Pod anotasyonları aracılığıyla snippet şeklinde özel ayarları belirtmek için aşağıdaki anotasyonları kullanın:
 
-| NGINX yapılandırmasyon bölümü | Annotation                                  | 
+| NGINX yapılandırma bölümü | Anotasyon                                  | 
 |---------------------------|--------------------------------------------|
 | http                      | `sidecar.wallarm.io/nginx-http-snippet`    |
 | server                    | `sidecar.wallarm.io/nginx-server-snippet`  |
 | location                  | `sidecar.wallarm.io/nginx-location-snippet`|
 
-[`disable_acl`][disable-acl-directive-docs] NGINX yönerge değerini değiştiren annotation örneği:
+NGINX direktifi [`disable_acl`][disable-acl-directive-docs] değerini değiştiren örnek anotasyon:
 
-```yaml hl_lines="18"
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -415,7 +342,7 @@ spec:
               containerPort: 80
 ```
 
-Bir yönergeyi belirtmek için `;` sembolünü kullanın, örneğin:
+Birden fazla direktifi belirtmek için `;` karakterini kullanın, örneğin:
 
 ```yaml
 sidecar.wallarm.io/nginx-location-snippet: "disable_acl on;wallarm_timeslice 10"
@@ -423,19 +350,26 @@ sidecar.wallarm.io/nginx-location-snippet: "disable_acl on;wallarm_timeslice 10"
 
 #### Include
 
-Ek bir NGINX yapılandırma dosyasını Wallarm yanıt kabına monte etmek için, bu dosyadan [ConfigMap oluşturabilir](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files) veya [Secret resource](https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret) oluşturabilir ve oluşturulan kaynağı kabada kullanabilirsiniz.
+Wallarm sidecar konteynerine ek NGINX yapılandırma dosyası mount etmek için, bu dosyadan bir ConfigMap veya [Secret resource](https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret) oluşturabilirsiniz ve oluşturulan kaynağı konteynerde kullanabilirsiniz.
 
-Bir kez ConfigMap veya Secret resource oluşturulduğunda, [Birim ve BirimiMonteEt bileşenleri aracılığıyla](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap) kabında monte edebilirsiniz, ardından NGINX bağlamını belirterek monte edilmiş dosyanın yolunu ekleyin, monte edilmiş dosyanın yolunu ilgili annotation içerisinde belirtin:
+ConfigMap veya Secret kaynağı oluşturulduktan sonra, aşağıdaki pod anotasyonlarını kullanarak ilgili kaynağı [Volume ve VolumeMounts bileşenleri](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap) ile konteynerin içine mount edebilirsiniz:
 
-| NGINX yapılandırmasyon bölümü | Annotation                                  | Değer türü |
-|---------------------------|--------------------------------------------|-----------|
-| http                      | `sidecar.wallarm.io/nginx-http-include`    | Array  |
-| server                    | `sidecar.wallarm.io/nginx-server-include`  | Array  |
-| location                  | `sidecar.wallarm.io/nginx-location-include`| Array  |
+| Öğe           | Anotasyon                                    | Değer tipi |
+|---------------|----------------------------------------------|------------|
+| Volumes       | `sidecar.wallarm.io/proxy-extra-volumes`     | JSON       |
+| Volume mounts | `sidecar.wallarm.io/proxy-extra-volume-mounts` | JSON       |
 
-Aşağıdaki örnek, monte edilmiş yapılandırma dosyasının `http` seviyesinde NGINX tablo'suna dahil edilmesini gösteriyor. Bu örnek, önceden `nginx-http-include-cm` ConfigMap'inin oluşturulmuş olduğunu ve geçerli NGINX yönergelerini içerdiğini varsayar.
+Kaynak konteyner içine mount edildikten sonra, yapılandırmanın ekleneceği NGINX bağlamını, mount edilmiş dosyanın yolunu ilgili anotasyona geçirerek belirtin:
 
-```yaml hl_lines="16-19"
+| NGINX yapılandırma bölümü | Anotasyon                                  | Değer tipi |
+|---------------------------|--------------------------------------------|------------|
+| http                      | `sidecar.wallarm.io/nginx-http-include`    | Array      |
+| server                    | `sidecar.wallarm.io/nginx-server-include`  | Array      |
+| location                  | `sidecar.wallarm.io/nginx-location-include`| Array      |
+
+Aşağıda, NGINX yapılandırmasının `http` seviyesine eklenen mount edilmiş konfigürasyon dosyası örneği verilmiştir. Bu örnekte, `nginx-http-include-cm` adlı ConfigMap'in önceden oluşturulduğu ve geçerli NGINX yapılandırma direktiflerini içerdiği varsayılmıştır.
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -464,14 +398,14 @@ spec:
               containerPort: 80
 ```
 
-### Wallarm özelliklerinin yapılandırılması
+### Wallarm Özelliklerinin Yapılandırılması
 
-Listelenen genel çözüm ayarlarına ek olarak, saldırı önleme ile Wallarm [en iyi uygulamalarını da öğrenmenizi öneririz][wallarm-attack-prevention-best-practices-docs].
+Listelenen genel çözüm ayarlarına ek olarak, [Wallarm ile saldırı önleme için en iyi uygulamaları](wallarm-attack-prevention-best-practices-docs) da öğrenmenizi tavsiye ederiz.
 
-Bu yapılandırma, [annotationlar](pod-annotations.md) ve Wallarm Konsol UI aracılığıyla gerçekleştirilir.
+Bu yapılandırma, [anotasyonlar](pod-annotations.md) ve Wallarm Console UI üzerinden gerçekleştirilir.
 
-## Diğer yapılandırmalar annotation'lar aracılığıyla
+## Anotasyonlar Aracılığıyla Diğer Yapılandırmalar
 
-Listelenen yapılandırma kullanım senaryolarına ek olarak, birçok diğer annotation'ın yardımıyla Wallarm sidecar çözümünü uygulama podlar için ince ayar yapabilirsiniz.
+Listelenen yapılandırma kullanım durumlarına ek olarak, uygulama pod'ları için Wallarm sidecar çözümünü ince ayarlarla düzenlemenize olanak tanıyan birçok başka anotasyon bulunmaktadır.
 
-[Desteklenen kabuk başına annotationların listesi buradadır](pod-annotations.md)
+[Pod anotasyonlarının desteklenen listesini buradan bulabilirsiniz](pod-annotations.md)

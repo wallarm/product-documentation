@@ -1,5 +1,5 @@
-環境変数 | 説明 | 必須
+Environment variable | Description | Required
 --- | ---- | ----
-`WALLARM_API_TOKEN` | WallarmノードまたはAPIトークン。 | はい
-`WALLARM_API_HOST` | Wallarm APIサーバー:<ul><li>`us1.api.wallarm.com` はUSクラウドのため</li><li>`api.wallarm.com` はEUクラウドのため</li></ul>デフォルトは `api.wallarm.com`。 | いいえ
-`WALLARM_LABELS` | <p>ノード4.6から利用可能。`WALLARM_API_TOKEN`が`Deploy`ロールを持つ[API token][api-token]に設定されている場合のみ動作します。例として、ノードインスタンスのグループ化に`group`ラベルをセットします：</p> <p>`WALLARM_LABELS="group=<GROUP>"`</p> <p>...これにより、ノードインスタンスは`<GROUP>`インスタンスグループ（既存の場合、または存在しない場合は作成されます）に配置されます。</p> | はい（APIトークンの場合）
+`WALLARM_API_TOKEN` | WallarmノードまたはAPIトークンです。 | Yes
+`WALLARM_API_HOST` | Wallarm APIサーバー:<ul><li>USクラウドの場合は`us1.api.wallarm.com`</li><li>EUクラウドの場合は`api.wallarm.com`</li></ul>デフォルト：`api.wallarm.com`。 | No
+`WALLARM_LABELS` | <p>node4.6以降から利用可能です。`Deploy`ロールを持つ[API token][api-token]として`WALLARM_API_TOKEN`が設定されている場合にのみ動作します。ノードインスタンスのグループ分けのために`group`ラベルを設定します。例えば：</p> <p>`WALLARM_LABELS="group=<GROUP>"`</p> <p>…ノードインスタンスは`<GROUP>`のインスタンスグループに配置されます（既存であればそのグループに、存在しない場合は作成されます）。</p> | Yes (for API tokens)

@@ -1,6 +1,1 @@
----
-search:
-  exclude: true
----
-
---8<-- "latest-ja/installation/api-gateways/mulesoft.md"
+--8<-- "latest-ja/installation/connectors/mulesoft.md"

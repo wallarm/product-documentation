@@ -1,14 +1,14 @@
-`ingress-controller-wallarm-tarantool`ポッドのTarantoolメモリは、`values.yaml`ファイルの次のセクションで設定されます。
+Tarantoolメモリは`ingress-controller-wallarm-tarantool`ポッド用に、`values.yaml`ファイル内の以下のセクションを使用して構成されます：
 
-* GBでメモリーを設定するには：
+* GB単位でメモリを設定するには：
     ```
-    コントローラー:
+    controller:
       wallarm:
         tarantool:
           arena: "1.0"
     ```
 
-* CPUのメモリーを設定するには：
+* CPU単位でメモリを設定するには：
     ```
     controller:
       wallarm:
@@ -22,15 +22,15 @@
               memory: 1640Mi
     ```
 
-上記のパラメーターは、`helm install`と`helm upgrade`コマンドの`--set`オプションを使用して設定されます。たとえば：
+以下のパラメータは、`helm install`および`helm upgrade`コマンドの`--set`オプションを使用して設定されます。例えば：
 
-=== "Ingressコントローラーのインストール"
+=== "Ingress controller installation"
     ```bash
     helm install --set controller.wallarm.tarantool.arena='1.0' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
-    Ingressコントローラーの正しいインストールには、他にも[必要なパラメーター](../configure-kubernetes-en.md#additional-settings-for-helm-chart)があります。それらも`--set`オプションで渡してください。
-=== "Ingressコントローラーパラメーターの更新"
+    また、正しくIngressコントローラをインストールするために必要な[他のパラメータ](../configure-kubernetes-en.md#additional-settings-for-helm-chart)も存在します。それらも`--set`オプションで指定してください。
+=== "Updating Ingress controller parameters"
     ```bash
     helm upgrade --reuse-values --set controller.wallarm.tarantool.arena='0.4' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```

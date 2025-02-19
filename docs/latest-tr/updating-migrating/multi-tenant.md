@@ -1,28 +1,33 @@
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
 
-# Çok kiracılı düğümün yükseltilmesi
+# Çok kiracılı node'un yükseltilmesi
 
-Bu talimatlar, çok kiracılı düğümün 4.x'ten 4.8'e yükseltme adımlarını açıklar.
+Bu yönergeler, 4.x sürümündeki çok kiracılı node'un 5.0 sürümüne yükseltilmesi için izlenecek adımları tanımlar.
 
-Son ömrüne ulaşmış çok kiracılı düğümü (3.6 veya daha düşük) yükseltmek için lütfen [farklı talimatlar](older-versions/multi-tenant.md) kullanın.
+Ömrünü tamamlamış (3.6 veya daha düşük) çok kiracılı node'u yükseltmek için lütfen [farklı talimatları](older-versions/multi-tenant.md) kullanın.
 
 ## Gereksinimler
 
-* [Teknik tenant hesabında](../installation/multi-tenant/configure-accounts.md#tenant-account-structure) eklenen **Global yönetici** rolüyle kullanıcı tarafından ileriki komutların yürütülmesi
-* Eğer ABD Wallarm Bulutu ile çalışılıyorsa `https://us1.api.wallarm.com` adresine veya eğer AB Wallarm Bulutu ile çalışılıyorsa `https://api.wallarm.com` adresine erişim. Lütfen erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
+* Kullanıcının, [technical tenant account](../installation/multi-tenant/overview.md#tenant-accounts) altında eklenmiş **Global administrator** rolü ile sonraki komutları çalıştırması
+* ABD Wallarm Cloud ile çalışılıyorsa `https://us1.api.wallarm.com` adresine veya EU Wallarm Cloud ile çalışılıyorsa `https://api.wallarm.com` adresine erişim. Lütfen erişimin bir güvenlik duvarı tarafından engellenmediğinden emin olun
+* Saldırı tespit kuralları güncellemelerini ve API spesifikasyonlarını indirmek ile beyaz listeye, kara listeye veya gri listeye alınan ülkeler, bölgeler ya da veri merkezleri için doğru IP'leri elde edebilmek amacıyla aşağıdaki IP adreslerine erişim
 
-## Standart yükseltme prosedürünü takip edin
+    --8<-- "../include/wallarm-cloud-ips.md"
 
-Standart prosedürler şunlar için geçerlidir:
+## Standart yükseltme prosedürünü izleyin
 
-* [Wallarm NGINX modüllerini yükseltme](nginx-modules.md)
-* [Postanalytics modülünü yükseltme](separate-postanalytics.md)
-* [Wallarm Docker NGINX- veya Envoy tabanlı görüntüyü yükseltme](docker-container.md)
-* [Entegre Wallarm modülleriyle birlikte NGINX Ingress denetleyicisini yükseltme](ingress-controller.md)
-* [Bulut düğüm görüntüsünü yükseltme](cloud-image.md)
+Standart prosedürler şunlardır:
 
-!!! uyarı "Çok kiracılı düğüm oluşturma"
-    Wallarm düğümü oluştururken lütfen **Çok kiracılı düğüm** seçeneğini seçin:
+* [DEB/RPM paketlerinden Wallarm'ın yükseltilmesi](nginx-modules.md)
+* [Hepsi bir arada yükleyici ile Wallarm'ın yükseltilmesi](nginx-modules.md)
+* [postanalytics modülünün yükseltilmesi](separate-postanalytics.md)
+* [Wallarm Docker NGINX tabanlı görüntüsünün yükseltilmesi](docker-container.md)
+* [Entegre Wallarm modüllerine sahip NGINX Ingress denetleyicisinin yükseltilmesi](ingress-controller.md)
+* [Sidecar proxy'nin yükseltilmesi](sidecar-proxy.md)
+* [cloud node görüntüsünün yükseltilmesi](cloud-image.md)
 
-    ![Çok kiracılı düğüm oluşturma](../images/user-guides/nodes/create-multi-tenant-node.png)
+!!! warning "Çok kiracılı node oluşturma"
+    Wallarm node oluşturma sırasında lütfen **Multi-tenant node** seçeneğini belirleyin:
+
+    ![Multi-tenant node creation](../images/user-guides/nodes/create-multi-tenant-node.png)

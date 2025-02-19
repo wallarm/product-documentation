@@ -9,23 +9,23 @@
 [fast-examples-github]:         https://github.com/wallarm/fast-examples 
 [fast-example-gitlab-cicd]:     https://gitlab.com/wallarm/fast-example-gitlab-dvwa-integration
 
-# FASTのGitLab CI/CDとの統合
+# GitLab CI/CDとのFAST統合
 
-FASTのCIモードのGitLab CI/CDワークフローへの統合は、`〜/.gitlab-ci.yml`ファイルを使って設定されます。GitLab CI/CDワークフロー設定についての詳細は[GitLab公式ドキュメンテーション][gitlabcicd-config-yaml]で利用可能です。
+CI MODEにおけるFASTの統合は、`~/.gitlab-ci.yml`ファイルを通じてGitLab CI/CDワークフローに設定します。GitLab CI/CDワークフローの設定の詳細については、[GitLab公式ドキュメント][gitlabcicd-config-yaml]をご参照ください。
 
-## FASTノードトークンのパス
+## FASTノードトークンの渡し方
 
-[FASTノードトークン][fast-node-token]を安全に使うには、その値を[プロジェクト設定の環境変数][gitlabci-set-env-var]で渡してください。
+[FASTノードトークン][fast-node-token]を安全に利用するには、プロジェクト設定の[環境変数][gitlabci-set-env-var]にその値を渡してください。
 
-![GitLab CI/CD環境変数のパス][gitlabci-example-env-var]
+![GitLab CI/CD環境変数の渡し方][gitlabci-example-env-var]
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
-## リクエスト記録のステップの追加
+## リクエスト記録ステップの追加
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
-??? info "記録モードでのFASTノードを実行する自動テストステップの例"
+??? info "記録モードでFASTノードを起動した自動テストステップの例"
     ```
     test:
       stage: test
@@ -38,20 +38,20 @@ FASTのCIモードのGitLab CI/CDワークフローへの統合は、`〜/.gitla
         - docker network rm my-network
     ```
 
-    サンプルには以下のステップが含まれています：
+    この例では以下のステップを含みます:
 
-    1. Dockerネットワーク `my-network` を作成します。
-    2. ネットワーク `my-network` 上で記録モードのFASTノードを起動します。
-    3. ネットワーク `my-network` 上でFASTノードをプロキシとして使用して自動テストツールSeleniumを動かします。
-    4. ネットワーク `my-network` 上でテストアプリケーションと自動テストを実行します。
+    1. Dockerネットワーク`my-network`を作成します。
+    2. ネットワーク`my-network`上で記録モードのFASTノードを起動します。
+    3. ネットワーク`my-network`上で、FASTノードをプロキシとして設定した自動テスト用ツールSeleniumを起動します。
+    4. ネットワーク`my-network`上で、テストアプリケーションと自動テストを実行します。
     5. SeleniumとFASTノードを停止します。
 
-## セキュリティテストのステップの追加
+## セキュリティテストステップの追加
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/security-testing-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
 ??? info "セキュリティテストステップの例"
-    1. `stages`のリストに`security_test`を追加します。
+    1. `stages`リストに`security_test`を追加します。
 
         ```
           stages:
@@ -60,7 +60,7 @@ FASTのCIモードのGitLab CI/CDワークフローへの統合は、`〜/.gitla
             - security_test
             - cleanup
         ```
-    2. 新たなステージ`security_test`の本文を定義します。
+    2. 新たなステージ`security_test`の内容を定義します。
 
         ```
           security_test:
@@ -73,28 +73,28 @@ FASTのCIモードのGitLab CI/CDワークフローへの統合は、`〜/.gitla
               - docker stop app-test
         ```
 
-    サンプルには以下のステップが含まれています：
+    この例では以下のステップを含みます:
 
-    1. Dockerネットワーク `my-network` を作成します。
-    2. ネットワーク `my-network` 上でテストアプリケーションを動かします。
-    3. ネットワーク `my-network` 上でテストモードのFASTノードを動かします。`TEST_RECORD_ID`変数は省略されますが、これは基準となるリクエストセットが現在のパイプラインで作成され、最後に記録されたからです。テストが終了するとFASTノードは自動的に停止します。
+    1. Dockerネットワーク`my-network`を作成します。
+    2. ネットワーク`my-network`上でテストアプリケーションを起動します。
+    3. ネットワーク`my-network`上でテストモードのFASTノードを起動します。ここでは、現在のパイプラインで作成された最新のベースラインリクエストが存在するため、`TEST_RECORD_ID`変数は省略されます。テスト完了後、FASTノードは自動的に停止されます。
     4. テストアプリケーションを停止します。
 
 ## テスト結果の取得
 
-セキュリティテストの結果はGitLab CI/CDインターフェースに表示されます。
+セキュリティテストの結果はGitLab CI/CDのインターフェース上に表示されます。
 
-![テストモードでFASTノードを実行する結果][fast-example-gitlab-result]
+![テストモードでFASTノードを起動した結果][fast-example-gitlab-result]
 
 ## その他の例
 
-FASTのGitLab CI/CDワークフローへの統合の例は私たちの[GitHub][fast-examples-github]と[GitLab][fast-example-gitlab-cicd]で見つけることができます。
+FASTをGitLab CI/CDワークフローに統合する例は、当社の[GitHub][fast-examples-github]および[GitLab][fast-example-gitlab-cicd]でご確認いただけます。
 
-!!! info "その他の質問"
-    FAST統合に関する質問がある場合は、[こちらからお問い合わせください][mail-to-us]。
+!!! info "その他のご質問"
+    FASTの統合に関するご質問がある場合は、[お問い合わせください][mail-to-us].
 
-## デモビデオ
+<!-- ## Demo videos
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/NRQT_7ZMeko" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+</div> -->

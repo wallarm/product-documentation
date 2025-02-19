@@ -1,3 +1,3 @@
-Yapılandırmanın test edilmesi için, yeni bir kullanıcı Wallarm Konsoluna eklenir:
+Yapılandırmayı test etmek için Wallarm Console'da yeni bir kullanıcı eklenir:
 
-![Kullanıcı ekleme](../../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
+![Adding user](../../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)

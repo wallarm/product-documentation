@@ -1,11 +1,11 @@
-# APIリークの概要
+# API漏洩の概要
 
-様々な種類のAPIリークをWallarmプラットフォームの[**APIリーク**](../api-attack-surface/api-leaks)モジュールが発見し、それがどのように検出されたリークを修復できるかを理解するため、デモビデオをご覧ください。
+Wallarmプラットフォームの[**API Leaks**](../api-attack-surface/security-issues.md)モジュールが検出する各種API漏洩の種類を理解し、検出された漏洩に対してどのように対応できるかをご確認いただけるよう、デモ動画をご覧ください。
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/Xfezb0WdNMY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-**関連するドキュメンテーション記事**
+**関連ドキュメント記事**
 
-* [APIリークの概要](../api-attack-surface/security-issues.md)
+* [AASM - セキュリティ問題の検出](../api-attack-surface/security-issues.md)

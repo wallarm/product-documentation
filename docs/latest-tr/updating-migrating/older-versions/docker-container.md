@@ -1,3 +1,4 @@
+```markdown
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 [blocking-page-instr]:              ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [logging-instr]:                    ../../admin-en/configure-logging.md
@@ -5,152 +6,147 @@
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [allocating-memory-guide]:          ../../admin-en/configuration-guides/allocate-resources-for-node.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
-[overlimit-res-rule-docs]:          ../../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                    ../../user-guides/ip-lists/graylist.md
-[waf-mode-instr]:                      ../../admin-en/configure-wallarm-mode.md
+[overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
+[graylist-docs]:                     ../../user-guides/ip-lists/overview.md
+[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 [envoy-process-time-limit-docs]:    ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
 [envoy-process-time-limit-block-docs]: ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
+[api-policy-enf-docs]:              ../../api-specification-enforcement/overview.md
 
-# EOL Docker NGINX- veya Envoy-tabanlı görüntüyü yükseltme
+# Ömrünü Tamamlamış (EOL) Docker NGINX Tabanlı Görüntünün Yükseltilmesi
 
-Bu talimatlar, çalışan son ömrünü tamamlamış Docker NGINX- veya Envoy-tabanlı görüntünün (sürüm 3.6 ve altı) sürüm 4.8'e yükseltilmesi adımlarını açıklar.
+Bu yönergeler, çalışan ömrünü tamamlamış Docker NGINX tabanlı görüntünün (sürüm 3.6 ve altı) 5.0 sürümüne yükseltilme adımlarını açıklamaktadır.
 
---8<-- "../include-tr/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
-## Gereklilikler
+## Gereksinimler
 
---8<-- "../include-tr/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-latest.md"
 
-## Adım 1: Filtreleme düğümü modüllerini yükselttiğinizi Wallarm teknik destek ekibine bilgi verin (yalnızca 2.18 veya daha düşük düğüm yükseltiliyorsa)
+## Adım 1: Filtreleme düğüm modüllerini yükselttiğinizi Wallarm technical support’a bildirin (sadece node 2.18 veya daha düşük yükseltme yapılıyorsa)
 
-2.18 veya daha düşük düğüm yükseltiliyorsa lütfen [Wallarm teknik destek ekibine](mailto:support@wallarm.com) filtreleme düğümü modüllerini 4.8'e kadar yükselttiğinizi ve Wallarm hesabınız için yeni IP listesi mantığını etkinleştirmelerini önerin. Yeni IP listesi mantığı etkinleştirildiğinde, lütfen Wallarm Konsolu → [**IP listeleri**](../../user-guides/ip-lists/overview.md) bölümünün görünür olduğunu kontrol edin.
+Eğer node 2.18 veya daha düşük bir sürüme yükseltiyorsanız, lütfen [Wallarm technical support](mailto:support@wallarm.com) ile iletişime geçerek filtreleme düğüm modüllerini 5.0'a yükselttiğinizi bildirin ve Wallarm hesabınız için yeni IP listesi mantığının etkinleştirilmesini isteyin. Yeni IP listesi mantığı etkinleştirildiğinde, Wallarm Console’daki [**IP lists**](../../user-guides/ip-lists/overview.md) bölümünün kullanılabilir olduğundan emin olun.
 
-## Adım 2: Etkin tehdit doğrulama modülünü devre dışı bırakın (yalnızca 2.16 veya daha düşük düğüm yükseltiliyorsa)
+## Adım 2: Threat Replay Testing modülünü devre dışı bırakın (sadece node 2.16 veya daha düşük yükseltme yapılıyorsa)
 
-Wallarm düğümü 2.16 veya daha düşük sürümünü yükseltiyorsanız, lütfen Wallarm Console → **Vulnerabilities** → **Configure**. kısmında [Etkin tehdit doğrulama](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) modülünü devre dışı bırakınız.
+Eğer Wallarm node 2.16 veya daha düşük bir sürüme yükseltiyorsanız, lütfen Wallarm Console’daki [Threat Replay Testing](../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) modülünü **Vulnerabilities** → **Configure** üzerinden devre dışı bırakın.
 
-Modülün çalışması yükseltme işlemi sırasında [yanlış pozitifler](../../about-wallarm/protecting-against-attacks.md#false-positives) oluşturabilir. Modülü devre dışı bırakma, bu riski en aza indirir.
+Modülün çalışması yükseltme işlemi sırasında [yanlış pozitiflere](../../about-wallarm/protecting-against-attacks.md#false-positives) yol açabilir. Modülü devre dışı bırakmak bu riski en aza indirir.
 
 ## Adım 3: API portunu güncelleyin
 
---8<-- "../include-tr/waf/upgrade/api-port-443.md"
+--8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Adım 4: Güncellenmiş filtreleme düğümü görüntüsünü indirin
+## Adım 4: Güncellenmiş filtreleme düğüm görüntüsünü indirin
 
-=== "NGINX-tabanlı görüntü"
-    ``` bash
-    docker pull wallarm/node:4.8.1-1
-    ```
-=== "Envoy-tabanlı görüntü"
-    ``` bash
-    docker pull wallarm/envoy:4.8.0-1
-    ```
+``` bash
+docker pull wallarm/node:5.3.0
+```
 
-## Adım 5: Token tabanlı bağlantıyla Wallarm Buluta geçin
+## Adım 5: Wallarm Cloud’a Token Tabanlı Bağlantıya Geçiş
 
-Sürüm 4.x'in yayınlanmasıyla, konteynırın Wallarm Buluta bağlanması aşağıdaki gibi yükseltildi:
+Konteyneri Wallarm Cloud’a bağlama yöntemi aşağıdaki şekilde güncellenmiştir:
 
-* ["Email ve parola" tabanlı yaklaşım eskidi](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). Bu yaklaşımda, düğüm `DEPLOY_USER` ve `DEPLOY_PASSWORD` değişkenlerine doğru kimlik bilgileri aktarıldığında konteynır başladığında Wallarm Buluta otomatik olarak kayıtlı oluyordu.
-* Token-tabanlı yaklaşım dahil oldu. Konteynırı Buluta bağlayabilmeniz için, `WALLARM_API_TOKEN` değişkeni Wallarm Konsol UI'dan kopyalanan Wallarm düğüm tokenini içeren şekilde konteynırı çalıştırın.
+* [“email and password” tabanlı yöntem kullanımdan kaldırılmıştır](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-api-tokens). Bu yöntemde, konteyner doğru kimlik bilgileri `DEPLOY_USER` ve `DEPLOY_PASSWORD` değişkenlerine aktarılmış olması durumunda Wallarm Cloud’a otomatik olarak kaydedilirdi.
+* Token tabanlı yöntem eklenmiştir. Konteyneri Cloud’a bağlamak için, Wallarm Console UI’den kopyalanmış Wallarm API tokenını içeren `WALLARM_API_TOKEN` değişkeniyle konteyneri çalıştırın.
 
-Resim 4.8'i çalıştırılırken, yeni yaklaşımın kullanılması önerilir. "Email ve parola" tabanlı yaklaşım gelecekteki yayınlarda silinecek, lütfen öncesinde geçiş yapın.
+5.0 görüntüsünü çalıştırmak için yeni yöntemi kullanmanız tavsiye edilir. “email and password” tabanlı yöntem gelecekteki sürümlerde kaldırılacaktır; lütfen geçiş yapınız.
 
-Yeni bir Wallarm düğümü oluşturup onun tokenini almak için:
+Yeni bir Wallarm düğümü oluşturmak ve tokenınızı almak için:
 
-1. [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinde Wallarm Console'i açın → **Nodes** açıp **Wallarm Düğümü** türünde bir düğüm oluşturun.
+1. Wallarm Console → **Settings** → **API Tokens** bölümünü açın ve **Deploy** rolü ile bir token oluşturun.
+2. Oluşturulan tokenı kopyalayın.
 
-    ![Wallarm düğüm oluşturma](../../images/user-guides/nodes/create-cloud-node.png)
-1. Oluşturulan tokeni kopyalayın.
+## Adım 6: Önceki Wallarm düğüm sürümünden 5.0'a allowlist ve denylist yapılandırmasını geçirin (sadece node 2.18 veya daha düşük yükseltme yapılıyorsa)
 
-## Adım 6: Izin listelerini ve engelleme listelerini önceki Wallarm düğüm sürümünden 4.8'e taşıyın (yalnızca 2.18 veya daha düşük düğüm yükseltiliyorsa)
+Eğer node 2.18 veya daha düşük bir sürüme yükseltiyorsanız, önceki Wallarm düğüm sürümündeki allowlist ve denylist yapılandırmasını [geçirin](../migrate-ip-lists-to-node-3.md) 5.0'a.
 
-2.18 veya daha düşük düğüm yükseltiliyorsa, izin listesi ve engelleme listesi yapılandırmalarını önceki Wallarm düğüm sürümünden [taşıyın](../migrate-ip-lists-to-node-3.md) 4.8'e.
+## Adım 7: Kullanımdan Kaldırılmış Yapılandırma Seçeneklerinden Geçiş
 
-## Adım 7: Deprecated yapılandırma seçeneklerinden geçin
+Aşağıdaki kullanımdan kaldırılmış yapılandırma seçenekleri bulunmaktadır:
 
-Aşağıdaki deprecated yapılandırma seçenekleri bulunmaktadır:
-
-* `WALLARM_ACL_ENABLE` çevre değişkeni deprecated olmuştur. Eğer IP listeleri yeni düğüm sürümüne [taşındıysa](../migrate-ip-lists-to-node-3.md), bu değişkeni `docker run` komutundan kaldırın.
-* Aşağıdaki NGINX yönergeleri yeniden adlandırıldı:
-
+* `WALLARM_ACL_ENABLE` ortam değişkeni kullanımdan kaldırılmıştır. Eğer IP listeleri yeni düğüm sürümüne [geçirilmişse](../migrate-ip-lists-to-node-3.md), bu değişkeni `docker run` komutundan kaldırın.
+* Aşağıdaki NGINX direktifleri yeniden adlandırılmıştır:
     * `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
     * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
     * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
     * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
-    Sadece yönerge adlarını değiştirdik, mantıkları aynı kaldı. Eski isimlerdeki yönergeler yakında deprecated olacak, bu yüzden önceden yeniden adlandırmak önerilir.
+    Sadece direktiflerin isimleri değiştirilmiştir, mantıkları aynı kalmıştır. Önceki isimlere sahip direktifler yakında kullanımdan kaldırılacaktır; bu yüzden yeniden adlandırmanız önerilir.
     
-    Lütfen monte edilen yapılandırma dosyalarında eski isimlerde yönergelerin açıkça belirtildiğini kontrol edin. Eğer varsa, yeniden adlandırın.
-* `wallarm_request_time` [logging değişkeni](../../admin-en/configure-logging.md#filter-node-variables) `wallarm_request_cpu_time` olarak yeniden adlandırılmıştır.
+    Lütfen taşınan yapılandırma dosyalarında eski isimli direktiflerin açıkça belirtilip belirtilmediğini kontrol edin. Eğer belirtiliyorsa, yeniden adlandırın.
+* `wallarm_request_time` [loglama değişkeni](../../admin-en/configure-logging.md#filter-node-variables) `wallarm_request_cpu_time` olarak yeniden adlandırılmıştır.
 
-    Sadece değişkenin adını değiştirdik, mantığı aynı. Eski isim geçici olarak da desteklenir ancak yine de değişkenin adını değiştirmeniz önerilir.
-* Aşağıdaki Envoy parametreleri yeniden adlandırıldı:
+    Sadece değişkenin ismi değiştirilmiştir, mantığı aynı kalmıştır. Eski isim geçici olarak desteklenmektedir, ancak yine de değişkenin yeniden adlandırılması tavsiye edilir.
+
+<!-- * The following Envoy parameters have been renamed:
 
     * `lom` → [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
     * `instance` → [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
-    * `tsets` bölümü → `rulesets`, ve buna karşılık gelen `tsN` girdileri bu bölümde → `rsN`
+    * `tsets` section → `rulesets`, and correspondingly the `tsN` entries in this section → `rsN`
     * `ts` → [`ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
     * `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
 
-    Sadece parametre adlarını değiştirdik, mantıkları aynı kaldı. Eski isimlerdeki parametreler çok yakında deprecated olacaktır, bu yüzden yeniden adlandırmalarını öneriyoruz.
+    We only changed the names of the parameters, their logic remains the same. Parameters with former names will be deprecated soon, so you are recommended to rename them before.
     
-    Lütfen montajlanmış yapılandırma dosyalarında eski isimlerle belirli parametrelerin açıkça belirtildiğini kontrol edin. Eğer varsa, onların adlarını değiştirin.
+    Please check if the parameters with former names are explicitly specified in the mounted configuration files. If so, rename them. -->
 
-## Adım 8: Wallarm engelleme sayfasını güncelleyin (NGINX-tabanlı görüntüyü yükseltiyorsanız)
+## Adım 8: Wallarm engelleme sayfasını güncelleyin (NGINX tabanlı görüntü yükseltiliyorsa)
 
-Yeni düğüm sürümünde, Wallarm örnek engelleme sayfası [değiştirildi](what-is-new.md#new-blocking-page). Sayfadaki logo ve destek e-postası artık varsayılan olarak boş.
+Yeni düğüm sürümünde, Wallarm örnek engelleme sayfası [değiştirilmiştir](what-is-new.md#new-blocking-page). Sayfadaki logo ve destek e-postası varsayılan olarak boş bırakılmaktadır.
 
-Eğer Docker konteynırı engellenen isteklere `&/usr/share/nginx/html/wallarm_blocked.html` sayfasını döndürmek üzere yapılandırılmışsa, bu yapılandırmayı aşağıdaki gibi değiştirin:
+Eğer Docker konteyneri, engellenen taleplere `&/usr/share/nginx/html/wallarm_blocked.html` sayfasını dönecek şekilde yapılandırıldıysa, bu yapılandırmayı aşağıdaki gibi değiştirin:
 
-1. [Yeni bir örnek sayfanın kopyasını alıp özelleştirin.](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
-1. [Özelleştirilmiş sayfayı ve NGINX yapılandırma dosyasını](../../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) bir sonraki adımda bir new Docker konteynıra monte edin.
+1. Yeni örnek sayfanın versiyonunu [kopyalayın ve özelleştirin](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page).
+2. Özelleştirilmiş sayfayı ve NGINX yapılandırma dosyasını, bir sonraki adımda yeni Docker konteynerine [bağlayın](../../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code).
 
-## Adım 9: `overlimit_res` saldırı tespit yapılandırmasını yönergelere dayalı kurala aktarın
+## Adım 9: Son mimari güncellemeleri gözden geçirin (NGINX tabanlı Docker görüntüsü için)
 
---8<-- "../include-tr/waf/upgrade/migrate-to-overlimit-rule-docker.md"
+Son güncelleme, [mimari değişiklikler](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image) getirmiştir. Bu değişiklikler, özellikle konteyner başlatılırken belirli dosyaların yollarında yapılan değişiklikler nedeniyle özel yapılandırma dosyalarını monte eden kullanıcıları etkileyebilir. Yeni görüntünün doğru yapılandırılması ve kullanımı için bu değişikliklere aşina olunuz.
 
-## Adım 10: Çalışan konteynırı durdurun
+## Adım 10: `overlimit_res` saldırı tespit yapılandırmasını direktiflerden kurala aktarın
+
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-docker.md"
+
+## Adım 11: Çalışan konteyneri durdurun
 
 ```bash
 docker stop <RUNNING_CONTAINER_NAME>
 ```
 
-## Adım 11: Güncellenmiş görüntüyü kullanarak konteynırı çalıştırın
+## Adım 12: Güncellenmiş görüntüyü kullanarak konteyneri çalıştırın
 
-Güncellenmiş görüntüyü kullanarak konteynırı çalıştırın. Bir önceki görüntü sürümünün çalıştırılmasında geçtiğiniz aynı yapılandırma parametrelerini geçirebilirsiniz, daha önceki adımlarda listelenenler haricinde.
+Güncellenmiş görüntüyü kullanarak konteyneri çalıştırın ve [görüntüdeki son değişiklikler](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image) gereği monte edilmiş dosyaların yollarında gerekli ayarlamaları yapın.
 
-Güncellenmiş görüntüyü kullanarak konteynırı çalıştırmanın iki seçeneği vardır:
+Güncellenmiş görüntüyü kullanarak konteyneri çalıştırmanın iki seçeneği bulunmaktadır:
 
-* **Ortam değişkenleri ile** temel filtreleme düğümü yapılandırmasını belirtir
-    * [NGINX-tabanlı Docker konteynır için talimatlar →](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
-    * [Envoy-tabanlı Docker konteynır için talimatlar →](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)
-* **Monte edilen yapılandırma dosyasında** ileri düzey filtreleme düğümü yapılandırmasını belirtir
-    * [NGINX-tabanlı Docker konteynır için talimatlar →](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
-    * [Envoy-tabanlı Docker konteynır için talimatlar →](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
+* [Ortam değişkenleriyle](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
+* [Monte edilmiş yapılandırma dosyasıyla](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
-## Adım 12: Wallarm düğümü filtrasyon modu ayarlarını en son versiyonda yayınlanan değişikliklere uyarlayın (yalnızca 2.18 veya daha düşük düğüm yükseltiliyorsa)
+## Adım 13: Wallarm düğüm filtreleme modu ayarlarını, en son sürümlerde yayınlanan değişikliklere uyacak şekilde ayarlayın (sadece node 2.18 veya daha düşük yükseltme yapılıyorsa)
 
-1. Aşağıda listelenen ayarların beklenen davranışını, [`off` ve `monitoring` filtration modlarının değişen mantığına](what-is-new.md#filtration-modes) karşılık gelir şekilde kontrol edin:
-      * Çevre değişkeni [`WALLARM_MODE`](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) veya NGINX-tabanlı Docker konteynırının yönergesi [`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * Çevre değişkeni [`WALLARM_MODE`](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables) veya Envoy-tabanlı Docker konteynırının yönergesi [`mode`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
-      * Wallarm Console'da yapılandırılan [Genel filtrasyon kuralı](../../user-guides/settings/general.md)
-      * Wallarm Console'da yapılandırılan [Düşük seviye filtrasyon kuralları](../../user-guides/rules/wallarm-mode-rule.md)
-2. Eğer beklenen davranış değiştirilen filtrasyon modu mantığıyla örtüşmüyorsa, lütfen filtrasyon modu ayarlarını yayımlanan değişikliklere uyarlayın [talimatlara](../../admin-en/configure-wallarm-mode.md) bakarak.
+1. Aşağıda listelenen ayarların beklenen davranışının, [kapalı (off) ve izleme (monitoring) filtreleme modlarının değiştirilmiş mantığı](what-is-new.md#filtration-modes) ile uyumlu olduğunu doğrulayın:
+      * [WALLARM_MODE](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) ortam değişkeni ya da NGINX tabanlı Docker konteynerindeki [`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode) direktifi
+      <!-- * Environment variable [`WALLARM_MODE`](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables) or the directive [`mode`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) of the Envoy‑based Docker container -->
+      * Wallarm Console’da yapılandırılmış [Genel filtreleme kuralı](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)
+      * Wallarm Console’da yapılandırılmış [Uç noktaya yönelik filtreleme kuralları](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
+2. Eğer beklenen davranış, değiştirilmiş filtreleme modu mantığı ile uyuşmuyorsa, lütfen filtreleme modu ayarlarını [yönergeler](../../admin-en/configure-wallarm-mode.md) kullanarak güncelleyin.
 
-## Adım 13: Filtreleme düğümü işlemini test edin
+## Adım 14: Filtreleme düğümünün çalışmasını test edin
 
---8<-- "../include-tr/waf/installation/test-after-node-type-upgrade.md"
+--8<-- "../include/waf/installation/test-after-node-type-upgrade.md"
 
-## Adım 14: Önceki sürümün filtreleme düğümünü silin
+## Adım 15: Önceki sürümlerin filtreleme düğümünü silin
 
-Eğer 4.8 sürümünün dağıtım görüntüsü doğru şekilde çalışıyorsa, Wallarm Console → **Nodes** kısmında önceki sürümün filtreleme düğümünü silebilirsiniz.
+Eğer 5.0 sürümüne ait dağıtılmış görüntü doğru çalışıyorsa, Wallarm Console → **Nodes** bölümünde önceki sürüme ait filtreleme düğümünü silebilirsiniz.
 
-## Adım 15: Etkin tehdit doğrulama modülünü yeniden etkinleştirin (yalnızca 2.16 veya daha düşük düğüm yükseltiliyorsa)
+## Adım 16: Threat Replay Testing modülünü yeniden etkinleştirin (sadece node 2.16 veya daha düşük yükseltme yapılıyorsa)
 
-[Etkin tehdit doğrulama modülü kurulumuna dair önerileri](../../vulnerability-detection/threat-replay-testing/setup.md) öğrenin ve gerekiyorsa yeniden etkinleştirin.
+Threat Replay Testing modülünün kurulumu ile ilgili [öneriyi](../../vulnerability-detection/threat-replay-testing/setup.md) inceleyin ve gerekiyorsa yeniden etkinleştirin.
 
-Bir süre sonra, modül işlemi yanlış pozitifler oluşturmadığından emin olun. Eğer yanlış pozitifler keşfederseniz, [Wallarm teknik destek ekibine](mailto:support@wallarm.com) lütfen başvurun.
+Bir süre sonra, modülün çalışmasının yanlış pozitiflere yol açmadığından emin olun. Yanlış pozitifler tespit ederseniz, lütfen [Wallarm technical support](mailto:support@wallarm.com) ile iletişime geçin.
+```

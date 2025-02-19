@@ -4,22 +4,22 @@
 
 # Genel Ayarlar
 
-**Ayarlar** bölümünün **Genel** sekmesinde aşağıdaki işlemleri yapabilirsiniz:
+**Ayarlar** bölümünün **Genel** sekmesinde şunları yapabilirsiniz:
 
-* Wallarm filtreleme modunu değiştirin
-* Otomatik oturum kapatma zaman aşımını yönetin
+* Wallarm filtreleme modunu değiştirme
+* Otomatik çıkış zaman aşım sürelerini yönetme
 
 ![Genel sekme](../../images/user-guides/settings/general-tab.png)
 
 ## Filtreleme modu
 
-Her Wallarm düğümü, HTTP istek seviyesinde saldırıları tanımlayabilir ve engelleyebilir. Bu [filtreleme modu][link-config-parameters] yerel veya global ayarlar tarafından belirlenir:
+Her Wallarm düğümü, HTTP istek düzeyinde saldırıları tespit edip engelleyebilir. Bu [filtreleme modu][link-config-parameters], yerel ya da genel ayarlara göre belirlenir:
 
-* **Yerel ayarlar (varsayılan)**: bu mod, bir filtre düğümü yapılandırma dosyasından ayarları kullanır.
-* **Güvenli engelleme**: [gri listeye alınmış IP'lerden](../ip-lists/graylist.md) kaynaklanan tüm kötü amaçlı istekler engellenir.
-* **İzleme**: tüm istekler işlenir, ancak saldırı tespit edilse bile hiçbiri engellenmez.
-* **Engelleme**: bir saldırının belirlendiği tüm istekler engellenir.
+* **Yerel ayarlar (varsayılan)**: Bu mod, bir filtre düğümü yapılandırma dosyasındaki ayarları kullanır.
+* **Güvenli engelleme**: [gri listelenmiş IP'lerden](../ip-lists/overview.md) kaynaklanan tüm kötü amaçlı istekler engellenir.
+* **İzleme**: Tüm istekler işlenir, ancak saldırı tespit edilse bile hiçbir istek engellenmez.
+* **Engelleme**: Saldırı tespit edilen tüm istekler engellenir.
 
-## Oturum Yönetimi
+## Çıkış yönetimi
 
-[Administratorler](users.md#user-roles), şirket hesabı için oturum kapatma zaman aşımlarını ayarlayabilir. Ayarlar tüm hesap kullanıcılarını etkileyecektir. Boşta ve kesin zaman aşımları belirlenebilir.
+[Yöneticiler](users.md#user-roles), şirket hesabı için çıkış zaman aşım sürelerini ayarlayabilir. Ayarlar, tüm hesap kullanıcılarının üzerinde etkili olur. Boşta kalma ve mutlak zaman aşımı ayarlanabilir.

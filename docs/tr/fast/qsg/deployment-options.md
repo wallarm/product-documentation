@@ -1,0 +1,1 @@
+--8<-- "latest-tr/fast/qsg/deployment-options.md"

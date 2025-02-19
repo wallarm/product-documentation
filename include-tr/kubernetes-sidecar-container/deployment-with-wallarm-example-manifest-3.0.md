@@ -1,4 +1,4 @@
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,36 +13,36 @@ spec:
         app: myapp
     spec:
       containers:
-        # Wallarm element: Wallarm yan konteynır tanımlaması
+        # Wallarm öğesi: Wallarm yan konteyner tanımı
         - name: wallarm
           image: wallarm/node:3.0.0-3
           imagePullPolicy: Always
-          enviroment:
-          # Wallarm API uç noktası: 
-          # "api.wallarm.com" Avrupa Bulutu için
-          # "us1.api.wallarm.com" ABD Bulutu için
+          env:
+          # Wallarm API uç noktası:
+          # "api.wallarm.com" for the EU Cloud
+          # "us1.api.wallarm.com" for the US Cloud
           - name: WALLARM_API_HOST
             value: "api.wallarm.com"
-          # Deploy rolüne sahip kullanıcının adı
+          # Dağıtım rolüne sahip kullanıcının kullanıcı adı
           - name: DEPLOY_USER
             value: "username"
-          # Deploy rolüne sahip kullanıcının şifresi
+          # Dağıtım rolüne sahip kullanıcının şifresi
           - name: DEPLOY_PASSWORD
             value: "password"
           - name: DEPLOY_FORCE
             value: "true"
-          # İsteklerin analitik verileri için GB cinsinden bellek miktarı          
+          # İstek analitiği verileri için GB cinsinden bellek miktarı           
           - name: TARANTOOL_MEMORY_GB
             value: "2"
           ports:
           - name: http
-            # Wallarm yan konteynırın Servis nesnesinden istekleri kabul ettiği port 
+            # Wallarm yan konteynerin, Service nesnesinden gelen istekleri kabul ettiği port
             containerPort: 80
           volumeMounts:	
           - mountPath: /etc/nginx/sites-enabled	
             readOnly: true	
             name: wallarm-nginx-conf
-        # Ana uygulama konteynırının tanımlaması
+        # Ana uygulama konteynerinizin tanımı
         - name: myapp
           image: <Image>
           resources:
@@ -50,10 +50,10 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-          # Uygulama konteynırının gelen istekleri kabul ettiği port
+          # Uygulama konteynerinin gelen istekleri kabul ettiği port
           - containerPort: 8080
       volumes:
-      # Wallarm element: wallarm-nginx-conf hacminin tanımlaması
+      # Wallarm öğesi: wallarm-nginx-conf hacminin tanımı
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

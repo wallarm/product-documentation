@@ -1,13 +1,10 @@
-同一の条件を持つ複数のトリガーが存在し、そのうちいくつかがネスティングレベルURIを持っている場合、下位ネスティングレベルURIへのリクエストは、下位ネスティングレベルURIをフィルターとして持つトリガーのみにカウントされます。
+When there are several triggers with identical conditions (for example, **Brute force**, **Forced browsing**, **BOLA**) and some of them have nesting level URI, requests to lower nesting level URI will be counted only in the trigger with the filter by the lower nesting level URI.
 
-!!! info "トリガーの条件"
-    トリガーの条件は、特定のトリガーを適用すべき状況を定義しています。例えば：**ブルートフォース**、**強制ブラウジング**、**BOLA**などです。それは新しいトリガーの作成の最初のステップで選択されます。
+Triggers without URI filter are considered to be the higher nesting level.
 
-URIフィルターを持たないトリガーは、上位のネスティングレベルとみなされます。
+**例:**
 
-**例：**
+* 最初のトリガーは特定の条件を持っており、URIフィルタが設定されていません（任意のアプリケーションまたはその一部へのリクエストがこのトリガーで計上されます）。
+* 同じ条件を持つ2つ目のトリガーはURIフィルタとして`example.com/api`を指定しています。
 
-* 条件を持つ最初のトリガーは、URIによるフィルターがありません（任意のアプリケーションまたはその一部へのリクエストは、このトリガーによってカウントされます）。
-* 同じ条件を持つ2番目のトリガーは、URI `example.com/api` にフィルターをかけています。
-
-`example.com/api` へのリクエストは、`example.com/api` をフィルターとして持つ2番目のトリガーによってのみカウントされます。
+`example.com/api`へのリクエストは、`example.com/api`フィルタを持つ2つ目のトリガーのみで計上されます。

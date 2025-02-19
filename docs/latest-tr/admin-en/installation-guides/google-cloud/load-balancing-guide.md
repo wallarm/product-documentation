@@ -15,110 +15,110 @@
 [img-checking-attacks]:             ../../../images/admin-guides/test-attacks-quickstart.png
 
 
-#   GCP'de Gelen İstek Dengelemelerini Ayarlama 
+#   GCP'de Gelen İstek Dengelemesini Ayarlama
 
-Artık oto ölçekleme özelliği etkinleştirilmiş yönetilen bir örnek grubu [yapılandırdınız][link-doc-asg-guide], o zaman örnek grubundaki birkaç filtreleme düğümü arasında gelen HTTP ve HTTPS bağlantılarını dağıtan bir Yük Dengeleyici oluşturmanız ve yapılandırmanız gerekiyor.
+Artık otomatik ölçeklendirme etkinleştirilmiş [yapılandırılmış][link-doc-asg-guide] yönetilen örnek grubuna sahip olduğunuza göre, gelen HTTP ve HTTPS bağlantılarını örnek grubundaki birkaç filtreleme düğümü arasında dağıtan bir Load Balancer oluşturmanız ve yapılandırmanız gerekmektedir.
 
-Google Cloud Platform'da aşağıdaki türde Yük Dengeleyicileri yapılandırabilirsiniz:
-*   HTTP(S) Yük Dengeleyicisi
-*   TCP Yük Dengeleyicisi
-*   UDP Yük Dengeleyicisi
+Google Cloud Platform'da aşağıdaki türde Load Balancer'ları yapılandırabilirsiniz:
+*   HTTP(S) Load Balancer
+*   TCP Load Balancer
+*   UDP Load Balancer
 
-!!! bilgi "Yük Dengeleyicileri Arasındaki Farklar"
-    Yük Dengeleyicileri arasındaki farklılıklar hakkında ayrıntılı bilgi için bu [bağlantıya][link-lb-comparison] gidin.
+!!! info "Load Balancer'lar Arasındaki Farklar"
+    Load Balancer'lar arasındaki farklar hakkında detaylı bilgi için bu [link][link-lb-comparison]'e gidin.
 
-Bu belge, OSI/ISO ağ modelinin taşıma seviyesinde trafik dağıtan TCP Yük Dengeleyicisinin nasıl yapılandırılacağını ve kullanılacağını göstermektedir.
+Bu doküman, OSI/ISO ağ modelinin taşıma seviyesinde trafiği dağıtan TCP Load Balancer'ın nasıl yapılandırılacağını ve kullanılacağını göstermektedir.
 
-Örnek grubunuz için aşağıdaki eylemleri tamamlayarak bir TCP Yük Dengeleyicisi oluşturun:
+Örnek grubunuz için bir TCP Load Balancer oluşturmak için şu adımları izleyin:
 
-1.  Menünün **Ağ hizmetleri** bölümündeki **Yük dengelemesi** sayfasına gidin ve **Yük dengeleyici oluştur** düğmesini tıklayın.
+1.  Menüde **Network services** bölümünde yer alan **Load balancing** sayfasına gidin ve **Create load balancer** düğmesine tıklayın.
 
-2.  **TCP yük dengelemesi** kartındaki **Yapılandırmaya başla** düğmesini tıklayın.
+2.  **TCP load balancing** kartında yer alan **Start configuration** düğmesine tıklayın.
 
-3.  Aşağıdaki ayarlarda gereken seçenekleri belirleyin:
+3.  Aşağıdaki ayarlarda gerekli seçenekleri belirleyin:
 
-    1.  Yük dengeleyicinin istemciden sunucunuza gelen istekleri kontrol edeceği şekilde **Internetin İnternetten Vm'lerime** seçeneğini belirleyin **Internet yüzlerini veya sadece iç** ayarında.
+    1.  Load balancer'ın istemcilerden sunucunuza gelen istekleri kontrol etmesi için **Internet facing or internal only** ayarında **From Internet to my VMs** seçeneğini seçin.
     
-    2.  **Çoklu bölgeler veya tek bölge** ayarında **Yalnızca tek bölge** seçeneğini belirleyin.
+    2.  **Multiple regions or single region** ayarında **Single region only** seçeneğini belirleyin.
     
-        !!! bilgi "Farklı bölgelerde bulunan kaynaklar için trafik dengeleme"
-            Bu kılavuz, tek bir bölgede bulunan bir örnek grubu için yük dengeleyicinin yapılandırılmasını anlatır.
+        !!! info "Farklı Bölgelerde Bulunan Kaynaklar için Trafik Dengeleme"
+            Bu kılavuz, tek bir bölgede bulunan bir örnek grubu için load balancer yapılandırmasını anlatmaktadır.
             
-            Çoklu bölgelerde bulunan birkaç kaynak için trafik dengelemesi söz konusu olduğunda, **Çoklu bölgeler (veya henüz emin değilim)** seçeneğini belirleyin.
+            Birden fazla bölgede bulunan kaynakların trafiğini dengelemek durumundaysanız, **Multiple regions (or not sure yet)** seçeneğini seçin.
 
-    ![Yük Dengeleyicisi oluşturmak][img-creating-lb]
+    ![Creating a load balancer][img-creating-lb]
 
-    **Devam** düğmesini tıklayın.
+    **Continue** düğmesine tıklayın.
 
-4.  **Ad** alanına yük dengeleyicisi adını girin.
+4.  **Name** alanına load balancer adını girin.
 
-5.  Yük dengeleyicisinin gelen istekleri yönlendireceği arka uç olarak [oluşturulan örnek grubunu][link-creating-instance-group] kullanmak için **Arka uç yapılandırması**nı tıklayın.
+5.  Load balancer'ın gelen istekleri yönlendireceği backend olarak [oluşturulmuş örnek grubunu][link-creating-instance-group] kullanmak için **Backend configuration** seçeneğine tıklayın.
 
-6.  Formu aşağıdaki bilgilerle doldurun:
+6.  Formu aşağıdaki verilerle doldurun:
 
-    1.  Örnek grubunun bulunduğu bölgeyi **Bölge** açılır listesinden seçin.
+    1.  **Region** açılır listesinden örnek grubunun bulunduğu bölgeyi seçin.
     
-    2.  **Arkadan uçlar** ayarındaki **Mevcut örnek gruplarını seçin** sekmesine gidin ve **Bir örnek grubu ekleyin** açılır listesinden örnek grubunun adını seçin.
+    2.  **Backends** ayarında yer alan **Select existing instance groups** sekmesine gidin ve **Add an instance group** açılır listesinden örnek grubunun adını seçin.
     
-    3.  Gerekirse, **Yedek Havuz** açılır listesinden **Bir yedek havuz oluştur** seçeneğini belirleyerek yedek havuzu belirtin.
+    3.  Gerekirse, **Backup Pool** açılır listesinden **Create a backup pool** seçeneğini seçerek yedek havuzunu belirtin.
     
-        !!! bilgi "Bir yedek havuzun kullanılması"
-            Önceki ayarı seçilen örnek grubu kullanılamazsa, bir yedek havuz istekleri işler. Yedek bir havuzun nasıl yapılandırılacağı hakkında ayrıntılı bilgi için bu [bağlantıya][link-backup-resource] gidin.
+        !!! info "Yedek Havuz Kullanımı"
+            Seçilen örnek grubu kullanılamazsa yedek havuz istekleri işler. Yedek havuz yapılandırması hakkında detaylı bilgi için bu [link][link-backup-resource]'e gidin.
             
-            Bu belge, yedek havuz yapılandırmasını açıklamamaktadır.
+            Bu dokümanda yedek havuz yapılandırması açıklanmamaktadır.
     
-    4.  Gerekirse, **Sağlık kontrolü** açılır listesinden **Bir sağlık kontrolü oluştur** seçeneğini belirleyerek grup örneklerinin kullanılabilirlik kontrolünü yapılandırın. Makine kullanılabilirlik kontrolü hakkında ayrıntılı bilgi için bu [bağlantıya][link-health-check] gidin.
+    4.  Gerekirse, **Health check** açılır listesinden **Create a health check** seçeneğini seçerek grup örneklerinin uygunluk kontrolünü yapılandırın. Makine uygunluk kontrolü hakkında detaylı bilgi için bu [link][link-health-check]'e gidin.
     
-        !!! bilgi "Kullanılabilirlik kontrolü"
-            Kullanılabilirlik kontrolü bu belgenin kapsamında yapılandırılmamıştır. Bu yüzden, burada **Sağlık kontrolü** açılır listesindeki **Sağlık kontrolü yok** seçeneği seçilmiştir.
+        !!! info "Uygunluk Kontrolü"
+            Uygunluk kontrolü bu dokümanın kapsamı dışında yapılandırılmıştır. Bu nedenle, burada **No health check** seçeneği seçilmiştir.
     
-    5.  Gerekirse, **Oturum yoğunluğu** açılır listesinden ilgili seçeneği belirleyerek istek işleme için bir örneği seçme yöntemini yapılandırın. İstek işleme için bir örneği seçme hakkında ayrıntılı bilgi bu [bağlantıda][link-session-affinity] mevcuttur.
+    5.  Gerekirse, **Session affinity** açılır listesinden ilgili seçeneği seçerek istek işleme için bir örneğin nasıl seçileceğini yapılandırın. İstek işleme için örnek seçme hakkında detaylı bilgi bu [link][link-session-affinity]'de mevcuttur.
     
-        !!! bilgi "Bir örneği seçme yöntemini yapılandırma"
-            İstek işleme için bir örneği seçme yöntemi bu belgenin kapsamında değildir. Bu yüzden, burada **Oturum yoğunluğu** açılır listesindeki **Yok** seçeneği seçilmiştir.
+        !!! info "İstek İşleme için Örnek Seçme Yönteminin Yapılandırılması"
+            İstek işleme için örnek seçme yöntemi bu dokümanın kapsamı dışında tutulmuştur. Bu nedenle, burada **None** seçeneği seçilmiştir.
     
-        ![Arka uç yapılandırması][img-backend-configuration]
+        ![Configuring a backend][img-backend-configuration]
 
-7.  İstemcilerin isteklerini gönderecekleri IP adreslerini ve portları belirtmek için **Ön uç yapılandırması** düğmesini tıklayın.
+7.  İstemcilerin istek göndereceği IP adreslerini ve portları belirtmek için **Frontend configuration** düğmesine tıklayın.
 
-8.  Yeni IP adresleri ve portların oluşturulması için formu gereken verilerle doldurun:
+8.  Yeni IP adresleri ve port oluşturma formunu gerekli verilerle doldurun:
 
-    1.  Gerekirse, yeni IP adresi ve port çiftinin adını **Ad** alanına girin.
+    1.  Gerekirse, **Name** alanına yeni IP adresi ve port çiftinin adını girin.
     
-    2.  **Ağ Hizmeti Katmanı** ayarında gerekli ağ hizmet katmanını seçin. Ağ hizmet katmanları hakkında ayrıntılı bilgi için bu [bağlantıya][link-network-service-tier] gidin;
+    2.  **Network Service Tier** ayarında gerekli ağ hizmet seviyesini seçin. Ağ hizmet seviyeleri hakkında detaylı bilgi için bu [link][link-network-service-tier]'e gidin;
     
-    3.  Yük dengeleyicisinin istekleri alacağı IP adresini **IP** açılır listesinden seçin.
+    3.  Load balancer'ın istekleri alacağı IP adresini **IP** açılır listesinden seçin.
     
-        1.  Sanal makine her başlatıldığında yük dengeleyicisinin yeni bir IP adresi almasını isterseniz **Geçici** seçeneğini seçin.
+        1.  Her sanal makine başlatıldığında load balancer'ın yeni bir IP adresi almasını istiyorsanız **Ephemeral** seçeneğini seçin.
         
-        2.  Yük dengeleyiciniz için statik bir IP adresi oluşturmak için **IP adresi oluştur** seçeneğini seçin. 
+        2.  Load balancer için statik bir IP adresi oluşturmak adına **Create IP address** seçeneğini seçin.
         
-        Beliren formda, yeni IP adresinin adını **Ad** alanına girin ve **Rezerve Et** düğmesini tıklayın.
+        Açılan formda, **Name** alanına yeni IP adresinin adını girin ve **Reserve** düğmesine tıklayın.
             
-    4.  Yük dengeleyicisinin istekleri alacağı portu **Port** alanına girin.
-
-        !!! bilgi "Portu seçme"
-            Bu belgede, HTTP protokolü üzerinden istekleri almak için `80` portu belirtilmiştir.
+    4.  Load balancer'ın istekleri alacağı portu **Port** alanına girin.
     
-    ![Yeni ön uç IP ve port oluşturma formu][img-new-frontend-ip-and-port]
+        !!! info "Port Seçimi"
+            Bu dokümanda, HTTP protokolü aracılığıyla gelen istekler için `80` portu belirtilmiştir.
     
-    Yapılandırılan IP adresi ve port çiftini oluşturmak için **Tamam** düğmesini tıklayın.
+    ![New frontend IP and port creation form][img-new-frontend-ip-and-port]
     
-    !!! bilgi "Gerekli ön uç portlar"
-        Bu belgede, dengeleyici HTTP protokolü üzerinden istekleri alacak şekilde yapılandırılmıştır. Eğer örnek grubunuz HTTPS protokolü üzerinden istekleri alıyorsa, `443` portunu belirten başka bir IP adresi ve port çifti oluşturun.
-
-9.  Yapılandırılan yük dengeleyiciyi oluşturmak için **Oluştur** düğmesini tıklayın.
-
-    ![Bir TCP yük dengeleyicisi oluşturmak][img-creating-tcp-lb]
+    Yapılandırılan IP adresi ve port çiftini oluşturmak için **Done** düğmesine tıklayın.
     
-Yük dengeleyicisi oluşturma işlemi tamamlanana ve yük dengeleyicisi daha önce oluşturduğunuz örnek grubuna bağlanana kadar bekleyin.
+    !!! info "Gerekli Frontend Portları"
+        Bu dokümanda, load balancer HTTP protokolü ile gelen istekleri almak üzere yapılandırılmıştır. Eğer örnek grubunuz HTTPS protokolü ile istek alıyorsa, `443` portunu belirten başka bir IP adresi ve port çifti oluşturun.
 
-Oluşturduğunuz TCP dengeleyicisi, Backend hizmetini (önceden oluşturduğunuz örnek grubu için oluşturulan backend ile birlikte çalışan) kullandığından, dengeleyicinin ona bağlanabilmesi için örnek grubuna yapılandırma değişiklikleri gerekmez.
+9.  Yapılandırılan load balancer'ı oluşturmak için **Create** düğmesine tıklayın.
 
-Şimdi, dinamik olarak ölçeklenen Wallarm filtreleme düğümleri seti, uygulamanıza gelecek trafiği işleyecektir.
+    ![Creating a TCP load balancer][img-creating-tcp-lb]
+    
+Load balancer oluşturma işlemi tamamlanana ve load balancer'ın daha önce oluşturduğunuz örnek gruba bağlanana kadar bekleyin.
 
-Dağıtılan filtreleme düğümlerinin işlemesini kontrol etmek için aşağıdaki adımları gerçekleştirin:
-1.  Tarayıcınızı kullanarak dengeleyici IP adresine veya alan adına başvurarak uygulamanızın yük dengeleyici ve Wallarm filtreleme düğümleri üzerinden erişilebilir olduğunu doğrulayın.
-2.  Wallarm servislerinin uygulamanızı koruduğunu doğrulayın, [bir test saldırısını gerçekleştirin][link-test-attack].
+Oluşturulan TCP balancer, örnek grubunuz için oluşturulan backend ile birlikte çalışan Backend service'i kullandığından, load balancer'ın örnek gruba bağlanabilmesi için örnek grubunda herhangi bir yapılandırma değişikliği yapmanıza gerek yoktur.
 
-![Wallarm web arayüzündeki «Olaylar» sekmesi][img-checking-attacks]
+Artık Wallarm filtreleme düğümlerinin dinamik olarak ölçeklenen seti, uygulamanıza gelen trafiği işleyecektir.
+
+Dağıtılmış filtreleme düğümlerinin çalışmasını kontrol etmek için şu adımları izleyin:
+1.  Uygulamanızın load balancer ve Wallarm filtreleme düğümleri aracılığıyla erişilebilir olduğundan emin olmak için tarayıcınızda load balancer IP adresini veya alan adını kontrol edin.
+2.  Wallarm servislerinin uygulamanızı koruduğundan emin olmak için [test saldırısı gerçekleştirin][link-test-attack].
+
+![The «Events» tab on the Wallarm web interface][img-checking-attacks]

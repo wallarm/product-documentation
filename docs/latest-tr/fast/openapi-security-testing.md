@@ -1,45 +1,44 @@
-# OpenAPI Security Testing on CI/CD
+# CI/CD Üzerinde OpenAPI Güvenlik Testi <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-OpenAPI Security Testing on CI/CD, powered by Wallarm, offers a solution to identify and address security vulnerabilities within your critical API business scenarios, including shadow APIs. This article explains how to run and use this solution.
+Wallarm destekli CI/CD üzerinde OpenAPI Güvenlik Testi, kritik API iş senaryolarınızdaki, shadow ve zombie API'ler dahil, güvenlik açıklarını tespit etmek ve gidermek için bir çözüm sunar. Bu makale, bu çözümün nasıl çalıştırılacağını ve kullanılacağını açıklamaktadır.
 
-The solution leverages two powerful Wallarm modules:
+Çözüm, Cross-Origin kaynak paylaşımı, path traversal, erişim kontrolü hataları ve benzeri güvenlik açıklarını ortaya çıkarmak için özel olarak tasarlanmış test istekleri oluşturarak çalışır. Daha sonra Docker kullanılarak CI/CD hattınıza sorunsuzca entegre edilir ve API'leriniz bu açıklar açısından otomatik olarak taranır.
 
-* [API Discovery](../api-discovery/overview.md) automatically detects your OpenAPI specification including shadow APIs based on real traffic.
-* FAST conducts automated tests on CI/CD to uncover open vulnerabilities such as Cross-origin resource haring, path traversal, access control flaws and others in the discovered endpoints.
+Teste tabi tutulmasını istediğiniz uç noktaları seçme esnekliğine sahipsiniz:
 
-The solution leverages the data obtained from API Discovery, ensuring that security testing focuses on endpoints that actively receive traffic and providing a realistic assessment of your API vulnerabilities.
+* **Otomatik uç nokta keşfi**: [Wallarm's API Discovery](../api-discovery/overview.md) modülünden yararlandığınızda, API uç noktalarınız gerçek trafik verilerinden otomatik olarak tespit edilir. Daha sonra test etmek istediğiniz uç noktalardan hangilerini belirleyeceğinizi seçebilirsiniz. Bu, shadow ve zombie uç noktaları da dahil olmak üzere aktif olarak kullanılan uç noktalara yönelik güvenlik testlerinin uygulanmasını sağlar ve API'nizin açıklarına dair doğru bir değerlendirme sunar.
+* **Manuel şema yükleme**: Alternatif olarak, kendi OpenAPI şemanızı yükleyebilir ve şemada yer alan uç noktalarda testler gerçekleştirmek için çözümü kullanabilirsiniz. Bu seçenek, güncel bir şemaya sahipseniz ve şema içinde belirtilen belirli uç noktalarda test çalıştırmak istiyorsanız kullanışlıdır.
 
-## Issues addressed by OpenAPI security testing
+## OpenAPI güvenlik testinin ele aldığı konular
 
-* This solution allows you to perform security testing during the regression testing of your APIs. If you make changes to the functionality of your APIs that are already included in the [API inventory](../api-discovery/exploring.md) due to received traffic, Wallarm security testing can reveal if your changes have introduced any security issues.
-* By deploying your changes to the staging environment and running security testing on the CI/CD pipeline at this stage, you can prevent potential security vulnerabilities from reaching production and being exploited by attackers.
-* Since the solution leverages the data obtained from API Discovery, it also tests zombie APIs. These APIs are automatically discovered by the module as they may receive traffic, even if your team and documentation are unaware of their existence. By including zombie APIs in the security testing process, the solution addresses vulnerabilities that could otherwise go unnoticed, providing a more comprehensive security assessment.
+* Bu çözüm, API’lerinizin regresyon testleri sırasında güvenlik testi yapmanıza olanak tanır. API’lerinizde fonksiyonalite ile ilgili değişiklikler yaptığınızda, Wallarm güvenlik testi yaptığınız değişikliklerin herhangi bir güvenlik açığı doğurup doğurmadığını ortaya çıkarabilir.
+* Değişikliklerinizi staging ortamına dağıtıp bu aşamada CI/CD hattında güvenlik testi çalıştırarak, potansiyel güvenlik açıklarının production ortamına ulaşmasını ve saldırganlar tarafından kullanılmasını önleyebilirsiniz.
+* [API Discovery](../api-discovery/overview.md) ile elde edilen verilere dayalı güvenlik testlerinden yararlanıyorsanız, testler shadow ve zombie API’leri de kapsar. Ekibiniz ve dokümantasyonunuz bu API'lerin varlığının farkında olmasa bile, modül tarafından trafik aldığı için otomatik olarak tespit edilirler. Zombie API'lerin güvenlik test sürecine dahil edilmesi, aksi halde fark edilmeyebilecek açıklara karşı daha kapsamlı bir güvenlik değerlendirmesi sağlar.
 
-## Requirements
+## Gereksinimler
 
-* The [API Discovery](../api-discovery/overview.md) module building your API inventory.
-* The **FAST (Security testing)** module included in your subscription plan. If it is not included, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
+* Aktif bir **Advanced API Security** [abonelik planı](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security). Eğer farklı bir plan kullanıyorsanız, gerekli plana geçiş yapabilmek için lütfen [sales team](mailto:sales@wallarm.com) ile iletişime geçin.
 
-## Running security testing
+## Güvenlik testlerini çalıştırma
 
-To control and customize the OpenAPI Security Testing feature, you can utilize testing policies. Once a testing policy is created, you receive a command that allows you to integrate and run security testing within your CI/CD pipeline using Docker.
+OpenAPI Güvenlik Testi özelliğini kontrol etmek ve özelleştirmek için test politikalarından yararlanabilirsiniz. Bir test politikası oluşturulduktan sonra, CI/CD hattınıza Docker kullanarak entegre edip güvenlik testlerini çalıştırmanızı sağlayan bir komut elde edersiniz.
 
-To run OpenAPI security testing, follow these steps:
+OpenAPI güvenlik testlerini çalıştırmak için aşağıdaki adımları izleyin:
 
-1. Go to Wallarm Console → **OpenAPI Testing** → **Create testing policy**.
+1. Wallarm Console → **OpenAPI Testing** bölümüne gidin. Bunun için [US Cloud](https://us1.my.wallarm.com/security-testing) veya [EU Cloud](https://my.wallarm.com/security-testing) linkini takip edin ve **Create testing policy** seçeneğine tıklayın.
 
     ![!Policy create](../images/user-guides/openapi-testing/create-testing-policy.png)
-1. Select the API endpoints from your API inventory that you want to test for open vulnerabilities.
+1. Otomatik olarak keşfedilen [API envanterinizden](../api-discovery/overview.md) veya JSON formatında bir OpenAPI 3.0 şeması yükleyerek test etmek istediğiniz API uç noktalarını seçin.
 
-    The API Discovery module automatically discovers new endpoints, but they are not automatically added to existing policies for vulnerability testing. Therefore, each newly discovered endpoint requires a separate policy.
-1. Select the vulnerability types you would like to test for in your API endpoints.
-1. If necessary, add custom headers for vulnerability testing, such as authentication headers or indicators for Wallarm test requests.
+    API Discovery modülü yeni uç noktaları otomatik olarak belirlese de, mevcut güvenlik açığı test politikalarına otomatik olarak dahil etmez. Sonuç olarak, her yeni keşfedilen uç nokta için ayrı bir politika gerekmektedir.
+1. API uç noktalarınızda test etmek istediğiniz güvenlik açığı türlerini seçin.
+1. Gerekirse, kimlik doğrulama başlıkları veya Wallarm test istekleri için göstergeler gibi, güvenlik testi için özel başlıklar ekleyin.
 
-    These headers will be used for each request to every endpoint.
-1. Copy the provided Docker command and fill in the values for environment variables that were not automatically populated.
-1. Integrate the command into your CI/CD pipeline for automated testing.
+    Bu başlıklar, her uç noktaya yapılan her istekte kullanılacaktır.
+1. Sağlanan Docker komutunu kopyalayın ve otomatik olarak doldurulmayan ortam değişkenleri için değerleri girin.
+1. Komutu, otomatik testler için CI/CD hattınıza entegre edin.
 
-The Docker command example:
+Docker komutu örneği:
 
 === "US Cloud"
     ```
@@ -50,47 +49,44 @@ The Docker command example:
     docker run -e WALLARM_API_HOST=api.wallarm.com -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_TESTING_POLICY_ID=7 -e TARGET_URL=${WALLARM_SCANNER_TARGET_URL} -v ${WALLARM_REPORT_PATH}:/app/reports --pull=always wallarm/oas-fast-scanner:latest
     ```
 
-The list of environment variables that the [Docker container](https://hub.docker.com/r/wallarm/oas-fast-scanner) accepts is provided below:
+[Docker container](https://hub.docker.com/r/wallarm/oas-fast-scanner) tarafından kabul edilen ortam değişkenlerinin listesi aşağıda verilmiştir:
 
-Environment variable | Description| Required?
+Environment variable | Açıklama | Gereklilik
 --- | ---- | ----
-`WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul> | Yes
-`WALLARM_API_TOKEN` | [Wallarm API token](../user-guides/settings/api-tokens.md) with the **OpenAPI testing** permissions. | Yes
-`WALLARM_TESTING_POLICY_ID` | Wallarm testing policy ID. It is automatically generated once the policy is created. | Yes
-`TARGET_URL` | URL where the API endpoints you wish to test are hosted. The test requests are sent to this host, e.g., staging, or local build. | Yes
+`WALLARM_API_HOST` | Wallarm API sunucusu:<ul><li>US Cloud için `us1.api.wallarm.com`</li><li>EU Cloud için `api.wallarm.com`</li></ul> | Evet
+`WALLARM_API_TOKEN` | **OpenAPI testing** izinlerine sahip [Wallarm API token](../user-guides/settings/api-tokens.md). | Evet
+`WALLARM_TESTING_POLICY_ID` | Wallarm test politikası ID'si. Politika oluşturulduğunda otomatik olarak üretilir. | Evet
+`TARGET_URL` | Test etmek istediğiniz API uç noktalarının barındırıldığı URL. Test istekleri bu hosta gönderilir, örneğin staging veya local build ortamları. | Evet
 
-For a more secure approach to passing variables to the container, it is recommended to save the values of container environment variables that were not automatically populated as local environment variables on your machine. You can do this by executing the following commands in your terminal:
+Ortam değişkenlerini container'a geçirmenin daha güvenli bir yolu olarak, otomatik olarak doldurulmayan container ortam değişkenlerini makinenizde yerel ortam değişkenleri olarak kaydetmeniz önerilir. Bunu terminalinizde aşağıdaki komutları çalıştırarak yapabilirsiniz:
 
 ```
 export WALLARM_API_TOKEN=<VALUE>
 export WALLARM_SCANNER_TARGET_URL=<VALUE>
 ```
 
-To save the security testing results on a host machine, specify the desired host machine path in the `${WALLARM_REPORT_PATH}` variable within the `-v` option of the Docker command.
+Güvenlik testi sonuçlarını host makinenizde saklamak için, Docker komutunun `-v` seçeneğindeki `${WALLARM_REPORT_PATH}:/app/reports` ifadesinde, istenen host makine yolunu belirtin.
 
-!!! info "Docker container for security testing"
-    OpenAPI security testing utilizes a [dedicated Docker container](https://hub.docker.com/r/wallarm/oas-fast-scanner) specifically designed for this purpose. It is distinct from other Wallarm FAST functionalities, which may use different Docker containers.
+## Güvenlik testi sonuçlarının yorumlanması
 
-## Interpreting security testing results
+Güvenlik testlerini çalıştırdığınızda, Wallarm, test politikanızda seçilen güvenlik açıklarını ortaya çıkarmak üzere özel olarak tasarlanmış tipik test istekleri serisi oluşturur. Bu test istekleri, politikanızda tanımlı uç noktalara sırasıyla gönderilir.
 
-When running the security tests, Wallarm generates a series of typical test requests that are specifically designed to uncover the vulnerabilities selected in your testing policy. These test requests are sent sequentially to the endpoints defined in your policy.
+Oluşturulan isteklere verilen yanıtları analiz ederek, Wallarm, API uç noktalarınızda mevcut olan açıkları belirler. Ardından, Docker container'ının stdout (standart çıktı) üzerinden `0` veya `1` kodu döner:
 
-By analyzing the responses to the generated requests, Wallarm identifies open vulnerabilities present in your API endpoints. It then returns a `0` or `1` code via the Docker container's standard output (stdout):
+* `0` kodu, herhangi bir açık bulunmadığını gösterir.
+* `1` kodu, açıkların mevcut olduğunu gösterir.
 
-* A `0` code indicates that no open vulnerabilities were detected.
-* A `1` code indicates the presence of open vulnerabilities.
+Belirli güvenlik açıkları için `1` kodu alırsanız, bu açıkları gidermek için gerekli önlemleri almanız önemlidir.
 
-If you receive a code `1` for certain vulnerabilities, it is important to take appropriate measures to address them.
+## Güvenlik testi raporu oluşturma
 
-## Generating security testing report
+Güvenlik açıklarını ortaya çıkaran istekler hakkında detaylı bilgi sağlayan bir güvenlik raporunu elde edebilirsiniz. Rapor CSV, YAML ve JSON dahil olmak üzere birden fazla formatta oluşturulur.
 
-You can obtain a security report that provides detailed information about the requests that revealed vulnerabilities. The report is generated in multiple formats, including CSV, YAML, and JSON.
+Güvenlik testi sonuçlarını host makinenizde saklamak için, Docker komutundaki `-v ${WALLARM_REPORT_PATH}:/app/reports` ifadesindeki `${WALLARM_REPORT_PATH}` yolunda istediğiniz host makine yolunu belirtin.
 
-To save the security testing results on a host machine, specify the desired host machine path in the `${WALLARM_REPORT_PATH}` path within the `-v ${WALLARM_REPORT_PATH}:/app/reports` option of the Docker command.
+Belirtilen host makine yolunun, Docker container'ının rapor dosyalarını başarıyla kaydedebilmesi için uygun yazma izinlerine sahip olduğundan emin olun.
 
-It is important to ensure that the specified host machine path has appropriate write permissions for the Docker container to save the report files successfully.
-
-JSON report example:
+JSON rapor örneği:
 
 ```json
 [
@@ -117,12 +113,12 @@ JSON report example:
 ]
 ```
 
-By default, security reports are saved inside the Docker container in the `/app/reports` directory. By using the `-v` option, you mount the contents of `/app/reports` into the specified host machine directory.
+Varsayılan olarak, güvenlik raporları Docker container içinde `/app/reports` dizininde saklanır. `-v` seçeneğini kullanarak, `/app/reports` içeriğini belirttiğiniz host makine dizinine mount edersiniz.
 
-## Managing security policies
+## Güvenlik politikalarının yönetimi
 
-In the **OpenAPI Testing** section of the Wallarm Console, you have the ability to manage the list of security testing policies associated with your account. Different policies can be used for different services, teams, purposes, and testing stages, such as local testing and staging.
+Wallarm Console'daki **OpenAPI Testing** bölümünde, hesabınıza bağlı güvenlik testi politikalarının listesini yönetme yetkisine sahipsiniz. Farklı hizmetler, ekipler, amaçlar ve test aşamaları (local testing ve staging gibi) için farklı politikalar kullanılabilir.
 
-You can edit and delete existing policies as needed to suit your requirements.
+Mevcut politikaları ihtiyaçlarınıza uygun şekilde düzenleyebilir veya silebilirsiniz.
 
 ![!Policies list](../images/user-guides/openapi-testing/testing-policies-list.png)

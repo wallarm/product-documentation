@@ -1,7 +1,9 @@
-1. テストの[Path Traversal][ptrav-attack-docs]攻撃を保護されたリソースアドレスにリクエストとして送信します：
+1. 保護されたリソースアドレスにテスト[Path Traversal][ptrav-attack-docs]攻撃を送信します:
 
     ```
     curl http://localhost/etc/passwd
     ```
-2. Wallarmコンソールを開いて、[US Cloud](https://us1.my.wallarm.com/search)または[EU Cloud](https://my.wallarm.com/search)の **Events** セクションを開き、攻撃がリストに表示されていることを確認してください。
-    ![インターフェースの攻撃][attacks-in-ui-image]
+
+    もしトラフィックが`example.com`にプロキシされるように設定されている場合，リクエストに`-H "Host: example.com"`ヘッダーを含めます。
+2. Wallarm Console → **Attacks**セクションを[US Cloud](https://us1.my.wallarm.com/search)または[EU Cloud](https://my.wallarm.com/search)内で開き，攻撃がリストに表示されることを確認します。
+    ![インターフェース内の攻撃][attacks-in-ui-image]

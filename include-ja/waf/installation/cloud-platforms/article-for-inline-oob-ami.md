@@ -1,28 +1,29 @@
-# Amazon Machine ImageからWallarmをデプロイする
+# Amazon Machine ImageからのWallarmのデプロイ
 
-この記事は、[公式のAmazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD)を使用してAWS上にWallarmをデプロイするための指示を提供します。このソリューションは、[インライン][inline-docs]または[Out-of-Band][oob-docs]のどちらで展開することもできます。
+本記事では[公式Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD)を使用してAWS上にWallarmをデプロイする方法について説明します。ソリューションは[インライン][inline-docs]または[Out-of-Band][oob-docs]のいずれかの方法でデプロイできます。
 
-<!-- ???
-すべての領域がサポートされていると述べてください -->
+最新のWallarm AMIはDebian 12をベースとしており、DebianリポジトリからNGINX 1.22.1を使用します。
 
---8<-- "../include-ja/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
+## 利用事例
 
-## 6. Wallarmがトラフィックを解析できるようにする
+--8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
 
---8<-- "../include-ja/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis.md"
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami-latest.md"
 
-## 7. NGINXを再起動する
+## 6. Wallarm Cloudへのインスタンス接続
 
---8<-- "../include-ja/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-for-cloud-images.md"
 
-## 8. Wallarmインスタンスにトラフィックを送信するように設定する
+## 7. Wallarmインスタンスへのトラフィック送信の設定
 
---8<-- "../include-ja/waf/installation/sending-traffic-to-node-inline-oob.md"
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob-latest.md"
 
-## 9. Wallarmの操作をテストする
+## 8. Wallarmの動作テスト
 
---8<-- "../include-ja/waf/installation/cloud-platforms/test-operation-inline.md"
+--8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
 
-## 10. デプロイしたソリューションを微調整する
+## 9. デプロイ済みソリューションの微調整
 
---8<-- "../include-ja/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+
+--8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"

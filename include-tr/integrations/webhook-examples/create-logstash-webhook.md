@@ -1,4 +1,4 @@
-* Webhook'lar `https://logstash.example.domain.com` adresine gönderilir
-* Webhook'lar POST talepleri aracılığıyla gönderilir
-* Webhook entegrasyonunun varsayılan ileri düzey ayarları bulunmaktadır
-* Webhook URL'lerine gönderilen webhook'lar tüm mevcut olaylardır: yüzey değerleri, sistem olayları, güvenlik açıkları, kapsam değişiklikleri
+* Webhooklar `https://logstash.example.domain.com` adresine gönderilir  
+* Webhooklar POST istekleri yoluyla gönderilir  
+* Webhook entegrasyonunun varsayılan gelişmiş ayarları vardır  
+* Webhook URL'lerine gönderilen webhooklar; tüm mevcut olayları içerir: hits, system events, vulnerabilities, scope changes

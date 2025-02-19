@@ -1,59 +1,68 @@
-# Wallarmノードのインラインデプロイメント
+# Wallarmノードのインライン展開
 
-Wallarmは、リアルタイムで脅威を軽減するためにインラインでデプロイすることができます。この場合、保護されたAPIへの通信は、APIに到達する前にWallarmノードインスタンスを通過します。インラインであり、エンドユーザーに利用可能な唯一のパスである限り、攻撃者がWallarmノードをバイパスする可能性はありません。この記事では、そのアプローチについて詳しく説明します。
-Wallarmノードインスタンスはクライアントとサーバーの間に位置し、着信トラフィックを分析し、悪意のあるリクエストを軽減し、正当なリクエストを保護されたサーバーに転送します。
+Wallarmはリアルタイムで脅威を軽減するためにインライン展開できます。この場合、保護されたAPIへのトラフィックはAPIに到達する前にWallarmノードインスタンスを通過します。Wallarmノードがインラインであり、エンドユーザーが利用できる唯一の経路である限り、攻撃者がWallarmノードを回避する可能性はありません。本記事では、このアプローチについて詳述します。
+
+Wallarmノードインスタンスはクライアントとサーバーの間に位置し、受信トラフィックを解析、悪意あるリクエストを軽減し、正当なリクエストを保護されたサーバーに転送します。
 
 ## ユースケース
 
-下記のケースに対して、Wallarmのインラインソリューションが適しています：
+Wallarmのインラインソリューションは、以下のユースケースに適しています:
 
-* アプリケーションサーバーに到達する前にSQli、XSSインジェクション、APIの悪用、総当たり攻撃などの悪意のあるリクエストを軽減します。
-* システムの現在のセキュリティ脆弱性についての知識を得て、アプリケーションコードの修正前に仮想パッチを適用します。
-* APIインベントリを監視し、機密データを追跡します。
+* SQLi、XSSインジェクション、API乱用、ブルートフォースなどの悪意あるリクエストをアプリケーションサーバーに到達する前に軽減します。
+* システム上の現行のセキュリティ脆弱性について情報を取得し、アプリケーションコードを修正する前に仮パッチを適用します。
+* APIのインベントリを監視し、機微なデータを追跡します。
 
-## 利点と具体的な要件
+## メリットと特定の要件
 
-Wallarmのデプロイメントに対するインラインデプロイメントアプローチは、他のデプロイメント方法、例えば[OOB](../oob/overview.md)デプロイメントに比べていくつかの利点があります：
+Wallarmのインライン展開方式は、[OOB](../oob/overview.md)展開など他の展開方式に比べ、いくつかの利点を提供します:
 
-* トラフィック解析はリアルタイムで行われるため、Wallarmは即座に悪意のあるリクエストをブロックします。
-* Wallarmは着信リクエストとサーバーの応答の両方にアクセス可能なため、[API Discovery](../../api-discovery/overview.md) や [vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) などのすべてのWallarm機能が制限なく動作します。
+* Wallarmはリアルタイムでトラフィック解析が行われるため、悪意あるリクエストを即座にブロックします。
+* Wallarmは、受信リクエストとサーバーレスポンスの両方にアクセスできるため、[API Discovery](../../api-discovery/overview.md)や[脆弱性検出](../../about-wallarm/detecting-vulnerabilities.md)を含む全ての機能が制限なく動作します。
 
-インラインスキームを実装するためには、インフラストラクチャ内のトラフィックルートを変更する必要があります。さらに、サービスの中断を防ぐために、Wallarmノードの[resource allocation](../../admin-en/configuration-guides/allocate-resources-for-node.md)について慎重に考慮してください。
+インライン方式を実装するには、インフラストラクチャ内のトラフィックルートを変更する必要があります。さらに、サービスの中断が発生しないよう、Wallarmノードの[リソース割当](../../admin-en/configuration-guides/allocate-resources-for-node.md)を慎重に検討してください。
 
-本番環境のAWSやGCPなどのパブリッククラウドにWallarmノードをデプロイする際は、最適なパフォーマンス、スケーラビリティ、耐障害性を得るために、適切に設定されたオートスケーリンググループの使用が必須です（[AWS](../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md) や [GCP](../../admin-en/installation-guides/google-cloud/autoscaling-overview.md) の記事を参照してください）。
+本番環境向けにAWSやGCPなどのパブリッククラウド上にWallarmノードを展開する場合、最適なパフォーマンス、スケーラビリティおよび回復性を確保するため、適切に構成された自動スケーリンググループを使用する必要があります（[AWS](../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md)または[GCP](../../admin-en/installation-guides/google-cloud/autoscaling-overview.md)の記事を参照してください）.
 
-## デプロイメントモデルと対応するデプロイメント方法
+## 展開モデルとサポートされる展開方法
 
-Wallarmをインラインでデプロイする場合、考慮すべき2つの一般的なモデルがあります：コンピュートインスタンスデプロイメントとKubernetesデプロイメント。
+Wallarmのインライン展開に関して、考慮すべき一般的なモデルは以下の通りです:
 
-あなたのインフラストラクチャの特性に基づいてデプロイメントモデルと方法を選択できます。適切なデプロイメントモデルと方法を選択するためのアシスタンスが必要な場合は、適切なガイダンスを提供するためにあなたのインフラストラクチャに関する追加情報を提供して、私たちの[sales team](mailto:sales@wallarm.com)にお気軽にお問い合わせください。
+* Wallarm Security Edge
+* セルフホスト型ノードのコンピュートインスタンスへの展開
+* セルフホスト型ノードのKubernetes上での展開
 
-### コンピュートインスタンスでのWallarmの実行
+インフラストラクチャの状況に応じて、展開モデルおよび方法を選択できます。適切な展開モデルおよび方法の選択に関して支援が必要な場合は、どうぞお気軽に[sales team](mailto:sales@wallarm.com)にご連絡いただき、環境に関する詳細情報をご提供ください。
 
-このモデルでは、Wallarmをあなたのインフラストラクチャ内の仮想アプライアンスとしてデプロイします。仮想アプライアンスはVM、コンテナ、またはクラウドインスタンスとしてインストールすることができます。
+### Wallarm Security Edgeの実行
 
-Wallarmノードをデプロイする際には、ネットワークトポロジー内のさまざまな位置に配置する柔軟性があります。しかし、推奨されるアプローチは、ノードインスタンスをパブリックロードバランサーの後ろ、あるいはバックエンドサービスの前、または通常はバックエンドサービスの前に位置するプライベートロードバランサーの前に配置することです。以下の図では、このセットアップでの一般的なトラフィックフローが示されています：
+Security Edgeプラットフォームは、Wallarmがホストする環境内において、地理的に分散したロケーションにノードを展開するためのマネージドサービスを提供します。[続きを読む](../security-edge/deployment.md)
+
+### コンピュートインスタンス上でのWallarmの実行
+
+このモデルでは、インフラストラクチャ内に仮想アプライアンスとしてWallarmを展開します。仮想アプライアンスは、VM、コンテナまたはクラウドインスタンスとしてインストールできます。
+
+Wallarmノードを展開する際、ネットワークトポロジ内の異なる場所に配置する柔軟性があります。しかし、推奨される方法は、ノードインスタンスをパブリックロードバランサーの背後またはプライベートロードバランサーの背後に配置し、バックエンドサービスの前に置くことです。以下の図は、このセットアップにおける一般的なトラフィックフローを示しています:
 
 ![In-line filtering scheme](../../images/waf-installation/inline/wallarm-inline-deployment-scheme.png)
 
-ロードバランサーはL4とL7の2つのタイプに分類することができます。ロードバランサーのタイプは、SSLオフローディングの処理方法を決定します。これはWallarmを既存のインフラストラクチャに統合する際に重要です。
+ロードバランサーは、L4とL7の2種類に分類されます。ロードバランサーのタイプは、SSLオフロードの処理方法を決定し、これは既存のインフラストラクチャにWallarmを統合する際に重要です。
 
-* L4ロードバランサーを使用する場合、通常はロードバランサーの後ろに配置されたWebサーバーやインフラ内の他の手段でSSLオフローディングが処理されます。Wallarmインスタンスは使用されません。しかし、Wallarmノードをデプロイする際には、WallarmインスタンスでSSLオフローディングを設定する必要があります。
-* L7ロードバランサーを使用する場合、通常はロードバランサー自体がSSLオフローディングを処理し、Wallarmノードは平文のHTTPを受け取ります。
+* L4ロードバランサーを使用する場合、一般的には、ロードバランサーの後ろに配置されたWebサーバーやその他の方法によってSSLオフロードが処理されます。しかし、Wallarmノードを展開する際には、Wallarmノード上でSSLオフロードを構成する必要があります。
+* L7ロードバランサーを使用する場合、通常はロードバランサー自体がSSLオフロードを処理し、Wallarmノードには平文のHTTPが届きます。
 
-Wallarmは、コンピュートインスタンスでWallarmを実行するための以下のアーティファクトとソリューションを提供します：
+コンピュートインスタンス上でのWallarm実行のため、Wallarmは以下のアーティファクトおよびソリューションを提供します:
 
 **Amazon Web Services (AWS)**
 
 * [AMI](compute-instances/aws/aws-ami.md)
 * [ECS](compute-instances/aws/aws-ecs.md)
 * Terraformモジュール:
-    * [Proxy in AWS VPC](compute-instances/aws/terraform-module-for-aws-vpc.md)
-    * [Proxy for Amazon API Gateway](compute-instances/aws/terraform-module-for-aws-api-gateway.md)
+    * [AWS VPC内のプロキシ](compute-instances/aws/terraform-module-for-aws-vpc.md)
+    * [Amazon API Gateway用プロキシ](compute-instances/aws/terraform-module-for-aws-api-gateway.md)
 
 **Google Cloud Platform (GCP)**
 
-* [Machine image](compute-instances/gcp/machine-image.md)
+* [マシンイメージ](compute-instances/gcp/machine-image.md)
 * [GCE](compute-instances/gcp/gce.md)
 
 **Microsoft Azure**
@@ -66,22 +75,19 @@ Wallarmは、コンピュートインスタンスでWallarmを実行するため
 
 **Dockerイメージ**
 
-* [NGINX-based](compute-instances/docker/nginx-based.md)
-* [Envoy-based](compute-instances/docker/envoy-based.md)
+* [NGINXベース](compute-instances/docker/nginx-based.md)
+* [Envoyベース](compute-instances/docker/envoy-based.md)
 
 **Linuxパッケージ**
 
-* [個別のパッケージ for NGINX stable](compute-instances/linux/individual-packages-nginx-stable.md)
-* [個別のパッケージ for NGINX Plus](compute-instances/linux/individual-packages-nginx-plus.md)
-* [個別のパッケージ for distribution-provided NGINX](compute-instances/linux/individual-packages-nginx-distro.md)
-* [All-in-one installer](compute-instances/linux/all-in-one.md)
+* [オールインワンインストーラー](compute-instances/linux/all-in-one.md)
 
 ### Kubernetes上でのWallarmの実行
 
-コンテナオーケストレーションにKubernetesを使用している場合、WallarmはKubernetesネイティブソリューションとしてデプロイされます。それはIngressやSidecarコントローラーなどの機能を利用してKubernetesクラスターとシームレスに統合します。
+もしKubernetesをコンテナオーケストレーションに利用している場合、WallarmはKubernetesネイティブのソリューションとして展開できます。Kubernetesクラスターとシームレスに統合し、ingressまたはsidecarコントローラーなどの機能を活用します。
 
-Wallarmは、Kubernetes上でWallarmを実行するための以下のアーティファクトとソリューションを提供します：
+Wallarmは、Kubernetes上でのWallarm実行のため、以下のアーティファクトおよびソリューションを提供します:
 
-* [NGINX Ingress controller](../../admin-en/installation-kubernetes-en.md)
-* [Kong Ingress controller](../kubernetes/kong-ingress-controller/deployment.md)
+* [NGINX Ingressコントローラー](../../admin-en/installation-kubernetes-en.md)
+* [Kong Ingressコントローラー](../kubernetes/kong-ingress-controller/deployment.md)
 * [Sidecarコントローラー](../kubernetes/sidecar-proxy/deployment.md)

@@ -1,9 +1,9 @@
-* Wallarmコンソール内で**管理者**役割を持つアカウントへのアクセス ([USクラウド](https://us1.my.wallarm.com/) または [EUクラウド](https://my.wallarm.com/))
-* SELinuxが無効または[指示][configure-selinux-instr]に従って設定されている
-* すべてのコマンドをスーパーユーザー（例： `root`）として実行
-* パッケージをダウンロードするための `https://repo.wallarm.com` へのアクセス。アクセスがファイアウォールによってブロックされていないことを確認してください
-* US Wallarm Cloudと連携するための `https://us1.api.wallarm.com` もしくは EU Wallarm Cloudと連携するための `https://api.wallarm.com` へのアクセス。アクセスはプロキシサーバー経由でのみ設定できるなら、[指示書][configure-proxy-balancer-instr]を使用してください
-* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+* Wallarm Consoleで、二要素認証が無効の**Administrator**ロールのアカウントにアクセスできること（[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)の場合）
+* SELinuxが無効にされているか、[指示][configure-selinux-instr]に従って構成されていること
+* すべてのコマンドをスーパーユーザ（例：`root`）権限で実行すること
+* パッケージをダウンロードするために`https://repo.wallarm.com`にアクセスできること。ファイアウォールによってアクセスがブロックされていないことを確認すること
+* US Wallarm Cloudでの利用の場合は`https://us1.api.wallarm.com`に、EU Wallarm Cloudでの利用の場合は`https://api.wallarm.com`にアクセスできること。もしアクセスがプロキシサーバを経由して構成可能な場合は、[指示][configure-proxy-balancer-instr]を使用すること
+* 下記のIPアドレスへのアクセスが可能であること。これにより攻撃検出ルールの更新や、[allowlisted, denylisted,またはgraylisted][ip-lists-docs]国、地域、またはデータセンターに対する正確なIPの取得が可能になります
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* テキストエディター **vim**、 **nano**、または他のものがインストールされています。取り扱い説明書では、 **vim** が使用されています
+* インストール済みのテキストエディタ（**vim**, **nano**等）があること。本手順では**vim**を使用します

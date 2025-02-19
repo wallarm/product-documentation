@@ -14,142 +14,149 @@
 [anchor-query]:                     #fetching-the-required-metrics-from-the-data-source
 [anchor-verify-monitoring]:         #verifying-monitoring
 
-# Grafana'da Filtre Düğüm Metrikleriyle Çalışma
+# Grafana'da Filter Node Metrics İle Çalışma
 
-Eğer InfluxDB veya Graphite'da metrikleri dışa aktarmayı yapılandırdıysanız, bu metrikleri [Grafana][link-grafana] ile görselleştirebilirsiniz. 
+Eğer metriklerin InfluxDB veya Graphite'e aktarımını yapılandırdıysanız, [Grafana][link-grafana] ile bu metrikleri görselleştirebilirsiniz.
+
 
 !!! info "Birkaç varsayım"
-    Bu belge, Grafana'yı [InfluxDB][doc-network-plugin-influxdb] veya [Graphite][doc-network-plugin-graphite] ile birlikte dağıtmanızı varsayar.
+    Bu doküman, [InfluxDB][doc-network-plugin-influxdb] veya [Graphite][doc-network-plugin-graphite] yanısıra Grafana'yı dağıttığınızı varsayar.
     
-    Örnekte, `node.example.local` filtre düğümü tarafından işlenen isteklerin sayısını gösteren [`wallarm_nginx/gauge-abnormal`][doc-gauge-abnormal] metriği kullanılır.
+    Örnek olarak, `node.example.local` filter nodu tarafından işlenen istek sayısını gösteren [`wallarm_nginx/gauge-abnormal`][doc-gauge-abnormal] metriği kullanılmaktadır.
     
-    Ancak, herhangi bir [desteklenen metriği][doc-available-metrics] izleyebilirsiniz.
+    Ancak, [desteklenen herhangi bir metrik][doc-available-metrics]i izleyebilirsiniz.
 
-Tarayıcınızda, `http://10.0.30.30:3000` adresine giderek Grafana web konsolunu açın, ardından konsola standart kullanıcı adı (`admin`) ve şifre (`admin`) kullanarak giriş yapın.
+Tarayıcınızda, Grafana web konsolunu açmak için `http://10.0.30.30:3000` adresine gidin ve ardından standart kullanıcı adı (`admin`) ve parola (`admin`) ile konsola giriş yapın.
 
-Grafana'yı kullanarak bir filtre düğümünü izlemek için aşağıdakilere ihtiyacınız olacaktır:
-1.  Bir veri kaynağını bağlayın.
-2.  Veri kaynağından gereken metrikleri alın.
-3.  Metrik görselleştirmeyi ayarlayın.
+Grafana kullanarak bir filter nodu izlemek için aşağıdaki adımları izlemelisiniz:
+1.  Bir veri kaynağı bağlayın.
+2.  Veri kaynağından gerekli metrikleri çekin.
+3.  Metrik görselleştirmesini yapılandırın.
 
-Aşağıdaki veri kaynaklarından birini kullandığınız varsayılır:
+Aşağıdaki veri kaynaklarından birini kullandığınız varsayılmaktadır:
 *   InfluxDB
 *   Graphite
 
-##  Bir Veri Kaynağına Bağlanma
+## Veri Kaynağı Bağlama
 
 ### InfluxDB
 
-Bir InfluxDB sunucusunu veri kaynağı olarak bağlamak için takip eden adımları uygulayın:
-1.  Grafana konsolunun ana sayfasında, *Veri kaynağı ekle* düğmesine tıklayın.
-2.  Veri kaynağı türü olarak “InfluxDB” seçin.
-3.  Gereken parametreleri doldurun:
-    *   İsim: InfluxDB
+InfluxDB sunucusunu veri kaynağı olarak bağlamak için aşağıdaki adımları uygulayın:
+1.  Grafana konsolunun ana sayfasında, *Add data source* düğmesine tıklayın.
+2.  Veri kaynağı tipi olarak “InfluxDB”yi seçin.
+3.  Gerekli parametreleri doldurun:
+    *   Name: InfluxDB
     *   URL: `http://influxdb:8086`
-    *   Veritabanı: `collectd`
-    *   Kullanıcı: `root`
-    *   Şifre: `root`
-4.  *Kaydet ve Test et* düğmesine tıklayın.
+    *   Database: `collectd`
+    *   User: `root`
+    *   Password: `root`
+4.  *Save & Test* düğmesine tıklayın.
+
+
 
 ### Graphite
 
-Bir Graphite sunucusunu veri kaynağı olarak bağlamak için takip eden adımları uygulayın:
-1.  Grafana konsolunun ana sayfasında, *Veri kaynağı ekle* düğmesine tıklayın.
-2.  Veri kaynağı türü olarak “Graphite” seçin.
-3.  Gereken parametreleri doldurun:
-    *   İsim: Graphite
+Graphite sunucusunu veri kaynağı olarak bağlamak için aşağıdaki adımları uygulayın:
+1.  Grafana konsolunun ana sayfasında, *Add data source* düğmesine tıklayın.
+2.  Veri kaynağı tipi olarak “Graphite”ı seçin.
+3.  Gerekli parametreleri doldurun:
+    *   Name: Graphite
     *   URL: `http://graphite:8080`.
-    *   Version: sürüm listesinden en güncel olanını seçin.
-4.  *Kaydet ve Test et* düğmesine tıklayın.
+    *   Version: açılır listeden en yeni sürümü seçin.
+4.  *Save & Test* düğmesine tıklayın.
+
 
 !!! info "Veri Kaynağı Durumunu Kontrol Etme"
-    Eğer bir veri kaynağı başarıyla bağlandıysa, "Veri kaynağı çalışıyor" mesajı gözükmelidir.
+    Bir veri kaynağı başarıyla bağlandıysa, “Data source is working” mesajı görünmelidir.
 
-### İleri Adımlar
 
-Grafana'nın metrikleri izlemeye başlamasını sağlamak için aşağıdaki işlemleri gerçekleştirin:
+### İleri İşlemler
+
+Grafana'nın metrikleri izlemesi için aşağıdaki işlemleri gerçekleştirin:
 1.  Konsolun sol üst köşesindeki *Grafana* simgesine tıklayarak ana sayfaya dönün.
-2.  *Yeni Gösterge Tablosu* düğmesine tıklayarak yeni bir gösterge tablosu oluşturun. Ardından *Sorgu Ekle* düğmesine tıklayarak gösterge tablonuza bir metrik getirmek için [bir sorgu ekleyin][anchor-query].
+2.  *New Dashboard* düğmesine tıklayarak yeni bir gösterge paneli oluşturun. Ardından, gösterge paneline metrik çekebilmek için [bir sorgu ekleyin][anchor-query] ve *Add Query* düğmesine tıklayın.
 
-##  Veri Kaynağından Gerekli Metriklerin Alınması
+## Veri Kaynağından Gerekli Metrikleri Çekme
 
 ### InfluxDB
 
-Bir metriği InfluxDB veri kaynağından almak için aşağıdakileri yapın:
-1.  *Sorgu* açılır menüsünden yeni yaratılan "InfluxDB" veri kaynağını seçin.
-2.  InfluxDB için bir sorgu tasarlayın.
-    *   Ya grafiksel sorgu tasarım aracını kullanarak,
+InfluxDB veri kaynağından bir metrik çekmek için aşağıdaki adımları uygulayın:
+1.  *Query* açılır listesinden yeni oluşturulmuş “InfluxDB” veri kaynağını seçin.
+2.  InfluxDB'ye bir sorgu tasarlayın:
+    *   Grafik sorgu tasarımı aracını kullanarak,
 
-        ![Grafiksel sorgu tasarım aracı][img-influxdb-query-graphical]
+        ![Graphical query design tool][img-influxdb-query-graphical]
 
-    *   Ya da bir sorguyu düz metin olarak manuel olarak doldurarak (bunu yapmak için aşağıdaki ekran görüntüsünde belirtilen *Yazı düzenlemeyi değiştir* düğmesine tıklayın).
+    *   veya ekran görüntüsünde vurgulanan *Toggle text edit* düğmesine tıklayarak elle düz metin şeklinde bir sorgu yazarak,
 
-        ![Yazılı sorgu tasarım aracı][img-influxdb-query-plaintext]
+        ![Plaintext query design tool][img-influxdb-query-plaintext]
 
 
-`wallarm_nginx/gauge-abnormal` metriği almak için sorgu:
+
+`wallarm_nginx/gauge-abnormal` metrikini çekmek için sorgu:
 ```
 SELECT value FROM curl_json_value WHERE (host = 'node.example.local' AND instance = 'wallarm_nginx' AND type = 'gauge' AND type_instance = 'abnormal')    
 ```
 
+
+
 ### Graphite
 
-Bir metriği Graphite veri kaynağından almak için aşağıdakileri yapın: 
+Graphite veri kaynağından bir metrik çekmek için aşağıdaki adımları uygulayın:
 
-1.  *Sorgu* açılır menüsünden yeni yaratılan “Graphite” veri kaynağını seçin.
-2.  *Seri* hattındaki metriğin öğe için *metriği seç* düğmesine tıklayarak gereken metrik öğelerini sırayla seçin. 
+1.  *Query* açılır listesinden yeni oluşturulmuş “Graphite” veri kaynağını seçin.
+2.  *Series* satırındaki metrik öğesi için *select metric* düğmesine tıklayarak, gerekli metrik öğelerinin sırasıyla seçilmesini sağlayın.
 
-    `wallarm_nginx/gauge-abnormal` metriği öğeleri şu şekildedir:
+    `wallarm_nginx/gauge-abnormal` metrik öğeleri şu şekilde ilerler:
 
-    1.  `write_graphite` eklenti yapılandırma dosyasında ayarlanan ev sahibi adı.
+    1.  Sunucu adı, bu değer `write_graphite` eklenti yapılandırma dosyasında belirlendi.
+   
+        Bu eklentide, `_` karakteri varsayılan olarak ayırıcı görevi gördüğünden, `node.example.local` alan adı sorguda `node_example_local` olarak temsil edilir.
+   
+    2.  Belirli bir değeri sağlayan `collectd` eklentisinin adı. Bu metrik için eklenti `curl_json`dur.
+    3.  Eklenti örneğinin adı. Bu metrik için ad, `wallarm_nginx`tir.
+    4.  Değerin türü. Bu metrik için tür `gauge`dur.
+    5.  Değerin adı. Bu metrik için ad `abnormal`dur.
 
-        Bu eklentide `_` karakteri varsayılan olarak ayırıcı görevi görür; bu nedenle, `node.example.local` geçerli adı sorgulamada `node_example_local` olarak sunulacaktır.
-        
-    2.  Belirli bir değeri sunan `collectd` eklentisinin adı. Bu metrik için eklenti `curl_json`.
-    3.  Eklenti nesnesinin adı. Bu metrik için ad `wallarm_nginx`.
-    4.  Değer tipi. Bu metrik için tip `gauge`.
-    5.  Değerin adı. Bu metrik için ad `abnormal`.
+### İleri İşlemler
 
+Sorgu oluşturulduktan sonra, ilgili metrik için bir görselleştirme yapılandırın.
 
-### İleri Adımlar
+## Metrik Görselleştirmesini Yapılandırma
 
-Sorgunun oluşturulmasının ardından, ilgili metrik için bir görselleştirme ayarlayın.
+*Query* sekmesinden *Visualization* sekmesine geçin ve metrik için istenen görselleştirmeyi seçin.
 
-##  Metrik Görselleştirmeyi Ayarlama
+`wallarm_nginx/gauge-abnormal` metrik için “Gauge” görselleştirmesini kullanmanızı öneririz:
+*   Mevcut metrik değerini görüntülemek için *Calc: Last* seçeneğini seçin.
+*   Gerekirse eşik değerleri ve diğer parametreleri yapılandırabilirsiniz.
 
-*Sorgu* sekmesinden *Görselleştirme* sekmesine geçin ve metrik için istediğiniz görselleştirmeyi seçin.
+![Configure visualization][img-query-visualization]
 
-`wallarm_nginx/gauge-abnormal` metriği için "Ölçüm" görselleştirmesi önerilir:
-*   Mevcut metrik değerini görüntülemek için *Hesaplama: Son* seçeneğini seçin.
-*   Gerekirse, eşikleri ve diğer parametreleri yapılandırabilirsiniz.
+### İleri İşlemler
 
-![Görselleştirme ayarla][img-query-visualization]
+Görselleştirmeyi yapılandırdıktan sonra aşağıdaki adımları gerçekleştirin:
+*   Konsolun sol üst köşesindeki *“←”* düğmesine tıklayarak sorgu yapılandırmasını tamamlayın.  
+*   Gösterge panelinde yapılan tüm değişiklikleri kaydedin.
+*   Grafana'nın metriği başarıyla izlediğini doğrulayın.
 
-### İleri Adımlar
+## İzlemeyi Doğrulama
 
-Görselleştirme ayarlandıktan sonra aşağıdaki adımları uygulayın:
-*   Konsolun sol üst köşesindeki *“←”* düğmesine tıklayarak sorgu yapılandırmasını tamamlayın.
-*   Gösterge tablosundaki tüm değişiklikleri kaydedin. 
-*   Grafana'nın metriği başarıyla izlediğini doğrulayın ve kontrol edin.
+Veri kaynaklarından birini bağladıktan ve `wallarm_nginx/gauge-abnormal` metrik için sorgu ve görselleştirmeyi yapılandırdıktan sonra, izleme işlemini kontrol edin:
+1.  Grafana konsolunun sağ üst köşesindeki açılır listeden beş saniyelik aralıklarla otomatik metrik güncellemelerini etkinleştirin.
+2.  Grafana gösterge panelindeki istek sayısının, filter nodundaki `wallarm-status` çıktısı ile eşleştiğinden emin olun:
 
-##  İzlemeyi Doğrulama
-
-`wallarm_nginx/gauge-abnormal` metriği için veri kaynaklarından birini bağladıktan ve sorguyu ve görselleştirmeyi yapılandırdıktan sonra, izleme işlemini kontrol edin: 
-1.  Otomatik metrik güncellemelerini beş saniye aralıklı olacak şekilde etkinleştirin (Grafana konsolunun sağ üst köşesindeki açılır listeden bir değer seçin).
-2.  Grafana gösterge tablosundaki güncel istek sayısının, filtre düğümündeki `wallarm-status` çıktısı ile eşleştiğinden emin olun:
-
-    --8<-- "../include-tr/monitoring/wallarm-status-check-latest.md"
+    --8<-- "../include/monitoring/wallarm-status-check-latest.md"
     
-    ![Saldırı sayaçını kontrol et][img-grafana-0-attacks]
+    ![Checking the attack counter][img-grafana-0-attacks]
     
-3.  Filtre düğümü tarafından korunan bir uygulamaya bir test saldırısı gerçekleştirin. Bunu yapmak için, `curl` yardımcı programı veya bir tarayıcı ile uygulamaya kötü niyetli bir istek gönderebilirsiniz.
+3.  Filter node tarafından korunan bir uygulamaya test saldırısı gerçekleştirin. Bunu yapmak için, uygulamaya `curl` aracı veya bir tarayıcı kullanarak kötü amaçlı bir istek gönderebilirsiniz.
 
-    --8<-- "../include-tr/monitoring/sample-malicious-request.md"
+    --8<-- "../include/monitoring/sample-malicious-request.md"
     
-4.  `wallarm-status` çıktısında ve Grafana gösterge tablosunda istek sayacının arttığını doğrulayın:
+4.  Hem `wallarm-status` çıktısında hem de Grafana gösterge panelinde istek sayacının arttığını doğrulayın:
 
-    --8<-- "../include-tr/monitoring/wallarm-status-output-padded-latest.md"
+    --8<-- "../include/monitoring/wallarm-status-output-padded-latest.md"
 
-    ![Saldırı sayaçını kontrol et][img-grafana-16-attacks]
+    ![Checking the attack counter][img-grafana-16-attacks]
 
-Grafana gösterge tablosu şimdi `node.example.local` filtre düğümü için `wallarm_nginx/gauge-abnormal` metriğinin değerlerini göstermektedir.
+Artık Grafana gösterge paneli, `node.example.local` filter nodu için `wallarm_nginx/gauge-abnormal` metrik değerlerini göstermektedir.

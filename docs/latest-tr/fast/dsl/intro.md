@@ -4,17 +4,17 @@
 
 # FAST DSL Genel Bakış
 
-FAST, kullanıcılara eklentileri tanımlamak için alan özel bir dil (DSL) sağlar. Artık belirli programlama becerilerine sahip olmanıza gerek kalmadan uygulamanızdaki zafiyetleri tespit etmek için özel eklentiler oluşturabilirsiniz. Eklenti mekanizması, temel isteklerin işlenmesi ve hedef uygulamadaki zafiyetlerin araştırılması için ek özel mantığın uygulanmasına olanak sağlar. 
+FAST, kullanıcılara eklentileri tanımlamak için domain-specific language (DSL) sağlar. Artık uygulamanızdaki güvenlik açıklarını tespit etmek için belirli programlama becerilerine sahip olmadan özel eklentiler oluşturabilirsiniz. Eklenti mekanizması, temel istekleri işlemek ve hedef uygulamadaki güvenlik açıklarını aramak amacıyla ek özel mantık uygulamanıza olanak tanır.
 
-FAST eklentileri, bir temel istekte seçilen parametreleri değiştirerek veya önceden tanımlanmış bir yük kullanarak oluşturulan güvenlik testlerinin oluşturulmasına olanak sağlar. Üretilen güvenlik testleri ardından hedef uygulamaya gönderilir. Uygulamanın bu testlere yanıtı, hedef uygulamada zafiyet olup olmadığına dair bir sonuca ulaşmak için kullanılır (FAST eklentileri ayrıca zafiyetleri tespit etme yöntemini de tanımlar).
+FAST eklentileri, temel istek içerisinde seçilen parametrelerin değiştirilmesi veya önceden tanımlı bir payload kullanılarak oluşturulan güvenlik testlerinin üretilmesine imkan tanır. Oluşturulan güvenlik testleri daha sonra hedef uygulamaya gönderilir. Uygulamanın bu testlere verdiği yanıt, hedef uygulamada güvenlik açığı bulunup bulunmadığına karar vermek için kullanılır (FAST eklentileri aynı zamanda güvenlik açıklarını tespit etme yöntemini de tanımlar).
 
-Eklentiler YAML kullanılarak tanımlanır. YAML sözdizimi ve YAML dosya yapısına aşina olduğunuzu varsayıyoruz. Detaylı bilgi için bu [bağlantıya][link-yaml] tıklayın.
+Eklentiler YAML kullanılarak tanımlanır. YAML sözdizimi ve YAML dosya yapısına aşina olduğunuzu varsayıyoruz. Detaylı bilgi için bu [link][link-yaml] adresine gidin.
 
-Eklentilerin mantığı, düzenli ifadelerle tanımlanan unsurları da içerebilir. FAST ifadeleri yalnızca Ruby dilinde düzenli ifade sözdizimi destekler. Ruby düzenli ifade sözdizimi ile aşina olduğunuzu varsayıyoruz. Detaylı bilgi için bu [bağlantıya][link-ruby-regexp] tıklayın.
+Eklentilerin mantığı, düzenli ifadeler ile tanımlanan öğeleri içerebilir. FAST ifadeleri yalnızca Ruby dilinin düzenli ifade sözdizimini destekler. Ruby düzenli ifade sözdizimi hakkında bilgi sahibi olduğunuzu varsayıyoruz. Detaylı bilgi için bu [link][link-ruby-regexp] adresine gidin.
 
---8<-- "../include-tr/fast/cloud-note.md"
+--8<-- "../include/fast/cloud-note.md"
 
-!!! bilgi "İstek elemanı açıklama sözdizimi"
-    Bir FAST eklentisi oluştururken, uygulamaya gönderilen HTTP isteğinin ve uygulamadan alınan HTTP yanıtının yapısını anlamanız ve çalışmak istediğiniz istek öğelerini doğru bir şekilde tanımlamak için noktaları kullanmanız gerekmektedir. 
-    
-    Detaylı bilgi için bu [bağlantıya][link-points] tıklayın.
+!!! info "İstek öğesi açıklama sözdizimi"
+    Bir FAST eklentisi oluştururken, uygulamaya gönderilen HTTP isteğinin ve uygulamadan alınan HTTP yanıtının yapısını anlayarak, points kullanarak çalışmanız gereken istek öğelerini doğru şekilde tanımlamanız gerekir.
+
+    Detaylı bilgi için bu [link][link-points] adresine gidin.

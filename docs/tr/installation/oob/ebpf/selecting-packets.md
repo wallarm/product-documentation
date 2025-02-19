@@ -1,1 +1,1 @@
---8<-- "latest/installation/oob/ebpf/selecting-packets.md"
+--8<-- "latest-tr/installation/oob/ebpf/selecting-packets.md"

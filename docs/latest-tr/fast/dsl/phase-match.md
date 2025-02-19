@@ -1,51 +1,51 @@
-[bağlantı-noktalar]:          points/intro.md
-[bağlantı-ruby-regex]:     http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
-[bağlantı-ext-mantık]:       logic.md
+[link-points]:          points/intro.md
+[link-ruby-regexp]:     http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
+[link-ext-logic]:       logic.md
 
 # Eşleşme Aşaması
 
-!!! bilgi "Aşamanın kapsamı"  
-    Bu aşama, düzenleme uzantısında kullanılır ve işleyişi için isteğe bağlıdır (`match` bölümü YAML dosyasında ya bulunmayabilir ya da bulunabilir).
+!!! info "Aşamanın Kapsamı"  
+    Bu aşama, değiştirilebilir eklentilerde kullanılır ve çalışması için isteğe bağlıdır (YAML dosyasında `match` bölümü bulunabilir ya da bulunmayabilir).
 
-    Bu aşama, düzenleme yapmayan uzantının YAML dosyasında bulunmamalıdır.
+    Değiştirilemeyen eklentinin YAML dosyasında bu aşama yer almamalıdır.
     
-    Uzantı türleri hakkında ayrıntılı bilgi [burada][bağlantı-ext-mantık] bulabilirsiniz.
+    Eklenti türleri hakkında detaylı bilgi için [buraya][link-ext-logic] bakın.
 
-!!! bilgi "İstek öğesi açıklama sözdizimi"
-     Bir FAST uzantısı oluştururken, uygulamaya gönderilen HTTP isteğinin ve uygulamadan alınan HTTP yanıtının yapısını anlamanız ve çalışmak istediğiniz istek öğelerini doğru bir şekilde tanımlamak için noktaları kullanmanız gerekir.
+!!! info "İstek öğesi açıklama sözdizimi"
+    FAST eklentisi oluştururken, üzerinde çalışmanız gereken istek öğelerini doğru şekilde tanımlayabilmek için uygulamaya gönderilen HTTP isteğinin ve uygulamadan alınan HTTP yanıtının yapısını anlamanız gerekmektedir.
     
-    Detaylı bilgiyi görmek için bu [bağlantıya][bağlantı-noktalar] gidin.
+    Detaylı bilgi için, [buraya][link-points] gözatın.
+ 
+Bu aşama, gelen temel isteğin belirtilen kriterlere uyup uymadığını kontrol eder.
 
-Bu aşama, gelen temel çizgili isteğin belirli bir kritere uyup uymadığını kontrol eder.
+Eklenti YAML dosyasındaki `match` bölümü, `<key: value>` çiftlerinden oluşan bir dizi içerir. Her çift, isteğin belirli bir öğesini (anahtar) ve bu öğeye ait veriyi (değer) tanımlar. Anahtar ve değer, [Ruby regular expression formatı][link-ruby-regexp] şeklinde düzenli ifadeler içerebilir.
 
-Uzantı YAML dosyasındaki `match` bölümü, bir dizi `<anahtar: değer>` çifti içerir. Her çift, isteğin belirli bir öğesini (anahtarı) ve bu öğenin verilerini (değeri) tanımlar. Anahtar ve değer, [Ruby düzenli ifade formatı][bağlantı-ruby-regex] içinde düzenli ifadeler içerebilir.
-
-Eşleşme aşaması, temel çizgili istekte verilen tüm `<anahtar: değer>` çiftlerini arar.
-* İsteğin, gerekli verilerle (örneğin, URL'deki yol değeri, GET parametresi veya HTTP başlığı) gerekli öğelerin varlığına karşı kontrol edilir.
+Eşleşme aşaması, temel istekte belirtilen tüm `<key: value>` çiftleri için eşleşme arar.
+* İstek, gerekli veriye sahip olması gereken öğelerin (örneğin, URL içindeki yol değeri, GET parametresi veya HTTP başlığı) varlığı açısından kontrol edilir.
     
-    ??? bilgi "Örnek 1"
-        `'GET_a_değeri': '^\d+$'` — İsteğin, yalnızca rakam içeren bir `a` adındaki GET parametresini içermesi gerekir.
+    ??? info "Örnek 1"
+        `'GET_a_value': '^\d+$'` — yalnızca rakamlardan oluşan değere sahip `a` adlı GET parametresi istekte bulunmalıdır.
     
-    ??? bilgi "Örnek 2"
-        `'GET_b*_değeri': '.*'` — İsteğin, adı `b` ile başlayan ve herhangi bir değer içeren (boş değer dahil) bir GET parametresini içermesi gerekir.
+    ??? info "Örnek 2"
+        `'GET_b*_value': '.*'` — ismi `b` ile başlayan GET parametresi, herhangi bir değere (boş değer de dahil) sahip olarak istekte bulunmalıdır.
     
-* Eğer bir anahtar için değer `null` olarak ayarlanmışsa, istekte karşılık gelen öğenin yokluğu kontrol edilir.
+* Belirli bir anahtar için değer `null` olarak ayarlanırsa, istekte ilgili öğenin bulunmaması kontrol edilir.
     
-    ??? bilgi "Örnek"
-        `'GET_a': null` — GET `a` adındaki parametrenin istekte bulunmaması gerekir.
+    ??? info "Örnek"
+        `'GET_a': null` — `a` adlı GET parametresi istekte bulunmamalıdır.
 
-Temel isteğin Eşleşme aşamasından geçebilmesi için, isteğin `match` bölümündeki tüm `<anahtar: değer>` çiftlerini karşılaması gereklidir. Eğer `match` bölümünde tanımlanan `<anahtar: değer>` çiftlerinden herhangi birine temel çizgili istekte uyan bulunamazsa, istek atılacaktır.
+Temel isteğin Eşleşme aşamasından geçebilmesi için, isteğin `match` bölümündeki tüm `<key: value>` çiftlerini karşılaması gerekmektedir. Eğer temel istekte, `match` bölümünde tanımlanan herhangi bir `<key: value>` çiftiyle eşleşme bulunamazsa, istek reddedilecektir.
 
-??? bilgi "Örnek"
-    Aşağıda gösterilen `match` bölümü, `<anahtar: değerler>` çiftlerinin listesini içerir. Temel isteğin Eşleşme aşamasından geçebilmesi için, bu çiftlerin tümünü karşılaması gereklidir.
+??? info "Örnek"
+    Aşağıda gösterilen `match` bölümü, `<key: value>` çiftlerinin listesini içerir. Temel isteğin Eşleşme aşamasından geçebilmesi için, bu çiftlerin tamamını karşılaması gerekir.
 
     ```
     match:
-    - 'HEADER_HOST_değeri': 'example.com'
-    - 'GET_password_değeri': '^\d+$'
-    - 'HEADER_CONTENT-TYPE_değeri': null
+    - 'HEADER_HOST_value': 'example.com'
+    - 'GET_password_value': '^\d+$'
+    - 'HEADER_CONTENT-TYPE_value': null
     ```
 
-    1. Temel istek, değerinde `example.com` içeren `Header` adında bir HTTP başlığı içermelidir.
-    2. `password` GET parametresinin değeri yalnızca rakam içermelidir.
-    3. `Content-Type` başlığı bulunmamalıdır.
+    1. Temel istek, değeri `example.com` alt dizisini içeren `Header` adlı HTTP başlığını içermelidir.
+    2. `password` GET parametresinin değeri yalnızca rakamlardan oluşmalıdır.
+    3. `Content-Type` başlığı istekte bulunmamalıdır.

@@ -1,4 +1,4 @@
-					=== "DEBベースのディストリビューション"
+=== "DEBベースのディストリビューション"
     ```bash
     /etc/collectd/collectd.conf.d/wallarm-tarantool.conf
     ```

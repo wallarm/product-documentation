@@ -1,2 +1,2 @@
-!!! uyarı "Ortak müşteri" terimi"
-    Daha önce "kiracı" terimi, "ortak müşteri" olarak anılıyordu. Burada "kiracı" terimini kullanmaya devam ediyoruz.
+!!! warning "Ortak istemci terimi"
+    Önceden, "tenant" için "partner client" terimi kullanılıyordu. Bundan sonra "tenant" terimini kullanacağız.

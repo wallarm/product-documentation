@@ -1,4 +1,4 @@
-Karmaşık sistemlerde en yaygın kayıt düzeni aşağıdaki bileşenlerden oluşur:
+En karmaşık sistemlerde en yaygın kayıt tutma şeması aşağıdaki bileşenlerden oluşur:
 
-* Veri koleksiyoncusu: birçok kaynaktan gelen kayıtları kabul eder ve kayıtları SIEM sistemine yönlendirir
-* [SIEM sistemi](https://www.wallarm.com/what/siem-whats-security-information-and-event-management-technology-part-1) ya da kayıt yönetim sistemleri: kayıtları analiz etmek ve sistem durumunu izlemek için kullanılır
+* Veri toplayıcı: çeşitli kaynaklardan günlükleri kabul eder ve günlükleri SIEM system'e iletir
+* [SIEM system](https://www.wallarm.com/what/siem-whats-security-information-and-event-management-technology-part-1) veya log yönetim sistemleri: günlükleri analiz etmek ve sistem durumunu izlemek için kullanılır

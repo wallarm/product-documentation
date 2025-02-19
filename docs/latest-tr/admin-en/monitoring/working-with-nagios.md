@@ -4,41 +4,41 @@
 
 [link-PNP4Nagios]:                      http://www.pnp4nagios.org/doku.php?id=pnp-0.4:start
 
-# Nagios'da Filtre Düğüm Metrikleri ile Çalışma
+#   Nagios'ta Filter Node Metrikleri ile Çalışma
 
-Nagios'un daha önce oluşturulan hizmetin durumunu başarıyla izlediğini doğrulayın:
+Nagios'un daha önce oluşturulan servisin durumunu başarıyla izlediğini doğrulayın:
 1.  Nagios web arayüzüne giriş yapın.
-2.  “Hizmetler” bağlantısına tıklayarak hizmetler sayfasına gidin.
-3.  `wallarm_nginx_abnormal` hizmetinin görüntülendiğinden ve "OK" durumunda olduğundan emin olun:
+2.  “Services” bağlantısına tıklayarak servisler sayfasına gidin.
+3.  `wallarm_nginx_abnormal` servisinin görüntülendiğinden ve “OK” durumunda olduğundan emin olun:
 
-    ![Hizmet durumu][img-nagios-service-status]
+    ![Servis durumu][img-nagios-service-status]
 
     
-    !!! info "Hizmet kontrolünün zorlanması"
-        Hizmetin "OK" durumunda olmaması durumunda, hizmetin durumunu doğrulamak için bir hizmet kontrolü zorlayabilirsiniz.
+    !!! info "Servis kontrolünü zorla"
+        Servis “OK” durumunda değilse, servisin durumunu doğrulamak için kontrolü zorlayabilirsiniz.
         
-        Bunu yapmak için, "Hizmet" sütunundaki hizmet adına tıklayın ve ardından "Hizmetin bir sonraki kontrolünü yeniden planla" seçeneğini seçerek "Hizmet Komutları" listesindeki gerekli parametreleri girin ve kontrolü çalıştırın.     
+        Bunu yapmak için, “Service” sütununda servis adına tıklayın, ardından “Service Commands” listesinden “Reschedule the next check of this service” seçeneğini işaretleyip gerekli parametreleri girerek kontrolü başlatın.    
     
 
-4.  “Durum” sütunundaki adına tıklayarak hizmet hakkındaki ayrıntılı bilgilere bakın:
+4.  “Status” sütununda servis adının yer aldığı bağlantıya tıklayarak servis hakkında detaylı bilgileri görüntüleyin:
 
-    ![Hizmet hakkında ayrıntılı bilgi][img-nagios-service-details]
+    ![Servis hakkında detaylı bilgi][img-nagios-service-details]
 
-    Nagios'da görüntülenen ölçüm değerinin ( “Performans Verisi” satırı), filtre düğümünde `wallarm-status` çıktısıyla eşleştiğinden emin olun:
+    Nagios'ta görüntülenen metrik değerinin ( “Performance Data” satırı) filter node üzerindeki `wallarm-status` çıktısıyla eşleştiğinden emin olun:
 
-    --8<-- "../include-tr/monitoring/wallarm-status-check-latest.md"
+    --8<-- "../include/monitoring/wallarm-status-check-latest.md"
  
-5.  Filtre düğümü tarafından korunan bir uygulamada bir test saldırısı gerçekleştirin. Bunu yapmak için, curl yardımcı programı veya bir tarayıcı ile uygulamaya zararlı bir istek gönderebilirsiniz.
+5.  Filter node tarafından korunan bir uygulamaya test saldırısı gerçekleştirin. Bunu yapmak için, curl aracı ya da bir tarayıcı kullanarak uygulamaya zararlı bir istek gönderebilirsiniz.
 
-    --8<-- "../include-tr/monitoring/sample-malicious-request.md"
+    --8<-- "../include/monitoring/sample-malicious-request.md"
     
-6.  Nagios'daki “Performans Verisi” değerinin arttığından ve filtre düğümünde `wallarm-status` tarafından görüntülenen değerle eşleştiğinden emin olun:
+6.  Nagios'taki “Performance Data” değerinin arttığından ve filter node üzerindeki `wallarm-status` çıktısıyla eşleştiğinden emin olun:
 
-    --8<-- "../include-tr/monitoring/wallarm-status-output-latest.md"
+    --8<-- "../include/monitoring/wallarm-status-output-latest.md"
 
-    ![Güncellenen Performans Verisi değeri][img-nagios-service-perfdata-updated]
+    ![Güncellenmiş Performance Data değeri][img-nagios-service-perfdata-updated]
 
-Şimdi, filtre düğümünün `wallarm_nginx/gauge-abnormal` metriğinin değerleri, Nagios'daki hizmet durumu bilgisinde görüntüleniyor.
+Artık filter node'un `wallarm_nginx/gauge-abnormal` metrik değerleri Nagios'ta servis durum bilgileri arasında görüntülenmektedir.
 
-!!! info "Nagios veri görselleştirme"
-    Varsayılan olarak, Nagios Core yalnızca hizmet durumunu izlemeyi destekler (`OK`, `UYARI`, `KRİTİK`). "Performans Verisi"nde yer alan metrik değerleri saklamak ve görselleştirmek için üçüncü taraf yardımcı programlarını kullanabilirsiniz, örneğin, [PNP4Nagios][link-PNP4Nagios].
+!!! info "Nagios veri görselleştirmesi"
+    Varsayılan olarak, Nagios Core yalnızca servis durumlarının (`OK`, `WARNING`, `CRITICAL`) izlenmesini destekler. “Performance Data” içerisinde yer alan metrik değerlerini saklamak ve görselleştirmek için üçüncü taraf araçlar, örneğin [PNP4Nagios][link-PNP4Nagios] kullanabilirsiniz.

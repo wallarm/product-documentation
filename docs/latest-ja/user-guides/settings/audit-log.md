@@ -1,35 +1,34 @@
-# ユーザーの活動ログ
+# ユーザーアクティビティログ
 
-Wallarm Consoleの **設定** → **活動ログ** タブで、Wallarmシステム内のユーザーの行動の履歴を確認できます。ログには、以下のオブジェクトの作成、更新、削除に関する情報が含まれています：
+Wallarm Consoleの**Settings** → **Activity log**タブでは、Wallarmシステムにおけるユーザーのアクション履歴を確認できます。ログには、以下のオブジェクトの作成、更新および削除に関する情報が含まれます:
 
-* [公開アセット](../scanner.md)からのIPアドレスまたはサブネット
-* ネットワークパリメータからのドメイン
-* ネットワークパリメータからのサービス（ポート）
-* ネットワークパリメータからのドメインと関連するIPアドレス
+* [公開資産](../scanner.md)からのIPアドレスまたはサブネット
+* ネットワーク境界のドメイン
+* ネットワーク境界のサービス（ポート）
+* ネットワーク境界のドメインと関連するIPアドレス
 * [二要素認証](account.md#enabling-two-factor-authentication)
-* [APIトークン](api-tokens.md)
-* [ユーザー](users.md)
-* トラフィック処理[ルール](../rules/rules.md)
-* [カスタムルールセットのバックアップ](../rules/rules.md)
-* [Wallarmノード](../nodes/nodes.md)
-* [CDNノード](../nodes/cdn-node.md)
-* [トリガー](../triggers/triggers.md)
-* [統合](integrations/integrations-intro.md)
-* [ブロックされたIPアドレス](../ip-lists/denylist.md)
-* [ヒットサンプリング](../events/analyze-attack.md#sampling-of-hits)
+* [API tokens](api-tokens.md)
+* [Users](users.md)
+* トラフィック処理の[rules](../rules/rules.md)
+* [Custom ruleset backups](../rules/rules.md#backup-and-restore)
+* [Wallarm nodes](../nodes/nodes.md)
+* [Triggers](../triggers/triggers.md)
+* [Integrations](integrations/integrations-intro.md)
+* [Blocked IP address](../ip-lists/overview.md)
+* [Hit sampling](../events/grouping-sampling.md#sampling-of-hits)
 
-ログには、次の行動とオブジェクトの情報も含まれています：
+ログには、以下のアクションおよびオブジェクトに関する情報も含まれます:
 
-* [偽陽性としてマークされた脆弱性](../vulnerabilities.md#marking-vulnerabilities-as-false-positives)
-* [再チェックされた攻撃](../events/verify-attack.md)
+* 誤検知としてマークされた[脆弱性](../vulnerabilities.md#vulnerability-lifecycle)
+* 再検証された[攻撃](../../vulnerability-detection/threat-replay-testing/overview.md)
 
-![活動ログ](../../images/user-guides/settings/audit-log.png)
+![Activity log](../../images/user-guides/settings/audit-log.png)
 
-**活動ログのレコードをフィルタリングするには**、次のパラメータを使用できます：
+**To filter the activity log records**では、以下のパラメーターを利用できます:
 
-* 行動を行ったユーザーのケースセンシティブデータ
+* アクションを実行したユーザーに関するデータ（大文字と小文字を区別）
 
-     アクションがWallarmの技術サポートチームによって実行された場合、ユーザー名は `Technical support`です。この値は活動ログのレコードをソートするために使用することはできません。
-* 行動のタイプ
-* 行動が実行されたオブジェクトの名前
-* 行動が実行された日付
+      アクションがWallarmテクニカルサポートチームによって実行された場合、ユーザー名は`Technical support`です。この値はactivity log recordsのソートに使用できません.
+* アクションタイプ
+* アクションが実行されたオブジェクトの名称
+* アクションが実行された日時

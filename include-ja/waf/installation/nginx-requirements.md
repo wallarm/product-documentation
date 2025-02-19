@@ -1,7 +1,7 @@
-* [US Cloud](https://us1.my.wallarm.com/) または [EU Cloud](https://my.wallarm.com/) のWallarm Consoleで二要素認証が無効化された**管理者**または**デプロイ**の役割を持つアカウントへのアクセス
-* SELinux が無効化されているか、[指示書][configure-selinux-instr]に従って設定されている
-* 全てのコマンドをスーパーユーザー（例：`root`）として実行
-* リクエスト処理とポストアナリティクスが異なるサーバー上で：[指示書][install-postanalytics-instr]に従って別のサーバーにポストアナリティクスをインストール
-* パッケージをダウンロードするための `https://repo.wallarm.com` へのアクセス。ファイアウォールによってアクセスがブロックされていないことを確認
-* US Wallarm Cloudを利用するための `https://us1.api.wallarm.com:444` へのアクセス、またはEU Wallarm Cloudを利用するための `https://api.wallarm.com:444` へのアクセス。アクセスはプロキシサーバー経由でのみ設定できる場合、[指示書][configure-proxy-balancer-instr]を使用
-* テキストエディタ **vim** 、**nano** またはそれ以外のものをインストール。この説明書では、**vim**が使用されています
+* Wallarm Consoleにおいて2要素認証が無効になっている[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)用の**Administrator**または**Deploy**ロールを持つアカウントへのアクセスが可能である必要があります。
+* SELinuxが無効化されているか、[instructions][configure-selinux-instr]に従って設定されている必要があります。
+* 全てのコマンドをスーパーユーザー(例: `root`)として実行できる必要があります。
+* リクエスト処理とpostanalyticsが異なるサーバーで行われる場合: [instructions][install-postanalytics-instr]に従って、別のサーバーにpostanalyticsがインストールされている必要があります。
+* `https://repo.wallarm.com`にパッケージをダウンロードするためのアクセスが可能である必要があります。アクセスがファイアウォールによってブロックされていないことを確認してください。
+* `https://us1.api.wallarm.com:444`にアクセスしてUS Wallarm Cloudで作業するか、`https://api.wallarm.com:444`にアクセスしてEU Wallarm Cloudで作業する必要があります。アクセスがプロキシサーバー経由でのみ設定できる場合は、[instructions][configure-proxy-balancer-instr]に従ってください。
+* インストール済みのテキストエディターとして**vim**, **nano**またはその他のエディターが必要です。手順では**vim**が使用されています。

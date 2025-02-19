@@ -1,0 +1,5 @@
+Wallarm’ın [API Abuse Prevention][link-api-abuse-prevention] tarafından kötü amaçlı bot etkinliği tespit edildikten sonra ve [**Attacks**][link-attacks] bölümünde görüntülendikten sonra, bu saldırının taleplerinin tam bağlamını öğrenme olanağına sahip olursunuz: hangi kullanıcı oturumuna ait oldukları ve bu oturumdaki taleplerin tam dizisi nedir. Bu, bu aktörü kötü amaçlı bot olarak işaretleme kararının doğru olup olmadığını doğrulamak için aktörün tüm etkinliğini incelemeyi sağlar.
+
+Bu analizi gerçekleştirmek için, Wallarm Console → **Attacks** bölümünde bot saldırı detaylarına erişin, ardından **Explore in API Sessions** seçeneğine tıklayın. Wallarm, filtrelenmiş [**API Session**][link-sessions] bölümünü açacaktır: bu bot etkinliklerine ait oturum(lar) görüntülenecektir.
+
+![!API Sessions section - monitored sessions][img-api-sessions-api-abuse]

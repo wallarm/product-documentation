@@ -4,7 +4,7 @@
 [wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [nginx-directives-docs]:            ../../configure-parameters-en.md
 [docker-envoy-configuration-docs]:  ../../configuration-guides/envoy/fine-tuning.md
-[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.md
+[graylist-docs]:                    ../../../user-guides/ip-lists/overview.md
 [wallarm-mode-docs]:                ../../configure-wallarm-mode.md
 [api-tokens-docs]:                  ../../../user-guides/settings/api-tokens.md
 [allocate-resources-for-wallarm-docs]: ../../configuration-guides/allocate-resources-for-node.md

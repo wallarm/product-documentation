@@ -1,2 +1,2 @@
-					!!! warning "サポートされているKubernetesプラットフォーム"
-    WallarmのNGINXまたはNGINX Plus Ingressコントローラーは、バージョン1.15以下のKubernetesプラットフォームでのみ動作しますので、ご注意くださいませ。
+!!! warning "Supported Kubernetes Platform"
+    ご注意ください．Wallarm NGINXまたはNGINX Plus IngressコントローラはKubernetesプラットフォームバージョン1.15以下でのみ動作します．

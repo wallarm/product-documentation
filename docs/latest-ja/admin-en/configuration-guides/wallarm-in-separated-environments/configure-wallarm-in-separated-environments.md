@@ -1,47 +1,47 @@
-# 分離された環境でのフィルターノードの設定に関する推奨事項
+# 分離環境のためのフィルタノード設定に関する推奨事項
 
-既に[分離した環境でのWallarmフィルタリングノードの動作](how-wallarm-in-separated-environments-works.md)について学習しています。ノードが記述した通りに動作するように、本記事から分離した環境でのノード設定の推奨事項を学びましょう。
+すでに[分離環境におけるWallarmフィルタノードの動作方法](how-wallarm-in-separated-environments-works.md)について学んでいます。この通りにノードが動作するため、分離環境におけるノードの設定に関する推奨事項を本稿でご確認ください。
 
-## Wallarm保護の初期展開プロセス
+## 初期のWallarm保護展開プロセス
 
-環境に対してWallarm保護を初めて展開する場合、以下のアプローチを用いることを推奨します（必要に応じて調整してください）：
+環境向けのWallarm保護の初回導入を実施する場合は、以下の方法を推奨します（必要に応じて調整してください）:
 
-1. 利用可能な Wallarm ノードの展開オプションについて[ここ](../../../installation/supported-deployment-options.md)で学びましょう。
-2. 必要に応じて、手元の環境に対してフィルタリングノード設定を個別に管理するための利用可能なオプションについて学びます。この情報は[ここ](how-wallarm-in-separated-environments-works.md#relevant-wallarm-features)で見つけることができます。
-3. フィルタモードを`モニタリング`に設定した状態で、お客様の非プロダクション環境に Wallarm フィルタリングノードを展開します。
-4.  Wallarm 解決策の操作方法、スケーリング、モニタリング方法を学び、新たなネットワークコンポーネントの安定性を確認します。
-5. フィルタモードを`モニタリング`に設定した状態で、お客様のプロダクション環境に Wallarm フィルタリングノードを展開します。
-6. 新しい Wallarm コンポーネントの適切な設定管理と監視プロセスを実装します。
-7. テスト環境やプロダクション環境を含む全ての環境でフィルタリングノードを通じてトラフィックを流し続けます。これにより、Wallarmクラウドベースのバックエンドがアプリケーションについて学習するのに7〜14日の時間を与えます。
-8. 非プロダクション環境すべてで`ブロッキング`フィルタモードを有効にし、自動化されたテストや手動テストを用いて、保護されたアプリケーションが期待通りに動作していることを確認します。
-9. 本番環境で`ブロッキング`フィルターモードを有効にします。 利用可能な方法を使用して、アプリケーションが期待通りに動作していることを確認します。
+1. [こちら](../../../installation/supported-deployment-options.md)で利用可能なWallarmノードの展開オプションについて確認してください。
+2. 必要に応じて環境向けのフィルタノード設定を個別に管理するための利用可能なオプションについて確認してください。この情報は[こちら](how-wallarm-in-separated-environments-works.md#relevant-wallarm-features)でご確認いただけます。
+3. 非本番環境にWallarmフィルタノードをデプロイし、フィルトレーションモードを`monitoring`に設定してください。
+4. Wallarmソリューションの運用、スケール、および監視方法について学び、新しいネットワークコンポーネントの安定性を確認してください。
+5. 本番環境にWallarmフィルタノードをデプロイし、フィルトレーションモードを`monitoring`に設定してください。
+6. 新しいWallarmコンポーネントのために、適切な構成管理および監視プロセスを実施してください。
+7. Wallarmクラウド‑ベースのバックエンドがアプリケーションの動作を把握できるよう、テスト環境および本番環境を含むすべての環境で、フィルタノードを経由してトラフィックを7～14日間流し続けてください。
+8. すべての非本番環境で`blocking`フィルトレーションモードを有効にし、自動または手動テストを用いて保護対象のアプリケーションが期待どおりに動作していることを確認してください。
+9. 本番環境で`blocking`フィルトレーションモードを有効にし、利用可能な方法でアプリケーションが期待どおりに動作していることを確認してください。
 
 !!! info
-    フィルタモードを設定するために、[こちらの手順](../../configure-wallarm-mode.md)を使用してください。
+    フィルトレーションモードの設定については、[こちらの手順](../../configure-wallarm-mode.md)をご参照ください。
 
-## 新しいWallarmノード変更の段階的な展開
+## 新しいWallarmノード変更の段階的導入
 
-時折、既存のWallarmインフラストラクチャで変更が必要な場合があります。組織の変更管理ポリシーによっては、潜在的にリスクのある変更をすべて非プロダクション環境でテストし、その後プロダクション環境で変更を適用することが求められる場合もあります。
+時折、既存のWallarmインフラストラクチャに変更が必要になる場合があります。組織の変更管理ポリシーに応じ、潜在的にリスクのある変更を非本番環境でテストし、その後本番環境に変更を適用する必要があるかもしれません。
 
-以下のアプローチが、さまざまなWallarmコンポーネントや特性の設定をテストし、段階的に変更することを推奨します：
-* [すべてのフォームファクタでのWallarmフィルタリングノードの低レベル設定](#low-level-configuration-of-wallarm-filtering-nodes-in-all-form-factors)
+以下の方法が、各Wallarmコンポーネントや機能の設定変更をテストし段階的に実施するために推奨されます:
+* [あらゆる形状のWallarmフィルタノードの低レベル設定](#low-level-configuration-of-wallarm-filtering-nodes-in-all-form-factors)
 * [Wallarmノードルールの設定](#configuration-of-wallarm-node-rules)
 
-### 全形態でのWallarmフィルタリングノードの低レベル設定
+### あらゆる形状のWallarmフィルタノードの低レベル設定
 
-フィルタリングノードの低レベル設定は、Docker環境変数、提供されたNGINX設定ファイル、KubernetesのIngressコントローラパラメータなどを通じて行われます。設定の方法は[展開オプション](../../../installation/supported-deployment-options.md)により異なります。
+フィルタノードの低レベル設定は、Docker環境変数、提供されたNGINX設定ファイル、Kubernetes Ingressコントローラーのパラメータ等を通じて実施されます。設定方法は[展開オプション](../../../installation/supported-deployment-options.md)に依存します。
 
-低レベルの設定は、インフラストラクチャリソースの既存の変更管理プロセスを使用して、異なる顧客環境ごとに簡単に個別に管理することができます。
+低レベル設定は、既存のインフラ資源の変更管理プロセスを用いることで、異なる顧客環境ごとに個別に管理しやすくなります。
 
 ### Wallarmノードルールの設定
 
-各ルールレコードは、[異なるセット](how-wallarm-in-separated-environments-works.md#resource-identification)のアプリケーションインスタンスIDまたは`HOST`リクエストヘッダーに関連付けることができるため、以下のオプションが推奨されます：
+各ルールレコードは[異なるセット](how-wallarm-in-separated-environments-works.md#resource-identification)のアプリケーションインスタンスIDまたは`HOST`リクエストヘッダーに関連付け可能なため、以下のオプションを推奨します:
 
-* 新しい設定をまずテスト環境または開発環境に適用し、機能を確認した後、プロダクション環境に対する変更を適用します。
-* `Create regexp-based attack indicator`(正規表現に基づいた攻撃指標を作成)ルールを`Experimental`(実験的)モードで使用します。 このモードでは、ルールを間違って有効なエンドユーザーリクエストをブロックするリスクなしに、直接プロダクション環境にデプロイできます。
+* まず、テストまたは開発環境に新しい設定を適用し、機能を確認した上で、本番環境に変更を適用してください。
+* `Create regexp-based attack indicator`ルールを`Experimental`モードで使用してください。このモードを利用することで、本番環境に直接ルールをデプロイして、正当なエンドユーザリクエストが誤ってブロックされるリスクを回避できるようになります。
 
     ![Creating experimental rule](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/define-attack-experimental.png)
 
-* `Set filtration mode`(フィルターモードの設定)ルールを使用して、特定の環境やリクエストに対するWallarmのフィルタリングモードを制御します。 このルールは、Wallarm保護を段階的に展開し、新たなエンドポイントや他のリソースを異なる環境で保護する方法に追加の柔軟性を提供します。 デフォルトでは、[`wallarm_mode`](../../configure-parameters-en.md#wallarm_mode)値は、[`wallarm_mode_allow_override`](../../configure-parameters-en.md#wallarm_mode_allow_override)設定に応じて使用されます。
+* `Set filtration mode`ルールを使用し、特定環境およびリクエストに対するWallarmフィルトレーションモードを制御してください。このルールにより、新しいエンドポイントなどの保護対象リソースへWallarm保護を段階的に展開する際の柔軟性が向上します。デフォルトでは、[`wallarm_mode`](../../configure-parameters-en.md#wallarm_mode)の値が、[`wallarm_mode_allow_override`](../../configure-parameters-en.md#wallarm_mode_allow_override)の設定に依存して使用されます。
 
     ![Creating a rule to overwrite the filtration mode](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/rule-overwrite-filtering-mode.png)

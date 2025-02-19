@@ -1,18 +1,19 @@
-[link-ruby]: http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
+```markdown
+[link-ruby]:        http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
 
 # Cookieパーサー
 
-**Cookie**パーサーは、ベースラインリクエスト内のCookieヘッダーの内容に基づいてハッシュテーブルを作成します。このハッシュテーブルの要素は、Cookieの名前を用いて参照する必要があります。
+**Cookie**パーサーはベースラインリクエストのCookieヘッダーの内容に基づくハッシュテーブルを作成します。 このハッシュテーブルの各要素は、Cookieの名前を使用して参照する必要があります。
 
-!!! info "ポイント内の正規表現"
-    ポイント内のクッキー名は、[Rubyプログラミング言語][link-ruby]の正規表現とすることができます。
+!!! info "ポイントにおける正規表現"
+    ポイント内のCookie名は、[Ruby programming language][link-ruby]の正規表現にできます。
 
-!!! warning "ポイント内でのCookieパーサーの使用"
-    Cookieパーサーは、ベースラインリクエストのCookieヘッダーを参照するHeaderフィルターと一緒に、ポイント内でのみ使用することができます。
-
+!!! warning "ポイントでのCookieパーサーの使用"
+    Cookieパーサーは、ベースラインリクエストのCookieヘッダーを参照するHeaderフィルターと併用してのみ、ポイントで使用できます。
+ 
 **例：** 
 
-次のような
+次の
 
 ```
 GET /login/index.php HTTP/1.1
@@ -20,27 +21,28 @@ Host: example.com
 Cookie: id=01234; username=admin
 ```
 
-リクエストに対して、HTTPパーサーとCookieパーサーは対応するヘッダーデータを持つハッシュテーブルを作成します。
+リクエストに対して、HTTPパーサーおよびCookieパーサーは、対応するヘッダーデータを用いてハッシュテーブルを作成します。
 
-Headerフィルターは次のハッシュテーブルを参照します：
+Headerフィルターは、次のハッシュテーブルを参照します:
 
-| ヘッダー名  | ヘッダー値               |
-|-------------|--------------------------|
-| Host        | example.com              |
-| Cookie      | id=01234; username=admin |
+| ヘッダー名   | ヘッダー値             |
+|---------------|--------------------------|
+| Host          | example.com              |
+| Cookie        | id=01234; username=admin |
 
-このハッシュテーブルでは、ヘッダー名がキーで、対応するヘッダーの値がハッシュテーブルの値になります。
+このハッシュテーブルでは、ヘッダー名がキーとなり、対応するヘッダーの値がハッシュテーブルの値となります。
 
-`HEADER_Cookie_value`ポイントを使用して、Cookieを文字列値として操作します。現在の例では、このポイントは`id=01234; username=admin`文字列を参照します。
+Cookieを文字列値として操作するためには`HEADER_Cookie_value`ポイントを使用します。本例では、このポイントは`id=01234; username=admin`文字列を指します。
 
-Cookieパーサーは次のハッシュテーブルを作成します：
+Cookieパーサーは、次のハッシュテーブルを作成します:
 
 | Cookie名 | Cookie値  |
-|----------|-----------|
-| id       | 01234     |
-| username | admin     |
+|-------------|---------------|
+| id          | 01234         |
+| username    | admin         |
 
-Cookieパーサーは、Headerフィルターが参照するハッシュテーブルから取得したCookieヘッダーのデータに基づいてハッシュテーブルを作成します。このハッシュテーブルでは、Cookie名がキーで、対応するCookieの値がハッシュテーブルの値になります。
+Cookieパーサーは、Headerフィルターによって参照されるハッシュテーブルから取得したCookieヘッダーデータを基にハッシュテーブルを作成します。このハッシュテーブルでは、Cookie名がキーとなり、対応するCookieの値がハッシュテーブルの値となります。
 
-* `HEADER_Cookie_COOKIE_id_value`ポイントは、Cookieパーサーが作成したハッシュテーブルから`id`キーに対応する`01234`値を参照します。
-* `HEADER_Cookie_COOKIE_username_value`ポイントは、Cookieパーサーが作成したハッシュテーブルから`username`キーに対応する`admin`値を参照します。
+* `HEADER_Cookie_COOKIE_id_value`ポイントはCookieパーサーによって作成されたハッシュテーブルの`id`キーに対応する`01234`の値を指します。
+* `HEADER_Cookie_COOKIE_username_value`ポイントはCookieパーサーによって作成されたハッシュテーブルの`username`キーに対応する`admin`の値を指します。
+```

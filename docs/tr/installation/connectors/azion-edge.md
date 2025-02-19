@@ -1,6 +1,1 @@
----
-search:
-  exclude: true
----
-
---8<-- "latest-tr/installation/cdn/azion-edge.md"
+--8<-- "latest-tr/installation/connectors/azion-edge.md"

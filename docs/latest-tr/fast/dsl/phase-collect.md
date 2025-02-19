@@ -7,101 +7,101 @@
 # Toplama Aşaması
 
 !!! info "Aşamanın Kapsamı"
-    Bu aşama, bir modifiye edici genişletme içinde kullanılır ve işleminin gerekli olmadığı bir seçenektir (`collect` bölümü YAML dosyasında ya bulunmayabilir ya da bulunabilir).
-    
-    Ayrıca, bu aşama, tekil şartın faydalanılması nedeniyle bir nonmodifying uzantısı tarafından da dolaylı olarak kullanılır.
-    
-    Genişletme türlerini ayrıntılı olarak [burada][link-ext-logic] okuyun.
+    Bu aşama, değiştiren bir uzantıda kullanılır ve çalışması için isteğe bağlıdır (YAML dosyasında `collect` bölümü bulunmayabilir veya mevcut olabilir).
 
-!!! info "İstek unsurlarının tanımlama sözdizimi"
-    FAST bir genişletme oluştururken, işleme gerekli istek unsurlarını doğru bir şekilde tanımlayabilmeniz için uygulamaya gönderilen HTTP isteği ve uygulamadan alınan HTTP yanıtının yapısını anlamalısınız.
-    
-    Detaylı bilgiyi görmek için bu [bağlantıya][link-points] devam edin.
+    Ayrıca, bu aşama, değişiklik yapmayan bir uzantı tarafından, bu uzantı türü benzersizlik koşulunu kullandığından dolayı örtük olarak kullanılır.
 
- Bu aşama, belirlenen durumu karşılayan tüm temel istekleri toplar. Toplama kararını verirken, bu aşama, test çalışması sırasında zaten toplanmış olan istekler hakkındaki bilgileri kullanır.
+    Uzantı türleri hakkında detaylı bilgiyi [buradan][link-ext-logic] okuyabilirsiniz.
 
-Temel istek toplama prosedürü gerçek zamanlıdır. İsteklerin her biri, FAST düğümünün temel istekleri yazdığı sırayla işlenir. İsteklerin toplanması ve Toplama aşamasında işlenmesi için isteklerin yazma sürecinin tamamlanmasını beklemeye gerek yoktur.
+!!! info "İstek öğelerinin tanımlama sözdizimi"
+    Bir FAST uzantısı oluştururken, üzerinde çalışmak istediğiniz istek öğelerini doğru biçimde tanımlayabilmek için, uygulamaya gönderilen HTTP isteğinin ve uygulamadan alınan HTTP yanıtının yapısını anlamanız gerekmektedir.
 
-## Tekillik Şartı
+    Detaylı bilgi için bu [linkten][link-points] devam edin.
 
-Tekillik şartı, belirlenen kritere göre tekil olmayan temel isteklerin kalan fazlarda işleme devam etmesine izin vermez. Bu filtrelenen istekler için hiçbir test isteği oluşturulmaz. Bu, aynı türden birden çok temel istek alan hedef uygulamanın yükünü azaltmak için kullanışlı olabilir.
+Bu aşama, belirlenen koşulu karşılayan tüm temel istekleri toplar. Bir isteğin toplanıp toplanmayacağına karar vermek için, aşama, test çalışması sırasında zaten toplanmış istekler hakkındaki bilgileri kullanır.
 
-Alınan her isteğin tekliği, daha önce alınan isteklerdeki verilere dayanarak belirlenir.
+Temel istek toplama işlemi gerçek zamanlı olarak gerçekleştirilir. İsteklerin her biri, FAST düğümünün temel istekleri yazdığı sırayla işlenecektir. İsteklerin işlenip Toplama aşaması tarafından toplanması için, istek yazma sürecinin tamamlanmasını beklemeye gerek yoktur.
 
-![Tekillik şartı ile Toplama aşaması][img-collect-uniq]
+## Benzersizlik Koşulu
 
-Tekillik şartı, temel isteğin tekiliğinin belirlenmesi için bir istekte kullanılması gereken unsurların listesini tanımlar.
+Benzersizlik koşulu, belirtilen kriterlere göre benzersiz olmayan temel isteklerin kalan aşamalarda işlenmesine izin vermez. Bu filtrelenen istekler için hiçbir test isteği oluşturulmaz. Bu durum, aynı tipte birden fazla temel istek alındığında hedef uygulamanın yükünü azaltmada yararlı olabilir.
 
-Temel bir istek aldığında, Toplama aşamasındaki genişletme, listedeki isteğin her bir unsuru için aşağıdaki işlemleri gerçekleştirir:
-1. Temel istekte böyle bir unsur yoksa, listeki bir sonraki unsura devam edin.
-2. Temel istekte böyle bir unsur var ve bu unsura ait veri tekilse (yani, daha önce alınan temel isteklerin verileriyle eşleşmiyorsa), bu temel isteği tekil olarak kabul edin ve onu bir sonraki aşamaya aktarın. Bu istek unsuru verilerini hatırlayın.
-3. Temel istekte böyle bir unsur var ve bu unsura ait veri tekil değilse (yani, daha önce alınan bir temel istek verisiyle eşleşiyorsa), tekil şartı karşılamadığı için bu temel isteği atın. Verilen istek için genişletme çalıştırılmayacaktır.
-4. Liste sonuna ulaşıldıysa ve teklik için kontrol edilebilecek hiçbir işlem unsur bulunamadıysa, bu temel isteği atın. Bu istek için genişletme çalıştırılmayacaktır.
+Alınan her isteğin benzersizliği, daha önce alınan isteklerdeki verilere dayanılarak belirlenir.
 
-Tekillik şartını, baz isteğin tekiliğinin hangi unsurlarla belirleneceğini içeren `uniq` listesini kullanarak genişletmenin YAML dosyasındaki `collect` bölümünde açıklayabilirsiniz.
+![The Collect phase with the uniqueness condition][img-collect-uniq]
+
+Temel isteğin benzersizliğini belirlemek için kullanılacak istek öğelerinin listesi, benzersizlik koşulunda tanımlanır.
+
+Temel istek alındığında, Toplama aşamasındaki uzantı, listedeki her istek öğesi için aşağıdaki işlemleri gerçekleştirir:
+1. Temel istek içinde böyle bir öğe yoksa, listedeki bir sonraki öğeye geçin.
+2. Temel istek içinde böyle bir öğe varsa ve bu öğenin verisi benzersiz ise (yani, daha önce alınan temel isteklerin verileriyle eşleşmiyorsa), bu temel isteği benzersiz olarak değerlendirir ve sonraki aşamalara aktarır. Bu istek öğesinin verilerini kaydedin.
+3. Temel istek içinde böyle bir öğe varsa fakat bu öğenin verisi benzersiz değilse (yani, daha önce alınan temel istek verileriyle eşleşiyorsa), bu temel isteği benzersizlik koşulunu sağlamadığı için reddedin. Bu istek için uzantı çalıştırılmaz.
+4. Liste sonuna gelindiğinde ve benzersizliğini kontrol edebileceğiniz bir istek öğesi bulunamadığında, bu temel isteği reddedin. Bu istek için uzantı çalıştırılmaz.
+
+Temel isteğin benzersizliğinin tanımlanacağı öğeleri içeren `uniq` listesini kullanarak, benzersizlik koşulunu uzantının YAML dosyasındaki `collect` bölümünde tanımlayabilirsiniz.
 
 ```
 collect:
   - uniq:
-    - [istek unsuru]
-    - [istek unsuru 1, istek unsuru 2, …, istek unsuru N]
+    - [request element]
+    - [request element 1, request element 2, …, request element N]
     - testrun
 ```  
 
-Listenin istekteki elemanı [Ruby düzenli ifade biçiminde düzenli ifadeleri][link-ruby-regexp] içerebilir.
+Listedeki istek öğesi, [Ruby düzenli ifade formatında düzenli ifadeler][link-ruby-regexp] içerebilir.
 
-`uniq` tekillik koşulu, istekteki verileri kullanarak baz isteğin tekiliğini kontrol etmek için istek unsurlarının dizisini içerir. `testrun` parametresi de kullanılabilir.
+`uniq` benzersizlik koşulu, temel isteğin benzersizliğini kontrol etmek için kullanılan verileri içeren istek öğeleri dizisini kapsar. Ayrıca `testrun` parametresi de kullanılabilir.
 
-Tekillik koşulu parametreleri şunlardır:
+Benzersizlik koşulu parametreleri aşağıdaki gibidir:
 
-* **`- [istek unsuru]`**
+* **`- [request element]`**
     
-    İsteğin tekil olduğu kabul edilen istekte istek unsuru unique veri olmalıdır.
+    İsteğin benzersiz kabul edilebilmesi için, istek öğesi benzersiz veriler içermelidir.
     
     ??? info "Örnek"
-        `- [GET_uid_value]` — isteğin tekiliği, `uid` GET parametre verisi tarafından belirlenir (yani, genişletme, `uid` GET parametresinin benzersiz değere sahip her bir baz isteği için çalışmalıdır).
+        `- [GET_uid_value]` — isteğin benzersizliği, `uid` GET parametresi verisi ile tanımlanır (diğer bir deyişle, uzantı, `uid` GET parametresinin benzersiz değere sahip her temel istekte çalıştırılmalıdır).
 
-        * `example.com/example/app.php?uid=1` tekil bir istektir.
-        * `example.com/demo/app.php?uid=1` tekil bir istek değildir.
-        * `example.com/demo/app.php?uid=` tekil bir istektir.
-        * `example.org/billing.php?uid=1` tekil bir istek değildir.
-        * `example.org/billing.php?uid=abc` tekil bir istektir.
+        * `example.com/example/app.php?uid=1` benzersiz bir istektir.
+        * `example.com/demo/app.php?uid=1` benzersiz bir istek değildir.
+        * `example.com/demo/app.php?uid=` benzersiz bir istektir.
+        * `example.org/billing.php?uid=1` benzersiz bir istek değildir.
+        * `example.org/billing.php?uid=abc` benzersiz bir istektir.
 
-* **`- [istek unsuru 1, istek unsuru 2, …, istek unsuru N]`**
+* **`- [request element 1, request element 2, …, request element N]`**
     
-    İsteğin N elementler dizisini içermeli ve bu set içindeki istek unsuru verilerinin her biri isteğin tekil olduğu kabul edilen için benzersiz olmalıdır.
+    İstek, N öğeden oluşan bir set içermeli ve bu setlerdeki her istek öğesi verisi, isteğin benzersiz kabul edilebilmesi için benzersiz olmalıdır.
     
     ??? info "Örnek 1"
-        `- [GET_uid_value, HEADER_COOKIE_value]` — İsteğin tekiliği, `uid` GET parametre verisi ve `Cookie` HTTP başlık verisi tarafından belirlenir (yani, genişletme, `uid` GET parametresinin ve `Cookie` başlığının tekil değerine sahip her bir baz isteği için çalışmalıdır).
+        `- [GET_uid_value, HEADER_COOKIE_value]` — isteğin benzersizliği, `uid` GET parametresi verisi ve `Cookie` HTTP başlık verisi ile belirlenir (diğer bir deyişle, uzantı, `uid` GET parametresi ve `Cookie` başlığının benzersiz değere sahip olduğu her temel istekte çalıştırılmalıdır).
 
-        * `example.org/billing.php?uid=1, Cookie: client=john` tekil bir istektir.
-        * `example.org/billing.php?uid=1, Cookie: client=ann` tekil bir istektir.
-        * `example.com/billing.aspx?uid=1, Cookie: client=john` tekil bir istek değildir.
+        * `example.org/billing.php?uid=1, Cookie: client=john` benzersiz bir istektir.
+        * `example.org/billing.php?uid=1, Cookie: client=ann` benzersiz bir istektir.
+        * `example.com/billing.aspx?uid=1, Cookie: client=john` benzersiz bir istek değildir.
     
     ??? info "Örnek 2"
-        `- [PATH_0_value, PATH_1_value]` — İsteğin tekiliğini ilk ve ikinci yolu unsurlarının çifti tarafından belirleyin (diğer bir deyişle, `PATH_0` ve `PATH_1` parametrelerini içeren çiftin tekil değeri olan her bir baz isteği için genişletmeyi çalıştırın).
+        `- [PATH_0_value, PATH_1_value]` — isteğin benzersizliğini, path'in ilk ve ikinci öğesinin ikilisi ile tanımlayın (diğer bir deyişle, uzantı, `PATH_0` ve `PATH_1` parametrelerini içeren çiftin benzersiz değere sahip olduğu her temel istekte çalıştırılmalıdır).
             
-        Wallarm, element işleme sırasında istek unsurlarının ayrıştırılmasını gerçekleştirir. `/en-us/apps/banking/` şeklinde olan her URI yolunun Path ayrıştırıcısı, yolu unsurlarını PATH dizisine koyar.
+        Wallarm, istek öğelerinin işlenmesi sırasında ayrıştırma yapar. `/en-us/apps/banking/` biçimindeki her URI path için, Path ayrıştırıcısı, path'in her bir öğesini PATH dizisine yerleştirir.
             
-        Her bir dizi unsuru değerine dizinini kullanarak erişebilirsiniz. Önceki bahsedilen `/en-us/apps/banking/` yolu için ayrıştırıcı aşağıdaki verileri sunar:
+        Dizinin her öğesine indeks kullanılarak erişilebilir. Daha önce bahsedilen `/en-us/apps/banking/` path için, ayrıştırıcı aşağıdaki verileri sağlar:
 
         * `"PATH_0_value": "en-us"`
         * `"PATH_1_value": "apps"`
         * `"PATH_2_value": "banking"`
             
-        Bu nedenle, `[PATH_0_value, PATH_1_value]` için teklik koşulu, ilk ve ikinci unsurda farklı değerler içeren herhangi bir istek tarafından karşılanır.
+        Böylece, `[PATH_0_value, PATH_1_value]` benzersizlik koşulu, path'in ilk ve ikinci öğelerinde farklı değerlere sahip her istek tarafından karşılanacaktır.
 
-        * `example.com/en-us/apps/banking/charge.php` tekil bir istektir.
-        * `example.com/en-us/apps/banking/vip/charge.php` tekil bir istek değildir.
-        * `example.com/de-de/apps/banking/vip/charge.php` tekil bir istektir.
+        * `example.com/en-us/apps/banking/charge.php` benzersiz bir istektir.
+        * `example.com/en-us/apps/banking/vip/charge.php` benzersiz bir istek değildir.
+        * `example.com/de-de/apps/banking/vip/charge.php` benzersiz bir istektir.
     
 * **`- testrun`**
     
-    Test isteği başarıyla oluşturulduğunda (yani diğer tüm aşamalar geçilirse) genişletme bir test çalışmasında bir kez çalıştırılacaktır.
+    Test isteği başarıyla oluşturulursa (yani, diğer tüm aşamalar geçilirse) uzantı, test çalışması sırasında bir kez çalıştırılır.
     
-    Örneğin, alınan baz isteğine dayanarak hiçbir test isteği oluşturulamazsa, Match aşamasında baz isteklerin atılması nedeniyle Toplama aşamasındaki genişletme, onlardan biri Match aşamasından geçirilene ve ardından hedef uygulamaya yönelik test istekleri bunun temelinde oluşturulana kadar baz isteklerin toplamasına devam eder.
+    Örneğin, eşleşme aşamasında temel isteklerin reddedilmesi nedeniyle alınan temel isteğe dayalı olarak hiçbir test isteği oluşturulamıyorsa, Toplama aşamasındaki uzantı, temel isteklerden biri Eşleşme aşaması tarafından işlenene kadar temel istekleri toplamaya devam eder ve ardından bu isteğe dayalı olarak hedef uygulama için test istekleri oluşturulur.
     
-    `uniq` listesinde herhangi bir istek unsuru kullanmanıza izin verilmez eğer zaten `testrun` parametresini kullanıyorsanız. `uniq` tekilik koşulu tek bir unsuru içerecektir.
+    `uniq` listesinde bulunan herhangi bir istek öğesini, `testrun` parametresini zaten kullanıyorsanız kullanmak yasaktır. `uniq` benzersizlik koşulu, tek bir öğe içerecektir.
     
     ```
     collect:
@@ -109,9 +109,9 @@ Tekillik koşulu parametreleri şunlardır:
         - testrun 
     ```
     
-    Eğer `uniq` listesinde birden çok unsur varsa, baz isteğin tekil olarak tanımlanabilmesi için isteğin `uniq` listesinden en az bir tekil parametreye sahip olması gereklidir. 
+    Eğer `uniq` listesinde birden fazla öğe varsa, temel isteğin benzersiz olarak tanımlanabilmesi için, isteğin `uniq` listesindeki en az bir benzersiz parametreye sahip olması gerekmektedir.
 
 
 
-!!! info "Toplama aşaması parametreleri"
-    Şu anda, Toplama aşamasında sadece temel istekler için tekilik koşulu desteklenmektedir. İleride, bu aşama işlevleri genişletilebilir.
+!!! info "Toplama Aşaması Parametreleri"
+    Şu anda, Toplama aşamasında yalnızca alınan temel istekler için benzersizlik koşulu desteklenmektedir. Gelecekte, bu aşamanın işlevselliği genişletilebilir.

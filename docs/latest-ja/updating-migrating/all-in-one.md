@@ -1,137 +1,57 @@
-[statistics-service-all-parameters]:        ../admin-en/configure-statistics-service.md
-[img-attacks-in-interface]:                 ../images/admin-guides/test-attacks-quickstart.png
-[tarantool-status]:                         ../images/tarantool-status.png
-[configure-proxy-balancer-instr]:           ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[sqli-attack-docs]:                         ../attacks-vulns-list.md#sql-injection
-[xss-attack-docs]:                          ../attacks-vulns-list.md#crosssite-scripting-xss
+[statistics-service-all-parameters]:        ../admin-en/configure-statistics-service.md  
+[img-attacks-in-interface]:                 ../images/admin-guides/test-attacks-quickstart.png  
+[tarantool-status]:                         ../images/tarantool-status.png  
+[configure-proxy-balancer-instr]:           ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md  
+[ptrav-attack-docs]:                        ../attacks-vulns-list.md#path-traversal
 
-# オールインワンインストーラーを使用してWallarmノードをアップグレードする
+# Wallarm NGINXノードのAll-in-Oneインストーラーを使用したアップグレード
 
-これらの手順では、[オールインワンインストーラー](../installation/nginx/all-in-one.md)を使用してインストールしたWallarmノード4.6.xをバージョン4.6.x+にアップグレードする手順を説明します。
+本手順は、[all-in-one installer](../installation/nginx/all-in-one.md)を使用してインストールされたWallarmノード4.xをバージョン5.0へアップグレードする手順について説明します。
+
+!!! info "Wallarmサービスの再インストールが必要です"
+    4.xバージョンから[all-in-one installer](../installation/nginx/all-in-one.md)を使用してアップグレードする場合、新規インストールを実施することを推奨します。安全な手順としては、新しいマシンに新しいノードをインストールし、トラフィックを新マシンにリダイレクトした上で、古いマシンを削除する方法です。
+    
+    もしくは、現在のマシン上でサービスを停止して削除し、その後ノードを再インストールすることも可能ですが、この方法ではダウンタイムが発生する可能性があるため、推奨されません。
+
+    本記事では、最も安全な移行方法について説明します。
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/all-in-one-upgrade-requirements.md"
+--8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
 
-## アップグレード手順
+<!-- ## Upgrade procedure
 
-フィルタリングノードとpostanalyticsモジュールがどのようにインストールされているかにより、アップグレード手順が異なります：
+The upgrade procedure differs depending on how filtering node and postanalytics modules are installed:
 
-* [同じサーバー上](#filtering-node-and-postanalytics-on-the-same-server)：モジュールは一緒にアップグレードされます
-* [異なるサーバー上](#filtering-node-and-postanalytics-on-different-servers)：**最初に** postanalyticsモジュールをアップグレードし、**次に** フィルタリングモジュールをアップグレードします
+* [On the same server](#filtering-node-and-postanalytics-on-the-same-server): modules are upgraded altogether
+* [On different servers](#filtering-node-and-postanalytics-on-different-servers): **first** upgrade the postanalytics module and **then** the filtering module -->
 
-## 同じサーバー上のフィルタリングノードとpostanalytics
+<!-- ## Filtering node and postanalytics on the same server
 
-以下の手順を使用して、同じサーバー上にオールインワンインストーラーを使用してインストールされたフィルタリングノードとpostanalyticsモジュールを一度にアップグレードします。
+Use the procedure below to upgrade altogether the filtering node and postanalytics modules installed using all-in-one installer on the same server. -->
 
-### ステップ1：Wallarmトークンを準備する
+## Step 1: クリーンなマシンに新しいノードバージョンをインストールする
 
-ノードをアップグレードするには、[タイプの一つ](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)のWallarmトークンが必要です。トークンを準備するには：
+最新バージョンのノードを**新規マシン**に、最新バージョンのNGINXと共にインストールしてください。ガイドに従ってください。ガイドではマシンの要件についても説明しています。
 
-=== "APIトークン"
+* [同一サーバー上のFilteringおよびpostanalyticsモジュール](../installation/nginx/all-in-one.md)
+* [異なるサーバー上のFilteringおよびpostanalyticsモジュール](../admin-en/installation-postanalytics-en.md)
 
-    1. Wallarm Consoleを開き、**設定** → **APIトークン**をクリックします、[USクラウド](https://us1.my.wallarm.com/settings/api-tokens)または[EUクラウド](https://my.wallarm.com/settings/api-tokens)。
-    1. `Deploy`ソースロールを持つAPIトークンを見つけるか作成します。
-    1. このトークンをコピーします。
+インストール中に、前のノードで使用していた設定ファイルを引き継いで使用できます。ノードの設定には変更がありません。
 
-=== "ノードトークン"
+その後、新しいノードで処理するために、トラフィックを新マシンにリダイレクトしてください。
 
-    アップグレードのために、インストール時に使用した同じノードトークンを使用します：
+## Step 2: 古いノードを削除する
 
-    1. Wallarm Consoleを開き、**ノード**を選択します、[USクラウド](https://us1.my.wallarm.com/nodes)または[EUクラウド](https://my.wallarm.com/nodes)。
-    1. 既存のノードグループで、ノードのメニュー→ **トークンをコピー**を使用してトークンをコピーします。
+1. トラフィックが新マシンにリダイレクトされ、クラウドに保存されたデータ（ルール、IPリスト）が同期されたら、テスト攻撃を実施しルールが期待通りに動作することを確認してください。
+2. Wallarm Consoleの**Nodes**で対象のノードを選択し、**Delete**をクリックして古いノードを削除してください。
+3. 操作を確認してください。
+    
+    ノードがクラウドから削除されると、アプリケーションへのリクエストのフィルタリングが停止します。Filteringノードの削除は元に戻せません。ノードはノード一覧から恒久的に削除されます。
 
-### ステップ2：最新版のWallarm一体型インストーラーをダウンロードする
-
---8<-- "../include-ja/waf/installation/all-in-one-installer-download.md"
-
-### ステップ3：オールインワンWallarmインストーラーを実行する
-
---8<-- "../include-ja/waf/installation/all-in-one-installer-run.md"
-
-### ステップ4：NGINXを再起動する
-
---8<-- "../include-ja/waf/installation/restart-nginx-systemctl.md"
-
-### ステップ5：新しいノードの操作をテストする
-
-新しいノードの操作をテストするには：
-
-1. テスト[SQLI][sqli-attack-docs]と[XSS][xss-attack-docs]攻撃を含むリクエストを保護されたリソースアドレスに送信します：
+4. 古いノードがインストールされているマシンを削除するか、Wallarmノードのコンポーネントだけを削除してください:
 
     ```
-    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    sudo systemctl stop wallarm
+    sudo rm -rf /opt/wallarm
     ```
-
-1. Wallarm Consoleを開き、**イベント**セクションを選択します、[USクラウド](https://us1.my.wallarm.com/search)または[EUクラウド](https://my.wallarm.com/search)、攻撃がリストに表示されていることを確認します。
-1. クラウドから新しいノードに保存されたデータ（ルール、IPリスト）が同期されると、ルールが期待通りに動作することを確認するためにテスト攻撃を実行します。
-
-## 異なるサーバー上のフィルタリングノードとpostanalytics
-
-!!! warning "フィルタリングノードとpostanalyticsモジュールのアップグレード手順の順序"
-    フィルタリングノードとpostanalyticsモジュールが異なるサーバーにインストールされている場合、フィルタリングノードのパッケージを更新する前に、postanalyticsパッケージをアップグレードする必要があります。
-
-### ステップ1：Wallarmトークンを準備する
-
-ノードをアップグレードするには、[タイプの一つ](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)のWallarmトークンが必要です。トークンを準備するには：
-
-=== "APIトークン"
-
-    1. Wallarm Consoleを開き、**設定** → **APIトークン**をクリックします、[USクラウド](https://us1.my.wallarm.com/settings/api-tokens)または[EUクラウド](https://my.wallarm.com/settings/api-tokens)。
-    1. `Deploy`ソースロールを持つAPIトークンを見つけるか作成します。
-    1. このトークンをコピーします。
-
-=== "ノードトークン"
-
-    アップグレードのために、インストール時に使用した同じノードトークンを使用します：
-
-    1. Wallarm Consoleを開き、**ノード**を選択します、[USクラウド](https://us1.my.wallarm.com/nodes)または[EUクラウド](https://my.wallarm.com/nodes)。
-    1. 既存のノードグループで、ノードのメニュー→ **トークンをコピー**を使用してトークンをコピーします。
-
-### ステップ2：最新版のWallarm一体型インストーラーをpostanalyticsマシンにダウンロードする
-
-このステップは、postanalyticsマシンで実行されます。
-
---8<-- "../include-ja/waf/installation/all-in-one-installer-download.md"
-
-### ステップ3：オールインワンWallarmインストーラーを実行してpostanalyticsをアップグレードする
-
-このステップは、postanalyticsマシンで実行されます。
-
---8<-- "../include-ja/waf/installation/all-in-one-postanalytics.md"
-
-### ステップ4：新しいバージョンのオールインワンのWallarmインストーラーをフィルタリングノードマシンにダウンロードする
-
-このステップは、フィルタリングノードマシンで実行されます。
-
---8<-- "../include-ja/waf/installation/all-in-one-installer-download.md"
-
-### ステップ5：オールインワンWallarmインストーラーを実行してフィルタリングノードをアップグレードする
-
-このステップは、フィルタリングノードマシンで実行されます。
-
-オールインワンインストーラーを使用してフィルタリングノードを別途アップグレードするには、次を使用します：
-
-=== "APIトークン"
-    ```bash
-    # x86_64バージョンを使用している場合：
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh filtering
-
-    # ARM64バージョンを使用している場合：
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh filtering
-    ```        
-
-    `WALLARM_LABELS`変数はノードが追加されるグループを設定します（Wallarm Console UIでのノードの論理的なグルーピングに使用されます）。
-
-=== "ノードトークン"
-    ```bash
-    # x86_64バージョンを使用している場合：
-    sudo sh wallarm-4.6.12.x86_64-glibc.sh filtering
-
-    # ARM64バージョンを使用している場合：
-    sudo sh wallarm-4.6.12.aarch64-glibc.sh filtering
-    ```
-
-### ステップ6：フィルタリングノードと別々のpostanalyticsモジュールの相互作用を確認します
-
---8<-- "../include-ja/waf/installation/all-in-one-postanalytics-check.md"

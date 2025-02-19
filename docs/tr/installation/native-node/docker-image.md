@@ -1,1 +1,1 @@
---8<-- "latest/installation/native-node/docker-image.md"
+--8<-- "latest-tr/installation/native-node/docker-image.md"

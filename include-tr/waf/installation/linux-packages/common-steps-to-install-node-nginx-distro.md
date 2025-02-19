@@ -20,7 +20,7 @@
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.8/x86_64/wallarm-node-repo-4.8-0.el7.noarch.rpm
     ```
-=== "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
@@ -31,13 +31,13 @@
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.8/x86_64/wallarm-node-repo-4.8-0.el8.noarch.rpm
     ```
 
-## 2. Wallarm paketleri ile NGINX'i yükleyin
+## 2. Wallarm paketleri ile NGINX'i kurun
 
-Bu komut aşağıdaki paketleri yükler:
+Komut, aşağıdaki paketleri kurar:
 
-* NGINX için `nginx`
-* NGINX-Wallarm modülü için `libnginx-mod-http-wallarm` veya `nginx-mod-http-wallarm`
-* [postanalytics][install-postanalytics-docs] modülü, Tarantool veritabanı ve ek NGINX-Wallarm paketleri için `wallarm-node`
+* `nginx` - NGINX için
+* `libnginx-mod-http-wallarm` veya `nginx-mod-http-wallarm` - NGINX-Wallarm modülü için
+* `wallarm-node` - [postanalytics][install-postanalytics-docs] modülü, Tarantool veritabanı ve ek NGINX-Wallarm paketleri için
 
 === "Debian 10.x (buster)"
     ```bash
@@ -51,7 +51,7 @@ Bu komut aşağıdaki paketleri yükler:
     ```bash
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
-=== "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
@@ -72,7 +72,7 @@ Sistem kurulumu için yapılandırma dosyalarını kopyalayın:
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
-=== "AlmaLinux, Rocky Linux veya Oracle Linux 8.x"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```

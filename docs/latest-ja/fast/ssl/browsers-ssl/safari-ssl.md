@@ -7,52 +7,52 @@
 [img-trusted-cert]:         ../../../images/fast/ssl/common/browsers-ssl/safari-ssl/s-keychain-trusted-certificate.png
 [img-https-ok]:             ../../../images/fast/ssl/common/browsers-ssl/safari-ssl/s-https-ok.png
 
-#   Apple Safari用 FAST Node Self-signed SSL証明書のインストール
+# FAST Node自己署名SSL証明書のAppleSafariへのインストール
 
-Apple Safariブラウザに証明書をインストールするには、以下の手順を実行します。
+AppleSafariブラウザ用に証明書をインストールするには、以下の手順に従ってください。
 
-1.  ブラウザがFASTノードをHTTPおよびHTTPSプロキシとして使用するように設定していることを確認します。
+1.  ブラウザがFASTノードをHTTPおよびHTTPSプロキシとして使用するよう設定されていることを確認します。
 
-2.  ブラウザを使用して、任意のドメインから `cert.der` ファイルをHTTPで要求します。
+2.  ブラウザを使用して、任意のドメインからHTTP経由でファイル`cert.der`をリクエストします。
 
-    例えば、次のリンクのいずれかを使用できます。
+    例えば、下記のリンクのいずれかを使用できます:
 
     * <http://wallarm.get/cert.der>
     * <http://example.com/cert.der>
 
-    ブラウザは証明書ファイルをダウンロードします。設定により、そのファイルはデフォルトのダウンロードディレクトリに配置されるか、あなたが選択したディレクトリに配置されます。
+    ブラウザは証明書ファイルをダウンロードします。構成に応じて、ファイルは既定のダウンロードディレクトリまたは指定したディレクトリに保存されます。
     
-    ![自己署名FASTノード証明書の要求][img-cert-request]
+    ![自己署名のFASTノード証明書をリクエスト中][img-cert-request]
     
-    ダウンロードしたファイルを開きます。
+    ダウンロードしたファイルを開いてください。
 
-    ![ダウンロード済みの証明書][img-downloaded-cert]
+    ![ダウンロードした証明書][img-downloaded-cert]
 
-3.  Keychain Accessアプリケーションが証明書のインポートを提案します。
+3.  Keychain Accessアプリケーションが証明書のインポートを提案します。  
 
-    現在のユーザーまたはすべてのユーザーのために証明書をインストールできます。適切なオプションを選択し、**追加**ボタンをクリックします。
+    現在のユーザー用またはすべてのユーザー用に証明書をインストールできます。適切なオプションを選択し、**Add**ボタンを選んでください。
 
-    ![Keychain Access「証明書の追加」ウィンドウ][img-keychain-import]
+    ![Keychain Access「Add Certificates」ウィンドウ][img-keychain-import]
 
-4.  インポートされた証明書が信頼できない証明書として印付けされていることがわかります。証明書の名前と有効期限はイメージに示されているものとは異なることに注意してください。
+4.  インポートした証明書が信頼されていない証明書として表示されます。画像に示されているものとは名前や有効期限が異なる場合がありますのでご注意ください。
 
-    ![Keychain Accessアプリケーション内の信頼できない証明書][img-untrusted-cert]
+    ![Keychain Accessアプリケーションに表示される信頼されていない証明書][img-untrusted-cert]
 
-5.  証明書を信頼されたものに変換するために、証明書のプロパティウィンドウを開くためにそれをダブルクリックします。「信頼」リストを展開し、SSLについて**常に信頼**を選択します。
+5.  証明書を信頼済みに変換するには、証明書をダブルクリックして証明書プロパティウィンドウを開いてください。 「Trust」リストを展開し、SSLには**Always Trust**を選択します。
 
-    ![証明書のプロパティウィンドウ][img-cert-properties]
+    ![証明書プロパティウィンドウ][img-cert-properties]
 
-    オペレーションを続けるためにパスワードの入力が求められます。
+    続行するためにパスワードの入力が求められます。
 
-    ![クレデンシャルのプロンプト][img-credentials-prompt]
+    ![資格情報入力のプロンプト][img-credentials-prompt]
 
-    インポートされた証明書は信頼済みとしてマークされるべきです。
+    これで、インポートした証明書が信頼済みとして表示されるはずです。
     
-    ![Keychain Accessアプリケーション内の信頼済み証明書][img-trusted-cert]
+    ![Keychain Accessアプリケーションに表示される信頼済み証明書][img-trusted-cert]
 
-6.  証明書が正しくインストールされたことを確認します。そのために、HTTPS経由で任意のサイトに移動します。信頼できない証明書に関する警告メッセージなしに、HTTPSバージョンのサイトにリダイレクトされるはずです。
+6.  証明書が正しくインストールされているか確認します。確認するには、HTTPS経由で任意のサイトにアクセスしてください。信頼されていない証明書に関する警告メッセージなしに、サイトのHTTPSバージョンにリダイレクトされるはずです。
 
-    例えば、Google GruyereサイトのHTTPSバージョンにアクセスすることができます：
+    例えば、Google GruyereサイトのHTTPSバージョンにアクセスできます:
     <https://google-gruyere.appspot.com>
 
-    ![HTTPSが動作しています][img-https-ok]
+    ![HTTPSが正常に機能している][img-https-ok]

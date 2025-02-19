@@ -1,30 +1,28 @@
-# Wallarmノード2.18以下から4.6への許可リストと拒否リストの移行
+# Wallarm node 2.18以下から5.0への許可リストおよび拒否リストの移行
 
-Wallarmノード3.xから、IPアドレスの許可リストと拒否リストの設定方法が変更されました。このドキュメントでは、Wallarmノード2.18以下で設定された許可リストと拒否リストを最新のWallarmノードに移行する方法を説明します。
+Wallarm node 3.x以降、IPアドレスの許可リストおよび拒否リストの設定方法が変更されました。本書では、Wallarm node 2.18以下で設定された許可リストおよび拒否リストを最新のWallarm nodeへ移行する方法を説明します。
 
-## 何が変わったのか？
+## 何が変更されましたか？
 
-IPアドレスの許可リストと拒否リストの設定の変更点は次の通りです:
+IPアドレスの許可リストおよび拒否リストの設定は以下のように変更されました：
 
-* [`wallarm_acl_*`](/2.18/admin-en/configure-parameters-en/#wallarm_acl)のNGINXディレクティブ、[`acl`](/2.18/admin-en/configuration-guides/envoy/fine-tuning/#ip-denylisting-settings)のEnvoyパラメーター、および`WALLARM_ACL_*`環境変数は非推奨になりました。現在、IPリストの設定は次のように行います
+* NGINXディレクティブ [`wallarm_acl_*`](/2.18/admin-en/configure-parameters-en/#wallarm_acl)、Envoyパラメーター [`acl`](/2.18/admin-en/configuration-guides/envoy/fine-tuning/#ip-denylisting-settings)および`WALLARM_ACL_*`環境変数は非推奨となりました。IPリストは以下の方法で設定されます：
+    * IPの許可リストまたは拒否リスト機能を有効にするための追加手順は必要ありません。Wallarm nodeはデフォルトでWallarm CloudからIPアドレスリストをダウンロードし、受信リクエストの処理時にダウンロードしたデータを適用します。
+    * ブロックされたリクエストに対して返すブロックページおよびエラーコードは、`wallarm_acl_block_page`の代わりに[`wallarm_block_page`](../admin-en/configure-parameters-en.md#wallarm_block_page)ディレクティブを使用して設定されます。
+* 許可リストおよび拒否リストに登録されたIPアドレスはWallarm Consoleで管理されます。
+* [Wallarm Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)のIPアドレスはデフォルトで許可リストに登録されます。ScannerのIPアドレスを手動で許可リストに登録する必要はありません。
 
-    * IP許可リストまたは拒否リスト機能を有効にするための追加の手順は必要ありません。WallarmノードはデフォルトでWallarm CloudからIPアドレスリストをダウンロードし、着信リクエストの処理時にダウンロードされたデータを適用します。
-    * ブロックされたリクエストに対する応答のブロックページとエラーコードの設定は、`wallarm_acl_block_page`ではなく[`wallarm_block_page`](../admin-en/configure-parameters-en.md#wallarm_block_page)ディレクティブを使用して設定します。
-* 許可されたIPアドレスと拒否されたIPアドレスはWallarmのコンソール経由で管理されます。
-* [Wallarmの脆弱性スキャナ](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)のIPアドレスはデフォルトで許可リストに登録されています。スキャナーのIPアドレスを手動で許可リストに登録する必要はもうありません。
+## 許可リストおよび拒否リストの設定移行手順
 
-## 許可リストと拒否リストの設定移行の手順
+1. Wallarm accountに対して最新バージョンまでフィルタリングノードモジュールを更新している旨を[Wallarm technical support](mailto:support@wallarm.com)に連絡し、新しいIPリストロジックを有効にするよう依頼してください。
 
-1. フィルタリングノードモジュールを最新バージョンに更新し、Wallarmアカウントの新しいIPリストロジックを有効にするように[Wallarmのテクニカルサポート](mailto:support@wallarm.com)に依頼します。
-
-    新しいIPリストロジックが有効になったら、Wallarmコンソールを開き、セクション[**IPリスト**](../user-guides/ip-lists/overview.md)が利用可能であることを確認してください。
-2. マルチテナントのWallarmノードを更新する場合は、IPアドレスの拒否リストとマルチテナントのノード2.18以下の同期を行うスクリプトを削除してください。バージョン3.2からは、[IPリスト](../user-guides/ip-lists/overview.md)の手動統合はもう必要ありません。
-3. フィルタリングノードモジュールをバージョン4.6まで更新し、[適切な手順](general-recommendations.md#update-process)に従ってください。
-4. 許可リストから Wallarm Scanner IP アドレスをフィルタリングノードの設定ファイルから削除します。フィルタリングノード3.xから、Scanner IPアドレスはデフォルトで許可リストに登録されています。以前のWallarmノードバージョンでは、許可リストは次の方法で設定できました:
-
-    * スキャナーIPアドレスのフィルタリングモードを無効にする（例：[NGINXの設定](/2.18/admin-en/scanner-ips-allowlisting/)、[K8sサイドカー コンテナ](/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/#step-1-creating-wallarm-configmap)、[K8s Ingress コントローラ](/2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses/)）。
-    * NGINXディレクティブ[`allow`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow)。
-5. リスト化された方法がフィルタリングノードによってブロックされるべきでない他のIPアドレスを許可リストに追加している場合は、それらを[Wallarmコンソールの許可リスト](../user-guides/ip-lists/allowlist.md)に移動してください。
-6. 拒否リストが原因でリクエストがブロックされた場合に返されるブロックページとエラーコードを設定するために`wallarm_acl_block_page`ディレクティブを使用していた場合は、ディレクティブ名を `wallarm_block_page`に置き換え、その値を[手順](../admin-en/configuration-guides/configure-block-page-and-code.md)に従って更新してください。
-7. [`docker run`](../admin-en/installation-guides/envoy/envoy-docker.md)コマンドから[NGINX](../admin-en/installation-docker-en.md)と[Envoy](../admin-en/installation-guides/envoy/envoy-docker.md)の環境変数 `WALLARM_ACL_*`を削除します。
-8. （オプション）フィルタリングノードの設定ファイルからNGINXディレクティブ[`wallarm_acl_*`](/2.18/admin-en/configure-parameters-en/#wallarm_acl)と[`acl`](/2.18/admin-en/configuration-guides/envoy/fine-tuning/#ip-denylisting-settings)のEnvoyパラメーターを削除します。
+    新しいIPリストロジックが有効になった場合、Wallarm Consoleを開いて、[**IP lists**](../user-guides/ip-lists/overview.md)セクションが利用可能であることをご確認ください。
+2. マルチテナントのWallarm nodeを更新する場合、Wallarm node 2.18以下でIPアドレス拒否リストを同期するために使用されていたスクリプトを削除してください。Wallarm node 3.2以降、[IP lists](../user-guides/ip-lists/overview.md)の手動統合は不要です。
+3. [appropriate instructions](general-recommendations.md#update-process)に従い、フィルタリングノードモジュールをバージョン5.0まで更新してください。
+4. フィルタリングノードの設定ファイルからWallarm ScannerのIPアドレスの許可リスト設定を削除してください。フィルタリングノード3.x以降、Scanner IPアドレスはデフォルトで許可リストに登録されます。以前のWallarm nodeのバージョンでは、許可リストは以下の方法で設定されていました：
+    * フィルタリングノードでScanner IPアドレスに対するフィルトレーションモードを無効化する（例：[NGINX configuration](/2.18/admin-en/scanner-ips-allowlisting/)、[K8s sidecar container](/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/#step-1-creating-wallarm-configmap)、[K8s Ingress controller](/2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses/)）。
+    * NGINXディレクティブ [`allow`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow)。
+5. 上記の方法が、フィルタリングノードによってブロックされてはならないその他のIPアドレスの許可リスト設定に使用されている場合、それらを[Wallarm Consoleの許可リスト](../user-guides/ip-lists/overview.md)に移行してください。
+6. denylistedなIPアドレスからのリクエスト時に返すブロックページおよびエラーコードの設定に`wallarm_acl_block_page`ディレクティブを使用している場合は、ディレクティブ名を`wallarm_block_page`に置き換え、[instructions](../admin-en/configuration-guides/configure-block-page-and-code.md)に従い、その値を更新してください。
+7. `docker run`コマンドから、[NGINX](../admin-en/installation-docker-en.md)及び[Envoy](../admin-en/installation-guides/envoy/envoy-docker.md)環境変数`WALLARM_ACL_*`を削除してください。
+8. （オプション）フィルタリングノードの設定ファイルからNGINXディレクティブ[`wallarm_acl_*`](/2.18/admin-en/configure-parameters-en/#wallarm_acl)およびEnvoyパラメーター[`acl`](/2.18/admin-en/configuration-guides/envoy/fine-tuning/#ip-denylisting-settings)を削除してください。

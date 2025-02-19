@@ -1,0 +1,1 @@
+--8<-- "latest-tr/fast/operations/test-authentication.md"

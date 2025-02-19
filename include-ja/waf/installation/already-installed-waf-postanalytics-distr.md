@@ -1,9 +1,9 @@
-					!!! info "もし複数のWallarmノードをデプロイする場合"
-    あなたの環境にデプロイされる全てのWallarmノードは**同じバージョン**でなければなりません。また、個々のサーバーにインストールされたpostanalyticsモジュールも同じバージョンである必要があります。
+!!! info "複数のWallarmノードをデプロイする場合"
+    お使いの環境にデプロイされたすべてのWallarmノードは、**同じバージョン**でなければなりません。分散されたサーバにインストールされたpostanalyticsモジュールも、**同じバージョン**でなければなりません。
 
-    追加のノードをインストールする前に、そのバージョンが既にデプロイされているモジュールのバージョンと一致することを確認してください。デプロイされたモジュールのバージョンが[廃止予定または近いうちに廃止予定(`4.0`以下)][versioning-policy]である場合、全てのモジュールを最新バージョンにアップグレードしてください。
+    追加ノードをインストールする前に、そのノードのバージョンが既にデプロイされたモジュールのバージョンと一致していることを確認してください。もし、デプロイされているモジュールのバージョンが[非推奨または近日中に非推奨になる（`4.0`以下）][versioning-policy]場合は、すべてのモジュールを最新バージョンにアップグレードしてください。
 
-    同一サーバーにデプロイされたフィルタリングノードとpostanalyticsモジュールのバージョンを確認するには：
+    同一サーバ上にデプロイされたフィルタリングノードおよびpostanalyticsモジュールのバージョンを確認するには:
 
     === "Debian"
         ```bash
@@ -14,19 +14,19 @@
         yum list wallarm-node
         ```
 
-    異なるサーバーにデプロイされたフィルタリングノードとpostanalyticsモジュールのバージョンを確認するには：
+    異なるサーバ上にデプロイされたフィルタリングノードおよびpostanalyticsモジュールのバージョンを確認するには:
 
     === "Debian"
         ```bash
-        # Wallarmフィルタリングノードがインストールされたサーバーから実行
+        # run from the server with installed Wallarm filtering node
         apt list wallarm-node-nginx
-        # postanalyticsがインストールされたサーバーから実行
+        # run from the server with installed postanalytics
         apt list wallarm-node-tarantool
         ```
     === "CentOS"
         ```bash
-        # Wallarmフィルタリングノードがインストールされたサーバーから実行
+        # run from the server with installed Wallarm filtering node
         yum list wallarm-node-nginx
-        # postanalyticsがインストールされたサーバーから実行
+        # run from the server with installed postanalytics
         yum list wallarm-node-tarantool
         ```

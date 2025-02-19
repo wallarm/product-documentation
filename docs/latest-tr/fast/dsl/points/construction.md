@@ -18,125 +18,123 @@
 [link-xmltagarray]:             parsers/xml.md#xml_tag_array-filter
 [link-xmlattr]:                 parsers/xml.md#xml_attr-filter
 [link-jsondoc]:                 parsers/json.md
-[link-jsonobj]:                 parsers/json.md#jsonobj-filter
-[link-jsonarray]:               parsers/json.md#jsonarray-filter
+[link-jsonobj]:                 parsers/json.md#json_obj-filter
+[link-jsonarray]:               parsers/json.md#json_array-filter
 [link-array]:                   parsers/array.md
 [link-hash]:                    parsers/hash.md
 [link-gzip]:                    parsers/gzip.md
 [link-base64]:                  parsers/base64.md
 
-# Nasıl bir Nokta Oluşturulur
-FAST DSL parserlarının ve filtrelerinin kullanıma sunulduğu listeyi anımsayalım.
-* [HTTP parserı][link-http]:
-    * [URI filtresi][link-uri];
-    * [Yol filtresi][link-path];
-    * [Eylem_adı filtresi][link-actionname];
-    * [Eylem_uzantısı filtresi][link-actionext];
-    * [Get filtresi][link-get];
-    * [Header filtresi][link-header];
-    * [Post filtresi][link-post];
-* [Form_urlencoded parserı][link-formurlencoded];
-* [Çok parçalı parser][link-multipart];
-* [Kurabiye parserı][link-cookie];
-* [XML parserı][link-xml]:
-    * [Xml_yorum filtresi][link-xmlcomment];
-    * [Xml_dtd filtresi][link-xmldtd];
-    * [Xml_dtd_varlık filtresi][link-xmldtdentity];
-    * [Xml_pi filtresi][link-xmlpi];
-    * [Xml_etiket filtresi][link-xmltag];
-    * [Xml_etiket_dizisi filtresi][link-xmltagarray];
-    * [Xml_attr filtresi][link-xmlattr];
-* [Json_doc parserı][link-jsondoc]:
-    * [Json_obj filtresi][link-jsonobj];
-    * [Json_dizi filtresi][link-jsonarray];
-* [GZIP parserı][link-gzip];
-* [Base64 parserı][link-base64];
-* [Dizi filtresi][link-array];
-* [Hash filtresi][link-hash].
+# Bir Nokta Nasıl Oluşturulur
+Noktada kullanıma hazır FAST DSL ayrıştırıcıları ve filtrelerinin listesini hatırlayalım.
+* [HTTP parser][link-http]:
+    * [URI filter][link-uri];
+    * [Path filter][link-path];
+    * [Action_name filter][link-actionname];
+    * [Action_ext filter][link-actionext];
+    * [Get filter][link-get];
+    * [Header filter][link-header];
+    * [Post filter][link-post];
+* [Form_urlencoded parser][link-formurlencoded];
+* [Multipart parser][link-multipart];
+* [Cookie parser][link-cookie];
+* [XML parser][link-xml]:
+    * [Xml_comment filter][link-xmlcomment];
+    * [Xml_dtd filter][link-xmldtd];
+    * [Xml_dtd_entity filter][link-xmldtdentity];
+    * [Xml_pi filter][link-xmlpi];
+    * [Xml_tag filter][link-xmltag];
+    * [Xml_tag_array filter][link-xmltagarray];
+    * [Xml_attr filter][link-xmlattr];
+* [Json_doc parser][link-jsondoc]:
+    * [Json_obj filter][link-jsonobj];
+    * [Json_array filter][link-jsonarray];
+* [GZIP parser][link-gzip];
+* [Base64 parser][link-base64];
+* [Array filter][link-array];
+* [Hash filter][link-hash].
 
-Söz konusu noktaların, hangi parserların ve filtrelerin noktanın içine dahil edilmesi gerektiğine daha kolay anlam sağlamak amacıyla, sağdan sola toplanması önerilir. Nokta oluştururken, talebin daha küçük parçalarından daha büyük parçalarına doğru hareket edin.
+Noktaların, hangi ayrıştırıcı ve filtrelerin noktaya dahil edilmesi gerektiğini daha iyi anlayabilmek için sağdan sola monte edilmesi önerilir. Bir nokta oluştururken, isteğin küçük bölümlerinden başlayıp daha büyük bölümlerine doğru ilerleyin.
 
-!!! bilgi "Nokta parçaları ayırıcı"
-    Noktanın parçalarının `_` sembolü kullanılarak ayrılması gereklidir.
+!!! info "Nokta Parçalarının Ayırıcı Sembolü"
+    Noktanın parçaları `_` sembolü kullanılarak ayrılmalıdır.
 
 ## Örnek 1 
 
-Aşağıdaki istekte `uid` parametresinin kodlanmış değerine yönlendiren bir nokta oluşturmanız gerektiğini varsayalım:
+Aşağıdaki istekteki `uid` parametresinin çözülen değerine atıfta bulunan bir nokta oluşturmanız gerektiğini varsayalım:
 
 ```
 GET http://example.com/main/login/?uid=MDEyMzQ=
 ```
 
-`MDEyMzQ=` ise Base64-encoded `01234` stringini ifade eder.
+burada `MDEyMzQ=` Base64 ile kodlanmış `01234` dizgisidir.
 
-1.   Noktanın talep öğesinin *değerine* yönlendirilmesi gerektiği için, noktada `değer` hizmet kelimesini içermeliyiz.
+1.   Noktanın istek öğesinin *değerine* atıfta bulunması gerektiğinden, noktaya `value` servis kelimesini eklememiz gerekir.
 
-    Noktanın hali şu anda: `değer`.
+    Noktanın mevcut durumu: `value`.
 
-2.   Noktanın kodlanmış değere yönlendirilmesi gereklidir, ancak istenen değer talepte *Base64* kodlaması ile kodlanmıştır. Değerin kodunu çözebilmek için `BASE64` parser adını noktanın sol tarafına eklemeliyiz.
+2.   Nokta, çözülen değere atıfta bulunmalıdır; ancak istenen değer istekte *Base64* kodlamasıyla kodlanmıştır. Değeri çözmek için noktanın sol tarafına `BASE64` ayrıştırıcısının adı eklenmelidir.
+       
+    Noktanın mevcut durumu: `BASE64_value`.
 
-    Noktanın hali şu anda: `BASE64_değer`.
+3.   Nokta, *`uid`* parametre değerine atıfta bulunmalıdır. İstenen parametre değerine atıfta bulunmak için sol tarafa `uid` parametre adını ekleyin.
+    
+    Noktanın mevcut durumu: `uid_BASE64_value`.
 
-3.   Noktanın *`uid`* parametre değerine yönlendirilmesi gerekmektedir. İstenen parametre değerine yönlendirebilmek için `uid` parametre adını noktanın sol tarafına ekleyin.
-
-    Noktanın hali şu anda: `uid_BASE64_değer`.
-
-4.   Noktanın, temel talepte *sorgu stringinde* geçen parametrenin değerine yönlendirilmesi gerekmektedir. Sorgu stringi parametre değerine yönlendirebilmek için `GET` filtre adını noktanın sol tarafına ekleyin.
-
-    Noktanın hali şu anda: `GET_uid_BASE64_değer`.
+4.   Nokta, temel istekte iletilen *sorgu dizesi* parametre değerine atıfta bulunmalıdır. Sorgu dizesi parametre değerine atıfta bulunmak için noktanın sol tarafına `GET` filtresi adını ekleyin.
+    
+    Noktanın mevcut durumu: `GET_uid_BASE64_value`.
 
 
 
-Örneğin koşullarını yerine getirebilmek için, alınan dördüncü adımdaki nokta eklentiye aşağıdaki yollardan biriyle eklenir:
-* hizmet sembolleri olmaksızın.
-* kesme işaretleriyle çevrili biçimde (`'GET_uid_BASE64_değer'`).
-* tırnak işaretleriyle çevrili biçimde (`"GET_uid_BASE64_değer"`).
-
+Örnekte belirtilen koşulları karşılamak için, dördüncü adımda elde edilen nokta aşağıdaki şekillerden biriyle uzantıya eklenebilir:
+* servis sembollerinden hiçbirinin çevrelemesinde olmadan.
+* apostrof işaretleriyle çevrelenerek (`'GET_uid_BASE64_value'`).
+* tırnak işaretleriyle çevrelenerek (`"GET_uid_BASE64_value"`).
 
 
 ## Örnek 2
 
-Aşağıda belirtilen 
+Aşağıdaki istekteki `passwd` parametresinin `01234` değerine atıfta bulunan bir nokta oluşturmanız gerektiğini varsayalım:
 
 ```
 POST http://example.com/login/index.php HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 ```
 
-istekte `passwd` parametresinin `01234` değerine yönlendiren bir nokta oluşturmanız gerektiğini varsayalım. Bu istekteki 
+gövdesi ile;
+
 ```
 username=admin&passwd=01234.
 ```
-body bulunmaktadır.
 
-1.   Noktanın talep öğesinin *değerine* yönlendirilmesi gerektiği için, noktada `değer` hizmet kelimesini içermeliyiz.
+1.   Noktanın istek öğesinin *değerine* atıfta bulunması gerektiğinden, noktaya `value` servis kelimesini eklememiz gerekir.
+    
+    Noktanın mevcut durumu: `value`.
 
-    Noktanın hali şu anda: `değer`.
+2.   Nokta, *`passwd`* parametre değerine atıfta bulunmalıdır. İstenen parametre değerine atıfta bulunmak için sol tarafa `passwd` parametre adını ekleyin.
+    
+    Noktanın mevcut durumu: `passwd_value`.
 
-2.   Noktanın *`passwd`* parametre değerine yönlendirilmesi gerekmektedir. İstenen parametre değerine yönlendirebilmek için `passwd` parametre adını noktanın sol tarafına ekleyin.
+3.   Nokta, *form-urlencoded formatında* iletilen parametre değerine atıfta bulunmalıdır. Bu, temel istekteki Content-Type başlığının değerinden türetilebilir. Form_urlencoded ayrıştırıcısının adını büyük harflerle, form-urlencoded olarak iletilen parametre değerine atıfta bulunmak için noktanın sol tarafına ekleyin.
+    
+    Noktanın mevcut durumu: `FORM_URLENCODED_passwd_value`.
 
-    Noktanın hali şu anda: `passwd_değer`.
-
-3.   Noktanın, *form-urlencoded formatında* geçen parametrenin değerine yönlendirilmesi gerekmektedir. Bu, temel talepteki Content-Type başlığının değerinden çıkarılabilir. Form_urlencoded parserın adını büyük harflerle form-urlencoded değerindeki parametrenin değerine yönlendirebilmek için noktanın sol tarafına ekleyin.
-
-    Noktanın hali şu anda: `FORM_URLENCODED_passwd_değer`.
-
-4.   Noktanın *talep body'sinde* geçen parametrenin değerine yönlendirilmesi gerekmektedir. Talep body'sindeki parametrenin değerine yönlendirebilmek için `POST` parserın adını noktanın sol tarafına ekleyin.
-
-    Noktanın hali şu anda: `POST_FORM_URLENCODED_passwd_değer`.
-
+4.   Nokta, *istek gövdesinde* iletilen parametre değerine atıfta bulunmalıdır. İstek gövdesi parametre değerine atıfta bulunmak için noktanın sol tarafına `POST` ayrıştırıcısının adını ekleyin.
+    
+    Noktanın mevcut durumu: `POST_FORM_URLENCODED_passwd_value`.
 
 
-Örneğin koşullarını yerine getirebilmek için, alınan dördüncü adımdaki nokta eklentiye aşağıdaki yollardan biriyle eklenir:
-* hizmet sembolleri olmaksızın.
-* kesme işaretleriyle çevrili biçimde (`'POST_FORM_URLENCODED_passwd_değer'`).
-* tırnak işaretleriyle çevrili biçimde (`"POST_FORM_URLENCODED_passwd_değer"`).
 
+Örnekte belirtilen koşulları karşılamak için, dördüncü adımda elde edilen nokta aşağıdaki şekillerden biriyle uzantıya eklenebilir:
+* servis sembollerinden hiçbirinin çevrelemesinde olmadan.
+* apostrof işaretleriyle çevrelenerek (`'POST_FORM_URLENCODED_passwd_value'`).
+* tırnak işaretleriyle çevrelenerek (`"POST_FORM_URLENCODED_passwd_value"`).
 
 
 ## Örnek 3
 
-Aşağıdaki istekte `secret-word` kurabiye değerinin `abcde` olması durumunda bir nokta oluşturmanız gerektiğini varsayalım:
+Aşağıdaki istekteki `secret-word` çerezinin `abcde` değerine atıfta bulunan bir nokta oluşturmanız gerektiğini varsayalım:
 
 ```
 GET /main/index.php HTTP/1.1
@@ -144,29 +142,29 @@ Host: example.com
 Cookie: username=John. secret-word=abcde.
 ```
 
-1.   Noktanın talep öğesinin *değerine* yönlendirilmesi gerektiği için, noktada `değer` hizmet kelimesini dahil etmeliyiz.
+1.   Noktanın istek öğesinin *değerine* atıfta bulunması gerektiğinden, noktaya `value` servis kelimesini eklememiz gerekir.
 
-    Noktanın hali şu anda: `değer`.
+    Noktanın mevcut durumu: `value`.
 
-2.   Noktanın *`secret-word`* kurabiye değerine yönlendirilmesi gerekmektedir. İstenen kurabiye değerine yönlendirebilmek için `secret-word` kurabiye adını noktanın sol tarafına ekleyin.
+2.   Nokta, *`secret-word`* çerez değerine atıfta bulunmalıdır. İstenen çerez değerine atıfta bulunmak için sol tarafa `secret-word` çerez adını ekleyin.
+    
+    Noktanın mevcut durumu: `secret-word_value`.
 
-    Noktanın hali şu anda: `secret-word_değer`.
+3.   Nokta, *çerezin* değerine atıfta bulunmalıdır. Çerez değerine atıfta bulunmak için noktanın sol tarafına `COOKIE` ayrıştırıcısının adını ekleyin.
+    
+    Noktanın mevcut durumu: `COOKIE_secret-word_value`.
 
-3.   Noktanın *kurabiye* değerine yönlendirilmesi gerekmektedir. Kurabiye değerine yönlendirebilmek için `COOKIE` parser adını noktanın sol tarafına ekleyin.
+4.   Nokta, *Cookie başlığında* iletilen değere atıfta bulunmalıdır. Cookie adlı başlığa atıfta bulunmak için noktanın sol tarafına `Cookie` başlığının adını ekleyin.
+    
+    Noktanın mevcut durumu: `Cookie_COOKIE_secret-word_value`.
 
-    Noktanın hali şu anda: `COOKIE_secret-word_değer`.
-
-4.   Noktanın *Kurabiye başlığında* geçen değere yönlendirilmesi gerekmektedir. Kurabiye adına sahip başlığa yönlendirebilmek için `Kurabiye` başlığının adını noktanın sol tarafına ekleyin.
-
-    Noktanın hali şu anda: `Kurabiye_COOKIE_secret-word_değer`.
-
-5.   Noktanın *başlıkta* geçen değere yönlendirilmesi gerekmektedir. Başlık değerine yönlendirebilmek için `HEADER` filtre adını noktanın sol tarafına ekleyin.
-
-    Noktanın hali şu anda: `HEADER_Kurabiye_COOKIE_secret-word_değer`.
+5.   Nokta, *başlıkta* iletilen değere atıfta bulunmalıdır. Başlık değerine atıfta bulunmak için noktanın sol tarafına `HEADER` filtresi adını ekleyin.
+    
+    Noktanın mevcut durumu: `HEADER_Cookie_COOKIE_secret-word_value`.
 
 
 
-Örneğin koşullarını yerine getirebilmek için, dördüncü adımda elde edilen nokta eklentiye aşağıdaki yollardan biriyle eklenir:
-* hizmet sembolleri olmaksızın.
-* kesme işaretleriyle çevrili biçimde (`'HEADER_Kurabiye_COOKIE_secret-word_değer'`).
-* tırnak işaretleriyle çevrili biçimde (`"HEADER_Kurabiye_COOKIE_secret-word_değer"`).
+Örnekte belirtilen koşulları karşılamak için, dördüncü adımda elde edilen nokta aşağıdaki şekillerden biriyle uzantıya eklenebilir:
+* servis sembollerinden hiçbirinin çevrelemesinde olmadan.
+* apostrof işaretleriyle çevrelenerek (`'HEADER_Cookie_COOKIE_secret-word_value'`).
+* tırnak işaretleriyle çevrelenerek (`"HEADER_Cookie_COOKIE_secret-word_value"`).

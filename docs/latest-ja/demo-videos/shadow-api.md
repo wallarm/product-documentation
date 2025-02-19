@@ -1,13 +1,11 @@
-# Shadow and Orphan API Detection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# シャドウおよびオーファンAPI検出 <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Watch our demo video to become familiar with how you can detect [shadow and orphan endpoints](../api-discovery/rogue-api.md) in your API using Wallarm.
+Wallarmを使用したAPI内で[シャドウおよびオーファンエンドポイント](../api-discovery/rogue-api.md)を検出する方法について、ご理解いただくためにデモ動画をご覧ください。
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/HOWfCFdxo-Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
-**Related documentation articles**
+**関連ドキュメント記事**
 
-* [Rogue API detection](../api-discovery/rogue-api.md) with the **API Discovery** module
-* [Uploading your specifications for comparison to find rogue APIs](../api-discovery/rogue-api.md)
-* [Displaying found rogue API in the API Discovery section](../api-discovery/exploring.md#displaying-shadow-orphan-and-zombie-api)
+* **API Discovery**モジュールによる[ローグAPI検出](../api-discovery/rogue-api.md)

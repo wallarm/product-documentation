@@ -32,195 +32,195 @@
 
 #   FAST Nasıl Çalışır
 
---8<-- "../include-tr/fast/cloud-note.md"
+--8<-- "../include/fast/cloud-note.md"
 
-!!! info "Doküman hakkında kısa bilgi"
-    Burada tanımlanan ilişkiler ve test senaryoları, Wallarm API kullanılarak test ederken geçerlidir. Bu tür testler, tüm varlıkları kullanır; bu sayede okuyucuya bu varlıkların birbirleriyle nasıl etkileşime girdiği konusunda bütünleşik bilgiler sunabilme şansımız olur.
+!!! info "Belgenin İçeriği Hakkında Kısa Not"
+    Altındaki ilişkiler (aşağıya bakın) ve bu bölümde tanımlanan test senaryoları, Wallarm API kullanılarak yapılan testlerle ilgilidir. Bu tür testler tüm varlıkları kullanır; bu yüzden okuyucuya bu varlıkların nasıl etkileşime girdiğine dair bütünsel bilgiler sunmak mümkündür.
     
-    FAST'ı bir CI/CD iş akışına entegre ederken, bu varlıklar aynı kalır; ancak aşamaların sırası belirli durumlar için farklı olabilir. Daha fazla ayrıntı için [bu dökümana][doc-ci-intro] bakın.
+    FAST'in CI/CD iş akışına entegrasyonu sırasında bu varlıklar değişmeden kalır; ancak, adımların sırası belirli durumlar için farklılık gösterebilir. Ek ayrıntılar için [bu belgeye][doc-ci-intro] bakın.
 
-FAST aşağıdaki varlıkları kullanmaktadır:
+FAST aşağıdaki varlıkları kullanır:
 
 * [Test kaydı.][anchor-testrecord]
 * [FAST test politikası.][anchor-testpolicy]
-* [Test çalıştırma.][anchor-testrun]
+* [Test çalışması.][anchor-testrun]
 * [Token.][anchor-token]
 
-Daha önce belirtilen varlıklar arasında birkaç önemli ilişki bulunmaktadır:
-* Bir test politikası ve bir test kaydı, birkaç test çalıştırması ve FAST düğümü tarafından kullanılabilir.
-* Bir token, Wallarm bulutundaki tek bir FAST düğümü, bu FAST düğümüne sahip tek bir Docker konteyner ve tek bir test çalıştırması ile ilişkilidir.
-* Token şu anda düğümün bulunduğu bir başka Docker konteyner tarafından kullanılmıyorsa, mevcut token değerini bir Docker konteynerine FAST düğümü ile birlikte geçirebilirsiniz.
-* Başka bir test çalıştırması bulunan bir FAST düğümü için yeni bir test çalıştırması oluşturursanız, mevcut test çalıştırması durur ve yenisine yerini bırakır.
+Önceden bahsedilen varlıklar arasında bazı önemli ilişkiler vardır:
+* Bir test politikası ve test kaydı, birden fazla test çalışması ve FAST düğümü tarafından kullanılabilir.
+* Bir token, Wallarm cloud'daki tek bir FAST düğümü, o düğüme sahip tek bir Docker konteyneri ve tek bir test çalışmasıyla ilişkilidir.
+* Var olan token değerini, token başka hiçbir Docker konteyneri tarafından kullanılmıyorsa, FAST düğümüne sahip Docker konteynerine geçirebilirsiniz.
+* Eğer başka bir test çalışması devam ederken FAST düğümü için yeni bir test çalışması oluşturursanız, mevcut test çalışması durdurulur ve yeni olanıyla değiştirilir.
 
-![Bileşenler arasındaki ilişkiler][img-components-relations]
+![Bileşenler Arasındaki İlişkiler][img-components-relations]
 
 ##   FAST Tarafından Kullanılan Varlıklar
 
-FAST düğümü, istek kaynağından hedef uygulamaya yönelik tüm talepler için bir vekil görevindedir. Wallarm terminolojisi çerçevesinde, bu taleplere *temel talepler* denir.
+FAST düğümü, istek kaynağından hedef uygulamaya gelen tüm isteklerin proxy'si olarak hareket eder. Wallarm terminolojisine göre, bu isteklere *baseline requests* adı verilir.
 
-FAST düğümü talepleri aldığında, daha sonra bunlara dayanarak güvenlik testleri oluşturabilmek için bu talepleri özel bir "test kaydı" nesnesine kaydeder. Bu sürece Wallarm terminolojisi çerçevesinde "temel taleplerin kaydedilmesi" denir.
+FAST düğümü istekleri aldığında, bunları daha sonra bunlara dayanarak güvenlik testleri oluşturmak için özel “test kaydı” nesnesine kaydeder. Wallarm terminolojisinde bu işleme “baseline requests recording” denir.
 
-Temel taleplerin kaydedilmesinin ardından FAST düğümü, bir [*test politikası*][anchor-testpolicy]na uygun olarak güvenlik test seti oluşturur. Daha sonra, güvenlik test seti hedef uygulamanın açık noktaları hakkında değerlendirmeler yapmak üzere çalıştırılır.
+Baseline istekler kaydedildikten sonra, FAST düğümü, [*test policy*][anchor-testpolicy]’ye göre bir güvenlik test seti oluşturur. Ardından, hedef uygulamanın güvenlik açıkları açısından değerlendirilmesi için güvenlik test seti çalıştırılır.
 
-Test kaydı, daha önceden kaydedilmiş temel taleplerin aynı hedef uygulamayı veya başka bir hedef uygulamayı tekrar test etmek üzere tekrar kullanılabilmesini sağlar; bu sayede, aynısını FAST düğümü üzerinden göndermek için belirlenmiş aynı temel taleplerin tekrarlanmasına gerek kalmaz. Bu yalnızca test kaydındaki temel taleplerin uygulamayı test etmek için uygun olması durumunda mümkündür.
+Test kaydı, daha önce kaydedilmiş baseline isteklerin aynı hedef uygulama veya başka bir hedef uygulama üzerinde yeniden kullanılmasını sağlar; FAST düğümü üzerinden aynı baseline isteklerin tekrar gönderilmesine gerek yoktur. Bu, yalnızca test kaydındaki baseline istekler uygulamayı test etmek için uygunsa mümkündür.
 
 
 ### Test Kaydı
 
-FAST, test kaydında saklanan temel taleplerden bir güvenlik test seti oluşturur.
+FAST, test kaydında saklanan baseline isteklerden bir güvenlik test seti oluşturur.
 
-Bir test kaydına bazı temel talepleri eklemek için, bu test kaydı ve bir FAST düğümü ile bağlantılı olan bir [test çalıştırma][anchor-testrun] işlemi gerçekleştirilmeli ve bazı temel talepler FAST düğümü üzerinden gönderilmeli. 
+Bazı baseline isteklerle bir test kaydı oluşturmak için, bu test kaydıyla bağlantılı bir [test çalışması][anchor-testrun] yürütülmeli ve bazı baseline istekler FAST düğümü üzerinden gönderilmelidir.  
 
-Alternatif olarak, bir test çalıştırma oluşturmadan bir test kaydına talepleri doldurmak da mümkündür. Bunu yapmak için, FAST düğümünü kayıt modunda çalıştırmalısınız. Detaylar için [bu dökümanı][doc-node-deployment-ci-mode] inceleyin. 
+Alternatif olarak, bir test çalışması oluşturmadan da test kaydı doldurmak mümkündür. Bunu yapmak için, FAST düğümünü kayıt modunda çalıştırmalısınız. Ayrıntılar için [bu belgeye][doc-node-deployment-ci-mode] bakın. 
 
-Test kaydı talepler ile doldurulmuş durumdaysa, test edilecek uygulamanın, test kaydında saklanan temel taleplerin bir alt kümesini kullanarak açıklıklarının değerlendirilmesi mümkün ise, bu test kaydını başka bir test çalıştırması ile kullanabilirsiniz.
+Test kaydı isteklerle dolduğunda, test kaydında saklanan baseline isteklerin bir alt kümesini kullanarak hedef uygulama için güvenlik açıkları değerlendirmesi yapılabiliyorsa, başka bir test çalışmasıyla birlikte kullanılabilir.  
 
-Tek bir test kaydı, birden çok FAST düğümü ve test çalıştırması tarafından kullanılabilir. Bu, özellikle:
-* Aynı hedef uygulamanın tekrar test edilmesi durumunda.
-* Aynı temel talepler ile birden çok hedef uygulamanın eş zamanlı olarak test edilmesi durumunda.
+Tek bir test kaydı, birden fazla FAST düğümü ve test çalışması tarafından kullanılabilir. Bu, aşağıdaki durumlarda yararlı olabilir:
+* Aynı hedef uygulama yeniden test ediliyorsa.
+* Birden fazla hedef uygulama, aynı baseline isteklerle eşzamanlı olarak test ediliyorsa.
 
-![Bir test kaydı ile çalışma][img-testrecord]
+![Test kaydı ile çalışma][img-testrecord]
  
 
 ### FAST Test Politikası
 
-Bir *test politikası*, zafiyet tespit sürecinin nasıl yürütüleceğini belirleyen bir kural setidir. Özellikle, uygulamanın test edilmesi gereken zafiyet türlerini seçebilirsiniz. Ayrıca, politika, güvenlik test seti oluştururken temel talepte hangi parametrelerin işleme uygun olduğunu belirler. Bu veri parçaları, FAST tarafından hedef uygulamanın düzgün çalışıp çalışmadığını belirlemek için kullanılan test taleplerini oluşturmak için kullanılır.
+Bir *test policy*, güvenlik açığı tespit sürecinin yürütülmesi için bir dizi kural tanımlar. Özellikle, uygulamanın test edilmesi gereken güvenlik açığı türlerini seçebilirsiniz. Ayrıca, politika, güvenlik test seti oluşturulurken baseline istekte hangi parametrelerin işlenebilir olduğunu belirler. Bu veriler, FAST'in test isteklerini oluşturmasında kullanılır; bu test istekleri, hedef uygulamanın istismar edilebilir olup olmadığını tespit etmek için kullanılır.
 
-Yeni bir politika [oluşturabilir][link-create-policy] veya [mevcut bir politikayı][link-use-policy] kullanabilirsiniz.
+Yeni bir politika [oluşturabilir][link-create-policy] veya mevcut bir tanesini [kullanabilirsiniz][link-use-policy].
 
-!!! info "Uygun Test Politikasını Seçme"
-    Test politikasının seçimi, test edilen hedef uygulamanın nasıl çalıştığına bağlıdır. Her test ettiğiniz uygulama için ayrı bir test politikası oluşturmanız önerilir.
+!!! info "Uygun Test Politikasının Seçilmesi"
+    Test politikasının seçimi, test edilen hedef uygulamanın nasıl çalıştığına bağlıdır. Test ettiğiniz her uygulama için ayrı bir test politikası oluşturmanız önerilir.
 
-!!! info "Ek Bilgi"
+!!! info "Ek Bilgiler"
 
-    * Hızlı Başlangıç rehberinden [test politikası örneği][doc-testpolicy-creation-example] 
-    * [Test politikasının ayrıntıları][doc-policy-in-detail]
+    * Hızlı Başlangıç kılavuzundan [Test politikası örneği][doc-testpolicy-creation-example]
+    * [Test politikası detayları][doc-policy-in-detail]
 
-### Testi Çalıştırma
+### Test Çalışması
 
-Bir *test çalıştırma*, zafiyet test sürecinin tek bir iterasyonunu tanımlar.
+Bir *test run* (test çalışması), güvenlik açığı test sürecinin tek yinelemesini ifade eder.
 
-Bir test çalıştırması içerir:
+Bir test çalışması şunları içerir:
 
-* [Test politikası][anchor-testpolicy] tanımlayıcısı
-* [Test kayıt][anchor-testrecord] tanımlayıcısı
+* [Test policy][anchor-testpolicy] tanımlayıcısı
+* [Test record][anchor-testrecord] tanımlayıcısı
 
-FAST düğümü, bir hedef uygulamanın güvenlik testini gerçekleştirirken bu değerleri kullanır.
+FAST düğümü, hedef uygulamanın güvenlik testi gerçekleştirilirken bu değerleri kullanır.
 
-Her test çalıştırması, tek bir FAST düğümü ile sıkı bir şekilde bağlantılıdır. Bu düğüm için başka bir test çalıştırması 'A' devam ederken bu düğüm için yeni bir test çalıştırması 'B' oluşturursanız, test çalıştırması 'A'nın çalışması durdurulur ve test çalıştırması 'B' tarafından yerine getirilir.
+Her test çalışması, tek bir FAST düğümüyle sıkı sıkıya bağlıdır. Eğer, o düğüm için test çalışması `A` devam ederken yeni bir `B` test çalışması oluşturulursa, test çalışması `A` durdurulur ve yerine `B` çalışması geçer.
 
-Farklı iki test senaryosu için bir test çalıştırması oluşturabilirsiniz:
-* İlk senaryoda, hedef uygulama zafiyetler için test edilir ve temel taleplerin kayıtları eş zamanlı olarak gerçekleştirilir (yeni bir test kaydına). Temel talepler, temel taleplerin kaydedilebilmesi için istek kaynağından hedef uygulamaya doğru FAST düğümü üzerinden akmalıdır. 
+İki farklı test senaryosu için test çalışması oluşturmak mümkündür:
+* İlk senaryoda, bir hedef uygulama güvenlik açıkları açısından test edilirken, baseline isteklerin kaydı aynı anda (yeni bir test kaydına) yapılmaktadır. Baseline isteklerin kaydedilebilmesi için istek kaynağından hedef uygulamaya FAST düğümü üzerinden akması gerekir. 
 
-    Bu yol gösterici boyunca bu senaryo için bir test çalıştırmasının oluşturulmasına “test çalıştırması oluşturmak” şeklinde atıfta bulunulacaktır.
+    Bu senaryo için oluşturulan test çalışması bundan böyle kılavuzda “test run creation” (test çalışması oluşturma) olarak anılacaktır.
 
-* İkinci senaryoda, hedef uygulama zafiyetler için mevcut, boş olmayan bir test kaydından çıkarılan temel talepler kullanılarak test edilir. Bu senaryoda, herhangi bir istek kaynağını dağıtmanıza gerek yoktur.
+* İkinci senaryoda, bir hedef uygulama, boş olmayan mevcut bir test kaydından çıkarılan baseline isteklerle test edilir. Bu senaryoda, herhangi bir istek kaynağı dağıtmaya gerek yoktur.
 
-    Bu yol gösterici boyunca bu senaryo için bir test çalıştırması oluşturulmasına “test çalıştırmasını kopyalamak” şeklinde atıfta bulunulacaktır.
+Bu senaryoda, oluşturulan veya kopyalanan test çalışması anında yürütülmeye başlar. İşe alınan test senaryosuna bağlı olarak, yürütme süreci farklı adımları takip eder (aşağıya bakın).
 
-Bir test çalıştırması oluşturduğunuzda veya bir test çalıştırmasını kopyaladığınızda, çalıştırma hemen başlar. Çalışma süreci, hangi test senaryosunun kullanıldığına bağlı olarak farklı aşamaları izler (aşağıya bakın).
+### Test Çalışması Yürütme Akışı (baseline istek kaydının yapıldığı senaryo)
 
-### Test Çalıştırmasının Çalışma Akışı (temel taleplerin kaydedilmesi gerçekleşiyor)
+Bir test çalışması oluşturduğunuzda, yürütülmesi hemen başlar ve aşağıdaki adımları takip eder:
 
-Bir test çalıştırması oluşturduğunuzda, çalışmasının hemen başlar ve aşağıdaki adımları izler:
+1.  Bir FAST düğümü, test çalışmasını bekler. 
 
-1.  Bir FAST düğümü, bir test çalıştırmasını bekler. 
-
-    FAST düğümü, test çalıştırmasının başladığını belirler belirlemez, düğüm test politikası ve test kaydının tanımlayıcılarını test çalıştırmasından alır.
+    FAST düğümü test çalışmasının başladığını belirlediğinde, test politikasını ve test kaydı tanımlayıcılarını test çalışmasından alır.
     
-2.  Bu tanımlayıcıları aldıktan sonra, *temel taleplerin kayıt süreci* başlar.
+2.  Tanımlayıcılar elde edildikten sonra, *baseline request kaydetme süreci* başlar.
     
-    Şimdi FAST düğümü, istek kaynağından hedef uygulamaya doğru talepler almak üzere hazırdır.
+    Şimdi FAST düğümü, istek kaynağından hedef uygulamaya gelen istekleri almaya hazırdır.
     
-3.  Talep kaydının aktif olduğu görüldüğünde, mevcut testlerin uygulamasına başlanır. HTTP ve HTTPS talepleri, FAST düğümü tarafından temel talepler olarak tanınacak şekilde düğüm üzerinden gönderilir.
+3.  Kayıt işlemi aktifken, mevcut testlerin yürütülmesine başlama zamanı gelmiştir. HTTP ve HTTPS istekleri FAST düğümü üzerinden gönderildiğinde, bu istekler baseline request olarak algılanır.
 
-    Tüm temel talepler, test çalıştırması ile eşleşen test kaydında saklanır.
+    Tüm baseline istekler, test çalışmasıyla ilişkili test kaydında saklanacaktır.
     
-4.  Test uygulaması bittikten sonra, kayıt sürecini durdurabilirsiniz.
+4.  Test yürütmesi tamamlandıktan sonra, kayıt sürecini durdurabilirsiniz.
     
-    Bir test çalıştırması oluşturulduktan sonra ayarlanan özel bir zaman aşımı değeri vardır. Bu değer, FAST'ın yeni temel talepleri beklerken kayıt işlemini temel taleplerin olmaması nedeniyle ne kadar süre boyunca durduracağını belirler ( [`inactivity_timeout`][doc-about-timeout] parametresi).
+    Test çalışması oluşturulduktan sonra özel bir zaman aşımı değeri ayarlanır. Bu zaman aşımı, FAST'in yeni baseline istekleri bekleyeceği süreyi, yeni baseline isteklerin gelmemesi durumunda kayıt sürecinin durdurulma zamanını belirler ([`inactivity_timeout`][doc-about-timeout] parametresi).
     
-    Kayıt sürecini manuel olarak durdurmazsanız, o zaman: 
+    Kayıt sürecini manuel olarak durdurmazsanız:
     
-    * Test çalışması, FAST güvenlik testleri çoktan bitmiş olsa bile zaman aşımı süresi dolumuna kadar çalıştırmasını sürdürür.
-    * Diğer test çalışmaları, bu test çalışması durana kadar test kaydını yeniden kullanamazlar. 
+    * Test çalışması, FAST güvenlik testleri bitmiş olsa bile zaman aşımı dolana kadar yürütülmeye devam eder.
+    * Diğer test çalışmaları, bu test çalışması durana kadar test kaydını kullanamaz.
     
-    Daha fazla temel talep beklemediğinizi biliyorsanız, FAST düğümündeki kayıt sürecini durdurabilirsiniz. Şunları not edin:
+    Kayıt sürecini, bekleyen başka baseline istek kalmadığında FAST düğümünde durdurabilirsiniz. Şunları unutmayın:
 
-    *  Güvenlik testlerinin oluşum ve çalıştırılması sürecinin durdurulması gerekli değildir. Test çalıştırması, hedef uygulamanın zafiyet değerlendirmesinin bitmesiyle durur. Bu davranış, CI/CD işinin çalıştırılma süresini azaltmaya yardımcı olur.
-    *  Diğer test çalışmaları, kayıt durdurulduğunda test kaydını yeniden kullanma yeteneği kazanırlar.
+    *  Güvenlik testlerinin oluşturulması ve yürütülmesi süreçleri durdurulmaz. Hedef uygulamanın güvenlik açıkları açısından değerlendirilmesi tamamlandığında test çalışması yürütmesi sona erer. Bu davranış, CI/CD işinin yürütme süresini azaltmaya yardımcı olur.
+    *  Kayıt süreci durduğunda, diğer test çalışmaları test kaydını yeniden kullanmaya başlayabilir.
     
-5.  FAST düğümü, her gelen temel talep bazında bir veya daha fazla test talebi oluşturur (yalnızca temel talep, uygulanan test politikasını karşılıyorsa).
+5.  FAST düğümü, her gelen baseline isteğe dayalı olarak, (yalnızca ilgili baseline istek uygulanan test politikasını karşılıyorsa) bir veya daha fazla test isteği oluşturur.
      
-6.  FAST düğümü, test taleplerini hedef uygulamaya göndererek bu talepleri çalıştırır.
+6.  FAST düğümü, test isteklerini hedef uygulamaya göndererek yürütür.
 
-Temel taleplerin kayıt sürecini durdurmak, test taleplerinin oluşturulması ve çalıştırılması süreçlerine etki etmez.
+Baseline istek kaydetme sürecinin durdurulması, test isteklerinin oluşturulması ve yürütülmesi süreçleri üzerinde hiçbir etki yapmaz.
 
-Temel taleplerin kaydedilmesi ve FAST güvenlik testlerinin oluşturulması ve çalıştırılması süreçleri paralel olarak gerçekleştirilir:
+Baseline istek kaydetme ve FAST güvenlik testlerinin oluşturulması ile yürütülmesi süreçleri paralel olarak çalışır:
 
-![Test çalıştırması çalıştırma akışı (temel talep kayıt işlemi gerçekleşiyor)][img-execution-timeline-recording]
+![Test run execution flow (baseline request recording takes place)][img-execution-timeline-recording]
 
-Not: Yukarıdaki grafik, [FAST hızlı başlangıç kılavuzunda][doc-quick-start] açıklanan akışı gösterir. Temel taleplerin kaydedilmesi ile ilgili akış, manuel güvenlik testleri veya CI/CD araçları kullanılarak otomatik güvenlik testleri için uygundur.
+Not: yukarıdaki grafik, [FAST quick start guide][doc-quick-start]’te açıklanan akışı göstermektedir. Baseline istek kaydı yapılan akış, manuel güvenlik testi veya CI/CD araçları kullanılarak yapılan otomatik güvenlik testi için uygundur.
 
-Bu senaryoda, test çalıştırmasını yönetmek için Wallarm API'si gereklidir. Detaylar için [bu dökümanı][doc-node-deployment-api] inceleyin. 
+Bu senaryoda, test çalışmasını yönetmek için Wallarm API gereklidir. Ayrıntılar için [bu belgeye][doc-node-deployment-api] bakın. 
 
 
-### Test Çalıştırmasının Çalışma Akışı (önceden kaydedilmiş temel talepler kullanılıyor)
+### Test Çalışması Yürütme Akışı (önceden kaydedilmiş baseline isteklerin kullanıldığı senaryo)
 
-Bir test çalıştırması kopyaladığınızda, çalışmasına hemen başlar ve aşağıdaki adımları izler:
+Bir test çalışmasını kopyaladığınızda, yürütülmesi hemen başlar ve aşağıdaki adımları izler:
 
-1.  Bir FAST düğümü, bir test çalıştırmasını bekler. 
+1.  Bir FAST düğümü, test çalışmasını bekler. 
 
-    FAST düğümü, test çalıştırmasının başladığını belirler belirlemez, düğüm test politikası ve test kaydının tanımlayıcılarını test çalıştırmasından alır.
+    FAST düğümü test çalışmasının başladığını belirlediğinde, test politikasını ve test kaydı tanımlayıcılarını test çalışmasından alır.
     
-2.  Bu tanımlayıcıları aldıktan sonra, düğüm test kaydından temel talepleri çıkarır.
+2.  Tanımlayıcılar elde edildikten sonra, düğüm test kaydından baseline istekleri çıkarır.
 
-3.  FAST düğümü, her bir çıkarılan temel talep bazında bir veya daha fazla test talebi oluşturur (yalnızca temel talep, uygulanan test politikasını karşılıyorsa).
+3.  FAST düğümü, çıkarılan her baseline isteğe dayalı olarak (yalnızca ilgili baseline istek uygulanan test politikasını karşılıyorsa) bir veya daha fazla test isteği oluşturur.
 
-4.  FAST düğümü, test taleplerini hedef uygulamaya göndererek bu talepleri çalıştırır.
+4.  FAST düğümü, test isteklerini hedef uygulamaya göndererek yürütür.
 
-Temel taleplerin çıkarılma süreci, FAST güvenlik testlerinin oluşturulması ve çalıştırılması süreçlerinden önce gerçekleşir:
+Baseline request çıkarma işlemi, FAST güvenlik testlerinin oluşturulması ve yürütülmesinden önce gerçekleşir:
 
-![Test çalıştırması çalıştırma akışı (önceden kaydedilmiş temel talepler kullanılıyor)][img-execution-timeline-no-recording]
+![Test run execution flow (pre-recorded baseline requests are used)][img-execution-timeline-no-recording]
 
-Not edilmesi gerekenler; bu, [FAST hızlı başlangıç kılavuzunda][doc-quick-start] kullanılan çalışma akışıdır. Önceden kaydedilmiş temel taleplerin kullanıldığı akış, CI/CD araçları kullanılarak otomatik güvenlik testleri için uygundur.
+[FAST quick start guide][doc-quick-start]’te açıklanan akışın bu olduğunu unutmayın. Önceden kaydedilmiş baseline isteklerin kullanıldığı akış, CI/CD araçları kullanılarak yapılan otomatik güvenlik testleri için uygundur.
 
-Bu senaryoda, test çalıştırmasını yönetmek için Wallarm API veya CI modunda FAST düğümü kullanılabilir. Detaylar için [bu dökümanı][doc-integration-overview] inceleyin.
+Bu senaryoda, test çalışmasını yönetmek için Wallarm API veya CI modundaki FAST düğümü kullanılabilir. Ayrıntılar için [bu belgeye][doc-integration-overview] bakın.
 
-Aşağıdaki grafik, yukarıda gösterilen zaman çizelgesine uyan en yaygın CI/CD iş akışını göstermektedir:
+Aşağıdaki grafik, yukarıda gösterilen zaman çizelgesine uyan en yaygın karşılaşılan CI/CD iş akışını gösterir:
 
-![Test çalıştırması çalıştırma akışı (CI Modu)][img-common-timeline-no-recording]
+![Test run execution flow (CI Mode)][img-common-timeline-no-recording]
 
 
-##  Test Çalıştırmaları ile Çalışma
+##  Test Çalışmaları ile Çalışma
 
-Bu rehberi okurken, API çağrıları kullanarak test çalıştırması yürütme sürecini nasıl yöneteceğinizi öğreneceksiniz, özellikle:
-* İstek kaynağından daha fazla talep bulunmadığında temel taleplerin kayıt sürecini nasıl durduracağınızı.
-* Test çalıştırması yürütme durumunu nasıl kontrol edeceğinizi.
+Bu kılavuzu okurken, API çağrıları kullanılarak test çalışması yürütme sürecinin nasıl yönetileceğini öğreneceksiniz, özellikle:
+* İstek kaynağından başka istek kalmadığında baseline istek kaydetme sürecinin nasıl durdurulacağını.
+* Test çalışması yürütme durumunun nasıl kontrol edileceğini.
 
-Bu tür API çağrıları yapabilmek ve test çalıştırmasını FAST düğümüne bağlamak için bir [*token*][anchor-token] almanız gerekmektedir.
+Test çalışmasını FAST düğümüyle ilişkilendirmek ve API çağrıları yapmak için bir [*token*][anchor-token] edinmeniz gerekmektedir.
 
 ### Token
 
-Bir FAST düğümünde şunlar bulunur:
-* Çalışan Docker konteyneri ile FAST yazılımı.
+Bir FAST düğümü şunlardan oluşur:
+* FAST yazılımının çalıştığı aktif Docker konteyneri.
     
-    Bu, trafik proxy'leme, güvenlik testi oluşturma, yürütme süreçlerinin yer aldığı yerdir.
+    Trafik proxyleme, güvenlik testlerinin oluşturulması ve yürütülmesi işlemlerinin burada gerçekleşir.
     
-* Wallarm bulutundaki FAST düğümü.
+* Wallarm cloud FAST düğümü.
 
-Bir token, çalışan Docker konteyneri ile bulutta bulunan FAST düğümünü bağlar:
+Bir token, çalışan Docker konteynerini cloud'daki FAST düğümü ile bağlar:
 
 ![FAST düğümü][img-fast-node]
 
-Bir FAST düğümünü dağıtmak için aşağıdakileri yapınız:
-1.  [Wallarm portalı][link-wl-portal-node-tab] kullanarak Wallarm bulutunda bir FAST düğümü oluşturun. Sağlanan tokeni kopyalayın.
-2.  Düğüm ile birlikte bir Docker konteyneri oluşturun ve token değerini konteynere geçin (bu süreç [burada][doc-node-deployment] ayrıntılarıyla anlatılmıştır).
+Bir FAST düğümü dağıtmak için, aşağıdakileri yapın:
+1.  Wallarm portalı kullanarak [Wallarm portal][link-wl-portal-node-tab] üzerinden bir FAST düğümü oluşturun. Sağlanan tokenı kopyalayın.
+2.  Düğüm içeren bir Docker konteyneri dağıtın ve token değerini konteynere geçirin (bu süreç [burada][doc-node-deployment] ayrıntılı olarak açıklanmıştır).
 
-Token ayrıca aşağıdaki amaçlara da hizmet eder:
-* Test çalıştırmasını FAST düğümü ile bağlar.
-* API çağrıları yaparak test çalıştırması yürütme sürecini yönetmenizi sağlar.
+Token ayrıca aşağıdaki amaçlarla hizmet eder:
+* Test çalışmasını FAST düğümü ile bağlamak.
+* API çağrıları yaparak test çalışması yürütme sürecini yönetmenize olanak tanımak.
 
-Daha önce aldığınız tokenları, bu tokenlar başka bir aktif Docker konteyneri tarafından kullanılmıyorsa yeniden kullanabilirsiniz (örneğin, aynı tokeni kullanan herhangi bir Docker konteyneri ile bir düğüm durdu veya kaldırıldı):
+Gerektiği kadar çok FAST düğümü oluşturabilir ve her düğüm için bir token edinebilirsiniz. Örneğin, FAST'in gerektirdiği birkaç CI/CD işiniz varsa, her iş için cloud'da bir FAST düğümü oluşturabilirsiniz.
 
-![Token'un yeniden kullanılması][img-reuse-token]
+Daha önce elde ettiğiniz tokenları, başka aktif Docker konteynerleri tarafından kullanılmıyorsa (örneğin, aynı tokenı kullanan herhangi bir Docker konteyneri durdurulmuş veya kaldırılmışsa) yeniden kullanmak mümkündür:
+
+![Token'ın yeniden kullanımı][img-reuse-token]

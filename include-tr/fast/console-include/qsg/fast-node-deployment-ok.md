@@ -8,8 +8,8 @@
            | _/ _ \\__ \ | |
            |_/_/ \_\___/ |_|
 
-[bilgi] Düğüm Wallarm Buluta bağlandı
-[bilgi] Hızlı tarayıcı için 0 özel genişletme yüklendi
-[bilgi] Hızlı tarayıcı için 51 varsayılan genişletme yüklendi
-[bilgi] TestRun'ın kontrol etmesini bekliyor...
+[info] Node Wallarm Cloud'a bağlandı
+[info] Hızlı tarayıcı için 0 özel eklenti yüklendi
+[info] Hızlı tarayıcı için 51 varsayılan eklenti yüklendi
+[info] TestRun'un kontrol etmesi bekleniyor...
 ```

@@ -1,105 +1,51 @@
-# API Kötüye Kullanma Önleme <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm platformunun **API Kötüye Kullanma Önleme** modülü, kimlik bilgisi doldurma, sahte hesap oluşturma, içerik kazıma ve API'larınıza yönelik diğer kötü amaçlı eylemler gerçekleştiren botların algılanmasını ve azaltılmasını sağlar. 
+Wallarm platformunun **API Abuse Prevention** modülü, API'larınıza yönelik kimlik bilgisi doldurma, sahte hesap oluşturma, içerik kazıma ve diğer kötü niyetli eylemler gibi API kötüye kullanımını gerçekleştiren botların tespiti ve azaltılmasını sağlar.
 
-## API Kötüye Kullanma Önleme tarafından engellenecek otomatik tehditler
+## API Abuse Prevention Tarafından Engellenen Otomatik Tehditler
 
-**API Kötüye Kullanma Önleme** modülü, aşağıdaki bot türlerini varsayılan olarak tespit eder:
+**API Abuse Prevention** modülü, varsayılan olarak aşağıdaki bot tiplerini tespit eder:
 
-* [API kötüye kullanma](../attacks-vulns-list.md#api-abuse)
-* [Hesap devralma](../attacks-vulns-list.md#api-abuse-account-takeover)
-* [Güvenlik tarama botları](../attacks-vulns-list.md#api-abuse-security-crawlers)
-* [Kazıma](../attacks-vulns-list.md#api-abuse-scraping)
+* [Suspicious API activity](../attacks-vulns-list.md#suspicious-api-activity)
+* [Account takeover](../attacks-vulns-list.md#account-takeover)
+* [Security crawlers](../attacks-vulns-list.md#security-crawlers)
+* [Scraping](../attacks-vulns-list.md#scraping)
 
-[API kötüye kullanma profilinin kurulması](../api-abuse-prevention/setup.md#creating-api-abuse-profile) sırasında, **API Kötüye Kullanma Önleme** modülünü tüm bot türlerinden korumayı veya korumayı yalnızca belirli tehditlerle sınırlamayı yapılandırabilirsiniz.
+[API abuse profile setup](../api-abuse-prevention/setup.md#creating-profiles) süreci sırasında, **API Abuse Prevention** modülünü tüm bot tiplerinden koruyacak veya korumayı yalnızca belirli tehditlerle sınırlayacak şekilde yapılandırabilirsiniz.
 
-## API Kötüye Kullanma Önleme nasıl çalışır?
+## API Abuse Prevention Nasıl Çalışır?
 
-**API Kötüye Kullanma Önleme** modülü, ML tabanlı yöntemlerin yanı sıra istatistiksel ve matematiksel sapma arama yöntemleri ve doğrudan kötüye kullanma hallerini içeren karmaşık bir bot algılama modeli kullanır. Modül, normal trafik profili öğrenir ve dramatik şekilde farklı davranışları sapma olarak belirler.
+**API Abuse Prevention** modülü, ML tabanlı yöntemlerin yanı sıra istatistiksel ve matematiksel anomali arama yöntemlerini ve doğrudan kötüye kullanım vakalarını içeren kompleks bir bot tespit modeli kullanır. Modül, normal trafik profilini kendiliğinden öğrenir ve belirgin şekilde farklı davranışları anomali olarak tanımlar.
 
-API Kötüye Kullanma Önleme, kötü amaçlı botları belirlemek için çoklu dedektörler kullanır. Modül, hangi dedektörlerin işaretleme sürecine katıldığı hakkında istatistikler sağlar.
+API Abuse Prevention, kötü niyetli botları [oturumları içinde](../api-sessions/overview.md#api-sessions-and-api-abuse-prevention) tespit etmek için birden fazla dedektör kullanır. Modül, hangi dedektörlerin devreye girdiğine dair istatistikler sağlar.
 
-Aşağıdaki detektörlerin katılması mümkün olabilir:
+Aşağıdaki dedektörler devreye girebilir:
 
-* **İstek Aralığı** ardışık istekler arasındaki zaman aralıklarını analiz ederek bot davranışının belirtisi olan rastgeleliğin eksik olup olmadığını bulur.
-* **İstek Tekizliği** bir oturum sırasında ziyaret edilen benzersiz uç nokta sayısını analiz eder. Eğer bir istemci tutarlı bir şekilde düşük oranda benzersiz uç noktaları ziyaret ederse, yani %10 veya daha az, muhtemelen bu bir bot düşünülür, bir insan kullanıcı değil.
-* **İstek Oranı** belirli bir zaman aralığında yapılan istek sayısını analiz eder. Eğer bir API istemcisi, belirli bir eşiği aşan bir yüzde oranında istekler yapma huyunda ise, muhtemelen bu bir bot düşünülür, bir insan kullanıcı değil.
-* **Kötü Kullanıcı-Agent** isteklere dahil edilen `Kullanıcı-Agent` başlıklarını analiz eder. Bu dedektör, taramacılara, kazıyıcılara ve güvenlik denetleyicilerine ait belirli imzaları kontrol eder. 
-* **Eski Tarayıcı** isteklerde kullanılan tarayıcı ve platformu analiz eder. Eğer bir istemci eski veya desteklenmeyen bir tarayıcı veya platform kullanıyorsa, muhtemelen bu bir bot düşünülür, bir insan kullanıcı değil.
-* **Şüpheli Davranış Skoru** bir oturum sırasında normal ve anormal iş süreçleri API isteklerinin ise analizini gerçekleştirir. 
-* **İş Süreci Skoru** uygulamanızın davranışı bağlamında kritik veya hassas API uç noktalarının kullanımını analiz eder. 
-* **Geniş Kapsam** IP etkinliklerinin genişliğini analiz etmek için davranışlarına dayanarak tarama botları gibi botları tanımlar.
+* **Bad user-agent**: İsteklere eklenen `User-Agent` başlıklarını analiz eder. Bu dedektör, tarayıcılar, kazıyıcılar ve güvenlik kontrol cihazlarına ait olanlar dahil belirli imzaları kontrol eder.
+* **Authentication abuse**: Anormal davranışı tanımlamak için önceden belirlenen bir eşik değerine karşı kimlik doğrulama isteklerinin oranını ve belirli bir zaman dilimindeki istek sayısını analiz eder. Dedektör, yanlış pozitiflerin önüne geçmek için uygulamaya ait toplam kimlik doğrulama istek hacmini de dikkate alır.
+* **Request uniqueness**: Bir oturum sırasında ziyaret edilen benzersiz uç noktaların sayısını analiz eder. Bir istemci sürekli olarak benzersiz uç noktaların düşük bir yüzdesini (örneğin %10 veya daha azını) ziyaret ediyorsa, bunun insan kullanıcısı yerine bir bot olma olasılığı yüksektir.
+* **Suspicious behavior score**: Bir oturum sırasında gerçekleştirilen yaygın ve alışılmadık iş mantığı API isteklerini analiz eder.
+* **Business logic score**: Uygulama davranışınız bağlamında kritik veya hassas API uç noktalarının kullanımını analiz eder.
+* **Request rate**: Belirli bir zaman diliminde yapılan istek sayısını analiz eder. Bir API istemcisi sürekli olarak belirli bir eşik değerin üzerinde bir istek yüzdesi yapıyorsa, bunun insan kullanıcısı yerine bir bot olma olasılığı yüksektir.
+* **Request interval**: Arka arkaya gelen istekler arasındaki zaman aralıklarını analiz ederek, bot davranışının işareti olan rastgele dağılım eksikliğini tespit eder.
+* **Query abuse**: Tanımlı eşik değeri aşan istek hacmini anomali olarak analiz eder. Bir parametreyi değiştiren sorgular için eşik değeri aşan istemciler de anomali olarak kabul edilir. Ayrıca, dedektör bot etkinliğini tespit etmek için istemci sorgu kalıplarını normal davranışla karşılaştırır.
+* **Outdated browser**: İsteklerde kullanılan tarayıcı ve platformu analiz eder. Bir istemci eski veya desteklenmeyen bir tarayıcı veya platform kullanıyorsa, bunun insan kullanıcısı yerine bir bot olma olasılığı yüksektir.
+* **Wide scope**: IP aktivitesinin genişliğini analiz ederek tarayıcı benzeri botları davranışsal olarak tespit eder.
+* **IP rotation**: Saldırganların bir IP havuzu kullandığı [account takeover](../attacks-vulns-list.md#account-takeover) saldırılarında istekleri analiz eder.
+* **Session rotation**: Saldırganların bir oturum havuzunu kullandığı [account takeover](../attacks-vulns-list.md#account-takeover) saldırılarında istekleri analiz eder.
+* **Persistent ATO**: Zamanla kademeli olarak gerçekleşen [account takeover](../attacks-vulns-list.md#account-takeover) saldırılarında istekleri analiz eder.
 
-!!! bilgi "Güven" 
-    Dedektörlerin çalışmasının bir sonucu olarak, her tespit edilen bot, bu bir bot olduğuna ne kadar emin olduğumuzun **yüzdesini**: elde eder. Her bot türünde, dedektörlerin farklı göreceli önemi / oy sayısı vardır. Bu yüzden, güven yüzdesi, bu bot türünde (çalışan dedektörler tarafından sağlanan) tüm olası oydan elde edilen oylardır.
+!!! info "Confidence"
+    Dedektörlerin çalışması sonucunda, her [tespit edilen](../api-abuse-prevention/exploring-bots.md) bot **confidence percentage** (güven yüzdesi) elde eder: bunun bir bot olduğuna ne kadar emin olduğumuzu gösterir. Her bot tipinde, dedektörlerin göreceli önemi/oy sayısı farklıdır. Dolayısıyla, güven yüzdesi, bu bot tipinde çalışan dedektörler tarafından sağlanan tüm olası oyların alındığı oyların oranıdır.
 
-![API Kötüye Kullanma Önleme İstatistikleri](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics-detectors.png)
 
-Bir ya da daha fazla dedektör [bot saldırı işaretlerini](#automated-threats-blocked-by-api-abuse-prevention) belirtirse, modül anomali trafik kaynağını 1 saat için [reddetme veya gri listelere](#reaction-to-malicious-bots) ekler. Wallarm, son 30 gün içinde red ve gri listelere eklenen bot IP'lerini hesaplar ve bu miktarların önceki 30 günlük döneme göre yüzde kaç arttığını veya azaldığını gösterir.
+Bir veya birden fazla dedektör [bot saldırısı belirtilerini](#automated-threats-blocked-by-api-abuse-prevention) işaret ederse, modül anormal trafiğin kaynağını 1 saat süreyle denylist veya graylist’e ekler. Wallarm, son 30 gün içinde deny ve gray list’e eklenen bot IP’lerini sayar ve bu miktarların önceki 30 günlük döneme göre yüzde kaç arttığını veya azaldığını görüntüler.
 
-Çözüm, kötü amaçlı bot eylemleri olarak onlara atfedilmeden önce trafik sapmalarını derinlemesine gözlemler ve onların kökenlerini engeller. Ölçüm toplama ve analiz biraz zaman aldığından, modül ilk kötü amaçlı istek oluşturulduğunda kötü amaçlı botları gerçek zamanlı olarak engellemez, ancak ortalama olarak anormal aktiviteyi önemli ölçüde azaltır.
+Çözüm, trafik anomalilerini kötü niyetli bot eylemleri olarak nitelendirmeden ve kaynaklarını engellemeden önce derinlemesine gözlemler. Metriğin toplanması ve analizi biraz zaman aldığından, modül ilk kötü niyetli istek ortaya çıktığında kötü niyetli botları gerçek zamanlı olarak engellemez, ancak ortalama olarak anormal aktiviteyi önemli ölçüde azaltır.
 
-## API Kötüye Kullanma Önlemenin Aktifleştirilmesi
+## Setup
 
-CDN düğümü de dahil olmak üzere, **API Kötüye Kullanma Önleme** modülü, devre dışı durumda Wallarm düğümü 4.2 ve üst tüm formlarında sunulur.
+**API Abuse Prevention** modülü ile kötü niyetli bot tespiti ve azaltımını başlatmak için bir veya daha fazla [API abuse profile](../api-abuse-prevention/setup.md#creating-profiles) oluşturun ve yapılandırın.
 
-API Kötüye Kullanmayı önlemeyi etkinleştirmek için:
-
-1. Trafiklerinizin Wallarm düğümü 4.2 veya sonraki bir sürüm tarafından filtrelendiğinden emin olun.
-1. [Abonelik planınızın](../about-wallarm/subscription-plans.md) **API Kötüye Kullanma Önlemeyi** içerdiğinden emin olun. Abonelik planını değiştirmek için lütfen [sales@wallarm.com](mailto:sales@wallarm.com) adresine bir talep gönderin.
-1. Wallarm Konsolunda → **API Kötüye Kullanma Önleme**, en az bir [API Kötüye Kullanma Profili](../api-abuse-prevention/setup.md) oluşturun veya etkinleştirin.
-
-    !!! bilgi "API Kötüye Kullanma Önlemenin ayarlarına Erişim"
-        Şirketinizin Wallarm hesabının yalnızca [yöneticileri](../user-guides/settings/users.md#user-roles), **API Kötüye Kullanma Önleme** bölümüne erişebilir. Bu erişiminiz yoksa yöneticinizle iletişime geçin.
-
-    ![API Kötüye Kullanma Önleme profili](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
-
-## Hoş görü
-
-Kötü amaçlı bir botun belirtilerini ne kadar sıkı bir şekilde izlemeyi yapılandırabilir ve böylece yanlış pozitif tespitlerin sayısını kontrol edebilirsiniz. Bu, [API Kötüye Kullanma Profilleri](../api-abuse-prevention/setup.md#creating-api-abuse-profile) içindeki **Hoş görü** parametresi ile ayarlanır.
-
-Üç seviye bulunmaktadır:
-
-* **Düşük** hoşgörüyle botlara, daha AZ bot uygulamalarınıza erişir, ancak bu yanlış pozitifler nedeniyle bazı meşru istekleri engelleyebilir.
-* **Normal** hoşgörü, birçok yanlış pozitifi önlemek ve çoğu kötü amaçlı bot isteğinin API'lere ulaşmasını engellemek için en uygun kuralları kullanır.
-* **Yüksek** hoşgörüyle botlara, DAHA FAZLA bot uygulamalarınıza erişir, ancak daha sonra hiçbir meşru istek düşmez.
-
-## Kötü amaçlı botlara tepki
-
-API Kötüye Kullanma Önlemeyi, kötü amaçlı botlara aşağıdaki yollarla tepki vermek üzere yapılandırabilirsiniz:
-
-* **Reddedilenler listesine ekle**: Wallarm, seçilen süre boyunca botların IP'lerini [reddeder](../user-guides/ip-lists/denylist.md) (varsayılan değer `Bir gün ekleyin` - 24 saat) ve bu IP'lerin ürettiği tüm trafiği engeller.
-* **Gri listeye ekle**: Wallarm, seçilen süre boyunca botların IP'lerini [gri listelere](../user-guides/ip-lists/graylist.md) ekler (varsayılan değer `Bir gün ekleyin` - 24 saat) ve yalnızca bu IP'lerden gelen ve aşağıdaki saldırı belirtilerini içeren istekleri engeller:
-
-    * [Giriş doğrulama saldırıları](../about-wallarm/protecting-against-attacks.md#input-validation-attacks)
-    * [Vpatch türünde saldırılar](../user-guides/rules/vpatch-rule.md)
-    * [Düzenli ifadelere dayalı olarak tespit edilen saldırılar](../user-guides/rules/regex-rule.md)
-
-* **Yalnızca İzle**: Wallarm, tespit edilen bot etkinliğini [**Olaylar**](../user-guides/events/check-attack.md) bölümünde gösterir, ancak botun IP'sini ne red listesine nede gri listeye ekler. 
-
-    Bu tür olay ayrıntılarından, hızlı bir şekilde botu **Kaynak IP'yi reddedilenlere ekleyin** düğmesiyle engelleyebilirsiniz. IP, sonsuza dek reddedilenlere eklenir, ancak **IP Listeleri** bölümünde onu silebilir veya listede kalma süresini değiştirebilirsiniz.
-
-## Kötü amaçlı botlar ve saldırılarına göz atma
-
-Botların etkinliğini Wallarm Console UI'da aşağıdaki şekillerde keşfedebilirsiniz:
-
-* **IP listeleri** bölümünde kötü amaçlı botları inceleyin
-* **Olaylar** bölümünde botlar tarafından gerçekleştirilen API kötüye usullerini görüntüleyin
-
-[Botların etkinliğini nasıl keşfedeceğinizi öğrenin →](../api-abuse-prevention/setup.md#exploring-blocked-malicious-bots-and-their-attacks)
-
-## İstisna listesi
-
-Bir istisna listesi, meşru botlar veya taramalarla bilinen şekilde ilişkilendirilen IP adresleri, alt ağlar, konumlar ve kaynak tiplerinin listesidir ve bu nedenle API Kötüye Kullanma Önleme modülünün engelleme veya kısıtlama yapmasından muaftırlar.
-
-IP adreslerini önceden veya zaten yanlışlıkla kötü amaçlı bot etkinliği ile ilişkilendirilmiş olduğu durumlarda istisna listesine ekleyebilirsiniz. [İstisna listesiyle nasıl çalışacağınızı öğrenin →](../api-abuse-prevention/setup.md#working-with-exception-list)
-
-![API Kötüye Kullanma Önleme - İstisna Listesi](../images/about-wallarm-waf/abi-abuse-prevention/exception-list.png)
-
-## Belirli URL'ler ve istekler için bot korumasını devre dışı bırakma
-
-İyi botların IP'lerini [istisna listesi](#exception-list) ile işaretlemenin yanı sıra, bot korumasını, hedeflediği URL'ler için ve belirli istek türleri için, örneğin belirli başlıklar içeren istekler için devre dışı bırakabilirsiniz.
-
-Bu, yanlış pozitif tespitlerden kaçınmaya yardımcı olabilir ve uygulamalarınızı test etme durumunda, bu uygulamaların bazı uç noktaları için bot korumasını geçici olarak devre dışı bırakmanız gerekebilir.
-
-Diğer API Kötüye Kullanma Önleme konfigürasyonu karşılaştırıldığında, bu yetenek **API Kötüye Kullanma** [profili](../api-abuse-prevention/setup.md) içinde değil, ayrı ayrı yapılandırılır - [**Set API Kötüye Kullanma Önleme modu**](../api-abuse-prevention/exceptions.md) kuralının yardımıyla.
+API Abuse Prevention işlevselliğini daha hassas hale getirmek için, isteklerin [oturumlara](../api-sessions/overview.md) birleştirilirken kimliği doğrulanmamış trafiğin daha iyi tanımlanabilmesi amacıyla [JA3 fingerprinting](../admin-en/enabling-ja3.md) etkinleştirilmesi önerilir.

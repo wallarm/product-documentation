@@ -1,197 +1,260 @@
 # Webhook
 
-Wallarmを任意のシステムへ即時通知を送付するよう設定することができます。通知を送付するためのシステムはHTTPプロコトコルを通じて受信するWebhookを受け入れることができる必要があります。これを行うには、以下のイベントタイプを受信するためのWebhook URLを指定してください：
+Wallarmを使用すると、HTTPSプロトコルを介して受信Webhookを受け入れる任意のシステムに即時通知を送信するよう設定できます。
 
---8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
+## 通知フォーマット
 
-## 通知形式
-
-通知はJSON形式で送られます。JSONオブジェクトのセットは、通知が送られるイベントによります。例えば：
+通知は、統合設定時に選択した形式に応じてJSON ArrayまたはNew Line Delimited JSON (NDJSON)形式で送信されます。通知が送信されるイベントに応じて、JSONオブジェクトのセットが異なります。例：
 
 * ヒット検出
 
-    ```json
-    [
+    === "JSON Array"
+        ```json
+        [
         {
-            "summary": "[Wallarm] 新しいヒットが検出されました",
+            "summary": "[Wallarm] New hit detected",
             "details": {
-            "client_name": "TestCompany",
-            "cloud": "EU",
-            "notification_type": "new_hits",
-            "hit": {
-                "domain": "www.example.com",
-                "heur_distance": 0.01111,
-                "method": "POST",
-                "parameter": "SOME_value",
-                "path": "/news/some_path",
+              "client_name": "Test Company",
+              "cloud": "EU",
+              "notification_type": "new_hits",
+              "hit": {
+                "domain": "example.com",
+                "heur_distance": 20.714285714285715,
+                "method": "GET",
+                "path": "/",
                 "payloads": [
-                    "say ni"
+                  "1' select version();"
                 ],
                 "point": [
-                    "post"
+                  "get",
+                  "id"
                 ],
-                "probability": 0.01,
-                "remote_country": "PL",
-                "remote_port": 0,
+                "probability": 20.714285714285715,
+                "remote_country": null,
+                "remote_port": 41253,
                 "remote_addr4": "8.8.8.8",
-                "remote_addr6": "",
+                "remote_addr6": null,
+                "datacenter": "unknown",
                 "tor": "none",
-                "request_time": 1603834606,
-                "create_time": 1603834608,
-                "response_len": 14,
-                "response_status": 200,
-                "response_time": 5,
+                "request_time": 1703519823,
+                "create_time": 1703519826,
+                "response_len": 345,
+                "response_status": 404,
+                "response_time": 359,
                 "stamps": [
-                    1111
+                  7965
                 ],
                 "regex": [],
-                "stamps_hash": -22222,
-                "regex_hash": -33333,
+                "stamps_hash": 271168947,
+                "regex_hash": -2147483648,
                 "type": "sqli",
                 "block_status": "monitored",
+                "brute_counter": "b:1111:xxxxxxxxxxxxxxxx",
+                "final_wallarm_mode": "monitoring",
+                "libproton_version": "4.8.0",
+                "lom_id": 932,
+                "protocol": "rest",
+                "proxy_type": null,
+                "request_id": "xxxxxxxxxxxxxxxx",
+                "wallarm_mode": null,
                 "id": [
-                    "hits_production_999_202010_v_1",
-                    "c2dd33831a13be0d_AC9"
+                  "hits_production_1111_202312_v_1",
+                  "xxxxxxxxxxxxxxxx"
                 ],
                 "object_type": "hit",
-                "anomaly": 0
-                }
-            }
+                "anomaly": 1.0357142857142858,
+                "parameter": "GET_id_value",
+                "applications": [
+                  "default"
+                ]
+              }
+           }
+        },
+        {
+            "summary": "[Wallarm] New hit detected",
+            "details": {
+              "client_name": "Test Company",
+              "cloud": "EU",
+              "notification_type": "new_hits",
+              "hit": {
+                "domain": "example.com",
+                "heur_distance": 2.5,
+                "method": "GET",
+                "path": "/etc/passwd",
+                "payloads": [
+                  "/etc/passwd"
+                ],
+                "point": [
+                  "uri"
+                ],
+                "probability": 2.5,
+                "remote_country": null,
+                "remote_port": 41254,
+                "remote_addr4": "8.8.8.8",
+                "remote_addr6": null,
+                "datacenter": "unknown",
+                "tor": "none",
+                "request_time": 1703519826,
+                "create_time": 1703519829,
+                "response_len": 345,
+                "response_status": 404,
+                "response_time": 339,
+                "stamps": [
+                  2907
+                ],
+                "regex": [],
+                "stamps_hash": -1063984326,
+                "regex_hash": -2147483648,
+                "type": "ptrav",
+                "block_status": "monitored",
+                "brute_counter": "b:1111:xxxxxxxxxxxxxxxx",
+                "final_wallarm_mode": "monitoring",
+                "libproton_version": "4.8.0",
+                "lom_id": 932,
+                "protocol": "none",
+                "proxy_type": null,
+                "request_id": "xxxxxxxxxxxxxxxx",
+                "wallarm_mode": null,
+                "id": [
+                  "hits_production_1111_202312_v_1",
+                  "xxxxxxxxxxxxxxxx"
+                ],
+                "object_type": "hit",
+                "anomaly": 0.22727272727272727,
+                "parameter": "URI_value",
+                "applications": [
+                  "default"
+                ]
+              }
+           }
         }
-    ]
-    ```
+        ]
+        ```
+    === "New Line Delimited JSON (NDJSON)"
+        ```json
+        {"summary":"[Wallarm] New hit detected","details":{"client_name":"Test Company","cloud":"EU","notification_type":"new_hits","hit":{"domain":"example.com","heur_distance":20.714285714285715,"method":"GET","path":"/","payloads":["1' select version();"],"point":["get","id"],"probability":20.714285714285715,"remote_country":null,"remote_port":41253,"remote_addr4":"8.8.8.8","remote_addr6":null,"datacenter":"unknown","tor":"none","request_time":1703519823,"create_time":1703519826,"response_len":345,"response_status":404,"response_time":359,"stamps":[7965],"regex":[],"stamps_hash":271168947,"regex_hash":-2147483648,"type":"sqli","block_status":"monitored","brute_counter":"b:1111:xxxxxxxxxxxxxxxx","final_wallarm_mode":"monitoring","libproton_version":"4.8.0","lom_id":932,"protocol":"rest","proxy_type":null,"request_id":"xxxxxxxxxxxxxxxx","wallarm_mode":null,"id":["hits_production_1111_202312_v_1","xxxxxxxxxxxxxxxx"],"object_type":"hit","anomaly":1.0357142857142858,"parameter":"GET_id_value","applications":["default"]}}
+        {"summary":"[Wallarm] New hit detected","details":{"client_name":"Test Company","cloud":"EU","notification_type":"new_hits","hit":{"domain":"example.com","heur_distance":2.5,"method":"GET","path":"/etc/passwd","payloads":["/etc/passwd"],"point":["uri"],"probability":2.5,"remote_country":null,"remote_port":41254,"remote_addr4":"8.8.8.8","remote_addr6":null,"datacenter":"unknown","tor":"none","request_time":1703519826,"create_time":1703519829,"response_len":345,"response_status":404,"response_time":339,"stamps":[2907],"regex":[],"stamps_hash":-1063984326,"regex_hash":-2147483648,"type":"ptrav","block_status":"monitored","brute_counter":"b:1111:xxxxxxxxxxxxxxxx","final_wallarm_mode":"monitoring","libproton_version":"4.8.0","lom_id":932,"protocol":"none","proxy_type":null,"request_id":"xxxxxxxxxxxxxxxx","wallarm_mode":null,"id":["hits_production_1111_202312_v_1","xxxxxxxxxxxxxxxx"],"object_type":"hit","anomaly":0.22727272727272727,"parameter":"URI_value","applications":["default"]}}
+        ```
 * 脆弱性検出
 
-    ```json
-    [
-        {
-            summary:"[Wallarm] 新しい脆弱性が検出されました",
-            description:"通知種類: 脆弱性
+    === "JSON Array"
+        ```json
+        [
+            {
+                summary:"[Wallarm] New vulnerability detected",
+                description:"Notification type: vuln
 
-                        あなたのシステムで新しい脆弱性が検出されました。
+                            New vulnerability was detected in your system.
 
-                        ID: 
-                        タイトル: テスト
-                        ドメイン: example.com
-                        パス: 
-                        メソッド: 
-                        検出者: 
-                        パラメータ: 
-                        型: 情報
-                        脅威: 中程度
+                            ID: 
+                            Title: Test
+                            Domain: example.com
+                            Path: 
+                            Method: 
+                            Discovered by: 
+                            Parameter: 
+                            Type: Info
+                            Threat: Medium
 
-                        詳細: https://us1.my.wallarm.com/object/555
+                            More details: https://us1.my.wallarm.com/object/555
 
 
-                        クライアント: TestCompany
-                        クラウド: US
-                        ",
-            details:{
-                client_name:"TestCompany",
-                cloud:"US",
-                notification_type:"vuln",
-                vuln_link:"https://us1.my.wallarm.com/object/555",
-                vuln:{
-                    domain:"example.com",
-                    id:null,
-                    method:null,
-                    parameter:null,
-                    path:null,
-                    title:"Test",
-                    discovered_by:null,
-                    threat:"Medium",
-                    type:"Info"
+                            Client: TestCompany
+                            Cloud: US
+                            ",
+                details:{
+                    client_name:"TestCompany",
+                    cloud:"US",
+                    notification_type:"vuln",
+                    vuln_link:"https://us1.my.wallarm.com/object/555",
+                    vuln:{
+                        domain:"example.com",
+                        id:null,
+                        method:null,
+                        parameter:null,
+                        path:null,
+                        title:"Test",
+                        discovered_by:null,
+                        threat:"Medium",
+                        type:"Info"
+                    }
                 }
             }
-        }
-    ]
-    ```
+        ]
+        ```
+    === "New Line Delimited JSON (NDJSON)"
+        ```json
+        {"summary":"[Wallarm] New vulnerability detected","description":"Notification type: vuln\nNew vulnerability was detected in your system.\nID: \nTitle: Test\nDomain: example.com\nPath: \nMethod: \nDiscovered by: \nParameter: \nType: Info\nThreat: Medium\nMore details: https://us1.my.wallarm.com/object/555\nClient: TestCompany\nCloud: US","details":{"client_name":"TestCompany","cloud":"US","notification_type":"vuln","vuln_link":"https://us1.my.wallarm.com/object/555","vuln":{"domain":"example.com","id":null,"method":null,"parameter":null,"path":null,"title":"Test","discovered_by":null,"threat":"Medium","type":"Info"}}}
+        ```
 
-## インテグレーションの設定
+## 統合の設定
 
-1. Wallarm UI → **インテグレーション**を開きます。
-2. **Webhook** ブロックをクリックするか、**インテグレーションを追加** ボタンをクリックして**Webhook**を選択します。
-3. インテグレーション名を入力します。
-4. 目標とするWebhook URLを入力します。
-5. 必要に応じて、詳細設定を行います：
+1. Wallarm UI → **Integrations** を開きます。
+1. **Webhook**ブロックをクリックするか、**Add integration**ボタンをクリックして**Webhook**を選択します。
+1. 統合名を入力します。
+1. 対象Webhook URLを入力します。
+1. 必要な場合、詳細設定を構成します:
 
-    --8<-- "../include-ja/integrations/webhook-advanced-settings.md"
+    --8<-- "../include/integrations/webhook-advanced-settings.md"
 
     ![Advanced settings example](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
-6. Webhook URLへの通知送信をトリガするイベントタイプを選択します。何もイベントが選択されなかった場合、通知は送られません。
-7. [インテグレーションをテスト](#testing-integration)し、設定が正しいことを確認します。
-8. **インテグレーションを追加**をクリックします。
+1. 通知をトリガーするイベントタイプを選択します。
 
     ![Webhook integration](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
 
-## インテグレーションの例
+    利用可能なイベントの詳細:
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-以下に、人気のログ収集器を設定してログをSIEMシステムに転送する方法についての例をいくつか説明します：
+1. **Test integration**をクリックして、設定の正確性、Wallarm Cloudの可用性、および通知フォーマットを確認します。テスト通知は、New Line Delimited JSON (NDJSON)が選択されている場合でも常にJSON Array形式で送信されます。
+1. **Add integration**をクリックします。
 
-* [IBM QRadar](webhook-examples/fluentd-qradar.md)、[Splunk Enterprise](webhook-examples/fluentd-splunk.md)、[ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md)、[Datadog](webhook-examples/fluentd-logstash-datadog.md)へのログ転送を設定した**Fluentd**とともに
-* [IBM QRadar](webhook-examples/logstash-qradar.md)、[Splunk Enterprise](webhook-examples/logstash-splunk.md)、[ArcSight Logger](webhook-examples/logstash-arcsight-logger.md)、[Datadog](webhook-examples/fluentd-logstash-datadog.md)へのログ転送を設定した**Logstash**とともに
+--8<-- "../include/cloud-ip-by-request.md"
 
-## インテグレーションのテスト
+## 追加アラートの設定
 
---8<-- "../include-ja/integrations/test-integration-advanced-data.md"
+--8<-- "../include/integrations/integrations-trigger-setup.md"
 
-ウェブフックの例をテストします：
+### 例：IPアドレスが拒否リストに追加された場合のWebhook URLへの通知
 
-```json
-[
-    {
-        summary:"[テストメッセージ] [Test partner(US)] 新しい脆弱性が検出されました",
-        description:"通知種類: 脆弱性
+IPアドレスが拒否リストに追加された場合、このイベントに関するWebhookがWebhook URLに送信されます。
 
-                    あなたのシステムで新しい脆弱性が検出されました。
+![Example of trigger for denylisted IP](../../../images/user-guides/triggers/trigger-example4.png)
 
-                    ID: 
-                    タイトル: テスト
-                    ドメイン: example.com
-                    パス: 
-                    メソッド: 
-                    検出者: 
-                    パラメータ: 
-                    型: 情報
-                    脅威: 中程度
+**トリガーをテストするには:**
 
-                    さらなる詳細: https://us1.my.wallarm.com/object/555
+1. Wallarm Console → **IP lists** → **Denylist** を開き、IPアドレスを拒否リストに追加します。例えば:
 
+    ![Adding IP to the denylist](../../../images/user-guides/triggers/test-ip-blocking.png)
+2. 次のWebhookがWebhook URLに送信されたことを確認します:
 
-                    クライアント: TestCompany
-                    クラウド: US
-                    ",
-        details:{
-            client_name:"TestCompany",
-            cloud:"US",
-            notification_type:"vuln",
-            vuln_link:"https://us1.my.wallarm.com/object/555",
-            vuln:{
-                domain:"example.com",
-                id:null,
-                method:null,
-                parameter:null,
-                path:null,
-                title:"Test",
-                discovered_by:null,
-                threat:"Medium",
-                type:"Info"
+    ```
+    [
+        {
+            "summary": "[Wallarm] Trigger: New IP address was denylisted",
+            "description": "Notification type: ip_blocked\n\nIP address 1.1.1.1 was denylisted until 2021-06-10 02:27:15 +0300 for the reason Produces many attacks. You can review blocked IP addresses in the \"Denylist\" section of Wallarm Console.\nThis notification was triggered by the \"Notification about denylisted IP\" trigger. The IP is blocked for the application Application #8.\n\nClient: TestCompany\nCloud: EU\n",
+            "details": {
+            "client_name": "TestCompany",
+            "cloud": "EU",
+            "notification_type": "ip_blocked",
+            "trigger_name": "Notification about denylisted IP",
+            "application": "Application #8",
+            "reason": "Produces many attacks",
+            "expire_at": "2021-06-10 02:27:15 +0300",
+            "ip": "1.1.1.1"
             }
         }
-    }
-]
-```
+    ]
+    ```
 
-## インテグレーションの更新
+    * 「Notification about denylisted IP」はトリガー名です
+    * 「TestCompany」はWallarm Console上の会社アカウント名です
+    * 「EU」は会社アカウントが登録されているWallarm Cloudです
 
---8<-- "../include-ja/integrations/update-integration.md"
+## 統合の無効化および削除
 
-## インテグレーションの無効化
+--8<-- "../include/integrations/integrations-disable-delete.md"
 
---8<-- "../include-ja/integrations/disable-integration.md"
+## システムの利用不可および統合パラメータの誤り
 
-## インテグレーションの削除
-
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/integration-not-working.md"
