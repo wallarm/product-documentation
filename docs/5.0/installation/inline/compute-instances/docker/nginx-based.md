@@ -35,5 +35,6 @@ search:
 [api-discovery-docs]:               ../../../../api-discovery/overview.md
 [sensitive-data-rule]:              ../../../../user-guides/rules/sensitive-data-rule.md
 [apid-only-mode-details]:           ../../../../installation/nginx/all-in-one.md#api-discovery-only-mode
+[inline-docs]:                      ../../../inline/overview.md
 
 --8<-- "latest/admin-en/installation-docker-en.md"

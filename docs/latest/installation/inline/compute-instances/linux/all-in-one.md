@@ -1,45 +1,6 @@
-[img-wl-console-users]:             ../../../../images/check-user-no-2fa.png
-[wallarm-status-instr]:             ../../../../admin-en/configure-statistics-service.md
-[memory-instr]:                     ../../../../admin-en/configuration-guides/allocate-resources-for-node.md
-[waf-directives-instr]:             ../../../../admin-en/configure-parameters-en.md
-[ptrav-attack-docs]:                ../../../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:           ../../../../images/admin-guides/test-attacks-quickstart.png
-[waf-mode-instr]:                   ../../../../admin-en/configure-wallarm-mode.md
-[logging-instr]:                    ../../../../admin-en/configure-logging.md
-[proxy-balancer-instr]:             ../../../../admin-en/using-proxy-or-balancer-en.md
-[process-time-limit-instr]:         ../../../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[configure-proxy-balancer-instr]:   ../../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[update-instr]:                     ../../../../updating-migrating/nginx-modules.md
-[install-postanalytics-docs]:        ../../../../../admin-en/installation-postanalytics-en/
-[dynamic-dns-resolution-nginx]:     ../../../../admin-en/configure-dynamic-dns-resolution-nginx.md
-[waf-mode-recommendations]:          ../../../../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps
-[ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
-[versioning-policy]:                ../../../../updating-migrating/versioning-policy.md#version-list
-[install-postanalytics-instr]:      ../../../../admin-en/installation-postanalytics-en.md
-[waf-installation-instr-latest]:     /installation/nginx/dynamic-module/
-[img-node-with-several-instances]:  ../../../../images/user-guides/nodes/wallarm-node-with-two-instances.png
-[img-create-wallarm-node]:      ../../../../images/user-guides/nodes/create-cloud-node.png
-[nginx-custom]:                 ../../../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
-[node-token]:                       ../../../../quickstart.md#deploy-the-wallarm-filtering-node
-[api-token]:                        ../../../../user-guides/settings/api-tokens.md
-[platform]:                         ../../../supported-deployment-options.md
-[img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
-[wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
-[download-aio-step]:                #step-3-download-all-in-one-wallarm-installer
-[enable-traffic-analysis-step]:     #step-5-enable-wallarm-node-to-analyze-traffic
-[restart-nginx-step]:               #step-6-restart-nginx
-[separate-postanalytics-installation-aio]:  ../../../../admin-en/installation-postanalytics-en.md
-[api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
-[threat-replay-testing-docs]:       ../../../../vulnerability-detection/threat-replay-testing/overview.md
-[api-discovery-docs]:               ../../../../api-discovery/overview.md
-[api-sessions-docs]:                ../../../../api-sessions/overview.md
-[vuln-detection-docs]:              ../../../../about-wallarm/detecting-vulnerabilities.md
-[masking-sensitive-data-rule]:      ../../../../user-guides/rules/sensitive-data-rule.md
-
 # Deploying with All-in-One Installer
 
-An **all-in-one installer** is designed to streamline and standardize the process of installing Wallarm node as a dynamic module for NGINX in various environments. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
+An **all-in-one installer** is designed for installing Wallarm node as a dynamic module for NGINX in Linux-based environments for [inline traffic filtration][inline-docs]. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
 
 The **all-in-one installer** provides a simple node installation process by automatically performing the following actions:
 
@@ -95,7 +56,7 @@ Commands in the further steps are the same for x86_64 and ARM64 installations.
 
 The dynamic Wallarm module with default settings is installed. The filtering node may require some additional configuration after deployment.
 
-Wallarm settings are defined using the [NGINX directives](../../../../admin-en/configure-parameters-en.md) or the Wallarm Console UI. Directives should be set in the following files on the machine with the Wallarm node:
+Wallarm settings are defined using the [NGINX directives][waf-directives-instr] or the Wallarm Console UI. Directives should be set in the following files on the machine with the Wallarm node:
 
 * `/etc/nginx/sites-available/default` for the settings on the server and location levels
 * `/etc/nginx/nginx.conf` for the settings on the http level
@@ -124,7 +85,7 @@ If you need to delete the Wallarm node installation and start again, follow the 
 !!! warning "Impact of starting the installation over"
     Starting the installation over involves stopping and deleteing already running Wallarm services, thus pausing traffic filtering until reinstallation. Exercise caution in production or critical traffic environments, as this leaves traffic unfiltered and at risk.
 
-    To upgrade an existing node (e.g., from 4.10 to 5.0), see the [upgrade instructions](../../../../updating-migrating/all-in-one.md).
+    To upgrade an existing node (e.g., from 4.10 to 5.0), see the [upgrade instructions][upgrade-docs].
 
 1. Terminate Wallarm processes and remove configuration files:
 

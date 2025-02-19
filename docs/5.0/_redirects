@@ -845,3 +845,10 @@
 /pt-br/user-guides/use-sso/ /pt-br/admin-en/configuration-guides/sso/intro/
 /pt-br/admin-en/configuration-guides/sso/gsuite/* /pt-br/admin-en/configuration-guides/sso/sso-gsuite/
 /pt-br/admin-en/configuration-guides/sso/okta/* /pt-br/admin-en/configuration-guides/sso/sso-okta/
+
+/installation/oob/terraform-module/mirroring-by-web-server/ /installation/oob/overview/#supported-deployment-options
+/installation/oob/web-server-mirroring/aws-ami/ /installation/oob/overview/#supported-deployment-options
+/installation/oob/web-server-mirroring/docker-image/ /installation/oob/overview/#supported-deployment-options
+/installation/oob/web-server-mirroring/gcp-machine-image/ /installation/oob/overview/#supported-deployment-options
+/installation/oob/web-server-mirroring/linux/all-in-one/ /installation/oob/overview/#supported-deployment-options
+/installation/oob/web-server-mirroring/overview/ /installation/oob/overview/#supported-deployment-options

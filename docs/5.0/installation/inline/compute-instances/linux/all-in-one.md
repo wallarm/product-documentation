@@ -31,5 +31,17 @@ search:
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
+[inline-docs]:                      ../../overview.md
+[upgrade-docs]:                     ../../../../updating-migrating/all-in-one.md
+[download-aio-step]:                #step-3-download-all-in-one-wallarm-installer
+[enable-traffic-analysis-step]:     #step-5-enable-wallarm-node-to-analyze-traffic
+[restart-nginx-step]:               #step-6-restart-nginx
+[separate-postanalytics-installation-aio]:  ../../../../admin-en/installation-postanalytics-en.md
+[api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
+[threat-replay-testing-docs]:       ../../../../vulnerability-detection/threat-replay-testing/overview.md
+[api-discovery-docs]:               ../../../../api-discovery/overview.md
+[api-sessions-docs]:                ../../../../api-sessions/overview.md
+[vuln-detection-docs]:              ../../../../about-wallarm/detecting-vulnerabilities.md
+[masking-sensitive-data-rule]:      ../../../../user-guides/rules/sensitive-data-rule.md
 
 --8<-- "latest/installation/inline/compute-instances/linux/all-in-one.md"

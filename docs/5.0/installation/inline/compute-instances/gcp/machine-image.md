@@ -27,6 +27,8 @@ search:
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 [cloud-init-spec]:                  ../../../cloud-platforms/cloud-init.md
 [wallarm_force_directive]:          ../../../../admin-en/configure-parameters-en.md#wallarm_force
+[ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 [api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
+[inline-docs]:                      ../../overview.md
 
 --8<-- "latest/installation/inline/compute-instances/gcp/machine-image.md"

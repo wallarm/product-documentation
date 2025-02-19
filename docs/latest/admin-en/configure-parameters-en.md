@@ -244,10 +244,6 @@ Defines an interval between checking new data in proton.db and custom ruleset fi
     
     **Default value**: `1` (one minute)
 
-### wallarm_force
-
-Sets the requests' analysis and custom rules generation based on the NGINX mirrored traffic. See [Analyzing mirrored traffic with NGINX](../installation/oob/web-server-mirroring/overview.md).
-
 ### wallarm_general_ruleset_memory_limit
 
 Set a limit for the maximum amount of memory that can be used by one instance of proton.db and custom ruleset.

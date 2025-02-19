@@ -1,1 +1,0 @@
---8<-- "latest/installation/oob/web-server-mirroring/linux/all-in-one.md"

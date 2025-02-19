@@ -132,11 +132,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Proxy for Amazon API Gateway</h3>
             <p>Wallarm as proxy for Amazon API Gateway protection</p>
         </a>
-
-        <a class="do-card" href="../../installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring/">
-            <h3>OOB for NGINX, Envoy and similar mirroring</h3>
-            <p>Wallarm OOB for traffic mirrored by NGINX, Envoy and similar in AWS</p>
-        </a>
     </div>
 
     <div class="do-nested" data-for="public-clouds-gcp">
@@ -460,100 +455,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <img class="non-zoomable" src="../../images/platform-icons/tcp-mirror-analysis.svg" />
             <h3>TCP Traffic Mirror Analysis</h3>
             <p>Out-of-band deployment for TCP traffic mirror analysis</p>
-        </a>
-
-        <div id="mirroring-by-web-servers" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/web-server-mirroring.svg" />
-            <h3>Mirroring by NGINX, Envoy and similar</h3>
-            <p>Out-of-band deployment for traffic mirrored by NGINX, Envoy and similar</p>
-        </div>
-    </div>
-
-    <div class="do-nested" data-for="mirroring-by-web-servers">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/web-server-mirroring.svg" />
-            <h3>Mirroring by NGINX, Envoy and similar</h3>
-            <p>Out-of-band deployment for traffic mirrored by NGINX, Envoy and similar</p>
-        </div>
-
-        <div id="mirroring-by-web-servers-public-clouds" class="do-card">
-            <h3>Public Clouds</h3>
-            <p>Artifacts for Wallarm OOB deployment on public clouds</p>
-        </div>
-
-        <div id="mirroring-by-web-servers-docker" class="do-card">
-            <h3>Docker</h3>
-            <p>Docker images for Wallarm OOB deployment</p>
-        </div>
-
-        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/all-in-one/">
-            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
-            <h3>All-in-one installer</h3>
-            <p>Let Wallarm detect your OS and NGINX version to install the appropriate modules</p>
-        </a>
-
-    </div>
-
-    <div class="do-nested" data-for="mirroring-by-web-servers-public-clouds">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/cloud.svg" />
-            <h3>Public clouds</h3>
-            <p>Artifacts for Wallarm OOB deployment on public clouds</p>
-        </div>
-
-        <div id="mirroring-by-web-servers-public-clouds-aws" class="do-card">
-            <h3>Amazon Web Services</h3>
-            <p>Artifacts for Wallarm OOB deployment on AWS</p>
-        </div>
-
-        <div id="mirroring-by-web-servers-public-clouds-gcp" class="do-card">
-            <h3>Google Cloud</h3>
-            <p>Artifacts for Wallarm OOB deployment on GCP</p>
-        </div>
-    </div>
-
-    <div class="do-nested" data-for="mirroring-by-web-servers-public-clouds-aws">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
-            <h3>Amazon Web Services</h3>
-            <p>Artifacts for Wallarm OOB deployment on AWS</p>
-        </div>
-
-        <a class="do-card" href="../../installation/oob/web-server-mirroring/aws-ami/">
-            <h3>AMI</h3>
-            <p>Use the official Machine Image to deploy Wallarm OOB on AWS</p>
-        </a>
-
-        <a class="do-card" href="../../installation/oob/terraform-module/mirroring-by-web-server/">
-            <h3>Terraform module</h3>
-            <p>Use the Terraform module to deploy Wallarm OOB on Kubernetes running on AWS</p>
-        </a>
-    </div>
-
-    <div class="do-nested" data-for="mirroring-by-web-servers-public-clouds-gcp">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
-            <h3>Google Cloud</h3>
-            <p>Artifacts for Wallarm OOB deployment on Google Cloud</p>
-        </div>
-
-        <a class="do-card" href="../../installation/cloud-platforms/gcp/machine-image/">
-            <h3>Machine Image</h3>
-            <p>Use the official Machine Image to deploy Wallarm OOB on Google Cloud</p>
-        </a>
-    </div>
-
-
-    <div class="do-nested" data-for="mirroring-by-web-servers-docker">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
-            <h3>Docker</h3>
-            <p>Docker images for Wallarm OOB deployment</p>
-        </div>
-
-        <a class="do-card" href="../../installation/oob/web-server-mirroring/docker-image/">
-            <h3>Docker image (NGINX)</h3>
-            <p>Use the NGINX-based Docker image for Wallarm OOB deployment</p>
         </a>
     </div>
 

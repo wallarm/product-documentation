@@ -2,7 +2,7 @@
 
 Wallarm provides the [Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/) to deploy the node to [AWS](https://aws.amazon.com/) from the Terraform-compatible environment. Use these instructions to explore the module and try the provided deployment examples.
 
-By implementing the Wallarm Terraform module, we have provided the solution enabling two core Wallarm deployment options: **[in-line](../../../inline/overview.md) (which is proxy in this deployment method)** and [**Out‑of‑band (mirror)**](../../../oob/overview.md) security solutions. The deployment option is easily controlled by the `preset` Wallarm module variable.
+By implementing the Wallarm Terraform module, we have provided the solution enabling **[in-line](../../../inline/overview.md) (which is proxy in this deployment method)** deployment of Wallarm Node. The deployment option is easily controlled by the `preset` Wallarm module variable.
 
 ## Use cases
 
@@ -58,7 +58,7 @@ To deploy Wallarm for production using the AWS Terraform module:
 | **Wallarm-specific variables** | | | |
 | `host` | [Wallarm API server](../../../../about-wallarm/overview.md#cloud). Possible values:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default, `api.wallarm.com`. | string | No
 `upstream` | The [Wallarm node version](../../../../updating-migrating/versioning-policy.md#version-list) to be deployed. Minimum supported version is `4.0`.<br><br>By default, `4.8`. | string | No
-| `preset` | Wallarm deployment scheme. Possible values:<ul><li>`proxy`</li><li>`mirror`</li></ul>By default, `proxy`. | string | No
+| `preset` | Wallarm deployment scheme. Possible values: `proxy` (default). | string | No
 | `proxy_pass` | Proxied server protocol and address. Wallarm node will process requests sent to the specified address and proxy legitimate ones to. As a protocol, 'http' or 'https' can be specified. The address can be specified as a domain name or IP address, and an optional port. | string | Yes, if `preset` is `proxy`
 | `mode` | [Traffic filtration mode](../../../../admin-en/configure-wallarm-mode.md). Possible values: `off`, `monitoring`, `safe_blocking`, `block`.<br><br>By default, `monitoring`. | string | No
 |`libdetection` | Whether to [use the libdetection library](../../../../about-wallarm/protecting-against-attacks.md#library-libdetection) during the traffic analysis.<br><br>By default, `true`. | bool | No
@@ -101,7 +101,6 @@ We have prepared examples of different ways to use the Wallarm module, so you co
 
 * [Proxy in AWS VPC](proxy-in-aws-vpc.md)
 * [Proxy for Amazon API Gateway](proxy-for-aws-api-gateway.md)
-* [OOB for NGINX, Envoy or Similar Mirroring](oob-for-web-server-mirroring.md)
 
 ## Further information about Wallarm and Terraform
 

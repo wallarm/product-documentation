@@ -7,7 +7,7 @@ If following the Infrastructure as Code (IaC) approach, you may need to use the 
 The Wallarm `cloud-init` script is available under the `/opt/wallarm/usr/share/wallarm-common/cloud-init.py` path in the [Wallarm AWS cloud image](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe). This script performs both an initial and advanced instance configuration with the following main stages involved:
 
 * Runs the Wallarm node previously created in the Wallarm Cloud by executing the Wallarm `register-node` script 
-* Configures the instance in accordance with either the proxy or mirror approach specified in the `preset` variable (if deploying Wallarm using the [Terraform module](aws/terraform-module/overview.md))
+* Configures the instance in accordance with the proxy approach specified in the `preset` variable (if deploying Wallarm using the [Terraform module](aws/terraform-module/overview.md))
 * Fine-tunes the instance in accordance with NGINX snippets
 * Fine-tunes the Wallarm node
 * Performs health checks for the Load Balancer
@@ -49,7 +49,7 @@ To meet the Infrastructure as Code (IaC) approach, we have implemented the [Terr
 ## The Wallarm cloud-init script help data
 
 ```plain
-usage: /opt/wallarm/usr/share/wallarm-common/cloud-init.py [-h] -t TOKEN [-H HOST] [--skip-register] [-p {proxy,mirror,custom}]
+usage: /opt/wallarm/usr/share/wallarm-common/cloud-init.py [-h] -t TOKEN [-H HOST] [--skip-register] [-p {proxy,custom}]
                                                       [-m {off,monitoring,safe_blocking,block}] [--proxy-pass PROXY_PASS]
                                                       [--libdetection] [--global-snippet GLOBAL_SNIPPET_FILE]
                                                       [--http-snippet HTTP_SNIPPET_FILE] [--server-snippet SERVER_SNIPPET_FILE]
@@ -64,9 +64,8 @@ optional arguments:
   -H HOST, --host HOST  Wallarm API server specific for the Wallarm Cloud being used: https://docs.wallarm.com/about-wallarm/overview/#cloud. By default, api.wallarm.com.
   --skip-register       Skips the stage of local running the node created in the Wallarm Cloud (skips the register-node script
                         execution). This stage is crucial for successful node deployment.
-  -p {proxy,mirror,custom}, --preset {proxy,mirror,custom}
-                        Wallarm node preset: "proxy" for the node to operate as a proxy server, "mirror" for the node to process
-                        mirrored traffic, "custom" for configuration defined via NGINX snippets only.
+  -p {proxy,custom}, --preset {proxy,custom}
+                        Wallarm node preset: "proxy" for the node to operate as a proxy server, "custom" for configuration defined via NGINX snippets only.
   -m {off,monitoring,safe_blocking,block}, --mode {off,monitoring,safe_blocking,block}
                         Traffic filtration mode: https://docs.wallarm.com/admin-en/configure-parameters-en/#wallarm_mode.
   --proxy-pass PROXY_PASS

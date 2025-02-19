@@ -242,17 +242,9 @@ To test the new node operation:
 
 ## Step 13: Configure sending traffic to Wallarm node
 
-Depending on the deployment approach being used, perform the following settings:
+Update targets of your load balancer to send traffic to the Wallarm instance. For details, please refer to the documentation on your load balancer.
 
-=== "In-line"
-    Update targets of your load balancer to send traffic to the Wallarm instance. For details, please refer to the documentation on your load balancer.
-
-    Before full redirecting of the traffic to the new node, it is recommended to first redirect it partially and check that the new node behaves as expected.
-
-=== "Out-of-Band"
-    Configure your web or proxy server (e.g. NGINX, Envoy) to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web or proxy server documentation.
-
-    Inside the [link][web-server-mirroring-examples], you will find the example configuration for the most popular of web and proxy servers (NGINX, Traefik, Envoy).
+Before full redirecting of the traffic to the new node, it is recommended to first redirect it partially and check that the new node behaves as expected.
 
 ## Step 14: Remove old node
 
