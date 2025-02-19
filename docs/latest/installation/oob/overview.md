@@ -16,8 +16,6 @@ As the OOB solution only records malicious activity but does not block it, it is
 
 The diagram below provides a visual representation of the general traffic flow in an out-of-band deployment of Wallarm. The diagram may not capture all possible infrastructure variations. The traffic mirror can be generated at any supporting layer of the infrastructure and sent to the Wallarm nodes. Additionally, specific setups may involve varying load balancing and other infrastructure-level configurations.
 
-![OOB scheme](../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
-
 ## Advantages
 
 The OOB approach to the Wallarm deployment offers several advantages over other deployment methods, such as in-line deployments:
@@ -29,14 +27,14 @@ The OOB approach to the Wallarm deployment offers several advantages over other 
 
 Despite the OOB deployment approach safety, it has some limitations. The table below details the limitations associated with various deployment options:
 
-| Feature | [eBPF](ebpf/deployment.md) | [TCP mirror](tcp-traffic-mirror/deployment.md) | [Web server mirror](web-server-mirroring/overview.md) |
-| --- | --- | --- | --- | 
-| Instant blocking of malicious requests | - | - | - |
-| Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) | - | + | - |
-| [API Discovery](../../api-discovery/overview.md) | + (excludes response structure) | + | - |
-| [Protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) | + | + | - |
-| [Rate limiting](../../user-guides/rules/rate-limiting.md) | - | - | - |
-| [IP lists](../../user-guides/ip-lists/overview.md) | - | - | - |
+| Feature | [eBPF](ebpf/deployment.md) | [TCP mirror](tcp-traffic-mirror/deployment.md) |
+| --- | --- | --- |
+| Instant blocking of malicious requests | - | - |
+| Vulnerability discovery using the [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) | - | + |
+| [API Discovery](../../api-discovery/overview.md) | + (excludes response structure) | + |
+| [Protection against forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) | + | + |
+| [Rate limiting](../../user-guides/rules/rate-limiting.md) | - | - |
+| [IP lists](../../user-guides/ip-lists/overview.md) | - | - |
 
 ## Supported deployment options
 
@@ -44,4 +42,3 @@ Wallarm offers the following Out-of-Band (OOB) deployment options:
 
 * [eBPF-based solution](ebpf/deployment.md)
 * The solution for [TCP traffic mirror analysis](tcp-traffic-mirror/deployment.md)
-* Many available Wallarm artifacts can be used to [deploy Wallarm for analyzing traffic mirrored by services like NGINX, Envoy, Istio, etc.](web-server-mirroring/overview.md) These services typically offer built-in features for traffic mirroring, and Wallarm artifacts are well-suited for analyzing traffic mirrored by such solutions.

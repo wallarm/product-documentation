@@ -260,9 +260,7 @@ Now, registration of the node looks as follows:
 
 You can now easily deploy Wallarm to [AWS](https://aws.amazon.com/) from the Infrastructure as Code (IaC)-based environment using the [Wallarm Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/).
 
-The Wallarm Terraform module is the scalable solution meeting the best industry standards of security and failover ensuring. During its deployment, you can choose either the **proxy** or **mirror** deployment option based on your requirements for the traffic flow.
-
-We have also prepared the usage examples for both deployment options involving basic deployment configurations as well as advanced ones compatible with such solutions as AWS VPC Traffic Mirroring.
+The Wallarm Terraform module is the scalable solution meeting the best industry standards of security and failover ensuring. This is designed for deploying Wallarm as **proxy**.
 
 [Documentation on the Wallarm Terraform module for AWS](../../installation/cloud-platforms/aws/terraform-module/overview.md)
 

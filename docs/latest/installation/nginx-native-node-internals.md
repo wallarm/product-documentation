@@ -206,72 +206,6 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
 
 </div>
 
-### Out-of-band
-
-The NGINX Node is suitable for the [out-of-band traffic](oob/overview.md) analysis when traffic mirror is produced by NGINX, Envoy or another web server.
-
-<div class="do-section">
-    <div class="do-main">
-
-        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/all-in-one/">
-            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
-            <h3>All-in-one installer</h3>
-            <p>Run the node on a machine with a Linux OS</p>
-        </a>
-
-        <div id="mirroring-by-web-servers-public-clouds-aws" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
-            <h3>Amazon Web Services</h3>
-            <p>Artifacts for Wallarm OOB deployment on AWS</p>
-        </div>
-
-        <div id="mirroring-by-web-servers-public-clouds-gcp" class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
-            <h3>Google Cloud</h3>
-            <p>Artifacts for Wallarm OOB deployment on GCP</p>
-        </div>
-
-        <a class="do-card" href="../../installation/oob/web-server-mirroring/docker-image/">
-            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
-            <h3>Docker image</h3>
-            <p>Run the node in the containerized environment</p>
-        </a>
-
-    </div>
-
-    <div class="do-nested" data-for="mirroring-by-web-servers-public-clouds-aws">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
-            <h3>Amazon Web Services</h3>
-            <p>Artifacts for Wallarm OOB deployment on AWS</p>
-        </div>
-
-        <a class="do-card" href="../../installation/oob/web-server-mirroring/aws-ami/">
-            <h3>AMI</h3>
-            <p>Use the official Machine Image to deploy Wallarm OOB on AWS</p>
-        </a>
-
-        <a class="do-card" href="../../installation/oob/terraform-module/mirroring-by-web-server/">
-            <h3>Terraform module</h3>
-            <p>Use the Terraform module to deploy Wallarm OOB on Kubernetes running on AWS</p>
-        </a>
-    </div>
-
-    <div class="do-nested" data-for="mirroring-by-web-servers-public-clouds-gcp">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
-            <h3>Google Cloud</h3>
-            <p>Artifacts for Wallarm OOB deployment on Google Cloud</p>
-        </div>
-
-        <a class="do-card" href="../../installation/cloud-platforms/gcp/machine-image/">
-            <h3>Machine Image</h3>
-            <p>Use the official Machine Image to deploy Wallarm OOB on Google Cloud</p>
-        </a>
-    </div>
-
-</div>
-
 ## Native Node
 
 The Native Node does not rely on NGINX. It was developed for environments where NGINX is not required or where a more lightweight and platform-agnostic solution is preferred.
@@ -350,4 +284,4 @@ The Native Node works with the following platforms with no limitations:
 
 <link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
 
-<script src="/nginx-native-node-deployments.min.js?v=1"></script>
+<script src="/nginx-native-internals.js"></script>
