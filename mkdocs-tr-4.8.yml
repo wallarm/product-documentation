@@ -19,389 +19,384 @@ watch:
   - docs/tr
 
 nav:
-  - Quick Start:
-    - Wallarm Overview: about-wallarm/overview.md
-    - Getting Started: quickstart/getting-started.md
-    - Subscription Plans: about-wallarm/subscription-plans.md
-    - Deployment Guides: /installation/supported-deployment-options/
-    - Best Practices: quickstart/attack-prevention-best-practices.md
-    - Video Guides:
-      - Wallarm Platform Settings: demo-videos/overview.md
-      - Analyzing CVEs and Related Attacks: demo-videos/events-inspection.md
-      - API Discovery Overview: demo-videos/api-discovery.md
-      - Shadow and Orphan API: demo-videos/shadow-api.md
-      - API Abuse Prevention Overview: demo-videos/api-abuse-prevention.md
-     #- API Leaks Overview: demo-videos/api-leaks.md
-  - Threat Management:
-    - Dashboards:
-      - Threat Prevention: user-guides/dashboards/threat-prevention.md
-      - API Discovery: user-guides/dashboards/api-discovery.md
-      - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
-      - OWASP API 2023: user-guides/dashboards/owasp-api-top-ten.md
-    - Attacks & Incidents:
-      - Attack Analysis: user-guides/events/check-attack.md
-      - Incident Analysis: user-guides/events/check-incident.md
-      - Search and Filters: user-guides/search-and-filters/use-search.md
-      - Grouping and Sampling: user-guides/events/grouping-sampling.md
-    - API Sessions: 
-      - Overview: api-sessions/overview.md
-      - Setup: api-sessions/setup.md
-      - Exploring: api-sessions/exploring.md
-    - Reports: user-guides/search-and-filters/custom-report.md
-  - API Discovery:
-    - Overview: api-discovery/overview.md
-    - Setup: api-discovery/setup.md
-    - Exploring API Inventory: api-discovery/exploring.md
-    - Tracking Changes in API: api-discovery/track-changes.md
-    - Sensitive Data Detection: api-discovery/sensitive-data.md
-    - Sensitive Business Flows: api-discovery/sbf.md
-    - Endpoint Risk Score: api-discovery/risk-score.md
-    - Shadow, Orphan, Zombie API: api-discovery/rogue-api.md
-    - BOLA Autoprotection: api-discovery/bola-protection.md
-    - Dashboard: api-discovery/dashboard.md
-  - API Protection:
-    - Overview: about-wallarm/api-protection-overview.md
+  - Hızlı Başlangıç:
+    - Wallarm Genel Bakış: about-wallarm/overview.md
+    - Hızlı Başlangıç Kılavuzu: quickstart/getting-started.md
+    - Video Kılavuzlar:
+      - Wallarm Platform Ayarları: demo-videos/overview.md
+      - CVE'leri ve İlgili Saldırıları Analiz Etme: demo-videos/events-inspection.md
+      - API Keşif Genel Bakışı: demo-videos/api-discovery.md
+      - Gölge ve Yetim API: demo-videos/shadow-api.md
+      - API Kötüye Kullanım Önleme Genel Bakış: demo-videos/api-abuse-prevention.md
+      - API Sızıntıları Genel Bakışı: demo-videos/api-leaks.md
+    - Dağıtım Kılavuzları: /tr/installation/supported-deployment-options/
+    - Abonelik Planları:
+      - Genel Bakış: about-wallarm/subscription-plans.md
+      - Aboneliği Yönetme: user-guides/settings/subscriptions.md
+    - En İyi Uygulamalar: quickstart/attack-prevention-best-practices.md
+  - Gösterge Tabloları ve Raporlar:
+    - Tehdit Önleme: user-guides/dashboards/threat-prevention.md
+    - API Keşif: user-guides/dashboards/api-discovery.md
+    - OWASP API Top 10: user-guides/dashboards/owasp-api-top-ten.md
+    - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
+    - Etkinlikler:
+      - Etkinlik Arama ve Filtreler: user-guides/search-and-filters/use-search.md
+      - Etkinlikleri Kontrol Etme: user-guides/events/check-attack.md
+      - Olayları Kontrol Etme: user-guides/events/check-incident.md
+    - Raporlar: user-guides/search-and-filters/custom-report.md
+    - Aktivite Kaydı: user-guides/settings/audit-log.md
+  - API Keşif:
+    - Genel Bakış: api-discovery/overview.md
+    - Kurulum: api-discovery/setup.md
+    - API Envanterini Keşfetme: api-discovery/exploring.md
+    - API Değişikliklerini Takip Etme: api-discovery/track-changes.md
+    - Uç Nokta Risk Skoru: api-discovery/risk-score.md
+    - Gölge, Sahipsiz, Zombi API: api-discovery/rogue-api.md
+    - BOLA Otomatik Algılama Şablonu: api-discovery/bola-protection.md
+    - Kontrol Paneli: api-discovery/dashboard.md
+  - API Koruma:
+    - Genel Bakış: about-wallarm/api-protection-overview.md
+    - API Özellik Uygulaması:
+      - Genel Bakış: api-specification-enforcement/overview.md
+      - Kurulum: api-specification-enforcement/setup.md
+      - Olayları Görüntüleme: api-specification-enforcement/viewing-events.md
+    - Otomatik BOLA Koruması: admin-en/configuration-guides/protecting-against-bola.md
+    # - Genel Bakış: ...
     # - OWASP Top 10: ...
     # - OWASP API Top 10: ...
-    - Specification Enforcement:
-      - Overview: api-specification-enforcement/overview.md
-      - Setup: api-specification-enforcement/setup.md
-      - Viewing Events: api-specification-enforcement/viewing-events.md
-    - Automatic BOLA Protection: admin-en/configuration-guides/protecting-against-bola.md
-    - API Abuse Prevention:
-      - Overview: api-abuse-prevention/overview.md
-      - Setup: api-abuse-prevention/setup.md
-      - Exceptions: api-abuse-prevention/exceptions.md
-      - Exploring Bot Activity: api-abuse-prevention/exploring-bots.md
-    - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
-    - GraphQL API Protection: api-protection/graphql-rule.md
-  - API Attack Surface:
-    - Overview: api-attack-surface/overview.md
-    - API Surface Discovery: api-attack-surface/api-surface.md
-    - Detecting Security Issues: api-attack-surface/security-issues.md
-  - Assets & Vulnerabilities:
-    - Exposed Assets: user-guides/scanner.md
-    - Vulnerability Assessment:
-      - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md
-      - Managing Vulnerabilities: user-guides/vulnerabilities.md
-      - Search and Filters: user-guides/search-and-filters/use-search-vuln.md
+    - API Kötüye Kullanım Önleme:
+      - Genel Bakış: api-abuse-prevention/overview.md
+      - API Kötüye Kullanımı Önleme Profil Yönetimi: api-abuse-prevention/setup.md
+      - Belirli URL'ler ve istemler için bot korumasını devre dışı bırakma: api-abuse-prevention/exceptions.md
+      - Bot Etkinliğini Keşfetme: api-abuse-prevention/exploring-bots.md
+    - Kimlik Bilgisi Doldurma Tespiti: about-wallarm/credential-stuffing.md
+    - GraphQL API Koruması: api-protection/graphql-rule.md
+  - API Saldırı Yüzeyi:
+    - Genel Bakış: api-attack-surface/overview.md
+    - API Yüzey Keşfi: api-attack-surface/api-surface.md
+    - API Sızıntılarını Yönetme: api-attack-surface/security-issues.md
+  - Varlıklar ve Güvenlik Açıkları:
+    - Güvenlik Açıklarını Tespit Etme: about-wallarm/detecting-vulnerabilities.md
+    - Algılanan Kırılganlıkların Yönetimi: user-guides/vulnerabilities.md
+    - Güvenlik Açığı Arama ve Filtreleri: user-guides/search-and-filters/use-search-vuln.md
+    - Tarayıcı İşlem Desteği:
+      - Tarayıcı Ayarları: user-guides/scanner.md
+      - Tarayıcı Adresleri: admin-en/scanner-addresses.md
+      - Kaynak Tarayıcısını Durdurmak için Wallarm Destek İletişimi: admin-en/scanner-complaint-en.md
     - Threat Replay Testing:
       - Overview: vulnerability-detection/threat-replay-testing/overview.md
       - Setup: vulnerability-detection/threat-replay-testing/setup.md
       - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
-  - Cloud-Native WAAP:
-    - Overview: about-wallarm/waap-overview.md
-    - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
-    - Brute Force Protection: admin-en/configuration-guides/protecting-against-bruteforce.md
-    - Forced Browsing Protection: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
-    - Rate Limiting: user-guides/rules/rate-limiting.md
-    - Multi-Attack Protection: admin-en/configuration-guides/protecting-with-thresholds.md
-    - Manual BOLA Protection: admin-en/configuration-guides/protecting-against-bola-trigger.md
-    - Filtering by IP: user-guides/ip-lists/overview.md
-    - Virtual Patching: user-guides/rules/vpatch-rule.md
-    - Custom Attack Detectors: user-guides/rules/regex-rule.md
-    - Masking Sensitive Data: user-guides/rules/sensitive-data-rule.md
-    - Changing Response Headers: user-guides/rules/add-replace-response-header.md
-    - Filtration Mode: admin-en/configure-wallarm-mode.md
-    - Detection Procedure:
-      - Overview: about-wallarm/protecting-against-attacks.md
-      - Parsing Requests: user-guides/rules/request-processing.md
-      - Rules: user-guides/rules/rules.md
-      - Triggers: user-guides/triggers/triggers.md
-# - Overview: ...
+  - Bulut-yerel WAAP:
+    - Genel Bakış: about-wallarm/waap-overview.md
+    - Saldırı Tespit Prosedürü: about-wallarm/protecting-against-attacks.md
+    - DDoS Koruma: admin-en/configuration-guides/protecting-against-ddos.md
+    - Brute Force Koruma: admin-en/configuration-guides/protecting-against-bruteforce.md
+    - Zorla Göz Atma Koruması: admin-en/configuration-guides/protecting-against-forcedbrowsing.md
+    - Manuel BOLA Koruması: admin-en/configuration-guides/protecting-against-bola-trigger.md
+    - Çoklu Saldırı Koruması: admin-en/configuration-guides/protecting-with-thresholds.md
+    - Coğrafi Konum Kısıtlamaları:
+      - Genel Bakış: user-guides/ip-lists/overview.md
+      - İzinli Listesi: user-guides/ip-lists/allowlist.md
+      - Gri Liste: user-guides/ip-lists/graylist.md
+      - Engellenmiş Liste: user-guides/ip-lists/denylist.md
+    - Kurallar:
+      - Kurallar: user-guides/rules/rules.md
+      - İsteklerin Analiz ve Ayrıştırılması: user-guides/rules/request-processing.md
+      - Mevcut Kural Türleri:
+        - İstek Ayrıştırıcıları Yönetme: user-guides/rules/disable-request-parsers.md
+        - Yanıt Başlık Ayarları: user-guides/rules/add-replace-response-header.md
+        - Veri Maskesi Kuralları: user-guides/rules/sensitive-data-rule.md
+        - Sanal Yama: user-guides/rules/vpatch-rule.md
+        - Kullanıcı Tanımlı Tespit Kuralları: user-guides/rules/regex-rule.md
+        - Belirli Saldırı Türlerini Yoksayma: user-guides/rules/ignore-attack-types.md
+        - İkili Veri İçindeki Saldırı İşaretlerini Yoksayma: user-guides/rules/ignore-attacks-in-binary-data.md
+        - Overlimit_res Saldırı Tespit Ayarları: user-guides/rules/configure-overlimit-res-detection.md
+        - Hız Sınırlaması Ayarlama: user-guides/rules/rate-limiting.md
+    # - Genel Bakış: ...
     # - OWASP Top 10: ...
-    # - Known attacks / CVEs: ...
-    # - Triggers: ...
-  - Deployment:
-    - Deployment Options: installation/supported-deployment-options.md
-    - Edge:
-      - Inline: installation/security-edge/deployment.md
-      - Connectors: installation/se-connector.md
-    - Kubernetes:
-      - Ingress:
-        - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
-        - Kong Ingress Controller:
-          - Deploy: installation/kubernetes/kong-ingress-controller/deployment.md
-          - Customization: installation/kubernetes/kong-ingress-controller/customization.md
-      - Sidecar:
-        - Deploy: installation/kubernetes/sidecar-proxy/deployment.md
-        - Customization: installation/kubernetes/sidecar-proxy/customization.md
-        - Scaling and High Availability: installation/kubernetes/sidecar-proxy/scaling.md
-        - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
-        - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
-      - eBPF:
-        - Deploy: installation/kubernetes/ebpf/deployment.md
-        - Helm Chart Values: installation/kubernetes/ebpf/helm-chart-for-wallarm.md
-        - Selecting Packets for Mirroring: installation/kubernetes/ebpf/selecting-packets.md
-    - Public Clouds:
+    # - Bilinen saldırılar / CVE'ler: ...
+    # - Tetikleyiciler: ...
+    - Saldırı ve Kırılganlık Türleri: attacks-vulns-list.md
+  - Dağıtım:
+    - Dağıtım Seçenekleri: installation/supported-deployment-options.md
+    - eBPF:
+      - Dağıtım: installation/oob/ebpf/deployment.md
+      - Helm Chart Değerleri: installation/oob/ebpf/helm-chart-for-wallarm.md
+      - Yansıtma için Paket Seçimi: installation/oob/ebpf/selecting-packets.md
+    - TCP Trafik Aynası Analizi:
+      - Dağıt: installation/oob/tcp-traffic-mirror/deployment.md
+      - Yapılandır: installation/oob/tcp-traffic-mirror/configuration.md
+    - Band Dışı:
+      - Genel Bakış: installation/oob/overview.md
+      - NGINX, Envoy ve Benzeri ile Aynılaştırma:
+        - Genel Bakış: installation/oob/web-server-mirroring/overview.md
+        - Kamu Bulutları:
+          - AWS: 
+            - AMI: installation/oob/web-server-mirroring/aws-ami.md
+            - Terraform Modülü: installation/oob/terraform-module/mirroring-by-web-server.md
+          - GCP: 
+            - Makine Görüntüsü: installation/oob/web-server-mirroring/gcp-machine-image.md
+        - Docker: installation/oob/web-server-mirroring/docker-image.md
+        - Her Şey Dahil Yükleyici: installation/oob/web-server-mirroring/linux/all-in-one.md
+    - Kamu Bulutları:
       - Amazon Web Services:
         - AMI: installation/cloud-platforms/aws/ami.md
         - ECS: installation/cloud-platforms/aws/docker-container.md
-        - Terraform Module:
-          - Proxy in AWS VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
-          - Proxy for Amazon API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
-          - OOB for NGINX, Envoy, etc. Mirroring: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
+        - Terraform Modülü:
+          - AWS VPC'deki Proxy: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
+          - Amazon API Gateway için Proxy: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
+          - OOB NGINX, Envoy, vb. Aynılaştırma: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
       - Google Cloud:
-        - Machine Image: installation/cloud-platforms/gcp/machine-image.md
+        - Makine Görüntüsü: installation/cloud-platforms/gcp/machine-image.md
         - GCE: installation/cloud-platforms/gcp/docker-container.md
       - Microsoft Azure:
         - Azure Container Instances: installation/cloud-platforms/azure/docker-container.md
       - Alibaba Cloud:
         - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
-    - Connectors:
-      - Overview: installation/connectors/overview.md
-      - Mulesoft: installation/connectors/mulesoft.md
-      - Apigee: installation/connectors/apigee.md
-      - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
-      - Azion Edge: installation/connectors/azion-edge.md
-      - CloudFront: installation/connectors/aws-lambda.md
-      - Cloudflare: installation/connectors/cloudflare.md
-      - Kong API Gateway: installation/connectors/kong-api-gateway.md
-      - Istio: installation/connectors/istio.md
-      - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
-      - Fastly: installation/connectors/fastly.md
-      - Code Bundle Changelog: installation/connectors/code-bundle-inventory.md
-    - In-Line:
-      - Overview: installation/inline/overview.md
-      - Security Edge: installation/security-edge/deployment.md
-      - Compute Instances:
-        - All-in-one installer: installation/inline/compute-instances/linux/all-in-one.md
+    - Wallarm Güvenlik Kenarı:
+      - Satır İçi: installation/security-edge/deployment.md
+      - Bağlayıcılar: installation/se-connector.md
+    - Kubernetes:
+      - Ingress:
+        - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
+        - Kong Ingress Controller:
+          - Kurulum: installation/kubernetes/kong-ingress-controller/deployment.md
+          - Özelleştirme: installation/kubernetes/kong-ingress-controller/customization.md
+      - Yan Araba:
+        - Kurulum: installation/kubernetes/sidecar-proxy/deployment.md
+        - Özelleştirme: installation/kubernetes/sidecar-proxy/customization.md
+        - Ölçeklendirme ve Yüksek Erişilebilirlik: installation/kubernetes/sidecar-proxy/scaling.md
+        - Helm Grafik Değerleri: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+        - Kapsamın Ekler: installation/kubernetes/sidecar-proxy/pod-annotations.md
+    - Sıralı:
+      - Genel Bakış: installation/inline/overview.md
+      - Hesaplama Örnekleri:
         - Amazon Web Services:
           - AMI: installation/inline/compute-instances/aws/aws-ami.md
           - ECS: installation/inline/compute-instances/aws/aws-ecs.md
           - Terraform module:
-            - Proxy in AWS VPC: installation/inline/compute-instances/aws/terraform-module-for-aws-vpc.md
-            - Proxy for Amazon API Gateway: installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway.md
+            - AWS VPC'deki Proxy: installation/inline/compute-instances/aws/terraform-module-for-aws-vpc.md
+            - Amazon API Gateway için Proxy: installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway.md
         - Google Cloud:
-          - Machine Image: installation/inline/compute-instances/gcp/machine-image.md
+          - Makine Görüntüsü: installation/inline/compute-instances/gcp/machine-image.md
           - GCE: installation/inline/compute-instances/gcp/gce.md
         - Microsoft Azure:
           - Azure Container Instances: installation/inline/compute-instances/azure/docker-image.md
         - Alibaba Cloud:
           - ECS: installation/inline/compute-instances/alibaba/docker-image.md
         - Docker images:
-          - NGINX-based: installation/inline/compute-instances/docker/nginx-based.md
-          - Envoy-based: installation/inline/compute-instances/docker/envoy-based.md
+          - NGINX tabanlı: installation/inline/compute-instances/docker/nginx-based.md
+          - Envoy tabanlı: installation/inline/compute-instances/docker/envoy-based.md
+        - Her şey dahil kurulum paketi: installation/inline/compute-instances/linux/all-in-one.md
       - Kubernetes:
         - NGINX Ingress Controller: installation/inline/kubernetes/nginx-ingress-controller.md
         - Kong Ingress Controller:
-          - Deploy: installation/inline/kubernetes/kong-ingress-controller/deployment.md
-          - Customization: installation/inline/kubernetes/kong-ingress-controller/customization.md
+          - Kurulum: installation/inline/kubernetes/kong-ingress-controller/deployment.md
+          - Özelleştirme: installation/inline/kubernetes/kong-ingress-controller/customization.md
         - Sidecar Controller:
-          - Deploy: installation/inline/kubernetes/sidecar-proxy/deployment.md
-          - Customization: installation/inline/kubernetes/sidecar-proxy/customization.md
-          - Scaling and High Availability: installation/inline/kubernetes/sidecar-proxy/scaling.md
-          - Helm Chart Values: installation/inline/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
-          - Pod's Annotations: installation/inline/kubernetes/sidecar-proxy/pod-annotations.md
-    - Out-of-Band:
-      - Overview: installation/oob/overview.md
+          - Kurulum: installation/inline/kubernetes/sidecar-proxy/deployment.md
+          - Özelleştirme: installation/inline/kubernetes/sidecar-proxy/customization.md
+          - Ölçeklendirme ve Yüksek Erişilebilirlik: installation/inline/kubernetes/sidecar-proxy/scaling.md
+          - Helm chart values: installation/inline/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+          - Kapsam Ekler: installation/inline/kubernetes/sidecar-proxy/pod-annotations.md
       - eBPF:
-        - Deploy: installation/oob/ebpf/deployment.md
-        - Helm Chart Values: installation/oob/ebpf/helm-chart-for-wallarm.md
-        - Selecting Packets for Mirroring: installation/oob/ebpf/selecting-packets.md
-      - TCP Traffic Mirror Analysis: installation/oob/tcp-traffic-mirror/deployment.md
-      - Mirroring by NGINX, Envoy and Similar:
-        - Overview: installation/oob/web-server-mirroring/overview.md
-        - All-in-one installer: installation/oob/web-server-mirroring/linux/all-in-one.md
-        - Public Clouds:
-          - AWS:
-            - AMI: installation/oob/web-server-mirroring/aws-ami.md
-            - Terraform Module: installation/oob/terraform-module/mirroring-by-web-server.md
-          - GCP:
-            - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
-        - Docker: installation/oob/web-server-mirroring/docker-image.md
-    - All Deployment Artifacts:
-      - NGINX and Native Overview: installation/nginx-native-node-internals.md
-      - NGINX Node:
-        - All-in-one installer: installation/nginx/all-in-one.md
-        - Docker Images:
-          - NGINX-based: admin-en/installation-docker-en.md
-          - Envoy-based: admin-en/installation-guides/envoy/envoy-docker.md
-        - Cloud Images:
-          - AWS AMI: installation/packages/aws-ami.md
-          - GCP Machine Image: installation/packages/gcp-machine-image.md
-        - Terraform Module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
-        - Artifact Versions and Changelog: updating-migrating/node-artifact-versions.md
-      - Native Node:
-        - All-in-one installer:
-          - Install: installation/native-node/all-in-one.md
-          - Configure: installation/native-node/all-in-one-conf.md
-        - Docker image:
-          - Deploy: installation/native-node/docker-image.md
-          - Configure: /installation/native-node/all-in-one-conf/
-        - Helm chart:
-          - Deploy: installation/native-node/helm-chart.md
-          - Configure: installation/native-node/helm-chart-conf.md
-        - Artifact Versions and Changelog: updating-migrating/native-node/node-artifact-versions.md
-    - Custom Deployment:
+        - Dağıtım: installation/kubernetes/ebpf/deployment.md
+        - Helm Chart Değerleri: installation/kubernetes/ebpf/helm-chart-for-wallarm.md
+        - Yansıtma için Paket Seçimi: installation/kubernetes/ebpf/selecting-packets.md
+    - Bağlayıcılar:
+      - Genel Bakış: installation/connectors/overview.md
+      - Mulesoft: installation/connectors/mulesoft.md
+      - Apigee: installation/connectors/apigee.md
+      - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
+      - Azion Edge: installation/connectors/azion-edge.md
+      - AWS Lambda: installation/connectors/aws-lambda.md
+      - Cloudflare: installation/connectors/cloudflare.md
+      - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
+      - Fastly: installation/connectors/fastly.md
+      - Kod Paketi Değişiklik Günlüğü: installation/connectors/code-bundle-inventory.md
+    - Paketler:
+      - Docker Images:
+        - NGINX tabanlı: admin-en/installation-docker-en.md
+        - Envoy-tabanlı: admin-en/installation-guides/envoy/envoy-docker.md
+      - Her Şey Dahil Installer: installation/nginx/all-in-one.md
+      - Cloud Images:
+        - AWS AMI: installation/packages/aws-ami.md
+        - GCP Machine Image: installation/packages/gcp-machine-image.md
+      - AWS için Terraform Modülü: installation/cloud-platforms/aws/terraform-module/overview.md
+    - Özel Dağıtım:
       - On-Premise: installation/on-premise.md
-      - Custom NGINX Packages: installation/custom/custom-nginx-version.md
+      - Özel NGINX Paketleri: installation/custom/custom-nginx-version.md
       - Heroku: installation/heroku/docker-image.md
-      - Custom Deployment Options: installation/custom/request-custom-deployment.md
-    - Additional Options:
-      - Chaining Wallarm and Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
+      - Özel Dağıtım Seçenekleri: installation/custom/request-custom-deployment.md
+    - Ek Seçenekler:
+      - Wallarm ve Ingress Controllers zincirlemesi: admin-en/chaining-wallarm-and-other-ingress-controllers.md
       - Auto Scaling:
         - Amazon Web Services:
-          - Overview: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
-          - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md
-          - Setting up Filtering Node Auto Scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
-          - Setting up Incoming Request Balancing: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
+          - Genel Bakış: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
+          - Amazon Makine Görüntüsünü Oluşturma: admin-en/installation-guides/amazon-cloud/create-image.md
+          - Filtreleme Düğümü için Otomatik Ölçeklendirme Ayarları: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
+          - Gelen İstek Dengelenmesi Ayarları: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
         - Google Cloud Platform:
-          - Overview: admin-en/installation-guides/google-cloud/autoscaling-overview.md
-          - Creating an Image with the Wallarm Filtering Node: admin-en/installation-guides/google-cloud/create-image.md
-          - Creating a Filtering Node Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
-          - Creating a Managed Instance Group with Enabled Auto Scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
-          - Setting up Incoming Request Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
-      - Specification of the Wallarm cloud-init Script: installation/cloud-platforms/cloud-init.md
-      - Separate Postanalytics Module Installation: admin-en/installation-postanalytics-en.md
-      - Multi‑Tenant Node:
-        - Multitenancy Overview: installation/multi-tenant/overview.md
-        - Creating Tenant Accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
-        - Deploying and Configuring Multi-tenant Node: installation/multi-tenant/deploy-multi-tenant-node.md
-      - Wallarm Deployment in Private Clouds: installation/cloud-platforms/private-cloud.md
-  - Integrations and Alerts:
-    - Overview: user-guides/settings/integrations/integrations-intro.md 
-    - Email and Messengers:
-      - Email: user-guides/settings/integrations/email.md
+          - Genel Bakış: admin-en/installation-guides/google-cloud/autoscaling-overview.md
+          - Google Cloud Platform için Wallarm Filtering Node ile görüntü oluşturma: admin-en/installation-guides/google-cloud/create-image.md
+          - Wallarm Filtering Node için örnek şablon oluşturma: admin-en/installation-guides/google-cloud/creating-instance-template.md
+          - Etkin Otomatik Ölçeklendirme ile Yönetilen Bir Örnek Grubu Yaratma: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
+          - Gelen İstek Dengelemesini Ayarlamak: admin-en/installation-guides/google-cloud/load-balancing-guide.md
+      - Wallarm cloud-init Komut Dosyası Özelliklerini Belirtme: installation/cloud-platforms/cloud-init.md
+      - Postanalytics Modül Ayrı Yükleme: admin-en/installation-postanalytics-en.md
+      - Çok kiracılı Node:
+        - Çok kiracılı özellikler: installation/multi-tenant/overview.md
+        - Wallarm Konsolu Kiracı Hesaplarının Oluşturulması: installation/multi-tenant/configure-accounts.md
+        - Çok kiracılı düğümün dağıtımı ve konfigürasyonu: installation/multi-tenant/deploy-multi-tenant-node.md
+      - Wallarm Dağıtım Özel Bulutlarda: installation/cloud-platforms/private-cloud.md
+  - Entegrasyonlar ve Uyarılar:
+    - Genel Bakış: user-guides/settings/integrations/integrations-intro.md 
+    - E-posta ve mesajlaşma uygulamaları:
+      - E-posta: user-guides/settings/integrations/email.md
       - Slack: user-guides/settings/integrations/slack.md
       - Telegram: user-guides/settings/integrations/telegram.md
       - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
-    - Incident and Task Management Systems:
+    - Olay ve görev yönetim sistemleri:
       - Opsgenie: user-guides/settings/integrations/opsgenie.md
       - PagerDuty: user-guides/settings/integrations/pagerduty.md
       - Jira: user-guides/settings/integrations/jira.md
       - ServiceNow: user-guides/settings/integrations/servicenow.md
-    - SIEM and SOAR Systems:
+    - SIEM ve SOAR sistemler:
       - Sumo Logic: user-guides/settings/integrations/sumologic.md
       - Splunk: user-guides/settings/integrations/splunk.md
       - InsightConnect: user-guides/settings/integrations/insightconnect.md
       - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
-    - Log Management Systems:
+    - Log yönetim sistemleri:
       - Datadog: user-guides/settings/integrations/datadog.md
-    - Data Collectors:
+    - Veri toplayıcılar:
       - Fluentd: user-guides/settings/integrations/fluentd.md
       - Logstash: user-guides/settings/integrations/logstash.md
       - Amazon S3: user-guides/settings/integrations/amazon-s3.md
-    - Integrations via Data Collectors:
-      - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
-      - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
-      - Splunk Enterprise via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
-      - Splunk Enterprise via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
-      - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
-      - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
-      - Datadog via Fluentd/Logstash: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
-    - Universal Integrations:
+    - Evrensel entegrasyonlar:
       - Webhook: user-guides/settings/integrations/webhook.md
-  - User Management:
-    - Overview: user-guides/settings/users.md
-    - User Profile: user-guides/settings/account.md
-    - API Tokens: user-guides/settings/api-tokens.md
+    - Veri toplayıcılar üzerinden entegrasyonlar:
+      - IBM QRadar Fluentd ile: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
+      - IBM QRadar Logstash ile: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
+      - Splunk Enterprise Fluentd ile: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
+      - Splunk Enterprise Logstash ile: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
+      - Micro Focus ArcSight Logger Fluentd ile: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
+      - Micro Focus ArcSight Logger Logstash ile: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
+      - Datadog Fluentd/Logstash ile: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
+    - Tetikleyiciler:
+      - Tetikleyicilerle çalışma: user-guides/triggers/triggers.md
+      - Tetikleyici örnekleri: user-guides/triggers/trigger-examples.md
+  - Kullanıcı Yönetimi:
+    - Genel Bakış: user-guides/settings/users.md
+    - Kullanıcı Profili: user-guides/settings/account.md
+    - Oturum Kapatma Ayarları: user-guides/settings/general.md
+    - API Tokenları: user-guides/settings/api-tokens.md
     - Using SSO:
       - Overview: admin-en/configuration-guides/sso/intro.md
       - Setup: admin-en/configuration-guides/sso/setup.md
       - G Suite Example: admin-en/configuration-guides/sso/sso-gsuite.md
       - Okta Example: admin-en/configuration-guides/sso/sso-okta.md
       - Troubleshooting: admin-en/configuration-guides/sso/troubleshooting.md
-    - Using LDAP: admin-en/configuration-guides/ldap/ldap.md
-    - Activity Log: user-guides/settings/audit-log.md
-  - Operations:
-    # - Autoscaling: ...
-    - Wallarm Node Overview: user-guides/nodes/nodes.md
-    - Configuration Options for NGINX‑Based Node: admin-en/configure-parameters-en.md
-    - Configuration Options for Envoy‑Based Node: admin-en/configuration-guides/envoy/fine-tuning.md
-    - Fine‑tuning of Ingress Controller:
-      - Configuration Parameters: admin-en/configure-kubernetes-en.md
-      - Best Practices:
-        - Proper Reporting of End‑User IP: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
-        - High Availability Considerations: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
-        - Ingress Controller Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
-    - Proper Reporting of End‑User IP: admin-en/using-proxy-or-balancer-en.md
-    - Resource Allocation: admin-en/configuration-guides/allocate-resources-for-node.md
-    - Limiting Request Processing Time: user-guides/rules/configure-overlimit-res-detection.md
-    - Splitting Traffic and Settings by Applications: user-guides/settings/applications.md
-    - Blocking Page and Error Code: admin-en/configuration-guides/configure-block-page-and-code.md
-    - Monitoring & Failover:
-      - Checking Node Operation: admin-en/installation-check-operation-en.md
-      - Configuring Failover Method: admin-en/configure-backup-en.md
-      - Filtering Node Logs: admin-en/configure-logging.md
-      - Statistics Service: admin-en/configure-statistics-service.md
-      - Using a Mirrored Wallarm Repository:
-        - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
-        - Installing Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
-      - Monitoring the Filter Node:
-        - Overview: admin-en/monitoring/intro.md
-        - How to Fetch Metrics: admin-en/monitoring/fetching-metrics.md
-        - Available Metrics: admin-en/monitoring/available-metrics.md
-        - Examples of Exporting and Working with Metrics:
+    - LDAP'yi kullanma: admin-en/configuration-guides/ldap/ldap.md
+  - Operasyonlar:
+    # - Auto scaling: ...
+    - Genel Bakış:
+      - Wallarm düğümleri: user-guides/nodes/nodes.md
+      - CDN filtreleme düğümleri: user-guides/nodes/cdn-node.md
+    - NGINX Tabanlı Düğüm için Yapılandırma Seçenekleri: admin-en/configure-parameters-en.md
+    - Envoy Tabanlı Düğüm için Yapılandırma Seçenekleri: admin-en/configuration-guides/envoy/fine-tuning.md
+    - İngress Controller'ın İnce Ayarı:
+      - Yapılandırma Parametreleri: admin-en/configure-kubernetes-en.md
+      - En İyi Uygulamalar:
+        - Uygun Kullanıcı IP Raporlaması: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
+        - Yüksek Kullanılabilirlik Hususları: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
+        - İngress Controller İzlemesi: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
+    - Filtrasyon Modu:
+      - Genel Bakış: admin-en/configure-wallarm-mode.md
+      - Rule Yoluyla Yapılandırma: user-guides/rules/wallarm-mode-rule.md
+    - Kullanıcı Sonu IP Raparlamasını Uygunluğu: admin-en/using-proxy-or-balancer-en.md
+    - Kaynak tahsis: admin-en/configuration-guides/allocate-resources-for-node.md
+    - Uygulamalar İçin Trafik ve Ayarları Ayırma: user-guides/settings/applications.md
+    - Blokaj Sayfası ve Hata Kodu: admin-en/configuration-guides/configure-block-page-and-code.md
+    - İzleme & Failover:
+      - Düğüm İşlemini Kontrol Etme: admin-en/installation-check-operation-en.md
+      - Failover Yönteminin Yapılandırılması: admin-en/configure-backup-en.md
+      - Filtering Node Logları: admin-en/configure-logging.md
+      - İstatistik Servisinin Yapılandırılması: admin-en/configure-statistics-service.md
+      - Aynalanmış Wallarm Repository Kullanma:
+        - CentOS için Wallarm Repository Aynalanması Nasıl yapılır: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
+        - CentOS için Yerel JFrog Artifactory Repository'den Wallarm Paketlerinin Kurulması: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
+      - Filtering Node'un İzlenmesi:
+        - Genel Bakış: admin-en/monitoring/intro.md
+        - Metrics Nasıl Fetch Yapılır: admin-en/monitoring/fetching-metrics.md
+        - Mevcut Metrics: admin-en/monitoring/available-metrics.md
+        - Metrics İhracı ve İşlem Örnekleri:
           - Grafana:
-            - Exporting Metrics to InfluxDB via the `collectd` Network Plugin: admin-en/monitoring/network-plugin-influxdb.md
-            - Exporting Metrics to Graphite via the `collectd` Write Plugin: admin-en/monitoring/write-plugin-graphite.md
-            - Working with the Filter Node Metrics in Grafana: admin-en/monitoring/working-with-grafana.md
+            - Metrics'in `collectd` Ağ Pluginsi aracılığıyla InfluxDB'ye İhracı: admin-en/monitoring/network-plugin-influxdb.md
+            - Metrics'in `collectd` Yazı Pluginsi aracılığıyla Graphite'ye İhracı: admin-en/monitoring/write-plugin-graphite.md
+            - Grafana'da Filter Node Metrics ile Çalışma: admin-en/monitoring/working-with-grafana.md
           - Nagios:
-            - Exporting Metrics to Nagios via the `collectd-nagios` Utility: admin-en/monitoring/collectd-nagios.md
-            - Working with the Filter Node Metrics in Nagios: admin-en/monitoring/working-with-nagios.md
+            - Metrics'in `collectd-nagios` Utiliti aracılığıyla Nagios'a İhracı: admin-en/monitoring/collectd-nagios.md
+            - Nagios'da Filter Node Metrics İle Çalışma: admin-en/monitoring/working-with-nagios.md
           - Zabbix:
-            - Exporting Metrics to Zabbix via the `collectd-nagios` Utility: admin-en/monitoring/collectd-zabbix.md
-            - Working with the Filter Node in Zabbix: admin-en/monitoring/working-with-zabbix.md
-    - Wallarm Node and Cloud Synchronization: admin-en/configure-cloud-node-synchronization-en.md
-    - Separated Customer Environments:
-      - How Filtering Node Works in Separated Environments: admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md
-      - Configuration Recommendations: admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md
-    - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-    - Dynamic DNS Resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
-    - Enabling JA3 fingerprinting: admin-en/enabling-ja3.md
-    - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
-    - Self-Hosted Node Upgrade:
-      - What is New in Wallarm Node 5.x and 0.x: updating-migrating/what-is-new.md
-      - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
-      - NGINX Node upgrade instructions:
-        - Upgrading DEB/RPM Packages: updating-migrating/nginx-modules.md
-        - Upgrading Postanalytics Module Installed from DEB/RPM Packages: updating-migrating/separate-postanalytics.md
-        - Upgrading Node Installed via All-in-One Installer: updating-migrating/all-in-one.md
-        - Upgrading the Wallarm Docker NGINX-Based Image: updating-migrating/docker-container.md
-        - Upgrading NGINX Ingress Controller with Integrated Wallarm Modules: updating-migrating/ingress-controller.md
-        # - Upgrading Kong Ingress controller with integrated Wallarm modules: updating-migrating/kong-ingress-controller.md
-        - Upgrading Wallarm Sidecar Proxy: updating-migrating/sidecar-proxy.md
-        - Upgrading the Cloud Node Image: updating-migrating/cloud-image.md
-        - Upgrading the Multi‑Tenant Node: updating-migrating/multi-tenant.md
-      - Native Node upgrade instructions:
-        - All-in-one installer: updating-migrating/native-node/all-in-one.md
-        - Helm chart: updating-migrating/native-node/helm-chart.md
-        - Docker image: updating-migrating/native-node/docker-image.md
-      - Upgrading EOL Wallarm nodes (3.6 and lower):
-        - What is new in Wallarm node (if upgrading an EOL node): updating-migrating/older-versions/what-is-new.md
-        - Upgrading EOL Wallarm NGINX Modules: updating-migrating/older-versions/nginx-modules.md
-        - Upgrading the EOL Postanalytics Module: updating-migrating/older-versions/separate-postanalytics.md
-        - Upgrading an EOL Docker NGINX-Based Image: updating-migrating/older-versions/docker-container.md
-        - Upgrading EOL NGINX Ingress Controller with Integrated Wallarm Modules: updating-migrating/older-versions/ingress-controller.md
-        - Upgrading an EOL Cloud Node Image: updating-migrating/older-versions/cloud-image.md
-        - Upgrading the EOL Multi‑Tenant Node: updating-migrating/older-versions/multi-tenant.md
-        - Migrating Allowlists and Denylists from EOL Wallarm Node: updating-migrating/migrate-ip-lists-to-node-3.md
-    - Node Versioning Policy: updating-migrating/versioning-policy.md
-    - Wallarm Scanner Addresses: admin-en/scanner-addresses.md
-  - References:
+            - Metrics'in `collectd-nagios` Utility aracılığıyla Zabbix'e İhracı: admin-en/monitoring/collectd-zabbix.md
+            - Zabbix'de Filter Node İle Çalışma: admin-en/monitoring/working-with-zabbix.md
+    - Wallarm Node ve Bulut Senkronizasyonu: admin-en/configure-cloud-node-synchronization-en.md
+    - Ayrılan Müşteri Ortamları:
+      - Filtering Node İşleminin Ayrılan Ortamlarda Nasıl Çalışdırılacağı: admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md
+      - Yapılandırma Önerileri: admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md
+    - Proxy Üzerinde Wallarm API'ya Erişim: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+    - Node İşletimi İçin Gerekli Dosyaları Erişme: admin-en/configure-access-to-files-needed-for-node.md
+    - NGINX'de Dinamik DNS Çözünürlüğü: admin-en/configure-dynamic-dns-resolution-nginx.md
+    - SELinux Yapılandırması: admin-en/configure-selinux.md
+    - JA3 parmak izini etkinleştirme: admin-en/enabling-ja3.md
+    - Wallarm Kullanıcı Kabul Test Kontrol Listesi: admin-en/uat-checklist-en.md
+    - Node Yükseltme:
+      - Wallarm node 4.8'de Yeni Olan Ne: updating-migrating/what-is-new.md
+      - Güvenli bir node yükseltme süreci için öneriler: updating-migrating/general-recommendations.md
+      - Filtreleme node yükseltme talimatları:
+        - Bireysel paketlerden yüklenmiş Wallarm NGINX Modüllerinin Yükseltmesi: updating-migrating/nginx-modules.md
+        - Bireysel paketlerden yüklenmiş Postanalytics Modülünün Yükseltilmesi: updating-migrating/separate-postanalytics.md
+        - Tümleşik Yükleyici ile Kurulan Node'un Yükseltilmesi: updating-migrating/all-in-one.md
+        - Wallarm Docker NGINX- veya Envoy-tabanlı görüntüsünün yükseltilmesi: updating-migrating/docker-container.md
+        - Entegre Wallarm modülleri ile NGINX Ingress controller'ın yükseltilmesi: updating-migrating/ingress-controller.md
+        - Entegre Wallarm modülleri ile Kong Ingress controller'ın yükseltilmesi: updating-migrating/kong-ingress-controller.md
+        - Wallarm Yan Araba proxy'nin yükseltilmesi: updating-migrating/sidecar-proxy.md
+        - Bulut node görüntüsünün yükseltilmesi: updating-migrating/cloud-image.md
+        - Wallarm CDN node'nun yükseltilmesi: updating-migrating/cdn-node.md
+        - Çok kiracılı düğümün yükseltilmesi: updating-migrating/multi-tenant.md
+      - EOL Wallarm node'larını yükseltme (3.6 ve daha düşük):
+        - Wallarm düğümünün (EOL düğüm yükseltirken) yeni ne olduğu: updating-migrating/older-versions/what-is-new.md
+        - EOL Wallarm NGINX modüllerinin yükseltilmesi: updating-migrating/older-versions/nginx-modules.md
+        - EOL postanalytics modülünün yükseltilmesi: updating-migrating/older-versions/separate-postanalytics.md
+        - EOL Docker NGINX- veya Envoy-tabanlı görüntüsünün yükseltilmesi: updating-migrating/older-versions/docker-container.md
+        - EOL NGINX Ingress kontrolörünü entegre Wallarm modülleriyle yükseltme: updating-migrating/older-versions/ingress-controller.md
+        - EOL bulut node görüntüsünün yükseltilmesi: updating-migrating/older-versions/cloud-image.md
+        - EOL çok kiracılı düğümün yükseltilmesi: updating-migrating/older-versions/multi-tenant.md
+        - EOL Wallarm node'dan izinleme/denylistsine geçiş: updating-migrating/migrate-ip-lists-to-node-3.md
+    - Node Sürüm Politikası: updating-migrating/versioning-policy.md
+    - Node Artifact Versionları Envanteri: updating-migrating/node-artifact-versions.md
+  - Referanslar:
     - FAQ:
-      - Installing Wallarm Ingress Controller: faq/ingress-installation.md
-      - Errors after Wallarm Node Installation: faq/common-errors-after-installation.md
-      - Wallarm Service Status Page: faq/wallarm-status-page.md
-      - Wallarm Cloud is Down: faq/wallarm-cloud-down.md
-      - Tarantool Troubleshooting: faq/tarantool.md
-      - SELinux Troubleshooting: admin-en/configure-selinux.md
-      - CPU High Usage Troubleshooting: faq/cpu.md
-      - Attacks are not Uploaded to Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
-      - Addressing Wallarm Node Issues Alerted by OWASP dashboard: faq/node-issues-on-owasp-dashboards.md
-      - Legitimate Request is Blocked: faq/wrong-blocking.md
-    - Changelog & News: news.md
-    - Wallarm API Reference:
-      - Overview: api/overview.md
-      - API Request Examples: api/request-examples.md
-    - Wallarm Terraform Provider: admin-en/managing/terraform-provider.md
-    - Learning Monthly Request Volume of an Application: admin-en/operation/learn-incoming-request-number.md
-    - Docker Image Security:
-      - Verifying Docker Image Signatures: integrations-devsecops/verify-docker-image-signature.md
-      - Generating an SBOM for Wallarm Docker Images: integrations-devsecops/generate-sbom-for-docker-images.md
-    - Data Management Policies:
-      - Shared Responsibility Model for Clients' Data: about-wallarm/shared-responsibility.md
-      - Data Retention Policy: about-wallarm/data-retention-policy.md
-    - Glossary: glossary-en.md
-    - Attack / Vulnerability Types: attacks-vulns-list.md
+      - Wallarm Ingress controller'ın kurulması: faq/ingress-installation.md
+      - Wallarm node kurulumundan sonra hatalar: faq/common-errors-after-installation.md
+      - Wallarm hizmet durum sayfası: faq/wallarm-status-page.md
+      - Wallarm Cloud aşağıda: faq/wallarm-cloud-down.md
+      - Tarantool sorun giderme: faq/tarantool.md
+      - CPU yüksek kullanımının sorun giderme: faq/cpu.md
+      - Saldırılar Wallarm Cloud'ye yüklenmiyor: faq/attacks-not-uploaded-to-cloud.md
+      - Wallarm node'un OWASP dashboardları tarafından uyarılan konuların adresi: faq/node-issues-on-owasp-dashboards.md
+      - Meşru isteğin engellenmesi: faq/wrong-blocking.md
+    - Değişiklik Kaydı & Haberler: news.md
+    - Wallarm API Referans:
+      - Genel Bakış: api/overview.md
+      - API İstek Örnekleri: api/request-examples.md
+    - Wallarm Terraform Sağlayıcısı: admin-en/managing/terraform-provider.md
+    - Bir Uygulamanın Aylık İstek Hacmini Öğrenci: admin-en/operation/learn-incoming-request-number.md
+    - Docker Görüntü Güvenliği:
+      - Docker Görüntü İmzalarını Doğrulama: integrations-devsecops/verify-docker-image-signature.md
+      - Wallarm Docker Görüntüleri İçin SBOM Oluşturma: integrations-devsecops/generate-sbom-for-docker-images.md
+    - Data Yönetim Politikaları:
+      - Müşteri Veri için Ortak Sorumluluk Modeli: about-wallarm/shared-responsibility.md
+      - Data Saklama Politikası: about-wallarm/data-retention-policy.md
+    - Sözlük: glossary-en.md
