@@ -124,7 +124,7 @@ The below example configuration customizes settings per path to meet specific ne
 
 In the **Admin settings** section, you can:
 
-* Select the Edge node version to deploy. If not selected explicitly, the latest available version is deployed automatically.
+* Select the Edge node version to deploy. The latest available version is deployed by default.
 
     For the changelog of versions, refer to the [article](../../updating-migrating/node-artifact-versions.md#all-in-one-installer). The Edge node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge node version indicates minor changes.
 * Enable [Auto update](#upgrading-the-edge-inline) if needed.
