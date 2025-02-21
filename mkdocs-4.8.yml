@@ -21,6 +21,7 @@ nav:
       - API Abuse Prevention Overview: demo-videos/api-abuse-prevention.md
       - API Leaks Overview: demo-videos/api-leaks.md
   - Threat Management:
+    - Overview: user-guides/events/overview.md
     - Dashboards:
       - Threat Prevention: user-guides/dashboards/threat-prevention.md
       - API Discovery: user-guides/dashboards/api-discovery.md
