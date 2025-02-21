@@ -2,7 +2,7 @@
 
 Wallarm's **GraphQL Discovery** builds your application GraphQL API inventory based on the actual API usage. GraphQL Discovery continuously analyzes the real traffic requests and builds the API inventory based on the analysis results.
 
-Requires [API Discovery](../api-discovery/setup.md) and [NGINX node 5.3.0 and higher](../updating-migrating/node-artifact-versions.md) or [Native node 0.12.0 and higher](../updating-migrating/native-node/node-artifact-versions.md).
+Requires [API Discovery](../api-discovery/setup.md) and [NGINX node TBD and higher](../updating-migrating/node-artifact-versions.md) or [Native node TBD and higher](../updating-migrating/native-node/node-artifact-versions.md).
 
 ## Overview
 

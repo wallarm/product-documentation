@@ -50,7 +50,7 @@ nav:
     - Dashboard: api-discovery/dashboard.md
   - GraphQL Discovery:
     - Overview: graphql-discovery/overview.md
-    - Exploring API Inventory: graphql-discovery/exploring.md
+    - Exploring GraphQL Inventory: graphql-discovery/exploring.md
   - API Protection:
     - Overview: about-wallarm/api-protection-overview.md
     # - OWASP Top 10: ...
