@@ -1,23 +1,32 @@
 # Threat Management Overview
 
-Wallarm's **Threat Management** provides full, real-time picture of your security perimeter and posture and allows controlling used protection tools. This article gives an overview of Threat Management components, its purpose and main possibilities.
-
-![Threat Management - dashboards](../../images/user-guides/events/tm-overview-dashboards.png)
+Wallarm's **Threat Management** provides full, real-time picture of your security posture and allows controlling used protection tools. This article gives an overview of Threat Management components, their purpose and main possibilities.
 
 ## Overview
 
 Threat Management provides full picture of what is happening: 
 
-* You see occurring [attacks](#attacks), taken measures, and tools that provided these measures.
-* Do you want to [configure](check-attack.md#responding-to-attacks) the tool behavior? Switch to it is at your fingertips.
+* Do you want visualized interactive summary for attacks, endpoints, protection tools in action? Use [dashboards](#dashboards).
+* Do you want to see occurring attacks, taken measures, and tools that provided these measures? Work with [attacks](#attacks), easily [adjust](check-attack.md#responding-to-attacks) the tools.
 * Work in the same way with [incidents](#incidents).
 * Is individual attack not giving you full understanding of what is happening? Switch to the [session](#sessions) your attack is part of and see all user's previous and subsequent activities.
-* Is session around some endpoints? Switch to full [endpoint information](../../api-discovery/overview.md) that Wallarm automatically discovered. Quickly create rules for your endpoint here.
-* Do you want visualized interactive summary for attacks, endpoints, protection tools in action? Use [dashboards](#dashboards).
+* Is session around some endpoints? Switch to full endpoint information that Wallarm automatically discovered (requires [API Discovery](../../api-discovery/overview.md)). Quickly create rules for your endpoint here.
+* Do you want informative documents on attacks, incidents or vulnerabilities? Generate PDF or CSV [reports](#reports) with the filtered data of you choice.
 
 ![Threat Management](../../images/user-guides/events/tm-diagram.png)
 
 All Threat Management components include advanced search and filtering capabilities. You can also make PDF and CSV reports for attacks and incidents with the filtered content of you choice. Wallarm uses the sophisticated grouping mechanisms to logically combine requests into attacks and sessions and provides you with the ability to modify how Sessions are detected to make a full match to your application logic.
+
+## Dashboards
+
+Threat Management's dashboards provide visualized summaries for your security perimeter and posture. All being interactive, they provide you with quick access to details and data in different parts of the system and configuration tools.
+
+![Threat Management - dashboards](../../images/user-guides/events/tm-overview-dashboards.png)
+
+* Get clear vision of the malicious traffic volume and its distribution by attack types, sources, protocols, authentication methods, etc. with the [**Threat Prevention**](../../user-guides/dashboards/threat-prevention.md) dashboard.
+* Review data about your API collected by the Wallarm's API Discovery with the [**API Discovery**](../../user-guides/dashboards/api-discovery.md) dashboard.
+* Get view of how Wallarm's services align with the NIST cybersecurity framework via the [**NIST Cyber Security Framework 2.0**](../../user-guides/dashboards/nist-csf-2.md) dashboard.
+* Check covering the OWASP API Security Top 10 2023 and proactively implement security controls on the [**OWASP API Security Top 10 - 2023**](../../user-guides/dashboards/owasp-api-top-ten.md) dashboard.
 
 ## Attacks
 
@@ -54,13 +63,8 @@ The primary challenge the [**API Sessions**](../../api-sessions/overview.md) add
 
 ![!API Sessions section - monitored sessions](../../images/api-sessions/api-sessions.png)
 
-## Dashboards
+## Reports
 
-Threat Management's dashboards provide visualized summaries for your security perimeter and posture. All being interactive, they provide you with quick access to details and data in different parts of the system and configuration tools.
+For attacks, incidents or vulnerabilities, generate PDF or CSV [reports](../../user-guides/search-and-filters/custom-report.md). Do you want selected data? Apply filters and only filtered data will become the part of report.
 
-![Threat Management - dashboards](../../images/user-guides/events/tm-overview-dashboards.png)
-
-* Get clear vision of the malicious traffic volume and its distribution by attack types, sources, protocols, authentication methods, etc. with the [**Threat Prevention**](../../user-guides/dashboards/threat-prevention.md) dashboard.
-* Review data about your API collected by the Wallarm's API Discovery with the [**API Discovery**](../../user-guides/dashboards/api-discovery.md) dashboard.
-* Get view of how Wallarm's services align with the NIST cybersecurity framework via the [**NIST Cyber Security Framework 2.0**](../../user-guides/dashboards/nist-csf-2.md) dashboard.
-* Check covering the OWASP API Security Top 10 2023 and proactively implement security controls on the [**OWASP API Security Top 10 - 2023**](../../user-guides/dashboards/owasp-api-top-ten.md) dashboard.
+![Attacks - creating report](../../images/user-guides/search-and-filters/custom-report.png)
