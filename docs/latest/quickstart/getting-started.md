@@ -1,6 +1,6 @@
 # Getting Started with the Wallarm Platform
 
-Wallarm delivers all-in-one API security, identifying and shielding your APIs from vulnerabilities and malicious activities. To help you begin using the platform, we offer a Playground for exploration prior to signing up, a Free Tier upon registration, and access to expert support for a seamless experience.
+Wallarm delivers all-in-one API security, identifying and protecting your APIs from vulnerabilities and malicious activities. To help you begin using the platform, we offer a Playground for exploration prior to signing up, a Free Tier upon registration, and access to expert support for a seamless experience.
 
 ## Learn Wallarm in Playground
 

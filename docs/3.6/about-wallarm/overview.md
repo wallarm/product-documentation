@@ -1,10 +1,6 @@
 # Wallarm platform overview
 
-The Wallarm platform is uniquely suited to protect your cloud applications and APIs. Its hybrid architecture safeguards your resources by offering:
-
-* [Protection against hacker attacks](protecting-against-attacks.md) with ultra-low false positives
-* [API Discovery](api-discovery.md)
-* [Automatic detection of vulnerabilities](detecting-vulnerabilities.md)
+Wallarm delivers real-time protection for APIs and AI agents, stopping automated threats and abuse while also providing full security visibility with complete API inventory and risk detection.
 
 Wallarm consists of the following core components:
 

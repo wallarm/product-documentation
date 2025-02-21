@@ -1,6 +1,6 @@
 # Wallarm Subscription Plans
 
-Wallarm is the only solution that unifies best-in-class API Security and WAAP capabilities to protect your entire API, and web application portfolio in multi-cloud,  cloud-native and on-premise environments. You can easily choose the set of functionality that best suits your needs.
+Wallarm is the only solution that unifies API discovery, risk management, real-time protection, and testing capabilities to protect your entire API portfolio in multi-cloud, cloud-native and on-premise environments. You can easily choose the set of functionality that best suits your needs.
 
 ## WAAP and Advanced API Security
 
