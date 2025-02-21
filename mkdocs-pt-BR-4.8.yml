@@ -34,7 +34,8 @@ nav:
       - Visão Geral: about-wallarm/subscription-plans.md
       - Gerenciando a Assinatura: user-guides/settings/subscriptions.md
     - Melhores Práticas: quickstart/attack-prevention-best-practices.md
-  - Painéis e Relatórios:
+  - Threat Management::
+    - Overview: user-guides/events/overview.md
     - Prevenção de Ameaças: user-guides/dashboards/threat-prevention.md
     - Descoberta de API: user-guides/dashboards/api-discovery.md
     - OWASP API Top 10: user-guides/dashboards/owasp-api-top-ten.md

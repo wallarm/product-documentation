@@ -34,7 +34,8 @@ nav:
       - API乱用防止概要: demo-videos/api-abuse-prevention.md
       - APIリーク概要: demo-videos/api-leaks.md
       - API リークの管理: user-guides/api-leaks.md
-  - ダッシュボードとレポート:
+  - Threat Management::
+    - Overview: user-guides/events/overview.md
     - 脅威防止: user-guides/dashboards/threat-prevention.md
     - APIディスカバリー: user-guides/dashboards/api-discovery.md
     - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md
