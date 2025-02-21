@@ -63,7 +63,8 @@ nav:
       - واجهة برمجة التطبيقات الظل واليتيمة: demo-videos/shadow-api.md
       - نظرة عامة على منع سوء استخدام API: demo-videos/api-abuse-prevention.md
       - نظرة عامة على تسربات API: demo-videos/api-leaks.md
-  - لوحات القيادة والتقارير:
+  - Threat Management::
+    - Overview: user-guides/events/overview.md
     - منع التهديد: user-guides/dashboards/threat-prevention.md
     - اكتشاف API: user-guides/dashboards/api-discovery.md
     - NIST CSF 2.0: user-guides/dashboards/nist-csf-2.md

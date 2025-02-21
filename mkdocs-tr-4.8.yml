@@ -34,7 +34,8 @@ nav:
       - Genel Bakış: about-wallarm/subscription-plans.md
       - Aboneliği Yönetme: user-guides/settings/subscriptions.md
     - En İyi Uygulamalar: quickstart/attack-prevention-best-practices.md
-  - Gösterge Tabloları ve Raporlar:
+  - Threat Management::
+    - Overview: user-guides/events/overview.md
     - Tehdit Önleme: user-guides/dashboards/threat-prevention.md
     - API Keşif: user-guides/dashboards/api-discovery.md
     - OWASP API Top 10: user-guides/dashboards/owasp-api-top-ten.md
