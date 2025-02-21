@@ -49,7 +49,8 @@ For example:
 Since attack signs are not used to detect [behavioral attacks](about-wallarm/protecting-against-attacks.md#behavioral-attacks), requests sent as a part of behavioral attacks have empty payloads.
 
 ## Vulnerability
-A vulnerability is an error made due to negligence or inadequate information when building or implementing a web application that can lead to an information security risk.
+
+A vulnerability is an error made due to negligence or inadequate information when building or implementing an API that can lead to an information security risk.
 
 The information security risks are:
 

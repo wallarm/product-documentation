@@ -69,7 +69,7 @@
 
 This article lists and briefly describes attacks and vulnerabilities the Wallarm filtering node can detect including those presented in the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) security risk lists. Most of the vulnerabilities and attacks on the list are accompanied by one or more codes from the list of software weakness types, also known as the [Common Weakness Enumeration][link-cwe] or CWE.
 
-Wallarm **automatically detects** listed vulnerabilities and attacks and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+Wallarm **automatically detects** most of the listed vulnerabilities and attacks and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
 
 !!! info "Required configuration for some attack types"
     Some attacks and vulnerabilities, such as behavioral ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola)), [API abuse](#suspicious-api-activity), [GraphQL](#graphql-attacks) and [credential stuffing](#credential-stuffing) are not detected by default. For such attacks/vulnerabilities, required configuration is specifically defined.
@@ -81,7 +81,7 @@ Wallarm **automatically detects** listed vulnerabilities and attacks and perform
 
 ## DDoS attacks
 
-A DDoS (Distributed Denial of Service) attack is a type of cyber attack in which an attacker seeks to make a website or online service unavailable by overwhelming it with traffic from multiple sources.
+A DDoS (Distributed Denial of Service) attack is a type of cyber attack in which an attacker seeks to make a website or API unavailable by overwhelming it with traffic from multiple sources.
 
 There are many techniques that attackers can use to launch a DDoS attack, and the methods and tools they use can significantly vary. Some attacks are relatively simple and use low-level techniques such as sending large numbers of connection requests to a server, while others are more sophisticated and use complex tactics such as spoofing IP addresses or exploiting vulnerabilities in network infrastructure.
 
@@ -107,7 +107,7 @@ An SQL injection attack allows an attacker to inject arbitrary SQL code into an 
 
 In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
-*   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
+*   Sanitize and filter all API request parameters to prevent malicious entities from being executed.
 *   Apply the recommendations from the [OWASP SQL Injection Prevention Cheat Sheet][link-owasp-sqli-cheatsheet].
 
 ### NoSQL injection
@@ -124,7 +124,7 @@ Vulnerability to this attack occurs due to insufficient filtering of user input.
 
 **In addition to Wallarm protection:**
 
-* Sanitize and filter all user input to prevent an entity in the input from being executed.
+* Sanitize and filter all user input to prevent a malicious entity in the input from being executed.
 
 ### Remote code execution (RCE)
 
@@ -136,12 +136,12 @@ Vulnerability to this attack occurs due to insufficient filtering of user input.
 
 **Description:**
 
-An attacker can inject malicious code into a request to a web application, and the application will execute this code. Also, the attacker can try to execute certain commands for the operating system that the vulnerable web application runs on. 
+An attacker can inject malicious code into a request to your API, and this script will be executed on a server. Also, the attacker can try to execute certain commands for the operating system that the vulnerable application runs on. 
 
 Provided that an RCE attack is successful, an attacker can perform a wide range of actions, including:
 
-*   Compromising the confidentiality, accessibility, and integrity of the vulnerable web application's data.
-*   Taking control of the operating system and the server that the web application runs on.
+*   Compromising the confidentiality, accessibility, and integrity of the vulnerable data.
+*   Taking control of the operating system and the server that the application runs on.
 *   Other possible actions.
 
 This vulnerability occurs due to incorrect validation and parsing of user input.
@@ -162,7 +162,7 @@ This vulnerability occurs due to incorrect validation and parsing of user input.
 
 [SSI (Server Side Includes)][ssi-wiki] is a simple interpreted server-side scripting language most useful for including the contents of one or more files into a web page on a web server. It is supported by the web servers Apache and NGINX.
 
-SSI Injection allows the exploitation of a web application by injecting malicious payloads in HTML pages or executing arbitrary codes remotely. It can be exploited through manipulation of SSI in use in the application or force its use through user input fields.
+SSI Injection allows the exploitation of an application by injecting malicious payloads in HTML pages or executing arbitrary codes remotely. It can be exploited through manipulation of SSI in use in the application or force its use through user input fields.
 
 **Example:**
 
@@ -217,7 +217,7 @@ This vulnerability occurs due to the incorrect validation and parsing of user in
 
 In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
-*   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
+*   Sanitize and filter all parameters that an application receives as input to prevent an entity in the input from being executed.
 *   Apply the recommendations from the [OWASP LDAP Injection Prevention Cheat Sheet][link-owasp-ldapi-cheatsheet].
 
 ### Email injection
@@ -230,7 +230,7 @@ In addition to the protection measures performed by Wallarm, you may follow thes
 
 **Description:**
 
-Email Injection is a malicious [IMAP][link-imap-wiki]/[SMTP][link-smtp-wiki] expression usually sent via the web application contact form to change standard email server behavior.
+Email Injection is a malicious [IMAP][link-imap-wiki]/[SMTP][link-smtp-wiki] expression usually sent via the application contact form to change standard email server behavior.
 
 Vulnerability to this attack occurs due to poor validation of the data inputted in the contact form. Email Injection allows bypassing email client restrictions, stealing user data and sending spam.
 
@@ -249,11 +249,11 @@ Vulnerability to this attack occurs due to poor validation of the data inputted 
 
 **Description:**
 
-A successful SSRF attack may allow an attacker to make requests on behalf of the attacked web server; this potentially leads to revealing the web application's network ports in use, scanning the internal networks, and bypassing authorization.
+A successful SSRF attack may allow an attacker to make requests on behalf of the attacked web server; this potentially leads to revealing network ports in use, scanning the internal networks, and bypassing authorization.
 
 **In addition to Wallarm protection:**
 
-*   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
+*   Sanitize and filter all request parameters to prevent a malicious entity in the input from being executed.
 *   Apply the recommendations from the [OWASP SSRF Prevention Cheat Sheet][link-owasp-ssrf-cheatsheet].
 
 ### Path traversal
@@ -266,15 +266,15 @@ A successful SSRF attack may allow an attacker to make requests on behalf of the
 
 **Description:**
 
-A path traversal attack allows an attacker to access files and directories with confidential data stored in the file system where the vulnerable web application resides by altering existing paths via the web application's parameters.
+A path traversal attack allows an attacker to access files and directories with confidential data stored in the file system where the vulnerable web application or API resides by altering existing paths via request parameters.
 
-Vulnerability to this attack occurs due to insufficient filtering of user input when a user requests a file or directory via the web application.
+Vulnerability to this attack occurs due to insufficient filtering of user input when a user requests a file or directory.
 
 **In addition to Wallarm protection:**
 
 In addition to the protection measures performed by Wallarm, you may follow these recommendations:
 
-*   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
+*   Sanitize and filter all request parameters to prevent a malicious entity in the input from being executed.
 *   Additional recommendations for mitigating such attacks are available [here][link-ptrav-mitigation].
 
 ### Attack on XML external entity (XXE)
@@ -291,13 +291,13 @@ The XXE vulnerability allows an attacker to inject an external entity in an XML 
 
 As the result of a successful attack, an attacker will be able to:
 
-*   Get access to the web application's confidential data
+*   Get access to the confidential data
 *   Scan internal data networks
 *   Read the files located on the web server
 *   Perform an [SSRF][anchor-ssrf] attack
 *   Perform a Denial of Service (DoS) attack
 
-This vulnerability occurs due to a lack of restriction on the parsing of XML external entities in a web application.
+This vulnerability occurs due to a lack of restriction on the parsing of XML external entities in an application.
 
 **In addition to Wallarm protection:**
 
@@ -354,7 +354,7 @@ This class of vulnerabilities occurs due to the incorrect validation and parsing
 
 **In addition to Wallarm protection:**
 
-* Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
+* Sanitize and filter all parameters that an application receives as input to prevent an entity in the input from being executed.
 * While forming the web application's pages, sanitize and escape any entities that are formed dynamically.
 * Apply the recommendations from the [OWASP XSS Prevention Cheat Sheet][link-owasp-xss-cheatsheet].
 
@@ -374,7 +374,7 @@ Vulnerability to this attack occurs due to incorrect filtering of URL inputs.
 
 **In addition to Wallarm protection:**
 
-*   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
+*   Sanitize and filter all parameters that an application receives as input to prevent an entity in the input from being executed.
 *   Notify users about all pending redirects, and ask for explicit permission.
 
 ### CRLF injection
@@ -413,7 +413,7 @@ This vulnerability occurs due to the incorrect validation and parsing of user in
 
 A brute-force attack occurs when a massive number of requests with a predefined payload are sent to the server. These payloads may be generated by some means or taken from a dictionary. The server's response is then analyzed to find the right combination of the data in the payload.
 
-A successful brute‑force attack can potentially bypass authentication and authorization mechanisms and/or reveal a web application's hidden resources (such as directories, files, website parts, etc.), thus granting the ability to conduct other malicious actions.
+A successful brute‑force attack can potentially bypass authentication and authorization mechanisms and/or reveal hidden resources (such as directories, files, website parts, etc.), thus granting the ability to conduct other malicious actions.
 
 **Required configuration:**
 
@@ -421,10 +421,10 @@ Wallarm detects and mitigates brute-force attacks only if it has one or more con
 
 **In addition to Wallarm protection:**
 
-*   Limit the number of requests per a certain time period for a web application.
-*   Limit the number of authentication/authorization attempts per a certain time period for a web application.
+*   Limit the number of requests per a certain time period for an API or certain endpoints.
+*   Limit the number of authentication/authorization attempts per a certain time period for an API or certain endpoints.
 *   Block new authentication/authorization attempts after a certain number of the failed attempts.
-*   Restrict a web application from accessing any files or directories on the server it runs on, except those within the scope of the application.
+*   Restrict an application from accessing any files or directories on the server it runs on, except those within the scope of the application.
 
 ### Forced browsing
 
@@ -436,9 +436,9 @@ Wallarm detects and mitigates brute-force attacks only if it has one or more con
 
 **Description:**
 
-This attack belongs to the class of brute‑force attacks. The purpose of this attack is to detect a web application's hidden resources, namely directories and files. This is achieved by trying different file and directory names that are either generated based on some template or extracted from a prepared dictionary file.
+This attack belongs to the class of brute‑force attacks. The purpose of this attack is to detect hidden resources, namely directories and files. This is achieved by trying different file and directory names that are either generated based on some template or extracted from a prepared dictionary file.
 
-A successful forced browsing attack potentially grants access to hidden resources that are not explicitly available from the web application interface but are exposed when accessed directly.
+A successful forced browsing attack potentially grants access to hidden resources that are not explicitly available from the application interface but are exposed when accessed directly.
 
 **Required configuration:**
 
@@ -447,10 +447,10 @@ Wallarm detects and mitigates forced browsing only if it has one or more configu
 **In addition to Wallarm protection:**
 
 *   Restrict or limit users' access to those resources that they are not supposed to have direct access to (e.g., by employing some authentication or authorization mechanisms).
-*   Limit the number of requests per a certain time period for the web application.
-*   Limit the number of authentication/authorization attempts per a certain time period for the web application.
+*   Limit the number of requests per a certain time period for an API or certain endpoints.
+*   Limit the number of authentication/authorization attempts per a certain time period for an API or certain endpoints.
 *   Block new authentication/authorization attempts after a certain number of failed attempts.
-*   Set necessary and sufficient access rights for the web application's files and directories.
+*   Set necessary and sufficient access rights for files and directories.
 
 ### Credential stuffing
 
@@ -460,7 +460,7 @@ Wallarm detects and mitigates forced browsing only if it has one or more configu
 
 **Description:**
 
-A cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple websites. This attack is hazardous because many people reuse the same username and password across different services or use popular weak passwords. A successful credential stuffing attack requires fewer attempts, so attackers can send requests much less frequently, which makes standard measures like brute force protection ineffective. 
+A cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple resources. This attack is hazardous because many people reuse the same username and password across different services or use popular weak passwords. A successful credential stuffing attack requires fewer attempts, so attackers can send requests much less frequently, which makes standard measures like brute force protection ineffective. 
 
 **Required configuration:**
 
@@ -557,7 +557,7 @@ If the metrics point to bot attack signs, the module [denylists or graylists](ap
 
 **In addition to Wallarm protection:**
 
-* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
+* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/).
 * Denylist IP addresses of regions and sources (like Tor), definitely not related to your application.
 * Configure server-side rate limit for requests.
 * Use additional CAPTCHA solutions.
@@ -588,7 +588,7 @@ API Abuse Prevention detects bots performing a [credential cracking](https://owa
 
 **In addition to Wallarm protection:**
 
-* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
+* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/).
 * Use strong passwords.
 * Do not use the same passwords for different resources.
 * Enable two-factor authentication.
@@ -603,7 +603,7 @@ API Abuse Prevention detects bots performing a [credential cracking](https://owa
 
 **Description:**
 
-While security crawlers are designed to scan websites and detect vulnerabilities and security issues, they can also be used for malicious purposes. Malicious actors may use them to identify vulnerable websites and exploit them for their own gain.
+While security crawlers are designed to scan websites and APIs and detect vulnerabilities and security issues, they can also be used for malicious purposes. Malicious actors may use them to identify vulnerable APIs and exploit them for their own gain.
 
 Furthermore, some security crawlers may be poorly designed and inadvertently cause harm to websites by overwhelming servers, causing crashes, or creating other types of disruptions.
 
@@ -613,13 +613,13 @@ Wallarm detects and mitigates the security crawlers attacks only if it has the [
 
 The **API Abuse Prevention** module uses the complex bot detection model to detect the following security crawlers bot types:
 
-* [Fingerprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-004_Fingerprinting.html) exploits specific requests which are sent to the application eliciting information in order to profile the application.
-* [Footprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-018_Footprinting.html) is an information gathering with the objective of learning as much as possible about the composition, configuration and security mechanisms of the application.
+* [Fingerprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-004_Fingerprinting.html) exploits specific requests eliciting information in order to profile an API.
+* [Footprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-018_Footprinting.html) is an information gathering with the objective of learning as much as possible about the composition, configuration and security mechanisms of the API.
 * [Vulnerability scanning](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-014_Vulnerability_Scanning) is characterized by service vulnerability search.
 
 **In addition to Wallarm protection:**
 
-* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
+* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/).
 * Use SSL certificates.
 * Use additional CAPTCHA solutions.
 * Implement rate limiting.
@@ -636,9 +636,9 @@ The **API Abuse Prevention** module uses the complex bot detection model to dete
 
 **Description:**
 
-Web scraping, also known as data scraping or web harvesting, is the process of automatically extracting data from websites. It involves using software or code to retrieve and extract data from web pages and save it in a structured format such as a spreadsheet or database.
+Scraping, also known as data scraping or web harvesting, is the process of automatically extracting data from websites and APIs. It involves using software or code to retrieve and extract data from web pages and APIs and save it in a structured format such as a spreadsheet or database.
 
-Web scraping can be used for malicious purposes. For example, scrapers can be used to steal sensitive information such as login credentials, personal information, or financial data from websites. Scrapers can also be used to spam or scrape data from a website in a way that degrades its performance, causing denial of service (DoS) attacks.
+Scraping can be used for malicious purposes. For example, scrapers can be used to steal sensitive information such as login credentials, personal information, or financial data from APIs. Scrapers can also be used to spam or scrape data in a way that degrades its performance, causing denial of service (DoS) attacks.
 
 **Required configuration:**
 
@@ -648,7 +648,7 @@ The **API Abuse Prevention** module uses the complex bot detection model to dete
 
 **In addition to Wallarm protection:**
 
-* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
+* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/).
 * Use additional CAPTCHA solutions.
 * Use robots.txt file to tell search engine crawlers which pages they can and cannot crawl.
 * Monitor your traffic to look for patterns that may indicate malicious activity.
@@ -899,14 +899,14 @@ Description TBD (not presented in docs, but presented in UI)
 
 **Description:**
 
-Despite having authentication mechanisms in place, a web application can have alternative authentication methods that allow either bypassing the main authentication mechanism or exploiting its weaknesses. This combination of factors may result in an attacker gaining access with user or administrator permissions.
+Despite having authentication mechanisms in place, an application or API can have alternative authentication methods that allow either bypassing the main authentication mechanism or exploiting its weaknesses. This combination of factors may result in an attacker gaining access with user or administrator permissions.
 
-A successful authentication bypass attack potentially leads to disclosing users' confidential data or taking control of the vulnerable application with administrator permissions.
+A successful authentication bypass attack potentially leads to disclosing users' confidential data or taking control of the vulnerable API with administrator permissions.
 
 **In addition to Wallarm protection:**
 
 * Improve and strengthen existing authentication mechanisms.
-* Eliminate any alternative authentication methods that may allow attackers to access an application while bypassing the required authentication procedure via pre‑defined mechanisms.
+* Eliminate any alternative authentication methods that may allow attackers to access an API while bypassing the required authentication procedure via pre‑defined mechanisms.
 * Apply the recommendations from the [OWASP Authentication Cheat Sheet][link-owasp-auth-cheatsheet].
 
 ### Cross-site request forgery (CSRF)
@@ -919,7 +919,7 @@ A successful authentication bypass attack potentially leads to disclosing users'
 
 **Description:**
 
-Cross-site request forgery (CSRF) is an attack that forces an end user to execute unwanted actions on a web application in which they’re currently authenticated. With a little help of social engineering (such as sending a link via email or chat), an attacker may trick the users of a web application into executing actions of the attacker’s choosing.
+Cross-site request forgery (CSRF) is an attack that forces an end user to execute unwanted actions on an application in which they’re currently authenticated. With a little help of social engineering (such as sending a link via email or chat), an attacker may trick the users of an application into executing actions of the attacker’s choosing.
 
 The corresponding vulnerability occurs due to the user's browser automatically adding user’s session cookies that are set for the target domain name while performing the cross-site request.
 
@@ -978,7 +978,7 @@ Wallarm does not specifically classify `infoleak` attacks but detects and record
 
 **Description:**
 
-This vulnerability occurs if your web application or API uses a vulnerable or outdated component. This can include an OS, web/application server, database management system (DBMS), runtime environments, libraries and other components.
+This vulnerability occurs if your application or API uses a vulnerable or outdated component. This can include an OS, web/application server, database management system (DBMS), runtime environments, libraries and other components.
 
 This vulnerability is mapped with [A06:2021 – Vulnerable and Outdated Components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components).
 
@@ -1002,7 +1002,7 @@ This vulnerability is mapped with [A06:2021 – Vulnerable and Outdated Componen
 
 [JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely.
 
-JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
+JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to your applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
 
 Wallarm considers JWTs to be weak if they are:
 

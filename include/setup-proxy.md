@@ -1,5 +1,5 @@
 !!! info
-    This setup step is intended for users who use their own proxy server for the operation of the protected web applications.
+    This setup step is intended for users who use their own proxy server for the operation of the protected web applications and APIs.
     
     If you do not use a proxy server, skip this step of the setup.
 

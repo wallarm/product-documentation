@@ -39,9 +39,9 @@ Before creating an image, you need to perform an initial configuration of a sing
        
         Thus, you will not need to manually connect each of the filtering nodes to the Wallarm Cloud when they auto-scale. 
 
-3.  [Configure][link-docs-reverse-proxy-setup] the filtering node to act as a reverse proxy for your web application.
+3.  [Configure][link-docs-reverse-proxy-setup] the filtering node to act as a reverse proxy for your applications and APIs.
 
-4.  [Make sure][link-docs-check-operation] that the filtering node is configured correctly and protects your web application against malicious requests.
+4.  [Make sure][link-docs-check-operation] that the filtering node is configured correctly and protects your applications and APIs against malicious requests.
 
 After you have finished configuring the filtering node, turn the virtual machine off by completing the following actions:
 1.  Navigate to the **VM Instances** page in the **Compute Engine** section of the menu.
