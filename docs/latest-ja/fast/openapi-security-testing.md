@@ -1,43 +1,42 @@
-# OpenAPI Security Testing on CI/CD
+# CI/CD上のOpenAPIセキュリティテスト <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-OpenAPI Security Testing on CI/CD, powered by Wallarm, offers a solution to identify and address security vulnerabilities within your critical API business scenarios, including shadow APIs. This article explains how to run and use this solution.
+Wallarmが提供するCI/CD上のOpenAPIセキュリティテストは、シャドウAPIやゾンビAPIを含む重要なAPIビジネスシナリオにおけるセキュリティ脆弱性を特定し、対処するためのソリューションを提供します。本記事では、このソリューションの実行方法と使用方法について説明します。
 
-The solution leverages two powerful Wallarm modules:
+このソリューションは、クロスオリジンリソース共有、パストラバーサル、アクセス制御の欠陥などの脆弱性を明らかにするために特別に設計されたテストリクエストを生成して動作します。その後、Dockerを使用してCI/CDパイプラインにシームレスに統合し、これらの脆弱性に対してAPIを自動的にスキャンします。
 
-* [API Discovery](../api-discovery/overview.md) automatically detects your OpenAPI specification including shadow APIs based on real traffic.
-* FAST conducts automated tests on CI/CD to uncover open vulnerabilities such as Cross-origin resource haring, path traversal, access control flaws and others in the discovered endpoints.
+テスト対象のエンドポイントを選択する柔軟性が用意されています:
 
-The solution leverages the data obtained from API Discovery, ensuring that security testing focuses on endpoints that actively receive traffic and providing a realistic assessment of your API vulnerabilities.
+* **自動エンドポイント検出**: [WallarmのAPI Discovery](../api-discovery/overview.md)モジュールを利用する場合、実際のトラフィックデータからAPIエンドポイントが自動的に検出されます。その後、テストするエンドポイントを選択できます。これにより、シャドウAPIやゾンビAPIを含む、実際に使用されているエンドポイントに対してセキュリティテストを実施し、APIの脆弱性を正確に評価することが可能です。
+* **手動での仕様書アップロード**: または、お手持ちのOpenAPI仕様書をアップロードし、仕様書に基づいたエンドポイントのテストを行うこともできます。こちらは最新の仕様書を所有していて、特定のエンドポイントに対してテストを実施したい場合に有用です。
 
-## Issues addressed by OpenAPI security testing
+## OpenAPIセキュリティテストで対処される課題
 
-* This solution allows you to perform security testing during the regression testing of your APIs. If you make changes to the functionality of your APIs that are already included in the [API inventory](../api-discovery/exploring.md) due to received traffic, Wallarm security testing can reveal if your changes have introduced any security issues.
-* By deploying your changes to the staging environment and running security testing on the CI/CD pipeline at this stage, you can prevent potential security vulnerabilities from reaching production and being exploited by attackers.
-* Since the solution leverages the data obtained from API Discovery, it also tests zombie APIs. These APIs are automatically discovered by the module as they may receive traffic, even if your team and documentation are unaware of their existence. By including zombie APIs in the security testing process, the solution addresses vulnerabilities that could otherwise go unnoticed, providing a more comprehensive security assessment.
+* 本ソリューションは、APIの回帰テスト中にセキュリティテストを実施することを可能にします。APIの機能に変更を加えた場合、Wallarmのセキュリティテストにより、変更がセキュリティ上の問題を引き起こしていないか確認できます。
+* 変更をステージング環境に展開し、この段階でCI/CDパイプライン上でセキュリティテストを実施することで、潜在的なセキュリティ脆弱性が本番環境に到達し、攻撃者に悪用されるのを防ぐことができます。
+* また、[API Discovery](../api-discovery/overview.md)から取得したデータに基づくセキュリティテストを利用する場合、シャドウAPIおよびゾンビAPIもテスト対象となります。これらのAPIは、チームやドキュメントで存在が把握されていなくても、トラフィックを受信するため、モジュールによって自動的に検出されます。ゾンビAPIをセキュリティテストプロセスに含めることで、見過ごされがちな脆弱性にも対処し、より包括的なセキュリティ評価を提供します。
 
-## Requirements
+## 要件
 
-* The [API Discovery](../api-discovery/overview.md) module building your API inventory.
-* The **FAST (Security testing)** module included in your subscription plan. If it is not included, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
+* 有効な**Advanced API Security**[サブスクリプションプラン](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security)が必要です。別のプランをご利用の場合、必要なプランへの移行について[営業チーム](mailto:sales@wallarm.com)にお問い合わせください。
 
-## Running security testing
+## セキュリティテストの実行
 
-To control and customize the OpenAPI Security Testing feature, you can utilize testing policies. Once a testing policy is created, you receive a command that allows you to integrate and run security testing within your CI/CD pipeline using Docker.
+OpenAPIセキュリティテスト機能を制御およびカスタマイズするために、テストポリシーを利用できます。テストポリシーが作成されると、Dockerを使用してCI/CDパイプラインに統合し、セキュリティテストを実行するためのコマンドが提供されます。
 
-To run OpenAPI security testing, follow these steps:
+OpenAPIセキュリティテストを実行するには、次の手順に従ってください:
 
-1. Go to Wallarm Console → **OpenAPI Testing** → **Create testing policy**.
+1. [US Cloud](https://us1.my.wallarm.com/security-testing)または[EU Cloud](https://my.wallarm.com/security-testing)のリンクからWallarm Consoleの**OpenAPI Testing**セクションに移動し、**Create testing policy**をクリックしてください。
 
-    ![!Policy create](../images/user-guides/openapi-testing/create-testing-policy.png)
-1. Select the API endpoints from your API inventory that you want to test for open vulnerabilities.
+    ![!ポリシー作成](../images/user-guides/openapi-testing/create-testing-policy.png)
+1. [自動検出された](../api-discovery/overview.md)APIインベントリからテスト対象のAPIエンドポイントを選択するか、JSON形式のOpenAPI 3.0仕様書をアップロードしてください。
 
-    The API Discovery module automatically discovers new endpoints, but they are not automatically added to existing policies for vulnerability testing. Therefore, each newly discovered endpoint requires a separate policy.
-1. Select the vulnerability types you would like to test for in your API endpoints.
-1. If necessary, add custom headers for vulnerability testing, such as authentication headers or indicators for Wallarm test requests.
+    API Discoveryモジュールは新しいエンドポイントを自動的に識別しますが、既存の脆弱性テストポリシーに自動的に追加されることはありません。そのため、各新たに検出されたエンドポイントには個別のポリシーが必要となります。
+1. APIエンドポイントでテストする脆弱性の種類を選択してください。
+1. 必要に応じて、認証ヘッダーやWallarmテストリクエスト用のインジケーターなど、脆弱性テストのためのカスタムヘッダーを追加してください。
 
-    These headers will be used for each request to every endpoint.
-1. Copy the provided Docker command and fill in the values for environment variables that were not automatically populated.
-1. Integrate the command into your CI/CD pipeline for automated testing.
+    これらのヘッダーは各エンドポイントへの各リクエストで使用されます。
+1. 提供されたDockerコマンドをコピーし、自動的に設定されなかった環境変数の値を入力してください。
+1. このコマンドをCI/CDパイプラインに統合し、自動テストを実行してください。
 
 The Docker command example:
 
@@ -50,47 +49,44 @@ The Docker command example:
     docker run -e WALLARM_API_HOST=api.wallarm.com -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_TESTING_POLICY_ID=7 -e TARGET_URL=${WALLARM_SCANNER_TARGET_URL} -v ${WALLARM_REPORT_PATH}:/app/reports --pull=always wallarm/oas-fast-scanner:latest
     ```
 
-The list of environment variables that the [Docker container](https://hub.docker.com/r/wallarm/oas-fast-scanner) accepts is provided below:
+以下に、[Docker container](https://hub.docker.com/r/wallarm/oas-fast-scanner)が受け入れる環境変数の一覧を示します:
 
-Environment variable | Description| Required?
---- | ---- | ----
-`WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul> | Yes
-`WALLARM_API_TOKEN` | [Wallarm API token](../user-guides/settings/api-tokens.md) with the **OpenAPI testing** permissions. | Yes
-`WALLARM_TESTING_POLICY_ID` | Wallarm testing policy ID. It is automatically generated once the policy is created. | Yes
-`TARGET_URL` | URL where the API endpoints you wish to test are hosted. The test requests are sent to this host, e.g., staging, or local build. | Yes
+Environment variable | Description | Required?
+--- | --- | ---
+`WALLARM_API_HOST` | Wallarm APIサーバー:<ul><li>US Cloudの場合は`us1.api.wallarm.com`</li><li>EU Cloudの場合は`api.wallarm.com`</li></ul> | Yes
+`WALLARM_API_TOKEN` | [Wallarm API token](../user-guides/settings/api-tokens.md)は、**OpenAPI testing**の権限が必要です。 | Yes
+`WALLARM_TESTING_POLICY_ID` | WallarmテストポリシーID。ポリシー作成時に自動生成されます。 | Yes
+`TARGET_URL` | テスト対象のAPIエンドポイントがホストされているURL。テストリクエストはこのホストに送信されます（例：ステージングまたはローカル環境）。 | Yes
 
-For a more secure approach to passing variables to the container, it is recommended to save the values of container environment variables that were not automatically populated as local environment variables on your machine. You can do this by executing the following commands in your terminal:
+コンテナに変数を渡す際、より安全な方法として、自動設定されなかったコンテナ環境変数の値をローカル環境変数として保存することを推奨します。以下のコマンドをターミナルで実行してください:
 
 ```
 export WALLARM_API_TOKEN=<VALUE>
 export WALLARM_SCANNER_TARGET_URL=<VALUE>
 ```
 
-To save the security testing results on a host machine, specify the desired host machine path in the `${WALLARM_REPORT_PATH}` variable within the `-v` option of the Docker command.
+セキュリティテストの結果をホストマシンに保存するには、Dockerコマンドの`-v`オプション内に、`${WALLARM_REPORT_PATH}`変数に保存先のホストマシンのパスを指定してください。
 
-!!! info "Docker container for security testing"
-    OpenAPI security testing utilizes a [dedicated Docker container](https://hub.docker.com/r/wallarm/oas-fast-scanner) specifically designed for this purpose. It is distinct from other Wallarm FAST functionalities, which may use different Docker containers.
+## セキュリティテスト結果の解釈
 
-## Interpreting security testing results
+セキュリティテストの実行時に、Wallarmはテストポリシーで選択した脆弱性を明らかにするために特別に設計された一連のテストリクエストを生成します。これらのテストリクエストは、ポリシーで定義された各エンドポイントに順次送信されます。
 
-When running the security tests, Wallarm generates a series of typical test requests that are specifically designed to uncover the vulnerabilities selected in your testing policy. These test requests are sent sequentially to the endpoints defined in your policy.
+生成されたリクエストへのレスポンスを解析することで、WallarmはAPIエンドポイントに存在する脆弱性を特定します。その後、Dockerコンテナの標準出力（stdout）を通じて`0`または`1`のコードを返します:
 
-By analyzing the responses to the generated requests, Wallarm identifies open vulnerabilities present in your API endpoints. It then returns a `0` or `1` code via the Docker container's standard output (stdout):
+* `0`コードは、脆弱性が検出されなかったことを示します。
+* `1`コードは、脆弱性が存在することを示します。
 
-* A `0` code indicates that no open vulnerabilities were detected.
-* A `1` code indicates the presence of open vulnerabilities.
+特定の脆弱性について`1`コードが返された場合、適切な対応策を講じることが重要です。
 
-If you receive a code `1` for certain vulnerabilities, it is important to take appropriate measures to address them.
+## セキュリティテストレポートの生成
 
-## Generating security testing report
+脆弱性が明らかになったリクエストに関する詳細情報を提供するセキュリティレポートを取得できます。レポートはCSV、YAML、JSONなどの複数の形式で生成されます。
 
-You can obtain a security report that provides detailed information about the requests that revealed vulnerabilities. The report is generated in multiple formats, including CSV, YAML, and JSON.
+セキュリティテスト結果をホストマシンに保存するには、Dockerコマンドの`-v ${WALLARM_REPORT_PATH}:/app/reports`オプション内の`${WALLARM_REPORT_PATH}`変数に目的のホストマシンパスを指定してください。
 
-To save the security testing results on a host machine, specify the desired host machine path in the `${WALLARM_REPORT_PATH}` path within the `-v ${WALLARM_REPORT_PATH}:/app/reports` option of the Docker command.
+指定されたホストマシンパスに、Dockerコンテナがレポートファイルを正常に保存できるよう、適切な書き込み権限があることを確認してください。
 
-It is important to ensure that the specified host machine path has appropriate write permissions for the Docker container to save the report files successfully.
-
-JSON report example:
+JSONレポートの例:
 
 ```json
 [
@@ -117,12 +113,12 @@ JSON report example:
 ]
 ```
 
-By default, security reports are saved inside the Docker container in the `/app/reports` directory. By using the `-v` option, you mount the contents of `/app/reports` into the specified host machine directory.
+デフォルトでは、セキュリティレポートはDockerコンテナ内の`/app/reports`ディレクトリに保存されます。`-v`オプションを使用することで、`/app/reports`の内容が指定したホストマシンのディレクトリにマウントされます。
 
-## Managing security policies
+## セキュリティポリシーの管理
 
-In the **OpenAPI Testing** section of the Wallarm Console, you have the ability to manage the list of security testing policies associated with your account. Different policies can be used for different services, teams, purposes, and testing stages, such as local testing and staging.
+Wallarm Consoleの**OpenAPI Testing**セクションでは、アカウントに関連付けられたセキュリティテストポリシーの一覧を管理することができます。各ポリシーは、サービス、チーム、目的、ローカルテストやステージングなどのテスト段階ごとに使用可能です。
 
-You can edit and delete existing policies as needed to suit your requirements.
+要件に応じて、既存のポリシーを編集および削除できます。
 
-![!Policies list](../images/user-guides/openapi-testing/testing-policies-list.png)
+![!ポリシー一覧](../images/user-guides/openapi-testing/testing-policies-list.png)

@@ -1,13 +1,13 @@
 [cdn-node-operation-scheme]:        ../images/waf-installation/quickstart/cdn-node-scheme.png
 [data-to-wallarm-cloud-docs]:       ../user-guides/rules/sensitive-data-rule.md
 [operation-modes-docs]:             ../admin-en/configure-wallarm-mode.md
-[operation-mode-rule-docs]:         ../user-guides/rules/wallarm-mode-rule.md
+[operation-mode-rule-docs]:         ../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console
 [wallarm-cloud-docs]:               ../about-wallarm/overview.md#cloud
 [cdn-node-creation-modal]:          ../images/waf-installation/quickstart/cdn-node-creation-modal.png
 [cname-required-modal]:             ../images/waf-installation/quickstart/cname-required-modal.png
 [attacks-in-ui]:                    ../images/admin-guides/test-attacks-quickstart.png
 [user-roles-docs]:                  ../user-guides/settings/users.md
-[update-origin-ip-docs]:            ../user-guides/nodes/cdn-node.md#updating-the-origin-address-of-the-protected-resource
+[update-origin-ip-docs]:            ../user-guides/nodes/cdn-node.md#updating-the-origin-address-of-the-protected-resourse
 [rules-docs]:                       ../user-guides/rules/rules.md
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 [integration-docs]:                 ../user-guides/settings/integrations/integrations-intro.md
@@ -15,89 +15,89 @@
 [application-docs]:                 ../user-guides/settings/applications.md
 [nodes-ui-docs]:                    ../user-guides/nodes/cdn-node.md
 [events-docs]:                      ../user-guides/events/check-attack.md
-[graylist-populating-docs]:         ../user-guides/ip-lists/graylist.md#managing-graylist
-[graylist-docs]:                    ../user-guides/ip-lists/graylist.md
+[graylist-populating-docs]:         ../user-guides/ip-lists/overview.md
+[graylist-docs]:                    ../user-guides/ip-lists/overview.md
 [link-app-conf]:                    ../user-guides/settings/applications.md
 [varnish-cache]:                    #why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node
 [using-varnish-cache]:              ../user-guides/nodes/cdn-node.md#using-varnish-cache
 
-# Section.io ile Birlikte Wallarm Node'unu Dağıtmak
+# Section.io ile Wallarm Node'unu Dağıtma
 
-[Bölüm](https://www.section.io/) bir Bulut Doğal Hosting sistemidir ve bir Wallarm düğümünün kolay dağıtımını sağlar. Trafik akışını bir ters vekil (reverse proxy) olarak yönlendirerek uygulamanızın altyapısına üçüncü taraf bileşenler eklemeksizin kötü amaçlı trafiği etkili bir şekilde hafifletir.
+[Section](https://www.section.io/) Cloud-Native Hosting sistemi, bir Wallarm node'unun kolayca dağıtılmasını sağlar. Trafiği ters proxy olarak yönlendirerek, uygulamanızın altyapısına üçüncü parti bileşenler eklemeden kötü niyetli trafiği etkili şekilde engelleyebilirsiniz.
 
 ## Kullanım Durumları
 
-Tüm desteklenen [Wallarm dağıtım seçenekleri](supported-deployment-options.md) arasında, bu çözüm aşağıdaki **kullanım durumları** için önerilen biridir:
+Desteklenen tüm [Wallarm deployment options](supported-deployment-options.md) arasında, bu çözüm aşağıdaki **kullanım durumları** için önerilmektedir:
 
-* Hafif hizmetleri korumak için hızlı ve kolay dağıtılabilir bir güvenlik çözümü arıyorsunuz.
-* Wallarm düğümlerini kendi hosting altyapınızda dağıtma yeteneğiniz yok.
-* Dağıtımda elle olmayan bir yaklaşımı tercih edersiniz, Wallarm filtreleme düğümlerinin yönetimini ve bakımını önler.
+* Hafif hizmetleri korumak için hızlı ve kolayca dağıtılan bir güvenlik çözümü arıyorsanız.
+* Hosting altyapınız içerisinde Wallarm node'ları dağıtma imkanınız yoksa.
+* Wallarm filtreleme node'larının yönetim ve bakımını üstlenmek istemiyorsanız.
 
-## Kısıtlamalar
+## Sınırlamalar
 
-Çözümün belirli kısıtlamaları vardır:
+Çözümün bazı sınırlamaları bulunmaktadır:
 
-* Yüksek trafik analizi ve filtrasyonu için CDN düğümlerinin kullanılması önerilmez.
-* CDN düğümü türünün dağıtımı, [Ücretsiz katman planı](../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud) altında desteklenmiyor.
-* CDN düğümü ile üçüncü seviye (veya daha düşük, 4. , 5. vb.) domainleri koruyabilirsiniz. Örneğin, `ple.example.com` için CDN düğümü oluşturabilirsiniz, ancak `example.com` için oluşturamazsınız.
-* [`collectd` hizmeti](../admin-en/monitoring/intro.md) desteklenmiyor.
-* Standart prosedürler aracılığıyla doğrudan [uygulama kurulumu](../user-guides/settings/applications.md) mümkün değil. Yapılandırma yardımı için [Wallarm destek ekibiyle](mailto:support@wallarm.com) iletişime geçin.
-* [İlke engelleme sayfaları ve hata kodları](../admin-en/configuration-guides/configure-block-page-and-code.md) yapılandırılabilir değildir. Varsayılan olarak, CDN düğümü engellenen istekler için bir 403 yanıt kodu döndürür.
+* Yüksek trafik analizi ve filtrasyonu için CDN node'larının kullanılması önerilmemektedir.
+* CDN node türünün dağıtımı, [Free tier plan](../about-wallarm/subscription-plans.md#free-tier) kapsamında desteklenmemektedir.
+* CDN node ile yalnızca üçüncü seviye (veya daha alt, örneğin 4., 5. vb.) domain'leri koruyabilirsiniz. Örneğin, `ple.example.com` için CDN node oluşturabilirsiniz, ancak `example.com` için oluşturamazsınız.
+* [`collectd` servisi](../admin-en/monitoring/intro.md) desteklenmemektedir.
+* Standart prosedürlerle doğrudan [application setup](../user-guides/settings/applications.md) yapılamamaktadır. Yapılandırma yardımı için lütfen [Wallarm support team](mailto:support@wallarm.com) ile iletişime geçin.
+* [Custom blocking pages and error codes](../admin-en/configuration-guides/configure-block-page-and-code.md) yapılandırılamamaktadır. Varsayılan olarak, CDN node engellenen istekler için 403 durum kodu döndürür.
 
 ## Gereksinimler
 
---8<-- "../include-tr/waf/installation/cdn-node/cdn-node-deployment-requirements.md"
+--8<-- "../include/waf/installation/cdn-node/cdn-node-deployment-requirements.md"
 
-## CDN düğümü nasıl çalışır
+## CDN Node Nasıl Çalışır
 
---8<-- "../include-tr/waf/installation/cdn-node/how-cdn-node-works.md"
+--8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.md"
 
-## CDN düğümünün dağıtımı
+## CDN Node Dağıtımı
 
-1. Wallarm Konsolu'nu açın → **Düğümler** → **CDN** → **Düğüm oluştur**.
-1. Korunacak alan adını girin, örn. `ple.example.com`.
+1. Wallarm Console'u açın → **Nodes** → **CDN** → **Create node**.
+2. Korunacak domain adresini girin, örneğin `ple.example.com`.
 
-    Belirtilen adresin üçüncü seviye (veya daha düşük) bir alan olması ve şema ve çizgileri içermemesi gerekir.
-1. Wallarm'ın belirtilen alanla ilişkili orijinal adresi doğru bir şekilde tanımladığından emin olun. Aksi takdirde, lütfen otomatik olarak bulunan orijinal adresi değiştirin.
+    Belirtilen adres, üçüncü seviye (veya daha alt) domain olmalı ve şema ile eğik çizgi içermemelidir.
+3. Wallarm'un, belirtilen domain ile ilişkili origin adresini doğru şekilde tanımladığından emin olun. Aksi halde, otomatik keşfedilen origin adresini değiştirmeniz gerekmektedir.
 
-    ![CDN düğümü oluşturma modalı][cdn-node-creation-modal]
+    ![CDN node creation modal][cdn-node-creation-modal]
 
-    !!! warning "Orijinal adresin dinamik güncellenmesi"
-        Hosting sağlayıcınız korunan kaynakla ilişkili orijinal IP adresini veya alan adını dinamik olarak güncelliyorsa, lütfen CDN düğümü yapılandırmasında belirtilen orijinal adresi güncel tutun. Wallarm Konsolu, orijinal adresi [değiştirmenizi][update-origin-ip-docs] her zaman sağlar.
-        
-        Aksi takdirde, istekler korunan kaynağa ulaşmayacaktır çünkü CDN düğümü yanlış bir orijinal adrese onları proxy etmeye çalışacaktır.
-1. CDN düğümü kaydının tamamlanmasını bekleyin.
+    !!! warning "Origin Adresinin Dinamik Güncellenmesi"
+        Eğer hosting sağlayıcınız, korunan kaynağa ait origin IP adresini veya domain'i dinamik olarak güncelliyorsa, lütfen CDN node yapılandırmasında belirtilen origin adresini güncel tutun. Wallarm Console, istediğiniz zaman [origin adresini değiştirmenize][update-origin-ip-docs] olanak tanır.
 
-    CDN düğümü kaydı tamamlandığında, CDN düğümü durumu **CNAME Gerekiyor** olarak değiştirilecektir.
-1. Wallarm tarafından oluşturulan CNAME kaydını korunan alanın DNS kayıtlarına ekleyin.
+        Aksi takdirde, istekler yanlış origin adresine gönderileceği için korunan kaynağa ulaşamaz.
+4. CDN node kaydının tamamlanmasını bekleyin.
 
-    Eğer alan için CNAME kaydı zaten yapılandırılmışsa, lütfen değerini Wallarm'ın oluşturduğu olanla değiştirin.
+    CDN node kaydı tamamlandığında, CDN node durumu **Requires CNAME** olarak değişecektir.
+5. Wallarm tarafından oluşturulan CNAME kaydını, korunan domainin DNS kayıtlarına ekleyin.
 
-    ![CDN düğümü oluşturma modalı][cname-required-modal]
+    Eğer domain için zaten bir CNAME kaydı yapılandırılmışsa, lütfen mevcut değeri Wallarm tarafından oluşturulan değeri ile değiştirin.
 
-    DNS sağlayıcınıza bağlı olarak, DNS kayıtlarındaki değişikliklerin yayılması ve İnternet'te etkili olması 24 saate kadar sürebilir. Yeni CNAME kaydı yayıldığında, Wallarm'ın CDN düğümü tüm gelen istekleri korunan kaynağa yönlendirecek ve kötü amaçlı olanları engelleyecektir.
-1. Gerekirse, özel bir SSL/TLS sertifikası yükleyin.
+    ![CDN node creation modal][cname-required-modal]
 
-    Wallarm, CDN düğümü alanı için varsayılan olarak Let's Encrypt sertifikası oluşturur.
-1. DNS kayıt değişiklikleri yayıldıktan sonra, korunan alana test saldırısı gönderin:
+    DNS sağlayıcınıza bağlı olarak, DNS kayıtlarındaki değişikliklerin yayılması ve İnternet'te etkili olması 24 saate kadar sürebilir. Yeni CNAME kaydı yayıldığında, Wallarm CDN node gelen tüm istekleri korunan kaynağa yönlendirecek ve kötü niyetli olanları engelleyecektir.
+6. Gerekirse, özel SSL/TLS sertifikasını yükleyin.
+
+    Varsayılan olarak, Wallarm CDN node domaini için Let's Encrypt sertifikası oluşturacaktır.
+7. DNS kayıtlarındaki değişiklikler yayıldıktan sonra, korunan domain'e test saldırısı gönderin:
 
     ```bash
-    curl http://<KORUNAN_ALAN>/etc/passwd
+    curl http://<PROTECTED_DOMAIN>/etc/passwd
     ```
-    
-    * Eğer başlangıç IP adresi [grislisted’edir] [graylist-docs] , düğüm hem saldırıyı engeller (HTTP yanıt kodu 403) hem de kaydeder.
-    * Eğer başlangıç IP adresi [grislisted’edilmezse] [graylist-docs], düğüm sadece tespit edilen saldırıları kaydeder. Saldırıların kaydedildiğini kontrol edebilirsiniz Wallarm Konsolu'nda → **Olaylar**:
-    
-        ![Arabirimdeki saldırılar][attacks-in-ui]
 
-## Sonraki adımlar
+    * Eğer kaynağı gönderen IP [graylisted][graylist-docs] ise, node saldırıyı hem engelleyecek (HTTP durum kodu 403) hem de kaydedecektir.
+    * Eğer kaynağı gönderen IP [graylisted][graylist-docs] değilse, node yalnızca tespit edilen saldırıları kaydedecektir. Tespit edilen saldırıları Wallarm Console → **Attacks** bölümünden kontrol edebilirsiniz:
+    
+        ![Attacks in the interface][attacks-in-ui]
 
-Wallarm CDN düğümü başarıyla dağıtıldı!
+## Sonraki Adımlar
+
+Wallarm CDN node başarıyla dağıtıldı!
 
 Wallarm yapılandırma seçeneklerini öğrenin:
 
---8<-- "../include-tr/waf/installation/cdn-node/cdn-node-configuration-options.md"
+--8<-- "../include/waf/installation/cdn-node/cdn-node-configuration-options.md"
 
-## CDN düğümü sorun giderme
+## CDN Node Sorun Giderme
 
---8<-- "../include-tr/waf/installation/cdn-node/cdn-node-troubleshooting.md"
+--8<-- "../include/waf/installation/cdn-node/cdn-node-troubleshooting.md"

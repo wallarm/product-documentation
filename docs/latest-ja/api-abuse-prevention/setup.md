@@ -1,60 +1,67 @@
-# API Abuse Preventionプロファイルの管理 <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Prevention セットアップ <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm Consoleの**API Abuse Prevention**セクションでは、[**API Abuse Prevention**](../api-abuse-prevention/overview.md)モジュールの設定に必要なAPI abuseプロファイルを管理することができます。
+この記事では、悪意のあるボットを検知・緩和し、正当な活動がブロックされるのを回避するために、[API Abuse Prevention](../api-abuse-prevention/overview.md)モジュールを有効化および構成する方法について説明します。
 
-このセクションは、以下の[役割](../user-guides/settings/users.md#user-roles)を持つユーザーのみが利用可能です：
+## 有効化
 
-* 通常のアカウントでは **管理者**または**アナリスト**
-* マルチテナンシ機能を持つアカウントでは **グローバル管理者**または**グローバルアナリスト**
+API Abuse Preventionモジュールは**Advanced API Security**[subscription plan](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security)で利用可能です。デフォルトでは無効になっています。
 
-## API abuseプロファイルの作成
+API Abuse Preventionを有効にするには:
 
-API abuseプロファイルを作成するには：
+1. お使いのWallarmノードが4.2以降であることを確認してください。
+1. Wallarm Console → **API Abuse Prevention**で、少なくとも1つの[API Abuse profile](#creating-profiles)を作成または有効にしてください。
 
-1. Wallarm Console → **API Abuse Prevention** で **プロファイル作成** をクリックします。
-1. 保護するアプリケーションを選択します。
-1. [容忍度](../api-abuse-prevention/overview.md#tolerance)レベルを選択します。
-1. 必要に応じて、**Protect from**セクションで、保護対象とする[ボットのタイプ](../api-abuse-prevention/overview.md#automated-threats-blocked-by-api-abuse-prevention)を制限します。
-1. 適切な[悪意のあるボットへの反応](../api-abuse-prevention/overview.md#reaction-to-malicious-bots)を選択します。
-1. 名前とオプションで説明を設定します。
+## プロファイルの作成
 
-    ![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+API abuseプロファイルは、Wallarmの**API Abuse Prevention**が悪意のあるボットをどのように検出・緩和するかの設定に使用します。各アプリケーションごとに異なるプロファイルを作成できます。各アプリケーションには1つの関連プロファイルのみが使用されます。
 
-    API abuseプロファイルが設定されると、モジュールは[トラフィック分析と自動化された脅威のブロック](../api-abuse-prevention/overview.md#how-api-abuse-prevention-works)を開始します。
+プロファイルは、どの種類のボットから保護するか、各ボットの検出感度、およびボットの活動に対する対応を定義します。
 
-## API abuseプロファイルの無効化
+API abuseプロファイルを作成するには:
 
-無効化されたプロファイルは、**API Abuse Prevention**モジュールがトラフィック分析中には使用しないものの、プロファイルリストには依然として表示されます。有効なプロファイルがない場合、モジュールは悪意のあるボットをブロックしません。
+1. **API Abuse Prevention**セクションで、**Profiles**タブに切り替えてください。
+1. **Create profile**をクリックしてください。
+1. 保護対象の[automated threats](../api-abuse-prevention/overview.md#automated-threats-blocked-by-api-abuse-prevention)を選択し、**Reaction**を設定してください:
+    
+    * **Disabled** - Wallarmはこの種類のボットから保護しません．
+    * **Register attack** - 検出された悪意のあるボットの活動はWallarm Consoleの[**Attacks**](../user-guides/events/check-attack.md)セクションに表示され、リクエストはブロックされません。
 
-対応する**Disable**オプションを使用してプロファイルを無効化できます。
+        これらのイベントの詳細から、**Add source IP to denylist**ボタンを使用してボットを迅速にブロックすることができます。そのIPはdenylistに永久に追加されますが、**IP Lists**セクションで削除するか、リストに滞在する時間を変更できます。
 
-## API abuseプロファイルの削除
+    * **Denylist IP**または**Graylist IP** - ボットのIPは選択された期間に応じて対応するリストに追加され、リクエストはブロックされます。denylistとgraylistの違いの詳細は[こちら](../user-guides/ip-lists/overview.md)をご確認ください。
 
-削除されたプロファイルは、復元することができず、**API Abuse Prevention**モジュールがトラフィック分析中に使用しません。
+1. 必要に応じて、各ボットの検出に対する**Sensitivity**を変更してください:
+    
+    * **Paranoid** - 高い感度はアプリケーションへのボットのアクセスを減らしますが、偽陽性により一部の正当なリクエストをブロックする可能性があります。
+    * **Normal**（デフォルト、推奨） - 多くの偽陽性を回避し、ほとんどの悪意のあるボットのリクエストがAPIに到達するのを防ぐために最適なルールを使用します。
+    * **Safe mode** - 低い感度はアプリケーションへのボットのアクセスを増やしますが、その代わりに正当なリクエストがドロップされることはありません。
 
-対応する**Delete**オプションを使用してプロファイルを削除できます。
+        ![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
-## 例外リストの使用
+1. アプリケーションを選択してください。
+1. **Analyze behavior by**パラメータを設定してください:
 
-API Abuse Preventionによってこれらをブロックするのを防ぐため、いくつかのIPを正当なボットやクローラーと関連付けるためにマークするには、[**例外リスト**](../api-abuse-prevention/overview.md#exception-list)を使用します。
+    * **Applications** - アプリケーションのすべてのドメインへのリクエストを一括して分析します。
+    * **Domains** - アプリケーションの各ドメインへのリクエストを個別に分析します。
 
-IPアドレスまたは範囲を例外リストに追加し、ターゲットアプリケーションを指定します。これにより、これらのアドレスからの任意のリクエストは、これらのアドレスを悪意のあるボットとしてマークすることなく、ターゲットアプリケーションへと送られます。また、これらのアドレスはAPI Abuse Preventionによって[deny-](../user-guides/ip-lists/denylist.md)または[graylist](../user-guides/ip-lists/graylist.md)に追加されません。
+<a name="per-profile-traffic"></a>プロファイルが作成されると、選択されたアプリケーションは選択された種類の悪意のあるボットから保護されます。なお、保護およびデータ分析はプロファイルのアプリケーショントラフィックの有無や量に依存します。各プロファイルのステータスにご注意ください:
 
-例外リストへのIPアドレスの追加方法は2つあります：
+![API abuse prevention - profiles](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-profiles-per-profile-status.png)
 
-*  **API Abuse Prevention** セクション → **例外リスト** タブにある **例外追加**を通じて。ここでは、IPやサブネットの他にAPI Abuse Preventionが無視すべき位置やソースタイプも追加できます。
+## プロファイルの無効化と削除
 
-    ![API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
+無効なプロファイルは、**API Abuse Prevention**モジュールがトラフィック分析時に使用しないものの、プロファイルリストに表示されるものです。無効なプロファイルはいつでも再度有効にできます。有効なプロファイルが存在しない場合、モジュールは悪意のあるボットをブロックしません。
 
-*  **イベント** セクションから：`api_abuse`検索キーを使用するか、**タイプ**フィルターから`API Abuse`を選択した後、必要なイベントを展開し**例外リストに追加**をクリックします。
+削除されたプロファイルは、復元できず、**API Abuse Prevention**モジュールがトラフィック分析時に使用しないものです。
 
-    ![API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
+プロファイルメニューに**Disable**および**Delete**オプションがございます。
 
-IPアドレスが例外リストに追加されると、そのアドレスは自動的に[deny-](../user-guides/ip-lists/denylist.md)または[graylist](../user-guides/ip-lists/graylist.md)から削除されますが、それはAPI Abuse Prevention自体が（`Bot`の原因で）そこに追加した場合のみです。
+## 例外
 
-!!! info "IPからの他の攻撃タイプのブロック"
-    例外リストのIPが他の[攻撃タイプ](../attacks-vulns-list.md)を生み出す場合、例えばブルートフォース攻撃や入力検証攻撃など、Wallarmはそのようなリクエストをブロックします。
+[例外を設定](exceptions.md)することで、正当なボットの識別や特定の対象URLおよびリクエストタイプに対するボット保護の無効化を行い、API Abuse Preventionを微調整できます。
 
-デフォルトでは、IPは永久に例外リストに追加されます。これを変更し、アドレスが例外リストから削除されるべき時間を設定することができます。また、必要に応じて任意の時間にすぐにアドレスを例外から削除することもできます。
+## セッション機構の改善
 
-**例外リスト**タブは、過去の選択された期間内にリストに存在したアイテムを表示する履歴データを提供します。
+API Abuse Preventionは、ボットの挙動を分析する際に[API Sessions](../api-sessions/overview.md)機構を使用します。
+
+API Abuse Preventionの機能をより正確にするため、リクエストをセッションにまとめる際に未認証のトラフィックをより正確に識別するため、[JA3 fingerprinting](../admin-en/enabling-ja3.md)を有効にすることを推奨します。

@@ -1,79 +1,43 @@
-[waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
-[blocking-page-instr]:              ../admin-en/configuration-guides/configure-block-page-and-code.md
-[logging-instr]:                    ../admin-en/configure-logging.md
-[proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md
-[process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-node.md
-[ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
-[nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
-[overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                     ../user-guides/ip-lists/graylist.md
-[waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
-[envoy-process-time-limit-docs]:    ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
-[envoy-process-time-limit-block-docs]: ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
+# Docker NGINXベースのイメージのアップグレード
 
-# Docker NGINX-またはEnvoyベースのイメージのアップグレード
-
-これらの指示は、実行中のDocker NGINX-またはEnvoyベースのイメージ4.xをバージョン4.6にアップグレードする手順を説明します。
+これらの手順は、稼働中のDocker NGINXベースのイメージ4.xをバージョン5.0にアップグレードする手順を説明します。
 
 !!! warning "既存のWallarmノードの資格情報の使用"
-    前のバージョンの既存のWallarmノードを使用することはお勧めしません。新しいフィルタリングノードをバージョン4.6で作成し、それをDockerコンテナとしてデプロイするためにこれらの指示に従ってください。
+    以前のバージョンの既存のWallarmノードの使用は推奨しません。これらの手順に従い、バージョン5.0の新しいフィルタリングノードを作成し、Dockerコンテナとしてデプロイしてください。
 
-End‑of‑lifeノード（3.6以下）をアップグレードするには、[別の指示](older-versions/docker-container.md)を使用してください。
+サポート終了ノード（バージョン3.6以下）のアップグレードには[こちらの手順](older-versions/docker-container.md)をご利用ください。
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-latest.md"
 
-## ステップ1：更新されたフィルタリングノードイメージのダウンロード
+## ステップ1: 更新されたフィルタリングノードのイメージをダウンロードする
 
-=== "NGINXベースのイメージ"
-    ``` bash
-    docker pull wallarm/node:4.6.2-1
-    ```
-=== "Envoyベースのイメージ"
-    ``` bash
-    docker pull wallarm/envoy:4.6.2-1
-    ```
+``` bash
+docker pull wallarm/node:5.3.0
+```
 
-## ステップ2：Wallarmブロックページの更新（NGINXベースのイメージをアップグレードする場合）
-
-新しいノードバージョンでは、Wallarmのサンプルブロックページが[変更されました](what-is-new.md#new-blocking-page)。ページ上のロゴとサポートメールはデフォルトで空になります。
-
-Dockerコンテナがブロックされたリクエストに対して`&/usr/share/nginx/html/wallarm_blocked.html`ページを返すように設定されていた場合、この設定を以下のように変更します：
-
-1. サンプルページの新しいバージョンを[コピーしてカスタマイズします](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)。
-1. 次のステップで新しいDockerコンテナにカスタマイズしたページとNGINX設定ファイルを[マウントします](../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code)。
-
-## ステップ3：実行中のコンテナの停止
+## ステップ2: 稼働中のコンテナを停止する
 
 ```bash
 docker stop <RUNNING_CONTAINER_NAME>
 ```
 
-## ステップ4：新しいイメージを使用してコンテナを実行する
+## ステップ3: 新しいイメージを使用してコンテナを起動する
 
-1. Wallarm Consoleに進み、**Nodes**を選択し、**Wallarmノード**を作成します。
-
-    ![Wallarmノードの作成](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
-1. 生成されたトークンをコピーします。
-1. コピーしたトークンを使用して、更新されたイメージを実行します。前のイメージバージョンの実行時に渡された同じ設定パラメータを渡すことができます（ノードトークンを除く）。
+1. Wallarm Console → **Settings** → **API Tokens** に進み、**Deploy**ロールを持つトークンを生成してください。
+1. 生成されたトークンをコピーしてください。
+1. コピーしたトークンを使用して更新されたイメージを起動してください。
     
-    更新されたイメージを使ってコンテナを実行するには二つの方法があります：
+    更新されたイメージを使用してコンテナを起動するには、以下の2つの方法があります:
+    
+    * [環境変数を使用して](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
+    * [マウントされた設定ファイルで](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
-    * 基本的なフィルタリングノードの設定を指定する**環境変数を使用して**
-        * [NGINXベースのDockerコンテナの手順 →](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
-        * [EnvoyベースのDockerコンテナの手順 →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)
-    * 高度なフィルタリングノード設定を指定する**マウントされた設定ファイル**
-        * [NGINXベースのDockerコンテナの手順 →](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
-        * [EnvoyベースのDockerコンテナの手順 →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
+## ステップ4: フィルタリングノードの動作をテストする
 
-## ステップ5：フィルタリングノード操作のテスト
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+## ステップ5: 以前のバージョンのフィルタリングノードを削除する
 
-## ステップ6：前のバージョンのフィルタリングノードの削除
-
-バージョン4.6のデプロイされたイメージが正常に動作している場合、Wallarm Consoleの**Nodes**で前のバージョンのフィルタリングノードを削除できます。
+もしバージョン5.0のデプロイされたイメージが正常に動作する場合は、Wallarm Console → **Nodes**にて以前のバージョンのフィルタリングノードを削除することができます。

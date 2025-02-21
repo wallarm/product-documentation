@@ -1,67 +1,98 @@
-Varsayılan olarak, dağıtılmış Wallarm düğümü gelen trafiği analiz etmez.
+By default, the deployed Wallarm Node does not analyze incoming traffic.  
+Varsayılan olarak, dağıtılan Wallarm Node gelen trafiği analiz etmez.
 
-Seçilen Wallarm kullanıma hazır hale getirme yaklaşımına bağlı olarak ([in-line][inline-docs] veya [Out-of-Band][oob-docs]), Wallarm'ı ya trafiği proxy olarak yapılandırın veya trafiği ayna işlemi yapmak üzere yapılandırın.
+To enable traffic analysis, perform the following configuration:  
+Trafik analizini etkinleştirmek için, aşağıdaki yapılandırmayı uygulayın:
 
-Kurulu düğümün bulunduğu makinedeki NGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) dosyasında aşağıdaki yapılandırmayı gerçekleştirin:
-
-=== "In-line"
-    1. Wallarm'ın geçerli trafiği proxy olarak yollayacağı bir IP adresi ayarlayın. Bunun, mimarinize bağlı olarak bir uygulama örneği, yük dengeleyici veya DNS adı vb. bir IP olması mümkün.
+=== "In-line"  
+    If you deploy the Wallarm Node for [in-line][inline-docs] traffic analysis and proxying of legitimate traffic, update the [NGINX configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/), typically located at `/etc/nginx/sites-available/default`.  
     
-        Bunu yapmak için `proxy_pass` değerini düzenleyin, örneğin Wallarm geçerli istekleri `http://10.80.0.5` adresine yollamalı:
+    Eğer Wallarm Node'u [in-line][inline-docs] trafik analizi ve meşru trafiğin proxylenmesi için dağıtırsanız, genellikle `/etc/nginx/sites-available/default` konumunda bulunan [NGINX yapılandırma dosyasını](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) güncelleyin.
+    
+    The following minimal configuration adjustments are necessary:  
+    Aşağıdaki minimum yapılandırma değişiklikleri gereklidir:
+    
+    1. Set the Wallarm Node to `wallarm_mode monitoring;`. This mode is recommended for initial deployments and testing.  
+       1. Wallarm Node'u `wallarm_mode monitoring;` olarak ayarlayın. Bu mod, ilk dağıtımlar ve testler için önerilir.
+       
+           Wallarm also supports more modes like blocking and safe blocking, which you can [read more][waf-mode-instr].  
+           Wallarm ayrıca, engelleme ve güvenli engelleme gibi modları da destekler; [daha fazla bilgi edinebilirsiniz][waf-mode-instr].
+    1. Determine where the node should forward legitimate traffic by adding the `proxy_pass` directive in the required locations. This could be to the IP of an application server, a load balancer, or a DNS name.  
+       2. Node'un meşru trafiği nereye ileteceğini, gerekli noktalara `proxy_pass` yönergesini ekleyerek belirleyin. Bu, bir uygulama sunucusunun IP'si, bir yük dengeleyici ya da bir DNS adı olabilir.
+    1. If present, remove the `try_files` directive from the modified locations to ensure traffic is directed to Wallarm without local file interference.  
+       3. Mevcutsa, yerel dosya müdahalesine engel olmak için değiştirilmiş noktalardan `try_files` yönergesini kaldırarak trafiğin Wallarm'a yönlendirildiğinden emin olun.
+    
+    ```diff
+    server {
+        ...
+    +   wallarm_mode monitoring;
+        location / { 
+    +        proxy_pass http://example.com;
+    -        # try_files $uri $uri/ =404;
+        }
+        ...
+    }
+    ```
 
+=== "Out-of-Band"  
+    If you deploy the Wallarm Node for [out-of-band][oob-docs] traffic analysis, update the [NGINX configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/), typically located at `/etc/nginx/sites-available/default`.  
+    
+    Eğer Wallarm Node'u [out-of-band][oob-docs] trafik analizi için dağıtırsanız, genellikle `/etc/nginx/sites-available/default` konumunda bulunan [NGINX yapılandırma dosyasını](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) güncelleyin.
+    
+    The following minimal configuration adjustments are necessary:  
+    Aşağıdaki minimum yapılandırma değişiklikleri gereklidir:
+    
+    1. For the Wallarm node to accept mirrored traffic, set the following configuration in the `server` NGINX block:  
+       1. Wallarm Node'un yansıtılmış trafiği kabul edebilmesi için, `server` NGINX bloğuna aşağıdaki yapılandırmayı ekleyin:
+    
+        ```
+        server {
+            listen 80;
+            ...
+    
+            wallarm_force server_addr $http_x_server_addr;
+            wallarm_force server_port $http_x_server_port;
+            # Change 222.222.222.22 to the address of the mirroring server
+            #set_real_ip_from  222.222.222.22;
+            #real_ip_header    X-Forwarded-For;
+            #real_ip_recursive on;
+            wallarm_force response_status 0;
+            wallarm_force response_time 0;
+            wallarm_force response_size 0;
+        }
+        ```
+    
+        * The `set_real_ip_from` and `real_ip_header` directives are required to have Wallarm Console [display the IP addresses of the attackers][proxy-balancer-instr].  
+          * `set_real_ip_from` ve `real_ip_header` yönergeleri, Wallarm Console'un saldırganların IP adreslerini [göstermesi][proxy-balancer-instr] için gereklidir.
+        * The `wallarm_force_response_*` directives are required to disable analysis of all requests except for copies received from the mirrored traffic.  
+          * `wallarm_force_response_*` yönergeleri, yansıtılmış trafikten alınan kopyalar dışındaki tüm isteklerin analizini devre dışı bırakmak için gereklidir.
+    1. For the Wallarm node to analyze the mirrored traffic, set the `wallarm_mode` directive to `monitoring`:  
+       2. Wallarm Node'un yansıtılmış trafiği analiz edebilmesi için, `wallarm_mode` yönergesini `monitoring` olarak ayarlayın:
+    
         ```
         server {
             listen 80;
             listen [::]:80 ipv6only=on;
-
+            wallarm_mode monitoring;
+    
             ...
-
+        }
+        ```
+    
+        Since malicious requests [cannot][oob-advantages-limitations] be blocked, the only [mode][waf-mode-instr] Wallarm accepts is monitoring. For in-line deployment, there are also safe blocking and blocking modes but even if you set the `wallarm_mode` directive to a value different from monitoring, the node continues to monitor traffic and only record malicious traffic (aside from the mode set to off).  
+        Kötü niyetli istekler [engellenemediği için][oob-advantages-limitations], Wallarm'un kabul ettiği tek [mod][waf-mode-instr] monitoring'dir. In-line dağıtımda, güvenli engelleme ve engelleme modları da mevcuttur; ancak `wallarm_mode` yönergesini monitoring dışında bir değere ayarlasanız bile, node trafiği izlemeye devam eder ve yalnızca kötü niyetli trafiği kaydeder (kapalı mod hariç).
+    1. If present, remove the `try_files` directive from the NGINX locations to ensure traffic is directed to Wallarm without local file interference:  
+       3. Mevcutsa, trafiğin yerel dosya müdahalesi olmadan Wallarm'a yönlendirildiğinden emin olmak için NGINX konumlarından `try_files` yönergesini kaldırın:
+        
+        ```diff
+        server {
+            ...
             location / {
-                proxy_pass http://10.80.0.5; 
-                ...
+        -        # try_files $uri $uri/ =404;
             }
-        }
-        ```
-    1. Wallarm düğümünün gelen trafiği analiz etmesi için `wallarm_mode` yönergesini `monitoring` olarak ayarlayın:
-
-        ```
-        server {
-            listen 80;
-            listen [::]:80 ipv6only=on;
-            wallarm_mode monitoring;
-
-            ...
-        }
-        ```
-    
-        İzleme modu, ilk dağıtım ve çözüm testi için önerilendir. Wallarm ayrıca güvenli bloklama ve bloklama modlarını da sağlar, daha fazla bilgi için [bakınız][waf-mode-instr].
-=== "Out-of-Band"
-    1. Wallarm düğümünün aynalanan trafiği kabul etmesi için `server` NGINX bloğunda aşağıdaki yapılandırmayı ayarlayın:
-
-        ```
-        wallarm_force server_addr $http_x_server_addr;
-        wallarm_force server_port $http_x_server_port;
-        # 222.222.222.22 yerine aynalama sunucusunun adresini girin
-        set_real_ip_from  222.222.222.22;
-        real_ip_header    X-Forwarded-For;
-        real_ip_recursive on;
-        wallarm_force response_status 0;
-        wallarm_force response_time 0;
-        wallarm_force response_size 0;
-        ```
-
-        * `set_real_ip_from` ve `real_ip_header` yönergeleri, Wallarm Console'un saldırganların IP adreslerini [göstermesi için][proxy-balancer-instr] gereklidir.
-        * `wallarm_force_response_*` yönergeleri, aynalanan trafikten alınan kopyalar dışında tüm isteklerin analizini devre dışı bırakmak için gereklidir.
-    1. Wallarm düğümünün aynalanan trafiği analiz etmesi için `wallarm_mode` yönergesini `monitoring` olarak ayarlayın:
-
-        ```
-        server {
-            listen 80;
-            listen [::]:80 ipv6only=on;
-            wallarm_mode monitoring;
-
             ...
         }
         ```
 
-        Zararlı istekler [engellenemez][oob-advantages-limitations], dolayısıyla Wallarm'ın kabul ettiği tek [mod][waf-mode-instr] izleme modudur. In-line dağıtım için ayrıca güvenli bloklama ve bloklama modları vardır ancak `wallarm_mode` yönergesini izlemeden farklı bir değere ayarlarsanız, düğüm trafiği izlemeye devam eder ve yalnızca zararlı trafiği kaydeder (modun kapalı olarak ayarlandığı durumlar dışında).
+Depending on your specific traffic routing rules and requirements, further customize both [NGINX](https://nginx.org/en/docs/dirindex.html) and [Wallarm configurations][waf-directives-instr] as needed.  
+Belirli trafik yönlendirme kurallarınıza ve gereksinimlerinize bağlı olarak, gerekirse [NGINX](https://nginx.org/en/docs/dirindex.html) ve [Wallarm yapılandırmalarını][waf-directives-instr] daha fazla özelleştirin.

@@ -1,1 +1,0 @@
---8<-- "latest-tr/installation/oob/web-server-mirroring/linux/nginx-plus.md"

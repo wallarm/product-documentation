@@ -1,37 +1,37 @@
-# インテグレーションされたWallarmサービスを使用してKong Ingressコントローラーをカスタマイズする
+# Wallarm統合サービス付きKong Ingress Controllerのカスタマイズ
 
-この記事では、[Kong Ingressコントローラーと統合されたWallarmサービス][kong-ing-controller-customization-docs]の安全かつ効果的なカスタマイズ方法について説明します。
+この記事ではWallarm統合サービス付きKong Ingress Controllerの安全かつ効果的なカスタマイズ方法について説明します。
 
 ## 設定領域
 
-Kong Ingressコントローラーと統合されたWallarmサービスは、標準のKubernetesコンポーネントに基づいているため、ソリューションの設定は大部分がKubernetesスタックの設定と同様です。
+Wallarm統合サービス付きKong Ingress Controllerは標準のKubernetesコンポーネントをベースとしているため、ソリューションの設定は大部分がKubernetesスタックの設定と類似しています。
 
-次のようにソリューションを設定できます。
+ソリューションは以下の方法で設定できます:
 
-* `values.yaml`を介して全体的に - これにより、一般的なデプロイメント設定、Kong API Gateway、および一部の基本的なWallarm設定を設定できます。これらの設定は、ソリューションがトラフィックをプロキシしているすべてのIngressリソースに適用されます。
-* Ingress注釈を介して - これにより、IngressごとにWallarm設定を微調整できます。
+* グローバルに `values.yaml` を使用して設定する - これにより一般的なデプロイ構成、Kong API Gateway、および基本的なWallarm設定の設定が可能です。これらの設定はソリューションがトラフィックをプロキシするすべてのIngressリソースに適用されます。
+* Ingressアノテーションを使用して設定する - これにより、IngressごとにWallarm設定を微調整できます。
 
-    !!! warning "注釈のサポート"
-        Ingress注釈は、オープンソースのKong Ingressコントローラーに基づいたソリューションでのみサポートされています。[サポートされている注釈のリストは限られています](#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition)。
-* Wallarm Console UIを介して - これにより、Wallarm設定を微調整できます。
+    !!! warning "アノテーションサポート"
+        IngressアノテーションはオープンソースのKong Ingress Controllerベースのソリューションでのみサポートされております。[サポートされるアノテーションのリストは限定されています](#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition).
+* Wallarm Console UIを使用して設定する - これによりWallarm設定を微調整できます.
 
 ## Kong API Gatewayの設定
 
-Kong API GatewayのKong Ingressコントローラーの設定は、[デフォルトのHelmチャート値](https://github.com/wallarm/kong-charts/blob/main/charts/kong/values.yaml)によって設定されます。この設定は、ユーザーが`helm install`または`helm upgrade`中に提供する`values.yaml`ファイルによって上書きすることができます。
+Kong API Gateway用のKong Ingress Controllerの設定は[デフォルトのHelmチャート値](https://github.com/wallarm/kong-charts/blob/main/charts/kong/values.yaml)により設定されています。この設定はユーザーが`helm install`または`helm upgrade`時に提供する`values.yaml`ファイルで上書き可能です.
 
-デフォルトのHelmチャート値をカスタマイズするには、[KongとIngressコントローラーの設定に関する公式の指示](https://github.com/Kong/charts/tree/main/charts/kong#configuration)を参照してください。
+デフォルトのHelmチャート値をカスタマイズするには、[KongおよびIngress Controllerの設定に関する公式手順](https://github.com/Kong/charts/tree/main/charts/kong#configuration)を参照してください.
 
-## Wallarm層の設定
+## Wallarmレイヤーの設定
 
-ソリューションのWallarm層を次のように設定することができます。
+以下の方法でソリューションのWallarmレイヤーを設定できます:
 
-* `values.yaml`を介して基本的な設定を設定する：Wallarm Cloudへの接続、リソースの割り当て、フォールバック。
-* 注釈を介してIngressごとのトラフィック分析を微調整する（オープンソース版のみ）：トラフィックフィルタリングモード、アプリケーション管理、マルチテナント設定など。
-* Wallarm Console UIを介してトラフィック分析を微調整する：トラフィックフィルタリングモード、セキュリティイベントの通知、リクエストソース管理、機密データマスキング、特定の攻撃タイプの許可など。
+* `values.yaml` を使用して基本設定を行う: Wallarm Cloudへの接続、リソース割り当て、フェールバック.
+* アノテーションを使用してIngressごとにトラフィック解析を微調整する（オープンソース版のみ）: トラフィックフィルトレーションモード、アプリケーション管理、マルチテナンシー設定など.
+* Wallarm Console UIを使用してトラフィック解析を微調整する: トラフィックフィルトレーションモード、セキュリティイベントの通知、リクエストソース管理、機微なデータのマスク、特定の攻撃タイプの許可など.
 
-### `values.yaml`を介した基本設定
+### `values.yaml` を使用した基本設定
 
-デフォルトの`values.yaml`ファイルは以下のWallarm設定を提供します。
+デフォルトの`values.yaml`ファイルは次のWallarm設定を提供しております:
 
 ```yaml
 wallarm:
@@ -56,6 +56,8 @@ wallarm:
       successThreshold: 1
       timeoutSeconds: 1
     resources: {}
+    podAnnotations:
+      sidecar.istio.io/inject: false
   heartbeat:
     resources: {}
   wallarm-appstructure:
@@ -123,51 +125,51 @@ wallarm:
     resources: {}
 ```
 
-変更する可能性のある主なパラメーターは次のとおりです。
+変更する必要がある可能性がある主なパラメータは次の通りです:
 
-| パラメーター | 説明 | デフォルト値 |
+| Parameter | Description | Default value |
 | --- | --- | --- |
-| `wallarm.enabled` | Wallarm層を有効または無効にします。 | `true` |
-| `wallarm.apiHost` | Wallarm APIサーバー：<ul><li>`us1.api.wallarm.com`はUS Cloud用</li><li>`api.wallarm.com`はEU Cloud用</li></ul> | `api.wallarm.com` |
-| `wallarm.token` | Wallarmノードトークン。**必須**。 | 空 |
-| `wallarm.fallback` | Wallarmサービスの開始が失敗した場合にKong API Gatewayサービスを動作させるかどうか。 | `on` |
-| `wallarm.tarantool.replicaCount` | ソリューションのローカルデータ分析バックエンドであるWallarm postanalyticsモジュールの実行中のポッドの数。 | `1` |
-| `wallarm.tarantool.arena` | Wallarm postanalyticsモジュールに割り当てるメモリの量を指定します。過去5〜15分のリクエストデータを保存できる十分な値を設定することを推奨します。 | `0.2` |
-| `wallarm.metrics.enabled` | このスイッチは情報収集とメトリックス収集を切り替えます。[Prometheus](https://github.com/helm/charts/tree/master/stable/prometheus)がKubernetesクラスタにインストールされている場合、追加の設定は不要です。 | `false` |
+| `wallarm.enabled` | Wallarmレイヤーの有効化または無効化を設定します. | `true` |
+| `wallarm.apiHost` | Wallarm APIサーバー:<ul><li>`us1.api.wallarm.com`はUS Cloud用</li><li>`api.wallarm.com`はEU Cloud用</li></ul> | `api.wallarm.com` |
+| `wallarm.token` | Wallarmノードトークン．**必須**. | Empty |
+| `wallarm.fallback` | Wallarmサービスの起動失敗時にKong API Gatewayサービスを実行するか否か. | `on` |
+| `wallarm.tarantool.replicaCount` | ローカルデータ解析バックエンドであるWallarm postanalyticsモジュールの稼働中のポッド数. | `1` |
+| `wallarm.tarantool.arena` | Wallarm postanalyticsモジュールに割り当てるメモリ量を指定します．直近の5～15分間のリクエストデータを格納できる十分な値を設定することを推奨します. | `0.2` |
+| `wallarm.metrics.enabled` | 情報およびメトリクス収集の切り替え．Kubernetesクラスターに[Prometheus](https://github.com/helm/charts/tree/master/stable/prometheus)がインストールされている場合、追加設定は不要です. | `false` |
 
-他のパラメーターはデフォルト値で提供され、ほとんどの場合変更する必要はありません。
+他のパラメータはデフォルト値のままであり、変更する必要はほとんどありません.
 
-### Ingress注釈を介したトラフィック分析の微調整（オープンソース版のみ）
+### Ingressアノテーションを使用したトラフィック解析の微調整（オープンソース版のみ）
 
-以下は、統合されたWallarmサービスを持つオープンソースのKong Ingressコントローラーでサポートされている注釈のリストです。
+以下はWallarm統合サービス付きオープンソースのKong Ingress Controllerでサポートされるアノテーションの一覧です.
 
 !!! info "グローバル設定とIngressごとの設定の優先順位"
-    Ingressごとの注釈は、Helmチャートの値よりも優先されます。
+    IngressごとのアノテーションはHelmチャート値より優先されます.
 
-| 注釈 | 説明 |
+| Annotation | Description | 
 |----------- |------------ |
-| `wallarm.com/wallarm-mode` | [トラフィックフィルタリングモード][wallarm-mode-docs]：`off`（デフォルト）、`monitoring`、`safe_blocking`、または`block`。 |
-| `wallarm.com/wallarm-application` | [WallarmアプリケーションID][applications-docs]。値は0以外の正の整数です。 |
-| `wallarm.com/wallarm-parse-response` | アプリケーションのレスポンスを攻撃のために分析するかどうか：`true`（デフォルト）または`false`。レスポンス分析は、[パッシブ検出][passive-vuln-detection-docs]と[アクティブな脅威検証][active-threat-ver-docs]中の脆弱性検出に必要です。 |
-| `wallarm.com/wallarm-parse-websocket` | Wallarmは完全なWebSocketsをサポートしています。デフォルトでは、WebSocketsのメッセージは攻撃のために解析されません。この機能を強制するには、APIセキュリティ[サブスクリプションプラン][subscription-docs]を有効にし、この注釈を使用します：`true`または`false`（デフォルト）。 |
-| `wallarm.com/wallarm-unpack-response` | アプリケーションのレスポンスで返される圧縮データを解凍するかどうか：`true`（デフォルト）または`false`。 |
-| `wallarm.com/wallarm-partner-client-uuid` | [マルチテナント][multitenancy-overview]のWallarmノードのテナントの一意の識別子。値はUUID形式の文字列である必要があります。例：`123e4567-e89b-12d3-a456-426614174000`。<br><br>次のことを知っておく必要があります：<ul><li>[テナント作成時にテナントのUUIDを取得する方法][get-tenant-via-api-docs]</li><li>[既存のテナントのUUIDリストを取得する方法][get-tenant-uuids-docs]</li></ul> |
+| `wallarm.com/wallarm-mode` | [トラフィックフィルトレーションモード][wallarm-mode-docs]：`off`（デフォルト）、`monitoring`、`safe_blocking`、または`block`. |
+| `wallarm.com/wallarm-application` | [WallarmアプリケーションID][applications-docs]．値は`0`以外の正の整数です. |
+| `wallarm.com/wallarm-parse-response` | アプリケーションのレスポンスを攻撃に対して解析するか否か：`true`（デフォルト）または`false`．レスポンス解析は[パッシブ検出][passive-vuln-detection-docs]及び[脅威リプレイテスト][active-threat-ver-docs]時の脆弱性検出に必要です. |
+| `wallarm.com/wallarm-parse-websocket` | Wallarmは完全なWebSocketsサポートを備えています．デフォルトではWebSocketsのメッセージは攻撃解析対象外です．機能を強制するにはAPI Securityの[subscription plan][subscription-docs]を有効にし、本アノテーションを`true`または`false`（デフォルト）で使用します. |
+| `wallarm.com/wallarm-unpack-response` | アプリケーションのレスポンスで返される圧縮データを展開するか否か：`true`（デフォルト）または`false`. |
+| `wallarm.com/wallarm-partner-client-uuid` | [マルチテナントの概要][multitenancy-overview]に準じるWallarmノードにおけるテナントのユニーク識別子．値はUUID形式の文字列である必要があります．例えば`123e4567-e89b-12d3-a456-426614174000`.<br><br>確認方法：<ul><li>[テナント作成時にテナントのUUIDを取得する方法][get-tenant-via-api-docs]</li><li>[既存テナントのUUID一覧の取得方法][get-tenant-uuids-docs]</li></ul> |
 
-### Wallarm Console UIを介したトラフィック分析の微調整
+### Wallarm Console UIを使用したトラフィック解析の微調整
 
-Wallarm Console UIを使って、Wallarm層によって行われるトラフィック分析を以下のように微調整できます。
+Wallarm Console UIを使用すると、Wallarmレイヤーによるトラフィック解析を以下のように微調整できます:
 
-* トラフィックフィルタリングモードの設定
+* トラフィックフィルトレーションモードの設定
     
-    [ソリューションがデプロイされる](deployment.md)と、すべての着信リクエストを**モニタリング**[モード][available-filtration-modes]でフィルタリングし始めます。
+    [ソリューションがデプロイされる](deployment.md)と、すべての着信リクエストは**monitoring**[モード][available-filtration-modes]でフィルタリングが開始されます.
 
-    Wallarm Console UIを使って、次のようにモードを変更できます。
-
+    Wallarm Console UIではモードを変更できます:
+    
     * [すべての着信リクエストに対してグローバルに設定][general-settings-ui-docs]
-    * [ルール][wallarm-mode-rule-docs]を使用してIngressごとに設定
+    * Ingress単位で[ルール][wallarm-mode-rule-docs]を使用して設定
 
     !!! info "Ingressごとの設定とWallarm Console UIで指定された設定の優先順位"
-        Kong Open-Sourceベースのソリューションのモードが`wallarm-mode`注釈とWallarm Console UIで指定されている場合、前者よりも後者が優先されます。
-* [セキュリティイベントに対する通知を設定][integrations-docs]
-* [リクエストソースによるAPIへのアクセスを管理][ip-lists-docs]
-* [トラフィックフィルタリングルールをカスタマイズ][rules-docs]
+        Kongオープンソースベースのソリューションのモードが`wallarm-mode`アノテーションとWallarm Console UIの両方で指定されている場合、後者がアノテーションより優先されます.
+* [セキュリティイベントの通知設定][integrations-docs]を行います
+* [リクエストソースによるAPIアクセス管理][ip-lists-docs]を行います
+* [トラフィックフィルトレーションルールのカスタマイズ][rules-docs]を行います

@@ -43,9 +43,6 @@ nav:
     - Etkinlikler:
       - Etkinlik Arama ve Filtreler: user-guides/search-and-filters/use-search.md
       - Etkinlikleri Kontrol Etme: user-guides/events/check-attack.md
-      - Saldırıları Analiz Etme: user-guides/events/analyze-attack.md
-      - Yanıltıcı Saldırılar: user-guides/events/false-attack.md
-      - Saldırıları Doğrulama: user-guides/events/verify-attack.md
       - Olayları Kontrol Etme: user-guides/events/check-incident.md
     - Raporlar: user-guides/search-and-filters/custom-report.md
     - Aktivite Kaydı: user-guides/settings/audit-log.md
@@ -142,11 +139,7 @@ nav:
           - GCP: 
             - Makine Görüntüsü: installation/oob/web-server-mirroring/gcp-machine-image.md
         - Docker: installation/oob/web-server-mirroring/docker-image.md
-        - Linux:
-          - Her Şey Dahil Yükleyici: installation/oob/web-server-mirroring/linux/all-in-one.md
-          - NGINX Stable için Bireysel Paketler: installation/oob/web-server-mirroring/linux/nginx-stable.md
-          - NGINX Plus için Bireysel Paketler: installation/oob/web-server-mirroring/linux/nginx-plus.md
-          - Dağıtım Sağladığı NGINX için Bireysel Paketler: installation/oob/web-server-mirroring/linux/nginx-distro.md
+        - Her Şey Dahil Yükleyici: installation/oob/web-server-mirroring/linux/all-in-one.md
     - Kamu Bulutları:
       - Amazon Web Services:
         - AMI: installation/cloud-platforms/aws/ami.md
@@ -162,11 +155,9 @@ nav:
         - Azure Container Instances: installation/cloud-platforms/azure/docker-container.md
       - Alibaba Cloud:
         - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
-    - Edge:
-      - Section.io: installation/cdn-node.md
-      - Wallarm Güvenlik Kenarı:
-        - Satır İçi: installation/security-edge/deployment.md
-        - Bağlayıcılar: installation/se-connector.md
+    - Wallarm Güvenlik Kenarı:
+      - Satır İçi: installation/security-edge/deployment.md
+      - Bağlayıcılar: installation/se-connector.md
     - Kubernetes:
       - Ingress:
         - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
@@ -198,11 +189,7 @@ nav:
         - Docker images:
           - NGINX tabanlı: installation/inline/compute-instances/docker/nginx-based.md
           - Envoy tabanlı: installation/inline/compute-instances/docker/envoy-based.md
-        - Linux packages:
-          - Her şey dahil kurulum paketi: installation/inline/compute-instances/linux/all-in-one.md
-          - NGINX Stable için bireysel paketler: installation/inline/compute-instances/linux/individual-packages-nginx-stable.md
-          - NGINX Plus için bireysel paketler: installation/inline/compute-instances/linux/individual-packages-nginx-plus.md
-          - Dağıtım sağladığı NGINX için bireysel paketler: installation/inline/compute-instances/linux/individual-packages-nginx-distro.md
+        - Her şey dahil kurulum paketi: installation/inline/compute-instances/linux/all-in-one.md
       - Kubernetes:
         - NGINX Ingress Controller: installation/inline/kubernetes/nginx-ingress-controller.md
         - Kong Ingress Controller:
@@ -218,10 +205,6 @@ nav:
         - Dağıtım: installation/kubernetes/ebpf/deployment.md
         - Helm Chart Değerleri: installation/kubernetes/ebpf/helm-chart-for-wallarm.md
         - Yansıtma için Paket Seçimi: installation/kubernetes/ebpf/selecting-packets.md
-    - API Ağ Geçitleri:
-      - Mulesoft: installation/api-gateways/mulesoft.md
-      - Apigee: installation/api-gateways/apigee.md
-      - Layer7 API Gateways: installation/api-gateways/layer7-api-gateway.md
     - Bağlayıcılar:
       - Genel Bakış: installation/connectors/overview.md
       - Mulesoft: installation/connectors/mulesoft.md
@@ -237,11 +220,7 @@ nav:
       - Docker Images:
         - NGINX tabanlı: admin-en/installation-docker-en.md
         - Envoy-tabanlı: admin-en/installation-guides/envoy/envoy-docker.md
-      - Linux Packages:
-        - Her Şey Dahil Installer: installation/nginx/all-in-one.md
-        - NGINX Stable için Bireysel paketler: installation/nginx/dynamic-module.md
-        - NGINX Plus için bireysel paketler: installation/nginx-plus.md
-        - Dağıtım supplied NGINX için bireysel paketler: installation/nginx/dynamic-module-from-distr.md
+      - Her Şey Dahil Installer: installation/nginx/all-in-one.md
       - Cloud Images:
         - AWS AMI: installation/packages/aws-ami.md
         - GCP Machine Image: installation/packages/gcp-machine-image.md

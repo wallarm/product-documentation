@@ -1,28 +1,27 @@
-```
+```yaml
 wallarm:
-  resim:
-     deposu: wallarm/node
-     etiket: 2.18.1-5
-     pullPolicy: Her zaman
-  # Wallarm API uç noktası: 
-  # "api.wallarm.com" AB Bulutu için
-  # "us1.api.wallarm.com" ABD Bulutu için
+  image:
+     repository: wallarm/node
+     tag: 2.18.1-5
+     pullPolicy: Always
+  # Wallarm API uç noktası:
+  # "api.wallarm.com" - EU Cloud için
+  # "us1.api.wallarm.com" - US Cloud için
   wallarm_host_api: "api.wallarm.com"
-  # Mevduat görevine sahip kullanıcının adı
-  deploy_username: "kullanıcı_adı"
-  # Dağıtım rolune sahip kullanıcının şifresi
-  deploy_password: "şifre"
+  # Deploy rolüne sahip kullanıcının kullanıcı adı
+  deploy_username: "username"
+  # Deploy rolüne sahip kullanıcının şifresi
+  deploy_password: "password"
   # Konteynerin gelen istekleri kabul ettiği port,
-  # değerin ports.containerPort ile
-  # ana uygulama konteynerinizin tanımına aynı olması gerekir
+  # değer, ana uygulama konteynerinizin tanımında bulunan ports.containerPort ile aynı olmalıdır
   app_container_port: 80
   # İstek filtreleme modu:
-  # İsteği işlemeyi devre dışı bırakmak için "kapalı"
-  # İstekleri işleyin fakat engellemeyin "izleme"
-  # Kötü amaçlı olanları engellemek için tüm istekleri işleyin "engelle"
-  mod: "engelle"
+  # "off" isteğe ilişkin işlemi devre dışı bırakmak için
+  # "monitoring" isteği işleyip engellememek için
+  # "block" tüm istekleri işleyip kötü amaçlı olanları engellemek için
+  mode: "block"
   # İstek analiz verileri için GB cinsinden bellek miktarı
   tarantool_memory_gb: 2
-  # IP Engelleme işlevini etkinleştirmek için "doğru" olarak ayarlayın
-  enable_ip_blocking: "yanlış"
+  # IP Engelleme işlevselliğini etkinleştirmek için "true" olarak ayarlayın
+  enable_ip_blocking: "false"
 ```

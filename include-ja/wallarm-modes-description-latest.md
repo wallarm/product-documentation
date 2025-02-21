@@ -1,11 +1,11 @@
-					| Wallarmノードの態度 | `off` | `監視中` | `安全ブロック` |`ブロック` |
-| -------- | - | - | - | -|
-| 入ってくるリクエストに次の種類の悪質な荷物が含まれているかどうかを分析します：[入力検証攻撃](../about-wallarm/protecting-against-attacks.md#input-validation-attacks)、[vpatch攻撃](../user-guides/rules/vpatch-rule.md)、または[正規表現に基づいて検出された攻撃](../user-guides/rules/regex-rule.md) | - | + | + | + |
-| 悪意あるリクエストをWallarmクラウドにアップロードして、イベントリストに表示されるようにします | - | + | + | + |
-| 悪意あるリクエストをブロックします | - | - | [グレーリストに記載されているIP](../user-guides/ip-lists/graylist.md)から発生したもののみ | + |
-| [ブラックリストに入ったIP](../user-guides/ip-lists/denylist.md)<sup>例外あり</sup>からのリクエストをブロックします | + | + | + | + |
-| [グレーリストに記載されているIP](../user-guides/ip-lists/graylist.md)からのリクエストをブロックします | グレーリストを分析しない | - | 悪意のある荷物を含むモノのみ | グレーリストを分析しない |
-| [ホワイトリストに記載されているIP](../user-guides/ip-lists/allowlist.md)からのリクエストを許可します | + | + | + | + |
+| Wallarmノードの動作 | `off` | `monitoring` | `safe_blocking` | `block` |
+| ------------------- | ----- | ------------ | --------------- | ------- |
+| 受付したリクエストを[input validation](../about-wallarm/protecting-against-attacks.md#input-validation-attacks)、[virtual patch](../user-guides/rules/vpatch-rule.md)および[regex-based](../user-guides/rules/regex-rule.md)の悪意あるペイロードについて解析します | - | + | + | + |
+| Wallarm Cloudに悪意あるリクエストをアップロードし、イベントリストに表示します | - | + | + | + |
+| 悪意あるリクエストをブロックします | - | - | [graylisted IPs](../user-guides/ip-lists/overview.md)から発信されたもののみ | + |
+| [denylisted IPs](../user-guides/ip-lists/overview.md)から発信されたリクエストをブロックします<sup>例外参照</sup> <br>（[multi-attack protection](../admin-en/configuration-guides/protecting-with-thresholds.md)および行動ベースの防御（[API abuse prevention](../api-abuse-prevention/setup.md)、[manual BOLA](../admin-en/configuration-guides/protecting-against-bola-trigger.md)、[brute force](../admin-en/configuration-guides/protecting-against-bruteforce.md)、[forced browsing](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)）により手動および自動で追加されたIP） | - | + | + | + |
+| [graylisted IPs](../user-guides/ip-lists/overview.md)から発信されたリクエストをブロックします <br>（denylistの場合と同じ保護対策により手動および自動で追加されたIP） | - | - | 悪意あるペイロードを含むもののみ | - |
+| [allowlisted IPs](../user-guides/ip-lists/overview.md)から発信されたリクエストを許可します | - | + | + | + |
 
-!!! 警告 "例外"
-    [`wallarm_acl_access_phase off`][acl-access-phase]の場合、Wallarmノードは`off`モードでブラックリストを分析しない＆`監視中`モードでブラックリストのIPからのリクエストをブロックしません。
+!!! warning "denylistの例外"
+    もし[`wallarm_acl_access_phase off`][acl-access-phase]の場合、Wallarmノードは`monitoring`モードではdenylisted IPsからのリクエストをブロックしません。

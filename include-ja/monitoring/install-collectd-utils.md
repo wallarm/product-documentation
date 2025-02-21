@@ -1,4 +1,4 @@
-					=== "DEBベースのディストリビューション"
+=== "DEBベースのディストリビューション"
     ```bash
     sudo apt -y install --no-install-recommends collectd-utils
     ```

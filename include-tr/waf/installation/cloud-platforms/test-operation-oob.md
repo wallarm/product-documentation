@@ -1,10 +1,9 @@
-1. Test [Path Traversal][ptrav-attack-docs] saldırısına sahip olacak şekilde bir web veya proxy sunucusunun aynalanan trafiğine ya da Wallarm düğümünün bulunduğu makinenin adresine istek:
+1. Test [Path Traversal][ptrav-attack-docs] saldırısı ile Wallarm node'unun bulunduğu makine veya web/proxy sunucusunun trafiğini yansıtan adrese gönderilen istek:
 
-   ```
-   curl http://<ADRES>/etc/passwd
-   ```
+    ```
+    curl http://<ADDRESS>/etc/passwd
+    ```
+2. Wallarm Console'u açın → [US Cloud](https://us1.my.wallarm.com/search) veya [EU Cloud](https://my.wallarm.com/search) üzerinden **Attacks** bölümüne gidin ve saldırının listede görüntülendiğinden emin olun.
+    ![Attacks in the interface][attacks-in-ui-image]
 
-2. Wallarm Konsolunu açın → [US Cloud](https://us1.my.wallarm.com/search) ya da [EU Cloud](https://my.wallarm.com/search) sayfasında **Olaylar** bölümünü açın ve saldırının listede göründüğünden emin olun.
-   ![Arayüzdeki saldırılar][attacks-in-ui-image]
-
-Wallarm OOB izleme modunda çalıştığından, Wallarm düğümü saldırıyı engellemez, ancak kaydeder.
+Wallarm OOB izleme modunda çalıştığından, Wallarm node saldırıyı engellemez, yalnızca kaydeder.

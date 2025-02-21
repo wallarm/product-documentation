@@ -8,81 +8,81 @@
 [mail-to-us]:                   mailto:support@wallarm.com
 [fast-examples-github]:         https://github.com/wallarm/fast-examples 
 
-# FAST'ın Jenkins ile Entegrasyonu
+# Jenkins ile FAST Entegrasyonu
 
-FAST'ın CI MODE'a Jenkins iş akışına entegrasyonu, `Jenkinsfile` dosyası üzerinden yapılandırılır. Jenkins iş akışı yapılandırması hakkında daha fazla detay [Jenkins resmi belgelerinde][jenkins-config-pipeline] bulunabilir.
+FAST'in CI MODE'daki Jenkins iş akışına entegrasyonu, `Jenkinsfile` dosyası aracılığıyla yapılandırılır. Jenkins iş akışı yapılandırması hakkında daha fazla detaya [Jenkins resmi dokümantasyonundan][jenkins-config-pipeline] ulaşabilirsiniz.
 
-## FAST Node Token'ını Geçmek
+## FAST Node Token'ının Aktarılması
 
-[FAST node token'ını][fast-node-token] güvenli bir şekilde kullanmak için değerini [projede ayarlarınızda olan ortam değişkeninde][jenkins-parameterized-build] geçirin.
+[FAST node token]'ını güvenli bir şekilde kullanmak için, değerini [proje ayarlarınızdaki ortam değişkeni][jenkins-parameterized-build] olarak iletin.
 
-![Jenkins ortam değişkenini geçme][jenkins-example-env-var]
+![Passing Jenkins environment variable][jenkins-example-env-var]
 
---8<-- "../include-tr/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
-## İstek Kaydının Adımını Eklemek
+## İstek Kaydı Adımının Eklenmesi
 
---8<-- "../include-tr/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
-??? info "Kayıt modunda çalışan FAST düğümü ile otomatik test adımının örneği"
+??? info "Kayıt modunda çalışan FAST node ile otomatik test adımının örneği"
     ```
     stage('Run autotests with recording FAST node') {
           steps {
-             sh label: 'network oluştur', script: 'docker network create my-network'
-             sh label: 'kayıt ile fast çalıştır', script: 'docker run --rm  --name fast -d -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -p 8088:8080 --network my-network wallarm/fast'
-             sh label: 'selenium çalıştır', script: 'docker run --rm -d --name selenium -p 4444:4444 --network my-network -e http_proxy=\'http://fast:8080\' -e https_proxy=\'https://fast:8080\' selenium/standalone-firefox:latest'
-             sh label: 'uygulama çalıştır', script: 'docker run --rm --name app-test --network my-network -e CAPYBARA_SERVER_HOST=app-test -p 3000:3000 app-test bundle exec rspec spec/features/posts_spec.rb'
-             sh label: 'selenium durdur', script: 'docker stop selenium'
-             sh label: 'fast durdur', script: 'docker stop fast'
-             sh label: 'network sil', script: 'docker network rm my-network'
+             sh label: 'create network', script: 'docker network create my-network'
+             sh label: 'run fast with recording', script: 'docker run --rm  --name fast -d -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -p 8088:8080 --network my-network wallarm/fast'
+             sh label: 'run selenium', script: 'docker run --rm -d --name selenium -p 4444:4444 --network my-network -e http_proxy=\'http://fast:8080\' -e https_proxy=\'https://fast:8080\' selenium/standalone-firefox:latest'
+             sh label: 'run application', script: 'docker run --rm --name app-test --network my-network -e CAPYBARA_SERVER_HOST=app-test -p 3000:3000 app-test bundle exec rspec spec/features/posts_spec.rb'
+             sh label: 'stop selenium', script: 'docker stop selenium'
+             sh label: 'stop fast', script: 'docker stop fast'
+             sh label: 'remove network', script: 'docker network rm my-network'
           }
        }
     ```
 
-    Örnek, aşağıdaki adımları içerir:
+Bir örnek şu adımları içerir:
 
-    1. Docker network'ünü `my-network` olarak oluşturun.
-    2. `my-network` isimli network üzerinde kayıt modunda FAST düğümünü çalıştırın.
-    3. `my-network` isimli network üzerinde FAST düğümünün proxy olarak otomatik test aracı Selenium'u çalıştırın.
-    4. Test uygulamasını ve otomatik testleri çalıştırın.
-    5. Selenium ve FAST düğümünü durdurun.
-    6. `my-network` isimli network'ü silin.
+1. Docker ağı `my-network` oluşturun.
+2. Ağ `my-network` üzerinde kayıt modunda FAST node çalıştırın.
+3. Ağ `my-network` üzerinde, FAST node'u proxy olarak kullanarak otomatik test aracı Selenium'u çalıştırın.
+4. Test uygulamasını ve otomatik testleri çalıştırın.
+5. Selenium ve FAST node'u durdurun.
+6. `my-network` ağını silin.
 
-## Güvenlik Testinin Adımını Eklemek
+## Güvenlik Testi Adımının Eklenmesi
 
---8<-- "../include-tr/fast/fast-cimode-integration-examples/security-testing-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
-??? info "Güvenlik testinin adımı örneği"
+??? info "Güvenlik testi adımının örneği"
 
     ```
     stage('Run security tests') {
           steps {
-             sh label: 'network oluştur', script: 'docker network create my-network'
-             sh label: 'uygulamayı başlat', script: ' docker run --rm -d --name app-test --network my-network -e CAPYBARA_SERVER_HOST=app-test -p 3000:3000 app-test'
-             sh label: 'test modunda fast çalıştır', script: 'docker run --name fast -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE="testing" -e WALLARM_API_HOST="us1.api.wallarm.com"  --network my-network -e TEST_RUN_URI="http://app-test:3000" --rm wallarm/fast'
-             sh label: 'uygulamayı durdur', script: ' docker stop app-test '
-             sh label: 'network sil', script: ' docker network rm my-network '
+             sh label: 'create network', script: 'docker network create my-network'
+             sh label: 'start application', script: ' docker run --rm -d --name app-test --network my-network -e CAPYBARA_SERVER_HOST=app-test -p 3000:3000 app-test'
+             sh label: 'run fast in testing mode', script: 'docker run --name fast -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE="testing" -e WALLARM_API_HOST="us1.api.wallarm.com"  --network my-network -e TEST_RUN_URI="http://app-test:3000" --rm wallarm/fast'
+             sh label: 'stop application', script: ' docker stop app-test '
+            sh label: 'remove network', script: ' docker network rm my-network '
           }
        }
     ```
 
-    Örnek, aşağıdaki adımları içerir:
+Bir örnek şu adımları içerir:
 
-    1. Docker network'ünü `my-network` olarak oluşturun.
-    2. `my-network` isimli network üzerinde test uygulamasını çalıştırın.
-    3. `TEST_RECORD_ID` değişkeni göz ardı edildi çünkü temel talepler seti bu pipeline üzerinde oluşturuldu ve son kaydedilendir. Testler bittiğinde FAST düğümü otomatik olarak durdurulacaktır.
-    4. Test uygulamasını durdurun.
-    5. `my-network` network'ünü silin.
+1. Docker ağı `my-network` oluşturun.
+2. Test uygulamasını `my-network` ağı üzerinde çalıştırın.
+3. Ağ `my-network` üzerinde testing modunda FAST node çalıştırın. Mevcut boru hattında temel istek seti oluşturulduğu ve en son kaydedildiği için `TEST_RECORD_ID` değişkeni atlanır. Test tamamlandığında FAST node otomatik olarak duracaktır.
+4. Test uygulamasını durdurun.
+5. `my-network` ağını silin.
 
-## Testin Sonucunu Alma
+## Test Sonuçlarının Alınması
 
-Güvenlik testinin sonucu, Jenkins arayüzünde görüntülenecektir.
+Güvenlik testi sonuçları Jenkins arayüzünde görüntülenecektir.
 
-![Test modunda FAST node'un çalıştırılmasının sonucu][fast-example-jenkins-result]
+![The result of running FAST node in testing mode][fast-example-jenkins-result]
 
 ## Daha Fazla Örnek
 
-FAST'ın Jenkins iş akışına entegrasyonuna dair örnekleri [GitHub][fast-examples-github] üzerinde bulabilirsiniz.
+FAST'in Jenkins iş akışına entegrasyonuna dair örnekleri [GitHub][fast-examples-github] sayfamızda bulabilirsiniz.
 
-!!! info "Daha fazla sorularınız mı var?"
-    FAST entegrasyonu ile ilgili sorularınız varsa lütfen [bize ulaşın][mail-to-us].
+!!! info "Daha fazla soru"
+    FAST entegrasyonu ile ilgili sorularınız varsa, lütfen [bize ulaşın][mail-to-us].

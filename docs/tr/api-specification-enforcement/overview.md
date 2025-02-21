@@ -1,1 +1,1 @@
---8<-- "latest/api-specification-enforcement/overview.md"
+--8<-- "latest-tr/api-specification-enforcement/overview.md"

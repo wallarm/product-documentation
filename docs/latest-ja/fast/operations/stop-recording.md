@@ -7,53 +7,53 @@
 [link-stop-explained]:      internals.md#test-run-execution-flow-baseline-requests-recording-takes-place
 
 
-#   録画プロセスの停止
+# 記録プロセスの停止
 
 !!! info "必要なデータ"
-    API経由で録画を停止するには、以下のデータが必要です：
+    APIを利用して記録を停止するには、次のデータが必要です:
     
-    * プトークン
-    * テスト実行の識別子
+    * token
+    * テストラン識別子
 
-    ウェブインタフェース経由で録画を停止するには、Wallarmアカウントが必要です。
+    Webインタフェースを利用して記録を停止する場合は、Wallarmアカウントが必要です.
     
-    テスト実行とトークンについての詳細な情報は[ここ][doc-about-tr-token]で入手できます。
+    テストランとtokenの詳細情報は[こちら][doc-about-tr-token]からご確認ください.
     
-    この文書では以下の値が例として使用されています：
+    本ドキュメントでは、以下の値を例として使用します:
         
-    * `token_Qwe12345` をトークンとして。
-    * `tr_1234` をテスト実行の識別子として。
+    * tokenとして`token_Qwe12345`
+    * テストラン識別子として`tr_1234`
 
-基本リクエストの録画を停止する必要性は[リンク][link-stop-explained]で説明されています。 
+ベースラインリクエストの記録停止の必要性については[こちら][link-stop-explained]に記載されています.
 
-## APIを介した録画プロセスの停止
+## APIを利用した記録プロセスの停止
 
-録画プロセスを停止するには、POSTリクエストをURL `https://us1.api.wallarm.com/v1/test_run/test_run_id/action/stop`に送信します：
+記録プロセスを停止するには、URL `https://us1.api.wallarm.com/v1/test_run/test_run_id/action/stop` へPOSTリクエストを送信してください:
 
---8<-- "../include-ja/fast/operations/api-stop-recording.md"
+--8<-- "../include/fast/operations/api-stop-recording.md"
 
-APIサーバーへのリクエストが成功した場合、サーバーのレスポンスが表示されます。レスポンスには、以下を含む有用な情報が提供されます：
-* 録画プロセスの状態（`recording`パラメータの値）。
-* 対応するテストレコードの識別子（`test_record_id`パラメータ）。
+APIサーバーへのリクエストが成功すると、サーバーからの応答が返され、有用な情報が含まれています。主な内容は以下の通りです:
+* 記録プロセスの状態（`recording`パラメータの値）
+* 対応するテストレコードの識別子（`test_record_id`パラメータ）
 
-パラメータの値が`false`の場合、停止は成功しています。
+パラメータの値が`false`の場合、記録停止が成功したことを示します.
 
-停止が成功した場合、`test_record_id`識別子を持つテストレコードを使って[テストランをコピーする][doc-testrun-copying-api]ことが可能です。
+記録停止が成功した場合、`test_record_id`識別子を持つテストレコードを利用して[テストランをコピー][doc-testrun-copying-api]可能です.
 
-## Webインタフェースを介した録画プロセスの停止
+## Webインタフェースを利用した記録プロセスの停止
 
-Webインタフェースを介した録画プロセスの停止には、以下の手順に従ってください：
+Webインタフェースを利用して記録プロセスを停止するには、以下の手順に従ってください:
 
-1. Wallarmアカウントにアクセスし、[このリンク](https://my.wallarm.com/testing/testruns)よりEUクラウド、または[このリンク](https://us1.my.wallarm.com/testing/testruns)よりUSクラウドで**Test runs**にアクセスします。
+1. EUクラウドの場合は[こちら](https://my.wallarm.com/testing/testruns)またはUSクラウドの場合は[こちら](https://us1.my.wallarm.com/testing/testruns)から、Wallarmアカウントの**Test runs**にアクセスしてください.
 
-2. 録音を停止するテストランを選択し、アクションメニューを開きます。
+2. 記録停止するテストランを選択し、アクションメニューを開いてください.
 
-3. ** Stop recording**を選択します。
+3. **Stop recording** を選択してください.
 
-    ![ウェブインタフェースでの録音停止][img-stop-recording-item]
+    ![Webインタフェースによる記録停止][img-stop-recording-item]
 
-録画が停止したときに、**Baseline req.**の列の左側にあるREQインジケーターがオフになります。
+記録停止時には、**Baseline req.** 列の左側にあるREQインジケータがオフになります.
 
-テストレコードのIDは**Test record name/Test record ID**列で表示されます。
+テストレコードのIDは、**Test record name/Test record ID** 列に表示されます.
 
-必要に応じて、ウェブインタフェースを使用して[このテストランをコピーする][doc-testrun-copying-gui]ことができ、新しいテストは上記のテストレコードを再利用します。
+必要に応じて、Webインタフェースを利用してこのテストランを[コピー][doc-testrun-copying-gui]することができ、新しいテストでは記載されたテストレコードが再利用されます.

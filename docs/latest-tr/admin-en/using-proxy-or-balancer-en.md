@@ -1,53 +1,52 @@
-# HTTP proxy veya yük dengeleyici (NGINX) kullanılıyorsa orijinal istemci IP adresini belirleme
+# HTTP proxy veya load balancer (NGINX) kullanıyorsanız orijinal istemci IP adresinin belirlenmesi
 
-Bu talimatlar, HTTP proxy veya yük dengeleyici üzerinden sunucularınıza bağlanan bir istemcinin köken IP adresinin tanımlanması için gerekli NGINX yapılandırmasını açıklar.
+Bu talimatlar, sunucularınıza bir HTTP proxy veya load balancer aracılığıyla bağlanan bir istemcinin, orijinal IP adresini belirlemek için gerekli olan NGINX yapılandırmasını açıklamaktadır. Bu, self-hosted NGINX tabanlı düğümler için geçerlidir.
 
-* Eğer Wallarm düğümü DEB / RPM paketlerinden kurulmuşsa, AWS / GCP imajlarından veya NGINX tabanlı Docker imajından, lütfen **şimdiki talimatları** kullanın.
-* Eğer Wallarm düğümü K8s Ingress denetleyicisi olarak dağıtılmışsa, lütfen [bu talimatları](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md) kullanınız.
+* Eğer self-hosted Wallarm node, all-in-one installer, AWS / GCP images veya NGINX-based Docker image'den kurulmuşsa, lütfen **mevcut talimatları** kullanın.
+* Eğer self-hosted Wallarm node, K8s Ingress Controller olarak dağıtıldıysa, lütfen [bu talimatları](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md) kullanın.
 
-## Wallarm düğümü bir isteğin IP adresini nasıl belirler
+## Wallarm node, bir isteğin IP adresini nasıl belirler?
 
-Wallarm düğümü, bir isteğin kaynak IP adresini NGINX değişkeni `$remote_addr`dan okur. Eğer istek bir proxy sunucusundan veya yük dengeleyiciden geçtiyse ve düğüme gönderilmeden önce, `$remote_addr` değişkeni proxy sunucusu veya yük dengeleyici IP adresini korur.
+Wallarm node, isteğin kaynak IP adresini NGINX değişkeni `$remote_addr`'den okur. Eğer istek, node'a gönderilmeden önce bir proxy sunucu veya load balancer üzerinden geçtiyse, `$remote_addr` değişkeni proxy sunucu veya load balancer'ın IP adresini içermeye devam eder.
 
 ![Using balancer](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
 
-Wallarm düğümünün belirlediği istek kaynak IP adresi, Wallarm Konsolu'nda [saldırı detaylarında](../user-guides/events/check-attack.md#attacks) görüntülenir.
+Wallarm node tarafından belirlenen istek kaynağı IP adresi, Wallarm Console'daki [attack details](../user-guides/events/check-attack.md#attack-analysis) bölümünde görüntülenir.
 
-## Bir proxy sunucusu veya yük dengeleyici IP adresini bir istek kaynak adresi olarak kullanmanın olası sorunları
+## Proxy sunucusu veya load balancer IP adresinin, istek kaynağı adresi olarak kullanılmasının olası problemleri
 
-Eğer Wallarm düğümü proxy sunucusu veya yük dengeleyici IP adresini isteğin kaynak IP adresi olarak kabul ederse, aşağıdaki Wallarm özellikleri yanlış çalışabilir:
+Eğer Wallarm node, proxy sunucu veya load balancer IP adresini istek kaynağı IP adresi olarak kabul ederse, aşağıdaki Wallarm özellikleri doğru çalışmayabilir:
 
-* [IP adreslerine göre uygulamalara erişimi kontrol etme](../user-guides/ip-lists/overview.md), örneğin:
+* [IP adreslerine göre uygulamalara erişimin kontrolü](../user-guides/ip-lists/overview.md), örneğin:
 
-	Eğer orijinal istemci IP adresleri engellenmişse, Wallarm düğümü hâlâ yük dengeleyici IP adresini isteğin kaynak IP adresi olarak kabul ettiği için onlardan kaynaklanan istekleri engellemez.
-* [Kaba kuvvet saldırısına karşı koruma](configuration-guides/protecting-against-bruteforce.md), örneğin:
+	Orijinal istemci IP adresleri denylisted ise, Wallarm node load balancer IP adresini istek kaynağı olarak kabul ettiğinden, bu adreslerden gelen istekleri engellemez.
+* [Brute force koruması](configuration-guides/protecting-against-bruteforce.md), örneğin:
 
-	Eğer istekler yük dengeleyiciden geçtiyse ve kaba kuvvet saldırı belirtileri varsa, Wallarm bu yük dengeleyici IP adresini engeller ve bu düğün üzerinden geçen tüm diğer istekleri engeller.
-* [Aktif tehdit doğrulama](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) modülü ve [Güvenlik Açığı Tarayıcı](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner), örneğin:
+	Load balancer üzerinden gelen isteklerde brute force saldırısı belirtileri varsa, Wallarm bu load balancer IP adresini denylist'e ekler ve dolayısıyla bu load balancer üzerinden gelen tüm istekleri engeller.
+* [Threat Replay Testing](../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) modülü ve [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner), örneğin:
 
-	Wallarm, Aktif tehdit doğrulama modülü ve Güvenlik Açığı Tarayıcı tarafından oluşturulan [test saldırılarının köken olan IP adresini](scanner-addresses.md) yük dengeleyici IP adresi olarak kabul eder. Böylece, test saldırıları, Wallarm Konsolu'nda yük dengeleyici IP adresinden kaynaklanan saldırılar olarak görüntülenir ve Wallarm tarafından ekstra bir yük oluşturacak şekilde ek olarak kontrol edilir.
+	Wallarm, load balancer IP adresini, Threat Replay Testing modülü ve Vulnerability Scanner tarafından üretilen [test saldırılarını başlatan IP adresi](../admin-en/scanner-addresses.md) olarak kabul eder. Böylece test saldırıları Wallarm Console'da load balancer IP adresinden gelmiş olarak görüntülenir ve Wallarm tarafından ek yük oluşturacak şekilde ilave kontrol edilir.
 
-Eğer Wallarm düğümü [IPC soketi](https://en.wikipedia.org/wiki/Unix_domain_socket) üzerinden bağlanıyorsa, `0.0.0.0` bir istek kaynağı olarak kabul edilir.
+Eğer Wallarm node, [IPC socket](https://en.wikipedia.org/wiki/Unix_domain_socket) üzerinden bağlıysa, `0.0.0.0` istek kaynağı olarak kabul edilir.
 
-## Orijinal istemci IP adresi tanımlama için yapılandırma
+## Orijinal istemci IP adresi belirleme yapılandırması
 
-Orijinal istemci IP adresini yapılandırmak için, [**ngx_http_realip_module** NGINX modülünü](https://nginx.org/en/docs/http/ngx_http_realip_module.html) kullanabilirsiniz. Bu modül, Wallarm düğümü tarafından bir istemci IP adresini almak için [kullanılan](#how-wallarm-node-identifies-an-ip-address-of-a-request) `$remote_addr` değerinin yeniden tanımlanmasına izin verir.
+Orijinal istemci IP adresi belirlemesini yapılandırmak için, [NGINX module **ngx_http_realip_module**](https://nginx.org/en/docs/http/ngx_http_realip_module.html)'ü kullanabilirsiniz. Bu modül, Wallarm node tarafından kullanılan `$remote_addr` değerinin, istemci IP adresini almak üzere yeniden tanımlanmasına olanak tanır.
 
-**ngx_http_realip_module** NGINX modülünü aşağıdaki yollardan birini seçerek kullanabilirsiniz:
+NGINX module **ngx_http_realip_module** aşağıdaki yollardan biriyle kullanılabilir:
 
-* Bir yük dengeleyici veya proxy sunucusu tarafından isteğe eklenen belirli bir başlıktan (`genellikle, [`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For)) orijinal istemci IP adresini okumak için.
-* Eğer bir yük dengeleyici veya proxy sunucusu [PROXY protokolünü](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt) destekliyorsa, `PROXY` başlığından orijinal istemci IP adresini okumak için.
+* Belirli bir başlıktan (genellikle, [`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For)) orijinal istemci IP adresini okuma; bu başlık load balancer veya proxy sunucu tarafından isteğe eklenir.
+* Eğer load balancer veya proxy sunucu [PROXY protocol](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt)'ü destekliyorsa, `PROXY` başlığından orijinal istemci IP adresini okuma.
 
-### Başlık `X-Forwarded-For` (`X-Real-IP` veya benzeri) okuyacak şekilde NGINX'i yapılandırma
+### `X-Forwarded-For` (`X-Real-IP` veya benzeri) başlığını okumak için NGINX yapılandırması
 
-Eğer bir yük dengeleyici veya proxy sunucusu, orijinal istemci IP adresini içeren `X-Forwarded-For` (`X-Real-IP` veya benzeri) başlığını eklerse, NGINX modülünün **ngx_http_realip_module** bu başlığı aşağıdaki gibi okuması için yapılandırın:
+Load balancer veya proxy sunucu, orijinal istemci IP adresini içeren `X-Forwarded-For` (`X-Real-IP` veya benzeri) başlığını ekliyorsa, lütfen NGINX module **ngx_http_realip_module**’ü bu başlığı okuyacak şekilde yapılandırın:
 
-1. Wallarm düğümüyle kurulan NGINX'in aşağıdaki yapılandırma dosyasını açın:
+1. Wallarm node ile kurulmuş NGINX'in aşağıdaki yapılandırma dosyasını açın:
 
-    * Wallarm düğümü DEB / RPM paketlerinden kurulmuşsa `/etc/nginx/conf.d/default.conf`.
-    * Wallarm düğümü AWS / GCP imajından dağıtılmışsa `/etc/nginx/nginx.conf`.
-    * Eğer Wallarm düğümü NGINX tabanlı Docker imajından dağıtılmışsa, NGINX yapılandırma dosyasını yerel olarak oluşturmalı ve düzenlemeli ve ardından Docker konteynırına `/etc/nginx/sites-enabled/default` yolunda bağlamalısınız. Başlangıç NGINX yapılandırma dosyasını kopyalayabilir ve dosyanın konteynıra nasıl bağlanacağını [Wallarm'ın NGINX tabanlı Docker talimatlarından](installation-docker-en.md#run-the-container-mounting-the-configuration-file) alabilirsiniz.
-2. NGINX context `location` veya daha yüksek birinde, bir proxy sunucusu veya yük dengeleyici IP adresiyle `set_real_ip_from` yönergesini ekleyin. Eğer bir proxy sunucusu veya yük dengeleyici birden fazla IP adresine sahipse, lütfen uygun sayıda ayrı yönerge ekleyin. Örneğin:
+    * Wallarm node, all-in-one installer veya AWS / GCP image'den kurulmuşsa, `/etc/nginx/sites-enabled/default`.
+    * Eğer Wallarm node, NGINX-based Docker image'den dağıtıldıysa, NGINX yapılandırma dosyasını yerel olarak oluşturup, Docker konteynerine `/etc/nginx/sites-enabled/default` yolunda monte etmelisiniz. İlk NGINX yapılandırma dosyasını kopyalayabilir ve dosyanın konteynere monte edilmesine ilişkin talimatları [Wallarm NGINX-based Docker instructions](installation-docker-en.md#run-the-container-mounting-the-configuration-file) belgesinden edinebilirsiniz.
+2. NGINX'in `location` veya daha üst bir kontekstinde, proxy sunucu veya load balancer IP adresini belirten `set_real_ip_from` direktifini ekleyin. Eğer proxy sunucu veya load balancer'ın birden fazla IP adresi varsa, lütfen her biri için ayrı direktif ekleyin. Örneğin:
 
     ```bash
     ...
@@ -59,9 +58,8 @@ Eğer bir yük dengeleyici veya proxy sunucusu, orijinal istemci IP adresini iç
     }
     ...
     ```
-
-2. Kullandığınız yük dengeleyicinin belgelerinde, bu yük dengeleyicinin orijinal istemci IP adresini geçirmek için eklediği başlığın adını bulun. En sık, başlık `X-Forwarded-For` olarak adlandırılır.
-3. NGINX context `location` veya daha yüksek birinde, önceki adımda bulunan başlık adıyla `real_ip_header` yönergesini ekleyin. Örneğin:
+2. Kullanılan load balancer'a ait belgelerde, orijinal istemci IP adresini iletmek için eklenen başlık adını tespit edin. Çoğu durumda, başlık adı `X-Forwarded-For`'dur.
+3. NGINX'in `location` veya daha üst bir kontekstinde, daha önce tespit edilen başlık adını kullanarak `real_ip_header` direktifini ekleyin. Örneğin:
 
     ```bash
     ...
@@ -76,25 +74,24 @@ Eğer bir yük dengeleyici veya proxy sunucusu, orijinal istemci IP adresini iç
     ```
 4. NGINX'i yeniden başlatın:
 
-    --8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
+    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
-    NGINX, `real_ip_header` yönergesinde belirtilen başlığın değerini `$remote_addr` değişkenine atar, böylece Wallarm düğümü bu değişkenden orijinal istemci IP adreslerini okur.
+    NGINX, `real_ip_header` direktifinde belirtilen başlık değerini `$remote_addr` değişkenine atacaktır; böylece Wallarm node, orijinal istemci IP adreslerini bu değişkenden okuyacaktır.
 5. [Yapılandırmayı test edin](#testing-the-configuration).
 
-### Başlık `PROXY` okuyacak şekilde NGINX'i yapılandırma
+### `PROXY` başlığını okumak için NGINX yapılandırması
 
-Eğer bir yük dengeleyici veya proxy sunucusu [PROXY protokolünü](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt) destekliyorsa, NGINX modülünün *ngx_http_realip_module* `PROXY` başlığını aşağıdaki şekilde okuması için yapılandırabilirsiniz:
+Load balancer veya proxy sunucu, [PROXY protocol](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt)'ü destekliyorsa, NGINX module **ngx_http_realip_module**’ü `PROXY` başlığını okuyacak şekilde yapılandırabilirsiniz:
 
-1. Wallarm düğümüyle kurulan NGINX'in aşağıdaki yapılandırma dosyasını açın:
+1. Wallarm node ile kurulmuş NGINX'in aşağıdaki yapılandırma dosyasını açın:
 
-    * Wallarm düğümü DEB / RPM paketlerinden kurulmuşsa `/etc/nginx/conf.d/default.conf`.
-    * Wallarm düğümü AWS / GCP imajından dağıtılmışsa `/etc/nginx/nginx.conf`.
-    * Eğer Wallarm düğümü NGINX tabanlı Docker imajından dağıtılmışsa, NGINX yapılandırma dosyasını yerel olarak oluşturmalı ve düzenlemeli ve ardından Docker konteynırına `/etc/nginx/sites-enabled/default` yolunda bağlamalısınız. Başlangıç NGINX yapılandırma dosyasını kopyalayabilir ve dosyanın konteynıra nasıl bağlanacağını [Wallarm'ın NGINX tabanlı Docker talimatlarından](installation-docker-en.md#run-the-container-mounting-the-configuration-file) alabilirsiniz.
-2. NGINX context `server`da, `listen` yönergesine `proxy_protocol` parametresini ekleyin.
-3. NGINX context `location` veya daha yüksek birinde, bir proxy sunucusu veya yük dengeleyici IP adresiyle `set_real_ip_from` yönergesini ekleyin. Eğer bir proxy sunucusu veya yük dengeleyici birden fazla IP adresine sahipse, lütfen uygun sayıda ayrı yönerge ekleyin. Örneğin:
-4. NGINX context `location` veya daha yüksek birinde, `proxy_protocol` değeriyle `real_ip_header` yönergesini ekleyin.
+    * Wallarm node, all-in-one installer veya AWS / GCP image'den kurulmuşsa, `/etc/nginx/sites-enabled/default`.
+    * Eğer Wallarm node, NGINX-based Docker image'den dağıtıldıysa, yapılandırma dosyasını yerel olarak oluşturup, Docker konteynerine `/etc/nginx/sites-enabled/default` yolunda monte etmelisiniz. İlk NGINX yapılandırma dosyasını kopyalayabilir ve dosyanın konteynere monte edilmesine ilişkin talimatları [Wallarm NGINX-based Docker instructions](installation-docker-en.md#run-the-container-mounting-the-configuration-file) belgesinden edinebilirsiniz.
+2. NGINX'in `server` kontekstinde, `listen` direktifine `proxy_protocol` parametresini ekleyin.
+3. NGINX'in `location` veya daha üst bir kontekstinde, proxy sunucu veya load balancer IP adresini belirten `set_real_ip_from` direktifini ekleyin. Eğer proxy sunucu veya load balancer'ın birden çok IP adresi varsa, lütfen her biri için ayrı direktif ekleyin.
+4. NGINX'in `location` veya daha üst bir kontekstinde, `real_ip_header` direktifine `proxy_protocol` değerini ekleyin.
 
-    Tüm yönergelerin eklenmiş olduğu bir NGINX yapılandırma dosyası örneği:
+    Aşağıda, tüm direktiflerin eklenmiş örnek bir NGINX yapılandırma dosyası bulunmaktadır:
 
     ```bash
     server {
@@ -108,46 +105,45 @@ Eğer bir yük dengeleyici veya proxy sunucusu [PROXY protokolünü](https://www
     }
     ```
 
-    * NGINX, gelen bağlantıları 80 portunda dinler.
-    * Eğer `PROXY` başlığı gelen istekte geçmiyorsa, NGINX bu talebi kabul etmez çünkü geçerli olarak kabul edilmez.
-    * `<IP_ADDRESS_OF_YOUR_PROXY>` adresindeki istekler için, NGINX `PROXY` başlığına geçirilen kaynak adresini `$remote_addr` adlı değişkene atar, böylece Wallarm düğümü bu değişkenden orijinal istemci IP adreslerini okur.
+    * NGINX, port 80'de gelen bağlantıları dinler.
+    * Gelen istekte `PROXY` başlığı yoksa, NGINX isteği geçerli kabul etmez.
+    * `<IP_ADDRESS_OF_YOUR_PROXY>` adresinden gelen istekler için, NGINX `PROXY` başlığında gönderilen kaynak adresini `$remote_addr` değişkenine atar; böylece Wallarm node, orijinal istemci IP adreslerini bu değişkenden okur.
 5. NGINX'i yeniden başlatın:
 
-    --8<-- "../include-tr/waf/restart-nginx-4.4-and-above.md"
+    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 6. [Yapılandırmayı test edin](#testing-the-configuration).
 
-Orijinal istemci IP adresini günlüklere eklemek için, NGINX yapılandırmasında `proxy_set_header` yönergesini eklemeli ve `log_format` yönergesindeki değişken listesini [NGINX günlük talimatlarında](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#logging-the-original-ip-address) olduğu gibi düzenlemelisiniz.
+Orijinal istemci IP adresini loglara dahil etmek için, lütfen `proxy_set_header` direktifini ekleyin ve NGINX yapılandırmasındaki `log_format` direktifinde yer alan değişken listesini [NGINX loglama talimatlarındaki](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#logging-the-original-ip-address) yönergeler doğrultusunda düzenleyin.
 
-`PROXY` başlığına dayalı olarak orijinal istemci IP adresini belirleme hakkında daha fazla ayrıntıya [NGINX belgelerinde](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#changing-the-load-balancers-ip-address-to-the-client-ip-address) ulaşabilirsiniz.
+`PROXY` başlığına dayalı orijinal istemci IP adresinin belirlenmesi hakkında daha fazla bilgi, [NGINX belgesinde](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#changing-the-load-balancers-ip-address-to-the-client-ip-address) mevcuttur.
 
-### Yapılandırmanın test edilmesi
+### Yapılandırmayı Test Etme
 
-1. Korunan uygulama adresine bir test saldırısı gönderin:
+1. Korunan uygulama adresine test saldırısı gönderin:
 
-    === "cURL Kullanarak"
+    === "Using cURL"
         ```bash
         curl http://localhost/etc/passwd
         ```
-    === "printf ve Netcat Kullanarak (Başlık `PROXY` için)"
+    === "Using printf and Netcat (for the header `PROXY`)"
         ```bash
         printf "PROXY TCP4 <IP_ADDRESS_OF_YOUR_PROXY> <REAL_CLIENT_IP> 0 80\r\nGET /etc/passwd\r\n\r\n" | nc localhost 80
         ```
-2. Wallarm Konsolunu açın ve orijinal istemci IP adresinin saldırı detaylarında görüntülendiğinden emin olun:
+2. Wallarm Console'u açın ve saldırı ayrıntılarında orijinal istemci IP adresinin görüntülendiğinden emin olun:
 
-    ![Istegin kökenli IP adresi](../images/request-ip-address.png)
+    ![IP address originated the request](../images/request-ip-address.png)
 
-    Eğer NGINX orijinal adresi başlık `X-Forwarded-For` (`X-Real-IP` veya benzeri) başlığından okuduysa, ham saldırıda da başlık değeri gösterilir.
+    Eğer NGINX, `X-Forwarded-For` (`X-Real-IP` veya benzeri) başlığından orijinal adresi okuduysa, başlık değeri ham saldırıda da görüntülenecektir.
 
     ![Header X-Forwarded-For](../images/x-forwarded-for-header.png)
 
+## Yapılandırma Örnekleri
 
-## Yapılandırma örnekleri
-
-Aşağıda, popüler yük dengeleyiciler üzerinden sunucularınıza bağlanan bir istemcinin köken IP adresini belirlemek için gerekli NGINX yapılandırmanın örneklerini bulacaksınız.
+Aşağıda, popüler load balancer'lar aracılığıyla sunucularınıza bağlanan bir istemcinin orijinal kaynak IP adresini belirlemek için gerekli olan NGINX yapılandırma örneklerini bulacaksınız.
 
 ### Cloudflare CDN
 
-Cloudflare CDN kullanılıyorsa, orijinal istemci IP adreslerini belirlemek için [NGINX modülü **ngx_http_realip_module**'u yapılandırabilirsiniz](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar).
+Cloudflare CDN kullanıyorsanız, orijinal istemci IP adreslerini belirlemek için [NGINX module **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar)’ü yapılandırabilirsiniz.
 
 ```bash
 ...
@@ -179,12 +175,12 @@ real_ip_recursive on;
 ...
 ```
 
-* Yapılandırmayı kaydetmeden önce, lütfen yukarıdaki yapılandırmada belirtilen Cloudflare IP adreslerinin [Cloudflare belgelerindekilerle](https://www.cloudflare.com/ips/) eşleştiğinden emin olun.
-* `real_ip_header` yönergesinin değerinde `CF-Connecting-IP` veya `X-Forwarded-For` belirtilebilir. Cloudflare CDN her iki başlığını ekler ve NGINX hangisini okuyacağını yapılandırabilir. [Cloudflare CDN'de daha fazla ayrıntı](https://support.cloudflare.com/hc/en-us/articles/200170786-Restoring-original-visitor-IPs)
+* Yapılandırmayı kaydetmeden önce, yukarıda belirtilen Cloudflare IP adreslerinin [Cloudflare belgelerinde](https://www.cloudflare.com/ips/) yer alanlarla eşleştiğinden emin olun.
+* `real_ip_header` direktifinde, `CF-Connecting-IP` veya `X-Forwarded-For` değeri kullanılabilir. Cloudflare CDN her iki başlığı da ekler ve NGINX, herhangi birini okuyacak şekilde yapılandırılabilir. [Cloudflare CDN hakkında daha fazla detay](https://support.cloudflare.com/hc/en-us/articles/200170786-Restoring-original-visitor-IPs)
 
 ### Fastly CDN
 
-Fastly CDN kullanılıyorsa, orijinal istemci IP adreslerini belirlemek için [NGINX modülü **ngx_http_realip_module**'u yapılandırabilirsiniz](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar).
+Fastly CDN kullanıyorsanız, orijinal istemci IP adreslerini belirlemek için [NGINX module **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar)’ü yapılandırabilirsiniz.
 
 ```bash
 ...
@@ -213,27 +209,27 @@ real_ip_recursive on;
 ...
 ```
 
-Yapılandırmayı kaydetmeden önce, lütfen yapılandırmada belirtilen Fastly IP adreslerinin [Fastly belgelerindekilerle](https://api.fastly.com/public-ip-list) eşleştiğinden emin olunız.
+Yapılandırmayı kaydetmeden önce, yukarıda belirtilen Fastly IP adreslerinin [Fastly belgeleri](https://api.fastly.com/public-ip-list) ile eşleştiğinden emin olun.
 
 ### HAProxy
 
-HAProxy kullanılıyorsa, hem HAProxy hem de Wallarm düğümü tarafı orijinal istemci IP adreslerini belirlemek için uygun şekilde yapılandırılmalıdır:
+HAProxy kullanıyorsanız, hem HAProxy hem de Wallarm node tarafında orijinal istemci IP adreslerini belirlemek için uygun yapılandırma yapılmalıdır:
 
-* `/etc/haproxy/haproxy.cfg` yapılandırma dosyasına, HAProxy'yi Wallarm düğümüne bağlamak için sorumlu olan `backend` yönerge bloğuna `option forwardfor header X-Client-IP` satırını ekleyin.
+* `/etc/haproxy/haproxy.cfg` yapılandırma dosyasında, HAProxy'nin Wallarm node ile bağlantı kurduğu `backend` bloğuna `option forwardfor header X-Client-IP` satırını ekleyin.
 
-	`option forwardfor` yönergesi, istemcinin IP adresiyle birlikte bir başlığın isteğe eklenmesi gerektiğini, HAProxy dengeleyicisine söyler. [HAProxy belgelerinde daha fazla bilgi](https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20forwardfor)
+	The `option forwardfor` direktifi, HAProxy load balancer'ın, isteğe istemci IP adresini içeren bir başlık eklemesi gerektiğini belirtir. [Daha fazla bilgi için HAProxy belgelerine bakınız](https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20forwardfor)
 
 	Yapılandırma örneği:
 
     ```
     ...
-    # Herkese açık IP adresi, istekleri almak için
+    # İstekleri almak için genel IP adresi
     frontend my_frontend
         bind <HAPROXY_IP>
         mode http
         default_backend my_backend
 
-    # Wallarm düğümü ile birlikte 'backend'
+    # Wallarm node içeren backend
     backend my_backend
         mode http
     option forwardfor header X-Client-IP
@@ -241,17 +237,17 @@ HAProxy kullanılıyorsa, hem HAProxy hem de Wallarm düğümü tarafı orijinal
     ...
     ```
 
-    *   `<HAPROXY_IP>` müşteri isteklerini almak için HAProxy sunucusunun IP adresidir.
-    *   `<WALLARM_NODE_IP>` HAProxy sunucusundan gelen istekleri almak için Wallarm düğümünün IP adresidir.
+    *   `<HAPROXY_IP>`, HAProxy sunucusunun istemci isteklerini almak için kullandığı IP adresidir.
+    *   `<WALLARM_NODE_IP>`, HAProxy sunucusundan gelen isteklerin Wallarm node'a iletileceği IP adresidir.
 
-* Wallarm düğümüyle kurulan NGINX’in yapılandırma dosyasında, aşağıdaki şekilde [**ngx_http_realip_module** modülünü yapılandırın](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) :
-
-```bash
+* Wallarm node ile kurulmuş NGINX yapılandırma dosyasında, [NGINX module **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) aşağıdaki şekilde yapılandırılmalıdır:
+    
+    ```bash
     ...
     location / {
         wallarm_mode block;
-
-        proxy_pass http://<APPLICATION_IP>; 
+        
+        proxy_pass http://<APPLICATION_IP>;        
         set_real_ip_from <HAPROXY_IP1>;
         set_real_ip_from <HAPROXY_IP2>;
         real_ip_header X-Client-IP;
@@ -259,5 +255,5 @@ HAProxy kullanılıyorsa, hem HAProxy hem de Wallarm düğümü tarafı orijinal
     ...
     ```
 
-    *   `<APPLICATION_IP>` Wallarm düğümünden istekler için korunan uygulamanın IP adresidir.
-    *   `<HAPROXY_IP1>` ve `<HAPROXY_IP2>` Wallarm düğümüne istekler geçiren HAProxy dengeleyicilerin IP adresleridir.
+    *   `<APPLICATION_IP>`, Wallarm node üzerinden gelen isteklerin hedefi olan korunan uygulamanın IP adresidir.
+    *   `<HAPROXY_IP1>` ve `<HAPROXY_IP2>`, Wallarm node'a istekleri ileten HAProxy load balancer'larının IP adresleridir.

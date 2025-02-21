@@ -6,33 +6,33 @@
 [doc-install-postanalytics]:    ../../../installation-postanalytics-en.md
 
 
-#   CentOS için Lokal JFrog Artifactory Depolarından Wallarm Paketlerini Nasıl Yüklerim
+# CentOS için Yerel JFrog Artifactory Deposundan Wallarm Paketlerini Yükleme
 
-Filtre düğümüne adanmış bir konak üzerinde [JFrog Artifactory deposundan][doc-repo-mirroring] Wallarm paketlerini yüklemek için, bu konak üzerinde aşağıdaki işlemleri gerçekleştirin:
-1.  Alan adı veya IP adresi üzerinden JFrog Artifactory web kullanıcı arabirimine (ör., `http://jfrog.example.local:8081/artifactory`) gidin.
+Bir NGINX filtre düğümüne adanmış ana bilgisayarda [JFrog Artifactory deposundaki][doc-repo-mirroring] Wallarm paketlerini yüklemek için, bu ana bilgisayarda aşağıdaki adımları uygulayın:
+1.  JFrog Artifactory web arayüzüne, alan adı veya IP adresi üzerinden erişin (örn. `http://jfrog.example.local:8081/artifactory`).
 
-    Bir kullanıcı hesabıyla web kullanıcı arabirimine giriş yapın.
+    Bir kullanıcı hesabı ile web arayüzüne giriş yapın.
     
-2.  *Artifacts* menu girişini tıklayın ve Wallarm paketlerini içeren bir depo seçin.
+2.  *Artifacts* menü öğesine tıklayın ve Wallarm paketlerini içeren bir depoyu seçin.
 
-3.  *Set Me Up* bağlantısını tıklayın.
+3.  *Set Me Up* bağlantısına tıklayın.
 
-    ![Depoda çalışma][img-working-with-repo]
+    ![Depo ile çalışma][img-working-with-repo]
     
-    Bir açılır pencere çıkacak. *Type Password* alanına kullanıcı hesabınızın şifresini yazın ve *Enter* tuşuna basın. Artık bu penceredeki yönergeler sizin kimlik bilgilerinizi içerecektir.
+    Bir açılır pencere görünecektir. *Type Password* alanına kullanıcı hesabınızın şifresini yazın ve *Enter* tuşuna basın. Artık, bu penceredeki talimatlar kimlik bilgilerinizi içerecektir.
     
-    ![Kimlik bilgilerinin girilmesi][img-repo-creds]
+    ![Kimlik bilgilerini yazma][img-repo-creds]
 
-4.  `yum` yapılandırma örneğine kaydırın ve bu örneği panoya kopyalamak için `Copy Snippet to Clipboard` düğmesini tıklayın.
+4.  `yum` yapılandırma örneğine kadar aşağı kaydırın ve bu örneği panonuza kopyalamak için `Copy Snippet to Clipboard` düğmesine tıklayın.
 
     ![Yapılandırma örneği][img-repo-code-snippet]
     
-5. Bir `yum` yapılandırma dosyası oluşturun (ör., `/etc/yum.repos.d/artifactory.repo`) ve panoya kopyaladığınız örneği içine yapıştırın.
+5.  Bir `yum` yapılandırma dosyası oluşturun (örn. `/etc/yum.repos.d/artifactory.repo`) ve panoya kopyaladığınız parçayı içine yapıştırın.
 
     !!! warning "Önemli!"
-        `baseurl` parametresinin depo köküne işaret edebilmesi adına, lütfen `<PATH_TO_REPODATA_FOLDER>` gardıntısını `baseurl` parametresinden kaldırın.
+        `baseurl` parametresinden `<PATH_TO_REPODATA_FOLDER>` parçasını kaldırdığınızdan emin olun, böylece `baseurl` deponun köküne işaret eder.
     
-    `wallarm-centos-upload-local` numune deposu için `/etc/yum.repos.d/artifactory.repo` dosya örneği:
+    `wallarm-centos-upload-local` örnek deposu için `/etc/yum.repos.d/artifactory.repo` dosya örneği:
 
     ```bash
     [Artifactory]
@@ -45,10 +45,10 @@ Filtre düğümüne adanmış bir konak üzerinde [JFrog Artifactory deposundan]
     #repo_gpgcheck=1
     ```
     
-6.  Konakta `epel-release` paketini yükleyin:
+6.  Ana bilgisayarda `epel-release` paketini yükleyin:
     
     ```
     sudo yum install -y epel-release
     ```
 
-Şimdi CentOS için herhangi bir kurulum talimatını takip edebilirsiniz. Yerel bir depo kurduğunuz için deposu eklediğiniz aşamayı atlamanız gerekecek.
+Artık CentOS için herhangi bir kurulum talimatını uygulayabilirsiniz. Depo ekleme adımını atlamanız gerekecektir çünkü yerel bir depo yapılandırdınız.

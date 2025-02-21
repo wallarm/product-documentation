@@ -1,14 +1,14 @@
-# エンドユーザーの公開IPアドレスの正確なレポーティング（NGINXベースのIngressコントローラー）
+# エンドユーザーのパブリックIPアドレスの適切な報告 (NGINXベースのIngressコントローラ)
 
-これらの指示は、ロードバランサーの背後にコントローラーが配置されている場合に、クライアント（エンドユーザー）の発信IPアドレスを特定するために必要なWallarm Ingressコントローラーの設定について説明しています。
+本手順書では、ロードバランサーの背後にコントローラが配置されている場合に、クライアント（エンドユーザー）の起点IPアドレスを特定するために必要なWallarm Ingressコントローラの設定方法について説明します。
 
-デフォルトでは、Ingressコントローラーは直接インターネットに公開されており、接続するクライアントのIPアドレスが実際のIPであると仮定しています。しかし、リクエストはロードバランサー（例えば、AWS ELBやGoogle Network Load Balancer）を経由してIngressコントローラーに送られることがあります。
+デフォルトでは、Ingressコントローラはインターネットに直接公開されており、接続してくるクライアントのIPアドレスが実際のIPであると仮定します。しかし、リクエストはIngressコントローラに送信される前に、ロードバランサー（例：AWS ELBやGoogle Network Load Balancer）を通過する場合があります。
 
-コントローラーがロードバランサーの背後に配置されている場合、IngressコントローラーはロードバランサーのIPを実際のエンドユーザーのIPと見なすことがあり、これにより[一部のWallarm機能が誤って動作する](../../../using-proxy-or-balancer-en.md#possible-problems-of-using-a-proxy-server-or-load-balancer-ip-address-as-a-request-source-address)可能性があります。エンドユーザーのIPアドレスをIngressコントローラーに正確に報告するためには、以下のようにコントローラーを設定してください。
+ロードバランサーの背後にコントローラが配置される場合、IngressコントローラはロードバランサーのIPを実際のエンドユーザーIPとみなしてしまい、一部のWallarm機能が[正しく動作しない可能性](../../../using-proxy-or-balancer-en.md#possible-problems-of-using-a-proxy-server-or-load-balancer-ip-address-as-a-request-source-address)があります。エンドユーザーの正しいIPアドレスをIngressコントローラへ報告するため、以下の設定を実施してください。
 
-## ステップ1: ネットワーク層で実際のクライアントIPを通過させる機能を有効にする
+## ステップ1: ネットワーク層で実際のクライアントIPの受け渡しを有効化
 
-この機能は使用しているクラウドプラットフォームに大きく依存しています。ほとんどの場合、`values.yaml`ファイルの属性`controller.service.externalTrafficPolicy`を`Local`という値に設定することで有効化することができます：
+本機能は使用しているクラウドプラットフォームに大きく依存しますが、ほとんどの場合、`values.yaml`ファイルの属性`controller.service.externalTrafficPolicy`に値`Local`を設定することで有効化できます。
 
 ```
 controller:
@@ -16,11 +16,11 @@ controller:
     externalTrafficPolicy: "Local"
 ```
 
-## ステップ2: IngressコントローラーがX-FORWARDED-FOR HTTPリクエストヘッダーから値を取得するように設定する
+## ステップ2: X-FORWARDED-FOR HTTPリクエストヘッダーから値を取得するようIngressコントローラを有効化
 
-通常、ロードバランサーはオリジナルのクライアントIPアドレスを含むHTTPヘッダー[`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For)を追加します。ロードバランサーのドキュメンテーションで正確なヘッダー名を探すことができます。
+通常、ロードバランサーは元のクライアントIPアドレスを含むHTTPヘッダー[`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For)を追加します。正確なヘッダー名はロードバランサーのドキュメントで確認してください。
 
-`values.yaml`のコントローラー設定が以下のようになっている場合、Wallarm Ingressコントローラーはこのヘッダーから実際のエンドユーザーのIPアドレスを得ることができます：
+Wallarm Ingressコントローラは、以下のように`values.yaml`を設定することで、このヘッダーから実際のエンドユーザーIPアドレスを取得できます。
 
 ```
 controller:
@@ -29,7 +29,7 @@ controller:
     forwarded-for-header: "X-Forwarded-For"
 ```
 
-* [`enable-real-ip`パラメータに関するドキュメンテーション](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-real-ip)
-* [`forwarded-for-header`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#forwarded-for-header)パラメータでは、元のクライアントIPアドレスを含むロードバランサーのヘッダー名を指定してください。
+* [`enable-real-ip`パラメータに関するドキュメント](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-real-ip)
+* [`forwarded-for-header`パラメータ]内には、元のクライアントIPアドレスを含むロードバランサーのヘッダー名を指定してください
 
---8<-- "../include-ja/ingress-controller-best-practices-intro.md"
+--8<-- "../include/ingress-controller-best-practices-intro.md"

@@ -1,49 +1,36 @@
-[link-selinux]:     https://www.redhat.com/en/topics/linux/what-is-selinux
-[doc-monitoring]:   monitoring/intro.md
+# SELinux トラブルシューティング
 
-# SELinuxの設定
+[SELinux][link-selinux]は、RedHat系Linuxディストリビューション（例：CentOSまたはAmazon Linux 2.0.2021x以前）にデフォルトでインストールされ、有効化されています。SELinuxは、DebianやUbuntuなどの他のLinuxディストリビューションにもインストール可能です。
 
-フィルターノードがホストに存在し、そのホスト上で[SELinux][link-selinux]のメカニズムが有効になっている場合、それがフィルターノードの操作を妨げ、操作不能にする可能性があります:
-* フィルターノードのRPS（リクエスト毎秒）および APS（攻撃毎秒）の値はWallarmクラウドにエクスポートされません。
-* TCPプロトコルを介してフィルターノードのメトリックを監視システムにエクスポートすることはできません（[「フィルターノードの監視」][doc-monitoring]を参照してください）。 
-
-SELinuxは、RedHatベースのLinuxディストリビューション（例えば、CentOSやAmazon Linux 2.0.2021x以下）ではデフォルトでインストールおよび有効化されています。 SELinuxはDebianやUbuntuなどの他のLinuxディストリビューションにもインストールできます。
-
-SELinuxを無効にするか、フィルターノードの操作を妨げないように設定することが必須です。
-
-## SELinuxステータスの確認
-
-以下のコマンドを実行します:
+以下のコマンドを実行して、SELinuxの存在と状態を確認してください。
 
 ``` bash
 sestatus
 ```
 
-出力を確認します:
-* `SELinux status: enabled`
-* `SELinux status: disabled`
+## 自動構成
 
-## SELinuxの設定
+フィルタノードが存在するホストでSELinux機構が有効になっている場合、ノードのインストールまたはアップグレード時に[all-in-one installer](../installation/inline/compute-instances/linux/all-in-one.md)が自動構成を実行し、干渉が発生しないようにします。
 
-SELinuxが有効な状態でフィルターノードを操作可能にするために、`collectd`ユーティリティがTCPソケットを使用することを許可します。これを行うには、以下のコマンドを実行します:
+このため、ほとんどの場合、SELinuxによる問題は発生しません。
 
-``` bash
-setsebool -P collectd_tcp_network_connect 1
-```
+## トラブルシューティング
 
-上記のコマンドが正常に実行されたかどうかを確認するには、次のコマンドを実行します:
+もし[自動構成](#automatic-configuration)の後もSELinuxが原因と思われる問題が発生する場合、以下のような現象が確認される可能性があります：
 
-``` bash
-semanage export | grep collectd_tcp_network_connect
-```
+* フィルタノードのRPS（リクエスト毎秒）およびAPS（攻撃毎秒）の値がWallarm Cloudにエクスポートされません。
+* TCPプロトコルを介してフィルタノードのメトリクスを監視システムにエクスポートすることができません（[「フィルタノードの監視」][doc-monitoring]を参照）。
+* その他の問題。
 
-出力には次の文字列が含まれているべきです:
-```
-boolean -m -1 collectd_tcp_network_connect
-```
+以下の手順を実行してください：
 
-## SELinuxの無効化
+1. `setenforce 0` コマンドを実行して、一時的にSELinuxを無効化します。
 
-SELinuxを無効化するには
-*   `setenforce 0`コマンドを実行する（次の再起動までSELinuxが無効になる）か、または
-*   `/etc/selinux/config`ファイル内の`SELINUX`変数の値を`disabled`に設定し、その後再起動する（SELinuxが永久に無効になる）。
+    SELinuxは、次回の再起動まで無効化されます。
+
+2. 問題が解消されたか確認してください。
+
+3. [Wallarmの技術サポート](mailto:support@wallarm.com)に連絡して、サポートを受けてください。
+
+    !!! warning "SELinuxの恒久的な無効化は推奨されません"
+        セキュリティ上の理由から、SELinuxを恒久的に無効化することは推奨されません。

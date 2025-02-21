@@ -1,0 +1,1 @@
+--8<-- "latest-tr/fast/operations/test-policy/attacks-to-test.md"

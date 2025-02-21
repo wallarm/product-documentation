@@ -1,21 +1,17 @@
 # Fluentd
 
-Wallarmを設定して、適切な統合をWallarm Consoleで作成することで、検出したイベントの通知をFluentdに送信できます。
-
-次のイベントをFluentdに送信するように選択できます：
-
---8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
+[Fluentd](https://www.fluentd.org/)は、柔軟かつ軽量なデータ集約および転送機構を備えたオープンソースのデータ収集ソフトウェアです。Wallarmを適切な統合設定をWallarm Consoleで作成することで、検出されたイベントの通知をFluentdに送信するよう設定できます。
 
 ## 通知フォーマット
 
-Wallarmは、**ウェブフック**を介してJSON形式でFluentdに通知を送信します。JSONオブジェクトのセットは、Wallarmが通知するイベントによります。
+WallarmはJSON形式の**webhooks**を通じてFluentdに通知を送信します。送信されるJSONオブジェクトのセットは、Wallarmが通知するイベントによって異なります。
 
-新たに検出されたヒットの通知の例：
+新しいヒットが検出された通知の例:
 
 ```json
 [
     {
-        "summary": "[Wallarm] 新しいヒットが検出されました",
+        "summary": "[Wallarm] New hit detected",
         "details": {
         "client_name": "TestCompany",
         "cloud": "EU",
@@ -65,19 +61,19 @@ Wallarmは、**ウェブフック**を介してJSON形式でFluentdに通知を�
 
 ## 要件
 
-Fluentdの設定は以下の要件を満たすべきです：
+Fluentdの設定は次の要件を満たす必要があります:
 
-* POSTまたはPUTのリクエストを受け入れる
-* HTTPSのリクエストを受け入れる
-* 公開URLを持つ
+* POSTまたはPUTリクエストを受け付ける
+* HTTPSリクエストを受け付ける
+* パブリックURLを持つ
 
-Fluentdの設定例：
+Fluentdの設定例:
 
 ```bash linenums="1"
 <source>
-  @type http # HTTPおよびHTTPSトラフィックの入力プラグイン
-  port 9880 # 受信リクエストのポート
-  <transport tls> # コネクション処理の設定
+  @type http # HTTPおよびHTTPSトラフィック用のインプットプラグイン
+  port 9880 # 受信リクエスト用のポート
+  <transport tls> # 接続ハンドリング用の設定
     cert_path /etc/ssl/certs/fluentd.crt
     private_key_path /etc/ssl/private/fluentd.key
   </transport>
@@ -85,116 +81,120 @@ Fluentdの設定例：
 <match **>
   @type copy
   <store>
-     @type stdout # コマンドライン上のFluentdのログを表示する出力プラグイン
-     output_type json # コマンドラインに表示されるログの形式
+     @type stdout # コマンドラインにFluentdログを出力するためのアウトプットプラグイン
+     output_type json # コマンドラインに出力されるログのフォーマット
   </store>
 </match>
 ```
 
-詳細は[公式Fluentdドキュメンテーション](https://docs.datadoghq.com/integrations/fluentd)をご覧ください。
+詳細は[公式Fluentdドキュメント](https://docs.datadoghq.com/integrations/fluentd)をご参照ください。
 
 ## 統合の設定
 
-1. Wallarm Console → **統合** → **Fluentd** でFluentdの統合設定に進みます。
-1. 統合の名前を入力します。
-1. FluentdのターゲットURL（Webhook URL）を指定します。
-1. 必要に応じて、詳細設定を設定します：
+1. Wallarm Console→Integrations→FluentdでFluentd統合の設定に進みます。
+1. 統合名を入力します。
+1. ターゲットのFluentd URL（Webhook URL）を指定します。
+1. 必要に応じて、詳細設定を構成します:
 
-    --8<-- "../include-ja/integrations/webhook-advanced-settings.md"
-1. 指定したURLに通知を送信するためのイベントタイプを選択します。もしイベントが選択されていない場合、通知は送信されません。
-1. [統合をテスト](#統合のテスト)し、設定が正しいことを確認します。
-1. **統合を追加**をクリックします。
+    --8<-- "../include/integrations/webhook-advanced-settings.md"
+1. 通知をトリガーするイベントタイプを選択します。
 
-![Fluentd統合](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+    ![Fluentd integration](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-## 統合のテスト
+    利用可能なイベントの詳細:
 
---8<-- "../include-ja/integrations/test-integration-advanced-data.md"
+    --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-テストFluentdログ：
+1. Test integrationをクリックして、設定内容の正しさ、Wallarm Cloudの稼働状況、通知フォーマットを確認します。
 
-```json
-[
-    {
-        summary:"[試験メッセージ] [試験パートナー（US）] 新しい脆弱性が検出されました。",
-        description:"通知タイプ: 脆弱性
+    テスト用Fluentdログ:
 
-                    あなたのシステムで新しい脆弱性が検出されました。
+    ```json
+    [
+        {
+            summary:"[Test message] [Test partner(US)] New vulnerability detected",
+            description:"Notification type: vuln
 
-                    ID: 
-                    タイトル: テスト
-                    ドメイン: example.com
-                    パス: 
-                    メソッド: 
-                    発見者: 
-                    パラメータ: 
-                    タイプ: インフォ
-                    脅威: 中級
+                        New vulnerability was detected in your system.
 
-                    詳細: https://us1.my.wallarm.com/object/555
+                        ID: 
+                        Title: Test
+                        Domain: example.com
+                        Path: 
+                        Method: 
+                        Discovered by: 
+                        Parameter: 
+                        Type: Info
+                        Threat: Medium
+
+                        More details: https://us1.my.wallarm.com/object/555
 
 
-                    クライアント: TestCompany
-                    クラウド: US
-                    ",
-        details:{
-            client_name:"TestCompany",
-            cloud:"US",
-            notification_type:"vuln",
-            vuln_link:"https://us1.my.wallarm.com/object/555",
-            vuln:{
-                domain:"example.com",
-                id:null,
-                method:null,
-                parameter:null,
-                path:null,
-                title:"テスト",
-                discovered_by:null,
-                threat:"中級",
-                type:"インフォ"
+                        Client: TestCompany
+                        Cloud: US
+                        ",
+            details:{
+                client_name:"TestCompany",
+                cloud:"US",
+                notification_type:"vuln",
+                vuln_link:"https://us1.my.wallarm.com/object/555",
+                vuln:{
+                    domain:"example.com",
+                    id:null,
+                    method:null,
+                    parameter:null,
+                    path:null,
+                    title:"Test",
+                    discovered_by:null,
+                    threat:"Medium",
+                    type:"Info"
+                }
             }
         }
-    }
-]
-```
+    ]
+    ```
 
-## 統合の更新
+1. Add integrationをクリックします。
 
---8<-- "../include-ja/integrations/update-integration.md"
+--8<-- "../include/cloud-ip-by-request.md"
 
-## 統合の無効化
+## 追加アラートの設定
 
---8<-- "../include-ja/integrations/disable-integration.md"
+--8<-- "../include/integrations/integrations-trigger-setup.md"
 
-## 統合の削除
+## 中間データ収集ツールとしてFluentdを利用する
 
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/webhook-examples/overview.md"
 
-## Fluentdを中間データ収集器として使用する
+例:
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+![Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
-例えば：
+このスキームを使用してWallarmイベントをログするには:
 
-![Webhookフロー](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+1. 受信したwebhookを読み取り、ログを次のシステムに転送するようデータ収集ツールを設定します。Wallarmはwebhookを通じてデータ収集ツールにイベントを送信します。
+1. SIEMシステムを設定して、データ収集ツールからログを取得し読み取ります。
+1. Wallarmがデータ収集ツールにログを送信するように設定します。
 
-このスキームを使用してWallarmイベントをログに記録するには：
+Wallarmはwebhookを通じて任意のデータ収集ツールにログを送信できます。
 
-1. データ収集器を設定して、受信ウェブフックを読み取り、次のシステムにログを転送します。Wallarmはウェブフック経由でデータ収集器にイベントを送信します。
-1. SIEMシステムを設定して、データ収集器からログを取得し、読み取ります。
-1. Wallarmを設定して、データ収集器にログを送信します。
+WallarmをFluentdまたはLogstashと統合するには、Wallarm Console UIにある対応する統合カードを利用できます。
 
-    Wallarmはウェブフックを介して任意のデータ収集器にログを送信できます。
+Wallarmを他のデータ収集ツールと統合するには、Wallarm Console UIにある[webhook統合カード](webhook.md)を利用できます。
 
-    WallarmとFluentdまたはLogstashを統合するには、Wallarm Console UIの対応する統合カードを使用できます。
-
-    Wallarmと他のデータ収集器を統合するには、Wallarm Console UIの[ウェブフック統合カード](webhook.md)を使用できます。
-
-我々はSIEMシステムにログを転送する人気のあるデータ収集器との統合を設定する例をいくつか説明しました：
+ログをSIEMシステムに転送する人気のデータ収集ツールとの統合設定例をいくつか紹介します:
 
 * [Wallarm → Fluentd → IBM QRadar](webhook-examples/fluentd-qradar.md)
 * [Wallarm → Fluentd → Splunk Enterprise](webhook-examples/fluentd-splunk.md)
 * [Wallarm → Fluentd → Micro Focus ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md)
 * [Wallarm → Fluentd → Datadog](webhook-examples/fluentd-logstash-datadog.md)
 
-    Wallarmはまた、[Datadog APIを介したDatadogとのネイティブな統合](datadog.md)をサポートしています。ネイティブな統合では、中間データ収集器を使用する必要はありません。
+Wallarmは[Datadog API経由のDatadogとのネイティブ統合](datadog.md)もサポートします。ネイティブ統合では中間のデータ収集ツールを使用する必要がありません。
+
+## 統合の無効化および削除
+
+--8<-- "../include/integrations/integrations-disable-delete.md"
+
+## システムの利用不可および統合パラメータの不正
+
+--8<-- "../include/integrations/integration-not-working.md"

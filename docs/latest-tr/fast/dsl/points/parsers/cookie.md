@@ -2,17 +2,17 @@
 
 # Çerez Ayrıştırıcı
 
-**Çerez** ayrıştırıcısı, temel istekteki Çerez başlığı içeriğine dayanarak bir karma tablo oluşturur. Bu karma tablonun elemanlarına çerezlerin adlarını kullanarak başvurmanız gerekmektedir.
+**Cookie** ayrıştırıcısı, temel istek içerisindeki Cookie başlığı içeriğine dayalı olarak bir hash tablosu oluşturur. Bu hash tablosunun elemanlarına, çerezlerin isimleri kullanılarak referans verilmesi gerekmektedir.
 
-!!! bilgi "Noktalardaki düzenli ifadeler"
-    Noktadaki çerez adı, [Ruby programlama dilinin][link-ruby] bir düzenli ifadesi olabilir.
+!!! info "Noktalardaki düzenli ifadeler"
+    Noktadaki çerez adı, [Ruby programming language][link-ruby] düzenli ifadesi olabilir.
 
-!!! uyarı "Noktada Çerez ayrıştırıcısını kullanma"
-    Çerez ayrıştırıcısı, yalnızca temel isteğin Çerez başlığına başvuran Header filtresi ile birlikte noktada kullanılabilir.
+!!! warning "Noktalarda Cookie ayrıştırıcısının kullanılması"
+    Cookie ayrıştırıcısı, yalnızca temel isteğin Cookie başlığına referans veren Header filtresi ile birlikte noktalarda kullanılabilir.
  
 **Örnek:** 
 
-Aşağıdaki durum için
+Aşağıdaki
 
 ```
 GET /login/index.php HTTP/1.1
@@ -20,27 +20,27 @@ Host: example.com
 Cookie: id=01234; username=admin
 ```
 
-istek, HTTP ayrıştırıcısı ve Çerez ayrıştırıcısı ilgili başlık verileri ile karma tablolar oluşturur.
+isteği için, HTTP ayrıştırıcısı ve Cookie ayrıştırıcısı ilgili başlık verileriyle hash tabloları oluşturur.
 
-Header filtresi aşağıdaki karma tabloya başvurur:
+Header filtresi aşağıdaki hash tablosuna referans verir:
 
-| Header adı    | Header değeri            |
+| Header name   | Header value             |
 |---------------|--------------------------|
 | Host          | example.com              |
 | Cookie        | id=01234; username=admin |
 
-Bu karma tabloda, başlık adları anahtarlar ve ilgili başlıkların değerleri karma tablo değerleridir.
+Bu hash tablosunda, başlık adları anahtar, ilgili başlık değerleri ise hash tablosu değerleridir.
 
-`HEADER_Cookie_value` noktasını Çerez'i bir string değeri olarak çalıştırmak için kullanın. Mevcut örnekte bu nokta `id=01234; username=admin` stringine başvuruyor.
+Cookie'yi bir dize değeri olarak işlemek için `HEADER_Cookie_value` noktasını kullanın. Mevcut örnekte bu nokta, `id=01234; username=admin` dizesine referans vermektedir.
 
-Çerez ayrıştırıcısı aşağıdaki karma tabloyu oluşturur:
+Cookie ayrıştırıcısı, Header filtresi tarafından adreslenen hash tablosundan alınan Cookie başlık verilerine dayanarak aşağıdaki hash tablosunu oluşturur:
 
-| Çerez adı | Çerez değeri  |
+| Cookie name | Cookie value  |
 |-------------|---------------|
 | id          | 01234         |
 | username    | admin         |
 
-Çerez ayrıştırıcısı, Header filtresi tarafından adreslenen karma tablodan alınan Çerez başlığı verilerine dayanarak bir karma tablo oluşturur. Bu karma tabloda, çerez isimleri anahtarlar ve ilgili çerezlerin değerleri, karma tablo değerleridir.
+Cookie ayrıştırıcısı, Cookie başlık verilerine dayalı olarak bir hash tablosu oluşturur; bu hash tablosunda çerez isimleri anahtarlar, ilgili çerez değerleri ise hash tablosu değerleridir.
 
-* `HEADER_Cookie_COOKIE_id_value` noktası, Çerez ayrıştırıcısı tarafından oluşturulan karma tablodaki `id` anahtarına karşılık gelen `01234` değerine başvurur.
-* `HEADER_Cookie_COOKIE_username_value` noktası, Çerez ayrıştırıcısı tarafından oluşturulan karma tablodaki `username` anahtarına karşılık gelen `admin` değerine başvurur.
+* `HEADER_Cookie_COOKIE_id_value` noktası, Cookie ayrıştırıcısı tarafından oluşturulan hash tablosundaki `id` anahtarına karşılık gelen `01234` değerine referans verir.
+* `HEADER_Cookie_COOKIE_username_value` noktası, Cookie ayrıştırıcısı tarafından oluşturulan hash tablosundaki `username` anahtarına karşılık gelen `admin` değerine referans verir.

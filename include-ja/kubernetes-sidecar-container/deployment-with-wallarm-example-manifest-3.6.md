@@ -1,4 +1,4 @@
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,36 +13,36 @@ spec:
         app: myapp
     spec:
       containers:
-        # Wallarm 要素: Wallarm サイドカーコンテナの定義
+        # Wallarm要素: Wallarmサイドカーコンテナの定義です
         - name: wallarm
           image: wallarm/node:3.6.2-1
           imagePullPolicy: Always
           env:
-          # Wallarm API エンドポイント: 
-          # "api.wallarm.com" は EU クラウドの場合
-          # "us1.api.wallarm.com" は US クラウドの場合
+          # Wallarm APIエンドポイントです:
+          # "api.wallarm.com"はEU Cloud用です
+          # "us1.api.wallarm.com"はUS Cloud用です
           - name: WALLARM_API_HOST
             value: "api.wallarm.com"
-          # Deploy ロールを持つユーザーのユーザー名
+          # Deployロールのユーザー名です
           - name: DEPLOY_USER
             value: "username"
-          # Deploy ロールを持つユーザーのパスワード
+          # Deployロールのユーザーパスワードです
           - name: DEPLOY_PASSWORD
             value: "password"
           - name: DEPLOY_FORCE
             value: "true"
-          # リクエスト分析データのメモリ容量(GB)
+          # リクエスト解析データ用のメモリ(GB)の量です
           - name: TARANTOOL_MEMORY_GB
             value: "2"
           ports:
           - name: http
-            # Wallarm サイドカーコンテナが Service オブジェクトからのリクエストを受け付けるポート
+            # WallarmサイドカーコンテナがServiceオブジェクトからのリクエストを受け付けるポートです
             containerPort: 80
-          volumeMounts:  
-          - mountPath: /etc/nginx/sites-enabled  
-            readOnly: true  
+          volumeMounts:	
+          - mountPath: /etc/nginx/sites-enabled	
+            readOnly: true	
             name: wallarm-nginx-conf
-        # メインのアプリケーションコンテナの定義
+        # メインアプリのコンテナ定義です
         - name: myapp
           image: <Image>
           resources:
@@ -50,10 +50,10 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-          # アプリケーションコンテナが受け付ける入力リクエストのポート
+          # アプリケーションコンテナがリクエストを受け付けるポートです
           - containerPort: 8080
       volumes:
-      # Wallarm 要素: wallarm-nginx-conf ボリュームの定義
+      # Wallarm要素: wallarm-nginx-confボリュームの定義です
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

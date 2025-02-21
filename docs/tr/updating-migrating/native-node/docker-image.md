@@ -1,1 +1,1 @@
---8<-- "latest/updating-migrating/native-node/docker-image.md"
+--8<-- "latest-tr/updating-migrating/native-node/docker-image.md"

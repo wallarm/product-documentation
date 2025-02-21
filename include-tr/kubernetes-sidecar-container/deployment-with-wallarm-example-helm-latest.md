@@ -1,9 +1,9 @@
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    # Wallarm elemanı: Wallarm ConfigMap değiştikten sonra çalışan podları güncelleme annotationu
+    # Wallarm öğesi: Wallarm ConfigMap değiştirildikten sonra çalışan pod’ları güncellemek için açıklama
     checksum/config: '{{ include (print $.Template.BasePath "/wallarm-sidecar-configmap.yaml") . | sha256sum }}'
   name: myapp
 spec:
@@ -16,7 +16,7 @@ spec:
         app: myapp
     spec:
       containers:
-        # Wallarm elemanı: Wallarm sidecar konteyner tanımlaması
+        # Wallarm öğesi: Wallarm sidecar konteynerinin tanımı
         - name: wallarm
           image: {{ .Values.wallarm.image.repository }}:{{ .Values.wallarm.image.tag }}
           imagePullPolicy: {{ .Values.wallarm.image.pullPolicy | quote }}
@@ -31,13 +31,14 @@ spec:
             value: {{ .Values.wallarm.tarantool_memory_gb | quote }}
           ports:
           - name: http
-            # Service objesinden gelen talepleri Wallarm sidecar konteyneri hangi porttan kabul eder
+            # Wallarm sidecar konteynerinin Service nesnesinden gelen istekleri kabul ettiği port
+            # Service nesnesinden
             containerPort: 80
           volumeMounts:
           - mountPath: /etc/nginx/sites-enabled
             readOnly: true
             name: wallarm-nginx-conf
-        # Ana uygulama konteynerinin tanımlanması
+        # Ana uygulama konteynerinizin tanımı
         - name: myapp
           image: <Image>
           resources:
@@ -45,10 +46,10 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-          # Uygulama konteynerinin gelen talepleri kabul ettiği port
+          # Uygulama konteynerinin gelen istekleri kabul ettiği port
           - containerPort: 8080 
       volumes:
-      # Wallarm elemanı: wallarm-nginx-conf hacminin tanımlanması
+      # Wallarm öğesi: wallarm-nginx-conf hacminin tanımı
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

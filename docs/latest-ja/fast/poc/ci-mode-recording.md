@@ -1,54 +1,55 @@
-[doc-allowed-hosts]: ../operations/env-variables.md#limiting-the-number-of-requests-to-be-recorded
-[doc-get-token]: prerequisites.md#anchor-token
-[doc-concurrent-pipelines]: ci-mode-concurrent-pipelines.md
-[doc-env-variables]: ../operations/env-variables.md
+```markdown
+[doc-allowed-hosts]:                ../operations/env-variables.md#limiting-the-number-of-requests-to-be-recorded
+[doc-get-token]:                    prerequisites.md#anchor-token
+[doc-concurrent-pipelines]:         ci-mode-concurrent-pipelines.md
+[doc-env-variables]:                ../operations/env-variables.md
 
-[anchor-recording-variables]: #environment-variables-in-recording-mode
+[anchor-recording-variables]:       #environment-variables-in-recording-mode
 
-[link-docker-compose]: https://docs.docker.com/compose/
-[link-docker-compose-install]: https://docs.docker.com/compose/install/
+[link-docker-compose]:              https://docs.docker.com/compose/
+[link-docker-compose-install]:      https://docs.docker.com/compose/install/
 
-# レコーディング モードでのFASTノードの実行
+# 記録モードでFASTノードを実行する
 
-このモードでは、FASTノードはターゲットアプリケーションをテストする前に実行されます。
+このモードでは、テスト対象アプリケーションのテスト前にFASTノードが実行されます。
 
-リクエストのソースはFASTノードをプロキシとして使用し、HTTPまたはHTTPSリクエストをターゲットアプリケーションに送信します。
+リクエストの送信元はFASTノードをプロキシとして使用するように設定され、テスト対象アプリケーションへHTTPまたはHTTPSリクエストを送信します。
 
-FASTノードはプロキシ化されたリクエストの中からベースラインリクエストを決定し、テストレコードに格納します。
+FASTノードはプロキシ経由のリクエストの中から基本リクエストを判別し、それらをテストレコードに配置します。
 
-!!! info "Chapter Prerequisites"
-    この章で説明されている手順を進めるためには、[トークン][doc-get-token]が必要です。
+!!! info "章の前提条件"
+    この章に記載の手順に従うには、[token][doc-get-token]を取得する必要があります。
+    
+    この章全体で例として使用する値は以下の通りです:
 
-    この章全体で以下の値が例として使用されます。
+    * `token_Qwe12345` をトークンとして使用します。
+    * `rec_0001` をテストレコードの識別子として使用します。
 
-    * `token_Qwe12345` トークンとして。
-    * `rec_0001` テストレコードの識別子として。
+!!! info "「docker-compose」のインストール"
+    この章では、FASTノードが記録モードで動作する様子を実演するために[`docker-compose`][link-docker-compose]ツールを使用します。
+    
+    このツールのインストール手順は[こちら][link-docker-compose-install]でご確認いただけます。
 
-!!! info "Install `docker-compose`"
-    [`docker-compose`][link-docker-compose] ツールは、この章全体でFASTノードがレコーディングモードでどのように動作するかを示すために使用されます。
+## 記録モードにおける環境変数
 
-    このツールのインストール手順は [ここ][link-docker-compose-install] で利用可能です。
+FASTノードの設定は環境変数で行います。以下の表は記録モードでFASTノードを構成するために使用可能なすべての環境変数を示しています。
 
-## レコーディング モードでの環境変数
+| 環境変数                | 値  | 必須? |
+|--------------------	| --------	| -----------	|
+| `WALLARM_API_TOKEN`  	| ノード用のトークン。 | Yes |
+| `WALLARM_API_HOST`   	| 利用するWallarm APIサーバのドメイン名。<br>許可される値: <br>`us1.api.wallarm.com`（USクラウド利用時）<br>`api.wallarm.com`（EUクラウド利用時）。| Yes |
+| `CI_MODE`            	| FASTノードの動作モード。<br>必須値: `recording`。 | Yes |
+| `TEST_RECORD_NAME`   	| 新たに作成するテストレコードの名称。<br>デフォルト値は「TestRecord Oct 08 12:18 UTC」のような形式です。 | No |
+| `INACTIVITY_TIMEOUT` 	| `INACTIVITY_TIMEOUT`間隔内に基本リクエストがFASTノードに到着しない場合、記録プロセスが停止し、FASTノードも停止します。<br>許容値: 1～691200秒（1週間）<br>デフォルト値: 600秒（10分）。 | No |
+| `ALLOWED_HOSTS`       | 環境変数に記載された任意のホストをターゲットとするリクエストのみFASTノードが記録します。<br>デフォルト値: 空文字列（すべての受信リクエストを記録）。詳細は[こちら][doc-allowed-hosts]をご参照ください。| No |
+| `BUILD_ID`            | CI/CDワークフローの識別子。この識別子により、複数のFASTノードが同一のクラウドFASTノードを利用して並行実行できます。詳細は[こちら][doc-concurrent-pipelines]をご参照ください。| No |
 
-FASTノードの設定は環境変数を介して行われます。以下のテーブルには、レコーディングモードのFASTノードを設定するために使用できるすべての環境変数が掲載されています。
+!!! info "詳細はこちら"
+    特定のFASTノード動作モードに限定されない環境変数の説明は[こちら][doc-env-variables]に記載されています。
 
-| 環境変数 | 値 | 必須? |
-|-------------------- | -------- | ----------- |
-| `WALLARM_API_TOKEN`   | ノードのためのトークン. | はい |
-| `WALLARM_API_HOST`    | 使用するWallarm API サーバのドメイン名。 <br>許可される値： <br>`us1.api.wallarm.com` USクラウド用;<br>`api.wallarm.com` EUクラウド用.| はい |
-| `CI_MODE`           | FASTノードの運用モード。 <br>必要な値： `recording`。 | はい |
-| `TEST_RECORD_NAME`    | 新規テストレコードを作成するための名前。 <br>デフォルト値は以下の形式で表示されます： "TestRecord Oct 08 12:18 UTC". | いいえ |
-| `INACTIVITY_TIMEOUT` | ベースラインリクエストが`INACTIVITY_TIMEOUT`内にFASTノードに到着しない場合、レコーディングプロセスとFASTノードが停止します。<br>許可される値の範囲： 1から691200秒（1週間）<br>デフォルト値： 600秒（10分）。 | いいえ |
-| `ALLOWED_HOSTS`       | FASTノードは環境変数にリストされたホストを対象にしたリクエストを記録します。 <br>デフォルト値： 空の文字列（すべての着信リクエストが記録されます）。詳細については [この][doc-allowed-hosts] 文書を参照してください。| いいえ |
-| `BUILD_ID` | CI/CDワークフローの識別子。この識別子を使用すると、複数のFASTノードが同じクラウドFASTノードを使用して同時に作業することができます。詳細については [この][doc-concurrent-pipelines] 文書を参照してください。| いいえ |
+## 記録モードでのFASTノードのデプロイ
 
-!!! info "See also"
-    特定のFASTノードの運用モードに特有でない環境変数の説明は [ここ][doc-env-variables] で利用可能です。
-
-## レコードモードでのFASTノードの展開
-
-サンプルの `docker-compose.yaml` 設定ファイルは、FASTがレコーディングモードでどのように動作するかを示すために使用されます (`CI_MODE` 環境変数の値に注目してください)：
+下記のサンプル`docker-compose.yaml`構成ファイルは、FASTが記録モードでどのように動作するかを実演するためのものです（`CI_MODE`環境変数の値に注目してください）:
 
 ```
 version: '3'
@@ -57,7 +58,7 @@ version: '3'
       image: wallarm/fast
       environment:
         WALLARM_API_TOKEN: token_Qwe12345        # ここにトークン値を指定します
-        WALLARM_API_HOST: us1.api.wallarm.com    # ここではUSクラウドAPIサーバを使用します。EUクラウドAPIサーバにはapi.wallarm.comを使用します。
+        WALLARM_API_HOST: us1.api.wallarm.com    # ここではUSクラウドAPIサーバが使用されています。EUクラウドAPIサーバを利用する場合はapi.wallarm.comを使用してください。
         CI_MODE: recording
       ports:
         - '8080:8080'                              
@@ -70,9 +71,9 @@ networks:
   main:
 ```
 
-`docker-compose.yaml` ファイルが含まれるディレクトリに移動して、`docker-compose up fast` コマンドを実行すると、FASTノードとともにDockerコンテナが起動します。
+`docker-compose.yaml`ファイルがあるディレクトリに移動し、`docker-compose up fast`コマンドを実行することでDockerコンテナ上でFASTノードを実行できます。
 
-コマンドが正常に実行されると、以下に示すようなコンソール出力が生成されます：
+コマンドが正常に実行されると、以下のようなコンソール出力が表示されます:
 
 ```
   __      __    _ _
@@ -92,36 +93,37 @@ networks:
 
 ```
 
-この出力により、FASTノードが正常にWallarmクラウドに接続し、`rec_0001` 識別子と `TestRecord Oct 01 01:01 UTC` の名前を持つテストレコードを作成したことが分かります。そして、リクエストの受信とベースラインリクエストの記録ができる状態になります。
+この出力は、FASTノードが正常にWallarm Cloudへ接続し、`rec_0001`識別子と`TestRecord Oct 01 01:01 UTC`という名前のテストレコードを作成したことを示しています。これにより、リクエストの受信と基本リクエストの記録を開始できる状態となっております。
 
-!!! info "A Note on Test Record Names"
-    デフォルトのテストレコード名を変更するには、FASTノードDockerコンテナを起動するときに `TEST_RECORD_NAME` 環境変数を経由して必要な値を渡す必要があります。
+!!! info "テストレコード名称についての注意"
+    デフォルトのテストレコード名称を変更するには、FASTノードのDockerコンテナ起動時に`TEST_RECORD_NAME`環境変数を介して必要な値を渡す必要があります。
 
-!!! warning "Test Execution"
-    いまこそターゲットアプリケーションに対して既存のテストを実行する時です。FASTはベースラインリクエストを記録し、それらでテストレコードを増やします。
+!!! warning "テスト実行"
+    ここで、テスト対象アプリケーションへの既存のテストを実施する時期となります。FASTは基本リクエストを記録し、テストレコードに反映させます。
 
-## レコーディング モードのFASTノードを含むDockerコンテナの停止と削除
+## 記録モードでのFASTノードを含むDockerコンテナの停止と削除
 
-すべての必要なベースラインリクエストが記録されると、FASTノードはCI/CDツールによってシャットダウンされ、終了コードが返されます。
+必要な基本リクエストがすべて記録されると、CI/CDツールによりFASTノードが停止され、終了コードが返されます。
 
-FASTノードにエラーがなく、ベースラインの記録プロセスが正常に終了した場合、`0` の終了コードが返されます。
+FASTノードがエラーなく基本リクエストの記録プロセスを正常に完了した場合は、`0`の終了コードが返されます。
 
-FASTノードにエラーが発生した場合、またはベースラインの記録プロセスがタイムアウトにより停止した場合（[`INACTIVITY_TIMEOUT`][anchor-recording-variables] 環境変数の説明を参照してください）には、FASTノードは自動的に停止し、`1` の終了コードが返されます。
+FASTノードがエラーを検知した場合や、基本リクエストの記録プロセスがタイムアウト（[`INACTIVITY_TIMEOUT`][anchor-recording-variables]環境変数の記述を参照）により停止された場合は、FASTノードが自動的に停止し、`1`の終了コードが返されます。
 
-FASTノードが作業を終えると、対応するDockerコンテナを停止し、削除する必要があります。
+FASTノードの処理が完了したら、該当するDockerコンテナを停止し削除する必要があります。
 
-FASTノードが`1`の終了コードで自動停止しなくても、すべての必要なベースラインリクエストが記録された場合、`docker-compose stop <container's name>` コマンドを実行して、FASTノードのDockerコンテナを停止することができます：
+FASTノードが`1`の終了コードで自動的に停止せず、必要な基本リクエストがすべて記録された場合は、`docker-compose stop <コンテナ名>`コマンドを実行してFASTノードのDockerコンテナを停止することができます:
 
 ```
 docker-compose stop fast
 ```
 
-FASTノードコンテナを削除するには、 `docker-compose rm <container's name>` コマンドを実行します:
+FASTノードのコンテナを削除するには、`docker-compose rm <コンテナ名>`コマンドを実行します:
 
 ```
 docker-compose rm fast
 ```
 
-上記の例では、`fast` が停止または削除するDockerコンテナの名前として使用されています。
+上記の例では、`fast`が停止または削除するDockerコンテナの名称として使用されています。
 
-あるいは、`docker-compose down` コマンドを使用して、 `docker-compose.yaml` ファイルで記述されたすべてのサービスのコンテナを停止および削除することもできます。
+または、`docker-compose.yaml`ファイルに記述されたすべてのサービスのコンテナを停止・削除する`docker-compose down`コマンドを使用することも可能です。
+```

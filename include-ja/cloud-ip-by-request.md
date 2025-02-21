@@ -1,5 +1,5 @@
-					!!! info "Wallarm Cloud のIPアドレス"
-    Wallarm Cloudにシステムへのアクセスを許可するためには、公開IPアドレスのリストが必要となるかもしれません：
+!!! info "Wallarm Cloud IP addresses"
+    Wallarm Cloudがあなたのシステムにアクセスできるようにするには、そのパブリックIPアドレスの一覧が必要です:
 
     === "US Cloud"
         ```

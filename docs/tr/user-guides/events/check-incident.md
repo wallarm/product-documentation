@@ -1,1 +1,1 @@
---8<-- "4.10/user-guides/events/check-incident.md"
+--8<-- "latest-tr/user-guides/events/check-incident.md"

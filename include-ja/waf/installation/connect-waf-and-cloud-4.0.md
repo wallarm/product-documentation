@@ -1,31 +1,31 @@
-					!!! info "ポストアナリティクスモジュールが別のサーバーにインストールされている場合"
-    初期トラフィック処理モジュールとポストアナリティクスモジュールが別々のサーバーにインストールされている場合、これらのモジュールを同じノードトークンを使用してWallarmクラウドに接続することをお勧めします。WallarmコンソールUIでは、各モジュールが別々のノードインスタンスとして表示されます。例：
+!!! info "もしpostanalyticsモジュールが別サーバーにインストールされている場合"
+    最初のトラフィック処理モジュールとpostanalyticsモジュールが別々のサーバーにインストールされている場合、これらのモジュールをWallarm Cloudに同じnode tokenを使用して接続することを推奨します。Wallarm Console UI上では各モジュールが別々のノードインスタンスとして表示されます。例:
 
     ![複数のインスタンスを持つノード][img-node-with-several-instances]
 
-    Wallarmノードは[別途ポストアナリティクスモジュールインストール][install-postanalytics-instr]の間に既に作成されています。同じノード資格情報を使用して初期トラフィック処理モジュールをクラウドに接続するには：
+    Wallarm nodeは既に[別のpostanalyticsモジュールのインストール][install-postanalytics-instr]の際に作成済みです。同じnode資格情報を使用して初期トラフィック処理モジュールをCloudに接続するには:
 
-    1. 別途ポストアナリティクスモジュールのインストール中に生成されたノードトークンをコピーします。
-    1. 下記のリストで4番目のステップに進みます。
+    1. 別のpostanalyticsモジュールのインストール時に生成されたnode tokenをコピーします。
+    1. 以下のリストの4番目のステップに進みます。
 
-WallarmノードはWallarmクラウドとやり取りします。フィルタリングノードをクラウドに接続するには：
+Wallarm nodeはWallarm Cloudと連携します。フィルタリングノードをCloudに接続するには:
 
-1. [USクラウド](https://us1.my.wallarm.com/nodes)または[EUクラウド](https://my.wallarm.com/nodes)でWallarmコンソール → **ノード**を開き、**Wallarmノード**タイプのノードを作成します。
+1. Wallarm Console → **Nodes** を[US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)で開き、**Wallarm node**タイプのノードを作成します。
 
-    ![Wallarmノードの作成][img-create-wallarm-node]
-1. 生成されたトークンをコピーします。
-1. フィルタリングノードをインストールするマシンで`register-node`スクリプトを実行します。
+    ![Wallarm nodeの作成][img-create-wallarm-node]
+1. 生成されたtokenをコピーします。
+1. フィルタリングノードをインストールしたマシン上で`register-node`スクリプトを実行します:
     
-    === "USクラウド"
+    === "US Cloud"
         ``` bash
         sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com
         ```
-    === "EUクラウド"
+    === "EU Cloud"
         ``` bash
         sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN>
         ```
     
-    `<NODE_TOKEN>`はコピーされたトークンの値です。
+    `<NODE_TOKEN>`はコピーしたtoken値です。
 
-    !!! info "ポストアナリティクスモジュールが別のサーバーにインストールされている場合"
-        ポストアナリティクスモジュールが別のサーバーにインストールされている場合、[別途ポストアナリティクスモジュールインストール][install-postanalytics-instr]の間に生成されたノードトークンを使用することを推奨します。
+!!! info "もしpostanalyticsモジュールが別サーバーにインストールされている場合"
+    もしpostanalyticsモジュールが別サーバーにインストールされている場合は、[別のpostanalyticsモジュールのインストール][install-postanalytics-instr]の際に生成されたnode tokenを使用することを推奨します。

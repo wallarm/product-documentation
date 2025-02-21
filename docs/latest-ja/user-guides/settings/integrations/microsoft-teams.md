@@ -1,49 +1,48 @@
 # Microsoft Teams
 
-あなたは以下のイベントがトリガーされたときにMicrosoft Teamsチャンネルに通知を送信するようにWallarmを設定できます：
+[Microsoft Teams](https://www.microsoft.com/en-us/microsoft-teams/group-chat-software) は、チームワークを促進し、オフィス、リモート、またはその両方の働き方に関わらず、組織が効果的にコミュニケーション、コラボレーション、およびプロジェクト管理を行えるように設計されたコラボレーションおよびコミュニケーションプラットフォームです。Wallarmを設定してMicrosoft Teamsのチャンネルに通知を送信できます。複数の異なるチャンネルに通知を送信する場合は、複数のMicrosoft Teams統合を作成してください。
 
---8<-- "../include-ja/integrations/events-for-integrations.md"
+## 統合の設定
 
-## インテグレーションの設定
+1. **Integrations** セクションを開きます。
+1. **Microsoft Teams** ブロックをクリックするか、**Add integration** ボタンをクリックして **Microsoft Teams** を選択します。
+1. 統合名を入力します。
+1. 通知を投稿したいMicrosoft Teamsのチャンネルの設定を開き、[手順](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook)を使用して新しいWebhookを設定します。
+1. 表示されたWebhook URLをコピーし、Wallarm Consoleの **Webhook URL** フィールドに値を貼り付けます。
+1. 通知をトリガーするイベントの種類を選択します。
 
-1. **Integrations**セクションを開きます。
-2. **Microsoft Teams**ブロックをクリックするか、**Add integration**ボタンをクリックして**Microsoft Teams**を選択します。
-3. インテグレーション名を入力します。
-4. 通知を投稿したいMicrosoft Teamsチャンネルの設定を開き、新しいWebhookを[これらの指示](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook)を使って設定します。
-5. 提供されたWebhook URLをコピーして、Wallarm Consoleの**Webhook URL**フィールドに値を貼り付けます。
-6. 通知をトリガーするイベントの種類を選択します。イベントが選ばれていない場合、通知は送信されません。
-7. [インテグレーションをテスト](#testing-integration)し、設定が正しいことを確認します。
-8. **Add integration**をクリックします。
+      ![MS Teams integration](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
+    
+      利用可能なイベントの詳細:
+      
+      --8<-- "../include/integrations/events-for-integrations.md"
 
-    ![MS Teams integration](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
+1. **Test integration** をクリックして、設定の正確性、Wallarm Cloudの利用可能性、および通知形式を確認します。
 
-## インテグレーションのテスト
+      これにより、接頭辞 `[Test message]` の付いたテスト通知が送信されます:
 
---8<-- "../include-ja/integrations/test-integration-basic-data.md"
+      ```
+      [Test message] [Test partner] Network perimeter has changed
 
-ユーザー**wallarm**からのMicrosoft Teamsメッセージをテストします：
+      Notification type: new_scope_object_ips
 
-```
-[テストメッセージ] [テストパートナー] ネットワークパーコメーターが変更されました
+      New IP addresses were discovered in the network perimeter:
+      8.8.8.8
 
-通知タイプ：new_scope_object_ips
+      Client: TestCompany
+      Cloud: EU
+      ```
 
-ネットワークパーコメーターに新しいIPアドレスが見つかりました：
-8.8.8.8
+1. **Add integration** をクリックします。
 
-クライアント名：TestCompany
-クラウド：EU
-```
+## 追加アラートの設定
 
+--8<-- "../include/integrations/integrations-trigger-setup-limited.md"
 
-## インテグレーションの更新
+## 統合の無効化および削除
 
---8<-- "../include-ja/integrations/update-integration.md"
+--8<-- "../include/integrations/integrations-disable-delete.md"
 
-## インテグレーションの無効化
+## システムの利用不能および統合パラメータの不正
 
---8<-- "../include-ja/integrations/disable-integration.md"
-
-## インテグレーションの削除
-
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/integration-not-working.md"

@@ -1,5 +1,5 @@
-* Access to the account with the **Administrator** role and two‑factor authentication disabled in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
-* Executing all commands as a superuser (e.g. `root`)
-* Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer. Ensure the access is not blocked by a firewall
-* Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
-* Installed text editor **vim**, **nano**, or any other. In the commands in this article, **vim** is used
+* Wallarm Consoleにおける[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)用アカウントへアクセスするため、**Administrator**ロールが付与され、二要素認証が無効になっている必要があります  
+* すべてのコマンドをスーパーユーザ（例:`root`）として実行します  
+* all‑in‑one Wallarmインストーラをダウンロードするため、`https://meganode.wallarm.com`にアクセスしてください。ファイアウォールによってアクセスがブロックされていないことを確認します  
+* US Wallarm Cloudを使用している場合は`https://us1.api.wallarm.com`に、EU Wallarm Cloudを使用している場合は`https://api.wallarm.com`にアクセスしてください。アクセスをプロキシサーバ経由のみで構成できる場合は、[instructions][configure-proxy-balancer-instr]を使用してください  
+* インストール済みのテキストエディタ、**vim**、**nano**、またはその他のエディタが必要です。本記事のコマンドでは**vim**を使用します

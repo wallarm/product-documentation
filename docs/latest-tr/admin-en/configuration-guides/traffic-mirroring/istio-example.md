@@ -1,17 +1,17 @@
-# Trafik aynalama için Istio konfigürasyon örneği
+# Istio Trafik Aynalama Yapılandırması Örneği
 
-Bu makale, Istio'nun [trafiği aynalamak ve Wallarm düğümüne yönlendirmek](overview.md) için gerekli örnek konfigürasyonu sağlar.
+Bu makale, Istio'nun [trafiği aynalaması ve Wallarm node'una yönlendirmesi](overview.md) için gerekli örnek yapılandırmayı sağlar.
 
-## Adım 1: Istio'yu trafik aynalaması için yapılandırın
+## Adım 1: Istio'yu Trafiği Aynalamak İçin Yapılandırın
 
-Istio'nun trafiği aynaması için, `VirtualService`'i istenen yolları İstio için dahili uç noktaya (örn. Kubernetes'te barındırılan) veya `ServiceEntry` ile dış uç noktaya aynalama için yapılandırabilirsiniz:
+Istio'nun trafiği aynalaması için, aynalama rotalarını dahili uç noktaya (Istio için dahili, örneğin Kubernetes'te barındırılan) ya da `ServiceEntry` ile harici uç noktaya yapılandırmak üzere `VirtualService`'i yapılandırabilirsiniz:
 
-* Küme içi isteklerin aynalanmasını etkinleştirmek için (ör. podlar arası), `.spec.gateways`'e `mesh` ekleyin.
-* Dış isteklerin aynalanmasını etkinleştirmek için (ör. LoadBalancer veya NodePort hizmeti üzerinden), Istio `Gateway` bileşenini yapılandırın ve bileşenin adını `VirtualService`'in `.spec.gateways`'ine ekleyin. Bu seçenek aşağıdaki örnekte sunulmuştur.
+* Küme içi isteklerin aynalanmasını etkinleştirmek için (.spec.gateways'e `mesh` ekleyin).
+* Harici isteklerin (örneğin, LoadBalancer veya NodePort servisi üzerinden) aynalanmasını etkinleştirmek için, Istio `Gateway` bileşenini yapılandırın ve `VirtualService`'in `.spec.gateways` kısmına bileşenin adını ekleyin. Bu seçenek aşağıdaki örnekte sunulmaktadır.
 
 ```yaml
 ---
-### Aynalanmış trafiğin hedefi için konfigürasyon
+### Aynalanan trafiğin varış noktası yapılandırması
 ###
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
@@ -19,10 +19,10 @@ metadata:
   name: wallarm-external-svc
 spec:
   hosts:
-    - some.external.service.tld # aynalama hedef adresi
+    - some.external.service.tld # aynalama varış adresi
   location: MESH_EXTERNAL
   ports:
-    - number: 8445 # aynalama hedef portu
+    - number: 8445 # aynalama varış portu
       name: http
       protocol: HTTP
   resolution: DNS
@@ -35,10 +35,10 @@ spec:
   hosts:
     - ...
   gateways:
-    ### istio `Gateway` bileşeninin adı. Dış kaynaklardan gelen trafiği yönetmek için gerekli
+    ### Istio `Gateway` bileşeninin adı. Harici kaynaklardan gelen trafiğin işlenmesi için gereklidir
     ###
     - httpbin-gateway
-    ### Özel etiket, bu sanal hizmet yollarını Kubernetes podlarından (ağ geçitleri aracılığıyla olmayan küme içi iletişim) gelen isteklerle çalışmasını sağlar
+    ### Özel etiket, bu sanal servis rotalarının Kubernetes pod'larından gelen (gateway kullanılmadan yapılan) isteklerle çalışmasını sağlar
     ###
     - mesh
   http:
@@ -49,11 +49,11 @@ spec:
               number: 80
           weight: 100
       mirror:
-        host: some.external.service.tld # aynalama hedef adresi
+        host: some.external.service.tld # aynalama varış adresi
         port:
-          number: 8445 # aynalama hedef portu
+          number: 8445 # aynalama varış portu
 ---
-### Dış isteklerin yönetimi için
+### Harici isteklerin işlenmesi için
 ###
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
@@ -72,8 +72,8 @@ spec:
     - "httpbin.local"
 ```
 
-[Istio belgelerini inceleyin](https://istio.io/latest/docs/tasks/traffic-management/mirroring/)
+[Istio dokümantasyonunu inceleyin](https://istio.io/latest/docs/tasks/traffic-management/mirroring/)
 
-## Adım 2: Wallarm düğümünü aynalanmış trafiği filtrelemeye göre yapılandırın
+## Adım 2: Wallarm Node'unu Aynalanan Trafiği Filtreleyecek Şekilde Yapılandırın
 
---8<-- "../include-tr/wallarm-node-configuration-for-mirrored-traffic.md"
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"

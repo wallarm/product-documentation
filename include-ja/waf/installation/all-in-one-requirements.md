@@ -1,21 +1,18 @@
-* [US Cloud](https://us1.my.wallarm.com/) または [EU Cloud](https://my.wallarm.com/) のWallarmコンソールで**管理者**ロールとしてのアカウントへのアクセス。
-* サポートされているOS：
-
+* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)用Wallarm Consoleで**Administrator**ロールのアカウントにアクセスできること。
+* 対応OS:
     * Debian 10, 11および12.x
     * Ubuntu LTS 18.04, 20.04, 22.04
-    * CentOS 7, 8ストリーム、9ストリーム
+    * CentOS 7, 8 Stream, 9 Stream
     * Alma/Rocky Linux 9
     * RHEL 8.x
-    * RHEL 9.x
     * Oracle Linux 8.x
     * Oracle Linux 9.x
     * Redox
     * SuSe Linux
-    * その他（リストは常に広がっています、あなたのOSがリストにあるかどうかを確認するために[Wallarmサポートチーム](mailto:support@wallarm.com)に連絡してください）
-
-* all-in-one Wallarmインストーラーをダウンロードするための `https://meganode.wallarm.com` へのアクセス。アクセスがファイアウォールによってブロックされていないことを確認してください。
-* US Wallarm Cloudを利用するための `https://us1.api.wallarm.com` または EU Wallarm Cloudを利用するための `https://api.wallarm.com` へのアクセス。アクセスがプロキシサーバー経由でのみ設定できる場合は、[instructions][configure-proxy-balancer-instr] を使用してください。
-* Access to the IP addresses below for downloading updates to attack detection rules, as well as retrieving precise IPs for your allowlisted, denylisted, or graylisted countries, regions, or data centers
+    * その他（リストは随時拡大中です。お使いのOSがリストに含まれているか確認するため、[Wallarm support team](mailto:support@wallarm.com)にお問い合わせください。）
+* `https://meganode.wallarm.com`へアクセスし、オールインワンWallarmインストーラーをダウンロードしてください。ファイアウォールによりアクセスがブロックされていないことを確認します。
+* US Wallarm Cloud用の場合は`https://us1.api.wallarm.com`、またEU Wallarm Cloud用の場合は`https://api.wallarm.com`へアクセスしてください。アクセスがプロキシサーバ経由でのみ構成可能な場合は[手順][configure-proxy-balancer-instr]を参照してください。
+* 攻撃検知ルールのアップデートのダウンロードや[allowlisted, denylisted, or graylisted][ip-lists-docs]な国、地域、またはデータセンターに対する正確なIPを取得するため、下記のIPアドレスへアクセスしてください
 
     --8<-- "../include/wallarm-cloud-ips.md"
-* 全てのコマンドをスーパーユーザー（例：`root`）として実行します。
+* すべてのコマンドをスーパーユーザー（例: `root`）として実行してください。

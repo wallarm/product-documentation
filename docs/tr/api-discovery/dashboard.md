@@ -1,1 +1,6 @@
---8<-- "latest/api-discovery/dashboard.md"
+---
+search:
+  exclude: true
+---
+
+--8<-- "latest-tr/api-discovery/dashboard.md"

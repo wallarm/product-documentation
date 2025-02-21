@@ -1,42 +1,77 @@
-# 特定のURLおよびリクエストに対するボット保護の無効化
+[api-discovery-enable-link]:        ../api-discovery/setup.md#enable
 
-[**APIアビューズ防止**](overview.md)モジュールは、保護する特定のアプリケーション、対象とするボットのタイプ、許容レベルなどを設定する[プロファイル](setup.md)に基づき、ボットを識別して対処します。また、この記事で述べられている**APIアビューズ防止モードの設定**ルールを使用すると、特定のURLとリクエストに対するボット保護をオフにすることができます。
+# API Abuse Prevention例外 <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-ルールの[URIコンストラクタ](../user-guides/rules/rules.md#uri-constructor)にはURLとリクエストの要素（ヘッダーなど）が含まれているため、リクエストが対象とするURLと特定のリクエストタイプ（特定のヘッダーを含むリクエストなど）の両方に対してボット保護を無効にすることができます。
+本記事では、正当なボットを指定し、特定のターゲットURLおよびリクエスト種別に対してボット保護を無効化することで、[API Abuse Prevention](../api-abuse-prevention/overview.md)を微調整する方法について説明します。
 
-!!! info "異なるノードバージョンでのルールサポート"
-    この機能はバージョン4.8以上のノードでのみサポートされます。
+これらの機能は、基本的なAPI Abuse Prevention [プロファイルによる構成](setup.md#creating-profiles)を拡張します。
 
-## ルールの作成と適用
+## 正当な自動化の例外
 
-特定のURLまたはリクエストタイプのボット保護を無効にするには：
+API Abuse Preventionによるブロックを回避するために、正当なボットまたはクローラーに関連するIPアドレスを指定する場合は、**Exception list**を使用します。
 
-1. Wallarmコンソール → **ルール** → **規則を追加**に進みます。
-1. **リクエストが**の項目では、ルールを適用するリクエストおよび/またはURLを[記述](../user-guides/rules/rules.md#uri-constructor)します。
+例外リストにIPアドレスまたは範囲を追加し、対象アプリケーションを指定します。これにより、対象アプリケーションへのこれらのアドレスからのリクエストは悪意あるボットと判定されず、API Abuse Preventionによって[deny-](../user-guides/ip-lists/overview.md)または[graylist](../user-guides/ip-lists/overview.md)に追加されません。
 
-    URLを指定する場合、[**APIディスカバリー**](../api-discovery/overview.md)モジュールを使用してエンドポイントが発見されている場合、そのメニューを使用してエンドポイント用のルールを素早く作成することもできます。
+例外リストにIPアドレスを追加する方法は2通りあります：
 
-1. **次に**で、**APIアビューズ防止モードの設定**を選択し、設定します：
+* **API Abuse Prevention**セクション→**Exception list**タブにある**Add exception**から追加します。ここでは、IPやサブネットに加えて、API Abuse Preventionで無視すべきロケーションやソースタイプも追加できます。
 
-    * **デフォルト** - 説明された範囲（特定のURLまたはリクエスト）に対して、一般的なAPIアビューズ防止[プロファイル](setup.md)によって定義された通常の方法でボットからの保護が機能します。
-    * **ボット活動をチェックしない** - 説明されたURLおよび/またはリクエストタイプに対して、ボット活動のチェックが実行されません。
+    ![API Abuse Prevention - 例外リスト内から項目を追加](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
 
-1. オプションで、コメントに、このURL/リクエストタイプのルールを作成する理由を指定します。
+* **Attacks**セクションから：`api_abuse`、`account_takeover`、`scraping`および`security_crawlers`検索キーを利用するか、**Type**フィルタから適切なオプションを選択し、必要なイベントを展開して**Add to exception list**をクリックします。
 
-URLおよび/またはリクエストタイプの例外を一時的に無効にすることもできますが、ルールを削除せずに**デフォルト**モードを選択するだけです。後でいつでも**ボット活動をチェックしない**に戻ることができます。
+    ![API Abuse Prevention - 例外リストに項目を追加（イベント内から）](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
 
-## ルールの例
+IPアドレスが例外リストに追加されると、そのアドレスは自動的に[deny-](../user-guides/ip-lists/overview.md)または[graylist](../user-guides/ip-lists/overview.md)から削除されます。ただし、これはAPI Abuse Prevention自身により追加された場合（`Bot`理由が付与されている場合）に限ります。
 
-### リクエストヘッダーによる合法的なボットのマーキング
+!!! info "IPによるその他の攻撃タイプのブロック"
+    例外リストに登録されたIPアドレスがブルートフォース攻撃や入力検証攻撃など他の[attack types](../attacks-vulns-list.md)を発生させた場合、Wallarmはそのリクエストをブロックします。
 
-たとえば、複数のIPがリクエストを送信するKlaviyoマーケティングオートメーションツールがアプリケーションと統合されているとします。したがって、特定のURIに対して`Klaviyo/1.0`ユーザーエージェントからのGETリクエストで自動化（ボット）活動をチェックしないように設定します：
+デフォルトでは、IPアドレスは永久に例外リストに追加されます。必要に応じて、例外リストから削除されるタイミングを設定することも可能です。また、いつでも即座に例外からIPアドレスを削除できます。
 
-![特定のヘッダーを持つリクエストのボット活動をチェックしない](../images/user-guides/rules/api-abuse-url-request.png)
+**Exception list**タブでは履歴データが提供され、過去の特定の期間内にリストに表示された項目を確認できます。
 
-### テストエンドポイントに対するボットからの保護を無効にする
+## ターゲットURLおよび特定リクエストに対する例外
 
-たとえば、アプリケーションに属するエンドポイントがあるとします。そのアプリケーションはボットの活動から保護されるべきですが、テストエンドポイントは例外であるべきです。また、[**APIディスカバリー**](../api-discovery/overview.md)モジュールによってAPIインベントリが発見されています。
+[exception list](#exceptions-for-legitimate-automation)による優良ボットIPの指定に加え、要求先URLや特定のリクエスト種別、例えば特定のヘッダーを含むリクエストに対してボット保護を無効にすることができます。
 
-この場合、**APIディスカバリー**のエンドポイントリストからルールを作成する方が簡単です。そこに行き、エンドポイントを見つけ、そのページからルール作成を開始します：
+これを実現するために、Wallarmは**Set API Abuse Prevention mode**ルールを提供します（ノードバージョン4.8以上に対応）。
 
-![APIディスカバリーエンドポイントにAPIアビューズ防止モードの設定作成](../images/user-guides/rules/api-abuse-url.png)
+**ルールの作成と適用**
+
+特定のURLまたはリクエスト種別に対してボット保護を無効にするには：
+
+--8<-- "../include/rule-creation-initial-step.md"
+
+1. **Fine-tuning attack detection** → **Override API abuse profiles**を選択します。 
+2. **If request is**で、ルールを適用するリクエストやURLを[describe](../user-guides/rules/rules.md#uri-constructor)してください。特定のブランチ、ヒットまたはエンドポイントに対してルールを開始した場合、それらがスコープを定義します。必要に応じて、条件を追加できます。
+3. 希望のモードを選択します:
+    * **Default** - 記述されたスコープ（特定のURLまたはリクエスト）に対して、一般的なAPI Abuse Prevention [profiles](setup.md#creating-profiles)で定義された通常のボット保護が適用されます。
+    * **Do not check for bot activity** - 記述されたURLやリクエスト種別に対しては、ボットの活動チェックが行われません。
+4. 必要に応じて、コメント欄にこのURL/リクエスト種別に対してルールを作成した理由を記載します。
+
+なお、ルールを削除することなく、URLやリクエスト種別に対する例外を一時的に無効化することができます。その場合、**Default**モードを選択してください。後でいつでも**Do not check for bot activity**に戻すことが可能です。
+
+**ルールの例**
+
+**リクエストヘッダーによる正当なボットの指定**
+
+例えば、アプリケーションが複数のIPからリクエストを送信するKlaviyoマーケティングオートメーションツールと統合されているとします。そのため、特定のURIに対する`Klaviyo/1.0`ユーザーエージェントからのGETリクエストにおいて自動化（ボット）活動のチェックを行わないように設定します。
+
+![特定のヘッダーを含むリクエストに対してボット活動をチェックしない](../images/user-guides/rules/api-abuse-url-request.png)
+
+**テスト用エンドポイントに対するボット保護の無効化**
+
+例えば、アプリケーションに属するエンドポイントがあり、アプリケーション全体はボット活動から保護されるべきですが、テスト用エンドポイントは例外とする必要があるとします。また、API在庫が[**API Discovery**](../api-discovery/overview.md)モジュールによって発見されています。 
+
+この場合、**API Discovery**のエンドポイント一覧からルールを作成する方が簡単です。該当エンドポイントを探し、そのページからルール作成を開始してください。
+
+![API Discoveryエンドポイント用Set API Abuse Prevention modeの作成](../images/user-guides/rules/api-abuse-url.png)
+
+## プロファイルの無効化と削除
+
+無効化されたプロファイルは、**API Abuse Prevention**モジュールがトラフィック分析中に使用しないものの、プロファイル一覧には表示されるものを指します。無効化されたプロファイルはいつでも再度有効化できます。有効なプロファイルが存在しない場合、モジュールは悪意のあるボットをブロックしません。
+
+削除されたプロファイルは、復元不可能であり、**API Abuse Prevention**モジュールがトラフィック分析中に使用しないものです。
+
+プロファイルメニュー内に**Disable**および**Delete**オプションが用意されています。

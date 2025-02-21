@@ -1,11 +1,11 @@
-Genel özelleştirme seçenekleri:
+Common özelleştirme seçenekleri:
 
-* [Filtrasyon modunun konfigürasyonu][waf-mode-instr]
-* [Wallarm düğüm değişkenlerinin kaydedilmesi][logging-instr]
-* [Filtreleme düğümünün arkasında proxy sunucunun dengeleyicinin kullanılması][proxy-balancer-instr]
-* [`Block` filtrasyon modunda Wallarm Tarayıcı adreslerinin izin listesine eklenmesi][scanner-allowlisting-instr]
-* [`wallarm_process_time_limit` direktifinde tek bir isteğin işlenme süresinin sınırlanması][process-time-limit-instr]
-* [NGINX diretifinde `proxy_read_timeout` olan sunucu yanıt bekleme süresinin sınırlanması](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
-* [NGINX direktifinde `client_max_body_size` olan maksimum istek boyutunun sınırlanması](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
-* [NGINX'te dinamik DNS çözünürlüğünün konfigüre edilmesi][dynamic-dns-resolution-nginx]
-* [**libdetection** ile saldırıların çift tespiti][enable-libdetection-docs]
+* [Filtreleme modunun yapılandırılması][waf-mode-instr]
+* [Wallarm node değişkenlerinin günlük kaydı][logging-instr]
+* [Filtreleme düğümünün arkasındaki proxy sunucusunun dengeleyicisinin kullanılması][proxy-balancer-instr]
+* [Wallarm Scanner adreslerini `block` filtreleme modunda izin listesine ekleme][scanner-allowlisting-instr]
+* [Tek istek işleme süresinin `wallarm_process_time_limit` yönergesinde sınırlandırılması][process-time-limit-instr]
+* [NGINX yönergesi `proxy_read_timeout` içinde sunucu yanıt bekleme süresinin sınırlandırılması](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
+* [NGINX yönergesi `client_max_body_size` içinde maksimum istek boyutunun sınırlandırılması](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
+* [NGINX'de dinamik DNS çözümlemesinin yapılandırılması][dynamic-dns-resolution-nginx]
+* [**libdetection** ile saldırıların çift tespit edilmesi][enable-libdetection-docs]

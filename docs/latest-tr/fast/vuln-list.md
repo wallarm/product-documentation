@@ -1,5 +1,5 @@
 ---
-açıklama: Bu belge, FAST'ın algıladığı yazılım güvenlik açıklarını listeler. Listede yer alan her birim, bu açığa karşılık gelen Wallarm koduna sahiptir. Açıklıkların çoğu ayrıca CWE kodları ile de eşlik edilir.
+description: Bu belge, FAST'ın tespit ettiği yazılım güvenlik açıklarını listeler. Listedeki her öğenin, bu güvenlik açığına karşılık gelen Wallarm kodu vardır. Çoğu güvenlik açığı, ayrıca CWE kodları ile birlikte sunulmaktadır.
 ---
 
 [cwe-22]:   https://cwe.mitre.org/data/definitions/22.html
@@ -39,13 +39,13 @@ açıklama: Bu belge, FAST'ın algıladığı yazılım güvenlik açıklarını
 [anchor-vuln-list]:     #vulnerabilities-list
 
 [anchor-rce]:   #remote-code-execution-rce
-[anchor-ssrf]:  #serverside-request-forgery-ssrf
+[anchor-ssrf]:  #server-side-request-forgery-ssrf
 
-# FAST Tarafından Belirlenebilecek Güvenlik Açıkları
+# FAST Tarafından Tespit Edilebilen Güvenlik Açıkları
 
-Bu belge, FAST'ın tespit ettiği yazılım güvenlik açıklarını listeler. Listede yer alan her birim, bu açığa karşılık gelen Wallarm koduna sahiptir. Açıklıkların çoğu Genel Zayıflık Numaralandırması (CWE) kodları ile beraber sunulmaktadır.
+Bu belge, FAST'ın tespit ettiği yazılım güvenlik açıklarını listeler. Listedeki her öğenin, bu güvenlik açığına karşılık gelen Wallarm kodu vardır. Çoğu güvenlik açığı, ayrıca [Common Weakness Enumeration (CWE)][link-cwe] kodları ile birlikte sunulmaktadır.
 
-Listede yer alan her birim, bu açığa karşılık gelen Wallarm koduna sahiptir.
+Listedeki her öğenin, bu güvenlik açığına karşılık gelen Wallarm kodu vardır.
 
 ## Güvenlik Açıkları Listesi
 
@@ -56,73 +56,70 @@ Listede yer alan her birim, bu açığa karşılık gelen Wallarm koduna sahipti
 
 ####    Açıklama
 
-Anomali, uygulamanın aldığı bir isteğe atipik bir tepki olarak karakterize edilir.
+Anomali, uygulamanın alınan bir isteğe alışılmadık bir tepki vermesiyle karakterize edilir.
 
-Tespit edilen anomali, uygulamanın zayıf ve potansiyel olarak savunmasız bir alanını gösterir. Bu güvenlik açığı, bir saldırganın uygulamayı doğrudan saldırmasına veya saldırıdan önce veri toplamasına olanak sağlar.
+Tespit edilen anomali, uygulamanın zayıf ve potansiyel olarak savunmasız bir alanına işaret eder. Bu güvenlik açığı, bir saldırganın uygulamaya doğrudan saldırmasına veya saldırı öncesinde verileri toplamasına olanak tanır.
 
-### XML Dış Varlık Salıdırısı (XXE)
+### XML Dış Varlık Saldırısı (XXE)
 
 **CWE kodu:** [CWE-611][cwe-611]<br>
 **Wallarm kodu:** `xxe`
 
 ####    Açıklama
 
-XXE güvenlik açığı, bir saldırganın hedef web sunucusunda değerlendirilmek üzere XML belgesine dış bir varlık enjekte etmesine izin verir.
+XXE açığı, bir saldırganın XML ayrıştırıcısı tarafından değerlendirilecek ve ardından hedef web sunucusunda çalıştırılacak şekilde bir XML belgesine dış varlık enjekte etmesine izin verir.
 
-Başarılı bir saldırı sonucunda, bir saldırgan,
-* web uygulamasının gizli verilerine erişebilir 
-* dahili veri ağlarını tarayabilir 
-* web sunucusunda bulunan dosyaları okuyabilir 
-* bir [SSRF][anchor-ssrf] saldırısı gerçekleştirir
-* Hizmet Reddetme (DoS) saldırısı gerçekleştirebilir
+Başarılı bir saldırı sonucunda, bir saldırgan;
+* Web uygulamasının gizli verilerine erişebilir,
+* Dahili veri ağlarını tarayabilir,
+* Web sunucusunda bulunan dosyaları okuyabilir,
+* Bir [SSRF][anchor-ssrf] saldırısı gerçekleştirebilir,
+* Bir Hizmet Reddi (DoS) saldırısı düzenleyebilir.
 
-Bu güvenlik açığı, bir web uygulamasında XML dış varlıklarının ayrıştırılmasına ilişkin kısıtlamanın olmaması durumunda meydana gelir.
+Bu güvenlik açığı, web uygulamasında XML dış varlıklarının ayrıştırılmasına yönelik kısıtlamaların olmamasından kaynaklanır.
 
-####    Düzeltme Önerisi
+####    Çözüm
 
-Aşağıdaki önerileri takip edebilirsiniz:
-* Kullanıcı tarafından sağlanan XML belgeleriyle çalışırken XML dış varlık ayrıştırmasını devre dışı bırakın.
-* [OWASP XXE Önleme Hile Sayfası][link-owasp-xxe-cheatsheet]"ndeki önerileri uygulayın.
+Aşağıdaki önerileri uygulayabilirsiniz:
+* Kullanıcı tarafından sağlanan XML belgeleriyle çalışırken, XML dış varlıkların ayrıştırılmasını devre dışı bırakın.
+* [OWASP XXE Prevention Cheat Sheet][link-owasp-xxe-cheatsheet] tavsiyelerini uygulayın.
 
-
-### Sunucu Tarafı Şablon Enjeksiyonu (SSTI)
+### Sunucu Taraflı Şablon Enjeksiyonu (SSTI)
 
 **CWE kodları:** [CWE-94][cwe-94], [CWE-159][cwe-159]<br>
 **Wallarm kodu:** `ssti`
 
 ####    Açıklama
 
-Bir saldırgan, SSTI saldırılarına savunmasız bir web sunucusundaki kullanıcı doldurma formuna çalıştırılabilir bir kod enjekte edebilir, böylece bu kod web sunucusu tarafından ayrıştırılır ve çalıştırılır.
+Bir saldırgan, SSTI saldırılarına savunmasız bir web sunucusundaki kullanıcı tarafından doldurulan form üzerine çalıştırılabilir kod enjekte edebilir; bu kod, web sunucusu tarafından ayrıştırılır ve çalıştırılır.
 
-Başarılı bir saldırı, savunmasız bir web sunucusunun tamamen ele geçirilmesine neden olabilir, belirli koşullarda saldırganın keyfi istekleri gerçekleştirmesine, server'in dosya sistemlerini keşfetmesine ve uzaktan keyfi bir kodun çalıştırılabilmesine (detaylar için [“RCE saldırısı”][anchor-rce]na bakınız), yardımcı olur.   
+Başarılı bir saldırı, savunmasız web sunucusunun tamamen ele geçirilmesine yol açabilir; bu durum, bir saldırgana istekleri keyfi olarak yürütme, sunucunun dosya sistemlerini keşfetme ve belirli durumlarda [“RCE attack”][anchor-rce] (uzaktan kod yürütme) gerçekleştirme gibi pek çok olanağı sağlayabilir.
 
-Bu güvenlik açığı, kullanıcı girişinin yanlış doğrulanması ve ayrıştırılması sonucunda ortaya çıkar.
+Bu güvenlik açığı, kullanıcı girdisinin hatalı doğrulanması ve ayrıştırılmasından kaynaklanır.
 
-####    Düzeltme Önerisi
+####    Çözüm
 
-Bir girişteki birimin çalışmasını önlemek için tüm kullanıcı girişlerini temizleme ve filtreleme önerisini takip edebilirsiniz.
+Girdideki herhangi bir varlığın çalıştırılmasını önlemek için tüm kullanıcı girdilerini temizleyip filtrelemenizi öneririz.
 
-
-### Cross-Site İstek Sahteciliği (CSRF)
+### Cross-Site Request Forgery (CSRF)
 
 **CWE kodu:** [CWE-352][cwe-352]<br>
 **Wallarm kodu:** `csrf`
 
 ####    Açıklama
 
-Bir CSRF saldırısı, bir saldırganın yasal bir kullanıcıymış gibi bir istek göndermesini sağlar.
+CSRF saldırısı, bir saldırganın, meşru bir kullanıcı adına savunmasız bir uygulamaya istek göndermesine olanak tanır.
 
-İlgili güvenlik açığı, kullanıcının tarayıcısının çapraz site isteği yaparken hedef alan adı için ayarlanan çerezleri otomatik olarak eklemesi nedeniyle meydana gelir. 
+İlgili güvenlik açığı, kullanıcının tarayıcısının, çapraz site isteği yaparken hedef alan adı için ayarlanmış çerezleri otomatik olarak eklemesinden kaynaklanır.
 
-Sonuç olarak, saldırgan, yasal bir kullanıcıymış gibi görünerek saldırganın o kullanıcının çerezlerine erişimi olmasa bile savunmasız web uygulamasına zararlı bir web sitesinden bir istek gönderebilir.
+Sonuç olarak, bir saldırgan, savunmasız web uygulamasına kötü amaçlı bir web sitesinden istek göndererek, savunmasız sitede kimliği doğrulanmış meşru bir kullanıcı kılığına girebilir; saldırganın, kullanıcının çerezlerine erişmesi bile gerekmez.
 
-####    Düzeltme Önerisi
+####    Çözüm
 
-Aşağıdaki önerileri takip edebilirsiniz:
-* CSRF tokenleri ve diğerleri gibi anti-CSRF koruma mekanizmalarını kullanın.
-* `SameSite` çerez özelliğini ayarlayın.
-* [OWASP CSRF Önleme Hile Sayfası][link-owasp-csrf-cheatsheet]ndeki önerileri uygulayın.
-
+Aşağıdaki önerileri uygulayabilirsiniz:
+* CSRF jetonları gibi anti-CSRF koruma mekanizmalarını kullanın.
+* `SameSite` çerez özniteliğini ayarlayın.
+* [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet] tavsiyelerini uygulayın.
 
 ### Cross-site Scripting (XSS)
 
@@ -131,29 +128,27 @@ Aşağıdaki önerileri takip edebilirsiniz:
 
 ####    Açıklama
 
-Bir cross-site scripting saldırısı, bir saldırganın bir kullanıcının tarayıcısında hazırlanan keyfi bir kodu çalıştırmasını sağlar.
+Cross-site scripting saldırısı, bir saldırganın, kullanıcının tarayıcısında önceden hazırlanmış keyfi kodu çalıştırmasına olanak tanır.
 
-Birkaç XSS saldırı türü vardır:
-* Depolanmış XSS, bir kötü amaçlı kodun web uygulamasının sayfasına önceden yerleştirilmesidir.
+XSS saldırısının birkaç türü vardır:
+* Stored XSS, kötü amaçlı kodun web uygulamasının sayfasında önceden gömülü olması durumudur.
 
-    Web uygulaması depolanmış XSS saldırısına savunmasızsa, bir saldırgan bir kötü amaçlı kodu web uygulamasının HTML sayfasına enjekte edebilir; dahası, bu kod tutarlı kalacak ve enfekte web sayfasını isteyen herhangi bir kullanıcının tarayıcısı tarafından çalıştırılacaktır.
+    Web uygulaması stored XSS saldırısına karşı savunmasızsa, bir saldırgan kötü amaçlı kodu web uygulamasının HTML sayfasına enjekte edebilir; ayrıca bu kod kalıcı hale gelir ve enfekte edilmiş web sayfasını talep eden herhangi bir kullanıcının tarayıcısı tarafından çalıştırılır.
     
-* Yansıtılmış XSS, bir saldırganın bir kullanıcıyı özel olarak hazırlanmış bir bağlantıyı açmaya kandırmasıdır.      
+* Reflected XSS, bir saldırganın, kullanıcıyı özel olarak hazırlanmış bir bağlantıyı açmaya ikna etmesi durumudur.      
 
-* DOM tabanlı XSS, web uygulamasının sayfasına yerleştirilen bir JavaScript kod parçacığının, bu kod parçacığında bulunan hatalar nedeniyle girişi ayrıştırıp bir JavaScript komutu olarak çalıştırmasıdır.
+* DOM tabanlı XSS, web uygulaması sayfasına gömülü JavaScript kod parçacığının girdiyi ayrıştırıp, bu hatalı kod parçacığı nedeniyle JavaScript komutu olarak çalıştırması durumudur.
 
-Herhangi bir güvenlik açığının istismarı, keyfi bir JavaScript kodunun çalıştırılmasına yol açar. XSS saldırısı başarılı olduktan sonra, saldırgan bir kullanıcının oturumunu çalabilir veya kimlik bilgilerini, kullanıcının yerine istekte bulunabilir ve diğer zararlı eylemleri gerçekleştirebilir. 
+Yukarıda listelenen güvenlik açıklarından herhangi birinin istismarı, keyfi bir JavaScript kodunun çalıştırılmasına yol açar. Başarılı bir XSS saldırısı durumunda, bir saldırgan kullanıcının oturumunu veya kimlik bilgilerini çalabilir, kullanıcı adına istek gönderebilir ve diğer kötü niyetli işlemleri gerçekleştirebilir.
 
-Bu güvenlik açığı sınıfı, kullanıcı girişinin yanlış doğrulanması ve ayrıştırılması sonucunda oluşur.
+Bu güvenlik açığı sınıfı, kullanıcı girdisinin hatalı doğrulanması ve ayrıştırılmasından kaynaklanır.
 
+####    Çözüm
 
-####    Düzeltme Önerisi
-
-Aşağıdaki önerileri takip edebilirsiniz:
-* Web uygulamasının giriş olarak aldığı tüm parametreleri temizleyin ve filtreleyin, böylece girişteki bir birimin çalıştırılmasını önleyin.
-* Web uygulamasının sayfalarını oluştururken, dinamik olarak oluşturulan tüm varlıkları temizleyin ve kaçın.
-* [OWASP XXS Önleme Hile Sayfası][link-owasp-xss-cheatsheet]'ndeki önerileri uygulayın.
-
+Aşağıdaki önerileri uygulayabilirsiniz:
+* Girdideki herhangi bir varlığın çalıştırılmasını önlemek için, web uygulamasının aldığı tüm parametreleri temizleyip filtreleyin.
+* Web uygulamasının sayfalarını oluştururken, dinamik olarak oluşturulan tüm varlıkları temizleyip kaçış (escape) işlemlerini uygulayın.
+* [OWASP XXS Prevention Cheat Sheet][link-owasp-xss-cheatsheet] tavsiyelerini uygulayın.
 
 ### Güvensiz Doğrudan Nesne Referansları (IDOR)
 
@@ -162,20 +157,19 @@ Aşağıdaki önerileri takip edebilirsiniz:
 
 ####    Açıklama
 
-IDOR açığı ile, savunmasız web uygulamasının kimlik doğrulama ve yetkilendirme mekanizmaları, kullanıcının başka bir kullanıcının verileri veya kaynaklarına erişmesini önlemez. 
+IDOR güvenlik açığıyla, savunmasız bir web uygulamasının kimlik doğrulama ve yetkilendirme mekanizmaları, bir kullanıcının başka bir kullanıcının verilerine veya kaynaklarına erişmesini engellemez.
 
-Bu güvenlik açığı, web uygulamasının bir nesneye erişme yeteneği (örneğin, bir dosya, bir dizin, bir veritabanı girişi) sunması ve düzgün erişim kontrol mekanizmaları uygulamaması nedeniyle gerçekleşir.  
+Bu güvenlik açığı, web uygulamasının, istekte bulunan parametrelerdeki belirli bir kısmı değiştirerek (örneğin, dosya, dizin, veritabanı girişi) bir nesneye erişim yetkisi vermesi ve uygun erişim kontrol mekanizmalarını uygulamamasından kaynaklanır.
 
-Bu güvenlik açığından yararlanmak için, bir saldırgan istek dizesini manipüle eder ve gizli bilgilere yetkisiz erişim kazanır.
+Bu güvenlik açığından yararlanmak için, bir saldırgan istek dizgisini manipüle ederek, savunmasız web uygulamasına veya kullanıcılarına ait gizli bilgilere yetkisiz erişim sağlayabilir.
 
-####    Düzeltme Önerisi
+####    Çözüm
 
-Aşağıdaki önerileri takip edebilirsiniz:
-* Web uygulamasının kaynakları için uygun erişim kontrol mekanizmaları uygulayın.
-* Kullanıcılara verilmiş roller temelinde kaynaklara erişim hakkı veren rol tabanlı erişim kontrol mekanizmalarını uygulayın.
-* Dolaylı nesne referansları kullanın.
-* [OWASP IDOR Önleme Hile Sayfası][link-owasp-idor-cheatsheet]'ndeki önerileri uygulayın.
-
+Aşağıdaki önerileri uygulayabilirsiniz:
+* Web uygulamasının kaynakları için uygun erişim kontrol mekanizmalarını uygulayın.
+* Kullanıcılara atanmış rollere dayalı olarak kaynaklara erişim sağlamak için rol tabanlı erişim kontrol mekanizmalarını uygulayın.
+* Dolaylı nesne referanslarını kullanın.
+* [OWASP IDOR Prevention Cheat Sheet][link-owasp-idor-cheatsheet] tavsiyelerini uygulayın.
 
 ### Açık Yönlendirme
 
@@ -184,46 +178,43 @@ Aşağıdaki önerileri takip edebilirsiniz:
 
 ####    Açıklama
 
-Bir saldırgan, kullanıcının zararlı bir web sayfasına açık yönlendirme saldırısı yoluyla yasal bir web uygulaması üzerinden yönlendirilmesini sağlar.
+Bir saldırgan, meşru bir web uygulaması aracılığıyla kullanıcıyı zararlı bir web sayfasına yönlendirmek için açık yönlendirme saldırısını kullanabilir.
 
-Web uygulamasının URL girişlerinin yanlış filtrelenmesi nedeniyle bu saldırıya karşı savunmasızlık oluşur.
+Bu saldırıya karşı savunmasızlık, URL girdilerinin hatalı filtrelenmesinden kaynaklanır.
 
-####    Düzeltme Önerisi
+####    Çözüm
 
-Aşağıdaki önerileri takip edebilirsiniz:
-* Web uygulamasının giriş olarak aldığı tüm parametreleri temizleyin ve filtreleyin, böylece girişteki bir birimin çalıştırılmasını önleyin.
-* Kullanıcıları tüm bekleyen yönlendirmeler hakkında bilgilendirin ve açık izin isteyin.
+Aşağıdaki önerileri uygulayabilirsiniz:
+* Girdideki herhangi bir varlığın çalıştırılmasını önlemek için, web uygulamasının aldığı tüm parametreleri temizleyip filtreleyin.
+* Bekleyen tüm yönlendirmeler hakkında kullanıcılara bilgi verin ve açık onaylarını isteyin.
 
-
-### Sunucu Tarafı İstek Sahteciliği (SSRF)
+### Sunucu Tarafından İstek Sahteciliği (SSRF)
 
 **CWE kodu:** [CWE-918][cwe-918]<br>
 **Wallarm kodu:** `ssrf`
 
 ####    Açıklama
 
-Başarılı bir SSRF saldırısı, bir saldırganın saldırılan web sunucusu adına istekte bulunmasını sağlayabilir; bu da potansiyel olarak savunmasız web uygulamasının ağ bağlantı noktalarının ortaya çıkarılmasına, dahili ağların taranmasına ve yetki aşımı yapmaya yol açar.  
+Başarılı bir SSRF saldırısı, bir saldırganın, saldırıya uğrayan web sunucusu adına istek göndermesine olanak tanır; bu durum, savunmasız web uygulamasında kullanılan ağ portlarının ifşasına, dahili ağların taranmasına ve yetkilendirmenin atlatılmasına yol açabilir.
 
-####    Düzeltme Önerisi
+####    Çözüm
 
-Aşağıdaki önerileri takip edebilirsiniz:
-* Web uygulamasının giriş olarak aldığı tüm parametreleri temizleyin ve filtreleyin, böylece girişteki bir birimin çalıştırılmasını önleyin.
-* [OWASP SSRF Önleme Hile Sayfası][link-owasp-ssrf-cheatsheet]'ndeki önerileri uygulayın.
+Aşağıdaki önerileri uygulayabilirsiniz:
+* Girdideki herhangi bir varlığın çalıştırılmasını önlemek için, web uygulamasının aldığı tüm parametreleri temizleyip filtreleyin.
+* [OWASP SSRF Prevention Cheat Sheet][link-owasp-ssrf-cheatsheet] tavsiyelerini uygulayın.
 
+### Bilgi Sızıntısı
 
-### Bilgi Maruziyeti
-
-**CWE kodları:** [CWE-200][cwe-200] (bkz: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548])<br>
+**CWE kodları:** [CWE-200][cwe-200] (ayrıca bkz: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548])<br>
 **Wallarm kodu:** `info`
 
 ####    Açıklama
 
-Savunmasız web uygulaması, ya kasıtlı ya da yanlışlıkla yetkili olmayan bir özneye gizli bilgiyi ifşa eder. 
+Savunmasız web uygulaması, doğru ya da yanlış şekilde, gizli bilgileri yetkili olmayan bir kişiye ifşa edebilir.
 
-####    Düzeltme Önerisi
+####    Çözüm
 
-Web uygulamasının herhangi bir gizli bilgiyi görüntüleme yeteneğini engelleme önerisini takip edebilirsiniz.
-
+Web uygulamasının, gizli bilgi göstermesini engelleyecek şekilde yapılandırılmasını sağlayın.
 
 ### Uzaktan Kod Yürütme (RCE)
 
@@ -232,38 +223,36 @@ Web uygulamasının herhangi bir gizli bilgiyi görüntüleme yeteneğini engell
 
 ####    Açıklama
 
-Bir saldırgan, kötü amaçlı bir kodu bir web uygulamasına yönelik bir isteğe enjekte edebilir ve uygulama bu kodu çalıştırır. Ayrıca, saldırgan aynı işletim sistemi üzerinde belirli komutları yürütebilmeyi deneyebilir.
+Bir saldırgan, web uygulamasına gönderilen isteğe kötü amaçlı kod enjekte edebilir ve uygulama bu kodu çalıştırır. Ek olarak, saldırgan, savunmasız web uygulamasının çalıştığı işletim sistemi için bazı komutları çalıştırmaya çalışabilir.
 
-Bir RCE saldırısı başarılı olduğunda, bir saldırgan çeşitli eylemler gerçekleştirebilir, gibi
-* Savunmasız web uygulamasının verilerinin mahremiyetinin, erişilebilirliğinin ve bütünlüğünün aşılması.
-* Web uygulamasının çalıştığı işletim sistemi ve sunucunun kontrolünün ele geçirilmesi.
-* Diğer mümkün olan aksiyonlar.
+Başarılı bir RCE saldırısı durumunda, bir saldırgan;
+* Savunmasız web uygulamasının verilerinin gizlilik, erişilebilirlik ve bütünlüğünü tehlikeye atabilir,
+* Web uygulamasının çalıştığı işletim sistemi ve sunucu üzerinde kontrol sağlayabilir,
+* Diğer pek çok işlemi gerçekleştirebilir.
 
-Bu güvenlik açığı, kullanışı girişin yanlış doğrulanması ve ayrıştırılması sonucu ortaya çıkar.
+Bu güvenlik açığı, kullanıcı girdisinin hatalı doğrulanması ve ayrıştırılmasından kaynaklanır.
 
-####    Düzeltme Önerisi
+####    Çözüm
 
-Girişteki bir birimin çalıştırılmasını önlemek için tüm kullanıcı girişlerini temizleme ve filtreleme önerisini takip edebilirsiniz.
+Girdideki herhangi bir varlığın çalıştırılmasını önlemek için, tüm kullanıcı girdilerini temizleyip filtrelemenizi öneririz.
 
-
-### Kimlik Doğrulama Aşma
+### Kimlik Doğrulama Atlatma
 
 **CWE kodu:** [CWE-288][cwe-288]<br>
 **Wallarm kodu:** `auth`
 
 ####    Açıklama
 
-Kimlik doğrulama mekanizmaları mevcut olsa bile, web uygulaması ana kimlik doğrulama mekanizmasını aşmaya veya zayıflıklarını işletmeye izin veren alternatif kimlik doğrulama yöntemlerine sahip olabilir. Bu faktörlerin birleşimi, bir saldırganın kullanıcı veya yönetici izinleriyle erişim kazanmasına neden olabilir.
+Mevcut kimlik doğrulama mekanizmalarına rağmen, bir web uygulaması, ana kimlik doğrulama mekanizmasını atlatmaya veya zayıflıklarını kullanmaya olanak tanıyan alternatif kimlik doğrulama yöntemlerine sahip olabilir. Bu faktörlerin kombinasyonu, bir saldırganın kullanıcı veya yönetici izinleriyle erişim sağlamasına neden olabilir.
 
-Başarılı bir kimlik doğrulama bypass saldırısı potansiyel olarak kullanıcıların gizli verilerinin ifşa edilmesine veya yönetici izinleriyle savunmasız uygulamanın kontrol edilmesine neden olur.
+Başarılı bir kimlik doğrulama atlatma saldırısı, kullanıcıların gizli verilerinin ifşa edilmesine veya yönetici izinleriyle savunmasız uygulamanın ele geçirilmesine yol açabilir.
 
-####    Düzeltme Önerisi
+####    Çözüm
 
-Aşağıdaki önerileri takip edebilirsiniz:
-* Mevcut kimlik doğrulama mekanizmalarını iyileştirin ve güçlendirin.
-* Saldırganların belirlenmiş mekanizmalar aracılığıyla gereken kimlik doğrulama işleminden kaçınarak bir uygulamaya erişebilecek yeni kimlik doğrulama yöntemlerinin tanımlanmasını önleyin.
-* [OWASP Kimlik Doğrulama Hile Sayfası][link-owasp-auth-cheatsheet]'ndeki önerileri uygulayın.
-
+Aşağıdaki önerileri uygulayabilirsiniz:
+* Mevcut kimlik doğrulama mekanizmalarını geliştirin ve güçlendirin.
+* Önceden tanımlı mekanizmalar üzerinden gerekli kimlik doğrulama prosedürünü atlatmaya olanak tanıyan alternatif kimlik doğrulama yöntemlerini ortadan kaldırın.
+* [OWASP Authentication Cheat Sheet][link-owasp-auth-cheatsheet] tavsiyelerini uygulayın.
 
 ### LDAP Enjeksiyonu
 
@@ -272,18 +261,17 @@ Aşağıdaki önerileri takip edebilirsiniz:
 
 ####    Açıklama
 
-LDAP enjeksiyonları, bir saldırganın LDAP sunucusuna yapılan istekleri değiştirerek LDAP arama filtrelerini değiştirmesine izin veren bir saldırı sınıfını temsil eder.
+LDAP enjeksiyonları, bir saldırganın, LDAP sunucusuna yapılan istekleri değiştirerek LDAP arama filtrelerini değiştirmesine olanak sağlayan saldırı sınıfını temsil eder.
 
-Başarılı bir LDAP enjeksiyon saldırısı, LDAP kullanıcıları ve ev sahipleri hakkında gizli verilere okuma ve yazma işlemlerine erişim sağlar.
+Başarılı bir LDAP enjeksiyonu saldırısı, LDAP kullanıcıları ve ana bilgisayarlar hakkındaki gizli veriler üzerinde okuma ve yazma işlemlerine erişim izni verebilir.
 
-Bu güvenlik açığı, kullanıcı girişinin yanlış doğrulanması ve ayrıştırılması sonucunda oluşur.
+Bu güvenlik açığı, kullanıcı girdisinin hatalı doğrulanması ve ayrıştırılmasından kaynaklanır.
 
-####    Düzeltme Önerisi
+####    Çözüm
 
-Aşağıdaki önerileri takip edebilirsiniz:
-* Web uygulamasının giriş olarak aldığı tüm parametreleri temizleyin ve filtreleyin, böylece girişteki bir birimin çalıştırılmasını önleyin.
-* [OWASP LDAP Enjeksiyonu Önleme Hile Sayfası][link-owasp-ldapi-cheatsheet]'ndeki önerileri uygulayın.
-
+Aşağıdaki önerileri uygulayabilirsiniz:
+* Girdideki herhangi bir varlığın çalıştırılmasını önlemek için, web uygulamasının aldığı tüm parametreleri temizleyip filtreleyin.
+* [OWASP LDAP Injection Prevention Cheat Sheet][link-owasp-ldapi-cheatsheet] tavsiyelerini uygulayın.
 
 ### NoSQL Enjeksiyonu
 
@@ -292,30 +280,28 @@ Aşağıdaki önerileri takip edebilirsiniz:
 
 ####    Açıklama
 
-Bu saldırıya karşı savunmasızlık, kullanıcı girişinin yetersiz filtrelenmesi nedeniyle oluşur. Bir NoSQL enjeksiyon saldırısı, NoSQL veritabanına özel olarak hazırlanmış bir sorgu enjekte ederek gerçekleştirilir.
+Bu saldırıya karşı savunmasızlık, kullanıcı girdisinin yetersiz filtrelenmesinden kaynaklanır. NoSQL enjeksiyonu, özel olarak hazırlanmış bir sorgunun NoSQL veritabanına enjekte edilmesiyle gerçekleştirilir.
 
-####    Düzeltme Önerisi
+####    Çözüm
 
-Bir girişteki birimin çalıştırılmasını önlemek için tüm kullanıcı girişlerini temizleme ve filtreleme önerisini takip edebilirsiniz.
+Girdideki herhangi bir varlığın çalıştırılmasını önlemek için, tüm kullanıcı girdilerini temizleyip filtreleyin.
 
-
-### Path Traversal
+### Yol Gezinimi (Path Traversal)
 
 **CWE kodu:** [CWE-22][cwe-22]<br>
 **Wallarm kodu:** `ptrav`
 
 ####    Açıklama
 
-Bir path traversal saldırısı, bir saldırganın savunmasız web uygulamasının bulunduğu dosya sistemine yerleşmiş gizli veri içeren dosya ve dizinlere erişmesine izin veren web uygulamasının parametrelerini değiştirerek mevcut yolları değiştirir.
+Yol gezinimi saldırısı, bir saldırganın, web uygulamasının parametreleri aracılığıyla mevcut yolları değiştirerek, savunmasız web uygulamasının bulunduğu dosya sisteminde depolanan gizli verilere sahip dosya ve dizinlere erişim sağlamasına olanak tanır.
 
-Bir kullanıcı, web uygulaması aracılığıyla bir dosya veya dizin talep ettiğinde kullanıcı girişinin yeterli filtreleme yapmaması nedeniyle bu saldırıya savunmasızlık oluşur.
+Bu saldırıya karşı savunmasızlık, kullanıcı tarafından bir dosya veya dizin istenirken girdinin yetersiz filtrelenmesinden kaynaklanır.
 
-####    Düzeltme Önerisi
+####    Çözüm
 
-Aşağıdaki önerileri takip edebilirsiniz:
-* Web uygulamasının giriş olarak aldığı tüm parametreleri temizleyin ve filtreleyin, böylece girişteki bir birimin çalıştırılmasını önleyin.
-* Bu tür saldırıları hafifletmek için ek öneriler [burada][link-ptrav-mitigation] bulunabilir.
-
+Aşağıdaki önerileri uygulayabilirsiniz:
+* Girdideki herhangi bir varlığın çalıştırılmasını önlemek için, web uygulamasının aldığı tüm parametreleri temizleyip filtreleyin.
+* Bu tür saldırıların hafifletilmesine yönelik ek öneriler [burada][link-ptrav-mitigation] mevcuttur.
 
 ### SQL Enjeksiyonu
 
@@ -324,12 +310,12 @@ Aşağıdaki önerileri takip edebilirsiniz:
 
 ####    Açıklama
 
-Web uygulamasının kullanıcı girişinin yetersiz filtreleme yapmaması nedeniyle bu saldırıya karşı savunmasızlık oluşur. [Bir SQL enjeksiyon saldırısı](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1), bir SQL veritabanına özel olarak hazırlanmış bir sorgu enjekte ederek gerçekleştirilir.
+Bu saldırıya karşı savunmasızlık, kullanıcı girdisinin yetersiz filtrelenmesinden kaynaklanır. [SQL enjeksiyonu saldırısı](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1), özel olarak hazırlanmış bir sorgunun SQL veritabanına enjekte edilmesiyle gerçekleştirilir.
 
-Bir SQL enjeksiyon saldırısı, bir saldırganın keyfi SQL kodunu bir SQL sorgusuna enjekte etmesine olanak sağlar. Bu durum, saldırganın gizli verilere okuma ve değiştirme erişimine ve DBMS yönetici haklarına erişime potansiyel olarak yol açar. 
+SQL enjeksiyonu saldırısı, bir saldırganın, SQL sorgusuna keyfi SQL kodu enjekte etmesine olanak tanır. Bu durum, saldırganın gizli verileri okumasına, değiştirmesine ve hatta DBMS yönetici haklarına erişim sağlamasına yol açabilir.
 
-####    Düzeltme Önerisi
+####    Çözüm
 
-Aşağıdaki önerileri takip edebilirsiniz:
-* Web uygulamasının giriş olarak aldığı tüm parametreleri temizleyin ve filtreleyin, böylece girişteki bir birimin çalıştırılmasını önleyin.
-* [OWASP SQL Enjeksiyonu Önleme Hile Sayfası][link-owasp-sqli-cheatsheet]'ndeki önerileri uygulayın.
+Aşağıdaki önerileri uygulayabilirsiniz:
+* Girdideki herhangi bir varlığın çalıştırılmasını önlemek için, web uygulamasının aldığı tüm parametreleri temizleyip filtreleyin.
+* [OWASP SQL Injection Prevention Cheat Sheet][link-owasp-sqli-cheatsheet] tavsiyelerini uygulayın.

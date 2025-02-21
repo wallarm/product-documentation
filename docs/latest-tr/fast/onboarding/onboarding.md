@@ -19,97 +19,97 @@
 [link-gruyere-app]:         http://google-gruyere.appspot.com/
 [link-qsg]:                 ../qsg/deployment-options.md
 
-#   FAST Giriş
+# FAST Onboarding
 
---8<-- "../include-tr/fast/cloud-note.md"
+--8<-- "../include/fast/cloud-note.md"
 
- İlk [Wallarm portalı][link-wl-portal] girişinizde FAST ile tanışma fırsatı bulabileceksiniz.
+İlk kez bir [Wallarm portal][link-wl-portal] girişinizde, FAST ile tanışabilmeniz için beş adımlı bir başlangıç sürecini deneyimleme fırsatınız olacak.
 
-!!! info "Giriş sürecini kontrol etme"
-    Giriş panelindeki ✕ düğmesine tıklayarak giriş sürecini istediğiniz zaman durdurabilirsiniz.
+!!! info "Başlangıç Sürecini Kontrol Etme"
+    Herhangi bir anda, başlangıç panelindeki ✕ düğmesine tıklayarak başlangıç sürecini durdurabilirsiniz.
     
-    Girişi tamamen atlamayı veya giriş sürecini daha sonra, bulunduğunuz adımdan itibaren devam ettirmeyi seçebilirsiniz.
+    Size, başlangıcı tamamen atlama veya üzerinde bulunduğunuz adımdan daha sonra devam etme seçeneği sunulacaktır.
     
-    Girişi atlarsanız ve yeniden başlatmak isterseniz, Wallarm portalının sağ üst köşesindeki soru işaretine basın ve açılan yan menüde "FAST in 5 minutes" öğesini seçin:            
-            
-    ![Hızlı yardım düğmesi][img-quick-help-howto]
+    Eğer başlangıcı atladıysanız ve başlatmak istiyorsanız, Wallarm portalının sağ üst köşesindeki soru işaretine basın ve açılan kenar çubuğunda “FAST in 5 minutes” seçeneğini tercih edin:
     
-    Daha önce ertelediğiniz giriş sürecini sürdürmek isterseniz, Wallarm portalının sağ alt köşesindeki "FAST in 5 minutes" düğmesine tıklayın:
+    ![“The Quick Help” button][img-quick-help-howto]
     
-    [“5 dakikada FAST” düğmesi][img-fast-5mins-button]
+    Daha önce ertelediğiniz başlangıç sürecine devam etmek istiyorsanız, Wallarm portalının sağ alt köşesindeki “FAST in 5 minutes” düğmesine tıklayın:
+    
+    ![The “FAST in 5 minutes” button][img-fast-5mins-button]
 
-FAST'a hızlı bir giriş yapmak için şunları yapın:
+FAST ile hızlıca tanışmak için aşağıdakileri yapın:
 1.  FAST çözümü hakkında bilgi edinin.
     
     ![FAST çözümü hakkında genel bilgi][img-intro]
     
-    İleri adıma geçmek için “Deploy FAST Node →” düğmesine tıklayın.
+    Sonraki adıma geçmek için “Deploy FAST Node →” düğmesine tıklayın.
     
-2.  Makinenizde FAST düğümüyle bir Docker konteyneri dağıtın. Bunun için, bu adımda size gösterilen `docker run` komutunu kopyalayın ve yürütün. Komut, zaten gerekli tüm parametrelerle doldurulmuştur.
+2.  Makinenizde FAST node içeren bir Docker konteyneri dağıtın. Bunu yapmak için, bu adımda size gösterilen `docker run` komutunu kopyalayıp çalıştırın. Komut, gerekli tüm parametrelerle önceden doldurulmuştur.
     
-    ![Konuşlandırma ipucu][img-deploy]
+    ![Dağıtım ipucu][img-deploy]
     
-    !!! info "Docker'ın Kurulumu"
-        Docker'iniz yoksa, [kurun][link-docker-install-docs]. Topluluk Edition veya Enterprise Edition olması fark etmez.
+    !!! info "Docker Kurulumu"
+        Docker'a sahip değilseniz, [kurulumunu gerçekleştirin][link-docker-install-docs]. Community Edition veya Enterprise Edition fark etmez, her ikisi de uygundur.
     
-    FAST düğümü başladıktan sonra `127.0.0.1:8080` adresinde gelen bağlantıları dinlemeye başlar.
+    FAST node başladığında, `127.0.0.1:8080` adresinde gelen bağlantıları dinleyecektir.
     
-    ![Dağıtılmış FAST düğümü][img-cont-deployed]
+    ![Dağıtılan FAST node][img-cont-deployed]
 
-    Makinenizdeki bir tarayıcıyı, HTTP proxy'si olarak `127.0.0.1:8080`i kullanmak üzere yapılandırın. Wallarm portalının açıldığı tarayıcı dışında herhangi bir tarayıcıyı kullanabilirsiniz. Mozilla Firefox'u öneririz (Firefox'un proxy'i nasıl kullanılacağına dair [talimatlara][link-firefox-proxy] bakın).
+    Tarayıcınızı, `127.0.0.1:8080` adresini HTTP proxy olarak kullanacak şekilde yapılandırın. Wallarm portalının açık olduğu tarayıcı dışında herhangi bir tarayıcıyı kullanabilirsiniz. Mozilla Firefox'u öneririz (proxy yapılandırması için [talimatlara][link-firefox-proxy] bakın).
     
     ![Mozilla Firefox'taki proxy ayarları][img-ff-proxy-settings]
     
-    !!! info "Farklı bir port numarası kullanmak"
-        FAST düğümüne `8080` portunu sağlamak istemezseniz (örneğin, bu portta başka bir hizmetin dinleniyor olması durumu), FAST tarafından kullanılacak başka bir port numarası ayarlayabilirsiniz. Bunu yapmak için, istenen port numarasını `docker run` komutunun `-p` parametresi üzerinden geçirin. Örneğin, `9090` portunu kullanmak için şunları yazın: `-p 9090:8080`.
+    !!! info "Farklı Bir Port Numarası Kullanma"
+        FAST node için `8080` portunu kullanmak istemiyorsanız (örneğin, o portta dinleyen başka bir servis varsa), FAST'in kullanacağı başka bir port numarası belirleyebilirsiniz. Bunu yapmak için, istediğiniz port numarasını `docker run` komutunun `-p` parametresi ile belirtin. Örneğin, `9090` portunu kullanmak için şöyle yazabilirsiniz: `-p 9090:8080`.
     
-    İleri adıma geçmek için “Create a Test Run →” düğmesine tıklayın.
+    Sonraki adıma geçmek için “Create a Test Run →” düğmesine tıklayın.
     
-    !!! info "Önceki adıma dönme"
-        Önceki adıma her zaman önceki adımın adını taşıyan düğmeye tıklayarak geri dönebileceğinizi unutmayın (Ör., “← FAST'ı Anlama”).
+    !!! info "Önceki Adıma Geri Dönme"
+        Önceki adıma geri dönmek için her zaman, önceki adımın adıyla etiketlenmiş düğmeye (örneğin, “← Understanding FAST”) tıklayabileceğinizi unutmayın.
    
-3.  "Create test run" düğmesini tıklayarak bir test çalışması oluşturun. Test çalışması için bir ad seçin ve daha sonra giriş ipucunda belirtildiği gibi açılır listelerden gereken test politikasını ve düğümü seçin:
-
-    ![Bir test çalışmasının oluşturulması][img-create-testrun]
+3.  “Create test run” düğmesine tıklayarak bir test çalışması oluşturun. Test çalışması için bir isim seçin ve ardından başlangıç ipucunda belirtildiği gibi gerekli test politikasını ve node'u açılır listelerden seçin.
     
-    Test çalışmasının oluşturulma sürecini tamamlamak için "Create and run" düğmesine basın.
+    ![Bir test çalışması oluşturma][img-create-testrun]
     
-    İleri adıma geçmek için “Discover Vulnerabilities →” düğmesine tıklayın.
+    Test çalışmasının oluşturma sürecini tamamlamak için “Create and run” düğmesine basın.
     
-4.  FAST düğümünün konsolunda `Recording baselines for TestRun...` mesajının görüntülendiğinden emin olun:
+    Sonraki adıma geçmek için “Discover Vulnerabilities →” düğmesine tıklayın.
     
-    ![FAST düğümünün konsolu][img-recording]
+4.  FAST node'un konsolunda `Recording baselines for TestRun...` mesajının görüntülendiğinden emin olun:
     
-    Ardından, FAST ile güvenlik açığı tespiti sürecini başlatmak için [Google Gruyere][link-gruyere-app] adlı güvenlik açıklı olan uygulamaya bir istek gönderin.
+    ![FAST node'un konsolu][img-recording]
     
-    Bunun için, giriş ipucunda sunulan HTTP isteğini kopyalayın, daha önce FAST düğümü olarak kullanmak üzere ayarladığınız tarayıcının adres çubuğuna yapıştırın ve isteği yürütün:
+    Ardından, FAST ile güvenlik açıklarını test etme sürecine başlamak için [Google Gruyere][link-gruyere-app] adlı savunmasız uygulamaya bir istek gönderin.
+    
+    Bunu yapmak için, başlangıç ipucunda verilen HTTP isteğini kopyalayın, FAST node'u proxy olarak kullanacak şekilde yapılandırdığınız tarayıcının adres çubuğuna yapıştırın ve isteği gönderin:
     
     ![İpucundaki HTTP isteği][img-http-request]
     
-    ![HTTP isteğinin yürütülmesi][img-gruyere-app]
+    ![HTTP isteğinin gönderilmesi][img-gruyere-app]
     
-    İsteği gönderdikten sonra, istek kayıt sürecini durdurun. Bunun için "Actions" açılır menüsündeki “Stop recording” seçeneğini seçin. İşlemi "Yes" düğmesine basarak onaylayın:
+    İstek gönderildikten sonra, “Actions” açılır menüsünden “Stop recording” seçeneğini seçerek istek kaydetme işlemini durdurun. İşlemi onaylamak için “Yes” düğmesine basın:
     
-    ![İstek kaydının durdurulması][img-stop-recording]
+    ![İstek kaydetme işlemini durdurma][img-stop-recording]
     
-    Testin tamamlanmasını bekleyin. FAST, Google Gruyere uygulamasında bir XSS güvenlik açığı tespit etmelidir. Güvenlik açığının tanımlayıcısı ve türü, test çalışmasının "Results" sütununda görüntülenmelidir:
+    Test tamamlanana kadar bekleyin. FAST, Google Gruyere uygulamasında bir XSS açığını tespit etmelidir. Açığın tanımlayıcısı ve tipi, test çalışmasının “Results” sütununda görüntülenecektir:
     
-    ![Test sonucu][img-results]
+    ![Test sonucunun görüntüsü][img-results]
     
-    !!! info "Güvenlik açığının analizi"
-        Test çalışmasının “Results” sütunundaki değeri tıklayarak keşfedilen güvenlik açığı hakkında biraz bilgi alabilirsiniz:
+    !!! info "Açığı Analiz Etme"
+        Test çalışmasının “Results” sütunundaki değere tıklayarak, keşfedilen açık hakkında detaylı bilgilere ulaşabilirsiniz:
         
-        ![Güvenlik açığı hakkında detaylı bilgi][img-detailed-results]
+        ![Açık hakkında detaylı bilgi][img-detailed-results]
     
-    İleri adıma geçmek için "Run With It!" düğmesine tıklayın.
+    Sonraki adıma geçmek için “Run With It!” düğmesine tıklayın.
     
-5.  Bu adımda, başarıyla FAST ile tanışmayı tamamladınız ve bir web uygulamasında bir güvenlik açığı tespit ettiniz.
+5.  Bu adımda, FAST ile başarılı bir şekilde tanışmış ve bir web uygulamasında güvenlik açığı keşfetmiş olacaksınız.
     
-    ![Giriş sürecinin sonu][img-finish]
+    ![Başlangıç sürecinin sonu][img-finish]
     
-    FAST ile nasıl başlayacağınıza dair daha ayrıntılı bilgi almak için [“Hızlı Başlama kılavuzu”][link-qsg]na yönelin.
+    FAST'a başlama hakkında daha detaylı bilgi almak için [“Quick Start guide”][link-qsg]'a gidin.
     
-    "Finish" düğmesine tıklayarak giriş sürecini tamamlayın.
+    Başlangıç sürecini tamamlamak için “Finish” düğmesine tıklayın.
     
-    !!! info "Atılması gereken ek eylemler"
-        Güvenlik açığının başarıyla tespit edilmesi üzerine, FAST düğümünün Docker konteynerini kapatabilir ve tarayıcıdaki proxy'yi devre dışı bırakabilirsiniz.
+    !!! info "Alınacak Ek İşlemler"
+        Güvenlik açığı başarıyla tespit edildikten sonra, FAST node'un Docker konteynerini kapatabilir ve tarayıcıdaki proxy ayarını devre dışı bırakabilirsiniz.

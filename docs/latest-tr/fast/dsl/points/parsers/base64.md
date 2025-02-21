@@ -1,20 +1,20 @@
-# Base64 Parser
+# Base64 Ayrıştırıcı
 
-**Base64** parser, istek öğesi değerini Base64 kodlamada kodlar ve kod çözer. Bu parser herhangi bir dizeye uygulanabilir.
+**Base64** ayrıştırıcısı, istek öğesi değerini base64 kodlamasıyla kodlar ve kod çözümü yapar. Bu ayrıştırıcı herhangi bir dizeye uygulanabilir.
 
 **Örnek:** 
 
-Aşağıdaki için
+Aşağıdaki
 
 ```
 POST http://example.com/login/index.php HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 ```
 
-istek ile
+başlıklı istek için
 
 ```
 username=admin&passwd=MDEyMzQ=
 ```
 
-gövdesi, `POST_FORM_URLENCODED_passwd_BASE64_value` noktası, form-urlencoded formatındaki istek gövdesinin `passwd` parametresinde geçen base64'ten çözülen `01234` değerine işaret eder.
+gövdesinde, `POST_FORM_URLENCODED_passwd_BASE64_value` noktası, istek gövdesinde form-urlencoded formatında gönderilen `passwd` parametresinden alınan ve base64'ten kod çözümü yapılan `01234` değerini ifade eder.

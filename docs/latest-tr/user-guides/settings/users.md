@@ -7,6 +7,7 @@
 [img-disabled-users]:       ../../images/user-guides/settings/disabled-users.png
 [img-search-user]:          ../../images/user-guides/settings/search-users.png
 [img-add-user]:             ../../images/user-guides/settings/integrations/webhook-examples/adding-user.png
+[img-add-user-invitation-link]: ../../images/user-guides/settings/invite-user-by-link.png
 [img-user-menu]:            ../../images/user-guides/settings/user-menu.png
 [img-disabled-user-menu]:   ../../images/user-guides/settings/disabled-user-menu.png
 [img-edit-user]:            ../../images/user-guides/settings/edit-user.png
@@ -15,156 +16,135 @@
 [img-disable-delete-multi]:     ../../images/user-guides/settings/users-multi-disable-access.png
 [img-enable-delete-multi]:      ../../images/user-guides/settings/users-multi-enable-access.png    
 
-# Kullanıcıları Yapılandırma
+# Kullanıcıları Yönetme
 
-*Settings* kısmında bulunan *Kullanıcı* sekmesinde kullanıcı hesaplarını yönetebilirsiniz.
+Wallarm hesabınıza takım üyelerinizi davet edin ve her birine belirli bir rol atayarak hassas bilgileri koruyun ve hesap işlemlerini sınırlandırın. Kullanıcıları **Settings** → **Users** altında yönetin.
 
-!!! Uyarı "Yönetici Erişimi"
-    Sadece **Yönetici** rolündeki kullanıcılar bu ayarlara erişebilir.
+Yalnızca **Administrator** ve **Global Administrator** rollerinin kullanıcı yönetimi ayrıcalıkları vardır.
 
-## Kullanıcı Roller
+## Kullanıcı Rolleri
 
-Wallarm müşteri kullanıcıları aşağıdaki rollere sahip olabilir:
+Wallarm müşterilerindeki kullanıcılar aşağıdaki rollere sahip olabilir:
 
-* **Yönetici**: Tüm Wallarm ayarlarına erişim hakkı
-* **Analist**: Ana Wallarm ayarlarını görüntüleme ve saldırganlık, [olay][link-glossary-incident] ve [saldırganlık][link-glossary-vulnerability] bilgilerini yönetme yeteneği
-* **Salt Okunur**: Ana Wallarm ayarlarını görme yeteneği
-* **API Geliştirme**: [API Keşif](../../api-discovery/overview.md) modülü tarafından keşfedilen API envanterini görüntüleme ve indirme yeteneği. Bu, görevleri yalnızca Wallarm'ı kullanarak şirket API'leri hakkında güncel veri bulunan kullanıcıları belirlemeyi sağlar. Bu kullanıcıların Wallarm Konsolu bölümlerine **API Keşif** ve **Ayarlar → Profil** dışında erişimi yoktur.
+* **Administrator**: Tüm Wallarm ayarlarına erişim sağlar.
+* **Analyst**: Temel Wallarm ayarlarını görüntüleme, saldırılar, [incidents][link-glossary-incident] ve [vulnerabilities][link-glossary-vulnerability] ile ilgili bilgileri yönetme erişimi sağlar.
+* **Read Only**: Temel Wallarm ayarlarını görüntüleme erişimi sağlar.
+* **API Developer**: [API Discovery](../../api-discovery/overview.md) modülü tarafından keşfedilen API envanterini görüntüleme ve indirme erişimi sağlar. Bu rol, yalnızca şirket API'leri hakkında gerçek verilere ulaşmak için Wallarm kullanan kullanıcıları ayırt etmenizi sağlar. Bu kullanıcıların, **API Discovery**, onun panosu ve **Settings → Profile** dışında Wallarm Console’un diğer bölümlerine erişimi yoktur.
+* **Deploy**: Wallarm filtreleme düğümlerini `addnode` script'i ile oluşturma erişimi sağlar, ancak Wallarm Console'a erişimi yoktur.
 
-Çok katmanlı özellik[çok kiracılık](../../installation/multi-tenant/overview.md), **Global Yönetici**, **Global Analist**, **Global Salt Okunur** gibi global rolleri de kullanabilmenizi sağlar. Global roller, kullanıcılara teknik kiracı hesabına ve bağlantılı kiracı hesaplarına erişim sağlar, düzenli roller kullanıcıların yalnızca teknik kiracı hesabına erişimini sağlar.
+    !!! warning "Using the Deploy role to install the Wallarm node 4.0"
+        **Deploy** kullanıcı rolünün yalnızca 3.6 ve altı düğümlerin kurulumu için kullanılması önerilir; çünkü [`addnode` script, 4.0 sürümünde kullanımdan kaldırılmıştır](../../updating-migrating/older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-api-tokens).
 
-Farklı kullanıcı rollerinin Wallarm öğelerine erişim hakkında daha ayrıntılı bilgi aşağıdaki tabloda verilmiştir. Öğe yönetimi, öğe oluşturmayı, düzenlemeyi ve silmeyi içerir.
+[multitenancy](../../installation/multi-tenant/overview.md) özelliği ayrıca **Global Administrator**, **Global Analyst**, **Global Read Only** gibi küresel rolleri kullanmanızı sağlar. Küresel roller, kullanıcılara teknik tenant hesabına ve bağlantılı tenant hesaplarına erişim sağlarken, normal roller yalnızca teknik tenant hesabına erişim imkânı sunar.
 
-| Öğe              | Yönetici / Global Yönetici | Analist / Global Analist | Salt Okunur / Global Salt Okunur | API Geliştirme |
-|---------------------|--------------------------------------|--------------------------|------------------------------|---|
-| **Filtreleme Noktaları**       | Görüntüle ve yönet                      | Görüntüle                     | Görüntüle                         | - |
-| **Panel**       | Görüntüle                                 | Görüntüle                     | Görüntüle                         | - |
-| **Olaylar**          | Görüntüle ve yönet                      | Görüntüle ve yönet          | Görüntüle                         | - |
-| **Saldırganlık** | Görüntüle ve yönet                      | Görüntüle ve yönet          | Görüntüle              | - |
-| **API Envanteri API Keşif Tarafından**   | Görüntüle ve yönet                      | Görüntüle ve yönet  | -                            | Görüntüle ve indir |
-| **API Spesifikasyonları**   | Görüntüle ve yönet                      | Görüntüle          | Görüntüle                            | Görüntüle |
-| **Tarayıcı**         | Görüntüle ve yönet                      | Görüntüle ve yönet  | Görüntüle                         | - |
-| **Tetikleyiciler**        | Görüntüle ve yönet                      | -                        | -                            | - |
-| **IP listeleri**       | Görüntüle, yönet ve dışa aktar             | Görüntüle, yönet ve dışa aktar | Görüntüle ve dışa aktar              | - |
-| **Kurallar**           | Görüntüle ve yönet                      | Görüntüle ve yönet          | Görüntüle                         | - |
-| **BOLA Koruması**           | Görüntüle ve yönet                      | Görüntüle          | - | - |
-| **Entegrasyonlar**    | Görüntüle ve yönet                      | -                        | -                            | - |
-| **Filtrasyon modu**        | Görüntüle ve yönet                      | Görüntüle                     | Görüntüle                         | - |
-| **Uygulamalar**    | Görüntüle ve yönet                      | Görüntüle                     | Görüntüle                         | - |
-| **Kullanıcılar**           | Görüntüle ve yönet                      | -                        | Görüntüle                         | - |
-| **Aktivite Kaydı**    | Görüntüle                                 | -                        | Görüntüle                         | - |
+Aşağıdaki tabloda, farklı kullanıcı rollerinin Wallarm varlıklarına erişimi hakkında daha ayrıntılı bilgi verilmiştir. Varlık yönetimi, varlık oluşturma, düzenleme ve silmeyi kapsar.
 
-## Kullanıcıları Görüntüleme
+| Varlık                                        | Administrator / Global Administrator | Analyst / Global Analyst       | Read Only / Global Read Only  | API Developer        |
+|-----------------------------------------------|----------------------------------------|--------------------------------|-------------------------------|----------------------|
+| **Filtering nodes**                           | Görüntüle ve yönet                     | Görüntüle                      | Görüntüle                     | -                    |
+| **Dashboard**                                 | Görüntüle                              | Görüntüle                      | Görüntüle                     | -                    |
+| **Attacks**                                   | Görüntüle ve yönet                     | Görüntüle ve yönet             | Görüntüle                     | -                    |
+| **Incidents**                                 | Görüntüle ve yönet                     | Görüntüle ve yönet             | Görüntüle                     | -                    |
+| **API Sessions**                              | Görüntüle ve yönet                     | Görüntüle                      | Görüntüle                     | -                    |
+| **Vulnerabilities**                           | Görüntüle ve yönet                     | Görüntüle ve yönet             | Görüntüle                     | -                    |
+| **API inventory by API Discovery**            | Görüntüle ve yönet                     | Görüntüle ve yönet             | -                             | Görüntüle ve indir   |
+| **API Specifications**                        | Görüntüle ve yönet                     | Görüntüle                      | Görüntüle                     | Görüntüle            |
+| **Scanner**                                   | Görüntüle ve yönet                     | Görüntüle ve yönet             | Görüntüle                     | -                    |
+| **Triggers**                                  | Görüntüle ve yönet                     | -                              | -                             | -                    |
+| **IP lists**                                  | Görüntüle, yönet ve dışa aktar         | Görüntüle, yönet ve dışa aktar | Görüntüle ve dışa aktar       | -                    |
+| **Rules**                                     | Görüntüle ve yönet                     | Görüntüle ve yönet             | Görüntüle                     | -                    |
+| **Credential Stuffing Detection**             | Görüntüle ve yönet                     | Görüntüle ve yönet             | Görüntüle                     | -                    |
+| **BOLA protection**                           | Görüntüle ve yönet                     | Görüntüle                      | -                             | -                    |
+| **Security Edge**                             | Görüntüle ve yönet                     | Görüntüle                      | -                             | -                    |
+| **Integrations**                              | Görüntüle ve yönet                     | -                              | -                             | -                    |
+| **Filtration mode**                           | Görüntüle ve yönet                     | Görüntüle                      | Görüntüle                     | -                    |
+| **Applications**                              | Görüntüle ve yönet                     | Görüntüle                      | Görüntüle                     | -                    |
+| **Users**                                     | Görüntüle ve yönet                     | -                              | Görüntüle                     | -                    |
+| **API tokens**                                | Kişisel ve paylaşılan tokenları yönet    | Kişisel tokenları yönet        | -                             | -                    |
+| **Activity log**                              | Görüntüle                              | -                              | Görüntüle                     | -                    |
 
-Aşağıdaki sekmelerde kullanıcı listelerini görüntüleyebilirsiniz:
-*   Ana *Kullanıcılar* sekmesi, Wallarm bulutta kayıtlı şirketinizin tüm kullanıcılarını içerir. Bu sekmede, pasifize edilmiş herhangi bir kullanıcı gri renkte vurgulanır.
+## Bir Kullanıcıyı Davet Etmek
 
-    ![Kullanıcı listesi][img-configure-user]
+Hesabınıza bir kullanıcı eklemenin iki yolu vardır; her ikisi de bir davet bağlantısı oluşturmayı ve paylaşmayı içerir. Wallarm, davet bağlantısını kullanıcının belirtilen e-posta adresine otomatik olarak gönderebilir veya bağlantıyı doğrudan kullanıcıyla paylaşabilirsiniz.
 
-*   *Disabled* sekmesi yalnızca pasifize edilmiş kullanıcıları içerir.
+### Otomatik E-posta Daveti
 
-    ![Pasifize edilmiş kullanıcılar listesi][img-disabled-users]
+Bu yöntem için, kullanıcının rolünü, e-posta adresini ve adını önceden ayarlayın; Wallarm, belirtilen e-posta adresine giriş yapıp şifre belirlemesi için bir bağlantı içeren davet e-postasını otomatik olarak gönderecektir. Kullanıcının kayıt işlemini tamamlamak için bağlantıyı takip etmesi gerekir.
 
-Tablonuk başlığındaki hücrelere tıklayarak kullanıcıları isme, role, e-maile ve son oturum açma tarihine göre sıralayabilirsiniz.
+Davet bağlantısını otomatik olarak göndermek için **Add new user** düğmesine tıklayın ve formu doldurun:
 
-Ayrıca kullanıcı adlarının solundaki kutucukları işaretleyerek bir veya birkaç kullanıcı seçebilir; böylece bir kullanıcı grubuna işlemler yapabilirsiniz.
+![New user form][img-add-user]
 
-## Kullanıcıları Arama
+Form gönderildikten sonra, kullanıcı kullanıcı listenize eklenecek ve davet bağlantısını içeren bir e-posta alacaktır.
 
-Tablonun üzerindeki arama alanını kullanarak kullanıcıları isme, e-maile veya sistem rolüne göre arayabilirsiniz.
+### Manuel Davet Bağlantısı Paylaşımı
 
-![Kullanıcı arama][img-search-user]
+Takım üyenizin e-posta adresini, rolünü ve bağlantının süresini **Invite by link** seçeneğini kullanarak belirleyip bir davet bağlantısı oluşturun. Sonrasında, bu bağlantıyı hedef kullanıcıyla paylaşın.
 
-## Kullanıcı Oluşturma
+![New user inv link][img-add-user-invitation-link]
 
-1.  *Settings* bölümünün *Kullanıcılar* sekmesinde, *Kullanıcı ekle* düğmesine tıklayın.
-2.  Açılan listeden kullanıcı rolünü seçin.
-3.  Kullanıcı için bir isim, soy isim ve e-posta girin.
+Bu bağlantı, kullanıcının şifre belirleyip adını girerek hesabını oluşturması için onu Wallarm kayıt sayfasına götürür.
 
-    ![Yeni kullanıcı formu][img-add-user]
+Kayıt işleminden sonra, kullanıcı listenize eklenecek ve bir onay e-postası alacaktır.
 
-4.  *Kullanıcı ekle* düğmesine tıklayın.
+## Kullanıcı Ayarlarını Değiştirme
 
-    Yeni kullanıcı, oturum açma bağlantısı ve bir parola belirleme linkini içeren otomatik bir e-posta alacaktır.
+Kullanıcı listesinde bir kullanıcı göründüğünde, ilgili kullanıcı menüsünden **Edit user settings** seçeneğini kullanarak ayarlarını düzenleyebilirsiniz. Bu, atanan kullanıcı rolünü, adını ve soyadını değiştirmenizi sağlar.
 
-Yeni eklenen kullanıcılar hakkında bildirim almak için ilgili [tetikleyici](../triggers/triggers.md)'yi ayarlayabilirsiniz. Bildirimler mesajlaşma ve SOAR (örneğin: Slack, Microsoft Teams, OpsGenie) sistemlerine gönderilecektir.
+## 2FA'yı Devre Dışı Bırakma
 
-## Kullanıcı Bilgisini Değiştirme
+Bir kullanıcının [iki faktörlü kimlik doğrulaması (2FA)](account.md#enabling-two-factor-authentication) etkinleştirilmişse ve bunu sıfırlamanız gerekiyorsa, kullanıcı menüsünden **Disable 2FA** seçeneğini seçin. İşlemi onaylamak için Wallarm administrator hesabı şifrenizi girin.
 
-Kullanıcı bilgisini değiştirmek için aşağıdaki eylemleri gerçekleştirin:
-1.  *Settings* bölümünün *Kullanıcılar* sekmesinde, düzenlemek için kullanıcıyı seçin.
-2.  İlgili kullanıcının sağ tarafındaki düğmeye tıklayarak kullanıcı eylemleri menüsünü açın.
+![User actions menu][img-user-menu-disable-2fa]
 
-    ![Kullanıcı eylemleri menüsü][img-user-menu]
+Bu işlem, seçili kullanıcı için 2FA'yı devre dışı bırakacaktır. Kullanıcı, profil ayarlarından 2FA'yı yeniden etkinleştirebilir.
 
-3.  *Kullanıcı ayarlarını düzelt* seçeneğine tıklayın.
-4.  Açılan formda yeni kullanıcı bilgilerini girin ve *Kaydet* düğmesine tıklayın.
+## Kullanıcıların Devre Dışı Bırakılması ve Silinmesi
 
-    ![Kullanıcı bilgileri düzenleme formu][img-edit-user]
+* Bir kullanıcının Wallarm hesabı giriş yeteneğini, hesap bilgilerini silmeden geçici olarak askıya almak için, isminin yanındaki **Disable access** seçeneğini kullanın. Bu işlem, ana kullanıcı listesindeki kullanıcıyı gri renkle işaretler ve **Disabled** sekmesi altında listeler. Kullanıcının hesabını yeniden etkinleştirmek için **Enable access** seçeneğini seçin; böylece kullanıcı tekrar giriş yapıp Wallarm'a erişebilir.
+* Kalıcı kaldırma ve sonsuza dek giriş erişimini iptal etmek için, kullanıcı menüsünden **Delete** user seçeneğini seçin. Bu işlem, kullanıcıyı kalıcı olarak listeden siler ve geri alınamaz.
 
-Eski kullanıcı bilgileri yenisiyle değiştirilecektir.
+## Yeni Kullanıcı Uyarıları
 
-## İki Faktörlü Kimlik Doğrulama Ayarlarını Sıfırlama
+Wallarm hesabınıza yeni kullanıcı eklendiğinde anında uyarı almak için, **User added** koşuluna sahip bir [trigger](../triggers/triggers.md) ayarlayın. Belirli roller veya herhangi bir yeni kullanıcı eklemesi hakkında bildirim almayı seçebilirsiniz.
 
-İki faktörlü kimlik doğrulama ayarlarını sıfırlamak için aşağıdaki eylemleri gerçekleştirin:
-1.  *Settings* bölümünün *Kullanıcılar* sekmesinde, ilgili kullanıcıyı seçin.
-2.  İlgili kullanıcının sağ tarafındaki düğmeye tıklayarak kullanıcı eylemleri menüsünü açın.
+Bu bildirimlerle ilgilenen takım üyelerinin kendi trigger'larını ayarlamaları gerekir.
 
-    ![Kullanıcı eylemleri menüsü][img-user-menu-disable-2fa]
+**Trigger örneği: Slack'e yeni kullanıcı uyarıları**
 
-3.  *Disable 2FA* seçeneğine tıklayın.
-4.  Açılan formda Wallarm Yönetici hesabınızın şifresini girin ve *Disable 2FA* düğmesine tıklayın.
+Eğer Wallarm Console'daki şirket hesabına **Administrator** veya **Analyst** rolüne sahip yeni bir kullanıcı eklenirse, bu etkinlik hakkında bildirim entegrasyonda belirtilen e-posta adresine ve Slack kanalına gönderilecektir.
 
-    ![2-faktörlü kimlik doğrulamanın devre dışı bırakılması][img-user-disable-2fa]
+![Example of a trigger sending the notification to Slack and by email](../../images/user-guides/triggers/trigger-example2.png)
 
-2-faktörlü kimlik doğrulama fonksiyonu, seçilen kullanıcı için devre dışı bırakılacaktır. Kullanıcı, 2-faktörlü kimlik doğrulamayı [profil ayarlarından](account.md#enabling-two-factor-authentication) yeniden etkinleştirebilir.
+**Trigger'ı test etmek için:**
 
-## Kullanıcı İçin Erişimi Devre Dışı Bırakma
+1. Wallarm Console → **Settings** → **Users** bölümünü açın ve yeni bir kullanıcı ekleyin.
+2. E-posta gelen kutunuzu açın ve aşağıdaki mesajı aldığınızı kontrol edin:
 
-Bir kullanıcı için erişimi devre dışı bırakma, kullanıcının Wallarm hesabını pasifize eder.
+    ![Email about new user added](../../images/user-guides/triggers/test-new-user-email-message.png)
+3. Slack kanalını açın ve **wallarm** kullanıcısından gelen aşağıdaki bildirimi aldığınızı kontrol edin:
 
-Belirli bir kullanıcının Wallarm hesabını devre dışı bırakmak için aşağıdaki eylemleri gerçekleştirin:
-1.  *Settings* bölümünün *Kullanıcılar* sekmesinde, kullanıcı seçin.
-2. İlgili kullanıcının sağ tarafındaki düğmeye tıklayarak kullanıcı eylemleri menüsünü açın.
+    ```
+    [Wallarm] Trigger: New user was added to the company account
 
-    ![Kullanıcı eylemleri menüsü][img-user-menu]
+    Notification type: create_user
 
-3.  *Erişimi Devre Dışı Bırak* seçeneğine tıklayın.
+    A new user John Smith <johnsmith@example.com> with the role Analyst was added to the company account by John Doe <johndoe@example.com>.
+    This notification was triggered by the "Added user" trigger.
 
-Artık seçili kullanıcı, Wallarm hesabını kullanamaz.
+    Client: TestCompany
+    Cloud: EU
+    ```
 
-Eğer birden fazla kullanıcı hesabı için erişimi devre dışı bırakmanız gerekiyorsa, erişimlerini iptal etmek istediğiniz kullanıcıları seçin. Eylem paneli görünecektir. Bu panelde, *Erişimi Devre Dışı Bırak* düğmesine tıklayın.
+    * `John Smith` ve `johnsmith@example.com` eklenen kullanıcıyla ilgili bilgidir.
+    * `Analyst` eklenen kullanıcının rolüdür.
+    * `John Doe` ve `johndoe@example.com` yeni kullanıcı ekleyen kullanıcı hakkında bilgidir.
+    * `Added user` trigger adıdır.
+    * `TestCompany`, Wallarm Console'daki şirket hesabınızın adıdır.
+    * `EU`, şirket hesabınızın kayıtlı olduğu Wallarm Cloud'dur.
 
-![Birkaç kullanıcının hesabının devre dışı bırakılması][img-disable-delete-multi]
+## Çıkış Yönetimi
 
-## Kullanıcı İçin Erişimi Etkinleştirme
+**Administrator** ve **Global Administrator** [rollerindeki](users.md#user-roles) kullanıcılar, **Settings** → **General** bölümünde şirket hesabı için oturum kapatma zaman aşımı ayarlayabilir. Bu ayarlar tüm hesap kullanıcılarını etkileyecektir. Hem boşta kalma hem de mutlak zaman aşımı ayarlanabilir.
 
-Bir kullanıcı için erişimi etkinleştireme, kullanıcının Wallarm hesabını etkinleştirir.
-
-Belirli bir kullanıcının Wallarm hesabını etkinleştirmek için aşağıdaki eylemleri gerçekleştirin:
-1.  *Settings* bölümünün *Kullanıcılar* sekmesinden, devre dışı bırakılan erişimi olan kullanıcıyı seçin.
-2. İlgili kullanıcının sağ tarafındaki düğmeye tıklayarak kullanıcı eylemleri menüsünü açın.
-
-    ![Devre dışı kullanıcı eylemleri menüsü][img-disabled-user-menu]
-
-3.  *Erişimi Etkinleştir* seçeneğine tıklayın.
-
-Artık seçili kullanıcı, Wallarm hesabını kullanabilir.
-
-Eğer birden fazla kullanıcı hesabı için erişimi etkinleştirmeniz gerekiyorsa, erişim sağlamak istediğiniz kullanıcıları seçin. Eylem paneli görünecektir. Bu panelde, *Erişimi Etkinleştir* düğmesine tıklayın.
-
-![Birkaç kullanıcının hesabının etkinleştirilmesi][img-enable-delete-multi]
-
-## Kullanıcıyı Silme
-
-Belirli bir kullanıcı hesabını silmek için aşağıdaki eylemleri gerçekleştirin:
-1.  *Settings* bölümünün *Kullanıcılar* sekmesinde, silmek istediğiniz kullanıcıyı seçin.
-2. İlgili kullanıcının sağ tarafındaki düğmeye tıklayarak kullanıcı eylemleri menüsünü açın.
-
-    ![Kullanıcı eylemleri menüsü][img-user-menu]
-
-3.  *Delete* seçeneğine tıklayın.
-
-Eğer birden fazla kullanıcı hesabını silmeniz gerekiyorsa, hesaplarını silmek istediğiniz kullanıcıları seçin. Eylem paneli görünecektir. Bu panelde, *Sil* düğmesine tıklayın.
-
-![Birkaç kullanıcının hesaplarının silinmesi][img-disable-delete-multi]
+![General tab](../../images/user-guides/settings/general-tab.png)

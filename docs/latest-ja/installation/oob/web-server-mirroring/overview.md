@@ -1,45 +1,44 @@
-# NGINX、EnvoyなどによるミラーリングされたトラフィックのためのWallarm OOB
+# Wallarm OOB for Traffic Mirrored by NGINX、Envoy and Similar
 
-この記事では、NGINX、Envoy、または類似のツールによりトラフィック・ミラーを作成する選択をした場合の、Wallarmを[OOB](../overview.md)ソリューションとしてデプロイする方法について説明します。
+本記事では、NGINX、Envoyなどのソリューションでトラフィックミラーを生成する場合に、Wallarmを[OOB](../overview.md)ソリューションとしてデプロイする方法について説明します。
 
-トラフィック・ミラーリングは、ウェブサーバー、プロキシサーバー、または類似のサーバーを設定して、入力トラフィックをWallarmサービスにコピーし、分析を行うことで実装することが可能です。このアプローチでは、典型的なトラフィックフローは以下のようになります：
+トラフィックミラーリングは、ウェブサーバー、プロキシサーバーなどを設定して、受信トラフィックのコピーをWallarmサービスに送信し、解析を行う形で実装できます。このアプローチでは、一般的なトラフィックフローは次のようになります:
 
-![OOBスキーム](../../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
+![OOB scheme](../../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
 
-## デプロイメント手順
+## デプロイ手順
 
-トラフィック・ミラーを解析するためにWallarmをデプロイおよび設定するには、以下の手順を実行します：
+トラフィックミラーを解析するようにWallarmをデプロイおよび構成するには、以下の手順を実行する必要があります:
 
-1. 以下のいずれかの方法で、Wallarmノードをインフラストラクチャにデプロイします：
+1. 以下のいずれかの方法で、Wallarmノードをインフラストラクチャにデプロイします:
 
-   * [Terraformモジュールを使用してAWSに](../terraform-module/mirroring-by-web-server.md)
-   * [マシンイメージを使用してAWSに](aws-ami.md)
-   * [マシンイメージを使用してGCPに](gcp-machine-image.md)
+    * [Linux OS搭載マシンでのall-in-oneインストーラーによるデプロイ](linux/all-in-one.md)
+    * [Terraformモジュールを使用してAWSへデプロイ](../terraform-module/mirroring-by-web-server.md)
+    * [Machine Imageを利用してAWSへデプロイ](aws-ami.md)
+    * [Machine Imageを使用してGCPへデプロイ](gcp-machine-image.md)
+    * [NGINXベースのDockerイメージを使用してコンテナ環境へデプロイ](docker-image.md)
 
-   <!-- * [NGINXベースのDockerイメージを使用してコンテナベースの環境に](docker-image.md)
-    * [DEB/RPMパッケージからDebianまたはUbuntu OSのマシンに](packages.md) -->
+    !!! info "ミラーされたトラフィック解析のサポート"
+        NGINXベースのWallarmノードのみがミラーされたトラフィックのフィルトレーションをサポートします。
+1. トラフィックコピーを解析するようにWallarmを構成します ― 上記の手順には必要なステップが含まれています。
+1. インフラストラクチャを構成して、受信トラフィックのコピーを生成し、追加バックエンドとしてWallarmノードへ送信します。
 
-    !!! info "ミラーリングされたトラフィック解析のサポート"
-        ミラーリングされたトラフィックのフィルタリングは、NGINXベースのWallarmノードのみでサポートされています。
-1. トラフィックのコピーを解析するようにWallarmを設定します - 上記の手順には必要なステップが含まれています。
-1. あなたのインフラストラクチャを設定し、あなたの入力トラフィックのコピーを生成し、そのコピーを追加のバックエンドとしてWallarmノードに送信します。
-
-    設定詳細については、あなたのインフラストラクチャで使用されているコンポーネントのドキュメンテーションを参照することをお勧めします。[以下](#examples-of-web-server-configuration-for-traffic-mirroring)では、NGINX、Envoy、類似した一般的なソリューションの設定例を提供しますが、実際の設定はあなたのインフラストラクチャの特性に依存します。
+    設定の詳細については、インフラストラクチャで使用しているコンポーネントのドキュメントを参照することを推奨します。[下記](#configuration-examples-for-traffic-mirroring)に、NGINX、Envoyなどの一般的なソリューションの設定例を示しますが、実際の構成はインフラストラクチャの特性に依存します。
 
 ## トラフィックミラーリングの設定例
 
-以下は、NGINX、Envoy、Traefik、Istioを設定して、入力トラフィックを追加のバックエンドとしてWallarmノードにミラーリングする方法の例です。
+以下は、NGINX、Envoy、Traefik、Istioを使用して、受信トラフィックをWallarmノードへ追加バックエンドとしてミラーする方法の設定例です。
 
 ### NGINX
 
-NGINX 1.13からは、追加のバックエンドへトラフィックをミラーリングすることができます。トラフィックのミラーリングを行うためにNGINXを設定するには：
+NGINX 1.13以降では、トラフィックを追加バックエンドにミラーできます。NGINXでトラフィックをミラーするには:
 
-1. `location` または `server` ブロックで `mirror` ディレクティブを設定することで、[`ngx_http_mirror_module`](http://nginx.org/en/docs/http/ngx_http_mirror_module.html)モジュールを設定します。
+1. `location`または`server`ブロック内で`mirror`ディレクティブを設定し、[`ngx_http_mirror_module`](http://nginx.org/en/docs/http/ngx_http_mirror_module.html)モジュールを構成します。
 
-下記の例では、`location /` で受信したリクエストを `location /mirror-test` にミラーリングします。
-1. ミラーされたトラフィックをWallarmノードに送信するために、ミラーリングするヘッダーをリストし、`mirror`ディレクティブが指す `location` にノードがあるマシンのIPアドレスを指定します。 
+    以下の例は、`location /`で受信したリクエストを`location /mirror-test`にミラーします。
+1. ミラーされたトラフィックをWallarmノードへ送信するため、ミラーするヘッダーを列挙し、`mirror`ディレクティブが指す`location`でノードのあるマシンのIPアドレスを指定します。
 
-```nginx
+```
 location / {
         mirror /mirror-test;
         mirror_request_body on;
@@ -62,11 +61,11 @@ location /mirror-test {
     }
 ```
 
-[NGINXのドキュメンテーションを確認](http://nginx.org/en/docs/http/ngx_http_mirror_module.html)
+[NGINXのドキュメントを確認](http://nginx.org/en/docs/http/ngx_http_mirror_module.html)
 
 ### Envoy
 
-この例では、Envoyによるトラフィックミラーリングを設定しています。この構成では、単一の `listener` がポート80（TLSなし）をリッスンし、単一の `filter` を持つ。元のバックエンドとミラーリングされたトラフィックを受け取る追加のバックエンドのアドレスは `clusters` ブロックで指定されています。
+以下の例では、ポート80( TLSなし)でリッスンする単一の`listener`と単一の`filter`を使用して、Envoyでトラフィックミラーリングを構成します。元のバックエンドとミラーされたトラフィックを受信する追加バックエンドのアドレスは、`clusters`ブロックで指定します。
 
 ```yaml
 static_resources:
@@ -92,9 +91,9 @@ static_resources:
                 - match:
                     prefix: "/"
                   route:
-                    cluster: httpbin     # <-- 元のクラスターへのリンク
+                    cluster: httpbin     # <-- 元のクラスタへのリンク
                     request_mirror_policies:
-                    - cluster: wallarm   # <-- ミラーリングされたリクエストを受け取るクラスターへのリンク
+                    - cluster: wallarm   # <-- ミラーされたリクエストを受信するクラスタへのリンク
                       runtime_fraction:
                         default_value:
                           numerator: 100
@@ -104,7 +103,7 @@ static_resources:
                 "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
 
   clusters:
-  ### 元のクラスターの定義
+  ### 元のクラスタの定義
   ###
   - name: httpbin
     type: STRICT_DNS
@@ -115,14 +114,13 @@ static_resources:
       - lb_endpoints:
         - endpoint:
             address:
-              ### 元のエンドポイントのアドレス。アドレスはDNS名
-              ### またはIPアドレス、port_valueはTCPポート番号です
+              ### 元のエンドポイントのアドレス。アドレスはDNS名またはIPアドレス、port_valueはTCPポート番号です。
               ###
               socket_address:
-                address: httpbin # <-- 元のクラスターの定義
+                address: httpbin # <-- 元のクラスタの定義
                 port_value: 80
 
-  ### ミラーリングされたリクエストを受け取るクラスターの定義
+  ### ミラーされたリクエストを受信するクラスタの定義
   ###
   - name: wallarm
     type: STRICT_DNS
@@ -133,29 +131,25 @@ static_resources:
       - lb_endpoints:
         - endpoint:
             address:
-              ### 元のエンドポイントのアドレス。アドレスはDNS名
-              ### またはIPアドレス、port_valueはTCPポート番号です。Wallarmの
-              ### ミラーリングスキーマは任意のポートでデプロイ可能ですが、
-              ### デフォルト値はTerraformモジュールではTCP/8445、
-              ### 他のデプロイオプションでは80がデフォルト値となります。
+              ### ミラー先エンドポイントのアドレス。アドレスはDNS名またはIPアドレス、port_valueはTCPポート番号です。Wallarmミラーリングスキーマは任意のポートでデプロイ可能ですが、Terraformモジュールのデフォルト値はTCP/8445であり、その他のデプロイメントオプションのデフォルト値は80です。
               ###
               socket_address:
                 address: wallarm
                 port_value: 8445
 ```
 
-[Envoyのドキュメンテーションを確認](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto)
+[Envoyのドキュメントを確認](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto)
 
 ### Istio
 
-Istioでトラフィックをミラーリングするためには、ミラーリングルートを内部エンドポイント（Istioの内部、例えばKubernetes内部）または `ServiceEntry` を用いた外部エンドポイントに対して `VirtualService` を設定することができます：
+Istioでトラフィックをミラーするには、内部エンドポイント(たとえばKubernetes上でホストされる)または`ServiceEntry`を使用した外部エンドポイントへのルートに対して`VirtualService`を構成できます:
 
-* クラスタ内のリクエスト（例えば、ポッド間）のミラーリングを有効にするには、`.spec.gateways` に `mesh` を追加します。
-* 外部リクエスト（例えば、LoadBalancerやNodePortサービス経由）のミラーリングを有効にするには、Istioの `Gateway` コンポーネントを設定し、`VirtualService` の `.spec.gateways` にそのコンポーネントの名前を追加します。このオプションは下記の例に示されています。
+* クラスタ内リクエスト(たとえばポッド間の通信)のミラーリングを有効にするには、`.spec.gateways`に`mesh`を追加します。
+* 外部リクエスト(たとえばLoadBalancerまたはNodePortサービス経由)のミラーリングを有効にするには、Istioの`Gateway`コンポーネントを構成し、そのコンポーネントの名前を`VirtualService`の`.spec.gateways`に追加します。このオプションは、以下の例で示しています。
 
 ```yaml
 ---
-### ミラーリングされたトラフィックの送信先の設定
+### ミラーされたトラフィックの送信先の構成
 ###
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
@@ -163,10 +157,10 @@ metadata:
   name: wallarm-external-svc
 spec:
   hosts:
-    - some.external.service.tld # ミラーリングの宛先アドレス
+    - some.external.service.tld # ミラー先アドレス
   location: MESH_EXTERNAL
   ports:
-    - number: 8445 # ミラーリングの宛先ポート
+    - number: 8445 # ミラー先ポート
       name: http
       protocol: HTTP
   resolution: DNS
@@ -179,10 +173,10 @@ spec:
   hosts:
     - ...
   gateways:
-    ### istio `Gateway`コンポーネントの名前。外部からのトラフィックを処理するために必要
+    ### Istioの`Gateway`コンポーネントの名前。外部ソースからのトラフィックを処理するために必要です。
     ###
     - httpbin-gateway
-    ### 特殊なラベル。これにより、この仮想サービスのルートは、Kubernetesのポッドからのリクエスト（ゲートウェイを経由しないクラスタ内通信）と一緒に機能します
+    ### 特殊なラベルで、Kubernetesポッド間のリクエスト(ゲートウェイを経由しないクラスタ内通信)に対応するために有効化されます。
     ###
     - mesh
   http:
@@ -193,11 +187,11 @@ spec:
               number: 80
           weight: 100
       mirror:
-        host: some.external.service.tld # ミラーリングの宛先アドレス
+        host: some.external.service.tld # ミラー先アドレス
         port:
-          number: 8445 # ミラーリングの宛先ポート
+          number: 8445 # ミラー先ポート
 ---
-### 外部からのリクエストを処理するための設定
+### 外部リクエストを処理するための設定
 ###
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
@@ -216,20 +210,19 @@ spec:
     - "httpbin.local"
 ```
 
-[Istioのドキュメンテーションを確認](https://istio.io/latest/docs/tasks/traffic-management/mirroring/)
+[Istioのドキュメントを確認](https://istio.io/latest/docs/tasks/traffic-management/mirroring/)
 
 ### Traefik
 
-以下の設定例は、「[動的設定ファイル](https://doc.traefik.io/traefik/reference/dynamic-configuration/file/)」アプローチに基づいています。Traefikは他の設定モードもサポートしており、提供されたものを類似の構造を持つ他のモードに簡単に調整することができます。
+以下の設定例は、[`dynamic configuration file`](https://doc.traefik.io/traefik/reference/dynamic-configuration/file/)アプローチに基づいています。Traefikはその他の設定モードもサポートしており、類似の構造を持つため、提供された例を任意のモードに容易に調整できます。
 
 ```yaml
-### 動的設定ファイル
-### 注意：entrypointsは静的設定ファイルで記述されています
+### Dynamic configuration file
+### Note: entrypointsはstatic configuration fileに記述されています
 http:
   services:
-    ### 元のサービスとwallarm `services`のマッピング方法。
-    ### 次の`routers`の設定では（下記参照）、このサービスの
-    ### 名前（`with_mirroring`）を使用してください。
+    ### これが元の`service`とWallarmの`service`をマッピングする方法です。
+    ### 今後の`routers`の設定(下記参照)では、このサービス名(`with_mirroring`)を使用してください。
     ###
     with_mirroring:
       mirroring:
@@ -238,26 +231,22 @@ http:
           - name: "wallarm"
             percent: 100
 
-    ### ミラーリングされたトラフィックを送信する`service` – 
-    ### リクエストがオリジナルの`service`からコピー（ミラーリング）されて
-    ### 受信するべきエンドポイント
+    ### トラフィックをミラーするための`service` ― すなわち、元の`service`からコピーされたリクエストを受信するエンドポイントです。
     ###
     wallarm:
       loadBalancer:
         servers:
           - url: "http://wallarm:8445"
 
-    ### オリジナルの`service`。このサービスは
-    ### オリジナルのトラフィックを受け取るべき。
+    ### 元の`service` ― このサービスが元のトラフィックを受信します。
+    ###
     httpbin:
       loadBalancer:
         servers:
           - url: "http://httpbin:80/"
 
   routers:
-    ### トラフィックミラーリングが機能するためには、ルーター名は
-    ### トラフィックミラーリング用の`service`名（with_mirroring）と
-    ### 同じである必要があります。
+    ### トラフィックミラーリングが機能するためには、ルーター名が`service`名(ここではwith_mirroring)と同一である必要があります。
     ###
     with_mirroring:
       entryPoints:
@@ -265,7 +254,7 @@ http:
       rule: "Host(`mirrored.example.com`)"
       service: "with_mirroring"
 
-    ### オリジナルのトラフィック用のルーター
+    ### 元のトラフィック用のルーター
     ###
     just_to_original:
       entryPoints:
@@ -274,4 +263,4 @@ http:
       service: "httpbin"
 ```
 
-[Traefikのドキュメンテーションを確認](https://doc.traefik.io/traefik/routing/services/#mirroring-service)
+[Traefikのドキュメントを確認](https://doc.traefik.io/traefik/routing/services/#mirroring-service)

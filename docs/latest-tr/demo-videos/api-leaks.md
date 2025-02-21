@@ -1,12 +1,11 @@
-# API Sızıntılarına Genel Bakış
+# API Leaks Overview
 
-Demo videomuzu izleyin ve Wallarm platformunun [**API Sızıntıları**](../api-attack-surface/security-issues.md) modülünün keşfettiği çeşitli API sızıntı türlerine aşina olun ve saptanan herhangi bir sızıntıyı nasıl giderilebileceğini anlayın.
+Demo videomuzu izleyerek Wallarm platformunun [**API Leaks**](../api-attack-surface/security-issues.md) modülünün tespit ettiği çeşitli API sızıntısı türleri hakkında bilgi edinebilir ve tespit edilen herhangi bir sızıntının nasıl giderileceğini öğrenebilirsiniz.
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/Xfezb0WdNMY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-**İlgili belgelendirme makaleleri**
+**İlgili dokümantasyon makaleleri**
 
-* [API Sızıntılarına genel bakış](../api-attack-surface/security-issues.md)
-* [API Sızıntıları kullanıcı kılavuzu](../user-guides/api-leaks.md)
+* [AASM - Security Issues Detection](../api-attack-surface/security-issues.md)

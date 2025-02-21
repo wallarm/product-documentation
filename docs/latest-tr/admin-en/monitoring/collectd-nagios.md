@@ -16,86 +16,86 @@
 
 [anchor-header-7]:          #7-add-commands-to-the-nrpe-service-configuration-file-on-the-filter-node-to-get-the-required-metrics
 
-#   `collectd-nagios` Yardımcı Programıyla Nagios'a Ölçümleri Aktarma
+# collectd-nagios Yardımıyla Nagios'a Metrik Aktarımı
 
-Bu belge, [Nagios][link-nagios] izleme sistemine (önerilen [Nagios Core][link-nagios-core] sürümü; ancak bu belge herhangi bir Nagios sürümü için uygun) [`collectd-nagios`][link-collectd-nagios] yardımcı programını kullanarak filtre düğümü ölçümlerini aktarma örneği sağlar.
+Bu belge, filtre düğüm metriklerini [Nagios][link-nagios] izleme sistemine (önerilen sürüm [Nagios Core][link-nagios-core] olmakla birlikte, bu belge herhangi bir Nagios sürümü için uygundur) [`collectd-nagios`][link-collectd-nagios] yardımcı programını kullanarak aktarmaya ilişkin bir örnek sunar.
 
-!!! info "Varsayımlar ve gereklilikler"
-    *   `collectd` hizmeti, bir Unix etki alanı soketi üzerinden çalışmak üzere yapılandırılmalıdır (detaylar için [buraya][doc-unixsock] bakın).
+!!! info "Varsayımlar ve Gereksinimler"
+    *   `collectd` servisi, bir Unix domain soketi aracılığıyla çalışacak şekilde yapılandırılmış olmalıdır (ayrıntılar için [buraya][doc-unixsock] bakınız).
     *   Nagios Core sürümünün zaten yüklü olduğu varsayılmaktadır.
         
-        Değilse, Nagios Core'un kurulumunu yapın (örneğin, bu [talimatları][link-nagios-core-install] izleyin).
+        Eğer yüklü değilse, Nagios Core'ü yükleyin (örneğin, şu [talimatları][link-nagios-core-install] izleyebilirsiniz).
     
-        Gerekirse, başka bir Nagios sürümünü de kullanabilirsiniz (örneğin, Nagios XI).
+        Gerekirse başka bir Nagios sürümü de kullanılabilir (örneğin, Nagios XI).
         
-        "Nagios" terimi bundan sonra, aksi belirtilmedikçe, herhangi bir Nagios sürümüne atıfta bulunmak için kullanılacaktır.
+        Bundan böyle "Nagios" terimi, aksi belirtilmedikçe herhangi bir Nagios sürümünü ifade edecektir.
         
-    *   Filtre düğümüne ve Nagios ana makinesine bağlanma yeteneğine sahip olmalısınız (örneğin, SSH protokolü üzerinden) ve `root` hesabı veya başka bir süper kullanıcı haklarına sahip hesap altında çalışabilmelisiniz.
-    *   Filtre düğümü üzerinde [Nagios Remote Plugin Executor][link-nrpe-docs] hizmeti (bu örnekte *NRPE* olarak anılacaktır) yüklü olmalıdır.  
+    *   Filtre düğümüne ve Nagios ana makinesine (örneğin, SSH protokolü kullanılarak) bağlanabilme yetkiniz olmalı ve `root` hesabı veya süper kullanıcı haklarına sahip başka bir hesap altında çalışabilmelisiniz.
+    *   Filtre düğümünde, bu örnekte *NRPE* olarak anılacak olan [Nagios Remote Plugin Executor][link-nrpe-docs] servisi kurulmuş olmalıdır.   
 
-##  Örnek İş Akışı
+## Örnek İş Akışı
 
---8<-- "../include-tr/monitoring/metric-example.md"
+--8<-- "../include/monitoring/metric-example.md"
 
-![Örnek iş akışı][img-collectd-nagios]
+![Example workflow][img-collectd-nagios]
 
-Bu belgede kullanılan dağıtım şeması:
-*   Wallarm filtre düğümü, `10.0.30.5` IP adresi ve `node.example.local` tam etki alanı adı üzerinden erişilebilir bir ana makineye dağıtılmıştır.
-*   Nagios, `10.0.30.30` IP adresi üzerinden erişilebilir ayrı bir ana makine üzerine kurulmuştur.
-*   Uzak bir ana makine üzerindeki komutları yürütmek için NRPE eklentisi kullanılır. Eklenti, içeriyor
-    *   Filtre düğümüyle birlikte izlenen ana makine üzerine kurulan `nrpe` hizmeti. `5666/TCP` standart NRPE portu üzerinden dinler.
-    *   `check_nrpe` NRPE Nagios eklentisi, `nrpe` hizmetinin kurulu olduğu uzak ana makine üzerinde komutları yürütmesini sağlar ve Nagios ana makinesi üzerine kurulmuştur.
-*   NRPE, `collectd` ölçümlerini Nagios-uyumlu bir biçimde sağlayan `collectd_nagios` yardımcı programını çağırmak için kullanılır.
+Bu belgede aşağıdaki dağıtım şeması kullanılmaktadır:
+*   Wallarm filtre düğümü, `10.0.30.5` IP adresi ve `node.example.local` tam nitelikli alan adıyla erişilebilen bir ana makinede dağıtılmıştır.
+*   Nagios, `10.0.30.30` IP adresiyle ayrı bir ana makinede kuruludur.
+*   Uzaktaki bir ana makinede komut çalıştırmak için NRPE eklentisi kullanılır. Eklenti, şunları içerir:
+    *   Filtre düğümüyle birlikte izlenen ana makinede yüklü olan ve `5666/TCP` standart NRPE portunu dinleyen `nrpe` servisi.
+    *   Nagios ana makinesine kurulmuş olan ve `nrpe` servisi yüklü uzaktaki ana makinede komut çalıştırılmasını sağlayan `check_nrpe` NRPE Nagios eklentisi.
+*   NRPE, `collectd` metriklerini Nagios ile uyumlu formatta sağlayan `collectd_nagios` yardımcı programını çağırmak için kullanılacaktır.
 
-##  Nagios'a Ölçümleri Aktarma Yapılandırması
+## Nagios'a Metrik Aktarımını Yapılandırma
 
-!!! info "Bu kurulum örneği hakkında bir not"
-    Bu belge, Nagios'un varsayılan parametrelerle zaten yüklendiği durumda NRPE eklentisinin nasıl kurulacağını ve yapılandırılacağını açıklar (Nagios'un `/usr/local/nagios` dizininde kurulu olduğu ve işlemek için `nagios` kullanıcı adını kullandığı varsayılır). Eklentinin veya Nagios'un özelleştirilmiş bir kurulumunu yapıyorsanız, uygun komutları ve belgedeki talimatları gerektiği gibi ayarlayın.
+!!! info "Bu kurulum örneğine ilişkin bir not"
+    Bu belge, Nagios varsayılan parametrelerle (Nagios'un `/usr/local/nagios` dizininde kurulu olduğu ve çalışması için `nagios` kullanıcısını kullandığı varsayılmaktadır) yüklüyken NRPE eklentisinin nasıl kurulup yapılandırılacağını anlatmaktadır. Eklentiyi veya Nagios'u varsayılan olmayan bir kurulumla yapıyorsanız, belgede yer alan ilgili komutları ve talimatları ihtiyaçlarınıza göre uyarlayın.
 
-Filtre düğümünden Nagios'a ölçüm aktarmayı yapılandırmak için aşağıdaki adımları izleyin:
+Filtre düğümünden Nagios'a metrik aktarımını yapılandırmak için aşağıdaki adımları izleyin:
 
-### 1.  NRPE'yi Nagios Ana Makinesiyle İletişim Kuracak Şekilde Yapılandırın 
+### 1. NRPE'nin Nagios Ana Makinesiyle İletişim Kurmasını Yapılandırma 
 
-Bunu yapmak için, bir filtre düğümü ana makinesinde: 
+Bunu gerçekleştirmek için, filtre düğümünde:
 1.  NRPE yapılandırma dosyasını açın (varsayılan: `/usr/local/nagios/etc/nrpe.cfg`).
-   
-2.  Bu dosyadaki `allowed_hosts` yönergesine Nagios sunucusunun IP adresini veya tam etki alanı adını ekleyin. Örneğin, Nagios ana makinesi `10.0.30.30` IP adresini kullanıyorsa:
-   
+    
+2.  Bu dosyada `allowed_hosts` yönergesine, Nagios sunucusunun IP adresini veya tam nitelikli alan adını ekleyin. Örneğin, eğer Nagios ana makinesi `10.0.30.30` IP adresini kullanıyorsa:
+    
     ```
     allowed_hosts=127.0.0.1,10.0.30.30
     ```
-   
-3.  Uygun komutu yürüterek NRPE hizmetini yeniden başlatın:
+    
+3.  Uygun komutu çalıştırarak NRPE servisini yeniden başlatın:
 
-    --8<-- "../include-tr/monitoring/nrpe-restart-2.16.md"
+    --8<-- "../include/monitoring/nrpe-restart-2.16.md"
 
-### 2.  Nagios NRPE Eklentisini Nagios Ana Makinesine Yükleyin
+### 2. Nagios Ana Makinesinde Nagios NRPE Eklentisini Kurma
 
-Bunu yapmak için, Nagios ana makinesinde şu adımları izleyin:
-1.  NRPE eklentisinin kaynak dosyalarını indirin ve açın ve eklentiyi oluşturmak ve yüklemek için gerekli yardımcı programları yükleyin (detaylar için [NRPE belgelerine][link-nrpe-docs] bakın). 
-2.  Eklenti kaynak kodu ile dizine gidin, kaynaklardan oluşturun ve ardından eklentiyi yükleyin.
+Bunu gerçekleştirmek için, Nagios ana makinesinde aşağıdaki adımları izleyin:
+1.  NRPE eklentisinin kaynak dosyalarını indirin ve arşivden çıkarın, ayrıca eklentiyi derleyip kurmak için gerekli yardımcı programları yükleyin (ayrıntılar için [NRPE belgelerine][link-nrpe-docs] bakınız). 
+2.  Eklenti kaynak kodunun bulunduğu dizine gidin, kaynaklardan derleyin ve ardından eklentiyi kurun.
 
-    Almanız gereken en minimal adımlar:
+    Atılması gereken en temel adımlar şunlardır:
     
     ```
     ./configure
     make all
     make install-plugin
     ```
-   
-### 3.  NRPE Nagios Eklentisinin NRPE Hizmetiyle Başarıyla Etkileşimde Olduğundan Emin Olun
+    
+### 3. Nagios Ana Makinesinde NRPE Nagios Eklentisinin NRPE Servisiyle Başarılı Bir Şekilde İletişim Kurduğundan Emin Olma
 
-Bunu yapmak için, Nagios ana makinesinde aşağıdaki komutu çalıştırın:
+Bunu gerçekleştirmek için, Nagios ana makinesinde aşağıdaki komutu çalıştırın:
 
 ``` bash
 /usr/local/nagios/libexec/check_nrpe -H node.example.local
 ```
 
-NRPE normal işliyorsa, komutun çıktısı bir NRPE sürümünü içermelidir (ör., `NRPE v3.2.1`).
+NRPE normal çalışıyorsa, komut çıktısında NRPE versiyon bilgisi (örneğin, `NRPE v3.2.1`) yer almalıdır.
 
-### 4.  `check_nrpe` Komutunu Tanımlayın, Böylece NRPE Nagios Eklentisi Tek Bir Argümanla Nagios Ana Makinesinde Çalıştırılabilir
+### 4. Nagios Ana Makinesinde NRPE Nagios Eklentisini Tek Argümanla Çalıştıracak Şekilde `check_nrpe` Komutunu Tanımlama
 
-Bunu yapmak için, `/usr/local/nagios/etc/objects/commands.cfg` dosyasına aşağıdaki satırları ekleyin:
+Bunu gerçekleştirmek için, `/usr/local/nagios/etc/objects/commands.cfg` dosyasına aşağıdaki satırları ekleyin:
 
 ```
 define command{
@@ -104,71 +104,72 @@ define command{
  }
 ```
 
-### 5. Filtre Düğümü Ana Makinesine `collectd_nagios` Yardımcı Programını Yükleyin
+### 5. Filtre Düğüm Ana Makinesinde `collectd_nagios` Yardımcı Programını Kurma
 
 Aşağıdaki komutlardan birini çalıştırın:
 
---8<-- "../include-tr/monitoring/install-collectd-utils.md"
+--8<-- "../include/monitoring/install-collectd-utils.md"
 
-### 6.  `collectd-nagios` Yardımcı Programını `nagios` Kullanıcısının Adına Yükseltilmiş Ayrıcalıklarla Çalışacak Şekilde Yapılandırın
+### 6. `collectd-nagios` Yardımcı Programını, `nagios` Kullanıcısı Adına Yükseltilmiş Ayrıcalıklarla Çalıştırılacak Şekilde Yapılandırma
 
-Bunu yapmak için, filtre düğümü ana makinesinde aşağıdaki adımları uygulayın:
+Bunu gerçekleştirmek için, filtre düğümünde aşağıdaki adımları izleyin:
 1.  [`visudo`][link-visudo] yardımcı programını kullanarak, `/etc/sudoers` dosyasına aşağıdaki satırı ekleyin:
-   
+    
     ```
     nagios ALL=(ALL:ALL) NOPASSWD:/usr/bin/collectd-nagios
     ```
-   
-    Bu, `nagios` kullanıcısının herhangi bir parola sağlama gereksinimi olmadan `sudo` kullanarak `collectd-nagios` yardımcı programını süper kullanıcı ayrıcalıklarıyla çalıştırmasını sağlar.
+    
+    Bu, `nagios` kullanıcısının `sudo` aracılığıyla şifre girmeden `collectd-nagios` yardımcı programını süper kullanıcı ayrıcalıklarıyla çalıştırmasına olanak tanır.
 
-   
-    !!! info "`collectd-nagios`'un süper kullanıcı ayrıcalıklarıyla çalıştırılması"
-        Yardımcı programın süper kullanıcı ayrıcalıklarıyla çalıştırılması gerekir çünkü veri almak için `collectd` Unix etki alanı soketini kullanır. Yalnızca bir süper kullanıcı bu sokete erişebilir.
+    
+    !!! info "collectd-nagios'un Süper Kullanıcı Ayrıcalıklarıyla Çalıştırılması"
+        Yardımcı program, `collectd` Unix domain soketine veri almak için erişim gerektirdiğinden süper kullanıcı ayrıcalıklarıyla çalıştırılmalıdır. Bu sokete sadece süper kullanıcı erişebilir.
 
-2.  `nagios` kullanıcısının `collectd` tarafından `nagios` kullanıcıına ölçüm değerlerini alabildiğini kontrol edin, aşağıdaki test komutunu yürütün:
-   
+2.  `nagios` kullanıcısının `collectd`'den metrik değerlerini alabileceğinden emin olmak için aşağıdaki test komutunu çalıştırın:
+    
     ```
     sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
     ```
     
-    Bu komut, `nagios` kullanıcısının [`wallarm_nginx/gauge-abnormal`][link-metric] ölçümünün değerini (`node.example.local` ana makinesi için işlenen isteklerin sayısı) almasını sağlar.
+    Bu komut, `node.example.local` ana makinesi için [`wallarm_nginx/gauge-abnormal`][link-metric] metriğinin (işlenen istek sayısı) değerini almayı sağlar.
     
-    **Komut çıktısının örneği:**
+    **Komut çıktısına bir örnek:**
     
     ```
     OKAY: 0 critical, 0 warning, 1 okay | value=0.000000;;;;
     ```
 
-3.  NRPE hizmeti yapılandırma dosyasına bir önek ekleyin, böylece `sudo` yardımcı programını kullanarak komutları yürütebilir hale gelir:
+3.  NRPE servisi yapılandırma dosyasına, `sudo` yardımcı programını kullanarak komutları çalıştırabilmesi için bir önek ekleyin:
     
     ```
     command_prefix=/usr/bin/sudo
     ```
 
-### 7.  Gerekli Ölçümleri Almak İçin NRPE Hizmeti Yapılandırma Dosyasına Komutlar Ekleyin
+### 7. Filtre Düğümünde Gerekli Metrikleri Almak İçin NRPE Servisi Yapılandırma Dosyasına Komutlar Ekleyin
 
-Örneğin, filtre düğümü için `node.example.local` tam etki alanı adı olan `wallarm_nginx/gauge-abnormal` ölçümünü alacak bir `check_wallarm_nginx_abnormal` adlı komut oluşturmak için, NRPE hizmetinin yapılandırma dosyasına aşağıdaki satırı ekleyin:
+Örneğin, `node.example.local` tam nitelikli alan adına sahip filtre düğümü için `wallarm_nginx/gauge-abnormal` metriğini alacak olan `check_wallarm_nginx_abnormal` adında bir komut oluşturmak için, NRPE servisi yapılandırma dosyasına aşağıdaki satırı ekleyin:
 
 ```
 command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n wallarm_nginx/gauge-abnormal -H node.example.local
 ```
 
-!!! info "Bir ölçü için eşik değerlerini nasıl ayarlanır"
-    Gerekirse, `collectd-nagios` yardımcı programının `WARNING`  veya `CRITICAL` durumunu döndüreceği bir değer aralığını belirleyebilir, bu -w ve -c seçeneklerini kullanarak yapılır (ayrıntılı bilgi, yardımcı programın [belgeleri][link-collectd-docs]nde bulunabilir).
+
+!!! info "Bir metriğe eşik değerleri belirleme hakkında"
+    Gerekirse, `collectd-nagios` yardımcı programının `WARNING` veya `CRITICAL` durumunu döndüreceği değer aralığını, ilgili `-w` ve `-c` seçeneklerini kullanarak belirleyebilirsiniz (ayrıntılar yardımcı program [belgelerinde][link-collectd-docs] mevcuttur).
 
 
-NRPE hizmeti yapılandırma dosyasına tüm gerekli komutları ekledikten sonra, uygun komutu çalıştırarak hizmeti yeniden başlatın:
+Gerekli tüm komutlar NRPE servisi yapılandırma dosyasına eklendikten sonra, uygun komutu çalıştırarak servisi yeniden başlatın:
 
---8<-- "../include-tr/monitoring/nrpe-restart-2.16.md"
+--8<-- "../include/monitoring/nrpe-restart-2.16.md"
 
-### 8.  Nagios Ana Makinesinde, Yapılandırma Dosyalarını Kullanarak Filtre Düğümü Ana Makinesini Belirtin ve İzlemek İçin Hizmetleri Tanımlayın
+### 8. Nagios Ana Makinesinde, Filtre Düğüm Ana Makinesini Belirtmek ve İzlenecek Servisleri Tanımlamak İçin Yapılandırma Dosyalarını Kullanma
 
-!!! info "Hizmetler ve Ölçümler"
-    Bu belge, bir Nagios hizmetinin bir ölçüme eşit olduğunu varsayar.
+!!! info "Servisler ve Metrikler"
+    Bu belgede, bir Nagios servisi ile bir metrik eşdeğer kabul edilmektedir.
 
 
 Örneğin, bu aşağıdaki gibi yapılabilir:
-1.  Aşağıdaki içeriğe sahip bir `/usr/local/nagios/etc/objects/nodes.cfg` dosyası oluşturun:
+1.  `/usr/local/nagios/etc/objects/nodes.cfg` dosyasını aşağıdaki içerikle oluşturun:
     
     ```
     define host{
@@ -186,26 +187,27 @@ NRPE hizmeti yapılandırma dosyasına tüm gerekli komutları ekledikten sonra,
     }
     ```
 
-    Bu dosya, `10.0.30.5` IP adresine ve `node.example.local` hostuna ait `check_wallarm_nginx_abnormal` hizmetin durumunu kontrol etmek için komutu tanımlar, bu da filtre düğümünden `wallarm_nginx/gauge-abnormal` ölçümünü almayı ifade eder (bkz. [`check_wallarm_nginx_abnormal`][anchor-header-7] komutunun açıklaması).
+    Bu dosya, `10.0.30.5` IP adresiyle `node.example.local` ana makinesini ve filtre düğümünden `wallarm_nginx/gauge-abnormal` metriğinin alınarak `wallarm_nginx_abnormal` servisi durumunun kontrol edileceğini tanımlar (bkz. [`check_wallarm_nginx_abnormal`][anchor-header-7] komutunun açıklaması).
 
-2.  Nagios yapılandırma dosyasına (varsayılan `/usr/local/nagios/etc/nagios.cfg`) aşağıdaki satırı ekleyin:
+2.  Nagios yapılandırma dosyasına (varsayılan olarak `/usr/local/nagios/etc/nagios.cfg`) aşağıdaki satırı ekleyin:
     
     ```
     cfg_file=/usr/local/nagios/etc/objects/nodes.cfg
     ```
     
-    Bu, Nagios'un bir sonraki başlangıcı için `nodes.cfg` dosyasındaki verileri başlamak için gereklidir.
+    Bu, Nagios'un bir sonraki başlatmada `nodes.cfg` dosyasındaki verileri kullanmaya başlaması için gereklidir.
 
-3.  Uygun bir komut çalıştırarak Nagios hizmetini yeniden başlatın:
+3.  Uygun komutu çalıştırarak Nagios servisini yeniden başlatın:
 
---8<-- "../include-tr/monitoring/nagios-restart-2.16.md"
+--8<-- "../include/monitoring/nagios-restart-2.16.md"
 
 ## Kurulum Tamamlandı
 
-Nagios, şimdi filtre düğümünün belirli bir ölçümü ile ilişkilendirilmiş hizmeti izliyor. Gerekirse, ilgilendiğiniz metrikleri kontrol etmek için diğer komutlar ve hizmetler tanımlayabilirsiniz.
+Artık Nagios, filtre düğümüne ait belirli metrikle ilişkilendirilmiş servisi izlemektedir. Gerektiğinde, ilgi duyduğunuz metrikleri kontrol etmek için diğer komutları ve servisleri de tanımlayabilirsiniz.
 
-!!! info "NRPE hakkında bilgi"
+
+!!! info "NRPE Hakkında Bilgi"
     NRPE hakkında ek bilgi kaynakları:
     
-    *   NRPE'nin GitHub üzerindeki [README][link-nrpe-readme] dosyası;
+    *   GitHub'daki NRPE'nin [README'si][link-nrpe-readme];
     *   NRPE belgeleri ([PDF][link-nrpe-pdf]).

@@ -1,71 +1,90 @@
 ## Gereksinimler
 
 * Bir GCP hesabı
-* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) için Wallarm Konsolunda **Yönetici** rolü ve iki faktörlü doğrulama devre dışı bırakılmış hesaba erişim
-* ABD Wallarm Bulutu ile çalışırken `https://us1.api.wallarm.com:444` veya AB Wallarm Bulutu ile çalışırken `https://api.wallarm.com:444` adresine erişim. Eğer erişim sadece proxy sunucusu üzerinden yapılandırılabilirse, [yönergeleri][wallarm-api-via-proxy] kullanın.
-* Tüm komutların Wallarm örneğinde süper kullanıcı (örneğin `root`) olarak yürütülmesi
+* [US Cloud](https://us1.my.wallarm.com/) veya [EU Cloud](https://my.wallarm.com/) için Wallarm Console'da **Administrator** rolüyle erişim ve iki faktörlü kimlik doğrulamasının devre dışı bırakılmış olması
+* US Wallarm Cloud ile çalışmak için `https://us1.api.wallarm.com:444` veya EU Wallarm Cloud ile çalışmak için `https://api.wallarm.com:444` adresine erişim. Erişim yalnızca proxy sunucusu üzerinden yapılandırılabiliyorsa, [instructions][wallarm-api-via-proxy] yönergelerini kullanın
+* Saldırı tespit kuralları güncellemelerini ve [API specifications][api-spec-enforcement-docs] belgelerini indirmenin yanı sıra [allowlisted, denylisted, or graylisted][ip-lists-docs] ülkeler, bölgeler veya veri merkezleri için hassas IP'ler alabilmek için aşağıdaki IP adreslerine erişim
+
+    --8<-- "../include/wallarm-cloud-ips.md"
+* Tüm komutları bir Wallarm örneğinde süper kullanıcı (örneğin `root`) olarak çalıştırma
 
 ## 1. Bir filtreleme düğümü örneği başlatın
 
-### Google Cloud UI aracılığıyla örneği başlatın
+### Google Cloud UI üzerinden örneği başlatın
 
-Filtreleme düğümü örneğini Google Cloud UI aracılığıyla başlatmak için lütfen [Google Cloud Marketplace'teki Wallarm düğümü resmini](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node) açın ve **BAŞLAT**'a tıklayın.
+Google Cloud UI üzerinden filtreleme düğümü örneğini başlatmak için, lütfen [Wallarm node image on the Google Cloud Marketplace](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node) sayfasını açın ve **GET STARTED** düğmesine tıklayın.
 
-Örneği, önceden yüklenmiş bir filtreleme düğümü ile başlatır. Google Cloud'da örneklerin nasıl başlatıldığına dair ayrıntılı bilgi için lütfen [resmi Google Cloud Platform belgelerine][link-launch-instance] geçiş yapın.
+Örnek, önceden yüklenmiş bir filtreleme düğümü ile başlatılacaktır. Google Cloud'da örnek başlatma hakkında detaylı bilgi için lütfen [official Google Cloud Platform documentation][link-launch-instance] sayfasına gidin.
 
-### Terraform veya diğer araçlar aracılığıyla örneği başlatın
+### Terraform veya diğer araçlar kullanılarak örneği başlatın
 
-Terraform gibi bir araç kullanarak Wallarm GCP imajını kullanarak filtreleme düğümü örneğini başlatırken, bu imajın adını Terraform yapılandırmasında belirtmeniz gerekebilir.
+Wallarm GCP imajını kullanarak filtreleme düğümü örneğini başlatmak için Terraform gibi bir araç kullanırken, Terraform yapılandırmasında bu imajın adını belirtmeniz gerekebilir.
 
-* Image adı aşağıdaki formatta olmalıdır:
+* İmaj adı aşağıdaki formatta olacaktır:
 
     ```bash
     wallarm-node-195710/wallarm-node-<IMAGE_VERSION>-build
     ```
-* Filtreleme düğümünün 4.8 sürümüyle örneği başlatmak için lütfen aşağıdaki image adını kullanın:
+* Filtreleme düğümü sürümü 5.x ile örneği başlatmak için lütfen aşağıdaki imaj adını kullanın:
 
     ```bash
-    wallarm-node-195710/wallarm-node-4-8-20231019-221905
+    wallarm-node-195710/wallarm-node-5-3-20250129-150255
     ```
 
-Image adını almak için ayrıca bu adımları da izleyebilirsiniz:
+İmaj adını öğrenmek için şu adımları da izleyebilirsiniz:
 
-1. [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)'yi yükleyin.
+1. [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) aracını yükleyin.
 2. Aşağıdaki parametrelerle birlikte [`gcloud compute images list`](https://cloud.google.com/sdk/gcloud/reference/compute/images/list) komutunu çalıştırın:
 
     ```bash
-    gcloud compute images list --project wallarm-node-195710 --filter="name~'wallarm-node-4-8-*'" --no-standard-images
+    gcloud compute images list --project wallarm-node-195710 --filter="name~'wallarm-node-5-2-*'" --no-standard-images
     ```
-3. Son kullanılabilir imajın adındaki sürüm değerini kopyalayın ve kopyalanan değeri sağlanan resim adı formatına yapıştırın. Örneğin, filtreleme düğümünün 4.8 sürümü resmi şu adı taşıyacaktır:
+3. En son kullanılabilir imajın adından sürüm değerini kopyalayın ve belirtilen imaj adı formatına yapıştırın. Örneğin, filtreleme düğümü sürümü 4.10 imajı aşağıdaki adı alacaktır:
 
     ```bash
-    wallarm-node-195710/wallarm-node-4-8-20231019-221905
+    wallarm-node-195710/wallarm-node-5-3-20250129-150255
     ```
 
 ## 2. Filtreleme düğümü örneğini yapılandırın
 
-Başlatılan filtreleme düğümü örneğini yapılandırmak için aşağıdaki eylemleri gerçekleştirin:
+Başlatılan filtreleme düğümü örneğini yapılandırmak için aşağıdaki adımları uygulayın:
 
 1. Menünün **Compute Engine** bölümündeki **VM instances** sayfasına gidin.
-2. Başlatılan filtreleme düğümü örneğini seçin ve **Düzenle** düğmesine tıklayın.
-3. **Firewall** ayarında ilgili kutuları işaretleyerek gerekli türde gelen trafiğe izin verin.
-4. Gerekirse, örneğe proje SSH anahtarlarıyla bağlanmayı sınırlayabilir ve bu örneğe bağlanmak için özel bir SSH anahtar çifti kullanabilirsiniz. Bunu yapmak için aşağıdaki eylemleri gerçekleştirin:
-    1. **SSH Keys** ayarında **Block project-wide** kutusunu işaretleyin.
-    2. **SSH Keys** ayarında bir SSH anahtarı girme alanını genişletmek için **Show and edit** düğmesine tıklayın.
-    3. Bir çift genel ve özel SSH anahtarı oluşturun. Örneğin, `ssh-keygen` ve `PuTTYgen` yardımcı programlarını kullanabilirsiniz.
+2. Başlatılan filtreleme düğümü örneğini seçin ve **Edit** düğmesine tıklayın.
+3. **Firewalls** ayarında ilgili gelen trafik türlerini işaretleyerek izin verin.
+4. Gerekirse, örneğe yalnızca proje SSH anahtarları ile bağlanmayı kısıtlayabilir ve bu örneğe bağlanmak için özel bir SSH anahtar çifti kullanabilirsiniz. Bunun için şu adımları izleyin:
+    1. **SSH Keys** ayarında **Block project-wide** kutucuğunu işaretleyin.
+    2. SSH anahtarı girişi için alanı genişletmek adına **Show and edit** düğmesine tıklayın.
+    3. Bir çift genel ve özel SSH anahtarı oluşturun. Örneğin, `ssh-keygen` ve `PuTTYgen` araçlarını kullanabilirsiniz.
        
-        ![PuTTYgen kullanarak SSH anahtarlarını oluşturmak][img-ssh-key-generation]
+        ![Generating SSH keys using PuTTYgen][img-ssh-key-generation]
 
-    4. Kullanılan anahtar üretecinin arayüzünden bir açık anahtarı OpenSSH formatında kopyalayın (mevcut örnekte, oluşturulan genel anahtarın PuTTYgen arayüzündeki **Public key for pasting into OpenSSH authorized_keys file** alanından kopyalanması gerekir) ve **Enter entire key data** ipucunu içeren alana yapıştırın.
-    5. Özel anahtarı kaydedin. Gelecekte yapılandırılmış örneğe bağlanmak için gerekli olacaktır.
-5. Değişiklikleri uygulamak için sayfanın altındaki **Save** düğmesine tıklayın. 
+    4. Kullanılan anahtar oluşturucusunun arayüzünden OpenSSH formatındaki açık anahtarı kopyalayın (bu örnekte, oluşturulan genel anahtar PuTTYgen arayüzündeki **Public key for pasting into OpenSSH authorized_keys file** alanından kopyalanmalıdır) ve **Enter entire key data** ipucunu içeren alana yapıştırın.
+    5. Özel anahtarı kaydedin. Gelecekte yapılandırılan örneğe bağlanmak için bu anahtar gerekecektir.
+5. Değişiklikleri uygulamak için sayfanın altındaki **Save** düğmesine tıklayın.
 
 ## 3. SSH üzerinden filtreleme düğümü örneğine bağlanın
 
-Örneklere bağlanma yolları hakkında ayrıntılı bilgi için bu [bağlantıya](https://cloud.google.com/compute/docs/instances/connecting-to-instance) geçiş yapın.
+Örneklerle bağlantı kurma yöntemleri hakkında detaylı bilgi için lütfen bu [linke](https://cloud.google.com/compute/docs/instances/connecting-to-instance) gidin.
 
 --8<-- "../include/gcp-autoscaling-connect-ssh.md"
 
-## 4. Filtreleme düğümünü Wallarm Cloud'a bağlayın
+## 4. Bir örneğin Wallarm Cloud'a bağlanması için bir token oluşturun
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.6-only-with-postanalytics.md"
+Yerel Wallarm filtreleme düğümünün, uygun tipte bir Wallarm token kullanarak Wallarm Cloud ile bağlantı kurması gerekmektedir. Bir API token, Wallarm Console UI'da düğüm grubu oluşturmanıza olanak tanır ve bu da düğüm örneklerinizi etkili bir şekilde organize etmenizi sağlar.
+
+![Grouped nodes][img-grouped-nodes]
+
+Token'ı aşağıdaki şekilde oluşturun:
+
+=== "API token"
+
+    1. Wallarm Console → **Settings** → **API tokens** bölümünü [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) veya [EU Cloud](https://my.wallarm.com/settings/api-tokens) üzerinde açın.
+    1. `Deploy` kaynak rolüne sahip API token'ı bulun veya oluşturun.
+    1. Bu token'ı kopyalayın.
+=== "Node token"
+
+    1. Wallarm Console → **Nodes** bölümünü [US Cloud](https://us1.my.wallarm.com/nodes) veya [EU Cloud](https://my.wallarm.com/nodes) üzerinde açın.
+    1. Aşağıdakilerden birini yapın: 
+        * **Wallarm node** türünde bir düğüm oluşturun ve oluşturulan token'ı kopyalayın.
+        * Mevcut düğüm grubunu kullanın - düğüm menüsünden token'ı **Copy token** seçeneğiyle kopyalayın.

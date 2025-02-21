@@ -11,68 +11,68 @@
 [link-create-node]:                 create-node.md
 [doc-inactivity-timeout]:           internals.md#test-run
 
-#   Bir Test Çalışması Oluşturma
+# Test Çalıştırması Oluşturma
 
-!!! bilgi "Gerekli veriler"
-    Bir test çalışması oluşturmak için API yöntemlerini kullandığınızı varsayarsanız, bir belirtece ihtiyacınız olacak.
+!!! info "Gerekli veriler"
+    API yöntemleriyle bir test çalıştırması oluşturmak için bir token'a ihtiyacınız vardır.
     
-    Bir test çalışması oluşturmak için web arayüzünü kullandığınızı varsayarsanız, bir Wallarm hesabına ihtiyacınız olacak.
+    Web arayüzü üzerinden bir test çalıştırması oluşturmak için bir Wallarm hesabına sahip olmanız gerekmektedir.
     
-    Token hakkında detaylı bilgiye [buradan][doc-token-information] ulaşabilirsiniz.
+    Token hakkında ayrıntılı bilgiyi [buradan][doc-token-information] edinebilirsiniz.
     
-    Bu belgedeki örnek token değeri `token_Qwe12345` kullanılıyor.
+    Bu belgede örnek token değeri olarak `token_Qwe12345` kullanılmıştır.
 
-Bir test çalışması oluşturulduğunda, yeni bir [test kaydı][doc-testrecord] oluşturulur.
+Bir test çalıştırması oluşturulduğunda, yeni bir [test kaydı][doc-testrecord] da oluşturulur.
 
-Bu test çalışması oluşturma yöntemi, bir hedef uygulamanın taban çizgi isteklerinin kaydıyla birlikte test edilmesi gerektiğinde kullanılır.
+Temel isteklerin kaydının alınmasıyla birlikte hedef uygulamanın test edilmesi gerektiğinde, bu test çalıştırması oluşturma yöntemi kullanılmalıdır.
 
-## API üzerinden Bir Test Çalışması Oluşturma
+## API ile Test Çalıştırması Oluşturma
 
-Bir test çalışması oluşturmak için, POST isteğini `https://us1.api.wallarm.com/v1/test_run` URL'sine gönderin:
+Bir test çalıştırması oluşturmak için, `https://us1.api.wallarm.com/v1/test_run` URL'sine POST isteği gönderin:
 
---8<-- "../include-tr/fast/operations/api-create-testrun.md"
+--8<-- "../include/fast/operations/api-create-testrun.md"
 
-API sunucusuna isteğiniz başarılı bir şekilde ulaşırsa, sunucunun yanıtına sunulursunuz. Yanıt, yararlı bilgiler sağlar, aralarında:
+API sunucusuna yapılan istek başarılı olursa, sunucunun yanıtı görüntülenir. Yanıt, aşağıdakiler de dahil olmak üzere yararlı bilgiler sağlar:
 
-1.  `id`: yaratılmış yeni test çalışmasının kimliği (örneğin, `tr_1234`).
+1.  `id`: Yeni oluşturulan test çalıştırmasının tanımlayıcısı (örneğin, `tr_1234`).
     
-    Bu kimlik parametresi değerine ihtiyacınız olacak FAST'ı CI/CD'ye dahil etmek için gereken ilerleyen aksiyonlarda:
+    CI/CD'ye FAST entegrasyonu için aşağıdaki işlemleri gerçekleştirmek adına id parametresine ihtiyacınız olacaktır:
     
-    1.  Kayıt sürecini başlatmak için FAST düğümünün hazır olmasını kontrol etme.  
-    2.  Taban çizgi isteklerinin kayıt sürecini durdurma.
-    3.  FAST güvenlik testlerinin bitmesini beklemek.
+    1.  Kayıt işlemini başlatmak için FAST node'un varlığını kontrol etmek.  
+    2.  Temel isteklerin kaydını durdurmak.
+    3.  FAST güvenlik testlerinin tamamlanmasını beklemek.
     
-2.  `state`: test çalışmasının durumu.
+2.  `state`: Test çalıştırmasının durumu.
     
-    Yeni oluşturulmuş bir test çalışması `running` durumundadır.
-    `state` parametresinin tüm değerleri hakkında kapsamlı bir açıklama [burada][doc-state-description] bulunabilir.
+    Yeni oluşturulan bir test çalıştırması `running` durumundadır.
+    `state` parametresinin tüm değerlerine ilişkin kapsamlı açıklamayı [buradan][doc-state-description] bulabilirsiniz.
     
-3.  `test_record_id`: Yeni oluşturulmuş test kaydının kimliği (örneğin, `rec_0001`). Tüm taban çizgi istekler bu test kaydına yerleştirilecek.    
+3.  `test_record_id`: Yeni oluşturulan test kaydının tanımlayıcısı (örneğin, `rec_0001`). Tüm temel istekler bu test kaydına yerleştirilecektir.    
 
-##  Web Arayüzü üzerinden Bir Test Çalışması Oluşturma
+## Web Arayüzü ile Test Çalıştırması Oluşturma
       
-Wallarm hesap arayüzünüzden bir test çalışması oluşturmak için aşağıdaki adımları izleyin:
+Wallarm hesabınız üzerinden bir test çalıştırması oluşturmak için aşağıdaki adımları izleyin:
 
-1. Wallarm hesabınıza gidin > **Test çalışmaları** [bu linkten](https://my.wallarm.com/testing/testruns) AB bulutta veya [bu linkten](https://us1.my.wallarm.com/testing/testruns) ABD bulutta.
+1. Wallarm hesabınıza gidin > **Test runs**. AB bulutu için [bu bağlantıyı](https://my.wallarm.com/testing/testruns) veya ABD bulutu için [bu bağlantıyı](https://us1.my.wallarm.com/testing/testruns) kullanın.
 
-2. **Test çalışması oluştur** düğmesine tıklayın.
+2. **Create test run** butonuna tıklayın.
 
-3. Test çalışmanızın adını girin.
+3. Test çalıştırmanızın adını girin.
 
-4. **Test politikası** açılır menüsünden test politikanızı seçin. Yeni bir test politikası oluşturmak için, lütfen [bu talimatları][link-create-policy] izleyin. Ayrıca, varsayılan politikayı da kullanabilirsiniz.
+4. **Test policy** açılır listesinden test politikasını seçin. Yeni bir test politikası oluşturmak için lütfen [bu talimatları][link-create-policy] izleyin. Ayrıca varsayılan politikayı da kullanabilirsiniz.
 
-5. **Düğüm** açılır menüsünden FAST düğümünü seçin. FAST düğümü oluşturmak için, lütfen [bu talimatları][link-create-node] izleyin.
+5. **Node** açılır listesinden FAST node'u seçin. FAST node oluşturmak için lütfen [bu talimatı][link-create-node] izleyin.
 
-    ![Test çalışması oluşturma][img-test-run-creation]
+    ![Creating test run][img-test-run-creation]
 
-6. Eğer gerekliyse, **Gelişmiş ayarları** ekleyin. Bu ayarlar bloğu aşağıdaki noktaları içerir:
+6. Gerekirse **Advanced settings** ekleyin. Bu ayarlar bloğu aşağıdaki maddeleri içerir:
 
---8<-- "../include-tr/fast/test-run-adv-settings.md"
+--8<-- "../include/fast/test-run-adv-settings.md"
 
-    ![Gelişmiş test çalışması ayarları][img-testrun-adv-settings]
+    ![Test run advanced settings][img-testrun-adv-settings]
 
-7. **Oluştur ve çalıştır** düğmesine tıklayın.
+7. **Create and run** butonuna tıklayın.
 
-## Test kaydını yeniden kullanma
+## Test Kayıtlarının Yeniden Kullanılması
 
-İsteklerin bir istek kaynağından hedefe gönderildiği ve [kayıt sürecinin durdurulduğu][link-stopping-recording-chapter] zaman, test kaydının diğer test çalısmalarıyla [yeniden kullanılması mümkündür][doc-copying-testrun].
+İstekler, bir istek kaynağından hedef uygulamaya gönderildiğinde ve [kayıt süreci durdurulduğunda][link-stopping-recording-chapter], test kaydını diğer test çalıştırmalarıyla [yeniden kullanmak][doc-copying-testrun] mümkün hale gelir.

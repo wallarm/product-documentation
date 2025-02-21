@@ -1,9 +1,9 @@
-!!! uyarı "FAST düğümünü Wallarm bulutlarından birine bağlama"
-    Bir FAST düğümü, [mevcut Wallarm bulutlarından](../../cloud-list.md) biriyle etkileşimde bulunur. Varsayılan olarak, bir FAST düğümü Amerikan bulutunda bulunan Wallarm API sunucusu ile çalışır.
+!!! warning "Connecting FAST node to one of the Wallarm clouds"
+    Bir FAST node, [mevcut Wallarm clouds](../../cloud-list.md) arasından biriyle etkileşim kurar. Varsayılan olarak, bir FAST node, Amerikan cloud'da bulunan Wallarm API sunucusuyla çalışır.
     
-    Bir FAST düğümüne başka bir buluttaki API sunucusunu kullanması için talimat vermek için, gerekli Wallarm API sunucusunun adresini belirten `WALLARM_API_HOST` çevre değişkenini düğüm konteynerine iletin.
+    FAST node'un farklı bir cloud'daki API sunucusunu kullanmasını sağlamak için, node konteynerine gerekli Wallarm API sunucusunun adresine işaret eden `WALLARM_API_HOST` ortam değişkenini iletin.
     
-    Örnek (Avrupa Wallarm bulutundaki API sunucusunu kullanan bir FAST düğümü için):
+    Örnek (Avrupa Wallarm cloud'unda bulunan API sunucusunu kullanan bir FAST node için):
 
     ```
     WALLARM_API_HOST=api.wallarm.com      

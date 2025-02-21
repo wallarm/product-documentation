@@ -1,56 +1,61 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 
-# EOL マルチテナントノードのアップグレード
+# EOL多テナントノードのアップグレード
 
-これらの手順では、EOL（End-Of-Life）マルチテナントノード（バージョン3.6以下）を4.6までアップグレードする方法を説明します。
+この手順では、バージョン3.6以下のEOL多テナントノードをバージョン5.0までアップグレードする手順について説明します。
 
-## 要件
+## Requirements
 
-* ユーザーが[技術テナントアカウント](../../installation/multi-tenant/configure-accounts.md#tenant-account-structure)に追加された**グローバル管理者**ロールで以降のコマンドを実行する
-* US Wallarm Cloudで作業している場合は`https://us1.api.wallarm.com`へ、EU Wallarm Cloudで作業している場合は`https://api.wallarm.com`へのアクセス。ファイアウォールによってアクセスがブロックされていないことを確認してください
+* 以降のコマンドは、[technical tenant account](../../installation/multi-tenant/overview.md#tenant-accounts)に追加された**Global administrator**ロールを持つユーザーによって実行される必要があります
+* US Wallarm Cloudを利用する場合は`https://us1.api.wallarm.com`、EU Wallarm Cloudをご利用の場合は`https://api.wallarm.com`にアクセスできることが必要です。ファイアウォールでアクセスがブロックされていないことをご確認ください
+* 攻撃検知ルールおよびAPI仕様のアップデートのダウンロード、並びにホワイトリスト、ブラックリスト、またはグレイリストに登録された国、地域、またはデータセンターの正確なIPを取得するために、以下のIPアドレスへのアクセスが必要です
 
-## ステップ1：Wallarmサポートチームに連絡する
+    --8<-- "../include/wallarm-cloud-ips.md"
 
-マルチテナントノードのアップグレード中に、[Wallarmサポートチーム](mailto:support@wallarm.com)の助けを借りて、[カスタムルールセットのビルド](../../user-guides/rules/rules.md)機能の最新バージョンを取得してください。
+## Step 1: Wallarmサポートチームに連絡
 
-!!! info "ブロックされたアップグレード"
-    カスタムルールセットビルド機能の不正確なバージョンを使用すると、アップグレードプロセスがブロックされる可能性があります。
+多テナントノードのアップグレード中に最新バージョンの[custom ruleset building](../../user-guides/rules/rules.md#ruleset-lifecycle)機能を入手するために、[Wallarm support team](mailto:support@wallarm.com)の支援を依頼してください
 
-サポートチームは、マルチテナントノードのアップグレードと必要な再構成に関連するすべての質問に対応するのにも役立ちます。
+!!! info "アップグレードのブロック"
+    間違ったバージョンのcustom ruleset building機能を使用すると、アップグレードプロセスがブロックされる可能性があります
 
-## ステップ2：標準アップグレード手順に従う
+サポートチームは、多テナントノードのアップグレードおよび必要な再構成に関するあらゆる質問にお答えします
 
-標準的な手順は次のものです：
+## Step 2: 標準アップグレード手順に従う
 
-* [Wallarm NGINXモジュールのアップグレード](nginx-modules.md)
-* [postanalyticsモジュールのアップグレード](separate-postanalytics.md)
-* [Wallarm Docker NGINX-またはEnvoyベースのイメージのアップグレード](docker-container.md)
-* [統合されたWallarmモジュールを備えたNGINX Ingressコントローラのアップグレード](ingress-controller.md)
-* [クラウドノードイメージのアップグレード](cloud-image.md)
+以下は標準の手順です：
 
-!!! warning "マルチテナントノードの作成"
-    Wallarmノードを作成する際には、**マルチテナントノード**オプションを選択してください：
+* [Upgrading Wallarm NGINX modules](nginx-modules.md)
+* [Upgrading the postanalytics module](separate-postanalytics.md)
+* [Upgrading the Wallarm Docker NGINX-based image](docker-container.md)
+* [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
+* [Upgrading the cloud node image](cloud-image.md)
 
-    ![マルチテナントノードの作成](../../images/user-guides/nodes/create-multi-tenant-node.png)
+!!! warning "多テナントノードの作成"
+    Wallarmノードの作成時に、必ず**Multi-tenant node**オプションを選択してください：
 
-## ステップ3：マルチテナンシーの再構成
+    ![多テナントノードの作成](../../images/user-guides/nodes/create-multi-tenant-node.png)
 
-テナントとそのアプリケーションとの関連付け方法の設定を書き換えます。以下に示す例を考慮してください。この例では：
+## Step 3: マルチテナンシーの再構成
 
-* テナントはパートナーのクライアントを表します。パートナーには2つのクライアントがあります。
-* `tenant1.com`と`tenant1-1.com`に対するトラフィックは、クライアント1と関連付けられるべきです。
-* `tenant2.com`に対するトラフィックは、クライアント2と関連付けられるべきです。
-* クライアント1には3つのアプリケーションもあります：
+テナントおよびそのアプリケーションとトラフィックの関連付け方法を設定し直してください。以下の例を参照してください。
+
+例では：
+
+* テナントはパートナーのクライアントを表します。パートナーは2つのクライアントを持ちます。
+* `tenant1.com`および`tenant1-1.com`宛のトラフィックはクライアント1に関連付ける必要があります。
+* `tenant2.com`宛のトラフィックはクライアント2に関連付ける必要があります。
+* クライアント1にはさらに3つのアプリケーションがあります：
     * `tenant1.com/login`
     * `tenant1.com/users`
     * `tenant1-1.com`
 
-    これら3つのパスに対するトラフィックは、それぞれ対応するアプリケーションと関連付けられ、残りはクライアント1の一般的なトラフィックとみなされるべきです。
+    これら3つのパス宛のトラフィックは、それぞれ対応するアプリケーションに関連付ける必要があります。それ以外はクライアント1の汎用トラフィックとして扱います。
 
-### 以前のバージョンの設定を調査する
+### 以前のバージョンの構成を確認する
 
-3.6では、次のように設定することができました：
+バージョン3.6では、以下のように設定できます：
 
 ```
 server {
@@ -81,35 +86,36 @@ server {
 }
 ```
 
-上記の設定についての注意事項：
+上記の構成に関する注意点：
 
-* `tenant1.com`と`tenant1-1.com`に対するトラフィックは、`20`と`23`の値を介してクライアント1と関連付けられており、このクライアントは[APIリクエスト](https://docs.wallarm.com/3.6/installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account)によってリンクされています。
-* テナントとその他のアプリケーションにリンクするためには同様のAPIリクエストを送信しているはずです。
-* テナントとアプリケーションは別々のエンティティであるため、それらを異なるディレクティブで設定することは論理的です。また、それにより追加のAPIリクエストを回避するのに便利です。テナントとアプリケーション間の関係を設定自体で定義することは論理的です。これらすべてが現在の設定には欠けていますが、以下で説明する新しい4.xのアプローチで利用可能になります。
+* `tenant1.com`および`tenant1-1.com`宛のトラフィックは、`20`と`23`の値を介してクライアント1に関連付けられており、[API request](https://docs.wallarm.com/3.6/installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account)を通じてこのクライアントにリンクされています。
+* 同様に、他のアプリケーションをテナントにリンクするためにAPIリクエストが送信されているはずです。
+* テナントとアプリケーションは別個のエンティティであるため、異なるディレクティブで設定するのが合理的です。また、追加のAPIリクエストを避けるため、構成自体でテナントとアプリケーション間の関係を定義するのが望ましいです。これらは現在の構成では欠落していますが、以下で説明する新しい5.xのアプローチにより利用可能になります。
 
-### 4.xのアプローチを調査する
+### 5.xのアプローチを確認する
 
-バージョン4.xでは、ノード設定でテナントを定義する方法はUUIDです。
+バージョン5.xでは、ノード構成においてテナントを定義する方法としてUUIDを使用します。
 
-設定を書き換えるには、以下のことを行います：
+構成を変更するには、以下の手順を実行してください：
 
 1. テナントのUUIDを取得します。
-1. NGINX設定ファイルにテナントを含め、それらのアプリケーションを設定します。
+1. NGINX構成ファイルにテナントを含め、それぞれのアプリケーションを設定します。
 
 ### テナントのUUIDを取得する
 
-テナントのリストを取得するために、Wallarm APIへの認証済みリクエストを送信します。認証方法は[テナント作成で使用されるもの](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)と同じです。
+テナントの一覧を取得するには、Wallarm APIへ認証済みのリクエストを送信します。認証方法は[tenant creationに使用されたもの](../../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api)と同じです。
 
-1. 後でそれらに関連するUUIDを見つけるための`clientid`を取得します：
+1. 後で関連するUUIDを特定するために、`clientid`を取得します：
 
-    === "Wallarm Console から"
-         Wallarm Consoleユーザーインターフェイスの**ID**列から `clientid` をコピーします：
+    === "Wallarm Consoleを使用して"
+
+        Wallarm Consoleのユーザーインターフェイスの**ID**列から`clientid`をコピーしてください：
         
-        ![Wallarm Console内のテナントのセレクタ](../../images/partner-waf-node/clients-selector-in-console-ann.png)
-    === "APIへのリクエストを送信する"
-        1. `/v2/partner_client`ルートにGETリクエストを送信します：
+        ![Wallarm Consoleのテナントセレクター](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+    === "APIへリクエストを送信して"
+        1. ルート`/v2/partner_client`へGETリクエストを送信します：
 
-            !!! info "あなた自身のクライアントから送信されたリクエストの例"
+            !!! info "自前のクライアントから送信したリクエストの例"
                 === "US Cloud"
                     ``` bash
                     curl -X GET \
@@ -125,9 +131,9 @@ server {
                     -H "X-WallarmApi-Token: <YOUR_TOKEN>"
                     ```
             
-            ここで、`PARTNER_ID`はテナント作成手順の[**ステップ2**](../../installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation)で得たものです。
+            ここで`PARTNER_ID`は、tenant作成手順の[**Step 2**](../../installation/multi-tenant/configure-accounts.md#step-4-link-tenants-applications-to-the-appropriate-tenant-account)で取得したものです。
 
-            レスポンスの例：
+            レスポンス例：
 
             ```
             {
@@ -148,10 +154,10 @@ server {
             }
             ```
 
-        1. レスポンスから `clientid` をコピーします。
-1. 各テナントのUUIDを取得するために、`v1/objects/client`ルートにPOSTリクエストを送信します：
+        1. レスポンスから`clientid`をコピーします。
+1. 各テナントのUUIDを取得するために、ルート`v1/objects/client`へPOSTリクエストを送信します：
 
-    !!! info "あなた自身のクライアントから送信されたリクエストの例"
+    !!! info "自前のクライアントから送信したリクエストの例"
         === "US Cloud"
             ``` bash
             curl -X POST \
@@ -169,7 +175,7 @@ server {
             -d '{ "filter": { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}}'
             ```        
 
-    レスポンスの例：
+    レスポンス例：
 
     ```
     {
@@ -195,14 +201,14 @@ server {
 
 1. レスポンスから`uuid`をコピーします。
 
-### NGINX設定ファイルにテナントを含め、それらのアプリケーションを設定する
+### NGINX構成ファイルにテナントを含め、それぞれのアプリケーションを設定する
 
-NGINX設定ファイルでは：
+NGINX構成ファイルでは：
 
-1. 上記の手順で受け取ったテナントUUIDを[`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid)のディレクティブで指定します。
-1. 保護されたアプリケーションIDを[`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)ディレクティブで設定します。
+1. 上記で取得したテナントUUIDを[`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid)ディレクティブに指定します。
+1. 保護されたアプリケーションIDを[`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)ディレクティブに設定します。
 
-    ノード3.6以下のNGINX設定がアプリケーション設定を使用している場合、テナントUUIDのみを指定し、アプリケーション設定は変更なしに保持します。
+    もしノード3.6以下用に使用されたNGINX構成にアプリケーション設定が含まれている場合は、テナントUUIDのみを指定し、アプリケーションの設定は変更しないでください。
 
 例：
 
@@ -236,11 +242,11 @@ server {
 }
 ```
 
-上記の設定では：
+上記の構成では：
 
 * テナントとアプリケーションは異なるディレクティブで設定されています。
-* テナントとアプリケーション間の関連性は、NGINX設定ファイルの対応するブロック内の`wallarm_application`ディレクティブを使用して定義されています。
+* テナントとアプリケーション間の関係は、NGINX構成ファイルの各ブロック内の`wallarm_application`ディレクティブを通じて定義されています。
 
-## ステップ4：Wallarmマルチテナントノードの動作をテストする
+## Step 4: Wallarm多テナントノードの動作をテストする
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"

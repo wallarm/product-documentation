@@ -1,2 +1,2 @@
-* [USクラウド](https://us1.my.wallarm.com/)または[EUクラウド](https://my.wallarm.com/)のWallarmコンソールで**デプロイ**または**管理者**の役割を持つアカウントへのアクセスと、二要素認証の無効化
-* USのWallarmクラウドで作業している場合は`https://us1.api.wallarm.com:444`、EUのWallarmクラウドで作業している場合は `https://api.wallarm.com:444` へのアクセス。ファイヤーウォールによってアクセスがブロックされていないことを確認してください。
+* Wallarm Consoleの[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)において、二要素認証が無効になっている**Deploy**または**Administrator**ロールが付与されたアカウントへのアクセス
+* US Wallarm Cloudを利用する場合は`https://us1.api.wallarm.com:444`、EU Wallarm Cloudを利用する場合は`https://api.wallarm.com:444`へのアクセスが必要です。ファイアウォールによってアクセスがブロックされていないことを確認してください。

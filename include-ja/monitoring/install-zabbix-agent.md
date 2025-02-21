@@ -1,4 +1,4 @@
-					=== "DEBベースのディストリビューション"
+=== "DEBベースのディストリビューション"
     ```bash
     sudo apt -y install zabbix-agent
     ```

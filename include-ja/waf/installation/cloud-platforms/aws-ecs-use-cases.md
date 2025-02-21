@@ -1,5 +1,4 @@
-Among all supported [Wallarm deployment options][platform], Wallarm deployment on AWS ECS using the Docker image is recommended in these **use cases**:
+Among all supported [Wallarm deployment options][platform]の中で、AWS ECS上でDocker imageを使用したWallarmのデプロイは、以下の**ユースケース**で推奨されます：
 
-1. If your applications are already containerized and running on AWS ECS and your team follows DevOps practices, using Wallarm Docker image and ECS could fit better into your CI/CD pipelines.
-1. Your application follows a microservices architecture. With Wallarm's NGINX-based Docker image you can get granular security at the level of individual services.
-1. Resource optimization is essential. The lightweight nature of Docker containers, including the NGINX-based Docker image, uses fewer resources than traditional VM-based deployments, allowing for more efficient use of system resources.
+* アプリケーションがマイクロサービスアーキテクチャを活用しており、すでにコンテナ化されAWS ECS上で稼働している場合です。
+* 各コンテナに対してきめ細かな制御が必要な場合、Docker imageが優れており、従来のVMベースのデプロイで通常実現可能なものよりも高いレベルのリソース分離性を提供します。

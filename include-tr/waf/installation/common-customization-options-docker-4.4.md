@@ -1,5 +1,5 @@
-* [Filtreleme modunun yapılandırılması][waf-mode-instr]
-* [Wallarm düğüm değişkenlerinin kaydedilmesi][logging-instr]
-* [`wallarm_process_time_limit` direktifinde tek isteğin işleme zamanının sınırlandırılması][process-time-limit-instr]
-* [NGINX direktifinde `proxy_read_timeout` sunucu yanıt bekleme süresinin sınırlanması](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
-* [NGINX direktifinde `client_max_body_size` en büyük istek boyutunun sınırlanması](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
+* [Filtrasyon modunun yapılandırılması][waf-mode-instr]
+* [Wallarm node değişkenlerinin günlüğe kaydedilmesi][logging-instr]
+* [Yönerge `wallarm_process_time_limit` içinde tek istek işleme süresinin sınırlandırılması][process-time-limit-instr]
+* [NGINX yönergesindeki `proxy_read_timeout` ile sunucu yanıt bekleme süresinin sınırlandırılması](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
+* [NGINX yönergesindeki `client_max_body_size` ile maksimum istek boyutunun sınırlandırılması](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)

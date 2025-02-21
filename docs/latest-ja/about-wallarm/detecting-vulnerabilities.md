@@ -1,132 +1,120 @@
-[allowlist-scanner-addresses]: ../user-guides/ip-lists/allowlist.md
+[allowlist-scanner-addresses]: ../user-guides/ip-lists/overview.md
 
-# 脆弱性の検出
+# 脆弱性検出
 
-アプリケーションを構築または実装する際の過失や情報不足により、アプリケーションは攻撃に対して脆弱になることがあります。この記事から、Wallarmプラットフォームがアプリケーションの脆弱性をどのように検出し、システムのセキュリティを強化するための援助を提供するかを学びます。
+アプリケーションの構築や実装時の不注意または不十分な情報により、攻撃に対して脆弱になる可能性があります。本記事では、Wallarmプラットフォームがどのようにアプリケーションの脆弱性を検出し、システムセキュリティの強化に役立てるかを解説します。
 
-## 脆弱性とは何ですか？
+## 脆弱性とは
 
-脆弱性とは、アプリケーションを構築または実装する際の過失や情報不足によるエラーです。攻撃者は脆弱性を悪用して、アプリケーション内で権限境界を越える (つまり、認証されていない操作を行う) ことができます。
+脆弱性とは、アプリケーションの構築や実装時の不注意または不十分な情報により発生するエラーです。攻撃者はこの脆弱性を悪用して、アプリケーション内で権限の境界を越え（つまり、許可されていない操作を実行する）、攻撃を行うことができます。
 
-## 脆弱性の検出方法
+## 脆弱性検出の手法
 
-アプリケーションに存在するアクティブな脆弱性をスキャンするとき、Wallarmは攻撃の兆候を持つリクエストを保護対象のアプリケーションアドレスに送信し、アプリケーションのレスポンスを分析します。レスポンスが1つ以上の事前定義された脆弱性の兆候と一致する場合、Wallarmはアクティブな脆弱性を記録します。
+Wallarmは、アプリケーション内の脆弱性をスキャンする際、攻撃の兆候を含むリクエストを保護対象のアプリケーションアドレスに送信し、アプリケーションの応答を解析します。もし応答が1つ以上の事前定義された脆弱性の兆候に一致した場合、Wallarmはその脆弱性を記録します。
 
-例えば： `/etc/passwd` の内容を読み取るために送信されたリクエストに対するレスポンスが `/etc/passwd` の内容を返すなら、保護対象のアプリケーションはパストラバーサル攻撃に対して脆弱となります。Wallarmは適切なタイプの脆弱性としてそれを記録します。
+例えば、`/etc/passwd`の内容を読み取るために送信されたリクエストに対して、`/etc/passwd`の内容が返された場合、保護対象アプリケーションはパストラバーサル攻撃に脆弱であると判断され、Wallarmは適切なタイプで脆弱性を記録します。
 
-アプリケーションの脆弱性を検出するため、Wallarmは以下の方法で攻撃の兆候を持つリクエストを送信します：
+アプリケーション内の脆弱性を検出するため、Wallarmは以下の手法を用いて攻撃の兆候を含むリクエストを送信します:
 
-* **パッシブ検出**：セキュリティインシデントが起きたことで脆弱性が見つかった。
-* **アクティブな脅威の検証**：攻撃者を侵入テスト担当者に変え、彼らの活動からアプリケーション／APIの可能性のあるセキュリティ問題を発見できます。このモジュールは、トラフィックから実際の攻撃データを使用してアプリケーションのエンドポイントを探ることで可能な脆弱性を見つけます。デフォルトではこの方法は無効になっています。
-* **脆弱性スキャナー**：会社が公開している資産が、典型的な脆弱性を持っているかどうかをスキャンします。
+* **パッシブ検出**：リクエストとレスポンスを含む実際のトラフィックを解析して脆弱性を特定します。これはセキュリティインシデント時に実際の欠陥が悪用された場合や、直接的な欠陥の悪用を伴わずにJWTが侵害されるなど脆弱性の兆候が現れる場合に発生する可能性があります。
+* **スレットリプレイテスト**：攻撃者をペネトレーションテスターに変え、アプリケーションやAPIの脆弱性を探る際の攻撃活動から潜在的なセキュリティ問題を発見します。このモジュールは、トラフィックからの実際の攻撃データを用いてアプリケーションのエンドポイントを探査することで潜在的な脆弱性を見つけます。デフォルトではこの手法は無効です。
+* **脆弱性スキャナー**：企業の公開資産に対して、一般的な脆弱性がスキャンされます。
+* **API Discoveryインサイト**：GETリクエストのクエリパラメータ内で個人情報（PII）が転送されるため、[API Discovery](../api-discovery/overview.md)モジュールにより脆弱性が発見されます。
 
 ### パッシブ検出
 
-パッシブ検出では、Wallarmはセキュリティインシデントが発生したことにより脆弱性を検出します。アプリケーションの脆弱性が攻撃中に悪用されていた場合、Wallarmはそのセキュリティインシデントと、悪用された脆弱性を記録します。
+パッシブ検出とは、リクエストとレスポンスを含む実際のトラフィックを解析して脆弱性を特定することを指します。悪意あるリクエストにより欠陥が悪用され、インシデントと脆弱性の双方が検出されるセキュリティインシデント時、または直接的な欠陥の悪用を伴わずにJWTが侵害されるなど、リクエストに脆弱性の兆候が現れる場合に脆弱性が発見されることがあります。
 
-パッシブな脆弱性検出はデフォルトで有効になっています。
+パッシブ脆弱性検出はデフォルトで有効です。
 
-### アクティブな脅威の検証 <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### スレットリプレイテスト <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
-#### その動作方法
+Wallarmのスレットリプレイテストは、攻撃者を自社のペネトレーションテスターに変えます。最初の攻撃試行を解析し、その後同じ攻撃が悪用され得る他の方法を検証します。これにより、元々の攻撃者でさえ発見できなかった環境内の脆弱な箇所を明らかにします。 [詳細はこちら](../vulnerability-detection/threat-replay-testing/overview.md)
 
---8<-- "../include-ja/how-attack-rechecker-works.md"
+スレットリプレイテストの機能:
 
-!!! warning "IPによってグループ化されたヒットがある場合のアクティブな脅威の検証"
-    攻撃が発生元のIPによって[グループ化](protecting-against-attacks.md#attack)されている場合、この攻撃のアクティブな検証は利用できません。
+* **リアルタイムテスト**：ライブ攻撃データを用いて現状および今後の潜在的な脆弱性を発見し、ハッカーに一歩先んじます。
+* **セーフ＆スマートなシミュレーション**：テスト中に機微な認証情報を省略し、有害なコードを除去します。攻撃手法を模擬して最大限のセキュリティを確保し、実際の被害のリスクを伴いません。
+* **セーフな非本番環境テスト**：実際の本番データを用いながら、システムの過負荷やデータ露出のリスクなしに、[ステージングまたは開発環境で脆弱性チェックを実行](../vulnerability-detection/threat-replay-testing/setup.md)できます。
 
-#### 「アクティブな脅威の検証」モジュールからの潜在的なリスク
+### 脆弱性スキャナー <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
-* Wallarmが合法的なリクエストを攻撃として検出した場合、**アクティブ脅威検証**モジュールによってリクエストが再実行されます。リクエストが冪等でない場合（たとえば、アプリケーションで新しいオブジェクトを作成する認証済みリクエストなど）、脅威検証のためにモジュールによって生成されたリクエストは、クライアントのアカウント内に多数の新しい不要なオブジェクトを作成したり、他の予期しない操作を実行する可能性があります。
+#### 仕組み
 
-    この状況のリスクを最小限に抑えるために、**アクティブ脅威検証**モジュールは再放送されたリクエストから以下のHTTPヘッダーを自動的に削除します：
+脆弱性スキャナーは、企業の公開資産に対して一般的な脆弱性を検査します。スキャナーは固定IPアドレスからアプリケーションアドレスにリクエストを送信し、リクエストに`X-Wallarm-Scanner-Info`ヘッダーを追加します。
 
-    * `Cookie`
-    * `Authorization: Basic`
-    * `Viewstate`
-* アプリケーションが非標準的な認証方法を使用している場合やリクエストの認証が必要ない場合、**アクティブ脅威検証**モジュールはトラフィックからの任意のリクエストを再放送し、システムに悪影響を与える可能性があります。例えば、100以上のお金の取引や注文を繰り返すなどです。この状況のリスクを最小限に抑えるために、[攻撃の再生のためのテスト環境やステージング環境を使用する](../vulnerability-detection/threat-replay-testing/setup.md#optional-configure-attack-rechecker-request-rewriting-rules-run-tests-against-a-copy-of-the-application)ことと、[非標準的なリクエスト認証パラメータをマスクする](../vulnerability-detection/threat-replay-testing/setup.md#configure-proper-data-masking-rules)ことを推奨します。
+#### 構成
 
-#### 設定
+* スキャナーはWallarm Console→**Vulnerabilities**→**Configure**で[有効または無効に設定](../user-guides/vulnerabilities.md#configuring-vulnerability-detection)できます。デフォルトではスキャナーは有効です。
+* スキャナーが検出できる[脆弱性の一覧](../user-guides/vulnerabilities.md#configuring-vulnerability-detection)はWallarm Console→**Vulnerabilities**→**Configure**にて設定できます。デフォルトでは、脆弱性スキャナーはすべての利用可能な脆弱性を検出します。
+* Wallarm Console→**Scanner**→**Configure**にて、各資産ごとに[スキャナーから送信されるリクエストの制限](../user-guides/scanner.md#limiting-vulnerability-scanning)を設定できます。
+* もし、トラフィックを自動でフィルタリングまたはブロックするために追加の設備（ソフトウェアやハードウェア）を利用している場合、Wallarmスキャナー用の[IPアドレス](../admin-en/scanner-addresses.md)でallowlistを設定することを推奨します。これにより、Wallarmの各コンポーネントがシームレスにリソースの脆弱性をスキャンできます。
 
-**アクティブ脅威検証**モジュールはデフォルトでは無効になっています。適切に動作させるためには、有効にし、適切に設定する必要があります。**アクティブ脅威検証**の設定オプションと、これらのオプションの設定のベストプラクティスについては、[こちらのドキュメント](../vulnerability-detection/threat-replay-testing/setup.md)をご覧ください。
+ WallarmにおいてスキャナーのIPアドレスを手動でallowlistに追加する必要はありません。Wallarm node 3.0以降、スキャナーのIPアドレスは自動的にallowlistに追加されます。
 
-### 脆弱性スキャナー <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### API Discoveryインサイト
 
-#### その動作方法
+GETリクエストのクエリパラメータ内で個人を特定できる情報（PII）が転送されるエンドポイントが[API Discovery](../api-discovery/overview.md)モジュールにより識別された場合、Wallarmはこれらのエンドポイントに[情報漏洩](../attacks-vulns-list.md#information-exposure)脆弱性が存在すると認識します。
 
-脆弱性スキャナーは、企業が公開しているすべての資産を典型的な脆弱性についてチェックします。スキャナーはアプリケーションのアドレスに対して固定のIPアドレスからリクエストを送信し、リクエストに `X-Wallarm-Scanner-Info` ヘッダーを追加します。
+## 誤検知
 
-#### 設定
+誤検知とは、正当なリクエストに攻撃の兆候が検出された場合、または正当なエンティティが脆弱性として認定された場合に発生します。 [攻撃検出における誤検知の詳細はこちら→](protecting-against-attacks.md#false-positives)
 
-* スキャナーはWallarmコンソール → **脆弱性** → **設定**で[有効または無効](../user-guides/vulnerabilities.md#configuring-vulnerability-detection)にできます。デフォルトでは、スキャナーは有効です。
-* Wallarmコンソール → **脆弱性** → **設定**でスキャナーによって検出可能な[脆弱性のリスト](../user-guides/vulnerabilities.md#configuring-vulnerability-detection)を設定できます。デフォルトでは、脆弱性スキャナーは利用可能なすべての脆弱性を検出します。
-* Wallarmコンソール→**スキャナー**→**構成**で、スキャナーから送信される[リクエストの限度](../user-guides/scanner.md#limiting-vulnerability-scanning)を各アセットごとに設定することができます。
-* 自動的にトラフィックをフィルタリングし、ブロックする追加機能（ソフトウェアまたはハードウェア）を使用している場合、Wallarmスキャナー用の許可リストにIPアドレスを設定することをお勧めします。これにより、Wallarmのコンポーネントがあなたのリソースをシームレスにスキャンして脆弱性を検出することができます。
+脆弱性スキャンにおける誤検知は、保護対象アプリケーションの特性に起因して発生する可能性があります。同様のリクエストに対する類似のレスポンスは、一方の保護対象アプリケーションでは脆弱性の兆候であり、別の保護対象アプリケーションでは期待される動作である場合があります。
 
-    * [Wallarm US Cloudに登録されたスキャナーのIPアドレス](../admin-en/scanner-addresses.md)
-    * [Wallarm EU Cloudに登録されたスキャナーのIPアドレス](../admin-en/scanner-addresses.md)
+脆弱性に対して誤検知が認定された場合、Wallarm Consoleにて該当脆弱性に適切なマークを付与できます。誤検知としてマークされた脆弱性はクローズされ、再検査されることはありません。
 
-    追加の設備を使用せずにWallarmスキャナーを使用している場合、手動でスキャナーのIPアドレスを許可リストに追加する必要はありません。Wallarmノード3.0から、スキャナーのIPアドレスは自動的に許可リストに追加されます。
+検出された脆弱性が保護対象アプリケーション内に存在するものの修正が不可能な場合、[**Create a virtual patch**](../user-guides/rules/vpatch-rule.md)ルールの設定を推奨します。このルールは、検出された脆弱性の種類を悪用する攻撃をブロックし、インシデントのリスクを排除します。
 
-## 偽陽性
+## 検出された脆弱性の管理
 
-**偽陽性**は、合法的なリクエストに攻撃の兆候が検出された場合や、合法的なエンティティが脆弱性と判断された場合に発生します。[攻撃検出における偽陽性の詳細はこちら→](protecting-against-attacks.md#false-positives)
+検出されたすべての脆弱性はWallarm Consoleの**Vulnerabilities**セクションに表示されます。脆弱性は、以下の方法でインターフェースから管理できます:
 
-脆弱性スキャニングの偽陽性は、保護されたアプリケーションの特性によって発生する可能性があります。同様のレスポンスが同様のリクエストに対して返されることは、一つの保護されたアプリケーションではアクティブな脆弱性を示す一方で、別の保護されたアプリケーションでは予期された動作を示すことがあります。
+* 脆弱性の確認および解析
+* 脆弱性の状態確認の実行：依然として有効か、アプリケーション側で修正済みかを検証
+* 脆弱性をクローズする、または誤検知としてマークする
 
-脆弱性の偽陽性が検出された場合、Wallarmコンソールで脆弱性に適切なマークを追加できます。偽陽性とマークされた脆弱性はクローズされ、再チェックは行われません。
+![Vulnerabilities section](../images/user-guides/vulnerabilities/check-vuln.png)
 
-保護されたアプリケーションに脆弱性が存在し、修正することができない場合、[**仮想パッチを作成する**](../user-guides/rules/vpatch-rule.md)ルールを設定することをお勧めします。このルールにより、検出されたタイプの脆弱性を悪用する攻撃をブロックし、インシデントのリスクを排除することができます。
-
-## 発見された脆弱性の管理
-
-すべての検出された脆弱性はWallarmコンソール → **脆弱性** セクションに表示されます。以下のようにインターフェースを通じて脆弱性を管理することができます：
-
-* 脆弱性を表示し、分析する
-* 脆弱性のステータス検証を実行：アプリケーション側で依然としてアクティブか、または修正されている
-* 脆弱性をクローズするか、偽陽性としてマークする
-
-![脆弱性セクション](../images/user-guides/vulnerabilities/check-vuln.png)
-
-Wallarmプラットフォームの[**API Discovery**モジュール](../api-discovery/overview.md)を使用している場合、脆弱性は検出されたAPIエンドポイントと関連付けられます。たとえば：
+Wallarmプラットフォームの[**API Discovery**モジュール](../api-discovery/overview.md)を利用している場合、脆弱性は検出されたAPIエンドポイントと連携されます。例:
 
 ![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
-脆弱性の管理に関する詳細情報は、[脆弱性の操作](../user-guides/vulnerabilities.md)に関する指示をご覧ください。
+脆弱性の管理に関する詳細は、[脆弱性の取り扱い](../user-guides/vulnerabilities.md)に関する手順をご確認ください。
 
-## 発見した脆弱性に関する通知
+## 検出された脆弱性に関する通知
 
-Wallarmは発見した脆弱性に関する通知を送信することができます。これにより、アプリケーションの新たに発見された脆弱性を把握し、それに迅速に対応することができます。脆弱性への対応には、アプリケーション側での修正、偽陽性の報告、仮想パッチの適用が含まれます。
+Wallarmは検出された脆弱性に関する通知を送信できます。これにより、アプリケーションに新たに発見された脆弱性に迅速に対応できるようになります。対応には、アプリケーション側での修正、誤検知の報告、及びバーチャルパッチの適用が含まれます。
 
-通知を設定するには：
+通知を設定するには:
 
-1. 通知を送信するシステムと[native integration](../user-guides/settings/integrations/integrations-intro.md) を作成します（例：PagerDuty、Opsgenie、Splunk、Slack、Telegram）。
-2. インテグレーションカードの利用可能なイベントリストで**脆弱性が検出された** を選択します。
+1. 通知を送信するためにシステムと[ネイティブインテグレーション](../user-guides/settings/integrations/integrations-intro.md)を作成します（例：PagerDuty、Opsgenie、Splunk、Slack、Telegram）。
+2. インテグレーションカード内の利用可能なイベント一覧から**Vulnerabilities detected**を選択します。
 
-検出された脆弱性についてのSplunk通知の例：
+検出された脆弱性に関するSplunk通知の例:
 
 ```json
 {
-    summary:"[テストメッセージ] [テストパートナー(US)] 新しい脆弱性が検出されました",
-    description:"通知タイプ: vuln
+    summary:"[Test message] [Test partner(US)] New vulnerability detected",
+    description:"Notification type: vuln
 
-                システム内で新しい脆弱性が検出されました。
+                New vulnerability was detected in your system.
 
                 ID: 
-                タイトル: テスト
-                ドメイン: example.com
-                パス: 
-                メソッド: 
-                検出者: 
-                パラメータ: 
-                タイプ: info
-                脅威: 中
+                Title: Test
+                Domain: example.com
+                Path: 
+                Method: 
+                Discovered by: 
+                Parameter: 
+                Type: Info
+                Threat: Medium
 
-                詳細: https://us1.my.wallarm.com/object/555
+                More details: https://us1.my.wallarm.com/object/555
 
 
-                クライアント: TestCompany
-                クラウド: US
+                Client: TestCompany
+                Cloud: US
                 ",
     details:{
         client_name:"TestCompany",
@@ -142,7 +130,7 @@ Wallarmは発見した脆弱性に関する通知を送信することができ�
             title:"Test",
             discovered_by:null,
             threat:"Medium",
-            type:"info"
+            type:"Info"
         }
     }
 }

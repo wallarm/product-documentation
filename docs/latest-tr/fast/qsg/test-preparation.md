@@ -1,3 +1,4 @@
+```markdown
 [img-test-scheme]:                  ../../images/fast/qsg/en/test-preparation/12-qsg-fast-test-prep-scheme.png
 [img-google-gruyere-startpage]:     ../../images/fast/qsg/common/test-preparation/13-qsg-fast-test-prep-gruyere.png
 [img-policy-screen]:                ../../images/fast/qsg/common/test-preparation/14-qsg-fast-test-prep-policy-screen.png
@@ -18,75 +19,75 @@
 [anchor2]:  #2-create-a-test-policy-targeted-at-xss-vulnerabilities
     
     
-# Test Ortamının Ayarlanması
+#   Test Ortamının Ayarlanması
 
-Bu bölüm, FAST'ın Google Gruyere uygulamasındaki XSS açıklıklarını tespit etmek üzere nasıl yapılandırılacağına dair size yol gösterecektir. Tüm gereklilikleri tamamladığınızda, XSS açıklıklarını bulmak için bir HTTPS temel isteği FAST düğümüne aktarmaya hazır olacaksınız.
+Bu bölüm, Google Gruyere uygulamasında XSS açıklarını tespit etmek için FAST’in yapılandırılması sürecinde sizi adım adım yönlendirecektir. Gerekli tüm adımları tamamladıktan sonra, XSS açıklarını bulmak amacıyla FAST düğümü üzerinden HTTPS baseline isteğini proxy’leyebileceksiniz.
 
-Bir güvenlik test seti oluşturmak için Wallarm FAST'a aşağıdakilere ihtiyaç duyulur:
-* Temel isteklerin proxy edildiği dağıtılmış bir FAST düğümü
-* FAST düğümünün Wallarm bulutuna bağlanması 
-* Temel bir istek
+Wallarm FAST’in bir güvenlik test seti oluşturabilmesi için aşağıdakilere ihtiyaç vardır:
+* Baseline istekleri proxy’leyen dağıtılmış bir FAST düğümü
+* FAST düğümünün Wallarm cloud ile bağlantısı
+* Bir baseline isteği
 * Bir test politikası
 
-Bir FAST düğümünü başarıyla dağıttınız ve [önceki bölümde][link-previous-chapter] buluta bağladınız. Bu bölümde bir temel istek ve [test politikası][gl-testpolicy] oluşturmak odak noktanız olacak.
+[Önceki bölüm][link-previous-chapter]de başarılı bir şekilde bir FAST düğümü dağıttınız ve cloud’a bağlandınız. Bu bölümde [test politikası][gl-testpolicy] ve bir baseline isteği oluşturmaya odaklanacaksınız.
 
-![Kullanılan test şeması][img-test-scheme]
+![Kullanımdaki test şeması][img-test-scheme]
 
-!!! info "Bir test politikasının oluşturulması"
-    Her hedef uygulama için özelleştirilmiş bir politika oluşturmanız şiddetle önerilir. Ancak, Wallarm bulutunun otomatik olarak oluşturduğu varsayılan politikayı da kullanabilirsiniz. Bu belge, özel bir politika oluşturma sürecini size anlatırken, varsayılan politika bu kılavuzun kapsamı dışındadır.
+!!! info "Test Politikası Oluşturma"
+    Her hedef uygulama için özel bir politika oluşturmanız şiddetle tavsiye edilir. Ancak, Wallarm cloud tarafından otomatik olarak oluşturulan varsayılan politikayı da kullanabilirsiniz. Bu doküman, özel bir politikanın oluşturulması sürecinde size rehberlik ederken, varsayılan politika bu kılavuzun kapsamı dışındadır.
     
 Test ortamını ayarlamak için aşağıdakileri yapın:
 
-1.  [Temel isteği hazırlayın][anchor1]
-2.  [XSS açıklıklarına yönelik test politikası oluşturun][anchor2]
+1.  [Baseline isteğini hazırla][anchor1]
+2.  [XSS açıklarına yönelik test politikası oluştur][anchor2]
     
-!!! info "Hedef uygulama"
-    Bu örnekte hedef uygulama olarak [Google Gruyere][link-https-google-gruyere] kullanılmaktadır. Eğer temel isteği yerel uygulamanıza yapılandırırsanız, bu uygulamanın çalıştığı makinenin IP adresini Google Gruyere adresi yerine kullanın.
+!!! info "Hedef Uygulama"
+    Mevcut örnekte hedef uygulama olarak [Google Gruyere][link-https-google-gruyere] kullanılmaktadır. Baseline isteğini yerel uygulamanıza oluşturuyorsanız, lütfen Google Gruyere adresi yerine uygulamayı çalıştıran makinenin IP adresini kullanın.
     
-    IP adresini almak için `ifconfig` veya `ip addr` gibi araçları kullanabilirsiniz.
+    IP adresini öğrenmek için `ifconfig` veya `ip addr` gibi araçları kullanabilirsiniz.
         
-##  1.  Temel İsteği Hazırlama
+##  1.  Baseline İsteğini Hazırlama
 
-1.  Temel istek [Google Gruyere][link-https-google-gruyere] uygulamasına yönelik oluşturulduğundan, ilk olarak uygulamanın sandbox halinde bir örneğini oluşturmalısınız. Daha sonra bu örneğin benzersiz tanımlayıcısını almalısınız.
+1.  Sağlanan baseline isteği [Google Gruyere][link-https-google-gruyere] uygulamasını hedef aldığından, öncelikle uygulamanın sandbox ortamında çalışan bir örneğini oluşturmalısınız. Daha sonra, bu örneğin benzersiz tanımlayıcısını almalısınız.
     
-    Bunun için bu [bağlantıya][link-https-google-gruyere-start] gidin. Google Gruyere örneğinin tanımlayıcısı size verilecek, bunu kopyalamalısınız. Hizmet şartlarını okuyun ve **Aagree & Start** düğmesini seçin.
+    Bunun için, bu [link] [link-https-google-gruyere-start]e gidin. Google Gruyere örneğinin tanımlayıcısı ekrana gelecektir; bunu kopyalayın. Hizmet şartlarını okuyun ve **Agree & Start** butonuna tıklayın.
     
-    ![Google Gruyere start page][img-google-gruyere-startpage]
+    ![Google Gruyere başlangıç sayfası][img-google-gruyere-startpage]
 
-    Google Gruyere'nin izole örneği çalıştırılacak. Aşağıdaki adres üzerinden size erişilebilir olacaktır:
+    İzole edilmiş Google Gruyere örneği çalıştırılacaktır. Size şu adres üzerinden erişilebilir hale gelecektir:
     
-    `https://google-gruyere.appspot.com/<sizin örneğinizin ID'si>/`
+    `https://google-gruyere.appspot.com/<your instance ID>/`
 
-2.  Google Gruyere uygulamasının örneğinize yönelik temel isteği oluşturun. Rehberde, geçerli bir istek kullanmanız önerilir.
+2.  Google Gruyere uygulamanızın örneğine yönelik baseline isteğini oluşturun. Kılavuz, yasal bir isteğin kullanılmasını önermektedir.
 
-    İstek aşağıdaki gibidir:
+    İstek şu şekildedir:
 
     ```
-    https://google-gruyere.appspot.com/<sizin örneğinizin ID'si>/snippets.gtl?password=paSSw0rd&uid=123
+    https://google-gruyere.appspot.com/<your instance ID>/snippets.gtl?password=paSSw0rd&uid=123
     ```
 
-    !!! info "İstek örneği"
+    !!! info "Bir istek örneği"
         <https://google-gruyere.appspot.com/430232491618310677730226710602783767322/snippets.gtl?password=paSSw0rd&uid=123>
     
-##  2.  XSS Açıklıklarına Yönelik Test Politikası Oluşturma
+##  2.  XSS Açıklarına Yönelik Test Politikası Oluşturma
 
-1.  Daha önce [oluşturduğunuz][link-previous-chapter] hesap kullanılarak [My Wallarm portalı][link-wl-console]'na giriş yapın.
+1.  [My Wallarm portalına][link-wl-console] daha önce oluşturduğunuz hesapla giriş yapın [önceki bölüm][link-previous-chapter]de.
+    
+2.  “Test policies” sekmesini seçin ve **Create test policy** butonuna tıklayın.
 
-2.  “Test politikaları” sekmesini seçin ve **Test politikası oluştur** düğmesini tıklayın.
+    ![Test politikası oluşturma ekranı][img-policy-screen]
 
-    ![Test politikası oluşturma][img-policy-screen]
+3.  “General” sekmesinde, politika için anlamlı bir isim ve açıklama belirleyin. Bu kılavuzda, `DEMO POLICY` isminin kullanılması önerilmektedir. 
 
-3.  “Genel” sekmesinde politikaya anlamlı bir isim ve açıklama verin. Bu rehberde, `DEMO POLICY` isminin kullanılması önerilmektedir. 
+    ![Test policy sihirbazı: “General” sekmesi.][img-wizard-general]
 
-    ![Test politika sihirbazı: “Genel” sekme][img-wizard-general]
+4.  “Insertion points” sekmesinde, güvenlik test seti istekleri oluşturulurken işleme alınmaya uygun olan [baseline istek elemanlarını][gl-element] ayarlayın. Bu kılavuzun amaçları için, tüm GET parametrelerinin işlenmesine izin vermek yeterlidir. Bunu sağlamak için, “Where to include” bölümüne `GET_.*` ifadesini ekleyin. Bir politika oluşturulurken, FAST bazı parametreleri varsayılan olarak işler. Bunları «—» simgesini kullanarak silebilirsiniz.
 
-4.  “Ekleme noktaları” sekmesinde, güvenlik test seti isteklerinin oluşturulması sırasında işleme alınabilecek [temel istek unsurları][gl-element] belirlenmelidir. Bu kılavuzun amacı için tüm GET parametrelerinin işlenmesine izin vermek yeterli olacaktır. Bunun için, “Nereye dahil edilecek” kısmına `GET_.*` ifadesini ekleyin. Bir politika oluştururken, FAST bazı parametrelerin işleme alınmasına varsayılan olarak izin verir. Bu parametreleri «—» simgesi ile silebilirsiniz.
+    ![Test policy sihirbazı: “Insertion points” sekmesi.][img-wizard-insertion-points]
 
-    ![Test politika sihirbazı: “Ekleme Noktaları” sekme.][img-wizard-insertion-points]
+5.  “Attacks to test” sekmesinde, hedef uygulamadaki açığı istismar etmek için XSS saldırı türünü seçin.
 
-5.  “Test Edilecek Saldırılar” sekmesinde, hedef uygulamadaki açıklığı sömürmek için bir saldırı türü seçin — XSS.
-
-6.  En sağdaki sütunda politika önizlemesinin aşağıdakine benzer görünmesini sağlayın:
+6.  Sağdaki sütunda bulunan politika önizlemesinin aşağıdaki gibi göründüğünden emin olun:
 
     ```
     X-Wallarm-Test-Policy: 
@@ -94,12 +95,13 @@ Test ortamını ayarlamak için aşağıdakileri yapın:
     insertion=include:'GET_.*'; 
     ```
 
-7.  Politikayı kaydetmek için  **Kaydet** düğmesini seçin.
+7.  Politikayı kaydetmek için **Save** butonuna tıklayın.
 
-8.  **Test politikalarına geri dön** düğmesini seçerek test politikası listesine geri dönün.
+8.  **Back to test policies** butonuna tıklayarak test politikaları listesine geri dönün.
     
     
-!!! info "Test politikası detayları"
-    Test politikaları hakkında detaylı bilgiler [bağlantı][doc-policy-in-detail] üzerinden erişilebilir.
+!!! info "Test Politikası Detayları"
+    Test politikaları hakkında detaylı bilgi [link][doc-policy-in-detail] üzerinden mevcuttur.
 
-Şimdi Google Gruyere uygulamasına yönelik HTTPS temel isteğin ve XSS açıklıklarına yönelik test politikanın oluşturulmasını tamamlamış olmalısınız.
+Artık Google Gruyere uygulamasına yönelik HTTPS baseline isteğiniz ve XSS açıklarına odaklanan test politikanız ile bölümdeki tüm hedeflerinizi tamamlamış olmalısınız.
+```

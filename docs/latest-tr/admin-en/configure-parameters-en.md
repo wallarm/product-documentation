@@ -1,97 +1,100 @@
-[doc-nginx-install]: ../installation/nginx/dynamic-module-from-distr.md
-[doc-eu-scanner-ip-addresses]: scanner-addresses.md
-[doc-us-scanner-ip-addresses]: scanner-addresses.md
-[acl-access-phase]: #wallarm_acl_access_phase
+```markdown
+[doc-nginx-install]:    ../installation/nginx/dynamic-module-from-distr.md
+[doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
+[doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
+[acl-access-phase]:            #wallarm_acl_access_phase
 
-# NGINX tabanlı Wallarm düğümü için yapılandırma seçenekleri
+# NGINX Tabanlı Wallarm Node'u için Yapılandırma Seçenekleri
 
-Wallarm NGINX modüller için mevcut ince ayar seçeneklerini öğrenin ve Wallarm çözümünden en iyi şekilde yararlanın.
+Wallarm çözümünden en iyi şekilde yararlanmak için [self-hosted Wallarm NGINX node](../installation/nginx-native-node-internals.md#nginx-node) üzerinde mevcut olan ince ayar seçeneklerini öğrenin.
 
-!!! info "NGINX Resmi Dokümantasyonu"
-    Wallarm yapılandırması, NGINX yapılandırmasıyla büyük ölçüde benzerlik gösterir. 
-    [Resmi NGINX dokümantasyonunu görün](https://www.nginx.com/resources/admin-guide/).
-    Wallarm'a özgü yapılandırma seçeneklerinin yanında, NGINX yapılandırma yeteneklerine tam anlamıyla sahipsiniz.
+!!! info "NGINX Resmi Belgeleri"
+    Wallarm yapılandırması NGINX yapılandırmasına çok benzer. [Resmi NGINX belgelerine bakın](https://www.nginx.com/resources/admin-guide/). Wallarm’a özgü yapılandırma seçeneklerine ek olarak, NGINX yapılandırmasının tüm yeteneklerine sahipsiniz.
 
-## Wallarm yönergeleri
+## Wallarm Yönergeleri
 
 ### disable_acl
 
-İstek kökenlerinin analizini devre dışı bırakmayı sağlar. Devre dışı bırakıldığında (`on`), filtreleme düğümü Wallarm Bulut'tan [IP listelerini](../user-guides/ip-lists/overview.md) indirmez ve istek kaynağı IP'lerinin analizini atlar.
+İsteklerin kaynaklarının analizini devre dışı bırakmayı sağlar. Eğer devre dışı bırakılırsa (`on`), filtreleme node’u Wallarm Cloud’dan [IP listesini](../user-guides/ip-lists/overview.md) indirmez ve istek kaynak IP’lerinin analizini atlar.
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
 
-    Varsayılan değer `off`'tur.
+    Varsayılan değer `off`'dur.
 
 ### wallarm_acl_access_phase
 
-Bu yönerge, NGINX tabanlı Wallarm düğümünü, [reddedilen](../user-guides/ip-lists/denylist.md) IP'lerden gelen istekleri NGINX erişim aşamasında engellemeye zorlar:
+Bu yönerge, NGINX tabanlı Wallarm node’unun NGINX erişim aşamasında, [denylisted](../user-guides/ip-lists/overview.md) IP'lerden gelen istekleri engellemesini zorunlu kılar; bu da şunları ifade eder:
 
-* `wallarm_acl_access_phase on` ile Wallarm düğümü, herhangi bir [filtreleme modunda](configure-wallarm-mode.md) reddedilen IP'lerden gelen tüm istekleri hemen engeller ve reddedilen IP'lerden gelen isteklerde saldırı belirtileri aramaz.
+* `wallarm_acl_access_phase on` ile, Wallarm node denylisted IP’lerden gelen istekleri, herhangi bir [filtreleme modunda](configure-wallarm-mode.md) ( `off` hariç) derhal engeller ve denylisted IP’lerden gelen isteklerde saldırı belirtilerini aramaz.
 
-    Bu, reddetme listesinin standart olarak çalışmasını ve düğümün CPU yükünü önemli ölçüde azaltmasını sağladığı için **varsayılan ve önerilen** değerdir.
+    Bu, **varsayılan ve önerilen** değerdir çünkü denylistlerin standart şekilde çalışmasını sağlar ve node’un CPU yükünü önemli ölçüde azaltır.
 
-* `wallarm_acl_access_phase kapalı` ile Wallarm düğümü, ilk olarak saldırı belirtileri için istekleri analiz eder ve ardından `block` veya `safe_blocking` modunda çalışırken, reddedilen IP'lerden gelen istekleri engeller.
+* `wallarm_acl_access_phase off` ile, Wallarm node önce isteklerde saldırı belirtilerini analiz eder ve ardından `block` veya `safe_blocking` modunda çalışıyorsa denylisted IP’lerden gelen istekleri engeller.
 
-    `off` filtreleme modunda, düğüm istekleri analiz etmez ve reddetme listelerini kontrol etmez.
+    `monitoring` filtreleme modunda, node tüm isteklerde saldırı belirtilerini arar ama kaynak IP denylisted olsa bile bunları asla engellemez.
 
-    `monitoring` filtreleme modunda, düğüm tüm isteklerde saldırı belirtileri arar ancak hiçbirini engellemez, kaynak IP reddedilmiş olsa bile.
+    `wallarm_acl_access_phase off` ile Wallarm node davranışı, node’un CPU yükünü önemli ölçüde arttırır.
 
-    `wallarm_acl_access_phase kapalı` ile Wallarm düğümünün davranışı, düğümün CPU yükünü önemli ölçüde artırır.
+!!! info "Varsayılan Değer ve Diğer Yönergelerle Etkileşim"
+    **Varsayılan değer**: `on` (Wallarm node 4.2'den itibaren)
 
-!!! info "Varsayılan değer ve diğer yönergelerle etkileşim"
-    **Varsayılan değer**: `on` (Wallarm düğümü 4.2'den başlayarak)
+    Bu yönerge yalnızca NGINX yapılandırma dosyasının http bloğu içinde ayarlanabilir.
 
-    Yönerge, yalnızca NGINX yapılandırma dosyasının http bloğu içinde ayarlanabilir.
-
-    * [`disable_acl on`](#disable_acl) ile IP listeleri işlenmez ve `wallarm_acl_access_phase` ayarlamak mantıklı olmaz.
-    * `wallarm_acl_access_phase` yönergesi, [`wallarm_mode`](#wallarm_mode) üzerinde önceliğe sahiptir, bu da filtreleme düğümü modunun `off` veya `monitoring` olmasına rağmen reddedilen IP'lerden gelen isteklerin engellenmesi sonucunu doğurur (`wallarm_acl_access_phase on` ile).
+    * Wallarm mode `off` veya [`disable_acl on`](#disable_acl) kullanıldığında, IP listeleri işlenmez ve `wallarm_acl_access_phase` etkinleştirmenin bir anlamı yoktur.
+    * `wallarm_acl_access_phase` yönergesi, [`wallarm_mode`](#wallarm_mode) üzerinde önceliğe sahiptir; bu, filtreleme node modunun `monitoring` olması durumunda bile denylisted IP’lerden gelen isteklerin engellenmesiyle sonuçlanır ( `wallarm_acl_access_phase on` ile).
 
 ### wallarm_acl_export_enable
 
-Yönerge, düğümden Buluta [reddedilen](../user-guides/ip-lists/denylist.md) IP'lerden gelen istekler hakkında istatistikleri göndermeyi `on` / `off` durumlarına getirir.
+Bu yönerge, node’dan Cloud’a denylisted [IP’lerden](../user-guides/ip-lists/overview.md) gelen isteklerle ilgili istatistiklerin gönderilmesini `on` ile/ `off` ile devre dışı bırakır.
 
-* `wallarm_acl_export_enable on` ile reddedilen IP'lerden gelen isteklere dair istatistikler, **Olaylar** bölümünde [gösterilecektir](../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips).
-* `wallarm_acl_export_enable off` ile reddedilen IP'lerden gelen isteklere dair istatistikler gösterilmez.
+* `wallarm_acl_export_enable on` ile denylisted IP’lerden gelen istek istatistikleri **Attacks** bölümünde [görüntülenecektir](../user-guides/ip-lists/overview.md#requests-from-denylisted-ips).
+* `wallarm_acl_export_enable off` ile denylisted IP’lerden gelen istek istatistikleri görüntülenmeyecektir.
 
 !!! info
-    Bu parametre, http bloğu içinde ayarlanır.
+    Bu parametre http bloğu içinde ayarlanır.
     
     **Varsayılan değer**: `on`
 
 ### wallarm_api_conf
 
-Wallarm API için erişim gereksinimlerini içeren `node.yaml` adlı dosyanın bir yoludur.
+Wallarm API için erişim gereksinimlerini içeren `node.yaml` dosyasının yolunu belirtir.
 
-**Örnek python içeriği:**
+**Örnek**: 
+```
+wallarm_api_conf /etc/wallarm/node.yaml
 
-```python
+# Docker NGINX-tabanlı imaj, Cloud imajı ve All-in-one installer kurulumları
+# wallarm_api_conf /opt/wallarm/etc/wallarm/node.yaml
+```
+
+Filtreleme node’undan serileştirilmiş isteklerin, postanalytics modülü (Tarantool) yerine doğrudan Wallarm API’ya (Cloud) yüklenmesi için kullanılır.
+**Saldırı içeren istekler yalnızca API’ya gönderilir.** Saldırı içermeyen istekler kaydedilmez.
+
+**node.yaml dosya içeriğine örnek:**
+
+``` yaml
 # API bağlantı kimlik bilgileri
 
-hostname: <bazı adlar>
-uuid: <bazı uuid>
-secret: <bazı sırlar>
+hostname: <some name>
+uuid: <some uuid>
+secret: <some secret>
 
 # API bağlantı parametreleri (aşağıdaki parametreler varsayılan olarak kullanılır)
 
-api:
-  host: api.wallarm.com
-  port: 443
-  ca_verify: true
+host: api.wallarm.com
+port: 443
+ca_verify: true
 ```
-
-Filtreleme düğümünden tarayıcı isteklerini doğrudan Wallarm API'sına (Bulut) yüklemek için kullanılır, aksi takdirde postanalitik modülüne (Tarantool) yükleyin.
-**Yalnızca saldırıları olan istekler API'ye gönderilir.** Saldırısı olmayan istekler kaydedilmez.
 
 ### wallarm_application
 
-Korunan uygulamanın benzersiz kimliğini Wallarm Bulut'ta kullanmak üzere ayarlanabilir. 
-Değer, `0` dışında bir pozitif tamsayı olabilir.
+Wallarm Cloud’da kullanılacak korumalı uygulamanın benzersiz tanımlayıcısı. Değer `0` hariç pozitif bir tamsayı olabilir.
 
-Hem uygulama etki alanları için hem de etki alanı yolları için benzersiz kimlikler ayarlanabilir:
+Benzersiz tanımlayıcılar, hem uygulama domain’leri hem de domain yolaları için ayarlanabilir, örneğin:
 
-=== "Etki Alanları için Kimlikler"
-    **example.com** etki alanı için konfigürasyon dosyası:
+=== "Domainlar için Tanımlayıcılar"
+    **example.com** domain’i için yapılandırma dosyası:
 
     ```bash
     server {
@@ -110,7 +113,7 @@ Hem uygulama etki alanları için hem de etki alanı yolları için benzersiz ki
     }
     ```
 
-    **test.com** etki alanı için konfigürasyon dosyası:
+    **test.com** domain’i için yapılandırma dosyası:
 
     ```bash
     server {
@@ -128,7 +131,7 @@ Hem uygulama etki alanları için hem de etki alanı yolları için benzersiz ki
         }
     }
     ```
-=== "Etki Alanı Dizini için Kimlikler"
+=== "Domain Yolları için Tanımlayıcılar"
     ```bash
     server {
         listen 80 default_server;
@@ -152,135 +155,169 @@ Hem uygulama etki alanları için hem de etki alanı yolları için benzersiz ki
     }
     ```
 
-    [Uygulamaların kurulumuna ilişkin daha fazla ayrıntı →](../user-guides/settings/applications.md)
+[Uygulama kurulumuna dair daha fazla ayrıntı →](../user-guides/settings/applications.md)
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
 
     **Varsayılan değer**: `-1`.
 
 ### wallarm_block_page
 
-Engellenmiş isteğe gelen yanıt ayarlanabilir.
+Engellenen isteğe verilecek yanıtı ayarlamanızı sağlar.
 
-[Engelleme sayfası ve hata kodu yapılandırması hakkında daha fazla ayrıntı →](configuration-guides/configure-block-page-and-code.md)
+[Engelleme sayfası ve hata kodu yapılandırmasına dair daha fazla ayrıntı →](configuration-guides/configure-block-page-and-code.md)
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
-
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
 
 ### wallarm_block_page_add_dynamic_path
 
-Bu yönerge, kodunda NGINX değişkenleri bulunan ve yolunun da bir değişken kullanılarak ayarlandığı bir engelleme sayfasının başlatılması için kullanılır. Diğer durumlarda yönerge kullanılmaz.
+NGINX değişkenlerini içeren koda sahip engelleme sayfasını başlatmak için kullanılır ve bu engelleme sayfasının yolu da bir değişken kullanılarak ayarlanır. Aksi takdirde, yönerge kullanılmaz.
 
-[Engelleme sayfası ve hata kodu yapılandırması hakkında daha fazla ayrıntı →](configuration-guides/configure-block-page-and-code.md)
+[Engelleme sayfası ve hata kodu yapılandırmasına dair daha fazla ayrıntı →](configuration-guides/configure-block-page-and-code.md)
 
 !!! info
-    Bu yönerge, NGINX yapılandırma dosyasının `http` bloğu içinde ayarlanabilir.
+    Yönerge yalnızca NGINX yapılandırma dosyasının `http` bloğu içinde ayarlanabilir.
 
 ### wallarm_cache_path
 
-Sunucu başlatıldığında proton.db ve özel kural seti dosya kopyası depolama için yedek kataloğun oluşturulduğu bir dizin. Bu dizin, NGINX'i çalıştıran istemci tarafından yazılabilir olmalıdır.
+Sunucu başladığında proton.db ve özel kurallar seti dosya kopyalarının yedek kataloğunun oluşturulduğu dizin. Bu dizinin NGINX’i çalıştıran istemci için yazılabilir olması gerekir.
 
-!! info
-    Bu parametre yalnızca içinde http bloğu yapılandırılır.
+!!! info
+    Bu parametre yalnızca http bloğu içinde yapılandırılır.
 
 ### wallarm_custom_ruleset_path
 
-Korunan uygulama hakkında bilgi içeren ve filtreleme düğümü ayarlarını içeren [özel kural seti](../user-guides/rules/rules.md) dosyasının bir yoludur.
+Korunan uygulama ve filtreleme node ayarları hakkında bilgiler içeren [özel kurallar seti](../user-guides/rules/rules.md) dosyasına giden yolu belirtir.
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
     
-    **Varsayılan değer**: `/etc/wallarm/custom_ruleset`
+    **Varsayılan değer**:
+    
+    * Docker NGINX-tabanlı imaj, Cloud imajları, NGINX Node all-in-one installer ve Native Node kurulumları için: `/opt/wallarm/etc/wallarm/custom_ruleset`
+    * Diğer kurulum bileşenleri için: `/etc/wallarm/custom_ruleset`
+
+### wallarm_enable_apifw
+
+[API Specification Enforcement](../api-specification-enforcement/overview.md)'ı etkinleştirmek için `on` / devre dışı bırakmak için `off` değeri atar; özellik 4.10 sürümünden itibaren mevcuttur. Bu özelliği etkinleştirmenin Wallarm Console UI üzerinden gerekli abonelik ve yapılandırmanın yerini almadığına dikkat edin.
+
+!!! info
+    Bu parametre `server` blokları içinde ayarlanabilir.
+
+    **Varsayılan değer**: `on`.
 
 ### wallarm_enable_libdetection
 
-SQL Injection saldırılarının **libdetection** kütüphanesi aracılığıyla ek doğrulanmasını etkinleştirir/devre dışı bırakır. **libdetection** kullanımı, saldırıların çift tespitini sağlar ve yanlış pozitif sayısını azaltır.
+**libdetection** kütüphanesi aracılığıyla SQL Injection saldırılarının ek doğrulamasını etkinleştirir/devre dışı bırakır. **libdetection** kullanmak, saldırıların çift tespitini sağlar ve yanlış pozitiflerin sayısını azaltır.
 
-İsteklerin **libdetection** kütüphanesiyle analizi, tüm [dağıtım seçeneklerinde](../installation/supported-deployment-options.md) varsayılan olarak etkindir. Yanlış pozitif sayısını azaltmak için analiz özelliğinin etkin kalması önerilir.
+**libdetection** kütüphanesini kullanarak isteklerin analizi, tüm [kurulum seçeneklerinde](../installation/supported-deployment-options.md) varsayılan olarak etkindir. Yanlış pozitiflerin sayısını azaltmak için analizin etkin kalmasını öneririz.
 
 [**libdetection** hakkında daha fazla ayrıntı →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
 
 !!! warning "Bellek tüketiminin artması"
-    libdetection kütüphanesi kullanılarak saldırıların analiz edilmesi, NGINX ve Wallarm süreçleri tarafından tüketilen bellek miktarını yaklaşık %10 artırabilir.
+    libdetection kütüphanesini kullanarak saldırıları analiz ettiğinizde, NGINX ve Wallarm süreçlerinin tükettiği bellek miktarı yaklaşık %10 artabilir.
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
 
-    Varsayılan değer, tüm [dağıtım seçenekleri](../installation/supported-deployment-options.md) için `on`'dır.
+    Varsayılan değer, tüm [kurulum seçeneklerinde](../installation/supported-deployment-options.md) `on`'dur.
 
 ### wallarm_fallback
 
-Değer `on` olarak ayarlandığında, NGINX acil bir moda giriş yeteneğine sahip olur; proton.db veya özel kurallar indirilemezse, bu ayar http, sunucu ve konum blokları için Wallarm modülünü devre dışı bırakır, NGINX işlevine devam eder.
+Değer `on` olarak ayarlandığında, NGINX acil moda geçme yeteneğine sahiptir; eğer proton.db veya özel kurallar seti indirilemezse, bu ayar ilgili http, server ve location blokları için Wallarm modülünü devre dışı bırakır. NGINX çalışmaya devam eder.
 
 !!! info
     Varsayılan değer `on`'dur.
 
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
+
+### wallarm_file_check_interval
+
+proton.db ve özel kurallar seti dosyasında yeni verilerin kontrolü arasındaki zaman aralığını tanımlar. Ölçü birimi aşağıdaki ekler ile belirtilir:
+* Dakika için ek kullanılmaz.
+* Saniye için `s`
+* Milisaniye için `ms`
+
+!!! info
+    Bu parametre yalnızca http bloğu içinde yapılandırılır.
+    
+    **Varsayılan değer**: `1` (bir dakika)
 
 ### wallarm_force
 
-NGINX'in aynılandırılmış trafiği analizini ayarlar. [NGINX ile aynılandırılmış trafiğin analizine](../installation/oob/web-server-mirroring/overview.md) bakın.
+NGINX aynalanan trafiğine dayalı istek analizini ve özel kural üretimini ayarlar. Detaylı bilgi için [NGINX ile aynalanan trafiğin analizi →](../installation/oob/web-server-mirroring/overview.md).
 
 ### wallarm_general_ruleset_memory_limit
 
-proton.db ve özel kural seti örneğinin kullanabileceği bellek miktarının azami limitini belirler.
+proton.db ve özel kurallar setinin her bir instance’ı tarafından kullanılabilecek maksimum bellek miktarına limit koyar.
 
-Bellek sınırı aşıldığında, kullanıcıya 500 hata verilir.
+İşleme sırasında bellek limiti aşılırsa, kullanıcı 500 hatası alacaktır.
 
-Bu parametrede şu sonekler kullanılabilir:
-* ‘k’ veya ‘K’ kilobayt için
-* ‘m’ veya ‘M’ megabayt için
-* ‘g’ veya ‘G’ gigabayt için
+Bu parametrede aşağıdaki ekler kullanılabilir:
+* Kilobayt için `k` veya `K`
+* Megabayt için `m` veya `M`
+* Gigabayt için `g` veya `G`
 
-**0** değeri sınırlamayı kapatır.
+**0** değeri limiti kapatır.
 
 !!! info
-    Bu parametre, http, sunucu ve/veya konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve/veya location blokları içinde ayarlanabilir.
     
     **Varsayılan değer**: `1` GB
 
 ### wallarm_global_trainingset_path
 
-!!! warning "Yönerge kaldırıldı"
-    Wallarm düğümü 3.6 ile başlayarak, lütfen [`wallarm_protondb_path`](#wallarm_protondb_path) yönergesini kullanın. Yalnızca yönerge adını değiştirin, mantığı değişmedi.
+!!! warning "Yönerge kullanımdan kalkmıştır"
+    Wallarm node 3.6'dan itibaren, lütfen yerine [`wallarm_protondb_path`](#wallarm_protondb_path) yönergesini kullanın. Yalnızca yönerge adını değiştirin, mantığı değişmedi.
 
-### wallarm_file_check_interval
+### wallarm_http_v2_stream_max_len
 
-proton.db ve özel kural seti dosyasında yeni verilerin kontrol edilmesi arasındaki süreyi tanımlar. Ölçü birimi, aşağıdakileri belirtir:
+Bu yönerge, bir HTTP/2 stream’inin bayt cinsinden izin verilen maksimum uzunluğunu belirler. Belirtilen değerin yarısına ulaşıldığında, HTTP/2 `GOAWAY` çerçevesi, stream’in düzgün sonlanabilmesi için istemciye gönderilir. Eğer stream kapatılmaz ve maksimum uzunluğa ulaşılırsa, NGINX bağlantıyı zorla sonlandırır.
 
-* hiçbir sonek: dakika için
-* `s`: saniye için
-* `ms`: milisaniye için
+Bu seçenek yapılandırılmamışsa, stream uzunlukları sınırsız kalır ve özellikle uzun ömürlü bağlantılara sahip gRPC ortamlarında NGINX sürecinde sınırlandırılmamış bellek tüketimine neden olabilir.
 
 !!! info
-    Bu parametre sadece http bloğu içinde ayarlanır.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
     
-    **Varsayılan değer**: `1` (bir dakika)
+    Yönergenin varsayılan değeri yoktur; HTTP/2 stream’lerinin uzunluğu için varsayılan olarak hiçbir limit yoktur.
 
 ### wallarm_instance
 
-!!! warning "Yönerge kaldırıldı"
-    * Yönerge korunan uygulamanın benzersiz kimliğini ayarlamak için kullanıldıysa, yalnızca adı [`wallarm_application`](#wallarm_application)'a kadar değiştirin.
-    * Çok kiracılı düğümler için kiracının benzersiz kimliğini ayarlamak yerine, `wallarm_instance` yerine [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) yönergesini kullanın.
-    
-    Filtreleme düğümünüzün, 4.0 öncesi bir sürüm için yapılandırmasını güncelliyorsanız:
+!!! warning "Yönerge kullanımdan kalkmıştır"
+    * Eğer yönerge, korumalı uygulamanın benzersiz tanımlayıcısını ayarlamak için kullanıldıysa, adını sadece [`wallarm_application`](#wallarm_application) olarak değiştirin.
+    * Multi-tenant node'lar için tenant’ın benzersiz tanımlayıcısını ayarlamak amacıyla, `wallarm_instance` yerine [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) yönergesini kullanın.
 
-    * Filtreleme düğümünü çok kiracılık özelliği olmadan yükseltiyorsanız ve uygulamanın benzersiz kimliğini ayarlamak için kullanılan herhangi bir `wallarm_instance`'ınız varsa, bunu `wallarm_application`'a adlandırın.
-    * Filtreleme düğümünü çok kiracılık özelliği ile yükseltiyorsanız, `wallarm_instance`'ları `wallarm_application` olarak kabul edin, ardından yapılandırmayı [çok kiracılı yapılandırma talimatlarına göre](../updating-migrating/older-versions/multi-tenant.md#step-3-reconfigure-multitenancy) yeniden yazın.
+    4.0 öncesi sürümler için kullanılan filtreleme node yapılandırmanız güncellenirken:
+
+    * Eğer multi-tenancy özelliği olmadan filtreleme node’unuzu yükseltiyorsanız ve korumalı uygulamanın benzersiz tanımlayıcısını ayarlamak için herhangi bir `wallarm_instance` kullanıyorsanız, ismini `wallarm_application` olarak değiştirin.
+    * Eğer multi-tenancy özelliğiyle filtreleme node’unuzu yükseltiyorsanız, tüm `wallarm_instance` değerlerini `wallarm_application` olarak kabul edin, ardından [multi-tenancy yeniden yapılandırma talimatlarına](../updating-migrating/older-versions/multi-tenant.md#step-3-reconfigure-multitenancy) göre yapılandırmayı yeniden düzenleyin.
 
 ### wallarm_key_path
 
-proton.db ve özel kural seti dosyalarının şifreleme/şifre çözme için kullanılan Wallarm özel anahtarına bir yoldur.
+proton.db ve özel kurallar seti dosyalarının şifreleme/çözme işlemi için kullanılan Wallarm özel anahtarına giden yol.
 
 !!! info
-    **Varsayılan değer**: `/etc/wallarm/private.key` (Wallarm düğüm 3.6 ve daha düşüklerinde `/etc/wallarm/license.key`)
+    **Varsayılan değer**:
+    
+    * Docker NGINX-tabanlı imaj, Cloud imajları, NGINX Node all-in-one installer ve Native Node kurulumları için: `/opt/wallarm/etc/wallarm/private.key`
+    * Diğer kurulum bileşenleri için: `/etc/wallarm/private.key`
+
 
 ### wallarm_local_trainingset_path
 
-!!! warning "Yönerge kaldırıldı"
-    Wallarm düğümü 3.6 ile başlayarak, lütfen [`wallarm_custom_ruleset_path`](#wallarm_custom_ruleset_path) yönergesini kullanın. Yalnızca yönerge adını değiştirin, mantığı değişmedi.
+!!! warning "Yönerge kullanımdan kalkmıştır"
+    Wallarm node 3.6'dan itibaren, lütfen yerine [`wallarm_custom_ruleset_path`](#wallarm_custom_ruleset_path) yönergesini kullanın. Yalnızca yönerge adını değiştirin, mantığı değişmedi.
+
+### wallarm_memlimit_debug
+
+Bu yönerge, Wallarm NGINX modülünün, bir isteğin işlenmesi sırasında bellek limiti aşıldığında, istek detaylarını içeren `/tmp/proton_last_memlimit.req` dosyasını oluşturup oluşturmayacağını belirler. Bu, istek bellek limiti işlemesi ile ilgili sorunların giderilmesinde çok değerli olabilir.
+
+!!! info
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
+    
+    **Varsayılan değer**: `on`.
 
 ### wallarm_mode
 
@@ -291,67 +328,67 @@ Trafik işleme modu:
 * `safe_blocking`
 * `block`
 
---8<-- "../include-tr/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-latest.md"
 
-`wallarm_mode` kullanımı, `wallarm_mode_allow_override` yönergesi tarafından kısıtlanabilir.
+`wallarm_mode` kullanımı, Wallarm Cloud’dan indirilen filtreleme kuralları aracılığıyla değerlerin değiştirilmesi `wallarm_mode_allow_override` yönergesi ile kısıtlanabilir.
 
-[Filtreleme modu yapılandırması hakkında detaylı talimatlar →](configure-wallarm-mode.md)
+[Filtreleme modu yapılandırmasına dair detaylı talimatlar →](configure-wallarm-mode.md)
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
     
-    **Varsayılan değer** filtreleme düğümü dağıtım yöntemine bağlıdır ( `off` veya `monitoring` olabilir)
+    **Varsayılan değer**; filtreleme node kuruluma yöntemine bağlı olarak ( `off` veya `monitoring` olabilir)
 
 ### wallarm_mode_allow_override
 
-Wallarm Bulut'tan indirilen filtreleme kuralları (özel kurallar) üzerinden [`wallarm_mode`](#wallarm_mode) değerlerinin yoksayılma yeteneğini düzenler:
+Wallarm Cloud’dan indirilen filtreleme kuralları (özel kurallar seti) üzerinden [`wallarm_mode`](#wallarm_mode) değerlerinin geçersiz kılınabilme yeteneğini yönetir:
 
-- `off` - özel kurallar yoksayılır.
-- `strict` - özel kurallar sadece işlem modunu güçlendirebilir.
-- `on` - işlem modunu hem güçlendirmek hem de yumuşatmak mümkündür.
+- `off` - özel kurallar göz ardı edilir.
+- `strict` - özel kurallar yalnızca çalışma modunu güçlendirebilir.
+- `on` - çalışma modunun güçlendirilmesi ve yumuşatılması mümkündür.
 
-Örneğin, `wallarm_mode monitoring` ve `wallarm_mode_allow_override strict` ayarlandıysa, Wallarm Konsolu bazı isteklerin engellenmesini sağlamak için kullanılabilir, ancak saldırı analizi tamamen devre dışı bırakılamaz.
+Örneğin, `wallarm_mode monitoring` ve `wallarm_mode_allow_override strict` ayarlandığında, Wallarm Console bazı isteklerin engellenmesini etkinleştirebilir, ancak saldırı analizinin tamamen devre dışı bırakılmasına izin vermez.
 
-[Filtreleme modu yapılandırması hakkında detaylı talimatlar →](configure-wallarm-mode.md)
+[Filtreleme modu yapılandırmasına dair detaylı talimatlar →](configure-wallarm-mode.md)
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
     
     **Varsayılan değer**: `on`
 
 ### wallarm_parse_response
 
-Uygulamanın yanıtlarını analiz edip etmeme durumu. Yanıt analizi, [pasif tespit](../about-wallarm/detecting-vulnerabilities.md#passive-detection) ve [aktif tehdit doğrulama](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) sırasında açığı tespit etmek için gereklidir.
+Uygulama yanıtlarını analiz edip etmeyeceğini belirler. Yanıt analizi, [passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection) sırasında ve [threat replay testing](../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing) sırasında zafiyet tespiti için gereklidir. 
 
-Olası değerler `on` (yanıt analizi etkindir) ve `off` (yanıt analizi devre dışıdır).
+Olası değerler `on` (yanıt analizi etkin) ve `off` (yanıt analizi devre dışı).
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
     
     **Varsayılan değer**: `on`
 
-!!! warning "Performansı İyileştirme"
-    Performansı iyileştirmek için, `location` ile statik dosyaların işlenmesini devre dışı bırakmanız önerilir.
+!!! warning "Performansı Artırma"
+    Statik dosyaların işlenmesini `location` üzerinden devre dışı bırakmanızı öneririz.
 
-### wallarm_parse_websocket <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### wallarm_parse_websocket <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
-Wallarm, API Security abonelik planı kapsamında tam WebSocket desteği sağlar. Varsayılan olarak, WebSocket mesajları saldırılar için analiz edilmez.
+Wallarm, API Security abonelik planı kapsamında tam WebSockets desteği sağlar. Varsayılan olarak, WebSocket mesajları saldırı açısından analiz edilmez.
 
-Özelliği kullanmaya başlamak için, API Security abonelik planını etkinleştirin ve `wallarm_parse_websocket` yönergesini kullanın.
+Özelliği zorunlu kılmak için, API Security abonelik planını etkinleştirin ve `wallarm_parse_websocket` yönergesini kullanın.
 
 Olası değerler:
 
-- `on`: mesaj analizi etkinleştirilmiştir.
-- `off`: mesaj analizi devre dışı bırakılmıştır.
+- `on`: mesaj analizi etkin.
+- `off`: mesaj analizi devre dışı.
 
 !!! info
-    Bu parametre, http, sunucu ve konum bloklarında ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
     
     **Varsayılan değer**: `off`
 
 ### wallarm_parser_disable
 
-Ayrıştırıcıları devre dışı bırakmayı sağlar. Yönerge değerleri, devre dışı bırakılacak ayrıştırıcının adına karşılık gelir:
+Parçacıları devre dışı bırakmayı sağlar. Yönerge değerleri, devre dışı bırakılacak parçacının adı ile eşleşir:
 
 - `cookie`
 - `zlib`
@@ -366,7 +403,7 @@ Ayrıştırıcıları devre dışı bırakmayı sağlar. Yönerge değerleri, de
 
 **Örnek**
 
-```bash
+```
 wallarm_parser_disable base64;
 wallarm_parser_disable xml;
 location /ab {
@@ -381,33 +418,35 @@ location /zy {
 ```
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
 
 ### wallarm_parse_html_response
 
-Uygulama yanıtında alınan HTML koduna HTML ayrıştırıcılarını uygulayıp uygulamamayı belirler. Olası değerler `on` (HTML ayrıştırıcısı uygulanır) ve `off` (HTML ayrıştırıcısı uygulanmaz).
+Uygulama yanıtında alınan HTML koduna HTML parçacılarının uygulanıp uygulanmayacağını belirtir. Olası değerler `on` (HTML parçacısı uygulanır) ve `off` (HTML parçacısı uygulanmaz).
 
-Bu parametre, yalnızca `wallarm_parse_response on` durumunda etkilidir.
+Bu parametre yalnızca `wallarm_parse_response on` olduğu durumda etkindir.
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
     
     **Varsayılan değer**: `on`
 
 ### wallarm_partner_client_uuid
 
-Çok kiracılı [Wallarm düğümü](../installation/multi-tenant/overview.md) için kiracının benzersiz tanımlayıcısı. Değer, aşağıdakine benzer bir biçimde [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) biçiminde bir dize olmalıdır:
+[Multi-tenant](../installation/multi-tenant/overview.md) Wallarm node'u için tenant’ın benzersiz tanımlayıcısı. Değer, örneğin:
 
 * `11111111-1111-1111-1111-111111111111`
 * `123e4567-e89b-12d3-a456-426614174000`
 
-!!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+olarak [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) formatında bir dize olmalıdır.
 
-    Nasıl yapılır bilin:
+!!! info
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
+
+    Nasıl:
     
-    * [Kiracı oluşturma sırasında kiracının UUID'sini alın →](../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)
-    * [Mevcut kiracıların UUID listesini alın →](../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)
+    * [Tenant oluşturulurken UUID’nin nasıl alınacağını →](../installation/multi-tenant/configure-accounts.md#via-the-wallarm-api)
+    * [Mevcut tenantların UUID listesini nasıl alacağınızı →](../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)
     
 Yapılandırma örneği:
 
@@ -443,28 +482,28 @@ server {
 
 Yukarıdaki yapılandırmada:
 
-* Kiracı, ortağın müşterisini temsil eder. Ortağın 2 müşterisi vardır.
-* `tenant1.com` ve `tenant1-1.com`'a hedeflenen trafik, `11111111-1111-1111-1111-111111111111` müşterisiyle ilişkilendirilmiştir.
-* `tenant2.com`'a hedeflenen trafik, `22222222-2222-2222-2222-222222222222` müşterisiyle ilişkilendirilmiştir.
-* İlk müşterinin ayrıca 3 uygulaması vardır, bunlar [`wallarm_application`](#wallarm_application) yönergesi aracılığıyla belirlenir:
+* Tenant, partner’ın müşterisini ifade eder. Partnerin 2 müşterisi vardır.
+* `tenant1.com` ve `tenant1-1.com`'a yönelik trafik, `11111111-1111-1111-1111-111111111111` kimliğine sahip müşteriyle ilişkilendirilecektir.
+* `tenant2.com`'a yönelik trafik, `22222222-2222-2222-2222-222222222222` kimliğine sahip müşteriyle ilişkilendirilecektir.
+* İlk müşterinin ayrıca [`wallarm_application`](#wallarm_application) yönergesiyle belirtilen 3 uygulaması vardır:
     * `tenant1.com/login` – `wallarm_application 21`
     * `tenant1.com/users` – `wallarm_application 22`
     * `tenant1-1.com` – `wallarm_application 23`
 
-    Bu 3 yol için hedeflenen trafik, ilgili uygulama ile ilişkilendirilir, geri kalanı ilk müşterinin genel trafiğidir.
+    Bu 3 yola yönelik trafik, ilgili uygulamayla ilişkilendirilecek, kalan trafik ilk müşterinin genel trafiği olacaktır.
 
 ### wallarm_process_time_limit
 
-!!! warning "Yönerge kaldırıldı"
-    Sürüm 3.6 ile başlayarak, `overlimit_res` saldırı tespitini [**Fine-tune the overlimit_res attack detection** kuralı](../user-guides/rules/configure-overlimit-res-detection.md) kullanarak ince ayarlamanız önerilir.
+!!! warning "Yönerge kullanımdan kalkmıştır"
+    3.6 sürümünden itibaren, `overlimit_res` saldırı tespitini [**İstek İşleme Süresi Sınırını Ayarlama**](../user-guides/rules/configure-overlimit-res-detection.md) kuralı kullanılarak ince ayar yapmanız önerilir (önceki adıyla "Overlimit_res saldırı tespitini ince ayar yapma").
     
-    `wallarm_process_time_limit` yönergesi geçici olarak desteklenmektedir ancak gelecekteki sürümlerde kaldırılacaktır.
+    `wallarm_process_time_limit` yönergesi geçici olarak desteklenmektedir, ancak gelecekte kaldırılacaktır.
 
-Wallarm düğümünün tek bir isteği işleme süresi için bir süre limiti belirler.
+Wallarm node tarafından tek bir isteğin işlenmesi için zaman sınırını ayarlar.
 
-Süre, limiti aştığında, bir hata günlüğe kaydedilir ve istek [`overlimit_res`](../attacks-vulns-list.md#overlimiting-of-computational-resources) saldırısı olarak işaretlenir. [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block) değerine bağlı olarak, saldırı ya engellenebilir, izlenebilir veya göz ardı edilebilir.
+Eğer süre sınırı aşılırsa, günlükte bir hata kaydedilir ve istek [`overlimit_res`](../attacks-vulns-list.md#resource-overlimit) saldırısı olarak işaretlenir. [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block) değerine bağlı olarak, saldırı ya engellenir, izlenir ya da yok sayılır.
 
-Değer, milisaniye cinsinden birim belirtmeden belirtilir, örneğin:
+Değer, birim belirtmeden milisaniye cinsinden belirtilir, örneğin:
 
 ```bash
 wallarm_process_time_limit 1200; # 1200 milisaniye
@@ -472,86 +511,89 @@ wallarm_process_time_limit 2000; # 2000 milisaniye
 ```
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
     
     **Varsayılan değer**: 1000ms (bir saniye).
 
 ### wallarm_process_time_limit_block
 
-!!! warning "Yönerge kaldırıldı"
-    Sürüm 3.6 ile başlayarak, `overlimit_res` saldırı tespitini [**Fine-tune the overlimit_res attack detection** kuralı](../user-guides/rules/configure-overlimit-res-detection.md) kullanarak ince ayarlamanız önerilir.
+!!! warning "Yönerge kullanımdan kalkmıştır"
+    3.6 sürümünden itibaren, `overlimit_res` saldırı tespitini [**İstek İşleme Süresi Sınırını Ayarlama**](../user-guides/rules/configure-overlimit-res-detection.md) kuralı kullanılarak ince ayar yapmanız önerilir (önceki adıyla "Overlimit_res saldırı tespitini ince ayar yapma").
     
-    `wallarm_process_time_limit_block` yönergesi geçici olarak desteklenmektedir ancak gelecekteki sürümlerde kaldırılacaktır.
+    `wallarm_process_time_limit_block` yönergesi geçici olarak desteklenmektedir, ancak gelecekte kaldırılacaktır.
 
-Wallarm tarafından reddedilen IP'lerden kaynaklanan isteklerin engellenmesi durumunu yönetir:
+`wallarm_process_time_limit` yönergesi ile belirlenen süre sınırını aşan isteklerin engellenmesini yönetme yeteneğini belirler:
 
-- `açık`: istekler her zaman engellenir, yalnızca `wallarm_mode off` olduğunda durum değişir
-- `kapalı`: istekler her zaman göz ardı edilir
+- `on`: istekler her zaman, `wallarm_mode off` dışında engellenir.
+- `off`: istekler her zaman yok sayılır.
 
-    !!! warning "Koruma riski"
-        `kapalı` değeri, bu değerin `overlimit_res` saldırılarından koruma özelliğini devre dışı bırakır ve dikkatli kullanılmalıdır.
+    !!! warning "Koruma atlatma riski"
+        `off` değeri, `overlimit_res` saldırılarından korumayı devre dışı bırakır, bu sebeple dikkatli kullanılmalıdır.
         
-        `kapalı` değerinin, yalnızca büyük dosyaların yüklendiği ve koruma baypası ve açığın istismar riski olmayan belirgin konumlarda kullanılması önerilir.
+        `off` değerini yalnızca büyük dosya yüklemelerinin yapıldığı ve koruma atlatma riski olmayan, zafiyet istismarı riski bulunmayan belirli konumlarda kullanmanız önerilir.
         
-        http veya sunucu blokları için global olarak `wallarm_process_time_limit_block`'un `kapalı` olarak ayarlanması **kesinlikle önerilmez**.
+        **http veya server blokları için global olarak `wallarm_process_time_limit_block` değerini `off` olarak ayarlamanız kesinlikle önerilmez.**
     
-- `saldırı`: `wallarm_mode` yönergesinde ayarlanan saldırı engelleme moduna bağlıdır:
-    - `kapalı`: istekler işleme alınmaz.
-    - `monitoring`: istekler göz ardı edilir ancak `overlimit_res` saldırılarına dair ayrıntılar Wallarm Buluta yüklenir ve Wallarm Konsolu'nda gösterilir.
-    - `safe_blocking`: yalnızca [gri listede](../user-guides/ip-lists/graylist.md) olan IP adreslerinden kaynaklanan istekler engellenir ve tüm `overlimit_res` saldırılarının ayrıntıları Wallarm Buluta yüklenir ve Wallarm Konsolu'nda gösterilir.
+- `attack`: `wallarm_mode` yönergesi ile ayarlanan saldırı engelleme moduna bağlı:
+    - `off`: istekler işlenmez.
+    - `monitoring`: istekler yok sayılır, ancak `overlimit_res` saldırılarıyla ilgili detaylar Wallarm Cloud’a yüklenir ve Wallarm Console’da görüntülenir.
+    - `safe_blocking`: yalnızca [graylisted](../user-guides/ip-lists/overview.md) IP adreslerinden gelen istekler engellenir ve tüm `overlimit_res` saldırılarına ait detaylar Wallarm Cloud’a yüklenir ve Wallarm Console’da görüntülenir.
     - `block`: istekler engellenir.
 
-Önerge değerine bakılmaksızın, `overlimit_res` saldırı türündeki istekler Wallarm Buluta yüklenir, tek istisna [`wallarm_mode off;`](#wallarm_mode)'tur.
+Yönerge değerinden bağımsız olarak, [`wallarm_mode off;`](#wallarm_mode) dışındaki durumlarda, `overlimit_res` saldırı tipine ait istekler Wallarm Cloud’a yüklenir.
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
     
     **Varsayılan değer**: `wallarm_process_time_limit_block attack`
 
 ### wallarm_proton_log_mask_master
 
-NGINX ana işlemi için hata ayıklama günlüğü ayarları. 
+NGINX master sürecinin hata ayıklama günlüğü için ayarlar.
 
-!!! warning "Yönergenin kullanımı"
-    Bu yönergeyi yalnızca Wallarm destek ekibi tarafından bu yönergeyi yapılandırmanız istendiğinde kullanın. Size bu yönergenin hangi değerleri kullanmanız gerektiğini söyleyeceklerdir.
-    
+!!! warning "Yönergeyi kullanırken"
+    Bu yönergeyi yalnızca Wallarm destek ekibi tarafından size belirtilen değeri kullanmanız gerektiğinde yapılandırmanız gerekir.
+
 !!! info
     Parametre yalnızca ana düzeyde yapılandırılabilir.
 
 
 ### wallarm_proton_log_mask_worker
 
-NGINX işçi süreci için hata ayıklama günlüğü ayarları. 
+NGINX worker sürecinin hata ayıklama günlüğü için ayarlar.
 
-!!! warning "Yönergenin kullanımı"
-    Bu yönergeyi yalnızca Wallarm destek ekibi tarafından bu yönergeyi yapılandırmanız istendiğinde kullanın. Size bu yönergenin hangi değerleri kullanmanız gerektiğini söyleyeceklerdir.
+!!! warning "Yönergeyi kullanırken"
+    Bu yönergeyi yalnızca Wallarm destek ekibi size belirtilen değeri kullanmanız gerektiğinde yapılandırmanız gerekir.
 
 !!! info
     Parametre yalnızca ana düzeyde yapılandırılabilir.
 
 ### wallarm_protondb_path
 
-İsteği filtreleme ile ilgili global ayarları içeren ve uygulama yapısına bağlı olmayan [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton) dosyasına bir yol.
+Uygulama yapısına bağlı olmayan, istek filtrelemesi için küresel ayarları içeren [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton) dosyasına giden yol.
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
     
-    **Varsayılan değer**: `/etc/wallarm/proton.db`
+    **Varsayılan değer**:
+    
+    * Docker NGINX-tabanlı imaj, Cloud imajları, NGINX Node all-in-one installer ve Native Node kurulumları için: `/opt/wallarm/etc/wallarm/proton.db`
+    * Diğer kurulum bileşenleri için: `/etc/wallarm/proton.db`
 
 ### wallarm_rate_limit
 
-Aşağıdaki biçimde hız sınırlama yapılandırmasını ayarlar:
+Aşağıdaki formatta rate limiting yapılandırmasını ayarlar:
 
 ```
-wallarm_rate_limit <LIMITLERİN ÖLÇÜLDÜĞÜ ANAHTAR> rate=<HIZ> burst=<BURST> delay=<DELAY>;
+wallarm_rate_limit <KEY_TO_MEASURE_LIMITS_FOR> rate=<RATE> burst=<BURST> delay=<DELAY>;
 ```
 
-* `LIMITLERİN ÖLÇÜLDÜĞÜ ANAHTAR` - limitleri ölçmek istediğiniz bir anahtar. Metin, [NGINX değişkenleri](http://nginx.org/en/docs/varindex.html) ve onların kombinasyonunu içerebilir.
+* `KEY_TO_MEASURE_LIMITS_FOR` - limit ölçmek istediğiniz anahtar. Metin, [NGINX değişkenleri](http://nginx.org/en/docs/varindex.html) ve bunların kombinasyonunu içerebilir.
 
-    Örneğin: `"$remote_addr +login"` aynı IP'den gelen ve `/login` uç noktasına yönelik istekleri sınırlamak için.
-* `rate=<HIZ>` (gerekli) - hız sınırlaması, `rate=<number>r/s` veya `rate=<number>r/m` olabilir.
-* `burst=<BURST>` (isteğe bağlı) - belirlenen HIZ/SAYI aşıldığında tamponlanacak aşırı isteklerin en fazla sayısı ve oranın normal hale gelmesi durumunda işlenir. Varsayılan değeri `0`'dır.
-* `delay=<DELAY>` - `<BURST>` değeri `0`'dan farklıysa, normal hız geri geldiğinde aşırı tamponlanmış isteklerin işlenmesi arasında belirlenen HIZ/SAYI arasını korumayı kontrol edebilirsiniz. `nodelay` belirlenen hız sınırı olmadan tüm fazla tamponlanmış isteklerin aynı anda işlenmesini gösterir. Sayı değeri, belirli sayıda fazla tamponlanmış isteğin aynı anda işlenmesini gösterir, diğerleri HIZ/SAYI ile belirlenen gecikmeyle işlenir.
+    Örneğin: `/login` uç noktasına yönelik aynı IP’den gelen istekleri sınırlamak için `"$remote_addr +login"`.
+* `rate=<RATE>` (zorunlu) - rate limiti, `rate=<number>r/s` veya `rate=<number>r/m` formatında olabilir.
+* `burst=<BURST>` (opsiyonel) - belirtilen RPS/RPM aşıldığında tamponlanacak maksimum fazla istek sayısı; RPS/RPM normale döndüğünde işlenecektir. Varsayılan `0`'dır.
+* `delay=<DELAY>` - `<BURST>` değeri `0`'dan farklıysa, tanımlı RPS/RPM arasında tamponlanan fazla isteklerin yürütülmesi sırasında gecikmeyi kontrol edebilirsiniz. `nodelay`, tüm tamponlanan fazla isteklerin hız limitlendirmesi olmadan eşzamanlı işlenmesini, sayısal bir değer ise belirtilen fazla istek sayısının eşzamanlı işlenmesini ve kalanların RPS/RPM’de ayarlanan gecikme ile işlenmesini belirtir.
 
 Örnek:
 
@@ -560,117 +602,132 @@ wallarm_rate_limit "$remote_addr +location_name" rate=10r/s burst=9 delay=5;
 ```
 
 !!! info
-    **Varsayılan değer:** yok.
+    **Varsayılan değer:** bulunmamaktadır.
 
-    Bu parametre, http, sunucu, konum bağlamlarında ayarlanabilir.
+    Bu parametre http, server ve location bağlamları içinde ayarlanabilir.
 
-    [Hız sınırlama](../user-guides/rules/rate-limiting.md) kuralını ayarlarsanız, `wallarm_rate_limit` yönergesi daha düşük bir önceliğe sahip olur.
+    [Rate limiting](../user-guides/rules/rate-limiting.md) kuralını ayarlarsanız, `wallarm_rate_limit` yönergesinin önceliği daha düşüktür.
 
 ### wallarm_rate_limit_enabled
 
-Wallarm hız sınırlamasını etkinleştirir/devre dışı bırakır.
+Wallarm rate limiting’i etkinleştirir/devre dışı bırakır.
 
-`off` ise, ne [hız sınırlama kuralı](../user-guides/rules/rate-limiting.md) (tavsiye edilen) ne de `wallarm_rate_limit` yönergesi çalışır.
+`off` ise, [rate limiting kuralı](../user-guides/rules/rate-limiting.md) (önerilir) veya `wallarm_rate_limit` yönergesi çalışmaz.
 
 !!! info
-    **Varsayılan değer:** `on` ancak Wallarm hız sınırlaması, çalışmak için ya [hız sınırlama kuralı](../user-guides/rules/rate-limiting.md) (tavsiye edilen) ya da `wallarm_rate_limit` yönergesini yapılandırmanız gerekmektedir.
+    **Varsayılan değer:** `on`, ancak Wallarm rate limiting, [rate limiting kuralı](../user-guides/rules/rate-limiting.md) (önerilir) veya `wallarm_rate_limit` yönergesi yapılandırılmadan çalışmaz.
     
-    Bu parametre, http, sunucu, location bağlamlarında ayarlanabilir.
+    Bu parametre http, server ve location bağlamları içinde ayarlanabilir.
 
 ### wallarm_rate_limit_log_level
 
-Hız sınırlama kontrolü tarafından reddedilen isteklerin günlüğe kaydedildiği düzey. Olabilir: `info`, `notice`, `warn`, `error`.
+Rate limiting kontrolü tarafından reddedilen isteklerin günlüğe kaydedilmesinde kullanılacak log seviyesini ayarlar. Olası değerler: `info`, `notice`, `warn`, `error`.
 
 !!! info
     **Varsayılan değer:** `error`.
     
-    Bu parametre, http, sunucu, location bağlamlarında ayarlanabilir.
+    Bu parametre http, server ve location bağlamları içinde ayarlanabilir.
 
 ### wallarm_rate_limit_status_code
 
-Wallarm hız sınırlama modülü tarafından reddedilen isteklere yanıt olarak döndürülen kodu.
+Wallarm rate limiting modülü tarafından reddedilen isteklere cevap olarak döndürülecek kodu ayarlar.
 
 !!! info
     **Varsayılan değer:** `503`.
     
-    Bu parametre, http, sunucu, location bağlamlarında ayarlanabilir.
+    Bu parametre http, server ve location bağlamları içinde ayarlanabilir.
 
 ### wallarm_rate_limit_shm_size
 
-Wallarm hız sınırlama modülünün tüketebileceği paylaşılan belleğin maksimum miktarını ayarlar.
+Wallarm rate limiting modülünün kullanabileceği paylaşılan belleğin maksimum miktarını ayarlar.
 
-Ortalama bir anahtar uzunluğu 64 bayt (karakter) ve `wallarm_rate_limit_shm_size`'ın 64MB olduğunda, modül yaklaşık olarak 130.000 benzersiz anahtarı aynı anda işleyebilir. Belleği iki katına çıkarmanız modülün kapasitesini doğrusal olarak iki katına çıkarır.
+Ortalama 64 bayt (karakter) uzunluğunda bir anahtar ile, `wallarm_rate_limit_shm_size` 64MB olarak ayarlanırsa, modül yaklaşık 130.000 benzersiz anahtarı aynı anda işleyebilir. Belleğin iki katına çıkarılması, modül kapasitesini lineer olarak ikiye katlar.
 
-Bir anahtar, modülün sınırları ölçmek için kullandığı istek noktasının benzersiz değeridir. Örneğin, modül IP adreslere dayalı olarak bağlantıları sınırlıyorsa, her benzersiz IP adresi tek bir anahtar olarak kabul edilir. Varsayılan yönerge değeri ile, modül ~130.000 farklı IP'den gelen istekleri aynı anda işleyebilir.
+Bir anahtar, modülün limit ölçümü için kullandığı bir isteğin benzersiz değeridir. Örneğin, modül IP adreslerine dayalı bağlantıları sınırlıyorsa, her benzersiz IP bir anahtar olarak kabul edilir. Varsayılan yönerge değeriyle, modül ~130.000 farklı IP’den gelen istekleri aynı anda işleyebilir.
 
 !!! info
     **Varsayılan değer:** `64m` (64 MB).
     
-    Bu parametre yalnızca http bağlamında ayarlanabilir.
-
+    Bu parametre yalnızca http bloğu içinde ayarlanabilir.
 
 ### wallarm_request_chunk_size
 
-Tek bir iterasyonda işlenen isteğin parçasının boyutu için bir sınırlama belirler. `wallarm_request_chunk_size` yönergesine byte cinsinden bir özel değer atayarak belirtin. Yönerge ayrıca takip eden ekler de destekler:
-* `k` veya `K` kilobayt için
-* `m` veya `M` megabayt için
-* `g` veya `G` gigabayt için
+Bir yineleme sırasında işlenen istek parçasının boyutunu sınırlar. İstek için kullanılacak özel `wallarm_request_chunk_size` değeri bayt cinsinden bir tamsayı atanarak ayarlanabilir. Yönerge ayrıca aşağıdaki eklere de destek verir:
+* Kilobayt için `k` veya `K`
+* Megabayt için `m` veya `M`
+* Gigabayt için `g` veya `G`
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
     **Varsayılan değer**: `8k` (8 kilobayt).
 
 ### wallarm_request_memory_limit
 
-Tek bir isteğin işlenmesi için kullanılabilen bellek miktarının maksimum sınırını belirler.
+Tek bir isteğin işlenmesi için kullanılabilecek maksimum bellek miktarına limit koyar.
 
-Sınır aşıldığında, isteğin işlenmesi hemen sonlandırılır ve kullanıcıya bir 500 hata mesajı gönderilir.
+Limit aşıldığında, istek işlenmesi kesilir ve kullanıcı 500 hatası alır.
 
-Bu parametrede şu sonekler kullanılabilir:
-* `k` veya `K` kilobayt için
-* `m` veya `M` megabayt için
-* `g` veya `G` gigabayt için
+Bu parametrede aşağıdaki ekler kullanılabilir:
+* Kilobayt için `k` veya `K`
+* Megabayt için `m` veya `M`
+* Gigabayt için `g` veya `G`
 
-`0` değeri sınırlamayı kapatır.
+`0` değeri limiti kapatır.
 
-Varsayılan olarak, sınırlamalar kapatılır.
+Varsayılan olarak, limit kapalıdır. 
 
 !!! info
-    Bu parametre, http, sunucu ve/veya konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve/veya location blokları içinde ayarlanabilir.
+
+### wallarm_srv_include
+
+[API Specification Enforcement](../api-specification-enforcement/overview.md) için yapılandırma dosyasına giden yolu belirtir. Bu dosya varsayılan olarak tüm kurulum bileşenleriyle birlikte gelir ve genellikle herhangi bir değişiklik gerekmez.
+
+Ancak, [özel `nginx.conf` dosyasına sahip NGINX-tabanlı Docker imajı](installation-docker-en.md#run-the-container-mounting-the-configuration-file) kullanıyorsanız, bu yönergeyi belirtmeniz ve dosyayı belirtilen yola yerleştirmeniz gerekir.
+
+Yönerge 4.10.7 sürümünden itibaren mevcuttur.
+
+!!! info
+    Parametre yalnızca http bloğu içinde yapılandırılır.
+
+    **Varsayılan değer**: `/etc/nginx/wallarm-apifw-loc.conf;`.
 
 ### wallarm_stalled_worker_timeout
 
-Wallarm tarafından tek bir isteğin işlenmesi için ayrılan maksimum süreyi tanımlar. Bu süre, tek bir işlemde bir isteği işleme süresine eşittir.
+Bir NGINX worker’ın tek bir isteği işleme süresi için zaman sınırını saniye cinsinden ayarlar.
 
-Süre, zaman sınırlamasını aştığında, NGINX işçileri hakkındaki bilgiler, `stalled_workers_count` ve `stalled_workers` [istatistik](configure-statistics-service.md##working-with-the-statistics-service) parametrelerine yazılır.
+Süre sınırı aşıldığında, NGINX worker'lara ilişkin veriler `stalled_workers_count` ve `stalled_workers` adlı [istatistik](configure-statistics-service.md#usage) parametrelerine yazılır.
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
     
     **Varsayılan değer**: `5` (beş saniye)
 
 ### wallarm_status
 
-[Wallarm istatistik hizmeti](configure-statistics-service.md) işlemini kontrol eder.
+[Wallarm istatistik hizmetini](configure-statistics-service.md) kontrol eder.
 
-Yönergenin değeri şu formattadır:
+Yönerge değeri aşağıdaki formatta olmalıdır:
 
 ```
 wallarm_status [on|off] [format=json|prometheus];
 ```
 
-Istatistik hizmetini ayrı bir yapılandırma dosyası `/etc/nginx/conf.d/wallarm-status.conf` içinde yapılandırmanız ve `wallarm_status` yönergesini NGINX'i yapılandırma sırasında kullandığınız diğer dosyalarda kullanmamanız şiddetle önerilir, çünkü bu güvensiz olabilir.
+İstatistik hizmetini ayrı bir dosyada yapılandırmanız, diğer NGINX yapılandırma dosyalarında `wallarm_status` yönergesinin kullanılmasından kaçınmanız şiddetle tavsiye edilir, çünkü bu yöntem güvensiz olabilir. `wallarm-status` için yapılandırma dosyası:
+ 
+* All-in-one installer için: `/etc/nginx/wallarm-status.conf`
+* Diğer kurulumlar için: `/etc/nginx/conf.d/wallarm-status.conf`
 
-Ayrıca, sistem performansını korumak için mevcut `wallarm-status` yapılandırmasının mevcut satırlarını değiştirmemeniz önemle önerilir.
+Ayrıca, metric verilerinin Wallarm Cloud’a yükleme sürecini bozabileceği için varsayılan `wallarm-status` yapılandırmasındaki hiçbir satırın değiştirilmemesi şiddetle tavsiye edilir.
 
 !!! info
-    Yönerge, NGINX’in `server` ve/veya `location` bağlamlarında yapılandırılabilir.
+    Yönerge NGINX’in `server` ve/veya `location` bağlamında yapılandırılabilir.
 
-    `format` parametresi varsayılan olarak `json` değerine sahiptir.
+    `format` parametresinin varsayılan değeri `json`'dur.
 
 ### wallarm_tarantool_upstream
 
-`wallarm_tarantool_upstream` ile birkaç postanalytics sunucusu arasında istekler dengelenir.
+`wallarm_tarantool_upstream` ile postanalytics sunucuları arasında istek dengelemesi yapabilirsiniz.
 
 **Örnek:**
 
@@ -680,109 +737,109 @@ upstream wallarm_tarantool {
     keepalive 1;
 }
 
-# dahil edilmiş
+# atlandı
 
 wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
-Ayrıca [Module ngx_http_upstream_module](https://nginx.org/en/docs/http/ngx_http_upstream_module.html)'a bakın.
+Ayrıca [Module ngx_http_upstream_module](https://nginx.org/en/docs/http/ngx_http_upstream_module.html)'a da bakın.
 
 !!! warning "Gerekli koşullar"
-    `max_conns` ve `keepalive` parametreleri için aşağıdaki koşulların sağlanması gerekmektedir:
+    `max_conns` ve `keepalive` parametreleri için aşağıdaki koşullar sağlanmalıdır:
 
     * `keepalive` parametresinin değeri, Tarantool sunucularının sayısından düşük olmamalıdır.
-    * `max_conns` parametresinin değeri, aşırı bağlantıların oluşturulmasını önlemek için her bir upstream Tarantool sunucusu için belirtilmelidir.
+    * Her Tarantool upstream sunucusu için `max_conns` parametresi belirtilmelidir, böylece aşırı bağlantı kurulmasının önüne geçilir.
 
 !!! info
-    Bu parametre, yalnızca http bloğu içinde ayarlanabilir
+    Parametre yalnızca http bloğu içinde yapılandırılır.
 
 ### wallarm_timeslice
 
-Filtreleme düğümünün bir iterasyonda tek bir isteği işleme için harcadığı zamanın sınırıdır. Zaman sınırına ulaşıldığında, filtreleme düğümü sıradaki isteği işlemeye geçer. Sıradaki tüm istekler üzerinde bir iterasyon gerçekleştirdikten sonra düğüm, sıradaki isteğin ikinci iterasyonunu işlemeye başlar.
+Filtreleme node’unun, bir isteğin işlenmesinde bir yineleme için harcadığı zamanı sınırlar. Bir istekte belirlenen zaman sınırına ulaşıldığında, filtreleme node kuyruğundaki bir sonraki isteğe geçer. Kuyruktaki her istekte bir kez yineleme yaptıktan sonra, node kuyruğun ilk isteğinde ikinci yinelemeyi gerçekleştirir.
 
-Yönergeye, [NGINX Dokümantasyonunda](https://nginx.org/en/docs/syntax.html) açıklanan zaman aralığı soneklerini kullanarak belirli zaman birimi değerleri atayabilirsiniz.
+Bu yönergeye, NGINX belgelerinde tarif edilen [zaman aralığı eklerini](https://nginx.org/en/docs/syntax.html) kullanarak farklı zaman birimlerinin atanması mümkündür.
 
 !!! info
-    Bu parametre, http, sunucu ve konum blokları içinde ayarlanabilir.
-    **Varsayılan değer**: `0` (tek iterasyon için zaman sınırı devre dışıdır).
+    Bu parametre http, server ve location blokları içinde ayarlanabilir.
+    **Varsayılan değer**: `0` (tek yineleme için zaman sınırı devre dışıdır).
 
 -----
 
 !!! warning
-    NGINX sunucu sınırlamaları nedeniyle, `wallarm_timeslice` yönergesinin çalışması için isteği tamponlamayı devre dışı bırakmak için NGINX yönergesi `proxy_request_buffering`'in `off` değerine ayarlanmalıdır.
+    NGINX sunucu sınırlamaları nedeniyle, `wallarm_timeslice` yönergesinin çalışabilmesi için NGINX `proxy_request_buffering` yönergesine `off` değeri atanarak istek tamponlaması devre dışı bırakılmalıdır.
 
 ### wallarm_ts_request_memory_limit
 
-!!! warning "Yönerge kaldırıldı"
-    Wallarm düğümü 4.0 ile başlayarak, lütfen [`wallarm_general_ruleset_memory_limit`](#wallarm_general_ruleset_memory_limit) yönergesini kullanın. Yalnızca yönerge adını değiştirin, mantığı değişmedi.
+!!! warning "Yönerge kullanımdan kalkmıştır"
+    Wallarm node 4.0'dan itibaren, lütfen yerine [`wallarm_general_ruleset_memory_limit`](#wallarm_general_ruleset_memory_limit) yönergesini kullanın. Yalnızca yönerge adını değiştirin, mantığı değişmedi.
 
 ### wallarm_unpack_response
 
-Uygulamanın yanıtında döndürülen sıkıştırılmış verileri çıkartıp çıkartmamayı belirler. Olası değerler `on` (çözme işlemi etkindir) ve `off` (çözme işlemi devre dışıdır).
+Uygulama yanıtında dönen sıkıştırılmış verilerin açılıp açılmayacağını belirler. Olası değerler `on` (sıkıştırma açılır) ve `off` (sıkıştırma açılmaz).
 
-Bu parametre, yalnızca `wallarm_parse_response on` durumunda etkilidir.
+Bu parametre yalnızca `wallarm_parse_response on` olduğu durumda etkindir.
 
 !!! info
     **Varsayılan değer**: `on`.
 
 ### wallarm_upstream_backend
 
-Serileştirilmiş istekleri gönderme yöntemidir. İstekler, Tarantool'a veya API'ye gönderilebilir.
+Serileştirilmiş isteklerin gönderilme yöntemini belirler. İstekler ya Tarantool’a ya da API’ye gönderilebilir.
 
-Yönergenin olası değerleri:
+Olası yönerge değerleri:
 *   `tarantool`
 *   `api`
 
-Diğer yönergelere bağlı olarak, varsayılan değer şu şekilde atanacaktır:
+Diğer yönergelere bağlı olarak, varsayılan değer aşağıdaki şekilde atanır:
 *   `tarantool` - yapılandırmada `wallarm_api_conf` yönergesi yoksa.
-*   `api` - yapılandırmada bir `wallarm_api_conf` yönergesi var, ancak `wallarm_tarantool_upstream` yönergesi yoksa.
+*   `api` - yapılandırmada `wallarm_api_conf` yönergesi varsa, ancak `wallarm_tarantool_upstream` yönergesi yoksa.
 
     !!! note
-        `wallarm_api_conf` ve `wallarm_tarantool_upstream` yönergeleri yapılandırmada aynı anda bulunursa, **yönerge belirsiz wallarm upstream backend** biçiminde bir yapılandırma hatası oluşur.
+        Eğer yapılandırmada hem `wallarm_api_conf` hem de `wallarm_tarantool_upstream` yönergeleri aynı anda mevcutsa, **directive ambiguous wallarm upstream backend** şeklinde bir yapılandırma hatası alınır.
 
 !!! info
-    Bu parametre, sadece http bloğu içinde ayarlanabilir.
+    Bu parametre yalnızca http bloğu içinde ayarlanabilir.
 
 ### wallarm_upstream_connect_attempts
 
-Tarantool veya Wallarm API'ye hemen yeniden bağlanma sayısını tanımlar.
-Eğer Tarantool veya API ile bağlantı kesilirse, yeniden bağlanma girişimi olmaz. Ancak, daha fazla bağlantı olmadığında ve serileştirilmiş istek kuyruğu boş olmadığında, bu durum geçerli olmaz.
+Tarantool ya da Wallarm API’ye anında yeniden bağlanma denemelerinin sayısını belirler.
+Tarantool veya API'ye yapılan bağlantı kesilirse yeniden bağlanma denemesi yapılmaz. Ancak, artık başka bağlantı kalmadığında ve serileştirilmiş istek kuyruğu boş olmadığında durum farklılık gösterir.
 
 !!! note
-    Yeniden bağlantı, başka bir sunucu üzerinden gerçekleşebilir çünkü sunucuyu seçme işlemi "upstream" alt sisteminden sorumludur.
+    Yeniden bağlanma, "upstream" alt sisteminin sunucuyu seçmesinden dolayı başka bir sunucu üzerinden gerçekleşebilir.
     
-    Bu parametre, sadece http bloğu içinde ayarlanabilir.
+    Bu parametre yalnızca http bloğu içinde ayarlanabilir.
 
 ### wallarm_upstream_reconnect_interval
 
-Başarısız olan bağlantı girişimlerinin sayısı `wallarm_upstream_connect_attempts` eşiğini aştığında, Tarantool veya Wallarm API'ye yeniden bağlantı girişimler arasındaki süreyi tanımlar.
+Tarantool veya Wallarm API’ye yeniden bağlanma denemelerinin, `wallarm_upstream_connect_attempts` eşiği aşıldıktan sonra yapılacak olan deneme aralığını belirler.
 
 !!! info
-    Bu parametre, sadece http bloğu içinde ayarlanabilir.
-
+    Bu parametre yalnızca http bloğu içinde ayarlanabilir.
 
 ### wallarm_upstream_connect_timeout
 
-Tarantool veya Wallarm API'ye bağlanma süre aşımını tanımlar.
+Tarantool veya Wallarm API’ye bağlanmak için zaman aşımını belirler.
 
 !!! info
-    Bu parametre, sadece http bloğu içinde ayarlanabilir.
-
+    Bu parametre yalnızca http bloğu içinde ayarlanabilir.
 
 ### wallarm_upstream_queue_limit
 
-Serileştirilmiş isteklerin sayısına bir sınırlama belirler.
-`wallarm_upstream_queue_limit` parametresini ayarlarken ve `wallarm_upstream_queue_memory_limit` parametresini ayarlamazsanız, ikincisinin üzerinde hiçbir sınırlama olmayacaktır.
+Serileştirilmiş isteklerin sayısına getirilecek limiti belirler.
+Aynı anda `wallarm_upstream_queue_limit` parametresi ayarlanıp `wallarm_upstream_queue_memory_limit` parametresi ayarlanmazsa, arka planda bellek limiti olmayacaktır.
 
 !!! info
-    Bu parametre, sadece http bloğu içinde ayarlanabilir.
+    Bu parametre yalnızca http bloğu içinde ayarlanabilir.
 
 ### wallarm_upstream_queue_memory_limit
 
-Serileştirilmiş isteklerin toplam hacmine bir sınırlama belirler.
-`wallarm_upstream_queue_memory_limit` parametresini ayarlarken ve `wallarm_upstream_queue_limit` parametresini ayarlamazsanız, ikincisinin üzerinde hiçbir sınırlama olmayacaktır.
+Serileştirilmiş isteklerin toplam hacmine getirilecek limiti belirler.
+Aynı anda `wallarm_upstream_queue_memory_limit` parametresi ayarlanıp `wallarm_upstream_queue_limit` parametresi ayarlanmazsa, işlem üzerindeki limit olmayacaktır.
 
 !!! info
     **Varsayılan değer:** `100m`.
     
-    Bu parametre, sadece http bloğu içinde ayarlanabilir.
+    Bu parametre yalnızca http bloğu içinde ayarlanabilir.
+
+```

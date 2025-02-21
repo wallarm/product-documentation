@@ -1,42 +1,42 @@
 # IBM QRadar via Fluentd
 
-Bu talimatlar, Wallarm'ı Fluentd veri koleksiyoncusu ile entegre ederek olayları QRadar SIEM sistemine ileri yönlendirmek için bir örnek sunar.
+Bu talimatlar, Wallarm'ın Fluentd veri toplayıcısı ile entegrasyonunun örneğini sunar ve olayları QRadar SIEM sistemine iletmek üzere yapılandırılmıştır.
 
---8<-- "../include-tr/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.md"
 
-![Webhook akışı](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
-## Kullanılan Kaynaklar
+## Kullanılan kaynaklar
 
-* [Fluentd](#fluentd-configuration) Debian 11.x (bullseye) üzerinde yüklü ve `https://fluentd-example-domain.com` adresinde mevcut
-* [QRadar V7.3.3](#qradar-configuration-optional) Linux Red Hat üzerinde kurulu ve IP adresi `https://109.111.35.11:514` ile mevcut
-* Wallarm Konsoluna yönetici erişimi [EU cloud](https://my.wallarm.com) [Fluentd entegrasyonunu](#configuration-of-fluentd-integration) yapılandırmak için
+* [Fluentd](#fluentd-configuration) Debian 11.x (bullseye)'de kurulu ve `https://fluentd-example-domain.com` adresinde mevcuttur
+* [QRadar V7.3.3](#qradar-configuration-optional) Linux Red Hat üzerinde kurulu olup IP adresi `https://109.111.35.11:514` şeklindedir
+* Wallarm Console'da [EU cloud](https://my.wallarm.com) üzerinden yönetici erişimi ile [Fluentd entegrasyonunu yapılandırmak](#configuration-of-fluentd-integration)
 
---8<-- "../include-tr/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.md"
 
-Fluentd ve QRadar hizmetlerine yapılan bağlantılar örnek olarak belirtildiği için yanıt vermezler.
+Fluentd ve QRadar servislerine ait bağlantılar örnek olarak verildiğinden, yanıt vermemektedir.
 
-### Fluentd Yapılandırma
+### Fluentd yapılandırması
 
-Wallarm, Fluentd ara veri toplayıcıya web kanca aracılığıyla günlük gönderdiğinden, Fluentd yapılandırması aşağıdaki gereklilikleri karşılamalıdır:
+Wallarm, logları webhooks aracılığıyla Fluentd ara veri toplayıcısına gönderdiğinden, Fluentd yapılandırmasının aşağıdaki gereksinimleri karşılaması gerekir:
 
-* POST veya PUT isteklerini kabul edin
-* HTTPS isteklerini kabul edin
-* Genel URL'ye sahip olun
-* Günlükleri IBM Qradar'a yönlendirin, bu örnek `remote_syslog` eklentisini günlükleri yönlendirmek için kullanır
+* POST veya PUT isteklerini kabul etmek
+* HTTPS isteklerini kabul etmek
+* Genel erişime açık bir URL'ye sahip olmak
+* Logları IBM QRadar'a iletmek, bu örnekte logları iletmek için `remote_syslog` eklentisi kullanılmıştır
 
-Fluentd, `td-agent.conf` dosyasında yapılandırılmıştır:
+Fluentd, `td-agent.conf` dosyasında yapılandırılır:
 
-* Gelen web kanca işleme `source` yönergesinde yapılandırılmıştır:
-    * Trafik 9880 portuna gönderilir
-    * Fluentd yalnızca HTTPS bağlantılarını kabul etmek üzere yapılandırılmıştır
-    * Fluentd TLS sertifikası, genel olarak güvenilir bir CA tarafından imzalanmıştır ve `/etc/ssl/certs/fluentd.crt` dosyasında yer alır
-    * TLS sertifikası için özel anahtar `/etc/ssl/private/fluentd.key` dosyasında yer alır
-* Günlükleri QRadar'a yönlendirme ve günlük çıktıları `match` yönergesinde yapılandırılmıştır:
-    * Tüm olay günlükleri Fluentd'den kopyalanır ve IP adresinde QRadar'a yönlendirilir `https://109.111.35.11:514`
-    * Loglar, Fluentd'den QRadar'a [Syslog](https://en.wikipedia.org/wiki/Syslog) standardına göre JSON formatında yönlendirilir
-    * QRadar ile bağlantı TCP üzerinden kurulur
-    * Fluentd günlükleri ayrıca komut satırında JSON formatında yazdırılır (19-22 kod satırları). Bu ayar, olayların Fluentd aracılığıyla kaydedildiğini doğrulamak için kullanılır
+* Gelen webhook işleme, `source` yönergesinde yapılandırılmıştır:
+    * Trafik 9880 numaralı porta gönderilir
+    * Fluentd, yalnızca HTTPS bağlantılarını kabul edecek şekilde ayarlanmıştır
+    * Halka açık CA tarafından imzalanmış Fluentd TLS sertifikası `/etc/ssl/certs/fluentd.crt` dosyasında yer almaktadır
+    * TLS sertifikası için özel anahtar `/etc/ssl/private/fluentd.key` dosyasında yer almaktadır
+* Logların QRadar'a iletilmesi ve log çıktısı `match` yönergesinde yapılandırılmıştır:
+    * Tüm olay logları, Fluentd'den kopyalanarak `https://109.111.35.11:514` adresindeki QRadar'a iletilir
+    * Loglar, Syslog standardına uygun olarak JSON formatında Fluentd'den QRadar'a iletilir ([Syslog](https://en.wikipedia.org/wiki/Syslog))
+    * QRadar ile bağlantı TCP üzerinden kurulmuştur
+    * Fluentd logları, ayrıca komut satırında JSON formatında yazdırılır (19-22 kod satırı). Bu ayar, olayların Fluentd aracılığıyla loglandığının doğrulanması için kullanılır
 
 ```bash linenums="1"
 <source>
@@ -65,56 +65,56 @@ Fluentd, `td-agent.conf` dosyasında yapılandırılmıştır:
 </match>
 ```
 
-Yapılandırma dosyalarına dair daha ayrıntılı bir açıklama, [resmi Fluentd belgelerinde](https://docs.fluentd.org/configuration/config-file) mevcuttur.
+Yapılandırma dosyalarına ilişkin daha ayrıntılı açıklama [resmi Fluentd dokümantasyonunda](https://docs.fluentd.org/configuration/config-file) mevcuttur.
 
-!!! info "Fluentd Yapılandırmasını Test Etme"
-    Fluentd günlüklerinin oluşturulduğunu ve QRadar'a yönlendirildiğini kontrol etmek için, PUT veya POST isteği Fluentd'ye gönderilebilir.
+!!! info "Fluentd yapılandırmasının test edilmesi"
+    Fluentd loglarının oluşturulduğunu ve QRadar'a iletildiğini kontrol etmek için Fluentd'ye PUT veya POST isteği gönderilebilir.
 
     **İstek örneği:**
     ```curl
     curl -X POST 'https://fluentd-example-domain.com' -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}'
     ```
 
-    **Fluentd günlükleri:**
-    ![Fluentd'deki Günlükler](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-curl-log.png)
+    **Fluentd logları:**
+    ![Logs in Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-curl-log.png)
 
-    **QRadar günlükleri:**
-    ![QRadar'daki Günlükler](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log.png)
+    **QRadar logları:**
+    ![Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log.png)
 
-    **QRadar günlük yükü:**
-    ![QRadar'daki Günlük Yükü](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log-payload.png)
+    **QRadar log yükü:**
+    ![Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log-payload.png)
 
-### QRadar Yapılandırması (isteğe bağlı)
+### QRadar yapılandırması (isteğe bağlı)
 
-QRadar'da, günlük kaynağı yapılandırılır. Bu, QRadar'daki tüm günlüklerin listesinde Fluentd günlüğünü kolayca bulmayı sağlar ve ayrıca daha ileri günlük filtrelemesi için de kullanılabilir. Günlük kaynağı şu şekilde yapılandırılır:
+QRadar'da log kaynağı yapılandırılır. Bu, QRadar'daki tüm loglar arasında Fluentd loglarını kolayca bulmayı sağlar ve ayrıca ileri düzey log filtrelemesi için de kullanılabilir. Log kaynağı aşağıdaki şekilde yapılandırılmıştır:
 
-* **Günlük Kaynak Adı**: `Fluentd`
-* **Günlük Kaynak Açıklaması**: `Fluentd'den Gelen Günlükler`
-* **Günlük Kaynak Türü**: Syslog standardı ile kullanılan gelen günlükler analizörü türü `Universal LEEF`
-* **Protokol Yapılandırması**: günlükleri yönlendirme standardı `Syslog`
-* **Günlük Kaynak Tanımlayıcısı**: Fluentd IP adresi
+* **Log Source Name**: Fluentd
+* **Log Source Description**: Fluentd'den gelen loglar
+* **Log Source Type**: Gelen log parçalayıcı türü, Syslog standardı ile kullanılan `Universal LEEF`
+* **Protocol Configuration**: Log iletim standardı: `Syslog`
+* **Log Source Identifier**: Fluentd IP adresi
 * Diğer varsayılan ayarlar
 
-QRadar günlük kaynağı kurulumuna dair daha ayrıntılı bir açıklama, [resmi IBM belgelerinde](https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_guide.pdf?origURL=SS42VS_DSM/b_dsm_guide.pdf) mevcuttur.
+QRadar log kaynağı kurulumu hakkında daha ayrıntılı bilgi [resmi IBM dokümantasyonunda](https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_guide.pdf?origURL=SS42VS_DSM/b_dsm_guide.pdf) mevcuttur.
 
-![Fluentd için QRadar günlük kaynak kurulumu](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-setup.png)
+![QRadar log source setup for Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-setup.png)
 
-### Fluentd Entegrasyonunun Yapılandırılması
+### Fluentd entegrasyonunun yapılandırılması
 
---8<-- "../include-tr/integrations/webhook-examples/create-fluentd-webhook.md"
+--8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![Fluentd ile Webhook entegrasyonu](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-[Fluentd entegrasyonu yapılandırması hakkında daha fazla bilgi](../fluentd.md)
+[Fluentd entegrasyon yapılandırması hakkında daha fazla bilgi](../fluentd.md)
 
-## Örnek Test Etme
+## Örnek test
 
---8<-- "../include-tr/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
 
-Fluentd, olayı şu şekilde kaydeder:
+Fluentd, olayı aşağıdaki gibi loglayacaktır:
 
-![QRadar'da Fluentd'den Yeni Kullanıcı ile ilgili Günlük](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-user-log.png)
+![Log about new user in QRadar from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-user-log.png)
 
-Aşağıdaki veriler, JSON formatında QRadar günlük yükünde görüntülenir:
+Aşağıdaki JSON formatındaki veriler, QRadar log yükünde görüntülenecektir:
 
-![QRadar'da Fluentd'den Yeni Kullanıcı Kartı](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-user.png)
+![New user card in QRadar from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-user.png)

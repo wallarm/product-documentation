@@ -2,18 +2,18 @@
 
 | API çağrısı: | `POST /v1/test_run` |      |
 | ------------ | ------------------- | ---- |
-| Yetki: | Gerekli | Yetki token ile sağlanır |
-| Token ile HTTP başlığı: | `X-WallarmAPI-Token` | Token değerini API sunucusuna taşımak için kullanılır |
-| Parametreler: | `name` **(Zorunlu)** | Test çalışmasının adı |
-| | `test_record_id` **(Zorunlu)** | Varolan bir test kaydının identifikatörü |
-|  | `desc` | Test çalışmasının ayrıntılı açıklaması.<br>Varsayılan değer: boş dize |
-|  | `file_extensions_to_exclude` | Bu parametre belirli dosya türlerinin belirlenmiş düzenli ifadeye göre test sırasında değerlendirme sürecinden çıkarılabilmesine izin vermektedir.<br>Örneğin, `ico` dosya uzantısını hariç tutarsanız, `GET /favicon.ico` baz istek FAST tarafından kontrol edilmez ve atlanır.<br>Regular ifade aşağıdaki formatlara sahipti:<br>- `.`: herhangi (sıfır veya daha fazla) sayıda karakter<br>- `x*`: herhangi sayıda `x` karakteri<br>- `x?`: tek `x` karakteri (veya hiçbiri)<br>- herhangi bir tek dosya uzantısı (örneğin, `jpg`)<br>- dikey çizgi ile ayrılmış birkaç uzantı (örneğin, `jpg` &#124; `png`)<br>Default value: empty string (FAST will check baseline requests with any file extension). | 
-|  | `policy_id` | Test politikasının identifikatörü.<br>Bu parametre eksikse, varsayılan politika etkin olur |
-|  | `stop_on_first_fail` | Bu parametre, bir güvenlik açığı algılandığında FAST’ın davranışını belirler:<br>`true`: ilk tespit edilen zayıflıkta test çalışmasının gerçekleşmesini durdurur.<br>`false`: herhangi bir güvenlik açığı algılanmış olup olmamasına bakılmaksızın, tüm baz isteklerini işler.<br>Default value: `false` |
-|  | `rps_per_baseline` | Bu parametre, hedef uygulamaya gönderilecek olan test isteklerinin (*RPS*, *saniyedeki istekler*) sayısının sınırını belirtir (örneğin, tek bir baz istektan 100 test isteği türetebilirsiniz).<br>Limit, test çalışması sırasında tek bir baz isteği başına belirlenir (tek bir baz istek için saniyede `N` den fazla test isteği gönderilmeyecektir).<br>Minimum değer: `1`.<br>Maksimum değer: `500`.<br>Varsayılan değer: `null` (RPS sınırsızdır) |
-|  | `rps` | Bu parametre, yukarıda açıklanan parametreye benzerdir ancak RPS sınırını test çalışması genelinde, yani tek bir baz istek için değil, belirler.<br>Diğer bir deyişle, toplam test isteği sayısı, saniyede kaç tane baz isteğinin kaydedildiğine bakılmaksızın belirlenen değeri aşmamalıdır.<br>Minimum değer: `1`.<br>Maksimum değer: `1000`.<br>Varsayılan değer: `null` (RPS sınırsızdır) |
+| Yetkilendirme: | Gerekli | Yetkilendirme, token aracılığıyla sağlanır |
+| Token içeren HTTP başlığı: | `X-WallarmAPI-Token` | Token değerini API sunucusuna iletmek için kullanılır |
+| Parametreler: | `name` **(gerekli)** | Test çalıştırmasının adı |
+|  | `test_record_id` **(gerekli)** | Mevcut bir test kaydının tanımlayıcısı |
+|  | `desc` | Test çalıştırmasının ayrıntılı açıklaması.<br>Varsayılan değer: boş string |
+|  | `file_extensions_to_exclude` | Bu parametre, test sırasında değerlendirme sürecinden hariç tutulması gereken belirli dosya tiplerinin belirtilmesine olanak tanır. Bu dosya tipleri, düzenli ifade (regex) ile belirtilir.<br>Örneğin, hariç tutulacak `ico` dosya uzantısını ayarlarsanız, `GET /favicon.ico` temel isteği FAST tarafından kontrol edilmeyecek ve atlanacaktır.<br>Düzenli ifadenin formatı şöyledir:<br>- `.`: herhangi bir karakterin herhangi bir sayıda (sıfır veya daha fazla) bulunması<br>- `x*`: `x` karakterinin herhangi bir sayıda (sıfır veya daha fazla) bulunması<br>- `x?`: tek `x` karakteri (veya hiç olmaması)<br>- herhangi bir tek dosya uzantısı (örneğin, `jpg`)<br>- dikey çizgi ile ayrılmış birkaç uzantı (örneğin, `jpg` &#124; `png`)<br>Varsayılan değer: boş string (FAST, herhangi bir dosya uzantısına sahip temel istekleri kontrol eder). | 
+|  | `policy_id` | Test politikasının tanımlayıcısı.<br>Bu parametre eksikse, varsayılan politika devreye girer |
+|  | `stop_on_first_fail` | Bu parametre, bir güvenlik açığı tespit edildiğinde FAST’in davranışını belirtir:<br>`true`: tespit edilen ilk güvenlik açığında test çalıştırmasını durdurur.<br>`false`: herhangi bir güvenlik açığı tespit edilip edilmediğine bakılmaksızın tüm temel istekleri işler.<br>Varsayılan değer: `false` |
+|  | `rps_per_baseline` | Bu parametre, hedef uygulamaya gönderilecek test isteklerinin (*RPS*, saniyede istek) sayısında sınırlama getirir (örneğin, tek bir temel istekten türetilmiş 100 test isteği olabilir).<br>Sınırlama, test çalıştırması içinde bireysel temel istek başına belirlenir (tek bir temel istek için saniyede `N`'den fazla test isteği gönderilmez).<br>Minimum değer: `1`.<br>Maksimum değer: `500`.<br>Varsayılan değer: `null` (RPS sınırsızdır) |
+|  | `rps` | Bu parametre, yukarıda açıklananla benzerdir, ancak RPS’i yalnızca tek bir temel istek için değil, tüm test çalıştırması genelinde sınırlar.<br>Yani, test çalıştırması sırasında kaydedilen temel istek sayısı ne olursa olsun, saniyede gönderilen toplam test isteği sayısı belirtilen değeri aşmamalıdır.<br>Minimum değer: `1`.<br>Maksimum değer: `1000`.<br>Varsayılan değer: `null` (RPS sınırsızdır) |
 
-**Bir istek örneği:**
+**Örnek bir istek:**
 
 ```
 curl --request POST \
@@ -27,7 +27,7 @@ curl --request POST \
 }'
 ```
 
-**Bir yanıt örneği: test çalışmasını kopyalama devam ediyor**
+**Örnek bir yanıt: test çalıştırması kopyalanıyor**
 
 ```
 {
@@ -43,9 +43,9 @@ curl --request POST \
 }
 ```
 
-`cloning` durumu, başlık isteklerinin orijinal test çalışmasından onun kopyasına ( `tr_1234` identifikatörüne sahip test çalışması) klonlandığı anlamına gelir.  
+"cloning" durumu, temel isteklerin orijinal test çalıştırmasından kopyaya (kimliği `tr_1234` olan test çalıştırması) klonlandığı anlamına gelir.  
 
-**Bir yanıt örneği: test çalışmasını kopyalama başarısız oldu**
+**Örnek bir yanıt: test çalıştırması kopyalanamadı**
 
 ```
 {
@@ -59,4 +59,4 @@ curl --request POST \
 }
 ```
 
-`not_ready_for_cloning` hatası, orijinal test çalışmasında kayıt süreci hala aktif olduğundan ( `rec_0001` identifikatörüne sahip test kaydını dahil ederek) başlık isteklerinin orijinal test çalışmasından onun kopyasına klonlanmasının mümkün olmadığı anlamına gelir.
+"not_ready_for_cloning" hatası, orijinal test çalıştırmasında kaydetme sürecinin devam etmesi nedeniyle temel isteklerin orijinal test çalıştırmasından kopyaya klonlanmasının mümkün olmadığını belirtir (bu, `rec_0001` tanımlayıcılı test kaydını içerir).

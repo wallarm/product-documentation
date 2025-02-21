@@ -1,1 +1,1 @@
---8<-- "latest/about-wallarm/waap-overview.md"
+--8<-- "latest-tr/about-wallarm/waap-overview.md"

@@ -1,48 +1,48 @@
 # Microsoft Teams
 
-Wallarm'ı Microsoft Teams kanal(lar)ınıza bildirim göndermek üzere ayarlayabilirsiniz. Farklı kanallara bildirim göndermek isterseniz, birkaç Microsoft Teams entegrasyonu oluşturun.
+[Microsoft Teams](https://www.microsoft.com/en-us/microsoft-teams/group-chat-software), ekip çalışmalarını kolaylaştırmak ve kuruluşların ofiste, uzaktan veya her ikisinin birleşiminde çalışırken etkili biçimde iletişim kurmalarını, işbirliği yapmalarını ve projeleri yönetmelerini sağlamak amacıyla tasarlanmış bir işbirliği ve iletişim platformudur. Wallarm’ı, Microsoft Teams kanalınıza(lar) bildirim gönderecek şekilde ayarlayabilirsiniz. Eğer bildirimleri birden fazla farklı kanala göndermek istiyorsanız, birkaç farklı Microsoft Teams entegrasyonu oluşturun.
 
-## Entegrasyonu ayarlama
+## Entegrasyonu Kurma
 
-1. **Entegrasyonlar** bölümünü açın.
-1. **Microsoft Teams** bloğunu tıklayın veya **Entegrasyon ekle** düğmesini tıklayın ve **Microsoft Teams**'i seçin.
+1. **Integrations** bölümünü açın.
+1. **Microsoft Teams** bloğuna tıklayın veya **Add integration** düğmesine tıklayıp **Microsoft Teams** seçeneğini belirleyin.
 1. Bir entegrasyon adı girin.
-1. Bildirimleri göndermek istediğiniz Microsoft Teams kanalının ayarlarını açın ve yeni bir Webhook'u, [talimatları](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook) kullanarak yapılandırın.
-1. Sağlanan Webhook URL'sini kopyalayın ve değeri Wallarm Konsolu'ndaki **Webhook URL** alanına yapıştırın.
-1. Bildirim tetiklemek için olay türlerini seçin.
+1. Bildirimlerin gönderileceği Microsoft Teams kanalının ayarlarını açın ve [talimatları](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook) kullanarak yeni bir Webhook yapılandırın.
+1. Sağlanan Webhook URL'sini kopyalayın ve değeri Wallarm Console’daki **Webhook URL** alanına yapıştırın.
+1. Bildirimleri tetikleyecek olay türlerini seçin.
 
-      ![MS Teams entegrasyonu](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
+      ![MS Teams integration](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
     
-      Kullanılabilir olaylarla ilgili detaylar:
+      Mevcut olaylar hakkında detaylı bilgi:
       
-      --8<-- "../include-tr/integrations/events-for-integrations.md"
+      --8<-- "../include/integrations/events-for-integrations.md"
 
-1. **Entegrasyonu test et**'i tıklarak yapılandırma doğruluğunu, Wallarm Bulut'unun kullanılabilirliğini ve bildirim formatını kontrol edin.
+1. **Test integration** düğmesine tıklayarak yapılandırmanın doğruluğunu, Wallarm Cloud’un kullanılabilirliğini ve bildirim formatını kontrol edin.
 
-      Bu, ön ekinin `[Test mesajı]` olduğu test bildirimlerini gönderecektir:
+      Bu, ön eki `[Test message]` ile test bildirimlerini gönderecektir:
 
       ```
-      [Test mesajı] [Test ortağı] Ağ çevresi değişti
+      [Test message] [Test partner] Network perimeter has changed
 
-      Bildirim tipi: yeni_kapsam_nesnesi_ips
+      Notification type: new_scope_object_ips
 
-      Ağ çevresinde yeni IP adresleri keşfedildi:
+      New IP addresses were discovered in the network perimeter:
       8.8.8.8
 
-      İstemci: TestŞirketi
-      Bulut: EU
+      Client: TestCompany
+      Cloud: EU
       ```
 
-1. **Entegrasyon ekle**'yi tıklayın.
+1. **Add integration** düğmesine tıklayın.
 
-## Ek uyarıları ayarlama
+## Ek Bildirimlerin Kurulması
 
---8<-- "../include-tr/integrations/integrations-trigger-setup-limited.md"
+--8<-- "../include/integrations/integrations-trigger-setup-limited.md"
 
-## Bir entegrasyonu devre dışı bırakma ve silme
+## Bir Entegrasyonu Devre Dışı Bırakma ve Silme
 
---8<-- "../include-tr/integrations/integrations-disable-delete.md"
+--8<-- "../include/integrations/integrations-disable-delete.md"
 
-## Sistem erişilemezliği ve yanlış entegrasyon parametreleri
+## Sistem Kullanılamazlığı ve Hatalı Entegrasyon Parametreleri
 
---8<-- "../include-tr/integrations/integration-not-working.md"
+--8<-- "../include/integrations/integration-not-working.md"

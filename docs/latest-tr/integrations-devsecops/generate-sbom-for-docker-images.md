@@ -1,25 +1,19 @@
-# Wallarm Docker İmajları için SBOM Oluşturma
+# Wallarm Docker Images için SBOM Oluşturma
 
-Yazılım Bill of Materials (SBOM), bir uygulamanın yazılım bileşenlerini ve bağımlılıklarını, sürümleri, lisansları ve zafiyetleri listeler. Bu makale, Wallarm Docker imajları için SBOM oluşturma konusunda size rehberlik edecektir.
+Yazılım Malzeme Listesi (SBOM), bir uygulamadaki yazılım bileşenlerini ve bunların sürümlerini, lisanslarını ve güvenlik açıklarını içeren bağımlılıkları listeleyen bir envanterdir. Bu makale, Wallarm Docker görüntüleri için SBOM oluşturma adımlarını anlatmaktadır.
 
-Wallarm Docker İmajları için SBOM'ı, imajlarda kullanılan bağımlılıklarla ilgili potansiyel güvenlik risklerini değerlendirmek ve hafifletmek için ihtiyaç duyabilirsiniz. SBOM, yazılım bileşenlerine şeffaflık sağlar ve uyumluluğu garanti altına alır.
+Wallarm Docker Images ile kullanılan bağımlılıkların potansiyel güvenlik risklerini değerlendirmek ve azaltmak için SBOM elde etmeniz gerekebilir. SBOM, yazılım bileşenleri hakkında şeffaflık sağlar ve uyumluluğun garanti edilmesine yardımcı olur.
 
-## Wallarm Docker İmajlarının Listesi
+## Wallarm Docker Images Listesi
 
-Aşağıda, [imzalı](verify-docker-image-signature.md) Wallarm Docker imajlarının listesi bulunmaktadır. Bu imajların herhangi bir etiketi için SBOM oluşturabilirsiniz.
+Aşağıda [imzalı](verify-docker-image-signature.md) Wallarm Docker görüntülerinin listesi bulunmaktadır. Bu görüntülerin herhangi bir etiketi için SBOM oluşturabilirsiniz.
 
-<!-- * [wallarm/node](https://hub.docker.com/r/wallarm/node): Tüm Wallarm modüllerini içeren [NGINX tabanlı Docker imajı](../admin-en/installation-docker-en.md), Wallarm kurulumu için bağımsız bir ürün olarak hizmet verir
-* [wallarm/envoy](https://hub.docker.com/r/wallarm/envoy): Tüm Wallarm modüllerini içeren [Envoy tabanlı Docker imajı](../admin-en/installation-guides/envoy/envoy-docker.md), Wallarm kurulumu için bağımsız bir ürün olarak hizmet verir -->
-* [NGINX tabanlı Ingress Controller dağıtımı](../admin-en/installation-kubernetes-en.md) için Helm chart tarafından kullanılan Docker imajları:
+* [wallarm/node](https://hub.docker.com/r/wallarm/node) 4.8.0-1 ve sonrası: tüm Wallarm modüllerini içeren, bağımsız bir Wallarm dağıtım artefaktı olarak işlev gören [NGINX tabanlı Docker görüntüsü](../admin-en/installation-docker-en.md)
+* [NGINX tabanlı Ingress Controller dağıtımı](../admin-en/installation-kubernetes-en.md) için Helm chart tarafından kullanılan tüm Docker görüntüleri:
 
-    * [wallarm/ingress-nginx](https://hub.docker.com/r/wallarm/ingress-nginx)
     * [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
-    * [wallarm/ingress-controller-chroot](https://hub.docker.com/r/wallarm/ingress-controller-chroot)
-    * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
-    * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
-    * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
-    * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
-* [Sidecar dağıtımı](../installation/kubernetes/sidecar-proxy/deployment.md) için Helm chart tarafından kullanılan Docker imajları:
+    * [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)
+* [Sidecar dağıtımı](../installation/kubernetes/sidecar-proxy/deployment.md) için Helm chart tarafından kullanılan tüm Docker görüntüleri:
 
     * [wallarm/sidecar](https://hub.docker.com/r/wallarm/sidecar)
     * [wallarm/sidecar-controller](https://hub.docker.com/r/wallarm/sidecar-controller)
@@ -27,28 +21,29 @@ Aşağıda, [imzalı](verify-docker-image-signature.md) Wallarm Docker imajları
     * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
     * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
     * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
+* [wallarm/node-native-aio](https://hub.docker.com/r/wallarm/node-native-aio): Wallarm konektörleri için [self-hosted Native Node dağıtımı](../installation/native-node/docker-image.md) için Docker görüntüsü
 
 ## Gereksinimler
 
-Wallarm Docker imajları için SBOM oluşturmak için, [syft](https://github.com/anchore/syft) CLI yardımcı programını kullanmanız gerekecektir.
+Wallarm Docker görüntüleri için bir SBOM oluşturmak üzere, [syft](https://github.com/anchore/syft) CLI aracını kullanmanız gerekmektedir.
 
-SBOM oluşturma işlemine geçmeden önce, **syft**'ı yerel makinenizde veya CI / CD boru hattınızda [kurduğunuzdan](https://github.com/anchore/syft#installation) emin olun.
+SBOM oluşturma işlemine başlamadan önce, yerel makinenizde veya CI/CD boru hattınız içerisinde **syft**'in [kurulumunu](https://github.com/anchore/syft#installation) gerçekleştirdiğinizden emin olun.
 
 ## SBOM Oluşturma Prosedürü
 
-Docker imajı için bir SBOM oluşturmak için, aşağıdaki komutu kullanın ve belirtilen imaj etiketini istediğiniz bir etiketle değiştirin:
+Bir Docker görüntüsü için SBOM oluşturmak amacıyla, belirtilen görüntü etiketini istediğiniz etiket ile değiştirerek aşağıdaki komutu kullanın:
 
 ```bash
 syft wallarm/ingress-controller:4.6.2-1
 ```
 
-Varsayılan olarak, **syft** SBOM'u metin formatında döndürür. CycloneDX, SPDX gibi başka formatlarda da oluşturabilir ve çıktıyı bir dosyaya kaydedebilirsiniz, örneğin:
+Varsayılan olarak, **syft** SBOM'u metin formatında döndürür. Ayrıca, çıktıyı CycloneDX, SPDX gibi diğer formatlarda da oluşturabilir ve bir dosyaya kaydedebilirsiniz, örn.:
 
 ```bash
 syft wallarm/ingress-controller:4.6.2-1 --output spdx-json >> syft_json_sbom.spdx
 syft wallarm/ingress-controller:4.6.2-1 --output cyclonedx-json >> cyclonedx_json_sbom.cyclonedx
 ```
 
-SBOM'u oluşturduktan sonra, zafiyet taraması, lisans uyumluluk kontrolleri, güvenlik denetimleri veya rapor oluşturma gibi çeşitli eylemler için CI / CD boru hattınızda kullanabilirsiniz.
+SBOM oluşturulduktan sonra, bunu CI/CD boru hattınız içerisinde güvenlik taramaları, lisans uyumluluğu kontrolleri, güvenlik denetimleri veya rapor oluşturma gibi çeşitli işlemlerde kullanabilirsiniz.
 
-Tüm bağımlılıkların gerçekten Wallarm'a ait olduğunu doğrulamak için, tüm imajın [imzasını kontrol](verify-docker-image-signature.md) edebilirsiniz. İmajlarımızı dijital olarak imzalayarak, imzalı imajın gerçekten bizim olduğunu garanti ederiz. Sonuç olarak, bu güvence, Wallarm'ın doğrulanmış imajı ile ilişkilendirilecek olan SBOM'a da genişler.
+Tüm bağımlılıkların gerçekten Wallarm'a ait olduğunu doğrulamak için, görüntünün [imzasını kontrol edebilirsiniz](verify-docker-image-signature.md). Görüntülerimizi dijital olarak imzalayarak, imzalı görüntünün gerçekten bize ait olduğunu garanti altına alıyoruz. Bu güvence, SBOM ile de sağlanır; çünkü SBOM, Wallarm'ın doğrulanmış görüntüsü ile ilişkilendirilecektir.

@@ -1,56 +1,56 @@
-[link-2fa-android-app]:     https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=ja
-[link-2fa-ios-app]:         https://apps.apple.com/en/app/google-authenticator/id388497605
+[link-2fa-android-app]:     https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en
+[link-2fa-ios-app]:         https://apps.apple.com/app/google-authenticator/id388497605
 
 [img-profile]:              ../../images/user-guides/settings/profile.png
 [img-2fa-page]:             ../../images/user-guides/settings/2fa-page.png
 
 # プロフィールの確認
 
-プロフィールデータと設定を見るには、**設定**→**プロフィール**タブに進みます。
+プロフィールデータと設定の確認は、**Settings**→**Profile**タブに進みます。
 
-プロフィールでは、以下のアカウント情報を確認できます：
+プロフィールでは、アカウント情報を確認できます：
 
 * メールアドレス
-* 割り当てられた[役割](users.md#user-roles) - **管理者**、**アナリスト**、または**読取専用**
-* 名前と電話
-* Wallarmシステムで使用する日時形式の指定
-* セキュリティ：最後のパスワードデータの変更と二要素認証ステータス。SSO認証を使用している場合、いくつかの要素が利用できない場合があります。
+* 割り当てられた[役割](users.md#user-roles) - **Admin**, **Analyst**,または**Read only**
+* 名前と電話番号
+* Wallarmシステムで使用する優先の日付・時刻フォーマット
+* セキュリティ：最後のパスワード変更日と二要素認証の状態。一部の要素はSSO認証をご使用の場合、利用できないことがあります。
 * サインイン履歴
 
-Wallarmアカウントからログアウトするには、*サインアウト*ボタンをクリックできます。
+Wallarmアカウントからログアウトするには、*Sign out*ボタンをクリックできます。
 
-![プロフィールの概観][img-profile]
+![プロフィール概要][img-profile]
 
-必要に応じて、このページでアカウント情報を編集できます。
+必要に応じて、同じページ上でアカウント情報を編集可能です。
 
-## パスワード変更
+## パスワードの変更
 
-!!! info "SSOを使用している場合、利用できません"
-    SSO認証を使用している場合、メール/パスワード認証は利用できず、パスワードを使用または変更することはできません。パスワード変更セクションは利用できません。
+!!! info "SSO認証をご使用の場合は利用できません"
+    もしSSO認証をご使用の場合、メール／パスワード認証は利用できず、パスワードの使用または変更ができません。パスワード変更セクションは利用できなくなります。
 
-1. *変更*ボタンをクリックします。
-1. 現れたフォームに現在のパスワード、新しいパスワード、新しいパスワードの確認を入力します。
-1. *パスワード変更* ボタンをクリックします
+1. *Change*ボタンをクリックします。
+1. 表示されたフォームに現在のパスワード、新しいパスワード、および新しいパスワードの確認を入力します。
+1. *Change password*ボタンをクリックします。
 
 ## 二要素認証の有効化
 
-Google Authenticator（またはTOTPをサポートする同様のアプリ）を使用して二要素認証を有効にできます。
+Google Authenticator（またはTOTPをサポートする類似のアプリ）を使用して二要素認証を有効化できます。
 
-!!! info "SSOを使用している場合、利用できません"
-    SSO認証を使用している場合、二要素認証を有効にすることはできません。 **二要素認証**セクションは利用できません。
+!!! info "SSO認証をご使用の場合は利用できません"
+    もしSSO認証をご使用の場合、二要素認証は有効化できません。**Two-factor authentication**セクションは利用できなくなります。
 
-1. *Google Authenticator* アプリ（[Android][link-2fa-android-app]、[iOS][link-2fa-ios-app]）または互換する他のアプリをインストールします。
-1. 二要素認証設定で *有効化* をクリックします。
-1. 現れたQRコードをスキャンします（または *手動入力* リンクをクリックして手動入力オプションを使用します）。
+1. *Google Authenticator*アプリ（[Android][link-2fa-android-app]、[iOS][link-2fa-ios-app]）または互換性のある任意のアプリをインストールします。
+1. Two-Factor Authentication設定で*Enable*ボタンをクリックします。
+1. 表示されるQRコードをスキャンするか、*manual entry*リンクをクリックして手動入力オプションを使用します。
 1. アプリで生成された6桁の認証コードを入力します。
 1. パスワードを入力します。
-1. *確認* をクリックします。
+1. *Confirm*ボタンをクリックします。
 
-サインインするたびに、パスワードプロンプトを通過した後、2要素コードを求められます。このコードはGoogle Authenticatorアプリから取得します。
+サインインするたび、パスワード入力後に二要素認証コードの入力が求められます。このコードはGoogle Authenticatorアプリから取得します。
 
-二要素認証をオフにするにはパスワードが必要です。
+パスワードは二要素認証をオフにする際に必要です。
 
-![二要素認証ページの概観][img-2fa-page]
+![二要素認証ページの概要][img-2fa-page]
 
 !!! info "互換性"
-    Time-Based One-Time Password Algorithm (RFC6238)をサポートする任意のアプリケーションまたはデバイスを使用して一回限りのコードを生成することができます。
+    Time‑Based One‑Time Password Algorithm (RFC6238)をサポートする任意のアプリケーションまたはデバイスを使用して、ワンタイムコードを生成できます。

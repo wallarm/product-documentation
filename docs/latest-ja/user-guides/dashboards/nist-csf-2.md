@@ -1,37 +1,43 @@
-# NIST サイバーセキュリティフレームワーク 2.0 (ベータ版)
+# NIST CSF 2.0 ダッシュボード (Beta)
 
-[NIST サイバーセキュリティフレームワーク](https://www.nist.gov/cyberframework)は、国立標準技術研究所によって作成され、効果的なセキュリティ戦略のための主要な柱を定義しています。Wallarm のサービスは、NIST の柱の大部分と一致しており、お客様に包括的な保護を提供します。私たちのダッシュボードはこの一致を示し、プラットフォームの機能を構成するサポートをします。
+[NISTサイバーセキュリティフレームワーク (CSF)](https://www.nist.gov/cyberframework)は、米国国立標準技術研究所により作成され、効果的なセキュリティ戦略のための主要な柱を定義します。WallarmのサービスはNISTの大部分の柱に準拠しており、顧客に包括的な保護を提供します。本ダッシュボードはその整合性を示し、プラットフォームの機能設定を支援します。
 
-![NIST ダッシュボード](../../images/user-guides/dashboard/nist-csf-2-dash.png)
+<div>
+  <script src="https://js.storylane.io/js/v1/storylane.js"></script>
+  <div class="sl-embed" style="position:relative;padding-bottom:calc(54.13% + 25px);width:100%;height:0;transform:scale(1)">
+    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/4rynq5qejumh" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+  </div>
+</div>
 
 ## 識別
 
-Wallarm は、お客様の会社のビジネス風土、リソース、潜在的なセキュリティ脆弱性を理解するために設計されたツールを提供しています。これらのツールは、攻撃対象面を照らし、リスクスコアに従って資産をランク付けするお手伝いをします：
+Wallarmは、企業のビジネス環境、資源、潜在的なセキュリティ脆弱性を把握するためのツールを提供します。これらのツールは攻撃対象領域を明らかにし、リスクスコアに基づいて資産の優先順位付けを支援します:
 
-* [API 攻撃対象面の管理](../../api-attack-surface/overview.md) は、API によって提示される公衆攻撃対象面を列挙、評価、管理するための機能セットです。
-* [API ディスカバリー](../../api-discovery/overview.md) は、リアルタイムの使用に基づいてアプリケーションの REST API の正確なインベントリを作成し、ゾンビ、孤立、シャドウ API を効果的に特定します。
-* [API リスクスコアリング](../../api-discovery/risk-score.md)：Wallarm は、データ公開や脆弱性の存在などの要因に基づいて、API エンドポイントにリスクスコアを自動的に割り当てますが、これらの要因の重要性を調整することによってカスタマイズも提供しています。
+* [API攻撃面管理](../../api-attack-surface/overview.md)は、APIが公開する攻撃対象領域を列挙し、評価し、管理できる機能のセットです。
+* [API Discovery](../../api-discovery/overview.md)は、実際の使用状況に基づいてアプリケーションのREST APIの正確な資産一覧を作成し、ゾンビAPI、孤立API、およびシャドウAPIを効果的に識別します。
+* [API risk scoring](../../api-discovery/risk-score.md)：Wallarmは、データ露出や脆弱性の存在などの要因に基づいてAPIエンドポイントに自動でリスクスコアを割り当てますが、これらの要因の重要性を調整できるカスタマイズも提供します。
 
 ## 保護
 
-Wallarm は、既知および新たに出現する脅威の幅広い範囲に対する堅牢な保護を提供します：
+Wallarmは、既知および新たに発生する多様な脅威に対して堅牢な保護を提供します:
 
-* [アプリケーションおよび API 保護 (WAAP)](../../about-wallarm/waap-overview.md) は、環境を超えたアプリケーションおよび API に対する高度なセキュリティを提供します。これは、REST、SOAP、GraphQL などの様々な API プロトコルをサポートし、パケットの深い検査を利用して OWASP トップ 10 などを対処します。
-* API 脅威予防は、API の不正アクセスと悪用を防ぐことに焦点を当て、[悪意のあるボットをブロック](../../api-abuse-prevention/overview.md)し、[クレデンシャル詰め込み](../../about-wallarm/credential-stuffing.md)と偽アカウントの作成に対して保護し、合法的なユーザーのみへのアクセスを許可します。
-* API ポリシーの施行は、エンドポイントの説明と実際の REST API リクエストの間の相違を検出することにより、API が OpenAPI 仕様に準拠していることを確保します。不一致を特定した場合、事前定義されたセキュリティ措置を自動的に施行します。
+* [Application and API Protection (WAAP)](../../about-wallarm/waap-overview.md)は、さまざまな環境においてアプリケーションおよびAPIに高度なセキュリティを提供します。REST、SOAP、GraphQLなどの各種APIプロトコルに対応し、ディープパケットインスペクションを活用してOWASP Top 10をはじめとする脅威に対処します。
+* API Threat Preventionは、[悪意あるボットのブロック](../../api-abuse-prevention/overview.md)により不正なアクセスやAPIの悪用を防ぎ、[クレデンシャルスタッフィング](../../about-wallarm/credential-stuffing.md)および偽アカウントの作成から保護し、正当なユーザーのみがアクセスできるようにします。
+* API Specification Enforcementは、エンドポイントの説明と実際のREST APIリクエストとの不一致を検出することで、APIがOpenAPI仕様に準拠していることを保証します。不一致が確認された場合、あらかじめ定義されたセキュリティ対策を自動的に適用します.
 
 ## 検出
 
-異常、侵害の指標、およびその他の潜在的な不利な事象を特定するために、Wallarm は以下のように資産の継続的な監視を強調します：
+異常、攻撃の兆候、その他の潜在的な悪影響事象を特定するため、Wallarmは資産の継続的な監視を重視します:
 
-* [脆弱性検出](../../about-wallarm/detecting-vulnerabilities.md)：Wallarm は、実際のインターネットトラフィックを使用して、セキュリティ脆弱性を積極的に特定し、報告します。攻撃者の試みを分析し、搾取テストを実施することで、即時および潜在的な弱点を明らかにし、リアルタイムのセキュリティ監視を可能にします。
-* [API リーク](../../api-attack-surface/api-leaks)：Wallarm の API リークモジュールは、公開された API トークンを識別するために公共リポジトリをスキャンします。リークを検出した場合、Wallarm はあなたに警告し、迅速な分析と対応を可能にします。
-<!-- * [OpenAPI セキュリティテスト](../../fast/openapi-security-testing.md) は、Docker を介して CI/CD パイプラインにシームレスに統合することにより、ソフトウェア開発ライフサイクル内での API セキュリティチェックを自動化します。これは、OpenAPI 仕様で定義されているエンドポイントの脆弱性を露呈するテストリクエストを作成し、API が本番環境に出る前にセキュリティ問題に対処することを可能にします。 -->
+* [Vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md)：Wallarmは実際のインターネットトラフィックを活用し、積極的にセキュリティ脆弱性を特定し報告します。攻撃者の試行を分析し、脆弱性の悪用テストを実施することで、即時および潜在的な弱点を明らかにし、リアルタイムのセキュリティ監視を実現します.
+* [API leaks](../../api-attack-surface/security-issues.md#api-leaks)：WallarmのSecurity Issues Detectionモジュールは、パブリックリポジトリをスキャンしてAPIトークンの露出を特定します。露出が検知された場合、Wallarmは警告を発し、迅速な分析と対応を可能にします.
+* [Threat Replay Testing](../../vulnerability-detection/threat-replay-testing/overview.md)：WallarmのThreat Replay Testingは、攻撃者を自身のペネトレーションテスターとして活用します。初期の攻撃試行を分析し、同一の攻撃が悪用される他の方法を検討することで、元の攻撃者ですら発見できなかった環境内の脆弱な部分を明らかにします.
+<!--* [OpenAPI Security Testing](../../fast/openapi-security-testing.md) automates API security checks within the software development lifecycle by seamlessly integrating with CI/CD pipelines via Docker. It creates test requests to expose vulnerabilities in endpoints, as defined in your OpenAPI specification, allowing you to address security issues before the API goes into production.-->
 
 ## 対応
 
-Wallarm の兵器庫は、特定されたセキュリティ脅威に適切に対応できるように装備しています：
+Wallarmのアーセナルは、特定されたセキュリティ脅威に適切に対応できるよう支援します:
 
-* [アクティブブロッキング](../../admin-en/configure-wallarm-mode.md) は、API に到達する悪意のある活動を防ぎます。
-* API リスク管理：Wallarm は、[脆弱性ステータスを迅速に更新する](../vulnerabilities.md#vulnerability-lifecycle)ことにより、検出された脆弱性の管理を合理化することを可能にし、より良いセキュリティ監視を実現します。
-* [統合とアラート](../settings/integrations/integrations-intro.md) は、セキュリティアラートを SIEM、SOAR、および他のシステムに作成してルーティングすることを可能にします。
+* [Active blocking](../../admin-en/configure-wallarm-mode.md)により、悪意ある活動がAPIに到達するのを防ぎます.
+* API risk management：Wallarmは検出された脆弱性を迅速に[脆弱性ステータスの更新](../vulnerabilities.md#vulnerability-lifecycle)することで、セキュリティ管理の効率化を可能にします.
+* [統合とアラート](../settings/integrations/integrations-intro.md)により、セキュリティアラートをSIEM、SOAR、その他のシステムに作成し、ルーティングできます.

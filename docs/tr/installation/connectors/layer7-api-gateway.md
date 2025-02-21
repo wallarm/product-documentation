@@ -1,6 +1,1 @@
----
-search:
-  exclude: true
----
-
---8<-- "latest/installation/connectors/layer7-api-gateway.md"
+--8<-- "latest-tr/installation/connectors/layer7-api-gateway.md"

@@ -1,5 +1,5 @@
 [link-ruby]:                http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
-[link-xmltag-array]:        array.md#the-example-of-using-the-xmltag-filter-and-the-array-filter
+[link-xmltag-array]:        array.md#the-example-of-using-the-xml_tag-filter-and-the-array-filter
 [link-array]:               array.md
 
 [anchor1]:      #xml_comment-filter
@@ -10,22 +10,22 @@
 [anchor6]:      #xml_tag_array-filter
 [anchor7]:      #xml_attr-filter
 
-# XML パーサー
+# XMLパーサー
 
-**XML** パーサーは、リクエストの任意の部分に存在する XML 形式のデータを扱うために使用されます。その名前は、それによって提供されるフィルターを利用する際にポイントで特定しなければなりません。
+XMLパーサーは、リクエスト内の任意の場所に存在するXML形式のデータを扱うために使用されます。提供されるフィルターを利用する際には、パーサーの名前をpointに指定する必要があります。
 
-XML パーサーの名前を、その提供するフィルターなしでポイントに使用して、最上位の XML データコンテナの内容をその生の形式で扱うことができます。
+XMLパーサー名は、パーサーが提供するフィルターを使用せずにpointで、トップレベルのXMLデータコンテナの内容を生データ形式で扱うためにも利用できます。
 
-**例：** 
+**例:**
 
-以下の
+例えば、次の
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-というリクエストと、
+リクエストと、以下の
 
 ```
 <?xml version="1.0"?>
@@ -37,7 +37,7 @@ Content-type: application/xml
 </text>
 ```
 
-というボディの場合、`POST_XML_value` ポイントは以下の生データを参照します：
+ボディの場合、`POST_XML_value` pointは、以下の生データを参照します:
 
 ```
 <!DOCTYPE foo [<!ENTITY eee SYSTEM "aaaa">]>
@@ -48,28 +48,27 @@ Content-type: application/xml
 </text>
 ```
 
-XML パーサーは、入力データに基づいて複雑なデータ構造を構築します。このデータ構造の要素にアクセスするために以下のフィルターを使用することができます：
-* [Xml_comment フィルター][anchor1];
-* [Xml_dtd フィルター][anchor2];
-* [Xml_dtd_entity フィルター][anchor3];
-* [Xml_pi フィルター][anchor4];
-* [Xml_tag フィルター][anchor5];
-* [Xml_tag_array フィルター][anchor6];
-* [Xml_attr フィルター][anchor7].
+XMLパーサーは、入力データに基づいて複雑なデータ構造を構築します。以下のフィルターを使用して、このデータ構造の各要素にアクセスできます:
+* [Xml_commentフィルター][anchor1];
+* [Xml_dtdフィルター][anchor2];
+* [Xml_dtd_entityフィルター][anchor3];
+* [Xml_piフィルター][anchor4];
+* [Xml_tagフィルター][anchor5];
+* [Xml_tag_arrayフィルター][anchor6];
+* [Xml_attrフィルター][anchor7].
 
-ポイントでフィルターを使用するためには、XML パーサーとそれによって提供されるフィルターの名前をポイントに大文字で追加します。
+フィルターをpointで使用する際、XMLパーサーおよびフィルターの名前を大文字でpointに追加します.
 
+## Xml_commentフィルター
 
-## Xml_comment フィルター
+Xml_commentフィルターは、XML形式のデータに含まれるコメントの配列を参照します。これらの配列要素は、インデックスを使用して参照する必要があり、配列のインデックスは`0`から開始します.
 
-**Xml_comment** フィルターは、XML形式のデータからのコメントを含む配列を参照します。この配列の要素はそのインデックスを使用して参照する必要があります。配列のインデックスは `0` から始まります。
+!!! info "ポイントにおける正規表現"
+    ポイント内のインデックスは[Ruby programming language][link-ruby]の正規表現で指定できます.
 
-!!! info "ポイントの正規表現"
-    ポイントのインデックスは [Rubyプログラミング言語][link-ruby]の正規表現であることができます。
+Xml_commentフィルターは、XMLパーサーと共にのみpointで使用可能です.
 
-Xml_comment フィルターは、XML パーサーと一緒にポイントでのみ使用できます。
-
-**例：** 
+**例:**
 
 以下の
 
@@ -78,7 +77,7 @@ POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-というリクエストと、
+リクエストと、以下の
 
 ```
 <?xml version="1.0"?>
@@ -91,24 +90,23 @@ Content-type: application/xml
 <!-- second -->
 ```
 
-というボディの場合、XML パーサーと一緒に適用された Xml_comment は次の配列を参照します：
+ボディの場合、XMLパーサーと共に適用されたXml_commentフィルターは、以下の配列を参照します:
 
-| インデックス  | 値      |
+| Index  | Value    |
 |--------|----------|
 | 0      | first    |
 | 1      | second   |
 
-* `POST_XML_XML_COMMENT_0_value` ポイントは、Xml_comment フィルターによって指定された配列から `0` インデックスに対応する `first` 値を参照します。
-* `POST_XML_XML_COMMENT_1_value` ポイントは、Xml_comment フィルターによって指定された配列から `1` インデックスに対応する `second` 値を参照します。
+* `POST_XML_XML_COMMENT_0_value` pointは、Xml_commentフィルターで参照された配列の`0`番目のインデックスに対応する`first`の値を参照します.
+* `POST_XML_XML_COMMENT_1_value` pointは、Xml_commentフィルターで参照された配列の`1`番目のインデックスに対応する`second`の値を参照します.
 
-## Xml_dtd フィルター
+## Xml_dtdフィルター
 
-**Xml_dtd** フィルターは、XMLデータに使用される外部DTDスキーマを参照します。このフィルターは、XMLパーサーと一緒にポイントでのみ使用することができます。
+Xml_dtdフィルターは、XMLデータで使用される外部DTDスキーマを参照します。このフィルターは、XMLパーサーと併せてpointでのみ使用できます.
 
-Xml_dtd フィルターは文字列値を参照します。このフィルターは、複雑なデータ構造（配列やハッシュテーブルなど）を参照することはできません。
+Xml_dtdフィルターは文字列値を参照します。このフィルターは、配列やハッシュテーブルなどの複雑なデータ構造を参照することはできません.
 
-
-**例：**
+**例:**
 
 以下の
 
@@ -117,7 +115,7 @@ POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-というリクエストと、 
+リクエストと、以下の
 
 ```
 <?xml version="1.0" standalone="no"?>
@@ -129,18 +127,18 @@ Content-type: application/xml
 </text>
 ```
 
-というボディの場合、`POST_XML_DTD_value` ポイントは `example.dtd` 値を参照します。
+ボディの場合、`POST_XML_DTD_value` pointは、`example.dtd`の値を参照します.
 
-## Xml_dtd_entity フィルター
+## Xml_dtd_entityフィルター
 
-**Xml_dtd_entity** フィルターは、XMLデータに定義されたDTDスキーマディレクティブを含む配列を参照します。この配列の要素はそのインデックスを使用して参照する必要があります。配列のインデックスは `0` から始まります。
+Xml_dtd_entityフィルターは、XMLデータに定義されたDTDスキーマディレクティブを含む配列を参照します。これらの配列要素は、インデックスを使用して参照する必要があり、配列のインデックスは`0`から開始します.
 
-!!! info "ポイントの正規表現"
-    ポイントのインデックスは [Rubyプログラミング言語][link-ruby]の正規表現であることができます。
+!!! info "ポイントにおける正規表現"
+    ポイント内のインデックスは[Ruby programming language][link-ruby]の正規表現で指定できます.
 
-Xml_dtd_entity フィルターは、XML パーサーと一緒にポイントでのみ使用できます。
+Xml_dtd_entityフィルターは、XMLパーサーと共にのみpointで使用可能です.
 
-**例：**
+**例:**
 
 以下の
 
@@ -149,7 +147,7 @@ POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-というリクエストと、
+リクエストと、以下の
 
 ```
 <?xml version="1.0"?>
@@ -167,33 +165,30 @@ Content-type: application/xml
 </text>
 ```
 
-というボディの場合、リクエストボディに適用された Xml_dtd_entity フィルターとXML パーサーは次の配列を参照します： 
+ボディの場合、XMLパーサーと共に適用されたXml_dtd_entityフィルターは、以下の配列を参照します:
 
-| インデックス  | 名前    | 値                   |
+| Index  | Name   | Value                |
 |--------|--------|----------------------|
 | 0      | xxe    | aaaa                 |
 | 1      | sample | This is sample text. |
 
-この配列では、各インデックスは、DTDスキーマの名前と値に対応する名前-値ペアを参照します。
+この配列では、それぞれのインデックスがDTDスキーマの名前と値に対応する名前-値ペアを表します.
+* Xml_dtd_entityフィルターを使用してスキーマディレクティブの名前を参照するpointでは、末尾に`_name`を追加します.
+* Xml_dtd_entityフィルターを使用してスキーマディレクティブの値を参照するpointでは、末尾に`_value`を追加します.
 
-* スキーマ指令の名前を参照するには、Xml_dtd_entity フィルターを使用するポイントの末尾に `_name` サフィックスを追加します。
-* スキーマ指令の値を参照するには、Xml_dtd_entity フィルターを使用するポイントの末尾に `_value` サフィックスを追加します。
+* `POST_XML_XML_DTD_ENTITY_0_name` pointは、Xml_dtd_entityフィルターで参照された配列の`0`番目のインデックスに対応する`xxe`ディレクティブの名前を参照します.
+* `POST_XML_XML_DTD_ENTITY_1_value` pointは、Xml_dtd_entityフィルターで参照された配列の`1`番目のインデックスに対応する`This is sample text.`ディレクティブの値を参照します.
 
+## Xml_piフィルター
 
+Xml_piフィルターは、XMLデータに定義されたプロセッシング命令の配列を参照します。これらの配列要素は、インデックスを使用して参照する必要があり、配列のインデックスは`0`から開始します.
 
-* `POST_XML_XML_DTD_ENTITY_0_name` ポイントは、Xml_dtd_entity フィルターによって指定された配列から `0` インデックスに対応する `xxe` ディレクティブ名を参照します。
-* `POST_XML_XML_DTD_ENTITY_1_value` ポイントは、Xml_dtd_entity フィルターによって指定された配列から `1` インデックスに対応する `This is sample text.` ディレクティブ値を参照します。
+!!! info "ポイントにおける正規表現"
+    ポイント内のインデックスは[Ruby programming language][link-ruby]の正規表現で指定できます.
 
-## Xml_pi フィルター
+Xml_piフィルターは、XMLパーサーと共にのみpointで使用可能です.
 
-**Xml_pi** フィルターは、XMLデータの処理命令の配列を参照します。この配列の要素はそのインデックスを使用して参照する必要があります。配列のインデックスは `0` から始まります。
-
-!!! info "ポイントの正規表現"
-    ポイントのインデックスは [Rubyプログラミング言語][link-ruby]の正規表現であることができます。
-
-Xml_pi フィルターは、XML パーサーと一緒にポイントでのみ使用できます。
-
-**例：**
+**例:**
 
 以下の
 
@@ -202,7 +197,7 @@ POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-というリクエストと、
+リクエストと、以下の
 
 ```
 <?xml version="1.0"?>
@@ -215,33 +210,30 @@ Content-type: application/xml
 </text>
 ```
 
-というボディの場合、リクエストボディに適用された Xml_piフィルターとXMLパーサーは、次の配列を参照します：
+ボディの場合、XMLパーサーと共に適用されたXml_piフィルターは、以下の配列を参照します:
 
-| インデックス  | 名前            | 値                               |
+| Index  | Name           | Value                            |
 |--------|----------------|----------------------------------|
 | 0      | xml-stylesheet | type="text/xsl" href="style.xsl" |
 | 1      | last-edit      | user="John" date="2019-05-11"    |
 
-この配列では、各インデックスは、データ処理命令の名前と値に対応する名前-値ペアを参照します。
+この配列では、それぞれのインデックスがプロセッシング命令の名前と値に対応する名前-値ペアを表します.
+* Xml_piフィルターを使用してプロセッシング命令の名前を参照するpointでは、末尾に`_name`を追加します.
+* Xml_piフィルターを使用してプロセッシング命令の値を参照するpointでは、末尾に`_value`を追加します.
 
-* 処理指示の名前を参照するには、Xml_pi フィルターを使用するポイントの末尾に `_name` サフィックスを追加します。
-* 処理指示の値を参照するには、Xml_pi フィルターを使用するポイントの末尾に `_value` サフィックスを追加します。
+* `POST_XML_XML_PI_0_name` pointは、Xml_piフィルターで参照された配列の`0`番目のインデックスに対応する`xml-stylesheet`命令の名前を参照します.
+* `POST_XML_XML_PI_1_value` pointは、Xml_piフィルターで参照された配列の`1`番目のインデックスに対応する`user="John" date="2019-05-11"`命令の値を参照します.
 
+## Xml_tagフィルター
 
+Xml_tagフィルターは、XMLデータから取得されたXMLタグのハッシュテーブルを参照します。これらのハッシュテーブルの要素は、タグ名を用いて参照する必要があり、このフィルターはXMLパーサーと共にのみpointで使用可能です.
 
-* `POST_XML_XML_PI_0_name` ポイントは、Xml_pi フィルターによって指定された配列から `0` インデックスに対応する `xml-stylesheet` 命令名を参照します。
-* `POST_XML_XML_PI_1_value` ポイントは、Xml_pi フィルターによって指定された配列から `1` インデックスに対応する `user="John" date="2019-05-11"` 命令値を参照します。
+!!! info "ポイントにおける正規表現"
+    ポイント内のタグ名は[Ruby programming language][link-ruby]の正規表現で指定できます.
 
-## Xml_tag フィルター
+XMLデータのタグには、値の配列が含まれている場合もあります。これらの配列内の値にアクセスするには、[Array][link-xmltag-array]または[Xml_tag_arrayフィルター][anchor6]を使用してください.
 
-**Xml_tag** フィルターは、XMLデータのXMLタグのハッシュテーブルを参照します。このハッシュテーブルの要素はタグの名前を使用して参照する必要があります。このフィルターは、XMLパーサーと一緒にポイントでのみ使用できます。
-
-!!! info "ポイントの正規表現"
-    ポイントのタグ名は [Rubyプログラミング言語][link-ruby]の正規表現であることができます。
-
-XMLデータのタグは、値の配列も含むことがあります。これらの配列の値にアクセスするためには、[Array][link-xmltag-array] フィルターまたは [Xml_tag_array][anchor6] フィルターを使用してください。
-
-**例：**
+**例:**
 
 以下の
 
@@ -250,7 +242,7 @@ POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-というリクエストと、
+リクエストと、以下の
 
 ```
 <?xml version="1.0"?>
@@ -265,31 +257,31 @@ Content-type: application/xml
 </sample>
 ```
 
-というボディの場合、リクエストボディに適用された Xml_tag フィルターとXML パーサーは、次のハッシュテーブルを参照します：
+ボディの場合、XMLパーサーと共に適用されたXml_tagフィルターは、以下のハッシュテーブルを参照します:
 
-| キー   | 値           |
+| Key    | Value        |
 |--------|--------------|
 | text   | Sample text. |
 | sample | aaaa         |
 
-* `POST_XML_XML_TAG_text_value` ポイントは、Xml_tag フィルターによって指定されたハッシュテーブルから `text` キーに対応する `Sample text.` 値を参照します。
-* `POST_XML_XML_TAG_sample_value` ポイントは、Xml_tag フィルターによって指定されたハッシュテーブルから `sample` キーに対応する `aaaa` 値を参照します。
+* `POST_XML_XML_TAG_text_value` pointは、Xml_tagフィルターで参照されたハッシュテーブル内の`text`キーに対応する`Sample text.`の値を参照します.
+* `POST_XML_XML_TAG_sample_value` pointは、Xml_tagフィルターで参照されたハッシュテーブル内の`sample`キーに対応する`aaaa`の値を参照します.
 
-## Xml_tag_array フィルター
+## Xml_tag_arrayフィルター
 
-**Xml_tag_array** フィルターは、XMLデータのタグ値の配列を参照します。この配列の要素はそのインデックスを使用して参照する必要があります。配列のインデックスは `0` から始まります。このフィルターは、XMLパーサーと一緒にポイントでのみ使用できます。
+Xml_tag_arrayフィルターは、XMLデータから取得されたタグ値の配列を参照します。これらの配列要素は、インデックスを使用して参照する必要があり、配列のインデックスは`0`から開始します。このフィルターは、XMLパーサーと共にのみpointで使用可能です.
 
-!!! info "ポイントの正規表現"
-    ポイントのインデックスは [Rubyプログラミング言語][link-ruby]の正規表現であることができます。
+!!! info "ポイントにおける正規表現"
+    ポイント内のインデックスは[Ruby programming language][link-ruby]の正規表現で指定できます.
 
-XMLデータに適用される [Array][link-array] フィルターは、Xml_tag_arrayと同様に機能します。
+[Arrayフィルター][link-array]をXMLデータに適用した場合も、Xml_tag_arrayと同様に動作します.
 
-!!! info "タグのコンテンツの参照方法"
-    XMLパーサーは、タグ値とタグ値配列の最初の要素を区別しません。
+!!! info "タグ内容へのアクセス方法"
+    XMLパーサーは、タグ値とタグ値配列の最初の要素を区別しません.
 
-例えば、`POST_XML_XML_TAG_myTag_value` ポイントと `POST_XML_XML_TAG_myTag_ARRAY_0_value` ポイントは同じ値を参照します。
+例えば、`POST_XML_XML_TAG_myTag_value` pointと`POST_XML_XML_TAG_myTag_ARRAY_0_value` pointは同じ値を参照します.
 
-**例：**
+**例:**
 
 以下の
 
@@ -298,7 +290,7 @@ POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-というリクエストと、
+リクエストと、以下の
 
 ```
 <?xml version="1.0"?>
@@ -313,26 +305,26 @@ Content-type: application/xml
 </text>
 ```
 
-というボディの場合、リクエストボディの `text` タグに適用された Xml_tag_array は、次の配列を参照します：
+ボディの場合、XMLパーサーと共に適用されたXml_tag_arrayフィルターは、`text`タグの値の配列として、以下を参照します:
 
-| インデックス  | 値           |
+| Index  | Value        |
 |--------|--------------|
 | 0      | Sample text. |
 | 1      | aaaa         |
 
-* `POST_XML_XML_TAG_text_XML_TAG_ARRAY_0_value` ポイントは、Xml_tag_array フィルターによって指定されたテキストタグ値配列から `0` インデックスに対応する `Sample text.` 値を参照します。
-* `POST_XML_XML_TAG_text_XML_TAG_ARRAY_1_value` ポイントは、Xml_tag_array フィルターによって指定されたテキストタグ値配列から `1` インデックスに対応する `aaaa` 値を参照します。
+* `POST_XML_XML_TAG_text_XML_TAG_ARRAY_0_value` pointは、Xml_tag_arrayフィルターで参照された`text`タグの値の配列の`0`番目のインデックスに対応する`Sample text.`の値を参照します.
+* `POST_XML_XML_TAG_text_XML_TAG_ARRAY_1_value` pointは、Xml_tag_arrayフィルターで参照された`text`タグの値の配列の`1`番目のインデックスに対応する`aaaa`の値を参照します.
 
-## Xml_attr フィルター
+## Xml_attrフィルター
 
-**Xml_attr** フィルターは、XMLデータのタグ属性のハッシュテーブルを参照します。このハッシュテーブルの要素は属性の名前を使用して参照する必要があります。
+Xml_attrフィルターは、XMLデータから取得されたタグ属性のハッシュテーブルを参照します。これらのハッシュテーブルの要素は、属性名を用いて参照する必要があります.
 
-!!! info "ポイントの正規表現"
-    ポイントの属性名は [Rubyプログラミング言語][link-ruby]の正規表現であることができます。
+!!! info "ポイントにおける正規表現"
+    ポイント内の属性名は[Ruby programming language][link-ruby]の正規表現で指定できます.
 
-このフィルターは、Xml_tag フィルターと一緒にポイントでのみ使用できます。
+このフィルターは、Xml_tagフィルターと共にのみpointで使用可能です.
 
-**例：**
+**例:**
 
 以下の
 
@@ -341,7 +333,7 @@ POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-というリクエストと、
+リクエストと、以下の
 
 ```
 <?xml version="1.0"?>
@@ -353,12 +345,12 @@ Content-type: application/xml
 </text>
 ```
 
-というボディの場合、リクエストボディの `text` タグに適用された Xml_attr フィルターとXMLパーサーとXml_tag フィルターは、次のハッシュテーブルを参照します：
+ボディの場合、XMLパーサーとXml_tagフィルター、さらにXml_attrフィルターを適用すると、`text`タグの属性のハッシュテーブルとして、以下を参照します:
 
-| キー      | 値             |
+| Key      | Value         |
 |----------|---------------|
 | category | informational |
 | font     | 12            |
 
-* `POST_XML_XML_TAG_text_XML_ATTR_category_value` ポイントは、Xml_attr フィルターによって指定された `text` タグ属性ハッシュテーブルから `category` キーに対応する `informational` 値を参照します。
-* `POST_XML_XML_TAG_text_XML_ATTR_font_value` ポイントは、Xml_attr フィルターによって指定された `text` タグ属性ハッシュテーブルから `font` キーに対応する `12` 値を参照します。
+* `POST_XML_XML_TAG_text_XML_ATTR_category_value` pointは、Xml_attrフィルターで参照された`text`タグ属性のハッシュテーブル内の`category`キーに対応する`informational`の値を参照します.
+* `POST_XML_XML_TAG_text_XML_ATTR_font_value` pointは、Xml_attrフィルターで参照された`text`タグ属性のハッシュテーブル内の`font`キーに対応する`12`の値を参照します.

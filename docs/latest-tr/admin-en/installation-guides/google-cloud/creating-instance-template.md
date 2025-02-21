@@ -1,4 +1,4 @@
-# GCP'de bir filtreleme düğümü örneği şablonu oluşturma
+# GCP'de Filtreleme Düğümü Örnek Şablonu Oluşturma
 
 [img-creating-template]:                ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-instance-template.png
 [img-selecting-image]:                  ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/select-image.png
@@ -6,31 +6,31 @@
 [link-creating-image]:                  create-image.md
 [link-creating-instance-group]:         creating-autoscaling-group.md
 
-Bir filtreleme düğümü örneği şablonu, yönetilen bir örnek grubu oluştururken daha sonra baz olarak kullanılacaktır. Bir filtreleme düğümü örneği şablonu oluşturmak için aşağıdaki işlemleri yapın:
+Filtreleme düğümü örnek şablonu, daha sonra yönetilen bir örnek grubunu oluştururken temel olarak kullanılacaktır. Filtreleme düğümü örnek şablonunu oluşturmak için aşağıdakileri yapın:
 
-1.  Menünün **Hesaplama Motoru** bölümündeki **Örnek Şablonları** sayfasına gidin ve **Örnek Şablonu Oluştur** düğmesine tıklayın.
-
-    ![Bir örnek şablonu oluşturma][img-creating-template]
+1.  Menünün **Compute Engine** bölümündeki **Instance templates** sayfasına gidin ve **Create instance template** butonuna tıklayın.
     
-2.  **Ad** alanına şablon adını girin.
-3.  **Makine türü** alanından, filtreleme düğümü ile birlikte bir sanal makine başlatmak için kullanılacak sanal makine türünü seçin. 
+    ![Creating an instance template][img-creating-template]
+    
+2.  Şablon adını **Name** alanına girin.
+3.  Filtreleme düğümü ile sanal makine başlatmak için kullanılacak sanal makine türünü **Machine type** alanından seçin. 
 
-    !!! warning "Doğru örneğin türünü seçin"
-        İlk olarak filtreleme düğümünü yapılandırdığınızda kullandığınız örnekle aynı türü (veya daha güçlü olanını) seçin.
+    !!! warning "Doğru örnek türünü seçin"
+        Başlangıçta filtreleme düğümünü yapılandırırken kullandığınızla aynı (ya da daha güçlü) örnek türünü seçin.
         
-        Daha az güçlü bir örnek türü kullanmanız filtreleme düğümünün işleyişinde sorunlara yol açabilir.
+        Daha az güçlü bir örnek türü kullanmak, filtreleme düğümünün çalışmasında sorunlara yol açabilir.
 
-4.  **Önyükleme diski** ayarımdaki **Değiştir** düğmesine tıklayın. Açılan pencerede, **Özel resimler** sekmesine gidin ve **Göster hakkindaki resimlerden** açılır listesinden sanal makine resminizi oluşturduğunuz projenin adını seçin. Projenin kullanılabilir resimler listesinden [daha önce oluşturulan resmi][link-creating-image] seçin ve **Seç** düğmesine tıklayın.
+4.  **Boot disk** ayarında bulunan **Change** butonuna tıklayın. Açılan pencerede, **Custom images** sekmesine gidin ve **Show images from** açılır listesinden sanal makine imajınızı oluşturduğunuz projenin adını seçin. Projedeki mevcut imajlar listesinden [önceden oluşturulmuş imajı][link-creating-image] seçin ve **Select** butonuna tıklayın.
 
-    ![Bir resmi seçme][img-selecting-image]
+    ![Selecting an image][img-selecting-image]
     
-5.  Şablon temelli örnekların temel örnekle aynı olması için, kalan tüm parametreleri, [temel örneğinizi oluştururken][link-creating-image] parametreleri yapılandırdığınız gibi aynı şekilde yapılandırın.
+5.  Örnek şablonuna dayalı örneklerin temel örnekle aynı olması için, kalan tüm parametreleri [temel örneğinizi oluşturduğunuz gibi][link-creating-image] yapılandırın.
     
     !!! info "Güvenlik duvarını yapılandırma"
-        Güvenlik duvarının oluşturulan şablona HTTP trafiğini engellemediğinden emin olun. HTTP trafiğini etkinleştirmek için **HTTP Trafiğine İzin Ver** kutusunu işaretleyin.
+        Oluşturulan şablonun HTTP trafiğini engellemediğinden emin olun. HTTP trafiğini etkinleştirmek için **Allow HTTP traffic** onay kutusunu seçin.
     
-    --8<-- "../include-tr/gcp-autoscaling-connect-ssh.md"
+    --8<-- "../include/gcp-autoscaling-connect-ssh.md"
 
-6.  **Oluştur** düğmesine tıklayın ve şablon oluşturma işleminin tamamlanmasını bekleyin. 
+6.  **Create** butonuna tıklayın ve şablon oluşturma işleminin tamamlanmasını bekleyin.
 
-Örnek şablonu oluşturduktan sonra, otomatik ölçeklendirmenin etkinleştirildiği bir [yönetilen örnek grubunun oluşturulması][link-creating-instance-group] ile devam edebilirsiniz.
+Örnek şablonu oluşturduktan sonra, otomatik ölçeklendirme etkinleştirilmiş [yönetilen bir örnek grubunu][link-creating-instance-group] oluşturmaya devam edebilirsiniz.

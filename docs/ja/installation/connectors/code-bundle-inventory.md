@@ -1,1 +1,1 @@
---8<-- "latest/installation/connectors/code-bundle-inventory.md"
+--8<-- "latest-ja/installation/connectors/code-bundle-inventory.md"

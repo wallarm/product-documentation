@@ -1,103 +1,103 @@
-# FAST'ın Azure DevOps ile Entegrasyonu
+# Azure DevOps ile FAST Entegrasyonu
 
-FAST'ın CI MODE'deki entegrasyonu, `azure-pipelines.yml` dosyası aracılığıyla Azure DevOps pipeline'ında yapılandırılır. `azure-pipelines.yml` dosyasının ayrıntılı şeması [Azure DevOps resmi belgelerinde](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema) anlatılmıştır.
+CI MODE içerisindeki FAST'ın Azure DevOps boru hattına entegrasyonu, `azure-pipelines.yml` dosyası aracılığıyla yapılandırılır. `azure-pipelines.yml` dosyasının ayrıntılı şeması, [Azure DevOps official documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema) belgesinde açıklanmıştır.
 
-!!! info "Yapılandırılmış iş akışı"
-    İleriki talimatlar zaten yapılandırılmış bir iş akışı gerektirir ve aşağıdaki noktalardan birine denk gelir:
+!!! info "Yapılandırılmış çalışma akışı"
+    Devamındaki talimatların gerçekleşebilmesi için aşağıdaki noktalardan birine karşılık gelen, zaten yapılandırılmış bir çalışma akışının mevcut olması gerekmektedir:
 
-    * Test otomasyonu uygulanmıştır. Bu durumda, FAST node token'ı [geçmelidir](#passing-fast-node-token) ve [request kaydı](#adding-the-step-of-request-recording) ve [güvenlik testi](#adding-the-step-of-security-testing) adımları eklenmelidir.
-    * Temel taleplerin seti zaten kaydedilmiştir. Bu durumda, FAST node token'ı [geçmelidir](#passing-fast-node-token) ve [güvenlik testi](#adding-the-step-of-security-testing) adımı eklenmelidir.
+    * Test otomasyonu uygulanmış olmalıdır. Bu durumda, FAST node tokenı [geçilmeli](#passing-fast-node-token) ve [istek kaydı](#adding-the-step-of-request-recording) ile [güvenlik testi](#adding-the-step-of-security-testing) adımları eklenmelidir.
+    * Temel istek kümesi zaten kaydedilmiş olmalıdır. Bu durumda, FAST node tokenı [geçilmeli](#passing-fast-node-token) ve [güvenlik testi](#adding-the-step-of-security-testing) adımı eklenmelidir.
 
-## FAST Node Token'ını Geçmek
+## FAST Node Token'ının Geçilmesi
 
-[FAST node token'ını](../../operations/create-node.md) güvenli bir şekilde kullanmak için, mevcut pipeline ayarlarınızı açın ve token değerini [Azure DevOps environment variable](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#environment-variables) olarak geçirin.
+[FAST node token](../../operations/create-node.md)'ı güvenli bir şekilde kullanmak için, mevcut pipeline ayarlarınızı açın ve token değerini [Azure DevOps environment variable](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#environment-variables) içine aktarın.
 
-![Azure DevOps environment variable geçişi](../../../images/fast/poc/common/examples/azure-devops-cimode/azure-env-var-example.png)
+![Passing Azure DevOps environment variable](../../../images/fast/poc/common/examples/azure-devops-cimode/azure-env-var-example.png)
 
-## İsteği Kaydetme Adımını Eklemek
+## İstek Kaydı Adımının Eklenmesi
 
---8<-- "../include-tr/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
-??? info "Kayıt modunda çalışan FAST node ile otomatik test adımının örneği"
+??? info "Kayıt modunda FAST node çalıştırılarak otomatik test adımının örneği"
     ```
-    - iş: tests
-      adımlar:
+    - job: tests
+      steps:
       - script: docker network create my-network
-        displayName: 'Create my-network'
+        displayName: 'my-network oluştur'
       - script: docker run --rm --name dvwa -d --network my-network wallarm/fast-example-dvwa-base
-        displayName: 'Run test application on my-network'
+        displayName: 'my-network üzerinde test uygulamasını çalıştır'
       - script: docker run --name fast -d -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -e ALLOWED_HOSTS=dvwa -p 8080:8080 --network my-network --rm wallarm/fast
-        displayName: 'Run FAST node in recording mode on my-network'
+        displayName: 'my-network üzerinde kayıt modunda FAST node çalıştır'
       - script: docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
-        displayName: 'Run Selenium with FAST node as a proxy on my-network'
+        displayName: 'my-network üzerinde FAST node’u proxy olarak kullanarak Selenium çalıştır'
       - script: docker run --rm --name tests --network my-network wallarm/fast-example-dvwa-tests
-        displayName: 'Run automated tests on my-network'
+        displayName: 'my-network üzerinde otomatik testleri çalıştır'
       - script: docker stop selenium fast
-        displayName: 'Stop Selenium and FAST node in recording mode'
+        displayName: 'Kayıt modundaki Selenium ve FAST node’u durdur'
     ```
 
-## Güvenlik Testi Adımını Eklemek
+## Güvenlik Testi Adımının Eklenmesi
 
-Güvenlik testi kurulum yöntemi, test uygulamasında kullanılan kimlik doğrulama yöntemine bağlıdır:
+Güvenlik testi yapılandırma yöntemi, test uygulamasında kullanılan kimlik doğrulama yöntemine bağlıdır:
 
-* Kimlik doğrulama gerekiyorsa, güvenlik testi adımını, talep kaydetme adımıyla aynı işe ekleyin.
-* Kimlik doğrulama gerekmiyorsa, güvenlik testi adımını pipelinenıza ayrı bir iş olarak ekleyin.
+* Eğer kimlik doğrulama gerekiyorsa, istek kaydı adımının yer aldığı aynı işe güvenlik testi adımını ekleyin.
+* Eğer kimlik doğrulama gerekli değilse, güvenlik testi adımını pipeline’ınıza ayrı bir iş olarak ekleyin.
 
-Güvenlik testini gerçekleştirmek için talimatlara uyun:
+Güvenlik testini gerçekleştirmek için aşağıdaki talimatları izleyin:
 
-1. Test uygulamasının çalıştığından emin olun. Gerekirse, uygulamayı çalıştırmak için komut ekleyin.
-2. Uygulamanın çalıştırılmasının __ardından__ diğer gerekli [variables](../ci-mode-testing.md#environment-variables-in-testing-mode) ile `CI_MODE=testing` modunda FAST Docker konteynırını çalıştırma komutu ekleyin.
+1. Test uygulamasının çalıştığından emin olun. Gerekirse, uygulamayı çalıştırma komutunu ekleyin.
+2. Uygulama çalıştırma komutundan __sonra__, diğer gerekli [değişkenlerle](../ci-mode-testing.md#environment-variables-in-testing-mode) birlikte `CI_MODE=testing` modunda çalışan FAST Docker container komutunu ekleyin.
 
-    !!! info "Kaydedilmiş baz istek setini kullanım"
-        Baz taleplerin seti başka bir pipeline'da kaydedildiyse, kaydın ID'sini [TEST_RECORD_ID](../ci-mode-testing.md#environment-variables-in-testing-mode) değişkenine belirtin. Aksi takdirde, son kaydedilen set kullanılacaktır.
+    !!! info "Kayıt altına alınan temel istek kümesinin kullanılması"
+        Eğer temel istek kümesi başka bir pipeline’da kaydedildiyse, [TEST_RECORD_ID](../ci-mode-testing.md#environment-variables-in-testing-mode) değişkeninde kayıt kimliğini belirtin. Aksi takdirde, en son kaydedilen küme kullanılacaktır.
 
-    Komutun örneği:
+    Komut örneği:
 
     ```
     docker run --name fast -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=testing -e WALLARM_API_HOST=us1.api.wallarm.com -p 8080:8080 -e TEST_RUN_URI=http://app-test:3000 --network my-network --rm wallarm/fast
     ```
 
-!!! warning "Docker Network"
-    Güvenlik testinden önce, FAST node ve test uygulamasının aynı ağda çalıştığından emin olun.
+!!! warning "Docker Ağı"
+    Güvenlik testinden önce, FAST node ve test uygulamasının aynı ağ üzerinde çalıştığından emin olun.
 
-??? info "Testing modunda çalışan FAST node ile otomatik test adımının örneği"
-    Aşağıdaki örnekte, kimlik doğrulama gerektiren DVWA uygulaması test edildiğinden, güvenlik testi adımı, talep kaydetme adımıyla aynı işe eklenmiştir.
+??? info "Test modunda FAST node çalıştırılarak otomatik test adımının örneği"
+    Aşağıdaki örnek, kimlik doğrulaması gerektiren DVWA uygulamasını test ettiğinden, güvenlik testi adımı istek kaydı adımının yer aldığı aynı işe eklenmiştir.
 
     ```
-    saatler:
-    - sahne: testing
-      işler:
-      - iş: tests
-        adımlar:
+    stages:
+    - stage: testing
+      jobs:
+      - job: tests
+        steps:
         - script: docker network create my-network
-          displayName: 'Create my-network'
+          displayName: 'my-network oluştur'
         - script: docker run --rm --name dvwa -d --network my-network wallarm/fast-example-dvwa-base
-          displayName: 'Run test application on my-network'
+          displayName: 'my-network üzerinde test uygulamasını çalıştır'
         - script: docker run --name fast -d -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -e ALLOWED_HOSTS=dvwa -p 8080:8080 --network my-network --rm wallarm/fast
-          displayName: 'Run FAST node in recording mode on my-network'
+          displayName: 'my-network üzerinde kayıt modunda FAST node çalıştır'
         - script: docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
-          displayName: 'Run Selenium with FAST node as a proxy on my-network'
+          displayName: 'my-network üzerinde FAST node’u proxy olarak kullanarak Selenium çalıştır'
         - script: docker run --rm --name tests --network my-network wallarm/fast-example-dvwa-tests
-          displayName: 'Run automated tests on my-network'
+          displayName: 'my-network üzerinde otomatik testleri çalıştır'
         - script: docker stop selenium fast
-          displayName: 'Stop Selenium and FAST node in recording mode'
+          displayName: 'Kayıt modundaki Selenium ve FAST node’u durdur'
         - script: docker run --name fast -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=testing -e WALLARM_API_HOST=us1.api.wallarm.com -p 8080:8080 -e TEST_RUN_URI=http://dvwa:80 --network my-network --rm wallarm/fast 
-          displayName: 'Run FAST node in testing mode on my-network'
+          displayName: 'my-network üzerinde test modunda FAST node çalıştır'
         - script: docker stop dvwa
-          displayName: 'Stop test application'
+          displayName: 'Test uygulamasını durdur'
         - script: docker network rm my-network
-          displayName: 'Delete my-network'
+          displayName: 'my-network’i sil'
     ```
 
-## Testin Sonucunu Almak
+## Test Sonuçlarının Alınması
 
-Güvenlik testinin sonucu Azure DevOps arayüzünde görüntülenir.
+Güvenlik testinin sonucu, Azure DevOps arayüzünde gösterilecektir.
 
-![Testing modunda FAST node çalıştırmanın sonucu](../../../images/fast/poc/common/examples/azure-devops-cimode/azure-ci-example.png)
+![Test modunda FAST node çalıştırılmasının sonucu](../../../images/fast/poc/common/examples/azure-devops-cimode/azure-ci-example.png)
 
 ## Daha Fazla Örnek
 
-FAST'ın Azure DevOps iş akışına entegrasyon örneklerini bizim [GitHub](https://github.com/wallarm/fast-examples) sayfamızda bulabilirsiniz.
+FAST'ın Azure DevOps çalışma akışıyla entegrasyonuna dair örnekleri, [GitHub](https://github.com/wallarm/fast-examples) adresinde bulabilirsiniz.
 
-!!! info "Daha fazla sorular"
-    FAST entegrasyonu ile ilgili sorularınız varsa, lütfen [bizimle iletişime geçin](mailto:support@wallarm.com).
+!!! info "Ek sorularınız mı var?"
+    FAST entegrasyonu ile ilgili sorularınız varsa, lütfen [bize ulaşın](mailto:support@wallarm.com).

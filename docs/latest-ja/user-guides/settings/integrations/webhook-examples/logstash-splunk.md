@@ -1,53 +1,53 @@
 [splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
-# Logstashを介したSplunk Enterprise
+# Logstash経由のSplunk Enterprise
 
-これらの手順は、WallarmとLogstashデータコレクターの統合例を提供し、その後Splunk SIEMシステムにイベントを転送します。
+この手順はWallarmをLogstashデータ収集システムと統合し、イベントをSplunk SIEMシステムへ転送する例を示しています。
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.md"
 
 ![Webhookフロー](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-scheme.png)
 
-## 使用されたリソース
+## 使用リソース
 
-* WEB URL `https://109.111.35.11:8000` および API URL `https://109.111.35.11:8088`の[Splunk Enterprise](#splunk-enterprise-configuration)
-* Debian 11.x（bullseye）にインストールされ、`https://logstash.example.domain.com`で利用可能な[Logstash 7.7.0](#logstash-configuration)
-* [EUクラウド](https://my.wallarm.com)内のWallarmコンソールへの管理者アクセス、および[Logstash統合の設定](#configuration-of-logstash-integration)
+* [Splunk Enterprise](#splunk-enterprise-configuration)（WEB URL `https://109.111.35.11:8000`およびAPI URL `https://109.111.35.11:8088`）
+* [Logstash 7.7.0](#logstash-configuration)はDebian 11.x (bullseye)にインストールされており、`https://logstash.example.domain.com`で利用可能です。
+* [EU cloud](https://my.wallarm.com)にあるWallarm Consoleへの管理者アクセスが必要で、[Logstash統合の設定](#configuration-of-logstash-integration)を行います。
 
---8<-- "../include-ja/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.md"
 
-Splunk EnterpriseとLogstashサービスへのリンクは例として引用されているので、応答しません。
+Splunk EnterpriseおよびLogstashサービスへのリンクは例として示しているため、実際の応答はありません。
 
 ### Splunk Enterpriseの設定
 
-Logstashログは、`Wallarm Logstashログ`という名前のSplunk HTTPイベントコントローラーに送信され、他の設定はデフォルトのままです：
+Logstashログは`Wallarm Logstash logs`という名前でSplunk HTTP Event Controllerに送信され、他はデフォルト設定となります。
 
-![HTTPイベントコレクタ設定](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-setup.png)
+![HTTP Event Collectorの設定](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-setup.png)
 
-HTTPイベントコントローラにアクセスするために、生成されたトークン`93eaeba4-97a9-46c7-abf3-4e0c545fa5cb`が使用されます。
+HTTP Event Controllerにアクセスするために、生成されたトークン`93eaeba4-97a9-46c7-abf3-4e0c545fa5cb`が使用されます。
 
-Splunk HTTPイベントコントローラの設定の詳細な説明は、[公式のSplunkドキュメンテーション](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector)で利用できます。
+Splunk HTTP Event Controllerの設定についての詳細な説明は[公式Splunkドキュメント](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector)に記載されています。
 
 ### Logstashの設定
 
-WallarmがWebhooks経由でログをLogstash中間データコレクタに送信するため、Logstashの設定は次の要件を満たす必要があります：
+Wallarmはwebhookを介してLogstashの中間データ収集システムへログを送信するため、Logstashの設定は以下の要件を満たす必要があります。
 
-* POSTまたはPUTリクエストを受け入れる
-* HTTPSリクエストを受け入れる
-* 公開URLを持つ
-* ログをSplunk Enterpriseに転送する、この例ではログの転送に`http`プラグインを使用
+* POSTまたはPUTリクエストを受け付ける
+* HTTPSリクエストを受け付ける
+* パブリックなURLを有する
+* ログをSplunk Enterpriseへ転送する（この例では`http`プラグインを使用してログを転送します）
 
-Logstashは`logstash-sample.conf`ファイルで設定されます：
+Logstashは`logstash-sample.conf`ファイルで設定されます。
 
-* インフラが`input`セクションで設定されます：
+* 受信するwebhookの処理は`input`セクションで設定されます:
     * トラフィックはポート5044に送信されます
-    * LogstashはHTTPS接続のみを受け入れるように設定されています
-    * パブリックに信頼されたCAによって署名されたLogstashのTLS証明書は`/etc/server.crt`ファイル内にあります
-    * TLS証明書の秘密鍵は`/etc/server.key`ファイル内にあります
-* Splunkへのログの転送とログ出力は`output`セクションで設定されます：
-    * ログはLogstashからSplunkにJSON形式で転送されます
-    * すべてのイベントログはPOSTリクエストを介してLogstashからSplunk APIエンドポイント`https://109.111.35.11:8088/services/collector/raw`に転送されます。リクエストを許可するには、HTTPSイベントコレクタトークンが使用されます
-    * Logstashログはさらにコマンドライン上で出力されます（15行目のコード）。この設定は、イベントがLogstash経由でログに記録されていることを確認するために使用されます
+    * LogstashはHTTPS接続のみを受け付けるよう設定されています
+    * 公開された信頼できるCAに署名されたLogstash TLS証明書はファイル`/etc/server.crt`に格納されています
+    * TLS証明書用の秘密鍵はファイル`/etc/server.key`に格納されています
+* Splunkへのログ転送とログ出力は`output`セクションで設定されます:
+    * LogstashからSplunkへログはJSON形式で転送されます
+    * LogstashからSplunkのAPIエンドポイント`https://109.111.35.11:8088/services/collector/raw`へはPOSTリクエストを介してすべてのイベントログが転送されます。リクエストの認証にはHTTPS Event Collectorトークンが使用されます
+    * Logstashログはコマンドライン（15行目）にも出力されます。この設定は、Logstashを介してイベントがログ出力されることを検証するために使用されます
 
 ```bash linenums="1"
 input {
@@ -55,39 +55,39 @@ input {
     port => 5044 # 受信リクエスト用のポート
     ssl => true # HTTPSトラフィック処理
     ssl_certificate => "/etc/server.crt" # Logstash TLS証明書
-    ssl_key => "/etc/server.key" # TLS証明書の秘密鍵
+    ssl_key => "/etc/server.key" # TLS証明書用秘密鍵
   }
 }
 output {
-  http { # LogstashからのログをHTTP/HTTPSプロトコル経由で転送するための出力プラグイン
+  http { # HTTP/HTTPSプロトコルを介してLogstashからログを転送する出力プラグイン
     format => "json" # 転送されるログの形式
-    http_method => "post" # ログを転送するために使用されるHTTPメソッド
-    url => "https://109.111.35.11:8088/services/collector/raw" # ログを転送するエンドポイント
-    headers => ["Authorization", "Splunk 93eaeba4-97a9-46c7-abf3-4e0c545fa5cb"] # リクエストを許可するためのHTTPヘッダー
+    http_method => "post" # ログ転送に使用するHTTPメソッド
+    url => "https://109.111.35.11:8088/services/collector/raw" # ログ転送先のエンドポイント
+    headers => ["Authorization", "Splunk 93eaeba4-97a9-46c7-abf3-4e0c545fa5cb"] # リクエストを認証するHTTPヘッダー
   }
-  stdout {} # Logstashのログをコマンドラインに出力するプラグイン
+  stdout {} # コマンドラインにLogstashログを出力する出力プラグイン
 }
 ```
 
-設定ファイルの詳しい説明は、[公式のLogstashドキュメンテーション](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html)で利用できます。
+設定ファイルの詳細な説明は[公式Logstashドキュメント](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html)で確認できます。
 
-!!! info "Logstash設定のテスト"
-    Logstashログが作成されてSplunkに転送されているか確認するために、LogstashにPOSTリクエストを送信できます。
+!!! info "Logstash 設定のテスト"
+    Logstashログが生成されSplunkへ転送されるか確認するために、POSTリクエストをLogstashへ送信できます。
 
-    **リクエスト例：**
+    **リクエスト例:**
     ```curl
     curl -X POST 'https://logstash.example.domain.com' -H "Content-Type: application/json" -H "Authorization: Splunk 93eaeba4-97a9-46c7-abf3-4e0c545fa5cb" -d '{"key1":"value1", "key2":"value2"}'
     ```
 
-    **Logstash logs：**
+    **Logstashログ:**
     ![Logstashログ](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-curl-log.png)
 
-    **Splunkイベント：**
-    ![Splunkイベント](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-curl-log.png)    
+    **Splunkイベント:**
+    ![Splunkイベント](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-curl-log.png)
 
 ### Logstash統合の設定
 
---8<-- "../include-ja/integrations/webhook-examples/create-logstash-webhook.md"
+--8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
 ![LogstashとのWebhook統合](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
@@ -95,16 +95,16 @@ output {
 
 ## テスト例
 
---8<-- "../include-ja/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
 
-Logstashは次のようにイベントをログに記録します：
+Logstashは次のようにイベントをログ出力します。
 
-![LogstashからSplunkに新しいユーザーに関するログ](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-user-log.png)
+![LogstashからのSplunkにおける新規ユーザのログ](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-user-log.png)
 
-Splunkイベントには次のエントリが表示されます：
+Splunkイベントには以下のエントリが表示されます。
 
-![LogstashからSplunkに新しいユーザーカード](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
+![LogstashからのSplunkにおける新規ユーザカード](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
 
-## ダッシュボードにイベントを整理する
+## ダッシュボードへのイベント整理
 
---8<-- "../include-ja/integrations/application-for-splunk.md"
+--8<-- "../include/integrations/application-for-splunk.md"

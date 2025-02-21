@@ -1,17 +1,17 @@
 [link-ruby]:        http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
 
-[anchor1]:      #getフィルタおよびhashフィルタの使用例
-[anchor2]:      #form_urlencodedパーサとhashフィルタの使用例
-[anchor3]:      #multipartフィルタおよびhashフィルタの使用例
-[anchor4]:      #json_docパーサとhashフィルタの使用例
-[anchor5]:      #json_objフィルタとhashフィルタの使用例
-[anchor6]:      #json_arrayフィルタとhashフィルタの使用例
+[anchor1]:      #the-example-of-using-the-get-filter-and-the-hash-filter
+[anchor2]:      #the-example-of-using-the-form_urlencoded-parser-with-the-hash-filter
+[anchor3]:      #the-example-of-using-the-multipart-filter-and-the-hash-filter
+[anchor4]:      #the-example-of-using-the-json_doc-parser-and-the-hash-filter
+[anchor5]:      #the-example-of-using-the-json_obj-filter-and-the-hash-filter
+[anchor6]:      #the-example-of-using-the-json_array-filter-and-the-hash-filter
 
-# Hashフィルタ
+# ハッシュフィルター
 
-**Hash** フィルタは、hashテーブルを含む可能性があるベースライン要求の要素のいずれかの値のhashテーブルを指さします。
+**Hash**フィルターは、ハッシュテーブルを含む可能性がある基本リクエスト要素内の値のハッシュテーブルを参照します。
 
-Hashフィルタは、以下のフィルタおよびパーサと一緒にポイントで使用できます：
+ハッシュフィルターは、以下のフィルターおよびパーサーと併せてpointで使用できます:
 * [Get][anchor1];
 * [Form_urlencoded][anchor2];
 * [Multipart][anchor3];
@@ -19,92 +19,83 @@ Hashフィルタは、以下のフィルタおよびパーサと一緒にポイ�
 * [Json_obj][anchor5];
 * [Json_array][anchor6].
 
-Hashフィルタでアドレス指定されたhashテーブルの要素を参照するためのキーを使用します。
+ハッシュフィルターで指定されるハッシュテーブルの要素を参照するために、キーを使用します.
 
-!!! info "ポイントの正規表現"
-    ポイントのキーは[Rubyプログラミング言語の正規表現][link-ruby]です。
+!!! info "ポイントにおける正規表現"
+    point内のキーは、[Rubyプログラミング言語の正規表現][link-ruby]で指定することができます.
 
-## GetフィルタおよびHashフィルタの使用例
+## Getフィルターとハッシュフィルターの使用例
 
-次のような
+以下の
 
 ```
 POST http://example.com/login?id[user]=01234&id[group]=56789 
 ```
 
-リクエストにおいて、`id`クエリ文字列パラメーターに適用されたHashフィルタは次のhashテーブルを指します：
+リクエストに対し、`id`クエリ文字列パラメーターに適用されたハッシュフィルターは、以下のハッシュテーブルを参照します:
 
-| キー | 値 |
-|------|-------|
-| user  | 01234    |
-| group | 56789    |
+| キー  | 値     |
+|-------|--------|
+| user  | 01234  |
+| group | 56789  |
 
-* `GET_id_HASH_user_value` ポイントは、Hashフィルタによってアドレス指定された`id`クエリ文字列パラメータ値のhashテーブルからの`user`キーに対応する`01234`値を指します。
-* `GET_id_HASH_group_value` ポイントは、Hashフィルタによってアドレス指定された`id`クエリ文字列パラメータ値のhashテーブルからの`group`キーに対応する`56789`値を指します。
+* `GET_id_HASH_user_value` pointは、`id`クエリ文字列パラメーターの値のハッシュテーブル内の`user`キーに対応する`01234`の値を参照します.
+* `GET_id_HASH_group_value` pointは、`id`クエリ文字列パラメーターの値のハッシュテーブル内の`group`キーに対応する`56789`の値を参照します.
 
-## Form_urlencodedパーサとHashフィルタの使用例
+## Form_urlencodedパーサーとハッシュフィルターの使用例
 
-次のような
+以下の
 
 ```
 POST http://example.com/login/index.php HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 ```
 
-リクエストで、次のような
+リクエストに、以下の
 
 ```
 id[user]=01234&id[group]=56789
 ```
 
-ボディがある場合、form-urlエンコード形式のリクエストボディから`id`パラメータに適用されたHashフィルタは次の配列を指します：
+本文が含まれる場合、form-urlencoded形式の`id`パラメーターに適用されたハッシュフィルターは、以下のハッシュテーブルを参照します:
 
-| キー    | 値    |
-|--------|--------|
-| user  | 01234  |
-| group | 56789  |
-
-* `POST_FORM_URLENCODED_id_HASH_user_value` ポイントは、Hashフィルタによってアドレス指定されたリクエスト本文パラメータhashテーブルからの`user`キーに対応する`01234`値を指します。
-* `POST_FORM_URLENCODED_id_HASH_group_value` ポイントは、Hashフィルタによってアドレス指定されたリクエスト本文パラメータhashテーブルからの`group`キーに対応する`56789`値を指します。
-
-## MultipartフィルタおよびHashフィルタの使用例
-
-次のような
-
-```
-POST http://example.com/login/index.php HTTP/1.1
-Content-Type: multipart/form-data;boundary="boundary" 
-
---boundary 
-Content-Disposition: form-data; name="id[user]" 
-
-01234 
---boundary 
-Content-Disposition: form-data; name="id[group]"
-
-56789
-```
-
-リクエストにおいて、Multipartパーサと一緒にリクエストボディの`id`パラメータに適用されたHashフィルタは次のhashテーブルを指します：
-
-| キー   | 値    |
+| キー  | 値     |
 |-------|--------|
 | user  | 01234  |
 | group | 56789  |
 
-* `POST_MULTIPART_id_HASH_user_value` ポイントは、Hashフィルタによってアドレス指定されたリクエスト本文パラメータhashテーブルからの`user`キーに対応する`01234`値を指します。
-* `POST_MULTIPART_id_HASH_group_value` ポイントは、Hashフィルタによってアドレス指定されたリクエスト本文パラメータhashテーブルからの`group`キーに対応する`56789`値を指します。
+* `POST_FORM_URLENCODED_id_HASH_user_value` pointは、リクエスト本文パラメーターのハッシュテーブル内の`user`キーに対応する`01234`の値を参照します.
+* `POST_FORM_URLENCODED_id_HASH_group_value` pointは、リクエスト本文パラメーターのハッシュテーブル内の`group`キーに対応する`56789`の値を参照します.
 
-## Json_docパーサとHashフィルタの使用例
+## Multipartフィルターとハッシュフィルターの使用例
 
-次のような
+以下の
+
+```
+POST http://example.com/login/index.php HTTP/1.1
+Content-Type: multipart/form-data;boundary="boundary" 
+```
+
+リクエストに対し、Multipartパーサーと併せてリクエスト本文の`id`パラメーターに適用されたハッシュフィルターは、以下のハッシュテーブルを参照します:
+
+| キー  | 値     |
+|-------|--------|
+| user  | 01234  |
+| group | 56789  |
+
+* `POST_MULTIPART_id_HASH_user_value` pointは、リクエスト本文パラメーターのハッシュテーブル内の`user`キーに対応する`01234`の値を参照します.
+* `POST_MULTIPART_id_HASH_group_value` pointは、リクエスト本文パラメーターのハッシュテーブル内の`group`キーに対応する`56789`の値を参照します.
+
+## Json_docパーサーとハッシュフィルターの使用例
+
+以下の
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/json
 ```
 
-リクエストで、次のような
+リクエストに、以下の
 
 ```
 {
@@ -113,26 +104,26 @@ Content-type: application/json
 }
 ```
 
-ボディがある場合、Json_docパーサと一緒にJSON形式のリクエストボディに適用されたHashフィルタは次のhashテーブルを指します：
+本文が含まれる場合、JSON形式のリクエスト本文にJson_docパーサーと併せて適用されたハッシュフィルターは、以下のハッシュテーブルを参照します:
 
-| キー       | 値   |
-|---------|-------|
-| username | user  |
-| rights   | read  |
+| キー      | 値   |
+|-----------|------|
+| username  | user |
+| rights    | read |
 
-* `POST_JSON_DOC_HASH_username_value` ポイントは、Hashフィルタによってアドレス指定されたリクエストボディパラメータhashテーブルからの`username`キーに対応する`user`値を指します。
-* `POST_JSON_DOC_HASH_rights_value` ポイントは、Hashフィルタによってアドレス指定されたリクエストボディパラメータhashテーブルからの`rights`キーに対応する`read`値を指します。
+* `POST_JSON_DOC_HASH_username_value` pointは、リクエスト本文パラメーターのハッシュテーブル内の`username`キーに対応する`user`の値を参照します.
+* `POST_JSON_DOC_HASH_rights_value` pointは、リクエスト本文パラメーターのハッシュテーブル内の`rights`キーに対応する`read`の値を参照します.
 
-## Json_objフィルタとHashフィルタの使用例
+## Json_objフィルターとハッシュフィルターの使用例
 
-次のような
+以下の
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/json
 ```
 
-リクエストで、次のような
+リクエストに、以下の
 
 ```
 {
@@ -144,26 +135,26 @@ Content-type: application/json
 }
 ```
 
-ボディがある場合、Json_docパーサとJson_objフィルタと一緒にJSON形式のリクエストボディに適用されたHashフィルタは次のhashテーブルを指します：
+本文が含まれる場合、JSON形式のリクエスト本文にJson_docパーサーおよびJson_objフィルターと併せて適用されたハッシュフィルターは、以下のハッシュテーブルを参照します:
 
-| キー | 値 |
-|-----|-------|
-| status | active |
-| rights | read   |
+| キー    | 値     |
+|---------|--------|
+| status  | active |
+| rights  | read   |
 
-* `POST_JSON_DOC_JSON_OBJ_info_HASH_status_value` ポイントは、Hashフィルタによってアドレス指定されたinfo JSONオブジェクトの子オブジェクトのhashテーブルからの`status`キーに対応する`active`値を指します。
-* `POST_JSON_DOC_JSON_OBJ_info_HASH_rights_value` ポイントは、Hashフィルタによってアドレス指定されたinfo JSONオブジェクトの子オブジェクトのhashテーブルからの`rights`キーに対応する`read`値を指します。
+* `POST_JSON_DOC_JSON_OBJ_info_HASH_status_value` pointは、info JSONオブジェクトの子オブジェクトのハッシュテーブル内の`status`キーに対応する`active`の値を参照します.
+* `POST_JSON_DOC_JSON_OBJ_info_HASH_rights_value` pointは、info JSONオブジェクトの子オブジェクトのハッシュテーブル内の`rights`キーに対応する`read`の値を参照します.
 
-## Json_arrayフィルタとHashフィルタの使用例
+## Json_arrayフィルターとハッシュフィルターの使用例
 
-次のような
+以下の
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/json
 ```
 
-リクエストで、次のような
+リクエストに、以下の
 
 ```
 {
@@ -180,12 +171,12 @@ Content-type: application/json
 }
 ```
 
-ボディがある場合、Json_docパーサ，Json_objフィルタとJson_arrayフィルタと一緒にリクエストボディの`posts`JSONオブジェクト配列の最初の要素に適用されたHashフィルタは次のhashテーブルを指します：
+本文が含まれる場合、JSON形式のリクエスト本文にJson_docパーサーおよびJson_obj,Json_arrayフィルターと併せて適用されたハッシュフィルターは、`posts` JSONオブジェクト配列の最初の要素に対して、以下のハッシュテーブルを参照します:
 
-| キー | 値 |
-|-----|-------|
+| キー   | 値       |
+|--------|----------|
 | title  | Greeting |
 | length | 256      |
 
-* `POST_JSON_DOC_JSON_OBJ_posts_JSON_ARRAY_0_HASH_title_value` ポイントは、Hashフィルタによってアドレス指定されたJSONオブジェクトhashテーブルからの`title`キーに対応する`Greeting`値を指します。
-* `POST_JSON_DOC_JSON_OBJ_posts_JSON_ARRAY_0_HASH_length_value` ポイントは、Hashフィルタによってアドレス指定されたJSONオブジェクトhashテーブルからの`length`キーに対応する`256`値を指します。
+* `POST_JSON_DOC_JSON_OBJ_posts_JSON_ARRAY_0_HASH_title_value` pointは、JSONオブジェクトのハッシュテーブル内の`title`キーに対応する`Greeting`の値を参照します.
+* `POST_JSON_DOC_JSON_OBJ_posts_JSON_ARRAY_0_HASH_length_value` pointは、JSONオブジェクトのハッシュテーブル内の`length`キーに対応する`256`の値を参照します.

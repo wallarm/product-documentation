@@ -1,39 +1,38 @@
-[link-ext-logic]:       logic.md
-
+```markdown
 # Gönderme Aşaması
 
-!!! bilgi "Aşamanın Kapsamı"
-    Bu aşama, değiştirilmeyen bir uzantının işlemesi için zorunludur (YAML dosyası `send` bölümünü içermelidir).
+!!! info "Aşamanın Kapsamı"
+    Bu aşama, herhangi bir değiştirmeyen uzantının çalışabilmesi için zorunludur (YAML dosyası `send` bölümünü içermelidir).
     
-    Bu aşamanın, birleşik haldeyken diğer aşamaları kullanılamaz hale getireceği için (Detect aşaması ve implicit Collect aşaması dışında) bir değiştirici uzantıda bulunmadığını unutmayın.
+    Değiştiren bir uzantıda bu aşama bulunmaz, çünkü Gönderme aşaması, diğer aşamalarla (Detect aşaması ve örtük Collect aşaması hariç) birleştirildiğinde diğer aşamaların kullanılamaz hale gelmesine neden olur.
     
-    Uzantı türlerini ayrıntılı olarak [burada][link-ext-logic] okuyun.
-    
-Bu aşama, önceden tanımlanmış test isteklerini bir hedef uygulamanın zafiyetlerini test etmek için gönderir. Test taleplerinin gönderilmesi gereken host, gelen temel isteklerdeki `Host` başlık değeri tarafından belirlenir.
+    Uzantı türleri hakkında detaylı bilgi almak için [burayı][link-ext-logic] okuyun.
 
-`send` bölümü aşağıdaki yapıya sahiptir:
+Bu aşama, hedef uygulamayı güvenlik açıkları açısından test etmek için önceden tanımlanmış test isteklerini gönderir. Test isteklerinin gönderileceği host, gelen temel isteklerdeki `Host` başlığı değerine göre belirlenir.
+
+`send` bölümü şu yapıya sahiptir:
 
 ```
 send:
-  - method: <HTTP yöntemi>
+  - method: <HTTP method>
     url: <URI>
     headers:
-    - header 1: değer
+    - header 1: value
     ...
-    - header N: değer
-    body: <istek gövdesi>
+    - header N: value
+    body: <the request body>
   ...
-  - method: <HTTP yöntemi>
+  - method: <HTTP method>
     ...
 ```
 
-Uzantı YAML dosyasındaki `send` bölümü bir veya daha fazla parametre seti içerir. Her parametre bir `<key: value>` çifti olarak belirtilir. Belirli bir parametre seti, bir test isteği olarak gönderilecek tek bir HTTP isteğini tanımlar. Aşağıdaki parametreler setin bir parçasıdır:
+Uzantı YAML dosyasındaki `send` bölümü, bir veya daha fazla parametre kümesi içerir. Her parametre, `<anahtar: değer>` çiftleri olarak belirtilir. Verilen bir parametre kümesi, test isteği olarak gönderilecek tek bir HTTP isteğini tanımlar. Aşağıdaki parametreler bu kümenin parçasıdır:
 
-* `method`: İsteğin kullanacağı HTTP yöntemi.
+* `method`: İsteğin kullanılacak HTTP yöntemidir.
 
-   Bu zorunlu bir parametredir: her parametre setinde bulunmalıdır.
-
-    ??? bilgi "İzin verilen parametre değerlerinin listesi"
+    Bu, zorunlu bir parametredir: her parametre kümesinde bulunmalıdır.
+    
+    ??? info "İzin verilen parametre değerleri listesi"
 
         * `GET`
         * `POST`
@@ -48,45 +47,46 @@ Uzantı YAML dosyasındaki `send` bölümü bir veya daha fazla parametre seti i
         * `MOVE`
         * `TRACE`
 
-    ??? bilgi "Örnek"
+    ??? info "Örnek"
         `method: 'POST'`
 
-* `url`: Bir URL dizesi. İstek bu URI'ye hedeflenecektir.
+* `url`: bir URL stringi. İstek bu URI'ya yönlendirilecektir.
 
-   Bu zorunlu bir parametredir: her parametre setinde bulunmalıdır.
+    Bu, zorunlu bir parametredir: her parametre kümesinde bulunmalıdır.
     
-    ??? bilgi "Örnek"
+    ??? info "Örnek"
         `url: '/en/login.php'`
 
-* `headers`: `header name: header value` formatında bir veya daha fazla HTTP başlığı içeren bir dizi.
+* `headers`: `başlık adı: başlık değeri` formatında bir veya daha fazla HTTP başlık içeren bir dizidir.
 
-   Oluşturulan HTTP isteği hiçbir başlık kullanmıyorsa, bu parametre atlanabilir.
+    Oluşturulan HTTP isteğinde herhangi bir başlık kullanılmıyorsa, bu parametre atlanabilir.
     
-   FAST, sonuçta doğru olan HTTP isteğini gerektiren başlıkları otomatik olarak ekler (bunlar `headers` dizisinde eksik olsa bile); örneğin, `Host` ve `Content-Length`.
+    FAST, `headers` dizisinde eksik olsa bile, oluşturulan HTTP isteğinin doğru olması için gereken başlıkları otomatik olarak ekler (örneğin, `Host` ve `Content-Length`).
     
-    ??? bilgi "Örnek"
+    ??? info "Örnek"
         ```
         headers:
         - 'Accept-Language': 'en-US,en;q=0.9'
         - 'Content-Type': 'application/xml'
         ```
+      
+    !!! info "`Host` başlığı ile çalışma"
+        Gerekirse, temel istekten çıkarılan değerden farklı bir `Host` başlığını test isteğine ekleyebilirsiniz. 
         
-    !!! bilgi "`Host` başlığı ile çalışma"
-        Gerekirse, bir temel istekten çıkarılan bir `Host` başlığından farklı bir `Host` başlığı ekleyebilirsiniz.
-        
-        Örneğin, Send bölümündeki bir test isteğine `Host: demo.com` başlığını eklemek mümkündür.
+        Örneğin, Send bölümünde bir test isteğine `Host: demo.com` başlığını eklemek mümkündür.
     
-        İlgili uzantı çalışıyorsa ve FAST düğümü `Host: example.com` başlığı olan bir temel istek alırsa, `Host: demo.com` başlığı olan istek `example.com` hostuna gönderilir. Sonuçtaki istek bu şekildedir:
+        İlgili uzantı çalışıyorsa ve FAST node, `Host: example.com` başlığına sahip bir temel istek alırsa, `Host: demo.com` başlığına sahip test isteği `example.com` host’una gönderilecektir. Oluşan istek buna benzer:
 
         ```
         curl -k -g -X POST -L -H "Host: demo.com" -H "Content-Type: application/json" "http://example.com/app" --data "{"field":"value"}"
         ```
-        
-* `body`: İsteğin gövdesini içeren bir dize. Sonuç dizesinde özel karakterler varsa kaçış karakteri ekleyerek istediğiniz istek gövdesini belirtebilirsiniz.
-
-   Bu zorunlu bir parametredir: her parametre setinde bulunmalıdır.
     
-    ??? bilgi "Örnek"
+* `body`: İsteğin gövdesini içeren bir string. Gerekli ise, özel karakterleri doğru şekilde kaçırarak istenilen herhangi bir istek gövdesini belirtebilirsiniz.
+
+    Bu, zorunlu bir parametredir: her parametre kümesinde bulunmalıdır.
+    
+    ??? info "Örnek"
         `body: 'field1=value1&field2=value2`
 
-Eğer `send` bölümü `N` parametre seti ile doldurulmuşsa, bu setler `N` HTTP isteğini tanımlar, ve bu durumda, tek bir gelen temel istek için, FAST düğümü temel isteğin `Host` başlığında belirtilen bir hosttaki hedef uygulamaya `N` test isteği gönderir.
+Eğer `send` bölümü, `N` HTTP isteğini tanımlayan `N` parametre kümesiyle doldurulmuşsa, tek bir gelen temel istek için FAST node, temel istekte belirtilen `Host` başlığına sahip host üzerinde bulunan hedef uygulamaya `N` test isteği gönderecektir.
+```

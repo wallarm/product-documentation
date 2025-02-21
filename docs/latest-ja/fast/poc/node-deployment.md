@@ -1,15 +1,16 @@
-[anchor-node]:                      #docker-container-no-fast-node-no-deployment
-[anchor-testrun]:                   #test-run-no-shutoku
-[anchor-testrun-creation]:          #test-run-no-sakusei
-[anchor-testrun-copying]:           #test-run-no-copy
+```markdown
+[anchor-node]:                      #deployment-of-the-docker-container-with-the-fast-node
+[anchor-testrun]:                   #obtaining-a-test-run
+[anchor-testrun-creation]:          #creating-a-test-run
+[anchor-testrun-copying]:           #copying-a-test-run
 
-[doc-limit-requests]:               ../operations/env-variables.md#request-no-record-no-kazu-no-seigen
+[doc-limit-requests]:               ../operations/env-variables.md#limiting-the-number-of-requests-to-be-recorded
 [doc-get-token]:                    prerequisites.md#anchor-token
 [doc-testpolicy]:                   ../operations/internals.md#fast-test-policy
 [doc-inactivity-timeout]:           ../operations/internals.md#test-run
-[doc-allowed-hosts-example]:        ../qsg/deployment.md#3-necessity-no-environment-variable-no-file-no-junbi
-[doc-testpolicy-creation-example]:  ../qsg/test-preparation.md#2-xss-no-zeijaku-ten-no-test-policy-no-sakusei
-[doc-docker-run-fast]:              ../qsg/deployment.md#4-fast-node-docker-container-no-deployment
+[doc-allowed-hosts-example]:        ../qsg/deployment.md#3-prepare-a-file-containing-the-necessary-environment-variables
+[doc-testpolicy-creation-example]:  ../qsg/test-preparation.md#2-create-a-test-policy-targeted-at-xss-vulnerabilities
+[doc-docker-run-fast]:              ../qsg/deployment.md#4-deploy-the-fast-node-docker-container
 [doc-state-description]:            ../operations/check-testrun-status.md
 [doc-testing-scenarios]:            ../operations/internals.md#test-run
 [doc-testrecord]:                   ../operations/internals.md#test-record
@@ -26,32 +27,33 @@
 [doc-integration-overview]:         integration-overview.md
 [doc-integration-overview-api]:     integration-overview-api.md
 
+# Wallarm API経由でFAST Nodeを実行する
 
-#   Wallarm APIを経由したFAST Nodeの実行
-
-!!! info "章の前提条件"
-    この章で説明されている手順に従うには、[token][doc-get-token]が必要です。
+!!! info "前提条件"
+    この章で説明する手順に従うには、[token][doc-get-token]を取得する必要があります。
     
-    以下の値は本章全体で例として使用されています：
+    この章では以下の値を例として使用します：
     
-    * `token_Qwe12345` はトークンとして。
-    * `tr_1234` はテストランの識別子として。
-    * `rec_0001` はテストレコードの識別子として。
+    * `token_Qwe12345` を token として使用します。
+    * `tr_1234` をテストランの識別子として使用します。
+    * `rec_0001` をテストレコードの識別子として使用します。
 
-FASTノードの実行と設定は次の手順で行います：
-1.  [Docker ContainerとFAST Nodeの周署][anchor-node]
-2.  [Test Runの取得][anchor-testrun]
+FAST Nodeの実行および設定は、以下の手順で構成されます：
+1.  [FAST Nodeを搭載したDockerコンテナのデプロイ][anchor-node]
+2.  [テストランの取得][anchor-testrun]
 
-##  Docker ContainerとFAST Nodeの周署
+## FAST Nodeを搭載したDockerコンテナのデプロイ
 
-!!! warning "Wallarm APIサーバへのアクセス権を付与する"
-    適切な操作のために、FAST Nodeは `us1.api.wallarm.com`または `api.wallarm.com`Wallarm APIサーバがHTTPSプロトコル（ `TCP/443`）を通じてアクセスすることが重要です。
+!!! warning "Wallarm APIサーバへのアクセスを許可する"
+    FAST Nodeが適切に動作するためには、HTTPSプロトコル（TCP/443）を介して `us1.api.wallarm.com` または `api.wallarm.com` のWallarm APIサーバへアクセスできることが重要です。
     
-    DockerホストがWallarm APIへのアクセスを制限しないように、ファイアウォールが確認されていることを確認してください。
+    ファイアウォールでDockerホストがWallarm APIサーバへアクセスできないよう制限されていないことを確認してください。
 
-FASTノードとともにDocker Containerの実行前に一部の設定が必要です。そのノードを設定するには、`WALLARM_API_TOKEN`環境変数を使用してコンテナにトークンを配置します。さらに、必要に応じて [`--env-file`][link-docker-envfile] [`docker run`][link-docker-run] コマンドのパラメータを使い、ファイルに変数を配置し、そのパスを指定します（「クイックスタート」ガイドの[指示][doc-docker-run-fast]を参照してください.。
+Dockerコンテナ上でFAST Nodeを実行する前に、いくつかの設定が必要です。ノードを設定するため、`WALLARM_API_TOKEN`環境変数にtokenを設定します。さらに、[記録するリクエスト数を制限する][doc-limit-requests]必要がある場合は、`ALLOWED_HOSTS`変数も使用できます。
 
-次に示すコマンドを実行して、FAST ノードを持つコンテナを実行します：
+環境変数をコンテナに渡すには、テキストファイルに変数を記述し、[`--env-file`][link-docker-envfile]パラメータを使用して[`docker run`][link-docker-run]コマンドにファイルパスを指定します（「Quick Start」ガイドの[手順][doc-docker-run-fast]を参照してください）。
+
+以下のコマンドを実行して、FAST Nodeを搭載したコンテナを起動します：
 
 ```
 docker run \ 
@@ -62,87 +64,88 @@ docker run \
 wallarm/fast 
 ```
 
-このガイドでは、コンテナが指定したCI/CDジョブ用に一度だけ実行され、ジョブが終了したときに削除されることを前提としています。したがって、上記のコマンドには [`--rm`][link-docker-rm] パラメータが追加されています。
+このガイドでは、コンテナが特定のCI/CDジョブに対して1度だけ実行され、ジョブ終了時に削除されることを前提としています。そのため、上記のコマンドには[`--rm`][link-docker-rm]パラメータが追加されています。
 
-コマンドのパラメータについての詳細な説明は「クイックスタート」ガイドを参照してください。
+コマンドのパラメータの詳細については、「Quick Start」ガイドの[説明][doc-docker-run-fast]を参照してください。
 
 ??? info "例"
-    この例では、FASTノードが `token_Qwe12345` トークンを使用し、`Host` ヘッダーの値の部分文字列として `example.local` を含むすべての着信ベースライン要求を記録するように設定されています。  
+    この例では、FAST Nodeが`token_Qwe12345`のtokenを使用し、`Host`ヘッダーの値に`example.local`を含むすべてのベースラインリクエストを記録するように設定されています。  
 
-    環境変数のファイルの内容は次の例のようになります：
+    環境変数を記述したファイルの内容は、以下の例の通りです：
 
     | fast.cfg |
     | -------- |
     | `WALLARM_API_TOKEN=token_Qwe12345`<br>`ALLOWED_HOSTS=example.local` |
 
-    以下のコマンドは、次の動作を持つ Dockerコンテナー `fast-poc-demo` を実行します：
+    以下のコマンドは、`fast-poc-demo`という名前のDockerコンテナを実行し、次の動作を行います：
     
-    * ジョブが完了した後、コンテナは削除されます。
-    * 環境変数は `fast.cfg` ファイルを使用してコンテナに渡されます。 
-    * コンテナの `8080` ポートはDockerホストの `9090` ポートに公開されます。
+    * コンテナは処理完了後に削除されます。
+    * `fast.cfg`ファイルを使用して環境変数がコンテナに渡されます。 
+    * コンテナの`8080`ポートがDockerホストの`9090`ポートに公開されます。
 
     ```
     docker run --rm --name fast-poc-demo --env-file=fast.cfg -p 9090:8080  wallarm/fast
     ```
 
-FASTノードのデプロイが成功すれば、コンテナのコンソールとログファイルには以下のような情報メッセージが表示されます：
+FAST Nodeのデプロイに成功すると、コンテナのコンソールとログファイルに以下の情報メッセージが表示されます：
 
 ```
-[info] ノードはWallarm Cloudに接続されました
-[info] TestRunのチェック待ち…
+[info] Node connected to Wallarm Cloud
+[info] Waiting for TestRun to check…
 ```
 
-現在、FASTノードはDockerホストのIPアドレスでリッスンしており、`docker run`コマンドの `-p`パラメータで以前に指定したポートを使用しています。
+これでFAST Nodeは、DockerホストのIPアドレス上と、`docker run`コマンドの`-p`パラメータで指定したポートで待機しています。
 
-##  Test Runの取得
+## テストランの取得
 
-Test Runを作成したり、[copy][anchor-testrun-copying] したりする必要があります。選択は、適切な [test run作成シナリオ][doc-testing-scenarios]によって異なります。
+テストランを[作成][anchor-testrun-creation]するか、[コピー][anchor-testrun-copying]するかのいずれかが必要です。選択は、利用する[テストラン作成シナリオ][doc-testing-scenarios]に依存します。
 
-### Test Policy識別子の取得
+### テストポリシー識別子の取得
 
-自身の[test policy][doc-testpolicy]を使用する予定であれば、[作成][link-wl-portal-new-policy]し、そのポリシーの識別子を取得します。プライマリ識別子を後でAPI呼び出し時の `policy_id`パラメータに渡します。
+独自の[テストポリシー][doc-testpolicy]を使用する場合は、[作成][link-wl-portal-new-policy]してポリシーの識別子を取得します。その後、APIでテストランを作成またはコピーする際に`policy_id`パラメータに識別子を渡してください。 
 
-したがって、デフォルトのテストポリシーを使用する予定であれば、API呼び出しから `policy_id` パラメーターを省略するべきです。
+それ以外の場合、デフォルトのテストポリシーを使用する場合は、APIコール時に`policy_id`パラメータを省略してください。
 
-!!! info "Test Policyの例"
-    「クイックスタート」ガイドには、サンプルテストポリシーを作成する[手順][doc-testpolicy-creation-example]が含まれています。
+!!! info "テストポリシーの例"
+    「Quick Start」ガイドには、サンプルのテストポリシーの作成に関する[ステップバイステップの手順][doc-testpolicy-creation-example]が記載されています。
 
-### Test Runの作成
+### テストランの作成
 
-テストランが作成されると、新しい[test record][doc-testrecord]も作成されます。
+テストランを作成すると同時に、新しい[test record][doc-testrecord]も作成されます。
 
-このテストラン作成方法は、ベースラインリクエストの記録と併せてターゲットアプリをテストする場合に使用すべきです。
+ベースラインリクエストの記録とともにターゲットアプリケーションのテストが必要な場合は、このテストラン作成方法を使用してください。
 
-!!! info "Test Runの作成方法"
-    このプロセスは[こちら][doc-create-testrun]で詳しく説明されています。
+!!! info "テストランの作成方法"
+    この手順の詳細は[こちら][doc-create-testrun]に記載されています。
 
-テストランを作成した後、リクエストを記録するためにFASTノードが一定時間必要とします。
+テストラン作成後、FAST Nodeがリクエストを記録するまでに一定の時間が必要です。
 
-テストツールを使用してターゲットアプリケーションにリクエストを送信する前に、FASTノードがリクエストの記録準備ができているかを確認してください。
+FAST Nodeがリクエストを記録する準備が整っていることを確認してから、テストツールでターゲットアプリケーションに向けてリクエストを送信してください。
 
-そのためには、URL `https://us1.api.wallarm.com/v1/test_run/test_run_id` へ GETリクエストを送ることにより、テストランのステータスを定期的に確認します：
+そのため、定期的にGETリクエストを送信して、URL `https://us1.api.wallarm.com/v1/test_run/test_run_id` に対してテストランの状態を確認してください。
 
---8<-- "../include-ja/fast/poc/api-check-testrun-status-recording.md"
+--8<-- "../include/fast/poc/api-check-testrun-status-recording.md"
 
-APIサーバへのリクエストが成功すれば、サーバの応答が表示されます。この応答には、記録プロセスの状態（ `ready_for_recording` パラメータの値）など、役立つ情報が含まれています。
+APIサーバへのリクエストが成功すると、サーバの応答が返されます。この応答には、記録プロセスの状態（`ready_for_recording`パラメータの値）などの有用な情報が含まれています。
 
-パラメータの値が `true`であれば、FASTノードは記録を準備し、テストツールを起動してターゲットアプリケーションにリクエストを送信することができます。
+`ready_for_recording`の値が`true`の場合、FAST Nodeは記録準備が整っているため、テストツールを起動してターゲットアプリケーションにリクエストを送信できます。
 
-それ以外の場合は、ノードが準備完了するまで、同じAPIを繰り返し呼出しします。
+それ以外の場合、ノードが準備完了になるまで同じAPIコールを繰り返してください。
 
 ### テストランのコピー
 
-テストランがコピーされるとき、既存の[test record][doc-testrecord]が再利用されます。
+テストランをコピーする場合、既存の[test record][doc-testrecord]が再利用されます。
 
-このテストラン作成方法は、既に記録されたベースラインリクエストを使用してターゲットアプリケーションをテストする場合に使用します。
+既に記録されたベースラインリクエストを使用してターゲットアプリケーションのテストを行う必要がある場合は、このテストラン作成方法を使用してください。
 
-!!! info "Test Runのコピー方法"
-    このプロセスは[こちら][doc-copy-testrun]で詳しく説明されています。
+!!! info "テストランのコピー方法"
+    この手順の詳細は[こちら][doc-copy-testrun]に記載されています。
 
-テストランが成功裕に作成されると、FASTノードはすぐにテストを開始します。その他に追加のアクションを取る必要はありません。
+テストランが正常に作成されると、FAST Nodeは直ちにテストを開始します。追加の操作は必要ありません。
 
 ## 次のステップ
 
-テストプロセスは完了までに多くの時間を要する場合があります。テスト完了を確認するための情報は、[このドキュメント][doc-waiting-for-tests]から入手できます。
+テストプロセスの完了には多くの時間がかかる場合があります。セキュリティテストがFASTで終了したかどうかは、[このドキュメント][doc-waiting-for-tests]の情報を利用して確認してください。
 
-必要に応じて、「API経由の周署」[doc-integration-overview-api]または「CI/CDワークフローとFAST」[doc-integration-overview]ドキュメントに参照してください。
+必要に応じて、[“Deployment via API”][doc-integration-overview-api]または[“CI/CD Workflow with FAST”][doc-integration-overview]のドキュメントを再度参照してください。
+```

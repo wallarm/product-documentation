@@ -1,107 +1,132 @@
-# API Discovery の概要 <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discoveryの概要 <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm プラットフォームの **API Discovery** モジュールは、実際の API 使用状況に基づいてアプリケーション REST API のインベントリを構築します。このモジュールは、実際のトラフィックリクエストを継続的に分析し、分析結果に基づいて API インベントリを構築します。
+WallarmプラットフォームのAPI Discoveryモジュールは、実際のAPI利用に基づいてアプリケーションREST APIのインベントリを構築します。このモジュールは実際のトラフィックリクエストを継続的に解析し、解析結果に基づいてAPIインベントリを生成します。
 
-構築された API インベントリには、以下の要素が含まれます：
+構築されたAPIインベントリには、以下の要素が含まれます：
 
-* API エンドポイント
-* リクエスト方法（GET、POST など）
-* 必須およびオプションの GET、POST、およびヘッダーパラメーター、これには以下が含まれます：
-    * 各パラメーターで送信されるデータの[タイプ/フォーマット](./exploring.md#format-and-data-type)
-    * パラメーター情報が最後に更新された日時
+* APIエンドポイント
+* リクエストメソッド（GET、POSTなど）
+* リクエストおよびレスポンスの必須および任意のGET、POST、ヘッダパラメータ：
+    * 各パラメータで送信されるデータの[型/フォーマット](./exploring.md#format-and-data-type)
+    * パラメータ情報が最後に更新された日時
 
-![API Discovery によって発見されたエンドポイント](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+!!! info "レスポンスパラメータの利用可能性"
+    レスポンスパラメータはノード4.10.1以上を使用時のみ利用可能です。
 
-## API Discovery が対処する問題
+<div>
+    <script src="https://js.storylane.io/js/v1/storylane.js"></script>
+    <div class="sl-embed" style="position:relative;padding-bottom:calc(60.95% + 27px);width:100%;height:0;transform:scale(1)">
+        <iframe class="sl-demo" src="https://wallarm.storylane.io/demo/cgqrxqwhmgyp" name="sl-embed" allow="fullscreen" style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+    </div>
+</div>
 
-**実際の完全な API インベントリの構築**は、API Discovery モジュールが対処する主要な問題です。
+## API Discoveryで解決される課題
 
-API インベントリを最新の状態に保つことは難しい課題です。異なる API を使用する複数のチームがあり、API ドキュメントを作成するために異なるツールやプロセスが使用されるのが一般的です。その結果、企業は自身が持っている API や公開しているデータを理解すること、および最新の API ドキュメントを持つことに苦労しています。
+実際に使用される完全なAPIインベントリの構築は、API Discoveryモジュールが解決する主な課題です。
 
-API Discovery モジュールが実際のトラフィックをデータソースとして使用しているため、実際にリクエストを処理するすべてのエンドポイントを API インベントリに含めることにより、最新で完全な API ドキュメントを得るのに役立ちます。
+APIインベントリを常に最新の状態に保つことは困難な作業です。複数のチームが異なるAPIを利用しており、異なるツールやプロセスを用いてAPIドキュメントを生成する場合が多々あります。そのため、企業は自身のAPIが何であるか、どのデータを公開しているか、最新のAPIドキュメントを維持することに苦労します。
 
-**Wallarm によって API インベントリが発見された場合、あなたは**：
+API Discoveryモジュールは実際のトラフィックをデータソースとして使用するため、実際にリクエストを処理しているすべてのエンドポイントをAPIインベントリに含めることで、最新かつ完全なAPIドキュメントの構築に貢献します。
 
-* [外部および内部](exploring.md#distinguish-external-and-internal-apis) API のリストを含む、API エステート全体に完全な可視性を持つことができます。
-* [API に入っていくデータ](exploring.md#viewing-endpoint-parameters)を確認できます。
-* 開いている脆弱性を持つエンドポイントのリストを取得できます。
-* 任意の API エンドポイントについて、過去 7 日間に発生した脅威のリストを取得できます。
-* 攻撃された API のみをフィルタリングし、ヒット数でそれらを並べ替えることができます。
-* [機密データ](#sensitive-data-detection)を消費および運搬する API をフィルタリングできます。
-* 便利な[ダッシュボード](dashboard.md)上で、API インベントリの構造と問題の視覚的な要約を表示できます。
-* どのエンドポイントが攻撃の対象となる[可能性が最も高いか](risk-score.md)を理解できます。
-* [シャドー、孤児、ゾンビ API](rogue-api.md)を見つけることができます。
-* 選択した期間内に API で発生した[変更を追跡](track-changes.md)できます。
-* [BOLA 自動保護状態](bola-protection.md)によって API エンドポイントをフィルタリングできます。
-* 開発者に構築された API インベントリのレビューとダウンロードへの[アクセス](../user-guides/settings/users.md#user-roles)を提供できます。
+WallarmでAPIインベントリが検出されると、以下が可能になります：
 
-## API Discovery の仕組み
+* [external and internal](exploring.md#external-vs-internal) APIのリストを含む、全API資産の完全な可視性を確保できます。
+* APIの出入りする[データ](exploring.md#endpoint-details)を確認できます。
+* 脆弱性が開かれているエンドポイントのリストを取得できます。
+* 任意のAPIエンドポイントごとに過去7日間に発生した脅威のリストを取得できます。
+* 攻撃を受けたAPIのみをフィルタリングし、ヒット数で並べ替え可能です。
+* [sensitive data](#sensitive-data-detection)を消費・運搬しているAPIをフィルタリングできます。
+* 便利な[dashboard](dashboard.md)上でAPIインベントリの構造や問題点を視覚的に確認できます。
+* 攻撃対象となる可能性が[最も高い](risk-score.md)エンドポイントを把握できます。
+* [shadow, orphan and zombie APIs](rogue-api.md)を検出できます。
+* 選択された期間内に発生したAPIの[変更](track-changes.md)を追跡できます。
+* [BOLA auto protection state](bola-protection.md)でAPIエンドポイントをフィルタリングできます。
+* 開発者に対して、構築済のAPIインベントリの閲覧およびダウンロードの[アクセス](../user-guides/settings/users.md#user-roles)を提供できます。
 
-API Discovery はリクエスト統計を基にしており、実際の API 使用状況に基づいて最新の API 仕様を生成するために高度なアルゴリズムを使用しています。
+## API Discoveryはどのように動作しますか？
+
+API Discoveryはリクエスト統計に依存し、実際のAPI利用に基づいて最新のAPI仕様書を生成するための高度なアルゴリズムを使用します。
 
 ### トラフィック処理
 
-API Discovery は、ローカルおよびクラウドで分析を行うハイブリッドアプローチを使用しています。このアプローチにより、リクエストデータと機密データがローカルに保持される一方で、統計分析のためにクラウドのパワーを使用する[プライバシー第一のプロセス](#security-of-data-uploaded-to-the-wallarm-cloud)が実現されます：
+API Discoveryは、ローカルとCloudのハイブリッドアプローチを使用して解析を実施します。このアプローチにより、リクエストデータや機密データをローカルに保持しながら、統計解析にはCloudのパワーを利用する[プライバシー重視のプロセス](#security-of-data-uploaded-to-the-wallarm-cloud)が可能になります：
 
-1. API Discovery は、リクエストが行われたエンドポイントと渡されたパラメーターをローカルで分析します。Wallarm は、エンドポイントと渡されたパラメーターを分析します。
-1. このデータに基づいて、統計が作成され、クラウドに送信されます。
-1. Wallarm Cloud は受信した統計を集約し、その基礎となる [API 説明](exploring.md) を構築します。
+1. API Discoveryは正当なトラフィックをローカルで解析します。Wallarmはリクエストが送信されるエンドポイントおよび受け渡されるパラメータを解析します。
+1. これらのデータに基づいて統計情報が作成され、Cloudに送信されます。
+1. Wallarm Cloudは受信した統計情報を集約し、その情報に基づいて[API記述](exploring.md)を構築します。
 
     !!! info "ノイズ検出"
-        稀または単一のリクエストは[ノイズとして判断され](#noise-detection)、API インベントリに含まれません。
+        まれなリクエストや単発のリクエストは[ノイズと判断](#noise-detection)され、APIインベントリには含まれません。
 
 ### ノイズ検出
 
-API Discovery モジュールは、2つの主要なトラフィックパラメーターに基づいてノイズ検出を行います：
+API Discoveryモジュールは、以下の2つの主要なトラフィックパラメータに基づいてノイズ検出を実施します：
 
-* エンドポイントの安定性 - 最初のリクエストの瞬間からの 5 分以内に、少なくとも 5 件のリクエストが記録されている必要があります。
-* パラメータの安定性 - エンドポイントへのリクエストにおけるパラメータの出現は 1 パーセント以上でなければなりません。
+* エンドポイント安定性 - エンドポイントへの最初のリクエスト発生から5分以内に少なくとも5回のリクエストが記録される必要があります。
+* パラメータ安定性 - エンドポイントへのリクエストでそのパラメータが出現する頻度が1パーセント以上である必要があります。
 
-API インベントリは、これらの制限を超えたエンドポイントとパラメータを表示します。完全な API インベントリを構築するために必要な時間は、トラフィックの多様性と強度によって異なります。
+これらの基準を超えたエンドポイントやパラメータがAPIインベントリに表示されます。完全なAPIインベントリの構築に必要な時間は、トラフィックの多様性と強度に依存します。
 
-また、API Discovery は他の基準に依存してリクエストのフィルタリングを行います：
+また、API Discoveryは、以下の他の基準に基づいてリクエストのフィルタリングを実施します：
 
-* サーバーが 2xx 範囲で応答したリクエストのみが処理されます。
-* REST API の設計原則に準拠していないリクエストは処理されません。これは、レスポンスの `Content-Type` ヘッダーパラメーターを制御することによって行われます：`Content-Type` パラメーターがタイプとして `application` を、サブタイプとして `json` を含んでいない場合、そのようなリクエストは非 REST API と見なされ、フィルタリングされます。REST API レスポンスの例： `Content-Type: application/json;charset=utf-8`。パラメーターが存在しない場合、API Discovery はリクエストを分析します。
-* `Accept` などの標準フィールドは破棄されます。
+* サーバーが2xxレンジで応答したリクエストのみが処理されます。
+* REST APIの設計原則に準拠していないリクエストは処理されません。
+    
+    これはレスポンスの`Content-Type`ヘッダを制御することで実施されます：`Content-Type: application/json;charset=utf-8`のように`application/json`を含まない場合、そのリクエストはREST APIではないと判断され、解析されません。
+    
+    ヘッダが存在しない場合は、API Discoveryがリクエストを解析します。
+
+* `Accept`などの標準フィールドは破棄されます。
 
 ### 機密データの検出
 
-API Discovery は、API が消費および運搬する機密データを検出し、強調表示します：
+API Discoveryは、APIによって使用・運搬される機密データを[検出および強調表示](sensitive-data.md)します：
 
-* IP アドレスや MAC アドレスなどの技術データ
-* シークレットキーやパスワードなどのログイン資格情報
-* 銀行カード番号などの財務データ
-* 医療ライセンス番号などの医療データ
-* 氏名、パスポート番号、SSN などの個人を特定できる情報 (PII)
+* IPアドレスやMACアドレスなどの技術データ
+* シークレットキーやパスワードなどのログイン認証情報
+* 銀行カード番号などの金融データ
+* 医療免許番号などの医療データ
+* 氏名、パスポート番号、SSNなどの個人識別情報(PII)
 
-### Wallarm Cloud にアップロードされるデータのセキュリティ
+API Discoveryは検出プロセスの設定および独自の機密データパターンの追加が可能です（NGINX Node 5.0.3またはNative Node 0.7.0以上が必要です）。
 
-API Discovery はほとんどのトラフィックをローカルで分析します。このモジュールは、発見されたエンドポイント、パラメータ名、および様々な統計データ（到着時間、その数など）のみを Wallarm Cloud に送信します。すべてのデータは安全なチャネルを介して送信されます：Wallarm Cloud に統計をアップロードする前に、API Discovery モジュールはリクエストパラメーターの値を [SHA-256](https://en.wikipedia.org/wiki/SHA-2) アルゴリズムを使用してハッシュ化します。
+### センシティブビジネスフロー
 
-クラウド側では、ハッシュ化されたデータは統計分析に使用されます（例えば、同一パラメーターを持つリクエストの数量を計測する場合）。
+[センシティブビジネスフロー](sbf.md)機能により、API Discoveryは認証、アカウント管理、請求など、特定のビジネスフローや機能にとって重要なエンドポイントを自動的に識別できます。
 
-他のデータ（エンドポイントの値、リクエストメソッド、およびパラメーター名）は、Wallarm Cloud にアップロードされる前にハッシュ化されず、ハッシュは元の状態に復元できないため、API インベントリの構築が不可能になるからです。
+自動識別に加えて、割り当てられたセンシティブビジネスフロータグを手動で調整したり、任意のエンドポイントに対してタグを手動で設定することも可能です。
+
+エンドポイントにセンシティブビジネスフロータグが割り当てられると、特定のビジネスフローでフィルタリングすることで、最も重要なビジネス機能の保護が容易になります。
+
+![API Discovery - センシティブビジネスフローによるフィルタリング](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
+
+### Wallarm Cloudにアップロードされたデータのセキュリティ
+
+API Discoveryはトラフィックの大部分をローカルで解析します。モジュールがWallarm Cloudに送信するのは、検出されたエンドポイント、パラメータ名、及び各種統計情報（到着時刻、件数など）のみです。すべてのデータは安全なチャネルを経由して送信されます。統計情報をWallarm Cloudにアップロードする前に、API Discoveryモジュールはリクエストパラメータの値を[SHA-256](https://en.wikipedia.org/wiki/SHA-2)アルゴリズムを用いてハッシュ化します。
+
+Cloud側では、ハッシュ化されたデータが統計解析に使用されます（たとえば、同一パラメータのリクエスト数の算出時など）。
+
+エンドポイントの値、リクエストメソッド、パラメータ名などの他のデータは、APIインベントリの構築を可能にするため、Wallarm Cloudにアップロードする前にハッシュ化されません。
 
 !!! warning "重要"
-    Wallarm は、パラメーターで指定された値を Cloud に送信しません。エンドポイント、パラメーター名、およびそれらの統計のみが送信されます。
+    Wallarmはパラメータに指定された値をCloudに送信しません。送信されるのは、エンドポイント、パラメータ名、およびそれらに関する統計情報のみです。
 
-## API Discovery デモビデオ
+## API Discoveryデモ動画
 
-API Discovery デモビデオをご覧ください：
+API Discoveryのデモ動画をご覧ください：
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/0bRHVtpWkJ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-## Playground での API Discovery のチェック
+## PlaygroundでのAPI Discoveryの確認
 
-ノードを環境にデプロイしてサインアップする前にモジュールを試すには、[Wallarm Playground の API Discovery](https://playground.wallarm.com/api-discovery/?utm_source=wallarm_docs_apidja) を探索してください。
+サインアップやノードの環境への展開前にモジュールを試用するには、[Wallarm PlaygroundのAPI Discovery](https://playground.wallarm.com/api-discovery/?utm_source=wallarm_docs_apid)をお試しください。
 
-Playground では、API Discovery ビューに実際のデータが記入されたようにアクセスできるため、モジュールの動作を学び、試すことができ、読み取り専用モードでの使用例をいくつか得ることができます。
+Playgroundでは、実際のデータで構成されたAPI Discoveryビューにアクセスでき、モジュールの動作を理解し、読み取り専用モードでその使用例を試すことができます。
 
 ![API Discovery – サンプルデータ](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 
-## API Discovery の有効化と設定
+## API Discoveryの有効化と構成
 
-API Discovery の使用を開始するには、[API Discovery のセットアップ](setup.md) で説明されているように、それを有効化して設定してください。
+API Discoveryの使用を開始するには、[API Discovery Setup](setup.md)に記載された手順の通りに有効化および構成してください。

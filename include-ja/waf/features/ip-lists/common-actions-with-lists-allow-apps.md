@@ -1,90 +1,44 @@
 [access-wallarm-api-docs]: ../../api/overview.md#your-own-client
 [application-docs]:        ../settings/applications.md
 
-## リストに追加されたオブジェクトの分析
+## IPリストオブジェクトの取得・登録・削除のためのAPI呼び出し
 
-Wallarm Consoleは、リストに追加された各オブジェクトについて以下のデータを表示します。
-
-* **オブジェクト** - リストに追加されたIPアドレス、サブネット、国/地域、またはIPソース。
-* **アプリケーション** - オブジェクトのアクセス設定が適用されるアプリケーション。
-* **ソース** - 単一のIPアドレスまたはサブネットのソース：
-    * 単一のIPアドレスまたはサブネットが登録されている国/地域（これがのIP2Locationなどのデータベースで見つかった場合）
-    * ソースタイプ、例えば、**公開プロキシ**、**Webプロキシ**、**Tor**、またはIPが登録されているクラウドプラットフォームなど（これがIP2Locationなどのデータベースで見つかった場合）
-* **理由** - IPアドレスまたは一群のIPアドレスをリストに追加する理由。理由は、オブジェクトをリストに追加する際に手動で指定するか、IPが[トリガー](../triggers/triggers.md)によってリストに追加されると自動的に生成されます。
-* **追加日** - オブジェクトがリストに追加された日時。
-* **削除** - オブジェクトがリストから削除されるまでの時間期間。
-
-## リストのフィルタリング
-
-リスト内のオブジェクトは次のようにフィルタリングできます：
-
-* 検索文字列で指定されたIPアドレスまたはサブネット
-* リストのステータスを取得する期間
-* IPアドレスまたはサブネットが登録されている国/地域
-* IPアドレスまたはサブネットが所属するソース
-
-## リスト上のオブジェクトの時間を変更する
-
-リスト上のIPアドレスの時間を変更するには：
-
-1. リストからオブジェクトを選びます。
-2. 選択したオブジェクトのメニューで、**時間期間の変更**をクリックします。
-3. オブジェクトをリストから削除するための新しい日付を選択し、操作を確認します。
-
-## リストからオブジェクトを削除する
-
-リストからオブジェクトを削除するには：
-
-1. リストから1つまたは複数のオブジェクトを選びます。
-2. **削除**をクリックします。
-
-!!! warning "削除したIPアドレスの再追加"
-    [トリガー](../triggers/triggers.md)によってリストに追加されたIPアドレスを手動で削除した後、そのトリガーは、IPアドレスがリストにあった前回の時間の半分だけ経過した後に再度実行されます。
-    
-    例えば：
-
-    1. IPアドレスが3時間以内にこのIPアドレスから受信した4つの異なる攻撃ベクトルがあったため、グレーリストに1時間自動的に追加されましたこれは[トリガーで設定されています）。
-    2. ユーザーはこのIPアドレスをWallarm Consoleを介してグレーリストから削除しました。
-    3. 30分以内にこのIPアドレスから4つの異なる攻撃ベクトルが送信された場合、このIPアドレスはグレーリストに追加されません。
-
-## IPリストオブジェクトの取得、パプレート、削除に関するAPIコール
-
-IPリストのオブジェクトを取得、パプレート、削除するには、Wallarm Console UIを使用する他に、Wallarm APIを[直接呼び出す](../../api/overview.md)ことができます。以下に、対応するAPIコールの例をいくつか示します。
+IPリストオブジェクトの取得、登録、削除には、Wallarm Console UIの利用に加えて[Wallarm APIを直接呼び出す](../../api/overview.md)こともできます。以下に、対応するAPI呼び出しの例を示します。
 
 ### APIリクエストパラメータ
 
-IPリストを読み込むため、変更するAPIリクエストに渡すべきパラメータ：
+IPリストの読み取りおよび変更のためにAPIリクエストで渡すパラメータ:
 
---8<-- "../include-ja/api-request-examples/ip-list-request-params.md"
+--8<-- "../include/api-request-examples/ip-list-request-params.md"
 
-### `.csv`ファイルからリストにエントリを追加する
+### `.csv`ファイルのエントリをリストに追加
 
-`.csv`ファイルからIPまたはサブネットをリストに追加する場合、以下のbashスクリプトを使用します：
+`.csv`ファイルからIPまたはサブネットをリストに追加するには、以下のbashスクリプトを使用します:
 
---8<-- "../include-ja/api-request-examples/add-ips-to-lists-from-file.md"
+--8<-- "../include/api-request-examples/add-ips-to-lists-from-file.md"
 
-### 単一のIPアドレスまたはサブネットを追加
+### 単一のIPまたはサブネットをリストに追加
 
---8<-- "../include-ja/api-request-examples/add-some-ips-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-ips-to-lists.md"
 
-### 複数の国をリストに追加する
+### 複数の国をリストに追加
 
---8<-- "../include-ja/api-request-examples/add-some-countries-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-countries-to-lists.md"
 
-### 複数のプロキシサービスをリストに追加する
+### 複数のプロキシサービスをリストに追加
 
---8<-- "../include-ja/api-request-examples/add-some-proxies-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-proxies-to-lists.md"
 
-### IPリストからオブジェクトを削除する
+### IPリストからオブジェクトを削除
 
-オブジェクトは、それらのIDによってIPリストから削除されます。
+オブジェクトはそのIDによってIPリストから削除されます。
 
-オブジェクトIDを取得するために、IPリストの内容をリクエストし、必要なオブジェクトの`objects.id`をレスポンスからコピーします：
+オブジェクトIDを取得するには、IPリストの内容をリクエストし、レスポンスから必要なオブジェクトの`objects.id`をコピーしてください:
 
---8<-- "../include-ja/api-request-examples/get-ip-list-contents.md"
+--8<-- "../include/api-request-examples/get-ip-list-contents.md"
 
-オブジェクトIDを持っている場合、その以下のリクエストを送信してリストから削除します：
+オブジェクトIDが取得できたら、以下のリクエストを送信し、リストから削除します:
 
---8<-- "../include-ja/api-request-examples/delete-object-from-ip-list.md"
+--8<-- "../include/api-request-examples/delete-object-from-ip-list.md"
 
-削除リクエストの配列として彼らのIDを渡すことによって一度に複数のオブジェクトを削除できます。
+削除リクエストにIDの配列を渡すことによって、複数のオブジェクトを一度に削除可能です。

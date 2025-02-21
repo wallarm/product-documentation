@@ -1,1 +1,1 @@
---8<-- "latest/installation/oob/ebpf/deployment.md"
+--8<-- "latest-tr/installation/oob/ebpf/deployment.md"

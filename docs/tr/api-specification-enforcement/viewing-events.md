@@ -1,1 +1,1 @@
---8<-- "latest/api-specification-enforcement/viewing-events.md"
+--8<-- "latest-tr/api-specification-enforcement/viewing-events.md"

@@ -11,29 +11,29 @@
 
 [link-juice-shop]:          https://www.owasp.org/index.php/OWASP_Juice_Shop_Project
 
+#   Modifiye Edici Uzantının Oluşturulması
 
-#   Eklenti Değiştirmenin Oluşturulması
-
-Bu belgede tanımlanan eklenti, bir SQLi açığı olan gelen ana isteği enjekte etmek için bazı yükleri değiştirecektir. Bu yükler, [“OWASP Juice Shop”][link-juice-shop] hedef uygulamanın giriş formundaki açığı sömürebilir.
+Bu belgede açıklanan uzantı, gelen temel isteği modifiye ederek içine payload enjeksiyonu yapacaktır. Bu payloadlar, [“OWASP Juice Shop”][link-juice-shop] hedef uygulamasının giriş formundaki SQLi açığının istismarına yol açabilir.
   
 ##  Hazırlıklar
 
-FAST eklentisi oluşturmadan önce bu adımların atılması şiddetle tavsiye edilir:
-1.  Eklentiyi oluşturduğunuz hedef uygulamanın davranışlarını [inceleyin][link-app-examination].
-2.  Eklenti için nokta oluşturmanın ilkelelerini [okuyun][link-points].
+FAST uzantısı oluşturmadan önce şu adımları atmanız şiddetle tavsiye edilir:
+1.  Uzantıyı oluşturduğunuz [hedef uygulamanın davranışını inceleyin][link-app-examination].
+2.  Uzantı için [nokta oluşturma ilkelerini okuyun][link-points].
 
 
-##  Eklentinin Oluşturulması
+##  Uzantının Oluşturulması
 
-Eklentiyi tanımlayan bir dosya oluşturun (`mod-extension.yaml` örneğin) ve gerekli bölümlerle doldurun:
+Uzantıyı tanımlayan bir dosya oluşturun (ör. `mod-extension.yaml`) ve gerekli bölümleri ekleyin:
 
 1.  [**`meta-info` bölümü**][link-meta-info].
 
-    Eklentinin algılamaya çalışacağı açığın açıklamasını hazırlayın.
-    * açıklık başlığı: `OWASP Juice Shop SQLi (mod eklentisi)`
-    * açıklık tanımı: `OWASP Juice Shop'ta SQLi denemesi (Admin Giriş)`
-    * açıklık türü: SQL enjeksiyon
-    * açıklık tehdit seviyesi: yüksek
+    Uzantının tespit etmeye çalışacağı açığın açıklamasını hazırlayın.
+    
+    * açık başlığı: `OWASP Juice Shop SQLi (mod extension)`
+    * açığın açıklaması: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
+    * açık tipi: SQL injection
+    * açığın tehdit seviyesi: yüksek
     
     İlgili `meta-info` bölümü aşağıdaki gibi görünmelidir:
     
@@ -47,27 +47,27 @@ Eklentiyi tanımlayan bir dosya oluşturun (`mod-extension.yaml` örneğin) ve g
     
 2.  **`collect` bölümü, [Collect aşaması][doc-collect-phase]**.
     
-    Oturum açmaya çalışırken `POST /rest/user/login` REST API metodu çağrılır.
+    Giriş yapmaya çalışırken REST API `POST /rest/user/login` metodu çağrılır.
     
-    Giriş için API'ye gönderilen ana isteklerin her biri için test isteklerini oluşturmanıza gerek yoktur çünkü her veri parçası için açıklıkları test etme aynı şekilde gerçekleştirilecektir.
+    API’ye gönderilmiş her bir temel giriş isteği için ayrı test isteği oluşturmanıza gerek yoktur; zira güvenlik açığı testleri, POST isteğinde iletilen her bir veri parçası için aynı şekilde gerçekleştirilecektir.
     
-    Eklentiyi, API giriş isteğini aldığında sadece bir kez yürütecek şekilde kurun. Bunu yapmak için eklentiye benzersizlik durumu olan Collect aşamasını ekleyin.
+    Uzantının, API giriş isteğini aldığında yalnızca bir kez çalışacak şekilde yapılandırılmasını sağlayın. Bunu yapmak için, uzantıya benzersizlik koşulu içeren Collect aşamasını ekleyin.
 
-    API'ye `/rest/user/login` giriş isteği şunları içerir:
+    `/rest/user/login` API giriş isteği şu bileşenlerden oluşur:
 
-    1.  yoluun ilk kısmın `rest` değeri,
-    2.  yolun ikinci kısmının `user` değeri, ve
+    1.  Yolun ilk kısmı: `rest`
+    2.  Yolun ikinci kısmı: `user`
     3.  `login` eylem metodu
     
-    Bu değerlere atıfta bulunan ilgili noktalar aşağıdaki gibidir:
+    Bu değerlere karşılık gelen noktalar aşağıdaki gibidir:
 
-    1.  yoluun ilk kısmı için `PATH_0_value`
-    2.  yolun ikinci kısmı için `PATH_1_value`
-    3.  `login` eylem metodu için `ACTION_NAME_value`
+    1.  Yolun ilk kısmı için: `PATH_0_value`
+    2.  Yolun ikinci kısmı için: `PATH_1_value`
+    3.  `login` eylem metodu için: `ACTION_NAME_value`
     
-    Bu üç elementin kombinasyonunun benzersiz olma koşulunu eklerseniz, eklenti sadece API'ye ilk `/rest/user/login` ana istek için çalışacaktır (bu istek benzersiz olarak kabul edilecek ve giriş için API'ye gönderilen tüm diğer istekler benzersiz olmayacaktır). 
+    Bu üç öğenin kombinasyonunun benzersiz olması koşulunu eklerseniz, uzantı API’ye gönderilen ilk `/rest/user/login` temel isteğinde çalışacaktır (bu istek benzersiz kabul edilecek ve sonraki giriş istekleri benzersiz olmayacaktır). 
     
-    Eklenti YAML dosyasına ilgili `collect` bölümünü ekleyin. 
+    İlgili `collect` bölümünü uzantı YAML dosyasına ekleyin. 
     
     ```
     collect:
@@ -77,9 +77,9 @@ Eklentiyi tanımlayan bir dosya oluşturun (`mod-extension.yaml` örneğin) ve g
 
 3.  **`match` bölümü, [Match aşaması][doc-match-phase]**.
     
-    Gelen ana isteğin gerçekten de giriş için olan API isteği olup olmadığını kontrol etmek gereklidir çünkü oluşturduğumuz eklenti, giriş formunda bulunan açıklıkları sömürebilecektir.
+    Gelen temel isteğin gerçekten API’ye giriş isteği olup olmadığını kontrol etmek gereklidir, çünkü oluşturduğumuz uzantı, giriş formundaki güvenlik açıklarını istismar edecektir.
     
-    Eklentiyi, yalnızca bir ana başvurunun aşağıdaki URI'ye hedeflendiğinde çalışacak şekilde ayarlayın: `/rest/user/login`. Gelen isteğin gerekli elemanları içerip içermediğini kontrol eden Match aşamasını ekleyin. Bu, aşağıdaki `match` bölümü kullanılarak yapılabilir:
+    Uzantının, yalnızca temel isteğin hedefi aşağıdaki URI ise çalışacak şekilde yapılandırılmasını sağlayın: `/rest/user/login`. Alınan isteğin gerekli öğeleri içerip içermediğini kontrol eden Match aşamasını ekleyin. Bu, aşağıdaki `match` bölümü ile yapılabilir:
 
     ```
     match:
@@ -90,11 +90,11 @@ Eklentiyi tanımlayan bir dosya oluşturun (`mod-extension.yaml` örneğin) ve g
 
 4.  **`modify` bölümü, [Modify aşaması][doc-modify-phase]**.
     
-    Varsayalım ki, ana isteği aşağıdaki hedeflere ulaşmak için değiştirmek gerekiyor:
-    * `Accept-Language` HTTP başlık değerini temizlemek (bu değer açığın tespit edilmesi için gerekli olmayacak)
-    * `email` ve `password` parametrelerinin gerçek değerlerini nötr `dummy` değerleriyle değiştirmek
+    Temel isteği aşağıdaki hedeflere ulaşacak şekilde modifiye etmeniz gerektiğini varsayalım:
+    * `Accept-Language` HTTP başlık değerini temizlemek (bu değer açığın tespit edilmesi için gerekli değildir).
+    * `email` ve `password` parametrelerinin gerçek değerlerinin yerine nötr `dummy` değerlerini koymak.
     
-    Yukarıda bahsedilen hedeflere ulaşan isteği değiştirecek aşağıdaki `modify` bölümünü eklentinin içine ekleyin:
+    Aşağıda açıklanan hedeflere ulaşmak için isteği değiştiren `modify` bölümünü uzantıya ekleyin:
     
     ```
     modify:
@@ -103,19 +103,19 @@ Eklentiyi tanımlayan bir dosya oluşturun (`mod-extension.yaml` örneğin) ve g
       - "POST_JSON_DOC_HASH_password_value": "dummy"
     ```
     
-    !!! info "İstek elementleri tanım sözdizi"
-        JSON formatındaki istek verisi `<key: value>` çiftlerinde saklandığı için, `email` eleman değerine atıfta bulunan nokta yukarıda gösterildiği gibi görünür. `password` eleman değerine atıfta bulunan noktanın benzer bir yapısı var.
+    !!! info "İstek öğelerinin açıklama sözdizimi"
+        JSON formatındaki istek verisi, `<anahtar: değer>` çiftleri halinde saklandığından, `email` öğesini belirten nokta yukarıda gösterildiği gibi görünür. `password` öğesini belirten nokta da benzer bir yapıya sahiptir.
         
-        Noktaları oluştururken detaylı bilgi almak için [bu bağlantıya][link-points] gidin.
+        Noktaların nasıl oluşturulduğuna dair detaylı bilgi için [bu linke][link-points] bakın.
  
 5.  **`generate` bölümü, [Generate aşaması][doc-generate-phase]**.
 
-    Hedef uygulamadaki SQL injection açığını sömürmek için ana istekteki `email` parametresinin değerini değiştirmesi gereken iki yük olduğu bilinmektedir:
+    Hedef uygulamadaki SQL enjeksiyon açığını istismar etmek için temel istekteki `email` parametresinin değerini değiştirmesi gereken iki payload olduğu bilinmektedir:
     * `'or 1=1 --`
     * `admin@juice-sh.op'--`
         
-    !!! info "Yükün değiştirilmiş isteğe eklenmesi"
-        Eklenti `modify` bölümünü içerdiği için yük, önceden değiştirilmiş isteğe eklenecektir. Bu nedenle, ilk yükü `email` alanına ekledikten sonra, test isteği verileri aşağıdaki gibi görünmelidir:
+    !!! info "Modifiye edilmiş isteğe payload eklenmesi"
+        Payload, uzantının `modify` bölümünü içermesi nedeniyle, daha önceden modifiye edilmiş isteğe eklenecektir. Böylece `email` alanına ilk payload eklendikten sonra test isteği verisi aşağıdaki gibi görünmelidir:
     
         ```
         {
@@ -124,7 +124,7 @@ Eklentiyi tanımlayan bir dosya oluşturun (`mod-extension.yaml` örneğin) ve g
         }
         ```
     
-        Seçilen yükler nedeniyle herhangi bir şifre ile başarılı bir şekilde giriş yapılabileceği için, şifre alanına yük eklemeye gerek yoktur, bu alan Modify aşaması uygulandıktan sonra `dummy` değerine sahip olacaktır.
+        Seçilen payloadlar nedeniyle herhangi bir şifre ile başarılı şekilde giriş yapılabildiğinden, `password` alanına payload eklenmesine gerek yoktur; çünkü Modify aşamasından sonra bu alan `dummy` değerini alacaktır.
     
         Yukarıda tartışılan gereksinimleri karşılayan test isteklerini oluşturacak `generate` bölümünü ekleyin.
     
@@ -140,20 +140,20 @@ Eklentiyi tanımlayan bir dosya oluşturun (`mod-extension.yaml` örneğin) ve g
 
 6.  **`detect` bölümü, [Detect aşaması][doc-detect-phase]**.
     
-    Kullanıcının yönetici haklarıyla başarılı bir şekilde kimlik doğrulaması gerçekleştirdiğini belirten koşullar aşağıdaki gibidir:
-    * Cevap vücudunda alışveriş sepeti tanımlayıcısı parametresinin `1` değerinin varlığı. Bu parametre JSON formatında olmalı ve aşağıdaki gibi görünmelidir:
+    Aşağıdaki koşullar, yönetici haklarıyla yapılan kullanıcı doğrulamasının başarılı olduğunu göstermektedir:
+    * Cevap gövdesinde, `1` değeriyle bulunan alışveriş sepeti tanımlayıcı parametresinin varlığı. Parametre JSON formatındadır ve aşağıdaki gibi görünmelidir:
     
         ```
         "bid":1
         ```
     
-    * Cevap vücudunda kullanıcı e-postası parametresinin `admin@juice-sh.op` değerinin bulunması. Bu parametre JSON formatında olmalı ve aşağıdaki gibi görünmelidir:
+    * Cevap gövdesinde, `admin@juice-sh.op` değeriyle bulunan kullanıcı email parametresinin varlığı. Parametre JSON formatındadır ve aşağıdaki gibi görünmelidir:
     
         ```
          "umail":"admin@juice-sh.op"
         ```
     
-    Saldırının başarılı olduǧunu kontrol eden `detect` bölümünü ekleyin.
+    Saldırının yukarıda açıklanan koşullara göre başarılı olup olmadığını kontrol eden `detect` bölümünü ekleyin.
     
     ```
     detect:
@@ -162,12 +162,12 @@ Eklentiyi tanımlayan bir dosya oluşturun (`mod-extension.yaml` örneğin) ve g
         - body: "\"bid\":1"
     ```
     
-!!! info "Belirli sembolleri kaçınma"
-    Dizelerdeki özel sembolleri kaçınmayı unutmayın.
+!!! info "Özel sembollerin kaçırılması"
+    Dizelerdeki özel sembollerin doğru şekilde kaçırıldığından emin olun.
 
-##  Eklenti Dosyası
+##  Uzantı Dosyası
 
-Şu anda `mod-extension.yaml` dosyası eklentinin çalışması için gerekli olan bölümlerin tamamını içeriyor. Dosyanın içeriğinin listesi aşağıdadır:
+Artık `mod-extension.yaml` dosyası, uzantının çalışması için gerekli tüm bölümleri içermektedir. Dosya içeriğinin listesi aşağıdadır:
 
 ??? info "mod-extension.yaml"
     ```
@@ -205,6 +205,6 @@ Eklentiyi tanımlayan bir dosya oluşturun (`mod-extension.yaml` örneğin) ve g
         - body: "\"bid\":1"
     ```
 
-##  Eklentinin Kullanımı
+##  Uzantıyı Kullanma
 
-Oluşturulan ifadeyi nasıl kullanacağınıza dair detaylı bilgi için [bu belgeyi][link-using-extension] okuyun.
+Oluşturulan uzantının nasıl kullanılacağına dair ayrıntılı bilgi için [bu dokümana][link-using-extension] bakın.

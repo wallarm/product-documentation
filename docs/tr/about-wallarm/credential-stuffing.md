@@ -1,1 +1,1 @@
---8<-- "latest/about-wallarm/credential-stuffing.md"
+--8<-- "latest-tr/about-wallarm/credential-stuffing.md"

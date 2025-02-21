@@ -1,104 +1,104 @@
-# Test Politikası Örnekleri
+# Test Politika Örnekleri
 
-Bu belgede FAST test politikalarının birkaç örneği sunulmaktadır, aşağıdaki örnekler FAST belgelerinde kullanılır. Bu örnekler, politikalarla çalışmanın tüm yönlerini gösterir.
+Bu belgede, FAST dokümantasyonunda kullanılanlar dahil olmak üzere, FAST test politikalarından birkaç örnek sunulmaktadır. Bu örnekler, politikalarla çalışma sürecinin tüm yönlerini göstermektedir.
 
-!!! info "İstek öğesi açıklama sözdizimi"
-    Bir FAST test politikası, belirli temel istek öğeleriyle bir FAST düğümünü çalışma iznini izin verir ya da reddeder.
+!!! info "İstek öğesi tanım sözdizimi"
+    Bir FAST test politikası, FAST düğümüne temel bir isteğin belirli öğeleriyle çalışma izni verir veya reddeder.
 
-    Bu öğeler [puanlar](../../dsl/points/intro.md) kullanılarak tanımlanır.
+    Bu öğeler, [points](../../dsl/points/intro.md) kullanılarak tanımlanmıştır.
 
-    Aşağıdaki örnek test politikalarında, her temel isteğin öğesi, any GET parametresi (`GET_.*`) gibi, ilgili puanla birlikte izlenir.
+    Aşağıdaki örnek test politikalarında, her temel istek öğesinin ardından ilgili point gelir, örneğin: herhangi bir GET parametresi (`GET_.*`).
 
-!!! info "Zafiyetlerin Tespiti"
-    [FAST'ın tespit edebileceği zafiyetler listesi](../../vuln-list.md)
+!!! info "Güvenlik açıklarının tespiti"
+    [FAST'in tespit edebileceği güvenlik açıklarının listesi](../../vuln-list.md)
 
-    Bir test politikasının yapılandırılması sırasında seçilen zafiyet türlerinin, yerleşik FAST eklentisi (aka tespitler) hangilerinin çalıştırılacağını etkileyeceğini lütfen unutmayın.
+    Lütfen, bir test politikası yapılandırılırken seçilen güvenlik açığı türlerinin, gömülü FAST uzantılarının (diğer adıyla detects) hangilerinin çalıştırılacağını etkilediğini unutmayın.
 
-    Özel FAST eklentileri, bu zafiyet türü bir politika yapılandırırken seçilmediyse bile, tasarlandıkları zafiyet türünü tespit etmeye çalışacaktır.
+    Özel FAST uzantıları, politika yapılandırılırken bu güvenlik açığı türü seçilmemiş olsa bile, tasarlandıkları güvenlik açığı türünü tespit etmeye çalışacaktır.
 
-    Örneğin, bir politika RCE için hedef uygulamanın test edilmesine izin verebilir, ancak özel extension SQLi zafiyetleri için uygulamayı test eder.
+    Örneğin, bir politika, hedef uygulamanın RCE açısından test edilmesine izin verebilir, ancak özel bir uzantı uygulamayı SQLi güvenlik açıkları açısından test edecektir.
 
 ## Varsayılan Test Politikası
 
-Bu, yaygın istek öğeleriyle çalışmaya ve tipik zafiyetleri test etmeye izin veren değiştirilemeyen bir test politikasıdır.
+Bu, yaygın istek öğeleriyle çalışma ve tipik güvenlik açıklarını test etme imkanı veren değiştirilemez bir test politikasını temsil eder.
 
-**Bu politika şu öğelerle çalışmayı mümkün kılar:**
+**Bu politika aşağıdaki öğelerle çalışmaya izin verir:**
 
-* tüm GET ve POST parametreleri (`GET_.*` ve `POST_.*`)
+* herhangi bir GET ve POST parametreleri (`GET_.*` ve `POST_.*`)
 * URI (`URI`)
-* URI'deki tüm yollar (`PATH_.*`)
+* URI içindeki herhangi bir yol (`PATH_.*`)
 * URL işlem adı ve uzantısı (`ACTION_NAME` ve `ACTION_EXT`)
 
-**Hedef uygulama, PTRAV, RCE, SQLI, XSS ve XXE zafiyetlerini yerleşik FAST eklentisi tarafından test edilecektir.**
+**Hedef uygulama, gömülü FAST uzantıları tarafından** PTRAV, RCE, SQLI, XSS ve XXE güvenlik açıkları açısından test edilecektir.
 
-**Bu politikanın aşağıdaki özellikler vardır:** fuzzer'ı desteklemez. Fuzzer'ı etkinleştirmek için ayrı bir test politikası oluşturun ([örnek](#policy-that-allows-working-with-uri-and-encoded-email-post-parameters-fuzzer-is-enabled)).
+**Bu politikanın aşağıdaki özellikleri vardır:** fuzzing desteklenmemektedir. Fuzzer'ı etkinleştirmek için ayrı bir test politikası oluşturun ([örnek](#policy-that-allows-working-with-uri-and-encoded-email-post-parameters-fuzzer-is-enabled)).
 
-![Politika örneği](../../../images/fast/operations/en/test-policy/examples/default-policy-example.png)
+![Policy example](../../../images/fast/operations/en/test-policy/examples/default-policy-example.png)
 
 !!! info "Not"
-    Aşağıdakileri göz önünde bulundurun:
+    Lütfen aşağıdakileri göz önünde bulundurun:
 
-    * Yeni bir test politikası oluşturduğunuzda, ayarları varsayılan politikada kullanılanlarla aynı olacaktır. Yeni politikanın ayarlarını ihtiyaçlarınıza göre değiştirebilirsiniz.
-    * Bu politika, FAST'ın CI/CD'ye entegrasyonunun [örneğinde](../../poc/examples/circleci.md) kullanılabilir.
+    * Yeni bir test politikası oluşturduğunuzda, ayarları varsayılan politikayla aynı olacaktır. Gerekirse yeni politikanın ayarlarını değiştirebilirsiniz.
+    * Bu politika, FAST'in CI/CD'ye entegrasyonunun [örneğinde](../../poc/examples/circleci.md) kullanılabilir.
 
 ## Tüm GET ve POST Parametreleriyle Çalışmaya İzin Veren Politika
 
-Bu test politikası, bir istekte tüm GET (`GET_.*`) ve POST parametreleri (`POST_.*`) ile çalışmayı mümkün kılar.
+Bu test politikası, bir istekteki tüm GET (`GET_.*`) ve POST parametreleriyle (`POST_.*`) çalışmaya izin verir.
 
-**Hedef uygulama, XSS zafiyeti için yerleşik FAST eklentileri tarafından test edilecektir.**
+**Hedef uygulama, gömülü FAST uzantıları tarafından** XSS güvenlik açığı açısından test edilecektir.
 
-**Bu politikanın aşağıdaki özellikler vardır:** fuzzer devre dışı.
+**Bu politikanın aşağıdaki özellikleri vardır:** fuzzer devre dışı bırakılmıştır.
 
-![Politika örneği](../../../images/fast/operations/en/test-policy/examples/get-post-policy-example.png)
-
-!!! info "Not"
-    Hızlı Başlangıç kılavuzunda, bu politika [Google Gruyere](../../qsg/test-run.md) hedef uygulamasının güvenlik testini yapmak için kullanılabilir.
-
-## URI ve JSON Kodlu email POST Parametresiyle Çalışmaya İzin Veren Politika (Yalnızca Özel FAST Eklentileri Çalıştırılabilir)
-
-Bu test politikası, bir isteğin URI (`URI`) ve `email` POST parametreleriyle çalışmayı mümkün kılar. `email` parametresi JSON'da kodlanmıştır (`POST_JSON_DOC_HASH_email_value`).
-
-**Bu politikanın aşağıdaki özellikler vardır:**
-
-* Sadece özel FAST eklentileri çalıştırılabilir, yerleşik FAST tespitleri çalıştırılmaz.
-* Fuzzer devre dışı.
-
-![Politika örneği](../../../images/fast/operations/en/test-policy/examples/custom-dsl-example.png)
+![Policy example](../../../images/fast/operations/en/test-policy/examples/get-post-policy-example.png)
 
 !!! info "Not"
-    Bu politika, [özel eklentileri örnekle](../../dsl/using-extension.md) çalıştırmak için kullanılabilir.
+    Hızlı Başlangıç kılavuzunda, bu politika [Google Gruyere](../../qsg/test-run.md) hedef uygulamasının güvenlik testlerini gerçekleştirmek için kullanılabilir.
 
-## URI ve JSON Kodlu email POST Parametreleriyle Çalışmaya İzin Veren Politika (Fuzzer Etkin)
+## URI ve Kodlanmış Email POST Parametresiyle Çalışmaya İzin Veren Politika (Yalnızca Özel FAST Uzantılarının Çalışmasına İzin Verilir)
 
-Bu politika, bir istekte `email` POST parametresiyle çalışmayı mümkün kılar. `email` parametresi JSON'da kodlanmıştır (`POST_JSON_DOC_HASH_email_value`).
+Bu test politikası, bir istekte URI (`URI`) ve `email` POST parametreleriyle çalışmaya izin verir. `email` parametresi JSON formatında kodlanmıştır (`POST_JSON_DOC_HASH_email_value`).
 
-**Bu politikanın aşağıdaki özellikler vardır:**
+**Bu politikanın aşağıdaki özellikleri vardır:**
 
-* Fuzzer etkin.
-* Tüm yerleşik FAST eklentileri devre dışı (hiçbir zafiyet seçilmez). Bu, fuzzer'ı kullanırken yapılabilecek bir durumdur.
+* Yalnızca özel FAST uzantılarının çalışmasına izin verilir, gömülü FAST detect'leri çalıştırılmaz.
+* Fuzzer devre dışı bırakılmıştır.
+
+![Policy example](../../../images/fast/operations/en/test-policy/examples/custom-dsl-example.png)
+
+!!! info "Not"
+    Bu politika, [örnek özel uzantıları](../../dsl/using-extension.md) çalıştırmak için kullanılabilir.
+
+## URI ve Kodlanmış Email POST Parametreleriyle Çalışmaya İzin Veren Politika (Fuzzer Etkin)
+
+Bu politika, bir istekte `email` POST parametreleriyle çalışmaya izin verir. `email` parametresi JSON formatında kodlanmıştır (`POST_JSON_DOC_HASH_email_value`).
+
+**Bu politikanın aşağıdaki özellikleri vardır:**
+
+* Fuzzer etkinleştirilmiştir.
+* Tüm gömülü FAST uzantıları devre dışı bırakılmıştır (hiçbir güvenlik açığı seçilmemiştir). Bu, fuzzer kullanılırken yapılabilmektedir.
 
 **Bu örnek politikada, fuzzer şu şekilde yapılandırılmıştır:**
 
-* Yüklerin en fazla 123 baytı, bir puanın kodlanmış değerinin başına eklenmelidir (bu özel durumda, yalnızca `POST_JSON_DOC_HASH_email_value` puanı vardır).
-* Aşağıdaki durumlar varsayılır:
+* Maksimum 123 bayta kadar yükler, noktaların (bu özel durumda tek bir point olan `POST_JSON_DOC_HASH_email_value`) kod çözülmüş değerinin başına eklenecektir.
+* Aşağıdakiler varsayılmaktadır:
+  
+    * Server yanıt gövdesinde `SQLITE_ERROR` dizisi varsa anomali bulunmuştur.
+    * Server yanıt kodu değeri `500`'den küçükse anomali bulunmamıştır.
+    * Fuzzer, ya tüm yükler kontrol edilinceye kadar ya da iki anomali tespit edilinceye kadar çalışmaya devam eder.
 
-    * Bir anormallik, `SQLITE_ERROR` dizesi sunucu yanıt gövdesinde sunuldugunda bulunmuştur.
-    * Hiçbir anormallik bulunmaz, sunucu yanıt kodu değeri `500`'den az olduğunda.
-    * Fuzzer, tüm yükler kontrol edildiyse veya iki taneden fazla anormal bulunduysa çalışmayı durdurur.
-
-![Politika örneği](../../../images/fast/operations/en/test-policy/examples/enabled-fuzzer-example.png)
+![Policy example](../../../images/fast/operations/en/test-policy/examples/enabled-fuzzer-example.png)
 
 !!! info "Not"
-    Bu politika, [OWASP Juice Shop login formu](../../dsl/extensions-examples/overview.md)ndaki zafiyetleri bulmak için kullanılabilir.
+    Bu politika, [OWASP Juice Shop giriş formundaki](../../dsl/extensions-examples/overview.md) güvenlik açıklarını bulmak için kullanılabilir.
 
-## Belirli Bir Puanın Değerli Çalışmayı Reddeden Politika
+## Belirli Bir Point'in Değeriyle Çalışmaya İzin Vermeyen Politika
 
-Bu test politikası, bir istekte tüm GET parametreleri (`GET_.*`) ile çalışmayı, `sessionid` GET parametresi (`GET_sessionid_value`) dışında, mümkün kılar.
+Bu test politikası, bir istekteki tüm GET parametreleriyle (`GET_.*`) çalışmaya izin verir ancak `sessionid` GET parametresi (`GET_sessionid_value`) hariçtir.
 
-Bu tür bir davranışı yapılandırmanın yararlı olması, belirli bir puanla FAST'ın çalışmasını reddetmek gerektiğinde (örneğin, belirli bir parametre değerinin yanlışlıkla değiştirilmesi hedef uygulamanın işleyişini bozabilir) olabilir.
+Eğer belirli bir point ile çalışmasını engellemek (örneğin, belirli bir parametre değerinin istenmeyen şekilde değiştirilmesi hedef uygulamanın çalışmasını bozabilir) gerekiyorsa bu tarz bir davranışı yapılandırmak yararlı olabilir.
 
-**Hedef uygulama, AUTH ve IDOR zafiyetlerini yerleşik FAST eklentileri tarafından test edilecektir.**
+**Hedef uygulama, gömülü FAST uzantıları tarafından** AUTH ve IDOR güvenlik açıkları açısından test edilecektir.
 
-**Bu politikanın aşağıdaki özellikleri vardır:** fuzzer devre dışı.
+**Bu politikanın aşağıdaki özellikleri vardır:** fuzzer devre dışı bırakılmıştır.
 
-![Politika örneği](../../../images/fast/operations/en/test-policy/examples/sessionid-example.png)
+![Example policy](../../../images/fast/operations/en/test-policy/examples/sessionid-example.png)

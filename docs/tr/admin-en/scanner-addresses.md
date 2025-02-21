@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/scanner-addresses.md"
+--8<-- "latest-tr/admin-en/scanner-addresses.md"

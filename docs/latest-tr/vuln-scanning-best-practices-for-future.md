@@ -1,13 +1,13 @@
-Zafiyet Tespit ve Önleme En İyi Uygulamaları
+Vulnerability Detection and Mitigation Best Practices
 
-## Aktif tehdit doğrulaması için en iyi uygulamaları izleyin <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+## Threat Replay Testing için En İyi Uygulamaları Uygulayın <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
 
-Wallarm'ın [vulnerabilities](../about-wallarm/detecting-vulnerabilities.md) tespit etmek için kullandığı yöntemlerden biri **Aktif tehdit doğrulamasıdır**.
+Wallarm'ın [güvenlik açıklarını tespit etme](../about-wallarm/detecting-vulnerabilities.md) yöntemlerinden biri **Threat Replay Testing**'dir.
 
-**Aktif tehdit doğrulaması**, saldırganları sızma testi uzmanlarına dönüştürmenize ve uygulamalarınızın/API'lerinizin zafiyetler için araştırdıkları etkinliklerinden olası güvenlik sorunlarını keşfetmenize olanak sağlar. Bu modül, trafikten gerçek saldırı verilerini kullanarak uygulama uç noktalarını araştırarak olası zafiyetleri bulur. Bu yöntem varsayılan olarak devre dışıdır.
+**Threat Replay Testing**, saldırganları sızma test uzmanlarına dönüştürerek, uygulamalarınız/APİ'lerinizdeki güvenlik açıklarını araştırırken onların aktivitelerinden potansiyel güvenlik sorunlarını ortaya çıkarmanızı sağlar. Bu modül, trafik içindeki gerçek saldırı verilerini kullanarak uygulama uç noktalarını test eder ve olası güvenlik açıklarını bulur. Varsayılan olarak bu yöntem devre dışıdır.
 
-[**Aktif tehdit doğrulama** modülü konfigürasyonu için en iyi uygulamaları öğrenin →](../vulnerability-detection/threat-replay-testing/setup.md)
+[**Threat Replay Testing** modülü yapılandırması için en iyi uygulamaları öğrenin →](../vulnerability-detection/threat-replay-testing/setup.md)
 
 API Envanteri
 
-OWASP kapsama alanı
+OWASP kapsamı

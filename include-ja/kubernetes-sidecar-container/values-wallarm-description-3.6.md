@@ -1,27 +1,27 @@
-```
+```yaml
 wallarm:
   image:
      repository: wallarm/node
      tag: 3.6.2-1
-     pullPolicy: 常に
-  # Wallarm APIエンドポイント: 
-  # EUクラウドの場合は "api.wallarm.com"
-  # USクラウドの場合は "us1.api.wallarm.com"
+     pullPolicy: Always
+  # Wallarm APIエンドポイント：
+  # EU Cloud用は "api.wallarm.com"
+  # US Cloud用は "us1.api.wallarm.com"
   wallarm_host_api: "api.wallarm.com"
-  # デプロイロールを持つユーザーのユーザー名
+  # Deployロールを持つユーザーのユーザー名
   deploy_username: "username"
-  # デプロイロールを持つユーザーのパスワード
+  # Deployロールを持つユーザーのパスワード
   deploy_password: "password"
-  # コンテナが着信リクエストを受け入れるポート の番号。
-  # 値はポート.containerPortを使用するように設定する操作
-  # あなたのメインアプリコンテナの定義において
+  # コンテナが着信リクエストを受け入れるポート、
+  # 値はmain app containerのports.containerPortと同一である必要があります
+  # main app containerの定義
   app_container_port: 80
-  # リクエストフィルタリングモード:
-  # 処理を無効にするために"off"
-  # 処理を行うがリクエストをブロックしないために"monitoring"
-  # グレイリストのIPからの悪意のあるリクエストをブロックするために"safe_blocking"
-  # すべてのリクエストを処理し、悪意のあるものをブロックするために"block"
+  # リクエストフィルトレーションモード：
+  # リクエスト処理を無効にするには "off"
+  # リクエストを処理するがブロックしないには "monitoring"
+  # グレイリストのIPからの悪意あるリクエストをブロックするには "safe_blocking"
+  # すべてのリクエストを処理し、悪意あるリクエストをブロックするには "block"
   mode: "block"
-  # リクエスト分析データのためのメモリの量(GB)
+  # リクエスト解析データ用のメモリ容量（GB）
   tarantool_memory_gb: 2
 ```

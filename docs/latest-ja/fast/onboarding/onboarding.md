@@ -19,97 +19,97 @@
 [link-gruyere-app]:         http://google-gruyere.appspot.com/
 [link-qsg]:                 ../qsg/deployment-options.md
 
-#   FASTの新規登録案内
+# FAST Onboarding
 
---8<-- "../include-ja/fast/cloud-note.md"
+--8<-- "../include/fast/cloud-note.md"
 
-[Wallarm portal][link-wl-portal]へ初めてログインする時、FASTを理解するための5つのステップからなる新規登録案内を利用する機会があります。
+最初に[Wallarm portal][link-wl-portal]にログインした際、５段階のオンボーディングプロセスを通してFASTに習熟する機会が提供されます。
 
-!!! info "新規登録案内の制御"
-    いつでも新規登録案内パネルの✕ボタンをクリックして新規登録案内を中止することができます。
+!!! info "オンボーディングプロセスの制御"
+    オンボーディングパネル内の✕ボタンをクリックすることで、いつでもオンボーディングプロセスを中断できます。
     
-    新規登録案内を完全にスキップするか、最後にいたステップから後で新規登録案内を再開するかの選択肢が提示されます。
+    オンボーディングを全くスキップするか、現在のステップから後で再開するかの選択肢が提示されます。
     
-    新規登録案内をスキップした後で新規登録案内を開始したい場合、Wallarm portalの右上角の疑問符をクリックし、開かれたサイドバーで「FASTを5分で」を選択してください：    
+    オンボーディングをスキップしたが開始したい場合は、Wallarm portalの右上隅にあるクエスチョンマークを押して、開かれたサイドバーから「FAST in 5 minutes」を選択してください:
     
-    ![“クイックヘルプ”ボタン][img-quick-help-howto]
+    ![“The Quick Help” button][img-quick-help-howto]
     
-    以前に中断した新規登録案内を再開したい場合は、Wallarm portalの右下角の「FASTを5分で」ボタンをクリックしてください：
+    以前に延期したオンボーディングプロセスを再開したい場合は、Wallarm portalの右下隅にある「FAST in 5 minutes」ボタンをクリックしてください:
     
-    ![「FASTを5分で」ボタン][img-fast-5mins-button]
+    ![The “FAST in 5 minutes” button][img-fast-5mins-button]
 
-FASTについての簡単な紹介を得るために以下のことを行ってください：
-1.  FASTソリューションについて読む。
+FASTを簡単に紹介するために、以下を実施してください:
+1.  FASTソリューションについて読んでください。
     
-    ![FASTソリューションに関する一般情報][img-intro]
+    ![A general information about the FAST solution][img-intro]
     
-    次のステップに進むために「FAST Nodeをデプロイする →」ボタンをクリックします。
+    次のステップに進むには、「Deploy FAST Node →」ボタンをクリックしてください。
     
-2.  自分のマシンにFASTノードを含むDockerコンテナをデプロイする。そのためには、このステップで示される`docker run`コマンドをコピーし実行します。コマンドにはすべての必要なパラメータがすでに記入されています。
+2.  自分のマシンにFASTノードを搭載したDockerコンテナを展開してください。そのため、このステップで表示される`docker run`コマンドをコピーし実行してください。コマンドには必要なパラメーターがすべて設定済みです。
     
-    ![デプロイメントヒント][img-deploy]
+    ![The deployment hint][img-deploy]
     
     !!! info "Dockerのインストール"
-        Dockerがインストールされていない場合は、[ここからインストール][link-docker-install-docs]します。どちらのDockerエディションでも適切と考えられます—Community EditionまたはEnterprise Edition。
+        Dockerがお手元にない場合は、[install it][link-docker-install-docs]からインストールしてください。Community EditionおよびEnterprise Editionのいずれでも適用できます。
     
-    FASTノードは起動後に`127.0.0.1:8080`で受信接続をリッスンします。
+    FASTノードは起動後、`127.0.0.1:8080`で着信接続を待ち受けます。
     
-    ![デプロイされたFASTノード][img-cont-deployed]
+    ![The deployed FAST node][img-cont-deployed]
 
-    自分のマシンのブラウザをHTTPプロキシとして`127.0.0.1:8080`を使用するように設定します。Wallarmポータルが開かれているものを除く任意のブラウザを使用できます。Mozilla Firefoxの使用を推奨します（Firefoxをプロキシとして使用する設定方法は[こちら][link-firefox-proxy]を参照）。
+    自分のマシン上のブラウザをHTTPプロキシとして`127.0.0.1:8080`を使用するように設定してください。Wallarm portalが開かれているブラウザ以外の任意のブラウザをご利用いただけます。Mozilla Firefoxの使用を推奨します（Firefoxでプロキシを設定する方法については[こちらの手順][link-firefox-proxy]をご参照ください）。
     
-    ![Mozilla Firefoxのプロキシ設定][img-ff-proxy-settings]
+    ![The proxy settings in Mozilla Firefox][img-ff-proxy-settings]
     
-    !!! info "別のポート番号を使用"
-        FASTノードに`8080`ポートを提供したくない場合（例:そのポートで別のサービスがリッスンしている）、FASTが使用する別のポート番号を設定できます。それを行うには、`docker run`コマンドの`-p`パラメータで必要なポート番号を指定します。例えば、ポート`9090`を使用するには次のように記述します：`-p 9090:8080`.
+    !!! info "別のポート番号を使用する場合"
+        FASTノードに`8080`ポートを使用したくない場合（例：そのポートで他のサービスが待ち受けている場合）、FASTで使用するポート番号を別途設定できます。そのためには、`docker run`コマンドの`-p`パラメーターに目的のポート番号を指定してください。例として、ポート`9090`を使用するには、次のように記述します: `-p 9090:8080`.
     
-    次のステップに進むために「テストランを作成する →」ボタンをクリックします。
+    次のステップに進むには、「Create a Test Run →」ボタンをクリックしてください.
     
     !!! info "前のステップに戻る"
-        前のステップの名前（例:「← FASTを理解する」）のボタンをクリックすると、いつでも前のステップに戻ることができます。
+        前のステップに戻るには、常に前のステップの名前が記されたボタン（例:「← Understanding FAST」）をクリックできることにご注意ください.
    
-3.  「テストランを作成する」ボタンをクリックしてテストランを作成します。テストランの名前を選択し、新規登録ヒントに記載されているように、必要なテストポリシーとノードをドロップダウンリストから選択します：
+3.  “Create test run”ボタンをクリックしてテストランを作成してください。テストランの名前を選択し、オンボーディングヒントに記載された通り、必要なテストポリシーとノードをドロップダウンリストから選択してください:
 
-    ![テストランの作成][img-create-testrun]
+    ![The creation of a test run][img-create-testrun]
     
-    「作成して実行」ボタンを押すとテストランの作成プロセスが完了します。
+    テストランの作成プロセスを完了するには、「Create and run」ボタンを押してください.
     
-    次のステップに進むために「脆弱性を探す →」ボタンをクリックします。
+    次のステップに進むには、「Discover Vulnerabilities →」ボタンをクリックしてください.
     
-4.  FASTノードのコンソールに表示される`Recording baselines for TestRun...`メッセージが表示されていることを確認します：
+4.  FASTノードのコンソールに`Recording baselines for TestRun...`というメッセージが表示されていることを確認してください:
     
-    ![FASTノードのコンソール][img-recording]
+    ![The FAST node's console][img-recording]
     
-    その後、FASTでの脆弱性テストのプロセスを開始するために、[Google Gruyere][link-gruyere-app]という名前の脆弱なアプリケーションにリクエストを送信します。
+    次に、FASTを使用して脆弱性テストを開始するために、[Google Gruyere][link-gruyere-app]という脆弱なアプリケーションへリクエストを送信してください.
     
-    それを行うためには、新規登録ヒントで提供されるHTTPリクエストをコピーし、先ほどFASTノードをプロキシとして使用するように設定したブラウザのアドレスバーに貼り付け、リクエストを実行します：
+    そのため、オンボーディングヒントに記載されたHTTPリクエストをコピーし、先に設定したFASTノードをプロキシとして使用するブラウザのアドレスバーに貼り付け、リクエストを実行してください:
     
-    ![ヒント内のHTTPリクエスト][img-http-request]
+    ![The HTTP request in the hint][img-http-request]
     
-    ![HTTPリクエストの実行][img-gruyere-app]
+    ![The execution of the HTTP request][img-gruyere-app]
     
-    リクエストを送信した後、リクエストの記録プロセスを停止するために、「操作」ドロップダウンメニューで「記録を停止する」を選択します。「はい」ボタンを押して操作を確認します：
+    リクエスト送信後、”Actions”ドロップダウンメニューから「Stop recording」を選択してリクエスト記録プロセスを停止してください。操作を「Yes」ボタンをクリックして確定してください:
     
-    ![リクエストの記録プロセスを停止する][img-stop-recording]
+    ![Stopping the request recording process][img-stop-recording]
     
-    テストが完了するのを待ちます。FASTはGoogle GruyereアプリケーションにXSS脆弱性を検出するはずです。脆弱性の識別子とタイプがテストランの「結果」カラムに表示されます：
+    テストが完了するまでお待ちください。FASTはGoogle GruyereアプリケーションのXSS脆弱性を検出するはずです。脆弱性の識別子と種類はテストランの「Results」列に表示されます:
     
-    ![テストの結果][img-results]
+    ![The result of testing][img-results]
     
     !!! info "脆弱性の分析"
-        テストランの「結果」カラムの値をクリックすることで、検出した脆弱性についての詳細情報を得ることができます：
+        テストランの「Results」列の値をクリックすることで、発見された脆弱性の詳細情報を確認できます:
         
-        ![脆弱性の詳細情報][img-detailed-results]
+        ![The detailed information about the vulnerability][img-detailed-results]
     
-    次のステップに進むために「Run With It!」ボタンをクリックします。
+    次のステップに進むには、「Run With It!」ボタンをクリックしてください.
     
-5.  このステップまでに、あなたはFASTについての理解を深め、Webアプリケーションに脆弱性を検出することに成功しました。
+5.  このステップで、FASTの使用方法に習熟し、ウェブアプリケーションの脆弱性を発見できたことになります.
     
-    ![新規登録案内の終了][img-finish]
+    ![The end of the onboarding process][img-finish]
     
-    より詳細な情報を得るために[「クイックスタートガイド」][link-qsg]に進みます。
+    より詳細なFASTの始め方については、[“Quick Start guide”][link-qsg]をご参照ください.
     
-    「終了」ボタンをクリックして新規登録案内を終了します。
+    オンボーディングプロセスを完了するには、「Finish」ボタンをクリックしてください.
     
-    !!! info "追加の作業"
-        脆弱性の検出が確認できたら、FASTノードのDockerコンテナをシャットダウンし、ブラウザのプロキシングを無効にすることができます。
+    !!! info "追加のアクション"
+        脆弱性の検出が成功した後、FASTノードのDockerコンテナを停止し、ブラウザのプロキシ設定を無効にすることができます.

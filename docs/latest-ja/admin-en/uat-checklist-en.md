@@ -1,117 +1,117 @@
 # Wallarmユーザー受け入れテストチェックリスト
 
-このセクションでは、Wallarm インスタンスが正しく作動することを確認するためのチェックリストを提供します。
+このセクションでは、Wallarmインスタンスが正しく動作していることを確認するためのチェックリストを提供します。
 
 | 操作                                                                                                                                                        | 期待される動作                   | 確認  |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|--------|
-| [Wallarm ノードが攻撃を検出する](#wallarm-node-detects-attacks)                                                                     | 攻撃が検出されます                |        |
-| [Wallarm インターフェースにログインできる](#you-can-log-into-the-wallarm-interface)                                                 | ログインすることができます                      |        |
-| [Wallarm インターフェースが1秒あたりのリクエストを表示する](#wallarm-interface-shows-requests-per-second)                                       | リクエストの統計を見ることができます          |        |
-| [Wallarmがリクエストを偽物とマークし、それらをブロックするのを停止する](#wallarm-marks-requests-as-false-and-stops-blocking-them)               | Wallarmはリクエストをブロックしません |        |
-| [Wallarmが脆弱性を検出し、セキュリティインシデントを作成する](#wallarm-detects-vulnerabilities-and-creates-security-incidents) | セキュリティインシデントが作成されます      |        |
-| [Wallarmがパーメータを検出する](#wallarm-detects-perimeter)                                                                                   | 範囲が検出されます                 |        |
-| [IP許可リスト, 拒否リスト, グレーリストが作動する](#ip-allowlisting-denylisting-and-graylisting-work)                                                                                         | IPアドレスがブロックされます            |        |
-| [ユーザーは設定可能であり適切なアクセス権を持つ](#users-can-be-configured-and-have-proper-access-rights)                   | ユーザーを作成および更新することができます    |        |
-| [ユーザーのアクティビティログにレコードが存在する](#user-activity-log-has-records)                                                                   | ログにレコードが存在します                 |        |
-| [レポートが作成される](#reporting-works)                                                                                               | レポートを受け取ります                 |        | |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|-------|
+| [Wallarmノードが攻撃を検出します](#wallarm-node-detects-attacks)                                                                     | 攻撃が検出されます                |       |
+| [Wallarmインターフェイスにログインできます](#you-can-log-into-the-wallarm-interface)                                                 | ログインできます                      |       |
+| [Wallarmインターフェイスが秒間リクエストを表示します](#wallarm-interface-shows-requests-per-second)                                       | リクエスト統計が表示されます          |       |
+| [Wallarmがリクエストを誤検知としてマークしブロックを解除します](#wallarm-marks-requests-as-false-and-stops-blocking-them)               | Wallarmがリクエストをブロックしません |       |
+| [Wallarmが脆弱性を検出しセキュリティインシデントを作成します](#wallarm-detects-vulnerabilities-and-creates-security-incidents) | セキュリティインシデントが作成されます      |       |
+| [Wallarmがペリメータを検出します](#wallarm-detects-perimeter)                                                                                   | スコープが発見されます                 |       |
+| [IPホワイトリスト、ブラックリスト、およびグレイリストが機能します](#ip-allowlisting-denylisting-and-graylisting-work)                                                                                         | IPアドレスがブロックされます            |       |
+| [ユーザーが設定され適切なアクセス権を持ちます](#users-can-be-configured-and-have-proper-access-rights)                   | ユーザーが作成・更新されます    |       |
+| [ユーザーアクティビティログに記録があります](#user-activity-log-has-records)                                                                   | ログに記録が存在します                 |       |
+| [レポート機能が動作します](#reporting-works)                                                                                               | レポートが受信されます                 |       |
 
-## Wallarm ノードが攻撃を検出します
+## Wallarmノードが攻撃を検出します
 
-1. 悪意のあるリクエストをあなたのリソースに送信します。
+1. リソースに対し悪意あるリクエストを送信します：
 
    ```
-   http://<リソースの_URL>/etc/passwd
+   http://<resource_URL>/etc/passwd
    ```
 
-2. 攻撃カウントが増加したかどうかを確認するために以下のコマンドを実行します。
+2. 以下のコマンドを実行し、攻撃カウントが増加したか確認します：
 
    ```
    curl http://127.0.0.8/wallarm-status
    ```
 
-[フィルタノードの動作の評価](installation-check-operation-en.md)も参照してください。
+詳細は[フィルターノードの動作確認](installation-check-operation-en.md)を参照してください。
 
-## Wallarm インターフェースにログインできます
+## Wallarmインターフェイスにログインできます
 
-1. あなたが使用しているクラウドに対応するリンクに進みます：
-    *   USクラウドを使用している場合は、<https://us1.my.wallarm.com>のリンクに進みます。
-    *   EUクラウドを使用している場合は、<https://my.wallarm.com/>のリンクに進みます。
-2. あなたが正しくログインできるかどうかを確認します。
+1. ご利用のクラウドに応じたリンクにアクセスします： 
+   * USクラウドをご使用の場合は、<https://us1.my.wallarm.com>のリンクにアクセスします。
+   * EUクラウドをご使用の場合は、<https://my.wallarm.com/>のリンクにアクセスします。
+2. 正常にログインできるか確認します。
 
-[脅威防止ダッシュボードの概要](../user-guides/dashboards/threat-prevention.md)も参照してください。
+詳細は[脅威防止ダッシュボード概要](../user-guides/dashboards/threat-prevention.md)を参照してください。
 
-## Wallarm インターフェースが1秒あたりのリクエストを表示します
+## Wallarmインターフェイスが秒間リクエストを表示します
 
-1. リソースにリクエストを送ります：
+1. リソースにリクエストを送信します：
 
    ```
-   curl http://<リソースの_URL>
+   curl http://<resource_URL>
    ```
 
-   または、bashスクリプトで複数のリクエストを送信します：
+   またはbashスクリプトを用いて複数のリクエストを送信します：
 
    ```
    for (( i=0 ; $i<10 ; i++ )) ;
    do 
-      curl http://<リソースの_URL> ;
+      curl http://<resource_URL> ;
    done
    ```
 
-   これは10リクエストのための例です。
+   この例は10リクエストの場合です。
 
-2. Wallarmインターフェースが1秒当たりの検出されたリクエストを表示するかどうかを確認します。
+2. Wallarmインターフェイスに秒間で検出されたリクエストが表示されているか確認します。
 
-[脅威防止ダッシュボード](../user-guides/dashboards/threat-prevention.md)も参照してください。
+詳細は[脅威防止ダッシュボード](../user-guides/dashboards/threat-prevention.md)を参照してください。
 
-## Wallarmはリクエストを偽物とマークし、それをブロックするのを停止します
+## Wallarmがリクエストを誤検知としてマークしブロックを解除します
 
-1. *攻撃*タブで攻撃を展開します。
-2. ヒットを選択し、*偽物*をクリックします。
+1. Attacksタブで攻撃の詳細を展開します。 
+2. ヒットを選択し、Falseをクリックします。
 3. 約3分間待ちます。
-4. リクエストを再送信し、Wallarmが攻撃として検出し、それをブロックするかどうかを確認します。
+4. リクエストを再送信し、Wallarmが攻撃として検出しブロックするか確認します。
 
-[偽物の攻撃との作業](../user-guides/events/false-attack.md)も参照してください。
+詳細は[誤検知の操作](../user-guides/events/check-attack.md#false-positives)を参照してください。
 
-## Wallarmは脆弱性を検出し、セキュリティーインシデントを作成します
+## Wallarmが脆弱性を検出しセキュリティインシデントを作成します
 
-1. リソース上に開かれた脆弱性があることを確認します。
-2. 脆弱性を悪用する悪意のあるリクエストを送信します。
-3. Wallarmインターフェースでインシデントが検出されたかどうかを確認します。
+1. リソースに対しオープンな脆弱性が存在することを確認します。
+2. 脆弱性を悪用するための悪意あるリクエストを送信します。
+3. Wallarmインターフェイスにインシデントが検出されているか確認します。
 
-[攻撃とインシデントの評価](../user-guides/events/check-attack.md)も参照してください。
+詳細は[インシデントの確認](../user-guides/events/check-incident.md)を参照してください。
 
-## Wallarmはパーメータを検出します
+## Wallarmがペリメータを検出します
 
-1. *スキャナー* タブで、あなたのリソースのドメインを追加します。
-2. Wallarmが追加したドメインに関連するすべてのリソースを発見するかどうかを確認します。
+1. Scannerタブで、リソースのドメインを追加します。
+2. 追加したドメインに関連するすべてのリソースが認識されているか確認します。
 
-[スキャナーとの作業](../user-guides/scanner.md)も参照してください。
+詳細は[スキャナーの操作](../user-guides/scanner.md)を参照してください。
 
-## IP許可リスト, 拒否リスト, グレーリストが作動します
+## IPホワイトリスト、ブラックリスト、およびグレイリストが機能します
 
-1. [IPリストのコアロジック](../user-guides/ip-lists/overview.md)を学びます。
-2. IPアドレスを[allowlist](../user-guides/ip-lists/allowlist.md), [denylist](../user-guides/ip-lists/denylist.md), [graylist](../user-guides/ip-lists/graylist.md)に追加します。
-3. フィルタリングノードがリストに追加されたIPからのリクエストを正しく処理しているかどうかを確認します。
+1. IPリストの基本ロジックを学びます[core logic of IP lists](../user-guides/ip-lists/overview.md)。
+2. IPアドレスを[allowlist](../user-guides/ip-lists/overview.md)、[denylist](../user-guides/ip-lists/overview.md)、および[graylist](../user-guides/ip-lists/overview.md)に追加します。
+3. フィルターノードがリストに追加されたIPからのリクエストを正しく処理するか確認します。
 
-## ユーザーは設定可能であり、適切なアクセス権を持っています
+## ユーザーが設定され適切なアクセス権を持ちます
 
-1. Wallarmシステムで*管理者*ロールを持っていることを確認します。
-2. [ユーザーの設定](../user-guides/settings/users.md)で説明されているように、ユーザーを作成、ロールを変更、無効化、削除します。
+1. WallarmシステムでAdministratorロールを持っていることを確認します。
+2. [Configuring users](../user-guides/settings/users.md)に記載されている通り、ユーザーの作成、ロール変更、無効化、削除を行います。
 
-[ユーザーの設定](../user-guides/settings/users.md)も参照してください。
+詳細は[Configuring users](../user-guides/settings/users.md)を参照してください。
 
-## ユーザーアクティビティログにレコードが存在します
+## ユーザーアクティビティログに記録があります
 
-1. *設定* -> *ユーザー*へ進みます。
-2. *ユーザーアクティビティログ*にレコードが存在することを確認します。
+1. Settings→Usersに移動します。
+2. User Activity Logに記録が存在するか確認します。
 
-[ユーザーアクティビティログ](../user-guides/settings/audit-log.md)も参照してください。
+詳細は[User activity log](../user-guides/settings/audit-log.md)を参照してください。
 
-## レポーティングが作動します
+## レポート機能が動作します
 
-1. *攻撃*タブで、検索クエリを入力します。
-2. 右側のレポートボタンをクリックします。
-3. あなたのEメールを入力し、再度レポートボタンをクリックします。
-4. レポートを受け取ったかどうかを確認します。
+1. Attacksタブで検索クエリを入力します。
+2. 右側のreportボタンをクリックします。
+3. メールアドレスを入力し、再度reportボタンをクリックします。
+4. レポートが受信されるか確認します。
 
-[カスタムレポートの作成](../user-guides/search-and-filters/custom-report.md)も参照してください。
+詳細は[カスタムレポートの作成](../user-guides/search-and-filters/custom-report.md)を参照してください。

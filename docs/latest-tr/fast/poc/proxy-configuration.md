@@ -3,20 +3,19 @@
 
 [doc-integration-overview]:         integration-overview.md
 
+# Proxy Kurallarının Yapılandırılması
 
-#   Proxy Kurallarının Yapılandırılması
+!!! warning "Attention"
+    Bu bölümde açıklanan adımları yalnızca FAST node’un [API][doc-node-deployment-api] veya [CI Mode (recording mode)][doc-fast-recording-mode] kullanılarak dağıtılması durumunda uygulayın.
 
-!!! warning "Dikkat"
-    Bu bölümde anlatılan adımları yalnızca FAST düğümü [API][doc-node-deployment-api] veya [CI Modu (kayıt modu)][doc-fast-recording-mode] aracılığıyla dağıtılıyorsa gerçekleştirin.
+İstek kaynağınızı, hedef uygulamaya gönderilen tüm istekler için FAST node’u bir HTTP proxy’si olarak kullanacak şekilde yapılandırın.
 
-Talep kaynağınızı, hedef uygulamaya yönelik tüm talepler için FAST düğümünü bir HTTP proxy olarak kullanacak şekilde yapılandırın.
-
-CI/CD altyapınızın FAST düğümünün Docker konteyneriyle nasıl etkileşime girdiğine bağlı olarak, düğüme aşağıdaki yolların biriyle ulaşabilirsiniz:
+CI/CD altyapınızın FAST node’un Docker konteyneriyle etkileşim biçimine bağlı olarak, node’a aşağıdaki yollarla erişebilirsiniz:
 * IP adresi.
 * Alan adı.
 
-!!! info "Örnek"
-    Test aracınız bir Linux Docker konteyneri olarak çalışıyorsa, aşağıdaki ortam değişkenini, konteynerden gelen tüm HTTP isteklerinin FAST düğümü aracılığıyla yönlendirilmesini sağlamak için konteynera iletebilirsiniz:
+!!! info "Example"
+    Test aracınız bir Linux Docker konteyneri olarak çalışıyorsa, o konteynere aşağıdaki ortam değişkenini geçirerek tüm HTTP isteklerinin FAST node üzerinden proxy yapılmasını etkinleştirebilirsiniz:
     
     ```
     HTTP_PROXY=http://<FAST node name or IP address>:<port>

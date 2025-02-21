@@ -1,44 +1,25 @@
-# Kendi Müşteriniz
-../user-guides/settings/applications.md
-https://apiconsole.us1.wallarm.com/
-https://apiconsole.eu1.wallarm.com/
-https://support.apple.com/guide/safari/use-the-developer-tools-in-the-develop-menu-sfri20948/mac
-https://developers.google.com/web/tools/chrome-devtools/
-https://developer.mozilla.org/en-US/docs/Tools
-https://help.vivaldi.com/article/developer-tools/
-https://www.unixtimestamp.com/
-https://www.unixtimestamp.com/
-https://www.unixtimestamp.com/
-../user-guides/settings/applications.md
-../user-guides/rules/regex-rule.md
-../admin-en/configure-wallarm-mode.md
-../user-guides/rules/wallarm-mode-rule.md
-../user-guides/settings/applications.md
-#tüm-yapılandırılmış-kuralları-al
-../user-guides/ip-lists/overview.md
-
-[access-wallarm-api-docs]: #kendi-müşteriniz
+[access-wallarm-api-docs]: overview.md#your-own-api-client
 [application-docs]:        ../user-guides/settings/applications.md
 
-# Wallarm API istek örnekleri
+# Wallarm API İstek Örnekleri
 
-İşte Wallarm API kullanımına dair bazı örnekler. Ayrıca, kod örneklerini [US cloud](https://apiconsole.us1.wallarm.com/) veya [EU cloud](https://apiconsole.eu1.wallarm.com/) için API Reference UI üzerinden de oluşturabilirsiniz. Deneyimli kullanıcılar, tarayıcının Geliştirici konsolunu ("Ağ" sekmesi) kullanarak, Wallarm hesabınızın kullanıcı arayüzünün halka açık API'den hangi verileri almak için hangi API uç noktalarını ve istekleri kullandığını hızlıca öğrenebilir. Geliştirici konsolunu açma hakkında bilgi bulmak için, resmi tarayıcı belgelerini kullanabilirsiniz ([Safari](https://support.apple.com/guide/safari/use-the-developer-tools-in-the-develop-menu-sfri20948/mac), [Chrome](https://developers.google.com/web/tools/chrome-devtools/), [Firefox](https://developer.mozilla.org/en-US/docs/Tools), [Vivaldi](https://help.vivaldi.com/article/developer-tools/)).
+Aşağıda Wallarm API'nin kullanımına dair bazı örnekler verilmiştir. Ayrıca [US cloud](https://apiconsole.us1.wallarm.com/) veya [EU cloud](https://apiconsole.eu1.wallarm.com/) için API Reference UI aracılığıyla kod örnekleri oluşturabilirsiniz. Deneyimli kullanıcılar, Wallarm hesabınızın genel API'den veri almak için UI tarafından kullanılan API uç noktalarını ve isteklerini hızlıca öğrenmek amacıyla tarayıcılarının Developer console ("Network" sekmesi) özelliğini de kullanabilir. Developer console'un nasıl açılacağı hakkında bilgi almak için resmi tarayıcı dokümantasyonuna bakabilirsiniz ([Safari](https://support.apple.com/guide/safari/use-the-developer-tools-in-the-develop-menu-sfri20948/mac), [Chrome](https://developers.google.com/web/tools/chrome-devtools/), [Firefox](https://developer.mozilla.org/en-US/docs/Tools), [Vivaldi](https://help.vivaldi.com/article/developer-tools/)).
 
-## Son 24 saatte algılanan ilk 50 saldırıyı alın
+## Son 24 Saatte Tespit Edilen İlk 50 Saldırıyı Alın
 
-Lütfen `TIMESTAMP` yerine 24 saat önceki tarihini [Unix Timestamp](https://www.unixtimestamp.com/) biçimine dönüştürülmüş halini girin. 
+Lütfen `TIMESTAMP` değerini, 24 saat öncesine ait tarihin [Unix Timestamp](https://www.unixtimestamp.com/) formatına dönüştürülmüş hali ile değiştirin.
 
---8<-- "../include-tr/api-request-examples/get-attacks-en.md"
+--8<-- "../include/api-request-examples/get-attacks-en.md"
 
-## Büyük sayıda saldırıyı alın (100 ve üzeri)
+## Çok Sayıda Saldırıyı Alın (100 ve Üzeri)
 
-100 veya daha fazla kayıt içeren saldırı ve hit setleri için, performansı optimize etmek amacıyla tüm büyük veri kümelerini bir seferde almak yerine daha küçük parçalar halinde almak en iyisidir. İlgili Wallarm API uç noktaları, sayfa başına 100 kayıtla imleç tabanlı sayfalama destekler.
+100 veya daha fazla kayda sahip saldırı ve hit setleri için, büyük veri kümelerini tek seferde çekmek yerine, performansı optimize etmek amacıyla bunları parçalar halinde almak en iyisidir. İlgili Wallarm API uç noktaları, sayfa başına 100 kayıt olacak şekilde imleç tabanlı sayfalamayı destekler.
 
-Bu teknik, veri kümesindeki belirli bir öğeye bir işaretçi döndürmeyi ve ardından sonraki isteklerde, sunucunun belirli işaretçiden sonraki sonuçları döndürmesini içerir. İmleç paginasyonunu etkinleştirmek için, istek parametrelerinde `"paging": true` içerir.
+Bu teknik, veri kümesindeki belirli bir öğeye işaret eden bir gösterge döndürmeyi ve sonraki isteklerde sunucunun verilen gösterge sonrası sonuçları döndürmesini içerir. İmleçli sayfalamayı etkinleştirmek için istek parametrelerine `"paging": true` ekleyin.
 
-Aşağıdakiler, imleç paginasyonunu kullanarak `<TIMESTAMP>` tarihinden bu yana algılanan tüm saldırıları almak için API çağrılarının örnekleridir:
+Aşağıda, imleçli sayfalama kullanılarak `<TIMESTAMP>`'den itibaren tespit edilen tüm saldırıların alınması için API çağrısı örnekleri verilmiştir:
 
-=== "EU Bulutu"
+=== "EU Cloud"
     ```bash
     curl -k 'https://api.wallarm.com/v2/objects/attack' \
       -X POST \
@@ -46,7 +27,7 @@ Aşağıdakiler, imleç paginasyonunu kullanarak `<TIMESTAMP>` tarihinden bu yan
       -H 'Content-Type: application/json' \
       -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
-=== "US Bulutu"
+=== "US Cloud"
     ```bash
     curl -k 'https://us1.api.wallarm.com/v2/objects/attack' \
       -X POST \
@@ -55,11 +36,11 @@ Aşağıdakiler, imleç paginasyonunu kullanarak `<TIMESTAMP>` tarihinden bu yan
       -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
 
-Bu istek, en son algılanan 100 saldırı hakkında bilgi döndürür, en yeniden en eskiye sıralanmış. Ayrıca, yanıt, bir sonraki 100 saldırı setine bir işaretçi içeren bir `cursor` parametresi içerir.
+Bu istek, en yeni 100 saldırı hakkında bilgiyi, en güncelden en eskisine doğru sıralı şekilde döndürür. Ek olarak, yanıt içerisinde bir sonraki 100 saldırı setine işaret eden `cursor` parametresi de yer alır.
 
-Bir sonraki 100 saldırıyı almak için, bir önceki yanıtın sonucundan kopyalanan işaretçi değeriyle `cursor` parametresini içerecek şekilde aynı isteği kullanın. Bu, API'nin bir sonraki 100 saldırı setini nereden döndürmeye başlayacağını bilmesini sağlar, örneğin:
+Bir sonraki 100 saldırıyı almak için, önceki istek ile aynı isteği kullanın fakat önceki yanıttan kopyalanan işaretçi değeriyle birlikte `cursor` parametresini ekleyin. Bu, API'nın bir sonraki 100 saldırı setinin nereden başlaması gerektiğini anlamasını sağlar, örneğin:
 
-=== "EU Bulutu"
+=== "EU Cloud"
     ```bash
     curl -k 'https://api.wallarm.com/v2/objects/attack' \
       -X POST \
@@ -67,7 +48,7 @@ Bir sonraki 100 saldırıyı almak için, bir önceki yanıtın sonucundan kopya
       -H 'Content-Type: application/json' \
       -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
-=== "US Bulutu"
+=== "US Cloud"
     ```bash
     curl -k 'https://us1.api.wallarm.com/v2/objects/attack' \
       -X POST \
@@ -76,9 +57,9 @@ Bir sonraki 100 saldırıyı almak için, bir önceki yanıtın sonucundan kopya
       -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
 
-Daha fazla sonuç sayfasını almak için, önceki yanıttan kopyalanan değerle `cursor` parametresini içeren istekler gönderin.
+Sonraki sonuç sayfalarını almak için, önceki yanıttan kopyalanan değere sahip `cursor` parametresini içeren istekleri gönderin.
 
-Aşağıda, imleç paginasyonunu kullanarak saldırıları almak için Python kodu örneği bulunmaktadır:
+Aşağıda, imleçli sayfalama kullanarak saldırıları almak için Python kod örneği verilmiştir:
 
 === "EU Cloud"
     ```python
@@ -158,102 +139,102 @@ Aşağıda, imleç paginasyonunu kullanarak saldırıları almak için Python ko
         payload["cursor"] = cursor
     ```
 
-## Son 24 saatte onaylanan ilk 50 olayı alın
+## Son 24 Saatte Onaylanan İlk 50 İnsidenti Alın
 
-Bu istek, saldırılar listesi için önceki örneğe çok benzer; bu isteğe `"!vulnid": null` terim eklenmiştir. Bu terim, API'nın belirli bir açıklık kimliği olmadan tüm saldırıları göz ardı etmesini sağlar ve bu, sistem attacks ve olaylar arasında ayrım yapar.
+Bu istek, saldırı listesindeki önceki örneğe çok benzer; bu isteğe `"!vulnid": null` terimi eklenmiştir. Bu terim, API'ya belirtilmemiş vulnerability ID'sine sahip tüm saldırıları göz ardı etmesini söyler ve sistemin saldırılar ile incident'lar arasında ayrım yapmasını sağlar.
 
-Lütfen `TIMESTAMP` yerine 24 saat önceki tarihi [Unix Timestamp](https://www.unixtimestamp.com/) formatına dönüştürülmüş halini girin.
+Lütfen `TIMESTAMP` değerini, 24 saat öncesine ait tarihin [Unix Timestamp](https://www.unixtimestamp.com/) formatına dönüştürülmüş hali ile değiştirin.
 
---8<-- "../include-tr/api-request-examples/get-incidents-en.md"
+--8<-- "../include/api-request-examples/get-incidents-en.md"
 
-## Son 24 saat içinde "aktif" durumundaki ilk 50 açığı alın
+## Son 24 Saat İçinde "active" Durumundaki İlk 50 Güvenlik Açığını Alın
 
-Lütfen `TIMESTAMP` yerine 24 saat önceki tarihi [Unix Timestamp](https://www.unixtimestamp.com/) formatına dönüştürülmüş halini girin.
+Lütfen `TIMESTAMP` değerini, 24 saat öncesine ait tarihin [Unix Timestamp](https://www.unixtimestamp.com/) formatına dönüştürülmüş hali ile değiştirin.
 
---8<-- "../include-tr/api-request-examples/get-vulnerabilities.md"
+--8<-- "../include/api-request-examples/get-vulnerabilities.md"
 
-## Tüm yapılandırılmış kuralları alın
+## Tüm Yapılandırılmış Kuralları Alın
 
---8<-- "../include-tr/api-request-examples/get-all-configured-rules.md"
+--8<-- "../include/api-request-examples/get-all-configured-rules.md"
 
-## Tüm kuralların koşullarını alın
+## Tüm Kuralların Sadece Şartlarını Alın
 
---8<-- "../include-tr/api-request-examples/get-conditions.md"
+--8<-- "../include/api-request-examples/get-conditions.md"
 
-## Belirli bir koşula eklenmiş kuralları alın
+## Belirli Bir Şarta Bağlı Kuralları Alın
 
-Belirli bir koşulu göstermek için, tüm kuralların koşullarını istediğinizde alabileceğiniz kimliğini kullanın.
+Belirli bir şartı işaret etmek için, onun ID'sini kullanın - tüm kuralların şartlarını sorguladığınızda (yukarıya bakın) bunu edinebilirsiniz.
 
---8<-- "../include-tr/api-request-examples/get-rules-by-condition-id.md"
+--8<-- "../include/api-request-examples/get-rules-by-condition-id.md"
 
-## Tüm istekleri `/my/api/*`'a göndermek üzere engelleyen sanal yamayı oluşturun
+## `/my/api/*`'ye Gönderilen Tüm İstekleri Engellemek İçin Sanal Yama Oluşturun
 
---8<-- "../include-tr/api-request-examples/create-rule-en.md"
+--8<-- "../include/api-request-examples/create-rule-en.md"
 
-## Belirli bir uygulama örneği kimliği için tüm istekleri `/my/api/*`'a göndermek üzere engelleyen sanal yamayı oluşturun 
+## `/my/api/*`'ye Gönderilen Tüm İstekleri Engellemek İçin Belirli Bir Uygulama Örneği ID'sine Sahip Sanal Yama Oluşturun
 
-Bu isteği göndermeden önce bir uygulamanın [yapılandırılması](../user-guides/settings/applications.md) gerekir. `action.point[instance].value` içinde mevcut bir uygulamanın kimliğini belirtin.
+Bu isteği göndermeden önce bir uygulama [yapılandırılmış](../user-guides/settings/applications.md) olmalıdır. `action.point[instance].value` alanına mevcut bir uygulamanın ID'sini belirtin.
 
---8<-- "../include-tr/api-request-examples/create-rule-for-app-id.md"
+--8<-- "../include/api-request-examples/create-rule-for-app-id.md"
 
-## `X-FORWARDED-FOR` başlığının belirli bir değeri olan isteklerin saldırılar olarak kabul edilmesi için bir kural oluşturun
+## `X-FORWARDED-FOR` Başlığının Belirli Bir Değerine Sahip İstekleri Saldırı Olarak Değerlendirmek İçin Kural Oluşturun
 
-Aşağıdaki istek, `^(~(44[.]33[.]22[.]11))$` dayalı [regex'ni özel saldırı göstergesi yapar](../user-guides/rules/regex-rule.md).
+Aşağıdaki istek, [regexp tabanlı özel saldırı göstergesini](../user-guides/rules/regex-rule.md) `^(~(44[.]33[.]22[.]11))$` oluşturacaktır.
 
-Eğer `MY.DOMAIN.COM` alan adına giden isteklerde `X-FORWARDED-FOR: 44.33.22.11` HTTP başlığı varsa, Wallarm düğümü bunları tarayıcı saldırıları olarak kabul eder ve ilgili [filtrasyon modu](../admin-en/configure-wallarm-mode.md) ayarlanmışsa saldırıları engeller.
+Eğer `MY.DOMAIN.COM` alan adına yapılan istekler `X-FORWARDED-FOR: 44.33.22.11` HTTP başlığına sahip ise, Wallarm node'u bunları tarayıcı saldırısı olarak değerlendirir ve ilgili [filtration mode](../admin-en/configure-wallarm-mode.md) ayarlanmışsa saldırıları engeller.
 
---8<-- "../include-tr/api-request-examples/create-rule-scanner.md"
+--8<-- "../include/api-request-examples/create-rule-scanner.md"
 
-## Belirli bir uygulama için filtrasyon modunu izlemeye ayarlama kuralını oluşturun
+## Belirli Uygulama İçin Monitoring Modunda Filtrasyon Modunu Ayarlayan Kuralı Oluşturun
 
-Aşağıdaki istek, trafiği filtrelemek için [düğümü ayarlayan kuralı](../user-guides/rules/wallarm-mode-rule.md) oluşturacak ve ID `3` olan [uygulama](../user-guides/settings/applications.md) için izleme modunda koruma sağlar.
+Aşağıdaki istek, monitoring modunda olan, [uygulamaya](../user-guides/settings/applications.md) giden trafiği filtrelemesi için düğümü ayarlayan [kuralı](../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console) oluşturacaktır. İlgili uygulamanın ID'si `3` olarak belirtilmiştir.
 
---8<-- "../include-tr/api-request-examples/create-filtration-mode-rule-for-app.md"
+--8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.md"
 
-## Kuralı bu kimliğiyle silin
+## Kuralı ID'sine Göre Silin
 
-Silinecek olan kuralın kimliğini, [tüm yapılandırılmış kuralları alırken](#tüm-yapılandırılmış-kuralları-al) kopyalayabilirsiniz. Ayrıca, kural oluşturma isteğine yanıt olarak bir kural kimliği de `id` yanıt parametresinde döndürülmüştür.
+Silinmek üzere kuralın ID'sini, [tüm yapılandırılmış kuralları alırken](#get-all-configured-rules) kopyalayabilirsiniz. Ayrıca, kural oluşturma isteğine verilen yanıtta `id` response parametresi aracılığıyla da kural ID'si döndürülür.
 
---8<-- "../include-tr/api-request-examples/delete-rule-by-id.md"
+--8<-- "../include/api-request-examples/delete-rule-by-id.md"
 
-## IP listesi nesnelerini almak, doldurmak ve silmek için API çağrıları
+## IP Listesi Nesnelerini Almak, Doldurmak ve Silmek İçin API Çağrıları
 
-Aşağıda, IP listesi nesnelerini almak, doldurmak ve silmek için API çağrılarının bazı örnekleri bulabilirsiniz.
+Aşağıda, [IP listesi](../user-guides/ip-lists/overview.md) nesnelerini almak, doldurmak ve silmek için bazı API çağrısı örnekleri verilmiştir.
 
-### API istek parametreleri
+### API İstek Parametreleri
 
-IP listelerini okumak ve değiştirmek için API isteklerine geçirilen parametreler:
+IP listelerini okumak ve değiştirmek için API isteklerine geçirilecek parametreler:
 
---8<-- "../include-tr/api-request-examples/ip-list-request-params.md"
+--8<-- "../include/api-request-examples/ip-list-request-params.md"
 
-### Listeye `.csv` dosyasından girdileri ekleyin
+### `.csv` Dosyasındaki Girdileri Listeye Ekleyin
 
-Listeye IP'leri veya alt ağları `.csv` dosyasından eklemek için, aşağıdaki bash betiğini kullanın:
+`.csv` dosyasındaki IP'ler veya alt ağları listeye eklemek için aşağıdaki bash betiğini kullanın:
 
---8<-- "../include-tr/api-request-examples/add-ips-to-lists-from-file.md"
+--8<-- "../include/api-request-examples/add-ips-to-lists-from-file.md"
 
-### Listeye tek bir IP veya alt ağ ekleyin
+### Listeye Tek Bir IP veya Alt Ağ Ekleyin
 
---8<-- "../include-tr/api-request-examples/add-some-ips-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-ips-to-lists.md"
 
-### Listeye birden fazla ülke ekleyin
+### Listeye Birden Fazla Ülke Ekleyin
 
---8<-- "../include-tr/api-request-examples/add-some-countries-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-countries-to-lists.md"
 
-### Listeye birden fazla proxy hizmeti ekleyin
+### Listeye Birden Fazla Proxy Servis Ekleyin
 
---8<-- "../include-tr/api-request-examples/add-some-proxies-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-proxies-to-lists.md"
 
-### IP listesinden bir nesneyi silin
+### IP Listesinden Bir Nesneyi Silin
 
-Nesneleri, kimliklerine göre IP listelerinden sileriz.
+Nesneler, IP listelerden ID'leriyle silinir.
 
-Nesne kimliğini almak için, IP listesi içeriğini isteyin ve gereken nesnenin `objects.id`sini yanıtından kopyalayın:
+Bir nesnenin ID'sini elde etmek için, IP liste içeriğini sorgulayın ve istenen nesnenin `objects.id` değerini yanıt içerisinden kopyalayın:
 
---8<-- "../include-tr/api-request-examples/get-ip-list-contents.md"
+--8<-- "../include/api-request-examples/get-ip-list-contents.md"
 
-Nesne kimliğine sahip olduğunuzda, onu listeden silmek için aşağıdaki isteği gönderin:
+Nesne ID'sine sahip olduktan sonra, liste içerisinden silmek için aşağıdaki isteği gönderin:
 
---8<-- "../include-tr/api-request-examples/delete-object-from-ip-list.md"
+--8<-- "../include/api-request-examples/delete-object-from-ip-list.md"
 
-Kimliklerini silme isteğinde bir dizi olarak geçirerek birden fazla nesneyi aynı anda silebilirsiniz.
+Silme isteğinde ID'lerini bir dizi olarak geçirerek aynı anda birden fazla nesneyi silebilirsiniz.

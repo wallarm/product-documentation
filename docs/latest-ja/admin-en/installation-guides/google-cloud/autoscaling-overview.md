@@ -3,24 +3,24 @@
 [link-doc-managed-autoscaling-group]:   creating-autoscaling-group.md
 [link-doc-lb-guide]:                    load-balancing-guide.md
 
-#   Google Cloud Platform上でのフィルタリングノードのオートスケーリングの設定：概要
+# Google Cloud Platform上でのフィルタリングノード自動スケーリングの設定: 概要
 
-Google Cloud Platform（GCP）上でWallarmのフィルタリングノードのオートスケーリングを設定することで、フィルタリングノードが交通量の変動（もしあれば）に対応できるようにすることができます。オートスケーリングを有効にすると、トラフィックが大幅に増加した場合でも、フィルタリングノードを使用してアプリケーションへの入力リクエストを処理することができます。
+Google Cloud Platform (GCP)上でWallarmフィルタリングノードの自動スケーリングを設定することで、フィルタリングノードがトラフィックの変動に対応できるようにできます。自動スケーリングを有効にすると、トラフィックが大幅に増加してもフィルタリングノードを使用してアプリケーションへの受信リクエストを処理できるようになります。
 
 !!! warning "前提条件"
-    オートスケーリングの設定には、Wallarmのフィルタリングノードを備えた仮想マシンのイメージが必要です。
+    自動スケーリングを設定するには、Wallarmフィルタリングノードを搭載した仮想マシンのイメージが必要です。
     
-    GCP上でWallarmフィルタリングノード付きの仮想マシンのイメージを作成するための詳細情報については、この[リンク][link-doc-image-creation]に進んでください。
+    GCP上でWallarmフィルタリングノードを搭載した仮想マシンのイメージを作成する方法について詳しくは、この[リンク][link-doc-image-creation]を参照してください。
 
---8<-- "../include-ja/gcp-autoscaling-connect-ssh.md"
+--8<-- "../include/gcp-autoscaling-connect-ssh.md"
 
-Google Cloud Platform上でフィルタリングノードを自動的にスケーリングするために、以下の手順を実行します：
+Google Cloud Platform上でフィルタリングノードの自動スケーリングを設定するには、以下の手順を実行してください：
 
-1.  [マシンイメージを作成する](create-image.md)
-1.  フィルタリングノードの自動スケーリングを設定する：
-    1.  [フィルタリングノードインスタンステンプレートを作成する][link-doc-template-creation];
-    2.  [オートスケーリングが有効な管理インスタンスグループを作成する][link-doc-managed-autoscaling-group];
-1.  [入力リクエストのバランシングを設定する][link-doc-lb-guide].
+1.  [マシンイメージの作成](create-image.md)
+1.  フィルタリングノードの自動スケーリングの設定:
+    1.  [フィルタリングノードインスタンステンプレートの作成][link-doc-template-creation];
+    2.  [自動スケーリングを有効にしたマネージドインスタンスグループの作成][link-doc-managed-autoscaling-group];
+1.  [受信リクエストの負荷分散設定][link-doc-lb-guide].
 
 !!! info "必要な権限"
-    オートスケーリングを設定する前に、GCPアカウントが`Compute Admin`ロールを持っていることを確認してください。
+    自動スケーリングを設定する前に、GCPアカウントに`Compute Admin`ロールが付与されていることを確認してください。

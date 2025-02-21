@@ -1,59 +1,59 @@
 # アプリケーションの設定
 
-あなたの会社が複数のアプリケーションを持っている場合、全社のトラフィックの統計情報だけでなく、各アプリケーションの統計情報を個別に見ることが便利かもしれません。アプリケーションごとにトラフィックを分けるために、Wallarmシステム内の "アプリケーション" エンティティを使用することができます。
+企業に複数のアプリケーションがある場合、会社全体のトラフィック統計だけでなく、各アプリケーションごとの統計を個別に確認できることが便利です。トラフィックをアプリケーション別に分離するために、Wallarmシステム内で "application" エンティティを使用できます。
 
-!!! warning "CDNノードのアプリケーション設定のサポート"
-    [Wallarm CDNノード](../../installation/cdn-node.md)のためのアプリケーションを設定するには、[Wallarmサポートチーム](mailto:support@wallarm.com)に依頼してください。
+アプリケーションを使用することで、以下のことが可能です：
 
-アプリケーションを使用することで、以下のことが可能になります:
+* 各アプリケーションごとにイベントと統計情報を個別に確認します。
+* 特定のアプリケーションに対して[triggers](../triggers/triggers.md)、[rules](../rules/rules.md)などのWallarm機能を設定します。
+* [Configure Wallarm in separated environments](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)します。
 
-* 各アプリケーションのイベントと統計情報を個別に閲覧
-* 特定のアプリケーションのための[トリガー](../triggers/triggers.md)、[ルール](../rules/rules.md)、その他のWallarm機能の設定
-* [分離された環境でのWallarmの設定](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)
+Wallarmがアプリケーションを識別するためには、ノード構成内で適切なディレクティブを使用して一意の識別子を割り当てる必要があります。識別子は、アプリケーションのドメインおよびドメインパスの両方に対して設定可能です。
 
-Wallarmがあなたのアプリケーションを識別するためには、それらにノード設定の適切なディレクティブを通じて一意の識別子を割り当てることが必要です。識別子は、アプリケーションのドメインとドメインパスの両方に設定することができます。
-
-デフォルトでは、Wallarmは各アプリケーションを識別子（ID）が `-1` の `default` アプリケーションと見なします。
+デフォルトでは、Wallarmは各アプリケーションを識別子 (ID) `-1` の `default` アプリケーションと見なします。
 
 ## アプリケーションの追加
 
-1. （オプション）Wallarm Console → **設定** → **アプリケーション**でアプリケーションを追加します。
+1. （任意）Wallarm Console → **Settings** → **Applications** でアプリケーションを追加します。
 
-    ![アプリケーションの追加](../../images/user-guides/settings/configure-app.png)
+    ![Adding an application](../../images/user-guides/settings/configure-app.png)
 
-    !!! warning "管理者権限"
-        **管理者**ロールを持つユーザーのみが、**設定** → **アプリケーション**セクションにアクセスすることができます。
-2. ノード設定を通じてアプリケーションに一意のIDを割り当てます。
+    !!! warning "管理者アクセス"
+        **Administrator** ロールのユーザーのみが **Settings** → **Applications** セクションにアクセスできます。
+2. ノード構成内で以下の方法によりアプリケーションに一意のIDを割り当てます：
 
-     * WallarmがNGINXモジュール、クラウドマーケットプレイスイメージ、設定ファイルがマウントされたNGINXベースのDockerコンテナ、サイドカーコンテナとしてインストールされている場合は、ディレクティブ [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) を使用します。
-     * WallarmがNGINXベースのDockerコンテナとしてインストールされている場合は、[環境変数](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) `WALLARM_APPLICATION`を使用します。
-     * WallarmがIngressコントローラとしてインストールされている場合は、[Ingressアノテーション](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `wallarm-application` を使用します。
-     * Wallarmが設定ファイルがマウントされたEnvoyベースのDockerコンテナとしてインストールされている場合は、パラメータ [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)を使用します。
+    * WallarmがNGINXモジュール、cloud marketplace image、マウントされた構成ファイルを持つNGINXベースのDockerコンテナ、またはサイドカーコンテナとしてインストールされている場合は、ディレクティブ[`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)を使用します。
+    * WallarmがNGINXベースのDockerコンテナとしてインストールされている場合は、[環境変数](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) `WALLARM_APPLICATION` を使用します。
+    * WallarmがIngressコントローラーとしてインストールされている場合は、[Ingress annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `wallarm-application` を使用します。
+    * Wallarmがマウントされた構成ファイルを持つEnvoyベースのDockerコンテナとしてインストールされている場合は、パラメータ[`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)を使用します。
+    * Native NodeオールインワンインストーラーおよびDockerイメージの場合は、[`route_config.wallarm_application`](../../installation/native-node/all-in-one-conf.md#route_configwallarm_application)パラメータを使用します。
+    * Native Node Helmチャートの場合は、[`config.connector.route_config.wallarm_application`](../../installation/native-node/helm-chart-conf.md#configconnectorroute_configwallarm_application)パラメータを使用します。
+    * Edge inlineまたはconnectorセットアップウィンドウでのアプリケーション構成を使用します。
 
-    値は `0` を除く正の整数にすることができます。
+    値は `0` を除く正の整数でなければなりません。
 
-    指定したIDのアプリケーションがWallarm Console → **设定** → **アプリケーション**に追加されていない場合、自動的にリストに追加されます。アプリケーションの名前は、指定した識別子に基づいて自動生成されます（例：IDが `-1` のアプリケーションの場合は `Application #1`）。名前は後からWallarm Consoleで変更することができます。
+    指定されたIDのアプリケーションが Wallarm Console → **Settings** → **Applications** に追加されていない場合、自動的にリストに追加されます。アプリケーション名は指定された識別子に基づいて自動的に生成されます（例：IDが `-1` のアプリケーションの場合は `Application #1`）。アプリケーション名は後でWallarm Consoleから変更できます。
 
-アプリケーションが正しく設定されている場合、その名前はこのアプリケーションを目標とした攻撃の詳細に表示されます。アプリケーションの設定をテストするためには、アプリケーションのアドレスに[テスト攻撃](../../admin-en/installation-check-operation-en.md#2-run-a-test-attack)を送信することができます。
+アプリケーションが正しく構成されている場合、その名前はこのアプリケーションを狙った攻撃の詳細に表示されます。アプリケーション構成をテストするには、アプリケーションのアドレスに[test attack](../../admin-en/installation-check-operation-en.md#2-run-a-test-attack)を送信してください。
 
 ## 自動アプリケーション識別
 
-以下のものに基づいて自動アプリケーションの識別を設定することができます:
+以下の方法に基づいて自動的なアプリケーション識別を設定できます：
 
 * 特定のリクエストヘッダー
-* `map` NGINXディレクティブを使用した特定のリクエストヘッダーやURLの一部 
+* `map` NGINXディレクティブを使用した特定のリクエストヘッダーまたはURLの一部
 
-!!! info "NGINXのみ"
-    上記のアプローチは、NGINXベースのノード展開にのみ適用されます。
+!!! info "NGINX限定"
+    記載のアプローチはNGINXベースのセルフホストノード展開の場合にのみ適用されます。
 
-### 特定のリクエストヘッダーに基づくアプリケーションの識別
+### 特定のリクエストヘッダーに基づくアプリケーション識別
 
-このアプリーケーションには2つのステップが含まれています:
+このアプローチは2つのステップで構成されます：
 
-1. ネットワークを設定して、各リクエストにアプリケーションIDが含まれるヘッダーが追加されるようにします。
-1. このヘッダーの値を `wallarm_application` ディレクティブの値として使用します。以下の例をご覧ください。
+1. 各リクエストにアプリケーションIDを含むヘッダーが追加されるよう、ネットワークを構成します。
+1. このヘッダーの値を `wallarm_application` ディレクティブの値として使用します。以下の例を参照してください。
 
-NGINX設定ファイル(`/etc/nginx/default.conf`)の例:
+NGINX構成ファイルの例：
 
 ```
 server {
@@ -68,24 +68,24 @@ server {
 }    
 ```
 
-攻撃リクエストの例:
+攻撃リクエストの例：
 
 ```
 curl -H "Cookie: SESSID='UNION SELECT SLEEP(5)-- -" -H "CUSTOM-ID: 222" http://example.com
 ```
 
-このリクエストでは、以下の操作を実行します:
+このリクエストは以下を行います：
 
-* 攻撃と見なされ、**イベント**セクションに追加されます。
-* ID `222` のアプリケーションと関連付けられます。
-* 対応するアプリケーションが存在しない場合、**設定**　→　**アプリケーション**に追加され、自動的に `アプリケーション #222` と命名されます。
+* 攻撃と見なされ、**Attacks** セクションに追加されます。
+* ID `222` のアプリケーションに関連付けられます。
+* 該当アプリケーションが存在しない場合、**Settings** → **Applications** に追加され、自動的に `Application #222` と命名されます。
 
-![特定のリクエストヘッダーに基づくアプリケーションの追加](../../images/user-guides/settings/configure-app-auto-header.png)
+![Adding an application on the base of header request](../../images/user-guides/settings/configure-app-auto-header.png)
 
-### `map` NGINXディレクティブを使用した特定のリクエストヘッダーまたはURLの一部に基づいてアプリケーションを特定 
+### `map` NGINXディレクティブを使用した特定のリクエストヘッダーまたはURLの一部に基づくアプリケーション識別
 
-`map` NGINXディレクティブを使用して特定のリクエストヘッダーまたはエンドポイントURLの一部に基づいてアプリケーションを追加することができます。ディレクティブの詳細な説明はNGINXの[ドキュメンテーション](https://nginx.org/en/docs/http/ngx_http_map_module.html#map)を参照してください。
+`map` NGINXディレクティブを使用して、特定のリクエストヘッダーまたはエンドポイントURLの一部に基づいてアプリケーションを追加できます。ディレクティブの詳細な説明についてはNGINX [documentation](https://nginx.org/en/docs/http/ngx_http_map_module.html#map)を参照してください。
 
 ## アプリケーションの削除
 
-アプリケーションをWallarmシステムから削除するには、ノード設定ファイルから適切なディレクティブを削除します。もしアプリケーションが **設定**　→　**アプリケーション**の欄からだけ削除された場合は、リストに再び表示されます。
+Wallarmシステムからアプリケーションを削除するには、ノード構成ファイルから該当するディレクティブを削除します。**Settings** → **Applications** セクションからのみ削除された場合、リストに再表示されます。

@@ -1,0 +1,1 @@
+--8<-- "latest-ja/api-discovery/sensitive-data.md"

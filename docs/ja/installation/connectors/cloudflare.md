@@ -1,6 +1,1 @@
----
-search:
-  exclude: true
----
-
---8<-- "latest/installation/connectors/cloudflare.md"
+--8<-- "latest-ja/installation/connectors/cloudflare.md"
