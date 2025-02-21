@@ -1,8 +1,8 @@
 # Wallarm Platform Overview
 
-In today's digital world, applications, particularly APIs, face growing threats. Traditional security can overlook API vulnerabilities or have deployment issues. With Wallarm, you get a singular platform for Web Application and API Protection, suitable for cloud-native and on-prem environments.
+In today's digital world, APIs face growing threats, especially with the rise of AI. Traditional security can overlook API vulnerabilities or be difficult to deploy. With Wallarm, you get a single platform for API protection and inventory observability across cloud-native and on-prem environments.
 
-Enterprises prefer Wallarm for its enhanced application and API security, easy deployment, and value. It combines top API discovery, risk management, protection, and testing with cloud-native WAAP and API security capabilities.
+Enterprises prefer Wallarm for its enhanced API security, easy deployment, and value. It combines API discovery, risk management, real-time protection, and testing with advanced API security capabilities.
 
 ![Diagram](../images/about-wallarm-waf/overview/wallarm-features.png)
 
