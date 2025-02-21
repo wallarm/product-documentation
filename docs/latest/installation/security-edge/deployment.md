@@ -122,7 +122,7 @@ The below example configuration customizes settings per path to meet specific ne
 
 ### 4. (Optional) Admin settings
 
-In the **Admin settings** section, you can:
+In the **Admin settings** section, you choose a node version and sepecify upgrade settings:
 
 * Select the Edge node version to deploy. The latest available version is deployed by default.
 
@@ -147,9 +147,10 @@ DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node d
 
 ### 6. CNAME configuration for traffic routing
 
-Once the certificate CNAME is verified (~10 minutes), a **Traffic CNAME** will be available for each host on the **Hosts** tab of the Edge node page. Copy it and update your DNS settings to route traffic to Wallarm.
+To route traffic to Wallarm, you need to specify the Wallarm-provided CNAME in your DNS settings:
 
-If no certificate has been issued, the **Traffic CNAME** will be provided immediately after the configuration is complete.
+* Once the certificate CNAME is verified (~10 minutes), a **Traffic CNAME** will be available for each host on the **Hosts** tab of the Edge node page.
+* If no certificate has been issued, the **Proxy target** will be provided immediately after the configuration is complete.
 
 ![!](../../images/waf-installation/security-edge/inline/host-traffic-cname.png)
 
@@ -195,7 +196,7 @@ The Edge node section provides real-time statuses of the deployment and configur
     ![!](../../images/waf-installation/security-edge/inline/region-statuses.png)
 
 * **Pending cert CNAME**: Waiting for the certificate CNAME records to be added to DNS for certificate issuance (if applicable).
-* **Pending traffic CNAME**: The deployment is complete, awaiting the addition of the traffic CNAME record to route traffic to the Edge node.
+* **Pending traffic CNAME**: The deployment is complete, awaiting the addition of the traffic CNAME or proxy target record to route traffic to the Edge node.
 * **Deploying**: The Edge node is currently being set up and will be available soon.
 * **Active**: The Edge node is fully operational and filtering traffic as configured.
 * **Cert CNAME error**: There was an issue verifying the certificate CNAME in DNS. Please check that the CNAME is correctly configured (if applicable).
