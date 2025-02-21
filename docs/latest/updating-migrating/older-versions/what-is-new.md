@@ -150,7 +150,7 @@ Wallarm detects new attack types:
     During a Mass Assignment attack, attackers try to bind HTTP request parameters into program code variables or objects. If an API is vulnerable and allows binding, attackers may change sensitive object properties that are not intended to be exposed, which could lead to privilege escalation, bypassing security mechanisms, and more.
 * [SSRF](../../attacks-vulns-list.md#serverside-request-forgery-ssrf)
 
-    A successful SSRF attack may allow an attacker to make requests on behalf of the attacked web server; this potentially leads to revealing the web application's network ports in use, scanning the internal networks, and bypassing authorization.
+    A successful SSRF attack may allow an attacker to make requests on behalf of the attacked web server; this potentially leads to revealing the network ports in use, scanning the internal networks, and bypassing authorization.
 
 ## Sensitive business flows in API Discovery and API Sessions
 
