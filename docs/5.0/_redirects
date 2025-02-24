@@ -868,3 +868,14 @@
 /ja/installation/inline/kubernetes/kong-ingress-controller/* /ja/installation/connectors/kong-api-gateway/
 /pt-br/installation/kubernetes/kong-ingress-controller/* /pt-br/installation/connectors/kong-api-gateway/
 /pt-br/installation/inline/kubernetes/kong-ingress-controller/* /pt-br/installation/connectors/kong-api-gateway/
+
+/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /installation/multi-tenant/overview/
+/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /installation/multi-tenant/overview/
+/4.10/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /4.10/installation/multi-tenant/overview/
+/4.10/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /4.10/installation/multi-tenant/overview/
+/4.8/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /4.8/installation/multi-tenant/overview/
+/4.8/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /4.8/installation/multi-tenant/overview/
+/3.6/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /3.6/installation/multi-tenant/overview/
+/3.6/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /3.6/installation/multi-tenant/overview/
+/2.18/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /2.18/installation/multi-tenant/overview/
+/2.18/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /2.18/installation/multi-tenant/overview/
