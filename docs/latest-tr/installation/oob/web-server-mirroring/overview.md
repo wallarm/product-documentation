@@ -13,7 +13,6 @@ Wallarm'ı, bir trafik aynasını analiz etmek üzere dağıtıp yapılandırmak
 1. Aşağıdaki yöntemlerden biriyle Wallarm düğümünü altyapınıza dağıtın:
 
     * [all-in-one yükleyicisi ile Linux işletim sistemine sahip bir makinede](linux/all-in-one.md)
-    * [Terraform modülü kullanarak AWS'ye](../terraform-module/mirroring-by-web-server.md)
     * [Machine Image kullanarak AWS'ye](aws-ami.md)
     * [Machine Image kullanarak GCP'ye](gcp-machine-image.md)
     * [NGINX tabanlı Docker imajı kullanarak konteyner tabanlı bir ortama](docker-image.md)

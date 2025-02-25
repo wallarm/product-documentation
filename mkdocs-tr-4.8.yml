@@ -133,9 +133,7 @@ nav:
       - NGINX, Envoy ve Benzeri ile Aynılaştırma:
         - Genel Bakış: installation/oob/web-server-mirroring/overview.md
         - Kamu Bulutları:
-          - AWS: 
-            - AMI: installation/oob/web-server-mirroring/aws-ami.md
-            - Terraform Modülü: installation/oob/terraform-module/mirroring-by-web-server.md
+          - AWS AMI: installation/oob/web-server-mirroring/aws-ami.md
           - GCP: 
             - Makine Görüntüsü: installation/oob/web-server-mirroring/gcp-machine-image.md
         - Docker: installation/oob/web-server-mirroring/docker-image.md

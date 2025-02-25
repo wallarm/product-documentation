@@ -13,7 +13,6 @@
 1. 以下のいずれかの方法で、Wallarmノードをインフラストラクチャにデプロイします:
 
     * [Linux OS搭載マシンでのall-in-oneインストーラーによるデプロイ](linux/all-in-one.md)
-    * [Terraformモジュールを使用してAWSへデプロイ](../terraform-module/mirroring-by-web-server.md)
     * [Machine Imageを利用してAWSへデプロイ](aws-ami.md)
     * [Machine Imageを使用してGCPへデプロイ](gcp-machine-image.md)
     * [NGINXベースのDockerイメージを使用してコンテナ環境へデプロイ](docker-image.md)

@@ -181,9 +181,7 @@ nav:
         - Overview: installation/oob/web-server-mirroring/overview.md
         - All-in-one installer: installation/oob/web-server-mirroring/linux/all-in-one.md
         - Public Clouds:
-          - AWS:
-            - AMI: installation/oob/web-server-mirroring/aws-ami.md
-            - Terraform Module: installation/oob/terraform-module/mirroring-by-web-server.md
+          - AWS AMI: installation/oob/web-server-mirroring/aws-ami.md
           - GCP:
             - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
         - Docker: installation/oob/web-server-mirroring/docker-image.md

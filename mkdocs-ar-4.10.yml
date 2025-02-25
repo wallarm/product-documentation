@@ -155,9 +155,7 @@ nav:
       - المرآة بواسطة NGINX, Envoy ومماثلة:
         - نظرة عامة: installation/oob/web-server-mirroring/overview.md
         - الغيوم العامة:
-          - AWS:
-            - AMI: installation/oob/web-server-mirroring/aws-ami.md
-            - وحدة Terraform: installation/oob/terraform-module/mirroring-by-web-server.md
+          - AWS AMI: installation/oob/web-server-mirroring/aws-ami.md
           - GCP:
             - صورة الجهاز: installation/oob/web-server-mirroring/gcp-machine-image.md
         - Docker: installation/oob/web-server-mirroring/docker-image.md

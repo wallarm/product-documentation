@@ -12,7 +12,6 @@ To deploy and configure Wallarm to analyze a traffic mirror, you need to:
 
 1. Deploy the Wallarm node to your infrastructure by one of the following methods:
 
-    * [To AWS using the Terraform module](../terraform-module/mirroring-by-web-server.md)
     * [To AWS using the Machine Image](aws-ami.md)
     * [To GCP using the Machine Image](gcp-machine-image.md)
 

@@ -12,7 +12,6 @@ Para implantar e configurar o Wallarm para analisar um espelho de tráfego, voc�
 
 1. Implantar o nó Wallarm na sua infraestrutura por um dos seguintes métodos:
 
-    * [Para AWS usando o módulo Terraform](../terraform-module/mirroring-by-web-server.md)
     * [Para AWS usando a Imagem de Máquina](aws-ami.md)
     * [Para GCP usando a Imagem de Máquina](gcp-machine-image.md)
 

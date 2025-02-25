@@ -178,9 +178,7 @@ nav:
       - Mirroring by NGINX, Envoy and Similar:
         - Overview: installation/oob/web-server-mirroring/overview.md
         - Public Clouds:
-          - AWS:
-            - AMI: installation/oob/web-server-mirroring/aws-ami.md
-            - Terraform Module: installation/oob/terraform-module/mirroring-by-web-server.md
+          - AWS AMI: installation/oob/web-server-mirroring/aws-ami.md
           - GCP:
             - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
         - Docker: installation/oob/web-server-mirroring/docker-image.md

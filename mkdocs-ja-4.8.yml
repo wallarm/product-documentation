@@ -127,9 +127,7 @@ nav:
       - NGINX, Envoy, and Similarsによるミラーリング:
         - 概要: installation/oob/web-server-mirroring/overview.md
         - 公開クラウド:
-          - AWS:
-            - AMI: installation/oob/web-server-mirroring/aws-ami.md
-            - Terraformモジュール: installation/oob/terraform-module/mirroring-by-web-server.md
+          - AWS AMI: installation/oob/web-server-mirroring/aws-ami.md
           - GCP:
             - マシンイメージ: installation/oob/web-server-mirroring/gcp-machine-image.md
         - Docker: installation/oob/web-server-mirroring/docker-image.md

@@ -12,7 +12,6 @@
 
 1. نشر عقدة Wallarm في بنية التحتية الخاصة بك باستخدام واحدة من الطرق التالية:
 
-    * [إلى AWS باستخدام وحدة Terraform](../terraform-module/mirroring-by-web-server.md)
     * [إلى AWS باستخدام صورة الجهاز](aws-ami.md)
     * [إلى GCP باستخدام صورة الجهاز](gcp-machine-image.md)
 
