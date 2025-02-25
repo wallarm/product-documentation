@@ -17,12 +17,9 @@ Security Edge service provides a secure cloud environment where Wallarm nodes ar
 
 ## Limitations
 
-* Currently, the Edge inline node supports only direct, Internet-facing deployment. It cannot operate behind a third-party service, such as a CDN or DDoS protection provider (e.g., Cloudflare, Akamai), that routes traffic.
 * Only third-level or higher domains are supported (e.g., instead `domain.com` use `www.domain.com`).
 * Only domains shorter than 64 characters are supported.
 * Only HTTPS traffic is supported; HTTP is not allowed.
-* Certificate CNAME records must be added to initiate the Edge node deployment.
-* If the certificate CNAME is not added within 14 days, the node deployment will fail.
 
 ## Configuring the Edge Inline
 
@@ -84,9 +81,12 @@ Later, when adding hosts for traffic analysis and filtering, you will assign eac
 
 ### 2. Certificates
 
-To securely direct traffic to your origins, Wallarm needs to obtain certificates for your domains. These certificates will be issued based on the DNS zones you specify in the **Certificates** section.
+In the **Certificates** section, you can obtain certificates for your domains:
 
-Once configuration is complete, Wallarm will provide a CNAME for each DNS zone. Add this CNAME record to your DNS settings to verify domain ownership and complete the certificate issuance process.
+* If the Edge Inline node is deployed as a direct, Internet-facing solution, Wallarm requires certificates to securely route traffic to your origin servers. Certificates are issued based on the DNS zones specified in this section.
+
+    Once configuration is complete, Wallarm provides a CNAME for each DNS zone. Add this CNAME record to your DNS settings to verify domain ownership and complete the certificate issuance process.
+* If your origin servers are behind a third-party service (e.g., a CDN or a DDoS protection provider like Cloudflare or Akamai) that proxies traffic, certificate issuance is not required. In this case, select the **Skip certificate issuance** option.
 
 ![!](../../images/waf-installation/security-edge/inline/certificates.png)
 
@@ -94,7 +94,7 @@ Once configuration is complete, Wallarm will provide a CNAME for each DNS zone. 
 
 In the **Hosts** section:
 
-1. Specify the domains and ports or optional subdomains that will direct traffic to the Wallarm node for analysis. Each host entry must match a DNS zone previously defined in **Certificates**.
+1. Specify the domains, ports and subdomains that will direct traffic to the Wallarm node for analysis. Each host entry must match a DNS zone previously defined in **Certificates** (if applicable).
 
     ??? info "Allowed ports"
         Directing traffic from HTTP ports to the Edge node is not allowed. The following ports are supported:
@@ -122,9 +122,9 @@ The below example configuration customizes settings per path to meet specific ne
 
 ### 4. (Optional) Admin settings
 
-In the **Admin settings** section, you can:
+In the **Admin settings** section, you choose a node version and sepecify upgrade settings:
 
-* Select the Edge node version to deploy. If not selected explicitly, the latest available version is deployed automatically.
+* Select the Edge node version to deploy. The latest available version is deployed by default.
 
     For the changelog of versions, refer to the [article](../../updating-migrating/node-artifact-versions.md#all-in-one-installer). The Edge node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge node version indicates minor changes.
 * Enable [Auto update](#upgrading-the-edge-inline) if needed.
@@ -133,7 +133,7 @@ In the **Admin settings** section, you can:
 
 ### 5. Certificate CNAME configuration
 
-After configuration is finished, add the CNAME records provided in the Wallarm Console to your DNS provider's settings for each DNS zone. These records are required for Wallarm to verify domain ownership and issue certificates.
+If DNS zones are specified in the **Certificates** section, add the CNAME records provided in the Wallarm Console to your DNS provider's settings for each DNS zone. These records are required for Wallarm to verify domain ownership and issue certificates.
 
 ![](../../images/waf-installation/security-edge/inline/cert-cname.png)
 
@@ -147,7 +147,10 @@ DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node d
 
 ### 6. CNAME configuration for traffic routing
 
-Once the certificate CNAME is verified (~10 minutes), a **Traffic CNAME** will be available for each host on the **Hosts** tab of the Edge node page. Copy it and update your DNS settings to route traffic to Wallarm.
+To route traffic to Wallarm, you need to specify the Wallarm-provided CNAME in your DNS settings:
+
+* Once the certificate CNAME is verified (~10 minutes), a **Traffic CNAME** will be available for each host on the **Hosts** tab of the Edge node page.
+* If no certificate has been issued, the **Proxy target** will be provided immediately after the configuration is complete.
 
 ![!](../../images/waf-installation/security-edge/inline/host-traffic-cname.png)
 
@@ -192,10 +195,12 @@ The Edge node section provides real-time statuses of the deployment and configur
 === "Regions"
     ![!](../../images/waf-installation/security-edge/inline/region-statuses.png)
 
-* **Pending cert CNAME**: Waiting for the certificate CNAME records to be added to DNS for certificate issuance.
-* **Pending traffic CNAME**: The deployment is complete, awaiting the addition of the traffic CNAME record to route traffic to the Edge node.
+* **Pending cert CNAME**: Waiting for the certificate CNAME records to be added to DNS for certificate issuance (if applicable).
+* **Pending traffic CNAME**: The deployment is complete, awaiting the addition of the traffic CNAME or proxy target record to route traffic to the Edge node.
 * **Deploying**: The Edge node is currently being set up and will be available soon.
 * **Active**: The Edge node is fully operational and filtering traffic as configured.
-* **Cert CNAME error**: There was an issue verifying the certificate CNAME in DNS. Please check that the CNAME is correctly configured.
+* **Cert CNAME error**: There was an issue verifying the certificate CNAME in DNS. Please check that the CNAME is correctly configured (if applicable).
 * **Deployment failed**: The Edge node deployment did not succeed, e.g. due to the certificate CNAME not added within 14 days. Check configuration settings and try to redeploy or contact the [Wallarm Support team](https://support.wallarm.com) to get help.
 * **Degraded**: The Edge node is active in the region but may have limited functionality or be experiencing minor issues. Please contact the [Wallarm Support team](https://support.wallarm.com) to get help.
+
+RPS and request amount per hosts and origins are returned starting from the [version](../../updating-migrating/node-artifact-versions.md#all-in-one-installer) 5.3.0.
