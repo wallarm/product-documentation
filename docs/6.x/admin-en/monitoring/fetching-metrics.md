@@ -1,0 +1,1 @@
+--8<-- "latest/admin-en/monitoring/fetching-metrics.md"

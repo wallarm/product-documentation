@@ -1,0 +1,1 @@
+--8<-- "latest/fast/poc/examples/bamboo-cimode.md"

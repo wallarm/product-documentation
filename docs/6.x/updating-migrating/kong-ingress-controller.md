@@ -1,0 +1,1 @@
+--8<-- "latest/updating-migrating/kong-ingress-controller.md"
