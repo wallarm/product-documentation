@@ -145,7 +145,6 @@ nav:
         - Terraformモジュール:
           - AWS VPCのプロキシ: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
           - Amazon API Gatewayのプロキシ: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
-          - NGINX, Envoy, etc.ミラーリングの場合のOOB: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
       - Google Cloud:
         - マシンイメージ: installation/cloud-platforms/gcp/machine-image.md
         - GCE: installation/cloud-platforms/gcp/docker-container.md

@@ -147,7 +147,6 @@ nav:
         - Terraform Modülü:
           - AWS VPC'deki Proxy: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
           - Amazon API Gateway için Proxy: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
-          - OOB NGINX, Envoy, vb. Aynılaştırma: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
       - Google Cloud:
         - Makine Görüntüsü: installation/cloud-platforms/gcp/machine-image.md
         - GCE: installation/cloud-platforms/gcp/docker-container.md

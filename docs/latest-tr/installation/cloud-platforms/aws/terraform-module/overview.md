@@ -101,7 +101,6 @@ Wallarm modülünü kullanmanın farklı yollarına dair örnekler hazırladık,
 
 * [AWS VPC'de Proxy](proxy-in-aws-vpc.md)
 * [Amazon API Gateway için Proxy](proxy-for-aws-api-gateway.md)
-* [NGINX, Envoy veya benzer aynalama için OOB](oob-for-web-server-mirroring.md)
 
 ## Wallarm ve Terraform Hakkında Daha Fazla Bilgi
 

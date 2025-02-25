@@ -98,7 +98,6 @@ We have prepared examples of different ways to use the Wallarm module, so you co
 
 * [Proxy in AWS VPC](proxy-in-aws-vpc.md)
 * [Proxy for Amazon API Gateway](proxy-for-aws-api-gateway.md)
-* [OOB for NGINX, Envoy or Similar Mirroring](oob-for-web-server-mirroring.md)
 
 ## Further information about Wallarm and Terraform
 

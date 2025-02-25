@@ -173,7 +173,6 @@ nav:
         - وحدة Terraform:
           - الوكيل في VPC AWS: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
           - الوكيل لـ Amazon API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
-          - OOB للمرآة NGINX, Envoy, etc.: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
       - Google Cloud:
         - صورة الجهاز: installation/cloud-platforms/gcp/machine-image.md
         - GCE: installation/cloud-platforms/gcp/docker-container.md

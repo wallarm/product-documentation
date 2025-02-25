@@ -156,7 +156,6 @@ nav:
         - Módulo Terraform:
           - Proxy no AWS VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
           - Proxy para Amazon API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
-          - OOB para NGINX, Envoy, etc. Espelhamento: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
       - Google Cloud:
         - Imagem de Máquina: installation/cloud-platforms/gcp/machine-image.md
         - GCE: installation/cloud-platforms/gcp/docker-container.md

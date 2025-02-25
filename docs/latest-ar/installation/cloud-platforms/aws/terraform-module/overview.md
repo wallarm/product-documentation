@@ -98,7 +98,6 @@
 
 * [Proxy في AWS VPC](proxy-in-aws-vpc.md)
 * [Proxy لـ Amazon API Gateway](proxy-for-aws-api-gateway.md)
-* [OOB لـ NGINX، Envoy أو أمثالهم مع التطابق](oob-for-web-server-mirroring.md)
 
 ## معلومات إضافية حول Wallarm و Terraform
 
