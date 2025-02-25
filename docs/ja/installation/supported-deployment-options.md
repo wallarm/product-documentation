@@ -132,11 +132,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Proxy for Amazon API Gateway</h3>
             <p>Wallarm as proxy for Amazon API Gateway protection</p>
         </a>
-
-        <a class="do-card" href="../../installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring/">
-            <h3>OOB for NGINX, Envoy and similar mirroring</h3>
-            <p>Wallarm OOB for traffic mirrored by NGINX, Envoy and similar in AWS</p>
-        </a>
     </div>
 
     <div class="do-nested" data-for="public-clouds-gcp">
