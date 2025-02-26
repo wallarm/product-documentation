@@ -12,6 +12,7 @@ WORKDIR /docs
 COPY . .
 
 FROM latest as all
+RUN mkdocs build -f mkdocs-6.x.yml
 RUN mkdocs build -f mkdocs-5.0.yml
 RUN mkdocs build -f mkdocs-4.10.yml
 RUN mkdocs build -f mkdocs-deprecated.yml
@@ -41,6 +42,7 @@ CMD ["nginx", "-g", "daemon off;"]
 # COPY . .
 
 # FROM latest as all
+# RUN INSIDERS=true mkdocs build -f mkdocs-6.x.yml
 # RUN INSIDERS=true mkdocs build -f mkdocs-5.0.yml
 # RUN INSIDERS=true mkdocs build -f mkdocs-4.10.yml
 # RUN INSIDERS=true mkdocs build -f mkdocs-deprecated.yml

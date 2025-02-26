@@ -5,7 +5,7 @@ theme:
   versionNative: "0.x"
 
 docs_dir: docs/5.0
-site_dir: site
+site_dir: site/5.x
 
 nav:
   - Quick Start:
