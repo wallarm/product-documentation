@@ -21,7 +21,7 @@
 ## 推奨されるオンボーディングステップに従う
 
 1. 利用可能な[Wallarmノードのデプロイメントオプション](../installation/supported-deployment-options.md)について学びます。
-2. 必要に応じて、[各環境ごとに個別に管理可能なWallarmノードの設定](../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)について学びます。
+2. 必要に応じて、[各環境ごとに個別に管理可能なWallarmノードの設定](../installation/multi-tenant/overview.md#issues-addressed-by-multitenancy)について学びます。
 3. まず、[operation mode](../admin-en/configure-wallarm-mode.md)が`monitoring`に設定された状態で、Wallarmフィルタリングノードを非本番環境にデプロイします。
 4. Wallarmソリューションの運用、スケールおよび監視方法について学び、新しいネットワークコンポーネントの安定性を確認します。
 5. 本番環境においても、[operation mode](../admin-en/configure-wallarm-mode.md)を`monitoring`に設定した状態でWallarmフィルタリングノードをデプロイします。

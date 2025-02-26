@@ -92,15 +92,7 @@ You can add the applications on the base of specific request header or part of e
 Once you have your applications set up, you can view separately:
 
 * [Attacks](../../user-guides/events/check-attack.md) and [incidents](../../user-guides/events/check-incident.md) only for the application of your interest
-* [API sessions](../../api-sessions/overview.md) related only to the application of your interest
 * Statistics on [dashboards](../../user-guides/dashboards/threat-prevention.md) related only to the application of your interest
-
-<div>
-  <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
-  <div class="sl-embed" style="position:relative;padding-bottom:calc(61.23% + 25px);width:100%;height:0;transform:scale(1)">
-    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/njvywcvjddzd?embed=inline" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
-  </div>
-</div>
 
 ## Configuring Wallarm features by application
 
