@@ -1,7 +1,6 @@
 ```markdown
 [doc-wallarm-mode]:           ../../../admin-en/configure-parameters-en.md#wallarm_mode
 [doc-config-params]:          ../../../admin-en/configure-parameters-en.md
-[doc-monitoring]:             ../../../admin-en/monitoring/intro.md
 [waf-mode-instr]:                   ../../../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../../admin-en/using-proxy-or-balancer-en.md
@@ -144,22 +143,6 @@ Günlük kaydı varsayılan olarak etkinleştirilmiştir. Günlük dizinleri şu
 
 * `/var/log/nginx` — NGINX günlükleri
 * `/opt/wallarm/var/log/wallarm` — [Wallarm node logs][logging-instr]
-
-## İzleme Yapılandırması
-
-Filtreleme düğümünü izlemek için, konteyner içinde Nagios uyumlu betikler bulunmaktadır. Ayrıntılar için [Monitoring the filtering node][doc-monitoring]'ye bakın.
-
-Betiklerin çalıştırılmasına ilişkin örnek:
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_tarantool_timeframe -w 1800 -c 900
-```
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_export_delay -w 120 -c 300
-```
-
-* `<WALLARM_NODE_CONTAINER_ID>`, çalışan Wallarm Docker konteynerinin ID'sidir. ID'yi almak için `docker ps` komutunu çalıştırın ve uygun ID'yi kopyalayın.
 
 ## Kullanım Senaryolarının Yapılandırılması
 

@@ -129,22 +129,6 @@ Para configurar a geração estendida de logs das variáveis do nó de filtragem
 
 Por padrão, os logs giram a cada 24 horas. Para configurar a rotação de log, altere os arquivos de configuração em `/etc/logrotate.d/`. A alteração dos parâmetros de rotação por meio de variáveis de ambiente não é possível.
 
-## Configuração de monitoramento
-
-Para monitorar o nó de filtragem, existem scripts compatíveis com o Nagios dentro do contêiner. Veja os detalhes em [Monitorando o nó de filtragem][doc-monitoring].
-
-Exemplo de execução dos scripts:
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_tarantool_timeframe -w 1800 -c 900
-```
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_export_delay -w 120 -c 300
-```
-
-* `<WALLARM_NODE_CONTAINER_ID>` é o ID do contêiner Docker Wallarm em execução. Para obter o ID, execute `docker ps` e copie o ID adequado.
-
 ## Testando a operação do nó Wallarm
 
 --8<-- "../include-pt-BR/waf/installation/test-waf-operation-no-stats.md"

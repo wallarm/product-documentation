@@ -20,7 +20,7 @@ Wallarm modüllerini daha fazla ayıklamak için:
 
     `<FILTERING_NODE_IP>` ifadesini kontrol etmek istediğiniz filtreleme düğümünün IP adresi ile değiştirin. Gerekirse, komuta `Host:` başlığını ekleyin.
 1. Saldırıların Wallarm Console → **Attacks** bölümünde görünmesi için 2 dakikaya kadar bekleyin. Eğer 100 isteğin tamamı görünüyorsa, filtreleme düğümü düzgün çalışıyor demektir.
-1. Filtreleme düğümünün yüklü olduğu sunucuya bağlanın ve [düğüm metriklerini](../admin-en/monitoring/intro.md) alın:
+1. Filtreleme düğümünün yüklü olduğu sunucuya bağlanın ve [düğüm metriklerini](../admin-en/configure-statistics-service.md) alın:
 
     ```bash
     curl http://127.0.0.8/wallarm-status

@@ -1,11 +1,9 @@
 [link-selinux]:     https://www.redhat.com/en/topics/linux/what-is-selinux
-[doc-monitoring]:   monitoring/intro.md
 
 # تكوين SELinux
 
 إذا كان نظام SELinux مُفعلًا على مضيف بوجود عقدة تصفية، قد يتداخل ذلك مع عمل عقدة التصفية مما يجعلها غير قابلة للعمل:
 * لن يتم تصدير قيم RPS (طلبات بالثانية) وAPS (هجمات بالثانية) الخاصة بعقدة التصفية إلى سحابة Wallarm.
-* لن يكون من الممكن تصدير مقاييس عقدة التصفية إلى أنظمة المراقبة عبر بروتوكول TCP (انظر ["مراقبة عقدة التصفية"][doc-monitoring]).
 
 يتم تثبيت SELinux وتفعيله بشكل افتراضي على توزيعات لينكس القائمة على RedHat (مثل CentOS أو Amazon Linux 2.0.2021x والأقل). يمكن أيضا تثبيت SELinux على توزيعات لينكس أخرى، مثل Debian أو Ubuntu.
 

@@ -1,11 +1,9 @@
 [link-selinux]:     https://www.redhat.com/en/topics/linux/what-is-selinux
-[doc-monitoring]:   monitoring/intro.md
 
 # Configurando o SELinux
 
 Se o mecanismo [SELinux][link-selinux] estiver ativado em um host com um nó de filtro, ele pode interferir no nó de filtro, tornando-o inoperante:
 * Os valores de RPS (solicitações por segundo) e APS (ataques por segundo) do nó de filtro não serão exportados para a nuvem Wallarm.
-* Não será possível exportar métricas do nó de filtro para sistemas de monitoramento por meio do protocolo TCP (veja [“Monitorando o Nó de Filtro”][doc-monitoring]).
 
 
 O SELinux é instalado e ativado por padrão em distribuições Linux baseadas em RedHat (por exemplo, CentOS ou Amazon Linux 2.0.2021x e inferior). O SELinux também pode ser instalado em outras distribuições Linux, como Debian ou Ubuntu.

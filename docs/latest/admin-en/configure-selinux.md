@@ -1,5 +1,4 @@
 [link-selinux]:     https://www.redhat.com/en/topics/linux/what-is-selinux
-[doc-monitoring]:   monitoring/intro.md
 
 # SELinux Troubleshooting
 
@@ -22,7 +21,6 @@ This means, in most cases there will be no problems caused by SELinux.
 If after [automatic configuration](#automatic-configuration) you still experience the problems that can be caused by SeLinux:
 
 * The filter node's RPS (requests per second) and APS (attacks per second) values will not be exported to the Wallarm cloud.
-* It will not be possible to export filter node metrics to monitoring systems via the TCP protocol (see [“Monitoring the Filter Node”][doc-monitoring]).
 * Other possible problems.
 
 Do the following:

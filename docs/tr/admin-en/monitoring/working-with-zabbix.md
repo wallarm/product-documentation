@@ -1,1 +1,0 @@
---8<-- "latest-tr/admin-en/monitoring/working-with-zabbix.md"

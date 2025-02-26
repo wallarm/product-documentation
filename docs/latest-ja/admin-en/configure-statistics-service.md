@@ -92,26 +92,6 @@ allow 127.0.0.0/8;
     ...
     status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
     ```
-1. [`collectd`](monitoring/intro.md)設定ファイル内の`URL`パラメータを適切に修正してください。このファイルの場所は、使用しているOSやインストール方法によって異なります:
-
-    === "DEBベースのディストリビューション"
-        ```bash
-        /etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-
-        # all-in-oneインストーラーの場合:
-        /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-        ```
-    === "RPMベースのディストリビューション"
-        ```bash
-        /etc/wallarm-collectd.d/nginx-wallarm.conf
-
-        # all-in-oneインストーラーの場合:
-        /opt/wallarm/etc/wallarm-collectd.d/nginx-wallarm.conf
-        ```
-    === "AMI、GCPイメージ、またはDockerイメージ"
-        ```bash
-        /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-        ```
 1. 変更を反映するため、NGINXを再起動してください:
 
     --8<-- "../include/waf/restart-nginx-4.4-and-above.md"

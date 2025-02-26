@@ -52,11 +52,10 @@
 
 ## قم بتمكين المراقبة السليمة لعقد الترشيح
 
-من القدر العالي من الأفضلية تمكين المراقبة الصحيحة لعقد ترشيح Wallarm. يجمع الخدمة `collectd` المثبتة مع كل عقدة ترشيح Wallarm القياسات المدرجة في ال[رابط](../admin-en/monitoring/available-metrics.md).
+من القدر العالي من الأفضلية تمكين المراقبة الصحيحة لعقد ترشيح Wallarm.
 
 طريقة إعداد مراقبة عقدة الترشيح تعتمد على خيار تنفيذها:
 
-* [تعليمات لعقد Wallarm القائمة على NGINX](../admin-en/monitoring/intro.md) (بما في ذلك صور AWS / GCP وsidecars Kubernetes)
 * [تعليمات لعقد الترشيح التي تم تنفيذها كمراقب وصول Wallarm لـ Kubernetes](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
 * [تعليمات لصورة Docker القائمة على NGINX](../admin-en/installation-docker-en.md#monitoring-configuration)
 

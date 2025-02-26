@@ -1,7 +1,6 @@
 ```markdown
 [link-nginx-logging-docs]:  https://docs.nginx.com/nginx/admin-guide/monitoring/logging/
 [doc-vuln-list]:            ../attacks-vulns-list.md
-[doc-monitor-node]:         monitoring/intro.md
 [doc-lom]:                  ../user-guides/rules/rules.md#ruleset-lifecycle
 
 # フィルタノードログの操作

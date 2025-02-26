@@ -1,6 +1,5 @@
 [doc-wallarm-mode]:           configure-parameters-en.md#wallarm_mode
 [doc-config-params]:          configure-parameters-en.md
-[doc-monitoring]:             monitoring/intro.md
 [waf-mode-instr]:                   configure-wallarm-mode.md
 [logging-instr]:                    configure-logging.md
 [proxy-balancer-instr]:             using-proxy-or-balancer-en.md

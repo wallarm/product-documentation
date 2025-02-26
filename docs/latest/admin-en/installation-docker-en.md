@@ -182,22 +182,6 @@ The logging is enabled by default. The log directories are:
 * `/var/log/nginx` — NGINX logs
 * `/opt/wallarm/var/log/wallarm` — [Wallarm node logs][logging-instr]
 
-## Monitoring configuration
-
-To monitor the filtering node, there are Nagios‑compatible scripts inside the container. See details in [Monitoring the filtering node][doc-monitoring].
-
-Example of running the scripts:
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_tarantool_timeframe -w 1800 -c 900
-```
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_export_delay -w 120 -c 300
-```
-
-* `<WALLARM_NODE_CONTAINER_ID>` is the ID of the running Wallarm Docker container. To get the ID, run `docker ps` and copy the proper ID.
-
 ## Testing Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"

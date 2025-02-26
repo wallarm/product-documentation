@@ -40,7 +40,6 @@ Desteklenen tüm [Wallarm deployment options](supported-deployment-options.md) a
 * Yüksek trafik analizi ve filtrasyonu için CDN node'larının kullanılması önerilmemektedir.
 * CDN node türünün dağıtımı, [Free tier plan](../about-wallarm/subscription-plans.md#free-tier) kapsamında desteklenmemektedir.
 * CDN node ile yalnızca üçüncü seviye (veya daha alt, örneğin 4., 5. vb.) domain'leri koruyabilirsiniz. Örneğin, `ple.example.com` için CDN node oluşturabilirsiniz, ancak `example.com` için oluşturamazsınız.
-* [`collectd` servisi](../admin-en/monitoring/intro.md) desteklenmemektedir.
 * Standart prosedürlerle doğrudan [application setup](../user-guides/settings/applications.md) yapılamamaktadır. Yapılandırma yardımı için lütfen [Wallarm support team](mailto:support@wallarm.com) ile iletişime geçin.
 * [Custom blocking pages and error codes](../admin-en/configuration-guides/configure-block-page-and-code.md) yapılandırılamamaktadır. Varsayılan olarak, CDN node engellenen istekler için 403 durum kodu döndürür.
 

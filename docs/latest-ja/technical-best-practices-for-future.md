@@ -17,11 +17,10 @@
 
 ## フィルタリングノードの適切な監視の有効化 - モニタリング手順書および技術的ベストプラクティスの両方に含める
 
-Wallarmフィルタリングノードの適切な監視を有効化することを強く推奨します。各Wallarmフィルタリングノードにインストールされる`collectd`サービスは、[こちら](../admin-en/monitoring/available-metrics.md)に記載されたメトリクスを収集します。
+Wallarmフィルタリングノードの適切な監視を有効化することを強く推奨します。
 
 フィルタリングノードの監視設定方法は、その展開オプションに依存します:
 
-* [NGINXベースのWallarmノードの手順](../admin-en/monitoring/intro.md)（AWS/GCPイメージおよびKubernetesサイドカーを含む）
 * [Wallarm Kubernetes Ingress controllerとして展開されたフィルタリングノードの手順](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
 * [NGINXベースのDockerイメージの手順](../admin-en/installation-docker-en.md#monitoring-configuration)
 

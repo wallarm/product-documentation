@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/monitoring/working-with-grafana.md"
+--8<-- "5.0/admin-en/monitoring/working-with-grafana.md"

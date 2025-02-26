@@ -31,7 +31,7 @@ What stops working:
     !!! warning "Node in-memory storage limitation"
         The size of the buffer is [limited](../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool) and when exceeded, the older data is deleted. So the amount of time the Cloud was down and the amount of information collected during this time may lead to the situation when you get in Wallarm Console only some data after the Cloud restoration.
 
-* The node collects but cannot send [metrics](../admin-en/monitoring/intro.md) for processed traffic to the Cloud.
+* The node collects but cannot send [metrics](../admin-en/configure-statistics-service.md) for processed traffic to the Cloud.
 * Scanning for the [exposed assets](../user-guides/scanner.md) and [typical vulnerabilities](../user-guides/vulnerabilities.md) will stop.
 * [Triggers](../user-guides/triggers/triggers.md) will stop working and thus:
     * [IP lists](../user-guides/ip-lists/overview.md) stop being updated.

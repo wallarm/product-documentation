@@ -1,1 +1,0 @@
---8<-- "latest-ar/admin-en/monitoring/available-metrics.md"

@@ -125,22 +125,6 @@
 * `/var/log/nginx` — سجلات NGINX
 * `/opt/wallarm/var/log/wallarm` — [سجلات عقدة Wallarm][logging-instr]
 
-## تكوين المراقبة
-
-لمراقبة عقدة التصفية، هناك سكريبتات متوافقة مع Nagios داخل الحاوية. اطلع على التفاصيل في [مراقبة عقدة التصفية][doc-monitoring].
-
-مثال على تشغيل السكريبتات:
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_tarantool_timeframe -w 1800 -c 900
-```
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_export_delay -w 120 -c 300
-```
-
-* `<WALLARM_NODE_CONTAINER_ID>` هو معرف حاوية Docker الذي يتم تشغيل Wallarm فيه. للحصول على المعرف، قم بتشغيل `docker ps` وانسخ المعرف المناسب.
-
 ## اختبار عمل عقدة Wallarm
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"

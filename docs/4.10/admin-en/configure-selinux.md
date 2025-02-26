@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configure-selinux.md"
+--8<-- "5.0/admin-en/configure-selinux.md"

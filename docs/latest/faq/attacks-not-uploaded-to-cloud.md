@@ -20,7 +20,7 @@ To perform further debugging of the Wallarm modules:
 
     Replace `<FILTERING_NODE_IP>` with a filtering node IP you want to check. If required, add the `Host:` header to the command.
 1. Wait up to 2 minutes for the attacks to appear in Wallarm Console → **Attacks**. If all 100 requests appear, the filtering node operates OK.
-1. Connect to the server with the installed filtering node and get [node metrics](../admin-en/monitoring/intro.md):
+1. Connect to the server with the installed filtering node and get [node metrics](../admin-en/configure-statistics-service.md):
 
     ```bash
     curl http://127.0.0.8/wallarm-status

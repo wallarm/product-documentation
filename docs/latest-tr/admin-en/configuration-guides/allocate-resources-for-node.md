@@ -127,8 +127,6 @@ SLAB_ALLOC_ARENA=1.0
     sudo systemctl restart wallarm-tarantool
     ```
 
-Mevcut filtreleme düğümü yükü seviyesiyle, bir Tarantool örneğinin trafik detaylarını saklayabileceği süreyi öğrenmek için, [`wallarm-tarantool/gauge-timeframe_size`](../monitoring/available-metrics.md#time-of-storing-requests-in-the-postanalytics-module-in-seconds) izleme metriğini kullanabilirsiniz.
-
 ## NGINX
 
 NGINX’in bellek tüketimi birçok faktöre bağlıdır. Ortalama olarak, aşağıdaki gibi tahmin edilebilir:

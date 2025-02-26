@@ -31,7 +31,7 @@ Ancak, nadir durumlarda Wallarm Cloud geçici olarak kapanır (örneğin, bakım
     !!! warning "Düğüm bellek içi depolama sınırlaması"
         Tampon boyutu [sınırlıdır](../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool) ve bu sınır aşıldığında eski veriler silinir. Bu nedenle, Cloud’ın kapalı kaldığı süre ve bu süre içinde toplanan bilgi miktarı, Cloud yeniden etkinleştirildikten sonra Wallarm Console’da yalnızca kısmi veriler görmenize sebep olabilir.
 
-* Düğüm, işlenen trafik için [metrics](../admin-en/monitoring/intro.md) toplayabilir fakat bunları Cloud’a gönderemez.
+* Düğüm, işlenen trafik için [metrics](../admin-en/configure-statistics-service.md) toplayabilir fakat bunları Cloud’a gönderemez.
 * Açığa çıkan [varlıklar](../user-guides/scanner.md) ve [tipik güvenlik açıkları](../user-guides/vulnerabilities.md) için tarama duracaktır.
 * [Triggers](../user-guides/triggers/triggers.md) çalışmayı durdurur ve bu nedenle:
     * [IP lists](../user-guides/ip-lists/overview.md) güncellenmeyecektir.

@@ -852,3 +852,9 @@
 /installation/oob/web-server-mirroring/gcp-machine-image/ /installation/oob/overview/#supported-deployment-options
 /installation/oob/web-server-mirroring/linux/all-in-one/ /installation/oob/overview/#supported-deployment-options
 /installation/oob/web-server-mirroring/overview/ /installation/oob/overview/#supported-deployment-options
+
+/admin-en/monitoring/* /admin-en/configure-statistics-service/
+/tr/admin-en/monitoring/* /tr/admin-en/configure-statistics-service/
+/ar/admin-en/monitoring/* /ar/admin-en/configure-statistics-service/
+/pt-br/admin-en/monitoring/* /pt-br/admin-en/configure-statistics-service/
+/ja/admin-en/monitoring/* /ja/admin-en/configure-statistics-service/

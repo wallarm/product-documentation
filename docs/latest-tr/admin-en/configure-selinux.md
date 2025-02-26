@@ -1,5 +1,4 @@
 [link-selinux]:     https://www.redhat.com/en/topics/linux/what-is-selinux
-[doc-monitoring]:   monitoring/intro.md
 
 # SELinux Sorun Giderme
 
@@ -22,7 +21,6 @@ Bu, çoğu durumda SELinux'tan kaynaklanan sorunların olmayacağı anlamına ge
 [Eğer otomatik yapılandırma](#automatic-configuration) sonrasında hâlâ SELinux'tan kaynaklanabilecek sorunlar yaşıyorsanız:
 
 * Filtre düğümünün RPS (saniyedeki istek) ve APS (saniyedeki saldırı) değerleri Wallarm Cloud'a aktarılmayacaktır.
-* Filtre düğüm metriklerini TCP protokolü aracılığıyla izleme sistemlerine aktarmak mümkün olmayacaktır (bkz. [“Monitoring the Filter Node”][doc-monitoring]).
 * Diğer olası problemler.
 
 Aşağıdakileri yapın:

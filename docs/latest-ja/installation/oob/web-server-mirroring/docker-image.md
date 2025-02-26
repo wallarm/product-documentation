@@ -1,7 +1,6 @@
 ```markdown
 [doc-wallarm-mode]:           ../../../admin-en/configure-parameters-en.md#wallarm_mode
 [doc-config-params]:          ../../../admin-en/configure-parameters-en.md
-[doc-monitoring]:             ../../../admin-en/monitoring/intro.md
 [waf-mode-instr]:                   ../../../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../../admin-en/using-proxy-or-balancer-en.md
@@ -144,22 +143,6 @@ Wallarmノードがミラーリングされたトラフィックを解析でき�
 
 * `/var/log/nginx` — NGINXログ
 * `/opt/wallarm/var/log/wallarm` — [Wallarmノードのログ][logging-instr]
-
-## 監視の設定
-
-フィルタリングノードを監視するために、コンテナ内にNagios互換のスクリプトが含まれております。[フィルタリングノードの監視][doc-monitoring]の詳細をご参照ください。
-
-スクリプト実行の例:
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_tarantool_timeframe -w 1800 -c 900
-```
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_export_delay -w 120 -c 300
-```
-
-* `<WALLARM_NODE_CONTAINER_ID>`は、実行中のWallarm DockerコンテナのIDです。IDを取得するには`docker ps`を実行し、適切なIDをコピーしてください。
 
 ## 設定ユースケースの設定
 

@@ -107,8 +107,6 @@ SLAB_ALLOC_ARENA=1.0
     sudo systemctl restart wallarm-tarantool
     ```
 
-Para aprender quanto tempo uma instância do Tarantool é capaz de manter os detalhes do tráfego com o atual nível de carga do nó de filtragem, você pode usar a métrica de monitoramento [`wallarm-tarantool/gauge-timeframe_size`](../monitoring/available-metrics.md#time-of-storing-requests-in-the-postanalytics-module-in-seconds).
-
 ## NGINX
 
 O consumo de memória do NGINX depende de muitos fatores. Em média, pode ser estimado da seguinte maneira:

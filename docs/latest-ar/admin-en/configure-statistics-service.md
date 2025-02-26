@@ -89,26 +89,6 @@ allow 127.0.0.0/8;
     ...
     status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
     ```
-1. قم بتصحيح معلمة `URL` بناءً على ذلك في ملف تكوين [`collectd`](monitoring/intro.md). موقع هذا الملف يعتمد على نظام التشغيل وطريقة التثبيت التي تستخدم:
-
-    === "توزيعات قائمة على DEB"
-        ```bash
-        /etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-
-        # بالنسبة للمثبت للكل في واحد:
-        /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-        ```
-    === "توزيعات قائمة على RPM"
-        ```bash
-        /etc/wallarm-collectd.d/nginx-wallarm.conf
-
-        # بالنسبة للمثبت للكل في واحد:
-        /opt/wallarm/etc/wallarm-collectd.d/nginx-wallarm.conf
-        ```
-    === "صورة AMI، أو صور GCP، أو صورة Docker القائمة على NGINX"
-        ```bash
-        /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-        ```
 1. أعد تشغيل NGINX لتطبيق التغييرات:
 
     --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
