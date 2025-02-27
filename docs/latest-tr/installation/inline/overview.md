@@ -89,5 +89,4 @@ Eğer konteyner orkestrasyonu için Kubernetes kullanıyorsanız, Wallarm Kubern
 Wallarm, Kubernetes üzerinde Wallarm'ı çalıştırmak için aşağıdaki bileşenleri ve çözümleri sunmaktadır:
 
 * [NGINX Ingress controller](../../admin-en/installation-kubernetes-en.md)
-* [Kong Ingress controller](../kubernetes/kong-ingress-controller/deployment.md)
 * [Sidecar controller](../kubernetes/sidecar-proxy/deployment.md)

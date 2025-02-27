@@ -75,16 +75,6 @@ Wallarmフィルタリングノードは、受信リクエストを以下のモ�
 
     フィルトレーションモードを`monitoring`に設定して、NGINXベースのIngressコントローラーでのトラフィック分析が[どのように有効になるか](../admin-en/installation-kubernetes-en.md#step-2-enabling-traffic-analysis-for-your-ingress)の例を参照してください。
 
-=== "Kong Ingressコントローラー"
-
-    Kong Ingressコントローラーの場合、`wallarm-mode`アノテーションを使用してください：
-
-    ```
-    kubectl annotate ingress <KONG_INGRESS_NAME> -n <KONG_INGRESS_NAMESPACE> wallarm.com/wallarm-mode=monitoring
-    ```
-
-    フィルトレーションモードを`monitoring`に設定して、KongベースのIngressコントローラーでのトラフィック分析が[どのように有効になるか](../installation/kubernetes/kong-ingress-controller/deployment.md#step-3-enable-traffic-analysis-for-your-ingress)の例を参照してください。
-
 === "サイドカー"
 
     Wallarm Sidecarソリューションの場合、デフォルトの`values.yaml`のWallarm固有部分で`mode`パラメータを設定してください：

@@ -109,11 +109,7 @@ nav:
       - Inline: installation/security-edge/deployment.md
       - Connectors: installation/se-connector.md
     - Kubernetes:
-      - Ingress:
-        - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
-        - Kong Ingress Controller:
-          - Deploy: installation/kubernetes/kong-ingress-controller/deployment.md
-          - Customization: installation/kubernetes/kong-ingress-controller/customization.md
+      - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
       - Sidecar:
         - Deploy: installation/kubernetes/sidecar-proxy/deployment.md
         - Customization: installation/kubernetes/sidecar-proxy/customization.md
@@ -174,9 +170,6 @@ nav:
           - Envoy-based: installation/inline/compute-instances/docker/envoy-based.md
       - Kubernetes:
         - NGINX Ingress Controller: installation/inline/kubernetes/nginx-ingress-controller.md
-        - Kong Ingress Controller:
-          - Deploy: installation/inline/kubernetes/kong-ingress-controller/deployment.md
-          - Customization: installation/inline/kubernetes/kong-ingress-controller/customization.md
         - Sidecar Controller:
           - Deploy: installation/inline/kubernetes/sidecar-proxy/deployment.md
           - Customization: installation/inline/kubernetes/sidecar-proxy/customization.md
@@ -325,7 +318,6 @@ nav:
         - Upgrading Node Installed via All-in-One Installer: updating-migrating/all-in-one.md
         - Upgrading the Wallarm Docker NGINX-Based Image: updating-migrating/docker-container.md
         - Upgrading NGINX Ingress Controller with Integrated Wallarm Modules: updating-migrating/ingress-controller.md
-        # - Upgrading Kong Ingress controller with integrated Wallarm modules: updating-migrating/kong-ingress-controller.md
         - Upgrading Wallarm Sidecar Proxy: updating-migrating/sidecar-proxy.md
         - Upgrading the Cloud Node Image: updating-migrating/cloud-image.md
         - Upgrading the Multi‑Tenant Node: updating-migrating/multi-tenant.md

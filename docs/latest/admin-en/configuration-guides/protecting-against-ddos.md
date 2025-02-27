@@ -58,4 +58,4 @@ If you are using NGINX-based Wallarm node, it is recommended to configure NGINX 
 
 [See examples of NGINX configuration and other recommendations](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus/)
 
-If you are using [Kong-based Ingress controller with Wallarm services](../../installation/kubernetes/kong-ingress-controller/deployment.md), it is recommended to follow the [best practices to secure API Gateway](https://konghq.com/learning-center/api-gateway/secure-api-gateway).
+If you are using Kong API Gateway, it is also recommended to follow the [best practices to secure API Gateway](https://konghq.com/learning-center/api-gateway/secure-api-gateway).

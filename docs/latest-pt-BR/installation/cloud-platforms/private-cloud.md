@@ -50,5 +50,4 @@ Neste modelo, você implementa Wallarm como um aparelho virtual dentro da infrae
 Se a sua nuvem privada utiliza Kubernetes para orquestração de contêineres, Wallarm pode ser implementado como uma solução nativa do Kubernetes. Ele se integra perfeitamente com os clusters Kubernetes, aproveitando recursos como controladores de entrada, contêineres auxiliares ou recursos personalizados do Kubernetes. Você pode escolher implementar o Wallarm usando uma das seguintes soluções:
 
 * [NGINX baseado no controlador Ingress](../../admin-en/installation-kubernetes-en.md)
-* [Controlador Ingress baseado em Kong](../kubernetes/kong-ingress-controller/deployment.md)
 * [Controlador Sidecar](../kubernetes/sidecar-proxy/deployment.md)

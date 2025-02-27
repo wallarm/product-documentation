@@ -56,11 +56,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>NGINX Ingress Controller</h3>
             <p>Deploy the NGINX Ingress Controller with integrated Wallarm services</p>
         </a>
-
-        <a class="do-card" href="../../installation/kubernetes/kong-ingress-controller/deployment/">
-            <h3>Kong Ingress Controller</h3>
-            <p>Deploy the Kong Ingress Controller with integrated Wallarm services</p>
-        </a>
     </div>
 </div>
 
@@ -427,11 +422,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <a class="do-card" href="../../installation/inline/kubernetes/nginx-ingress-controller/">
             <h3>NGINX Ingress Controller</h3>
             <p>Deploy the NGINX Ingress Controller with integrated Wallarm services</p>
-        </a>
-
-        <a class="do-card" href="../../installation/inline/kubernetes/kong-ingress-controller/deployment/">
-            <h3>Kong Ingress Controller</h3>
-            <p>Deploy the Kong Ingress Controller with integrated Wallarm services</p>
         </a>
 
         <a class="do-card" href="../../installation/inline/kubernetes/sidecar-proxy/deployment/">

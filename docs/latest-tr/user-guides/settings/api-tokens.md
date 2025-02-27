@@ -70,4 +70,4 @@ Bu makalede açıklanan API jetonlarını, herhangi bir istemciden ve herhangi b
 Wallarm Cloud API'ye erişen istemcilerden biri, Wallarm filtreleme node'unun kendisidir. Wallarm Cloud API'ye erişim izni vermek için, API jetonlarının yanı sıra node jetonlarını da kullanabilirsiniz. [Farkı ve tercih edilecek olanı öğrenin →](../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)
 
 !!! info "Bazı dağıtım seçenekleri API jetonlarını desteklemiyor"
-    API jetonları şu anda [Kong Ingress controllers](../../installation/kubernetes/kong-ingress-controller/deployment.md) ve [Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md) tabanlı AWS dağıtımları için kullanılamamaktadır. Bunun yerine node jetonlarını kullanın.
+    API jetonları şu anda [Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md) tabanlı AWS dağıtımları için kullanılamamaktadır. Bunun yerine node jetonlarını kullanın.

@@ -109,7 +109,7 @@ O nó de filtragem Wallarm interage com a Nuvem Wallarm. Para fornecer ao nó ac
     * Você precisa controlar o ciclo de vida do token (você pode especificar a data de expiração ou desabilitar os tokens de API, o que os torna mais seguros).
 
         !!! info "Tokens de API não são suportados por algumas opções de implantação"
-            Tokens de API atualmente não podem ser usados para [controladores Kong Ingress](../../installation/kubernetes/kong-ingress-controller/deployment.md) e implantações AWS baseadas no [módulo Terraform](../../installation/cloud-platforms/aws/terraform-module/overview.md). Use os tokens de nó em vez disso.
+            Tokens de API atualmente não podem ser usados para AWS baseadas no [módulo Terraform](../../installation/cloud-platforms/aws/terraform-module/overview.md). Use os tokens de nó em vez disso.
 
 * **Tokens de nó** quando você sabe antecipadamente quais grupos de nós serão apresentados. Use **Nós** → **Criar nó** para criar e nomear o grupo de nós. Durante a implantação do nó, use o token do grupo para cada nó que você deseja incluir no grupo.
 

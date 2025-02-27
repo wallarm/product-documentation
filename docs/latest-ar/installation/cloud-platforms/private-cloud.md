@@ -50,5 +50,4 @@
 إذا كانت السحابة الخاصة بك تستخدم Kubernetes لتنسيق الحاويات، يمكن نشر Wallarm كحل أصلي لـ Kubernetes. يتكامل بسلاسة مع مجموعات Kubernetes، مستفيداً من الميزات مثل وحدات التحكم في الدخول، حاويات جانبية، أو موارد Kubernetes المخصصة. يمكنك اختيار نشر Wallarm باستخدام أحد الحلول التالية:
 
 * [وحدة تحكم الدخول المبنية على NGINX](../../admin-en/installation-kubernetes-en.md)
-* [وحدة تحكم الدخول المبنية على Kong](../kubernetes/kong-ingress-controller/deployment.md)
 * [وحدة تحكم الحارس الجانبي](../kubernetes/sidecar-proxy/deployment.md)

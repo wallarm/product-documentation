@@ -43,7 +43,6 @@ O processo de atualização do nó Wallarm depende da plataforma e das formas de
 * [Módulos para NGINX, NGINX Plus](nginx-modules.md)
 * [Contêiner Docker com os módulos para NGINX ou Envoy](docker-container.md)
 * [Controlador de ingresso NGINX com módulos Wallarm integrados](ingress-controller.md)
-* [Controlador de ingresso Kong com módulos Wallarm integrados](kong-ingress-controller.md)
 * [Sidecar](sidecar-proxy.md)
 * [Imagem de nó na nuvem](cloud-image.md)
 * [Nó multi-inquilino](multi-tenant.md)

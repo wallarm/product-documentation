@@ -83,5 +83,4 @@ Se você utiliza o Kubernetes para orquestração de contêineres, a Wallarm pod
 A Wallarm oferece os seguintes artefatos e soluções para executar Wallarm no Kubernetes:
 
 * [Controlador de Ingress NGINX](../../admin-en/installation-kubernetes-en.md)
-* [Controlador de Ingress Kong](../kubernetes/kong-ingress-controller/deployment.md)
 * [Controlador Sidecar](../kubernetes/sidecar-proxy/deployment.md)

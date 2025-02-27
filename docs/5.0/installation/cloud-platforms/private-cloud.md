@@ -46,5 +46,4 @@ In this model, you deploy Wallarm as a virtual appliance within your private clo
 If your private cloud utilizes Kubernetes for container orchestration, Wallarm can be deployed as a Kubernetes-native solution. It seamlessly integrates with Kubernetes clusters, leveraging features such as ingress controllers, sidecar containers, or custom Kubernetes resources. You can choose to deploy Wallarm using one of the following solutions:
 
 * [NGINX-based Ingress controller](../../admin-en/installation-kubernetes-en.md)
-* [Kong-based Ingress controller](../kubernetes/kong-ingress-controller/deployment.md)
 * [Sidecar controller](../kubernetes/sidecar-proxy/deployment.md)

@@ -156,11 +156,7 @@ nav:
       - Satır İçi: installation/security-edge/deployment.md
       - Bağlayıcılar: installation/se-connector.md
     - Kubernetes:
-      - Ingress:
-        - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
-        - Kong Ingress Controller:
-          - Kurulum: installation/kubernetes/kong-ingress-controller/deployment.md
-          - Özelleştirme: installation/kubernetes/kong-ingress-controller/customization.md
+      - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
       - Yan Araba:
         - Kurulum: installation/kubernetes/sidecar-proxy/deployment.md
         - Özelleştirme: installation/kubernetes/sidecar-proxy/customization.md
@@ -189,9 +185,6 @@ nav:
         - Her şey dahil kurulum paketi: installation/inline/compute-instances/linux/all-in-one.md
       - Kubernetes:
         - NGINX Ingress Controller: installation/inline/kubernetes/nginx-ingress-controller.md
-        - Kong Ingress Controller:
-          - Kurulum: installation/inline/kubernetes/kong-ingress-controller/deployment.md
-          - Özelleştirme: installation/inline/kubernetes/kong-ingress-controller/customization.md
         - Sidecar Controller:
           - Kurulum: installation/inline/kubernetes/sidecar-proxy/deployment.md
           - Özelleştirme: installation/inline/kubernetes/sidecar-proxy/customization.md

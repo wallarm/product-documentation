@@ -109,7 +109,7 @@ WallarmフィルタリングノードはWallarm Cloudと連携します。ノー
     * トークンのライフサイクルを管理する必要がある場合（有効期限を指定するか、API tokensを無効化することで、セキュリティを向上させられます）。
 
         !!! info "一部の展開オプションではAPI tokensはサポートされません"
-            API tokensは現在、[Kong Ingress controllers](../../installation/kubernetes/kong-ingress-controller/deployment.md)や[Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md)に基づくAWS展開では使用できません。代わりにnode tokensを使用してください。
+            API tokensは現在、[Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md)に基づくAWS展開では使用できません。代わりにnode tokensを使用してください。
 
 * ノードグループが事前に判明している場合は**node tokens**を使用してください。**Nodes** → **Create node**を使用してノードグループを作成し、名前を付けます。ノードの展開時に、グループに含める各ノードに対してグループのトークンを使用します。
 

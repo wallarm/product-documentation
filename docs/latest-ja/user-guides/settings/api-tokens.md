@@ -70,4 +70,4 @@ Wallarm APIトークンは柔軟な管理オプションを提供します。ト
 Wallarm Cloud APIにアクセスするクライアントの一つとして、Wallarmフィルタリングノード自体があります。APIトークンに加え、ノードトークンを使用することで、フィルタリングノードにWallarm CloudのAPIへのアクセスを許可できます。[違いと推奨事項はこちら→](../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)
 
 !!! info "一部のデプロイオプションではAPIトークンはサポートされていません"
-    現在、APIトークンは[Kong Ingress controllers](../../installation/kubernetes/kong-ingress-controller/deployment.md)および[Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md)を使用したAWSデプロイメントでは使用できません。その代わりにノードトークンを使用してください。
+    現在、APIトークンはおよび[Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md)を使用したAWSデプロイメントでは使用できません。その代わりにノードトークンを使用してください。

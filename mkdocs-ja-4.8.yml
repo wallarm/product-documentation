@@ -156,11 +156,7 @@ nav:
         - インライン: installation/security-edge/deployment.md
         - コネクタ: installation/se-connector.md
     - Kubernetes:
-      - イングレス:
-        - NGINXイングレスコントローラ: admin-en/installation-kubernetes-en.md
-        - Kingイングレスコントローラ:
-          - 展開: installation/kubernetes/kong-ingress-controller/deployment.md
-          - カスタマイズ: installation/kubernetes/kong-ingress-controller/customization.md
+      - NGINXイングレスコントローラ: admin-en/installation-kubernetes-en.md
       - サイドカー:
         - 展開: installation/kubernetes/sidecar-proxy/deployment.md
         - カスタマイズ: installation/kubernetes/sidecar-proxy/customization.md
@@ -197,9 +193,6 @@ nav:
           - ディストリビューションが提供するNGINX: installation/inline/compute-instances/linux/individual-packages-nginx-distro.md
       - Kubernetes:
         - NGINX Ingressコントローラ: installation/inline/kubernetes/nginx-ingress-controller.md
-        - Kong Ingressコントローラ:
-          - 展開: installation/inline/kubernetes/kong-ingress-controller/deployment.md
-          - カスタム化: installation/inline/kubernetes/kong-ingress-controller/customization.md
         - Sidecarコントローラ:
           - 展開: installation/inline/kubernetes/sidecar-proxy/deployment.md
           - カスタマイズ: installation/inline/kubernetes/sidecar-proxy/customization.md

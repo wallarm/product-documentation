@@ -77,16 +77,6 @@ Note that described configuration is applicable only for [in-line](../installati
 
     See example of how traffic analysis for your NGINX-based Ingress controller [is enabled](../admin-en/installation-kubernetes-en.md#step-2-enabling-traffic-analysis-for-your-ingress) by setting the filtration mode to `monitoring`.
 
-=== "Kong Ingress controller"
-
-    For Kong Ingress controller, use the `wallarm-mode` annotation:
-
-    ```
-    kubectl annotate ingress <KONG_INGRESS_NAME> -n <KONG_INGRESS_NAMESPACE> wallarm.com/wallarm-mode=monitoring
-    ```
-
-    See example of how traffic analysis for your Kong-based Ingress controller [is enabled](../installation/kubernetes/kong-ingress-controller/deployment.md#step-3-enable-traffic-analysis-for-your-ingress) by setting the filtration mode to `monitoring`.
-
 === "Sidecar"
 
     For the Wallarm Sidecar solution, in the Wallarm-specific part of the default `values.yaml`, set the `mode` parameter:

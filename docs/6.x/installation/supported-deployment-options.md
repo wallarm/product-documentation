@@ -26,11 +26,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div class="do-section">
     <div class="do-main">
-        <div id="kubernetes-ingress" class="do-card">
+        <a class="do-card" href="../../admin-en/installation-kubernetes-en/">
             <img class="non-zoomable" src="../../images/platform-icons/ingress.svg" />
-            <h3>Ingress</h3>
-            <p>Wallarm solutions for Ingress load balancing and security</p>
-        </div>
+            <h3>NGINX Ingress Controller</h3>
+            <p>Deploy the NGINX Ingress Controller with integrated Wallarm services</p>
+        </a>
 
         <a class="do-card" href="../../installation/kubernetes/sidecar-proxy/deployment/">
             <img class="non-zoomable" src="../../images/platform-icons/pod.svg" />
@@ -42,24 +42,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <img class="non-zoomable" src="../../images/platform-icons/ebpf.svg" />
             <h3>eBPF</h3>
             <p>Out-of-band deployment on Kubernetes using the eBPF technology</p>
-        </a>
-    </div>
-
-    <div class="do-nested" data-for="kubernetes-ingress">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/ingress.svg" />
-            <h3>Ingress</h3>
-            <p>Wallarm solutions for Ingress load balancing and security</p>
-        </div>
-
-        <a class="do-card" href="../../admin-en/installation-kubernetes-en/">
-            <h3>NGINX Ingress Controller</h3>
-            <p>Deploy the NGINX Ingress Controller with integrated Wallarm services</p>
-        </a>
-
-        <a class="do-card" href="../../installation/kubernetes/kong-ingress-controller/deployment/">
-            <h3>Kong Ingress Controller</h3>
-            <p>Deploy the Kong Ingress Controller with integrated Wallarm services</p>
         </a>
     </div>
 </div>
@@ -427,11 +409,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <a class="do-card" href="../../installation/inline/kubernetes/nginx-ingress-controller/">
             <h3>NGINX Ingress Controller</h3>
             <p>Deploy the NGINX Ingress Controller with integrated Wallarm services</p>
-        </a>
-
-        <a class="do-card" href="../../installation/inline/kubernetes/kong-ingress-controller/deployment/">
-            <h3>Kong Ingress Controller</h3>
-            <p>Deploy the Kong Ingress Controller with integrated Wallarm services</p>
         </a>
 
         <a class="do-card" href="../../installation/inline/kubernetes/sidecar-proxy/deployment/">

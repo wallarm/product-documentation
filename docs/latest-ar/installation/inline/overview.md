@@ -84,5 +84,4 @@
 تقدم Wallarm التحف والحلول التالية لتشغيل Wallarm على Kubernetes:
 
 * [وحدة التحكم في الدخول NGINX](../../admin-en/installation-kubernetes-en.md)
-* [وحدة التحكم في الدخول Kong](../kubernetes/kong-ingress-controller/deployment.md)
 * [وحدة التحكم الجانبية](../kubernetes/sidecar-proxy/deployment.md)

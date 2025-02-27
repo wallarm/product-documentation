@@ -89,5 +89,4 @@ If you utilize Kubernetes for container orchestration, Wallarm can be deployed a
 Wallarm offers the following artifacts and solutions for running Wallarm on Kubernetes:
 
 * [NGINX Ingress controller](../../admin-en/installation-kubernetes-en.md)
-* [Kong Ingress controller](../kubernetes/kong-ingress-controller/deployment.md)
 * [Sidecar controller](../kubernetes/sidecar-proxy/deployment.md)

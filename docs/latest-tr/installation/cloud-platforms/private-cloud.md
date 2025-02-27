@@ -46,5 +46,4 @@ Bu modelde, Wallarm'u özel bulut altyapınız içinde bir virtual appliance ola
 Eğer özel bulutunuz konteyner orkestrasiyonu için Kubernetes kullanıyorsa, Wallarm Kubernetes'e özgü bir çözüm olarak dağıtılabilir. Kubernetes kümeleriyle sorunsuz bir şekilde entegre olur; ingress controller'lar, sidecar konteynerlar veya özel Kubernetes kaynakları gibi özelliklerden yararlanır. Aşağıdaki çözümlerden birini kullanarak Wallarm'u dağıtmayı seçebilirsiniz:
 
 * [NGINX-based Ingress controller](../../admin-en/installation-kubernetes-en.md)
-* [Kong-based Ingress controller](../kubernetes/kong-ingress-controller/deployment.md)
 * [Sidecar controller](../kubernetes/sidecar-proxy/deployment.md)
