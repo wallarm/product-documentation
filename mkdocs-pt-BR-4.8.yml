@@ -359,7 +359,6 @@ nav:
         - Atualizando o Nó Instalado através do Instalador All-in-One: updating-migrating/all-in-one.md
         - Atualizando a Imagem Docker Wallarm NGINX- ou Envoy-based: updating-migrating/docker-container.md
         - Atualizando o Controlador de Ingresso NGINX com Módulos Wallarm integrados: updating-migrating/ingress-controller.md
-        - Atualizando o Controlador de Ingresso Kong com Módulos Wallarm integrados: updating-migrating/kong-ingress-controller.md
         - Atualizando o Proxy de Sidecar Wallarm: updating-migrating/sidecar-proxy.md
         - Atualizando a Imagem do Nó Cloud: updating-migrating/cloud-image.md
         - Atualizando o Nó CDN Wallarm: updating-migrating/cdn-node.md

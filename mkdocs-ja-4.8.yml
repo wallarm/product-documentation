@@ -267,7 +267,6 @@ nav:
           - 一体型インストーラを介してインストールされたノードのアップグレード: updating-migrating/all-in-one.md
           - Wallarm Docker NGINX-またはEnvoyベースの画像のアップグレード: updating-migrating/docker-container.md
           - 統合されたWallarmモジュールとNGINX Ingressコントローラーのアップグレード: updating-migrating/ingress-controller.md
-          - 統合されたWallarmモジュールとKong Ingressコントローラーのアップグレード: updating-migrating/kong-ingress-controller.md
           - Wallarm Sidecarプロキシのアップグレード: updating-migrating/sidecar-proxy.md
           - クラウドノードイメージのアップグレード: updating-migrating/cloud-image.md
           - WallarmCDNノードのアップグレード: updating-migrating/cdn-node.md
@@ -372,7 +371,6 @@ nav:
         - 一体型インストーラを使ってインストールされたノードの更新: updating-migrating/all-in-one.md
         - Wallarm Docker NGINX- or Envoy-basedイメージの更新: updating-migrating/docker-container.md
         - 統合されたWallarmモジュールとNGINX Ingress controllerの更新: updating-migrating/ingress-controller.md
-        - 統合されたWallarmモジュールとKong Ingress controllerの更新: updating-migrating/kong-ingress-controller.md
         - Wallarm Sidecar proxyの更新: updating-migrating/sidecar-proxy.md
         - クラウドノードイメージの更新: updating-migrating/cloud-image.md
         - Wallarm CDNノードの更新: updating-migrating/cdn-node.md

@@ -336,7 +336,6 @@ nav:
         - Tümleşik Yükleyici ile Kurulan Node'un Yükseltilmesi: updating-migrating/all-in-one.md
         - Wallarm Docker NGINX- veya Envoy-tabanlı görüntüsünün yükseltilmesi: updating-migrating/docker-container.md
         - Entegre Wallarm modülleri ile NGINX Ingress controller'ın yükseltilmesi: updating-migrating/ingress-controller.md
-        - Entegre Wallarm modülleri ile Kong Ingress controller'ın yükseltilmesi: updating-migrating/kong-ingress-controller.md
         - Wallarm Yan Araba proxy'nin yükseltilmesi: updating-migrating/sidecar-proxy.md
         - Bulut node görüntüsünün yükseltilmesi: updating-migrating/cloud-image.md
         - Wallarm CDN node'nun yükseltilmesi: updating-migrating/cdn-node.md
