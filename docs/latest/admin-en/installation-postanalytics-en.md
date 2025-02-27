@@ -234,7 +234,7 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
 * Analyze the postanalytics module logs
 
     ```bash
-    sudo cat /opt/wallarm/var/log/wallarm/tarantool-out.log
+    sudo cat /opt/wallarm/var/log/wallarm/wstore-out.log
     ```
 
     If there is the record like `SystemError binary: failed to bind: Cannot assign requested address`, make sure that the server accepts connection on specified address and port.

@@ -200,4 +200,4 @@ This step is performed on the filtering node machine.
 
 ### Step 6: Check the filtering node and separate postanalytics modules interaction
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-check.md" -->
+--8<-- "../include/waf/installation/all-in-one-postanalytics-check-latest.md" -->
