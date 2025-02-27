@@ -21,7 +21,7 @@ A maioria das opções de implantação do nó de filtragem Wallarm usa NGINX co
 ## Siga as etapas recomendadas para o onboarding
 
 1. Saiba mais sobre as [opções de implantação do nó Wallarm disponíveis](../installation/supported-deployment-options.md).
-2. Saiba mais sobre as opções disponíveis para [gerenciar separadamente a configuração do nó Wallarm para seus ambientes](../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md) (se necessário).
+2. Saiba mais sobre as opções disponíveis para [gerenciar separadamente a configuração do nó Wallarm para seus ambientes](../installation/multi-tenant/overview.md#issues-addressed-by-multitenancy) (se necessário).
 3. Implante nós de filtragem Wallarm em seus ambientes de não produção com o [modo de operação](../admin-en/configure-wallarm-mode.md) definido como `monitorização`.
 4. Saiba como operar, dimensionar e monitorar a solução Wallarm e confirme a estabilidade do novo componente de rede.
 5. Implante nós de filtragem Wallarm em seu ambiente de produção com o [modo de operação](../admin-en/configure-wallarm-mode.md) definido como `monitorização`.

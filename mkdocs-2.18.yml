@@ -96,9 +96,6 @@ nav:
         - Example of Envoy configuration for traffic mirroring: admin-en/configuration-guides/traffic-mirroring/envoy-example.md
         - Example of Traefik configuration for traffic mirroring: admin-en/configuration-guides/traffic-mirroring/traefik-example.md
         - Example of Istio configuration for traffic mirroring: admin-en/configuration-guides/traffic-mirroring/istio-example.md
-      - Configuration of Filter Node for Separated Customer Environments:
-        - How Filtering Node Works in Separated Environments: admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md
-        - Recommendations on Configuring the Filter Node for Separated Environments: admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md
       - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
       - Identifying an original client IP address if using a proxy or load balancer: admin-en/using-proxy-or-balancer-en.md
       - Configuring synchronization between Wallarm node and Cloud: admin-en/configure-cloud-node-synchronization-en.md

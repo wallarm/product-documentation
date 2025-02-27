@@ -21,7 +21,7 @@
 ## اتبع الخطوات الموصى بها للتشغيل
 
 1. تعرف على خيارات تنفيذ عقدة Wallarm المتاحة (../installation/supported-deployment-options.md).
-2. تعرف على الخيارات المتاحة لإدارة تكوين عقدة Wallarm بشكل منفصل لبيئاتك (../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md) (إذا كان ذلك ضروريًا).
+2. تعرف على الخيارات المتاحة لإدارة تكوين عقدة Wallarm بشكل منفصل لبيئاتك (../installation/multi-tenant/overview.md#issues-addressed-by-multitenancy) (إذا كان ذلك ضروريًا).
 3. نفذ عقد الترشيح Wallarm في بيئاتك غير المنتجة مع تعيين [وضع التشغيل](../admin-en/configure-wallarm-mode.md) على `monitoring`.
 4. تعرف على كيفية التشغيل والتحجيم ومراقبة حل Wallarm، وتأكيد استقرار العنصر الشبكي الجديد.
 5. نفذ عقد الترشيح Wallarm في بيئتك الإنتاجية مع تعيين [وضع التشغيل](../admin-en/configure-wallarm-mode.md) على `monitoring`.

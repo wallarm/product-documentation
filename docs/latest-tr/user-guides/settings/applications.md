@@ -6,7 +6,7 @@ Uygulamaları kullanmanın avantajları:
 
 * Her bir uygulama için olayları ve istatistikleri ayrı ayrı görüntüleme
 * Belirli uygulamalar için [triggers](../triggers/triggers.md), [rules](../rules/rules.md) ve diğer Wallarm özelliklerini yapılandırma
-* [Configure Wallarm in separated environments](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)
+* [Configure Wallarm in separated environments](../../installation/multi-tenant/overview.md#issues-addressed-by-multitenancy)
 
 Wallarm'ın uygulamalarınızı tanımlayabilmesi için, ilgili direktif aracılığıyla node yapılandırmasında onlara benzersiz tanımlayıcılar atamanız gerekmektedir. Tanımlayıcılar, uygulama domain’leri ve domain yolları için ayarlanabilir.
 

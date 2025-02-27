@@ -1,18 +1,21 @@
-# Setting up applications
+# Setting Up Applications
 
 If your company has several applications, you may find it convenient not only to view the statistics of the entire company's traffic but also to view the statistics separately for each application. To separate traffic by the applications, you can use the "application" entity in the Wallarm system.
 
 Using applications enables you to:
 
 * View events and statistics separately for each application
-* Configure [triggers](../triggers/triggers.md), [rules](../rules/add-rule.md) and other Wallarm features for certain applications
-* [Configure Wallarm in separated environments](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)
+* Configure triggers, rules and other Wallarm features for certain applications
+* Handle environments (production, testing, etc.) as separate applications
+
+    !!! info "Isolated environments"
+        Environments managed as applications are accessible to all users of the current Wallarm account. If you need to isolate their data so that only specific users have access to it, instead of applications, use the [multitenancy](../../installation/multi-tenant/overview.md) feature.
 
 For Wallarm to identify your applications, it is required to assign them unique identifiers via the appropriate directive in the node configuration. Identifiers can be set for both the application domains and the domain paths.
 
 By default, Wallarm considers each application to be the `default` application with the identifier (ID) `-1`.
 
-## Adding an application
+## Adding applications
 
 1. (Optional) Add an application in Wallarm Console → **Settings** → **Applications**.
 

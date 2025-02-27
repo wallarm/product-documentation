@@ -1,18 +1,21 @@
-# Setting up applications
+# Setting Up Applications
 
 If your company has several applications, you may find it convenient not only to view the statistics of the entire company's traffic but also to view the statistics separately for each application. To separate traffic by the applications, you can use the "application" entity in the Wallarm system.
 
 Using applications enables you to:
 
-* View events and statistics separately for each application
-* Configure [triggers](../triggers/triggers.md), [rules](../rules/rules.md) and other Wallarm features for certain applications
-* [Configure Wallarm in separated environments](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)
+* [View](#viewing-events-and-statistics-by-application) events and statistics separately for each application
+* [Configure](#configuring-wallarm-features-by-application) triggers, rules and other Wallarm features for certain applications
+* Handle environments (production, testing, etc.) as separate applications
+
+    !!! info "Isolated environments"
+        Environments managed as applications are accessible to all users of the current Wallarm account. If you need to isolate their data so that only specific users have access to it, instead of applications, use the [multitenancy](../../installation/multi-tenant/overview.md) feature.
 
 For Wallarm to identify your applications, it is required to assign them unique identifiers via the appropriate directive in the node configuration. Identifiers can be set for both the application domains and the domain paths.
 
 By default, Wallarm considers each application to be the `default` application with the identifier (ID) `-1`.
 
-## Adding an application
+## Adding applications
 
 1. (Optional) Add an application in Wallarm Console → **Settings** → **Applications**.
 
@@ -86,6 +89,39 @@ This request will:
 
 You can add the applications on the base of specific request header or part of endpoint URLs, using the `map` NGINX directive. See detailed description of the directive in the NGINX [documentation](https://nginx.org/en/docs/http/ngx_http_map_module.html#map).
 
-## Deleting an application
+## Viewing events and statistics by application
+
+Once you have your applications set up, you can view separately:
+
+* [Attacks](../../user-guides/events/check-attack.md) and [incidents](../../user-guides/events/check-incident.md) only for the application of your interest
+* [API sessions](../../api-sessions/overview.md) related only to the application of your interest
+* Statistics on [dashboards](../../user-guides/dashboards/threat-prevention.md) related only to the application of your interest
+
+<div>
+  <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
+  <div class="sl-embed" style="position:relative;padding-bottom:calc(61.23% + 25px);width:100%;height:0;transform:scale(1)">
+    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/njvywcvjddzd?embed=inline" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+  </div>
+</div>
+
+## Configuring Wallarm features by application
+
+Once you have your applications set up, you can configure Wallarm protection features separately for each application, including:
+
+* [Rules](../rules/rules.md#conditions)
+* [Triggers](../triggers/triggers.md#understanding-filters)
+* [IP lists](../ip-lists/overview.md#limit-by-target-application)
+* [API Abuse Prevention](../../api-abuse-prevention/setup.md#creating-profiles)
+
+<div>
+  <script async src="https://js.storylane.io/js/v2/storylane.js"></script>
+  <div class="sl-embed" style="position:relative;padding-bottom:calc(61.23% + 25px);width:100%;height:0;transform:scale(1)">
+    <iframe loading="lazy" class="sl-demo" src="https://wallarm.storylane.io/demo/1dsy6claa8wb?embed=inline" name="sl-embed" allow="fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+  </div>
+</div>
+
+Assigning Wallarm's features to applications is an easiest way to specify conditions in which those features should be applied and to differentiate configurations for the different parts of your infrastructure.
+
+## Deleting applications
 
 To delete the application from the Wallarm system, delete an appropriate directive from the node configuration file. If the application is only deleted from the **Settings** → **Applications** section, it will be restored in the list.

@@ -21,7 +21,7 @@ Bu makale, Wallarm çözümünün dağıtımı ve bakımı için en iyi uygulama
 ## Önerilen işe alım adımlarını izleyin
 
 1. Mevcut [Wallarm node dağıtım seçenekleri](../installation/supported-deployment-options.md) hakkında bilgi edinin.
-2. Gerekirse, ortamlarınız için [Wallarm node yapılandırmasının ayrı ayrı yönetilmesi](../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md) seçeneklerini öğrenin.
+2. Gerekirse, ortamlarınız için [Wallarm node yapılandırmasının ayrı ayrı yönetilmesi](../installation/multi-tenant/overview.md#issues-addressed-by-multitenancy) seçeneklerini öğrenin.
 3. Üretim dışı ortamlarınızda, Wallarm filtreleme düğümlerini [operation mode](../admin-en/configure-wallarm-mode.md) `monitoring` olarak ayarlanmış şekilde dağıtın.
 4. Wallarm çözümünü nasıl işletip ölçeklendireceğinizi izleyin, izleyin ve yeni ağ bileşeninin stabilitesini doğrulayın.
 5. Üretim ortamınızda, Wallarm filtreleme düğümlerini [operation mode](../admin-en/configure-wallarm-mode.md) `monitoring` olarak ayarlanmış şekilde dağıtın.
