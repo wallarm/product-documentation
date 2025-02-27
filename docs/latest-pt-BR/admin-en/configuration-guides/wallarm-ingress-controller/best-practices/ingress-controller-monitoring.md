@@ -96,4 +96,4 @@ wallarm_stalled_worker_time_seconds{pid="3169104"} 25
 wallarm_startid 3226376659815907920
 ```
 
-Informações detalhadas sobre a configuração de monitoramento e a lista de métricas disponíveis são fornecidas nesta [documentação](../../../monitoring/intro.md).
+Informações detalhadas sobre a configuração de monitoramento e a lista de métricas disponíveis são fornecidas nesta [documentação](../../../configure-statistics-service.md).

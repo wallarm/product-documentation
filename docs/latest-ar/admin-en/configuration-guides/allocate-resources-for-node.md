@@ -126,7 +126,6 @@ SLAB_ALLOC_ARENA=1.0
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
-لمعرفة المدة التي يمكن لمثيل Tarantool الاحتفاظ بتفاصيل حركة المرور مع المستوى الحالي لتحميل عقدة التصفية، يمكنك استخدام مقياس الرصد [`wallarm-tarantool/gauge-timeframe_size`](../monitoring/available-metrics.md#time-of-storing-requests-in-the-postanalytics-module-in-seconds).
 
 ## NGINX
 

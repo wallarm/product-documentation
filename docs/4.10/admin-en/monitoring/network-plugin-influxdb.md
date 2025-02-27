@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/monitoring/network-plugin-influxdb.md"
+--8<-- "5.0/admin-en/monitoring/network-plugin-influxdb.md"

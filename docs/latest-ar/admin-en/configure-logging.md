@@ -1,6 +1,5 @@
 [link-nginx-logging-docs]:  https://docs.nginx.com/nginx/admin-guide/monitoring/logging/
 [doc-vuln-list]:            ../attacks-vulns-list.md
-[doc-monitor-node]:         monitoring/intro.md
 [doc-lom]:                  ../user-guides/rules/rules.md#ruleset-lifecycle
 
 #   العمل مع سجلات عقدة الفلتر
@@ -14,7 +13,6 @@
 
     *   `brute-detect-out.log`: سجل جلب العدادات المتعلقة بالهجوم بالقوة الغاشمة في العقدة الفلتر.
     *   `export-attacks-out.log`: سجل تصدير بيانات الهجمات من الوحدة النمطية postanalytics إلى السحابة Wallarm.
-    *   `export-counters-out.log`: سجل تصدير بيانات العدادات (انظر [“مراقبة العقدة الفلتر”][doc-monitor-node]).
     *   `export-environment-out.log`: سجل جمع إصدارات الحزم Wallarm المثبتة وتحميل هذه البيانات إلى السحابة Wallarm لإظهارها في تفاصيل العقدة الفلتر في وحدة التحكم Wallarm. يتم تشغيل هذه العمليات مرة واحدة في الساعة.
     *   `syncnode-out.log`: سجل مزامنة العقدة الفلتر مع السحابة Wallarm (يتضمن جلب الملفات [LOM][doc-lom] و proton.db من السحابة).
     *   `tarantool-out.log`: سجل عمليات الوحدة النمطية postanalytics.
@@ -31,7 +29,6 @@
 
     *   `brute-detect.log`: سجل جلب العدادات المتعلقة بالهجوم بالقوة الغاشمة في العقدة الفلتر.
     *   `export-attacks.log`: سجل تصدير بيانات الهجمات من الوحدة النمطية postanalytics إلى السحابة Wallarm.
-    *   `export-counters.log`: سجل تصدير بيانات العدادات (انظر [“مراقبة العقدة الفلتر”][doc-monitor-node]).
     *   `export-environment.log`: سجل جمع إصدارات الحزم Wallarm المثبتة وتحميل هذه البيانات إلى السحابة Wallarm لإظهارها في تفاصيل العقدة الفلتر في وحدة التحكم Wallarm. يتم تشغيل هذه العمليات مرة واحدة في الساعة. 
     *   `syncnode.log`: سجل مزامنة العقدة الفلتر مع السحابة Wallarm (يتضمن جلب الملفات [LOM][doc-lom] و proton.db من السحابة).
     *   `tarantool.log`: سجل عمليات الوحدة النمطية postanalytics.

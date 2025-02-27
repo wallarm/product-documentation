@@ -92,26 +92,6 @@ To change an IP address and/or port of the statistics service, follow the instru
     ...
     status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
     ```
-1. Correct the `URL` parameter accordingly in the [`collectd`](monitoring/intro.md) configuration file. The location of this file depends on the operating system and installation method you use:
-
-    === "DEB-based distributions"
-        ```bash
-        /etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-
-        # For all-in-one installer:
-        /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-        ```
-    === "RPM-based distributions"
-        ```bash
-        /etc/wallarm-collectd.d/nginx-wallarm.conf
-
-        # For all-in-one installer:
-        /opt/wallarm/etc/wallarm-collectd.d/nginx-wallarm.conf
-        ```
-    === "AMI, GCP image, or Docker image"
-        ```bash
-        /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-        ```
 1. Restart NGINX to apply changes:
 
     --8<-- "../include/waf/restart-nginx-4.4-and-above.md"

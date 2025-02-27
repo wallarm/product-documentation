@@ -52,11 +52,10 @@ Yük dengeleyici veya CDN arkasında bulunan Wallarm filtreleme düğümleri iç
 
 ## Filtreleme düğümlerinin doğru izlenmesini sağlayın
 
-Wallarm filtreleme düğümlerinin uygun şekilde izlenmesi şiddetle tavsiye edilir. Her Wallarm filtreleme düğümü ile birlikte kurulan `collectd` servisi, [linkte](../admin-en/monitoring/available-metrics.md) listelenen metrikleri toplar.
+Wallarm filtreleme düğümlerinin uygun şekilde izlenmesi şiddetle tavsiye edilir.
 
 Filtreleme düğümü izleme kurulum yöntemi, dağıtım seçeneğine bağlıdır:
 
-* [NGINX tabanlı Wallarm düğümleri için talimatlar](../admin-en/monitoring/intro.md) (AWS/GCP imajları ve Kubernetes sidecar'ları dahil)
 * [Wallarm Kubernetes Ingress denetleyicisi olarak dağıtılan filtreleme düğümleri için talimatlar](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
 * [NGINX tabanlı Docker imajı için talimatlar](../admin-en/installation-docker-en.md#monitoring-configuration)
 

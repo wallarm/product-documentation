@@ -21,7 +21,7 @@ Para fazer mais depurações dos módulos Wallarm:
 
     Substitua `<FILTRAGEM_NÓ_IP>` pelo IP do nó de filtragem que você deseja verificar. Se necessário, adicione o cabeçalho `Host:` ao comando.
 1. Aguarde até 2 minutos para que os ataques apareçam no Console Wallarm → **Eventos**. Se todas as 100 solicitações aparecerem, o nó de filtragem está operando corretamente.
-1. Conecte-se ao servidor com o nó de filtragem instalado e obtenha as [métricas do nó](../admin-en/monitoring/intro.md):
+1. Conecte-se ao servidor com o nó de filtragem instalado e obtenha as [métricas do nó](../admin-en/configure-statistics-service.md):
 
     ```bash
     curl http://127.0.0.8/wallarm-status

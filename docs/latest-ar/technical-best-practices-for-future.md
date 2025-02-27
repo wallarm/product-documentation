@@ -18,11 +18,10 @@
 
 ## تمكين الرصد الصحيح لعقد التصفية - نقل كما في تعليمات الرصد،وكذلك في أفضل الممارسات التقنية
 
-يُنصح بشدة بتمكين الرصد الصحيح لعقد التصفية Wallarm. يقوم الخدمة `collectd` المثبتة مع كل عقدة تصفية Wallarm بجمع المقاييس المدرجة ضمن [الرابط](../admin-en/monitoring/available-metrics.md).
+يُنصح بشدة بتمكين الرصد الصحيح لعقد التصفية Wallarm.
 
 طريقة إعداد رصد عقد التصفية تعتمد على خيار النشر:
 
-* [تعليمات لعقد Wallarm المستندة إلى NGINX](../admin-en/monitoring/intro.md) (بما في ذلك صور AWS / GCP وsidecars Kubernetes)
 * [التعليمات لعقد التصفية المنشورة كمتحكم دخول Kubernetes الخاص بـWallarm](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
 * [التعليمات لصورة Docker المستندة إلى NGINX](../admin-en/installation-docker-en.md#monitoring-configuration)
 

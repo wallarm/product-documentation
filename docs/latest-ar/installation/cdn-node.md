@@ -17,7 +17,6 @@
 * ليس من المستحسن استخدام عقد CDN لتحليل وفلترة حركة المرور ذات الحجم العالي.
 * نشر نوع عقدة CDN ليس مدعومًا تحت [الخطة المجانية](../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud).
 * يمكنك باستخدام عقدة CDN حماية النطاقات من المستوى الثالث (أو أقل، مثل الرابع، الخامس، إلخ). على سبيل المثال، يمكنك إنشاء عقدة CDN لـ `ple.example.com`، وليس لـ `example.com`.
-* لا يُدعم [خدمة `collectd`](../admin-en/monitoring/intro.md).
 * غير متوفر إعداد التطبيق [مباشرةً](../user-guides/settings/applications.md) من خلال الإجراءات القياسية. الرجاء التواصل مع [فريق دعم Wallarm](mailto:support@wallarm.com) للحصول على المساعدة في التكوين.
 * لا يمكن تكوين [صفحات الحظر المخصصة ورموز الخطأ](../admin-en/configuration-guides/configure-block-page-and-code.md). بشكل افتراضي، تُرجع عقدة CDN رمز استجابة 403 لطلبات المحظورة.
 

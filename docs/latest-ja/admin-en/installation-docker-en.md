@@ -182,22 +182,6 @@ DockerイメージはAlpine LinuxとAlpineが提供するNGINXバージョンを
 * `/var/log/nginx` — NGINXログ
 * `/opt/wallarm/var/log/wallarm` — [Wallarmノードログ][logging-instr]
 
-## 監視設定
-
-フィルタリングノードの監視には、コンテナ内にNagios互換のスクリプトが用意されています。[フィルタリングノードの監視][doc-monitoring]の詳細をご参照ください。
-
-スクリプトの実行例:
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_tarantool_timeframe -w 1800 -c 900
-```
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_export_delay -w 120 -c 300
-```
-
-* `<WALLARM_NODE_CONTAINER_ID>`は実行中のWallarm DockerコンテナのIDです。IDを取得するには`docker ps`を実行し、適切なIDをコピーしてください。
-
 ## Wallarmノード動作のテスト
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"

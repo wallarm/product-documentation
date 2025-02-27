@@ -31,7 +31,7 @@ O que para de funcionar:
     !!! warning "Limitação de armazenamento na memória do nó"
         O tamanho do buffer é [limitado](../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool) e, quando excedido, os dados mais antigos são excluídos. Portanto, o tempo em que o Cloud estava inativo e a quantidade de informações coletadas durante esse tempo podem levar à situação em que você recebe no Console Wallarm apenas alguns dados após a restauração do Cloud.
 
-* O nó coleta, mas não pode enviar [métricas](../admin-en/monitoring/intro.md) para o tráfego processado para o Cloud.
+* O nó coleta, mas não pode enviar [métricas](../admin-en/configure-statistics-service.md) para o tráfego processado para o Cloud.
 * A varredura dos [ativos expostos](../user-guides/scanner.md) e [vulnerabilidades típicas](../user-guides/vulnerabilities.md) será interrompida.
 * [Gatilhos](../user-guides/triggers/triggers.md) deixarão de funcionar e, portanto:
     * [Listas de IP](../user-guides/ip-lists/overview.md) param de ser atualizadas.

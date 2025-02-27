@@ -1,6 +1,5 @@
 [link-nginx-logging-docs]:  https://docs.nginx.com/nginx/admin-guide/monitoring/logging/
 [doc-vuln-list]:            ../attacks-vulns-list.md
-[doc-monitor-node]:         monitoring/intro.md
 [doc-lom]:                  ../user-guides/rules/rules.md
 
 #   Trabalhando com Logs do Nó de Filtro
@@ -9,7 +8,6 @@ Um nó de filtro armazena os seguintes arquivos de log no diretório `/var/log/w
 
 *   `brute-detect.log`: o log da recuperação dos contadores relacionados ao ataque de força bruta no cluster do nó de filtro.
 *   `export-attacks.log`: o log da exportação dos dados dos ataques do módulo pós-analítico para a nuvem Wallarm.
-*   `export-counters.log`: o log da exportação dos dados dos contadores (veja [“Monitorando o Nó de Filtro”][doc-monitor-node]).
 *   `export-environment.log`: o log da coleta das versões do pacote Wallarm instalado e do upload desses dados para a nuvem Wallarm a serem exibidos nos detalhes do nó de filtragem no console Wallarm. Esses processos são executados uma vez por hora.
 *   `syncnode.log`: o log da sincronização do nó de filtro com a nuvem Wallarm (isso inclui a busca dos arquivos [LOM][doc-lom] e proton.db da nuvem).
 *   `tarantool.log`: o log das operações do módulo pós-analítico.

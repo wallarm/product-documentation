@@ -40,7 +40,6 @@ The solution has certain limitations:
 * For high traffic analysis and filtration, the use of CDN nodes is not recommended.
 * Deployment of the CDN node type is not supported under the [Free tier plan](../about-wallarm/subscription-plans.md#free-tier).
 * With the CDN node you can protect the third-level (or lower, like 4th-, 5th- etc.) domains. For example, you can create CDN node for `ple.example.com`, but not for `example.com`.
-* The [`collectd` service](../admin-en/monitoring/intro.md) is not supported.
 * Direct [application setup](../user-guides/settings/applications.md) through standard procedures is unavailable. Contact the [Wallarm support team](mailto:support@wallarm.com) for configuration assistance.
 * [Custom blocking pages and error codes](../admin-en/configuration-guides/configure-block-page-and-code.md) are not configurable. As a default, CDN node returns a 403 response code for blocked requests.
 

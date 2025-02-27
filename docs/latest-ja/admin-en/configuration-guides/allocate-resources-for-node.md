@@ -127,8 +127,6 @@ SLAB_ALLOC_ARENA=1.0
     sudo systemctl restart wallarm-tarantool
     ```
 
-現在のフィルタリングノードの負荷レベルにおいてTarantoolインスタンスがどの程度の期間、トラフィックの詳細を保持可能かを確認するには、[`wallarm-tarantool/gauge-timeframe_size`](../monitoring/available-metrics.md#time-of-storing-requests-in-the-postanalytics-module-in-seconds)監視メトリクスをご利用ください。
-
 ## NGINX
 
 NGINXのメモリ消費は様々な要因に左右されます。平均的な消費量は、おおよそ以下のように見積もることができます:

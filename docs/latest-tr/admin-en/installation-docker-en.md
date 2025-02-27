@@ -183,22 +183,6 @@ Günlük kaydı varsayılan olarak etkindir. Günlük dizinleri şunlardır:
 * `/var/log/nginx` — NGINX günlükleri
 * `/opt/wallarm/var/log/wallarm` — [Wallarm node günlükleri][logging-instr]
 
-## İzleme Yapılandırması
-
-Filtreleme düğümünü izlemek için, konteyner içerisinde Nagios‑uyumlu betikler bulunmaktadır. Ayrıntılar için [Filtering node'un izlenmesi][doc-monitoring] belgesine bakın.
-
-Betiklerin çalıştırılması örneği:
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_tarantool_timeframe -w 1800 -c 900
-```
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_export_delay -w 120 -c 300
-```
-
-* `<WALLARM_NODE_CONTAINER_ID>`, çalışan Wallarm Docker konteynerinin ID'sidir. ID'yi almak için `docker ps` komutunu çalıştırın ve uygun ID'yi kopyalayın.
-
 ## Wallarm Düğüm İşleyişinin Test Edilmesi
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"

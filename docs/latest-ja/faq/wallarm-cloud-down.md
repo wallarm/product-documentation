@@ -29,7 +29,7 @@ Wallarm Cloudは非常に安定しており、拡張性のあるサービスで�
     !!! warning "ノードのメモリ内ストレージの制限"
         バッファのサイズは[制限](../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool)されており、制限を超えると古いデータが削除されます。そのため、Cloudがダウンしていた時間とその間に収集された情報量により、Cloud復旧後にWallarm Consoleで取得できるデータが一部になる場合があります。
 
-* ノードは処理されたトラフィックに関する[メトリクス](../admin-en/monitoring/intro.md)を収集しますが、Cloudに送信できません。
+* ノードは処理されたトラフィックに関する[メトリクス](../admin-en/configure-statistics-service.md)を収集しますが、Cloudに送信できません。
 * [公開資産](../user-guides/scanner.md)や[一般的な脆弱性](../user-guides/vulnerabilities.md)のスキャンが停止します。
 * [トリガー](../user-guides/triggers/triggers.md)が停止し、その結果:
     * [IPリスト](../user-guides/ip-lists/overview.md)の更新が停止します。

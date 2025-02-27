@@ -40,7 +40,6 @@
 * 高トラフィックの解析およびフィルタリングには、CDNノードの使用は推奨されません。
 * [Free tierプラン](../about-wallarm/subscription-plans.md#free-tier)では、CDNノードタイプのデプロイはサポートされません。
 * CDNノードでは、3階層目（またはそれ以下、例: 4階層、5階層など）のドメインのみ保護できます。たとえば、`ple.example.com`のCDNノードは作成できますが、`example.com`は作成できません。
-* [`collectd` service](../admin-en/monitoring/intro.md)はサポートされません。
 * 標準手順による[アプリケーションセットアップ](../user-guides/settings/applications.md)は利用できません。設定の支援については、[Wallarmサポートチーム](mailto:support@wallarm.com)にお問い合わせください。
 * [カスタムブロックページとエラーコード](../admin-en/configuration-guides/configure-block-page-and-code.md)は設定できません。デフォルトでは、CDNノードはブロックされたリクエストに対して403レスポンスコードを返します。
 

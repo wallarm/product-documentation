@@ -79,9 +79,6 @@ Para alterar um endereço IP do serviço de estatísticas:
     ...
     status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
     ```
-1. Corrija o parâmetro `URL` de acordo no arquivo de configuração [`collectd`](monitoring/intro.md). A localização deste arquivo depende do tipo de distribuição do sistema operacional que você possui:
-
-    --8<-- "../include-pt-BR/monitoring/collectd-config-location.md"
 1. Adicione ou altere a diretiva `allow` para permitir o acesso de endereços que não sejam endereços de loopback (o arquivo de configuração padrão permite acesso apenas para endereços de loopback).
 1. Reinicie o NGINX para aplicar as alterações:
 

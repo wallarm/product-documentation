@@ -1,6 +1,5 @@
 [doc-wallarm-mode]:           ../../../admin-en/configure-parameters-en.md#wallarm_mode
 [doc-config-params]:          ../../../admin-en/configure-parameters-en.md
-[doc-monitoring]:             ../../../admin-en/monitoring/intro.md
 [waf-mode-instr]:                   ../../../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../../admin-en/using-proxy-or-balancer-en.md
@@ -144,22 +143,6 @@
 
 * `/var/log/nginx` — سجلات NGINX
 * `/opt/wallarm/var/log/wallarm` — [سجلات عقدة Wallarm][logging-instr]
-
-## تكوين المراقبة
-
-لمراقبة عقدة التصفية، هناك سكربتات متوافقة مع Nagios داخل الحاوية. راجع التفاصيل في [مراقبة عقدة التصفية][doc-monitoring].
-
-مثال على تشغيل السكربتات:
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_tarantool_timeframe -w 1800 -c 900
-```
-
-``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_export_delay -w 120 -c 300
-```
-
-* `<WALLARM_NODE_CONTAINER_ID>` هو الرقم التعريفي لعقدة Wallarm المشتغلة في حاوية Docker. للحصول على الرقم التعريفي، قم بتشغيل `docker ps` وانسخ الرقم التعريفي المطلوب.
 
 ## تكوين سيناريو الاستخدام
 

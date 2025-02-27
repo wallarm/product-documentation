@@ -52,11 +52,10 @@ Para os nós de filtragem Wallarm localizados atrás de um balanceador de carga 
 
 ## Habilite a monitorização adequada dos nós de filtragem
 
-É altamente recomendado habilitar a monitorização adequada dos nós de filtragem Wallarm. O serviço `collectd` instalado em cada nó de filtragem Wallarm coleta as métricas listadas no [link](../admin-en/monitoring/available-metrics.md).
+É altamente recomendado habilitar a monitorização adequada dos nós de filtragem Wallarm.
 
 O método para configurar a monitorização do nó de filtragem depende da opção de implantação:
 
-* [Instruções para nós Wallarm baseados em NGINX](../admin-en/monitoring/intro.md) (incluindo imagens AWS / GCP e sidecars Kubernetes)
 * [Instruções para os nós de filtragem implantados como controlador de entrada Wallarm Kubernetes](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
 * [Instruções para a imagem Docker baseada em NGINX](../admin-en/installation-docker-en.md#monitoring-configuration)
 

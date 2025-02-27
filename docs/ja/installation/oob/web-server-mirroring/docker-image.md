@@ -5,7 +5,6 @@ search:
 
 [doc-wallarm-mode]:           ../../../admin-en/configure-parameters-en.md#wallarm_mode
 [doc-config-params]:          ../../../admin-en/configure-parameters-en.md
-[doc-monitoring]:             ../../../admin-en/monitoring/intro.md
 [waf-mode-instr]:                   ../../../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../../admin-en/using-proxy-or-balancer-en.md

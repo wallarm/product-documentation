@@ -96,4 +96,4 @@ wallarm_stalled_worker_time_seconds{pid="3169104"} 25
 wallarm_startid 3226376659815907920
 ```
 
-İzleme kurulumu hakkında detaylı bilgi ve mevcut metriklerin listesi, bu [documentation](../../../monitoring/intro.md) içinde sağlanmıştır.
+İzleme kurulumu hakkında detaylı bilgi ve mevcut metriklerin listesi, bu [documentation](../../../configure-statistics-service.md) içinde sağlanmıştır.

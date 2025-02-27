@@ -93,26 +93,6 @@ Ayarlar değiştirildikten sonra, değişiklikleri uygulamak için NGINX'i yenid
     ...
     status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
     ```
-1. [`collectd`](monitoring/intro.md) yapılandırma dosyasında `URL` parametresini uygun şekilde düzeltin. Bu dosyanın konumu, kullandığınız işletim sistemi ve kurulum yöntemine bağlıdır:
-
-    === "DEB-tabanlı dağıtımlar"
-        ```bash
-        /etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-
-        # all-in-one yükleyici için:
-        /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-        ```
-    === "RPM-tabanlı dağıtımlar"
-        ```bash
-        /etc/wallarm-collectd.d/nginx-wallarm.conf
-
-        # all-in-one yükleyici için:
-        /opt/wallarm/etc/wallarm-collectd.d/nginx-wallarm.conf
-        ```
-    === "AMI, GCP imajı veya Docker imajı"
-        ```bash
-        /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-        ```
 1. Değişiklikleri uygulamak için NGINX'i yeniden başlatın:
 
     --8<-- "../include/waf/restart-nginx-4.4-and-above.md"

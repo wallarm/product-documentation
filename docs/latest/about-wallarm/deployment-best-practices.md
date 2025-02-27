@@ -52,11 +52,10 @@ For Wallarm filtering nodes located behind a load balancer or CDN please make su
 
 ## Enable proper monitoring of the filtering nodes
 
-It is highly recommended to enable proper monitoring of Wallarm filtering nodes. The `collectd` service installed with every Wallarm filtering node collects the metrics listed within the [link](../admin-en/monitoring/available-metrics.md).
+It is highly recommended to enable proper monitoring of Wallarm filtering nodes.
 
 The method for setting up the filtering node monitoring depends on its deployment option:
 
-* [Instructions for NGINX-based Wallarm nodes](../admin-en/monitoring/intro.md) (including AWS / GCP images and Kubernetes sidecars)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
 * [Instructions for the NGINX-based Docker image](../admin-en/installation-docker-en.md#monitoring-configuration)
 

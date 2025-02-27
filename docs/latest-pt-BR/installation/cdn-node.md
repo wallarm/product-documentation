@@ -40,7 +40,6 @@ A solução tem certas limitações:
 * Para análise e filtração de alto tráfego, o uso de nós CDN não é recomendado.
 * A implantação do tipo de nó CDN não é suportada no [plano gratuito](../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud).
 * Com o nó CDN, você pode proteger os domínios de terceiro nível (ou inferior, como 4º-, 5º- etc). Por exemplo, você pode criar um nó CDN para `ple.example.com`, mas não para `example.com`.
-* O serviço [`collectd`](../admin-en/monitoring/intro.md) não é suportado.
 * A [configuração direta do aplicativo](../user-guides/settings/applications.md) por meio de procedimentos padrão está indisponível. Entre em contato com a [equipe de suporte do Wallarm](mailto:support@wallarm.com) para obter assistência na configuração.
 * [Páginas de bloqueio personalizadas e códigos de erro](../admin-en/configuration-guides/configure-block-page-and-code.md) não são configuráveis. Por padrão, o nó CDN retorna um código de resposta 403 para solicitações bloqueadas.
 
