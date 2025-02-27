@@ -55,5 +55,3 @@ NGINX tabanlı Wallarm node kullanıyorsanız, L7 DDoS saldırılarına karşı 
 * Yavaş bağlantıları kapatma. Bir bağlantı yeterince sık veri göndermiyorsa, uzun süre açık kalmasını ve sunucunun yeni bağlantıları kabul etme yeteneğini engellemesini önlemek için kapatılabilir.
 
 [NGINX yapılandırması örnekleri ve diğer önerilere bakın](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus/)
-
-Wallarm servisleri ile [Kong-based Ingress controller](../../installation/kubernetes/kong-ingress-controller/deployment.md) kullanıyorsanız, [API Gateway'i güvence altına almak için en iyi uygulamaları](https://konghq.com/learning-center/api-gateway/secure-api-gateway) takip etmeniz önerilir.

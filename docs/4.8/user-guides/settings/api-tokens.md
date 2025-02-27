@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/settings/api-tokens.md"
+--8<-- "4.10/user-guides/settings/api-tokens.md"

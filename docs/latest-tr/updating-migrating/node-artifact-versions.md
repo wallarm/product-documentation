@@ -140,14 +140,6 @@ All-in-one yükleyici güncellemelerinin geçmişi, hem x86_64 hem de ARM64 (bet
 
 * İlk 5.0 sürümü yayınlandı, [değişiklik günlüğüne](what-is-new.md) bakınız
 
-<!-- ## Helm chart for Kong Ingress controller
-
-[Yükseltme nasıl yapılır](kong-ingress-controller.md)
-
-### 4.8.0 (2023-03-28)
-
-* İlk 4.8 sürümü, [değişiklik günlüğüne](what-is-new.md) bakınız -->
-
 ## Helm chart for Sidecar
 
 [Yükseltme nasıl yapılır](sidecar-proxy.md)

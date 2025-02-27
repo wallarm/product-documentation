@@ -147,7 +147,5 @@
 حاليًا، الوحدة النمطية لكشف Credential Stuffing غير مدعومة على عقد Wallarm التي تم توزيعها عبر:
 
 * حزم DEB/RPM لـ NGINX ([الاستقرار](../installation/nginx/dynamic-module.md), [التوزيع](../installation/nginx/dynamic-module-from-distr.md)) أو [NGINX Plus](../installation/nginx-plus.md)
-* [Sidecar controller](../installation/kubernetes/sidecar-proxy/deployment.md)
-* [Kong Ingress controller](../installation/kubernetes/kong-ingress-controller/deployment.md)
 * [وحدة Terraform لـ AWS](../installation/cloud-platforms/aws/terraform-module/overview.md)
 * [صورة Docker المبنية على Envoy](../admin-en/installation-guides/envoy/envoy-docker.md)

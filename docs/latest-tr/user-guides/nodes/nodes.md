@@ -109,7 +109,7 @@ Wallarm filtreleme node’u, Wallarm Cloud ile etkileşime girer. Node’a Walla
     * Token’ın yaşam döngüsünü kontrol etmeniz gerektiğinde (son kullanma tarihi belirleyebilir veya API token’larını devre dışı bırakabilirsiniz, böylece daha güvenli hale gelir).
 
         !!! info "API token'lar bazı dağıtım seçenekleri tarafından desteklenmemektedir"
-            API token’lar şu anda [Kong Ingress controllers](../../installation/kubernetes/kong-ingress-controller/deployment.md) ve [Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md) tabanlı AWS dağıtımları için kullanılamamaktadır. Bunun yerine node token kullanın.
+            API token’lar şu anda [Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md) tabanlı AWS dağıtımları için kullanılamamaktadır. Bunun yerine node token kullanın.
 
 * Node token’ları, hangi node gruplarının sunulacağını önceden bildiğinizde kullanın. **Nodes** → **Create node** seçeneğini kullanarak node grubunu oluşturup adlandırın. Node dağıtımı sırasında, gruba dahil etmek istediğiniz her node için grubun token’ını kullanın.
 

@@ -858,3 +858,16 @@
 /ar/admin-en/monitoring/* /ar/admin-en/configure-statistics-service/
 /pt-br/admin-en/monitoring/* /pt-br/admin-en/configure-statistics-service/
 /ja/admin-en/monitoring/* /ja/admin-en/configure-statistics-service/
+
+/5.0/installation/kubernetes/kong-ingress-controller/* /5.0/installation/connectors/kong-api-gateway/
+/5.0/installation/inline/kubernetes/kong-ingress-controller/* /5.0/installation/connectors/kong-api-gateway/
+/installation/kubernetes/kong-ingress-controller/* /installation/connectors/kong-api-gateway/
+/installation/inline/kubernetes/kong-ingress-controller/* /installation/connectors/kong-api-gateway/
+/ar/installation/kubernetes/kong-ingress-controller/* /ar/installation/connectors/kong-api-gateway/
+/ar/installation/inline/kubernetes/kong-ingress-controller/* /ar/installation/connectors/kong-api-gateway/
+/tr/installation/kubernetes/kong-ingress-controller/* /tr/installation/connectors/kong-api-gateway/
+/tr/installation/inline/kubernetes/kong-ingress-controller/* /tr/installation/connectors/kong-api-gateway/
+/ja/installation/kubernetes/kong-ingress-controller/* /ja/installation/connectors/kong-api-gateway/
+/ja/installation/inline/kubernetes/kong-ingress-controller/* /ja/installation/connectors/kong-api-gateway/
+/pt-br/installation/kubernetes/kong-ingress-controller/* /pt-br/installation/connectors/kong-api-gateway/
+/pt-br/installation/inline/kubernetes/kong-ingress-controller/* /pt-br/installation/connectors/kong-api-gateway/

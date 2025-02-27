@@ -15,7 +15,7 @@ The **key features** of the Wallarm Sidecar solution:
 
 Among all supported [Wallarm deployment options][deployment-platform-docs], this solution is the recommended one for the following **use cases**:
 
-* You are looking for the security solution to be deployed to the infrastructure with the existing Ingress controller (e.g. AWS ALB Ingress Controller) preventing you from deployment of either [Wallarm NGINX-based][nginx-ing-controller-docs] or [Wallarm Kong-based Ingress controller][kong-ing-controller-docs]
+* You are looking for the security solution to be deployed to the infrastructure with the existing Ingress controller (e.g. AWS ALB Ingress Controller) preventing you from deployment of either [Wallarm NGINX-based Ingress Controller][nginx-ing-controller-docs] or [Wallarm connector for Kong Ingress controller][kong-ing-controller-docs]
 * Zero-trust environment that requires each microservice (including internal APIs) to be protected by the security solution
 
 ## Traffic flow

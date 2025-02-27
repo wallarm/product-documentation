@@ -46,5 +46,4 @@ Wallarmは柔軟な展開モデルを提供し、組織がプライベートク�
 プライベートクラウドでコンテナオーケストレーションにKubernetesを利用している場合、WallarmはKubernetesネイティブなソリューションとして展開できます。Kubernetesクラスターとシームレスに統合し、Ingressコントローラー、サイドカーコンテナ、またはカスタムKubernetesリソースなどの機能を活用します。Wallarmの展開には、以下のソリューションのいずれかを選択できます:
 
 * [NGINXベースのIngressコントローラー](../../admin-en/installation-kubernetes-en.md)
-* [KongベースのIngressコントローラー](../kubernetes/kong-ingress-controller/deployment.md)
 * [サイドカーコントローラー](../kubernetes/sidecar-proxy/deployment.md)

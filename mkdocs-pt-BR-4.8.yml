@@ -167,11 +167,7 @@ nav:
         - Em linha: installation/security-edge/deployment.md
         - Conectores: installation/se-connector.md
     - Kubernetes:
-      - Ingress:
-        - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
-        - Kong Ingress Controller:
-          - Deploy: installation/kubernetes/kong-ingress-controller/deployment.md
-          - Personalização: installation/kubernetes/kong-ingress-controller/customization.md
+      - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
       - Sidecar:
         - Deploy: installation/kubernetes/sidecar-proxy/deployment.md
         - Personalização: installation/kubernetes/sidecar-proxy/customization.md
@@ -208,9 +204,6 @@ nav:
           - Pacotes Individuais para Disribution-Provided NGINX: installation/inline/compute-instances/linux/individual-packages-nginx-distro.md
       - Kubernetes:
         - NGINX Ingress Controller: installation/inline/kubernetes/nginx-ingress-controller.md
-        - Kong Ingress Controller:
-          - Deploy: installation/inline/kubernetes/kong-ingress-controller/deployment.md
-          - Customization: installation/inline/kubernetes/kong-ingress-controller/customization.md
         - Sidecar Controller:
           - Deploy: installation/inline/kubernetes/sidecar-proxy/deployment.md
           - Customization: installation/inline/kubernetes/sidecar-proxy/customization.md
@@ -366,7 +359,6 @@ nav:
         - Atualizando o Nó Instalado através do Instalador All-in-One: updating-migrating/all-in-one.md
         - Atualizando a Imagem Docker Wallarm NGINX- ou Envoy-based: updating-migrating/docker-container.md
         - Atualizando o Controlador de Ingresso NGINX com Módulos Wallarm integrados: updating-migrating/ingress-controller.md
-        - Atualizando o Controlador de Ingresso Kong com Módulos Wallarm integrados: updating-migrating/kong-ingress-controller.md
         - Atualizando o Proxy de Sidecar Wallarm: updating-migrating/sidecar-proxy.md
         - Atualizando a Imagem do Nó Cloud: updating-migrating/cloud-image.md
         - Atualizando o Nó CDN Wallarm: updating-migrating/cdn-node.md

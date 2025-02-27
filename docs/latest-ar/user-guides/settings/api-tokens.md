@@ -112,4 +112,4 @@
 أحد العملاء الذين يصلون إلى Wallarm Cloud API هو عقدة تصفية Wallarm نفسها. لمنح عقدة تصفية وصول إلى API Wallarm Cloud، بجانب رموز API، يمكنك استخدام رموز العقد. [اعرف الاختلاف وما يجب التفضيل ←](../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)
 
 !!! info "رموز API غير مدعومة ببعض خيارات النشر"
-    حاليًا، لا يمكن استخدام رموز API لمتحكمات [Kong Ingress](../../installation/kubernetes/kong-ingress-controller/deployment.md) ونشر AWS القائم على [وحدة Terraform](../../installation/cloud-platforms/aws/terraform-module/overview.md). استخدم رموز العقد بدلاً من ذلك.
+    حاليًا، لا يمكن استخدام رموز API لمتحكمات AWS القائم على [وحدة Terraform](../../installation/cloud-platforms/aws/terraform-module/overview.md). استخدم رموز العقد بدلاً من ذلك.

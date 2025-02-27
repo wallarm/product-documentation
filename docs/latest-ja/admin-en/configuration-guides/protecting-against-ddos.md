@@ -57,5 +57,3 @@ NGINXベースのWallarmノードを使用している場合、以下の方法�
 * 遅い接続の終了。十分な頻度でデータを書き込まない接続は、長時間維持され新規接続の受付を妨げるのを防ぐために終了させます。
 
 [NGINX設定の例およびその他の推奨事項をご参照ください](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus/)
-
-[KongベースのIngress controllerとWallarmサービス](../../installation/kubernetes/kong-ingress-controller/deployment.md)を使用している場合、[API Gatewayを保護するためのベストプラクティス](https://konghq.com/learning-center/api-gateway/secure-api-gateway)に従うことが推奨されます。

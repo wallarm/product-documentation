@@ -70,7 +70,6 @@ Se estiver atualizando a partir da versão 3.6 ou inferior, aprenda todas as mud
       * [Pacotes individuais para NGINX, NGINX Plus, NGINX Distributive](nginx-modules.md)
       * [Container Docker com os módulos para NGINX ou Envoy](docker-container.md)
       * [NGINX Ingress controller com módulos Wallarm integrados](ingress-controller.md)
-      * [Kong Ingress controller com módulos Wallarm integrados](kong-ingress-controller.md)
       * [Sidecar](sidecar-proxy.md)
       * [Imagem de nó em nuvem](cloud-image.md)
       * [Nó CDN](cdn-node.md)

@@ -57,5 +57,3 @@ Se você está usando um nó Wallarm baseado em NGINX, é recomendado configurar
 * Fechamento de conexões lentas. Se uma conexão não escrever dados com frequência suficiente, ela pode ser fechada para evitar que permaneça aberta por um período de tempo estendido e possivelmente impeça a capacidade do servidor de aceitar novas conexões.
 
 [Veja exemplos de configuração do NGINX e outras recomendações](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus/)
-
-Se você está usando o [Kong-based Ingress controller com os serviços Wallarm](../../installation/kubernetes/kong-ingress-controller/deployment.md), é recomendado seguir as [melhores práticas para assegurar a API Gateway](https://konghq.com/learning-center/api-gateway/secure-api-gateway).

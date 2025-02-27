@@ -89,5 +89,4 @@ Wallarmノードを展開する際、ネットワークトポロジ内の異な�
 Wallarmは、Kubernetes上でのWallarm実行のため、以下のアーティファクトおよびソリューションを提供します:
 
 * [NGINX Ingressコントローラー](../../admin-en/installation-kubernetes-en.md)
-* [Kong Ingressコントローラー](../kubernetes/kong-ingress-controller/deployment.md)
 * [Sidecarコントローラー](../kubernetes/sidecar-proxy/deployment.md)

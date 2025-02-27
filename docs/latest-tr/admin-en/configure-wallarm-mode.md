@@ -78,16 +78,6 @@ Belirtilen yapılandırmanın yalnızca [in-line](../installation/inline/overvie
 
     Filtreleme modunu `monitoring` olarak ayarlayarak NGINX tabanlı Ingress controller'ınız için trafik analizinin nasıl [etkinleştirildiğine](../admin-en/installation-kubernetes-en.md#step-2-enabling-traffic-analysis-for-your-ingress) dair örneğe bakınız.
 
-=== "Kong Ingress controller"
-
-    Kong Ingress controller için `wallarm-mode` anotasyonunu kullanın:
-
-    ```
-    kubectl annotate ingress <KONG_INGRESS_NAME> -n <KONG_INGRESS_NAMESPACE> wallarm.com/wallarm-mode=monitoring
-    ```
-
-    Kong tabanlı Ingress controller'ınız için trafik analizinin nasıl [etkinleştirildiğine](../installation/kubernetes/kong-ingress-controller/deployment.md#step-3-enable-traffic-analysis-for-your-ingress) dair örneğe bakınız.
-
 === "Sidecar"
 
     Wallarm Sidecar çözümü için, varsayılan `values.yaml` dosyasının Wallarm ile ilgili bölümünde `mode` parametresini ayarlayın:

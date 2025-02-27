@@ -151,7 +151,5 @@ Bu örnekte, ele geçirilmiş kimlik bilgilerinin kullanıldığı yeni bir giri
 
 Şu anda, Credential Stuffing Detection modülü aşağıdaki şekilde dağıtılan Wallarm node'larında desteklenmemektedir:
 
-* [Sidecar controller](../installation/kubernetes/sidecar-proxy/deployment.md)
-* [Kong Ingress controller](../installation/kubernetes/kong-ingress-controller/deployment.md)
 * [Terraform module for AWS](../installation/cloud-platforms/aws/terraform-module/overview.md)
 * [Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md)

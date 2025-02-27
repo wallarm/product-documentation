@@ -139,14 +139,6 @@
 
 * 初回リリース5.0です（[変更履歴](what-is-new.md)を参照）。
 
-<!-- ## Helm chart for Kong Ingress controller
-
-[アップグレード方法](kong-ingress-controller.md)
-
-### 4.8.0 (2023-03-28)
-
-* 初回リリース4.8です（[変更履歴](what-is-new.md)を参照）。 -->
-
 ## Sidecar用Helmチャート
 
 [アップグレード方法](sidecar-proxy.md)

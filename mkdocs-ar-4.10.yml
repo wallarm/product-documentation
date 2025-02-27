@@ -184,11 +184,7 @@ nav:
         - مضمن: installation/security-edge/deployment.md
         - الموصلات: installation/se-connector.md
     - Kubernetes:
-      - Ingress:
-        - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
-        - Kong Ingress Controller:
-          - نصب: installation/kubernetes/kong-ingress-controller/deployment.md
-          - تخصيص: installation/kubernetes/kong-ingress-controller/customization.md
+      - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
       - Sidecar:
         - نصب: installation/kubernetes/sidecar-proxy/deployment.md
         - تخصيص: installation/kubernetes/sidecar-proxy/customization.md
@@ -225,9 +221,6 @@ nav:
           - حزم منفردة لـ NGINX المقدم من التوزيعة: installation/inline/compute-instances/linux/individual-packages-nginx-distro.md
       - كوبرنيتيس:
         - NGINX Ingress Controller: installation/inline/kubernetes/nginx-ingress-controller.md
-        - Kong Ingress Controller:
-          - نصب: installation/inline/kubernetes/kong-ingress-controller/deployment.md
-          - تخصيص: installation/inline/kubernetes/kong-ingress-controller/customization.md
         - Sidecar Controller:
           - نصب: installation/inline/kubernetes/sidecar-proxy/deployment.md
           - تخصيص: installation/inline/kubernetes/sidecar-proxy/customization.md
@@ -377,7 +370,6 @@ nav:
         - تحديث العقدة التي تم تثبيتها عبر البرنامج المثبت all-in-one: updating-migrating/all-in-one.md
         - تحديث صورة Docker NGINX- أو Envoy-based: updating-migrating/docker-container.md
         - تحديث NGINX Ingress controller بوحدات Wallarm المتكاملة: updating-migrating/ingress-controller.md
-        - تحديث Kong Ingress controller بوحدات Wallarm المتكاملة: updating-migrating/kong-ingress-controller.md
         - تحديث Wallarm Sidecar proxy: updating-migrating/sidecar-proxy.md
         - تحديث صورة العقدة السحابية: updating-migrating/cloud-image.md
         - تحديث Wallarm CDN node: updating-migrating/cdn-node.md

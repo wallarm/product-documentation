@@ -43,7 +43,6 @@
 * [وحدات لـ NGINX، NGINX Plus](nginx-modules.md)
 * [حاوية Docker مع الوحدات لـ NGINX أو Envoy](docker-container.md)
 * [NGINX Ingress controller مع وحدات Wallarm المدمجة](ingress-controller.md)
-* [Kong Ingress controller مع وحدات Wallarm المدمجة](kong-ingress-controller.md)
 * [Sidecar](sidecar-proxy.md)
 * [صورة العقدة السحابية](cloud-image.md)
 * [عقدة متعددة المستأجرين](multi-tenant.md)

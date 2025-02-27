@@ -162,7 +162,5 @@ Wallarmの**クレデンシャルスタッフィング検出**を有効化する
 
 現時点では、以下の方法でデプロイされたWallarmノードではクレデンシャルスタッフィング検出モジュールはサポートされていません:
 
-* [Sidecar controller](../installation/kubernetes/sidecar-proxy/deployment.md)
-* [Kong Ingress controller](../installation/kubernetes/kong-ingress-controller/deployment.md)
 * [Terraform module for AWS](../installation/cloud-platforms/aws/terraform-module/overview.md)
 * [Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md)

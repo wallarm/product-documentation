@@ -156,11 +156,7 @@ nav:
         - インライン: installation/security-edge/deployment.md
         - コネクタ: installation/se-connector.md
     - Kubernetes:
-      - イングレス:
-        - NGINXイングレスコントローラ: admin-en/installation-kubernetes-en.md
-        - Kingイングレスコントローラ:
-          - 展開: installation/kubernetes/kong-ingress-controller/deployment.md
-          - カスタマイズ: installation/kubernetes/kong-ingress-controller/customization.md
+      - NGINXイングレスコントローラ: admin-en/installation-kubernetes-en.md
       - サイドカー:
         - 展開: installation/kubernetes/sidecar-proxy/deployment.md
         - カスタマイズ: installation/kubernetes/sidecar-proxy/customization.md
@@ -197,9 +193,6 @@ nav:
           - ディストリビューションが提供するNGINX: installation/inline/compute-instances/linux/individual-packages-nginx-distro.md
       - Kubernetes:
         - NGINX Ingressコントローラ: installation/inline/kubernetes/nginx-ingress-controller.md
-        - Kong Ingressコントローラ:
-          - 展開: installation/inline/kubernetes/kong-ingress-controller/deployment.md
-          - カスタム化: installation/inline/kubernetes/kong-ingress-controller/customization.md
         - Sidecarコントローラ:
           - 展開: installation/inline/kubernetes/sidecar-proxy/deployment.md
           - カスタマイズ: installation/inline/kubernetes/sidecar-proxy/customization.md
@@ -274,7 +267,6 @@ nav:
           - 一体型インストーラを介してインストールされたノードのアップグレード: updating-migrating/all-in-one.md
           - Wallarm Docker NGINX-またはEnvoyベースの画像のアップグレード: updating-migrating/docker-container.md
           - 統合されたWallarmモジュールとNGINX Ingressコントローラーのアップグレード: updating-migrating/ingress-controller.md
-          - 統合されたWallarmモジュールとKong Ingressコントローラーのアップグレード: updating-migrating/kong-ingress-controller.md
           - Wallarm Sidecarプロキシのアップグレード: updating-migrating/sidecar-proxy.md
           - クラウドノードイメージのアップグレード: updating-migrating/cloud-image.md
           - WallarmCDNノードのアップグレード: updating-migrating/cdn-node.md
@@ -379,7 +371,6 @@ nav:
         - 一体型インストーラを使ってインストールされたノードの更新: updating-migrating/all-in-one.md
         - Wallarm Docker NGINX- or Envoy-basedイメージの更新: updating-migrating/docker-container.md
         - 統合されたWallarmモジュールとNGINX Ingress controllerの更新: updating-migrating/ingress-controller.md
-        - 統合されたWallarmモジュールとKong Ingress controllerの更新: updating-migrating/kong-ingress-controller.md
         - Wallarm Sidecar proxyの更新: updating-migrating/sidecar-proxy.md
         - クラウドノードイメージの更新: updating-migrating/cloud-image.md
         - Wallarm CDNノードの更新: updating-migrating/cdn-node.md

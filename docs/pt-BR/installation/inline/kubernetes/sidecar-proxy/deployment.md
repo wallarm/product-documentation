@@ -7,7 +7,7 @@ search:
 [deployment-platform-docs]:                   ../../../../installation/supported-deployment-options.md
 [sidecar-deployment-objects-img]:             ../../../../images/waf-installation/kubernetes/sidecar-controller/deployment-objects.png
 [nginx-ing-controller-docs]:                  ../../../../admin-en/installation-kubernetes-en.md
-[kong-ing-controller-docs]:                   ../kong-ingress-controller/deployment.md
+[kong-ing-controller-docs]:                   ../../../connectors/kong-api-gateway.md
 [traffic-flow-with-wallarm-sidecar-img]:      ../../../../images/waf-installation/kubernetes/sidecar-controller/traffic-flow-with-wallarm.png
 [create-wallarm-node-img]:                    ../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png
 [ptrav-attack-docs]:                          ../../../../attacks-vulns-list.md#path-traversal

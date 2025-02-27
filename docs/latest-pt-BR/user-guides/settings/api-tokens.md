@@ -115,4 +115,4 @@ Você pode usar tokens de API descritos neste artigo para [autenticação de sol
 Um dos clientes acessando a API Wallarm Cloud é o próprio nó de filtragem Wallarm. Para conceder a um nó de filtragem acesso à API de Wallarm Cloud, além dos tokens de API, você pode usar tokens de nó. [Conheça a diferença e o que preferir →](../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)
 
 !!! info "Tokens de API não são suportados por algumas opções de implantação"
-    Atualmente, os tokens de API não podem ser usados ​​para [controladores de ingresso Kong](../../installation/kubernetes/kong-ingress-controller/deployment.md) e implantações da AWS baseadas em [módulo Terraform](../../installation/cloud-platforms/aws/terraform-module/overview.md). Use tokens de nó em vez disso.
+    Atualmente, os tokens de API não podem ser usados ​​para AWS baseadas em [módulo Terraform](../../installation/cloud-platforms/aws/terraform-module/overview.md). Use tokens de nó em vez disso.
