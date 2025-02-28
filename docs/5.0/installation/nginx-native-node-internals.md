@@ -210,7 +210,7 @@ Traffic to protected APIs passes through Wallarm NGINX Node instances before it 
 
 The Native Node does not rely on NGINX. It was developed for environments where NGINX is not required or where a more lightweight and platform-agnostic solution is preferred.
 
-The following artifacts are available for deploying the Native Node:
+The following [artifacts](../updating-migrating/native-node/node-artifact-versions.md) are available for deploying the Native Node:
 
 * [All-in-one installer](native-node/all-in-one.md)
 * [Docker image](native-node/docker-image.md)
