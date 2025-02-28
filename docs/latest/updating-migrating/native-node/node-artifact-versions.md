@@ -10,13 +10,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
-### 0.12.1 (2025-02-27)
-
-* Fixed the [CVE-2025-26519](https://nvd.nist.gov/vuln/detail/CVE-2025-26519) and [CVE-2024-12797](https://nvd.nist.gov/vuln/detail/CVE-2024-12797) vulnerabilities
-* Fixed vpatch attacks not being blocked in monitoring mode
-* Fixed serialized requests missing response time and length fields
-* Fixed chained headers log level from `warn` to `trace`
-
 ### 0.12.0 (2025-02-05)
 
 * Added support for response parameters in [API Sessions](../../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../../api-sessions/setup.md#session-grouping) (see detailed [change description](../../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
@@ -154,13 +147,6 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
-### 0.12.1 (2025-02-27)
-
-* Fixed the [CVE-2025-26519](https://nvd.nist.gov/vuln/detail/CVE-2025-26519) and [CVE-2024-12797](https://nvd.nist.gov/vuln/detail/CVE-2024-12797) vulnerabilities
-* Fixed vpatch attacks not being blocked in monitoring mode
-* Fixed serialized requests missing response time and length fields
-* Fixed chained headers log level from `warn` to `trace`
-
 ### 0.12.0 (2025-02-05)
 
 * Added support for response parameters in [API Sessions](../../api-sessions/overview.md) for providing the full context of user activities and more precise [session grouping](../../api-sessions/setup.md#session-grouping) (see detailed [change description](../../updating-migrating/what-is-new.md#response-parameters-in-api-sessions))
@@ -240,14 +226,6 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md) connectors.
 
 [How to upgrade](docker-image.md)
-
-### 0.12.1 (2025-02-27)
-
-* Fixed the [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2024-13176](https://nvd.nist.gov/vuln/detail/CVE-2024-13176), [CVE-2024-56326](https://nvd.nist.gov/vuln/detail/CVE-2024-56326), [CVE-2024-56201](https://nvd.nist.gov/vuln/detail/CVE-2024-56201) and [CVE-2025-22866](https://nvd.nist.gov/vuln/detail/CVE-2025-22866) vulnerabilities
-* Fixed the [CVE-2025-26519](https://nvd.nist.gov/vuln/detail/CVE-2025-26519) and [CVE-2024-12797](https://nvd.nist.gov/vuln/detail/CVE-2024-12797) vulnerabilities
-* Fixed vpatch attacks not being blocked in monitoring mode
-* Fixed serialized requests missing response time and length fields
-* Fixed chained headers log level from `warn` to `trace`
 
 ### 0.12.0 (2025-02-05)
 
