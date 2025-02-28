@@ -101,7 +101,20 @@ For this to work, you need to configure integration between Wallarm and your SAM
 
 Once a user appears in the user list, you can edit their settings using the **Edit user settings** option from the corresponding user menu. This allows you to change their assigned user role, first name, and last name.
 
-## Disabling 2FA
+## Managing 2FA
+
+### Enforcing for all users
+
+You can enforce all company users to use two-factor authentication (2FA). To do so:
+
+1. Open Wallarm Console → **Settings** → **General**.
+1. In the **Sign-in management** section, select the **Enforce two-factor authentication for all company users** option and confirm.
+
+Once enabled, all users of your company account will have to set up 2FA before they can log in without an option of bypassing: on the next login they will be informed about 2FA set to be obligatory and will be provided with the 2FA configuration options.
+
+You can disable the enforcement mode at any moment later.
+
+### Disabling for selected users
 
 If a user has [two-factor authentication (2FA) enabled](account.md#enabling-two-factor-authentication) and you need to reset it, select the **Disable 2FA** option from the user menu. Confirm the action by entering your Wallarm administrator account password.
 
