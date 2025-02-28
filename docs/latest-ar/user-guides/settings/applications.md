@@ -9,7 +9,7 @@
 
 * مشاهدة الأحداث والإحصائيات بشكل منفصل لكل تطبيق
 * تهيئة [المشغلات](../triggers/triggers.md)، [القواعد](../rules/rules.md) وميزات Wallarm الأخرى لتطبيقات معينة
-* [تهيئة Wallarm في بيئات منفصلة](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)
+* [تهيئة Wallarm في بيئات منفصلة](../../installation/multi-tenant/overview.md#issues-addressed-by-multitenancy)
 
 لكي يتعرف Wallarm على تطبيقاتك، يلزم تعيين معرفات فريدة لها عبر الأمر المناسب في تهيئة العقدة. يمكن تعيين المعرفات لكل من نطاقات التطبيق ومسارات النطاق.
 

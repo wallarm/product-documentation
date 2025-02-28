@@ -287,7 +287,7 @@ nav:
     - Proper Reporting of End‑User IP: admin-en/using-proxy-or-balancer-en.md
     - Resource Allocation: admin-en/configuration-guides/allocate-resources-for-node.md
     - Limiting Request Processing Time: user-guides/rules/configure-overlimit-res-detection.md
-    - Splitting Traffic and Settings by Applications: user-guides/settings/applications.md
+    - Splitting Data and Settings by Applications: user-guides/settings/applications.md
     - Blocking Page and Error Code: admin-en/configuration-guides/configure-block-page-and-code.md
     - Monitoring & Failover:
       - Checking Node Operation: admin-en/installation-check-operation-en.md
@@ -313,9 +313,6 @@ nav:
             - Exporting Metrics to Zabbix via the `collectd-nagios` Utility: admin-en/monitoring/collectd-zabbix.md
             - Working with the Filter Node in Zabbix: admin-en/monitoring/working-with-zabbix.md
     - Wallarm Node and Cloud Synchronization: admin-en/configure-cloud-node-synchronization-en.md
-    - Separated Customer Environments:
-      - How Filtering Node Works in Separated Environments: admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md
-      - Configuration Recommendations: admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md
     - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
     - Access to Files Needed for Node Operation: admin-en/configure-access-to-files-needed-for-node.md
     - Dynamic DNS Resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md

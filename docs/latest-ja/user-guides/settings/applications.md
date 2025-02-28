@@ -6,7 +6,7 @@
 
 * 各アプリケーションごとにイベントと統計情報を個別に確認します。
 * 特定のアプリケーションに対して[triggers](../triggers/triggers.md)、[rules](../rules/rules.md)などのWallarm機能を設定します。
-* [Configure Wallarm in separated environments](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)します。
+* [Configure Wallarm in separated environments](../../installation/multi-tenant/overview.md#issues-addressed-by-multitenancy)します。
 
 Wallarmがアプリケーションを識別するためには、ノード構成内で適切なディレクティブを使用して一意の識別子を割り当てる必要があります。識別子は、アプリケーションのドメインおよびドメインパスの両方に対して設定可能です。
 
