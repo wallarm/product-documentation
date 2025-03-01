@@ -158,7 +158,4 @@ In this example, if a new attempt to use compromised credentials is detected, a 
 
 ## Limitations
 
-Currently, the Credential Stuffing Detection module is not supported on Wallarm nodes deployed via:
-
-* [Terraform module for AWS](../installation/cloud-platforms/aws/terraform-module/overview.md)
-* [Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md)
+Currently, the Credential Stuffing Detection module is not supported on Wallarm nodes deployed via [Terraform module for AWS](../installation/cloud-platforms/aws/terraform-module/overview.md).

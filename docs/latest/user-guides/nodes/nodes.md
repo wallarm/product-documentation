@@ -68,7 +68,7 @@ The following node properties and metrics are available:
 * Date of the filtering node creation
 * Number of requests processed by the node in the current month, you can also **View events from this node for the day** (switches to the **Attacks** section)
 * Versions of used LOM and proton.db
-* Versions of installed Wallarm packages, NGINX, and Envoy (if any)
+* Versions of installed Wallarm packages and NGINX (if any)
 
 ![Node card](../../images/user-guides/nodes/view-wallarm-node.png)
 

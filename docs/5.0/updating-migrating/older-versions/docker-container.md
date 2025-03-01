@@ -11,8 +11,6 @@
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]:                     ../../user-guides/ip-lists/overview.md
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
-[envoy-process-time-limit-docs]:    ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
-[envoy-process-time-limit-block-docs]: ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 [api-policy-enf-docs]:              ../../api-specification-enforcement/overview.md
 
@@ -83,18 +81,6 @@ There are the following deprecated configuration options:
 
     We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
 
-<!-- * The following Envoy parameters have been renamed:
-
-    * `lom` → [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
-    * `instance` → [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
-    * `tsets` section → `rulesets`, and correspondingly the `tsN` entries in this section → `rsN`
-    * `ts` → [`ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
-    * `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
-
-    We only changed the names of the parameters, their logic remains the same. Parameters with former names will be deprecated soon, so you are recommended to rename them before.
-    
-    Please check if the parameters with former names are explicitly specified in the mounted configuration files. If so, rename them. -->
-
 ## Step 8: Update the Wallarm blocking page (if upgrading NGINX-based image)
 
 In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
@@ -131,7 +117,6 @@ There are two options for running the container using the updated image:
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       * Environment variable [`WALLARM_MODE`](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) or the directive [`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode) of the NGINX‑based Docker container
-      <!-- * Environment variable [`WALLARM_MODE`](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables) or the directive [`mode`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) of the Envoy‑based Docker container -->
       * [General filtration rule configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console)
       * [Endpoint-targeted filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).

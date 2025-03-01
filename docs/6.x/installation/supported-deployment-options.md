@@ -287,11 +287,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
         </div>
 
-        <div id="inline-packages-docker-images" class="do-card">
+        <a class="do-card" href="../../installation/inline/compute-instances/docker/nginx-based/">
             <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
-            <h3>Docker images</h3>
-            <p>Deploy the Wallarm node as a Docker container</p>
-        </div>
+            <h3>Docker image (NGINX)</h3>
+            <p>Use the NGINX-based Docker image for Wallarm deployment</p>
+        </a>
 
     </div>
 
@@ -381,24 +381,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
     </div>
 
-    <div class="do-nested" data-for="inline-packages-docker-images">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
-            <h3>Docker images</h3>
-            <p>Deploy the Wallarm node as a Docker container</p>
-        </div>
-
-        <a class="do-card" href="../../installation/inline/compute-instances/docker/nginx-based/">
-            <h3>Docker image (NGINX)</h3>
-            <p>Use the NGINX-based Docker image for Wallarm deployment</p>
-        </a>
-
-        <a class="do-card" href="../../installation/inline/compute-instances/docker/envoy-based/">
-            <h3>Docker image (Envoy)</h3>
-            <p>Use the Envoy-based Docker image for Wallarm deployment</p>
-        </a>
-    </div>
-
     <div class="do-nested" data-for="inline-kubernetes">
         <div class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/kubernetes.svg" />
@@ -469,12 +451,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>All-in-one installer</h3>
             <p>Let Wallarm detect your OS and NGINX version to install the appropriate modules</p>
         </a>
-        
-        <div id="packages-docker-images" class="do-card">
+
+        <a class="do-card" href="../../admin-en/installation-docker-en/">
             <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
-            <h3>Docker images</h3>
-            <p>Deploy the Wallarm node as a Docker container</p>
-        </div>
+            <h3>Docker image (NGINX)</h3>
+            <p>Use the NGINX-based Docker image for Wallarm deployment</p>
+        </a>
 
         <div id="packages-cloud-images" class="do-card">
             <img class="non-zoomable" src="../../images/platform-icons/cloud.svg" />
@@ -486,24 +468,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <img class="non-zoomable" src="../../images/platform-icons/terraform.svg" />
             <h3>Terraform module</h3>
             <p>Use the Terraform module for Wallarm deployment on AWS</p>
-        </a>
-    </div>
-
-    <div class="do-nested" data-for="packages-docker-images">
-        <div class="do-card">
-            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
-            <h3>Docker images</h3>
-            <p>Deploy the Wallarm node as a Docker container</p>
-        </div>
-
-        <a class="do-card" href="../../admin-en/installation-docker-en/">
-            <h3>Docker image (NGINX)</h3>
-            <p>Use the NGINX-based Docker image for Wallarm deployment</p>
-        </a>
-
-        <a class="do-card" href="../../admin-en/installation-guides/envoy/envoy-docker/">
-            <h3>Docker image (Envoy)</h3>
-            <p>Use the Envoy-based Docker image for Wallarm deployment</p>
         </a>
     </div>
 

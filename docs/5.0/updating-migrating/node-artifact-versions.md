@@ -312,17 +312,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * Initial release 5.0, [see changelog](what-is-new.md)
 * Added support for NGINX v1.26.2 stable
 
-<!-- ## Envoy-based Docker image
-
-!!! info "Pending upgrade to 4.10"
-    This artifact has not been updated to Wallarm node 4.10 yet; an upgrade is pending. The 4.10 features are not supported on nodes deployed with this artifact.
-
-[How to upgrade](docker-container.md)
-
-### 4.8.0-1 (2023-10-19)
-
-* Initial release 4.8, [see changelog](what-is-new.md) -->
-
 ## Amazon Machine Image (AMI)
 
 [How to upgrade](cloud-image.md)

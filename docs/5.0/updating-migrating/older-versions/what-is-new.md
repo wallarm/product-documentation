@@ -216,7 +216,6 @@ Wallarm node finds the JWT anywhere in the request, [decodes](../../user-guides/
 * Dropped support for CentOS 6.x (CloudLinux 6.x)
 * Dropped support for Debian 9.x
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
-* Version of Envoy used in [Wallarm Envoy-based Docker image](../../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
 [See the full list of supported installation options →](../../installation/supported-deployment-options.md)
 
@@ -292,8 +291,8 @@ If following the Infrastructure as Code (IaC) approach, you may need to use the 
 
 For the [multi-tenant nodes](../../installation/multi-tenant/overview.md), tenants and applications are now defined each with its own directive:
 
-* The [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) NGINX directive and [`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md#partner_client_id_param) Envoy parameter have been added to configure the unique identifier of a tenant.
-* The [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) NGINX directive and [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#application_param) Envoy parameter behavior has been changed. Now it is **only** used to configure an application ID.
+* The [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) NGINX directive have been added to configure the unique identifier of a tenant.
+* The [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) NGINX directive behavior has been changed. Now it is **only** used to configure an application ID.
 
 [Instructions on the multi-tenant node upgrade](../multi-tenant.md)
 
@@ -313,7 +312,7 @@ For the [multi-tenant nodes](../../installation/multi-tenant/overview.md), tenan
 
 The following parameters for request source control have been deprecated:
 
-* All `acl` NGINX directives, Envoy parameters, and environment variables used to configure IP address denylist. Manual configuration of IP denylisting is no longer required.
+* All `acl` NGINX directives and environment variables used to configure IP address denylist. Manual configuration of IP denylisting is no longer required.
 
     [Details on migrating denylist configuration →](../migrate-ip-lists-to-node-3.md)
 
@@ -328,11 +327,9 @@ There are the following new features for request source control:
 * Automated allowlisting of [Wallarm Vulnerability Scanner](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
 * Ability to allowlist, denylist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region, or data center.
 * Ability to allowlist, denylist, or graylist request sources for specific applications.
-* New NGINX directive and Envoy parameter `disable_acl` to disable request origin analysis.
+* New NGINX directive `disable_acl` to disable request origin analysis.
 
     [Details on the `disable_acl` NGINX directive →](../../admin-en/configure-parameters-en.md#disable_acl)
-
-    [Details on the `disable_acl` Envoy parameter →](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
 
 [Details on adding IPs to the allowlist, denylist, and graylist →](../../user-guides/ip-lists/overview.md)
 
@@ -344,10 +341,10 @@ New Wallarm nodes are distributed with the module **API Discovery** automaticall
 
 ## Enhanced attack analysis with the libdetection library
 
-Attack analysis performed by Wallarm has been enhanced by involving an additional attack validation layer. Wallarm node in all form-factors (including Envoy) are distributed with the libdetection library enabled by default. This library performs secondary fully grammar-based validation of all [SQLi](../../attacks-vulns-list.md#sql-injection) attacks reducing the number of false positives detected among SQL injections.
+Attack analysis performed by Wallarm has been enhanced by involving an additional attack validation layer. Wallarm node in all form-factors are distributed with the libdetection library enabled by default. This library performs secondary fully grammar-based validation of all [SQLi](../../attacks-vulns-list.md#sql-injection) attacks reducing the number of false positives detected among SQL injections.
 
 !!! warning "Memory consumption increase"
-    With the **libdetection** library enabled, the amount of memory consumed by NGINX/Envoy and Wallarm processes may increase by about 10%.
+    With the **libdetection** library enabled, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
 
 [Details on how Wallarm detects attacks →](../../about-wallarm/protecting-against-attacks.md)
 
@@ -355,10 +352,10 @@ Attack analysis performed by Wallarm has been enhanced by involving an additiona
 
 We have introduced the new [rule allowing the `overlimit_res` attack detection fine-tuning](../../user-guides/rules/configure-overlimit-res-detection.md).
 
-The `overlimit_res` attack detection fine-tuning via the NGINX and Envoy configuration files is considered to be the deprecated way:
+The `overlimit_res` attack detection fine-tuning via the NGINX configuration files is considered to be the deprecated way:
 
-* The rule allows setting up a single request processing time limit as the `wallarm_process_time_limit` NGINX directive and `process_time_limit` Envoy parameter did before.
-* The rule allows to block or pass the `overlimit_res` attacks in accordance with the [node filtration mode](../../admin-en/configure-wallarm-mode.md) instead of the `wallarm_process_time_limit_block` NGINX directive and `process_time_limit_block` Envoy parameter configuration.
+* The rule allows setting up a single request processing time limit as the `wallarm_process_time_limit` NGINX directive did before.
+* The rule allows to block or pass the `overlimit_res` attacks in accordance with the [node filtration mode](../../admin-en/configure-wallarm-mode.md) instead of the `wallarm_process_time_limit_block` NGINX directive configuration.
 
 The listed directives and parameters have been deprecated and will be deleted in future releases. It is recommended to transfer the `overlimit_res` attack detection configuration from directives to the rule before. Relevant instructions are provided for each [node deployment option](../general-recommendations.md#update-process).
 
@@ -434,17 +431,12 @@ The NGINX-based Wallarm Docker image now supports the new environment variable `
 
 ## Renamed parameters, files and metrics
 
-* The following NGINX directives and Envoy parameters have been renamed:
+* The following NGINX directives have been renamed:
 
-    * NGINX: `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
-    * NGINX: `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
-    * NGINX: `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
-    * NGINX: `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
-    * Envoy: `lom` → [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
-    * Envoy: `instance` → [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
-    * Envoy: `tsets` section → `rulesets`, and correspondingly the `tsN` entries in this section → `rsN`
-    * Envoy: `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
-    * Envoy: `ts` → [`ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
+    * `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
+    * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
+    * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
+    * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
     Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
 * The Ingress [annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-instance` has been renamed to `nginx.ingress.kubernetes.io/wallarm-application`.
@@ -452,7 +444,7 @@ The NGINX-based Wallarm Docker image now supports the new environment variable `
     The annotation with the previous name is still supported but will be deprecated in future releases. The annotation logic has not changed.
 * The file with the custom ruleset build `/etc/wallarm/lom` has been renamed to `/etc/wallarm/custom_ruleset`. In the file system of new node versions, there is only the file with the new name.
 
-    Default values of the NGINX directive [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path) and Envoy parameter [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) have been changed appropriately. New default value is `/etc/wallarm/custom_ruleset`.
+    The default value of the NGINX directive [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path) has been changed appropriately. New default value is `/etc/wallarm/custom_ruleset`.
 * The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. The new name is used by default.
 * The collectd metric `gauge-lom_id` has been renamed to `gauge-custom_ruleset_id`.
 
@@ -545,7 +537,7 @@ Currently, it is tailored for the following deployments:
 
         To improve and simplify the upgrade process, upgrading of all node versions is performed using Wallarm's all-in-one installer. Manual upgrade with individual Linux packages is not supported any more.
 
-      * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
+      * [Upgrading the Docker container with the NGINX modules](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
       * [Multi-tenant node](multi-tenant.md)

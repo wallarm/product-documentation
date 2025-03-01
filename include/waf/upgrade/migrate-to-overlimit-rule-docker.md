@@ -1,9 +1,6 @@
 Starting from the version 3.6, you can fine-tune the `overlimit_res` attack detection using the rule in Wallarm Console.
 
-Earlier, the following options have been used:
-
-* The [`wallarm_process_time_limit`][nginx-process-time-limit-docs] and [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINX directives
-<!-- * The [`process_time_limit`][envoy-process-time-limit-docs] and [`process_time_limit_block`][envoy-process-time-limit-block-docs] Envoy parameters -->
+Earlier, the [`wallarm_process_time_limit`][nginx-process-time-limit-docs] and [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINX directives have been used.
 
 The listed directives and parameters are considered to be deprecated with the new rule release and will be deleted in future releases.
 
@@ -12,7 +9,6 @@ If the `overlimit_res` attack detection settings are customized via the listed p
 1. Open Wallarm Console → **Rules** and proceed to the [**Limit request processing time**][overlimit-res-rule-docs] rule setup.
 1. Configure the rule as done in the mounted configuration files:
 
-    <!-- * The rule condition should match the NGINX or Envoy configuration block with the `wallarm_process_time_limit` and `wallarm_process_time_limit_block` directives or the `process_time_limit` and `process_time_limit_block` parameters specified. -->
     * The time limit for the node to process a single request (milliseconds): the value of `wallarm_process_time_limit` or `process_time_limit`.
     
         !!! warning "Risk of running out of system memory"

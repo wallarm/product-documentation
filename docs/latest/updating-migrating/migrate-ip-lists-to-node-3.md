@@ -6,7 +6,7 @@ Starting with Wallarm node 3.x, the method of IP address allowlist and denylist 
 
 Configuration of IP address allowlist and denylist has been changed as follows:
 
-* The [`wallarm_acl_*`](/2.18/admin-en/configure-parameters-en/#wallarm_acl) NGINX directives, [`acl`](/2.18/admin-en/configuration-guides/envoy/fine-tuning/#ip-denylisting-settings) Envoy parameters, and `WALLARM_ACL_*` environment variables have been deprecated. Now, IP lists are configured as follows:
+* The [`wallarm_acl_*`](/2.18/admin-en/configure-parameters-en/#wallarm_acl) NGINX directives and `WALLARM_ACL_*` environment variables have been deprecated. Now, IP lists are configured as follows:
 
     * Additional steps to enable IP allowlisting or denylisting functionality are not required. The Wallarm node downloads IP addresses lists from the Wallarm Cloud by default and applies downloaded data when processing incoming requests.
     * Blocking page and error code returned in the response to the blocked request are configured using the [`wallarm_block_page`](../admin-en/configure-parameters-en.md#wallarm_block_page) directive instead of `wallarm_acl_block_page`.
@@ -26,5 +26,5 @@ Configuration of IP address allowlist and denylist has been changed as follows:
     * NGINX directive [`allow`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow).
 5. If listed methods are used to allowlist other IP addresses that should not be blocked by the filtering node, please move them to the [allowlist in Wallarm Console](../user-guides/ip-lists/overview.md).
 6. If you have used the directive `wallarm_acl_block_page` to configure the blocking page and error code returned when the denylisted IP originated the request, please replace the directive name by `wallarm_block_page` and update its value following the [instructions](../admin-en/configuration-guides/configure-block-page-and-code.md).
-7. Remove the [NGINX](../admin-en/installation-docker-en.md) and [Envoy](../admin-en/installation-guides/envoy/envoy-docker.md) environment variables `WALLARM_ACL_*` from the `docker run` commands.
-8. (Optional) Remove the NGINX directives [`wallarm_acl_*`](/2.18/admin-en/configure-parameters-en/#wallarm_acl) and [`acl`](/2.18/admin-en/configuration-guides/envoy/fine-tuning/#ip-denylisting-settings) Envoy parameters from filtering node configuration files.
+7. Remove the [NGINX](../admin-en/installation-docker-en.md) environment variables `WALLARM_ACL_*` from the `docker run` commands.
+8. (Optional) Remove the NGINX directives [`wallarm_acl_*`](/2.18/admin-en/configure-parameters-en/#wallarm_acl) from filtering node configuration files.

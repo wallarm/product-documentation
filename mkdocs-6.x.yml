@@ -165,9 +165,7 @@ nav:
           - Azure Container Instances: installation/inline/compute-instances/azure/docker-image.md
         - Alibaba Cloud:
           - ECS: installation/inline/compute-instances/alibaba/docker-image.md
-        - Docker images:
-          - NGINX-based: installation/inline/compute-instances/docker/nginx-based.md
-          - Envoy-based: installation/inline/compute-instances/docker/envoy-based.md
+        - NGINX-Based Docker Image: installation/inline/compute-instances/docker/nginx-based.md
       - Kubernetes:
         - NGINX Ingress Controller: installation/inline/kubernetes/nginx-ingress-controller.md
         - Sidecar Controller:
@@ -187,9 +185,7 @@ nav:
       - NGINX and Native Overview: installation/nginx-native-node-internals.md
       - NGINX Node:
         - All-in-one installer: installation/nginx/all-in-one.md
-        - Docker Images:
-          - NGINX-based: admin-en/installation-docker-en.md
-          - Envoy-based: admin-en/installation-guides/envoy/envoy-docker.md
+        - NGINX-Based Docker Image: admin-en/installation-docker-en.md
         - Cloud Images:
           - AWS AMI: installation/packages/aws-ami.md
           - GCP Machine Image: installation/packages/gcp-machine-image.md
@@ -281,7 +277,6 @@ nav:
     # - Autoscaling: ...
     - Wallarm Node Overview: user-guides/nodes/nodes.md
     - Configuration Options for NGINX‑Based Node: admin-en/configure-parameters-en.md
-    - Configuration Options for Envoy‑Based Node: admin-en/configuration-guides/envoy/fine-tuning.md
     - Fine‑tuning of Ingress Controller:
       - Configuration Parameters: admin-en/configure-kubernetes-en.md
       - Best Practices:
