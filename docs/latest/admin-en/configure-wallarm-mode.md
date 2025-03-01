@@ -57,16 +57,6 @@ Note that described configuration is applicable only for [in-line](../installati
 
     Alternatively, [include](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file) the corresponding parameter in the configuration file and run the container mounting this file.
 
-=== "Docker Envoy‑based image"
-
-    When deploying the Envoy-based Wallarm nodes via docker containers, [pass](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables) the `WALLARM_MODE` environment variable:
-
-    ```
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_MODE='monitoring' -p 80:80 wallarm/envoy:4.8.0-1
-    ```
-
-    Alternatively, [include](../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) the corresponding parameter in the configuration file and run the container mounting this file.
-
 === "NGINX Ingress controller"
 
     For NGINX Ingress controller, use the `wallarm-mode` annotation:

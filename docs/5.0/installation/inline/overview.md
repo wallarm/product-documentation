@@ -76,7 +76,6 @@ Wallarm offers the following artifacts and solutions for running Wallarm on comp
 **Docker images**
 
 * [NGINX-based](compute-instances/docker/nginx-based.md)
-* [Envoy-based](compute-instances/docker/envoy-based.md)
 
 **Linux packages**
 

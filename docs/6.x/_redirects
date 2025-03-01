@@ -882,3 +882,10 @@
 /3.6/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /3.6/installation/multi-tenant/overview/
 /2.18/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /2.18/installation/multi-tenant/overview/
 /2.18/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /2.18/installation/multi-tenant/overview/
+
+/5.0/admin-en/configuration-guides/envoy/fine-tuning /5.0/installation/connectors/istio
+/5.0/admin-en/installation-guides/envoy/envoy-docker /5.0/installation/connectors/istio
+/5.0/installation/inline/compute-instances/docker/envoy-based /5.0/installation/connectors/istio
+/admin-en/configuration-guides/envoy/fine-tuning /installation/connectors/istio
+/admin-en/installation-guides/envoy/envoy-docker /installation/connectors/istio
+/installation/inline/compute-instances/docker/envoy-based /installation/connectors/istio

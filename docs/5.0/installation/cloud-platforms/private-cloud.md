@@ -36,9 +36,7 @@ Wallarm offers flexible deployment models, allowing organizations to select the 
 
 In this model, you deploy Wallarm as a virtual appliance within your private cloud infrastructure. The virtual appliance can be installed as a VM or container. You can choose to deploy the Wallarm node using one of the following artifacts:
 
-* Docker images:
-    * [NGINX-based Docker image](../../admin-en/installation-docker-en.md)
-    * [Envoy-based Docker image](../../admin-en/installation-guides/envoy/envoy-docker.md)
+* [NGINX-based Docker image](../../admin-en/installation-docker-en.md)
 * [All‑in‑One Installer for Linux](../nginx/all-in-one.md)
 
 ### Kubernetes deployment

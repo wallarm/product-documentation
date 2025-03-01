@@ -11,8 +11,6 @@
 [overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]:                     ../user-guides/ip-lists/overview.md
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
-[envoy-process-time-limit-docs]:    ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
-[envoy-process-time-limit-block-docs]: ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 [api-policy-enf-docs]:              ../api-specification-enforcement/overview.md
 

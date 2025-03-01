@@ -193,7 +193,6 @@ curl "http://localhost/?id=1' UNION SELECT"
 You can control the **libdetection** mode using:
 
 * The [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) directive for NGINX.
-* The [`enable_libdetection`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) parameter for Envoy.
 * One of the [options](../admin-en/configure-kubernetes-en.md#managing-libdetection-mode) for the Wallarm NGINX Ingress controller:
 
     * The `nginx.ingress.kubernetes.io/server-snippet` annotation to the Ingress resource.
