@@ -334,7 +334,6 @@ nav:
       - Errors after Wallarm Node Installation: faq/common-errors-after-installation.md
       - Wallarm Service Status Page: faq/wallarm-status-page.md
       - Wallarm Cloud is Down: faq/wallarm-cloud-down.md
-      - Tarantool Troubleshooting: faq/tarantool.md
       - SELinux Troubleshooting: admin-en/configure-selinux.md
       - CPU High Usage Troubleshooting: faq/cpu.md
       - Attacks are not Uploaded to Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md

@@ -45,10 +45,9 @@ To view the current configuration and perform changes, in Wallarm Console, go to
 
 ## Debug
 
-To get and analyze the API Discovery logs, you can use the following methods:
+To get and analyze the API Discovery logs, you can read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` on the Linux machine where the node is running.
 
-* Read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` on the machine where the node is running.
-* If the Wallarm node is deployed as the Kubernetes Ingress controller: check the status of the pod running the Tarantool and `wallarm-appstructure` containers. The pod status must be **Running**.
+<!--TBD: either delete or provide an alternative way!! * If the Wallarm node is deployed as the Kubernetes Ingress controller: check the status of the pod running the Tarantool and `wallarm-appstructure` containers. The pod status must be **Running**.
 
     ```bash
     kubectl get po -l app=nginx-ingress,component=controller-wallarm-tarantool
@@ -58,4 +57,4 @@ To get and analyze the API Discovery logs, you can use the following methods:
 
     ```bash
     kubectl logs -l app=nginx-ingress,component=controller-wallarm-tarantool -c wallarm-appstructure
-    ```
+    ``` -->

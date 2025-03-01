@@ -57,7 +57,7 @@ Once the postanalytics module is installed on the separate server, [upgrade its 
 
 ## Step 7: Check the NGINX‑Wallarm and separate postanalytics modules interaction
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
+--8<-- "../include/waf/installation/all-in-one-postanalytics-check-latest.md"
 
 ## Step 8: Remove old postanalytics module
 
