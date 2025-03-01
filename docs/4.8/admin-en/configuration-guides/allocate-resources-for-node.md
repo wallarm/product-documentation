@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/allocate-resources-for-node.md"
+--8<-- "5.0/admin-en/configuration-guides/allocate-resources-for-node.md"
