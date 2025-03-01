@@ -24,12 +24,12 @@ controller:
       enabled: false
       secretKey: token
       secretName: wallarm-api-token
-    tarantool:
+    postanalytics:
       kind: Deployment
       service:
         annotations: {}
       replicaCount: 1
-      arena: "1.0"
+      arena: "2.0"
       livenessProbe:
         failureThreshold: 3
         initialDelaySeconds: 10
@@ -181,17 +181,17 @@ To store the node token in K8s secrets and pull it to the Helm chart:
 
 **Default value**: `existingSecret.enabled: false` that points to the Helm chart to get the Wallarm node token from `controller.wallarm.token`.
 
-### controller.wallarm.tarantool.replicaCount
+### controller.wallarm.postanalytics.replicaCount
 
 The number of running pods for postanalytics. Postanalytics is used for the behavior‑based attack detection.
 
 **Default value**: `1`
 
-### controller.wallarm.tarantool.arena
+### controller.wallarm.postanalytics.arena
 
 Specifies the amount of memory allocated for postanalytics service. It is recommended to set up a value sufficient to store request data for the last 5-15 minutes.
 
-**Default value**: `1.0`
+**Default value**: `2.0`
 
 ### controller.wallarm.metrics.enabled
 
@@ -276,8 +276,8 @@ Implemented via [ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guid
 Besides the standard ones, the following additional parameters are supported:
 
 * [wallarm-acl-export-enable](configure-parameters-en.md#wallarm_acl_export_enable)
-* [wallarm-upstream-connect-attempts](configure-parameters-en.md#wallarm_tarantool_upstream)
-* [wallarm-upstream-reconnect-interval](configure-parameters-en.md#wallarm_tarantool_upstream)
+* [wallarm-upstream-connect-attempts](configure-parameters-en.md#wallarm_wstore_upstream)
+* [wallarm-upstream-reconnect-interval](configure-parameters-en.md#wallarm_wstore_upstream)
 * [wallarm-process-time-limit](configure-parameters-en.md#wallarm_process_time_limit)
 * [wallarm-process-time-limit-block](configure-parameters-en.md#wallarm_process_time_limit_block)
 * [wallarm-request-memory-limit](configure-parameters-en.md#wallarm_request_memory_limit)
