@@ -3,7 +3,6 @@
 [img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
 [img-attacks-in-interface]:     ../images/admin-guides/test-attacks-quickstart.png
 [wallarm-token-types]:          ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[tarantool-status]:             ../images/tarantool-status.png
 [statistics-service-all-parameters]: ../admin-en/configure-statistics-service.md
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [ip-lists-docs]:                     ../user-guides/ip-lists/overview.md

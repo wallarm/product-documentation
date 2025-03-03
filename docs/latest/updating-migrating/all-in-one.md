@@ -1,6 +1,5 @@
 [statistics-service-all-parameters]:        ../admin-en/configure-statistics-service.md
 [img-attacks-in-interface]:                 ../images/admin-guides/test-attacks-quickstart.png
-[tarantool-status]:                         ../images/tarantool-status.png
 [configure-proxy-balancer-instr]:           ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [ptrav-attack-docs]:                        ../attacks-vulns-list.md#path-traversal
 
