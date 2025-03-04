@@ -12,6 +12,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.12.1 (2025-02-27)
 
+* Fixed the [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2024-13176](https://nvd.nist.gov/vuln/detail/CVE-2024-13176), [CVE-2024-56326](https://nvd.nist.gov/vuln/detail/CVE-2024-56326), [CVE-2024-56201](https://nvd.nist.gov/vuln/detail/CVE-2024-56201) and [CVE-2025-22866](https://nvd.nist.gov/vuln/detail/CVE-2025-22866) vulnerabilities
 * Fixed the [CVE-2025-26519](https://nvd.nist.gov/vuln/detail/CVE-2025-26519) and [CVE-2024-12797](https://nvd.nist.gov/vuln/detail/CVE-2024-12797) vulnerabilities
 * Fixed vpatch attacks not being blocked in monitoring mode
 * Fixed serialized requests missing response time and length fields
@@ -156,6 +157,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.12.1 (2025-02-27)
 
+* Fixed the [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2024-13176](https://nvd.nist.gov/vuln/detail/CVE-2024-13176), [CVE-2024-56326](https://nvd.nist.gov/vuln/detail/CVE-2024-56326), [CVE-2024-56201](https://nvd.nist.gov/vuln/detail/CVE-2024-56201) and [CVE-2025-22866](https://nvd.nist.gov/vuln/detail/CVE-2025-22866) vulnerabilities
 * Fixed the [CVE-2025-26519](https://nvd.nist.gov/vuln/detail/CVE-2025-26519) and [CVE-2024-12797](https://nvd.nist.gov/vuln/detail/CVE-2024-12797) vulnerabilities
 * Fixed vpatch attacks not being blocked in monitoring mode
 * Fixed serialized requests missing response time and length fields
