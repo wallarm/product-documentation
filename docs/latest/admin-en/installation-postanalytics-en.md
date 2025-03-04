@@ -104,32 +104,36 @@ By default, the postanalytics module is set to accept connections on all IPv4 ad
 
 However, if you need to change the default configuration:
 
-1. Open for editing the `/opt/wallarm/env.list` file:
+1. On the machine with the postanalytics service, open for editing the `/opt/wallarm/wstore/wstore.yaml` file:
 
     ```bash
-    sudo vim /opt/wallarm/env.list
+    sudo vim /opt/wallarm/wstore/wstore.yaml
     ```
-1. Update the `HOST` and `PORT` values as required. Define the `PORT` variable if it is not already specified, for example:
+1. Specify the new IP address and port values in the `service.address` parameter, e.g.:
 
-    ```bash
-    # wstore
-    HOST=0.0.0.0
-    PORT=3300
+    ```yaml
+    service:
+      address: 192.158.1.38:3313
     ```
-1. Open for editing the `/opt/wallarm/etc/wallarm/node.yaml` file:
+
+    The `service.address` parameter allows the following value formats:
+
+    * IP address:Port, e.g. `192.158.1.38:3313`
+    * Specific port on all IPs, e.g. `:3313`
+1. On the machine with the postanalytics service, open for editing the `/opt/wallarm/etc/wallarm/node.yaml` file:
 
     ```bash
     sudo vim /opt/wallarm/etc/wallarm/node.yaml
     ```
-1. Enter the new `host` and `port` values for the `tarantool` parameters, as shown below:
-
+1. Specify the new IP address and port values in the `wstore.host` and `wstore.port` parameters, e.g.:
     ```yaml
-    hostname: <name of postanalytics node>
-    uuid: <UUID of postanalytics node>
-    secret: <secret key of postanalytics node>
-    tarantool:
-        host: '0.0.0.0'
-        port: 3300
+    api:
+      hostname: <name of postanalytics node>
+      uuid: <UUID of postanalytics node>
+      secret: <secret key of postanalytics node>
+    wstore:
+      host: '0.0.0.0'
+      port: 3300
     ```
 
 ## Step 5: Enable inbound connections for the postanalytics module
@@ -175,19 +179,23 @@ Once the postanalytics module is installed on the separate server:
 
 ## Step 8: Connect the NGINX-Wallarm module to the postanalytics module
 
-On the machine with the NGINX-Wallarm module, in the NGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/), specify the postanalytics module server address:
+On the machine with the NGINX-Wallarm module, in the NGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) (typically located at `/etc/nginx/nginx.conf`), specify the postanalytics module server address:
 
 ```
-upstream wallarm_wstore {
-    server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-    server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-    
-    keepalive 2;
-    }
-
+http {
     # omitted
 
-wallarm_wstore_upstream wallarm_wstore;
+    upstream wallarm_wstore {
+        server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+        server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+    
+        keepalive 2;
+    }
+
+    wallarm_wstore_upstream wallarm_wstore;
+
+    # omitted
+}
 ```
 
 * `max_conns` value must be specified for each of the upstream wstore servers to prevent the creation of excessive connections.
