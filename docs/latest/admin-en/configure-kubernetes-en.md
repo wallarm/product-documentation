@@ -39,18 +39,19 @@ controller:
       resources: {}
       extraEnvs:
         - name: EXTRA_ENV_VAR_NAME
-        - value: EXTRA_ENV_VAR_VALUE
+          value: EXTRA_ENV_VAR_VALUE
     wallarm-appstructure:
       resources: {}
       extraEnvs:
         - name: EXTRA_ENV_VAR_NAME
-        - value: EXTRA_ENV_VAR_VALUE
+          value: EXTRA_ENV_VAR_VALUE
     wallarm-antibot:
       resources: {}
       extraEnvs:
         - name: EXTRA_ENV_VAR_NAME
-        - value: EXTRA_ENV_VAR_VALUE
+          value: EXTRA_ENV_VAR_VALUE
     metrics:
+      port: 18080
       enabled: false
 
       service:
@@ -68,27 +69,55 @@ controller:
         loadBalancerSourceRanges: []
         servicePort: 18080
         type: ClusterIP
-    addnode:
+    init:
       resources: {}
       extraEnvs:
         - name: EXTRA_ENV_VAR_NAME
-        - value: EXTRA_ENV_VAR_VALUE
-    cron:
-      extraEnvs:
-        - name: EXTRA_ENV_VAR_NAME
-        - value: EXTRA_ENV_VAR_VALUE
-    collectd:
+          value: EXTRA_ENV_VAR_VALUE
+    wcli:
+      logLevel: warn
+      commands:
+        apispec:
+          logLevel: INFO
+        blkexp:
+          logLevel: INFO
+        botexp:
+          logLevel: WARN
+        cntexp:
+          logLevel: ERROR
+        cntsync:
+          logLevel: INFO
+        credstuff:
+          logLevel: INFO
+        envexp:
+          logLevel: INFO
+        ipfeed:
+          logLevel: INFO
+        iplist:
+          logLevel: INFO
+        jwtexp:
+          logLevel: INFO
+        metricsexp:
+          logLevel: INFO
+        mrksync:
+          logLevel: INFO
+        register:
+          logLevel: INFO
+        reqexp:
+          logLevel: INFO
+        syncnode:
+          logLevel: INFO
       resources: {}
       extraEnvs:
         - name: EXTRA_ENV_VAR_NAME
-        - value: EXTRA_ENV_VAR_VALUE
+          value: EXTRA_ENV_VAR_VALUE
     apiFirewall:
       enabled: true
       config:
         ...
       extraEnvs:
         - name: EXTRA_ENV_VAR_NAME
-        - value: EXTRA_ENV_VAR_VALUE
+          value: EXTRA_ENV_VAR_VALUE
 ```
 
 To change this setting, we recommend using the option `--set` of `helm install` (if installing the Ingress controller) or `helm upgrade` (if updating the installed Ingress controller parameters). For example:
@@ -251,22 +280,10 @@ controller:
     apiHost: api.wallarm.com
     enabled: "true"
     token:  <API_TOKEN>
-    addnode:
+    init:
       extraEnvs:
         - name: https_proxy
           value: https://1.1.1.1:3128
-    cron:
-      extraEnvs:
-        - name: https_proxy
-          value: https://1.1.1.1:3128
-        - name: no_proxy
-          value: "localhost"
-    collectd:
-      extraEnvs:
-        - name: https_proxy
-          value: https://1.1.1.1:3128
-        - name: no_proxy
-          value: "localhost"
 ```
 
 ## Global Controller Settings 
