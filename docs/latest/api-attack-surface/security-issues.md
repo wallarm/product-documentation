@@ -52,11 +52,13 @@ Once a security issue is detected, it obtains the **Open** status meaning some m
 
 You can also re-evaluate and adjust the risk level of the issue.
 
-## Getting report
+## Security issue reports
 
 You can get report on all or filtered security issues in CSV or JSON format using the **Download report** button.
 
 ![Security issues details - Lifecycle controls](../images/api-attack-surface/security-issues-report.png)
+
+Information of you choice about security issues is also included into the [detailed DOCX report](api-surface.md#api-attack-surface-reports) on your API attack surface.
 
 ## API leaks
 

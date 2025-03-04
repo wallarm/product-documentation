@@ -67,3 +67,19 @@ The total score is calculated using a complex proprietary formula that incorpora
     For each host, you can download a detailed WAAP score evaluation report in PDF format.
 
 * **Additional metrics** such as TLS coverage, presence of security issues, and detected security issues.
+
+## API attack surface reports
+
+You can get a detailed DOCX report on external hosts and their APIs discovered for your domains. This report will also include information of your choice on the [security issues](security-issues.md) detected for these APIs.
+
+Besides, you can get information about your API surface in a table view (CSV), organized by:
+
+* Hosts (one row for one host)
+* Ports (one row for one port)
+* APIs (one row for one API)
+
+![API surface - reports](../images/api-attack-surface/aasm-reports.png)
+
+One more option - JSON report with information about API surface in a machine readable format.
+
+You can also get a [separate report](security-issues.md#security-issue-reports) on the security issues.
