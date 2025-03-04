@@ -88,9 +88,24 @@ After signup, they will be added to your user list and will receive a confirmati
 
 Once a user appears in the user list, you can edit their settings using the **Edit user settings** option from the corresponding user menu. This allows you to change their assigned user role, first name, and last name.
 
-## Disabling 2FA
+## Managing 2FA
 
-If a user has [two-factor authentication (2FA) enabled](account.md#enabling-two-factor-authentication) and you need to reset it, select the **Disable 2FA** option from the user menu. Confirm the action by entering your Wallarm administrator account password.
+### Enforcing for all users
+
+You can enforce all company users to use two-factor authentication (2FA). To do so:
+
+1. Open Wallarm Console → **Settings** → **General**.
+1. In the **Sign-in management** section, select the **Enforce two-factor authentication for all company users** option and confirm.
+
+![2FA - Enabling for all company users](../../images/user-guides/settings/2fa-enforce.png)
+
+Once enabled, all users of your company account will have to set up 2FA before they can log in without an option of bypassing: on the next login they will be informed about 2FA set to be obligatory and will be provided with the 2FA configuration options. However, enabling the option does not affect the current user sessions.
+
+You can disable the enforcement mode at any moment later. After disabling, users are not notified and continue to use 2FA until [they](account.md#enabling-two-factor-authentication) or [you (administrator)](#disabling-for-selected-users) disable it manually for this particular user.
+
+### Disabling for selected users
+
+If a user has [two-factor authentication (2FA) enabled](account.md#enabling-two-factor-authentication) and you need to reset it, select the **Disable 2FA** option from the user menu. Confirm the action by entering your Wallarm administrator account password. You cannot disable 2FA for the separate users when the [2FA enforcement mode](#enforcing-for-all-users) is active.
 
 ![User actions menu][img-user-menu-disable-2fa]
 
