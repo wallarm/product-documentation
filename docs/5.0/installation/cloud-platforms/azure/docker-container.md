@@ -203,7 +203,7 @@ To deploy the container with environment variables and mounted configuration fil
     
     * `--environment-variables`: environment variables containing settings for the filtering node and Wallarm Cloud connection (available variables are listed in the table below). Please note that it is not recommended to explicitly pass the value of `WALLARM_API_TOKEN`.
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-5.0.md"
 1. Open the [Azure portal](https://portal.azure.com/) and ensure the created resource is displayed in the list of resources.
 1. [Test the filtering node operation](#testing-the-filtering-node-operation).
 

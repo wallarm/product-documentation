@@ -108,7 +108,7 @@ To run the container:
 
     * The `-e` option passes the following required environment variables to the container:
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-5.0.md"
     
     * The `-v` option mounts the directory with the configuration file `default` to the `/etc/nginx/sites-enabled` container directory.
 
