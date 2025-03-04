@@ -327,7 +327,7 @@ http_inspector:
   wallarm_dir: /opt/wallarm/etc/wallarm
   shm_dir: /tmp
 
-tarantool_exporter:
+postanalytics_exporter:
   address: 127.0.0.1:3313
   enabled: true
 
@@ -404,13 +404,13 @@ HTTP analyzer shared directory. Typically, you do not need to modify this parame
 
 Default: `/tmp`.
 
-### tarantool_exporter.address
+### postanalytics_exporter.address
 
 Sets the address for the postanalytics service which handles statistical request analysis in Wallarm's request processing. Typically, you do not need to modify this parameter.
 
 Default: `127.0.0.1:3313`.
 
-### tarantool_exporter.enabled
+### postanalytics_exporter.enabled
 
 Controls whether the postanalytics service is enabled. This parameter must be set to `true` as the Wallarm node does not function without the postanalytics service.
 

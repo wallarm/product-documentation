@@ -1,6 +1,5 @@
 [statistics-service-all-parameters]:        ../admin-en/configure-statistics-service.md
 [img-attacks-in-interface]:                 ../images/admin-guides/test-attacks-quickstart.png
-[tarantool-status]:                         ../images/tarantool-status.png
 [configure-proxy-balancer-instr]:           ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [ptrav-attack-docs]:                        ../attacks-vulns-list.md#path-traversal
 
@@ -200,4 +199,4 @@ This step is performed on the filtering node machine.
 
 ### Step 6: Check the filtering node and separate postanalytics modules interaction
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-check.md" -->
+--8<-- "../include/waf/installation/all-in-one-postanalytics-check-latest.md" -->

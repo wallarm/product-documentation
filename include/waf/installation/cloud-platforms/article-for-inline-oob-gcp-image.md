@@ -22,6 +22,6 @@ This article provides instructions for deploying Wallarm on GCP using the [offic
 
 ## 8. Fine-tune the deployed solution
 
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options-5.0.md"
 
 --8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"

@@ -422,18 +422,17 @@ There are the following parameters passed in the commands:
     ```
 
     The chart version should correspond to `wallarm-ingress-5.3.8`.
-2. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
+1. Get the Wallarm pod:
     
     ``` bash
-    kubectl get pods -l release=<INGRESS_CONTROLLER_NAME>
+    kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-ingress
     ```
 
-    Each pod status should be **STATUS: Running** or **READY: N/N**. For example:
+    The pod status should be **STATUS: Running** and **READY: N/N**:
 
     ```
     NAME                                                              READY     STATUS    RESTARTS   AGE
-    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      3/3       Running   0          5m
-    ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
+    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      1/1       Running   0          5m
     ```
 
 3. Send the request with the test [Path Traversal](../../attacks-vulns-list.md#path-traversal) attack to the Wallarm Ingress controller address:
