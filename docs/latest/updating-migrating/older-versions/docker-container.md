@@ -16,7 +16,7 @@
 
 # Upgrading an EOL Docker NGINX-based image
 
-These instructions describe the steps to upgrade the running end‑of‑life Docker NGINX-based image (version 3.6 and lower) to the version 5.0.
+These instructions describe the steps to upgrade the running end‑of‑life Docker NGINX-based image (version 3.6 and lower) to the version 6.x.
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
@@ -26,7 +26,7 @@ These instructions describe the steps to upgrade the running end‑of‑life Doc
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules (only if upgrading node 2.18 or lower)
 
-If upgrading node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 5.0 and ask to enable new IP list logic for your Wallarm account. When new IP list logic is enabled, please ensure the section [**IP lists**](../../user-guides/ip-lists/overview.md) of Wallarm Console is available.
+If upgrading node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 6.x and ask to enable new IP list logic for your Wallarm account. When new IP list logic is enabled, please ensure the section [**IP lists**](../../user-guides/ip-lists/overview.md) of Wallarm Console is available.
 
 ## Step 2: Disable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
 
@@ -51,22 +51,25 @@ Approach to connect the container to the Wallarm Cloud has been upgraded as foll
 * [The "email and password"-based approach has been deprecated](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-api-tokens). In this approach, the node was registered in the Wallarm Cloud automatically once the container started with correct credentials passed in the `DEPLOY_USER` and `DEPLOY_PASSWORD` variables.
 * The token-based approach has been included. To connect the container to the Cloud, run the container with the `WALLARM_API_TOKEN` variable containing the Wallarm API token copied from the Wallarm Console UI.
 
-It is recommended to use the new approach to run the image 5.0. The "email and password"-based approach will be deleted in future releases, please migrate before.
+It is recommended to use the new approach to run the image 6.x. The "email and password"-based approach will be deleted in future releases, please migrate before.
 
 To create a new Wallarm node and get its token:
 
 1. Open Wallarm Console → **Settings** → **API Tokens** and generate a token with the **Deploy** role.
 1. Copy the generated token.
 
-## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 5.0 (only if upgrading node 2.18 or lower)
+## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 6.x (only if upgrading node 2.18 or lower)
 
-If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 5.0.
+If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 6.x.
 
 ## Step 7: Switch from deprecated configuration options
 
 There are the following deprecated configuration options:
 
-* The `WALLARM_ACL_ENABLE` environment variable has been deprecated. If IP lists are [migrated](../migrate-ip-lists-to-node-3.md) to the new node version, remove this variable from the `docker run` command.
+* The `WALLARM_ACL_ENABLE` environment variable has been deprecated.
+
+    If IP lists are [migrated](../migrate-ip-lists-to-node-3.md) to the new node version, remove this variable from the `docker run` command.
+* If setting the postanalytics memory amount with the `TARANTOOL_MEMORY_GB` environment variable, rename the variable to `SLAB_ALLOC_ARENA`.
 * The following NGINX directives have been renamed:
 
     * `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
@@ -127,7 +130,7 @@ There are two options for running the container using the updated image:
 
 ## Step 15: Delete the filtering node of the previous version
 
-If the deployed image of the version 5.0 operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.
+If the deployed image of the version 6.x operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.
 
 ## Step 16: Re-enable the Threat Replay Testing module (only if upgrading node 2.16 or lower)
 

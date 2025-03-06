@@ -17,7 +17,7 @@ Below are the risks that may occur when updating the filtering node. To reduce t
 
 ### Changed functionality
 
-* [What is new in Wallarm Node 5.x and 0.x](what-is-new.md)
+* [What is new in Wallarm Node 6.x and 0.13.x+](what-is-new.md)
 * [What is new if upgrading the EOL node (3.6 or lower)](older-versions/what-is-new.md)
 
 ### New false positives
@@ -49,7 +49,7 @@ The Wallarm node update process depends on the platform and installation forms. 
     * [Sidecar](sidecar-proxy.md)
     * [Cloud node image](cloud-image.md)
     * [Multi-tenant node](multi-tenant.md)
-    * [Migrating allowlists and denylists from Wallarm node 2.18 and lower to 5.0](migrate-ip-lists-to-node-3.md)
+    * [Migrating allowlists and denylists from Wallarm node 2.18 and lower to 6.x](migrate-ip-lists-to-node-3.md)
 * Native Node:
 
     * [All-in-one installer](native-node/all-in-one.md)

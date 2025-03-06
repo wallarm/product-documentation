@@ -9,7 +9,7 @@
 
 # Upgrading NGINX Ingress controller with integrated Wallarm modules
 
-These instructions describe the steps to upgrade deployed Wallarm NGINX-based Ingress Controller 4.x to the new version with Wallarm node 5.0.
+These instructions describe the steps to upgrade deployed Wallarm NGINX-based Ingress Controller to the latest 6.x.
 
 To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/ingress-controller.md).
 
@@ -40,14 +40,20 @@ To install and run the plugin:
     helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.8 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
-    * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
-    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Ingress controller 5.0 settings - you can use the one created for running the previous Ingress controller version
+    * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart.
+    * `<NAMESPACE>`: the namespace the Ingress controller is deployed to.
+    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file with Ingress Controller 6.x settings. You can reuse the previous version's file, updating it [for the Tarantool-to-wstore transition](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics).
+
+        Helm values renamed: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`. Apply this change in `values.yaml` if postanalytics memory is explicitly [allocated](../admin-en/configuration-guides/allocate-resources-for-node.md).
+
 3. Make sure that no changes can affect the stability of the running services and carefully examine the errors from stdout.
 
     If stdout is empty, make sure that the `values.yaml` file is valid.
 
 ## Step 3: Upgrade the Ingress controller
+
+!!! info ""
+    It is recommended to first upgrade the NGINX Ingress Controller in a staging Kubernetes environment to validate the changes before deploying to production.
 
 Upgrade the deployed NGINX Ingress controller:
 
@@ -57,7 +63,9 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3
 
 * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
 * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
-* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Ingress controller 5.0 settings - you can use the one created for running the previous Ingress controller version
+* `<PATH_TO_VALUES>`: the path to the `values.yaml` file with Ingress Controller 6.x settings. You can reuse the previous version's file, updating it [for the Tarantool-to-wstore transition](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics):
+    
+    Helm values renamed: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`. Apply this change in `values.yaml` if postanalytics memory is explicitly [allocated](../admin-en/configuration-guides/allocate-resources-for-node.md).
 
 ## Step 4: Test the upgraded Ingress controller
 
@@ -80,9 +88,10 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3
 
     ```
     NAME                                                              READY     STATUS    RESTARTS   AGE
-    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      1/1       Running   0          5m
+    ingress-controller-wallarm-ingress-controller-675c68d46d-cfck8      1/1       Running   0          5m
     ```
 
+    If upgrading from the version 5.x or lower, you will notice that there is no separate Tarantool pod anymore, wstore runs within the main `<CHART_NAME>-wallarm-ingress-controller-xxx` pod.
 1. Send the request with the test [Path Traversal](../attacks-vulns-list.md#path-traversal) attack to the Wallarm Ingress controller address:
 
     ```bash
@@ -90,3 +99,5 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3
     ```
 
     Check that the solution of the newer version processes the malicious request as it did in the previous version.
+
+Once the upgrade is successfully validated in the staging environment, proceed with upgrading the production environment.

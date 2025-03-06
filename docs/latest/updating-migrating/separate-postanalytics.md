@@ -9,7 +9,7 @@
 
 # Upgrading the postanalytics module
 
-These instructions describe the steps to upgrade the postanalytics module 4.x installed on a separate server. Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].
+These instructions describe the steps to upgrade the postanalytics module installed on a separate server up to the latest 6.x version. **Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].**
 
 !!! info "Upgrading with all-in-one installer"
     Since version 4.10, upgrading is performed using Wallarm's [all-in-one installer](../installation/nginx/all-in-one.md) as the individual Linux packages have been deprecated. This method simplifies the upgrade process and ongoing deployment maintenance compared to the previous approach.

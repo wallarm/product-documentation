@@ -12,7 +12,7 @@
 
 # Upgrading an EOL cloud node image
 
-These instructions describe the steps to upgrade the end‑of‑life cloud node image (version 3.6 and lower) deployed on AWS or GCP up to 5.0.
+These instructions describe the steps to upgrade the end‑of‑life cloud node image (version 3.6 and lower) deployed on AWS or GCP up to 6.x.
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
@@ -38,16 +38,16 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
 
 The latest update has introduced [architectural changes](what-is-new.md#optimized-cloud-images) that may impact users, especially those changing default configuration files of the node. Please familiarize yourself with these changes to ensure proper configuration and usage of the new image.
 
-## Step 5: Launch a new instance with the filtering node 5.0
+## Step 5: Launch a new instance with the filtering node 6.x
 
-Copy the settings for processing and proxying requests from the following configuration files of the previous Wallarm node version to the files of the filtering node 5.0:
+Copy the settings for processing and proxying requests from the following configuration files of the previous Wallarm node version to the files of the filtering node 6.x:
 
 1. Open the Wallarm filtering node image on the cloud platform marketplace and proceed to the image launch:
       * [Amazon Marketplace](https://aws.amazon.com/marketplace/pp/B073VRFXSD)
       * [GCP Marketplace](https://console.cloud.google.com/marketplace/details/wallarm-node-195710/wallarm-node)
 2. At the launch step, set the following settings:
 
-      * Select the image version `5.0.x`
+      * Select the image version `6.x`
       * For AWS, select the [created security group](../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group) in the field **Security Group Settings**
       * For AWS, select the name of the [created key pair](../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys-in-aws) in the field **Key Pair Settings**
 3. Confirm the instance launch.
@@ -72,14 +72,14 @@ Copy the settings for processing and proxying requests from the following config
 
 ## Step 8: Copy the filtering node settings from the previous version to the new version
 
-1. Copy the settings for processing and proxying requests from the following configuration files of the previous Wallarm node version to the files of the filtering node 5.0:
+1. Copy the settings for processing and proxying requests from the following configuration files of the previous Wallarm node version to the files of the filtering node 6.x:
       * `/etc/nginx/nginx.conf` and other files with NGINX settings
       * `/etc/nginx/conf.d/wallarm-status.conf` with the filtering node monitoring service settings
 
         Make sure the copied file contents correspond to the [recommended safe configuration](../../admin-en/configure-statistics-service.md#setup).
 
       * `/etc/environment` with environment variables
-      * any other custom configuration files for request processing and proxying, taking into account the recent [architectural changes](what-is-new.md#optimized-cloud-images)
+      * any other custom configuration files for request processing and proxying, such as `/etc/nginx/sites-available/default`, taking into account the recent [architectural changes](what-is-new.md#optimized-cloud-images)
 1. Rename the following NGINX directives if they are explicitly specified in configuration files:
 
     * `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
@@ -93,7 +93,7 @@ Copy the settings for processing and proxying requests from the following config
       If so, please rename it to `wallarm_request_cpu_time`.
 
       We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
-1. If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 5.0.
+1. If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 6.x.
 1. If the page `&/usr/share/nginx/html/wallarm_blocked.html` is returned to blocked requests, [copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) its new version.
 
       In the new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
@@ -118,9 +118,9 @@ sudo systemctl restart nginx
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## Step 11: Create the virtual machine image based on the filtering node 5.0 in AWS or GCP
+## Step 11: Create the virtual machine image based on the filtering node 6.x in AWS or GCP
 
-To create the virtual machine image based on the filtering node 5.0, please follow the instructions for [AWS](../../admin-en/installation-guides/amazon-cloud/create-image.md) or [GCP](../../admin-en/installation-guides/google-cloud/create-image.md).
+To create the virtual machine image based on the filtering node 6.x, please follow the instructions for [AWS](../../admin-en/installation-guides/amazon-cloud/create-image.md) or [GCP](../../admin-en/installation-guides/google-cloud/create-image.md).
 
 ## Step 12: Delete the previous Wallarm node instance
 
