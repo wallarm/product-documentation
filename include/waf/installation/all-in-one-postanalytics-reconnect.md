@@ -1,21 +1,24 @@
-On the machine with the NGINX-Wallarm module, in the NGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/), specify the postanalytics module server address:
+On the machine with the NGINX-Wallarm module, in the NGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) (typically located at `/etc/nginx/nginx.conf`), specify the postanalytics module server address:
 
 ```
-upstream wallarm_tarantool {
-    server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-    server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-    
-    keepalive 2;
+http {
+    # omitted
+    upstream wallarm_wstore {
+        server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+        server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+        
+        keepalive 2;
     }
 
-    # omitted
+    wallarm_wstore_upstream wallarm_wstore;
 
-wallarm_tarantool_upstream wallarm_tarantool;
+    # omitted
+}
 ```
 
-* `max_conns` value must be specified for each of the upstream Tarantool servers to prevent the creation of excessive connections.
-* `keepalive` value must not be lower than the number of the Tarantool servers.
-* The `# wallarm_tarantool_upstream wallarm_tarantool;` string is commented by default - please delete `#`.
+* `max_conns` value must be specified for each of the upstream wstore servers to prevent the creation of excessive connections.
+* `keepalive` value must not be lower than the number of the wstore servers.
+* The `# wallarm_wstore_upstream wallarm_wstore;` string is commented by default - please delete `#`.
 
 Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Wallarm module server:
 
