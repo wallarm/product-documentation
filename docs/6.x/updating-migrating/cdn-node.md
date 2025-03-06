@@ -1,1 +1,0 @@
---8<-- "latest/updating-migrating/cdn-node.md"
