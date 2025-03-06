@@ -44,11 +44,24 @@ Wallarm automatically detects the following security issues:
 | API leak | A leaked API key can allow attackers to impersonate authorized users, access confidential financial data, and even manipulate transaction flows. See [details](#api-leaks). |
 | Vulnerable software | Vulnerable software versions pose a significant risk of unauthorized access to systems, stolen data, malware, or operation disruption. The vulnerability has a high risk of exploitation, as the attackers actively seek out known vulnerabilities in outdated software. |
 
-## Issue lifecycle
+## Issue details and lifecycle
+
+Wallarm provides detailed information on each detected security issues to allow clear understanding of what is happening and what can be done. Click the issue in the list to open its details, such as:
+
+* Basic info (type, host and url, first and last seen time)
+* Detailed **Description**
+* Measures for **Mitigation**
+* Information on linked CVEs ranked by risk as **Additional information**
+
+![Security issues details - Details](../images/api-attack-surface/security-issue-details.png)
+
+**Issue lifecycle**
 
 Once a security issue is detected, it obtains the **Open** status meaning some measures are required to mitigate it. In the issue details, you can close it (means it was resolved) or mark as false.
 
-![Security issues details - Lifecycle controls](../images/api-attack-surface/security-issue-details-lifecycle.png)
+It is useful to provide comment on each status change, giving others the full view of what is the reason of change. Author and time of change are tracked automatically.
+
+Issues can be re-opened. For your to be on track, the full history of status changes with comments is displayed in the **Status history** section.
 
 You can also re-evaluate and adjust the risk level of the issue.
 
