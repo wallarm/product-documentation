@@ -5,7 +5,7 @@ In the configuration file you create for deploying the Wallarm node for TCP Traf
 ## Basic settings
 
 ```yaml
-version: 2
+version: 4
 
 mode: tcp-capture
 
@@ -50,7 +50,7 @@ The value should be the network interface and port separated by a colon (`:`), e
 
 === "Interface:Port"
     ```yaml
-    version: 2
+    version: 4
 
     goreplay:
       filter: 'eth0:80'
@@ -59,7 +59,7 @@ The value should be the network interface and port separated by a colon (`:`), e
     To capture traffic from multiple interfaces and ports, use `goreplay.filter` along with `goreplay.extra_args`, e.g.:
 
     ```yaml
-    version: 2
+    version: 4
 
     goreplay:
       filter: 'eth0:80'
@@ -75,21 +75,21 @@ The value should be the network interface and port separated by a colon (`:`), e
     The `filter` sets GoReplay with the `-input-raw` argument, and `extra_args` allows for specifying additional `-input-raw` inputs.
 === "All ports on interface"
     ```yaml
-    version: 2
+    version: 4
 
     goreplay:
       filter: 'eth0:'
     ```
 === "Specific port on all interfaces"
     ```yaml
-    version: 2
+    version: 4
 
     goreplay:
       filter: ':80'
     ```
 === "All interfaces and ports"
     ```yaml
-    version: 2
+    version: 4
 
     goreplay:
       filter: ':'
@@ -109,7 +109,7 @@ This parameter allows you to specify [extra arguments](https://github.com/buger/
 
     === "VLAN-wrapped mirrored traffic"
         ```yaml
-        version: 2
+        version: 4
 
         goreplay:
           extra_args:
@@ -120,7 +120,7 @@ This parameter allows you to specify [extra arguments](https://github.com/buger/
         ```
     === "VXLAN-wrapped mirrored traffic (common in AWS)"
         ```yaml
-        version: 2
+        version: 4
 
         goreplay:
           extra_args:
@@ -138,7 +138,7 @@ This parameter allows you to specify [extra arguments](https://github.com/buger/
 * You can extend `filter` with `extra_args` to capture additional interfaces and ports:
 
     ```yaml
-    version: 2
+    version: 4
 
     goreplay:
       filter: 'eth0:80'
@@ -166,7 +166,7 @@ Configuration section where you specify settings for specific routes.
 Sets route-specific Wallarm configuration. Includes Wallarm mode and application IDs. Example configuration:
 
 ```yaml
-version: 2
+version: 4
 
 route_config:
   wallarm_application: 10
@@ -218,7 +218,7 @@ This parameter supports wildcard matching:
 For example:
 
 ```yaml
-version: 2
+version: 4
 
 route_config:
   wallarm_application: 10
@@ -310,7 +310,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
 ## Advanced settings
 
 ```yaml
-version: 2
+version: 4
 
 goreplay:
   path: /opt/wallarm/usr/bin/gor

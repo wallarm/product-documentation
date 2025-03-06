@@ -24,7 +24,7 @@ The Wallarm node operation mode. It can be:
     If you installed the Native Node for a Wallarm connector, the basic configuration looks as follows:
 
     ```yaml
-    version: 2
+    version: 4
 
     mode: connector-server
 
@@ -68,7 +68,7 @@ The Wallarm node operation mode. It can be:
     If you installed the Native Node for TCP traffic mirror analysis, the basic configuration looks as follows:
 
     ```yaml
-    version: 3
+    version: 4
 
     mode: tcp-capture
 
@@ -116,14 +116,14 @@ Ensure the port is not `80`, `8080`, `9000`, or `3313`, as these are used by oth
 
 === "IP address:Port"
     ```yaml
-    version: 2
+    version: 4
 
     connector:
       address: '192.158.1.38:5050'
     ```
 === "Specific port on all IPs"
     ```yaml
-    version: 2
+    version: 4
 
     connector:
       address: ':5050'
@@ -194,7 +194,7 @@ This parameter supports wildcard matching:
 For example:
 
 ```yaml
-version: 2
+version: 4
 
 connector:
   allowed_hosts:
@@ -217,7 +217,7 @@ To configure the mesh in ECS:
 1. Configure the Wallarm node to use the mesh by specifying the `connector.mesh` parameters in the configuration file as shown below:
 
 ```yaml
-version: 2
+version: 4
 
 connector:
   mesh:
@@ -256,7 +256,7 @@ The value should be the network interface and port separated by a colon (`:`), e
 
 === "Interface:Port"
     ```yaml
-    version: 3
+    version: 4
 
     goreplay:
       filter: 'eth0:80'
@@ -265,7 +265,7 @@ The value should be the network interface and port separated by a colon (`:`), e
     To capture traffic from multiple interfaces and ports, use `goreplay.filter` along with `goreplay.extra_args`, e.g.:
 
     ```yaml
-    version: 3
+    version: 4
 
     goreplay:
       filter: 'eth0:80'
@@ -281,21 +281,21 @@ The value should be the network interface and port separated by a colon (`:`), e
     The `filter` sets GoReplay with the `-input-raw` argument, and `extra_args` allows for specifying additional `-input-raw` inputs.
 === "All ports on interface"
     ```yaml
-    version: 3
+    version: 4
 
     goreplay:
       filter: 'eth0:'
     ```
 === "Specific port on all interfaces"
     ```yaml
-    version: 3
+    version: 4
 
     goreplay:
       filter: ':80'
     ```
 === "All interfaces and ports"
     ```yaml
-    version: 3
+    version: 4
 
     goreplay:
       filter: ':'
@@ -315,7 +315,7 @@ This parameter allows you to specify [extra arguments](https://github.com/buger/
 
     === "VLAN-wrapped mirrored traffic"
         ```yaml
-        version: 3
+        version: 4
 
         goreplay:
           extra_args:
@@ -326,7 +326,7 @@ This parameter allows you to specify [extra arguments](https://github.com/buger/
         ```
     === "VXLAN-wrapped mirrored traffic (common in AWS)"
         ```yaml
-        version: 3
+        version: 4
 
         goreplay:
           extra_args:
@@ -344,7 +344,7 @@ This parameter allows you to specify [extra arguments](https://github.com/buger/
 * You can extend `filter` with `extra_args` to capture additional interfaces and ports:
 
     ```yaml
-    version: 3
+    version: 4
 
     goreplay:
       filter: 'eth0:80'
@@ -423,7 +423,7 @@ Sets route-specific Wallarm configuration. Includes Wallarm mode and application
 
 === "connector-server"
     ```yaml
-    version: 2
+    version: 4
 
     route_config:
       wallarm_application: 10
@@ -442,7 +442,7 @@ Sets route-specific Wallarm configuration. Includes Wallarm mode and application
     ```
 === "tcp-capture"
     ```yaml
-    version: 3
+    version: 4
 
     route_config:
       wallarm_application: 10
@@ -470,7 +470,7 @@ For example:
 
 === "connector-server"
     ```yaml
-    version: 2
+    version: 4
 
     route_config:
       wallarm_application: 10
@@ -479,7 +479,7 @@ For example:
     ```
 === "tcp-capture"
     ```yaml
-    version: 3
+    version: 4
 
     route_config:
       wallarm_application: 10
@@ -564,7 +564,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
 
 === "connector-server"
     ```yaml
-    version: 2
+    version: 4
 
     http_inspector:
       workers: auto
@@ -595,7 +595,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
     ```
 === "tcp-capture"
     ```yaml
-    version: 3
+    version: 4
 
     http_inspector:
       workers: auto
