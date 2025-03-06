@@ -15,14 +15,14 @@ Scaling and high availability of Wallarm Sidecar rely on standard Kubernetes pra
 
 ## Scaling Wallarm Sidecar control plane
 
-The Wallarm Sidecar solution [consists of two components: controller and postanalytics (Tarantool)][sidecar-arch-docs]. Each requires individual scaling configurations, involving Kubernetes parameters like `replicas`, `requests`, and `podAntiAffinity`.
+The Wallarm Sidecar solution [consists of two components: controller and postanalytics (wstore)][sidecar-arch-docs]. Each requires individual scaling configurations, involving Kubernetes parameters like `replicas`, `requests`, and `podAntiAffinity`.
 
 ### Controller
 
 The Sidecar Controller functions as a mutating admission webhook, injecting sidecar containers into the application's Pod. In most cases, HPA scaling is not needed. For the HA deployment, consider the following settings of the `values.yaml` file:
 
-* Use more than one instance of the Sidecar pod. Control this with the [`controller.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L877) attribute.
-* Optionally, set [`controller.resources.requests.cpu` and `controller.resources.requests.memory`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L1001) to ensure reserved resources for the controller's Pod.
+* Use more than one instance of the Sidecar pod. Control this with the [`controller.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L867) attribute.
+* Optionally, set [`controller.resources.requests.cpu` and `controller.resources.requests.memory`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L991) to ensure reserved resources for the controller's Pod.
 * Optionally, use pod anti-affinity to distribute controller pods across different nodes to provide resilience in case of a node failure.
 
 Here is an example of the adjusted `controller` section in the `values.yaml` file, incorporating these recommendations:
@@ -48,23 +48,23 @@ controller:
           topologyKey: kubernetes.io/hostname
   resources:
     limits:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 250m
+      memory: 300Mi
     requests:
       cpu: 50m
-      memory: 32Mi
+      memory: 150Mi
 ```
 
-### Postanalytics (Tarantool)
+### Postanalytics (wstore)
 
 The postanalytics component handles traffic from all sidecar containers injected in your application workload. This component can not be scaled by HPA.
 
 For the HA deployment, you can manually adjust the amount of replicas using the following settings of the `values.yaml` file:
 
-* Use more than one instance of the Tarantool Pod. Control this with the [`postanalytics.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L382) attribute.
-* Configure [`postanalytics.tarantool.config.arena`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L610C7-L610C7) in gigabytes (GB) based on the anticipated traffic volume to the application workload. This setting determines the maximum memory Tarantool will utilize. For calculation guidelines, you may find useful [the same of our recommendations for other deployment options][tarantool-memory-recommendations].
-* Align [`postanalytics.tarantool.resources.limits` and `postanalytics.tarantool.resources.requests`](https://github.com/wallarm/sidecar/blob/4eb1a4c4f8d20989757c50c40e192eb7eb1f2169/helm/values.yaml#L639) with the `arena` configuration. Set `limits` at or above the `arena` value to handle peak demand and avoid memory-related crashes. Ensure `requests` meet or exceed the `arena` value for Tarantool's optimal performance. For further information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
-* Optionally, set `resources.requests` and `resources.limits` for all other containers within the `postanalytics` section to ensure dedicated resource allocation for the Tarantool Pod. These containers include `postanalytics.init`, `postanalytics.supervisord`, and `postanalytics.appstructure`.
+* Use more than one instance of the postanalytics Pod. Control this with the [`postanalytics.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L447) attribute.
+* Configure [`postanalytics.wstore.config.arena`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L625) in gigabytes (GB) based on the anticipated traffic volume to the application workload. This setting determines the maximum memory wstore will utilize. For calculation guidelines, you may find useful [the same of our recommendations for other deployment options][wstore-memory-recommendations].
+* Align [`postanalytics.wstore.resources.limits` and `postanalytics.wstore.resources.requests`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L654) with the `arena` configuration. Set `limits` at or above the `arena` value to handle peak demand and avoid memory-related crashes. Ensure `requests` meet or exceed the `arena` value for wstore's optimal performance. For further information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
+* Optionally, set `resources.requests` and `resources.limits` for all other containers within the `postanalytics` section to ensure dedicated resource allocation for the postanalytics (wstore) Pod. These containers include `postanalytics.init`, `postanalytics.supervisord`, and `postanalytics.appstructure`.
 * Optionally, implement pod anti-affinity to distribute postanalytics pods across different nodes to provide resilience in case of a node failure.
 
 Here is an example of the adjusted `postanalytics` section in the `values.yaml` file, incorporating these recommendations:
@@ -72,16 +72,16 @@ Here is an example of the adjusted `postanalytics` section in the `values.yaml` 
 ```yaml
 postanalytics:
   replicaCount: 2
-  tarantool:
+  wstore:
     config:
-      arena: "1.0"
+      arena: "2.0"
     resources:
       limits:
-        cpu: 500m
-        memory: 1Gi
+        cpu: 1000m
+        memory: 2Gi
       requests:
-        cpu: 100m
-        memory: 1Gi
+        cpu: 500m
+        memory: 2Gi
   init:
     resources:
       limits:
@@ -257,23 +257,23 @@ controller:
           topologyKey: kubernetes.io/hostname
   resources:
     limits:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 250m
+      memory: 300Mi
     requests:
       cpu: 50m
-      memory: 32Mi
+      memory: 150Mi
 postanalytics:
   replicaCount: 2
-  tarantool:
+  wstore:
     config:
-      arena: "1.0"
+      arena: "2.0"
     resources:
       limits:
-        cpu: 500m
-        memory: 1Gi
+        cpu: 1000m
+        memory: 2Gi
       requests:
-        cpu: 100m
-        memory: 1Gi
+        cpu: 500m
+        memory: 2Gi
   init:
     resources:
       limits:

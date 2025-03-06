@@ -31,7 +31,7 @@ The Wallarm Sidecar solution is arranged by the following Deployment objects:
 * **Sidecar controller** (`wallarm-sidecar-controller`) is the [mutating admission webhook](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks) that injects Wallarm sidecar resources into the Pod configuring it based on the Helm chart values and pod annotations and connecting the node components to the Wallarm Cloud.
 
     Once a new pod with the `wallarm-sidecar: enabled` label in Kubernetes starts, the controller automatically injects the additional container filtering incoming traffic into the pod.
-* **Postanalytics module** (`wallarm-sidecar-postanalytics`) is the local data analytics backend for the Wallarm sidecar solution. The module uses the in-memory storage Tarantool and the set of some helper containers (like the collectd, attack export services).
+* **Postanalytics module** (`wallarm-sidecar-postanalytics`) is the local data analytics backend for the Wallarm sidecar solution. The module uses the in-memory storage wstore and the set of some helper containers such as attack export services.
 
 ![Wallarm deployment objects][sidecar-deployment-objects-img]
 
@@ -160,9 +160,9 @@ To test that the Wallarm Sidecar operates correctly:
     Each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:
 
     ```
-    NAME                                              READY   STATUS    RESTARTS   AGE
+    NAME                                             READY   STATUS    RESTARTS   AGE
     wallarm-sidecar-controller-54cf88b989-gp2vg      1/1     Running   0          91m
-    wallarm-sidecar-postanalytics-86d9d4b6cd-hpd5k   4/4     Running   0          91m
+    wallarm-sidecar-postanalytics-86d9d4b6cd-hpd5k   3/3     Running   0          91m
     ```
 1. Get the application pod details to check the Wallarm sidecar container has been successfully injected:
 

@@ -80,15 +80,15 @@ To change an IP address and/or port of the statistics service, follow the instru
 !!! info "Changing the statistics service's port on NGINX Docker image"
     To change the default port of the statistics service on an [NGINX-based Docker image](installation-docker-en.md), start the container with the `NGINX_PORT` variable set to the new port. No other changes are required.
 
-1. Open the `/etc/nginx/conf.d/wallarm-status.conf` file (`/etc/nginx/wallarm-status.conf` for all-in-one installer) and specify the following:
+1. Open the `/etc/nginx/wallarm-status.conf` file and specify the following:
 
     * A new service address in the `listen` directive.
     * If required, change the `allow` directive to allow access from addresses other than loopback addresses (the default configuration file allows access only to loopback addresses).
-1. Add the `status_endpoint` parameter with the new address value to the `node.yaml` file (`/opt/wallarm/etc/wallarm/node.yaml` for Docker NGINX-based image, cloud images, NGINX Node all-in-one installer and Native Node - use search to locate files in other installations), e.g.:
+1. Add the `status_endpoint` parameter with the new address value to the `/opt/wallarm/etc/wallarm/node.yaml` file, e.g.:
 
     ```bash
-    hostname: example-node-name
-    uuid: ea1xa0xe-xxxx-42a0-xxxx-b1b446xxxxxx
+    api:
+      uuid: ea1xa0xe-xxxx-42a0-xxxx-b1b446xxxxxx
     ...
     status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
     ```
@@ -100,26 +100,6 @@ To change an IP address and/or port of the statistics service, follow the instru
     ```
     NGINX_PORT=8082
     ```
-1. If a non-standard IP address or port for Tarantool is used, correct the Tarantool configuration file accordingly. The location of this file depends on the type of operating system distribution you have:
-
-    === "DEB-based distributions"
-        ```bash
-        /etc/collectd/collectd.conf.d/wallarm-tarantool.conf
-
-        # If using all-in-one installer:
-        /opt/wallarm/etc/collectd/collectd.conf.d/wallarm-tarantool.conf
-        ```
-    === "RPM-based distributions"
-        ```bash
-        /etc/collectd.d/wallarm-tarantool.conf
-
-        # For all-in-one installer:
-        /opt/wallarm/etc/collectd.d/wallarm-tarantool.conf
-        ```
-    === "AMI, GCP image, or Docker NGINX-based image"
-        ```bash
-        /opt/wallarm/etc/collectd/collectd.conf.d/wallarm-tarantool.conf
-        ```
 
 If SELinux is installed on the filter node host, make sure that SELinux is either [configured or disabled][doc-selinux]. For simplicity, this document assumes that SELinux is disabled.
 
@@ -214,7 +194,7 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     # HELP wallarm_abnormal abnormal requests count
     # TYPE wallarm_abnormal gauge
     wallarm_abnormal 2
-    # HELP wallarm_tnt_errors tarantool write errors count
+    # HELP wallarm_tnt_errors wstore write errors count
     # TYPE wallarm_tnt_errors gauge
     wallarm_tnt_errors 0
     # HELP wallarm_api_errors API write errors count

@@ -117,12 +117,11 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
     kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-ingress
     ```
 
-    Each pod should display the following: **STATUS: Running** and **READY: N/N**. For example:
+    The Wallarm pod status should be **STATUS: Running** and **READY: N/N**:
 
     ```
-    NAME                                                              READY     STATUS    RESTARTS   AGE
-    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      3/3       Running   0          5m
-    ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
+    NAME                                                             READY   STATUS    RESTARTS   AGE
+    ingress-controller-wallarm-ingress-controller-6d659bd79b-952gl   1/1     Running   0          8m7s
     ```
 2. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to the Ingress Controller Service:
 
@@ -152,7 +151,7 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
           nodeSelector:
             kubernetes.io/arch: arm64
       wallarm:
-        tarantool:
+        postanalytics:
           nodeSelector:
             kubernetes.io/arch: arm64
         enabled: true
@@ -177,7 +176,7 @@ Below is the Wallarm Helm chart example for Google Kubernetes Engine (GKE), whic
               value: arm64
               effect: NoSchedule
       wallarm:
-        tarantool:
+        postanalytics:
           tolerations:
             - key: kubernetes.io/arch
               operator: Equal

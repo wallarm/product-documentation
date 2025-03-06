@@ -20,7 +20,6 @@ The `node.yaml` file may contain the following access parameters:
 
 | Parameter | Description | Default value |
 | --------- | ----------- | ------------- |
-| `hostname`       | Filtering node name. This variable is **required** to be set in the `node.yaml` file. | Provided by `register-node` |
 | `api.regtoken`       | Token for node to be able to access the Wallarm API. | Provided by `register-node` |
 | `api.uuid`           | Filtering node UUID. This variable is **required** to be set in the `node.yaml` file. | Provided by `regtoken` |
 | `api.secret`         | Secret key to access the Wallarm API. This variable is **required** to be set in the `node.yaml` file. | Provided by `regtoken` |

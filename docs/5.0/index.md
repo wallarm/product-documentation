@@ -9,6 +9,9 @@ hide:
 
 Wallarm delivers real-time protection for APIs and AI agents, stopping automated threats and abuse while also providing full security visibility with complete API inventory and risk detection.
 
+!!! info "Newer version is available"
+    The newer version of the Wallarm node has been released. [What is new in the latest version](/updating-migrating/what-is-new/)
+
 <div class="navigation">
 <div class="navigation-card">
     <h3 class="icon-homepage quick-start-title">Quick start</h3>

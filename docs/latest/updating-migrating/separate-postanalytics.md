@@ -3,14 +3,13 @@
 [img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
 [img-attacks-in-interface]:     ../images/admin-guides/test-attacks-quickstart.png
 [wallarm-token-types]:          ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[tarantool-status]:             ../images/tarantool-status.png
 [statistics-service-all-parameters]: ../admin-en/configure-statistics-service.md
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [ip-lists-docs]:                     ../user-guides/ip-lists/overview.md
 
 # Upgrading the postanalytics module
 
-These instructions describe the steps to upgrade the postanalytics module 4.x installed on a separate server. Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].
+These instructions describe the steps to upgrade the postanalytics module installed on a separate server up to the latest 6.x version. **Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].**
 
 !!! info "Upgrading with all-in-one installer"
     Since version 4.10, upgrading is performed using Wallarm's [all-in-one installer](../installation/nginx/all-in-one.md) as the individual Linux packages have been deprecated. This method simplifies the upgrade process and ongoing deployment maintenance compared to the previous approach.
@@ -57,7 +56,7 @@ Once the postanalytics module is installed on the separate server, [upgrade its 
 
 ## Step 7: Check the NGINX‑Wallarm and separate postanalytics modules interaction
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
+--8<-- "../include/waf/installation/all-in-one-postanalytics-check-latest.md"
 
 ## Step 8: Remove old postanalytics module
 

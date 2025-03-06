@@ -1,4 +1,3 @@
-[tarantool-status]:           ../images/tarantool-status.png
 [configure-selinux-instr]:    configure-selinux.md
 [configure-proxy-balancer-instr]:   configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-wl-console-users]:             ../images/check-user-no-2fa.png
@@ -84,7 +83,7 @@ To install postanalytics separately with all-in-one installer, use:
 
 ### Resources and memory
 
-To change how much memory Tarantool uses, look for the `SLAB_ALLOC_ARENA` setting in the `/opt/wallarm/env.list` file. It is set to use 1 GB by default. If you need to change this, you can adjust the number to match the amount of memory Tarantool actually needs. For help on how much to set, see our [recommendations](configuration-guides/allocate-resources-for-node.md).
+To change how much memory wstore uses, look for the `SLAB_ALLOC_ARENA` setting in the `/opt/wallarm/env.list` file. It is set to use 1 GB by default. If you need to change this, you can adjust the number to match the amount of memory wstore actually needs. For help on how much to set, see our [recommendations](configuration-guides/allocate-resources-for-node.md).
 
 To change allocated memory:
 
@@ -105,39 +104,42 @@ By default, the postanalytics module is set to accept connections on all IPv4 ad
 
 However, if you need to change the default configuration:
 
-1. Open for editing the `/opt/wallarm/env.list` file:
+1. On the machine with the postanalytics service, open for editing the `/opt/wallarm/wstore/wstore.yaml` file:
 
     ```bash
-    sudo vim /opt/wallarm/env.list
+    sudo vim /opt/wallarm/wstore/wstore.yaml
     ```
-1. Update the `HOST` and `PORT` values as required. Define the `PORT` variable if it is not already specified, for example:
+1. Specify the new IP address and port values in the `service.address` parameter, e.g.:
 
-    ```bash
-    # tarantool
-    HOST=0.0.0.0
-    PORT=3300
+    ```yaml
+    service:
+      address: 192.158.1.38:3313
     ```
-1. Open for editing the `/opt/wallarm/etc/wallarm/node.yaml` file:
+
+    The `service.address` parameter allows the following value formats:
+
+    * IP address:Port, e.g. `192.158.1.38:3313`
+    * Specific port on all IPs, e.g. `:3313`
+1. On the machine with the postanalytics service, open for editing the `/opt/wallarm/etc/wallarm/node.yaml` file:
 
     ```bash
     sudo vim /opt/wallarm/etc/wallarm/node.yaml
     ```
-1. Enter the new `host` and `port` values for the `tarantool` parameters, as shown below:
-
+1. Specify the new IP address and port values in the `wstore.host` and `wstore.port` parameters, e.g.:
     ```yaml
-    hostname: <name of postanalytics node>
-    uuid: <UUID of postanalytics node>
-    secret: <secret key of postanalytics node>
-    tarantool:
-        host: '0.0.0.0'
-        port: 3300
+    api:
+      uuid: <UUID of postanalytics node>
+      secret: <secret key of postanalytics node>
+    wstore:
+      host: '0.0.0.0'
+      port: 3300
     ```
 
 ## Step 5: Enable inbound connections for the postanalytics module
 
 The postanalytics module uses port 3313 by default, but some cloud platforms may block inbound connections on this port.
 
-To guarantee integration, allow inbound connections on port 3313 or your custom port. This step is essential for the NGINX-Wallarm module, installed separately, to connect with the Tarantool instance.
+To guarantee integration, allow inbound connections on port 3313 or your custom port. This step is essential for the NGINX-Wallarm module, installed separately, to connect with the wstore instance.
 
 ## Step 6: Restart the Wallarm services
 
@@ -176,23 +178,27 @@ Once the postanalytics module is installed on the separate server:
 
 ## Step 8: Connect the NGINX-Wallarm module to the postanalytics module
 
-On the machine with the NGINX-Wallarm module, in the NGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/), specify the postanalytics module server address:
+On the machine with the NGINX-Wallarm module, in the NGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) (typically located at `/etc/nginx/nginx.conf`), specify the postanalytics module server address:
 
 ```
-upstream wallarm_tarantool {
-    server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-    server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-    
-    keepalive 2;
-    }
-
+http {
     # omitted
 
-wallarm_tarantool_upstream wallarm_tarantool;
+    upstream wallarm_wstore {
+        server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+        server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+    
+        keepalive 2;
+    }
+
+    wallarm_wstore_upstream wallarm_wstore;
+
+    # omitted
+}
 ```
 
-* `max_conns` value must be specified for each of the upstream Tarantool servers to prevent the creation of excessive connections.
-* `keepalive` value must not be lower than the number of the Tarantool servers.
+* `max_conns` value must be specified for each of the upstream wstore servers to prevent the creation of excessive connections.
+* `keepalive` value must not be lower than the number of the wstore servers.
 
 Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Wallarm module server:
 
@@ -234,7 +240,7 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
 * Analyze the postanalytics module logs
 
     ```bash
-    sudo cat /opt/wallarm/var/log/wallarm/tarantool-out.log
+    sudo cat /opt/wallarm/var/log/wallarm/wstore-out.log
     ```
 
     If there is the record like `SystemError binary: failed to bind: Cannot assign requested address`, make sure that the server accepts connection on specified address and port.
@@ -268,8 +274,4 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
     *   Allow the HTTPS traffic to and from the Wallarm API servers, so the postanalytics module can interact with these servers:
         *   `us1.api.wallarm.com` is the API server in the US Wallarm Cloud
         *   `api.wallarm.com` is the API server in the EU Wallarm Cloud
-    *   Restrict the access to the `3313` Tarantool port via TCP and UDP protocols by allowing connections only from the IP addresses of the Wallarm filtering nodes.
-
-## Tarantool troubleshooting
-
-[Tarantool troubleshooting](../faq/tarantool.md)
+    *   Restrict the access to the `3313` wstore port via TCP and UDP protocols by allowing connections only from the IP addresses of the Wallarm filtering nodes.

@@ -36,6 +36,19 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## 3. Run the container using the new image
 
+!!! info "If upgrading from Node version 0.12.x or lower"
+    If upgrading from Node version 0.12.x or lower, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that the section [`tarantool_exporter` is renamed to `postanalytics_exporter`](../what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics) (if explicitly specified):
+
+    ```diff
+    -version: 2
+    +version: 4
+
+    -tarantool_exporter:
+    +postanalytics_exporter:
+      address: 127.0.0.1:3313
+      enabled: true
+    ```
+
 === "US Cloud"
     ```bash
     docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.12.1

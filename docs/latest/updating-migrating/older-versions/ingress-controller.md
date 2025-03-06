@@ -9,7 +9,7 @@
 
 # Upgrading EOL NGINX Ingress controller with integrated Wallarm modules
 
-These instructions describe the steps to upgrade deployed end‑of‑life Wallarm Ingress Controller (version 3.6 and lower) to the new version with Wallarm node 5.0.
+These instructions describe the steps to upgrade deployed end‑of‑life Wallarm Ingress Controller (version 3.6 and lower) to the new version with Wallarm node 6.x.
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
@@ -26,7 +26,7 @@ These instructions describe the steps to upgrade deployed end‑of‑life Wallar
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules (only if upgrading node 2.18 or lower)
 
-If upgrading node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 5.0 and ask to enable new IP lists logic for your Wallarm account.
+If upgrading node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 6.x and ask to enable new IP lists logic for your Wallarm account.
 
 When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
 
@@ -56,7 +56,7 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
 
 ## Step 5: Update the `values.yaml` configuration
 
-To migrate to Wallarm Ingress controller 5.0, update the following configuration specified in the `values.yaml` file:
+To migrate to Wallarm Ingress controller 6.x, update the following configuration specified in the `values.yaml` file:
 
 * Standard configuration of Community Ingress NGINX Controller
 * Wallarm module configuration
@@ -156,6 +156,7 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
     ```
 
     Since IP list core logic has been significantly changed in Wallarm node 3.x, it is required to adjust IP list configuration appropriately.
+* Due to the [Tarantool-to-wstore transition](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics), Helm values renamed: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`. Apply this change in `values.yaml` if postanalytics memory is explicitly [allocated](../../admin-en/configuration-guides/allocate-resources-for-node.md).
 * [Generate an API token for the **Deploy** role](../../user-guides/settings/api-tokens.md) and pass its value in the `controller.wallarm.token` parameter.
 * Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       
@@ -170,7 +171,8 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
     controller:
     wallarm:
       enabled: true
-      tarantool:
+    -  tarantool:
+    +  wstore:
         resources: {}
     -  metrics:
     -    enabled: true
@@ -205,7 +207,7 @@ To install and run the plugin:
 
     * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
     * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
-    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 5.0 settings](#step-5-update-the-valuesyaml-configuration)
+    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 6.x settings](#step-5-update-the-valuesyaml-configuration)
 3. Make sure no changes can affect the stability of the running services and carefully examine the errors from stdout.
 
     If stdout is empty, ensure the `values.yaml` file is valid.
@@ -293,18 +295,18 @@ There are three ways of upgrading the Wallarm Ingress controller. Depending on w
 !!! warning "Using the staging environment or minikube"
     If the Wallarm Ingress controller is deployed to your staging environment, it is recommended to upgrade it first. With all services operating correctly in the staging environment, you can proceed to the upgrade procedure in the production environment.
 
-    Unless it is recommended to [deploy the Wallarm Ingress controller 5.0](../../admin-en/installation-kubernetes-en.md) with the updated configuration using minikube or another service first. Ensure all services operates as expected and then upgrade the Ingress controller in the production environment.
+    Unless it is recommended to [deploy the Wallarm Ingress controller 6.x](../../admin-en/installation-kubernetes-en.md) with the updated configuration using minikube or another service first. Ensure all services operates as expected and then upgrade the Ingress controller in the production environment.
 
     This approach helps to avoid downtime of the services in the production environment.
 
 ### Method 1: Deployment of the temporary Ingress controller
 
-By using this method, you can deploy Ingress Controller 5.0 as an additional entity in your environment and switch the traffic to it gradually. It helps to avoid even temporary downtime of services and ensures safe migration.
+By using this method, you can deploy Ingress Controller 6.x as an additional entity in your environment and switch the traffic to it gradually. It helps to avoid even temporary downtime of services and ensures safe migration.
 
-1. Copy the IngressClass configuration from the `values.yaml` file of the previous version to the `values.yaml` file for the Ingress controller 5.0.
+1. Copy the IngressClass configuration from the `values.yaml` file of the previous version to the `values.yaml` file for the Ingress controller 6.x.
 
     With this configuration, the Ingress controller will identify the Ingress objects but will not process their traffic.
-2. Deploy the Ingress controller 5.0:
+2. Deploy the Ingress controller 6.x:
 
     ```bash
     helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.8 -f <PATH_TO_VALUES>
@@ -312,7 +314,7 @@ By using this method, you can deploy Ingress Controller 5.0 as an additional ent
 
     * `<RELEASE_NAME>`: the name for the Helm release of the Ingress controller chart
     * `<NAMESPACE>`: the namespace to deploy the Ingress controller to
-    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 5.0 settings](#step-5-update-the-valuesyaml-configuration)
+    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 6.x settings](#step-5-update-the-valuesyaml-configuration)
 3. Ensure all services operate correctly.
 4. Switch the load to the new Ingress controller gradually.
 
@@ -340,7 +342,7 @@ To re‑create the Ingress controller release:
 
         Please do not use the `--wait` option when executing the command since it can increase the upgrade time.
 
-    2. Create a new release with Ingress controller 5.0:
+    2. Create a new release with Ingress controller 6.x:
 
         ```bash
         helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 5.3.8 -f <PATH_TO_VALUES>
@@ -350,7 +352,7 @@ To re‑create the Ingress controller release:
 
         * `<NAMESPACE>`: the namespace to deploy the Ingress controller to
 
-        * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 5.0 settings](#step-5-update-the-valuesyaml-configuration)
+        * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 6.x settings](#step-5-update-the-valuesyaml-configuration)
 === "Terraform CLI"
     1. Set the `wait = false` option in the Terraform configuration to decrease the upgrade time:
         
@@ -370,7 +372,7 @@ To re‑create the Ingress controller release:
         terraform taint helm_release.release
         ```
     
-    3. Create the new release with the Ingress controller 5.0:
+    3. Create the new release with the Ingress controller 6.x:
 
         ```bash
         terraform apply -target=helm_release.release
@@ -411,7 +413,7 @@ There are the following parameters passed in the commands:
 
 * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
 * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
-* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 5.0 settings](#step-5-update-the-valuesyaml-configuration)
+* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 6.x settings](#step-5-update-the-valuesyaml-configuration)
 
 ## Step 9: Test the upgraded Ingress controller
 
@@ -422,18 +424,17 @@ There are the following parameters passed in the commands:
     ```
 
     The chart version should correspond to `wallarm-ingress-5.3.8`.
-2. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
+1. Get the Wallarm pod:
     
     ``` bash
-    kubectl get pods -l release=<INGRESS_CONTROLLER_NAME>
+    kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-ingress
     ```
 
-    Each pod status should be **STATUS: Running** or **READY: N/N**. For example:
+    The pod status should be **STATUS: Running** and **READY: N/N**:
 
     ```
     NAME                                                              READY     STATUS    RESTARTS   AGE
-    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      3/3       Running   0          5m
-    ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
+    ingress-controller-wallarm-ingress-controller-675c68d46d-cfck8      1/1       Running   0          5m
     ```
 
 3. Send the request with the test [Path Traversal](../../attacks-vulns-list.md#path-traversal) attack to the Wallarm Ingress controller address:
@@ -446,7 +447,7 @@ There are the following parameters passed in the commands:
 
 ## Step 10: Adjust the Ingress annotations to released changes
 
-Adjust the following Ingress annotations to the changes released in Ingress controller 5.0:
+Adjust the following Ingress annotations to the changes released in Ingress controller 6.x:
 
 1. If upgrading from version 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) the IP list configuration. Since IP list core logic has been significantly changed in Wallarm node 3.x, it is required to adjust IP list configuration appropriately by changing Ingress annotations (if applied).
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):

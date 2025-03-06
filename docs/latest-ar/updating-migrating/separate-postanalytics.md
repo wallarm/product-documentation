@@ -50,7 +50,7 @@
 
 ### الخطوة 6: إعادة ربط وحدة NGINX-Wallarm بوحدة postanalytics
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect.md"
+--8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect-5.0.md"
 
 ### الخطوة 7: التحقق من تفاعل وحدات NGINX‑Wallarm وpostanalytics المستقلة
 

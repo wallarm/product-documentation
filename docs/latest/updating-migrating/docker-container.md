@@ -16,10 +16,10 @@
 
 # Upgrading the Docker NGINX-based image
 
-These instructions describe the steps to upgrade the running Docker NGINX-based image 4.x to the version 5.0.
+These instructions describe the steps to upgrade the running Docker NGINX-based image to the latest version 6.x.
 
 !!! warning "Using credentials of already existing Wallarm node"
-    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 5.0 and deploy it as the Docker container.
+    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 6.x and deploy it as the Docker container.
 
 To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/docker-container.md).
 
@@ -49,6 +49,9 @@ docker stop <RUNNING_CONTAINER_NAME>
 
     * [With the environment variables](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
     * [In the mounted configuration file](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+
+!!! info "`TARANTOOL_MEMORY_GB` → `SLAB_ALLOC_ARENA`"
+    If upgrading from the version 5.x or lower and setting the postanalytics memory amount with the `TARANTOOL_MEMORY_GB` environment variable, rename the variable to `SLAB_ALLOC_ARENA`.
 
 ## Step 4: Test the filtering node operation
 

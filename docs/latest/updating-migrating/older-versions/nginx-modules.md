@@ -25,7 +25,7 @@
 
 # Upgrading EOL Wallarm NGINX modules
 
-These instructions describe the steps to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 5.0. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to the latest version 6.x. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
 * Individual packages for NGINX stable
 * Individual packages for NGINX Plus
@@ -50,7 +50,7 @@ These instructions describe the steps to upgrade the end‑of‑life Wallarm NGI
 
 ## Inform Wallarm technical support that you are upgrading EOL node
 
-If upgrading the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 5.0, inform [Wallarm technical support](mailto:support@wallarm.com) about that and ask for assistance.
+If upgrading the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 6.x, inform [Wallarm technical support](mailto:support@wallarm.com) about that and ask for assistance.
 
 Besides any other help, ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
 
@@ -122,31 +122,24 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
         sudo sh wallarm-5.3.8.aarch64-glibc.sh filtering
         ```
 
-## Step 7: Migrate allowlists and denylists from the previous Wallarm node version to 5.0 (only if upgrading node 2.18 or lower)
+## Step 7: Migrate allowlists and denylists from the previous Wallarm node version to 6.x (only if upgrading node 2.18 or lower)
 
 If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to the latest version.
 
 ## Step 8: Transfer NGINX and postanalytics configuration from old node machine to new
 
-Transfer node-related NGINX configuration and postanalytics configuration from the configuration files on the old machine to the files on a new machine. You can do that by copying the required directives.
+Migrate the node-related NGINX and postanalytics configurations from the old machine to the new one by copying the necessary directives or files:
 
-**Source files**
+* `/etc/nginx/conf.d/default.conf` or `/etc/nginx/nginx.conf` with NGINX settings for the `http` level
 
-On an old machine, depending on OS and NGINX version, the NGINX configuration files may be located in different directories and have different names. Most common are the following:
+    If the filtering and postanalytics nodes are on different servers, in the `http` block of `/etc/nginx/nginx.conf` on the filtering node machine, rename `wallarm_tarantool_upstream` to [`wallarm_wstore_upstream`](../../admin-en/configure-parameters-en.md#wallarm_wstore_upstream).
+* `/etc/nginx/sites-available/default` with NGINX and Wallarm settings for traffic routing
+* `/etc/nginx/conf.d/wallarm-status.conf` → copy to `/etc/nginx/wallarm-status.conf` on the new machine
 
-* `/etc/nginx/conf.d/default.conf` with NGINX settings
-* `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
+    Detailed description is available within the [link][wallarm-status-instr].
+* `/etc/wallarm/node.yaml` → copy to `/opt/wallarm/etc/wallarm/node.yaml` on the new machine
 
-Also, the configuration of the postanalytics module (Tarantool database settings) is usually located here:
-
-* `/etc/default/wallarm-tarantool` or
-* `/etc/sysconfig/wallarm-tarantool`
-
-**Target files**
-
-As all-in-one installer works with different combinations of OS and NGINX versions, on your new machine, the [target files](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) may have different names and be located in different directories.
-
-When transferring configuration, you need to perform steps listed below.
+    If using a custom host and port on a separate postanalytics server, rename the `tarantool` section to `wstore` in the copied file on the postanalytics node machine.
 
 ### Rename deprecated NGINX directives
 
@@ -156,6 +149,7 @@ Rename the following NGINX directives if they are explicitly specified in config
 * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
 * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
 * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
+* `wallarm_tarantool_upstream` → [`wallarm_wstore_upstream`](../../admin-en/configure-parameters-en.md#wallarm_wstore_upstream)
 
 We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
 
@@ -179,7 +173,7 @@ In the new node version the following changes to the [node logging variables](..
       * [Endpoint-targeted filtration rules configured in Wallarm Console](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 
-### Transfer the `overlimit_res` attack detection configuration from directives to the rule
+###  the `overlimit_res` attack detection configuration from directives to the rule
 
 --8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
 
@@ -278,6 +272,6 @@ Before full redirecting of the traffic to the new node, it is recommended to fir
 
 ## Settings customization
 
-The Wallarm modules are updated to version 5.0. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
+The Wallarm modules are updated to version 6.x. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"

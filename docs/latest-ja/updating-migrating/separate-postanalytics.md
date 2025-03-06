@@ -53,7 +53,7 @@
 
 ## ステップ 6: NGINX-Wallarmモジュールをpostanalyticsモジュールに再接続します
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect.md"
+--8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect-5.0.md"
 
 ## ステップ 7: NGINX-Wallarmモジュールと別サーバーのpostanalyticsモジュールの連携を確認します
 

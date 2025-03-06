@@ -3,7 +3,7 @@
 
 # Upgrading Wallarm Sidecar
 
-These instructions describe the steps to upgrade Wallarm Sidecar solution.
+These instructions describe the steps to upgrade Wallarm Sidecar solution up to the latest 6.x version.
 
 ## Requirements
 
@@ -34,12 +34,15 @@ To install and run the plugin:
 
     * `<RELEASE_NAME>` is the name of the Wallarm Sidecar Helm release.
     * `wallarm-sidecar` is the namespace where the Wallarm Sidecar solution has been deployed. According to our [deployment](../installation/kubernetes/sidecar-proxy/deployment.md) guide, it is most likely set to `wallarm-sidecar`.
-    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar settings - you can use the one created for running the previous Sidecar version.
+    * `<PATH_TO_VALUES>` is the path to the `values.yaml` file with Sidecar Helm chart 6.x settings. You can reuse the previous version's file, updating it [for the Tarantool-to-wstore transition](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics):
+    
+        Helm values renamed: `postanalytics.tarantool` → `postanalytics.wstore`. Apply this change in `values.yaml` if postanalytics memory is explicitly [allocated](../installation/kubernetes/sidecar-proxy/scaling.md).
+
 3. Make sure that no changes can affect the stability of the running services and carefully examine the errors from stdout.
 
     If stdout is empty, make sure that the `values.yaml` file is valid.
 
-## Upgrading from version 4.10.6 or lower 4.10.x
+## Upgrading from version 4.10.6 or lower
 
 The [release 4.10.7](/4.10/updating-migrating/node-artifact-versions/#helm-chart-for-sidecar) introduced breaking changes, requiring a reinstallation of the solution. The default method for generating the admission webhook certificate has been replaced with the [`certgen`](https://github.com/kubernetes/ingress-nginx/tree/main/images/kube-webhook-certgen) process. During the upgrade, certificates will be automatically generated using the new `certgen` process.
 
@@ -66,7 +69,9 @@ helm install --version 5.3.9 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wa
 
 * `<RELEASE_NAME>` is the name for the Helm release. It is recommended to re-use the same name you used for the initial deployment of the solution.
 * `wallarm-sidecar` is the namespace to deploy the Helm release. It is recommended to re-use the same namespace you used for the initial deployment of the solution.
-* `<PATH_TO_VALUES>` is the path to the `values.yaml` file. You can re-use the one generated during the initial deployment, no changes are required for upgrading.
+* `<PATH_TO_VALUES>` is the path to the `values.yaml` file with Sidecar Helm chart 6.x settings. You can reuse the previous version's file, updating it [for the Tarantool-to-wstore transition](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics):
+    
+    Helm values renamed: `postanalytics.tarantool` → `postanalytics.wstore`. Apply this change in `values.yaml` if postanalytics memory is explicitly [allocated](../installation/kubernetes/sidecar-proxy/scaling.md).
 
 ## Upgrading from version 4.10.7 or above
 
@@ -80,7 +85,9 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 5.3
 
 * `<RELEASE_NAME>`: the name of the Helm release with the deployed Sidecar chart
 * `<NAMESPACE>`: the namespace the Sidecar is deployed to
-* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar 4.10 settings - you can use the one created for running the previous Sidecar version
+* `<PATH_TO_VALUES>` is the path to the `values.yaml` file with Sidecar Helm chart 6.x settings. You can reuse the previous version's file, updating it [for the Tarantool-to-wstore transition](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics):
+    
+    Helm values renamed: `postanalytics.tarantool` → `postanalytics.wstore`. Apply this change in `values.yaml` if postanalytics memory is explicitly [allocated](../installation/kubernetes/sidecar-proxy/scaling.md).
 
 ## Test the upgraded Sidecar solution
 
@@ -102,9 +109,9 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 5.3
     Each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:
 
     ```
-    NAME                                              READY   STATUS    RESTARTS   AGE
+    NAME                                             READY   STATUS    RESTARTS   AGE
     wallarm-sidecar-controller-54cf88b989-gp2vg      1/1     Running   0          91m
-    wallarm-sidecar-postanalytics-86d9d4b6cd-hpd5k   4/4     Running   0          91m
+    wallarm-sidecar-postanalytics-86d9d4b6cd-hpd5k   3/3     Running   0          91m
     ```
 1. Send the test [Path Traversal](../attacks-vulns-list.md#path-traversal) attack to the application cluster address:
 

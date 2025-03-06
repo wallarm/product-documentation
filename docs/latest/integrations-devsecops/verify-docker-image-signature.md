@@ -15,10 +15,7 @@ Wallarm signs the following Docker images:
 
     * [wallarm/sidecar](https://hub.docker.com/r/wallarm/sidecar)
     * [wallarm/sidecar-controller](https://hub.docker.com/r/wallarm/sidecar-controller)
-    * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
-    * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
-    * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
-    * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
+    * [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers)
 * [wallarm/node-native-aio](https://hub.docker.com/r/wallarm/node-native-aio): the [Docker image for the self-hosted Native Node deployment](../installation/native-node/docker-image.md) for Wallarm connectors
 
 ## Requirements

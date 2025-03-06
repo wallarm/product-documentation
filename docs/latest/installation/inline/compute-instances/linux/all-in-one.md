@@ -61,7 +61,6 @@ Wallarm settings are defined using the [NGINX directives][waf-directives-instr] 
 * `/etc/nginx/sites-available/default` for the settings on the server and location levels
 * `/etc/nginx/nginx.conf` for the settings on the http level
 * `/etc/nginx/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
-* `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` with the settings for the `collectd` plugin that collects statistics from Tarantool
 
 Below there are a few of the typical settings that you can apply if needed:
 

@@ -115,12 +115,11 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
     kubectl get pods -n wallarm-ingress
     ```
 
-    Each pod status should be **STATUS: Running** or **READY: N/N**. For example:
+    The Wallarm pod status should be **STATUS: Running** and **READY: N/N**:
 
     ```
     NAME                                                             READY   STATUS    RESTARTS   AGE
-    internal-ingress-wallarm-ingress-controller-6d659bd79b-952gl      3/3     Running   0          8m7s
-    internal-ingress-wallarm-ingress-controller-wallarm-tarant64m44   4/4     Running   0          8m7s
+    internal-ingress-wallarm-ingress-controller-6d659bd79b-952gl     1/1     Running   0          8m7s
     ```
 
 ### Step 2: Create Ingress object with Wallarm-specific `ingressClassName`
