@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md"
+--8<-- "5.0/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md"

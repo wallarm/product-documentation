@@ -1,1 +1,1 @@
---8<-- "latest/faq/tarantool.md"
+--8<-- "5.0/faq/tarantool.md"

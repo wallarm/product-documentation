@@ -34,7 +34,7 @@ wallarm_acl_allow_list 0
 # HELP wallarm_abnormal abnormal requests count
 # TYPE wallarm_abnormal gauge
 wallarm_abnormal 2
-# HELP wallarm_tnt_errors tarantool write errors count
+# HELP wallarm_tnt_errors wstore write errors count
 # TYPE wallarm_tnt_errors gauge
 wallarm_tnt_errors 0
 # HELP wallarm_api_errors API write errors count

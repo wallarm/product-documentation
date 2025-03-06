@@ -25,7 +25,7 @@
 
 # Upgrading Wallarm NGINX modules
 
-These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x installed from the individual packages to version 5.0. These are the modules installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x installed from the individual packages to version 6.x. These are the modules installed in accordance with one of the following instructions:
 
 * Individual packages for NGINX stable
 * Individual packages for NGINX Plus
@@ -110,23 +110,18 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
 ## Step 6: Transfer NGINX and postanalytics configuration from old node machine to new
 
-Transfer node-related NGINX configuration and postanalytics configuration from the configuration files on the old machine to the files on a new machine. You can do that by copying the required directives.
+Migrate the node-related NGINX and postanalytics configurations from the old machine to the new one by copying the necessary directives or files:
 
-**Source files**
+* `/etc/nginx/conf.d/default.conf` or `/etc/nginx/nginx.conf` with NGINX settings for the `http` level
 
-On an old machine, depending on OS and NGINX version, the NGINX configuration files may be located in different directories and have different names. Most common are the following:
+    If the filtering and postanalytics nodes are on different servers, in the `http` block of `/etc/nginx/nginx.conf` on the filtering node machine, rename `wallarm_tarantool_upstream` to [`wallarm_wstore_upstream`](../admin-en/configure-parameters-en.md#wallarm_wstore_upstream).
+* `/etc/nginx/sites-available/default` with NGINX and Wallarm settings for traffic routing
+* `/etc/nginx/conf.d/wallarm-status.conf` → copy to `/etc/nginx/wallarm-status.conf` on the new machine
 
-* `/etc/nginx/conf.d/default.conf` with NGINX settings
-* `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
+    Detailed description is available within the [link][wallarm-status-instr].
+* `/etc/wallarm/node.yaml` → copy to `/opt/wallarm/etc/wallarm/node.yaml` on the new machine
 
-Also, the configuration of the postanalytics module (Tarantool database settings) is usually located here:
-
-* `/etc/default/wallarm-tarantool` or
-* `/etc/sysconfig/wallarm-tarantool`
-
-**Target files**
-
-As all-in-one installer works with different combinations of OS and NGINX versions, on your new machine, the [target files](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) may have different names and be located in different directories.
+    If using a custom host and port on a separate postanalytics server, rename the `tarantool` section to `wstore` in the copied file on the postanalytics node machine.
 
 ## Step 7: Restart NGINX
 

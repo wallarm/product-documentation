@@ -60,7 +60,7 @@ Postanalytics modülü ayrı bir sunucuda kurulduktan sonra, farklı bir sunucud
 
 ## Adım 7: NGINX-Wallarm Modülünü Postanalytics Modülüne Yeniden Bağlama
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect.md"
+--8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect-5.0.md"
 
 ## Adım 8: NGINX‑Wallarm ile Ayrı Postanalytics Modüllerinin Etkileşimini Kontrol Etme
 

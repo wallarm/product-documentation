@@ -1,1 +1,1 @@
---8<-- "latest/faq/cpu.md"
+--8<-- "5.0/faq/cpu.md"

@@ -4,7 +4,6 @@
 [img-attacks-in-interface]:     ../../images/admin-guides/test-attacks-quickstart.png
 [nginx-custom]:                 ../../custom/custom-nginx-version.md
 [wallarm-token-types]:          ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[tarantool-status]:             ../../images/tarantool-status.png
 [statistics-service-all-parameters]: ../../admin-en/configure-statistics-service.md
 [configure-proxy-balancer-instr]:    ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [ip-lists-docs]:                     ../../user-guides/ip-lists/overview.md
@@ -64,7 +63,7 @@ Once the postanalytics module is installed on the separate server, [upgrade its 
 
 ## Step 8: Check the NGINX‑Wallarm and separate postanalytics modules interaction
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
+--8<-- "../include/waf/installation/all-in-one-postanalytics-check-latest.md"
 
 ## Step 9: Remove old postanalytics module
 

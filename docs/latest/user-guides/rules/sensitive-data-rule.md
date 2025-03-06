@@ -12,7 +12,7 @@ Wallarm provides the **Mask sensitive data** [rule](../rules/rules.md) to config
 * Serialized requests with attacks
 * Wallarm system counters
 * System statistics: CPU load, RAM usage, etc.
-* Wallarm system statistics: number of processed NGINX requests, Tarantool statistics, etc.
+* Wallarm system statistics: number of processed NGINX requests, wstore statistics, etc.
 * Information on the nature of the traffic that Wallarm needs to correctly detect application structure
 
 The **Mask sensitive data** rule cuts the original value of the specified request point before sending the request to the postanalytics module and Wallarm Cloud. This method ensures that sensitive data cannot leak outside the trusted environment.

@@ -16,6 +16,5 @@ search:
 [denylist-docs]:                      ../../../../user-guides/ip-lists/overview.md
 [denylist-view-events-docs]:          ../../../../user-guides/ip-lists/overview.md#requests-from-denylisted-ips
 [api-spec-enforcement-docs]:          ../../../../api-specification-enforcement/overview.md
-[sidecar-5.3.0-changelog]:            ../../../../updating-migrating/node-artifact-versions.md#530-2025-01-29_2
 
 --8<-- "latest/installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md"

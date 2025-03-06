@@ -53,7 +53,7 @@ docker pull wallarm/node-native-aio:0.12.1
 Create the `wallarm-node-conf.yaml` file with the following minimal configuration for the Native Node:
 
 ```yaml
-version: 2
+version: 4
 
 mode: connector-server
 

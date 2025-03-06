@@ -59,32 +59,26 @@ The directive enables `on` / disables `off` sending statistics about the request
 
 A path to the `node.yaml` file, which contains access requirements for the Wallarm API.
 
-**Example**: 
-```
-wallarm_api_conf /etc/wallarm/node.yaml
+**Default**:
 
-# Docker NGINX-based image, cloud image and all-in-one installer installations
-# wallarm_api_conf /opt/wallarm/etc/wallarm/node.yaml
+```
+wallarm_api_conf /opt/wallarm/etc/wallarm/node.yaml
 ```
 
-Used to upload serialized requests from the filtering node directly to the Wallarm API (Cloud) instead of uploading into the postanalytics module (Tarantool).
+Used to upload serialized requests from the filtering node directly to the Wallarm API (Cloud) instead of uploading into the postanalytics module (wstore).
 **Only requests with attacks are sent to the API.** Requests without attacks are not saved.
 
-**Example of the node.yaml file content:**
+Example of the node.yaml file content:
 
 ``` yaml
-# API connection credentials
-
-hostname: <some name>
-uuid: <some uuid>
-secret: <some secret>
-
 # API connection parameters (the parameters below are used by default)
-
-host: api.wallarm.com
-port: 443
-ca_verify: true
+api:
+  host: api.wallarm.com
+  port: 443
+  ca_verify: true
 ```
+
+[More parameters](configure-cloud-node-synchronization-en.md#access-parameters)
 
 ### wallarm_application
 
@@ -720,21 +714,21 @@ Also, it is strongly advised not to alter any of the existing lines of the defau
 
     The `format` parameter has the `json` value by default.
 
-### wallarm_tarantool_upstream
+### wallarm_wstore_upstream
 
-With the `wallarm_tarantool_upstream`, you can balance the requests between several postanalytics servers.
+With the `wallarm_wstore_upstream`, you can specify the postanalytics module server address if it is different from the default one (`127.0.0.1:3313`) and if there are several postanalytics servers, specify how to balance requests between them.
 
 **Example:**
 
 ```bash
-upstream wallarm_tarantool {
+upstream wallarm_wstore {
     server 127.0.0.1:3313 max_fails=0 fail_timeout=0 max_conns=1;
     keepalive 1;
 }
 
 # omitted
 
-wallarm_tarantool_upstream wallarm_tarantool;
+wallarm_wstore_upstream wallarm_wstore;
 ```
 
 See also [Module ngx_http_upstream_module](https://nginx.org/en/docs/http/ngx_http_upstream_module.html).
@@ -742,8 +736,8 @@ See also [Module ngx_http_upstream_module](https://nginx.org/en/docs/http/ngx_ht
 !!! warning "Required conditions"
     It is required that the following conditions are satisfied for the `max_conns` and the `keepalive` parameters:
 
-    * The value of the `keepalive` parameter must not be lower than the number of the Tarantool servers.
-    * The value of the `max_conns` parameter must be specified for each of the upstream Tarantool servers to prevent the creation of excessive connections.
+    * The value of the `keepalive` parameter must not be lower than the number of the wstore servers.
+    * The value of the `max_conns` parameter must be specified for each of the upstream wstore servers to prevent the creation of excessive connections.
 
 !!! info
     The parameter is configured inside the http block only.
@@ -780,18 +774,18 @@ This parameter is effective only if `wallarm_parse_response on`.
 
 ### wallarm_upstream_backend
 
-A method for sending serialized requests. Requests can be sent either to Tarantool or to the API.
+A method for sending serialized requests. Requests can be sent either to wstore or to the API.
 
 Possible values of the directive:
-*   `tarantool`
+*   `wstore`
 *   `api`
 
 Depending on the other directives, the default value will be assigned as follows:
-*   `tarantool` - if there is no `wallarm_api_conf` directive in the configuration.
-*   `api` - if there is a `wallarm_api_conf` directive, but there is no `wallarm_tarantool_upstream` directive in the configuration.
+*   `wstore` - if there is no `wallarm_api_conf` directive in the configuration.
+*   `api` - if there is a `wallarm_api_conf` directive, but there is no `wallarm_wstore_upstream` directive in the configuration.
 
     !!! note
-        If the `wallarm_api_conf` and `wallarm_tarantool_upstream` directives are present simultaneously in the configuration, a configuration error of the **directive ambiguous wallarm upstream backend** form will occur.
+        If the `wallarm_api_conf` and `wallarm_wstore_upstream` directives are present simultaneously in the configuration, a configuration error of the **directive ambiguous wallarm upstream backend** form will occur.
 
 !!! info
     This parameter can be set inside the http block only.
@@ -799,8 +793,8 @@ Depending on the other directives, the default value will be assigned as follows
 
 ### wallarm_upstream_connect_attempts
 
-Defines the number of immediate reconnects to the Tarantool or Wallarm API.
-If a connection to the Tarantool or API is terminated, then the attempt to reconnect will not occur. However, this is not the case when there aren't anymore connections and the serialized request queue is not empty.
+Defines the number of immediate reconnects to the wstore or Wallarm API.
+If a connection to the wstore or API is terminated, then the attempt to reconnect will not occur. However, this is not the case when there aren't anymore connections and the serialized request queue is not empty.
 
 !!! note
     Reconnection may occur through another server, because the “upstream” subsystem is responsible for choosing the server.
@@ -810,7 +804,7 @@ If a connection to the Tarantool or API is terminated, then the attempt to recon
 
 ### wallarm_upstream_reconnect_interval
 
-Defines the interval between attempts to reconnect to the Tarantool or Wallarm API after the number of unsuccessful attempts has exceeded the `wallarm_upstream_connect_attempts` threshold.
+Defines the interval between attempts to reconnect to the wstore or Wallarm API after the number of unsuccessful attempts has exceeded the `wallarm_upstream_connect_attempts` threshold.
 
 !!! info
     This parameter can be set inside the http block only.
@@ -818,7 +812,7 @@ Defines the interval between attempts to reconnect to the Tarantool or Wallarm A
 
 ### wallarm_upstream_connect_timeout
 
-Defines a timeout for connecting to the Tarantool or Wallarm API.
+Defines a timeout for connecting to the wstore or Wallarm API.
 
 !!! info
     This parameter can be set inside the http block only.

@@ -23,25 +23,26 @@ The installer simplifies the process by automatically performing the following a
 
 The DEB/RPM packages for the node installation have the "deprecated" status now.
 
-## Breaking changes due to the deleted metrics
+## Removal of collectd
 
-The Wallarm node does not collect the following collectd metrics anymore:
+The collectd service, previously installed on all filtering nodes, has been removed along with its related plugins. Metrics are now collected and sent using Wallarm's built-in mechanisms, reducing dependencies on external tools.
 
-* `wallarm_nginx/gauge-requests` - you can use the [`wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests) metric instead
-* `wallarm_nginx/gauge-attacks`
-* `wallarm_nginx/gauge-blocked`
-* `wallarm_nginx/gauge-time_detect`
-* `wallarm_nginx/derive-requests`
-* `wallarm_nginx/derive-attacks`
-* `wallarm_nginx/derive-blocked`
-* `wallarm_nginx/derive-abnormal`
-* `wallarm_nginx/derive-requests_lost`
-* `wallarm_nginx/derive-tnt_errors`
-* `wallarm_nginx/derive-api_errors`
-* `wallarm_nginx/derive-segfaults`
-* `wallarm_nginx/derive-memfaults`
-* `wallarm_nginx/derive-softmemfaults`
-* `wallarm_nginx/derive-time_detect`
+Use the [`/wallarm-status` endpoint](../../admin-en/configure-statistics-service.md), which replaces collectd by providing the same metrics in Prometheus and JSON formats.
+
+As a result of this change, also the following changed in the configuration fules:
+
+* The `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` collectd configuration file is no longer used.
+* If you previously used collectd to forward metrics via a network plugin, such as:
+
+    ```
+    LoadPlugin network
+
+    <Plugin "network">
+        Server "<Server IPv4/v6 address or FQDN>" "<Server port>"
+    </Plugin>
+    ```
+
+    you should now switch to scraping `/wallarm-status` via Prometheus.
 
 ## API Sessions
 
@@ -446,12 +447,6 @@ The NGINX-based Wallarm Docker image now supports the new environment variable `
 
     The default value of the NGINX directive [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path) has been changed appropriately. New default value is `/etc/wallarm/custom_ruleset`.
 * The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. The new name is used by default.
-* The collectd metric `gauge-lom_id` has been renamed to `gauge-custom_ruleset_id`.
-
-    In new node versions, the collectd service collects both the deprecated and new metrics. The deprecated metric collection will be stopped in future releases.
-
-    [All collectd metrics →](../../admin-en/monitoring/available-metrics.md#nginx-metrics-and-nginx-wallarm-module-metrics)
-* The `/var/log/wallarm/addnode_loop.log` [log file](../../admin-en/configure-logging.md) in the Docker containers has been renamed to `/var/log/wallarm/registernode_loop.log`.
 
 ## Parameters of the statistics service
 
@@ -527,6 +522,44 @@ Currently, it is tailored for the following deployments:
 * TCP traffic mirror analysis
 
 [Read more](../../installation/nginx-native-node-internals.md#native-node)
+
+## Replacing Tarantool with wstore for postanalytics
+
+Wallarm Node now uses **wstore, a Wallarm-developed service**, instead of Tarantool for local postanalytics processing. As a result:
+
+* [All-in-one installer](../../installation/nginx/all-in-one.md), [AWS](../../installation/cloud-platforms/aws/ami.md)/[GCP](../../installation/cloud-platforms/gcp/machine-image.md) images:
+
+    * The NGINX directive `wallarm_tarantool_upstream`, which defines the postanalytics module server address when deployed separately from other NGINX services, has been renamed to [`wallarm_wstore_upstream`](../../admin-en/configure-parameters-en.md#wallarm_wstore_upstream).
+
+        Backward compatibility preserved with a deprecation warning:
+
+        ```
+        2025/03/04 20:43:04 [warn] 3719#3719: "wallarm_tarantool_upstream" directive is deprecated, use "wallarm_wstore_upstream" instead in /etc/nginx/nginx.conf:19
+        ```
+    * [Log file](../../admin-en/configure-logging.md) renamed: `/opt/wallarm/var/log/wallarm/tarantool-out.log` → `/opt/wallarm/var/log/wallarm/wstore-out.log`.
+    * The new wstore configuration file `/opt/wallarm/wstore/wstore.yaml` replaces obsolete Tarantool configuration files such as `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool`.
+    * The `tarantool` section in `/opt/wallarm/etc/wallarm/node.yaml` is now `wstore`. Backward compatibility preserved with a deprecation warning.
+* [Docker image](../../admin-en/installation-docker-en.md):
+
+    * All the above changes are applied within the container.
+    * Previously, memory for Tarantool was allocated via the `TARANTOOL_MEMORY_GB` environment variable. Now, memory allocation follows the same principle but uses a new variable: `TARANTOOL_MEMORY_GB` → `SLAB_ALLOC_ARENA`.
+* [Kubernetes Ingress Controller](../../admin-en/installation-kubernetes-en.md):
+    
+    * Tarantool is no longer a separate pod, wstore runs within the main `<CHART_NAME>-wallarm-ingress-controller-xxx` pod.
+    * Helm values renamed: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`.
+* [Kubernetes Sidecar Controller](../../installation/kubernetes/sidecar-proxy/deployment.md):
+
+    * Helm values renamed: `postanalytics.tarantool.*` → [`postanalytics.wstore.*`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L625).
+    * The following Docker images have been removed from the Helm chart for Sidecar deployment:
+
+        * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
+        * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
+        * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
+        * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
+        
+        These images have been replaced by the [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers) image, which now runs the relevant services.
+
+The described changes are incorporated into the Node upgrade instructions provided below.
 
 ## Upgrade process
 

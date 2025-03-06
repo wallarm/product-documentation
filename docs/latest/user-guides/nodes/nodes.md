@@ -79,8 +79,6 @@ In Wallarm, node instances are named as `hostname_NodeUUID`, where:
 * `hostname` is the name of the working machine on which the node instance is launched
 * `NodeUUID` is the unique node identifier (UUID)
 
-You can set `hostname` manually during node installation using the `-n` parameter in `register-node` script.
-
 ## Regenerating the node token
 
 Token regeneration creates a new token for the node. 

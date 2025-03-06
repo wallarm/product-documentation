@@ -37,13 +37,6 @@ The following recommendations are relevant for missing-critical (production) env
         targetCPUUtilizationPercentage: 50
         targetMemoryUtilizationPercentage: 50
     ```
-* Run at least two instances of Wallarm's postanalytics service based on the Tarantool database. These pods include `ingress-controller-wallarm-tarantool` in the name. The behavior is controlled in the file `values.yaml` using the attribute `controller.wallarm.tarantool.replicaCount`. For example: 
-    ```
-    controller:
-      wallarm:
-        tarantool:
-          replicaCount: 2
-    ```
 
 ## Configuration procedure
 

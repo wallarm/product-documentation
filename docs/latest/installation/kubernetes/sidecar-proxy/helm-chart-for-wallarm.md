@@ -149,7 +149,7 @@ config:
       maxRequestsPerConnection: 0
 ```
 
-Since [node 5.3.0][sidecar-5.3.0-changelog], the following is presented (see default values in the example above):
+Since node 5.3.0, the following is presented (see default values in the example above):
 
 | Setting | Description |
 | ------- | ----------- |
@@ -270,7 +270,7 @@ Supported starting from the 5.3.0 release.
 
 ## postanalytics.external.enabled
 
-Determines whether to use the Wallarm postanalytics (Tarantool) module installed on an external host or the one installed during the Sidecar solution deployment.
+Determines whether to use the Wallarm postanalytics (wstore) module installed on an external host or the one installed during the Sidecar solution deployment.
 
 This feature is supported starting from Helm release 4.6.4.
 
@@ -287,7 +287,7 @@ The domain or IP address of the separately installed postanalytics module. This 
 
 This feature is supported starting from Helm release 4.6.4.
 
-Example values: `tarantool.domain.external` or `10.10.0.100`.
+Example values: `wstore.domain.external` or `10.10.0.100`.
 
 The specified host must be accessible from the Kubernetes cluster where the Sidecar Helm chart is deployed.
 
