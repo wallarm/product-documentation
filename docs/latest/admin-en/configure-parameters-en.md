@@ -71,10 +71,6 @@ Used to upload serialized requests from the filtering node directly to the Walla
 Example of the node.yaml file content:
 
 ``` yaml
-# API connection credentials
-
-hostname: <some name>
-
 # API connection parameters (the parameters below are used by default)
 api:
   host: api.wallarm.com

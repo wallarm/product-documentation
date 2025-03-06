@@ -87,8 +87,8 @@ To change an IP address and/or port of the statistics service, follow the instru
 1. Add the `status_endpoint` parameter with the new address value to the `/opt/wallarm/etc/wallarm/node.yaml` file, e.g.:
 
     ```bash
-    hostname: example-node-name
-    uuid: ea1xa0xe-xxxx-42a0-xxxx-b1b446xxxxxx
+    api:
+      uuid: ea1xa0xe-xxxx-42a0-xxxx-b1b446xxxxxx
     ...
     status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
     ```

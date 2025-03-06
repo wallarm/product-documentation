@@ -128,7 +128,6 @@ However, if you need to change the default configuration:
 1. Specify the new IP address and port values in the `wstore.host` and `wstore.port` parameters, e.g.:
     ```yaml
     api:
-      hostname: <name of postanalytics node>
       uuid: <UUID of postanalytics node>
       secret: <secret key of postanalytics node>
     wstore:
