@@ -53,7 +53,7 @@ Once the postanalytics module is installed on the separate server, [upgrade its 
 
 ## Step 6: Re-connect the NGINX-Wallarm module to the postanalytics module
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect.md"
+--8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect-5.0.md"
 
 ## Step 7: Check the NGINX‑Wallarm and separate postanalytics modules interaction
 
