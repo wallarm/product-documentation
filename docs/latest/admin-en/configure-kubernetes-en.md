@@ -257,7 +257,7 @@ controller:
       ...
 ```
 
-Since [node 5.1.0](../updating-migrating/node-artifact-versions.md#510-2024-11-06_1), the following is presented (see default values in the example above):
+Since node 5.1.0, the following is presented (see default values in the example above):
 
 | Setting | Description |
 | ------- | ----------- |
