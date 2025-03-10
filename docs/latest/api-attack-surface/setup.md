@@ -1,6 +1,6 @@
 # API Attack Surface Setup  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-To configure [API Attack Surface Management](overview.md) to detect hosts under your selected domains and search for security issues related to these hosts, in Wallarm Console → AASM → **API Attack Surface** or **Security Issues** section, click **Configure**. Add your domains to the scope, check the scanning status.
+To configure [API Attack Surface Management](overview.md) to detect hosts under your selected domains and search for security issues related to these hosts, in Wallarm Console → AASM → **API Attack Surface** section, click **Configure**. Add your domains to the scope, check the scanning status.
 
 ![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
 
