@@ -12,6 +12,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.3.10 (2025-03-10)
+
+* Added support for NGINX stable 1.26.3
+* Added support for NGINX mainline 1.27.4
+* Fixed the [CVE-2024-56171](https://nvd.nist.gov/vuln/detail/CVE-2024-56171), [CVE-2025-24928](https://nvd.nist.gov/vuln/detail/CVE-2025-24928), [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2025-22868](https://nvd.nist.gov/vuln/detail/CVE-2025-22868) vulnerabilities
+
 ### 5.3.8 (2025-02-18)
 
 * Fixed the [CVE-2025-26519](https://nvd.nist.gov/vuln/detail/CVE-2025-26519) and [CVE-2024-12797](https://nvd.nist.gov/vuln/detail/CVE-2024-12797) vulnerabilities
