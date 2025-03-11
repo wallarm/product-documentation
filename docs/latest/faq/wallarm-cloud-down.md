@@ -24,8 +24,13 @@ What continues to work:
 
     Note that expiration of some IP addresses in the lists leads to cease of protection from the [brute force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md) related to these addresses.
 
+* [API Specification Enforcement](../api-specification-enforcement/overview.md) using the specifications uploaded to the node during last successful upload from the Cloud to the node.
+* [API Abuse Prevention](../api-abuse-prevention/overview.md) using the settings uploaded to the node during last successful upload from the Cloud to the node.
+
 What stops working:
 
+* [API Attack Surface Management (AASM)](../api-attack-surface/overview.md).
+* [Credential Stuffing Detection](../about-wallarm/credential-stuffing.md).
 * The node collects but cannot send data on detected attacks and vulnerabilities to the Cloud. Note that your node [postanalytics module](../admin-en/installation-postanalytics-en.md) has an in-memory storage (wstore) where the collected data is temporarily stored before sending to the Cloud. As soon as Cloud is restored, buffered data will be sent to it.
 
     !!! warning "Node in-memory storage limitation"
