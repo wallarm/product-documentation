@@ -26,8 +26,6 @@ All the [attacks](../../about-wallarm/protecting-against-attacks.md#what-is-atta
 
 If a detected attack turns out to be a [false positive](#false-positives), you can immediately mark it as one to prevent alike false positives in future. Also, on the basis of the detected attacks, you can create rules and perform other Wallarm configurations to mitigate further alike threats.
 
-Additionally, if the [active verification](../../vulnerability-detection/threat-replay-testing/overview.md) is enabled, check its [status](../../vulnerability-detection/threat-replay-testing/exploring.md#possible-statuses) right in the attack list.
-
 <div>
   <script src="https://js.storylane.io/js/v1/storylane.js"></script>
   <div class="sl-embed" style="position:relative;padding-bottom:calc(55.04% + 25px);width:100%;height:0;transform:scale(1)">

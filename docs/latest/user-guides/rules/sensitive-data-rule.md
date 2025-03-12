@@ -17,7 +17,7 @@ Wallarm provides the **Mask sensitive data** [rule](../rules/rules.md) to config
 
 The **Mask sensitive data** rule cuts the original value of the specified request point before sending the request to the postanalytics module and Wallarm Cloud. This method ensures that sensitive data cannot leak outside the trusted environment.
 
-It can affect the display of attacks, active attack (threat) verification, and the detection of brute force attacks.
+It can affect the display of attacks and the detection of brute force attacks.
 
 ## Creating and applying rule
 
