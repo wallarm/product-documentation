@@ -33,7 +33,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 ## Requirements
 
 * Access to the [Alibaba Cloud Console](https://account.alibabacloud.com/login/login.htm)
-* Access to the account with the **Administrator** role and two‑factor authentication disabled in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 
 ## Options for the Wallarm node Docker container configuration
 

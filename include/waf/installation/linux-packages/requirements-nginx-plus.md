@@ -1,4 +1,4 @@
-* Access to the account with the **Administrator** role and two‑factor authentication disabled in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * SELinux disabled or configured upon the [instructions][configure-selinux-instr]
 * NGINX Plus release 29 or 30 (R29 or R30)
 
