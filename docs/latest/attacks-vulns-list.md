@@ -67,12 +67,28 @@
 [ssi-wiki]:     https://en.wikipedia.org/wiki/Server_Side_Includes
 [link-owasp-csrf-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
 
-This article lists and briefly describes attacks and vulnerabilities the Wallarm filtering node can detect including those presented in the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) security risk lists. Most of the vulnerabilities and attacks on the list are accompanied by one or more codes from the list of software weakness types, also known as the [Common Weakness Enumeration][link-cwe] or CWE.
+This article lists and describes attacks and vulnerabilities that Wallarm can detect including those presented in the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) security risk lists. Most of the vulnerabilities and attacks on the list are accompanied by one or more codes from the list of software weakness types, also known as the [Common Weakness Enumeration][link-cwe] or CWE.
 
-Wallarm **automatically detects** most of the listed vulnerabilities and attacks and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+!!! info "No configuration required"
+    If in the attack/vulnerability description no specific configuration is mentioned, this means Wallarm detects this attack/vulnerability by default **without any configuration** from you side and handles it in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md).
 
-!!! info "Required configuration for some attack types"
-    Some attacks and vulnerabilities, such as behavioral ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola)), [API abuse](#suspicious-api-activity), [GraphQL](#graphql-attacks) and [credential stuffing](#credential-stuffing) are not detected by default. For such attacks/vulnerabilities, required configuration is specifically defined.
+## Attack types
+
+Technically, all attacks that can be detected by Wallarm are divided into two types:
+
+* **Input validation attacks** are characterized by specific symbol combinations sent in the requests ([SQL injection](#sql-injection), [cross‑site scripting](#crosssite-scripting-xss), [remote code execution](#remote-code-execution-rce), [path traversal](#path-traversal) and others).
+
+    To detect input validation attacks, it is required to conduct syntax analysis of the requests - parse them in order to detect specific symbol combinations.
+
+    Wallarm detects input validation attacks in any request part including binary files like SVG, JPEG, PNG, GIF, PDF, etc.
+
+    Wallarm **automatically detects** input validation attacks and related vulnerabilities and performs action in accordance with the [filtration mode](admin-en/configure-wallarm-mode.md). Note that there can be modifications to the default behavior made by your custom [rules](user-guides/rules/rules.md) and [triggers](user-guides/triggers/triggers.md).
+
+* **Behavioral attacks** are characterized by specific request syntax **and/or** specific correlation of request number and time between requests ([brute force](#brute-force-attack), [forced browsing](#forced-browsing), [BOLA](#broken-object-level-authorization-bola), [API abuse](#suspicious-api-activity), [credential stuffing](#credential-stuffing) and others).
+
+    To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests.
+
+    Behavioral attacks are not detected by default. For such attacks, required Wallarm configuration is specifically defined.
 
 <!-- ??? info "Watch video about how Wallarm protects against OWASP Top 10"
     <div class="video-wrapper">
