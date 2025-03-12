@@ -62,144 +62,45 @@ Protected resource API can be designed on the basis of the following technologie
 * WebDAV
 * JSON-RPC
 
-## Attack detection process
+## Attack handling process
 
-To detect attacks, Wallarm uses the following process:
+To detect and handle attacks, Wallarm uses the following process:
 
-1. Determine the request format and [parse](../user-guides/rules/request-processing.md) every request part.
-2. Determine the endpoint the request is addressed to.
-3. Apply [custom](../user-guides/rules/rules.md) rules for request analysis configured in Wallarm Console.
-4. Make a decision whether the request is malicious or not based on [default](#tools-for-attack-detection) and custom rules.
-
-## Attack types
-
-The Wallarm solution protects APIs, microservices and web applications from the [OWASP Top 10](https://owasp.org/www-project-top-ten/) and [OWASP API Top 10](https://owasp.org/www-project-api-security/) threats, API abuse and other automated threats.
-
-Technically, all attacks that can be detected by Wallarm are divided into groups:
-
-* Input validation attacks
-* Behavioral attacks
-
-Attack detection method depends on the attack group. To detect behavioral attacks, additional Wallarm node configuration is required.
-
-### Input validation attacks
-
-Input validation attacks include SQL injection, cross‑site scripting, remote code execution, Path Traversal and other attack types. Each attack type is characterized by specific symbol combinations sent in the requests. To detect input validation attacks, it is required to conduct syntax analysis of the requests - parse them in order to detect specific symbol combinations.
-
-Wallarm detects input validation attacks in any request part including binary files like SVG, JPEG, PNG, GIF, PDF, etc using the listed [tools](#tools-for-attack-detection).
-
-Detection of input validation attacks is enabled for all clients by default.
-
-### Behavioral attacks
-
-Behavioral attacks include the following attack classes:
-
-* [Brute‑force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md) include password brute‑forcing, session identifier brute‑forcing, credential stuffing. These attacks are characterized by a large number of requests with different forced parameter values sent to a typical URI for a limited timeframe.
-
-    For example, if an attacker forces password, many similar requests with different `password` values can be sent to the user authentication URL:
-
-    ```bash
-    https://example.com/login/?username=admin&password=123456
-    ```
-* [Forced browsing attacks](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md) are characterized by a large number of response codes 404 returned to requests to different URIs for a limited timeframe.
-
-    For example, the aim of this attack could to enumerate and access hidden resources (e.g. directories and files containing information on application components) to use this information for performing other attack types.
-
-* [The BOLA (IDOR) attacks](../admin-en/configuration-guides/protecting-against-bola-trigger.md) exploiting the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either get or modify its data bypassing an authorization mechanism.
-
-    For example, if an attacker forces shop identifiers to find a real identifier and get the corresponding shop financial data:
-
-    ```bash
-    https://example.com/shops/{shop_id}/financial_info
-    ```
-
-    If authorization is not required for such API requests, an attacker can get the real financial data and use it for their own purposes.
-
-#### Detection
-
-To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests.
-
-Correlation analysis is conducted when the threshold of request number sent to user authentication or resource file directory or a specific object URL is exceeded. Request number threshold should be set to reduce the risk of legitimate request blocking (for example, when the user inputs incorrect password to his account several times).
-
-* Correlation analysis is conducted by the Wallarm postanalytics module.
-* Comparison of the received request number and the threshold for the request number, and blocking of requests is conducted in the Wallarm Cloud.
-
-When behavioral attack is detected, request sources are blocked, namely the IP addresses the requests were sent from are added to the denylist.
-
-#### Protection
-
-To protect the resource against behavioral attacks, it is required to set the threshold for correlation analysis and URLs that are vulnerable to behavioral attacks:
-
-* [Instructions on configuration of brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [Instructions on configuration of forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md)
-* [Instructions on configuration of BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola-trigger.md)
+1. Checks [IP lists](../user-guides/ip-lists/overview.md) to understand whether to process the request at all. Denylist blocks the request and allowlist allows it - both without further analysis.
+1. Determines the request format and [parse](../user-guides/rules/request-processing.md) every request part to apply [basic detectors](#basic-set-of-detectors).
+1. Determines the endpoint the request is addressed to apply [custom rules](#custom-rules) and [specific module settings](#specific-module-settings) and understand the [filtration mode](../admin-en/configure-wallarm-mode.md).
+1. Makes a decision whether the request is a part of attack or not based on basic detectors, custom rules and specific module settings.
+1. Handles request in accordance with decision and filtration mode.
 
 ## Tools for attack detection
 
-To detect malicious requests, Wallarm nodes [analyze](#attack-detection-process) all requests sent to the protected resource using the following tools:
+To detect attacks, Wallarm [analyzes](#attack-handling-process) all requests sent to the protected resource using the following tools:
 
-* Library **libproton**
-* Library **libdetection**
-* Custom rules for request analysis
+* [Basic set of detectors](#basic-set-of-detectors)
+* [Custom rules](#custom-rules)
+* [Specific module settings](#specific-module-settings)
 
-### Library libproton
+### Basic set of detectors
 
-The **libproton** library is a primary tool for detecting malicious requests. The library uses the component **proton.db** which determines different attack type signs as token sequences, for example: `union select` for the [SQL injection attack type](../attacks-vulns-list.md#sql-injection). If the request contains a token sequence matching the sequence from **proton.db**, this request is considered to be an attack of the corresponding type.
+Wallarm uses a basic set of detectors (**libproton** library) to determine different attack type signs as token sequences, for example: `union select` for the [SQL injection attack type](../attacks-vulns-list.md#sql-injection). If the request contains a token sequence matching the sequence from the set, this request is considered to be an attack of the corresponding type.
 
-Wallarm regularly updates **proton.db** with token sequences for new attack types and for already described attack types.
+Wallarm regularly updates list of detectors (token sequences) for new attack types and for already described attack types.
 
-### Library libdetection
+Wallarm additionally validates SQL injection attacks (**libdetection** library). See how to  [manage](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection).
 
-#### libdetection overview
+### Custom rules
 
-The [**libdetection**](https://github.com/wallarm/libdetection) library additionally validates attacks detected by the library **libproton** as follows:
+Custom [rules](../user-guides/rules/rules.md) are used to fine-tune the behavior defined by basic set of detectors. Users create them in Wallarm Console and the set of them is uploaded to filtering node.
 
-* If **libdetection** confirms the attack signs detected by **libproton**, the attack is blocked (if the filtering node is working in the `block` mode) and uploaded to the Wallarm Cloud.
-* If **libdetection** does not confirm the attack signs detected by **libproton**, the request is considered legitimate, the attack is not uploaded to the Wallarm Cloud and is not blocked (if the filtering node is working in the `block` mode).
+### Specific module settings
 
-Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
+Besides comparing against basic detectors or custom rules, requests are checked against settings, provided by different protection tools, such as:
 
-!!! info "Attack types validated by the libdetection library"
-    Currently, the library **libdetection** only validates SQL Injection attacks.
+* [API Abuse Prevention](../api-abuse-prevention/overview.md)
+* [API Specification Enforcement](../api-specification-enforcement/overview.md)
+* [Credential Stuffing](../about-wallarm/credential-stuffing.md)
 
-#### How libdetection works
-
-The particular characteristic of **libdetection** is that it analyzes requests not only for token sequences specific for attack types, but also for context in which the token sequence was sent.
-
-The library contains the character strings of different attack type syntaxes (SQL Injection for now). The string is named as the context. Example of the context for the SQL injection attack type:
-
-```curl
-SELECT example FROM table WHERE id=
-```
-
-The library conducts the attack syntax analysis for matching the contexts. If the attack does not match the contexts, then the request will not be defined as a malicious one and will not be blocked (if the filtering node is working in the `block` mode).
-
-#### Testing libdetection
-
-To check the operation of **libdetection**, you can send the following legitimate request to the protected resource:
-
-```bash
-curl "http://localhost/?id=1' UNION SELECT"
-```
-
-* The library **libproton** will detect `UNION SELECT` as the SQL Injection attack sign. Since `UNION SELECT` without other commands is not a sign of the SQL Injection attack, **libproton** detects a false positive.
-* If analyzing of requests with the **libdetection** library is enabled, the SQL Injection attack sign will not be confirmed in the request. The request will be considered legitimate, the attack will not be uploaded to the Wallarm Cloud and will not be blocked (if the filtering node is working in the `block` mode).
-
-#### Managing libdetection mode
-
-!!! info "**libdetection** default mode"
-    The default mode of the **libdetection** library is `on/true` (enabled) for all [deployment options](../installation/supported-deployment-options.md).
-
-You can control the **libdetection** mode using:
-
-* The [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) directive for NGINX.
-* One of the [options](../admin-en/configure-kubernetes-en.md#managing-libdetection-mode) for the Wallarm NGINX Ingress controller:
-
-    * The `nginx.ingress.kubernetes.io/server-snippet` annotation to the Ingress resource.
-    * The `controller.config.server-snippet` parameter of the Helm chart.
-
-* The `wallarm-enable-libdetection` [pod annotation](../installation/kubernetes/sidecar-proxy/pod-annotations.md#annotation-list) for the Wallarm Sidecar solution.
-* The `libdetection` variable for [AWS Terraform](../installation/cloud-platforms/aws/terraform-module/overview.md#how-to-use-the-wallarm-aws-terraform-module) deployment.
+Any of these tools can cause specific attack detection and request blocking.
 
 ## Ignoring certain attack types
 
