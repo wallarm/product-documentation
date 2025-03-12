@@ -37,6 +37,7 @@ What stops working:
         The size of the buffer is [limited](../admin-en/configuration-guides/allocate-resources-for-node.md#wstore) and when exceeded, the older data is deleted. So the amount of time the Cloud was down and the amount of information collected during this time may lead to the situation when you get in Wallarm Console only some data after the Cloud restoration.
 
 * The node collects but cannot send [metrics](../admin-en/configure-statistics-service.md) for processed traffic to the Cloud.
+* [API Sessions](../api-sessions/overview.md) - all information about legitimate requests that tool place while the Cloud was down is lost; the information about attacks will be presented (uploaded to Cloud after its restoration).
 * Scanning for the [exposed assets](../user-guides/scanner.md) and [typical vulnerabilities](../user-guides/vulnerabilities.md) will stop.
 * [Triggers](../user-guides/triggers/triggers.md) will stop working and thus:
     * [IP lists](../user-guides/ip-lists/overview.md) stop being updated.
