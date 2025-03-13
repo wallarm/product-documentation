@@ -5,7 +5,7 @@ Wallarm settings are defined using the [NGINX directives][wallarm-nginx-directiv
 * `/etc/nginx/sites-enabled/default` defines the configuration of NGINX
 * `/etc/nginx/conf.d/wallarm.conf` defines the global configuration of Wallarm filtering node
 * `/etc/nginx/conf.d/wallarm-status.conf` defines the filtering node monitoring service configuration
-<!-- TBD: either delete or describe the alternative * `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool` with the Tarantool database settings -->
+* `/opt/wallarm/wstore/wstore.yaml` with the postanalytics service (wstore) settings
 
 You can modify the listed files or create your own configuration files to define the operation of NGINX and Wallarm. It is recommended to create a separate configuration file with the `server` block for each group of the domains that should be processed in the same way (e.g. `example.com.conf`). To see detailed information about working with NGINX configuration files, proceed to the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
 
