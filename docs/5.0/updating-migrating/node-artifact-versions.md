@@ -334,6 +334,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
+### 5.3.10 (2025-03-11)
+
+* Fixed the [CVE-2024-56171](https://nvd.nist.gov/vuln/detail/CVE-2024-56171), [CVE-2025-24928](https://nvd.nist.gov/vuln/detail/CVE-2025-24928), [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2025-22868](https://nvd.nist.gov/vuln/detail/CVE-2025-22868) vulnerabilities
+
 ### 5.3.7 (2025-02-13)
 
 * Fix for the `invalid_xml` attack detection in responses
@@ -403,7 +407,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * Analyzing specific parts of GraphQL requests in API sessions
     
 * Fixed invalid time value in serialized requests to properly display the [resource overlimit](../user-guides/rules/configure-overlimit-res-detection.md) attacks
-
 
 ### wallarm-node-5-2-20241227-095327 (2024-12-27)
 
