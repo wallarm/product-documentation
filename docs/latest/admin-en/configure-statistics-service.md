@@ -41,11 +41,12 @@ server {
   listen 127.0.0.8:80;
   server_name localhost;
 
-  allow 127.0.0.0/8;   # Access is only available for loopback addresses of the filter node server  
+  allow 127.0.0.8/8;   # Access is only available for loopback addresses of the filter node server  
   deny all;
 
   wallarm_mode off;
   disable_acl "on";   # Checking request sources is disabled, denylisted IPs are allowed to request the wallarm-status service. https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
+  wallarm_enable_apifw off;
   access_log off;
 
   location /wallarm-status {
@@ -58,48 +59,109 @@ server {
 
 When configuring the `wallarm_status` directive, you can specify the IP addresses from which you can request statistics. By default, access is denied from anywhere except for the IP addresses `127.0.0.1` and `::1`, which allow executing the request only from the server where Wallarm is installed.
 
-To allow requests from another server, add the `allow` instruction with the IP address of the desired server in the configuration. For example:
+To allow requests from another server:
 
-```diff
-...
-server_name localhost;
+=== "All-in-one installer"
+    1. In the `/etc/nginx/wallarm-status.conf` file, add the `allow` instruction with the IP address of the desired server in the configuration. For example:
 
-allow 127.0.0.0/8;
-+ allow 10.41.29.0;
-...
-```
+        ```diff
+        ...
+        server_name localhost;
 
-Once the settings changed, restart NGINX to apply the changes:
+        allow 127.0.0.8/8;
+        + allow 10.41.29.0;
+        ...
+        ```
+    1. Once the settings changed, restart NGINX to apply the changes:
 
---8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+        --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+=== "Docker image"
+    * If running the Docker container [passing the environment variables only](installation-docker-en.md#run-the-container-passing-the-environment-variables), pass allowed CIDRs in the `WALLARM_STATUS_ALLOW` environment variable.
+    * If running the Docker container [mounting configuration files](installation-docker-en.md#run-the-container-mounting-the-configuration-file):
+
+        1. Prepare the `wallarm-status.conf` file with allowed addresses specified in the `allow` directive, e.g.:
+
+            ```diff
+            server {
+                # Port should match the NGINX_PORT variable value
+                listen 127.0.0.8:80;
+
+                server_name localhost;
+
+                allow 127.0.0.8/8;
+            +    allow 10.41.29.0;
+                deny all;
+
+                wallarm_mode off;
+                disable_acl "on";
+                wallarm_enable_apifw off;
+                access_log off;
+
+                location ~/wallarm-status$ {
+                    wallarm_status on;
+                }
+            }
+            ```
+            
+        1. Mount the prepared file to `/etc/nginx/conf.d/wallarm-status.conf` inside the container while running it.
+
+=== "AWS or GCP machine image"
+    1. In the `/etc/nginx/conf.d/wallarm-status.conf` file, add the `allow` instruction with the IP address of the desired server in the configuration. For example:
+
+        ```diff
+        ...
+        server_name localhost;
+
+        allow 127.0.0.8/8;
+        + allow 10.41.29.0;
+        ...
+        ```
+    1. Once the settings changed, restart NGINX to apply the changes:
+
+        --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
 ### Changing an IP address and/or port of the statistics service
 
 To change an IP address and/or port of the statistics service, follow the instructions below.
 
-!!! info "Changing the statistics service's port on NGINX Docker image"
-    To change the default port of the statistics service on an [NGINX-based Docker image](installation-docker-en.md), start the container with the `NGINX_PORT` variable set to the new port. No other changes are required.
+=== "All-in-one installer"
+    1. Open the `/etc/nginx/wallarm-status.conf` file and specify a new service address in the `listen` directive.
+    1. Restart NGINX to apply changes:
 
-1. Open the `/etc/nginx/wallarm-status.conf` file and specify the following:
+        --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
+=== "Docker image"
+    * To change only the default port of the statistics service on an [NGINX-based Docker image](installation-docker-en.md), start the container with the `NGINX_PORT` variable set to the new port. No other changes are required.
+    * To change both an IP address and port of the statistics service:
 
-    * A new service address in the `listen` directive.
-    * If required, change the `allow` directive to allow access from addresses other than loopback addresses (the default configuration file allows access only to loopback addresses).
-1. Add the `status_endpoint` parameter with the new address value to the `/opt/wallarm/etc/wallarm/node.yaml` file, e.g.:
+        1. Prepare the `wallarm-status.conf` file with the new address specified in the `listen` directive:
 
-    ```bash
-    api:
-      uuid: ea1xa0xe-xxxx-42a0-xxxx-b1b446xxxxxx
-    ...
-    status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
-    ```
-1. Restart NGINX to apply changes:
+            ```
+            server {
+                # Port should match the NGINX_PORT variable value
+                listen 127.0.0.8:80;
 
-    --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
-1. For filtering nodes deployed via the all-in-one installer or cloud images, open the `/opt/wallarm/env.list` file and append the `NGINX_PORT` variable with the new service's port value (if it has been changed), e.g.:
+                server_name localhost;
 
-    ```
-    NGINX_PORT=8082
-    ```
+                allow 127.0.0.8/8;
+                deny all;
+
+                wallarm_mode off;
+                disable_acl "on";
+                wallarm_enable_apifw off;
+                access_log off;
+
+                location ~/wallarm-status$ {
+                    wallarm_status on;
+                }
+            }
+            ```
+            
+        1. Mount the prepared file to `/etc/nginx/conf.d/wallarm-status.conf` inside the container while running it.
+=== "AWS or GCP machine image"
+    1. Open the `/etc/nginx/conf.d/wallarm-status.conf` file and specify a new service address in the `listen` directive.
+    1. Restart NGINX to apply changes:
+
+        --8<-- "../include/waf/restart-nginx-4.4-and-above.md"
 
 If SELinux is installed on the filter node host, make sure that SELinux is either [configured or disabled][doc-selinux]. For simplicity, this document assumes that SELinux is disabled.
 
