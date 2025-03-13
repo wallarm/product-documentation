@@ -186,11 +186,12 @@ server {
   listen 127.0.0.8:80;
   server_name localhost;
 
-  allow 127.0.0.0/8;   # Access is only available for loopback addresses of the filter node server  
+  allow 127.0.0.8/8;   # Access is only available for loopback addresses of the filter node server  
   deny all;
 
   wallarm_mode off;
   disable_acl "on";   # Checking request sources is disabled, denylisted IPs are allowed to request the wallarm-status service. https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
+  wallarm_enable_apifw off;
   access_log off;
 
   location ~/wallarm-status$ {
