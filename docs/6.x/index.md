@@ -72,7 +72,6 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     <p><ul>
     <li><a href="./user-guides/scanner/">Exposed Assets</a></li>
     <li><a href="./about-wallarm/detecting-vulnerabilities/">Vulnerability Assessment</a></li>
-    <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
     </ul></p>
 </div>
 
@@ -97,6 +96,13 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     <li><a href="./user-guides/rules/rate-limiting/">Rate Limiting</a></li>    
     <li><a href="./user-guides/rules/vpatch-rule/">Virtual Patching</a></li>
     <li><a href="./user-guides/rules/regex-rule/">User-Defined Detectors</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3 class="icon-homepage api-security-testing">API Security Testing</h3>
+    <p><ul>
+    <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Threat Replay Testing</a></li>
     </ul></p>
 </div>
 

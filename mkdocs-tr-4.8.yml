@@ -84,10 +84,6 @@ nav:
       - Tarayıcı Ayarları: user-guides/scanner.md
       - Tarayıcı Adresleri: admin-en/scanner-addresses.md
       - Kaynak Tarayıcısını Durdurmak için Wallarm Destek İletişimi: admin-en/scanner-complaint-en.md
-    - Threat Replay Testing:
-      - Overview: vulnerability-detection/threat-replay-testing/overview.md
-      - Setup: vulnerability-detection/threat-replay-testing/setup.md
-      - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
   - Bulut-yerel WAAP:
     - Genel Bakış: about-wallarm/waap-overview.md
     - Saldırı Tespit Prosedürü: about-wallarm/protecting-against-attacks.md
@@ -119,6 +115,11 @@ nav:
     # - Bilinen saldırılar / CVE'ler: ...
     # - Tetikleyiciler: ...
     - Saldırı ve Kırılganlık Türleri: attacks-vulns-list.md
+  - API Güvenlik Testi:
+    - Tehdit Tekrar Testi:
+      - Genel bakış: vulnerability-detection/threat-replay-testing/overview.md
+      - Kurulum: vulnerability-detection/threat-replay-testing/setup.md
+      - Test Sonuçları: vulnerability-detection/threat-replay-testing/exploring.md
   - Dağıtım:
     - Dağıtım Seçenekleri: installation/supported-deployment-options.md
     - eBPF:

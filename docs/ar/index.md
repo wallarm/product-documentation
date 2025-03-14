@@ -85,6 +85,13 @@ hide:
 </div>
 
 <div class="navigation-card">
+    <h3 class="icon-homepage api-security-testing">اختبار أمان واجهة برمجة التطبيقات</h3>
+    <p><ul>
+    <li><a href="./vulnerability-detection/threat-replay-testing/overview/">اختبار إعادة تشغيل التهديدات</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
     <h3 class="icon-homepage deployment-title">النشر</h3>
     <p><ul>
     <li><a href="./installation/supported-deployment-options/">جميع خيارات النشر</a></li>

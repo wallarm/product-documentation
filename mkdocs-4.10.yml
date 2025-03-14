@@ -70,10 +70,6 @@ nav:
       - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md
       - Managing Vulnerabilities: user-guides/vulnerabilities.md
       - Search and Filters: user-guides/search-and-filters/use-search-vuln.md
-    - Threat Replay Testing:
-      - Overview: vulnerability-detection/threat-replay-testing/overview.md
-      - Setup: vulnerability-detection/threat-replay-testing/setup.md
-      - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
   - Cloud-Native WAAP:
     - Overview: about-wallarm/waap-overview.md
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
@@ -93,6 +89,11 @@ nav:
       - Parsing Requests: user-guides/rules/request-processing.md
       - Rules: user-guides/rules/rules.md
       - Triggers: user-guides/triggers/triggers.md
+  - API Security Testing:
+    - Threat Replay Testing:
+      - Overview: vulnerability-detection/threat-replay-testing/overview.md
+      - Setup: vulnerability-detection/threat-replay-testing/setup.md
+      - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
 # - Overview: ...
     # - OWASP Top 10: ...
     # - Known attacks / CVEs: ...
