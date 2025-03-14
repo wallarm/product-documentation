@@ -114,10 +114,6 @@ nav:
       - الكشف عن الضعف: about-wallarm/detecting-vulnerabilities.md
       - إدارة الضعف: user-guides/vulnerabilities.md
       - البحث والمرشحات: user-guides/search-and-filters/use-search-vuln.md
-    - Threat Replay Testing:
-      - Overview: vulnerability-detection/threat-replay-testing/overview.md
-      - Setup: vulnerability-detection/threat-replay-testing/setup.md
-      - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
   - WAAP السحابي الأصلي:
     - نظرة عامة: about-wallarm/waap-overview.md
     - حماية DDoS: admin-en/configuration-guides/protecting-against-ddos.md
@@ -138,6 +134,11 @@ nav:
       - القواعد: user-guides/rules/rules.md
       - المحفزات: user-guides/triggers/triggers.md
 # - نظرة عامة: ...
+  - اختبار أمان واجهة برمجة التطبيقات:
+    - اختبار إعادة تشغيل التهديدات:
+      - ملخص: vulnerability-detection/threat-replay-testing/overview.md
+      - يثبت: vulnerability-detection/threat-replay-testing/setup.md
+      - نتائج الاختبار: vulnerability-detection/threat-replay-testing/exploring.md
     # - OWASP Top 10: ...
     # - هجمات معروفة / CVEs: ...
     # - المحفزات: ...

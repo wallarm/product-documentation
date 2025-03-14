@@ -82,10 +82,6 @@ nav:
       - 脆弱性の検出: about-wallarm/detecting-vulnerabilities.md
       - 脆弱性の管理: user-guides/vulnerabilities.md
       - 検索とフィルタ: user-guides/search-and-filters/use-search-vuln.md
-    - Threat Replay Testing:
-      - Overview: vulnerability-detection/threat-replay-testing/overview.md
-      - Setup: vulnerability-detection/threat-replay-testing/setup.md
-      - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
   - クラウドネイティブ WAAP:
     - 概要: about-wallarm/waap-overview.md
     - DDoS保護: admin-en/configuration-guides/protecting-against-ddos.md
@@ -113,6 +109,11 @@ nav:
       - ルール: user-guides/rules/rules.md
       - トリガー: user-guides/triggers/triggers.md
       - トリガの例: user-guides/triggers/trigger-examples.md
+  - API セキュリティテスト:
+    - 脅威リプレイテスト:
+      - 概要: vulnerability-detection/threat-replay-testing/overview.md
+      - 設定: vulnerability-detection/threat-replay-testing/setup.md
+      - テスト結果: vulnerability-detection/threat-replay-testing/exploring.md
   - 展開:
     - 展開オプション: installation/supported-deployment-options.md
     - バンドアウト:

@@ -89,10 +89,6 @@ nav:
       - Configurações do Scanner: user-guides/scanner.md
       - Endereços do Scanner: admin-en/scanner-addresses.md
       - Contatando o Suporte Wallarm para Parar o Scanner de Recursos: admin-en/scanner-complaint-en.md
-    - Threat Replay Testing:
-      - Overview: vulnerability-detection/threat-replay-testing/overview.md
-      - Setup: vulnerability-detection/threat-replay-testing/setup.md
-      - Test Results: vulnerability-detection/threat-replay-testing/exploring.md
   - WAAP nativo da nuvem:
     - Visão Geral: about-wallarm/waap-overview.md
     - Procedimento de Detecção de Ataque: about-wallarm/protecting-against-attacks.md
@@ -124,6 +120,11 @@ nav:
     # - Known attacks / CVEs: ...
     # - Triggers: ...
     - Tipos de Ataque e Vulnerabilidade: attacks-vulns-list.md
+  - Teste de segurança de API:
+    - Teste de repetição de ameaças:
+      - Visão geral: vulnerability-detection/threat-replay-testing/overview.md
+      - Configurar: vulnerability-detection/threat-replay-testing/setup.md
+      - Resultados dos testes: vulnerability-detection/threat-replay-testing/exploring.md
   - Implantação:
     - Opções de Implantação: installation/supported-deployment-options.md
     - Out-of-Band:

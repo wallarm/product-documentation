@@ -100,6 +100,13 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 </div>
 
 <div class="navigation-card">
+    <h3 class="icon-homepage api-security-testing">API Güvenlik Testi</h3>
+    <p><ul>
+    <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Tehdit Tekrar Testi</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
     <h3 class="icon-homepage deployment-title">Deployment</h3>
     <p><ul>
     <li><a href="./installation/supported-deployment-options/">All Deployment Options</a></li>
