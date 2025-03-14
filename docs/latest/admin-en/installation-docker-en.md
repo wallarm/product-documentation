@@ -131,7 +131,6 @@ To run the container:
 
                     ```
                     server {
-                      # Port should match the NGINX_PORT variable value
                       listen 127.0.0.8:80;
 
                       server_name localhost;
