@@ -83,7 +83,6 @@ To allow requests from another server:
 
             ```diff
             server {
-                # Port should match the NGINX_PORT variable value
                 listen 127.0.0.8:80;
 
                 server_name localhost;
@@ -137,7 +136,6 @@ To change an IP address and/or port of the statistics service, follow the instru
 
             ```
             server {
-                # Port should match the NGINX_PORT variable value
                 listen 127.0.0.8:80;
 
                 server_name localhost;
