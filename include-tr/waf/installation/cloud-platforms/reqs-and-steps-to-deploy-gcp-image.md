@@ -28,7 +28,7 @@ Wallarm GCP imajını kullanarak filtreleme düğümü örneğini başlatmak iç
 * Filtreleme düğümü sürümü 5.x ile örneği başlatmak için lütfen aşağıdaki imaj adını kullanın:
 
     ```bash
-    wallarm-node-195710/wallarm-node-5-3-20250129-150255
+    wallarm-node-195710/wallarm-node-5-3-10-20250312-063130
     ```
 
 İmaj adını öğrenmek için şu adımları da izleyebilirsiniz:
@@ -42,7 +42,7 @@ Wallarm GCP imajını kullanarak filtreleme düğümü örneğini başlatmak iç
 3. En son kullanılabilir imajın adından sürüm değerini kopyalayın ve belirtilen imaj adı formatına yapıştırın. Örneğin, filtreleme düğümü sürümü 4.10 imajı aşağıdaki adı alacaktır:
 
     ```bash
-    wallarm-node-195710/wallarm-node-5-3-20250129-150255
+    wallarm-node-195710/wallarm-node-5-3-10-20250312-063130
     ```
 
 ## 2. Filtreleme düğümü örneğini yapılandırın
