@@ -1,7 +1,7 @@
 INHERIT: mkdocs-base.yml
 
 theme:
-  version: "6.x+"
+  version: "6.x"
   versionNative: "0.13.x+"
 
 docs_dir: docs/6.x
