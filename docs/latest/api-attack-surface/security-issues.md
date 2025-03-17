@@ -10,10 +10,10 @@ To explore the security issues found for your external hosts, in Wallarm Console
 
 Here, the detailed information on found issues is presented, including:
 
-* Full filterable list of issues with brief and detailed description of each
+* Full filterable list of issues with brief and [detailed description](#issue-details-and-lifecycle) of each
 * Top vulnerable hosts list
 * Distribution of security issues by type
-* Risk level evaluation and distribution of security issues by these levels
+* [Risk level](#issue-risk-level) evaluation and distribution of security issues by these levels
 * Monthly historical information on detected and resolved issues for the last 6 month
 
 ## List of detected issues
@@ -63,7 +63,23 @@ It is useful to provide comment on each status change, giving others the full vi
 
 Issues can be re-opened. For your to be on track, the full history of status changes with comments is displayed in the **Status history** section.
 
-You can also re-evaluate and adjust the risk level of the issue.
+You can also re-evaluate and adjust the [risk level](#issue-risk-level) of the issue.
+
+## Issue risk level
+
+Each discovered security issue is automatically assessed by how much risk it poses as described in the table.
+
+| Risk | Description | Examples |
+| ----- | ----- | ----- |
+|  **Critical** | The vulnerability's presence may lead to a system compromise, allowing an attacker to remotely execute code or cause a denial of service (DoS) or service degradation. Immediate reaction is required. | <ul><li>Remote code execution</li><li>Indicator of compromise (e.g., publicly accessible web shell)</li></ul> |
+|  **High** | The presence of the vulnerability may lead to partial system compromise, such as database access or limited access to the filesystem. In specific circumstances (e.g., if special requirements are met or if chained with other vulnerabilities), the vulnerability may lead to system compromise (e.g., remote code execution). | <ul><li>Path traversal</li><li>XML external entity (XXE) injection</li><li>Vulnerable software version with CVEs of critical and high risk<sup>*</sup></li></ul> |
+|  **Medium** | The vulnerability may lead to bypassing security controls, limited exposure or access, but without full compromise. It can allow access to sensitive data or configurations and potentially be leveraged in a more complex attack chain. | <ul><li>Cross-site scripting</li><li>GraphQL misconfigurations</li><li>Exposure of configuration files</li><li>API leak of long-lived credentials (passwords, API keys)</li><li>Vulnerable software version with CVEs of high risk<sup>*</sup></li></ul> |
+|  **Low** | The vulnerability has minimal impact and does not directly lead to significant damage or exploitation as requirements/conditions are too complex. However, it can be combined with other vulnerabilities to escalate an attack. | <ul><li>TLS/SSL misconfigurations</li><li>API leak of short-lived authentication tokens (e.g., JWT tokens)</li></ul> |
+|  **Info** | The issue does not pose an immediate security risk but should still be reviewed for potential manual validation. It often involves exposure of non-critical data or violation of best practices. | <ul><li>Exposure of OpenAPI schema</li><li>Leakage of personally identifiable information (PII), such as emails or usernames</li><li></li></ul> |
+
+<small><sup>*</sup> If the software version contains multiple CVEs, including critical ones, the overall risk level is assessed as high. The risk level is reduced by one level because the presence of a vulnerable version does not explicitly indicate the existence of the vulnerability. For example, the vulnerability may occur only in a specific, non-default configuration or require certain conditions to be met.</small>
+
+You can re-evaluate and manually adjust the risk level at any moment.
 
 ## Security issue reports
 
