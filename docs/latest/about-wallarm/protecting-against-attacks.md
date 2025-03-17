@@ -82,11 +82,11 @@ To detect attacks, Wallarm [analyzes](#attack-handling-process) all requests sen
 
 ### Basic set of detectors
 
-Wallarm uses a basic set of detectors (**libproton** library) to determine different attack type signs as token sequences, for example: `union select` for the [SQL injection attack type](../attacks-vulns-list.md#sql-injection). If the request contains a token sequence matching the sequence from the set, this request is considered to be an attack of the corresponding type.
+Wallarm uses a basic set of detectors (**libproton** library, developed by Wallarm) to determine different attack type signs as token sequences, for example: `union select` for the [SQL injection attack type](../attacks-vulns-list.md#sql-injection). If the request contains a token sequence matching the sequence from the set, this request is considered to be an attack of the corresponding type.
 
 Wallarm regularly updates list of detectors (token sequences) for new attack types and for already described attack types.
 
-Wallarm additionally validates SQL injection attacks (**libdetection** library). See how to  [manage](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection).
+Wallarm additionally validates SQL injection attacks (**libdetection** library, developed by Wallarm). See how to  [manage](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection).
 
 ### Custom rules
 
@@ -100,7 +100,7 @@ Besides comparing against basic detectors or custom rules, requests are checked 
 * [API Specification Enforcement](../api-specification-enforcement/overview.md)
 * [Credential Stuffing](../about-wallarm/credential-stuffing.md)
 
-Any of these tools can cause specific attack detection and request blocking.
+Any of these tools can cause specific attack or vulnerability detection and request blocking.
 
 ## Ignoring certain attack types
 
