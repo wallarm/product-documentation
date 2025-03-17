@@ -53,6 +53,8 @@ Wallarm Node now uses **wstore, a Wallarm-developed service**, instead of Tarant
     +postanalytics_exporter:
       address: 127.0.0.1:3313
       enabled: true
+    
+    ...
     ```
     
     Deployments using version 2 or version 3 will continue to work with Native Node 0.13.x if you do not explicitly specify the `postanalytics_exporter` configuration. However, this approach is deprecated, and updating to the new configuration format is recommended.
