@@ -47,6 +47,8 @@ docker stop <RUNNING_CONTAINER_NAME>
     +postanalytics_exporter:
         address: 127.0.0.1:3313
         enabled: true
+    
+    ...
     ```
 
 === "US Cloud"
