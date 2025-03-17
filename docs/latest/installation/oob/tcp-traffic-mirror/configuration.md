@@ -410,11 +410,15 @@ Sets the address for the postanalytics service which handles statistical request
 
 Default: `127.0.0.1:3313`.
 
+In Node 0.12.x and earlier, this parameter [is set as `tarantool_exporter.address`](../../../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics). Renaming is required during upgrade.
+
 ### postanalytics_exporter.enabled
 
 Controls whether the postanalytics service is enabled. This parameter must be set to `true` as the Wallarm node does not function without the postanalytics service.
 
 Default: `true`.
+
+In Node 0.12.x and earlier, this parameter [is set as `tarantool_exporter.enabled`](../../../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics). Renaming is required during upgrade.
 
 ### log.proton_log_mask
 
