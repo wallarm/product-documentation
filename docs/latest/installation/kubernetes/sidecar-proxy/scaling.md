@@ -63,7 +63,11 @@ For the HA deployment, you can manually adjust the amount of replicas using the 
 
 * Use more than one instance of the postanalytics Pod. Control this with the [`postanalytics.replicaCount`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L447) attribute.
 * Configure [`postanalytics.wstore.config.arena`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L625) in gigabytes (GB) based on the anticipated traffic volume to the application workload. This setting determines the maximum memory wstore will utilize. For calculation guidelines, you may find useful [the same of our recommendations for other deployment options][wstore-memory-recommendations].
+
+    In the [NGINX Node 5.x and earlier][what-is-new-wstore], the parameter has been named `postanalytics.tarantool.config.arena`. Renaming is required during upgrade.
 * Align [`postanalytics.wstore.resources.limits` and `postanalytics.wstore.resources.requests`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L654) with the `arena` configuration. Set `limits` at or above the `arena` value to handle peak demand and avoid memory-related crashes. Ensure `requests` meet or exceed the `arena` value for wstore's optimal performance. For further information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
+
+    In the [NGINX Node 5.x and earlier][what-is-new-wstore], the parameters have been named `postanalytics.tarantool.resources.limits` and `postanalytics.tarantool.resources.requests`. Renaming is required during upgrade.
 * Optionally, set `resources.requests` and `resources.limits` for all other containers within the `postanalytics` section to ensure dedicated resource allocation for the postanalytics (wstore) Pod. These containers include `postanalytics.init`, `postanalytics.supervisord`, and `postanalytics.appstructure`.
 * Optionally, implement pod anti-affinity to distribute postanalytics pods across different nodes to provide resilience in case of a node failure.
 
