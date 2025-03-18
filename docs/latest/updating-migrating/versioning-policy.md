@@ -1,21 +1,20 @@
 # Wallarm Node Versioning Policy
 
-This document details Wallarm's versioning policy for self-hosted filtering nodes, available as [NGINX-based and Native Nodes](../installation/nginx-native-node-internals.md). It covers versioning standards, release schedules, and compatibility guidelines to help you choose, update, and manage node versions effectively.
+This document details Wallarm's versioning policy for self-hosted [NGINX-based and Native Nodes](../installation/nginx-native-node-internals.md) and [Edge Nodes](../installation/security-edge/deployment.md), which share versions with self-hosted Native Nodes. It covers versioning standards, release schedules, and compatibility guidelines for managing node updates.
 
 Each node version is released as a set of artifacts - such as Docker images, Helm charts, or all-in-one installers - packaged for deployment on different platforms.
 
-The document does not cover Edge node versioning as it is a managed solution, automatically upgraded by Wallarm to the latest stable version.
-
 ## Version list
 
-| NGINX Node version | Native Node version | Release date   | Support until |
+| NGINX Node version | Native and Edge Node version | Release date   | Support until |
 |--------------------|---------------------|----------------|---------------|
-|2.18 and lower 2.x| -   |                | November 2021 |
-| 3.6 and lower 3.x| -   | October 2021   | November 2022 |
-| 4.6 and lower 4.x| -   | June 2022      | April 2024    |
-| 4.8              | -   | October 2023   | November 2024 |
-| 4.10             | -   | January 2024   |               |
-| 5.x              | 0.x | July 2024      |               |
+| 2.18 and lower 2.x | -                   |                | November 2021 |
+| 3.6 and lower 3.x  | -                   | October 2021   | November 2022 |
+| 4.6 and lower 4.x  | -                   | June 2022      | April 2024    |
+| 4.8                | -                   | October 2023   | November 2024 |
+| 4.10               | -                   | January 2024   | July 2025     |
+| 5.x                | 0.12.x-             | July 2024      |               |
+| 6.x                | 0.13.x+             | March 2025     |               |
 
 ## Version structure
 
@@ -32,7 +31,7 @@ Node versions follow this format:
 | `<PATCH_VERSION>` | Patches for minor bug fixes or specific enhancements. Applies to the latest minor release only. The number increases sequentially based on the number of commits in the release branch (+1, +2, etc.). For example, `5.1.0` and `5.1.1`. | As needed |
 | `<BUILD_NUMBER>` (optional) | Indicates modifications unrelated to the Wallarm Node itself (e.g., dependency updates in the Helm chart). This number increments (e.g., `5.1.0-1`, `5.1.0-2`) only if changes are made to the artifact between patch releases. | As needed |
 
-This versioning approach applies equally to both the NGINX and Native Nodes. Major releases for one node type are mirrored in the other.
+This versioning approach applies equally to all Node types. However, they are released independently.
 
 ## Version support policy
 
