@@ -874,6 +874,8 @@
 
 /admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /installation/multi-tenant/overview/
 /admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /installation/multi-tenant/overview/
+/5.x/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /5.x/installation/multi-tenant/overview/
+/5.x/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /5.x/installation/multi-tenant/overview/
 /4.10/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /4.10/installation/multi-tenant/overview/
 /4.10/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /4.10/installation/multi-tenant/overview/
 /4.8/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /4.8/installation/multi-tenant/overview/
