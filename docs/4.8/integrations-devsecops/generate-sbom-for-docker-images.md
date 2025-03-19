@@ -1,1 +1,0 @@
---8<-- "4.10/integrations-devsecops/generate-sbom-for-docker-images.md"

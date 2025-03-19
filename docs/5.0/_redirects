@@ -883,3 +883,26 @@
 /admin-en/configuration-guides/envoy/fine-tuning /installation/connectors/istio
 /admin-en/installation-guides/envoy/envoy-docker /installation/connectors/istio
 /installation/inline/compute-instances/docker/envoy-based /installation/connectors/istio
+
+/4.6/* /4.8
+/4.8/admin-en/* /4.8
+/4.8/installation/* /4.8
+/4.8/quickstart/* /4.8
+/4.8/updating-migrating/* /4.8
+/4.8/user-guides/* /4.8
+/4.8/about-wallarm/* /4.8
+/4.8/attacks-vulns-list/ /4.8
+/4.8/glossary-en/ /4.8
+/4.8/api/* /4.8
+/4.8/api-abuse-prevention/* /4.8
+/4.8/api-discovery/* /4.8
+/4.8/api-protection/* /4.8
+/4.8/api-specification-enforcement/* /4.8
+/4.8/demo-videos/* /4.8
+/4.8/faq/* /4.8
+/4.8/fast/* /4.8
+/4.8/integrations-devsecops/* /4.8
+/4.8/vulnerability-detection/* /4.8
+/4.8/api-sessions/ /4.8
+/4.8/news/ /4.8
+/4.8/api-attack-surface/ /4.8
