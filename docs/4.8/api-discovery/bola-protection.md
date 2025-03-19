@@ -1,1 +1,0 @@
---8<-- "latest/api-discovery/bola-protection.md"

@@ -1,1 +1,0 @@
---8<-- "4.10/about-wallarm/data-retention-policy.md"

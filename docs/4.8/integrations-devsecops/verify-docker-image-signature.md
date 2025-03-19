@@ -1,1 +1,0 @@
---8<-- "4.10/integrations-devsecops/verify-docker-image-signature.md"
