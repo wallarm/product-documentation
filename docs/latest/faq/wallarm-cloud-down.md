@@ -1,4 +1,4 @@
-# Wallarm Cloud is down
+# Wallarm Cloud is Down
 
 If the Wallarm Cloud is down, Wallarm nodes continue attack mitigation with some limitations. To learn more, use this troubleshooting guide.
 
@@ -24,14 +24,20 @@ What continues to work:
 
     Note that expiration of some IP addresses in the lists leads to cease of protection from the [brute force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md) related to these addresses.
 
+* [API Specification Enforcement](../api-specification-enforcement/overview.md) using the specifications uploaded to the node during last successful upload from the Cloud to the node.
+
 What stops working:
 
+* [API Attack Surface Management (AASM)](../api-attack-surface/overview.md).
+* [Credential Stuffing Detection](../about-wallarm/credential-stuffing.md).
+* [API Abuse Prevention](../api-abuse-prevention/overview.md).
 * The node collects but cannot send data on detected attacks and vulnerabilities to the Cloud. Note that your node [postanalytics module](../admin-en/installation-postanalytics-en.md) has an in-memory storage (wstore) where the collected data is temporarily stored before sending to the Cloud. As soon as Cloud is restored, buffered data will be sent to it.
 
     !!! warning "Node in-memory storage limitation"
         The size of the buffer is [limited](../admin-en/configuration-guides/allocate-resources-for-node.md#wstore) and when exceeded, the older data is deleted. So the amount of time the Cloud was down and the amount of information collected during this time may lead to the situation when you get in Wallarm Console only some data after the Cloud restoration.
 
 * The node collects but cannot send [metrics](../admin-en/configure-statistics-service.md) for processed traffic to the Cloud.
+* [API Sessions](../api-sessions/overview.md) - all information about legitimate requests that tool place while the Cloud was down is lost; the information about attacks will be presented (uploaded to Cloud after its restoration).
 * Scanning for the [exposed assets](../user-guides/scanner.md) and [typical vulnerabilities](../user-guides/vulnerabilities.md) will stop.
 * [Triggers](../user-guides/triggers/triggers.md) will stop working and thus:
     * [IP lists](../user-guides/ip-lists/overview.md) stop being updated.
