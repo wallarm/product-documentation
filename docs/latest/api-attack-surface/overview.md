@@ -57,6 +57,8 @@ To use AASM, the Wallarm's [API Attack Surface](../about-wallarm/subscription-pl
 
 * If you do not have Wallarm account yet, get pricing information and activate AASM on the Wallarm's official site [here](https://www.wallarm.com/product/aasm).
 
-    When activating, scanning of the used email's domain starts immediately while you negotiate sales team. After activation, you can [add additional domains](setup.md) to the scope.
+    This activates the Core (freemium) version, and scanning of the used email's domain starts immediately. After activation, you can [add additional domains](setup.md) to the scope.
+
+    You can continue using the Core version for as long as you need, provided that Enterprise features are not necessary for your use. See differences of different versions [here](https://www.wallarm.com/product/aasm-pricing?internal_utm_source=product-page-aasm).
 
 * If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
