@@ -35,6 +35,8 @@ search:
 
 This article provides instructions for deploying Wallarm on GCP [in-line][inline-docs] using the [official Machine Image](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node).
 
+The image is based on Debian and the NGINX version provided by Debian. Currently, the latest image uses Debian 12, which includes NGINX stable 1.22.1.
+
 ## Use cases
 
 --8<-- "../include/waf/installation/cloud-platforms/gcp-machine-image-use-cases.md"
