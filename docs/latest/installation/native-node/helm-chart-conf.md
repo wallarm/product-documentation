@@ -40,7 +40,6 @@ config:
         # key: LS0...
     
     allowed_hosts: []
-    mode: monitoring
 
     route_config: {}
       # wallarm_application: -1
