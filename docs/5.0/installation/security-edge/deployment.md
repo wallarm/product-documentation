@@ -178,7 +178,7 @@ When **Auto update** is enabled in **Admin settings**, the Edge node is automati
 
 To manually upgrade the Edge node, go to **Configure** → **Admin settings** and select a version from the list. Using the latest version is recommended for optimal performance and security.
 
-Upgrade to a new major version is only possible manually.
+Upgrading to a new major version can only be done manually.
 
 For the changelog of versions, refer to the [article](../../updating-migrating/node-artifact-versions.md#all-in-one-installer). The Edge node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge node version indicates minor changes.
 
