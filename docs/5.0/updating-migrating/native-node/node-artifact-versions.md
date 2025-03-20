@@ -216,7 +216,6 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 * Added support for the [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md) connector
 * Added support for [API Sessions](../../api-sessions/overview.md)
 * [Improved](../what-is-new.md#new-in-limiting-request-processing-time) limiting request processing time
-* The [`config.connector.mode`](../../installation/native-node/helm-chart-conf.md#configconnectormode) parameter, which sets the traffic filtration mode, now defaults to `monitoring`, providing an optimal setup for initial deployments
 * Reduced memory usage during node registration
 * Some bug fixes
 
