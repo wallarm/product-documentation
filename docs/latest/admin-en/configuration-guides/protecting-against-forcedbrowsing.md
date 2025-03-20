@@ -20,7 +20,10 @@ To provide this protection:
 1. Select the **Forced browsing** condition.
 1. Set the threshold for the number of 404 response codes returned to the requests having the same origin IP requests to 30 per 30 seconds.
 
-    Note that these are the example values - when configuring trigger for your own traffic, you should define a threshold considering a legitimate usage statistics.
+    Note that these are the example values - when configuring trigger for your own traffic, you should define a threshold considering your legitimate usage statistics.
+    
+    !!! info "Allowed threshold time periods"
+        When adjusting the threshold time period, the value must be a multiple of 30 seconds or 10 minutes, depending on the selected unit.
 
 1. Set the **URI** filter as displayed on the screenshot, including:
 
