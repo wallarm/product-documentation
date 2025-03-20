@@ -90,6 +90,8 @@ In the **Certificates** section, you can obtain certificates for your domains:
 
 ![!](../../images/waf-installation/security-edge/inline/certificates.png)
 
+You can specify multiple DNS zones, each with a different certificate issuance approach.
+
 ### 3. Hosts
 
 In the **Hosts** section:
@@ -122,7 +124,7 @@ The below example configuration customizes settings per path to meet specific ne
 
 ### 4. (Optional) Admin settings
 
-In the **Admin settings** section, you choose a node version and sepecify upgrade settings:
+In the **Admin settings** section, you choose a node version and specify upgrade settings:
 
 * Select the Edge node version to deploy. The latest available version is deployed by default.
 
@@ -172,9 +174,11 @@ From the Grafana home page, to reach the dashboard, navigate to **Dashboards** â
 
 ## Upgrading the Edge Inline
 
-When **Auto update** is enabled in **Admin settings**, the Edge node is automatically upgraded as soon as a new version is released. All your initial settings are preserved. Auto update is off by default.
+When **Auto update** is enabled in **Admin settings**, the Edge node is automatically upgraded as soon as a new minor or patch version is released (depending on the selected option). All your initial settings are preserved. Auto update is off by default.
 
 To manually upgrade the Edge node, go to **Configure** â†’ **Admin settings** and select a version from the list. Using the latest version is recommended for optimal performance and security.
+
+Upgrade to a new major version is only possible manually.
 
 For the changelog of versions, refer to the [article](../../updating-migrating/node-artifact-versions.md#all-in-one-installer). The Edge node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge node version indicates minor changes.
 
