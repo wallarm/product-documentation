@@ -9,6 +9,9 @@ search:
 
 Wallarm offers a beta version of its eBPF-based security solution that leverages the power of the Linux kernel and seamlessly integrates with Kubernetes environments. This article explains how to use and deploy the solution using the Helm chart.
 
+!!! warning "Limited to version 4.10"
+    The Wallarm eBPF-based solution currently supports only the features available in [Wallarm Node 4.10](/4.10/installation/oob/ebpf/deployment/).
+
 ## Traffic flow
 
 Traffic flow with Wallarm eBPF-based solution:
