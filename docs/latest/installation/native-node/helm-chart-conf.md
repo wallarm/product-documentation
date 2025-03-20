@@ -40,10 +40,10 @@ config:
         # key: LS0...
     
     allowed_hosts: []
-    mode: monitoring
 
     route_config: {}
       # wallarm_application: -1
+      # wallarm_mode: monitoring
       # routes:
         # - route: "/api/v1"
         #   wallarm_application: 1
@@ -200,14 +200,6 @@ config:
       - "*.test.com"
 ```
 
-### config.connector.mode
-
-General traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `safe_blocking`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
-
-Default: `monitoring`.
-
-The mode can be [overridden for specific routes](#wallarm_mode).
-
 ### config.connector.route_config
 
 Configuration section where you specify settings for specific routes.
@@ -218,6 +210,14 @@ Configuration section where you specify settings for specific routes.
 
 Default: `-1`.
 
+### config.connector.route_config.wallarm_mode
+
+Traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `safe_blocking`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
+
+This value can be overridden for specific routes.
+
+Default: `monitoring`.
+
 ### config.connector.route_config.routes
 
 Sets route-specific Wallarm configuration. Includes Wallarm mode and application IDs. Example configuration:
@@ -227,6 +227,7 @@ config:
   connector:
     route_config:
       wallarm_application: 10
+      wallarm_mode: monitoring
       routes:
         - host: example.com
           wallarm_application: 1
@@ -237,7 +238,7 @@ config:
           route: /api
           wallarm_application: 100
         - route: /testing
-          wallarm_mode: off
+          wallarm_mode: block
 ```
 
 #### host
