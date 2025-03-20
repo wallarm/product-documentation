@@ -19,7 +19,10 @@ Let us say you want to prevent malicious actors from trying various passwords to
 1. Select the **Brute force** condition.
 1. Set the threshold of 30 requests from the same IP per 30 seconds.
 
-    Note that these are the example values - when configuring trigger for your own traffic, you should define a threshold considering a legitimate usage statistics.
+    Note that these are the example values - when configuring trigger for your own traffic, you should define a threshold considering your legitimate usage statistics.
+    
+    !!! info "Allowed threshold time periods"
+        When adjusting the threshold time period, the value must be a multiple of 30 seconds or 10 minutes, depending on the selected unit.
 
 1. Set the **Application** filter to `rent-car` (the application should be [registered](../../user-guides/settings/applications.md) in Wallarm).
 1. Set the **URI** filter as displayed on the screenshot, including:
