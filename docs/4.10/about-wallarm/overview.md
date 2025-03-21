@@ -84,3 +84,11 @@ Wallarm offers cloud instances in both the US and Europe, enabling you to select
 [Proceed to signup on the US Wallarm Cloud](https://us1.my.wallarm.com/signup)
 
 [Proceed to signup on the EU Wallarm Cloud](https://my.wallarm.com/signup)
+
+## Where Wallarm works
+
+The [described](#how-wallarm-works) Wallarm components: filtering node and Cloud - can be deployed in one of three forms:
+
+* [Security Edge](../installation/supported-deployment-options.md#edge): complete Cloud-based deployment. Both filtering nodes and Wallarm Cloud components are managed by Wallarm.
+* [Hybrid](../installation/supported-deployment-options.md#all-deployment-artifacts): Wallarm customers deploy and manage the filtering nodes, and Wallarm manages the Wallarm Cloud component.
+* [On-Premise](../installation/on-premise.md): both filtering node and Wallarm Cloud components are hosted and managed by the customer.
