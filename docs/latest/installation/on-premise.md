@@ -14,3 +14,11 @@ The Wallarm architecture is built around [two main components](../about-wallarm/
 ## Access and details
 
 Please contact [Wallarm's sales team](mailto:sales@wallarm.com) for any questions or requests regarding the on-premise deployment.
+
+## Limitations
+
+The following functionalities are currently not supported by the on-premise Wallarm solution:
+
+* [Exposed Asset Scanner](../user-guides/scanner.md)
+* [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md)
+* [API Leaks](../api-attack-surface/security-issues.md#api-leaks)
