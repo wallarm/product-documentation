@@ -60,6 +60,8 @@ For the configuration file, you can reuse the one used during the initial instal
         +postanalytics_exporter:
           address: 127.0.0.1:3313
           enabled: true
+        
+        ...
         ```
 
     For the x86_64 installer version:
@@ -96,6 +98,8 @@ For the configuration file, you can reuse the one used during the initial instal
           parse_responses: true
           response_timeout: 5s
           url_normalize: true
+        
+        ...
         ```
 
     The upgrade command for the x86_64 installer version:
