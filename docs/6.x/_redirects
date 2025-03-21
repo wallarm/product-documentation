@@ -914,3 +914,5 @@
 /4.8/api-sessions/ /4.8
 /4.8/news/ /4.8
 /4.8/api-attack-surface/ /4.8
+
+/user-guides/nodes/cdn-node/ /installation/security-edge/deployment/
