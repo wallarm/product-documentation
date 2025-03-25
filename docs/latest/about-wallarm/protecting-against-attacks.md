@@ -4,7 +4,7 @@
 
 # Attack Detection Procedure
 
-The Wallarm platform continuously analyzes application traffic and mitigates malicious requests in real-time. From this article, you will learn resource types Wallarm protects from attacks, methods of detecting attacks in traffic and how you can track and manage detected threats.
+The Wallarm platform continuously analyzes API traffic and mitigates malicious requests in real-time. From this article, you will learn resource types Wallarm protects from attacks, methods of detecting attacks in traffic and how you can track and manage detected threats.
 
 ## What is attack and what are attack components?
 
@@ -72,6 +72,10 @@ To detect and handle attacks, Wallarm uses the following process:
 1. Makes a decision whether the request is a part of attack or not based on basic detectors, custom rules and specific module settings.
 1. Handles request in accordance with decision and filtration mode.
 
+![Attack handling process - diagram](../images/about-wallarm-waf/overview/attack-handling-diagram.png)
+
+Note that rules, settings and filtration mode can be inherited from the parent endpoint or [application](../user-guides/settings/applications.md). More specific has priority.
+
 ## Tools for attack detection
 
 To detect attacks, Wallarm [analyzes](#attack-handling-process) all requests sent to the protected resource using the following tools:
@@ -99,6 +103,7 @@ Besides comparing against basic detectors or custom rules, requests are checked 
 * [API Abuse Prevention](../api-abuse-prevention/overview.md)
 * [API Specification Enforcement](../api-specification-enforcement/overview.md)
 * [Credential Stuffing](../about-wallarm/credential-stuffing.md)
+* [Trigger-based protection measures](../user-guides/triggers/triggers.md#what-you-can-do-with-triggers)
 
 Any of these tools can cause specific attack or vulnerability detection and request blocking.
 
@@ -108,7 +113,7 @@ The rule **Ignore certain attack types** allows disabling detection of certain a
 
 By default, the Wallarm node marks the request as an attack if detecting the signs of any attack type in any request element. However, some requests containing attack signs can actually be legitimate (e.g. the body of the request publishing the post on the Database Administrator Forum may contain the [malicious SQL command](../attacks-vulns-list.md#sql-injection) description).
 
-If the Wallarm node marks the standard payload of the request as the malicious one, a [false positive](#false-positives) occurs. To prevent false positives, standard attack detection rules need to be adjusted using the custom rules of certain types to accommodate protected application specificities. Wallarm provides the **Ignore certain attack types** [rule](../user-guides/rules/rules.md) to do this.
+If the Wallarm node marks the standard payload of the request as the malicious one, a [false positive](#false-positives) occurs. To prevent false positives, standard attack detection rules need to be adjusted using the custom rules of certain types to accommodate protected API specificities. Wallarm provides the **Ignore certain attack types** [rule](../user-guides/rules/rules.md) to do this.
 
 **Creating and applying the rule**
 
@@ -192,104 +197,24 @@ How Wallarm detects the [behavioral attacks](#behavioral-attacks) and acts in ca
 
 **False positive** occurs when attack signs are detected in the legitimate request or when legitimate entity is qualified as a vulnerability. [More details on false positives in vulnerability scanning →](detecting-vulnerabilities.md#false-positives)
 
-When analyzing requests for attacks, Wallarm uses the standard ruleset that provides optimal application protection with ultra‑low false positives. Due to protected application specificities, standard rules may mistakenly recognize attack signs in legitimate requests. For example: SQL injection attack may be detected in the request adding a post with malicious SQL query description to the Database Administrator Forum.
+When analyzing requests for attacks, Wallarm uses the standard ruleset that provides optimal API protection with ultra‑low false positives. Due to protected API specificities, standard rules may mistakenly recognize attack signs in legitimate requests. For example: SQL injection attack may be detected in the request adding a post with malicious SQL query description to the Database Administrator Forum.
 
-In such cases, standard rules need to be adjusted to accommodate protected application specificities by using the following methods:
+In such cases, standard rules need to be adjusted to accommodate protected API specificities by using the following methods:
 
 * Analyze potential false positives (by filtering all attacks by the [tag `!known`](../user-guides/search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits)) and if confirming false positives, [mark](../user-guides/events/check-attack.md#false-positives) particular attacks or hits appropriately. Wallarm will automatically create the rules disabling analysis of the same requests for detected attack signs.
 * [Disable detection of certain attack types](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types) in particular requests.
 * [Disable detection of certain attack signs in binary data](../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data).
 * [Disable parsers mistakenly applied to the requests](../user-guides/rules/request-processing.md#managing-parsers).
 
-Identifying and handling false positives is a part of Wallarm fine‑tuning to protect your applications. We recommend to deploy the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
+Identifying and handling false positives is a part of Wallarm fine‑tuning to protect your APIs. We recommend to deploy the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
 
-## Managing detected attacks
+## Attacks in Wallarm UI
 
-All detected attacks are displayed in the Wallarm Console → **Attacks** section by the filter `attacks`. You can manage attacks through the interface as follows:
+Wallarm provides you with the comprehensive user interface displaying all detected attacks and details on them. You can use attack dashboards for quick visualization and set you custom notifications.
 
-* View and analyze attacks
-* Increase the priority of an attack in the recheck queue
-* Mark attacks or separate hits as false positives
-* Create the rules for custom processing of separate hits
+See details in the [Attack Analysis](../user-guides/events/check-attack.md) article.
 
 ![Attacks view](../images/user-guides/events/check-attack.png)
-
-## Attack dashboards
-
-Wallarm provides comprehensive dashboards to help you stay on top of your system's security posture.
-
-Wallarm's [Threat Prevention](../user-guides/dashboards/threat-prevention.md) dashboard provides general metrics on your system's security posture, including multi-aspect information about attacks: their sources, targets, types and protocols.
-
-![Threat Prevention dashboard](../images/user-guides/dashboard/threat-prevention.png)
-
-The [OWASP API Security Top 10](../user-guides/dashboards/owasp-api-top-ten.md) dashboard provides detailed visibility into your system's security posture against the OWASP API Top 10 threats, including attack information.
-
-![OWASP API Top 10](../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
-
-## Notifications about detected attacks, hits and malicious payloads
-
-Wallarm can send you notifications on detected attacks, hits and malicious payloads. It allows you to be aware of attempts to attack your system and analyze detected malicious traffic promptly. Analyzing malicious traffic includes reporting false positives, allowlisting IPs originating legitimate requests and denylisting IPs of attack sources.
-
-To configure notifications:
-
-1. Configure [native integrations](../user-guides/settings/integrations/integrations-intro.md) with the systems to send notifications (e.g. PagerDuty, Opsgenie, Splunk, Slack, Telegram).
-2. Set the conditions for sending notifications:
-
-    * To get notifications on each detected hit, select the appropriate option in the integration settings.
-
-        ??? info "See the example of the notification about detected hit in the JSON format"
-            ```json
-            [
-                {
-                    "summary": "[Wallarm] New hit detected",
-                    "details": {
-                    "client_name": "TestCompany",
-                    "cloud": "EU",
-                    "notification_type": "new_hits",
-                    "hit": {
-                        "domain": "www.example.com",
-                        "heur_distance": 0.01111,
-                        "method": "POST",
-                        "parameter": "SOME_value",
-                        "path": "/news/some_path",
-                        "payloads": [
-                            "say ni"
-                        ],
-                        "point": [
-                            "post"
-                        ],
-                        "probability": 0.01,
-                        "remote_country": "PL",
-                        "remote_port": 0,
-                        "remote_addr4": "8.8.8.8",
-                        "remote_addr6": "",
-                        "tor": "none",
-                        "request_time": 1603834606,
-                        "create_time": 1603834608,
-                        "response_len": 14,
-                        "response_status": 200,
-                        "response_time": 5,
-                        "stamps": [
-                            1111
-                        ],
-                        "regex": [],
-                        "stamps_hash": -22222,
-                        "regex_hash": -33333,
-                        "type": "sqli",
-                        "block_status": "monitored",
-                        "id": [
-                            "hits_production_999_202010_v_1",
-                            "c2dd33831a13be0d_AC9"
-                        ],
-                        "object_type": "hit",
-                        "anomaly": 0
-                        }
-                    }
-                }
-            ]
-            ```
-    
-    * To set the threshold of attack, hit or malicious payload number and get notifications when the threshold is exceeded, configure appropriate [triggers](../user-guides/triggers/triggers.md).
 
 <!-- ## Demo videos
 
