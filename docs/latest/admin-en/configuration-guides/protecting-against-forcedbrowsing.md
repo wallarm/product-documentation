@@ -64,7 +64,7 @@ To test the trigger described in the [Configuring](#configuring) section:
 
     ![Forced browsing attack in the interface](../../images/user-guides/events/forced-browsing-attack.png)
 
-    The number of displayed requests corresponds to the number of requests sent after exceeding the trigger threshold ([more details on detecting behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
+    The number of displayed requests corresponds to the number of requests sent after exceeding the trigger threshold ([more details on detecting behavioral attacks](../../attacks-vulns-list.md#attack-types)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/grouping-sampling.md#sampling-of-hits)).
 
     To search for forced browsing attacks, you can use the `dirbust` filter. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 

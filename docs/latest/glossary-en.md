@@ -46,7 +46,7 @@ For example:
 
     In this payload, `;wget+` is the [RCE](attacks-vulns-list.md#remote-code-execution-rce) attack sign and another part of the payload is the attack sign context.
 
-Since attack signs are not used to detect [behavioral attacks](about-wallarm/protecting-against-attacks.md#behavioral-attacks), requests sent as a part of behavioral attacks have empty payloads.
+Since attack signs are not used to detect [behavioral attacks](attacks-vulns-list.md#attack-types), requests sent as a part of behavioral attacks have empty payloads.
 
 ## Vulnerability
 

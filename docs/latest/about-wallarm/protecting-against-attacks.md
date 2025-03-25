@@ -36,7 +36,7 @@ The listed hit grouping methods do not exclude each other. If hits have characte
 * Attack signs detected in a request. If several attack signs characterizing the same attack type are detected in a request, only the first sign will be recorded to a payload.
 * Context of the attack sign. Context is a set of symbols preceding and closing detected attack signs. Since a payload length is limited, the context can be omitted if an attack sign is of full payload length.
 
-    Since attack signs are not used to detect [behavioral attacks](#behavioral-attacks), requests sent as a part of behavioral attacks have empty payloads.
+    Since attack signs are not used to detect [behavioral attacks](../attacks-vulns-list.md#attack-types), requests sent as a part of behavioral attacks have empty payloads.
 
 [Learn how to analyze attacks in Wallarm →](../user-guides/events/check-attack.md)
 
@@ -46,10 +46,10 @@ Wallarm nodes analyze HTTP and WebSocket traffic sent to the protected resources
 
 * HTTP traffic analysis is enabled by default.
 
-    Wallarm nodes analyze HTTP traffic for [input validation attacks](#input-validation-attacks) and [behavioral attacks](#behavioral-attacks).
+    Wallarm nodes analyze HTTP traffic for [input validation attacks](../attacks-vulns-list.md#attack-types) and [behavioral attacks](../attacks-vulns-list.md#attack-types).
 * WebSocket traffic analysis should be enabled additionally via the directive [`wallarm_parse_websocket`](../admin-en/configure-parameters-en.md#wallarm_parse_websocket).
 
-    Wallarm nodes analyze WebSocket traffic only for [input validation attacks](#input-validation-attacks).
+    Wallarm nodes analyze WebSocket traffic only for [input validation attacks](../attacks-vulns-list.md#attack-types).
 
 Protected resource API can be designed on the basis of the following technologies (limited under the WAAP [subscription plan](subscription-plans.md#waap-and-advanced-api-security)):
 
@@ -181,7 +181,7 @@ To do so, set the **Allow binary data** rule as displayed on the screenshot:
 
 **Input validation attacks**
 
-Wallarm can process the [input validation attacks](#input-validation-attacks) in the following modes:
+Wallarm can process the [input validation attacks](../attacks-vulns-list.md#attack-types) in the following modes:
 
 * Monitoring mode: detects but does not block attacks.
 * Safe blocking mode: detects attacks but blocks only those originated from [graylisted IPs](../user-guides/ip-lists/overview.md). Legitimate requests originated from graylisted IPs are not blocked.
@@ -191,7 +191,7 @@ Detailed information about how different filtration modes work and how to config
 
 **Behavioral attacks**
 
-How Wallarm detects the [behavioral attacks](#behavioral-attacks) and acts in case of their detection is defined not by the filtration mode, but by [specific configuration](#protection) of these attack type protection.
+How Wallarm detects the [behavioral attacks](../attacks-vulns-list.md#attack-types) and acts in case of their detection is defined not by the filtration mode, but by [specific configuration](#specific-module-settings) of these attack type protection.
 
 ## False positives
 

@@ -56,7 +56,7 @@ Hit sampling does not affect the quality of attack detection and Wallarm node co
 
 ## False positives
 
-False positive occurs when [attack signs](../../about-wallarm/protecting-against-attacks.md#library-libproton) are detected in the legitimate request.
+False positive occurs when [attack signs](../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors) are detected in the legitimate request.
 
 To prevent the filtering node from recognizing such requests as attacks in future, **you can mark all or specific requests of the attack as false positives**. This automatically creates a rule to skip similar attack sign detection in similar requests, though it does not appear in the Wallarm Console.
 
@@ -105,11 +105,11 @@ When dealing with this task, you will need to identify what type of attack took 
 
 Wallarm provides comprehensive dashboards to help you analyze detected attacks.
 
-Wallarm's [Threat Prevention](../user-guides/dashboards/threat-prevention.md) dashboard provides general metrics on your system's security posture, including multi-aspect information about attacks: their sources, targets, types and protocols.
+Wallarm's [Threat Prevention](../../user-guides/dashboards/threat-prevention.md) dashboard provides general metrics on your system's security posture, including multi-aspect information about attacks: their sources, targets, types and protocols.
 
 ![Threat Prevention dashboard](../../images/user-guides/dashboard/threat-prevention.png)
 
-The [OWASP API Security Top 10](../user-guides/dashboards/owasp-api-top-ten.md) dashboard provides detailed visibility into your system's security posture against the OWASP API Top 10 threats, including attack information.
+The [OWASP API Security Top 10](../../user-guides/dashboards/owasp-api-top-ten.md) dashboard provides detailed visibility into your system's security posture against the OWASP API Top 10 threats, including attack information.
 
 ![OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
 
@@ -119,7 +119,7 @@ Wallarm can send you notifications on detected attacks, hits and malicious paylo
 
 To configure notifications:
 
-1. Configure [native integrations](../user-guides/settings/integrations/integrations-intro.md) with the systems to send notifications (e.g. PagerDuty, Opsgenie, Splunk, Slack, Telegram).
+1. Configure [native integrations](../../user-guides/settings/integrations/integrations-intro.md) with the systems to send notifications (e.g. PagerDuty, Opsgenie, Splunk, Slack, Telegram).
 2. Set the conditions for sending notifications:
 
     * To get notifications on each detected hit, select the appropriate option in the integration settings.
@@ -176,7 +176,7 @@ To configure notifications:
             ]
             ```
     
-    * To set the threshold of attack, hit or malicious payload number and get notifications when the threshold is exceeded, configure appropriate [triggers](../user-guides/triggers/triggers.md).
+    * To set the threshold of attack, hit or malicious payload number and get notifications when the threshold is exceeded, configure appropriate [triggers](../../user-guides/triggers/triggers.md).
 
 ## API calls
 

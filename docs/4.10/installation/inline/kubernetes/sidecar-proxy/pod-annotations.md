@@ -9,7 +9,7 @@ search:
 [nginx-directives-docs]:            ../../../../admin-en/configure-parameters-en.md
 [fallback-mode-docs]:               ../../../../admin-en/configure-parameters-en.md#wallarm_fallback
 [parsers-docs]:                     ../../../../user-guides/rules/request-processing.md
-[libdetection-docs]:                ../../../../about-wallarm/protecting-against-attacks.md#libdetection-overview
+[libdetection-docs]:                ../../../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors
 [wallarm-modes-docs]:               ../../../../admin-en/configure-wallarm-mode.md
 [passive-detection-docs]:           ../../../../about-wallarm/detecting-vulnerabilities.md#passive-detection
 [active-threat-verification-docs]:  ../../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification

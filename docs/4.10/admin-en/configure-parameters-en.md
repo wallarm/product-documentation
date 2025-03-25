@@ -583,7 +583,7 @@ Settings of the debug logging for a NGINX worker process.
 
 ### wallarm_protondb_path
 
-A path to the [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton) file that has the global settings for request filtering, which do not depend on the application structure.
+A path to the [proton.db](../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors) file that has the global settings for request filtering, which do not depend on the application structure.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.

@@ -3,7 +3,7 @@
 [eu-cloud-docs]:                      ../../../about-wallarm/overview.md#cloud
 [configure-wallarm-mode-docs]:        ../../../admin-en/configure-wallarm-mode.md
 [filtration-mode-priorities-docs]:    ../../../admin-en/configure-wallarm-mode.md#prioritization-of-methods
-[libdetection-docs]:                  ../../../about-wallarm/protecting-against-attacks.md#libdetection-overview
+[libdetection-docs]:                  ../../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors
 [passive-detection-docs]:             ../../../about-wallarm/detecting-vulnerabilities.md#passive-detection
 [subscriptions-docs]:                 ../../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security
 [active-threat-verification-docs]:    ../../../about-wallarm/detecting-vulnerabilities.md#threat-replay-testing

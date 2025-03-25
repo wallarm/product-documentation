@@ -4,7 +4,7 @@ These instructions describe the method to customize the blocking page and error 
 
 The custom blocking page is returned in response to the requests blocked due to the following reasons:
 
-* Request contains malicious payloads of the following types: [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../../user-guides/rules/regex-rule.md).
+* Request contains malicious payloads of the following types: [input validation attacks](../../attacks-vulns-list.md#attack-types), [vpatch attacks](../../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../../user-guides/rules/regex-rule.md).
 * Request containing malicious payloads from the list above originated from [graylisted IP address](../../user-guides/ip-lists/overview.md) and the node filters requests in the safe blocking [mode](../configure-wallarm-mode.md).
 * Request originated from the [denylisted IP address](../../user-guides/ip-lists/overview.md).
 

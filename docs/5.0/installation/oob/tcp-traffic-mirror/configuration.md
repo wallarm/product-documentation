@@ -374,7 +374,7 @@ Default: `auto`, which means the number of workers is set to the number of CPU c
 
 ### http_inspector.libdetection_enabled
 
-Whether to additionally validate the SQL Injection attacks using the [libdetection](../../../about-wallarm/protecting-against-attacks.md#libdetection-overview) library.
+Whether to additionally validate the SQL Injection attacks using the [libdetection](../../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors) library.
 
 Default: `true`.
 
