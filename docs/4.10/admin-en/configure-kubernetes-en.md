@@ -318,7 +318,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
 !!! info "**libdetection** default mode"
     The default mode of the **libdetection** library is `on` (enabled).
 
-You can control the [**libdetection**](../about-wallarm/protecting-against-attacks.md#library-libdetection) mode using one of the options:
+You can control the [**libdetection**](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) mode using one of the options:
 
 * Applying the following [`nginx.ingress.kubernetes.io/server-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet) annotation to the Ingress resource:
 
