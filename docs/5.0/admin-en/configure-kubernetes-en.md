@@ -318,7 +318,7 @@ kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESP
 
 The annotation `nginx.ingress.kubernetes.io/wallarm-block-page` is used to configure the blocking page and error code returned in the response to the request blocked for the following reasons:
 
-* Request contains malicious payloads of the following types: [input validation attacks](../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
+* Request contains malicious payloads of the following types: [input validation attacks](../attacks-vulns-list.md#attack-types), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
 * Request containing malicious payloads from the list above is originated from [graylisted IP address](../user-guides/ip-lists/overview.md) and the node filters requests in the safe blocking [mode](configure-wallarm-mode.md).
 * Request is originated from the [denylisted IP address](../user-guides/ip-lists/overview.md).
 
@@ -335,7 +335,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
 !!! info "**libdetection** default mode"
     The default mode of the **libdetection** library is `on` (enabled).
 
-You can control the [**libdetection**](../about-wallarm/protecting-against-attacks.md#library-libdetection) mode using one of the options:
+You can control the [**libdetection**](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) mode using one of the options:
 
 * Applying the following [`nginx.ingress.kubernetes.io/server-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet) annotation to the Ingress resource:
 

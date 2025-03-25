@@ -8,7 +8,7 @@ In the **IP lists** section of Wallarm Console, you can control access to your a
 
     Malicious requests originating from graylisted IPs are those containing the signs of the following attacks:
 
-    * [Input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)
+    * [Input validation attacks](../../attacks-vulns-list.md#attack-types)
     * [Attacks of the vpatch type](../rules/vpatch-rule.md)
     * [Attacks detected based on regular expressions](../rules/regex-rule.md)
 

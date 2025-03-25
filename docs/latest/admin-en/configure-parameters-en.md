@@ -203,11 +203,25 @@ The directive enables `on` / disables `off` [API Specification Enforcement](../a
 
 ### wallarm_enable_libdetection
 
-Enables/disables additional validation of the SQL Injection attacks via the **libdetection** library. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
+!!! info "Other deployment options"
+    This section describes how to set the option for NGINX [all-in-one installer](../installation/inline/compute-instances/linux/all-in-one.md) and [Docker](../admin-en/installation-docker-en.md) installations - for other deployment options see:
+
+    * [NGINX Ingress controller](../admin-en/configure-kubernetes-en.md#managing-libdetection-mode), 
+    * [Sidecar](../installation/kubernetes/sidecar-proxy/pod-annotations.md#annotation-list) (`wallarm-enable-libdetection` pod annotation)
+    * [AWS Terraform](../installation/cloud-platforms/aws/terraform-module/overview.md#how-to-use-the-wallarm-aws-terraform-module) (`libdetection` variable).
+
+Enables/disables additional validation of the SQL injection attacks via the [**libdetection**](https://github.com/wallarm/libdetection) library. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
 
 Analyzing of requests with the **libdetection** library is enabled by default in all [deployment options](../installation/supported-deployment-options.md). To reduce the number of false positives, we recommend analysis to stay enabled.
 
-[More details on **libdetection** →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
+To check additional validation, send the following request to the protected resource:
+
+```bash
+curl "http://localhost/?id=1' UNION SELECT"
+```
+
+* The [basic set of detectors](../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors) (library **libproton**) will detect `UNION SELECT` as the SQL Injection attack sign. Since `UNION SELECT` without other commands is not a sign of the SQL Injection attack, **libproton** detects a false positive.
+* If analyzing of requests with the **libdetection** library is enabled, the SQL injection attack sign will not be confirmed in the request. The request will be considered legitimate, the attack will not be uploaded to the Wallarm Cloud and will not be blocked (if the filtering node is working in the `block` mode).
 
 !!! warning "Memory consumption increase"
     When analyzing attacks using the libdetection library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
@@ -558,7 +572,7 @@ Settings of the debug logging for a NGINX worker process.
 
 ### wallarm_protondb_path
 
-A path to the [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton) file that has the global settings for request filtering, which do not depend on the application structure.
+A path to the [proton.db](../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors) file that has the global settings for request filtering, which do not depend on the application structure.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.

@@ -14,7 +14,7 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [DDoS protection (L7)](../admin-en/configuration-guides/protecting-against-ddos.md) | Yes | Yes |
 | [Geo/source filtering](../user-guides/ip-lists/overview.md) | Yes | Yes |
 | [IP reputation feeds](../user-guides/ip-lists/overview.md#malicious-ip-feeds) | Yes | Yes |
-| [Attack stamps (SQLi, XSS, SSRF, etc.)](../about-wallarm/protecting-against-attacks.md#input-validation-attacks) | Yes | Yes |
+| [Attack stamps (SQLi, XSS, SSRF, etc.)](../attacks-vulns-list.md#attack-types) | Yes | Yes |
 | [Customer defined signatures](../user-guides/rules/regex-rule.md) | Yes | Yes |
 | [Virtual patching](../user-guides/rules/vpatch-rule.md) | Yes | Yes |
 | [Brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) | Yes | Yes |

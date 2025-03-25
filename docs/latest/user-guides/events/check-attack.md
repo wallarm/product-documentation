@@ -54,7 +54,7 @@ Hit sampling does not affect the quality of attack detection and Wallarm node co
 
 ## False positives
 
-False positive occurs when [attack signs](../../about-wallarm/protecting-against-attacks.md#library-libproton) are detected in the legitimate request.
+False positive occurs when [attack signs](../../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors) are detected in the legitimate request.
 
 To prevent the filtering node from recognizing such requests as attacks in future, **you can mark all or specific requests of the attack as false positives**. This automatically creates a rule to skip similar attack sign detection in similar requests, though it does not appear in the Wallarm Console.
 
@@ -99,7 +99,84 @@ When dealing with this task, you will need to identify what type of attack took 
 | `undefined_endpoint`, `undefined_parameter`, `invalid_parameter_value`, `missing_parameter`, `missing_auth`, `invalid_request`  (`api_specification` to search for all of them, [details](../../attacks-vulns-list.md#api-specification)) | [API Specification Enforcement](../../api-specification-enforcement/overview.md) | Expand an attack and follow the link to the violated specification. At the specification dialog, use the **API specification enforcement** tab to adjust settings, consider uploading the latest version of specification via the **Specification upload** tab. |
 | `gql_doc_size`, `gql_value_size`, `gql_depth`, `gql_aliases`, `gql_docs_per_batch`, `gql_introspection`, `gql_debug` (`graphql_attacks` to search for all of them, [details](../../attacks-vulns-list.md#graphql-attacks)) | [GraphQL API Protection](../../api-protection/graphql-rule.md) | Expand an attack and follow the **GraphQL security policies** link - if necessary, modify existing **Detect GraphQL attacks** rule(s) or create additional ones for particular branches. |
 
-## API calls to get attacks
+## Dashboards
+
+Wallarm provides comprehensive dashboards to help you analyze detected attacks.
+
+Wallarm's [Threat Prevention](../../user-guides/dashboards/threat-prevention.md) dashboard provides general metrics on your system's security posture, including multi-aspect information about attacks: their sources, targets, types and protocols.
+
+![Threat Prevention dashboard](../../images/user-guides/dashboard/threat-prevention.png)
+
+The [OWASP API Security Top 10](../../user-guides/dashboards/owasp-api-top-ten.md) dashboard provides detailed visibility into your system's security posture against the OWASP API Top 10 threats, including attack information.
+
+![OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
+
+## Notifications
+
+Wallarm can send you notifications on detected attacks, hits and malicious payloads. It allows you to be aware of attempts to attack your system and analyze detected malicious traffic promptly. Analyzing malicious traffic includes reporting false positives, allowlisting IPs originating legitimate requests and denylisting IPs of attack sources.
+
+To configure notifications:
+
+1. Configure [native integrations](../../user-guides/settings/integrations/integrations-intro.md) with the systems to send notifications (e.g. PagerDuty, Opsgenie, Splunk, Slack, Telegram).
+2. Set the conditions for sending notifications:
+
+    * To get notifications on each detected hit, select the appropriate option in the integration settings.
+
+        ??? info "See the example of the notification about detected hit in the JSON format"
+            ```json
+            [
+                {
+                    "summary": "[Wallarm] New hit detected",
+                    "details": {
+                    "client_name": "TestCompany",
+                    "cloud": "EU",
+                    "notification_type": "new_hits",
+                    "hit": {
+                        "domain": "www.example.com",
+                        "heur_distance": 0.01111,
+                        "method": "POST",
+                        "parameter": "SOME_value",
+                        "path": "/news/some_path",
+                        "payloads": [
+                            "say ni"
+                        ],
+                        "point": [
+                            "post"
+                        ],
+                        "probability": 0.01,
+                        "remote_country": "PL",
+                        "remote_port": 0,
+                        "remote_addr4": "8.8.8.8",
+                        "remote_addr6": "",
+                        "tor": "none",
+                        "request_time": 1603834606,
+                        "create_time": 1603834608,
+                        "response_len": 14,
+                        "response_status": 200,
+                        "response_time": 5,
+                        "stamps": [
+                            1111
+                        ],
+                        "regex": [],
+                        "stamps_hash": -22222,
+                        "regex_hash": -33333,
+                        "type": "sqli",
+                        "block_status": "monitored",
+                        "id": [
+                            "hits_production_999_202010_v_1",
+                            "c2dd33831a13be0d_AC9"
+                        ],
+                        "object_type": "hit",
+                        "anomaly": 0
+                        }
+                    }
+                }
+            ]
+            ```
+    
+    * To set the threshold of attack, hit or malicious payload number and get notifications when the threshold is exceeded, configure appropriate [triggers](../../user-guides/triggers/triggers.md).
+
+## API calls
 
 To get the attack details, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is the example of the API call for **getting the first 50 attacks detected in the last 24 hours**.
 

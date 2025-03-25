@@ -65,7 +65,7 @@ Once incident appeared in the **Incidents** section:
 
 To get the incident details, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is the example of the API call for **getting the first 50 incidents detected in the last 24 hours**.
 
-The request is similar to the [one used](check-attack.md#api-calls-to-get-attacks) for a list of attacks; the `"!vulnid": null` term is added to request for incidents. This term instructs the API to ignore all attacks without specified vulnerability ID, and this is how the system distinguishes between attacks and incidents.
+The request is similar to the [one used](check-attack.md#api-calls) for a list of attacks; the `"!vulnid": null` term is added to request for incidents. This term instructs the API to ignore all attacks without specified vulnerability ID, and this is how the system distinguishes between attacks and incidents.
 
 Please replace `TIMESTAMP` with the date 24 hours ago converted to the [Unix Timestamp](https://www.unixtimestamp.com/) format.
 

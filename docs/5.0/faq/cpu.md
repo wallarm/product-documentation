@@ -52,7 +52,7 @@ You can do the following to lower the CPU load by Wallarm:
         }
         ```
 
-* Disable [libdetection](../about-wallarm/protecting-against-attacks.md#libdetection-overview) (enabled by default since node version 4.4) via `wallarm_enable_libdetection off`. Using libdetection increases CPU consumption by 5-10%. However, it is necessary to consider that disabling libdetection may lead to increase in number of false positives for SQLi attack detection.
+* Disable [libdetection](../about-wallarm/protecting-against-attacks.md#basic-set-of-detectors) (enabled by default since node version 4.4) via `wallarm_enable_libdetection off`. Using libdetection increases CPU consumption by 5-10%. However, it is necessary to consider that disabling libdetection may lead to increase in number of false positives for SQLi attack detection.
 * If during detected attack analysis you reveal that Wallarm mistakenly uses some parsers [in rules](../user-guides/rules/request-processing.md#managing-parsers) or [via the NGINX configuration](../admin-en/configure-parameters-en.md#wallarm_parser_disable) for specific elements of the requests, disable these parsers for what they do not apply to. Note, however, that disabling parsers in general is never recommended.
 * [Lower request processing time](../user-guides/rules/configure-overlimit-res-detection.md). Note that by doing this you may prevent legitimate requests from getting the server.
 * Analyze possible targets for [DDoS](../admin-en/configuration-guides/protecting-against-ddos.md) and apply one of the available [protection measures](../admin-en/configuration-guides/protecting-against-ddos.md#l7-ddos-protection-with-wallarm).
