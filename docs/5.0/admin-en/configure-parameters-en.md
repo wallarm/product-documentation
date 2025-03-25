@@ -211,7 +211,7 @@ The directive enables `on` / disables `off` [API Specification Enforcement](../a
 ### wallarm_enable_libdetection
 
 !!! info "Other deployment options"
-    This section describes how to set the option for [NGINX all-in-one installer](../installation/inline/compute-instances/linux/all-in-one.md), for other deployment options see:
+    This section describes how to set the option for NGINX [all-in-one installer](../installation/inline/compute-instances/linux/all-in-one.md) and [Docker](../admin-en/installation-docker-en.md) installations - for other deployment options see:
 
     * [NGINX Ingress controller](../admin-en/configure-kubernetes-en.md#managing-libdetection-mode), 
     * [Sidecar](../installation/kubernetes/sidecar-proxy/pod-annotations.md#annotation-list) (`wallarm-enable-libdetection` pod annotation)
