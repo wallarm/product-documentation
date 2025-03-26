@@ -87,6 +87,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 5.3.11 (2025-03-26)
+
+* Upgraded to Community Ingress NGINX Controller version 1.11.5, aligning with the upstream Helm chart version 4.11.5
+* Fixed the critical [CVE-2025-1974](https://nvd.nist.gov/vuln/detail/CVE-2025-1974) vulnerability due to the upstream upgrade
+
 ### 5.3.10 (2025-03-10)
 
 * Fixed the [CVE-2024-56171](https://nvd.nist.gov/vuln/detail/CVE-2024-56171), [CVE-2025-24928](https://nvd.nist.gov/vuln/detail/CVE-2025-24928), [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2025-22868](https://nvd.nist.gov/vuln/detail/CVE-2025-22868) vulnerabilities
