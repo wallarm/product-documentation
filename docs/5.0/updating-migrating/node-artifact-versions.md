@@ -132,7 +132,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.2.1 (2024-12-07)
 
-* Upgraded to Community Ingress NGINX Controller version 1.11.3, aligning with the upstream Helm chart version 4.11.3
+* Upgraded to Community Ingress NGINX Controller version 1.11.5, aligning with the upstream Helm chart version 4.11.5
 * Breaking changes introduced by the Community Ingress NGINX Controller upgrade:
 
     * Discontinued support for Opentracing and Zipkin modules, now only supporting Opentelemetry
