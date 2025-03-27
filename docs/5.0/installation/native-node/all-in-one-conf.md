@@ -24,7 +24,7 @@ The Wallarm node operation mode. It can be:
     If you installed the Native Node for a Wallarm connector, the basic configuration looks as follows:
 
     ```yaml
-    version: 2
+    version: 4
 
     mode: connector-server
 
@@ -68,7 +68,7 @@ The Wallarm node operation mode. It can be:
     If you installed the Native Node for TCP traffic mirror analysis, the basic configuration looks as follows:
 
     ```yaml
-    version: 3
+    version: 4
 
     mode: tcp-capture
 
@@ -116,14 +116,14 @@ Ensure the port is not `80`, `8080`, `9000`, or `3313`, as these are used by oth
 
 === "IP address:Port"
     ```yaml
-    version: 2
+    version: 4
 
     connector:
       address: '192.158.1.38:5050'
     ```
 === "Specific port on all IPs"
     ```yaml
-    version: 2
+    version: 4
 
     connector:
       address: ':5050'
@@ -194,7 +194,7 @@ This parameter supports wildcard matching:
 For example:
 
 ```yaml
-version: 2
+version: 4
 
 connector:
   allowed_hosts:
@@ -217,7 +217,7 @@ To configure the mesh in ECS:
 1. Configure the Wallarm node to use the mesh by specifying the `connector.mesh` parameters in the configuration file as shown below:
 
 ```yaml
-version: 2
+version: 4
 
 connector:
   mesh:
@@ -256,7 +256,7 @@ The value should be the network interface and port separated by a colon (`:`), e
 
 === "Interface:Port"
     ```yaml
-    version: 3
+    version: 4
 
     goreplay:
       filter: 'eth0:80'
@@ -265,7 +265,7 @@ The value should be the network interface and port separated by a colon (`:`), e
     To capture traffic from multiple interfaces and ports, use `goreplay.filter` along with `goreplay.extra_args`, e.g.:
 
     ```yaml
-    version: 3
+    version: 4
 
     goreplay:
       filter: 'eth0:80'
@@ -281,21 +281,21 @@ The value should be the network interface and port separated by a colon (`:`), e
     The `filter` sets GoReplay with the `-input-raw` argument, and `extra_args` allows for specifying additional `-input-raw` inputs.
 === "All ports on interface"
     ```yaml
-    version: 3
+    version: 4
 
     goreplay:
       filter: 'eth0:'
     ```
 === "Specific port on all interfaces"
     ```yaml
-    version: 3
+    version: 4
 
     goreplay:
       filter: ':80'
     ```
 === "All interfaces and ports"
     ```yaml
-    version: 3
+    version: 4
 
     goreplay:
       filter: ':'
@@ -315,7 +315,7 @@ This parameter allows you to specify [extra arguments](https://github.com/buger/
 
     === "VLAN-wrapped mirrored traffic"
         ```yaml
-        version: 3
+        version: 4
 
         goreplay:
           extra_args:
@@ -326,7 +326,7 @@ This parameter allows you to specify [extra arguments](https://github.com/buger/
         ```
     === "VXLAN-wrapped mirrored traffic (common in AWS)"
         ```yaml
-        version: 3
+        version: 4
 
         goreplay:
           extra_args:
@@ -344,7 +344,7 @@ This parameter allows you to specify [extra arguments](https://github.com/buger/
 * You can extend `filter` with `extra_args` to capture additional interfaces and ports:
 
     ```yaml
-    version: 3
+    version: 4
 
     goreplay:
       filter: 'eth0:80'
@@ -397,6 +397,43 @@ By default, Wallarm reads the source IP address from the network packet's IP hea
 
 To preserve the real client IP, these intermediaries often add an HTTP header (e.g., `X-Real-IP`, `X-Forwarded-For`). The `real_ip_header` parameter tells Wallarm which header to use to extract the original client IP.
 
+## Envoy external filter-specific settings
+
+### envoy_external_filter.address (required)
+
+Specifies the listening IP address and port separated by a colon (`:`).
+
+Ensure the port is not `80`, `8080`, `9000`, or `3313`, as these are used by other Wallarm processes.
+
+=== "IP address:Port"
+    ```yaml
+    version: 4
+
+    envoy_external_filter:
+      address: '192.158.1.38:5080'
+    ```
+=== "Specific port on all IPs"
+    ```yaml
+    version: 4
+
+    envoy_external_filter:
+      address: ':5080'
+    ```
+
+### envoy_external_filter.tls_cert (required)
+
+Path to the TLS/SSL certificate (usually a `.crt` or `.pem` file) issued for the domain where the node is running.
+
+The certificate must be provided by a trusted Certificate Authority (CA) to ensure secure communication.
+
+If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
+
+### envoy_external_filter.tls_key (required)
+
+Path to the private key corresponding to the TLS/SSL certificate (typically a `.key` file).
+
+If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
+
 ## Basic settings
 
 ### route_config
@@ -423,7 +460,7 @@ Sets route-specific Wallarm configuration. Includes Wallarm mode and application
 
 === "connector-server"
     ```yaml
-    version: 2
+    version: 4
 
     route_config:
       wallarm_application: 10
@@ -442,7 +479,7 @@ Sets route-specific Wallarm configuration. Includes Wallarm mode and application
     ```
 === "tcp-capture"
     ```yaml
-    version: 3
+    version: 4
 
     route_config:
       wallarm_application: 10
@@ -470,7 +507,7 @@ For example:
 
 === "connector-server"
     ```yaml
-    version: 2
+    version: 4
 
     route_config:
       wallarm_application: 10
@@ -479,7 +516,7 @@ For example:
     ```
 === "tcp-capture"
     ```yaml
-    version: 3
+    version: 4
 
     route_config:
       wallarm_application: 10
@@ -564,7 +601,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
 
 === "connector-server"
     ```yaml
-    version: 2
+    version: 4
 
     http_inspector:
       workers: auto
@@ -575,7 +612,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
       shm_dir: /tmp
       wallarm_process_time_limit: 1s
 
-    tarantool_exporter:
+    postanalytics_exporter:
       address: 127.0.0.1:3313
       enabled: true
 
@@ -595,7 +632,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
     ```
 === "tcp-capture"
     ```yaml
-    version: 3
+    version: 4
 
     http_inspector:
       workers: auto
@@ -606,7 +643,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
       shm_dir: /tmp
       wallarm_process_time_limit: 1s
 
-    tarantool_exporter:
+    postanalytics_exporter:
       address: 127.0.0.1:3313
       enabled: true
 
@@ -671,17 +708,21 @@ If the limit is exceeded, the request is marked as an [`overlimit_res`](../../at
 
 You can configure the limit in this parameter or [via the Wallarm Console](../../user-guides/rules/configure-overlimit-res-detection.md), which also controls whether to block such requests. Wallarm Console settings override local configurations.
 
-### tarantool_exporter.address
+### postanalytics_exporter.address
 
 Sets the address for the postanalytics service which handles statistical request analysis in Wallarm's request processing. Typically, you do not need to modify this parameter.
 
 Default: `127.0.0.1:3313`.
 
-### tarantool_exporter.enabled
+In Node version 0.12.1 and earlier, this parameter is set as `tarantool_exporter.address`.
+
+### postanalytics_exporter.enabled
 
 Controls whether the postanalytics service is enabled. This parameter must be set to `true` as the Wallarm node does not function without the postanalytics service.
 
 Default: `true`.
+
+In Node version 0.12.1 and earlier, this parameter is set as `tarantool_exporter.enabled`.
 
 ### log.proton_log_mask
 
