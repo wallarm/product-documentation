@@ -31,7 +31,7 @@ The machine intended for running the Native Node with the all-in-one installer m
     * IP addresses below for downloading updates to attack detection rules and [API specifications][api-spec-enforcement-docs], as well as retrieving precise IPs for your [allowlisted, denylisted, or graylisted][ip-list-docs] countries, regions, or data centers
 
         --8<-- "../include/wallarm-cloud-ips.md"
-* When running the node in the `connector-server` mode, a **trusted** SSL/TLS certificate for the machine's domain should be issued and uploaded to the machine along with the private key.
+* When running the node in the `connector-server` or `envoy_external_filter` mode, a **trusted** SSL/TLS certificate for the machine's domain should be issued and uploaded to the machine along with the private key.
 * When running the node in the `tcp-capture` mode:
     
     * Traffic and response mirroring must be configured with both source and target set up, and the prepared instance chosen as a mirror target. Specific environment requirements must be met, such as allowing specific protocols for traffic mirroring configurations.
@@ -40,7 +40,7 @@ The machine intended for running the Native Node with the all-in-one installer m
 
 ## Limitations
 
-* When using the all-in-one installer in `connector-server` mode, a **trusted** SSL/TLS certificate is required for the machine's domain. Self-signed certificates are not yet supported.
+* When using the all-in-one installer in `connector-server` or `envoy_external_filter` mode, a **trusted** SSL/TLS certificate is required for the machine's domain. Self-signed certificates are not yet supported.
 * [Custom blocking page and blocking code](../../admin-en/configuration-guides/configure-block-page-and-code.md) configurations are not yet supported.
 * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
 * [Multitenancy](../multi-tenant/overview.md) is not supported yet.

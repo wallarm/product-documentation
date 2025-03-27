@@ -19,6 +19,7 @@ The Wallarm node operation mode. It can be:
 
 * `connector-server` for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md) connectors.
 * `tcp-capture` for [TCP traffic mirror analysis](../oob/tcp-traffic-mirror/deployment.md).
+* `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
 
 === "connector-server"
     If you installed the Native Node for a Wallarm connector, the basic configuration looks as follows:
@@ -85,6 +86,39 @@ The Wallarm node operation mode. It can be:
     http_inspector:
       real_ip_header: "X-Real-IP"
     
+    route_config:
+      wallarm_application: 10
+      wallarm_mode: monitoring
+      routes:
+        - route: /example/api/v1
+          wallarm_mode: off
+        - route: /example/extra_api
+          wallarm_application: 2
+        - route: /example/testing
+          wallarm_mode: off
+
+    log:
+      pretty: true
+      level: debug
+      log_file: stderr
+      access_log:
+        enabled: true
+        verbose: true
+        log_file: stderr
+    ```
+=== "envoy-external-filter"
+    If you installed the Native Node as an Envoy external filter, the basic configuration looks as follows:
+
+    ```yaml
+    version: 4
+
+    mode: envoy-external-filter
+
+    envoy_external_filter:
+      address: ":5050"
+      tls_cert: path/to/tls-cert.crt
+      tls_key: path/to/tls-key.key
+
     route_config:
       wallarm_application: 10
       wallarm_mode: monitoring
