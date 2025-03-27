@@ -37,7 +37,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 ## 3. Run the container using the new image
 
 !!! info "If upgrading from Node version 0.12.x or lower"
-    If upgrading from Node version 0.12.x or lower, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that the section [`tarantool_exporter` is renamed to `postanalytics_exporter`](../what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics) (if explicitly specified):
+    If upgrading from Node version 0.12.x or lower, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that the section `tarantool_exporter` is renamed to `postanalytics_exporter` (if explicitly specified):
 
     ```diff
     -version: 2
@@ -45,8 +45,8 @@ docker stop <RUNNING_CONTAINER_NAME>
 
     -tarantool_exporter:
     +postanalytics_exporter:
-      address: 127.0.0.1:3313
-      enabled: true
+        address: 127.0.0.1:3313
+        enabled: true
     ```
 
 === "US Cloud"

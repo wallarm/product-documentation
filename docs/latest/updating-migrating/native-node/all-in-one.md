@@ -50,7 +50,7 @@ For the configuration file, you can reuse the one used during the initial instal
     The `connector-server` mode is used when you deployed the self-hosted node with [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md) connector.
 
     !!! info "If upgrading from Node version 0.12.x or lower"
-        If upgrading from Node version 0.12.x or lower, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that the section [`tarantool_exporter` is renamed to `postanalytics_exporter`](../what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics) (if explicitly specified):
+        If upgrading from Node version 0.12.x or lower, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that the section `tarantool_exporter` is renamed to `postanalytics_exporter` (if explicitly specified):
 
         ```diff
         -version: 2
@@ -84,7 +84,7 @@ For the configuration file, you can reuse the one used during the initial instal
 === "tcp-capture"
     The `tcp-capture` mode is used when you deployed the self-hosted node for [TCP traffic analysis](../../installation/oob/tcp-traffic-mirror/deployment.md).
 
-    !!! info "If upgrading from Node version 0.12.0 or lower"
+    !!! info "If upgrading from Node version 0.12.1 or lower"
         If upgrading from the Node version 0.12.0 or lower, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that parameters previously set in the `middleware` section are moved to the `goreplay` section:
 
         ```diff
@@ -116,6 +116,28 @@ For the configuration file, you can reuse the one used during the initial instal
 
     # EU Cloud
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.12.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
+    ```
+=== "envoy-external-filter"
+    The `envoy-external-filter` mode is used for [gRPC-based external processing filter](../../installation/connectors/istio-inline.md) for APIs managed by Istio.
+
+    The upgrade command for the x86_64 installer version:
+        
+    ```bash
+    # US Cloud
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.12.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com --preserve false
+
+    # EU Cloud
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.12.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
+    ```
+    
+    The upgrade command for the ARM64 installer version:
+
+    ```bash
+    # US Cloud
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.12.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com --preserve false
+
+    # EU Cloud
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.12.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com --preserve false
     ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
