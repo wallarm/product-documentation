@@ -728,33 +728,16 @@ Also, it is strongly advised not to alter any of the existing lines of the defau
 
     The `format` parameter has the `json` value by default.
 
-### wallarm_wstore_upstream
+### wallarm_tarantool_upstream
 
-With the `wallarm_wstore_upstream`, you can specify the postanalytics module server address if it is different from the default one (`127.0.0.1:3313`) and if there are several postanalytics servers, specify how to balance requests between them.
+!!! warning "Rename `wallarm_tarantool_upstream` to `wallarm_wstore_upstream`"
+    In NGINX Node version 6.x and later, this parameter has been [renamed](../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics) to [`wallarm_wstore_upstream`](#wallarm_wstore_upstream), with no changes to its logic.
 
-**Example:**
+    Backward compatibility is maintained with a deprecation warning, but renaming is recommended to avoid future errors when the old directive is removed. Warning example:
 
-```bash
-upstream wallarm_wstore {
-    server 127.0.0.1:3313 max_fails=0 fail_timeout=0 max_conns=1;
-    keepalive 1;
-}
-
-# omitted
-
-wallarm_wstore_upstream wallarm_wstore;
-```
-
-See also [Module ngx_http_upstream_module](https://nginx.org/en/docs/http/ngx_http_upstream_module.html).
-
-!!! warning "Required conditions"
-    It is required that the following conditions are satisfied for the `max_conns` and the `keepalive` parameters:
-
-    * The value of the `keepalive` parameter must not be lower than the number of the wstore servers.
-    * The value of the `max_conns` parameter must be specified for each of the upstream wstore servers to prevent the creation of excessive connections.
-
-!!! info
-    The parameter is configured inside the http block only.
+    ```
+    2025/03/04 20:43:04 [warn] 3719#3719: "wallarm_tarantool_upstream" directive is deprecated, use "wallarm_wstore_upstream" instead in /etc/nginx/nginx.conf:19
+    ```
 
 ### wallarm_timeslice
 
@@ -850,3 +833,31 @@ Simultaneously setting the `wallarm_upstream_queue_memory_limit` parameter and n
     **Default value:** `100m`.
     
     This parameter can be set inside the http block only.
+
+### wallarm_wstore_upstream
+
+With the `wallarm_wstore_upstream`, you can specify the postanalytics module server address if it is different from the default one (`127.0.0.1:3313`) and if there are several postanalytics servers, specify how to balance requests between them.
+
+**Example:**
+
+```bash
+upstream wallarm_wstore {
+    server 127.0.0.1:3313 max_fails=0 fail_timeout=0 max_conns=1;
+    keepalive 1;
+}
+
+# omitted
+
+wallarm_wstore_upstream wallarm_wstore;
+```
+
+See also [Module ngx_http_upstream_module](https://nginx.org/en/docs/http/ngx_http_upstream_module.html).
+
+!!! warning "Required conditions"
+    It is required that the following conditions are satisfied for the `max_conns` and the `keepalive` parameters:
+
+    * The value of the `keepalive` parameter must not be lower than the number of the wstore servers.
+    * The value of the `max_conns` parameter must be specified for each of the upstream wstore servers to prevent the creation of excessive connections.
+
+!!! info
+    The parameter is configured inside the http block only.

@@ -2,10 +2,10 @@ INHERIT: mkdocs-base.yml
 
 theme:
   version: "5.x"
-  versionNative: "0.x"
+  versionNative: "0.12.x-"
 
 docs_dir: docs/5.0
-site_dir: site
+site_dir: site/5.x
 
 nav:
   - Quick Start:
@@ -144,7 +144,8 @@ nav:
       - CloudFront: installation/connectors/aws-lambda.md
       - Cloudflare: installation/connectors/cloudflare.md
       - Kong API Gateway: installation/connectors/kong-api-gateway.md
-      - Istio: installation/connectors/istio.md
+      - Istio (Out-of-Band): installation/connectors/istio.md
+      - Istio (Inline): installation/connectors/istio-inline.md
       - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
       - Fastly: installation/connectors/fastly.md
       - Code Bundle Changelog: installation/connectors/code-bundle-inventory.md
