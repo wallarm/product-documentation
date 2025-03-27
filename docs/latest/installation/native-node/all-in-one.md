@@ -13,6 +13,9 @@ The [Wallarm Native Node](../nginx-native-node-internals.md), which operates ind
 * When you need a security solution for [TCP traffic mirror analysis](../oob/tcp-traffic-mirror/deployment.md).
     
     Use the installer in `tcp-capture` mode.
+* When you need a [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
+    
+    Use the installer in `envoy-external-filter` mode.
 
 ## Requirements
 
@@ -102,6 +105,19 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
     ```
     ip addr show
     ```
+=== "envoy-external-filter"
+    ```yaml
+    version: 4
+
+    mode: envoy-external-filter
+
+    envoy_external_filter:
+      address: ":5080"
+      tls_cert: "/path/to/cert.crt"
+      tls_key: "/path/to/cert.key"
+    ```
+
+    In the `envoy_external_filter.tls_cert` and `envoy_external_filter.tls_key`, you specify the paths to a **trusted** certificate and private key issued for the machine's domain.
 
 [All configuration parameters](all-in-one-conf.md)
 
@@ -147,6 +163,26 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
     # EU Cloud
     sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.12.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
     ```
+=== "envoy-external-filter"
+    For the x86_64 installer version:
+        
+    ```bash
+    # US Cloud
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.12.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+
+    # EU Cloud
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.12.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    ```
+    
+    For the ARM64 installer version:
+
+    ```bash
+    # US Cloud
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.12.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host us1.api.wallarm.com
+
+    # EU Cloud
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.12.1.aarch64.sh -- --batch --token <API_TOKEN> --mode=envoy-external-filter --go-node-config=<PATH_TO_CONFIG> --host api.wallarm.com
+    ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 * `<API_TOKEN>` specifies the generated API token for the `Deploy` role.
@@ -171,6 +207,8 @@ If needed, you can change the copied file after the installation is finished. To
         * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly) 
 === "tcp-capture"
     [Proceed to the deployment testing](../oob/tcp-traffic-mirror/deployment.md#step-5-test-the-solution).
+=== "envoy-external-filter"
+    After deploying the node, the next step is to [update Envoy settings to forward traffic to the node](../connectors/istio-inline.md#2-configure-envoy-to-proxy-traffic-to-the-wallarm-node).
 
 ## Verifying the node operation
 

@@ -18,7 +18,14 @@ The [Wallarm Native Node](../nginx-native-node-internals.md), which operates ind
 Deploy the Native Node with Helm chart in the following cases:
 
 * When you deploy a Wallarm connector for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md) and require the node to be self-hosted. This is ideal if you are already using Kubernetes management platforms like OpenShift, Amazon EKS, Azure AKS, or Google GKE. The node is set up as a load balancer with a public IP for easy traffic routing.
-* When you deploy a Wallarm connector for [Kong API Gateway](../connectors/kong-api-gateway.md) or [Istio](../connectors/istio.md). The node is deployed with the clusterIP type for internal traffic, without exposing a public IP.
+
+    Use the Node in `connector-server` mode.
+* When you need an inline [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio. The node is set up as a load balancer with a public IP for easy traffic routing.
+    
+    Use the Node in `envoy-external-filter` mode.
+* When you deploy a Wallarm connector for [Kong API Gateway](../connectors/kong-api-gateway.md) or [Istio (out-of-band)](../connectors/istio.md). The node is deployed with the clusterIP type for internal traffic, without exposing a public IP.
+    
+    Use the Node in `connector-server` mode.
 
 ## Requirements
 
@@ -63,7 +70,7 @@ helm repo update wallarm
 
 ### 3. Prepare the configuration file
 
-=== "LoadBalancer"
+=== "LoadBalancer (connector-server)"
     Deploying the native Wallarm node as a LoadBalancer with a public IP allows you to route traffic from MuleSoft, Cloudflare, Amazon CloudFront, Broadcom Layer7 API Gateway, Fastly to this IP for security analysis and filtration.
 
     1. Register a domain for the load balancer.
@@ -76,6 +83,7 @@ helm repo update wallarm
             ```yaml
             config:
               connector:
+                mode: connector-server
                 certificate:
                   enabled: true
                   certManager:
@@ -95,6 +103,7 @@ helm repo update wallarm
             ```yaml
             config:
               connector:
+                mode: connector-server
                 certificate:
                   enabled: true
                   existingSecret:
@@ -111,6 +120,69 @@ helm repo update wallarm
             ```yaml
             config:
               connector:
+                mode: connector-server
+                certificate:
+                  enabled: true
+                  customSecret:
+                    enabled: true
+                    ca: LS0...  # Base64-encoded CA
+                    crt: LS0... # Base64-encoded certificate
+                    key: LS0... # Base64-encoded private key
+            processing:
+              service:
+                type: LoadBalancer
+            ```
+=== "LoadBalancer (envoy-external-filter)"
+    Deploying the native Wallarm node as a LoadBalancer with a public IP allows you to route traffic from MuleSoft, Cloudflare, Amazon CloudFront, Broadcom Layer7 API Gateway, Fastly to this IP for security analysis and filtration.
+
+    1. Register a domain for the load balancer.
+    1. Obtain a **trusted** SSL/TLS certificate.
+    1. Create the `values.yaml` configuration file with the following minimal configuration. Choose the tab for your preferred method of applying the certificate:
+    
+        === "cert-manager"
+            If you use [`cert-manager`](https://cert-manager.io/) in your cluster, you can generate the SSL/TLS certificate with it.
+
+            ```yaml
+            config:
+              connector:
+                mode: envoy-external-filter
+                certificate:
+                  enabled: true
+                  certManager:
+                    enabled: true
+                    issuerRef:
+                      # The name of the cert-manager Issuer or ClusterIssuer
+                      name: letsencrypt-prod
+                      # If it is Issuer (namespace-scoped) or ClusterIssuer (cluster-wide)
+                      kind: ClusterIssuer
+            processing:
+              service:
+                type: LoadBalancer
+            ```
+        === "existingSecret"
+            You can pull SSL/TLS certificate from an existing Kubernetes secrets in the same namespace.
+
+            ```yaml
+            config:
+              connector:
+                mode: envoy-external-filter
+                certificate:
+                  enabled: true
+                  existingSecret:
+                    enabled: true
+                    # The name of the Kubernetes secret containing the certificate and private key
+                    name: my-secret-name
+            processing:
+              service:
+                type: LoadBalancer
+            ```
+        === "customSecret"
+            The `customSecret` configuration allows you to define a certificate directly as base64-encoded values.
+
+            ```yaml
+            config:
+              connector:
+                mode: envoy-external-filter
                 certificate:
                   enabled: true
                   customSecret:
@@ -174,7 +246,8 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)
     * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
     * [Kong API Gateway](../connectors/kong-api-gateway.md#2-obtain-and-deploy-the-wallarm-lua-plugin)
-    * [Istio](../connectors/istio.md#2-configure-envoy-to-mirror-traffic-to-the-wallarm-node)
+    * [Istio (out-of-band)](../connectors/istio.md#2-configure-envoy-to-mirror-traffic-to-the-wallarm-node)
+    * [Istio (inline)](../connectors/istio-inline.md)
 
 ## Upgrade
 
