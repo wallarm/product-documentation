@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/installation-check-operation-en.md"
+--8<-- "4.8/admin-en/installation-check-operation-en.md"
