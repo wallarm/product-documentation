@@ -13,6 +13,7 @@
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 [api-policy-enf-docs]:              ../api-specification-enforcement/overview.md
+[link-wallarm-health-check]:        ../admin-en/uat-checklist-en.md
 
 # Upgrading the Docker NGINX-based image
 

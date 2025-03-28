@@ -1,3 +1,5 @@
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
+
 # تثبيت الوحدة الديناميكية الخارجية لـ Wallarm لإصدارات NGINX المقدمة من التوزيع
 
 تصف هذه التعليمات الخطوات لتثبيت Wallarm كوحدة ديناميكية [خارجية](../overview.md) باستخدام حزم Linux لـ NGINX المقدمة من التوزيع.

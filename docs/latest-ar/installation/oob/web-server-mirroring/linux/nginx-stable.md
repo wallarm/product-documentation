@@ -1,3 +1,5 @@
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
+
 # تثبيت الوحدة النمطية الديناميكية Wallarm OOB لـ NGINX الإصدار `المستقر` باستخدام حزم Linux
 
 توضح هذه التعليمات الخطوات لتثبيت Wallarm كوحدة نمطية [ديناميكية OOB](../overview.md) باستخدام حزم Linux لـ NGINX `المستقر` من nginx.org.

@@ -38,6 +38,7 @@
 [api-discovery-docs]:               ../../api-discovery/overview.md
 [vuln-detection-docs]:              ../../about-wallarm/detecting-vulnerabilities.md
 [masking-sensitive-data-rule]:      ../../user-guides/rules/sensitive-data-rule.md
+[link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
 
 # التنصيب باستخدام المثبِّت الشامل
 

@@ -33,5 +33,6 @@ search:
 [cloud-init-spec]:                  ../../../cloud-platforms/cloud-init.md
 [wallarm_force_directive]:          ../../../../admin-en/configure-parameters-en.md#wallarm_force
 [api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
 
 --8<-- "latest-ja/installation/inline/compute-instances/aws/aws-ami.md"

@@ -8,6 +8,7 @@
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]:                     ../../user-guides/ip-lists/overview.md
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
+[link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
 
 # الترقية إلى إصدار أحدث من صورة العقدة السحابية لـ EOL
 

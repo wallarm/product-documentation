@@ -1,3 +1,5 @@
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
+
 # Deploying Wallarm from GCP Machine Image
 
 This article provides instructions for deploying Wallarm on GCP [in-line][inline-docs] using the [official Machine Image](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node).
