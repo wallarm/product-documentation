@@ -25,7 +25,7 @@ These instructions describe the steps to upgrade the [Native Node deployed from 
 ## 1. Download the new Docker image version
 
 ```
-docker pull wallarm/node-native-aio:0.12.1
+docker pull wallarm/node-native-aio:0.13.0
 ```
 
 ## 2. Stop the running container
@@ -37,7 +37,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 ## 3. Run the container using the new image
 
 !!! info "If upgrading from Node version 0.12.x or lower"
-    If upgrading from Node version 0.12.x or lower, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that the section [`tarantool_exporter` is renamed to `postanalytics_exporter`](../what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics) (if explicitly specified):
+    If upgrading from Node version 0.12.x or lower, ensure that the `version` value is updated in the initial configuration file (`wallarm-node-conf.yaml`, as per the default installation instructions) and that the section `tarantool_exporter` is renamed to `postanalytics_exporter` (if explicitly specified):
 
     ```diff
     -version: 2
@@ -45,17 +45,17 @@ docker stop <RUNNING_CONTAINER_NAME>
 
     -tarantool_exporter:
     +postanalytics_exporter:
-      address: 127.0.0.1:3313
-      enabled: true
+        address: 127.0.0.1:3313
+        enabled: true
     ```
 
 === "US Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.12.1
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.0
     ```
 === "EU Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.12.1
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.0
     ```
 
 Environment variable | Description| Required

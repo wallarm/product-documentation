@@ -19,6 +19,7 @@ The Wallarm node operation mode. It can be:
 
 * `connector-server` for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md) connectors.
 * `tcp-capture` for [TCP traffic mirror analysis](../oob/tcp-traffic-mirror/deployment.md).
+* `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
 
 === "connector-server"
     If you installed the Native Node for a Wallarm connector, the basic configuration looks as follows:
@@ -85,6 +86,39 @@ The Wallarm node operation mode. It can be:
     http_inspector:
       real_ip_header: "X-Real-IP"
     
+    route_config:
+      wallarm_application: 10
+      wallarm_mode: monitoring
+      routes:
+        - route: /example/api/v1
+          wallarm_mode: off
+        - route: /example/extra_api
+          wallarm_application: 2
+        - route: /example/testing
+          wallarm_mode: off
+
+    log:
+      pretty: true
+      level: debug
+      log_file: stderr
+      access_log:
+        enabled: true
+        verbose: true
+        log_file: stderr
+    ```
+=== "envoy-external-filter"
+    If you installed the Native Node as an Envoy external filter, the basic configuration looks as follows:
+
+    ```yaml
+    version: 4
+
+    mode: envoy-external-filter
+
+    envoy_external_filter:
+      address: ":5050"
+      tls_cert: path/to/tls-cert.crt
+      tls_key: path/to/tls-key.key
+
     route_config:
       wallarm_application: 10
       wallarm_mode: monitoring
@@ -397,6 +431,43 @@ By default, Wallarm reads the source IP address from the network packet's IP hea
 
 To preserve the real client IP, these intermediaries often add an HTTP header (e.g., `X-Real-IP`, `X-Forwarded-For`). The `real_ip_header` parameter tells Wallarm which header to use to extract the original client IP.
 
+## Envoy external filter-specific settings
+
+### envoy_external_filter.address (required)
+
+Specifies the listening IP address and port separated by a colon (`:`).
+
+Ensure the port is not `80`, `8080`, `9000`, or `3313`, as these are used by other Wallarm processes.
+
+=== "IP address:Port"
+    ```yaml
+    version: 4
+
+    envoy_external_filter:
+      address: '192.158.1.38:5080'
+    ```
+=== "Specific port on all IPs"
+    ```yaml
+    version: 4
+
+    envoy_external_filter:
+      address: ':5080'
+    ```
+
+### envoy_external_filter.tls_cert (required)
+
+Path to the TLS/SSL certificate (usually a `.crt` or `.pem` file) issued for the domain where the node is running.
+
+The certificate must be provided by a trusted Certificate Authority (CA) to ensure secure communication.
+
+If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
+
+### envoy_external_filter.tls_key (required)
+
+Path to the private key corresponding to the TLS/SSL certificate (typically a `.key` file).
+
+If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
+
 ## Basic settings
 
 ### route_config
@@ -677,11 +748,15 @@ Sets the address for the postanalytics service which handles statistical request
 
 Default: `127.0.0.1:3313`.
 
+In Node version 0.12.1 and earlier, this parameter is set as `tarantool_exporter.address`.
+
 ### postanalytics_exporter.enabled
 
 Controls whether the postanalytics service is enabled. This parameter must be set to `true` as the Wallarm node does not function without the postanalytics service.
 
 Default: `true`.
+
+In Node version 0.12.1 and earlier, this parameter is set as `tarantool_exporter.enabled`.
 
 ### log.proton_log_mask
 

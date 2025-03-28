@@ -15,7 +15,12 @@ The [Wallarm Native Node](../nginx-native-node-internals.md), which operates ind
 
 ## Use cases
 
-Deploy the Native Node when setting up a Wallarm connector for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md) and require a self-hosted node.
+* When deploying a Wallarm node as part of a connector solution for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md) on a self-hosted Linux OS machine.
+
+    Use the installer in `connector-server` mode.
+* When you need a [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
+    
+    Use the installer in `envoy-external-filter` mode.
 
 The Docker image for the Native Node is ideal if you are already using container orchestration platforms like AWS ECS or other Docker-based environments. The Wallarm node runs as a Docker container within your service, enabling security filtering and traffic inspection for your API management platform.
 
@@ -45,21 +50,33 @@ The Docker image for the Native Node is ideal if you are already using container
 ### 1. Pull the Docker image
 
 ```
-docker pull wallarm/node-native-aio:0.12.1
+docker pull wallarm/node-native-aio:0.13.0
 ```
 
 ### 2. Prepare the configuration file
 
 Create the `wallarm-node-conf.yaml` file with the following minimal configuration for the Native Node:
 
-```yaml
-version: 2
+=== "connector-server"
+    ```yaml
+    version: 4
 
-mode: connector-server
+    mode: connector-server
 
-connector:
-  address: ":5050"
-```
+    connector:
+      address: ":5050"
+    ```
+=== "envoy-external-filter"
+    ```yaml
+    version: 4
+
+    mode: envoy-external-filter
+
+    envoy_external_filter:
+      address: ":5080"
+      tls_cert: "/path/to/cert.crt"
+      tls_key: "/path/to/cert.key"
+    ```
 
 [All configuration parameters](all-in-one-conf.md) (they are identical for both the Docker image and the Native Node all-in-one installer)
 
@@ -77,11 +94,11 @@ To run the Docker image, use the following commands. Mount the `wallarm-node-con
 
 === "US Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.12.1
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.0
     ```
 === "EU Cloud"
     ```bash
-    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.12.1
+    docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v ./wallarm-node-conf.yaml:/opt/wallarm/etc/wallarm/go-node.yaml -p 80:5050 wallarm/node-native-aio:0.13.0
     ```
 
 Environment variable | Description| Required
@@ -94,7 +111,7 @@ Environment variable | Description| Required
 * The `-p` option maps host and container ports:
 
     * The first value (`80`) is the host's port, exposed to external traffic.
-    * The second value (`5050`) is the container's port, which should match the `connector.address` setting in the `wallarm-node-conf.yaml` file.
+    * The second value (`5050`) is the container's port, which should match the `connector.address` or `envoy_external_filter.address` setting in the `wallarm-node-conf.yaml` file.
 * The configuration file must be mounted as `/opt/wallarm/etc/wallarm/go-node.yaml` inside the container.
 
 ### 5. Apply Wallarm code to an API management service
@@ -108,7 +125,8 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [Cloudflare](../connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
     * [Amazon CloudFront](../connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
     * [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md#2-add-the-nodes-ssltls-certificate-to-the-policy-manager)
-    * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly) 
+    * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
+    * [Envoy/Istio](../connectors/istio-inline.md)
 
 ## Verifying the node operation
 
