@@ -7,9 +7,12 @@
 [ui-filtration-mode]:              ../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console
 [self-hosted-connector-node-helm-conf]: ../native-node/helm-chart-conf.md
 
-# Wallarm Filter for Istio Ingress (Inline)
+# Wallarm Filter for Istio Ingress
 
 Wallarm provides a filter for securing APIs managed by Istio to analyze traffic [in-line](../inline/overview.md). You deploy the Wallarm node externally and apply the Wallarm-provided configuration in the Envoy settings to route traffic to the Wallarm node for analysis via the gRPC-based external processing filter.
+
+!!! info "OOB mode (mirrored traffic)"
+    You can also use Wallarm filter for Istio to analyze traffic [out-of-band (OOB)](../oob/overview.md) by setting the `observability_mode` Envoy parameter described [here](https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/ext_proc/v3/ext_proc.proto#envoy-v3-api-msg-extensions-filters-http-ext-proc-v3-externalprocessor).
 
 ## Use cases
 
@@ -40,23 +43,6 @@ Choose an artifact for a self-hosted node deployment and follow the instructions
 
 ### 2. Configure Envoy to proxy traffic to the Wallarm node
 
-1. In your `envoy.yaml` → `http_filters` section, configure the external processing filter for sending requests and responses to the external Wallarm Node for analysis. For this, use the following template:
-
-    ```yaml
-    ...
-
-    http_filters:
-    - name: ext_proc
-      typed_config:
-        "@type": type.googleapis.com/envoy.extensions.filters.http.ext_proc.v3.ExternalProcessor
-        grpc_service:
-          envoy_grpc:
-            cluster_name: wallarm_cluster
-        processing_mode:
-          request_body_mode: STREAMED
-          response_body_mode: STREAMED
-        request_attributes: ["request.id", "request.time", "source.address"]
-    ```
 1. In your `envoy.yaml` → `clusters` section, configure the Wallarm cluster used to forward data to the Wallarm Node. For this, use the following template:
 
     ```yaml
@@ -82,6 +68,24 @@ Choose an artifact for a self-hosted node deployment and follow the instructions
             validation_context:
               trusted_ca:
                 filename: /path/to/node-ca.pem # CA that issued the certificate used by the Node instance
+    ```
+
+1. In your `envoy.yaml` → `http_filters` section, configure the external processing filter for sending requests and responses to the external Wallarm Node for analysis. For this, use the following template:
+
+    ```yaml
+    ...
+
+    http_filters:
+    - name: ext_proc
+      typed_config:
+        "@type": type.googleapis.com/envoy.extensions.filters.http.ext_proc.v3.ExternalProcessor
+        grpc_service:
+          envoy_grpc:
+            cluster_name: wallarm_cluster
+        processing_mode:
+          request_body_mode: STREAMED
+          response_body_mode: STREAMED
+        request_attributes: ["request.id", "request.time", "source.address"]
     ```
 
 ## Testing

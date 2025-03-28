@@ -74,6 +74,8 @@ Create the `wallarm-node-conf.yaml` file with the following minimal configuratio
 
     envoy_external_filter:
       address: ":5080"
+      tls_cert: "/path/to/cert.crt"
+      tls_key: "/path/to/cert.key"
     ```
 
 [All configuration parameters](all-in-one-conf.md) (they are identical for both the Docker image and the Native Node all-in-one installer)

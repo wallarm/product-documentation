@@ -9,6 +9,9 @@
 
 # Wallarm Connector for Istio Ingress (Out‑of‑Band)
 
+!!! warning "Deprecated"
+    This connector and underlying Lua plugin usage is deprecated. It is recommended to switch to [Wallarm Filter for Istio Ingress](istio-inline.md). To do that, contact the [Wallarm support team](https://support.wallarm.com/).
+
 Wallarm provides a connector for securing APIs managed by Istio to analyze traffic [out-of-band (OOB)](../oob/overview.md). By deploying Wallarm nodes alongside [Istio's](https://istio.io/) Envoy proxies, the connector mirrors incoming traffic, sending it asynchronously for analysis while allowing traffic to continue flowing uninterrupted.
 
 The integration relies on a Lua plugin, deployed within the Envoy proxy, to handle traffic mirroring and communication with the Wallarm node.
