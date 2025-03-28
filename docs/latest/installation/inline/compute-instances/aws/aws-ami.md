@@ -1,5 +1,3 @@
-[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
-
 # Deploying Wallarm from Amazon Machine Image
 
 This article provides instructions for deploying Wallarm on AWS [in-line][inline-docs] using the [official Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD).

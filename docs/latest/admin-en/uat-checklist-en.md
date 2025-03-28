@@ -99,8 +99,6 @@ See details on other logs and log configuration [here](../admin-en/configure-log
 
 Wallarm detects [vulnerabilities](../glossary-en.md#vulnerability) in your application APIs.
 
-This check requires the [filtering node](#you-have-filtering-node).
-
 To check:
 
 1. Send a request to your resource:
@@ -117,8 +115,6 @@ To check:
 
 In Wallarm, you can control access to your application APIs by allowlisting, denylisting, and graylisting of IP addresses the requests come from. Learn core logic of IP lists [here](../user-guides/ip-lists/overview.md).
 
-This check requires the [filtering node](#you-have-filtering-node).
-
 To check:
 
 1. Open Wallarm Console → **Events** → **Attacks** and locate attack created by you during the [Node registers attacks](#node-registers-attacks) check.
@@ -128,13 +124,11 @@ To check:
 1. Send the same attack from this IP again. In **Attacks**, nothing should appear.
 1. Remove the IP from the **Allowlist**.
 1. Add the IP to the **Denylist**
-1. Send legitimate requests as the ones in the [Wallarm monitors all requests](#wallarm-monitors-all-requests) step. The requests (even though the legitimate ones) should appear in **Attacks** as blocked.
+1. Send legitimate requests as the ones in the [Node registers all traffic](#node-registers-all-traffic) step. The requests (even though the legitimate ones) should appear in **Attacks** as blocked.
 
 ## Rules work
 
 In Wallarm, you can use [rules](../user-guides/rules/rules.md) to change how the system detects malicious requests and acts when such malicious requests are detected. You create rules in Cloud via Wallarm Console, they form your custom ruleset, then Cloud sends it to the filtering node where they start to work.
-
-This check requires the [filtering node](#you-have-filtering-node).
 
 To check:
 
