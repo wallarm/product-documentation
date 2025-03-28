@@ -35,6 +35,7 @@ search:
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 [api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
 [inline-docs]:                      ../../overview.md
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
 
 # Deploying Wallarm from Amazon Machine Image
 

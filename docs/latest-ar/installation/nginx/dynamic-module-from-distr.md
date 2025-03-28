@@ -28,6 +28,7 @@
 [oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
+[link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
 
 # تثبيت كوحدة ديناميكية لإصدار NGINX المقدم من التوزيع
 

@@ -1,3 +1,5 @@
+[link-wallarm-health-check]:        ../admin-en/uat-checklist-en.md
+
 # Docker NGINXベースのイメージのアップグレード
 
 これらの手順は、稼働中のDocker NGINXベースのイメージ4.xをバージョン5.0にアップグレードする手順を説明します。

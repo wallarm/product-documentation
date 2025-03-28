@@ -9,6 +9,7 @@
 [graylist-docs]:                     ../user-guides/ip-lists/overview.md
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [ip-lists-docs]:                     ../user-guides/ip-lists/overview.md
+[link-wallarm-health-check]:        ../admin-en/uat-checklist-en.md
 
 # Upgrading the cloud node image
 

@@ -25,5 +25,6 @@
 [api-wallarm-via-proxy]:         ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [exemplos-espelhamento-servidor-web]: ../../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-nós-agrupados]:             ../../../images/user-guides/nodes/grouped-nodes.png
+[link-wallarm-health-check]:        ../../../admin-en/uat-checklist-en.md
 
 --8<-- "../include-pt-BR/waf/installation/cloud-platforms/article-for-inline-oob-gcp-image.md"

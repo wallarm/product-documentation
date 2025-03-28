@@ -1,3 +1,5 @@
+[link-wallarm-health-check]:        ../../../admin-en/uat-checklist-en.md
+
 # Docker Envoy‑tabanlı Görüntünün Çalıştırılması
 
 Bu talimatlar, [Envoy 1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4) temel alınarak oluşturulan Wallarm Docker görüntüsünü çalıştırma adımlarını anlatır. Görüntü, doğru Wallarm node çalışması için gerekli tüm sistemleri içerir:

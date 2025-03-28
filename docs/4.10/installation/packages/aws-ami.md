@@ -38,5 +38,6 @@ search:
 [wallarm_force_directive]:          ../../admin-en/configure-parameters-en.md#wallarm_force
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
+[link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
 
 --8<-- "../include/waf/installation/cloud-platforms/article-for-inline-oob-ami.md"

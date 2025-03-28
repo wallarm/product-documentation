@@ -12,6 +12,7 @@
 [ip-lists-docs]:                    ../../../user-guides/ip-lists/overview.md
 [rate-limit-docs]:                  ../../../user-guides/rules/rate-limiting.md
 [cred-stuffing-docs]:               ../../../about-wallarm/credential-stuffing.md
+[link-wallarm-health-check]:        ../../../admin-en/uat-checklist-en.md
 
 # Running Docker Envoy‑based Image
 

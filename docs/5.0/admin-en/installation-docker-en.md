@@ -31,6 +31,7 @@
 [sensitive-data-rule]:              ../user-guides/rules/sensitive-data-rule.md
 [apid-only-mode-details]:           ../installation/nginx/all-in-one.md#api-discovery-only-mode
 [inline-docs]:                      ../installation/inline/overview.md
+[link-wallarm-health-check]:        ../admin-en/uat-checklist-en.md
 
 # Running Docker NGINX‑based Image
 

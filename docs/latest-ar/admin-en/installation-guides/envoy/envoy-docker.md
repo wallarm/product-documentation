@@ -1,3 +1,5 @@
+[link-wallarm-health-check]:        ../../../admin-en/uat-checklist-en.md
+
 # تشغيل صورة Docker المبنية على Envoy لـ Wallarm
 
 تصف هذه التعليمات الخطوات لتشغيل صورة Docker الخاصة بـ Wallarm والمبنية على [Envoy 1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4). تحتوي الصورة على كل الأنظمة المطلوبة لتشغيل عقدة Wallarm بشكل صحيح:

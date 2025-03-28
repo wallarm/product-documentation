@@ -1,3 +1,5 @@
+[link-wallarm-health-check]:        ../admin-en/uat-checklist-en.md
+
 # تشغيل صورة Docker المبنية على NGINX
 
 يمكن نشر عقدة التصفية المبنية على NGINX من Wallarm باستخدام [صورة Docker](https://hub.docker.com/r/wallarm/node). تدعم هذه العقدة أنظمة تشغيل المعالجات x86_64 وARM64، والتي يتم التعرف عليها تلقائيًا أثناء التثبيت. توفر هذه المقالة إرشادات حول كيفية تشغيل العقدة من صورة Docker.

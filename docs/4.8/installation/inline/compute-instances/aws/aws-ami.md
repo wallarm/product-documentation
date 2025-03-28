@@ -30,6 +30,7 @@ search:
 [wallarm-mode]:                     ../../../../admin-en/configure-wallarm-mode.md
 [wallarm-api-via-proxy]:            ../../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
 
 # Deploying Wallarm from Amazon Machine Image
 

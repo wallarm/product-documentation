@@ -1,3 +1,5 @@
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
+
 # نشر Wallarm باستخدام صورة آلة أمازون
 
 توفر هذه المقالة تعليمات لنشر Wallarm على AWS من خلال استخدام [صورة آلة أمازون (AMI) الرسمية](https://aws.amazon.com/marketplace/pp/B073VRFXSD).
