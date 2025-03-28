@@ -4,7 +4,7 @@ In the **IP lists** section of Wallarm Console, you can control access to your a
 
 * **Allowlist** is a list of trusted sources that bypass Wallarm protection and access your applications without any checks.
 * **Denylist** is a list of sources that cannot access your applications - all requests from them will be blocked.
-* **Graylist** is a list of suspicious sources processed by the node only in the **safe blocking** [filtration mode](../../admin-en/configure-wallarm-mode.md) as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests.
+* **Graylist** is a list of suspicious sources processed by the node only in the **safe blocking** [filtration mode](../../admin-en/configure-wallarm-mode.md) as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests; the requests from other IPs are never blocked although malicious ones are detected and displayed in the **Attacks** with the `Monitoring` status.
 
     Malicious requests originating from graylisted IPs are those containing the signs of the following attacks:
 
