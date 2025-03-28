@@ -18,5 +18,6 @@
 [api-discovery-docs]:               ../../../api-discovery/overview.md
 [sensitive-data-rule]:              ../../../user-guides/rules/sensitive-data-rule.md
 [apid-only-mode-details]:           ../../../installation/nginx/all-in-one.md#api-discovery-only-mode
+[link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md
 
 --8<-- "latest/installation/cloud-platforms/alibaba-cloud/docker-container.md"

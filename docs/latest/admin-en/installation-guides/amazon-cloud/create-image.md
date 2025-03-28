@@ -4,7 +4,7 @@
 [link-security-group-guide]:        ../../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group
 [link-cloud-connect-guide]:         ../../../installation/cloud-platforms/aws/ami.md#6-connect-the-instance-to-the-wallarm-cloud
 [link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/aws/ami.md#7-configure-sending-traffic-to-the-wallarm-instance
-[link-docs-check-operation]:        ../../installation-check-operation-en.md
+[link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md#node-registers-attacks
 
 [img-launch-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/launch-ami-wizard.png 
 [img-config-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/config-ami-wizard.png  

@@ -68,7 +68,7 @@ The number of all requests processed by the filter node since its installation.
     * `>0` for the `monitoring`/`safe_blocking`/`block` [mode](../configure-wallarm-mode.md#available-filtration-modes)
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
-    2. Check the filter node operation as described in the [instructions](../installation-check-operation-en.md). The value should increase by `1` after sending one test attack.
+    2. Check the filter node operation as described in the [instructions](../../admin-en/uat-checklist-en.md). The value should increase by `1` after sending one test attack.
 
 ### Number of Lost Requests
 

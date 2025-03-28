@@ -27,7 +27,7 @@ The DEB/RPM packages for the node installation have the "deprecated" status now.
 
 The Wallarm node does not collect the following collectd metrics anymore:
 
-* `wallarm_nginx/gauge-requests` - you can use the [`wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests) metric instead
+* `wallarm_nginx/gauge-requests` - you can use the `wallarm_nginx/gauge-abnormal` metric instead
 * `wallarm_nginx/gauge-attacks`
 * `wallarm_nginx/gauge-blocked`
 * `wallarm_nginx/gauge-time_detect`
@@ -458,7 +458,6 @@ The NGINX-based Wallarm Docker image now supports the new environment variable `
 
     In new node versions, the collectd service collects both the deprecated and new metrics. The deprecated metric collection will be stopped in future releases.
 
-    [All collectd metrics →](../../admin-en/monitoring/available-metrics.md#nginx-metrics-and-nginx-wallarm-module-metrics)
 * The `/var/log/wallarm/addnode_loop.log` [log file](../../admin-en/configure-logging.md) in the Docker containers has been renamed to `/var/log/wallarm/registernode_loop.log`.
 
 ## Parameters of the statistics service

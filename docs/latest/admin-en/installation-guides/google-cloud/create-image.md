@@ -2,7 +2,7 @@
 [link-docs-gcp-node-setup]:         ../../../installation/cloud-platforms/gcp/machine-image.md
 [link-cloud-connect-guide]:         ../../../installation/cloud-platforms/gcp/machine-image.md#5-connect-the-filtering-node-to-the-wallarm-cloud
 [link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/gcp/machine-image.md#6-configure-sending-traffic-to-the-wallarm-instance
-[link-docs-check-operation]:        ../../installation-check-operation-en.md
+[link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md#node-registers-attacks
 
 [img-vm-instance-poweroff]:     ../../../images/installation-gcp/auto-scaling/common/create-image/vm-poweroff.png
 [img-create-image]:             ../../../images/installation-gcp/auto-scaling/common/create-image/create-image.png
