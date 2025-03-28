@@ -291,7 +291,6 @@ nav:
     - Splitting Data and Settings by Applications: user-guides/settings/applications.md
     - Blocking Page and Error Code: admin-en/configuration-guides/configure-block-page-and-code.md
     - Monitoring & Failover:
-      - Checking Node Operation: admin-en/installation-check-operation-en.md
       - Configuring Failover Method: admin-en/configure-backup-en.md
       - Filtering Node Logs: admin-en/configure-logging.md
       - Statistics Service: admin-en/configure-statistics-service.md
