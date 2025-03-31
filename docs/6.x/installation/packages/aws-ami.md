@@ -33,5 +33,6 @@ search:
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 [api-spec-enforcement-docs]:        ../../api-specification-enforcement/overview.md
 [inline-docs]:                      ../inline/overview.md
+[link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
 
 --8<-- "latest/installation/inline/compute-instances/aws/aws-ami.md"

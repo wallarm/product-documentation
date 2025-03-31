@@ -32,5 +32,6 @@ search:
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 [cloud-init-spec]:                  ../../../cloud-platforms/cloud-init.md
 [wallarm_force_directive]:          ../../../../admin-en/configure-parameters-en.md#wallarm_force
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
 
 --8<-- "latest-ar/installation/inline/compute-instances/aws/aws-ami.md"

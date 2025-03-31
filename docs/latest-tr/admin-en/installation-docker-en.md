@@ -1,4 +1,5 @@
 ```markdown
+
 # Docker NGINX‑tabanlı Görüntüyü Çalıştırma
 
 Wallarm NGINX‑tabanlı filtreleme düğümü, [Docker image](https://hub.docker.com/r/wallarm/node) kullanılarak dağıtılabilir. Bu düğüm, kurulum sırasında otomatik olarak tanımlanan hem x86_64 hem de ARM64 mimarilerini destekler. Bu makale, Docker görüntüsünden düğümün nasıl çalıştırılacağı konusunda yol gösterir.

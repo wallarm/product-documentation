@@ -15,6 +15,7 @@
 [envoy-process-time-limit-block-docs]: ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 [api-policy-enf-docs]:              ../api-specification-enforcement/overview.md
+[link-wallarm-health-check]:        ../admin-en/uat-checklist-en.md
 
 # Upgrading the Docker NGINX- or Envoy-based image
 

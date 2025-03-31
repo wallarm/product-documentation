@@ -34,5 +34,6 @@ search:
 [api-discovery-docs]:               ../../../../api-discovery/overview.md
 [sensitive-data-rule]:              ../../../../user-guides/rules/sensitive-data-rule.md
 [apid-only-mode-details]:           ../../../../installation/nginx/all-in-one.md#api-discovery-only-mode
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
 
 --8<-- "latest-ja/admin-en/installation-docker-en.md"

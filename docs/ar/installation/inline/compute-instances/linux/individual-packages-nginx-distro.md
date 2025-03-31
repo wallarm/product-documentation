@@ -30,5 +30,6 @@ search:
 [platform]:                         ../../../../installation/supported-deployment-options.md
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 [cred-stuffing-docs]:               ../../../../about-wallarm/credential-stuffing.md
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
 
 --8<-- "latest-ar/installation/inline/compute-instances/linux/individual-packages-nginx-distro.md"

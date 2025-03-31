@@ -279,13 +279,13 @@ nav:
         - Proper Reporting of End‑User IP: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
         - High Availability Considerations: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
         - Ingress Controller Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
+    - Wallarm Health Check: admin-en/uat-checklist-en.md
     - Proper Reporting of End‑User IP: admin-en/using-proxy-or-balancer-en.md
     - Resource Allocation: admin-en/configuration-guides/allocate-resources-for-node.md
     - Limiting Request Processing Time: user-guides/rules/configure-overlimit-res-detection.md
     - Splitting Data and Settings by Applications: user-guides/settings/applications.md
     - Blocking Page and Error Code: admin-en/configuration-guides/configure-block-page-and-code.md
     - Monitoring & Failover:
-      - Checking Node Operation: admin-en/installation-check-operation-en.md
       - Configuring Failover Method: admin-en/configure-backup-en.md
       - Filtering Node Logs: admin-en/configure-logging.md
       - Statistics Service: admin-en/configure-statistics-service.md
@@ -312,7 +312,6 @@ nav:
     - Access to Files Needed for Node Operation: admin-en/configure-access-to-files-needed-for-node.md
     - Dynamic DNS Resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
     - Enabling JA3 fingerprinting: admin-en/enabling-ja3.md
-    - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
     - Node Upgrade:
       - What is new in Wallarm node 4.10: updating-migrating/what-is-new.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md

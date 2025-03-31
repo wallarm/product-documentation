@@ -1,5 +1,5 @@
 [link-doc-asg-guide]:               autoscaling-group-guide.md  
-[link-docs-check-operation]:        ../../installation-check-operation-en.md
+[link-docs-check-operation]:        ../../../admin-en/uat-checklist-en.md#node-registers-attacks
 
 [link-aws-lb-comparison]:           https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html?icmpid=docs_elbv2_console#elb-features   
 

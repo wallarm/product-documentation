@@ -31,6 +31,7 @@ search:
 [alibaba-ecs-docs]:                 ../../../cloud-platforms/alibaba-cloud/docker-container.md
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 [api-policy-enf-docs]:              ../../../../api-specification-enforcement/overview.md
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
 
 # Running Docker NGINX‑based Image
 

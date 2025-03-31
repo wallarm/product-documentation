@@ -26,5 +26,6 @@
 [صورة العقد المجمعة]:                ../../images/user-guides/nodes/grouped-nodes.png
 [مواصفات بدء تشغيل السحابة]:                  ../cloud-platforms/cloud-init.md
 [توجيه Wallarm_force]:          ../../admin-en/configure-parameters-en.md#wallarm_force
+[link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
 
 --8<-- "../include/waf/installation/cloud-platforms/article-for-inline-oob-gcp-image.md"

@@ -1,118 +1,145 @@
-# Wallarm User Acceptance Testing Checklist
+[ptrav-attack-docs]:             ../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:           ../images/admin-guides/test-attacks-quickstart.png
 
-This section provides you with a checklist to ensure your Wallarm instance operates correctly.
+# Wallarm Health Check After Node Deployment
 
-| Operation                                                                                                                                                        | Expected behavior                   | Check  |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|--------|
-| [Wallarm node detects attacks](#wallarm-node-detects-attacks)                                                                     | Attacks are detected                |        |
-| [You can log into the Wallarm interface](#you-can-log-into-the-wallarm-interface)                                                 | You can log in                      |        |
-| [Wallarm interface shows requests per second](#wallarm-interface-shows-requests-per-second)                                       | You see the requests stats          |        |
-| [Wallarm marks requests as false and stops blocking them](#wallarm-marks-requests-as-false-and-stops-blocking-them)               | Wallarm does not block the requests |        |
-| [Wallarm detects vulnerabilities and creates security incidents](#wallarm-detects-vulnerabilities-and-creates-security-incidents) | Security incidents are created      |        |
-| [Wallarm detects perimeter](#wallarm-detects-perimeter)                                                                                   | Scope is discovered                 |        |
-| [IP allowlisting, denylisting, and graylisting work](#ip-allowlisting-denylisting-and-graylisting-work)                                                                                         | IP addresses are blocked            |        |
-| [Users can be configured and have proper access rights](#users-can-be-configured-and-have-proper-access-rights)                   | Users can be created and updated    |        |
-| [User activity log has records](#user-activity-log-has-records)                                                                   | The log has records                 |        |
-| [Reporting works](#reporting-works)                                                                                               | You receive reports                 |        | |
+This document provides you with a checklist to ensure Wallarm operates correctly after a new filtering node deployment. You can also use this procedure to test health of any existing node.
 
+!!! info "Health check results"
+    A difference between described expected result and actual result may be a sign of problem in node functioning. It is recommended to give a special attention to such discrepancies and if necessary, contact the [Wallarm support team](https://support.wallarm.com/) for help.
 
-## Wallarm Node Detects Attacks
+## Node is registered in Cloud
 
-1. Send a malicious request to your resource:
+To check:
 
-   ```
-   http://<resource_URL>/etc/passwd
-   ```
+1. Open Wallarm Console → **Configuration** → **Nodes**.
+1. Apply filter to see only active nodes.
+1. Find your node in the list. Click to view details.
 
-2. Run the following command to check if the attack count increased:
+## Node registers attacks
 
-   ```
-   curl http://127.0.0.8/wallarm-status
-   ```
+To check:
 
-See also [Checking the filter node operation](installation-check-operation-en.md)
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## You Can Log into the Wallarm Interface
+## Node registers all traffic
 
-1.  Proceed to the link that corresponds to the cloud you are using: 
-    *   If you are using the US cloud, proceed to the <https://us1.my.wallarm.com> link.
-    *   If you are using the EU cloud, proceed to the <https://my.wallarm.com/> link.
-2.  See if you can log in successfully.
+To provide a full visibility of your traffic, Wallarm's [API Sessions](../api-sessions/overview.md) display all requests - malicious and legitimate - in the form of step-by-step user sessions.
 
-See also the [Threat Prevention Dashboard overview](../user-guides/dashboards/threat-prevention.md).
+To check:
 
-## Wallarm Interface Shows Requests per Second
+1. Send a request to the resource protected by your node:
+
+      ```
+      curl http://<resource_URL>
+      ```
+
+      Or send several requests with a bash script:
+
+      ```
+      for (( i=0 ; $i<10 ; i++ )) ;
+      do 
+         curl http://<resource_URL> ;
+      done
+      ```
+
+      This example is for 10 requests.
+
+1. Open **Events** → **API Sessions**.
+1. Find session with your requests and previously sent attack - all in one session.
+
+## Node statistics service works
+
+You can get filtering node operation statistics by requesting the `/wallarm-status` URL.
+
+!!! info "The statistics service"
+    You can read more about the statistics service and how to configure it [here](../admin-en/configure-statistics-service.md).
+
+To check:
+
+1. On the machine where the node is installed, run the command:
+
+      ```
+      curl http://127.0.0.8/wallarm-status
+      ```
+
+1. Check the output. It should be like:
+
+      ```
+      { "requests":11,"attacks":1,"blocked":0,"blocked_by_acl":0,"blocked_by_antibot":0,
+      "acl_allow_list":0,"abnormal":11,"tnt_errors":0,"api_errors":0,"requests_lost":0,
+      "overlimits_time":0,"segfaults":0,"memfaults":0,"softmemfaults":0,"proton_errors":0,
+      "time_detect":0,"db_id":165,"lom_id":1520,"custom_ruleset_id":1520,"custom_ruleset_ver":54,
+      "db_apply_time":1742969841,"lom_apply_time":1742971649,
+      "custom_ruleset_apply_time":1742971649,"proton_instances": { "total":2,"success":2,
+      "fallback":0,"failed":0 },"stalled_workers_count":0,"stalled_workers":[],"ts_files":
+      [{"id":1520,"size":79391,"mod_time":1742971649,"fname":"\/opt\/wallarm\/etc\/wallarm\/
+      custom_ruleset"}],"db_files":[{"id":165,"size":349901,"mod_time":1742969841,"fname":"\/opt\/
+      wallarm\/etc\/wallarm\/proton.db"}],"startid":8353951864332600837,"rate_limit": 
+      {"shm_zone_size":67108864,"buckets_count":8,"entries":0,"delayed":0,"exceeded":0,
+      "expired":0,"removed":0,"no_free_nodes":0},"timestamp":1743061763.635351,"split":{"clients":
+      [{"client_id":null,"requests":41,"attacks":18,"blocked":8,"blocked_by_acl":0,
+      "blocked_by_antibot":0,"overlimits_time":0,"time_detect":0,"applications":[{"app_id":-1,
+      "requests":11,"attacks":1,"blocked":0,"blocked_by_acl":0,"blocked_by_antibot":0,
+      "overlimits_time":0,"time_detect":0}]}]} }
+      ```
+
+      This means that the filtering node statistics service is running and working properly.
+
+## Node logs are collected
+
+To check:
+
+1. On the machine where the node is installed, go to `/opt/wallarm/var/log/wallarm`.
+1. Check data in `wcli-out.log`: logs of most Wallarm services, including brute force detection, attack export to the Cloud, and the status of node synchronization with the Cloud, etc.
+
+See details on other logs and log configuration [here](../admin-en/configure-logging.md).
+
+## Node registers vulnerabilities
+
+Wallarm detects [vulnerabilities](../glossary-en.md#vulnerability) in your application APIs.
+
+To check:
 
 1. Send a request to your resource:
 
-   ```
-   curl http://<resource_URL>
-   ```
+      ```
+      curl <RECOURSE_URL> -H 'jwt: eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJjbGllbmRfaWQiOiIxIn0.' -H 'HOST: <TEST_HOST_NAME>'
+      ```
 
-   Or send several requests with a bash script:
+      Note that if you already have a [weak JWT](../attacks-vulns-list.md#weak-jwt) vulnerability detected for the host (in any status, even closed), you need to specify a different `TEST_HOST_NAME` to see the new vulnerability registered.
 
-   ```
-   for (( i=0 ; $i<10 ; i++ )) ;
-   do 
-      curl http://<resource_URL> ;
-   done
-   ```
+1. Open Wallarm Console → **Events** → **Vulnerabilities** to check whether a weak JWT vulnerability was listed.
 
-   This example is for 10 requests.
+## IP lists work
 
-2. Check if the Wallarm interface shows detected requests per second.
+In Wallarm, you can control access to your application APIs by allowlisting, denylisting, and graylisting of IP addresses the requests come from. Learn core logic of IP lists [here](../user-guides/ip-lists/overview.md).
 
-See also the [Threat Prevention Dashboard](../user-guides/dashboards/threat-prevention.md).
+To check:
 
-## Wallarm Marks Requests as False and Stops Blocking them
+1. Open Wallarm Console → **Events** → **Attacks** and locate attack created by you during the [Node registers attacks](#node-registers-attacks) check.
+1. Copy attack source IP.
+1. Go to Security Controls → **IP Lists** → **Allowlist**, and add copied source IP to this list.
+1. Wait (about 2 minutes) until new IP list state is uploaded to the filtering node.
+1. Send the same attack from this IP again. In **Attacks**, nothing should appear.
+1. Remove the IP from the **Allowlist**.
+1. Add the IP to the **Denylist**
+1. Send legitimate requests as the ones in the [Node registers all traffic](#node-registers-all-traffic) step. The requests (even though the legitimate ones) should appear in **Attacks** as blocked.
 
-1. Expand an attack on the *Attacks* tab. 
-2. Select a hit and click *False*.
-3. Wait for around 3 minutes.
-4. Resend the request and check if Wallarm detects it as an attack and blocks it.
+## Rules work
 
-See also [Working with false attacks](../user-guides/events/check-attack.md#false-positives).
+In Wallarm, you can use [rules](../user-guides/rules/rules.md) to change how the system detects malicious requests and acts when such malicious requests are detected. You create rules in Cloud via Wallarm Console, they form your custom ruleset, then Cloud sends it to the filtering node where they start to work.
 
-## Wallarm Detects Vulnerabilities and Creates Security Incidents
+To check:
 
-1. Ensure you have an open vulnerability on your resource.
-2. Send a malicious request to exploit the vulnerability.
-3. Check if there is an incident detected in the Wallarm interface.
+1. Check current custom ruleset ID and date using one of the methods:
 
-See [Checking Incidents](../user-guides/events/check-incident.md).
+      * In Wallarm Console → **Configuration** → **Nodes**, access your node details and note custom_ruleset ID number and time of installation.
+      * In [node statistics](#node-statistics-service-works), note `custom_ruleset_id` and `custom_ruleset_apply_time`.
+      * In the `wcli-out.log` [node log](#node-logs-are-collected), note the latest line containing `"lom"`, pay attention to `version` and `time` in that string.
 
-## Wallarm Detects Perimeter
-
-1. On the *Scanner* tab, add your resource's domain.
-2. Check if Wallarm discovers all resources associated with the added domain.
-
-See also [Working with the scanner](../user-guides/scanner.md).
-
-## IP allowlisting, denylisting, and graylisting work
-
-1. Learn[ core logic of IP lists](../user-guides/ip-lists/overview.md).
-2. Add IP addresses to the [allowlist](../user-guides/ip-lists/overview.md), [denylist](../user-guides/ip-lists/overview.md), and [graylist](../user-guides/ip-lists/overview.md).
-3. Check that the filtering node correctly processes requests originated from IPs added to the lists.
-
-## Users Can Be Configured and Have Proper Access Rights
-
-1. Ensure you have the *Administrator* role in the Wallarm system.
-2. Create, change role, disable, and delete a user as described in [Configuring users](../user-guides/settings/users.md).
-
-See also [Configuring users](../user-guides/settings/users.md).
-
-## User Activity Log Has Records
-
-1. Go to *Settings* –> *Users*.
-2. Check that *User Activity Log* has records.
-
-See also [User activity log](../user-guides/settings/audit-log.md).
-
-## Reporting Works
-
-1. On the *Attacks* tab, put in a search query.
-2. Click the report button on the right.
-3. Put in your email and click the report button again.
-5. Check if you receive the report.
-
-See also [Creating a custom report](../user-guides/search-and-filters/custom-report.md).
+1. Go to **Security Controls** → **Rules**.
+1. Use **Add rule** → **Fine-tuning attack detection** → **Ignore certain attacks**, select to ignore **Path traversal** in `uri` part of request, then create the rule.
+1. Check that data from first step is updated (may take 2-4 minutes).
+1. Repeat attack from the [Node registers attacks](#node-registers-attacks) check. Now this attack should be ignored and not displayed in the **Attacks**.
+1. Delete the rule.

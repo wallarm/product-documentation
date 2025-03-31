@@ -38,6 +38,7 @@ search:
 [restart-nginx-step]:               #step-6-restart-nginx
 [separate-postanalytics-installation-aio]:  ../../../../admin-en/installation-postanalytics-en.md
 [api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
 
 # All-in-Oneインストーラーによるデプロイ
 
