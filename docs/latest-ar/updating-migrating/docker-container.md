@@ -1,5 +1,3 @@
-[link-wallarm-health-check]:        ../admin-en/uat-checklist-en.md
-
 # ترقية صورة Docker المستندة إلى NGINX أو Envoy
 
 تصف هذه التعليمات الخطوات لترقية صورة Docker المستندة إلى NGINX أو Envoy الجارية من إصدار 4.x إلى الإصدار 4.10.

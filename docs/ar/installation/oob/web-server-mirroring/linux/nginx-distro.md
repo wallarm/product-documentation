@@ -32,5 +32,6 @@ search:
 [oob-advantages-limitations]:       ../../overview.md#advantages-and-limitations
 [web-server-mirroring-examples]:    ../overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
 
 --8<-- "latest-ar/installation/oob/web-server-mirroring/linux/nginx-distro.md"

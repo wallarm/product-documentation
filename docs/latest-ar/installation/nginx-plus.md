@@ -1,5 +1,3 @@
-[link-wallarm-health-check]:        ../admin-en/uat-checklist-en.md
-
 # تثبيت كوحدة ديناميكية لـ NGINX Plus
 
 تصف هذه التعليمات الخطوات لتثبيت عقدة تصفية Wallarm كوحدة ديناميكية للنسخة التجارية الرسمية من NGINX Plus.

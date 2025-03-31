@@ -1,5 +1,3 @@
-[link-wallarm-health-check]:        ../admin-en/uat-checklist-en.md
-
 # Bulut düğümü imajının yükseltilmesi
 
 Bu yönergeler, AWS veya GCP üzerinde dağıtılmış 4.x sürümündeki bulut düğümü imajını 5.0 sürümüne yükseltme adımlarını tanımlar.

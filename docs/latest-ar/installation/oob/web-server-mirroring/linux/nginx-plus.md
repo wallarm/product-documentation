@@ -1,5 +1,3 @@
-[link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
-
 # تثبيت الوحدة الديناميكية لـ Wallarm OOB لـ NGINX Plus باستخدام حزم لينكس
 
 تصف هذه التعليمات الخطوات لتثبيت Wallarm كوحدة ديناميكية [OOB](../overview.md) لـ NGINX Plus.

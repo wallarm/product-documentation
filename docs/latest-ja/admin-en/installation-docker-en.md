@@ -1,5 +1,3 @@
-[link-wallarm-health-check]:        ../admin-en/uat-checklist-en.md
-
 # Docker NGINXベースイメージの実行
 
 WallarmのNGINXベースのフィルタリングノードは[Dockerイメージ](https://hub.docker.com/r/wallarm/node)を使用してデプロイできます。このノードはx86_64アーキテクチャとARM64アーキテクチャの両方をサポートしており、インストール中に自動で識別されます。本記事はDockerイメージからのノード実行方法について説明します。

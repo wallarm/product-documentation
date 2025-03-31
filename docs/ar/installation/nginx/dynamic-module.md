@@ -30,5 +30,6 @@
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 [cred-stuffing-docs]:               ../../about-wallarm/credential-stuffing.md
+[link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
 
 --8<-- "latest-ar/installation/nginx/dynamic-module.md"

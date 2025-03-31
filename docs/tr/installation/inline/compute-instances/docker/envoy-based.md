@@ -17,5 +17,6 @@ search:
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 [rate-limit-docs]:                  ../../../../user-guides/rules/rate-limiting.md
 [cred-stuffing-docs]:               ../../../../about-wallarm/credential-stuffing.md
+[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
 
 --8<-- "latest-tr/admin-en/installation-guides/envoy/envoy-docker.md"

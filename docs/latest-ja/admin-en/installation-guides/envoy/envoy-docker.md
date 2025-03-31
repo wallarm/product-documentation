@@ -1,5 +1,3 @@
-[link-wallarm-health-check]:        ../../../admin-en/uat-checklist-en.md
-
 # Docker Envoy‑ベースのイメージを実行する
 
 これらの手順は、[Envoy 1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)に基づくWallarm Dockerイメージの実行手順を説明します。このイメージには、正しいWallarmノード動作に必要なすべてのシステムが含まれています:

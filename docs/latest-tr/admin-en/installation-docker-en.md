@@ -1,4 +1,3 @@
-[link-wallarm-health-check]:        ../admin-en/uat-checklist-en.md
 ```markdown
 
 # Docker NGINX‑tabanlı Görüntüyü Çalıştırma

@@ -1,5 +1,3 @@
-[link-wallarm-health-check]:        ../../../../admin-en/uat-checklist-en.md
-
 # تنصيب Wallarm من صورة GCP الآلية
 
 هذه المقالة توفر الإرشادات لتنصيب Wallarm على GCP باستخدام [الصورة الآلية الرسمية](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node).
