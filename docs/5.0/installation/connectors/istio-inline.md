@@ -89,7 +89,7 @@ Choose an artifact for a self-hosted node deployment and follow the instructions
     ```
   
 !!! info "Avoiding possible 500 errors"
-    To avoid possible 500 errors when problems with the external filter occur, you can define the `[failure_mode_allow](https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/ext_proc/v3/ext_proc.proto)` parameter.
+    To avoid possible 500 errors when problems with the external filter occur, you can add the [`failure_mode_allow`](https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/ext_proc/v3/ext_proc.proto) parameter into configuration.
 
 ## Testing
 
