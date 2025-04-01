@@ -8,54 +8,41 @@ This release introduces key architectural improvements aimed at enhancing perfor
 
 ## Replacing Tarantool with wstore for postanalytics
 
-Wallarm Node now uses **wstore, a Wallarm-developed service**, instead of Tarantool for local postanalytics processing. As a result:
+Wallarm Node now uses **wstore, a Wallarm-developed service**, instead of Tarantool for local postanalytics processing.
 
-=== "NGINX Node"
-    * [All-in-one installer](../installation/nginx/all-in-one.md), [AWS](../installation/cloud-platforms/aws/ami.md)/[GCP](../installation/cloud-platforms/gcp/machine-image.md) images:
+As a result, the following changes have been introduced to NGINX Node:
 
-        * The NGINX directive `wallarm_tarantool_upstream`, which defines the postanalytics module server address when deployed separately from other NGINX services, has been renamed to [`wallarm_wstore_upstream`](../admin-en/configure-parameters-en.md#wallarm_wstore_upstream).
+* [All-in-one installer](../installation/nginx/all-in-one.md), [AWS](../installation/cloud-platforms/aws/ami.md)/[GCP](../installation/cloud-platforms/gcp/machine-image.md) images:
 
-            Backward compatibility preserved with a deprecation warning:
+    * The NGINX directive `wallarm_tarantool_upstream`, which defines the postanalytics module server address when deployed separately from other NGINX services, has been renamed to [`wallarm_wstore_upstream`](../admin-en/configure-parameters-en.md#wallarm_wstore_upstream).
 
-            ```
-            2025/03/04 20:43:04 [warn] 3719#3719: "wallarm_tarantool_upstream" directive is deprecated, use "wallarm_wstore_upstream" instead in /etc/nginx/nginx.conf:19
-            ```
-        * [Log file](../admin-en/configure-logging.md) renamed: `/opt/wallarm/var/log/wallarm/tarantool-out.log` → `/opt/wallarm/var/log/wallarm/wstore-out.log`.
-        * The new wstore configuration file `/opt/wallarm/wstore/wstore.yaml` replaces obsolete Tarantool configuration files such as `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool`.
-        * The `tarantool` section in `/opt/wallarm/etc/wallarm/node.yaml` is now `wstore`. Backward compatibility preserved with a deprecation warning.
-    * [Docker image](../admin-en/installation-docker-en.md):
+        Backward compatibility preserved with a deprecation warning:
 
-        * All the above changes are applied within the container.
-        * Previously, memory for Tarantool was allocated via the `TARANTOOL_MEMORY_GB` environment variable. Now, memory allocation follows the same principle but uses a new variable: `TARANTOOL_MEMORY_GB` → `SLAB_ALLOC_ARENA`.
-    * [Kubernetes Ingress Controller](../admin-en/installation-kubernetes-en.md):
-        
-        * Tarantool is no longer a separate pod, wstore runs within the main `<CHART_NAME>-wallarm-ingress-controller-xxx` pod.
-        * Helm values renamed: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`.
-    * [Kubernetes Sidecar Controller](../installation/kubernetes/sidecar-proxy/deployment.md):
+        ```
+        2025/03/04 20:43:04 [warn] 3719#3719: "wallarm_tarantool_upstream" directive is deprecated, use "wallarm_wstore_upstream" instead in /etc/nginx/nginx.conf:19
+        ```
+    * [Log file](../admin-en/configure-logging.md) renamed: `/opt/wallarm/var/log/wallarm/tarantool-out.log` → `/opt/wallarm/var/log/wallarm/wstore-out.log`.
+    * The new wstore configuration file `/opt/wallarm/wstore/wstore.yaml` replaces obsolete Tarantool configuration files such as `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool`.
+    * The `tarantool` section in `/opt/wallarm/etc/wallarm/node.yaml` is now `wstore`. Backward compatibility preserved with a deprecation warning.
+* [Docker image](../admin-en/installation-docker-en.md):
 
-        * Helm values renamed: `postanalytics.tarantool.*` → [`postanalytics.wstore.*`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L625).
-        * The following Docker images have been removed from the Helm chart for Sidecar deployment:
-
-            * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
-            * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
-            * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
-            * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
-            
-            These images have been replaced by the [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers) image, which now runs the relevant services.
-=== "Native Node"
-    `tarantool_exporter` is now `postanalytics_exporter` in the Native Node configuration file. This change also requires an update to the `version` value:
-
-    ```diff
-    -version: 3
-    +version: 4
-
-    -tarantool_exporter:
-    +postanalytics_exporter:
-      address: 127.0.0.1:3313
-      enabled: true
-    ```
+    * All the above changes are applied within the container.
+    * Previously, memory for Tarantool was allocated via the `TARANTOOL_MEMORY_GB` environment variable. Now, memory allocation follows the same principle but uses a new variable: `TARANTOOL_MEMORY_GB` → `SLAB_ALLOC_ARENA`.
+* [Kubernetes Ingress Controller](../admin-en/installation-kubernetes-en.md):
     
-    Deployments using version 2 or version 3 will continue to work with Native Node 0.13.x if you do not explicitly specify the `postanalytics_exporter` configuration. However, this approach is deprecated, and updating to the new configuration format is recommended.
+    * Tarantool is no longer a separate pod, wstore runs within the main `<CHART_NAME>-wallarm-ingress-controller-xxx` pod.
+    * Helm values renamed: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`.
+* [Kubernetes Sidecar Controller](../installation/kubernetes/sidecar-proxy/deployment.md):
+
+    * Helm values renamed: `postanalytics.tarantool.*` → [`postanalytics.wstore.*`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml#L625).
+    * The following Docker images have been removed from the Helm chart for Sidecar deployment:
+
+        * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
+        * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
+        * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
+        * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
+        
+        These images have been replaced by the [wallarm/node-helpers](https://hub.docker.com/r/wallarm/node-helpers) image, which now runs the relevant services.
 
 The described changes are incorporated into the Node upgrade instructions provided below.
 

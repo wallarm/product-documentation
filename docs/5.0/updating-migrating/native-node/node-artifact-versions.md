@@ -10,6 +10,25 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.13.0 (2025-03-31)
+
+* `tarantool_exporter` is now `postanalytics_exporter` in the Native Node configuration file. This change also requires an update to the `version` value:
+
+    ```diff
+    -version: 3
+    +version: 4
+
+    -tarantool_exporter:
+    +postanalytics_exporter:
+      address: 127.0.0.1:3313
+      enabled: true
+    ```
+    
+    Deployments using version 2 or version 3 will continue to work with Native Node 0.13.x and above if you do not explicitly specify the `postanalytics_exporter` configuration. However, this approach is deprecated, and updating to the new configuration format is recommended.
+* Added support for the [`envoy-external-filter` operation mode for Istio/Envoy external gRPC processing filter](../../installation/connectors/istio-inline.md)
+* Fixed the [CVE-2024-56171](https://nvd.nist.gov/vuln/detail/CVE-2024-56171), [CVE-2025-24928](https://nvd.nist.gov/vuln/detail/CVE-2025-24928), [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2025-22868](https://nvd.nist.gov/vuln/detail/CVE-2025-22868) vulnerabilities
+* Fixed request counter when `wallarm_mode: off` (they are not counted)
+
 ### 0.12.1 (2025-02-27)
 
 * Fixed the [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2024-13176](https://nvd.nist.gov/vuln/detail/CVE-2024-13176), [CVE-2024-56326](https://nvd.nist.gov/vuln/detail/CVE-2024-56326), [CVE-2024-56201](https://nvd.nist.gov/vuln/detail/CVE-2024-56201) and [CVE-2025-22866](https://nvd.nist.gov/vuln/detail/CVE-2025-22866) vulnerabilities
@@ -155,6 +174,13 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.13.0 (2025-03-31)
+
+* Added support for the [`envoy-external-filter` operation mode for Istio/Envoy external gRPC processing filter](../../installation/connectors/istio-inline.md)
+* Fixed the [CVE-2024-56171](https://nvd.nist.gov/vuln/detail/CVE-2024-56171), [CVE-2025-24928](https://nvd.nist.gov/vuln/detail/CVE-2025-24928), [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2025-22868](https://nvd.nist.gov/vuln/detail/CVE-2025-22868) vulnerabilities
+* Fixed request counter when `wallarm_mode: off` (they are not counted)
+* Removed `.Values.config.connector.mode` parameter—blocking behavior is now controlled by a single `wallarm_mode` parameter inside the `route_config` section
+
 ### 0.12.1 (2025-02-27)
 
 * Fixed the [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2024-13176](https://nvd.nist.gov/vuln/detail/CVE-2024-13176), [CVE-2024-56326](https://nvd.nist.gov/vuln/detail/CVE-2024-56326), [CVE-2024-56201](https://nvd.nist.gov/vuln/detail/CVE-2024-56201) and [CVE-2025-22866](https://nvd.nist.gov/vuln/detail/CVE-2025-22866) vulnerabilities
@@ -241,6 +267,25 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.13.0 (2025-03-31)
+
+* `tarantool_exporter` is now `postanalytics_exporter` in the Native Node configuration file. This change also requires an update to the `version` value:
+
+    ```diff
+    -version: 3
+    +version: 4
+
+    -tarantool_exporter:
+    +postanalytics_exporter:
+      address: 127.0.0.1:3313
+      enabled: true
+    ```
+    
+    Deployments using version 2 or version 3 will continue to work with Native Node 0.13.x and above if you do not explicitly specify the `postanalytics_exporter` configuration. However, this approach is deprecated, and updating to the new configuration format is recommended.
+* Added support for the [`envoy-external-filter` operation mode for Istio/Envoy external gRPC processing filter](../../installation/connectors/istio-inline.md)
+* Fixed the [CVE-2024-56171](https://nvd.nist.gov/vuln/detail/CVE-2024-56171), [CVE-2025-24928](https://nvd.nist.gov/vuln/detail/CVE-2025-24928), [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2025-22868](https://nvd.nist.gov/vuln/detail/CVE-2025-22868) vulnerabilities
+* Fixed request counter when `wallarm_mode: off` (they are not counted)
 
 ### 0.12.1 (2025-02-27)
 
