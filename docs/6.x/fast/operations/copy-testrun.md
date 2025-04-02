@@ -1,1 +1,0 @@
---8<-- "latest/fast/operations/copy-testrun.md"
