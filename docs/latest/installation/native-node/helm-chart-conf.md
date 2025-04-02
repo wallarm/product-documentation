@@ -223,6 +223,9 @@ Traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `s
 
 This value can be overridden for specific routes.
 
+!!! info "Syntax for the `off` value"
+    The `off` value should be quoted `"off"`.
+
 Default: `monitoring`.
 
 ### config.connector.route_config.routes
@@ -295,6 +298,9 @@ Sets the [Wallarm application ID](../../user-guides/settings/applications.md). O
 #### wallarm_mode
 
 Host-specific traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `safe_blocking`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
+
+!!! info "Syntax for the `off` value"
+    The `off` value should be quoted `"off"`.
 
 Default: `monitoring`.
 
