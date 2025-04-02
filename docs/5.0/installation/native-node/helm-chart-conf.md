@@ -217,7 +217,7 @@ Traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `s
 This value can be overridden for specific routes.
 
 !!! info "Syntax for the `off` value"
-    Due to the known Helm [bug](https://github.com/helm/helm/issues/5497), the `off` value should be quoted `"off"`.
+    The `off` value should be quoted `"off"`.
 
 Default: `monitoring`.
 
@@ -293,7 +293,7 @@ Sets the [Wallarm application ID](../../user-guides/settings/applications.md). O
 Host-specific traffic [filtration mode](../../admin-en/configure-wallarm-mode.md): `block`, `safe_blocking`, `monitoring` or `off`. In OOB mode, traffic blocking is not supported.
 
 !!! info "Syntax for the `off` value"
-    Due to the known Helm [bug](https://github.com/helm/helm/issues/5497), the `off` value should be quoted `"off"`.
+    The `off` value should be quoted `"off"`.
 
 Default: `monitoring`.
 
