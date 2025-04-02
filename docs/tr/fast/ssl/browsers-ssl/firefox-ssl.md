@@ -1,1 +1,0 @@
---8<-- "latest-tr/fast/ssl/browsers-ssl/firefox-ssl.md"

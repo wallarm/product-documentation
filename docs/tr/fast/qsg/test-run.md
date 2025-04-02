@@ -1,1 +1,0 @@
---8<-- "latest-tr/fast/qsg/test-run.md"
