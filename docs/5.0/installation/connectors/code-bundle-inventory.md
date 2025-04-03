@@ -116,6 +116,12 @@ Requires Native Node version 0.8.3 or higher.
 
 [How to upgrade](fastly.md#upgrading-the-wallarm-compute-service-on-fastly)
 
+### 1.2.0 (2025-04-03)
+
+* Added ability to use alternative configurations
+
+    If the `wallarm_config` config store is not linked to the service, it will look for `wallarm_config_a`, then for `wallarm_config_b`, and then for `wallarm_config_c`
+
 ### 1.1.0 (2025-01-06)
 
 * Added support for [log streaming endpoints](https://www.fastly.com/documentation/guides/integrations/logging/) with configuring via the optional `LOGGING_ENDPOINT` [parameter](fastly.md#4-create-the-wallarm-config-store)
