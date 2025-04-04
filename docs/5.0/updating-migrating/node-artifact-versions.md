@@ -12,6 +12,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.3.11 (2025-04-03)
+
+* Fixed the [CVE-2024-55549](https://nvd.nist.gov/vuln/detail/CVE-2024-55549), [CVE-2025-24855](https://nvd.nist.gov/vuln/detail/CVE-2025-24855), [CVE-2025-30153](https://nvd.nist.gov/vuln/detail/CVE-2025-30153), [CVE-2025-30204](https://nvd.nist.gov/vuln/detail/CVE-2025-30204), [CVE-2024-8176](https://nvd.nist.gov/vuln/detail/CVE-2024-8176), [CVE-2025-29914](https://nvd.nist.gov/vuln/detail/CVE-2025-29914), [CVE-2025-23419](https://nvd.nist.gov/vuln/detail/CVE-2025-23419), [CVE-2025-22870](https://nvd.nist.gov/vuln/detail/CVE-2025-22870), [CVE-2025-27113](https://nvd.nist.gov/vuln/detail/CVE-2025-27113) vulnerabilities
+
 ### 5.3.10 (2025-03-10)
 
 * Added support for NGINX stable 1.26.3
@@ -86,6 +90,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 5.3.12 (2025-04-03)
+
+* Fixed the [CVE-2024-55549](https://nvd.nist.gov/vuln/detail/CVE-2024-55549), [CVE-2025-24855](https://nvd.nist.gov/vuln/detail/CVE-2025-24855), [CVE-2025-30153](https://nvd.nist.gov/vuln/detail/CVE-2025-30153), [CVE-2025-30204](https://nvd.nist.gov/vuln/detail/CVE-2025-30204), [CVE-2024-8176](https://nvd.nist.gov/vuln/detail/CVE-2024-8176), [CVE-2025-29914](https://nvd.nist.gov/vuln/detail/CVE-2025-29914), [CVE-2025-23419](https://nvd.nist.gov/vuln/detail/CVE-2025-23419), [CVE-2025-22870](https://nvd.nist.gov/vuln/detail/CVE-2025-22870), [CVE-2025-27113](https://nvd.nist.gov/vuln/detail/CVE-2025-27113) vulnerabilities
 
 ### 5.3.11 (2025-03-26)
 
@@ -189,6 +197,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+### 5.3.11 (2025-04-03)
+
+* Fixed the [CVE-2024-55549](https://nvd.nist.gov/vuln/detail/CVE-2024-55549), [CVE-2025-24855](https://nvd.nist.gov/vuln/detail/CVE-2025-24855), [CVE-2025-30153](https://nvd.nist.gov/vuln/detail/CVE-2025-30153), [CVE-2025-30204](https://nvd.nist.gov/vuln/detail/CVE-2025-30204), [CVE-2024-8176](https://nvd.nist.gov/vuln/detail/CVE-2024-8176), [CVE-2025-29914](https://nvd.nist.gov/vuln/detail/CVE-2025-29914), [CVE-2025-23419](https://nvd.nist.gov/vuln/detail/CVE-2025-23419), [CVE-2025-22870](https://nvd.nist.gov/vuln/detail/CVE-2025-22870), [CVE-2025-27113](https://nvd.nist.gov/vuln/detail/CVE-2025-27113) vulnerabilities
+
 ### 5.3.10 (2025-03-10)
 
 * Fixed the [CVE-2024-56171](https://nvd.nist.gov/vuln/detail/CVE-2024-56171), [CVE-2025-24928](https://nvd.nist.gov/vuln/detail/CVE-2025-24928), [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2025-22868](https://nvd.nist.gov/vuln/detail/CVE-2025-22868) vulnerabilities
@@ -272,6 +284,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 5.3.11 (2025-04-03)
+
+* Fixed the [CVE-2024-55549](https://nvd.nist.gov/vuln/detail/CVE-2024-55549), [CVE-2025-24855](https://nvd.nist.gov/vuln/detail/CVE-2025-24855), [CVE-2025-30153](https://nvd.nist.gov/vuln/detail/CVE-2025-30153), [CVE-2025-30204](https://nvd.nist.gov/vuln/detail/CVE-2025-30204), [CVE-2024-8176](https://nvd.nist.gov/vuln/detail/CVE-2024-8176), [CVE-2025-29914](https://nvd.nist.gov/vuln/detail/CVE-2025-29914), [CVE-2025-23419](https://nvd.nist.gov/vuln/detail/CVE-2025-23419), [CVE-2025-22870](https://nvd.nist.gov/vuln/detail/CVE-2025-22870), [CVE-2025-27113](https://nvd.nist.gov/vuln/detail/CVE-2025-27113) vulnerabilities
 
 ### 5.3.10 (2025-03-10)
 
