@@ -52,6 +52,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
-### wallarm-node-6-0-0-20250403-?????? (2025-04-03)
+### wallarm-node-6-0-0-20250403-102125 (2025-04-03)
 
 * Initial release 6.0, [see changelog](what-is-new.md)
