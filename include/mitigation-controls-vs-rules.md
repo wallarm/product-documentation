@@ -1,0 +1,2 @@
+* Rules are used to fine-tune Wallarm's [basic](protecting-against-attacks.md#tools-for-attack-detection) attack protection **while** mitigation controls extend this basic protection with additional security measures.
+* Rules follow the filtration mode **while** mitigation controls are capable of both following and contradicting it (and being prior) and even changing it.
