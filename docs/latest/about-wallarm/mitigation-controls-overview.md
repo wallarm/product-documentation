@@ -9,7 +9,7 @@ Using mitigation controls, you can enable and configure:
 
 * Real-time blocking mode
 * GraphQL API protection
-* Enumeration attack protection
+* [Enumeration attack protection](../api-protection/enumeration-attack-protection.md)
 * BOLA enumeration protection
 * Forced browsing protection
 * Brute force protection
