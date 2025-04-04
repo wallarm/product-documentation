@@ -859,8 +859,8 @@
 /pt-br/admin-en/monitoring/* /pt-br/admin-en/configure-statistics-service/
 /ja/admin-en/monitoring/* /ja/admin-en/configure-statistics-service/
 
-/5.0/installation/kubernetes/kong-ingress-controller/* /5.0/installation/connectors/kong-api-gateway/
-/5.0/installation/inline/kubernetes/kong-ingress-controller/* /5.0/installation/connectors/kong-api-gateway/
+/5.x/installation/kubernetes/kong-ingress-controller/* /5.x/installation/connectors/kong-api-gateway/
+/5.x/installation/inline/kubernetes/kong-ingress-controller/* /5.x/installation/connectors/kong-api-gateway/
 /installation/kubernetes/kong-ingress-controller/* /installation/connectors/kong-api-gateway/
 /installation/inline/kubernetes/kong-ingress-controller/* /installation/connectors/kong-api-gateway/
 /ar/installation/kubernetes/kong-ingress-controller/* /ar/installation/connectors/kong-api-gateway/
@@ -874,6 +874,8 @@
 
 /admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /installation/multi-tenant/overview/
 /admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /installation/multi-tenant/overview/
+/5.x/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /5.x/installation/multi-tenant/overview/
+/5.x/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /5.x/installation/multi-tenant/overview/
 /4.10/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /4.10/installation/multi-tenant/overview/
 /4.10/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /4.10/installation/multi-tenant/overview/
 /4.8/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /4.8/installation/multi-tenant/overview/
@@ -883,9 +885,9 @@
 /2.18/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/ /2.18/installation/multi-tenant/overview/
 /2.18/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/ /2.18/installation/multi-tenant/overview/
 
-/5.0/admin-en/configuration-guides/envoy/fine-tuning /5.0/installation/connectors/istio
-/5.0/admin-en/installation-guides/envoy/envoy-docker /5.0/installation/connectors/istio
-/5.0/installation/inline/compute-instances/docker/envoy-based /5.0/installation/connectors/istio
+/5.x/admin-en/configuration-guides/envoy/fine-tuning /5.x/installation/connectors/istio
+/5.x/admin-en/installation-guides/envoy/envoy-docker /5.x/installation/connectors/istio
+/5.x/installation/inline/compute-instances/docker/envoy-based /5.x/installation/connectors/istio
 /admin-en/configuration-guides/envoy/fine-tuning /installation/connectors/istio
 /admin-en/installation-guides/envoy/envoy-docker /installation/connectors/istio
 /installation/inline/compute-instances/docker/envoy-based /installation/connectors/istio
@@ -912,3 +914,5 @@
 /4.8/api-sessions/ /4.8
 /4.8/news/ /4.8
 /4.8/api-attack-surface/ /4.8
+
+/user-guides/nodes/cdn-node/ /installation/security-edge/deployment/

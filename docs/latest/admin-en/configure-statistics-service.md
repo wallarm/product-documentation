@@ -19,7 +19,7 @@ You can obtain Wallarm [NGINX or Native](../installation/nginx-native-node-inter
     * `/etc/nginx/wallarm-status.conf` for all-in-one installer
     * `/etc/nginx/conf.d/wallarm-status.conf` for other installations
     
-    Also, it is strongly advised not to alter any of the existing lines of the default `wallarm-status` configuration as it may corrupt the process of metric data upload to the Wallarm cloud.
+    Also, it is strongly advised not to alter any of the existing lines of the default `wallarm-status` configuration.
 
 When using the directive, statistics can be given in JSON format or in a format compatible with [Prometheus][link-prometheus]. Usage:
 
@@ -83,7 +83,6 @@ To allow requests from another server:
 
             ```diff
             server {
-                # Port should match the NGINX_PORT variable value
                 listen 127.0.0.8:80;
 
                 server_name localhost;
@@ -137,7 +136,6 @@ To change an IP address and/or port of the statistics service, follow the instru
 
             ```
             server {
-                # Port should match the NGINX_PORT variable value
                 listen 127.0.0.8:80;
 
                 server_name localhost;
@@ -191,7 +189,7 @@ To obtain statistics in the Prometheus format from node deployment options that 
     ```
 
     !!! warning "Do not delete or change the default `/wallarm-status` configuration"
-        Please do not delete or change the default configuration of the `/wallarm-status` location. Default operation of this endpoint is crucial to upload correct data to the Wallarm Cloud.
+        Please do not delete or change the default configuration of the `/wallarm-status` location. Default operation of this endpoint is crucial.
 1. Restart NGINX to apply changes:
 
     --8<-- "../include/waf/restart-nginx-4.4-and-above.md"

@@ -48,7 +48,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 Copy the settings for processing and proxying requests from the following configuration files of the previous Wallarm node version to the files of the filtering node 6.x:
 
 * `/etc/nginx/nginx.conf` and other files with NGINX settings
-* `/etc/nginx/wallarm-status.conf` with the filtering node monitoring service settings
+* `/etc/nginx/wallarm-status.conf` (or `/etc/nginx/conf.d/wallarm-status.conf`) with the filtering node monitoring service settings
 * `/etc/environment` with environment variables
 * any other custom configuration files for request processing and proxying, such as `/etc/nginx/sites-available/default`
 

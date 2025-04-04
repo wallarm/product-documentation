@@ -14,7 +14,7 @@ Each node version is released as a set of artifacts - such as Docker images, Hel
 | 4.8                | -                   | October 2023   | November 2024 |
 | 4.10               | -                   | January 2024   | July 2025     |
 | 5.x                | 0.12.x-             | July 2024      |               |
-| 6.x                | 0.13.x+             | March 2025     |               |
+| 6.x                | Coming soon         | March 2025     |               |
 
 ## Version structure
 

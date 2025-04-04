@@ -71,11 +71,11 @@ The **all-in-one installer** provides a simple node installation process by auto
 
 ## Step 3: Download all-in-one Wallarm installer
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download-5.0.md"
 
 ## Step 4: Run all-in-one Wallarm installer
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include/waf/installation/all-in-one-installer-run-5.0.md"
 
 Commands in the further steps are the same for x86_64 and ARM64 installations.
 
@@ -119,7 +119,7 @@ Below there are a few of the typical settings that you can apply if needed:
 
 ## Launch options
 
---8<-- "../include/waf/installation/all-in-one/launch-options.md"
+--8<-- "../include/waf/installation/all-in-one/launch-options-5.0.md"
 
 ## Starting the installation over
 

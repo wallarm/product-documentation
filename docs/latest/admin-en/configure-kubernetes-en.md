@@ -28,7 +28,6 @@ controller:
       kind: Deployment
       service:
         annotations: {}
-      replicaCount: 1
       arena: "2.0"
       livenessProbe:
         failureThreshold: 3
@@ -210,17 +209,13 @@ To store the node token in K8s secrets and pull it to the Helm chart:
 
 **Default value**: `existingSecret.enabled: false` that points to the Helm chart to get the Wallarm node token from `controller.wallarm.token`.
 
-### controller.wallarm.postanalytics.replicaCount
-
-The number of running pods for postanalytics. Postanalytics is used for the behavior‑based attack detection.
-
-**Default value**: `1`
-
 ### controller.wallarm.postanalytics.arena
 
 Specifies the amount of memory allocated for postanalytics service. It is recommended to set up a value sufficient to store request data for the last 5-15 minutes.
 
 **Default value**: `2.0`
+
+In the [NGINX Node 5.x and earlier](../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics), the parameter has been named `controller.wallarm.tarantool.arena`. Renaming is required during upgrade.
 
 ### controller.wallarm.metrics.enabled
 

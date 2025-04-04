@@ -39,7 +39,7 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
     ```
     daemon off;
     worker_processes auto;
-    load_module /opt/wallarm/modules/bullseye-1180/ngx_http_wallarm_module.so;
+    load_module /usr/lib/nginx/modules/ngx_http_wallarm_module.so;
     pid /tmp/nginx.pid;
     include /etc/nginx/modules-enabled/*.conf;
 
@@ -82,7 +82,7 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
         listen $PORT default_server;
         server_name _;
         wallarm_mode monitoring;
-        
+
         location / {
           proxy_pass http://unix:/tmp/nginx.socket;
 
@@ -174,12 +174,6 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
             # Export $PORT as $NGINX_PORT (required for the `export-metrics` script)
             log "Exporting PORT as NGINX_PORT for Wallarm metrics."
             export NGINX_PORT="$PORT"
-            export -n TT_MEMTX_MEMORY
-
-            if [ ! -z "$NGINX_PORT" ]; then
-                    sed -i -r "s#http://127.0.0.8/wallarm-status#http://127.0.0.8:$NGINX_PORT/wallarm-status#" \
-                    /opt/wallarm/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf
-            fi
 
             # Start all Wallarm services and NGINX under supervisord
             log "Starting all Wallarm services and NGINX under supervisord."
@@ -345,13 +339,12 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
     ```dockerfile
     FROM ubuntu:22.04
 
-    ARG VERSION="5.0.2"
+    ARG VERSION="6.0.0"
 
     ENV PORT=3000
     ENV WALLARM_LABELS="group=heroku"
     ENV WALLARM_API_TOKEN=
     ENV WALLARM_API_HOST="us1.api.wallarm.com"
-    ENV TT_MEMTX_MEMORY=268435456
 
     RUN apt-get -qqy update && apt-get -qqy install nginx curl && apt-get clean
 
@@ -359,14 +352,20 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
     RUN curl -o /install.sh "https://meganode.wallarm.com/$(echo "$VERSION" | cut -d '.' -f 1-2)/wallarm-$VERSION.x86_64-glibc.sh" \
             && chmod +x /install.sh \
             && /install.sh --noexec --target /opt/wallarm \
-            && rm -f /install.sh
+            && rm -f /install.sh \
+            && cd /opt/wallarm \
+            && chmod +x pick-module.sh \
+            && SELECTED_MODULE="$(./pick-module.sh)" \
+            && echo "Selected module => $SELECTED_MODULE" \
+            # Copy wlrm-module into NGINX's module directory
+            && cp "$SELECTED_MODULE" /usr/lib/nginx/modules/ngx_http_wallarm_module.so \
+            && mkdir -p /usr/local/lib \
+            && mv /opt/wallarm/modules/libwallarm.so* -t "/usr/local/lib/" \
+            && rm -rf /opt/wallarm/modules
 
-    # Set Tarantool's $PORT variable explicitly as it conflicts with Heroku's $PORT
-    RUN sed -i '/^\[program:tarantool\]$/a environment=PORT=3313' /opt/wallarm/etc/supervisord.conf
-    
     # Run supervisord in background. Our foreground process is the Heroku app itself
     RUN sed -i '/nodaemon=true/d' /opt/wallarm/etc/supervisord.conf
-    
+
     # Add NGINX to supervisord
     RUN printf "\n\n[program:nginx]\ncommand=/usr/sbin/nginx\nautorestart=true\nstartretries=4294967295\n" | tee -a /opt/wallarm/etc/supervisord.conf
 
@@ -383,7 +382,8 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
     COPY entrypoint.sh /entrypoint.sh
 
     # Let entrypoint modify the config under dyno:dyno and redirect NGINX logs to console
-    RUN chmod 666 /etc/nginx/nginx.conf \
+    RUN chmod +x /entrypoint.sh \
+            && chmod 666 /etc/nginx/nginx.conf \
             && chmod 777 /etc/nginx/ \
             && ln -sf /dev/stdout /var/log/nginx/access.log \
             && ln -sf /dev/stderr /var/log/nginx/error.log
@@ -396,10 +396,10 @@ To deploy Wallarm's Docker image on Heroku, start by creating the necessary conf
 Execute the following commands within the previously created directory:
 
 ```
-docker build -t wallarm-heroku:5.0.2 .
+docker build -t wallarm-heroku:6.0.0 .
 docker login
-docker tag wallarm-heroku:5.0.2 <DOCKERHUB_USERNAME>/wallarm-heroku:5.0.2
-docker push <DOCKERHUB_USERNAME>/wallarm-heroku:5.0.2
+docker tag wallarm-heroku:6.0.0 <DOCKERHUB_USERNAME>/wallarm-heroku:6.0.0
+docker push <DOCKERHUB_USERNAME>/wallarm-heroku:6.0.0
 ```
 
 ## Step 3: Run the built Docker image on Heroku
@@ -410,7 +410,7 @@ To deploy the image on Heroku:
 1. Construct a `Dockerfile` which will include the installation of necessary dependencies specific to your app's runtime. For a Node.js application, use the following template:
 
     ```dockerfile
-    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:5.0.2
+    FROM <DOCKERHUB_USERNAME>/wallarm-heroku:6.0.0
 
     ENV NODE_MAJOR=20
 
