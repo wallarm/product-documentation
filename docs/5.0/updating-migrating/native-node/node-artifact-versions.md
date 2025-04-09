@@ -10,6 +10,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.13.1 (2025-04-09)
+
+* Internal changes used by the support team
+* Stability improvements
+
 ### 0.13.0 (2025-03-31)
 
 * `tarantool_exporter` is now `postanalytics_exporter` in the Native Node configuration file. This change also requires an update to the `version` value:
@@ -174,6 +179,11 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.13.1 (2025-04-09)
+
+* Internal changes used by the support team
+* Stability improvements
+
 ### 0.13.0 (2025-03-31)
 
 * Added support for the [`envoy-external-filter` operation mode for Istio/Envoy external gRPC processing filter](../../installation/connectors/istio-inline.md)
@@ -267,6 +277,11 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.13.1 (2025-04-09)
+
+* Internal changes used by the support team
+* Stability improvements
 
 ### 0.13.0 (2025-03-31)
 
