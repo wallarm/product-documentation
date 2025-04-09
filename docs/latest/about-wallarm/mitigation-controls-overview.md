@@ -1,11 +1,4 @@
-[link-attack-detection-tools]:  protecting-against-attacks.md#tools-for-attack-detection
-[link-sub-plans]:               subscription-plans.md#waap-and-advanced-api-security
-[link-filtration-mode]:         ../admin-en/configure-wallarm-mode.md
-[link-nodes]:                   overview.md#how-wallarm-works
-[link-sessions]:                ../api-sessions/overview.md
-[link-brute-force-protection]:  ../admin-en/configuration-guides/protecting-against-bruteforce.md
-
-# Mitigation Controls
+# Mitigation Controls <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 Mitigation controls extend Wallarm's [attack protection](protecting-against-attacks.md#tools-for-attack-detection) with additional security measures and allow fine-tuning of the Wallarm behavior.
 
