@@ -88,7 +88,7 @@ With Wallarm's rate limiting feature, security teams can effectively manage the 
 
 For example, you can limit API connections for each user, preventing them from making thousands of requests per minute. This would put a heavy load on your servers and could cause the service to crash. By implementing rate limiting, you can protect your servers from overload and ensure that all users have fair access to the API.
 
-You can configure rate limits easily in the Wallarm Console UI → **Rules** → **Set rate limit** by specifying the rate limit scope, rate, burst, delay, and response code for your particular use case.
+You can configure rate limits easily in the Wallarm Console UI → **Rules** → **Advanced rate limiting** by specifying the rate limit scope, rate, burst, delay, and response code for your particular use case.
 
 [Guide on rate limit configuration →](../../user-guides/rules/rate-limiting.md)
 
