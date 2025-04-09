@@ -1,4 +1,4 @@
-# Mitigation Controls
+# Mitigation Controls <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 Mitigation controls extend Wallarm's [basic](protecting-against-attacks.md#tools-for-attack-detection) attack protection with additional security measures.
 
