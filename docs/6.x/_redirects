@@ -918,4 +918,4 @@
 /user-guides/nodes/cdn-node/ /installation/security-edge/deployment/
 
 /fast/* /api-attack-surface/overview/
-/5.0/fast/* /5.0/api-attack-surface/overview/
+/5.x/fast/* /5.x/api-attack-surface/overview/
