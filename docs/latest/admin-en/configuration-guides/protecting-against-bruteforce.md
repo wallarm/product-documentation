@@ -4,14 +4,18 @@ A brute force attack is one of the attack types not detected by Wallarm out-of-t
 
 [Regular brute force attacks](../../attacks-vulns-list.md#brute-force-attack) include password brute forcing, session identifier brute forcing, and credential stuffing. These attacks are characterized by a large number of requests with different forced parameter values sent to a typical URI for a limited timeframe.
 
-Note that:
+## Basic protection
 
-* Brute force protection described in this article is one of the ways for the load control provided by Wallarm. Alternatively, you can apply [rate limiting](../../user-guides/rules/rate-limiting.md). Use rate limiting to slow the incoming traffic and brute force protection to completely block the attacker.
-* Besides brute force protection, you can configure protection against [forced browsing](protecting-against-forcedbrowsing.md) similarly.
+!!! info "Availability"
+    If [advanced protection](#advanced-protection) tools are enabled for you as a part of Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security), basic protection controls may be unavailable. If you want to enable them, contact the [Wallarm support team](https://support.wallarm.com/).
 
-## Configuring
+Brute force protection described in this section is one of the ways for the basic load control provided by Wallarm. Alternatively, you can apply [rate limiting](../../user-guides/rules/rate-limiting.md). Use rate limiting to slow the incoming traffic and brute force protection to completely block the attacker.
 
-Consider the example below to learn how to configure brute force protection.
+Besides basic brute force protection, you can configure basic protection against [forced browsing](protecting-against-forcedbrowsing.md) similarly.
+
+### Configuring
+
+Consider the example below to learn how to configure brute force protection with triggers.
 
 Let us say you want to prevent malicious actors from trying various passwords to gain authorized access to your `rent-car` application via its authentication endpoints (brute force attack). To provide this protection, for your authentication endpoints, you can limit number of requests per time interval, and set to block IPs exceeding this limit:
 
@@ -50,7 +54,7 @@ Let us say you want to prevent malicious actors from trying various passwords to
 
 You can configure several triggers for brute force protection.
 
-## Testing
+### Testing
 
 !!! info "Testing in your environment"
     To test the **Brute force** trigger in your environment, in the trigger and the requests below, replace the domain with any public one (e.g. `example.com`). Set your own [application](../../user-guides/settings/applications.md) and link the domain to it.
@@ -72,7 +76,7 @@ To test the trigger described in the [Configuring](#configuring) section:
 
     To search for brute force attacks, you can use the `brute` filter. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-## Requirements and restrictions
+### Requirements and restrictions
 
 **Requirements**
 
@@ -81,3 +85,7 @@ To protect resources from brute force attacks, real clients' IP addresses are re
 **Restrictions**
 
 When searching for brute force attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types.
+
+## Advanced protection <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+
+Wallarm's Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) provides [advanced configuration](../../api-protection/enumeration-attack-protection.md) of brute force protection.
