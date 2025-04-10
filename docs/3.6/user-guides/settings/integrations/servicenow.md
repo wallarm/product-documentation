@@ -2,7 +2,7 @@
 
 You can set up Wallarm to create trouble tickets in [ServiceNow](https://www.servicenow.com/) when the following events are triggered:
 
---8<-- "../include/integrations/events-for-integrations-mail.md"
+--8<-- "../include/integrations/events-for-integrations-mail-4.10.md"
 
 ## Requirements
 

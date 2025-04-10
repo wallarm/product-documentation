@@ -20,6 +20,7 @@ API Attack Surface Management provides multiple automated activities described i
 * Provides insights into potential API protocols that an organization is using (JSON-API, GraphQL, XML-RPC, JSON-RPC, OData, gRPC, WebSocket, SOAP, WebDav, HTML WEB and more).
 * Uncovers private API specifications unintentionally made publicly available.
 * Continuously monitors changes in the external API attack surface to detect new APIs, shadow APIs, and rogue endpoints introduced during development or deployment.
+* [Notifies](setup.md#notifications) your about discovery results and changes in your API attack surface.
 
 ### Step 2: WAF coverage discovery & testing
 
@@ -32,6 +33,7 @@ API Attack Surface Management provides multiple automated activities described i
 
 * Once the external attack surface landscape is discovered, starts to [discover API leaks and vulnerabilities](security-issues.md) related to the discovered apps and APIs.
 * Monitors and classifies vulnerabilities by severity, categorizing issues such as misconfigurations, weak encryption, or outdated dependencies to prioritize remediation efforts effectively.
+* [Notifies](setup.md#notifications) your about found leaks and detected vulnerabilities.
 
 ## Vulnerability types detected
 
@@ -53,12 +55,4 @@ See full list with the descriptions [here](security-issues.md#list-of-detected-i
 
 ## Enabling and setup
 
-To use AASM, the Wallarm's [API Attack Surface](../about-wallarm/subscription-plans.md#api-attack-surface) subscription plan should be active for your company. To activate, do one of the following:
-
-* If you do not have Wallarm account yet, get pricing information and activate AASM on the Wallarm's official site [here](https://www.wallarm.com/product/aasm).
-
-    This activates the Core (freemium) version, and scanning of the used email's domain starts immediately. After activation, you can [add additional domains](setup.md) to the scope.
-
-    You can continue using the Core version for as long as you need, provided that Enterprise features are not necessary for your use. See differences of different versions [here](https://www.wallarm.com/product/aasm-pricing?internal_utm_source=product-page-aasm).
-
-* If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
+To start using API Attack Surface Management, enable and configure it as described in API [Attack Surface Management Setup](setup.md).
