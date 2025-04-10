@@ -52,7 +52,7 @@ The collectd service, previously installed on all filtering nodes, has been remo
 
 Use the [`/wallarm-status` endpoint](../admin-en/configure-statistics-service.md), which replaces collectd by providing the same metrics in Prometheus and JSON formats.
 
-As a result of this change, also the following changed in the configuration fules:
+As a result of this change, also the following changed in the configuration rules:
 
 * The `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` collectd configuration file is no longer used.
 * If you previously used collectd to forward metrics via a network plugin, such as:
