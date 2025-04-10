@@ -89,6 +89,16 @@ You can get report on all or filtered security issues in CSV or JSON format usin
 
 Information of you choice about security issues is also included into the [detailed DOCX report](api-surface.md#api-attack-surface-reports) on your API attack surface.
 
+## Notifications
+
+By default, Wallarm will send to your personal email:
+
+* Information about detected **critical security issues** with the detailed description of each issue and instructions on how to mitigate them.
+* Results of **every scan** (scheduled or manual) of your API surface, that will include information on all new security issues found during the scan with their distribution by [risk level](#issue-risk-level) and suggested action items for mitigation.
+* **Weekly AASM statistics** with information about hosts and APIs discovered for your configured domains within last week and security issues for them.
+
+You can unsubscribe at any moment. You can subscribe additional email to get all or some of this information. See how to configure [here](../user-guides/settings/integrations/email.md#setting-up-integration).
+
 ## API leaks
 
 Among other types of security issues, Wallarm detects cases of public exposure of API credentials (API leaks). The leaked API keys can allow attackers to impersonate authorized users, access confidential financial data, and even manipulate transaction flows.
