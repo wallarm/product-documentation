@@ -4,7 +4,7 @@ You can set additional email addresses that will be used to deliver scheduled [P
 
 * Scheduled PDF reports can be sent on a daily, weekly, or monthly basis. PDF reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
 * Notifications include brief details of triggered events:
-    --8<-- "../include/integrations/events-for-integrations-mail.md"
+    --8<-- "../include/integrations/events-for-integrations-mail-4.10.md"
 
 ## Setting up integration
 

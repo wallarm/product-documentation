@@ -83,3 +83,13 @@ Besides, you can get information about your API surface in a table view (CSV), o
 One more option - JSON report with information about API surface in a machine readable format.
 
 You can also get a [separate report](security-issues.md#security-issue-reports) on the security issues.
+
+## Notifications
+
+By default, Wallarm will send to your personal email:
+
+* **Weekly AASM statistics** with information about hosts and APIs discovered for your configured domains within last week and security issues for them.
+* Results of **every scan** (scheduled or manual) of your API surface.
+* Information about detected **critical security issues**.
+
+You can unsubscribe at any moment. You can subscribe additional email to get all or some of this information. See how to configure [here](../user-guides/settings/integrations/email.md#setting-up-integration).
