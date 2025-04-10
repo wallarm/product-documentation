@@ -7,7 +7,3 @@
     * Medium risk
     * Low risk
 * [Scope (exposed assets)](../../scanner.md) changed: updates in hosts, services, and domains
-* [API Attack Surface](../../../api-attack-surface/overview.md) notifications (available with API Attack Surface [subscription plan](../../../../about-wallarm/subscription-plans/#api-attack-surface) only):
-    * Critical security issues
-    * Every scan results
-    * Weekly AASM statistics
