@@ -22,6 +22,50 @@ You can add any additional (context) [parameters](../user-guides/rules/request-p
 
 ![!API Sessions - context parameters](../images/api-sessions/api-sessions-context-parameters.png)
 
+Here are some examples:
+
+Getting the username out of the `jwt_payload` of the request:
+
+```
+{
+  "token_type": "access",
+  "exp": 1741774186,
+  "iat": 1741773706,
+  "jti": "jti_value",
+  "user_id": 932,
+  "details": {
+    "username": "john-doe@company-001.com",
+    "rnd": "some_data",
+    "contact": {
+      "contactId": 438,
+      "contactUUID": "contact_UUID_value",
+      "firstName": "John",
+      "lastName": "Doe",
+      "portalSecurityLevel": 3,
+      "companyId": 255,
+      "companyName": "Company 001",
+      "companyUUID": "company_UUID_value"
+    }
+  }
+}
+```
+
+... looks like:
+
+![!API Sessions - context parameters - example - JWT](../images/api-sessions/api-sessions-context-parameters-example-jwt.png)
+
+Getting the `email` parameter from the request body:
+
+![!API Sessions - context parameters - example - request](../images/api-sessions/api-sessions-context-parameters-example-request.png)
+
+Getting the `product_id` parameter form the response body:
+
+![!API Sessions - context parameters - example - response](../images/api-sessions/api-sessions-context-parameters-example-response.png)
+
+Getting JWT token from the request header:
+
+![!API Sessions - context parameters - example - header](../images/api-sessions/api-sessions-context-parameters-example-header.png)
+
 <!--### Sensitive business flows
 
 You can associate sessions with sensitive business flows. To do so, in Wallarm Console → **API Sessions** → **Session context parameters**, add your parameter and select **Context** for it.
