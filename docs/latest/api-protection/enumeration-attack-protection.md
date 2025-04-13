@@ -2,18 +2,44 @@
 
 Wallarm allows protecting your APIs from the enumeration attacks.
 
-Wallarm provides several [mitigation controls](../about-wallarm/mitigation-controls-overview.md) to configure this protection:
+Wallarm provides several [mitigation controls](../about-wallarm/mitigation-controls-overview.md) to configure this protection. When selecting which control to use
 
-* Enhanced configuration for:
-
-    * **Brute Force Protection**
-    * **BOLA Protection**
-    * **Enumeration Attack Protection**
-
-* Configuration for:
-
-    * **Forced Browsing Protection**
-    * **Rate Limit**
+<table>
+  <tr>
+    <th>Control</th>
+    <th>Specifics</th>
+    <th>Enumerates</th>
+    <th>Attack</th>
+  </tr>
+  <tr>
+    <td><b>Brute force protection</b></td>
+    <td rowspan="3">Counts the number of unique values seen for each parameter within a specified timeframe.</td>
+    <td><code>password</code></td>
+    <td><code>Brute force</code></td>
+  </tr>
+  <tr>
+    <td><b>BOLA protection</b></td>
+    <td><code>object ID</code>, <code>user ID</code></td>
+    <td><code>BOLA</code></td>
+  </tr>
+  <tr>
+    <td><b>Enumeration attack protection</b></td>
+    <td>All listed and others</td>
+    <td><code>Enum</code></td>
+  </tr>
+  <tr>
+    <td><b>Forced browsing protection</b></td>
+    <td>Counts the number of unique endpoints accessed in a configured timeframe.</td>
+    <td><code>URL</code>s</td>
+    <td><code>Forced browsing</code></td>
+  </tr>
+  <tr>
+    <td><b>Advanced rate limiting</b></td>
+    <td>Counts TBD.</td>
+    <td><code>password</code></td>
+    <td><code>Rate limit</code></td>
+  </tr>
+</table>
 
 ## Enhanced configuration
 
