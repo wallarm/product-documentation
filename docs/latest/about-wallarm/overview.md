@@ -1,3 +1,7 @@
+[link-deployment-se]:           ../installation/supported-deployment-options.md#edge
+[link-deployment-hybrid]:       ../installation/supported-deployment-options.md#all-deployment-artifacts
+[link-deployment-on-prem]:      ../installation/on-premise.md
+
 # Wallarm Platform Overview
 
 In today's digital world, APIs face growing threats, especially with the rise of AI. Traditional security can overlook API vulnerabilities or be difficult to deploy. With Wallarm, you get a single platform for API protection and inventory observability across cloud-native and on-prem environments.
@@ -89,6 +93,4 @@ Wallarm offers cloud instances in both the US and Europe, enabling you to select
 
 The [described](#how-wallarm-works) Wallarm components: filtering node and Cloud - can be deployed in one of three forms:
 
-* [Security Edge](../installation/supported-deployment-options.md#edge): complete Cloud-based deployment. Both filtering nodes and Wallarm Cloud components are managed by Wallarm.
-* [Hybrid](../installation/supported-deployment-options.md#all-deployment-artifacts): Wallarm customers deploy and manage the filtering nodes, and Wallarm manages the Wallarm Cloud component.
-* [On-Premise](../installation/on-premise.md): both filtering node and Wallarm Cloud components are hosted and managed by the customer.
+--8<-- "../include/deployment-forms.md"

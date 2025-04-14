@@ -1,0 +1,3 @@
+* [Security Edge][link-deployment-se]: complete cloud-based deployment. Both Wallarm filtering nodes and Wallarm Cloud components are managed by Wallarm.
+* [Hybrid][link-deployment-hybrid]: Wallarm clients deploy and manage the Wallarm filtering nodes, and Wallarm manages the Wallarm Cloud component.
+* [On-Premise][link-deployment-on-prem]: both Wallarm filtering node and Wallarm Cloud components are hosted and managed by the client.
