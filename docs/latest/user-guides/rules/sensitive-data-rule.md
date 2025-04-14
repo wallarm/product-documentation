@@ -5,7 +5,10 @@
 
 # Masking Sensitive Data
 
-It is crucial that sensitive data in your requests remains secure within your infrastructure and is not transmitted to any third-party service including [Wallarm Cloud](../../about-wallarm/overview.md#how-wallarm-works). This goal is achieved using the [shared responsibility model](../../about-wallarm/shared-responsibility.md): from its side, Wallarm transmits no data except the one about malicious requests, which makes exposure of sensitive data highly unlikely - from your side, masking of sensitive data is expected which additionally guarantees that protected information fields will never leave your security perimeter.
+In the [hybrid](../../about-wallarm/shared-responsibility.md#overview) Wallarm installations, when you manage the Wallarm filtering nodes in your infrastructure, and Wallarm manages the Wallarm Cloud component, it is crucial that sensitive data in your requests remains secure within your infrastructure and is not transmitted to any third-party service including [Wallarm Cloud](../../about-wallarm/overview.md#how-wallarm-works). This goal is achieved using the [shared responsibility model](../../about-wallarm/shared-responsibility.md): from its side, Wallarm transmits no data except the one about malicious requests, which makes exposure of sensitive data highly unlikely - from your side, masking of sensitive data is expected which additionally guarantees that protected information fields will never leave your security perimeter.
+
+!!! info "Other deployment forms"
+    While in **on-premise** [installations](../../about-wallarm/shared-responsibility.md#overview) data never leaves your security perimeter, and in **security edge** all data is outside this security perimeter, you can still use masking rules to restrict access to the sensitive data by the users of Wallarm Console.
 
 Wallarm provides the **Mask sensitive data** [rule](../rules/rules.md) to configure data masking. The Wallarm node sends the following data to the Wallarm Cloud:
 
