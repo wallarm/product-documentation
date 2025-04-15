@@ -247,7 +247,7 @@ After deploying the node, the next step is to apply the Wallarm code to your API
     * [Fastly](../connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
     * [Kong API Gateway](../connectors/kong-api-gateway.md#2-obtain-and-deploy-the-wallarm-lua-plugin)
     * [Istio (out-of-band)](../connectors/istio.md#2-configure-envoy-to-mirror-traffic-to-the-wallarm-node)
-    * [Istio (inline)](../connectors/istio-inline.md)
+    * [Istio](../connectors/istio-inline.md)
 
 ## Upgrade
 
