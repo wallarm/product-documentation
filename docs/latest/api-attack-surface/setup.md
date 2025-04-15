@@ -10,13 +10,16 @@ To use AASM, the Wallarm's [API Attack Surface](../about-wallarm/subscription-pl
 
     This activates the Core (freemium) version, and scanning of the used email's domain starts immediately. After activation, you can [add additional domains](setup.md) to the scope.
 
-    You can continue using the Core version for as long as you need, provided that Enterprise features are not necessary for your use. See differences of different versions [here](https://www.wallarm.com/product/aasm-pricing?internal_utm_source=product-page-aasm).
+    You can continue using the Core version for as long as you need, provided that Enterprise features are not necessary for your use. See differences of different versions [here](https://www.wallarm.com/product/aasm-pricing).
 
 * If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
 ## Adding domains
 
-To configure [API Attack Surface Management](overview.md) to detect hosts under your selected domains and search for security issues related to these hosts, in Wallarm Console → AASM → **API Attack Surface** section, click **Configure**. Add your domains to the scope, check the scanning status.
+To configure [API Attack Surface Management](overview.md) to detect hosts under your selected domains and search for security issues related to these hosts:
+
+1. Proceed to Wallarm Console → AASM → **API Attack Surface** section → **Configure**.
+1. Add your domains to the scope and check the scanning status.
 
 ![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
 
@@ -32,12 +35,10 @@ You can re-start, pause or continue scanning for any domain manually at **Config
 
 ## Notifications
 
-You can set Wallarm to email notifications about:
+You automatically receive notifications to your personal email (the one you use to log in) about discovered hosts and security issues, including:
 
 * Found **critical security issues** - detailed description of each issue and instructions on how to mitigate them.
 * **Every scan results** - information on all new security issues found during the scan with their distribution by [risk level](security-issues.md#issue-risk-level) and suggested action items for mitigation.
 * **Weekly AASM statistics** - information about hosts and APIs discovered for your configured domains within last week and security issues for them.
 
-The notifications are sent to your personal email (the one you use as login). This is enabled by default. You can unsubscribe at any moment. You can also configure any additional emails to get all or some of these notifications.
-
-See how to subscribe/unsubscribe in [email notification setup](../user-guides/settings/integrations/email.md#setting-up-integration).
+The notifications are enabled by default. You can unsubscribe at any moment and configure any additional emails to get all or some of these notifications in Wallarm Console → **Configuration** → **Integrations** → **Email and messengers** → **Personal email** (you email) or **Email report** (extra emails) as described [here](../user-guides/settings/integrations/email.md#setting-up-integration).
