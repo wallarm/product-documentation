@@ -28,7 +28,7 @@ API Attack Surface Management provides multiple automated activities described i
 * Computes a [security score](api-surface.md#security-posture) for each discovered endpoint.
 * Identifies and reports gaps in WAF configurations, such as missing rules for OWASP Top 10 vulnerabilities or lack of coverage for modern API-specific threats like BOLA and credential stuffing.
 
-### Step 3: automatic API leaks and vulnerability detection
+### Step 3: Automatic API leaks and vulnerability detection
 
 * Once the external attack surface landscape is discovered, starts to [discover API leaks and vulnerabilities](security-issues.md) related to the discovered apps and APIs.
 * Monitors and classifies vulnerabilities by severity, categorizing issues such as misconfigurations, weak encryption, or outdated dependencies to prioritize remediation efforts effectively.
