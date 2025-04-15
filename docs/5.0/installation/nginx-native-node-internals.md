@@ -258,7 +258,7 @@ The Native Node works with the following platforms with no limitations:
 
         <a class="do-card" href="../../installation/connectors/istio-inline/">
             <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
-            <h3>Istio (Inline)</h3>
+            <h3>Istio</h3>
             <p>Deploy Wallarm in-line to secure APIs managed by Istio</p>
         </a>
 
