@@ -216,7 +216,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <a class="do-card" href="../../installation/connectors/istio-inline/">
             <img class="non-zoomable" src="../../images/platform-icons/istio.svg" />
             <h3>Istio</h3>
-            <p>Deploy Wallarm in-line to secure APIs managed by Istio</p>
+            <p>Deploy Wallarm in-line or OOB to secure APIs managed by Istio</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/layer7-api-gateway/">
