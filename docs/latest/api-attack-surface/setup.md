@@ -1,9 +1,44 @@
-# API Attack Surface Setup  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
+# API Attack Surface Management Setup  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
-To configure [API Attack Surface Management](overview.md) to detect hosts under your selected domains and search for security issues related to these hosts, in Wallarm Console → AASM → **API Attack Surface** section, click **Configure**. Add your domains to the scope, check the scanning status.
+This article describes how to enable and configure [API Attack Surface Management](overview.md) to discover your external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
+
+## Enabling
+
+To use AASM, the Wallarm's [API Attack Surface](../about-wallarm/subscription-plans.md#api-attack-surface) subscription plan should be active for your company. To activate, do one of the following:
+
+* If you do not have Wallarm account yet, get pricing information and activate AASM on the Wallarm's official site [here](https://www.wallarm.com/product/aasm).
+
+    This activates the Core (freemium) version, and scanning of the used email's domain starts immediately. After activation, you can [add additional domains](setup.md) to the scope.
+
+    You can continue using the Core version for as long as you need, provided that Enterprise features are not necessary for your use. See differences of different versions [here](https://www.wallarm.com/product/aasm-pricing).
+
+* If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
+
+## Adding domains
+
+To configure [API Attack Surface Management](overview.md) to detect hosts under your selected domains and search for security issues related to these hosts:
+
+1. Proceed to Wallarm Console → AASM → **API Attack Surface** section → **Configure**.
+1. Add your domains to the scope and check the scanning status.
 
 ![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
 
-Wallarm will list all hosts under your domains and show security issues related to them if there are any. Note that domains are automatically re-scanned once every 3 days - new hosts will be added automatically, previously listed but not found during re-scan will remain in the list.
+Wallarm will list all hosts under your domains and show security issues related to them if there are any. During scan, at the **Status** tab, you can pause or continue scanning for any domain with pause/play buttons.
 
-You can re-start, pause or continue scanning for any domain manually at **Configure** → **Status**.
+## Scheduled rescan
+
+Previously added domains are automatically re-scanned once every 7 days - new hosts will be added automatically, previously listed but not found during re-scan will remain in the list.
+
+## Manual rescan
+
+You can re-start, pause or continue scanning for any domain manually at **Configure** → **Status** by clicking the play/pause buttons.
+
+## Notifications
+
+You automatically receive notifications to your personal email (the one you use to log in) about discovered hosts and security issues, including:
+
+* Found **critical security issues** - detailed description of each issue and instructions on how to mitigate them.
+* **Every scan results** - information on all new security issues found during the scan with their distribution by [risk level](security-issues.md#issue-risk-level) and suggested action items for mitigation.
+* **Weekly AASM statistics** - information about hosts and APIs discovered for your configured domains within last week and security issues for them.
+
+The notifications are enabled by default. You can unsubscribe at any moment and configure any additional emails to get all or some of these notifications in Wallarm Console → **Configuration** → **Integrations** → **Email and messengers** → **Personal email** (you email) or **Email report** (extra emails) as described [here](../user-guides/settings/integrations/email.md#setting-up-integration).
