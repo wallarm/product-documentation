@@ -2,7 +2,7 @@ INHERIT: mkdocs-base.yml
 
 theme:
   version: "6.x"
-  versionNative: "0.13.x+"
+  versionNative: "0.14.x+"
 
 docs_dir: docs/6.x
 site_dir: site
@@ -304,7 +304,7 @@ nav:
     - Dynamic DNS Resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
     - Enabling JA3 fingerprinting: admin-en/enabling-ja3.md
     - Self-Hosted Node Upgrade:
-      - What is New in Wallarm Node 6.x and 0.13.x: updating-migrating/what-is-new.md
+      - What is New in Wallarm Node 6.x and 0.14.x: updating-migrating/what-is-new.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
       - NGINX Node upgrade instructions:
         - Upgrading DEB/RPM Packages: updating-migrating/nginx-modules.md

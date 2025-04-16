@@ -10,9 +10,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.13.2 (2025-04-15)
+
+* Fixed an intermittent bug causing occasional request and response body corruption
+
 ### 0.13.1 (2025-04-09)
 
-* Internal changes used by the support team
 * Stability improvements
 
 ### 0.13.0 (2025-03-31)
@@ -179,9 +182,12 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.13.2 (2025-04-15)
+
+* Fixed an intermittent bug causing occasional request and response body corruption
+
 ### 0.13.1 (2025-04-09)
 
-* Internal changes used by the support team
 * Stability improvements
 
 ### 0.13.0 (2025-03-31)
@@ -278,9 +284,12 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 [How to upgrade](docker-image.md)
 
+### 0.13.2 (2025-04-15)
+
+* Fixed an intermittent bug causing occasional request and response body corruption
+
 ### 0.13.1 (2025-04-09)
 
-* Internal changes used by the support team
 * Stability improvements
 
 ### 0.13.0 (2025-03-31)

@@ -17,7 +17,7 @@ Below are the risks that may occur when updating the filtering node. To reduce t
 
 ### Changed functionality
 
-* [What is new in Wallarm Node 6.x and 0.13.x+](what-is-new.md)
+* [What is new in Wallarm Node 6.x and 0.14.x+](what-is-new.md)
 * [What is new if upgrading the EOL node (3.6 or lower)](older-versions/what-is-new.md)
 
 ### New false positives
