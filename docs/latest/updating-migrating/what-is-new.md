@@ -1,6 +1,6 @@
-# What is New in Wallarm Node 6.x and 0.13.x
+# What is New in Wallarm Node 6.x and 0.14.x
 
-This changelog covers updates for NGINX Node 6.x and Native Node 0.13.x+. If upgrading from an older version, refer to this document.
+This changelog covers updates for NGINX Node 6.x and Native Node 0.14.x+. If upgrading from an older version, refer to this document.
 
 For the detailed changelog on minor versions of the Wallarm Node, refer to the [NGINX Node artifact inventory](node-artifact-versions.md) or [Native Node artifact inventory](native-node/node-artifact-versions.md).
 
