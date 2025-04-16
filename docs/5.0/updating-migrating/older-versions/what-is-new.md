@@ -249,7 +249,7 @@ Changes in node registration methods result in some updates in node types:
 Now, registration of the node looks as follows:
 
 1. Proceed to Wallarm Console → **Settings** → **API tokens**.
-1. [Generate the token](../../user-guides/settings/api-tokens.md) with the **Deploy** role.
+1. [Generate the token](../../user-guides/settings/api-tokens.md) with the **Node deployment/Deploy** usage type.
 1. Run the required deployment artifact of the node with the API token passed in the corresponding parameters.
 
 !!! info "Regular node support"

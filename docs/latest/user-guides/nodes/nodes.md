@@ -29,7 +29,7 @@ To create a Wallarm node using the [appropriate token](#api-and-node-tokens-for-
 === "With API token"
 
     1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. Find or create API token with the `Deploy` source role.
+    1. Find or create API token with the `Node deployment/Deploy` usage type.
     1. Copy this token.
     1. Deploy new node to the [convenient environment](../../installation/supported-deployment-options.md) using your API token. After node registering, it will automatically appear in the **Nodes** section of Wallarm Console.
 
@@ -101,7 +101,7 @@ When the node is deleted, filtration of requests to your application will be sto
 
 The Wallarm filtering node interacts with the Wallarm Cloud. To provide the node with access to Wallarm Cloud API, you need to generate a token on the Cloud side and use it on the machine with the node. Use **API tokens** (recommended) or **node tokens** for this purpose:
 
-* [**API tokens**](../settings/api-tokens.md) with the `Deploy` role when:
+* [**API tokens**](../settings/api-tokens.md) with the `Node deployment/Deploy` usage type when:
 
     * The number of node groups used to logically organize nodes in UI is not known in advance (node groups will be constantly added/removed - with API tokens you will be able to easily manage these groups with the `WALLARM_LABELS` variable setting the `group` label value).
     * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).

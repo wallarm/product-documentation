@@ -156,7 +156,7 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
     ```
 
     Since IP list core logic has been significantly changed in Wallarm node 3.x, it is required to adjust IP list configuration appropriately.
-* [Generate an API token for the **Deploy** role](../../user-guides/settings/api-tokens.md) and pass its value in the `controller.wallarm.token` parameter.
+* [Generate an API token for the **Node deployment/Deploy** usage](../../user-guides/settings/api-tokens.md) and pass its value in the `controller.wallarm.token` parameter.
 * Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       
       * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)

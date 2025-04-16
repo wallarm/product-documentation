@@ -61,7 +61,7 @@ Generate a filtering node token of the [appropriate type][node-token-types] to c
 
 === "API token"
     1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. Find or create API token with the `Deploy` source role.
+    1. Find or create API token with the `Node deployment/Deploy` usage type.
     1. Copy this token.
 === "Node token"
     1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).

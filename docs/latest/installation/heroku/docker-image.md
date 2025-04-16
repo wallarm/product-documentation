@@ -465,7 +465,7 @@ To deploy the image on Heroku:
 
     === "API token"
         1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-        1. Find or create API token with the `Deploy` source role.
+        1. Find or create API token with the `Node deployment/Deploy` usage type.
         1. Copy this token.
         1. Specify the node group name to add the Wallarm node to in the following environment variable:
 
