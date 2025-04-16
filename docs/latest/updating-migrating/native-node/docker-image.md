@@ -62,7 +62,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 Environment variable | Description| Required
 --- | ---- | ----
-`WALLARM_API_TOKEN` | API token with the `Deploy` role. | Yes
+`WALLARM_API_TOKEN` | API token with the `Node deployment/Deploy` usage type. | Yes
 `WALLARM_LABELS` | Sets the `group` label for node instance grouping, for example:<br>`WALLARM_LABELS="group=<GROUP>"` will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created). | Yes
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default: `api.wallarm.com`. | No
 

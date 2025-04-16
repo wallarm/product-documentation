@@ -20,6 +20,13 @@ You can generate either personal or shared API tokens:
 
     Only Administrators and Global Administrators can generate these tokens, and only other administrators within the company can use them.
 
+## Token usage
+
+The selected usage scope restricts how and where the token can be used:
+
+* Node deployment - use this option to generate an API token for the [self-hosted Wallarm Node deployment](../../installation/supported-deployment-options.md) or upgrade to authenticate a Node.
+* Direct API access - select this option to use the token for making authenticated requests directly to the Wallarm API.
+
 ## Token expiration
 
 You have the option to set an expiration date for each token. Once set, the token will be deactivated after the specified date.
@@ -37,8 +44,6 @@ You can assign token permissions based on predefined user roles or customize the
 * Administrator, Analyst, API Developer, Read Only and the equivalent Global roles - a token assigned one of these roles will inherit the permissions detailed in our [user role system](users.md#user-roles).
 * Deploy - API tokens with this role are used to [deploy Wallarm nodes](../../installation/supported-deployment-options.md).
 * Custom permissions - switches to the manual permission selection.
-<!--
-    To create a token for [OpenAPI security testing](../../fast/openapi-security-testing.md), the custom role with the corresponding permissions is required.-->
 
 If the permissions of a personal token owner are reduced, the permissions of their tokens will be adjusted correspondingly.
 
