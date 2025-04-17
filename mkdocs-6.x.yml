@@ -52,6 +52,17 @@ nav:
     - Shadow, Orphan, Zombie API: api-discovery/rogue-api.md
     - BOLA Autoprotection: api-discovery/bola-protection.md
     - Dashboard: api-discovery/dashboard.md
+  - API Discovery New:
+    - Overview: api-discovery-2.0/overview.md
+    - Setup: api-discovery-2.0/setup.md
+    - Exploring API Inventory: api-discovery-2.0/exploring.md
+    - Tracking Changes in API: api-discovery-2.0/track-changes.md
+    - Sensitive Data Detection: api-discovery-2.0/sensitive-data.md
+    - Sensitive Business Flows: api-discovery-2.0/sbf.md
+    - Endpoint Risk Score: api-discovery-2.0/risk-score.md
+    - Shadow, Orphan, Zombie API: api-discovery-2.0/rogue-api.md
+    - BOLA Autoprotection: api-discovery-2.0/bola-protection.md
+    - Dashboard: api-discovery-2.0/dashboard.md
   - API Protection:
     - Overview: about-wallarm/api-protection-overview.md
     # - OWASP Top 10: ...
@@ -76,6 +87,17 @@ nav:
     - AI Discovery: agentic-ai/agentic-ai-discovery.md
     - Agentic AI Protection: agentic-ai/agentic-ai-protection.md
     - Demo: agentic-ai/demo.md
+  - API Discovery:
+    - Overview: api-discovery/overview.md
+    - Setup: api-discovery/setup.md
+    - Exploring API Inventory: api-discovery/exploring.md
+    - Tracking Changes in API: api-discovery/track-changes.md
+    - Sensitive Data Detection: api-discovery/sensitive-data.md
+    - Sensitive Business Flows: api-discovery/sbf.md
+    - Endpoint Risk Score: api-discovery/risk-score.md
+    - Shadow, Orphan, Zombie API: api-discovery/rogue-api.md
+    - BOLA Autoprotection: api-discovery/bola-protection.md
+    - Dashboard: api-discovery/dashboard.md
   - API Attack Surface:
     - Overview: api-attack-surface/overview.md
     - Setup: api-attack-surface/setup.md
@@ -128,10 +150,7 @@ nav:
       - Cache Rules: installation/security-edge/inline/cache-rules.md       
       - NGINX Overrides: installation/security-edge/inline/nginx-overrides.md
       - Managing Deployment: installation/security-edge/inline/upgrade-and-management.md
-      - Telemetry Portal: 
-        - Overview: installation/security-edge/inline/telemetry-portal.md
-        - Portal Inline NGINX Logs: installation/security-edge/inline/telemetry-portal-logs-dashboard.md
-        - Portal Inline Overview with Logs: installation/security-edge/inline/telemetry-portal-main-dashboard.md            
+      - Telemetry Portal: installation/security-edge/inline/telemetry-portal.md
     - Connectors: installation/security-edge/se-connector.md
   - Self-Hosted Deployment:
     - Overview: installation/supported-deployment-options.md
@@ -256,10 +275,8 @@ nav:
     - Akamai: installation/connectors/akamai-edgeworkers.md
     - Azion Edge: installation/connectors/azion-edge.md
     - CloudFront: installation/connectors/aws-lambda.md
-    - Amazon API Gateway: installation/connectors/aws-api-gateway.md
     - Cloudflare: installation/connectors/cloudflare.md
-    - Standalone Kong API Gateway: installation/connectors/standalone-kong-api-gateway.md
-    - Kong Ingress Controller: installation/connectors/kong-ingress-controller.md
+    - Kong API Gateway: installation/connectors/kong-api-gateway.md
     - Istio: installation/connectors/istio.md
     - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
     - Fastly: installation/connectors/fastly.md
@@ -337,10 +354,7 @@ nav:
         - Postanalytics Metrics: admin-en/wstore-metrics.md
         - wcli Controller Metrics: admin-en/wcli-metrics.md
         - API Firewall Metrics: admin-en/apifw-metrics.md    
-      - Native Node Metrics: 
-        - Overview: admin-en/native-node-metrics.md
-        - Postanalytics Metrics: admin-en/native-node-metrics-wstore.md
-        - Runtime Metrics: admin-en/native-node-metrics-gonode.md     
+      - Native Node Metrics: admin-en/native-node-metrics.md
       - Using a Mirrored Wallarm Repository:
         - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
         - Installing Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
@@ -355,7 +369,6 @@ nav:
         - Upgrading Postanalytics Module Installed from DEB/RPM Packages: updating-migrating/separate-postanalytics.md
         - Upgrading Node Installed via All-in-One Installer: updating-migrating/all-in-one.md
         - Upgrading the Wallarm Docker NGINX-Based Image: updating-migrating/docker-container.md
-        - NGINX Ingress Controller retirement and migration: updating-migrating/nginx-ingress-retirement.md
         - Upgrading NGINX Ingress Controller with Integrated Wallarm Modules: updating-migrating/ingress-controller.md
         - Upgrading Wallarm Sidecar Proxy: updating-migrating/sidecar-proxy.md
         - Upgrading the Cloud Node Image: updating-migrating/cloud-image.md
@@ -394,7 +407,6 @@ nav:
   - Troubleshooting:
       - Overview: troubleshooting/overview.md
       - Detection and Blocking: troubleshooting/detection-and-blocking.md
-      - Detection Tools: troubleshooting/detection-tools-tuning.md
       - Performance: troubleshooting/performance.md
       - Real Client IP Address: admin-en/using-proxy-or-balancer-en.md
       - End User Problems: faq/common-errors-after-installation.md
@@ -403,3 +415,4 @@ nav:
       - OWASP Dashboard Alerts: faq/node-issues-on-owasp-dashboards.md
       - NGINX Error Log Alerts: troubleshooting/wallarm-issues-in-nginx-error-log.md
       - Dynamic DNS Resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
+
