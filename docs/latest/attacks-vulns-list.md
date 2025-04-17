@@ -433,7 +433,10 @@ A successful brute‑force attack can potentially bypass authentication and auth
 
 **Required configuration:**
 
-Wallarm detects and mitigates brute-force attacks only if it has one or more configured [brute-force triggers](admin-en/configuration-guides/protecting-against-bruteforce.md) and/or [rate limit rules](user-guides/rules/rate-limiting.md).
+Wallarm detects and mitigates brute-force attacks only if it has one of the following: 
+
+* **Basic brute force protection** configured with one or more [brute force triggers]((admin-en/configuration-guides/protecting-against-bruteforce.md)) or [rate limit rules](user-guides/rules/rate-limiting.md).
+* **Advanced brute force protection** configured with one or more [brute force mitigation controls](api-protection/enumeration-attack-protection.md) (requires Advanced API Security [subscription](about-wallarm/subscription-plans.md#waap-and-advanced-api-security)).
 
 **In addition to Wallarm protection:**
 

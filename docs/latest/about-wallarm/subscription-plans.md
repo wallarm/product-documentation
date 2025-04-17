@@ -25,6 +25,8 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [Credential Stuffing Detection](../about-wallarm/credential-stuffing.md) | No | Yes |
 | [API Specification Enforcement](../api-specification-enforcement/overview.md) | No | Yes |
 | [GraphQL security policies](../api-protection/graphql-rule.md) | No | Yes |
+| [Enumeration attack protection](../api-protection/enumeration-attack-protection.md) | No | Yes |
+| [Mitigation controls](../about-wallarm/mitigation-controls-overview.md) | No | Yes | 
 | **Security posture** | | |
 | [Exposed asset scanner](../user-guides/scanner.md) | Yes | Yes |
 | [Vulnerability assessment](../user-guides/vulnerabilities.md) | Yes | Yes |
