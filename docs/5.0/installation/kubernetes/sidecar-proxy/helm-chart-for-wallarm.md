@@ -88,7 +88,7 @@ The token can be one of these [types][node-token-types]:
     To generate an API token:
     
     1. Go to Wallarm Console → **Settings** → **API tokens** in either the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. Create an API token with the **Node deployment/Deploy** usage type.
+    1. Create an API token with the **Node deployment/Deployment** usage type.
     1. During node deployment, use the generated token and specify the group name using the `config.wallarm.api.nodeGroup` parameter. You can add multiple nodes to one group using different API tokens.
 * **Node token** - Suitable when you already know the node groups that will be used.
 
@@ -109,7 +109,7 @@ Wallarm API endpoint. Can be:
 
 ## config.wallarm.api.nodeGroup
 
-This specifies the name of the group of filtering nodes you want to add newly deployed nodes to. Node grouping this way is available only when you create and connect nodes to the Cloud using an API token with the **Node deployment/Deploy** usage type (its value is passed in the `config.wallarm.api.token` parameter).
+This specifies the name of the group of filtering nodes you want to add newly deployed nodes to. Node grouping this way is available only when you create and connect nodes to the Cloud using an API token with the **Node deployment/Deployment** usage type (its value is passed in the `config.wallarm.api.token` parameter).
 
 **Default value**: `defaultSidecarGroup`
 

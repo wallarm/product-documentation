@@ -55,7 +55,7 @@ It is recommended to use the new approach to run the image 6.x. The "email and p
 
 To create a new Wallarm node and get its token:
 
-1. Open Wallarm Console → **Settings** → **API Tokens** and generate a token with the **Node deployment/Deploy** usage type.
+1. Open Wallarm Console → **Settings** → **API Tokens** and generate a token with the **Node deployment/Deployment** usage type.
 1. Copy the generated token.
 
 ## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 6.x (only if upgrading node 2.18 or lower)

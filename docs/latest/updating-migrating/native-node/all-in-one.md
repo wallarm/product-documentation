@@ -42,7 +42,7 @@ Download the latest installer version on the machine where your current Native N
 
 Run the new installer as shown below. It will stop the currently running Wallarm services and then automatically start the services of the new version.
 
-You can reuse the previously generated [API token for the `Node deployment/Deploy` usage type](../../user-guides/settings/api-tokens.md) and the node group name.
+You can reuse the previously generated [API token for the `Node deployment/Deployment` usage type](../../user-guides/settings/api-tokens.md) and the node group name.
 
 For the configuration file, you can reuse the one used during the initial installation. Only add new parameters or modify existing ones if necessary - see the [supported configuration options](../../installation/native-node/all-in-one-conf.md).
 
@@ -145,7 +145,7 @@ For the configuration file, you can reuse the one used during the initial instal
     ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
-* `<API_TOKEN>` specifies the generated API token for the `Node deployment/Deploy` usage type.
+* `<API_TOKEN>` specifies the generated API token for the `Node deployment/Deployment` usage type.
 * `<PATH_TO_CONFIG>` specifies the path to the configuration file.
 
 Your current `/opt/wallarm/etc/wallarm/go-node.yaml`, `/opt/wallarm/etc/wallarm/node.yaml` and log files will be backed up to the directory `/opt/wallarm/aio-backups/<timestamp>`.

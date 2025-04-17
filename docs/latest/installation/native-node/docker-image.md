@@ -85,7 +85,7 @@ Create the `wallarm-node-conf.yaml` file with the following minimal configuratio
 To install node, you will need a token for registering the node in the Wallarm Cloud. To prepare a token:
 
 1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-1. Find or create API token with the `Node deployment/Deploy` usage type.
+1. Find or create API token with the `Node deployment/Deployment` usage type.
 1. Copy this token.
 
 ### 4. Run the Docker container
@@ -103,7 +103,7 @@ To run the Docker image, use the following commands. Mount the `wallarm-node-con
 
 Environment variable | Description| Required
 --- | ---- | ----
-`WALLARM_API_TOKEN` | API token with the `Node deployment/Deploy` usage type. | Yes
+`WALLARM_API_TOKEN` | API token with the `Node deployment/Deployment` usage type. | Yes
 `WALLARM_LABELS` | Sets the `group` label for node instance grouping, for example:<br>`WALLARM_LABELS="group=<GROUP>"` will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created). | Yes
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default: `api.wallarm.com`. | No
 `WALLARM_APID_ONLY` (0.12.1 and higher) | In this mode, attacks detected in your traffic are blocked locally by the node (if [enabled](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)) but not exported to Wallarm Cloud. Meanwhile, [API Discovery](../../api-discovery/overview.md) and some other features remain fully functional, detecting your API inventory and uploading it to the Cloud for visualization. This mode is for those who want to review their API inventory and identify sensitive data first, and plan controlled attack data export accordingly. However, disabling attack export is rare, as Wallarm securely processes attack data and provides [sensitive attack data masking](../../user-guides/rules/sensitive-data-rule.md) if needed. [More details](../../installation/native-node/all-in-one.md#apid-only-mode)<br>By default: `false`. | No

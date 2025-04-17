@@ -47,7 +47,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 
     === "API token (Helm chart 4.6.8 and above)"
         1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-        1. Find or create API token with the `Deploy` source role.
+        1. Find or create API token with the `Node deployment/Deployment` usage type.
         1. Copy this token.
     === "Node token"
         1. Open Wallarm Console → **Nodes** in either the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).

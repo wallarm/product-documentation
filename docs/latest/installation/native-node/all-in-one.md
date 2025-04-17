@@ -52,7 +52,7 @@ The machine intended for running the Native Node with the all-in-one installer m
 To install node, you will need a token for registering the node in the Wallarm Cloud. To prepare a token:
 
 1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-1. Find or create API token with the `Node deployment/Deploy` usage type.
+1. Find or create API token with the `Node deployment/Deployment` usage type.
 1. Copy this token.
 
 ### 2. Download Wallarm installer
@@ -185,7 +185,7 @@ Create the `wallarm-node-conf.yaml` file on the machine with the following minim
     ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
-* `<API_TOKEN>` specifies the generated API token for the `Node deployment/Deploy` usage type.
+* `<API_TOKEN>` specifies the generated API token for the `Node deployment/Deployment` usage type.
 * `<PATH_TO_CONFIG>` specifies the path to the configuration file prepared before.
 
 The provided configuration file will be copied to the path: `/opt/wallarm/etc/wallarm/go-node.yaml`.

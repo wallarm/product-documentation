@@ -29,7 +29,7 @@ To create a Wallarm node using the [appropriate token](#api-and-node-tokens-for-
 === "With API token"
 
     1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. Find or create API token with the `Deploy` source role.
+    1. Find or create API token with the `Node deployment/Deployment` usage type.
     1. Copy this token.
     1. Deploy new node to the [convenient environment](../../installation/supported-deployment-options.md) using your API token. After node registering, it will automatically appear in the **Nodes** section of Wallarm Console.
 

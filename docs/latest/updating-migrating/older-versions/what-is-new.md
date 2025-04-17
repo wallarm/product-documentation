@@ -250,7 +250,7 @@ Changes in node registration methods result in some updates in node types:
 Now, registration of the node looks as follows:
 
 1. Proceed to Wallarm Console → **Settings** → **API tokens**.
-1. [Generate the token](../../user-guides/settings/api-tokens.md) with the **Node deployment/Deploy** usage type.
+1. [Generate the token](../../user-guides/settings/api-tokens.md) with the **Node deployment/Deployment** usage type.
 1. Run the required deployment artifact of the node with the API token passed in the corresponding parameters.
 
 !!! info "Regular node support"
@@ -486,7 +486,7 @@ The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#w
 
 ## Easy grouping for node instances
 
-Now you can easily group node instances using one [**API token**](../../user-guides/settings/api-tokens.md) with the `Node deployment/Deploy` usage type for their installation together with the `WALLARM_LABELS` variable and its `group` label.
+Now you can easily group node instances using one [**API token**](../../user-guides/settings/api-tokens.md) with the `Node deployment/Deployment` usage type for their installation together with the `WALLARM_LABELS` variable and its `group` label.
 
 For example: 
 

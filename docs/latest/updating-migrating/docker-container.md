@@ -42,7 +42,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## Step 3: Run the container using the new image
 
-1. Proceed to Wallarm Console → **Settings** → **API Tokens** and generate a token with the **Node deployment/Deploy** usage type.
+1. Proceed to Wallarm Console → **Settings** → **API Tokens** and generate a token with the **Node deployment/Deployment** usage type.
 1. Copy the generated token.
 1. Run the updated image using the copied token.
     
