@@ -4,6 +4,8 @@ In modern cloud architectures, a **layered security approach** is essential to p
 
 Combined in a **defense‑in‑depth strategy**, they provide comprehensive protection for web applications and APIs - from the edge to the application layer.
 
+![!](../../../images/waf-installation/aws/aws-waf-wallarm-responsibilities.png)
+
 ## AWS WAF: perimeter protection for AWS infrastructure
 
 [AWS WAF](https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html) serves as the **first line of defense at the network edge**, filtering HTTP(S) traffic before it reaches applications in real time. It blocks common threats like SQL injection and XSS using Web ACLs and can inspect various parts of a request - headers, URI, body, and more.
@@ -59,12 +61,14 @@ The combined AWS WAF + Wallarm architecture can be visualized as the following l
 
 1. Perimeter Layer - AWS WAF at AWS Entry Points
 
-    Internet traffic first reaches services like CloudFront, API Gateway, or ALB, where AWS WAF applies Web ACL rules to block known threats—such as SQLi, XSS, and bots - before requests reach the application. It may also enforce IP, geo, or rate-based policies to further reduce noise.
+    Internet traffic first reaches services like CloudFront, API Gateway, or ALB, where AWS WAF applies Web ACL rules to block known threats - such as SQLi, XSS, and bots - before requests reach the application. It may also enforce IP, geo, or rate-based policies to further reduce noise.
 1. Application Layer - Wallarm Filtering Nodes
 
     Clean traffic then flows to Wallarm nodes running in ECS, EKS, or EC2. Acting as a smart proxy or ingress controller, Wallarm performs deep API inspection, detecting logic flaws, multi-step attacks, and anomalous patterns. Only validated traffic is forwarded to application services.
 1. Internal Layer - Microservices and Data Stores
 
     Vetted requests reach the core components - APIs, microservices, databases - already filtered by both layers. Wallarm can also inspect outbound responses, e.g., to prevent data leakage. Additional service-to-service protections like mTLS or IAM can further harden this layer. 
+
+![!](../../../images/waf-installation/aws/aws-waf-wallarm-deployment.png)
 
 A common model is ALB + AWS WAF → Wallarm → Application. Wallarm supports flexible deployments - inline behind ALB, as an ingress in EKS, or behind API Gateway or CloudFront origins - without requiring major changes to infrastructure. Its compatibility with standard AWS networking lets it protect both public and internal traffic paths.

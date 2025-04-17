@@ -128,6 +128,7 @@ nav:
         - Terraform Module:
           - Proxy in AWS VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
           - Proxy for Amazon API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
+        - AWS WAF Integration: installation/cloud-platforms/aws/aws-waf-integration.md
       - Google Cloud:
         - Machine Image: installation/cloud-platforms/gcp/machine-image.md
         - GCE: installation/cloud-platforms/gcp/docker-container.md
