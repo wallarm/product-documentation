@@ -25,7 +25,7 @@ You can generate either personal or shared API tokens:
 The selected usage scope restricts how and where the token can be used:
 
 * Node deployment - use this option to generate an API token for the [self-hosted Wallarm Node deployment](../../installation/supported-deployment-options.md) or upgrade to authenticate a Node.
-* Direct API access - select this option to use the token for making authenticated requests directly to the Wallarm API.
+* Wallarm API - select this option to use the token for making authenticated requests directly to the Wallarm API.
 
 ## Token expiration
 
