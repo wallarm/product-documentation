@@ -30,7 +30,7 @@ To upgrade node, you will need a Wallarm token of [one of the types](../user-gui
 === "API token"
 
     1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. Find or create API token with the `Deploy` source role.
+    1. Find or create API token with the `Node deployment/Deployment` usage type.
     1. Copy this token.
 
 === "Node token"
@@ -98,7 +98,7 @@ To upgrade node, you will need a Wallarm token of [one of the types](../user-gui
 === "API token"
 
     1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. Find or create API token with the `Deploy` source role.
+    1. Find or create API token with the `Node deployment/Deployment` usage type.
     1. Copy this token.
 
 === "Node token"
