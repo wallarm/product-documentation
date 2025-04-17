@@ -21,6 +21,7 @@ As a result, the following changes have been introduced to NGINX Node:
         ```
         2025/03/04 20:43:04 [warn] 3719#3719: "wallarm_tarantool_upstream" directive is deprecated, use "wallarm_wstore_upstream" instead in /etc/nginx/nginx.conf:19
         ```
+    
     * [Log file](../admin-en/configure-logging.md) renamed: `/opt/wallarm/var/log/wallarm/tarantool-out.log` → `/opt/wallarm/var/log/wallarm/wstore-out.log`.
     * The new wstore configuration file `/opt/wallarm/wstore/wstore.yaml` replaces obsolete Tarantool configuration files such as `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool`.
     * The `tarantool` section in `/opt/wallarm/etc/wallarm/node.yaml` is now `wstore`. Backward compatibility preserved with a deprecation warning.
