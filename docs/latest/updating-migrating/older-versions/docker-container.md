@@ -95,7 +95,7 @@ If the Docker container was configured to return the `&/usr/share/nginx/html/wal
 
 ## Step 9: Review recent architectural updates (for NGINX-based Docker image)
 
-The latest update has introduced [architectural changes](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image) that may impact users, especially those mounting custom configuration files during container initiation due to alterations in the paths of certain files. Please familiarize yourself with these changes to ensure proper configuration and usage of the new image.
+The latest update has introduced architectural changes caused by [image optimization](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image) and [Tarantool replacement](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics) that may impact users, especially those mounting custom configuration files during container initiation due to alterations in the paths of certain files. Please familiarize yourself with these changes to ensure proper configuration and usage of the new image.
 
 ## Step 10: Transfer the `overlimit_res` attack detection configuration from directives to the rule
 
@@ -109,7 +109,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## Step 12: Run the container using the updated image
 
-Run the container using the updated image and making necessary adjustments to the paths for the mounted files if required by the [recent changes to the image](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image).
+Run the container using the updated image and making necessary adjustments to the paths for the mounted files if required by the recent changes to the image caused by [image optimization](what-is-new.md#optimized-and-more-secure-nginx-based-docker-image) and [Tarantool replacement](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics).
 
 There are two options for running the container using the updated image:
 

@@ -42,17 +42,47 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## Step 3: Run the container using the new image
 
+1. If upgrading from version 5.x or earlier, please note the following important changes:
+
+    * If you previously configured the postanalytics memory via the `TARANTOOL_MEMORY_GB` environment variable, rename it to `SLAB_ALLOC_ARENA`.
+    * If you are running the Docker container with mounted custom NGINX configuration files:
+
+        * The `include` paths in `/etc/nginx/nginx.conf` have changed to align with Alpine Linux directory conventions:
+
+            ```diff
+            ...
+
+            - include /etc/nginx/modules-enabled/*.conf;
+            + include /etc/nginx/modules/*.conf;
+
+            ...
+
+            http {
+            -     include /etc/nginx/sites-enabled/*;
+            +     include /etc/nginx/http.d/*;
+            }
+            ```
+        
+        * In `/etc/nginx/conf.d/wallarm-status.conf`, the default value of the `allow` directive (used to define permitted IP addresses) has changed:
+
+            ```diff
+            ...
+
+            - allow 127.0.0.8/8;
+            + allow 127.0.0.0/8;
+
+            ...
+            ```
+        
+        * The path for mounting virtual host configuration files has changed from `/etc/nginx/sites-enabled/default` to `/etc/nginx/http.d`.
 1. Proceed to Wallarm Console → **Settings** → **API Tokens** and generate a token with the **Node deployment/Deployment** usage type.
 1. Copy the generated token.
-1. Run the updated image using the copied token.
+1. Run the container using the new image and apply the updated configuration.
     
     There are two options for running the container using the updated image:
 
     * [With the environment variables](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
     * [In the mounted configuration file](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
-
-!!! info "`TARANTOOL_MEMORY_GB` → `SLAB_ALLOC_ARENA`"
-    If upgrading from the version 5.x or lower and setting the postanalytics memory amount with the `TARANTOOL_MEMORY_GB` environment variable, rename the variable to `SLAB_ALLOC_ARENA`.
 
 ## Step 4: Test the filtering node operation
 
@@ -60,4 +90,4 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## Step 5: Delete the filtering node of the previous version
 
-If the deployed image of the version 5.0 operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.
+If the deployed image of the version 6.x operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.

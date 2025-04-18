@@ -29,6 +29,12 @@ As a result, the following changes have been introduced to NGINX Node:
 
     * All the above changes are applied within the container.
     * Previously, memory for Tarantool was allocated via the `TARANTOOL_MEMORY_GB` environment variable. Now, memory allocation follows the same principle but uses a new variable: `TARANTOOL_MEMORY_GB` → `SLAB_ALLOC_ARENA`.
+    * Adjusted the container's directory structure to align with Alpine Linux conventions. Specifically:
+
+        * Content from `/etc/nginx/modules-available` and `/etc/nginx/modules-enabled` has been moved to `/etc/nginx/modules`.
+        * Content from `/etc/nginx/sites-available` and `/etc/nginx/sites-enabled` has been moved to `/etc/nginx/http.d`.
+    
+    * The default `allow` value, specifying permitted IP addresses for the `/wallarm-status` service, is now 127.0.0.0/8 instead of 127.0.0.8/8.
 * [Kubernetes Ingress Controller](../admin-en/installation-kubernetes-en.md):
     
     * Tarantool is no longer a separate pod, wstore runs within the main `<CHART_NAME>-wallarm-ingress-controller-xxx` pod.

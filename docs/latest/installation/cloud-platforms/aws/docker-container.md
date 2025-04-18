@@ -285,7 +285,7 @@ To deploy the container with environment variables and configuration file mounte
                 "essential": true,
                 "mountPoints": [
                     {
-                        "containerPath": "/etc/nginx/sites-enabled",
+                        "containerPath": "/etc/nginx/http.d",
                         "sourceVolume": "default"
                     }
                 ],
@@ -322,10 +322,10 @@ To deploy the container with environment variables and configuration file mounte
     * `<PATH_FOR_MOUNTED_CONFIG>`: directory of the container to mount the configuration file to. Configuration files can be mounted to the following container directories used by NGINX:
 
         * `/etc/nginx/conf.d` — common settings
-        * `/etc/nginx/sites-enabled` — virtual host settings
+        * `/etc/nginx/http.d` — virtual host settings
         * `/var/www/html` — static files
 
-        The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
+        The filtering node directives should be described in the `/etc/nginx/http.d/default.conf` file.
     
     * `<NAME_FROM_VOLUMES_OBJECT>`: name of the `volumes` object containing the configuration of the mounted file AWS EFS storage (the value should be the same as `<VOLUME_NAME>`).
     * `<VOLUME_NAME>`: name of the `volumes` object that contains the configuration of the mounted file AWS EFS storage.
