@@ -41,7 +41,9 @@ server {
   listen 127.0.0.8:80;
   server_name localhost;
 
-  allow 127.0.0.8/8;   # Access is only available for loopback addresses of the filter node server  
+  allow 127.0.0.8/8;   # Access is only available for loopback addresses of the filter node server
+  # If running the NGINX-based Docker container:
+  # allow 127.0.0.0/8;
   deny all;
 
   wallarm_mode off;
@@ -87,7 +89,7 @@ To allow requests from another server:
 
                 server_name localhost;
 
-                allow 127.0.0.8/8;
+                allow 127.0.0.0/8;
             +    allow 10.41.29.0;
                 deny all;
 
@@ -141,6 +143,8 @@ To change an IP address and/or port of the statistics service, follow the instru
                 server_name localhost;
 
                 allow 127.0.0.8/8;
+                # If running the NGINX-based Docker container:
+                # allow 127.0.0.0/8;
                 deny all;
 
                 wallarm_mode off;

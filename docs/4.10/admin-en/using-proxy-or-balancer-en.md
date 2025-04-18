@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/using-proxy-or-balancer-en.md"
+--8<-- "5.0/admin-en/using-proxy-or-balancer-en.md"

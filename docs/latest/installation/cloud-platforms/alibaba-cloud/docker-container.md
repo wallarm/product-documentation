@@ -119,10 +119,10 @@ To deploy the containerized Wallarm filtering node configured through environmen
     * `<DIRECTORY_FOR_MOUNTING>`: directory of the container to mount the configuration file to. Configuration files can be mounted to the following container directories used by NGINX:
 
         * `/etc/nginx/conf.d` — common settings
-        * `/etc/nginx/sites-enabled` — virtual host settings
+        * `/etc/nginx/http.d` — virtual host settings
         * `/var/www/html` — static files
 
-        The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
+        The filtering node directives should be described in the `/etc/nginx/http.d/default.conf` file.
     
     * `-p`: port the filtering node listens to. The value should be the same as the instance port.
     * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `WALLARM_API_TOKEN` explicitly.

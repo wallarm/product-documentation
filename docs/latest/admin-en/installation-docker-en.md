@@ -39,7 +39,7 @@ You can pass the following basic filtering node settings to the container via th
 
 The command does the following:
 
-* Creates the file `default` with minimal NGINX configuration and passes filtering node configuration in the `/etc/nginx/sites-enabled` container directory.
+* Creates the file `default.conf` with minimal NGINX configuration and passes filtering node configuration in the `/etc/nginx/http.d` container directory.
 * Creates files with filtering node credentials to access the Wallarm Cloud in the `/opt/wallarm/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
     * `private.key` with Wallarm private key
@@ -60,20 +60,20 @@ To run the container:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:6.0.0
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/http.d/default.conf -p 80:80 wallarm/node:6.0.0
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:6.0.0
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_LABELS='group=<GROUP>' -v /configs/default:/etc/nginx/http.d/default.conf -p 80:80 wallarm/node:6.0.0
         ```
 
     * The `-e` option passes the following required environment variables to the container:
 
         --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
     
-    * The `-v` option mounts the directory with the configuration file `default` to the `/etc/nginx/sites-enabled` container directory.
+    * The `-v` option mounts the directory with the configuration file `default.conf` to the `/etc/nginx/http.d` container directory.
 
-        ??? info "See the example `/etc/nginx/sites-enabled` minimal content"
+        ??? info "See the example `/etc/nginx/http.d/default.conf` minimal content"
             ```bash
             server {
                     listen 80 default_server;
@@ -107,7 +107,7 @@ To run the container:
                 1. In `nginx.conf`, add the following setting at the top level:
 
                     ```
-                    include /etc/nginx/modules-enabled/*.conf;
+                    include /etc/nginx/modules/*.conf;
                     ```
                 1. In `nginx.conf`, add the `wallarm_srv_include /etc/nginx/wallarm-apifw-loc.conf;` directive in the `http` block. This specifies the path to the configuration file for [API Specification Enforcement][api-policy-enf-docs].
                 1. Mount the `wallarm-apifw-loc.conf` file to the specified path. The content should be:
@@ -135,7 +135,7 @@ To run the container:
 
                       server_name localhost;
 
-                      allow 127.0.0.8/8;
+                      allow 127.0.0.0/8;
                       deny all;
 
                       wallarm_mode off;
@@ -161,14 +161,14 @@ To run the container:
                     }
                     ```
             * `/etc/nginx/conf.d` — common settings
-            * `/etc/nginx/sites-enabled` — virtual host settings
+            * `/etc/nginx/http.d` — virtual host settings
             * `/opt/wallarm/usr/share/nginx/html` — static files
 
-            If required, you can mount any files to the listed container directories. The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
+            If required, you can mount any files to the listed container directories. The filtering node directives should be described in the `/etc/nginx/http.d/default.conf` file.
 
 The command does the following:
 
-* Mounts the file `default` into the `/etc/nginx/sites-enabled` container directory.
+* Mounts the file `default.conf` into the `/etc/nginx/http.d` container directory.
 * Creates files with filtering node credentials to access Wallarm Cloud in the `/opt/wallarm/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
     * `private.key` with Wallarm private key

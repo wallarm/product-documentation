@@ -150,7 +150,7 @@ To deploy the container with environment variables and mounted configuration fil
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:6.0.0 \
             --gitrepo-url <URL_OF_GITREPO> \
-            --gitrepo-mount-path /etc/nginx/sites-enabled \
+            --gitrepo-mount-path /etc/nginx/http.d \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} WALLARM_API_HOST='us1.api.wallarm.com' WALLARM_LABELS='group=<GROUP>'
          ```
     === "Command for the Wallarm EU Cloud"
@@ -162,7 +162,7 @@ To deploy the container with environment variables and mounted configuration fil
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:6.0.0 \
             --gitrepo-url <URL_OF_GITREPO> \
-            --gitrepo-mount-path /etc/nginx/sites-enabled \
+            --gitrepo-mount-path /etc/nginx/http.d \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} WALLARM_LABELS='group=<GROUP>'
          ```
 
@@ -175,10 +175,10 @@ To deploy the container with environment variables and mounted configuration fil
     * `--gitrepo-mount-path`: directory of the container to mount the configuration file to. Configuration files can be mounted to the following container directories used by NGINX:
 
         * `/etc/nginx/conf.d` — common settings
-        * `/etc/nginx/sites-enabled` — virtual host settings
+        * `/etc/nginx/http.d` — virtual host settings
         * `/var/www/html` — static files
 
-        The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
+        The filtering node directives should be described in the `/etc/nginx/http.d/default.conf` file.
     
     * `--environment-variables`: environment variables containing settings for the filtering node and Wallarm Cloud connection (available variables are listed in the table below). Please note that it is not recommended to explicitly pass the value of `WALLARM_API_TOKEN`.
 

@@ -10,7 +10,7 @@ Change the value in `client_max_body_size` in the directive `location` for the a
 
 Change the value in `client_max_body_size`:
 
-1. Open for editing the the `/etc/nginx/sites-enabled/default` file.
+1. Open for editing the `/etc/nginx/sites-enabled/default` (`/etc/nginx/http.d/default.conf` if running the Docker container) file.
 2. Put in the new value:
 
 	```
