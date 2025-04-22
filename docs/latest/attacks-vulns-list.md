@@ -458,7 +458,7 @@ A successful brute‑force attack can potentially bypass authentication and auth
 
 Wallarm detects and mitigates brute force attacks only if it has one of the following: 
 
-* **Basic brute force protection** configured with one or more [brute force triggers]((admin-en/configuration-guides/protecting-against-bruteforce.md)) or [rate limit rules](user-guides/rules/rate-limiting.md).
+* **Basic brute force protection** configured with one or more [brute force triggers](admin-en/configuration-guides/protecting-against-bruteforce.md) or [rate limit rules](user-guides/rules/rate-limiting.md).
 * **Generiс protection from enumeration** described [here](#generic-enumeration-attack).
 * **Advanced brute force protection** configured with one or more [brute force mitigation controls](api-protection/enumeration-attack-protection.md) (requires Advanced API Security [subscription](about-wallarm/subscription-plans.md#waap-and-advanced-api-security)).
 
@@ -494,6 +494,7 @@ This vulnerability is also known as IDOR (Insecure Direct Object Reference).
 Wallarm automatically discovers vulnerabilities of this type but detects and mitigates BOLA attacks only if it has one of the following:
 
 * **Basic BOLA protection** configured with one or more [**BOLA** triggers](admin-en/configuration-guides/protecting-against-bola-trigger.md).
+* **Generiс protection from enumeration** described [here](#generic-enumeration-attack).
 * **Automatic BOLA protection** by [API Discovery](api-discovery/overview.md) for endpoints discovered by this module - see details [here](admin-en/configuration-guides/protecting-against-bola.md).
 * **Advanced BOLA protection** configured with one or more [BOLA mitigation controls](api-protection/enumeration-attack-protection.md) (requires Advanced API Security [subscription](about-wallarm/subscription-plans.md#waap-and-advanced-api-security)).
 
