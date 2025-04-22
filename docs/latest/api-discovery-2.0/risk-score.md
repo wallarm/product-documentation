@@ -9,7 +9,6 @@ The risk score is made up of various factors, each having its own weight when ca
 | Factor | Description | Default weight |
 | --- | --- | --- |
 | Active vulnerabilities | [Active vulnerabilities](../about-wallarm/detecting-vulnerabilities.md)  may result in unauthorized data access or corruption. | 9 |
-| Potentially vulnerable to BOLA | Presence of the [variable path parts](exploring.md#variability), such as user IDs, e.g. `/api/articles/author/{parameter_X}`. Attackers can manipulate object IDs and, in case of insufficient request authentication, either read or modify the object sensitive data ([BOLA attacks](../admin-en/configuration-guides/protecting-against-bola.md)). | 6 |
 | Parameters with sensitive data | Rather than directly attacking APIs, attackers can steal [sensitive data](overview.md#sensitive-data-detection) and use it to seamlessly reach your resources. | 8 |
 | Number of query and body parameters | A large number of parameters increases the number of attack directions. | 6 |
 | Accepts XML / JSON objects | XML or JSON objects passed in requests may be used by attackers to transfer malicious XML external entities and injections to the server. | 6 |
@@ -34,22 +33,4 @@ Risk score may be from `1` (lowest) to `10` (highest):
 
 To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details:
 
-![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
-
-You can also get summary on APIs by their risk score levels in **Dashboards** → **API Discovery** in the [US](https://us1.my.wallarm.com/dashboard-api-discovery) or [EU](https://my.wallarm.com/dashboard-api-discovery) Cloud.
-
-## Customizing risk score calculation
-
-You can configure the weight of each factor in risk score calculation and calculation method.
-
-To change how risk score is calculated: 
-
-1. Click the **Configure API Discovery** button in the **API Discovery** section.
-1. Switch to the **Risk scoring** tab.
-1. Select calculation method: highest or average weight.
-1. If necessary, disable factors you do not want to affect a risk score.
-1. Set weights for the remaining.
-
-    ![API Discovery - Risk score setup](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
-
-1. Save changes. Wallarm will re-calculate the risk score for your endpoints in accordance with the new settings in several minutes.
+![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-risk-score-details.png)

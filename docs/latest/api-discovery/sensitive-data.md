@@ -1,5 +1,8 @@
 # Sensitive Data Detection <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
+!!! warning "Newer version available"
+    This article describes **REST only** API Discovery - since May 2025, the [newer version](../api-discovery-2.0/overview.md) supporting both **REST and GraphQL** and having **improved performance** is available.
+
 API Discovery detects and highlights sensitive data consumed and carried by your APIs, which allows applying encryption, tokenization, or other security controls to protect it and prevent data breaches and transmitting sensitive data across insecure channels or to unauthorized systems. This article describes how to use and configure the feature.
 
 You get Wallarm's sensitive data detection ready-to-use with the comprehensive default configuration. It is also highly customizable: you can fine-tune the existing detection process and extend it with your own data types to detect.
