@@ -1,5 +1,8 @@
 # Tracking changes in API <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
+!!! warning "Newer version available"
+    This article describes **REST only** API Discovery - since May 2025, the [newer version](../api-discovery-2.0/overview.md) supporting both **REST and GraphQL** and having **improved performance** is available.
+
 If changes occur in your API, [API Discovery](overview.md) updates the built API inventory, highlights the changes and gives you information on when and what has changed. Additionally, you can set up notifications on all or some of the changes.
 
 ![API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)

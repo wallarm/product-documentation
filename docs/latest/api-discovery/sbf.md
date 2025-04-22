@@ -1,5 +1,8 @@
 # Sensitive Business Flows <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
+!!! warning "Newer version available"
+    This article describes **REST only** API Discovery - since May 2025, the [newer version](../api-discovery-2.0/overview.md) supporting both **REST and GraphQL** and having **improved performance** is available.
+
 With the sensitive business flow capability, Wallarm's [API Discovery](overview.md) can automatically identifies endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities. Learn from this article how to use the sensitive business flow functionality.
 
 Requires NGINX Node 5.2.11 or Native Node 0.10.1 or higher.
