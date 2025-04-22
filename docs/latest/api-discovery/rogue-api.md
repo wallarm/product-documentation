@@ -3,6 +3,9 @@
 !!! warning "Feature availability"
     In the latest versions of API Discovery, this feature is under reconstruction and may be temporarily unavailable.
 
+!!! warning "Newer version available"
+    This article describes **REST only** API Discovery - since May 2025, the [newer version](../api-discovery-2.0/overview.md) supporting both **REST and GraphQL** and having **improved performance** is available.
+
 The [API Discovery](overview.md) module automatically identifies shadow, orphan and zombie APIs by comparing your uploaded specification to the live traffic.
 
 |Rogue API type | What is it? |
