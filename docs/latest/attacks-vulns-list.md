@@ -415,15 +415,38 @@ This vulnerability occurs due to the incorrect validation and parsing of user in
 
 * Sanitize and filter all user input to prevent an entity in the input from being executed.
 
-## Mass attacks
+## Enumeration attacks
 
-### Brute-force attack
+An enumeration attack is a type of cyberattack where a malicious actor attempts to gather valid information about a target system, network, or application by systematically trying different inputs and observing the responses. The goal is to identify valid usernames, email addresses, account names, resources, or services that exist within the system.
+
+### Generic enumeration attack
+
+**Attack**
+
+**Wallarm code:** `Enum`
+
+**Description:**
+
+An attempt to enumerate any normally unexposed data of your applications (user accounts, names, emails, tokens, credential pairs, system configuration, services, any parameters).
+
+**Required configuration:**
+
+Wallarm detects and mitigates brute-force attacks only if it has one or more [enumeration mitigation controls](api-protection/enumeration-attack-protection.md) (requires Advanced API Security [subscription](about-wallarm/subscription-plans.md#waap-and-advanced-api-security)).
+
+**In addition to Wallarm protection:**
+
+*   Limit the number of requests per a certain time period for an API or certain endpoints.
+*   Limit the number of authentication/authorization attempts per a certain time period for an API or certain endpoints.
+*   Block new authentication/authorization attempts after a certain number of the failed attempts.
+*   Restrict an application from accessing any files or directories on the server it runs on, except those within the scope of the application.
+
+### Brute force attack
 
 **Attack**
 
 **CWE codes:** [CWE-307][cwe-307], [CWE-521][cwe-521], [CWE-799][cwe-799]
 
-**Wallarm code:** `brute`
+**Wallarm code:** `brute` (in **Attacks**), `Brute force` (in **API Sessions**)
 
 **Description:**
 
@@ -433,9 +456,10 @@ A successful brute‑force attack can potentially bypass authentication and auth
 
 **Required configuration:**
 
-Wallarm detects and mitigates brute-force attacks only if it has one of the following: 
+Wallarm detects and mitigates brute force attacks only if it has one of the following: 
 
 * **Basic brute force protection** configured with one or more [brute force triggers]((admin-en/configuration-guides/protecting-against-bruteforce.md)) or [rate limit rules](user-guides/rules/rate-limiting.md).
+* **Generiс protection from enumeration** described [here](#generic-enumeration-attack).
 * **Advanced brute force protection** configured with one or more [brute force mitigation controls](api-protection/enumeration-attack-protection.md) (requires Advanced API Security [subscription](about-wallarm/subscription-plans.md#waap-and-advanced-api-security)).
 
 **In addition to Wallarm protection:**
@@ -445,63 +469,13 @@ Wallarm detects and mitigates brute-force attacks only if it has one of the foll
 *   Block new authentication/authorization attempts after a certain number of the failed attempts.
 *   Restrict an application from accessing any files or directories on the server it runs on, except those within the scope of the application.
 
-### Forced browsing
-
-**Attack**
-
-**CWE code:** [CWE-425][cwe-425]
-
-**Wallarm code:** `dirbust`
-
-**Description:**
-
-This attack belongs to the class of brute‑force attacks. The purpose of this attack is to detect hidden resources, namely directories and files. This is achieved by trying different file and directory names that are either generated based on some template or extracted from a prepared dictionary file.
-
-A successful forced browsing attack potentially grants access to hidden resources that are not explicitly available from the application interface but are exposed when accessed directly.
-
-**Required configuration:**
-
-Wallarm detects and mitigates forced browsing only if it has one or more configured [forced browsing triggers](admin-en/configuration-guides/protecting-against-forcedbrowsing.md).
-
-**In addition to Wallarm protection:**
-
-*   Restrict or limit users' access to those resources that they are not supposed to have direct access to (e.g., by employing some authentication or authorization mechanisms).
-*   Limit the number of requests per a certain time period for an API or certain endpoints.
-*   Limit the number of authentication/authorization attempts per a certain time period for an API or certain endpoints.
-*   Block new authentication/authorization attempts after a certain number of failed attempts.
-*   Set necessary and sufficient access rights for files and directories.
-
-### Credential stuffing
-
-**Attack**
-
-**Wallarm code:** `credential_stuffing`
-
-**Description:**
-
-A cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple resources. This attack is hazardous because many people reuse the same username and password across different services or use popular weak passwords. A successful credential stuffing attack requires fewer attempts, so attackers can send requests much less frequently, which makes standard measures like brute force protection ineffective. 
-
-**Required configuration:**
-
-Wallarm detects the credential stuffing attempts only if the filtering node has version 4.10 or above and the [Credential Stuffing Detection](about-wallarm/credential-stuffing.md) functionality is enabled and properly configured.
-
-**In addition to Wallarm protection:**
-
-* Get familiar with the [OWASP credential stuffing description](https://owasp.org/www-community/attacks/Credential_stuffing), including the "Credential Stuffing Prevention Cheat Sheet".
-* Force users to use strong passwords.
-* Recommend users not to use the same passwords for different resources.
-* Enable two-factor authentication.
-* Use additional CAPTCHA solutions.
-
-## Access-level 
-
 ### Broken object level authorization (BOLA)
 
 **Vulnerability/Attack**
 
 **CWE code:** [CWE-639][cwe-639]
 
-**Wallarm code:** `idor` for vulnerabilities, `bola` for attacks
+**Wallarm code:** `idor` for vulnerabilities, `bola` (in **Attacks**), `BOLA` (in **API Sessions**)
 
 **Description:**
 
@@ -517,10 +491,42 @@ This vulnerability is also known as IDOR (Insecure Direct Object Reference).
 
 **Required configuration:**
 
-Wallarm automatically discovers vulnerabilities of this type. To detect and block BOLA attacks, do one or all of the following: 
+Wallarm automatically discovers vulnerabilities of this type but detects and mitigates BOLA attacks only if it has one of the following:
 
-* Enable [API Discovery](api-discovery/overview.md) and configure [automatic BOLA protection](admin-en/configuration-guides/protecting-against-bola.md) for endpoints discovered by this module
-* Configure one or more [**BOLA** triggers](admin-en/configuration-guides/protecting-against-bola.md)
+* **Basic BOLA protection** configured with one or more [**BOLA** triggers](admin-en/configuration-guides/protecting-against-bola-trigger.md).
+* **Automatic BOLA protection** by [API Discovery](api-discovery/overview.md) for endpoints discovered by this module - see details [here](admin-en/configuration-guides/protecting-against-bola.md).
+* **Advanced BOLA protection** configured with one or more [BOLA mitigation controls](api-protection/enumeration-attack-protection.md) (requires Advanced API Security [subscription](about-wallarm/subscription-plans.md#waap-and-advanced-api-security)).
+
+### Forced browsing
+
+**Attack**
+
+**CWE code:** [CWE-425][cwe-425]
+
+**Wallarm code:** `dirbust` (in **Attacks**), `Forced browsing` (in **API Sessions**)
+
+**Description:**
+
+The purpose of this attack is to detect hidden resources, namely directories and files. This is achieved by trying different file and directory names that are either generated based on some template or extracted from a prepared dictionary file.
+
+A successful forced browsing attack potentially grants access to hidden resources that are not explicitly available from the application interface but are exposed when accessed directly.
+
+**Required configuration:**
+
+Wallarm detects and mitigates forced browsing only if it has one of the following:
+
+* **Basic forced browsing protection** configured with one or more [forced browsing triggers](admin-en/configuration-guides/protecting-against-forcedbrowsing.md).
+* **Advanced forced browsing protection** configured with one or more [forced browsing mitigation controls](api-protection/enumeration-attack-protection.md) (requires Advanced API Security [subscription](about-wallarm/subscription-plans.md#waap-and-advanced-api-security)).
+
+**In addition to Wallarm protection:**
+
+*   Restrict or limit users' access to those resources that they are not supposed to have direct access to (e.g., by employing some authentication or authorization mechanisms).
+*   Limit the number of requests per a certain time period for an API or certain endpoints.
+*   Limit the number of authentication/authorization attempts per a certain time period for an API or certain endpoints.
+*   Block new authentication/authorization attempts after a certain number of failed attempts.
+*   Set necessary and sufficient access rights for files and directories.
+
+## Access-level 
 
 **In addition to Wallarm protection:**
 
@@ -927,6 +933,28 @@ A successful authentication bypass attack potentially leads to disclosing users'
 * Improve and strengthen existing authentication mechanisms.
 * Eliminate any alternative authentication methods that may allow attackers to access an API while bypassing the required authentication procedure via pre‑defined mechanisms.
 * Apply the recommendations from the [OWASP Authentication Cheat Sheet][link-owasp-auth-cheatsheet].
+
+### Credential stuffing
+
+**Attack**
+
+**Wallarm code:** `credential_stuffing`
+
+**Description:**
+
+A cyber attack where hackers use lists of compromised user credentials to gain unauthorized access to user accounts on multiple resources. This attack is hazardous because many people reuse the same username and password across different services or use popular weak passwords. A successful credential stuffing attack requires fewer attempts, so attackers can send requests much less frequently, which makes standard measures like brute force protection ineffective. 
+
+**Required configuration:**
+
+Wallarm detects the credential stuffing attempts only if the filtering node has version 4.10 or above and the [Credential Stuffing Detection](about-wallarm/credential-stuffing.md) functionality is enabled and properly configured.
+
+**In addition to Wallarm protection:**
+
+* Get familiar with the [OWASP credential stuffing description](https://owasp.org/www-community/attacks/Credential_stuffing), including the "Credential Stuffing Prevention Cheat Sheet".
+* Force users to use strong passwords.
+* Recommend users not to use the same passwords for different resources.
+* Enable two-factor authentication.
+* Use additional CAPTCHA solutions.
 
 ### Cross-site request forgery (CSRF)
 

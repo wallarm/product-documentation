@@ -6,9 +6,12 @@ A forced browsing attack is one of the attack types not detected by Wallarm out-
     
 This attack aims to enumerate and access hidden resources (e.g. directories and files containing information on application components). The forced browsing attack type usually allows attackers to collect information about the application and perform other attack types by exploiting this information.
 
-Note that besides protection from forced browsing, you can configure protection against [brute-force attacks](protecting-against-bruteforce.md) similarly.
+## Basic protection
 
-## Configuring
+!!! info "Availability"
+    If [advanced protection](#advanced-protection) tools are enabled for you as a part of Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security), basic protection controls may be unavailable. If you want to enable them, contact the [Wallarm support team](https://support.wallarm.com/).
+
+### Configuring
 
 Consider the example below to learn how to configure forced browsing protection.
 
@@ -48,7 +51,7 @@ To provide this protection:
 
 You can configure several triggers for forced browsing protection.
 
-## Testing
+### Testing
 
 !!! info "Testing in your environment"
     To test the **Forced browsing** trigger in your environment, in the trigger and the requests below, replace the domain with any public one (e.g. `example.com`).
@@ -71,7 +74,7 @@ To test the trigger described in the [Configuring](#configuring) section:
 
     To search for forced browsing attacks, you can use the `dirbust` filter. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-## Requirements and restrictions
+### Requirements and restrictions
 
 **Requirements**
 
@@ -80,3 +83,7 @@ To protect resources from forced browsing attacks, real clients' IP addresses ar
 **Restrictions**
 
 When searching for forced browsing attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types.
+
+## Advanced protection <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+
+Wallarm's Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) provides [advanced configuration](../../api-protection/enumeration-attack-protection.md) of forced browsing protection.
