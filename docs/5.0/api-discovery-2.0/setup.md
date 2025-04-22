@@ -31,10 +31,6 @@ You may enable/disable API Discovery for all applications or only the selected o
 
 When you add a new application in **Settings** → **[Applications](../user-guides/settings/applications.md)**, it is automatically added to the list of applications for API discovery in the **disabled** state.
 
-### Customizing risk score calculation
-
-You can configure the weight of each factor in [risk score](risk-score.md) calculation and calculation method.
-
 ### Customizing sensitive data detection
 
 API Discovery [detects and highlights](sensitive-data.md) sensitive data consumed and carried by your APIs. You can fine-tune the existing detection process and extend it with your own data types to detect.
