@@ -8,16 +8,13 @@ Explore your discovered API inventory using the **API Discovery** section in the
 
 ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 
-Each time you open the **API Discovery** section, you see all discovered endpoints and their [changes](track-changes.md) for the last week (TBD). With **Changes since** filter, you can change `Last week` to any other period.
-
-By default, endpoints are sorted by host. You can turn it off/on with the **Group by host** control.
+By default, endpoints are sorted by host. You can turn it off/on with the **Group by host** control. With grouping disabled, you can sort endpoints by risk.
 
 ### Filtering
 
 Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
-* Find the most vulnerable endpoints characterized by processing sensitive data and active vulnerabilities of the high [risk level](risk-score.md). Exploiting vulnerabilities of a high risk level allows attackers to perform many malicious actions with the system including stealing sensitive data that the endpoint processes/stores.
-* Find [rogue endpoints](rogue-api.md): shadow, orphan and zombie.
+* Find the endpoints characterized with the highest [risk level](risk-score.md) to analyze and mitigate the risks.
 * Find the endpoints that have been changed or newly discovered in the last week and that process PII data. This kind of request can help you to stay up to date with critical [changes in your APIs](track-changes.md).
 * Find the endpoints being used to upload data to your server by the PUT or POST calls (REST) or mutations (GraphQL) (**API protocols** filter with methods for REST and operation types for Graph QL). Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
 * Find the endpoints processing sensitive data to ensure they are properly secured.
@@ -89,25 +86,7 @@ Each request/response parameter information includes:
 
 ## Endpoint activities
 
-### Attacks
-
-Number of attacks on API endpoints for the last 7 days are displayed in the **Hits** column. You can request displaying only attacked endpoints by selecting in filters: **Others** → **Attacked endpoints**.
-
-To see attacks to some endpoint, click number in the **Hits** column:
-
-![API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
-
-The **Attacks** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
-
-```
-attacks last 7 days endpoint_id:<YOUR_ENDPOINT_ID>
-```
-
-You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
-
-### All activities
-
-The number of all requests related to the endpoint is displayed in the **Requests** column. Click this number to open the [**API Sessions**](../api-sessions/overview.md) section with the list of user sessions for the last week with these requests.
+The number of requests related to the endpoint is displayed in the **Requests** column. Click this number to open the [**API Sessions**](../api-sessions/overview.md) section with the list of user sessions for the last week with these requests.
 
 Within each found session, only requests to your endpoint will be initially displayed - in session, remove filter by endpoint to see all requests for context.
 
@@ -122,7 +101,7 @@ You can quickly create a new [custom rule](../user-guides/rules/rules.md) from a
 
 ![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
-## Exporting API inventory data
+<!--## Exporting API inventory data
 
 The API Discovery UI provides you with an option to export the current filtered list of endpoints as the [OpenAPI v3](https://spec.openapis.org/oas/v3.0.0) specification or CSV file.
 
@@ -136,3 +115,4 @@ To export, in Wallarm Console → **API Discovery**, use the **OAS/CSV** option.
 
 !!! warning "API host information in downloaded Swagger file"
     If a discovered API inventory contains several API hosts, endpoints from all API hosts will be included in the downloaded file. Currently, the API host information is not included in the file.
+-->

@@ -1,8 +1,10 @@
 # Tracking changes in API <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-If changes occur in your API, [API Discovery](overview.md) updates the built API inventory, highlights the changes and gives you information on when and what has changed. Additionally, you can set up notifications on all or some of the changes.
+If changes occur in your API, [API Discovery](overview.md) updates the built API inventory, highlights the changes and gives you information on when and what has changed.<!-- Additionally, you can set up notifications on all or some of the changes.-->
 
-![API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
+![API Discovery - track changes](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-changes.png)
+
+## Overview
 
 The company may have several teams, disparate programming languages, and a variety of language frameworks. Thus changes can come to API at any time from different sources which make them difficult to control. For security officers it is important to detect changes as soon as possible and analyze them. If missed, such changes may hold some risks, for example:
 
@@ -13,48 +15,24 @@ The company may have several teams, disparate programming languages, and a varie
 
 ## Highlighting changes in API
 
-Each time you open the **API Discovery** section, the **Changes since** filter goes to the `Last week` state, which means the changes occurred within the last week are highlighted. To change the time period, redefine dates in the **Changes since** filter.
+In the **Status** column for endpoints and parameters, API Discovery provides data about changes in your API for the last week:
 
-In the endpoint list, the following marks highlight the changes in API:
-
-* **New** for the endpoints added to the list within the period.
+* **New** for the endpoints discovered within a week.
 * **Changed** for the endpoints that have newly discovered parameters or parameters that obtained the `Unused` status within the period. In the details of the endpoint such parameters will have a corresponding mark.
 
-    * A parameter gets the `New` status if is is discovered within the period.
-    * A parameter gets the `Unused` status if it does not pass any data for 7 days. 
+    * A parameter gets the `New` status if is is discovered within the last week.
+    * A parameter gets the `Unused` status if it does not pass any data for a week. 
     * If later the parameter in the `Unused` status passes data again it will lose the `Unused` status.
 
-* **Unused** for the endpoints that obtained the `Unused` status within the period.
+* **Unused** for the endpoints not requested (with the code 200 in response) within the last week or longer.
 
-    * An endpoint gets the `Unused` status if it is not requested (with the code 200 in response) for 7 days.
     * If later the endpoint in the `Unused` status is requested (with the code 200 in response) again it will lose the `Unused` status.
 
-Note that whatever period is selected, if nothing is highlighted with the **New**, **Changed** or **Unused** mark, this means there are no changes in API for that period.
+![API Discovery - track changes](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-changes.png)
 
-![API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
+To change the time period, redefine dates in the **Changes since** filter.
 
-Quick tips for endpoints marked as rogue:
-
-* Mouse over the **New**, **Changed** or **Unused** labels to see when the change happened
-* Go to **Changed** endpoint details to see reason of this status: **New** parameters and parameters that got **Unused** status - mouse over labels to see when the parameter change occurred
-* Counters for all types of changes for the last 7 days are displayed at the [API Discovery Dashboard](dashboard.md).
-
-
-## Filtering changes in API
-
-In the **API Discovery** section, using the **Changes since** filter only highlights the endpoints changed within the selected period, but does not filter out endpoints without changes.
-
-The **Changes in API** filter works differently and shows **only** endpoints changed within the selected period and filters out all the rest.
-
-<a name="example"></a>Let us consider the example: say your API today has 10 endpoints (there were 12, but 3 of them were marked unused 10 days ago). 1 of this 10 was added yesterday, 2 have changes in their parameters occurred 5 days ago for one and 10 days ago for another:
-
-* Each time you open the **API Discovery** section today, the **Changes since** filter will go to the `Last week` state; page will display 10 endpoints, in the **Changes** column 1 of them will have the **New** mark, and 1 - the **Changed** mark.
-* Switch **Changes since** to `Last 2 weeks` - 13 endpoints will be displayed, in the **Changes** column 1 of them will have the **New** mark, 2 - the **Changed** mark, and 3 - the **Unused** mark.
-* Set **Changes in API** to `Unused endpoints` - 3 endpoints will be displayed, all with the **Unused** mark.
-* Change **Changes in API** to `New endpoints + Unused endpoints` - 4 endpoints will be displayed, 3 with the **Unused** mark, and 1 with the **New** mark.
-* Switch **Changes since** back to `Last week` - 1 endpoint will be displayed, it will have the **New** mark.
-
-## Getting notified
+<!--## Getting notified
 
 To get immediate notifications about changes in API to your messenger, SIEM or log management system, configure [triggers](../user-guides/triggers/triggers.md) with the **Changes in API** condition.
 
@@ -91,4 +69,4 @@ In this example, if new endpoints for the `example.com` API host are discovered 
           http_method: GET
           change_type: added
           link: https://my.wallarm.com/api-discovery?instance=1802&method=GET&q=example.com%2Fusers
-    ```
+    ```-->
