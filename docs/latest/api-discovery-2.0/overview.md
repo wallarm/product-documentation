@@ -2,6 +2,8 @@
 
 Wallarm's **API Discovery** builds your application **REST** and **GraphQL** API inventory based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API inventory based on the analysis results.
 
+Requires NGINX Node 6.1.0 or Native Node TBD or higher.
+
 The built API inventory includes the following elements:
 
 * For all protocols:
@@ -38,13 +40,9 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * See what data ([REST](exploring.md#rest-endpoint-details), [GraphQL](exploring.md#graphql-operation-details)) is going into and out of the APIs.
 * Get a list of endpoints with the open vulnerabilities.
 * Get a list of the threats that occurred over the past 7 days per any given API endpoint.
-* Filter out only attacked APIs, sort them by number of hits.
 * Filter APIs that consume and carry [sensitive data](#sensitive-data-detection).
-* View visualized summary on your API inventory structure and problems on a handy [dashboard](dashboard.md).
 * Understand which endpoints are [most likely](risk-score.md) to be an attack target.
-* Find [shadow, orphan and zombie APIs](rogue-api.md).
 * [Track changes](track-changes.md) in API that took place within the selected period of time.
-* Filter API endpoints by the [BOLA auto protection state](bola-protection.md).
 * Provide your developers with [access](../user-guides/settings/users.md#user-roles) to the built API inventory reviewing and downloading.
 
 ## How does API Discovery work?
@@ -74,11 +72,9 @@ The API inventory will display the endpoints and parameters that exceeded these 
 Also, the API Discovery performs filtering of requests relying on the other criteria:
 
 * Only those requests to which the server responded in the 2xx range are processed.
-* Requests that do not conform to the design principles of the REST API are not processed.
+* Requests that do not conform to the design principles of the REST or GraphQL API are not processed.
     
-    This is done by controlling the `Content-Type` header of responses: if it does not contain `application/json` (like `Content-Type: application/json;charset=utf-8`), the request is considered to be a non-REST API and is not analyzed.
-    
-    If the header does not exist, API Discovery analyzes the request.
+    For REST, this is done by controlling the `Content-Type` header of responses: if it does not contain `application/json` (like `Content-Type: application/json;charset=utf-8`), the request is considered to be a non-REST API and is not analyzed. If the header does not exist, API Discovery analyzes the request.
 
 * Standard fields such as `Accept` and alike are discarded.
 
@@ -92,9 +88,7 @@ API Discovery [detects and highlights](sensitive-data.md) sensitive data consume
 * Medical data like medical license number
 * Personally identifiable information (PII) like full name, passport number or SSN
 
-API Discovery provides the ability to configure the detection process and add your own sensitive data patterns (requires NGINX Node 5.0.3 or Native Node 0.7.0 or higher).
-
-### Sensitive business flows
+<!--### Sensitive business flows
 
 With the [sensitive business flow](sbf.md) capability, API Discovery can automatically identify endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities.
 
@@ -102,7 +96,7 @@ In addition to automatic identification, you can manually adjust the assigned se
 
 Once endpoints are assigned with the sensitive business flow tags, it becomes possible to filter all discovered endpoint by a specific business flow which makes it easier on protecting the most critical business capabilities.
 
-![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
+![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)-->
 
 ### Security of data uploaded to the Wallarm Cloud
 
@@ -115,22 +109,6 @@ Other data (endpoint values, request methods, and parameter names) is not hashed
 !!! warning "Important"
     Wallarm does not send the values that are specified in the parameters to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
 
-## API Discovery demo video
+## Enabling API Discovery
 
-Watch API Discovery demo video:
-
-<div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/0bRHVtpWkJ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
-## Checking API Discovery in playground
-
-To try the module even before signing up and deploying the node to your environment, explore [API Discovery in Wallarm Playground](https://playground.wallarm.com/api-discovery/?utm_source=wallarm_docs_apid).
-
-In Playground, you can access the API Discovery view like it is filled with real data and thus learn and try out how the module works, and get some useful examples of its usage in the read-only mode.
-
-![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
-
-## Enabling and configuring API Discovery
-
-To start using API Discovery, enable and configure it as described in [API Discovery Setup](setup.md).
+To start using API Discovery, enable it as described in [API Discovery Setup](setup.md).

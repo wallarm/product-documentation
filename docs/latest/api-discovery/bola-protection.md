@@ -3,6 +3,9 @@
 !!! warning "Feature availability"
     In the latest versions of API Discovery, this feature is under reconstruction and may be temporarily unavailable.
 
+!!! warning "Newer version available"
+    This article describes **REST only** API Discovery - since May 2025, the [newer version](../api-discovery-2.0/overview.md) supporting both **REST and GraphQL** and having **improved performance** is available.
+
 Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either read or modify its data bypassing an authorization mechanism.
 
 Potential targets of the BOLA attacks are endpoints with variability. Wallarm can automatically discover and protect such endpoints among the ones explored by the [API Discovery](overview.md) module.
