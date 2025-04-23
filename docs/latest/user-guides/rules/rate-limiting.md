@@ -130,3 +130,9 @@ The rate limit functionality has the following limitations and peculiarities:
 * If an incoming request does not have the point specified in the **In this part of request** rule section, then this rule is not applied as a limitation for that request.
 * If your web server is configured to limit connections (e.g. by using the [`ngx_http_limit_req_module`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html) NGINX module) and you also apply the Wallarm rule, the web server rejects requests by the configured rules but Wallarm does not.
 * Wallarm does not save requests exceeding the rate limit, it only rejects them by returning the code chosen in the rule. The exception are requests with [attack signs](../../about-wallarm/protecting-against-attacks.md) - they are recorded by Wallarm even if they are rejected by the rate limiting rule.
+
+## Difference with rate abuse protection
+
+For restricting resource consumption and preventing attacks using massive amounts of requests, besides described rate limiting, Wallarm provides the [rate abuse protection](../../api-protection/rate-abuse-protection.md).
+
+The rate limiting delays some requests if rate is too high (puts to buffer) and rejects the remaining when buffer is full, when rate is back to normal, buffered requests are delivered, no blocking is applied by IP or session **while** rate abuse protection blocks attackers by their IPs or sessions for some time.

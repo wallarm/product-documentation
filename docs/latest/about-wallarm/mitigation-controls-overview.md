@@ -1,3 +1,10 @@
+[link-attack-detection-tools]:  protecting-against-attacks.md#tools-for-attack-detection
+[link-sub-plans]:               subscription-plans.md#waap-and-advanced-api-security
+[link-filtration-mode]:         ../admin-en/configure-wallarm-mode.md
+[link-nodes]:                   overview.md#how-wallarm-works
+[link-sessions]:                ../api-sessions/overview.md
+[link-brute-force-protection]:  ../admin-en/configuration-guides/protecting-against-bruteforce.md
+
 # Mitigation Controls
 
 Mitigation controls extend Wallarm's [basic](protecting-against-attacks.md#tools-for-attack-detection) attack protection with additional security measures.
@@ -12,7 +19,7 @@ Using mitigation controls, you can enable and configure:
 * BOLA enumeration protection
 * Forced browsing protection
 * Brute force protection
-* Advanced rate limiting
+* [Rate abuse protection](../api-protection/rate-abuse-protection.md)
 
 ## Difference between mitigation controls and rules
 
@@ -40,7 +47,7 @@ Some all traffic mitigation controls are created automatically by different Wall
 
 All traffic mitigation controls are inherited by all branches.
 
-## Configuring
+## Configuration
 
 Perform configuring in the **Security controls** → **Mitigation Controls** section of Wallarm Console. You can also access some mitigation control settings for other places in the system, for example, from API Sessions.
 
@@ -51,25 +58,34 @@ In general, configuring any mitigation control includes 2 steps:
 1. Set conditions (when all met → action)
 1. Set action (mitigation mode)
 
-### Conditions
+### Scope
 
-When all conditions are met, mitigation control performs its action. Conditions include:
+**Scope** is where request targets (URI + extras), see details [here](../user-guides/rules/rules.md#configuring)
 
-* **Scope** is where request targets (URI + extras), see details [here](../user-guides/rules/rules.md#configuring)
-* **Other settings** of mitigation control that define whether it will or will not take action, for example, for GraphQL API protection they are policy positions—control will act only if any of them is violated by request; or, for enumeration protection, they are multiple parameters of requests—control will act only if all specified parameters/values are met.
+### Advanced conditions
 
-For specifying conditions, you can use [regular expressions](#regex).
+Besides [Scope](#scope), mitigation control may include other conditions that define whether it will or will not take action, for example, for GraphQL API protection they are policy positions—control will act only if any of them is violated by request; or, for enumeration protection, they are multiple parameters of requests—control will act only if all specified parameters/values are met.
 
-### Action
+For specifying conditions, you can use [regular expressions](#regular-expressions).
+
+### Mitigation mode
 
 When all conditions are met, mitigation control performs its action. The required action is selected in the **Mitigation mode** section:
 
-* **Monitoring** - the attack is registered and displayed in Attacks or [API Sessions](../api-sessions/overview.md).
-* **Blocking** - the attack is registered and blocked real-time or by  placing source IP(s) into [denylist](../user-guides/ip-lists/overview.md) for the selected period of time.
-* **Inherited** - this means, mitigation control's settings will not work—instead, its [parent control](#mitigation-control-branches)'s settings will work. This mode makes sense when you want temporarily pause activity of mitigation control without deleting it. If there is no parent control, such mitigation control will not do anything.
-* **Disabled** - this stops any [parent control](#mitigation-control-branches) effect starting from current endpoint to all branches down. Settings of such controls are not important, they are not applied as well (until re-enabled).
+| Mitigation mode | Description |
+| --- | --- |
+| **Inherited** | Mode is inherited from the [global filtration mode setting](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
+| **Monitoring** | Only registers detected attacks; no blocking is performed. Registered attacks are displayed in **API Sessions**, in the corresponding [session details](../api-sessions/exploring.md#specific-activities-within-session). |
+| **Blocking** | Registers and blocks attacks. [Blocking methods](../about-wallarm/protecting-against-attacks.md#attack-handling-process) vary by control type: real-time blocking, [IP-based blocking](../user-guides/ip-lists/overview.md), or session-based blocking<sup>*</sup>. |
+| **Disabled** | Mitigation control is temporarily turned off and is not applied. |
+| **Excluding** | Disables this type of mitigation control for the [specified scope](#mitigation-control-branches). |
+| **Safe blocking** | Registers attacks but blocks them only if the originating IP is [graylisted](../user-guides/ip-lists/overview.md). |
 
-### Regex
+<small><sup>*</sup> The session-based blocking is not supported so far.</small>
+
+The list of available modes may vary depending on the particular control.
+
+### Regular expressions
 
 For specifying mitigation control [conditions](#conditions), you can use regular expressions.
 
