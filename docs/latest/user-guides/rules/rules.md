@@ -1,6 +1,12 @@
 [link-regex]:                   https://github.com/yandex/pire
 [link-request-processing]:      request-processing.md
 [img-add-rule]:                 ../../images/user-guides/rules/section-rules-add-rule.png
+[link-attack-detection-tools]:  ../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection
+[link-sub-plans]:               ../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security
+[link-filtration-mode]:         ../../admin-en/configure-wallarm-mode.md
+[link-nodes]:                   ../../about-wallarm/overview.md#how-wallarm-works
+[link-sessions]:                ../../api-sessions/overview.md
+[link-brute-force-protection]:  ../../admin-en/configuration-guides/protecting-against-bruteforce.md
 
 # Rules
 
@@ -40,6 +46,13 @@ Using rules, you can control how Wallarm mitigates attacks on your applications 
 
     * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
     * Configure the additional layer of the application security by [changinge response headers](../../user-guides/rules/add-replace-response-header.md)
+
+## Difference between rules and mitigation controls
+
+Rules may seem similar to [mitigation controls](../../about-wallarm/mitigation-controls-overview.md). Consider the differences:
+
+--8<-- "../include/mitigation-controls-vs-rules.md"
+
 
 ## Rule branches
 
