@@ -12,6 +12,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 6.0.1 (2025-04-22)
+
+* Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) vulnerabilities
+
 ### 6.0.0 (2025-04-03)
 
 * Initial release 6.0, [see changelog](what-is-new.md)
@@ -19,6 +23,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 6.0.1 (2025-04-22)
+
+* Fixed the [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) vulnerability
+<!--* Added a Kubernetes validating admission policy for improved validation of Ingress resources during deployment-->
 
 ### 6.0.0 (2025-04-03)
 
@@ -28,6 +37,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.0.1 (2025-04-22)
+
+* Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) vulnerabilities
+
 ### 6.0.0 (2025-04-03)
 
 * Initial release 6.0, [see changelog](what-is-new.md)
@@ -35,6 +48,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.0.1 (2025-04-22)
+
+* Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) vulnerabilities
 
 ### 6.0.0 (2025-04-03)
 
@@ -44,6 +61,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
+### 6.0.1 (2025-04-22)
+
+* Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) vulnerabilities
+
 ### 6.0.0 (2025-04-03)
 
 * Initial release 6.0, [see changelog](what-is-new.md)
@@ -51,6 +72,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-0-1-20250422-TBD (2025-04-22)
+
+* Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) vulnerabilities
 
 ### wallarm-node-6-0-0-20250403-102125 (2025-04-03)
 

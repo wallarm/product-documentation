@@ -45,7 +45,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
             --container-env WALLARM_API_TOKEN=${WALLARM_API_TOKEN} \
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
             --container-env WALLARM_API_HOST=us1.api.wallarm.com \
-            --container-image registry-1.docker.io/wallarm/node:6.0.0
+            --container-image registry-1.docker.io/wallarm/node:6.0.1
         ```
     === "Command for the Wallarm EU Cloud"
         ```bash
@@ -54,7 +54,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
             --tags http-server \
             --container-env WALLARM_API_TOKEN=${WALLARM_API_TOKEN} \
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
-            --container-image registry-1.docker.io/wallarm/node:6.0.0
+            --container-image registry-1.docker.io/wallarm/node:6.0.1
         ```
 
     * `<INSTANCE_NAME>`: name of the instance, for example: `wallarm-node`.
@@ -129,11 +129,11 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
     === "Command for the Wallarm US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:6.0.0
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:6.0.1
         ```
     === "Command for the Wallarm EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:6.0.0
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_LABELS='group=<GROUP>' -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:6.0.1
         ```
 
     * `<INSTANCE_PATH_TO_CONFIG>`: path to the configuration file created in the previous step. For example, `configs`.

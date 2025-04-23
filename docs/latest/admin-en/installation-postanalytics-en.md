@@ -31,11 +31,11 @@ To download all-in-one Wallarm installation script, execute the command:
 
 === "x86_64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/6.0/wallarm-6.0.0.x86_64-glibc.sh
+    curl -O https://meganode.wallarm.com/6.0/wallarm-6.0.1.x86_64-glibc.sh
     ```
 === "ARM64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/6.0/wallarm-6.0.0.aarch64-glibc.sh
+    curl -O https://meganode.wallarm.com/6.0/wallarm-6.0.1.aarch64-glibc.sh
     ```
 
 ## Step 2: Prepare Wallarm token
@@ -62,10 +62,10 @@ To install postanalytics separately with all-in-one installer, use:
 === "API token"
     ```bash
     # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.0.0.x86_64-glibc.sh postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.0.1.x86_64-glibc.sh postanalytics
 
     # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.0.0.aarch64-glibc.sh postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.0.1.aarch64-glibc.sh postanalytics
     ```        
 
     The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -73,10 +73,10 @@ To install postanalytics separately with all-in-one installer, use:
 === "Node token"
     ```bash
     # If using the x86_64 version:
-    sudo sh wallarm-6.0.0.x86_64-glibc.sh postanalytics
+    sudo sh wallarm-6.0.1.x86_64-glibc.sh postanalytics
 
     # If using the ARM64 version:
-    sudo sh wallarm-6.0.0.aarch64-glibc.sh postanalytics
+    sudo sh wallarm-6.0.1.aarch64-glibc.sh postanalytics
     ```
 
 ## Step 4: Configure the postanalytics module
@@ -159,10 +159,10 @@ Once the postanalytics module is installed on the separate server:
     === "API token"
         ```bash
         # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.0.0.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.0.1.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.0.0.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.0.1.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -170,10 +170,10 @@ Once the postanalytics module is installed on the separate server:
     === "Node token"
         ```bash
         # If using the x86_64 version:
-        sudo sh wallarm-6.0.0.x86_64-glibc.sh filtering
+        sudo sh wallarm-6.0.1.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo sh wallarm-6.0.0.aarch64-glibc.sh filtering
+        sudo sh wallarm-6.0.1.aarch64-glibc.sh filtering
         ```
 
 ## Step 8: Connect the NGINX-Wallarm module to the postanalytics module
