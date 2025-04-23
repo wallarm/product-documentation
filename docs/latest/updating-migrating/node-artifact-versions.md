@@ -73,7 +73,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
-### wallarm-node-6-0-1-20250422-TBD (2025-04-22)
+### wallarm-node-6-0-1-20250422-104749 (2025-04-22)
 
 * Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) vulnerabilities
 
