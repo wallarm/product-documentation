@@ -1,1 +1,66 @@
---8<-- "latest/api-specification-enforcement/setup.md"
+[waf-mode-instr]:   ../admin-en/configure-wallarm-mode.md
+
+# API Specification Enforcement Setup <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+
+This article describes how to enable and configure your API protection based on your [uploaded API specification](overview.md).
+
+## Step 1: Upload specification
+
+1. In the **API Specifications** section in [US Cloud](https://us1.my.wallarm.com/api-specifications/) or [EU Cloud](https://my.wallarm.com/api-specifications/), click **Upload specification**.
+1. Set specification upload parameters and start uploading.
+
+    ![Upload specification](../images/api-specification-enforcement/specificaton-upload.png)
+
+Note that you will not be able to start configuring API specification enforcement, until the specification file is successfully uploaded.
+
+## Step 2: Set actions for violations of policies
+
+1. Click the **API specification enforcement** tab.
+
+    !!! info "Rogue API detection"
+        * Besides applying security policies, specifications may be used by [API Discovery](../api-discovery/overview.md) module for the [rogue API detection](../api-discovery/rogue-api.md). The tab is displayed if API Discovery is enabled.
+        * Before using the specification for applying security policies, it is recommended to use it for searching the rogue (shadow, zombie and orphan) APIs using API Discovery. This way you will be able to understand how much your specification differs from the actual requests of your clients - these differences will most probably cause blocking related requests after applying security policies.
+
+1. Select **Use for API specification enforcement**.
+1. Specify host or endpoint for which you want to activate policy violation actions.
+
+    * Note that if you incorrectly specify to which endpoints the uploaded specification should be applied, there will be many [false positive](../about-wallarm/protecting-against-attacks.md#false-positives) events.
+    * If you have several specifications that apply to the same host, but to different endpoints (for example `domain.com/v1/api/users/` and `domain.com/v1/api/orders/`), you **must** indicate to which endpoints the specification should be applied.
+    * If you add a specification to a host, and then add another specification to individual endpoints of this host, both specifications will be applied to these endpoints.
+    * The value can be configured via the [URI constructor](../user-guides/rules/rules.md#uri-constructor) or [advanced edit form](../user-guides/rules/rules.md#advanced-edit-form).
+
+1. Set how the system should react if requests violate your specification.
+
+    ![Specification - use for applying security policies](../images/api-specification-enforcement/specification-use-for-api-policies-enforcement.png)
+
+    Details on possible violations:
+
+    --8<-- "../include/api-policies-enforcement/api-policies-violations.md"
+
+    When using the specification for setting security policies for the first time, it is recommended to set `Monitor` as a reaction to make sure that the specification is applied to the necessary endpoints and detects real errors.
+
+## Increasing the number of detected specification violations
+
+Starting from version 5.3.13 of the NGINX Ingress Controller and 5.3.12 of other deployment artifacts, and in all subsequent 5.x versions, the number of specification violations that can be detected in a single request is limited to `3`. This limitation provides sufficient insight into policy violations while maintaining optimal Node performance.
+
+However, if this number is too low for your use case or expected traffic anomalies, you can increase it as follows:
+
+1. Increase the limit using the appropriate parameter or environment variable:
+
+    * `APIFW_API_MODE_MAX_ERRORS_IN_RESPONSE` environment variable for the Docker image
+    * `APIFW_API_MODE_MAX_ERRORS_IN_RESPONSE` environment variable in the `env.list` file for the all-in-one installer
+1. Increase the value of the [`subrequest_output_buffer_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#subrequest_output_buffer_size) NGINX directive. The method depends on your deployment option:
+
+    * For Docker-based deployments - specify it in the mounted configuration file
+    * For Sidecar or Ingress Controller deployments - include it in the appropriate NGINX snippet
+    * For all-in-one installer - set it directly in the NGINX configuration files
+
+## Disabling
+
+API Specification Enforcement's work is based on uploaded specification or several specifications each having the **Use for API specification enforcement** option selected. Consider that unchecking this option for some specification or deleting this specification will result in stopping protection based on this specification.
+
+Also, in some cases that may be necessary to disable the API Specification Enforcement functionality only for some parts of your API. This can be done:
+
+* For [all-in-one installer](../installation/nginx/all-in-one.md) deployments, for any `server` section where API Specification Enforcement is used by means of the [`wallarm_enable_apifw`](../admin-en/configure-parameters-en.md#wallarm_enable_apifw) NGINX directive set to `off`.
+* For NGINX-based Docker image, by means of the `WALLARM_APIFW_ENABLE` [environment variable](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) set to `false`.
+* For NGINX Ingress Controller, by means of the [`controller.wallarm.apifirewall`](../admin-en/configure-kubernetes-en.md#controllerwallarmapifirewall) values group with `enable` set to `false`.
