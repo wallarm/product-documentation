@@ -106,6 +106,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.3.13 (2025-04-24)
 
+* Added the [`validation.enableCel`](../admin-en/configure-kubernetes-en.md) parameter to enable validation of Ingress resources via Validating Admission Policies
 * Fixed the [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115), [CVE-2025-31498](https://nvd.nist.gov/vuln/detail/CVE-2025-31498) vulnerabilities
 
 ### 5.3.12 (2025-04-03)
