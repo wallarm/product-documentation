@@ -14,7 +14,7 @@ Mitigation controls extend Wallarm's [basic](protecting-against-attacks.md#tools
 Using mitigation controls, you can enable and configure:
 
 * Real-time blocking mode
-* GraphQL API protection
+* [GraphQL API protection](../api-protection/graphql-rule.md)
 * Enumeration attack protection
 * BOLA enumeration protection
 * Forced browsing protection
