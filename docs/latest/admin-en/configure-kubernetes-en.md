@@ -292,14 +292,19 @@ This feature requires:
 * Kubernetes v1.30 or above
 * Wallarm Helm chart version 5.3.13+ (5.x series) or 6.0.1+
 
-When set to `true`, the Helm chart deploys a `ValidatingAdmissionPolicy` that checks all `Ingress` resources (`networking.k8s.io/v1`) on creation and update. The default rules catch common misconfigurations typically detected by `nginx -t`:
+When set to `true`, the Helm chart deploys:
+
+* `ValidatingAdmissionPolicy ingress-safety-net` which defines the CEL rules for all `Ingress` resources (`networking.k8s.io/v1`)
+* `ValidatingAdmissionPolicyBinding ingress-safety-net-binding` which executes those rules `cluster-wide` with the action `Deny`
+
+The default rules catch common misconfigurations typically detected by `nginx -t`:
 
 * Forbidding wildcard hosts (e.g., `*.example.com`)
 * Ensuring all host values are unique within an Ingress
 * Verifying that each HTTP path includes a service name and port
 * Requiring that all paths start with `/`
-* Limiting the allowed `nginx.ingress.kubernetes.io/*` annotations to a known safe list
-* Validating annotation formats (e.g., `proxy-buffer-size`, `proxy-read-timeout`, `ssl-redirect`)
+* Blocking only explicitly dangerous annotations (e.g. `server-snippet`, `configuration-snippet`, etc.), all other keys are allowed
+* Validating formats of common size/time/boolean annotations (`proxy-buffer-size`, `proxy-read-timeout`, `ssl-redirect`)
 
 Validation occurs during Ingress creation or update, rejecting misconfigured resources.
 
