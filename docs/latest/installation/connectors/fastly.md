@@ -132,8 +132,11 @@ Create the `wallarm_config` config defining Wallarm-specific settings:
 
 ![](../../images/waf-installation/gateways/fastly/config-store.png)
 
-!!! info "Sharing config store with multiple services"
-    If you run multiple Compute services for Wallarm, the `wallarm_config` config store is shared across all services. Consequently, while all services must use the same origin backend name, the actual backend value can be customized in each service's settings.
+!!! info "Config stores for multiple services"
+    If you run multiple Compute services for Wallarm, you can do one of the following:
+    
+    * Create multiple config stores with different configurations and link each of them to corresponding service.
+    * Share the same config store (for example, `wallarm_config`) across multiple services. Note that while all services must use the same origin backend name, the actual backend value can be customized in each service's settings.
 
 ### 5. (Optional) Set up a custom blocking page
 

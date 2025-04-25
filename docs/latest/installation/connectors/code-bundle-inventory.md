@@ -120,7 +120,7 @@ Requires Native Node version 0.8.3 or higher.
 
 * Added ability to use alternative configurations
 
-    If the `wallarm_config` config store is not linked to the service, it will look for `wallarm_config_a`, then for `wallarm_config_b`, and then for `wallarm_config_c`
+    If you run multiple Compute services for Wallarm, you can [create multiple config stores](../../installation/connectors/fastly.md#4-create-the-wallarm-config-store) with different configurations and link each of them to corresponding service.
 
 ### 1.1.0 (2025-01-06)
 
