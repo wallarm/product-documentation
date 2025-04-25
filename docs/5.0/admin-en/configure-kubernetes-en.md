@@ -84,6 +84,7 @@ controller:
         - value: EXTRA_ENV_VAR_VALUE
     apiFirewall:
       enabled: true
+      maxErrorsInResponse: 3
       config:
         ...
       extraEnvs:
@@ -216,6 +217,7 @@ controller:
       disableKeepalive: false
       maxConnectionsPerIp: 0
       maxRequestsPerConnection: 0
+      maxErrorsInResponse: 3
       config:
         mainPort: 18081
         healthPort: 18082
@@ -238,6 +240,7 @@ Since [node 5.1.0](../updating-migrating/node-artifact-versions.md#510-2024-11-0
 | `disableKeepalive` | Disables the keep-alive connections. The server will close all the incoming connections after sending the first response to the client if this option is set to `true`. |
 | `maxConnectionsPerIp` | Maximum number of concurrent client connections allowed per IP. `0` = `unlimited`. |
 | `maxRequestsPerConnection` | Maximum number of requests served per connection. The server closes the connection after the last request. The `Connection: close` header is added to the last response. `0` = `unlimited`. |
+| `maxErrorsInResponse` (5.3.14 and later in the 5.x series) | Limits the number of errors that can be detected in a single request during [API Specification Enforcement](../api-specification-enforcement/overview.md).<br><br>The default value is `3`.<br><br>If you increase this value, please also increase the value of the [`subrequest_output_buffer_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#subrequest_output_buffer_size) NGINX directive by specifying it in the appropriate NGINX snippet.
 
 ### controller.wallarm.container_name.extraEnvs
 

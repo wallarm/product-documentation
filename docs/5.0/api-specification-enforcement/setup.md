@@ -41,7 +41,7 @@ Note that you will not be able to start configuring API specification enforcemen
 
 ## Increasing the number of detected specification violations
 
-Starting from version 5.3.13 of the NGINX Ingress Controller and 5.3.12 of other deployment artifacts, and in all subsequent 5.x versions, the number of specification violations that can be detected in a single request is limited to `3`. This limitation provides sufficient insight into policy violations while maintaining optimal Node performance.
+Since version 5.3.14 of the NGINX Ingress Controller, 5.3.12 of other artifacts, and in all later 5.x versions, the number of specification violations per request is limited to 3. This ensures visibility while maintaining Node performance.
 
 However, if this number is too low for your use case or expected traffic anomalies, you can increase it as follows:
 
@@ -49,11 +49,12 @@ However, if this number is too low for your use case or expected traffic anomali
 
     * `APIFW_API_MODE_MAX_ERRORS_IN_RESPONSE` environment variable for the Docker image
     * `APIFW_API_MODE_MAX_ERRORS_IN_RESPONSE` environment variable in the `env.list` file for the all-in-one installer
+    * `wallarm.apiFirewall.maxErrorsInResponse` value for the NGINX-based Ingress Controller
 1. Increase the value of the [`subrequest_output_buffer_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#subrequest_output_buffer_size) NGINX directive. The method depends on your deployment option:
 
     * For Docker-based deployments - specify it in the mounted configuration file
-    * For Sidecar or Ingress Controller deployments - include it in the appropriate NGINX snippet
     * For all-in-one installer - set it directly in the NGINX configuration files
+    * For Sidecar or Ingress Controller deployments - include it in the appropriate NGINX snippet
 
 ## Disabling
 
