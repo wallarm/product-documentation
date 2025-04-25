@@ -42,7 +42,7 @@ The image is based on Debian and the NGINX version provided by Debian. Currently
 
 --8<-- "../include/waf/installation/cloud-platforms/gcp-machine-image-use-cases.md"
 
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image-5.x.md"
 
 ## 5. Connect the filtering node to the Wallarm Cloud
 

@@ -14,6 +14,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.3.12 (2025-04-24)
 
+* The number of specification violations that can be detected in a single request during API Specification Enforcement is limited to `3` to provide sufficient insight into policy violations while maintaining optimal Node performance
+
+    If needed, you can [adjust the value](../api-specification-enforcement/setup.md#increasing-the-number-of-detected-specification-violations).
 * Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115), [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) vulnerabilities
 
 ### 5.3.11 (2025-04-03)
@@ -94,6 +97,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 5.3.14 (2025-04-25)
+
+* The number of specification violations that can be detected in a single request during API Specification Enforcement is limited to `3` to provide sufficient insight into policy violations while maintaining optimal Node performance
+
+    If needed, you can [adjust the value](../api-specification-enforcement/setup.md#increasing-the-number-of-detected-specification-violations).
 
 ### 5.3.13 (2025-04-24)
 
@@ -205,6 +214,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+<!-- ### 5.3.13 (2025-04-25)
+
+* The number of specification violations that can be detected in a single request during API Specification Enforcement is limited to `3` to provide sufficient insight into policy violations while maintaining optimal Node performance
+
+    If needed, you can [adjust the value](../api-specification-enforcement/setup.md#increasing-the-number-of-detected-specification-violations). -->
+
 ### 5.3.12 (2025-04-24)
 
 * Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115), [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) vulnerabilities
@@ -299,6 +314,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 5.3.12 (2025-04-24)
 
+* The number of specification violations that can be detected in a single request during API Specification Enforcement is limited to `3` to provide sufficient insight into policy violations while maintaining optimal Node performance
+
+    If needed, you can [adjust the value](../api-specification-enforcement/setup.md#increasing-the-number-of-detected-specification-violations).
 * Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115), [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) vulnerabilities
 
 ### 5.3.11 (2025-04-03)
@@ -371,6 +389,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
+### 5.3.12 (2025-04-25)
+
+* The number of specification violations that can be detected in a single request during API Specification Enforcement is limited to `3` to provide sufficient insight into policy violations while maintaining optimal Node performance
+
+    If needed, you can [adjust the value](../api-specification-enforcement/setup.md#increasing-the-number-of-detected-specification-violations).
+* Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115), [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) vulnerabilities
+
 ### 5.3.10 (2025-03-12)
 
 * Fixed the [CVE-2024-56171](https://nvd.nist.gov/vuln/detail/CVE-2024-56171), [CVE-2025-24928](https://nvd.nist.gov/vuln/detail/CVE-2025-24928), [CVE-2025-22869](https://nvd.nist.gov/vuln/detail/CVE-2025-22869), [CVE-2025-22868](https://nvd.nist.gov/vuln/detail/CVE-2025-22868) vulnerabilities
@@ -428,6 +453,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-5-3-12-20250425-053214 (2025-04-25)
+
+* The number of specification violations that can be detected in a single request during API Specification Enforcement is limited to `3` to provide sufficient insight into policy violations while maintaining optimal Node performance
+
+    If needed, you can [adjust the value](../api-specification-enforcement/setup.md#increasing-the-number-of-detected-specification-violations).
+* Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115), [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) vulnerabilities
 
 ### wallarm-node-5-3-10-20250312-063130 (2025-03-12)
 
