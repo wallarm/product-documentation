@@ -24,10 +24,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 6.0.2 (2025-04-25)
+
+* Added the [`validation.enableCel`](../admin-en/configure-kubernetes-en.md) parameter to enable validation of Ingress resources via Validating Admission Policies
+
 ### 6.0.1 (2025-04-22)
 
 * Fixed the [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) vulnerability
-* Added the [`validation.enableCel`](../admin-en/configure-kubernetes-en.md) parameter to enable validation of Ingress resources via Validating Admission Policies
 
 ### 6.0.0 (2025-04-03)
 

@@ -290,7 +290,7 @@ Enables validation of `Ingress` resources using [Validating Admission Policies](
 This feature requires:
 
 * Kubernetes v1.30 or above
-* Wallarm Helm chart version 5.3.14+ (5.x series) or 6.0.1+
+* Wallarm Helm chart version 5.3.14+ (5.x series) or 6.0.2+
 
 When set to `true`, the Helm chart deploys:
 
