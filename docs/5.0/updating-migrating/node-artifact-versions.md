@@ -103,6 +103,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 * The number of specification violations that can be detected in a single request during API Specification Enforcement is limited to `3` to provide sufficient insight into policy violations while maintaining optimal Node performance
 
     If needed, you can [adjust the value](../api-specification-enforcement/setup.md#increasing-the-number-of-detected-specification-violations).
+* Added the [`validation.enableCel`](../admin-en/configure-kubernetes-en.md) parameter to enable validation of Ingress resources via Validating Admission Policies
 
 ### 5.3.13 (2025-04-24)
 
@@ -214,11 +215,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
-<!-- ### 5.3.13 (2025-04-25)
+### 5.3.13 (2025-04-25)
 
 * The number of specification violations that can be detected in a single request during API Specification Enforcement is limited to `3` to provide sufficient insight into policy violations while maintaining optimal Node performance
 
-    If needed, you can [adjust the value](../api-specification-enforcement/setup.md#increasing-the-number-of-detected-specification-violations). -->
+    If needed, you can [adjust the value](../api-specification-enforcement/setup.md#increasing-the-number-of-detected-specification-violations).
 
 ### 5.3.12 (2025-04-24)
 

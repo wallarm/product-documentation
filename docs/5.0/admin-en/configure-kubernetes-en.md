@@ -90,6 +90,8 @@ controller:
       extraEnvs:
         - name: EXTRA_ENV_VAR_NAME
         - value: EXTRA_ENV_VAR_VALUE
+validation:
+  enableCel: false
 ```
 
 To change this setting, we recommend using the option `--set` of `helm install` (if installing the Ingress controller) or `helm upgrade` (if updating the installed Ingress controller parameters). For example:
@@ -271,6 +273,43 @@ controller:
         - name: no_proxy
           value: "localhost"
 ```
+
+### validation.enableCel
+
+Enables validation of `Ingress` resources using [Validating Admission Policies](https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/).
+
+This feature requires:
+
+* Kubernetes v1.30 or above
+* Wallarm Helm chart version 5.3.14+ (5.x series) or 6.0.2+
+
+When set to `true`, the Helm chart deploys:
+
+* `ValidatingAdmissionPolicy ingress-safety-net` which defines the CEL rules for all `Ingress` resources (`networking.k8s.io/v1`)
+* `ValidatingAdmissionPolicyBinding ingress-safety-net-binding` which executes those rules `cluster-wide` with the action `Deny`
+
+The default rules catch common misconfigurations typically detected by `nginx -t`:
+
+* Forbidding wildcard hosts (e.g., `*.example.com`)
+* Ensuring all host values are unique within an Ingress
+* Verifying that each HTTP path includes a service name and port
+* Requiring that all paths start with `/`
+* Blocking only explicitly dangerous annotations (e.g. `server-snippet`, `configuration-snippet`, etc.), all other keys are allowed
+* Validating formats of common size/time/boolean annotations (`proxy-buffer-size`, `proxy-read-timeout`, `ssl-redirect`)
+
+Validation occurs during Ingress creation or update, rejecting misconfigured resources.
+
+This mechanism replaces template testing, which is currently disabled in the [upstream NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) due to [CVE-2025-1974](https://nvd.nist.gov/vuln/detail/CVE-2025-1974).
+
+**Default value**: `false`
+
+**Customizing validation rules**
+
+You can extend or modify the default set of rules using [Common Expression Language (CEL)](https://github.com/google/cel-spec):
+
+1. [Download the Wallarm Helm chart](https://github.com/wallarm/helm-charts/tree/main/wallarm-ingress) of the required version.
+1. Modify the rules in the `templates/ingress-safety-vap.yaml` file.
+1. Deploy the chart from the modified directory according to the [standard deployment instructions](installation-kubernetes-en.md).
 
 ## Global Controller Settings 
 
