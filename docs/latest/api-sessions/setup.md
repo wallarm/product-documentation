@@ -8,6 +8,9 @@ Context in API sessions is information that enriches request data by grouping th
 
 Set session context by adding extra request and response parameters, associating sessions with sensitive business flows and highlighting parameters that can be used for user and user role identification.
 
+!!! info "Allowed number of session context parameters"
+    You can add up to 20 session context parameters to use them for session context and [grouping](#session-grouping).
+
 ### Extra parameters
 
 In **API Sessions**, within session, the request details by default include: 
