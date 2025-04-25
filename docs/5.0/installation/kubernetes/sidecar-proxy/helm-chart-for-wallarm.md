@@ -44,6 +44,7 @@ config:
       disableKeepalive: false
       maxConnectionsPerIp: 0
       maxRequestsPerConnection: 0
+      maxErrorsInResponse: 3
     fallback: "on"
     mode: monitoring
     modeAllowOverride: "on"
@@ -162,6 +163,7 @@ config:
       disableKeepalive: false
       maxConnectionsPerIp: 0
       maxRequestsPerConnection: 0
+      maxErrorsInResponse: 3
 ```
 
 Since [node 5.3.0][sidecar-5.3.0-changelog], the following is presented (see default values in the example above):
@@ -174,6 +176,7 @@ Since [node 5.3.0][sidecar-5.3.0-changelog], the following is presented (see def
 | `disableKeepalive` | Disables the keep-alive connections. The server will close all the incoming connections after sending the first response to the client if this option is set to `true`. |
 | `maxConnectionsPerIp` | Maximum number of concurrent client connections allowed per IP. `0` = `unlimited`. |
 | `maxRequestsPerConnection` | Maximum number of requests served per connection. The server closes the connection after the last request. The `Connection: close` header is added to the last response. `0` = `unlimited`. |
+| `maxErrorsInResponse` (5.3.13 and later in the 5.x series) | Limits the number of errors that can be detected in a single request during [API Specification Enforcement](../../../api-specification-enforcement/overview.md).<br><br>The default value is `3`.<br><br>If you increase this value, please also increase the value of the [`subrequest_output_buffer_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#subrequest_output_buffer_size) NGINX directive by specifying it in the appropriate NGINX snippet. |
 
 ## config.wallarm.fallback
 

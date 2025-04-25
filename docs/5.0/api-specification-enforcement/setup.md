@@ -50,11 +50,12 @@ However, if this number is too low for your use case or expected traffic anomali
     * `APIFW_API_MODE_MAX_ERRORS_IN_RESPONSE` environment variable for the Docker image
     * `APIFW_API_MODE_MAX_ERRORS_IN_RESPONSE` environment variable in the `env.list` file for the all-in-one installer and cloud images
     * `wallarm.apiFirewall.maxErrorsInResponse` value for the NGINX-based Ingress Controller
+    * `config.wallarm.apiFirewall.maxErrorsInResponse` value for the Sidecar Controller
 1. Increase the value of the [`subrequest_output_buffer_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#subrequest_output_buffer_size) NGINX directive. The method depends on your deployment option:
 
     * For Docker-based deployments - specify it in the mounted configuration file
     * For all-in-one installer and cloud images - set it directly in the NGINX configuration files
-    * For Sidecar or Ingress Controller deployments - include it in the appropriate NGINX snippet
+    * For Ingress or Sidecar Controller deployments - include it in the appropriate NGINX snippet
 
 ## Disabling
 
