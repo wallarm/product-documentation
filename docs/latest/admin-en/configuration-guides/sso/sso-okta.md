@@ -107,6 +107,8 @@ For this to work, provide the attribute mapping:
 
             See all role descriptions [here](../../../user-guides/settings/users.md#user-roles).
 
+    ![Integrations - SSO, mapping in Okta](../../../images/admin-guides/configuration-guides/sso/okta/wallarm-sso-okta-mapping.png)
+
 1. Save the changes.
 
 ## Step 5 (Wallarm): Enter Okta metadata
