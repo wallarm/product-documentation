@@ -17,7 +17,6 @@ The information is presented in the following widgets:
 * CVEs
 * Attacks on API protocols
 * Authentication in attacks
-* Scanner for vulnerabilities
 
 <div>
   <script src="https://js.storylane.io/js/v1/storylane.js"></script>
