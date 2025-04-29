@@ -1,5 +1,3 @@
-[allowlist-scanner-addresses]: ../user-guides/ip-lists/overview.md
-
 # Detecting Vulnerabilities
 
 Due to negligence or inadequate information when building or implementing an application, it can be vulnerable to attacks. From this article, you will learn how the Wallarm platform detects application vulnerabilities enabling you to enhance system security.
@@ -16,9 +14,9 @@ For example: if the response to the request sent to read the `/etc/passwd` conte
 
 To detect vulnerabilities in the application, Wallarm sends requests with attack signs using the following methods:
 
-* **Passive detection** identifies vulnerabilities by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
+* **Passive detection**: identifies vulnerabilities by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
 * **Threat Replay Testing**: lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
-* **Vulnerability Scanner**: company's exposed assets are scanned for typical vulnerabilities.
+* **API Attack Surface Management (AASM)**: discovers external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
 * **API Discovery insights**: the vulnerability was found by [API Discovery](../api-discovery/overview.md) module due to PII transfer in query parameters of GET requests.
 
 ### Passive detection
@@ -37,21 +35,17 @@ The Threat Replay Testing capabilities:
 * **Safe & smart simulation**: Skips sensitive authentication details and removes harmful code in tests. Simulates attack techniques for max security, not risking actual harm.
 * **Safe non-production tests**: Enables you to [run vulnerability checks in a staging or development setup](../vulnerability-detection/threat-replay-testing/setup.md) using real production data, but without the risks like system overload or data exposure.
 
-
-### Vulnerability Scanner <a href="../subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+### API Attack Surface Management (AASM)
 
 #### How it works
 
-Vulnerability Scanner checks all company's exposed assets for typical vulnerabilities. Scanner sends requests to application addresses from fixed IP addresses and adds the header `X-Wallarm-Scanner-Info` to the requests.
+Wallarm's [API Attack Surface Management](../api-attack-surface/overview.md) (AASM) is an agentless detection solution tailored to the API ecosystem, designed to discover external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
 
 #### Configuration
 
-* Scanner can be [enabled or disabled](../user-guides/vulnerabilities.md#configuring-vulnerability-detection) in Wallarm Console → **Vulnerabilities** → **Configure**. By default, Scanner is enabled.
-* The list of [vulnerabilities that can be detected](../user-guides/vulnerabilities.md#configuring-vulnerability-detection) by Scanner can be configured in Wallarm Console → **Vulnerabilities** → **Configure**. By default, Vulnerability Scanner detects all available vulnerabilities.
-* The [limit of requests sent from Scanner](../user-guides/scanner.md#limiting-vulnerability-scanning) can be configured for each asset in Wallarm Console → **Scanner** → **Configure**.
-* If you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you configure an allowlist with the [IP addresses](../admin-en/scanner-addresses.md) for the Wallarm Scanner. This will allow Wallarm components to seamlessly scan your resources for vulnerabilities.
+You enable and configure API Attack Surface Management to detect hosts under your selected domains and search for security issues related to these hosts as described [here](../api-attack-surface/setup.md).
 
-    You do not need to manually allowlist Scanner IP addresses in Wallarm - starting with Wallarm node 3.0, Scanner IP addresses are allowlisted automatically.
+For detected hosts, Wallarm will automatically [search for vulnerabilities](../api-attack-surface/security-issues.md).
 
 ### API Discovery insights
 

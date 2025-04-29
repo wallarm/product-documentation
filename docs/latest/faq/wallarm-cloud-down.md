@@ -38,7 +38,6 @@ What stops working:
 
 * The node collects but cannot send [metrics](../admin-en/configure-statistics-service.md) for processed traffic to the Cloud.
 * [API Sessions](../api-sessions/overview.md) - all information about legitimate requests that tool place while the Cloud was down is lost; the information about attacks will be presented (uploaded to Cloud after its restoration).
-* Scanning for the [exposed assets](../user-guides/scanner.md) and [typical vulnerabilities](../user-guides/vulnerabilities.md) will stop.
 * [Triggers](../user-guides/triggers/triggers.md) will stop working and thus:
     * [IP lists](../user-guides/ip-lists/overview.md) stop being updated.
     * [Trigger-based notifications](../user-guides/triggers/triggers.md) will not popup.
