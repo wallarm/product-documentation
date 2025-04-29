@@ -26,6 +26,7 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [API Specification Enforcement](../api-specification-enforcement/overview.md) | No | Yes |
 | [GraphQL security policies](../api-protection/graphql-rule.md) | No | Yes |
 | **Security posture** | | |
+| [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) | No | Yes |
 | [Vulnerability assessment](../user-guides/vulnerabilities.md) | Yes | Yes |
 | [API Sessions](../api-sessions/overview.md) | No | Yes |
 | [API Discovery](../api-discovery/overview.md) | No | Yes |
