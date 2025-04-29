@@ -81,7 +81,6 @@ nav:
     - Algılanan Kırılganlıkların Yönetimi: user-guides/vulnerabilities.md
     - Güvenlik Açığı Arama ve Filtreleri: user-guides/search-and-filters/use-search-vuln.md
     - Tarayıcı İşlem Desteği:
-      - Tarayıcı Ayarları: user-guides/scanner.md
       - Tarayıcı Adresleri: admin-en/scanner-addresses.md
       - Kaynak Tarayıcısını Durdurmak için Wallarm Destek İletişimi: admin-en/scanner-complaint-en.md
   - Bulut-yerel WAAP:

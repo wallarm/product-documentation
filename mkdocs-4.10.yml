@@ -65,7 +65,6 @@ nav:
     - API Attack Surface Discovery: api-attack-surface/api-surface.md
     - Detecting Security Issues: api-attack-surface/security-issues.md
   - Assets & Vulnerabilities:
-    - Exposed Assets: user-guides/scanner.md
     - Vulnerability Assessment:
       - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md
       - Managing Vulnerabilities: user-guides/vulnerabilities.md

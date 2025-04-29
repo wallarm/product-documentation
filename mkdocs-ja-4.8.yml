@@ -78,7 +78,6 @@ nav:
     - APIリーク: api-attack-surface/security-issues.md
   - 資産と脆弱性:
     - 脆弱性評価:
-      - 外部資産: user-guides/scanner.md
       - 脆弱性の検出: about-wallarm/detecting-vulnerabilities.md
       - 脆弱性の管理: user-guides/vulnerabilities.md
       - 検索とフィルタ: user-guides/search-and-filters/use-search-vuln.md
