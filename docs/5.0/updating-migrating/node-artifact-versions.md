@@ -12,6 +12,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.3.13 (2025-04-29)
+
+* Added support for NGINX stable 1.28.0
+* Added support for NGINX mainline 1.27.5
+
 ### 5.3.12 (2025-04-24)
 
 * The number of specification violations that can be detected in a single request during API Specification Enforcement is limited to `3` to provide sufficient insight into policy violations while maintaining optimal Node performance
