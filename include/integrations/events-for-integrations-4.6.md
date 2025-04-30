@@ -7,4 +7,3 @@
     * Medium risk
     * Low risk
 * [Rules](../../../user-guides/rules/intro.md) and [triggers](../../../user-guides/triggers/triggers.md) changed (creating, updating, or deleting the rule or trigger)
-* [Scope (exposed assets)](../../scanner.md) changed: updates in hosts, services, and domains
