@@ -37,6 +37,12 @@ Previously added domains are automatically re-scanned once every 7 days - new ho
 
 You can re-start, pause or continue scanning for any domain manually at **Configure** → **Status** by clicking the play/pause buttons.
 
+## Preventing from being blocked
+
+If besides Wallarm, you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you [configure an allowlist](../admin-en/scanner-addresses.md) that includes the IP addresses for API Attack Surface Management.
+
+This will allow Wallarm components, including API Attack Surface Management, to seamlessly scan your resources for vulnerabilities.
+
 ## Notifications
 
 --8<-- "../include/api-attack-surface/aasm-notifications.md"

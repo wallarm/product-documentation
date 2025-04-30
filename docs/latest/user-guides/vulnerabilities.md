@@ -5,7 +5,7 @@ Vulnerabilities are security flaws in an infrastructure that may be exploited by
 Wallarm employs various techniques to [discover](../about-wallarm/detecting-vulnerabilities.md) security weaknesses, which include:
 
 * **Passive detection**: the vulnerability was found by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
-* **Threat Replay Testing**: the vulnerability was found during the attack verification process.
+* **Threat Replay Testing**: the vulnerability was found during the [attack replay security tests](../vulnerability-detection/threat-replay-testing/overview.md) launched by Wallarm.
 * **API Attack Surface Management (AASM)**: [discovers](../api-attack-surface/overview.md) external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
 * **API Discovery insights**: the vulnerability was found by [API Discovery](../api-discovery/overview.md) module due to PII transfer in query parameters of GET requests.
 

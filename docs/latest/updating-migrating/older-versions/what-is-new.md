@@ -325,7 +325,7 @@ There are the following new features for request source control:
     The **safe blocking** mode enables a significant reduction of [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from graylisted IP addresses.
 
     For automatic IP address graylisting, a newly released [**Number of malicious payloads** trigger](../../admin-en/configuration-guides/protecting-with-thresholds.md) can be used.
-* Automated allowlisting of [Wallarm Vulnerability Scanner](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
+* Automated allowlisting of [Wallarm IP addresses](../../admin-en/scanner-addresses.md) used for scanning company resources for vulnerabilities and launching additional security tests. Manual allowlisting of these addresses is no longer required.
 * Ability to allowlist, denylist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region, or data center.
 * Ability to allowlist, denylist, or graylist request sources for specific applications.
 * New NGINX directive `disable_acl` to disable request origin analysis.
