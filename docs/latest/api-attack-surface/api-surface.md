@@ -10,6 +10,8 @@ The **API Attack Surface Discovery** (**AASD**) component of the Wallarm's [API 
 
 ## Addressed issues
 
+### Provided capabilities
+
 Knowing the full list of your organization's external APIs is the first step in mitigating potential security risks as unmonitored or undocumented APIs can become potential entry points for malicious attacks.
 
 The **API Attack Surface Discovery** Wallarm component helps to solve these issues by providing the following:
@@ -31,6 +33,20 @@ The **API Attack Surface Discovery** Wallarm component helps to solve these issu
 * Automatic detection of security issues for found hosts.
 
 You get all this simply by subscribing to the component in Wallarm - you do not need to deploy anything and get the analyzed data immediately.
+
+### Replacement of old Scanner
+
+As API Attach Surface Discovery (AASD)'s capabilities cover all the functionality of the old Wallarm Scanner and - together with [Security Issues](security-issues.md) - suggest much more, from May 1, 2025, Scanner is disabled.
+
+![Old Scanner](../images/user-guides/scanner/check-scope.png)
+
+Disabling of old Scanner includes:
+
+* Providing all clients who used old Scanner with access to AASD
+* Migration of all configuration from old Scanner to AASD made by Wallarm support
+* Automatic re-discovery of hosts and APIs by AASD and presenting extended data on them
+* Automatic security issue detection for hosts and APIs
+* Vulnerabilities found by old Scanner before May 1, 2025, are continued to be presented in the Vulnerabilities section for in accordance with [data retention policy](../about-wallarm/data-retention-policy.md)
 
 ## Data on found hosts
 

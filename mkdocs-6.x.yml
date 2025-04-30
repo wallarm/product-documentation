@@ -328,7 +328,7 @@ nav:
         - Upgrading the EOL Multi‑Tenant Node: updating-migrating/older-versions/multi-tenant.md
         - Migrating Allowlists and Denylists from EOL Wallarm Node: updating-migrating/migrate-ip-lists-to-node-3.md
     - Node Versioning Policy: updating-migrating/versioning-policy.md
-    - Wallarm IP Addresses: admin-en/scanner-addresses.md
+    - Vulnerability Scanning IPs: admin-en/scanner-addresses.md
   - References:
     - FAQ:
       - Installing Wallarm Ingress Controller: faq/ingress-installation.md
