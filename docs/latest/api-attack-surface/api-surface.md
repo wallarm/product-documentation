@@ -88,8 +88,8 @@ You can also get a [separate report](security-issues.md#security-issue-reports) 
 
 By default, Wallarm will send to your personal email:
 
-* **Weekly AASM statistics** with information about hosts and APIs discovered for your configured domains within last week and security issues for them.
-* Results of **every scan** (scheduled or manual) of your API surface.
-* Information about detected **critical security issues**.
+* **Weekly AASM statistics** - information about hosts, APIs, and statistics for security issues discovered for your configured domains within last week.
+* **Daily critical security issues (new only)** - all [critical](security-issues.md#issue-risk-level) security issues opened for the day, sent once a day with a detailed description of each issue and instructions on how to mitigate it.
+* **Daily security issues (new only)** - statistics for security issues opened for the day, sent once a day with information on how many issues of every [risk level](security-issues.md#issue-risk-level) were found and general action items for mitigation.
 
 You can unsubscribe at any moment. You can subscribe additional email to get all or some of this information. See how to configure [here](../user-guides/settings/integrations/email.md#setting-up-integration).
