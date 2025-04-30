@@ -26,7 +26,7 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [API Specification Enforcement](../api-specification-enforcement/overview.md) | No | Yes |
 | [GraphQL security policies](../api-protection/graphql-rule.md) | No | Yes |
 | **Security posture** | | |
-| [Exposed asset scanner](../user-guides/scanner.md) | Yes | Yes |
+| [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) | No | Yes |
 | [Vulnerability assessment](../user-guides/vulnerabilities.md) | Yes | Yes |
 | [API Discovery](../api-discovery/overview.md) | No | Yes |
 | [Sensitive data detection](../api-discovery/overview.md#sensitive-data-detection) | No | Yes |
@@ -73,7 +73,6 @@ The Free Tier accounts allow:
 * Process up to **500 thousand requests per month** with no limitation in time.
 * Access to the Wallarm platform as [Advanced API Security](#waap-and-advanced-api-security), except for the following:
 
-    * [Exposed assets scanner](../user-guides/scanner.md)
     * [Vulnerability assessment](../user-guides/vulnerabilities.md)
     * [API Abuse Prevention](../api-abuse-prevention/overview.md)
     * [Wallarm-hosted deployment options](../installation/cdn-node.md)
