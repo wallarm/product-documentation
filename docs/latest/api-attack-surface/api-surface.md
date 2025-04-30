@@ -1,3 +1,7 @@
+[link-aasm-security-issue-risk-level]:  security-issues.md#issue-risk-level
+[link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
+[link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
+
 # API Attack Surface Discovery <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
 The **API Attack Surface Discovery** (**AASD**) component of the Wallarm's [API Attack Surface Management](overview.md) scans your selected domains to discover all their external hosts and their APIs, evaluate their protection against Web and API-based attacks, and identify missing WAF/WAAP solutions. It works simply by subscribing in Wallarm - you do not need to deploy anything. This article gives an overview of the component.
@@ -86,10 +90,4 @@ You can also get a [separate report](security-issues.md#security-issue-reports) 
 
 ## Notifications
 
-By default, Wallarm will send to your personal email:
-
-* **Weekly AASM statistics** with information about hosts and APIs discovered for your configured domains within last week and security issues for them.
-* Results of **every scan** (scheduled or manual) of your API surface.
-* Information about detected **critical security issues**.
-
-You can unsubscribe at any moment. You can subscribe additional email to get all or some of this information. See how to configure [here](../user-guides/settings/integrations/email.md#setting-up-integration).
+--8<-- "../include/api-attack-surface/aasm-notifications.md"

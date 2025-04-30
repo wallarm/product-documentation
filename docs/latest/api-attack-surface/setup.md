@@ -1,3 +1,7 @@
+[link-aasm-security-issue-risk-level]:  security-issues.md#issue-risk-level
+[link-integrations-intro]:              ../user-guides/settings/integrations/integrations-intro.md
+[link-integrations-email]:              ../user-guides/settings/integrations/email.md#setting-up-integration
+
 # API Attack Surface Management Setup  <a href="../../about-wallarm/subscription-plans/#api-attack-surface"><img src="../../images/api-attack-surface-tag.svg" style="border: none;"></a>
 
 This article describes how to enable and configure [API Attack Surface Management](overview.md) to discover your external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
@@ -35,10 +39,4 @@ You can re-start, pause or continue scanning for any domain manually at **Config
 
 ## Notifications
 
-You automatically receive notifications to your personal email (the one you use to log in) about discovered hosts and security issues, including:
-
-* Found **critical security issues** - detailed description of each issue and instructions on how to mitigate them.
-* **Every scan results** - information on all new security issues found during the scan with their distribution by [risk level](security-issues.md#issue-risk-level) and suggested action items for mitigation.
-* **Weekly AASM statistics** - information about hosts and APIs discovered for your configured domains within last week and security issues for them.
-
-The notifications are enabled by default. You can unsubscribe at any moment and configure any additional emails to get all or some of these notifications in Wallarm Console → **Configuration** → **Integrations** → **Email and messengers** → **Personal email** (you email) or **Email report** (extra emails) as described [here](../user-guides/settings/integrations/email.md#setting-up-integration).
+--8<-- "../include/api-attack-surface/aasm-notifications.md"
