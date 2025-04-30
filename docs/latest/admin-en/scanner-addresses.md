@@ -17,7 +17,7 @@ The list of IP addresses for US Cloud (https://us1.my.wallarm.com) from which Wa
 --8<-- "../include/scanner-ip-request-us.md"
 
 !!! info "Get the list of IP addresses"
-    [Download the plain text file containing list of scanners' IP addresses.][file-ips-list-us]
+    [Download the plain text file containing list of Wallarm IP addresses.][file-ips-list-us]
 
 ## EU Cloud
 
@@ -26,4 +26,4 @@ The list of IP addresses for EU Cloud (https://my.wallarm.com) from which Wallar
 --8<-- "../include/scanner-ip-request.md"
 
 !!! info "Get the list of IP addresses"
-    [Download the plain text file containing list of scanners' IP addresses.][file-ips-list-eu]
+    [Download the plain text file containing list of Wallarm IP addresses.][file-ips-list-eu]
