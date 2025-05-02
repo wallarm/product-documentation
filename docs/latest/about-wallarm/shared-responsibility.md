@@ -78,3 +78,12 @@ In this deployment form, both Wallarm filtering node and Wallarm Cloud component
 * Practicing removal of user accounts for any users who have been terminated and were previously involved in any material functions or activities associated with Wallarm’s services.
 * Ensuring that transactions for client organizations relating to Wallarm’s services are appropriately authorized, and transactions are secure, timely, and complete.
 * Developing, and if necessary, implementing a business continuity and disaster recovery plan (BCDRP) that will aid in the continuation of services provided by Wallarm.
+
+## Client Data Storage in Wallarm Cloud
+
+In Wallarm's hybrid and cloud deployments, any data sent from filtering nodes is stored in the Wallarm Cloud, fully managed by Wallarm:
+
+* Request and attack data are stored in a PostgreSQL database, with related content persisted in Google Cloud Storage (S3-compatible) and cached in Redis for performance. No third-party services outside Google Cloud are used.
+* All storage is hosted on Google Cloud Platform as part of Wallarm’s secure infrastructure.
+* GCP complies with GDPR and other international data protection standards, ensuring data security and privacy.
+* Wallarm supports deployments in multiple [regions](overview.md#cloud) (US and EU) to keep data within preferred jurisdictions.
