@@ -41,6 +41,8 @@ This article provides instructions for deploying Wallarm on AWS [in-line][inline
 
 The image is based on Debian and the NGINX version provided by Debian. Currently, the latest image uses Debian 12, which includes NGINX stable 1.22.1.
 
+Deploying the Wallarm Node from the AMI on AWS typically takes around 10 minutes.
+
 ![!](../../images/waf-installation/aws/aws-ami-flow.png)
 
 ## Use cases
