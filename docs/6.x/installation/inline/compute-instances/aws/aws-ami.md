@@ -35,5 +35,6 @@ search:
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 [api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
 [inline-docs]:                      ../../overview.md
+[aws-ami-traffic-flow]:             ../../../../images/waf-installation/aws/aws-ami-flow.png
 
 --8<-- "latest/installation/inline/compute-instances/aws/aws-ami.md"

@@ -25,6 +25,8 @@ To see detailed information about creating SSH keys, proceed to the [AWS documen
 
 A Security Group defines allowed and forbidden incoming and outgoing connections for virtual machines. The final list of connections depends on the protected application (e.g., allowing all of the incoming connections to the TCP/80 and TCP/443 ports).
 
+The Wallarm AMI is designed to operate with a minimal set of permissions. When deploying the instance, we recommend assigning an IAM role and configuring security groups based on the principle of least privilege, granting only the access required for the node's operation to align with AWS security best practices.
+
 To create a security group for the filtering node:
 
 1.  Navigate to the **Security Groups** tab on the Amazon EC2 dashboard and click the **Create Security Group** button.
