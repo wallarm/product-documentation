@@ -1,0 +1,133 @@
+# Enumeration Attack Protection <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+
+Wallarm allows protecting your APIs from the [enumeration attacks](../attacks-vulns-list.md#enumeration-attacks) preventing the reveal of information highly valuable for malicious actors. By identifying valid usernames, email addresses, or system resources, attackers can significantly narrow their focus for subsequent attacks. This reconnaissance phase allows attackers to understand the target system better, potentially uncovering vulnerabilities and enabling the planning of more sophisticated and targeted attacks, ultimately increasing the likelihood of a successful breach.
+
+## Mitigation controls
+
+Wallarm provides several [mitigation controls](../about-wallarm/mitigation-controls-overview.md) to configure protection from enumeration. When selecting which control to use, consider the following:
+
+<table>
+  <tr>
+    <th>Control</th>
+    <th>Specifics</th>
+    <th>Enumerates</th>
+    <th>Attack</th>
+  </tr>
+  <tr>
+    <td><b>Brute force protection</b></td>
+    <td rowspan="3">Counts the number of unique values seen for each parameter within a specified timeframe.</td>
+    <td><code>password</code></td>
+    <td><code>Brute force</code></td>
+  </tr>
+  <tr>
+    <td><b>BOLA protection</b></td>
+    <td><code>object ID</code>, <code>user ID</code></td>
+    <td><code>BOLA</code></td>
+  </tr>
+  <tr>
+    <td><b>Enumeration attack protection</b></td>
+    <td>Any parameter</td>
+    <td><code>Enum</code></td>
+  </tr>
+  <tr>
+    <td><b>Forced browsing protection</b></td>
+    <td>Counts the number of unique endpoints accessed in a configured timeframe.</td>
+    <td><code>URL</code>s</td>
+    <td><code>Forced browsing</code></td>
+  </tr>
+</table>
+
+Thus: 
+
+* If you want to prevent enumerating of your non-public URLs, always use the **Forced browsing protection** control.
+* To prevent enumerating of any parameters you can use the **Enumeration attack protection** control (this is all-in-one solution).
+* If you want to specifically highlight the attempts to get valid passwords by trying variants, use the **Brute force protection** control.
+* If your want to specifically highlight the attempts to enumerate valid user or object ID - the **BOLA protection** control.
+
+## Configuration
+
+In general, you make 4 steps:
+
+1. Set counters (select parameters that will be monitored for enumeration)
+1. Set conditions (when all met, one or several counters get `+1`)
+1. Set threshold (any of counters should be no more than `x` within `time`, if violated → action)
+1. Set action (mitigation mode, what to do, if threshold is exceeded)
+
+<!-- ### Example
+
+Before going into details, consider the example below to learn how to configure enumeration attack protection with mitigation controls.
+
+Let us say you want to TBD. To provide this protection, you can TBD:
+
+1. Steps TBD.
+-->
+### Enumerated parameters
+
+In the **Enumerated parameters** section, you need to select parameters that will be monitored for enumeration. Select set of parameters to be monitored via exact or or [regex](#regex) match (only one approach can be used within single mitigation control).
+
+When some request meets [scope](#scope) and [advanced conditions](#advanced-conditions) and **contains** unique value for the parameter monitored for enumeration, this parameter's counter gets `+1`.
+
+### Scope
+
+**Scope** is where request targets (URI + extras), see details [here](../user-guides/rules/rules.md#configuring)
+
+### Advanced conditions 
+
+Besides [Scope](#scope), you can define other peculiarities that requests must have to be counted by protection mechanism as a part of attack, including values or value patters of:
+
+* **Built-in parameters** meta information presented in each request handled by Wallarm filtering node.
+
+    ??? info "Show built-in parameter descriptions"
+
+        | Parameter | Description |
+        |---|---|
+        |Attacks| Description TBD |
+        |IP| Description TBD |
+        |Domain| Description TBD |
+        |URI| Description TBD |
+        |Request time| Description TBD |
+        |Request size| Description TBD |
+        |Response size| Description TBD |
+        |Blocked| Description TBD |
+        |Method| Description TBD |
+        |User agent| Description TBD |
+
+* **Session context parameters** - quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in API Sessions.
+* **Custom parameters** - any other parameters of requests.
+
+!!! info "Performance note"
+    As **Scope** settings are less demanding from the productivity perspective, it is always recommended to use them if it is enough for your goals, and only use **Advanced conditions** for the complex conditioning.
+
+### Threshold
+
+**Brute force, BOLA and generic enumeration protection**
+
+These kinds of protection count the number of unique values seen for each [enumerated parameter](#enumerated-parameters) within a specified timeframe (in seconds). Each parameter listed in the **Enumerated parameters** section is tracked independently.
+
+Once threshold is reached by any of parameters, Wallarm performs action in accordance with the [Mitigation mode](#mitigation-mode).
+
+**Forced browsing protection**
+
+This protection counts the number of unique endpoints accessed in a configured timeframe (in seconds). Once threshold is reached, Wallarm performs action in accordance with the [Mitigation mode](#mitigation-mode).
+
+### Mitigation mode
+
+When any of the counters exceeds the threshold, the selected action is performed:
+
+* **Monitoring** - the attack is registered, requests that are the part of this attack are marked in [API Sessions](../api-sessions/overview.md) as belonging to `Brute force`, `Forced browsing`, `BOLA` or generic `Enum` attack but the requests are not blocked.
+* **Blocking** → **Block IP address** - the attack is registered, requests that are the part of this attack are marked in API Sessions as belonging to this attack, all source IPs of these requests are placed into [denylist](../user-guides/ip-lists/overview.md) for the selected period of time.
+
+### Regular expressions
+
+The **Scope** section uses [PIRE](../user-guides/rules/rules.md#condition-type-regex-) regular expression library, while advanced conditions use [PCRE](https://www.pcre.org/). Use the following operators to involve regular expression:
+
+| Operator | Description |
+| --- | --- |
+| ~ (Aa)  | Find something by case insensitive regexp. |
+| !~ (Aa) | Exclude something by case insensitive regexp. |
+| ~       | Find something by case sensitive regexp. |
+| !~      | Exclude something by case sensitive regexp. |
+
+<!-- ## Testing
+
+To test the mitigation control described in the [Example](#example) section, TBD. -->

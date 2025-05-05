@@ -2,10 +2,12 @@
 
 Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either read or modify its data, bypassing an authorization mechanism. This article describes BOLA protection measures provided by [WAAP](../../about-wallarm/waap-overview.md)'s triggers.
 
-!!! info "Other BOLA protection measures"
-    Alternatively or additionally, you can configure [Automatic BOLA protection for endpoints found by API Discovery](protecting-against-bola.md).
+## Basic protection
 
-## Configuring
+!!! info "Availability"
+    If [advanced protection](#advanced-protection) tools are enabled for you as a part of Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security), basic protection controls may be unavailable. If you want to enable them, contact the [Wallarm support team](https://support.wallarm.com/).
+
+### Configuring
 
 By default, Wallarm automatically discovers only vulnerabilities of the BOLA type (also known as IDOR) but does not detect its exploitation attempts. Consider the example below to learn how to configure protection from BOLA attacks.
 
@@ -35,7 +37,7 @@ Let us say your e-commerce `wmall-example.com` platform for online stores (shops
 1. Select the **Mark as BOLA** trigger reaction. Requests received after exceeding the threshold will be marked as the BOLA attack and displayed in the **Attacks** section of Wallarm Console. Sometimes, you can use this reaction alone to have information about the attack, but not to block anything.
 1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
 
-## Testing
+### Testing
 
 !!! info "Testing in your environment"
     To test the **BOLA** trigger in your environment, in the trigger and the requests below, replace the domain with any public one (e.g. `example.com`).
@@ -58,7 +60,7 @@ To test the trigger described in the [Configuring](#configuring) section:
 
     To search for BOLA attacks, you can use the `bola` search tag. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-## Requirements and restrictions
+### Requirements and restrictions
 
 **Requirements**
 
@@ -67,3 +69,11 @@ To protect resources from BOLA attacks, real clients' IP addresses are required.
 **Restrictions**
 
 When searching for BOLA attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types.
+
+## Automatic protection  <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+
+Alternatively or additionally to other BOLA protection measures, you can configure [Automatic BOLA protection for endpoints found by API Discovery](protecting-against-bola.md).
+
+## Advanced protection <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+
+Wallarm's Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) provides [advanced configuration](../../api-protection/enumeration-attack-protection.md) of BOLA protection.
