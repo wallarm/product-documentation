@@ -1,12 +1,16 @@
 # Managing Vulnerabilities
 
-Vulnerabilities are security flaws in an infrastructure that may be exploited by attackers to perform unauthorized malicious actions with your system. The **Vulnerabilities** section of Wallarm Console allows you to analyze and manage security flaws that have been detected by Wallarm in your system.
+Vulnerabilities are security flaws in an infrastructure that may be exploited by attackers to perform unauthorized malicious actions with your system. In Wallarm Console, you can analyze and manage security flaws that have been detected by Wallarm in your system:
+
+
+* In the **Vulnerabilities** section
+* In the **AASM** → **Security Issues** section
 
 Wallarm employs various techniques to [discover](../about-wallarm/detecting-vulnerabilities.md) security weaknesses, which include:
 
 * **Passive detection**: the vulnerability was found by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
 * **Threat Replay Testing**: the vulnerability was found during the [attack replay security tests](../vulnerability-detection/threat-replay-testing/overview.md) launched by Wallarm.
-* **API Attack Surface Management (AASM)**: [discovers](../api-attack-surface/overview.md) external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
+* **API Attack Surface Management (AASM)**: [discovers](../api-attack-surface/overview.md) external hosts with their APIs, then, for each of them, identifies missing WAF/WAAP solutions, and finds vulnerabilities.
 * **API Discovery insights**: the vulnerability was found by [API Discovery](../api-discovery/overview.md) module due to PII transfer in query parameters of GET requests.
 
 Wallarm stores the history of all detected vulnerabilities in the **Vulnerabilities** section:

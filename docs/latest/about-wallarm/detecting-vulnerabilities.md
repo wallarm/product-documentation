@@ -47,6 +47,10 @@ You enable and configure API Attack Surface Management to detect hosts under you
 
 For detected hosts, Wallarm will automatically [search for vulnerabilities](../api-attack-surface/security-issues.md).
 
+#### Replacement of old Scanner
+
+From May 1, 2025, AASM [replaced the old Scanner](../api-attack-surface/api-surface.md#replacement-of-old-scanner) as a more sophisticated and comfortable tool for host and API discovery.
+
 ### API Discovery insights
 
 When endpoints identified by the [API Discovery](../api-discovery/overview.md) module transfer Personally Identifiable Information (PII) in query parameters of GET requests (see [CWE-598](https://cwe.mitre.org/data/definitions/598.html)), Wallarm recognizes these endpoints as having the [information exposure](../attacks-vulns-list.md#information-exposure) vulnerability.
