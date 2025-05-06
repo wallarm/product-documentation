@@ -35,5 +35,6 @@ search:
 [inline-docs]:                      ../inline/overview.md
 [link-wallarm-health-check]:        ../../admin-en/uat-checklist-en.md
 [aws-ami-traffic-flow]:             ../../images/waf-installation/aws/aws-ami-flow.png
+[aws-costs]:                        ../cloud-platforms/aws/costs.md
 
 --8<-- "latest/installation/inline/compute-instances/aws/aws-ami.md"
