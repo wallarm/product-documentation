@@ -25,6 +25,11 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 !!! warning "The instructions limitations"
     These instructions do not cover the configuration of load balancing and node autoscaling. If setting up these components yourself, we recommend that you review an appropriate part of the [AWS instructions](https://aws.amazon.com/getting-started/hands-on/deploy-docker-containers/).
 
+!!! info "Security note"
+    This solution is designed to follow AWS security best practices. We recommend avoiding the use of the AWS root account for deployment. Instead, use IAM users or roles with only the necessary permissions.
+
+    The deployment process assumes the principle of least privilege, granting only the minimal access required to provision and operate Wallarm components.
+
 ## Use cases
 
 --8<-- "../include/waf/installation/cloud-platforms/aws-ecs-use-cases.md"

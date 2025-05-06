@@ -8,6 +8,11 @@ Deploying the Wallarm Node from the AMI on AWS typically takes around 10 minutes
 
 ![!][aws-ami-traffic-flow]
 
+!!! info "Security note"
+    This solution is designed to follow AWS security best practices. We recommend avoiding the use of the AWS root account for deployment. Instead, use IAM users or roles with only the necessary permissions.
+
+    The deployment process assumes the principle of least privilege, granting only the minimal access required to provision and operate Wallarm components.
+
 ## Use cases
 
 --8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
