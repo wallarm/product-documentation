@@ -36,7 +36,7 @@ You get all this simply by subscribing to the component in Wallarm - you do not 
 
 ### Replacement of old Scanner
 
-As API Attach Surface Discovery (AASD)'s capabilities cover all the functionality of the old Wallarm Scanner and - together with [Security Issues](security-issues.md) - suggest much more, from May 1, 2025, Scanner is disabled.
+As API Attach Surface Discovery (AASD)'s capabilities cover all the functionality of the old Wallarm Scanner and - together with [Security Issues](security-issues.md) - suggest much more, from May 7, 2025, Scanner is disabled.
 
 ![Old Scanner](../images/user-guides/scanner/check-scope.png)
 
@@ -46,7 +46,7 @@ Disabling of old Scanner includes:
 * Migration of all configuration from old Scanner to AASD made by Wallarm support
 * Automatic re-discovery of hosts and APIs by AASD and presenting extended data on them
 * Automatic security issue detection for hosts and APIs
-* Vulnerabilities found by old Scanner before May 1, 2025, are continued to be presented in the Vulnerabilities section for in accordance with [data retention policy](../about-wallarm/data-retention-policy.md)
+* Vulnerabilities found by old Scanner before May 7, 2025, are continued to be presented in the Vulnerabilities section for in accordance with [data retention policy](../about-wallarm/data-retention-policy.md)
 
 ## Data on found hosts
 

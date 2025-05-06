@@ -49,7 +49,7 @@ For detected hosts, Wallarm will automatically [search for vulnerabilities](../a
 
 #### Replacement of old Scanner
 
-From May 1, 2025, AASM [replaced the old Scanner](../api-attack-surface/api-surface.md#replacement-of-old-scanner) as a more sophisticated and comfortable tool for host and API discovery.
+From May 7, 2025, AASM [replaced the old Scanner](../api-attack-surface/api-surface.md#replacement-of-old-scanner) as a more sophisticated and comfortable tool for host and API discovery.
 
 ### API Discovery insights
 
