@@ -47,6 +47,14 @@ To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wall
 
 ## API Attack Surface
 
+!!! info "Relations to other plans"
+
+    This subscription plan:
+
+    * Is included into [Advanced API Security](#waap-and-advanced-api-security) plan.
+    * Can be added to [Cloud Native WAAP](#waap-and-advanced-api-security) plan
+    * Can be used alone (no other plans or filtering node required)
+
 The **API Attack Surface** subscription plan provides a comprehensive view of publicly exposed APIs and related information with **zero deployment** and minimal configuration.
 
 The subscription plan provides the [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) product which includes:

@@ -12,11 +12,11 @@ When scanning the application for active vulnerabilities, Wallarm sends requests
 
 For example: if the response to the request sent to read the `/etc/passwd` contents returns the `/etc/passwd` contents, protected application is vulnerable to the Path Traversal attacks. Wallarm will record the vulnerability with an appropriate type.
 
-To detect vulnerabilities in the application, Wallarm sends requests with attack signs using the following methods:
+To detect vulnerabilities in the application, Wallarm uses the following methods:
 
 * **Passive detection**: identifies vulnerabilities by analyzing real traffic, including both requests and responses. This can happen during a security incident, where a real flaw is exploited, or when requests show signs of vulnerabilities, like compromised JWTs, without direct flaw exploitation.
 * **Threat Replay Testing**: lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
-* **API Attack Surface Management (AASM)**: discovers external hosts with their APIs, identify missing WAF/WAAP solutions, and mitigate API Leaks and other vulnerabilities.
+* **API Attack Surface Management (AASM)**: discovers external hosts with their APIs, for each of them identifies missing WAF/WAAP solutions and vulnerabilities.
 * **API Discovery insights**: the vulnerability was found by [API Discovery](../api-discovery/overview.md) module due to PII transfer in query parameters of GET requests.
 
 ### Passive detection

@@ -20,4 +20,4 @@ Please contact [Wallarm's sales team](mailto:sales@wallarm.com) for any question
 The following functionalities are currently not supported by the on-premise Wallarm solution:
 
 * [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md)
-* [API Leaks](../api-attack-surface/security-issues.md#api-leaks)
+* [API Attack Surface Management](../api-attack-surface/overview.md)

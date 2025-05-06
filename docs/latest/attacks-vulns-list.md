@@ -517,7 +517,7 @@ This vulnerability is also known as IDOR (Insecure Direct Object Reference).
 Wallarm automatically discovers vulnerabilities of this type. To detect and block BOLA attacks, do one or all of the following: 
 
 * Enable [API Discovery](api-discovery/overview.md) and configure [automatic BOLA protection](admin-en/configuration-guides/protecting-against-bola.md) for endpoints discovered by this module
-* Configure one or more [**BOLA** triggers](admin-en/configuration-guides/protecting-against-bola.md)
+* Configure one or more [**BOLA** triggers](admin-en/configuration-guides/protecting-against-bola-trigger.md)
 
 **In addition to Wallarm protection:**
 
