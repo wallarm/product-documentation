@@ -36,5 +36,6 @@ search:
 [api-spec-enforcement-docs]:        ../../../../api-specification-enforcement/overview.md
 [inline-docs]:                      ../../overview.md
 [aws-ami-traffic-flow]:             ../../../../images/waf-installation/aws/aws-ami-flow.png
+[aws-costs]:                        ../../../cloud-platforms/aws/costs.md
 
 --8<-- "latest/installation/inline/compute-instances/aws/aws-ami.md"

@@ -30,6 +30,8 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
     The deployment process assumes the principle of least privilege, granting only the minimal access required to provision and operate Wallarm components.
 
+For guidance on estimating AWS infrastructure costs for this deployment, see the [Cost Guidance for Deploying Wallarm in AWS](costs.md) page.
+
 ## Use cases
 
 --8<-- "../include/waf/installation/cloud-platforms/aws-ecs-use-cases.md"
