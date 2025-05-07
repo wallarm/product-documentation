@@ -22,6 +22,9 @@ The CloudFront connector supports both [in-line](../inline/overview.md) and [out
 === "Out-of-band traffic flow"
     ![Cloudfront with Wallarm - out-of-band scheme](../../images/waf-installation/gateways/cloudfront/traffic-flow-oob.png)
 
+!!! info "Security note"
+    The provided solution is designed following the principle of least privilege. The functions request only the minimal set of permissions required to operate with CloudFront and Wallarm Node, ensuring secure deployment by default.
+
 ## Use cases
 
 Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is recommended in case when you deliver traffic through Amazon CloudFront.
