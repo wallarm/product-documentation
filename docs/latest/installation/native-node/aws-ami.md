@@ -7,6 +7,15 @@ The [Wallarm Native Node](../nginx-native-node-internals.md), which operates ind
 
 The AMI is based on Debian 12 and includes the all-in-one installer. This installer is the Wallarm script used to deploy and configure the Node. After launching an instance from the AMI, you will execute this script to complete the installation.
 
+Deploying the Wallarm Node from the AMI on AWS typically takes around 10 minutes.
+
+!!! info "Security note"
+    This solution is designed to follow AWS security best practices. We recommend avoiding the use of the AWS root account for deployment. Instead, use IAM users or roles with only the necessary permissions.
+
+    The deployment process assumes the principle of least privilege, granting only the minimal access required to provision and operate Wallarm components.
+
+For guidance on estimating AWS infrastructure costs for this deployment, see the [Cost Guidance for Deploying Wallarm in AWS](../cloud-platforms/aws/costs.md) page.
+
 ## Use cases and deployment modes
 
 * When deploying a Wallarm node as part of a connector solution for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md) on AWS.
