@@ -214,6 +214,7 @@ The following [artifacts](../updating-migrating/native-node/node-artifact-versio
 
 * [All-in-one installer](native-node/all-in-one.md)
 * [Docker image](native-node/docker-image.md)
+* [AWS AMI](native-node/aws-ami.md)
 * [Helm chart](native-node/helm-chart.md)
 
 Find your **use case below** and deploy the Native Node in the appropriate form-factor.

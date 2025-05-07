@@ -1,8 +1,8 @@
-# Configuring Native Node with the All-in-One Installer or Docker Image
+# Configuring Native Node with the All-in-One Installer, Docker Image or AWS AMI
 
-When deploying the self-hosted [Wallarm Native Node](../nginx-native-node-internals.md#native-node) using the all-in-one installer or the Docker image, you create the `.yaml` configuration file. In this file, you can specify node configiration, all the parameters for that are described in this document.
+When deploying the self-hosted [Wallarm Native Node](../nginx-native-node-internals.md#native-node) using the all-in-one installer, Docker image or AWS AMI, you create the `.yaml` configuration file. In this file, you can specify node configiration, all the parameters for that are described in this document.
 
-To modify the settings after the node is running using the all-in-one installer:
+To modify the settings after the node is running using the all-in-one installer or AWS AMI:
 
 1. Update the `/opt/wallarm/etc/wallarm/go-node.yaml` file. The initial configuration file is copied to this path during installation.
 1. Restart the Wallarm service to apply changes:
