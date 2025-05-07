@@ -40,6 +40,7 @@ You need to deploy it in your own infrastructure as a separate service using one
 
 * [All-in-one installer](../native-node/all-in-one.md) for Linux infrastructures on bare metal or VMs
 * [Docker image](../native-node/docker-image.md) for environments that use containerized deployments
+* [AWS AMI](../native-node/aws-ami.md) for AWS infrastructures
 * [Helm chart](../native-node/helm-chart.md) for infrastructures utilizing Kubernetes
 
 ### 2. Add the Node's SSL/TLS certificate to the Policy Manager

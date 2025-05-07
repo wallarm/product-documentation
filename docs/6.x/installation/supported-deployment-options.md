@@ -509,6 +509,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Run the Native Node on a virtual machine on Linux</p>
         </a>
 
+        <a class="do-card" href="../../installation/native-node/aws-ami/">
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
+            <h3>AWS AMI</h3>
+            <p>Use the official Machine Image to deploy Wallarm on AWS</p>
+        </a>
+
         <a class="do-card" href="../../installation/native-node/helm-chart/">
             <img class="non-zoomable" src="../../images/platform-icons/helm.svg" />
             <h3>Helm chart</h3>

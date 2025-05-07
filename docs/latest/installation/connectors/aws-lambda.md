@@ -67,6 +67,7 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
 
     * [All-in-one installer](../native-node/all-in-one.md) for Linux infrastructures on bare metal or VMs
     * [Docker image](../native-node/docker-image.md) for environments that use containerized deployments
+    * [AWS AMI](../native-node/aws-ami.md) for AWS infrastructures
     * [Helm chart](../native-node/helm-chart.md) for infrastructures utilizing Kubernetes
 
 ### 2. Obtain and deploy the Wallarm Lambda@Edge functions
