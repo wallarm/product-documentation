@@ -202,6 +202,9 @@ nav:
         - Docker image:
           - Deploy: installation/native-node/docker-image.md
           - Configure: /installation/native-node/all-in-one-conf/
+        - AWS AMI:
+          - Deploy: installation/native-node/aws-ami.md
+          - Configure: /installation/native-node/all-in-one-conf/
         - Helm chart:
           - Deploy: installation/native-node/helm-chart.md
           - Configure: installation/native-node/helm-chart-conf.md
