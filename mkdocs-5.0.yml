@@ -33,6 +33,10 @@ nav:
       - Incident Analysis: user-guides/events/check-incident.md
       - Search and Filters: user-guides/search-and-filters/use-search.md
       - Grouping and Sampling: user-guides/events/grouping-sampling.md
+    - Vulnerabilities:
+      - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md
+      - Managing Vulnerabilities: user-guides/vulnerabilities.md
+      - Search and Filters: user-guides/search-and-filters/use-search-vuln.md
     - API Sessions: 
       - Overview: api-sessions/overview.md
       - Setup: api-sessions/setup.md
@@ -70,11 +74,6 @@ nav:
     - Setup: api-attack-surface/setup.md
     - API Attack Surface Discovery: api-attack-surface/api-surface.md
     - Detecting Security Issues: api-attack-surface/security-issues.md
-  - Assets & Vulnerabilities:
-    - Vulnerability Assessment:
-      - Detecting Vulnerabilities: about-wallarm/detecting-vulnerabilities.md
-      - Managing Vulnerabilities: user-guides/vulnerabilities.md
-      - Search and Filters: user-guides/search-and-filters/use-search-vuln.md
   - Cloud-Native WAAP:
     - Overview: about-wallarm/waap-overview.md
     - DDoS Protection: admin-en/configuration-guides/protecting-against-ddos.md
@@ -343,7 +342,7 @@ nav:
         - Upgrading the EOL Multi‑Tenant Node: updating-migrating/older-versions/multi-tenant.md
         - Migrating Allowlists and Denylists from EOL Wallarm Node: updating-migrating/migrate-ip-lists-to-node-3.md
     - Node Versioning Policy: updating-migrating/versioning-policy.md
-    - Wallarm Scanner Addresses: admin-en/scanner-addresses.md
+    - Vulnerability Scanning IPs: admin-en/scanner-addresses.md
   - References:
     - FAQ:
       - Installing Wallarm Ingress Controller: faq/ingress-installation.md
