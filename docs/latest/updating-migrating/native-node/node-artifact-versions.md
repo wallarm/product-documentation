@@ -46,3 +46,11 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 * The collectd service, previously installed on all filtering nodes, has been removed along with its related plugins
     
     Metrics are now collected and sent using Wallarm's built-in mechanisms, reducing dependencies on external tools.
+
+## Amazon Machine Image (AMI)
+
+<!-- How to upgrade -->
+
+### 0.14.0 (2025-05-07)
+
+* Initial release
