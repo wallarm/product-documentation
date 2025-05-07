@@ -87,4 +87,4 @@ The Free Tier accounts allow:
 
 If a Free Tier account exceeds 100% of the monthly quota, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled. These restrictions will be in effect until the first day of the next month.
 
-You can easily remove all restrictions by [migrating to paid subscriptions](mailto:sales@wallarm.com).
+To remove all restrictions, contact [sales@wallarm.com](mailto:sales@wallarm.com).

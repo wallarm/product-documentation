@@ -72,6 +72,13 @@ To activate the subscription plan, do one of the following:
 
 ## Security Edge
 
+!!! info "Relations to other plans"
+
+    This subscription plan:
+
+    * Can be added to [Cloud Native WAAP](#waap-and-advanced-api-security) or [Advanced API Security](#waap-and-advanced-api-security) plan
+    * Cannot be used alone
+
 The Security Edge subscription plan allows you to deploy the Wallarm node on the managed environment, eliminating the need for onsite installation and management.
 
 With Wallarm handling node hosting and maintenance, you can focus on your core infrastructure while benefiting from robust traffic filtering, attack detection, and secure communication - all backed by Wallarm.
@@ -101,4 +108,4 @@ The Free Tier accounts allow:
 
 If a Free Tier account exceeds 100% of the monthly quota, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled. These restrictions will be in effect until the first day of the next month.
 
-You can easily remove all restrictions by [migrating to paid subscriptions](mailto:sales@wallarm.com).
+To remove all restrictions, contact [sales@wallarm.com](mailto:sales@wallarm.com).
