@@ -7,13 +7,13 @@
 
 # Mitigation Controls
 
-Mitigation controls extend Wallarm's [basic](protecting-against-attacks.md#tools-for-attack-detection) attack protection with additional security measures.
+Mitigation controls extend Wallarm's [attack protection](protecting-against-attacks.md#tools-for-attack-detection) with additional security measures and allow fine-tuning of the Wallarm behavior.
 
 ## What you can do with mitigation controls
 
 Using mitigation controls, you can enable and configure:
 
-* [Real-time blocking mode](../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console)
+* [Real-time blocking mode](../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-mode)
 * [GraphQL API protection](../api-protection/graphql-rule.md)
 * Enumeration attack protection
 * BOLA enumeration protection
@@ -25,25 +25,15 @@ Using mitigation controls, you can enable and configure:
 
 Mitigation controls are automatically grouped into nested branches by endpoint URIs and other conditions. This builds a tree-like structure in which mitigation control effects are inherited down. Principles:
 
-* All branches inherit [all traffic](#all-traffic-mitigation-controls) mitigation controls.
+* All branches inherit [all traffic](#scope) mitigation controls.
 * In a branch, child endpoints inherit mitigation control effects from the parent.
 * Distinct has priority over inherited.
 * Directly specified has priority over regex.
 * Case sensitive has priority over insensitive.
 
-## All traffic mitigation controls
-
-You can create mitigation controls with specified action but not linked to any endpoint - they are called **all traffic** controls. Such rules are applied to all endpoints.
-
-To create all traffic mitigation control, follow the standard procedure but leave the **Scope** section blank. The new mitigation control not linked to any endpoint will be created.
-
-Some all traffic mitigation controls are created automatically by different Wallarm modules and cannot be deleted or edited directly. For example, **Real-time blocking mode** for all traffic is created and set by configuring **Settings** → **General** → **Filtration mode**.
-
-All traffic mitigation controls are inherited by all branches.
-
 ## Configuration
 
-Perform configuring in the **Security controls** → **Mitigation Controls** section of Wallarm Console. You can also access some mitigation control settings for other places in the system, for example, from API Sessions.
+Perform configuring in the **Security controls** → **Mitigation Controls** section of Wallarm Console. You can also access some mitigation control settings from other places in the system, for example, from API Sessions.
 
 Before configuring, get familiar with the idea of [branches](#mitigation-control-branches) and check what already exists. 
 
@@ -54,7 +44,9 @@ In general, configuring any mitigation control includes 2 steps:
 
 ### Scope
 
-**Scope** is where request targets (URI + extras), see details [here](../user-guides/rules/rules.md#configuring)
+**Scope** is where request targets (URI + extras), see details [here](../user-guides/rules/rules.md#configuring).
+
+If you leave the **Scope** section blank, mitigation control is applied to **all traffic**; such controls are inherited by all [branches](#mitigation-control-branches). Some all traffic mitigation controls are created automatically by different Wallarm modules and cannot be deleted or edited directly.
 
 ### Advanced conditions
 
