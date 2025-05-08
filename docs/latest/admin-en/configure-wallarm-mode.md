@@ -88,17 +88,9 @@ Note that described configuration is applicable only for [in-line](../installati
     * For Native Node all-in-one installer and Docker image, use the [`route_config.wallarm_mode`](../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parameter.
     * For Native Node Helm chart, use the [`config.connector.route_config.wallarm_mode`](../installation/native-node/helm-chart-conf.md#configconnectorroute_configwallarm_mode) parameter.
 
-### General filtration rule in Wallarm Console
+### General filtration mode
 
-You can define the general filtration mode for all incoming requests using rules or mitigation controls.
-
-=== "Rules"
-    
-    You can define the general filtration mode for all incoming requests in **Settings** → **General** in the [US](https://us1.my.wallarm.com/settings/general) or [EU](https://my.wallarm.com/settings/general) Cloud.
-    
-    ![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
-
-    The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules** section. Note that endpoint-targeted filtration rules in this section have higher priority.
+You can define the general filtration mode for all incoming requests using mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription) or rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)..
 
 === "Mitigation controls"
 
@@ -114,9 +106,40 @@ You can define the general filtration mode for all incoming requests using rules
 
     **Inherited** is default. You can change the global mode at any moment.
 
-### Endpoint-targeted filtration rules in Wallarm Console
+=== "Rules"
+    
+    You can define the general filtration mode for all incoming requests in **Settings** → **General** in the [US](https://us1.my.wallarm.com/settings/general) or [EU](https://my.wallarm.com/settings/general) Cloud.
+    
+    ![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
-You can set filtration mode for specific branches, endpoints and relying on other conditions using rules or mitigation controls.
+    The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules** section. Note that endpoint-targeted filtration rules in this section have higher priority.
+
+### Endpoint-targeted filtration mode
+
+You can set filtration mode for specific branches, endpoints and relying on other conditions using mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription) or rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription).
+
+=== "Mitigation controls"
+
+    You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Real-time blocking mode** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
+
+    Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope** and **Mitigation mode** are set for any mitigation control.
+
+    To create a new filtration mode mitigation control:
+
+    1. Proceed to Wallarm Console → **Mitigation Controls**.
+    1. Use **Add control** → **Real-time blocking mode**.
+    1. Describe the **Scope** to apply the mitigation control to.
+    1. In the **Mitigation mode** section, select filtration mode for the specified scope:
+
+        | Setting | Filtration mode |
+        | --- | --- |
+        | **Inherited** | Filtration mode is inherited from the [all-traffic **Real-time blocking mode**](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
+        | **Excluding** | `off` |
+        | **Monitoring** | `monitoring` |
+        | **Safe blocking** | `safe_blocking` |
+        | **Blocking** | `block` |
+
+    1. Save changes.
 
 === "Rules"
 
@@ -141,29 +164,6 @@ You can set filtration mode for specific branches, endpoints and relying on othe
     1. Save changes and wait for the [rule compilation to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
 
     Note that to create a filtration mode rule, you can also [call the Wallarm API directly](../api/request-examples.md#create-the-rule-setting-filtration-mode-to-monitoring-for-the-specific-application).
-
-=== "Mitigation controls"
-
-    You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Real-time blocking mode** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
-
-    Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope** and **Mitigation mode** are set for any mitigation control.
-
-    To create a new filtration mode mitigation control:
-
-    1. Proceed to Wallarm Console → **Mitigation Controls**.
-    1. Use **Add control** → **Real-time blocking mode**.
-    1. Describe the **Scope** to apply the mitigation control to.
-    1. In the **Mitigation mode** section, select filtration mode for the specified scope:
-
-        | Setting | Filtration mode |
-        | --- | --- |
-        | **Inherited** | Filtration mode is inherited from the [all-traffic **Real-time blocking mode**](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
-        | **Excluding** | `off` |
-        | **Monitoring** | `monitoring` |
-        | **Safe blocking** | `safe_blocking` |
-        | **Blocking** | `block` |
-
-    1. Save changes.
 
 ### Prioritization of methods
 

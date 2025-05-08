@@ -98,7 +98,7 @@ Custom [rules](../user-guides/rules/rules.md) are used to fine-tune the behavior
 
 ### Mitigation controls
 
-[Mitigation controls](../about-wallarm/mitigation-controls-overview.md) are used to extend Wallarm's [basic](#basic-set-of-detectors) attack protection with additional security measures.
+[Mitigation controls](../about-wallarm/mitigation-controls-overview.md) extend Wallarm's attack protection with additional security measures and allow fine-tuning of the Wallarm behavior.
 
 ### Specific module settings
 
