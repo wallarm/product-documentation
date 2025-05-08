@@ -280,6 +280,37 @@ Enables URL normalization before selecting route configurations and analyzing da
 
 Default: `true`.
 
+### connector.external_health_check
+
+Configures an additional external health check endpoint allowing external systems to verify the availability of the Wallarm Node.
+
+The endpoint is served on the same port as Node (parameter `connector.address`) and responds with HTTP 200 OK if the Node is running.
+
+Supported in:
+
+* Native Node 0.13.3 and higher 0.13.x versions
+* Native Node 0.14.1 and higher
+* Not supported in the AWS AMI yet
+
+```yaml
+version: 4
+
+connector:
+  external_health_check:
+    enabled: true
+    endpoint: /wallarm-external-health
+```
+
+#### enabled
+
+Turns the external health check endpoint on or off. If `true`, the endpoint becomes accessible at the specified endpoint, on the same port as Node.
+
+Default: `false`.
+
+#### endpoint
+
+Defines the URL path at which the external health check endpoint will be available. Must begin with a `/`.
+
 ## TCP mirror-specific settings
 
 ### goreplay.filter

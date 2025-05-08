@@ -10,6 +10,20 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.14.1 (2025-05-07)
+
+* Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) vulnerabilities
+* Added support for external health check endpoint in the `connector-server` mode
+
+    This is controlled by the new [`connector.external_health_check`](../../installation/native-node/all-in-one-conf.md#connectorexternal_health_check) configuration section.
+* Fixed a recurring intermittent bug that could cause occasional corruption of request and response bodies
+* The following fixes and updates were made in `tcp-capture` mode:
+
+    * GoReplay is now built with Go 1.24
+    * Fixed: `go-node` process no longer hangs when the `goreplay` process crashes
+    * Fixed a crash caused by a slice out-of-bounds error during header parsing in GoReplay
+* Fixed incorrect display of Native Node versions in Wallarm Console → **Nodes**
+
 ### 0.14.0 (2025-04-16)
 
 * Wallarm Node now uses **wstore**, a Wallarm-developed service, instead of Tarantool for local postanalytics processing
@@ -22,6 +36,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 The Helm chart for the Native Node is used for self-hosted node deployments with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio-inline.md) connectors.
 
 [How to upgrade](helm-chart.md)
+
+### 0.14.1 (2025-05-07)
+
+* Fixed the [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) vulnerability
+* Fixed handling of `clusterIP: None` in Helm chart headless service
+* Fixed a recurring intermittent bug that could cause occasional corruption of request and response bodies
+* Fixed incorrect display of Native Node versions in Wallarm Console → **Nodes**
 
 ### 0.14.0 (2025-04-16)
 
@@ -39,6 +60,15 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio-inline.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.14.1 (2025-05-07)
+
+* Fixed the [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) vulnerability
+* Added support for external health check endpoint
+
+    This is controlled by the new [`connector.external_health_check`](../../installation/native-node/all-in-one-conf.md#connectorexternal_health_check) configuration section.
+* Fixed a recurring intermittent bug that could cause occasional corruption of request and response bodies
+* Fixed incorrect display of Native Node versions in Wallarm Console → **Nodes**
 
 ### 0.14.0 (2025-04-16)
 
