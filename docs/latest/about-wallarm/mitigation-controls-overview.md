@@ -21,12 +21,6 @@ Using mitigation controls, you can enable and configure:
 * Brute force protection
 * [Rate abuse protection](../api-protection/rate-abuse-protection.md)
 
-## Difference between mitigation controls and rules
-
-Mitigation controls may seem similar to [rules](../user-guides/rules/rules.md). Consider the differences:
-
---8<-- "../include/mitigation-controls-vs-rules.md"
-
 ## Mitigation control branches
 
 Mitigation controls are automatically grouped into nested branches by endpoint URIs and other conditions. This builds a tree-like structure in which mitigation control effects are inherited down. Principles:
