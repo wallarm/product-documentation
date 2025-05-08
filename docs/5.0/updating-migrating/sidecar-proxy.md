@@ -68,6 +68,17 @@ helm install --version 5.3.13 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n w
 * `wallarm-sidecar` is the namespace to deploy the Helm release. It is recommended to re-use the same namespace you used for the initial deployment of the solution.
 * `<PATH_TO_VALUES>` is the path to the `values.yaml` file. You can re-use the one generated during the initial deployment, no changes are required for upgrading.
 
+### Step 6: Restart deployments with attached Sidecar Proxy
+
+To upgrade the proxy containers already injected into application pods, restart the corresponding deployments:
+
+```
+kubectl rollout restart deployment <DEPLOYMENT_NAME> -n <NAMESPACE>
+```
+
+* `<DEPLOYMENT_NAME>` is the name of the application deployment
+* `<NAMESPACE>` is the namespace the deployment resides in
+
 ## Upgrading from version 4.10.7 or above
 
 ### Step 3: Upgrade the Sidecar solution
@@ -81,6 +92,17 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 5.3
 * `<RELEASE_NAME>`: the name of the Helm release with the deployed Sidecar chart
 * `<NAMESPACE>`: the namespace the Sidecar is deployed to
 * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar 4.10 settings - you can use the one created for running the previous Sidecar version
+
+### Step 4: Restart deployments with attached Sidecar Proxy
+
+To upgrade the proxy containers already injected into application pods, restart the corresponding deployments:
+
+```
+kubectl rollout restart deployment <DEPLOYMENT_NAME> -n <NAMESPACE>
+```
+
+* `<DEPLOYMENT_NAME>` is the name of the application deployment
+* `<NAMESPACE>` is the namespace the deployment resides in
 
 ## Test the upgraded Sidecar solution
 
