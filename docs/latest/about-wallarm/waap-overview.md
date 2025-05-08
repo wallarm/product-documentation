@@ -30,7 +30,7 @@ Wallarm WAAP provides a wide range of security measures to protect your applicat
 
 ## Additional capabilities
 
-In addition to protecting applications, Wallarm Cloud Native WAAP provides capabilities to scan your [exposed assets](../user-guides/scanner.md) and assess the security level. This allows you to identify vulnerabilities before malefactors attack them.
+In addition to protecting applications, Wallarm Cloud Native WAAP provides capabilities to identify vulnerabilities ([passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection)) before malefactors attack them.
 
 Flexible [reporting](../user-guides/dashboards/owasp-api-top-ten.md) capabilities and [integration](../user-guides/settings/integrations/integrations-intro.md) with other applications allow you to quickly learn about emerging threats and respond to them on time.
 

@@ -86,7 +86,6 @@ nav:
     - Busca e Filtros de Vulnerabilidades: user-guides/search-and-filters/use-search-vuln.md
     - Gerenciando Vulnerabilidades Detectadas: user-guides/vulnerabilities.md
     - Suporte da Operação do Scanner:
-      - Configurações do Scanner: user-guides/scanner.md
       - Endereços do Scanner: admin-en/scanner-addresses.md
       - Contatando o Suporte Wallarm para Parar o Scanner de Recursos: admin-en/scanner-complaint-en.md
   - WAAP nativo da nuvem:

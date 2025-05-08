@@ -1,1 +1,0 @@
---8<-- "latest-ar/user-guides/scanner.md"

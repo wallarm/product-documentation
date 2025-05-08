@@ -919,3 +919,13 @@
 
 /fast/* /api-attack-surface/overview/
 /5.x/fast/* /5.x/api-attack-surface/overview/
+
+/user-guides/scanner/ /api-attack-surface/api-surface/#replacement-of-old-scanner
+/5.x/user-guides/scanner/ /5.x/api-attack-surface/api-surface/#replacement-of-old-scanner
+/4.10/user-guides/scanner/ /4.10/api-attack-surface/api-surface/#replacement-of-old-scanner
+/3.6/user-guides/scanner/ /api-attack-surface/api-surface/#replacement-of-old-scanner
+/2.18/user-guides/scanner/ /api-attack-surface/api-surface/#replacement-of-old-scanner
+/ar/user-guides/scanner/ /ar/api-attack-surface/api-surface/#replacement-of-old-scanner
+/tr/user-guides/scanner/ /tr/api-attack-surface/api-surface/#replacement-of-old-scanner
+/ja/user-guides/scanner/ /ja/api-attack-surface/api-surface/#replacement-of-old-scanner
+/pt-br/user-guides/scanner/ /pt-br/api-attack-surface/api-surface/#replacement-of-old-scanner

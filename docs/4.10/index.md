@@ -28,9 +28,11 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
 <div class="navigation-card">
     <h3 class="icon-homepage dashboard-title">Threat Management</h3>
     <p><ul>
+    <li><a href="./user-guides/events/overview/">Overview</a></li>
     <li><a href="./user-guides/dashboards/threat-prevention/">Dashboards</a></li>
     <li><a href="./user-guides/events/check-attack/">Attack Analysis</a></li>
     <li><a href="./user-guides/events/check-incident/">Incident Analysis</a></li>
+    <li><a href="./about-wallarm/detecting-vulnerabilities/">Vulnerability Analysis</a></li>
     <!-- <li><a href="./api-sessions/">API Sessions</a></li> -->
     <li><a href="./user-guides/search-and-filters/custom-report/">Reports</a></li>
     </ul></p>
@@ -68,13 +70,6 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     </ul></p>
 </div>
 
-<div class="navigation-card">
-    <h3 class="icon-homepage vuln-title">Assets & Vulnerabilities</h3>
-    <p><ul>
-    <li><a href="./user-guides/scanner/">Exposed Assets</a></li>
-    <li><a href="./about-wallarm/detecting-vulnerabilities/">Vulnerability Assessment</a></li>
-    </ul></p>
-</div>
 
 <div class="navigation-card">
     <h3 class="icon-homepage waap-title">Cloud-Native WAAP</h3>

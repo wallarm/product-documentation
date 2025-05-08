@@ -66,7 +66,6 @@ Overall, Wallarm can log in Sentinel the records of the following types:
 | New [trigger](../../../user-guides/triggers/triggers.md) | `trigger_create_CL` |
 | Deletion of a trigger | `trigger_delete_CL` |
 | Changes of an existing trigger | `trigger_update_CL` |
-| Updates in hosts, services, and domains in [exposed assets](../../scanner.md) | `scope_object_CL` |
 | Changes in API inventory (if the corresponding [trigger](../../triggers/triggers.md) is active) | `api_structure_changed_CL` |
 | Amount of attacks exceeds the threshold (if the corresponding [trigger](../../triggers/triggers.md) is active) | `attacks_exceeded_CL` |
 | New denylisted IP (if the corresponding [trigger](../../triggers/triggers.md) is active) | `ip_blocked_CL` |

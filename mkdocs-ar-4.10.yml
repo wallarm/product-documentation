@@ -109,7 +109,6 @@ nav:
     - اكتشاف سطح API: api-attack-surface/api-surface.md
     - اكتشاف تسربات API: api-attack-surface/security-issues.md
   - الأصول والثغرات:
-    - الأصول المكشوفة: user-guides/scanner.md
     - تقييم الضعف:
       - الكشف عن الضعف: about-wallarm/detecting-vulnerabilities.md
       - إدارة الضعف: user-guides/vulnerabilities.md

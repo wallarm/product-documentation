@@ -26,7 +26,7 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [API Specification Enforcement](../api-specification-enforcement/overview.md) | No | Yes |
 | [GraphQL security policies](../api-protection/graphql-rule.md) | No | Yes |
 | **Security posture** | | |
-| [Exposed asset scanner](../user-guides/scanner.md) | Yes | Yes |
+| [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) | No | Yes |
 | [Vulnerability assessment](../user-guides/vulnerabilities.md) | Yes | Yes |
 | [API Sessions](../api-sessions/overview.md) | No | Yes |
 | [API Discovery](../api-discovery/overview.md) | No | Yes |
@@ -47,6 +47,14 @@ To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wall
 
 ## API Attack Surface
 
+!!! info "Relations to other plans"
+
+    This subscription plan:
+
+    * Is included into [Advanced API Security](#waap-and-advanced-api-security) plan.
+    * Can be added to [Cloud Native WAAP](#waap-and-advanced-api-security) plan
+    * Can be used alone (no other plans or filtering node required)
+
 The **API Attack Surface** subscription plan provides a comprehensive view of publicly exposed APIs and related information with **zero deployment** and minimal configuration.
 
 The subscription plan provides the [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) product which includes:
@@ -63,6 +71,13 @@ To activate the subscription plan, do one of the following:
 * If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
 ## Security Edge
+
+!!! info "Relations to other plans"
+
+    This subscription plan:
+
+    * Can be added to [Cloud Native WAAP](#waap-and-advanced-api-security) or [Advanced API Security](#waap-and-advanced-api-security) plan
+    * Cannot be used alone
 
 The Security Edge subscription plan allows you to deploy the Wallarm node on the managed environment, eliminating the need for onsite installation and management.
 
@@ -88,10 +103,9 @@ The Free Tier accounts allow:
 * Access to the Wallarm platform as [Advanced API Security](#waap-and-advanced-api-security), except for the following:
 
     * Security Edge [Inline](../installation/security-edge/deployment.md) and [Connectors](../installation/se-connector.md)
-    * [Exposed assets scanner](../user-guides/scanner.md)
     * [Vulnerability assessment](../user-guides/vulnerabilities.md)
     * [API Abuse Prevention](../api-abuse-prevention/overview.md)
 
 If a Free Tier account exceeds 100% of the monthly quota, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled. These restrictions will be in effect until the first day of the next month.
 
-You can easily remove all restrictions by [migrating to paid subscriptions](mailto:sales@wallarm.com).
+To remove all restrictions, contact [sales@wallarm.com](mailto:sales@wallarm.com).

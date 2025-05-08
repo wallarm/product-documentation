@@ -26,7 +26,7 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [API Specification Enforcement](../api-specification-enforcement/overview.md) | No | Yes |
 | [GraphQL security policies](../api-protection/graphql-rule.md) | No | Yes |
 | **Security posture** | | |
-| [Exposed asset scanner](../user-guides/scanner.md) | Yes | Yes |
+| [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) | No | Yes |
 | [Vulnerability assessment](../user-guides/vulnerabilities.md) | Yes | Yes |
 | [API Discovery](../api-discovery/overview.md) | No | Yes |
 | [Sensitive data detection](../api-discovery/overview.md#sensitive-data-detection) | No | Yes |
@@ -45,6 +45,14 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 To activate the subscription plan, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
 ## API Attack Surface
+
+!!! info "Relations to other plans"
+
+    This subscription plan:
+
+    * Is included into [Advanced API Security](#waap-and-advanced-api-security) plan.
+    * Can be added to [Cloud Native WAAP](#waap-and-advanced-api-security) plan
+    * Can be used alone (no other plans or filtering node required)
 
 The **API Attack Surface** subscription plan provides a comprehensive view of publicly exposed APIs and related information with **zero deployment** and minimal configuration.
 
@@ -73,11 +81,10 @@ The Free Tier accounts allow:
 * Process up to **500 thousand requests per month** with no limitation in time.
 * Access to the Wallarm platform as [Advanced API Security](#waap-and-advanced-api-security), except for the following:
 
-    * [Exposed assets scanner](../user-guides/scanner.md)
     * [Vulnerability assessment](../user-guides/vulnerabilities.md)
     * [API Abuse Prevention](../api-abuse-prevention/overview.md)
     * [Wallarm-hosted deployment options](../installation/cdn-node.md)
 
 If a Free Tier account exceeds 100% of the monthly quota, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled. These restrictions will be in effect until the first day of the next month.
 
-You can easily remove all restrictions by [migrating to paid subscriptions](mailto:sales@wallarm.com).
+To remove all restrictions, contact [sales@wallarm.com](mailto:sales@wallarm.com).

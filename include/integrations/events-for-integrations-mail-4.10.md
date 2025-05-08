@@ -6,4 +6,3 @@
     * High risk
     * Medium risk
     * Low risk
-* [Scope (exposed assets)](../../scanner.md) changed: updates in hosts, services, and domains

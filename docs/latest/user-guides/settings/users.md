@@ -49,7 +49,6 @@ More detailed information about access of different user roles to the Wallarm en
 | **Vulnerabilities** | View and manage                      | View and manage          | View              | - |
 | **API inventory by API Discovery**   | View and manage                      | View and manage          | -                            | View and download |
 | **API Specifications**   | View and manage                      | View          | View                            | View |
-| **Scanner**         | View and manage                      | View and manage          | View                         | - |
 | **Triggers**        | View and manage                      | -                        | -                            | - |
 | **IP lists**       | View, manage, and export             | View, manage, and export | View and export              | - |
 | **Rules**           | View and manage                      | View and manage          | View                         | - |
