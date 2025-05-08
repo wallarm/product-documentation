@@ -73,6 +73,17 @@ helm install --version 6.0.1 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wa
     
     Helm values renamed: `postanalytics.tarantool` → `postanalytics.wstore`. Apply this change in `values.yaml` if postanalytics memory is explicitly [allocated](../installation/kubernetes/sidecar-proxy/scaling.md).
 
+### Step 6: Restart deployments with attached Sidecar Proxy
+
+To upgrade the proxy containers already injected into application pods, restart the corresponding deployments:
+
+```
+kubectl rollout restart deployment <DEPLOYMENT_NAME> -n <NAMESPACE>
+```
+
+* `<DEPLOYMENT_NAME>` is the name of the application deployment
+* `<NAMESPACE>` is the namespace the deployment resides in
+
 ## Upgrading from version 4.10.7 or above
 
 ### Step 3: Upgrade the Sidecar solution
@@ -88,6 +99,17 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 6.0
 * `<PATH_TO_VALUES>` is the path to the `values.yaml` file with Sidecar Helm chart 6.x settings. You can reuse the previous version's file, updating it [for the Tarantool-to-wstore transition](what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics):
     
     Helm values renamed: `postanalytics.tarantool` → `postanalytics.wstore`. Apply this change in `values.yaml` if postanalytics memory is explicitly [allocated](../installation/kubernetes/sidecar-proxy/scaling.md).
+
+### Step 4: Restart deployments with attached Sidecar Proxy
+
+To upgrade the proxy containers already injected into application pods, restart the corresponding deployments:
+
+```
+kubectl rollout restart deployment <DEPLOYMENT_NAME> -n <NAMESPACE>
+```
+
+* `<DEPLOYMENT_NAME>` is the name of the application deployment
+* `<NAMESPACE>` is the namespace the deployment resides in
 
 ## Test the upgraded Sidecar solution
 
