@@ -12,6 +12,11 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 6.0.3 (2025-05-07)
+
+* Added support for Amazon Linux 2
+* Fixed the installation issues with custom NGINX
+
 ### 6.0.2 (2025-04-29)
 
 * Added support for NGINX stable 1.28.0
