@@ -47,13 +47,6 @@ Using rules, you can control how Wallarm mitigates attacks on your applications 
     * [Mask sensitive data](../../user-guides/rules/sensitive-data-rule.md)
     * Configure the additional layer of the application security by [changinge response headers](../../user-guides/rules/add-replace-response-header.md)
 
-## Difference between rules and mitigation controls
-
-Rules may seem similar to [mitigation controls](../../about-wallarm/mitigation-controls-overview.md). Consider the differences:
-
---8<-- "../include/mitigation-controls-vs-rules.md"
-
-
 ## Rule branches
 
 Rules are automatically grouped into nested branches by endpoint URIs and other conditions. This builds a  tree-like structure in which rules are inherited down. Principles:
