@@ -14,7 +14,6 @@ Rules are used to fine-tune the [default](../../about-wallarm/protecting-against
 
 Rules are configured in the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud.
 
-
 ![Rules section](../../images/user-guides/rules/section-rules.png)
 
 !!! warning "Rule application delay"
@@ -27,7 +26,6 @@ Using rules, you can control how Wallarm mitigates attacks on your applications 
 * Mitigation controls:
 
     * [Advanced rate limiting](../../user-guides/rules/rate-limiting.md)
-    * [GraphQL API protection](../../api-protection/graphql-rule.md)
     * [Virtual patches](../../user-guides/rules/vpatch-rule.md)
     * [Custom attack detectors](../../user-guides/rules/regex-rule.md)
 

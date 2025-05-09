@@ -4,10 +4,18 @@ A brute force attack is one of the attack types not detected by Wallarm out-of-t
 
 [Regular brute force attacks](../../attacks-vulns-list.md#brute-force-attack) include password brute forcing, session identifier brute forcing, and credential stuffing. These attacks are characterized by a large number of requests with different forced parameter values sent to a typical URI for a limited timeframe.
 
-## Basic protection
+## Configuration method
 
-!!! info "Availability"
-    If [advanced protection](#advanced-protection) tools are enabled for you as a part of Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security), basic protection controls may be unavailable. If you want to enable them, contact the [Wallarm support team](https://support.wallarm.com/).
+Depending on your subscription plan, one of the following configuration methods for brute force protection will be available:
+
+* Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
+* Triggers ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
+
+## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+
+Wallarm's Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) provides advanced [enumeration attack protection](../../api-protection/enumeration-attack-protection.md), including protection from brute force attacks.
+
+## Trigger-based protection
 
 Brute force protection described in this section is one of the ways for the basic load control provided by Wallarm. Alternatively, you can apply [rate limiting](../../user-guides/rules/rate-limiting.md). Use rate limiting to slow the incoming traffic and brute force protection to completely block the attacker.
 
@@ -85,7 +93,3 @@ To protect resources from brute force attacks, real clients' IP addresses are re
 **Restrictions**
 
 When searching for brute force attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types.
-
-## Advanced protection <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
-
-Wallarm's Advanced API Security [subscription](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) provides [advanced configuration](../../api-protection/enumeration-attack-protection.md) of brute force protection.

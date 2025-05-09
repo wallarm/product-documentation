@@ -39,19 +39,22 @@ Wallarm provides several [mitigation controls](../about-wallarm/mitigation-contr
 
 Thus: 
 
-* If you want to prevent enumerating of your non-public URLs, always use the **Forced browsing protection** control.
-* To prevent enumerating of any parameters you can use the **Enumeration attack protection** control (this is all-in-one solution).
+* If you want to prevent enumeration of your non-public URLs, use the **Forced browsing protection** control.
+* To prevent enumeration of any parameters you can use the **Enumeration attack protection** control (this is all-in-one solution).
 * If you want to specifically highlight the attempts to get valid passwords by trying variants, use the **Brute force protection** control.
-* If your want to specifically highlight the attempts to enumerate valid user or object ID - the **BOLA protection** control.
+* If you want to specifically highlight the attempts to enumerate valid user or object ID - the **BOLA protection** control.
 
 ## Configuration
 
-In general, you make 4 steps:
+Configure enumeration protection fulfilling the following steps:
 
-1. Set counters (select parameters that will be monitored for enumeration)
-1. Set conditions (when all met, one or several counters get `+1`)
-1. Set threshold (any of counters should be no more than `x` within `time`, if violated → action)
-1. Set action (mitigation mode, what to do, if threshold is exceeded)
+* Define **Scope** to apply control to (endpoints, only specific requests).
+* Select **Enumerated parameters** - ones to be tracked for enumeration attempts.
+* Set **Enumeration threshold** - control will act if threshold is exceeded.
+* If scope does not cover all your needs, set **Advanced conditions**.
+* Set action in **Mitigation mode**.
+
+Note that you can use [regular expressions](#regular-expressions) to set scope and advanced conditions and select parameters tracked for enumeration.
 
 <!-- ### Example
 
@@ -61,19 +64,34 @@ Let us say you want to TBD. To provide this protection, you can TBD:
 
 1. Steps TBD.
 -->
+
+### Scope
+
+**Scope** is where request targets (URI + extras), see details [here](../user-guides/rules/rules.md#configuring). If you leave the section blank, mitigation control is applied to all traffic.
+
 ### Enumerated parameters
 
 In the **Enumerated parameters** section, you need to select parameters that will be monitored for enumeration. Select set of parameters to be monitored via exact or or [regex](#regex) match (only one approach can be used within single mitigation control).
 
 When some request meets [scope](#scope) and [advanced conditions](#advanced-conditions) and **contains** unique value for the parameter monitored for enumeration, this parameter's counter gets `+1`.
 
-### Scope
+### Enumeration threshold
 
-**Scope** is where request targets (URI + extras), see details [here](../user-guides/rules/rules.md#configuring)
+**Brute force, BOLA and generic enumeration protection**
+
+These kinds of protection count the number of unique values seen for each [enumerated parameter](#enumerated-parameters) within a specified timeframe (in seconds). Each parameter listed in the **Enumerated parameters** section is tracked independently.
+
+Once threshold is reached by any of parameters, Wallarm performs action in accordance with the [Mitigation mode](#mitigation-mode).
+
+**Forced browsing protection**
+
+This protection counts the number of unique endpoints accessed in a configured timeframe (in seconds). Once threshold is reached, Wallarm performs action in accordance with the [Mitigation mode](#mitigation-mode).
 
 ### Advanced conditions 
 
-Besides [Scope](#scope), you can define other peculiarities that requests must have to be counted by protection mechanism as a part of attack, including values or value patters of:
+If [Scope](#scope) does not cover all your needs, you can define other conditions that requests must meet to be covered by the protection mechanism.
+
+As conditions, you can use values or value patters of:
 
 * **Built-in parameters** meta information presented in each request handled by Wallarm filtering node.
 
@@ -97,18 +115,6 @@ Besides [Scope](#scope), you can define other peculiarities that requests must h
 
 !!! info "Performance note"
     As **Scope** settings are less demanding from the productivity perspective, it is always recommended to use them if it is enough for your goals, and only use **Advanced conditions** for the complex conditioning.
-
-### Threshold
-
-**Brute force, BOLA and generic enumeration protection**
-
-These kinds of protection count the number of unique values seen for each [enumerated parameter](#enumerated-parameters) within a specified timeframe (in seconds). Each parameter listed in the **Enumerated parameters** section is tracked independently.
-
-Once threshold is reached by any of parameters, Wallarm performs action in accordance with the [Mitigation mode](#mitigation-mode).
-
-**Forced browsing protection**
-
-This protection counts the number of unique endpoints accessed in a configured timeframe (in seconds). Once threshold is reached, Wallarm performs action in accordance with the [Mitigation mode](#mitigation-mode).
 
 ### Mitigation mode
 
