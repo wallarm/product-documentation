@@ -16,7 +16,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
-* Default `/metrics` port changed from `9000` to `9001`
 
 ### 6.0.3 (2025-05-07)
 
@@ -44,7 +43,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
-* Default `/metrics` port changed from `9000` to `9001`
 
 ### 6.0.2 (2025-04-25)
 
@@ -66,7 +64,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
-* Default `/metrics` port changed from `9000` to `9001`
 
 ### 6.0.1 (2025-04-22)
 
@@ -84,7 +81,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
-* Default `/metrics` port changed from `9000` to `9001`
 
 ### 6.0.1 (2025-04-22)
 
@@ -102,7 +98,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
-* Default `/metrics` port changed from `9000` to `9001`
 
 ### 6.0.1 (2025-04-22)
 
@@ -120,7 +115,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
-* Default `/metrics` port changed from `9000` to `9001`
 
 ### wallarm-node-6-0-1-20250422-104749 (2025-04-22)
 
