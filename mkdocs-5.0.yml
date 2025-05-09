@@ -69,6 +69,7 @@ nav:
       - Exploring Bot Activity: api-abuse-prevention/exploring-bots.md
     - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
     - GraphQL API Protection: api-protection/graphql-rule.md
+    - Mitigation Controls: about-wallarm/mitigation-controls-overview.md
   - API Attack Surface:
     - Overview: api-attack-surface/overview.md
     - Setup: api-attack-surface/setup.md
