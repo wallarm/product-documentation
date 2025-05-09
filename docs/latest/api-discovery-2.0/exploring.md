@@ -8,13 +8,14 @@ Explore your discovered API inventory using the **API Discovery** section in the
 
 ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 
-By default, endpoints are sorted by host. You can turn it off/on with the **Group by host** control. With grouping disabled, you can sort endpoints by risk.
+By default, endpoints and operations are sorted by host/endpoint or operation name. Also, **Group by host** is on. With grouping by host disabled, you can sort endpoints by risk.
 
 ### Filtering
 
 Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
 * Find the endpoints characterized with the highest [risk level](risk-score.md) to analyze and mitigate the risks.
+* Find endpoints related to specific [application](../user-guides/settings/applications.md).
 * Find the endpoints that have been changed or newly discovered in the last week and that process PII data. This kind of request can help you to stay up to date with critical [changes in your APIs](track-changes.md).
 * Find the endpoints being used to upload data to your server by the PUT or POST calls (REST) or mutations (GraphQL) (**API protocols** filter with methods for REST and operation types for Graph QL). Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
 * Find the endpoints processing sensitive data to ensure they are properly secured.

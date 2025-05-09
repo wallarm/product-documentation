@@ -19,7 +19,7 @@ For your convenience, API Discovery tags endpoints as belonging to sensitive bus
 
 --8<-- "../include/default-sbf.md"
 
-Automatic checks are conducted using keywords from the endpoint URL. For example, keywords like `payment`, `subscription`, or `purchase` automatically associate the endpoint with the **Billing** flow, while keywords such as `auth`, `token`, or `login` link it to the **Authentication** flow. If matches are detected, the endpoint is automatically assigned to the appropriate flow.
+Automatic checks are conducted using keywords from the endpoint URL (REST) or operation name (GraphQL). For example, keywords like `payment`, `subscription`, or `purchase` automatically associate the endpoint with the **Billing** flow, while keywords such as `auth`, `token`, or `login` link it to the **Authentication** flow. If matches are detected, the endpoint is automatically assigned to the appropriate flow.
 
 The automatic tagging discovers most of the sensitive business flows. However, it is also possible to manually adjust the list of assigned business flows as described in the section below.
 
@@ -27,22 +27,22 @@ The automatic tagging discovers most of the sensitive business flows. However, i
 
 To adjust the results of [automatic tagging](#automatic-tagging), you can manually edit the list of sensitive business flow the endpoint belongs to. You can also manually tag endpoints that do not directly fall under the keyword list.
 
-To edit the list of flows the endpoint belongs to, in Wallarm Console, go to API Discovery, then for your endpoint, in the **Business flow & sensitive data**, select one or several flows from the list.
+To edit the list of flows the endpoint belongs to, in Wallarm Console, go to API Discovery, then for your endpoint, in the **Business flow**, select one or several flows from the list.
 
-![API Discovery - Sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf.png)
+![API Discovery - Sensitive business flows](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-sbf.png)
 
 You can do the same in the endpoint details.
 
-## Business flows in Sessions
+<!--## Business flows in Sessions
 
 Wallarm's [API Sessions](../api-sessions/overview.md) are used to provide you with the full sequence of user activities and thus give more visibility into the logic of malicious actors. If session's requests affect the endpoints that in API Discovery were tagged as important for some sensitive business flows, such session will be automatically [tagged](../api-sessions/exploring.md#sensitive-business-flows) as affecting this business flow as well.
 
 Once sessions are assigned with the sensitive business flow tags, it becomes possible to filter them by a specific business flow which makes it easier to select the sessions that are most important to analyze.
 
 ![!API Sessions - sensitive business flows](../images/api-sessions/api-sessions-sbf-no-select.png)
-
+-->
 ## Filtering by business flow
 
 Once endpoints are assigned with the sensitive business flow tags, it becomes possible to filter all discovered endpoint by a specific business flow (the **Business flow** filter) which makes it easier on protecting the most critical business capabilities.
 
-![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
+![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-sbf-filter.png)
