@@ -58,7 +58,7 @@ nav:
     - Exploring API Inventory: api-discovery-2.0/exploring.md
     - Tracking Changes in API: api-discovery-2.0/track-changes.md
     - Sensitive Data Detection: api-discovery-2.0/sensitive-data.md
-  # - Sensitive Business Flows: api-discovery-2.0/sbf.md
+    - Sensitive Business Flows: api-discovery-2.0/sbf.md
     - Endpoint Risk Score: api-discovery-2.0/risk-score.md
   - API Protection:
     - Overview: about-wallarm/api-protection-overview.md
