@@ -88,7 +88,7 @@ API Discovery [detects and highlights](sensitive-data.md) sensitive data consume
 * Medical data like medical license number
 * Personally identifiable information (PII) like full name, passport number or SSN
 
-<!--### Sensitive business flows
+### Sensitive business flows
 
 With the [sensitive business flow](sbf.md) capability, API Discovery can automatically identify endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities.
 
@@ -96,7 +96,7 @@ In addition to automatic identification, you can manually adjust the assigned se
 
 Once endpoints are assigned with the sensitive business flow tags, it becomes possible to filter all discovered endpoint by a specific business flow which makes it easier on protecting the most critical business capabilities.
 
-![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)-->
+![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-sbf-filter.png)
 
 ### Security of data uploaded to the Wallarm Cloud
 
