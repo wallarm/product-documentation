@@ -1,8 +1,5 @@
 # API Discovery Setup <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-!!! warning "Newer version available"
-    This article describes **REST only** API Discovery - since May 2025, the [newer version](../api-discovery-2.0/overview.md) supporting both **REST and GraphQL** and having **improved performance** is available.
-
 This article describes how to enable, configure and debug the [API Discovery](overview.md) module.
 
 ## Enable
@@ -34,10 +31,6 @@ You may enable/disable API Discovery for all applications or only the selected o
 
 When you add a new application in **Settings** → **[Applications](../user-guides/settings/applications.md)**, it is automatically added to the list of applications for API discovery in the **disabled** state.
 
-### Customizing risk score calculation
-
-You can configure the weight of each factor in [risk score](risk-score.md) calculation and calculation method.
-
 ### Customizing sensitive data detection
 
 API Discovery [detects and highlights](sensitive-data.md) sensitive data consumed and carried by your APIs. You can fine-tune the existing detection process and extend it with your own data types to detect.
@@ -48,4 +41,17 @@ To view the current configuration and perform changes, in Wallarm Console, go to
 
 ## Debug
 
-To get and analyze the API Discovery logs, you can read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` on the Linux machine where the node is running.
+To get and analyze the API Discovery logs, you can use the following methods:
+
+* Read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` on the machine where the node is running.
+* If the Wallarm node is deployed as the Kubernetes Ingress controller: check the status of the pod running the Tarantool and `wallarm-appstructure` containers. The pod status must be **Running**.
+
+    ```bash
+    kubectl get po -l app=nginx-ingress,component=controller-wallarm-tarantool
+    ```
+
+    Read the logs of the `wallarm-appstructure` container:
+
+    ```bash
+    kubectl logs -l app=nginx-ingress,component=controller-wallarm-tarantool -c wallarm-appstructure
+    ```

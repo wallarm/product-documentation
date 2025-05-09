@@ -1,0 +1,1 @@
+--8<-- "latest/api-discovery-2.0/sensitive-data.md"
