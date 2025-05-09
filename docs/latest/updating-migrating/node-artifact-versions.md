@@ -12,6 +12,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 6.1.0 (2025-05-09)
+
+* Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
+* wstore logs now include `"component": "wstore"` for easier identification
+* Default `/metrics` port changed from `9000` to `9001`
+
 ### 6.0.3 (2025-05-07)
 
 * Added support for Amazon Linux 2
@@ -34,6 +40,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 6.1.0 (2025-05-09)
+
+* Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
+* wstore logs now include `"component": "wstore"` for easier identification
+* Default `/metrics` port changed from `9000` to `9001`
+
 ### 6.0.2 (2025-04-25)
 
 * Added the [`validation.enableCel`](../admin-en/configure-kubernetes-en.md#validationenablecel) parameter to enable validation of Ingress resources via Validating Admission Policies
@@ -50,6 +62,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.1.0 (2025-05-09)
+
+* Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
+* wstore logs now include `"component": "wstore"` for easier identification
+* Default `/metrics` port changed from `9000` to `9001`
+
 ### 6.0.1 (2025-04-22)
 
 * Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) vulnerabilities
@@ -61,6 +79,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.1.0 (2025-05-09)
+
+* Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
+* wstore logs now include `"component": "wstore"` for easier identification
+* Default `/metrics` port changed from `9000` to `9001`
 
 ### 6.0.1 (2025-04-22)
 
@@ -74,6 +98,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
+### 6.1.0 (2025-05-09)
+
+* Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
+* wstore logs now include `"component": "wstore"` for easier identification
+* Default `/metrics` port changed from `9000` to `9001`
+
 ### 6.0.1 (2025-04-22)
 
 * Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115) vulnerabilities
@@ -85,6 +115,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-1-0-20250508-144827 (2025-05-09)
+
+* Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
+* wstore logs now include `"component": "wstore"` for easier identification
+* Default `/metrics` port changed from `9000` to `9001`
 
 ### wallarm-node-6-0-1-20250422-104749 (2025-04-22)
 
