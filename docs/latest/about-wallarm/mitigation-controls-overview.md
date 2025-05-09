@@ -9,9 +9,9 @@ Using mitigation controls, you can enable and configure:
 * [Real-time blocking mode](../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-mode)
 * [GraphQL API protection](../api-protection/graphql-rule.md)
 * [Enumeration attack protection](../api-protection/enumeration-attack-protection.md)
-* BOLA enumeration protection
-* Forced browsing protection
-* Brute force protection
+* [BOLA enumeration protection](../api-protection/enumeration-attack-protection.md)
+* [Forced browsing protection](../api-protection/enumeration-attack-protection.md)
+* [Brute force protection](../api-protection/enumeration-attack-protection.md)
 * [Rate abuse protection](../api-protection/rate-abuse-protection.md)
 
 ## Mitigation control branches
