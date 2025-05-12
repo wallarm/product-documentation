@@ -25,6 +25,10 @@ For guidance on estimating AWS infrastructure costs for this deployment, see the
     
     Run the image in `tcp-capture` mode.
 
+    !!! info "Limitations of the `tcp-capture` mode"
+        * The solution analyzes only unencrypted HTTP traffic over raw TCP, not encrypted HTTPS traffic.
+        * The solution does not support parsing responses over HTTP keep-alive connections yet.
+
 ## Requirements
 
 * An AWS account
@@ -39,6 +43,7 @@ For guidance on estimating AWS infrastructure costs for this deployment, see the
     
     * Traffic and response mirroring must be configured with both source and target set up, and the prepared instance chosen as a mirror target. Specific environment requirements must be met, such as allowing specific protocols for traffic mirroring configurations.
     * Mirrored traffic is tagged with either VLAN (802.1q), VXLAN, or SPAN.
+    * Unencrypted HTTP traffic over raw TCP, not encrypted HTTPS traffic.
 
 ## Limitations
 
@@ -57,9 +62,9 @@ Recommended configuration:
 
 * Latest available [AMI version](../../updating-migrating/native-node/node-artifact-versions.md#amazon-machine-image-ami)
 * Any preferred AWS region
-* EC2 instance type: medium or large (recommended)
+* EC2 instance type: `t3.medium` or `t3.large`, [see cost guidance for details](../cloud-platforms/aws/costs.md)
 * Appropriate [VPC and subnet](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) based on your infrastructure
-* [Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html) inbound access to the port defined in the [Node configuration](#4-prepare-the-configuration-file)
+* [Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html) inbound access to the port defined in the [Node configuration](#5-prepare-the-configuration-file)
 * [Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html) outbound access to:
 
     * `https://meganode.wallarm.com` to download the Wallarm installer
@@ -87,7 +92,17 @@ To register the Node in the Wallarm Cloud, you need an API token:
 1. Find or create API token with the `Node deployment/Deployment` usage type.
 1. Copy this token.
 
-### 4. Prepare the configuration file
+### 4. Upload TLS certificates
+
+For the `connector-server` mode, issue a **trusted** TLS certificate and private key for the instance's domain. These files must be accessible inside the instance and referenced in the further configuration.
+
+Upload the certificate and key files to the EC2 instance using `scp`, `rsync`, or another method, e.g.:
+
+```
+scp -i <your-key.pem> tls-cert.crt tls-key.key admin@<your-ec2-public-ip>:~
+```
+
+### 5. Prepare the configuration file
 
 On the EC2 instance, create a file named `wallarm-node-conf.yaml` with one of the following minimal configurations:
 
@@ -103,7 +118,7 @@ On the EC2 instance, create a file named `wallarm-node-conf.yaml` with one of th
       tls_key: path/to/tls-key.key
     ```
 
-    In the `connector.tls_cert` and `connector.tls_key`, you specify the paths to a **trusted** certificate and private key issued for the machine's domain. They should be mounted to the instance.
+    In the `connector.tls_cert` and `connector.tls_key`, you specify the paths to a **trusted** certificate and private key issued for the machine's domain.
 === "tcp-capture"
     ```yaml
     version: 4
@@ -125,25 +140,25 @@ On the EC2 instance, create a file named `wallarm-node-conf.yaml` with one of th
 
 [All configuration parameters](all-in-one-conf.md)
 
-### 5. Run the Node installation script
+### 6. Run the Node installation script
 
 On the EC2 instance, execute the installer:
 
 === "connector-server"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=connector-server --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
     ```
 === "tcp-capture"
     ```bash
     # US Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=./wallarm-node-conf.yaml --host us1.api.wallarm.com
 
     # EU Cloud
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.1.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh -- --batch --token <API_TOKEN> --mode=tcp-capture --go-node-config=./wallarm-node-conf.yaml --host api.wallarm.com
     ```
 
 * The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -154,7 +169,7 @@ The provided configuration file will be copied to the path: `/opt/wallarm/etc/wa
 
 If needed, you can change the copied file after the installation is finished. To apply the changes, you will need to restart the Wallarm service with `sudo systemctl restart wallarm`.
 
-### 6. Finish the installation
+### 7. Finish the installation
 
 === "connector-server"
     After deploying the node, the next step is to apply the Wallarm code to your API management platform or service in order to route traffic to the deployed node.
@@ -186,12 +201,12 @@ The AMI includes an installer script with the following launch options:
 * Get **help** on the script with:
 
     ```
-    sudo ./aio-native-0.14.1.x86_64.sh -- --help
+    sudo ./aio-native-0.14.0.x86_64.sh -- --help
     ```
 * Run the installer in an **interactive** mode and choose the required mode in the 1st step:
 
     ```
-    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.1.x86_64.sh
+    sudo env WALLARM_LABELS='group=<GROUP>' ./aio-native-0.14.0.x86_64.sh
     ```
 * <a name="apid-only-mode"></a>You can use the node in API Discovery-only mode. In this mode, attacks - including those detected by the Node's built-in mechanisms and those requiring additional configuration (e.g., credential stuffing, API specification violation attempts, and malicious activity from denylisted and graylisted IPs) - are detected and blocked locally (if enabled) but not exported to Wallarm Cloud. Since there is no attack data in the Cloud, [Threat Replay Testing](../../vulnerability-detection/threat-replay-testing/overview.md) does not work. Traffic from whitelisted IPs is allowed.
 
