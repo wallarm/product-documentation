@@ -21,6 +21,9 @@ As both specification and API itself changes in time, consider the following:
 * Comparison re-starts if you save new settings for it
 * Comparison re-starts if you pick new file (by name or full URI)
 * Comparison re-starts if file uploaded from URI has changes and the **Regularly update the specification** (every hour) option is selected
+
+    As URI can be unavailable or updated specification file may not correspond to the API specification syntax, there can be an error during automatic update. To get notifications on such errors, in your configured [**Integrations**](../user-guides/settings/integrations/integrations-intro.md), select the **System related** events—notifications about specification upload errors is included into this category.
+
 * You can re‑start comparison at any moment via specification menu → **Restart comparison**.
 
 Also, you can download the previously uploaded specification via **API Specifications** → specification details window → **Download specification**.
@@ -32,7 +35,9 @@ Also, you can download the previously uploaded specification via **API Specifica
 
     ![Upload specification](../images/api-specification-enforcement/specificaton-upload.png)
 
-Note that you will not be able to start configuring rogue API detection, until the specification file is successfully uploaded.
+Specification file is checked for correspondence to the API specification syntax, and if not valid, is not uploaded. Note that you will not be able to start configuring rogue API detection, until the specification file is successfully uploaded.
+
+If you select to upload specification from URI and select the **Regularly update the specification** (every hour) option, there may be errors during regular update: URI can be unavailable or updated specification file may not correspond to the API specification syntax. To get notifications on such errors, in your configured [**Integrations**](../user-guides/settings/integrations/integrations-intro.md), select the **System related** events—notifications about specification upload errors is included into this category.
 
 ### Step 2: Set rogue API detection parameters
 

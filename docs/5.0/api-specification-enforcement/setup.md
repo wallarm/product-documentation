@@ -11,7 +11,9 @@ This article describes how to enable and configure your API protection based on 
 
     ![Upload specification](../images/api-specification-enforcement/specificaton-upload.png)
 
-Note that you will not be able to start configuring API specification enforcement, until the specification file is successfully uploaded.
+Specification file is checked for correspondence to the API specification syntax, and if not valid, is not uploaded. Note that you will not be able to start configuring API specification enforcement, until the specification file is successfully uploaded.
+
+If you select to upload specification from URI and select the **Regularly update the specification** (every hour) option, there may be errors during regular update: URI can be unavailable or updated specification file may not correspond to the API specification syntax. To get notifications on such errors, in your configured [**Integrations**](../user-guides/settings/integrations/integrations-intro.md), select the **System related** events—notifications about specification upload errors is included into this category.
 
 ## Step 2: Set actions for violations of policies
 

@@ -6,3 +6,4 @@
     * High risk
     * Medium risk
     * Low risk
+* Errors during regular update of specifications used for [rogue API detection](../../../api-discovery/rogue-api.md#step-1-upload-specification) or [API specification enforcement](../../../api-specification-enforcement/setup.md#step-1-upload-specification)
