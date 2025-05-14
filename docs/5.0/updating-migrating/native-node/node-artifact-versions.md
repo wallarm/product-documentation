@@ -10,6 +10,15 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.13.4 (2025-05-14)
+
+* Fixed the `--preserve` script flag behavior to correctly retain the existing `node.yaml` and `env.list` files during upgrade
+
+    Previously, these files could be overwritten, resulting in loss of configuration.
+* Added [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) to control `keep-alive` connection limits
+
+<!-- WALLARM_ATTACKS_DETAILED_EXPORT - ??? -->
+
 ### 0.13.3 (2025-05-07)
 
 * Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115), [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) vulnerabilities
@@ -198,6 +207,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.13.4 (2025-05-14)
+
+* Bug fixes
+
 ### 0.13.3 (2025-05-07)
 
 * Renamed the `container` label to `type` in all Prometheus metrics matching `*_container_*` to prevent conflicts with Kubernetes system labels
@@ -306,6 +319,10 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.13.4 (2025-05-14)
+
+* Added [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) to control `keep-alive` connection limits
 
 ### 0.13.3 (2025-05-07)
 
