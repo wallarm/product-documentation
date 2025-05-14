@@ -44,6 +44,13 @@ The Wallarm node operation mode. It can be:
         name: native-node-mesh-discovery
         port: 9093
       url_normalize: true
+      external_health_check:
+        enabled: true
+        endpoint: /wallarm-external-health
+      per_connection_limits:
+        max_requests: 300
+        max_received_bytes: 640_000
+        max_duration: 1m
 
     route_config:
       wallarm_application: 10
@@ -309,6 +316,36 @@ Default: `false`.
 #### endpoint
 
 Defines the URL path at which the external health check endpoint will be available. Must begin with a `/`.
+
+### connector.per_connection_limits
+
+Defines limits for `keep-alive` connections. Once any of the specified limits is reached, the Node sends the `Connection: Close` HTTP header to the client, prompting it to close the current TCP session and establish a new one for subsequent requests.
+
+This mechanism helps with Level 4 load balancing by preventing clients from staying connected to a single Node instance after upscaling.
+
+Supported in Native Node 0.13.4 and higher.
+
+```yaml
+version: 4
+
+connector:
+  per_connection_limits:
+    max_requests: 300
+    max_received_bytes: 640_000
+    max_duration: 1m
+```
+
+#### max_requests
+
+Maximum number of requests a single connection can handle before being closed.
+
+#### max_received_bytes
+
+Maximum number of bytes that can be received through a connection.
+
+#### max_duration
+
+Maximum lifetime of a connection (e.g., `1m` for 1 minute).
 
 ## TCP mirror-specific settings
 
