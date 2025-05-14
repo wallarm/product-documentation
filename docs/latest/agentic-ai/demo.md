@@ -1,6 +1,6 @@
 # Agentic AI Protection Demo
 
-Wallarm's [Agentic AI Protection](overview.md) is currently an **early access** feature under development - you can go through the demo.
+Wallarm's [Agentic AI Protection](agentic-ai-protection.md) is currently an **early access** feature under development - you can go through the demo.
 
 ## Demo
 
