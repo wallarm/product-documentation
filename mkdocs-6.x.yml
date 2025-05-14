@@ -42,17 +42,6 @@ nav:
       - Setup: api-sessions/setup.md
       - Exploring: api-sessions/exploring.md
     - Reports: user-guides/search-and-filters/custom-report.md
-  - API Discovery:
-    - Overview: api-discovery/overview.md
-    - Setup: api-discovery/setup.md
-    - Exploring API Inventory: api-discovery/exploring.md
-    - Tracking Changes in API: api-discovery/track-changes.md
-    - Sensitive Data Detection: api-discovery/sensitive-data.md
-    - Sensitive Business Flows: api-discovery/sbf.md
-    - Endpoint Risk Score: api-discovery/risk-score.md
-    - Shadow, Orphan, Zombie API: api-discovery/rogue-api.md
-    - BOLA Autoprotection: api-discovery/bola-protection.md
-    - Dashboard: api-discovery/dashboard.md
   - API Protection:
     - Overview: about-wallarm/api-protection-overview.md
     # - OWASP Top 10: ...
@@ -69,6 +58,20 @@ nav:
       - Exploring Bot Activity: api-abuse-prevention/exploring-bots.md
     - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
     - GraphQL API Protection: api-protection/graphql-rule.md
+  - Agentic AI Protection:
+    - Overview: agentic-ai-protection/overview.md
+    - Demo: agentic-ai-protection/demo.md
+  - API Discovery:
+    - Overview: api-discovery/overview.md
+    - Setup: api-discovery/setup.md
+    - Exploring API Inventory: api-discovery/exploring.md
+    - Tracking Changes in API: api-discovery/track-changes.md
+    - Sensitive Data Detection: api-discovery/sensitive-data.md
+    - Sensitive Business Flows: api-discovery/sbf.md
+    - Endpoint Risk Score: api-discovery/risk-score.md
+    - Shadow, Orphan, Zombie API: api-discovery/rogue-api.md
+    - BOLA Autoprotection: api-discovery/bola-protection.md
+    - Dashboard: api-discovery/dashboard.md
   - API Attack Surface:
     - Overview: api-attack-surface/overview.md
     - Setup: api-attack-surface/setup.md
