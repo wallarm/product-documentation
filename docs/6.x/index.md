@@ -48,11 +48,11 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-threat-prevent">Agentic AI Protection</h3>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<b>Early Access</b>)<p>
+    <h3 class="icon-homepage api-threat-prevent">Agentic AI</h3>
     <p><ul>
-    <li><a href="./agentic-ai-protection/overview/">Overview</a></li>
-    <li><a href="./agentic-ai-protection/demo/">Demonstration</a></li>
+    <li><a href="./agentic-ai/agentic-ai-discovery/">AI Discovery</a></li>
+    <li><a href="./agentic-ai/agentic-ai-protection/">Agentic AI Protection (Early Access)</a></li>
+    <li><a href="./agentic-ai/demo/">Demonstration</a></li>
     </ul></p>
 </div>
 

@@ -40,9 +40,10 @@ See detailed description of Wallarm's Agentic AI Protection of the official site
 Wallarm's protection against attacks on AI Agents works in few simple steps:
 
 1. You deploy Wallarm [filtering node](../about-wallarm/overview.md#how-wallarm-works) using the appropriate [deployment option](../installation/supported-deployment-options.md).
+1. Optionally, you enable [automatic discovery](agentic-ai-discovery.md) of AI/LLM endpoints in your API inventory by enabling and Wallarm's [API Discovery](../api-discovery/overview.md).
 1. In Wallarm Console, you create [custom protection policies](../user-guides/rules/rules.md) for Agentic AI defining how to detect attacks and mitigate them (under development).
 1. Wallarm automatically detects attacks and [performs action](../admin-en/configure-wallarm-mode.md) (just register an attack or register and block in real-time).
-1. Detected and blocked attacks are displayed in [API Sessions](../api-sessions/overview.md).
+1. Detected and blocked attacks are displayed in [API Sessions](../api-sessions/overview.md). In the malicious request details, the back-link to the policy that caused detection and/or blocking is presented.
 
 ![Wallarm against attacks on Agentic AI - API Sessions](../images/agentic-ai-protection/agentic-ai-wallarm-demo-results.png)
 

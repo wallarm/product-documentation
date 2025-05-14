@@ -58,9 +58,10 @@ nav:
       - Exploring Bot Activity: api-abuse-prevention/exploring-bots.md
     - Credential Stuffing Detection: about-wallarm/credential-stuffing.md
     - GraphQL API Protection: api-protection/graphql-rule.md
-  - Agentic AI Protection:
-    - Overview: agentic-ai-protection/overview.md
-    - Demo: agentic-ai-protection/demo.md
+  - Agentic AI:
+    - AI Discovery: agentic-ai/agentic-ai-discovery.md
+    - Agentic AI Protection: agentic-ai/agentic-ai-protection.md
+    - Demo: agentic-ai/demo.md
   - API Discovery:
     - Overview: api-discovery/overview.md
     - Setup: api-discovery/setup.md
