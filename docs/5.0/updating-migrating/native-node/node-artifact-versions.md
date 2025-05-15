@@ -209,7 +209,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.13.4 (2025-05-14)
 
-* Bug fixes
+* Added [`config.connector.per_connection_limits`](../../installation/native-node/helm-chart-conf.md#configconnectorper_connection_limits) to control `keep-alive` connection limits
 
 ### 0.13.3 (2025-05-07)
 

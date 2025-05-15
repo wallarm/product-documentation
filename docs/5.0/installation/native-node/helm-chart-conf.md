@@ -62,6 +62,11 @@ config:
       access_log:
         enabled: true
         verbose: false
+    
+    per_connection_limits:
+      max_requests: 300
+      max_received_bytes: 640_000
+      max_duration: 1m
 
 processing:
   service:
@@ -337,6 +342,37 @@ Default: `true`.
 Controls whether to include detailed information about each request in the access log output.
 
 Default: `false`.
+
+### config.connector.per_connection_limits
+
+Defines limits for `keep-alive` connections. Once any of the specified limits is reached, the Node sends the `Connection: Close` HTTP header to the client, prompting it to close the current TCP session and establish a new one for subsequent requests.
+
+This mechanism helps with Level 4 load balancing by preventing clients from staying connected to a single Node instance after upscaling.
+
+By default, no limits are applied, which is the recommended configuration for most use cases.
+
+Supported in Native Node 0.13.4 and higher.
+
+```yaml
+config:
+  connector:
+    per_connection_limits:
+      max_requests: 300
+      max_received_bytes: 640_000
+      max_duration: 1m
+```
+
+#### max_requests
+
+Maximum number of requests a single connection can handle before being closed.
+
+#### max_received_bytes
+
+Maximum number of bytes that can be received through a connection.
+
+#### max_duration
+
+Maximum lifetime of a connection (e.g., `1m` for 1 minute).
 
 ### processing.service.type
 
