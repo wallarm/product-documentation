@@ -47,10 +47,10 @@ The Wallarm node operation mode. It can be:
       external_health_check:
         enabled: true
         endpoint: /wallarm-external-health
-      per_connection_limits:
-        max_requests: 300
-        max_received_bytes: 640_000
-        max_duration: 1m
+      # per_connection_limits:
+        # max_requests: 300
+        # max_received_bytes: 640_000
+        # max_duration: 1m
 
     route_config:
       wallarm_application: 10
@@ -322,6 +322,8 @@ Defines the URL path at which the external health check endpoint will be availab
 Defines limits for `keep-alive` connections. Once any of the specified limits is reached, the Node sends the `Connection: Close` HTTP header to the client, prompting it to close the current TCP session and establish a new one for subsequent requests.
 
 This mechanism helps with Level 4 load balancing by preventing clients from staying connected to a single Node instance after upscaling.
+
+By default, no limits are applied, which is the recommended configuration for most use cases.
 
 Supported in Native Node 0.13.4 and higher.
 
