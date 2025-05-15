@@ -22,26 +22,90 @@ To use AASM, the Wallarm's [API Attack Surface](../about-wallarm/subscription-pl
 
 To configure [API Attack Surface Management](overview.md) to detect hosts under your selected domains and search for security issues related to these hosts:
 
-1. Proceed to Wallarm Console → AASM → **API Attack Surface** section → **Configure**.
+1. In Wallarm Console, proceed to **AASM** → **API Attack Surface** → **Configure** → **Domains**.
 1. Add your domains to the scope and check the scanning status.
 
-![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
+![AASM - configuring scope domains](../images/api-attack-surface/aasm-scope.png)
 
-Wallarm will list all hosts under your domains and show security issues related to them if there are any. During scan, at the **Status** tab, you can pause or continue scanning for any domain with pause/play buttons.
+For each newly added domain, Wallarm will immediately start scanning for data selected in [**Scan configuration**](#scan-configuration). During scan, you can pause or continue scanning with pause/play buttons.
 
-## Scheduled rescan
+## Adding hosts
 
-Previously added domains are automatically re-scanned once every 7 days - new hosts will be added automatically, previously listed but not found during re-scan will remain in the list.
+For the domains added on the **Domains** tab, hosts are detected automatically. If necessary, you can add more hosts manually. Only hosts (subdomains) of already configured root domains can be added.
+
+To add hosts manually:
+
+1. In Wallarm Console, proceed to **AASM** → **API Attack Surface** → **Configure** → **Hosts**.
+1. Click **Add host** and paste hosts separated by comma, semicolon, space or new line.
+
+![AASM - manual adding hosts to scope](../images/api-attack-surface/aasm-scope-hosts.png)
+
+## Scan configuration
+
+You can select which data related to your domains will be searched for and displayed by [API Attack Surface Management](overview.md).
+
+For your convenience, Wallarm provides a set of predefined profiles for scan configuration. Try switching between profiles to understand their content.
+
+![AASM - scan configuration](../images/api-attack-surface/aasm-scan-configuration.png)
+
+Brief description of profiles:
+
+| Profile | Description |
+| --- | --- |
+| **Full** | Most complete scan that searches for all types of network services, fully checks WAAP coverage, searches for API leaks by all possible ways and has all vulnerability detection modules enabled. |
+| **Fast** | Quick scan for attack surface and basic issues allowing to exclude external API discovery, excluding public HTML/JS content from API leak search, and limiting vulnerability detection modules. |
+| **Vulnerabilities & API leaks** | Scan aimed at detecting security issues only. |
+| **Attack surface inventory** | Quickly identifies and maps the attack surface without searching for security issues. |
+| **API leaks - passive** | Searches for API leaks only with no interactions to your infrastructure. |
+| **Custom** | Enabled every time you make some adjustments to any other profile. |
+
+To configure scan scope:
+
+1. In Wallarm Console, proceed to **AASM** → **API Attack Surface** → **Configure** → **Scan configuration**.
+1. Select the appropriate profile.
+1. If necessary manually adjust profile options. Note that some options cannot be excluded from specific profiles.
+
+    !!! warning "Do not lose your modification while editing"
+        Remember that whatever changes your made in options, they will be lost if you click one of standard profiles again.
+
+## Auto rescan
+
+When auto rescan is enabled, previously added domains are automatically re-scanned once every 7 days - new hosts are added automatically, previously listed but not found during re-scan are staying in the list.
+
+To configure auto rescan:
+
+1. In Wallarm Console, proceed to **AASM** → **API Attack Surface** → **Configure** → **Scan configuration** and enable the **Auto rescan** option.
+1. At the **Domains** tab, select domains to be included or excluded from auto rescan.
+
+    Note that global option has priority - when disabled, nothing is auto re-scanned. The per-domain options allow excluding some domains from auto rescan.
+
+![AASM - configuring auto rescan](../images/api-attack-surface/aasm-auto-rescan.png)
 
 ## Manual rescan
 
-You can re-start, pause or continue scanning for any domain manually at **Configure** → **Status** by clicking the play/pause buttons.
+You can re-start, pause or continue scanning for any domain manually at **AASM** → **API Attack Surface** → **Configure** → **Domains** by clicking the **Scan now** buttons.
 
 ## Preventing from being blocked
 
 If besides Wallarm, you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you [configure an allowlist](../admin-en/scanner-addresses.md) that includes the IP addresses for API Attack Surface Management.
 
 This will allow Wallarm components, including API Attack Surface Management, to seamlessly scan your resources for vulnerabilities.
+
+## Scanning status
+
+A brief information about when your domains were added to the scope and last scanned is presented at **AASM** → **API Attack Surface** → **Configure** → **Domains**.
+
+![AASM - configuring scope domains](../images/api-attack-surface/aasm-scope.png)
+
+Navigate back from configuration dialog to the main **API Attack Surface** screen, here you can see the **Host scanning status** summary, then switch to **Scanning status** tab to see a detailed history of all scans including:
+
+* Which domain was scanned (**Target**).
+* How scan was started - manually or automatically (**Start-up option**).
+* General number of hosts and new hosts found during this scan.
+* General number of security issues and new security issues found during this scan.
+* Scan start and finish date and time and status.
+
+![AASM - detailed scanning status](../images/api-attack-surface/aasm-scanning-status.png)
 
 ## Notifications
 
