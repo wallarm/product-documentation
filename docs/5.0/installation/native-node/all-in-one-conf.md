@@ -325,7 +325,7 @@ This mechanism helps with Level 4 load balancing by preventing clients from stay
 
 By default, no limits are applied, which is the recommended configuration for most use cases.
 
-Supported in Native Node 0.13.4 and higher.
+Supported in Native Node 0.13.4 and later 0.13.x versions.
 
 ```yaml
 version: 4

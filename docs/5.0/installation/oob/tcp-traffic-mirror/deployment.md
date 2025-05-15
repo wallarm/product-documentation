@@ -265,6 +265,32 @@ For additional debugging, set the [`log.level`](../../native-node/all-in-one-con
         ```
     
     1. Follow the [node installation procedure from the 1st step](#step-1-prepare-wallarm-token).
+* <a name="limited-attack-export"></a>You can limit the malicious request and response data exported to the Wallarm Cloud ([**Attack**](../../../user-guides/events/check-attack.md) list) using the `WALLARM_ATTACKS_DETAILED_EXPORT` environment variable. Available since version 0.13.4 and later 0.13.x versions.
+
+    By default, this variable is set to `true`, enabling full attack data export.
+
+    When set to `false`, the Node sends only limited metadata to the Cloud for all malicious requests detected in the traffic it processes. This includes the malicious payload, attack type, `Host` header, URI, IP address, request method, HTTP status code, and request time. Request bodies, query parameters, and other headers are excluded.
+
+    This mode is intended for environments with strict data handling rules. Use `false` only when full data export may conflict with privacy or compliance requirements.
+
+    To disable full data export:
+
+    1. Create or modify the `/etc/wallarm-override/env.list` file:
+
+        ```
+        sudo mkdir /etc/wallarm-override
+        sudo vim /etc/wallarm-override/env.list
+        ```
+
+        Add the following variable:
+
+        ```
+        WALLARM_ATTACKS_DETAILED_EXPORT=false
+        ```
+    
+    1. Follow the [node installation procedure from the 1st step](#step-1-prepare-wallarm-token).
+
+    Setting this variable to `false` limits [Threat Replay Testing](../../../vulnerability-detection/threat-replay-testing/overview.md) - initial payloads will not be available for replay, and test results may be less accurate.
 
 ## Upgrade and reinstallation
 
