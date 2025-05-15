@@ -36,18 +36,6 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
 </div>
 
 <div class="navigation-card">
-    <h3 class="icon-homepage api-discovery-title">API Discovery</h3>
-    <p><ul>
-    <li><a href="./api-discovery/overview/">Exploring API Inventory</a></li>
-    <li><a href="./api-discovery/track-changes/">Tracking Changes in API</a></li>
-    <li><a href="./api-discovery/sensitive-data/">Sensitive Data Detection</a></li>
-    <li><a href="./api-discovery/sbf/">Sensitive Business Flows</a></li>
-    <li><a href="./api-discovery/risk-score/">Endpoint Risk Score</a></li>
-    <li><a href="./api-discovery/rogue-api/">Shadow, Orphan, Zombie API</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
     <h3 class="icon-homepage api-threat-prevent">API Protection</h3>
     <p><ul>
     <li><a href="./about-wallarm/api-protection-overview/">Overview</a></li>
@@ -56,6 +44,27 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     <li><a href="./api-abuse-prevention/overview/">API Abuse Prevention</a></li>
     <li><a href="./about-wallarm/credential-stuffing/">Credential Stuffing Detection</a></li>
     <li><a href="./api-protection/graphql-rule/">GraphQL API Protection</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3 class="icon-homepage api-threat-prevent">Agentic AI</h3>
+    <p><ul>
+    <li><a href="./agentic-ai/agentic-ai-discovery/">AI Discovery</a></li>
+    <li><a href="./agentic-ai/agentic-ai-protection/">Agentic AI Protection (Early Access)</a></li>
+    <li><a href="./agentic-ai/demo/">Demonstration</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3 class="icon-homepage api-discovery-title">API Discovery</h3>
+    <p><ul>
+    <li><a href="./api-discovery/overview/">Exploring API Inventory</a></li>
+    <li><a href="./api-discovery/track-changes/">Tracking Changes in API</a></li>
+    <li><a href="./api-discovery/sensitive-data/">Sensitive Data Detection</a></li>
+    <li><a href="./api-discovery/sbf/">Sensitive Business Flows</a></li>
+    <li><a href="./api-discovery/risk-score/">Endpoint Risk Score</a></li>
+    <li><a href="./api-discovery/rogue-api/">Shadow, Orphan, Zombie API</a></li>
     </ul></p>
 </div>
 

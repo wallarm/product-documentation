@@ -1,6 +1,6 @@
 # Sensitive Business Flows <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-With the sensitive business flow capability, Wallarm's [API Discovery](overview.md) can automatically identify endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities. Learn from this article how to use the sensitive business flow functionality.
+With the sensitive business flow capability, Wallarm's [API Discovery](overview.md) can automatically identifies endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities. Learn from this article how to use the sensitive business flow functionality.
 
 Requires NGINX Node 5.2.11 or Native Node 0.10.1 or higher.
 
