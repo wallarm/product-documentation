@@ -129,3 +129,17 @@ Requires Native Node version 0.8.3 or higher.
 ### 1.0.0 (2025-01-02)
 
 * Initial release
+
+## IBM API Connect
+
+[How to upgrade](ibm-api-connect.md#upgrading-the-policies)
+
+The current version can be found in the Wallarm policy file → `info.version`. Both policies use the same version number.
+
+| Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
+| ------------------- | ------------------- |
+| 1.0.1               | 0.13.3 or later in the 0.13.x series, or 0.14.1 or later |
+
+### 1.0.1 (TBD)
+
+* Initial release
