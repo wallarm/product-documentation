@@ -138,7 +138,7 @@ The current version can be found in the Wallarm policy file → `info.version`. 
 
 | Policy version      | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
 | ------------------- | ------------------- |
-| 1.0.1               | 0.14.1 and higher   |
+| 1.0.1               | 0.13.3 or later in the 0.13.x series, or 0.14.1 or later |
 
 ### 1.0.1 (TBD)
 
