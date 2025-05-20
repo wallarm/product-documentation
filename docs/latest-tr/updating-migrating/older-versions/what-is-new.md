@@ -240,10 +240,10 @@ Yeni sürüm, desteklenen [her platformda](../../installation/supported-deployme
 
 Node kayıt yöntemlerindeki değişiklikler, bazı node tiplerinde güncellemeye neden olmuştur:
 
-* Node'u kaydetmek için sunucuda çalıştırılması gereken script `register-node` olarak adlandırılmıştır. Daha önce, [**cloud node**](/2.18/user-guides/nodes/cloud-node/) token ile kaydı destekliyordu ancak adı `addcloudnode` idi.
+* Node'u kaydetmek için sunucuda çalıştırılması gereken script `register-node` olarak adlandırılmıştır. Daha önce, **cloud node** token ile kaydı destekliyordu ancak adı `addcloudnode` idi.
 
     Cloud node'un yeni dağıtım sürecine geçişi gerekli değildir.
-* "email-password" ile `addnode` script'ine aktarılmış kayıtı destekleyen [**regular node**](/2.18/user-guides/nodes/regular-node/) kullanımdan kaldırılmıştır.
+* "email-password" ile `addnode` script'ine aktarılmış kayıtı destekleyen **regular node** kullanımdan kaldırılmıştır.
 
 Artık node kaydı şu şekilde gerçekleşir:
 

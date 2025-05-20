@@ -87,7 +87,7 @@ server {
 
 Yukarıdaki yapılandırma ile ilgili notlar:
 
-* `tenant1.com` ve `tenant1-1.com` hedefli trafik, bu müşteriye [API request](https://docs.wallarm.com/3.6/installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account) aracılığıyla `20` ve `23` değerleriyle ilişkilendirilmiştir.
+* `tenant1.com` ve `tenant1-1.com` hedefli trafik, bu müşteriye API request aracılığıyla `20` ve `23` değerleriyle ilişkilendirilmiştir.
 * Diğer uygulamaları kiracılara bağlamak için benzer API istekleri gönderilmiş olmalıdır.
 * Kiracılar ve uygulamalar ayrı varlıklar olduğundan, bunları farklı direktiflerle yapılandırmak mantıklıdır. Ek API isteklerinden kaçınmak da pratik olacaktır. Kiracılar ile uygulamalar arasındaki ilişkilerin yapılandırma üzerinden tanımlanması mantıklıdır. Mevcut yapılandırmada bu eksik olmakla birlikte, aşağıda açıklanan yeni 5.x yaklaşımında yer alacaktır.
 

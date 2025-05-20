@@ -1,1 +1,0 @@
---8<-- "3.6/admin-en/installation-guides/amazon-cloud/create-image.md"

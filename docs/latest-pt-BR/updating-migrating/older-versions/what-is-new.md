@@ -140,10 +140,10 @@ Alterações no método de registro do node resultam em algumas atualizações n
 
 * O node que suporta o registro unificado por token tem o tipo **Node Wallarm**. O script a ser executado no servidor para registrar o node é nomeado `register-node`.
 
-    Anteriormente, o node Wallarm era denominado [**node nuvem**](/2.18/user-guides/nodes/cloud-node/). Ele também suportava registro por token, mas com um script diferente chamado de `addcloudnode`.
+    Anteriormente, o node Wallarm era denominado **node nuvem**. Ele também suportava registro por token, mas com um script diferente chamado de `addcloudnode`.
 
     O node nuvem não precisa ser migrado para o novo tipo de node.
-* O [**node regular**](/2.18/user-guides/nodes/regular-node/) que suporta o registro por "e-mail-senha" passado para o script `addnode` está descontinuado.
+* O **node regular** que suporta o registro por "e-mail-senha" passado para o script `addnode` está descontinuado.
 
     A partir da versão 4.0, o registro do node implantado como NGINX, módulo NGINX Plus ou contêiner Docker é da seguinte forma:
 

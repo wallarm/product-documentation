@@ -89,7 +89,7 @@ server {
 
 上記の構成に関する注意点：
 
-* `tenant1.com`および`tenant1-1.com`宛のトラフィックは、`20`と`23`の値を介してクライアント1に関連付けられており、[API request](https://docs.wallarm.com/3.6/installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account)を通じてこのクライアントにリンクされています。
+* `tenant1.com`および`tenant1-1.com`宛のトラフィックは、`20`と`23`の値を介してクライアント1に関連付けられており、API requestを通じてこのクライアントにリンクされています。
 * 同様に、他のアプリケーションをテナントにリンクするためにAPIリクエストが送信されているはずです。
 * テナントとアプリケーションは別個のエンティティであるため、異なるディレクティブで設定するのが合理的です。また、追加のAPIリクエストを避けるため、構成自体でテナントとアプリケーション間の関係を定義するのが望ましいです。これらは現在の構成では欠落していますが、以下で説明する新しい5.xのアプローチにより利用可能になります。
 
