@@ -243,10 +243,10 @@ Wallarmノードはリクエスト内のどこにあってもJWTを検出し、[
 
 ノード登録方式の変更に伴い、ノードタイプにいくつかの更新が生じました：
 
-* ノード登録時にサーバー上で実行するスクリプトは`register-node`と命名されています。従来、[**cloud node**](/2.18/user-guides/nodes/cloud-node/)はトークンによる登録をサポートしていましたが、スクリプト名は`addcloudnode`でした。
+* ノード登録時にサーバー上で実行するスクリプトは`register-node`と命名されています。従来、**cloud node**はトークンによる登録をサポートしていましたが、スクリプト名は`addcloudnode`でした。
 
     Cloud nodeは新しいデプロイプロセスに移行する必要はありません。
-* `addnode`スクリプトにメールとパスワードを渡して登録していた[**regular node**](/2.18/user-guides/nodes/regular-node/)は非推奨です。
+* `addnode`スクリプトにメールとパスワードを渡して登録していた**regular node**は非推奨です。
 
 現在のノード登録手順は以下の通りです：
 

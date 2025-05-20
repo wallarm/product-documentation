@@ -1,1 +1,0 @@
---8<-- "3.6/user-guides/nodes/regular-node.md"

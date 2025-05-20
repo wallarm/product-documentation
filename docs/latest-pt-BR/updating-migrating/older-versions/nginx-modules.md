@@ -446,7 +446,7 @@ Execute o comando a seguir para atualizar os módulos de nó de filtragem e post
     1. Certifique-se de que a [migração das listas de IP](#step-6-migrate-allowlists-e-denylists-from-previous-wallarm-node-version-to-42) foi concluída.
     2. Confirme a reescrita do arquivo usando a opção `Y`.
 
-       O gerenciador de pacotes pediria confirmação para reescrever se o arquivo `/etc/cron.d/wallarm-node-nginx` tivesse sido [alterado nas versões anteriores do nó Wallarm](/2.18/admin-en/configure-ip-blocking-nginx-en/). Como a lógica da lista de IPs foi alterada no nó Wallarm 3.x, o conteúdo do `/etc/cron.d/wallarm-node-nginx` foi atualizado de acordo. Para que a lista de IPs negados funcione corretamente, o nó Wallarm 3.x deve usar o arquivo de configuração atualizado.
+       O gerenciador de pacotes pediria confirmação para reescrever se o arquivo `/etc/cron.d/wallarm-node-nginx` tivesse sido alterado nas versões anteriores do nó Wallarm. Como a lógica da lista de IPs foi alterada no nó Wallarm 3.x, o conteúdo do `/etc/cron.d/wallarm-node-nginx` foi atualizado de acordo. Para que a lista de IPs negados funcione corretamente, o nó Wallarm 3.x deve usar o arquivo de configuração atualizado.
 
        Por padrão, o gerenciador de pacotes usa a opção `N`, mas a opção `Y` é necessária para a correta operação da lista de IPs negados no nó Wallarm 3.x.
 

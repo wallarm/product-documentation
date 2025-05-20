@@ -179,10 +179,10 @@ Changes in node registration methods result in some updates in node types:
 
 * The node supporting the unified registration by token has the **Wallarm node** type. The script to be run on the server to register the node is named `register-node`.
 
-    Previously, the Wallarm node was named [**cloud node**](/2.18/user-guides/nodes/cloud-node/). It also supported registration by the token but with the different script named `addcloudnode`.
+    Previously, the Wallarm node was named **cloud node**. It also supported registration by the token but with the different script named `addcloudnode`.
 
     The cloud node is not required to be migrated to the new node type.
-* The [**regular node**](/2.18/user-guides/nodes/regular-node/) supporting the registration by "email-password" passed to the `addnode` script is deprecated.
+* The **regular node** supporting the registration by "email-password" passed to the `addnode` script is deprecated.
 
     Starting from version 4.0, registration of the node deployed as the NGINX, NGINX Plus module or the Docker container looks as follows:
 

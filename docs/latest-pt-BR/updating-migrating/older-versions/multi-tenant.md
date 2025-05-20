@@ -83,7 +83,7 @@ server {
 
 Observações sobre a configuração acima:
 
-* O tráfego direcionado para `tenant1.com` e `tenant1-1.com` está associado ao cliente 1 através dos valores `20` e `23`, vinculados a este cliente através do [pedido de API](https://docs.wallarm.com/3.6/installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account).
+* O tráfego direcionado para `tenant1.com` e `tenant1-1.com` está associado ao cliente 1 através dos valores `20` e `23`, vinculados a este cliente através do pedido de API.
 * Solicitações de API semelhantes deveriam ter sido enviadas para vincular outras aplicações aos inquilinos.
 * Os inquilinos e as aplicações são entidades separadas, portanto, é lógico configurá-los com as diferentes diretivas. Além disso, seria conveniente evitar solicitações adicionais de API. Seria lógico definir relações entre os inquilinos e as aplicações através da própria configuração. Tudo isso está ausente na configuração atual, mas estará disponível na nova abordagem 4.x descrita abaixo.
 

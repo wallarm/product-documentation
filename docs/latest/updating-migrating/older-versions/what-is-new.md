@@ -242,10 +242,10 @@ The new release enables you to register the Wallarm node in the Wallarm Cloud by
 
 Changes in node registration methods result in some updates in node types:
 
-* The script to be run on the server to register the node is named `register-node`. Previously, the Wallarm node named [**cloud node**](/2.18/user-guides/nodes/cloud-node/) supported registration by the token but with the different script named `addcloudnode`.
+* The script to be run on the server to register the node is named `register-node`. Previously, the Wallarm node named **cloud node** supported registration by the token but with the different script named `addcloudnode`.
 
     The cloud node is not required to be migrated to the new deployment process.
-* The [**regular node**](/2.18/user-guides/nodes/regular-node/) supporting the registration by "email-password" passed to the `addnode` script is deprecated.
+* The **regular node** supporting the registration by "email-password" passed to the `addnode` script is deprecated.
 
 Now, registration of the node looks as follows:
 

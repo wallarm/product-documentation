@@ -1,1 +1,0 @@
---8<-- "3.6/user-guides/events/check-attack.md"
