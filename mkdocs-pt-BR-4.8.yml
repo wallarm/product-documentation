@@ -224,6 +224,7 @@ nav:
       - Cloudflare: installation/connectors/cloudflare.md
       - Layer7 API Gateways: installation/connectors/layer7-api-gateway.md
       - Fastly: installation/connectors/fastly.md
+      - IBM API Connect: installation/connectors/ibm-api-connect.md
       - Registro de Alterações do Pacote de Código: installation/connectors/code-bundle-inventory.md
     - Pacotes:
       - Docker Images:
