@@ -140,6 +140,6 @@ The current version can be found in the Wallarm policy file → `info.version`. 
 | ------------------- | ------------------- |
 | 1.0.1               | 0.13.3 or later in the 0.13.x series, or 0.14.1 or later |
 
-### 1.0.1 (TBD)
+### 1.0.1 (2025-05-20)
 
 * Initial release
