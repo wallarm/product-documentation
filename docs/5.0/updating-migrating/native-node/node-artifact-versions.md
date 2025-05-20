@@ -4,7 +4,7 @@ This document lists available [versions](../versioning-policy.md) of the [Native
 
 ## All-in-one installer
 
-The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md) connectors.
+The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM API Connect](../../installation/connectors/ibm-api-connect.md) connectors.
 
 History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 (beta) versions.
 
@@ -22,6 +22,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.13.3 (2025-05-07)
 
+* Added support for the [IBM API Connect connector](../../installation/connectors/ibm-api-connect.md)
 * Fixed the [CVE-2024-56406](https://nvd.nist.gov/vuln/detail/CVE-2024-56406), [CVE-2025-31115](https://nvd.nist.gov/vuln/detail/CVE-2025-31115), [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) vulnerabilities
 * Added support for external health check endpoint in the `connector-server` mode
 
@@ -33,8 +34,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
     * Fixed: `go-node` process no longer hangs when the `goreplay` process crashes
     * Fixed a crash caused by a slice out-of-bounds error during header parsing in GoReplay
 * Fixed incorrect display of Native Node versions in Wallarm Console → **Nodes**
-
-<!-- Added support for IBM Datapower connector. This means that once the connector itself is tested and released, you can use this Native Node release with it -->
 
 ### 0.13.2 (2025-04-15)
 
@@ -204,7 +203,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ## Helm chart
 
-The Helm chart for the Native Node is used for self-hosted node deployments with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio.md) connectors.
+The Helm chart for the Native Node is used for self-hosted node deployments with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM API Connect](../../installation/connectors/ibm-api-connect.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio.md) connectors.
 
 [How to upgrade](helm-chart.md)
 
@@ -214,6 +213,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.13.3 (2025-05-07)
 
+* Added support for the [IBM API Connect connector](../../installation/connectors/ibm-api-connect.md)
 * Renamed the `container` label to `type` in all Prometheus metrics matching `*_container_*` to prevent conflicts with Kubernetes system labels
 * Fixed the [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) vulnerability
 * Fixed handling of `clusterIP: None` in Helm chart headless service
@@ -317,7 +317,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ## Docker image
 
-The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md) connectors.
+The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM API Connect](../../installation/connectors/ibm-api-connect.md) connectors.
 
 [How to upgrade](docker-image.md)
 
@@ -330,6 +330,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.13.3 (2025-05-07)
 
+* Added support for the [IBM API Connect connector](../../installation/connectors/ibm-api-connect.md)
 * Fixed the [CVE-2025-22871](https://nvd.nist.gov/vuln/detail/CVE-2025-22871) vulnerability
 * Added support for external health check endpoint
 

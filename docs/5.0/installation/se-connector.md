@@ -69,6 +69,7 @@ After deploying the Edge node, you will need to inject Wallarm code into your pl
     * [CloudFront](connectors/aws-lambda.md#2-obtain-and-deploy-the-wallarm-lambdaedge-functions)
     * [Cloudflare](connectors/cloudflare.md#2-obtain-and-deploy-the-wallarm-worker-code)
     * [Fastly](connectors/fastly.md#2-deploy-wallarm-code-on-fastly)
+    * [IBM API Connect](connectors/ibm-api-connect.md#2-obtain-and-apply-the-wallarm-policies-to-apis-in-ibm-api-connect)
 
 ## Telemetry portal
 

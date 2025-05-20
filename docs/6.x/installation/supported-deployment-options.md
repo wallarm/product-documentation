@@ -230,6 +230,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Fastly</h3>
             <p>Deploy Wallarm to secure APIs running on Fastly</p>
         </a>
+        
+        <a class="do-card" href="../../installation/connectors/ibm-api-connect/">
+            <img class="non-zoomable" src="../../images/platform-icons/ibm-api-connect.svg" />
+            <h3>IBM API Connect</h3>
+            <p>Deploy Wallarm to secure APIs managed through IBM API Connect</p>
+        </a>
     </div>
 </div>
 
