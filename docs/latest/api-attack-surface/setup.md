@@ -18,27 +18,19 @@ To use AASM, the Wallarm's [API Attack Surface](../about-wallarm/subscription-pl
 
 * If you already have Wallarm account, contact [sales@wallarm.com](mailto:sales@wallarm.com).
 
-## Adding domains
+## Adding domains and hosts
 
 To configure [API Attack Surface Management](overview.md) to detect hosts under your selected domains and search for security issues related to these hosts:
 
 1. In Wallarm Console, proceed to **AASM** → **API Attack Surface** → **Configure** → **Domains**.
 1. Add your domains to the scope and check the scanning status.
 
-![AASM - configuring scope domains](../images/api-attack-surface/aasm-scope.png)
+    For each newly added domain, Wallarm will immediately start scanning for data selected in [**Scan configuration**](#scan-configuration). During scan, you can pause or continue scanning with pause/play buttons.
 
-For each newly added domain, Wallarm will immediately start scanning for data selected in [**Scan configuration**](#scan-configuration). During scan, you can pause or continue scanning with pause/play buttons.
+1. For the added domains, hosts are detected automatically. If necessary, you can add more hosts manually: click **Add host** and paste hosts separated by comma, semicolon, space or new line.
+1. Click the domain to details on its found and added hosts.
 
-## Adding hosts
-
-For the domains added on the **Domains** tab, hosts are detected automatically. If necessary, you can add more hosts manually. Only hosts (subdomains) of already configured root domains can be added.
-
-To add hosts manually:
-
-1. In Wallarm Console, proceed to **AASM** → **API Attack Surface** → **Configure** → **Hosts**.
-1. Click **Add host** and paste hosts separated by comma, semicolon, space or new line.
-
-![AASM - manual adding hosts to scope](../images/api-attack-surface/aasm-scope-hosts.png)
+    ![AASM - configuring scope](../images/api-attack-surface/aasm-scope.png)
 
 ## Scan configuration
 
