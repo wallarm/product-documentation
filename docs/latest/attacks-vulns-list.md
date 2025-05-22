@@ -431,7 +431,7 @@ An attempt to enumerate any normally unexposed data of your applications (user a
 
 **Required configuration:**
 
-Wallarm detects and mitigates brute-force attacks only if it has one or more [enumeration mitigation controls](api-protection/enumeration-attack-protection.md) (requires Advanced API Security [subscription](about-wallarm/subscription-plans.md#waap-and-advanced-api-security)).
+Wallarm detects and mitigates generic enumeration attacks only if it has one or more [enumeration mitigation controls](api-protection/enumeration-attack-protection.md) (requires Advanced API Security [subscription](about-wallarm/subscription-plans.md#waap-and-advanced-api-security)).
 
 **In addition to Wallarm protection:**
 

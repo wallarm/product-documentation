@@ -6,7 +6,7 @@ Mitigation controls extend Wallarm's [attack protection](protecting-against-atta
 
 Using mitigation controls, you can enable and configure:
 
-* [Real-time blocking mode](../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-mode)
+* [Real-time blocking mode](../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode)
 * [GraphQL API protection](../api-protection/graphql-rule.md)
 * [Enumeration attack protection](../api-protection/enumeration-attack-protection.md)
 * [BOLA enumeration protection](../api-protection/enumeration-attack-protection.md)
