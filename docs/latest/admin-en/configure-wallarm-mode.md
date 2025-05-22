@@ -24,14 +24,14 @@ The Wallarm filtering node can process incoming requests in the following modes 
 The filtration mode can be configured in the following ways:
 
 * [Set the `wallarm_mode` directive on the node side](#setting-wallarm_mode-directive)
-* [Define the general filtration rule in Wallarm Console](#general-filtration-rule-in-wallarm-console)
-* [Define the endpoint-targeted filtration rules in Wallarm Console](#endpoint-targeted-filtration-rules-in-wallarm-console)
+* [Define the general filtration mode in Wallarm Console](#general-filtration-mode)
+* [Define the conditioned filtration mode settings in Wallarm Console](#conditioned-filtration-mode)
 
 Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#prioritization-of-methods). By default, the settings specified in Wallarm Console have a higher priority than the `wallarm_mode` directive regardless of its value severity.
 
 ### Setting `wallarm_mode` directive
 
-You can set the node filtration mode on the node side using the `wallarm_mode` directive. Peculiarities of how the `wallarm_mode` directive is set in different deployments are described below.
+You can set the node filtration mode on the node side using the [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) directive. Peculiarities of how the `wallarm_mode` directive is set in different deployments are described below.
 
 Note that described configuration is applicable only for [in-line](../installation/inline/overview.md) deployments - for [out-of-band (OOB)](../installation/oob/overview.md) solutions only the `monitoring` mode can be active.
 
@@ -114,7 +114,7 @@ You can define the general filtration mode for all incoming requests using mitig
 
     The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules** section. Note that endpoint-targeted filtration rules in this section have higher priority.
 
-### Endpoint-targeted filtration mode
+### Conditioned filtration mode
 
 You can set filtration mode for specific branches, endpoints and relying on other conditions using mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription) or rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription).
 
@@ -256,10 +256,10 @@ http {
 }
 ```
 
-### Rules in Wallarm Console
+### Settings in Wallarm Console
 
-* [General filtration rule](#general-filtration-rule-in-wallarm-console): **Monitoring**.
-* [Filtration rules](#endpoint-targeted-filtration-rules-in-wallarm-console):
+* [General filtration mode](#general-filtration-mode): **Monitoring**.
+* [Conditioned filtration mode settings](#conditioned-filtration-mode):
     * If the request meets the following conditions:
         * Method: `POST`
         * First part of the path: `main`
