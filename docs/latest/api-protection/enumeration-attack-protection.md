@@ -56,15 +56,6 @@ Configure enumeration protection fulfilling the following steps:
 
 Note that you can use [regular expressions](#regular-expressions) to set scope and advanced conditions and select parameters tracked for enumeration.
 
-<!-- ### Example
-
-Before going into details, consider the example below to learn how to configure enumeration attack protection with mitigation controls.
-
-Let us say you want to TBD. To provide this protection, you can TBD:
-
-1. Steps TBD.
--->
-
 ### Scope
 
 **Scope** is where request targets (URI + extras), see details [here](../user-guides/rules/rules.md#configuring). If you leave the section blank, mitigation control is applied to all traffic.
@@ -72,6 +63,8 @@ Let us say you want to TBD. To provide this protection, you can TBD:
 ### Enumerated parameters
 
 In the **Enumerated parameters** section, you need to select parameters that will be monitored for enumeration. Select set of parameters to be monitored via exact or or [regex](#regex) match (only one approach can be used within single mitigation control).
+
+If for regex you specify both **Filter by parameter name** and **Filter by parameter value**, they combine (`AND` operator), for example `(?i)id` for name and `\d*` for value will catch the `userId` parameter but only count requests having combination of digits as a parameter values.
 
 When some request meets [scope](#scope) and [advanced conditions](#advanced-conditions) and **contains** unique value for the parameter monitored for enumeration, this parameter's counter gets `+1`.
 
@@ -133,6 +126,16 @@ The **Scope** section uses [PIRE](../user-guides/rules/rules.md#condition-type-r
 | !~ (Aa) | Exclude something by case insensitive regexp. |
 | ~       | Find something by case sensitive regexp. |
 | !~      | Exclude something by case sensitive regexp. |
+
+## Example
+
+Let us say your e-commerce `E-APPC` application stores information about each user's orders under `/users/*/orders`. You want to prevent malicious actors from getting the list of IDs of that orders. Such list can be obtained via a script trying different combinations of digits. To prevent this, for routes storing orders under each user account, you can set a counter `more than 2 unique values` `in minute` - if exceeded, the activity should be marked as attempt to enumerate object's (user order's) IDs (BOLA attack) and source ID should be blocked for 1 hour.
+
+To achieve that, configure the **BOLA protection** mitigation control as displayed on the screenshot:
+
+![BOLA protection mitigation control - example](../images/user-guides/mitigation-controls/mc-bola-example-01.png)
+
+In this example, the `\d*` regex in parameter values stands for `zero or more digits` - the attempt to enumerate object ID composed of digits.
 
 <!-- ## Testing
 
