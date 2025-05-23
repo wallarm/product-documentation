@@ -29,6 +29,7 @@ You need Wallarm metadata to enter on the SAML SSO solution side:
 
 1. In the SSO configuration wizard, at the **Send details** step, overview the metadata to be sent to your SAML SSO solution.
 1. Copy metadata or save them as XML.
+1. If SAML SSO solution requires additional validation for SSO data exchange, select the [**Extended security**](#extended-security) checkbox.
 
 ## Step 3 (SAML SSO solution): Configure application
 
@@ -104,6 +105,21 @@ This step only should be fulfilled if your SAML SSO solution does not support ma
     ![SSO groups to Wallarm roles - mapping in Wallarm](../../../images/admin-guides/configuration-guides/sso/sso-mapping-in-wallarm.png)
 
 1. Complete SSO configuration wizard. Wallarm will test if data to/from your SAML SSO Solution can now be transferred.
+
+## Extended security
+
+You SAML SSO solution (like Keycloak or Okta) may require additional security validation when connecting with applications, including Wallarm. This may include:
+
+* Requirements for validation of SAML requests and responses by signature
+* Requirements for encryption of SAML requests and responses
+
+To provide integration with such SAML SSO solution, Wallarm has the **Extended security** feature. How to use:
+
+1. In Wallarm, at [**Generate metadata**](#step-2-wallarm-generate-metadata) step, select the **Extended security** option.
+1. Save metadata as XML, certificate data and appropriate configuration for your SAML SSO solutioin will be added to it.
+1. In SAML SSO solution, at [**Configure application**](#step-3-saml-sso-solution-configure-application) step, import provided XML to automatically get all options correctly configured. See Keycloak example below.
+
+    ![Extended security - Keycloak example](../../../images/admin-guides/configuration-guides/sso/sso-extended-security-keycloak-example.png)
 
 ## Disabling and deletion
 
