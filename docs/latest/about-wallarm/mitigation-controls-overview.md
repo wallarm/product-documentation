@@ -28,6 +28,8 @@ Mitigation controls are automatically grouped into nested branches by endpoint U
 
 Perform configuring in the **Security controls** → **Mitigation Controls** section of Wallarm Console. You can also access some mitigation control settings from other places in the system, for example, from API Sessions.
 
+![Mitigation Controls page in UI](../images/user-guides/mitigation-controls/mc-main-page.png)
+
 Before configuring, get familiar with the idea of [branches](#mitigation-control-branches) and check what already exists. 
 
 In general, configuring any mitigation control includes 2 steps:
