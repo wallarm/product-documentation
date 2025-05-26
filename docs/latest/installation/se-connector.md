@@ -46,7 +46,9 @@ One endpoint can handle multiple connections from different hosts.
     * **Location configuration**: assign unique application IDs and traffic analysis mode to specific hosts and locations, if needed.
 
         ![!][se-connector-hosts-locations-img]
-1. In the **Admin settings** section, you can select an [Edge node version](../updating-migrating/native-node/node-artifact-versions.md#all-in-one-installer) and enable [Auto update](#upgrading-the-edge-node) if needed. If no version is explicitly selected, the latest version is automatically deployed.
+1. In the **Auto-update strategy** settings, you can select an [Edge node version](../updating-migrating/native-node/node-artifact-versions.md#all-in-one-installer) and enable [Auto update](#upgrading-the-edge-node) if needed. If no version is explicitly selected, the latest version is automatically deployed.
+
+    ![!](../images/waf-installation/security-edge/connectors/autoupdate.png)
 1. Once saved, it will take 3-5 minutes for Wallarm to deploy and configure the node for the connector.
 
     The status will change from **Pending** to **Active** when deployment is complete.
@@ -87,9 +89,11 @@ From the Grafana home page, to reach the dashboard, navigate to **Dashboards** â
 
 ## Upgrading the Edge node
 
-When **Auto update** is enabled in **Admin settings**, the Edge node is automatically upgraded as soon as a new version is released. All your initial settings are preserved. Auto update is off by default.
+When **Auto update** is enabled, the Edge node is automatically upgraded as soon as a new minor or patch version is released (depending on the selected option). All your initial settings are preserved. Auto update is off by default.
 
-To manually upgrade the Edge node, open your node for editing and select a version in the **Admin settings** section. Using the latest version is recommended for optimal performance and security.
+To manually upgrade the Edge node, open your node for editing and select a version in the **Auto update** section. Using the latest version is recommended for optimal performance and security.
+
+Upgrading to a new major version can only be done manually.
 
 For the changelog of versions, refer to the [article](../updating-migrating/native-node/node-artifact-versions.md#all-in-one-installer). The Edge node version follows the `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` format, corresponding to the same version in the linked article. The build number in the Edge node version indicates minor changes.
 
@@ -100,6 +104,8 @@ Additionally, you might need to upgrade your connector code bundle. For the chan
 If you delete the Edge node, its endpoint becomes unavailable, and you will no longer be able to redirect traffic through it for security analysis.
 
 The Wallarm code bundle injected into your platform will still try to reach the node endpoint specified in the bundle settings. However, it will fail with the `failed: Couldn't resolve address` error, and traffic will continue to flow to its target without passing through the Edge node.
+
+If your subscription expires, the Edge node will be automatically deleted after 14 days.
 
 ## Troubleshooting
 
