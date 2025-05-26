@@ -12,6 +12,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.3.14 (2025-05-26)
+
+* Added support for the [`WALLARM_ATTACKS_DETAILED_EXPORT` environment variable](../installation/nginx/all-in-one.md#limited-attack-export) to optionally disable exporting full attack data to Wallarm Cloud
+
+    This is intended for environments with strict data protection requirements.
+
 ### 5.3.13 (2025-04-29)
 
 * Added support for NGINX stable 1.28.0
@@ -317,6 +323,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 5.3.14 (2025-05-26)
+
+* Added support for the [`WALLARM_ATTACKS_DETAILED_EXPORT` environment variable](../admin-en/installation-docker-en.md) to optionally disable exporting full attack data to Wallarm Cloud
+
+    This is intended for environments with strict data protection requirements.
 
 ### 5.3.12 (2025-04-24)
 
