@@ -22,6 +22,8 @@ search:
 [api-discovery-docs]:               ../../../../api-discovery/overview.md
 [sensitive-data-rule]:              ../../../../user-guides/rules/sensitive-data-rule.md
 [apid-only-mode-details]:           ../../../../installation/nginx/all-in-one.md#api-discovery-only-mode
+[attack-analysis-docs]:             ../../../../user-guides/events/check-attack.md
+[limit-export-details]:             ../../../../installation/nginx/all-in-one.md#limited-attack-export
 
 # Deployment of the Wallarm Docker Image to AWS
 
@@ -113,7 +115,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:5.3.12"
+                "image": "registry-1.docker.io/wallarm/node:5.3.14"
                 }
             ],
             "family": "wallarm-api-security-node"
@@ -151,7 +153,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:5.3.12"
+                "image": "registry-1.docker.io/wallarm/node:5.3.14"
                 }
             ],
             "family": "wallarm-api-security-node"
@@ -285,7 +287,7 @@ To deploy the container with environment variables and configuration file mounte
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:5.3.12"
+                "image": "registry-1.docker.io/wallarm/node:5.3.14"
                 }
             ],
             "volumes": [
@@ -334,7 +336,7 @@ To deploy the container with environment variables and configuration file mounte
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:5.3.12"
+                "image": "registry-1.docker.io/wallarm/node:5.3.14"
                 }
             ],
             "volumes": [
