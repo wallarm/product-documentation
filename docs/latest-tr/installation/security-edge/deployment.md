@@ -146,8 +146,6 @@ DNS değişikliklerinin yayılması 24 saate kadar sürebilir. Wallarm, CNAME ka
 
 Sertifika CNAME doğrulandıktan sonra (~10 dakika), her host için **Hosts** sekmesinde bir **Traffic CNAME** mevcut olacaktır. Bunu kopyalayın ve Wallarm'a trafiği yönlendirmek için DNS ayarlarınıza ekleyin.
 
-![!](../../images/waf-installation/security-edge/inline/host-traffic-cname.png)
-
 DNS değişikliklerinin yayılması 24 saate kadar sürebilir. Yayılım tamamlandığında, Wallarm tüm trafiği origin'lerinize iletir ve kötü amaçlı istekleri engeller.
 
 ## Telemetri Portalı

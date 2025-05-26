@@ -146,8 +146,6 @@ DNSの変更が反映されるまでに最大24時間かかる場合がありま
 
 証明書CNAMEの確認が完了すると（約10分）、各ホストの**Hosts**タブに**Traffic CNAME**が表示されます。これをコピーしてDNS設定を更新し、トラフィックをWallarmにルーティングしてください。
 
-![!](../../images/waf-installation/security-edge/inline/host-traffic-cname.png)
-
 DNSの変更が反映されるまでに最大24時間かかる場合があります。反映されると、Wallarmはすべてのトラフィックをオリジンにプロキシし、不正なリクエストを軽減します。
 
 ## テレメトリポータル

@@ -96,7 +96,7 @@ You can specify multiple DNS zones, each with a different certificate issuance a
 
 In the **Hosts** section:
 
-1. Specify the domains, ports and subdomains that will direct traffic to the Wallarm node for analysis. Each host entry must match a DNS zone previously defined in **Certificates** (if applicable).
+1. Specify the domains, ports and subdomains that will direct traffic to the Wallarm node for analysis. Each host entry must match a DNS zone previously defined in **Certificates**.
 
     ??? info "Allowed ports"
         Directing traffic from HTTP ports to the Edge node is not allowed. The following ports are supported:
@@ -105,7 +105,12 @@ In the **Hosts** section:
 
 1. (Optional) Associate the host's traffic with a [Wallarm application](../../user-guides/settings/applications.md) to categorize and manage different API instances or services on the Wallarm platform.
 1. Set the [Wallarm mode](../../admin-en/configure-wallarm-mode.md) for each host.
-1. Choose an origin where the Wallarm node will forward the filtered traffic from each host.
+1. (Optionally) Specify server [NGINX directives](https://nginx.org/en/docs/http/ngx_http_proxy_module.html). By default, these directives use NGINX's standard values, as specified in the NGINX documentation.
+1. For each host, define the configuration for the root location (`/`):
+
+    * Origin where the Wallarm node will forward the filtered traffic (if no other location-specific settings are defined). The location's path is automatically appended to the origin.
+    * (Optionally) Wallarm application.
+    * Filtration mode.
 
 ![!](../../images/waf-installation/security-edge/inline/hosts.png)
 
@@ -116,7 +121,7 @@ For specific **locations** within hosts, you can further customize:
 * Filtration mode.
 * Some [NGINX directives](https://nginx.org/en/docs/http/ngx_http_proxy_module.html). By default, these directives use NGINX's standard values, as specified in the NGINX documentation.
 
-Each location inherits settings from the host level but can be individually customized. Locations not explicitly configured will follow the general settings specified at the host level.
+Each location inherits settings from the host and root location, unless specifically overridden.
 
 The below example configuration customizes settings per path to meet specific needs: `/auth` prioritizes security with blocking mode enabled, while `/data` allows larger uploads by increasing the `client_max_body_size` to 5MB.
 
@@ -137,6 +142,8 @@ In the **Admin settings** section, you choose a node version and specify upgrade
 
 If DNS zones are specified in the **Certificates** section, add the CNAME records provided in the Wallarm Console to your DNS provider's settings for each DNS zone. These records are required for Wallarm to verify domain ownership and issue certificates.
 
+![](../../images/waf-installation/security-edge/inline/host-cnames.png)
+
 ![](../../images/waf-installation/security-edge/inline/cert-cname.png)
 
 For example, if `myservice.com` is specified in the DNS zone, the cart CNAME is the following:
@@ -149,12 +156,13 @@ DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node d
 
 ### 6. CNAME configuration for traffic routing
 
-To route traffic to Wallarm, you need to specify the Wallarm-provided CNAME in your DNS settings:
+To route traffic to Wallarm, you need to specify the Wallarm-provided CNAME in your DNS settings.
 
-* Once the certificate CNAME is verified (~10 minutes), a **Traffic CNAME** will be available for each host on the **Hosts** tab of the Edge node page.
-* If no certificate has been issued, the **Proxy target** will be provided immediately after the configuration is complete.
+Once the certificate CNAME is verified (~10 minutes), a **Traffic CNAME** will be available for each host on the **Hosts** tab of the Edge node page.
 
-![!](../../images/waf-installation/security-edge/inline/host-traffic-cname.png)
+![](../../images/waf-installation/security-edge/inline/traffic-cname.png)
+
+If no certificate is issued, the CNAME is available immediately after the configuration is complete.
 
 DNS changes can take up to 24 hours to propagate. Once propagated, Wallarm will proxy all traffic to your origins and mitigate malicious requests.
 
@@ -187,6 +195,8 @@ For the changelog of versions, refer to the [article](../../updating-migrating/n
 To delete your Edge deployment, click **Configure** → **Admin settings** → **Delete inline**.
 
 If you intend to delete and re-create the nodes, you can adjust the settings of the existing deployment, and the nodes will be re-deployed with the updated configuration.
+
+If your subscription expires, the Edge node will be automatically deleted after 14 days.
 
 ## Statuses
 
