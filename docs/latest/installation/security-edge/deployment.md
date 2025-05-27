@@ -208,6 +208,10 @@ The Edge node section provides real-time statuses of the deployment and configur
     ![!](../../images/waf-installation/security-edge/inline/origin-statuses.png)
 === "Regions"
     ![!](../../images/waf-installation/security-edge/inline/region-statuses.png)
+=== "Nodes"
+    The **Nodes** tab provides technical details for each Edge node. This view is primarily for Wallarm Support to assist in troubleshooting. The number of nodes depends on traffic demand and is managed automatically by Wallarm's autoscaling.
+
+    ![!](../../images/waf-installation/security-edge/inline/nodes-tab.png)
 
 * **Pending cert CNAME**: Waiting for the certificate CNAME records to be added to DNS for certificate issuance (if applicable).
 * **Pending traffic CNAME**: The deployment is complete, awaiting the addition of the traffic CNAME or proxy target record to route traffic to the Edge node.
