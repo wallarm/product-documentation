@@ -2,6 +2,8 @@
 
 Wallarm allows protecting your APIs from the [enumeration attacks](../attacks-vulns-list.md#enumeration-attacks) preventing the reveal of information highly valuable for malicious actors. By identifying valid usernames, email addresses, or system resources, attackers can significantly narrow their focus for subsequent attacks. This reconnaissance phase allows attackers to understand the target system better, potentially uncovering vulnerabilities and enabling the planning of more sophisticated and targeted attacks, ultimately increasing the likelihood of a successful breach.
 
+Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.14.1 or higher.
+
 ## Mitigation controls
 
 Wallarm provides several [mitigation controls](../about-wallarm/mitigation-controls-overview.md) to configure protection from enumeration. When selecting which control to use, consider the following:
@@ -58,7 +60,9 @@ Note that you can use [regular expressions](#regular-expressions) to set scope a
 
 ### Scope
 
-**Scope** is where request targets (URI + extras), see details [here](../user-guides/rules/rules.md#configuring). If you leave the section blank, mitigation control is applied to all traffic.
+**Scope** defines which requests the control applies to (based on URI and other parameters). It’s configured the same way as request conditions in rules. See details [here](../user-guides/rules/rules.md#configuring).
+
+If you leave the **Scope** section blank, mitigation control is applied to **all traffic** and **all applications**; such controls are inherited by all [branches](#mitigation-control-branches).
 
 ### Enumerated parameters
 
@@ -103,8 +107,7 @@ As conditions, you can use values or value patters of:
         |Method| Description TBD |
         |User agent| Description TBD |
 
-* **Session context parameters** - quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in API Sessions.
-* **Custom parameters** - any other parameters of requests.
+* **Session context parameters** - quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in **API Sessions**. Use the **Add custom** option in this section to add as filters the parameters that are currently not presented in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well.
 
 !!! info "Performance note"
     As **Scope** settings are less demanding from the productivity perspective, it is always recommended to use them if it is enough for your goals, and only use **Advanced conditions** for the complex conditioning.
@@ -129,7 +132,7 @@ The **Scope** section uses [PIRE](../user-guides/rules/rules.md#condition-type-r
 
 ## Example
 
-Let us say your e-commerce `E-APPC` application stores information about each user's orders under `/users/*/orders`. You want to prevent malicious actors from getting the list of IDs of that orders. Such list can be obtained via a script trying different combinations of digits. To prevent this, for routes storing orders under each user account, you can set a counter `more than 2 unique values` `in minute` - if exceeded, the activity should be marked as attempt to enumerate object's (user order's) IDs (BOLA attack) and source ID should be blocked for 1 hour.
+Let us say your e-commerce `E-APPC` application stores information about each user's orders under `/users/*/orders`. You want to prevent malicious actors from getting the list of IDs of that orders. Such list can be obtained via a script trying different combinations of digits. To prevent this, for routes storing orders under each user account, you can set a counter `more than 2 unique values` `in minute` - if exceeded, the activity should be marked as attempt to enumerate object's (user order's) IDs (BOLA attack) and source IP should be blocked for 1 hour.
 
 To achieve that, configure the **BOLA protection** mitigation control as displayed on the screenshot:
 
@@ -140,3 +143,11 @@ In this example, the `\d*` regex in parameter values stands for `zero or more di
 <!-- ## Testing
 
 To test the mitigation control described in the [Example](#example) section, TBD. -->
+
+## Viewing detected attacks
+
+When enumeration attacks are detected or blocked in accordance with the [mitigation mode](#mitigation-mode), they are displayed in the [API Sessions](../api-sessions/exploring.md) section:
+
+![Enumeration attack (brute force) in API Sessions](../images/user-guides/mitigation-controls/mc-found-attack-in-api-sessions.png)
+
+You can find sessions with corresponding attack types using the **Attack** filter; also, if necessary, filter inside session details to see only requests related to the enumeration attack.

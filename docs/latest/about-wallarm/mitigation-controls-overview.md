@@ -24,6 +24,15 @@ Mitigation controls are automatically grouped into nested branches by endpoint U
 * Directly specified has priority over regex.
 * Case sensitive has priority over insensitive.
 
+## Enabling
+
+Mitigation controls require 
+
+* The [Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription plan
+* (most controls) [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.14.1
+
+If you have all of this and still, in Wallarm Console, do not see the **Security controls** → **Mitigation Controls** section, contact the [Wallarm support team](https://support.wallarm.com/) to enable them.
+
 ## Configuration
 
 Perform configuring in the **Security controls** → **Mitigation Controls** section of Wallarm Console. You can also access some mitigation control settings from other places in the system, for example, from API Sessions.
@@ -34,20 +43,25 @@ Before configuring, get familiar with the idea of [branches](#mitigation-control
 
 In general, configuring any mitigation control includes 2 steps:
 
-1. Set conditions (when all met → action)
-1. Set action (mitigation mode)
+1. Set conditions (when all met → action).
+1. Set action (mitigation mode).
 
 ### Scope
 
-**Scope** is where request targets (URI + extras), see details [here](../user-guides/rules/rules.md#configuring).
+**Scope** defines which requests the control applies to (based on URI and other parameters). It’s configured the same way as request conditions in rules. See details [here](../user-guides/rules/rules.md#configuring).
 
-If you leave the **Scope** section blank, mitigation control is applied to **all traffic**; such controls are inherited by all [branches](#mitigation-control-branches). Some all traffic mitigation controls are created automatically by different Wallarm modules and cannot be deleted or edited directly.
+If you leave the **Scope** section blank, mitigation control is applied to **all traffic** and **all applications**; such controls are inherited by all [branches](#mitigation-control-branches).
 
 ### Advanced conditions
 
-Besides [Scope](#scope), mitigation control may include other conditions that define whether it will or will not take action, for example, for GraphQL API protection they are policy positions—control will act only if any of them is violated by request; or, for enumeration protection, they are multiple parameters of requests—control will act only if all specified parameters/values are met.
+Besides [Scope](#scope), mitigation control may include other conditions that define whether it will or will not take action, for example:
 
-For specifying conditions, you can use [regular expressions](#regular-expressions).
+* For [GraphQL API protection](../api-protection/graphql-rule.md) they are policy positions - control will act only if any of them is violated by request.
+* For [Enumeration attack protection](../api-protection/enumeration-attack-protection.md), they are multiple parameters of requests - control will act only if all specified parameters/values are met.
+
+For some controls, like [Enumeration attack protection](../api-protection/enumeration-attack-protection.md) or [Rate abuse protection](../api-protection/rate-abuse-protection.md), in the **Advanced condition** section, you can use the **session context parameters** to quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in **API Sessions**. Use the **Add custom** option in this section to add as filters the parameters that are currently not presented in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well.
+
+For specifying advanced conditions, you can use [regular expressions](#regular-expressions).
 
 ### Mitigation mode
 
@@ -80,3 +94,10 @@ Some mitigation controls, for example, enumeration control, allow specifying adv
 | !~ (Aa) | Exclude something by case insensitive regexp. |
 | ~       | Find something by case sensitive regexp. |
 | !~      | Exclude something by case sensitive regexp. |
+
+## Root controls
+
+Some [all traffic](#scope) mitigation controls represent basic Wallarm protection mode and cannot be deleted. They are:
+
+* All traffic [Real-time blocking mode](../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode) control
+* All traffic [GraphQL API protection](../api-protection/graphql-rule.md) control

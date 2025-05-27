@@ -4,6 +4,8 @@ The [unrestricted resource consumption](https://github.com/OWASP/API-Security/bl
 
 Wallarm provides the **Rate abuse protection** [mitigation control](../about-wallarm/mitigation-controls-overview.md) to help prevent excessive traffic to your API.
 
+Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or [Native Node](../installation/nginx-native-node-internals.md#native-node) 0.14.1 or higher.
+
 ## Creating and applying mitigation control
 
 Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope**, **Advanced conditions** and **Mitigation mode** are set for any mitigation control.
