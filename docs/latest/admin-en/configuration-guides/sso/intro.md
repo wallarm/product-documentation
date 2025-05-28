@@ -6,6 +6,8 @@ You can use single sign‑on (SSO) technology to authenticate your company's use
 
 ## Available options
 
+### Provisioning
+
 You can set up Wallarm SSO integration with or without **provisioning**. Provisioning is an automatic transfer of data from SAML SSO solution to Wallarm: your SAML SSO solution users and their group membership define access to Wallarm and permissions there; all user management is performed on SAML SSO solution side.
 
 With **provisioning off**, for users that you have in your SAML SSO solution, you need to create corresponding users in Wallarm. User roles are also defined in Wallarm and you are able to select users that should login via SSO - the remaining will use login/password. You can also enable **Strict SSO** option which enables SSO authentication for all company account users at once.
@@ -16,6 +18,16 @@ Users using SSO:
 * With provisioning, cannot be disabled or deleted from Wallarm side.
 
 See details on provisioning and options available when you do not use it [here](setup.md#step-4-saml-sso-solution-configure-provisioning).
+
+### Tenant dependent permissions
+
+If you use the multitenancy feature and want to provide users with **different permissions in different tenants**, contact the [Wallarm support team](https://support.wallarm.com/) to enable this option.
+
+Consider an example of what you can do with it: let us say you have a `Department A` group in your SAML SSO solution and two tenants: `TEST environment` and `PROD environment`. You want users of the group to have administrative permissions (**Administrator** role) for TEST, and restricted permissions (**Analyst** role) for PROD.
+
+To do this, you need the **different permissions in different tenants** option enabled and [configured](setup.md#tenant-dependent-permissions).
+
+You can also use this option to configure users of different SAML SSO solution groups have access only to specific tenants, and not to others, for example, your `Department B` SAML SSO solution group will have access only to TEST (with permissions of you choice).
 
 ## Enabling and setup
 

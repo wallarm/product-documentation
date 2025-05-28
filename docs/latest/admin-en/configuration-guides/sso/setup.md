@@ -63,6 +63,8 @@ For this to work, provide the attribute mapping:
 
             If your SAML SSO solution does not support mapping of groups to different attributes, map all groups to `wallarm_roles` tag (like in [case](sso-gsuite.md#step-4-g-suite-configure-provisioning-part-1) of Google), and then map groups to roles on the Wallarm side - see [step 6](#step-6-wallarm-configure-provisioning-optional).
 
+            If you have the **different permissions in different tenants** option enabled, the mapping of groups to roles is configured [differently](#tenant-dependent-permissions).
+
 1. Save the changes.
 
 **Turning provisioning off**
@@ -120,6 +122,33 @@ To provide integration with such SAML SSO solution, Wallarm has the **Extended s
 1. In SAML SSO solution, at [**Configure application**](#step-3-saml-sso-solution-configure-application) step, import provided XML to automatically get all options correctly configured. See Keycloak example below.
 
     ![Extended security - Keycloak example](../../../images/admin-guides/configuration-guides/sso/sso-extended-security-keycloak-example.png)
+
+## Tenant dependent permissions
+
+Iа the [**different permissions in different tenants**](intro.md#tenant-dependent-permissions) option is enabled, configure these permissions as follows:
+
+1. Go to Wallarm Console → **Settings** → **Groups**.
+1. Click **Add group** and bind it to your SAML SSO solution group name.
+1. Set role.
+1. Set list of tenants.
+
+    This will result in users of your SAML SSO solution group will have access to the listed tenants with specified set of permissions (role).
+
+1. Add other group and bind it to the same SAML SSO solution group name.
+1. Set different role.
+1. Set different list of tenants.
+
+    This will result in users of your SAML SSO solution group will have access to these other tenants with different set of permissions (another role).
+
+**Access only to specific tenants**: you can also configure users of different SAML SSO solution groups have access only to specific tenants, and not to others.
+
+If the same SAML SSO user belongs to several groups providing access to the same tenant with different permissions the wider permission will be applied.
+
+!!! info "Your administrators"
+
+    If you want to provide a privileged (administrative) access to Wallarm (all tenants) for users of some of your SAML SSO solution group, in Wallarm Console, in the SSO configuration wizard, proceed to the **Roles mapping** step and bind your SSO group(s) to the **Global administrator** role.
+    
+    Note that users of this SAML SSO solution group cannot be anyhow restricted, even if they are included into any other SAML SSO solution groups.
 
 ## Disabling and deletion
 
