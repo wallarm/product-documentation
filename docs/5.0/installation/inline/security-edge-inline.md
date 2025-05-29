@@ -63,45 +63,53 @@ If an origin has multiple servers, you can specify all of them. Requests are dis
 !!! info "Allow traffic from Wallarm IP ranges to origins"
     Your origins should allow incoming traffic from the IP ranges used by the selected regions:
 
-    === "us-east-1"
-        ```
-        18.215.213.205
-        44.214.56.120
-        44.196.111.152
-        ```
-    === "us-west-1"
-        ```
-        52.8.91.20
-        13.56.117.139
-        54.177.237.34
-        50.18.177.184
-        ```
-    === "eu-central-1 (Frankfurt)"
-        ```
-        18.153.123.2
-        18.159.1.147
-        18.195.202.193
-        18.196.137.253
-        3.121.155.217
-        3.64.17.152
-        3.65.203.122
-        3.67.238.138
-        3.73.24.253
-        3.76.66.246
-        3.79.213.212
-        35.156.124.164
-        35.156.156.244
-        52.59.182.91
-        63.177.5.76
-        63.178.215.171
-        ```
-    === "eu-central-2 (Zurich)"
-        ```
-        51.96.131.55
-        16.63.191.19
-        51.34.0.90
-        51.96.67.145
-        ```
+    * AWS
+
+        === "EU Central 1 (Frankfurt)"
+            ```
+            3.76.66.246
+            18.195.202.193
+            ```
+        === "EU Central 2 (Zurich)"
+            ```
+            51.96.131.55
+            16.63.191.19
+            ```
+        === "US East 1"
+            ```
+            18.215.213.205
+            44.214.56.120
+            44.196.111.152
+            ```
+        === "US West 1"
+            ```
+            52.8.91.20
+            13.56.117.139
+            54.177.237.34
+            50.18.177.184
+            ```
+    * Azure
+
+        === "East US"
+            ```
+            104.211.29.72
+            104.211.29.73
+            ```
+        === "West US"
+            ```
+            104.210.63.116
+            104.210.63.117
+            ```
+        === "Germany West Central (EU)"
+            ```
+            20.79.250.104
+            20.79.250.105
+            ```
+        === "Switzerland North (EU)"
+            ```
+            20.203.240.193
+            20.203.240.192
+            ```
 
 ![!](../../images/waf-installation/security-edge/inline/general-settings-section.png)
 
