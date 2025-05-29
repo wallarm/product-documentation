@@ -82,18 +82,17 @@ The list of available modes may vary depending on the particular control.
 
 ### Regular expressions
 
-For specifying mitigation control [conditions](#conditions), you can use regular expressions.
+For specifying different mitigation control parameters, like **Scope**, **Advanced conditions**, and others, you can use regular expressions:
 
-The **Scope** section uses PIRE regular expression library. See details on usage [here](../user-guides/rules/rules.md#condition-type-regex-).
+* The **Scope** section uses PIRE regular expression library. See details on usage [here](../user-guides/rules/rules.md#condition-type-regex-).
+* Other sections use [PCRE](https://www.pcre.org/). Use the following operators to involve regular expression:
 
-Some mitigation controls, for example, enumeration control, allow specifying advanced conditions using PCRE. Use the following operators to involve regular expression:
-
-| Operator | Description |
-| --- | --- |
-| ~ (Aa)  | Find something by case insensitive regexp. |
-| !~ (Aa) | Exclude something by case insensitive regexp. |
-| ~       | Find something by case sensitive regexp. |
-| !~      | Exclude something by case sensitive regexp. |
+    | Operator | Description |
+    | --- | --- |
+    | ~ (Aa)  | Find something by case insensitive regexp. |
+    | !~ (Aa) | Exclude something by case insensitive regexp. |
+    | ~       | Find something by case sensitive regexp. |
+    | !~      | Exclude something by case sensitive regexp. |
 
 ## Root controls
 
@@ -101,3 +100,11 @@ Some [all traffic](#scope) mitigation controls represent basic Wallarm protectio
 
 * All traffic [Real-time blocking mode](../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode) control
 * All traffic [GraphQL API protection](../api-protection/graphql-rule.md) control
+
+## Ruleset lifecycle
+
+All created mitigation controls and [rules](../user-guides/rules/rules.md) form a custom ruleset. The Wallarm node relies on the custom ruleset during incoming requests analysis.
+
+Changes of rules and mitigation controls do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **uploading to the filtering node** are finished.
+
+--8<-- "../include/custom-ruleset.md"

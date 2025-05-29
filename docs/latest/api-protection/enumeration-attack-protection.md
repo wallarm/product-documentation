@@ -16,7 +16,7 @@ Wallarm provides several [mitigation controls](../about-wallarm/mitigation-contr
     <th>Attack</th>
   </tr>
   <tr>
-    <td><b>Brute force protection</b></td>
+    <td><b>[Brute force protection]</b></td>
     <td rowspan="3">Counts the number of unique values seen for each parameter within a specified timeframe.</td>
     <td><code>password</code></td>
     <td><code>Brute force</code></td>

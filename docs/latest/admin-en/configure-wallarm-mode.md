@@ -139,7 +139,7 @@ You can set filtration mode for specific branches, endpoints and relying on othe
         | **Safe blocking** | `safe_blocking` |
         | **Blocking** | `block` |
 
-    1. Save changes.
+    1. Save changes and wait for the [mitigation control compilation to complete](../about-wallarm/mitigation-controls-overview.md#ruleset-lifecycle).
 
 === "Rules"
 
@@ -170,16 +170,16 @@ You can set filtration mode for specific branches, endpoints and relying on othe
 !!! warning "Support of the `wallarm_mode_allow_override` directive on the Edge node"
     Please note that the `wallarm_mode_allow_override` directive cannot be customized on the Wallarm Edge [inline](../installation/security-edge/deployment.md) and [connector](../installation/se-connector.md) nodes.
 
-The `wallarm_mode_allow_override` directive manages the ability to apply rules that are defined on Wallarm Console instead of using the `wallarm_mode` directive values from the filtering node configuration file.
+The `wallarm_mode_allow_override` directive manages the ability to apply mode rules/mitigation controls that are defined on Wallarm Console instead of using the `wallarm_mode` directive values from the filtering node configuration file.
 
 The following values are valid for the `wallarm_mode_allow_override` directive:
 
-* `off`: rules specified in Wallarm Console are ignored. Rules specified by the `wallarm_mode` directive in the configuration file are applied.
-* `strict`: only the rules specified in the Wallarm Cloud that define stricter filtration modes than those defined by the `wallarm_mode` directive in the configuration file are applied.
+* `off`: mode rules/mitigation controls specified in Wallarm Console are ignored. Rules specified by the `wallarm_mode` directive in the configuration file are applied.
+* `strict`: only the mode rules/mitigation controls specified in the Wallarm Cloud that define stricter filtration modes than those defined by the `wallarm_mode` directive in the configuration file are applied.
 
     The available filtration modes ordered from the mildest to the strictest are listed [above](#available-filtration-modes).
 
-* `on` (by default): rules specified in Wallarm Console are applied. Rules specified by the `wallarm_mode` directive in the configuration file are ignored.
+* `on` (by default): mode rules/mitigation controls specified in Wallarm Console are applied. Rules specified by the `wallarm_mode` directive in the configuration file are ignored.
 
 The contexts in which the `wallarm_mode_allow_override` directive value can be defined, in order from the most global to the most local, are presented in the following list:
 
@@ -214,8 +214,8 @@ http {
 
 This configuration example results in the following applications of the filtration mode rules from Wallarm Console:
 
-1. The filtration mode rules defined in Wallarm Console are ignored for requests sent to the virtual server `SERVER_A`. There is no `wallarm_mode` directive specified in the `server` block that corresponds to the `SERVER_A` server, which is why the `monitoring` filtration mode specified in the `http` block is applied for such requests.
-2. The filtration mode rules defined in Wallarm Console are applied to the requests sent to the virtual server `SERVER_B` except for the requests that contain the `/main/login` path.
+1. The filtration mode rules defined/mitigation controls in Wallarm Console are ignored for requests sent to the virtual server `SERVER_A`. There is no `wallarm_mode` directive specified in the `server` block that corresponds to the `SERVER_A` server, which is why the `monitoring` filtration mode specified in the `http` block is applied for such requests.
+2. The filtration mode rules/mitigation controls defined in Wallarm Console are applied to the requests sent to the virtual server `SERVER_B` except for the requests that contain the `/main/login` path.
 3. For those requests that are sent to the virtual server `SERVER_B` and contain the `/main/login` path, the filtration mode rules defined in Wallarm Console are only applied if they define a filtration mode that is stricter than the `monitoring` mode.
 
 ## Configuration example

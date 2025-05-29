@@ -17,7 +17,16 @@ GraphQL queries can be also sent as HTTP GET requests. In such case, the query i
 
 Wallarm supports both POST and GET HTTP methods for GraphQL requests.
 
-## Creating and applying mitigation control
+## Configuration method
+
+Depending on your subscription plan, one of the following configuration methods for GraphQL API protection will be available:
+
+* Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
+* Rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
+
+## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
+
+### Creating and applying mitigation control
 
 GraphQL mitigation control is recommended to be created for the GraphQL specific endpoints. Creating it as an [all traffic](../about-wallarm/mitigation-controls-overview.md#all-traffic-mitigation-controls) mitigation control for the entire system is not recommended.
 
@@ -51,9 +60,9 @@ You can explore GraphQL policy violations (GraphQL attacks) in Wallarm Console �
 
 ![GraphQL attacks](../images/user-guides/rules/graphql-attacks.png)-->
 
-## Mitigation control examples
+### Mitigation control examples
 
-### Setting policy for your GraphQL endpoints to block attacks
+#### Setting policy for your GraphQL endpoints to block attacks
 
 Let us say you want to set limits for the requests to your application GraphQL endpoints located under `example.com/graphql` to block all potential [GraphQL specific](../attacks-vulns-list.md#graphql-attacks) attacks to them. Filtration mode for `example.com` is `monitoring`.
 
@@ -67,7 +76,7 @@ To do so:
 
     ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-1-action.png)
 
-### Altering policy for specific endpoints
+#### Altering policy for specific endpoints
 
 Continuing the [previous](#setting-policy-for-your-graphql-endpoints-to-block-attacks) example, let us say you want to set stricter limits for `example.com/graphql/v2` child endpoint. As limits are stricter, before blocking anything, they should be tested in the `monitoring` mode.
 
@@ -80,3 +89,7 @@ To do so:
 1. As filtration mode for `example.com/graphql` is `block` and you want `monitoring` for `example.com/graphql/v2`, configure the **Override filtration mode** rule as displayed on the screenshot:
 
     ![GraphQL policy blocking action](../images/user-guides/rules/graphql-rule-2-action.png)
+
+## Rule-based protection
+
+Use same settings as described for the **GraphQL API protection** mitigation control, with the only difference in that you act in Wallarm Console → **Security Controls** → **Rules**.
