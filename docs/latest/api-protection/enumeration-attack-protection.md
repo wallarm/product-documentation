@@ -91,22 +91,6 @@ If [Scope](#scope) does not cover all your needs, you can define other condition
 As conditions, you can use values or value patters of:
 
 * **Built-in parameters** meta information presented in each request handled by Wallarm filtering node.
-
-    ??? info "Show built-in parameter descriptions"
-
-        | Parameter | Description |
-        |---|---|
-        |Attacks| Description TBD |
-        |IP| Description TBD |
-        |Domain| Description TBD |
-        |URI| Description TBD |
-        |Request time| Description TBD |
-        |Request size| Description TBD |
-        |Response size| Description TBD |
-        |Blocked| Description TBD |
-        |Method| Description TBD |
-        |User agent| Description TBD |
-
 * **Session context parameters** - quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in **API Sessions**. Use the **Add custom** option in this section to add as filters the parameters that are currently not presented in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well.
 
 !!! info "Performance note"

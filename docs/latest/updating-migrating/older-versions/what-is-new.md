@@ -123,6 +123,48 @@ To start using the functionality, you need to create at least one [**Detect Grap
 
 ![GraphQL thresholds](../../images/user-guides/rules/graphql-rule.png)
 
+## Mitigation Controls
+
+We introduce a unified management center for all Wallarm attack mitigation settings - [**Mitigation Controls**](../../about-wallarm/mitigation-controls-overview.md). With mitigation controls you can:
+
+* View and manage all Wallarm mitigation settings in one place.
+* Manage all in a unified way (all controls have similar configuration UI and options).
+* Easily overview the current mode of each control: is it active? is it just monitoring or also blocking?
+* Get quick overview of attacks caught by each control.
+
+![Mitigation Controls page in UI](../../images/user-guides/mitigation-controls/mc-main-page.png)
+
+## Enumeration attack protection
+
+!!! tip ""
+    [NGINX Node 6.1.0 and higher](../node-artifact-versions.md) and [Native Node 0.14.1 and higher](../native-node/node-artifact-versions.md)
+
+New level of protection from [enumeration attacks](../../attacks-vulns-list.md#enumeration-attacks) comes with enumeration mitigation controls:
+
+* [Enumeration attack protection](../../api-protection/enumeration-attack-protection.md)
+* [BOLA enumeration protection](../../api-protection/enumeration-attack-protection.md)
+* [Forced browsing protection](../../api-protection/enumeration-attack-protection.md)
+* [Brute force protection](../../api-protection/enumeration-attack-protection.md)
+
+Comparing to triggers that were used for this protection before, mitigation controls:
+
+* Allow selecting which parameters will be monitored for enumeration attempts.
+* Allow advanced sophisticated filtering of which exact requests will be counted.
+* Provide deep integration with [API Sessions](../../api-sessions/overview.md): the detected attacks are displayed within a corresponding session, providing you with full context of what was happening and why the session activities were marked as attack and blocked.
+
+![BOLA protection mitigation control - example](../../images/user-guides/mitigation-controls/mc-bola-example-01.png)
+
+## Rate abuse protection
+
+!!! tip ""
+    [NGINX Node 6.1.0 and higher](../node-artifact-versions.md) and [Native Node 0.14.1 and higher](../native-node/node-artifact-versions.md)
+
+The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too many requests per time is one of the main causes of these risks.
+
+Wallarm provides the new [**Rate abuse protection**](../../api-protection/rate-abuse-protection.md) mitigation control to help prevent excessive traffic to your API.
+
+![Rate abuse prevention - JWT example](../../../images/api-protection/mitigation-controls-rate-abuse-prevention-jwt.png)
+
 ## API Specification Enforcement
 
 In this latest update, we introduce API Specification Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.

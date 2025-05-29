@@ -1,6 +1,6 @@
 # What is New in Wallarm Node 6.x and 0.14.x
 
-This changelog covers updates for NGINX Node 6.x and Native Node 0.14.x+. If upgrading from an older version, refer to this document.
+This changelog covers updates for NGINX Node 6.x and Native Node 0.14.x+. If upgrading from an older version, refer to [this](../updating-migrating/older-versions/what-is-new.md) document.
 
 For the detailed changelog on minor versions of the Wallarm Node, refer to the [NGINX Node artifact inventory](node-artifact-versions.md) or [Native Node artifact inventory](native-node/node-artifact-versions.md).
 
@@ -112,7 +112,7 @@ Comparing to triggers that were used for this protection before, mitigation cont
 
 The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too many requests per time is one of the main causes of these risks.
 
-Wallarm provides the new **Rate abuse protection** mitigation control to help prevent excessive traffic to your API.
+Wallarm provides the new [**Rate abuse protection**](../api-protection/rate-abuse-protection.md) mitigation control to help prevent excessive traffic to your API.
 
 ![Rate abuse prevention - JWT example](../../images/api-protection/mitigation-controls-rate-abuse-prevention-jwt.png)
 
