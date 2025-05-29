@@ -14,6 +14,8 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 6.1.0 (2025-05-09)
 
+* Added support for [**enumeration**](../api-protection/enumeration-attack-protection.md) mitigation controls
+* Added support for [**Rate abuse protection**](../api-protection/rate-abuse-protection.md) mitigation control
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
 * wstore logs now include `"component": "wstore"` for easier identification
 
