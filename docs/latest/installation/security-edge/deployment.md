@@ -41,11 +41,13 @@ You can update the Edge node deployment settings at any time. The node will be r
 
 In general settings, you specify regions to deploy the Edge node and origins to forward filtered traffic.
 
-#### Regions
+#### Cloud providers and regions
 
-Choose one or more regions to deploy the Edge node. We recommend selecting regions close to where your APIs or applications are hosted.
+Select regions in one or more cloud providers - **AWS** and **Azure** are supported. We recommend choosing regions close to where your APIs or applications are hosted to minimize latency and improve performance.
 
-Deploying in multiple regions enhances geo-redundancy and ensures high availability.
+You can deploy the Edge Node in a **single cloud provider** or **across multiple providers**.
+
+Multi-cloud deployments help ensure high availability, improve resilience in case of cloud-specific outages, and distribute workloads across multiple regions and providers. Traffic is distributed evenly across all selected regions - regardless of the cloud provider - using a global [round-robin](https://en.wikipedia.org/wiki/Round-robin_DNS) strategy.
 
 #### Origin servers
 
@@ -59,33 +61,58 @@ If an origin has multiple servers, you can specify all of them. Requests are dis
 !!! info "Allow traffic from Wallarm IP ranges to origins"
     Your origins should allow incoming traffic from the IP ranges used by the selected regions:
 
-    === "us-east-1"
-        ```
-        18.215.213.205
-        44.214.56.120
-        44.196.111.152
-        ```
-    === "us-west-1"
-        ```
-        52.8.91.20
-        13.56.117.139
-        54.177.237.34
-        50.18.177.184
-        ```
-    === "eu-central-1 (Frankfurt)"
-        ```
-        18.153.123.2
-        18.195.202.193
-        3.76.66.246
-        3.79.213.212
-        ```
-    === "eu-central-2 (Zurich)"
-        ```
-        51.96.131.55
-        16.63.191.19
-        51.34.0.90
-        51.96.67.145
-        ```
+    * AWS
+
+        === "US East 1"
+            ```
+            18.215.213.205
+            44.214.56.120
+            44.196.111.152
+            ```
+        === "US West 1"
+            ```
+            52.8.91.20
+            13.56.117.139
+            54.177.237.34
+            50.18.177.184
+            ```
+        === "EU Central 1 (Frankfurt)"
+            ```
+            18.153.123.2
+            18.195.202.193
+            3.76.66.246
+            3.79.213.212
+            ```
+        === "EU Central 2 (Zurich)"
+            ```
+            51.96.131.55
+            16.63.191.19
+            51.34.0.90
+            51.96.67.145
+            ```
+
+    * Azure
+
+        === "East US"
+            ```
+            104.211.29.72
+            104.211.29.73
+            ```
+        === "West US"
+            ```
+            104.210.63.116
+            104.210.63.117
+            ```
+        === "Germany West Central (EU)"
+            ```
+            20.79.250.104
+            20.79.250.105
+            ```
+        === "Switzerland North (EU)"
+            ```
+            20.203.240.193
+            20.203.240.192
+            ```
 
 ![!](../../images/waf-installation/security-edge/inline/general-settings-section.png)
 
@@ -164,7 +191,7 @@ If DNS zones are specified in the **Certificates** section, add the CNAME record
 For example, if `myservice.com` is specified in the DNS zone, the cart CNAME is the following:
 
 ```
-_acme-challenge.myservice.com CNAME _acme-challenge.<WALLARM_CLOUD>-<CLIENT_ID>-<DEPLOYMENT_ID>.acme.aws.wallarm-cloud.com
+_acme-challenge.myservice.com CNAME _acme-challenge.<WALLARM_CLOUD>-<CLIENT_ID>-<DEPLOYMENT_ID>.acme.<CLOUD_PROVIDER>.wallarm-cloud.com
 ```
 
 DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node deployment once the CNAME records are verified.
