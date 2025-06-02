@@ -21,7 +21,7 @@ See details on provisioning and options available when you do not use it [here](
 
 ### Tenant dependent permissions
 
-If you use the multitenancy feature and want to provide users with **different permissions in different tenants**, contact the [Wallarm support team](https://support.wallarm.com/) to enable this option.
+If you use the [multitenancy](../../../installation/multi-tenant/overview.md) feature and want to provide users with **different permissions in different tenants**, contact the [Wallarm support team](https://support.wallarm.com/) to enable this option.
 
 Consider an example of what you can do with it: let us say you have a `Department A` group in your SAML SSO solution and two tenants: `TEST environment` and `PROD environment`. You want users of the group to have administrative permissions (**Administrator** role) for TEST, and restricted permissions (**Analyst** role) for PROD.
 

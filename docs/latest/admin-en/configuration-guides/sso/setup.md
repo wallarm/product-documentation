@@ -59,11 +59,14 @@ For this to work, provide the attribute mapping:
         * `partner_analytic` (**Global Analyst**)
         * `partner_auditor` (**Global Read Only**)
 
+            ![Integrations - SSO, mapping example in Okta](../../../images/admin-guides/configuration-guides/sso/okta/wallarm-sso-okta-mapping.png)
+
             See all role descriptions [here](../../../user-guides/settings/users.md#user-roles).
 
             If your SAML SSO solution does not support mapping of groups to different attributes, map all groups to `wallarm_roles` tag (like in [case](sso-gsuite.md#step-4-g-suite-configure-provisioning-part-1) of Google), and then map groups to roles on the Wallarm side - see [step 6](#step-6-wallarm-configure-provisioning-optional).
 
-            If you have the **different permissions in different tenants** option enabled, the mapping of groups to roles is configured [differently](#tenant-dependent-permissions).
+            !!! warning "Overriding option"
+                If you have the **different permissions in different tenants** option enabled, the mapping of groups to roles is configured [differently](#tenant-dependent-permissions) and [overrides](#override-general-sso-mapping) the basic mapping.
 
 1. Save the changes.
 
@@ -125,12 +128,20 @@ To provide integration with such SAML SSO solution, Wallarm has the **Extended s
 
 ## Tenant dependent permissions
 
-Iа the [**different permissions in different tenants**](intro.md#tenant-dependent-permissions) option is enabled, configure these permissions as follows:
+If the [**different permissions in different tenants**](intro.md#tenant-dependent-permissions) option is enabled, configure these permissions as follows:
 
 1. Go to Wallarm Console → **Settings** → **Groups**.
 1. Click **Add group** and bind it to your SAML SSO solution group name.
-1. Set role.
-1. Set list of tenants.
+1. Set role, click **Add**.
+
+    ![SSO, different permissions in different tenants, creating group](../../../images/admin-guides/configuration-guides/sso/sso-iam-group-create.png)
+
+    The group is created and displayed in the list of groups.
+
+1. From the group menu, select **Edit group settings**.
+1. Your group page displayed. Set list of tenants.
+
+    ![SSO, different permissions in different tenants, adding tenants to group](../../../images/admin-guides/configuration-guides/sso/sso-iam-group-tenants.png)
 
     This will result in users of your SAML SSO solution group will have access to the listed tenants with specified set of permissions (role).
 
@@ -149,6 +160,16 @@ If the same SAML SSO user belongs to several groups providing access to the same
     If you want to provide a privileged (administrative) access to Wallarm (all tenants) for users of some of your SAML SSO solution group, in Wallarm Console, in the SSO configuration wizard, proceed to the **Roles mapping** step and bind your SSO group(s) to the **Global administrator** role.
     
     Note that users of this SAML SSO solution group cannot be anyhow restricted, even if they are included into any other SAML SSO solution groups.
+
+    ![SSO, different permissions in different tenants, global administrator exception](../../../images/admin-guides/configuration-guides/sso/sso-iam-global-administrators.png)
+
+<a name="override-general-sso-mapping"></a>**Overriding general mapping**
+
+Note that the enabled **different permissions in different tenants** option overrides the [general mapping](#step-4-saml-sso-solution-configure-provisioning), for example:
+
+* If you have your `Analytic` groups generally mapped to `wallarm_role:analytic`, and 5 tenants, if you later enable the **different permissions in different tenants** option, users of `Analytic` group will lose access to any tenants until you create and manage **Groups** (general mapping is now ignored).
+* If you later create the group providing access for `Analytic` groups to 3 of 5 tenants, other 2 will stay unavailable to them (general mapping is ignored).
+* If you want to provide users of some groups with non-administrative access to all tenants, create group with **Global something** role to access the [technical tenant account](../../../installation/multi-tenant/overview.md#tenant-accounts).
 
 ## Disabling and deletion
 
