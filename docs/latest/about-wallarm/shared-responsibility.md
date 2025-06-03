@@ -1,4 +1,4 @@
-[link-deployment-se]:           ../installation/supported-deployment-options.md#edge
+[link-deployment-se]:           ../installation/supported-deployment-options.md#security-edge
 [link-deployment-hybrid]:       ../installation/supported-deployment-options.md#all-deployment-artifacts
 [link-deployment-on-prem]:      ../installation/on-premise.md
 

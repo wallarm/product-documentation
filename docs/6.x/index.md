@@ -112,7 +112,7 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
     <h3 class="icon-homepage deployment-title">Deployment</h3>
     <p><ul>
     <li><a href="./installation/supported-deployment-options/">All Deployment Options</a></li>
-    <li><a href="./installation/supported-deployment-options/#edge">Security Edge</a></li>
+    <li><a href="./installation/supported-deployment-options/#security-edge">Security Edge</a></li>
     <li><a href="./installation/supported-deployment-options/#kubernetes">Kubernetes</a></li>
     <li><a href="./installation/supported-deployment-options/#public-clouds">Public Clouds</a></li>
     <li><a href="./installation/connectors/overview/">Connectors</a></li>

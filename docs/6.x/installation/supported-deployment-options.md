@@ -4,7 +4,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <link rel="stylesheet" href="/supported-platforms.min.css?v=1" />
 
-## Edge
+## Security Edge
 
 <div class="do-section">
     <div class="do-main">
