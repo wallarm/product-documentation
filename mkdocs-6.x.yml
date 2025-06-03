@@ -108,7 +108,7 @@ nav:
     # - Triggers: ...
   - Deployment:
     - Deployment Options: installation/supported-deployment-options.md
-    - Edge:
+    - Security Edge:
       - Inline: installation/security-edge/deployment.md
       - Connectors: installation/se-connector.md
     - Kubernetes:
@@ -156,7 +156,7 @@ nav:
       - Code Bundle Changelog: installation/connectors/code-bundle-inventory.md
     - In-Line:
       - Overview: installation/inline/overview.md
-      - Security Edge: installation/security-edge/deployment.md
+      - Security Edge: installation/inline/security-edge-inline.md
       - Compute Instances:
         - All-in-one installer: installation/inline/compute-instances/linux/all-in-one.md
         - Amazon Web Services:
