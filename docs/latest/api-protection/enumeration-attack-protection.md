@@ -53,7 +53,7 @@ Configure enumeration protection fulfilling the following steps:
 * Define **Scope** to apply control to (endpoints, only specific requests).
 * Select **Enumerated parameters** - ones to be tracked for enumeration attempts.
 * Set **Enumeration threshold** - control will act if threshold is exceeded.
-* If scope does not cover all your needs, set **Advanced conditions**.
+* If scope does not cover all your needs, set **Scope filters**.
 * Set action in **Mitigation mode**.
 
 Note that you can use [regular expressions](#regular-expressions) to set scope and advanced conditions and select parameters tracked for enumeration.
@@ -63,6 +63,18 @@ Note that you can use [regular expressions](#regular-expressions) to set scope a
 **Scope** defines which requests the control applies to (based on URI and other parameters). It’s configured the same way as request conditions in rules. See details [here](../user-guides/rules/rules.md#configuring).
 
 If you leave the **Scope** section blank, mitigation control is applied to **all traffic** and **all applications**; such controls are inherited by all [branches](#mitigation-control-branches).
+
+### Scope filters 
+
+If [Scope](#scope) does not cover all your needs, you can define other conditions that requests must meet to be covered by the protection mechanism.
+
+As conditions, you can use values or value patters of:
+
+* Built-in parameters of requests - elements of meta information presented in each request handled by Wallarm filtering node.
+* **Session context parameters** - quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in **API Sessions**. Use the **Add custom** option in this section to add as filters the parameters that are currently not presented in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well.
+
+!!! info "Performance note"
+    As **Scope** settings are less demanding from the productivity perspective, it is always recommended to use them if it is enough for your goals, and only use **Scope filters** for the complex conditioning.
 
 ### Enumerated parameters
 
@@ -83,18 +95,6 @@ Once threshold is reached by any of parameters, Wallarm performs action in accor
 **Forced browsing protection**
 
 This protection counts the number of unique endpoints accessed in a configured timeframe (in seconds). Once threshold is reached, Wallarm performs action in accordance with the [Mitigation mode](#mitigation-mode).
-
-### Advanced conditions 
-
-If [Scope](#scope) does not cover all your needs, you can define other conditions that requests must meet to be covered by the protection mechanism.
-
-As conditions, you can use values or value patters of:
-
-* **Built-in parameters** meta information presented in each request handled by Wallarm filtering node.
-* **Session context parameters** - quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in **API Sessions**. Use the **Add custom** option in this section to add as filters the parameters that are currently not presented in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well.
-
-!!! info "Performance note"
-    As **Scope** settings are less demanding from the productivity perspective, it is always recommended to use them if it is enough for your goals, and only use **Advanced conditions** for the complex conditioning.
 
 ### Mitigation mode
 

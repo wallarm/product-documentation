@@ -59,7 +59,7 @@ Besides [Scope](#scope), mitigation control may include other conditions that de
 * For [GraphQL API protection](../api-protection/graphql-rule.md) they are policy positions - control will act only if any of them is violated by request.
 * For [Enumeration attack protection](../api-protection/enumeration-attack-protection.md), they are multiple parameters of requests - control will act only if all specified parameters/values are met.
 
-For some controls, like [Enumeration attack protection](../api-protection/enumeration-attack-protection.md) or [Rate abuse protection](../api-protection/rate-abuse-protection.md), in the **Advanced condition** section, you can use the **session context parameters** to quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in **API Sessions**. Use the **Add custom** option in this section to add as filters the parameters that are currently not presented in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well.
+For some controls, like [Enumeration attack protection](../api-protection/enumeration-attack-protection.md) or [Rate abuse protection](../api-protection/rate-abuse-protection.md), in the **Scope filters** section, you can use the **session context parameters** to quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in **API Sessions**. Use the **Add custom** option in this section to add as filters the parameters that are currently not presented in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well.
 
 For specifying advanced conditions, you can use [regular expressions](#regular-expressions).
 
@@ -82,7 +82,7 @@ The list of available modes may vary depending on the particular control.
 
 ### Regular expressions
 
-For specifying different mitigation control parameters, like **Scope**, **Advanced conditions**, and others, you can use regular expressions:
+For specifying different mitigation control parameters, like **Scope**, **Scope filters**, and others, you can use regular expressions:
 
 * The **Scope** section uses PIRE regular expression library. See details on usage [here](../user-guides/rules/rules.md#condition-type-regex-).
 * Other sections use [PCRE](https://www.pcre.org/). Use the following operators to involve regular expression:

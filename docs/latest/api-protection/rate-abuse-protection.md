@@ -8,15 +8,15 @@ Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node)
 
 ## Creating and applying mitigation control
 
-Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope**, **Advanced conditions** and **Mitigation mode** are set for any mitigation control.
+Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope**, **Scope filters** and **Mitigation mode** are set for any mitigation control.
 
 To configure rate abuse protection:
 
 1. Proceed to Wallarm Console → **Mitigation Controls**.
 1. Use **Add control** → **Rate abuse protection**.
 1. Describe the **Scope** to apply the mitigation control to.
-1. If necessary, define advanced conditions.
-1. Set threshold to count number of requests per time in seconds.
+1. If necessary, define advanced conditions in **Scope filters**.
+1. Set threshold to count number of requests per time interval.
 1. In the **Mitigation mode** section, set action to be done when threshold is exceeded.
 1. Click **Create**.
 
