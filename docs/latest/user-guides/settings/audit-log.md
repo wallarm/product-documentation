@@ -30,7 +30,7 @@ The Log include information about creating, updating and deleting of the followi
 * [Application](applications.md)
 * [Group](../../admin-en/configuration-guides/sso/setup.md#tenant-dependent-permissions)
 * [Invitation](../../user-guides/settings/users.md#inviting-users)
-* [Integration]((integrations/integrations-intro.md))
+* [Integration](../../user-guides/settings/integrations/integrations-intro.md)
 * [API token](../../user-guides/settings/api-tokens.md)
 * [Node token](../../user-guides/settings/api-tokens.md#api-tokens-vs-node-tokens)
 * [Node](../nodes/nodes.md)
