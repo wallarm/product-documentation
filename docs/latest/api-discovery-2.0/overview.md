@@ -38,7 +38,6 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 * Have a full visibility into the whole API estate.
 * See what data ([REST](exploring.md#rest-endpoint-details), [GraphQL](exploring.md#graphql-operation-details)) is going into and out of the APIs.
-* Get a list of endpoints with the open vulnerabilities.
 * Get a list of the threats that occurred over the past 7 days per any given API endpoint.
 * Filter APIs that consume and carry [sensitive data](#sensitive-data-detection).
 * Understand which endpoints are [most likely](risk-score.md) to be an attack target.
@@ -74,7 +73,13 @@ Also, the API Discovery performs filtering of requests relying on the other crit
 * Only those requests to which the server responded in the 2xx range are processed.
 * Requests that do not conform to the design principles of the REST or GraphQL API are not processed.
     
-    For REST, this is done by controlling the `Content-Type` header of responses: if it does not contain `application/json` (like `Content-Type: application/json;charset=utf-8`), the request is considered to be a non-REST API and is not analyzed. If the header does not exist, API Discovery analyzes the request.
+    An entry should NOT be classified as a valid API call and not displayed in API Discovery if both of the following conditions are met:
+
+    1. The request path contains a file extension (i.e., the last path segment does not match the pattern `.*.[a-zA-Z0-9]+`).
+    1. The `Content-Type` header of the response:
+
+        * is not present or
+        * is present but not starting with `application/` and does not contain `json` after slash (case-insensitive match, without charset suffix).
 
 * Standard fields such as `Accept` and alike are discarded.
 
@@ -87,6 +92,7 @@ API Discovery [detects and highlights](sensitive-data.md) sensitive data consume
 * Financial data like bank card numbers
 * Medical data like medical license number
 * Personally identifiable information (PII) like full name, passport number or SSN
+* AI prompts
 
 ### Sensitive business flows
 
@@ -107,7 +113,7 @@ On the Cloud side, hashed data is used for statistical analysis (for example, wh
 Other data (endpoint values, request methods, and parameter names) is not hashed before being uploaded to the Wallarm Cloud, because hashes cannot be restored to their original state which would make building API inventory impossible.
 
 !!! warning "Important"
-    Wallarm does not send the values that are specified in the parameters to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
+    API Discovery does not send the values that are specified in the parameters to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
 
 ## Enabling API Discovery
 
