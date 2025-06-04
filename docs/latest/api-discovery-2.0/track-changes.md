@@ -30,7 +30,7 @@ In the **Status** column for endpoints and parameters, API Discovery provides da
 
 ![API Discovery - track changes](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-changes.png)
 
-To change the time period, redefine dates in the **Changes since** filter.
+Use **Changed since** filter to only see endpoints changed in specific time period, for example, today.
 
 <!--## Getting notified
 
