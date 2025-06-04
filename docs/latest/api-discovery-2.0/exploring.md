@@ -44,9 +44,9 @@ Each request/response parameter information includes:
 
 ### Format and data type
 
-In the **Type** column, Wallarm indicates the data format identified through traffic analysis or, if not specific, a general data type.
+In REST endpoint details, in the **Type** column for parameters of request and responses, Wallarm indicates the data format identified through traffic analysis or, if not specific, a general data type.
 
-Wallarm attempts to detect various data formats such as `Int32`, `Int64`, `Float`, `Double`, `Datetime`, `IPv4`/`IPv6`, among others. If a value does not conform to any recognized data format, Wallarm classifies it under a general data type, such as `Integer`, `Number`, `String`, or `Boolean`.
+For REST endpoints, Wallarm attempts to detect various data formats such as `Int32`, `Int64`, `Float`, `Double`, `Datetime`, `IPv4`/`IPv6`, among others. If a value does not conform to any recognized data format, Wallarm classifies it under a general data type, such as `Integer`, `Number`, `String`, or `Boolean`.
 
 This data allows checking that values of the expected format are passed in each parameter. Inconsistencies can be the result of an attack or a scan of your API, for example:
 
@@ -84,6 +84,17 @@ Each request/response parameter information includes:
 * Information about parameter changes (new, unused)
 * Presence and type of sensitive data transmitted by this parameter, including:
 * Date and time when parameter value was last transferred by requests
+
+### Format and data type
+
+In GraphQL operation details, in the **Type** column for parameters and headers, Wallarm indicates the data format identified through traffic analysis.
+
+For GraphQL operations, data formats are detected in accordance with the [scalar types](https://graphql.org/learn/schema/#scalar-types) specification:
+
+* `Int`: A signed 32‐bit integer.
+* `Float`: A signed double-precision floating-point value.
+* `String`: A UTF‐8 character sequence.
+* `Boolean`: true or false.
 
 ## Endpoint activities
 
