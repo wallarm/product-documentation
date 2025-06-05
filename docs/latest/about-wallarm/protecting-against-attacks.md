@@ -68,20 +68,20 @@ To detect and handle attacks, Wallarm uses the following process:
 
 1. Checks [IP lists](../user-guides/ip-lists/overview.md) to understand whether to process the request at all. Denylist blocks the request and allowlist allows it - both without further analysis.
 1. Determines the request format and [parse](../user-guides/rules/request-processing.md) every request part to apply [basic detectors](#basic-set-of-detectors).
-1. Determines the endpoint the request is addressed to apply [custom rules](#custom-rules) and [specific module settings](#specific-module-settings) and understand the [filtration mode](../admin-en/configure-wallarm-mode.md).
+1. Determines the endpoint the request is addressed to apply [custom rules](#custom-rules)/[mitigation controls](#mitigation-controls) and [specific module settings](#specific-module-settings) and understand the [filtration mode](../admin-en/configure-wallarm-mode.md).
 1. Makes a decision whether the request is a part of attack or not based on basic detectors, custom rules and specific module settings.
 1. Handles request in accordance with decision and filtration mode.
 
 ![Attack handling process - diagram](../images/about-wallarm-waf/overview/attack-handling-diagram.png)
 
-Note that rules, settings and filtration mode can be inherited from the parent endpoint or [application](../user-guides/settings/applications.md). More specific has priority.
+Note that rules, mitigation controls, settings and filtration mode can be inherited from the parent endpoint or [application](../user-guides/settings/applications.md). More specific has priority.
 
 ## Tools for attack detection
 
 To detect attacks, Wallarm [analyzes](#attack-handling-process) all requests sent to the protected resource using the following tools:
 
 * [Basic set of detectors](#basic-set-of-detectors)
-* [Custom rules](#custom-rules)
+* [Custom rules](#custom-rules) / [mitigation controls](#mitigation-controls)
 * [Specific module settings](#specific-module-settings)
 
 ### Basic set of detectors
@@ -95,6 +95,10 @@ Wallarm additionally validates SQL injection attacks (**libdetection** library, 
 ### Custom rules
 
 Custom [rules](../user-guides/rules/rules.md) are used to fine-tune the behavior defined by basic set of detectors. Users create them in Wallarm Console and the set of them is uploaded to filtering node.
+
+### Mitigation controls
+
+[Mitigation controls](../about-wallarm/mitigation-controls-overview.md) extend Wallarm's attack protection with additional security measures and allow fine-tuning of the Wallarm behavior.
 
 ### Specific module settings
 
