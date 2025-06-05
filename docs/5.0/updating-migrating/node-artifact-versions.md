@@ -12,9 +12,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.3.15 (2025-06-04)
+
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
+* Removed support for the `WALLARM_ATTACKS_DETAILED_EXPORT` environment variable which has been used to disable exporting full attack data to Wallarm Cloud
+
 ### 5.3.14 (2025-05-26)
 
-* Added support for the [`WALLARM_ATTACKS_DETAILED_EXPORT` environment variable](../installation/nginx/all-in-one.md#limited-attack-export) to optionally disable exporting full attack data to Wallarm Cloud
+* Added support for the `WALLARM_ATTACKS_DETAILED_EXPORT` environment variable to optionally disable exporting full attack data to Wallarm Cloud
 
     This is intended for environments with strict data protection requirements.
 
@@ -108,6 +113,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Helm chart for Wallarm NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 5.3.15 (2025-06-04)
+
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
 
 ### 5.3.14 (2025-04-25)
 
@@ -226,6 +235,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+### 5.3.15 (2025-06-04)
+
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
+
 ### 5.3.13 (2025-04-25)
 
 * The number of specification violations that can be detected in a single request during API Specification Enforcement is limited to `3` to provide sufficient insight into policy violations while maintaining optimal Node performance
@@ -324,9 +337,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](docker-container.md)
 
+### 5.3.15 (2025-06-04)
+
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
+* Removed support for the `WALLARM_ATTACKS_DETAILED_EXPORT` environment variable which has been used to disable exporting full attack data to Wallarm Cloud
+
 ### 5.3.14 (2025-05-26)
 
-* Added support for the [`WALLARM_ATTACKS_DETAILED_EXPORT` environment variable](../admin-en/installation-docker-en.md) to optionally disable exporting full attack data to Wallarm Cloud
+* Added support for the `WALLARM_ATTACKS_DETAILED_EXPORT` environment variable to optionally disable exporting full attack data to Wallarm Cloud
 
     This is intended for environments with strict data protection requirements.
 
@@ -407,6 +425,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
+### 5.3.15 (2025-06-04)
+
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
+
 ### 5.3.12 (2025-04-25)
 
 * The number of specification violations that can be detected in a single request during API Specification Enforcement is limited to `3` to provide sufficient insight into policy violations while maintaining optimal Node performance
@@ -471,6 +493,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-5-3-15-20250605-140709 (2025-06-04)
+
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
 
 ### wallarm-node-5-3-12-20250425-053214 (2025-04-25)
 
