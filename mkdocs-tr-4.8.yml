@@ -119,6 +119,10 @@ nav:
       - Genel bakış: vulnerability-detection/threat-replay-testing/overview.md
       - Kurulum: vulnerability-detection/threat-replay-testing/setup.md
       - Test Sonuçları: vulnerability-detection/threat-replay-testing/exploring.md
+    - API Test Patrol:
+      - Overview: vulnerability-detection/api-test-patrol/overview.md
+      - Setup: vulnerability-detection/api-test-patrol/setup.md
+      - Test Run Results: vulnerability-detection/api-test-patrol/explore.md
   - Dağıtım:
     - Dağıtım Seçenekleri: installation/supported-deployment-options.md
     - eBPF:
