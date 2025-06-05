@@ -16,7 +16,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
     Previously, these files could be overwritten, resulting in loss of configuration.
 * Added [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) to control `keep-alive` connection limits
-* Added support for the [`WALLARM_ATTACKS_DETAILED_EXPORT` environment variable](../../installation/native-node/all-in-one.md#limited-attack-export) to optionally disable exporting full attack data to Wallarm Cloud
+* Added support for the `WALLARM_ATTACKS_DETAILED_EXPORT` environment variable to optionally disable exporting full attack data to Wallarm Cloud
 
     This is intended for environments with strict data protection requirements.
 

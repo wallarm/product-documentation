@@ -1,7 +1,7 @@
 As soon as you have the all-in one script downloaded, you can get help on it with:
 
 ```
-sudo sh ./wallarm-5.3.14.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-5.3.15.x86_64-glibc.sh -- -h
 ```
 
 Which returns:
@@ -35,18 +35,18 @@ Below are examples of commands to run the script in batch mode for node installa
 === "US Cloud"
     ```bash
     # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.14.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.15.x86_64-glibc.sh -- --batch -t <TOKEN> -c US
 
     # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.14.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.15.aarch64-glibc.sh -- --batch -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```bash
     # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.14.x86_64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.15.x86_64-glibc.sh -- --batch -t <TOKEN>
 
     # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.14.aarch64-glibc.sh -- --batch -t <TOKEN>
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-5.3.15.aarch64-glibc.sh -- --batch -t <TOKEN>
     ```
 
 ### Separate execution of node installation stages
@@ -61,25 +61,25 @@ This functionality is supported starting from version 4.10.0 of the all-in-one i
 === "US Cloud"
     ```bash
     # If using the x86_64 version:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.14.x86_64-glibc.sh
-    sudo sh wallarm-5.3.14.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.15.x86_64-glibc.sh
+    sudo sh wallarm-5.3.15.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
 
     # If using the ARM64 version:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.14.aarch64-glibc.sh
-    sudo sh wallarm-5.3.14.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.15.aarch64-glibc.sh
+    sudo sh wallarm-5.3.15.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN> -c US
     ```
 === "EU Cloud"
     ```
     # If using the x86_64 version:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.14.x86_64-glibc.sh
-    sudo sh wallarm-5.3.14.x86_64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.15.x86_64-glibc.sh
+    sudo sh wallarm-5.3.15.x86_64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
 
     # If using the ARM64 version:
-    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.14.aarch64-glibc.sh
-    sudo sh wallarm-5.3.14.aarch64-glibc.sh -- --batch --install-only
+    curl -O https://meganode.wallarm.com/5.3/wallarm-5.3.15.aarch64-glibc.sh
+    sudo sh wallarm-5.3.15.aarch64-glibc.sh -- --batch --install-only
     sudo env WALLARM_LABELS='group=<GROUP>' /opt/wallarm/setup.sh --batch --register-only -t <TOKEN>
     ```
 
@@ -119,32 +119,3 @@ With the API Discovery-only mode enabled, the `/opt/wallarm/var/log/wallarm/wcli
 ```json
 {"level":"info","component":"reqexp","time":"2025-01-31T11:59:38Z","message":"requests export skipped (disabled)"}
 ```
-
-### Limited attack export
-
-You can limit the malicious request and response data exported to the Wallarm Cloud ([**Attack**][attack-analysis-docs] list) using the `WALLARM_ATTACKS_DETAILED_EXPORT` environment variable. Available since version 5.3.14 and later 5.3.x versions.
-
-By default, this variable is set to `true`, enabling full attack data export.
-
-When set to `false`, the Node sends only limited metadata to the Cloud for all malicious requests detected in the traffic it processes. This includes the malicious payload, attack type, `Host` header, URI, IP address, request method, HTTP status code, and request time. Request bodies, query parameters, and other headers are excluded.
-
-This mode is intended for environments with strict data handling rules. Use `false` only when full data export may conflict with privacy or compliance requirements.
-
-To disable full data export:
-
-1. Create or modify the `/etc/wallarm-override/env.list` file:
-
-    ```
-    sudo mkdir /etc/wallarm-override
-    sudo vim /etc/wallarm-override/env.list
-    ```
-
-    Add the following variable:
-
-    ```
-    WALLARM_ATTACKS_DETAILED_EXPORT=false
-    ```
-
-1. Follow the [node installation procedure](#requirements).
-
-Setting this variable to `false` limits [Threat Replay Testing][threat-replay-testing-docs] - initial payloads will not be available for replay, and test results may be less accurate.
