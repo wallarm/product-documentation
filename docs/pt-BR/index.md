@@ -87,6 +87,7 @@ A solução Wallarm protege APIs, microsserviços e aplicações web contra as a
     <h3 class="icon-homepage api-security-testing">Teste de segurança de API</h3>
     <p><ul>
     <li><a href="./vulnerability-detection/threat-replay-testing/overview/">Teste de repetição de ameaças</a></li>
+    <li><a href="./vulnerability-detection/api-test-patrol/overview/">API Test Patrol (Early Access)</a></li>
     </ul></p>
 </div>
 
