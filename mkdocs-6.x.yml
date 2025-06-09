@@ -347,14 +347,9 @@ nav:
   - References:
     - FAQ:
       - Installing Wallarm Ingress Controller: faq/ingress-installation.md
-      - Errors after Wallarm Node Installation: faq/common-errors-after-installation.md
       - Wallarm Service Status Page: faq/wallarm-status-page.md
       - Wallarm Cloud is Down: faq/wallarm-cloud-down.md
-      - SELinux Troubleshooting: admin-en/configure-selinux.md
-      - CPU High Usage Troubleshooting: faq/cpu.md
-      - Attacks are not Uploaded to Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
       - Addressing Wallarm Node Issues Alerted by OWASP dashboard: faq/node-issues-on-owasp-dashboards.md
-      - Legitimate Request is Blocked: faq/wrong-blocking.md
     - Changelog & News: news.md
     - Wallarm API Reference:
       - Overview: api/overview.md
@@ -369,3 +364,8 @@ nav:
       - Data Retention Policy: about-wallarm/data-retention-policy.md
     - Glossary: glossary-en.md
     - Attack / Vulnerability Types: attacks-vulns-list.md
+  - Troubleshooting:
+      - Detection and Blocking: troubleshooting/detection-and-blocking.md
+      - Performance: troubleshooting/performance.md
+      - End User Problems: faq/common-errors-after-installation.md
+      - SELinux: admin-en/configure-selinux.md
