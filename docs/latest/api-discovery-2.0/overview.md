@@ -2,7 +2,7 @@
 
 Wallarm's **API Discovery** builds your application **REST** and **GraphQL** API inventory based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API inventory based on the analysis results.
 
-Requires NGINX Node 6.1.0 or Native Node TBD or higher.
+Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.1.0 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
 
 The built API inventory includes the following elements:
 
