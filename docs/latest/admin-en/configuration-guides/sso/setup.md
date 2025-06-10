@@ -21,6 +21,7 @@ To activate the SSO service, contact the [Wallarm support team](https://support.
 
 You need Wallarm metadata to enter on the SAML SSO solution side:
 
+1. Make sure you are logged in Wallarm Console with administrative privileges.
 1. In Wallarm Console, go to **Integrations** → **SSO SAML AUTHENTICATION** and initiate the appropriate integration.
 
     You can integrate Google, Okta or any other (**Custom**) SAML SSO solution. Note that only one SSO integration can be active at the moment.
@@ -130,7 +131,8 @@ To provide integration with such SAML SSO solution, Wallarm has the **Extended s
 
 If the [**different permissions in different tenants**](intro.md#tenant-dependent-permissions) option is enabled, configure these permissions as follows:
 
-1. Go to Wallarm Console → **Settings** → **Groups**.
+1. Make sure you are logged in Wallarm Console as **Global administrator**.
+1. Go to **Settings** → **Groups**.
 1. Click **Add group** and bind it to your SAML SSO solution group name.
 1. Set role, click **Add**.
 
