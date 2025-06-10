@@ -23,9 +23,16 @@ Security Edge service provides a secure cloud environment where Wallarm nodes ar
 
 ## Configuring the Edge Inline
 
-To run the Edge inline, go to the Wallarm Console → **Security Edge** → **Edge inline** → **Configure**. You can configure multiple origins to forward traffic to and multiple hosts to protect.
+To run the Edge inline, go to the Wallarm Console → **Security Edge** → **Edge inline** → **Configure**. If this section is unavailable, contact sales@wallarm.com to access the required subscription.
 
-If this section is unavailable, your account may lack the appropriate subscription, please contact sales@wallarm.com to obtain it.
+You can configure multiple origins to forward traffic to and multiple hosts to protect. See the demo:
+
+<div>
+        <script src="https://js.storylane.io/js/v1/storylane.js"></script>
+        <div class="sl-embed" style="position:relative;padding-bottom:calc(51.72% + 27px);width:100%;height:0;transform:scale(1)">
+          <iframe class="sl-demo" src="https://wallarm.storylane.io/demo/d0rwdofmftda" name="sl-embed" allow="fullscreen" style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
+        </div>
+      </div>
 
 You can update the Edge node deployment settings at any time. The node will be re‑deployed with existing CNAME records remaining unchanged.
 
@@ -141,6 +148,9 @@ In the **Admin settings** section, you choose a node version and specify upgrade
 ### 5. Certificate CNAME configuration
 
 If DNS zones are specified in the **Certificates** section, add the CNAME records provided in the Wallarm Console to your DNS provider's settings for each DNS zone. These records are required for Wallarm to verify domain ownership and issue certificates.
+
+!!! warning "Do not remove the certificate CNAME"
+    The certificate CNAME record must stay in your DNS settings. It is needed for further deployment configuration updates and certificate renewal.
 
 ![](../../images/waf-installation/security-edge/inline/host-cnames.png)
 
