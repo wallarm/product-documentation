@@ -43,11 +43,22 @@ In general settings, you specify regions to deploy the Edge node and origins to 
 
 #### Cloud providers and regions
 
-Select regions in one or more cloud providers - **AWS** and **Azure** are supported. We recommend choosing regions close to where your APIs or applications are hosted to minimize latency and improve performance.
+Select regions in one or more cloud providers - **AWS** and **Azure** are supported. You can deploy the Edge Node across multiple regions and providers.
 
-You can deploy the Edge Node in a **single cloud provider** or **across multiple providers**.
+=== "Multi-region deployment"
+    When selecting multiple regions within a single cloud provider, traffic is routed based on latency - **each request goes to the nearest available region**. This reduces response time and balances the load.
 
-Multi-cloud deployments help ensure high availability, improve resilience in case of cloud-specific outages, and distribute workloads across multiple regions and providers. Traffic is distributed evenly across all selected regions - regardless of the cloud provider - using a global [round-robin](https://en.wikipedia.org/wiki/Round-robin_DNS) strategy.
+    This is the most common setup, recommended when you serve requests from multiple locations.
+
+    If one region becomes unavailable, traffic is automatically re-routed within the same provider.
+
+=== "Multi-cloud deployment"
+    When selecting regions across multiple clouds, traffic is distributed using a **[global round‑robin strategy](https://en.wikipedia.org/wiki/Round-robin_DNS)** - each request is routed to one of the selected regions, regardless of provider or latency.
+
+    This setup is recommended in the following cases:
+
+    * Cloud provider redundancy - for example, if AWS becomes unavailable, traffic is automatically routed to Azure to maintain availability.
+    * Regional high availability - for example, you can select the same region (e.g., East) in both AWS and Azure. If one provider becomes unavailable, traffic is routed to the same region in the other cloud.
 
 #### Origin servers
 
@@ -189,19 +200,27 @@ If DNS zones are specified in the **Certificates** section, add the CNAME record
 
 ![](../../images/waf-installation/security-edge/inline/cert-cname.png)
 
-For example, if `myservice.com` is specified in the DNS zone, the cart CNAME is the following:
+For example, if `myservice.com` is specified in the DNS zone, the certificate CNAME is the following:
 
 ```
 _acme-challenge.myservice.com CNAME _acme-challenge.<WALLARM_CLOUD>-<CLIENT_ID>-<DEPLOYMENT_ID>.acme.<CLOUD_PROVIDER>.wallarm-cloud.com
 ```
 
-DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node deployment once the CNAME records are verified.
+DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node deployment once the CNAME records are verified (if needed).
 
 ### 6. Routing traffic to the Edge Node
 
 To route traffic to the Edge Node, you need to specify the CNAME record pointing to the Wallarm‑proided FQDN in your DNS zone. This record is returned as the **Traffic CNAME**.
 
 Once the certificate CNAME is verified, a **Traffic CNAME** is available for each host. If no certificate is issued, the CNAME is available immediately after the configuration is complete.
+
+* If you route traffic to a single cloud provider, use the **Traffic CNAME for selected cloud**.
+* If you are using multi-cloud deployment, copy the **Traffic CNAME (Global)** - traffic will be automatically distributed across all selected regions and providers.
+
+    Per-provider CNAMEs are also available if you need to enforce routing to a specific provider - for example, to test latency or performance across clouds.
+
+    !!! warning "If you remove one of the cloud providers"
+        Before removing a [cloud provider](#cloud-providers-and-regions) from the deployment, first switch to the per-provider CNAME to avoid service disruption.
 
 ![](../../images/waf-installation/security-edge/inline/traffic-cname.png)
 
