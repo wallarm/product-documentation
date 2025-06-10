@@ -142,6 +142,9 @@ In the **Admin settings** section, you choose a node version and specify upgrade
 
 If DNS zones are specified in the **Certificates** section, add the CNAME records provided in the Wallarm Console to your DNS provider's settings for each DNS zone. These records are required for Wallarm to verify domain ownership and issue certificates.
 
+!!! warning "Do not remove the certificate CNAME"
+    The certificate CNAME record must stay in your DNS settings. It is needed for further deployment configuration updates and certificate renewal.
+
 ![](../../images/waf-installation/security-edge/inline/host-cnames.png)
 
 ![](../../images/waf-installation/security-edge/inline/cert-cname.png)
