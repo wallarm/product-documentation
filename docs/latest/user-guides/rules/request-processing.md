@@ -83,7 +83,7 @@ Request example | Query string parameters and values
 
 ### IP address of a request origin
 
-Request point for an IP address of a request origin in the Wallarm rules is `remote_addr`. This point is used only in the [**Set rate limit**](rate-limiting.md) rule to limit requests per IPs.
+Request point for an IP address of a request origin in the Wallarm rules is `remote_addr`. This point is used only in the [**Advanced rate limiting**](rate-limiting.md) rule to limit requests per IPs.
 
 ### Headers
 

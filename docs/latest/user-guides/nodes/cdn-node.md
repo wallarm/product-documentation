@@ -1,7 +1,7 @@
 [cdn-node-operation-scheme]:        ../../images/waf-installation/quickstart/cdn-node-scheme.png
 [data-to-wallarm-cloud-docs]:       ../rules/sensitive-data-rule.md
 [operation-modes-docs]:             ../../admin-en/configure-wallarm-mode.md
-[operation-mode-rule-docs]:         ../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console
+[operation-mode-rule-docs]:         ../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode
 [wallarm-cloud-docs]:               ../../about-wallarm/overview.md#cloud
 [cdn-node-creation-modal]:          ../../images/waf-installation/quickstart/cdn-node-creation-modal.png
 [cname-required-modal]:             ../../images/waf-installation/quickstart/cname-required-modal.png

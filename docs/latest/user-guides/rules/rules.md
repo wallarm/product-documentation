@@ -1,13 +1,20 @@
 [link-regex]:                   https://github.com/yandex/pire
 [link-request-processing]:      request-processing.md
 [img-add-rule]:                 ../../images/user-guides/rules/section-rules-add-rule.png
+[link-attack-detection-tools]:  ../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection
+[link-sub-plans]:               ../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security
+[link-filtration-mode]:         ../../admin-en/configure-wallarm-mode.md
+[link-nodes]:                   ../../about-wallarm/overview.md#how-wallarm-works
+[link-sessions]:                ../../api-sessions/overview.md
+[link-brute-force-protection]:  ../../admin-en/configuration-guides/protecting-against-bruteforce.md
+[link-cloud-node-synchronization]: ../../admin-en/configure-cloud-node-synchronization-en.md
+[img-rules-create-backup]:      ../../images/user-guides/rules/rules-create-backup.png
 
 # Rules
 
 Rules are used to fine-tune the [default](../../about-wallarm/protecting-against-attacks.md#tools-for-attack-detection) Wallarm behavior during the analysis of requests and their further processing. Thus, using rules you can change how the system detects malicious requests and acts when such malicious requests are detected.
 
 Rules are configured in the **Rules** section in the [US](https://us1.my.wallarm.com/rules) or [EU](https://my.wallarm.com/rules) Cloud.
-
 
 ![Rules section](../../images/user-guides/rules/section-rules.png)
 
@@ -21,13 +28,12 @@ Using rules, you can control how Wallarm mitigates attacks on your applications 
 * Mitigation controls:
 
     * [Advanced rate limiting](../../user-guides/rules/rate-limiting.md)
-    * [GraphQL API protection](../../api-protection/graphql-rule.md)
     * [Virtual patches](../../user-guides/rules/vpatch-rule.md)
     * [Custom attack detectors](../../user-guides/rules/regex-rule.md)
 
 * Fine-tuning attack detection:
 
-    * [Override filtration mode](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console) for particular domains/endpoints
+    * [Override filtration mode](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode) for particular domains/endpoints
     * [Ignore certain attacks](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types)
     * [Disable custom attack detectors](../../user-guides/rules/regex-rule.md#partial-disabling) for particular domains/endpoints or request parts
     * Configure [binary data processing](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
@@ -62,7 +68,7 @@ You can create rules with specified action but not linked to any endpoint - they
 * Default rules are inherited by all branches.
 
 !!! info "Traffic filtration mode default rule"
-    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) setting.
+    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#general-filtration-mode) setting.
 
 ### Viewing branch rules
 
@@ -377,47 +383,11 @@ The request should not contain the designated part. In this case, the comparison
 
 ## Ruleset lifecycle
 
-All created rules form a custom ruleset. The Wallarm node relies on the custom ruleset during incoming requests analysis.
+All created rules and [mitigation controls](../../about-wallarm/mitigation-controls-overview.md) form a custom ruleset. The Wallarm node relies on the custom ruleset during incoming requests analysis.
 
-Changes of custom rules do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **uploading to the filtering node** are finished.
+Changes of of rules and mitigation controls do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **uploading to the filtering node** are finished.
 
-### Custom ruleset building
-
-Adding a new rule, deleting or changing existing rules in the Wallarm Console → **Rules** launch a custom ruleset build. During the building process, rules are optimized and compiled into a format adopted for the filtering node. The process of building a custom ruleset typically takes from a few seconds for a small number of rules to up to an hour for complex rule trees.
-
-### Uploading to filtering node
-
-Custom ruleset build is uploaded to the filtering node during the filtering node and Wallarm Cloud synchronization. By default, synchronization of the filtering node and Wallarm Cloud is launched every 2‑4 minutes. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
-
-The status of uploading a custom ruleset to the filtering node is logged to the `/opt/wallarm/var/log/wallarm/wcli-out.log` file.
-
-All Wallarm nodes connected to the same Wallarm account receive the same set of default and custom rules for traffic filtering. You still can apply different rules for different applications by using proper application IDs or unique HTTP request parameters like headers, query string parameters, etc.
-
-### Backup and restore
-
-To protect yourself from accidentally misconfigured or deleted rules, you can backup your current custom ruleset.
-
-There are the following rule backup options: 
-
-* Automatic backup creation after each [custom ruleset build](#custom-ruleset-building). The number of automatic backups is limited to 7: for each day when you change the rules several times, only the last backup is kept.
-* Manual backup creation at any time. The number of manual backups is limited to 5 by default. If you need more, contact the [Wallarm technical support](mailto:support@wallarm.com) team.
-
-You can:
-
-* Access current backups: in the **Rules** section, click **Backups**.
-* Create a new backup manually: in the **Backups** window, click **Create backup**.
-* Set name and description for the manual backup and edit them at any moment.
-
-    !!! info "Naming for automatic backups"
-        The automatic backups are named by the system and cannot be renamed.
-
-* Load from existing backup: click **Load** for the required backup. When loading from the backup, your current rule configuration is deleted and replaced with the configuration from the backup.
-* Delete backup.
-
-    ![Rules - Creating backup](../../images/user-guides/rules/rules-create-backup.png)
-
-!!! warning "Rule modification restrictions"
-    You cannot create or modify rules until creating backup or load from backup is complete.
+--8<-- "../include/custom-ruleset.md"
 
 ## API calls to get rules
 

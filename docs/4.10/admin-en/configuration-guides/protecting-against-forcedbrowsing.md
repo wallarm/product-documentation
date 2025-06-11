@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/protecting-against-forcedbrowsing.md"
+--8<-- "5.0/admin-en/configuration-guides/protecting-against-forcedbrowsing.md"

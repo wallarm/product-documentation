@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/rules/rate-limiting.md"
+--8<-- "5.0/user-guides/rules/rate-limiting.md"

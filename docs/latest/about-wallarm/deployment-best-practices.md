@@ -77,7 +77,7 @@ In addition to blocking individual malicious requests, Wallarm filtering nodes c
 * Use standard DevOps change management and gradual rollout policies for low-level configuration changes for Wallarm filtering nodes in all form-factors.
 * For traffic filtration rules, use a different set of application [IDs](../admin-en/configure-parameters-en.md#wallarm_application) or `Host` request headers.
 * For the [Create regexp-based attack indicator](../user-guides/rules/regex-rule.md#creating-and-applying-rule) rule, in addition to the above‑mentioned ability to be associated with a specific application ID, it can be enabled in monitoring mode (**Experimental** checkbox) even when the Wallarm node is running in blocking mode.
-* The [Set filtration mode](../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console) rule allows the control of the Wallarm node operation mode (`monitoring`, `safe_blocking` or `block`) from Wallarm Console, similar to the [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) setting in the NGINX configuration (depending on the [`wallarm_mode_allow_override`](../admin-en/configure-parameters-en.md#wallarm_mode_allow_override) setting).
+* The [Set filtration mode](../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode) rule allows the control of the Wallarm node operation mode (`monitoring`, `safe_blocking` or `block`) from Wallarm Console, similar to the [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) setting in the NGINX configuration (depending on the [`wallarm_mode_allow_override`](../admin-en/configure-parameters-en.md#wallarm_mode_allow_override) setting).
 
 ## Configure available integrations to receive notifications from the system
 

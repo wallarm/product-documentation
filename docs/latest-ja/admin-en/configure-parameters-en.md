@@ -327,7 +327,7 @@ Wallarm NGINXモジュールが1リクエスト分のメモリ使用制限を超
 * `safe_blocking`
 * `block`
 
---8<-- "../include/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-5.0.md"
 
 `wallarm_mode`の使用は、`wallarm_mode_allow_override`ディレクティブによって制限できます。
 

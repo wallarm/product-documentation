@@ -17,7 +17,7 @@ The Wallarm filtering node can process incoming requests in the following modes 
 * **Safe blocking** (`safe_blocking`) - blocks only where it is safe to block ([graylist](../user-guides/ip-lists/overview.md)).
 * **Blocking** (`block`)
 
---8<-- "../include/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-5.0.md"
 
 ## Configuration methods
 

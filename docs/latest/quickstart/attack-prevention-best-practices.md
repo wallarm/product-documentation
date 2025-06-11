@@ -40,7 +40,7 @@ Forced browsing is an attack where an attacker tries to find and use hidden reso
 
 ## Set rate limits
 
-Without a proper limit on how often APIs can be used, they can be hit by attacks that overload the system, like DoS and brute force attacks, or API overuse. By using the [**Set rate limit** rule](../user-guides/rules/rate-limiting.md), you can specify the maximum number of connections that can be made to a particular scope, while also ensuring that incoming requests are evenly distributed.
+Without a proper limit on how often APIs can be used, they can be hit by attacks that overload the system, like DoS and brute force attacks, or API overuse. By using the [**Advanced rate limiting** rule](../user-guides/rules/rate-limiting.md), you can specify the maximum number of connections that can be made to a particular scope, while also ensuring that incoming requests are evenly distributed.
 
 ## Activate BOLA protection
 

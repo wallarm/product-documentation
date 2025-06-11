@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/protecting-against-bola-trigger.md"
+--8<-- "5.0/admin-en/configuration-guides/protecting-against-bola-trigger.md"
