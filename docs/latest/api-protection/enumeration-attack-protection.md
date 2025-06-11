@@ -16,7 +16,7 @@ Wallarm provides several [mitigation controls](../about-wallarm/mitigation-contr
     <th>Attack</th>
   </tr>
   <tr>
-    <td><b>[Brute force protection]</b></td>
+    <td><b>Brute force protection</b></td>
     <td rowspan="3">Counts the number of unique values seen for each parameter within a specified timeframe.</td>
     <td><code>password</code></td>
     <td><code>Brute force</code></td>
@@ -45,6 +45,9 @@ Thus:
 * To prevent enumeration of any parameters you can use the **Enumeration attack protection** control (this is all-in-one solution).
 * If you want to specifically highlight the attempts to get valid passwords by trying variants, use the **Brute force protection** control.
 * If you want to specifically highlight the attempts to enumerate valid user or object ID - the **BOLA protection** control.
+
+!!! info "Predecessors"
+    Mitigation controls are sophisticated tools available in the [Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription. In [Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription, [brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md), [forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md), and [BOLA protection](../admin-en/configuration-guides/protecting-against-bola-trigger.md) is configured with triggers.
 
 ## Configuration
 
