@@ -1,1 +1,1 @@
---8<-- "latest/about-wallarm/protecting-against-attacks.md"
+--8<-- "5.0/about-wallarm/protecting-against-attacks.md"
