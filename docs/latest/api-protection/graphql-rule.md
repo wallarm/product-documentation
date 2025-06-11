@@ -28,7 +28,7 @@ Depending on your subscription plan, one of the following configuration methods 
 
 ### Creating and applying mitigation control
 
-GraphQL mitigation control is recommended to be created for the GraphQL specific endpoints. Creating it as an [all traffic](../about-wallarm/mitigation-controls-overview.md#all-traffic-mitigation-controls) mitigation control for the entire system is not recommended.
+GraphQL mitigation control is recommended to be created for the GraphQL specific endpoints. Creating it as an **all traffic** mitigation control for the entire system is not recommended.
 
 Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope** and **Mitigation mode** are set for any mitigation control.
 
@@ -49,9 +49,9 @@ To set and apply GraphQL policy:
 
     By default, a policy sets maximum POST request query size to 100 KB, value size to 10 KB, query depth and batched query limits to 10, aliases to 5, plus deny introspection and debug queries as displayed on the screenshot (note that you can change default values to your own considering statistics of your common legitimate GraphQL queries):
         
-    ![GraphQL thresholds](../../images/api-protection/mitigation-controls-graphql.png)
+    ![GraphQL thresholds](../images/api-protection/mitigation-controls-graphql.png)
 
-1. In the **Mitigation mode** section, set `Inherited` as an action to be done when any of thresholds is exceeded. For now, this is the only mode available for this mitigation control. It means, that action will be defined by the [global filtration mode setting](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node.
+1. In the **Mitigation mode** section, set `Inherited` as an action to be done when any of thresholds is exceeded. For now, this is the only mode available for this mitigation control. It means, that action will be defined by the [global filtration mode setting](../admin-en/configure-wallarm-mode.md#general-filtration-mode) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node.
 1. Click **Create**.
 
 <!--## Exploring GraphQL attacks
@@ -70,7 +70,7 @@ To do so:
 
 1. Set the **GraphQL API protection** mitigation control as displayed on the screenshot (note that these are the example values - for the real-life rules you should define your own values considering statistics of your common legitimate GraphQL queries):
 
-    ![GraphQL Policy for your endpoints](../../images/api-protection/mitigation-controls-graphql-1.png)
+    ![GraphQL Policy for your endpoints](../images/api-protection/mitigation-controls-graphql-1.png)
 
 1. As filtration mode for `example.com` is `monitoring` and you want `block` for its GraphQL endpoints, configure the **Override filtration mode** rule as displayed on the screenshot:
 
@@ -84,7 +84,7 @@ To do so:
 
 1. Set the **GraphQL API protection** mitigation control as displayed on the screenshot (note that these are the example values - for the real-life rules you should define your own values considering statistics of your common legitimate GraphQL queries):
 
-    ![GraphQL stricter policy for child endpoint](../../images/api-protection/mitigation-controls-graphql-2.png)
+    ![GraphQL stricter policy for child endpoint](../images/api-protection/mitigation-controls-graphql-2.png)
 
 1. As filtration mode for `example.com/graphql` is `block` and you want `monitoring` for `example.com/graphql/v2`, configure the **Override filtration mode** rule as displayed on the screenshot:
 

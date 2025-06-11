@@ -4,7 +4,7 @@ Adding a new rule/mitigation control, deleting or changing existing ones in the 
 
 ### Uploading to filtering node
 
-Custom ruleset build is uploaded to the filtering node during the filtering node and Wallarm Cloud synchronization. By default, synchronization of the filtering node and Wallarm Cloud is launched every 2‑4 minutes. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
+Custom ruleset build is uploaded to the filtering node during the filtering node and Wallarm Cloud synchronization. By default, synchronization of the filtering node and Wallarm Cloud is launched every 2‑4 minutes. [More details on the filtering node and Wallarm Cloud synchronization configuration →][link-cloud-node-synchronization]
 
 The status of uploading a custom ruleset to the filtering node is logged to the `/opt/wallarm/var/log/wallarm/wcli-out.log` file.
 
@@ -31,7 +31,7 @@ You can:
 * Load from existing backup: click **Load** for the required backup. When loading from the backup, your current rule configuration is deleted and replaced with the configuration from the backup.
 * Delete backup.
 
-    ![Rules - Creating backup](../../images/user-guides/rules/rules-create-backup.png)
+    ![Rules - Creating backup][img-rules-create-backup]
 
 !!! warning "Rule modification restrictions"
     You cannot create or modify rules or mitigation controls until creating backup or load from backup is complete.

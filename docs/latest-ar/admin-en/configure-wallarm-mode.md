@@ -16,7 +16,7 @@
 * **الحجب الآمن** (`safe_blocking`)
 * **الحجب** (`block`)
 
---8<-- "../include/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-5.0.md"
 
 ## طرق تكوين وضع الفلترة
 

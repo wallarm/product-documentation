@@ -1,3 +1,6 @@
+[link-cloud-node-synchronization]: ../admin-en/configure-cloud-node-synchronization-en.md
+[img-rules-create-backup]:      ../images/user-guides/rules/rules-create-backup.png
+
 # Mitigation Controls <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 Mitigation controls extend Wallarm's [attack protection](protecting-against-attacks.md#tools-for-attack-detection) with additional security measures and allow fine-tuning of the Wallarm behavior.
@@ -69,7 +72,7 @@ When all conditions are met, mitigation control performs its action. The require
 
 | Mitigation mode | Description |
 | --- | --- |
-| **Inherited** | Mode is inherited from the [all-traffic **Real-time blocking mode**](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
+| **Inherited** | Mode is inherited from the [all-traffic **Real-time blocking mode**](../admin-en/configure-wallarm-mode.md#general-filtration-mode) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
 | **Monitoring** | Only registers detected attacks; no blocking is performed. Registered attacks are displayed in **API Sessions**, in the corresponding [session details](../api-sessions/exploring.md#specific-activities-within-session). |
 | **Blocking** | Registers and blocks attacks. [Blocking methods](../about-wallarm/protecting-against-attacks.md#attack-handling-process) vary by control type: real-time blocking, [IP-based blocking](../user-guides/ip-lists/overview.md), or session-based blocking<sup>*</sup>. |
 | **Disabled** | Mitigation control is temporarily turned off and is not applied. |
@@ -84,7 +87,7 @@ The list of available modes may vary depending on the particular control.
 
 For specifying different mitigation control parameters, like **Scope**, **Scope filters**, and others, you can use regular expressions:
 
-* The **Scope** section uses PIRE regular expression library. See details on usage [here](../user-guides/rules/rules.md#condition-type-regex-).
+* The **Scope** section uses PIRE regular expression library. See details on usage [here](../user-guides/rules/rules.md#condition-type-regex).
 * Other sections use [PCRE](https://www.pcre.org/). Use the following operators to involve regular expression:
 
     | Operator | Description |

@@ -117,7 +117,7 @@ Wallarm detects regular attacks (SQLi, RCE, [etc.](../../attacks-vulns-list.md))
 
 Wallarm introduces protection from these attacks. Protection is set by configuring your organization's GraphQL policy - a set of limits for the GraphQL requests. Requests exceeding any of set limits the filtering node will handle in accordance with the active filtration mode - will only register policy violations or will register and block such attempts.
 
-To start using the functionality, you need to create at least one [**Detect GraphQL attacks** rule](../../api-protection/graphql-rule.md#creating-and-applying-the-rule) in Wallarm Console.
+To start using the functionality, you need to create at least one [**Detect GraphQL attacks** rule](../../api-protection/graphql-rule.md#) in Wallarm Console.
 
 [Learn how to configure GraphQL API Protection](../../api-protection/graphql-rule.md)
 
@@ -159,11 +159,11 @@ Comparing to triggers that were used for this protection before, mitigation cont
 !!! tip ""
     [NGINX Node 6.1.0 and higher](../node-artifact-versions.md) and [Native Node 0.14.1 and higher](../native-node/node-artifact-versions.md)
 
-The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too many requests per time is one of the main causes of these risks.
+The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too many requests per time is one of the main causes of these risks.
 
 Wallarm provides the new [**Rate abuse protection**](../../api-protection/rate-abuse-protection.md) mitigation control to help prevent excessive traffic to your API.
 
-![Rate abuse prevention - JWT example](../../../images/api-protection/mitigation-controls-rate-abuse-prevention-jwt.png)
+![Rate abuse prevention - JWT example](../../images/api-protection/mitigation-controls-rate-abuse-prevention-jwt.png)
 
 ## API Specification Enforcement
 

@@ -328,7 +328,7 @@ Trafik işleme modu:
 * `safe_blocking`
 * `block`
 
---8<-- "../include/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-5.0.md"
 
 `wallarm_mode` kullanımı, Wallarm Cloud’dan indirilen filtreleme kuralları aracılığıyla değerlerin değiştirilmesi `wallarm_mode_allow_override` yönergesi ile kısıtlanabilir.
 

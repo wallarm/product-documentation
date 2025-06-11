@@ -313,7 +313,7 @@ api:
 * `safe_blocking`
 * `block`
 
---8<-- "../include/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-5.0.md"
 
 يمكن تقييد استخدام `wallarm_mode` بواسطة التوجيه `wallarm_mode_allow_override`.
 

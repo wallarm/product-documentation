@@ -1,6 +1,6 @@
 # Rate Abuse Protection <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too many requests per time is one of the main causes of these risks.
+The [unrestricted resource consumption](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) is included in the [OWASP API Top 10 2023](../user-guides/dashboards/owasp-api-top-ten.md#wallarm-security-controls-for-owasp-api-2023) list of most serious API security risks. Being a threat by itself (service slow-down or complete down by overload), this also serves as foundation to different attack types, for example, enumeration attacks. Allowing too many requests per time is one of the main causes of these risks.
 
 Wallarm provides the **Rate abuse protection** [mitigation control](../about-wallarm/mitigation-controls-overview.md) to help prevent excessive traffic to your API.
 
@@ -28,7 +28,7 @@ By limiting requests per time by user sessions, you can restrict brute force att
 
 Suppose your application accepts POST requests that include a Bearer JWT at the `https://example.com/api/login` endpoint. We want to block for 1 hour sessions within which more than 10 requests per 60 seconds are sent to this endpoint. For this scenario, the mitigation control limiting requests per time will appear as follows:
 
-![Rate abuse prevention - JWT example](../../images/api-protection/mitigation-controls-rate-abuse-prevention-jwt.png)
+![Rate abuse prevention - JWT example](../images/api-protection/mitigation-controls-rate-abuse-prevention-jwt.png)
 
 ## Difference with rate limiting
 

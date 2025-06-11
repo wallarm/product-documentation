@@ -65,7 +65,7 @@ Note that you can use [regular expressions](#regular-expressions) to set scope a
 
 **Scope** defines which requests the control applies to (based on URI and other parameters). It’s configured the same way as request conditions in rules. See details [here](../user-guides/rules/rules.md#configuring).
 
-If you leave the **Scope** section blank, mitigation control is applied to **all traffic** and **all applications**; such controls are inherited by all [branches](#mitigation-control-branches).
+If you leave the **Scope** section blank, mitigation control is applied to **all traffic** and **all applications**; such controls are inherited by all [branches](../about-wallarm/mitigation-controls-overview.md#mitigation-control-branches).
 
 ### Scope filters 
 
@@ -81,11 +81,11 @@ As conditions, you can use values or value patters of:
 
 ### Enumerated parameters
 
-In the **Enumerated parameters** section, you need to select parameters that will be monitored for enumeration. Select set of parameters to be monitored via exact or or [regex](#regex) match (only one approach can be used within single mitigation control).
+In the **Enumerated parameters** section, you need to select parameters that will be monitored for enumeration. Select set of parameters to be monitored via exact or or [regex](#regular-expressions) match (only one approach can be used within single mitigation control).
 
 If for regex you specify both **Filter by parameter name** and **Filter by parameter value**, they combine (`AND` operator), for example `(?i)id` for name and `\d*` for value will catch the `userId` parameter but only count requests having combination of digits as a parameter values.
 
-When some request meets [scope](#scope) and [advanced conditions](#advanced-conditions) and **contains** unique value for the parameter monitored for enumeration, this parameter's counter gets `+1`.
+When some request meets [scope](#scope) and [advanced filters](#scope-filters) and **contains** unique value for the parameter monitored for enumeration, this parameter's counter gets `+1`.
 
 ### Enumeration threshold
 
@@ -108,7 +108,7 @@ When any of the counters exceeds the threshold, the selected action is performed
 
 ### Regular expressions
 
-The **Scope** section uses [PIRE](../user-guides/rules/rules.md#condition-type-regex-) regular expression library, while advanced conditions use [PCRE](https://www.pcre.org/). Use the following operators to involve regular expression:
+The **Scope** section uses [PIRE](../user-guides/rules/rules.md#condition-type-regex) regular expression library, while advanced conditions use [PCRE](https://www.pcre.org/). Use the following operators to involve regular expression:
 
 | Operator | Description |
 | --- | --- |

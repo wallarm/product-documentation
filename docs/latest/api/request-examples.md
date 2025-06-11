@@ -187,7 +187,7 @@ If requests to domain `MY.DOMAIN.COM` have the `X-FORWARDED-FOR: 44.33.22.11` HT
 
 ## Create the rule setting filtration mode to monitoring for the specific application
 
-The following request will create the [rule setting the node to filter traffic](../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console) going to the [application](../user-guides/settings/applications.md) with ID `3` in the monitoring mode.
+The following request will create the [rule setting the node to filter traffic](../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode) going to the [application](../user-guides/settings/applications.md) with ID `3` in the monitoring mode.
 
 --8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.md"
 

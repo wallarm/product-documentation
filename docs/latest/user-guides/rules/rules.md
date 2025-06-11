@@ -7,6 +7,8 @@
 [link-nodes]:                   ../../about-wallarm/overview.md#how-wallarm-works
 [link-sessions]:                ../../api-sessions/overview.md
 [link-brute-force-protection]:  ../../admin-en/configuration-guides/protecting-against-bruteforce.md
+[link-cloud-node-synchronization]: ../../admin-en/configure-cloud-node-synchronization-en.md
+[img-rules-create-backup]:      ../../images/user-guides/rules/rules-create-backup.png
 
 # Rules
 
@@ -31,7 +33,7 @@ Using rules, you can control how Wallarm mitigates attacks on your applications 
 
 * Fine-tuning attack detection:
 
-    * [Override filtration mode](../../admin-en/configure-wallarm-mode.md#endpoint-targeted-filtration-rules-in-wallarm-console) for particular domains/endpoints
+    * [Override filtration mode](../../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode) for particular domains/endpoints
     * [Ignore certain attacks](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-types)
     * [Disable custom attack detectors](../../user-guides/rules/regex-rule.md#partial-disabling) for particular domains/endpoints or request parts
     * Configure [binary data processing](../../about-wallarm/protecting-against-attacks.md#ignoring-certain-attack-signs-in-the-binary-data)
@@ -66,7 +68,7 @@ You can create rules with specified action but not linked to any endpoint - they
 * Default rules are inherited by all branches.
 
 !!! info "Traffic filtration mode default rule"
-    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) setting.
+    Wallarm automatically creates the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#general-filtration-mode) setting.
 
 ### Viewing branch rules
 

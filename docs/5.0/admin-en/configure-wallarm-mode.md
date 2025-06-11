@@ -12,26 +12,26 @@ Filtration mode defines the filtering node behavior when processing incoming req
 
 The Wallarm filtering node can process incoming requests in the following modes (from the mildest to the strictest):
 
-* `off`
-* `monitoring`
-* `safe_blocking` - blocks only where it is safe to block ([graylist](../user-guides/ip-lists/overview.md)).
-* `block`
+* **Disabled** (`off`)
+* **Monitoring** (`monitoring`)
+* **Safe blocking** (`safe_blocking`) - blocks only where it is safe to block ([graylist](../user-guides/ip-lists/overview.md)).
+* **Blocking** (`block`)
 
---8<-- "../include/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-5.0.md"
 
 ## Configuration methods
 
 The filtration mode can be configured in the following ways:
 
 * [Set the `wallarm_mode` directive on the node side](#setting-wallarm_mode-directive)
-* [Define the general filtration mode in Wallarm Console](#general-filtration-mode)
-* [Define the conditioned filtration mode settings in Wallarm Console](#conditioned-filtration-mode)
+* [Define the general filtration rule in Wallarm Console](#general-filtration-rule-in-wallarm-console)
+* [Define the endpoint-targeted filtration rules in Wallarm Console](#endpoint-targeted-filtration-rules-in-wallarm-console)
 
 Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#prioritization-of-methods). By default, the settings specified in Wallarm Console have a higher priority than the `wallarm_mode` directive regardless of its value severity.
 
 ### Setting `wallarm_mode` directive
 
-You can set the node filtration mode on the node side using the [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) directive. Peculiarities of how the `wallarm_mode` directive is set in different deployments are described below.
+You can set the node filtration mode on the node side using the `wallarm_mode` directive. Peculiarities of how the `wallarm_mode` directive is set in different deployments are described below.
 
 Note that described configuration is applicable only for [in-line](../installation/inline/overview.md) deployments - for [out-of-band (OOB)](../installation/oob/overview.md) solutions only the `monitoring` mode can be active.
 
@@ -88,82 +88,28 @@ Note that described configuration is applicable only for [in-line](../installati
     * For Native Node all-in-one installer and Docker image, use the [`route_config.wallarm_mode`](../installation/native-node/all-in-one-conf.md#route_configwallarm_mode) parameter.
     * For Native Node Helm chart, use the [`config.connector.route_config.wallarm_mode`](../installation/native-node/helm-chart-conf.md#configconnectorroute_configwallarm_mode) parameter.
 
-### General filtration mode
+### General filtration rule in Wallarm Console
 
-You can define the general filtration mode for all incoming requests using mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription) or rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)..
-
-=== "Mitigation controls"
-
-    The general filtration mode for all incoming requests is defined by "all traffic" **Real-time blocking mode** [mitigation control](../about-wallarm/mitigation-controls-overview.md):
-
-    | Setting | Filtration mode |
-    | --- | --- |
-    | **Inherited** | Filtration mode is inherited from the [all-traffic **Real-time blocking mode**](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
-    | **Excluding** | `off` |
-    | **Monitoring** | `monitoring` |
-    | **Safe blocking** | `safe_blocking` |
-    | **Blocking** | `block` |
-
-    **Inherited** is default. You can change the global mode at any moment.
-
-=== "Rules"
+You can define the general filtration mode for all incoming requests in **Settings** → **General** in the [US](https://us1.my.wallarm.com/settings/general) or [EU](https://my.wallarm.com/settings/general) Cloud.
     
-    You can define the general filtration mode for all incoming requests in **Settings** → **General** in the [US](https://us1.my.wallarm.com/settings/general) or [EU](https://my.wallarm.com/settings/general) Cloud.
-    
-    ![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
+![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
-    The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules** section. Note that endpoint-targeted filtration rules in this section have higher priority.
+The general filtration mode setting is represented as **Set filtration mode** [default](../user-guides/rules/rules.md#default-rules) rule in the **Rules** section. Note that endpoint-targeted filtration rules in this section have higher priority.
 
-### Conditioned filtration mode
+### Endpoint-targeted filtration rules in Wallarm Console
 
-You can set filtration mode for specific branches, endpoints and relying on other conditions using mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription) or rules ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription).
+You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Set filtration mode** [rule](../user-guides/rules/rules.md) to do this. Such rules have higher priority than the [general filtration rule set in Wallarm Console](#general-filtration-rule-in-wallarm-console).
 
-=== "Mitigation controls"
+To create a new filtration mode rule:
 
-    You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Real-time blocking mode** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
+--8<-- "../include/rule-creation-initial-step.md"
 
-    Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope** and **Mitigation mode** are set for any mitigation control.
+1. Choose **Fine-tuning attack detection** → **Override filtration mode**. 
+1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to. If you initiated the rule for specific branch, hit or endpoint, they will define the scope - if necessary, you can add more conditions.
+1. Select a desired mode.
+1. Save changes and wait for the [rule compilation to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
 
-    To create a new filtration mode mitigation control:
-
-    1. Proceed to Wallarm Console → **Mitigation Controls**.
-    1. Use **Add control** → **Real-time blocking mode**.
-    1. Describe the **Scope** to apply the mitigation control to.
-    1. In the **Mitigation mode** section, select filtration mode for the specified scope:
-
-        | Setting | Filtration mode |
-        | --- | --- |
-        | **Inherited** | Filtration mode is inherited from the [all-traffic **Real-time blocking mode**](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
-        | **Excluding** | `off` |
-        | **Monitoring** | `monitoring` |
-        | **Safe blocking** | `safe_blocking` |
-        | **Blocking** | `block` |
-
-    1. Save changes.
-
-=== "Rules"
-
-    You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Set filtration mode** [rule](../user-guides/rules/rules.md) to do this. Such rules have higher priority than the [general filtration rule set in Wallarm Console](#general-filtration-rule-in-wallarm-console).
-
-    To create a new filtration mode rule:
-
-    --8<-- "../include/rule-creation-initial-step.md"
-
-    1. Choose **Fine-tuning attack detection** → **Override filtration mode**. 
-    1. In **If request is**, [describe](../user-guides/rules/rules.md#configuring) the scope to apply the rule to. If you initiated the rule for specific branch, hit or endpoint, they will define the scope - if necessary, you can add more conditions.
-    1. Select filtration mode for the specified scope:
-
-        | Setting | Filtration mode |
-        | --- | --- |
-        | **Default** | Filtration mode is inherited from the [global filtration mode setting](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
-        | **Disabled** | `off` |
-        | **Monitoring** | `monitoring` |
-        | **Safe blocking** | `safe_blocking` |
-        | **Blocking** | `block` |
-
-    1. Save changes and wait for the [rule compilation to complete](../user-guides/rules/rules.md#ruleset-lifecycle).
-
-    Note that to create a filtration mode rule, you can also [call the Wallarm API directly](../api/request-examples.md#create-the-rule-setting-filtration-mode-to-monitoring-for-the-specific-application).
+Note that to create a filtration mode rule, you can also [call the Wallarm API directly](../api/request-examples.md#create-the-rule-setting-filtration-mode-to-monitoring-for-the-specific-application).
 
 ### Prioritization of methods
 
@@ -256,10 +202,10 @@ http {
 }
 ```
 
-### Settings in Wallarm Console
+### Rules in Wallarm Console
 
-* [General filtration mode](#general-filtration-mode): **Monitoring**.
-* [Conditioned filtration mode settings](#conditioned-filtration-mode):
+* [General filtration rule](#general-filtration-rule-in-wallarm-console): **Monitoring**.
+* [Filtration rules](#endpoint-targeted-filtration-rules-in-wallarm-console):
     * If the request meets the following conditions:
         * Method: `POST`
         * First part of the path: `main`

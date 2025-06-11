@@ -17,7 +17,7 @@ Wallarmフィルタリングノードは、受信リクエストを以下のモ�
 * **セーフブロッキング** (`safe_blocking`)
 * **ブロッキング** (`block`)
 
---8<-- "../include/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-5.0.md"
 
 ## 設定方法
 

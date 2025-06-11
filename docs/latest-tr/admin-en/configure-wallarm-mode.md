@@ -18,7 +18,7 @@ Wallarm filtreleme düğümü, gelen istekleri aşağıdaki modlarda işleyebili
 * **Safe blocking** (`safe_blocking`)
 * **Blocking** (`block`)
 
---8<-- "../include/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-5.0.md"
 
 ## Yapılandırma yöntemleri
 

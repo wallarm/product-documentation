@@ -17,7 +17,7 @@ The Wallarm filtering node can process incoming requests in the following modes 
 * `safe_blocking` - blocks only where it is safe to block ([graylist](../user-guides/ip-lists/overview.md)).
 * `block`
 
---8<-- "../include/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-5.0.md"
 
 ## Configuration methods
 
@@ -98,7 +98,7 @@ You can define the general filtration mode for all incoming requests using mitig
 
     | Setting | Filtration mode |
     | --- | --- |
-    | **Inherited** | Filtration mode is inherited from the [all-traffic **Real-time blocking mode**](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
+    | **Inherited** | Filtration mode is inherited from the [all-traffic **Real-time blocking mode**](../admin-en/configure-wallarm-mode.md#general-filtration-mode) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
     | **Excluding** | `off` |
     | **Monitoring** | `monitoring` |
     | **Safe blocking** | `safe_blocking` |
@@ -133,7 +133,7 @@ You can set filtration mode for specific branches, endpoints and relying on othe
 
         | Setting | Filtration mode |
         | --- | --- |
-        | **Inherited** | Filtration mode is inherited from the [all-traffic **Real-time blocking mode**](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
+        | **Inherited** | Filtration mode is inherited from the [all-traffic **Real-time blocking mode**](../admin-en/configure-wallarm-mode.md#general-filtration-mode) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
         | **Excluding** | `off` |
         | **Monitoring** | `monitoring` |
         | **Safe blocking** | `safe_blocking` |
@@ -143,7 +143,7 @@ You can set filtration mode for specific branches, endpoints and relying on othe
 
 === "Rules"
 
-    You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Set filtration mode** [rule](../user-guides/rules/rules.md) to do this. Such rules have higher priority than the [general filtration rule set in Wallarm Console](#general-filtration-rule-in-wallarm-console).
+    You can set filtration mode for specific branches, endpoints and relying on other conditions. Wallarm provides the **Set filtration mode** [rule](../user-guides/rules/rules.md) to do this. Such rules have higher priority than the [general filtration rule set in Wallarm Console](#general-filtration-mode).
 
     To create a new filtration mode rule:
 
@@ -155,7 +155,7 @@ You can set filtration mode for specific branches, endpoints and relying on othe
 
         | Setting | Filtration mode |
         | --- | --- |
-        | **Default** | Filtration mode is inherited from the [global filtration mode setting](../admin-en/configure-wallarm-mode.md#general-filtration-rule-in-wallarm-console) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
+        | **Default** | Filtration mode is inherited from the [global filtration mode setting](../admin-en/configure-wallarm-mode.md#general-filtration-mode) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
         | **Disabled** | `off` |
         | **Monitoring** | `monitoring` |
         | **Safe blocking** | `safe_blocking` |

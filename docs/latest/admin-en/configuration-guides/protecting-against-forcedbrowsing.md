@@ -10,8 +10,8 @@ This attack aims to enumerate and access hidden resources (e.g. directories and 
 
 Depending on your subscription plan, one of the following configuration methods for brute force protection will be available:
 
-* Mitigation controls ([Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
-* Triggers ([Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
+* Mitigation controls ([Advanced API Security](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
+* Triggers ([Cloud Native WAAP](../../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription)
 
 ## Mitigation control-based protection <a href="../../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
