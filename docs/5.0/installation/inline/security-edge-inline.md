@@ -45,11 +45,24 @@ You can update the Edge node deployment settings at any time. The node will be r
 
 In general settings, you specify regions to deploy the Edge node and origins to forward filtered traffic.
 
-#### Regions
+#### Cloud providers and regions
 
-Choose one or more regions to deploy the Edge node. We recommend selecting regions close to where your APIs or applications are hosted.
+Select regions in one or more cloud providers - **AWS** and **Azure** are supported. You can deploy the Edge Node across multiple regions and providers.
 
-Deploying in multiple regions enhances geo-redundancy and ensures high availability.
+=== "Multi-region deployment"
+    When selecting multiple regions within a single cloud provider, traffic is routed based on latency - **each request goes to the nearest available region**. This reduces response time and balances the load.
+
+    This is the most common setup, recommended when you serve requests from multiple locations.
+
+    If one region becomes unavailable, traffic is automatically re-routed within the same provider.
+
+=== "Multi-cloud deployment"
+    When selecting regions across multiple clouds, traffic is distributed using a **[global round‑robin strategy](https://en.wikipedia.org/wiki/Round-robin_DNS)** - each request is routed to one of the selected regions, regardless of provider or latency.
+
+    This setup is recommended in the following cases:
+
+    * Cloud provider redundancy - for example, if AWS becomes unavailable, traffic is automatically routed to Azure to maintain availability.
+    * Regional high availability - for example, you can select the same region (e.g., East) in both AWS and Azure. If one provider becomes unavailable, traffic is routed to the same region in the other cloud.
 
 #### Origin servers
 
@@ -63,28 +76,48 @@ If an origin has multiple servers, you can specify all of them. Requests are dis
 !!! info "Allow traffic from Wallarm IP ranges to origins"
     Your origins should allow incoming traffic from the IP ranges used by the selected regions:
 
-    === "eu-central-1 (Frankfurt)"
+    === "AWS EU Central 1 (Frankfurt)"
         ```
         3.76.66.246
         18.195.202.193
         ```
-    === "eu-central-2 (Zurich)"
+    === "AWS EU Central 2 (Zurich)"
         ```
         51.96.131.55
         16.63.191.19
         ```
-    === "us-east-1"
+    === "AWS US East 1"
         ```
         18.215.213.205
         44.214.56.120
         44.196.111.152
         ```
-    === "us-west-1"
+    === "AWS US West 1"
         ```
         52.8.91.20
         13.56.117.139
         54.177.237.34
         50.18.177.184
+        ```
+    === "Azure East US"
+        ```
+        104.211.29.72
+        104.211.29.73
+        ```
+    === "Azure West US"
+        ```
+        104.210.63.116
+        104.210.63.117
+        ```
+    === "Azure Germany West Central (EU)"
+        ```
+        20.79.250.104
+        20.79.250.105
+        ```
+    === "Azure Switzerland North (EU)"
+        ```
+        20.203.240.193
+        20.203.240.192
         ```
 
 ![!](../../images/waf-installation/security-edge/inline/general-settings-section.png)
@@ -161,19 +194,21 @@ If DNS zones are specified in the **Certificates** section, add the CNAME record
 
 ![](../../images/waf-installation/security-edge/inline/cert-cname.png)
 
-For example, if `myservice.com` is specified in the DNS zone, the cart CNAME is the following:
-
-```
-_acme-challenge.myservice.com CNAME _acme-challenge.<WALLARM_CLOUD>-<CLIENT_ID>-<DEPLOYMENT_ID>.acme.aws.wallarm-cloud.com
-```
-
-DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node deployment once the CNAME records are verified.
+DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node deployment once the CNAME records are verified (if needed).
 
 ### 6. CNAME configuration for traffic routing
 
 To route traffic to Wallarm, you need to specify the Wallarm-provided CNAME in your DNS settings.
 
-Once the certificate CNAME is verified (~10 minutes), a **Traffic CNAME** will be available for each host on the **Hosts** tab of the Edge node page.
+Once the certificate CNAME is verified (~10 minutes), a traffic CNAME will be available for each host.
+
+* If you route traffic to a single cloud provider, use the **Traffic CNAME for selected cloud**.
+* If you are using multi-cloud deployment, copy the **Traffic CNAME (Global)** - traffic will be automatically distributed across all selected regions and providers.
+
+    Per-provider CNAMEs are also available if you need to enforce routing to a specific provider - for example, to test latency or performance across clouds.
+
+    !!! warning "If you remove one of the cloud providers"
+        Before removing a [cloud provider](#cloud-providers-and-regions) from the deployment, first switch to the per-provider CNAME to avoid service disruption.
 
 ![](../../images/waf-installation/security-edge/inline/traffic-cname.png)
 
