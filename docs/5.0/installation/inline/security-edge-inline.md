@@ -204,12 +204,6 @@ If DNS zones are specified in the **Certificates** section, add the CNAME record
 
 ![](../../images/waf-installation/security-edge/inline/cert-cname.png)
 
-For example, if `myservice.com` is specified in the DNS zone, the certificate CNAME is the following:
-
-```
-_acme-challenge.myservice.com CNAME _acme-challenge.<WALLARM_CLOUD>-<CLIENT_ID>-<DEPLOYMENT_ID>.acme.<CLOUD_PROVIDER>.wallarm-cloud.com
-```
-
 DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node deployment once the CNAME records are verified (if needed).
 
 ### 6. Routing traffic to the Edge Node
