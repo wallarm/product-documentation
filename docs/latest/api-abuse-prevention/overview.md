@@ -35,6 +35,7 @@ The following detectors may be involved:
 * **Session rotation** analyzing requests for being a part of the [account takeover](../attacks-vulns-list.md#account-takeover) attacks where the attackers exploit a pool of sessions.
 * **Persistent ATO** analyzing requests for being a part of the [account takeover](../attacks-vulns-list.md#account-takeover) attacks that occur gradually over an extended period.
 * **Credential stuffing** analyzing requests for being a part of the [account takeover](../attacks-vulns-list.md#account-takeover) attacks that involve repeated login attempts with different credentials while maintaining stable request attributes ([credential stuffing](../attacks-vulns-list.md#credential-stuffing)).
+* **Low-frequency credential stuffing** analyzing requests for being a part of the [account takeover](../attacks-vulns-list.md#account-takeover) attacks that are characterized by isolated or minimal authentication attempts ([credential stuffing](../attacks-vulns-list.md#credential-stuffing)) without subsequent API interaction: attackers purposefully restrict login attempts per session or client to evade detection.
 
 !!! info "Confidence"
     As a result of detectors' work, every [detected](../api-abuse-prevention/exploring-bots.md) bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
