@@ -123,6 +123,30 @@ To start using the functionality, you need to create at least one [**Detect Grap
 
 ![GraphQL thresholds](../../images/user-guides/rules/graphql-rule.png)
 
+## GraphQL APIs in API Discovery
+
+!!! tip ""
+    [NGINX Node 6.1.0 and higher](../node-artifact-versions.md) and not supported by Native Node so far
+
+Along with the improved user interface and performance, the new [API Discovery](../../api-discovery/overview.md) introduces the ability to detect and display GraphQL APIs.
+
+If some of your APIs utilize the GraphQL protocol and are requested in the real traffic, API Discovery will now detect them. In the built API inventory, you will see data about:
+
+* GraphQL operations (queries, mutations, subscriptions)
+* GraphQL schema
+
+Within each GraphQL operation, you will find its details, including transferred sensitive data, risk score and what contributes to it, schema, parameters and headers of requests and responses:
+
+![API Discovery - GraphQL operation details](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-GQL.png)
+
+Each request/response parameter information includes:
+
+* Parameter name and the part of request/response this parameter belongs to
+* Path: the hierarchical location of a parameter within a GraphQL query structure
+* Information about parameter changes (new, unused)
+* Presence and type of sensitive data transmitted by this parameter, including:
+* Date and time when parameter value was last transferred by requests
+
 ## Mitigation Controls
 
 We introduce a unified management center for all Wallarm attack mitigation settings - [**Mitigation Controls**](../../about-wallarm/mitigation-controls-overview.md). With mitigation controls you can:
