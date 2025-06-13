@@ -149,19 +149,32 @@ goreplay:
     # - 1
 ```
 
-### Identifying the original client IP address
+### Identifying the original client IP and host headers
 
-By default, Wallarm reads the source IP address from the network packet's IP headers. However, proxies and load balancers can change this to their own IPs.
+When traffic passes through proxies or load balancers, they often replace the original client IP address and `Host` header with their own values. To preserve the original information, such intermediaries typically add HTTP headers like `X-Forwarded-For`, `X-Real-IP`, or `X-Forwarded-Host`.
 
-To preserve the real client IP, these intermediaries often add an HTTP header (e.g., `X-Real-IP`, `X-Forwarded-For`). The `real_ip_header` parameter tells Wallarm which header to use to extract the original client IP, e.g.:
+To ensure the Native Node correctly identifies the original client and target host, use the [`proxy_headers`](../../native-node/all-in-one-conf.md#proxy_headers) configuration block, e.g.:
 
 ```yaml
 version: 4
 
 mode: tcp-capture
 
-http_inspector:
-  real_ip_header: "X-Real-IP"
+proxy_headers:
+  # Applies to requests from trusted networks; sets original Host only
+  - trusted_networks:
+      - 1.2.3.0/24
+      - 4.5.6.0/24
+    original_host:
+      - X-Forwarded-Host
+      - X-Original-Host
+  
+  # Applies to all sources; sets both original Host and real IP
+  - original_host:
+      - X-Forwarded-Host
+    real_ip:
+      - X-Forwarded-For
+      - X-Real-Ip
 ```
 
 ## Step 4: Run the Wallarm installer
