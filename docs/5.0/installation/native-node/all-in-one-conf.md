@@ -52,6 +52,22 @@ The Wallarm node operation mode. It can be:
         # max_received_bytes: 640_000
         # max_duration: 1m
 
+    proxy_headers:
+      # Applies to requests from trusted networks; sets original Host only
+      - trusted_networks:
+          - 1.2.3.0/24
+          - 4.5.6.0/24
+        original_host:
+          - X-Forwarded-Host
+          - X-Original-Host
+
+      # Applies to all sources; sets both original Host and real IP
+      - original_host:
+          - X-Forwarded-Host
+        real_ip:
+          - X-Forwarded-For
+          - X-Real-Ip
+
     route_config:
       wallarm_application: 10
       wallarm_mode: monitoring
@@ -90,8 +106,21 @@ The Wallarm node operation mode. It can be:
       response_timeout: 5s
       url_normalize: true
 
-    http_inspector:
-      real_ip_header: "X-Real-IP"
+    proxy_headers:
+      # Applies to requests from trusted networks; sets original Host only
+      - trusted_networks:
+          - 1.2.3.0/24
+          - 4.5.6.0/24
+        original_host:
+          - X-Forwarded-Host
+          - X-Original-Host
+
+      # Applies to all sources; sets both original Host and real IP
+      - original_host:
+          - X-Forwarded-Host
+        real_ip:
+          - X-Forwarded-For
+          - X-Real-Ip
     
     route_config:
       wallarm_application: 10
@@ -125,6 +154,22 @@ The Wallarm node operation mode. It can be:
       address: ":5050"
       tls_cert: path/to/tls-cert.crt
       tls_key: path/to/tls-key.key
+
+    proxy_headers:
+      # Applies to requests from trusted networks; sets original Host only
+      - trusted_networks:
+          - 1.2.3.0/24
+          - 4.5.6.0/24
+        original_host:
+          - X-Forwarded-Host
+          - X-Original-Host
+
+      # Applies to all sources; sets both original Host and real IP
+      - original_host:
+          - X-Forwarded-Host
+        real_ip:
+          - X-Forwarded-For
+          - X-Real-Ip
 
     route_config:
       wallarm_application: 10
@@ -494,12 +539,6 @@ Default: `true`.
 
 In Node version 0.10.1 and earlier, this parameter is set as `middleware.url_normalize`.
 
-### http_inspector.real_ip_header
-
-By default, Wallarm reads the source IP address from the network packet's IP headers. However, proxies and load balancers can change this to their own IPs.
-
-To preserve the real client IP, these intermediaries often add an HTTP header (e.g., `X-Real-IP`, `X-Forwarded-For`). The `real_ip_header` parameter tells Wallarm which header to use to extract the original client IP.
-
 ## Envoy external filter-specific settings
 
 ### envoy_external_filter.address (required)
@@ -538,6 +577,48 @@ Path to the private key corresponding to the TLS/SSL certificate (typically a `.
 If the node is deployed using a Docker image, this parameter is not needed because SSL decryption should occur at the load balancer level, before the traffic reaches the containerized node.
 
 ## Basic settings
+
+### proxy_headers
+
+Configures how the Native Node extracts the original client IP and host when traffic passes through proxies or load balancers.
+
+* `trusted_networks`: trusted proxy IP ranges (CIDRs). Headers like `X-Forwarded-For` are only trusted if the request comes from these networks.
+
+    If omitted, all networks are trusted.
+* `original_host`: headers to use for the original `Host` value, if modified by a proxy.
+* `real_ip`: headers to use for extracting the real client IP address.
+
+You can define multiple rules for different proxy types or trust levels.
+
+!!! info "Rule evaluation order"    
+    Only the first matching rule is applied per request.
+
+Supported in Native Node 0.13.5 and later 0.13.x versions.
+
+Example:
+
+```yaml
+version: 4
+
+proxy_headers:
+
+  # Applies to requests from trusted networks; sets original Host only
+  - trusted_networks:
+      - 1.2.3.0/24
+      - 4.5.6.0/24
+    original_host:
+      - X-Forwarded-Host
+      - X-Original-Host
+  
+  # Applies to all sources; sets both original Host and real IP
+  - original_host:
+      - X-Forwarded-Host
+    real_ip:
+      - X-Forwarded-For
+      - X-Real-Ip
+```
+
+For Node 0.13.4 and earlier operating in [`tcp-capture`](../oob/tcp-traffic-mirror/deployment.md) mode, use the parameter `http_inspector.real_ip_header`. In later 0.13.x versions, the `proxy_headers` section replaces it.
 
 ### route_config
 
@@ -728,6 +809,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
       legacy_status:
         enabled: true
         listen_address: 127.0.0.1:10246
+      namespace: wallarm_gonode
 
     health_check:
       enabled: true
@@ -759,6 +841,7 @@ If not set, the [`log.log_file`](#loglog_file) setting is used.
       legacy_status:
         enabled: true
         listen_address: 127.0.0.1:10246
+      namespace: wallarm_gonode
 
     health_check:
       enabled: true
@@ -856,6 +939,16 @@ Default: `true`.
 Sets the address and port where `/wallarm-status` metrics in JSON format will be exposed. To access these metrics, use the `/wallarm-status` endpoint.
 
 Default: `127.0.0.1:10246`.
+
+### metrics.namespace
+
+Defines the prefix for Prometheus metrics exposed by the `go-node` binary (the core processing service of the Native Node).
+
+Default: `wallarm_gonode`.
+
+All metrics emitted by `go-node` will use this prefix (e.g., `wallarm_gonode_requests_total`). Other components of the node, such as `wstore` and `wcli`, use their own fixed prefixes.
+
+Supported in Native Node 0.13.5 and later 0.13.x versions.
 
 ### health_check.enabled
 

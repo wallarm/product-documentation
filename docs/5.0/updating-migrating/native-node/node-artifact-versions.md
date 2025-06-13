@@ -10,6 +10,15 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.13.5 (2025-06-09)
+
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
+* Removed support for the `WALLARM_ATTACKS_DETAILED_EXPORT` environment variable which has been used to disable exporting full attack data to Wallarm Cloud
+* Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
+
+    This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
+* Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary
+
 ### 0.13.4 (2025-05-14)
 
 * Fixed the `--preserve` script flag behavior to correctly retain the existing `node.yaml` and `env.list` files during upgrade
@@ -207,6 +216,12 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.13.5 (2025-06-09)
+
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
+<!-- * Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary -->
+<!-- * Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers-->
+
 ### 0.13.4 (2025-05-14)
 
 * Added [`config.connector.per_connection_limits`](../../installation/native-node/helm-chart-conf.md#configconnectorper_connection_limits) to control `keep-alive` connection limits
@@ -320,6 +335,15 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM API Connect](../../installation/connectors/ibm-api-connect.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.13.5 (2025-06-09)
+
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
+* Removed support for the `WALLARM_ATTACKS_DETAILED_EXPORT` environment variable which has been used to disable exporting full attack data to Wallarm Cloud
+* Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
+
+    This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
+* Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary
 
 ### 0.13.4 (2025-05-14)
 
