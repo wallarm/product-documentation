@@ -1,8 +1,5 @@
 # Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-!!! warning "Newer version available"
-    This article describes **REST only** API Discovery - since May 2025, the [newer version](../api-discovery-2.0/overview.md) supporting both **REST and GraphQL** and having **improved performance** is available.
-
 As soon as the [API Discovery](overview.md) module has built the catalog of your endpoints (your API inventory), you can explore it in the **API Discovery** section of Wallarm Console. Learn from this article how to go through the discovered data.
 
 ## Endpoints
@@ -13,7 +10,7 @@ Explore your discovered API inventory using the **API Discovery** section in the
 
 By default, endpoints and operations are sorted by host/endpoint or operation name. Also, **Group by host** is on. With grouping by host disabled, you can sort endpoints by risk.
 
-## Filtering
+### Filtering
 
 Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
@@ -33,15 +30,14 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 Each request/response parameter information includes:
 
 * Parameter name and the part of request/response this parameter belongs to
-* Path: the hierarchical location of a parameter within a REST query structure (not displayed, if all parameters are stored in the same root location)
 * Information about parameter changes (new, unused)
 * Presence and type of sensitive data transmitted by this parameter, including:
 
-    * Personally identifiable information (PII) like full name, passport number or SSN
+    * Technical data like IP and MAC addresses
     * Login credentials like secret keys and passwords
     * Financial data like bank card numbers
     * Medical data like medical license number
-    * Technical data like IP and MAC addresses
+    * Personally identifiable information (PII) like full name, passport number or SSN
 
 * [Type/format](#format-and-data-type) of data sent in this parameter
 * Date and time when parameter value was last transferred by requests
@@ -59,11 +55,11 @@ This data allows checking that values of the expected format are passed in each 
 
 ### Variability
 
-URLs can include diverse elements, such as ID of user. API Discovery supports finding such elements for UUID, INTEGER, FLOAT and HEX path segment types:
+URLs can include diverse elements, such as ID of user, like:
 
-* `/api/users/profile/a1b2c3d4-e5f6-7890-1234-567890abcdef12`
-* `/api/users/profile/f0e9d8c7-b6a5-4321-fedc-ba9876543210`
-* `/api/users/profile/1a2b3c4d-5e6f-7080-9102-34567890fedc`
+* `/api/articles/author/author-a-0001`
+* `/api/articles/author/author-a-1401`
+* `/api/articles/author/author-b-1401`
 
 The **API Discovery** module unifies such elements into the `{parameter_X}` format in the endpoint paths, so for the example above you will not have 3 endpoints, but instead there will be one:
 
@@ -71,7 +67,9 @@ The **API Discovery** module unifies such elements into the `{parameter_X}` form
 
 Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
 
-<!--![API Discovery - variability in path](../images/TBD)-->
+<!--![API Discovery - variability in path](TBD)-->
+
+Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
 
 ## GraphQL operation details
 
@@ -82,12 +80,12 @@ By clicking the GraphQL operation, you can find its details, including transferr
 Each request/response parameter information includes:
 
 * Parameter name and the part of request/response this parameter belongs to
-* Path: the hierarchical location of a parameter within a GraphQL query structure (not displayed, if all parameters are stored in the same root location)
+* Path: the hierarchical location of a parameter within a GraphQL query structure
 * Information about parameter changes (new, unused)
 * Presence and type of sensitive data transmitted by this parameter, including:
 * Date and time when parameter value was last transferred by requests
 
-<a name="data_format_graphql"></a>**Format and data type**
+### Format and data type
 
 In GraphQL operation details, in the **Type** column for parameters and headers, Wallarm indicates the data format identified through traffic analysis.
 
@@ -98,35 +96,6 @@ For GraphQL operations, data formats are detected in accordance with the [scalar
 * `String`: A UTF‐8 character sequence.
 * `Boolean`: true or false.
 
-## SOAP operation details
-
-By clicking the SOAP operation, you can find its details, including transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
-
-![API Discovery - SOAP operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-SOAP.png)
-
-Each request/response XML parameter information includes:
-
-* Parameter name (**Key**)
-* Path: the hierarchical location of a parameter within an XML structure (not displayed, if all parameters are stored in the same root location)
-* Parameter type
-* Namespaces for path elements (from more general to more specific)
-* Presence and type of sensitive data transmitted by this parameter
-* Information about parameter changes (new, unused)
-* Date and time when parameter value was last transferred by requests
-
-<a name="data_format_soap"></a>**Format and data type**
-
-In SOAP operation details, in the **Type** column for parameters and headers, Wallarm indicates the data format identified through traffic analysis.
-
-For SOAP operations, it is a limited set from the [built-in primitive XML data types](https://www.w3.org/TR/xmlschema-2/#built-in-primitive-datatypes):
-
-* soapTypeString   = `String`
-* soapTypeBoolean  = `Boolean`
-* soapTypeFloat    = `Float`
-* soapTypeDecimal  = `Decimal`
-* soapTypeDuration = `Duration`
-* soapTypeURI      = `URI`
-
 ## Endpoint activities
 
 The number of requests related to the endpoint is displayed in the **Requests** column. Click this number to open the [**API Sessions**](../api-sessions/overview.md) section with the list of user sessions for the last week with these requests.
@@ -135,28 +104,7 @@ Within each found session, only requests to your endpoint will be initially disp
 
 A structured view of session activity helps in understanding your endpoint place in malicious and legitimate activities, its relation to sensitive business flows and required protection measures.
 
-## CSV reports
-
-You can download the report on your API inventory in CSV format:
-
-1. Optionally, apply filters. Only data remaining after filter apply will go to report.
-1. Click **Download CSV**.
-
-    This will instantly generate a CSV file with list of your APIs, including all key attributes, including risk score, sensitive data types and more.
-
-    !!! info "No parameter information"
-        The report does not include the information on API endpoint parameters.
-
-## Notifications
-
-You can [setup](setup.md#notifications) API Discovery notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
-
-* Daily endpoint changes
-* Hourly endpoint changes
-
-The notification will include both [changed and new](track-changes.md) endpoints. By default, the notification is disabled.
-
-<!--## Creating rules for API endpoints
+## Creating rules for API endpoints
 
 You can quickly create a new [custom rule](../user-guides/rules/rules.md) from any endpoint of API inventory: 
 
@@ -165,7 +113,7 @@ You can quickly create a new [custom rule](../user-guides/rules/rules.md) from a
 
 ![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
-## Exporting API inventory data
+<!--## Exporting API inventory data
 
 The API Discovery UI provides you with an option to export the current filtered list of endpoints as the [OpenAPI v3](https://spec.openapis.org/oas/v3.0.0) specification or CSV file.
 
@@ -179,6 +127,4 @@ To export, in Wallarm Console → **API Discovery**, use the **OAS/CSV** option.
 
 !!! warning "API host information in downloaded Swagger file"
     If a discovered API inventory contains several API hosts, endpoints from all API hosts will be included in the downloaded file. Currently, the API host information is not included in the file.
-
-test line added
 -->
