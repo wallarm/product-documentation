@@ -103,7 +103,7 @@ You can also block/unblock any session manually at any moment.
 Wallarm's [API Sessions](../../api-sessions/overview.md) provide visibility into sequences of user activities. With this addition not only request but also response information is available within each session:
 
 * You can configure any headers and parameters of responses to be displayed within their corresponding requests providing a clear and full picture of user activities.
-* You can use response parameters as grouping keys for sessions (see [example](../../api-sessions/setup.md#example-of-how-grouping-keys-work)), which makes grouping of requests into sessions more precise.
+* You can use response parameters as grouping keys for sessions (see [example](../../api-sessions/setup.md#grouping-keys-example)), which makes grouping of requests into sessions more precise.
 
 ![!API Sessions - example of grouping keys in work](../../images/api-sessions/api-sessions-grouping-keys.png)
 
@@ -150,14 +150,12 @@ To start using the functionality, you need to create at least one [**Detect Grap
 
 ![GraphQL thresholds](../../images/user-guides/rules/graphql-rule.png)
 
-## New API Discovery
-
-Wallarm's New [API Discovery](../../api-discovery/overview.md) is now **multi-protocol**: the REST protocol is extended with the support of GraphQL and SOAP. Also, improved user interface and performance make work with the API Discovery more comfortable and effective than before.
-
-### GraphQL protocol support
+## GraphQL APIs in API Discovery
 
 !!! tip ""
     [NGINX Node 6.1.0 and higher](../node-artifact-versions.md) and not supported by Native Node so far
+
+Along with the improved user interface and performance, the new [API Discovery](../../api-discovery/overview.md) introduces the ability to detect and display GraphQL APIs.
 
 If some of your APIs utilize the GraphQL protocol and are requested in the real traffic, API Discovery will now detect them. In the built API inventory, you will see data about:
 
@@ -174,25 +172,6 @@ Each request/response parameter information includes:
 * Path: the hierarchical location of a parameter within a GraphQL query structure
 * Information about parameter changes (new, unused)
 * Presence and type of sensitive data transmitted by this parameter, including:
-* Date and time when parameter value was last transferred by requests
-
-### SOAP protocol support
-
-!!! tip ""
-    [NGINX Node 6.2.0 and higher](../node-artifact-versions.md) and not supported by Native Node so far
-
-If some of your APIs utilize the SOAP protocol and are requested in the real traffic, API Discovery will now detect them. In the built API inventory, you will see data about SOAP operations, including such data as transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
-
-![API Discovery - SOAP operation details](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-SOAP.png)
-
-Each request/response XML parameter information includes:
-
-* Parameter name (**Key**)
-* Path: the hierarchical location of a parameter within an XML structure
-* Parameter type
-* Namespaces for path elements (from more general to more specific)
-* Presence and type of sensitive data transmitted by this parameter
-* Information about parameter changes (new, unused)
 * Date and time when parameter value was last transferred by requests
 
 ## Mitigation Controls
@@ -642,7 +621,7 @@ Now you can easily group node instances using one [**API token**](../../user-gui
 For example: 
 
 ```bash
-docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:6.10.1
+docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:6.7.0
 ```
 ...will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).
 
@@ -726,7 +705,7 @@ Wallarm Node now uses **wstore, a Wallarm-developed service**, instead of Tarant
     * The default `allow` value, specifying permitted IP addresses for the `/wallarm-status` service, is now 127.0.0.0/8 instead of 127.0.0.8/8.
 * [Kubernetes Ingress Controller](../../admin-en/installation-kubernetes-en.md):
     
-    * wstore runs as a separate dedicated pod (`ingress-controller-wallarm-wstore-<suffix>`), replacing the previous Tarantool postanalytics component.
+    * Tarantool is no longer a separate pod, wstore runs within the main `<CHART_NAME>-wallarm-ingress-controller-xxx` pod.
     * Helm values renamed: `controller.wallarm.tarantool` → `controller.wallarm.postanalytics`.
 * [Kubernetes Sidecar Controller](../../installation/kubernetes/sidecar-proxy/deployment.md):
 
