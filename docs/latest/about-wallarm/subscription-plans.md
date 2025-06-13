@@ -31,7 +31,7 @@ Wallarm is the only solution that unifies API discovery, risk management, real-t
 | [API Attack Surface Management (AASM)](../api-attack-surface/overview.md) | No | Yes |
 | [Vulnerability assessment](../user-guides/vulnerabilities.md) | Yes | Yes |
 | [API Sessions](../api-sessions/overview.md) | No | Yes |
-| [API Discovery](../api-discovery/overview.md), [API Discovery New](../api-discovery-2.0/overview.md) | No | Yes |
+| [API Discovery](../api-discovery/overview.md) | No | Yes |
 | [Sensitive data detection](../api-discovery/overview.md#sensitive-data-detection) | No | Yes |
 | [Rogue API Detection (shadow, orphan zombie)](../api-discovery/rogue-api.md) | No | Yes |
 | [Threat Replay Testing](../vulnerability-detection/threat-replay-testing/overview.md) | No | Yes |

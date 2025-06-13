@@ -1,15 +1,14 @@
 # Sensitive Data Detection <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-!!! warning "Newer version available"
-    This article describes **REST only** API Discovery - since May 2025, the [newer version](../api-discovery-2.0/overview.md) supporting both **REST and GraphQL** and having **improved performance** is available.
+API Discovery detects and highlights sensitive data consumed and carried by your APIs, which allows applying encryption, tokenization, or other security controls to protect it and prevent data breaches and transmitting sensitive data across insecure channels or to unauthorized systems.
 
-API Discovery detects and highlights sensitive data consumed and carried by your APIs, which allows applying encryption, tokenization, or other security controls to protect it and prevent data breaches and transmitting sensitive data across insecure channels or to unauthorized systems. This article describes how to use and configure the feature.
+![API Discovery - sensitive data](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-sensitive-data.png)
 
-You get Wallarm's sensitive data detection ready-to-use with the comprehensive default configuration. It is also highly customizable: you can fine-tune the existing detection process and extend it with your own data types to detect.
+<!--You get Wallarm's sensitive data detection ready-to-use with the comprehensive default configuration. It is also highly customizable: you can fine-tune the existing detection process and extend it with your own data types to detect.
 
 ## Detection by default
 
-By default, API Discovery detects the following types of sensitive data:
+By default, -->API Discovery detects the following types of sensitive data:
 
 * Technical data like IP and MAC addresses
 * Login credentials like secret keys and passwords
@@ -17,11 +16,11 @@ By default, API Discovery detects the following types of sensitive data:
 * Medical data like medical license number
 * Personally identifiable information (PII) like full name, passport number or SSN
 
-In Wallarm Console, go to **API Discovery** → **Configure API Discovery** → **Sensitive data** to check the list of default [sensitive data patterns](#customizing-sensitive-data-detection) provided for each of listed types.
+<!--In Wallarm Console, go to **API Discovery** → **Configure API Discovery** → **Sensitive data** to check the list of default [sensitive data patterns](#customizing-sensitive-data-detection) provided for each of listed types.
 
 ## Customizing sensitive data detection
 
-To make sensitive data detection fully comply with your company's specific needs and industry-specific regulations such as GDPR, HIPAA, PCI DSS, etc., API Discovery provides the ability to fine-tune the detection process (requires NGINX Node 5.0.3 or Native Node 0.7.0 or higher).
+To make sensitive data detection fully comply with your company's specific needs and industry-specific regulations such as GDPR, HIPAA, PCI DSS, etc., API Discovery provides the ability to fine-tune the detection process.
 
 Customization empowers you to meet your company's unique data protection obligations. Additionally, if any proprietary or specialized sensitive data elements are presented in your data flows, you will benefit from the ability to define custom regular expressions for their precise identification.
 
@@ -74,4 +73,4 @@ We must match `middle_name,` but not `name` or `middle`. So, we set a score for 
 
 To prevent us from detecting "middle" without `name,` we mark `name` as mandatory for an entity. If `name` is not found, no sensitive data is detected.
 
-![API Discovery – Settings - Sensitive data - Creating custom pattern](../images/about-wallarm-waf/api-discovery/api-discovery-settings-sd-own-pattern.png)
+![API Discovery – Settings - Sensitive data - Creating custom pattern](../images/about-wallarm-waf/api-discovery/api-discovery-settings-sd-own-pattern.png)-->

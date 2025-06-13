@@ -1,22 +1,16 @@
 # API Discovery Setup <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-!!! warning "Newer version available"
-    This article describes **REST only** API Discovery - since May 2025, the [newer version](../api-discovery-2.0/overview.md) supporting both **REST and GraphQL** and having **improved performance** is available.
-
-This article describes how to enable, configure and debug the [API Discovery](overview.md) module.
+This article describes how to enable <!--and configure -->Wallarm's [API Discovery](overview.md).
 
 ## Enable
 
-API Discovery is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node installation. During node deployment, it installs the API Discovery module but keeps it disabled by default.
+API Discovery is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node installation and is enabled by default if it is a part of your [subscription plan](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security). To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 
-To enable and run API Discovery correctly:
+By default, enabled API Discovery analyzes all traffic going through Wallarm nodes.
 
-1. Make sure your [subscription plan](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) includes **API Discovery**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
-1. In Wallarm Console → **API Discovery** → **Configure API Discovery**, enable traffic analysis with API Discovery.
+**GraphQL** requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.1.0 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
 
-Once the API Discovery module is enabled, it will start the traffic analysis and API inventory building. The API inventory will be displayed in the **API Discovery** section of Wallarm Console.
-
-## Configure
+<!--## Configure
 
 By clicking the **Configure API Discovery** button in the **API Discovery** section, you proceed to the API discovery fine-tuning options, such as choosing applications for API discovery and customizing the risk score calculation.
 
@@ -48,4 +42,4 @@ To view the current configuration and perform changes, in Wallarm Console, go to
 
 ## Debug
 
-To get and analyze the API Discovery logs, you can read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` on the Linux machine where the node is running.
+To get and analyze the API Discovery logs, you can read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` on the Linux machine where the node is running.-->

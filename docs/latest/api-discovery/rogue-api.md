@@ -1,7 +1,7 @@
 # Shadow, Orphan, Zombie API <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-!!! warning "Newer version available"
-    This article describes **REST only** API Discovery - since May 2025, the [newer version](../api-discovery-2.0/overview.md) supporting both **REST and GraphQL** and having **improved performance** is available.
+!!! warning "Feature availability"
+    In the latest versions of API Discovery, this feature is under reconstruction and may be temporarily unavailable.
 
 The [API Discovery](overview.md) module automatically identifies shadow, orphan and zombie APIs by comparing your uploaded specification to the live traffic.
 
