@@ -1,6 +1,6 @@
 # API Discovery Setup <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-This article describes how to enable <!--and configure -->Wallarm's [API Discovery](overview.md).
+This article describes how to enable and configure Wallarm's [API Discovery](overview.md).
 
 ## Requirements
 

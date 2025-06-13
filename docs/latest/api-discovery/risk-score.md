@@ -1,7 +1,4 @@
-# Endpoint Risk Score <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
-
-!!! warning "Newer version available"
-    This article describes **REST only** API Discovery - since May 2025, the [newer version](../api-discovery-2.0/overview.md) supporting both **REST and GraphQL** and having **improved performance** is available.
+# Endpoint Risk Score <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 [API Discovery](overview.md) automatically calculates a **risk score** for each endpoint in your API inventory. The risk score allows you to understand which endpoints are most likely to be an attack target and therefore should be the focus of your security efforts.
 
@@ -17,7 +14,7 @@ The risk score is made up of various factors, each having its own weight when ca
 | Accepts XML / JSON objects<sup>*</sup> | XML or JSON objects passed in requests may be used by attackers to transfer malicious XML external entities and injections to the server. | 6 |
 | Allows uploading files to the server | Endpoints are frequently targeted by [Remote Code Execution (RCE)](../attacks-vulns-list.md#remote-code-execution-rce) attacks, where files with malicious code are uploaded to a server. To secure these endpoints, uploaded file extensions and contents should be properly validated as recommended by the [OWASP Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html). | 6 |
 
-<small><sup>*</sup> This risk factor is not accounted for GraphQL since any API request of this type accepts XML / JSON object.</small>
+<small><sup>*</sup> This risk factor is not accounted for GraphQL and SOAP since any API request of this type accepts XML / JSON object.</small>
 
 ## Risk score levels
 
