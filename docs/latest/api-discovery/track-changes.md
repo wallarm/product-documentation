@@ -3,9 +3,6 @@
 If changes occur in your API, [API Discovery](overview.md) updates the built API inventory, highlights the changes and gives you information on when and what has changed.<!-- Additionally, you can set up notifications on all or some of the changes.-->
 
 ![API Discovery - track changes](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-changes.png)
-If changes occur in your API, [API Discovery](overview.md) updates the built API inventory, highlights the changes and gives you information on when and what has changed.<!-- Additionally, you can set up notifications on all or some of the changes.-->
-
-![API Discovery - track changes](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-changes.png)
 
 ## Overview
 

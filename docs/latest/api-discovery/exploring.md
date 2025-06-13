@@ -7,19 +7,16 @@ As soon as the [API Discovery](overview.md) module has built the catalog of your
 Explore your discovered API inventory using the **API Discovery** section in the [US](https://us1.my.wallarm.com/api-discovery) or [EU](https://my.wallarm.com/api-discovery) Cloud.
 
 ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
-![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 
 By default, endpoints and operations are sorted by host/endpoint or operation name. Also, **Group by host** is on. With grouping by host disabled, you can sort endpoints by risk.
 
-## Filtering
+### Filtering
 
 Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
 * Find the endpoints characterized with the highest [risk level](risk-score.md) to analyze and mitigate the risks.
 * Find endpoints related to specific [application](../user-guides/settings/applications.md).
 * Find the endpoints that have been changed or newly discovered in the last week and that process PII data. This kind of request can help you to stay up to date with critical [changes in your APIs](track-changes.md).
-* Find the endpoints being used to upload data to your server by the PUT or POST calls (REST) or mutations (GraphQL) (**API protocols** filter with methods for REST and operation types for Graph QL). Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
-* Find the endpoints processing sensitive data to ensure they are properly secured.
 * Find the endpoints being used to upload data to your server by the PUT or POST calls (REST) or mutations (GraphQL) (**API protocols** filter with methods for REST and operation types for Graph QL). Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
 * Find the endpoints processing sensitive data to ensure they are properly secured.
 * Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
@@ -31,6 +28,8 @@ You can create labels (e.g., `P90`, `HighTraffic`, `Legacy`, etc.) and assign th
 ![API Discovery - labels](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-labels.png)
 
 Note that several labels can be assigned to the same endpoint.
+
+### REST endpoint details
 
 <a name="params"></a>By clicking the REST endpoint, you can find its details, including  transferred sensitive data, risk score and what contributes to it, headers and parameters of requests and responses:
 
@@ -171,7 +170,7 @@ You can quickly create a new [custom rule](../user-guides/rules/rules.md) from a
 
 ![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
-## Exporting API inventory data
+<!--## Exporting API inventory data
 
 The API Discovery UI provides you with an option to export the current filtered list of endpoints as the [OpenAPI v3](https://spec.openapis.org/oas/v3.0.0) specification or CSV file.
 
@@ -185,6 +184,4 @@ To export, in Wallarm Console → **API Discovery**, use the **OAS/CSV** option.
 
 !!! warning "API host information in downloaded Swagger file"
     If a discovered API inventory contains several API hosts, endpoints from all API hosts will be included in the downloaded file. Currently, the API host information is not included in the file.
-
-test line added
 -->
