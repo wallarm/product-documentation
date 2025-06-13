@@ -1,7 +1,4 @@
-# Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
-
-!!! warning "Newer version available"
-    This article describes **REST only** API Discovery - since May 2025, the [newer version](../api-discovery-2.0/overview.md) supporting both **REST and GraphQL** and having **improved performance** is available.
+# Exploring API Inventory <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 As soon as the [API Discovery](overview.md) module has built the catalog of your endpoints (your API inventory), you can explore it in the **API Discovery** section of Wallarm Console. Learn from this article how to go through the discovered data.
 
@@ -156,7 +153,7 @@ You can quickly create a new [custom rule](../user-guides/rules/rules.md) from a
 
 ![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
-## Exporting API inventory data
+<!--## Exporting API inventory data
 
 The API Discovery UI provides you with an option to export the current filtered list of endpoints as the [OpenAPI v3](https://spec.openapis.org/oas/v3.0.0) specification or CSV file.
 
@@ -170,6 +167,4 @@ To export, in Wallarm Console → **API Discovery**, use the **OAS/CSV** option.
 
 !!! warning "API host information in downloaded Swagger file"
     If a discovered API inventory contains several API hosts, endpoints from all API hosts will be included in the downloaded file. Currently, the API host information is not included in the file.
-
-test line added
 -->
