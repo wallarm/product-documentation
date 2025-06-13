@@ -10,7 +10,7 @@ Explore your discovered API inventory using the **API Discovery** section in the
 
 By default, endpoints and operations are sorted by host/endpoint or operation name. Also, **Group by host** is on. With grouping by host disabled, you can sort endpoints by risk.
 
-## Filtering
+### Filtering
 
 Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
@@ -29,7 +29,7 @@ You can create labels (e.g., `P90`, `HighTraffic`, `Legacy`, etc.) and assign th
 
 Note that several labels can be assigned to the same endpoint.
 
-## REST endpoint details
+### REST endpoint details
 
 <a name="params"></a>By clicking the REST endpoint, you can find its details, including  transferred sensitive data, risk score and what contributes to it, headers and parameters of requests and responses:
 
@@ -140,6 +140,27 @@ Within each found session, only requests to your endpoint will be initially disp
 
 A structured view of session activity helps in understanding your endpoint place in malicious and legitimate activities, its relation to sensitive business flows and required protection measures.
 
+## CSV reports
+
+You can download the report on your API inventory in CSV format:
+
+1. Optionally, apply filters. Only data remaining after filter apply will go to report.
+1. Click **Download CSV**.
+
+    This will instantly generate a CSV file with list of your APIs, including all key attributes, including risk score, sensitive data types and more.
+
+    !!! info "No parameter information"
+        The report does not include the information on API endpoint parameters.
+
+## Notifications
+
+You can [setup](setup.md#notifications) API Discovery notifications to be sent to your personal email (the one you use to log in) and to any additional emails:
+
+* Daily endpoint changes
+* Hourly endpoint changes
+
+The notification will include both [changed and new](track-changes.md) endpoints. By default, the notification is disabled.
+
 <!--## Creating rules for API endpoints
 
 You can quickly create a new [custom rule](../user-guides/rules/rules.md) from any endpoint of API inventory: 
@@ -149,7 +170,7 @@ You can quickly create a new [custom rule](../user-guides/rules/rules.md) from a
 
 ![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
-## Exporting API inventory data
+<!--## Exporting API inventory data
 
 The API Discovery UI provides you with an option to export the current filtered list of endpoints as the [OpenAPI v3](https://spec.openapis.org/oas/v3.0.0) specification or CSV file.
 
@@ -163,6 +184,4 @@ To export, in Wallarm Console → **API Discovery**, use the **OAS/CSV** option.
 
 !!! warning "API host information in downloaded Swagger file"
     If a discovered API inventory contains several API hosts, endpoints from all API hosts will be included in the downloaded file. Currently, the API host information is not included in the file.
-
-test line added
 -->

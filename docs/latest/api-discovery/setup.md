@@ -51,4 +51,4 @@ To view the current configuration and perform changes, in Wallarm Console, go to
 
 ## Debug
 
-To get and analyze the API Discovery logs, you can read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` on the Linux machine where the node is running.
+To get and analyze the API Discovery logs, you can read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` on the Linux machine where the node is running.-->
