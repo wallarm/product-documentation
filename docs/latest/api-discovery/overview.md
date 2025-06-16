@@ -29,7 +29,6 @@ API inventory is a picture of your active APIs automatically built by Wallarm's 
 
 ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 
-
 ## Issues addressed by API Discovery
 
 **Building an actual and complete API inventory** is the main issue the API Discovery module is addressing.
