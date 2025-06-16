@@ -43,7 +43,7 @@ Each request/response parameter information includes:
 * [Type/format](#data_format_rest) of data sent in this parameter
 * Date and time when parameter value was last transferred by requests
 
-### Format and data type
+### REST format and data type
 
 In REST endpoint details, in the **Type** column for parameters of request and responses, Wallarm indicates the data format identified through traffic analysis or, if not specific, a general data type.
 
