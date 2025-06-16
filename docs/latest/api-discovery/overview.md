@@ -1,10 +1,20 @@
 # API Discovery Overview <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm's **API Discovery** builds your application **REST** and **GraphQL** API inventory based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API inventory based on the analysis results.
+Wallarm's multi-protocol API Discovery continuously analyzes the real traffic requests and builds the API inventory (full picture of your active APIs) based on the analysis results.
 
-**GraphQL** requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.1.0 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+## Supported protocols
 
-The built API inventory includes the following elements:
+API Discovery is capable of finding and representing hosts and endpoints utilizing different protocols. The following protocols are supported:
+
+| Protocol | Core entity | Required [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) version | Required [Native Node](../installation/nginx-native-node-internals.md#native-node) version |
+| --- | --- | --- | --- |
+| **REST** | Endpoint | Any | Any |
+| **GraphQL** | Operation (query, mutation, subscription) | 6.1.0 | NA |
+| **SOAP** | Operation | 6.2.0 | NA |
+
+## Your API inventory
+
+API inventory is a picture of your active APIs automatically built by Wallarm's API Discovery based on traffic going through Wallarm nodes. It includes:
 
 * API hosts and their endpoints
 * Required and optional parameters and headers of requests and responses including:
@@ -15,6 +25,10 @@ The built API inventory includes the following elements:
 * Request methods (GET, POST, and others) for REST
 * GraphQL operations (queries, mutations, subscriptions)
 * GraphQL schema
+
+* For SOAP:
+
+    * Operations
 
 ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 
@@ -30,7 +44,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 **As you have your API inventory discovered by Wallarm, you can**:
 
 * Have a full visibility into the whole API estate.
-* See what data ([REST](exploring.md#rest-endpoint-details), [GraphQL](exploring.md#graphql-operation-details)) is going into and out of the APIs.
+* See what data ([REST](exploring.md#rest-endpoint-details), [GraphQL](exploring.md#graphql-operation-details), [SOAP](exploring.md#soap-operation-details)) is going into and out of the APIs.
 * Get a list of the threats that occurred over the past 7 days per any given API endpoint.
 * Filter APIs that consume and carry [sensitive data](#sensitive-data-detection).
 * Understand which endpoints are [most likely](risk-score.md) to be an attack target.
