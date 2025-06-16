@@ -43,7 +43,7 @@ Each request/response parameter information includes:
 * [Type/format](#format-and-data-type) of data sent in this parameter
 * Date and time when parameter value was last transferred by requests
 
-### Format and data type
+### REST format and data type
 
 In REST endpoint details, in the **Type** column for parameters of request and responses, Wallarm indicates the data format identified through traffic analysis or, if not specific, a general data type.
 
@@ -94,6 +94,35 @@ For GraphQL operations, data formats are detected in accordance with the [scalar
 * `Float`: A signed double-precision floating-point value.
 * `String`: A UTF‐8 character sequence.
 * `Boolean`: true or false.
+
+## SOAP operation details
+
+By clicking the SOAP operation, you can find its details, including transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
+
+![API Discovery - SOAP operation details](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-SOAP.png)
+
+Each request/response XML parameter information includes:
+
+* Parameter name (**Key**)
+* Path: the hierarchical location of a parameter within an XML structure
+* Parameter [type](#soap-format-and-data-type)
+* Namespaces for path elements (from more general to more specific)
+* Presence and type of sensitive data transmitted by this parameter
+* Information about parameter changes (new, unused)
+* Date and time when parameter value was last transferred by requests
+
+### SOAP format and data type
+
+In SOAP operation details, in the **Type** column for parameters and headers, Wallarm indicates the data format identified through traffic analysis.
+
+For SOAP operations, it is a limited set from the [built-in primitive XML data types](https://www.w3.org/TR/xmlschema-2/#built-in-primitive-datatypes):
+
+* soapTypeString   = `String`
+* soapTypeBoolean  = `Boolean`
+* soapTypeFloat    = `Float`
+* soapTypeDecimal  = `Decimal`
+* soapTypeDuration = `Duration`
+* soapTypeURI      = `URI`
 
 ## Endpoint activities
 
