@@ -53,7 +53,7 @@ Deploying in multiple regions enhances geo-redundancy and ensures high availabil
 
 #### Origin servers
 
-Specify origins to which the Edge node will forward filtered traffic. For each origin, provide a server IP address, domain name, or FQDN with an optional port (default: 443).
+Specify origins to which the Edge node will forward filtered traffic. For each origin, provide a server IP address or FQDN with an optional port (default: 443).
 
 If an origin has multiple servers, you can specify all of them. Requests are distributed as follows:
 
@@ -169,17 +169,15 @@ _acme-challenge.myservice.com CNAME _acme-challenge.<WALLARM_CLOUD>-<CLIENT_ID>-
 
 DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node deployment once the CNAME records are verified.
 
-### 6. CNAME configuration for traffic routing
+### 6. Routing traffic to the Edge Node
 
-To route traffic to Wallarm, you need to specify the Wallarm-provided CNAME in your DNS settings.
+To route traffic to the Edge Node, you need to specify the CNAME record pointing to the Wallarm‑proided FQDN in your DNS zone. This record is returned as the **Traffic CNAME**.
 
-Once the certificate CNAME is verified (~10 minutes), a **Traffic CNAME** will be available for each host on the **Hosts** tab of the Edge node page.
+Once the certificate CNAME is verified, a **Traffic CNAME** is available for each host. If no certificate is issued, the CNAME is available immediately after the configuration is complete.
 
 ![](../../images/waf-installation/security-edge/inline/traffic-cname.png)
 
-If no certificate is issued, the CNAME is available immediately after the configuration is complete.
-
-DNS changes can take up to 24 hours to propagate. Once propagated, Wallarm will proxy all traffic to your origins and mitigate malicious requests.
+DNS changes can take up to 24 hours to propagate. Once propagated, Wallarm will proxy all traffic to 
 
 ## Telemetry portal
 
