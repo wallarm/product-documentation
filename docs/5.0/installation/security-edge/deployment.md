@@ -37,30 +37,28 @@ You can configure multiple origins to forward traffic to and multiple hosts to p
 
 You can update the Edge node deployment settings at any time. The node will be re‑deployed with existing CNAME records remaining unchanged.
 
-### 1. General settings
-
-In general settings, you specify regions to deploy the Edge node and origins to forward filtered traffic.
-
-#### Cloud providers and regions
+### 1. General settings: Cloud providers and regions
 
 Select regions in one or more cloud providers - **AWS** and **Azure** are supported. You can deploy the Edge Node across multiple regions and providers.
 
-=== "Multi-region deployment"
-    When selecting multiple regions within a single cloud provider, traffic is routed based on latency - **each request goes to the nearest available region**. This reduces response time and balances the load.
+#### Multi-region deployment
 
-    This is the most common setup, recommended when you serve requests from multiple locations.
+When selecting multiple regions within a single cloud provider, traffic is routed based on latency - each request goes to the nearest available region.
 
-    If one region becomes unavailable, traffic is automatically re-routed within the same provider.
+This is the most common setup, recommended when you serve requests from multiple locations.
 
-=== "Multi-cloud deployment"
-    When selecting regions across multiple clouds, traffic is distributed using a **[global round‑robin strategy](https://en.wikipedia.org/wiki/Round-robin_DNS)** - each request is routed to one of the selected regions, regardless of provider or latency.
+If one region becomes unavailable, traffic is automatically re-routed within the same provider.
 
-    This setup is recommended in the following cases:
+#### Multi-cloud deployment
 
-    * Cloud provider redundancy - for example, if AWS becomes unavailable, traffic is automatically routed to Azure to maintain availability.
-    * Regional high availability - for example, you can select the same region (e.g., East) in both AWS and Azure. If one provider becomes unavailable, traffic is routed to the same region in the other cloud.
+When multiple regions across different cloud providers are selected, all requests are distributed across the selected regions and providers using a **[round‑robin](https://en.wikipedia.org/wiki/Round-robin_DNS)** strategy, regardless of latency.
 
-#### Origin servers
+This setup is recommended in the following cases:
+
+* Cloud provider redundancy - traffic is distributed across all selected providers, ensuring that if one becomes unavailable (e.g., AWS), others (e.g., Azure) continue handling traffic without disruption.
+* Regional high availability - for example, selecting both `AWS US East 1` and `Azure East US` ensures traffic remains balanced across regions, and service continues even if one region or provider becomes unavailable.
+
+### 2. General settings: Origin servers
 
 Specify origins to which the Edge node will forward filtered traffic. For each origin, provide a server IP address or FQDN with an optional port (default: 443).
 
@@ -130,7 +128,7 @@ If an origin has multiple servers, you can specify all of them. Requests are dis
 
 Later, when adding hosts for traffic analysis and filtering, you will assign each host or location to its designated origin.
 
-### 2. Certificates
+### 3. Certificates
 
 In the **Certificates** section, you can obtain certificates for your domains:
 
@@ -143,7 +141,7 @@ In the **Certificates** section, you can obtain certificates for your domains:
 
 You can specify multiple DNS zones, each with a different certificate issuance approach.
 
-### 3. Hosts
+### 4. Hosts
 
 In the **Hosts** section:
 
@@ -178,7 +176,7 @@ The below example configuration customizes settings per path to meet specific ne
 
 ![!](../../images/waf-installation/security-edge/inline/locations.png)
 
-### 4. (Optional) Admin settings
+### 5. (Optional) Admin settings
 
 In the **Admin settings** section, you choose a node version and specify upgrade settings:
 
@@ -189,7 +187,7 @@ In the **Admin settings** section, you choose a node version and specify upgrade
 
 ![!](../../images/waf-installation/security-edge/inline/admin-settings.png)
 
-### 5. Certificate CNAME configuration
+### 6. Certificate CNAME configuration
 
 If DNS zones are specified in the **Certificates** section, add the CNAME records provided in the Wallarm Console to your DNS provider's settings for each DNS zone. These records are required for Wallarm to verify domain ownership and issue certificates.
 
@@ -202,19 +200,19 @@ If DNS zones are specified in the **Certificates** section, add the CNAME record
 
 DNS changes can take up to 24 hours to propagate. Wallarm starts the Edge node deployment once the CNAME records are verified (if needed).
 
-### 6. Routing traffic to the Edge Node
+### 7. Routing traffic to the Edge Node
 
 To route traffic to the Edge Node, you need to specify the CNAME record pointing to the Wallarm‑proided FQDN in your DNS zone. This record is returned as the **Traffic CNAME**.
 
 Once the certificate CNAME is verified, a **Traffic CNAME** is available for each host. If no certificate is issued, the CNAME is available immediately after the configuration is complete.
 
-* If you route traffic to a single cloud provider, use the **Traffic CNAME for selected cloud**.
+* If you route traffic to a single cloud provider, use the **Traffic CNAME for selected cloud provider**.
 * If you are using multi-cloud deployment, copy the **Traffic CNAME (Global)** - traffic will be automatically distributed across all selected regions and providers.
 
-    Per-provider CNAMEs are also available if you need to enforce routing to a specific provider - for example, to test latency or performance across clouds.
+    Per-provider CNAMEs are also available if you need to enforce routing to a specific provider - for example, to test latency or performance across providers.
 
     !!! warning "If you remove one of the cloud providers"
-        Before removing a [cloud provider](#cloud-providers-and-regions) from the deployment, first switch to the per-provider CNAME to avoid service disruption.
+        Before removing a [cloud provider](#1-general-settings-cloud-providers-and-regions) from the deployment, first switch to the per-provider CNAME to avoid service disruption.
 
 ![](../../images/waf-installation/security-edge/inline/traffic-cname.png)
 
