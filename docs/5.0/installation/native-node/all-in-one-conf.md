@@ -53,20 +53,22 @@ The Wallarm node operation mode. It can be:
         # max_duration: 1m
 
     proxy_headers:
-      # Applies to requests from trusted networks; sets original Host only
+      # Rule 1: Internal company proxies
       - trusted_networks:
-          - 1.2.3.0/24
-          - 4.5.6.0/24
+          - 10.0.0.0/8
+          - 192.168.0.0/16
         original_host:
-          - X-Forwarded-Host
-          - X-Original-Host
-
-      # Applies to all sources; sets both original Host and real IP
-      - original_host:
           - X-Forwarded-Host
         real_ip:
           - X-Forwarded-For
-          - X-Real-Ip
+
+      # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+      - trusted_networks:
+          - 203.0.113.0/24
+        original_host:
+          - X-Real-Host
+        real_ip:
+          - X-Real-IP
 
     route_config:
       wallarm_application: 10
@@ -107,20 +109,22 @@ The Wallarm node operation mode. It can be:
       url_normalize: true
 
     proxy_headers:
-      # Applies to requests from trusted networks; sets original Host only
+      # Rule 1: Internal company proxies
       - trusted_networks:
-          - 1.2.3.0/24
-          - 4.5.6.0/24
+          - 10.0.0.0/8
+          - 192.168.0.0/16
         original_host:
-          - X-Forwarded-Host
-          - X-Original-Host
-
-      # Applies to all sources; sets both original Host and real IP
-      - original_host:
           - X-Forwarded-Host
         real_ip:
           - X-Forwarded-For
-          - X-Real-Ip
+
+      # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+      - trusted_networks:
+          - 203.0.113.0/24
+        original_host:
+          - X-Real-Host
+        real_ip:
+          - X-Real-IP
     
     route_config:
       wallarm_application: 10
@@ -156,20 +160,22 @@ The Wallarm node operation mode. It can be:
       tls_key: path/to/tls-key.key
 
     proxy_headers:
-      # Applies to requests from trusted networks; sets original Host only
+      # Rule 1: Internal company proxies
       - trusted_networks:
-          - 1.2.3.0/24
-          - 4.5.6.0/24
+          - 10.0.0.0/8
+          - 192.168.0.0/16
         original_host:
-          - X-Forwarded-Host
-          - X-Original-Host
-
-      # Applies to all sources; sets both original Host and real IP
-      - original_host:
           - X-Forwarded-Host
         real_ip:
           - X-Forwarded-For
-          - X-Real-Ip
+
+      # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+      - trusted_networks:
+          - 203.0.113.0/24
+        original_host:
+          - X-Real-Host
+        real_ip:
+          - X-Real-IP
 
     route_config:
       wallarm_application: 10
@@ -584,7 +590,7 @@ Configures how the Native Node extracts the original client IP and host when tra
 
 * `trusted_networks`: trusted proxy IP ranges (CIDRs). Headers like `X-Forwarded-For` are only trusted if the request comes from these networks.
 
-    If omitted, all networks are trusted.
+    If omitted, all networks are trusted (not recommended).
 * `original_host`: headers to use for the original `Host` value, if modified by a proxy.
 * `real_ip`: headers to use for extracting the real client IP address.
 
@@ -602,20 +608,22 @@ version: 4
 
 proxy_headers:
 
-  # Applies to requests from trusted networks; sets original Host only
+  # Rule 1: Internal company proxies
   - trusted_networks:
-      - 1.2.3.0/24
-      - 4.5.6.0/24
+      - 10.0.0.0/8
+      - 192.168.0.0/16
     original_host:
-      - X-Forwarded-Host
-      - X-Original-Host
-  
-  # Applies to all sources; sets both original Host and real IP
-  - original_host:
       - X-Forwarded-Host
     real_ip:
       - X-Forwarded-For
-      - X-Real-Ip
+
+  # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+  - trusted_networks:
+      - 203.0.113.0/24
+    original_host:
+      - X-Real-Host
+    real_ip:
+      - X-Real-IP
 ```
 
 For Node 0.13.4 and earlier operating in [`tcp-capture`](../oob/tcp-traffic-mirror/deployment.md) mode, use the parameter `http_inspector.real_ip_header`. In later 0.13.x versions, the `proxy_headers` section replaces it.

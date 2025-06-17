@@ -161,20 +161,22 @@ version: 4
 mode: tcp-capture
 
 proxy_headers:
-  # Applies to requests from trusted networks; sets original Host only
+  # Rule 1: Internal company proxies
   - trusted_networks:
-      - 1.2.3.0/24
-      - 4.5.6.0/24
+      - 10.0.0.0/8
+      - 192.168.0.0/16
     original_host:
-      - X-Forwarded-Host
-      - X-Original-Host
-  
-  # Applies to all sources; sets both original Host and real IP
-  - original_host:
       - X-Forwarded-Host
     real_ip:
       - X-Forwarded-For
-      - X-Real-Ip
+
+  # Rule 2: External edge proxies (e.g., CDN, reverse proxy)
+  - trusted_networks:
+      - 203.0.113.0/24
+    original_host:
+      - X-Real-Host
+    real_ip:
+      - X-Real-IP
 ```
 
 ## Step 4: Run the Wallarm installer
