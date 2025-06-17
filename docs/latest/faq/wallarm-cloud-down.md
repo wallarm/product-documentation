@@ -1,4 +1,4 @@
-# Wallarm Cloud is Down
+# Wallarm Cloud Troubleshooting
 
 If the Wallarm Cloud is down, Wallarm nodes continue attack mitigation with some limitations. To learn more, use this troubleshooting guide.
 
