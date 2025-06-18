@@ -187,10 +187,10 @@ If you would like to use a standalone network load balancer in a cluster mode de
 There are several factors affecting the capacity planning for a Wallarm Cloud component deployment:
 
 * Test or production deployment
-* Whether the Wallarm's API Sessions and API Abuse Prevention features are used - the features require a lot of disk storage
+* Whether the Wallarm's [API Sessions](../../api-sessions/overview.md) and [API Abuse Prevention](../../api-abuse-prevention/overview.md) features are used - the features require a lot of disk storage
 * Traffic pattern of the protected API services - Is the traffic level steady over a 24-hour interval? Does the system experience high traffic during specific days of the week or holiday seasons?
 
-For a test deployment using a single server (the standalone deployment mode):
+The following are the minimum hardware requirements for each Wallarm Cloud node:
 
 * At least 16 CPU cores
 * At least 64GB of RAM
@@ -199,14 +199,9 @@ For a test deployment using a single server (the standalone deployment mode):
     * `/(root)` volume - at least 200 GB
     * `/var/lib/wallarm-storage` volume - at least 2.5 TB (can be a part of the root partition)
 
-For a production Wallarm Cloud deployment using the cluster mode, it is required to deploy at least 3 servers in the following configuration:
+In a **test** (standalone) deployment, a single server with the above configuration is sufficient.
 
-* At least 16 CPU cores
-* At least 64GB of RAM
-* SSD disk size and partitioning:  
-
-    * `/(root)` volume - at least 200 GB  
-    * `/var/lib/wallarm-storage` volume - at least 2.5 TB (can be a part of the root partition)
+In a **production** (cluster) deployment, at least 3 servers with the same configuration are required.
 
 With the above minimum configuration, a 3-node production cluster can process up to 1 billion API requests per month (RPM).
 
