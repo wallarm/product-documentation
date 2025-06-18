@@ -28,7 +28,7 @@ Filtering Nodes must be deployed on separate instances from Wallarm Cloud.
 
 ## Wallarm Cloud in on-premises deployment
 
-The Wallarm Cloud component is deployed within your internal infrastructure and must reside in an **isolated network segment and on a separate secure workstation or server**, separated by a firewall from the Internet and other parts of the internal network.
+The Wallarm Cloud component is deployed within your internal infrastructure and must reside in an **isolated network segment and on separate secure servers**, separated by a firewall from the Internet and other parts of the internal network.
 
 It is designed to run on dedicated standalone virtual or physical servers, supporting both single-node and clustered architectures.
 
@@ -37,22 +37,10 @@ It is designed to run on dedicated standalone virtual or physical servers, suppo
 The Wallarm Cloud system is built from the following layers deployed and managed by Wallarm's software installer tool:
 
 * Kubernetes cluster
-* Longhorn - distributed block storage for Kubernetes
-* Databases:
-
-    * Postgres
-    * ElasticSearch
-    * ClickHouse
-    * Redis
-    * ETCD
-    * NATS
-* MinIO - S3-compatible object storage
-* Configuration and deployment tools:
-
-    * Ansible
-    * Kubespray
-    * Helm
-    * Helmfile
+* Distributed block storage for Kubernetes
+* Databases
+* MinIO
+* Configuration and deployment tools
 * ~20 Wallarm internal microservices
 
 ### Deployment architectures
@@ -82,6 +70,8 @@ A separate management workstation is required to install and manage the Wallarm 
 This machine is not part of the cluster itself and is used solely for administrative tasks such as installation, configuration, updates, and disaster recovery. It must meet the [requirements](deployment.md#management-workstation).
 
 The management workstation runs Wallarm's on-premises management tool **wctl** and stores the necessary configuration files used during deployment and maintenance.
+
+### Layer management responsibilities
 
 The following diagram shows which layers of the Wallarm Cloud system are managed via **wctl** and which require customer management:
 
