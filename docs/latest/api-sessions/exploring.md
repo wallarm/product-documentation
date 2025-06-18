@@ -12,6 +12,15 @@ As soon as Wallarm's [API Sessions](overview.md) identified user sessions relate
 
 --8<-- "../include/request-full-context.md"
 
+## Multi-day sessions
+
+For effective analysis, long sessions are separated in one-day parts. Also, no parts older than 7 days are stored and displayed. To view all session parts (but not older than 7 days):
+
+1. In the session details, click session's ID. It is automatically copied.
+1. Paste the ID to the **Session ID** filter.
+
+![!API Sessions - multi-day session](../images/api-sessions/api-sessions-multi-day.png)
+
 ## Activities within specific time
 
 You can investigate what happened within the specified time interval. To do so, set the date/time filter. Only sessions with the requests that took place at specified time will be displayed - only requests from that time interval will be displayed within each session.
