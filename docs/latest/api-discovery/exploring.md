@@ -40,7 +40,7 @@ Each request/response parameter information includes:
     * Medical data like medical license number
     * Technical data like IP and MAC addresses
 
-* [Type/format](#format-and-data-type) of data sent in this parameter
+* [Type/format](#data_format_rest) of data sent in this parameter
 * Date and time when parameter value was last transferred by requests
 
 ### Format and data type
