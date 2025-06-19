@@ -2,14 +2,18 @@
 
 This article describes how to enable <!--and configure -->Wallarm's [API Discovery](overview.md).
 
-## Enable
+## Requirements
 
-API Discovery is included in all [self-hosted](../installation/supported-deployment-options.md), [Security Edge](../installation/security-edge/overview.md) and [Connector](../installation/connectors/overview.md) forms of the Wallarm node installation. During node deployment, it installs the API Discovery module but keeps it disabled by default.
+* Advanced API Security [subscription plan](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security)
+* For **GraphQL** - [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.1.0 or higher (not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far)
 
-By default, enabled API Discovery analyzes all traffic going through Wallarm nodes.
+## Enabled by default
 
-1. Make sure your [subscription plan](../about-wallarm/subscription-plans.md#core-subscription-plans) includes **API Discovery**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
-1. In Wallarm Console → **API Discovery** → **Configure API Discovery**, enable traffic analysis with API Discovery.
+API Discovery is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node installation and is enabled by default, analyzing all traffic going through Wallarm nodes.
+
+## Debug
+
+To get and analyze the API Discovery logs, you can read the log file `/opt/wallarm/var/log/wallarm/appstructure-out.log` on the Linux machine where the node is running.
 
 <!--## Configure
 
