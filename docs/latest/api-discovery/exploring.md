@@ -43,7 +43,7 @@ Each request/response parameter information includes:
 * [Type/format](#format-and-data-type) of data sent in this parameter
 * Date and time when parameter value was last transferred by requests
 
-### REST format and data type
+### Format and data type
 
 In REST endpoint details, in the **Type** column for parameters of request and responses, Wallarm indicates the data format identified through traffic analysis or, if not specific, a general data type.
 
@@ -111,7 +111,7 @@ Each request/response XML parameter information includes:
 * Information about parameter changes (new, unused)
 * Date and time when parameter value was last transferred by requests
 
-### SOAP format and data type
+<a name="data_format_soap"></a>**Format and data type**
 
 In SOAP operation details, in the **Type** column for parameters and headers, Wallarm indicates the data format identified through traffic analysis.
 
