@@ -1,4 +1,6 @@
-# CPU high usage troubleshooting
+# Performance Troubleshooting
+
+## Wallarm node consumes too much CPU
 
 Recommended CPU usage by Wallarm is about 10-15%, meaning that filtering nodes will be able to handle a x10 traffic spike. If a Wallarm node consumes more CPU than it was expected and you need to reduce CPU usage, use this guide.
 
@@ -31,7 +33,7 @@ You can do the following to lower the CPU load by Wallarm:
         }        
         ```
 
-* Check that the appropriate amount of memory [has been allocated](../admin-en/configuration-guides/allocate-resources-for-node.md) for NGINX and wstore.
+* Check that the appropriate amount of memory [has been allocated](../admin-en/configuration-guides/allocate-resources-for-node.md) for NGINX and Tatantool.
 * Make sure that the [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive is set to `on` which immediately blocks any requests from denylisted IPs in any filtration mode without searching for the attack signs in these requests. Along with enabling the directive, check Wallarm [IP lists](../user-guides/ip-lists/overview.md) to find IPs that were mistakenly added to the **Allowlist** or locations mistakenly not added to the **Denylist**.
 
     Note that this method of lowering CPU usage may lead to skipping requests from search engines. This problem, however, can also be solved through the use of the `map` module in the NGINX configuration.
@@ -42,8 +44,8 @@ You can do the following to lower the CPU load by Wallarm:
         http {
           wallarm_acl_access_phase on;
           map $http_user_agent $wallarm_mode{
-        	  default monitoring;
-        	  ~*(google|bing|yandex|msnbot) off;
+              default monitoring;
+              ~*(google|bing|yandex|msnbot) off;
           }
           server {
             server_name mos.ru;

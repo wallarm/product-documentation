@@ -1,7 +1,7 @@
 [doc-configure-kubernetes]:     configure-kubernetes-en.md
 [link-prometheus]:              https://prometheus.io/
 [gl-lom]:                       ../glossary-en.md#custom-ruleset-the-former-term-is-lom
-[doc-selinux]:                  configure-selinux.md
+[doc-selinux]:                  ../troubleshooting/detection-and-blocking.md#filtering-node-rps-and-aps-values-are-not-exported-to-cloud
 
 # Statistics Service
 

@@ -840,3 +840,22 @@
 
 /2.18/* /updating-migrating/older-versions/what-is-new/
 /3.6/* /updating-migrating/older-versions/what-is-new/
+
+/faq/common-errors-after-installation/#why-does-not-the-filtering-node-block-attacks-when-operating-in-blocking-mode-wallarm_mode-block /troubleshooting/detection-and-blocking/#filtering-node-does-not-block-attacks-when-operating-in-blocking-mode-wallarm_mode-block
+/faq/wallarm-status-page/ /troubleshooting/overview/#wallarm-service-status-page
+/admin-en/configure-selinux/ /troubleshooting/detection-and-blocking/#filtering-node-rps-and-aps-values-are-not-exported-to-cloud
+/faq/cpu/ /troubleshooting/performance/#wallarm-node-consumes-too-much-cpu
+/faq/attacks-not-uploaded-to-cloud/ /troubleshooting/detection-and-blocking/#attacks-are-not-displayed
+/faq/wrong-blocking/ /troubleshooting/detection-and-blocking/#user-gets-blocking-page-after-legitimate-request
+/5.x/faq/common-errors-after-installation/#why-does-not-the-filtering-node-block-attacks-when-operating-in-blocking-mode-wallarm_mode-block /5.x/troubleshooting/detection-and-blocking/#filtering-node-does-not-block-attacks-when-operating-in-blocking-mode-wallarm_mode-block
+/5.x/faq/wallarm-status-page/ /5.x/troubleshooting/overview/#wallarm-service-status-page
+/5.x/admin-en/configure-selinux/ /5.x/troubleshooting/detection-and-blocking/#filtering-node-rps-and-aps-values-are-not-exported-to-cloud
+/5.x/faq/cpu/ /5.x/troubleshooting/performance/#wallarm-node-consumes-too-much-cpu
+/5.x/faq/attacks-not-uploaded-to-cloud/ /5.x/troubleshooting/detection-and-blocking/#attacks-are-not-displayed
+/5.x/faq/wrong-blocking/ /5.x/troubleshooting/detection-and-blocking/#user-gets-blocking-page-after-legitimate-request
+/4.10/faq/common-errors-after-installation/#why-does-not-the-filtering-node-block-attacks-when-operating-in-blocking-mode-wallarm_mode-block /4.10/troubleshooting/detection-and-blocking/#filtering-node-does-not-block-attacks-when-operating-in-blocking-mode-wallarm_mode-block
+/4.10/faq/wallarm-status-page/ /4.10/troubleshooting/overview/#wallarm-service-status-page
+/4.10/admin-en/configure-selinux/ /4.10/troubleshooting/detection-and-blocking/#filtering-node-rps-and-aps-values-are-not-exported-to-cloud
+/4.10/faq/cpu/ /4.10/troubleshooting/performance/#wallarm-node-consumes-too-much-cpu
+/4.10/faq/attacks-not-uploaded-to-cloud/ /4.10/troubleshooting/detection-and-blocking/#attacks-are-not-displayed
+/4.10/faq/wrong-blocking/ /4.10/troubleshooting/detection-and-blocking/#user-gets-blocking-page-after-legitimate-request
