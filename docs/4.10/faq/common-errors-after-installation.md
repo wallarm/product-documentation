@@ -1,1 +1,1 @@
---8<-- "5.0/faq/common-errors-after-installation.md"
+--8<-- "latest/faq/common-errors-after-installation.md"

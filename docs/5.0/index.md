@@ -155,11 +155,22 @@ Wallarm delivers real-time protection for APIs and AI agents, stopping automated
 <div class="navigation-card">
     <h3 class="icon-homepage references-title">References</h3>
     <p><ul>
-    <li><a href="./faq/ingress-installation/">FAQ</a></li>
     <li><a href="./news/">Changelog & News</a></li>
     <li><a href="./api/overview/">Wallarm API Reference</a></li>
     <li><a href="./admin-en/managing/terraform-provider/">Wallarm Terraform Provider</a></li>
     <li><a href="./integrations-devsecops/verify-docker-image-signature/">Verifying Docker Image Signatures</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3 class="icon-homepage references-title">Troubleshooting</h3>
+    <p><ul>
+    <li><a href="./troubleshooting/overview/">Overview</a></li>
+    <li><a href="./troubleshooting/detection-and-blocking/">Detection and Blocking</a></li>
+    <li><a href="./troubleshooting/performance/">Performance</a></li>
+    <li><a href="./faq/common-errors-after-installation/">End User Problems</a></li>
+    <li><a href="./faq/ingress-installation/">Wallarm Ingress Controller</a></li>
+    <li><a href="./faq/wallarm-cloud-down/">Wallarm Cloud is Down</a></li>
     </ul></p>
 </div>
 
