@@ -10,7 +10,7 @@ Explore your discovered API inventory using the **API Discovery** section in the
 
 By default, endpoints and operations are sorted by host/endpoint or operation name. Also, **Group by host** is on. With grouping by host disabled, you can sort endpoints by risk.
 
-### Filtering
+## Filtering
 
 Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
@@ -39,7 +39,7 @@ Each request/response parameter information includes:
     * Medical data like medical license number
     * Personally identifiable information (PII) like full name, passport number or SSN
 
-* [Type/format](#format-and-data-type) of data sent in this parameter
+* [Type/format](#data_format_rest) of data sent in this parameter
 * Date and time when parameter value was last transferred by requests
 
 ### Format and data type
@@ -85,7 +85,7 @@ Each request/response parameter information includes:
 * Presence and type of sensitive data transmitted by this parameter, including:
 * Date and time when parameter value was last transferred by requests
 
-### Format and data type
+<a name="data_format_graphql"></a>**Format and data type**
 
 In GraphQL operation details, in the **Type** column for parameters and headers, Wallarm indicates the data format identified through traffic analysis.
 
