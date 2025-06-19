@@ -1,23 +1,24 @@
-# Wallarm Troubleshooting Overview
+# Wallarm Troubleshooting
+
+This section describes most common troubleshooting cases related to Wallarm, providing you with solutions to possible problems and information about tools you can use to investigate and solve them.
+
+## Tools
 
 If you have some problem when working with Wallarm, the following tools are in your hands:
 
-1. This documentation, explaining logic of how things work
-1. This **Troubleshooting** section in the documentation
+* This documentation, explaining logic of how things work
+* This **Troubleshooting** section in the documentation
 
     !!! info "How to use docs"
         Use search, ask AI bot, browse topics in the left menu.
 
-1. Wallarm [service status page](#wallarm-service-status-page)
-1. Wallarm [filtering node logs](../admin-en/configure-logging.md)
-1. Wallarm [filtering node statistics](../admin-en/configure-statistics-service.md)
+* Wallarm [service status page](#wallarm-service-status-page)
+* Wallarm [filtering node logs](../admin-en/configure-logging.md)
+* Wallarm [filtering node statistics](../admin-en/configure-statistics-service.md)
 
 ## Wallarm service status page
 
-Wallarm status page is available at https://status.wallarm.com. The page displays live and historical data on the availability of Wallarm Console and Wallarm API services for each Wallarm Cloud:
-
-* **Wallarm US Cloud**
-* **Wallarm EU Cloud**
+Wallarm status page https://status.wallarm.com displays live and historical data on the availability of Wallarm Console and Wallarm API services for each [Wallarm Cloud](../about-wallarm/overview.md#how-wallarm-works):
 
 ![Wallarm status page](../images/status-page.png)
 

@@ -364,7 +364,6 @@ nav:
       - Detection and Blocking: troubleshooting/detection-and-blocking.md
       - Performance: troubleshooting/performance.md
       - End User Problems: faq/common-errors-after-installation.md
-      - SELinux: admin-en/configure-selinux.md
       - Wallarm Ingress Controller: faq/ingress-installation.md
-      - Wallarm Cloud: faq/wallarm-cloud-down.md
+      - Wallarm Cloud is Down: faq/wallarm-cloud-down.md
       - OWASP Dashboard Alerts: faq/node-issues-on-owasp-dashboards.md
