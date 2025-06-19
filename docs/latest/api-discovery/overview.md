@@ -6,22 +6,15 @@ Wallarm's **API Discovery** builds your application **REST** and **GraphQL** API
 
 The built API inventory includes the following elements:
 
-* For all protocols:
+* API hosts and their endpoints
+* Required and optional parameters and headers of requests and responses including:
 
-    * API hosts and their endpoints
-    * Required and optional parameters and headers of requests and responses including:
-
-        * [Type/format](./exploring.md#format-and-data-type) of data sent in each parameter    
+        * Type and format of data sent in each parameter    
         * Date and time when parameter information was last updated
 
-* For REST:
-
-    * Request methods (GET, POST, and others)
-
-* For GraphQL:
-
-    * Operations (queries, mutations, subscriptions)
-    * GraphQL schema
+* Request methods (GET, POST, and others) for REST
+* GraphQL operations (queries, mutations, subscriptions)
+* GraphQL schema
 
 ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 
@@ -73,13 +66,10 @@ Also, the API Discovery performs filtering of requests relying on the other crit
 * Only those requests to which the server responded in the 2xx range are processed.
 * Requests that do not conform to the design principles of the REST or GraphQL API are not processed.
     
-    An entry should NOT be classified as a valid API call and not displayed in API Discovery if both of the following conditions are met:
+    An entry is NOT classified as a valid API call and not displayed in API Discovery if both of the following conditions are met:
 
     1. The request path contains a file extension (i.e., the last path segment does not match the pattern `.*.[a-zA-Z0-9]+`).
-    1. The `Content-Type` header of the response:
-
-        * is not present or
-        * is present but not starting with `application/` and does not contain `json` after slash (case-insensitive match, without charset suffix).
+    1. The `Content-Type` header of the response is either missing, does not start with application/, or does not indicate a JSON type (i.e., does not match application/json, case-insensitive, and without a charset suffix).
 
 * Standard fields such as `Accept` and alike are discarded.
 
@@ -112,7 +102,15 @@ On the Cloud side, hashed data is used for statistical analysis (for example, wh
 Other data (endpoint values, request methods, and parameter names) is not hashed before being uploaded to the Wallarm Cloud, because hashes cannot be restored to their original state which would make building API inventory impossible.
 
 !!! warning "Important"
-    API Discovery does not send the values that are specified in the parameters to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
+    API Discovery does not send the parameter values to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
+
+## Checking API Discovery in playground
+
+To try the module even before signing up and deploying the node to your environment, explore [API Discovery in Wallarm Playground](https://playground.wallarm.com/api-discovery/?utm_source=wallarm_docs_apid).
+
+In Playground, you can access the API Discovery view like it is filled with real data and thus learn and try out how the module works, and get some useful examples of its usage in the read-only mode.
+
+![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 
 ## Enabling API Discovery
 
