@@ -16,18 +16,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Optimized stream handling for gRPC traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
-* Added support for establishing SSL/TLS connection between the NGINX-Wallarm module and the postanalytics module when they are [installed on separate servers](../admin-en/installation-postanalytics-en.md)
-
-    This is controlled via the new `ssl` option in the [`wallarm_wstore_upstream`](../admin-en/configure-parameters-en.md#wallarm_wstore_upstream) directive.
-
-    New directives introduced to configure the certificate paths for the secure connection: [`wallarm_wstore_ssl_cert_file`](../admin-en/configure-parameters-en.md#wallarm_wstore_ssl_cert_file), [`wallarm_wstore_ssl_key_file`](../admin-en/configure-parameters-en.md#wallarm_wstore_ssl_key_file), [`wallarm_wstore_ssl_ca_cert_file`](../admin-en/configure-parameters-en.md#wallarm_wstore_ssl_ca_cert_file).
-
-
-
-<!-- to mention in the common changelog the ssl conenction to pistanalytics -->
-
-<!-- ??? изменения из 5.x ??? -->
-
+* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module) between the NGINX–Wallarm module and the postanalytics module when they are installed separately
 
 ### 6.1.0 (2025-05-09)
 

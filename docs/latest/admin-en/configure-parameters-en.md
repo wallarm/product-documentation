@@ -881,7 +881,7 @@ Simultaneously setting the `wallarm_upstream_queue_memory_limit` parameter and n
 
 ### wallarm_wstore_upstream
 
-Defines how to connect the NGINX-Wallarm module to the postanalytics module: postanalytics server upstream and SSL/TLS connection settings.
+Defines how to connect the NGINX-Wallarm module to the [separate postanalytics module](installation-postanalytics-en.md): postanalytics server upstream and SSL/TLS connection settings.
 
 Syntax:
 
@@ -890,7 +890,7 @@ wallarm_wstore_upstream <UPSTREAM> ssl=on|off skip_host_check=on|off insecure=on
 ```
 
 * `<UPSTREAM>` - the name of the upstream block pointing to the postanalytics module address.
-* `ssl` (available from release 6.2.0 onwards) — enables or disables SSL/TLS for the connection to the postanalytics module. Accepted values: `on` or `off`.
+* `ssl` (available from release 6.2.0 onwards) — enables or disables [SSL/TLS for the connection to the postanalytics module](installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module). Accepted values: `on` or `off`.
 
     By default, `off`.
 
@@ -899,10 +899,10 @@ wallarm_wstore_upstream <UPSTREAM> ssl=on|off skip_host_check=on|off insecure=on
     * [`wallarm_wstore_ssl_cert_file`](#wallarm_wstore_ssl_cert_file)
     * [`wallarm_wstore_ssl_key_file`](#wallarm_wstore_ssl_key_file)
     * [`wallarm_wstore_ssl_ca_cert_file`](#wallarm_wstore_ssl_ca_cert_file)
-* `skip_host_check` (available from release 6.2.0 onwards) - skips hostname verification during the TLS handshake.
+* `skip_host_check` (available from release 6.2.0 onwards, only if `ssl=on`) - skips hostname verification during the TLS handshake.
 
     Useful when connecting to localhost or an IP address using a certificate with a mismatched Common Name (CN). Not recommended in production.
-* `insecure` (available from release 6.2.0 onwards) - disables full certificate validation (including CA and hostname checks).
+* `insecure` (available from release 6.2.0 onwards, only if `ssl=on`) - disables full certificate validation (including CA and hostname checks).
 
     Use only in development or test environments when using self-signed or temporary certificates.
 
@@ -917,10 +917,6 @@ upstream wallarm_wstore {
 # omitted
 
 wallarm_wstore_upstream wallarm_wstore ssl=on;
-
-wallarm_wstore_ssl_cert_file /path/to/client.crt;
-wallarm_wstore_ssl_key_file /path/to/client.key;
-wallarm_wstore_ssl_ca_cert_file /path/to/ca.crt;
 ```
 
 !!! info "Upstream configuration for postanalytics"
@@ -937,7 +933,9 @@ wallarm_wstore_ssl_ca_cert_file /path/to/ca.crt;
 
 ### wallarm_wstore_ssl_cert_file
 
-Specifies the path to the client certificate used for establishing an SSL/TLS connection between the NGINX-Wallarm module and the postanalytics module when `ssl=on` in the [`wallarm_wstore_upstream`](#wallarm_wstore_upstream) directive.
+Specifies the path to the client certificate used by the NGINX-Wallarm module to authenticate itself when establishing an SSL/TLS connection to the postanalytics module.
+
+This directive is required when [mutual TLS (mTLS)](installation-postanalytics-en.md#mutual-tls-mtls) is enabled for NGINX-Wallarm and postanalytics modules installed on separate servers.
 
 The directive is available from release 6.2.0 onwards.
 
@@ -950,7 +948,9 @@ wallarm_wstore_ssl_cert_file /path/to/client.crt;
 
 ### wallarm_wstore_ssl_key_file
 
-Specifies the path to the private key corresponding to the client certificate. This key is used during the TLS handshake for mutual authentication when `ssl=on` in the [`wallarm_wstore_upstream`](#wallarm_wstore_upstream) directive.
+Specifies the path to the private key corresponding to the client certificate provided via [`wallarm_wstore_ssl_cert_file`](#wallarm_wstore_ssl_cert_file).
+
+This directive is required when [mutual TLS (mTLS)](installation-postanalytics-en.md#mutual-tls-mtls) is enabled for NGINX-Wallarm and postanalytics modules installed on separate servers.
 
 The directive is available from release 6.2.0 onwards.
 
@@ -963,7 +963,9 @@ wallarm_wstore_ssl_key_file /path/to/client.key;
 
 ### wallarm_wstore_ssl_ca_cert_file
 
-Specifies the path to the trusted Certificate Authority (CA) certificate used to verify the server certificate presented by the postanalytics module. Required when `ssl=on` in the [`wallarm_wstore_upstream`](#wallarm_wstore_upstream) directive.
+Specifies the path to a trusted Certificate Authority (CA) certificate used to validate the [TLS certificate presented by either the NGINX-Wallarm or postanalytics module](installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module).
+
+Required when connecting to a server that uses a certificate issued by a custom CA.
 
 The directive is available from release 6.2.0 onwards.
 
