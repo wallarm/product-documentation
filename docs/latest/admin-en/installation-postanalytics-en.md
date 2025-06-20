@@ -31,11 +31,11 @@ To download all-in-one Wallarm installation script, execute the command:
 
 === "x86_64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/6.1/wallarm-6.1.0.x86_64-glibc.sh
+    curl -O https://meganode.wallarm.com/6.2/wallarm-6.2.0.x86_64-glibc.sh
     ```
 === "ARM64 version"
     ```bash
-    curl -O https://meganode.wallarm.com/6.1/wallarm-6.1.0.aarch64-glibc.sh
+    curl -O https://meganode.wallarm.com/6.2/wallarm-6.2.0.aarch64-glibc.sh
     ```
 
 ## Step 2: Prepare Wallarm token
@@ -62,10 +62,10 @@ To install postanalytics separately with all-in-one installer, use:
 === "API token"
     ```bash
     # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.1.0.x86_64-glibc.sh postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.2.0.x86_64-glibc.sh postanalytics
 
     # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.1.0.aarch64-glibc.sh postanalytics
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.2.0.aarch64-glibc.sh postanalytics
     ```        
 
     The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -73,10 +73,10 @@ To install postanalytics separately with all-in-one installer, use:
 === "Node token"
     ```bash
     # If using the x86_64 version:
-    sudo sh wallarm-6.1.0.x86_64-glibc.sh postanalytics
+    sudo sh wallarm-6.2.0.x86_64-glibc.sh postanalytics
 
     # If using the ARM64 version:
-    sudo sh wallarm-6.1.0.aarch64-glibc.sh postanalytics
+    sudo sh wallarm-6.2.0.aarch64-glibc.sh postanalytics
     ```
 
 ## Step 4: Configure the postanalytics module
@@ -159,10 +159,10 @@ Once the postanalytics module is installed on the separate server:
     === "API token"
         ```bash
         # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.1.0.x86_64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.2.0.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.1.0.aarch64-glibc.sh filtering
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-6.2.0.aarch64-glibc.sh filtering
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -170,10 +170,10 @@ Once the postanalytics module is installed on the separate server:
     === "Node token"
         ```bash
         # If using the x86_64 version:
-        sudo sh wallarm-6.1.0.x86_64-glibc.sh filtering
+        sudo sh wallarm-6.2.0.x86_64-glibc.sh filtering
 
         # If using the ARM64 version:
-        sudo sh wallarm-6.1.0.aarch64-glibc.sh filtering
+        sudo sh wallarm-6.2.0.aarch64-glibc.sh filtering
         ```
 
 ## Step 8: Connect the NGINX-Wallarm module to the postanalytics module
@@ -259,9 +259,9 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
 
     [Description of all parameters returned by the statistics service →](configure-statistics-service.md)
 
-## SSL/TLS and mTLS between the NGINX–Wallarm module and the postanalytics module
+## SSL/TLS and mTLS between the NGINX-Wallarm module and the postanalytics module
 
-Optionally, you can establish a secure connection between the NGINX–Wallarm module and postanalytics over SSL/TLS. Both one-way server certificate validation and mutual TLS are supported.
+Optionally, you can establish a secure connection between the NGINX-Wallarm module and postanalytics over SSL/TLS. Both one-way server certificate validation and mutual TLS are supported.
 
 Available from release 6.2.0 onwards. All listed directives are specified in the `http` NGINX block.
 
@@ -269,7 +269,7 @@ Available from release 6.2.0 onwards. All listed directives are specified in the
 
 To enable a secure SSL/TLS connection from the NGINX-Wallarm module to the postanalytics module:
 
-1. On the NGINX–Wallarm server, add the `ssl=on` option to [`wallarm_wstore_upstream`](configure-parameters-en.md#wallarm_wstore_upstream):
+1. On the NGINX-Wallarm server, add the `ssl=on` option to [`wallarm_wstore_upstream`](configure-parameters-en.md#wallarm_wstore_upstream):
 
     ```
     wallarm_wstore_upstream wallarm_wstore ssl=on;
@@ -284,12 +284,12 @@ To enable a secure SSL/TLS connection from the NGINX-Wallarm module to the posta
 
 To enable mutual authentication, where both the NGINX-Wallarm module and the postanalytics module verify each other's certificates:
 
-1. On the NGINX–Wallarm server, add the `ssl=on` option to [`wallarm_wstore_upstream`](configure-parameters-en.md#wallarm_wstore_upstream):
+1. On the NGINX-Wallarm server, add the `ssl=on` option to [`wallarm_wstore_upstream`](configure-parameters-en.md#wallarm_wstore_upstream):
 
     ```
     wallarm_wstore_upstream wallarm_wstore ssl=on;
     ```
-1. Upload the client certificate and private key to the NGINX–Wallarm server and specify their paths in the [`wallarm_wstore_ssl_cert_file`](configure-parameters-en.md#wallarm_wstore_ssl_cert_file) and [`wallarm_wstore_ssl_key_file`](configure-parameters-en.md#wallarm_wstore_ssl_key_file) directives:
+1. Upload the client certificate and private key to the NGINX-Wallarm server and specify their paths in the [`wallarm_wstore_ssl_cert_file`](configure-parameters-en.md#wallarm_wstore_ssl_cert_file) and [`wallarm_wstore_ssl_key_file`](configure-parameters-en.md#wallarm_wstore_ssl_key_file) directives:
 
     ```
     wallarm_wstore_ssl_cert_file /path/to/client.crt;

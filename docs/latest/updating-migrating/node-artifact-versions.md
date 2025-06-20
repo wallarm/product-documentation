@@ -12,11 +12,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
-### 6.2.0
+### 6.2.0 (2025-06-20)
 
 * Optimized stream handling for gRPC traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
-* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module) between the NGINX–Wallarm module and the postanalytics module when they are installed separately
+* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
+* Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
+* Minor bug fixes
 
 ### 6.1.0 (2025-05-09)
 
@@ -47,6 +49,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](ingress-controller.md)
 
+### 6.2.0 (2025-06-20)
+
+* Optimized stream handling for gRPC traffic
+<!-- * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages -->
+* Added support for [SSL/TLS and mTLS](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticstls) between the Filtering Node and the postanalytics module
+* Split the unified `controller.wallarm.wcli` component in `values.yaml` into 2 separately [configurable units](../admin-en/configure-kubernetes-en.md): `wcliController` and `wcliPostanalytics`, allowing fine-grained control over containers
+* Minor bug fixes
+
 ### 6.1.0 (2025-05-09)
 
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
@@ -68,6 +78,15 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.2.0 (2025-06-20)
+
+* Optimized stream handling for gRPC traffic
+<!-- * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages -->
+* Added support for [SSL/TLS and mTLS](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwstoretls) between the Filtering Node and the postanalytics module
+* Bump Alpine version to 3.22
+* Upgrade NGINX to version 1.28.0
+* Minor bug fixes
+
 ### 6.1.0 (2025-05-09)
 
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
@@ -84,6 +103,16 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.2.0 (2025-06-20)
+
+* Optimized stream handling for gRPC traffic
+* Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
+* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
+* Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
+* Bump Alpine version to 3.22
+* Upgrade NGINX to version 1.28.0
+* Minor bug fixes
 
 ### 6.1.0 (2025-05-09)
 
@@ -102,6 +131,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
+### 6.2.0 (2025-06-20)
+
+* Optimized stream handling for gRPC traffic
+* Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
+* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
+* Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
+* Minor bug fixes
+
 ### 6.1.0 (2025-05-09)
 
 * Bugfix: Attacks originated from allowlisted sources are no longer shown in the **Attacks** section
@@ -118,6 +155,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-2-0-20250618-150224 (2025-06-20)
+
+* Optimized stream handling for gRPC traffic
+* Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
+* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
+* Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
+* Minor bug fixes
 
 ### wallarm-node-6-1-0-20250508-144827 (2025-05-09)
 
