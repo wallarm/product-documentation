@@ -35,6 +35,14 @@ controller:
         periodSeconds: 10
         successThreshold: 1
         timeoutSeconds: 1
+      tls:
+        enabled: false
+      #  certFile: "/root/test-tls-certs/server.crt"
+      #  keyFile: "/root/test-tls-certs/server.key"
+      #  caCertFile: "/root/test-tls-certs/ca.crt"
+      #  mutualTLS:
+      #    enabled: false
+      #    clientCACertFile: "/root/test-tls-certs/ca.crt"
       resources: {}
       extraEnvs:
         - name: EXTRA_ENV_VAR_NAME
@@ -73,7 +81,44 @@ controller:
       extraEnvs:
         - name: EXTRA_ENV_VAR_NAME
           value: EXTRA_ENV_VAR_VALUE
-    wcli:
+    wcliController:
+      logLevel: warn
+      commands:
+        apispec:
+          logLevel: INFO
+        blkexp:
+          logLevel: INFO
+        botexp:
+          logLevel: WARN
+        cntexp:
+          logLevel: ERROR
+        cntsync:
+          logLevel: INFO
+        credstuff:
+          logLevel: INFO
+        envexp:
+          logLevel: INFO
+        ipfeed:
+          logLevel: INFO
+        iplist:
+          logLevel: INFO
+        jwtexp:
+          logLevel: INFO
+        metricsexp:
+          logLevel: INFO
+        mrksync:
+          logLevel: INFO
+        register:
+          logLevel: INFO
+        reqexp:
+          logLevel: INFO
+        syncnode:
+          logLevel: INFO
+      resources: {}
+      extraEnvs:
+        - name: EXTRA_ENV_VAR_NAME
+          value: EXTRA_ENV_VAR_VALUE
+    wcliPostanalytics:
       logLevel: warn
       commands:
         apispec:
@@ -218,6 +263,35 @@ Specifies the amount of memory allocated for postanalytics service. It is recomm
 **Default value**: `2.0`
 
 In the [NGINX Node 5.x and earlier](../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics), the parameter has been named `controller.wallarm.tarantool.arena`. Renaming is required during upgrade.
+
+### controller.wallarm.postanalytics.tls
+
+Configures TLS and mutual TLS (mTLS) settings to allow secure connection to the postanalytics module (optional):
+
+```yaml
+controller:
+  wallarm:
+    postanalytics:
+      tls:
+        enabled: false
+      #  certFile: "/root/test-tls-certs/server.crt"
+      #  keyFile: "/root/test-tls-certs/server.key"
+      #  caCertFile: "/root/test-tls-certs/ca.crt"
+      #  mutualTLS:
+      #    enabled: false
+      #    clientCACertFile: "/root/test-tls-certs/ca.crt"
+```
+
+Supported from the release 6.2.0 onwards.
+
+| Parameter | Description | Required? |
+| --------- | ----------- | --------- |
+| `enabled` | Enables or disables SSL/TLS for the connection to the postanalytics module. By default, `false` (disabled). | Yes |
+| `certFile` | Specifies the path to the client certificate used by the the Filtering Node to authenticate itself when establishing an SSL/TLS connection to the postanalytics module. | Yes if `mutualTLS.enabled` is `true` |
+| `keyFile` | Specifies the path to the private key corresponding to the client certificate provided via `certFile`. | Yes if `mutualTLS.enabled` is `true` |
+| `caCertFile` | Specifies the path to a trusted Certificate Authority (CA) certificate used to validate the TLS certificate presented by the postanalytics module. | Yes if using a custom CA |
+| `mutualTLS.enabled` | Enables mutual TLS (mTLS), where both the Filtering Node and the postanalytics module verify each other's identity via certificates. By default, `false` (disabled). | No |
+| `mutualTLS.clientCACertFile` | Specifies the path to a trusted Certificate Authority (CA) certificate used to validate the TLS certificate presented by the Filtering Node. | Yes if using a custom CA |
 
 ### controller.wallarm.metrics.enabled
 

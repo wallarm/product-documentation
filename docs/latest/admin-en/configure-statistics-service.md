@@ -214,20 +214,97 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
 
     As a result, you will get a response of the type:
 
-    ```
-    { "requests":0,"attacks":0,"blocked":0,"blocked_by_acl":0,"acl_allow_list":0,"abnormal":0,
-    "tnt_errors":0,"api_errors":0,"requests_lost":0,"overlimits_time":0,"segfaults":0,"memfaults":0,
-    "softmemfaults":0,"proton_errors":0,"time_detect":0,"db_id":73,"lom_id":102,"custom_ruleset_id":102,
-    "custom_ruleset_ver":51,"db_apply_time":1598525865,"lom_apply_time":1598525870,
-    "custom_ruleset_apply_time":1598525870,"proton_instances": { "total":3,"success":3,"fallback":0,
-    "failed":0 },"stalled_workers_count":0,"stalled_workers":[],"ts_files":[{"id":102,"size":12624136,
-    "mod_time":1598525870,"fname":"\/etc\/wallarm\/custom_ruleset"}],"db_files":[{"id":73,"size":139094,
-    "mod_time":1598525865,"fname":"\/etc\/wallarm\/proton.db"}],"startid":1459972331756458216,
-    "timestamp":1664530105.868875,"rate_limit":{"shm_zone_size":67108864,"buckets_count":4,"entries":1,
-    "delayed":0,"exceeded":1,"expired":0,"removed":0,"no_free_nodes":0},"split":{"clients":[
-    {"client_id":null,"requests": 78,"attacks": 0,"blocked": 0,"blocked_by_acl": 0,"overlimits_time": 0,
-    "time_detect": 0,"applications":[{"app_id":4,"requests": 78,"attacks": 0,"blocked": 0,
-    "blocked_by_acl": 0,"overlimits_time": 0,"time_detect": 0}]}]} }
+    ```json
+    {
+        "requests": 0,
+        "streams": 0,
+        "messages": 0,
+        "attacks": 0,
+        "blocked": 0,
+        "blocked_by_acl": 0,
+        "acl_allow_list": 0,
+        "abnormal": 0,
+        "tnt_errors": 0,
+        "api_errors": 0,
+        "requests_lost": 0,
+        "overlimits_time": 0,
+        "segfaults": 0,
+        "memfaults": 0,
+        "softmemfaults": 0,
+        "proton_errors": 0,
+        "time_detect": 0,
+        "db_id": 73,
+        "lom_id": 102,
+        "custom_ruleset_id": 102,
+        "custom_ruleset_ver": 51,
+        "db_apply_time": 1598525865,
+        "lom_apply_time": 1598525870,
+        "custom_ruleset_apply_time": 1598525870,
+        "proton_instances": {
+            "total": 3,
+            "success": 3,
+            "fallback": 0,
+            "failed": 0
+        },
+        "stalled_workers_count": 0,
+        "stalled_workers": [],
+        "ts_files": [
+            {
+            "id": 102,
+            "size": 12624136,
+            "mod_time": 1598525870,
+            "fname": "/etc/wallarm/custom_ruleset"
+            }
+        ],
+        "db_files": [
+            {
+            "id": 73,
+            "size": 139094,
+            "mod_time": 1598525865,
+            "fname": "/etc/wallarm/proton.db"
+            }
+        ],
+        "startid": 1459972331756458216,
+        "timestamp": 1664530105.868875,
+        "rate_limit": {
+            "shm_zone_size": 67108864,
+            "buckets_count": 4,
+            "entries": 1,
+            "delayed": 0,
+            "exceeded": 1,
+            "expired": 0,
+            "removed": 0,
+            "no_free_nodes": 0
+        },
+        "split": {
+            "clients": [
+            {
+                "client_id": null,
+                "requests": 78,
+                "streams": 0,
+                "messages": 0,
+                "attacks": 0,
+                "blocked": 0,
+                "blocked_by_acl": 0,
+                "overlimits_time": 0,
+                "time_detect": 0,
+                "applications": [
+                {
+                    "app_id": 4,
+                    "requests": 78,
+                    "streams": 0,
+                    "messages": 0,
+                    "attacks": 0,
+                    "blocked": 0,
+                    "blocked_by_acl": 0,
+                    "overlimits_time": 0,
+                    "time_detect": 0
+                }
+                ]
+            }
+            ]
+        }
+    }
     ```
 === "Statistics in the Prometheus format"
     ```
@@ -243,6 +320,12 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     # HELP wallarm_requests requests count
     # TYPE wallarm_requests gauge
     wallarm_requests 2
+    # HELP wallarm_streams requests count
+    # TYPE wallarm_streams gauge
+    wallarm_streams 0
+    # HELP wallarm_messages requests count
+    # TYPE wallarm_messages gauge
+    wallarm_messages 0
     # HELP wallarm_attacks attack requests count
     # TYPE wallarm_attacks gauge
     wallarm_attacks 0
@@ -323,6 +406,8 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
 The following response parameters are available (Prometheus metrics have the `wallarm_` prefix):
 
 *   `requests`: the number of requests that have been processed by the filter node.
+*   `streams` (available starting from the Wallarm release 6.2.0): the number of processed gRPC/WebSocket streams.
+*   `messages` (available starting from the Wallarm release 6.2.0): the number of processed gRPC/WebSocket messages.
 *   `attacks`: the number of recorded attacks.
 *   `blocked`: the number of blocked requests including those originated from [denylisted](../user-guides/ip-lists/overview.md) IPs.
 *   `blocked_by_acl`: the number of requests blocked due to [denylisted](../user-guides/ip-lists/overview.md) request sources.

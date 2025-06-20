@@ -19,6 +19,12 @@ The following is a list of Wallarm-specific metrics in Prometheus format availab
 # HELP wallarm_requests requests count
 # TYPE wallarm_requests gauge
 wallarm_requests 2
+# HELP wallarm_streams requests count
+# TYPE wallarm_streams gauge
+wallarm_streams 0
+# HELP wallarm_messages requests count
+# TYPE wallarm_messages gauge
+wallarm_messages 0
 # HELP wallarm_attacks attack requests count
 # TYPE wallarm_attacks gauge
 wallarm_attacks 0
