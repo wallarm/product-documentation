@@ -199,6 +199,17 @@ http {
 
 * `max_conns` value must be specified for each of the upstream wstore servers to prevent the creation of excessive connections.
 * `keepalive` value must not be lower than the number of the wstore servers.
+* To connect to the postanalytics module over SSL/TLS, [enable the `ssl` option in the `wallarm_wstore_upstream`](configure-parameters-en.md#wallarm_wstore_upstream) directive and configure the corresponding certificate paths, e.g.:
+
+    ```
+    # omitted
+
+    wallarm_wstore_upstream wallarm_wstore ssl=on;
+
+    wallarm_wstore_ssl_cert_file /path/to/client.crt;
+    wallarm_wstore_ssl_key_file /path/to/client.key;
+    wallarm_wstore_ssl_ca_cert_file /path/to/ca.crt;
+    ```
 
 Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Wallarm module server:
 
