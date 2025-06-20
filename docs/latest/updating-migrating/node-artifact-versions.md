@@ -15,9 +15,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 6.2.0
 
 * Optimized stream handling for gRPC traffic
-* Introduced the [wallarm_max_request_stream_message_size](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_message_size) and [wallarm_max_request_stream_size](../admin-en/configure-parameters-en.md#wallarm_max_request_stream_size) NGINX directives to control the maximum size of a single message payload and an entire stream body, respectively, in gRPC and WebSocket traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
-* Introduced the [`wallarm_max_request_body_size`](../admin-en/configure-parameters-en.md#wallarm_max_request_body_size) NGINX directive to control the maximum size of an HTTP request body analyzed by the Node
 * Added support for establishing SSL/TLS connection between the NGINX-Wallarm module and the postanalytics module when they are [installed on separate servers](../admin-en/installation-postanalytics-en.md)
 
     This is controlled via the new `ssl` option in the [`wallarm_wstore_upstream`](../admin-en/configure-parameters-en.md#wallarm_wstore_upstream) directive.
@@ -28,6 +26,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 <!-- to mention in the common changelog the ssl conenction to pistanalytics -->
 
+<!-- ??? изменения из 5.x ??? -->
 
 
 ### 6.1.0 (2025-05-09)
