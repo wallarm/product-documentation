@@ -313,6 +313,51 @@ A path to the Wallarm private key used for encryption/decryption of proton.db an
 !!! warning "The directive is deprecated"
     Starting with Wallarm node 3.6, please use the [`wallarm_custom_ruleset_path`](#wallarm_custom_ruleset_path) directive instead. Just change the directive name, its logic did not change.
 
+<!-- ### wallarm_max_request_body_size
+
+Hidden from public usage
+
+Defines the maximum size (in bytes) of an HTTP request body that will be analyzed by the Node. If the request body exceeds the specified limit, the excess part is skipped and not inspected for threats.
+
+The directive is available from release 6.2.0 onwards.
+
+!!! info
+    The parameter is configured inside the http, server, location blocks.
+
+    **Default value**: unlimited.
+
+### wallarm_max_request_stream_message_size
+
+Defines the maximum size (in bytes) of a single message payload within a gRPC or WebSocket stream that will be analyzed by the Node. If the message exceeds the specified limit, the excess data is skipped and not inspected for threats.
+
+The gRPC message headers are not included in the size calculation.
+
+The directive is available from release 6.2.0 onwards.
+
+!!! info
+    The parameter is configured inside the http, server, location blocks.
+
+    **Default value**: 1Mb
+
+    * If you send a 5 MB file as a single gRPC message, only the first 1 MB will be analyzed.
+    * If the file is split into multiple gRPC messages of 1 MB or less, all fragments will be analyzed.
+
+### wallarm_max_request_stream_size
+
+Defines the maximum total size (in bytes) of a gRPC or WebSocket request stream body that will be analyzed by the Node. If the stream body exceeds the specified limit, the excess data is skipped and not inspected for threats.
+
+* HTTP headers are NOT included in the calculation
+* gRPC message headers (typically, 5 bytes per message) are included
+
+For example, if you send 2 gRPC messages of 1000 bytes each, the total stream size will be `(1000 + 5) × 2 = 2010 bytes` - where 5 bytes is the length of each gRPC message header.
+
+The directive is available from release 6.2.0 onwards.
+
+!!! info
+    The parameter is configured inside the http, server, location blocks.
+
+    **Default value**: unlimited. -->
+
 ### wallarm_memlimit_debug
 
 This directive determines whether the Wallarm NGINX module generates the `/tmp/proton_last_memlimit.req` file containing request details when a memory limit is exceeded. This can be invaluable for debugging issues related to request memory limit processing.
