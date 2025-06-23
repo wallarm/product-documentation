@@ -12,6 +12,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 5.3.16 (2025-06-23)
+
+* Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+
 ### 5.3.15 (2025-06-04)
 
 * Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
@@ -336,6 +340,12 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 5.3.16 (2025-06-23)
+
+* Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+* Bump Alpine version to 3.22
+* Upgrade NGINX to version 1.28.0
 
 ### 5.3.15 (2025-06-04)
 
