@@ -68,8 +68,11 @@ Consider the following:
 
 * [Long sessions](exploring.md#multi-day-sessions) are split into one-day parts, no parts older than 7 days are stored and displayed.
 * Detected attacks are listed in session details, left panel. Click filter mark in attack type to see in session details only the requests related to this attack type.
-* Not all request that are defined as part of attack, are blocked. Distinguish those that were blocked by red background highlight.
-* Expand blocked request details to see information about attack and a reason of blocking.
-* If reason of blocking is IP Denylist or Session Denylist, you can click link to navigate to corresponding records there; in the list itself, you'll see the reason of being in this list and link to this reason (for example, to [mitigation control](../about-wallarm/mitigation-controls-overview.md)).
+* Not all request that are defined as part of attack, are blocked. Distinguish those that were blocked by <!--red background highlight--> opening request details and checking **Wallarm action** in the **Detected attacks** section. <!--weird way, will be fixed in PLUTO-7964>.-->
+<!--* Expand blocked request details to see information about attack and a reason of blocking.
+* If reason of blocking is IP Denylist or Session Denylist, you can click link to navigate to corresponding records there; in the list itself, you'll see the reason of being in this list and link to this reason (for example, to [mitigation control](../about-wallarm/mitigation-controls-overview.md)).-->
+
+![!API Sessions - Wallarm action on request from attack](../images/api-sessions/api-sessions-wallarm-action.png)
+
 * Even in the currently **Blocked** session, there can be unblocked requests (as session was not always blocked).
 * Even in the session that is not currently blocked, there can be blocked requests (different reasons, discussed in the introduction of this article), including blocked by session if session was blocked at some period in past.
