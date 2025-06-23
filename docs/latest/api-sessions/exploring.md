@@ -16,7 +16,7 @@ As soon as Wallarm's [API Sessions](overview.md) identified user sessions relate
 
 For effective analysis, long sessions are separated in one-day parts. Also, no parts older than 7 days are stored and displayed. To view all session parts (but not older than 7 days):
 
-1. In the session details, click session's ID. It is automatically copied.
+1. In the session details, right-click and copy session's ID.<!-- It is automatically copied.-->
 1. Paste the ID to the **Session ID** filter.
 
 ![!API Sessions - multi-day session](../images/api-sessions/api-sessions-multi-day.png)
