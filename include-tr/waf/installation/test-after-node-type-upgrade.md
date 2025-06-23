@@ -9,7 +9,7 @@
 
     * Uygun [filtrasyon modu][waf-mode-instr] yapılandırılmışsa talebi engeller.
     * Yapılandırılmışsa [özel engelleme sayfası][blocking-page-instr]'nı döndürür.
-2. [EU Cloud](https://my.wallarm.com/search) veya [US Cloud](https://us1.my.wallarm.com/search) üzerindeki Wallarm Console → **Attacks** bölümünü açın ve şunlardan emin olun:
+2. [EU Cloud](https://my.wallarm.com/attacks) veya [US Cloud](https://us1.my.wallarm.com/attacks) üzerindeki Wallarm Console → **Attacks** bölümünü açın ve şunlardan emin olun:
 
     * Saldırı listede görüntüleniyor.
     * Vuruş detayları Wallarm node UUID'sini gösteriyor.

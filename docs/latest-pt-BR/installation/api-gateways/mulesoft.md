@@ -184,7 +184,7 @@ Para testar a funcionalidade da política implantada, siga estas etapas:
     ```
     curl http://<SEU_IP_OU_DOMINIO_DO_APP>/etc/passwd
     ```
-1. Abra o Console Wallarm → seção **Events** no [US Cloud](https://us1.my.wallarm.com/search) ou [EU Cloud](https://my.wallarm.com/search) e certifique-se de que o ataque está exibido na lista.
+1. Abra o Console Wallarm → seção **Events** no [US Cloud](https://us1.my.wallarm.com/attacks) ou [EU Cloud](https://my.wallarm.com/attacks) e certifique-se de que o ataque está exibido na lista.
     
     ![Ataques na interface][attacks-in-ui-image]
 

@@ -349,7 +349,7 @@ Para implantar o contêiner com variáveis de ambiente e arquivo de configuraç�
     ```
     curl http://<COPIED_IP>/etc/passwd
     ```
-3. Abra o Wallarm Console → **Events** na [US Cloud](https://us1.my.wallarm.com/search) ou [EU Cloud](https://my.wallarm.com/search) e certifique-se de que o ataque está exibido na lista.
+3. Abra o Wallarm Console → **Events** na [US Cloud](https://us1.my.wallarm.com/attacks) ou [EU Cloud](https://my.wallarm.com/attacks) e certifique-se de que o ataque está exibido na lista.
     ![Ataques na UI][attacks-in-ui-image]
 
 Os detalhes sobre erros que ocorreram durante a implantação do contêiner são exibidos nos detalhes da tarefa no AWS Management Console. Se o contêiner estiver indisponível, certifique-se de que os parâmetros necessários do nó de filtragem com valores corretos são passados para o contêiner.

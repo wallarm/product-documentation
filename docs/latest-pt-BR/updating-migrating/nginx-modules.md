@@ -142,7 +142,7 @@ Para testar a operação do novo nó:
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-1. Abra o console Wallarm → seção **Eventos** no [Cloud dos EUA](https://us1.my.wallarm.com/search) ou [Cloud da UE](https://my.wallarm.com/search) e certifique-se de que os ataques estão exibidos na lista.
+1. Abra o console Wallarm → seção **Eventos** no [Cloud dos EUA](https://us1.my.wallarm.com/attacks) ou [Cloud da UE](https://my.wallarm.com/attacks) e certifique-se de que os ataques estão exibidos na lista.
 1. Assim que seus dados armazenados em Cloud (regras, listas de IP) estiverem sincronizados para o novo nó, realize alguns ataques de teste para garantir que suas regras funcionem como esperado.
 
 ### Etapa 9: Configurar envio de tráfego para o nó Wallarm

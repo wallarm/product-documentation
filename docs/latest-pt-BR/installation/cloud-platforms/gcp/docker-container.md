@@ -162,7 +162,7 @@ Para implantar o nó de filtragem do Wallarm em um container, configurado por me
     ```
     curl http://<COPIED_IP>/etc/passwd
     ```
-3. Abra o Console Wallarm → **Events** no [Cloud dos EUA](https://us1.my.wallarm.com/search) ou [Cloud da UE](https://my.wallarm.com/search) e certifique-se de que o ataque está exibido na lista.
+3. Abra o Console Wallarm → **Events** no [Cloud dos EUA](https://us1.my.wallarm.com/attacks) ou [Cloud da UE](https://my.wallarm.com/attacks) e certifique-se de que o ataque está exibido na lista.
     ![Ataques na UI][attacks-in-ui-image]
 
 Detalhes de erros que ocorreram durante a implantação do container são exibidos no menu de instância **View logs**. Se a instância estiver indisponível, verifique se os parâmetros do nó de filtragem necessários com os valores corretos são passados para o container.

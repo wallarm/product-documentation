@@ -589,7 +589,7 @@ Para testar a operação do novo nó:
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-1. Abra a seção Console Wallarm → **Eventos** no [Nuvem US](https://us1.my.wallarm.com/search) ou [Nuvem EU](https://my.wallarm.com/search) e certifique-se de que os ataques estão exibidos na lista.
+1. Abra a seção Console Wallarm → **Eventos** no [Nuvem US](https://us1.my.wallarm.com/attacks) ou [Nuvem EU](https://my.wallarm.com/attacks) e certifique-se de que os ataques estão exibidos na lista.
 1. Assim que seus dados armazenados na Cloud (regras, listas de IP) forem sincronizados com o novo nó, realize alguns ataques de teste para se certificar de que suas regras funcionam conforme o esperado.
 
 ### Passo 16: Exclua o nó da versão anterior

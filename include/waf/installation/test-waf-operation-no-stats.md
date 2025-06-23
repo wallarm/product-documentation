@@ -5,7 +5,7 @@
     ```
 
     If traffic is configured to be proxied to `example.com`, include the `-H "Host: example.com"` header in the request.
-1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
+1. Open Wallarm Console → **Attacks** section in the [US Cloud](https://us1.my.wallarm.com/attacks) or [EU Cloud](https://my.wallarm.com/attacks) and make sure the attack is displayed in the list.
 
     ![Attacks in the interface][attacks-in-ui-image]
 

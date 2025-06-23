@@ -196,7 +196,7 @@ Para implantar o contêiner com variáveis de ambiente e arquivo de configuraç�
     ```
     curl http://<DOMINIO_COPIADO>/etc/passwd
     ```
-3. Abra o Console Wallarm → **Events** na [Nuvem dos EUA](https://us1.my.wallarm.com/search) ou na [Nuvem da UE](https://my.wallarm.com/search) e verifique se o ataque aparece na lista.
+3. Abra o Console Wallarm → **Events** na [Nuvem dos EUA](https://us1.my.wallarm.com/attacks) ou na [Nuvem da UE](https://my.wallarm.com/attacks) e verifique se o ataque aparece na lista.
     ![Ataques na Interface do Usuário][attacks-in-ui-image]
 
 Os detalhes sobre erros ocorridos durante a implantação do contêiner são exibidos na guia **Containers** → **Logs** dos detalhes do recurso no Portal Azure. Se o recurso não estiver disponível, verifique se os parâmetros necessários do nó de filtragem com valores corretos são passados para o contêiner.

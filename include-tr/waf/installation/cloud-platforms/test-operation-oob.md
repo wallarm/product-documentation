@@ -3,7 +3,7 @@
     ```
     curl http://<ADDRESS>/etc/passwd
     ```
-2. Wallarm Console'u açın → [US Cloud](https://us1.my.wallarm.com/search) veya [EU Cloud](https://my.wallarm.com/search) üzerinden **Attacks** bölümüne gidin ve saldırının listede görüntülendiğinden emin olun.
+2. Wallarm Console'u açın → [US Cloud](https://us1.my.wallarm.com/attacks) veya [EU Cloud](https://my.wallarm.com/attacks) üzerinden **Attacks** bölümüne gidin ve saldırının listede görüntülendiğinden emin olun.
     ![Attacks in the interface][attacks-in-ui-image]
 
 Wallarm OOB izleme modunda çalıştığından, Wallarm node saldırıyı engellemez, yalnızca kaydeder.

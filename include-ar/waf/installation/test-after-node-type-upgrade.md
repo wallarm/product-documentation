@@ -7,7 +7,7 @@
 
     * تحظر الطلب إذا تم تكوين [وضع التصفية](waf-mode-instr) المناسب.
     * تعيد [صفحة الحظر المخصصة](blocking-page-instr) إذا تم تكوينها.
-2. افتح واجهة مستخدم Wallarm → **الهجمات** في [السحابة الأوروبية](https://my.wallarm.com/search) أو [السحابة الأمريكية](https://us1.my.wallarm.com/search) وتأكد من:
+2. افتح واجهة مستخدم Wallarm → **الهجمات** في [السحابة الأوروبية](https://my.wallarm.com/attacks) أو [السحابة الأمريكية](https://us1.my.wallarm.com/attacks) وتأكد من:
 
     * إظهار الهجوم في القائمة.
     * تفاصيل الضربة تعرض UUID عقدة Wallarm.

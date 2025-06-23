@@ -3,7 +3,7 @@
     ```
     curl http://<ADDRESS>/etc/passwd
     ```
-2. افتح واجهة Wallarm → قسم **الهجمات** في [السحابة الأمريكية](https://us1.my.wallarm.com/search) أو [السحابة الأوروبية](https://my.wallarm.com/search) وتأكد من ظهور الهجوم في القائمة.
+2. افتح واجهة Wallarm → قسم **الهجمات** في [السحابة الأمريكية](https://us1.my.wallarm.com/attacks) أو [السحابة الأوروبية](https://my.wallarm.com/attacks) وتأكد من ظهور الهجوم في القائمة.
     ![الهجمات في الواجهة][attacks-in-ui-image]
 
 بما أن Wallarm يعمل في وضع المراقبة، فإن عقدة Wallarm لا تقوم بحظر الهجوم ولكنها تسجله.

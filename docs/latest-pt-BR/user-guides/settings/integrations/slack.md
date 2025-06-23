@@ -67,7 +67,7 @@ Cláusulas adicionais de gatilho:
 Tipo de ataque: SQLi.
 
 Veja eventos:
-https://my.wallarm.com/search?q=attacks&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
+https://my.wallarm.com/attacks?q=attacks&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
 
 Cliente: EmpresaTeste
 Nuvem: EU
