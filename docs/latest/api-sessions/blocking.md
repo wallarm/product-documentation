@@ -18,6 +18,9 @@ This includes requests marked as part of attack/blocked by different [tools for 
 
 ## Blocking sessions
 
+!!! tip ""
+    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+
 Wallarm can block the entire user session by putting it in the Session Denylist for specific time or forever. While session is in the list, its request are blocked:
 
 * All requests (**All applications** option, default)
