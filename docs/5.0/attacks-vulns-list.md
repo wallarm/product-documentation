@@ -599,6 +599,7 @@ Besides common [detectors](api-abuse-prevention/overview.md#how-api-abuse-preven
 * **Session rotation** for account takeover attacks using a pool of IP sessions.
 * **Persistent ATO** for account takeover attacks that occur gradually over an extended period.
 * **Credential stuffing** for account takeover attacks that involve repeated login attempts with different credentials while maintaining stable request attributes ([credential stuffing](#credential-stuffing)).
+* **Low-frequency credential stuffing** for account takeover attacks that that are characterized by isolated or minimal authentication attempts ([credential stuffing](#credential-stuffing)) without subsequent API interaction: attackers purposefully restrict login attempts per session or client to evade detection. Such attacks often utilize stolen, synthetic, or auto-generated credentials, dispersed across multiple IP addresses, sessions, or time frames.
 
 API Abuse Prevention detects bots performing a [credential cracking](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) usually performed as a brute force attack on the critical endpoints or/and endpoints that are related to authentication and/or registration endpoints. The automatic threshold of acceptable behavior metrics is calculated based on legitimate traffic for 1 hour.
 
