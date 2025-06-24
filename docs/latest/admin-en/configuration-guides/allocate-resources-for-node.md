@@ -89,4 +89,4 @@ The NGINX memory consumption can be estimated as follows:
 
 ## Troubleshooting
 
-If a Wallarm node consumes more memory and CPU than it was expected, to reduce resource usage, get familiar with the recommendations from the [CPU high usage troubleshooting](../../faq/cpu.md) article and follow them.
+If a Wallarm node consumes more memory and CPU than it was expected, to reduce resource usage, get familiar with the recommendations from the [CPU high usage troubleshooting](../../troubleshooting/performance.md#wallarm-node-consumes-too-much-cpu) article and follow them.
