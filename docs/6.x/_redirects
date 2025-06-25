@@ -859,3 +859,11 @@
 /4.10/faq/cpu/ /4.10/troubleshooting/performance/#wallarm-node-consumes-too-much-cpu
 /4.10/faq/attacks-not-uploaded-to-cloud/ /4.10/troubleshooting/detection-and-blocking/#attacks-are-not-displayed
 /4.10/faq/wrong-blocking/ /4.10/troubleshooting/detection-and-blocking/#user-gets-blocking-page-after-legitimate-request
+
+/installation/on-premise/ /installation/on-premise/overview/
+/5.x/installation/on-premise/ /5.x/installation/on-premise/overview/
+/4.10/installation/on-premise/ /4.10/installation/on-premise/overview/
+/ja/installation/on-premise/ /ja/installation/on-premise/overview/
+/tr/installation/on-premise/ /tr/installation/on-premise/overview/
+/pt-br/installation/on-premise/ /pt-br/installation/on-premise/overview/
+/ar/installation/on-premise/ /ar/installation/on-premise/overview/

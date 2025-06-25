@@ -244,7 +244,10 @@ nav:
         - GCP Machine Image: installation/packages/gcp-machine-image.md
       - Módulo Terraform para AWS: installation/cloud-platforms/aws/terraform-module/overview.md
     - Implantação Personalizada:
-      - On-Premise: installation/on-premise.md
+      - On-Premise:
+        - Overview: installation/on-premise/overview.md
+        - Deployment: installation/on-premise/deployment.md
+        - Maintenance: installation/on-premise/maintenance.md
       - Pacotes NGINX Personalizados: installation/custom/custom-nginx-version.md
       - Heroku: installation/heroku/docker-image.md
       - Opções de Implantação Personalizadas: installation/custom/request-custom-deployment.md
