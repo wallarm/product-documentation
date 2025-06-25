@@ -14,7 +14,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 6.2.1 (2025-06-23)
 
-* Minor bug fix
+* Minor internal file structure change
 
 ### 6.2.0 (2025-06-20)
 
