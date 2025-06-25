@@ -530,7 +530,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 <div class="do-section">
     <div class="do-main">
 
-        <a class="do-card" href="../../installation/on-premise/">
+        <a class="do-card" href="../../installation/on-premise/overview/">
             <img class="non-zoomable" src="../../images/platform-icons/on-premise.svg" />
             <h3>On-premise</h3>
             <p>Integrate the Wallarm's infrastructure directly into your own environment</p>

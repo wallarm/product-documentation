@@ -20,7 +20,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Optimized stream handling for gRPC traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
-* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
+* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
 * Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
 * Minor bug fixes
 
@@ -112,7 +112,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Optimized stream handling for gRPC traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
-* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
+* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
 * Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
 * Bump Alpine version to 3.22
 * Upgrade NGINX to version 1.28.0
@@ -139,7 +139,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Optimized stream handling for gRPC traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
-* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
+* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
 * Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
 * Minor bug fixes
 
@@ -164,7 +164,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * Optimized stream handling for gRPC traffic
 * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages
-* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
+* Added support for [SSL/TLS and mTLS](../admin-en/installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module) between the NGINX-Wallarm module and the postanalytics module when they are installed separately
 * Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
 * Minor bug fixes
 
