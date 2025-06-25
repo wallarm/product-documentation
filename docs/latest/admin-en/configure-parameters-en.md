@@ -890,7 +890,7 @@ wallarm_wstore_upstream <UPSTREAM> ssl=on|off skip_host_check=on|off insecure=on
 ```
 
 * `<UPSTREAM>` - the name of the upstream block pointing to the postanalytics module address.
-* `ssl` (available from release 6.2.0 onwards) — enables or disables [SSL/TLS for the connection to the postanalytics module](installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module). Accepted values: `on` or `off`.
+* `ssl` (available from release 6.2.0 onwards) — enables or disables [SSL/TLS for the connection to the postanalytics module](installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module). Accepted values: `on` or `off`.
 
     By default, `off`.
 
@@ -963,7 +963,7 @@ wallarm_wstore_ssl_key_file /path/to/client.key;
 
 ### wallarm_wstore_ssl_ca_cert_file
 
-Specifies the path to a trusted Certificate Authority (CA) certificate used to validate the [TLS certificate presented by either the NGINX-Wallarm or postanalytics module](installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginxwallarm-module-and-the-postanalytics-module).
+Specifies the path to a trusted Certificate Authority (CA) certificate used to validate the [TLS certificate presented by either the NGINX-Wallarm or postanalytics module](installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module).
 
 Required when connecting to a server that uses a certificate issued by a custom CA.
 
