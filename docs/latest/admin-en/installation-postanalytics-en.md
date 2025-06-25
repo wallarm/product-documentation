@@ -263,54 +263,149 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
 
 Optionally, you can establish a secure connection between the NGINX-Wallarm module and postanalytics over SSL/TLS. Both one-way server certificate validation and mutual TLS are supported.
 
-Available from release 6.2.0 onwards. All listed directives are specified in the `http` NGINX block.
+Available from release 6.2.0 onwards.
 
 ### SSL/TLS connection to the postanalytics module
 
 To enable a secure SSL/TLS connection from the NGINX-Wallarm module to the postanalytics module:
 
-1. On the NGINX-Wallarm server, add the `ssl=on` option to [`wallarm_wstore_upstream`](configure-parameters-en.md#wallarm_wstore_upstream):
+1. Issue a server certificate for the FQDN or IP address of the running postanalytics module's host.
+1. On the postanalytics server, enable SSL/TLS in the `/opt/wallarm/wstore/wstore.yaml` file:
+
+    ```yaml
+    service:
+      TLS:
+        enabled: true
+        address: 0.0.0.0:6388
+        certFile: "/opt/wallarm/wstore/wstore.crt"
+        keyFile: "/opt/wallarm/wstore/wstore.key"
+        # caCertFile: "/opt/wallarm/wstore/wstore-ca.crt"
+    ```
+
+    * `enabled`: enables or disables SSL/TLS for the postanalytics module. Default is `false`.
+    * `address`: address and port on which the postanalytics module accepts incoming TLS connections. The specified address must allow inbound connections.
+    * `certFile`: path to the server certificate presented to the client (NGINX-Wallarm module) during the TLS handshake.
+    * `keyFile`: path to the private key corresponding to the server certificate.
+    * `caCertFile` (optional): path to the custom CA certificate for the server.
+1. On the postanalytics server, restart the Wallarm services:
 
     ```
-    wallarm_wstore_upstream wallarm_wstore ssl=on;
+    sudo systemctl restart wallarm.service
     ```
-1. If the postanalytics module uses a certificate issued by a custom CA, upload the CA certificate to the NGINX-Wallarm server and specify the path using the [`wallarm_wstore_ssl_ca_cert_file`](configure-parameters-en.md#wallarm_wstore_ssl_ca_cert_file) directive:
+1. On the NGINX-Wallarm server, in the NGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) (typically, `/etc/nginx/nginx.conf`):
+
+    1. Configure the upstream used for postanalytics via TLS.
+    1. Add the `ssl=on` option to [`wallarm_wstore_upstream`](configure-parameters-en.md#wallarm_wstore_upstream).
+    1. If the postanalytics module uses a certificate issued by a custom CA, upload the CA certificate to the NGINX-Wallarm server and specify the path in [`wallarm_wstore_ssl_ca_cert_file`](configure-parameters-en.md#wallarm_wstore_ssl_ca_cert_file).
+    
+        This file must match the `service.TLS.caCertFile` configured on the postanalytics server.
 
     ```
-    wallarm_wstore_ssl_ca_cert_file /path/to/ca.crt;
+    http {
+        upstream wallarm_wstore {
+            server postanalytics.server.com:6388 max_fails=0 fail_timeout=0 max_conns=1;
+            keepalive 1;
+        }
+    
+        wallarm_wstore_upstream wallarm_wstore ssl=on;
+
+        # wallarm_wstore_ssl_ca_cert_file /path/to/wstore-ca.crt;
+    }
     ```
+1. On the NGINX-Wallarm server, restart NGINX:
+
+    === "Debian"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo service nginx restart
+        ```
+    === "CentOS"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "RHEL 8.x"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+1. [Check the integration](#step-9-check-the-nginxwallarm-and-separate-postanalytics-modules-interaction).
 
 ### Mutual TLS (mTLS)
 
 To enable mutual authentication, where both the NGINX-Wallarm module and the postanalytics module verify each other's certificates:
 
-1. On the NGINX-Wallarm server, add the `ssl=on` option to [`wallarm_wstore_upstream`](configure-parameters-en.md#wallarm_wstore_upstream):
+1. [Enable SSL/TLS connection](#ssltls-connection-to-the-postanalytics-module) to the postanalytics module as described above.
+1. Issue a client certificate for the FQDN or IP address of the running NGINX-Wallarm module's host.
+1. On the NGINX-Wallarm server, upload the client certificate and private key and specify their paths in [`wallarm_wstore_ssl_cert_file`](configure-parameters-en.md#wallarm_wstore_ssl_cert_file) and [`wallarm_wstore_ssl_key_file`](configure-parameters-en.md#wallarm_wstore_ssl_key_file):
 
     ```
-    wallarm_wstore_upstream wallarm_wstore ssl=on;
-    ```
-1. Upload the client certificate and private key to the NGINX-Wallarm server and specify their paths in the [`wallarm_wstore_ssl_cert_file`](configure-parameters-en.md#wallarm_wstore_ssl_cert_file) and [`wallarm_wstore_ssl_key_file`](configure-parameters-en.md#wallarm_wstore_ssl_key_file) directives:
+    http {
+        upstream wallarm_wstore {
+            server postanalytics.server.com:6388 max_fails=0 fail_timeout=0 max_conns=1;
+            keepalive 1;
+        }
+    
+        wallarm_wstore_upstream wallarm_wstore ssl=on;
 
+        wallarm_wstore_ssl_cert_file /path/to/client.crt;
+        wallarm_wstore_ssl_key_file /path/to/client.key;
+        
+        # wallarm_wstore_ssl_ca_cert_file /path/to/wstore-ca.crt;
+    }
     ```
-    wallarm_wstore_ssl_cert_file /path/to/client.crt;
-    wallarm_wstore_ssl_key_file /path/to/client.key;
-    ```
-1. If the postanalytics module uses a certificate issued by a custom CA, upload the CA certificate to the NGINX-Wallarm server and specify the path using the [`wallarm_wstore_ssl_ca_cert_file`](configure-parameters-en.md#wallarm_wstore_ssl_ca_cert_file) directive:
 
-    ```
-    wallarm_wstore_ssl_ca_cert_file /path/to/ca.crt;
-    ```
-1. On the postanalytics server, enable mTLS in the `/opt/wallarm/etc/wallarm/node.yaml` file:
+    Then, restart NGINX:
+
+    === "Debian"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo service nginx restart
+        ```
+    === "CentOS"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "RHEL 8.x"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+
+1. On the postanalytics server, enable mTLS in `/opt/wallarm/wstore/wstore.yaml`:
 
     ```yaml
-    wstore:
-      mutualTLS:
+    service:
+      TLS:
         enabled: true
+        address: 0.0.0.0:6388
+        certFile: "/opt/wallarm/wstore/wstore.crt"
+        keyFile: "/opt/wallarm/wstore/wstore.key"
+        # caCertFile: "/opt/wallarm/wstore/wstore-ca.crt"
+        mutualTLS:
+          enabled: true
+          # clientCACertFile: "/opt/wallarm/wstore/client-ca.crt"
     ```
-1. If the NGINX-Wallarm module uses a certificate issued by a custom CA, upload the CA certificate to the postanalytics server and specify the path using the [`wallarm_wstore_ssl_ca_cert_file`](configure-parameters-en.md#wallarm_wstore_ssl_ca_cert_file) directive:
+
+    * `mutualTLS.enabled`: enables or disabled mTLS. Default is `false`.
+    * `mutualTLS.clientCACertFile` (optional): path to the custom CA certificate for the NGINX‑Wallarm client.
+
+
+    Then, restart the Wallarm services:
 
     ```
-    wallarm_wstore_ssl_ca_cert_file /path/to/ca.crt;
+    sudo systemctl restart wallarm.service
     ```
 
 ## Postanalytics module protection

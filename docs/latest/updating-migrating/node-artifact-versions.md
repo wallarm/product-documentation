@@ -56,7 +56,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 6.2.0 (2025-06-20)
 
 * Optimized stream handling for gRPC traffic
-<!-- * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages -->
 * Added support for [SSL/TLS and mTLS](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticstls) between the Filtering Node and the postanalytics module
 * Split the unified `controller.wallarm.wcli` component in `values.yaml` into 2 separately [configurable units](../admin-en/configure-kubernetes-en.md): `wcliController` and `wcliPostanalytics`, allowing fine-grained control over containers
 * Minor bug fixes
@@ -85,7 +84,6 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 6.2.0 (2025-06-20)
 
 * Optimized stream handling for gRPC traffic
-<!-- * Added the `streams` and `messages` parameters to the [`/wallarm-status` service](../admin-en/configure-statistics-service.md) output to report the number of processed gRPC/WebSocket streams and messages -->
 * Added support for [SSL/TLS and mTLS](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwstoretls) between the Filtering Node and the postanalytics module
 * Bump Alpine version to 3.22
 * Upgrade NGINX to version 1.28.0

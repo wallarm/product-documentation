@@ -963,7 +963,7 @@ wallarm_wstore_ssl_key_file /path/to/client.key;
 
 ### wallarm_wstore_ssl_ca_cert_file
 
-Specifies the path to a trusted Certificate Authority (CA) certificate used to validate the [TLS certificate presented by either the NGINX-Wallarm or postanalytics module](installation-postanalytics-en.md#ssltls-and-mtls-between-the-nginx-wallarm-module-and-the-postanalytics-module).
+Specifies the path to a trusted Certificate Authority (CA) certificate used to validate the [TLS certificate presented by the postanalytics module](installation-postanalytics-en.md#ssltls-connection-to-the-postanalytics-module).
 
 Required when connecting to a server that uses a certificate issued by a custom CA.
 
