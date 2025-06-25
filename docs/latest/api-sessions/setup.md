@@ -16,6 +16,7 @@ Set session context by adding extra request and response parameters, associating
 In **API Sessions**, within session, the request details by default include: 
 
 * Parameter of request or response that worked for [session grouping](#session-grouping) - yours or the one from the built-in set (highlighted in the **API session ID parameters** group).
+* Parameters (if any) [added](#mitigation-controls) by mitigation controls.
 * For malicious requests - full request content.
 
 You can add any additional (context) [parameters](../user-guides/rules/request-processing.md) both for requests and for their related responses, that you need to understand the session content: what and in what order the actor did and what the response was. To do so, add these parameters in Wallarm Console → **API Sessions** → **Session context parameters**. Once added, Wallarm will export them to the Wallarm Cloud and [display](#data-protection) in Wallarm Console, in details of your session requests (in the **API session parameters** group).
@@ -82,6 +83,12 @@ You can highlight session parameters, that should be used for naming the session
 Once you configured parameters to be used for user and his/her role identification, these parameters are started to be filled for the sessions. You can filter sessions by users and roles.
 
 ![!API Sessions - user and user role display](../images/api-sessions/api-sessions-user-role-display.png)
+
+### Mitigation controls
+
+[Mitigation controls](../about-wallarm/mitigation-controls-overview.md) are capable of adding more parameters to session context, for example, the **BOLA protection** mitigation control may want to use the `object_id` parameter as [tracked for enumeration](../api-protection/enumeration-attack-protection.md#enumerated-parameters) or as [filter for scope](../api-protection/enumeration-attack-protection.md#scope-filters); if such parameter is not added in **API Sessions** → **Session context parameters**, it can be added directly in mitigation control configuration: in API Session, it will be added hidden, meaning you will see these parameters in session details if they are presented in requests, but you will not see them in **Session context parameters** configuration.
+
+Hiddenly added parameters do not take anything from 20 parameter quota. Parameters are hidden to avoid their deletion as such deletion can lead to ceasing protection provided by mitigation control.
 
 ## Session grouping
 

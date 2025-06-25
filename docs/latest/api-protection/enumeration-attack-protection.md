@@ -74,7 +74,7 @@ If [Scope](#scope) does not cover all your needs, you can define other condition
 As conditions, you can use values or value patters of:
 
 * Built-in parameters of requests - elements of meta information presented in each request handled by Wallarm filtering node.
-* **Session context parameters** - quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in **API Sessions**. Use the **Add custom** option in this section to add as filters the parameters that are currently not presented in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well.
+* **Session context parameters** - quickly select parameters from the list of ones, that were [defined as important](../api-sessions/setup.md#session-context) in **API Sessions**. Use the **Add custom** option in this section to add as filters the parameters that are currently not presented in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well (hidden, meaning you will see these parameters in session details if they are presented in requests, but you will not see them in API Session [context parameter configuration](../api-sessions/setup.md#session-context)).
 
 !!! info "Performance note"
     As **Scope** settings are less demanding from the productivity perspective, it is always recommended to use them if it is enough for your goals, and only use **Scope filters** for the complex conditioning.
@@ -82,6 +82,8 @@ As conditions, you can use values or value patters of:
 ### Enumerated parameters
 
 In the **Enumerated parameters** section, you need to select parameters that will be monitored for enumeration. Select set of parameters to be monitored via exact or or [regex](#regular-expressions) match (only one approach can be used within single mitigation control).
+
+For exact match, you can use the **Add custom** option to add as tracked for enumeration the parameters that are currently [not presented](../api-sessions/setup.md#session-context) in **API Sessions**. If you do so, these parameters will be added to **API Sessions**' context parameters as well (hidden, meaning you will see these parameters in session details if they are presented in requests, but you will not see them in API Session [context parameter configuration](../api-sessions/setup.md#session-context)).
 
 If for regex you specify both **Filter by parameter name** and **Filter by parameter value**, they combine (`AND` operator), for example `(?i)id` for name and `\d*` for value will catch the `userId` parameter but only count requests having combination of digits as a parameter values.
 
