@@ -12,6 +12,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 6.2.1 (2025-06-23)
+
+* Minor bug fix
+
 ### 6.2.0 (2025-06-20)
 
 * Optimized stream handling for gRPC traffic
