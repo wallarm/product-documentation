@@ -97,12 +97,35 @@ For specifying different mitigation control parameters, like **Scope**, **Scope 
     | ~       | Find something by case sensitive regexp. |
     | !~      | Exclude something by case sensitive regexp. |
 
-## Root controls
+## Default controls
 
-Some [all traffic](#scope) mitigation controls represent basic Wallarm protection mode and cannot be deleted. They are:
+Some [all traffic](#scope) mitigation controls represent basic Wallarm protection mode and cannot be deleted. They have the `Default` label. Such controls: 
+
+* Added by Wallarm automatically and enabled (`On`) for the new clients.<!--, disabled (`Off`) for the rest.-->
+
+    !!! info "Absence of default controls"
+        If you do not see any default controls, except [obligatory](#obligatory_default_controls) ones, and do want to explore and try them, contact the [Wallarm support team](https://support.wallarm.com/) to get them.
+
+* All initially use `Monitoring` [mitigation mode](#mitigation-mode) (changeable).
+* Can be disabled/re-enabled and edited like all others.
+* Adjusted by Wallarm automatically: new default controls can be added, existing controls will be adjusted if control is disabled<!--you did not edit them yourself-->, otherwise <!--your personal-->previous version will be preserved.
+* Extended or modified set of default controls can be suggested to your company by Wallarm support team.
+
+![Default mitigation controls](../images/user-guides/mitigation-controls/mc-defaults.png)
+
+Default controls provide out-of-the-box and for all traffic:
+
+* Generic [GraphQL policy](../api-protection/graphql-rule.md) and monitoring of its violations
+* Generic monitoring for BOLA attacks
+* Generic monitoring for brute force attacks
+* Generic monitoring for forced browsing attempts
+* Monitoring for most common enumeration attempts
+* Generic monitoring for JWT attacks <!--this is a rule, not MC-->
+
+<a name="obligatory_default_controls"></a>**Obligatory default controls**
 
 * All traffic [Real-time blocking mode](../admin-en/configure-wallarm-mode.md#conditioned-filtration-mode) control
-* All traffic [GraphQL API protection](../api-protection/graphql-rule.md) control
+* [Overlimit res](../user-guides/rules/configure-overlimit-res-detection.md) <!--this is a general setting, not MC-->
 
 ## Ruleset lifecycle
 
