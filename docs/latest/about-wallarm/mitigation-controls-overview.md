@@ -101,11 +101,11 @@ For specifying different mitigation control parameters, like **Scope**, **Scope 
 
 Wallarm provides a set of **default mitigation controls** that, when enabled, significantly enhance the detection capabilities of the Wallarm platform. These controls are pre-configured to offer robust protection against a variety of common attack patterns. The current default mitigation controls include:
 
-* GraphQL protection
-* BOLA (Broken Object Level Authorization) enumeration protection for user IDs, object IDs, and filenames
-* Brute force protection for passwords, OTPs, and authentication codes
-* Forced browsing protection (404 probing)
-* Enumeration attack protection, including:
+* [GraphQL protection](../api-protection/graphql-rule.md)
+* [BOLA (Broken Object Level Authorization) enumeration protection](../api-protection/enumeration-attack-protection.md#bola) for user IDs, object IDs, and filenames
+* [Brute force protection](../api-protection/enumeration-attack-protection.md#brute-force) for passwords, OTPs, and authentication codes
+* [Forced browsing protection](../api-protection/enumeration-attack-protection.md#forced-browsing) (404 probing)
+* [Enumeration attack protection](../api-protection/enumeration-attack-protection.md#generic-enumeration), including:
     
     * User/email enumeration
     * SSRF (Server-Side Request Forgery) enumeration
@@ -126,10 +126,7 @@ All controls from the default set have the `Default` label. Such controls:
 
     ![Default mitigation controls](../images/user-guides/mitigation-controls/mc-defaults.png)
 
-The list of default mitigation controls is subject to change:
-
-* New controls may be introduced over time.
-* If a mitigation control is disabled, Wallarm may still update its parameters to improve quality and performance.
+--8<-- "../include/mc-subject-to-change.md"
 
 <a name="obligatory_default_controls"></a>**Obligatory default controls**
 
