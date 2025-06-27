@@ -49,6 +49,52 @@ Thus:
 !!! info "Predecessors"
     Mitigation controls are sophisticated tools available in the [Advanced API Security](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription. In [Cloud Native WAAP](../about-wallarm/subscription-plans.md#waap-and-advanced-api-security) subscription, [brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md), [forced browsing protection](../admin-en/configuration-guides/protecting-against-forcedbrowsing.md), and [BOLA protection](../admin-en/configuration-guides/protecting-against-bola-trigger.md) is configured with triggers.
 
+## Default protection
+
+Wallarm provides [default](../about-wallarm/mitigation-controls-overview.md#default-controls)  mitigation controls for enumeration protection. You can duplicate or edit default controls or disable them.
+
+You can **reset default control to its default configuration** at any time.
+
+--8<-- "../include/mc-subject-to-change.md"
+
+### Brute force
+
+**Brute force protection** [default](#default-protection) mitigation controls provide generic configuration to detect attempts of enumeration of passwords, OTPs, and authentication codes and enabled for all traffic in the `Monitoring` [mode](../about-wallarm/mitigation-controls-overview.md#mitigation-mode).
+
+To review brute force default controls, in Wallarm Console → **Security Controls** → **Mitigation Controls**, in **Brute force protection** section check controls with the `Default` label.
+
+Editing allows you to customize a default control based on the specific needs of the application, traffic patterns, or business context. For example, you can adjust thresholds.
+
+### BOLA
+
+**BOLA protection** [default](#default-protection) mitigation controls provide generic configuration to detect attempts of enumeration of user IDs, object IDs, and filenames, and enabled for all traffic in the `Monitoring` [mode](../about-wallarm/mitigation-controls-overview.md#mitigation-mode).
+
+To review BOLA default controls, in Wallarm Console → **Security Controls** → **Mitigation Controls**, in **BOLA protection** section check controls with the `Default` label.
+
+Editing allows you to customize a default control based on the specific needs of the application, traffic patterns, or business context. For example, you can adjust thresholds or parameters tracked for enumeration.
+
+### Generic enumeration
+
+**Enumeration attack protection** [default](#default-protection) mitigation controls provide generic configuration to detect attempts of enumeration: 
+
+* User/email enumeration
+* SSRF (Server-Side Request Forgery) enumeration
+* User-agent rotation
+
+It is enabled for all traffic in the `Monitoring` [mode](../about-wallarm/mitigation-controls-overview.md#mitigation-mode).
+
+To review generic enumeration default controls, in Wallarm Console → **Security Controls** → **Mitigation Controls**, in **Enumeration attack protection** section check controls with the `Default` label.
+
+Editing allows you to customize a default control based on the specific needs of the application, traffic patterns, or business context. For example, you can adjust thresholds or parameters tracked for enumeration.
+
+### Forced browsing
+
+**Forced browsing protection** [default](#default-protection) mitigation controls provide generic configuration to detect attempts of enumeration of your non-public URLs, and enabled for all traffic in the `Monitoring` [mode](../about-wallarm/mitigation-controls-overview.md#mitigation-mode).
+
+To review forced browsing default controls, in Wallarm Console → **Security Controls** → **Mitigation Controls**, in **Forced browsing protection** section check controls with the `Default` label.
+
+Editing allows you to customize a default control based on the specific needs of the application, traffic patterns, or business context. For example, you can adjust thresholds or **Scope**.
+
 ## Configuration
 
 Configure enumeration protection fulfilling the following steps:
