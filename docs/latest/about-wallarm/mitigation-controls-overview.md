@@ -99,28 +99,37 @@ For specifying different mitigation control parameters, like **Scope**, **Scope 
 
 ## Default controls
 
-Some [all traffic](#scope) mitigation controls represent basic Wallarm protection mode and cannot be deleted. They have the `Default` label. Such controls: 
+Wallarm provides a set of **default mitigation controls** that, when enabled, significantly enhance the detection capabilities of the Wallarm platform. These controls are pre-configured to offer robust protection against a variety of common attack patterns. The current default mitigation controls include:
+
+* GraphQL protection
+* BOLA (Broken Object Level Authorization) enumeration protection for user IDs, object IDs, and filenames
+* Brute force protection for passwords, OTPs, and authentication codes
+* Forced browsing protection (404 probing)
+* Enumeration attack protection, including:
+    
+    * User/email enumeration
+    * SSRF (Server-Side Request Forgery) enumeration
+    * User-agent rotation
+
+All controls from the default set have the `Default` label. Such controls: 
 
 * Added by Wallarm automatically and enabled (`On`) for the new clients.<!--, disabled (`Off`) for the rest.-->
 
     !!! info "Absence of default controls"
         If you do not see any default controls, except [obligatory](#obligatory_default_controls) ones, and do want to explore and try them, contact the [Wallarm support team](https://support.wallarm.com/) to get them.
 
+* All are initially applied to [all traffic](#scope).
 * All initially use `Monitoring` [mitigation mode](#mitigation-mode) (changeable).
-* Can be disabled/re-enabled and edited like all others.
-* Adjusted by Wallarm automatically: new default controls can be added, existing controls will be adjusted if control is disabled<!--you did not edit them yourself-->, otherwise <!--your personal-->previous version will be preserved.
-* Extended or modified set of default controls can be suggested to your company by Wallarm support team.
+* Cannot be deleted.
+* Can be disabled/re-enabled and edited like all others. Editing allows you to customize any default control based on the specific needs of the application, traffic patterns, or business context. For example, you may adjust default thresholds or exclude specific endpoints via the **Scope filters** section.
+* Can be **reset to its default configuration** at any time.
 
-![Default mitigation controls](../images/user-guides/mitigation-controls/mc-defaults.png)
+    ![Default mitigation controls](../images/user-guides/mitigation-controls/mc-defaults.png)
 
-Default controls provide out-of-the-box and for all traffic:
+The list of default mitigation controls is subject to change:
 
-* Generic [GraphQL policy](../api-protection/graphql-rule.md) and monitoring of its violations
-* Generic monitoring for BOLA attacks
-* Generic monitoring for brute force attacks
-* Generic monitoring for forced browsing attempts
-* Monitoring for most common enumeration attempts
-* Generic monitoring for JWT attacks <!--this is a rule, not MC-->
+* New controls may be introduced over time.
+* If a mitigation control is disabled, Wallarm may still update its parameters to improve quality and performance.
 
 <a name="obligatory_default_controls"></a>**Obligatory default controls**
 
