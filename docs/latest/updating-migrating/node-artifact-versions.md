@@ -12,6 +12,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 6.3.0 (2025-MM-DD)
+
+* Added support for [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../api-abuse-prevention/overview.md)
+
 ### 6.2.1 (2025-06-23)
 
 * Minor internal file structure change
