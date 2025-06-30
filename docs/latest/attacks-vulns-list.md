@@ -685,6 +685,26 @@ The **API Abuse Prevention** module uses the complex bot detection model to dete
 * Obfuscate or encrypt data.
 * Take legal action.
 
+### Unrestricted resource consumption
+
+**Attack**
+
+**Description:**
+
+A type of abusive behavior where an automated client consumes excessive API or application resources without proper limits. This may include sending high volumes of non-malicious requests, exhausting compute, memory, or bandwidth, and causing service degradation for legitimate users.
+
+Absence of proper limits may be presented in:
+
+* **Response timing** (**Response time anomaly** [bot detector](api-abuse-prevention/overview.md#how-api-abuse-prevention-works)) - abnormal patterns in the latency of API responses that may signal automated abuse or backend exploitation attempts. Requests consistently generate unusually high or erratically fluctuating response times compared to baseline traffic. These anomalies may result from bots issuing computationally expensive queries, intentional delays to measure system behavior, or slow attack techniques attempting to stay below rate thresholds.
+* **Request size** (**Excessive request consumption** [bot detector](api-abuse-prevention/overview.md#how-api-abuse-prevention-works)) - abnormally large request payloads to the API, potentially indicating abuse or misuse of backend processing resources. Such behavior may include oversized JSON bodies, file uploads, or deeply nested structures aimed at exhausting parsing, validation, or storage capacities. Attackers often leverage these payloads to trigger backend strain, bypass rate limits, or explore system boundaries.
+* **Response size** (**Excessive response consumption** [bot detector](api-abuse-prevention/overview.md#how-api-abuse-prevention-works)) - suspicious total volume of response data transferred over their lifetime. Aggregated response sizes across an entire session identify slow-drip or distributed scraping attacks. These sessions may appear benign on a per-request basis but result in substantial data exfiltration over time.
+
+**Required configuration:**
+
+Wallarm detects and mitigates the unrestricted resource consumption attacks only if it has the [API Abuse Prevention](api-abuse-prevention/overview.md) module enabled and properly configured.
+
+To make this bot attack type detection precise, [API Sessions](api-sessions/overview.md) need to be properly [configured](api-sessions/setup.md).
+
 ## GraphQL attacks
 
 **Attack**
