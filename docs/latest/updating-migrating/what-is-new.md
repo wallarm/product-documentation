@@ -138,6 +138,21 @@ Depending on your subscription plan, upload restrictions are applied via mitigat
 
 ![File upload restriction MC - example](../images/api-protection/mitigation-controls-file-upload-1.png)
 
+## Protection from unrestricted resource consumption
+
+!!! tip ""
+    [NGINX Node 6.3.0 and higher](node-artifact-versions.md) and not supported by [Native Node](installation/nginx-native-node-internals.md#native-node) so far.
+
+Wallarm's [API Abuse Prevention](../api-abuse-prevention/overview.md) introduces the possibility to prevent the [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) - abusive behavior where an automated client consumes excessive API or application resources without proper limits. This may include sending high volumes of non-malicious requests, exhausting compute, memory, or bandwidth, and causing service degradation for legitimate users.
+
+![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+
+To detect this type of automated threats, API Abuse Prevention provides a set of three new [detectors](../api-abuse-prevention/overview.md#how-api-abuse-prevention-works):
+
+* **Response time anomaly** identifying abnormal patterns in the latency of API responses that may signal automated abuse or backend exploitation attempts.
+* **Excessive request consumption** identifying clients that send abnormally large request payloads to the API, potentially indicating abuse or misuse of backend processing resources.
+* **Excessive response consumption** flagging suspicious sessions based on the total volume of response data transferred over their lifetime. Unlike detectors focused on individual requests, this detector aggregates response sizes across an entire session to identify slow-drip or distributed scraping attacks.
+
 ## Which Wallarm nodes are recommended to be upgraded?
 
 * Client and multi-tenant Wallarm NGINX Nodes of version 4.10 and 5.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support-policy).
