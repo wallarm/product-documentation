@@ -10,7 +10,7 @@ The **API Abuse Prevention** module detects the following bot types by default:
 * [Account takeover](../attacks-vulns-list.md#account-takeover)
 * [Security crawlers](../attacks-vulns-list.md#security-crawlers)
 * [Scraping](../attacks-vulns-list.md#scraping)
-* [Unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption)
+* [Unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) (requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.0 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far)
 
 During the [API abuse profile setup](../api-abuse-prevention/setup.md#creating-profiles), you can configure the **API Abuse Prevention** module to protect from all types of bots or limit protection only for specific threats.
 
