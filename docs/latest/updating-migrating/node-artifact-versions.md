@@ -16,10 +16,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
-
 <!-- * [Node part only, no public announcement yet] Added support for SOAP-XML API Discovery
-* [Node part only, no public announcement yet] Added support file upload restriction policy
-* [Node part only, no public announcement yet] Added support for unrestricted resource consumption mitigation by API Abuse Prevention -->
+* [Node part only, no public announcement yet] Added support file upload restriction policy -->
+* Added support for [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../api-abuse-prevention/overview.md)
 
 ### 6.2.1 (2025-06-23)
 
