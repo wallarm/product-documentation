@@ -7,7 +7,7 @@
 1. Open the **Integrations** section.
 1. Click the **Slack** block or click the **Add integration** button and choose **Slack**.
 1. Enter an integration name.
-1. Open [Webhook settings in Slack](https://my.slack.com/services/new/incoming-webhook/) and add a new Webhook choosing the channel to post messages to.
+1. Open [Webhook settings in Slack](https://my.slack.com/services/incoming-webhook/) and add a new Webhook choosing the channel to post messages to.
 1. Copy the provided Webhook URL and paste the value to the **Webhook URL** field in Wallarm UI.
 1. Choose event types to trigger notifications.
 
