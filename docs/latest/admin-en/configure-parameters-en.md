@@ -313,7 +313,7 @@ A path to the Wallarm private key used for encryption/decryption of proton.db an
 !!! warning "The directive is deprecated"
     Starting with Wallarm node 3.6, please use the [`wallarm_custom_ruleset_path`](#wallarm_custom_ruleset_path) directive instead. Just change the directive name, its logic did not change.
 
-<!-- ### wallarm_max_request_body_size
+### wallarm_max_request_body_size
 
 Hidden from public usage
 
@@ -356,7 +356,7 @@ The directive is available from release 6.2.0 onwards.
 !!! info
     The parameter is configured inside the http, server, location blocks.
 
-    **Default value**: unlimited. -->
+    **Default value**: unlimited.
 
 ### wallarm_memlimit_debug
 
