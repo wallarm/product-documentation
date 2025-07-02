@@ -17,7 +17,7 @@ If the node is deployed using a Docker image, it is recommended to update the co
 
 The Wallarm node operation mode. It can be:
 
-* `connector-server` for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM API Connect](../connectors/ibm-api-connect.md) connectors.
+* `connector-server` for [MuleSoft](../connectors/mulesoft.md), [Cloudflare](../connectors/cloudflare.md), [Amazon CloudFront](../connectors/aws-lambda.md), [Broadcom Layer7 API Gateway](../connectors/layer7-api-gateway.md), [Fastly](../connectors/fastly.md), [IBM DataPower](../connectors/ibm-api-connect.md) connectors.
 * `tcp-capture` for [TCP traffic mirror analysis](../oob/tcp-traffic-mirror/deployment.md).
 * `envoy-external-filter` for [gRPC-based external processing filter](../connectors/istio-inline.md) for APIs managed by Istio.
 

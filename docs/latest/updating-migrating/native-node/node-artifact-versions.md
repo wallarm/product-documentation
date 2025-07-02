@@ -4,7 +4,7 @@ This document lists available [versions](../versioning-policy.md) of the [Native
 
 ## All-in-one installer
 
-The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio-inline.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM API Connect](../../installation/connectors/ibm-api-connect.md) connectors.
+The all-in-one installer for the Native Node is used for [TCP traffic mirror analysis](../../installation/oob/tcp-traffic-mirror/deployment.md) and self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio-inline.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
 
 History of all-in-one installer updates simultaneously applies to it's x86_64 and ARM64 (beta) versions.
 
@@ -36,7 +36,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ## Helm chart
 
-The Helm chart for the Native Node is used for self-hosted node deployments with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM API Connect](../../installation/connectors/ibm-api-connect.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio-inline.md) connectors.
+The Helm chart for the Native Node is used for self-hosted node deployments with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md), [Kong API Gateway](../../installation/connectors/kong-api-gateway.md), and [Istio](../../installation/connectors/istio-inline.md) connectors.
 
 [How to upgrade](helm-chart.md)
 
@@ -61,7 +61,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ## Docker image
 
-The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio-inline.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM API Connect](../../installation/connectors/ibm-api-connect.md) connectors.
+The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio-inline.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
 
 [How to upgrade](docker-image.md)
 
