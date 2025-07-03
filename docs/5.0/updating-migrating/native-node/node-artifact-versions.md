@@ -145,7 +145,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 0.8.3 (2024-11-14)
 
-* Added support for Mulesoft connector 3.0.x
+* Added support for MuleSoft connector 3.0.x
 
 ### 0.8.2 (2024-11-11)
 
@@ -299,7 +299,7 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 ### 0.8.3 (2024-11-14)
 
-* Added support for Mulesoft connector v3.0.x
+* Added support for MuleSoft connector v3.0.x
 
 ### 0.8.2 (2024-11-11)
 
@@ -451,7 +451,7 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 ### 0.8.3 (2024-11-14)
 
-* Added support for Mulesoft connector v3.0.x
+* Added support for MuleSoft connector v3.0.x
 
 ### 0.8.2 (2024-11-11)
 

@@ -1,6 +1,6 @@
 # コネクタとしてWallarmを展開する
 
-APIの展開は、Azion Edge、Akamai Edge、Mulesoft、Apigee、CloudFrontなどの外部ツールを利用するなど、さまざまな方法で実施可能です。これらのAPIをWallarmで保護したい場合、特定のケース向けに設計された「コネクタ」形式のソリューションをご提供します。
+APIの展開は、Azion Edge、Akamai Edge、MuleSoft、Apigee、CloudFrontなどの外部ツールを利用するなど、さまざまな方法で実施可能です。これらのAPIをWallarmで保護したい場合、特定のケース向けに設計された「コネクタ」形式のソリューションをご提供します。
 
 ## 仕組み
 
@@ -25,7 +25,7 @@ Wallarmは以下のプラットフォーム向けにコネクタを提供しま�
 
 | コネクタ | 対応トラフィックフローモード | コネクタのホスティング |
 | --- | ---- | ---- |
-| [Mulesoft](mulesoft.md) | インライン | Security Edge, セルフホステッド |
+| [MuleSoft](mulesoft.md) | インライン | Security Edge, セルフホステッド |
 | [Apigee](apigee.md) | インライン | セルフホステッド |
 | [Akamai EdgeWorkers](akamai-edgeworkers.md) | インライン | セルフホステッド |
 | [Azion Edge](azion-edge.md) | インライン | セルフホステッド |

@@ -5,7 +5,7 @@
 
 [Azion Edge Functions](https://www.azion.com/en/products/edge-functions/) ağ kenarında özel kod çalıştırılmasına olanak tanır ve böylece müşteriye özel kuralların istekleri işlemesi sağlanır. Wallarm özel kodunun dahil edilmesiyle, gelen trafik analiz ve filtreleme için Wallarm node'una proxy yapılabilir. Bu yapılandırma, [Azion Edge Firewall](https://www.azion.com/en/products/edge-firewall/) tarafından sağlanan güvenlik önlemlerini artırır. Bu kılavuz, Azion Edge üzerinde çalışan servisleri korumak için Wallarm node'u ile Azion Edge entegrasyonunun nasıl gerçekleştirileceğini anlatmaktadır.
 
-Çözüm, Wallarm node'unun harici olarak dağıtılmasını ve belirli platforma özel özel kod veya politikaların enjekte edilmesini içerir. Bu şekilde, trafik potansiyel tehditlere karşı analiz ve korunma amacıyla harici Wallarm node'una yönlendirilebilir. Wallarm'ın konektörleri olarak adlandırılan bu yapı, Azion Edge, Akamai Edge, Mulesoft, Apigee ve AWS Lambda gibi platformlar ile harici Wallarm node'u arasındaki temel bağlantıyı oluşturur. Bu yaklaşım, sorunsuz entegrasyonu, güvenli trafik analizini, risk azaltımını ve genel platform güvenliğini sağlar.
+Çözüm, Wallarm node'unun harici olarak dağıtılmasını ve belirli platforma özel özel kod veya politikaların enjekte edilmesini içerir. Bu şekilde, trafik potansiyel tehditlere karşı analiz ve korunma amacıyla harici Wallarm node'una yönlendirilebilir. Wallarm'ın konektörleri olarak adlandırılan bu yapı, Azion Edge, Akamai Edge, MuleSoft, Apigee ve AWS Lambda gibi platformlar ile harici Wallarm node'u arasındaki temel bağlantıyı oluşturur. Bu yaklaşım, sorunsuz entegrasyonu, güvenli trafik analizini, risk azaltımını ve genel platform güvenliğini sağlar.
 
 ## Kullanım Senaryoları
 

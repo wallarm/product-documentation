@@ -1,6 +1,6 @@
 # Wallarm'ı Bir Bağlayıcı Olarak Dağıtma
 
-API dağıtımı, Azion Edge, Akamai Edge, Mulesoft, Apigee ve CloudFront gibi harici araçların kullanılması dahil olmak üzere çeşitli şekillerde gerçekleştirilebilir. Bu API'ları Wallarm ile güvence altına almanın bir yolunu arıyorsanız, bu tür durumlar için özel olarak tasarlanmış "connectors" şeklinde bir çözüm sunuyoruz.
+API dağıtımı, Azion Edge, Akamai Edge, MuleSoft, Apigee ve CloudFront gibi harici araçların kullanılması dahil olmak üzere çeşitli şekillerde gerçekleştirilebilir. Bu API'ları Wallarm ile güvence altına almanın bir yolunu arıyorsanız, bu tür durumlar için özel olarak tasarlanmış "connectors" şeklinde bir çözüm sunuyoruz.
 
 ## Nasıl Çalışır
 
@@ -25,7 +25,7 @@ Wallarm, aşağıdaki platformlar için connector’lar sunar:
 
 | Connector | Desteklenen trafik akış modu | Bağlayıcı barındırması |
 | --- | ---- | ---- |
-| [Mulesoft](mulesoft.md) | Satır içi | Security Edge, kendi kendine barındırılan |
+| [MuleSoft](mulesoft.md) | Satır içi | Security Edge, kendi kendine barındırılan |
 | [Apigee](apigee.md) | Satır içi | kendi kendine barındırılan |
 | [Akamai EdgeWorkers](akamai-edgeworkers.md) | Satır içi | kendi kendine barındırılan |
 | [Azion Edge](azion-edge.md) | Satır içi | kendi kendine barındırılan |

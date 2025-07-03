@@ -14,7 +14,7 @@ To use Wallarm as a connector for MuleSoft, you need to **deploy the Wallarm nod
 
 The Wallarm connector for MuleSoft supports only [in-line](../inline/overview.md) traffic analysis:
 
-![Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
+![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
 
 ## Use cases
 
@@ -29,12 +29,12 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
 
 To proceed with the deployment, ensure that you meet the following requirements:
 
-* Understanding of the Mulesoft platform.
+* Understanding of the MuleSoft platform.
 * [Docker](https://docs.docker.com/engine/install/) installed and running on your host system.
 * [Maven (`mvn`)](https://maven.apache.org/install.html).
-* You have been assigned the Mulesoft Exchange contributor's role, enabling you to upload artifacts to your organization's Mulesoft Anypoint Platform account.
-* Your [Mulesoft Exchange credentials (username and password)](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange#deploying-a-policy-created-using-the-maven-archetype) are specified in the `<MAVEN_DIRECTORY>/conf/settings.xml` file.
-* Your application and API are linked and running on Mulesoft.
+* You have been assigned the MuleSoft Exchange contributor's role, enabling you to upload artifacts to your organization's MuleSoft Anypoint Platform account.
+* Your [MuleSoft Exchange credentials (username and password)](https://docs.mulesoft.com/mule-gateway/policies-custom-upload-to-exchange#deploying-a-policy-created-using-the-maven-archetype) are specified in the `<MAVEN_DIRECTORY>/conf/settings.xml` file.
+* Your application and API are linked and running on MuleSoft.
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 
 ## Deployment
@@ -55,9 +55,9 @@ You can deploy it either hosted by Wallarm or in your own infrastructure, depend
     * [AWS AMI](../native-node/aws-ami.md) for AWS infrastructures
     * [Helm chart](../native-node/helm-chart.md) for infrastructures utilizing Kubernetes
 
-### 2. Obtain and upload the Wallarm policy to Mulesoft Exchange
+### 2. Obtain and upload the Wallarm policy to MuleSoft Exchange
 
-To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these steps:
+To acquire and upload the Wallarm policy to MuleSoft Exchange, follow these steps:
 
 1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download a code bundle for your platform.
 
@@ -88,7 +88,7 @@ To test the functionality of the deployed policy, follow these steps:
 
 ## Troubleshooting
 
-If the solution does not perform as expected, refer to the logs of your API by accessing Mulesoft Anypoint Platform → **Runtime Manager** → your application → **Logs**.
+If the solution does not perform as expected, refer to the logs of your API by accessing MuleSoft Anypoint Platform → **Runtime Manager** → your application → **Logs**.
 
 You can also verify whether the policy is applied to the API by navigating to your API in the **API Manager** and reviewing the policies applied on the **Policies** tab. For automated policies, you can use the **See covered APIs** option to view the APIs covered and the reasons for any exclusions.
 
@@ -96,7 +96,7 @@ You can also verify whether the policy is applied to the API by navigating to yo
 
 To upgrade the deployed Wallarm policy to a [newer version](code-bundle-inventory.md#mulesoft):
 
-1. Download the updated Wallarm policy and upload it to Mulesoft Exchange, as described in [Step 2](#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange).
+1. Download the updated Wallarm policy and upload it to MuleSoft Exchange, as described in [Step 2](#2-obtain-and-upload-the-wallarm-policy-to-mulesoft-exchange).
 1. Once the new version appears in Exchange, go to **API Manager** → your API → **Policies** → Wallarm policy → **Edit configuration** → **Advanced options** and choose the new policy version from the dropdown.
 1. If the new version introduces additional parameters, provide the necessary values.
 

@@ -2,7 +2,7 @@
 1. Within the `pom.xml` file, specify the following:
 
     === "Global instance"
-        1. Navigate to Mulesoft Anypoint Platform → **Access Management** → **Business Groups** → choose your organization → copy its ID.
+        1. Navigate to MuleSoft Anypoint Platform → **Access Management** → **Business Groups** → choose your organization → copy its ID.
         1. Specify the copied group ID in the `groupId` parameter of the `pom.xml` file:
 
         ```xml hl_lines="2"
@@ -11,9 +11,9 @@
             <artifactId>wallarm</artifactId>
         ```
     === "Regional instance"
-        1. Navigate to Mulesoft Anypoint Platform → **Access Management** → **Business Groups** → choose your organization → copy its ID.
+        1. Navigate to MuleSoft Anypoint Platform → **Access Management** → **Business Groups** → choose your organization → copy its ID.
         1. Specify the copied group ID in the `groupId` parameter of the `pom.xml` file.
-        1. For Mulesoft instances hosted in specific regions, update the `pom.xml` file to use the corresponding regional URLs. For example, for a European instance of Mulesoft:
+        1. For MuleSoft instances hosted in specific regions, update the `pom.xml` file to use the corresponding regional URLs. For example, for a European instance of MuleSoft:
 
         ```xml hl_lines="2 7 14 24"
         <?xml version="1.0" encoding="UTF-8"?>
@@ -90,12 +90,12 @@
         </servers>
         </settings>
         ```
-1. Deploy the policy to Mulesoft using the following command:
+1. Deploy the policy to MuleSoft using the following command:
 
     ```
     mvn clean deploy -s conf/settings.xml
     ```
 
-Your custom policy is now available in your Mulesoft Anypoint Platform Exchange.
+Your custom policy is now available in your MuleSoft Anypoint Platform Exchange.
 
-![Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)

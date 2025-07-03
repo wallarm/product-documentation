@@ -215,12 +215,12 @@ nav:
           - Helm Chart Values: installation/inline/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
           - Pod's Annotations: installation/inline/kubernetes/sidecar-proxy/pod-annotations.md
     - Gateways de API:
-      - Mulesoft: installation/api-gateways/mulesoft.md
+      - MuleSoft: installation/api-gateways/mulesoft.md
       - Apigee: installation/api-gateways/apigee.md
       - Layer7 API Gateways: installation/api-gateways/layer7-api-gateway.md
     - Conectores:
       - Visão Geral: installation/connectors/overview.md
-      - Mulesoft: installation/connectors/mulesoft.md
+      - MuleSoft: installation/connectors/mulesoft.md
       - Apigee: installation/connectors/apigee.md
       - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
       - Azion Edge: installation/connectors/azion-edge.md

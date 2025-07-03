@@ -1,6 +1,6 @@
 # Implantando Wallarm com Conectores
 
-O deploy de API pode ser feito de várias maneiras, incluindo a utilização de ferramentas externas como Azion Edge, Akamai Edge, Mulesoft, Apigee e AWS Lambda. Se você está procurando uma maneira de proteger essas APIs com Wallarm, oferecemos uma solução na forma de "conectores" especificamente projetados para tais casos.
+O deploy de API pode ser feito de várias maneiras, incluindo a utilização de ferramentas externas como Azion Edge, Akamai Edge, MuleSoft, Apigee e AWS Lambda. Se você está procurando uma maneira de proteger essas APIs com Wallarm, oferecemos uma solução na forma de "conectores" especificamente projetados para tais casos.
 
 ## Como funciona
 
@@ -16,7 +16,7 @@ Alternativamente, o modo de monitoramento permite que os usuários adquiram conh
 
 ## Casos de uso
 
-* Protegendo todas as APIs implantadas com Azion Edge, Akamai Edge, Mulesoft, Apigee, AWS Lambda ou ferramenta similar, criando apenas um componente na infraestrutura atual - o componente como o código/política/proxy Wallarm dependendo da solução utilizada.
+* Protegendo todas as APIs implantadas com Azion Edge, Akamai Edge, MuleSoft, Apigee, AWS Lambda ou ferramenta similar, criando apenas um componente na infraestrutura atual - o componente como o código/política/proxy Wallarm dependendo da solução utilizada.
 * Necessidade de uma solução de segurança que oferece observação abrangente de ataques, relatórios e bloqueio instantâneo de solicitações maliciosas.
 
 ## Limitações
@@ -31,7 +31,7 @@ A solução tem certas limitações, pois só funciona com solicitações de ent
 
 Atualmente, Wallarm oferece conectores para as seguintes plataformas:
 
-* [Mulesoft](mulesoft.md)
+* [MuleSoft](mulesoft.md)
 * [Apigee](apigee.md)
 * [Akamai EdgeWorkers](akamai-edgeworkers.md)
 * [Azion Edge](azion-edge.md)

@@ -20,7 +20,7 @@ Bağlayıcı kod paketi sürümleri şu formatı izler:
 
 [How to upgrade](mulesoft.md#upgrading-the-policy)
 
-İndirilen Wallarm policy'nin `pom.xml` dosyasında veya Mulesoft UI'deki policy bilgileri arasında geçerli sürüm bulunabilir.
+İndirilen Wallarm policy'nin `pom.xml` dosyasında veya MuleSoft UI'deki policy bilgileri arasında geçerli sürüm bulunabilir.
 
 | Politika sürümü | [Native Node version](../../updating-migrating/native-node/node-artifact-versions.md) |
 | --------------- | ------------------- |
@@ -39,7 +39,7 @@ Bağlayıcı kod paketi sürümleri şu formatı izler:
 
 * `CLIENT HOST EXPRESSION` ve `CLIENT IP EXPRESSION` parametreleri eklendi
 
-    Bu parametreler, özgün host ve uzak IP'yi çıkarmak için özel [DataWeave](https://docs.mulesoft.com/dataweave/latest/dw-functions) ifadeleri tanımlamaya olanak tanır ve [Mulesoft's IP Blocklist policy](https://docs.mulesoft.com/mule-gateway/policies-included-ip-blocklist) ile uyumlu çalışır.
+    Bu parametreler, özgün host ve uzak IP'yi çıkarmak için özel [DataWeave](https://docs.mulesoft.com/dataweave/latest/dw-functions) ifadeleri tanımlamaya olanak tanır ve [MuleSoft's IP Blocklist policy](https://docs.mulesoft.com/mule-gateway/policies-included-ip-blocklist) ile uyumlu çalışır.
 
 ### 2.0.3 (2024-11-13)
 

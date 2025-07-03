@@ -5,7 +5,7 @@
 
 As [Funções Edge da Azion](https://www.azion.com/en/products/edge-functions/) permitem a execução de código personalizado na borda da rede, possibilitando a implementação de regras do cliente para lidar com solicitações. Ao incorporar código personalizado da Wallarm, o tráfego de entrada pode ser proxy para o nó Wallarm para análise e filtragem. Esta configuração realça as medidas de segurança já fornecidas pelo [Firewall Edge da Azion](https://www.azion.com/en/products/edge-firewall/). Este guia fornece instruções sobre como integrar o nó Wallarm com a Azion Edge para proteger os serviços em execução na Azion Edge.
 
-A solução implica a implementação do nó Wallarm externamente e a injeção de código personalizado ou políticas na plataforma específica. Isso permite que o tráfego seja direcionado para o nó Wallarm externo para análise e proteção contra possíveis ameaças. Chamadas de conectores Wallarm, elas servem como o link essencial entre plataformas como Azion Edge, Akamai Edge, Mulesoft, Apigee e AWS Lambda, e o nó Wallarm externo. Essa abordagem garante integração perfeita, análise de tráfego segura, mitigação de risco e segurança geral da plataforma.
+A solução implica a implementação do nó Wallarm externamente e a injeção de código personalizado ou políticas na plataforma específica. Isso permite que o tráfego seja direcionado para o nó Wallarm externo para análise e proteção contra possíveis ameaças. Chamadas de conectores Wallarm, elas servem como o link essencial entre plataformas como Azion Edge, Akamai Edge, MuleSoft, Apigee e AWS Lambda, e o nó Wallarm externo. Essa abordagem garante integração perfeita, análise de tráfego segura, mitigação de risco e segurança geral da plataforma.
 
 ## Casos de uso
 
