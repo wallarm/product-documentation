@@ -63,7 +63,7 @@ All-in-one installer güncellemelerinin geçmişi, x86_64 ve ARM64 (beta) sürü
 
 ### 0.8.3 (2024-11-14)
 
-* Mulesoft connector 3.0.x desteği eklendi
+* MuleSoft connector 3.0.x desteği eklendi
 
 ### 0.8.2 (2024-11-11)
 
@@ -163,7 +163,7 @@ Native Node için Helm chart, yerel barındırılan node dağıtımları için [
 
 ### 0.8.3 (2024-11-14)
 
-* Mulesoft connector v3.0.x desteği eklendi
+* MuleSoft connector v3.0.x desteği eklendi
 
 ### 0.8.2 (2024-11-11)
 
@@ -246,7 +246,7 @@ Native Node için Docker image, yerel barındırılan node dağıtımı için [M
 
 ### 0.8.3 (2024-11-14)
 
-* Mulesoft connector v3.0.x desteği eklendi
+* MuleSoft connector v3.0.x desteği eklendi
 
 ### 0.8.2 (2024-11-11)
 

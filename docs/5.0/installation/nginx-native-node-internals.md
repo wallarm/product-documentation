@@ -47,7 +47,7 @@ Find an NGINX Node deployment solution for your Kubernetes environment:
 
 ### Connectors
 
-API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, Mulesoft, Apigee, and CloudFront. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of ["connectors"](connectors/overview.md) specifically designed for such cases.
+API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, MuleSoft, Apigee, and CloudFront. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of ["connectors"](connectors/overview.md) specifically designed for such cases.
 
 The NGINX Node is used for the platforms listed below, however the analysis is limited to incoming requests.
 
@@ -220,7 +220,7 @@ Find your **use case below** and deploy the Native Node in the appropriate form-
 
 ### Connectors
 
-API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, Mulesoft, Apigee, and CloudFront. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of ["connectors"](connectors/overview.md) specifically designed for such cases.
+API deployment can be done in various ways, including utilizing external tools such as Azion Edge, Akamai Edge, MuleSoft, Apigee, and CloudFront. If you are looking for a way to secure these APIs with Wallarm, we offer a solution in the form of ["connectors"](connectors/overview.md) specifically designed for such cases.
 
 The Native Node works with the following platforms with no limitations:
 
@@ -228,7 +228,7 @@ The Native Node works with the following platforms with no limitations:
     <div class="do-main">
         <a class="do-card" href="../../installation/connectors/mulesoft/">
             <img class="non-zoomable" src="../../images/platform-icons/mulesoft.svg" />
-            <h3>Mulesoft</h3>
+            <h3>MuleSoft</h3>
             <p>Deploy Wallarm to secure APIs deployed on the MuleSoft Anypoint platform</p>
         </a>
         

@@ -14,7 +14,7 @@ MuleSoft用のコネクタとしてWallarmを使用するには、**Wallarmノ�
 
 MuleSoft用Wallarmコネクタは[in-line](../inline/overview.md)トラフィック解析のみをサポートします:
 
-![Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
+![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
 
 ## ユースケース
 
@@ -151,7 +151,7 @@ WallarmノードはWallarmプラットフォームの中核コンポーネント
 
 カスタムポリシーがMuleSoft Anypoint Platform Exchangeに利用可能になりました。
 
-![Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
 
 ### 3. WallarmポリシーをAPIに適用
 

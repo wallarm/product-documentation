@@ -15,7 +15,7 @@ Wallarm'ı MuleSoft için bir konnektör olarak kullanmak için, **Wallarm düğ
 
 Wallarm connector for MuleSoft yalnızca [in-line](../inline/overview.md) trafik analizini desteklemektedir:
 
-![Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
+![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow-inline.png)
 
 ## Kullanım Durumları
 
@@ -152,7 +152,7 @@ Wallarm politikasını MuleSoft Exchange'e elde etmek ve yüklemek için aşağ�
 
 Artık özel politikanız MuleSoft Anypoint Platform Exchange'te kullanılabilir durumda.
 
-![Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+![MuleSoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
 
 ### 3. Wallarm politikasını API'nize ekleyin
 

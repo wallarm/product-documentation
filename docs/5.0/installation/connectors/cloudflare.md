@@ -62,17 +62,8 @@ To run a Cloudflare worker routing traffic to the Wallarm Node:
 1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download a code bundle for your platform.
 
     If running a self-hosted node, contact sales@wallarm.com to get the code bundle.
-1. [Create a Cloudflare worker](https://developers.cloudflare.com/workers/get-started/dashboard/) using the downloaded code.
-1. Set the address of your [Wallarm Node instance](#1-deploy-a-wallarm-node) in the `wallarm_node` parameter.
-1. If required, modify [other parameters](#configuration-options).
 
-    ![Cloudflare worker](../../images/waf-installation/gateways/cloudflare/worker-deploy.png)
-1. In **Website** → your domain, go to **Workers Routes** → **Add route**:
-
-    * In **Route**, specify the paths to be routed to Wallarm for analysis (e.g., `*.example.com/*` for all paths).
-    * In **Worker**, select the Wallarm worker you created.
-
-    ![Cloudflare add route](../../images/waf-installation/gateways/cloudflare/add-route.png)
+--8<-- "../include/waf/installation/connectors/cloudflare-worker-for-wallarm.md"
 
 ## Testing
 

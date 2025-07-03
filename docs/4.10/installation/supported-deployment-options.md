@@ -179,7 +179,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     <div class="do-main">
         <a class="do-card" href="../../installation/connectors/mulesoft/">
             <img class="non-zoomable" src="../../images/platform-icons/mulesoft.svg" />
-            <h3>Mulesoft</h3>
+            <h3>MuleSoft</h3>
             <p>Deploy Wallarm to secure APIs deployed on the MuleSoft Anypoint platform</p>
         </a>
 

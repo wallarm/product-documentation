@@ -6,7 +6,7 @@
 
 [Apigee Edge](https://docs.apigee.com/api-platform/get-started/what-apigee-edge) bir API geçidi olarak işlev gören ve API'lere erişim için istemci uygulamalarının giriş noktası olan API yönetim platformudur. Apigee'de API güvenliğini artırmak için, bu makalede detaylandırıldığı üzere Wallarm'ın API proxy bundle'ını entegre edebilirsiniz.
 
-Çözüm, Wallarm node'unun dışarıda konuşlandırılmasını ve belirli platforma özel kullanıcı kodu veya politikaların enjekte edilmesini içerir. Bu, trafiğin analiz ve potansiyel tehditlere karşı korunma amacıyla dış Wallarm node'una yönlendirilmesini sağlar. Wallarm'ın konnektörleri olarak adlandırılan bu yapı, Azion Edge, Akamai Edge, Mulesoft, Apigee ve AWS Lambda gibi platformlar ile dış Wallarm node'u arasındaki temel bağlantıyı oluşturur. Bu yaklaşım, sorunsuz entegrasyon, güvenli trafik analizi, risk azaltımı ve genel platform güvenliği sağlar.
+Çözüm, Wallarm node'unun dışarıda konuşlandırılmasını ve belirli platforma özel kullanıcı kodu veya politikaların enjekte edilmesini içerir. Bu, trafiğin analiz ve potansiyel tehditlere karşı korunma amacıyla dış Wallarm node'una yönlendirilmesini sağlar. Wallarm'ın konnektörleri olarak adlandırılan bu yapı, Azion Edge, Akamai Edge, MuleSoft, Apigee ve AWS Lambda gibi platformlar ile dış Wallarm node'u arasındaki temel bağlantıyı oluşturur. Bu yaklaşım, sorunsuz entegrasyon, güvenli trafik analizi, risk azaltımı ve genel platform güvenliği sağlar.
 
 ## Kullanım Durumları
 

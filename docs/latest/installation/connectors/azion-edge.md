@@ -5,7 +5,7 @@
 
 [Azion Edge Functions](https://www.azion.com/en/products/edge-functions/) enable the execution of custom code at the network edge, allowing for the implementation of customer rules to handle requests. By incorporating Wallarm custom code, incoming traffic can be proxied to the Wallarm node for analysis and filtering. This setup enhances the security measures already provided by [Azion Edge Firewall](https://www.azion.com/en/products/edge-firewall/). This guide provides instructions on how to integrate the Wallarm node with Azion Edge to protect services running on Azion Edge.
 
-The solution involves deploying the Wallarm node externally and injecting custom code or policies into the specific platform. This enables traffic to be directed to the external Wallarm node for analysis and protection against potential threats. Referred to as Wallarm's connectors, they serve as the essential link between platforms like Azion Edge, Akamai Edge, Mulesoft, Apigee, and AWS Lambda, and the external Wallarm node. This approach ensures seamless integration, secure traffic analysis, risk mitigation, and overall platform security.
+The solution involves deploying the Wallarm node externally and injecting custom code or policies into the specific platform. This enables traffic to be directed to the external Wallarm node for analysis and protection against potential threats. Referred to as Wallarm's connectors, they serve as the essential link between platforms like Azion Edge, Akamai Edge, MuleSoft, Apigee, and AWS Lambda, and the external Wallarm node. This approach ensures seamless integration, secure traffic analysis, risk mitigation, and overall platform security.
 
 ## Use cases
 
