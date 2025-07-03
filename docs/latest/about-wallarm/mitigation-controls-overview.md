@@ -73,7 +73,7 @@ When all conditions are met, mitigation control performs its action. The require
 | Mitigation mode | Description |
 | --- | --- |
 | **Inherited** | Mode is inherited from the [all-traffic **Real-time blocking mode**](../admin-en/configure-wallarm-mode.md#general-filtration-mode) and the [configuration](../admin-en/configure-wallarm-mode.md#setting-wallarm_mode-directive) of the Wallarm node. |
-| **Monitoring** | Only registers detected attacks; no blocking is performed. Registered attacks are displayed in **API Sessions**, in the corresponding [session details](../api-sessions/exploring.md#specific-activities-within-session). |
+| **Monitoring** | Only registers detected attacks; no blocking is performed. Registered attacks are displayed in **API Sessions**, in the corresponding [session details](../api-sessions/exploring.md#specific-activities-within-session). <br> For some controls, in this mode, you can also select additional option of adding source IP in the [Graylist](../user-guides/ip-lists/overview.md). |
 | **Blocking** | Registers and blocks attacks. [Blocking methods](../about-wallarm/protecting-against-attacks.md#attack-handling-process) vary by control type: real-time blocking, [IP-based blocking](../user-guides/ip-lists/overview.md), or session-based blocking<sup>*</sup>. |
 | **Disabled** | Mitigation control is temporarily turned off and is not applied. |
 | **Excluding** | Disables this type of mitigation control for the [specified scope](#mitigation-control-branches). |
