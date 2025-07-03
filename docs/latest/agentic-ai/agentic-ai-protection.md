@@ -51,9 +51,28 @@ Wallarm's protection against attacks on AI Agents works in few simple steps:
 
 Wallarm provides LLM-based protection of AI agents - you can enable and configure it with the **Protection of AI agents (LLM-based)** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
 
-### Creating and applying mitigation control
+!!! tip ""
+    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
 
-Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope**, **Scope filters** and **Mitigation mode** are set for any mitigation control.
+### How control works
+
+!!! info "Generic information on mitigation controls"
+    Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope**, **Scope filters** and **Mitigation mode** are set for any mitigation control.
+
+Once you define **Scope** and - optionally - **Scope filters**, the control only considers request from the scope, ignoring the others. Once any request match filtered scope, the control:
+
+1. Takes content from **Prompt or response field**: particularly, from corresponding request's field, and/or from its response field (the same), or both.
+1. Combines all taken data with one or several instructions on what to do.
+
+    The set of instructions is defined by you in **Prompt attack types**:
+
+    * **System prompt retrieval** is a pre-defined instruction to search for signs of attempt to extract or reconstruct the AI's underlying prompt, system instructions, or configuration.
+    * **Prompt injection** is a pre-defined set of instructions to search for most general signs of attempt to override instructions or TBD.
+    * [Custom pattern](#custom-patterns-for-attack-detection)
+
+1. Next TBD.
+
+### Creating and applying mitigation control
 
 To configure LLM-based protection of AI agents:
 
