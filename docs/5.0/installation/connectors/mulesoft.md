@@ -61,133 +61,14 @@ To acquire and upload the Wallarm policy to Mulesoft Exchange, follow these step
 1. Proceed to Wallarm Console → **Security Edge** → **Connectors** → **Download code bundle** and download a code bundle for your platform.
 
     If running a self-hosted node, contact sales@wallarm.com to get the code bundle.
-1. Extract the policy archive.
-1. Within the `pom.xml` file, specify the following:
 
-    === "Global instance"
-        1. Navigate to Mulesoft Anypoint Platform → **Access Management** → **Business Groups** → choose your organization → copy its ID.
-        1. Specify the copied group ID in the `groupId` parameter of the `pom.xml` file:
-
-        ```xml hl_lines="2"
-        <?xml version="1.0" encoding="UTF-8"?>
-            <groupId>BUSINESS_GROUP_ID</groupId>
-            <artifactId>wallarm</artifactId>
-        ```
-    === "Regional instance"
-        1. Navigate to Mulesoft Anypoint Platform → **Access Management** → **Business Groups** → choose your organization → copy its ID.
-        1. Specify the copied group ID in the `groupId` parameter of the `pom.xml` file.
-        1. For Mulesoft instances hosted in specific regions, update the `pom.xml` file to use the corresponding regional URLs. For example, for a European instance of Mulesoft:
-
-        ```xml hl_lines="2 7 14 24"
-        <?xml version="1.0" encoding="UTF-8"?>
-            <groupId>BUSINESS_GROUP_ID</groupId>
-            <artifactId>wallarm</artifactId>
-            
-            <properties>
-                <mule.maven.plugin.version>4.1.2</mule.maven.plugin.version>
-                <exchange.url>https://maven.eu1.anypoint.mulesoft.com/api/v1/organizations/${project.groupId}/maven</exchange.url>
-            </properties>
-
-            <distributionManagement>
-                <repository>
-                    <id>anypoint-exchange-v3</id>
-                    <name>Anypoint Exchange</name>
-                    <url>https://maven.eu1.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven
-                    </url>
-                    <layout>default</layout>
-                </repository>
-            </distributionManagement>
-
-            <repositories>
-                <repository>
-                    <id>anypoint-exchange-v3</id>
-                    <name>Anypoint Exchange</name>
-                    <url>https://maven.eu1.anypoint.mulesoft.com/api/v3/maven</url>
-                    <layout>default</layout>
-                </repository>
-            </repositories>
-        ```
-1. Create the `conf` directory and a `settings.xml` file inside it with the following content:
-
-    === "Username and password"
-        Replace `username` and `password` with your actual credentials:
-
-        ```xml
-        <?xml version="1.0" encoding="UTF-8"?>
-        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-        <servers>
-            <server>
-                <id>anypoint-exchange-v3</id>
-                <username>myusername</username>
-                <password>mypassword</password>
-            </server>
-            <server>
-                <id>mulesoft-releases-ee</id>
-                <username>myusername</username>
-                <password>mypassword</password>
-            </server>
-        </servers>
-        </settings>
-        ```
-    === "Token (if MFA is enabled)"
-        [Generate and specify your token](https://docs.mulesoft.com/access-management/saml-bearer-token) in the `password` parameter:
-
-        ```xml
-        <?xml version="1.0" encoding="UTF-8"?>
-        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-        <servers>
-            <server>
-                <id>anypoint-exchange-v3</id>
-                <username>~~~Token~~~</username>
-                <password>01234567-89ab-cdef-0123-456789abcdef</password>
-            </server>
-            <server>
-                <id>mulesoft-releases-ee</id>
-                <username>~~~Token~~~</username>
-                <password>01234567-89ab-cdef-0123-456789abcdef</password>
-            </server>
-        </servers>
-        </settings>
-        ```
-1. Deploy the policy to Mulesoft using the following command:
-
-    ```
-    mvn clean deploy -s conf/settings.xml
-    ```
-
-Your custom policy is now available in your Mulesoft Anypoint Platform Exchange.
-
-![Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+--8<-- "../include/waf/installation/connectors/mulesoft-upload-policy.md"
 
 ### 3. Attach the Wallarm policy to your API
 
-You can attach the Wallarm policy to either all APIs or an individual API.
-
-#### Attaching the policy to an individual API
-
-To secure an individual API with the Wallarm policy, follow these steps:
-
-1. In your Anypoint Platform, navigate to **API Manager** and select the desired API.
-1. Navigate to **Policies** → **Add policy** and select the Wallarm policy.
-1. Specify an address of the [Wallarm node instance](#1-deploy-a-wallarm-node) including `http://` or `https://`.
-1. If necessary, modify other parameters.
-1. Apply the policy.
+--8<-- "../include/waf/installation/connectors/mulesoft-attach-policy.md"
 
 ![Wallarm policy](../../images/waf-installation/gateways/mulesoft/policy-setup.png)
-
-#### Attaching the policy to all APIs
-
-To apply the Wallarm policy to all APIs using [Mulesoft's Automated policy option](https://docs.mulesoft.com/mule-gateway/policies-automated-overview), follow these steps:
-
-1. In your Anypoint Platform, navigate to **API Manager** → **Automated Policies**.
-1. Click **Add automated policy** and select the Wallarm policy from Exchange.
-1. Specify an address of the [Wallarm node instance](#1-deploy-a-wallarm-node) including `http://` or `https://`.
-1. If necessary, modify other parameters.
-1. Apply the policy.
 
 ## Testing
 
