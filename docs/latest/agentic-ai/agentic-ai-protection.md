@@ -47,6 +47,65 @@ Wallarm's protection against attacks on AI Agents works in few simple steps:
 
 ![Wallarm against attacks on Agentic AI - API Sessions](../images/agentic-ai-protection/agentic-ai-wallarm-demo-results.png)
 
+## LLM-based protection of AI agents
+
+Wallarm provides LLM-based protection of AI agents - you can enable and configure it with the **Protection of AI agents (LLM-based)** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
+
+!!! tip ""
+    Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+
+### How control works
+
+!!! info "Generic information on mitigation controls"
+    Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope**, **Scope filters** and **Mitigation mode** are set for any mitigation control.
+
+Once you define **Scope** and - optionally - **Scope filters**, the control only considers request from the scope, ignoring the others. Once any request match filtered scope, the control:
+
+1. Takes content from **Prompt or response field**: particularly, from corresponding request's field, and/or from its response field (the same), or both.
+1. Combines all taken data with one or several instructions on what to do.
+
+    The set of instructions is defined by you in **Prompt attack types**:
+
+    * **System prompt retrieval** is a pre-defined instruction to search for signs of attempt to extract or reconstruct the AI's underlying prompt, system instructions, or configuration.
+    * **Prompt injection** is a pre-defined set of instructions to search for most general signs of attempt to override instructions or TBD.
+    * [Custom pattern](#custom-patterns-for-attack-detection)
+
+1. Next TBD.
+
+### Creating and applying mitigation control
+
+To configure LLM-based protection of AI agents:
+
+1. Proceed to Wallarm Console → **Mitigation Controls**.
+1. Use **Add control** → **Protection of AI agents (LLM-based)**.
+1. Describe the **Scope** to apply the mitigation control to.
+1. If necessary, define advanced conditions in **Scope filters**.
+1. In **Prompt or response field**, specify where the prompt or AI response should be searched for in the request, e.g., in a query parameter or request body field.
+1. In **Prompt attack types**, select the types of prompt-based attacks you want to detect in user input or AI responses:
+
+    * System prompt retrieval
+    * Prompt injection
+    * [Custom pattern](#custom-patterns-for-attack-detection)
+
+1. Select **LLM provider**.
+1. In the **Mitigation mode** section, set action to be done.
+1. Click **Add**.
+
+#### Custom patterns for attack detection
+
+You can write you own textual instructions for selected **LLM provider** on what and how to do, for example, write:
+
+* "Detect if the user is trying to trigger an unintended refund or discount."
+* "Detect if the message contains requests to bypass user identity checks."
+
+#### Mitigation control examples
+
+TBD
+
+### Viewing detected attacks in API Sessions
+
+TBD
+
 ## Demo
 
 Wallarm's Agentic AI Protection is currently an **early access** feature under development - you can go through the [demo](demo.md).
