@@ -1,24 +1,37 @@
 # API Discovery Overview <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-The **API Discovery** module of the Wallarm platform builds your application REST API inventory based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API inventory based on the analysis results.
+Wallarm's multi-protocol API Discovery continuously analyzes the real traffic requests and builds the API inventory (full picture of your active APIs) based on the analysis results.
 
-The API built inventory includes the following elements:
+## Supported protocols
 
-* API endpoints
-* Request methods (GET, POST, and others)
-* Required and optional GET, POST, and header parameters of requests and responses including:
-    * [Type/format](./exploring.md#format-and-data-type) of data sent in each parameter    
-    * Date and time when parameter information was last updated
+API Discovery is capable of finding and representing hosts and endpoints utilizing different protocols. The following protocols are supported:
 
-!!! info "Availability of response parameters"
-    Response parameters are only available when using node 4.10.1 or higher.
+| Protocol | Core entity | Required [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) version | Required [Native Node](../installation/nginx-native-node-internals.md#native-node) version |
+| --- | --- | --- | --- |
+| **REST** | Endpoint | Any | Any |
+| **GraphQL** | Operation (query, mutation, subscription) | 6.1.0 | NA |
+| **SOAP** | Operation | 6.2.0 | NA |
 
-<div>
-    <script src="https://js.storylane.io/js/v1/storylane.js"></script>
-    <div class="sl-embed" style="position:relative;padding-bottom:calc(60.95% + 27px);width:100%;height:0;transform:scale(1)">
-        <iframe class="sl-demo" src="https://wallarm.storylane.io/demo/cgqrxqwhmgyp" name="sl-embed" allow="fullscreen" style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:1px solid rgba(63,95,172,0.35);box-shadow: 0px 0px 18px rgba(26, 19, 72, 0.15);border-radius:10px;box-sizing:border-box;"></iframe>
-    </div>
-</div>
+## Your API inventory
+
+API inventory is a picture of your active APIs automatically built by Wallarm's API Discovery based on traffic going through Wallarm nodes. It includes:
+
+* API hosts and their endpoints
+* Required and optional parameters and headers of requests and responses including:
+
+        * Type and format of data sent in each parameter    
+        * Date and time when parameter information was last updated
+
+* Request methods (GET, POST, and others) for REST
+* GraphQL operations (queries, mutations, subscriptions)
+* GraphQL schema
+
+* For SOAP:
+
+    * Operations
+
+![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
+
 
 ## Issues addressed by API Discovery
 
@@ -30,17 +43,12 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 **As you have your API inventory discovered by Wallarm, you can**:
 
-* Have a full visibility into the whole API estate including the list of [external and internal](exploring.md#external-vs-internal) APIs.
-* See [what data](exploring.md#endpoint-details) is going into and out of the APIs.
-* Get a list of endpoints with the open vulnerabilities.
+* Have a full visibility into the whole API estate.
+* See what data ([REST](exploring.md#rest-endpoint-details), [GraphQL](exploring.md#graphql-operation-details), [SOAP](exploring.md#soap-operation-details)) is going into and out of the APIs.
 * Get a list of the threats that occurred over the past 7 days per any given API endpoint.
-* Filter out only attacked APIs, sort them by number of hits.
 * Filter APIs that consume and carry [sensitive data](#sensitive-data-detection).
-* View visualized summary on your API inventory structure and problems on a handy [dashboard](dashboard.md).
 * Understand which endpoints are [most likely](risk-score.md) to be an attack target.
-* Find [shadow, orphan and zombie APIs](rogue-api.md).
 * [Track changes](track-changes.md) in API that took place within the selected period of time.
-* Filter API endpoints by the [BOLA auto protection state](bola-protection.md).
 * Provide your developers with [access](../user-guides/settings/users.md#user-roles) to the built API inventory reviewing and downloading.
 
 ## How does API Discovery work?
@@ -70,11 +78,12 @@ The API inventory will display the endpoints and parameters that exceeded these 
 Also, the API Discovery performs filtering of requests relying on the other criteria:
 
 * Only those requests to which the server responded in the 2xx range are processed.
-* Requests that do not conform to the design principles of the REST API are not processed.
+* Requests that do not conform to the design principles of the REST or GraphQL API are not processed.
     
-    This is done by controlling the `Content-Type` header of responses: if it does not contain `application/json` (like `Content-Type: application/json;charset=utf-8`), the request is considered to be a non-REST API and is not analyzed.
-    
-    If the header does not exist, API Discovery analyzes the request.
+    An entry is NOT classified as a valid API call and not displayed in API Discovery if both of the following conditions are met:
+
+    1. The request path contains a file extension (i.e., the last path segment does not match the pattern `.*.[a-zA-Z0-9]+`).
+    1. The `Content-Type` header of the response is either missing, does not start with application/, or does not indicate a JSON type (i.e., does not match application/json, case-insensitive, and without a charset suffix).
 
 * Standard fields such as `Accept` and alike are discarded.
 
@@ -88,8 +97,6 @@ API Discovery [detects and highlights](sensitive-data.md) sensitive data consume
 * Medical data like medical license number
 * Personally identifiable information (PII) like full name, passport number or SSN
 
-API Discovery provides the ability to configure the detection process and add your own sensitive data patterns (requires NGINX Node 5.0.3 or Native Node 0.7.0 or higher).
-
 ### Sensitive business flows
 
 With the [sensitive business flow](sbf.md) capability, API Discovery can automatically identify endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, and similar critical capabilities.
@@ -98,7 +105,7 @@ In addition to automatic identification, you can manually adjust the assigned se
 
 Once endpoints are assigned with the sensitive business flow tags, it becomes possible to filter all discovered endpoint by a specific business flow which makes it easier on protecting the most critical business capabilities.
 
-![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery/api-discovery-sbf-filter.png)
+![API Discovery - Filtering by sensitive business flows](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-sbf-filter.png)
 
 ### Security of data uploaded to the Wallarm Cloud
 
@@ -109,15 +116,7 @@ On the Cloud side, hashed data is used for statistical analysis (for example, wh
 Other data (endpoint values, request methods, and parameter names) is not hashed before being uploaded to the Wallarm Cloud, because hashes cannot be restored to their original state which would make building API inventory impossible.
 
 !!! warning "Important"
-    Wallarm does not send the values that are specified in the parameters to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
-
-## API Discovery demo video
-
-Watch API Discovery demo video:
-
-<div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/0bRHVtpWkJ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+    API Discovery does not send the parameter values to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
 
 ## Checking API Discovery in playground
 
@@ -127,6 +126,6 @@ In Playground, you can access the API Discovery view like it is filled with real
 
 ![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 
-## Enabling and configuring API Discovery
+## Enabling API Discovery
 
-To start using API Discovery, enable and configure it as described in [API Discovery Setup](setup.md).
+To start using API Discovery, enable it as described in [API Discovery Setup](setup.md).
