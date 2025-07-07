@@ -10,6 +10,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+### 0.13.6 (2025-07-08)
+
+* Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+* Resolved an issue in [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) processing where headers from multiple records could be mixed for a single request
+    
+    Now, once a request matches a `trusted_networks` entry, only headers from that specific record are used.
+* Minor bug fixes
+
 ### 0.13.5 (2025-06-09)
 
 * Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
@@ -216,6 +224,11 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.13.6 (2025-07-08)
+
+* Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+* Minor bug fixes
+
 ### 0.13.5 (2025-06-09)
 
 * Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability
@@ -335,6 +348,14 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.13.6 (2025-07-08)
+
+* Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+* Resolved an issue in [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) processing where headers from multiple records could be mixed for a single request
+    
+    Now, once a request matches a `trusted_networks` entry, only headers from that specific record are used.
+* Minor bug fixes
 
 ### 0.13.5 (2025-06-09)
 
