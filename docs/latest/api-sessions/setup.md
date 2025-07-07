@@ -131,6 +131,10 @@ Requests:
 
 The same parameter value `aaa` groups these requests into one session.
 
+## Enabling JA3 fingerprinting
+
+It is recommended to enable [JA3 fingerprinting](../admin-en/enabling-ja3.md#overview) for better identification of the unauthenticated traffic.
+
 ## Data protection
 
 For API Sessions, from node to the Cloud, Wallarm only exports parameters selected by you. If they contain sensitive data, be sure to hash it before exporting. Note that hashing will transform the actual value into unreadable - the presence of parameter and particular but unknown value will provide the limited information for the analysis.

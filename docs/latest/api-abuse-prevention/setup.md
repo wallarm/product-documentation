@@ -29,6 +29,8 @@ To create an API abuse profile:
         From such event details, you can quickly block the bot with the **Add source IP to denylist** button. The IP is added to the denylist forever, but in the **IP Lists** section you can delete it or change the time of staying in the list.
 
     * **Denylist IP** or **Graylist IP** - the bot's IP is added to the corresponding list for the selected period, and requests are blocked. Learn more about the difference between deny- and graylist [here](../user-guides/ip-lists/overview.md).
+    * **Denylist session** - the session that bot's request belong to is [added](../api-sessions/blocking.md#blocking-sessions) to the Session Denylist for the selected period, all further requests in that session are blocked.
+    * **Denylist session and IP** - blocks both IP(s) originating bot activities and the session.
 
 1. If necessary change the detection **Sensitivity** for each bot type:
     
