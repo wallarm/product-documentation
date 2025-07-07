@@ -30,14 +30,15 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 Each request/response parameter information includes:
 
 * Parameter name and the part of request/response this parameter belongs to
+* Path: the hierarchical location of a parameter within a REST query structure
 * Information about parameter changes (new, unused)
 * Presence and type of sensitive data transmitted by this parameter, including:
 
-    * Technical data like IP and MAC addresses
+    * Personally identifiable information (PII) like full name, passport number or SSN
     * Login credentials like secret keys and passwords
     * Financial data like bank card numbers
     * Medical data like medical license number
-    * Personally identifiable information (PII) like full name, passport number or SSN
+    * Technical data like IP and MAC addresses
 
 * [Type/format](#data_format_rest) of data sent in this parameter
 * Date and time when parameter value was last transferred by requests
@@ -67,9 +68,7 @@ The **API Discovery** module unifies such elements into the `{parameter_X}` form
 
 Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
 
-<!--![API Discovery - variability in path](TBD)-->
-
-Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
+<!--![API Discovery - variability in path](../images/TBD)-->
 
 ## GraphQL operation details
 
@@ -104,7 +103,7 @@ Within each found session, only requests to your endpoint will be initially disp
 
 A structured view of session activity helps in understanding your endpoint place in malicious and legitimate activities, its relation to sensitive business flows and required protection measures.
 
-## Creating rules for API endpoints
+<!--## Creating rules for API endpoints
 
 You can quickly create a new [custom rule](../user-guides/rules/rules.md) from any endpoint of API inventory: 
 
@@ -113,7 +112,7 @@ You can quickly create a new [custom rule](../user-guides/rules/rules.md) from a
 
 ![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
-<!--## Exporting API inventory data
+## Exporting API inventory data
 
 The API Discovery UI provides you with an option to export the current filtered list of endpoints as the [OpenAPI v3](https://spec.openapis.org/oas/v3.0.0) specification or CSV file.
 

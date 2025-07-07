@@ -27,7 +27,6 @@ Risk score may be from `1` (lowest) to `10` (highest):
 | 8 to 10 | High | Red |
 
 * `1` means no risk factors for this endpoint.
-* Risk score is not displayed (`N/A`) for the unused endpoints.
 * Sort by risk score in the **Risk** column.
 * Filter `High`, `Medium` or `Low` using the **Risk score** filter.
 

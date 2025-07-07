@@ -10,11 +10,11 @@ API Discovery detects and highlights sensitive data consumed and carried by your
 
 By default, -->API Discovery detects the following types of sensitive data:
 
-* Technical data like IP and MAC addresses
+* Personally identifiable information (PII) like full name, passport number or SSN
 * Login credentials like secret keys and passwords
 * Financial data like bank card numbers
 * Medical data like medical license number
-* Personally identifiable information (PII) like full name, passport number or SSN
+* Technical data like IP and MAC addresses
 
 <!--In Wallarm Console, go to **API Discovery** → **Configure API Discovery** → **Sensitive data** to check the list of default [sensitive data patterns](#customizing-sensitive-data-detection) provided for each of listed types.
 
