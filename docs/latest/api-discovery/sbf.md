@@ -2,8 +2,6 @@
 
 With the sensitive business flow capability, Wallarm's [API Discovery](overview.md) can automatically identify endpoints that are critical to specific business flows and functions, such as authentication, account management, billing, utilizing AI, and similar critical capabilities. Learn from this article how to use the sensitive business flow functionality.
 
-Requires NGINX Node 5.2.11 or Native Node 0.10.1 or higher.
-
 ## Addressed issues
 
 The abuse of the sensitive business flows ranks sixth ([API6](https://owasp.org/API-Security/editions/2023/en/0xa6-unrestricted-access-to-sensitive-business-flows/)) among OWASP API Top 10 risks. Protecting these sensitive business flows ensures business continuity, prevents leaking of sensitive data, reputation risks, and financial damage.
@@ -21,7 +19,7 @@ For your convenience, API Discovery tags endpoints as belonging to sensitive bus
 
 --8<-- "../include/default-sbf.md"
 
-Automatic checks are conducted using keywords from the endpoint URL (REST) or operation name (GraphQL). For example, keywords like `payment`, `subscription`, or `purchase` automatically associate the endpoint with the **Billing** flow, while keywords such as `auth`, `token`, or `login` link it to the **Authentication** flow. If matches are detected, the endpoint is automatically assigned to the appropriate flow.
+Automatic checks are conducted using keywords from the endpoint URL (REST) or operation name (GraphQL, SOAP). For example, keywords like `payment`, `subscription`, or `purchase` automatically associate the endpoint with the **Billing** flow, while keywords such as `auth`, `token`, or `login` link it to the **Authentication** flow. If matches are detected, the endpoint is automatically assigned to the appropriate flow.
 
 The automatic tagging discovers most of the sensitive business flows. However, it is also possible to manually adjust the list of assigned business flows as described in the section below.
 
