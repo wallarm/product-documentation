@@ -10,7 +10,7 @@ API Discovery is capable of finding and representing hosts and endpoints utilizi
 | --- | --- | --- | --- |
 | **REST** | Endpoint | Any | Any |
 | **GraphQL** | Operation (query, mutation, subscription) | 6.1.0 | NA |
-| **SOAP** | Operation | 6.2.0 | NA |
+| **SOAP** | Operation | 6.3.0 | NA |
 
 ## Your API inventory
 
@@ -25,10 +25,7 @@ API inventory is a picture of your active APIs automatically built by Wallarm's 
 * Request methods (GET, POST, and others) for REST
 * GraphQL operations (queries, mutations, subscriptions)
 * GraphQL schema
-
-* For SOAP:
-
-    * Operations
+* SOAP operations
 
 ![API Discovery - built API inventory](../images/about-wallarm-waf/api-discovery-2.0/api-discovery-built-inventory.png)
 
@@ -45,7 +42,6 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 * Have a full visibility into the whole API estate.
 * See what data ([REST](exploring.md#rest-endpoint-details), [GraphQL](exploring.md#graphql-operation-details), [SOAP](exploring.md#soap-operation-details)) is going into and out of the APIs.
-* Get a list of the threats that occurred over the past 7 days per any given API endpoint.
 * Filter APIs that consume and carry [sensitive data](#sensitive-data-detection).
 * Understand which endpoints are [most likely](risk-score.md) to be an attack target.
 * [Track changes](track-changes.md) in API that took place within the selected period of time.
@@ -81,7 +77,7 @@ The API inventory will display the endpoints and parameters that exceeded these 
 Also, the API Discovery performs filtering of requests relying on the other criteria:
 
 * Only those requests to which the server responded in the 2xx range are processed.
-* Requests that do not conform to the design principles of the REST or GraphQL API are not processed.
+* Requests that do not conform to the design principles of the REST, GraphQL, or SOAP API are not processed.
     
     An entry is NOT classified as a valid API call and not displayed in API Discovery if any of the following conditions are met:
 
