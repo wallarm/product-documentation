@@ -62,6 +62,6 @@ You can fine tune API Abuse Prevention by [making exceptions](exceptions.md): ma
 
 ## Improving session mechanism
 
-API Abuse Prevention uses the [API Sessions](../api-sessions.md) mechanism when analyzing the bot behavior.
+API Abuse Prevention uses the [API Sessions](../api-sessions/overview.md) mechanism when analyzing the bot behavior.
 
 To make the API Abuse Prevention functionality more precise, it is recommended to enable [JA3 fingerprinting](../admin-en/enabling-ja3.md) for better identification of the the unauthenticated traffic when combining requests into sessions.
