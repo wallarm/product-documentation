@@ -29,6 +29,7 @@ controller:
       service:
         annotations: {}
       arena: "2.0"
+      serviceAddress: "[::]:3313"
       livenessProbe:
         failureThreshold: 3
         initialDelaySeconds: 10
@@ -164,6 +165,7 @@ controller:
           value: EXTRA_ENV_VAR_VALUE
 validation:
   enableCel: false
+  forbidDangerousAnnotations: false
 ```
 
 To change this setting, we recommend using the option `--set` of `helm install` (if installing the Ingress controller) or `helm upgrade` (if updating the installed Ingress controller parameters). For example:
@@ -263,6 +265,14 @@ Specifies the amount of memory allocated for postanalytics service. It is recomm
 **Default value**: `2.0`
 
 In the [NGINX Node 5.x and earlier](../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics), the parameter has been named `controller.wallarm.tarantool.arena`. Renaming is required during upgrade.
+
+### controller.wallarm.postanalytics.serviceAddress
+
+Specifies the address and port on which **wstore** accepts incoming connections.
+
+Supported from the release 6.3.0 onwards.
+
+**Default value**: `[::]:3313` - listens on port 3313 on all IPv4 and IPv6 interfaces. This was also the default behavior in versions prior to 6.3.0.
 
 ### controller.wallarm.postanalytics.tls
 
@@ -377,7 +387,6 @@ The default rules catch common misconfigurations typically detected by `nginx -t
 * Ensuring all host values are unique within an Ingress
 * Verifying that each HTTP path includes a service name and port
 * Requiring that all paths start with `/`
-* Blocking only explicitly dangerous annotations (e.g. `server-snippet`, `configuration-snippet`, etc.), all other keys are allowed
 * Validating formats of common size/time/boolean annotations (`proxy-buffer-size`, `proxy-read-timeout`, `ssl-redirect`)
 
 Validation occurs during Ingress creation or update, rejecting misconfigured resources.
@@ -393,6 +402,23 @@ You can extend or modify the default set of rules using [Common Expression Langu
 1. [Download the Wallarm Helm chart](https://github.com/wallarm/helm-charts/tree/main/wallarm-ingress) of the required version.
 1. Modify the rules in the `templates/ingress-safety-vap.yaml` file.
 1. Deploy the chart from the modified directory according to the [standard deployment instructions](installation-kubernetes-en.md).
+
+### validation.forbidDangerousAnnotations
+
+Enables an additional CEL rule that blocks explicitly dangerous NGINX Ingress annotations `server-snippet` and `configuration-snippet`.
+
+Allowing all snippet annotations widens the attack surface: any user with permissions to create or update Ingresses can introduce insecure or unstable behavior.
+
+This feature requires:
+
+* Kubernetes v1.30 or above
+* Wallarm Helm chart version 6.3.0+
+* [`validation.enableCel`](#validationenablecel) is set to `true`
+
+!!! info "Behavior in Node 6.2.0-"
+    In Node versions 6.2.0 and earlier, explicitly dangerous `server-snippet` and `configuration-snippet` are blocked by default when [`validation.enableCel`](#validationenablecel) is `true`.
+
+**Default value**: `false` (blocking explicitly dangerous annotations `server-snippet` and `configuration-snippet` is disabled)
 
 ## Global Controller Settings 
 

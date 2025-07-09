@@ -10,6 +10,8 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
+<!-- once we support 6.3 in native node, serviceaddres - to be described -->
+
 ### 0.14.1 (2025-05-07)
 
 * Added support for [**enumeration**](../../api-protection/enumeration-attack-protection.md) mitigation controls
