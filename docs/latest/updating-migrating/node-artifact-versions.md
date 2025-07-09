@@ -109,7 +109,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 ### 6.2.0 (2025-06-20)
 
 * Optimized stream handling for gRPC traffic
-* Added support for [SSL/TLS and mTLS](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoretlstls) between the Filtering Node and the postanalytics module
+* Added support for [SSL/TLS and mTLS](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoretls) between the Filtering Node and the postanalytics module
 * Bump Alpine version to 3.22
 * Upgrade NGINX to version 1.28.0
 * Minor bug fixes
