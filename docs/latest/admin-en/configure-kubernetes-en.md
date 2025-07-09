@@ -29,6 +29,7 @@ controller:
       service:
         annotations: {}
       arena: "2.0"
+      serviceAddress: "[::]:3313"
       livenessProbe:
         failureThreshold: 3
         initialDelaySeconds: 10
@@ -264,6 +265,14 @@ Specifies the amount of memory allocated for postanalytics service. It is recomm
 **Default value**: `2.0`
 
 In the [NGINX Node 5.x and earlier](../updating-migrating/what-is-new.md#replacing-tarantool-with-wstore-for-postanalytics), the parameter has been named `controller.wallarm.tarantool.arena`. Renaming is required during upgrade.
+
+### controller.wallarm.postanalytics.serviceAddress
+
+Specifies the address and port on which **wstore** accepts incoming connections.
+
+Supported from the release 6.3.0 onwards.
+
+**Default value**: `[::]:3313` - listens on port 3313 on all IPv4 and IPv6 interfaces. This was also the default behavior in versions prior to 6.3.0.
 
 ### controller.wallarm.postanalytics.tls
 

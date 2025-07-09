@@ -12,21 +12,13 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
-### 6.3.0
+### 6.3.0 (2025-07-08)
 
-* [Node part only, no public announcement yet] Added support for session blocking
-* [Node part only, no public announcement yet] Added support for SOAP-XML API Discovery
+* Added support for [blocking attackers by API sessions]
+
+<!-- * [Node part only, no public announcement yet] Added support for SOAP-XML API Discovery
 * [Node part only, no public announcement yet] Added support file upload restriction policy
-* [Node part only, no public announcement yet] Added support for unrestricted resource consumption mitigation by API Abuse Prevention
-
-
-NGINX IC only:
-
-* Added the `validation.forbidDangerousAnnotations` chart value to toggle the CEL rule that blocks the dangerous `server-snippet` and `configuration-snippet` annotations
-
-    By default, it is set to `false` - dangerous annotations are not blocked.
-
-    Behaviour in Node 6.2.0- unchanged (annotations are blocked by default when `validation.enableCel` is `true`).
+* [Node part only, no public announcement yet] Added support for unrestricted resource consumption mitigation by API Abuse Prevention -->
 
 ### 6.2.1 (2025-06-23)
 
@@ -71,6 +63,16 @@ NGINX IC only:
 
 [How to upgrade](ingress-controller.md)
 
+### 6.3.0 (2025-07-08)
+
+* Added support for [blocking attackers by API sessions]
+* Added the [`validation.forbidDangerousAnnotations`](../admin-en/configure-kubernetes-en.md#validationforbiddangerousannotations) chart value to toggle the CEL rule that blocks the dangerous `server-snippet` and `configuration-snippet` annotations
+
+    By default, it is set to `false` - dangerous annotations are not blocked.
+
+    Behaviour in Node 6.2.0- unchanged (annotations are blocked by default when `validation.enableCel` is `true`).
+* Added support for the [`controller.wallarm.postanalytics.serviceAddress`](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticsserviceaddress) parameter to customize the address and port for incoming **wstore** connections
+
 ### 6.2.0 (2025-06-20)
 
 * Optimized stream handling for gRPC traffic
@@ -99,10 +101,15 @@ NGINX IC only:
 
 [How to upgrade](sidecar-proxy.md)
 
+### 6.3.0 (2025-07-08)
+
+* Added support for [blocking attackers by API sessions]
+* Added support for the [`postanalytics.wstore.config.serviceAddress`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoreconfigserviceaddress) parameter to customize the address and port for incoming **wstore** connections
+
 ### 6.2.0 (2025-06-20)
 
 * Optimized stream handling for gRPC traffic
-* Added support for [SSL/TLS and mTLS](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwstoretls) between the Filtering Node and the postanalytics module
+* Added support for [SSL/TLS and mTLS](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoretlstls) between the Filtering Node and the postanalytics module
 * Bump Alpine version to 3.22
 * Upgrade NGINX to version 1.28.0
 * Minor bug fixes
@@ -123,6 +130,10 @@ NGINX IC only:
 ## NGINX-based Docker image
 
 [How to upgrade](docker-container.md)
+
+### 6.3.0 (2025-07-08)
+
+* Added support for [blocking attackers by API sessions]
 
 ### 6.2.0 (2025-06-20)
 
@@ -151,6 +162,10 @@ NGINX IC only:
 
 [How to upgrade](cloud-image.md)
 
+<!-- ### 6.3.0 (2025-07-08)
+
+* Added support for [blocking attackers by API sessions] -->
+
 ### 6.2.0 (2025-06-20)
 
 * Optimized stream handling for gRPC traffic
@@ -175,6 +190,10 @@ NGINX IC only:
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-6-3-0-20250708-175541 (2025-07-08)
+
+* Added support for [blocking attackers by API sessions]
 
 ### wallarm-node-6-2-0-20250618-150224 (2025-06-20)
 
