@@ -66,7 +66,7 @@ Protected resource API can be designed on the basis of the following technologie
 
 To detect and handle attacks, Wallarm uses the following process:
 
-1. Checks [IP lists](../user-guides/ip-lists/overview.md) to understand whether to process the request at all. Denylist blocks the request and allowlist allows it - both without further analysis.
+1. Checks [IP lists](../user-guides/ip-lists/overview.md) and [Session lists](../api-sessions/blocking.md#blocking-sessions) to understand whether to process the request at all. Denylist blocks the request and allowlist allows it - both without further analysis.
 1. Determines the request format and [parse](../user-guides/rules/request-processing.md) every request part to apply [basic detectors](#basic-set-of-detectors).
 1. Determines the endpoint the request is addressed to apply [custom rules](#custom-rules)/[mitigation controls](#mitigation-controls) and [specific module settings](#specific-module-settings) and understand the [filtration mode](../admin-en/configure-wallarm-mode.md).
 1. Makes a decision whether the request is a part of attack or not based on basic detectors, custom rules and specific module settings.

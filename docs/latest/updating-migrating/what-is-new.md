@@ -153,6 +153,33 @@ To detect this type of automated threats, API Abuse Prevention provides a set of
 * **Excessive request consumption** identifying clients that send abnormally large request payloads to the API, potentially indicating abuse or misuse of backend processing resources.
 * **Excessive response consumption** flagging suspicious sessions based on the total volume of response data transferred over their lifetime. Unlike detectors focused on individual requests, this detector aggregates response sizes across an entire session to identify slow-drip or distributed scraping attacks.
 
+## Blocking by session
+
+!!! tip ""
+    [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.3.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far
+
+Wallarm now provides a new protection action - [blocking by session](../api-sessions/blocking.md#blocking-sessions). It allows for more intelligent security decisions based on the state of the current interaction with the application, rather than just its network origins ([source IP addresses](../user-guides/ip-lists/overview.md)).
+
+Blocking by session is required for the cases of:
+
+* Dynamic source IP addresses
+* Attackers switching IP addresses via proxy servers, VPNs or other means
+* Bot attacks, utilizing a number of machines with diverse IP addresses
+* Invalidating the specific stolen session (directly stops the hijack)
+* Necessity of immediate revocation of current access for actively logged in session
+
+The session can be blocked automatically by: 
+
+* [Mitigation control](../about-wallarm/mitigation-controls-overview.md)
+
+    ![!Mitigation control - blocking by session](../images/api-sessions/api-sessions-blocking-mc.png)
+
+* Wallarm's [API Abuse Prevention](../api-abuse-prevention/overview.md)
+
+    ![!API Abuse Prevention profile - blocking by session](../images/api-sessions/api-sessions-blocking-api-abuse.png)
+
+You can also block/unblock any session manually at any moment.
+
 ## Which Wallarm nodes are recommended to be upgraded?
 
 * Client and multi-tenant Wallarm NGINX Nodes of version 4.10 and 5.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support-policy).
