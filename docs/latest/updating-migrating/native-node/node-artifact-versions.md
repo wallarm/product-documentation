@@ -10,7 +10,20 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](all-in-one.md)
 
-<!-- once we support 6.3 in native node, serviceaddres - to be described -->
+### 0.15.1 (2025-07-08)
+
+* Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
+
+    This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
+* Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary
+* Fixed the `--preserve` script flag behavior to correctly retain the existing `node.yaml` and `env.list` files during upgrade
+
+    Previously, these files could be overwritten, resulting in loss of configuration.
+* Added [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) to control `keep-alive` connection limits
+* Minor internal file structure change
+* Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
+<!-- * Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability -->
 
 ### 0.14.1 (2025-05-07)
 
@@ -42,6 +55,14 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 
 [How to upgrade](helm-chart.md)
 
+### 0.15.1 (2025-07-08)
+
+* Added support for the [`config.aggregation.serviceAddress`](../../installation/native-node/helm-chart-conf.md#configaggregationserviceaddress) parameter to customize the address and port for incoming **wstore** connections
+* Minor internal file structure change
+<!-- * Added [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) to control `keep-alive` connection limits -->
+<!-- * Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability -->
+
 ### 0.14.1 (2025-05-07)
 
 * Added support for the [IBM API Connect connector](../../installation/connectors/ibm-api-connect.md)
@@ -66,6 +87,18 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 The Docker image for the Native Node is used for self-hosted node deployment with the [MuleSoft](../../installation/connectors/mulesoft.md), [CloudFront](../../installation/connectors/aws-lambda.md), [Cloudflare](../../installation/connectors/cloudflare.md), [Istio](../../installation/connectors/istio-inline.md), [Broadcom Layer7 API Gateway](../../installation/connectors/layer7-api-gateway.md), [Fastly](../../installation/connectors/fastly.md), [IBM DataPower](../../installation/connectors/ibm-api-connect.md) connectors.
 
 [How to upgrade](docker-image.md)
+
+### 0.15.1 (2025-07-08)
+
+* Introduced the [`proxy_headers`](../../installation/native-node/all-in-one-conf.md#proxy_headers) configuration to configure trusted networks and extract real client IP and host headers
+
+    This replaces `http_inspector.real_ip_header` used in earlier versions in the `tcp-capture` mode.
+* Added the [`metrics.namespace`](../../installation/native-node/all-in-one-conf.md#metricsnamespace) configuration option to customize the prefix of Prometheus metrics exposed by the `go-node` binary
+* Added [`connector.per_connection_limits`](../../installation/native-node/all-in-one-conf.md#connectorper_connection_limits) to control `keep-alive` connection limits
+* Minor internal file structure change
+* Fixed wstore ports binding: now bound to `127.0.0.1` instead of `0.0.0.0`
+<!-- * Fixed the [CVE-2025-22874](https://nvd.nist.gov/vuln/detail/CVE-2025-22874) vulnerability
+* Fixed the [CVE-2025-47273](https://nvd.nist.gov/vuln/detail/CVE-2025-47273) vulnerability -->
 
 ### 0.14.1 (2025-05-07)
 

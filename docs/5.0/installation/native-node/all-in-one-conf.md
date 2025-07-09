@@ -599,7 +599,7 @@ You can define multiple rules for different proxy types or trust levels.
 !!! info "Rule evaluation order"    
     Only the first matching rule is applied per request.
 
-Supported in Native Node 0.13.5 and later 0.13.x versions.
+Supported in Native Node 0.13.5 and later 0.13.x versions, and in 0.15.1 and later.
 
 Example:
 
@@ -956,7 +956,7 @@ Default: `wallarm_gonode`.
 
 All metrics emitted by `go-node` will use this prefix (e.g., `wallarm_gonode_requests_total`). Other components of the node, such as `wstore` and `wcli`, use their own fixed prefixes.
 
-Supported in Native Node 0.13.5 and later 0.13.x versions.
+Supported in Native Node 0.13.5 and later 0.13.x versions, and in 0.15.1 and later.
 
 ### health_check.enabled
 

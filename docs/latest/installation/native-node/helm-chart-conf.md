@@ -63,6 +63,9 @@ config:
         enabled: true
         verbose: false
 
+  aggregation:
+    serviceAddress: "[::]:3313"
+
 processing:
   service:
     type: LoadBalancer
@@ -337,6 +340,14 @@ Default: `true`.
 Controls whether to include detailed information about each request in the access log output.
 
 Default: `false`.
+
+### config.aggregation.serviceAddress
+
+Specifies the address and port on which **wstore** accepts incoming connections.
+
+Supported from the release 0.15.1 onwards.
+
+**Default value**: `[::]:3313` - listens on port 3313 on all IPv4 and IPv6 interfaces. This was also the default behavior in versions prior to 0.15.1.
 
 ### processing.service.type
 
