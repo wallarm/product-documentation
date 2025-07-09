@@ -106,8 +106,7 @@ This protection counts the number of unique endpoints accessed in a configured t
 When any of the counters exceeds the threshold, the selected action is performed:
 
 * **Monitoring** - the attack is registered, requests that are the part of this attack are marked in [API Sessions](../api-sessions/overview.md) as belonging to `Brute force`, `Forced browsing`, `BOLA` or generic `Enum` attack but the requests are not blocked.
-* **Blocking** → **Block IP address** - the attack is registered, requests that are the part of this attack are marked in API Sessions as belonging to this attack, all source IPs of these requests are placed into [IP Denylist](../user-guides/ip-lists/overview.md) for the selected period of time.
-* **Blocking** → **Block session** - the attack is registered, the session that requests belong to is placed into [Session Denylist](../api-sessions/blocking.md#blocking-sessions) for the selected period of time.
+* **Blocking** → **Block IP address** - the attack is registered, requests that are the part of this attack are marked in API Sessions as belonging to this attack, all source IPs of these requests are placed into [denylist](../user-guides/ip-lists/overview.md) for the selected period of time.
 
 ### Regular expressions
 

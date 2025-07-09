@@ -68,33 +68,6 @@ With API Sessions, security teams can now easily:
 
 [Read more](../../api-sessions/overview.md)
 
-### Blocking by session
-
-!!! tip ""
-    [NGINX Node](../../installation/nginx-native-node-internals.md#nginx-node) 6.3.1 or higher and not supported by [Native Node](../../installation/nginx-native-node-internals.md#native-node) so far
-
-Wallarm now provides a new protection action - [blocking by session](../../api-sessions/blocking.md#blocking-sessions). It allows for more intelligent security decisions based on the state of the current interaction with the application, rather than just its network origins ([source IP addresses](../../user-guides/ip-lists/overview.md)).
-
-Blocking by session is required for the cases of:
-
-* Dynamic source IP addresses
-* Attackers switching IP addresses via proxy servers, VPNs or other means
-* Bot attacks, utilizing a number of machines with diverse IP addresses
-* Invalidating the specific stolen session (directly stops the hijack)
-* Necessity of immediate revocation of current access for actively logged in session
-
-The session can be blocked automatically by: 
-
-* [Mitigation control](../../about-wallarm/mitigation-controls-overview.md)
-
-    ![!Mitigation control - blocking by session](../../images/api-sessions/api-sessions-blocking-mc.png)
-
-* Wallarm's [API Abuse Prevention](../../api-abuse-prevention/overview.md)
-
-    ![!API Abuse Prevention profile - blocking by session](../../images/api-sessions/api-sessions-blocking-api-abuse.png)
-
-You can also block/unblock any session manually at any moment.
-
 ## Response parameters in API Sessions
 
 !!! tip ""
