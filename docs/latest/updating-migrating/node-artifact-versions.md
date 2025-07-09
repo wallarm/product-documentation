@@ -12,6 +12,22 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to migrate from previous all-in-one installer version](all-in-one.md)
 
+### 6.3.0
+
+* [Node part only, no public announcement yet] Added support for session blocking
+* [Node part only, no public announcement yet] Added support for SOAP-XML API Discovery
+* [Node part only, no public announcement yet] Added support file upload restriction policy
+* [Node part only, no public announcement yet] Added support for unrestricted resource consumption mitigation by API Abuse Prevention
+
+
+NGINX IC only:
+
+* Added the `validation.forbidDangerousAnnotations` chart value to toggle the CEL rule that blocks the dangerous `server-snippet` and `configuration-snippet` annotations
+
+    By default, it is set to `false` - dangerous annotations are not blocked.
+
+    Behaviour in Node 6.2.0- unchanged (annotations are blocked by default when `validation.enableCel` is `true`).
+
 ### 6.2.1 (2025-06-23)
 
 * Minor internal file structure change
