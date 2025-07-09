@@ -41,7 +41,6 @@ nav:
       - Overview: api-sessions/overview.md
       - Setup: api-sessions/setup.md
       - Exploring: api-sessions/exploring.md
-      - Blocking: api-sessions/blocking.md
     - Reports: user-guides/search-and-filters/custom-report.md
   - API Protection:
     - Overview: about-wallarm/api-protection-overview.md
