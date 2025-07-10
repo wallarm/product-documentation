@@ -14,6 +14,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 6.3.0 (2025-07-08)
 
+* In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
 
 <!-- * [Node part only, no public announcement yet] Added support for SOAP-XML API Discovery
@@ -65,13 +66,14 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 6.3.0 (2025-07-08)
 
-* Internal improvements
 * Added the [`validation.forbidDangerousAnnotations`](../admin-en/configure-kubernetes-en.md#validationforbiddangerousannotations) chart value to toggle the CEL rule that blocks the dangerous `server-snippet` and `configuration-snippet` annotations
 
     By default, it is set to `false` - dangerous annotations are not blocked.
 
     Behaviour in Node 6.2.0- unchanged (annotations are blocked by default when `validation.enableCel` is `true`).
 * Added support for the [`controller.wallarm.postanalytics.serviceAddress`](../admin-en/configure-kubernetes-en.md#controllerwallarmpostanalyticsserviceaddress) parameter to customize the address and port for incoming **wstore** connections
+* In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
+* Internal improvements
 
 ### 6.2.0 (2025-06-20)
 
@@ -106,8 +108,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 6.3.0 (2025-07-08)
 
-* Internal improvements
 * Added support for the [`postanalytics.wstore.config.serviceAddress`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoreconfigserviceaddress) parameter to customize the address and port for incoming **wstore** connections
+* In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
+* Internal improvements
 
 ### 6.2.0 (2025-06-20)
 
@@ -136,6 +139,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 6.3.0 (2025-07-08)
 
+* In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
 
 ### 6.2.0 (2025-06-20)
@@ -165,9 +169,10 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 [How to upgrade](cloud-image.md)
 
-<!-- ### 6.3.0 (2025-07-08)
+### 6.3.0 (2025-07-08)
 
-* Added support for [blocking attackers by API sessions] -->
+* In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
+* Internal improvements
 
 ### 6.2.0 (2025-06-20)
 
@@ -196,6 +201,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### wallarm-node-6-3-0-20250708-175541 (2025-07-08)
 
+* In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
 
 ### wallarm-node-6-2-0-20250618-150224 (2025-06-20)
