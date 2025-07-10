@@ -1,19 +1,6 @@
-# Business Logic Abuse Prevention (LLM-based) <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# AI Business Logic Abuse Prevention <a href="../../about-wallarm/subscription-plans/#waap-and-advanced-api-security"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 Modern applications rely heavily on complex business logic to manage workflows, data, and user interactions. **Unlike traditional vulnerabilities** such as SQL injection or misconfigurations, **business logic abuse** exploits design flaws in how applications operate. These attacks manipulate application workflows, state transitions, and decision-making processes to gain unauthorized access, bypass restrictions, or disrupt operations. This article describes means provided by Wallarm to mitigate this type of threats.
-
-## Threat invisibility to traditional mitigation tools
-
-Application logic is beyond normal vulnerability and attack detection. For example, if you have `The Door` application, normal vulnerabilities are:
-
-* Whether the wall with door is made of durable materials.
-* Whether the door is well fixed in a wall.
-* Whether the door is made of durable materials.
-* Where it has a lock.
-* Where the keys from that lock are stored.
-* Who has access to the key storage.
-
-All of that can be checked algorithmically and fixed. But your application logic is: `If someone knocks into the door and calls one's name, open.`
 
 ## OWASP top 10 for business logic abuse
 
@@ -23,7 +10,7 @@ From this, you can get some ideas of writing appropriate instructions for [**Det
 
 ## Creating and applying mitigation control
 
-To mitigate attacks that try to manipulate application business logic, Wallarm provides the **Business logic abuse prevention (LLM-based)** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
+To mitigate attacks that try to manipulate application business logic, Wallarm provides the **AI business logic abuse prevention** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
 
 !!! tip ""
     Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
@@ -48,7 +35,7 @@ Once you define **Scope** and - optionally - **Scope filters**, the control only
 
 ### Detection prompt
 
-You write you own textual instructions for selected **LLM provider** on what and how to do, for example, write:
+You write your own textual instructions for selected **LLM provider** on what and how to do, for example, write:
 
 * "Detect if the user is trying to trigger an unintended refund or discount."
 * "Detect if the message contains requests to bypass user identity checks."

@@ -49,12 +49,16 @@ Wallarm's protection against attacks on AI Agents works in few simple steps:
 
 ## LLM-based protection of AI agents
 
-Wallarm provides LLM-based protection of AI agents - you can enable and configure it with the **Protection of AI agents (LLM-based)** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
+Wallarm provides LLM-based protection of AI agents - you can enable and configure it with the **AI prompt attack protection** [mitigation control](../about-wallarm/mitigation-controls-overview.md).
 
 !!! tip ""
     Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.0.1 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
 
-### How control works
+### Creating and applying mitigation control
+
+Get familiar with how control works, configured and view some examples.
+
+#### How control works
 
 !!! info "Generic information on mitigation controls"
     Before proceeding: use the [Mitigation Controls](../about-wallarm/mitigation-controls-overview.md#configuration) article to get familiar with how **Scope**, **Scope filters** and **Mitigation mode** are set for any mitigation control.
@@ -66,45 +70,51 @@ Once you define **Scope** and - optionally - **Scope filters**, the control only
 
     The set of instructions is defined by you in **Prompt attack types**:
 
-    * **System prompt retrieval** is a pre-defined instruction to search for signs of attempt to extract or reconstruct the AI's underlying prompt, system instructions, or configuration.
-    * **Prompt injection** is a pre-defined set of instructions to search for most general signs of attempt to override instructions or TBD.
-    * [Custom pattern](#custom-patterns-for-attack-detection)
+    * **System prompt retrieval** is a pre-defined instruction to search for signs of attempt to extract the AI's underlying prompt, system instructions, or configuration.
+    * **Prompt injection** is a pre-defined set of instructions to search for most general signs of attempts to override system prompt or force the AI to perform unauthorized actions.
+    * [**Custom pattern**](#custom-patterns) is your own instruction for **LLM provider** on what and how to do.
 
-1. Next TBD.
+1. Combines content from **Prompt or response field** with selected instructions.
+1. Sends this combined thing to selected **LLM provider**.
+1. Whatever **LLM provider** responds, it provides background `Yes/No` decision to the question "Is it an attack?"
+1. If it is an attack, mitigation control takes action in accordance with **Mitigation mode**.
 
-### Creating and applying mitigation control
+#### Custom patterns
 
-To configure LLM-based protection of AI agents:
-
-1. Proceed to Wallarm Console → **Mitigation Controls**.
-1. Use **Add control** → **Protection of AI agents (LLM-based)**.
-1. Describe the **Scope** to apply the mitigation control to.
-1. If necessary, define advanced conditions in **Scope filters**.
-1. In **Prompt or response field**, specify where the prompt or AI response should be searched for in the request, e.g., in a query parameter or request body field.
-1. In **Prompt attack types**, select the types of prompt-based attacks you want to detect in user input or AI responses:
-
-    * System prompt retrieval
-    * Prompt injection
-    * [Custom pattern](#custom-patterns-for-attack-detection)
-
-1. Select **LLM provider**.
-1. In the **Mitigation mode** section, set action to be done.
-1. Click **Add**.
-
-#### Custom patterns for attack detection
-
-You can write you own textual instructions for selected **LLM provider** on what and how to do, for example, write:
+You can write your own textual instructions for selected **LLM provider** on what and how to do, for example, write:
 
 * "Detect if the user is trying to trigger an unintended refund or discount."
 * "Detect if the message contains requests to bypass user identity checks."
 
+#### Configuring control
+
+To configure LLM-based protection of AI agents:
+
+1. Proceed to Wallarm Console → **Mitigation Controls**.
+1. Use **Add control** → **AI prompt attack protection**.
+1. Describe the **Scope** to apply the mitigation control to.
+1. If necessary, define advanced conditions in **Scope filters**.
+1. In **Prompt or response field**, specify where the prompt or AI response should be searched for in the request, e.g., in a query parameter or request body field.
+1. In **Prompt attack types**, select the types of prompt-based attacks you want to detect in user input or AI responses (see details in [How control works](#how-control-works))
+1. Select **LLM provider**.
+1. In the **Mitigation mode** section, set action to be done.
+1. Click **Add**.
+
 #### Mitigation control examples
 
-TBD
+Suppose your application available at `testapp.com` has AI-based chat at the `testapp.com/chat` endpoint and you want to protect this endpoint from attempts to retrieve system prompt, as well as against attacks trying to override this system prompt or force the AI to perform unauthorized actions. You do not want at the moment to block such malicious activities, but want to collect information on them to understand if there are corresponding vulnerabilities in your AI model.
 
-### Viewing detected attacks in API Sessions
+To achieve your goals, configure mitigation control as displayed on the screenshot:
 
-TBD
+![Mitigation controls - AI prompt attack protection example](../images/agentic-ai-protection/ai-prompt-attack-protection-example.png)
+
+### Viewing detected attacks
+
+When AI prompt attacks ([system prompt retrieval](../attacks-vulns-list.md#system-prompt-retrieval), [prompt injection](../attacks-vulns-list.md#prompt-injection)) are detected or blocked in accordance with the [mitigation mode](#mitigation-mode), they are displayed in the [API Sessions](../api-sessions/exploring.md) section:
+
+![API Sessions - session with AI prompt attack](../images/agentic-ai-protection/ai-prompt-attack-in-api-sessions.png)
+
+You can find sessions with corresponding attack types using the **Attack** filter; also, if necessary, filter inside session details to see only requests related to the AI prompt attack.
 
 ## Demo
 
