@@ -90,6 +90,12 @@ Technically, all attacks that can be detected by Wallarm are divided into two ty
 
     Behavioral attacks are not detected by default. For such attacks, required Wallarm configuration is specifically defined.
 
+* **Logical attacks on AI** are characterized by textual inputs (in one or series of messages) that try to extract or modify the AI's underlying prompt, system instructions, or configuration or force the AI to perform unauthorized actions ([system prompt retrieval](#system-prompt-retrieval), [prompt injection](#prompt-injection)).
+
+    To detect logical attacks on AI, it is required to conduct semantic analysis of prompts or their series (requests and responses).
+
+    Logical attacks on AI are not detected by default. For such attacks, required Wallarm configuration is specifically defined.
+
 <!-- ??? info "Watch video about how Wallarm protects against OWASP Top 10"
     <div class="video-wrapper">
     <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -909,6 +915,50 @@ Virtual patching is blocking specific or all requests to some endpoint that is p
 
 Description TBD (not presented in docs, but presented in UI)
 -->
+
+## Attacks on AI
+
+### System prompt retrieval
+
+**Vulnerability/Attack**
+
+**Сode:** [LLM07](https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/)
+
+**Description:**
+
+The system prompt leakage vulnerability in LLMs refers to the risk that the system prompts or instructions used to steer the behavior of the model can also contain sensitive information that was not intended to be discovered. System prompts are designed to guide the model’s output based on the requirements of the application, but may inadvertently contain secrets. When discovered, this information can be used to facilitate other attacks.
+
+**Required configuration:**
+
+Wallarm detects and mitigates system prompt retrieval attacks only if it has one or more [**AI prompt attack protection**](agentic-ai/agentic-ai-protection.md#llm-based-protection-of-ai-agents) mitigation controls configured and enabled.
+
+**In addition to Wallarm protection:**
+
+* Avoid embedding any sensitive information (e.g. API keys, auth keys, database names, user roles, permission structure of the application) directly in the system prompts.
+* Avoid using system prompts to control the model behavior where possible.
+* Implement a system of guardrails outside of the LLM itself.
+* Enforce security controls independently from the LLM.
+
+### Prompt injection
+
+**Attack**
+
+**Сode:** [LLM01](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
+
+**Description:**
+
+A prompt injection attack occurs when user prompts alter the LLM’s behavior or output in unintended ways. These inputs can affect the model even if they are imperceptible to humans, therefore prompt injections do not need to be human-visible/readable, as long as the content is parsed by the model.
+
+**Required configuration:**
+
+Wallarm detects and mitigates prompt injection attacks only if it has one or more [**AI prompt attack protection**](agentic-ai/agentic-ai-protection.md#llm-based-protection-of-ai-agents) mitigation controls configured and enabled.
+
+**In addition to Wallarm protection:**
+
+* Provide specific instructions about the model’s role, capabilities, and limitations within the system prompt.
+* Implement input and output filtering.
+* Enforce privilege control and least privilege access.
+* Require human approval for high-risk actions.
 
 ## Other
 

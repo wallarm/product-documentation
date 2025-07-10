@@ -16,6 +16,8 @@ Using mitigation controls, you can enable and configure:
 * [Forced browsing protection](../api-protection/enumeration-attack-protection.md)
 * [Brute force protection](../api-protection/enumeration-attack-protection.md)
 * [Rate abuse protection](../api-protection/rate-abuse-protection.md)
+* [AI prompt attack protection](../agentic-ai/agentic-ai-protection.md#llm-based-protection-of-ai-agents)
+* [AI business logic abuse prevention](../api-protection/business-logic-abuse-prevention-llm-based.md)
 
 ## Mitigation control branches
 

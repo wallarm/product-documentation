@@ -18,7 +18,7 @@ To configure rate abuse protection:
 1. If necessary, define advanced conditions in **Scope filters**.
 1. Set threshold to count number of requests per time interval.
 1. In the **Mitigation mode** section, set action to be done when threshold is exceeded.
-1. Click **Create**.
+1. Click **Add**.
 
 ## Mitigation control examples
 
