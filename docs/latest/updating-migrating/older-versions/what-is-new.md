@@ -165,6 +165,20 @@ Wallarm provides the new [**Rate abuse protection**](../../api-protection/rate-a
 
 ![Rate abuse prevention - JWT example](../../images/api-protection/mitigation-controls-rate-abuse-prevention-jwt.png)
 
+### Default controls
+
+Wallarm provides a set of [default mitigation controls](../../about-wallarm/mitigation-controls-overview.md#default-controls) that, when enabled, significantly enhance the detection capabilities of the Wallarm platform. These controls are pre-configured to offer robust protection against a variety of common attack patterns. The current default mitigation controls include:
+
+* [GraphQL protection](../../api-protection/graphql-rule.md)
+* [BOLA (Broken Object Level Authorization) enumeration protection](../../api-protection/enumeration-attack-protection.md#bola) for user IDs, object IDs, and filenames
+* [Brute force protection](../../api-protection/enumeration-attack-protection.md#brute-force) for passwords, OTPs, and authentication codes
+* [Forced browsing protection](../../api-protection/enumeration-attack-protection.md#forced-browsing) (404 probing)
+* [Enumeration attack protection](../../api-protection/enumeration-attack-protection.md#generic-enumeration), including:
+    
+    * User/email enumeration
+    * SSRF (Server-Side Request Forgery) enumeration
+    * User-agent rotation
+
 ## API Specification Enforcement
 
 In this latest update, we introduce API Specification Enforcement feature. This filters incoming traffic, permitting only requests that comply with your API specifications. Using the Wallarm node, which sits between clients and your applications, it compares endpoint descriptions in your specifications with actual API requests. Discrepancies, such as undefined endpoint requests or those with unauthorized parameters, are either blocked or monitored as configured.
