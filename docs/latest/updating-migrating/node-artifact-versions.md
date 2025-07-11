@@ -16,10 +16,9 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
-
 <!-- * [Node part only, no public announcement yet] Added support for SOAP-XML API Discovery
-* [Node part only, no public announcement yet] Added support file upload restriction policy
-* [Node part only, no public announcement yet] Added support for unrestricted resource consumption mitigation by API Abuse Prevention -->
+* [Node part only, no public announcement yet] Added support file upload restriction policy -->
+* Added support for [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../api-abuse-prevention/overview.md)
 
 ### 6.2.1 (2025-06-23)
 
@@ -66,6 +65,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 6.3.0 (2025-07-08)
 
+* Added support for [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../api-abuse-prevention/overview.md)
 * Added the [`validation.forbidDangerousAnnotations`](../admin-en/configure-kubernetes-en.md#validationforbiddangerousannotations) chart value to toggle the CEL rule that blocks the dangerous `server-snippet` and `configuration-snippet` annotations
 
     By default, it is set to `false` - dangerous annotations are not blocked.
@@ -108,6 +108,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 6.3.0 (2025-07-08)
 
+* Added support for [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../api-abuse-prevention/overview.md)
 * Added support for the [`postanalytics.wstore.config.serviceAddress`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticswstoreconfigserviceaddress) parameter to customize the address and port for incoming **wstore** connections
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
@@ -139,6 +140,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 6.3.0 (2025-07-08)
 
+* Added support for [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../api-abuse-prevention/overview.md)
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
 
@@ -171,6 +173,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
 ### 6.3.0 (2025-07-08)
 
+* Added support for [unrestricted resource consumption](../attacks-vulns-list.md#unrestricted-resource-consumption) mitigation by [API Abuse Prevention](../api-abuse-prevention/overview.md)
 * In rules, the separator used in [**xml_tag**](../user-guides/rules/request-processing.md#xml) values that combine a URI, namespace, and tag name has been changed from `:` to `|`
 * Internal improvements
 
