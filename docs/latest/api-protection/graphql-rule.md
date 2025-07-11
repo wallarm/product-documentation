@@ -28,6 +28,18 @@ Depending on your subscription plan, one of the following configuration methods 
 
 !!! tip ""
     Requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.2.0 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+    
+### Default protection
+
+Wallarm provides [default](../about-wallarm/mitigation-controls-overview.md#default-controls) **GraphQL API protection** mitigation controls. They contain generic configuration to detect GraphQL API anomalies and enabled for all traffic in the `Monitoring` [mode](../about-wallarm/mitigation-controls-overview.md#mitigation-mode).
+
+To review GraphQL default controls, in Wallarm Console → **Security Controls** → **Mitigation Controls**, in **GraphQL API protection** section check controls with the `Default` label.
+
+You can duplicate or edit default controls or disable them. Editing allows you to customize a default control based on the specific needs of the application, traffic patterns, or business context. For example, you can narrow **Scope** to limit control to the GraphQL specific endpoints or adjust thresholds.
+
+You can **reset default control to its default configuration** at any time.
+
+--8<-- "../include/mc-subject-to-change.md"
 
 ### Creating and applying mitigation control
 
