@@ -1,4 +1,4 @@
-[api-discovery-enable-link]:        ../api-discovery/setup.md#enable
+[api-discovery-enable-link]:        ../api-discovery/setup.md
 
 # GraphQL API Protection <a href="../../about-wallarm/subscription-plans/#core-subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
