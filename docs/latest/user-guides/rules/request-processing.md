@@ -1,6 +1,6 @@
 [rule-creation-options]:    ../../user-guides/events/check-attack.md#attack-analysis_1
 [request-processing]:       ../../user-guides/rules/request-processing.md
-[api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
+[api-discovery-enable-link]:        ../../api-discovery/setup.md
 
 # Parsing Requests
 
