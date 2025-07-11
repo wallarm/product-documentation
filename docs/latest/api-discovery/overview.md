@@ -10,7 +10,6 @@ API Discovery is capable of finding and representing hosts and endpoints utilizi
 | --- | --- | --- | --- |
 | **REST** | Endpoint | Any | Any |
 | **GraphQL** | Operation (query, mutation, subscription) | 6.1.0 | NA |
-| **SOAP** | Operation | 6.3.0 | NA |
 
 ## Your API inventory
 
@@ -85,7 +84,7 @@ The API inventory will display the endpoints and parameters that exceeded these 
 Also, the API Discovery performs filtering of requests relying on the other criteria:
 
 * Only those requests to which the server responded in the 2xx range are processed.
-* Requests that do not conform to the design principles of the REST, GraphQL, or SOAP API are not processed.
+* Requests that do not conform to the design principles of the REST or GraphQL API are not processed.
     
     An entry is NOT classified as a valid API call and not displayed in API Discovery if any of the following conditions are met:
 
