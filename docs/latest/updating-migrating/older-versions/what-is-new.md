@@ -123,12 +123,14 @@ To start using the functionality, you need to create at least one [**Detect Grap
 
 ![GraphQL thresholds](../../images/user-guides/rules/graphql-rule.png)
 
-## GraphQL APIs in API Discovery
+## New API Discovery
+
+Wallarm's New [API Discovery](../../api-discovery/overview.md) is now **multi-protocol**: the REST protocol is extended with the support of GraphQL and SOAP. Also, improved user interface and performance make work with the API Discovery more comfortable and effective than before.
+
+### GraphQL protocol support
 
 !!! tip ""
     [NGINX Node 6.1.0 and higher](../node-artifact-versions.md) and not supported by Native Node so far
-
-Along with the improved user interface and performance, the new [API Discovery](../../api-discovery/overview.md) introduces the ability to detect and display GraphQL APIs.
 
 If some of your APIs utilize the GraphQL protocol and are requested in the real traffic, API Discovery will now detect them. In the built API inventory, you will see data about:
 
@@ -145,6 +147,25 @@ Each request/response parameter information includes:
 * Path: the hierarchical location of a parameter within a GraphQL query structure
 * Information about parameter changes (new, unused)
 * Presence and type of sensitive data transmitted by this parameter, including:
+* Date and time when parameter value was last transferred by requests
+
+### SOAP protocol support
+
+!!! tip ""
+    [NGINX Node 6.2.0 and higher](../node-artifact-versions.md) and not supported by Native Node so far
+
+If some of your APIs utilize the SOAP protocol and are requested in the real traffic, API Discovery will now detect them. In the built API inventory, you will see data about SOAP operations, including such data as transferred sensitive data, risk score and what contributes to it, XML body parameters, HTTPS and XML headers of requests and responses:
+
+![API Discovery - SOAP operation details](../../images/about-wallarm-waf/api-discovery-2.0/api-discovery-endpoint-details-SOAP.png)
+
+Each request/response XML parameter information includes:
+
+* Parameter name (**Key**)
+* Path: the hierarchical location of a parameter within an XML structure
+* Parameter type
+* Namespaces for path elements (from more general to more specific)
+* Presence and type of sensitive data transmitted by this parameter
+* Information about parameter changes (new, unused)
 * Date and time when parameter value was last transferred by requests
 
 ## Mitigation Controls
