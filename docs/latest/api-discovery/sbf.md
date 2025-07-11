@@ -19,7 +19,7 @@ For your convenience, API Discovery tags endpoints as belonging to sensitive bus
 
 --8<-- "../include/default-sbf.md"
 
-Automatic checks are conducted using keywords from the endpoint URL (REST) or operation name (GraphQL, SOAP). For example, keywords like `payment`, `subscription`, or `purchase` automatically associate the endpoint with the **Billing** flow, while keywords such as `auth`, `token`, or `login` link it to the **Authentication** flow. If matches are detected, the endpoint is automatically assigned to the appropriate flow.
+Automatic checks are conducted using keywords from the endpoint URL (REST) or operation name (GraphQL). For example, keywords like `payment`, `subscription`, or `purchase` automatically associate the endpoint with the **Billing** flow, while keywords such as `auth`, `token`, or `login` link it to the **Authentication** flow. If matches are detected, the endpoint is automatically assigned to the appropriate flow.
 
 The automatic tagging discovers most of the sensitive business flows. However, it is also possible to manually adjust the list of assigned business flows as described in the section below.
 
