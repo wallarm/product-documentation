@@ -190,7 +190,7 @@ Wallarm provides a set of [default mitigation controls](../../about-wallarm/miti
 ## Protection from unrestricted resource consumption
 
 !!! tip ""
-    [NGINX Node 6.3.0 and higher](../node-artifact-versions.md) and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
+    [NGINX Node 6.3.0 and higher](../node-artifact-versions.md) and not supported by [Native Node](../../installation/nginx-native-node-internals.md#native-node) so far.
 
 Wallarm's [API Abuse Prevention](../../api-abuse-prevention/overview.md) introduces the possibility to prevent the [unrestricted resource consumption](../../attacks-vulns-list.md#unrestricted-resource-consumption) - abusive behavior where an automated client consumes excessive API or application resources without proper limits. This may include sending high volumes of non-malicious requests, exhausting compute, memory, or bandwidth, and causing service degradation for legitimate users.
 
