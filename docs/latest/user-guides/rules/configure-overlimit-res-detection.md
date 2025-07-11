@@ -1,4 +1,4 @@
-[api-discovery-enable-link]:    ../../api-discovery/setup.md#enable
+[api-discovery-enable-link]:    ../../api-discovery/setup.md
 
 # Limiting Request Processing Time
 
