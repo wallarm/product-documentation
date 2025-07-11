@@ -113,7 +113,7 @@ Wallarm provides a set of **default mitigation controls** that, when enabled, si
 
 All controls from the default set have the `Default` label. Such controls: 
 
-* Added by Wallarm automatically and enabled (`On`) for the new clients.<!--, disabled (`Off`) for the rest.-->
+* Added by Wallarm automatically and enabled (`On`) for the new clients, disabled (`Off`) for the rest.
 
     !!! info "Absence of default controls"
         If you do not see any default controls, except [obligatory](#obligatory_default_controls) ones, and do want to explore and try them, contact the [Wallarm support team](https://support.wallarm.com/) to get them.
