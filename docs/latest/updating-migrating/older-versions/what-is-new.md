@@ -134,7 +134,7 @@ We introduce a unified management center for all Wallarm attack mitigation setti
 
 ![Mitigation Controls page in UI](../../images/user-guides/mitigation-controls/mc-main-page.png)
 
-## Enumeration attack protection
+### Enumeration attack protection
 
 !!! tip ""
     [NGINX Node 6.1.0 and higher](../node-artifact-versions.md) and [Native Node 0.14.1 and higher](../native-node/node-artifact-versions.md)
@@ -154,7 +154,7 @@ Comparing to triggers that were used for this protection before, mitigation cont
 
 ![BOLA protection mitigation control - example](../../images/user-guides/mitigation-controls/mc-bola-example-01.png)
 
-## Rate abuse protection
+### Rate abuse protection
 
 !!! tip ""
     [NGINX Node 6.1.0 and higher](../node-artifact-versions.md) and [Native Node 0.14.1 and higher](../native-node/node-artifact-versions.md)
