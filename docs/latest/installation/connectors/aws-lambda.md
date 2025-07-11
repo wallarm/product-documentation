@@ -41,7 +41,7 @@ Among all supported [Wallarm deployment options](../supported-deployment-options
     * The default limit for concurrent requests is 1,000 per region, but it can be increased up to tens of thousands.
     * Wallarm Lambda@Edge functions operate at the origin level, meaning they do not monitor requests handled by CDN cache. Thus, potential attacks in such requests go undetected.
 * Feature restrictions:
-    * Vulnerability detection based on [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) and API [response structure in API Discovery](../../api-discovery/exploring.md#endpoint-details) are limited due to Lambda@Edge response trigger restrictions. Since Wallarm functions cannot receive response bodies and rely on them, these features are unavailable.
+    * Vulnerability detection based on [passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) and API response structure in API Discovery are limited due to Lambda@Edge response trigger restrictions. Since Wallarm functions cannot receive response bodies and rely on them, these features are unavailable.
     * [Rate limiting](../../user-guides/rules/rate-limiting.md) by the Wallarm rule is not supported.
     * [Multitenancy](../multi-tenant/overview.md) is not supported yet.
 

@@ -1,1 +1,1 @@
---8<-- "latest/api-discovery/rogue-api.md"
+--8<-- "5.0/api-discovery/rogue-api.md"
