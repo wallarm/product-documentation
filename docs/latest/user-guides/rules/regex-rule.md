@@ -3,7 +3,7 @@
 [img-regex-example2]:       ../../images/user-guides/rules/regex-rule-2.png
 [img-regex-id]:             ../../images/user-guides/rules/regex-id.png
 [request-processing]:       ../../user-guides/rules/request-processing.md
-[api-discovery-enable-link]:        ../../api-discovery/setup.md#enable
+[api-discovery-enable-link]:        ../../api-discovery/setup.md
 
 # Custom Attack Detectors
 
