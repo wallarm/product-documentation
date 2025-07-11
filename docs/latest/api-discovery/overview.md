@@ -14,9 +14,6 @@ API Discovery is capable of finding and representing hosts and endpoints utilizi
 ## Your API inventory
 
 API inventory is a picture of your active APIs automatically built by Wallarm's API Discovery based on traffic going through Wallarm nodes. It includes:
-**GraphQL** requires [NGINX Node](../installation/nginx-native-node-internals.md#nginx-node) 6.1.0 or higher and not supported by [Native Node](../installation/nginx-native-node-internals.md#native-node) so far.
-
-The built API inventory includes the following elements:
 
 * API hosts and their endpoints
 * Required and optional parameters and headers of requests and responses including:
