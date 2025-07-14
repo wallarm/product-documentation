@@ -73,7 +73,9 @@ Security issues can be closed by Wallarm automatically after next [automatic](se
 * Vulnerable version no longer present
 * Vulnerability not detected during last scan
 
-Issues can be re-opened automatically after next rescan or manually. Note that issues marked as false are never re-opened automatically. For your to be on track, the full history of status changes with comments is displayed in the **Status history** section.
+Issues can be re-opened automatically after next rescan or manually. Note that issues marked as false are never re-opened automatically. For you to be on track, the full history of status changes with comments is displayed in the **Status history** section.
+
+![Security issues - lifecycle diagram](../images/api-attack-surface/security-issue-lifecycle.png)
 
 You can also re-evaluate and adjust the [risk level](#issue-risk-level) of the issue.
 
