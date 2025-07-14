@@ -38,6 +38,7 @@ theme:
   language_name: Arabic
   version: "4.10"
   playground_button_name: "استكشف الملعب"
+  try_button_name: "جرّب مجانًا"
   footer:
     need_help: هل تحتاج إلى مساعدة أو لديك أسئلة؟
     contact_support: اتصل بالدعم
