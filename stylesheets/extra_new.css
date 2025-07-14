@@ -670,16 +670,25 @@ img {
 
 .playground-button {
   background-color: #FC7303;
+  margin-right: 0px;
 }
 
 .playground-button:hover {
   background-color: #D85602;
 }
 
+.signup-button {
+  background-color: #4842ff;
+}
+
+.signup-button:hover {
+  background-color: #5d57ff;
+}
+
 @media screen and (max-width: 959px) {
   .md-header__inner.md-grid {
     display: grid;
-    height: 117px;
+    height: 157px;
     grid-template-rows: 65px 40px 50px;
     grid-template-areas:
       "toggle logo title back search"
@@ -708,6 +717,10 @@ img {
     margin: 0;
     margin-right: 0.4rem;
   }
+  .signup-button.desktop-button {
+    width: 50%;
+    margin: 0;
+  }
   .back-wallarmcom {
     grid-area: back;
   }
@@ -719,7 +732,8 @@ img {
     grid-area: toggle;
   }
   .languages {
-    width: 50%;
+    position: relative;
+    grid-area: lang;
   }
   .languages .languages-list, .languages .languages-main {
     width: 100%;

@@ -12,6 +12,7 @@ theme:
   language_name: Turkish
   version: "4.8"
   playground_button_name: "Oyun Alanını Keşfedin"
+  try_button_name: "Ücretsiz Deneyin"
 
 docs_dir: docs/tr
 site_dir: site/tr
