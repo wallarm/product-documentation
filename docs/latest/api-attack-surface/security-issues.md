@@ -65,7 +65,17 @@ Once a security issue is detected, it obtains the **Open** status meaning some m
 
 It is useful to provide comment on each status change, giving others the full view of what is the reason of change. Author and time of change are tracked automatically.
 
-Issues can be re-opened. For your to be on track, the full history of status changes with comments is displayed in the **Status history** section.
+Security issues can be closed by Wallarm automatically after next [automatic](setup.md#auto-rescan) or [manual](setup.md#manual-rescan) rescan in the following cases:
+
+* Port not found during last scan
+* Network service has changed
+* New version of the product detected
+* Vulnerable version no longer present
+* Vulnerability not detected during last scan
+
+Issues can be re-opened automatically after next rescan or manually. Note that issues marked as false are never re-opened automatically. For you to be on track, the full history of status changes with comments is displayed in the **Status history** section.
+
+![Security issues - lifecycle diagram](../images/api-attack-surface/security-issue-lifecycle.png)
 
 You can also re-evaluate and adjust the [risk level](#issue-risk-level) of the issue.
 
